@@ -1,5 +1,52 @@
 # Change Log
 
+## 2.1.8
+
+### Patch Changes
+
+- [#1451](https://github.com/graphcommerce-org/graphcommerce/pull/1451) [`f698ff85d`](https://github.com/graphcommerce-org/graphcommerce/commit/f698ff85df6bb0922288471bb3c81856091b8061) Thanks [@paales](https://github.com/paales)! - Removed all occurences of @lingui/macro and moved to @lingui/macro / @lingui/core in preparation to move to swc.
+
+  Since we've removed @lingui/macro, all occurences need to be replaced with @lingui/core and @lingui/react.
+
+  All occurences of `<Trans>` and `t` need to be replaced:
+
+  ```tsx
+  import { Trans, t } from '@lingui/macro'
+
+  function MyComponent() {
+    const foo = 'bar'
+    return (
+      <div aria-label={t`Account ${foo}`}>
+        <Trans>My Translation {foo}</Trans>
+      </div>
+    )
+  }
+  ```
+
+  Needs to be replaced with:
+
+  ```tsx
+  import { Trans } from '@lingui/react'
+  import { i18n } from '@lingui/core'
+
+  function MyComponent() {
+    const foo = 'bar'
+    return (
+      <div aria-label={i18n._(/* i18n */ `Account {foo}`, { foo })}>
+        <Trans key='My Translation {foo}' values={{ foo }}></Trans>
+      </div>
+    )
+  }
+  ```
+
+  [More examples for Trans](https://lingui.js.org/ref/macro.html#examples-of-jsx-macros) and [more examples for `t`](https://lingui.js.org/ref/macro.html#examples-of-js-macros)
+
+## 2.1.7
+
+### Patch Changes
+
+- [#1426](https://github.com/graphcommerce-org/graphcommerce/pull/1426) [`100f4c38c`](https://github.com/graphcommerce-org/graphcommerce/commit/100f4c38c8fcda4bc6e0425e38028b550b60adc2) Thanks [@paales](https://github.com/paales)! - Upgrade packages
+
 ## 2.1.6
 
 ### Patch Changes

@@ -1,5 +1,36 @@
 # Change Log
 
+## 3.0.16
+
+### Patch Changes
+
+- Updated dependencies [[`f698ff85d`](https://github.com/graphcommerce-org/graphcommerce/commit/f698ff85df6bb0922288471bb3c81856091b8061)]:
+  - @graphcommerce/next-ui@4.7.2
+  - @graphcommerce/graphql@3.1.3
+
+## 3.0.15
+
+### Patch Changes
+
+- Updated dependencies [[`25ef6cf08`](https://github.com/graphcommerce-org/graphcommerce/commit/25ef6cf08c278105307d6f604b7135d637e9046c), [`80e30bb77`](https://github.com/graphcommerce-org/graphcommerce/commit/80e30bb77015755fbc00a7935d590f80c1c1c18c)]:
+  - @graphcommerce/graphql@3.1.2
+  - @graphcommerce/next-ui@4.7.1
+
+## 3.0.14
+
+### Patch Changes
+
+- Updated dependencies [[`f3d06dd83`](https://github.com/graphcommerce-org/graphcommerce/commit/f3d06dd836c9a76412b419d4d2c79bbd0ee92e04)]:
+  - @graphcommerce/next-ui@4.7.0
+
+## 3.0.13
+
+### Patch Changes
+
+- Updated dependencies [[`100f4c38c`](https://github.com/graphcommerce-org/graphcommerce/commit/100f4c38c8fcda4bc6e0425e38028b550b60adc2)]:
+  - @graphcommerce/graphql@3.1.1
+  - @graphcommerce/next-ui@4.6.2
+
 ## 3.0.12
 
 ### Patch Changes

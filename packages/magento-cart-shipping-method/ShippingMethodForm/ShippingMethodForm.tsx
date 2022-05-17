@@ -13,7 +13,8 @@ import {
   extendableComponent,
 } from '@graphcommerce/next-ui'
 import { Controller, useFormCompose, UseFormComposeOptions } from '@graphcommerce/react-hook-form'
-import { t, Trans } from '@lingui/macro'
+import { i18n } from '@lingui/core'
+import { Trans } from '@lingui/react'
 import { FormControl, Alert, Box } from '@mui/material'
 import { AvailableShippingMethod } from '../AvailableShippingMethod/AvailableShippingMethod'
 import { GetShippingMethodsDocument } from './GetShippingMethods.gql'
@@ -107,9 +108,13 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
                   },
                 }}
               >
-                <IconSvg src={iconChevronLeft} size='small' aria-label={t`Scroll Left`} />
-              </ScrollerButton>
-            </Box>
+                          <IconSvg
+                src={iconChevronLeft}
+                size='small'
+                aria-label={i18n._(/* i18n */ `Scroll Left`)}
+              />
+            </ScrollerButton>
+          </Box>
 
             <FormControl>
               <Controller
@@ -187,6 +192,8 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
                       >
                         Please select a shipping method
                       </Alert>
+                        <Trans id='Please fill in your address to see shipping methods' />
+                      </AvailableShippingMethod>
                     )}
                   </>
                 )}
@@ -224,12 +231,15 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
                 }}
                 className={classes.buttonRoot}
               >
-                <IconSvg src={iconChevronRight} size='small' aria-label={t`Scroll Right`} />
-              </ScrollerButton>
-            </Box>
-          </ScrollerProvider>
-        </FormRow>
-      )}
+              <IconSvg
+                src={iconChevronRight}
+                size='small'
+                aria-label={i18n._(/* i18n */ `Scroll Right`)}
+              />
+            </ScrollerButton>
+          </Box>
+        </ScrollerProvider>
+      </FormRow>
 
       <ApolloCartErrorAlert error={error} />
     </Form>

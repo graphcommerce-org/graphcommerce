@@ -30,7 +30,7 @@ export function Money(props: MoneyProps) {
   const { data: config } = useQuery(StoreConfigDocument)
   const locale = config?.storeConfig?.locale
 
-  const digits = round && (value ?? 0) % 1 === 0
+  const digits = (value ?? 0) % 1 !== 0
 
   const numberFormatter = useMemo(() => {
     if (!locale) return undefined
@@ -38,10 +38,12 @@ export function Money(props: MoneyProps) {
     return new Intl.NumberFormat(locale.replace('_', '-'), {
       style: 'currency',
       currency: currency ?? config?.storeConfig?.base_currency_code ?? '',
-      ...(digits && { minimumFractionDigits: 0 }),
+      ...(round && !digits && { minimumFractionDigits: 0 }),
+      ...(round && digits && { minimumFractionDigits: 2 }),
+      ...(!round && { minimumFractionDigits: 2 }),
       ...formatOptions,
     })
-  }, [config?.storeConfig?.base_currency_code, currency, digits, formatOptions, locale])
+  }, [config?.storeConfig?.base_currency_code, currency, digits, formatOptions, locale, round])
 
   if (!numberFormatter || !value) return null
 

@@ -2,7 +2,8 @@ import { useQuery } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Button, extendableComponent, Form, FormRow } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { t, Trans } from '@lingui/macro'
+import { i18n } from '@lingui/core'
+import { Trans } from '@lingui/react'
 import { Box, TextField } from '@mui/material'
 import React, { PropsWithChildren } from 'react'
 import { SignUpMutationVariables, SignUpMutation, SignUpDocument } from './SignUp.gql'
@@ -55,7 +56,7 @@ export function SignUpFormInline({
           variant='outlined'
           type='password'
           error={!!formState.errors.password || !!error?.message}
-          label={<Trans>Password</Trans>}
+          label={<Trans id='Password' />}
           autoFocus
           autoComplete='new-password'
           id='new-password'
@@ -64,7 +65,7 @@ export function SignUpFormInline({
             required: required.password,
             minLength: {
               value: minPasswordLength,
-              message: t`Password must have at least 8 characters`,
+              message: i18n._(/* i18n */ `Password must have at least 8 characters`),
             },
           })}
           helperText={error?.message}

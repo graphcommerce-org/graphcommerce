@@ -14,7 +14,8 @@ import {
   IconSvg,
   LayoutTitle,
 } from '@graphcommerce/next-ui'
-import { t, Trans } from '@lingui/macro'
+import { i18n } from '@lingui/core'
+import { Trans } from '@lingui/react'
 import { Container, NoSsr } from '@mui/material'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -50,15 +51,11 @@ function AccountOrdersPage() {
     <>
       <LayoutOverlayHeader>
         <LayoutTitle size='small' component='span' icon={iconBox}>
-          <Trans>Orders</Trans>
+          <Trans id='Orders' />
         </LayoutTitle>
       </LayoutOverlayHeader>
       <Container maxWidth='md'>
-        <PageMeta
-          title={t`Orders`}
-          metaDescription='View all your orders'
-          metaRobots={['noindex']}
-        />
+        <PageMeta title={i18n._(/* i18n */ `Orders`)} metaRobots={['noindex']} />
         <NoSsr>
           {customer?.orders && customer.orders.items.length > 0 && (
             <>
@@ -69,10 +66,10 @@ function AccountOrdersPage() {
 
           {customer?.orders && customer.orders.items.length < 1 && (
             <FullPageMessage
-              title={t`You have no orders yet`}
+              title={i18n._(/* i18n */ `You have no orders yet`)}
               icon={<IconSvg src={iconBox} size='xxl' />}
             >
-              <Trans>Discover our collection and place your first order!</Trans>
+              <Trans id='Discover our collection and place your first order!' />
             </FullPageMessage>
           )}
         </NoSsr>

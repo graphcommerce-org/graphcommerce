@@ -27,7 +27,7 @@ import {
 
 if (typeof window === 'undefined') {
   // eslint-disable-next-line no-underscore-dangle
-  global.__NEXT_IMAGE_IMPORTED = true
+  ;(global as any).__NEXT_IMAGE_IMPORTED = true
 }
 
 export type { ImageLoaderProps, ImageLoader }

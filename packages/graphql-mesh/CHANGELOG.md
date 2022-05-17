@@ -1,5 +1,25 @@
 # Change Log
 
+## 4.1.3
+
+### Patch Changes
+
+- [#1439](https://github.com/graphcommerce-org/graphcommerce/pull/1439) [`25ef6cf08`](https://github.com/graphcommerce-org/graphcommerce/commit/25ef6cf08c278105307d6f604b7135d637e9046c) Thanks [@paales](https://github.com/paales)! - Updated dependencies
+
+## 4.1.2
+
+### Patch Changes
+
+- [#1429](https://github.com/graphcommerce-org/graphcommerce/pull/1429) [`ba8cd4d34`](https://github.com/graphcommerce-org/graphcommerce/commit/ba8cd4d3480a7ec7e555b051cfd0fbc809c7aa12) Thanks [@paales](https://github.com/paales)! - mesh couldn’t be generated properly in a non-monorepo setup
+
+## 4.1.1
+
+### Patch Changes
+
+- [#1427](https://github.com/graphcommerce-org/graphcommerce/pull/1427) [`06f7bdff8`](https://github.com/graphcommerce-org/graphcommerce/commit/06f7bdff882396f2b0e1a2873fbb718c7b06fab4) Thanks [@paales](https://github.com/paales)! - Use playground title provided by the config
+
+* [#1426](https://github.com/graphcommerce-org/graphcommerce/pull/1426) [`100f4c38c`](https://github.com/graphcommerce-org/graphcommerce/commit/100f4c38c8fcda4bc6e0425e38028b550b60adc2) Thanks [@paales](https://github.com/paales)! - Upgrade packages
+
 ## 4.1.0
 
 ### Minor Changes

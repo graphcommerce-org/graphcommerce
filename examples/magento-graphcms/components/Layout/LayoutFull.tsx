@@ -1,12 +1,14 @@
 import { CartFab } from '@graphcommerce/magento-cart'
 import { CustomerFab, CustomerMenuFabItem } from '@graphcommerce/magento-customer'
 import { SearchLink } from '@graphcommerce/magento-search'
+import { WishlistFab, WishlistMenuFabItem } from '@graphcommerce/magento-wishlist'
 import {
   DesktopNavActions,
   DesktopNavBar,
   LayoutDefault,
   LayoutDefaultProps,
   iconCustomerService,
+  iconHeart,
   MenuFab,
   MenuFabSecondaryItem,
   PlaceholderFab,
@@ -15,7 +17,8 @@ import {
   MenuFabItem,
   DarkLightModeMenuSecondaryItem,
 } from '@graphcommerce/next-ui'
-import { t, Trans } from '@lingui/macro'
+import { i18n } from '@lingui/core'
+import { Trans } from '@lingui/react'
 import { Fab } from '@mui/material'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
@@ -53,16 +56,17 @@ export function LayoutFull(props: LayoutFullProps) {
               )
             })}
             <DesktopNavItem href='/blog'>
-              <Trans>Blog</Trans>
+              <Trans id='Blog' />
             </DesktopNavItem>
           </DesktopNavBar>
           <DesktopNavActions>
             {!router.pathname.startsWith('/search') && <SearchLink href='/search' />}
             <PageLink href='/service' passHref>
-              <Fab aria-label={t`Account`} size='large' color='inherit'>
+              <Fab aria-label={i18n._(/* i18n */ `Account`)} size='large' color='inherit'>
                 <IconSvg src={iconCustomerService} size='large' />
               </Fab>
             </PageLink>
+            <WishlistFab icon={<IconSvg src={iconHeart} size='large' />} />
             <CustomerFab guestHref='/account/signin' authHref='/account' />
             {/* The placeholder exists because the CartFab is sticky but we want to reserve the space for the <CartFab /> */}
             <PlaceholderFab />
@@ -75,25 +79,28 @@ export function LayoutFull(props: LayoutFullProps) {
         <MenuFab
           search={
             <SearchLink href='/search' sx={{ width: '100%' }}>
-              <Trans>Search...</Trans>
+              <Trans id='Search...' />
             </SearchLink>
           }
           secondary={[
             <CustomerMenuFabItem key='account' guestHref='/account/signin' authHref='/account'>
-              <Trans>Account</Trans>
+              <Trans id='Account' />
             </CustomerMenuFabItem>,
             <MenuFabSecondaryItem
               key='service'
               icon={<IconSvg src={iconCustomerService} size='medium' />}
               href='/service'
             >
-              <Trans>Customer Service</Trans>
+              <Trans id='Customer Service' />
             </MenuFabSecondaryItem>,
+            <WishlistMenuFabItem key='wishlist' icon={<IconSvg src={iconHeart} size='medium' />}>
+              <Trans id='Wishlist' />
+            </WishlistMenuFabItem>,
             <DarkLightModeMenuSecondaryItem key='darkmode' />,
           ]}
         >
           <MenuFabItem href='/'>
-            <Trans>Home</Trans>
+            <Trans id='Home' />
           </MenuFabItem>
           {menuItemsIncludeInMenu?.map((item) => {
             const highLight = item?.name?.toLowerCase().includes('sale')
@@ -106,7 +113,7 @@ export function LayoutFull(props: LayoutFullProps) {
             )
           })}
           <MenuFabItem href='/blog'>
-            <Trans>Blog</Trans>
+            <Trans id='Blog' />
           </MenuFabItem>
         </MenuFab>
       }

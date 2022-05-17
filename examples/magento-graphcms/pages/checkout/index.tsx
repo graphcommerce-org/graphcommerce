@@ -15,6 +15,7 @@ import { CustomerAddressForm } from '@graphcommerce/magento-cart-shipping-addres
 import { ShippingMethodForm } from '@graphcommerce/magento-cart-shipping-method'
 import { CustomerDocument } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { useMergeGuestWishlistWithCustomer } from '@graphcommerce/magento-wishlist'
 import {
   FormActions,
   FormHeader,
@@ -24,7 +25,8 @@ import {
   Stepper,
   LayoutTitle,
 } from '@graphcommerce/next-ui'
-import { t, Trans } from '@lingui/macro'
+import { i18n } from '@lingui/core'
+import { Trans } from '@lingui/react'
 import { Container, NoSsr } from '@mui/material'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -37,6 +39,8 @@ type GetPageStaticProps = GetStaticProps<LayoutMinimalProps, Props>
 
 function ShippingPage() {
   useGoogleRecaptcha()
+  useMergeGuestWishlistWithCustomer()
+
   const { data: cartData } = useCartQuery(ShippingPageDocument, {
     returnPartialData: true,
     fetchPolicy: 'cache-and-network',
@@ -56,14 +60,14 @@ function ShippingPage() {
 
   return (
     <ComposedForm>
-      <PageMeta title={t`Checkout`} metaDescription={t`Cart Items`} metaRobots={['noindex']} />
+      <PageMeta title={i18n._(/* i18n */ `Checkout`)} metaRobots={['noindex']} />
       <LayoutHeader
         primary={
           <ComposedSubmit
             onSubmitSuccessful={onSubmitSuccessful}
             render={(renderProps) => (
               <ComposedSubmitLinkOrButton {...renderProps}>
-                <Trans>Next</Trans>
+                <Trans id='Next' />
               </ComposedSubmitLinkOrButton>
             )}
           />
@@ -75,7 +79,7 @@ function ShippingPage() {
         }
       >
         <LayoutTitle size='small' icon={iconBox}>
-          <Trans>Shipping</Trans>
+          <Trans id='Shipping' />
         </LayoutTitle>
       </LayoutHeader>
       <Container maxWidth='md'>
@@ -85,7 +89,7 @@ function ShippingPage() {
           {cartExists && (
             <>
               <LayoutTitle icon={iconBox}>
-                <Trans>Shipping</Trans>
+                <Trans id='Shipping' />
               </LayoutTitle>
               {addresses ? (
                 <CustomerAddressForm step={2}>
@@ -99,7 +103,7 @@ function ShippingPage() {
               )}
 
               <FormHeader variant='h5'>
-                <Trans>Shipping method</Trans>
+                <Trans id='Shipping method' />
               </FormHeader>
 
               <ShippingMethodForm step={4} />
@@ -110,7 +114,7 @@ function ShippingPage() {
                   <>
                     <FormActions>
                       <ComposedSubmitButton {...renderProps} size='large' id='next'>
-                        <Trans>Next</Trans>
+                        <Trans id='Next' />
                       </ComposedSubmitButton>
                     </FormActions>
                     <ApolloCartErrorAlert

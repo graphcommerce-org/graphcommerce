@@ -1,5 +1,38 @@
 # Change Log
 
+## 3.0.12
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/graphql@3.1.3
+
+## 3.0.11
+
+### Patch Changes
+
+- [#1445](https://github.com/graphcommerce-org/graphcommerce/pull/1445) [`7618f86da`](https://github.com/graphcommerce-org/graphcommerce/commit/7618f86da930929b10b6baf145646356b1bb3793) Thanks [@timhofman](https://github.com/timhofman)! - remove Klarna type policies from typePolicies core
+
+## 3.0.10
+
+### Patch Changes
+
+- Updated dependencies [[`25ef6cf08`](https://github.com/graphcommerce-org/graphcommerce/commit/25ef6cf08c278105307d6f604b7135d637e9046c), [`80e30bb77`](https://github.com/graphcommerce-org/graphcommerce/commit/80e30bb77015755fbc00a7935d590f80c1c1c18c)]:
+  - @graphcommerce/graphql@3.1.2
+
+## 3.0.9
+
+### Patch Changes
+
+- [#1429](https://github.com/graphcommerce-org/graphcommerce/pull/1429) [`e58df7278`](https://github.com/graphcommerce-org/graphcommerce/commit/e58df727829a12941e7b2ae2159ee2233969493c) Thanks [@paales](https://github.com/paales)! - type policies for Mollie shouldn’t be in the core package
+
+## 3.0.8
+
+### Patch Changes
+
+- Updated dependencies [[`100f4c38c`](https://github.com/graphcommerce-org/graphcommerce/commit/100f4c38c8fcda4bc6e0425e38028b550b60adc2)]:
+  - @graphcommerce/graphql@3.1.1
+
 ## 3.0.7
 
 ### Patch Changes

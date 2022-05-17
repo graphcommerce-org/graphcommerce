@@ -1,6 +1,6 @@
 import { Image, ImageProps } from '@graphcommerce/image'
 import { responsiveVal, extendableComponent } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react'
 import { ButtonBase, Typography, Box, styled, SxProps, Theme } from '@mui/material'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
@@ -43,7 +43,10 @@ type BaseProps = PropsWithChildren<
     Pick<ImageProps, 'loading' | 'sizes' | 'dontReportWronglySizedImages'>
 >
 
-export type ProductListItemProps = BaseProps & { sx?: SxProps<Theme> }
+export type ProductListItemProps = BaseProps & {
+  sx?: SxProps<Theme>
+  titleComponent?: React.ElementType
+}
 
 const StyledImage = styled(Image)({})
 
@@ -63,6 +66,7 @@ export function ProductListItem(props: ProductListItemProps) {
     sizes,
     dontReportWronglySizedImages,
     aspectRatio = [4, 3],
+    titleComponent = 'h2',
     sx = [],
   } = props
 
@@ -131,7 +135,7 @@ export function ProductListItem(props: ProductListItemProps) {
               }}
               className={`${classes.placeholder} ${classes.image}`}
             >
-              <Trans>No Image</Trans>
+              <Trans id='No Image' />
             </Box>
           )}
 
@@ -218,7 +222,7 @@ export function ProductListItem(props: ProductListItemProps) {
               })}
             >
               <Typography
-                component='h2'
+                component={titleComponent}
                 variant='subtitle1'
                 sx={{
                   display: 'inline',

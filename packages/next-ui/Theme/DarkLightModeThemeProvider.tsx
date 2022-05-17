@@ -1,4 +1,4 @@
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react'
 import {
   Theme,
   ThemeProvider,
@@ -43,7 +43,7 @@ type ThemeProviderProps = {
  * The multi DarkLightModeThemeProvider allows switching between light and dark mode based on URL
  * and on user input.
  *
- * If you *just* wan't a single theme, use the import { ThemeProvider } from '@mui/material' instead.
+ * If you _just_ wan't a single theme, use the import { ThemeProvider } from '@mui/material' instead.
  */
 export function DarkLightModeThemeProvider(props: ThemeProviderProps) {
   const { children, light, dark } = props
@@ -109,9 +109,9 @@ export function DarkLightModeMenuSecondaryItem(props: ListItemButtonProps) {
       </ListItemIcon>
       <ListItemText>
         {currentMode === 'light' ? (
-          <Trans>Switch to Dark Mode</Trans>
+          <Trans id='Switch to Dark Mode' />
         ) : (
-          <Trans>Switch to Light Mode</Trans>
+          <Trans id='Switch to Light Mode' />
         )}
       </ListItemText>
     </ListItemButton>

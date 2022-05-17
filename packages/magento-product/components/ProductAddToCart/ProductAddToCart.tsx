@@ -10,7 +10,7 @@ import {
   extendableComponent,
   AnimatedRow,
 } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react'
 import { Divider, Typography, ButtonProps, Box, Alert } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
@@ -22,6 +22,7 @@ const { classes, selectors } = extendableComponent('ProductAddToCart', [
   'button',
   'price',
   'divider',
+  'buttonWrapper',
 ] as const)
 
 export type AddToCartProps = React.ComponentProps<typeof ProductAddToCart>
@@ -31,10 +32,11 @@ export function ProductAddToCart(
     variables: Omit<ProductAddToCartMutationVariables, 'cartId'>
     name: string
     price: MoneyProps
+    additionalButtons?: React.ReactNode
     children?: React.ReactNode
   } & Omit<ButtonProps, 'type' | 'name'>,
 ) {
-  const { name, children, variables, price, sx, ...buttonProps } = props
+  const { name, children, variables, price, sx, additionalButtons, ...buttonProps } = props
 
   const form = useFormGqlMutationCart(ProductAddToCartDocument, {
     defaultValues: { ...variables },
@@ -69,21 +71,32 @@ export function ProductAddToCart(
         size='small'
       />
       {children}
-      <Button
-        type='submit'
-        className={classes.button}
-        loading={formState.isSubmitting}
-        color='primary'
-        variant='pill'
-        size='large'
+      <Box
         sx={(theme) => ({
-          marginTop: theme.spacings.sm,
-          width: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          columnGap: theme.spacings.xs,
         })}
-        {...buttonProps}
+        className={classes.buttonWrapper}
       >
-        <Trans>Add to Cart</Trans>
-      </Button>
+        <Button
+          type='submit'
+          className={classes.button}
+          loading={formState.isSubmitting}
+          color='primary'
+          variant='pill'
+          size='large'
+          sx={(theme) => ({
+            marginTop: theme.spacings.sm,
+            marginBottom: theme.spacings.sm,
+            width: '100%',
+          })}
+          {...buttonProps}
+        >
+          <Trans id='Add to Cart' />
+        </Button>
+        {additionalButtons}
+      </Box>
 
       <ApolloCartErrorAlert error={error} />
 
@@ -112,14 +125,15 @@ export function ProductAddToCart(
               color='secondary'
               endIcon={<IconSvg src={iconChevronRight} />}
             >
-              <Trans>View shopping cart</Trans>
+              <Trans id='View shopping cart' />
             </Button>
           </PageLink>
         }
       >
-        <Trans>
-          <strong>{name}</strong> has been added to your shopping cart!
-        </Trans>
+        <Trans
+          id='<0>{name}</0> has been added to your shopping cart!'
+          components={{ 0: <strong /> }}
+        />
       </MessageSnackbar>
     </Box>
   )

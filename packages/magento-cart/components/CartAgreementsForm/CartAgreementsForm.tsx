@@ -7,7 +7,7 @@ import {
   UseFormComposeOptions,
   useFormPersist,
 } from '@graphcommerce/react-hook-form'
-import { t } from '@lingui/macro'
+import { i18n } from '@lingui/core'
 import {
   Box,
   Checkbox,
@@ -72,7 +72,7 @@ export function CartAgreementsForm(props: CartAgreementsFormProps) {
                       name={`agreement[${agreement.agreement_id}]`}
                       control={control}
                       rules={{
-                        required: t`You have to agree in order to proceed`,
+                        required: i18n._(/* i18n */ `You have to agree in order to proceed`),
                       }}
                       render={({
                         field: { onChange, value, name, ref, onBlur },

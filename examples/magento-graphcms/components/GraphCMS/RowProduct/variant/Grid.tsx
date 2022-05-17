@@ -20,7 +20,7 @@ export function Grid(props: GridProps) {
         </PageLink>
       ))}
     >
-      <ProductListItems {...productListItems} size='small' />
+      <ProductListItems {...productListItems} size='small' titleComponent='h3' />
     </ContainerWithHeader>
   )
 }

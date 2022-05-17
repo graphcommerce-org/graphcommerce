@@ -8,7 +8,7 @@ import {
   IconSvg,
   extendableComponent,
 } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react'
 import { Box, Divider, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { useCartQuery } from '../../hooks'
@@ -54,7 +54,7 @@ export function CartItemSummary(props: OrderSummaryProps) {
     >
       <SectionContainer
         sx={{ '& .SectionHeader': { mt: 0 } }}
-        labelLeft={<Trans>Order summary</Trans>}
+        labelLeft={<Trans id='Order summary' />}
         // labelRight={
         //   <PageLink href='/download' passHref>
         //     <Link color='secondary'>Download invoice</Link>

@@ -1,5 +1,17 @@
 # Change Log
 
+## 3.2.1
+
+### Patch Changes
+
+- [#1432](https://github.com/graphcommerce-org/graphcommerce/pull/1432) [`99600dd09`](https://github.com/graphcommerce-org/graphcommerce/commit/99600dd091980dd9ef335c04d2efac0835c20b2f) Thanks [@paales](https://github.com/paales)! - make sure the background isn’t visible to screen readers
+
+## 3.2.0
+
+### Minor Changes
+
+- [#1416](https://github.com/graphcommerce-org/graphcommerce/pull/1416) [`f3d06dd83`](https://github.com/graphcommerce-org/graphcommerce/commit/f3d06dd836c9a76412b419d4d2c79bbd0ee92e04) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - SEO audit
+
 ## 3.1.6
 
 ### Patch Changes

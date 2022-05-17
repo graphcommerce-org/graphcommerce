@@ -17,6 +17,7 @@ import {
 } from '@graphcommerce/magento-product-virtual'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
 import {
   GetStaticProps,
   JsonLd,
@@ -77,7 +78,8 @@ function ProductVirtual(props: Props) {
         <ProductAddToCart
           variables={{ sku: product.sku ?? '', quantity: 1 }}
           name={product.name ?? ''}
-          price={product.price_range.minimum_price.regular_price}
+          price={product.price_range.minimum_price.final_price}
+          additionalButtons={<ProductWishlistChipDetail {...product} />}
         >
           <ProductSidebarDelivery />
         </ProductAddToCart>

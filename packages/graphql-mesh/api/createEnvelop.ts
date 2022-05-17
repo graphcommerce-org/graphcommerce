@@ -6,7 +6,7 @@ export async function createServer(endpoint: string) {
   // retrieve the mesh instance (with configured Envelop plugins)
   const mesh = await getBuiltMesh()
 
-  const { cors } = rawConfig.serve ?? {}
+  const { cors, playgroundTitle } = rawConfig.serve ?? {}
 
   // pass the Mesh instance to Yoga and configure GraphiQL
   const server = createYogaServer({
@@ -22,7 +22,7 @@ export async function createServer(endpoint: string) {
     context: ({ req }) => ({ ...req, ...mesh.meshContext }),
     graphiql: {
       endpoint,
-      title: 'GraphCommerce® Mesh',
+      title: playgroundTitle,
     },
     maskedErrors: false,
     parserCache: false,

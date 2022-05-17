@@ -1,5 +1,5 @@
 import { IconHeader, iconBox, extendableComponent } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react'
 import { Box, SxProps, Theme } from '@mui/material'
 
 const parts = ['root'] as const
@@ -15,7 +15,7 @@ export function NoOrdersFound(props: NoOrdersFoundProps) {
       sx={[(theme) => ({ marginTop: theme.spacings.sm }), ...(Array.isArray(sx) ? sx : [sx])]}
     >
       <IconHeader src={iconBox} size='small'>
-        <Trans>No orders found</Trans>
+        <Trans id='No orders found' />
       </IconHeader>
     </Box>
   )

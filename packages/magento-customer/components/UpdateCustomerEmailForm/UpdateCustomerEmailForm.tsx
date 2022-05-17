@@ -7,7 +7,8 @@ import {
   MessageSnackbar,
 } from '@graphcommerce/next-ui'
 import { emailPattern, useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { t, Trans } from '@lingui/macro'
+import { i18n } from '@lingui/core'
+import { Trans } from '@lingui/react'
 import { TextField } from '@mui/material'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import {
@@ -70,7 +71,7 @@ export function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormProps) {
           autoFocus
           error={formState.isSubmitted && !!formState.errors.email}
           helperText={formState.isSubmitted && formState.errors.email?.message}
-          label={<Trans>New email</Trans>}
+          label={<Trans id='New email' />}
           required={required.email}
           {...muiRegister('email', {
             required: true,
@@ -85,11 +86,11 @@ export function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormProps) {
           autoFocus
           error={formState.isSubmitted && !!formState.errors.confirmEmail}
           helperText={formState.isSubmitted && formState.errors.confirmEmail?.message}
-          label={<Trans>Confirm new email</Trans>}
+          label={<Trans id='Confirm new email' />}
           required
           {...muiRegister('confirmEmail', {
             required: true,
-            validate: (value) => value === watchNewEmail || t`Emails don't match`,
+            validate: (value) => value === watchNewEmail || i18n._(/* i18n */ `Emails don't match`),
           })}
         />
       </FormRow>
@@ -99,7 +100,7 @@ export function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormProps) {
           variant='outlined'
           type='password'
           error={!!formState.errors.password}
-          label={<Trans>Password</Trans>}
+          label={<Trans id='Password' />}
           autoComplete='password'
           required={required.password}
           {...muiRegister('password', {
@@ -119,13 +120,13 @@ export function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormProps) {
           size='large'
           loading={formState.isSubmitting}
         >
-          <Trans>Save changes</Trans>
+          <Trans id='Save changes' />
         </Button>
       </FormActions>
       <ApolloCustomerErrorAlert error={error} />
 
       <MessageSnackbar sticky open={formState.isSubmitSuccessful && !error}>
-        <Trans>Successfully updated email</Trans>
+        <Trans id='Successfully updated email' />
       </MessageSnackbar>
     </Form>
   )

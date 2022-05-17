@@ -3,7 +3,8 @@ import { useGoogleRecaptcha } from '@graphcommerce/googlerecaptcha'
 import { ResetPasswordForm } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
-import { t, Trans } from '@lingui/macro'
+import { i18n } from '@lingui/core'
+import { Trans } from '@lingui/react'
 import { Box, Container, Link, NoSsr, Button } from '@mui/material'
 import router, { useRouter } from 'next/router'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../../components'
@@ -19,14 +20,14 @@ function CustomerAccountCreatePasswordPage() {
 
   return (
     <>
-      <PageMeta
-        title={t`Create new password`}
-        metaDescription={t`Create new password`}
-        metaRobots={['noindex']}
-      />
+      <PageMeta title={i18n._(/* i18n */ `Create new password`)} metaRobots={['noindex']} />
       <LayoutOverlayHeader>
         <LayoutTitle size='small' component='span'>
-          {!success ? t`Set your new password` : t`You have now successfully reset your password`}
+          {!success ? (
+            <Trans id='Set your new password' />
+          ) : (
+            <Trans id='You have now successfully reset your password' />
+          )}
         </LayoutTitle>
       </LayoutOverlayHeader>
       <NoSsr>
@@ -34,12 +35,12 @@ function CustomerAccountCreatePasswordPage() {
           {!success && (
             <Container maxWidth='sm'>
               <LayoutTitle>
-                <Trans>Set your new password</Trans>
+                <Trans id='Set your new password' />
               </LayoutTitle>
 
               <Box textAlign='center'>
                 <p>
-                  <Trans>Fill in your new password, confirm it and click on the save button.</Trans>
+                  <Trans id='Fill in your new password, confirm it and click on the save button.' />
                 </p>
               </Box>
 
@@ -50,22 +51,21 @@ function CustomerAccountCreatePasswordPage() {
           {success && (
             <Container>
               <LayoutTitle>
-                <Trans>You have now successfully reset your password</Trans>
+                <Trans id='You have now successfully reset your password' />
               </LayoutTitle>
 
               <Box textAlign='center'>
                 <p>
-                  <Trans>
-                    You can now
-                    <Link color='primary' href='/account/signin' underline='hover'>
-                      sign in again
-                    </Link>
-                    .
-                  </Trans>
+                  <Trans
+                    id='You can now<0>sign in again</0>.'
+                    components={{
+                      0: <Link color='primary' href='/account/signin' underline='hover' />,
+                    }}
+                  />
                 </p>
 
                 <Button onClick={() => router.back()} variant='pill' color='secondary' size='large'>
-                  <Trans>Continue shopping</Trans>
+                  <Trans id='Continue shopping' />
                 </Button>
               </Box>
             </Container>

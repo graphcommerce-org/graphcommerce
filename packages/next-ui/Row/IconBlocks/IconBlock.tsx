@@ -24,6 +24,7 @@ export const IconBlock = React.forwardRef<HTMLAnchorElement, IconBlockProps>((pr
         variant='subtitle1'
         className={classes.title}
         sx={(theme) => ({ fontWeight: theme.typography.fontWeightBold })}
+        component='span'
       >
         {title}
       </Typography>

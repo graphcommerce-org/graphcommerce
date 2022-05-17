@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
-import fs, { read } from 'fs'
+import { promises as fs } from 'fs'
 import path from 'path'
 import { exit } from 'process'
-import { graphqlMesh, DEFAULT_CLI_PARAMS } from '@graphql-mesh/cli'
+import { graphqlMesh, DEFAULT_CLI_PARAMS, GraphQLMeshCLIParams } from '@graphql-mesh/cli'
 import { Logger, YamlConfig } from '@graphql-mesh/types'
 import { DefaultLogger } from '@graphql-mesh/utils'
 import dotenv from 'dotenv'
@@ -22,41 +22,78 @@ export function handleFatalError(e: Error, logger: Logger = new DefaultLogger('�
 
 const root = process.cwd()
 const meshDir = path.dirname(require.resolve('@graphcommerce/graphql-mesh'))
-
 const relativePath = path.join(path.relative(meshDir, root), '/')
 
 const isMonoRepo = relativePath.startsWith('../../examples')
 
+const cliParams: GraphQLMeshCLIParams = {
+  ...DEFAULT_CLI_PARAMS,
+  playgroundTitle: 'GraphCommerce® Mesh',
+}
+
+const tmpMesh = `_tmp_mesh_${Math.random().toString(36).substring(2, 15)}`
+const tmpMeshLocation = path.join(root, `.${tmpMesh}rc.yml`)
+
+async function cleanup() {
+  try {
+    await fs.stat(tmpMeshLocation).then((r) => {
+      if (r.isFile()) return fs.unlink(tmpMeshLocation)
+    })
+  } catch (e) {
+    // ignore
+  }
+  return undefined
+}
+
 const main = async () => {
   const conf = (await findConfig({})) as YamlConfig.Config
 
+  // Rewrite additionalResolvers so we can use module resolution more easily
   conf.additionalResolvers = conf.additionalResolvers ?? []
-
-  // Rewrite string directives
   conf.additionalResolvers = conf.additionalResolvers?.map((additionalResolver) => {
-    if (typeof additionalResolver === 'string') return `${relativePath}${additionalResolver}`
+    if (typeof additionalResolver !== 'string') return additionalResolver
+    if (additionalResolver.startsWith('@'))
+      return path.relative(root, require.resolve(additionalResolver))
+
     return additionalResolver
   })
 
+  // Rewrite additionalTypeDefs so we can use module resolution more easily
   if (!conf.additionalTypeDefs) conf.additionalTypeDefs = []
-  // Add additionalTypeDefs
-  conf.additionalTypeDefs = Array.isArray(conf.additionalTypeDefs)
-    ? conf.additionalTypeDefs
-    : [conf.additionalTypeDefs]
+  conf.additionalTypeDefs = (
+    Array.isArray(conf.additionalTypeDefs) ? conf.additionalTypeDefs : [conf.additionalTypeDefs]
+  ).map((additionalTypeDef) => {
+    if (additionalTypeDef.startsWith('@'))
+      return path.relative(root, require.resolve(additionalTypeDef))
 
-  conf.additionalTypeDefs.push('../../**/*.graphqls')
+    return additionalTypeDef
+  })
+
+  // Scan the current working directory to also read all graphqls files.
+  conf.additionalTypeDefs.push('**/*.graphqls')
   if (isMonoRepo) {
-    conf.additionalTypeDefs.push('../../packages/magento-*/**/*.graphqls')
+    conf.additionalTypeDefs.push('../../packages/**/*.graphqls')
     conf.additionalTypeDefs.push('../../packagesDev/**/*.graphqls')
   } else {
-    conf.additionalTypeDefs.push('../../@graphcommerce/**/*.graphqls')
+    conf.additionalTypeDefs.push('node_modules/@graphcommerce/**/*.graphqls')
   }
 
-  fs.writeFileSync(path.join(meshDir, '.meshrc.yml'), yaml.stringify(conf))
+  if (!conf.serve) conf.serve = {}
+  if (!conf.serve.playgroundTitle) conf.serve.playgroundTitle = 'GraphCommerce® Mesh'
 
-  graphqlMesh(DEFAULT_CLI_PARAMS, undefined, `${meshDir}/`).catch((e) =>
-    handleFatalError(e, new DefaultLogger(DEFAULT_CLI_PARAMS.initialLoggerPrefix)),
-  )
+  await fs.writeFile(tmpMeshLocation, yaml.stringify(conf))
+
+  // Reexport the mesh to is can be used by packages
+  await fs.writeFile(`${meshDir}/.mesh.ts`, `export * from '${relativePath}.mesh'`, {
+    encoding: 'utf8',
+  })
+
+  await graphqlMesh({ ...cliParams, configName: tmpMesh })
+
+  await cleanup()
 }
 
-main().catch(console.error)
+process.on('SIGINT', cleanup)
+process.on('SIGTERM', cleanup)
+
+main().catch((e) => handleFatalError(e, new DefaultLogger(DEFAULT_CLI_PARAMS.initialLoggerPrefix)))

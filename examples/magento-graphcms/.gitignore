@@ -6,6 +6,7 @@ node_modules
 out/
 .vercel
 next-env.d.ts
+._tmp*
 
 # misc
 .DS_Store
@@ -23,7 +24,6 @@ yarn-error.log*
 **/public/sitemap*.xml
 **/public/robots.txt
 
-generated/
 *.gql.ts
 
 # application

@@ -16,11 +16,17 @@ msgstr ""
 msgid "<0>{name}</0> has been added to your shopping cart!"
 msgstr "<0>{name}</0> a été ajouté à votre panier d'achat!"
 
+msgid "Above <0/>"
+msgstr "Au-dessus de <0/>"
+
 msgid "Account"
 msgstr "Compte"
 
 msgid "Account Dashboard"
 msgstr "Tableau de bord du compte"
+
+msgid "Add address"
+msgstr "Ajouter une adresse"
 
 msgid "Add new address"
 msgstr "Ajouter une nouvelle adresse"
@@ -33,6 +39,9 @@ msgstr "Ajouter une évaluation"
 
 msgid "Add to Cart"
 msgstr "Ajouter au panier"
+
+msgid "Add to wishlist"
+msgstr "Ajouter à la liste de souhaits"
 
 msgid "Addition"
 msgstr "Addition"
@@ -49,8 +58,8 @@ msgstr "Tous les produits"
 msgid "Apply"
 msgstr "Appliquer"
 
-msgid "As low as"
-msgstr "À partir de"
+msgid "As low as <0/>"
+msgstr "À partir de <0/>"
 
 msgid "As soon as the payment is completed, you will automatically return to the webshop."
 msgstr "Dès que le paiement est effectué, vous serez automatiquement redirigé vers le magasin."
@@ -66,6 +75,12 @@ msgstr "Retour à l'accueil"
 
 msgid "Be the first to know about everything new!"
 msgstr "Soyez le premier à savoir tout ce qui se passe dans le monde!"
+
+msgid "Be the first to write a review!"
+msgstr "Soyez le premier à écrire une évaluation!"
+
+msgid "Below <0/>"
+msgstr "En dessous de <0/>"
 
 msgid "Billing address"
 msgstr "Adresse de facturation"
@@ -84,6 +99,9 @@ msgstr "Panier ({0})"
 
 msgid "Cart Items"
 msgstr "Articles dans le panier"
+
+msgid "Cart Total"
+msgstr "Montant total du panier"
 
 msgid "Change password"
 msgstr "Changer le mot de passe"
@@ -106,11 +124,11 @@ msgstr "Fermer"
 msgid "Complete the payment on your bank’s website."
 msgstr "Complétez le paiement sur le site de votre banque."
 
-msgid "Confirm Password"
-msgstr "Confirmer le mot de passe"
-
 msgid "Confirm new email"
 msgstr "Confirmer le nouvel email"
+
+msgid "Confirm password"
+msgstr "Confirmer le mot de passe"
 
 msgid "Confirmation + Track & trace"
 msgstr "Confirmation + Traçage"
@@ -159,6 +177,9 @@ msgstr "Code de réduction"
 
 msgid "Discover our collection and add items to your cart!"
 msgstr "Découvrez notre collection et ajoutez des articles à votre panier!"
+
+msgid "Discover our collection and add items to your wishlist!"
+msgstr "Découvrez notre collection et ajoutez des articles à votre liste de souhaits!"
 
 msgid "Discover our collection and place your first order!"
 msgstr "Découvrez notre collection et placez votre première commande!"
@@ -226,6 +247,9 @@ msgstr "Accueil"
 msgid "Housenumber"
 msgstr "Numéro de rue"
 
+msgid "If you’ve successfully paid your order, the order <0>will</0> come through, but there is a communication error with the website."
+msgstr "Si vous avez réalisé votre paiement, la commande <0>va</0> arriver, mais il y a un problème de communication avec le site."
+
 msgid "Including {0}"
 msgstr "Incluant {0}"
 
@@ -262,11 +286,14 @@ msgstr "Mme"
 msgid "Name"
 msgstr "Nom"
 
-msgid "New Password"
-msgstr "Nouveau mot de passe"
+msgid "Navigate to item {0}"
+msgstr "Naviguer vers l'article {0}"
 
 msgid "New email"
 msgstr "Nouvel email"
+
+msgid "New password"
+msgstr "Nouveau mot de passe"
 
 msgid "Newsletter"
 msgstr "Newsletter"
@@ -282,6 +309,9 @@ msgstr "Pas encore de compte?"
 
 msgid "No orders found"
 msgstr "Aucune commande trouvée"
+
+msgid "No payment information"
+msgstr "Pas d'information de paiement"
 
 msgid "No worries! Enter your email address and we will send an email with instructions to reset your password."
 msgstr "Pas de soucis! Entrez votre adresse email et nous vous enverrons un email avec les instructions pour réinitialiser votre mot de passe."
@@ -301,9 +331,6 @@ msgstr "Ou suivez ces liens pour vous reprendre sur le chemin!"
 msgid "Order #{orderId}"
 msgstr "Commande #{orderId}"
 
-msgid "Order detail page for order #{orderId}"
-msgstr "Page de détail de la commande #{orderId}"
-
 msgid "Order not found"
 msgstr "Commande non trouvée"
 
@@ -316,9 +343,6 @@ msgstr "Statut de la commande"
 msgid "Order summary"
 msgstr "Résumé de la commande"
 
-msgid "Order view #{orderId}"
-msgstr "Vue de la commande #{orderId}"
-
 msgid "Ordered items"
 msgstr "Articles commandés"
 
@@ -327,6 +351,9 @@ msgstr "Commandes"
 
 msgid "Other"
 msgstr "Autre"
+
+msgid "Page {page} of {count}"
+msgstr "Page {page} de {count}"
 
 msgid "Password"
 msgstr "Mot de passe"
@@ -346,11 +373,17 @@ msgstr "Payer avec {title}"
 msgid "Payment"
 msgstr "Paiement"
 
+msgid "Payment failed with status: {paymentStatus}"
+msgstr "Le paiement a échoué avec le statut: {paymentStatus}"
+
 msgid "Payment method"
 msgstr "Méthode de paiement"
 
 msgid "Place order"
 msgstr "Placer la commande"
+
+msgid "Please check your inbox to validate your email ({email})"
+msgstr "Veuillez vérifier votre boîte de réception pour valider votre email ({email})"
 
 msgid "Please fill in your address to see shipping methods"
 msgstr "Veuillez remplir votre adresse pour voir les méthodes d'expédition"
@@ -381,6 +414,12 @@ msgstr "Région"
 
 msgid "Remove Product"
 msgstr "Supprimer le produit"
+
+msgid "Remove from wishlist"
+msgstr "Supprimer de la liste de souhaits"
+
+msgid "Reset Cart and Return to home"
+msgstr "Réinitialiser le panier et retourner à l'accueil"
 
 msgid "Results for ‘{search}’"
 msgstr "Résultats pour ‘{search}’"
@@ -442,6 +481,9 @@ msgstr "Déconnexion"
 msgid "Sign up for our newsletter and stay updated"
 msgstr "Inscrivez-vous à notre newsletter et restez à jour"
 
+msgid "Sort By"
+msgstr "Trier par"
+
 msgid "Start Checkout"
 msgstr "Commencer la commande"
 
@@ -502,9 +544,6 @@ msgstr "Voir tous les articles"
 msgid "View all your addresses"
 msgstr "Voir toutes vos adresses"
 
-msgid "View all your reviews"
-msgstr "Voir toutes vos évaluations"
-
 msgid "View less items"
 msgstr "Voir moins d'articles"
 
@@ -520,14 +559,14 @@ msgstr "Nous n'avons trouvé aucun résultat pour {term}"
 msgid "We couldn't find the page you were looking for"
 msgstr "Nous n'avons pas pu trouver la page que vous cherchiez"
 
+msgid "Welcome back!"
+msgstr "Bienvenue !"
+
 msgid "We’re processing your payment, this will take a few seconds."
 msgstr "Nous traitons votre paiement, cela prendra quelques secondes."
 
 msgid "We’ve send a password reset link to your email address!"
 msgstr "Nous avons envoyé un lien de réinitialisation du mot de passe à votre adresse email!"
-
-msgid "Welcome back!"
-msgstr "Bienvenue !"
 
 msgid "Which size is right?"
 msgstr "Quelle taille est-il correcte?"
@@ -535,8 +574,14 @@ msgstr "Quelle taille est-il correcte?"
 msgid "Whoops our bad..."
 msgstr "Oups, notre mauvais..."
 
+msgid "Wishlist"
+msgstr "Liste de souhaits"
+
 msgid "Write a review"
 msgstr "Écrire une évaluation"
+
+msgid "Written by {nickname}"
+msgstr "Écrit par {nickname}"
 
 msgid "Written {0} reviews"
 msgstr "Évaluations écrites {0}"
@@ -579,6 +624,9 @@ msgstr "Votre panier est vide"
 
 msgid "Your session is expired"
 msgstr "Votre session a expiré"
+
+msgid "Your wishlist is empty"
+msgstr "Votre liste de souhaits est vide"
 
 msgid "canceled"
 msgstr "annulée"

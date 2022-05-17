@@ -18,10 +18,11 @@ export function useFormIsEmailAvailable(props: UseFormIsEmailAvailableProps) {
     skip: typeof token === 'undefined',
   })
 
-  const form = useFormGqlQuery(IsEmailAvailableDocument, {
-    mode: 'onChange',
-    defaultValues: { email: email ?? '' },
-  })
+  const form = useFormGqlQuery(
+    IsEmailAvailableDocument,
+    { mode: 'onChange', defaultValues: { email: email ?? '' } },
+    { fetchPolicy: 'cache-and-network' },
+  )
   const { formState, data, handleSubmit } = form
 
   const submit = handleSubmit(onSubmitted || (() => {}))

@@ -4,10 +4,10 @@ generates:
   # Generate a types file
   ../../node_modules/@graphcommerce/graphql/generated/types.ts:
     schema:
-      - '../../packages/graphql-mesh/.mesh/schema.graphql'
+      - .mesh/schema.graphql
       - '**/*.graphqls'
-      - '../../packages/magento-*/**/*.graphqls'
-      - '../../packagesDev/**/*.graphqls'
+      - ../../packages/magento-*/**/*.graphqls
+      - ../../packagesDev/**/*.graphqls
     plugins:
       - typescript-apollo-client-helpers
       - add
@@ -17,19 +17,19 @@ generates:
   # Generate a fragments.json
   ../../node_modules/@graphcommerce/graphql/generated/fragments.json:
     schema:
-      - '../../packages/graphql-mesh/.mesh/schema.graphql'
+      - .mesh/schema.graphql
       - '**/*.graphqls'
-      - '../../packages/magento-*/**/*.graphqls'
-      - '../../packagesDev/**/*.graphqls'
+      - ../../packages/magento-*/**/*.graphqls
+      - ../../packagesDev/**/*.graphqls
     plugins:
       - fragment-matcher
   # Generate .gql.ts files for each GraphQL file
   ../../:
     schema:
-      - '../../packages/graphql-mesh/.mesh/schema.graphql'
+      - .mesh/schema.graphql
       - '**/*.graphqls'
-      - '../../packages/magento-*/**/*.graphqls'
-      - '../../packagesDev/**/*.graphqls'
+      - ../../packages/magento-*/**/*.graphqls
+      - ../../packagesDev/**/*.graphqls
     documents:
       - '**/*.graphql'
       - '../../packages/**/*.graphql'
@@ -42,10 +42,11 @@ generates:
     preset: '@graphcommerce/graphql-codegen-near-operation-file'
     presetConfig:
       extension: .gql.ts
-      baseTypesPath: ~@graphcommerce/graphql-mesh
+      baseTypesPath: ~@graphcommerce/graphql-mesh/.mesh
       injectables: true
     config:
       skipTypename: true
+      namingConvention: 'keep'
       dedupeOperationSuffix: true
       content: '/* eslint-disable */'
 watchConfig:

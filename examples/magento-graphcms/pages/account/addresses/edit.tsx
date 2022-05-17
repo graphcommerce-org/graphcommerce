@@ -12,7 +12,8 @@ import {
   LayoutOverlayHeader,
   LayoutTitle,
 } from '@graphcommerce/next-ui'
-import { t, Trans } from '@lingui/macro'
+import { i18n } from '@lingui/core'
+import { Trans } from '@lingui/react'
 import { Box, Container, NoSsr, Skeleton } from '@mui/material'
 import { useRouter } from 'next/router'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
@@ -49,25 +50,21 @@ function EditAddressPage() {
     <>
       <LayoutOverlayHeader>
         <LayoutTitle size='small' component='span' icon={iconAddresses}>
-          <Trans>Addresses</Trans>
+          <Trans id='Addresses' />
         </LayoutTitle>
       </LayoutOverlayHeader>
       <Container maxWidth='md'>
-        <PageMeta
-          title={t`Edit address`}
-          metaDescription='Edit an address'
-          metaRobots={['noindex']}
-        />
+        <PageMeta title={i18n._(/* i18n */ `Edit address`)} metaRobots={['noindex']} />
         <NoSsr>
           <LayoutTitle icon={iconAddresses}>
-            <Trans>Addresses</Trans>
+            <Trans id='Addresses' />
           </LayoutTitle>
 
-          <SectionContainer labelLeft={t`Edit address`}>
+          <SectionContainer labelLeft={i18n._(/* i18n */ `Edit address`)}>
             {!address && !loading && (
               <Box marginTop={3}>
                 <IconHeader src={iconAddresses} size='small'>
-                  <Trans>Address not found</Trans>
+                  <Trans id='Address not found' />
                 </IconHeader>
               </Box>
             )}

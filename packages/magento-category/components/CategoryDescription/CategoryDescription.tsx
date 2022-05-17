@@ -2,7 +2,9 @@ import { extendableComponent } from '@graphcommerce/next-ui'
 import { Box, SxProps, Theme } from '@mui/material'
 import { CategoryDescriptionFragment } from './CategoryDescription.gql'
 
-type CategoryDescriptionProps = Omit<CategoryDescriptionFragment, 'uid'> & { sx?: SxProps<Theme> }
+export type CategoryDescriptionProps = Omit<CategoryDescriptionFragment, 'uid'> & {
+  sx?: SxProps<Theme>
+}
 
 const cmpName = 'CategoryDescription' as const
 const parts = ['root'] as const

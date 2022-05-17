@@ -2,12 +2,9 @@
   "name": "@graphcommerce/typescript-config-pwa",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "4.0.2",
+  "version": "4.0.3",
   "license": "MIT",
   "sideEffects": false,
-  "engines": {
-    "node": "14.x"
-  },
   "devDependencies": {
     "@tsconfig/node14": "^1.0.1"
   }

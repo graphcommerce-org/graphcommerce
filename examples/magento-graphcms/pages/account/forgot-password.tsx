@@ -3,7 +3,8 @@ import { useGoogleRecaptcha } from '@graphcommerce/googlerecaptcha'
 import { ForgotPasswordForm } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
-import { t, Trans } from '@lingui/macro'
+import { i18n } from '@lingui/core'
+import { Trans } from '@lingui/react'
 import { Container, NoSsr, Typography } from '@mui/material'
 import { LayoutOverlay, LayoutOverlayProps } from '../../components'
 import { graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
@@ -17,7 +18,7 @@ function AccountForgotPasswordPage() {
     <>
       <LayoutOverlayHeader>
         <LayoutTitle size='small' component='span'>
-          <Trans>Forgot your password?</Trans>
+          <Trans id='Forgot your password?' />
         </LayoutTitle>
       </LayoutOverlayHeader>
       <Container maxWidth='sm'>
@@ -28,13 +29,10 @@ function AccountForgotPasswordPage() {
         />
         <NoSsr>
           <LayoutTitle size='medium'>
-            <Trans>Forgot your password?</Trans>
+            <Trans id='Forgot your password?' />
           </LayoutTitle>
           <Typography variant='subtitle1'>
-            <Trans>
-              No worries! Enter your email address and we will send an email with instructions to
-              reset your password.
-            </Trans>
+            <Trans id='No worries! Enter your email address and we will send an email with instructions to reset your password.' />
           </Typography>
           <ForgotPasswordForm />
         </NoSsr>
@@ -60,7 +58,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
       apolloState: await conf.then(() => client.cache.extract()),
       variantMd: 'bottom',
       size: 'max',
-      up: { href: '/account-signin', title: t`Sign in` },
+      up: { href: '/account-signin', title: i18n._(/* i18n */ `Sign in`) },
     },
   }
 }

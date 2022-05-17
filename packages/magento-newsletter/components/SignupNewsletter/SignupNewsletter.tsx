@@ -2,7 +2,7 @@ import { useQuery } from '@graphcommerce/graphql'
 import { useCartQuery } from '@graphcommerce/magento-cart'
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
 import { extendableComponent } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react'
 import { Box, SxProps, Theme, Typography } from '@mui/material'
 import { CustomerNewsletterToggle } from '../CustomerNewsletterToggle/CustomerNewsletterToggle'
 import { GuestNewsletterToggle } from '../GuestNewsletterToggle/GuestNewsletterToggle'
@@ -54,7 +54,7 @@ export function SignupNewsletter(props: SignupNewsletterProps) {
       ]}
     >
       <Typography variant='subtitle1' className={classes.text}>
-        <Trans>Sign up for our newsletter and stay updated</Trans>
+        <Trans id='Sign up for our newsletter and stay updated' />
       </Typography>
       <Box
         className={classes.signupForm}

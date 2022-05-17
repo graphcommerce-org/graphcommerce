@@ -1,4 +1,4 @@
-import { StrictTypedTypePolicies } from '@graphcommerce/graphql'
+import { TypedTypePolicies } from '@graphcommerce/graphql'
 
 /// /todooooo
 /**
@@ -6,7 +6,7 @@ import { StrictTypedTypePolicies } from '@graphcommerce/graphql'
  *
  * - https://www.apollographql.com/docs/react/caching/cache-configuration/#default-identifier-generation
  */
-export const magentoTypePolicies: StrictTypedTypePolicies = {
+export const magentoTypePolicies: TypedTypePolicies = {
   // AddBundleProductsToCartOutput: { keyFields: false },
   // AddConfigurableProductsToCartOutput: { keyFields: false },
   // AddDownloadableProductsToCartOutput: { keyFields: false },
@@ -50,7 +50,6 @@ export const magentoTypePolicies: StrictTypedTypePolicies = {
   // CartPrices: { keyFields: false },
   // CartTaxItem: { keyFields: false },
   // CartUserInputError: { keyFields: false },
-  Categories: { keyFields: ['identifier'] },
   CategoryInterface: { keyFields: ['uid'] },
   // CategoryProducts: { keyFields: false },
   // CategoryResult: { keyFields: false },
@@ -148,9 +147,6 @@ export const magentoTypePolicies: StrictTypedTypePolicies = {
   // LayerFilterItemInterface: { keyFields: false },
   MediaGalleryEntry: { keyFields: ['uid'] },
   // MediaGalleryInterface: { keyFields: false },
-  MollieIssuer: { keyFields: ['code'] },
-  // MolliePaymentMethodMeta: { keyFields: false },
-  // MollieTransactionOutput: { keyFields: false },
   // Money: { keyFields: false },
   Order: { keyFields: ['order_number'] },
   // OrderAddress: { keyFields: false },
@@ -251,6 +247,5 @@ export const magentoTypePolicies: StrictTypedTypePolicies = {
   // WishlistItemInterface: { keyFields: ['id'] },
   // WishlistItems: { keyFields: false },
   // WishlistOutput: { keyFields: false },
-  // createKlarnaPaymentsSessionOutput: { keyFields: false },
   // Mutation: { keyFields: false },
 }

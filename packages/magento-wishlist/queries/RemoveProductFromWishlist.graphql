@@ -1,0 +1,7 @@
+mutation RemoveProductFromWishlist($wishlistItemId: ID!) {
+  removeProductsFromWishlist(wishlistId: 0, wishlistItemsIds: [$wishlistItemId]) {
+    wishlist {
+      ...WishlistSummaryFragment
+    }
+  }
+}

@@ -218,7 +218,7 @@ Black checkbox is a feature unaffected by GraphCommerce
       average order value.
 - [ ] Show pricing tiers. — [Todo]
 - [x] Present product ratings and reviews.
-- [ ] Provide an option to add products to a wish list. — [Todo]
+- [x] Provide an option to add products to a wish list.
 - [ ] Add Facebook, Twitter, and email links to share products. — [Todo]
 
 ### Checkout

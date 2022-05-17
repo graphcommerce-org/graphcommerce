@@ -6,7 +6,8 @@ import {
   extendableComponent,
 } from '@graphcommerce/next-ui'
 import { useForm, useFormAutoSubmit, useFormMuiRegister } from '@graphcommerce/react-hook-form'
-import { t, Trans } from '@lingui/macro'
+import { i18n } from '@lingui/core'
+import { Trans } from '@lingui/react'
 import { Box, IconButton, SxProps, TextField, TextFieldProps, Theme } from '@mui/material'
 import { useRouter } from 'next/router'
 
@@ -60,8 +61,8 @@ export function SearchForm(props: SearchFormProps) {
             paddingRight: '7px',
           })}
         >
-          {totalResults === 1 && <Trans>{totalResults} result</Trans>}
-          {totalResults > 1 && <Trans>{totalResults} results</Trans>}
+          {totalResults === 1 && <Trans id='{totalResults} result' values={{ totalResults }} />}
+          {totalResults > 1 && <Trans id='{totalResults} results' values={{ totalResults }} />}
         </Box>
       )}
       <IconButton onClick={handleReset} size='small'>
@@ -88,7 +89,7 @@ export function SearchForm(props: SearchFormProps) {
         <TextField
           variant='outlined'
           type='text'
-          placeholder={t`Search`}
+          placeholder={i18n._(/* i18n */ `Search`)}
           defaultValue={search}
           error={formState.isSubmitted && !!formState.errors.search}
           helperText={formState.isSubmitted && formState.errors.search?.message}

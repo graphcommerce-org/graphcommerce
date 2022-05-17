@@ -12,7 +12,7 @@ import {
   IconSvg,
   extendableComponent,
 } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react'
 import { experimental_sx, Skeleton, styled, SxProps, Theme } from '@mui/material'
 import { TrackingLink } from '../TrackingLink/TrackingLink'
 import { OrderDetailsFragment } from './OrderDetails.gql'
@@ -228,14 +228,14 @@ export function OrderDetails(props: OrderDetailsProps) {
       <OrderDetailsInnerContainer>
         <div>
           <OrderDetailTitle>
-            <Trans>Order number</Trans>
+            <Trans id='Order number' />
           </OrderDetailTitle>
           <div>{number}</div>
         </div>
 
         <div>
           <OrderDetailTitle>
-            <Trans>Order status</Trans>
+            <Trans id='Order status' />
           </OrderDetailTitle>
           <div>
             Ordered: {order_date && dateFormatter.format(new Date(order_date))}
@@ -245,7 +245,7 @@ export function OrderDetails(props: OrderDetailsProps) {
 
         <div>
           <OrderDetailTitle>
-            <Trans>Shipping method</Trans>
+            <Trans id='Shipping method' />
           </OrderDetailTitle>
           <div>
             <div>{shipping_method ?? ''}</div>
@@ -265,12 +265,14 @@ export function OrderDetails(props: OrderDetailsProps) {
 
         <div>
           <OrderDetailTitle>
-            <Trans>Payment method</Trans>
+            <Trans id='Payment method' />
           </OrderDetailTitle>
           <div>
             {payment_methods && payment_methods.length < 1 && (
               <div>
-                <i>No payment information</i>
+                <i>
+                  <Trans id='No payment information' />
+                </i>
               </div>
             )}
 
@@ -293,7 +295,7 @@ export function OrderDetails(props: OrderDetailsProps) {
 
         <div>
           <OrderDetailTitle>
-            <Trans>Shipping address</Trans>
+            <Trans id='Shipping address' />
           </OrderDetailTitle>
           <div>
             <div>
@@ -311,7 +313,7 @@ export function OrderDetails(props: OrderDetailsProps) {
 
         <div>
           <OrderDetailTitle>
-            <Trans>Billing address</Trans>
+            <Trans id='Billing address' />
           </OrderDetailTitle>
           <div>
             <div>
@@ -331,7 +333,7 @@ export function OrderDetails(props: OrderDetailsProps) {
       <TotalsContainer>
         <TotalsRow>
           <div>
-            <Trans>Products</Trans>
+            <Trans id='Products' />
           </div>
           <div>
             <Money {...total?.subtotal} />
@@ -351,7 +353,7 @@ export function OrderDetails(props: OrderDetailsProps) {
 
         <TotalsRow>
           <div>
-            <Trans>Shipping</Trans>
+            <Trans id='Shipping' />
           </div>
           <div>
             <Money {...total?.total_shipping} />
@@ -363,7 +365,7 @@ export function OrderDetails(props: OrderDetailsProps) {
 
         <TotalsVat>
           <div>
-            <Trans>Grand total</Trans>
+            <Trans id='Grand total' />
           </div>
           <div>
             <Money {...total?.grand_total} />

@@ -33,7 +33,8 @@ import {
   IconSvg,
   LayoutTitle,
 } from '@graphcommerce/next-ui'
-import { t, Trans } from '@lingui/macro'
+import { i18n } from '@lingui/core'
+import { Trans } from '@lingui/react'
 import { CircularProgress, Container, Dialog, Divider, NoSsr } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'
@@ -50,7 +51,11 @@ function PaymentPage() {
 
   return (
     <ComposedForm>
-      <PageMeta title={t`Payment`} metaDescription='Payment' metaRobots={['noindex']} />
+      <PageMeta
+        title={i18n._(/* i18n */ `Payment`)}
+        metaDescription='Payment'
+        metaRobots={['noindex']}
+      />
       <NoSsr>
         {!cartId && <EmptyCart />}
         {cartId && (
@@ -67,7 +72,7 @@ function PaymentPage() {
                   }}
                   display='inline'
                 >
-                  <Trans>Pay</Trans>
+                  <Trans id='Pay' />
                 </PaymentMethodButton>
               }
               divider={
@@ -77,7 +82,7 @@ function PaymentPage() {
               }
             >
               <LayoutTitle size='small' icon={iconId}>
-                <Trans>Payment</Trans>
+                <Trans id='Payment' />
               </LayoutTitle>
             </LayoutHeader>
             <Container maxWidth='md'>
@@ -87,13 +92,13 @@ function PaymentPage() {
                   icon={<CircularProgress />}
                   title='Processing your payment'
                 >
-                  <Trans>We’re processing your payment, this will take a few seconds.</Trans>
+                  <Trans id='We’re processing your payment, this will take a few seconds.' />
                 </FullPageMessage>
               </Dialog>
 
               <>
                 <LayoutTitle icon={iconId}>
-                  <Trans>Payment</Trans>
+                  <Trans id='Payment' />
                 </LayoutTitle>
 
                 <PaymentMethodContextProvider
@@ -138,7 +143,7 @@ function PaymentPage() {
                         breakpoint='xs'
                         endIcon={<IconSvg src={iconChevronRight} />}
                       >
-                        <Trans>Place order</Trans>
+                        <Trans id='Place order' />
                       </PaymentMethodButton>
                     </FormActions>
                   </AnimatePresence>

@@ -2,7 +2,7 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { SearchForm } from '@graphcommerce/magento-search'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, Separator, icon404, IconSvg } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react'
 import { Box, Container, Typography, Link } from '@mui/material'
 import PageLink from 'next/link'
 import React from 'react'
@@ -19,12 +19,12 @@ function RouteNotFoundPage() {
   const links = [
     <PageLink key={0} passHref href='/'>
       <Link color='primary' underline='hover'>
-        <Trans>Store home</Trans>
+        <Trans id='Store home' />
       </Link>
     </PageLink>,
     <PageLink key={1} passHref href='/account'>
       <Link color='primary' underline='hover'>
-        <Trans>Account</Trans>
+        <Trans id='Account' />
       </Link>
     </PageLink>,
   ]
@@ -36,15 +36,15 @@ function RouteNotFoundPage() {
         <Box textAlign='center' mt={16} mb={16}>
           <IconSvg src={icon404} size='xxl' />
           <Typography variant='h3' component='h1' gutterBottom>
-            <Trans>Whoops our bad...</Trans>
+            <Trans id='Whoops our bad...' />
           </Typography>
           <Typography variant='body1'>
-            <Trans>We couldn&apos;t find the page you were looking for</Trans>
+            <Trans id="We couldn't find the page you were looking for" />
           </Typography>
           <Box mt={4} mb={2}>
             <SearchForm autoFocus={false} />
           </Box>
-          <Trans>Or follow these links to get you back on track!</Trans>
+          <Trans id='Or follow these links to get you back on track!' />
           <Box mb={8}>
             {links.map((link, index) => (
               // eslint-disable-next-line react/no-array-index-key

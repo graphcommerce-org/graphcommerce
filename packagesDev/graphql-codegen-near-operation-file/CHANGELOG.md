@@ -1,5 +1,23 @@
 # Change Log
 
+## 3.0.13
+
+### Patch Changes
+
+- [#1451](https://github.com/graphcommerce-org/graphcommerce/pull/1451) [`50188e378`](https://github.com/graphcommerce-org/graphcommerce/commit/50188e378b4c77561ebc600958ea11cd114fa61a) Thanks [@paales](https://github.com/paales)! - Loosen node requirement
+
+## 3.0.12
+
+### Patch Changes
+
+- [#1439](https://github.com/graphcommerce-org/graphcommerce/pull/1439) [`25ef6cf08`](https://github.com/graphcommerce-org/graphcommerce/commit/25ef6cf08c278105307d6f604b7135d637e9046c) Thanks [@paales](https://github.com/paales)! - Updated dependencies
+
+## 3.0.11
+
+### Patch Changes
+
+- [#1426](https://github.com/graphcommerce-org/graphcommerce/pull/1426) [`100f4c38c`](https://github.com/graphcommerce-org/graphcommerce/commit/100f4c38c8fcda4bc6e0425e38028b550b60adc2) Thanks [@paales](https://github.com/paales)! - Upgrade packages
+
 ## 3.0.10
 
 ### Patch Changes

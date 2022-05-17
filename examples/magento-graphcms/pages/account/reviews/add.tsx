@@ -15,7 +15,8 @@ import {
   IconSvg,
   GetStaticProps,
 } from '@graphcommerce/next-ui'
-import { t, Trans } from '@lingui/macro'
+import { i18n } from '@lingui/core'
+import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
 import { useRouter } from 'next/router'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
@@ -59,10 +60,10 @@ function AccountReviewsAddPage() {
   if (!product) {
     return (
       <FullPageMessage
-        title={t`Product could not be found`}
+        title={i18n._(/* i18n */ `Product could not be found`)}
         icon={<IconSvg src={iconBox} size='xxl' />}
       >
-        <Trans>Try a different product</Trans>
+        <Trans id='Try a different product' />
       </FullPageMessage>
     )
   }
@@ -70,19 +71,18 @@ function AccountReviewsAddPage() {
   return (
     <>
       <PageMeta
-        title={t`Add review`}
-        metaDescription={t`You are reviewing ${product?.name}`}
+        title={i18n._(/* i18n */ `You are reviewing {0}`, { 0: product?.name })}
         metaRobots={['noindex']}
       />
 
       <LayoutOverlayHeader>
         <LayoutTitle size='small'>
-          <Trans>You are reviewing {product?.name}</Trans>
+          <Trans id='You are reviewing {0}' values={{ 0: product?.name }} />
         </LayoutTitle>
       </LayoutOverlayHeader>
 
       <LayoutTitle variant='h1'>
-        <Trans>You are reviewing {product?.name}</Trans>
+        <Trans id='You are reviewing {0}' values={{ 0: product?.name }} />
       </LayoutTitle>
 
       <Container maxWidth='md'>

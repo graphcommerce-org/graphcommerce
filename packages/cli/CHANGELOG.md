@@ -1,5 +1,27 @@
 # @graphcommerce/cli
 
+## 1.0.4
+
+### Patch Changes
+
+- [#1439](https://github.com/graphcommerce-org/graphcommerce/pull/1439) [`25ef6cf08`](https://github.com/graphcommerce-org/graphcommerce/commit/25ef6cf08c278105307d6f604b7135d637e9046c) Thanks [@paales](https://github.com/paales)! - Updated dependencies
+
+## 1.0.3
+
+### Patch Changes
+
+- [#1429](https://github.com/graphcommerce-org/graphcommerce/pull/1429) [`ba8cd4d34`](https://github.com/graphcommerce-org/graphcommerce/commit/ba8cd4d3480a7ec7e555b051cfd0fbc809c7aa12) Thanks [@paales](https://github.com/paales)! - mesh couldn’t be generated properly in a non-monorepo setup
+
+## 1.0.2
+
+### Patch Changes
+
+- [#1394](https://github.com/graphcommerce-org/graphcommerce/pull/1394) [`b6b8bb5b3`](https://github.com/graphcommerce-org/graphcommerce/commit/b6b8bb5b31b0891ea24733de34a3bd5c0a9604e4) Thanks [@paales](https://github.com/paales)! - Added support for additionalTypeResolvers to be loaded from packages
+
+* [#1426](https://github.com/graphcommerce-org/graphcommerce/pull/1426) [`100f4c38c`](https://github.com/graphcommerce-org/graphcommerce/commit/100f4c38c8fcda4bc6e0425e38028b550b60adc2) Thanks [@paales](https://github.com/paales)! - Upgrade packages
+
+- [#1427](https://github.com/graphcommerce-org/graphcommerce/pull/1427) [`cbbbcab55`](https://github.com/graphcommerce-org/graphcommerce/commit/cbbbcab55bfccff95e779fd18a49412127adcd78) Thanks [@paales](https://github.com/paales)! - Change mesh generation strategy where mesh paths could't be found when using the mock store
+
 ## 1.0.1
 
 ### Patch Changes

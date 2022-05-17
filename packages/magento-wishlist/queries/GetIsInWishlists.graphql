@@ -1,0 +1,7 @@
+query GetIsInWishlists {
+  customer {
+    wishlists {
+      ...WishlistSummaryFragment
+    }
+  }
+}

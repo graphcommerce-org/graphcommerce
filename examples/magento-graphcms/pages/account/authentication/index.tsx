@@ -14,7 +14,8 @@ import {
   LayoutOverlayHeader,
   LayoutTitle,
 } from '@graphcommerce/next-ui'
-import { t, Trans } from '@lingui/macro'
+import { i18n } from '@lingui/core'
+import { Trans } from '@lingui/react'
 import { Container, NoSsr } from '@mui/material'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
 import { graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
@@ -42,20 +43,20 @@ function AccountAuthenticationPage() {
     <>
       <LayoutOverlayHeader>
         <LayoutTitle size='small' component='span' icon={iconLock}>
-          <Trans>Authentication</Trans>
+          <Trans id='Authentication' />
         </LayoutTitle>
       </LayoutOverlayHeader>
       <Container maxWidth='md'>
         <PageMeta
-          title={t`Authentication`}
-          metaDescription={t`Change password`}
+          title={i18n._(/* i18n */ `Authentication`)}
+          metaDescription={i18n._(/* i18n */ `Change password`)}
           metaRobots={['noindex']}
         />
         <NoSsr>
           <LayoutTitle icon={iconLock}>
-            <Trans>Authentication</Trans>
+            <Trans id='Authentication' />
           </LayoutTitle>
-          <SectionContainer labelLeft={t`Password`}>
+          <SectionContainer labelLeft={i18n._(/* i18n */ `Password`)}>
             {customer && <ChangePasswordForm />}
           </SectionContainer>
         </NoSsr>

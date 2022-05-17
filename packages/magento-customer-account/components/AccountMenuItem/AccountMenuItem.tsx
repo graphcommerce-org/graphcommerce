@@ -17,7 +17,7 @@ export type AccountMenuItemProps = {
   subtitle?: React.ReactNode
   endIcon?: React.ReactNode
   sx?: SxProps<Theme>
-} & Omit<ButtonProps, 'endIcon' | 'startIcon' | 'disableElevation'> &
+} & Omit<ButtonProps, 'endIcon' | 'startIcon' | 'disableElevation' | 'title'> &
   OwnerState
 
 type OwnerState = { noBorderBottom?: boolean }

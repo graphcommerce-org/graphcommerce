@@ -44,7 +44,9 @@ function BlogPage(props: Props) {
       <PageMeta title={title} metaDescription={title} canonical={`/${page.url}`} />
 
       <LayoutHeader floatingMd>
-        <LayoutTitle size='small'>{title}</LayoutTitle>
+        <LayoutTitle size='small' component='span'>
+          {title}
+        </LayoutTitle>
       </LayoutHeader>
 
       <Container maxWidth='xl'>

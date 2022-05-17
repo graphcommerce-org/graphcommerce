@@ -2,12 +2,12 @@
   "name": "@graphcommerce/cli",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "author": "",
   "license": "MIT",
   "scripts": {
-    "dev": "tsc --preserveWatchOutput --watch --sourceMap --outDir dist",
-    "build": "tsc --target es5 --outDir dist",
+    "dev": "tsc --preserveWatchOutput --watch --outDir dist",
+    "build": "tsc --outDir dist",
     "prepack": "yarn build"
   },
   "bin": {
@@ -20,12 +20,12 @@
   },
   "dependencies": {
     "@graphql-codegen/cli": "2.6.2",
-    "@graphql-mesh/cli": "0.67.4",
-    "@graphql-mesh/types": "0.70.5",
-    "@graphql-mesh/utils": "0.33.5"
+    "@graphql-mesh/cli": "0.69.2",
+    "@graphql-mesh/types": "0.72.1",
+    "@graphql-mesh/utils": "0.34.6"
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "^4.1.5",
+    "@graphcommerce/eslint-config-pwa": "^4.1.6",
     "@graphcommerce/prettier-config-pwa": "^4.0.6",
     "@graphcommerce/typescript-config-pwa": "^4.0.2",
     "@playwright/test": "^1.21.1",

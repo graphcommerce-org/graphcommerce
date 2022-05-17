@@ -9,7 +9,8 @@ import {
   Button,
 } from '@graphcommerce/next-ui'
 import { phonePattern, useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { Trans, t } from '@lingui/macro'
+import { i18n } from '@lingui/core'
+import { Trans } from '@lingui/react'
 import { TextField } from '@mui/material'
 import { useRouter } from 'next/router'
 import { AddressFields } from '../AddressFields/AddressFields'
@@ -65,10 +66,10 @@ export function CreateCustomerAddressForm() {
             type='text'
             error={!!formState.errors.telephone}
             required={required.telephone}
-            label={<Trans>Telephone</Trans>}
+            label={<Trans id='Telephone' />}
             {...muiRegister('telephone', {
               required: required.telephone,
-              pattern: { value: phonePattern, message: t`Invalid phone number` },
+              pattern: { value: phonePattern, message: i18n._(/* i18n */ `Invalid phone number`) },
             })}
             helperText={formState.isSubmitted && formState.errors.telephone?.message}
             disabled={formState.isSubmitting}
@@ -86,7 +87,7 @@ export function CreateCustomerAddressForm() {
             size='large'
             loading={formState.isSubmitting}
           >
-            <Trans>Save changes</Trans>
+            <Trans id='Save changes' />
           </Button>
         </FormActions>
       </Form>

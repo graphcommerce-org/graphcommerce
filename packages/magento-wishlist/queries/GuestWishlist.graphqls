@@ -1,0 +1,13 @@
+extend type Query {
+  guestWishlist: GuestWishlist
+}
+
+type GuestWishlist {
+  items: [GuestWishlistItem!]!
+}
+
+type GuestWishlistItem {
+  sku: String!
+  selected_options: [ID]
+  quantity: Float!
+}

@@ -11,8 +11,16 @@ import {
 } from '@graphcommerce/magento-customer'
 import { AnimatedRow, extendableComponent, FormDiv, FormRow } from '@graphcommerce/next-ui'
 import { emailPattern, useFormCompose, UseFormComposeOptions } from '@graphcommerce/react-hook-form'
-import { Trans } from '@lingui/macro'
-import { CircularProgress, TextField, Typography, Alert, Button, Theme } from '@mui/material'
+import { Trans } from '@lingui/react'
+import {
+  CircularProgress,
+  TextField,
+  Typography,
+  Alert,
+  Button,
+  SxProps,
+  Theme,
+} from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
 import { CartEmailDocument } from './CartEmail.gql'
@@ -58,14 +66,14 @@ export function EmailForm(props: EmailFormProps) {
   if (mode === 'signin') {
     endAdornment = (
       <Button color='secondary' style={{ whiteSpace: 'nowrap' }} onClick={() => setExpand(!expand)}>
-        {expand ? <Trans>Close</Trans> : <Trans>Sign in</Trans>}
+        {expand ? <Trans id='Close' /> : <Trans id='Sign in' />}
       </Button>
     )
   }
   if (mode === 'signup') {
     endAdornment = (
       <Button color='secondary' style={{ whiteSpace: 'nowrap' }} onClick={() => setExpand(!expand)}>
-        {expand ? <Trans>Close</Trans> : <Trans>Create Account</Trans>}
+        {expand ? <Trans id='Close' /> : <Trans id='Create Account' />}
       </Button>
     )
   }
@@ -87,7 +95,7 @@ export function EmailForm(props: EmailFormProps) {
                 type='email'
                 error={formState.isSubmitted && !!formState.errors.email}
                 helperText={formState.isSubmitted && formState.errors.email?.message}
-                label={<Trans>Email</Trans>}
+                label={<Trans id='Email' />}
                 required={required.email}
                 {...muiRegister('email', {
                   required: required.email,
@@ -123,7 +131,7 @@ export function EmailForm(props: EmailFormProps) {
         {mode === 'session-expired' && (
           <FormRow>
             <Alert severity='error'>
-              <Trans>You must sign in to continue</Trans>
+              <Trans id='You must sign in to continue' />
             </Alert>
           </FormRow>
         )}

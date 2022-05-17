@@ -1,5 +1,129 @@
 # Change Log
 
+## 4.3.4
+
+### Patch Changes
+
+- Updated dependencies [[`c30893857`](https://github.com/graphcommerce-org/graphcommerce/commit/c3089385791291e812a48c2691a39a2325ee0439)]:
+  - @graphcommerce/magento-store@4.2.3
+  - @graphcommerce/magento-cart@4.2.14
+
+## 4.3.3
+
+### Patch Changes
+
+- [#1451](https://github.com/graphcommerce-org/graphcommerce/pull/1451) [`f698ff85d`](https://github.com/graphcommerce-org/graphcommerce/commit/f698ff85df6bb0922288471bb3c81856091b8061) Thanks [@paales](https://github.com/paales)! - Removed all occurences of @lingui/macro and moved to @lingui/macro / @lingui/core in preparation to move to swc.
+
+  Since we've removed @lingui/macro, all occurences need to be replaced with @lingui/core and @lingui/react.
+
+  All occurences of `<Trans>` and `t` need to be replaced:
+
+  ```tsx
+  import { Trans, t } from '@lingui/macro'
+
+  function MyComponent() {
+    const foo = 'bar'
+    return (
+      <div aria-label={t`Account ${foo}`}>
+        <Trans>My Translation {foo}</Trans>
+      </div>
+    )
+  }
+  ```
+
+  Needs to be replaced with:
+
+  ```tsx
+  import { Trans } from '@lingui/react'
+  import { i18n } from '@lingui/core'
+
+  function MyComponent() {
+    const foo = 'bar'
+    return (
+      <div aria-label={i18n._(/* i18n */ `Account {foo}`, { foo })}>
+        <Trans key='My Translation {foo}' values={{ foo }}></Trans>
+      </div>
+    )
+  }
+  ```
+
+  [More examples for Trans](https://lingui.js.org/ref/macro.html#examples-of-jsx-macros) and [more examples for `t`](https://lingui.js.org/ref/macro.html#examples-of-js-macros)
+
+- Updated dependencies [[`f698ff85d`](https://github.com/graphcommerce-org/graphcommerce/commit/f698ff85df6bb0922288471bb3c81856091b8061)]:
+  - @graphcommerce/framer-scroller@2.1.10
+  - @graphcommerce/magento-cart@4.2.13
+  - @graphcommerce/magento-store@4.2.2
+  - @graphcommerce/next-ui@4.7.2
+  - @graphcommerce/graphql@3.1.3
+
+## 4.3.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/magento-cart@4.2.12
+
+## 4.3.1
+
+### Patch Changes
+
+- Updated dependencies [[`25ef6cf08`](https://github.com/graphcommerce-org/graphcommerce/commit/25ef6cf08c278105307d6f604b7135d637e9046c), [`80e30bb77`](https://github.com/graphcommerce-org/graphcommerce/commit/80e30bb77015755fbc00a7935d590f80c1c1c18c)]:
+  - @graphcommerce/graphql@3.1.2
+  - @graphcommerce/graphql-mesh@4.1.3
+  - @graphcommerce/magento-cart@4.2.11
+  - @graphcommerce/magento-store@4.2.1
+  - @graphcommerce/next-ui@4.7.1
+  - @graphcommerce/framer-scroller@2.1.9
+
+## 4.3.0
+
+### Minor Changes
+
+- [#1256](https://github.com/graphcommerce-org/graphcommerce/pull/1256) [`669a17a97`](https://github.com/graphcommerce-org/graphcommerce/commit/669a17a973c47c00fed4a649a9da0bfc5670c5da) Thanks [@timhofman](https://github.com/timhofman)! - Wishlist
+
+## 4.2.0
+
+### Minor Changes
+
+- [#1416](https://github.com/graphcommerce-org/graphcommerce/pull/1416) [`f3d06dd83`](https://github.com/graphcommerce-org/graphcommerce/commit/f3d06dd836c9a76412b419d4d2c79bbd0ee92e04) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - SEO audit
+
+### Patch Changes
+
+- Updated dependencies [[`f3d06dd83`](https://github.com/graphcommerce-org/graphcommerce/commit/f3d06dd836c9a76412b419d4d2c79bbd0ee92e04)]:
+  - @graphcommerce/magento-store@4.2.0
+  - @graphcommerce/next-ui@4.7.0
+  - @graphcommerce/magento-cart@4.2.10
+  - @graphcommerce/framer-scroller@2.1.8
+
+## 4.1.11
+
+### Patch Changes
+
+- Updated dependencies [[`ba8cd4d34`](https://github.com/graphcommerce-org/graphcommerce/commit/ba8cd4d3480a7ec7e555b051cfd0fbc809c7aa12)]:
+  - @graphcommerce/graphql-mesh@4.1.2
+  - @graphcommerce/magento-cart@4.2.9
+  - @graphcommerce/magento-store@4.1.9
+
+## 4.1.10
+
+### Patch Changes
+
+- [#1394](https://github.com/graphcommerce-org/graphcommerce/pull/1394) [`b6b8bb5b3`](https://github.com/graphcommerce-org/graphcommerce/commit/b6b8bb5b31b0891ea24733de34a3bd5c0a9604e4) Thanks [@paales](https://github.com/paales)! - Made fragments injectable so they can be extended
+
+- Updated dependencies [[`06f7bdff8`](https://github.com/graphcommerce-org/graphcommerce/commit/06f7bdff882396f2b0e1a2873fbb718c7b06fab4), [`100f4c38c`](https://github.com/graphcommerce-org/graphcommerce/commit/100f4c38c8fcda4bc6e0425e38028b550b60adc2)]:
+  - @graphcommerce/graphql-mesh@4.1.1
+  - @graphcommerce/graphql@3.1.1
+  - @graphcommerce/next-ui@4.6.2
+  - @graphcommerce/magento-store@4.1.8
+  - @graphcommerce/magento-cart@4.2.8
+  - @graphcommerce/framer-scroller@2.1.7
+
+## 4.1.9
+
+### Patch Changes
+
+- [#1419](https://github.com/graphcommerce-org/graphcommerce/pull/1419) [`a52a863f9`](https://github.com/graphcommerce-org/graphcommerce/commit/a52a863f9c69c6b3ae657dcce3bc9b14413ce125) Thanks [@NickdeK](https://github.com/NickdeK)! - Make ProductListSort stylable and translate "Sort By" string
+
 ## 4.1.8
 
 ### Patch Changes

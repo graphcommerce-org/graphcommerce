@@ -21,7 +21,6 @@ function ServicePage({ pages }: Props) {
       <PageMeta
         title={title}
         metaDescription={title}
-        metaRobots={['noindex']}
         canonical={pages?.[0]?.url ? `/${pages[0].url}` : undefined}
       />
       <LayoutOverlayHeader>

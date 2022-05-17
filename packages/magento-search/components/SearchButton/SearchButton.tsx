@@ -1,5 +1,5 @@
 import { iconSearch, responsiveVal, IconSvg, extendableComponent } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react'
 import { TextField, TextFieldProps } from '@mui/material'
 
 export type SearchButtonProps = TextFieldProps
@@ -22,7 +22,7 @@ export function SearchButton(props: SearchButtonProps) {
       variant='outlined'
       size='small'
       className={classes.root}
-      label={label ?? <Trans>Search...</Trans>}
+      label={label ?? <Trans id='Search...' />}
       id='search-input'
       InputLabelProps={{ shrink: false }}
       InputProps={{

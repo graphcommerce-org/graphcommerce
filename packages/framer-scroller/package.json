@@ -2,7 +2,7 @@
   "name": "@graphcommerce/framer-scroller",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "2.1.6",
+  "version": "2.1.10",
   "sideEffects": false,
   "scripts": {
     "dev": "tsc -W"
@@ -17,17 +17,18 @@
   "dependencies": {
     "@graphcommerce/framer-utils": "3.1.2",
     "@graphcommerce/image": "3.1.5",
-    "@graphcommerce/next-ui": "4.6.1"
+    "@graphcommerce/next-ui": "4.7.2"
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "^4.1.5",
+    "@graphcommerce/eslint-config-pwa": "^4.1.7",
     "@graphcommerce/prettier-config-pwa": "^4.0.6",
-    "@graphcommerce/typescript-config-pwa": "^4.0.2",
+    "@graphcommerce/typescript-config-pwa": "^4.0.3",
     "@playwright/test": "^1.21.1"
   },
   "peerDependencies": {
     "@mui/material": "5.5.3",
-    "@lingui/macro": "^3.13.2",
+    "@lingui/react": "^3.13.2",
+    "@lingui/core": "^3.13.2",
     "framer-motion": "^6.2.4",
     "next": "12.1.2",
     "popmotion": "11.0.3",
