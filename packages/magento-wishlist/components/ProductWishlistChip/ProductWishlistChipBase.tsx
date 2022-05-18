@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-floating-promises */
-/* eslint-disable react-hooks/rules-of-hooks */
 import { useQuery, useMutation, useApolloClient } from '@graphcommerce/graphql'
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
 import { IconSvg, iconHeart, extendableComponent } from '@graphcommerce/next-ui'
@@ -31,15 +29,25 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
   const [inWishlist, setInWishlist] = useState(false)
 
   const { data: token } = useQuery(CustomerTokenDocument)
+  const [addWishlistItem] = useMutation(AddProductToWishlistDocument)
+  const [removeWishlistItem] = useMutation(RemoveProductFromWishlistDocument)
   const isLoggedIn = token?.customerToken && token?.customerToken.valid
+
+  const { data: GetCustomerWishlistData, loading } = useQuery(GetIsInWishlistsDocument, {
+    skip: !isLoggedIn,
+  })
+
+  const { data: guestWishlistData } = useQuery(
+    GuestWishlistDocument,
+    {
+      ssr: false,
+      skip: isLoggedIn === true,
+    },
+  )
 
   const { cache } = useApolloClient()
 
   const isWishlistEnabled = useWishlistEnabled()
-
-  if (!isWishlistEnabled) {
-    return null
-  }
 
   const heart = (
     <IconSvg
@@ -57,18 +65,6 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
       className={classes.wishlistIconActive}
       sx={(theme) => ({ color: theme.palette.primary.main, fill: 'currentcolor' })}
     />
-  )
-
-  const { data: GetCustomerWishlistData, loading } = useQuery(GetIsInWishlistsDocument, {
-    skip: !isLoggedIn,
-  })
-
-  const { data: guestWishlistData, loading: loadingGuestWishlistData } = useQuery(
-    GuestWishlistDocument,
-    {
-      ssr: false,
-      skip: isLoggedIn === true,
-    },
   )
 
   useEffect(() => {
@@ -94,9 +90,6 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
     }
   }, [isLoggedIn, sku, loading, GetCustomerWishlistData, guestWishlistData])
 
-  const [addWishlistItem] = useMutation(AddProductToWishlistDocument)
-  const [removeWishlistItem] = useMutation(RemoveProductFromWishlistDocument)
-
   const preventAnimationBubble: React.MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault()
     e.stopPropagation()
@@ -114,12 +107,14 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
         const wishlistItemsInSession =
           GetCustomerWishlistData?.customer?.wishlists[0]?.items_v2?.items || []
 
-        const item = wishlistItemsInSession.find((element) => element?.product?.sku == sku)
+        const item = wishlistItemsInSession.find((element) => element?.product?.sku === sku)
 
         if (item?.id) {
+          // eslint-disable-next-line @typescript-eslint/no-floating-promises
           removeWishlistItem({ variables: { wishlistItemId: item.id } })
         }
       } else {
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
         addWishlistItem({
           variables: { input: { sku, quantity: 1, selected_options: selectedOptions } },
         })
@@ -154,6 +149,10 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
         broadcast: true,
       })
     }
+  }
+
+  if (!isWishlistEnabled) {
+    return null
   }
 
   const button = (

@@ -21,18 +21,15 @@ function WishlistMenuFabItemContent(props: WishlistMenuFabItemProps) {
   const { data: token } = useQuery(CustomerTokenDocument)
   const isLoggedIn = token?.customerToken && token?.customerToken.valid
 
-  const { data: GetCustomerWishlistData, loading } = useQuery(GetIsInWishlistsDocument, {
+  const { data: GetCustomerWishlistData } = useQuery(GetIsInWishlistsDocument, {
     ssr: false,
     skip: !isLoggedIn,
   })
 
-  const { data: guestWishlistData, loading: loadingGuestWishlistData } = useQuery(
-    GuestWishlistDocument,
-    {
-      ssr: false,
-      skip: isLoggedIn === true,
-    },
-  )
+  const { data: guestWishlistData } = useQuery(GuestWishlistDocument, {
+    ssr: false,
+    skip: isLoggedIn === true,
+  })
 
   let activeWishlist
   if (isLoggedIn) {

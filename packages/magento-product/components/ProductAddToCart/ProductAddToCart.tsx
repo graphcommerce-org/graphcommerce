@@ -133,6 +133,7 @@ export function ProductAddToCart(
         <Trans
           id='<0>{name}</0> has been added to your shopping cart!'
           components={{ 0: <strong /> }}
+          values={{ name }}
         />
       </MessageSnackbar>
     </Box>
