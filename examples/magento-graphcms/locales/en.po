@@ -43,6 +43,12 @@ msgstr "Add to Cart"
 msgid "Add to wishlist"
 msgstr "Add to wishlist"
 
+msgid "View wishlist"
+msgstr "View wishlist"
+
+msgid "<0>{name}</0> has been added to your wishlist!"
+msgstr "<0>{name}</0> has been added to your wishlist!"
+
 msgid "Addition"
 msgstr "Addition"
 
