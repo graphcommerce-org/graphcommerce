@@ -16,6 +16,9 @@ msgstr ""
 msgid "<0>{name}</0> has been added to your shopping cart!"
 msgstr "<0>{name}</0> has been added to your shopping cart!"
 
+msgid "<0>{name}</0> has been added to your wishlist!"
+msgstr "<0>{name}</0> has been added to your wishlist!"
+
 msgid "Above <0/>"
 msgstr "Above <0/>"
 
@@ -31,23 +34,11 @@ msgstr "Add address"
 msgid "Add new address"
 msgstr "Add new address"
 
-msgid "New address"
-msgstr "New address"
-
-msgid "Add review"
-msgstr "Add review"
-
 msgid "Add to Cart"
 msgstr "Add to Cart"
 
 msgid "Add to wishlist"
 msgstr "Add to wishlist"
-
-msgid "View wishlist"
-msgstr "View wishlist"
-
-msgid "<0>{name}</0> has been added to your wishlist!"
-msgstr "<0>{name}</0> has been added to your wishlist!"
 
 msgid "Addition"
 msgstr "Addition"
@@ -108,6 +99,9 @@ msgstr "Cart Items"
 
 msgid "Cart Total"
 msgstr "Cart Total"
+
+msgid "Change"
+msgstr "Change"
 
 msgid "Change password"
 msgstr "Change password"
@@ -205,14 +199,8 @@ msgstr "Edit billing address"
 msgid "Email"
 msgstr "Email"
 
-msgid "Email address of existing customers will be recognized, sign in is optional."
-msgstr "E-mail address of existing customers will be recognized, sign in is optional."
-
 msgid "Emails don't match"
 msgstr "Emails don't match"
-
-msgid "Fill in password fields to create an account."
-msgstr "Fill in password fields to create an account."
 
 msgid "Fill in your e-mail to login or create an account"
 msgstr "Fill in your e-mail to login or create an account"
@@ -271,14 +259,8 @@ msgstr "Last Name"
 msgid "Latest orders"
 msgstr "Latest orders"
 
-msgid "Leave password field empty to order as guest."
-msgstr "Leave password field empty to order as guest."
-
 msgid "Log in"
 msgstr "Log in"
-
-msgid "Log in or create an account"
-msgstr "Log in or create an account"
 
 msgid "Log in to continue shopping"
 msgstr "Log in to continue shopping"
@@ -294,6 +276,9 @@ msgstr "Name"
 
 msgid "Navigate to item {0}"
 msgstr "Navigate to item {0}"
+
+msgid "New address"
+msgstr "New address"
 
 msgid "New email"
 msgstr "New email"
@@ -318,6 +303,9 @@ msgstr "No orders found"
 
 msgid "No payment information"
 msgstr "No payment information"
+
+msgid "No shipping methods available"
+msgstr "No shipping methods available"
 
 msgid "No worries! Enter your email address and we will send an email with instructions to reset your password."
 msgstr "No worries! Enter your email address and we will send an email with instructions to reset your password."
@@ -385,6 +373,9 @@ msgstr "Payment failed with status: {paymentStatus}"
 msgid "Payment method"
 msgstr "Payment method"
 
+msgid "Personal details"
+msgstr "Personal details"
+
 msgid "Place order"
 msgstr "Place order"
 
@@ -424,6 +415,9 @@ msgstr "Remove Product"
 msgid "Remove from wishlist"
 msgstr "Remove from wishlist"
 
+msgid "Reset Cart"
+msgstr "Reset Cart"
+
 msgid "Reset Cart and Return to home"
 msgstr "Reset Cart and Return to home"
 
@@ -451,6 +445,9 @@ msgstr "Search"
 msgid "Search..."
 msgstr "Search..."
 
+msgid "Select"
+msgstr "Select"
+
 msgid "Send password reset email"
 msgstr "Send password reset email"
 
@@ -468,9 +465,6 @@ msgstr "Shipping address"
 
 msgid "Shipping method"
 msgstr "Shipping method"
-
-msgid "No shipping methods available"
-msgstr "No shipping methods available"
 
 msgid "Sign in"
 msgstr "Sign in"
@@ -555,6 +549,9 @@ msgstr "View less items"
 
 msgid "View shopping cart"
 msgstr "View shopping cart"
+
+msgid "View wishlist"
+msgstr "View wishlist"
 
 msgid "View your account"
 msgstr "View your account"
@@ -669,9 +666,3 @@ msgstr "{totalResults} results"
 
 msgid "{total_count} products"
 msgstr "{total_count} products"
-
-msgid "Select"
-msgstr "Select"
-
-msgid "Change"
-msgstr "Change"

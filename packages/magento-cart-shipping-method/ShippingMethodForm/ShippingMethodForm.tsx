@@ -174,7 +174,7 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
                       <AvailableShippingMethod
                         available={false}
                         carrier_code='none'
-                        carrier_title='No shipping methods available'
+                        carrier_title={i18n._(/* i18n */ `No shipping methods available`)}
                       >
                         <Trans id='Please fill in your address to see shipping methods' />
                       </AvailableShippingMethod>
