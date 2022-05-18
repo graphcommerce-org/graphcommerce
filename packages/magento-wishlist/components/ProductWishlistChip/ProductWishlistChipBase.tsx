@@ -1,8 +1,17 @@
 import { useQuery, useMutation, useApolloClient } from '@graphcommerce/graphql'
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
-import { IconSvg, iconHeart, extendableComponent } from '@graphcommerce/next-ui'
+import {
+  IconSvg,
+  iconHeart,
+  extendableComponent,
+  MessageSnackbar,
+  Button,
+  iconChevronRight,
+} from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
-import { SxProps, Theme, IconButton } from '@mui/material'
+import { Trans } from '@lingui/react'
+import { SxProps, Theme, IconButton, Box } from '@mui/material'
+import PageLink from 'next/link'
 import { useState, useEffect } from 'react'
 import { useWishlistEnabled } from '../../hooks'
 import { AddProductToWishlistDocument } from '../../queries/AddProductToWishlist.gql'
@@ -17,16 +26,18 @@ const ignoreProductWishlistStatus =
 
 export type ProductWishlistChipProps = ProductWishlistChipFragment & { sx?: SxProps<Theme> } & {
   selectedOptions?: string[]
+  showFeedbackMessage?: boolean
 }
 
-const name = 'ProductWishlistChipBase' as const
+const compName = 'ProductWishlistChipBase' as const
 const parts = ['root', 'wishlistIcon', 'wishlistIconActive', 'wishlistButton'] as const
-const { classes } = extendableComponent(name, parts)
+const { classes } = extendableComponent(compName, parts)
 
 export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
-  const { sku, selectedOptions = [], sx = [] } = props
+  const { name, sku, showFeedbackMessage, selectedOptions = [], sx = [] } = props
 
   const [inWishlist, setInWishlist] = useState(false)
+  const [displayMessageBar, setDisplayMessageBar] = useState(false)
 
   const { data: token } = useQuery(CustomerTokenDocument)
   const [addWishlistItem] = useMutation(AddProductToWishlistDocument)
@@ -37,13 +48,10 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
     skip: !isLoggedIn,
   })
 
-  const { data: guestWishlistData } = useQuery(
-    GuestWishlistDocument,
-    {
-      ssr: false,
-      skip: isLoggedIn === true,
-    },
-  )
+  const { data: guestWishlistData } = useQuery(GuestWishlistDocument, {
+    ssr: false,
+    skip: isLoggedIn === true,
+  })
 
   const { cache } = useApolloClient()
 
@@ -118,6 +126,7 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
         addWishlistItem({
           variables: { input: { sku, quantity: 1, selected_options: selectedOptions } },
         })
+        setDisplayMessageBar(true)
       }
     } else if (inWishlist) {
       cache.modify({
@@ -148,40 +157,67 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
         },
         broadcast: true,
       })
+      setDisplayMessageBar(true)
     }
   }
 
-  if (!isWishlistEnabled) {
-    return null
-  }
+  const output = (
+    <Box>
+      <IconButton
+        key={sku}
+        onClick={handleClick}
+        onMouseDown={preventAnimationBubble}
+        size='small'
+        className={classes.wishlistButton}
+        sx={[
+          (theme) => ({
+            padding: theme.spacings.xxs,
+          }),
+          ...(Array.isArray(sx) ? sx : [sx]),
+        ]}
+        title={
+          inWishlist
+            ? i18n._(/* i18n */ `Remove from wishlist`)
+            : i18n._(/* i18n */ `Add to wishlist`)
+        }
+        aria-label={
+          inWishlist
+            ? i18n._(/* i18n */ `Remove from wishlist`)
+            : i18n._(/* i18n */ `Add to wishlist`)
+        }
+      >
+        {inWishlist ? activeHeart : heart}
+      </IconButton>
 
-  const button = (
-    <IconButton
-      key={sku}
-      onClick={handleClick}
-      onMouseDown={preventAnimationBubble}
-      size='small'
-      className={classes.wishlistButton}
-      sx={[
-        (theme) => ({
-          padding: theme.spacings.xxs,
-        }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
-      title={
-        inWishlist
-          ? i18n._(/* i18n */ `Remove from wishlist`)
-          : i18n._(/* i18n */ `Add to wishlist`)
-      }
-      aria-label={
-        inWishlist
-          ? i18n._(/* i18n */ `Remove from wishlist`)
-          : i18n._(/* i18n */ `Add to wishlist`)
-      }
-    >
-      {inWishlist ? activeHeart : heart}
-    </IconButton>
+      <MessageSnackbar
+        open={showFeedbackMessage && displayMessageBar}
+        variant='pill'
+        action={
+          <PageLink href='/wishlist' passHref>
+            <Button
+              id='view-wishlist-button'
+              size='medium'
+              variant='pill'
+              color='secondary'
+              endIcon={<IconSvg src={iconChevronRight} />}
+            >
+              <Trans id='View wishlist' />
+            </Button>
+          </PageLink>
+        }
+      >
+        <Trans
+          id='<0>{name}</0> has been added to your wishlist!'
+          components={{ 0: <strong /> }}
+          values={{ name }}
+        />
+      </MessageSnackbar>
+    </Box>
   )
 
-  return !hideForGuest || isLoggedIn ? button : null
+  return !hideForGuest || isLoggedIn ? output : null
+}
+
+ProductWishlistChipBase.defaultProps = {
+  showFeedbackMessage: false,
 }
