@@ -1,5 +1,9 @@
 import { useMutation, useQuery } from '@graphcommerce/graphql'
-import { CustomerTokenDocument, useExtractCustomerErrors } from '@graphcommerce/magento-customer'
+import {
+  CustomerTokenDocument,
+  useCustomerSession,
+  useExtractCustomerErrors,
+} from '@graphcommerce/magento-customer'
 import { useEffect } from 'react'
 import { CustomerCartDocument } from './CustomerCart.gql'
 import { UseMergeCustomerCartDocument } from './UseMergeCustomerCart.gql'
@@ -18,9 +22,9 @@ export function useMergeCustomerCart() {
   const [merge, { error }] = useMutation(UseMergeCustomerCartDocument, { errorPolicy: 'all' })
 
   useExtractCustomerErrors({ error })
-  const customerToken = useQuery(CustomerTokenDocument)?.data?.customerToken
+  const { loggedIn } = useCustomerSession()
   const destinationCartId = useQuery(CustomerCartDocument, {
-    skip: !(customerToken?.token && customerToken.valid),
+    skip: !loggedIn,
   })?.data?.customerCart.id
 
   useEffect(() => {
