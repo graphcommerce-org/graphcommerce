@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-cart-shipping-address",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "3.0.18",
+  "version": "3.0.19",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {

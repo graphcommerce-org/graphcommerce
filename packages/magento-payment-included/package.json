@@ -13,7 +13,7 @@
   },
   "devDependencies": {
     "@graphcommerce/eslint-config-pwa": "^4.1.7",
-    "@graphcommerce/magento-cart-shipping-address": "3.0.18",
+    "@graphcommerce/magento-cart-shipping-address": "3.0.19",
     "@graphcommerce/magento-product": "4.3.5",
     "@graphcommerce/magento-product-configurable": "4.1.5",
     "@graphcommerce/prettier-config-pwa": "^4.0.6",

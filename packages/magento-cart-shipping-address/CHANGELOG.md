@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.19
+
+### Patch Changes
+
+- [#1470](https://github.com/graphcommerce-org/graphcommerce/pull/1470) [`aac7bb3ad`](https://github.com/graphcommerce-org/graphcommerce/commit/aac7bb3adc62b0646813ab6a3ca9c3eb216e9caf) Thanks [@paales](https://github.com/paales)! - Saving a new address didn’t work because it expects saveInAddressBook
+
 ## 3.0.18
 
 ### Patch Changes
