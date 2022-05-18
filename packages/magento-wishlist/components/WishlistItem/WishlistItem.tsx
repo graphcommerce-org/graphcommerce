@@ -1,7 +1,4 @@
-/* eslint-disable @typescript-eslint/no-floating-promises */
-/* eslint-disable react-hooks/rules-of-hooks */
 import { SxProps, Theme } from '@mui/material'
-
 import { PropsWithChildren } from 'react'
 import { ProductAddToCart } from './ProductAddToCart'
 import { WishlistItemBase } from './WishlistItemBase'

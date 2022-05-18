@@ -1,14 +1,10 @@
-/* eslint-disable @typescript-eslint/no-floating-promises */
-/* eslint-disable react-hooks/rules-of-hooks */
 import { useQuery, useMutation, useApolloClient } from '@graphcommerce/graphql'
 import { Image } from '@graphcommerce/image'
-import { useDisplayInclTax } from '@graphcommerce/magento-cart'
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
 import { useProductLink } from '@graphcommerce/magento-product'
 import { Money } from '@graphcommerce/magento-store'
 import { responsiveVal, extendableComponent, iconEllypsis, IconSvg } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { i18n } from '@lingui/core'
 import { Badge, Box, Link, SxProps, Theme, Typography } from '@mui/material'
 import IconButton from '@mui/material/IconButton'
 import Menu from '@mui/material/Menu'
@@ -59,13 +55,12 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
   } = props
 
   const productLink = useProductLink({ url_key, __typename: productType })
-  const inclTaxes = useDisplayInclTax()
   const { cache } = useApolloClient()
 
   const { data: token } = useQuery(CustomerTokenDocument)
   const isLoggedIn = token?.customerToken && token?.customerToken.valid
 
-  const { data: GetCustomerWishlistData, loading } = useQuery(GetIsInWishlistsDocument, {
+  const { data: GetCustomerWishlistData } = useQuery(GetIsInWishlistsDocument, {
     skip: !isLoggedIn,
   })
 
@@ -74,6 +69,7 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
   const [anchorEl, setAnchorEl] = useState(null)
   const open = Boolean(anchorEl)
   const handleClick = (event) => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     setAnchorEl(event.currentTarget)
   }
 
@@ -94,6 +90,7 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
         }
 
         if (itemIdToDelete) {
+          // eslint-disable-next-line @typescript-eslint/no-floating-promises
           removeWishlistItem({ variables: { wishlistItemId: itemIdToDelete } })
         }
       } else {
@@ -170,7 +167,7 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
           vertical: 'top',
           horizontal: 'left',
         }}
-        sx={(theme) => ({
+        sx={() => ({
           gridArea: 'picture',
           width: rowImageSize,
           height: rowImageSize,
@@ -234,7 +231,7 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
         variant='body1'
         className={classes.root}
         sx={[
-          (theme) => ({ gridArea: 'itemPrice', marginLeft: 'auto' }),
+          () => ({ gridArea: 'itemPrice', marginLeft: 'auto' }),
           ...(Array.isArray(sx) ? sx : [sx]),
         ]}
       >
@@ -262,7 +259,7 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
         aria-expanded={open ? 'true' : undefined}
         aria-haspopup='true'
         onClick={handleClick}
-        sx={(theme) => ({
+        sx={() => ({
           gridArea: 'iconMenu',
           alignSelf: 'flex-start',
           padding: '0',
