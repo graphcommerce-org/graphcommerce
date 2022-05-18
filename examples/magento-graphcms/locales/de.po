@@ -16,6 +16,9 @@ msgstr ""
 msgid "<0>{name}</0> has been added to your shopping cart!"
 msgstr "<0>{name}</0> wurde zu Ihrem Warenkorb hinzugefügt!"
 
+msgid "<0>{name}</0> has been added to your wishlist!"
+msgstr ""
+
 msgid "Above <0/>"
 msgstr "Über <0/>"
 
@@ -30,12 +33,6 @@ msgstr "Adresse hinzufügen"
 
 msgid "Add new address"
 msgstr "Neue Adresse hinzufügen"
-
-msgid "New address"
-msgstr "Neue Adresse"
-
-msgid "Add review"
-msgstr "Bewertung hinzufügen"
 
 msgid "Add to Cart"
 msgstr "In den Warenkorb"
@@ -102,6 +99,9 @@ msgstr "Warenkorbpositionen"
 
 msgid "Cart Total"
 msgstr "Warenkorbgesamt"
+
+msgid "Change"
+msgstr "Ändern"
 
 msgid "Change password"
 msgstr "Passwort ändern"
@@ -199,14 +199,8 @@ msgstr "Rechnungsadresse bearbeiten"
 msgid "Email"
 msgstr "E-Mail"
 
-msgid "Email address of existing customers will be recognized, sign in is optional."
-msgstr "E-Mail-Adresse bestehender Kunden wird erkannt, Anmeldung ist optional."
-
 msgid "Emails don't match"
 msgstr "E-Mail-Adressen stimmen nicht überein"
-
-msgid "Fill in password fields to create an account."
-msgstr "Füllen Sie die Passwortfelder aus, um ein Konto zu erstellen."
 
 msgid "Fill in your e-mail to login or create an account"
 msgstr "Füllen Sie Ihre E-Mail-Adresse ein, um sich anzumelden oder ein Konto zu erstellen"
@@ -265,14 +259,8 @@ msgstr "Nachname"
 msgid "Latest orders"
 msgstr "Neueste Bestellungen"
 
-msgid "Leave password field empty to order as guest."
-msgstr "Lassen Sie das Passwortfeld leer, um als Gast zu bestellen."
-
 msgid "Log in"
 msgstr "Anmelden"
-
-msgid "Log in or create an account"
-msgstr "Anmelden oder ein Konto erstellen"
 
 msgid "Log in to continue shopping"
 msgstr "Anmelden, um den Einkauf fortzusetzen"
@@ -288,6 +276,9 @@ msgstr "Name"
 
 msgid "Navigate to item {0}"
 msgstr "Zum Artikel {0} navigieren"
+
+msgid "New address"
+msgstr "Neue Adresse"
 
 msgid "New email"
 msgstr "Neue E-Mail"
@@ -379,6 +370,9 @@ msgstr "Zahlung fehlgeschlagen mit Status: {paymentStatus}"
 msgid "Payment method"
 msgstr "Zahlungsmethode"
 
+msgid "Personal details"
+msgstr "Persönliche Daten"
+
 msgid "Place order"
 msgstr "Bestellen"
 
@@ -418,6 +412,9 @@ msgstr "Produkt entfernen"
 msgid "Remove from wishlist"
 msgstr "Aus Wunschliste entfernen"
 
+msgid "Reset Cart"
+msgstr "Warenkorb zurücksetzen"
+
 msgid "Reset Cart and Return to home"
 msgstr "Warenkorb zurücksetzen und zurück zur Startseite"
 
@@ -445,6 +442,9 @@ msgstr "Suche"
 msgid "Search..."
 msgstr "Suche..."
 
+msgid "Select"
+msgstr "Auswählen"
+
 msgid "Send password reset email"
 msgstr "E-Mail zum Zurücksetzen des Passworts senden"
 
@@ -462,9 +462,6 @@ msgstr "Lieferadresse"
 
 msgid "Shipping method"
 msgstr "Versandart"
-
-msgid "No shipping methods available"
-msgstr "Keine Versandarten verfügbar"
 
 msgid "Sign in"
 msgstr "Anmelden"
@@ -549,6 +546,9 @@ msgstr "Weniger Artikel anzeigen"
 
 msgid "View shopping cart"
 msgstr "Warenkorb anzeigen"
+
+msgid "View wishlist"
+msgstr "Wunschliste anzeigen"
 
 msgid "View your account"
 msgstr "Ihr Konto anzeigen"
@@ -663,9 +663,3 @@ msgstr "{totalResults} Ergebnisse"
 
 msgid "{total_count} products"
 msgstr "{total_count} Produkte"
-
-msgid "Select"
-msgstr "Auswählen"
-
-msgid "Change"
-msgstr "Ändern"

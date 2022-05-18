@@ -1,6 +1,7 @@
 import { ApolloErrorFullPage, ApolloErrorFullPageProps } from '@graphcommerce/ecommerce-ui'
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
 import { iconSadFace, IconSvg } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/react'
 import { Button } from '@mui/material'
 import { useClearCurrentCartId } from '../../hooks/useClearCurrentCartId'
 
@@ -11,7 +12,11 @@ export function ApolloCartErrorFullPage(props: ApolloCartErrorFullPageProps) {
   const clear = useClearCurrentCartId()
 
   const [, noSuchEntity] = graphqlErrorByCategory({ category: 'graphql-no-such-entity', error })
-  const action = noSuchEntity ? <Button onClick={clear}>Reset Cart</Button> : undefined
+  const action = noSuchEntity ? (
+    <Button onClick={clear}>
+      <Trans id='Reset Cart' />
+    </Button>
+  ) : undefined
 
   return (
     <ApolloErrorFullPage

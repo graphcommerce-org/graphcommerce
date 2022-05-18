@@ -17,7 +17,11 @@ export function ApolloCartErrorAlert(props: ApolloCartErrorAlertProps) {
   let action: JSX.Element | undefined
 
   const [, noSuchEntity] = graphqlErrorByCategory({ category: 'graphql-no-such-entity', error })
-  action = noSuchEntity ? <Button onClick={clear}>Reset Cart</Button> : undefined
+  action = noSuchEntity ? (
+    <Button onClick={clear}>
+      <Trans id='Reset Cart' />
+    </Button>
+  ) : undefined
 
   const [, authorizationError] = graphqlErrorByCategory({
     category: 'graphql-authorization',
