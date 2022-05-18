@@ -1,5 +1,17 @@
 # @graphcommerce/magento-pagebuilder
 
+## 1.0.9
+
+### Patch Changes
+
+- [#1463](https://github.com/graphcommerce-org/graphcommerce/pull/1463) [`b2bcdf089`](https://github.com/graphcommerce-org/graphcommerce/commit/b2bcdf089a328ba9e5af9985289dffcc2829783b) Thanks [@paales](https://github.com/paales)! - Make sure the correct fields are selected when resolving pagebuilder fields
+
+- Updated dependencies [[`0363b9671`](https://github.com/graphcommerce-org/graphcommerce/commit/0363b9671db7c2932321d97faf6f1eb385238397), [`c6a62a338`](https://github.com/graphcommerce-org/graphcommerce/commit/c6a62a338abf8af83d3a6eb7ed796586009910ca), [`3ac90b57c`](https://github.com/graphcommerce-org/graphcommerce/commit/3ac90b57c68b96f9d81771d6664ed9435a28fc1d)]:
+  - @graphcommerce/next-ui@4.8.0
+  - @graphcommerce/magento-product@4.3.5
+  - @graphcommerce/magento-category@4.1.6
+  - @graphcommerce/magento-cms@4.0.15
+
 ## 1.0.8
 
 ### Patch Changes

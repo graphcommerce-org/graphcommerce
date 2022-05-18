@@ -1,5 +1,18 @@
 # Change Log
 
+## 4.8.0
+
+### Minor Changes
+
+- [#1462](https://github.com/graphcommerce-org/graphcommerce/pull/1462) [`3ac90b57c`](https://github.com/graphcommerce-org/graphcommerce/commit/3ac90b57c68b96f9d81771d6664ed9435a28fc1d) Thanks [@mikekeehnen](https://github.com/mikekeehnen)! - Added translation for the pagination
+
+### Patch Changes
+
+- [#1467](https://github.com/graphcommerce-org/graphcommerce/pull/1467) [`0363b9671`](https://github.com/graphcommerce-org/graphcommerce/commit/0363b9671db7c2932321d97faf6f1eb385238397) Thanks [@timhofman](https://github.com/timhofman)! - optional feedback message upon adding products to wishlist
+
+- Updated dependencies []:
+  - @graphcommerce/framer-scroller@2.1.11
+
 ## 4.7.2
 
 ### Patch Changes
