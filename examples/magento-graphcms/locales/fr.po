@@ -31,6 +31,12 @@ msgstr "Ajouter une adresse"
 msgid "Add new address"
 msgstr "Ajouter une nouvelle adresse"
 
+msgid "New address"
+msgstr "Nouvelle adresse"
+
+msgid "Add review"
+msgstr "Ajouter une évaluation"
+
 msgid "Add to Cart"
 msgstr "Ajouter au panier"
 
@@ -457,6 +463,9 @@ msgstr "Adresse d'expédition"
 msgid "Shipping method"
 msgstr "Méthode d'expédition"
 
+msgid "No shipping methods available"
+msgstr "Aucune méthode d'expédition disponible"
+
 msgid "Sign in"
 msgstr "Identifiez-vous"
 
@@ -654,3 +663,9 @@ msgstr "{totalResults} résultats"
 
 msgid "{total_count} products"
 msgstr "{total_count} produits"
+
+msgid "Select"
+msgstr "Sélectionner"
+
+msgid "Change"
+msgstr "Changer"

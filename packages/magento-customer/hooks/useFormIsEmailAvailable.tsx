@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { CustomerDocument } from './Customer.gql'
 import { CustomerTokenDocument } from './CustomerToken.gql'
 import { IsEmailAvailableDocument } from './IsEmailAvailable.gql'
+import { useCustomerQuery } from './useCustomerQuery'
 
 export type UseFormIsEmailAvailableProps = {
   email?: string | null
@@ -13,10 +14,7 @@ export type UseFormIsEmailAvailableProps = {
 export function useFormIsEmailAvailable(props: UseFormIsEmailAvailableProps) {
   const { email, onSubmitted } = props
   const { data: token } = useQuery(CustomerTokenDocument)
-  const customerQuery = useQuery(CustomerDocument, {
-    ssr: false,
-    skip: typeof token === 'undefined',
-  })
+  const customerQuery = useCustomerQuery(CustomerDocument)
 
   const form = useFormGqlQuery(
     IsEmailAvailableDocument,

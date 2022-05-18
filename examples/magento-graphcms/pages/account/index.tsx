@@ -88,25 +88,25 @@ function AccountIndexPage() {
             <AccountMenuItem
               href='/account/name'
               iconSrc={iconId}
-              title={i18n._(/* i18n */ `Name`)}
+              title={<Trans id='Name' />}
               subtitle={`${customer?.firstname} ${customer?.lastname}`}
             />
             <AccountMenuItem
               href='/account/contact'
               iconSrc={iconEmailOutline}
-              title={i18n._(/* i18n */ `Contact`)}
+              title={<Trans id='Contact' />}
               subtitle={customer?.email}
             />
             <AccountMenuItem
               href='/account/authentication'
               iconSrc={iconLock}
-              title={i18n._(/* i18n */ `Authentication`)}
-              subtitle={i18n._(/* i18n */ `Password`)}
+              title={<Trans id='Authentication' />}
+              subtitle={<Trans id='Password' />}
             />
             <AccountMenuItem
               href='/account/orders'
               iconSrc={iconBox}
-              title={i18n._(/* i18n */ `Orders`)}
+              title={<Trans id='Orders' />}
               subtitle={
                 latestOrder ? (
                   <>

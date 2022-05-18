@@ -31,6 +31,12 @@ msgstr "Adres toevoegen"
 msgid "Add new address"
 msgstr "Voeg nieuw adres toe"
 
+msgid "New address"
+msgstr "Nieuw adres"
+
+msgid "Add review"
+msgstr "Voeg review toe"
+
 msgid "Add to Cart"
 msgstr "In winkelwagen"
 
@@ -457,6 +463,9 @@ msgstr "Verzendadres"
 msgid "Shipping method"
 msgstr "Verzendmethode"
 
+msgid "No shipping methods available"
+msgstr "Geen verzendmethoden beschikbaar"
+
 msgid "Sign in"
 msgstr "Inloggen"
 
@@ -654,3 +663,9 @@ msgstr "{totalResults} resultaten"
 
 msgid "{total_count} products"
 msgstr "{total_count} producten"
+
+msgid "Select"
+msgstr "Selecteer"
+
+msgid "Change"
+msgstr "Verander"

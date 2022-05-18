@@ -1,4 +1,5 @@
 export * from './AccountAddress/AccountAddress'
+export * from './AccountAddresses/AccountAddresses.gql'
 export * from './AccountAddresses/AccountAddresses'
 export * from './AddressFields/AddressFields'
 export * from './AddressMultiLine/AddressMultiLine'

@@ -9,7 +9,7 @@ import { i18n } from '@lingui/core'
 import { Fab, FabProps as FabPropsType, NoSsr, SxProps, Theme } from '@mui/material'
 import PageLink from 'next/link'
 import React from 'react'
-import { CustomerTokenDocument, CustomerTokenQuery } from '../../hooks'
+import { CustomerTokenDocument, CustomerTokenQuery, useCustomerSession } from '../../hooks'
 
 type CustomerFabContentProps = CustomerTokenQuery & {
   icon?: React.ReactNode
@@ -25,7 +25,7 @@ const { classes } = extendableComponent(name, parts)
 
 function CustomerFabContent(props: CustomerFabContentProps) {
   const { customerToken, icon, guestHref, authHref, FabProps, sx } = props
-  const requireAuth = Boolean(!customerToken || !customerToken.valid)
+  const { requireAuth } = useCustomerSession()
 
   return (
     <PageLink href={requireAuth ? guestHref : authHref} passHref>

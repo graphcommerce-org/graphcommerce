@@ -58,7 +58,7 @@ export function LayoutDefault(props: LayoutDefaultProps) {
           display: 'grid',
           gridTemplateRows: `auto auto 1fr auto`,
           gridTemplateColumns: '100%',
-          background: theme.palette.background.default,
+          background: theme.palette.background.paper,
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}

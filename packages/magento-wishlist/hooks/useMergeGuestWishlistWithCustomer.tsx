@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useApolloClient } from '@graphcommerce/graphql'
-import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
+import { useCustomerSession } from '@graphcommerce/magento-customer'
 import { useEffect } from 'react'
 import { AddProductToWishlistDocument } from '../queries/AddProductToWishlist.gql'
 import { GetGuestWishlistProductsDocument } from '../queries/GetGuestWishlistProducts.gql'
@@ -7,8 +7,7 @@ import { GuestWishlistDocument } from '../queries/GuestWishlist.gql'
 
 /** Merge guest wishlist items to customer session upon login */
 export function useMergeGuestWishlistWithCustomer() {
-  const customerToken = useQuery(CustomerTokenDocument)?.data?.customerToken
-  const isLoggedIn = customerToken?.token && customerToken?.valid
+  const { loggedIn } = useCustomerSession()
   const { cache } = useApolloClient()
 
   const guestSkus = useQuery(GuestWishlistDocument, { ssr: false }).data?.guestWishlist?.items
@@ -22,7 +21,7 @@ export function useMergeGuestWishlistWithCustomer() {
   const [addWishlistItem] = useMutation(AddProductToWishlistDocument)
 
   useEffect(() => {
-    if (!isLoggedIn || !guestSkus || guestSkus.length === 0) return
+    if (!loggedIn || !guestSkus || guestSkus.length === 0) return
 
     const clearGuestList = () =>
       cache.evict({ id: cache.identify({ __typename: 'GuestWishlist' }) })
@@ -37,5 +36,5 @@ export function useMergeGuestWishlistWithCustomer() {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       if (input.length) addWishlistItem({ variables: { input } }).then(clearGuestList)
     }
-  }, [addWishlistItem, cache, guestProducts, guestSkus, isLoggedIn])
+  }, [addWishlistItem, cache, guestProducts, guestSkus, loggedIn])
 }

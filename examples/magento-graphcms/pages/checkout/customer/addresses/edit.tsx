@@ -16,12 +16,12 @@ import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, Container, NoSsr, Skeleton } from '@mui/material'
 import { useRouter } from 'next/router'
-import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
-import { graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
+import { LayoutOverlay, LayoutOverlayProps } from '../../../../components'
+import { graphqlSharedClient } from '../../../../lib/graphql/graphqlSsrClient'
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
-function EditAddressPage() {
+function CheckoutCustomerAddressesEdit() {
   const router = useRouter()
   useGoogleRecaptcha()
 
@@ -50,14 +50,14 @@ function EditAddressPage() {
     <>
       <LayoutOverlayHeader>
         <LayoutTitle size='small' component='span' icon={iconAddresses}>
-          <Trans id='Addresses' />
+          <Trans id='Edit address' />
         </LayoutTitle>
       </LayoutOverlayHeader>
       <Container maxWidth='md'>
         <PageMeta title={i18n._(/* i18n */ `Edit address`)} metaRobots={['noindex']} />
         <NoSsr>
           <LayoutTitle icon={iconAddresses}>
-            <Trans id='Addresses' />
+            <Trans id='Edit address' />
           </LayoutTitle>
 
           <SectionContainer labelLeft={<Trans id='Edit address' />}>
@@ -80,7 +80,9 @@ function EditAddressPage() {
               </div>
             )}
 
-            {address && !loading && <EditAddressForm address={address} />}
+            {address && !loading && (
+              <EditAddressForm onCompleteRoute='/checkout' address={address} />
+            )}
           </SectionContainer>
         </NoSsr>
       </Container>
@@ -89,13 +91,12 @@ function EditAddressPage() {
 }
 
 const pageOptions: PageOptions<LayoutOverlayProps> = {
-  overlayGroup: 'account',
+  overlayGroup: 'checkout',
   Layout: LayoutOverlay,
-  sharedKey: () => 'account/addresses',
 }
-EditAddressPage.pageOptions = pageOptions
+CheckoutCustomerAddressesEdit.pageOptions = pageOptions
 
-export default EditAddressPage
+export default CheckoutCustomerAddressesEdit
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const client = graphqlSharedClient(locale)
@@ -106,7 +107,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
       apolloState: await conf.then(() => client.cache.extract()),
       variantMd: 'bottom',
       size: 'max',
-      up: { href: '/account/addresses', title: 'Addresses' },
+      up: { href: '/checkout', title: 'Checkout' },
     },
   }
 }

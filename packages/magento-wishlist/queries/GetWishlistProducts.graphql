@@ -8,6 +8,7 @@ query GetWishlistProducts {
           id
           ...WishlistItem
           product {
+            __typename
             uid
             sku
             ...ProductListItem

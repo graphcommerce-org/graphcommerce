@@ -12,15 +12,7 @@ import {
 import { AnimatedRow, extendableComponent, FormDiv, FormRow } from '@graphcommerce/next-ui'
 import { emailPattern, useFormCompose, UseFormComposeOptions } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
-import {
-  CircularProgress,
-  TextField,
-  Typography,
-  Alert,
-  Button,
-  SxProps,
-  Theme,
-} from '@mui/material'
+import { CircularProgress, TextField, Typography, Alert, Button } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
 import { CartEmailDocument } from './CartEmail.gql'
@@ -28,7 +20,6 @@ import { SetGuestEmailOnCartDocument } from './SetGuestEmailOnCart.gql'
 
 export type EmailFormProps = Pick<UseFormComposeOptions, 'step'> & {
   children?: React.ReactNode
-  sx?: SxProps<Theme>
 }
 
 const name = 'EmailForm' as const
@@ -36,7 +27,7 @@ const parts = ['root', 'formRow'] as const
 const { classes } = extendableComponent(name, parts)
 
 export function EmailForm(props: EmailFormProps) {
-  const { step, children, sx } = props
+  const { step, children } = props
   const [expand, setExpand] = useState(false)
 
   useMergeCustomerCart()
@@ -81,13 +72,13 @@ export function EmailForm(props: EmailFormProps) {
   if (formState.isSubmitting) endAdornment = <CircularProgress />
 
   return (
-    <FormDiv contained background='default' className={classes.root} sx={sx}>
+    <FormDiv>
       <AnimatePresence initial={false}>
         <AnimatedRow key='emailform'>
           <form noValidate onSubmit={submit}>
             <FormRow>
               <Typography variant='h5' component='h2' gutterBottom>
-                <Trans id='Log in or create an account' />
+                <Trans id='Personal details' />
               </Typography>
             </FormRow>
             <FormRow className={classes.formRow} sx={{ py: 0 }}>

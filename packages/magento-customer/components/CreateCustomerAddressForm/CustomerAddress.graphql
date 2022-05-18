@@ -19,4 +19,5 @@ fragment CustomerAddress on CustomerAddress {
   telephone
 
   vat_id
+  default_shipping
 }
