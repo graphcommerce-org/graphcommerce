@@ -304,6 +304,9 @@ msgstr "Aucune commande trouvée"
 msgid "No payment information"
 msgstr "Pas d'information de paiement"
 
+msgid "No shipping methods available"
+msgstr "Aucun moyen de livraison disponible"
+
 msgid "No worries! Enter your email address and we will send an email with instructions to reset your password."
 msgstr "Pas de soucis! Entrez votre adresse email et nous vous enverrons un email avec les instructions pour réinitialiser votre mot de passe."
 

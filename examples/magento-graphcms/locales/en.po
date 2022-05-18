@@ -304,6 +304,9 @@ msgstr "No orders found"
 msgid "No payment information"
 msgstr "No payment information"
 
+msgid "No shipping methods available"
+msgstr "No shipping methods available"
+
 msgid "No worries! Enter your email address and we will send an email with instructions to reset your password."
 msgstr "No worries! Enter your email address and we will send an email with instructions to reset your password."
 
