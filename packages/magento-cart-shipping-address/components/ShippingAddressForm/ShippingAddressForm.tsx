@@ -18,7 +18,6 @@ import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { TextField } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
-import React from 'react'
 import { isSameAddress } from '../../utils/isSameAddress'
 import { GetAddressesDocument } from './GetAddresses.gql'
 import { SetShippingAddressDocument } from './SetShippingAddress.gql'
@@ -52,7 +51,7 @@ export function ShippingAddressForm(props: ShippingAddressFormProps) {
 
   const form = useFormGqlMutationCart(Mutation, {
     defaultValues: ignoreCache
-      ? {}
+      ? { saveInAddressBook: true }
       : {
           // todo(paales): change to something more sustainable
           firstname: currentAddress?.firstname ?? currentCustomer?.firstname ?? '',
