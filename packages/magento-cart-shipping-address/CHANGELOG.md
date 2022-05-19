@@ -1,5 +1,15 @@
 # Change Log
 
+## 3.0.20
+
+### Patch Changes
+
+- [#1476](https://github.com/graphcommerce-org/graphcommerce/pull/1476) [`4cda98ea6`](https://github.com/graphcommerce-org/graphcommerce/commit/4cda98ea6f5f0cbb68fd67956b69524618c396fa) Thanks [@paales](https://github.com/paales)! - move CustomerAddressForm import to package root
+
+- Updated dependencies [[`a12db31b9`](https://github.com/graphcommerce-org/graphcommerce/commit/a12db31b9db9d27d86f59c1bfe58a0879999b9d3), [`cf575395c`](https://github.com/graphcommerce-org/graphcommerce/commit/cf575395c16e9c571f75d4563004c3018a29aeaa)]:
+  - @graphcommerce/magento-customer@4.3.1
+  - @graphcommerce/magento-cart@4.3.0
+
 ## 3.0.19
 
 ### Patch Changes
