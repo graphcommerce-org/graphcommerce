@@ -40,6 +40,18 @@ msgstr "In winkelwagen"
 msgid "Add to wishlist"
 msgstr "In verlanglijst"
 
+msgid "View wishlist"
+msgstr "Bekijk verlanglijst"
+
+msgid "<0>{name}</0> has been added to your wishlist!"
+msgstr "<0>{name}</0> is toegevoegd aan je verlanglijst!"
+
+msgid "Loading wishlist"
+msgstr "Ophalen verlanglijst"
+
+msgid "We are fetching your favorite products, one moment please!"
+msgstr "Je favoriete artikelen worden momenteel ingeladen!"
+
 msgid "Addition"
 msgstr "Toevoeging"
 
