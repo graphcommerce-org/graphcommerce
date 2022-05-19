@@ -10,8 +10,10 @@ import { useQuery } from '@graphcommerce/graphql'
 import { ApolloCartErrorAlert, EmptyCart, useCartQuery } from '@graphcommerce/magento-cart'
 import { ShippingPageDocument } from '@graphcommerce/magento-cart-checkout'
 import { EmailForm } from '@graphcommerce/magento-cart-email'
-import { ShippingAddressForm } from '@graphcommerce/magento-cart-shipping-address'
-import { CustomerAddressForm } from '@graphcommerce/magento-cart-shipping-address/components/CustomerAddressForm/CustomerAddressForm'
+import {
+  ShippingAddressForm,
+  CustomerAddressForm,
+} from '@graphcommerce/magento-cart-shipping-address'
 import { ShippingMethodForm } from '@graphcommerce/magento-cart-shipping-method'
 import { CustomerDocument } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
