@@ -103,6 +103,12 @@ msgstr "Winkelwagen totaal"
 msgid "Change"
 msgstr "Verander"
 
+msgid "Loading cart"
+msgstr "Ophalen winkelwagen"
+
+msgid "We are fetching your products, one moment please!"
+msgstr "Je producten worden momenteel ingeladen!"
+
 msgid "Change password"
 msgstr "Wijzig wachtwoord"
 

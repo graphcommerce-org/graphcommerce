@@ -103,6 +103,12 @@ msgstr "Cart Total"
 msgid "Change"
 msgstr "Change"
 
+msgid "Loading cart"
+msgstr "Loading cart"
+
+msgid "We are fetching your products, one moment please!"
+msgstr "We are fetching your products, one moment please!"
+
 msgid "Change password"
 msgstr "Change password"
 
