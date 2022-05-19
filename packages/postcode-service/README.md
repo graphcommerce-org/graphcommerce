@@ -19,14 +19,13 @@ Add the following to your .meshrc.yml:
 
 ```yml
 additionalResolvers:
-  - components/PostcodeService/postcodeResolver
+  - '@graphcommerce/postcode-service/mesh/postcodeResolver.ts'
 ```
-
-Integrate by using any of the [exported components](./index.ts).
 
 ## Intergration
 
-You can use the by using the `usePostcodeService` that needs a form that
+You can use the by using the
+[`usePostcodeService`](./components/PostcodeService.tsx) that needs a form that
 contains a `postcode`, `houseNumber`, `street` and `city` as registered fields.
 
 ```tsx
