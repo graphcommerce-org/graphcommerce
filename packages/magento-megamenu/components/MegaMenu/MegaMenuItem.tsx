@@ -122,6 +122,7 @@ export function MegaMenuItem(props: MegaMenuItemProps) {
           aria-label={i18n._(/* i18n */ `Back`)}
           size='small'
           color='default'
+          sx={{ display: { md: 'none' } }}
         >
           <IconSvg src={iconChevronLeft} size='medium' />
         </Fab>
