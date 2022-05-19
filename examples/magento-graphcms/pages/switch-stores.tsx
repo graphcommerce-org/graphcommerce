@@ -28,11 +28,7 @@ function StoresIndexPage({ availableStores }: Props) {
 
   return (
     <>
-      <PageMeta
-        title={i18n._(/* i18n */ `Switch stores`)}
-        metaDescription={i18n._(/* i18n */ `Switch stores`)}
-        metaRobots={['noindex']}
-      />
+      <PageMeta title={i18n._(/* i18n */ `Switch stores`)} metaRobots={['noindex']} />
       <NoSsr>
         <LayoutOverlayHeader>
           <LayoutTitle size='small' component='span' icon={iconShoppingBag}>

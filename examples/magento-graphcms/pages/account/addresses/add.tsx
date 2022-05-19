@@ -44,11 +44,7 @@ function AddNewAddressPage() {
         </LayoutTitle>
       </LayoutOverlayHeader>
       <Container maxWidth='md'>
-        <PageMeta
-          title={i18n._(/* i18n */ `Add address`)}
-          metaDescription={i18n._(/* i18n */ `Add new address`)}
-          metaRobots={['noindex']}
-        />
+        <PageMeta title={i18n._(/* i18n */ `Add address`)} metaRobots={['noindex']} />
         <NoSsr>
           <LayoutTitle icon={iconAddresses}>
             <Trans id='Addresses' />
