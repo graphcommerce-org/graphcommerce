@@ -21,6 +21,7 @@ import {
   IconSvg,
   LayoutOverlayHeader,
   LinkOrButton,
+  FullPageMessage,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
@@ -38,8 +39,6 @@ function CartPage() {
   const hasItems =
     (data?.cart?.total_quantity ?? 0) > 0 &&
     typeof data?.cart?.prices?.grand_total?.value !== 'undefined'
-
-  if (loading) return null
 
   return (
     <>
@@ -76,41 +75,51 @@ function CartPage() {
           )}
         </LayoutTitle>
       </LayoutOverlayHeader>
+
       <Container maxWidth='md'>
-        <AnimatePresence initial={false}>
-          {hasItems ? (
-            <>
-              <AnimatedRow key='quick-checkout'>
-                <LayoutTitle icon={iconShoppingBag}>
-                  <Trans id='Cart Total' />: <Money {...data?.cart?.prices?.grand_total} />
-                </LayoutTitle>
-              </AnimatedRow>
-              <CartItems
-                items={data?.cart?.items}
-                id={data?.cart?.id ?? ''}
-                key='cart'
-                renderer={{
-                  BundleCartItem: CartItem,
-                  ConfigurableCartItem,
-                  DownloadableCartItem: CartItem,
-                  SimpleCartItem: CartItem,
-                  VirtualCartItem: CartItem,
-                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                  // @ts-ignore GiftCardProduct is only available in Commerce
-                  GiftCardCartItem: CartItem,
-                }}
-              />
-              <CouponAccordion key='couponform' />
-              <CartTotals containerMargin />
-              <ApolloCartErrorAlert error={error} />
-              <AnimatedRow key='checkout-button'>
-                <CartStartCheckout {...data?.cart} />
-              </AnimatedRow>
-            </>
-          ) : (
-            <EmptyCart>{error && <ApolloCartErrorAlert error={error} />}</EmptyCart>
-          )}
-        </AnimatePresence>
+        {loading ? (
+          <FullPageMessage
+            title={<Trans id='Loading cart' />}
+            icon={<IconSvg src={iconShoppingBag} size='xxl' />}
+          >
+            <Trans id='We are fetching your products, one moment please!' />
+          </FullPageMessage>
+        ) : (
+          <AnimatePresence initial={false}>
+            {hasItems ? (
+              <>
+                <AnimatedRow key='quick-checkout'>
+                  <LayoutTitle icon={iconShoppingBag}>
+                    <Trans id='Cart Total' />: <Money {...data?.cart?.prices?.grand_total} />
+                  </LayoutTitle>
+                </AnimatedRow>
+                <CartItems
+                  items={data?.cart?.items}
+                  id={data?.cart?.id ?? ''}
+                  key='cart'
+                  renderer={{
+                    BundleCartItem: CartItem,
+                    ConfigurableCartItem,
+                    DownloadableCartItem: CartItem,
+                    SimpleCartItem: CartItem,
+                    VirtualCartItem: CartItem,
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                    // @ts-ignore GiftCardProduct is only available in Commerce
+                    GiftCardCartItem: CartItem,
+                  }}
+                />
+                <CouponAccordion key='couponform' />
+                <CartTotals containerMargin />
+                <ApolloCartErrorAlert error={error} />
+                <AnimatedRow key='checkout-button'>
+                  <CartStartCheckout {...data?.cart} />
+                </AnimatedRow>
+              </>
+            ) : (
+              <EmptyCart>{error && <ApolloCartErrorAlert error={error} />}</EmptyCart>
+            )}
+          </AnimatePresence>
+        )}
       </Container>
     </>
   )
