@@ -14,7 +14,7 @@ export function SignInFormInline(props: PropsWithChildren<InlineSignInFormProps>
   const { email, sx = [] } = props
   const form = useFormGqlMutation(
     SignInDocument,
-    { defaultValues: { email } },
+    { defaultValues: { email }, onBeforeSubmit: (values) => ({ ...values, email }) },
     { errorPolicy: 'all' },
   )
   const { muiRegister, handleSubmit, required, formState, error } = form

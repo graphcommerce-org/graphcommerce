@@ -40,7 +40,9 @@ export function SignUpFormInline({
       firstname: firstname ?? '-',
       lastname: lastname ?? '-',
     },
+    onBeforeSubmit: (values) => ({ ...values, email }),
   })
+
   const { muiRegister, watch, handleSubmit, required, formState, error } = form
   const submitHandler = handleSubmit(onSubmitted)
   const watchPassword = watch('password')
