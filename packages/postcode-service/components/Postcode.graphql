@@ -1,0 +1,5 @@
+query Postcode($postcode: ID!, $houseNumber: ID!) {
+  postcodeServiceNL(postcode: $postcode, housenumber: $houseNumber) {
+    ...PostcodeFields
+  }
+}

@@ -1,0 +1,5 @@
+fragment PostcodeFields on query_postcodeServiceNL {
+  success
+  straatnaam
+  woonplaats
+}
