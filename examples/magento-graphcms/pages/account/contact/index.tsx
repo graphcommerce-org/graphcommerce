@@ -49,11 +49,7 @@ function AccountContactPage() {
       </LayoutOverlayHeader>
       <NoSsr>
         <Container maxWidth='md'>
-          <PageMeta
-            title={i18n._(/* i18n */ `Contact`)}
-            metaDescription={i18n._(/* i18n */ `Contact information`)}
-            metaRobots={['noindex']}
-          />
+          <PageMeta title={i18n._(/* i18n */ `Contact`)} metaRobots={['noindex']} />
 
           <LayoutTitle icon={iconEmailOutline}>
             <Trans id='Contact' />

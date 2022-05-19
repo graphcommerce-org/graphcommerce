@@ -25,7 +25,11 @@ export function SignUpForm(props: SignUpFormProps) {
   const form = useFormGqlMutation<
     SignUpMutation,
     SignUpMutationVariables & { confirmPassword?: string }
-  >(Mutation, { defaultValues: { email } }, { errorPolicy: 'all' })
+  >(
+    Mutation,
+    { defaultValues: { email }, onBeforeSubmit: (values) => ({ ...values, email }) },
+    { errorPolicy: 'all' },
+  )
 
   const { muiRegister, handleSubmit, required, watch, formState, error } = form
   const [remainingError, inputError] = graphqlErrorByCategory({ category: 'graphql-input', error })

@@ -66,11 +66,7 @@ function AccountIndexPage() {
 
   return (
     <>
-      <PageMeta
-        title={i18n._(/* i18n */ `Account`)}
-        metaDescription={i18n._(/* i18n */ `Account Dashboard`)}
-        metaRobots={['noindex']}
-      />
+      <PageMeta title={i18n._(/* i18n */ `Account`)} metaRobots={['noindex']} />
 
       <LayoutHeader>
         <LayoutTitle component='span' size='small' icon={iconPerson}>

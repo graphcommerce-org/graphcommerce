@@ -44,11 +44,7 @@ function AccountAddressesPage() {
         </LayoutTitle>
       </LayoutOverlayHeader>
       <Container maxWidth='md'>
-        <PageMeta
-          title={i18n._(/* i18n */ `Addresses`)}
-          metaDescription={i18n._(/* i18n */ `View all your addresses`)}
-          metaRobots={['noindex']}
-        />
+        <PageMeta title={i18n._(/* i18n */ `Addresses`)} metaRobots={['noindex']} />
         <NoSsr>
           {((customer?.addresses && customer.addresses.length > 1) || !customer?.addresses) && (
             <LayoutTitle icon={iconAddresses}>

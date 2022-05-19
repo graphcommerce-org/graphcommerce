@@ -28,11 +28,7 @@ function OrderSuccessPage() {
 
   return (
     <>
-      <PageMeta
-        title={i18n._(/* i18n */ `Checkout summary`)}
-        metaDescription={i18n._(/* i18n */ `Ordered items`)}
-        metaRobots={['noindex']}
-      />
+      <PageMeta title={i18n._(/* i18n */ `Checkout summary`)} metaRobots={['noindex']} />
       <LayoutHeader floatingMd>
         {hasCartId && (
           <LayoutTitle size='small' icon={iconParty}>
