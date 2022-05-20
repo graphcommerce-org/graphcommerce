@@ -3,10 +3,10 @@ import { useState } from 'react'
 import { MegaMenuQueryFragment } from '../../queries/MegaMenuQueryFragment.gql'
 import { MegaMenuItem, MegaMenuItemProps } from './MegaMenuItem'
 
-type Props = MegaMenuQueryFragment & Omit<MegaMenuItemProps, 'uid'>
+type Props = MegaMenuQueryFragment & Omit<MegaMenuItemProps, 'uid'> & { mobileOnly?: boolean }
 
 export function MegaMenu(props: Props) {
-  const { menu } = props
+  const { menu, mobileOnly } = props
   const root = menu?.items
   const [activeIndex, setActiveIndex] = useState<number | null>()
 
@@ -14,7 +14,7 @@ export function MegaMenu(props: Props) {
     (theme) =>
       !activeIndex
         ? {
-            [theme.breakpoints.up('md')]: {
+            [theme.breakpoints.up('md')]: !mobileOnly && {
               '& > ul > li:nth-of-type(1) > a': {
                 background: `${theme.palette.background.paper} !important`,
                 color: theme.palette.primary.main,
@@ -36,13 +36,15 @@ export function MegaMenu(props: Props) {
         sx={(theme) => ({
           display: 'grid',
           gridTemplateRows: 'auto',
-          [theme.breakpoints.up('md')]: {
+          [theme.breakpoints.up('md')]: !mobileOnly && {
             background: theme.palette.background.default,
             gridTemplate: '"nav items"/1fr 2fr',
             minWidth: '960px',
           },
           '& > li:nth-of-type(1) > a': {
-            marginTop: { md: theme.spacings.md },
+            [theme.breakpoints.up('md')]: !mobileOnly && {
+              marginTop: theme.spacings.md,
+            },
           },
         })}
       >
@@ -56,6 +58,7 @@ export function MegaMenu(props: Props) {
               setActiveIndex={setActiveIndex}
               activeIndex={activeIndex}
               rootItemCount={root.length}
+              mobileOnly={mobileOnly}
             />
           )
         })}

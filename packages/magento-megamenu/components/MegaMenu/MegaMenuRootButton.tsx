@@ -7,22 +7,22 @@ type Props = {
   index?: number
   activeIndex?: number | null
   hasChildren?: boolean
+  mobileOnly?: boolean
   setActiveIndex?: (index: number | null) => void
 } & MegaMenuItemFragment
 
 export function MegaMenuRootButton(props: Props) {
-  const { setActiveIndex, activeIndex, hasChildren, index, name, url_path } = props
+  const { setActiveIndex, activeIndex, hasChildren, index, name, url_path, mobileOnly } = props
   const url = `/${url_path}`
 
   const rootCategoryButton: SxProps<Theme> = [
     (theme) => ({
       justifyContent: 'space-between',
       borderRadius: '0',
-      [theme.breakpoints.down('md')]: {
-        padding: 1,
-        borderBottom: `1px solid ${theme.palette.divider}`,
-      },
-      [theme.breakpoints.up('md')]: {
+      padding: 1,
+      borderBottom: `1px solid ${theme.palette.divider}`,
+      [theme.breakpoints.up('md')]: !mobileOnly && {
+        borderBottom: 'none',
         ...theme.typography.body1,
         padding: 2,
       },
@@ -33,7 +33,7 @@ export function MegaMenuRootButton(props: Props) {
     (theme) =>
       index === activeIndex
         ? {
-            [theme.breakpoints.up('md')]: {
+            [theme.breakpoints.up('md')]: !mobileOnly && {
               background: `${theme.palette.background.paper} !important`,
               color: theme.palette.primary.main,
               boxShadow: `0px 0 ${theme.palette.background.paper},inset 0 1px 0 0 ${theme.palette.divider},inset 0 -1px 0 0 ${theme.palette.divider}`,
@@ -44,8 +44,9 @@ export function MegaMenuRootButton(props: Props) {
     (theme) =>
       activeIndex != null
         ? {
-            [theme.breakpoints.down('md')]: {
-              display: 'none',
+            display: 'none',
+            [theme.breakpoints.up('md')]: !mobileOnly && {
+              display: 'inline-flex',
             },
           }
         : {},

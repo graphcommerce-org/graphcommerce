@@ -12,6 +12,7 @@ export type MegaMenuItemProps = {
   rootItemCount?: number
   activeIndex?: number | null
   hasChildren?: boolean
+  mobileOnly?: boolean
   setActiveIndex?: (index: number | null) => void
 } & MegaMenuItemFragment
 
@@ -25,6 +26,7 @@ export function MegaMenuItem(props: MegaMenuItemProps) {
     index,
     name,
     url_path,
+    mobileOnly,
   } = props
 
   if (!include_in_menu) return null
@@ -34,7 +36,7 @@ export function MegaMenuItem(props: MegaMenuItemProps) {
   const subMenuContainer: SxProps<Theme> = [
     (theme) => ({
       display: 'none',
-      [theme.breakpoints.up('md')]: {
+      [theme.breakpoints.up('md')]: !mobileOnly && {
         display: 'block',
         gridArea: 'items',
         gridRowStart: `span ${rootItemCount}`,
@@ -49,10 +51,8 @@ export function MegaMenuItem(props: MegaMenuItemProps) {
     (theme) =>
       index === activeIndex
         ? {
-            [theme.breakpoints.down('md')]: {
-              display: 'block',
-            },
-            [theme.breakpoints.up('md')]: {
+            display: 'block',
+            [theme.breakpoints.up('md')]: !mobileOnly && {
               visibility: 'visible',
             },
           }
@@ -61,34 +61,30 @@ export function MegaMenuItem(props: MegaMenuItemProps) {
 
   const listItemStyles: SxProps<Theme> = (theme) => ({
     ...theme.typography.body1,
-    [theme.breakpoints.up('md')]: {
+    flexDirection: 'column',
+    alignItems: 'stretch',
+    borderBottom: `1px solid ${theme.palette.divider}`,
+    padding: 0,
+    [theme.breakpoints.up('md')]: !mobileOnly && {
+      border: 'none',
+      padding: 1,
       display: 'grid',
       breakInside: 'avoid',
     },
-    [theme.breakpoints.down('md')]: {
-      flexDirection: 'column',
-      alignItems: 'stretch',
-      borderBottom: `1px solid ${theme.palette.divider}`,
-      padding: 0,
-    },
     '& > a': {
+      color: theme.palette.primary.main,
+      borderRadius: 0,
+      padding: 1,
       justifyContent: 'start',
-      [theme.breakpoints.up('md')]: {
+      [theme.breakpoints.up('md')]: !mobileOnly && {
         color: theme.palette.primary.main,
         width: 'fit-content',
-      },
-      [theme.breakpoints.down('md')]: {
-        color: theme.palette.primary.main,
-        borderRadius: 0,
-        padding: 1,
       },
     },
   })
 
   const subListItemStyles: SxProps<Theme> = (theme) => ({
-    [theme.breakpoints.down('md')]: {
-      border: 'none',
-    },
+    border: 'none',
     [theme.breakpoints.up('md')]: {
       paddingTop: 0,
       paddingBottom: 0,
@@ -108,6 +104,7 @@ export function MegaMenuItem(props: MegaMenuItemProps) {
         {...props}
         hasChildren={hasChildren}
         activeIndex={activeIndex}
+        mobileOnly={mobileOnly}
         index={index}
       />
       <List sx={subMenuContainer}>
@@ -122,7 +119,7 @@ export function MegaMenuItem(props: MegaMenuItemProps) {
           aria-label={i18n._(/* i18n */ `Back`)}
           size='small'
           color='default'
-          sx={{ display: { md: 'none' } }}
+          sx={{ display: { md: !mobileOnly ? 'none' : 'inline-flex' } }}
         >
           <IconSvg src={iconChevronLeft} size='medium' />
         </Fab>
