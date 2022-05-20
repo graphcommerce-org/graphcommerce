@@ -18,7 +18,7 @@ export const ScrollerButton = m(
     const scrollTo = useScrollTo()
     const handleClick = () => scrollTo(getSnapPosition(direction))
 
-    const { xProgress, yProgress, xMax, yMax } = useElementScroll(scrollerRef, 1)
+    const { xProgress, yProgress, xMax, yMax } = useElementScroll(scrollerRef)
 
     const progress = useTransform<number, number>(
       [xProgress, yProgress, xMax, yMax],

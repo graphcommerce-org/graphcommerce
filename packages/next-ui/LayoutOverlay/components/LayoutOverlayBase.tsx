@@ -177,7 +177,6 @@ export function LayoutOverlayBase(incommingProps: LayoutOverlayBaseProps) {
   useEffect(() => positions.open.visible.onChange((o) => o === 0 && closeOverlay()))
 
   // Measure the offset of the overlay in the scroller.
-
   const offsetY = useMotionValue(0)
   useEffect(() => {
     if (!overlayRef.current) return () => {}
@@ -195,21 +194,20 @@ export function LayoutOverlayBase(incommingProps: LayoutOverlayBaseProps) {
 
   const onClickAway = useCallback(
     (event: React.MouseEvent<HTMLDivElement>) => {
-      const isTarget = event.target === scrollerRef.current || event.target === beforeRef.current
+      const isTarget =
+        event.target === scrollerRef.current ||
+        event.target === beforeRef.current ||
+        event.target === overlayRef.current
       if (isTarget && snap.get()) closeOverlay()
     },
     [closeOverlay, scrollerRef, snap],
-  )
-
-  const pointerEvents = useTransform(position, (p) =>
-    p === OverlayPosition.CLOSED ? 'none' : 'auto',
   )
 
   return (
     <>
       <MotionDiv
         className={classes.backdrop}
-        style={{ opacity: positions.open.visible, pointerEvents }}
+        style={{ opacity: positions.open.visible }}
         sx={[
           {
             zIndex: -1,
@@ -233,7 +231,6 @@ export function LayoutOverlayBase(incommingProps: LayoutOverlayBaseProps) {
         grid={false}
         hideScrollbar
         onClick={onClickAway}
-        style={{ pointerEvents }}
         sx={[
           (theme) => ({
             overscrollBehavior: 'contain',
@@ -320,9 +317,9 @@ export function LayoutOverlayBase(incommingProps: LayoutOverlayBaseProps) {
         <Box
           className={classes.overlay}
           ref={overlayRef}
+          onClick={onClickAway}
           sx={(theme) => ({
             display: 'grid',
-            pointerEvents: 'none',
             gridArea: 'overlay',
             scrollSnapAlign: 'start',
             scrollSnapStop: 'always',
