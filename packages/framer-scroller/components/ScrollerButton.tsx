@@ -24,8 +24,19 @@ export const ScrollerButton = m(
       [xProgress, yProgress, xMax, yMax],
       ([x, y, xM, yM]) => {
         if (xM === 0 && yM === 0) return 0
-        if (direction === 'right' || direction === 'down') return x * y === 1 ? 0 : 1
-        return x * y === 0 ? 0 : 1
+
+        switch (direction) {
+          case 'left':
+            return x < 0.1 ? 0 : 1
+          case 'right':
+            return x > 0.9 ? 0 : 1
+          case 'up':
+            return y < 0.1 ? 0 : 1
+          case 'down':
+            return y > 0.9 ? 0 : 1
+          default:
+            return 0
+        }
       },
     )
     const scale = useSpring(progress)
