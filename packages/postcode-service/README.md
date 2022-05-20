@@ -18,8 +18,35 @@ yarn add @graphcommerce/postcode-service
 Add the following to your .meshrc.yml:
 
 ```yml
+sources:
+  - name: postcodeService
+    handler:
+      jsonSchema:
+        baseUrl: https://api.postcodeservice.com
+        operations:
+          - type: Query
+            field: postcodeServiceNL
+            headers:
+              Accept: 'application/json'
+              Content-type: 'application/json'
+              X-Client_Id: '1177'
+              X-Secure_Code: '9SRLYBCALURPE2B'
+            path: /nl/v3/json/getAddress/index.php?postcode={args.postcode}&huisnummer={args.housenumber}&client_id={env.POSTCODESERVICE_CLIENT_ID}&secure_code={env.POSTCODESERVICE_SECURE_CODE}
+            method: GET
+            responseSample: '{"success":true,"straatnaam":"Hertshoornvaren","woonplaats":"Bergschenhoek"}'
 additionalResolvers:
   - '@graphcommerce/postcode-service/mesh/postcodeResolver.ts'
+```
+
+Also make sure your `.env` file is updated with the correct api credentials.
+Below are the test credentials supplied by the service, these are rate limited
+and can't be used in production.
+
+```
+# Postcodeservice api
+POSTCODESERVICE_CLIENT_ID="1177"
+
+POSTCODESERVICE_SECURE_CODE="9SRLYBCALURPE2B"
 ```
 
 ## Intergration
