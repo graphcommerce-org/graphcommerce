@@ -29,8 +29,6 @@ sources:
             headers:
               Accept: 'application/json'
               Content-type: 'application/json'
-              X-Client_Id: '1177'
-              X-Secure_Code: '9SRLYBCALURPE2B'
             path: /nl/v3/json/getAddress/index.php?postcode={args.postcode}&huisnummer={args.housenumber}&client_id={env.POSTCODESERVICE_CLIENT_ID}&secure_code={env.POSTCODESERVICE_SECURE_CODE}
             method: GET
             responseSample: '{"success":true,"straatnaam":"Hertshoornvaren","woonplaats":"Bergschenhoek"}'
@@ -71,14 +69,14 @@ advised to wrap the `TextField` element in a `Controller` element to make sure
 the state of the element is matching the state of the form.
 
 ```tsx
-<Controller // wrap in a controller to prevent state mismatch
+<Controller
   {...controllerAttributes}
   render={({ field }) => (
     <TextField
       {...fieldAttributes}
       InputProps={{
         ...fieldInputProps,
-        readOnly: readonlyStreetCity, // make the field read-only based on postcodeService result and state
+        readOnly: readonlyStreetCity,
       }}
     />
   )}
