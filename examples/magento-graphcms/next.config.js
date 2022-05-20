@@ -27,6 +27,10 @@ if (
   throw Error('Please specify NEXT_PUBLIC_LOCALE_STORES in your .env')
 }
 
+if (process.env.VERCEL_ENV !== 'production' && process.env.VERCEL_URL) {
+  process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT = `https://${process.env.VERCEL_URL}/api/graphql`
+}
+
 if (!process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT) {
   throw Error('Please specify NEXT_PUBLIC_GRAPHQL_ENDPOINT in your .env')
 }
