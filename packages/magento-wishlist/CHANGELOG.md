@@ -1,5 +1,17 @@
 # @graphcommerce/magento-wishlist
 
+## 1.1.1
+
+### Patch Changes
+
+- [#1469](https://github.com/graphcommerce-org/graphcommerce/pull/1469) [`849ea6595`](https://github.com/graphcommerce-org/graphcommerce/commit/849ea6595f9d3057bbf120d117529cbe74c0998a) Thanks [@timhofman](https://github.com/timhofman)! - wishlist chip icon not visible in darkmode
+
+- Updated dependencies [[`a12db31b9`](https://github.com/graphcommerce-org/graphcommerce/commit/a12db31b9db9d27d86f59c1bfe58a0879999b9d3), [`cf575395c`](https://github.com/graphcommerce-org/graphcommerce/commit/cf575395c16e9c571f75d4563004c3018a29aeaa)]:
+  - @graphcommerce/magento-customer@4.3.1
+  - @graphcommerce/magento-cart@4.3.0
+  - @graphcommerce/magento-product-configurable@4.1.6
+  - @graphcommerce/magento-product@4.3.6
+
 ## 1.1.0
 
 ### Minor Changes

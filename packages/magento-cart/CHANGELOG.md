@@ -1,5 +1,16 @@
 # Change Log
 
+## 4.3.0
+
+### Minor Changes
+
+- [#1472](https://github.com/graphcommerce-org/graphcommerce/pull/1472) [`cf575395c`](https://github.com/graphcommerce-org/graphcommerce/commit/cf575395c16e9c571f75d4563004c3018a29aeaa) Thanks [@mikekeehnen](https://github.com/mikekeehnen)! - Added translations to cart errors
+
+### Patch Changes
+
+- Updated dependencies [[`a12db31b9`](https://github.com/graphcommerce-org/graphcommerce/commit/a12db31b9db9d27d86f59c1bfe58a0879999b9d3)]:
+  - @graphcommerce/magento-customer@4.3.1
+
 ## 4.2.15
 
 ### Patch Changes

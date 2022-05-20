@@ -1,5 +1,13 @@
 # Change Log
 
+## 3.0.21
+
+### Patch Changes
+
+- Updated dependencies [[`4cda98ea6`](https://github.com/graphcommerce-org/graphcommerce/commit/4cda98ea6f5f0cbb68fd67956b69524618c396fa), [`cf575395c`](https://github.com/graphcommerce-org/graphcommerce/commit/cf575395c16e9c571f75d4563004c3018a29aeaa)]:
+  - @graphcommerce/magento-cart-shipping-address@3.0.20
+  - @graphcommerce/magento-cart@4.3.0
+
 ## 3.0.20
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.3.1
+
+### Patch Changes
+
+- [#1476](https://github.com/graphcommerce-org/graphcommerce/pull/1476) [`a12db31b9`](https://github.com/graphcommerce-org/graphcommerce/commit/a12db31b9db9d27d86f59c1bfe58a0879999b9d3) Thanks [@paales](https://github.com/paales)! - make sure the SignUp and SignIn forms can handle changes to the email field
+
 ## 4.3.0
 
 ### Minor Changes
