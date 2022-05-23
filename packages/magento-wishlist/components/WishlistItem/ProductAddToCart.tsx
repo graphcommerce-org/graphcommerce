@@ -51,9 +51,9 @@ export function ProductAddToCart(
   return (
     <Box component='form' onSubmit={submitHandler} noValidate className={classes.root}>
       <Box
-        sx={(theme) => ({
+        sx={{
           gridArea: 'itemQuantity',
-        })}
+        }}
       >
         <TextInputNumber
           variant='outlined'
@@ -64,21 +64,21 @@ export function ProductAddToCart(
           helperText={formState.isSubmitted && formState.errors.quantity}
           disabled={formState.isSubmitting}
           size='small'
-          sx={(theme) => ({
+          sx={{
             alignSelf: 'flex-start',
-          })}
+          }}
         />
       </Box>
       {children}
       <Box
         className={classes.buttonWrapper}
-        sx={(theme) => ({
+        sx={{
           gridArea: 'itemCartButton',
           alignSelf: 'flex-start',
           position: 'absolute',
           left: '0',
           bottom: '-35px',
-        })}
+        }}
       >
         <Button
           type='submit'
