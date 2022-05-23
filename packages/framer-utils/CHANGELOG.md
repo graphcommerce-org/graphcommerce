@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.3
+
+### Patch Changes
+
+- [#1477](https://github.com/graphcommerce-org/graphcommerce/pull/1477) [`f167f9963`](https://github.com/graphcommerce-org/graphcommerce/commit/f167f99630966a7de43717937d43669e66132494) Thanks [@paales](https://github.com/paales)! - LayoutOverlay performance improvements
+
 ## 3.1.2
 
 ### Patch Changes

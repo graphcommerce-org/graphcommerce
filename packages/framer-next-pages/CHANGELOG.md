@@ -1,5 +1,14 @@
 # Change Log
 
+## 3.2.2
+
+### Patch Changes
+
+- [#1477](https://github.com/graphcommerce-org/graphcommerce/pull/1477) [`597e2f413`](https://github.com/graphcommerce-org/graphcommerce/commit/597e2f413bdb5b76793b40ab631ce61390e26e81) Thanks [@paales](https://github.com/paales)! - fixes Received `true` for a non-boolean attribute `inert`.
+
+- Updated dependencies [[`f167f9963`](https://github.com/graphcommerce-org/graphcommerce/commit/f167f99630966a7de43717937d43669e66132494)]:
+  - @graphcommerce/framer-utils@3.1.3
+
 ## 3.2.1
 
 ### Patch Changes

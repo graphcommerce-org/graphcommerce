@@ -1,5 +1,20 @@
 # Change Log
 
+## 4.4.0
+
+### Minor Changes
+
+- [#1482](https://github.com/graphcommerce-org/graphcommerce/pull/1482) [`b359fe252`](https://github.com/graphcommerce-org/graphcommerce/commit/b359fe252a50bb8195601ba97c3eef6a7be146ba) Thanks [@mikekeehnen](https://github.com/mikekeehnen)! - Added selectedOptions to AddToCart mutation
+
+### Patch Changes
+
+- Updated dependencies [[`a9df81310`](https://github.com/graphcommerce-org/graphcommerce/commit/a9df81310c051876dd82fb2819105dece47cc213), [`55c2dcde7`](https://github.com/graphcommerce-org/graphcommerce/commit/55c2dcde7869ee51b84494af653b3edfd43904a4), [`f167f9963`](https://github.com/graphcommerce-org/graphcommerce/commit/f167f99630966a7de43717937d43669e66132494)]:
+  - @graphcommerce/next-ui@4.8.1
+  - @graphcommerce/framer-scroller@2.1.12
+  - @graphcommerce/magento-cart@4.3.1
+  - @graphcommerce/magento-store@4.2.5
+  - @graphcommerce/image@3.1.6
+
 ## 4.3.6
 
 ### Patch Changes
