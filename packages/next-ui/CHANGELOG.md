@@ -1,5 +1,19 @@
 # Change Log
 
+## 4.8.1
+
+### Patch Changes
+
+- [#1477](https://github.com/graphcommerce-org/graphcommerce/pull/1477) [`a9df81310`](https://github.com/graphcommerce-org/graphcommerce/commit/a9df81310c051876dd82fb2819105dece47cc213) Thanks [@paales](https://github.com/paales)! - Revert faulty background color on LayoutDefault
+
+* [#1477](https://github.com/graphcommerce-org/graphcommerce/pull/1477) [`f167f9963`](https://github.com/graphcommerce-org/graphcommerce/commit/f167f99630966a7de43717937d43669e66132494) Thanks [@paales](https://github.com/paales)! - LayoutOverlay performance improvements
+
+* Updated dependencies [[`55c2dcde7`](https://github.com/graphcommerce-org/graphcommerce/commit/55c2dcde7869ee51b84494af653b3edfd43904a4), [`597e2f413`](https://github.com/graphcommerce-org/graphcommerce/commit/597e2f413bdb5b76793b40ab631ce61390e26e81), [`f167f9963`](https://github.com/graphcommerce-org/graphcommerce/commit/f167f99630966a7de43717937d43669e66132494)]:
+  - @graphcommerce/framer-scroller@2.1.12
+  - @graphcommerce/framer-next-pages@3.2.2
+  - @graphcommerce/framer-utils@3.1.3
+  - @graphcommerce/image@3.1.6
+
 ## 4.8.0
 
 ### Minor Changes
