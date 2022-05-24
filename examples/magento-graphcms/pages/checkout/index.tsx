@@ -6,11 +6,16 @@ import {
 } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { useGoogleRecaptcha } from '@graphcommerce/googlerecaptcha'
+import { useQuery } from '@graphcommerce/graphql'
 import { ApolloCartErrorAlert, EmptyCart, useCartQuery } from '@graphcommerce/magento-cart'
 import { ShippingPageDocument } from '@graphcommerce/magento-cart-checkout'
 import { EmailForm } from '@graphcommerce/magento-cart-email'
-import { ShippingAddressForm } from '@graphcommerce/magento-cart-shipping-address'
+import {
+  ShippingAddressForm,
+  CustomerAddressForm,
+} from '@graphcommerce/magento-cart-shipping-address'
 import { ShippingMethodForm } from '@graphcommerce/magento-cart-shipping-method'
+import { CustomerDocument } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { useMergeGuestWishlistWithCustomer } from '@graphcommerce/magento-wishlist'
 import {
@@ -24,8 +29,9 @@ import {
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Container, NoSsr, Typography } from '@mui/material'
+import { Container, NoSsr } from '@mui/material'
 import { useRouter } from 'next/router'
+import React from 'react'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
 import { DefaultPageDocument } from '../../graphql/DefaultPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
@@ -39,7 +45,10 @@ function ShippingPage() {
 
   const { data: cartData } = useCartQuery(ShippingPageDocument, {
     returnPartialData: true,
+    fetchPolicy: 'cache-and-network',
+    ssr: false,
   })
+
   const cartExists = typeof cartData?.cart !== 'undefined'
   const router = useRouter()
 
@@ -47,6 +56,9 @@ function ShippingPage() {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     router.push('/checkout/payment')
   }
+
+  const customerAddresses = useQuery(CustomerDocument)
+  const addresses = customerAddresses.data?.customer?.addresses
 
   return (
     <ComposedForm>
@@ -81,32 +93,22 @@ function ShippingPage() {
               <LayoutTitle icon={iconBox}>
                 <Trans id='Shipping' />
               </LayoutTitle>
-
-              <EmailForm step={1}>
-                <Typography
-                  variant='body2'
-                  component='ul'
-                  sx={(theme) => ({ pl: theme.spacings.xs, mt: theme.spacings.xxs })}
-                >
-                  <li>
-                    <Trans id='Email address of existing customers will be recognized, sign in is optional.' />
-                  </li>
-                  <li>
-                    <Trans id='Fill in password fields to create an account.' />
-                  </li>
-                  <li>
-                    <Trans id='Leave password field empty to order as guest.' />
-                  </li>
-                </Typography>
-              </EmailForm>
-
-              <ShippingAddressForm step={2} />
+              {addresses ? (
+                <CustomerAddressForm step={2}>
+                  <ShippingAddressForm ignoreCache step={3} />
+                </CustomerAddressForm>
+              ) : (
+                <>
+                  <EmailForm step={1} />
+                  <ShippingAddressForm step={3} />
+                </>
+              )}
 
               <FormHeader variant='h5'>
                 <Trans id='Shipping method' />
               </FormHeader>
 
-              <ShippingMethodForm step={3} />
+              <ShippingMethodForm step={4} />
 
               <ComposedSubmit
                 onSubmitSuccessful={onSubmitSuccessful}

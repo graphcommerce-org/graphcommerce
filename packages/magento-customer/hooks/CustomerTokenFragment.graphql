@@ -1,0 +1,4 @@
+fragment CustomerTokenFragment on CustomerToken @injectable {
+  __typename
+  token
+}

@@ -1,8 +1,7 @@
 query CustomerToken {
   customerToken @client {
-    __typename
-    token
-    valid
+    ...CustomerTokenFragment
     createdAt
+    valid
   }
 }

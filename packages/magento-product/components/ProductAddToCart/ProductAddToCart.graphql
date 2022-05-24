@@ -3,10 +3,18 @@ mutation ProductAddToCart(
   $sku: String!
   $quantity: Float = 1
   $enteredOptions: [EnteredOptionInput] = []
+  $selectedOptions: [ID] = []
 ) {
   addProductsToCart(
     cartId: $cartId
-    cartItems: [{ sku: $sku, quantity: $quantity, entered_options: $enteredOptions }]
+    cartItems: [
+      {
+        sku: $sku
+        quantity: $quantity
+        entered_options: $enteredOptions
+        selected_options: $selectedOptions
+      }
+    ]
   ) {
     cart {
       id

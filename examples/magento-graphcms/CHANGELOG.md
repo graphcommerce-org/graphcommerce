@@ -1,5 +1,148 @@
 # Change Log
 
+## 3.10.1
+
+### Patch Changes
+
+- [#1480](https://github.com/graphcommerce-org/graphcommerce/pull/1480) [`9fa0fa2cd`](https://github.com/graphcommerce-org/graphcommerce/commit/9fa0fa2cd0b950ffae47d536fc0cde4df026771a) Thanks [@NickdeK](https://github.com/NickdeK)! - Use vercel preview endpoint
+
+- Updated dependencies [[`a9df81310`](https://github.com/graphcommerce-org/graphcommerce/commit/a9df81310c051876dd82fb2819105dece47cc213), [`55c2dcde7`](https://github.com/graphcommerce-org/graphcommerce/commit/55c2dcde7869ee51b84494af653b3edfd43904a4), [`597e2f413`](https://github.com/graphcommerce-org/graphcommerce/commit/597e2f413bdb5b76793b40ab631ce61390e26e81), [`b359fe252`](https://github.com/graphcommerce-org/graphcommerce/commit/b359fe252a50bb8195601ba97c3eef6a7be146ba), [`f167f9963`](https://github.com/graphcommerce-org/graphcommerce/commit/f167f99630966a7de43717937d43669e66132494)]:
+  - @graphcommerce/next-ui@4.8.1
+  - @graphcommerce/framer-scroller@2.1.12
+  - @graphcommerce/framer-next-pages@3.2.2
+  - @graphcommerce/magento-product@4.4.0
+  - @graphcommerce/magento-wishlist@1.2.0
+  - @graphcommerce/ecommerce-ui@1.0.13
+  - @graphcommerce/graphcms-ui@3.0.18
+  - @graphcommerce/magento-cart@4.3.1
+  - @graphcommerce/magento-cart-billing-address@3.0.20
+  - @graphcommerce/magento-cart-checkout@3.0.22
+  - @graphcommerce/magento-cart-coupon@3.0.22
+  - @graphcommerce/magento-cart-email@3.0.22
+  - @graphcommerce/magento-cart-items@3.0.23
+  - @graphcommerce/magento-cart-payment-method@3.1.13
+  - @graphcommerce/magento-cart-shipping-address@3.0.21
+  - @graphcommerce/magento-cart-shipping-method@3.0.22
+  - @graphcommerce/magento-category@4.1.8
+  - @graphcommerce/magento-customer@4.3.2
+  - @graphcommerce/magento-customer-account@3.1.15
+  - @graphcommerce/magento-customer-order@3.0.19
+  - @graphcommerce/magento-newsletter@2.0.20
+  - @graphcommerce/magento-payment-braintree@3.0.20
+  - @graphcommerce/magento-payment-included@3.0.20
+  - @graphcommerce/magento-product-configurable@4.1.7
+  - @graphcommerce/magento-review@3.2.8
+  - @graphcommerce/magento-search@4.1.12
+  - @graphcommerce/magento-store@4.2.5
+  - @graphcommerce/mollie-magento-payment@3.2.13
+  - @graphcommerce/magento-product-bundle@4.0.22
+  - @graphcommerce/magento-product-downloadable@4.0.22
+  - @graphcommerce/magento-product-grouped@3.0.22
+  - @graphcommerce/magento-product-simple@4.0.22
+  - @graphcommerce/magento-product-virtual@4.0.22
+  - @graphcommerce/image@3.1.6
+  - @graphcommerce/magento-cms@4.0.16
+
+## 3.10.0
+
+### Minor Changes
+
+- [#1474](https://github.com/graphcommerce-org/graphcommerce/pull/1474) [`267a85c73`](https://github.com/graphcommerce-org/graphcommerce/commit/267a85c734e86541cb38a9695a1583ea343d6e00) Thanks [@timhofman](https://github.com/timhofman)! - show loading screen when wishlist data is being fetched
+
+* [#1475](https://github.com/graphcommerce-org/graphcommerce/pull/1475) [`08d710c7b`](https://github.com/graphcommerce-org/graphcommerce/commit/08d710c7bb13f8485c820cba2578ec9a70d1c77d) Thanks [@timhofman](https://github.com/timhofman)! - prevent blank page when loading cart items takes a bit longer
+
+- [#1472](https://github.com/graphcommerce-org/graphcommerce/pull/1472) [`cf575395c`](https://github.com/graphcommerce-org/graphcommerce/commit/cf575395c16e9c571f75d4563004c3018a29aeaa) Thanks [@mikekeehnen](https://github.com/mikekeehnen)! - Added translations to cart errors
+
+### Patch Changes
+
+- [#1476](https://github.com/graphcommerce-org/graphcommerce/pull/1476) [`f45aa38fa`](https://github.com/graphcommerce-org/graphcommerce/commit/f45aa38faab25fe2de3148883e9b208ed78a96e1) Thanks [@paales](https://github.com/paales)! - remove unused metaDescriptions for noindex pages
+
+* [#1476](https://github.com/graphcommerce-org/graphcommerce/pull/1476) [`4cda98ea6`](https://github.com/graphcommerce-org/graphcommerce/commit/4cda98ea6f5f0cbb68fd67956b69524618c396fa) Thanks [@paales](https://github.com/paales)! - move CustomerAddressForm import to package root
+
+* Updated dependencies [[`849ea6595`](https://github.com/graphcommerce-org/graphcommerce/commit/849ea6595f9d3057bbf120d117529cbe74c0998a), [`4cda98ea6`](https://github.com/graphcommerce-org/graphcommerce/commit/4cda98ea6f5f0cbb68fd67956b69524618c396fa), [`a12db31b9`](https://github.com/graphcommerce-org/graphcommerce/commit/a12db31b9db9d27d86f59c1bfe58a0879999b9d3), [`cf575395c`](https://github.com/graphcommerce-org/graphcommerce/commit/cf575395c16e9c571f75d4563004c3018a29aeaa)]:
+  - @graphcommerce/magento-wishlist@1.1.1
+  - @graphcommerce/magento-cart-shipping-address@3.0.20
+  - @graphcommerce/magento-customer@4.3.1
+  - @graphcommerce/magento-cart@4.3.0
+  - @graphcommerce/magento-cart-payment-method@3.1.12
+  - @graphcommerce/magento-cart-shipping-method@3.0.21
+  - @graphcommerce/magento-payment-braintree@3.0.19
+  - @graphcommerce/magento-payment-included@3.0.19
+  - @graphcommerce/mollie-magento-payment@3.2.12
+  - @graphcommerce/magento-cart-billing-address@3.0.19
+  - @graphcommerce/magento-cart-checkout@3.0.21
+  - @graphcommerce/magento-cart-email@3.0.21
+  - @graphcommerce/magento-cart-items@3.0.22
+  - @graphcommerce/magento-customer-account@3.1.14
+  - @graphcommerce/magento-newsletter@2.0.19
+  - @graphcommerce/magento-product-configurable@4.1.6
+  - @graphcommerce/magento-review@3.2.7
+  - @graphcommerce/magento-cart-coupon@3.0.21
+  - @graphcommerce/magento-product@4.3.6
+  - @graphcommerce/magento-product-bundle@4.0.21
+  - @graphcommerce/magento-product-downloadable@4.0.21
+  - @graphcommerce/magento-product-grouped@3.0.21
+  - @graphcommerce/magento-product-simple@4.0.21
+  - @graphcommerce/magento-product-virtual@4.0.21
+  - @graphcommerce/magento-category@4.1.7
+
+## 3.9.1
+
+### Patch Changes
+
+- Updated dependencies [[`aac7bb3ad`](https://github.com/graphcommerce-org/graphcommerce/commit/aac7bb3adc62b0646813ab6a3ca9c3eb216e9caf)]:
+  - @graphcommerce/magento-cart-shipping-address@3.0.19
+  - @graphcommerce/magento-cart-shipping-method@3.0.20
+
+## 3.9.0
+
+### Minor Changes
+
+- [#1467](https://github.com/graphcommerce-org/graphcommerce/pull/1467) [`0363b9671`](https://github.com/graphcommerce-org/graphcommerce/commit/0363b9671db7c2932321d97faf6f1eb385238397) Thanks [@timhofman](https://github.com/timhofman)! - optional feedback message upon adding products to wishlist
+
+* [#1462](https://github.com/graphcommerce-org/graphcommerce/pull/1462) [`3ac90b57c`](https://github.com/graphcommerce-org/graphcommerce/commit/3ac90b57c68b96f9d81771d6664ed9435a28fc1d) Thanks [@mikekeehnen](https://github.com/mikekeehnen)! - Added translation for the pagination
+
+### Patch Changes
+
+- [#1463](https://github.com/graphcommerce-org/graphcommerce/pull/1463) [`1288c6e47`](https://github.com/graphcommerce-org/graphcommerce/commit/1288c6e47caba3d1b9b7f6abf564ef28cde1e828) Thanks [@paales](https://github.com/paales)! - make sure ApolloClient correctly detects ssrMode
+
+* [#1457](https://github.com/graphcommerce-org/graphcommerce/pull/1457) [`c3b9496e0`](https://github.com/graphcommerce-org/graphcommerce/commit/c3b9496e0e7e48a375251134b19b342cdc4c4c57) Thanks [@timhofman](https://github.com/timhofman)! - fix: error when adding downloadable product to cart in wishlist
+
+* Updated dependencies [[`0363b9671`](https://github.com/graphcommerce-org/graphcommerce/commit/0363b9671db7c2932321d97faf6f1eb385238397), [`c6a62a338`](https://github.com/graphcommerce-org/graphcommerce/commit/c6a62a338abf8af83d3a6eb7ed796586009910ca), [`3ac90b57c`](https://github.com/graphcommerce-org/graphcommerce/commit/3ac90b57c68b96f9d81771d6664ed9435a28fc1d), [`00f6167ff`](https://github.com/graphcommerce-org/graphcommerce/commit/00f6167ff4096bf7432f3d8e8e739ecbf6ab0dd2), [`7159d3ab3`](https://github.com/graphcommerce-org/graphcommerce/commit/7159d3ab31e937c9c921023c46e80db5813e789c), [`c74089bd7`](https://github.com/graphcommerce-org/graphcommerce/commit/c74089bd7475bd8dd6090d3cdb5f2cff2570a4fc), [`31ce79a89`](https://github.com/graphcommerce-org/graphcommerce/commit/31ce79a89624205ce12d7192375b864d9a87e31a), [`a71a7e4bc`](https://github.com/graphcommerce-org/graphcommerce/commit/a71a7e4bced2c2719839eecdd995e5b3a0faadb8), [`32370574b`](https://github.com/graphcommerce-org/graphcommerce/commit/32370574bef6345b857ae911049ca27a64bc7e08), [`ed2b67a06`](https://github.com/graphcommerce-org/graphcommerce/commit/ed2b67a0618d9db97e79ed2a8226e0ae12403943), [`4c146c682`](https://github.com/graphcommerce-org/graphcommerce/commit/4c146c68242e6edc616807fb73173cc959c26034)]:
+  - @graphcommerce/magento-wishlist@1.1.0
+  - @graphcommerce/next-ui@4.8.0
+  - @graphcommerce/magento-product@4.3.5
+  - @graphcommerce/magento-customer@4.3.0
+  - @graphcommerce/magento-cart@4.2.15
+  - @graphcommerce/ecommerce-ui@1.0.12
+  - @graphcommerce/framer-scroller@2.1.11
+  - @graphcommerce/graphcms-ui@3.0.17
+  - @graphcommerce/magento-cart-billing-address@3.0.18
+  - @graphcommerce/magento-cart-checkout@3.0.20
+  - @graphcommerce/magento-cart-coupon@3.0.20
+  - @graphcommerce/magento-cart-email@3.0.20
+  - @graphcommerce/magento-cart-items@3.0.21
+  - @graphcommerce/magento-cart-payment-method@3.1.11
+  - @graphcommerce/magento-cart-shipping-address@3.0.18
+  - @graphcommerce/magento-cart-shipping-method@3.0.19
+  - @graphcommerce/magento-category@4.1.6
+  - @graphcommerce/magento-customer-account@3.1.13
+  - @graphcommerce/magento-customer-order@3.0.18
+  - @graphcommerce/magento-newsletter@2.0.18
+  - @graphcommerce/magento-payment-braintree@3.0.18
+  - @graphcommerce/magento-payment-included@3.0.18
+  - @graphcommerce/magento-product-configurable@4.1.5
+  - @graphcommerce/magento-review@3.2.6
+  - @graphcommerce/magento-search@4.1.11
+  - @graphcommerce/magento-store@4.2.4
+  - @graphcommerce/mollie-magento-payment@3.2.11
+  - @graphcommerce/magento-product-bundle@4.0.20
+  - @graphcommerce/magento-product-downloadable@4.0.20
+  - @graphcommerce/magento-product-grouped@3.0.20
+  - @graphcommerce/magento-product-simple@4.0.20
+  - @graphcommerce/magento-product-virtual@4.0.20
+  - @graphcommerce/magento-cms@4.0.15
+
 ## 3.8.2
 
 ### Patch Changes

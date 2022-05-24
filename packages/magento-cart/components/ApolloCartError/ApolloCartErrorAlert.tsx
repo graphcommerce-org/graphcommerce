@@ -1,6 +1,5 @@
 import { ApolloErrorAlert, ApolloErrorAlertProps } from '@graphcommerce/ecommerce-ui'
-import { useQuery } from '@graphcommerce/graphql'
-import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
+import { useCustomerSession } from '@graphcommerce/magento-customer'
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
@@ -13,17 +12,21 @@ export type ApolloCartErrorAlertProps = ApolloErrorAlertProps
 export function ApolloCartErrorAlert(props: ApolloCartErrorAlertProps) {
   const { error } = props
   const clear = useClearCurrentCartId()
-  const token = useQuery(CustomerTokenDocument).data?.customerToken
+  const { token } = useCustomerSession()
 
   let action: JSX.Element | undefined
 
   const [, noSuchEntity] = graphqlErrorByCategory({ category: 'graphql-no-such-entity', error })
-  action = noSuchEntity ? <Button onClick={clear}>Reset Cart</Button> : undefined
+  action = noSuchEntity ? (
+    <Button onClick={clear}>
+      <Trans id='Reset Cart' />
+    </Button>
+  ) : undefined
 
   const [, authorizationError] = graphqlErrorByCategory({
     category: 'graphql-authorization',
     error,
-    mask: token?.token
+    mask: token
       ? i18n._(/* i18n */ `Please reauthenticate and try again`)
       : i18n._(/* i18n */ `You must sign in to continue`),
   })

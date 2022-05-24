@@ -13,7 +13,7 @@ export function useScrollTo() {
       const ref = scrollerRef.current
       if (!ref) return
 
-      // In the future we want to move to browser native scrolling behavior, but since it is too slow we're not moving to that yet.
+      // In the future we want to move to browser native scrolling behavior, but since the animation timing isn't configurable we can't use it.
       // if ('scrollBehavior' in document.documentElement.style) {
       //   scrollerRef.current.scrollTo({ left: to.x, top: to.y, behavior: 'smooth' })
       //   await new Promise((onComplete) => {
@@ -21,6 +21,9 @@ export function useScrollTo() {
       //   })
       //   return
       // }
+
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      scroll.scroll.start(() => () => {})
 
       const xDone = new Promise<void>((onComplete) => {
         if (ref.scrollLeft !== to.x) {
@@ -32,10 +35,11 @@ export function useScrollTo() {
               velocity: scroll.x.getVelocity(),
               onUpdate: (v) => {
                 ref.scrollLeft = v
+                scroll.scroll.set({ ...scroll.scroll.get(), x: v })
               },
               onComplete,
               onStop: onComplete,
-              duration: 120,
+              duration: 375,
             }),
           )
         } else onComplete()
@@ -49,22 +53,26 @@ export function useScrollTo() {
               from: ref.scrollTop,
               to: to.y,
               velocity: scroll.y.getVelocity(),
-              onUpdate: (v) => {
+              onUpdate: (v: number) => {
                 ref.scrollTop = v
+                scroll.scroll.set({ ...scroll.scroll.get(), y: v })
               },
               onComplete,
               onStop: onComplete,
-              duration: 120,
+              duration: 375,
             }),
           )
-        } else onComplete()
+        } else {
+          onComplete()
+        }
       })
 
       await xDone
       await yDone
+      scroll.scroll.stop()
       enableSnap()
     },
-    [disableSnap, enableSnap, register, scroll.x, scroll.y, scrollerRef],
+    [disableSnap, enableSnap, register, scroll, scrollerRef],
   )
 
   return scrollTo

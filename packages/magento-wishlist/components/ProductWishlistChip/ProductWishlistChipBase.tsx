@@ -1,10 +1,17 @@
-/* eslint-disable @typescript-eslint/no-floating-promises */
-/* eslint-disable react-hooks/rules-of-hooks */
 import { useQuery, useMutation, useApolloClient } from '@graphcommerce/graphql'
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
-import { IconSvg, iconHeart, extendableComponent } from '@graphcommerce/next-ui'
+import {
+  IconSvg,
+  iconHeart,
+  extendableComponent,
+  MessageSnackbar,
+  Button,
+  iconChevronRight,
+} from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
-import { SxProps, Theme, IconButton } from '@mui/material'
+import { Trans } from '@lingui/react'
+import { SxProps, Theme, IconButton, Box } from '@mui/material'
+import PageLink from 'next/link'
 import { useState, useEffect } from 'react'
 import { useWishlistEnabled } from '../../hooks'
 import { AddProductToWishlistDocument } from '../../queries/AddProductToWishlist.gql'
@@ -19,34 +26,46 @@ const ignoreProductWishlistStatus =
 
 export type ProductWishlistChipProps = ProductWishlistChipFragment & { sx?: SxProps<Theme> } & {
   selectedOptions?: string[]
+  showFeedbackMessage?: boolean
 }
 
-const name = 'ProductWishlistChipBase' as const
+const compName = 'ProductWishlistChipBase' as const
 const parts = ['root', 'wishlistIcon', 'wishlistIconActive', 'wishlistButton'] as const
-const { classes } = extendableComponent(name, parts)
+const { classes } = extendableComponent(compName, parts)
 
 export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
-  const { sku, selectedOptions = [], sx = [] } = props
+  const { name, sku, showFeedbackMessage, selectedOptions = [], sx = [] } = props
 
   const [inWishlist, setInWishlist] = useState(false)
+  const [displayMessageBar, setDisplayMessageBar] = useState(false)
 
   const { data: token } = useQuery(CustomerTokenDocument)
+  const [addWishlistItem] = useMutation(AddProductToWishlistDocument)
+  const [removeWishlistItem] = useMutation(RemoveProductFromWishlistDocument)
   const isLoggedIn = token?.customerToken && token?.customerToken.valid
+
+  const { data: GetCustomerWishlistData, loading } = useQuery(GetIsInWishlistsDocument, {
+    skip: !isLoggedIn,
+  })
+
+  const { data: guestWishlistData } = useQuery(GuestWishlistDocument, {
+    ssr: false,
+    skip: isLoggedIn === true,
+  })
 
   const { cache } = useApolloClient()
 
   const isWishlistEnabled = useWishlistEnabled()
-
-  if (!isWishlistEnabled) {
-    return null
-  }
 
   const heart = (
     <IconSvg
       src={iconHeart}
       size='medium'
       className={classes.wishlistIcon}
-      sx={(theme) => ({ color: theme.palette.primary.main })}
+      sx={(theme) => ({
+        color:
+          theme.palette.mode === 'light' ? theme.palette.text.primary : theme.palette.primary.main,
+      })}
     />
   )
 
@@ -57,18 +76,6 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
       className={classes.wishlistIconActive}
       sx={(theme) => ({ color: theme.palette.primary.main, fill: 'currentcolor' })}
     />
-  )
-
-  const { data: GetCustomerWishlistData, loading } = useQuery(GetIsInWishlistsDocument, {
-    skip: !isLoggedIn,
-  })
-
-  const { data: guestWishlistData, loading: loadingGuestWishlistData } = useQuery(
-    GuestWishlistDocument,
-    {
-      ssr: false,
-      skip: isLoggedIn === true,
-    },
   )
 
   useEffect(() => {
@@ -94,9 +101,6 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
     }
   }, [isLoggedIn, sku, loading, GetCustomerWishlistData, guestWishlistData])
 
-  const [addWishlistItem] = useMutation(AddProductToWishlistDocument)
-  const [removeWishlistItem] = useMutation(RemoveProductFromWishlistDocument)
-
   const preventAnimationBubble: React.MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault()
     e.stopPropagation()
@@ -114,15 +118,18 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
         const wishlistItemsInSession =
           GetCustomerWishlistData?.customer?.wishlists[0]?.items_v2?.items || []
 
-        const item = wishlistItemsInSession.find((element) => element?.product?.sku == sku)
+        const item = wishlistItemsInSession.find((element) => element?.product?.sku === sku)
 
         if (item?.id) {
+          // eslint-disable-next-line @typescript-eslint/no-floating-promises
           removeWishlistItem({ variables: { wishlistItemId: item.id } })
         }
       } else {
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
         addWishlistItem({
           variables: { input: { sku, quantity: 1, selected_options: selectedOptions } },
         })
+        setDisplayMessageBar(true)
       }
     } else if (inWishlist) {
       cache.modify({
@@ -153,36 +160,67 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
         },
         broadcast: true,
       })
+      setDisplayMessageBar(true)
     }
   }
 
-  const button = (
-    <IconButton
-      key={sku}
-      onClick={handleClick}
-      onMouseDown={preventAnimationBubble}
-      size='small'
-      className={classes.wishlistButton}
-      sx={[
-        (theme) => ({
-          padding: theme.spacings.xxs,
-        }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
-      title={
-        inWishlist
-          ? i18n._(/* i18n */ `Remove from wishlist`)
-          : i18n._(/* i18n */ `Add to wishlist`)
-      }
-      aria-label={
-        inWishlist
-          ? i18n._(/* i18n */ `Remove from wishlist`)
-          : i18n._(/* i18n */ `Add to wishlist`)
-      }
-    >
-      {inWishlist ? activeHeart : heart}
-    </IconButton>
+  const output = (
+    <Box>
+      <IconButton
+        key={sku}
+        onClick={handleClick}
+        onMouseDown={preventAnimationBubble}
+        size='small'
+        className={classes.wishlistButton}
+        sx={[
+          (theme) => ({
+            padding: theme.spacings.xxs,
+          }),
+          ...(Array.isArray(sx) ? sx : [sx]),
+        ]}
+        title={
+          inWishlist
+            ? i18n._(/* i18n */ `Remove from wishlist`)
+            : i18n._(/* i18n */ `Add to wishlist`)
+        }
+        aria-label={
+          inWishlist
+            ? i18n._(/* i18n */ `Remove from wishlist`)
+            : i18n._(/* i18n */ `Add to wishlist`)
+        }
+      >
+        {inWishlist ? activeHeart : heart}
+      </IconButton>
+
+      <MessageSnackbar
+        open={showFeedbackMessage && displayMessageBar}
+        variant='pill'
+        action={
+          <PageLink href='/wishlist' passHref>
+            <Button
+              id='view-wishlist-button'
+              size='medium'
+              variant='pill'
+              color='secondary'
+              endIcon={<IconSvg src={iconChevronRight} />}
+            >
+              <Trans id='View wishlist' />
+            </Button>
+          </PageLink>
+        }
+      >
+        <Trans
+          id='<0>{name}</0> has been added to your wishlist!'
+          components={{ 0: <strong /> }}
+          values={{ name }}
+        />
+      </MessageSnackbar>
+    </Box>
   )
 
-  return !hideForGuest || isLoggedIn ? button : null
+  return !hideForGuest || isLoggedIn ? output : null
+}
+
+ProductWishlistChipBase.defaultProps = {
+  showFeedbackMessage: false,
 }

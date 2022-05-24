@@ -1,5 +1,25 @@
 # Change Log
 
+## 2.1.12
+
+### Patch Changes
+
+- [#1477](https://github.com/graphcommerce-org/graphcommerce/pull/1477) [`55c2dcde7`](https://github.com/graphcommerce-org/graphcommerce/commit/55c2dcde7869ee51b84494af653b3edfd43904a4) Thanks [@paales](https://github.com/paales)! - ScrollerButton prev/next button wouldn't render at the right time
+
+* [#1477](https://github.com/graphcommerce-org/graphcommerce/pull/1477) [`f167f9963`](https://github.com/graphcommerce-org/graphcommerce/commit/f167f99630966a7de43717937d43669e66132494) Thanks [@paales](https://github.com/paales)! - LayoutOverlay performance improvements
+
+* Updated dependencies [[`a9df81310`](https://github.com/graphcommerce-org/graphcommerce/commit/a9df81310c051876dd82fb2819105dece47cc213), [`f167f9963`](https://github.com/graphcommerce-org/graphcommerce/commit/f167f99630966a7de43717937d43669e66132494)]:
+  - @graphcommerce/next-ui@4.8.1
+  - @graphcommerce/framer-utils@3.1.3
+  - @graphcommerce/image@3.1.6
+
+## 2.1.11
+
+### Patch Changes
+
+- Updated dependencies [[`0363b9671`](https://github.com/graphcommerce-org/graphcommerce/commit/0363b9671db7c2932321d97faf6f1eb385238397), [`3ac90b57c`](https://github.com/graphcommerce-org/graphcommerce/commit/3ac90b57c68b96f9d81771d6664ed9435a28fc1d)]:
+  - @graphcommerce/next-ui@4.8.0
+
 ## 2.1.10
 
 ### Patch Changes

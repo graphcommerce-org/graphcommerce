@@ -1,7 +1,5 @@
-/* eslint-disable @typescript-eslint/no-floating-promises */
-/* eslint-disable react-hooks/rules-of-hooks */
+import { InputMaybe } from '@graphcommerce/graphql-mesh'
 import { SxProps, Theme } from '@mui/material'
-
 import { PropsWithChildren } from 'react'
 import { ProductAddToCart } from './ProductAddToCart'
 import { WishlistItemBase } from './WishlistItemBase'
@@ -13,15 +11,16 @@ type OptionalProductWishlistParent = {
 
 export type WishlistItemProps = PropsWithChildren<WishlistItemProductFragment> & {
   sx?: SxProps<Theme>
+  selectedOptions?: InputMaybe<InputMaybe<string> | InputMaybe<string>[]> | undefined
 } & OptionalProductWishlistParent
 
 export function WishlistItem(props: WishlistItemProps) {
-  const { sku, name, price_range } = props
+  const { sku, name, price_range, selectedOptions } = props
 
   return (
     <WishlistItemBase {...props}>
       <ProductAddToCart
-        variables={{ sku: sku ?? '', quantity: 1 }}
+        variables={{ sku: sku ?? '', quantity: 1, selectedOptions }}
         name={name ?? ''}
         price={price_range.minimum_price.final_price}
       />

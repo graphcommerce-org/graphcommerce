@@ -1,5 +1,35 @@
 # @graphcommerce/magento-pagebuilder
 
+## 1.0.11
+
+### Patch Changes
+
+- Updated dependencies [[`a9df81310`](https://github.com/graphcommerce-org/graphcommerce/commit/a9df81310c051876dd82fb2819105dece47cc213), [`b359fe252`](https://github.com/graphcommerce-org/graphcommerce/commit/b359fe252a50bb8195601ba97c3eef6a7be146ba), [`f167f9963`](https://github.com/graphcommerce-org/graphcommerce/commit/f167f99630966a7de43717937d43669e66132494)]:
+  - @graphcommerce/next-ui@4.8.1
+  - @graphcommerce/magento-product@4.4.0
+  - @graphcommerce/magento-category@4.1.8
+  - @graphcommerce/magento-cms@4.0.16
+
+## 1.0.10
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/magento-product@4.3.6
+  - @graphcommerce/magento-category@4.1.7
+
+## 1.0.9
+
+### Patch Changes
+
+- [#1463](https://github.com/graphcommerce-org/graphcommerce/pull/1463) [`b2bcdf089`](https://github.com/graphcommerce-org/graphcommerce/commit/b2bcdf089a328ba9e5af9985289dffcc2829783b) Thanks [@paales](https://github.com/paales)! - Make sure the correct fields are selected when resolving pagebuilder fields
+
+- Updated dependencies [[`0363b9671`](https://github.com/graphcommerce-org/graphcommerce/commit/0363b9671db7c2932321d97faf6f1eb385238397), [`c6a62a338`](https://github.com/graphcommerce-org/graphcommerce/commit/c6a62a338abf8af83d3a6eb7ed796586009910ca), [`3ac90b57c`](https://github.com/graphcommerce-org/graphcommerce/commit/3ac90b57c68b96f9d81771d6664ed9435a28fc1d)]:
+  - @graphcommerce/next-ui@4.8.0
+  - @graphcommerce/magento-product@4.3.5
+  - @graphcommerce/magento-category@4.1.6
+  - @graphcommerce/magento-cms@4.0.15
+
 ## 1.0.8
 
 ### Patch Changes

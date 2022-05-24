@@ -1,5 +1,31 @@
 # Change Log
 
+## 3.0.22
+
+### Patch Changes
+
+- Updated dependencies [[`a9df81310`](https://github.com/graphcommerce-org/graphcommerce/commit/a9df81310c051876dd82fb2819105dece47cc213), [`f167f9963`](https://github.com/graphcommerce-org/graphcommerce/commit/f167f99630966a7de43717937d43669e66132494)]:
+  - @graphcommerce/next-ui@4.8.1
+  - @graphcommerce/magento-cart@4.3.1
+  - @graphcommerce/magento-store@4.2.5
+  - @graphcommerce/image@3.1.6
+
+## 3.0.21
+
+### Patch Changes
+
+- Updated dependencies [[`cf575395c`](https://github.com/graphcommerce-org/graphcommerce/commit/cf575395c16e9c571f75d4563004c3018a29aeaa)]:
+  - @graphcommerce/magento-cart@4.3.0
+
+## 3.0.20
+
+### Patch Changes
+
+- Updated dependencies [[`0363b9671`](https://github.com/graphcommerce-org/graphcommerce/commit/0363b9671db7c2932321d97faf6f1eb385238397), [`3ac90b57c`](https://github.com/graphcommerce-org/graphcommerce/commit/3ac90b57c68b96f9d81771d6664ed9435a28fc1d), [`ed2b67a06`](https://github.com/graphcommerce-org/graphcommerce/commit/ed2b67a0618d9db97e79ed2a8226e0ae12403943)]:
+  - @graphcommerce/next-ui@4.8.0
+  - @graphcommerce/magento-cart@4.2.15
+  - @graphcommerce/magento-store@4.2.4
+
 ## 3.0.19
 
 ### Patch Changes

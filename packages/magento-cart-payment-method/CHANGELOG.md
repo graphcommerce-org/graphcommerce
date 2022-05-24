@@ -1,5 +1,33 @@
 # Change Log
 
+## 3.1.13
+
+### Patch Changes
+
+- Updated dependencies [[`a9df81310`](https://github.com/graphcommerce-org/graphcommerce/commit/a9df81310c051876dd82fb2819105dece47cc213), [`55c2dcde7`](https://github.com/graphcommerce-org/graphcommerce/commit/55c2dcde7869ee51b84494af653b3edfd43904a4), [`f167f9963`](https://github.com/graphcommerce-org/graphcommerce/commit/f167f99630966a7de43717937d43669e66132494)]:
+  - @graphcommerce/next-ui@4.8.1
+  - @graphcommerce/framer-scroller@2.1.12
+  - @graphcommerce/magento-cart@4.3.1
+  - @graphcommerce/magento-store@4.2.5
+  - @graphcommerce/image@3.1.6
+
+## 3.1.12
+
+### Patch Changes
+
+- Updated dependencies [[`cf575395c`](https://github.com/graphcommerce-org/graphcommerce/commit/cf575395c16e9c571f75d4563004c3018a29aeaa)]:
+  - @graphcommerce/magento-cart@4.3.0
+
+## 3.1.11
+
+### Patch Changes
+
+- Updated dependencies [[`0363b9671`](https://github.com/graphcommerce-org/graphcommerce/commit/0363b9671db7c2932321d97faf6f1eb385238397), [`3ac90b57c`](https://github.com/graphcommerce-org/graphcommerce/commit/3ac90b57c68b96f9d81771d6664ed9435a28fc1d), [`ed2b67a06`](https://github.com/graphcommerce-org/graphcommerce/commit/ed2b67a0618d9db97e79ed2a8226e0ae12403943)]:
+  - @graphcommerce/next-ui@4.8.0
+  - @graphcommerce/magento-cart@4.2.15
+  - @graphcommerce/framer-scroller@2.1.11
+  - @graphcommerce/magento-store@4.2.4
+
 ## 3.1.10
 
 ### Patch Changes

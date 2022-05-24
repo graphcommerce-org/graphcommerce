@@ -10,7 +10,7 @@ account.
 - Add products to wishlist based on SKU (all producttypes)
 - Add products with selected variants, like size and color, to wishlist
   (configurable product)
-- Add products from wishlist to cart (simple, downloadable, virtual)
+- Add products from wishlist to cart (simple, virtual)
 - Enable/disable through Magento configuration item
   'magento_wishlist_general_is_enabled'
 
@@ -34,6 +34,13 @@ already is a product with the same SKU in the wishlist.
 
 ```
 NEXT_PUBLIC_WISHLIST_IGNORE_PRODUCT_WISHLIST_STATUS="1"
+```
+
+- Display a MessageSnackbar message as feedback upon adding a product to the
+  wishlist
+
+```
+<ProductWishlistChip showFeedbackMessage {...props} />
 ```
 
 ## Customizing wishlist styling

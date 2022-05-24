@@ -1,5 +1,42 @@
 # Change Log
 
+## 4.3.2
+
+### Patch Changes
+
+- Updated dependencies [[`a9df81310`](https://github.com/graphcommerce-org/graphcommerce/commit/a9df81310c051876dd82fb2819105dece47cc213), [`f167f9963`](https://github.com/graphcommerce-org/graphcommerce/commit/f167f99630966a7de43717937d43669e66132494)]:
+  - @graphcommerce/next-ui@4.8.1
+  - @graphcommerce/ecommerce-ui@1.0.13
+  - @graphcommerce/magento-store@4.2.5
+  - @graphcommerce/image@3.1.6
+
+## 4.3.1
+
+### Patch Changes
+
+- [#1476](https://github.com/graphcommerce-org/graphcommerce/pull/1476) [`a12db31b9`](https://github.com/graphcommerce-org/graphcommerce/commit/a12db31b9db9d27d86f59c1bfe58a0879999b9d3) Thanks [@paales](https://github.com/paales)! - make sure the SignUp and SignIn forms can handle changes to the email field
+
+## 4.3.0
+
+### Minor Changes
+
+- [#1463](https://github.com/graphcommerce-org/graphcommerce/pull/1463) [`7159d3ab3`](https://github.com/graphcommerce-org/graphcommerce/commit/7159d3ab31e937c9c921023c46e80db5813e789c) Thanks [@paales](https://github.com/paales)! - Make the CustomerToken injectable
+
+* [#1466](https://github.com/graphcommerce-org/graphcommerce/pull/1466) [`ed2b67a06`](https://github.com/graphcommerce-org/graphcommerce/commit/ed2b67a0618d9db97e79ed2a8226e0ae12403943) Thanks [@FrankHarland](https://github.com/FrankHarland)! - Added a new useCustomerSession hook to allow for more fine grained control over loading data for customers.
+
+### Patch Changes
+
+- [#1466](https://github.com/graphcommerce-org/graphcommerce/pull/1466) [`00f6167ff`](https://github.com/graphcommerce-org/graphcommerce/commit/00f6167ff4096bf7432f3d8e8e739ecbf6ab0dd2) Thanks [@FrankHarland](https://github.com/FrankHarland)! - Signing in requested client fields which weren't available on the server
+
+* [#1465](https://github.com/graphcommerce-org/graphcommerce/pull/1465) [`32370574b`](https://github.com/graphcommerce-org/graphcommerce/commit/32370574bef6345b857ae911049ca27a64bc7e08) Thanks [@paales](https://github.com/paales)! - make sure the createCustomerV2 also marks the currenly registered email as known and also check the network if an email exists
+
+- [#1461](https://github.com/graphcommerce-org/graphcommerce/pull/1461) [`4c146c682`](https://github.com/graphcommerce-org/graphcommerce/commit/4c146c68242e6edc616807fb73173cc959c26034) Thanks [@mikekeehnen](https://github.com/mikekeehnen)! - User is now able to change their email after the email check. Before the submit, the emailaddress gets checked from the props
+
+- Updated dependencies [[`0363b9671`](https://github.com/graphcommerce-org/graphcommerce/commit/0363b9671db7c2932321d97faf6f1eb385238397), [`3ac90b57c`](https://github.com/graphcommerce-org/graphcommerce/commit/3ac90b57c68b96f9d81771d6664ed9435a28fc1d)]:
+  - @graphcommerce/next-ui@4.8.0
+  - @graphcommerce/ecommerce-ui@1.0.12
+  - @graphcommerce/magento-store@4.2.4
+
 ## 4.2.12
 
 ### Patch Changes

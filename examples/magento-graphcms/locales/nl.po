@@ -16,6 +16,9 @@ msgstr ""
 msgid "<0>{name}</0> has been added to your shopping cart!"
 msgstr "<0>{name}</0> is toegevoegd aan uw winkelwagen!"
 
+msgid "<0>{name}</0> has been added to your wishlist!"
+msgstr "<0>{name}</0> is toegevoegd aan je verlanglijst!"
+
 msgid "Above <0/>"
 msgstr "Boven <0/>"
 
@@ -36,6 +39,18 @@ msgstr "In winkelwagen"
 
 msgid "Add to wishlist"
 msgstr "In verlanglijst"
+
+msgid "View wishlist"
+msgstr "Bekijk verlanglijst"
+
+msgid "<0>{name}</0> has been added to your wishlist!"
+msgstr "<0>{name}</0> is toegevoegd aan je verlanglijst!"
+
+msgid "Loading wishlist"
+msgstr "Ophalen verlanglijst"
+
+msgid "We are fetching your favorite products, one moment please!"
+msgstr "Je favoriete artikelen worden momenteel ingeladen!"
 
 msgid "Addition"
 msgstr "Toevoeging"
@@ -93,6 +108,18 @@ msgstr "Winkelwagen ({0})"
 
 msgid "Cart Items"
 msgstr "Winkelwagen items"
+
+msgid "Cart Total"
+msgstr "Winkelwagen totaal"
+
+msgid "Change"
+msgstr "Verander"
+
+msgid "Loading cart"
+msgstr "Ophalen winkelwagen"
+
+msgid "We are fetching your products, one moment please!"
+msgstr "Je producten worden momenteel ingeladen!"
 
 msgid "Change password"
 msgstr "Wijzig wachtwoord"
@@ -190,14 +217,8 @@ msgstr "Wijzig factuuradres"
 msgid "Email"
 msgstr "E-mail"
 
-msgid "Email address of existing customers will be recognized, sign in is optional."
-msgstr "E-mailadres van bestaande klanten wordt herkend, inloggen is optioneel."
-
 msgid "Emails don't match"
 msgstr "E-mailadressen komen niet overeen"
-
-msgid "Fill in password fields to create an account."
-msgstr "Vul wachtwoordvelden in om een account aan te maken."
 
 msgid "Fill in your e-mail to login or create an account"
 msgstr "Vul uw e-mailadres in om in te loggen of maak een account aan"
@@ -256,14 +277,8 @@ msgstr "Achternaam"
 msgid "Latest orders"
 msgstr "Laatste bestellingen"
 
-msgid "Leave password field empty to order as guest."
-msgstr "Leave password field empty to order as guest"
-
 msgid "Log in"
 msgstr "Log in"
-
-msgid "Log in or create an account"
-msgstr "Log in of maak een account aan"
 
 msgid "Log in to continue shopping"
 msgstr "Log in om verder te winkelen"
@@ -279,6 +294,9 @@ msgstr "Naam"
 
 msgid "Navigate to item {0}"
 msgstr "Navigeer naar item {0}"
+
+msgid "New address"
+msgstr "Nieuw adres"
 
 msgid "New email"
 msgstr "Nieuwe email"
@@ -303,6 +321,9 @@ msgstr "Geen bestellingen gevonden"
 
 msgid "No payment information"
 msgstr "Geen betalingsinformatie"
+
+msgid "No shipping methods available"
+msgstr "Geen verzendmethode beschikbaar"
 
 msgid "No worries! Enter your email address and we will send an email with instructions to reset your password."
 msgstr "Geen zorgen! Vul uw e-mailadres in en we sturen een email met instructies om het wachtwoord te resetten."
@@ -343,6 +364,9 @@ msgstr "Bestellingen"
 msgid "Other"
 msgstr "Overige"
 
+msgid "Page {page} of {count}"
+msgstr "Pagina {page} van {count}"
+
 msgid "Password"
 msgstr "Wachtwoord"
 
@@ -366,6 +390,9 @@ msgstr "Betaling mislukt met status: {paymentStatus}"
 
 msgid "Payment method"
 msgstr "Betalingsmethode"
+
+msgid "Personal details"
+msgstr "Persoonlijke details"
 
 msgid "Place order"
 msgstr "Plaats bestelling"
@@ -406,6 +433,9 @@ msgstr "Verwijder product"
 msgid "Remove from wishlist"
 msgstr "Verwijder van verlanglijst"
 
+msgid "Reset Cart"
+msgstr "Reset winkelwagen"
+
 msgid "Reset Cart and Return to home"
 msgstr "Reset winkelwagen en ga terug naar home"
 
@@ -432,6 +462,9 @@ msgstr "Zoeken"
 
 msgid "Search..."
 msgstr "Zoeken..."
+
+msgid "Select"
+msgstr "Selecteer"
 
 msgid "Send password reset email"
 msgstr "Stuur een wachtwoord reset e-email"
@@ -534,6 +567,9 @@ msgstr "Bekijk minder items"
 
 msgid "View shopping cart"
 msgstr "Bekijk winkelwagen"
+
+msgid "View wishlist"
+msgstr "Bekijk verlanglijst"
 
 msgid "View your account"
 msgstr "Bekijk uw account"

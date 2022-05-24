@@ -47,11 +47,7 @@ function AccountAuthenticationPage() {
         </LayoutTitle>
       </LayoutOverlayHeader>
       <Container maxWidth='md'>
-        <PageMeta
-          title={i18n._(/* i18n */ `Authentication`)}
-          metaDescription={i18n._(/* i18n */ `Change password`)}
-          metaRobots={['noindex']}
-        />
+        <PageMeta title={i18n._(/* i18n */ `Authentication`)} metaRobots={['noindex']} />
         <NoSsr>
           <LayoutTitle icon={iconLock}>
             <Trans id='Authentication' />

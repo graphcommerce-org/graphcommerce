@@ -1,5 +1,39 @@
 # Change Log
 
+## 4.4.0
+
+### Minor Changes
+
+- [#1482](https://github.com/graphcommerce-org/graphcommerce/pull/1482) [`b359fe252`](https://github.com/graphcommerce-org/graphcommerce/commit/b359fe252a50bb8195601ba97c3eef6a7be146ba) Thanks [@mikekeehnen](https://github.com/mikekeehnen)! - Added selectedOptions to AddToCart mutation
+
+### Patch Changes
+
+- Updated dependencies [[`a9df81310`](https://github.com/graphcommerce-org/graphcommerce/commit/a9df81310c051876dd82fb2819105dece47cc213), [`55c2dcde7`](https://github.com/graphcommerce-org/graphcommerce/commit/55c2dcde7869ee51b84494af653b3edfd43904a4), [`f167f9963`](https://github.com/graphcommerce-org/graphcommerce/commit/f167f99630966a7de43717937d43669e66132494)]:
+  - @graphcommerce/next-ui@4.8.1
+  - @graphcommerce/framer-scroller@2.1.12
+  - @graphcommerce/magento-cart@4.3.1
+  - @graphcommerce/magento-store@4.2.5
+  - @graphcommerce/image@3.1.6
+
+## 4.3.6
+
+### Patch Changes
+
+- Updated dependencies [[`cf575395c`](https://github.com/graphcommerce-org/graphcommerce/commit/cf575395c16e9c571f75d4563004c3018a29aeaa)]:
+  - @graphcommerce/magento-cart@4.3.0
+
+## 4.3.5
+
+### Patch Changes
+
+- [#1468](https://github.com/graphcommerce-org/graphcommerce/pull/1468) [`c6a62a338`](https://github.com/graphcommerce-org/graphcommerce/commit/c6a62a338abf8af83d3a6eb7ed796586009910ca) Thanks [@timhofman](https://github.com/timhofman)! - product name missing in cart feedback on simple product pages
+
+- Updated dependencies [[`0363b9671`](https://github.com/graphcommerce-org/graphcommerce/commit/0363b9671db7c2932321d97faf6f1eb385238397), [`3ac90b57c`](https://github.com/graphcommerce-org/graphcommerce/commit/3ac90b57c68b96f9d81771d6664ed9435a28fc1d), [`ed2b67a06`](https://github.com/graphcommerce-org/graphcommerce/commit/ed2b67a0618d9db97e79ed2a8226e0ae12403943)]:
+  - @graphcommerce/next-ui@4.8.0
+  - @graphcommerce/magento-cart@4.2.15
+  - @graphcommerce/framer-scroller@2.1.11
+  - @graphcommerce/magento-store@4.2.4
+
 ## 4.3.4
 
 ### Patch Changes

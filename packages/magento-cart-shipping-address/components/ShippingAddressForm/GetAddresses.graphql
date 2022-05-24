@@ -1,5 +1,6 @@
 query GetAddresses($cartId: String!) {
   cart(cart_id: $cartId) {
+    is_virtual
     ...ShippingAddress
     ...BillingAddress
   }

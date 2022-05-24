@@ -47,11 +47,7 @@ function AccountNamePage() {
       </LayoutOverlayHeader>
       <NoSsr>
         <Container maxWidth='md'>
-          <PageMeta
-            title={i18n._(/* i18n */ `Name`)}
-            metaDescription={i18n._(/* i18n */ `Update your name`)}
-            metaRobots={['noindex']}
-          />
+          <PageMeta title={i18n._(/* i18n */ `Name`)} metaRobots={['noindex']} />
 
           <LayoutTitle icon={iconId}>
             <Trans id='Name' />
