@@ -88,7 +88,6 @@ export function TextInputNumber(props: TextInputNumberProps) {
 
   return (
     <TextField
-      label={' '}
       {...textFieldProps}
       type='number'
       inputRef={forkRef}
