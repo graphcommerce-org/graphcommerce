@@ -1,5 +1,14 @@
 # Change Log
 
+## 4.8.2
+
+### Patch Changes
+
+- [#1485](https://github.com/graphcommerce-org/graphcommerce/pull/1485) [`c8c246b8a`](https://github.com/graphcommerce-org/graphcommerce/commit/c8c246b8aaab0621b68a2fca2a1c529a56fad962) Thanks [@paales](https://github.com/paales)! - TextInputNumber: when adding a label it should be displayed properly
+
+- Updated dependencies []:
+  - @graphcommerce/framer-scroller@2.1.13
+
 ## 4.8.1
 
 ### Patch Changes

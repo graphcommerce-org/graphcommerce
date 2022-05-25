@@ -1,5 +1,15 @@
 # @graphcommerce/magento-pagebuilder
 
+## 1.0.12
+
+### Patch Changes
+
+- Updated dependencies [[`c8c246b8a`](https://github.com/graphcommerce-org/graphcommerce/commit/c8c246b8aaab0621b68a2fca2a1c529a56fad962)]:
+  - @graphcommerce/next-ui@4.8.2
+  - @graphcommerce/magento-product@4.4.1
+  - @graphcommerce/magento-category@4.1.9
+  - @graphcommerce/magento-cms@4.0.17
+
 ## 1.0.11
 
 ### Patch Changes
