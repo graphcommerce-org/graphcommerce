@@ -1,12 +1,11 @@
-import { useQuery } from '@graphcommerce/graphql'
 import {
   ApolloCustomerErrorAlert,
   SignInForm,
   SignUpForm,
   useFormIsEmailAvailable,
   CustomerDocument,
-  CustomerTokenDocument,
 } from '@graphcommerce/magento-customer'
+import { useCustomerQuery } from '@graphcommerce/magento-customer/hooks'
 import {
   AnimatedRow,
   Button,
@@ -30,11 +29,7 @@ const { classes } = extendableComponent('AccountSignInUpForm', parts)
 
 export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
   const { sx = [] } = props
-  const customerToken = useQuery(CustomerTokenDocument)
-  const customerQuery = useQuery(CustomerDocument, {
-    ssr: false,
-    skip: typeof customerToken.data === 'undefined',
-  })
+  const customerQuery = useCustomerQuery(CustomerDocument)
 
   const { email, firstname = '' } = customerQuery.data?.customer ?? {}
   const { mode, form, autoSubmitting, submit } = useFormIsEmailAvailable({ email })

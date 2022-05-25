@@ -1,5 +1,8 @@
-import { useQuery } from '@graphcommerce/graphql'
-import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
+import {
+  useCustomerQuery,
+  useCustomerSession,
+  useGuestQuery,
+} from '@graphcommerce/magento-customer'
 import { MenuFabSecondaryItem, iconHeart, IconSvg } from '@graphcommerce/next-ui'
 import { Badge, NoSsr, SxProps, Theme } from '@mui/material'
 import React from 'react'
@@ -11,34 +14,13 @@ type WishlistMenuFabItemProps = {
   icon?: React.ReactNode
   children: React.ReactNode
   sx?: SxProps<Theme>
+  activeWishlist: boolean
 }
 
 const hideForGuest = process.env.NEXT_PUBLIC_WISHLIST_HIDE_FOR_GUEST === '1'
 
 function WishlistMenuFabItemContent(props: WishlistMenuFabItemProps) {
-  const { icon, children, sx = [] } = props
-
-  const { data: token } = useQuery(CustomerTokenDocument)
-  const isLoggedIn = token?.customerToken && token?.customerToken.valid
-
-  const { data: GetCustomerWishlistData } = useQuery(GetIsInWishlistsDocument, {
-    ssr: false,
-    skip: !isLoggedIn,
-  })
-
-  const { data: guestWishlistData } = useQuery(GuestWishlistDocument, {
-    ssr: false,
-    skip: isLoggedIn === true,
-  })
-
-  let activeWishlist
-  if (isLoggedIn) {
-    const wishlistItemCount = GetCustomerWishlistData?.customer?.wishlists[0]?.items_count || 0
-    activeWishlist = wishlistItemCount > 0
-  } else {
-    const wishlist = guestWishlistData?.guestWishlist?.items || []
-    activeWishlist = wishlist.length > 0
-  }
+  const { icon, children, sx = [], activeWishlist } = props
 
   return (
     <MenuFabSecondaryItem
@@ -62,17 +44,25 @@ function WishlistMenuFabItemContent(props: WishlistMenuFabItemProps) {
 
 export function WishlistMenuFabItem(props: WishlistMenuFabItemProps) {
   const isWishlistEnabled = useWishlistEnabled()
+  const { loggedIn } = useCustomerSession()
 
-  const { data: token } = useQuery(CustomerTokenDocument)
-  const isLoggedIn = token?.customerToken && token?.customerToken.valid
+  const { data: GetCustomerWishlistData } = useCustomerQuery(GetIsInWishlistsDocument)
+  const { data: guestWishlistData } = useGuestQuery(GuestWishlistDocument)
 
+  let activeWishlist: boolean
+  if (loggedIn) {
+    const wishlistItemCount = GetCustomerWishlistData?.customer?.wishlists[0]?.items_count ?? 0
+    activeWishlist = wishlistItemCount > 0
+  } else {
+    const wishlist = guestWishlistData?.guestWishlist?.items ?? []
+    activeWishlist = wishlist.length > 0
+  }
+
+  if (hideForGuest) return null
+  if (!isWishlistEnabled) return null
   return (
-    <>
-      {isWishlistEnabled && (!hideForGuest || isLoggedIn) && (
-        <NoSsr fallback={<WishlistMenuFabItemContent {...props} />}>
-          <WishlistMenuFabItemContent {...props} />
-        </NoSsr>
-      )}
-    </>
+    <NoSsr fallback={<WishlistMenuFabItemContent {...props} activeWishlist={false} />}>
+      <WishlistMenuFabItemContent {...props} activeWishlist={activeWishlist} />
+    </NoSsr>
   )
 }

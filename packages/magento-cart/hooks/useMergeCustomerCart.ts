@@ -1,9 +1,5 @@
 import { useMutation, useQuery } from '@graphcommerce/graphql'
-import {
-  CustomerTokenDocument,
-  useCustomerSession,
-  useExtractCustomerErrors,
-} from '@graphcommerce/magento-customer'
+import { useCustomerSession, useExtractCustomerErrors } from '@graphcommerce/magento-customer'
 import { useEffect } from 'react'
 import { CustomerCartDocument } from './CustomerCart.gql'
 import { UseMergeCustomerCartDocument } from './UseMergeCustomerCart.gql'

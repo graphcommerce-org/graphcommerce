@@ -1,15 +1,15 @@
 import { useQuery } from '@graphcommerce/graphql'
-import { CustomerTokenDocument } from './CustomerToken.gql'
-import { CustomerTokenFragment } from './CustomerTokenFragment.gql'
+import { CustomerTokenDocument, CustomerTokenQuery } from './CustomerToken.gql'
 
-export type UseCustomerTokenReturn =
-  | (CustomerTokenFragment & {
+type TokenResponse = Omit<NonNullable<CustomerTokenQuery['customerToken']>, '__typename'>
+
+export type UseCustomerSessionReturn =
+  | TokenResponse & {
       loggedIn: boolean
       requireAuth: boolean
-    })
-  | (Partial<CustomerTokenFragment> & { loggedIn: false; requireAuth: true })
+    }
 
-export function useCustomerSession(): UseCustomerTokenReturn {
+export function useCustomerSession(): UseCustomerSessionReturn {
   const token = useQuery(CustomerTokenDocument, { ssr: false, fetchPolicy: 'cache-only' }).data
     ?.customerToken
 

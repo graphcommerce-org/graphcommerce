@@ -1,6 +1,5 @@
-import { useQuery } from '@graphcommerce/graphql'
 import { useCartQuery } from '@graphcommerce/magento-cart'
-import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
+import { useCustomerSession } from '@graphcommerce/magento-customer'
 import { extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box, SxProps, Theme, Typography } from '@mui/material'
@@ -12,17 +11,16 @@ type SignupNewsletterProps = { sx?: SxProps<Theme> }
 
 const name = 'SignupNewsletter' as const
 
-type OwnerState = { isCustomer: boolean }
+type OwnerState = { loggedIn: boolean }
 const parts = ['signup', 'text', 'signupForm'] as const
 const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 
 export function SignupNewsletter(props: SignupNewsletterProps) {
   const { sx = [] } = props
   const { data: cartData } = useCartQuery(GetCartEmailDocument, { allowUrl: true })
-  const { data: customerTokenData } = useQuery(CustomerTokenDocument)
-  const isCustomer = Boolean(customerTokenData?.customerToken)
+  const { loggedIn } = useCustomerSession()
 
-  const classes = withState({ isCustomer })
+  const classes = withState({ loggedIn })
 
   return (
     <Box
@@ -46,7 +44,7 @@ export function SignupNewsletter(props: SignupNewsletterProps) {
             gridTemplateColumns: '2fr 1fr',
           },
 
-          '&.isCustomer': {
+          '&.loggedIn': {
             background: theme.palette.background.image,
           },
         }),
@@ -66,7 +64,7 @@ export function SignupNewsletter(props: SignupNewsletterProps) {
           [theme.breakpoints.up('sm')]: { justifySelf: 'end' },
         })}
       >
-        {isCustomer ? (
+        {loggedIn ? (
           <CustomerNewsletterToggle color='primary' />
         ) : (
           <GuestNewsletterToggle color='primary' />
