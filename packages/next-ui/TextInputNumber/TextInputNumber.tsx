@@ -88,6 +88,7 @@ export function TextInputNumber(props: TextInputNumberProps) {
 
   return (
     <TextField
+      label={' '}
       {...textFieldProps}
       type='number'
       inputRef={forkRef}
@@ -101,11 +102,11 @@ export function TextInputNumber(props: TextInputNumberProps) {
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
       autoComplete='off'
-      label={' '}
       id='quantity-input'
-      InputLabelProps={{ shrink: false }}
+      InputLabelProps={{ shrink: Boolean(label) }}
       InputProps={{
         ...textFieldProps.InputProps,
+        notched: Boolean(label),
         startAdornment: (
           <IconButton
             aria-label='step down'
