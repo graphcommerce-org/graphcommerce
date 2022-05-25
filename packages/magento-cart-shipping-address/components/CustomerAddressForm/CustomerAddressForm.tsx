@@ -118,7 +118,7 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
         </FormControl>
         <ApolloCartErrorAlert error={error} />
       </Form>
-      {customerAddressId === '-1' && children}
+      {customerAddressId === -1 && children}
     </>
   )
 }
