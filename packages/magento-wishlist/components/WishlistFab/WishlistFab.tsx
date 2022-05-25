@@ -53,7 +53,9 @@ function WishlistFabContent(props: WishlistFabContentProps) {
   )
 }
 
-export function WishlistFab(props: WishlistFabContentProps) {
+export type WishlistFabProps = Omit<WishlistFabContentProps, 'activeWishlist'>
+
+export function WishlistFab(props: WishlistFabProps) {
   const isWishlistEnabled = useWishlistEnabled()
 
   const { loggedIn } = useCustomerSession()

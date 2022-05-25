@@ -12,7 +12,7 @@ export type UseFormIsEmailAvailableProps = {
 
 export function useFormIsEmailAvailable(props: UseFormIsEmailAvailableProps) {
   const { email, onSubmitted } = props
-  const { loggedIn } = useCustomerSession()
+  const { loggedIn, requireAuth } = useCustomerSession()
   const customerQuery = useCustomerQuery(CustomerDocument)
 
   const form = useFormGqlQuery(
@@ -44,19 +44,19 @@ export function useFormIsEmailAvailable(props: UseFormIsEmailAvailableProps) {
     if (!isDirty && isSubmitted && isSubmitSuccessful && isValid)
       setMode(hasAccount ? 'signin' : 'signup')
 
-    if (customerQuery.data?.customer && token && token.customerToken && !token.customerToken.valid)
+    if (customerQuery.data?.customer && requireAuth)
       setMode(isSubmitSuccessful ? 'signin' : 'session-expired')
   }, [
     customerQuery.data?.customer,
     hasAccount,
     isDirty,
-    loggedIn,
     isSubmitSuccessful,
     isSubmitted,
     isSubmitting,
     isValid,
-    token,
+    loggedIn,
+    requireAuth,
   ])
 
-  return { mode, form, token, submit, autoSubmitting, hasAccount }
+  return { mode, form, submit, autoSubmitting, hasAccount }
 }

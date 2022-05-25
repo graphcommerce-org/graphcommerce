@@ -10,7 +10,7 @@ import { useWishlistEnabled } from '../../hooks'
 import { GetIsInWishlistsDocument } from '../../queries/GetIsInWishlists.gql'
 import { GuestWishlistDocument } from '../../queries/GuestWishlist.gql'
 
-type WishlistMenuFabItemProps = {
+type WishlistMenuFabItemContentProps = {
   icon?: React.ReactNode
   children: React.ReactNode
   sx?: SxProps<Theme>
@@ -19,7 +19,7 @@ type WishlistMenuFabItemProps = {
 
 const hideForGuest = process.env.NEXT_PUBLIC_WISHLIST_HIDE_FOR_GUEST === '1'
 
-function WishlistMenuFabItemContent(props: WishlistMenuFabItemProps) {
+function WishlistMenuFabItemContent(props: WishlistMenuFabItemContentProps) {
   const { icon, children, sx = [], activeWishlist } = props
 
   return (
@@ -41,6 +41,8 @@ function WishlistMenuFabItemContent(props: WishlistMenuFabItemProps) {
     </MenuFabSecondaryItem>
   )
 }
+
+export type WishlistMenuFabItemProps = Omit<WishlistMenuFabItemContentProps, 'activeWishlist'>
 
 export function WishlistMenuFabItem(props: WishlistMenuFabItemProps) {
   const isWishlistEnabled = useWishlistEnabled()
