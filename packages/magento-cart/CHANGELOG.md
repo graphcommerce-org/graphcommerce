@@ -1,5 +1,20 @@
 # Change Log
 
+## 4.3.2
+
+### Patch Changes
+
+- [#1485](https://github.com/graphcommerce-org/graphcommerce/pull/1485) [`d6262de71`](https://github.com/graphcommerce-org/graphcommerce/commit/d6262de71d2254a2b0b492e1a60f9e141767470e) Thanks [@paales](https://github.com/paales)! - move to useCustomerSession instead of using the tokenquery directly and fix ssr issues
+
+* [#1483](https://github.com/graphcommerce-org/graphcommerce/pull/1483) [`e3005fe63`](https://github.com/graphcommerce-org/graphcommerce/commit/e3005fe6306093d47b08c6756c21c8175649e30b) Thanks [@FrankHarland](https://github.com/FrankHarland)! - actually apply sx prop on cartsummary
+
+* Updated dependencies [[`d6262de71`](https://github.com/graphcommerce-org/graphcommerce/commit/d6262de71d2254a2b0b492e1a60f9e141767470e), [`c8c246b8a`](https://github.com/graphcommerce-org/graphcommerce/commit/c8c246b8aaab0621b68a2fca2a1c529a56fad962)]:
+  - @graphcommerce/magento-customer@4.4.0
+  - @graphcommerce/next-ui@4.8.2
+  - @graphcommerce/ecommerce-ui@1.0.14
+  - @graphcommerce/framer-scroller@2.1.13
+  - @graphcommerce/magento-store@4.2.6
+
 ## 4.3.1
 
 ### Patch Changes
