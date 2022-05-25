@@ -42,9 +42,11 @@ export function MegaMenu(props: Props) {
             minWidth: '960px',
           },
           '& > li:nth-of-type(1) > a': {
-            [theme.breakpoints.up('md')]: !mobileOnly && {
-              marginTop: theme.spacings.md,
-            },
+            [theme.breakpoints.up('md')]:
+              !mobileOnly &&
+              {
+                // marginTop: theme.spacings.md,
+              },
           },
         })}
       >

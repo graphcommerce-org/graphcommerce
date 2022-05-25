@@ -41,7 +41,7 @@ export function MegaMenuItem(props: MegaMenuItemProps) {
         gridArea: 'items',
         gridRowStart: `span ${rootItemCount}`,
         visibility: 'hidden',
-        padding: theme.spacings.md,
+        // padding: theme.spacings.md,
         boxShadow: `-1px 0 ${theme.palette.divider}`,
         columnCount: 2,
         background: theme.palette.background.paper,
