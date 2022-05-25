@@ -1,10 +1,13 @@
-import { useQuery } from '@graphcommerce/graphql'
-import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
+import {
+  useCustomerQuery,
+  useCustomerSession,
+  useGuestQuery,
+} from '@graphcommerce/magento-customer'
 import { iconHeart, DesktopHeaderBadge, IconSvg, extendableComponent } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Fab, FabProps as FabPropsType, NoSsr, SxProps, Theme } from '@mui/material'
 import PageLink from 'next/link'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useWishlistEnabled } from '../../hooks'
 import { GetIsInWishlistsDocument } from '../../queries/GetIsInWishlists.gql'
 import { GuestWishlistDocument } from '../../queries/GuestWishlist.gql'
@@ -13,6 +16,7 @@ type WishlistFabContentProps = {
   icon?: React.ReactNode
   FabProps?: Omit<FabPropsType, 'children'>
   sx?: SxProps<Theme>
+  activeWishlist: boolean
 }
 
 const name = 'WishlistFab'
@@ -22,31 +26,7 @@ const { classes } = extendableComponent(name, parts)
 const hideForGuest = process.env.NEXT_PUBLIC_WISHLIST_HIDE_FOR_GUEST === '1'
 
 function WishlistFabContent(props: WishlistFabContentProps) {
-  const { icon, FabProps, sx } = props
-
-  const { data: token } = useQuery(CustomerTokenDocument)
-  const isLoggedIn = token?.customerToken && token?.customerToken.valid
-
-  const { data: GetCustomerWishlistData, loading } = useQuery(GetIsInWishlistsDocument, {
-    skip: !isLoggedIn,
-  })
-
-  const { data: guestWishlistData, loading: loadingGuestWishlistData } = useQuery(
-    GuestWishlistDocument,
-    {
-      ssr: false,
-      skip: isLoggedIn === true,
-    },
-  )
-
-  let activeWishlist = false
-  if (isLoggedIn) {
-    const wishlistItemCount = GetCustomerWishlistData?.customer?.wishlists[0]?.items_count || 0
-    activeWishlist = wishlistItemCount > 0
-  } else {
-    const wishlist = guestWishlistData?.guestWishlist?.items || []
-    activeWishlist = wishlist.length > 0
-  }
+  const { icon, FabProps, sx, activeWishlist } = props
 
   const wishlistIcon = icon ?? <IconSvg src={iconHeart} size='large' />
 
@@ -73,19 +53,30 @@ function WishlistFabContent(props: WishlistFabContentProps) {
   )
 }
 
-export function WishlistFab(props: WishlistFabContentProps) {
+export type WishlistFabProps = Omit<WishlistFabContentProps, 'activeWishlist'>
+
+export function WishlistFab(props: WishlistFabProps) {
   const isWishlistEnabled = useWishlistEnabled()
 
-  const { data: token } = useQuery(CustomerTokenDocument)
-  const isLoggedIn = token?.customerToken && token?.customerToken.valid
+  const { loggedIn } = useCustomerSession()
+
+  const { data: GetCustomerWishlistData } = useCustomerQuery(GetIsInWishlistsDocument)
+  const { data: guestWishlistData } = useGuestQuery(GuestWishlistDocument)
+
+  let activeWishlist = false
+  if (loggedIn) {
+    const wishlistItemCount = GetCustomerWishlistData?.customer?.wishlists[0]?.items_count || 0
+    activeWishlist = wishlistItemCount > 0
+  } else {
+    const wishlist = guestWishlistData?.guestWishlist?.items || []
+    activeWishlist = wishlist.length > 0
+  }
+
+  if (!isWishlistEnabled || hideForGuest) return null
 
   return (
-    <>
-      {isWishlistEnabled && (!hideForGuest || isLoggedIn) && (
-        <NoSsr>
-          <WishlistFabContent {...props} />
-        </NoSsr>
-      )}
-    </>
+    <NoSsr fallback={<WishlistFabContent {...props} activeWishlist={false} />}>
+      <WishlistFabContent {...props} activeWishlist={activeWishlist} />
+    </NoSsr>
   )
 }

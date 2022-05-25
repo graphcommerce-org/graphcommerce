@@ -1,6 +1,6 @@
-import { useQuery, useMutation, useApolloClient } from '@graphcommerce/graphql'
+import { useMutation, useApolloClient } from '@graphcommerce/graphql'
 import { Image } from '@graphcommerce/image'
-import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
+import { useCustomerQuery, useCustomerSession } from '@graphcommerce/magento-customer'
 import { useProductLink } from '@graphcommerce/magento-product'
 import { Money } from '@graphcommerce/magento-store'
 import { responsiveVal, extendableComponent, iconEllypsis, IconSvg } from '@graphcommerce/next-ui'
@@ -57,12 +57,9 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
   const productLink = useProductLink({ url_key, __typename: productType })
   const { cache } = useApolloClient()
 
-  const { data: token } = useQuery(CustomerTokenDocument)
-  const isLoggedIn = token?.customerToken && token?.customerToken.valid
+  const { loggedIn } = useCustomerSession()
 
-  const { data: GetCustomerWishlistData } = useQuery(GetIsInWishlistsDocument, {
-    skip: !isLoggedIn,
-  })
+  const { data: GetCustomerWishlistData } = useCustomerQuery(GetIsInWishlistsDocument)
 
   const [removeWishlistItem] = useMutation(RemoveProductFromWishlistDocument)
 
@@ -75,7 +72,7 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
 
   const handleClose = (event) => {
     if (event.target.id === 'remove') {
-      if (isLoggedIn) {
+      if (loggedIn) {
         let itemIdToDelete = wishlistItemId
 
         /** When no internal ID is provided, fetch it by sku */

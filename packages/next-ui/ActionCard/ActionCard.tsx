@@ -2,18 +2,18 @@ import { Theme } from '@emotion/react'
 import { SxProps, ButtonBase, Box } from '@mui/material'
 import React, { FormEvent } from 'react'
 
-type ActionCardProps = {
+export type ActionCardProps = {
   sx?: SxProps<Theme>
   title?: string | React.ReactNode
   image?: React.ReactNode
   action?: React.ReactNode
   details?: React.ReactNode
   secondaryAction?: React.ReactNode
-  onClick?: (e: FormEvent<HTMLButtonElement>, v: string) => void
-  onChange?: (e: FormEvent<HTMLButtonElement>, v: string) => void
+  onClick?: (e: FormEvent<HTMLButtonElement>, v: string | number) => void
+  onChange?: (e: FormEvent<HTMLButtonElement>, v: string | number) => void
   selected?: boolean
   hidden?: boolean | (() => boolean)
-  value: string
+  value: string | number
   reset?: React.ReactNode
 }
 

@@ -97,13 +97,10 @@ export function TextInputNumber(props: TextInputNumberProps) {
           width: responsiveVal(80, 120),
           backgroundColor: 'inherit',
         },
-
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
       autoComplete='off'
-      label={' '}
       id='quantity-input'
-      InputLabelProps={{ shrink: false }}
       InputProps={{
         ...textFieldProps.InputProps,
         startAdornment: (

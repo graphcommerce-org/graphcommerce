@@ -1,5 +1,9 @@
-import { useQuery, useMutation, useApolloClient } from '@graphcommerce/graphql'
-import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
+import { useMutation, useApolloClient } from '@graphcommerce/graphql'
+import {
+  useCustomerQuery,
+  useCustomerSession,
+  useGuestQuery,
+} from '@graphcommerce/magento-customer'
 import {
   IconSvg,
   iconHeart,
@@ -39,19 +43,13 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
   const [inWishlist, setInWishlist] = useState(false)
   const [displayMessageBar, setDisplayMessageBar] = useState(false)
 
-  const { data: token } = useQuery(CustomerTokenDocument)
+  const { loggedIn } = useCustomerSession()
   const [addWishlistItem] = useMutation(AddProductToWishlistDocument)
   const [removeWishlistItem] = useMutation(RemoveProductFromWishlistDocument)
-  const isLoggedIn = token?.customerToken && token?.customerToken.valid
 
-  const { data: GetCustomerWishlistData, loading } = useQuery(GetIsInWishlistsDocument, {
-    skip: !isLoggedIn,
-  })
+  const { data: GetCustomerWishlistData, loading } = useCustomerQuery(GetIsInWishlistsDocument)
 
-  const { data: guestWishlistData } = useQuery(GuestWishlistDocument, {
-    ssr: false,
-    skip: isLoggedIn === true,
-  })
+  const { data: guestWishlistData } = useGuestQuery(GuestWishlistDocument)
 
   const { cache } = useApolloClient()
 
@@ -80,7 +78,7 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
 
   useEffect(() => {
     // Do not display wishlist UI to guests when configured as customer only
-    if (hideForGuest && !isLoggedIn) {
+    if (hideForGuest && !loggedIn) {
       return
     }
 
@@ -89,17 +87,17 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
     }
 
     // Mark as active when product is available in either customer or guest wishlist
-    if (isLoggedIn && !loading) {
+    if (loggedIn && !loading) {
       const inWishlistTest =
         GetCustomerWishlistData?.customer?.wishlists[0]?.items_v2?.items.map(
           (item) => item?.product?.sku,
         ) || []
       setInWishlist(inWishlistTest.includes(sku))
-    } else if (!isLoggedIn) {
+    } else if (!loggedIn) {
       const inWishlistTest = guestWishlistData?.guestWishlist?.items.map((item) => item?.sku) || []
       setInWishlist(inWishlistTest.includes(sku))
     }
-  }, [isLoggedIn, sku, loading, GetCustomerWishlistData, guestWishlistData])
+  }, [loggedIn, sku, loading, GetCustomerWishlistData, guestWishlistData])
 
   const preventAnimationBubble: React.MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault()
@@ -113,7 +111,7 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
       return
     }
 
-    if (isLoggedIn) {
+    if (loggedIn) {
       if (inWishlist && !ignoreProductWishlistStatus) {
         const wishlistItemsInSession =
           GetCustomerWishlistData?.customer?.wishlists[0]?.items_v2?.items || []
@@ -218,7 +216,7 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
     </Box>
   )
 
-  return !hideForGuest || isLoggedIn ? output : null
+  return !hideForGuest || loggedIn ? output : null
 }
 
 ProductWishlistChipBase.defaultProps = {
