@@ -16,7 +16,7 @@ type Select = {
   onChange?: (event: React.MouseEvent<HTMLElement>, value: string | null) => void
 }
 
-type ActionCardListProps<SelectOrMulti = MultiSelect | Select> = {
+export type ActionCardListProps<SelectOrMulti = MultiSelect | Select> = {
   children?: React.ReactNode
   required?: boolean
   error?: boolean

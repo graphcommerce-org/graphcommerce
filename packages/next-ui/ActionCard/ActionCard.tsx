@@ -2,7 +2,7 @@ import { Theme } from '@emotion/react'
 import { SxProps, ButtonBase, Box } from '@mui/material'
 import React, { FormEvent } from 'react'
 
-type ActionCardProps = {
+export type ActionCardProps = {
   sx?: SxProps<Theme>
   title?: string | React.ReactNode
   image?: React.ReactNode
@@ -13,7 +13,7 @@ type ActionCardProps = {
   onChange?: (e: FormEvent<HTMLButtonElement>, v: string) => void
   selected?: boolean
   hidden?: boolean | (() => boolean)
-  value: string
+  value: string | number
   reset?: React.ReactNode
 }
 
