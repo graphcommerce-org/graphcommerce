@@ -9,8 +9,8 @@ export type ActionCardProps = {
   action?: React.ReactNode
   details?: React.ReactNode
   secondaryAction?: React.ReactNode
-  onClick?: (e: FormEvent<HTMLButtonElement>, v: string) => void
-  onChange?: (e: FormEvent<HTMLButtonElement>, v: string) => void
+  onClick?: (e: FormEvent<HTMLButtonElement>, v: string | number) => void
+  onChange?: (e: FormEvent<HTMLButtonElement>, v: string | number) => void
   selected?: boolean
   hidden?: boolean | (() => boolean)
   value: string | number
