@@ -1,5 +1,6 @@
 import { CartFab } from '@graphcommerce/magento-cart'
 import { CustomerFab, CustomerMenuFabItem } from '@graphcommerce/magento-customer'
+import { MegaMenuOverlay } from '@graphcommerce/magento-megamenu'
 import { SearchLink } from '@graphcommerce/magento-search'
 import { WishlistFab, WishlistMenuFabItem } from '@graphcommerce/magento-wishlist'
 import {
@@ -22,6 +23,7 @@ import { Trans } from '@lingui/react'
 import { Fab } from '@mui/material'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
+import { useState } from 'react'
 import { DefaultPageQuery } from '../../graphql/DefaultPage.gql'
 import { Footer } from './Footer'
 import { Logo } from './Logo'
@@ -34,6 +36,9 @@ export type LayoutFullProps = Omit<
 export function LayoutFull(props: LayoutFullProps) {
   const { footer, menu = {}, children, ...uiProps } = props
 
+  const [active, setActive] = useState(false)
+  const close = () => setActive(false)
+
   const router = useRouter()
   const menuItemsIncludeInMenu = menu?.items?.filter((items) => items?.include_in_menu === 1)
 
@@ -45,7 +50,7 @@ export function LayoutFull(props: LayoutFullProps) {
         <>
           <Logo />
           <DesktopNavBar>
-            {menuItemsIncludeInMenu?.map((item) => {
+            {/* {menuItemsIncludeInMenu?.map((item) => {
               const highLight = item?.name?.toLowerCase().includes('sale')
                 ? { textTransform: 'uppercase', letterSpacing: 0.3, color: 'primary.main' }
                 : {}
@@ -54,11 +59,17 @@ export function LayoutFull(props: LayoutFullProps) {
                   {item?.name}
                 </DesktopNavItem>
               )
-            })}
+            })} */}
+
+            <button onClick={() => setActive(true)} type='button'>
+              Products
+            </button>
+
             <DesktopNavItem href='/blog'>
               <Trans id='Blog' />
             </DesktopNavItem>
           </DesktopNavBar>
+
           <DesktopNavActions>
             {!router.pathname.startsWith('/search') && <SearchLink href='/search' />}
             <PageLink href='/service' passHref>
@@ -102,16 +113,20 @@ export function LayoutFull(props: LayoutFullProps) {
           <MenuFabItem href='/'>
             <Trans id='Home' />
           </MenuFabItem>
-          {menuItemsIncludeInMenu?.map((item) => {
-            const highLight = item?.name?.toLowerCase().includes('sale')
-              ? { textTransform: 'uppercase', letterSpacing: 0.3, color: 'primary.main' }
-              : {}
-            return (
-              <MenuFabItem key={item?.uid} href={`/${item?.url_path}`} sx={highLight}>
-                {item?.name}
-              </MenuFabItem>
-            )
-          })}
+          {/* {menuItemsIncludeInMenu?.map((item) => {
+              const highLight = item?.name?.toLowerCase().includes('sale')
+                ? { textTransform: 'uppercase', letterSpacing: 0.3, color: 'primary.main' }
+                : {}
+              return (
+                <MenuFabItem key={item?.uid} href={`/${item?.url_path}`} sx={highLight}>
+                  {item?.name}
+                </MenuFabItem>
+              )
+            })} */}
+          <button onClick={() => setActive(true)} type='button'>
+            Products
+          </button>
+          <MegaMenuOverlay menu={menu} active={active} close={close} />
           <MenuFabItem href='/blog'>
             <Trans id='Blog' />
           </MenuFabItem>
