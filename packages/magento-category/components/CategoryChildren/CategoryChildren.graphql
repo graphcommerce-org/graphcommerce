@@ -5,5 +5,6 @@ fragment CategoryChildren on CategoryTree {
     name
     level
     url_path
+    include_in_menu
   }
 }

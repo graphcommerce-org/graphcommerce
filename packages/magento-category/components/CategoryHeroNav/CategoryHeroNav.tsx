@@ -86,7 +86,8 @@ export function CategoryHeroNav({ children, title, asset, sx = [] }: CategoryHer
         })}
       >
         {children?.map((category) => {
-          if (!category?.url_path || !category.uid || !category.name) return null
+          if (!category?.url_path || !category.uid || !category.name || !category.include_in_menu)
+            return null
           return (
             <ProductListLink
               underline='none'
