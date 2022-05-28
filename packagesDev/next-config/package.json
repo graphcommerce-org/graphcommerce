@@ -16,7 +16,7 @@
     "@lingui/loader": "^3.13.3",
     "js-yaml-loader": "^1.2.2",
     "next-transpile-modules": "^9.0.0",
-    "webpack": "^5.72.0"
+    "webpack": "^5.72.1"
   },
   "devDependencies": {
     "type-fest": "^2.12.2",
