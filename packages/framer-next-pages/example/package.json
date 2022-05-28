@@ -14,9 +14,9 @@
     "@graphcommerce/lingui-next": "2.1.8",
     "@graphcommerce/next-config": "3.1.4",
     "@graphcommerce/next-ui": "4.8.2",
-    "@mui/material": "5.6.3",
+    "@mui/material": "5.8.1",
     "framer-motion": "^6.3.3",
-    "next": "12.1.5",
+    "next": "12.1.6",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
