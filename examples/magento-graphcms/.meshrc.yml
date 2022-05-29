@@ -3,11 +3,6 @@ sources:
     handler:
       graphql:
         endpoint: ${GRAPHCMS_URL}
-    transforms:
-      - filterSchema:
-          mode: bare
-          filters:
-            - Mutation.none
   - name: m2
     handler:
       graphql:

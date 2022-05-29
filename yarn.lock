@@ -37,29 +37,6 @@
     tslib "^2.3.0"
     zen-observable-ts "^1.2.5"
 
-"@apollo/core-schema@~0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@apollo/core-schema/-/core-schema-0.3.0.tgz#c6c1a6821fb326501d73eb85d920bbf57906cc77"
-  integrity sha512-v+Ys6+W1pDQu+XwP++tI5y4oZdzKrEuVXwsEenOmg2FO/3/G08C+qMhQ9YQ9Ug34rvQGQtgbIDssHEVk4YZS7g==
-  dependencies:
-    "@protoplasm/recall" "^0.2"
-
-"@apollo/federation-internals@^2.0.1":
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/@apollo/federation-internals/-/federation-internals-2.0.3.tgz#f5b798dbd2047539a4885a7821d00559c1a4a245"
-  integrity sha512-V/0UviEWyHJJMU1LXHXVlulT0rSs2aouwCg1mmXYZNn2HNgiT9RSZZ9OMGPcEJRZkDfUgdrMdkmv1NiypFv0eQ==
-  dependencies:
-    "@apollo/core-schema" "~0.3.0"
-    chalk "^4.1.0"
-    js-levenshtein "^1.1.6"
-
-"@apollo/subgraph@2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@apollo/subgraph/-/subgraph-2.0.1.tgz#ae638802c9841fc3189b9e8545a93bfab0378c90"
-  integrity sha512-GHfJ+W7A2yiES+7nKlPFcjDuXFbj/hgGADVcNo+3HUSHOR8l+7gUhn/7pED0bhUPO5Dr2yEgz7aA39MiQ6PHTQ==
-  dependencies:
-    "@apollo/federation-internals" "^2.0.1"
-
 "@ardatan/aggregate-error@0.0.6":
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/@ardatan/aggregate-error/-/aggregate-error-0.0.6.tgz#fe6924771ea40fc98dc7a7045c2e872dc8527609"
@@ -2026,47 +2003,6 @@
     json-pointer "0.6.2"
     lodash "^4.17.21"
 
-"@graphql-mesh/transform-cache@0.12.6":
-  version "0.12.6"
-  resolved "https://registry.yarnpkg.com/@graphql-mesh/transform-cache/-/transform-cache-0.12.6.tgz#6a13299358c4f3dadd6496ad0fb1255fe770fac2"
-  integrity sha512-56nUUOs5ggR7SU/utpk1jUdNXoF0Yhc8o3LQrxiNxluDPISuqWbvivPLtfX45kuDrTkSYnFWT8Y9xrGHVgkoBA==
-  dependencies:
-    "@graphql-mesh/types" "0.72.1"
-    "@graphql-mesh/utils" "0.34.6"
-    "@graphql-tools/resolvers-composition" "6.4.9"
-    "@graphql-tools/schema" "8.3.10"
-    "@graphql-tools/utils" "8.6.9"
-    dayjs "1.11.1"
-    tslib "^2.3.1"
-
-"@graphql-mesh/transform-federation@0.8.52":
-  version "0.8.52"
-  resolved "https://registry.yarnpkg.com/@graphql-mesh/transform-federation/-/transform-federation-0.8.52.tgz#4e07e13ffeac8abecf5e037f0cad9e1f1eb76d65"
-  integrity sha512-rMGaXt9atLLo2K0UC0MqUBPwcusiCVp2bT0F9CZqgzTJdqN6gVPHZ7crBmbMqAAQW2x0KuPZ9lWEa1I+1KJI4A==
-  dependencies:
-    "@apollo/subgraph" "2.0.1"
-    "@graphql-mesh/types" "0.72.1"
-    "@graphql-mesh/utils" "0.34.6"
-    "@graphql-tools/delegate" "8.7.7"
-    "@graphql-tools/stitching-directives" "2.2.14"
-    "@graphql-tools/utils" "8.6.9"
-    graphql-transform-federation "2.2.0"
-    lodash "4.17.21"
-    tslib "^2.3.1"
-
-"@graphql-mesh/transform-filter-schema@0.14.51":
-  version "0.14.51"
-  resolved "https://registry.yarnpkg.com/@graphql-mesh/transform-filter-schema/-/transform-filter-schema-0.14.51.tgz#0a3b0ec049b85f074afb3e4faf0f748b5f5a2ff9"
-  integrity sha512-V8YSxQRQMkRwh9UpuDdZHB/r2tYXC4p9NVdJcn3jp8vxaOphy9ddx37/hzQkjVj1Cdf2bv2lrq+apm5T5wYg3Q==
-  dependencies:
-    "@graphql-mesh/types" "0.72.1"
-    "@graphql-mesh/utils" "0.34.6"
-    "@graphql-tools/delegate" "8.7.7"
-    "@graphql-tools/utils" "8.6.9"
-    "@graphql-tools/wrap" "8.4.16"
-    micromatch "4.0.5"
-    tslib "^2.3.1"
-
 "@graphql-mesh/types@0.72.1":
   version "0.72.1"
   resolved "https://registry.yarnpkg.com/@graphql-mesh/types/-/types-0.72.1.tgz#5066fcbf385200de03854acf0e41843617640fdd"
@@ -3182,11 +3118,6 @@
   version "2.11.5"
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.5.tgz#db5a11bf66bdab39569719555b0f76e138d7bd64"
   integrity sha512-9X2obfABZuDVLCgPK9aX0a/x4jaOEweTTWE2+9sr0Qqqevj2Uv5XorvusThmc9XGYpS9yI+fhh8RTafBtGposw==
-
-"@protoplasm/recall@^0.2":
-  version "0.2.4"
-  resolved "https://registry.yarnpkg.com/@protoplasm/recall/-/recall-0.2.4.tgz#d7b1a5f1e94481d015e9666bd791e57d51b8cc67"
-  integrity sha512-+w5WCHQwuZ0RZ3+ayJ42ArGPIeew2Wxb+g1rPNA+qiehCc4EDTDjW7DyPPq9FBa4lFUDC4mgDytV8Fkxe/Z3iQ==
 
 "@repeaterjs/repeater@^3.0.4":
   version "3.0.4"
@@ -6700,11 +6631,6 @@ graphql-tag@^2.11.0, graphql-tag@^2.12.6:
   dependencies:
     tslib "^2.1.0"
 
-graphql-transform-federation@2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/graphql-transform-federation/-/graphql-transform-federation-2.2.0.tgz#b7939ec978bace6f7e7c8be5f6900b3096820bd7"
-  integrity sha512-BYyh5teDshQvh3mE/7xUSr9GnO8G8qC47MxXE5ELoA3htfkBGo8I1rXks8bowu644NMcIINJFJrIgn4tJVZ/uQ==
-
 graphql-ws@5.8.1:
   version "5.8.1"
   resolved "https://registry.yarnpkg.com/graphql-ws/-/graphql-ws-5.8.1.tgz#daf72534b8a169a272e730fa4f3ce0e6d04e2883"
@@ -7877,11 +7803,6 @@ jest@28.0.2:
     import-local "^3.0.2"
     jest-cli "^28.0.2"
 
-js-levenshtein@^1.1.6:
-  version "1.1.6"
-  resolved "https://registry.yarnpkg.com/js-levenshtein/-/js-levenshtein-1.1.6.tgz#c6cee58eb3550372df8deb85fad5ce66ce01d59d"
-  integrity sha512-X2BB11YZtrRqY4EnQcLX5Rh373zbK4alC1FW7D7MBhL2gtcC17cTnr6DmfHZeS0s2rTHjUTMMHfG7gO8SSdw+g==
-
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
@@ -8776,7 +8697,7 @@ micromatch@4.0.2:
     braces "^3.0.1"
     picomatch "^2.0.5"
 
-micromatch@4.0.5, micromatch@^4.0.2, micromatch@^4.0.4:
+micromatch@^4.0.2, micromatch@^4.0.4:
   version "4.0.5"
   resolved "https://registry.yarnpkg.com/micromatch/-/micromatch-4.0.5.tgz#bc8999a7cbbf77cdc89f132f6e467051b49090c6"
   integrity sha512-DMy+ERcEW2q8Z2Po+WNXuw3c5YaUSFjAO5GsJqfEl7UjvtIuFKO6ZrKvcItdy98dwFI2N1tg3zNIdKaQT+aNdA==
