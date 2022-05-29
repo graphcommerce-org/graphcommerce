@@ -45,8 +45,6 @@ import {
 import { CategoryPageDocument, CategoryPageQuery } from '../graphql/CategoryPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
 
-export const config = { unstable_JsPreload: false }
-
 type Props = CategoryPageQuery &
   ProductListQuery & {
     filterTypes: FilterTypes

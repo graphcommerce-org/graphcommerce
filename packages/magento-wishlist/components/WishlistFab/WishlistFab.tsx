@@ -41,13 +41,15 @@ function WishlistFabContent(props: WishlistFabContentProps) {
         {...FabProps}
         sx={sx}
       >
-        {activeWishlist ? (
-          <DesktopHeaderBadge color='primary' variant='dot' overlap='circular'>
-            {wishlistIcon}
-          </DesktopHeaderBadge>
-        ) : (
-          wishlistIcon
-        )}
+        <NoSsr fallback={wishlistIcon}>
+          {activeWishlist ? (
+            <DesktopHeaderBadge color='primary' variant='dot' overlap='circular'>
+              {wishlistIcon}
+            </DesktopHeaderBadge>
+          ) : (
+            wishlistIcon
+          )}
+        </NoSsr>
       </Fab>
     </PageLink>
   )

@@ -530,27 +530,24 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
                   rel='preload'
                   as='image'
                   media='(-webkit-min-device-pixel-ratio: 2.5)'
-                  // @ts-expect-error imagesrcset/imagesizes is not yet in the link element type.
-                  imagesrcset={srcSet3x}
-                  imagesizes={sizes}
+                  imageSrcSet={srcSet3x}
+                  imageSizes={sizes}
                 />
                 <link
                   key={`img-${srcSet2x}${sizes}`}
                   rel='preload'
                   as='image'
                   media='(-webkit-min-device-pixel-ratio: 1.5) and (-webkit-max-device-pixel-ratio: 2.49)'
-                  // @ts-expect-error imagesrcset/imagesizes is not yet in the link element type.
-                  imagesrcset={srcSet2x}
-                  imagesizes={sizes}
+                  imageSrcSet={srcSet2x}
+                  imageSizes={sizes}
                 />
                 <link
                   key={`img-${srcSet1x}${sizes}`}
                   rel='preload'
                   as='image'
                   media='(-webkit-max-device-pixel-ratio: 1.49)'
-                  // @ts-expect-error imagesrcset/imagesizes is not yet in the link element type.
-                  imagesrcset={srcSet1x}
-                  imagesizes={sizes}
+                  imageSrcSet={srcSet1x}
+                  imageSizes={sizes}
                 />
               </>
             )}

@@ -1,4 +1,4 @@
-import { useMotionValueValue } from '@graphcommerce/framer-utils'
+import { useIsomorphicLayoutEffect, useMotionValueValue } from '@graphcommerce/framer-utils'
 import {
   Divider,
   Fab,
@@ -13,7 +13,7 @@ import {
 } from '@mui/material'
 import { m } from 'framer-motion'
 import { useRouter } from 'next/router'
-import React, { useEffect } from 'react'
+import React, { useEffect, useCallback, useRef } from 'react'
 import { IconSvg } from '../IconSvg'
 import { useScrollY } from '../Layout/hooks/useScrollY'
 import { extendableComponent } from '../Styles/extendableComponent'
@@ -42,6 +42,21 @@ type OwnerState = {
 
 const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 
+function useEvent<T extends (...args: Args) => void, Args extends unknown[]>(handler: T) {
+  const handlerRef = useRef<T>()
+
+  // In a real implementation, this would run before layout effects
+  useIsomorphicLayoutEffect(() => {
+    handlerRef.current = handler
+  })
+
+  return useCallback((...args: Args) => {
+    // In a real implementation, this would throw if called during render
+    const fn = handlerRef.current
+    return fn?.(...args)
+  }, [])
+}
+
 export function MenuFab(props: MenuFabProps) {
   const {
     children,
@@ -60,11 +75,15 @@ export function MenuFab(props: MenuFabProps) {
   const scrollY = useScrollY()
   const scrolled = useMotionValueValue(scrollY, (y) => y > 10)
 
+  const clear = useEvent(() => {
+    if (openEl) setOpenEl(null)
+  })
+
   useEffect(() => {
-    const clear = () => setOpenEl(null)
     router.events.on('routeChangeStart', clear)
     return () => router.events.off('routeChangeStart', clear)
-  }, [router])
+  }, [clear, router.events])
+
   const fabIconSize = useFabSize('responsive')
 
   const classes = withState({ scrolled })

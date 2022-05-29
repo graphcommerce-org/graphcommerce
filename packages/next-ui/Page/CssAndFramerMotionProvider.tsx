@@ -15,7 +15,7 @@ export type GraphCommerceProviderProps = {
 export function CssAndFramerMotionProvider({ children }: GraphCommerceProviderProps) {
   return (
     <LazyMotion features={async () => (await import('./framerFeatures')).default} strict>
-      <EmotionProvider>{children}</EmotionProvider>
+      {children}
     </LazyMotion>
   )
 }

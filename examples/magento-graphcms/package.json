@@ -78,16 +78,13 @@
     "@mui/material": "5.8.1",
     "concurrently": "7.1.0",
     "dotenv": "16.0.0",
-    "framer-motion": "6.3.3",
-    "next": "12.1.6",
+    "framer-motion": "6.3.4",
+    "next": "^12.1.6",
     "next-pwa": "5.5.2",
     "next-sitemap": "2.5.26",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
     "sharp": "0.30.4"
-  },
-  "resolutions": {
-    "@types/react": "17.0.44"
   },
   "devDependencies": {
     "@graphcommerce/eslint-config-pwa": "^4.1.7",

@@ -37,18 +37,14 @@ if (!process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT) {
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  rewrites() {
-    return [{ source: '/sitemap.xml', destination: '/api/sitemap' }]
-  },
   experimental: {
     scrollRestoration: true,
-    disableOptimizedLoading: true,
-    esmExternals: false,
+    // disableOptimizedLoading: true,
+    // esmExternals: false,
     emotion: { sourceMap: true },
-    legacyBrowsers: false,
-    browsersListForSwc: true,
   },
-  swcMinify: true,
+  // reactStrictMode: true,
+  // swcMinify: true,
   pwa: {
     dest: 'public',
     disable: process.env.NODE_ENV === 'development',
@@ -61,7 +57,7 @@ const nextConfig = {
     locales: Object.keys(JSON.parse(process.env.NEXT_PUBLIC_LOCALE_STORES)),
     defaultLocale: Object.keys(JSON.parse(process.env.NEXT_PUBLIC_LOCALE_STORES))[0],
   },
-  productionBrowserSourceMaps: true,
+  // productionBrowserSourceMaps: true,
   eslint: {
     ignoreDuringBuilds: true,
   },

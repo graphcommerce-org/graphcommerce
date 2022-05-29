@@ -66,7 +66,7 @@ export function ProductAddToCart(
         required={required.quantity}
         inputProps={{ min: 1 }}
         {...muiRegister('quantity', { required: required.quantity })}
-        helperText={formState.isSubmitted && formState.errors.quantity}
+        helperText={formState.isSubmitted && formState.errors.quantity?.message}
         disabled={formState.isSubmitting}
         size='small'
       />

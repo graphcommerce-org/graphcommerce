@@ -13,7 +13,7 @@ export type PaymentMethod = Partial<AvailablePaymentMethodFragment> &
   }
 
 export type PaymentMethodOptionsProps = Pick<UseFormComposeOptions, 'step'> & {
-  Container: React.FC
+  Container: React.FC<{ children?: React.ReactNode }>
 }
 export type PaymentButtonProps = PaymentMethod & { buttonProps: LinkOrButtonProps }
 export type PaymentOptionsProps = PaymentMethod & PaymentMethodOptionsProps
