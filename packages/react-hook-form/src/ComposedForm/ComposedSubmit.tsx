@@ -57,13 +57,26 @@ export function ComposedSubmit(props: ComposedSubmitProps) {
 
     let formsToProcess = formEntries
     if (invalidKeys.length === 0) {
+      const onlyDirty = formEntries.filter(([, { form }]) => Boolean(form?.formState.isDirty))
+
       if (process.env.NODE_ENV !== 'production') {
-        // eslint-disable-next-line no-console
-        console.log(
-          '[ComposedForm] All forms are valid, submitting...',
-          formsToProcess.map(([, { key }]) => key),
-        )
+        const all = formsToProcess.map(([, { key }]) => key).join(',')
+        const dirtyForms = onlyDirty.map(([, { key }]) => key).join(',')
+
+        if (dirtyForms.length > 0) {
+          // eslint-disable-next-line no-console
+          console.log(
+            `[ComposedForm] All forms are valid (${all}), following forms are dirty (${dirtyForms}), submitting...`,
+          )
+        } else {
+          // eslint-disable-next-line no-console
+          console.log(
+            `[ComposedForm] All forms are valid (${all}), no forms to submit, continuing...`,
+          )
+        }
       }
+
+      formsToProcess = onlyDirty
     } else {
       formsToProcess = formEntries.filter(([, { key }]) => invalidKeys.includes(key))
       if (process.env.NODE_ENV !== 'production') {
