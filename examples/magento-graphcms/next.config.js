@@ -63,6 +63,16 @@ const nextConfig = {
   },
   webpack: (config) => {
     config.optimization.providedExports = true
+
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@mui/base': '@mui/base/legacy',
+      '@mui/lab': '@mui/lab/legacy',
+      '@mui/material': '@mui/material/legacy',
+      '@mui/styled-engine': '@mui/styled-engine/legacy',
+      '@mui/system': '@mui/system/legacy',
+    }
+
     return config
   },
 }
