@@ -5,21 +5,17 @@ import {
   useFormGqlMutationCart,
 } from '@graphcommerce/magento-cart'
 import { CustomerDocument } from '@graphcommerce/magento-customer'
-import { iconHome, IconSvg, ActionCardList, ActionCard, Form, Button } from '@graphcommerce/next-ui'
-import {
-  ActionCardItem,
-  ActionCardListForm,
-} from '@graphcommerce/next-ui/ActionCard/ActionCardListForm'
+import { iconHome, IconSvg, Form, Button } from '@graphcommerce/next-ui'
+import { ActionCardListForm } from '@graphcommerce/next-ui/ActionCard/ActionCardListForm'
 import {
   useFormPersist,
   useFormCompose,
   UseFormComposeOptions,
-  Controller,
 } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
-import { Box, FormControl, NoSsr } from '@mui/material'
+import { Box, FormControl } from '@mui/material'
 import { useRouter } from 'next/router'
-import React, { useMemo } from 'react'
+import React from 'react'
 import { isSameAddress } from '../../utils/isSameAddress'
 import { GetAddressesDocument } from '../ShippingAddressForm/GetAddresses.gql'
 import { SetCustomerShippingAddressOnCartDocument } from './SetCustomerShippingAddressOnCart.gql'
@@ -37,21 +33,6 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
 
   const shippingAddress = cartQuery?.cart?.shipping_addresses?.[0]
   const billingAddress = cartQuery?.cart?.billing_address
-
-  const found = customerAddresses.data?.customer?.addresses?.find(
-    (customerAddr) =>
-      [
-        customerAddr?.firstname === shippingAddress?.firstname,
-        customerAddr?.lastname === shippingAddress?.lastname,
-        customerAddr?.city === shippingAddress?.city,
-        customerAddr?.postcode === shippingAddress?.postcode,
-        customerAddr?.street?.[0] === shippingAddress?.street[0],
-        customerAddr?.street?.[1] === shippingAddress?.street[1],
-        customerAddr?.street?.[2] === shippingAddress?.street[2],
-        customerAddr?.country_code === shippingAddress?.country.code,
-        customerAddr?.region?.region_code === shippingAddress?.region?.code,
-      ].filter((v) => !v).length === 0,
-  )
 
   const Mutation = isSameAddress(shippingAddress, billingAddress)
     ? SetCustomerShippingBillingAddressOnCartDocument
