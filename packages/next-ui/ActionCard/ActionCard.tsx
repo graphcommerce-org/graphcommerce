@@ -9,12 +9,23 @@ export type ActionCardProps = {
   action?: React.ReactNode
   details?: React.ReactNode
   secondaryAction?: React.ReactNode
-  onClick?: (e: FormEvent<HTMLButtonElement>, v: string | number) => void
-  onChange?: (e: FormEvent<HTMLButtonElement>, v: string | number) => void
+  onClick?: (e: FormEvent<HTMLElement>, v: string | number) => void
   selected?: boolean
   hidden?: boolean | (() => boolean)
   value: string | number
   reset?: React.ReactNode
+}
+
+const actionButtonStyles: SxProps = {
+  '& .MuiButton-root': {
+    '&.MuiButton-textSecondary': {
+      padding: '5px',
+      margin: '-5px',
+      '&:hover': {
+        background: 'none',
+      },
+    },
+  },
 }
 
 export function ActionCard(props: ActionCardProps) {
@@ -25,7 +36,6 @@ export function ActionCard(props: ActionCardProps) {
     details,
     secondaryAction,
     sx = [],
-    onChange,
     onClick,
     value,
     selected,
@@ -33,52 +43,31 @@ export function ActionCard(props: ActionCardProps) {
     reset,
   } = props
 
-  const handleChange = (event: FormEvent<HTMLButtonElement>) => onChange?.(event, value)
-  const handleClick = (event: FormEvent<HTMLButtonElement>) => {
-    if (onClick) {
-      onClick(event, value)
-      if (event.isDefaultPrevented()) return
-    }
-    handleChange(event)
-  }
-
-  const actionButtonStyles: SxProps = {
-    '& .MuiButton-root': {
-      '&.MuiButton-textSecondary': {
-        padding: '5px',
-        margin: '-5px',
-        '&:hover': {
-          background: 'none',
-        },
-      },
-    },
-  }
+  const handleClick = (event: FormEvent<HTMLElement>) => onClick?.(event, value)
 
   return (
     <ButtonBase
-      component='button'
+      component='div'
       className='ActionCard-root'
       onClick={handleClick}
-      onChange={handleChange}
-      value={value}
       sx={[
-        {
+        (theme) => ({
           display: 'grid',
           width: '100%',
           gridTemplateColumns: 'min-content',
-          gridTemplateAreas: `
-        "image title action"
-        "image details secondaryDetails"
-        "image secondaryAction additionalDetails"
-        "additionalContent additionalContent additionalContent"
-        `,
+          gridTemplateAreas: {
+            xs: `
+              "image title action"
+              "image details details"
+              "image secondaryAction additionalDetails"
+              "additionalContent additionalContent additionalContent"
+            `,
+          },
           justifyContent: 'unset',
-        },
-        (theme) => ({
           typography: 'body1',
-          textAlign: 'left',
+          // textAlign: 'left',
           background: theme.palette.background.paper,
-          padding: `calc(${theme.spacings.xs} + 1px)`,
+          padding: `calc(${theme.spacings.xxs} + 1px) calc(${theme.spacings.xs} + 1px)`,
           columnGap: theme.spacings.xxs,
           border: `1px solid ${theme.palette.divider}`,
           borderBottomColor: `transparent`,
@@ -102,7 +91,7 @@ export function ActionCard(props: ActionCardProps) {
             borderTopRightRadius: theme.shape.borderRadius,
             borderBottomLeftRadius: theme.shape.borderRadius,
             borderBottomRightRadius: theme.shape.borderRadius,
-            padding: theme.spacings.xs,
+            padding: `${theme.spacings.xxs} ${theme.spacings.xs}`,
           })),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
