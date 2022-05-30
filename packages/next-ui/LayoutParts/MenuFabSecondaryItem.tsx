@@ -1,6 +1,6 @@
 import { ListItemButton, ListItemIcon, ListItemText, SxProps, Theme } from '@mui/material'
 import PageLink from 'next/link'
-import router from 'next/router'
+import { useRouter } from 'next/router'
 import React from 'react'
 import { extendableComponent } from '../Styles'
 
@@ -17,6 +17,7 @@ const { classes } = extendableComponent(compName, parts)
 
 export function MenuFabSecondaryItem(props: FabMenuSecondaryItemProps) {
   const { href, children, icon, sx = [] } = props
+  const router = useRouter()
 
   return (
     <PageLink href={href} passHref>

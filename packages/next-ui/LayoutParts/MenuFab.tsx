@@ -72,9 +72,20 @@ export function MenuFab(props: MenuFabProps) {
   return (
     <Box
       sx={[
-        { position: 'relative', width: fabIconSize, height: fabIconSize },
+        {
+          position: 'relative',
+          width: fabIconSize,
+          height: fabIconSize,
+          '.MuiModal-hidden': { visibility: 'visible !important', pointerEvents: 'none' },
+          '.MuiMenu-paper': {
+            visibility: 'visible !important',
+          },
+        },
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
+      component='nav'
+      role='navigation'
+      aria-label='Main'
     >
       <MotionDiv
         className={classes.wrapper}
@@ -134,6 +145,7 @@ export function MenuFab(props: MenuFabProps) {
           onClose={() => setOpenEl(null)}
           disableScrollLock
           disablePortal
+          keepMounted
           transitionDuration={{ appear: 175, enter: 175, exit: 175 }}
           PaperProps={{
             sx: (theme) => ({
@@ -145,6 +157,7 @@ export function MenuFab(props: MenuFabProps) {
               [theme.breakpoints.down('md')]: {
                 marginTop: `calc((${fabIconSize} + 12px) * -1)`,
               },
+              visibility: 'visible',
             }),
           }}
           className={classes.menu}
