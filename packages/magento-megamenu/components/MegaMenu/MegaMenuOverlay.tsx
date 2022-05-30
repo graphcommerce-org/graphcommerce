@@ -31,8 +31,8 @@ export function MegaMenuOverlay(props: Props) {
       sizeMd='floating'
       justifyMd='start'
       variantSm='bottom'
-      sizeSm='minimal'
-      justifySm='center'
+      sizeSm='floating'
+      justifySm='start'
     >
       <LayoutOverlayHeader
         switchPoint={0}
