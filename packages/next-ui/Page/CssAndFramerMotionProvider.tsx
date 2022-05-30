@@ -1,5 +1,4 @@
-import { LazyMotion } from 'framer-motion'
-import { EmotionProvider } from '../Styles'
+import { LazyMotion, domMax } from 'framer-motion'
 
 export type GraphCommerceProviderProps = {
   children: React.ReactNode
@@ -14,7 +13,7 @@ export type GraphCommerceProviderProps = {
  */
 export function CssAndFramerMotionProvider({ children }: GraphCommerceProviderProps) {
   return (
-    <LazyMotion features={async () => (await import('./framerFeatures')).default} strict>
+    <LazyMotion features={domMax} strict>
       {children}
     </LazyMotion>
   )
