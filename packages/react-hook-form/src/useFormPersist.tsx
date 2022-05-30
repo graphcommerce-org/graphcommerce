@@ -34,6 +34,8 @@ export type UseFormPersistOptions<
 /**
  * Will persist any dirty fields and store it in the sessionStorage/localStorage Will restory any
  * dirty fields when the form is initialized
+ *
+ * Todo: Use wath callback so it won't trigger a rerender
  */
 export function useFormPersist<V>(options: UseFormPersistOptions<V>) {
   const { form, name, storage = 'sessionStorage', exclude = [], persist = [] } = options
