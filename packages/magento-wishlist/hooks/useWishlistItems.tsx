@@ -1,5 +1,4 @@
 import { useQuery } from '@graphcommerce/graphql'
-import { WishlistItem } from '@graphcommerce/graphql-mesh'
 import { useCustomerSession } from '@graphcommerce/magento-customer'
 import { GetGuestWishlistProductsDocument } from '../queries/GetGuestWishlistProducts.gql'
 import { GetWishlistProductsDocument } from '../queries/GetWishlistProducts.gql'
@@ -8,7 +7,7 @@ import { GuestWishlistDocument } from '../queries/GuestWishlist.gql'
 export function useWishlistItems() {
   const { loggedIn } = useCustomerSession()
 
-  let wishlistItems: (WishlistItem | null)[] | undefined
+  let wishlistItems
 
   /** Get customer wishlist from session */
   const customerWl = useQuery(GetWishlistProductsDocument, { ssr: false, skip: !loggedIn })

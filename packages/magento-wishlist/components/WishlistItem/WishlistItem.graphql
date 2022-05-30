@@ -1,20 +1,3 @@
 fragment WishlistItem on WishlistItemInterface @injectable {
   id
-  customizable_options {
-    customizable_option_uid
-    is_required
-    label
-    sort_order
-    type
-    values {
-      customizable_option_value_uid
-      label
-      price {
-        type
-        units
-        value
-      }
-      value
-    }
-  }
 }
