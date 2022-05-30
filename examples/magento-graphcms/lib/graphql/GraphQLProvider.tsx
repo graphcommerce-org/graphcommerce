@@ -37,7 +37,11 @@ const policies = [magentoTypePolicies, cartTypePolicies, customerTypePolicies, w
 const migrations = [migrateCart, migrateCustomer]
 
 /** HttpLink to connecto to the GraphQL Backend. */
-export function httpLink(cache: ApolloCache<NormalizedCacheObject>, locale?: string) {
+export function httpLink(
+  cache: ApolloCache<NormalizedCacheObject>,
+  locale?: string,
+  errorLink: ApolloLink = new ApolloLink((operation, forward) => forward(operation)),
+) {
   return ApolloLink.from([
     // Add the correct store header for the Magento user.
     createStoreLink(locale),
@@ -45,6 +49,8 @@ export function httpLink(cache: ApolloCache<NormalizedCacheObject>, locale?: str
     createCustomerTokenLink(cache),
     // Add recaptcha headers to the request.
     recaptchaLink,
+    // Add the error link to the request.
+    errorLink,
     // The actual Http connection to the Mesh backend.
     new HttpLink({
       uri: process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT,
@@ -63,19 +69,20 @@ export function createCache() {
 
 type GraphQLProviderProps = {
   children: React.ReactNode
+  errorLink?: ApolloLink
 } & Pick<AppProps, 'pageProps' | 'router'>
 
 /**
  * - Creates an instance of ApolloClient that will update it's cache when the server responds with a new cache.
  * - It also is able to revive the cache from a previous visit.
  */
-export function GraphQLProvider({ children, router, pageProps }: GraphQLProviderProps) {
+export function GraphQLProvider({ children, router, pageProps, errorLink }: GraphQLProviderProps) {
   const state = (pageProps as Partial<ApolloStateProps>).apolloState
 
   const client = useMemo(() => {
     const cache = createCache()
-    return new ApolloClient({ link: httpLink(cache, router.locale), cache, name: 'web' })
-  }, [router.locale])
+    return new ApolloClient({ link: httpLink(cache, router.locale, errorLink), cache, name: 'web' })
+  }, [errorLink, router.locale])
 
   // Update the cache with the latest incomming data, but only when it is changed.
   useMemo(
