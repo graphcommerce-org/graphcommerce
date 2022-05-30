@@ -53,7 +53,7 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
   useFormPersist({ form, name: 'CustomerAddressForm' })
   useFormCompose({ form, step, submit, key: 'CustomerAddressForm' })
 
-  if (customerAddresses.loading || !addresses || addresses.length === 0) return null
+  if (customerAddresses.loading) return null
 
   return (
     <>
@@ -62,6 +62,7 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
           <ActionCardListForm
             control={control}
             name='customerAddressId'
+            defaultValue={!customerAddressId && addresses?.length === 0 ? '-1' : null}
             items={[
               ...(addresses ?? []).map((address) => ({
                 value: Number(address?.id),
@@ -93,13 +94,15 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
                 title: <Trans id='New address' />,
                 details: <Trans id='Add new address' />,
                 image: <IconSvg src={iconHome} size='large' />,
+                reset: null,
               },
             ]}
           />
         </FormControl>
         <ApolloCartErrorAlert error={error} />
       </Form>
-      {customerAddressId === -1 && children}
+
+      {String(customerAddressId) === '-1' && children}
     </>
   )
 }
