@@ -11,10 +11,7 @@ export type ActionCardRenderProps = Pick<
   'action' | 'reset' | 'selected' | 'hidden' | 'value' | 'onClick' | 'onChange'
 >
 
-export type ActionCardItem = Omit<
-  ActionCardProps,
-  'action' | 'reset' | 'selected' | 'hidden' | 'onClick' | 'onChange'
->
+export type ActionCardItem = Omit<ActionCardProps, 'selected' | 'hidden' | 'onClick' | 'onChange'>
 
 type ActionCardListFormProps = Omit<ActionCardListProps, 'value'> &
   Omit<ControllerProps<any>, 'render'> & {
@@ -44,22 +41,30 @@ export function ActionCardListForm(props: ActionCardListFormProps) {
               selected={value === item.value}
               hidden={!!value && value !== item.value}
               action={
-                <Button disableRipple variant='text' color='secondary'>
-                  <Trans id='Select' />
-                </Button>
+                typeof item.action !== 'undefined' ? (
+                  item.action
+                ) : (
+                  <Button disableRipple variant='text' color='secondary'>
+                    <Trans id='Select' />
+                  </Button>
+                )
               }
               reset={
-                <Button
-                  disableRipple
-                  variant='text'
-                  color='secondary'
-                  onClick={(e) => {
-                    e.preventDefault()
-                    onChange(null)
-                  }}
-                >
-                  <Trans id='Change' />
-                </Button>
+                typeof item.reset !== 'undefined' ? (
+                  item.reset
+                ) : (
+                  <Button
+                    disableRipple
+                    variant='text'
+                    color='secondary'
+                    onClick={(e) => {
+                      e.preventDefault()
+                      onChange(null)
+                    }}
+                  >
+                    <Trans id='Change' />
+                  </Button>
+                )
               }
             />
           ))}
