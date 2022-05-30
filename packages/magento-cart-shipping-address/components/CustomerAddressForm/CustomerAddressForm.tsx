@@ -49,6 +49,7 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
   const customerAddressId = watch('customerAddressId')
 
   const submit = customerAddressId === -1 ? async () => {} : handleSubmit(() => {})
+  const isNewCustomer = addresses?.length === 0
 
   useFormPersist({ form, name: 'CustomerAddressForm' })
   useFormCompose({ form, step, submit, key: 'CustomerAddressForm' })
@@ -62,7 +63,7 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
           <ActionCardListForm
             control={control}
             name='customerAddressId'
-            defaultValue={!customerAddressId && addresses?.length === 0 ? '-1' : null}
+            defaultValue={isNewCustomer ? '-1' : null}
             items={[
               ...(addresses ?? []).map((address) => ({
                 value: Number(address?.id),
@@ -94,7 +95,7 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
                 title: <Trans id='New address' />,
                 details: <Trans id='Add new address' />,
                 image: <IconSvg src={iconHome} size='large' />,
-                reset: null,
+                reset: isNewCustomer ? null : undefined,
               },
             ]}
           />
