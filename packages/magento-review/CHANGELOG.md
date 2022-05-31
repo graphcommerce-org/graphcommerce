@@ -1,5 +1,14 @@
 # Change Log
 
+## 3.2.11
+
+### Patch Changes
+
+- Updated dependencies [[`858a3b3a3`](https://github.com/graphcommerce-org/graphcommerce/commit/858a3b3a3601cd00491219daf45557c2f1cc804b)]:
+  - @graphcommerce/react-hook-form@3.2.0
+  - @graphcommerce/magento-customer@4.4.2
+  - @graphcommerce/magento-product@4.4.3
+
 ## 3.2.10
 
 ### Patch Changes

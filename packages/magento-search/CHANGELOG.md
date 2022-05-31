@@ -1,5 +1,12 @@
 # Change Log
 
+## 4.1.15
+
+### Patch Changes
+
+- Updated dependencies [[`858a3b3a3`](https://github.com/graphcommerce-org/graphcommerce/commit/858a3b3a3601cd00491219daf45557c2f1cc804b)]:
+  - @graphcommerce/react-hook-form@3.2.0
+
 ## 4.1.14
 
 ### Patch Changes
