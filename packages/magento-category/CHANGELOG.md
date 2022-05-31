@@ -1,5 +1,17 @@
 # Change Log
 
+## 4.1.10
+
+### Patch Changes
+
+- [#1487](https://github.com/graphcommerce-org/graphcommerce/pull/1487) [`13b174d28`](https://github.com/graphcommerce-org/graphcommerce/commit/13b174d28d1886043d9e02aef09c794ff23ea918) Thanks [@paales](https://github.com/paales)! - make sure include_in_menu is respected for CategoryChildren and CategoryHeroNav
+
+- Updated dependencies [[`c63ab89c2`](https://github.com/graphcommerce-org/graphcommerce/commit/c63ab89c20cb81d79188900d57f3d65a7bba71cc), [`afc67103d`](https://github.com/graphcommerce-org/graphcommerce/commit/afc67103d0e00583e274465036fd287537f95e79)]:
+  - @graphcommerce/magento-product@4.4.2
+  - @graphcommerce/next-ui@4.8.3
+  - @graphcommerce/framer-scroller@2.1.14
+  - @graphcommerce/magento-store@4.2.7
+
 ## 4.1.9
 
 ### Patch Changes

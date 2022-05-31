@@ -1,5 +1,17 @@
 # Change Log
 
+## 4.4.2
+
+### Patch Changes
+
+- [#1491](https://github.com/graphcommerce-org/graphcommerce/pull/1491) [`c63ab89c2`](https://github.com/graphcommerce-org/graphcommerce/commit/c63ab89c20cb81d79188900d57f3d65a7bba71cc) Thanks [@FrankHarland](https://github.com/FrankHarland)! - add sx support to ConfigurableProductAddToCart
+
+- Updated dependencies [[`afc67103d`](https://github.com/graphcommerce-org/graphcommerce/commit/afc67103d0e00583e274465036fd287537f95e79)]:
+  - @graphcommerce/next-ui@4.8.3
+  - @graphcommerce/magento-cart@4.3.3
+  - @graphcommerce/framer-scroller@2.1.14
+  - @graphcommerce/magento-store@4.2.7
+
 ## 4.4.1
 
 ### Patch Changes
