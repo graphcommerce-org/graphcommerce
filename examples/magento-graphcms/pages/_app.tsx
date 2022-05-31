@@ -23,7 +23,7 @@ export default function ThemedApp(props: AppProps) {
   return (
     <CssAndFramerMotionProvider>
       <I18nProvider key={locale} locale={locale}>
-        <GraphQLProvider {...props} errorLink={onAuthError}>
+        <GraphQLProvider {...props}>
           <DarkLightModeThemeProvider light={lightTheme} dark={darkTheme}>
             {/* <GoogleAnalyticsScript /> */}
             {/* <GoogleTagManagerScript /> */}

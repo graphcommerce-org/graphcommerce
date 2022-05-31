@@ -66,14 +66,13 @@ export function createCache() {
 
 type GraphQLProviderProps = {
   children: React.ReactNode
-  errorLink?: ApolloLink
 } & Pick<AppProps, 'pageProps' | 'router'>
 
 /**
  * - Creates an instance of ApolloClient that will update it's cache when the server responds with a new cache.
  * - It also is able to revive the cache from a previous visit.
  */
-export function GraphQLProvider({ children, router, pageProps, errorLink }: GraphQLProviderProps) {
+export function GraphQLProvider({ children, router, pageProps }: GraphQLProviderProps) {
   const state = (pageProps as Partial<ApolloStateProps>).apolloState
 
   const client = useMemo(() => {
