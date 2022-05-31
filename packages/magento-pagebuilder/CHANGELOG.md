@@ -1,5 +1,14 @@
 # @graphcommerce/magento-pagebuilder
 
+## 1.0.14
+
+### Patch Changes
+
+- Updated dependencies [[`858a3b3a3`](https://github.com/graphcommerce-org/graphcommerce/commit/858a3b3a3601cd00491219daf45557c2f1cc804b)]:
+  - @graphcommerce/react-hook-form@3.2.0
+  - @graphcommerce/magento-product@4.4.3
+  - @graphcommerce/magento-category@4.1.11
+
 ## 1.0.13
 
 ### Patch Changes

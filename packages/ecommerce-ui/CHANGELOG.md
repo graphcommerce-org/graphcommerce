@@ -1,5 +1,12 @@
 # @graphcommerce/ecommerce-ui
 
+## 1.0.16
+
+### Patch Changes
+
+- Updated dependencies [[`858a3b3a3`](https://github.com/graphcommerce-org/graphcommerce/commit/858a3b3a3601cd00491219daf45557c2f1cc804b)]:
+  - @graphcommerce/react-hook-form@3.2.0
+
 ## 1.0.15
 
 ### Patch Changes

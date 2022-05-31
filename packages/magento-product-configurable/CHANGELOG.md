@@ -1,5 +1,18 @@
 # Change Log
 
+## 4.1.10
+
+### Patch Changes
+
+- Updated dependencies [[`858a3b3a3`](https://github.com/graphcommerce-org/graphcommerce/commit/858a3b3a3601cd00491219daf45557c2f1cc804b)]:
+  - @graphcommerce/react-hook-form@3.2.0
+  - @graphcommerce/magento-cart@4.3.4
+  - @graphcommerce/magento-cart-items@3.0.26
+  - @graphcommerce/magento-customer@4.4.2
+  - @graphcommerce/magento-product@4.4.3
+  - @graphcommerce/magento-product-simple@4.0.25
+  - @graphcommerce/magento-category@4.1.11
+
 ## 4.1.9
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.2.0
+
+### Minor Changes
+
+- [#1496](https://github.com/graphcommerce-org/graphcommerce/pull/1496) [`858a3b3a3`](https://github.com/graphcommerce-org/graphcommerce/commit/858a3b3a3601cd00491219daf45557c2f1cc804b) Thanks [@FrankHarland](https://github.com/FrankHarland)! - Only submit dirty forms, allow passing false to onSubmit
+
 ## 3.1.3
 
 ### Patch Changes
