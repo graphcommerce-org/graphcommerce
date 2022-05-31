@@ -110,27 +110,20 @@ function CategoryPage(props: Props) {
           <CategoryDescription description={category.description} />
           <CategoryChildren params={params}>{category.children}</CategoryChildren>
 
-          <Suspense>
-            <StickyBelowHeader>
-              <ProductListFiltersContainer>
-                <ProductListSort
-                  sort_fields={products?.sort_fields}
-                  total_count={products?.total_count}
-                />
-                <ProductListFilters
-                  aggregations={filters?.aggregations}
-                  filterTypes={filterTypes}
-                />
-              </ProductListFiltersContainer>
-            </StickyBelowHeader>
-          </Suspense>
+          <StickyBelowHeader>
+            <ProductListFiltersContainer>
+              <ProductListSort
+                sort_fields={products?.sort_fields}
+                total_count={products?.total_count}
+              />
+              <ProductListFilters aggregations={filters?.aggregations} filterTypes={filterTypes} />
+            </ProductListFiltersContainer>
+          </StickyBelowHeader>
 
           <Container maxWidth={false}>
-            <Suspense>
-              <ProductListCount total_count={products?.total_count} />
-              <ProductListItems items={products?.items} loadingEager={1} sx={sxLargeItem} />
-              <ProductListPagination page_info={products?.page_info} />
-            </Suspense>
+            <ProductListCount total_count={products?.total_count} />
+            <ProductListItems items={products?.items} loadingEager={1} sx={sxLargeItem} />
+            <ProductListPagination page_info={products?.page_info} />
           </Container>
         </ProductListParamsProvider>
       )}

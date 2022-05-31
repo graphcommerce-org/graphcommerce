@@ -42,9 +42,7 @@ export function RowRenderer(props: PageProps) {
     // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
       {content?.map((item) => (
-        <Suspense key={item.id}>
-          <RenderType renderer={mergedRenderer} {...item} />
-        </Suspense>
+        <RenderType key={item.id} renderer={mergedRenderer} {...item} />
       ))}
     </>
   )

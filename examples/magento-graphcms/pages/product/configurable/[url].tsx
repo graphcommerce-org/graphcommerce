@@ -75,50 +75,49 @@ function ProductConfigurable(props: Props) {
       <ConfigurableContextProvider {...typeProduct} sku={product.sku}>
         <ProductPageMeta {...product} />
 
-        <Suspense>
-          <ProductPageGallery {...product}>
-            <div>
-              <Typography component='span' variant='body2' color='text.disabled'>
-                <Trans
-                  id='As low as <0/>'
-                  components={{ 0: <Money {...product.price_range.minimum_price.final_price} /> }}
-                />
-              </Typography>
-            </div>
-            <Typography variant='h3' component='div' gutterBottom>
-              {product.name}
+        <ProductPageGallery {...product}>
+          <div>
+            <Typography component='span' variant='body2' color='text.disabled'>
+              <Trans
+                id='As low as <0/>'
+                components={{ 0: <Money {...product.price_range.minimum_price.final_price} /> }}
+              />
             </Typography>
+          </div>
+          <Typography variant='h3' component='div' gutterBottom>
+            {product.name}
+          </Typography>
 
-            <ProductShortDescription short_description={product?.short_description} />
+          <ProductShortDescription short_description={product?.short_description} />
 
-            <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
-            <ConfigurableProductAddToCart
-              variables={{ sku: product.sku ?? '', quantity: 1 }}
-              name={product.name ?? ''}
-              optionEndLabels={{
-                size: (
-                  <Link
-                    component='button'
-                    color='primary'
-                    underline='hover'
-                    onClick={(e) => {
-                      e.preventDefault()
-                      return router.push('/modal/product/global/size')
-                    }}
-                  >
-                    <Trans id='Which size is right?' />
-                  </Link>
-                ),
-              }}
-              additionalButtons={<ProductWishlistChipDetailConfigurable {...product} />}
-            >
-              <ProductSidebarDelivery />
-            </ConfigurableProductAddToCart>
-            <Usps usps={sidebarUsps} size='small' />
-          </ProductPageGallery>
+          <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
+          <ConfigurableProductAddToCart
+            variables={{ sku: product.sku ?? '', quantity: 1 }}
+            name={product.name ?? ''}
+            optionEndLabels={{
+              size: (
+                <Link
+                  component='button'
+                  color='primary'
+                  underline='hover'
+                  onClick={(e) => {
+                    e.preventDefault()
+                    return router.push('/modal/product/global/size')
+                  }}
+                >
+                  <Trans id='Which size is right?' />
+                </Link>
+              ),
+            }}
+            additionalButtons={<ProductWishlistChipDetailConfigurable {...product} />}
+          >
+            <ProductSidebarDelivery />
+          </ConfigurableProductAddToCart>
+          <Usps usps={sidebarUsps} size='small' />
+        </ProductPageGallery>
 
-          <ProductPageDescription {...product} right={<Usps usps={usps} />} fontSize='responsive' />
-        </Suspense>
+        <ProductPageDescription {...product} right={<Usps usps={usps} />} fontSize='responsive' />
+
         {pages?.[0] && (
           <RowRenderer
             content={pages?.[0].content}
