@@ -1,5 +1,14 @@
 # Change Log
 
+## 4.8.3
+
+### Patch Changes
+
+- [#1487](https://github.com/graphcommerce-org/graphcommerce/pull/1487) [`afc67103d`](https://github.com/graphcommerce-org/graphcommerce/commit/afc67103d0e00583e274465036fd287537f95e79) Thanks [@paales](https://github.com/paales)! - When additing an additional breakpoint it would throw a typescript error
+
+- Updated dependencies []:
+  - @graphcommerce/framer-scroller@2.1.14
+
 ## 4.8.2
 
 ### Patch Changes

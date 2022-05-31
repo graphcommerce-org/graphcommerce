@@ -1,5 +1,13 @@
 # Change Log
 
+## 3.0.18
+
+### Patch Changes
+
+- Updated dependencies [[`afc67103d`](https://github.com/graphcommerce-org/graphcommerce/commit/afc67103d0e00583e274465036fd287537f95e79)]:
+  - @graphcommerce/next-ui@4.8.3
+  - @graphcommerce/framer-scroller@2.1.14
+
 ## 3.0.17
 
 ### Patch Changes

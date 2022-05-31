@@ -1,5 +1,16 @@
 # Change Log
 
+## 4.4.1
+
+### Patch Changes
+
+- [#1487](https://github.com/graphcommerce-org/graphcommerce/pull/1487) [`238aa4d34`](https://github.com/graphcommerce-org/graphcommerce/commit/238aa4d3478773b8cb0973f4112c9829e59e16d6) Thanks [@paales](https://github.com/paales)! - When @injecting mandatory fields into the CustomerTokenFragment it would throw a typescript error.
+
+- Updated dependencies [[`afc67103d`](https://github.com/graphcommerce-org/graphcommerce/commit/afc67103d0e00583e274465036fd287537f95e79)]:
+  - @graphcommerce/next-ui@4.8.3
+  - @graphcommerce/ecommerce-ui@1.0.15
+  - @graphcommerce/magento-store@4.2.7
+
 ## 4.4.0
 
 ### Minor Changes
