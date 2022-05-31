@@ -12,7 +12,6 @@ import {
 import { CssBaseline } from '@mui/material'
 import { AppProps } from 'next/app'
 import { lightTheme, darkTheme } from '../components/theme'
-import { onAuthError } from '../lib/graphql/ErrorLink'
 import { GraphQLProvider } from '../lib/graphql/GraphQLProvider'
 import { I18nProvider } from '../lib/i18n/I18nProvider'
 
