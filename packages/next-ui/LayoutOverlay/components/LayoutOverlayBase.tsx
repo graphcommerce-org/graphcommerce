@@ -69,6 +69,7 @@ const clearScrollLock = () => {
 export function LayoutOverlayBase(incommingProps: LayoutOverlayBaseProps) {
   const props = useThemeProps({ name, props: incommingProps })
 
+  console.log('rerender')
   const {
     children,
     variantSm,
@@ -366,7 +367,8 @@ export function LayoutOverlayBase(incommingProps: LayoutOverlayBaseProps) {
             },
           })}
         >
-          <Box
+          <MotionDiv
+            layout
             className={classes.overlayPane}
             sx={(theme) => ({
               pointerEvents: 'all',
@@ -432,7 +434,7 @@ export function LayoutOverlayBase(incommingProps: LayoutOverlayBaseProps) {
             })}
           >
             <LayoutProvider scroll={scrollWithoffset}>{children}</LayoutProvider>
-          </Box>
+          </MotionDiv>
         </Box>
       </Scroller>
     </>

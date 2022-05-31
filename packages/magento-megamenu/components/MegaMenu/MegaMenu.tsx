@@ -1,14 +1,17 @@
-import { Box, List, SxProps, Theme } from '@mui/material'
+import { responsiveVal } from '@graphcommerce/next-ui'
+import { Box, List, styled, SxProps, Theme } from '@mui/material'
+import { m } from 'framer-motion'
 import { useState } from 'react'
 import { MegaMenuQueryFragment } from '../../queries/MegaMenuQueryFragment.gql'
 import { MegaMenuItem, MegaMenuItemProps } from './MegaMenuItem'
 
 type Props = MegaMenuQueryFragment & Omit<MegaMenuItemProps, 'uid'> & { mobileOnly?: boolean }
 
+const MotionBox = styled(m.div)({})
+
 export function MegaMenu(props: Props) {
-  const { menu, mobileOnly } = props
+  const { menu, mobileOnly, activeIndex, setActiveIndex } = props
   const root = menu?.items
-  const [activeIndex, setActiveIndex] = useState<number | null>()
 
   const desktopExpandFirst: SxProps<Theme> = [
     (theme) =>
@@ -30,7 +33,7 @@ export function MegaMenu(props: Props) {
   ]
 
   return (
-    <Box maxWidth='md' sx={desktopExpandFirst}>
+    <Box>
       <List
         disablePadding
         sx={(theme) => ({
@@ -38,8 +41,7 @@ export function MegaMenu(props: Props) {
           gridTemplateRows: 'auto',
           [theme.breakpoints.up('md')]: !mobileOnly && {
             background: theme.palette.background.default,
-            gridTemplate: '"nav items"/1fr 2fr',
-            minWidth: '960px',
+            // gridTemplate: `"nav items"/${responsiveVal(200, 280)} ${responsiveVal(200, 280)}`,
           },
           '& > li:nth-of-type(1) > a': {
             [theme.breakpoints.up('md')]:
@@ -57,7 +59,7 @@ export function MegaMenu(props: Props) {
               key={item.uid}
               {...item}
               index={index}
-              setActiveIndex={setActiveIndex}
+              setActiveIndex={() => setActiveIndex(activeIndex === index ? null : index)}
               activeIndex={activeIndex}
               rootItemCount={root.length}
               mobileOnly={mobileOnly}

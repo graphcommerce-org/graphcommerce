@@ -39,7 +39,7 @@ export function useScrollTo() {
               },
               onComplete,
               onStop: onComplete,
-              duration: 375,
+              duration: 200,
             }),
           )
         } else onComplete()

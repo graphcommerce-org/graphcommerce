@@ -1,4 +1,4 @@
-import { Button, IconSvg, iconChevronRight } from '@graphcommerce/next-ui'
+import { Button, IconSvg, iconChevronRight, responsiveVal } from '@graphcommerce/next-ui'
 import { Box, SxProps, Theme } from '@mui/material'
 import PageLink from 'next/link'
 import { MegaMenuItemFragment } from '../../queries/MegaMenuItem.gql'
@@ -21,6 +21,7 @@ export function MegaMenuRootButton(props: Props) {
       borderRadius: '0',
       padding: 1,
       borderBottom: `1px solid ${theme.palette.divider}`,
+      minWidth: responsiveVal(200, 280),
       [theme.breakpoints.up('md')]: !mobileOnly && {
         borderBottom: 'none',
         ...theme.typography.body1,

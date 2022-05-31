@@ -1,8 +1,9 @@
-import { IconSvg } from '@graphcommerce/next-ui/IconSvg'
-import { iconChevronLeft } from '@graphcommerce/next-ui/icons'
+import { iconChevronLeft, IconSvg, responsiveVal } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Theme, SxProps, List, ListItem, Button, Box, Fab } from '@mui/material'
+import { Theme, SxProps, List, ListItem, Button, Box, Fab, styled } from '@mui/material'
+import {} from '@mui/material/utils'
+import { m } from 'framer-motion'
 import PageLink from 'next/link'
 import { MegaMenuItemFragment } from '../../queries/MegaMenuItem.gql'
 import { MegaMenuRootButton } from './MegaMenuRootButton'
@@ -15,6 +16,8 @@ export type MegaMenuItemProps = {
   mobileOnly?: boolean
   setActiveIndex?: (index: number | null) => void
 } & MegaMenuItemFragment
+
+const MotionBox = styled(m.div)({})
 
 export function MegaMenuItem(props: MegaMenuItemProps) {
   const {
@@ -37,13 +40,16 @@ export function MegaMenuItem(props: MegaMenuItemProps) {
     (theme) => ({
       display: 'none',
       [theme.breakpoints.up('md')]: !mobileOnly && {
-        display: 'block',
-        gridArea: 'items',
-        gridRowStart: `span ${rootItemCount}`,
-        visibility: 'hidden',
+        scrollSnapAlign: 'start',
+        scrollSnapStop: 'always',
+        display: 'none',
+        // gridArea: 'items',
+        // gridRowStart: `span ${rootItemCount}`,
+        // visibility: 'hidden',
+        width: responsiveVal(200, 280),
         // padding: theme.spacings.md,
         boxShadow: `-1px 0 ${theme.palette.divider}`,
-        columnCount: 2,
+        columnCount: 1,
         background: theme.palette.background.paper,
         height: '100%',
       },
@@ -53,7 +59,8 @@ export function MegaMenuItem(props: MegaMenuItemProps) {
         ? {
             display: 'block',
             [theme.breakpoints.up('md')]: !mobileOnly && {
-              visibility: 'visible',
+              display: 'block',
+              // visibility: 'visible',
             },
           }
         : {},
@@ -107,60 +114,62 @@ export function MegaMenuItem(props: MegaMenuItemProps) {
         mobileOnly={mobileOnly}
         index={index}
       />
-      <List sx={subMenuContainer}>
-        <Fab
-          onClick={(e) => {
-            if (setActiveIndex) {
-              setActiveIndex(null)
-            }
-            e.preventDefault()
-            e.stopPropagation()
-          }}
-          aria-label={i18n._(/* i18n */ `Back`)}
-          size='small'
-          color='default'
-          sx={{ display: { md: !mobileOnly ? 'none' : 'inline-flex' } }}
-        >
-          <IconSvg src={iconChevronLeft} size='medium' />
-        </Fab>
+      <MotionBox sx={{ gridArea: 'items', gridRowStart: `span ${rootItemCount}` }}>
+        <List sx={subMenuContainer}>
+          <Fab
+            onClick={(e) => {
+              if (setActiveIndex) {
+                setActiveIndex(null)
+              }
+              e.preventDefault()
+              e.stopPropagation()
+            }}
+            aria-label={i18n._(/* i18n */ `Back`)}
+            size='small'
+            color='default'
+            sx={{ display: { md: !mobileOnly ? 'none' : 'inline-flex' } }}
+          >
+            <IconSvg src={iconChevronLeft} size='medium' />
+          </Fab>
 
-        {url_path && (
-          <ListItem sx={listItemStyles}>
-            <PageLink href={url_path} passHref>
-              <Button variant='text'>
-                <Trans id='View all' /> {name && name?.toLocaleLowerCase()}
-              </Button>
-            </PageLink>
-          </ListItem>
-        )}
-
-        {children?.map((child) =>
-          child?.include_in_menu ? (
-            <ListItem sx={listItemStyles} key={child?.name}>
-              {child.url_path && (
-                <PageLink href={child?.url_path} passHref>
-                  <Button variant='text'>{child?.name}</Button>
-                </PageLink>
-              )}
-              {child?.children && child.children.length > 0 ? (
-                <List>
-                  {child.children?.map((subChild) =>
-                    subChild?.include_in_menu ? (
-                      <ListItem key={subChild?.name} sx={[listItemStyles, subListItemStyles]}>
-                        {subChild.url_path && (
-                          <PageLink href={subChild?.url_path} passHref>
-                            <Button variant='text'>{subChild?.name}</Button>
-                          </PageLink>
-                        )}
-                      </ListItem>
-                    ) : null,
-                  )}
-                </List>
-              ) : null}
+          {url_path && (
+            <ListItem sx={listItemStyles}>
+              <PageLink href={url_path} passHref>
+                <Button variant='text'>
+                  <Trans id='View all' /> {name && name?.toLocaleLowerCase()}
+                </Button>
+              </PageLink>
             </ListItem>
-          ) : null,
-        )}
-      </List>
+          )}
+
+          {children?.map((child) =>
+            child?.include_in_menu ? (
+              <ListItem sx={listItemStyles} key={child?.name}>
+                {child.url_path && (
+                  <PageLink href={child?.url_path} passHref>
+                    <Button variant='text'>{child?.name}</Button>
+                  </PageLink>
+                )}
+                {child?.children && child.children.length > 0 ? (
+                  <List>
+                    {child.children?.map((subChild) =>
+                      subChild?.include_in_menu ? (
+                        <ListItem key={subChild?.name} sx={[listItemStyles, subListItemStyles]}>
+                          {subChild.url_path && (
+                            <PageLink href={subChild?.url_path} passHref>
+                              <Button variant='text'>{subChild?.name}</Button>
+                            </PageLink>
+                          )}
+                        </ListItem>
+                      ) : null,
+                    )}
+                  </List>
+                ) : null}
+              </ListItem>
+            ) : null,
+          )}
+        </List>
+      </MotionBox>
     </ListItem>
   )
 }

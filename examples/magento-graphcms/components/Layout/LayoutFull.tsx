@@ -46,6 +46,7 @@ export function LayoutFull(props: LayoutFullProps) {
 
   return (
     <>
+      <MegaMenuOverlay menu={menu} active={active} close={close} />
       <LayoutDefault
         {...uiProps}
         noSticky={router.asPath.split('?')[0] === '/'}
@@ -155,7 +156,6 @@ export function LayoutFull(props: LayoutFullProps) {
       >
         {children}
       </LayoutDefault>
-      <MegaMenuOverlay menu={menu} active={active} close={close} />
     </>
   )
 }
