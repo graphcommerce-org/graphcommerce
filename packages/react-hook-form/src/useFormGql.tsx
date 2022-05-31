@@ -5,11 +5,11 @@ import {
   useApolloClient,
   MutationTuple,
   ApolloError,
+  LazyQueryResultTuple,
 } from '@apollo/client'
 import { UseFormProps, UseFormReturn, UnpackNestedValue, DeepPartial } from 'react-hook-form'
 import diff from './diff'
 import { useGqlDocumentHandler, UseGqlDocumentHandler } from './useGqlDocumentHandler'
-import { LazyQueryTuple } from './useLazyQueryPromise'
 
 export type OnCompleteFn<Q> = (
   data: FetchResult<Q>,
@@ -31,7 +31,7 @@ export type UseFormGqlMethods<Q, V> = Omit<UseGqlDocumentHandler<V>, 'encode' | 
   Pick<UseFormReturn<V>, 'handleSubmit'> & { data?: Q | null; error?: ApolloError }
 
 /**
- * Combines useMutation/useLazyQueryPromise with react-hook-form's useForm:
+ * Combines useMutation/useLazyQuery with react-hook-form's useForm:
  *
  * - Automatically extracts all required arguments for a query
  * - Casts Float/Int mutation input variables to a Number
@@ -42,7 +42,7 @@ export function useFormGql<Q, V>(
   options: {
     document: TypedDocumentNode<Q, V>
     form: UseFormReturn<V>
-    tuple: MutationTuple<Q, V> | LazyQueryTuple<Q, V>
+    tuple: MutationTuple<Q, V> | LazyQueryResultTuple<Q, V>
     defaultValues?: UseFormProps<V>['defaultValues']
   } & UseFormGraphQLCallbacks<Q, V>,
 ): UseFormGqlMethods<Q, V> {
