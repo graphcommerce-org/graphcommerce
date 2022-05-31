@@ -17,7 +17,11 @@ export type OnCompleteFn<Q> = (
 ) => void | Promise<void>
 
 type UseFormGraphQLCallbacks<Q, V> = {
-  onBeforeSubmit?: (variables: V) => V | Promise<V>
+  /**
+   * Allows you to modify the variablels computed by the form to make it compatible with the GraphQL
+   * Mutation. Also allows you to send false to skip submission.
+   */
+  onBeforeSubmit?: (variables: V) => V | false | Promise<V | false>
   onComplete?: OnCompleteFn<Q>
 }
 
@@ -56,7 +60,12 @@ export function useFormGql<Q, V>(
       })
 
       // Wait for the onBeforeSubmit to complete
-      if (onBeforeSubmit) variables = await onBeforeSubmit(variables)
+      if (onBeforeSubmit) {
+        const res = await onBeforeSubmit(variables)
+        if (res === false) return
+        variables = res
+      }
+      // if (variables === false) onInvalid?.(formValues, event)
 
       const result = await execute({ variables })
       if (onComplete && result.data) await onComplete(result, client)

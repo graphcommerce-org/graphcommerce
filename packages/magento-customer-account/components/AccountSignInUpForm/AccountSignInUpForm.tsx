@@ -27,6 +27,11 @@ export type AccountSignInUpFormProps = { sx?: SxProps<Theme> }
 const parts = ['root', 'titleContainer'] as const
 const { classes } = extendableComponent('AccountSignInUpForm', parts)
 
+const titleContainerSx: SxProps<Theme> = (theme) => ({
+  typography: 'body1',
+  marginBottom: theme.spacings.xs,
+})
+
 export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
   const { sx = [] } = props
   const customerQuery = useCustomerQuery(CustomerDocument)
@@ -35,13 +40,6 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
   const { mode, form, autoSubmitting, submit } = useFormIsEmailAvailable({ email })
   const { formState, muiRegister, required, watch, error } = form
   const disableFields = formState.isSubmitting && !autoSubmitting
-
-  useFormPersist({ form, name: 'IsEmailAvailable' })
-
-  const titleContainerSx: SxProps<Theme> = (theme) => ({
-    typography: 'body1',
-    marginBottom: theme.spacings.xs,
-  })
 
   return (
     <FormDiv sx={sx} className={classes.root}>
