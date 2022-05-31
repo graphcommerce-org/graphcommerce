@@ -16,6 +16,7 @@ import {
   createCustomerTokenLink,
   customerTypePolicies,
   migrateCustomer,
+  onAuthenticationError,
 } from '@graphcommerce/magento-customer'
 import { magentoTypePolicies } from '@graphcommerce/magento-graphql'
 import { createStoreLink } from '@graphcommerce/magento-store'
@@ -37,11 +38,7 @@ const policies = [magentoTypePolicies, cartTypePolicies, customerTypePolicies, w
 const migrations = [migrateCart, migrateCustomer]
 
 /** HttpLink to connecto to the GraphQL Backend. */
-export function httpLink(
-  cache: ApolloCache<NormalizedCacheObject>,
-  locale?: string,
-  errorLink: ApolloLink = new ApolloLink((operation, forward) => forward(operation)),
-) {
+export function httpLink(cache: ApolloCache<NormalizedCacheObject>, locale?: string) {
   return ApolloLink.from([
     // Add the correct store header for the Magento user.
     createStoreLink(locale),
@@ -50,7 +47,7 @@ export function httpLink(
     // Add recaptcha headers to the request.
     recaptchaLink,
     // Add the error link to the request.
-    errorLink,
+    onAuthenticationError,
     // The actual Http connection to the Mesh backend.
     new HttpLink({
       uri: process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT,
@@ -81,8 +78,8 @@ export function GraphQLProvider({ children, router, pageProps, errorLink }: Grap
 
   const client = useMemo(() => {
     const cache = createCache()
-    return new ApolloClient({ link: httpLink(cache, router.locale, errorLink), cache, name: 'web' })
-  }, [errorLink, router.locale])
+    return new ApolloClient({ link: httpLink(cache, router.locale), cache, name: 'web' })
+  }, [router.locale])
 
   // Update the cache with the latest incomming data, but only when it is changed.
   useMemo(
