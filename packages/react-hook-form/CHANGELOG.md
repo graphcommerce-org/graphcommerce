@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.2.1
+
+### Patch Changes
+
+- [#1495](https://github.com/graphcommerce-org/graphcommerce/pull/1495) [`ffec8800a`](https://github.com/graphcommerce-org/graphcommerce/commit/ffec8800a50ff2fe9b9fc5feeb5a0a878b573f0e) Thanks [@paales](https://github.com/paales)! - solve issue where useLazyQueryPromise didn’t always resolve
+
 ## 3.2.0
 
 ### Minor Changes
