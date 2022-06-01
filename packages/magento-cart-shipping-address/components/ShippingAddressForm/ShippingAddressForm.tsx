@@ -4,6 +4,7 @@ import {
   useCartQuery,
   useFormGqlMutationCart,
 } from '@graphcommerce/magento-cart'
+import { GetShippingMethodsDocument } from '@graphcommerce/magento-cart-shipping-method/components/ShippingMethodForm/GetShippingMethods.gql'
 import { AddressFields, CustomerDocument, NameFields } from '@graphcommerce/magento-customer'
 import { CountryRegionsDocument, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Form, FormRow, InputCheckmark } from '@graphcommerce/next-ui'
@@ -49,6 +50,8 @@ export function ShippingAddressForm(props: ShippingAddressFormProps) {
 
   // If address is an existing customer address then this form is rendered to add a new address so we don't want any default values.
 
+  const { refetch } = useCartQuery(GetShippingMethodsDocument)
+
   const form = useFormGqlMutationCart(Mutation, {
     defaultValues: ignoreCache
       ? { saveInAddressBook: true }
@@ -80,6 +83,10 @@ export function ShippingAddressForm(props: ShippingAddressFormProps) {
         regionId,
         customerNote: '',
       }
+    },
+    onComplete: () => {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      refetch()
     },
   })
   const { muiRegister, handleSubmit, valid, formState, required, error } = form
