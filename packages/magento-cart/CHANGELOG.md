@@ -1,5 +1,14 @@
 # Change Log
 
+## 4.4.1
+
+### Patch Changes
+
+- [#1499](https://github.com/graphcommerce-org/graphcommerce/pull/1499) [`d205b037f`](https://github.com/graphcommerce-org/graphcommerce/commit/d205b037fee82b8c03993f2c586f477e826093bf) Thanks [@paales](https://github.com/paales)! - Unified and simplified the customer authentication error handling
+
+- Updated dependencies [[`d205b037f`](https://github.com/graphcommerce-org/graphcommerce/commit/d205b037fee82b8c03993f2c586f477e826093bf)]:
+  - @graphcommerce/magento-customer@4.5.1
+
 ## 4.4.0
 
 ### Minor Changes
