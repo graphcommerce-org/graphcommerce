@@ -84,7 +84,7 @@
     "next-sitemap": "2.5.26",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "sharp": "0.30.4"
+    "sharp": "0.30.5"
   },
   "resolutions": {
     "@types/react": "17.0.44"
