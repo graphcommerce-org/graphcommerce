@@ -1,5 +1,38 @@
 # Change Log
 
+## 3.11.1
+
+### Patch Changes
+
+- [#1499](https://github.com/graphcommerce-org/graphcommerce/pull/1499) [`c44400e79`](https://github.com/graphcommerce-org/graphcommerce/commit/c44400e7913457700a9ed9a132dedb96752e06fc) Thanks [@paales](https://github.com/paales)! - Encountered two children with the same key
+
+- Updated dependencies [[`d205b037f`](https://github.com/graphcommerce-org/graphcommerce/commit/d205b037fee82b8c03993f2c586f477e826093bf)]:
+  - @graphcommerce/magento-cart@4.4.1
+  - @graphcommerce/magento-customer@4.5.1
+  - @graphcommerce/magento-cart-billing-address@3.0.25
+  - @graphcommerce/magento-cart-checkout@3.0.27
+  - @graphcommerce/magento-cart-coupon@3.0.27
+  - @graphcommerce/magento-cart-email@3.0.27
+  - @graphcommerce/magento-cart-items@3.0.28
+  - @graphcommerce/magento-cart-payment-method@3.1.18
+  - @graphcommerce/magento-cart-shipping-address@3.0.26
+  - @graphcommerce/magento-cart-shipping-method@3.0.27
+  - @graphcommerce/magento-newsletter@2.0.25
+  - @graphcommerce/magento-payment-braintree@3.0.25
+  - @graphcommerce/magento-payment-included@3.0.25
+  - @graphcommerce/magento-product@4.4.5
+  - @graphcommerce/magento-product-bundle@4.0.27
+  - @graphcommerce/magento-product-configurable@4.1.12
+  - @graphcommerce/magento-product-downloadable@4.0.27
+  - @graphcommerce/magento-product-grouped@3.0.27
+  - @graphcommerce/magento-product-simple@4.0.27
+  - @graphcommerce/magento-product-virtual@4.0.27
+  - @graphcommerce/magento-wishlist@1.2.5
+  - @graphcommerce/mollie-magento-payment@3.2.18
+  - @graphcommerce/magento-customer-account@3.1.20
+  - @graphcommerce/magento-review@3.2.13
+  - @graphcommerce/magento-category@4.1.13
+
 ## 3.11.0
 
 ### Minor Changes

@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-cart-billing-address",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "3.0.24",
+  "version": "3.0.25",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -21,8 +21,8 @@
     "@graphcommerce/framer-next-pages": "3.2.2",
     "@graphcommerce/graphql": "3.2.0",
     "@graphcommerce/image": "3.1.6",
-    "@graphcommerce/magento-cart": "4.4.0",
-    "@graphcommerce/magento-customer": "4.5.0",
+    "@graphcommerce/magento-cart": "4.4.1",
+    "@graphcommerce/magento-customer": "4.5.1",
     "@graphcommerce/magento-store": "4.2.8",
     "@graphcommerce/next-ui": "4.8.3",
     "@graphcommerce/react-hook-form": "3.2.1"
