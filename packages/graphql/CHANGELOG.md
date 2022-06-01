@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.2.0
+
+### Minor Changes
+
+- [#1492](https://github.com/graphcommerce-org/graphcommerce/pull/1492) [`bed806ddd`](https://github.com/graphcommerce-org/graphcommerce/commit/bed806dddd7e025806a69798ef9587aa165d392f) Thanks [@mikekeehnen](https://github.com/mikekeehnen)! - Removed useExtractCustomerErrors hook and implemented error handling via HttpLink Error
+
 ## 3.1.3
 
 ### Patch Changes

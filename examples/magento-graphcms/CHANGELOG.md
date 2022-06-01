@@ -1,5 +1,49 @@
 # Change Log
 
+## 3.11.0
+
+### Minor Changes
+
+- [#1492](https://github.com/graphcommerce-org/graphcommerce/pull/1492) [`bed806ddd`](https://github.com/graphcommerce-org/graphcommerce/commit/bed806dddd7e025806a69798ef9587aa165d392f) Thanks [@mikekeehnen](https://github.com/mikekeehnen)! - Removed useExtractCustomerErrors hook and implemented error handling via HttpLink Error
+
+### Patch Changes
+
+- Updated dependencies [[`d6d3a750e`](https://github.com/graphcommerce-org/graphcommerce/commit/d6d3a750ee15c40ba022f29b923a1b872a4796ea), [`bed806ddd`](https://github.com/graphcommerce-org/graphcommerce/commit/bed806dddd7e025806a69798ef9587aa165d392f)]:
+  - @graphcommerce/googlerecaptcha@2.1.7
+  - @graphcommerce/graphql@3.2.0
+  - @graphcommerce/magento-cart@4.4.0
+  - @graphcommerce/magento-customer@4.5.0
+  - @graphcommerce/ecommerce-ui@1.0.17
+  - @graphcommerce/magento-cart-billing-address@3.0.24
+  - @graphcommerce/magento-cart-checkout@3.0.26
+  - @graphcommerce/magento-cart-coupon@3.0.26
+  - @graphcommerce/magento-cart-email@3.0.26
+  - @graphcommerce/magento-cart-items@3.0.27
+  - @graphcommerce/magento-cart-payment-method@3.1.17
+  - @graphcommerce/magento-cart-shipping-address@3.0.25
+  - @graphcommerce/magento-cart-shipping-method@3.0.26
+  - @graphcommerce/magento-customer-account@3.1.19
+  - @graphcommerce/magento-newsletter@2.0.24
+  - @graphcommerce/magento-payment-braintree@3.0.24
+  - @graphcommerce/magento-payment-included@3.0.24
+  - @graphcommerce/magento-product-configurable@4.1.11
+  - @graphcommerce/magento-review@3.2.12
+  - @graphcommerce/magento-search@4.1.16
+  - @graphcommerce/mollie-magento-payment@3.2.17
+  - @graphcommerce/graphcms-ui@3.0.21
+  - @graphcommerce/magento-category@4.1.12
+  - @graphcommerce/magento-cms@4.0.19
+  - @graphcommerce/magento-customer-order@3.0.22
+  - @graphcommerce/magento-graphql@3.0.13
+  - @graphcommerce/magento-product@4.4.4
+  - @graphcommerce/magento-product-bundle@4.0.26
+  - @graphcommerce/magento-product-downloadable@4.0.26
+  - @graphcommerce/magento-product-grouped@3.0.26
+  - @graphcommerce/magento-product-simple@4.0.26
+  - @graphcommerce/magento-product-virtual@4.0.26
+  - @graphcommerce/magento-store@4.2.8
+  - @graphcommerce/magento-wishlist@1.2.4
+
 ## 3.10.4
 
 ### Patch Changes

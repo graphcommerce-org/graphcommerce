@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.1.7
+
+### Patch Changes
+
+- [#1495](https://github.com/graphcommerce-org/graphcommerce/pull/1495) [`d6d3a750e`](https://github.com/graphcommerce-org/graphcommerce/commit/d6d3a750ee15c40ba022f29b923a1b872a4796ea) Thanks [@paales](https://github.com/paales)! - Solve updating state in render
+
+- Updated dependencies [[`bed806ddd`](https://github.com/graphcommerce-org/graphcommerce/commit/bed806dddd7e025806a69798ef9587aa165d392f)]:
+  - @graphcommerce/graphql@3.2.0
+
 ## 2.1.6
 
 ### Patch Changes
