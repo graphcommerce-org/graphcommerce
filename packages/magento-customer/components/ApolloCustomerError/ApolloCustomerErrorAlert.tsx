@@ -1,27 +1,32 @@
 import { ApolloErrorAlert, ApolloErrorAlertProps } from '@graphcommerce/ecommerce-ui'
-import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
-import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Link } from '@mui/material'
 import NextLink from 'next/link'
+import { useCustomerSession } from '../../hooks/useCustomerSession'
+import { useAuthorizationErrorMasked } from './useAuthorizationErrorMasked'
 
-type MagentoErrorAlertProps = ApolloErrorAlertProps
+export type ApolloCustomerErrorAlertProps = ApolloErrorAlertProps
 
-export function ApolloCustomerErrorAlert(props: MagentoErrorAlertProps) {
-  const { error } = props
-  const [newError, unauthorized] = graphqlErrorByCategory({
-    category: 'graphql-authorization',
-    error,
-    extract: false,
-    mask: i18n._(/* i18n */ `You must sign in to continue`),
-  })
-  const action = unauthorized && (
-    <NextLink href='/account/signin' passHref>
-      <Link underline='hover'>
-        <Trans id='Create Account' /> / <Trans id='Sign in' />
-      </Link>
-    </NextLink>
+export function ApolloCustomerErrorAlert(props: ApolloCustomerErrorAlertProps) {
+  const { error, graphqlErrorAlertProps } = props
+  const [newError, unauthorized] = useAuthorizationErrorMasked(error)
+  const { token } = useCustomerSession()
+
+  return (
+    <ApolloErrorAlert
+      {...props}
+      error={newError}
+      graphqlErrorAlertProps={{
+        action: unauthorized ? (
+          <NextLink href='/account/signin' passHref>
+            <Link underline='hover'>
+              {token ? <Trans id='Sign in' /> : <Trans id='Create Account' />}
+            </Link>
+          </NextLink>
+        ) : (
+          graphqlErrorAlertProps?.action
+        ),
+      }}
+    />
   )
-
-  return <ApolloErrorAlert error={newError} graphqlErrorAlertProps={{ action }} />
 }
