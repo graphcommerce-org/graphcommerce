@@ -1,46 +1,41 @@
-import { ApolloErrorFullPage, ApolloErrorAlertProps } from '@graphcommerce/ecommerce-ui'
-import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
+import { ApolloErrorFullPage, ApolloErrorFullPageProps } from '@graphcommerce/ecommerce-ui'
 import { iconPerson, IconSvg } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Button } from '@mui/material'
 import PageLink from 'next/link'
+import type { SetOptional } from 'type-fest'
+import { useCustomerSession } from '../../hooks/useCustomerSession'
+import { useAuthorizationErrorMasked } from './useAuthorizationErrorMasked'
 
-type ApolloCustomerErrorFullPageProps = {
-  signInHref: string
-  signUpHref: string
-} & ApolloErrorAlertProps
+export type ApolloCustomerErrorFullPageProps = {
+  /** @deprecated Not used */
+  signInHref?: string
+  /** @deprecated Not used */
+  signUpHref?: string
+} & SetOptional<ApolloErrorFullPageProps, 'icon'>
 
 export function ApolloCustomerErrorFullPage(props: ApolloCustomerErrorFullPageProps) {
-  const { signInHref, signUpHref, error } = props
-  const [newError, unauthorized] = graphqlErrorByCategory({
-    category: 'graphql-authorization',
-    error,
-    extract: false,
-    mask: i18n._(/* i18n */ `You must sign in to continue`),
-  })
+  const { error, icon, altButton, button, ...alertProps } = props
+  const [, unauthorized] = useAuthorizationErrorMasked()
+  const { token } = useCustomerSession()
+
   return (
     <ApolloErrorFullPage
-      error={newError}
       icon={<IconSvg src={iconPerson} size='xxl' />}
+      {...props}
+      error={error}
       button={
         unauthorized ? (
-          <PageLink href={signInHref} passHref>
+          <PageLink href='/account/signin' passHref>
             <Button variant='contained' color='primary' size='large'>
-              <Trans id='Log in' />
+              {token ? <Trans id='Sign in' /> : <Trans id='Create Account' />}
             </Button>
           </PageLink>
-        ) : undefined
+        ) : (
+          button
+        )
       }
-      altButton={
-        unauthorized ? (
-          <PageLink href={signUpHref} passHref>
-            <Button variant='text' color='primary'>
-              <Trans id='Or create an account' />
-            </Button>
-          </PageLink>
-        ) : undefined
-      }
+      {...alertProps}
     />
   )
 }
