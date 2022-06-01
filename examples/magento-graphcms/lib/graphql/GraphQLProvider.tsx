@@ -16,7 +16,6 @@ import {
   createCustomerTokenLink,
   customerTypePolicies,
   migrateCustomer,
-  onAuthenticationError,
 } from '@graphcommerce/magento-customer'
 import { magentoTypePolicies } from '@graphcommerce/magento-graphql'
 import { createStoreLink } from '@graphcommerce/magento-store'
@@ -46,8 +45,6 @@ export function httpLink(cache: ApolloCache<NormalizedCacheObject>, locale?: str
     createCustomerTokenLink(cache),
     // Add recaptcha headers to the request.
     recaptchaLink,
-    // Add the error link to the request.
-    onAuthenticationError,
     // The actual Http connection to the Mesh backend.
     new HttpLink({
       uri: process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT,

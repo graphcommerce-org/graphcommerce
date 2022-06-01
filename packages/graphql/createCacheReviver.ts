@@ -27,6 +27,8 @@ export function createCacheReviver(
   if (typeof window !== 'undefined') {
     try {
       const { cache } = client
+
+      // todo https://github.com/apollographql/apollo-cache-persist/tree/master/examples/react-native/src/utils/persistence
       persistor = new CachePersistor({
         cache,
         storage: new LocalStorageWrapper(window.localStorage),
