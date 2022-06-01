@@ -11,7 +11,7 @@ export function RowContentLinks(props: RowContentLinksFragment) {
       {contentLinks.map((contentLink) => (
         <PageLink href={contentLink.url} key={contentLink.url} passHref>
           <Link
-            key={contentLink.url}
+            key={contentLink.id}
             href={contentLink.url}
             variant='body1'
             color='inherit'
