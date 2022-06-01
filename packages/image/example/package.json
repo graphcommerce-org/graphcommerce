@@ -14,7 +14,7 @@
     "@graphcommerce/next-config": "3.1.4",
     "@graphcommerce/next-ui": "4.8.2",
     "framer-motion": "^6.3.3",
-    "next": "12.1.6",
+    "next": "12.1.7-canary.27",
     "react": "^18.1.0",
     "react-dom": "^18.1.0"
   },

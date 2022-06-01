@@ -39,11 +39,13 @@ if (!process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT) {
 const nextConfig = {
   experimental: {
     scrollRestoration: true,
-    // disableOptimizedLoading: true,
-    // esmExternals: false,
-    emotion: { sourceMap: true },
+    runtime: 'edge',
   },
-  // reactStrictMode: true,
+  compiler: {
+    emotion: {
+      labelFormat: '[filename]--[local]',
+    },
+  },
   swcMinify: true,
   pwa: {
     dest: 'public',
@@ -57,7 +59,6 @@ const nextConfig = {
     locales: Object.keys(JSON.parse(process.env.NEXT_PUBLIC_LOCALE_STORES)),
     defaultLocale: Object.keys(JSON.parse(process.env.NEXT_PUBLIC_LOCALE_STORES))[0],
   },
-  // productionBrowserSourceMaps: true,
   eslint: {
     ignoreDuringBuilds: true,
   },

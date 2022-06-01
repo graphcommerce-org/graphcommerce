@@ -19,6 +19,6 @@
     "@playwright/test": "^1.21.1"
   },
   "peerDependencies": {
-    "next": "12.1.2"
+    "next": "^12.1.2"
   }
 }
