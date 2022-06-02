@@ -1,5 +1,4 @@
 import { Theme } from '@emotion/react'
-import { Money, MoneyFragment } from '@graphcommerce/magento-store'
 import { SxProps, ButtonBase, Box } from '@mui/material'
 import React, { FormEvent } from 'react'
 
@@ -15,7 +14,6 @@ export type ActionCardProps = {
   hidden?: boolean | (() => boolean)
   value: string | number
   reset?: React.ReactNode
-  amount?: MoneyFragment
 }
 
 const actionButtonStyles: SxProps = {
@@ -43,7 +41,6 @@ export function ActionCard(props: ActionCardProps) {
     selected,
     hidden,
     reset,
-    amount,
   } = props
 
   const handleClick = (event: FormEvent<HTMLElement>) => onClick?.(event, value)
@@ -61,7 +58,7 @@ export function ActionCard(props: ActionCardProps) {
           gridTemplateAreas: {
             xs: `
               "image title action"
-              "image details price"
+              "image details details"
               "image secondaryAction additionalDetails"
               "additionalContent additionalContent additionalContent"
             `,
@@ -116,9 +113,6 @@ export function ActionCard(props: ActionCardProps) {
       {secondaryAction && (
         <Box sx={{ gridArea: 'secondaryAction', ...actionButtonStyles }}>{secondaryAction}</Box>
       )}
-      <Box sx={{ gridArea: 'price', justifySelf: 'end' }}>
-        <Money {...amount} />
-      </Box>
     </ButtonBase>
   )
 }

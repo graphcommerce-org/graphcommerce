@@ -5,7 +5,6 @@ import { ActionCardItemRenderer } from '@graphcommerce/next-ui/ActionCard/Action
 import { UseFormSetValue } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
 import { Box, Button, ButtonBase, SxProps, Typography } from '@mui/material'
-import { useRouter } from 'next/router'
 import { FormEvent } from 'react'
 import { AvailableShippingMethodFragment } from '../../AvailableShippingMethod/AvailableShippingMethod.gql'
 import { ShippingMethodFormMutationVariables } from '../ShippingMethodForm/ShippingMethodForm.gql'
