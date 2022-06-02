@@ -23,7 +23,6 @@ type ShippingOptionsActionCardProps = ActionCardItemRenderer<
 export function ShippingOptionsActionCard(props: ShippingOptionsActionCardProps) {
   const {
     onReset,
-    hidden,
     available,
     selected,
     amount,
@@ -35,7 +34,6 @@ export function ShippingOptionsActionCard(props: ShippingOptionsActionCardProps)
     error_message,
     setValue,
   } = props
-  const { push } = useRouter()
 
   const handleClick = (event: FormEvent<HTMLElement>) => {
     onClick?.(event, value)
@@ -65,10 +63,8 @@ export function ShippingOptionsActionCard(props: ShippingOptionsActionCardProps)
         (theme) => ({
           display: 'flex',
           width: '100%',
-
           justifyContent: 'space-between',
           typography: 'body1',
-          // textAlign: 'left',
           background: theme.palette.background.paper,
           padding: `calc(${theme.spacings.xxs} + 1px) calc(${theme.spacings.xs} + 1px)`,
           columnGap: theme.spacings.xxs,
