@@ -1,9 +1,7 @@
 import { IconSvg, iconChevronRight } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
-import { Box, Collapse, Button, List, ListItem, ListItemText, SxProps, Theme } from '@mui/material'
-import PageLink from 'next/link'
-import React, { useEffect } from 'react'
+import { Box, Button, List, ListItem, SxProps, Theme } from '@mui/material'
+import Link from 'next/link'
+import React from 'react'
 import { MegaMenuItemFragment } from '../../queries/MegaMenuItem.gql'
 import { MegaMenuQueryFragment } from '../../queries/MegaMenuQueryFragment.gql'
 
@@ -18,39 +16,65 @@ const buttonStyle: SxProps<Theme> = (theme) => ({
   borderRadius: 0,
 })
 
-function isSelected(node: Omit<MegaMenuItemFragment, 'uid'>): boolean {
-  const { children, url_path } = node
-  return false
+function PageLink(props: Pick<MegaMenuItemFragment, 'url_path' | 'name'>) {
+  const { url_path, name } = props
+
+  return (
+    <Link href={`/${url_path}`} passHref>
+      <Button variant='text' sx={buttonStyle} size='large'>
+        {name}
+      </Button>
+    </Link>
+  )
 }
 
 export function MenuList(
   props: Omit<MegaMenuItemFragment, 'uid'> & { level?: number; selected: string },
 ) {
   const { name, children, url_path, level = 0, selected } = props
-  const [open, setOpen] = React.useState(isSelected(props, selected))
+  const [open, setOpen] = React.useState<string[]>([])
 
+  // useEffect(() => setOpen(''))
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => setOpen(isSelected(props, selected)), [selected])
-  const handleClick = () => setOpen(!open)
-  const indent = Math.max(0, level + 1) * 2
+  const handleClick = (url: string) => {
+    if (!open.includes(url)) {
+      setOpen([...open, url])
+    } else {
+      setOpen(open.filter((item) => item !== url))
+    }
+    console.log(open)
+  }
   const hasChildren = children && children.length > 0
 
   if (hasChildren) {
     return (
-      <ListItem onClick={handleClick} component='li' sx={{ display: 'contents' }}>
+      <ListItem component='li' sx={{ display: 'contents' }}>
         <Box sx={{ gridColumnStart: level + 1 }}>
-          <PageLink href={url_path} passHref>
-            <Button variant='text' sx={buttonStyle} size='large'>
+          <Link href={`/${url_path}`} passHref>
+            <Button
+              variant='text'
+              sx={buttonStyle}
+              size='large'
+              onClick={(e) => {
+                if (handleClick) {
+                  handleClick(url_path as string)
+                }
+                e.preventDefault()
+                e.stopPropagation()
+              }}
+            >
               {name}
               {open ? <IconSvg src={iconChevronRight} /> : <IconSvg src={iconChevronRight} />}
             </Button>
-          </PageLink>
+          </Link>
         </Box>
         {url_path === 'men' ||
         url_path === 'men/photography' ||
         url_path === 'men/photography/sunrise' ? (
           <List component='ul' sx={{ display: 'contents' }}>
-            {/* <FileLink {...props} level={level + 1} /> */}
+            <Box sx={{ gridColumnStart: level + 2, gridRowStart: 1 }}>
+              <PageLink {...props} name={`All ${name}`} url_path={url_path} />
+            </Box>
 
             {children?.map((child) => (
               <MenuList {...child} level={level + 1} selected={selected} />
@@ -66,11 +90,7 @@ export function MenuList(
   if (!hasChildren) {
     return (
       <ListItem sx={{ gridColumnStart: level + 1, padding: 0 }} component='li'>
-        <PageLink href={url_path} passHref>
-          <Button variant='text' sx={buttonStyle} size='large'>
-            {name}
-          </Button>
-        </PageLink>
+        <PageLink {...props} />
       </ListItem>
     )
   }
