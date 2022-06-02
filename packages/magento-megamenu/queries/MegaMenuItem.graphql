@@ -1,10 +1,9 @@
 fragment MegaMenuItem on CategoryTree {
   uid
+  include_in_menu
   name
   url_path
-  include_in_menu
   children_count
-
   children {
     uid
     include_in_menu
@@ -13,9 +12,24 @@ fragment MegaMenuItem on CategoryTree {
     children_count
     children {
       uid
-      name
       include_in_menu
+      name
       url_path
+      children_count
+      children {
+        uid
+        include_in_menu
+        name
+        url_path
+        children_count
+        children {
+          uid
+          include_in_menu
+          name
+          url_path
+          children_count
+        }
+      }
     }
   }
 }

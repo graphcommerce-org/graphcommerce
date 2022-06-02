@@ -1,71 +1,94 @@
-import { responsiveVal } from '@graphcommerce/next-ui'
-import { Box, List, styled, SxProps, Theme } from '@mui/material'
-import { m } from 'framer-motion'
-import { useState } from 'react'
+import { IconSvg, iconChevronRight } from '@graphcommerce/next-ui'
+import { i18n } from '@lingui/core'
+import { Trans } from '@lingui/react'
+import { Box, Collapse, Button, List, ListItem, ListItemText, SxProps, Theme } from '@mui/material'
+import PageLink from 'next/link'
+import React, { useEffect } from 'react'
+import { MegaMenuItemFragment } from '../../queries/MegaMenuItem.gql'
 import { MegaMenuQueryFragment } from '../../queries/MegaMenuQueryFragment.gql'
-import { MegaMenuItem, MegaMenuItemProps } from './MegaMenuItem'
 
-type Props = MegaMenuQueryFragment & Omit<MegaMenuItemProps, 'uid'> & { mobileOnly?: boolean }
+const listStyles: SxProps<Theme> = (theme) => ({
+  display: 'grid',
+  gridAutoFlow: 'column',
+})
 
-const MotionBox = styled(m.div)({})
+const buttonStyle: SxProps<Theme> = (theme) => ({
+  minWidth: 200,
+  justifyContent: 'space-between',
+  borderRadius: 0,
+})
 
-export function MegaMenu(props: Props) {
-  const { menu, mobileOnly, activeIndex, setActiveIndex } = props
-  const root = menu?.items
+function isSelected(node: Omit<MegaMenuItemFragment, 'uid'>): boolean {
+  const { children, url_path } = node
+  return false
+}
 
-  const desktopExpandFirst: SxProps<Theme> = [
-    (theme) =>
-      !activeIndex
-        ? {
-            [theme.breakpoints.up('md')]: !mobileOnly && {
-              '& > ul > li:nth-of-type(1) > a': {
-                background: `${theme.palette.background.paper} !important`,
-                color: theme.palette.primary.main,
-                boxShadow: `0px 0 ${theme.palette.background.paper},inset 0 1px 0 0 ${theme.palette.divider},inset 0 -1px 0 0 ${theme.palette.divider}`,
-                zIndex: 1,
-              },
-              '& > ul > li:nth-of-type(1) > ul': {
-                visibility: 'visible',
-              },
-            },
-          }
-        : {},
-  ]
+export function MenuList(
+  props: Omit<MegaMenuItemFragment, 'uid'> & { level?: number; selected: string },
+) {
+  const { name, children, url_path, level = 0, selected } = props
+  const [open, setOpen] = React.useState(isSelected(props, selected))
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => setOpen(isSelected(props, selected)), [selected])
+  const handleClick = () => setOpen(!open)
+  const indent = Math.max(0, level + 1) * 2
+  const hasChildren = children && children.length > 0
+
+  if (hasChildren) {
+    return (
+      <ListItem onClick={handleClick} component='li' sx={{ display: 'contents' }}>
+        <Box sx={{ gridColumnStart: level + 1 }}>
+          <PageLink href={url_path} passHref>
+            <Button variant='text' sx={buttonStyle} size='large'>
+              {name}
+              {open ? <IconSvg src={iconChevronRight} /> : <IconSvg src={iconChevronRight} />}
+            </Button>
+          </PageLink>
+        </Box>
+        {url_path === 'men' ||
+        url_path === 'men/photography' ||
+        url_path === 'men/photography/sunrise' ? (
+          <List component='ul' sx={{ display: 'contents' }}>
+            {/* <FileLink {...props} level={level + 1} /> */}
+
+            {children?.map((child) => (
+              <MenuList {...child} level={level + 1} selected={selected} />
+            ))}
+          </List>
+        ) : (
+          ''
+        )}
+      </ListItem>
+    )
+  }
+
+  if (!hasChildren) {
+    return (
+      <ListItem sx={{ gridColumnStart: level + 1, padding: 0 }} component='li'>
+        <PageLink href={url_path} passHref>
+          <Button variant='text' sx={buttonStyle} size='large'>
+            {name}
+          </Button>
+        </PageLink>
+      </ListItem>
+    )
+  }
+
+  return null
+}
+
+export function MegaMenu(props: MegaMenuQueryFragment & { sx?: SxProps<Theme>; selected: string }) {
+  const { menu, sx, selected, ...link } = props
+  if (!menu) return false
+  const includedMenu = menu.items?.filter((item) => item?.include_in_menu === 1)
 
   return (
-    <Box>
-      <List
-        disablePadding
-        sx={(theme) => ({
-          display: 'grid',
-          gridTemplateRows: 'auto',
-          [theme.breakpoints.up('md')]: !mobileOnly && {
-            background: theme.palette.background.default,
-            // gridTemplate: `"nav items"/${responsiveVal(200, 280)} ${responsiveVal(200, 280)}`,
-          },
-          '& > li:nth-of-type(1) > a': {
-            [theme.breakpoints.up('md')]:
-              !mobileOnly &&
-              {
-                // marginTop: theme.spacings.md,
-              },
-          },
-        })}
-      >
-        {root?.map((item, index) => {
-          if (!item) return null
-          return (
-            <MegaMenuItem
-              key={item.uid}
-              {...item}
-              index={index}
-              setActiveIndex={() => setActiveIndex(activeIndex === index ? null : index)}
-              activeIndex={activeIndex}
-              rootItemCount={root.length}
-              mobileOnly={mobileOnly}
-            />
-          )
-        })}
+    <Box component='nav' id='main-nav' aria-label='Main'>
+      <List disablePadding sx={listStyles}>
+        {includedMenu?.map((tree) => (
+          <MenuList key={tree?.url_path} {...tree} selected={selected} />
+        ))}
       </List>
     </Box>
   )

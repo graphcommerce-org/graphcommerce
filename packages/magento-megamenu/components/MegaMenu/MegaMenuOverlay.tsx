@@ -66,7 +66,7 @@ export function MegaMenuOverlay(props: Props) {
           </LayoutTitle>
         </LayoutOverlayHeader>
 
-        <MegaMenu menu={menu} activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
+        <MegaMenu menu={menu} selected={null} />
       </m.div>
     </Overlay>
   )
