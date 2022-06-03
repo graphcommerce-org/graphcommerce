@@ -74,7 +74,12 @@ export function ConfigurableProductAddToCart(props: ConfigurableProductAddToCart
       onSubmit={submitHandler}
       noValidate
       className={classes.form}
-      sx={{ width: '100%', ...(Array.isArray(sx) ? sx : [sx]) }}
+      sx={[
+        {
+          width: '100%',
+        },
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
     >
       <Divider className={classes.divider} sx={(theme) => ({ margin: `${theme.spacings.sm} 0` })} />
       <ConfigurableOptionsInput
