@@ -1,4 +1,5 @@
-import { Box, SxProps, Theme } from '@mui/material'
+import { Box, styled, SxProps, Theme } from '@mui/material'
+import { m } from 'framer-motion'
 import React from 'react'
 import { extendableComponent } from '../../Styles'
 import { LayoutHeaderBack, useShowBack } from './LayoutHeaderBack'
@@ -35,6 +36,8 @@ type ComponentStyleProps = {
   floatingSm: boolean
   floatingMd: boolean
 }
+
+const MotionDiv = styled(m.div)({})
 
 const { selectors, withState } = extendableComponent<ComponentStyleProps, 'LayoutHeader'>(
   'LayoutHeader',

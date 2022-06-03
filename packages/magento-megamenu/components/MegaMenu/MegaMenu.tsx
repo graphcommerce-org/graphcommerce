@@ -1,17 +1,13 @@
 import { IconSvg, iconChevronRight } from '@graphcommerce/next-ui'
-import { Box, Button, List, ListItem, SxProps, Theme } from '@mui/material'
+import { Box, Button, List, ListItem, styled, SxProps, Theme } from '@mui/material'
 import Link from 'next/link'
-import React from 'react'
 import { MegaMenuItemFragment } from '../../queries/MegaMenuItem.gql'
 import { MegaMenuQueryFragment } from '../../queries/MegaMenuQueryFragment.gql'
 
-const listStyles: SxProps<Theme> = (theme) => ({
-  display: 'grid',
-  gridAutoFlow: 'column',
-})
-
 const buttonStyle: SxProps<Theme> = (theme) => ({
   minWidth: 200,
+  mr: 4,
+  ml: 4,
   justifyContent: 'space-between',
   borderRadius: 0,
 })
@@ -29,27 +25,29 @@ function PageLink(props: Pick<MegaMenuItemFragment, 'url_path' | 'name'>) {
 }
 
 export function MenuList(
-  props: Omit<MegaMenuItemFragment, 'uid'> & { level?: number; selected: string },
+  props: Omit<MegaMenuItemFragment, 'uid'> & {
+    level?: number
+    open?: string
+    setOpen: (any) => void
+  },
 ) {
-  const { name, children, url_path, level = 0, selected } = props
-  const [open, setOpen] = React.useState<string[]>([])
+  const { name, children, url_path, level = 0, open = '', setOpen } = props
 
-  // useEffect(() => setOpen(''))
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleClick = (url: string) => {
-    if (!open.includes(url)) {
-      setOpen([...open, url])
-    } else {
-      setOpen(open.filter((item) => item !== url))
+    if (!open.includes(`/${url}`)) {
+      setOpen(`/${url}`)
     }
-    console.log(open)
   }
   const hasChildren = children && children.length > 0
 
   if (hasChildren) {
     return (
       <ListItem component='li' sx={{ display: 'contents' }}>
-        <Box sx={{ gridColumnStart: level + 1 }}>
+        <Box
+          sx={{
+            gridColumnStart: level + 1,
+          }}
+        >
           <Link href={`/${url_path}`} passHref>
             <Button
               variant='text'
@@ -64,25 +62,35 @@ export function MenuList(
               }}
             >
               {name}
-              {open ? <IconSvg src={iconChevronRight} /> : <IconSvg src={iconChevronRight} />}
+
+              {open.includes(`/${url_path}`) && <IconSvg src={iconChevronRight} />}
             </Button>
           </Link>
         </Box>
-        {url_path === 'men' ||
-        url_path === 'men/photography' ||
-        url_path === 'men/photography/sunrise' ? (
-          <List component='ul' sx={{ display: 'contents' }}>
-            <Box sx={{ gridColumnStart: level + 2, gridRowStart: 1 }}>
-              <PageLink {...props} name={`All ${name}`} url_path={url_path} />
-            </Box>
 
-            {children?.map((child) => (
-              <MenuList {...child} level={level + 1} selected={selected} />
-            ))}
-          </List>
-        ) : (
-          ''
-        )}
+        <List
+          component='ul'
+          sx={[
+            {
+              display: 'contents',
+              zIndex: 1,
+            },
+            !open.includes(`/${url_path}`) && {
+              display: 'block',
+              zIndex: -1,
+              position: 'absolute',
+              left: '-100%',
+            },
+          ]}
+        >
+          <ListItem sx={{ gridColumnStart: level + 2, gridRowStart: 1, padding: 0 }}>
+            <PageLink {...props} name={`All ${name}`} url_path={url_path} />
+          </ListItem>
+
+          {children?.map((child) => (
+            <MenuList {...child} level={level + 1} open={open} setOpen={setOpen} />
+          ))}
+        </List>
       </ListItem>
     )
   }
@@ -98,16 +106,22 @@ export function MenuList(
   return null
 }
 
-export function MegaMenu(props: MegaMenuQueryFragment & { sx?: SxProps<Theme>; selected: string }) {
-  const { menu, sx, selected, ...link } = props
-  if (!menu) return false
-  const includedMenu = menu.items?.filter((item) => item?.include_in_menu === 1)
+export function MegaMenu(
+  props: MegaMenuQueryFragment & {
+    sx?: SxProps<Theme>
+    open?: string
+    setOpen: (string) => void
+  },
+) {
+  const { menu, open, setOpen } = props
+
+  const includedMenu = menu?.items?.filter((item) => item?.include_in_menu === 1)
 
   return (
     <Box component='nav' id='main-nav' aria-label='Main'>
-      <List disablePadding sx={listStyles}>
+      <List disablePadding sx={{ display: 'grid', gridAutoFlow: 'column', padding: 4 }}>
         {includedMenu?.map((tree) => (
-          <MenuList key={tree?.url_path} {...tree} selected={selected} />
+          <MenuList key={tree?.url_path} {...tree} level={1} open={open} setOpen={setOpen} />
         ))}
       </List>
     </Box>

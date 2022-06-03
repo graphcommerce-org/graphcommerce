@@ -69,7 +69,6 @@ const clearScrollLock = () => {
 export function LayoutOverlayBase(incommingProps: LayoutOverlayBaseProps) {
   const props = useThemeProps({ name, props: incommingProps })
 
-  console.log('rerender')
   const {
     children,
     variantSm,
@@ -368,6 +367,7 @@ export function LayoutOverlayBase(incommingProps: LayoutOverlayBaseProps) {
           })}
         >
           <MotionDiv
+            transition={{ duration: 0.1 }}
             layout
             className={classes.overlayPane}
             sx={(theme) => ({
