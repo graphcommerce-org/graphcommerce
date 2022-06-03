@@ -10,7 +10,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { SxProps, Theme, IconButton, Box } from '@mui/material'
+import { SxProps, Theme, IconButton, Box, IconButtonProps } from '@mui/material'
 import PageLink from 'next/link'
 import { useState, useEffect } from 'react'
 import { useWishlistEnabled } from '../../hooks'
@@ -27,6 +27,7 @@ const ignoreProductWishlistStatus =
 export type ProductWishlistChipProps = ProductWishlistChipFragment & { sx?: SxProps<Theme> } & {
   selectedOptions?: string[]
   showFeedbackMessage?: boolean
+  buttonProps?: IconButtonProps
 }
 
 const compName = 'ProductWishlistChipBase' as const
@@ -34,7 +35,7 @@ const parts = ['root', 'wishlistIcon', 'wishlistIconActive', 'wishlistButton'] a
 const { classes } = extendableComponent(compName, parts)
 
 export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
-  const { name, sku, showFeedbackMessage, selectedOptions = [], sx = [] } = props
+  const { name, sku, showFeedbackMessage, selectedOptions = [], buttonProps, sx = [] } = props
 
   const [inWishlist, setInWishlist] = useState(false)
   const [displayMessageBar, setDisplayMessageBar] = useState(false)
@@ -172,6 +173,7 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
         onMouseDown={preventAnimationBubble}
         size='small'
         className={classes.wishlistButton}
+        {...buttonProps}
         sx={[
           (theme) => ({
             padding: theme.spacings.xxs,
