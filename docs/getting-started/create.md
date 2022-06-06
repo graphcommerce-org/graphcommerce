@@ -47,7 +47,7 @@ If you want to test a GraphCommerce storefront using a pre-configured Magento
 demo store and a pre-configured GraphCMS project with demo content, then you
 need to only install the dependencies. This is the quickest approach.
 
-- Install and use node 14: `nvm install 14 && nvm use 14`
+- Install and use node 14: `nvm install 14` or `nvm use 14`
 - Install yarn: `npm install --global yarn`
 
 ## Step 1: Create a new GraphCommerce app
@@ -65,13 +65,34 @@ https://user-images.githubusercontent.com/1251986/158647122-dc57002f-a9c2-4661-a
 
 ### Download the example
 
-1. `git clone git@github.com:graphcommerce-org/graphcommerce.git`
-2. `mkdir my-project`
-3. `cp -R graphcommerce/examples/magento-graphcms/. my-project && rm -rf graphcommerce`
-4. `cd my-project`
-5. `cp -R .env.example .env`
-6. `rm CHANGELOG.md`
-7. `rm -rf node_modules && rm -rf .next`
+1. **Clone Repository**
+
+`git clone https://github.com/graphcommerce-org/graphcommerce.git`
+
+
+2. **Create a Project Folder**
+
+`mkdir my-project`
+
+
+3. **Copy the Templete Folder and insert into ‘my-project’ before Deleting graphcommerce**
+
+`cp -R graphcommerce/examples/magento-graphcms/. my-project && rm -rf graphcommerce`
+
+
+4. **Move to your folder**
+
+****`cd my-project`
+
+
+5. **Copy to .env from .env.example**
+
+`cp -R .env.example .env`
+
+
+6. Remove CHANGELOG.md
+
+`rm CHANGELOG.md`
 
 Edit /package.json. Delete `"scripts": {...}` and rename `scripts_local` to
 `scripts`:
