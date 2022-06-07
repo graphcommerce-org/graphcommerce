@@ -200,6 +200,7 @@ export function MegaMenu(
           />
         ))}
         <Box
+          component='li'
           sx={[
             { gridColumnStart: 1 },
             open.includes('/#') && {
