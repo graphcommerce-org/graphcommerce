@@ -197,6 +197,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                   width={image.width}
                   height={image.height}
                   loading={idx === 0 ? 'eager' : 'lazy'}
+                  sx={{ display: 'block' }}
                   sizes={{
                     0: '100vw',
                     [theme.breakpoints.values.md]: zoomed ? '100vw' : '60vw',
