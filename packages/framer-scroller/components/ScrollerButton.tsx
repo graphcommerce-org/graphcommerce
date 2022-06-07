@@ -1,6 +1,6 @@
-import { useElementScroll } from '@graphcommerce/framer-utils'
+import { useElementScroll, useMotionValueValue } from '@graphcommerce/framer-utils'
 import { Fab, FabProps } from '@mui/material'
-import { m, useSpring, useTransform } from 'framer-motion'
+import { m, useMotionTemplate, useSpring, useTransform } from 'framer-motion'
 import React from 'react'
 import { useScrollTo } from '../hooks/useScrollTo'
 import { useScrollerContext } from '../hooks/useScrollerContext'
@@ -8,11 +8,12 @@ import { SnapPositionDirection } from '../types'
 
 export type ScrollerButtonProps = {
   direction: SnapPositionDirection
+  layout?: boolean
 } & FabProps
 
 export const ScrollerButton = m(
   React.forwardRef<HTMLDivElement, ScrollerButtonProps>((props, ref) => {
-    const { direction, sx = [], ...buttonProps } = props
+    const { direction, sx = [], layout, ...buttonProps } = props
 
     const { getSnapPosition, scrollerRef } = useScrollerContext()
     const scrollTo = useScrollTo()
@@ -39,20 +40,30 @@ export const ScrollerButton = m(
         }
       },
     )
-    const scale = useSpring(progress)
+
+    const scale = useMotionValueValue(progress, (v) => v)
 
     return (
-      <m.div ref={ref} style={{ scale, opacity: scale, willChange: 'scale, opacity', zIndex: 1 }}>
+      <m.div ref={ref} layout={layout}>
         <Fab
           type='button'
           size='small'
           {...buttonProps}
           onClick={handleClick}
           aria-label={direction}
-          sx={[{ display: { xs: 'none', md: 'flex' } }, ...(Array.isArray(sx) ? sx : [sx])]}
+          sx={[
+            {
+              display: { xs: 'none', md: 'flex' },
+              transition: 'all 250ms',
+              opacity: scale,
+              transform: `scale(${scale})`,
+            },
+            ...(Array.isArray(sx) ? sx : [sx]),
+          ]}
         />
       </m.div>
     )
   }),
 )
+
 ScrollerButton.displayName = 'ScrollerButton'
