@@ -5,6 +5,7 @@ import {
   LayoutTitle,
   Overlay,
   useFabSize,
+  iconChevronLeft,
   useIconSvgSize,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
@@ -18,23 +19,35 @@ const MotionDiv = styled(m.div)({})
 
 type Props = MegaMenuQueryFragment & {
   active: boolean
+  addLevel: boolean
   close: () => void
 }
 
 export function MegaMenuOverlay(props: Props) {
-  const { menu, active, close } = props
+  const { menu, active, close, addLevel = true } = props
 
   const fabSize = useFabSize('responsive')
   const svgSize = useIconSvgSize('large')
 
   const [open, setOpen] = useState<string>()
 
-  // Overlaypane moet animeren
+  const reset = () => {
+    if (open) {
+      setOpen(open[0])
+    }
+  }
+
+  const resetAndClose = () => {
+    if (open) {
+      setOpen(open[0])
+    }
+    close()
+  }
 
   return (
     <Overlay
       active={active}
-      close={close}
+      close={resetAndClose}
       variantMd='left'
       sizeMd='full'
       justifyMd='start'
@@ -49,7 +62,7 @@ export function MegaMenuOverlay(props: Props) {
         sx={{ '&.noAlign': { marginBottom: 0 } }}
         primary={
           <Fab
-            onClick={close}
+            onClick={resetAndClose}
             sx={{
               boxShadow: 'none',
               marginLeft: `calc((${fabSize} - ${svgSize}) * -0.5)`,
@@ -61,6 +74,20 @@ export function MegaMenuOverlay(props: Props) {
             <IconSvg src={iconClose} size='large' />
           </Fab>
         }
+        secondary={
+          <Fab
+            onClick={(e) => {
+              if (open) {
+                reset()
+              }
+              e.preventDefault()
+              e.stopPropagation()
+            }}
+            size='responsive'
+          >
+            <IconSvg src={iconChevronLeft} size='large' />
+          </Fab>
+        }
       >
         <LayoutTitle size='small' component='span'>
           <Trans id='Navigation' />
@@ -68,7 +95,26 @@ export function MegaMenuOverlay(props: Props) {
       </LayoutOverlayHeader>
 
       <MotionDiv layout='position'>
-        <MegaMenu menu={menu} open={open} setOpen={setOpen} />
+        <MegaMenu
+          menu={
+            addLevel
+              ? {
+                  items: [
+                    {
+                      include_in_menu: 1,
+                      name: 'Products',
+                      uid: '#',
+                      url_path: '#',
+                      children: menu?.items,
+                    },
+                  ],
+                }
+              : menu
+          }
+          open={open}
+          setOpen={setOpen}
+          addLevel={addLevel}
+        />
       </MotionDiv>
     </Overlay>
   )

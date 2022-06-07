@@ -1,5 +1,4 @@
-import { Box, styled, SxProps, Theme } from '@mui/material'
-import { m } from 'framer-motion'
+import { Box, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { extendableComponent } from '../../Styles'
 import { LayoutHeaderBack, useShowBack } from './LayoutHeaderBack'
@@ -37,8 +36,6 @@ type ComponentStyleProps = {
   floatingMd: boolean
 }
 
-const MotionDiv = styled(m.div)({})
-
 const { selectors, withState } = extendableComponent<ComponentStyleProps, 'LayoutHeader'>(
   'LayoutHeader',
   ['root'] as const,
@@ -63,7 +60,7 @@ export function LayoutHeader(props: LayoutHeaderProps) {
   let left = secondary
   let right = primary
 
-  if (back) left = back
+  if (back && !secondary) left = back
 
   if (!right) right = close
   else if (!left) left = close
