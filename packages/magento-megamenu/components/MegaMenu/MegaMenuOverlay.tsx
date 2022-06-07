@@ -9,8 +9,9 @@ import {
   useIconSvgSize,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box, Fab, styled } from '@mui/material'
+import { Box, Button, Fab, ListItem, styled, Typography } from '@mui/material'
 import { m } from 'framer-motion'
+import Link from 'next/link'
 import { useState } from 'react'
 import { MegaMenuQueryFragment } from '../../queries/MegaMenuQueryFragment.gql'
 import { MegaMenu } from './MegaMenu'
@@ -24,18 +25,12 @@ type Props = MegaMenuQueryFragment & {
 }
 
 export function MegaMenuOverlay(props: Props) {
-  const { menu, active, close, addLevel = true } = props
+  const { menu, active, close, addLevel = false } = props
 
   const fabSize = useFabSize('responsive')
   const svgSize = useIconSvgSize('large')
 
-  const [open, setOpen] = useState<string>()
-
-  const reset = () => {
-    if (open) {
-      setOpen(open[0])
-    }
-  }
+  const [open, setOpen] = useState<string>('/')
 
   const resetAndClose = () => {
     if (open) {
@@ -64,10 +59,10 @@ export function MegaMenuOverlay(props: Props) {
           <Fab
             onClick={resetAndClose}
             sx={{
-              boxShadow: 'none',
               marginLeft: `calc((${fabSize} - ${svgSize}) * -0.5)`,
               marginRight: `calc((${fabSize} - ${svgSize}) * -0.5)`,
             }}
+            color='inherit'
             size='responsive'
             disabled={!active}
           >
@@ -75,18 +70,22 @@ export function MegaMenuOverlay(props: Props) {
           </Fab>
         }
         secondary={
-          <Fab
-            onClick={(e) => {
-              if (open) {
-                reset()
-              }
-              e.preventDefault()
-              e.stopPropagation()
-            }}
-            size='responsive'
-          >
-            <IconSvg src={iconChevronLeft} size='large' />
-          </Fab>
+          open &&
+          open !== '/' && (
+            <Fab
+              onClick={(e) => {
+                if (open) {
+                  setOpen(open[0])
+                }
+                e.preventDefault()
+                e.stopPropagation()
+              }}
+              color='inherit'
+              size='responsive'
+            >
+              <IconSvg src={iconChevronLeft} size='large' />
+            </Fab>
+          )
         }
       >
         <LayoutTitle size='small' component='span'>
@@ -102,6 +101,12 @@ export function MegaMenuOverlay(props: Props) {
                   items: [
                     {
                       include_in_menu: 1,
+                      name: 'Home',
+                      uid: 'home',
+                      url_path: '/',
+                    },
+                    {
+                      include_in_menu: 1,
                       name: 'Products',
                       uid: '#',
                       url_path: '#',
@@ -110,6 +115,22 @@ export function MegaMenuOverlay(props: Props) {
                   ],
                 }
               : menu
+          }
+          itemsAfter={
+            <ListItem sx={{ gridColumnStart: 1 }}>
+              <Typography
+                variant='h3'
+                sx={{
+                  minWidth: 200,
+                  mr: 4,
+                  ml: 4,
+                  justifyContent: 'space-between',
+                  borderRadius: 0,
+                }}
+              >
+                After
+              </Typography>
+            </ListItem>
           }
           open={open}
           setOpen={setOpen}

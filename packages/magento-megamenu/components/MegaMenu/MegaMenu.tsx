@@ -8,6 +8,7 @@ import {
 import { Trans } from '@lingui/react'
 import { Box, Button, List, ListItem, styled, SxProps, Theme, Typography } from '@mui/material'
 import Link from 'next/link'
+import React from 'react'
 import { MegaMenuItemFragment } from '../../queries/MegaMenuItem.gql'
 import { MegaMenuQueryFragment } from '../../queries/MegaMenuQueryFragment.gql'
 
@@ -19,13 +20,13 @@ const buttonStyle: SxProps<Theme> = () => ({
   borderRadius: 0,
 })
 
-function PageLink(props: Pick<MegaMenuItemFragment, 'url_path' | 'name'>) {
-  const { url_path, name } = props
+function PageLink(props: Pick<MegaMenuItemFragment, 'url_path' | 'name'> & { level?: number }) {
+  const { url_path, name, level } = props
 
   return (
     <Link href={`/${url_path}`} passHref>
       <Button variant='text' sx={buttonStyle} size='large'>
-        {name}
+        {level === 0 ? <Typography variant='h3'>{name}</Typography> : name}
       </Button>
     </Link>
   )
@@ -35,7 +36,7 @@ export function MenuList(
   props: Omit<MegaMenuItemFragment, 'uid'> & {
     addLevel: boolean
     level?: number
-    open?: string
+    open: string
     setOpen: (any) => void
   },
 ) {
@@ -45,6 +46,7 @@ export function MenuList(
     if (!open.includes(`/#/${url}`)) {
       setOpen(url === '/#' ? url : `/#/${url}`)
     }
+    console.log(open)
   }
   const filteredChildren = children?.filter((item) => item?.include_in_menu === 1)
   const hasChildren = filteredChildren && filteredChildren.length > 0
@@ -53,9 +55,15 @@ export function MenuList(
     return (
       <ListItem component='li' sx={{ display: 'contents' }}>
         <Box
-          sx={{
-            gridColumnStart: level + 1,
-          }}
+          sx={[
+            {
+              gridColumnStart: level + 1,
+            },
+            open.includes('/#') &&
+              level === 0 && {
+                display: 'none',
+              },
+          ]}
         >
           <Link href={`/${url_path}`} passHref>
             <Button
@@ -70,8 +78,8 @@ export function MenuList(
                 e.stopPropagation()
               }}
             >
-              {name}
-              {/* {open.includes(`/${url_path}`) && <IconSvg src={iconChevronRight} />} */}
+              {level === 0 ? <Typography variant='h3'>{name}</Typography> : name}
+
               <IconSvg src={iconChevronRight} />
             </Button>
           </Link>
@@ -94,7 +102,7 @@ export function MenuList(
         >
           {url_path !== '#' && (
             <ListItem sx={{ gridColumnStart: level + 2, gridRowStart: 1, padding: 0 }}>
-              <PageLink {...props} name={`All ${name}`} url_path={url_path} />
+              <PageLink {...props} name={`All ${name}`} url_path={url_path} level={level + 1} />
             </ListItem>
           )}
 
@@ -114,8 +122,17 @@ export function MenuList(
 
   if (!hasChildren) {
     return (
-      <ListItem sx={{ gridColumnStart: level + 1, padding: 0 }} component='li'>
-        <PageLink {...props} />
+      <ListItem
+        sx={[
+          { gridColumnStart: level + 1, padding: 0 },
+          open.includes('/#') &&
+            level === 0 && {
+              display: 'none',
+            },
+        ]}
+        component='li'
+      >
+        <PageLink {...props} level={level} />
       </ListItem>
     )
   }
@@ -127,32 +144,25 @@ export function MegaMenu(
   props: MegaMenuQueryFragment & {
     addLevel: boolean
     sx?: SxProps<Theme>
-    open?: string
+    open: string
     setOpen: (string) => void
+    itemsAfter: React.ReactNode
   },
 ) {
-  const { menu, open, addLevel, setOpen } = props
+  const { menu, open, addLevel, setOpen, itemsAfter } = props
 
   const filteredMenu = menu?.items?.filter((item) => item?.include_in_menu === 1)
 
   return (
     <Box component='nav' id='main-nav' aria-label='Main'>
-      <List disablePadding sx={{ display: 'grid', gridAutoFlow: 'column', padding: 4 }}>
-        <ListItem sx={{ display: 'contents' }}>
-          <Link href='/' passHref>
-            <Button
-              variant='text'
-              sx={[
-                { gridColumnStart: 1 },
-                ...(Array.isArray(buttonStyle) ? buttonStyle : [buttonStyle]),
-              ]}
-              size='large'
-            >
-              Home
-            </Button>
-          </Link>
-        </ListItem>
-
+      <List
+        disablePadding
+        sx={{
+          display: 'grid',
+          gridAutoFlow: 'column',
+          padding: 4,
+        }}
+      >
         {filteredMenu?.map((tree) => (
           <MenuList
             key={tree?.url_path}
@@ -163,20 +173,16 @@ export function MegaMenu(
             addLevel={addLevel}
           />
         ))}
-        <ListItem sx={{ display: 'contents' }}>
-          <Link href='#' passHref>
-            <Button
-              variant='text'
-              sx={[
-                { gridColumnStart: 1 },
-                ...(Array.isArray(buttonStyle) ? buttonStyle : [buttonStyle]),
-              ]}
-              size='large'
-            >
-              New
-            </Button>
-          </Link>
-        </ListItem>
+        <Box
+          sx={[
+            { display: 'contents' },
+            open.includes('/#') && {
+              display: 'none',
+            },
+          ]}
+        >
+          {itemsAfter}
+        </Box>
       </List>
     </Box>
   )
