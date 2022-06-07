@@ -1,3 +1,5 @@
+import { CustomerFab, CustomerMenuFabItem } from '@graphcommerce/magento-customer'
+import { WishlistFab, WishlistMenuFabItem } from '@graphcommerce/magento-wishlist'
 import {
   iconClose,
   IconSvg,
@@ -5,16 +7,20 @@ import {
   LayoutTitle,
   Overlay,
   useFabSize,
+  DarkLightModeMenuSecondaryItem,
   iconChevronLeft,
   useIconSvgSize,
+  MenuFabSecondaryItem,
+  iconCustomerService,
+  iconHeart,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box, Button, Fab, ListItem, styled, Typography } from '@mui/material'
+import { Fab, ListItem, styled } from '@mui/material'
 import { m } from 'framer-motion'
-import Link from 'next/link'
 import { useState } from 'react'
 import { MegaMenuQueryFragment } from '../../queries/MegaMenuQueryFragment.gql'
 import { MegaMenu } from './MegaMenu'
+import { MegaMenuItem } from './MegaMenuItem'
 
 const MotionDiv = styled(m.div)({})
 
@@ -25,7 +31,7 @@ type Props = MegaMenuQueryFragment & {
 }
 
 export function MegaMenuOverlay(props: Props) {
-  const { menu, active, close, addLevel = false } = props
+  const { menu, active, close, addLevel } = props
 
   const fabSize = useFabSize('responsive')
   const svgSize = useIconSvgSize('large')
@@ -95,46 +101,37 @@ export function MegaMenuOverlay(props: Props) {
 
       <MotionDiv layout='position'>
         <MegaMenu
-          menu={
-            addLevel
-              ? {
-                  items: [
-                    {
-                      include_in_menu: 1,
-                      name: 'Home',
-                      uid: 'home',
-                      url_path: '/',
-                    },
-                    {
-                      include_in_menu: 1,
-                      name: 'Products',
-                      uid: '#',
-                      url_path: '#',
-                      children: menu?.items,
-                    },
-                  ],
-                }
-              : menu
-          }
-          itemsAfter={
-            <ListItem sx={{ gridColumnStart: 1 }}>
-              <Typography
-                variant='h3'
-                sx={{
-                  minWidth: 200,
-                  mr: 4,
-                  ml: 4,
-                  justifyContent: 'space-between',
-                  borderRadius: 0,
-                }}
-              >
-                After
-              </Typography>
-            </ListItem>
-          }
+          itemsBefore={[
+            <MegaMenuItem href='/' open={open}>
+              <Trans id='Home' />
+            </MegaMenuItem>,
+            <MegaMenuItem href='/new' open={open}>
+              <Trans id='New' />
+            </MegaMenuItem>,
+            <MegaMenuItem href='/blog' open={open}>
+              <Trans id='Blog' />
+            </MegaMenuItem>,
+          ]}
+          menu={menu}
+          addLevel={addLevel}
+          itemsAfter={[
+            <CustomerMenuFabItem key='account' guestHref='/account/signin' authHref='/account'>
+              <Trans id='Account' />
+            </CustomerMenuFabItem>,
+            <MenuFabSecondaryItem
+              key='service'
+              icon={<IconSvg src={iconCustomerService} size='medium' />}
+              href='/service'
+            >
+              <Trans id='Customer Service' />
+            </MenuFabSecondaryItem>,
+            <WishlistMenuFabItem key='wishlist' icon={<IconSvg src={iconHeart} size='medium' />}>
+              <Trans id='Wishlist' />
+            </WishlistMenuFabItem>,
+            <DarkLightModeMenuSecondaryItem key='darkmode' />,
+          ]}
           open={open}
           setOpen={setOpen}
-          addLevel={addLevel}
         />
       </MotionDiv>
     </Overlay>

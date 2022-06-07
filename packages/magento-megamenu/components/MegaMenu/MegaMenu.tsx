@@ -1,23 +1,28 @@
+import { IconSvg, iconChevronRight } from '@graphcommerce/next-ui'
 import {
-  IconSvg,
-  iconChevronRight,
-  iconCustomerService,
-  DarkLightModeMenuSecondaryItem,
-  iconHeart,
-} from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
-import { Box, Button, List, ListItem, styled, SxProps, Theme, Typography } from '@mui/material'
+  Box,
+  Button,
+  Divider,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemButton,
+  ListItemIcon,
+  SxProps,
+  Theme,
+  Typography,
+} from '@mui/material'
 import Link from 'next/link'
 import React from 'react'
 import { MegaMenuItemFragment } from '../../queries/MegaMenuItem.gql'
 import { MegaMenuQueryFragment } from '../../queries/MegaMenuQueryFragment.gql'
+import { MegaMenuItem } from './MegaMenuItem'
 
 const buttonStyle: SxProps<Theme> = () => ({
-  minWidth: 200,
-  mr: 4,
-  ml: 4,
-  justifyContent: 'space-between',
-  borderRadius: 0,
+  minWidth: 220,
+  ml: 3,
+  mr: 3,
+  // borderRadius: 0,
 })
 
 function PageLink(props: Pick<MegaMenuItemFragment, 'url_path' | 'name'> & { level?: number }) {
@@ -25,9 +30,11 @@ function PageLink(props: Pick<MegaMenuItemFragment, 'url_path' | 'name'> & { lev
 
   return (
     <Link href={`/${url_path}`} passHref>
-      <Button variant='text' sx={buttonStyle} size='large'>
-        {level === 0 ? <Typography variant='h3'>{name}</Typography> : name}
-      </Button>
+      <ListItemButton component='a' sx={buttonStyle}>
+        <ListItemText primary={name} />
+
+        {/* {level === 0 ? <Typography variant='h2'>{name}</Typography> : name} */}
+      </ListItemButton>
     </Link>
   )
 }
@@ -46,7 +53,6 @@ export function MenuList(
     if (!open.includes(`/#/${url}`)) {
       setOpen(url === '/#' ? url : `/#/${url}`)
     }
-    console.log(open)
   }
   const filteredChildren = children?.filter((item) => item?.include_in_menu === 1)
   const hasChildren = filteredChildren && filteredChildren.length > 0
@@ -66,10 +72,9 @@ export function MenuList(
           ]}
         >
           <Link href={`/${url_path}`} passHref>
-            <Button
-              variant='text'
+            <ListItemButton
+              component='a'
               sx={buttonStyle}
-              size='large'
               onClick={(e) => {
                 if (viewOpen) {
                   viewOpen(url_path as string)
@@ -78,10 +83,13 @@ export function MenuList(
                 e.stopPropagation()
               }}
             >
-              {level === 0 ? <Typography variant='h3'>{name}</Typography> : name}
+              <ListItemText primary={name} />
+              <ListItemIcon sx={{ minWidth: 0 }}>
+                <IconSvg src={iconChevronRight} />
+              </ListItemIcon>
 
-              <IconSvg src={iconChevronRight} />
-            </Button>
+              {/* {level === 0 ? <Typography variant='h2'>{name}</Typography> : name} */}
+            </ListItemButton>
           </Link>
         </Box>
 
@@ -146,12 +154,29 @@ export function MegaMenu(
     sx?: SxProps<Theme>
     open: string
     setOpen: (string) => void
-    itemsAfter: React.ReactNode
+    itemsBefore?: React.ReactNode
+    itemsAfter?: React.ReactNode
   },
 ) {
-  const { menu, open, addLevel, setOpen, itemsAfter } = props
+  const { menu, open, addLevel, setOpen, itemsBefore, itemsAfter } = props
 
-  const filteredMenu = menu?.items?.filter((item) => item?.include_in_menu === 1)
+  let extendedMenu = menu
+
+  if (addLevel) {
+    extendedMenu = {
+      items: [
+        {
+          include_in_menu: 1,
+          name: 'Products',
+          uid: '#',
+          url_path: '#',
+          children: menu?.items,
+        },
+      ],
+    }
+  }
+
+  const filteredMenu = extendedMenu?.items?.filter((item) => item?.include_in_menu === 1)
 
   return (
     <Box component='nav' id='main-nav' aria-label='Main'>
@@ -163,6 +188,7 @@ export function MegaMenu(
           padding: 4,
         }}
       >
+        {[...React.Children.toArray(itemsBefore)]}
         {filteredMenu?.map((tree) => (
           <MenuList
             key={tree?.url_path}
@@ -175,13 +201,14 @@ export function MegaMenu(
         ))}
         <Box
           sx={[
-            { display: 'contents' },
+            { gridColumnStart: 1 },
             open.includes('/#') && {
               display: 'none',
             },
           ]}
         >
-          {itemsAfter}
+          <Divider key='divider' variant='middle' sx={{ my: '6px' }} />
+          {[...React.Children.toArray(itemsAfter)]}
         </Box>
       </List>
     </Box>

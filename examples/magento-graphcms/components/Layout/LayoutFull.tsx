@@ -46,7 +46,7 @@ export function LayoutFull(props: LayoutFullProps) {
 
   return (
     <>
-      <MegaMenuOverlay menu={menu} active={active} close={close} />
+      <MegaMenuOverlay menu={menu} active={active} close={close} addLevel />
       <LayoutDefault
         {...uiProps}
         noSticky={router.asPath.split('?')[0] === '/'}
@@ -99,60 +99,7 @@ export function LayoutFull(props: LayoutFullProps) {
         }
         footer={<Footer footer={footer} />}
         cartFab={<CartFab />}
-        menuFab={
-          <MenuFab
-            search={
-              <SearchLink href='/search' sx={{ width: '100%' }}>
-                <Trans id='Search...' />
-              </SearchLink>
-            }
-            secondary={[
-              <CustomerMenuFabItem key='account' guestHref='/account/signin' authHref='/account'>
-                <Trans id='Account' />
-              </CustomerMenuFabItem>,
-              <MenuFabSecondaryItem
-                key='service'
-                icon={<IconSvg src={iconCustomerService} size='medium' />}
-                href='/service'
-              >
-                <Trans id='Customer Service' />
-              </MenuFabSecondaryItem>,
-              <WishlistMenuFabItem key='wishlist' icon={<IconSvg src={iconHeart} size='medium' />}>
-                <Trans id='Wishlist' />
-              </WishlistMenuFabItem>,
-              <DarkLightModeMenuSecondaryItem key='darkmode' />,
-            ]}
-          >
-            <MenuFabItem href='/'>
-              <Trans id='Home' />
-            </MenuFabItem>
-            {/* {menuItemsIncludeInMenu?.map((item) => {
-              const highLight = item?.name?.toLowerCase().includes('sale')
-                ? { textTransform: 'uppercase', letterSpacing: 0.3, color: 'primary.main' }
-                : {}
-              return (
-                <MenuFabItem key={item?.uid} href={`/${item?.url_path}`} sx={highLight}>
-                  {item?.name}
-                </MenuFabItem>
-              )
-            })} */}
-
-            <ListItemButton component='a' dense onClick={() => setActive(true)}>
-              <ListItemText sx={{ typography: 'h4', lineHeight: 1.1 }} disableTypography>
-                <Box
-                  sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
-                >
-                  <Trans id='Products' />
-                  <IconSvg src={iconChevronRight} />
-                </Box>
-              </ListItemText>
-            </ListItemButton>
-
-            <MenuFabItem href='/blog'>
-              <Trans id='Blog' />
-            </MenuFabItem>
-          </MenuFab>
-        }
+        menuFab={<PlaceholderFab />}
       >
         {children}
       </LayoutDefault>
