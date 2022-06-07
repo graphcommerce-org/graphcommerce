@@ -23,6 +23,8 @@ export const ScrollerDots = m(
     const { items } = useScrollerContext()
     const itemsArr = useMotionValueValue(items, (v) => v)
 
+    if (itemsArr.length <= 1) return null
+
     return (
       <MotionBox
         {...containerProps}
