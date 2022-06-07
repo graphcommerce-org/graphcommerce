@@ -114,6 +114,8 @@ export function SidebarGallery(props: SidebarGalleryProps) {
   const maxHeight = `calc(100vh - ${headerHeight} - ${galleryMargin} - ${extraSpacing})`
   const ratio = `calc(${height} / ${width} * 100%)`
 
+  const hasImages = images.length > 0
+
   return (
     <ScrollerProvider scrollSnapAlign='center'>
       <Row maxWidth={false} disableGutters className={classes.row} sx={sx}>
@@ -222,11 +224,10 @@ export function SidebarGallery(props: SidebarGalleryProps) {
               <Fab
                 size='small'
                 className={classes.toggleIcon}
+                disabled={!hasImages}
                 onMouseUp={toggle}
                 aria-label='Toggle Fullscreen'
-                sx={{
-                  boxShadow: theme.shadows[6],
-                }}
+                sx={{ boxShadow: 6 }}
               >
                 {!zoomed ? <IconSvg src={iconFullscreen} /> : <IconSvg src={iconFullscreenExit} />}
               </Fab>
@@ -287,13 +288,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                 },
               }}
             >
-              <ScrollerDots
-                layout
-                sx={{
-                  background: alpha(theme.palette.background.paper, 1),
-                  boxShadow: theme.shadows[6],
-                }}
-              />
+              <ScrollerDots layout sx={{ backgroundColor: 'background.paper', boxShadow: 6 }} />
             </Box>
           </MotionBox>
 
