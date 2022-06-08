@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-cart-shipping-method",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "3.0.27",
+  "version": "3.0.28",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -19,13 +19,13 @@
     "type-fest": "^2.12.2"
   },
   "dependencies": {
-    "@graphcommerce/framer-scroller": "2.1.14",
+    "@graphcommerce/framer-scroller": "2.1.15",
     "@graphcommerce/graphql": "3.2.0",
     "@graphcommerce/image": "3.1.6",
-    "@graphcommerce/magento-cart": "4.4.1",
-    "@graphcommerce/magento-cart-shipping-address": "3.0.26",
-    "@graphcommerce/magento-store": "4.2.8",
-    "@graphcommerce/next-ui": "4.8.3",
+    "@graphcommerce/magento-cart": "4.4.2",
+    "@graphcommerce/magento-cart-shipping-address": "3.0.27",
+    "@graphcommerce/magento-store": "4.2.9",
+    "@graphcommerce/next-ui": "4.8.4",
     "@graphcommerce/react-hook-form": "3.2.1"
   },
   "peerDependencies": {

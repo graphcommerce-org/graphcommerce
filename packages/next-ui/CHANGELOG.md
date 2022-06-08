@@ -1,5 +1,19 @@
 # Change Log
 
+## 4.8.4
+
+### Patch Changes
+
+- [#1509](https://github.com/graphcommerce-org/graphcommerce/pull/1509) [`0ab7c5465`](https://github.com/graphcommerce-org/graphcommerce/commit/0ab7c5465441cba9bf8cd185a6790ce2f443f4ed) Thanks [@paales](https://github.com/paales)! - SidebarGallery improvements (product page):
+
+  - Prevent vertical scrolling
+  - Disable zoom fab when there are no images
+  - Hide scroller dots when there in only one image
+  - Make sure the prev/next buttons are shown as expected
+
+- Updated dependencies [[`0ab7c5465`](https://github.com/graphcommerce-org/graphcommerce/commit/0ab7c5465441cba9bf8cd185a6790ce2f443f4ed)]:
+  - @graphcommerce/framer-scroller@2.1.15
+
 ## 4.8.3
 
 ### Patch Changes

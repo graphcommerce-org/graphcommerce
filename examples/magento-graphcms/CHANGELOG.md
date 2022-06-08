@@ -1,5 +1,44 @@
 # Change Log
 
+## 3.11.2
+
+### Patch Changes
+
+- Updated dependencies [[`de6781908`](https://github.com/graphcommerce-org/graphcommerce/commit/de6781908cbf514b9fd225aa1407fa1385c8e53b), [`d5d9550fe`](https://github.com/graphcommerce-org/graphcommerce/commit/d5d9550fe8991a90e432d8c3bd6e1be117acd18f), [`0ab7c5465`](https://github.com/graphcommerce-org/graphcommerce/commit/0ab7c5465441cba9bf8cd185a6790ce2f443f4ed), [`711fa6e04`](https://github.com/graphcommerce-org/graphcommerce/commit/711fa6e04519bbe91825fec7e1714277c1a8fa68)]:
+  - @graphcommerce/magento-product-configurable@4.1.13
+  - @graphcommerce/magento-product@4.4.6
+  - @graphcommerce/magento-wishlist@1.3.0
+  - @graphcommerce/framer-scroller@2.1.15
+  - @graphcommerce/next-ui@4.8.4
+  - @graphcommerce/magento-customer@4.5.2
+  - @graphcommerce/magento-payment-braintree@3.0.26
+  - @graphcommerce/magento-payment-included@3.0.26
+  - @graphcommerce/mollie-magento-payment@3.2.19
+  - @graphcommerce/magento-cart-email@3.0.28
+  - @graphcommerce/magento-cart-items@3.0.29
+  - @graphcommerce/magento-category@4.1.14
+  - @graphcommerce/magento-product-bundle@4.0.28
+  - @graphcommerce/magento-product-downloadable@4.0.28
+  - @graphcommerce/magento-product-grouped@3.0.28
+  - @graphcommerce/magento-product-simple@4.0.28
+  - @graphcommerce/magento-product-virtual@4.0.28
+  - @graphcommerce/magento-review@3.2.14
+  - @graphcommerce/magento-cart@4.4.2
+  - @graphcommerce/magento-cart-payment-method@3.1.19
+  - @graphcommerce/magento-cart-shipping-method@3.0.28
+  - @graphcommerce/ecommerce-ui@1.0.18
+  - @graphcommerce/graphcms-ui@3.0.22
+  - @graphcommerce/magento-cart-billing-address@3.0.26
+  - @graphcommerce/magento-cart-checkout@3.0.28
+  - @graphcommerce/magento-cart-coupon@3.0.28
+  - @graphcommerce/magento-cart-shipping-address@3.0.27
+  - @graphcommerce/magento-customer-account@3.1.21
+  - @graphcommerce/magento-customer-order@3.0.23
+  - @graphcommerce/magento-newsletter@2.0.26
+  - @graphcommerce/magento-search@4.1.17
+  - @graphcommerce/magento-store@4.2.9
+  - @graphcommerce/magento-cms@4.0.20
+
 ## 3.11.1
 
 ### Patch Changes

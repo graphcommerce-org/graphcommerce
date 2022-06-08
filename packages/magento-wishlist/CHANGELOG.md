@@ -1,5 +1,21 @@
 # @graphcommerce/magento-wishlist
 
+## 1.3.0
+
+### Minor Changes
+
+- [#1505](https://github.com/graphcommerce-org/graphcommerce/pull/1505) [`d5d9550fe`](https://github.com/graphcommerce-org/graphcommerce/commit/d5d9550fe8991a90e432d8c3bd6e1be117acd18f) Thanks [@timhofman](https://github.com/timhofman)! - enable to pass through button props for iconButton
+
+### Patch Changes
+
+- Updated dependencies [[`de6781908`](https://github.com/graphcommerce-org/graphcommerce/commit/de6781908cbf514b9fd225aa1407fa1385c8e53b), [`0ab7c5465`](https://github.com/graphcommerce-org/graphcommerce/commit/0ab7c5465441cba9bf8cd185a6790ce2f443f4ed), [`711fa6e04`](https://github.com/graphcommerce-org/graphcommerce/commit/711fa6e04519bbe91825fec7e1714277c1a8fa68)]:
+  - @graphcommerce/magento-product-configurable@4.1.13
+  - @graphcommerce/magento-product@4.4.6
+  - @graphcommerce/next-ui@4.8.4
+  - @graphcommerce/magento-customer@4.5.2
+  - @graphcommerce/magento-cart@4.4.2
+  - @graphcommerce/magento-store@4.2.9
+
 ## 1.2.5
 
 ### Patch Changes
