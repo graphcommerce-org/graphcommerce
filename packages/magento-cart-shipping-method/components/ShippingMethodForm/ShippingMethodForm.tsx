@@ -4,7 +4,7 @@ import {
   useFormGqlMutationCart,
 } from '@graphcommerce/magento-cart'
 import { Money, MoneyProps } from '@graphcommerce/magento-store'
-import { ActionCard, ActionCardProps, Button, Form } from '@graphcommerce/next-ui'
+import { ActionCard, Button, Form } from '@graphcommerce/next-ui'
 import { ActionCardListForm } from '@graphcommerce/next-ui/ActionCard/ActionCardListForm'
 import {
   useFormCompose,
@@ -13,7 +13,6 @@ import {
 } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
 import { Typography } from '@mui/material'
-import { ShippingOptionsActionCard } from '../ShippingOptionsActionCard/ShippingOptionsActionCard'
 import { GetShippingMethodsDocument } from './GetShippingMethods.gql'
 import {
   ShippingMethodFormDocument,
