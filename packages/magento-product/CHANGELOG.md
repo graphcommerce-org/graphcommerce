@@ -1,5 +1,17 @@
 # Change Log
 
+## 4.4.6
+
+### Patch Changes
+
+- [#1506](https://github.com/graphcommerce-org/graphcommerce/pull/1506) [`de6781908`](https://github.com/graphcommerce-org/graphcommerce/commit/de6781908cbf514b9fd225aa1407fa1385c8e53b) Thanks [@FrankHarland](https://github.com/FrankHarland)! - use array notation for sx support
+
+- Updated dependencies [[`0ab7c5465`](https://github.com/graphcommerce-org/graphcommerce/commit/0ab7c5465441cba9bf8cd185a6790ce2f443f4ed)]:
+  - @graphcommerce/framer-scroller@2.1.15
+  - @graphcommerce/next-ui@4.8.4
+  - @graphcommerce/magento-cart@4.4.2
+  - @graphcommerce/magento-store@4.2.9
+
 ## 4.4.5
 
 ### Patch Changes

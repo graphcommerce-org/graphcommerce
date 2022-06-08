@@ -1,5 +1,16 @@
 # Change Log
 
+## 4.5.2
+
+### Patch Changes
+
+- [#1509](https://github.com/graphcommerce-org/graphcommerce/pull/1509) [`711fa6e04`](https://github.com/graphcommerce-org/graphcommerce/commit/711fa6e04519bbe91825fec7e1714277c1a8fa68) Thanks [@paales](https://github.com/paales)! - onAuthenticationError fix thrown exception on error handling
+
+- Updated dependencies [[`0ab7c5465`](https://github.com/graphcommerce-org/graphcommerce/commit/0ab7c5465441cba9bf8cd185a6790ce2f443f4ed)]:
+  - @graphcommerce/next-ui@4.8.4
+  - @graphcommerce/ecommerce-ui@1.0.18
+  - @graphcommerce/magento-store@4.2.9
+
 ## 4.5.1
 
 ### Patch Changes
