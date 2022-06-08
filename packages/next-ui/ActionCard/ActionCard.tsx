@@ -52,6 +52,7 @@ export function ActionCard(props: ActionCardProps) {
       component='div'
       className='ActionCard-root'
       onClick={handleClick}
+      disabled={disabled}
       sx={[
         (theme) => ({
           display: 'grid',
