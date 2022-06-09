@@ -1,10 +1,9 @@
-import { BreakpointsOptions, experimental_sx, SxProps, Theme } from '@mui/material'
+import { experimental_sx, SxProps, Theme } from '@mui/material'
 import { Shadows } from '@mui/material/styles/shadows'
-import type { SetRequired } from 'type-fest'
 
 // https://material.io/design/environment/elevation.html#default-elevations
 
-const breakpoints: SetRequired<BreakpointsOptions, 'values'> = {
+const breakpoints = {
   values: {
     xs: 0,
     sm: 600,

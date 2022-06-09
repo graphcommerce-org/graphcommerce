@@ -45,6 +45,8 @@ const nextConfig = {
     disableOptimizedLoading: true,
     esmExternals: false,
     emotion: { sourceMap: true },
+    legacyBrowsers: false,
+    browsersListForSwc: true,
   },
   swcMinify: true,
   pwa: {

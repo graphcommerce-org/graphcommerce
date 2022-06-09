@@ -5,11 +5,11 @@ import {
   useApolloClient,
   MutationTuple,
   ApolloError,
+  LazyQueryResultTuple,
 } from '@apollo/client'
 import { UseFormProps, UseFormReturn, UnpackNestedValue, DeepPartial } from 'react-hook-form'
 import diff from './diff'
 import { useGqlDocumentHandler, UseGqlDocumentHandler } from './useGqlDocumentHandler'
-import { LazyQueryTuple } from './useLazyQueryPromise'
 
 export type OnCompleteFn<Q> = (
   data: FetchResult<Q>,
@@ -17,7 +17,11 @@ export type OnCompleteFn<Q> = (
 ) => void | Promise<void>
 
 type UseFormGraphQLCallbacks<Q, V> = {
-  onBeforeSubmit?: (variables: V) => V | Promise<V>
+  /**
+   * Allows you to modify the variablels computed by the form to make it compatible with the GraphQL
+   * Mutation. Also allows you to send false to skip submission.
+   */
+  onBeforeSubmit?: (variables: V) => V | false | Promise<V | false>
   onComplete?: OnCompleteFn<Q>
 }
 
@@ -27,7 +31,7 @@ export type UseFormGqlMethods<Q, V> = Omit<UseGqlDocumentHandler<V>, 'encode' | 
   Pick<UseFormReturn<V>, 'handleSubmit'> & { data?: Q | null; error?: ApolloError }
 
 /**
- * Combines useMutation/useLazyQueryPromise with react-hook-form's useForm:
+ * Combines useMutation/useLazyQuery with react-hook-form's useForm:
  *
  * - Automatically extracts all required arguments for a query
  * - Casts Float/Int mutation input variables to a Number
@@ -38,7 +42,7 @@ export function useFormGql<Q, V>(
   options: {
     document: TypedDocumentNode<Q, V>
     form: UseFormReturn<V>
-    tuple: MutationTuple<Q, V> | LazyQueryTuple<Q, V>
+    tuple: MutationTuple<Q, V> | LazyQueryResultTuple<Q, V>
     defaultValues?: UseFormProps<V>['defaultValues']
   } & UseFormGraphQLCallbacks<Q, V>,
 ): UseFormGqlMethods<Q, V> {
@@ -56,7 +60,12 @@ export function useFormGql<Q, V>(
       })
 
       // Wait for the onBeforeSubmit to complete
-      if (onBeforeSubmit) variables = await onBeforeSubmit(variables)
+      if (onBeforeSubmit) {
+        const res = await onBeforeSubmit(variables)
+        if (res === false) return
+        variables = res
+      }
+      // if (variables === false) onInvalid?.(formValues, event)
 
       const result = await execute({ variables })
       if (onComplete && result.data) await onComplete(result, client)

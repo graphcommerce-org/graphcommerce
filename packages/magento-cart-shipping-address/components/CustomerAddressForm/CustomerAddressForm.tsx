@@ -1,24 +1,22 @@
-import { useQuery } from '@graphcommerce/graphql'
+import { fallbackHttpConfig, useQuery } from '@graphcommerce/graphql'
 import {
   ApolloCartErrorAlert,
   useCartQuery,
   useFormGqlMutationCart,
 } from '@graphcommerce/magento-cart'
 import { CustomerDocument } from '@graphcommerce/magento-customer'
-import { iconHome, IconSvg, ActionCardList, ActionCard, Form, Button } from '@graphcommerce/next-ui'
+import { Form } from '@graphcommerce/next-ui'
+import { ActionCardListForm } from '@graphcommerce/next-ui/ActionCard/ActionCardListForm'
 import {
   useFormPersist,
   useFormCompose,
   UseFormComposeOptions,
-  Controller,
+  useFormAutoSubmit,
 } from '@graphcommerce/react-hook-form'
-import { Trans } from '@lingui/react'
-import { Box, FormControl, NoSsr } from '@mui/material'
-import { useRouter } from 'next/router'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { isSameAddress } from '../../utils/isSameAddress'
 import { GetAddressesDocument } from '../ShippingAddressForm/GetAddresses.gql'
-import { SetCustomerBillingAddressOnCartDocument } from './SetCustomerBillingAddressOnCart.gql'
+import { CustomerAddressActionCard } from './CustomerAddressActionCard'
 import { SetCustomerShippingAddressOnCartDocument } from './SetCustomerShippingAddressOnCart.gql'
 import { SetCustomerShippingBillingAddressOnCartDocument } from './SetCustomerShippingBillingAddressOnCart.gql'
 
@@ -28,8 +26,6 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
   const customerAddresses = useQuery(CustomerDocument)
   const addresses = customerAddresses.data?.customer?.addresses
   const { step, children } = props
-  const router = useRouter()
-
   const { data: cartQuery } = useCartQuery(GetAddressesDocument)
 
   const shippingAddress = cartQuery?.cart?.shipping_addresses?.[0]
@@ -59,132 +55,55 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
   // }
 
   const form = useFormGqlMutationCart(Mutation, {
-    // defaultValues: { customerAddressId: defaultCustomerAddressId },
-    mode: 'onChange',
+    defaultValues: {
+      customerAddressId: found?.id ?? undefined,
+    },
+    onBeforeSubmit: (vars) => {
+      if (vars.customerAddressId === -1) return false
+      return vars
+    },
   })
-  const { handleSubmit, error, control, watch } = form
+
+  const { handleSubmit, error, control, watch, setValue } = form
 
   // If customer selects 'new address' then we do not have to submit anything so we provide an empty submit function.
   const customerAddressId = watch('customerAddressId')
 
-  const submit = customerAddressId === -1 ? async () => {} : handleSubmit(() => {})
+  const submit = handleSubmit(() => {})
 
+  // We want to persist the form because we can't send the 'new address' state to the server, but we do want to keep this selection.
   useFormPersist({ form, name: 'CustomerAddressForm' })
   useFormCompose({ form, step, submit, key: 'CustomerAddressForm' })
 
-  if (customerAddresses.loading || !addresses || addresses.length === 0) return null
+  // We want to autosubmit the CustomerAddressFrom because the shipping methods depend on it.
+  useFormAutoSubmit({ form, submit })
+
+  // When there is no address set on the cart set before
+  const defaultAddr =
+    (!shippingAddress && addresses?.find((a) => a?.default_shipping)?.id) || undefined
+
+  useEffect(() => {
+    if (defaultAddr) setValue('customerAddressId', defaultAddr)
+  }, [defaultAddr, setValue])
+
+  if (customerAddresses.loading || !addresses || addresses.length === 0) return <>{children}</>
 
   return (
     <>
-      {' '}
       <Form onSubmit={submit} noValidate>
-        <FormControl>
-          <Controller
-            control={control}
-            defaultValue={found && found.id ? found.id : 0}
-            name='customerAddressId'
-            rules={{ required: true }}
-            render={({ field: { onChange, value }, fieldState, formState }) => (
-              <NoSsr>
-                <ActionCardList
-                  required
-                  value={String(value)}
-                  onChange={(event, incomming) => {
-                    onChange(Number(incomming))
-                  }}
-                  error={formState.isSubmitted && !!fieldState.error}
-                >
-                  {addresses.map((address) => (
-                    <ActionCard
-                      value={String(address?.id)}
-                      key={address?.id}
-                      action={
-                        <Button disableRipple variant='text' color='secondary'>
-                          <Trans id='Select' />
-                        </Button>
-                      }
-                      image={<IconSvg src={iconHome} size='large' />}
-                      title={`${address?.firstname} ${address?.lastname}`}
-                      details={
-                        <Box>
-                          {address?.street?.join(' ')}, {address?.postcode}, {address?.city},{' '}
-                          {address?.country_code}
-                        </Box>
-                      }
-                      onClick={onChange}
-                      secondaryAction={
-                        <Button
-                          disableRipple
-                          color='secondary'
-                          variant='text'
-                          onClick={(e) => {
-                            e.stopPropagation()
-
-                            // eslint-disable-next-line @typescript-eslint/no-floating-promises
-                            router.push(
-                              `/checkout/customer/addresses/edit?addressId=${address?.id}`,
-                            )
-                          }}
-                        >
-                          <Trans id='Edit address' />
-                        </Button>
-                      }
-                      selected={value === address?.id}
-                      hidden={!!value && value !== address?.id}
-                      reset={
-                        <Button
-                          disableRipple
-                          variant='text'
-                          color='secondary'
-                          onClick={(e) => {
-                            e.preventDefault()
-                            onChange(null)
-                          }}
-                        >
-                          <Trans id='Change' />
-                        </Button>
-                      }
-                    />
-                  ))}
-                  <ActionCard
-                    value='-1'
-                    key='new-address'
-                    title={<Trans id='New address' />}
-                    selected={value === -1}
-                    hidden={!!value && value !== -1}
-                    details={<Trans id='Add new address' />}
-                    image={<IconSvg src={iconHome} size='large' />}
-                    action={
-                      <Button
-                        disableRipple
-                        variant='text'
-                        color='secondary'
-                        onClick={(e) => {
-                          e.preventDefault()
-                        }}
-                      >
-                        <Trans id='Select' />
-                      </Button>
-                    }
-                    reset={
-                      <Button
-                        disableRipple
-                        variant='text'
-                        color='secondary'
-                        onClick={(e) => {
-                          e.preventDefault()
-                          onChange(null)
-                        }}
-                      >
-                        <Trans id='Change' />
-                      </Button>
-                    }
-                  />
-                </ActionCardList>
-              </NoSsr>
-            )}
-          />
-        </FormControl>
+        <ActionCardListForm
+          control={control}
+          name='customerAddressId'
+          errorMessage='Please select a shipping address'
+          items={[
+            ...(addresses ?? []).filter(Boolean).map((address) => ({
+              ...address,
+              value: Number(address?.id),
+            })),
+            { value: -1 },
+          ]}
+          render={CustomerAddressActionCard}
+        />
         <ApolloCartErrorAlert error={error} />
       </Form>
       {customerAddressId === -1 && children}

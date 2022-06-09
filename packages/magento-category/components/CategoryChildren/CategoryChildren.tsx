@@ -38,7 +38,7 @@ export function CategoryChildren(props: CategoryChildrenProps) {
           sx={{ gridAutoColumns: `max-content` }}
         >
           {children.map((cat) => {
-            if (!cat?.url_path || !cat.name) return null
+            if (!cat?.url_path || !cat.name || !cat.include_in_menu) return null
 
             const linkParams = cloneDeep(params)
             linkParams.url = cat.url_path

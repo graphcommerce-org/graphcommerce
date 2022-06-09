@@ -14,7 +14,10 @@ const mesh = fastDev
 export function meshLink(locale: string) {
   if (!mesh) throw Error('Mesh not available')
   return ApolloLink.from([
-    new SchemaLink({ ...mesh, context: { headers: { store: localeToStore(locale) } } }),
+    new SchemaLink({
+      ...mesh,
+      context: { ...mesh.meshContext, headers: { store: localeToStore(locale) } },
+    }),
   ])
 }
 

@@ -1,17 +1,28 @@
-import { ApolloCache, NormalizedCacheObject, setContext } from '@graphcommerce/graphql'
-import { CustomerTokenDocument } from '../hooks/CustomerToken.gql'
+import {
+  ApolloCache,
+  ApolloLink,
+  ClientContext,
+  NormalizedCacheObject,
+  setContext,
+} from '@graphcommerce/graphql'
+import { CustomerTokenDocument } from '../hooks'
+import { onAuthenticationError } from './onAuthenticationError'
 
-export const createCustomerTokenLink = (cache: ApolloCache<NormalizedCacheObject>) =>
-  setContext((_, context) => {
-    if (!context.headers) context.headers = {}
-    try {
-      const query = cache.readQuery({ query: CustomerTokenDocument })
-      if (query?.customerToken?.token) {
-        context.headers.authorization = `Bearer ${query?.customerToken?.token}`
-        return context
-      }
-      return context
-    } catch (error) {
+export const addTokenHeader = setContext((_, context: ClientContext) => {
+  if (!context.headers) context.headers = {}
+  try {
+    const query = context.cache.readQuery({ query: CustomerTokenDocument })
+    if (query?.customerToken?.token) {
+      context.headers.authorization = `Bearer ${query?.customerToken?.token}`
       return context
     }
-  })
+    return context
+  } catch (error) {
+    return context
+  }
+})
+
+export const customerTokenLink = ApolloLink.from([addTokenHeader, onAuthenticationError])
+
+/** Not really required anymore, you can use customerTokenLink directly */
+export const createCustomerTokenLink = (_: ApolloCache<NormalizedCacheObject>) => customerTokenLink

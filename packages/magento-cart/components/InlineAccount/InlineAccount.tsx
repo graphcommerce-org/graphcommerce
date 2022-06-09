@@ -1,8 +1,8 @@
 import { useQuery } from '@graphcommerce/graphql'
 import {
   SignUpFormInline,
-  CustomerTokenDocument,
   IsEmailAvailableDocument,
+  useCustomerSession,
 } from '@graphcommerce/magento-customer'
 import { Button, FormRow, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
@@ -30,15 +30,12 @@ export function InlineAccount(props: InlineAccountProps) {
   const { loading, data } = useCartQuery(InlineAccountDocument)
   const cart = data?.cart
 
-  const { data: customerTokenData } = useQuery(CustomerTokenDocument)
+  const { loggedIn } = useCustomerSession()
   const { data: isEmailAvailableData } = useQuery(IsEmailAvailableDocument, {
     variables: { email: cart?.email ?? '' },
   })
 
   const { firstname, lastname } = cart?.shipping_addresses?.[0] ?? {}
-  const signedIn = Boolean(
-    customerTokenData?.customerToken && customerTokenData?.customerToken.valid,
-  )
   const canSignUp = isEmailAvailableData?.isEmailAvailable?.is_email_available === true
 
   if (!canSignUp) return null
@@ -56,7 +53,7 @@ export function InlineAccount(props: InlineAccountProps) {
           ...(Array.isArray(sx) ? sx : [sx]),
         ]}
       >
-        {!signedIn && canSignUp && (
+        {!loggedIn && canSignUp && (
           <>
             <Box
               className={classes.innerContainer}
@@ -118,7 +115,7 @@ export function InlineAccount(props: InlineAccountProps) {
           </>
         )}
 
-        {signedIn && (
+        {loggedIn && (
           <Box className={classes.innerContainer}>
             <div>
               <Typography variant='h4' className={classes.title}>

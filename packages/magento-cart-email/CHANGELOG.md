@@ -1,5 +1,69 @@
 # Change Log
 
+## 3.0.28
+
+### Patch Changes
+
+- Updated dependencies [[`de6781908`](https://github.com/graphcommerce-org/graphcommerce/commit/de6781908cbf514b9fd225aa1407fa1385c8e53b), [`0ab7c5465`](https://github.com/graphcommerce-org/graphcommerce/commit/0ab7c5465441cba9bf8cd185a6790ce2f443f4ed), [`711fa6e04`](https://github.com/graphcommerce-org/graphcommerce/commit/711fa6e04519bbe91825fec7e1714277c1a8fa68)]:
+  - @graphcommerce/magento-product@4.4.6
+  - @graphcommerce/next-ui@4.8.4
+  - @graphcommerce/magento-customer@4.5.2
+  - @graphcommerce/magento-cart@4.4.2
+  - @graphcommerce/magento-store@4.2.9
+
+## 3.0.27
+
+### Patch Changes
+
+- Updated dependencies [[`d205b037f`](https://github.com/graphcommerce-org/graphcommerce/commit/d205b037fee82b8c03993f2c586f477e826093bf)]:
+  - @graphcommerce/magento-cart@4.4.1
+  - @graphcommerce/magento-customer@4.5.1
+  - @graphcommerce/magento-product@4.4.5
+
+## 3.0.26
+
+### Patch Changes
+
+- Updated dependencies [[`ffec8800a`](https://github.com/graphcommerce-org/graphcommerce/commit/ffec8800a50ff2fe9b9fc5feeb5a0a878b573f0e), [`bed806ddd`](https://github.com/graphcommerce-org/graphcommerce/commit/bed806dddd7e025806a69798ef9587aa165d392f)]:
+  - @graphcommerce/react-hook-form@3.2.1
+  - @graphcommerce/graphql@3.2.0
+  - @graphcommerce/magento-cart@4.4.0
+  - @graphcommerce/magento-customer@4.5.0
+  - @graphcommerce/magento-product@4.4.4
+  - @graphcommerce/magento-store@4.2.8
+
+## 3.0.25
+
+### Patch Changes
+
+- Updated dependencies [[`858a3b3a3`](https://github.com/graphcommerce-org/graphcommerce/commit/858a3b3a3601cd00491219daf45557c2f1cc804b)]:
+  - @graphcommerce/react-hook-form@3.2.0
+  - @graphcommerce/magento-cart@4.3.4
+  - @graphcommerce/magento-customer@4.4.2
+  - @graphcommerce/magento-product@4.4.3
+
+## 3.0.24
+
+### Patch Changes
+
+- Updated dependencies [[`c63ab89c2`](https://github.com/graphcommerce-org/graphcommerce/commit/c63ab89c20cb81d79188900d57f3d65a7bba71cc), [`238aa4d34`](https://github.com/graphcommerce-org/graphcommerce/commit/238aa4d3478773b8cb0973f4112c9829e59e16d6), [`afc67103d`](https://github.com/graphcommerce-org/graphcommerce/commit/afc67103d0e00583e274465036fd287537f95e79)]:
+  - @graphcommerce/magento-product@4.4.2
+  - @graphcommerce/magento-customer@4.4.1
+  - @graphcommerce/next-ui@4.8.3
+  - @graphcommerce/magento-cart@4.3.3
+  - @graphcommerce/magento-store@4.2.7
+
+## 3.0.23
+
+### Patch Changes
+
+- Updated dependencies [[`d6262de71`](https://github.com/graphcommerce-org/graphcommerce/commit/d6262de71d2254a2b0b492e1a60f9e141767470e), [`c8c246b8a`](https://github.com/graphcommerce-org/graphcommerce/commit/c8c246b8aaab0621b68a2fca2a1c529a56fad962), [`e3005fe63`](https://github.com/graphcommerce-org/graphcommerce/commit/e3005fe6306093d47b08c6756c21c8175649e30b)]:
+  - @graphcommerce/magento-customer@4.4.0
+  - @graphcommerce/magento-cart@4.3.2
+  - @graphcommerce/next-ui@4.8.2
+  - @graphcommerce/magento-product@4.4.1
+  - @graphcommerce/magento-store@4.2.6
+
 ## 3.0.22
 
 ### Patch Changes

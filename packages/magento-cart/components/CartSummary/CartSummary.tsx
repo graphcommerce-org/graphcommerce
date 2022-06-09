@@ -1,6 +1,5 @@
 import { useHistoryLink } from '@graphcommerce/framer-next-pages'
 import { SectionContainer, extendableComponent } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, Link, SxProps, Theme, Typography } from '@mui/material'
 import PageLink from 'next/link'
@@ -21,7 +20,7 @@ const parts = ['root', 'detailsContainer', 'sectionHeaderWrapper'] as const
 const { classes } = extendableComponent<OwnerState, typeof compName, typeof parts>(compName, parts)
 
 export function CartSummary(props: CartSummaryProps) {
-  const { children, editable } = props
+  const { children, editable, sx = [] } = props
 
   const { data } = useCartQuery(GetCartSummaryDocument, { allowUrl: true })
   const { href: historyHref, onClick: historyOnClick } = useHistoryLink({
@@ -35,12 +34,15 @@ export function CartSummary(props: CartSummaryProps) {
   return (
     <Box
       className={classes.root}
-      sx={(theme) => ({
-        margin: `${theme.spacings.sm} 0`,
-        '& div:last-of-type': {
-          borderRadius: '0 0 4px 4px',
-        },
-      })}
+      sx={[
+        (theme) => ({
+          margin: `${theme.spacings.sm} 0`,
+          '& div:last-of-type': {
+            borderRadius: '0 0 4px 4px',
+          },
+        }),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
     >
       <Box
         className={classes.detailsContainer}

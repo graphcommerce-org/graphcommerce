@@ -1,6 +1,8 @@
-import { Box } from '@mui/material'
+import { Alert, Box, FormHelperText } from '@mui/material'
+import { AnimatePresence } from 'framer-motion'
 import React from 'react'
 import { isFragment } from 'react-is'
+import { AnimatedRow } from '../AnimatedRow/AnimatedRow'
 
 type MultiSelect = {
   multiple: true
@@ -16,10 +18,11 @@ type Select = {
   onChange?: (event: React.MouseEvent<HTMLElement>, value: string | null) => void
 }
 
-type ActionCardListProps<SelectOrMulti = MultiSelect | Select> = {
+export type ActionCardListProps<SelectOrMulti = MultiSelect | Select> = {
   children?: React.ReactNode
   required?: boolean
   error?: boolean
+  errorMessage?: string
 } & SelectOrMulti
 
 function isMulti(props: ActionCardListProps): props is ActionCardListProps<MultiSelect> {
@@ -33,7 +36,7 @@ function isValueSelected(value: string, candidate: string | string[]) {
 }
 
 export function ActionCardList(props: ActionCardListProps) {
-  const { children, required, value, error = false } = props
+  const { children, required, value, error = false, errorMessage } = props
 
   const handleChange = isMulti(props)
     ? (event: React.MouseEvent<HTMLElement, MouseEvent>, buttonValue: string) => {
@@ -70,15 +73,15 @@ export function ActionCardList(props: ActionCardListProps) {
               paddingLeft: theme.spacings.xs,
               paddingRight: theme.spacings.xs,
             },
-            '& .ActionCard-root:first-of-type': {
+            '& > div:first-of-type.ActionCard-root': {
               borderTop: 2,
               borderTopColor: 'error.main',
-              paddingTop: theme.spacings.xs,
+              paddingTop: theme.spacings.xxs,
             },
-            '& .ActionCard-root:last-of-type': {
+            '& > div:last-of-type.ActionCard-root': {
               borderBottom: 2,
               borderBottomColor: 'error.main',
-              paddingBottom: theme.spacings.xs,
+              paddingBottom: theme.spacings.xxs,
             },
           })),
       ]}
@@ -105,6 +108,15 @@ export function ActionCardList(props: ActionCardListProps) {
               : child.props.selected,
         })
       })}
+      {error && (
+        <Alert
+          severity='error'
+          variant='filled'
+          sx={{ borderStartStartRadius: 0, borderStartEndRadius: 0 }}
+        >
+          {errorMessage}
+        </Alert>
+      )}
     </Box>
   )
 }

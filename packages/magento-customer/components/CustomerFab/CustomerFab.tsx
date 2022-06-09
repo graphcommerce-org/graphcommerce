@@ -1,4 +1,3 @@
-import { useQuery } from '@graphcommerce/graphql'
 import {
   iconPerson,
   DesktopHeaderBadge,
@@ -9,14 +8,15 @@ import { i18n } from '@lingui/core'
 import { Fab, FabProps as FabPropsType, NoSsr, SxProps, Theme } from '@mui/material'
 import PageLink from 'next/link'
 import React from 'react'
-import { CustomerTokenDocument, CustomerTokenQuery, useCustomerSession } from '../../hooks'
+import { useCustomerSession, UseCustomerSessionReturn } from '../../hooks'
 
-type CustomerFabContentProps = CustomerTokenQuery & {
+type CustomerFabContentProps = {
   icon?: React.ReactNode
   authHref: string
   guestHref: string
   FabProps?: Omit<FabPropsType, 'children'>
   sx?: SxProps<Theme>
+  session?: UseCustomerSessionReturn
 }
 
 const name = 'CustomerFab'
@@ -24,11 +24,10 @@ const parts = ['root'] as const
 const { classes } = extendableComponent(name, parts)
 
 function CustomerFabContent(props: CustomerFabContentProps) {
-  const { customerToken, icon, guestHref, authHref, FabProps, sx } = props
-  const { requireAuth } = useCustomerSession()
+  const { session, icon, guestHref, authHref, FabProps, sx } = props
 
   return (
-    <PageLink href={requireAuth ? guestHref : authHref} passHref>
+    <PageLink href={session?.requireAuth ? guestHref : authHref} passHref>
       <Fab
         color='inherit'
         id='account'
@@ -39,8 +38,8 @@ function CustomerFabContent(props: CustomerFabContentProps) {
         sx={sx}
       >
         <DesktopHeaderBadge
-          badgeContent={customerToken?.token ? 1 : 0}
-          color={customerToken?.valid ? 'primary' : 'error'}
+          badgeContent={session?.token ? 1 : 0}
+          color={session?.valid ? 'primary' : 'error'}
           variant='dot'
           overlap='circular'
         >
@@ -51,12 +50,14 @@ function CustomerFabContent(props: CustomerFabContentProps) {
   )
 }
 
-export function CustomerFab(props: CustomerFabContentProps) {
-  const { data } = useQuery(CustomerTokenDocument)
+export type CustomerFabProps = Omit<CustomerFabContentProps, 'session'>
+
+export function CustomerFab(props: CustomerFabProps) {
+  const session = useCustomerSession()
 
   return (
     <NoSsr fallback={<CustomerFabContent {...props} />}>
-      <CustomerFabContent customerToken={data?.customerToken} {...props} />
+      <CustomerFabContent session={session} {...props} />
     </NoSsr>
   )
 }

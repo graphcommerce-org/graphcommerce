@@ -1,12 +1,11 @@
-import { useQuery } from '@graphcommerce/graphql'
 import {
   ApolloCustomerErrorAlert,
   SignInForm,
   SignUpForm,
   useFormIsEmailAvailable,
   CustomerDocument,
-  CustomerTokenDocument,
 } from '@graphcommerce/magento-customer'
+import { useCustomerQuery } from '@graphcommerce/magento-customer/hooks'
 import {
   AnimatedRow,
   Button,
@@ -28,25 +27,19 @@ export type AccountSignInUpFormProps = { sx?: SxProps<Theme> }
 const parts = ['root', 'titleContainer'] as const
 const { classes } = extendableComponent('AccountSignInUpForm', parts)
 
+const titleContainerSx: SxProps<Theme> = (theme) => ({
+  typography: 'body1',
+  marginBottom: theme.spacings.xs,
+})
+
 export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
   const { sx = [] } = props
-  const customerToken = useQuery(CustomerTokenDocument)
-  const customerQuery = useQuery(CustomerDocument, {
-    ssr: false,
-    skip: typeof customerToken.data === 'undefined',
-  })
+  const customerQuery = useCustomerQuery(CustomerDocument)
 
   const { email, firstname = '' } = customerQuery.data?.customer ?? {}
   const { mode, form, autoSubmitting, submit } = useFormIsEmailAvailable({ email })
   const { formState, muiRegister, required, watch, error } = form
   const disableFields = formState.isSubmitting && !autoSubmitting
-
-  useFormPersist({ form, name: 'IsEmailAvailable' })
-
-  const titleContainerSx: SxProps<Theme> = (theme) => ({
-    typography: 'body1',
-    marginBottom: theme.spacings.xs,
-  })
 
   return (
     <FormDiv sx={sx} className={classes.root}>

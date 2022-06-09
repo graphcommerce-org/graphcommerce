@@ -1,5 +1,57 @@
 # Change Log
 
+## 3.0.27
+
+### Patch Changes
+
+- Updated dependencies [[`0ab7c5465`](https://github.com/graphcommerce-org/graphcommerce/commit/0ab7c5465441cba9bf8cd185a6790ce2f443f4ed)]:
+  - @graphcommerce/next-ui@4.8.4
+  - @graphcommerce/magento-cart-shipping-method@3.0.28
+  - @graphcommerce/magento-store@4.2.9
+
+## 3.0.26
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/magento-cart-shipping-method@3.0.27
+
+## 3.0.25
+
+### Patch Changes
+
+- Updated dependencies [[`ffec8800a`](https://github.com/graphcommerce-org/graphcommerce/commit/ffec8800a50ff2fe9b9fc5feeb5a0a878b573f0e), [`bed806ddd`](https://github.com/graphcommerce-org/graphcommerce/commit/bed806dddd7e025806a69798ef9587aa165d392f)]:
+  - @graphcommerce/react-hook-form@3.2.1
+  - @graphcommerce/graphql@3.2.0
+  - @graphcommerce/magento-cart-shipping-method@3.0.26
+  - @graphcommerce/magento-store@4.2.8
+
+## 3.0.24
+
+### Patch Changes
+
+- Updated dependencies [[`858a3b3a3`](https://github.com/graphcommerce-org/graphcommerce/commit/858a3b3a3601cd00491219daf45557c2f1cc804b)]:
+  - @graphcommerce/react-hook-form@3.2.0
+  - @graphcommerce/magento-cart-shipping-method@3.0.25
+
+## 3.0.23
+
+### Patch Changes
+
+- Updated dependencies [[`afc67103d`](https://github.com/graphcommerce-org/graphcommerce/commit/afc67103d0e00583e274465036fd287537f95e79)]:
+  - @graphcommerce/next-ui@4.8.3
+  - @graphcommerce/magento-cart-shipping-method@3.0.24
+  - @graphcommerce/magento-store@4.2.7
+
+## 3.0.22
+
+### Patch Changes
+
+- Updated dependencies [[`c8c246b8a`](https://github.com/graphcommerce-org/graphcommerce/commit/c8c246b8aaab0621b68a2fca2a1c529a56fad962)]:
+  - @graphcommerce/next-ui@4.8.2
+  - @graphcommerce/magento-cart-shipping-method@3.0.23
+  - @graphcommerce/magento-store@4.2.6
+
 ## 3.0.21
 
 ### Patch Changes
