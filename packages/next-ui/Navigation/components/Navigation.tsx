@@ -16,6 +16,7 @@ export type NavigationContext = {
   path: NavigationPath
   select: SelectPath
   Render: RenderItem<NavigationNode>
+  items: NavigationNode[]
   hideRootOnNavigate: boolean
 }
 
@@ -129,21 +130,20 @@ function NavigationItem(props: NavigationItemProps) {
   )
 }
 
-type RenderItem<ItemProps extends NavigationNode> = React.VFC<
-  Omit<ItemProps, 'childItems'> & { children?: React.ReactNode; hasChildren: boolean }
+type RenderItem = React.VFC<
+  Omit<NavigationNode, 'childItems'> & { children?: React.ReactNode; hasChildren: boolean }
 >
 
-type NavigationBaseProps<ItemProps extends NavigationNode> = {
-  items: ItemProps[]
-  renderItem: RenderItem<ItemProps>
+export type NavigationProviderProps = {
+  items: (NavigationNode | React.ReactElement)[]
+  renderItem: RenderItem
   onChange?: (path: NavigationPath) => void
   hideRootOnNavigate?: boolean
+  children?: React.ReactNode
 }
 
-export function NavigationBase<ItemProps extends NavigationNode>(
-  props: NavigationBaseProps<ItemProps>,
-) {
-  const { items: childItems, renderItem, onChange, hideRootOnNavigate = false } = props
+export function NavigationProvider(props: NavigationProviderProps) {
+  const { items, renderItem, onChange, hideRootOnNavigate = false, children } = props
 
   const [path, select] = useState<NavigationPath>([])
   const value = useMemo<NavigationContext>(
@@ -154,57 +154,31 @@ export function NavigationBase<ItemProps extends NavigationNode>(
         select(incomming)
         onChange?.(incomming)
       },
-      Render: renderItem,
-    }),
-    [hideRootOnNavigate, path, renderItem, onChange],
-  )
-
-  return (
-    <navigationContext.Provider value={value}>
-      <Box sx={{ display: 'grid', gridAutoFlow: 'column', justifyContent: 'start', columnGap: 4 }}>
-        <Box sx={{ display: 'contents' }} component='ul'>
-          {childItems?.map((item) => (
-            <NavigationItem key={item.id} {...item} level={1} parentPath={[]} />
-          ))}
-        </Box>
-      </Box>
-    </navigationContext.Provider>
-  )
-}
-
-export type NavItemProps = NavigationNode & {
-  name?: string
-}
-
-export type NavigationProps = {
-  items: (NavItemProps | React.ReactElement)[]
-} & Omit<NavigationBaseProps<NavItemProps>, 'items' | 'renderItem'>
-
-export function Navigation(props: NavigationProps) {
-  const { items, ...other } = props
-
-  const childItems: NavItemProps[] = useMemo(
-    () =>
-      items
+      items: items
         .map((item, index) => (isElement(item) ? { id: item.key ?? index, component: item } : item))
         .filter(nonNullable),
-    [items],
+      Render: renderItem,
+    }),
+    [hideRootOnNavigate, path, renderItem, items, onChange],
   )
 
+  return <navigationContext.Provider value={value}>{children}</navigationContext.Provider>
+}
+
+export function NavigationBase() {
+  const { items } = useContext(navigationContext)
+
   return (
-    <Box className='myoverlay'>
-      <NavigationBase<NavItemProps>
-        items={childItems}
-        renderItem={({ id, hasChildren, children, href, name, component }) => {
-          if (component) return <>{component}</>
-          return (
-            <>
-              {hasChildren && 'All'} {name}
-            </>
-          )
-        }}
-        {...other}
-      />
+    <Box sx={{ display: 'grid', gridAutoFlow: 'column', justifyContent: 'start', columnGap: 4 }}>
+      <Box sx={{ display: 'contents' }} component='ul'>
+        {items.map((item) => (
+          <NavigationItem key={item.id} {...item} level={1} parentPath={[]} />
+        ))}
+      </Box>
     </Box>
   )
+}
+
+export function useNavigation() {
+  return useContext(navigationContext)
 }

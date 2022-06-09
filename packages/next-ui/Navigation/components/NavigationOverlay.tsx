@@ -1,10 +1,24 @@
 import styled from '@emotion/styled'
+import { Trans } from '@lingui/react'
+import { Box, Fab } from '@mui/material'
 import { m, useForceUpdate } from 'framer-motion'
 import { useState } from 'react'
-import { Overlay } from '../../LayoutOverlay'
-import { Navigation, NavigationPath, NavigationProps } from './Navigation'
+import { IconSvg, useIconSvgSize } from '../../IconSvg'
+import { LayoutTitle } from '../../Layout'
+import { LayoutOverlayHeader, Overlay } from '../../LayoutOverlay'
+import { useFabSize } from '../../Theme'
+import { iconClose, iconChevronLeft } from '../../icons'
+import {
+  Navigation,
+  NavigationBase,
+  NavigationPath,
+  NavigationProps,
+  NavigationProvider,
+  NavigationProviderProps,
+  useNavigation,
+} from './Navigation'
 
-type NavigationOverlayProps = NavigationProps & {
+type NavigationOverlayProps = NavigationProviderProps & {
   active: boolean
   onClose: () => void
 }
@@ -13,10 +27,20 @@ const MotionDiv = styled(m.div)({
   padding: 10,
 })
 
-export function NavigationOverlay(props: NavigationOverlayProps) {
-  const { active, onClose, items } = props
+export function NavigationOverlayBase(props: NavigationOverlayProps) {
+  const { active, onClose } = props
 
-  const [path, setPath] = useState<NavigationPath>()
+  const fabSize = useFabSize('responsive')
+  const svgSize = useIconSvgSize('large')
+
+  const { path, select, items } = useNavigation()
+
+  const resetAndClose = () => {
+    onClose()
+    select([])
+  }
+
+  console.log(path, items)
 
   return (
     <Overlay
@@ -30,9 +54,74 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
       justifySm='start'
       sx={{ '& > div > div': { minWidth: 'auto !important' } }}
     >
+      <LayoutOverlayHeader
+        switchPoint={0}
+        noAlign
+        sx={{ '&.noAlign': { marginBottom: 0 } }}
+        primary={
+          <Fab
+            onClick={resetAndClose}
+            sx={{
+              marginLeft: `calc((${fabSize} - ${svgSize}) * -0.5)`,
+              marginRight: `calc((${fabSize} - ${svgSize}) * -0.5)`,
+            }}
+            color='inherit'
+            size='responsive'
+            disabled={!active}
+          >
+            <IconSvg src={iconClose} size='large' />
+          </Fab>
+        }
+        secondary={
+          path.length > 0 ? (
+            <Fab
+              sx={{
+                marginLeft: `calc((${fabSize} - ${svgSize}) * -0.5)`,
+                marginRight: `calc((${fabSize} - ${svgSize}) * -0.5)`,
+              }}
+              onClick={(e) => {
+                select([])
+                e.preventDefault()
+                e.stopPropagation()
+              }}
+              color='inherit'
+              size='responsive'
+            >
+              <IconSvg src={iconChevronLeft} size='large' />
+            </Fab>
+          ) : (
+            <></>
+          )
+        }
+      >
+        <LayoutTitle size='small' component='span'>
+          <Trans id='Navigation' />
+        </LayoutTitle>
+      </LayoutOverlayHeader>
+
       <MotionDiv layout='position'>
-        <Navigation items={items} onChange={setPath} hideRootOnNavigate />
+        <NavigationBase />
       </MotionDiv>
     </Overlay>
+  )
+}
+
+export function NavigationOverlay(props: NavigationOverlayProps) {
+  const { items } = props
+  return (
+    <NavigationProvider
+      items={items}
+      renderItem={({ id, hasChildren, children, href, name, component }) => {
+        if (component) return <>{component}</>
+        return (
+          <>
+            {hasChildren && 'All'} {name}
+          </>
+        )
+      }}
+      hideRootOnNavigate
+    >
+      <NavigationOverlayBase {...props} />
+    </NavigationProvider>
   )
 }

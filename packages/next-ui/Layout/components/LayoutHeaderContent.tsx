@@ -177,7 +177,9 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
             },
           })}
         >
-          {children}
+          <MotionDiv layout='position' transition={{ duration: 0.1 }}>
+            {children}
+          </MotionDiv>
         </Box>
         <Box
           className={classes.right}
