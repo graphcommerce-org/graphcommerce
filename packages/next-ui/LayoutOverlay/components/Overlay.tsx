@@ -20,6 +20,7 @@ export function Overlay(props: OverlayProps) {
 
   return (
     <Box
+      className='Overlay'
       // hidden={!active}
       sx={{
         position: 'fixed',
@@ -32,11 +33,7 @@ export function Overlay(props: OverlayProps) {
         zIndex: 'drawer',
       }}
     >
-      <ScrollerProvider
-        key='my-happy-overlay'
-        scrollSnapTypeSm={scrollSnapTypeSm}
-        scrollSnapTypeMd={scrollSnapTypeMd}
-      >
+      <ScrollerProvider scrollSnapTypeSm={scrollSnapTypeSm} scrollSnapTypeMd={scrollSnapTypeMd}>
         <LayoutOverlayBase
           offsetPageY={0}
           variantMd={variantMd}

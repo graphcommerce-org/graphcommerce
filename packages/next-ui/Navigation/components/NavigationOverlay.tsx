@@ -1,18 +1,15 @@
 import styled from '@emotion/styled'
 import { Trans } from '@lingui/react'
-import { Box, Fab } from '@mui/material'
-import { m, useForceUpdate } from 'framer-motion'
-import { useState } from 'react'
+import { Box, Fab, useEventCallback } from '@mui/material'
+import { m } from 'framer-motion'
 import { IconSvg, useIconSvgSize } from '../../IconSvg'
 import { LayoutTitle } from '../../Layout'
-import { LayoutOverlayHeader, Overlay } from '../../LayoutOverlay'
+import { LayoutHeaderContent } from '../../Layout/components/LayoutHeaderContent'
+import { Overlay } from '../../LayoutOverlay'
 import { useFabSize } from '../../Theme'
 import { iconClose, iconChevronLeft } from '../../icons'
 import {
-  Navigation,
   NavigationBase,
-  NavigationPath,
-  NavigationProps,
   NavigationProvider,
   NavigationProviderProps,
   useNavigation,
@@ -28,76 +25,86 @@ const MotionDiv = styled(m.div)({
 })
 
 export function NavigationOverlayBase(props: NavigationOverlayProps) {
-  const { active, onClose } = props
+  const { active, onClose: closeCallback } = props
 
   const fabSize = useFabSize('responsive')
   const svgSize = useIconSvgSize('large')
 
   const { path, select, items } = useNavigation()
 
-  const resetAndClose = () => {
-    onClose()
-    select([])
-  }
+  const handleReset = useEventCallback(() => select([]))
 
-  console.log(path, items)
+  const handleClose = useEventCallback(() => {
+    handleReset()
+    closeCallback()
+  })
+
+  const showBack = path.length > 0
 
   return (
     <Overlay
       active={active}
-      close={onClose}
-      variantMd='left'
-      sizeMd='full'
-      justifyMd='start'
+      close={handleClose}
       variantSm='bottom'
       sizeSm='floating'
       justifySm='start'
-      sx={{ '& > div > div': { minWidth: 'auto !important' } }}
+      variantMd='left'
+      sizeMd='floating'
+      justifyMd='start'
+      sx={{
+        zIndex: 'drawer',
+        '& > div > div': { minWidth: 'auto !important' },
+      }}
     >
-      <LayoutOverlayHeader
-        switchPoint={0}
-        noAlign
-        sx={{ '&.noAlign': { marginBottom: 0 } }}
-        primary={
-          <Fab
-            onClick={resetAndClose}
-            sx={{
-              marginLeft: `calc((${fabSize} - ${svgSize}) * -0.5)`,
-              marginRight: `calc((${fabSize} - ${svgSize}) * -0.5)`,
-            }}
-            color='inherit'
-            size='responsive'
-            disabled={!active}
-          >
-            <IconSvg src={iconClose} size='large' />
-          </Fab>
-        }
-        secondary={
-          path.length > 0 ? (
+      <Box
+        sx={(theme) => ({
+          top: 0,
+          position: 'sticky',
+          height: {
+            xs: theme.appShell.headerHeightSm,
+            md: theme.appShell.appBarHeightMd,
+          },
+          zIndex: 1,
+        })}
+      >
+        <LayoutHeaderContent
+          floatingMd={false}
+          floatingSm={false}
+          switchPoint={0}
+          left={
+            showBack && (
+              <Fab
+                onClick={handleReset}
+                sx={{
+                  boxShadow: 'none',
+                  marginLeft: `calc((${fabSize} - ${svgSize}) * -0.5)`,
+                  marginRight: `calc((${fabSize} - ${svgSize}) * -0.5)`,
+                }}
+                size='responsive'
+              >
+                <IconSvg src={iconChevronLeft} size='large' />
+              </Fab>
+            )
+          }
+          right={
             <Fab
+              onClick={handleClose}
               sx={{
+                boxShadow: 'none',
                 marginLeft: `calc((${fabSize} - ${svgSize}) * -0.5)`,
                 marginRight: `calc((${fabSize} - ${svgSize}) * -0.5)`,
               }}
-              onClick={(e) => {
-                select([])
-                e.preventDefault()
-                e.stopPropagation()
-              }}
-              color='inherit'
               size='responsive'
             >
-              <IconSvg src={iconChevronLeft} size='large' />
+              <IconSvg src={iconClose} size='large' />
             </Fab>
-          ) : (
-            <></>
-          )
-        }
-      >
-        <LayoutTitle size='small' component='span'>
-          <Trans id='Navigation' />
-        </LayoutTitle>
-      </LayoutOverlayHeader>
+          }
+        >
+          <LayoutTitle size='small' component='span'>
+            <Trans id='Menu' />
+          </LayoutTitle>
+        </LayoutHeaderContent>
+      </Box>
 
       <MotionDiv layout='position'>
         <NavigationBase />

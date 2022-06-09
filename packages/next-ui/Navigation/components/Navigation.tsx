@@ -1,10 +1,14 @@
-import { Box } from '@mui/material'
+import { Box, SxProps, Theme } from '@mui/material'
 import PageLink from 'next/link'
 import React, { createContext, useContext, useMemo, useState } from 'react'
 import { isElement } from 'react-is'
 import { Button } from '../../Button'
 import { IconSvg } from '../../IconSvg'
+import { extendableComponent } from '../../Styles/extendableComponent'
 import { iconChevronRight } from '../../icons'
+
+const parts = ['root', 'button'] as const
+const { classes } = extendableComponent('Navigation', parts)
 
 function nonNullable<T>(value: T): value is NonNullable<T> {
   return value !== null && value !== undefined
@@ -15,7 +19,7 @@ type SelectPath = (path: NavigationPath) => void
 export type NavigationContext = {
   path: NavigationPath
   select: SelectPath
-  Render: RenderItem<NavigationNode>
+  Render: RenderItem
   items: NavigationNode[]
   hideRootOnNavigate: boolean
 }
@@ -60,6 +64,7 @@ function NavigationItem(props: NavigationItemProps) {
     return (
       <Box sx={{ display: 'contents' }} component='li'>
         <Button
+          className={classes.button}
           sx={{
             gridColumnStart: level + levelOffset,
             justifyContent: 'space-between',
@@ -84,6 +89,7 @@ function NavigationItem(props: NavigationItemProps) {
             <Box sx={{ display: 'contents' }} component='li'>
               <PageLink href={href}>
                 <Button
+                  className={classes.button}
                   component='a'
                   sx={{
                     gridColumnStart: level + 1 + levelOffset,
@@ -111,6 +117,7 @@ function NavigationItem(props: NavigationItemProps) {
       {href ? (
         <PageLink href={href} passHref>
           <Button
+            className={classes.button}
             component='a'
             sx={{ gridColumnStart: level + levelOffset, justifyContent: 'space-between' }}
             data-level={level + levelOffset}
@@ -165,14 +172,24 @@ export function NavigationProvider(props: NavigationProviderProps) {
   return <navigationContext.Provider value={value}>{children}</navigationContext.Provider>
 }
 
-export function NavigationBase() {
+type NavigationBaseProps = {
+  sx?: SxProps<Theme>
+}
+export function NavigationBase(props: NavigationBaseProps) {
+  const { sx = [] } = props
   const { items } = useContext(navigationContext)
 
   return (
-    <Box sx={{ display: 'grid', gridAutoFlow: 'column', justifyContent: 'start', columnGap: 4 }}>
+    <Box
+      className={classes.root}
+      sx={[
+        { display: 'grid', gridAutoFlow: 'column', justifyContent: 'start', columnGap: 4 },
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    >
       <Box sx={{ display: 'contents' }} component='ul'>
         {items.map((item) => (
-          <NavigationItem key={item.id} {...item} level={1} parentPath={[]} />
+          <NavigationItem key={item.id} {...item} parentPath={[]} />
         ))}
       </Box>
     </Box>
