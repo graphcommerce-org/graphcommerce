@@ -1,5 +1,5 @@
 query CategoryPage($url: String!, $rootCategory: String!) {
-  ...MegaMenuQueryFragment
+  ...MenuQueryFragment
   ...FooterQueryFragment
   ...PageContentQueryFragment
 

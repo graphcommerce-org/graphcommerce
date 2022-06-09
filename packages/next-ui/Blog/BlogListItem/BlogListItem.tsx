@@ -1,6 +1,6 @@
 import { Box, Link, SxProps, Theme, Typography } from '@mui/material'
 import PageLink from 'next/link'
-import React from 'react'
+import React, { useMemo } from 'react'
 import { extendableComponent } from '../../Styles'
 import { responsiveVal } from '../../Styles/responsiveVal'
 
@@ -20,7 +20,7 @@ const { classes } = extendableComponent(name, parts)
 export function BlogListItem(props: BlogListItemProps) {
   const { asset, url, date, locale, title, sx = [] } = props
 
-  const formatter = new Intl.DateTimeFormat(locale, {
+  const formatter = new Intl.DateTimeFormat(locale || undefined, {
     year: 'numeric',
     month: 'long',
     day: 'numeric',

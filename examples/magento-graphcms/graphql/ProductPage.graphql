@@ -5,7 +5,7 @@ query ProductPage(
   $reviewPageSize: Int = 3
   $reviewPage: Int = 1
 ) {
-  ...MegaMenuQueryFragment
+  ...MenuQueryFragment
   ...FooterQueryFragment
   ...UspsQueryFragment
   ...ProductPageQueryFragment

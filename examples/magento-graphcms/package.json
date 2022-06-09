@@ -55,7 +55,6 @@
     "@graphcommerce/magento-customer-account": "3.1.15",
     "@graphcommerce/magento-customer-order": "3.0.19",
     "@graphcommerce/magento-graphql": "3.0.12",
-    "@graphcommerce/magento-megamenu": "1.0.0",
     "@graphcommerce/magento-newsletter": "2.0.20",
     "@graphcommerce/magento-payment-braintree": "3.0.20",
     "@graphcommerce/magento-payment-included": "3.0.20",

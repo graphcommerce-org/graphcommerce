@@ -14,7 +14,6 @@ import { m } from 'framer-motion'
 import Link from 'next/link'
 import { useState } from 'react'
 import { MegaMenuQueryFragment } from '../../queries/MegaMenuQueryFragment.gql'
-import { MegaMenu } from './MegaMenu'
 
 const MotionDiv = styled(m.div)({})
 
@@ -25,7 +24,7 @@ type Props = MegaMenuQueryFragment & {
 }
 
 export function MegaMenuOverlay(props: Props) {
-  const { menu, active, close, addLevel = false } = props
+  const { menu, active, close, addLevel = true } = props
 
   const fabSize = useFabSize('responsive')
   const svgSize = useIconSvgSize('large')
@@ -93,50 +92,7 @@ export function MegaMenuOverlay(props: Props) {
         </LayoutTitle>
       </LayoutOverlayHeader>
 
-      <MotionDiv layout='position'>
-        <MegaMenu
-          menu={
-            addLevel
-              ? {
-                  items: [
-                    {
-                      include_in_menu: 1,
-                      name: 'Home',
-                      uid: 'home',
-                      url_path: '/',
-                    },
-                    {
-                      include_in_menu: 1,
-                      name: 'Products',
-                      uid: '#',
-                      url_path: '#',
-                      children: menu?.items,
-                    },
-                  ],
-                }
-              : menu
-          }
-          itemsAfter={
-            <ListItem sx={{ gridColumnStart: 1 }}>
-              <Typography
-                variant='h3'
-                sx={{
-                  minWidth: 200,
-                  mr: 4,
-                  ml: 4,
-                  justifyContent: 'space-between',
-                  borderRadius: 0,
-                }}
-              >
-                After
-              </Typography>
-            </ListItem>
-          }
-          open={open}
-          setOpen={setOpen}
-          addLevel={addLevel}
-        />
-      </MotionDiv>
+      <MotionDiv layout='position' />
     </Overlay>
   )
 }

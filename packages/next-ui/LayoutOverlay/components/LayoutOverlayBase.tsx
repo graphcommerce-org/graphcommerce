@@ -346,7 +346,6 @@ export function LayoutOverlayBase(incommingProps: LayoutOverlayBaseProps) {
                 marginTop: `calc(${smSpacingTop} * -1)`,
                 paddingTop: smSpacingTop,
               },
-
               '&.sizeSmFloating': {
                 padding: `${theme.page.vertical} ${theme.page.horizontal}`,
               },
@@ -371,6 +370,7 @@ export function LayoutOverlayBase(incommingProps: LayoutOverlayBaseProps) {
             layout
             className={classes.overlayPane}
             sx={(theme) => ({
+              // overflow: 'hidden',
               pointerEvents: 'all',
               backgroundColor: theme.palette.background.paper,
               boxShadow: theme.shadows[24],
