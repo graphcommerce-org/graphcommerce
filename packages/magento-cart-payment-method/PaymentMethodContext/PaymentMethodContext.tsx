@@ -1,6 +1,12 @@
+import { useApolloClient } from '@graphcommerce/graphql'
 import { useCartQuery } from '@graphcommerce/magento-cart'
 import React, { PropsWithChildren, useContext, useEffect, useMemo, useState } from 'react'
-import { PaymentMethod, PaymentMethodModules, PaymentModule } from '../Api/PaymentMethod'
+import {
+  ExpandPaymentMethodsContext,
+  PaymentMethod,
+  PaymentMethodModules,
+  PaymentModule,
+} from '../Api/PaymentMethod'
 import { GetPaymentMethodContextDocument } from './GetPaymentMethodContext.gql'
 
 type PaymentMethodContextProps = {
@@ -26,8 +32,13 @@ export function PaymentMethodContextProvider(props: PaymentMethodContextProvider
   const { modules, children } = props
 
   const context = useCartQuery(GetPaymentMethodContextDocument)
+  const client = useApolloClient()
 
-  const cartContext = context?.data?.cart
+  const cartContext: ExpandPaymentMethodsContext = useMemo(
+    () => ({ ...context?.data?.cart, client }),
+    [client, context?.data?.cart],
+  )
+
   const [methods, setMethods] = useState<PaymentMethod[]>([])
   const [selectedMethod, setSelectedMethod] = useState<PaymentMethod>()
   const [selectedModule, setSelectedModule] = useState<PaymentModule>()
