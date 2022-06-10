@@ -65,34 +65,12 @@ https://user-images.githubusercontent.com/1251986/158647122-dc57002f-a9c2-4661-a
 
 ### Download the example
 
-1. **Clone Repository**
-
-`git clone https://github.com/graphcommerce-org/graphcommerce.git`
-
-
-2. **Create a Project Folder**
-
-`mkdir my-project`
-
-
-3. **Copy the Templete Folder and insert into ‘my-project’ before Deleting graphcommerce**
-
-`cp -R graphcommerce/examples/magento-graphcms/. my-project && rm -rf graphcommerce`
-
-
-4. **Move to your folder**
-
-****`cd my-project`
-
-
-5. **Copy to .env from .env.example**
-
-`cp -R .env.example .env`
-
-
-6. Remove CHANGELOG.md
-
-`rm CHANGELOG.md`
+1. `git clone https://github.com/graphcommerce-org/graphcommerce.git` — clone repository
+2. `mkdir my-project` — create project folder
+3. `cp -R graphcommerce/examples/magento-graphcms/. my-project && rm -rf graphcommerce` — copy example, delete repo
+4. `cd my-project` — change directory to project folder
+5. `cp -R .env.example .env` — create .env file
+6. `rm CHANGELOG.md` — remove changelog
 
 Edit /package.json. Delete `"scripts": {...}` and rename `scripts_local` to
 `scripts`:
