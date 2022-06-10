@@ -1,5 +1,17 @@
 # Change Log
 
+## 3.0.21
+
+### Patch Changes
+
+- [#1490](https://github.com/graphcommerce-org/graphcommerce/pull/1490) [`d311ef48b`](https://github.com/graphcommerce-org/graphcommerce/commit/d311ef48bb3e97806d992af5516d6b7f183ec9cb) Thanks [@paales](https://github.com/paales)! - upgraded packages
+
+- Updated dependencies [[`a9213f1f5`](https://github.com/graphcommerce-org/graphcommerce/commit/a9213f1f5a410d217768386ccb6d9b5ce7bd5782), [`d311ef48b`](https://github.com/graphcommerce-org/graphcommerce/commit/d311ef48bb3e97806d992af5516d6b7f183ec9cb)]:
+  - @graphcommerce/next-ui@4.9.0
+  - @graphcommerce/framer-next-pages@3.2.3
+  - @graphcommerce/lingui-next@2.1.9
+  - @graphcommerce/next-config@3.1.5
+
 ## 3.0.20
 
 ### Patch Changes

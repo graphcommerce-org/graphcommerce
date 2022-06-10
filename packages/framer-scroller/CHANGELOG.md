@@ -1,5 +1,18 @@
 # Change Log
 
+## 2.1.16
+
+### Patch Changes
+
+- [#1511](https://github.com/graphcommerce-org/graphcommerce/pull/1511) [`ddb6d6329`](https://github.com/graphcommerce-org/graphcommerce/commit/ddb6d6329bfad361b2fbe96402ca2bfc0ab3d98c) Thanks [@paales](https://github.com/paales)! - make sure the header is clickable when no forward/prev buttons are shown
+
+* [#1490](https://github.com/graphcommerce-org/graphcommerce/pull/1490) [`d311ef48b`](https://github.com/graphcommerce-org/graphcommerce/commit/d311ef48bb3e97806d992af5516d6b7f183ec9cb) Thanks [@paales](https://github.com/paales)! - upgraded packages
+
+* Updated dependencies [[`a9213f1f5`](https://github.com/graphcommerce-org/graphcommerce/commit/a9213f1f5a410d217768386ccb6d9b5ce7bd5782), [`d311ef48b`](https://github.com/graphcommerce-org/graphcommerce/commit/d311ef48bb3e97806d992af5516d6b7f183ec9cb)]:
+  - @graphcommerce/next-ui@4.9.0
+  - @graphcommerce/framer-utils@3.1.4
+  - @graphcommerce/image@3.1.7
+
 ## 2.1.15
 
 ### Patch Changes
