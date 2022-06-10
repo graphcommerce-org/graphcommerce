@@ -1,5 +1,77 @@
 # Change Log
 
+## 4.1.13
+
+### Patch Changes
+
+- [#1506](https://github.com/graphcommerce-org/graphcommerce/pull/1506) [`de6781908`](https://github.com/graphcommerce-org/graphcommerce/commit/de6781908cbf514b9fd225aa1407fa1385c8e53b) Thanks [@FrankHarland](https://github.com/FrankHarland)! - use array notation for sx support
+
+- Updated dependencies [[`de6781908`](https://github.com/graphcommerce-org/graphcommerce/commit/de6781908cbf514b9fd225aa1407fa1385c8e53b), [`0ab7c5465`](https://github.com/graphcommerce-org/graphcommerce/commit/0ab7c5465441cba9bf8cd185a6790ce2f443f4ed), [`711fa6e04`](https://github.com/graphcommerce-org/graphcommerce/commit/711fa6e04519bbe91825fec7e1714277c1a8fa68)]:
+  - @graphcommerce/magento-product@4.4.6
+  - @graphcommerce/next-ui@4.8.4
+  - @graphcommerce/magento-customer@4.5.2
+  - @graphcommerce/magento-cart-items@3.0.29
+  - @graphcommerce/magento-category@4.1.14
+  - @graphcommerce/magento-product-simple@4.0.28
+  - @graphcommerce/magento-cart@4.4.2
+  - @graphcommerce/magento-store@4.2.9
+
+## 4.1.12
+
+### Patch Changes
+
+- Updated dependencies [[`d205b037f`](https://github.com/graphcommerce-org/graphcommerce/commit/d205b037fee82b8c03993f2c586f477e826093bf)]:
+  - @graphcommerce/magento-cart@4.4.1
+  - @graphcommerce/magento-customer@4.5.1
+  - @graphcommerce/magento-cart-items@3.0.28
+  - @graphcommerce/magento-product@4.4.5
+  - @graphcommerce/magento-product-simple@4.0.27
+  - @graphcommerce/magento-category@4.1.13
+
+## 4.1.11
+
+### Patch Changes
+
+- Updated dependencies [[`ffec8800a`](https://github.com/graphcommerce-org/graphcommerce/commit/ffec8800a50ff2fe9b9fc5feeb5a0a878b573f0e), [`bed806ddd`](https://github.com/graphcommerce-org/graphcommerce/commit/bed806dddd7e025806a69798ef9587aa165d392f)]:
+  - @graphcommerce/react-hook-form@3.2.1
+  - @graphcommerce/graphql@3.2.0
+  - @graphcommerce/magento-cart@4.4.0
+  - @graphcommerce/magento-customer@4.5.0
+  - @graphcommerce/magento-cart-items@3.0.27
+  - @graphcommerce/magento-category@4.1.12
+  - @graphcommerce/magento-product@4.4.4
+  - @graphcommerce/magento-product-simple@4.0.26
+  - @graphcommerce/magento-store@4.2.8
+
+## 4.1.10
+
+### Patch Changes
+
+- Updated dependencies [[`858a3b3a3`](https://github.com/graphcommerce-org/graphcommerce/commit/858a3b3a3601cd00491219daf45557c2f1cc804b)]:
+  - @graphcommerce/react-hook-form@3.2.0
+  - @graphcommerce/magento-cart@4.3.4
+  - @graphcommerce/magento-cart-items@3.0.26
+  - @graphcommerce/magento-customer@4.4.2
+  - @graphcommerce/magento-product@4.4.3
+  - @graphcommerce/magento-product-simple@4.0.25
+  - @graphcommerce/magento-category@4.1.11
+
+## 4.1.9
+
+### Patch Changes
+
+- [#1491](https://github.com/graphcommerce-org/graphcommerce/pull/1491) [`c63ab89c2`](https://github.com/graphcommerce-org/graphcommerce/commit/c63ab89c20cb81d79188900d57f3d65a7bba71cc) Thanks [@FrankHarland](https://github.com/FrankHarland)! - add sx support to ConfigurableProductAddToCart
+
+- Updated dependencies [[`c63ab89c2`](https://github.com/graphcommerce-org/graphcommerce/commit/c63ab89c20cb81d79188900d57f3d65a7bba71cc), [`238aa4d34`](https://github.com/graphcommerce-org/graphcommerce/commit/238aa4d3478773b8cb0973f4112c9829e59e16d6), [`13b174d28`](https://github.com/graphcommerce-org/graphcommerce/commit/13b174d28d1886043d9e02aef09c794ff23ea918), [`afc67103d`](https://github.com/graphcommerce-org/graphcommerce/commit/afc67103d0e00583e274465036fd287537f95e79)]:
+  - @graphcommerce/magento-product@4.4.2
+  - @graphcommerce/magento-customer@4.4.1
+  - @graphcommerce/magento-category@4.1.10
+  - @graphcommerce/next-ui@4.8.3
+  - @graphcommerce/magento-cart-items@3.0.25
+  - @graphcommerce/magento-product-simple@4.0.24
+  - @graphcommerce/magento-cart@4.3.3
+  - @graphcommerce/magento-store@4.2.7
+
 ## 4.1.8
 
 ### Patch Changes

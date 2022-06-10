@@ -1,40 +1,47 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { Controller, ControllerProps } from '@graphcommerce/react-hook-form'
-import { Trans } from '@lingui/react'
-import { Button } from '@mui/material'
 import React from 'react'
-import { ActionCard, ActionCardProps } from './ActionCard'
+import { ActionCardProps } from './ActionCard'
 import { ActionCardList, ActionCardListProps } from './ActionCardList'
 
-export type ActionCardRenderProps = Pick<
-  ActionCardProps,
-  'action' | 'reset' | 'selected' | 'hidden' | 'value' | 'onClick' | 'onChange'
->
+export type ActionCardItemBase = Pick<ActionCardProps, 'value'>
 
-export type ActionCardItem = Omit<
-  ActionCardProps,
-  'action' | 'reset' | 'selected' | 'hidden' | 'onClick' | 'onChange'
->
+export type ActionCardItemRenderer<T> = Pick<ActionCardProps, 'selected' | 'hidden' | 'value'> & {
+  onReset: React.MouseEventHandler<HTMLButtonElement>
+} & T
 
-type ActionCardListFormProps = Omit<ActionCardListProps, 'value'> &
+export type ActionCardListFormProps<T extends ActionCardItemBase> = Omit<
+  ActionCardListProps,
+  'value'
+> &
   Omit<ControllerProps<any>, 'render'> & {
-    items: ActionCardItem[]
-    render?: React.VFC<ActionCardRenderProps>
+    items: T[]
+    render: React.VFC<ActionCardItemRenderer<T>>
   }
 
-export function ActionCardListForm(props: ActionCardListFormProps) {
-  const { required, rules, items, render: RenderItem = ActionCard } = props
+export function ActionCardListForm<T extends ActionCardItemBase>(
+  props: ActionCardListFormProps<T>,
+) {
+  const { required, rules, items, render, control, name, errorMessage } = props
+  const RenderItem = render as React.VFC<ActionCardItemRenderer<ActionCardItemBase>>
 
   return (
     <Controller
       {...props}
-      rules={{ required, ...rules }}
+      control={control}
+      name={name}
+      rules={{
+        required,
+        ...rules,
+        validate: (v) => (v ? true : 'Please select a shipping address'),
+      }}
       render={({ field: { onChange, value }, fieldState, formState }) => (
         <ActionCardList
           required
           value={value}
           onChange={(_, incomming) => onChange(incomming)}
           error={formState.isSubmitted && !!fieldState.error}
+          errorMessage={errorMessage}
         >
           {items.map((item) => (
             <RenderItem
@@ -43,24 +50,10 @@ export function ActionCardListForm(props: ActionCardListFormProps) {
               value={item.value}
               selected={value === item.value}
               hidden={!!value && value !== item.value}
-              action={
-                <Button disableRipple variant='text' color='secondary'>
-                  <Trans id='Select' />
-                </Button>
-              }
-              reset={
-                <Button
-                  disableRipple
-                  variant='text'
-                  color='secondary'
-                  onClick={(e) => {
-                    e.preventDefault()
-                    onChange(null)
-                  }}
-                >
-                  <Trans id='Change' />
-                </Button>
-              }
+              onReset={(e) => {
+                e.preventDefault()
+                onChange(null)
+              }}
             />
           ))}
         </ActionCardList>

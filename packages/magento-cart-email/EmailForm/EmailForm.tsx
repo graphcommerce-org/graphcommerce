@@ -14,6 +14,7 @@ import { emailPattern, useFormCompose, UseFormComposeOptions } from '@graphcomme
 import { Trans } from '@lingui/react'
 import { CircularProgress, TextField, Typography, Alert, Button } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
+import PageLink from 'next/link'
 import React, { useEffect, useState } from 'react'
 import { CartEmailDocument } from './CartEmail.gql'
 import { SetGuestEmailOnCartDocument } from './SetGuestEmailOnCart.gql'
@@ -28,12 +29,10 @@ const { classes } = extendableComponent(name, parts)
 
 export function EmailForm(props: EmailFormProps) {
   const { step, children } = props
-  const [expand, setExpand] = useState(false)
-
-  useMergeCustomerCart()
 
   const [setGuestEmailOnCart] = useMutation(SetGuestEmailOnCartDocument)
   const { data: cartData } = useCartQuery(CartEmailDocument)
+
   const { mode, form, submit } = useFormIsEmailAvailable({ email: cartData?.cart?.email })
 
   const { formState, muiRegister, required, watch, error, getValues } = form
@@ -57,80 +56,42 @@ export function EmailForm(props: EmailFormProps) {
 
   if (mode === 'signin') {
     endAdornment = (
-      <Button color='secondary' style={{ whiteSpace: 'nowrap' }} onClick={() => setExpand(!expand)}>
-        {expand ? <Trans id='Close' /> : <Trans id='Sign in' />}
-      </Button>
-    )
-  }
-  if (mode === 'signup') {
-    endAdornment = (
-      <Button color='secondary' style={{ whiteSpace: 'nowrap' }} onClick={() => setExpand(!expand)}>
-        {expand ? <Trans id='Close' /> : <Trans id='Create Account' />}
-      </Button>
+      <PageLink href='/account/signin' passHref>
+        <Button color='secondary' style={{ whiteSpace: 'nowrap' }}>
+          <Trans id='Sign in' />
+        </Button>
+      </PageLink>
     )
   }
   if (formState.isSubmitting) endAdornment = <CircularProgress />
 
   return (
-    <FormDiv>
-      <AnimatePresence initial={false}>
-        <AnimatedRow key='emailform'>
-          <form noValidate onSubmit={submit}>
-            <FormRow>
-              <Typography variant='h5' component='h2' gutterBottom>
-                <Trans id='Personal details' />
-              </Typography>
-            </FormRow>
-            <FormRow className={classes.formRow} sx={{ py: 0 }}>
-              <TextField
-                variant='outlined'
-                type='email'
-                error={formState.isSubmitted && !!formState.errors.email}
-                helperText={formState.isSubmitted && formState.errors.email?.message}
-                label={<Trans id='Email' />}
-                required={required.email}
-                {...muiRegister('email', {
-                  required: required.email,
-                  pattern: { value: emailPattern, message: '' },
-                })}
-                InputProps={{
-                  autoComplete: 'email',
-                  endAdornment,
-                  readOnly: mode === 'signedin' || mode === 'session-expired',
-                }}
-              />
-            </FormRow>
-            <ApolloCartErrorAlert error={error} />
-          </form>
-        </AnimatedRow>
-
-        {((mode === 'signin' && expand) || mode === 'session-expired') && (
-          <AnimatedRow key='signin-form-inline'>
-            <FormRow>
-              <SignInFormInline email={watch('email')} />
-            </FormRow>
-          </AnimatedRow>
-        )}
-
-        {mode === 'signup' && expand && (
-          <AnimatedRow key='inline-signup'>
-            <SignUpFormInline key='signup-form-inline' email={watch('email')}>
-              {children}
-            </SignUpFormInline>
-          </AnimatedRow>
-        )}
-
-        {mode === 'session-expired' && (
-          <FormRow>
-            <Alert severity='error'>
-              <Trans id='You must sign in to continue' />
-            </Alert>
-          </FormRow>
-        )}
-        {children && mode !== 'session-expired' && ((mode !== 'signup' && expand) || !expand) && (
-          <AnimatedRow key='email-helperlist'>{children}</AnimatedRow>
-        )}
-      </AnimatePresence>
-    </FormDiv>
+    <form noValidate onSubmit={submit}>
+      <FormRow>
+        <Typography variant='h5' component='h2' gutterBottom>
+          <Trans id='Personal details' />
+        </Typography>
+      </FormRow>
+      <FormRow className={classes.formRow} sx={{ py: 0 }}>
+        <TextField
+          variant='outlined'
+          type='email'
+          error={formState.isSubmitted && !!formState.errors.email}
+          helperText={formState.isSubmitted && formState.errors.email?.message}
+          label={<Trans id='Email' />}
+          required={required.email}
+          {...muiRegister('email', {
+            required: required.email,
+            pattern: { value: emailPattern, message: '' },
+          })}
+          InputProps={{
+            autoComplete: 'email',
+            endAdornment,
+            readOnly: mode === 'signedin' || mode === 'session-expired',
+          }}
+        />
+      </FormRow>
+      <ApolloCartErrorAlert error={error} />
+    </form>
   )
 }

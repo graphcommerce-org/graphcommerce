@@ -1,5 +1,17 @@
 # Change Log
 
+## 3.2.1
+
+### Patch Changes
+
+- [#1495](https://github.com/graphcommerce-org/graphcommerce/pull/1495) [`ffec8800a`](https://github.com/graphcommerce-org/graphcommerce/commit/ffec8800a50ff2fe9b9fc5feeb5a0a878b573f0e) Thanks [@paales](https://github.com/paales)! - solve issue where useLazyQueryPromise didn’t always resolve
+
+## 3.2.0
+
+### Minor Changes
+
+- [#1496](https://github.com/graphcommerce-org/graphcommerce/pull/1496) [`858a3b3a3`](https://github.com/graphcommerce-org/graphcommerce/commit/858a3b3a3601cd00491219daf45557c2f1cc804b) Thanks [@FrankHarland](https://github.com/FrankHarland)! - Only submit dirty forms, allow passing false to onSubmit
+
 ## 3.1.3
 
 ### Patch Changes

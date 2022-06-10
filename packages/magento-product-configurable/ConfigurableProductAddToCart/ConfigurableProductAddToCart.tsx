@@ -10,7 +10,7 @@ import {
   TextInputNumber,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Divider, Typography, Alert, Box } from '@mui/material'
+import { Divider, Typography, Alert, Box, SxProps, Theme } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'
@@ -31,6 +31,7 @@ type ConfigurableProductAddToCartProps = {
   optionEndLabels?: Record<string, React.ReactNode>
   children?: React.ReactNode
   additionalButtons?: React.ReactNode
+  sx?: SxProps<Theme>
   optionsProps?: Omit<
     ConfigurableOptionsInputProps,
     'name' | 'sku' | 'control' | 'rules' | 'errors' | 'optionEndLabels'
@@ -49,8 +50,10 @@ export function ConfigurableProductAddToCart(props: ConfigurableProductAddToCart
     optionEndLabels,
     optionsProps,
     additionalButtons,
+    sx = [],
     ...buttonProps
   } = props
+
   const { getUids, getVariants, selection } = useConfigurableContext(variables.sku)
 
   const form = useFormGqlMutationCart(ConfigurableProductAddToCartDocument, {
@@ -71,7 +74,12 @@ export function ConfigurableProductAddToCart(props: ConfigurableProductAddToCart
       onSubmit={submitHandler}
       noValidate
       className={classes.form}
-      sx={{ width: '100%' }}
+      sx={[
+        {
+          width: '100%',
+        },
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
     >
       <Divider className={classes.divider} sx={(theme) => ({ margin: `${theme.spacings.sm} 0` })} />
       <ConfigurableOptionsInput

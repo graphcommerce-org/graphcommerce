@@ -6,6 +6,6 @@ export function useCustomerQuery<Q, V>(
   document: TypedDocumentNode<Q, V>,
   queryOptions: QueryHookOptions<Q, V> = {},
 ) {
-  const { token } = useCustomerSession()
-  return useQuery(document, { ...queryOptions, ssr: false, skip: !token })
+  const { loggedIn } = useCustomerSession()
+  return useQuery(document, { ...queryOptions, ssr: false, skip: !loggedIn })
 }

@@ -1,5 +1,34 @@
 # @graphcommerce/ecommerce-ui
 
+## 1.0.18
+
+### Patch Changes
+
+- Updated dependencies [[`0ab7c5465`](https://github.com/graphcommerce-org/graphcommerce/commit/0ab7c5465441cba9bf8cd185a6790ce2f443f4ed)]:
+  - @graphcommerce/next-ui@4.8.4
+
+## 1.0.17
+
+### Patch Changes
+
+- Updated dependencies [[`ffec8800a`](https://github.com/graphcommerce-org/graphcommerce/commit/ffec8800a50ff2fe9b9fc5feeb5a0a878b573f0e), [`bed806ddd`](https://github.com/graphcommerce-org/graphcommerce/commit/bed806dddd7e025806a69798ef9587aa165d392f)]:
+  - @graphcommerce/react-hook-form@3.2.1
+  - @graphcommerce/graphql@3.2.0
+
+## 1.0.16
+
+### Patch Changes
+
+- Updated dependencies [[`858a3b3a3`](https://github.com/graphcommerce-org/graphcommerce/commit/858a3b3a3601cd00491219daf45557c2f1cc804b)]:
+  - @graphcommerce/react-hook-form@3.2.0
+
+## 1.0.15
+
+### Patch Changes
+
+- Updated dependencies [[`afc67103d`](https://github.com/graphcommerce-org/graphcommerce/commit/afc67103d0e00583e274465036fd287537f95e79)]:
+  - @graphcommerce/next-ui@4.8.3
+
 ## 1.0.14
 
 ### Patch Changes

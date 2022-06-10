@@ -1,5 +1,52 @@
 # Change Log
 
+## 4.4.6
+
+### Patch Changes
+
+- [#1506](https://github.com/graphcommerce-org/graphcommerce/pull/1506) [`de6781908`](https://github.com/graphcommerce-org/graphcommerce/commit/de6781908cbf514b9fd225aa1407fa1385c8e53b) Thanks [@FrankHarland](https://github.com/FrankHarland)! - use array notation for sx support
+
+- Updated dependencies [[`0ab7c5465`](https://github.com/graphcommerce-org/graphcommerce/commit/0ab7c5465441cba9bf8cd185a6790ce2f443f4ed)]:
+  - @graphcommerce/framer-scroller@2.1.15
+  - @graphcommerce/next-ui@4.8.4
+  - @graphcommerce/magento-cart@4.4.2
+  - @graphcommerce/magento-store@4.2.9
+
+## 4.4.5
+
+### Patch Changes
+
+- Updated dependencies [[`d205b037f`](https://github.com/graphcommerce-org/graphcommerce/commit/d205b037fee82b8c03993f2c586f477e826093bf)]:
+  - @graphcommerce/magento-cart@4.4.1
+
+## 4.4.4
+
+### Patch Changes
+
+- Updated dependencies [[`bed806ddd`](https://github.com/graphcommerce-org/graphcommerce/commit/bed806dddd7e025806a69798ef9587aa165d392f)]:
+  - @graphcommerce/graphql@3.2.0
+  - @graphcommerce/magento-cart@4.4.0
+  - @graphcommerce/magento-store@4.2.8
+
+## 4.4.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/magento-cart@4.3.4
+
+## 4.4.2
+
+### Patch Changes
+
+- [#1491](https://github.com/graphcommerce-org/graphcommerce/pull/1491) [`c63ab89c2`](https://github.com/graphcommerce-org/graphcommerce/commit/c63ab89c20cb81d79188900d57f3d65a7bba71cc) Thanks [@FrankHarland](https://github.com/FrankHarland)! - add sx support to ConfigurableProductAddToCart
+
+- Updated dependencies [[`afc67103d`](https://github.com/graphcommerce-org/graphcommerce/commit/afc67103d0e00583e274465036fd287537f95e79)]:
+  - @graphcommerce/next-ui@4.8.3
+  - @graphcommerce/magento-cart@4.3.3
+  - @graphcommerce/framer-scroller@2.1.14
+  - @graphcommerce/magento-store@4.2.7
+
 ## 4.4.1
 
 ### Patch Changes

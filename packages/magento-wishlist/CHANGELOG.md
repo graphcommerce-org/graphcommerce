@@ -1,5 +1,65 @@
 # @graphcommerce/magento-wishlist
 
+## 1.3.0
+
+### Minor Changes
+
+- [#1505](https://github.com/graphcommerce-org/graphcommerce/pull/1505) [`d5d9550fe`](https://github.com/graphcommerce-org/graphcommerce/commit/d5d9550fe8991a90e432d8c3bd6e1be117acd18f) Thanks [@timhofman](https://github.com/timhofman)! - enable to pass through button props for iconButton
+
+### Patch Changes
+
+- Updated dependencies [[`de6781908`](https://github.com/graphcommerce-org/graphcommerce/commit/de6781908cbf514b9fd225aa1407fa1385c8e53b), [`0ab7c5465`](https://github.com/graphcommerce-org/graphcommerce/commit/0ab7c5465441cba9bf8cd185a6790ce2f443f4ed), [`711fa6e04`](https://github.com/graphcommerce-org/graphcommerce/commit/711fa6e04519bbe91825fec7e1714277c1a8fa68)]:
+  - @graphcommerce/magento-product-configurable@4.1.13
+  - @graphcommerce/magento-product@4.4.6
+  - @graphcommerce/next-ui@4.8.4
+  - @graphcommerce/magento-customer@4.5.2
+  - @graphcommerce/magento-cart@4.4.2
+  - @graphcommerce/magento-store@4.2.9
+
+## 1.2.5
+
+### Patch Changes
+
+- Updated dependencies [[`d205b037f`](https://github.com/graphcommerce-org/graphcommerce/commit/d205b037fee82b8c03993f2c586f477e826093bf)]:
+  - @graphcommerce/magento-cart@4.4.1
+  - @graphcommerce/magento-customer@4.5.1
+  - @graphcommerce/magento-product@4.4.5
+  - @graphcommerce/magento-product-configurable@4.1.12
+
+## 1.2.4
+
+### Patch Changes
+
+- Updated dependencies [[`bed806ddd`](https://github.com/graphcommerce-org/graphcommerce/commit/bed806dddd7e025806a69798ef9587aa165d392f)]:
+  - @graphcommerce/graphql@3.2.0
+  - @graphcommerce/magento-cart@4.4.0
+  - @graphcommerce/magento-customer@4.5.0
+  - @graphcommerce/magento-product-configurable@4.1.11
+  - @graphcommerce/magento-product@4.4.4
+  - @graphcommerce/magento-store@4.2.8
+
+## 1.2.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/magento-cart@4.3.4
+  - @graphcommerce/magento-customer@4.4.2
+  - @graphcommerce/magento-product-configurable@4.1.10
+  - @graphcommerce/magento-product@4.4.3
+
+## 1.2.2
+
+### Patch Changes
+
+- Updated dependencies [[`c63ab89c2`](https://github.com/graphcommerce-org/graphcommerce/commit/c63ab89c20cb81d79188900d57f3d65a7bba71cc), [`238aa4d34`](https://github.com/graphcommerce-org/graphcommerce/commit/238aa4d3478773b8cb0973f4112c9829e59e16d6), [`afc67103d`](https://github.com/graphcommerce-org/graphcommerce/commit/afc67103d0e00583e274465036fd287537f95e79)]:
+  - @graphcommerce/magento-product-configurable@4.1.9
+  - @graphcommerce/magento-product@4.4.2
+  - @graphcommerce/magento-customer@4.4.1
+  - @graphcommerce/next-ui@4.8.3
+  - @graphcommerce/magento-cart@4.3.3
+  - @graphcommerce/magento-store@4.2.7
+
 ## 1.2.1
 
 ### Patch Changes

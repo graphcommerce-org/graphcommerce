@@ -1,3 +1,4 @@
+import { ApolloClient } from '@graphcommerce/graphql'
 import { LinkOrButtonProps } from '@graphcommerce/next-ui'
 import { UseFormComposeOptions } from '@graphcommerce/react-hook-form'
 import React from 'react'
@@ -21,9 +22,13 @@ export type PaymentOptionsProps = PaymentMethod & PaymentMethodOptionsProps
 export type PaymentToggleProps = PaymentMethod
 export type PaymentHandlerProps = { code: string }
 
+export type ExpandPaymentMethodsContext = Partial<PaymentMethodContextFragment> & {
+  client: ApolloClient<object>
+}
+
 export type ExpandPaymentMethods = (
   available: AvailablePaymentMethodFragment,
-  context: PaymentMethodContextFragment,
+  context: ExpandPaymentMethodsContext,
 ) => Promise<PaymentMethod[]> | PaymentMethod[]
 
 export type PaymentPlaceOrderProps = PaymentMethod & Pick<UseFormComposeOptions, 'step'>

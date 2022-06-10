@@ -1,5 +1,56 @@
 # Change Log
 
+## 4.5.2
+
+### Patch Changes
+
+- [#1509](https://github.com/graphcommerce-org/graphcommerce/pull/1509) [`711fa6e04`](https://github.com/graphcommerce-org/graphcommerce/commit/711fa6e04519bbe91825fec7e1714277c1a8fa68) Thanks [@paales](https://github.com/paales)! - onAuthenticationError fix thrown exception on error handling
+
+- Updated dependencies [[`0ab7c5465`](https://github.com/graphcommerce-org/graphcommerce/commit/0ab7c5465441cba9bf8cd185a6790ce2f443f4ed)]:
+  - @graphcommerce/next-ui@4.8.4
+  - @graphcommerce/ecommerce-ui@1.0.18
+  - @graphcommerce/magento-store@4.2.9
+
+## 4.5.1
+
+### Patch Changes
+
+- [#1499](https://github.com/graphcommerce-org/graphcommerce/pull/1499) [`d205b037f`](https://github.com/graphcommerce-org/graphcommerce/commit/d205b037fee82b8c03993f2c586f477e826093bf) Thanks [@paales](https://github.com/paales)! - Unified and simplified the customer authentication error handling
+
+## 4.5.0
+
+### Minor Changes
+
+- [#1492](https://github.com/graphcommerce-org/graphcommerce/pull/1492) [`bed806ddd`](https://github.com/graphcommerce-org/graphcommerce/commit/bed806dddd7e025806a69798ef9587aa165d392f) Thanks [@mikekeehnen](https://github.com/mikekeehnen)! - Removed useExtractCustomerErrors hook and implemented error handling via HttpLink Error
+
+### Patch Changes
+
+- Updated dependencies [[`ffec8800a`](https://github.com/graphcommerce-org/graphcommerce/commit/ffec8800a50ff2fe9b9fc5feeb5a0a878b573f0e), [`bed806ddd`](https://github.com/graphcommerce-org/graphcommerce/commit/bed806dddd7e025806a69798ef9587aa165d392f)]:
+  - @graphcommerce/react-hook-form@3.2.1
+  - @graphcommerce/graphql@3.2.0
+  - @graphcommerce/ecommerce-ui@1.0.17
+  - @graphcommerce/magento-graphql@3.0.13
+  - @graphcommerce/magento-store@4.2.8
+
+## 4.4.2
+
+### Patch Changes
+
+- Updated dependencies [[`858a3b3a3`](https://github.com/graphcommerce-org/graphcommerce/commit/858a3b3a3601cd00491219daf45557c2f1cc804b)]:
+  - @graphcommerce/react-hook-form@3.2.0
+  - @graphcommerce/ecommerce-ui@1.0.16
+
+## 4.4.1
+
+### Patch Changes
+
+- [#1487](https://github.com/graphcommerce-org/graphcommerce/pull/1487) [`238aa4d34`](https://github.com/graphcommerce-org/graphcommerce/commit/238aa4d3478773b8cb0973f4112c9829e59e16d6) Thanks [@paales](https://github.com/paales)! - When @injecting mandatory fields into the CustomerTokenFragment it would throw a typescript error.
+
+- Updated dependencies [[`afc67103d`](https://github.com/graphcommerce-org/graphcommerce/commit/afc67103d0e00583e274465036fd287537f95e79)]:
+  - @graphcommerce/next-ui@4.8.3
+  - @graphcommerce/ecommerce-ui@1.0.15
+  - @graphcommerce/magento-store@4.2.7
+
 ## 4.4.0
 
 ### Minor Changes

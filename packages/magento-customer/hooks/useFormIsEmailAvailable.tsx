@@ -18,14 +18,15 @@ export function useFormIsEmailAvailable(props: UseFormIsEmailAvailableProps) {
   const form = useFormGqlQuery(
     IsEmailAvailableDocument,
     { mode: 'onChange', defaultValues: { email: email ?? '' } },
-    { fetchPolicy: 'cache-and-network' },
+    // { fetchPolicy: 'cache-and-network' },
   )
   const { formState, data, handleSubmit } = form
 
   const submit = handleSubmit(onSubmitted || (() => {}))
-  const autoSubmitting = useFormAutoSubmit({ form, submit })
+  const autoSubmitting = useFormAutoSubmit({ form, submit, forceInitialSubmit: true })
 
   const hasAccount = data?.isEmailAvailable?.is_email_available === false
+
   const { isDirty, isSubmitSuccessful, isSubmitted, isSubmitting, isValid } = formState
 
   const [mode, setMode] = useState<'email' | 'signin' | 'signup' | 'signedin' | 'session-expired'>(

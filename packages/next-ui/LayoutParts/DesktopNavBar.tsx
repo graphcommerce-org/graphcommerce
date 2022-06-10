@@ -14,8 +14,7 @@ export type MenuTabsProps = {
 const { classes, selectors } = extendableComponent('DesktopNavBar', [
   'root',
   'scroller',
-  'leftWrapper',
-  'rightWrapper',
+  'button',
   'left',
   'right',
 ] as const)
@@ -34,6 +33,7 @@ export function DesktopNavBar(props: MenuTabsProps) {
             alignItems: 'center',
             position: 'relative',
             pointerEvents: 'all',
+            gridTemplateColumns: `auto 1fr auto`,
           },
           ...(Array.isArray(sx) ? sx : [sx]),
         ]}
@@ -51,61 +51,53 @@ export function DesktopNavBar(props: MenuTabsProps) {
           {children}
         </Scroller>
 
-        <Box
-          sx={{
+        <ScrollerButton
+          sxContainer={{
             gridArea: `1 / 1 / 1 / 2`,
             pointerEvents: 'none',
             '& > *': { pointerEvents: 'all' },
           }}
-          className={classes.leftWrapper}
-        >
-          <ScrollerButton
-            sx={{
-              pointerEvents: 'all',
-              boxShadow: 'none',
-              height: 48,
-              borderTopLeftRadius: 0,
-              borderBottomLeftRadius: 0,
-              backgroundColor: 'transparent',
-              backgroundImage: (theme) =>
-                `linear-gradient(to left, rgba(255,255,255,0) 0%, ${theme.palette.background.default} 35%)`,
-            }}
-            direction='left'
-            size='small'
-            className={classes.left}
-          >
-            <IconSvg src={iconLeft ?? iconChevronLeft} />
-          </ScrollerButton>
-        </Box>
-
-        <Box
           sx={{
+            pointerEvents: 'all',
+            boxShadow: 'none',
+            height: 48,
+            borderTopLeftRadius: 0,
+            borderBottomLeftRadius: 0,
+            backgroundColor: 'transparent',
+            backgroundImage: (theme) =>
+              `linear-gradient(to left, rgba(255,255,255,0) 0%, ${theme.palette.background.default} 35%)`,
+          }}
+          direction='left'
+          size='small'
+          className={`${classes.left} ${classes.button}`}
+        >
+          <IconSvg src={iconLeft ?? iconChevronLeft} />
+        </ScrollerButton>
+
+        <ScrollerButton
+          sxContainer={{
             gridArea: `1 / 3 / 1 / 4`,
             pointerEvents: 'none',
             '& > *': {
               pointerEvents: 'all',
             },
           }}
-          className={classes.rightWrapper}
+          sx={{
+            pointerEvents: 'all',
+            boxShadow: 'none',
+            height: 48,
+            borderTopRightRadius: 0,
+            borderBottomRightRadius: 0,
+            backgroundColor: 'transparent',
+            backgroundImage: (theme) =>
+              `linear-gradient(to right, rgba(255,255,255,0) 0%, ${theme.palette.background.default} 35%)`,
+          }}
+          direction='right'
+          size='small'
+          className={`${classes.right} ${classes.button}`}
         >
-          <ScrollerButton
-            sx={{
-              pointerEvents: 'all',
-              boxShadow: 'none',
-              height: 48,
-              borderTopRightRadius: 0,
-              borderBottomRightRadius: 0,
-              backgroundColor: 'transparent',
-              backgroundImage: (theme) =>
-                `linear-gradient(to right, rgba(255,255,255,0) 0%, ${theme.palette.background.default} 35%)`,
-            }}
-            direction='right'
-            size='small'
-            className={classes.right}
-          >
-            <IconSvg src={iconRight ?? iconChevronRight} />
-          </ScrollerButton>
-        </Box>
+          <IconSvg src={iconRight ?? iconChevronRight} />
+        </ScrollerButton>
       </Box>
     </ScrollerProvider>
   )
