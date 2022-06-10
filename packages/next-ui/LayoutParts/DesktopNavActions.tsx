@@ -1,6 +1,6 @@
-import { Box, styled } from '@mui/material'
+import { styled } from '@mui/material'
 
-export const DesktopNavActions = styled(Box, { name: 'DesktopNavActions' })(({ theme }) => ({
+export const DesktopNavActions = styled('div', { name: 'DesktopNavActions' })(({ theme }) => ({
   display: 'none',
   [theme.breakpoints.up('md')]: {
     display: 'grid',

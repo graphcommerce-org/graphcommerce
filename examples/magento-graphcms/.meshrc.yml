@@ -3,11 +3,6 @@ sources:
     handler:
       graphql:
         endpoint: ${GRAPHCMS_URL}
-    transforms:
-      - filterSchema:
-          mode: bare
-          filters:
-            - Mutation.none
   - name: m2
     handler:
       graphql:
@@ -21,3 +16,5 @@ sources:
           X-ReCaptcha: "{context.headers['x-recaptcha']}"
           Preview-Version: "{context.headers['preview-version']}"
           Content-Currency: "{context.headers['content-currency']}"
+serve:
+  playground: true

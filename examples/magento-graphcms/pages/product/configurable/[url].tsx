@@ -30,7 +30,7 @@ import { Trans } from '@lingui/react'
 import { Link, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import { useRouter } from 'next/router'
-import React from 'react'
+import { Suspense } from 'react'
 import { LayoutFull, LayoutFullProps, RowProduct, RowRenderer, Usps } from '../../../components'
 import { ProductPageDocument, ProductPageQuery } from '../../../graphql/ProductPage.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../../lib/graphql/graphqlSsrClient'
@@ -74,6 +74,7 @@ function ProductConfigurable(props: Props) {
       />
       <ConfigurableContextProvider {...typeProduct} sku={product.sku}>
         <ProductPageMeta {...product} />
+
         <ProductPageGallery {...product}>
           <div>
             <Typography component='span' variant='body2' color='text.disabled'>

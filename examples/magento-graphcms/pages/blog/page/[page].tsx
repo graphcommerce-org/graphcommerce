@@ -24,8 +24,6 @@ import {
 import { DefaultPageDocument, DefaultPageQuery } from '../../../graphql/DefaultPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
-export const config = { unstable_JsPreload: false }
-
 type Props = DefaultPageQuery & BlogListQuery & BlogPathsQuery
 type RouteProps = { page: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>

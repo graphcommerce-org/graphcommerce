@@ -19,19 +19,19 @@
     "@playwright/test": "^1.21.1"
   },
   "dependencies": {
-    "@apollo/client": "^3.6.0",
+    "@apollo/client": "^3.6.6",
     "@graphcommerce/graphql-codegen-near-operation-file": "3.0.13",
     "@graphcommerce/graphql-codegen-relay-optimizer-plugin": "3.0.7",
     "@graphql-codegen/add": "3.1.1",
     "@graphql-codegen/fragment-matcher": "3.2.1",
     "@graphql-codegen/introspection": "2.1.1",
     "@graphql-codegen/schema-ast": "2.4.1",
-    "@graphql-codegen/typed-document-node": "2.2.9",
-    "@graphql-codegen/typescript": "2.4.9",
-    "@graphql-codegen/typescript-apollo-client-helpers": "2.1.16",
-    "@graphql-codegen/typescript-document-nodes": "2.2.9",
-    "@graphql-codegen/typescript-operations": "2.3.6",
+    "@graphql-codegen/typed-document-node": "2.2.12",
+    "@graphql-codegen/typescript": "2.5.0",
+    "@graphql-codegen/typescript-apollo-client-helpers": "2.1.19",
+    "@graphql-codegen/typescript-document-nodes": "2.2.12",
+    "@graphql-codegen/typescript-operations": "2.4.1",
     "apollo3-cache-persist": "^0.14.0",
-    "graphql": "16.4.0"
+    "graphql": "16.5.0"
   }
 }

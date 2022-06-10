@@ -10,8 +10,6 @@ import { LayoutFull, LayoutFullProps } from '../components'
 import { DefaultPageDocument, DefaultPageQuery } from '../graphql/DefaultPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
 
-export const config = { unstable_JsPreload: false }
-
 type Props = DefaultPageQuery
 type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props>
 

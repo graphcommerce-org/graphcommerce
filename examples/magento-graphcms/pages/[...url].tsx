@@ -34,6 +34,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { Container } from '@mui/material'
 import { GetStaticPaths } from 'next'
+import { Suspense } from 'react'
 import {
   LayoutFull,
   LayoutFullProps,
@@ -44,8 +45,6 @@ import {
 } from '../components'
 import { CategoryPageDocument, CategoryPageQuery } from '../graphql/CategoryPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
-
-export const config = { unstable_JsPreload: false }
 
 type Props = CategoryPageQuery &
   ProductListQuery & {
@@ -120,6 +119,7 @@ function CategoryPage(props: Props) {
               <ProductListFilters aggregations={filters?.aggregations} filterTypes={filterTypes} />
             </ProductListFiltersContainer>
           </StickyBelowHeader>
+
           <Container maxWidth={false}>
             <ProductListCount total_count={products?.total_count} />
             <ProductListItems items={products?.items} loadingEager={1} sx={sxLargeItem} />

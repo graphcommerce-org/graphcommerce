@@ -1,4 +1,4 @@
-import { useMotionValueValue } from '@graphcommerce/framer-utils'
+import { useIsomorphicLayoutEffect, useMotionValueValue } from '@graphcommerce/framer-utils'
 import {
   Divider,
   Fab,
@@ -13,7 +13,7 @@ import {
 } from '@mui/material'
 import { m } from 'framer-motion'
 import { useRouter } from 'next/router'
-import React, { useEffect } from 'react'
+import React, { useEffect, useCallback, useRef } from 'react'
 import { IconSvg } from '../IconSvg'
 import { useScrollY } from '../Layout/hooks/useScrollY'
 import { extendableComponent } from '../Styles/extendableComponent'
@@ -64,7 +64,8 @@ export function MenuFab(props: MenuFabProps) {
     const clear = () => setOpenEl(null)
     router.events.on('routeChangeStart', clear)
     return () => router.events.off('routeChangeStart', clear)
-  }, [router])
+  }, [router.events])
+
   const fabIconSize = useFabSize('responsive')
 
   const classes = withState({ scrolled })

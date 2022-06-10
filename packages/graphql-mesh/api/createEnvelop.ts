@@ -1,12 +1,12 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { createServer as createYogaServer, useExtendContext } from '@graphql-yoga/node'
-import { getBuiltMesh, rawConfig } from '../.mesh'
+import { getBuiltMesh, rawServeConfig } from '../.mesh'
 
 export async function createServer(endpoint: string) {
   // retrieve the mesh instance (with configured Envelop plugins)
   const mesh = await getBuiltMesh()
 
-  const { cors, playgroundTitle } = rawConfig.serve ?? {}
+  const { cors, playgroundTitle } = rawServeConfig ?? {}
 
   // pass the Mesh instance to Yoga and configure GraphiQL
   const server = createYogaServer({
