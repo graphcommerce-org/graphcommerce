@@ -14,6 +14,7 @@ export type ActionCardProps = {
   hidden?: boolean | (() => boolean)
   value: string | number
   reset?: React.ReactNode
+  disabled?: boolean
 }
 
 const actionButtonStyles: SxProps = {
@@ -41,6 +42,7 @@ export function ActionCard(props: ActionCardProps) {
     selected,
     hidden,
     reset,
+    disabled,
   } = props
 
   const handleClick = (event: FormEvent<HTMLElement>) => onClick?.(event, value)
@@ -50,6 +52,7 @@ export function ActionCard(props: ActionCardProps) {
       component='div'
       className='ActionCard-root'
       onClick={handleClick}
+      disabled={disabled}
       sx={[
         (theme) => ({
           display: 'grid',
@@ -93,11 +96,20 @@ export function ActionCard(props: ActionCardProps) {
             borderBottomRightRadius: theme.shape.borderRadius,
             padding: `${theme.spacings.xxs} ${theme.spacings.xs}`,
           })),
+        !!disabled &&
+          ((theme) => ({
+            background: theme.palette.background.default,
+          })),
+
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
       {image && <Box sx={{ gridArea: 'image', justifySelf: 'center', padding: 1 }}>{image}</Box>}
-      {title && <Box sx={{ gridArea: 'title', fontWeight: 'bold' }}>{title}</Box>}
+      {title && (
+        <Box sx={{ gridArea: 'title', fontWeight: 'bold', marginLeft: !image ? -2 : undefined }}>
+          {title}
+        </Box>
+      )}
       {action && (
         <Box
           sx={{
@@ -109,7 +121,13 @@ export function ActionCard(props: ActionCardProps) {
           {!selected ? action : reset}
         </Box>
       )}
-      {details && <Box sx={{ gridArea: 'details', color: 'text.secondary' }}>{details}</Box>}
+      {details && (
+        <Box
+          sx={{ gridArea: 'details', color: 'text.secondary', marginLeft: !image ? -2 : undefined }}
+        >
+          {details}
+        </Box>
+      )}
       {secondaryAction && (
         <Box sx={{ gridArea: 'secondaryAction', ...actionButtonStyles }}>{secondaryAction}</Box>
       )}

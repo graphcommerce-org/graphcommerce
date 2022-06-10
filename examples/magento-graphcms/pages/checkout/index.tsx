@@ -104,7 +104,7 @@ function ShippingPage() {
                 </>
               )}
 
-              <FormHeader variant='h5'>
+              <FormHeader variant='h5' sx={{ marginBottom: 0 }}>
                 <Trans id='Shipping method' />
               </FormHeader>
 
