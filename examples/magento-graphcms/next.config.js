@@ -39,7 +39,6 @@ if (!process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT) {
 const nextConfig = {
   experimental: {
     scrollRestoration: true,
-    runtime: 'edge',
   },
   compiler: {
     emotion: {
