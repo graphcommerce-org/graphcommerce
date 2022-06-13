@@ -50,7 +50,11 @@ export function LayoutFull(props: LayoutFullProps) {
       <NavigationOverlay
         active={active}
         onClose={() => setActive(false)}
-        sx={{ '& > ul > li > a, & > ul > li > button': { typography: 'h3' } }}
+        sx={(theme) => ({
+          px: theme.spacings.lg,
+          py: theme.spacings.sm,
+          '& > ul > li > a, & > ul > li > button': { typography: 'h2' },
+        })}
         items={[
           <SearchLink href='/search' sx={(theme) => ({ width: '100%', mb: theme.spacings.xs })}>
             <Trans id='Search...' />

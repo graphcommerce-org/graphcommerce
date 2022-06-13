@@ -46,9 +46,9 @@ export function NavigationOverlayBase(props: NavigationOverlayProps) {
     <Overlay
       active={active}
       close={handleClose}
-      variantSm='bottom'
+      variantSm='left'
       sizeSm='full'
-      justifySm='start'
+      justifySm='center'
       variantMd='left'
       sizeMd='full'
       justifyMd='start'
