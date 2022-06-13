@@ -63,7 +63,7 @@ export function LayoutFull(props: LayoutFullProps) {
           // ...useMagentoMenuToNavigation(menu),
           {
             id: 'products',
-            name: 'Products',
+            name: i18n._(/* i18n */ `Products`),
             childItems: useMagentoMenuToNavigation(menu),
           },
           { id: 'blog', name: 'Blog', href: '/blog' },
