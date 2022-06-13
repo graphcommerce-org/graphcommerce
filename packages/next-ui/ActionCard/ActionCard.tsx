@@ -1,5 +1,4 @@
-import { Theme } from '@emotion/react'
-import { SxProps, ButtonBase, Box } from '@mui/material'
+import { SxProps, ButtonBase, Box, Theme } from '@mui/material'
 import React, { FormEvent } from 'react'
 
 export type ActionCardProps = {
@@ -11,22 +10,23 @@ export type ActionCardProps = {
   secondaryAction?: React.ReactNode
   onClick?: (e: FormEvent<HTMLElement>, v: string | number) => void
   selected?: boolean
-  hidden?: boolean | (() => boolean)
+  hidden?: boolean
   value: string | number
   reset?: React.ReactNode
   disabled?: boolean
 }
 
-const actionButtonStyles: SxProps = {
-  '& .MuiButton-root': {
-    '&.MuiButton-textSecondary': {
-      padding: '5px',
-      margin: '-5px',
-      '&:hover': {
-        background: 'none',
+function actionButtonStyles(spacing: string) {
+  return {
+    '& .MuiButton-root': {
+      '&.MuiButton-textSecondary': {
+        margin: `calc(${spacing} * -1 + 1px)`,
+        '&:hover': {
+          background: 'none',
+        },
       },
     },
-  },
+  }
 }
 
 export function ActionCard(props: ActionCardProps) {
@@ -112,11 +112,11 @@ export function ActionCard(props: ActionCardProps) {
       )}
       {action && (
         <Box
-          sx={{
+          sx={(theme) => ({
             gridArea: 'action',
             textAlign: 'right',
-            ...actionButtonStyles,
-          }}
+            ...actionButtonStyles(theme.spacings.xxs),
+          })}
         >
           {!selected ? action : reset}
         </Box>
@@ -129,7 +129,14 @@ export function ActionCard(props: ActionCardProps) {
         </Box>
       )}
       {secondaryAction && (
-        <Box sx={{ gridArea: 'secondaryAction', ...actionButtonStyles }}>{secondaryAction}</Box>
+        <Box
+          sx={(theme) => ({
+            gridArea: 'secondaryAction',
+            ...actionButtonStyles(theme.spacings.xxs),
+          })}
+        >
+          {secondaryAction}
+        </Box>
       )}
     </ButtonBase>
   )
