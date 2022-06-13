@@ -37,16 +37,13 @@ if (!process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT) {
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  rewrites() {
-    return [{ source: '/sitemap.xml', destination: '/api/sitemap' }]
-  },
   experimental: {
     scrollRestoration: true,
-    disableOptimizedLoading: true,
-    esmExternals: false,
-    emotion: { sourceMap: true },
-    legacyBrowsers: false,
-    browsersListForSwc: true,
+  },
+  compiler: {
+    emotion: {
+      labelFormat: '[filename]--[local]',
+    },
   },
   swcMinify: true,
   pwa: {
@@ -61,12 +58,21 @@ const nextConfig = {
     locales: Object.keys(JSON.parse(process.env.NEXT_PUBLIC_LOCALE_STORES)),
     defaultLocale: Object.keys(JSON.parse(process.env.NEXT_PUBLIC_LOCALE_STORES))[0],
   },
-  productionBrowserSourceMaps: true,
   eslint: {
     ignoreDuringBuilds: true,
   },
   webpack: (config) => {
     config.optimization.providedExports = true
+
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@mui/base': '@mui/base/modern',
+      '@mui/lab': '@mui/lab/modern',
+      '@mui/material': '@mui/material/modern',
+      '@mui/styled-engine': '@mui/styled-engine/modern',
+      '@mui/system': '@mui/system/modern',
+    }
+
     return config
   },
 }

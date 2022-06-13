@@ -36,8 +36,6 @@ import { LayoutFull, LayoutFullProps, ProductListItems } from '../../components'
 import { DefaultPageDocument, DefaultPageQuery } from '../../graphql/DefaultPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
-export const config = { unstable_JsPreload: false }
-
 type Props = DefaultPageQuery &
   SearchQuery & { filterTypes: FilterTypes; params: ProductListParams }
 type RouteProps = { url: string[] }

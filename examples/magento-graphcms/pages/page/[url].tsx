@@ -14,8 +14,6 @@ import { LayoutFullProps, RowRenderer, RowProduct, LayoutFull } from '../../comp
 import { DefaultPageQuery, DefaultPageDocument } from '../../graphql/DefaultPage.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
-export const config = { unstable_JsPreload: false }
-
 type Props = DefaultPageQuery & ProductListQuery
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>

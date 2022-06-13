@@ -1,4 +1,3 @@
 export * from './Api/AvailableShippingMethods.gql'
 export * from './Api/ShippingMethodSelected.gql'
-
-export * from './ShippingMethodForm/ShippingMethodForm'
+export * from './components/ShippingMethodForm/ShippingMethodForm'

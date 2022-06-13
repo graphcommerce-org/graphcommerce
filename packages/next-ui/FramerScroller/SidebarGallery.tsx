@@ -7,8 +7,7 @@ import {
   ScrollerDots,
   ScrollerProvider,
 } from '@graphcommerce/framer-scroller'
-import { clientSize, useMotionValueValue } from '@graphcommerce/framer-utils'
-import { Fab, useTheme, alpha, Box, styled, SxProps, Theme } from '@mui/material'
+import { Fab, useTheme, Box, styled, SxProps, Theme } from '@mui/material'
 import { m, useDomEvent, useMotionValue } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { useEffect, useRef } from 'react'
@@ -61,7 +60,6 @@ export function SidebarGallery(props: SidebarGalleryProps) {
 
   const router = useRouter()
   const prevRoute = usePrevPageRouter()
-  const clientHeight = useMotionValueValue(clientSize.y, (y) => y)
   // const classes = useMergedClasses(useStyles({ clientHeight, aspectRatio }).classes, props.classes)
 
   const route = `#${routeHash}`
@@ -162,7 +160,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                 },
               },
               zoomed && {
-                paddingTop: `${clientHeight}px`,
+                paddingTop: `var(--client-size-y)`,
               },
             ]}
             onLayoutAnimationComplete={() => {
@@ -186,7 +184,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                   cursor: 'zoom-in',
                 },
                 zoomed && {
-                  height: clientHeight,
+                  height: `var(--client-size-y)`,
                   cursor: 'inherit',
                 },
               ]}

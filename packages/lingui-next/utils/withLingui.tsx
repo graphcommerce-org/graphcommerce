@@ -1,10 +1,12 @@
 import { i18n } from '@lingui/core'
 // eslint-disable-next-line @next/next/no-document-import-in-page
-import { DocumentContext } from 'next/document'
+import { DocumentContext, DocumentInitialProps } from 'next/document'
 // eslint-disable-next-line @next/next/no-document-import-in-page
 import type NextDocument from 'next/document'
 import React from 'react'
 import { MessageLoader } from '../types'
+
+export type LinguiDocumentProps = { linguiScriptTag: React.ReactNode }
 
 export function withLingui(
   Document: typeof NextDocument,
@@ -23,10 +25,9 @@ export function withLingui(
         i18n.load(locale, messages)
         i18n.activate(locale)
 
-        return {
+        const props: DocumentInitialProps & LinguiDocumentProps = {
           ...initial,
-          head: [
-            ...(React.Children.toArray(initial.head) as Array<JSX.Element | null>),
+          linguiScriptTag: (
             <script
               key='lingui'
               type='application/json'
@@ -34,9 +35,10 @@ export function withLingui(
               lang={locale}
               // eslint-disable-next-line react/no-danger
               dangerouslySetInnerHTML={{ __html: JSON.stringify(messages) }}
-            />,
-          ],
+            />
+          ),
         }
+        return props
       } catch (e) {
         if (process.env.NODE_ENV !== 'production') console.error(e)
         return initial

@@ -1,9 +1,9 @@
 import { usePageContext } from '@graphcommerce/framer-next-pages'
 import {
   resolveHref,
-  getDomainLocale,
   addBasePath,
   addLocale,
+  getDomainLocale,
 } from 'next/dist/shared/lib/router/router'
 import Head from 'next/head'
 import { useRouter } from 'next/router'

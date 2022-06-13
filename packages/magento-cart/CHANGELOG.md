@@ -1,5 +1,23 @@
 # Change Log
 
+## 4.4.3
+
+### Patch Changes
+
+- [#1490](https://github.com/graphcommerce-org/graphcommerce/pull/1490) [`d311ef48b`](https://github.com/graphcommerce-org/graphcommerce/commit/d311ef48bb3e97806d992af5516d6b7f183ec9cb) Thanks [@paales](https://github.com/paales)! - upgraded packages
+
+- Updated dependencies [[`8a626ecf7`](https://github.com/graphcommerce-org/graphcommerce/commit/8a626ecf7ed00c46a28088e0b9bae00a4e1ae019), [`a9213f1f5`](https://github.com/graphcommerce-org/graphcommerce/commit/a9213f1f5a410d217768386ccb6d9b5ce7bd5782), [`ddb6d6329`](https://github.com/graphcommerce-org/graphcommerce/commit/ddb6d6329bfad361b2fbe96402ca2bfc0ab3d98c), [`d311ef48b`](https://github.com/graphcommerce-org/graphcommerce/commit/d311ef48bb3e97806d992af5516d6b7f183ec9cb)]:
+  - @graphcommerce/magento-customer@4.5.3
+  - @graphcommerce/next-ui@4.9.0
+  - @graphcommerce/framer-scroller@2.1.16
+  - @graphcommerce/ecommerce-ui@1.0.19
+  - @graphcommerce/framer-next-pages@3.2.3
+  - @graphcommerce/graphql@3.2.1
+  - @graphcommerce/image@3.1.7
+  - @graphcommerce/magento-graphql@3.0.14
+  - @graphcommerce/magento-store@4.2.10
+  - @graphcommerce/react-hook-form@3.2.2
+
 ## 4.4.2
 
 ### Patch Changes

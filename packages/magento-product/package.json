@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-product",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "4.4.6",
+  "version": "4.4.7",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -12,20 +12,20 @@
     }
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "^4.1.7",
+    "@graphcommerce/eslint-config-pwa": "^4.1.8",
     "@graphcommerce/prettier-config-pwa": "^4.0.6",
     "@graphcommerce/typescript-config-pwa": "^4.0.3",
     "@playwright/test": "^1.21.1",
     "type-fest": "^2.12.2"
   },
   "dependencies": {
-    "@graphcommerce/framer-scroller": "2.1.15",
-    "@graphcommerce/graphql": "3.2.0",
-    "@graphcommerce/graphql-mesh": "4.1.3",
-    "@graphcommerce/image": "3.1.6",
-    "@graphcommerce/magento-cart": "4.4.2",
-    "@graphcommerce/magento-store": "4.2.9",
-    "@graphcommerce/next-ui": "4.8.4",
+    "@graphcommerce/framer-scroller": "2.1.16",
+    "@graphcommerce/graphql": "3.2.1",
+    "@graphcommerce/graphql-mesh": "4.1.4",
+    "@graphcommerce/image": "3.1.7",
+    "@graphcommerce/magento-cart": "4.4.3",
+    "@graphcommerce/magento-store": "4.2.10",
+    "@graphcommerce/next-ui": "4.9.0",
     "schema-dts": "^1.1.0"
   },
   "peerDependencies": {
@@ -33,8 +33,8 @@
     "@lingui/core": "^3.13.2",
     "@mui/material": "5.5.3",
     "framer-motion": "^6.2.4",
-    "next": "12.1.2",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "next": "^12.1.2",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   }
 }

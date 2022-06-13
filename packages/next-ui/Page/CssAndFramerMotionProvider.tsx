@@ -1,5 +1,4 @@
 import { LazyMotion } from 'framer-motion'
-import { EmotionProvider } from '../Styles'
 
 export type GraphCommerceProviderProps = {
   children: React.ReactNode
@@ -15,7 +14,7 @@ export type GraphCommerceProviderProps = {
 export function CssAndFramerMotionProvider({ children }: GraphCommerceProviderProps) {
   return (
     <LazyMotion features={async () => (await import('./framerFeatures')).default} strict>
-      <EmotionProvider>{children}</EmotionProvider>
+      {children}
     </LazyMotion>
   )
 }

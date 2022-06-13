@@ -166,6 +166,7 @@ export function LayoutOverlayBase(incommingProps: LayoutOverlayBaseProps) {
     if (isPresent || position.get() === OverlayPosition.UNOPENED) return
     position.set(OverlayPosition.CLOSED)
     clearScrollLock()
+
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     scrollTo({
       x: positions.closed.x.get(),

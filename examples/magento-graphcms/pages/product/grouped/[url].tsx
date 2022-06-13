@@ -33,8 +33,6 @@ import { LayoutFull, LayoutFullProps, RowProduct, RowRenderer, Usps } from '../.
 import { ProductPageDocument, ProductPageQuery } from '../../../graphql/ProductPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
-export const config = { unstable_JsPreload: false }
-
 type Props = ProductPageQuery & GroupedProductPageQuery
 
 type RouteProps = { url: string }

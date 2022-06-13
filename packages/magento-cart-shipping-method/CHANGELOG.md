@@ -1,5 +1,25 @@
 # Change Log
 
+## 3.1.0
+
+### Minor Changes
+
+- [#1503](https://github.com/graphcommerce-org/graphcommerce/pull/1503) [`a9213f1f5`](https://github.com/graphcommerce-org/graphcommerce/commit/a9213f1f5a410d217768386ccb6d9b5ce7bd5782) Thanks [@mikekeehnen](https://github.com/mikekeehnen)! - Bug fixes for shipping methods in /checkout
+
+### Patch Changes
+
+- [#1490](https://github.com/graphcommerce-org/graphcommerce/pull/1490) [`d311ef48b`](https://github.com/graphcommerce-org/graphcommerce/commit/d311ef48bb3e97806d992af5516d6b7f183ec9cb) Thanks [@paales](https://github.com/paales)! - upgraded packages
+
+- Updated dependencies [[`a9213f1f5`](https://github.com/graphcommerce-org/graphcommerce/commit/a9213f1f5a410d217768386ccb6d9b5ce7bd5782), [`ddb6d6329`](https://github.com/graphcommerce-org/graphcommerce/commit/ddb6d6329bfad361b2fbe96402ca2bfc0ab3d98c), [`d311ef48b`](https://github.com/graphcommerce-org/graphcommerce/commit/d311ef48bb3e97806d992af5516d6b7f183ec9cb)]:
+  - @graphcommerce/magento-cart-shipping-address@3.1.0
+  - @graphcommerce/next-ui@4.9.0
+  - @graphcommerce/framer-scroller@2.1.16
+  - @graphcommerce/graphql@3.2.1
+  - @graphcommerce/image@3.1.7
+  - @graphcommerce/magento-cart@4.4.3
+  - @graphcommerce/magento-store@4.2.10
+  - @graphcommerce/react-hook-form@3.2.2
+
 ## 3.0.28
 
 ### Patch Changes

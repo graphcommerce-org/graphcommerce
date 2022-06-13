@@ -1,4 +1,5 @@
 import { RenderType, TypeRenderer } from '@graphcommerce/next-ui'
+import { Suspense } from 'react'
 import { RowBlogContent } from '../Blog'
 import { PageContentQueryFragment } from './PageContentQueryFragment.gql'
 import { RowButtonLinkList } from './RowButtonLinkList/RowButtonLinkList'
@@ -41,7 +42,7 @@ export function RowRenderer(props: PageProps) {
     // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
       {content?.map((item) => (
-        <RenderType renderer={mergedRenderer} key={item.id} {...item} />
+        <RenderType key={item.id} renderer={mergedRenderer} {...item} />
       ))}
     </>
   )

@@ -45,6 +45,8 @@ export function useClientSizeCssVar() {
  *   return <motion.div style={{ height: y }}>bla</motion.div>
  * }
  * ```
+ *
+ * @deprecated Use `var(--client-size-y)` or `var(--client-size-x)` instead
  */
 export function useClientSize(options?: UseClientSizeOptions): UseClientSizeReturn {
   const ret = useConstant<UseClientSizeReturn>(() => ({
