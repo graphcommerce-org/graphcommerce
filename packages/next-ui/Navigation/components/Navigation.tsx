@@ -1,4 +1,4 @@
-import { Box, SxProps, Theme } from '@mui/material'
+import { Box, ListItemButton, SxProps, Theme } from '@mui/material'
 import PageLink from 'next/link'
 import React, { createContext, useContext, useMemo, useState } from 'react'
 import { isElement } from 'react-is'
@@ -63,8 +63,9 @@ function NavigationItem(props: NavigationItemProps) {
   if (childItems) {
     return (
       <Box sx={{ display: 'contents' }} component='li'>
-        <Button
+        <ListItemButton
           className={classes.button}
+          component='a'
           sx={{
             gridColumnStart: level + levelOffset,
             justifyContent: 'space-between',
@@ -73,10 +74,10 @@ function NavigationItem(props: NavigationItemProps) {
           }}
           data-level={level + levelOffset}
           onClick={() => (selected ? select(parentPath) : select(itemPath))}
-          endIcon={<IconSvg src={iconChevronRight} />}
         >
           <Render {...props} hasChildren={false} />
-        </Button>
+          {level > 1 && <IconSvg src={iconChevronRight} />}
+        </ListItemButton>
 
         <Box
           sx={[
@@ -88,7 +89,7 @@ function NavigationItem(props: NavigationItemProps) {
           {href && (
             <Box sx={{ display: 'contents' }} component='li'>
               <PageLink href={href}>
-                <Button
+                <ListItemButton
                   className={classes.button}
                   component='a'
                   sx={{
@@ -99,7 +100,7 @@ function NavigationItem(props: NavigationItemProps) {
                   data-level={level + 1 + levelOffset}
                 >
                   <Render {...props} hasChildren />
-                </Button>
+                </ListItemButton>
               </PageLink>
             </Box>
           )}
@@ -116,14 +117,14 @@ function NavigationItem(props: NavigationItemProps) {
     <Box component='li' sx={{ display: hideItem ? 'none' : 'contents' }}>
       {href ? (
         <PageLink href={href} passHref>
-          <Button
+          <ListItemButton
             className={classes.button}
             component='a'
             sx={{ gridColumnStart: level + levelOffset, justifyContent: 'space-between' }}
             data-level={level + levelOffset}
           >
             <Render {...props} hasChildren={false} />
-          </Button>
+          </ListItemButton>
         </PageLink>
       ) : (
         <Box
