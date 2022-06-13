@@ -52,7 +52,7 @@ export function LayoutFull(props: LayoutFullProps) {
         onClose={() => setActive(false)}
         sx={(theme) => ({
           px: theme.spacings.lg,
-          py: theme.spacings.sm,
+          py: theme.spacings.md,
           '& > ul > li > a, & > ul > li > button': { typography: 'h2' },
         })}
         items={[
@@ -68,20 +68,22 @@ export function LayoutFull(props: LayoutFullProps) {
           },
           { id: 'blog', name: 'Blog', href: '/blog' },
           <Divider sx={(theme) => ({ my: theme.spacings.xs })} />,
-          <CustomerMenuFabItem key='account' guestHref='/account/signin' authHref='/account'>
-            <Trans id='Account' />
-          </CustomerMenuFabItem>,
-          <MenuFabSecondaryItem
-            key='service'
-            icon={<IconSvg src={iconCustomerService} size='medium' />}
-            href='/service'
-          >
-            <Trans id='Customer Service' />
-          </MenuFabSecondaryItem>,
-          <WishlistMenuFabItem key='wishlist' icon={<IconSvg src={iconHeart} size='medium' />}>
-            <Trans id='Wishlist' />
-          </WishlistMenuFabItem>,
-          <DarkLightModeMenuSecondaryItem key='darkmode' />,
+          <Box>
+            <CustomerMenuFabItem key='account' guestHref='/account/signin' authHref='/account'>
+              <Trans id='Account' />
+            </CustomerMenuFabItem>
+            <MenuFabSecondaryItem
+              key='service'
+              icon={<IconSvg src={iconCustomerService} size='medium' />}
+              href='/service'
+            >
+              <Trans id='Customer Service' />
+            </MenuFabSecondaryItem>
+            <WishlistMenuFabItem key='wishlist' icon={<IconSvg src={iconHeart} size='medium' />}>
+              <Trans id='Wishlist' />
+            </WishlistMenuFabItem>
+            <DarkLightModeMenuSecondaryItem key='darkmode' />
+          </Box>,
         ]}
       />
 
