@@ -39,7 +39,7 @@ export function useScrollTo() {
               },
               onComplete,
               onStop: onComplete,
-              duration: 200,
+              duration: 375,
             }),
           )
         } else onComplete()
@@ -47,8 +47,6 @@ export function useScrollTo() {
 
       const yDone = new Promise<void>((onComplete) => {
         if (ref.scrollTop !== to.y) {
-          const distance = Math.abs(ref.scrollTop - to.y)
-
           disableSnap()
           register(
             animate({
@@ -61,7 +59,7 @@ export function useScrollTo() {
               },
               onComplete,
               onStop: onComplete,
-              duration: distance < 500 ? 200 : 375,
+              duration: 375,
             }),
           )
         } else {
