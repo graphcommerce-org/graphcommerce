@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import { Trans } from '@lingui/react'
-import { Box, Fab, useEventCallback } from '@mui/material'
+import { Box, Fab, SxProps, Theme, useEventCallback } from '@mui/material'
 import { m } from 'framer-motion'
 import { IconSvg, useIconSvgSize } from '../../IconSvg'
 import { LayoutTitle } from '../../Layout'
@@ -17,6 +17,7 @@ import {
 
 type NavigationOverlayProps = NavigationProviderProps & {
   active: boolean
+  sx?: SxProps<Theme>
   onClose: () => void
 }
 
@@ -25,7 +26,7 @@ const MotionDiv = styled(m.div)({
 })
 
 export function NavigationOverlayBase(props: NavigationOverlayProps) {
-  const { active, onClose: closeCallback } = props
+  const { active, sx, onClose: closeCallback } = props
 
   const fabSize = useFabSize('responsive')
   const svgSize = useIconSvgSize('large')
@@ -46,10 +47,10 @@ export function NavigationOverlayBase(props: NavigationOverlayProps) {
       active={active}
       close={handleClose}
       variantSm='bottom'
-      sizeSm='floating'
+      sizeSm='full'
       justifySm='start'
       variantMd='left'
-      sizeMd='floating'
+      sizeMd='full'
       justifyMd='start'
       sx={{
         zIndex: 'drawer',
@@ -107,7 +108,7 @@ export function NavigationOverlayBase(props: NavigationOverlayProps) {
       </Box>
 
       <MotionDiv layout='position'>
-        <NavigationBase />
+        <NavigationBase sx={sx} />
       </MotionDiv>
     </Overlay>
   )
