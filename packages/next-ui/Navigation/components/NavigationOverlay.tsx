@@ -2,6 +2,7 @@ import styled from '@emotion/styled'
 import { Trans } from '@lingui/react'
 import { Box, Fab, SxProps, Theme, useEventCallback } from '@mui/material'
 import { m } from 'framer-motion'
+import { isElement } from 'react-is'
 import { IconSvg, useIconSvgSize } from '../../IconSvg'
 import { LayoutTitle } from '../../Layout'
 import { LayoutHeaderContent } from '../../Layout/components/LayoutHeaderContent'
@@ -9,6 +10,7 @@ import { Overlay } from '../../LayoutOverlay'
 import { useFabSize } from '../../Theme'
 import { iconClose, iconChevronLeft } from '../../icons'
 import {
+  NavigationContext,
   NavigationBase,
   NavigationProvider,
   NavigationProviderProps,
@@ -21,17 +23,34 @@ type NavigationOverlayProps = NavigationProviderProps & {
   onClose: () => void
 }
 
+type findCurrentProps = Pick<NavigationProviderProps, 'items'> & Pick<NavigationContext, 'path'>
+
+function findCurrent(props: findCurrentProps) {
+  const { items, path } = props
+  const id = path.slice(-1)[0]
+  let result
+
+  items.some(
+    // eslint-disable-next-line no-return-assign
+    (item) =>
+      (!isElement(item) && item.id === id && (result = item)) ||
+      (result =
+        !isElement(item) && item.childItems && findCurrent({ items: item.childItems, path })),
+  )
+  return result
+}
+
 const MotionDiv = styled(m.div)({
   padding: 10,
 })
 
 export function NavigationOverlayBase(props: NavigationOverlayProps) {
-  const { active, sx, onClose: closeCallback } = props
+  const { active, sx, onClose: closeCallback, items } = props
 
   const fabSize = useFabSize('responsive')
   const svgSize = useIconSvgSize('large')
 
-  const { path, select, items } = useNavigation()
+  const { path, select } = useNavigation()
 
   const handleReset = useEventCallback(() => select([]))
 
@@ -39,6 +58,8 @@ export function NavigationOverlayBase(props: NavigationOverlayProps) {
     handleReset()
     closeCallback()
   })
+
+  const current = findCurrent({ items, path })
 
   const showBack = path.length > 0
 
@@ -102,7 +123,7 @@ export function NavigationOverlayBase(props: NavigationOverlayProps) {
           }
         >
           <LayoutTitle size='small' component='span'>
-            <Trans id='Menu' />
+            {current.name || <Trans id='Menu' />}
           </LayoutTitle>
         </LayoutHeaderContent>
       </Box>
