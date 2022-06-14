@@ -19,7 +19,6 @@ import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Typography } from '@mui/material'
 import { useEffect, useMemo, VFC } from 'react'
-import { AvailableShippingMethodFragment } from '../../AvailableShippingMethod/AvailableShippingMethod.gql'
 import { GetShippingMethodsDocument } from './GetShippingMethods.gql'
 import { ShippingMethodActionCard } from './ShippingMethodActionCard'
 import {
@@ -91,9 +90,12 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
   useFormCompose({ form, step, submit, key: 'ShippingMethodForm' })
 
   useEffect(() => {
-    const amount = sortedAvailableShippingMethods.filter((m) => m?.available)
-    if (amount.length === 1) {
-      setValue('carrierMethod', `${amount[0]?.carrier_code}-${amount[0]?.method_code}`)
+    const availableMethods = sortedAvailableShippingMethods.filter((m) => m?.available)
+    if (availableMethods.length === 1) {
+      setValue(
+        'carrierMethod',
+        `${availableMethods[0]?.carrier_code}-${availableMethods[0]?.method_code}`,
+      )
     }
   }, [
     carrier,
