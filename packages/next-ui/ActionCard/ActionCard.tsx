@@ -7,6 +7,8 @@ export type ActionCardProps = {
   image?: React.ReactNode
   action?: React.ReactNode
   details?: React.ReactNode
+  price?: React.ReactNode
+  after?: React.ReactNode
   secondaryAction?: React.ReactNode
   onClick?: (e: FormEvent<HTMLElement>, v: string | number) => void
   selected?: boolean
@@ -16,33 +18,22 @@ export type ActionCardProps = {
   disabled?: boolean
 }
 
-function actionButtonStyles(spacing: string) {
-  return {
-    '& .MuiButton-root': {
-      '&.MuiButton-textSecondary': {
-        margin: `calc(${spacing} * -1 + 1px)`,
-        '&:hover': {
-          background: 'none',
-        },
-      },
-    },
-  }
-}
-
 export function ActionCard(props: ActionCardProps) {
   const {
     title,
     image,
     action,
     details,
+    price,
+    after,
     secondaryAction,
     sx = [],
     onClick,
     value,
-    selected,
-    hidden,
+    selected = false,
+    hidden = false,
     reset,
-    disabled,
+    disabled = false,
   } = props
 
   const handleClick = (event: FormEvent<HTMLElement>) => onClick?.(event, value)
@@ -57,15 +48,13 @@ export function ActionCard(props: ActionCardProps) {
         (theme) => ({
           display: 'grid',
           width: '100%',
-          gridTemplateColumns: 'min-content',
-          gridTemplateAreas: {
-            xs: `
-              "image title action"
-              "image details details"
-              "image secondaryAction additionalDetails"
-              "additionalContent additionalContent additionalContent"
-            `,
-          },
+          gridTemplateColumns: 'min-content auto auto',
+          gridTemplateAreas: `
+            "image title action"
+            "image details ${price ? 'price' : 'details'}"
+            "image secondaryAction additionalDetails"
+            "after after after"
+          `,
           justifyContent: 'unset',
           typography: 'body1',
           // textAlign: 'left',
@@ -84,10 +73,19 @@ export function ActionCard(props: ActionCardProps) {
             borderBottom: `1px solid ${theme.palette.divider}`,
           },
         }),
-        !!hidden && {
+        !image && {
+          gridTemplateColumns: 'auto auto',
+          gridTemplateAreas: `
+            "title action"
+            "details ${price ? 'price' : 'details'}"
+            "secondaryAction additionalDetails"
+            "after after"
+          `,
+        },
+        hidden && {
           display: 'none',
         },
-        !!selected &&
+        selected &&
           ((theme) => ({
             border: `2px solid ${theme.palette.secondary.main} !important`,
             borderTopLeftRadius: theme.shape.borderRadius,
@@ -96,7 +94,7 @@ export function ActionCard(props: ActionCardProps) {
             borderBottomRightRadius: theme.shape.borderRadius,
             padding: `${theme.spacings.xxs} ${theme.spacings.xs}`,
           })),
-        !!disabled &&
+        disabled &&
           ((theme) => ({
             background: theme.palette.background.default,
           })),
@@ -105,39 +103,31 @@ export function ActionCard(props: ActionCardProps) {
       ]}
     >
       {image && <Box sx={{ gridArea: 'image', justifySelf: 'center', padding: 1 }}>{image}</Box>}
-      {title && (
-        <Box sx={{ gridArea: 'title', fontWeight: 'bold', marginLeft: !image ? -2 : undefined }}>
-          {title}
-        </Box>
-      )}
+      {title && <Box sx={{ gridArea: 'title', fontWeight: 'bold' }}>{title}</Box>}
       {action && (
         <Box
-          sx={(theme) => ({
+          sx={{
             gridArea: 'action',
             textAlign: 'right',
-            ...actionButtonStyles(theme.spacings.xxs),
-          })}
+          }}
         >
           {!selected ? action : reset}
         </Box>
       )}
-      {details && (
-        <Box
-          sx={{ gridArea: 'details', color: 'text.secondary', marginLeft: !image ? -2 : undefined }}
-        >
-          {details}
-        </Box>
-      )}
+      {details && <Box sx={{ gridArea: 'details', color: 'text.secondary' }}>{details}</Box>}
+
+      {price && <Box sx={{ gridArea: 'price', textAlign: 'right', typography: 'h5' }}>{price}</Box>}
+
       {secondaryAction && (
         <Box
-          sx={(theme) => ({
+          sx={{
             gridArea: 'secondaryAction',
-            ...actionButtonStyles(theme.spacings.xxs),
-          })}
+          }}
         >
           {secondaryAction}
         </Box>
       )}
+      {after && <Box sx={{ gridArea: 'after' }}>{after}</Box>}
     </ButtonBase>
   )
 }

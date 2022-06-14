@@ -29,26 +29,6 @@ import {
 
 export type ShippingMethodFormProps = Pick<UseFormComposeOptions, 'step'>
 
-function ShippingMethodDetails(props: {
-  available: boolean | null | undefined
-  price: MoneyProps | null | undefined
-  errorMessage: string | null | undefined
-}) {
-  const { available, price, errorMessage } = props
-  const isFree = price && price.value === 0
-  const amount = !isFree ? <Money {...price} /> : 'Free'
-  const amountColor = !isFree ? 'text.primary' : '#05C642'
-  return (
-    <Typography
-      variant={available ? 'h5' : 'body1'}
-      sx={{ display: 'flex', justifyContent: available ? 'flex-end' : 'flex-start' }}
-      color={!available ? undefined : amountColor}
-    >
-      {available ? amount : errorMessage}
-    </Typography>
-  )
-}
-
 export function ShippingMethodForm(props: ShippingMethodFormProps) {
   const { step } = props
   const { data: cartQuery, loading } = useCartQuery(GetShippingMethodsDocument)
@@ -121,15 +101,15 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
           errorMessage={i18n._(/* i18n */ `Please select a payment method`)}
           items={sortedAvailableShippingMethods.filter(Boolean).map((sortedMethod) => ({
             ...sortedMethod,
-            title: <>{sortedMethod?.carrier_title}</>,
+            // title: <>{sortedMethod?.carrier_title}</>,
             disabled: !sortedMethod?.available,
-            details: (
-              <ShippingMethodDetails
-                available={sortedMethod?.available}
-                price={sortedMethod?.amount}
-                errorMessage={sortedMethod?.error_message}
-              />
-            ),
+            // details: (
+            //   <ShippingMethodDetails
+            //     available={sortedMethod?.available}
+            //     price={sortedMethod?.amount}
+            //     errorMessage={sortedMethod?.error_message}
+            //   />
+            // ),
             value: `${sortedMethod?.carrier_code}-${sortedMethod?.method_code}`,
           }))}
           render={ShippingMethodActionCard as VFC<ActionCardItemRenderer<ActionCardItemBase>>}

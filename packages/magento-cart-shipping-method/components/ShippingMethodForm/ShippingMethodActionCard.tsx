@@ -1,39 +1,42 @@
+import { Money } from '@graphcommerce/magento-store'
 import { ActionCard } from '@graphcommerce/next-ui'
 import { ActionCardItemRenderer } from '@graphcommerce/next-ui/ActionCard/ActionCardListForm'
 import { Trans } from '@lingui/react'
-import { Button } from '@mui/material'
+import { Box, Button } from '@mui/material'
 import { AvailableShippingMethodFragment } from '../../AvailableShippingMethod/AvailableShippingMethod.gql'
-
-function showCard(defaultsToHidden?: boolean, available?: boolean, carrierCode?: string) {
-  if (carrierCode === 'freeshipping') {
-    return defaultsToHidden ?? false
-  }
-  return !available ? true : defaultsToHidden
-}
 
 type ShippingMethodActionCardProps = ActionCardItemRenderer<
   AvailableShippingMethodFragment | null | undefined
 >
 
 export function ShippingMethodActionCard(props: ShippingMethodActionCardProps) {
-  const { hidden, available, carrier_code, onReset, ...cardProps } = props
+  const { available, amount, error_message, carrier_title, carrier_code, onReset, ...cardProps } =
+    props
+  let { hidden = false } = props
+
+  const isFree = amount && amount.value === 0
+
+  if (carrier_code !== 'freeshipping') hidden = !available ? true : hidden
+
   return (
     <ActionCard
       {...cardProps}
-      sx={{ background: 'primary.disabled' }}
-      hidden={showCard(hidden, available, carrier_code)}
+      hidden={hidden}
+      title={carrier_title}
+      details={error_message}
       action={
         <Button
-          disableRipple
-          variant='text'
+          variant='inline'
           color='secondary'
-          sx={{ display: available ? 'contents' : 'none' }}
+          sx={{ display: available ? undefined : 'none' }}
+          disableRipple
         >
           <Trans id='Select' />
         </Button>
       }
+      price={!isFree ? <Money {...amount} /> : <Box sx={{ color: '#05C642' }}>Free</Box>}
       reset={
-        <Button disableRipple variant='text' color='secondary' onClick={onReset}>
+        <Button variant='inline' color='secondary' onClick={onReset} disableRipple>
           <Trans id='Change' />
         </Button>
       }
