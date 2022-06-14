@@ -48,12 +48,11 @@ export const MuiButtonResponsive: ButtonVariants = [
   },
   {
     props: { variant: 'text', size: 'small' },
-    style: ({ theme }) => ({
-      margin: `calc(${theme.spacings.xxs} * -1 + 1px)`,
+    style: {
       padding: '3px 9px',
       '& .MuiLoadingButton-loadingIndicatorEnd': { right: 3 },
       '& .MuiLoadingButton-loadingIndicatorStart': { left: 9 },
-    }),
+    },
   },
   {
     props: { variant: 'text', size: 'medium' },
