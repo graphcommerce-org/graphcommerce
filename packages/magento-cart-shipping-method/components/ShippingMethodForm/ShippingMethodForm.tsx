@@ -3,7 +3,6 @@ import {
   useCartQuery,
   useFormGqlMutationCart,
 } from '@graphcommerce/magento-cart'
-import { Money, MoneyProps } from '@graphcommerce/magento-store'
 import { Form, FormHeader } from '@graphcommerce/next-ui'
 import {
   ActionCardItemBase,
@@ -17,7 +16,6 @@ import {
 } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Typography } from '@mui/material'
 import { useEffect, useMemo, VFC } from 'react'
 import { GetShippingMethodsDocument } from './GetShippingMethods.gql'
 import { ShippingMethodActionCard } from './ShippingMethodActionCard'
@@ -101,15 +99,7 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
           errorMessage={i18n._(/* i18n */ `Please select a shipping method`)}
           items={sortedAvailableShippingMethods.filter(Boolean).map((sortedMethod) => ({
             ...sortedMethod,
-            // title: <>{sortedMethod?.carrier_title}</>,
             disabled: !sortedMethod?.available,
-            // details: (
-            //   <ShippingMethodDetails
-            //     available={sortedMethod?.available}
-            //     price={sortedMethod?.amount}
-            //     errorMessage={sortedMethod?.error_message}
-            //   />
-            // ),
             value: `${sortedMethod?.carrier_code}-${sortedMethod?.method_code}`,
           }))}
           render={ShippingMethodActionCard as VFC<ActionCardItemRenderer<ActionCardItemBase>>}

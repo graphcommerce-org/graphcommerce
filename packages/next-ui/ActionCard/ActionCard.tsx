@@ -116,7 +116,9 @@ export function ActionCard(props: ActionCardProps) {
       )}
       {details && <Box sx={{ gridArea: 'details', color: 'text.secondary' }}>{details}</Box>}
 
-      {price && <Box sx={{ gridArea: 'price', textAlign: 'right', typography: 'h5' }}>{price}</Box>}
+      {price && !disabled && (
+        <Box sx={{ gridArea: 'price', textAlign: 'right', typography: 'h5' }}>{price}</Box>
+      )}
 
       {secondaryAction && (
         <Box
