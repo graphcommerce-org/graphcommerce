@@ -36,7 +36,7 @@ export function ShippingMethodActionCard(props: ShippingMethodActionCardProps) {
       }
       price={!isFree ? <Money {...amount} /> : <Box sx={{ color: '#05C642' }}>Free</Box>}
       reset={
-        <Button variant='inline' color='secondary' onClick={onReset} disableRipple>
+        <Button variant='inline' color='secondary' onClick={onReset} disableRipple size='small'>
           <Trans id='Change' />
         </Button>
       }

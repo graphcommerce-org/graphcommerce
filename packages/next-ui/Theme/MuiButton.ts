@@ -153,7 +153,7 @@ export const MuiButtonInline: ButtonVariants = [
   {
     props: { variant: 'inline', size: 'small' },
     style: ({ theme }) => ({
-      margin: `calc(${theme.spacings.xxs} * -1`,
+      margin: `calc(${theme.spacings.xxs} / 2 * -1 )`,
       padding: '3px 9px',
 
       '& .MuiLoadingButton-loadingIndicatorEnd': { right: 3 },
@@ -163,7 +163,7 @@ export const MuiButtonInline: ButtonVariants = [
   {
     props: { variant: 'inline', size: 'medium' },
     style: ({ theme }) => ({
-      margin: `calc(${theme.spacings.xxs} * -1)`,
+      margin: `calc(${theme.spacings.xxs} * -1 )`,
       padding: `${responsiveVal(3, 5)} ${responsiveVal(9, 15)}`,
 
       '& .MuiLoadingButton-loadingIndicatorEnd': { right: responsiveVal(9, 15) },
@@ -173,7 +173,7 @@ export const MuiButtonInline: ButtonVariants = [
   {
     props: { variant: 'inline', size: 'large' },
     style: ({ theme }) => ({
-      margin: `calc(${theme.spacings.sm} * -1)`,
+      margin: `calc(${theme.spacings.xs} * -1)`,
       padding: `${responsiveVal(8, 10)} ${responsiveVal(12, 22)}`,
 
       '& .MuiLoadingButton-loadingIndicatorEnd': { right: responsiveVal(16, 24) },
