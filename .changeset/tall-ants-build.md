@@ -5,4 +5,5 @@
 '@graphcommerce/next-ui': minor
 ---
 
-Shipping method UI improvements in checkout, like working ripple effect, auto select and other styling changes
+- Shipping method UI improvements in checkout, like working ripple effect, auto select and other styling changes.
+- Added new inline button variant
