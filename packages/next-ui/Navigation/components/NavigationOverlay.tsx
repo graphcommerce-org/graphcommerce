@@ -40,9 +40,7 @@ function findCurrent(props: findCurrentProps) {
   return result
 }
 
-const MotionDiv = styled(m.div)({
-  padding: 10,
-})
+const MotionDiv = styled(m.div)()
 
 export function NavigationOverlayBase(props: NavigationOverlayProps) {
   const { active, sx, onClose: closeCallback, items } = props
