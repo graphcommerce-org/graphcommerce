@@ -76,7 +76,7 @@ function NavigationItem(props: NavigationItemProps) {
           onClick={() => (selected ? select(parentPath) : select(itemPath))}
         >
           <Render {...props} hasChildren={false} />
-          {level > 1 && <IconSvg src={iconChevronRight} />}
+          <IconSvg src={iconChevronRight} />
         </ListItemButton>
 
         <Box

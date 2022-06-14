@@ -53,7 +53,10 @@ export function LayoutFull(props: LayoutFullProps) {
         sx={(theme) => ({
           px: theme.spacings.lg,
           py: theme.spacings.md,
-          '& > ul > li > a, & > ul > li > button': { typography: 'h2' },
+          '& > ul > li > a, & > ul > li > button': {
+            typography: 'h2',
+            '& svg': { display: 'none' },
+          },
         })}
         items={[
           <SearchLink href='/search' sx={(theme) => ({ width: '100%', mb: theme.spacings.xs })}>
