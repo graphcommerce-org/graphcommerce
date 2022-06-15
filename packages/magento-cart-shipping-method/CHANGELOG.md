@@ -1,5 +1,23 @@
 # Change Log
 
+## 3.2.0
+
+### Minor Changes
+
+- [#1515](https://github.com/graphcommerce-org/graphcommerce/pull/1515) [`371e6cf52`](https://github.com/graphcommerce-org/graphcommerce/commit/371e6cf52916a3b6c44192bd40cc8271bd608832) Thanks [@mikekeehnen](https://github.com/mikekeehnen)! - - Shipping method UI improvements in checkout, like working ripple effect, auto select and other styling changes.
+  - Added new inline button variant
+
+* [#1518](https://github.com/graphcommerce-org/graphcommerce/pull/1518) [`4143483f3`](https://github.com/graphcommerce-org/graphcommerce/commit/4143483f37c038d2bbf218be2685e27a31a35745) Thanks [@mikekeehnen](https://github.com/mikekeehnen)! - New ActionCardListForm implementation for Payment Methods
+
+### Patch Changes
+
+- Updated dependencies [[`371e6cf52`](https://github.com/graphcommerce-org/graphcommerce/commit/371e6cf52916a3b6c44192bd40cc8271bd608832), [`4143483f3`](https://github.com/graphcommerce-org/graphcommerce/commit/4143483f37c038d2bbf218be2685e27a31a35745)]:
+  - @graphcommerce/magento-cart-shipping-address@3.2.0
+  - @graphcommerce/next-ui@4.10.0
+  - @graphcommerce/magento-cart@4.4.4
+  - @graphcommerce/framer-scroller@2.1.17
+  - @graphcommerce/magento-store@4.2.11
+
 ## 3.1.0
 
 ### Minor Changes

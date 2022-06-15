@@ -2,7 +2,7 @@
   "name": "@graphcommerce/ecommerce-ui",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -12,7 +12,7 @@
     }
   },
   "dependencies": {
-    "@graphcommerce/next-ui": "4.9.0",
+    "@graphcommerce/next-ui": "4.10.0",
     "@graphcommerce/react-hook-form": "3.2.2",
     "@graphcommerce/graphql": "3.2.1"
   },
