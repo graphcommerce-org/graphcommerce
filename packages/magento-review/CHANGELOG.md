@@ -1,5 +1,15 @@
 # Change Log
 
+## 3.2.16
+
+### Patch Changes
+
+- Updated dependencies [[`c877e438a`](https://github.com/graphcommerce-org/graphcommerce/commit/c877e438a48f30204fa3e36b611906a546e1cf5c), [`371e6cf52`](https://github.com/graphcommerce-org/graphcommerce/commit/371e6cf52916a3b6c44192bd40cc8271bd608832), [`4143483f3`](https://github.com/graphcommerce-org/graphcommerce/commit/4143483f37c038d2bbf218be2685e27a31a35745)]:
+  - @graphcommerce/magento-customer@4.5.4
+  - @graphcommerce/next-ui@4.10.0
+  - @graphcommerce/magento-product@4.4.8
+  - @graphcommerce/magento-store@4.2.11
+
 ## 3.2.15
 
 ### Patch Changes
