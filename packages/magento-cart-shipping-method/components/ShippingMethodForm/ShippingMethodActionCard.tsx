@@ -1,11 +1,11 @@
 import { Money } from '@graphcommerce/magento-store'
 import { ActionCard } from '@graphcommerce/next-ui'
-import { ActionCardItemRenderer } from '@graphcommerce/next-ui/ActionCard/ActionCardListForm'
+import { ActionCardItemRenderProps } from '@graphcommerce/next-ui/ActionCard/ActionCardListForm'
 import { Trans } from '@lingui/react'
 import { Box, Button } from '@mui/material'
 import { AvailableShippingMethodFragment } from '../../AvailableShippingMethod/AvailableShippingMethod.gql'
 
-type ShippingMethodActionCardProps = ActionCardItemRenderer<
+type ShippingMethodActionCardProps = ActionCardItemRenderProps<
   AvailableShippingMethodFragment | null | undefined
 >
 

@@ -26,13 +26,6 @@ export type PaymentMethodTogglesProps = Pick<UseFormComposeOptions, 'step'> & {
   sx?: SxProps<Theme>
 }
 
-// function Content(props: PaymentMethod) {
-//   const { code } = props
-//   const { modules } = usePaymentMethodContext()
-//   const Component = modules[code]?.PaymentToggle ?? ((p: PaymentToggleProps) => <>{p.title}</>)
-//   return <Component {...props} />
-// }
-
 const cmpName = 'PaymentMethodToggles' as const
 const parts = [
   'formRoot',

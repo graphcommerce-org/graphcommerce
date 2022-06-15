@@ -1,5 +1,6 @@
 import { SxProps, ButtonBase, Box, Theme } from '@mui/material'
 import React, { FormEvent } from 'react'
+import { extendableComponent } from '../Styles'
 
 export type ActionCardProps = {
   sx?: SxProps<Theme>
@@ -17,6 +18,33 @@ export type ActionCardProps = {
   reset?: React.ReactNode
   disabled?: boolean
 }
+
+const parts = [
+  'root',
+  'image',
+  'title',
+  'action',
+  'details',
+  'price',
+  'after',
+  'secondaryAction',
+  'reset',
+] as const
+const name = 'ActionCard'
+
+type StateProps = {
+  selected?: boolean
+  hidden?: boolean
+  disabled?: boolean
+  image?: boolean
+}
+
+const { withState, selectors } = extendableComponent<StateProps, typeof name, typeof parts>(
+  name,
+  parts,
+)
+
+export const actionCardSelectors = selectors
 
 export function ActionCard(props: ActionCardProps) {
   const {
@@ -36,12 +64,14 @@ export function ActionCard(props: ActionCardProps) {
     disabled = false,
   } = props
 
+  const classes = withState({ hidden, disabled, selected, image: Boolean(image) })
+
   const handleClick = (event: FormEvent<HTMLElement>) => onClick?.(event, value)
 
   return (
     <ButtonBase
       component='div'
-      className='ActionCard-root'
+      className={classes.root}
       onClick={handleClick}
       disabled={disabled}
       sx={[
@@ -52,7 +82,7 @@ export function ActionCard(props: ActionCardProps) {
           gridTemplateAreas: `
             "image title action"
             "image details ${price ? 'price' : 'details'}"
-            "image secondaryAction additionalDetails"
+            "image secondaryActio additionalDetails"
             "after after after"
           `,
           justifyContent: 'unset',
@@ -102,34 +132,58 @@ export function ActionCard(props: ActionCardProps) {
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
-      {image && <Box sx={{ gridArea: 'image', justifySelf: 'center', padding: 1 }}>{image}</Box>}
-      {title && <Box sx={{ gridArea: 'title', fontWeight: 'bold' }}>{title}</Box>}
-      {action && (
+      {image && (
         <Box
+          className={classes.image}
           sx={{
-            gridArea: 'action',
-            textAlign: 'right',
+            gridArea: 'image',
+            display: 'flex',
           }}
         >
+          {image}
+        </Box>
+      )}
+      {title && (
+        <Box className={classes.title} sx={{ gridArea: 'title', display: 'flex' }}>
+          {title}
+        </Box>
+      )}
+      {action && (
+        <Box className={classes.action} sx={{ gridArea: 'action', textAlign: 'right' }}>
           {!selected ? action : reset}
         </Box>
       )}
-      {details && <Box sx={{ gridArea: 'details', color: 'text.secondary' }}>{details}</Box>}
+      {details && (
+        <Box
+          className={classes.details}
+          sx={{
+            gridArea: 'details',
+            color: 'text.secondary',
+          }}
+        >
+          {details}
+        </Box>
+      )}
 
       {price && !disabled && (
-        <Box sx={{ gridArea: 'price', textAlign: 'right', typography: 'h5' }}>{price}</Box>
+        <Box
+          className={classes.price}
+          sx={{ gridArea: 'price', textAlign: 'right', typography: 'h5' }}
+        >
+          {price}
+        </Box>
       )}
 
       {secondaryAction && (
-        <Box
-          sx={{
-            gridArea: 'secondaryAction',
-          }}
-        >
+        <Box className={classes.secondaryAction} sx={{ gridArea: 'secondaryAction' }}>
           {secondaryAction}
         </Box>
       )}
-      {after && <Box sx={{ gridArea: 'after' }}>{after}</Box>}
+      {after && (
+        <Box className={classes.after} sx={{ gridArea: 'after' }}>
+          {after}
+        </Box>
+      )}
     </ButtonBase>
   )
 }

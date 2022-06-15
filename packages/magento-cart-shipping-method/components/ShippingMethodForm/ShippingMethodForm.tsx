@@ -6,7 +6,7 @@ import {
 import { Form, FormHeader } from '@graphcommerce/next-ui'
 import {
   ActionCardItemBase,
-  ActionCardItemRenderer,
+  ActionCardItemRenderProps,
   ActionCardListForm,
 } from '@graphcommerce/next-ui/ActionCard/ActionCardListForm'
 import {
@@ -102,7 +102,7 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
             disabled: !sortedMethod?.available,
             value: `${sortedMethod?.carrier_code}-${sortedMethod?.method_code}`,
           }))}
-          render={ShippingMethodActionCard as VFC<ActionCardItemRenderer<ActionCardItemBase>>}
+          render={ShippingMethodActionCard as VFC<ActionCardItemRenderProps<ActionCardItemBase>>}
         />
         <ApolloCartErrorAlert error={error} />
       </Form>

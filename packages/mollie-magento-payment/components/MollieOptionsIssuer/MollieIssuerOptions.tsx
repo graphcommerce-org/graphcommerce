@@ -31,9 +31,6 @@ export function MollieIssuerOptions(props: MollieIssuerOptionsProps) {
 
   return (
     <Container>
-      <Typography variant='h5' component='span'>
-        <Trans id='Pay with {title}' values={{ title }} />
-      </Typography>
       <form onSubmit={submit} noValidate>
         <FormRow>
           <TextField
