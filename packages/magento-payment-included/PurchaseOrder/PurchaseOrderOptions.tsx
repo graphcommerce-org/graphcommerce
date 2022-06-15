@@ -7,7 +7,7 @@ import { TextField, Typography } from '@mui/material'
 import { PurchaseOrderOptionsDocument } from './PurchaseOrderOptions.gql'
 
 export function PurchaseOrderOptions(props: PaymentOptionsProps) {
-  const { code, step, selected, Container, title = '' } = props
+  const { code, step, selectedMethod: selected, Container, title = '' } = props
   const poNumber = selected?.purchase_order_number ?? undefined
 
   const form = useFormGqlMutationCart(PurchaseOrderOptionsDocument, {
@@ -21,9 +21,6 @@ export function PurchaseOrderOptions(props: PaymentOptionsProps) {
 
   return (
     <Container>
-      <Typography variant='h5' component='span'>
-        <Trans id='Pay with {title}' values={{ title }} />
-      </Typography>
       <form onSubmit={submit} noValidate>
         <FormRow>
           <TextField

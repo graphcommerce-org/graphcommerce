@@ -1,6 +1,8 @@
 import { ApolloClient } from '@graphcommerce/graphql'
-import { LinkOrButtonProps } from '@graphcommerce/next-ui'
+import { ActionCardProps, LinkOrButtonProps } from '@graphcommerce/next-ui'
+import { ActionCardItemRenderProps } from '@graphcommerce/next-ui/ActionCard/ActionCardListForm'
 import { UseFormComposeOptions } from '@graphcommerce/react-hook-form'
+import { SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { AvailablePaymentMethodFragment } from './AvailablePaymentMethod/AvailablePaymentMethod.gql'
 import { PaymentMethodContextFragment } from './PaymentMethodContext.gql'
@@ -10,7 +12,7 @@ export type PaymentMethod = Partial<AvailablePaymentMethodFragment> &
   Pick<AvailablePaymentMethodFragment, 'code' | 'title'> & {
     child: string
     preferred?: boolean
-    selected?: SelectedPaymentMethodFragment
+    selectedPm?: SelectedPaymentMethodFragment
   }
 
 export type PaymentMethodOptionsProps = Pick<UseFormComposeOptions, 'step'> & {
@@ -19,7 +21,6 @@ export type PaymentMethodOptionsProps = Pick<UseFormComposeOptions, 'step'> & {
 export type PaymentButtonProps = PaymentMethod & { buttonProps: LinkOrButtonProps }
 export type PaymentOptionsProps = PaymentMethod & PaymentMethodOptionsProps
 
-export type PaymentToggleProps = PaymentMethod
 export type PaymentHandlerProps = { code: string }
 
 export type ExpandPaymentMethodsContext = Partial<PaymentMethodContextFragment> & {
@@ -33,13 +34,15 @@ export type ExpandPaymentMethods = (
 
 export type PaymentPlaceOrderProps = PaymentMethod & Pick<UseFormComposeOptions, 'step'>
 
+export type PaymentMethodActionCardProps = ActionCardProps & PaymentMethod
+
 export interface PaymentModule {
-  PaymentOptions: React.VFC<PaymentOptionsProps>
-  PaymentPlaceOrder: React.VFC<PaymentPlaceOrderProps>
-  PaymentButton?: React.VFC<PaymentButtonProps>
-  PaymentToggle?: React.VFC<PaymentToggleProps>
+  PaymentOptions: React.FC<PaymentOptionsProps>
+  PaymentPlaceOrder: React.FC<PaymentPlaceOrderProps>
+  PaymentButton?: React.FC<PaymentButtonProps>
   expandMethods?: ExpandPaymentMethods
-  PaymentHandler?: React.VFC<PaymentHandlerProps>
+  PaymentHandler?: React.FC<PaymentHandlerProps>
+  PaymentActionCard?: React.FC<PaymentMethodActionCardProps>
 }
 
 export type PaymentMethodModules = { [code: string]: PaymentModule }

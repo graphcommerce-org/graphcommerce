@@ -5,4 +5,7 @@ fragment MollieAvailablePaymentMethod on AvailablePaymentMethod
     name
     svg
   }
+  mollie_meta {
+    image
+  }
 }

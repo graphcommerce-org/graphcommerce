@@ -13,7 +13,6 @@ A Magento Payment Method module must implement
 export interface PaymentModule {
   PaymentOptions: React.VFC<PaymentOptionsProps>
   PaymentButton?: React.VFC<PaymentButtonProps>
-  PaymentToggle?: React.VFC<PaymentToggleProps>
   expandMethods?: ExpandPaymentMethods
 }
 ```
