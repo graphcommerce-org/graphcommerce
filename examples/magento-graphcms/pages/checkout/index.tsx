@@ -104,10 +104,6 @@ function ShippingPage() {
                 </>
               )}
 
-              <FormHeader variant='h5' sx={{ marginBottom: 0 }}>
-                <Trans id='Shipping method' />
-              </FormHeader>
-
               <ShippingMethodForm step={4} />
 
               <ComposedSubmit

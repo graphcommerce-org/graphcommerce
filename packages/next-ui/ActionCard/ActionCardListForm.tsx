@@ -1,13 +1,13 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { Controller, ControllerProps } from '@graphcommerce/react-hook-form'
-import React from 'react'
+import React, { MouseEventHandler } from 'react'
 import { ActionCardProps } from './ActionCard'
 import { ActionCardList, ActionCardListProps } from './ActionCardList'
 
 export type ActionCardItemBase = Pick<ActionCardProps, 'value'>
 
 export type ActionCardItemRenderer<T> = Pick<ActionCardProps, 'selected' | 'hidden' | 'value'> & {
-  onReset: React.MouseEventHandler<HTMLButtonElement>
+  onReset: MouseEventHandler<HTMLAnchorElement> & MouseEventHandler<HTMLSpanElement>
 } & T
 
 export type ActionCardListFormProps<T extends ActionCardItemBase> = Omit<

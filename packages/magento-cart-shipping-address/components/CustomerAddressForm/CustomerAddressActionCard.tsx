@@ -1,10 +1,9 @@
-import { useQuery } from '@graphcommerce/graphql'
 import { CustomerAddressFragment } from '@graphcommerce/magento-customer/components/CreateCustomerAddressForm/CustomerAddress.gql'
-import { CountryRegionsDocument, useFindCountry } from '@graphcommerce/magento-store'
+import { useFindCountry } from '@graphcommerce/magento-store'
 import { ActionCard, IconSvg, iconHome } from '@graphcommerce/next-ui'
 import { ActionCardItemRenderer } from '@graphcommerce/next-ui/ActionCard/ActionCardListForm'
 import { Trans } from '@lingui/react'
-import { Box, Button } from '@mui/material'
+import { Button } from '@mui/material'
 import { useRouter } from 'next/router'
 
 type CustomerAddressActionCardProps = ActionCardItemRenderer<
@@ -36,12 +35,12 @@ export function CustomerAddressActionCard(props: CustomerAddressActionCardProps)
         title={<Trans id='New address' />}
         details={<Trans id='Add new address' />}
         action={
-          <Button disableRipple variant='text' color='secondary'>
+          <Button disableRipple variant='inline' color='secondary'>
             <Trans id='Select' />
           </Button>
         }
         reset={
-          <Button disableRipple variant='text' color='secondary' onClick={onReset}>
+          <Button disableRipple variant='inline' color='secondary' onClick={onReset}>
             <Trans id='Change' />
           </Button>
         }
@@ -65,19 +64,19 @@ export function CustomerAddressActionCard(props: CustomerAddressActionCardProps)
         </>
       }
       action={
-        <Button disableRipple variant='text' color='secondary'>
+        <Button disableRipple variant='inline' color='secondary'>
           <Trans id='Select' />
         </Button>
       }
       reset={
-        <Button disableRipple variant='text' color='secondary' onClick={onReset}>
+        <Button disableRipple variant='inline' color='secondary' onClick={onReset}>
           <Trans id='Change' />
         </Button>
       }
       secondaryAction={
         <Button
           color='secondary'
-          variant='text'
+          variant='inline'
           onMouseDown={(e) => {
             e.stopPropagation()
           }}

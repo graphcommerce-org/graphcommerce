@@ -4,6 +4,7 @@ import { responsiveVal } from '../Styles/responsiveVal'
 declare module '@mui/material/Button/Button' {
   interface ButtonPropsVariantOverrides {
     pill: true
+    inline: true
   }
 }
 
@@ -124,5 +125,66 @@ export const MuiButtonPill: ButtonVariants = [
       backgroundColor: theme.palette.action.disabledBackground,
       color: theme.palette.action.disabled,
     }),
+  },
+]
+
+export const MuiButtonInline: ButtonVariants = [
+  {
+    props: { variant: 'inline', color: 'primary' },
+    style: ({ theme }) => ({
+      color: theme.palette.primary.main,
+      '&:hover:not(.Mui-disabled)': { backgroundColor: `${theme.palette.primary.main}30` },
+    }),
+  },
+  {
+    props: { variant: 'inline', color: 'secondary' },
+    style: ({ theme }) => ({
+      color: theme.palette.secondary.main,
+      '&:hover:not(.Mui-disabled)': {
+        backgroundColor: theme.palette.secondary.light,
+      },
+    }),
+  },
+  {
+    props: { variant: 'inline' },
+    style: { textTransform: 'none', fontWeight: 500 },
+  },
+  {
+    props: { variant: 'inline', size: 'small' },
+    style: ({ theme }) => ({
+      margin: `calc(${theme.spacings.xxs} / 2 * -1 )`,
+      padding: '3px 9px',
+
+      '& .MuiLoadingButton-loadingIndicatorEnd': { right: 3 },
+      '& .MuiLoadingButton-loadingIndicatorStart': { left: 9 },
+    }),
+  },
+  {
+    props: { variant: 'inline', size: 'medium' },
+    style: ({ theme }) => ({
+      margin: `calc(${theme.spacings.xxs} * -1 )`,
+      padding: `${responsiveVal(3, 5)} ${responsiveVal(9, 15)}`,
+
+      '& .MuiLoadingButton-loadingIndicatorEnd': { right: responsiveVal(9, 15) },
+      '& .MuiLoadingButton-loadingIndicatorStart': { left: responsiveVal(9, 15) },
+    }),
+  },
+  {
+    props: { variant: 'inline', size: 'large' },
+    style: ({ theme }) => ({
+      margin: `calc(${theme.spacings.xs} * -1)`,
+      padding: `${responsiveVal(8, 10)} ${responsiveVal(12, 22)}`,
+
+      '& .MuiLoadingButton-loadingIndicatorEnd': { right: responsiveVal(16, 24) },
+      '& .MuiLoadingButton-loadingIndicatorStart': { left: responsiveVal(16, 24) },
+    }),
+  },
+  {
+    props: { variant: 'inline', disableRipple: true },
+    style: {
+      '&:hover:not(.Mui-disabled)': {
+        backgroundColor: 'transparent',
+      },
+    },
   },
 ]

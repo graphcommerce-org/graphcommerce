@@ -15,7 +15,7 @@ import React, { useState } from 'react'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
 import { graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
-const variants = ['text', 'outlined', 'contained', 'pill'] as const
+const variants = ['text', 'outlined', 'contained', 'pill', 'inline'] as const
 const sizes = ['small', 'medium', 'large'] as const
 const colors = ['inherit', 'primary', 'secondary'] as const
 
