@@ -1,8 +1,6 @@
 import { ApolloClient } from '@graphcommerce/graphql'
 import { ActionCardProps, LinkOrButtonProps } from '@graphcommerce/next-ui'
-import { ActionCardItemRenderProps } from '@graphcommerce/next-ui/ActionCard/ActionCardListForm'
 import { UseFormComposeOptions } from '@graphcommerce/react-hook-form'
-import { SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { AvailablePaymentMethodFragment } from './AvailablePaymentMethod/AvailablePaymentMethod.gql'
 import { PaymentMethodContextFragment } from './PaymentMethodContext.gql'
