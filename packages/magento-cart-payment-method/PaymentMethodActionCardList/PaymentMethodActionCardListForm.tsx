@@ -27,12 +27,11 @@ function PaymentMethodActionCard(
     sx?: SxProps<Theme>
   },
 ) {
-  const { onReset, code, step, Container, mollie_meta, sx = [] } = props
+  const { onReset, code, step, Container, sx = [] } = props
   const { selectedMethod, selectedModule, modules } = usePaymentMethodContext()
 
   const selectedAndOptions = selectedMethod?.code === code && selectedModule?.PaymentOptions
   const Card = modules[code]?.PaymentActionCard ?? DefaultPaymentActionCard
-  const iconSize = useIconSvgSize('large')
 
   return (
     <Card
@@ -43,18 +42,6 @@ function PaymentMethodActionCard(
         },
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
-      image={
-        mollie_meta?.image && (
-          <Image
-            layout='fixed'
-            sx={{ width: iconSize, height: iconSize }}
-            width={0}
-            height={0}
-            unoptimized
-            src={mollie_meta?.image}
-          />
-        )
-      }
       action={
         <Button disableRipple variant='inline' color='secondary'>
           <Trans id='Select' />
