@@ -1,5 +1,15 @@
 # Change Log
 
+## 3.13.1
+
+### Patch Changes
+
+- Updated dependencies [[`64c7b6b45`](https://github.com/graphcommerce-org/graphcommerce/commit/64c7b6b4595a13110453f98680ffd69f27f2c656)]:
+  - @graphcommerce/magento-cart-payment-method@3.3.1
+  - @graphcommerce/mollie-magento-payment@3.3.1
+  - @graphcommerce/magento-payment-braintree@3.0.29
+  - @graphcommerce/magento-payment-included@3.1.1
+
 ## 3.13.0
 
 ### Minor Changes
