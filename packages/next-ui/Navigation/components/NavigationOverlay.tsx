@@ -137,10 +137,21 @@ export function NavigationOverlayBase(props: NavigationOverlayProps) {
         layout='position'
         style={{
           display: 'grid',
-          alignItems: !stretchColumns ? 'start' : undefined,
         }}
       >
-        <NavigationBase sx={sx} />
+        <Box
+          sx={(theme) => ({
+            display: 'grid',
+            alignItems: !stretchColumns ? 'start' : undefined,
+            [theme.breakpoints.down('md')]: {
+              overflow: 'hidden',
+              scrollSnapType: 'x mandatory',
+              width: `calc(${theme.spacings.md} + ${theme.spacings.md} + 220px)`,
+            },
+          })}
+        >
+          <NavigationBase sx={sx} />
+        </Box>
       </MotionDiv>
     </Overlay>
   )
