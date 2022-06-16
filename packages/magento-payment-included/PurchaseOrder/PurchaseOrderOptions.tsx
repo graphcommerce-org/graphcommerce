@@ -2,13 +2,12 @@ import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
 import { FormRow, InputCheckmark } from '@graphcommerce/next-ui'
 import { useFormCompose, useFormValidFields } from '@graphcommerce/react-hook-form'
-import { Trans } from '@lingui/react'
-import { TextField, Typography } from '@mui/material'
+import { TextField } from '@mui/material'
 import { PurchaseOrderOptionsDocument } from './PurchaseOrderOptions.gql'
 
 export function PurchaseOrderOptions(props: PaymentOptionsProps) {
-  const { code, step, selected, Container, title = '' } = props
-  const poNumber = selected?.purchase_order_number ?? undefined
+  const { code, step, selectedPm, Container } = props
+  const poNumber = selectedPm?.purchase_order_number ?? undefined
 
   const form = useFormGqlMutationCart(PurchaseOrderOptionsDocument, {
     defaultValues: { code, poNumber },
@@ -21,9 +20,6 @@ export function PurchaseOrderOptions(props: PaymentOptionsProps) {
 
   return (
     <Container>
-      <Typography variant='h5' component='span'>
-        <Trans id='Pay with {title}' values={{ title }} />
-      </Typography>
       <form onSubmit={submit} noValidate>
         <FormRow>
           <TextField

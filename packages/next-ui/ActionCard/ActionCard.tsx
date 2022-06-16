@@ -1,6 +1,6 @@
-import { Theme } from '@emotion/react'
-import { SxProps, ButtonBase, Box } from '@mui/material'
+import { SxProps, ButtonBase, Box, Theme } from '@mui/material'
 import React, { FormEvent } from 'react'
+import { extendableComponent } from '../Styles'
 
 export type ActionCardProps = {
   sx?: SxProps<Theme>
@@ -8,26 +8,43 @@ export type ActionCardProps = {
   image?: React.ReactNode
   action?: React.ReactNode
   details?: React.ReactNode
+  price?: React.ReactNode
+  after?: React.ReactNode
   secondaryAction?: React.ReactNode
   onClick?: (e: FormEvent<HTMLElement>, v: string | number) => void
   selected?: boolean
-  hidden?: boolean | (() => boolean)
+  hidden?: boolean
   value: string | number
   reset?: React.ReactNode
   disabled?: boolean
 }
 
-const actionButtonStyles: SxProps = {
-  '& .MuiButton-root': {
-    '&.MuiButton-textSecondary': {
-      padding: '5px',
-      margin: '-5px',
-      '&:hover': {
-        background: 'none',
-      },
-    },
-  },
+const parts = [
+  'root',
+  'image',
+  'title',
+  'action',
+  'details',
+  'price',
+  'after',
+  'secondaryAction',
+  'reset',
+] as const
+const name = 'ActionCard'
+
+type StateProps = {
+  selected?: boolean
+  hidden?: boolean
+  disabled?: boolean
+  image?: boolean
 }
+
+const { withState, selectors } = extendableComponent<StateProps, typeof name, typeof parts>(
+  name,
+  parts,
+)
+
+export const actionCardSelectors = selectors
 
 export function ActionCard(props: ActionCardProps) {
   const {
@@ -35,37 +52,39 @@ export function ActionCard(props: ActionCardProps) {
     image,
     action,
     details,
+    price,
+    after,
     secondaryAction,
     sx = [],
     onClick,
     value,
-    selected,
-    hidden,
+    selected = false,
+    hidden = false,
     reset,
-    disabled,
+    disabled = false,
   } = props
+
+  const classes = withState({ hidden, disabled, selected, image: Boolean(image) })
 
   const handleClick = (event: FormEvent<HTMLElement>) => onClick?.(event, value)
 
   return (
     <ButtonBase
       component='div'
-      className='ActionCard-root'
+      className={classes.root}
       onClick={handleClick}
       disabled={disabled}
       sx={[
         (theme) => ({
           display: 'grid',
           width: '100%',
-          gridTemplateColumns: 'min-content',
-          gridTemplateAreas: {
-            xs: `
-              "image title action"
-              "image details details"
-              "image secondaryAction additionalDetails"
-              "additionalContent additionalContent additionalContent"
-            `,
-          },
+          gridTemplateColumns: 'min-content auto auto',
+          gridTemplateAreas: `
+            "image title action"
+            "image details ${price ? 'price' : 'details'}"
+            "image secondaryActio additionalDetails"
+            "after after after"
+          `,
           justifyContent: 'unset',
           typography: 'body1',
           // textAlign: 'left',
@@ -84,10 +103,19 @@ export function ActionCard(props: ActionCardProps) {
             borderBottom: `1px solid ${theme.palette.divider}`,
           },
         }),
-        !!hidden && {
+        !image && {
+          gridTemplateColumns: 'auto auto',
+          gridTemplateAreas: `
+            "title action"
+            "details ${price ? 'price' : 'details'}"
+            "secondaryAction additionalDetails"
+            "after after"
+          `,
+        },
+        hidden && {
           display: 'none',
         },
-        !!selected &&
+        selected &&
           ((theme) => ({
             border: `2px solid ${theme.palette.secondary.main} !important`,
             borderTopLeftRadius: theme.shape.borderRadius,
@@ -96,7 +124,7 @@ export function ActionCard(props: ActionCardProps) {
             borderBottomRightRadius: theme.shape.borderRadius,
             padding: `${theme.spacings.xxs} ${theme.spacings.xs}`,
           })),
-        !!disabled &&
+        disabled &&
           ((theme) => ({
             background: theme.palette.background.default,
           })),
@@ -104,32 +132,57 @@ export function ActionCard(props: ActionCardProps) {
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
-      {image && <Box sx={{ gridArea: 'image', justifySelf: 'center', padding: 1 }}>{image}</Box>}
+      {image && (
+        <Box
+          className={classes.image}
+          sx={{
+            gridArea: 'image',
+            display: 'flex',
+          }}
+        >
+          {image}
+        </Box>
+      )}
       {title && (
-        <Box sx={{ gridArea: 'title', fontWeight: 'bold', marginLeft: !image ? -2 : undefined }}>
+        <Box className={classes.title} sx={{ gridArea: 'title', display: 'flex' }}>
           {title}
         </Box>
       )}
       {action && (
-        <Box
-          sx={{
-            gridArea: 'action',
-            textAlign: 'right',
-            ...actionButtonStyles,
-          }}
-        >
+        <Box className={classes.action} sx={{ gridArea: 'action', textAlign: 'right' }}>
           {!selected ? action : reset}
         </Box>
       )}
       {details && (
         <Box
-          sx={{ gridArea: 'details', color: 'text.secondary', marginLeft: !image ? -2 : undefined }}
+          className={classes.details}
+          sx={{
+            gridArea: 'details',
+            color: 'text.secondary',
+          }}
         >
           {details}
         </Box>
       )}
+
+      {price && !disabled && (
+        <Box
+          className={classes.price}
+          sx={{ gridArea: 'price', textAlign: 'right', typography: 'h5' }}
+        >
+          {price}
+        </Box>
+      )}
+
       {secondaryAction && (
-        <Box sx={{ gridArea: 'secondaryAction', ...actionButtonStyles }}>{secondaryAction}</Box>
+        <Box className={classes.secondaryAction} sx={{ gridArea: 'secondaryAction' }}>
+          {secondaryAction}
+        </Box>
+      )}
+      {after && (
+        <Box className={classes.after} sx={{ gridArea: 'after' }}>
+          {after}
+        </Box>
       )}
     </ButtonBase>
   )

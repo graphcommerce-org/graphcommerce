@@ -10,6 +10,7 @@ import {
   MuiFabSizes,
   MuiSlider,
   MuiChip,
+  MuiButtonInline,
 } from '@graphcommerce/next-ui'
 import { createTheme, Theme, alpha } from '@mui/material'
 import { Components, PaletteOptions } from '@mui/material/styles'
@@ -229,6 +230,7 @@ const createOverrides = (theme: Theme): Components => ({
     variants: [
       ...MuiButtonResponsive,
       ...MuiButtonPill,
+      ...MuiButtonInline,
       {
         props: { variant: 'contained', color: 'inherit' },
         style: { backgroundColor: theme.palette.background.paper },
@@ -241,6 +243,10 @@ const createOverrides = (theme: Theme): Components => ({
       },
       {
         props: { variant: 'text' },
+        style: { borderRadius: '99em' },
+      },
+      {
+        props: { variant: 'inline' },
         style: { borderRadius: '99em' },
       },
     ],

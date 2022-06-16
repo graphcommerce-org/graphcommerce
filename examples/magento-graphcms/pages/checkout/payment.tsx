@@ -16,6 +16,7 @@ import {
   PaymentMethodPlaceOrder,
   PaymentMethodToggles,
   useCartLock,
+  PaymentMethodActionCardListForm,
 } from '@graphcommerce/magento-cart-payment-method'
 import { braintree, braintree_local_payment } from '@graphcommerce/magento-payment-braintree'
 import { included_methods } from '@graphcommerce/magento-payment-included'
@@ -106,17 +107,7 @@ function PaymentPage() {
                   }}
                 >
                   <AnimatePresence initial={false}>
-                    <PaymentMethodToggles key='toggle' step={1} />
-
-                    <PaymentMethodOptions
-                      key='options'
-                      step={3}
-                      Container={React.memo(({ children }) => (
-                        <FormDiv contained background='secondary'>
-                          {children}
-                        </FormDiv>
-                      ))}
-                    />
+                    <PaymentMethodActionCardListForm step={3} />
 
                     <CartSummary editable key='cart-summary'>
                       <Divider />

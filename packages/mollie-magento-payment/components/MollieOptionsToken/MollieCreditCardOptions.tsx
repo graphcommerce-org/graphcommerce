@@ -61,9 +61,6 @@ export function MollieCreditCardOptions(props: PaymentOptionsProps) {
     <Container>
       <Script src='https://js.mollie.com/v1/mollie.js' onLoad={() => setLoaded(true)} />
       <mollieContext.Provider value={mollie}>
-        <Typography variant='h5' component='span'>
-          <Trans id='Pay with {title}' values={{ title }} />
-        </Typography>
         <form onSubmit={submit} noValidate>
           <FormRow>
             <MollieField

@@ -1,5 +1,61 @@
 # Change Log
 
+## 3.13.1
+
+### Patch Changes
+
+- Updated dependencies [[`64c7b6b45`](https://github.com/graphcommerce-org/graphcommerce/commit/64c7b6b4595a13110453f98680ffd69f27f2c656)]:
+  - @graphcommerce/magento-cart-payment-method@3.3.1
+  - @graphcommerce/mollie-magento-payment@3.3.1
+  - @graphcommerce/magento-payment-braintree@3.0.29
+  - @graphcommerce/magento-payment-included@3.1.1
+
+## 3.13.0
+
+### Minor Changes
+
+- [#1515](https://github.com/graphcommerce-org/graphcommerce/pull/1515) [`371e6cf52`](https://github.com/graphcommerce-org/graphcommerce/commit/371e6cf52916a3b6c44192bd40cc8271bd608832) Thanks [@mikekeehnen](https://github.com/mikekeehnen)! - - Shipping method UI improvements in checkout, like working ripple effect, auto select and other styling changes.
+  - Added new inline button variant
+
+* [#1518](https://github.com/graphcommerce-org/graphcommerce/pull/1518) [`4143483f3`](https://github.com/graphcommerce-org/graphcommerce/commit/4143483f37c038d2bbf218be2685e27a31a35745) Thanks [@mikekeehnen](https://github.com/mikekeehnen)! - New ActionCardListForm implementation for Payment Methods
+
+### Patch Changes
+
+- Updated dependencies [[`c877e438a`](https://github.com/graphcommerce-org/graphcommerce/commit/c877e438a48f30204fa3e36b611906a546e1cf5c), [`371e6cf52`](https://github.com/graphcommerce-org/graphcommerce/commit/371e6cf52916a3b6c44192bd40cc8271bd608832), [`4143483f3`](https://github.com/graphcommerce-org/graphcommerce/commit/4143483f37c038d2bbf218be2685e27a31a35745)]:
+  - @graphcommerce/magento-customer@4.5.4
+  - @graphcommerce/magento-cart-shipping-address@3.2.0
+  - @graphcommerce/magento-cart-shipping-method@3.2.0
+  - @graphcommerce/next-ui@4.10.0
+  - @graphcommerce/magento-cart-payment-method@3.3.0
+  - @graphcommerce/magento-payment-included@3.1.0
+  - @graphcommerce/mollie-magento-payment@3.3.0
+  - @graphcommerce/magento-cart@4.4.4
+  - @graphcommerce/magento-cart-billing-address@3.0.28
+  - @graphcommerce/magento-cart-checkout@3.0.30
+  - @graphcommerce/magento-cart-email@3.0.30
+  - @graphcommerce/magento-cart-items@3.0.31
+  - @graphcommerce/magento-customer-account@3.1.23
+  - @graphcommerce/magento-newsletter@2.0.28
+  - @graphcommerce/magento-product-configurable@4.1.15
+  - @graphcommerce/magento-review@3.2.16
+  - @graphcommerce/magento-wishlist@1.3.2
+  - @graphcommerce/magento-payment-braintree@3.0.28
+  - @graphcommerce/ecommerce-ui@1.0.20
+  - @graphcommerce/framer-scroller@2.1.17
+  - @graphcommerce/graphcms-ui@3.0.24
+  - @graphcommerce/magento-cart-coupon@3.0.30
+  - @graphcommerce/magento-category@4.1.16
+  - @graphcommerce/magento-customer-order@3.0.25
+  - @graphcommerce/magento-product@4.4.8
+  - @graphcommerce/magento-search@4.1.19
+  - @graphcommerce/magento-store@4.2.11
+  - @graphcommerce/magento-product-bundle@4.0.30
+  - @graphcommerce/magento-product-downloadable@4.0.30
+  - @graphcommerce/magento-product-grouped@3.0.30
+  - @graphcommerce/magento-product-simple@4.0.30
+  - @graphcommerce/magento-product-virtual@4.0.30
+  - @graphcommerce/magento-cms@4.0.22
+
 ## 3.12.0
 
 ### Minor Changes

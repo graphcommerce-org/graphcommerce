@@ -1,5 +1,26 @@
 # Change Log
 
+## 3.1.1
+
+### Patch Changes
+
+- Updated dependencies [[`64c7b6b45`](https://github.com/graphcommerce-org/graphcommerce/commit/64c7b6b4595a13110453f98680ffd69f27f2c656)]:
+  - @graphcommerce/magento-cart-payment-method@3.3.1
+
+## 3.1.0
+
+### Minor Changes
+
+- [#1518](https://github.com/graphcommerce-org/graphcommerce/pull/1518) [`4143483f3`](https://github.com/graphcommerce-org/graphcommerce/commit/4143483f37c038d2bbf218be2685e27a31a35745) Thanks [@mikekeehnen](https://github.com/mikekeehnen)! - New ActionCardListForm implementation for Payment Methods
+
+### Patch Changes
+
+- Updated dependencies [[`371e6cf52`](https://github.com/graphcommerce-org/graphcommerce/commit/371e6cf52916a3b6c44192bd40cc8271bd608832), [`4143483f3`](https://github.com/graphcommerce-org/graphcommerce/commit/4143483f37c038d2bbf218be2685e27a31a35745)]:
+  - @graphcommerce/next-ui@4.10.0
+  - @graphcommerce/magento-cart-payment-method@3.3.0
+  - @graphcommerce/magento-cart@4.4.4
+  - @graphcommerce/magento-store@4.2.11
+
 ## 3.0.27
 
 ### Patch Changes
