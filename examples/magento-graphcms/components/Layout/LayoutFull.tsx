@@ -50,9 +50,9 @@ export function LayoutFull(props: LayoutFullProps) {
       <NavigationOverlay
         active={active}
         onClose={() => setActive(false)}
-        sx={(theme) => ({ py: theme.spacings.md })}
-        xPadding='40px'
-        yPadding='0px'
+        sx={(theme) => ({
+          py: theme.spacings.md,
+        })}
         stretchColumns={false}
         items={[
           <SearchLink href='/search' sx={(theme) => ({ width: '100%', mb: theme.spacings.xs })}>

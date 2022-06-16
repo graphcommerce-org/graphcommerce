@@ -20,8 +20,6 @@ import {
 type NavigationOverlayProps = NavigationProviderProps & {
   active: boolean
   sx?: SxProps<Theme>
-  xPadding?: string
-  yPadding?: string
   stretchColumns?: boolean
   onClose: () => void
 }
@@ -46,7 +44,7 @@ function findCurrent(props: findCurrentProps) {
 const MotionDiv = styled(m.div)()
 
 export function NavigationOverlayBase(props: NavigationOverlayProps) {
-  const { active, sx, onClose: closeCallback, items, xPadding, yPadding, stretchColumns } = props
+  const { active, sx, onClose: closeCallback, items, stretchColumns } = props
 
   const fabSize = useFabSize('responsive')
   const svgSize = useIconSvgSize('large')
@@ -135,25 +133,21 @@ export function NavigationOverlayBase(props: NavigationOverlayProps) {
         </LayoutHeaderContent>
       </Box>
 
-      <MotionDiv layout='position'>
-        <Box
-          sx={{
-            display: 'grid',
-            alignItems: !stretchColumns ? 'start' : undefined,
-            // width: 280,
-            // overflow: 'scroll',
-            // border: '1px solid red',
-          }}
-        >
-          <NavigationBase sx={sx} xPadding={xPadding} yPadding={yPadding} />
-        </Box>
+      <MotionDiv
+        layout='position'
+        style={{
+          display: 'grid',
+          alignItems: !stretchColumns ? 'start' : undefined,
+        }}
+      >
+        <NavigationBase sx={sx} />
       </MotionDiv>
     </Overlay>
   )
 }
 
 export function NavigationOverlay(props: NavigationOverlayProps) {
-  const { items, xPadding, yPadding, stretchColumns } = props
+  const { items, stretchColumns } = props
   return (
     <NavigationProvider
       items={items}
@@ -167,12 +161,7 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
       }}
       hideRootOnNavigate
     >
-      <NavigationOverlayBase
-        {...props}
-        xPadding={xPadding}
-        yPadding={yPadding}
-        stretchColumns={stretchColumns}
-      />
+      <NavigationOverlayBase {...props} stretchColumns={stretchColumns} />
     </NavigationProvider>
   )
 }
