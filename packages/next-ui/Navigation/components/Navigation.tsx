@@ -1,4 +1,4 @@
-import { Box, ListItemButton, SxProps, Theme } from '@mui/material'
+import { Box, Divider, ListItemButton, SxProps, Theme } from '@mui/material'
 import PageLink from 'next/link'
 import React, { createContext, useContext, useMemo, useState } from 'react'
 import { isElement } from 'react-is'
@@ -7,7 +7,7 @@ import { IconSvg } from '../../IconSvg'
 import { extendableComponent } from '../../Styles/extendableComponent'
 import { iconChevronRight } from '../../icons'
 
-const parts = ['root', 'button'] as const
+const parts = ['root', 'button', 'column'] as const
 const { classes } = extendableComponent('Navigation', parts)
 
 function nonNullable<T>(value: T): value is NonNullable<T> {
@@ -33,14 +33,17 @@ type NavigationNode = {
   href?: string
   component?: React.ReactNode
   childItems?: NavigationNode[]
+  xPadding?: string
+  yPadding?: string
 }
 
 type NavigationItemProps = NavigationNode & {
   parentPath: NavigationPath
+  row: number
 }
 
 function NavigationItem(props: NavigationItemProps) {
-  const { id, href, component, childItems, parentPath } = props
+  const { id, href, component, childItems, parentPath, row, xPadding, yPadding } = props
   const { Render, path, select, hideRootOnNavigate } = useContext(navigationContext)
 
   const itemPath = [...parentPath, id]
@@ -67,10 +70,13 @@ function NavigationItem(props: NavigationItemProps) {
           className={classes.button}
           component='a'
           sx={{
+            gridRowStart: row,
             gridColumnStart: level + levelOffset,
             justifyContent: 'space-between',
             minWidth: 200,
             display: hideItem ? 'none' : undefined,
+            mx: xPadding,
+            mt: row === 1 ? yPadding : undefined,
           }}
           data-level={level + levelOffset}
           onClick={() => (selected ? select(parentPath) : select(itemPath))}
@@ -93,9 +99,12 @@ function NavigationItem(props: NavigationItemProps) {
                   className={classes.button}
                   component='a'
                   sx={{
+                    gridRowStart: 1,
                     gridColumnStart: level + 1 + levelOffset,
                     justifyContent: 'space-between',
                     minWidth: 200,
+                    mx: xPadding,
+                    mt: yPadding,
                   }}
                   data-level={level + 1 + levelOffset}
                 >
@@ -105,8 +114,15 @@ function NavigationItem(props: NavigationItemProps) {
             </Box>
           )}
 
-          {childItems?.map((item) => (
-            <NavigationItem key={item.id} {...item} parentPath={itemPath} />
+          {childItems?.map((item, idx) => (
+            <NavigationItem
+              key={item.id}
+              {...item}
+              parentPath={itemPath}
+              row={href ? idx + 2 : idx + 1}
+              xPadding={xPadding}
+              yPadding={yPadding}
+            />
           ))}
         </Box>
       </Box>
@@ -120,7 +136,13 @@ function NavigationItem(props: NavigationItemProps) {
           <ListItemButton
             className={classes.button}
             component='a'
-            sx={{ gridColumnStart: level + levelOffset, justifyContent: 'space-between' }}
+            sx={{
+              gridRowStart: row,
+              gridColumnStart: level + levelOffset,
+              justifyContent: 'space-between',
+              mx: xPadding,
+              mt: row === 1 ? yPadding : undefined,
+            }}
             data-level={level + levelOffset}
           >
             <Render {...props} hasChildren={false} />
@@ -128,7 +150,13 @@ function NavigationItem(props: NavigationItemProps) {
         </PageLink>
       ) : (
         <Box
-          sx={{ gridColumnStart: level + levelOffset, justifyContent: 'space-between' }}
+          sx={{
+            gridRowStart: row,
+            gridColumnStart: level + levelOffset,
+            justifyContent: 'space-between',
+            mx: xPadding,
+            mt: row === 1 ? yPadding : undefined,
+          }}
           data-level={level + levelOffset}
         >
           {component}
@@ -175,22 +203,49 @@ export function NavigationProvider(props: NavigationProviderProps) {
 
 type NavigationBaseProps = {
   sx?: SxProps<Theme>
+  xPadding?: string
+  yPadding?: string
 }
 export function NavigationBase(props: NavigationBaseProps) {
-  const { sx = [] } = props
-  const { items } = useContext(navigationContext)
+  const { sx = [], xPadding, yPadding } = props
+  const { items, path } = useContext(navigationContext)
 
   return (
     <Box
       className={classes.root}
       sx={[
-        { display: 'grid', gridAutoFlow: 'column', justifyContent: 'start', columnGap: 4 },
+        {
+          display: 'grid',
+          // width: 300,
+          // overflow: 'hidden',
+          gridAutoFlow: 'column',
+          scrollSnapAlign: 'end',
+          '& > ul > li > a, & > ul > li > button': {
+            typography: 'h2',
+            '& svg': { display: 'none' },
+          },
+          '& .Navigation-column': {
+            borderLeft: (theme) => `1px solid ${theme.palette.divider}`,
+          },
+        },
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
+      {path.length >= 0 && <Box sx={{ gridArea: '1 / 1 / 999 / 2' }} className={classes.column} />}
+      {path.length >= 1 && <Box sx={{ gridArea: '1 / 2 / 999 / 3' }} className={classes.column} />}
+      {path.length >= 2 && <Box sx={{ gridArea: '1 / 3 / 999 / 4' }} className={classes.column} />}
+      {path.length >= 3 && <Box sx={{ gridArea: '1 / 4 / 999 / 5' }} className={classes.column} />}
+
       <Box sx={{ display: 'contents' }} component='ul'>
-        {items.map((item) => (
-          <NavigationItem key={item.id} {...item} parentPath={[]} />
+        {items.map((item, idx) => (
+          <NavigationItem
+            key={item.id}
+            {...item}
+            parentPath={[]}
+            row={idx + 1}
+            xPadding={xPadding}
+            yPadding={yPadding}
+          />
         ))}
       </Box>
     </Box>

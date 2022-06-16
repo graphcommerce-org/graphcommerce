@@ -20,6 +20,9 @@ import {
 type NavigationOverlayProps = NavigationProviderProps & {
   active: boolean
   sx?: SxProps<Theme>
+  xPadding?: string
+  yPadding?: string
+  stretchColumns?: boolean
   onClose: () => void
 }
 
@@ -43,7 +46,7 @@ function findCurrent(props: findCurrentProps) {
 const MotionDiv = styled(m.div)()
 
 export function NavigationOverlayBase(props: NavigationOverlayProps) {
-  const { active, sx, onClose: closeCallback, items } = props
+  const { active, sx, onClose: closeCallback, items, xPadding, yPadding, stretchColumns } = props
 
   const fabSize = useFabSize('responsive')
   const svgSize = useIconSvgSize('large')
@@ -74,6 +77,10 @@ export function NavigationOverlayBase(props: NavigationOverlayProps) {
       sx={{
         zIndex: 'drawer',
         '& > div > div': { minWidth: 'auto !important' },
+        '& .LayoutOverlayBase-overlayPane': {
+          display: 'grid',
+          gridTemplateRows: 'auto 1fr',
+        },
       }}
     >
       <Box
@@ -94,6 +101,7 @@ export function NavigationOverlayBase(props: NavigationOverlayProps) {
           left={
             showBack && (
               <Fab
+                color='inherit'
                 onClick={handleReset}
                 sx={{
                   boxShadow: 'none',
@@ -108,6 +116,7 @@ export function NavigationOverlayBase(props: NavigationOverlayProps) {
           }
           right={
             <Fab
+              color='inherit'
               onClick={handleClose}
               sx={{
                 boxShadow: 'none',
@@ -127,14 +136,24 @@ export function NavigationOverlayBase(props: NavigationOverlayProps) {
       </Box>
 
       <MotionDiv layout='position'>
-        <NavigationBase sx={sx} />
+        <Box
+          sx={{
+            display: 'grid',
+            alignItems: !stretchColumns ? 'start' : undefined,
+            // width: 280,
+            // overflow: 'scroll',
+            // border: '1px solid red',
+          }}
+        >
+          <NavigationBase sx={sx} xPadding={xPadding} yPadding={yPadding} />
+        </Box>
       </MotionDiv>
     </Overlay>
   )
 }
 
 export function NavigationOverlay(props: NavigationOverlayProps) {
-  const { items } = props
+  const { items, xPadding, yPadding, stretchColumns } = props
   return (
     <NavigationProvider
       items={items}
@@ -148,7 +167,12 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
       }}
       hideRootOnNavigate
     >
-      <NavigationOverlayBase {...props} />
+      <NavigationOverlayBase
+        {...props}
+        xPadding={xPadding}
+        yPadding={yPadding}
+        stretchColumns={stretchColumns}
+      />
     </NavigationProvider>
   )
 }
