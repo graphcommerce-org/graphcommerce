@@ -1,5 +1,14 @@
 # Change Log
 
+## 3.3.1
+
+### Patch Changes
+
+- [#1519](https://github.com/graphcommerce-org/graphcommerce/pull/1519) [`64c7b6b45`](https://github.com/graphcommerce-org/graphcommerce/commit/64c7b6b4595a13110453f98680ffd69f27f2c656) Thanks [@paales](https://github.com/paales)! - mollie_meta should not be in general package
+
+- Updated dependencies [[`64c7b6b45`](https://github.com/graphcommerce-org/graphcommerce/commit/64c7b6b4595a13110453f98680ffd69f27f2c656)]:
+  - @graphcommerce/magento-cart-payment-method@3.3.1
+
 ## 3.3.0
 
 ### Minor Changes
