@@ -31,7 +31,7 @@ export function MenuFab(props: MenuFabProps) {
   const router = useRouter()
   const [openEl, setOpenEl] = React.useState<null | HTMLElement>(null)
 
-  const { opacity, scale, shadowOpacity } = useFabAnimation()
+  const { opacity, shadowOpacity } = useFabAnimation()
   const scrollY = useScrollY()
   const scrolled = useMotionValueValue(scrollY, (y) => y > 10)
 
