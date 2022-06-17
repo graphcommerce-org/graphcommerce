@@ -1,0 +1,61 @@
+fragment ConfigurableProductConfigurations on ConfigurableProduct {
+  __typename
+  uid
+  sku
+  configurable_options {
+    attribute_code
+    uid
+    label
+    position
+    use_default
+    values {
+      uid
+      use_default_value
+      store_label
+      swatch_data {
+        __typename
+        value
+        ... on ImageSwatchData {
+          thumbnail
+        }
+      }
+    }
+  }
+  configurable_product_options_selection(configurableOptionValueUids: $selectedOptions) {
+    configurable_options {
+      attribute_code
+      label
+      values {
+        is_available
+        is_use_default
+        label
+        swatch {
+          value
+          ... on ImageSwatchData {
+            thumbnail
+          }
+        }
+        uid
+      }
+    }
+    options_available_for_selection {
+      attribute_code
+      option_value_uids
+    }
+    media_gallery {
+      disabled
+      label
+      url
+    }
+    variant {
+      uid
+      name
+      thumbnail {
+        disabled
+        label
+        position
+        url
+      }
+    }
+  }
+}

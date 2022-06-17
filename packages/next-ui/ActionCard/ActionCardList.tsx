@@ -1,4 +1,4 @@
-import { Alert, Box, FormHelperText } from '@mui/material'
+import { Alert, Box, FormHelperText, SxProps, Theme } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'
 import { isFragment } from 'react-is'
@@ -23,6 +23,7 @@ export type ActionCardListProps<SelectOrMulti = MultiSelect | Select> = {
   required?: boolean
   error?: boolean
   errorMessage?: string
+  sx?: SxProps<Theme>
 } & SelectOrMulti
 
 function isMulti(props: ActionCardListProps): props is ActionCardListProps<MultiSelect> {
@@ -36,7 +37,7 @@ function isValueSelected(value: string, candidate: string | string[]) {
 }
 
 export function ActionCardList(props: ActionCardListProps) {
-  const { children, required, value, error = false, errorMessage } = props
+  const { children, required, value, error = false, errorMessage, sx = [] } = props
 
   const handleChange = isMulti(props)
     ? (event: React.MouseEvent<HTMLElement, MouseEvent>, buttonValue: string) => {
@@ -63,6 +64,7 @@ export function ActionCardList(props: ActionCardListProps) {
   return (
     <Box
       sx={[
+        ...(Array.isArray(sx) ? sx : [sx]),
         error &&
           ((theme) => ({
             '& .ActionCard-root': {

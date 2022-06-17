@@ -3,6 +3,7 @@ import {
   getProductStaticPaths,
   jsonLdProduct,
   jsonLdProductOffer,
+  ProductAddToCartContext,
   productPageCategory,
   ProductPageDescription,
   ProductPageGallery,
@@ -11,10 +12,9 @@ import {
   ProductSidebarDelivery,
 } from '@graphcommerce/magento-product'
 import {
-  ConfigurableContextProvider,
   ConfigurableProductAddToCart,
-  ConfigurableProductPageDocument,
-  ConfigurableProductPageQuery,
+  GetConfigurableProductConfigurationsDocument,
+  GetConfigurableProductConfigurationsQuery,
 } from '@graphcommerce/magento-product-configurable'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
 import { Money, StoreConfigDocument } from '@graphcommerce/magento-store'
@@ -30,12 +30,11 @@ import { Trans } from '@lingui/react'
 import { Link, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import { useRouter } from 'next/router'
-import { Suspense } from 'react'
 import { LayoutFull, LayoutFullProps, RowProduct, RowRenderer, Usps } from '../../../components'
 import { ProductPageDocument, ProductPageQuery } from '../../../graphql/ProductPage.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../../lib/graphql/graphqlSsrClient'
 
-type Props = ProductPageQuery & ConfigurableProductPageQuery
+type Props = ProductPageQuery & GetConfigurableProductConfigurationsQuery
 
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
@@ -46,16 +45,18 @@ function ProductConfigurable(props: Props) {
 
   const product = products?.items?.[0]
   const typeProduct = typeProducts?.items?.[0]
-  const aggregations = typeProducts?.aggregations
 
   const router = useRouter()
 
   if (
     product?.__typename !== 'ConfigurableProduct' ||
     typeProduct?.__typename !== 'ConfigurableProduct' ||
-    !product.sku
+    !product.sku ||
+    !product.url_key
   )
-    return <div />
+    return null
+
+  const aggregations = product?.aggregations
 
   return (
     <>
@@ -72,7 +73,7 @@ function ProductConfigurable(props: Props) {
           ...jsonLdProductReview(product),
         }}
       />
-      <ConfigurableContextProvider {...typeProduct} sku={product.sku}>
+      <ProductAddToCartContext sku={product.sku} urlKey={product.url_key}>
         <ProductPageMeta {...product} />
 
         <ProductPageGallery {...product}>
@@ -92,8 +93,9 @@ function ProductConfigurable(props: Props) {
 
           <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
           <ConfigurableProductAddToCart
-            variables={{ sku: product.sku ?? '', quantity: 1 }}
             name={product.name ?? ''}
+            urlKey={product.url_key}
+            priceRange={product.price_range}
             optionEndLabels={{
               size: (
                 <Link
@@ -133,7 +135,7 @@ function ProductConfigurable(props: Props) {
             }}
           />
         )}
-      </ConfigurableContextProvider>
+      </ProductAddToCartContext>
     </>
   )
 }
@@ -170,8 +172,8 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     },
   })
   const typeProductPage = staticClient.query({
-    query: ConfigurableProductPageDocument,
-    variables: { urlKey },
+    query: GetConfigurableProductConfigurationsDocument,
+    variables: { urlKey, selectedOptions: [] },
   })
 
   if (

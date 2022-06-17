@@ -1,5 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
+import { Theme } from '@emotion/react'
 import { Controller, ControllerProps } from '@graphcommerce/react-hook-form'
+import { SxProps } from '@mui/material'
 import React, { MouseEventHandler } from 'react'
 import { ActionCardProps } from './ActionCard'
 import { ActionCardList, ActionCardListProps } from './ActionCardList'
@@ -19,13 +21,15 @@ export type ActionCardListFormProps<T extends ActionCardItemBase> = Omit<
 > &
   Omit<ControllerProps<any>, 'render'> & {
     items: T[]
-    render: React.VFC<ActionCardItemRenderProps<T>>
+    render: React.FC<ActionCardItemRenderProps<T>>
+  } & {
+    sx?: SxProps<Theme>
   }
 
 export function ActionCardListForm<T extends ActionCardItemBase>(
   props: ActionCardListFormProps<T>,
 ) {
-  const { required, rules, items, render, control, name, errorMessage } = props
+  const { required, rules, items, render, control, name, errorMessage, sx } = props
   const RenderItem = render as React.VFC<ActionCardItemRenderProps<ActionCardItemBase>>
 
   return (
@@ -45,6 +49,7 @@ export function ActionCardListForm<T extends ActionCardItemBase>(
           onChange={(_, incomming) => onChange(incomming)}
           error={formState.isSubmitted && !!fieldState.error}
           errorMessage={errorMessage}
+          sx={sx}
         >
           {items.map((item) => (
             <RenderItem

@@ -11,10 +11,6 @@ import {
   ProductSidebarDelivery,
   ProductWeight,
 } from '@graphcommerce/magento-product'
-import {
-  SimpleProductPageDocument,
-  SimpleProductPageQuery,
-} from '@graphcommerce/magento-product-simple'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
@@ -31,21 +27,19 @@ import { LayoutFull, LayoutFullProps, RowProduct, RowRenderer, Usps } from '../.
 import { ProductPageDocument, ProductPageQuery } from '../../graphql/ProductPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
-type Props = ProductPageQuery & SimpleProductPageQuery
+type Props = ProductPageQuery
 
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
 
 function ProductSimple(props: Props) {
-  const { products, usps, sidebarUsps, typeProducts, pages } = props
+  const { products, usps, sidebarUsps, pages } = props
 
   const product = products?.items?.[0]
-  const typeProduct = typeProducts?.items?.[0]
-  const aggregations = typeProducts?.aggregations
+  const aggregations = product?.aggregations
 
-  if (product?.__typename !== 'SimpleProduct' || typeProduct?.__typename !== 'SimpleProduct')
-    return <div />
+  if (product?.__typename !== 'SimpleProduct') return <div />
 
   return (
     <>
@@ -84,7 +78,7 @@ function ProductSimple(props: Props) {
         >
           <ProductSidebarDelivery />
         </ProductAddToCart>
-        <ProductWeight weight={typeProduct?.weight} />
+        <ProductWeight weight={product?.weight} />
         <Usps usps={sidebarUsps} size='small' />
       </ProductPageGallery>
 
@@ -135,15 +129,8 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
       rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
     },
   })
-  const typeProductPage = staticClient.query({
-    query: SimpleProductPageDocument,
-    variables: { urlKey },
-  })
 
-  if (
-    (await productPage).data.products?.items?.[0]?.__typename !== 'SimpleProduct' ||
-    (await typeProductPage).data.typeProducts?.items?.[0]?.__typename !== 'SimpleProduct'
-  ) {
+  if ((await productPage).data.products?.items?.[0]?.__typename !== 'SimpleProduct') {
     return { notFound: true }
   }
 
@@ -157,7 +144,6 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   return {
     props: {
       ...(await productPage).data,
-      ...(await typeProductPage).data,
       apolloState: await conf.then(() => client.cache.extract()),
       up,
     },

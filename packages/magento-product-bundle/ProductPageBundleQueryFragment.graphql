@@ -1,12 +1,9 @@
 fragment ProductPageBundleQueryFragment on Query {
   typeProducts: products(filter: { url_key: { eq: $urlKey } }) {
-    ...ProductSpecs
     items {
       __typename
       uid
       ... on BundleProduct {
-        ...ProductWeight
-        ...ProductCustomizable
         ...BundleItems
       }
     }

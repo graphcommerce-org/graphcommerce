@@ -1,5 +1,4 @@
 export * from './ConfigurableCartItem/ConfigurableCartItem'
-export * from './ConfigurableContext/ConfigurableContext'
 export * from './ConfigurableProductAddToCart/ConfigurableProductAddToCart'
-export * from './ConfigurableProductPage.gql'
 export * from './ProductListItemConfigurable'
+export * from './graphql'

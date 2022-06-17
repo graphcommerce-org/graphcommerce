@@ -1,3 +1,0 @@
-query SimpleProductPage($urlKey: String!) {
-  ...ProductPageSimpleQueryFragment
-}

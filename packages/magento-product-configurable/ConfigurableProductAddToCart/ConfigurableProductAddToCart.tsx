@@ -1,4 +1,5 @@
-import { ApolloCartErrorAlert, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
+import { ApolloCartErrorAlert } from '@graphcommerce/magento-cart'
+import { useFormProductAddToCart } from '@graphcommerce/magento-product'
 import { Money } from '@graphcommerce/magento-store'
 import {
   AnimatedRow,
@@ -7,27 +8,23 @@ import {
   iconChevronRight,
   MessageSnackbar,
   IconSvg,
-  TextInputNumber,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Divider, Typography, Alert, Box, SxProps, Theme } from '@mui/material'
+import { Divider, Alert, Box, SxProps, Theme, Typography } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'
-import { Selected, useConfigurableContext } from '../ConfigurableContext/ConfigurableContext'
-import cheapestVariant from '../ConfigurableContext/cheapestVariant'
 import {
   ConfigurableOptionsInput,
   ConfigurableOptionsInputProps,
-} from '../ConfigurableOptions/ConfigurableOptions'
-import {
-  ConfigurableProductAddToCartDocument,
-  ConfigurableProductAddToCartMutationVariables,
-} from './ConfigurableProductAddToCart.gql'
+} from '../ConfigurableOptions/ConfigurableOptionsInput'
+import { ConfigurableProductQuantityField } from './ConfigurableProductQuantityField'
+import { ConfigurableProductSubmitButton } from './ConfigurableProductSubmitButton'
 
 type ConfigurableProductAddToCartProps = {
-  variables: Omit<ConfigurableProductAddToCartMutationVariables, 'cartId' | 'selectedOptions'>
   name: string
+  urlKey?: string
+  priceRange?: Money
   optionEndLabels?: Record<string, React.ReactNode>
   children?: React.ReactNode
   additionalButtons?: React.ReactNode
@@ -46,103 +43,41 @@ export function ConfigurableProductAddToCart(props: ConfigurableProductAddToCart
   const {
     name,
     children,
-    variables,
+    urlKey,
+    priceRange,
     optionEndLabels,
     optionsProps,
     additionalButtons,
     sx = [],
-    ...buttonProps
   } = props
 
-  const { getUids, getVariants, selection } = useConfigurableContext(variables.sku)
-
-  const form = useFormGqlMutationCart(ConfigurableProductAddToCartDocument, {
-    defaultValues: { ...variables },
-    onBeforeSubmit: ({ selectedOptions, ...vars }) => ({
-      ...vars,
-      // todo: selectedOptions should contain the correct values directly
-      selectedOptions: getUids(selectedOptions?.[0] as unknown as Selected),
-    }),
-  })
-
-  const { handleSubmit, formState, muiRegister, required, control, error, data } = form
-  const submitHandler = handleSubmit(() => {})
+  const form = useFormProductAddToCart()
+  const { formState, error, data } = form
 
   return (
-    <Box
-      component='form'
-      onSubmit={submitHandler}
-      noValidate
-      className={classes.form}
-      sx={[
-        {
-          width: '100%',
-        },
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
-    >
+    <Box className={classes.form} sx={[{ width: '100%' }, ...(Array.isArray(sx) ? sx : [sx])]}>
       <Divider className={classes.divider} sx={(theme) => ({ margin: `${theme.spacings.sm} 0` })} />
-      <ConfigurableOptionsInput
-        name='selectedOptions'
-        sku={variables.sku}
-        control={control}
-        rules={{ required: required.selectedOptions }}
-        errors={formState.errors.selectedOptions}
-        optionEndLabels={optionEndLabels}
-        {...optionsProps}
-      />
+      <ConfigurableOptionsInput optionEndLabels={optionEndLabels} {...optionsProps} />
 
-      <TextInputNumber
-        variant='outlined'
-        error={formState.isSubmitted && !!formState.errors.quantity}
-        required={required.quantity}
-        inputProps={{ min: 1 }}
-        {...muiRegister('quantity', { required: required.quantity })}
-        helperText={formState.isSubmitted && formState.errors.quantity?.message}
-        // disabled={loading}
-        size='small'
-        className={classes.quantity}
-        sx={(theme) => ({ marginTop: theme.spacings.sm })}
-      />
+      <ConfigurableProductQuantityField className={classes.quantity} />
+
       <Divider className={classes.divider} sx={(theme) => ({ margin: `${theme.spacings.sm} 0` })} />
+
       <Typography
         component='div'
         variant='h3'
         className={classes.finalPrice}
         sx={(theme) => ({ marginTop: theme.spacings.sm })}
       >
-        <Money
-          {...cheapestVariant(getVariants(selection))?.product?.price_range.minimum_price
-            .final_price}
-        />
+        <Money {...priceRange} />
       </Typography>
+
       {children}
-      <Box
-        sx={(theme) => ({
-          display: 'flex',
-          alignItems: 'center',
-          columnGap: theme.spacings.xs,
-        })}
-        className={classes.buttonWrapper}
-      >
-        <Button
-          type='submit'
-          loading={formState.isSubmitting}
-          color='primary'
-          variant='pill'
-          size='large'
-          className={classes.button}
-          {...buttonProps}
-          sx={(theme) => ({
-            marginTop: theme.spacings.sm,
-            marginBottom: theme.spacings.sm,
-            width: '100%',
-          })}
-        >
-          <Trans id='Add to Cart' />
-        </Button>
-        {additionalButtons}
-      </Box>
+
+      <ConfigurableProductSubmitButton
+        classes={{ button: classes.button, buttonWrapper: classes.buttonWrapper }}
+        additionalButtons={additionalButtons}
+      />
 
       <ApolloCartErrorAlert error={error} />
 
