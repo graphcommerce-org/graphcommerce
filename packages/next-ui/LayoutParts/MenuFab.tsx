@@ -60,7 +60,7 @@ export function MenuFab(props: MenuFabProps) {
             transform: 'none !important',
           },
         })}
-        style={{ scale, opacity }}
+        style={{ opacity }}
       >
         <Fab
           color='inherit'
