@@ -15,16 +15,13 @@ import {
   PlaceholderFab,
   IconSvg,
   DesktopNavItem,
-  MenuFabItem,
   DarkLightModeMenuSecondaryItem,
-  iconChevronRight,
   iconChevronDown,
-  Navigation,
   NavigationOverlay,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Box, Divider, Fab, Link, ListItemButton, ListItemText } from '@mui/material'
+import { Box, Divider, Fab, Link } from '@mui/material'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
@@ -84,6 +81,7 @@ export function LayoutFull(props: LayoutFullProps) {
             <DarkLightModeMenuSecondaryItem key='darkmode' />
           </Box>,
         ]}
+        renderItem={() => <Box />}
       />
 
       {/* <MegaMenuOverlay menu={menu} active={active} close={close} /> */}
