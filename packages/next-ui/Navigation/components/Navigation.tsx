@@ -26,7 +26,7 @@ export type NavigationContext = {
 const navigationContext = createContext(undefined as unknown as NavigationContext)
 
 type NavigationId = string | number
-type NavigationNode = {
+export type NavigationNode = {
   id: NavigationId
   name?: string
   href?: string

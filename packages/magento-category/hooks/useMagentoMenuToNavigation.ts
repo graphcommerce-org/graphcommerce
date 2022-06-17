@@ -1,5 +1,6 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { Maybe } from '@graphcommerce/graphql-mesh'
-import { NavItemProps } from '@graphcommerce/next-ui/Navigation/components/Navigation'
+import { NavigationNode } from '@graphcommerce/next-ui/Navigation/components/Navigation'
 import { MenuQueryFragment } from '../queries/MenuQueryFragment.gql'
 
 function nonNullable<T>(value: T): value is NonNullable<T> {
@@ -8,7 +9,7 @@ function nonNullable<T>(value: T): value is NonNullable<T> {
 
 type Item = NonNullable<NonNullable<MenuQueryFragment['menu']>['items']>[0]
 
-function categoryToNav(props: Maybe<Item> | undefined): NavItemProps | undefined {
+function categoryToNav(props: Maybe<Item> | undefined): NavigationNode | undefined {
   if (!props) return undefined
   const { uid, children_count, children, include_in_menu, name, url_path } = props
 
