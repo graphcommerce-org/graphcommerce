@@ -38,7 +38,6 @@ export function LayoutFull(props: LayoutFullProps) {
   const { footer, menu = {}, children, ...uiProps } = props
 
   const [active, setActive] = useState(false)
-  const close = () => setActive(false)
 
   const router = useRouter()
 
@@ -84,7 +83,6 @@ export function LayoutFull(props: LayoutFullProps) {
         renderItem={() => <Box />}
       />
 
-      {/* <MegaMenuOverlay menu={menu} active={active} close={close} /> */}
       <LayoutDefault
         {...uiProps}
         noSticky={router.asPath.split('?')[0] === '/'}
@@ -92,16 +90,15 @@ export function LayoutFull(props: LayoutFullProps) {
           <>
             <Logo />
             <DesktopNavBar>
-              {/* {menuItemsIncludeInMenu?.map((item) => {
-          const highLight = item?.name?.toLowerCase().includes('sale')
-            ? { textTransform: 'uppercase', letterSpacing: 0.3, color: 'primary.main' }
-            : {}
-          return (
-            <DesktopNavItem key={item?.uid} href={`/${item?.url_path}`} sx={highLight}>
-              {item?.name}
-            </DesktopNavItem>
-          )
-        })} */}
+              {menu?.items?.map((item) => {
+                const saleItem = item?.name?.toLowerCase().includes('sale')
+                if (!saleItem) return false
+                return (
+                  <DesktopNavItem key={item?.uid} href={`/${item?.url_path}`} sx={{textTransform: 'uppercase', letterSpacing: 0.3, color: 'primary.main' }}>
+                    {item?.name}
+                  </DesktopNavItem>
+                )
+              })}
 
               <Link
                 variant='h6'

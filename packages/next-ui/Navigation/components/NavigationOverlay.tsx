@@ -162,7 +162,7 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
   return (
     <NavigationProvider
       items={items}
-      renderItem={({ id, hasChildren, children, href, name, component }) => {
+      renderItem={({ hasChildren, name, component }) => {
         if (component) return <>{component}</>
         return (
           <>

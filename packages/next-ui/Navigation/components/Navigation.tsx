@@ -218,8 +218,6 @@ export function NavigationBase(props: NavigationBaseProps) {
       sx={[
         {
           display: 'grid',
-          // width: 300,
-          // overflow: 'hidden',
           gridAutoFlow: 'column',
           scrollSnapAlign: 'end',
           '& > ul > li > a, & > ul > li > button': {
