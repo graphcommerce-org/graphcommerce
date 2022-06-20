@@ -50,6 +50,7 @@ export function LayoutFull(props: LayoutFullProps) {
           py: theme.spacings.md,
         })}
         stretchColumns={false}
+        hideRootOnNavigate
         items={[
           <SearchLink href='/search' sx={(theme) => ({ width: '100%', mb: theme.spacings.xs })}>
             <Trans id='Search...' />
@@ -63,22 +64,21 @@ export function LayoutFull(props: LayoutFullProps) {
           },
           { id: 'blog', name: 'Blog', href: '/blog' },
           <Divider sx={(theme) => ({ my: theme.spacings.xs })} />,
-          <Box>
-            <CustomerMenuFabItem key='account' guestHref='/account/signin' authHref='/account'>
-              <Trans id='Account' />
-            </CustomerMenuFabItem>
-            <MenuFabSecondaryItem
-              key='service'
-              icon={<IconSvg src={iconCustomerService} size='medium' />}
-              href='/service'
-            >
-              <Trans id='Customer Service' />
-            </MenuFabSecondaryItem>
-            <WishlistMenuFabItem key='wishlist' icon={<IconSvg src={iconHeart} size='medium' />}>
-              <Trans id='Wishlist' />
-            </WishlistMenuFabItem>
-            <DarkLightModeMenuSecondaryItem key='darkmode' />
-          </Box>,
+
+          <CustomerMenuFabItem key='account' guestHref='/account/signin' authHref='/account'>
+            <Trans id='Account' />
+          </CustomerMenuFabItem>,
+          <MenuFabSecondaryItem
+            key='service'
+            icon={<IconSvg src={iconCustomerService} size='medium' />}
+            href='/service'
+          >
+            <Trans id='Customer Service' />
+          </MenuFabSecondaryItem>,
+          <WishlistMenuFabItem key='wishlist' icon={<IconSvg src={iconHeart} size='medium' />}>
+            <Trans id='Wishlist' />
+          </WishlistMenuFabItem>,
+          <DarkLightModeMenuSecondaryItem key='darkmode' />,
         ]}
         renderItem={() => <Box />}
       />
@@ -94,7 +94,11 @@ export function LayoutFull(props: LayoutFullProps) {
                 const saleItem = item?.name?.toLowerCase().includes('sale')
                 if (!saleItem) return false
                 return (
-                  <DesktopNavItem key={item?.uid} href={`/${item?.url_path}`} sx={{textTransform: 'uppercase', letterSpacing: 0.3, color: 'primary.main' }}>
+                  <DesktopNavItem
+                    key={item?.uid}
+                    href={`/${item?.url_path}`}
+                    sx={{ textTransform: 'uppercase', letterSpacing: 0.3, color: 'primary.main' }}
+                  >
                     {item?.name}
                   </DesktopNavItem>
                 )

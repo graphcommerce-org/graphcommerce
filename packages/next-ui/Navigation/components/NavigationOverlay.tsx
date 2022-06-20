@@ -1,7 +1,9 @@
 import styled from '@emotion/styled'
 import { Trans } from '@lingui/react'
 import { Box, Fab, SxProps, Theme, useEventCallback } from '@mui/material'
-import { m } from 'framer-motion'
+import { m, MotionConfig, MotionConfigContext } from 'framer-motion'
+import { Tween } from 'framer-motion/types/types'
+import { useContext } from 'react'
 import { isElement } from 'react-is'
 import { IconSvg, useIconSvgSize } from '../../IconSvg'
 import { LayoutTitle } from '../../Layout'
@@ -46,15 +48,19 @@ const MotionDiv = styled(m.div)()
 export function NavigationOverlayBase(props: NavigationOverlayProps) {
   const { active, sx, onClose: closeCallback, items, stretchColumns } = props
 
+  const duration = (useContext(MotionConfigContext).transition as Tween | undefined)?.duration ?? 0
+
   const fabSize = useFabSize('responsive')
   const svgSize = useIconSvgSize('large')
 
   const { path, select } = useNavigation()
 
-  const handleReset = useEventCallback(() => select([]))
+  const handleReset = useEventCallback(() => {
+    select([])
+  })
 
   const handleClose = useEventCallback(() => {
-    handleReset()
+    setTimeout(() => select([]), duration * 1000)
     closeCallback()
   })
 
@@ -74,33 +80,55 @@ export function NavigationOverlayBase(props: NavigationOverlayProps) {
       justifyMd='start'
       sx={{
         zIndex: 'drawer',
-        '& > div > div': { minWidth: 'auto !important' },
+        '& > div > div': { minWidth: 'auto !important', width: 'max-content' },
         '& .LayoutOverlayBase-overlayPane': {
+          overflow: 'hidden',
           display: 'grid',
           gridTemplateRows: 'auto 1fr',
         },
       }}
     >
-      <Box
-        sx={(theme) => ({
-          top: 0,
-          position: 'sticky',
-          height: {
-            xs: theme.appShell.headerHeightSm,
-            md: theme.appShell.appBarHeightMd,
-          },
-          zIndex: 1,
-        })}
+      <MotionDiv
+        layout
+        style={{
+          display: 'grid',
+        }}
       >
-        <LayoutHeaderContent
-          floatingMd={false}
-          floatingSm={false}
-          switchPoint={0}
-          left={
-            showBack && (
+        <Box
+          sx={(theme) => ({
+            top: 0,
+            position: 'sticky',
+            height: {
+              xs: theme.appShell.headerHeightSm,
+              md: theme.appShell.appBarHeightMd,
+            },
+            zIndex: 1,
+          })}
+        >
+          <LayoutHeaderContent
+            floatingMd={false}
+            floatingSm={false}
+            switchPoint={0}
+            left={
+              showBack && (
+                <Fab
+                  color='inherit'
+                  onClick={handleReset}
+                  sx={{
+                    boxShadow: 'none',
+                    marginLeft: `calc((${fabSize} - ${svgSize}) * -0.5)`,
+                    marginRight: `calc((${fabSize} - ${svgSize}) * -0.5)`,
+                  }}
+                  size='responsive'
+                >
+                  <IconSvg src={iconChevronLeft} size='large' />
+                </Fab>
+              )
+            }
+            right={
               <Fab
                 color='inherit'
-                onClick={handleReset}
+                onClick={handleClose}
                 sx={{
                   boxShadow: 'none',
                   marginLeft: `calc((${fabSize} - ${svgSize}) * -0.5)`,
@@ -108,30 +136,16 @@ export function NavigationOverlayBase(props: NavigationOverlayProps) {
                 }}
                 size='responsive'
               >
-                <IconSvg src={iconChevronLeft} size='large' />
+                <IconSvg src={iconClose} size='large' />
               </Fab>
-            )
-          }
-          right={
-            <Fab
-              color='inherit'
-              onClick={handleClose}
-              sx={{
-                boxShadow: 'none',
-                marginLeft: `calc((${fabSize} - ${svgSize}) * -0.5)`,
-                marginRight: `calc((${fabSize} - ${svgSize}) * -0.5)`,
-              }}
-              size='responsive'
-            >
-              <IconSvg src={iconClose} size='large' />
-            </Fab>
-          }
-        >
-          <LayoutTitle size='small' component='span'>
-            {current.name || <Trans id='Menu' />}
-          </LayoutTitle>
-        </LayoutHeaderContent>
-      </Box>
+            }
+          >
+            <LayoutTitle size='small' component='span'>
+              {current.name || <Trans id='Menu' />}
+            </LayoutTitle>
+          </LayoutHeaderContent>
+        </Box>
+      </MotionDiv>
 
       <MotionDiv
         layout='position'
@@ -160,19 +174,25 @@ export function NavigationOverlayBase(props: NavigationOverlayProps) {
 export function NavigationOverlay(props: NavigationOverlayProps) {
   const { items, stretchColumns } = props
   return (
-    <NavigationProvider
-      items={items}
-      renderItem={({ hasChildren, name, component }) => {
-        if (component) return <>{component}</>
-        return (
-          <>
-            {hasChildren && 'All'} {name}
-          </>
-        )
+    <MotionConfig
+      transition={{
+        duration: 0.1,
       }}
-      hideRootOnNavigate
     >
-      <NavigationOverlayBase {...props} stretchColumns={stretchColumns} />
-    </NavigationProvider>
+      <NavigationProvider
+        items={items}
+        hideRootOnNavigate
+        renderItem={({ hasChildren, name, component }) => {
+          if (component) return <>{component}</>
+          return (
+            <>
+              {hasChildren && 'All'} {name}
+            </>
+          )
+        }}
+      >
+        <NavigationOverlayBase {...props} stretchColumns={stretchColumns} />
+      </NavigationProvider>
+    </MotionConfig>
   )
 }

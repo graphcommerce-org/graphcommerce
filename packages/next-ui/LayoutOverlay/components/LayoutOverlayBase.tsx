@@ -367,11 +367,9 @@ export function LayoutOverlayBase(incommingProps: LayoutOverlayBaseProps) {
           })}
         >
           <MotionDiv
-            transition={{ duration: 0.1 }}
             layout
             className={classes.overlayPane}
             sx={(theme) => ({
-              // overflow: 'hidden',
               pointerEvents: 'all',
               backgroundColor: theme.palette.background.paper,
               boxShadow: theme.shadows[24],

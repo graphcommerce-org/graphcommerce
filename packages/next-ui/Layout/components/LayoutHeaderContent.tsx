@@ -142,9 +142,7 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
               justifyContent: 'start',
             })}
           >
-            <MotionDiv layout='position' transition={{ duration: 0.1 }}>
-              {left}
-            </MotionDiv>
+            <MotionDiv layout='position'>{left}</MotionDiv>
           </Box>
         )}
         <Box
@@ -177,9 +175,7 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
             },
           })}
         >
-          <MotionDiv layout='position' transition={{ duration: 0.1 }}>
-            {children}
-          </MotionDiv>
+          <MotionDiv layout='position'>{children}</MotionDiv>
         </Box>
         <Box
           className={classes.right}
@@ -195,9 +191,7 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
             justifyContent: 'end',
           })}
         >
-          <MotionDiv layout='position' transition={{ duration: 0.1 }}>
-            {right}
-          </MotionDiv>
+          <MotionDiv layout='position'>{right}</MotionDiv>
         </Box>
         {divider && (
           <Box
