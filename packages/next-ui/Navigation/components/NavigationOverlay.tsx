@@ -176,7 +176,7 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
   return (
     <MotionConfig
       transition={{
-        duration: 0.1,
+        duration: 0.2,
       }}
     >
       <NavigationProvider
