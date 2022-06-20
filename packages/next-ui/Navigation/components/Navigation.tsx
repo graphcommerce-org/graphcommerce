@@ -234,6 +234,9 @@ export function NavigationBase(props: NavigationBaseProps) {
           '& .Navigation-first': {
             // mt: (theme) => theme.spacings.md,
           },
+          '& .Navigation-column:first-of-type': {
+            borderLeft: 'none',
+          },
         },
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
