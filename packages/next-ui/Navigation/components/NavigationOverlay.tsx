@@ -23,7 +23,7 @@ type NavigationOverlayProps = NavigationProviderProps & {
   active: boolean
   sx?: SxProps<Theme>
   stretchColumns?: boolean
-  mobileItemWidth: number
+  itemWidth: number
   onClose: () => void
 }
 
@@ -47,7 +47,7 @@ function findCurrent(props: findCurrentProps) {
 const MotionDiv = styled(m.div)()
 
 export function NavigationOverlayBase(props: NavigationOverlayProps) {
-  const { active, sx, onClose: closeCallback, items, stretchColumns, mobileItemWidth } = props
+  const { active, sx, onClose: closeCallback, items, stretchColumns, itemWidth } = props
 
   const duration = (useContext(MotionConfigContext).transition as Tween | undefined)?.duration ?? 0
 
@@ -178,17 +178,14 @@ export function NavigationOverlayBase(props: NavigationOverlayProps) {
           sx={(theme) => ({
             display: 'grid',
             alignItems: !stretchColumns ? 'start' : undefined,
-            width: 'max-content',
+
             [theme.breakpoints.down('md')]: {
               overflow: 'hidden',
               scrollSnapType: 'x mandatory',
-              width: `calc(${theme.spacings.md} + ${theme.spacings.md} + ${mobileItemWidth}px)`,
+              width: `calc(${theme.spacings.md} + ${theme.spacings.md} + ${itemWidth}px)`,
             },
             '& .Navigation-item': {
-              width: 'auto',
-              [theme.breakpoints.down('md')]: {
-                width: mobileItemWidth,
-              },
+              width: itemWidth,
             },
           })}
         >

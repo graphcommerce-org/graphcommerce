@@ -49,7 +49,7 @@ export function LayoutFull(props: LayoutFullProps) {
         sx={(theme) => ({
           py: theme.spacings.md,
         })}
-        mobileItemWidth={210}
+        itemWidth={230}
         stretchColumns={false}
         hideRootOnNavigate
         items={[

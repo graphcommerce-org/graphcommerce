@@ -75,7 +75,7 @@ function NavigationItem(props: NavigationItemProps) {
           sx={{
             gridRowStart: row,
             gridColumnStart: level + levelOffset,
-            gap: (theme) => theme.spacings.xs,
+            gap: (theme) => theme.spacings.xxs,
             display: hideItem ? 'none' : 'flex',
           }}
           data-level={level + levelOffset}
@@ -170,7 +170,7 @@ function NavigationItem(props: NavigationItemProps) {
             sx={{
               gridRowStart: row,
               gridColumnStart: level + levelOffset,
-              gap: (theme) => theme.spacings.xs,
+              gap: (theme) => theme.spacings.xxs,
             }}
             data-level={level + levelOffset}
           >
