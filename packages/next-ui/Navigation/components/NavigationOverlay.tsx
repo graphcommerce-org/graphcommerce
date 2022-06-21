@@ -59,6 +59,10 @@ export function NavigationOverlayBase(props: NavigationOverlayProps) {
     select([])
   })
 
+  const handleResetMobile = useEventCallback(() => {
+    select(path.slice(0, -1))
+  })
+
   const handleClose = useEventCallback(() => {
     setTimeout(() => select([]), duration * 1000)
     closeCallback()
@@ -111,18 +115,34 @@ export function NavigationOverlayBase(props: NavigationOverlayProps) {
             switchPoint={0}
             left={
               showBack && (
-                <Fab
-                  color='inherit'
-                  onClick={handleReset}
-                  sx={{
-                    boxShadow: 'none',
-                    marginLeft: `calc((${fabSize} - ${svgSize}) * -0.5)`,
-                    marginRight: `calc((${fabSize} - ${svgSize}) * -0.5)`,
-                  }}
-                  size='responsive'
-                >
-                  <IconSvg src={iconChevronLeft} size='large' />
-                </Fab>
+                <>
+                  <Fab
+                    color='inherit'
+                    onClick={handleReset}
+                    sx={{
+                      display: { sm: 'none', md: 'block' },
+                      boxShadow: 'none',
+                      marginLeft: `calc((${fabSize} - ${svgSize}) * -0.5)`,
+                      marginRight: `calc((${fabSize} - ${svgSize}) * -0.5)`,
+                    }}
+                    size='responsive'
+                  >
+                    <IconSvg src={iconChevronLeft} size='large' />
+                  </Fab>
+                  <Fab
+                    color='inherit'
+                    onClick={handleResetMobile}
+                    sx={{
+                      display: { sm: 'block', md: 'none' },
+                      boxShadow: 'none',
+                      marginLeft: `calc((${fabSize} - ${svgSize}) * -0.5)`,
+                      marginRight: `calc((${fabSize} - ${svgSize}) * -0.5)`,
+                    }}
+                    size='responsive'
+                  >
+                    <IconSvg src={iconChevronLeft} size='large' />
+                  </Fab>
+                </>
               )
             }
             right={
