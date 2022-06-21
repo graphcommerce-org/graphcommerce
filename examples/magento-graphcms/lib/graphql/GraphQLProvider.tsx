@@ -22,7 +22,7 @@ import { createStoreLink } from '@graphcommerce/magento-store'
 import { wishlistTypePolicies } from '@graphcommerce/magento-wishlist'
 import { ApolloStateProps } from '@graphcommerce/next-ui'
 import { AppProps } from 'next/app'
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 
 /**
  * This is a list of type policies which are used to influence how cache is handled.
@@ -74,11 +74,16 @@ export function GraphQLProvider({ children, router, pageProps }: GraphQLProvider
 
   const client = useMemo(() => {
     const cache = createCache()
-    return new ApolloClient({ link: httpLink(cache, router.locale), cache, name: 'web' })
+    return new ApolloClient({
+      link: httpLink(cache, router.locale),
+      cache,
+      name: 'web',
+      ssrMode: typeof window === 'undefined',
+    })
   }, [router.locale])
 
   // Update the cache with the latest incomming data, but only when it is changed.
-  useMemo(
+  useEffect(
     () => createCacheReviver(client, createCache, policies, migrations, state),
     [client, state],
   )
