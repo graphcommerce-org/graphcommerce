@@ -120,7 +120,7 @@ export function NavigationOverlayBase(props: NavigationOverlayProps) {
                     color='inherit'
                     onClick={handleReset}
                     sx={{
-                      display: { sm: 'none', md: 'block' },
+                      display: { xs: 'none', md: 'flex' },
                       boxShadow: 'none',
                       marginLeft: `calc((${fabSize} - ${svgSize}) * -0.5)`,
                       marginRight: `calc((${fabSize} - ${svgSize}) * -0.5)`,
@@ -133,7 +133,7 @@ export function NavigationOverlayBase(props: NavigationOverlayProps) {
                     color='inherit'
                     onClick={handleResetMobile}
                     sx={{
-                      display: { sm: 'block', md: 'none' },
+                      display: { xs: 'flex', md: 'none' },
                       boxShadow: 'none',
                       marginLeft: `calc((${fabSize} - ${svgSize}) * -0.5)`,
                       marginRight: `calc((${fabSize} - ${svgSize}) * -0.5)`,
