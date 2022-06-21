@@ -65,6 +65,7 @@ function NavigationItem(props: NavigationItemProps) {
     return (
       <Box sx={{ display: 'contents' }} component='li'>
         <ListItemButton
+          href={href}
           className={[
             classes.item,
             row === 1 && classes.first,
@@ -78,7 +79,13 @@ function NavigationItem(props: NavigationItemProps) {
             display: hideItem ? 'none' : undefined,
           }}
           data-level={level + levelOffset}
-          onClick={() => (selected ? select(parentPath) : select(itemPath))}
+          onClick={(e) => {
+            e.preventDefault()
+            if (selected) {
+              return select(parentPath)
+            }
+            return select(itemPath)
+          }}
         >
           <Render {...props} hasChildren={false} />
           <IconSvg src={iconChevronRight} />
