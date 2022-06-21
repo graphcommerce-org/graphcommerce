@@ -75,8 +75,8 @@ function NavigationItem(props: NavigationItemProps) {
           sx={{
             gridRowStart: row,
             gridColumnStart: level + levelOffset,
-            justifyContent: 'space-between',
-            display: hideItem ? 'none' : undefined,
+            gap: (theme) => theme.spacings.xs,
+            display: hideItem ? 'none' : 'flex',
           }}
           data-level={level + levelOffset}
           onClick={(e) => {
@@ -87,8 +87,18 @@ function NavigationItem(props: NavigationItemProps) {
             return select(itemPath)
           }}
         >
-          <Render {...props} hasChildren={false} />
-          <IconSvg src={iconChevronRight} />
+          <Box
+            component='span'
+            sx={{
+              whiteSpace: 'nowrap',
+              overflowX: 'hidden',
+              textOverflow: 'ellipsis',
+              flexGrow: 1,
+            }}
+          >
+            <Render {...props} hasChildren={false} />
+          </Box>
+          <IconSvg src={iconChevronRight} sx={{ flexShrink: 0 }} />
         </ListItemButton>
 
         <Box
@@ -110,12 +120,23 @@ function NavigationItem(props: NavigationItemProps) {
                   component='a'
                   sx={{
                     gridRowStart: 1,
+                    gap: (theme) => theme.spacings.xs,
                     gridColumnStart: level + 1 + levelOffset,
-                    justifyContent: 'space-between',
                   }}
                   data-level={level + 1 + levelOffset}
                 >
-                  <Render {...props} hasChildren />
+                  <Box
+                    component='span'
+                    sx={{
+                      whiteSpace: 'nowrap',
+                      overflowX: 'hidden',
+                      textOverflow: 'ellipsis',
+                      flexGrow: 1,
+                    }}
+                  >
+                    <Render {...props} hasChildren />
+                  </Box>
+                  <IconSvg src={iconChevronRight} sx={{ flexShrink: 0, visibility: 'hidden' }} />
                 </ListItemButton>
               </PageLink>
             </Box>
@@ -149,11 +170,22 @@ function NavigationItem(props: NavigationItemProps) {
             sx={{
               gridRowStart: row,
               gridColumnStart: level + levelOffset,
-              justifyContent: 'space-between',
+              gap: (theme) => theme.spacings.xs,
             }}
             data-level={level + levelOffset}
           >
-            <Render {...props} hasChildren={false} />
+            <Box
+              component='span'
+              sx={{
+                whiteSpace: 'nowrap',
+                overflowX: 'hidden',
+                textOverflow: 'ellipsis',
+                flexGrow: 1,
+              }}
+            >
+              <Render {...props} hasChildren={false} />
+            </Box>
+            <IconSvg src={iconChevronRight} sx={{ flexShrink: 0, visibility: 'hidden' }} />
           </ListItemButton>
         </PageLink>
       ) : (
@@ -161,7 +193,6 @@ function NavigationItem(props: NavigationItemProps) {
           sx={{
             gridRowStart: row,
             gridColumnStart: level + levelOffset,
-            justifyContent: 'space-between',
           }}
           data-level={level + levelOffset}
           className={[
@@ -228,15 +259,17 @@ export function NavigationBase(props: NavigationBaseProps) {
           gridAutoFlow: 'column',
           scrollSnapAlign: 'end',
           '& > ul > li > a, & > ul > li > button': {
-            typography: 'h2',
-            '& svg': { display: 'none' },
+            '& span': {
+              typography: 'h2',
+            },
+            // '& svg': { display: 'none' },
           },
           '& .Navigation-column': {
             borderLeft: (theme) => `1px solid ${theme.palette.divider}`,
           },
           '& .Navigation-item': {
             mx: (theme) => theme.spacings.md,
-            minWidth: 220,
+            whiteSpace: 'nowrap',
           },
           '& .Navigation-first': {
             // mt: (theme) => theme.spacings.md,

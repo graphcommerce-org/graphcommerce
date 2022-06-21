@@ -49,6 +49,7 @@ export function LayoutFull(props: LayoutFullProps) {
         sx={(theme) => ({
           py: theme.spacings.md,
         })}
+        mobileItemWidth={210}
         stretchColumns={false}
         hideRootOnNavigate
         items={[
@@ -64,7 +65,6 @@ export function LayoutFull(props: LayoutFullProps) {
           },
           { id: 'blog', name: 'Blog', href: '/blog' },
           <Divider sx={(theme) => ({ my: theme.spacings.xs })} />,
-
           <CustomerMenuFabItem key='account' guestHref='/account/signin' authHref='/account'>
             <Trans id='Account' />
           </CustomerMenuFabItem>,
