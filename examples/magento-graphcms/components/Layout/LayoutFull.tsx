@@ -59,8 +59,8 @@ export function LayoutFull(props: LayoutFullProps) {
           { id: 'home', name: 'Home', href: '/' },
           // ...useMagentoMenuToNavigation(menu),
           {
-            id: 'products',
-            name: i18n._(/* i18n */ `Products`),
+            id: 'shop',
+            name: i18n._(/* i18n */ `Shop`),
             childItems: useMagentoMenuToNavigation(menu),
           },
           { id: 'blog', name: 'Blog', href: '/blog' },
@@ -112,7 +112,7 @@ export function LayoutFull(props: LayoutFullProps) {
                 sx={{ whiteSpace: 'nowrap', paddingTop: '6px' }}
               >
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                  <Trans id='Products' />
+                  <Trans id='Shop' />
                   <IconSvg src={iconChevronDown} />
                 </Box>
               </Link>
