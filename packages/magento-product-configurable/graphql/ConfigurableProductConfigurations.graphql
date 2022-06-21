@@ -14,9 +14,15 @@ fragment ConfigurableProductConfigurations on ConfigurableProduct {
       store_label
       swatch_data {
         __typename
-        value
+        ... on TextSwatchData {
+          value
+        }
         ... on ImageSwatchData {
           thumbnail
+          value
+        }
+        ... on ColorSwatchData {
+          value
         }
       }
     }

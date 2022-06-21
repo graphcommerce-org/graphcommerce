@@ -11,10 +11,6 @@ import {
   ProductShortDescription,
   ProductSidebarDelivery,
 } from '@graphcommerce/magento-product'
-import {
-  VirtualProductPageDocument,
-  VirtualProductPageQuery,
-} from '@graphcommerce/magento-product-virtual'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
@@ -24,6 +20,7 @@ import {
   LayoutTitle,
   LayoutHeader,
   SchemaDts,
+  findByTypename,
 } from '@graphcommerce/next-ui'
 import { Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
@@ -32,21 +29,19 @@ import { LayoutFull, LayoutFullProps, RowProduct, RowRenderer, Usps } from '../.
 import { ProductPageDocument, ProductPageQuery } from '../../../graphql/ProductPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
-type Props = ProductPageQuery & VirtualProductPageQuery
+type Props = ProductPageQuery
 
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
 
 function ProductVirtual(props: Props) {
-  const { products, usps, sidebarUsps, typeProducts, pages } = props
+  const { products, usps, sidebarUsps, pages } = props
 
-  const product = products?.items?.[0]
-  const typeProduct = typeProducts?.items?.[0]
-  const aggregations = typeProducts?.aggregations
+  const product = findByTypename(products?.items, 'VirtualProduct')
+  const aggregations = products?.aggregations
 
-  if (product?.__typename !== 'VirtualProduct' || typeProduct?.__typename !== 'VirtualProduct')
-    return <div />
+  if (!product) return null
 
   return (
     <>
@@ -131,19 +126,11 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
       rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
     },
   })
-  const typeProductPage = staticClient.query({
-    query: VirtualProductPageDocument,
-    variables: { urlKey },
-  })
 
-  if (
-    (await productPage).data.products?.items?.[0]?.__typename !== 'VirtualProduct' ||
-    (await typeProductPage).data.typeProducts?.items?.[0]?.__typename !== 'VirtualProduct'
-  ) {
-    return { notFound: true }
-  }
+  const product = findByTypename((await productPage).data.products?.items, 'VirtualProduct')
+  if (!product) return { notFound: true }
 
-  const category = productPageCategory((await productPage).data?.products?.items?.[0])
+  const category = productPageCategory(product)
   const up =
     category?.url_path && category?.name
       ? { href: `/${category.url_path}`, title: category.name }

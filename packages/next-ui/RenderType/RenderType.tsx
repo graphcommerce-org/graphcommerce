@@ -39,24 +39,9 @@ export function RenderType<
   return <TypeItem {...typeItemProps} __typename={__typename} />
 }
 
-export function isTypename<T extends TypeObject, Typename extends string>(
-  typename: Typename,
-  type: T,
-): type is FilterTypeByTypename<T, Typename> {
-  return type.__typename === typename
-}
-
-export function isNotNullOrUndefined<T>(value: T): value is NonNullable<T> {
-  return value !== null && value !== undefined
-}
-
-export function findByTypename<T extends TypeObject, Typename extends string>(
-  typename: Typename,
+export function findByTypename<T extends TypeObject, Typename extends T['__typename']>(
   type: (T | undefined | null)[] | undefined | null,
+  typename: Typename,
 ) {
-  if (!type) return undefined
-
-  return type.filter(isNotNullOrUndefined).find((item) => isTypename(typename, item)) as
-    | FilterTypeByTypename<T, Typename>
-    | undefined
+  return type?.find((item) => item?.__typename === typename) as FilterTypeByTypename<T, Typename>
 }

@@ -1,10 +1,12 @@
 import { useQuery } from '@graphcommerce/graphql'
 import { useFormProductAddToCart } from '@graphcommerce/magento-product/components'
 import { findByTypename } from '@graphcommerce/next-ui'
-import { GetConfigurableProductConfigurationsDocument } from '../graphql'
+import { ConfigurableProductConfigurationsFragment } from '../graphql/ConfigurableProductConfigurations.gql'
+import { GetConfigurableProductConfigurationsDocument } from '../graphql/GetConfigurableProductConfigurations.gql'
 
 export function useConfigurableTypeProduct() {
-  const { watch, urlKey } = useFormProductAddToCart()
+  const { watch, urlKey, typeProduct } =
+    useFormProductAddToCart<ConfigurableProductConfigurationsFragment>()
 
   const watchSelectedOptions = watch('selectedOptions')
 
@@ -14,11 +16,14 @@ export function useConfigurableTypeProduct() {
 
   const cpc = useQuery(GetConfigurableProductConfigurationsDocument, {
     variables: { urlKey, selectedOptions },
+    skip: !urlKey || !selectedOptions.length,
+    ssr: false,
   })
-  const typeProduct = findByTypename(
-    'ConfigurableProduct',
-    cpc.data?.typeProducts?.items ?? cpc.previousData?.typeProducts?.items,
-  )
 
-  return typeProduct
+  return (
+    findByTypename(
+      cpc.data?.typeProducts?.items ?? cpc.previousData?.typeProducts?.items,
+      'ConfigurableProduct',
+    ) ?? typeProduct
+  )
 }

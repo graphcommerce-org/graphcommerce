@@ -5,23 +5,28 @@ import {
   useFormProductAddToCartBase,
 } from './useFormProductAddToCartBase'
 
-type ProductAddToCartContextType = UseFormProductAddToCartReturn & {
-  urlKey: string
-  sku: string
-}
+type ProductAddToCartContextType<TypeProduct extends Record<string, unknown>> =
+  UseFormProductAddToCartReturn & {
+    urlKey: string
+    sku: string
+    typeProduct?: TypeProduct
+  }
 
 export const productAddToCartContext = createContext(
   undefined as unknown as ProductAddToCartContextType,
 )
 
-type ProductAddToCartContextProps = {
+type ProductAddToCartContextProps<TypeProduct extends Record<string, unknown>> = {
   children: React.ReactNode
   urlKey: string
   sku: string
+  typeProduct?: TypeProduct
 } & UseFormProductAddToCartProps
 
-export function ProductAddToCartContext(props: ProductAddToCartContextProps) {
-  const { children, sku, urlKey, defaultValues, ...formProps } = props
+export function ProductAddToCartContext<TypeProduct extends Record<string, unknown>>(
+  props: ProductAddToCartContextProps<TypeProduct>,
+) {
+  const { children, sku, urlKey, defaultValues, typeProduct, ...formProps } = props
   const form = useFormProductAddToCartBase({
     defaultValues: { ...defaultValues, sku },
     ...formProps,
@@ -29,7 +34,10 @@ export function ProductAddToCartContext(props: ProductAddToCartContextProps) {
 
   const submit = form.handleSubmit(() => {})
 
-  const value = useMemo(() => ({ ...form, sku, urlKey }), [form, sku, urlKey])
+  const value = useMemo(
+    () => ({ ...form, sku, urlKey, typeProduct }),
+    [form, sku, urlKey, typeProduct],
+  )
 
   return (
     <productAddToCartContext.Provider value={value}>
@@ -40,6 +48,6 @@ export function ProductAddToCartContext(props: ProductAddToCartContextProps) {
   )
 }
 
-export function useFormProductAddToCart() {
-  return useContext(productAddToCartContext)
+export function useFormProductAddToCart<TypeProduct extends Record<string, unknown>>() {
+  return useContext(productAddToCartContext) as ProductAddToCartContextType<TypeProduct>
 }

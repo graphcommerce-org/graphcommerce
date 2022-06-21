@@ -20,6 +20,7 @@ import {
   SchemaDts,
   LayoutTitle,
   LayoutHeader,
+  findByTypename,
 } from '@graphcommerce/next-ui'
 import { Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
@@ -36,10 +37,10 @@ type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
 function ProductSimple(props: Props) {
   const { products, usps, sidebarUsps, pages } = props
 
-  const product = products?.items?.[0]
-  const aggregations = product?.aggregations
+  const product = findByTypename(products?.items, 'SimpleProduct')
+  if (!product) return null
 
-  if (product?.__typename !== 'SimpleProduct') return <div />
+  const aggregations = products?.aggregations
 
   return (
     <>
@@ -66,7 +67,7 @@ function ProductSimple(props: Props) {
         <Typography
           variant='body1'
           component='div'
-          dangerouslySetInnerHTML={{ __html: product?.short_description?.html ?? '' }}
+          dangerouslySetInnerHTML={{ __html: product.short_description?.html ?? '' }}
         />
 
         <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
@@ -78,7 +79,7 @@ function ProductSimple(props: Props) {
         >
           <ProductSidebarDelivery />
         </ProductAddToCart>
-        <ProductWeight weight={product?.weight} />
+        <ProductWeight weight={product.weight} />
         <Usps usps={sidebarUsps} size='small' />
       </ProductPageGallery>
 
@@ -130,9 +131,8 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     },
   })
 
-  if ((await productPage).data.products?.items?.[0]?.__typename !== 'SimpleProduct') {
-    return { notFound: true }
-  }
+  const product = findByTypename((await productPage).data.products?.items, 'SimpleProduct')
+  if (!product) return { notFound: true }
 
   const category = productPageCategory((await productPage).data?.products?.items?.[0])
 

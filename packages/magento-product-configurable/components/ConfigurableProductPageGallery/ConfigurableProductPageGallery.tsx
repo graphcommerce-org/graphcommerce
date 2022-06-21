@@ -1,6 +1,6 @@
 import { ProductPageGalleryFragment } from '@graphcommerce/magento-product/components/ProductPageGallery/ProductPageGallery.gql'
 import { SidebarGallery, SidebarGalleryProps } from '@graphcommerce/next-ui'
-import React, { PropsWithChildren, useMemo } from 'react'
+import { PropsWithChildren } from 'react'
 import { useConfigurableTypeProduct } from '../../hooks/useConfigurableTypeProduct'
 
 type ConfigurableProductPageGalleryProps = Omit<SidebarGalleryProps, 'sidebar' | 'images'> &

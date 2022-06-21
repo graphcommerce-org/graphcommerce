@@ -29,7 +29,7 @@ export type ActionCardListFormProps<T extends ActionCardItemBase> = Omit<
 export function ActionCardListForm<T extends ActionCardItemBase>(
   props: ActionCardListFormProps<T>,
 ) {
-  const { required, rules, items, render, control, name, errorMessage, sx } = props
+  const { required, rules, items, render, control, name, error, errorMessage, sx } = props
   const RenderItem = render as React.VFC<ActionCardItemRenderProps<ActionCardItemBase>>
 
   return (

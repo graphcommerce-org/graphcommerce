@@ -24,6 +24,7 @@ import {
   SchemaDts,
   LayoutTitle,
   LayoutHeader,
+  findByTypename,
 } from '@graphcommerce/next-ui'
 import { Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
@@ -40,12 +41,11 @@ type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
 function ProductBundle(props: Props) {
   const { products, usps, typeProducts, sidebarUsps, pages } = props
 
-  const product = products?.items?.[0]
-  const typeProduct = typeProducts?.items?.[0]
-  const aggregations = typeProducts?.aggregations
+  const product = findByTypename(products?.items, 'BundleProduct')
+  const typeProduct = findByTypename(typeProducts?.items, 'BundleProduct')
+  const aggregations = products?.aggregations
 
-  if (product?.__typename !== 'BundleProduct' || typeProduct?.__typename !== 'BundleProduct')
-    return <div />
+  if (!product || !typeProduct) return null
 
   return (
     <>

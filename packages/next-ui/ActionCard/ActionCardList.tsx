@@ -1,8 +1,6 @@
-import { Alert, Box, FormHelperText, SxProps, Theme } from '@mui/material'
-import { AnimatePresence } from 'framer-motion'
+import { Alert, Box, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { isFragment } from 'react-is'
-import { AnimatedRow } from '../AnimatedRow/AnimatedRow'
 
 type MultiSelect = {
   multiple: true
@@ -22,7 +20,7 @@ export type ActionCardListProps<SelectOrMulti = MultiSelect | Select> = {
   children?: React.ReactNode
   required?: boolean
   error?: boolean
-  errorMessage?: string
+  errorMessage?: React.ReactNode
   sx?: SxProps<Theme>
 } & SelectOrMulti
 
@@ -68,15 +66,13 @@ export function ActionCardList(props: ActionCardListProps) {
         error &&
           ((theme) => ({
             '& .ActionCard-root': {
-              borderLeft: 2,
-              borderRight: 2,
               borderLeftColor: 'error.main',
               borderRightColor: 'error.main',
               paddingLeft: theme.spacings.xs,
               paddingRight: theme.spacings.xs,
             },
             '& > div:first-of-type.ActionCard-root': {
-              borderTop: 2,
+              borderTop: 1,
               borderTopColor: 'error.main',
               paddingTop: theme.spacings.xxs,
             },
