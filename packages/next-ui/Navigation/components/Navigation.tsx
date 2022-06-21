@@ -265,7 +265,7 @@ export function NavigationBase(props: NavigationBaseProps) {
             // '& svg': { display: 'none' },
           },
           '& .Navigation-column': {
-            borderLeft: (theme) => `1px solid ${theme.palette.divider}`,
+            boxShadow: (theme) => `inset 1px 0 ${theme.palette.divider}`,
           },
           '& .Navigation-item': {
             mx: (theme) => theme.spacings.md,
@@ -275,7 +275,7 @@ export function NavigationBase(props: NavigationBaseProps) {
             // mt: (theme) => theme.spacings.md,
           },
           '& .Navigation-column:first-of-type': {
-            borderLeft: 'none',
+            boxShadow: 'none',
           },
         },
         ...(Array.isArray(sx) ? sx : [sx]),
