@@ -17,6 +17,7 @@ export function ConfigurableProductQuantityField(props: ConfigurableOptionsInput
       inputProps={{ min: 1 }}
       {...muiRegister('quantity', { required: required.quantity })}
       helperText={formState.isSubmitted && formState.errors.quantity?.message}
+      defaultValue={1}
       // disabled={loading}
       size='small'
       className={className}

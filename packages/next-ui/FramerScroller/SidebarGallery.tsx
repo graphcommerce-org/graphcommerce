@@ -10,7 +10,7 @@ import {
 import { Fab, useTheme, Box, styled, SxProps, Theme } from '@mui/material'
 import { m, useDomEvent, useMotionValue } from 'framer-motion'
 import { useRouter } from 'next/router'
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { IconSvg } from '../IconSvg'
 import { Row } from '../Row/Row'
 import { extendableComponent } from '../Styles'
@@ -208,7 +208,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
               ))}
             </Scroller>
             <MotionBox
-              layout
+              layout='position'
               className={classes.topRight}
               sx={{
                 display: 'grid',
@@ -286,7 +286,10 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                 },
               }}
             >
-              <ScrollerDots layout sx={{ backgroundColor: 'background.paper', boxShadow: 6 }} />
+              <ScrollerDots
+                layout='position'
+                sx={{ backgroundColor: 'background.paper', boxShadow: 6 }}
+              />
             </Box>
           </MotionBox>
 
@@ -318,7 +321,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
             ]}
           >
             <MotionBox
-              layout
+              layout='position'
               className={classes.sidebar}
               sx={{
                 boxSizing: 'border-box',

@@ -1,3 +1,4 @@
+import { PriceRange } from '@graphcommerce/graphql-mesh'
 import { ApolloCartErrorAlert } from '@graphcommerce/magento-cart'
 import { useFormProductAddToCart } from '@graphcommerce/magento-product'
 import { Money } from '@graphcommerce/magento-store'
@@ -14,25 +15,18 @@ import { Divider, Alert, Box, SxProps, Theme, Typography } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'
-import {
-  ConfigurableOptionsInput,
-  ConfigurableOptionsInputProps,
-} from '../ConfigurableOptions/ConfigurableOptionsInput'
+import { ConfigurableOptionsInput } from '../ConfigurableOptions/ConfigurableOptionsInput'
+import { useConfigurableTypeProduct } from '../hooks'
 import { ConfigurableProductQuantityField } from './ConfigurableProductQuantityField'
 import { ConfigurableProductSubmitButton } from './ConfigurableProductSubmitButton'
 
 type ConfigurableProductAddToCartProps = {
   name: string
-  urlKey?: string
-  priceRange?: Money
+  priceRange?: PriceRange
   optionEndLabels?: Record<string, React.ReactNode>
   children?: React.ReactNode
   additionalButtons?: React.ReactNode
   sx?: SxProps<Theme>
-  optionsProps?: Omit<
-    ConfigurableOptionsInputProps,
-    'name' | 'sku' | 'control' | 'rules' | 'errors' | 'optionEndLabels'
-  >
 }
 
 const compName = 'ConfigurableOptionsInput' as const
@@ -40,24 +34,20 @@ const parts = ['form', 'button', 'finalPrice', 'quantity', 'divider', 'buttonWra
 const { classes } = extendableComponent(compName, parts)
 
 export function ConfigurableProductAddToCart(props: ConfigurableProductAddToCartProps) {
-  const {
-    name,
-    children,
-    urlKey,
-    priceRange,
-    optionEndLabels,
-    optionsProps,
-    additionalButtons,
-    sx = [],
-  } = props
+  const { name, children, priceRange, optionEndLabels, additionalButtons, sx = [] } = props
 
   const form = useFormProductAddToCart()
   const { formState, error, data } = form
 
+  const typeProduct = useConfigurableTypeProduct()
+  const regular_price =
+    typeProduct?.configurable_product_options_selection?.variant?.price_range.minimum_price
+      .regular_price
+
   return (
     <Box className={classes.form} sx={[{ width: '100%' }, ...(Array.isArray(sx) ? sx : [sx])]}>
       <Divider className={classes.divider} sx={(theme) => ({ margin: `${theme.spacings.sm} 0` })} />
-      <ConfigurableOptionsInput optionEndLabels={optionEndLabels} {...optionsProps} />
+      <ConfigurableOptionsInput optionEndLabels={optionEndLabels} />
 
       <ConfigurableProductQuantityField className={classes.quantity} />
 
@@ -69,7 +59,7 @@ export function ConfigurableProductAddToCart(props: ConfigurableProductAddToCart
         className={classes.finalPrice}
         sx={(theme) => ({ marginTop: theme.spacings.sm })}
       >
-        <Money {...priceRange} />
+        <Money {...(regular_price ?? priceRange?.minimum_price.regular_price)} />
       </Typography>
 
       {children}

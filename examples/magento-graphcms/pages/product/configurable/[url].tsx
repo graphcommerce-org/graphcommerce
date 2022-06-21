@@ -6,7 +6,6 @@ import {
   ProductAddToCartContext,
   productPageCategory,
   ProductPageDescription,
-  ProductPageGallery,
   ProductPageMeta,
   ProductShortDescription,
   ProductSidebarDelivery,
@@ -15,6 +14,7 @@ import {
   ConfigurableProductAddToCart,
   GetConfigurableProductConfigurationsDocument,
   GetConfigurableProductConfigurationsQuery,
+  ConfigurableProductPageGallery,
 } from '@graphcommerce/magento-product-configurable'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
 import { Money, StoreConfigDocument } from '@graphcommerce/magento-store'
@@ -56,7 +56,7 @@ function ProductConfigurable(props: Props) {
   )
     return null
 
-  const aggregations = product?.aggregations
+  const { aggregations } = products
 
   return (
     <>
@@ -76,7 +76,7 @@ function ProductConfigurable(props: Props) {
       <ProductAddToCartContext sku={product.sku} urlKey={product.url_key}>
         <ProductPageMeta {...product} />
 
-        <ProductPageGallery {...product}>
+        <ConfigurableProductPageGallery {...product}>
           <div>
             <Typography component='span' variant='body2' color='text.disabled'>
               <Trans
@@ -94,7 +94,6 @@ function ProductConfigurable(props: Props) {
           <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
           <ConfigurableProductAddToCart
             name={product.name ?? ''}
-            urlKey={product.url_key}
             priceRange={product.price_range}
             optionEndLabels={{
               size: (
@@ -116,7 +115,7 @@ function ProductConfigurable(props: Props) {
             <ProductSidebarDelivery />
           </ConfigurableProductAddToCart>
           <Usps usps={sidebarUsps} size='small' />
-        </ProductPageGallery>
+        </ConfigurableProductPageGallery>
 
         <ProductPageDescription {...product} right={<Usps usps={usps} />} fontSize='responsive' />
 
@@ -171,7 +170,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
       rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
     },
   })
-  const typeProductPage = staticClient.query({
+  const typeProductPage = client.query({
     query: GetConfigurableProductConfigurationsDocument,
     variables: { urlKey, selectedOptions: [] },
   })

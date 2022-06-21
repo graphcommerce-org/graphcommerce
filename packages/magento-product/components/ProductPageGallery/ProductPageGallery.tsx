@@ -1,5 +1,5 @@
 import { SidebarGallery, SidebarGalleryProps, TypeRenderer } from '@graphcommerce/next-ui'
-import React, { PropsWithChildren } from 'react'
+import { PropsWithChildren } from 'react'
 import { ProductPageGalleryFragment } from './ProductPageGallery.gql'
 
 export type ProductPageGalleryRenderers = TypeRenderer<

@@ -10,7 +10,7 @@ import {
   useDomEvent,
   useTransform,
 } from 'framer-motion'
-import React, { ReactHTML, useState } from 'react'
+import React, { ReactHTML, useEffect, useState } from 'react'
 import { isHTMLMousePointerEvent } from '../utils/isHTMLMousePointerEvent'
 import { scrollSnapTypeDirection, SnapTypeDirection } from '../utils/scrollSnapTypeDirection'
 import { useScrollerContext } from './useScrollerContext'
@@ -46,7 +46,9 @@ export function useScroller<
   const { scrollSnap, scrollerRef, enableSnap, disableSnap, snap, registerChildren } =
     useScrollerContext()
 
-  registerChildren(children)
+  useEffect(() => {
+    registerChildren(children)
+  }, [children, registerChildren])
 
   const scroll = useElementScroll(scrollerRef)
 

@@ -46,7 +46,9 @@ export function ActionCardListForm<T extends ActionCardItemBase>(
         <ActionCardList
           required
           value={value}
-          onChange={(_, incomming) => onChange(incomming)}
+          onChange={(_, incomming) => {
+            onChange(incomming)
+          }}
           error={formState.isSubmitted && !!fieldState.error}
           errorMessage={errorMessage}
           sx={sx}

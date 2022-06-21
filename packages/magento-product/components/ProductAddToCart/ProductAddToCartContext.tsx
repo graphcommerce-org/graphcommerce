@@ -5,7 +5,10 @@ import {
   useFormProductAddToCartBase,
 } from './useFormProductAddToCartBase'
 
-type ProductAddToCartContextType = UseFormProductAddToCartReturn & { urlKey: string; sku: string }
+type ProductAddToCartContextType = UseFormProductAddToCartReturn & {
+  urlKey: string
+  sku: string
+}
 
 export const productAddToCartContext = createContext(
   undefined as unknown as ProductAddToCartContextType,
@@ -40,17 +43,3 @@ export function ProductAddToCartContext(props: ProductAddToCartContextProps) {
 export function useFormProductAddToCart() {
   return useContext(productAddToCartContext)
 }
-
-// export function useConfigurableProductPageContext(urlKey: string) {
-//   const { watch } = useConfigurableAddToCartForm()
-//   const selectedOptions = watch('selectedOptions')
-
-//   const configurable = useQuery(ConfigurableProductPageDocument, {
-//     variables: {
-//       urlKey,
-//       configurableOptionValueUids: selectedOptions,
-//     },
-//   })
-
-//   return configurable.data
-// }

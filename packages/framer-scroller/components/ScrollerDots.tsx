@@ -23,6 +23,8 @@ export const ScrollerDots = m(
     const { items } = useScrollerContext()
     const itemsArr = useMotionValueValue(items, (v) => v)
 
+    console.log('items', items, itemsArr[0])
+
     if (itemsArr.length <= 1) return null
 
     return (

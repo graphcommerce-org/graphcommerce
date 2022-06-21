@@ -21,10 +21,6 @@ export function useFormProductAddToCartBase(
 ): UseFormProductAddToCartReturn {
   const form = useFormGqlMutationCart(ProductAddToCartDocument, {
     ...props,
-    onBeforeSubmit: ({ selectedOptions, ...vars }) => ({
-      ...vars,
-      selectedOptions: Object.values(selectedOptions?.[0] ?? {}),
-    }),
   })
 
   return form

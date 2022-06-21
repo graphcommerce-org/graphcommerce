@@ -2,7 +2,7 @@ import React from 'react'
 /** To make renderers customizable we need to be able to provide renders for all types */
 type TypeObject = { __typename: string; [index: string]: unknown }
 
-type FilterTypeByTypename<A extends TypeObject, Typename extends string> = A extends unknown
+export type FilterTypeByTypename<A extends TypeObject, Typename extends string> = A extends unknown
   ? A['__typename'] extends Typename
     ? A
     : never
@@ -37,4 +37,26 @@ export function RenderType<
     : () => <>{process.env.NODE_ENV !== 'production' ? __typename : ''}</>
 
   return <TypeItem {...typeItemProps} __typename={__typename} />
+}
+
+export function isTypename<T extends TypeObject, Typename extends string>(
+  typename: Typename,
+  type: T,
+): type is FilterTypeByTypename<T, Typename> {
+  return type.__typename === typename
+}
+
+export function isNotNullOrUndefined<T>(value: T): value is NonNullable<T> {
+  return value !== null && value !== undefined
+}
+
+export function findByTypename<T extends TypeObject, Typename extends string>(
+  typename: Typename,
+  type: (T | undefined | null)[] | undefined | null,
+) {
+  if (!type) return undefined
+
+  return type.filter(isNotNullOrUndefined).find((item) => isTypename(typename, item)) as
+    | FilterTypeByTypename<T, Typename>
+    | undefined
 }

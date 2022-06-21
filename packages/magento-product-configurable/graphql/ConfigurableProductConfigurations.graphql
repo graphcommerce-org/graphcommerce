@@ -43,9 +43,12 @@ fragment ConfigurableProductConfigurations on ConfigurableProduct {
       option_value_uids
     }
     media_gallery {
-      disabled
+      __typename
       label
-      url
+      position
+      disabled
+      ...ProductImage
+      ...ProductVideo
     }
     variant {
       uid
@@ -55,6 +58,14 @@ fragment ConfigurableProductConfigurations on ConfigurableProduct {
         label
         position
         url
+      }
+      price_range {
+        minimum_price {
+          regular_price {
+            currency
+            value
+          }
+        }
       }
     }
   }
