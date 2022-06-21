@@ -18,7 +18,7 @@ function categoryToNav(props: Maybe<Item> | undefined): NavigationNode | undefin
   return {
     name,
     id: uid,
-    href: url_path,
+    href: `/${url_path}`,
     childItems:
       (children?.length ?? 0) > 0 ? children?.map(categoryToNav).filter(nonNullable) : undefined,
   }
