@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-customer-account",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "3.1.23",
+  "version": "3.1.24",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -20,7 +20,7 @@
   "dependencies": {
     "@graphcommerce/graphql": "3.2.1",
     "@graphcommerce/image": "3.1.7",
-    "@graphcommerce/magento-customer": "4.5.4",
+    "@graphcommerce/magento-customer": "4.6.0",
     "@graphcommerce/magento-customer-order": "3.0.25",
     "@graphcommerce/magento-graphql": "3.0.14",
     "@graphcommerce/magento-store": "4.2.11",

@@ -1,5 +1,36 @@
 # Change Log
 
+## 3.13.2
+
+### Patch Changes
+
+- Updated dependencies [[`98ff2334d`](https://github.com/graphcommerce-org/graphcommerce/commit/98ff2334d1b7dedb8bc56ebe6abb50836eefedd3)]:
+  - @graphcommerce/magento-customer@4.6.0
+  - @graphcommerce/magento-cart@4.4.5
+  - @graphcommerce/magento-cart-billing-address@3.0.29
+  - @graphcommerce/magento-cart-checkout@3.0.31
+  - @graphcommerce/magento-cart-email@3.0.31
+  - @graphcommerce/magento-cart-items@3.0.32
+  - @graphcommerce/magento-cart-shipping-address@3.2.1
+  - @graphcommerce/magento-customer-account@3.1.24
+  - @graphcommerce/magento-newsletter@2.0.29
+  - @graphcommerce/magento-product-configurable@4.1.16
+  - @graphcommerce/magento-review@3.2.17
+  - @graphcommerce/magento-wishlist@1.3.3
+  - @graphcommerce/magento-cart-coupon@3.0.31
+  - @graphcommerce/magento-cart-payment-method@3.3.2
+  - @graphcommerce/magento-cart-shipping-method@3.2.1
+  - @graphcommerce/magento-payment-braintree@3.0.30
+  - @graphcommerce/magento-payment-included@3.1.2
+  - @graphcommerce/magento-product@4.4.9
+  - @graphcommerce/magento-product-bundle@4.0.31
+  - @graphcommerce/magento-product-downloadable@4.0.31
+  - @graphcommerce/magento-product-grouped@3.0.31
+  - @graphcommerce/magento-product-simple@4.0.31
+  - @graphcommerce/magento-product-virtual@4.0.31
+  - @graphcommerce/mollie-magento-payment@3.3.2
+  - @graphcommerce/magento-category@4.1.17
+
 ## 3.13.1
 
 ### Patch Changes
