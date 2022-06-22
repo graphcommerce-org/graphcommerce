@@ -126,8 +126,8 @@ function NavigationItem(props: NavigationItemProps) {
                     gridColumnStart: level + 1 + levelOffset,
                   }}
                   data-level={level + 1 + levelOffset}
-                  data-parentPath={parentPath.join(',')}
-                  tabIndex={path.join(',').includes(parentPath.join(',')) ? undefined : -1}
+                  data-parentPath={itemPath.join(',')}
+                  tabIndex={path.join(',').includes(itemPath.join(',')) ? undefined : -1}
                 >
                   <Box
                     component='span'
