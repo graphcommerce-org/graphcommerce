@@ -79,6 +79,11 @@ function NavigationItem(props: NavigationItemProps) {
             display: hideItem ? 'none' : 'flex',
           }}
           data-level={level + levelOffset}
+          tabIndex={
+            level <= path.length + 1 && path.join(',').includes(parentPath.join(','))
+              ? undefined
+              : -1
+          }
           onClick={(e) => {
             e.preventDefault()
             if (selected) {
@@ -124,6 +129,11 @@ function NavigationItem(props: NavigationItemProps) {
                     gridColumnStart: level + 1 + levelOffset,
                   }}
                   data-level={level + 1 + levelOffset}
+                  tabIndex={
+                    level <= path.length && path.join(',').includes(parentPath.join(','))
+                      ? undefined
+                      : -1
+                  }
                 >
                   <Box
                     component='span'
@@ -173,6 +183,11 @@ function NavigationItem(props: NavigationItemProps) {
               gap: (theme) => theme.spacings.xxs,
             }}
             data-level={level + levelOffset}
+            tabIndex={
+              level <= path.length + 1 && path.join(',').includes(parentPath.join(','))
+                ? undefined
+                : -1
+            }
           >
             <Box
               component='span'
