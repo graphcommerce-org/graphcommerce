@@ -1,14 +1,14 @@
-import { Image } from '@graphcommerce/image'
 import { useFormProductAddToCart } from '@graphcommerce/magento-product'
-import { SectionHeader, ActionCard } from '@graphcommerce/next-ui'
-import {
-  ActionCardItemRenderProps,
-  ActionCardListForm,
-} from '@graphcommerce/next-ui/ActionCard/ActionCardListForm'
+import { SectionHeader, RenderType } from '@graphcommerce/next-ui'
+import { ActionCardListForm } from '@graphcommerce/next-ui/ActionCard/ActionCardListForm'
 import { Trans } from '@lingui/react'
-import { BaseTextFieldProps, Box } from '@mui/material'
-import React, { useEffect } from 'react'
-import { ConfigurableProductConfigurationsFragment } from '../graphql'
+import { BaseTextFieldProps } from '@mui/material'
+import React from 'react'
+import { ColorSwatchData } from '../Swatches/ColorSwatchData'
+import { ImageSwatchData } from '../Swatches/ImageSwatchData'
+import { TextSwatchData } from '../Swatches/TextSwatchData'
+
+import { ConfigurableOptionsActionCardProps } from '../Swatches/types'
 import { useConfigurableTypeProduct } from '../hooks'
 
 export type ConfigurableOptionsInputProps = Pick<
@@ -18,63 +18,29 @@ export type ConfigurableOptionsInputProps = Pick<
   optionEndLabels?: Record<string, React.ReactNode>
 }
 
-type ConfigurableOptionsActionCardProps = ActionCardItemRenderProps<
-  | NonNullable<
-      NonNullable<
-        NonNullable<ConfigurableProductConfigurationsFragment['configurable_options']>[0]
-      >['values']
-    >[0]
-  | null
-  | undefined
->
-
 function ConfigurableOptionsActionCard(cardProps: ConfigurableOptionsActionCardProps) {
-  const { value, swatch_data, store_label } = cardProps
+  const { swatch_data } = cardProps
 
-  const color = swatch_data?.__typename === 'ColorSwatchData' && (
-    <Box
-      sx={{
-        width: '50px',
-        height: '50px',
-        backgroundColor: swatch_data.value,
-        borderRadius: '50%',
-      }}
-    />
-  )
-
-  const image = swatch_data?.__typename === 'ImageSwatchData' && (
-    <Image
-      src={swatch_data.value ?? ''}
-      sx={{
-        width: '50px',
-        height: '50px',
-        aspectRatio: '1/1',
-        borderRadius: '50%',
-      }}
-    />
-  )
-
-  const imageComp = color ?? image ?? undefined
+  // switch (swatch_data?.__typename) {
+  //   case 'ColorSwatchData':
+  //     return <ColorSwatchData {...cardProps} />
+  //   case 'ImageSwatchData':
+  //     return <ImageSwatchData {...cardProps} />
+  //   case 'TextSwatchData':
+  //     return <TextSwatchData {...cardProps} />
+  //   default:
+  //     return null
+  // }
 
   return (
-    <ActionCard
-      key={value}
+    <RenderType
       {...cardProps}
-      image={imageComp}
-      title={swatch_data?.value ?? store_label}
-      details={swatch_data?.value ? store_label : undefined}
-      hidden={false}
-      variant='outlined'
-      // sx={(theme) => ({
-      //   // border: `1px solid ${theme.palette.divider}`,
-      //   // borderRadius: theme.shape.borderRadius,
-      //   // '&:first-of-type': {
-      //   //   borderRadius: theme.shape.borderRadius,
-      //   // },
-      //   // '&:last-of-type': {
-      //   //   borderRadius: theme.shape.borderRadius,
-      //   // },
-      // })}
+      __typename={swatch_data?.__typename ?? 'TextSwatchData'}
+      renderer={{
+        ColorSwatchData,
+        ImageSwatchData,
+        TextSwatchData,
+      }}
     />
   )
 }
@@ -103,9 +69,11 @@ export function ConfigurableOptionsInput(props: ConfigurableOptionsInputProps) {
               key={fieldName}
               name={fieldName}
               control={control}
+              size='small'
               required
               items={(values ?? []).map((ov) => ({
                 value: ov?.uid ?? '',
+                size: 'small',
                 ...ov,
               }))}
               error={false}
@@ -116,11 +84,6 @@ export function ConfigurableOptionsInput(props: ConfigurableOptionsInputProps) {
                   values={{ 0: label?.toLocaleLowerCase() }}
                 />
               }
-              sx={(theme) => ({
-                // display: 'grid',
-                // gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))',
-                // gap: theme.spacings.xxs,
-              })}
             />
           </React.Fragment>
         )

@@ -1,6 +1,8 @@
 import { Alert, Box, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { isFragment } from 'react-is'
+import { Size } from '../Layout/components/LayoutHeadertypes'
+import { extendableComponent } from '../Styles/extendableComponent'
 
 type MultiSelect = {
   multiple: true
@@ -16,7 +18,17 @@ type Select = {
   onChange?: (event: React.MouseEvent<HTMLElement>, value: string | null) => void
 }
 
+const parts = ['root'] as const
+const name = 'ActionCardList'
+
+export type Variants = 'outlined' | 'default'
+
+type StateProps = {
+  size?: 'large' | 'medium' | 'small'
+}
+
 export type ActionCardListProps<SelectOrMulti = MultiSelect | Select> = {
+  size?: StateProps['size']
   children?: React.ReactNode
   required?: boolean
   error?: boolean
@@ -34,8 +46,18 @@ function isValueSelected(value: string, candidate: string | string[]) {
   return value === candidate
 }
 
+const { withState, selectors } = extendableComponent<StateProps, typeof name, typeof parts>(
+  name,
+  parts,
+)
+
+export const actionCardListSelectors = selectors
+
 export function ActionCardList(props: ActionCardListProps) {
-  const { children, required, value, error = false, errorMessage, sx = [] } = props
+  const { children, required, value, error = false, errorMessage, size = 'large', sx = [] } = props
+  const classes = withState({ size })
+
+  console.log('size', size)
 
   const handleChange = isMulti(props)
     ? (event: React.MouseEvent<HTMLElement, MouseEvent>, buttonValue: string) => {
@@ -61,8 +83,8 @@ export function ActionCardList(props: ActionCardListProps) {
 
   return (
     <Box
+      className={classes.root}
       sx={[
-        ...(Array.isArray(sx) ? sx : [sx]),
         error &&
           ((theme) => ({
             '& .ActionCard-root': {
@@ -82,6 +104,19 @@ export function ActionCardList(props: ActionCardListProps) {
               paddingBottom: theme.spacings.xxs,
             },
           })),
+        size === 'small' &&
+          ((theme) => ({
+            display: 'flex',
+            flexWrap: 'wrap',
+            gridGap: theme.spacings.xxs,
+          })),
+        size === 'medium' &&
+          ((theme) => ({
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
+            gridGap: theme.spacings.xxs,
+          })),
+        size === 'large' && (() => ({})),
       ]}
     >
       {React.Children.map(children, (child) => {

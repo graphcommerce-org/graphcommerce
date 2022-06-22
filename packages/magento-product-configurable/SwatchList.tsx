@@ -19,6 +19,7 @@ const renderer: SwatchTypeRenderer = {
 }
 
 export function SwatchList({ attributes, configurable_options }: SwatchListProps) {
+  console.log('options', configurable_options)
   const options =
     configurable_options?.filter((option) => attributes.includes(option?.attribute_code ?? '')) ??
     []
@@ -34,6 +35,7 @@ export function SwatchList({ attributes, configurable_options }: SwatchListProps
                 renderer={renderer}
                 {...val}
                 {...val.swatch_data}
+                __typename={val?.swatch_data?.__typename ?? 'TextSwatchData'}
                 size={'small' as SwatchSize}
               />
             ) : null,

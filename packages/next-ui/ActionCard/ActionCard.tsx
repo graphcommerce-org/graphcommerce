@@ -1,6 +1,7 @@
 import { SxProps, ButtonBase, Box, Theme, ButtonProps, BoxProps } from '@mui/material'
 import React, { FormEvent } from 'react'
 import { extendableComponent } from '../Styles'
+import { Variants } from './ActionCardList'
 
 function isButtonProps(props: ButtonProps<'div'> | BoxProps<'div'>): props is ButtonProps<'div'> {
   return props.onClick !== undefined
@@ -10,7 +11,8 @@ const RenderComponent = (props: ButtonProps<'div'> | BoxProps<'div'>) =>
   isButtonProps(props) ? <ButtonBase component='div' {...props} /> : <Box {...props} />
 
 export type ActionCardProps = {
-  variant?: 'outlined' | 'default'
+  variant?: Variants
+  size?: 'large' | 'medium' | 'small'
   sx?: SxProps<Theme>
   title?: string | React.ReactNode
   image?: React.ReactNode
@@ -42,6 +44,7 @@ const name = 'ActionCard'
 
 type StateProps = {
   variant?: 'outlined' | 'default'
+  size?: 'large' | 'medium' | 'small'
   selected: boolean
   hidden: boolean
   disabled: boolean
@@ -72,11 +75,13 @@ export function ActionCard(props: ActionCardProps) {
     reset,
     disabled = false,
     variant = 'default',
+    size = 'large',
   } = props
 
-  const classes = withState({ hidden, disabled, selected, image: Boolean(image), variant })
+  const classes = withState({ hidden, disabled, selected, image: Boolean(image), variant, size })
 
-  console.log(classes)
+  console.log('card size', size)
+
   return (
     <RenderComponent
       className={classes.root}
@@ -107,12 +112,6 @@ export function ActionCard(props: ActionCardProps) {
             padding: `${theme.spacings.xxs} ${theme.spacings.xs}`,
             background: theme.palette.background.paper,
             border: `1px solid ${theme.palette.divider}`,
-            // borderRadius: 1,
-          },
-
-          '&.variantOutlined.selected:not(.disabled)': {
-            border: `2px solid ${theme.palette.secondary.main} !important`,
-            padding: `calc(${theme.spacings.xxs} - 1) calc(${theme.spacings.xs} - 1)`,
           },
           '&:not(.image)': {
             gridTemplateColumns: 'auto auto',
@@ -130,6 +129,11 @@ export function ActionCard(props: ActionCardProps) {
             background: theme.palette.background.default,
           },
         }),
+        size === 'small' &&
+          ((theme) => ({
+            display: 'flex',
+            flex: 0,
+          })),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
@@ -141,7 +145,7 @@ export function ActionCard(props: ActionCardProps) {
       {title && (
         <Box
           className={classes.title}
-          sx={{ gridArea: 'title', display: 'flex', typography: 'h6' }}
+          sx={{ gridArea: 'title', display: 'flex', typography: 'h6', flex: 1, number: 2 }}
         >
           {title}
         </Box>

@@ -23,13 +23,14 @@ export type ActionCardListFormProps<T extends ActionCardItemBase> = Omit<
     items: T[]
     render: React.FC<ActionCardItemRenderProps<T>>
   } & {
+    size?: 'large' | 'medium' | 'small'
     sx?: SxProps<Theme>
   }
 
 export function ActionCardListForm<T extends ActionCardItemBase>(
   props: ActionCardListFormProps<T>,
 ) {
-  const { required, rules, items, render, control, name, error, errorMessage, sx } = props
+  const { required, rules, items, render, control, name, error, errorMessage, sx, size } = props
   const RenderItem = render as React.VFC<ActionCardItemRenderProps<ActionCardItemBase>>
 
   return (
@@ -45,13 +46,11 @@ export function ActionCardListForm<T extends ActionCardItemBase>(
       render={({ field: { onChange, value }, fieldState, formState }) => (
         <ActionCardList
           required
-          value={value}
           onChange={(_, incomming) => {
             onChange(incomming)
           }}
           error={formState.isSubmitted && !!fieldState.error}
-          errorMessage={errorMessage}
-          sx={sx}
+          {...props}
         >
           {items.map((item) => (
             <RenderItem
