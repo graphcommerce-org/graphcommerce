@@ -79,13 +79,11 @@ function NavigationItem(props: NavigationItemProps) {
           }}
           data-level={level + levelOffset}
           data-parentPath={parentPath.join(',')}
+          disabled={selected}
           tabIndex={path.join(',').includes(parentPath.join(',')) ? undefined : -1}
           onClick={(e) => {
             e.preventDefault()
-            if (selected) {
-              return select(parentPath)
-            }
-            return select(itemPath)
+            if (!selected) select(itemPath)
           }}
         >
           <Box
@@ -263,7 +261,7 @@ export function NavigationBase(props: NavigationBaseProps) {
           display: 'grid',
           gridAutoFlow: 'column',
           scrollSnapAlign: 'end',
-          '& > ul > li > a, & > ul > li > button': {
+          '& > ul > li > a, & > ul > li > [role=button]': {
             '& span': {
               typography: 'h2',
             },
