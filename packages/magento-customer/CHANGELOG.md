@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.6.0
+
+### Minor Changes
+
+- [#1526](https://github.com/graphcommerce-org/graphcommerce/pull/1526) [`98ff2334d`](https://github.com/graphcommerce-org/graphcommerce/commit/98ff2334d1b7dedb8bc56ebe6abb50836eefedd3) Thanks [@mikekeehnen](https://github.com/mikekeehnen)! - Removed form persistance for isEmailAvailableForm that prevented the user from logging in after sign up
+
 ## 4.5.4
 
 ### Patch Changes

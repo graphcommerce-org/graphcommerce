@@ -1,5 +1,17 @@
 # Change Log
 
+## 4.1.16
+
+### Patch Changes
+
+- Updated dependencies [[`98ff2334d`](https://github.com/graphcommerce-org/graphcommerce/commit/98ff2334d1b7dedb8bc56ebe6abb50836eefedd3)]:
+  - @graphcommerce/magento-customer@4.6.0
+  - @graphcommerce/magento-cart@4.4.5
+  - @graphcommerce/magento-cart-items@3.0.32
+  - @graphcommerce/magento-product@4.4.9
+  - @graphcommerce/magento-product-simple@4.0.31
+  - @graphcommerce/magento-category@4.1.17
+
 ## 4.1.15
 
 ### Patch Changes
