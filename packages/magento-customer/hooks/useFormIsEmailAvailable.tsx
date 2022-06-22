@@ -33,8 +33,6 @@ export function useFormIsEmailAvailable(props: UseFormIsEmailAvailableProps) {
     loggedIn ? 'signedin' : 'email',
   )
 
-  useFormPersist({ form, name: 'IsEmailAvailable' })
-
   useEffect(() => {
     if (loggedIn) {
       setMode('signedin')
