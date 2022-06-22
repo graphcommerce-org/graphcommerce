@@ -8,10 +8,6 @@ fragment MenuQueryFragment on Query {
         children {
           uid
           ...NavigationItem
-          children {
-            uid
-            ...NavigationItem
-          }
         }
       }
     }
