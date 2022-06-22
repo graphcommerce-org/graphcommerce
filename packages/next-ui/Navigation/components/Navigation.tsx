@@ -65,13 +65,12 @@ function NavigationItem(props: NavigationItemProps) {
     return (
       <Box sx={{ display: 'contents' }} component='li'>
         <ListItemButton
-          href={href}
           className={[
             classes.item,
             row === 1 && classes.first,
             row === childItemsCount && classes.last,
           ].join(' ')}
-          component='a'
+          role='button'
           sx={{
             gridRowStart: row,
             gridColumnStart: level + levelOffset,
@@ -112,14 +111,13 @@ function NavigationItem(props: NavigationItemProps) {
         >
           {href && (
             <Box sx={{ display: 'contents' }} component='li'>
-              <PageLink href={href}>
+              <PageLink href={href} passHref>
                 <ListItemButton
                   className={[
                     classes.item,
                     classes.first,
                     row === childItemsCount && classes.last,
                   ].join(' ')}
-                  component='a'
                   sx={{
                     gridRowStart: 1,
                     gap: (theme) => theme.spacings.xs,
