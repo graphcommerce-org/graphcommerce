@@ -3,7 +3,8 @@ import { Trans } from '@lingui/react'
 import { Box, Fab, SxProps, Theme, useEventCallback } from '@mui/material'
 import { m, MotionConfig, MotionConfigContext } from 'framer-motion'
 import { Tween } from 'framer-motion/types/types'
-import { useContext } from 'react'
+import { useRouter } from 'next/router'
+import { useContext, useEffect, useState } from 'react'
 import { isElement } from 'react-is'
 import { IconSvg, useIconSvgSize } from '../../IconSvg'
 import { LayoutTitle } from '../../Layout'
@@ -46,8 +47,18 @@ function findCurrent(props: findCurrentProps) {
 
 const MotionDiv = styled(m.div)()
 
-export function NavigationOverlayBase(props: NavigationOverlayProps) {
-  const { active, sx, onClose: closeCallback, items, stretchColumns, itemWidth } = props
+export function NavigationOverlayBase(
+  props: NavigationOverlayProps & { setDisableAnimation: (boolean) => void },
+) {
+  const {
+    active,
+    sx,
+    onClose: closeCallback,
+    items,
+    stretchColumns,
+    itemWidth,
+    setDisableAnimation,
+  } = props
 
   const duration = (useContext(MotionConfigContext).transition as Tween | undefined)?.duration ?? 0
 
@@ -64,8 +75,12 @@ export function NavigationOverlayBase(props: NavigationOverlayProps) {
     select(path.slice(0, -1))
   })
 
-  const handleClose = useEventCallback(() => {
-    setTimeout(() => select([]), duration * 1000)
+  const handeOverlayClose = useEventCallback(() => {
+    setDisableAnimation(true)
+    select([])
+    setTimeout(() => {
+      setDisableAnimation(false)
+    }, 1)
     closeCallback()
   })
 
@@ -76,7 +91,7 @@ export function NavigationOverlayBase(props: NavigationOverlayProps) {
   return (
     <Overlay
       active={active}
-      close={handleClose}
+      close={handeOverlayClose}
       variantSm='left'
       sizeSm='full'
       justifySm='start'
@@ -149,7 +164,7 @@ export function NavigationOverlayBase(props: NavigationOverlayProps) {
             right={
               <Fab
                 color='inherit'
-                onClick={handleClose}
+                onClick={handeOverlayClose}
                 sx={{
                   boxShadow: 'none',
                   marginLeft: `calc((${fabSize} - ${svgSize}) * -0.5)`,
@@ -198,10 +213,12 @@ export function NavigationOverlayBase(props: NavigationOverlayProps) {
 
 export function NavigationOverlay(props: NavigationOverlayProps) {
   const { items, stretchColumns } = props
+  const [disableAnimation, setDisableAnimation] = useState(false)
+
   return (
     <MotionConfig
       transition={{
-        duration: 0.2,
+        duration: disableAnimation ? 0 : 0.3,
       }}
     >
       <NavigationProvider
@@ -216,7 +233,11 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
           )
         }}
       >
-        <NavigationOverlayBase {...props} stretchColumns={stretchColumns} />
+        <NavigationOverlayBase
+          {...props}
+          stretchColumns={stretchColumns}
+          setDisableAnimation={setDisableAnimation}
+        />
       </NavigationProvider>
     </MotionConfig>
   )

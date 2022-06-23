@@ -41,7 +41,7 @@ export function useScrollTo() {
               },
               onComplete,
               onStop: onComplete,
-              duration: duration ? duration * 1000 : 375,
+              duration: duration !== null ? duration * 1000 : 375,
             }),
           )
         } else onComplete()
@@ -61,7 +61,7 @@ export function useScrollTo() {
               },
               onComplete,
               onStop: onComplete,
-              duration: duration ? duration * 1000 : 375,
+              duration: duration !== null ? duration * 1000 : 375,
             }),
           )
         } else {
