@@ -260,6 +260,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
       blurDataURL,
       dontReportWronglySizedImages,
       pictureProps,
+      sx = [],
       ...imgProps
     },
     forwardedRef,
@@ -494,7 +495,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
             width={width}
             height={height}
             data-nimg
-            style={style}
+            sx={[style, ...(Array.isArray(sx) ? sx : [sx])]}
           />
         ) : (
           <Picture {...pictureProps}>
@@ -512,7 +513,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
               loading={loading ?? 'lazy'}
               width={width}
               height={height}
-              style={style}
+              sx={[style, ...(Array.isArray(sx) ? sx : [sx])]}
               sizes={sizes}
               data-nimg
               decoding='async'
