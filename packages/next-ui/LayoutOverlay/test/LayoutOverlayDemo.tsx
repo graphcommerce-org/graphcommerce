@@ -1,4 +1,4 @@
-import { useUrlQuery } from '../../useUrlQuery/useUrlQuery'
+import { useUrlQuery } from '../../hooks/useUrlQuery'
 import { LayoutOverlay, LayoutOverlayProps } from '../components/LayoutOverlay'
 
 export type LayoutOverlayState = Omit<
