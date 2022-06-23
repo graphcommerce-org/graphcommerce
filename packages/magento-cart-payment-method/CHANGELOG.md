@@ -1,5 +1,18 @@
 # Change Log
 
+## 3.3.3
+
+### Patch Changes
+
+- [#1524](https://github.com/graphcommerce-org/graphcommerce/pull/1524) [`dae4551b7`](https://github.com/graphcommerce-org/graphcommerce/commit/dae4551b7b8181adc3405fb1ce88eae56495a8a9) Thanks [@paales](https://github.com/paales)! - make sure we are correctly rendering children when the payment method is a childmethod
+
+- Updated dependencies [[`d140fca34`](https://github.com/graphcommerce-org/graphcommerce/commit/d140fca3463b73e761e23fd1d9216305727f0c1a), [`9ec0338df`](https://github.com/graphcommerce-org/graphcommerce/commit/9ec0338dfe34d37b0f2c24e36ffa6ed13ea1145e), [`735b78672`](https://github.com/graphcommerce-org/graphcommerce/commit/735b786724d5401cbe6e88f2515e121a1a0945b2)]:
+  - @graphcommerce/magento-cart@4.4.6
+  - @graphcommerce/next-ui@4.11.0
+  - @graphcommerce/magento-store@4.2.12
+  - @graphcommerce/graphql@3.3.0
+  - @graphcommerce/framer-scroller@2.1.18
+
 ## 3.3.2
 
 ### Patch Changes

@@ -1,5 +1,55 @@
 # Change Log
 
+## 3.14.0
+
+### Minor Changes
+
+- [#1524](https://github.com/graphcommerce-org/graphcommerce/pull/1524) [`735b78672`](https://github.com/graphcommerce-org/graphcommerce/commit/735b786724d5401cbe6e88f2515e121a1a0945b2) Thanks [@paales](https://github.com/paales)! - Add errorLink while in development mode to allow for better error reporting when sending faulty queries to backends
+
+### Patch Changes
+
+- [#1524](https://github.com/graphcommerce-org/graphcommerce/pull/1524) [`13623f3cc`](https://github.com/graphcommerce-org/graphcommerce/commit/13623f3cc68fa60fc9686d71a077d6ab73ccc696) Thanks [@paales](https://github.com/paales)! - correctly set the ssr mode for Apollo Client
+
+* [#1524](https://github.com/graphcommerce-org/graphcommerce/pull/1524) [`9ec0338df`](https://github.com/graphcommerce-org/graphcommerce/commit/9ec0338dfe34d37b0f2c24e36ffa6ed13ea1145e) Thanks [@paales](https://github.com/paales)! - feat: Added useDateTimeFormat and useNumberFormat which automatically use the locales from nextjs.
+
+* Updated dependencies [[`d140fca34`](https://github.com/graphcommerce-org/graphcommerce/commit/d140fca3463b73e761e23fd1d9216305727f0c1a), [`c80e10d96`](https://github.com/graphcommerce-org/graphcommerce/commit/c80e10d96de18de73e7768f93aae806ce9cc45de), [`66559536f`](https://github.com/graphcommerce-org/graphcommerce/commit/66559536f8bb4faf597ae9f2efe4946d7add43c4), [`9ec0338df`](https://github.com/graphcommerce-org/graphcommerce/commit/9ec0338dfe34d37b0f2c24e36ffa6ed13ea1145e), [`dae4551b7`](https://github.com/graphcommerce-org/graphcommerce/commit/dae4551b7b8181adc3405fb1ce88eae56495a8a9), [`735b78672`](https://github.com/graphcommerce-org/graphcommerce/commit/735b786724d5401cbe6e88f2515e121a1a0945b2)]:
+  - @graphcommerce/magento-cart@4.4.6
+  - @graphcommerce/magento-cart-coupon@3.1.0
+  - @graphcommerce/mollie-magento-payment@3.3.3
+  - @graphcommerce/next-ui@4.11.0
+  - @graphcommerce/magento-customer-order@3.0.26
+  - @graphcommerce/magento-product@4.4.10
+  - @graphcommerce/magento-review@3.2.18
+  - @graphcommerce/magento-store@4.2.12
+  - @graphcommerce/magento-cart-payment-method@3.3.3
+  - @graphcommerce/graphql@3.3.0
+  - @graphcommerce/magento-cart-billing-address@3.0.30
+  - @graphcommerce/magento-cart-checkout@3.0.32
+  - @graphcommerce/magento-cart-email@3.0.32
+  - @graphcommerce/magento-cart-items@3.0.33
+  - @graphcommerce/magento-cart-shipping-address@3.2.2
+  - @graphcommerce/magento-cart-shipping-method@3.2.2
+  - @graphcommerce/magento-newsletter@2.0.30
+  - @graphcommerce/magento-payment-braintree@3.0.31
+  - @graphcommerce/magento-payment-included@3.1.3
+  - @graphcommerce/magento-product-bundle@4.0.32
+  - @graphcommerce/magento-product-configurable@4.1.17
+  - @graphcommerce/magento-product-downloadable@4.0.32
+  - @graphcommerce/magento-product-grouped@3.0.32
+  - @graphcommerce/magento-product-simple@4.0.32
+  - @graphcommerce/magento-product-virtual@4.0.32
+  - @graphcommerce/magento-wishlist@1.3.4
+  - @graphcommerce/ecommerce-ui@1.0.21
+  - @graphcommerce/framer-scroller@2.1.18
+  - @graphcommerce/graphcms-ui@3.0.25
+  - @graphcommerce/magento-category@4.1.18
+  - @graphcommerce/magento-customer@4.6.1
+  - @graphcommerce/magento-customer-account@3.1.25
+  - @graphcommerce/magento-search@4.1.20
+  - @graphcommerce/magento-cms@4.0.23
+  - @graphcommerce/googlerecaptcha@2.1.9
+  - @graphcommerce/magento-graphql@3.0.15
+
 ## 3.13.2
 
 ### Patch Changes
