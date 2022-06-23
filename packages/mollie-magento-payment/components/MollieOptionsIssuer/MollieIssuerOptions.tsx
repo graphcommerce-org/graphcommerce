@@ -30,7 +30,7 @@ export function MollieIssuerOptions(props: MollieIssuerOptionsProps) {
   useFormCompose({ form, step, submit, key: `PaymentMethodOptions_${code}` })
 
   return (
-    <Container>
+    <>
       <form onSubmit={submit} noValidate>
         <FormRow>
           <TextField
@@ -64,6 +64,6 @@ export function MollieIssuerOptions(props: MollieIssuerOptionsProps) {
         </FormRow>
       </form>
       {children}
-    </Container>
+    </>
   )
 }

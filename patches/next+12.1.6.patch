@@ -1,8 +1,8 @@
 diff --git a/node_modules/next/dist/build/swc/options.js b/node_modules/next/dist/build/swc/options.js
-index 28b051e..7bc0890 100755
+index bc39fc8..c269f12 100644
 --- a/node_modules/next/dist/build/swc/options.js
 +++ b/node_modules/next/dist/build/swc/options.js
-@@ -181,9 +181,12 @@ function getLoaderSWCOptions({ filename , development , isServer , pagesDir , is
+@@ -178,9 +178,12 @@ function getLoaderSWCOptions({ filename , development , isServer , pagesDir , is
              // Ensure Next.js internals are output as commonjs modules
              ...isNextDist ? {
                  module: {

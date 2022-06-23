@@ -4,6 +4,7 @@ import {
   responsiveVal,
   StarRatingField,
   extendableComponent,
+  useDateTimeFormat,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Typography, Button, Box, SxProps, Theme, Link } from '@mui/material'
@@ -34,8 +35,6 @@ const { classes } = extendableComponent(name, parts)
 
 export function ProductReviews(props: ProductReviewsProps) {
   const { reviews, url_key, sx = [] } = props
-  const config = 'en_US'
-  const locale = config.replace('_', '-')
   const router = useRouter()
 
   const [reviewPage, setPage] = useState<number>(1)
@@ -53,7 +52,7 @@ export function ProductReviews(props: ProductReviewsProps) {
 
   const { current_page, total_pages } = myReviews.page_info
 
-  const formatter = new Intl.DateTimeFormat(locale, {
+  const formatter = useDateTimeFormat({
     year: 'numeric',
     month: 'long',
     day: 'numeric',
