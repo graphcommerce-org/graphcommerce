@@ -77,7 +77,7 @@ export function NavigationOverlayBase(
 
   const handeOverlayClose = useEventCallback(() => {
     setDisableAnimation(true)
-    select([])
+    // select([])
     setTimeout(() => {
       setDisableAnimation(false)
     }, 1)
