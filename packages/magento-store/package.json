@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-store",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "4.2.11",
+  "version": "4.2.12",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -19,10 +19,10 @@
     "type-fest": "^2.12.2"
   },
   "dependencies": {
-    "@graphcommerce/graphql": "3.2.1",
+    "@graphcommerce/graphql": "3.3.0",
     "@graphcommerce/graphql-mesh": "4.1.4",
     "@graphcommerce/image": "3.1.7",
-    "@graphcommerce/next-ui": "4.10.0"
+    "@graphcommerce/next-ui": "4.11.0"
   },
   "peerDependencies": {
     "@lingui/react": "^3.13.2",
