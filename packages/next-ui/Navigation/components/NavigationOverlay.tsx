@@ -84,6 +84,11 @@ export function NavigationOverlayBase(
     closeCallback()
   })
 
+  const { asPath } = useRouter()
+  useEffect(() => {
+    handeOverlayClose()
+  }, [asPath, handeOverlayClose])
+
   const current = findCurrent({ items, path })
 
   const showBack = path.length > 0
