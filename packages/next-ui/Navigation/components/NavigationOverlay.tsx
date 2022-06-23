@@ -105,8 +105,9 @@ export function NavigationOverlayBase(
       justifyMd='start'
       sx={{
         zIndex: 'drawer',
-        '& > div > div': { minWidth: 'auto !important', width: 'max-content' },
         '& .LayoutOverlayBase-overlayPane': {
+          minWidth: 'auto !important',
+          width: 'max-content',
           overflow: 'hidden',
           display: 'grid',
           gridTemplateRows: 'auto 1fr',
