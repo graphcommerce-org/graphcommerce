@@ -224,7 +224,7 @@ export type NavigationProviderProps = {
 }
 
 export function NavigationProvider(props: NavigationProviderProps) {
-  const { items, renderItem, onChange, hideRootOnNavigate = false, children } = props
+  const { items, renderItem, onChange, hideRootOnNavigate = true, children } = props
 
   const [path, select] = useState<NavigationPath>([])
   const value = useMemo<NavigationContext>(
