@@ -8,7 +8,17 @@ import {
   extendableComponent,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box, Button, styled, SxProps, Theme, Typography } from '@mui/material'
+import {
+  Box,
+  Button,
+  styled,
+  SxProps,
+  Theme,
+  Typography,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+} from '@mui/material'
 import { AnimatePresence, m } from 'framer-motion'
 import { useState } from 'react'
 import { ApplyCouponForm } from '../ApplyCouponForm/ApplyCouponForm'
@@ -37,6 +47,49 @@ export function CouponAccordion(props: CouponAccordionProps) {
     open: Boolean(!coupon && open),
     disabled: Boolean(coupon),
   })
+  const handleChange = () => setOpen(!coupon && !open)
+
+  return (
+    <Accordion
+      onChange={handleChange}
+      expanded={!coupon && open}
+      variant='outlined'
+      sx={[
+        {
+          borderRadius: 1,
+          '::before': { display: 'none' },
+        },
+
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    >
+      <AccordionSummary
+        onClick={(e) => e.preventDefault()}
+        expandIcon={!coupon && <IconSvg src={iconChevronDown} />}
+        sx={[
+          (theme) => ({
+            px: theme.spacings.sm,
+            '& .MuiAccordionSummary-content': {
+              alignItems: 'center',
+              columnGap: 2,
+              justifyContent: 'space-between',
+            },
+          }),
+          Boolean(coupon) && {
+            '&:hover:not(.Mui-disabled)': {
+              cursor: 'default',
+            },
+          },
+        ]}
+      >
+        <Trans id='Discount code' />
+        <RemoveCouponForm {...data.cart} />
+      </AccordionSummary>
+      <AccordionDetails sx={(theme) => ({ px: theme.spacings.sm })}>
+        <ApplyCouponForm />
+      </AccordionDetails>
+    </Accordion>
+  )
 
   return (
     <AnimatedRow key='discount-codes'>
