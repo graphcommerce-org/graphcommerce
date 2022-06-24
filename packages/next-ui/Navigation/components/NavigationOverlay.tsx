@@ -104,10 +104,10 @@ export function NavigationOverlayBase(
       active={active}
       close={handeOverlayClose}
       variantSm='left'
-      sizeSm='full'
+      sizeSm='floating'
       justifySm='start'
       variantMd='left'
-      sizeMd='full'
+      sizeMd='floating'
       justifyMd='start'
       sx={{
         zIndex: 'drawer',
@@ -230,7 +230,7 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
   return (
     <MotionConfig
       transition={{
-        duration: disableAnimation ? 0 : 0.3,
+        duration: disableAnimation ? 0 : 0.13,
       }}
     >
       <NavigationProvider
