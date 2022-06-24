@@ -111,10 +111,10 @@ export function PaymentMethodActionCardListForm(props: PaymentMethodActionCardLi
     <ActionCardListForm<PaymentOptionsProps & ActionCardItemBase>
       control={control}
       name='paymentMethod'
-      errorMessage='Please select a shipping address'
+      errorMessage='Please select a payment method'
       items={methods.map((method) => ({
         ...method,
-        value: method.code,
+        value: `${method.code}___${method.child}`,
         step,
         Container: FormDiv,
       }))}
