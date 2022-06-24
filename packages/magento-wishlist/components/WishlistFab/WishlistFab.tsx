@@ -74,7 +74,15 @@ export function WishlistFab(props: WishlistFabProps) {
     activeWishlist = wishlist.length > 0
   }
 
-  if (!isWishlistEnabled || hideForGuest) return null
+  if (!isWishlistEnabled) return null
+
+  if (hideForGuest) {
+    return (
+      <NoSsr fallback={null}>
+        <WishlistFabContent {...props} activeWishlist={activeWishlist} />
+      </NoSsr>
+    )
+  }
 
   return (
     <NoSsr fallback={<WishlistFabContent {...props} activeWishlist={false} />}>
