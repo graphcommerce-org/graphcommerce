@@ -1,5 +1,17 @@
 # Change Log
 
+## 3.3.4
+
+### Patch Changes
+
+- [#1529](https://github.com/graphcommerce-org/graphcommerce/pull/1529) [`d5e012462`](https://github.com/graphcommerce-org/graphcommerce/commit/d5e012462dda18a61aa20eca8dc57e26cc4c7931) Thanks [@paales](https://github.com/paales)! - When a payment method had multiple childs it would select all children at once.
+
+- Updated dependencies [[`11bca2d2f`](https://github.com/graphcommerce-org/graphcommerce/commit/11bca2d2f7dbb7c5e2827c04eb0db43d4099f2fd)]:
+  - @graphcommerce/next-ui@4.11.1
+  - @graphcommerce/framer-scroller@2.1.19
+  - @graphcommerce/magento-cart@4.4.7
+  - @graphcommerce/magento-store@4.2.13
+
 ## 3.3.3
 
 ### Patch Changes
