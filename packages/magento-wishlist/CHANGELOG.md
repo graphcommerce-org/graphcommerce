@@ -1,5 +1,17 @@
 # @graphcommerce/magento-wishlist
 
+## 1.3.5
+
+### Patch Changes
+
+- Updated dependencies [[`11bca2d2f`](https://github.com/graphcommerce-org/graphcommerce/commit/11bca2d2f7dbb7c5e2827c04eb0db43d4099f2fd)]:
+  - @graphcommerce/next-ui@4.11.1
+  - @graphcommerce/magento-cart@4.4.7
+  - @graphcommerce/magento-customer@4.6.2
+  - @graphcommerce/magento-product@4.4.11
+  - @graphcommerce/magento-product-configurable@4.1.18
+  - @graphcommerce/magento-store@4.2.13
+
 ## 1.3.4
 
 ### Patch Changes
