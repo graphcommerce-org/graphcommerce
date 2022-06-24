@@ -77,12 +77,18 @@ export function NavigationOverlayBase(
 
   const handeOverlayClose = useEventCallback(() => {
     setDisableAnimation(true)
-    // select([])
     setTimeout(() => {
       setDisableAnimation(false)
     }, 1)
     closeCallback()
   })
+
+  useEffect(() => {
+    if (!active) {
+      select([])
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [active])
 
   const { asPath } = useRouter()
   useEffect(() => {
