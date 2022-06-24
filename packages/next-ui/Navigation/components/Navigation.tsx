@@ -78,7 +78,6 @@ function NavigationItem(props: NavigationItemProps) {
             display: hideItem ? 'none' : 'flex',
           }}
           data-level={level + levelOffset}
-          data-parentPath={parentPath.join(',')}
           disabled={selected}
           tabIndex={path.join(',').includes(parentPath.join(',')) ? undefined : -1}
           onClick={(e) => {
@@ -122,7 +121,6 @@ function NavigationItem(props: NavigationItemProps) {
                     gridColumnStart: level + 1 + levelOffset,
                   }}
                   data-level={level + 1 + levelOffset}
-                  data-parentPath={itemPath.join(',')}
                   tabIndex={path.join(',').includes(itemPath.join(',')) ? undefined : -1}
                 >
                   <Box
@@ -173,7 +171,6 @@ function NavigationItem(props: NavigationItemProps) {
               gap: (theme) => theme.spacings.xxs,
             }}
             data-level={level + levelOffset}
-            data-parentPath={parentPath.join(',')}
             tabIndex={path.join(',').includes(parentPath.join(',')) ? undefined : -1}
           >
             <Box
@@ -197,7 +194,6 @@ function NavigationItem(props: NavigationItemProps) {
             gridColumnStart: level + levelOffset,
           }}
           data-level={level + levelOffset}
-          data-parentPath={parentPath.join(',')}
           className={[
             classes.item,
             row === 1 && classes.first,
