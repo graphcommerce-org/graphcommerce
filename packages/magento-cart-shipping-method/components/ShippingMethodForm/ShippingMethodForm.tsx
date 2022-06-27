@@ -102,7 +102,7 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
             disabled: !sortedMethod?.available,
             value: `${sortedMethod?.carrier_code}-${sortedMethod?.method_code}`,
           }))}
-          render={ShippingMethodActionCard as VFC<ActionCardItemRenderProps<ActionCardItemBase>>}
+          render={ShippingMethodActionCard as FC<ActionCardItemRenderProps<ActionCardItemBase>>}
         />
         <ApolloCartErrorAlert error={error} />
       </Form>

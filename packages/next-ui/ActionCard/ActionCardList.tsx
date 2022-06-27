@@ -32,7 +32,7 @@ export type ActionCardListProps<SelectOrMulti = MultiSelect | Select> = {
   children?: React.ReactNode
   required?: boolean
   error?: boolean
-  errorMessage?: React.ReactNode
+  errorMessage?: string
   sx?: SxProps<Theme>
 } & SelectOrMulti
 
@@ -56,8 +56,6 @@ export const actionCardListSelectors = selectors
 export function ActionCardList(props: ActionCardListProps) {
   const { children, required, value, error = false, errorMessage, size = 'large', sx = [] } = props
   const classes = withState({ size })
-
-  console.log('size', size)
 
   const handleChange = isMulti(props)
     ? (event: React.MouseEvent<HTMLElement, MouseEvent>, buttonValue: string) => {

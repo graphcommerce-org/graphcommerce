@@ -80,8 +80,6 @@ export function ActionCard(props: ActionCardProps) {
 
   const classes = withState({ hidden, disabled, selected, image: Boolean(image), variant, size })
 
-  console.log('card size', size)
-
   return (
     <RenderComponent
       className={classes.root}

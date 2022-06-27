@@ -1,6 +1,7 @@
 import { useFormProductAddToCart } from '@graphcommerce/magento-product'
 import { SectionHeader, RenderType } from '@graphcommerce/next-ui'
 import { ActionCardListForm } from '@graphcommerce/next-ui/ActionCard/ActionCardListForm'
+import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { BaseTextFieldProps } from '@mui/material'
 import React from 'react'
@@ -78,12 +79,9 @@ export function ConfigurableOptionsInput(props: ConfigurableOptionsInputProps) {
               }))}
               error={false}
               render={ConfigurableOptionsActionCard}
-              errorMessage={
-                <Trans
-                  id='Please select a value for {0}'
-                  values={{ 0: label?.toLocaleLowerCase() }}
-                />
-              }
+              errorMessage={i18n._(/* i18n*/ 'Please select a value for {0}', {
+                0: label?.toLocaleLowerCase(),
+              })}
             />
           </React.Fragment>
         )

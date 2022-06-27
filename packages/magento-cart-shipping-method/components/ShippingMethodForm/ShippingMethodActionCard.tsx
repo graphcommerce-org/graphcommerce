@@ -24,6 +24,7 @@ export function ShippingMethodActionCard(props: ShippingMethodActionCardProps) {
       hidden={hidden}
       title={carrier_title}
       details={error_message}
+      variant='outlined'
       action={
         <Button
           variant='inline'
