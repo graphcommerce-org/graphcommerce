@@ -3,8 +3,7 @@ import { Trans } from '@lingui/react'
 import { Box, Fab, SxProps, Theme, useEventCallback } from '@mui/material'
 import { m, MotionConfig, MotionConfigContext } from 'framer-motion'
 import { Tween } from 'framer-motion/types/types'
-import { useRouter } from 'next/router'
-import { useContext, useEffect, useState } from 'react'
+import { useContext } from 'react'
 import { isElement } from 'react-is'
 import { IconSvg, useIconSvgSize } from '../../IconSvg'
 import { LayoutTitle } from '../../Layout'
@@ -47,18 +46,8 @@ function findCurrent(props: findCurrentProps) {
 
 const MotionDiv = styled(m.div)()
 
-export function NavigationOverlayBase(
-  props: NavigationOverlayProps & { setDisableAnimation: (boolean) => void },
-) {
-  const {
-    active,
-    sx,
-    onClose: closeCallback,
-    items,
-    stretchColumns,
-    itemWidth,
-    setDisableAnimation,
-  } = props
+export function NavigationOverlayBase(props: NavigationOverlayProps) {
+  const { active, sx, onClose: closeCallback, items, stretchColumns, itemWidth } = props
 
   const duration = (useContext(MotionConfigContext).transition as Tween | undefined)?.duration ?? 0
 
@@ -81,11 +70,6 @@ export function NavigationOverlayBase(
       select([])
     }, duration * 1000)
   })
-
-  const { asPath } = useRouter()
-  useEffect(() => {
-    handeOverlayClose()
-  }, [asPath, handeOverlayClose])
 
   const current = findCurrent({ items, path })
 
@@ -208,7 +192,7 @@ export function NavigationOverlayBase(
             },
           })}
         >
-          <NavigationBase sx={sx} />
+          <NavigationBase sx={sx} onItemClick={handeOverlayClose} />
         </Box>
       </MotionDiv>
     </Overlay>
@@ -217,12 +201,11 @@ export function NavigationOverlayBase(
 
 export function NavigationOverlay(props: NavigationOverlayProps) {
   const { items, stretchColumns } = props
-  const [disableAnimation, setDisableAnimation] = useState(false)
 
   return (
     <MotionConfig
       transition={{
-        duration: disableAnimation ? 0 : 0.13,
+        duration: 0.275,
       }}
     >
       <NavigationProvider
@@ -237,11 +220,7 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
           )
         }}
       >
-        <NavigationOverlayBase
-          {...props}
-          stretchColumns={stretchColumns}
-          setDisableAnimation={setDisableAnimation}
-        />
+        <NavigationOverlayBase {...props} stretchColumns={stretchColumns} />
       </NavigationProvider>
     </MotionConfig>
   )

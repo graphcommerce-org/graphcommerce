@@ -33,6 +33,7 @@ export type NavigationNode = {
   component?: React.ReactNode
   childItems?: NavigationNode[]
   childItemsCount?: number
+  onItemClick?: () => void
 }
 
 type NavigationItemProps = NavigationNode & {
@@ -41,7 +42,7 @@ type NavigationItemProps = NavigationNode & {
 }
 
 function NavigationItem(props: NavigationItemProps) {
-  const { id, href, component, childItems, parentPath, row, childItemsCount } = props
+  const { id, href, component, childItems, parentPath, row, childItemsCount, onItemClick } = props
   const { Render, path, select, hideRootOnNavigate } = useContext(navigationContext)
 
   const itemPath = [...parentPath, id]
@@ -122,6 +123,11 @@ function NavigationItem(props: NavigationItemProps) {
                   }}
                   data-level={level + 1 + levelOffset}
                   tabIndex={path.join(',').includes(itemPath.join(',')) ? undefined : -1}
+                  onClick={() => {
+                    if (onItemClick) {
+                      onItemClick()
+                    }
+                  }}
                 >
                   <Box
                     component='span'
@@ -147,6 +153,7 @@ function NavigationItem(props: NavigationItemProps) {
               parentPath={itemPath}
               row={href ? idx + 2 : idx + 1}
               childItemsCount={childItems.length + 1}
+              onItemClick={onItemClick}
             />
           ))}
         </Box>
@@ -172,6 +179,11 @@ function NavigationItem(props: NavigationItemProps) {
             }}
             data-level={level + levelOffset}
             tabIndex={path.join(',').includes(parentPath.join(',')) ? undefined : -1}
+            onClick={() => {
+              if (onItemClick) {
+                onItemClick()
+              }
+            }}
           >
             <Box
               component='span'
@@ -245,8 +257,8 @@ export function NavigationProvider(props: NavigationProviderProps) {
 type NavigationBaseProps = {
   sx?: SxProps<Theme>
 }
-export function NavigationBase(props: NavigationBaseProps) {
-  const { sx = [] } = props
+export function NavigationBase(props: NavigationBaseProps & { onItemClick: () => void }) {
+  const { sx = [], onItemClick } = props
   const { items, path } = useContext(navigationContext)
 
   return (
@@ -293,6 +305,7 @@ export function NavigationBase(props: NavigationBaseProps) {
             parentPath={[]}
             row={idx + 1}
             childItemsCount={items.length}
+            onItemClick={onItemClick}
           />
         ))}
       </Box>
