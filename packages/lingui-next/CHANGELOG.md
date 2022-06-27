@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.1.10
+
+### Patch Changes
+
+- [#1532](https://github.com/graphcommerce-org/graphcommerce/pull/1532) [`aec1f42fa`](https://github.com/graphcommerce-org/graphcommerce/commit/aec1f42fa2c02764c3071bfcccbf5eb6a13fbaef) Thanks [@paales](https://github.com/paales)! - fix: Error: useLingui hook was used without I18nProvider
+
 ## 2.1.9
 
 ### Patch Changes
