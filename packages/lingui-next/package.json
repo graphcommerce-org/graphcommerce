@@ -2,7 +2,7 @@
   "name": "@graphcommerce/lingui-next",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "2.1.9",
+  "version": "2.1.10",
   "sideEffects": false,
   "scripts": {
     "dev": "tsc -W"
