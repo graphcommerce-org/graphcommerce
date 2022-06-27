@@ -14,11 +14,6 @@
       "project": "./tsconfig.json"
     }
   },
-  "dependencies": {
-    "@lingui/core": "^3.13.3",
-    "@lingui/react": "^3.13.3",
-    "babel-plugin-macros": "^3.1.0"
-  },
   "devDependencies": {
     "@graphcommerce/eslint-config-pwa": "^4.1.8",
     "@graphcommerce/prettier-config-pwa": "^4.0.6",
