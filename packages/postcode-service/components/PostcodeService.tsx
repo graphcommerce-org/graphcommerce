@@ -48,8 +48,8 @@ export function usePostcodeService(
   useEffect(() => {
     const { success, straatnaam, woonplaats } = result.data?.postcodeServiceNL ?? {}
     if (success && straatnaam && woonplaats) {
-      setValue(fieldNames.street, straatnaam)
-      setValue(fieldNames.city, woonplaats)
+      setValue(fieldNames.street, straatnaam, { shouldValidate: true })
+      setValue(fieldNames.city, woonplaats, { shouldValidate: true })
     } else {
       resetField(fieldNames.street)
       resetField(fieldNames.city)
