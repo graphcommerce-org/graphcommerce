@@ -1,5 +1,31 @@
 # Change Log
 
+## 4.6.2
+
+### Patch Changes
+
+- Updated dependencies [[`11bca2d2f`](https://github.com/graphcommerce-org/graphcommerce/commit/11bca2d2f7dbb7c5e2827c04eb0db43d4099f2fd)]:
+  - @graphcommerce/next-ui@4.11.1
+  - @graphcommerce/ecommerce-ui@1.0.22
+  - @graphcommerce/magento-store@4.2.13
+
+## 4.6.1
+
+### Patch Changes
+
+- Updated dependencies [[`9ec0338df`](https://github.com/graphcommerce-org/graphcommerce/commit/9ec0338dfe34d37b0f2c24e36ffa6ed13ea1145e), [`735b78672`](https://github.com/graphcommerce-org/graphcommerce/commit/735b786724d5401cbe6e88f2515e121a1a0945b2)]:
+  - @graphcommerce/next-ui@4.11.0
+  - @graphcommerce/magento-store@4.2.12
+  - @graphcommerce/graphql@3.3.0
+  - @graphcommerce/ecommerce-ui@1.0.21
+  - @graphcommerce/magento-graphql@3.0.15
+
+## 4.6.0
+
+### Minor Changes
+
+- [#1526](https://github.com/graphcommerce-org/graphcommerce/pull/1526) [`98ff2334d`](https://github.com/graphcommerce-org/graphcommerce/commit/98ff2334d1b7dedb8bc56ebe6abb50836eefedd3) Thanks [@mikekeehnen](https://github.com/mikekeehnen)! - Removed form persistance for isEmailAvailableForm that prevented the user from logging in after sign up
+
 ## 4.5.4
 
 ### Patch Changes

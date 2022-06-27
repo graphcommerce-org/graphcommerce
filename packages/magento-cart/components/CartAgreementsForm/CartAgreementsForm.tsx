@@ -53,6 +53,8 @@ export function CartAgreementsForm(props: CartAgreementsFormProps) {
 
   useFormCompose({ form, step, submit, key: 'PaymentAgreementsForm' })
 
+  if (data?.checkoutAgreements?.length === 0) return null
+
   return (
     <FormDiv
       className={classes.form}

@@ -1,5 +1,31 @@
 # Change Log
 
+## 3.0.32
+
+### Patch Changes
+
+- Updated dependencies [[`11bca2d2f`](https://github.com/graphcommerce-org/graphcommerce/commit/11bca2d2f7dbb7c5e2827c04eb0db43d4099f2fd)]:
+  - @graphcommerce/next-ui@4.11.1
+  - @graphcommerce/magento-cart-shipping-method@3.2.3
+  - @graphcommerce/magento-store@4.2.13
+
+## 3.0.31
+
+### Patch Changes
+
+- Updated dependencies [[`9ec0338df`](https://github.com/graphcommerce-org/graphcommerce/commit/9ec0338dfe34d37b0f2c24e36ffa6ed13ea1145e), [`735b78672`](https://github.com/graphcommerce-org/graphcommerce/commit/735b786724d5401cbe6e88f2515e121a1a0945b2)]:
+  - @graphcommerce/next-ui@4.11.0
+  - @graphcommerce/magento-store@4.2.12
+  - @graphcommerce/graphql@3.3.0
+  - @graphcommerce/magento-cart-shipping-method@3.2.2
+
+## 3.0.30
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/magento-cart-shipping-method@3.2.1
+
 ## 3.0.29
 
 ### Patch Changes

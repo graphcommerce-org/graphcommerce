@@ -1,5 +1,5 @@
 import { useQuery } from '@graphcommerce/graphql'
-import { ExtendableComponent } from '@graphcommerce/next-ui'
+import { ExtendableComponent, useNumberFormat } from '@graphcommerce/next-ui'
 import { useThemeProps } from '@mui/material'
 import { useMemo } from 'react'
 import { MoneyFragment } from './Money.gql'
@@ -28,24 +28,23 @@ export function Money(props: MoneyProps) {
   const { currency, value, round = false, formatOptions } = useThemeProps({ name, props })
 
   const { data: config } = useQuery(StoreConfigDocument)
-  const locale = config?.storeConfig?.locale
 
   const digits = (value ?? 0) % 1 !== 0
 
-  const numberFormatter = useMemo(() => {
-    if (!locale) return undefined
-
-    return new Intl.NumberFormat(locale.replace('_', '-'), {
+  const options: Intl.NumberFormatOptions = useMemo(
+    () => ({
       style: 'currency',
       currency: currency ?? config?.storeConfig?.base_currency_code ?? '',
       ...(round && !digits && { minimumFractionDigits: 0 }),
       ...(round && digits && { minimumFractionDigits: 2 }),
       ...(!round && { minimumFractionDigits: 2 }),
       ...formatOptions,
-    })
-  }, [config?.storeConfig?.base_currency_code, currency, digits, formatOptions, locale, round])
+    }),
+    [config?.storeConfig?.base_currency_code, currency, digits, formatOptions, round],
+  )
+  const numberFormatter = useNumberFormat(options)
 
-  if (!numberFormatter || !value) return null
+  if (!value) return null
 
   return <>{numberFormatter.format(value)}</>
 }

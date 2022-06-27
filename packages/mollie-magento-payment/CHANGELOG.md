@@ -1,5 +1,45 @@
 # Change Log
 
+## 3.3.4
+
+### Patch Changes
+
+- Updated dependencies [[`11bca2d2f`](https://github.com/graphcommerce-org/graphcommerce/commit/11bca2d2f7dbb7c5e2827c04eb0db43d4099f2fd), [`d5e012462`](https://github.com/graphcommerce-org/graphcommerce/commit/d5e012462dda18a61aa20eca8dc57e26cc4c7931)]:
+  - @graphcommerce/next-ui@4.11.1
+  - @graphcommerce/magento-cart-payment-method@3.3.4
+  - @graphcommerce/magento-cart@4.4.7
+  - @graphcommerce/magento-store@4.2.13
+
+## 3.3.3
+
+### Patch Changes
+
+- [#1524](https://github.com/graphcommerce-org/graphcommerce/pull/1524) [`66559536f`](https://github.com/graphcommerce-org/graphcommerce/commit/66559536f8bb4faf597ae9f2efe4946d7add43c4) Thanks [@paales](https://github.com/paales)! - fix: remove container from mollie issuer, causes double spacing
+
+- Updated dependencies [[`d140fca34`](https://github.com/graphcommerce-org/graphcommerce/commit/d140fca3463b73e761e23fd1d9216305727f0c1a), [`9ec0338df`](https://github.com/graphcommerce-org/graphcommerce/commit/9ec0338dfe34d37b0f2c24e36ffa6ed13ea1145e), [`dae4551b7`](https://github.com/graphcommerce-org/graphcommerce/commit/dae4551b7b8181adc3405fb1ce88eae56495a8a9), [`735b78672`](https://github.com/graphcommerce-org/graphcommerce/commit/735b786724d5401cbe6e88f2515e121a1a0945b2)]:
+  - @graphcommerce/magento-cart@4.4.6
+  - @graphcommerce/next-ui@4.11.0
+  - @graphcommerce/magento-store@4.2.12
+  - @graphcommerce/magento-cart-payment-method@3.3.3
+  - @graphcommerce/graphql@3.3.0
+
+## 3.3.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/magento-cart@4.4.5
+  - @graphcommerce/magento-cart-payment-method@3.3.2
+
+## 3.3.1
+
+### Patch Changes
+
+- [#1519](https://github.com/graphcommerce-org/graphcommerce/pull/1519) [`64c7b6b45`](https://github.com/graphcommerce-org/graphcommerce/commit/64c7b6b4595a13110453f98680ffd69f27f2c656) Thanks [@paales](https://github.com/paales)! - mollie_meta should not be in general package
+
+- Updated dependencies [[`64c7b6b45`](https://github.com/graphcommerce-org/graphcommerce/commit/64c7b6b4595a13110453f98680ffd69f27f2c656)]:
+  - @graphcommerce/magento-cart-payment-method@3.3.1
+
 ## 3.3.0
 
 ### Minor Changes

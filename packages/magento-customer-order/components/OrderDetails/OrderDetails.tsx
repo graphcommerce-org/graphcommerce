@@ -1,16 +1,11 @@
-import { useQuery } from '@graphcommerce/graphql'
-import {
-  StoreConfigDocument,
-  Money,
-  useFindCountry,
-  useFindRegion,
-} from '@graphcommerce/magento-store'
+import { Money, useFindCountry, useFindRegion } from '@graphcommerce/magento-store'
 import {
   SectionContainer,
   responsiveVal,
   iconInvoice,
   IconSvg,
   extendableComponent,
+  useDateTimeFormat,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { experimental_sx, Skeleton, styled, SxProps, Theme } from '@mui/material'
@@ -123,14 +118,7 @@ export function OrderDetails(props: OrderDetailsProps) {
     sx = [],
   } = props
 
-  const { data: config } = useQuery(StoreConfigDocument)
-  const locale = config?.storeConfig?.locale?.replace('_', '-')
-
-  const dateFormatter = new Intl.DateTimeFormat(locale, {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  })
+  const dateFormatter = useDateTimeFormat({ year: 'numeric', month: 'long', day: 'numeric' })
 
   const billingAddressCountry = useFindCountry(billing_address?.country_code)
   const billingAddressRegion = useFindRegion(

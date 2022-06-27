@@ -10,6 +10,7 @@ import {
   createCacheReviver,
   fragments,
   mergeTypePolicies,
+  errorLink,
 } from '@graphcommerce/graphql'
 import { cartTypePolicies, migrateCart } from '@graphcommerce/magento-cart'
 import {
@@ -39,6 +40,7 @@ const migrations = [migrateCart, migrateCustomer]
 /** HttpLink to connecto to the GraphQL Backend. */
 export function httpLink(cache: ApolloCache<NormalizedCacheObject>, locale?: string) {
   return ApolloLink.from([
+    ...(process.env.NODE_ENV !== 'production' ? [errorLink] : []),
     // Add the correct store header for the Magento user.
     createStoreLink(locale),
     // Add the correct authorization header for the Magento user.
@@ -74,7 +76,12 @@ export function GraphQLProvider({ children, router, pageProps }: GraphQLProvider
 
   const client = useMemo(() => {
     const cache = createCache()
-    return new ApolloClient({ link: httpLink(cache, router.locale), cache, name: 'web' })
+    return new ApolloClient({
+      link: httpLink(cache, router.locale),
+      cache,
+      name: 'web',
+      ssrMode: typeof window === 'undefined',
+    })
   }, [router.locale])
 
   // Update the cache with the latest incomming data, but only when it is changed.

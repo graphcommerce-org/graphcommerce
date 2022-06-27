@@ -1,5 +1,36 @@
 # Change Log
 
+## 3.2.3
+
+### Patch Changes
+
+- Updated dependencies [[`11bca2d2f`](https://github.com/graphcommerce-org/graphcommerce/commit/11bca2d2f7dbb7c5e2827c04eb0db43d4099f2fd)]:
+  - @graphcommerce/next-ui@4.11.1
+  - @graphcommerce/framer-scroller@2.1.19
+  - @graphcommerce/magento-cart@4.4.7
+  - @graphcommerce/magento-cart-shipping-address@3.2.3
+  - @graphcommerce/magento-store@4.2.13
+
+## 3.2.2
+
+### Patch Changes
+
+- Updated dependencies [[`d140fca34`](https://github.com/graphcommerce-org/graphcommerce/commit/d140fca3463b73e761e23fd1d9216305727f0c1a), [`9ec0338df`](https://github.com/graphcommerce-org/graphcommerce/commit/9ec0338dfe34d37b0f2c24e36ffa6ed13ea1145e), [`735b78672`](https://github.com/graphcommerce-org/graphcommerce/commit/735b786724d5401cbe6e88f2515e121a1a0945b2)]:
+  - @graphcommerce/magento-cart@4.4.6
+  - @graphcommerce/next-ui@4.11.0
+  - @graphcommerce/magento-store@4.2.12
+  - @graphcommerce/graphql@3.3.0
+  - @graphcommerce/magento-cart-shipping-address@3.2.2
+  - @graphcommerce/framer-scroller@2.1.18
+
+## 3.2.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/magento-cart@4.4.5
+  - @graphcommerce/magento-cart-shipping-address@3.2.1
+
 ## 3.2.0
 
 ### Minor Changes

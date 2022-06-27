@@ -1,7 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies */
-import { Theme } from '@emotion/react'
 import { Controller, ControllerProps } from '@graphcommerce/react-hook-form'
-import { SxProps } from '@mui/material'
 import React, { MouseEventHandler } from 'react'
 import { ActionCardProps } from './ActionCard'
 import { ActionCardList, ActionCardListProps } from './ActionCardList'
@@ -21,16 +18,13 @@ export type ActionCardListFormProps<T extends ActionCardItemBase> = Omit<
 > &
   Omit<ControllerProps<any>, 'render'> & {
     items: T[]
-    render: React.FC<ActionCardItemRenderProps<T>>
-  } & {
-    size?: 'large' | 'medium' | 'small'
-    sx?: SxProps<Theme>
+    render: React.VFC<ActionCardItemRenderProps<T>>
   }
 
 export function ActionCardListForm<T extends ActionCardItemBase>(
   props: ActionCardListFormProps<T>,
 ) {
-  const { required, rules, items, render, control, name, error, errorMessage, sx, size } = props
+  const { required, rules, items, render, control, name, errorMessage } = props
   const RenderItem = render as React.VFC<ActionCardItemRenderProps<ActionCardItemBase>>
 
   return (
@@ -38,19 +32,14 @@ export function ActionCardListForm<T extends ActionCardItemBase>(
       {...props}
       control={control}
       name={name}
-      rules={{
-        required,
-        ...rules,
-        validate: (v) => (v ? true : 'Please select a shipping address'),
-      }}
+      rules={{ required, ...rules, validate: (v) => (v ? true : errorMessage) }}
       render={({ field: { onChange, value }, fieldState, formState }) => (
         <ActionCardList
           required
-          onChange={(_, incomming) => {
-            onChange(incomming)
-          }}
+          value={value}
+          onChange={(_, incomming) => onChange(incomming)}
           error={formState.isSubmitted && !!fieldState.error}
-          {...props}
+          errorMessage={fieldState.error?.message}
         >
           {items.map((item) => (
             <RenderItem
