@@ -1,14 +1,14 @@
 import { Box, Link, SxProps, Theme, Typography } from '@mui/material'
 import PageLink from 'next/link'
-import React, { useMemo } from 'react'
+import React from 'react'
 import { extendableComponent } from '../../Styles'
 import { responsiveVal } from '../../Styles/responsiveVal'
+import { useDateTimeFormat } from '../../hooks'
 
 export type BlogListItemProps = {
   asset: React.ReactNode
   url: string
   date: string
-  locale: string
   title: string
   sx?: SxProps<Theme>
 }
@@ -18,13 +18,9 @@ const parts = ['item', 'date', 'asset', 'title'] as const
 const { classes } = extendableComponent(name, parts)
 
 export function BlogListItem(props: BlogListItemProps) {
-  const { asset, url, date, locale, title, sx = [] } = props
+  const { asset, url, date, title, sx = [] } = props
 
-  const formatter = new Intl.DateTimeFormat(locale || undefined, {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  })
+  const formatter = useDateTimeFormat({ year: 'numeric', month: 'long', day: 'numeric' })
 
   return (
     <Box
