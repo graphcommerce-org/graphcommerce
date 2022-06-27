@@ -1,5 +1,36 @@
 # Change Log
 
+## 3.2.19
+
+### Patch Changes
+
+- Updated dependencies [[`11bca2d2f`](https://github.com/graphcommerce-org/graphcommerce/commit/11bca2d2f7dbb7c5e2827c04eb0db43d4099f2fd)]:
+  - @graphcommerce/next-ui@4.11.1
+  - @graphcommerce/magento-customer@4.6.2
+  - @graphcommerce/magento-product@4.4.11
+  - @graphcommerce/magento-store@4.2.13
+
+## 3.2.18
+
+### Patch Changes
+
+- [#1524](https://github.com/graphcommerce-org/graphcommerce/pull/1524) [`9ec0338df`](https://github.com/graphcommerce-org/graphcommerce/commit/9ec0338dfe34d37b0f2c24e36ffa6ed13ea1145e) Thanks [@paales](https://github.com/paales)! - feat: Added useDateTimeFormat and useNumberFormat which automatically use the locales from nextjs.
+
+- Updated dependencies [[`9ec0338df`](https://github.com/graphcommerce-org/graphcommerce/commit/9ec0338dfe34d37b0f2c24e36ffa6ed13ea1145e), [`735b78672`](https://github.com/graphcommerce-org/graphcommerce/commit/735b786724d5401cbe6e88f2515e121a1a0945b2)]:
+  - @graphcommerce/next-ui@4.11.0
+  - @graphcommerce/magento-product@4.4.10
+  - @graphcommerce/magento-store@4.2.12
+  - @graphcommerce/graphql@3.3.0
+  - @graphcommerce/magento-customer@4.6.1
+
+## 3.2.17
+
+### Patch Changes
+
+- Updated dependencies [[`98ff2334d`](https://github.com/graphcommerce-org/graphcommerce/commit/98ff2334d1b7dedb8bc56ebe6abb50836eefedd3)]:
+  - @graphcommerce/magento-customer@4.6.0
+  - @graphcommerce/magento-product@4.4.9
+
 ## 3.2.16
 
 ### Patch Changes

@@ -1,6 +1,4 @@
 import { Asset } from '@graphcommerce/graphcms-ui'
-import { useQuery } from '@graphcommerce/graphql'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { BlogListItem } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Typography, useTheme } from '@mui/material'
@@ -10,9 +8,6 @@ type BlogItemProps = BlogItemFragment
 
 export function BlogItem(props: BlogItemProps) {
   const { title, url, asset, date } = props
-
-  const { data: config } = useQuery(StoreConfigDocument)
-  const locale = config?.storeConfig?.locale?.replace('_', '-')
 
   const theme = useTheme()
 
@@ -32,7 +27,6 @@ export function BlogItem(props: BlogItemProps) {
       }
       title={title ?? ''}
       date={date}
-      locale={locale ?? ''}
       url={url}
     />
   )

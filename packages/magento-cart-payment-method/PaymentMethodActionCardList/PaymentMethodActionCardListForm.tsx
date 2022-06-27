@@ -27,10 +27,14 @@ function PaymentMethodActionCard(
     sx?: SxProps<Theme>
   },
 ) {
-  const { onReset, code, step, Container, sx = [] } = props
+  const { onReset, code, step, child, Container, sx = [] } = props
   const { selectedMethod, selectedModule, modules } = usePaymentMethodContext()
 
-  const selectedAndOptions = selectedMethod?.code === code && selectedModule?.PaymentOptions
+  const selectedAndOptions =
+    selectedMethod?.code === code &&
+    selectedMethod.child === child &&
+    selectedModule?.PaymentOptions
+
   const Card = modules[code]?.PaymentActionCard ?? DefaultPaymentActionCard
 
   return (
@@ -82,6 +86,7 @@ export function PaymentMethodActionCardListForm(props: PaymentMethodActionCardLi
   useFormPersist({ form, name: 'PaymentMethodActionCardList' })
   useFormCompose({ form, step: 1, submit, key: 'PaymentMethodActionCardList' })
 
+  // todo: Do not useEffect to set value, usePaymentMethodContext should calculate these values.
   useEffect(() => {
     const [code, child] = paymentMethod?.split('___') ?? ['']
     if (code === selectedMethod?.code) return
@@ -103,20 +108,17 @@ export function PaymentMethodActionCardListForm(props: PaymentMethodActionCardLi
   if (!methods || methods.length < 1) return null
 
   return (
-    <Form onSubmit={submit} noValidate>
-      <ActionCardListForm<PaymentOptionsProps & ActionCardItemBase>
-        control={control}
-        name='paymentMethod'
-        errorMessage='Please select a shipping address'
-        items={methods.map((method) => ({
-          ...method,
-          value: method.code,
-          step,
-          Container: FormDiv,
-        }))}
-        render={PaymentMethodActionCard}
-      />
-      {/* <ApolloCartErrorAlert error={error} /> */}
-    </Form>
+    <ActionCardListForm<PaymentOptionsProps & ActionCardItemBase>
+      control={control}
+      name='paymentMethod'
+      errorMessage='Please select a payment method'
+      items={methods.map((method) => ({
+        ...method,
+        value: `${method.code}___${method.child}`,
+        step,
+        Container: FormDiv,
+      }))}
+      render={PaymentMethodActionCard}
+    />
   )
 }

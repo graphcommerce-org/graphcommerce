@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-cms",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "4.0.22",
+  "version": "4.0.24",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -19,8 +19,8 @@
     "type-fest": "^2.12.2"
   },
   "dependencies": {
-    "@graphcommerce/graphql": "3.2.1",
-    "@graphcommerce/magento-store": "4.2.11"
+    "@graphcommerce/graphql": "3.3.0",
+    "@graphcommerce/magento-store": "4.2.13"
   },
   "peerDependencies": {
     "@lingui/react": "^3.13.2",

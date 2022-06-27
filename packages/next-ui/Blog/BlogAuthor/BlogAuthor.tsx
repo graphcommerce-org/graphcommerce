@@ -1,7 +1,6 @@
 import { Avatar, Box, Chip, SxProps, Theme } from '@mui/material'
-import { useRouter } from 'next/router'
-import { useMemo } from 'react'
 import { responsiveVal } from '../../Styles/responsiveVal'
+import { useDateTimeFormat } from '../../hooks'
 
 export type BlogAuthorProps = {
   author: string
@@ -12,11 +11,7 @@ export type BlogAuthorProps = {
 export function BlogAuthor(props: BlogAuthorProps) {
   const { author, date, sx = [] } = props
 
-  const { locale } = useRouter()
-  const formatter = useMemo(
-    () => new Intl.DateTimeFormat(locale, { month: 'long', day: 'numeric' }),
-    [locale],
-  )
+  const formatter = useDateTimeFormat({ month: 'long', day: 'numeric' })
 
   return (
     <Box

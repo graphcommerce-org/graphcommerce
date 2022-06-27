@@ -1,5 +1,25 @@
 # Change Log
 
+## 4.11.1
+
+### Patch Changes
+
+- [#1529](https://github.com/graphcommerce-org/graphcommerce/pull/1529) [`11bca2d2f`](https://github.com/graphcommerce-org/graphcommerce/commit/11bca2d2f7dbb7c5e2827c04eb0db43d4099f2fd) Thanks [@paales](https://github.com/paales)! - issue where the error message of actionCardList was incomplete
+
+- Updated dependencies []:
+  - @graphcommerce/framer-scroller@2.1.19
+
+## 4.11.0
+
+### Minor Changes
+
+- [#1524](https://github.com/graphcommerce-org/graphcommerce/pull/1524) [`9ec0338df`](https://github.com/graphcommerce-org/graphcommerce/commit/9ec0338dfe34d37b0f2c24e36ffa6ed13ea1145e) Thanks [@paales](https://github.com/paales)! - feat: Added useDateTimeFormat and useNumberFormat which automatically use the locales from nextjs.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/framer-scroller@2.1.18
+
 ## 4.10.0
 
 ### Minor Changes

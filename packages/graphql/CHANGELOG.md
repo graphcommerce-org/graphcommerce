@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.3.0
+
+### Minor Changes
+
+- [#1524](https://github.com/graphcommerce-org/graphcommerce/pull/1524) [`735b78672`](https://github.com/graphcommerce-org/graphcommerce/commit/735b786724d5401cbe6e88f2515e121a1a0945b2) Thanks [@paales](https://github.com/paales)! - Add errorLink while in development mode to allow for better error reporting when sending faulty queries to backends
+
 ## 3.2.1
 
 ### Patch Changes

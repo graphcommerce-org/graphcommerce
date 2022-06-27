@@ -1,10 +1,9 @@
 import { Image, ImageProps } from '@graphcommerce/image'
-import { responsiveVal, extendableComponent } from '@graphcommerce/next-ui'
+import { responsiveVal, extendableComponent, useNumberFormat } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { ButtonBase, Typography, Box, styled, SxProps, Theme } from '@mui/material'
 import PageLink from 'next/link'
-import { useRouter } from 'next/router'
-import React, { PropsWithChildren, useMemo } from 'react'
+import React, { PropsWithChildren } from 'react'
 import { ProductListItemFragment } from '../../Api/ProductListItem.gql'
 import { useProductLink } from '../../hooks/useProductLink'
 import { ProductListPrice } from '../ProductListPrice/ProductListPrice'
@@ -72,12 +71,8 @@ export function ProductListItem(props: ProductListItemProps) {
 
   const productLink = useProductLink(props)
   const discount = Math.floor(price_range.minimum_price.discount?.percent_off ?? 0)
-  const { locale } = useRouter()
 
-  const formatter = useMemo(
-    () => new Intl.NumberFormat(locale, { style: 'percent', maximumFractionDigits: 1 }),
-    [locale],
-  )
+  const formatter = useNumberFormat({ style: 'percent', maximumFractionDigits: 1 })
 
   return (
     <PageLink href={productLink} passHref>
