@@ -44,7 +44,7 @@ function AccountReviewsPage() {
         </LayoutTitle>
       </LayoutOverlayHeader>
       <Container maxWidth='md'>
-        <PageMeta title={i18n._(/* i18n */ `Reviews`)} metaRobots={['noindex']} />
+        <PageMeta title={i18n._(/* i18n */ 'Reviews')} metaRobots={['noindex']} />
         <NoSsr>
           {((customer?.reviews && customer?.reviews.items.length < 1) || !customer?.reviews) && (
             <FullPageMessage

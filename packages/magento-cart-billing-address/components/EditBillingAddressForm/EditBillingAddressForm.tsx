@@ -75,7 +75,7 @@ export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
             label={<Trans id='Telephone' />}
             {...muiRegister('telephone', {
               required: required.telephone,
-              pattern: { value: phonePattern, message: i18n._(/* i18n */ `Invalid phone number`) },
+              pattern: { value: phonePattern, message: i18n._(/* i18n */ 'Invalid phone number') },
             })}
             helperText={formState.isSubmitted && formState.errors.telephone?.message}
             disabled={formState.isSubmitting}

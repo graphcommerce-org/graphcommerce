@@ -62,7 +62,7 @@ export function LayoutFull(props: LayoutFullProps) {
           <DesktopNavActions>
             {!router.pathname.startsWith('/search') && <SearchLink href='/search' />}
             <PageLink href='/service' passHref>
-              <Fab aria-label={i18n._(/* i18n */ `Account`)} size='large' color='inherit'>
+              <Fab aria-label={i18n._(/* i18n*/ `Account`)} size='large' color='inherit'>
                 <IconSvg src={iconCustomerService} size='large' />
               </Fab>
             </PageLink>

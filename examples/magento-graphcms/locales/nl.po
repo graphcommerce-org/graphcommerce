@@ -25,9 +25,6 @@ msgstr "Boven <0/>"
 msgid "Account"
 msgstr "Account"
 
-msgid "Account Dashboard"
-msgstr "Account overzicht"
-
 msgid "Add address"
 msgstr "Adres toevoegen"
 
@@ -39,18 +36,6 @@ msgstr "In winkelwagen"
 
 msgid "Add to wishlist"
 msgstr "In verlanglijst"
-
-msgid "View wishlist"
-msgstr "Bekijk verlanglijst"
-
-msgid "<0>{name}</0> has been added to your wishlist!"
-msgstr "<0>{name}</0> is toegevoegd aan je verlanglijst!"
-
-msgid "Loading wishlist"
-msgstr "Ophalen verlanglijst"
-
-msgid "We are fetching your favorite products, one moment please!"
-msgstr "Je favoriete artikelen worden momenteel ingeladen!"
 
 msgid "Addition"
 msgstr "Toevoeging"
@@ -106,23 +91,11 @@ msgstr "Winkelwagen"
 msgid "Cart ({0})"
 msgstr "Winkelwagen ({0})"
 
-msgid "Cart Items"
-msgstr "Winkelwagen items"
-
 msgid "Cart Total"
 msgstr "Winkelwagen totaal"
 
 msgid "Change"
 msgstr "Verander"
-
-msgid "Loading cart"
-msgstr "Ophalen winkelwagen"
-
-msgid "We are fetching your products, one moment please!"
-msgstr "Je producten worden momenteel ingeladen!"
-
-msgid "Change password"
-msgstr "Wijzig wachtwoord"
 
 msgid "Checkout"
 msgstr "Afrekenen"
@@ -135,9 +108,6 @@ msgstr "Kies uw bank en plaats uw bestelling."
 
 msgid "City"
 msgstr "Plaats"
-
-msgid "Close"
-msgstr "Sluiten"
 
 msgid "Complete the payment on your bank’s website."
 msgstr "Voltooi de betaling op uw bank's website."
@@ -153,9 +123,6 @@ msgstr "Bevestiging + Track & trace"
 
 msgid "Contact"
 msgstr "Contact"
-
-msgid "Contact information"
-msgstr "Contactinformatie"
 
 msgid "Continue"
 msgstr "Doorgaan"
@@ -235,6 +202,9 @@ msgstr "Voornaam"
 msgid "Follow order"
 msgstr "Volg bestelling"
 
+msgid "Forgot Password"
+msgstr "Wachtwoord vergeten"
+
 msgid "Forgot password?"
 msgstr "Wachtwoord vergeten?"
 
@@ -276,6 +246,12 @@ msgstr "Achternaam"
 
 msgid "Latest orders"
 msgstr "Laatste bestellingen"
+
+msgid "Loading cart"
+msgstr "Ophalen winkelwagen"
+
+msgid "Loading wishlist"
+msgstr "Ophalen verlanglijst"
 
 msgid "Log in"
 msgstr "Log in"
@@ -322,9 +298,6 @@ msgstr "Geen bestellingen gevonden"
 msgid "No payment information"
 msgstr "Geen betalingsinformatie"
 
-msgid "No shipping methods available"
-msgstr "Geen verzendmethode beschikbaar"
-
 msgid "No worries! Enter your email address and we will send an email with instructions to reset your password."
 msgstr "Geen zorgen! Vul uw e-mailadres in en we sturen een email met instructies om het wachtwoord te resetten."
 
@@ -333,9 +306,6 @@ msgstr "Ok"
 
 msgid "Older"
 msgstr "Ouder"
-
-msgid "Or create an account"
-msgstr "Of maak een account"
 
 msgid "Or follow these links to get you back on track!"
 msgstr "Of klik op één van deze links om weer op het pad te komen!"
@@ -379,9 +349,6 @@ msgstr "Wachtwoorden komen niet overeen"
 msgid "Pay"
 msgstr "Betaal"
 
-msgid "Pay with {title}"
-msgstr "Betaal met {title}"
-
 msgid "Payment"
 msgstr "Betaling"
 
@@ -400,17 +367,14 @@ msgstr "Plaats bestelling"
 msgid "Please check your inbox to validate your email ({email})"
 msgstr "Controleer uw inbox om uw e-mailadres te valideren ({email})"
 
-msgid "Please fill in your address to see shipping methods"
-msgstr "Vul uw adres in om verzendmethoden op te halen"
-
 msgid "Please provide a valid house number"
 msgstr "Vul een geldig huisnummer in"
 
-msgid "Please reauthenticate and try again"
-msgstr "Log in en probeer het opnieuw"
-
 msgid "Please select a payment method"
 msgstr "Selecteer een betaalmethode a.u.b."
+
+msgid "Please select a shipping method"
+msgstr "Selecteer een verzendmethode a.u.b."
 
 msgid "Postcode"
 msgstr "Postcode"
@@ -451,12 +415,6 @@ msgstr "Wijzigingen opslaan"
 msgid "Save new password"
 msgstr "Sla nieuw wachtwoord op"
 
-msgid "Scroll Left"
-msgstr "Scroll naar rechts"
-
-msgid "Scroll Right"
-msgstr "Scroll naar links"
-
 msgid "Search"
 msgstr "Zoeken"
 
@@ -489,9 +447,6 @@ msgstr "Inloggen"
 
 msgid "Sign in or create an account!"
 msgstr "Log in of maak een account aan!"
-
-msgid "Sign in to your account"
-msgstr "Inloggen"
 
 msgid "Sign out"
 msgstr "Uitloggen"
@@ -553,14 +508,8 @@ msgstr "Probeer een ander product"
 msgid "Try a different search"
 msgstr "Probeer een andere zoekopdracht"
 
-msgid "Update your name"
-msgstr "Wijzig naam"
-
 msgid "View all items"
 msgstr "Bekijk alle items"
-
-msgid "View all your addresses"
-msgstr "Bekijk alle adressen"
 
 msgid "View less items"
 msgstr "Bekijk minder items"
@@ -573,6 +522,12 @@ msgstr "Bekijk verlanglijst"
 
 msgid "View your account"
 msgstr "Bekijk uw account"
+
+msgid "We are fetching your favorite products, one moment please!"
+msgstr "Je favoriete artikelen worden momenteel ingeladen!"
+
+msgid "We are fetching your products, one moment please!"
+msgstr "Je producten worden momenteel ingeladen!"
 
 msgid "We couldn't find any results for {term}"
 msgstr "We konden geen resultaten vinden voor {term}"
@@ -636,9 +591,6 @@ msgstr "U moet akkoord gaan met de voorwaarden om verder te gaan"
 
 msgid "You haven't placed any reviews yet"
 msgstr "Je hebt nog geen reviews geplaatst"
-
-msgid "You must sign in to continue"
-msgstr "U moet inloggen om verder te gaan"
 
 msgid "Your cart is empty"
 msgstr "Je winkelwagen is leeg"

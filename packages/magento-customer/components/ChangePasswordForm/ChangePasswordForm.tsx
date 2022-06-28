@@ -61,7 +61,7 @@ export function ChangePasswordForm() {
           required
           {...muiRegister('confirmPassword', {
             required: true,
-            validate: (value) => value === pass || i18n._(/* i18n */ `Passwords don't match`),
+            validate: (value) => value === pass || i18n._(/* i18n */ "Passwords don't match"),
           })}
           helperText={formState.errors.confirmPassword?.message}
           disabled={formState.isSubmitting}

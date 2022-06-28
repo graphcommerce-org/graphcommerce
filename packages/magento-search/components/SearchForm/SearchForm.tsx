@@ -89,7 +89,7 @@ export function SearchForm(props: SearchFormProps) {
         <TextField
           variant='outlined'
           type='text'
-          placeholder={i18n._(/* i18n */ `Search`)}
+          placeholder={i18n._(/* i18n */ 'Search')}
           defaultValue={search}
           error={formState.isSubmitted && !!formState.errors.search}
           helperText={formState.isSubmitted && formState.errors.search?.message}

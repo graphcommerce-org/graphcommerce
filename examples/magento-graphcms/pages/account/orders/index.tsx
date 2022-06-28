@@ -55,7 +55,7 @@ function AccountOrdersPage() {
         </LayoutTitle>
       </LayoutOverlayHeader>
       <Container maxWidth='md'>
-        <PageMeta title={i18n._(/* i18n */ `Orders`)} metaRobots={['noindex']} />
+        <PageMeta title={i18n._(/* i18n */ 'Orders')} metaRobots={['noindex']} />
         <NoSsr>
           {customer?.orders && customer.orders.items.length > 0 && (
             <>
@@ -66,7 +66,7 @@ function AccountOrdersPage() {
 
           {customer?.orders && customer.orders.items.length < 1 && (
             <FullPageMessage
-              title={i18n._(/* i18n */ `You have no orders yet`)}
+              title={<Trans id='You have no orders yet' />}
               icon={<IconSvg src={iconBox} size='xxl' />}
             >
               <Trans id='Discover our collection and place your first order!' />

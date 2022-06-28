@@ -180,13 +180,13 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
         ]}
         title={
           inWishlist
-            ? i18n._(/* i18n */ `Remove from wishlist`)
-            : i18n._(/* i18n */ `Add to wishlist`)
+            ? i18n._(/* i18n */ 'Remove from wishlist')
+            : i18n._(/* i18n */ 'Add to wishlist')
         }
         aria-label={
           inWishlist
-            ? i18n._(/* i18n */ `Remove from wishlist`)
-            : i18n._(/* i18n */ `Add to wishlist`)
+            ? i18n._(/* i18n */ 'Remove from wishlist')
+            : i18n._(/* i18n */ 'Add to wishlist')
         }
       >
         {inWishlist ? activeHeart : heart}

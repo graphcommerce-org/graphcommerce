@@ -47,13 +47,13 @@ function AccountNamePage() {
       </LayoutOverlayHeader>
       <NoSsr>
         <Container maxWidth='md'>
-          <PageMeta title={i18n._(/* i18n */ `Name`)} metaRobots={['noindex']} />
+          <PageMeta title={i18n._(/* i18n */ 'Name')} metaRobots={['noindex']} />
 
           <LayoutTitle icon={iconId}>
             <Trans id='Name' />
           </LayoutTitle>
 
-          <SectionContainer labelLeft={i18n._(/* i18n */ `Name`)}>
+          <SectionContainer labelLeft={<Trans id='Name' />}>
             {customer && (
               <ChangeNameForm
                 prefix={customer.prefix ?? ''}

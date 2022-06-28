@@ -74,7 +74,7 @@ export function CartAgreementsForm(props: CartAgreementsFormProps) {
                       name={`agreement[${agreement.agreement_id}]`}
                       control={control}
                       rules={{
-                        required: i18n._(/* i18n */ `You have to agree in order to proceed`),
+                        required: i18n._(/* i18n */ 'You have to agree in order to proceed'),
                       }}
                       render={({
                         field: { onChange, value, name, ref, onBlur },

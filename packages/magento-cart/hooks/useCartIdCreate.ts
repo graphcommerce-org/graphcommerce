@@ -13,7 +13,7 @@ export function useCartIdCreate() {
     if (cartId) return cartId
 
     const { data } = await create()
-    if (!data?.createEmptyCart) throw Error(i18n._(/* i18n */ `Could not create an empty cart`))
+    if (!data?.createEmptyCart) throw Error(i18n._(/* i18n */ 'Could not create an empty cart'))
 
     // We store the cartId that is returned as the currentCartId result
     assignCurrentCartId(data.createEmptyCart)

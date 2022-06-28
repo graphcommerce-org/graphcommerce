@@ -20,9 +20,9 @@ type NameFieldProps = {
 }
 
 export function NameFields(props: NameFieldProps) {
-  const mr = i18n._(/* i18n */ `Mr`)
-  const mrs = i18n._(/* i18n */ `Mrs`)
-  const other = i18n._(/* i18n */ `Other`)
+  const mr = i18n._(/* i18n */ 'Mr')
+  const mrs = i18n._(/* i18n */ 'Mrs')
+  const other = i18n._(/* i18n */ 'Other')
 
   const { prefix, form, readOnly, prefixes = [mr, mrs, other] } = props
   assertFormGqlOperation<NameFieldValues>(form)
