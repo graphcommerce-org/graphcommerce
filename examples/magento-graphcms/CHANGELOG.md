@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.14.3
+
+### Patch Changes
+
+- [#1536](https://github.com/graphcommerce-org/graphcommerce/pull/1536) [`574256d53`](https://github.com/graphcommerce-org/graphcommerce/commit/574256d53dd88313d2c89aae59e10f6b66bdb9c2) Thanks [@paales](https://github.com/paales)! - make sure we don’t have a dependency mismatch where @lingui/react will still try to install 3.14.0
+
 ## 3.14.2
 
 ### Patch Changes
