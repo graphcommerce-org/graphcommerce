@@ -1,5 +1,16 @@
 # Change Log
 
+## 4.0.34
+
+### Patch Changes
+
+- Updated dependencies [[`fe4baa42d`](https://github.com/graphcommerce-org/graphcommerce/commit/fe4baa42db0081ed960d62aef688bd36a7ac974f)]:
+  - @graphcommerce/magento-cart@4.4.8
+  - @graphcommerce/magento-cart-items@3.0.35
+  - @graphcommerce/magento-product@4.4.12
+  - @graphcommerce/magento-product-simple@4.0.34
+  - @graphcommerce/magento-product-virtual@4.0.34
+
 ## 4.0.33
 
 ### Patch Changes

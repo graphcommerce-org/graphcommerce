@@ -1,5 +1,12 @@
 # @graphcommerce/ecommerce-ui
 
+## 1.0.23
+
+### Patch Changes
+
+- Updated dependencies [[`fe4baa42d`](https://github.com/graphcommerce-org/graphcommerce/commit/fe4baa42db0081ed960d62aef688bd36a7ac974f)]:
+  - @graphcommerce/next-ui@4.11.2
+
 ## 1.0.22
 
 ### Patch Changes

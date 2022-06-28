@@ -1,5 +1,14 @@
 # Change Log
 
+## 4.11.2
+
+### Patch Changes
+
+- [#1538](https://github.com/graphcommerce-org/graphcommerce/pull/1538) [`fe4baa42d`](https://github.com/graphcommerce-org/graphcommerce/commit/fe4baa42db0081ed960d62aef688bd36a7ac974f) Thanks [@paales](https://github.com/paales)! - add missing translations
+
+- Updated dependencies []:
+  - @graphcommerce/framer-scroller@2.1.20
+
 ## 4.11.1
 
 ### Patch Changes
