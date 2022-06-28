@@ -125,7 +125,7 @@ export function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
               defaultValue=''
               control={control}
               name='paymentMethod'
-              rules={{ required: i18n._(/* i18n */ `Please select a payment method`) }}
+              rules={{ required: i18n._(/* i18n */ 'Please select a payment method') }}
               render={({ field: { onChange, value, name, onBlur } }) => (
                 <Scroller
                   className={classes.scrollerRoot}

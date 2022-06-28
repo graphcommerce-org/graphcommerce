@@ -20,7 +20,7 @@ function AccountSignInPage() {
 
   return (
     <>
-      <PageMeta title={i18n._(/* i18n */ `Sign in`)} metaRobots={['noindex']} />
+      <PageMeta title={i18n._(/* i18n */ 'Sign in')} metaRobots={['noindex']} />
       <NoSsr>
         <LayoutOverlayHeader>
           <LayoutTitle size='small' component='span'>

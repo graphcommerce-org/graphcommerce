@@ -58,7 +58,7 @@ function CartFabContent(props: CartFabContentProps) {
       <PageLink href='/cart' passHref>
         <MotionFab
           className={classes.cart}
-          aria-label={i18n._(/* i18n */ `Cart`)}
+          aria-label={i18n._(/* i18n */ 'Cart')}
           color='inherit'
           size='responsive'
           style={{ backgroundColor }}

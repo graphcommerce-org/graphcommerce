@@ -25,9 +25,6 @@ msgstr "Arriba de <0/>"
 msgid "Account"
 msgstr "Cuenta"
 
-msgid "Account Dashboard"
-msgstr "Panel de control de la cuenta"
-
 msgid "Add address"
 msgstr "Añadir dirección"
 
@@ -94,17 +91,11 @@ msgstr "Carrito"
 msgid "Cart ({0})"
 msgstr "Carrito ({0})"
 
-msgid "Cart Items"
-msgstr "Artículos del carrito"
-
 msgid "Cart Total"
 msgstr "Carrito total"
 
 msgid "Change"
 msgstr "Cambiar"
-
-msgid "Change password"
-msgstr "Cambiar contraseña"
 
 msgid "Checkout"
 msgstr "Pagar"
@@ -117,9 +108,6 @@ msgstr "Elija su banco y realice su pedido."
 
 msgid "City"
 msgstr "Ciudad"
-
-msgid "Close"
-msgstr "Cerrar"
 
 msgid "Complete the payment on your bank’s website."
 msgstr "Complete el pago en el sitio web de su banco."
@@ -135,9 +123,6 @@ msgstr "Confirmación + Seguimiento"
 
 msgid "Contact"
 msgstr "Contacto"
-
-msgid "Contact information"
-msgstr "Información de contacto"
 
 msgid "Continue"
 msgstr "Continuar"
@@ -217,6 +202,9 @@ msgstr "Nombre"
 msgid "Follow order"
 msgstr "Seguir pedido"
 
+msgid "Forgot Password"
+msgstr "Olvidé mi contraseña"
+
 msgid "Forgot password?"
 msgstr "¿Olvidó su contraseña?"
 
@@ -258,6 +246,12 @@ msgstr "Apellido"
 
 msgid "Latest orders"
 msgstr "Últimas compras"
+
+msgid "Loading cart"
+msgstr "Cargando carrito"
+
+msgid "Loading wishlist"
+msgstr "Cargando lista de deseos"
 
 msgid "Log in"
 msgstr "Iniciar sesión"
@@ -304,9 +298,6 @@ msgstr "No se encontraron pedidos"
 msgid "No payment information"
 msgstr "No hay información de pago"
 
-msgid "No shipping methods available"
-msgstr "No hay métodos de envío disponibles"
-
 msgid "No worries! Enter your email address and we will send an email with instructions to reset your password."
 msgstr "No hay problemas! Introduzca su dirección de correo electrónico y le enviaremos un correo electrónico con instrucciones para restablecer su contraseña."
 
@@ -315,9 +306,6 @@ msgstr "Ok"
 
 msgid "Older"
 msgstr "Anteriores"
-
-msgid "Or create an account"
-msgstr "O crear una cuenta"
 
 msgid "Or follow these links to get you back on track!"
 msgstr "O siga estos enlaces para volver a la pista!"
@@ -361,9 +349,6 @@ msgstr "Las contraseñas no coinciden"
 msgid "Pay"
 msgstr "Pagar"
 
-msgid "Pay with {title}"
-msgstr "Pagar con {title}"
-
 msgid "Payment"
 msgstr "Pago"
 
@@ -382,17 +367,14 @@ msgstr "Realizar pedido"
 msgid "Please check your inbox to validate your email ({email})"
 msgstr "Por favor, compruebe su bandeja de entrada para validar su correo electrónico ({email})"
 
-msgid "Please fill in your address to see shipping methods"
-msgstr "Por favor, rellene su dirección para ver los métodos de envío"
-
 msgid "Please provide a valid house number"
 msgstr "Por favor, proporcione un número de casa válido"
 
-msgid "Please reauthenticate and try again"
-msgstr "Por favor, vuelva a autenticarse y vuelva a intentarlo"
-
 msgid "Please select a payment method"
 msgstr "Por favor, seleccione un método de pago"
+
+msgid "Please select a shipping method"
+msgstr "Por favor, seleccione un método de envío"
 
 msgid "Postcode"
 msgstr "Código postal"
@@ -433,12 +415,6 @@ msgstr "Guardar cambios"
 msgid "Save new password"
 msgstr "Guardar nueva contraseña"
 
-msgid "Scroll Left"
-msgstr "Desplazar a la izquierda"
-
-msgid "Scroll Right"
-msgstr "Desplazar a la derecha"
-
 msgid "Search"
 msgstr "Buscar"
 
@@ -471,9 +447,6 @@ msgstr "Iniciar sesión"
 
 msgid "Sign in or create an account!"
 msgstr "Iniciar sesión o crear una cuenta!"
-
-msgid "Sign in to your account"
-msgstr "Iniciar sesión en su cuenta"
 
 msgid "Sign out"
 msgstr "Cerrar sesión"
@@ -535,14 +508,8 @@ msgstr "Pruebe un producto diferente"
 msgid "Try a different search"
 msgstr "Pruebe una búsqueda diferente"
 
-msgid "Update your name"
-msgstr "Actualice su nombre"
-
 msgid "View all items"
 msgstr "Ver todos los artículos"
-
-msgid "View all your addresses"
-msgstr "Ver todas sus direcciones"
 
 msgid "View less items"
 msgstr "Ver menos artículos"
@@ -555,6 +522,12 @@ msgstr "Ver lista de deseos"
 
 msgid "View your account"
 msgstr "Ver su cuenta"
+
+msgid "We are fetching your favorite products, one moment please!"
+msgstr "Estamos obteniendo sus productos favoritos, un momento por favor!"
+
+msgid "We are fetching your products, one moment please!"
+msgstr "Estamos obteniendo sus productos, un momento por favor!"
 
 msgid "We couldn't find any results for {term}"
 msgstr "No se encontraron resultados para {term}"
@@ -618,9 +591,6 @@ msgstr "Debe aceptar para proceder"
 
 msgid "You haven't placed any reviews yet"
 msgstr "Aún no ha escrito ningún comentario"
-
-msgid "You must sign in to continue"
-msgstr "Debe iniciar sesión para continuar"
 
 msgid "Your cart is empty"
 msgstr "Su carrito está vacío"

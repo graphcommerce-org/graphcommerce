@@ -52,7 +52,7 @@ function PaymentPage() {
 
   return (
     <ComposedForm>
-      <PageMeta title={i18n._(/* i18n */ `Payment`)} metaRobots={['noindex']} />
+      <PageMeta title={i18n._(/* i18n */ 'Payment')} metaRobots={['noindex']} />
       <NoSsr>
         {!cartId && <EmptyCart />}
         {cartId && (

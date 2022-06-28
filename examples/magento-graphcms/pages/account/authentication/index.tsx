@@ -47,12 +47,12 @@ function AccountAuthenticationPage() {
         </LayoutTitle>
       </LayoutOverlayHeader>
       <Container maxWidth='md'>
-        <PageMeta title={i18n._(/* i18n */ `Authentication`)} metaRobots={['noindex']} />
+        <PageMeta title={i18n._(/* i18n */ 'Authentication')} metaRobots={['noindex']} />
         <NoSsr>
           <LayoutTitle icon={iconLock}>
             <Trans id='Authentication' />
           </LayoutTitle>
-          <SectionContainer labelLeft={i18n._(/* i18n */ `Password`)}>
+          <SectionContainer labelLeft={<Trans id='Password' />}>
             {customer && <ChangePasswordForm />}
           </SectionContainer>
         </NoSsr>

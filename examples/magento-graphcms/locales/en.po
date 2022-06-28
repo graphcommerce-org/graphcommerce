@@ -25,9 +25,6 @@ msgstr "Above <0/>"
 msgid "Account"
 msgstr "Account"
 
-msgid "Account Dashboard"
-msgstr "Account Dashboard"
-
 msgid "Add address"
 msgstr "Add address"
 
@@ -39,18 +36,6 @@ msgstr "Add to Cart"
 
 msgid "Add to wishlist"
 msgstr "Add to wishlist"
-
-msgid "View wishlist"
-msgstr "View wishlist"
-
-msgid "<0>{name}</0> has been added to your wishlist!"
-msgstr "<0>{name}</0> has been added to your wishlist!"
-
-msgid "Loading wishlist"
-msgstr "Loading wishlist"
-
-msgid "We are fetching your favorite products, one moment please!"
-msgstr "We are fetching your favorite products, one moment please!"
 
 msgid "Addition"
 msgstr "Addition"
@@ -106,23 +91,11 @@ msgstr "Cart"
 msgid "Cart ({0})"
 msgstr "Cart ({0})"
 
-msgid "Cart Items"
-msgstr "Cart Items"
-
 msgid "Cart Total"
 msgstr "Cart Total"
 
 msgid "Change"
 msgstr "Change"
-
-msgid "Loading cart"
-msgstr "Loading cart"
-
-msgid "We are fetching your products, one moment please!"
-msgstr "We are fetching your products, one moment please!"
-
-msgid "Change password"
-msgstr "Change password"
 
 msgid "Checkout"
 msgstr "Checkout"
@@ -135,9 +108,6 @@ msgstr "Choose your bank, and place your order."
 
 msgid "City"
 msgstr "City"
-
-msgid "Close"
-msgstr "Close"
 
 msgid "Complete the payment on your bank’s website."
 msgstr "Complete the payment on your bank’s website."
@@ -153,9 +123,6 @@ msgstr "Confirmation + Track & trace"
 
 msgid "Contact"
 msgstr "Contact"
-
-msgid "Contact information"
-msgstr "Contact information"
 
 msgid "Continue"
 msgstr "Continue"
@@ -235,6 +202,9 @@ msgstr "First Name"
 msgid "Follow order"
 msgstr "Follow order"
 
+msgid "Forgot Password"
+msgstr "Forgot Password"
+
 msgid "Forgot password?"
 msgstr "Forgot password?"
 
@@ -276,6 +246,12 @@ msgstr "Last Name"
 
 msgid "Latest orders"
 msgstr "Latest orders"
+
+msgid "Loading cart"
+msgstr "Loading cart"
+
+msgid "Loading wishlist"
+msgstr "Loading wishlist"
 
 msgid "Log in"
 msgstr "Log in"
@@ -322,9 +298,6 @@ msgstr "No orders found"
 msgid "No payment information"
 msgstr "No payment information"
 
-msgid "No shipping methods available"
-msgstr "No shipping methods available"
-
 msgid "No worries! Enter your email address and we will send an email with instructions to reset your password."
 msgstr "No worries! Enter your email address and we will send an email with instructions to reset your password."
 
@@ -333,9 +306,6 @@ msgstr "Ok"
 
 msgid "Older"
 msgstr "Older"
-
-msgid "Or create an account"
-msgstr "Or create an account"
 
 msgid "Or follow these links to get you back on track!"
 msgstr "Or follow these links to get you back on track!"
@@ -379,9 +349,6 @@ msgstr "Passwords don't match"
 msgid "Pay"
 msgstr "Pay"
 
-msgid "Pay with {title}"
-msgstr "Pay with {title}"
-
 msgid "Payment"
 msgstr "Payment"
 
@@ -400,17 +367,14 @@ msgstr "Place order"
 msgid "Please check your inbox to validate your email ({email})"
 msgstr "Please check your inbox to validate your email ({email})"
 
-msgid "Please fill in your address to see shipping methods"
-msgstr "Please fill in your address to see shipping methods"
-
 msgid "Please provide a valid house number"
 msgstr "Please provide a valid house number"
 
-msgid "Please reauthenticate and try again"
-msgstr "Please reauthenticate and try again"
-
 msgid "Please select a payment method"
 msgstr "Please select a payment method"
+
+msgid "Please select a shipping method"
+msgstr "Please select a shipping method"
 
 msgid "Postcode"
 msgstr "Postcode"
@@ -451,12 +415,6 @@ msgstr "Save changes"
 msgid "Save new password"
 msgstr "Save new password"
 
-msgid "Scroll Left"
-msgstr "Scroll Left"
-
-msgid "Scroll Right"
-msgstr "Scroll Right"
-
 msgid "Search"
 msgstr "Search"
 
@@ -489,9 +447,6 @@ msgstr "Sign in"
 
 msgid "Sign in or create an account!"
 msgstr "Sign in or create an account!"
-
-msgid "Sign in to your account"
-msgstr "Sign in to your account"
 
 msgid "Sign out"
 msgstr "Sign out"
@@ -553,14 +508,8 @@ msgstr "Try a different product"
 msgid "Try a different search"
 msgstr "Try a different search"
 
-msgid "Update your name"
-msgstr "Update your name"
-
 msgid "View all items"
 msgstr "View all items"
-
-msgid "View all your addresses"
-msgstr "View all your addresses"
 
 msgid "View less items"
 msgstr "View less items"
@@ -573,6 +522,12 @@ msgstr "View wishlist"
 
 msgid "View your account"
 msgstr "View your account"
+
+msgid "We are fetching your favorite products, one moment please!"
+msgstr "We are fetching your favorite products, one moment please!"
+
+msgid "We are fetching your products, one moment please!"
+msgstr "We are fetching your products, one moment please!"
 
 msgid "We couldn't find any results for {term}"
 msgstr "We couldn't find any results for {term}"
@@ -636,9 +591,6 @@ msgstr "You have to agree in order to proceed"
 
 msgid "You haven't placed any reviews yet"
 msgstr "You haven't placed any reviews yet"
-
-msgid "You must sign in to continue"
-msgstr "You must sign in to continue"
 
 msgid "Your cart is empty"
 msgstr "Your cart is empty"

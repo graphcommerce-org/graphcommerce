@@ -31,7 +31,7 @@ function CustomerFabContent(props: CustomerFabContentProps) {
       <Fab
         color='inherit'
         id='account'
-        aria-label={i18n._(/* i18n */ `Account`)}
+        aria-label={i18n._(/* i18n */ 'Account')}
         size='large'
         className={classes.root}
         {...FabProps}

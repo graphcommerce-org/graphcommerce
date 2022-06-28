@@ -18,7 +18,7 @@ function EditBillingAddress() {
   return (
     <>
       <PageMeta
-        title={i18n._(/* i18n */ `Edit billing address`)}
+        title={i18n._(/* i18n */ 'Edit billing address')}
         metaRobots={['noindex', 'nofollow']}
       />
 

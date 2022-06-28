@@ -62,7 +62,7 @@ function ShippingPage() {
 
   return (
     <ComposedForm>
-      <PageMeta title={i18n._(/* i18n */ `Checkout`)} metaRobots={['noindex']} />
+      <PageMeta title={i18n._(/* i18n */ 'Checkout')} metaRobots={['noindex']} />
       <LayoutHeader
         primary={
           <ComposedSubmit

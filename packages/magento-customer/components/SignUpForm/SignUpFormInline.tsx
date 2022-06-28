@@ -67,7 +67,7 @@ export function SignUpFormInline({
             required: required.password,
             minLength: {
               value: minPasswordLength,
-              message: i18n._(/* i18n */ `Password must have at least 8 characters`),
+              message: i18n._(/* i18n */ 'Password must have at least 8 characters'),
             },
           })}
           helperText={error?.message}

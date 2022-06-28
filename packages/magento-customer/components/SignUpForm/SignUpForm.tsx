@@ -62,7 +62,7 @@ export function SignUpForm(props: SignUpFormProps) {
             required: required.password,
             minLength: {
               value: Number(storeConfig?.minimum_password_length ?? 8),
-              message: i18n._(/* i18n */ `Password must have at least 8 characters`),
+              message: i18n._(/* i18n */ 'Password must have at least 8 characters'),
             },
           })}
           helperText={formState.errors.password?.message || inputError?.message}
@@ -78,7 +78,7 @@ export function SignUpForm(props: SignUpFormProps) {
           {...muiRegister('confirmPassword', {
             required: true,
             validate: (value) =>
-              value === watchPassword || i18n._(/* i18n */ `Passwords don't match`),
+              value === watchPassword || i18n._(/* i18n */ "Passwords don't match"),
           })}
           helperText={formState.errors.confirmPassword?.message}
           disabled={formState.isSubmitting}

@@ -96,7 +96,7 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
         <ActionCardListForm
           control={control}
           name='carrierMethod'
-          errorMessage={i18n._(/* i18n */ `Please select a shipping method`)}
+          errorMessage={i18n._(/* i18n */ 'Please select a shipping method')}
           items={sortedAvailableShippingMethods.filter(Boolean).map((sortedMethod) => ({
             ...sortedMethod,
             disabled: !sortedMethod?.available,

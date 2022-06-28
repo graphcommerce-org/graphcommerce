@@ -60,7 +60,7 @@ function AccountReviewsAddPage() {
   if (!product) {
     return (
       <FullPageMessage
-        title={i18n._(/* i18n */ `Product could not be found`)}
+        title={<Trans id='Product could not be found' />}
         icon={<IconSvg src={iconBox} size='xxl' />}
       >
         <Trans id='Try a different product' />
@@ -71,7 +71,7 @@ function AccountReviewsAddPage() {
   return (
     <>
       <PageMeta
-        title={i18n._(/* i18n */ `You are reviewing {0}`, { 0: product?.name })}
+        title={i18n._(/* i18n */ 'You are reviewing {0}', { 0: product?.name })}
         metaRobots={['noindex']}
       />
 

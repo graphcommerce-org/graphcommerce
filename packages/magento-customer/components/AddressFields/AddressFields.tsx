@@ -80,7 +80,7 @@ export function AddressFields(props: AddressFieldsProps) {
             required: required?.houseNumber,
             pattern: {
               value: houseNumberPattern,
-              message: i18n._(/* i18n */ `Please provide a valid house number`),
+              message: i18n._(/* i18n */ 'Please provide a valid house number'),
             },
           })}
           helperText={formState.isSubmitted && formState.errors.houseNumber?.message}

@@ -54,7 +54,7 @@ function CheckoutCustomerAddressesEdit() {
         </LayoutTitle>
       </LayoutOverlayHeader>
       <Container maxWidth='md'>
-        <PageMeta title={i18n._(/* i18n */ `Edit address`)} metaRobots={['noindex']} />
+        <PageMeta title={i18n._(/* i18n */ 'Edit address')} metaRobots={['noindex']} />
         <NoSsr>
           <LayoutTitle icon={iconAddresses}>
             <Trans id='Edit address' />

@@ -32,7 +32,7 @@ function WishlistPage(props: Props) {
 
   return (
     <>
-      <PageMeta title={i18n._(/* i18n */ `Wishlist`)} metaRobots={['noindex']} />
+      <PageMeta title={i18n._(/* i18n */ 'Wishlist')} metaRobots={['noindex']} />
       <NoSsr>
         <LayoutOverlayHeader>
           <LayoutTitle component='span' size='small'>

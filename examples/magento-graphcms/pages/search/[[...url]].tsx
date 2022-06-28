@@ -53,8 +53,8 @@ function SearchResultPage(props: Props) {
       <PageMeta
         title={
           search
-            ? i18n._(/* i18n */ `Results for ‘{search}’`, { search })
-            : i18n._(/* i18n */ `Search`)
+            ? i18n._(/* i18n */ 'Results for ‘{search}’', { search })
+            : i18n._(/* i18n */ 'Search')
         }
         metaRobots={['noindex']}
         canonical='/search'

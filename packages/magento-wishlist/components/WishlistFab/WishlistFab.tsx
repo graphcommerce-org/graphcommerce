@@ -35,7 +35,7 @@ function WishlistFabContent(props: WishlistFabContentProps) {
       <Fab
         color='inherit'
         data-test-id='wishlist-fab'
-        aria-label={i18n._(/* i18n */ `Wishlist`)}
+        aria-label={i18n._(/* i18n */ 'Wishlist')}
         size='large'
         className={classes.root}
         {...FabProps}

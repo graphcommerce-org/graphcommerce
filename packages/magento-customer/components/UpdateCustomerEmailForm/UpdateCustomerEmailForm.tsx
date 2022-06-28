@@ -90,7 +90,7 @@ export function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormProps) {
           required
           {...muiRegister('confirmEmail', {
             required: true,
-            validate: (value) => value === watchNewEmail || i18n._(/* i18n */ `Emails don't match`),
+            validate: (value) => value === watchNewEmail || i18n._(/* i18n */ "Emails don't match"),
           })}
         />
       </FormRow>
