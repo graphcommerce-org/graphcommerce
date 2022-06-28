@@ -2,7 +2,7 @@
   "name": "@graphcommerce/graphcms-ui",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "3.0.26",
+  "version": "3.0.27",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -21,7 +21,7 @@
   "dependencies": {
     "@graphcommerce/graphql": "3.3.0",
     "@graphcommerce/image": "3.1.7",
-    "@graphcommerce/next-ui": "4.11.1"
+    "@graphcommerce/next-ui": "4.11.2"
   },
   "peerDependencies": {
     "@mui/material": "5.5.3",

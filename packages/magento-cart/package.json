@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-cart",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "4.4.7",
+  "version": "4.4.8",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -18,15 +18,15 @@
     "@playwright/test": "^1.21.1"
   },
   "dependencies": {
-    "@graphcommerce/ecommerce-ui": "1.0.22",
+    "@graphcommerce/ecommerce-ui": "1.0.23",
     "@graphcommerce/framer-next-pages": "3.2.3",
-    "@graphcommerce/framer-scroller": "2.1.19",
+    "@graphcommerce/framer-scroller": "2.1.20",
     "@graphcommerce/graphql": "3.3.0",
     "@graphcommerce/image": "3.1.7",
-    "@graphcommerce/magento-customer": "4.6.2",
+    "@graphcommerce/magento-customer": "4.6.3",
     "@graphcommerce/magento-graphql": "3.0.15",
-    "@graphcommerce/magento-store": "4.2.13",
-    "@graphcommerce/next-ui": "4.11.1",
+    "@graphcommerce/magento-store": "4.2.14",
+    "@graphcommerce/next-ui": "4.11.2",
     "@graphcommerce/react-hook-form": "3.2.2"
   },
   "peerDependencies": {
