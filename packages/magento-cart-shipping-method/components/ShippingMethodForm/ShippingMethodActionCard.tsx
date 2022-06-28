@@ -10,8 +10,16 @@ type ShippingMethodActionCardProps = ActionCardItemRenderProps<
 >
 
 export function ShippingMethodActionCard(props: ShippingMethodActionCardProps) {
-  const { available, amount, error_message, carrier_title, carrier_code, onReset, ...cardProps } =
-    props
+  const {
+    available,
+    amount,
+    error_message,
+    carrier_title,
+    carrier_code,
+    method_title,
+    onReset,
+    ...cardProps
+  } = props
   let { hidden = false } = props
 
   const isFree = amount && amount.value === 0
@@ -22,7 +30,7 @@ export function ShippingMethodActionCard(props: ShippingMethodActionCardProps) {
     <ActionCard
       {...cardProps}
       hidden={hidden}
-      title={carrier_title}
+      title={`${carrier_title} ${method_title}`}
       details={error_message}
       action={
         <Button
@@ -34,9 +42,17 @@ export function ShippingMethodActionCard(props: ShippingMethodActionCardProps) {
           <Trans id='Select' />
         </Button>
       }
-      price={!isFree ? <Money {...amount} /> : <Box sx={{ color: '#05C642' }}>Free</Box>}
+      price={
+        !isFree ? (
+          <Money {...amount} />
+        ) : (
+          <Box sx={{ color: '#05C642' }}>
+            <Trans id='Free' />
+          </Box>
+        )
+      }
       reset={
-        <Button variant='inline' color='secondary' onClick={onReset} disableRipple size='small'>
+        <Button variant='inline' color='secondary' onClick={onReset} disableRipple>
           <Trans id='Change' />
         </Button>
       }

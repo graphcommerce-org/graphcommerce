@@ -16,7 +16,7 @@ import {
 } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { useEffect, useMemo, VFC } from 'react'
+import { FC, useEffect, useMemo } from 'react'
 import { GetShippingMethodsDocument } from './GetShippingMethods.gql'
 import { ShippingMethodActionCard } from './ShippingMethodActionCard'
 import {
@@ -102,7 +102,7 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
             disabled: !sortedMethod?.available,
             value: `${sortedMethod?.carrier_code}-${sortedMethod?.method_code}`,
           }))}
-          render={ShippingMethodActionCard as VFC<ActionCardItemRenderProps<ActionCardItemBase>>}
+          render={ShippingMethodActionCard as FC<ActionCardItemRenderProps<ActionCardItemBase>>}
         />
         <ApolloCartErrorAlert error={error} />
       </Form>
