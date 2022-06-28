@@ -4,4 +4,4 @@
 '@graphcommerce/next-ui': minor
 ---
 
-Added the method title to the action card title for shipping methods and updated translations for example
+Added the method title to the action card title for shipping methods.
