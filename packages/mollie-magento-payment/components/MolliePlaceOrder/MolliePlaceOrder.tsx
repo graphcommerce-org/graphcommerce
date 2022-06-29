@@ -12,7 +12,7 @@ import { MolliePlaceOrderDocument } from './MolliePlaceOrder.gql'
 export function MolliePlaceOrder(props: PaymentPlaceOrderProps) {
   const { step, code } = props
   const { push } = useRouter()
-  const cartId = useCurrentCartId()
+  const { currentCartId } = useCurrentCartId()
   const [, lock] = useCartLockWithToken()
   const { selectedMethod } = usePaymentMethodContext()
 
@@ -23,18 +23,18 @@ export function MolliePlaceOrder(props: PaymentPlaceOrderProps) {
   useEffect(() => {
     const current = new URL(window.location.href.replace(window.location.hash, ''))
     // current.searchParams.append('locked', '1')
-    current.searchParams.set('cart_id', cartId ?? '')
+    current.searchParams.set('cart_id', currentCartId ?? '')
     current.searchParams.set('mollie_payment_token', 'PAYMENT_TOKEN')
     current.searchParams.set('method', selectedMethod?.code ?? '')
     current.searchParams.set('locked', '1')
     const replaced = current.toString().replace('PAYMENT_TOKEN', '{{payment_token}}')
     setValue('returnUrl', replaced)
-  }, [cartId, selectedMethod?.code, setValue])
+  }, [currentCartId, selectedMethod?.code, setValue])
 
   const submit = handleSubmit(() => {})
 
   useEffect(() => {
-    if (!data?.placeOrder?.order || error || !cartId) return
+    if (!data?.placeOrder?.order || error || !currentCartId) return
     const redirectUrl = data?.placeOrder?.order.mollie_redirect_url
     const mollie_payment_token = data?.placeOrder?.order.mollie_payment_token
 
@@ -48,7 +48,7 @@ export function MolliePlaceOrder(props: PaymentPlaceOrderProps) {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       push(redirectUrl)
     }
-  }, [cartId, data?.placeOrder?.order, error, lock, push, selectedMethod?.code])
+  }, [currentCartId, data?.placeOrder?.order, error, lock, push, selectedMethod?.code])
 
   useFormCompose({ form, step, submit, key: `PaymentMethodPlaceOrder_${code}` })
 

@@ -18,7 +18,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Box, CircularProgress, Container, NoSsr, Skeleton } from '@mui/material'
+import { Box, CircularProgress, Container, Skeleton } from '@mui/material'
 import { useRouter } from 'next/router'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../../components'
 import { graphqlSharedClient } from '../../../../lib/graphql/graphqlSsrClient'
@@ -52,36 +52,33 @@ function CheckoutCustomerAddressesEdit() {
       </LayoutOverlayHeader>
       <Container maxWidth='md'>
         <PageMeta title={i18n._(/* i18n */ 'Edit address')} metaRobots={['noindex']} />
-        <NoSsr>
-          <LayoutTitle icon={iconAddresses}>
-            <Trans id='Edit address' />
-          </LayoutTitle>
 
-          <SectionContainer labelLeft={<Trans id='Edit address' />}>
-            {!address && !loading && (
-              <Box marginTop={3}>
-                <IconHeader src={iconAddresses} size='small'>
-                  <Trans id='Address not found' />
-                </IconHeader>
-              </Box>
-            )}
+        <LayoutTitle icon={iconAddresses}>
+          <Trans id='Edit address' />
+        </LayoutTitle>
 
-            {loading && (
-              <div>
-                <Skeleton height={72} />
-                <Skeleton height={72} />
-                <Skeleton height={72} />
-                <Skeleton height={72} />
-                <Skeleton height={72} />
-                <Skeleton height={72} />
-              </div>
-            )}
+        <SectionContainer labelLeft={<Trans id='Edit address' />}>
+          {!address && !loading && (
+            <Box marginTop={3}>
+              <IconHeader src={iconAddresses} size='small'>
+                <Trans id='Address not found' />
+              </IconHeader>
+            </Box>
+          )}
 
-            {address && !loading && (
-              <EditAddressForm onCompleteRoute='/checkout' address={address} />
-            )}
-          </SectionContainer>
-        </NoSsr>
+          {loading && (
+            <div>
+              <Skeleton height={72} />
+              <Skeleton height={72} />
+              <Skeleton height={72} />
+              <Skeleton height={72} />
+              <Skeleton height={72} />
+              <Skeleton height={72} />
+            </div>
+          )}
+
+          {address && !loading && <EditAddressForm onCompleteRoute='/checkout' address={address} />}
+        </SectionContainer>
       </Container>
     </>
   )

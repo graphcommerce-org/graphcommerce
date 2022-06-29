@@ -26,11 +26,14 @@ export function ShippingMethodActionCard(props: ShippingMethodActionCardProps) {
 
   if (carrier_code !== 'freeshipping') hidden = !available ? true : hidden
 
+  const title =
+    carrier_title === 'Free Shipping' ? carrier_title : `${carrier_title} ${method_title}`
+
   return (
     <ActionCard
       {...cardProps}
       hidden={hidden}
-      title={`${carrier_title} ${method_title}`}
+      title={title}
       details={error_message}
       action={
         <Button

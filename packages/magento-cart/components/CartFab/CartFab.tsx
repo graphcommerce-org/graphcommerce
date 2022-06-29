@@ -109,15 +109,15 @@ function CartFabContent(props: CartFabContentProps) {
  * product to the cart. This would mean that it would immediately start executing this query.
  */
 export function CartFab(props: CartFabProps) {
-  const { data } = useCartQuery(CartFabDocument, {
+  const { data, loading, called } = useCartQuery(CartFabDocument, {
     fetchPolicy: 'cache-only',
     nextFetchPolicy: 'cache-first',
   })
   const qty = data?.cart?.total_quantity ?? 0
 
-  return (
-    <NoSsr fallback={<CartFabContent {...props} total_quantity={0} />}>
-      <CartFabContent total_quantity={qty} {...props} />
-    </NoSsr>
-  )
+  if (loading || !called) {
+    return <CartFabContent {...props} total_quantity={0} />
+  }
+
+  return <CartFabContent total_quantity={qty} {...props} />
 }

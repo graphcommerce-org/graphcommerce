@@ -15,7 +15,7 @@ export type CartLockState = {
  * Todo: Block all operations on the cart while the cart is being blocked.
  */
 export function useCartLock<E extends CartLockState>() {
-  const currentCartId = useCurrentCartId()
+  const { currentCartId } = useCurrentCartId()
   const [justLocked, setJustLocked] = useState(false)
   const [queryState, setRouterQuery] = useUrlQuery<E>()
 
@@ -26,7 +26,7 @@ export function useCartLock<E extends CartLockState>() {
       locked: '1',
       cart_id: currentCartId,
       ...params,
-    } as E)
+    } as unknown as E)
   }
 
   const unlock = (params: Omit<E, 'locked' | 'cart_id' | 'method'>) => {

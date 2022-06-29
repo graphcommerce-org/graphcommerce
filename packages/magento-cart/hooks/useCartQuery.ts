@@ -18,16 +18,11 @@ export function useCartQuery<Q, V extends { cartId: string; [index: string]: unk
   options: QueryHookOptions<Q, Omit<V, 'cartId'>> & { allowUrl?: boolean } = {},
 ) {
   const { allowUrl = true, ...queryOptions } = options
-  const [skip, setSkip] = useState(true)
   const router = useRouter()
-  const currentCartId = useCurrentCartId({ skip })
+  const { currentCartId } = useCurrentCartId()
   const urlCartId = router.query.cart_id
   const usingUrl = allowUrl && typeof urlCartId === 'string'
   const cartId = usingUrl ? urlCartId : currentCartId
-
-  useEffect(() => {
-    if (skip) setSkip(false)
-  }, [skip])
 
   if (usingUrl && typeof queryOptions.fetchPolicy === 'undefined')
     queryOptions.fetchPolicy = 'cache-only'

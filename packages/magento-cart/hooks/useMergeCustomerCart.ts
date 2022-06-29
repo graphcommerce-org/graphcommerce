@@ -13,7 +13,7 @@ import { useCurrentCartId } from './useCurrentCartId'
  * @todo: Implement the assignCustomerToGuestCart when available: https://github.com/magento/magento2/pull/33106
  */
 export function useMergeCustomerCart() {
-  const sourceCartId = useCurrentCartId()
+  const { currentCartId } = useCurrentCartId()
   const assignCurrentCartId = useAssignCurrentCartId()
   const [merge] = useMutation(UseMergeCustomerCartDocument, { errorPolicy: 'all' })
 
@@ -27,21 +27,21 @@ export function useMergeCustomerCart() {
     if (!destinationCartId) return
 
     // If the vistor cart is the same as the customer cart, we're done
-    if (sourceCartId === destinationCartId) return
+    if (currentCartId === destinationCartId) return
 
     // If there is no visitor cart, assign the customer cart as the current cart
-    if (!sourceCartId) {
+    if (!currentCartId) {
       assignCurrentCartId(destinationCartId)
       return
     }
 
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     ;(async () => {
-      const result = await merge({ variables: { sourceCartId, destinationCartId } })
+      const result = await merge({ variables: { sourceCartId: currentCartId, destinationCartId } })
 
       if (!result.data?.mergeCarts.id) return
 
       assignCurrentCartId(result.data?.mergeCarts.id)
     })()
-  }, [assignCurrentCartId, sourceCartId, destinationCartId, merge])
+  }, [assignCurrentCartId, destinationCartId, merge, currentCartId])
 }

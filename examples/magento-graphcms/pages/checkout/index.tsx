@@ -61,7 +61,6 @@ function ShippingPage() {
 
   const customerAddresses = useCustomerQuery(CustomerDocument)
   const addresses = customerAddresses.data?.customer?.addresses
-
   if (loading || !called)
     return (
       <FullPageMessage icon={<CircularProgress />} title='Loading'>
