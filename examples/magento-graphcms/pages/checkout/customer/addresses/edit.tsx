@@ -1,7 +1,10 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { useGoogleRecaptcha } from '@graphcommerce/googlerecaptcha'
-import { useQuery } from '@graphcommerce/graphql'
-import { ApolloCustomerErrorFullPage, EditAddressForm } from '@graphcommerce/magento-customer'
+import {
+  ApolloCustomerErrorFullPage,
+  EditAddressForm,
+  useCustomerQuery,
+} from '@graphcommerce/magento-customer'
 import { AccountDashboardAddressesDocument } from '@graphcommerce/magento-customer-account'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
@@ -11,10 +14,11 @@ import {
   SectionContainer,
   LayoutOverlayHeader,
   LayoutTitle,
+  FullPageMessage,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Box, Container, NoSsr, Skeleton } from '@mui/material'
+import { Box, CircularProgress, Container, NoSsr, Skeleton } from '@mui/material'
 import { useRouter } from 'next/router'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../../components'
 import { graphqlSharedClient } from '../../../../lib/graphql/graphqlSsrClient'
@@ -25,26 +29,19 @@ function CheckoutCustomerAddressesEdit() {
   const router = useRouter()
   useGoogleRecaptcha()
 
-  const { addressId } = router.query
-
-  const { data, loading, error } = useQuery(AccountDashboardAddressesDocument, {
+  const { data, loading, error, called } = useCustomerQuery(AccountDashboardAddressesDocument, {
     fetchPolicy: 'network-only',
-    ssr: false,
   })
 
-  const numAddressId = Number(addressId)
-  const addresses = data?.customer?.addresses
-  const address = addresses?.find((a) => a?.id === numAddressId)
+  const address = data?.customer?.addresses?.find((a) => a?.id === Number(router.query.addressId))
 
-  if (loading) return <div />
-  if (error)
+  if (loading || !called)
     return (
-      <ApolloCustomerErrorFullPage
-        error={error}
-        signInHref='/account/signin'
-        signUpHref='/account/signin'
-      />
+      <FullPageMessage icon={<CircularProgress />} title='Loading your account'>
+        <Trans id='This may take a second' />
+      </FullPageMessage>
     )
+  if (error) return <ApolloCustomerErrorFullPage error={error} />
 
   return (
     <>

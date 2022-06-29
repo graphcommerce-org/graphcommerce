@@ -14,7 +14,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Container, NoSsr } from '@mui/material'
+import { Container } from '@mui/material'
 import { useRouter } from 'next/router'
 import { LayoutOverlay, LayoutOverlayProps } from '../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
@@ -29,19 +29,17 @@ function StoresIndexPage({ availableStores }: Props) {
   return (
     <>
       <PageMeta title={i18n._(/* i18n */ 'Switch stores')} metaRobots={['noindex']} />
-      <NoSsr>
-        <LayoutOverlayHeader>
-          <LayoutTitle size='small' component='span' icon={iconShoppingBag}>
-            <Trans id='Country' />
-          </LayoutTitle>
-        </LayoutOverlayHeader>
-        <Container maxWidth='md'>
-          <LayoutTitle icon={iconShoppingBag}>
-            <Trans id='Country' />
-          </LayoutTitle>
-          <StoreSwitcherList availableStores={availableStores} locale={locale} />
-        </Container>
-      </NoSsr>
+      <LayoutOverlayHeader>
+        <LayoutTitle size='small' component='span' icon={iconShoppingBag}>
+          <Trans id='Country' />
+        </LayoutTitle>
+      </LayoutOverlayHeader>
+      <Container maxWidth='md'>
+        <LayoutTitle icon={iconShoppingBag}>
+          <Trans id='Country' />
+        </LayoutTitle>
+        <StoreSwitcherList availableStores={availableStores} locale={locale} />
+      </Container>
     </>
   )
 }

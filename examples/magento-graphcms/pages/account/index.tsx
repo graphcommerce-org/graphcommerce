@@ -5,7 +5,6 @@ import {
   ApolloCustomerErrorFullPage,
   SignOutForm,
   useCustomerQuery,
-  useCustomerSession,
 } from '@graphcommerce/magento-customer'
 import {
   AccountDashboardDocument,
@@ -30,7 +29,6 @@ import {
   LayoutTitle,
   LayoutHeader,
   FullPageMessage,
-  IconSvg,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
@@ -55,9 +53,7 @@ function AccountIndexPage() {
   const orders = customer?.orders
   const latestOrder = orders?.items?.[(orders?.items?.length ?? 1) - 1]
 
-  if (error) {
-    return <ApolloCustomerErrorFullPage error={error} />
-  }
+  if (error) return <ApolloCustomerErrorFullPage error={error} />
 
   if (loading || !called)
     return (

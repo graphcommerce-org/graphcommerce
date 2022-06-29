@@ -7,7 +7,7 @@ import { useMergeGuestWishlistWithCustomer } from '@graphcommerce/magento-wishli
 import { GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Container, NoSsr } from '@mui/material'
+import { Container } from '@mui/material'
 import { LayoutOverlay, LayoutOverlayProps } from '../../components'
 import { graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
@@ -21,16 +21,14 @@ function AccountSignInPage() {
   return (
     <>
       <PageMeta title={i18n._(/* i18n */ 'Sign in')} metaRobots={['noindex']} />
-      <NoSsr>
-        <LayoutOverlayHeader>
-          <LayoutTitle size='small' component='span'>
-            <Trans id='Sign in' />
-          </LayoutTitle>
-        </LayoutOverlayHeader>
-        <Container maxWidth='md'>
-          <AccountSignInUpForm />
-        </Container>
-      </NoSsr>
+      <LayoutOverlayHeader>
+        <LayoutTitle size='small' component='span'>
+          <Trans id='Sign in' />
+        </LayoutTitle>
+      </LayoutOverlayHeader>
+      <Container maxWidth='md'>
+        <AccountSignInUpForm />
+      </Container>
     </>
   )
 }

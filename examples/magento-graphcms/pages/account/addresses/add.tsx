@@ -1,9 +1,9 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { useQuery } from '@graphcommerce/graphql'
 import {
   ApolloCustomerErrorFullPage,
   CreateCustomerAddressForm,
   CustomerDocument,
+  useCustomerQuery,
 } from '@graphcommerce/magento-customer'
 import { AccountDashboardAddressesQuery } from '@graphcommerce/magento-customer-account'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
@@ -13,10 +13,11 @@ import {
   iconAddresses,
   LayoutOverlayHeader,
   LayoutTitle,
+  FullPageMessage,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Container, NoSsr } from '@mui/material'
+import { CircularProgress, Container } from '@mui/material'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
 import { graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
@@ -24,17 +25,15 @@ type Props = AccountDashboardAddressesQuery
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
 
 function AddNewAddressPage() {
-  const { loading, error } = useQuery(CustomerDocument, { ssr: false })
+  const { loading, error, called } = useCustomerQuery(CustomerDocument)
 
-  if (loading) return <div />
-  if (error)
+  if (loading || !called)
     return (
-      <ApolloCustomerErrorFullPage
-        error={error}
-        signInHref='/account/signin'
-        signUpHref='/account/signin'
-      />
+      <FullPageMessage icon={<CircularProgress />} title='Loading your account'>
+        <Trans id='This may take a second' />
+      </FullPageMessage>
     )
+  if (error) return <ApolloCustomerErrorFullPage error={error} />
 
   return (
     <>
@@ -45,14 +44,12 @@ function AddNewAddressPage() {
       </LayoutOverlayHeader>
       <Container maxWidth='md'>
         <PageMeta title={i18n._(/* i18n */ 'Add address')} metaRobots={['noindex']} />
-        <NoSsr>
-          <LayoutTitle icon={iconAddresses}>
-            <Trans id='Addresses' />
-          </LayoutTitle>
-          <SectionContainer labelLeft={<Trans id='Add new address' />}>
-            <CreateCustomerAddressForm />
-          </SectionContainer>
-        </NoSsr>
+        <LayoutTitle icon={iconAddresses}>
+          <Trans id='Addresses' />
+        </LayoutTitle>
+        <SectionContainer labelLeft={<Trans id='Add new address' />}>
+          <CreateCustomerAddressForm />
+        </SectionContainer>
       </Container>
     </>
   )

@@ -15,21 +15,25 @@ import {
   CustomerAddressForm,
 } from '@graphcommerce/magento-cart-shipping-address'
 import { ShippingMethodForm } from '@graphcommerce/magento-cart-shipping-method'
-import { CustomerDocument } from '@graphcommerce/magento-customer'
+import {
+  ApolloCustomerErrorFullPage,
+  CustomerDocument,
+  useCustomerQuery,
+} from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { useMergeGuestWishlistWithCustomer } from '@graphcommerce/magento-wishlist'
 import {
   FormActions,
-  FormHeader,
   GetStaticProps,
   iconBox,
   LayoutHeader,
   Stepper,
   LayoutTitle,
+  FullPageMessage,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Container, NoSsr } from '@mui/material'
+import { CircularProgress, Container } from '@mui/material'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
@@ -43,13 +47,11 @@ function ShippingPage() {
   useGoogleRecaptcha()
   useMergeGuestWishlistWithCustomer()
 
-  const { data: cartData } = useCartQuery(ShippingPageDocument, {
-    returnPartialData: true,
+  const { data, loading, called, error } = useCartQuery(ShippingPageDocument, {
     fetchPolicy: 'cache-and-network',
-    ssr: false,
   })
 
-  const cartExists = typeof cartData?.cart !== 'undefined'
+  const cartExists = typeof data?.cart !== 'undefined'
   const router = useRouter()
 
   const onSubmitSuccessful = () => {
@@ -57,8 +59,16 @@ function ShippingPage() {
     router.push('/checkout/payment')
   }
 
-  const customerAddresses = useQuery(CustomerDocument)
+  const customerAddresses = useCustomerQuery(CustomerDocument)
   const addresses = customerAddresses.data?.customer?.addresses
+
+  if (loading || !called)
+    return (
+      <FullPageMessage icon={<CircularProgress />} title='Loading'>
+        <Trans id='This may take a second' />
+      </FullPageMessage>
+    )
+  if (error) return <ApolloCustomerErrorFullPage error={error} />
 
   return (
     <ComposedForm>
@@ -85,45 +95,43 @@ function ShippingPage() {
         </LayoutTitle>
       </LayoutHeader>
       <Container maxWidth='md'>
-        <NoSsr>
-          {!cartExists && <EmptyCart />}
+        {!cartExists && <EmptyCart />}
 
-          {cartExists && (
-            <>
-              <LayoutTitle icon={iconBox}>
-                <Trans id='Shipping' />
-              </LayoutTitle>
-              {addresses ? (
-                <CustomerAddressForm step={2}>
-                  <ShippingAddressForm ignoreCache step={3} />
-                </CustomerAddressForm>
-              ) : (
+        {cartExists && (
+          <>
+            <LayoutTitle icon={iconBox}>
+              <Trans id='Shipping' />
+            </LayoutTitle>
+            {addresses ? (
+              <CustomerAddressForm step={2}>
+                <ShippingAddressForm ignoreCache step={3} />
+              </CustomerAddressForm>
+            ) : (
+              <>
+                <EmailForm step={1} />
+                <ShippingAddressForm step={3} />
+              </>
+            )}
+
+            <ShippingMethodForm step={4} />
+
+            <ComposedSubmit
+              onSubmitSuccessful={onSubmitSuccessful}
+              render={(renderProps) => (
                 <>
-                  <EmailForm step={1} />
-                  <ShippingAddressForm step={3} />
+                  <FormActions>
+                    <ComposedSubmitButton {...renderProps} size='large' id='next'>
+                      <Trans id='Next' />
+                    </ComposedSubmitButton>
+                  </FormActions>
+                  <ApolloCartErrorAlert
+                    error={renderProps.buttonState.isSubmitting ? undefined : renderProps.error}
+                  />
                 </>
               )}
-
-              <ShippingMethodForm step={4} />
-
-              <ComposedSubmit
-                onSubmitSuccessful={onSubmitSuccessful}
-                render={(renderProps) => (
-                  <>
-                    <FormActions>
-                      <ComposedSubmitButton {...renderProps} size='large' id='next'>
-                        <Trans id='Next' />
-                      </ComposedSubmitButton>
-                    </FormActions>
-                    <ApolloCartErrorAlert
-                      error={renderProps.buttonState.isSubmitting ? undefined : renderProps.error}
-                    />
-                  </>
-                )}
-              />
-            </>
-          )}
-        </NoSsr>
+            />
+          </>
+        )}
       </Container>
     </ComposedForm>
   )
