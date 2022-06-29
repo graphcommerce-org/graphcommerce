@@ -212,7 +212,7 @@ msgid "Forgot your password?"
 msgstr "Wachtwoord vergeten?"
 
 msgid "Free"
-msgstr "Free"
+msgstr "Gratis"
 
 msgid "Grand total"
 msgstr "Totaal"
