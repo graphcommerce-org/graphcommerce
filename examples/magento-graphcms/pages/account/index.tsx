@@ -55,7 +55,6 @@ function AccountIndexPage() {
   const orders = customer?.orders
   const latestOrder = orders?.items?.[(orders?.items?.length ?? 1) - 1]
 
-  // Gebruiker gaat nu nooit bij de login pagina komen als hij/zij uitgelogd is. !loggedIn = Skip = !Error
   if (error) {
     return <ApolloCustomerErrorFullPage error={error} />
   }

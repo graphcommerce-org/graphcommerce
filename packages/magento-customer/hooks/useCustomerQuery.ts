@@ -29,10 +29,6 @@ export function useCustomerQuery<Q, V>(
     skip: !loggedIn,
   })
 
-  if (called && !loggedIn) {
-    console.log('please login')
-  }
-
   return {
     ...result,
     error: called && !loggedIn ? notLoggedInError : result.error,
