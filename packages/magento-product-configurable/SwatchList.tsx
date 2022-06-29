@@ -19,7 +19,6 @@ const renderer: SwatchTypeRenderer = {
 }
 
 export function SwatchList({ attributes, configurable_options }: SwatchListProps) {
-  console.log('options', configurable_options)
   const options =
     configurable_options?.filter((option) => attributes.includes(option?.attribute_code ?? '')) ??
     []

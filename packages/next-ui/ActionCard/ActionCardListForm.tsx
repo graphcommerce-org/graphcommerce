@@ -18,14 +18,14 @@ export type ActionCardListFormProps<T extends ActionCardItemBase> = Omit<
 > &
   Omit<ControllerProps<any>, 'render'> & {
     items: T[]
-    render: React.VFC<ActionCardItemRenderProps<T>>
+    render: React.FC<ActionCardItemRenderProps<T>>
   }
 
 export function ActionCardListForm<T extends ActionCardItemBase>(
   props: ActionCardListFormProps<T>,
 ) {
-  const { required, rules, items, render, control, name, errorMessage } = props
-  const RenderItem = render as React.VFC<ActionCardItemRenderProps<ActionCardItemBase>>
+  const { required, rules, items, render, control, name, errorMessage, size, sx } = props
+  const RenderItem = render as React.FC<ActionCardItemRenderProps<ActionCardItemBase>>
 
   return (
     <Controller
@@ -40,6 +40,7 @@ export function ActionCardListForm<T extends ActionCardItemBase>(
           onChange={(_, incomming) => onChange(incomming)}
           error={formState.isSubmitted && !!fieldState.error}
           errorMessage={fieldState.error?.message}
+          size={size}
         >
           {items.map((item) => (
             <RenderItem
@@ -48,10 +49,12 @@ export function ActionCardListForm<T extends ActionCardItemBase>(
               value={item.value}
               selected={value === item.value}
               hidden={!!value && value !== item.value}
+              size={size}
               onReset={(e) => {
                 e.preventDefault()
                 onChange(null)
               }}
+              sx={sx}
             />
           ))}
         </ActionCardList>

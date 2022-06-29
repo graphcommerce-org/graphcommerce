@@ -115,6 +115,9 @@ export function ActionCardList(props: ActionCardListProps) {
             gridGap: theme.spacings.xxs,
           })),
         size === 'large' && (() => ({})),
+        {
+          height: ' min-content',
+        },
       ]}
     >
       {React.Children.map(children, (child) => {

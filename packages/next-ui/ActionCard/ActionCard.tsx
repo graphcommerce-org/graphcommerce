@@ -1,6 +1,6 @@
 import { SxProps, ButtonBase, Box, Theme, ButtonProps, BoxProps } from '@mui/material'
 import React, { FormEvent } from 'react'
-import { extendableComponent } from '../Styles'
+import { extendableComponent, responsiveVal } from '../Styles'
 import { Variants } from './ActionCardList'
 
 function isButtonProps(props: ButtonProps<'div'> | BoxProps<'div'>): props is ButtonProps<'div'> {
@@ -87,97 +87,130 @@ export function ActionCard(props: ActionCardProps) {
       disabled={disabled}
       sx={[
         (theme) => ({
-          display: 'grid',
-          width: '100%',
-          gridTemplateColumns: 'min-content auto auto',
-          gridTemplateAreas: `
-            "image title action"
-            "image details ${price ? 'price' : 'details'}"
-            "image secondaryAction additionalDetails"
-            "after after after"
-          `,
-          justifyContent: 'unset',
-          typography: 'body1',
-          columnGap: theme.spacings.xxs,
-
           '&.variantDefault': {
             py: theme.spacings.xxs,
             borderBottom: `1px solid ${theme.palette.divider}`,
           },
 
-          '&+ActionCard-root': {},
           '&.variantOutlined': {
             padding: `${theme.spacings.xxs} ${theme.spacings.xs}`,
-            background: theme.palette.background.paper,
-            border: `1px solid ${theme.palette.divider}`,
+            backgroundColor: theme.palette.background.paper,
+            border: `${responsiveVal(2, 3)} solid ${theme.palette.divider}`,
           },
-          '&:not(.image)': {
-            gridTemplateColumns: 'auto auto',
-            gridTemplateAreas: `
-              "title action"
-              "details ${price ? 'price' : 'details'}"
-              "secondaryAction additionalDetails"
-              "after after"
-            `,
+
+          '&.sizeSmall': {
+            display: 'flex',
+            borderRadius: 2,
           },
-          '&.hidden': {
-            display: 'none',
+
+          '&.sizeMedium': {
+            borderRadius: 2,
           },
-          '&.disabled': {
-            background: theme.palette.background.default,
+
+          '&.sizeLarge': {
+            width: '100%',
+            '&:not(:last-child)': {
+              borderBottomColor: 'transparent',
+            },
+          },
+          '&.selected': {
+            border: `${responsiveVal(2, 3)} solid ${theme.palette.secondary.main} !important`,
+            padding: `${theme.spacings.xxs} ${theme.spacings.xs}`,
           },
         }),
-        size === 'small' &&
+        hidden && {
+          display: 'none',
+        },
+
+        disabled &&
           ((theme) => ({
-            display: 'flex',
-            flex: 0,
+            background: theme.palette.background.default,
           })),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
-      {image && (
-        <Box className={classes.image} sx={{ gridArea: 'image', display: 'flex' }}>
-          {image}
-        </Box>
-      )}
-      {title && (
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          width: '100%',
+          justifyContent: 'space-between',
+        }}
+      >
         <Box
-          className={classes.title}
-          sx={{ gridArea: 'title', display: 'flex', typography: 'h6', flex: 1, number: 2 }}
-        >
-          {title}
-        </Box>
-      )}
-      {action && (
-        <Box className={classes.action} sx={{ gridArea: 'action', textAlign: 'right' }}>
-          {!selected ? action : reset}
-        </Box>
-      )}
-      {details && (
-        <Box className={classes.details} sx={{ gridArea: 'details', color: 'text.secondary' }}>
-          {details}
-        </Box>
-      )}
+          sx={{
+            display: 'flex',
+            flexDirection: 'row',
 
-      {price && !disabled && (
+            justifyContent: 'space-between',
+          }}
+        >
+          {image && (
+            <Box
+              className={classes.image}
+              sx={{ display: 'flex', paddingRight: '15px', alignSelf: 'center' }}
+            >
+              {image}
+            </Box>
+          )}
+
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              flexDirection: 'column',
+              alignItems: 'flex-start',
+            }}
+          >
+            {title && (
+              <Box className={classes.title} sx={{ typography: 'h6', number: 2 }}>
+                {title}
+              </Box>
+            )}
+
+            {details && (
+              <Box
+                className={classes.details}
+                sx={{ gridArea: 'details', color: 'text.secondary' }}
+              >
+                {details}
+              </Box>
+            )}
+
+            {secondaryAction && <Box className={classes.secondaryAction}>{secondaryAction}</Box>}
+          </Box>
+        </Box>
+
         <Box
-          className={classes.price}
-          sx={{ gridArea: 'price', textAlign: 'right', typography: 'h5' }}
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            alignItems: 'flex-end',
+          }}
         >
-          {price}
-        </Box>
-      )}
+          {action && (
+            <Box className={classes.action} sx={{ marginBottom: '5px' }}>
+              {!selected ? action : reset}
+            </Box>
+          )}
 
-      {secondaryAction && (
-        <Box className={classes.secondaryAction} sx={{ gridArea: 'secondaryAction' }}>
-          {secondaryAction}
+          {price && !disabled && (
+            <Box
+              className={classes.price}
+              sx={{ gridArea: 'price', textAlign: 'right', typography: 'h5' }}
+            >
+              {price}
+            </Box>
+          )}
         </Box>
-      )}
-      {after && (
-        <Box className={classes.after} sx={{ gridArea: 'after' }}>
-          {after}
-        </Box>
-      )}
+
+        {after && (
+          <Box className={classes.after} sx={{ gridArea: 'after' }}>
+            {after}
+          </Box>
+        )}
+      </Box>
     </RenderComponent>
   )
 }

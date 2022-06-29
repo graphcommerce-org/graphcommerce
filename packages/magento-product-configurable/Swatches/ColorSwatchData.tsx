@@ -57,15 +57,5 @@ export function ColorSwatchData(props: ColorSwatchDataProps) {
       </Box>
     )
 
-  return (
-    <ActionCard
-      key={value}
-      value={value ?? ''}
-      image={color}
-      title={store_label}
-      hidden={false}
-      variant='outlined'
-      {...props}
-    />
-  )
+  return <ActionCard {...props} key={value} image={color} title={store_label} />
 }

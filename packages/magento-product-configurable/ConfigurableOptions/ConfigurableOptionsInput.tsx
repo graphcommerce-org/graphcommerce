@@ -2,7 +2,6 @@ import { useFormProductAddToCart } from '@graphcommerce/magento-product'
 import { SectionHeader, RenderType } from '@graphcommerce/next-ui'
 import { ActionCardListForm } from '@graphcommerce/next-ui/ActionCard/ActionCardListForm'
 import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
 import { BaseTextFieldProps } from '@mui/material'
 import React from 'react'
 import { ColorSwatchData } from '../Swatches/ColorSwatchData'
@@ -20,23 +19,17 @@ export type ConfigurableOptionsInputProps = Pick<
 }
 
 function ConfigurableOptionsActionCard(cardProps: ConfigurableOptionsActionCardProps) {
-  const { swatch_data } = cardProps
-
-  // switch (swatch_data?.__typename) {
-  //   case 'ColorSwatchData':
-  //     return <ColorSwatchData {...cardProps} />
-  //   case 'ImageSwatchData':
-  //     return <ImageSwatchData {...cardProps} />
-  //   case 'TextSwatchData':
-  //     return <TextSwatchData {...cardProps} />
-  //   default:
-  //     return null
-  // }
+  const { swatch_data, uid, size } = cardProps
 
   return (
     <RenderType
       {...cardProps}
       __typename={swatch_data?.__typename ?? 'TextSwatchData'}
+      hidden={false}
+      value={uid}
+      variant='outlined'
+      description={swatch_data?.value ?? ''}
+      size={size}
       renderer={{
         ColorSwatchData,
         ImageSwatchData,
@@ -70,17 +63,21 @@ export function ConfigurableOptionsInput(props: ConfigurableOptionsInputProps) {
               key={fieldName}
               name={fieldName}
               control={control}
-              size='small'
+              size='medium'
               required
               items={(values ?? []).map((ov) => ({
                 value: ov?.uid ?? '',
-                size: 'small',
                 ...ov,
               }))}
               error={false}
               render={ConfigurableOptionsActionCard}
               errorMessage={i18n._(/* i18n*/ 'Please select a value for {0}', {
                 0: label?.toLocaleLowerCase(),
+              })}
+              sx={(theme) => ({
+                '&.selected': {
+                  borderColor: `${theme.palette.primary.main} !important`,
+                },
               })}
             />
           </React.Fragment>

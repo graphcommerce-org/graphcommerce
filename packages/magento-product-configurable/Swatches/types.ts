@@ -21,11 +21,11 @@ export type SwatchTypeRenderer = TypeRenderer<
 >
 
 export type ConfigurableOptionsActionCardProps = ActionCardItemRenderProps<
-  | NonNullable<
+  | (NonNullable<
       NonNullable<
         NonNullable<ConfigurableProductConfigurationsFragment['configurable_options']>[0]
       >['values']
-    >[0]
+    >[0] & { size?: SwatchSize })
   | null
   | undefined
 >

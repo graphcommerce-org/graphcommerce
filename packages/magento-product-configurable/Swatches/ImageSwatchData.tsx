@@ -21,8 +21,8 @@ export function ImageSwatchData(props: ImageSwatchDataProps) {
       className={classes.image}
       src={swatch_data.thumbnail ?? ''}
       layout='fixed'
-      width={size === 'small' ? 20 : 50}
-      height={size === 'small' ? 20 : 50}
+      width={size === 'small' ? 30 : 50}
+      height={size === 'small' ? 30 : 50}
       alt={swatch_data.value ?? ''}
       sx={{
         marginTop: 1,
@@ -32,14 +32,6 @@ export function ImageSwatchData(props: ImageSwatchDataProps) {
   )
 
   return (
-    <ActionCard
-      key={swatch_data?.value}
-      value={swatch_data?.value ?? ''}
-      image={image}
-      title={store_label}
-      hidden={false}
-      variant='outlined'
-      {...props}
-    />
+    <ActionCard key={swatch_data?.value} image={image} title={store_label} size={size} {...props} />
   )
 }
