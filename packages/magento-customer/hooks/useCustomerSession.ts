@@ -1,5 +1,6 @@
+import { useIsomorphicLayoutEffect } from '@graphcommerce/framer-utils'
 import { useQuery } from '@graphcommerce/graphql'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { CustomerTokenDocument, CustomerTokenQuery } from './CustomerToken.gql'
 
 type TokenResponse = Omit<NonNullable<CustomerTokenQuery['customerToken']>, '__typename'> & {
@@ -20,7 +21,7 @@ export function useCustomerSession(): UseCustomerSessionReturn {
 
   const token = data?.customerToken
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (skip) setSkip(false)
   }, [skip])
 

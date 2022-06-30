@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@graphcommerce/ecommerce-ui": "1.0.23",
+    "@graphcommerce/framer-utils": "3.1.4",
     "@graphcommerce/graphql": "3.3.0",
     "@graphcommerce/graphql-mesh": "4.1.4",
     "@graphcommerce/image": "3.1.7",
