@@ -19,7 +19,7 @@
     "@playwright/test": "^1.21.1"
   },
   "dependencies": {
-    "@apollo/client": "^3.6.6",
+    "@apollo/client": "^3.6.9",
     "@graphcommerce/graphql-codegen-near-operation-file": "3.0.14",
     "@graphcommerce/graphql-codegen-relay-optimizer-plugin": "3.0.8",
     "@graphql-codegen/add": "3.1.1",
@@ -33,5 +33,9 @@
     "@graphql-codegen/typescript-operations": "2.4.1",
     "apollo3-cache-persist": "^0.14.0",
     "graphql": "16.5.0"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   }
 }

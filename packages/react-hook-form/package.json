@@ -19,7 +19,7 @@
     "type-fest": "^2.12.2"
   },
   "dependencies": {
-    "@apollo/client": "^3.6.6",
+    "@apollo/client": "^3.6.9",
     "graphql": "16.5.0",
     "react-hook-form": "7.32.0"
   },
