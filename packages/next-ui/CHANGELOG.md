@@ -1,5 +1,16 @@
 # Change Log
 
+## 4.12.0
+
+### Minor Changes
+
+- [#1534](https://github.com/graphcommerce-org/graphcommerce/pull/1534) [`c756f42e5`](https://github.com/graphcommerce-org/graphcommerce/commit/c756f42e503761a497e4a5a7a02d02141df231c3) Thanks [@mikekeehnen](https://github.com/mikekeehnen)! - Added the method title to the action card title for shipping methods.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/framer-scroller@2.1.21
+
 ## 4.11.2
 
 ### Patch Changes
