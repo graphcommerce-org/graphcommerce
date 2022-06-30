@@ -17,6 +17,7 @@ import {
   DesktopNavItem,
   DarkLightModeMenuSecondaryItem,
   iconChevronDown,
+  NavigationProvider,
   NavigationOverlay,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
@@ -37,21 +38,12 @@ export type LayoutFullProps = Omit<
 export function LayoutFull(props: LayoutFullProps) {
   const { footer, menu = {}, children, ...uiProps } = props
 
-  const [active, setActive] = useState(false)
-
+  const [navigationActive, setNavigationActive] = useState(false)
   const router = useRouter()
 
   return (
     <>
-      <NavigationOverlay
-        active={active}
-        onClose={() => setActive(false)}
-        sx={(theme) => ({
-          py: theme.spacings.md,
-        })}
-        itemWidth={230}
-        stretchColumns={false}
-        hideRootOnNavigate
+      <NavigationProvider
         items={[
           <SearchLink href='/search' sx={(theme) => ({ width: '100%', mb: theme.spacings.xs })}>
             <Trans id='Search...' />
@@ -80,8 +72,17 @@ export function LayoutFull(props: LayoutFullProps) {
           </WishlistMenuFabItem>,
           <DarkLightModeMenuSecondaryItem key='darkmode' />,
         ]}
-        renderItem={() => <Box />}
-      />
+      >
+        <NavigationOverlay
+          active={navigationActive}
+          onClose={() => setNavigationActive(false)}
+          sx={(theme) => ({
+            py: theme.spacings.md,
+          })}
+          itemWidth='230px'
+          stretchColumns={false}
+        />
+      </NavigationProvider>
 
       <LayoutDefault
         {...uiProps}
@@ -108,7 +109,7 @@ export function LayoutFull(props: LayoutFullProps) {
                 variant='h6'
                 color='text.primary'
                 underline='none'
-                onClick={() => setActive(true)}
+                onClick={() => setNavigationActive(true)}
                 sx={{ whiteSpace: 'nowrap', paddingTop: '6px' }}
               >
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
@@ -138,7 +139,7 @@ export function LayoutFull(props: LayoutFullProps) {
         }
         footer={<Footer footer={footer} />}
         cartFab={<CartFab />}
-        menuFab={<MenuFab onClick={() => setActive(true)} />}
+        menuFab={<MenuFab onClick={() => setNavigationActive(true)} />}
       >
         {children}
       </LayoutDefault>

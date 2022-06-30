@@ -33,11 +33,11 @@ export function NavigationBase(props: NavigationBaseProps) {
           '& .Navigation-column': {
             boxShadow: (theme) => `inset 1px 0 ${theme.palette.divider}`,
           },
-          '& .NavigationItem-root': {
+          '& .NavigationItem-item': {
             mx: (theme) => theme.spacings.md,
             whiteSpace: 'nowrap',
           },
-          '& .NavigationItem-first': {
+          '& .NavigationItem-item.first': {
             // mt: (theme) => theme.spacings.md,
           },
           '& .Navigation-column:first-of-type': {

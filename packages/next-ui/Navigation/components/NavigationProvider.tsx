@@ -1,3 +1,5 @@
+import { Trans } from '@lingui/react'
+import { MotionConfig } from 'framer-motion'
 import { useState, useMemo } from 'react'
 import { isElement } from 'react-is'
 import {
@@ -10,13 +12,19 @@ import {
 
 export type NavigationProviderProps = {
   items: (NavigationNode | React.ReactElement)[]
-  renderItem: NavigationRender
+  renderItem?: NavigationRender
   onChange?: (path: NavigationPath) => void
   hideRootOnNavigate?: boolean
   children?: React.ReactNode
 }
 
 const nonNullable = <T,>(value: T): value is NonNullable<T> => value !== null && value !== undefined
+
+const NavigationRenderDefault: NavigationRender = ({ hasChildren, name, component }) => {
+  if (component) return <>{component}</>
+  if (hasChildren) return <Trans id='All {name}' values={{ name }} />
+  return <>{name}</>
+}
 
 export function NavigationProvider(props: NavigationProviderProps) {
   const { items, renderItem, onChange, hideRootOnNavigate = true, children } = props
@@ -33,10 +41,14 @@ export function NavigationProvider(props: NavigationProviderProps) {
       items: items
         .map((item, index) => (isElement(item) ? { id: item.key ?? index, component: item } : item))
         .filter(nonNullable),
-      Render: renderItem,
+      Render: renderItem ?? NavigationRenderDefault,
     }),
     [hideRootOnNavigate, path, renderItem, items, onChange],
   )
 
-  return <NavigationContext.Provider value={value}>{children}</NavigationContext.Provider>
+  return (
+    <MotionConfig transition={{ duration: 0.275 }}>
+      <NavigationContext.Provider value={value}>{children}</NavigationContext.Provider>
+    </MotionConfig>
+  )
 }

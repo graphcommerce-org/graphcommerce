@@ -1,7 +1,8 @@
 import styled from '@emotion/styled'
+import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Box, Fab, SxProps, Theme, useEventCallback } from '@mui/material'
-import { m, MotionConfig, MotionConfigContext } from 'framer-motion'
+import { Box, Fab, SxProps, Theme, useEventCallback, useMediaQuery } from '@mui/material'
+import { m, MotionConfigContext } from 'framer-motion'
 import { Tween } from 'framer-motion/types/types'
 import { useContext } from 'react'
 import { isElement } from 'react-is'
@@ -11,15 +12,15 @@ import { LayoutTitle } from '../../Layout/components/LayoutTitle'
 import { Overlay } from '../../LayoutOverlay/components/Overlay'
 import { useFabSize } from '../../Theme'
 import { iconClose, iconChevronLeft } from '../../icons'
-import { NavigationContextType, useNavigation } from '../hooks/useNavigation'
+import { NavigationContextType, NavigationNode, useNavigation } from '../hooks/useNavigation'
 import { NavigationBase } from './NavigationBase'
 import { NavigationProvider, NavigationProviderProps } from './NavigationProvider'
 
-type NavigationOverlayProps = NavigationProviderProps & {
+type NavigationOverlayProps = {
   active: boolean
   sx?: SxProps<Theme>
   stretchColumns?: boolean
-  itemWidth: number
+  itemWidth: string
   onClose: () => void
 }
 
@@ -28,36 +29,39 @@ type FindCurrentProps = Pick<NavigationProviderProps, 'items'> & Pick<Navigation
 function findCurrent(props: FindCurrentProps) {
   const { items, path } = props
   const id = path.slice(-1)[0]
-  let result
+  let result: undefined | NavigationNode
 
-  items.some(
-    // eslint-disable-next-line no-return-assign
-    (item) =>
-      (!isElement(item) && item.id === id && (result = item)) ||
-      (result =
-        !isElement(item) && item.childItems && findCurrent({ items: item.childItems, path })),
-  )
+  for (const item of items) {
+    if (!isElement(item) && item.id === id) {
+      result = item
+      break
+    }
+    if (!isElement(item) && item.childItems) {
+      result = findCurrent({ items: item.childItems, path })
+      if (result) {
+        break
+      }
+    }
+  }
+
   return result
 }
 
 const MotionDiv = styled(m.div)()
 
-export function NavigationOverlayBase(props: NavigationOverlayProps) {
-  const { active, sx, onClose: closeCallback, items, stretchColumns, itemWidth } = props
+export function NavigationOverlay(props: NavigationOverlayProps) {
+  const { active, sx, onClose: closeCallback, stretchColumns, itemWidth } = props
+  const { path, select, items } = useNavigation()
 
   const duration = (useContext(MotionConfigContext).transition as Tween | undefined)?.duration ?? 0
 
   const fabSize = useFabSize('responsive')
   const svgSize = useIconSvgSize('large')
 
-  const { path, select } = useNavigation()
-
+  const isMobile = useMediaQuery<Theme>((theme) => theme.breakpoints.down('md'))
   const handleReset = useEventCallback(() => {
-    select([])
-  })
-
-  const handleResetMobile = useEventCallback(() => {
-    select(path.slice(0, -1))
+    if (isMobile) select(path.slice(0, -1))
+    else select([])
   })
 
   const handeOverlayClose = useEventCallback(() => {
@@ -107,34 +111,19 @@ export function NavigationOverlayBase(props: NavigationOverlayProps) {
             switchPoint={0}
             left={
               showBack && (
-                <>
-                  <Fab
-                    color='inherit'
-                    onClick={handleReset}
-                    sx={{
-                      display: { xs: 'none', md: 'flex' },
-                      boxShadow: 'none',
-                      marginLeft: `calc((${fabSize} - ${svgSize}) * -0.5)`,
-                      marginRight: `calc((${fabSize} - ${svgSize}) * -0.5)`,
-                    }}
-                    size='responsive'
-                  >
-                    <IconSvg src={iconChevronLeft} size='large' />
-                  </Fab>
-                  <Fab
-                    color='inherit'
-                    onClick={handleResetMobile}
-                    sx={{
-                      display: { xs: 'flex', md: 'none' },
-                      boxShadow: 'none',
-                      marginLeft: `calc((${fabSize} - ${svgSize}) * -0.5)`,
-                      marginRight: `calc((${fabSize} - ${svgSize}) * -0.5)`,
-                    }}
-                    size='responsive'
-                  >
-                    <IconSvg src={iconChevronLeft} size='large' />
-                  </Fab>
-                </>
+                <Fab
+                  color='inherit'
+                  onClick={handleReset}
+                  sx={{
+                    boxShadow: 'none',
+                    marginLeft: `calc((${fabSize} - ${svgSize}) * -0.5)`,
+                    marginRight: `calc((${fabSize} - ${svgSize}) * -0.5)`,
+                  }}
+                  size='responsive'
+                  aria-label={i18n._(/* i18n */ 'Back')}
+                >
+                  <IconSvg src={iconChevronLeft} size='large' aria-hidden />
+                </Fab>
               )
             }
             right={
@@ -147,24 +136,20 @@ export function NavigationOverlayBase(props: NavigationOverlayProps) {
                   marginRight: `calc((${fabSize} - ${svgSize}) * -0.5)`,
                 }}
                 size='responsive'
+                aria-label={i18n._(/* i18n */ 'Close')}
               >
-                <IconSvg src={iconClose} size='large' />
+                <IconSvg src={iconClose} size='large' aria-hidden />
               </Fab>
             }
           >
             <LayoutTitle size='small' component='span'>
-              {current.name || <Trans id='Menu' />}
+              {current?.name ?? <Trans id='Menu' />}
             </LayoutTitle>
           </LayoutHeaderContent>
         </Box>
       </MotionDiv>
 
-      <MotionDiv
-        layout='position'
-        style={{
-          display: 'grid',
-        }}
-      >
+      <MotionDiv layout='position' style={{ display: 'grid' }}>
         <Box
           sx={(theme) => ({
             display: 'grid',
@@ -173,9 +158,9 @@ export function NavigationOverlayBase(props: NavigationOverlayProps) {
             [theme.breakpoints.down('md')]: {
               overflow: 'hidden',
               scrollSnapType: 'x mandatory',
-              width: `calc(${theme.spacings.md} + ${theme.spacings.md} + ${itemWidth}px)`,
+              width: `calc(${theme.spacings.md} + ${theme.spacings.md} + ${itemWidth})`,
             },
-            '& .NavigationItem-root': {
+            '& .NavigationItem-item': {
               width: itemWidth,
             },
           })}
@@ -184,28 +169,5 @@ export function NavigationOverlayBase(props: NavigationOverlayProps) {
         </Box>
       </MotionDiv>
     </Overlay>
-  )
-}
-
-export function NavigationOverlay(props: NavigationOverlayProps) {
-  const { items, stretchColumns } = props
-
-  return (
-    <MotionConfig transition={{ duration: 0.275 }}>
-      <NavigationProvider
-        items={items}
-        hideRootOnNavigate
-        renderItem={({ hasChildren, name, component }) => {
-          if (component) return <>{component}</>
-          return (
-            <>
-              {hasChildren && 'All'} {name}
-            </>
-          )
-        }}
-      >
-        <NavigationOverlayBase {...props} stretchColumns={stretchColumns} />
-      </NavigationProvider>
-    </MotionConfig>
   )
 }

@@ -10,8 +10,13 @@ type NavigationItemProps = NavigationNode & {
   row: number
 }
 
-const parts = ['root', 'column', 'first'] as const
-const { classes } = extendableComponent('NavigationItem', parts)
+const name = 'NavigationItem'
+const parts = ['li', 'item'] as const
+type OwnerState = {
+  first: boolean
+  last: boolean
+}
+const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 
 export function NavigationItem(props: NavigationItemProps) {
   const { id, href, component, childItems, parentPath, row, childItemsCount, onItemClick } = props
@@ -27,7 +32,10 @@ export function NavigationItem(props: NavigationItemProps) {
     return null
   }
 
-  // let visible = selected
+  const first = row === 1
+  const last = row === childItemsCount
+  const classes = withState({ first, last })
+
   const isRoot = itemPath.length === 1
   const hidingRoot = hideRootOnNavigate && path.length > 0
   const hideItem = hidingRoot && isRoot
@@ -36,13 +44,9 @@ export function NavigationItem(props: NavigationItemProps) {
 
   if (childItems) {
     return (
-      <Box sx={{ display: 'contents' }} component='li'>
+      <Box sx={{ display: 'contents' }} component='li' className={classes.li}>
         <ListItemButton
-          className={[
-            classes.item,
-            row === 1 && classes.first,
-            row === childItemsCount && classes.last,
-          ].join(' ')}
+          className={classes.item}
           role='button'
           sx={{
             gridRowStart: row,
@@ -80,26 +84,18 @@ export function NavigationItem(props: NavigationItemProps) {
           component='ul'
         >
           {href && (
-            <Box sx={{ display: 'contents' }} component='li'>
+            <Box sx={{ display: 'contents' }} component='li' className={classes.li}>
               <PageLink href={href} passHref>
                 <ListItemButton
-                  className={[
-                    classes.item,
-                    classes.first,
-                    row === childItemsCount && classes.last,
-                  ].join(' ')}
-                  sx={{
+                  className={withState({ first: true, last }).item}
+                  sx={(theme) => ({
                     gridRowStart: 1,
-                    gap: (theme) => theme.spacings.xs,
+                    gap: theme.spacings.xs,
                     gridColumnStart: level + 1 + levelOffset,
-                  }}
+                  })}
                   data-level={level + 1 + levelOffset}
                   tabIndex={path.join(',').includes(itemPath.join(',')) ? undefined : -1}
-                  onClick={() => {
-                    if (onItemClick) {
-                      onItemClick()
-                    }
-                  }}
+                  onClick={onItemClick}
                 >
                   <Box
                     component='span'
@@ -134,28 +130,20 @@ export function NavigationItem(props: NavigationItemProps) {
   }
 
   return (
-    <Box component='li' sx={{ display: hideItem ? 'none' : 'contents' }}>
+    <Box component='li' sx={{ display: hideItem ? 'none' : 'contents' }} classes={classes.li}>
       {href ? (
         <PageLink href={href} passHref>
           <ListItemButton
-            className={[
-              classes.item,
-              row === 1 && classes.first,
-              row === childItemsCount && classes.last,
-            ].join(' ')}
+            className={classes.item}
             component='a'
-            sx={{
+            sx={(theme) => ({
               gridRowStart: row,
               gridColumnStart: level + levelOffset,
-              gap: (theme) => theme.spacings.xxs,
-            }}
+              gap: theme.spacings.xxs,
+            })}
             data-level={level + levelOffset}
             tabIndex={path.join(',').includes(parentPath.join(',')) ? undefined : -1}
-            onClick={() => {
-              if (onItemClick) {
-                onItemClick()
-              }
-            }}
+            onClick={onItemClick}
           >
             <Box
               component='span'
@@ -173,16 +161,9 @@ export function NavigationItem(props: NavigationItemProps) {
         </PageLink>
       ) : (
         <Box
-          sx={{
-            gridRowStart: row,
-            gridColumnStart: level + levelOffset,
-          }}
+          sx={{ gridRowStart: row, gridColumnStart: level + levelOffset }}
           data-level={level + levelOffset}
-          className={[
-            classes.item,
-            row === 1 && classes.first,
-            row === childItemsCount && classes.last,
-          ].join(' ')}
+          className={classes.item}
         >
           {component}
         </Box>
