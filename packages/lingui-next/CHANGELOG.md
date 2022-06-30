@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.1.11
+
+### Patch Changes
+
+- [#1543](https://github.com/graphcommerce-org/graphcommerce/pull/1543) [`1e0a8b0a3`](https://github.com/graphcommerce-org/graphcommerce/commit/1e0a8b0a3842d150fdfd6e040b408a6fb3f76c7c) Thanks [@paales](https://github.com/paales)! - update lingui version
+
 ## 2.1.10
 
 ### Patch Changes

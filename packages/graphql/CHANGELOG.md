@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.4.0
+
+### Minor Changes
+
+- [#1544](https://github.com/graphcommerce-org/graphcommerce/pull/1544) [`5f927ebdc`](https://github.com/graphcommerce-org/graphcommerce/commit/5f927ebdc6f0331833e02b96e4f169bfe475ac6b) Thanks [@mikekeehnen](https://github.com/mikekeehnen)! - Fixed hydration errors on account, cart and wishlist
+
 ## 3.3.0
 
 ### Minor Changes
