@@ -6,18 +6,14 @@ import { Tween } from 'framer-motion/types/types'
 import { useContext } from 'react'
 import { isElement } from 'react-is'
 import { IconSvg, useIconSvgSize } from '../../IconSvg'
-import { LayoutTitle } from '../../Layout'
 import { LayoutHeaderContent } from '../../Layout/components/LayoutHeaderContent'
-import { Overlay } from '../../LayoutOverlay'
+import { LayoutTitle } from '../../Layout/components/LayoutTitle'
+import { Overlay } from '../../LayoutOverlay/components/Overlay'
 import { useFabSize } from '../../Theme'
 import { iconClose, iconChevronLeft } from '../../icons'
-import {
-  NavigationContext,
-  NavigationBase,
-  NavigationProvider,
-  NavigationProviderProps,
-  useNavigation,
-} from './Navigation'
+import { NavigationContextType, useNavigation } from '../hooks/useNavigation'
+import { NavigationBase } from './NavigationBase'
+import { NavigationProvider, NavigationProviderProps } from './NavigationProvider'
 
 type NavigationOverlayProps = NavigationProviderProps & {
   active: boolean
@@ -27,9 +23,9 @@ type NavigationOverlayProps = NavigationProviderProps & {
   onClose: () => void
 }
 
-type findCurrentProps = Pick<NavigationProviderProps, 'items'> & Pick<NavigationContext, 'path'>
+type FindCurrentProps = Pick<NavigationProviderProps, 'items'> & Pick<NavigationContextType, 'path'>
 
-function findCurrent(props: findCurrentProps) {
+function findCurrent(props: FindCurrentProps) {
   const { items, path } = props
   const id = path.slice(-1)[0]
   let result
@@ -96,20 +92,12 @@ export function NavigationOverlayBase(props: NavigationOverlayProps) {
         },
       }}
     >
-      <MotionDiv
-        layout
-        style={{
-          display: 'grid',
-        }}
-      >
+      <MotionDiv layout style={{ display: 'grid' }}>
         <Box
           sx={(theme) => ({
             top: 0,
             position: 'sticky',
-            height: {
-              xs: theme.appShell.headerHeightSm,
-              md: theme.appShell.appBarHeightMd,
-            },
+            height: { xs: theme.appShell.headerHeightSm, md: theme.appShell.appBarHeightMd },
             zIndex: 1,
           })}
         >
@@ -187,7 +175,7 @@ export function NavigationOverlayBase(props: NavigationOverlayProps) {
               scrollSnapType: 'x mandatory',
               width: `calc(${theme.spacings.md} + ${theme.spacings.md} + ${itemWidth}px)`,
             },
-            '& .Navigation-item': {
+            '& .NavigationItem-root': {
               width: itemWidth,
             },
           })}
@@ -203,11 +191,7 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
   const { items, stretchColumns } = props
 
   return (
-    <MotionConfig
-      transition={{
-        duration: 0.275,
-      }}
-    >
+    <MotionConfig transition={{ duration: 0.275 }}>
       <NavigationProvider
         items={items}
         hideRootOnNavigate

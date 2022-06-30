@@ -1,49 +1,21 @@
-import { Box, ListItemButton, SxProps, Theme } from '@mui/material'
+import { Box, ListItemButton } from '@mui/material'
 import PageLink from 'next/link'
-import React, { createContext, useContext, useMemo, useState } from 'react'
-import { isElement } from 'react-is'
 import { IconSvg } from '../../IconSvg'
 import { extendableComponent } from '../../Styles/extendableComponent'
 import { iconChevronRight } from '../../icons'
-
-const parts = ['root', 'item', 'column', 'first', 'last'] as const
-const { classes } = extendableComponent('Navigation', parts)
-
-function nonNullable<T>(value: T): value is NonNullable<T> {
-  return value !== null && value !== undefined
-}
-
-export type NavigationPath = NavigationId[]
-type SelectPath = (path: NavigationPath) => void
-export type NavigationContext = {
-  path: NavigationPath
-  select: SelectPath
-  Render: RenderItem
-  items: NavigationNode[]
-  hideRootOnNavigate: boolean
-}
-
-const navigationContext = createContext(undefined as unknown as NavigationContext)
-
-type NavigationId = string | number
-export type NavigationNode = {
-  id: NavigationId
-  name?: string
-  href?: string
-  component?: React.ReactNode
-  childItems?: NavigationNode[]
-  childItemsCount?: number
-  onItemClick?: () => void
-}
+import { NavigationNode, NavigationPath, useNavigation } from '../hooks/useNavigation'
 
 type NavigationItemProps = NavigationNode & {
   parentPath: NavigationPath
   row: number
 }
 
-function NavigationItem(props: NavigationItemProps) {
+const parts = ['root', 'column', 'first'] as const
+const { classes } = extendableComponent('NavigationItem', parts)
+
+export function NavigationItem(props: NavigationItemProps) {
   const { id, href, component, childItems, parentPath, row, childItemsCount, onItemClick } = props
-  const { Render, path, select, hideRootOnNavigate } = useContext(navigationContext)
+  const { Render, path, select, hideRootOnNavigate } = useNavigation()
 
   const itemPath = [...parentPath, id]
   const level = itemPath.length
@@ -217,102 +189,4 @@ function NavigationItem(props: NavigationItemProps) {
       )}
     </Box>
   )
-}
-
-type RenderItem = React.VFC<
-  Omit<NavigationNode, 'childItems'> & { children?: React.ReactNode; hasChildren: boolean }
->
-
-export type NavigationProviderProps = {
-  items: (NavigationNode | React.ReactElement)[]
-  renderItem: RenderItem
-  onChange?: (path: NavigationPath) => void
-  hideRootOnNavigate?: boolean
-  children?: React.ReactNode
-}
-
-export function NavigationProvider(props: NavigationProviderProps) {
-  const { items, renderItem, onChange, hideRootOnNavigate = true, children } = props
-
-  const [path, select] = useState<NavigationPath>([])
-  const value = useMemo<NavigationContext>(
-    () => ({
-      hideRootOnNavigate,
-      path,
-      select: (incomming: NavigationPath) => {
-        select(incomming)
-        onChange?.(incomming)
-      },
-      items: items
-        .map((item, index) => (isElement(item) ? { id: item.key ?? index, component: item } : item))
-        .filter(nonNullable),
-      Render: renderItem,
-    }),
-    [hideRootOnNavigate, path, renderItem, items, onChange],
-  )
-
-  return <navigationContext.Provider value={value}>{children}</navigationContext.Provider>
-}
-
-type NavigationBaseProps = {
-  sx?: SxProps<Theme>
-}
-export function NavigationBase(props: NavigationBaseProps & { onItemClick: () => void }) {
-  const { sx = [], onItemClick } = props
-  const { items, path } = useContext(navigationContext)
-
-  return (
-    <Box
-      className={classes.root}
-      sx={[
-        {
-          display: 'grid',
-          gridAutoFlow: 'column',
-          scrollSnapAlign: 'end',
-          '& > ul > li > a, & > ul > li > [role=button]': {
-            '& span': {
-              typography: 'h2',
-            },
-            // '& svg': { display: 'none' },
-          },
-          '& .Navigation-column': {
-            boxShadow: (theme) => `inset 1px 0 ${theme.palette.divider}`,
-          },
-          '& .Navigation-item': {
-            mx: (theme) => theme.spacings.md,
-            whiteSpace: 'nowrap',
-          },
-          '& .Navigation-first': {
-            // mt: (theme) => theme.spacings.md,
-          },
-          '& .Navigation-column:first-of-type': {
-            boxShadow: 'none',
-          },
-        },
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
-    >
-      {path.length >= 0 && <Box sx={{ gridArea: '1 / 1 / 999 / 2' }} className={classes.column} />}
-      {path.length >= 1 && <Box sx={{ gridArea: '1 / 2 / 999 / 3' }} className={classes.column} />}
-      {path.length >= 2 && <Box sx={{ gridArea: '1 / 3 / 999 / 4' }} className={classes.column} />}
-      {path.length >= 3 && <Box sx={{ gridArea: '1 / 4 / 999 / 5' }} className={classes.column} />}
-
-      <Box sx={{ display: 'contents' }} component='ul'>
-        {items.map((item, idx) => (
-          <NavigationItem
-            key={item.id}
-            {...item}
-            parentPath={[]}
-            row={idx + 1}
-            childItemsCount={items.length}
-            onItemClick={onItemClick}
-          />
-        ))}
-      </Box>
-    </Box>
-  )
-}
-
-export function useNavigation() {
-  return useContext(navigationContext)
 }

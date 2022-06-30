@@ -1,2 +1,2 @@
-export * from './components/Navigation'
+export * from './components/NavigationBase'
 export * from './components/NavigationOverlay'
