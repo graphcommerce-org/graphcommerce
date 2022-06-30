@@ -16,6 +16,9 @@ import {
 type OwnerState = {
   first: boolean
   last: boolean
+  // It is actually used.
+  // eslint-disable-next-line react/no-unused-prop-types
+  column: number
 }
 
 type NavigationItemProps = NavigationNode & {
@@ -27,11 +30,10 @@ type NavigationItemProps = NavigationNode & {
 const componentName = 'NavigationItem'
 const parts = ['li', 'ul', 'item'] as const
 
-const { withState, classes } = extendableComponent<OwnerState, typeof componentName, typeof parts>(
+const { withState } = extendableComponent<OwnerState, typeof componentName, typeof parts>(
   componentName,
   parts,
 )
-export const navigationItemClasses = classes
 
 const NavigationLI = styled('li')({ display: 'contents' })
 
@@ -39,31 +41,23 @@ export function NavigationItem(props: NavigationItemProps) {
   const { id, parentPath, idx, first, last, onLinkClick: onNavigationClick } = props
 
   const row = idx + 1
-  const { path, select, hideRootOnNavigate } = useNavigation()
+  const { selected, select, hideRootOnNavigate } = useNavigation()
 
   const itemPath = [...parentPath, id]
-  const selected = path.slice(0, itemPath.length).join('/') === itemPath.join('/')
+  const thisIsSelected = selected.slice(0, itemPath.length).join('/') === itemPath.join('/')
 
-  const stateClasses = withState({ first, last })
-
-  const hidingRoot = hideRootOnNavigate && path.length > 0
+  const hidingRoot = hideRootOnNavigate && selected.length > 0
   const hideItem = hidingRoot && itemPath.length === 1
 
   const column = hidingRoot ? itemPath.length - 1 : itemPath.length
+  const classes = withState({ first, last, column: itemPath.length })
 
-  const isHref = isNavigationHref(props)
-  const isButton = isNavigationButton(props)
-  const isComponent = isNavigationComponent(props)
-
-  let result: React.ReactElement<any, any> | null = null
-
-  if (isButton) {
+  if (isNavigationButton(props)) {
     const { childItems, name } = props
-
-    result = (
-      <>
+    return (
+      <NavigationLI className={classes.li}>
         <ListItemButton
-          className={stateClasses.item}
+          className={classes.item}
           role='button'
           sx={{
             gridRowStart: row,
@@ -72,11 +66,11 @@ export function NavigationItem(props: NavigationItemProps) {
             display: hideItem ? 'none' : 'flex',
           }}
           data-level={column}
-          disabled={selected}
-          tabIndex={path.join(',').includes(parentPath.join(',')) ? undefined : -1}
+          disabled={thisIsSelected}
+          tabIndex={selected.join(',').includes(parentPath.join(',')) ? undefined : -1}
           onClick={(e) => {
             e.preventDefault()
-            if (!selected) select(itemPath)
+            if (!thisIsSelected) select(itemPath)
           }}
         >
           <Box
@@ -93,62 +87,64 @@ export function NavigationItem(props: NavigationItemProps) {
           <IconSvg src={iconChevronRight} sx={{ flexShrink: 0 }} />
         </ListItemButton>
 
-        <NavigationItems items={childItems} selected={selected} parentPath={itemPath} />
-      </>
+        <NavigationItems items={childItems} selected={thisIsSelected} parentPath={itemPath} />
+      </NavigationLI>
     )
   }
 
-  if (isHref) {
+  if (isNavigationHref(props)) {
     const { name, href } = props
-    result = (
-      <PageLink href={href} passHref>
-        <ListItemButton
-          className={stateClasses.item}
-          component='a'
-          sx={(theme) => ({
-            gridRowStart: row,
-            gridColumnStart: column,
-            gap: theme.spacings.xxs,
-          })}
-          data-level={column}
-          tabIndex={path.join(',').includes(parentPath.join(',')) ? undefined : -1}
-          onClick={onNavigationClick}
-        >
-          <Box
-            component='span'
-            sx={{
-              whiteSpace: 'nowrap',
-              overflowX: 'hidden',
-              textOverflow: 'ellipsis',
-              flexGrow: 1,
-            }}
+    return (
+      <NavigationLI sx={[hideItem && { display: 'none' }]} className={classes.li}>
+        <PageLink href={href} passHref>
+          <ListItemButton
+            className={classes.item}
+            component='a'
+            sx={(theme) => ({
+              gridRowStart: row,
+              gridColumnStart: column,
+              gap: theme.spacings.xxs,
+            })}
+            data-level={column}
+            tabIndex={selected.join(',').includes(parentPath.join(',')) ? undefined : -1}
+            onClick={onNavigationClick}
           >
-            {name}
-          </Box>
-          <IconSvg src={iconChevronRight} sx={{ flexShrink: 0, visibility: 'hidden' }} />
-        </ListItemButton>
-      </PageLink>
+            <Box
+              component='span'
+              sx={{
+                whiteSpace: 'nowrap',
+                overflowX: 'hidden',
+                textOverflow: 'ellipsis',
+                flexGrow: 1,
+              }}
+            >
+              {name}
+            </Box>
+            <IconSvg src={iconChevronRight} sx={{ flexShrink: 0, visibility: 'hidden' }} />
+          </ListItemButton>
+        </PageLink>
+      </NavigationLI>
     )
   }
 
-  if (isComponent) {
+  if (isNavigationComponent(props)) {
     const { component } = props
-    result = (
-      <Box
-        sx={{ gridRowStart: row, gridColumnStart: column }}
-        data-level={column}
-        className={stateClasses.item}
-      >
-        {component}
-      </Box>
+    return (
+      <NavigationLI sx={[hideItem && { display: 'none' }]} className={classes.li}>
+        <Box
+          sx={{ gridRowStart: row, gridColumnStart: column }}
+          data-level={column}
+          className={classes.item}
+        >
+          {component}
+        </Box>
+      </NavigationLI>
     )
   }
 
-  return (
-    <NavigationLI sx={[hideItem && !isButton && { display: 'none' }]} className={stateClasses.li}>
-      {result}
-    </NavigationLI>
-  )
+  if (process.env.NODE_ENV !== 'production') throw Error('NavigationItem: unknown type')
+
+  return null
 }
 
 const NavigationUList = styled('ul')({})
@@ -163,13 +159,15 @@ type NavigationItemsProps = {
 export function NavigationItems(props: NavigationItemsProps) {
   const { items, onLinkClick, parentPath = [], selected = false } = props
 
+  const classes = withState({ first: false, last: false, column: 0 })
+
   return (
     <NavigationUList
       sx={[
         { display: 'block', position: 'absolute', left: '-10000px', top: '-10000px' },
         selected && { display: 'contents' },
       ]}
-      className={navigationItemClasses.ul}
+      className={classes.ul}
     >
       {items.map((item, idx) => (
         <NavigationItem
@@ -180,6 +178,7 @@ export function NavigationItems(props: NavigationItemsProps) {
           first={idx === 0}
           last={idx === items.length - 1}
           onLinkClick={onLinkClick}
+          column={0}
         />
       ))}
     </NavigationUList>

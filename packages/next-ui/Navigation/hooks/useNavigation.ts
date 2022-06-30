@@ -2,13 +2,13 @@ import { createContext, useContext } from 'react'
 
 export type NavigationId = string | number
 export type NavigationPath = NavigationId[]
-export type NavigationSelect = (path: NavigationPath) => void
+export type NavigationSelect = (selected: NavigationPath) => void
 export type NavigationRender = React.FC<
   (NavigationNodeComponent | NavigationNodeHref) & { children?: React.ReactNode }
 >
 
 export type NavigationContextType = {
-  path: NavigationPath
+  selected: NavigationPath
   select: NavigationSelect
   items: NavigationNode[]
   hideRootOnNavigate: boolean

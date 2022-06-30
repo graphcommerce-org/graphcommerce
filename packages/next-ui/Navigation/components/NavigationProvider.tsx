@@ -1,18 +1,17 @@
-import { Trans } from '@lingui/react'
 import { MotionConfig } from 'framer-motion'
 import { useState, useMemo } from 'react'
 import { isElement } from 'react-is'
 import {
   NavigationNode,
-  NavigationRender,
   NavigationPath,
   NavigationContextType,
   NavigationContext,
+  NavigationSelect,
 } from '../hooks/useNavigation'
 
 export type NavigationProviderProps = {
   items: (NavigationNode | React.ReactElement)[]
-  onChange?: (path: NavigationPath) => void
+  onChange?: NavigationSelect
   hideRootOnNavigate?: boolean
   children?: React.ReactNode
 }
@@ -22,20 +21,20 @@ const nonNullable = <T,>(value: T): value is NonNullable<T> => value !== null &&
 export function NavigationProvider(props: NavigationProviderProps) {
   const { items, onChange, hideRootOnNavigate = true, children } = props
 
-  const [path, select] = useState<NavigationPath>([])
+  const [selected, setSelected] = useState<NavigationPath>([])
   const value = useMemo<NavigationContextType>(
     () => ({
       hideRootOnNavigate,
-      path,
+      selected,
       select: (incomming: NavigationPath) => {
-        select(incomming)
+        setSelected(incomming)
         onChange?.(incomming)
       },
       items: items
         .map((item, index) => (isElement(item) ? { id: item.key ?? index, component: item } : item))
         .filter(nonNullable),
     }),
-    [hideRootOnNavigate, path, items, onChange],
+    [hideRootOnNavigate, selected, items, onChange],
   )
 
   return (

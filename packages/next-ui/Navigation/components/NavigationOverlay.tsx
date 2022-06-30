@@ -5,7 +5,6 @@ import { Box, Fab, SxProps, Theme, useEventCallback, useMediaQuery } from '@mui/
 import { m, MotionConfigContext } from 'framer-motion'
 import { Tween } from 'framer-motion/types/types'
 import { useContext } from 'react'
-import { isElement } from 'react-is'
 import { IconSvg, useIconSvgSize } from '../../IconSvg'
 import { LayoutHeaderContent } from '../../Layout/components/LayoutHeaderContent'
 import { LayoutTitle } from '../../Layout/components/LayoutTitle'
@@ -13,9 +12,15 @@ import { Overlay } from '../../LayoutOverlay/components/Overlay'
 import { extendableComponent } from '../../Styles/extendableComponent'
 import { useFabSize } from '../../Theme'
 import { iconClose, iconChevronLeft } from '../../icons'
-import { NavigationContextType, NavigationNode, useNavigation } from '../hooks/useNavigation'
+import {
+  isNavigationButton,
+  isNavigationComponent,
+  NavigationContextType,
+  NavigationNodeButton,
+  NavigationNodeHref,
+  useNavigation,
+} from '../hooks/useNavigation'
 import { NavigationItems } from './NavigationItem'
-import { NavigationProviderProps } from './NavigationProvider'
 
 type NavigationOverlayProps = {
   active: boolean
@@ -25,38 +30,36 @@ type NavigationOverlayProps = {
   onClose: () => void
 }
 
-type FindCurrentProps = Pick<NavigationProviderProps, 'items'> & Pick<NavigationContextType, 'path'>
+function findCurrent(
+  items: NavigationContextType['items'],
+  selected: NavigationContextType['selected'],
+): NavigationNodeHref | NavigationNodeButton | undefined {
+  const lastItem = selected.slice(-1)[0]
 
-function findCurrent(props: FindCurrentProps) {
-  const { items, path } = props
-  const id = path.slice(-1)[0]
-  let result: undefined | NavigationNode
+  if (!lastItem) return undefined
 
   for (const item of items) {
-    if (!isElement(item) && item.id === id) {
-      result = item
-      break
-    }
-    if (!isElement(item) && item.childItems) {
-      result = findCurrent({ items: item.childItems, path })
-      if (result) {
-        break
-      }
-    }
-  }
+    // eslint-disable-next-line no-continue
+    if (isNavigationComponent(item)) continue
 
-  return result
+    // If the item is the current one, return it
+    if (item.id === lastItem) return item
+
+    // Recursively find item
+    if (isNavigationButton(item)) return findCurrent(item.childItems, selected)
+  }
+  return undefined
 }
 
 const MotionDiv = styled(m.div)()
 
-const name = 'Navigation'
+const componentName = 'Navigation'
 const parts = ['root', 'navigation', 'header', 'column'] as const
-const { classes } = extendableComponent(name, parts)
+const { classes } = extendableComponent(componentName, parts)
 
 export function NavigationOverlay(props: NavigationOverlayProps) {
   const { active, sx, onClose: closeCallback, stretchColumns, itemWidth } = props
-  const { path, select, items } = useNavigation()
+  const { selected, select, items } = useNavigation()
 
   const duration = (useContext(MotionConfigContext).transition as Tween | undefined)?.duration ?? 0
 
@@ -65,20 +68,16 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
 
   const isMobile = useMediaQuery<Theme>((theme) => theme.breakpoints.down('md'))
   const handleReset = useEventCallback(() => {
-    if (isMobile) select(path.slice(0, -1))
+    if (isMobile) select(selected.slice(0, -1))
     else select([])
   })
 
   const handeOverlayClose = useEventCallback(() => {
     closeCallback()
-    setTimeout(() => {
-      select([])
-    }, duration * 1000)
+    setTimeout(() => select([]), duration * 1000)
   })
 
-  const current = findCurrent({ items, path })
-
-  const showBack = path.length > 0
+  const showBack = selected.length > 0
 
   return (
     <Overlay
@@ -150,7 +149,7 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
             }
           >
             <LayoutTitle size='small' component='span'>
-              {current?.name ?? <Trans id='Menu' />}
+              {findCurrent(items, selected)?.name ?? <Trans id='Menu' />}
             </LayoutTitle>
           </LayoutHeaderContent>
         </Box>
@@ -201,7 +200,7 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
               ...(Array.isArray(sx) ? sx : [sx]),
             ]}
           >
-            {path.length >= 0 && (
+            {selected.length >= 0 && (
               <Box
                 sx={(theme) => ({
                   gridArea: '1 / 1 / 999 / 2',
@@ -210,7 +209,7 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
                 className={classes.column}
               />
             )}
-            {path.length >= 1 && (
+            {selected.length >= 1 && (
               <Box
                 sx={(theme) => ({
                   gridArea: '1 / 2 / 999 / 3',
@@ -219,7 +218,7 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
                 className={classes.column}
               />
             )}
-            {path.length >= 2 && (
+            {selected.length >= 2 && (
               <Box
                 sx={(theme) => ({
                   gridArea: '1 / 3 / 999 / 4',
@@ -228,7 +227,7 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
                 className={classes.column}
               />
             )}
-            {path.length >= 3 && (
+            {selected.length >= 3 && (
               <Box
                 sx={(theme) => ({
                   gridArea: '1 / 4 / 999 / 5',
