@@ -1,6 +1,4 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { Maybe } from '@graphcommerce/graphql-mesh'
-import { NavigationNode } from '@graphcommerce/next-ui'
+import { NavigationNode, NavigationNodeButton, NavigationNodeHref } from '@graphcommerce/next-ui'
 import { MenuQueryFragment } from '../queries/MenuQueryFragment.gql'
 
 function nonNullable<T>(value: T): value is NonNullable<T> {
@@ -9,19 +7,26 @@ function nonNullable<T>(value: T): value is NonNullable<T> {
 
 type Item = NonNullable<NonNullable<MenuQueryFragment['menu']>['items']>[0]
 
-function categoryToNav(props: Maybe<Item> | undefined): NavigationNode | undefined {
+function categoryToNav(props: Item | null | undefined): NavigationNode | undefined {
   if (!props) return undefined
-  const { uid, children_count, children, include_in_menu, name, url_path } = props
+  const { uid, children, include_in_menu, name, url_path } = props
 
   if (!uid || include_in_menu !== 1 || !url_path || !name) return undefined
 
-  return {
-    name,
-    id: uid,
-    href: `/${url_path}`,
-    childItems:
-      (children?.length ?? 0) > 0 ? children?.map(categoryToNav).filter(nonNullable) : undefined,
+  // If we've got children we make a button that navigates to childitems.
+  if (children && children.length > 0) {
+    return {
+      name,
+      id: uid,
+      childItems: [
+        { name: `All ${name}`, href: `/${url_path}` },
+        ...children.map(categoryToNav).filter(nonNullable),
+      ],
+    } as NavigationNodeButton
   }
+
+  // If we've got no children we make a href.
+  return { name, id: uid, href: `/${url_path}` } as NavigationNodeHref
 }
 
 export function useMagentoMenuToNavigation(menu: MenuQueryFragment['menu']) {

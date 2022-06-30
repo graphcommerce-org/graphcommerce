@@ -4,7 +4,7 @@ export type NavigationId = string | number
 export type NavigationPath = NavigationId[]
 export type NavigationSelect = (path: NavigationPath) => void
 export type NavigationRender = React.FC<
-  (NavigationComponent | NavigationHref) & { children?: React.ReactNode }
+  (NavigationNodeComponent | NavigationNodeHref) & { children?: React.ReactNode }
 >
 
 export type NavigationContextType = {
@@ -18,31 +18,31 @@ type NavigationNodeBase = {
   id: NavigationId
 }
 
-type NavigationHref = NavigationNodeBase & {
+export type NavigationNodeHref = NavigationNodeBase & {
   name: string
   href: string
 }
 
-type NavigationButton = NavigationNodeBase & {
+export type NavigationNodeButton = NavigationNodeBase & {
   name: string
   childItems: NavigationNode[]
 }
 
-type NavigationComponent = NavigationNodeBase & {
+export type NavigationNodeComponent = NavigationNodeBase & {
   component: React.ReactNode
 }
 
-export type NavigationNode = NavigationHref | NavigationButton | NavigationComponent
+export type NavigationNode = NavigationNodeHref | NavigationNodeButton | NavigationNodeComponent
 
-export function isNavigationHref(node: NavigationNodeBase): node is NavigationHref {
+export function isNavigationHref(node: NavigationNodeBase): node is NavigationNodeHref {
   return 'href' in node
 }
 
-export function isNavigationButton(node: NavigationNodeBase): node is NavigationButton {
-  return (node as NavigationButton).childItems?.length > 0
+export function isNavigationButton(node: NavigationNodeBase): node is NavigationNodeButton {
+  return (node as NavigationNodeButton).childItems?.length > 0
 }
 
-export function isNavigationComponent(node: NavigationNodeBase): node is NavigationComponent {
+export function isNavigationComponent(node: NavigationNodeBase): node is NavigationNodeComponent {
   return 'component' in node
 }
 
