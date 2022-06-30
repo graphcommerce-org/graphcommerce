@@ -46,6 +46,15 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
     [currentAddress?.available_shipping_methods],
   )
 
+  console.log(
+    'sortedAvailableShippingMethods',
+    sortedAvailableShippingMethods.filter(Boolean).map((sortedMethod) => ({
+      ...sortedMethod,
+      disabled: !sortedMethod?.available,
+      value: `${sortedMethod?.carrier_code}-${sortedMethod?.method_code}`,
+    })),
+  )
+
   const form = useFormGqlMutationCart<
     ShippingMethodFormMutation,
     ShippingMethodFormMutationVariables & { carrierMethod?: string }

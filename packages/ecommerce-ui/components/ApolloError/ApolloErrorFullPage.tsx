@@ -4,7 +4,7 @@ import { AlertProps } from '@mui/material'
 import { ApolloErrorAlert } from './ApolloErrorAlert'
 
 export type ApolloErrorFullPageProps = {
-  error?: ApolloError
+  error: ApolloError
   graphqlErrorAlertProps?: Omit<AlertProps, 'severity'>
   networkErrorAlertProps?: Omit<AlertProps, 'severity'>
 } & Omit<FullPageMessageProps, 'title' | 'description'>
@@ -18,14 +18,24 @@ export function ApolloErrorFullPage(props: ApolloErrorFullPageProps) {
     ...fullPageMessageProps
   } = props
 
-  const singleError = error?.graphQLErrors.length === 1
+  const errorCount = error?.graphQLErrors?.length ?? +(error?.networkError ? 1 : 0)
+
+  if (errorCount === 0) return null
+
+  if (errorCount === 1) {
+    return (
+      <FullPageMessage
+        title={error?.graphQLErrors[0].message ?? error?.networkError?.message}
+        {...fullPageMessageProps}
+      >
+        {children}
+      </FullPageMessage>
+    )
+  }
 
   return (
-    <FullPageMessage
-      title={singleError ? error?.graphQLErrors[0].message : 'Several errors occured'}
-      {...fullPageMessageProps}
-    >
-      {singleError ? children : <ApolloErrorAlert error={error} />}
+    <FullPageMessage title='Several errors occured' {...fullPageMessageProps}>
+      <ApolloErrorAlert error={error} />
     </FullPageMessage>
   )
 }

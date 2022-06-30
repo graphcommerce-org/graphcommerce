@@ -1,6 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { useQuery } from '@graphcommerce/graphql'
-import { ApolloCustomerErrorFullPage } from '@graphcommerce/magento-customer'
+import { ApolloCustomerErrorFullPage, useCustomerQuery } from '@graphcommerce/magento-customer'
 import {
   useOrderCardItemImages,
   OrderDetails,
@@ -14,12 +13,12 @@ import {
   iconBox,
   LayoutOverlayHeader,
   LayoutTitle,
+  FullPageMessage,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Container, NoSsr } from '@mui/material'
+import { CircularProgress, Container } from '@mui/material'
 import { useRouter } from 'next/router'
-import React from 'react'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
@@ -29,24 +28,22 @@ function OrderDetailPage() {
   const router = useRouter()
   const { orderId } = router.query
 
-  const { data, loading, error } = useQuery(OrderDetailPageDocument, {
+  const { data, loading, error, called } = useCustomerQuery(OrderDetailPageDocument, {
     fetchPolicy: 'cache-and-network',
     variables: { orderNumber: orderId as string },
-    ssr: false,
   })
+
   const images = useOrderCardItemImages(data?.customer?.orders)
   const order = data?.customer?.orders?.items?.[0]
   const isLoading = orderId ? loading : true
 
-  if (loading) return <div />
-  if (error)
+  if (loading || !called)
     return (
-      <ApolloCustomerErrorFullPage
-        error={error}
-        signInHref='/account/signin'
-        signUpHref='/account/signin'
-      />
+      <FullPageMessage icon={<CircularProgress />} title='Loading your account'>
+        <Trans id='This may take a second' />
+      </FullPageMessage>
     )
+  if (error) return <ApolloCustomerErrorFullPage error={error} />
 
   return (
     <>
@@ -56,28 +53,26 @@ function OrderDetailPage() {
         </LayoutTitle>
       </LayoutOverlayHeader>
       <Container maxWidth='md'>
-        <NoSsr>
-          {(!orderId || !order) && (
-            <IconHeader src={iconBox} size='large'>
-              <Trans id='Order not found' />
-            </IconHeader>
-          )}
+        {(!orderId || !order) && (
+          <IconHeader src={iconBox} size='large'>
+            <Trans id='Order not found' />
+          </IconHeader>
+        )}
 
-          <LayoutTitle icon={iconBox}>
-            <Trans id='Order #{orderId}' values={{ orderId }} />
-          </LayoutTitle>
+        <LayoutTitle icon={iconBox}>
+          <Trans id='Order #{orderId}' values={{ orderId }} />
+        </LayoutTitle>
 
-          {orderId && order && (
-            <>
-              <PageMeta
-                title={i18n._(/* i18n */ 'Order #{orderId}', { orderId })}
-                metaRobots={['noindex']}
-              />
-              <OrderItems {...order} loading={isLoading} images={images} />
-              <OrderDetails {...order} loading={isLoading} />
-            </>
-          )}
-        </NoSsr>
+        {orderId && order && (
+          <>
+            <PageMeta
+              title={i18n._(/* i18n */ 'Order #{orderId}', { orderId })}
+              metaRobots={['noindex']}
+            />
+            <OrderItems {...order} loading={isLoading} images={images} />
+            <OrderDetails {...order} loading={isLoading} />
+          </>
+        )}
       </Container>
     </>
   )

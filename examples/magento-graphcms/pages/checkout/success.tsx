@@ -37,44 +37,42 @@ function OrderSuccessPage() {
         )}
       </LayoutHeader>
       <Container maxWidth='md'>
-        <NoSsr>
-          {!hasCartId && (
-            <FullPageMessage
-              title={<Trans id='You have not placed an order' />}
-              icon={<IconSvg src={iconSadFace} size='xxl' />}
-              button={
-                <Link href='/' passHref>
-                  <Button variant='pill' color='secondary' size='large'>
-                    <Trans id='Continue shopping' />
-                  </Button>
-                </Link>
-              }
-            >
-              <Trans id='Discover our collection and add items to your cart!' />
-            </FullPageMessage>
-          )}
-          {hasCartId && (
-            <>
-              <LayoutTitle icon={iconParty}>
-                <Trans id='Thank you for your order!' />
-              </LayoutTitle>
-              <CartSummary />
-              <CartItemSummary />
+        {!hasCartId && (
+          <FullPageMessage
+            title={<Trans id='You have not placed an order' />}
+            icon={<IconSvg src={iconSadFace} size='xxl' />}
+            button={
+              <Link href='/' passHref>
+                <Button variant='pill' color='secondary' size='large'>
+                  <Trans id='Continue shopping' />
+                </Button>
+              </Link>
+            }
+          >
+            <Trans id='Discover our collection and add items to your cart!' />
+          </FullPageMessage>
+        )}
+        {hasCartId && (
+          <>
+            <LayoutTitle icon={iconParty}>
+              <Trans id='Thank you for your order!' />
+            </LayoutTitle>
+            <CartSummary />
+            <CartItemSummary />
 
-              <SignupNewsletter />
+            <SignupNewsletter />
 
-              <InlineAccount accountHref='/account' />
+            <InlineAccount accountHref='/account' />
 
-              <Box textAlign='center' m={8}>
-                <Link href='/' passHref>
-                  <Button color='secondary' variant='pill' size='large' id='back-to-home'>
-                    <Trans id='Back to home' />
-                  </Button>
-                </Link>
-              </Box>
-            </>
-          )}
-        </NoSsr>
+            <Box textAlign='center' m={8}>
+              <Link href='/' passHref>
+                <Button color='secondary' variant='pill' size='large' id='back-to-home'>
+                  <Trans id='Back to home' />
+                </Button>
+              </Link>
+            </Box>
+          </>
+        )}
       </Container>
     </>
   )

@@ -16,7 +16,7 @@ export type ApolloCustomerErrorFullPageProps = {
 
 export function ApolloCustomerErrorFullPage(props: ApolloCustomerErrorFullPageProps) {
   const { error, icon, altButton, button, ...alertProps } = props
-  const [newError, unauthorized] = useAuthorizationErrorMasked()
+  const [newError, unauthorized] = useAuthorizationErrorMasked(error)
   const { token } = useCustomerSession()
 
   return (
@@ -28,7 +28,7 @@ export function ApolloCustomerErrorFullPage(props: ApolloCustomerErrorFullPagePr
         unauthorized ? (
           <PageLink href='/account/signin' passHref>
             <Button variant='contained' color='primary' size='large'>
-              {token ? <Trans id='Sign in' /> : <Trans id='Create Account' />}
+              {token ? <Trans id='Sign in' /> : <Trans id='Sign in or create an account!' />}
             </Button>
           </PageLink>
         ) : (
