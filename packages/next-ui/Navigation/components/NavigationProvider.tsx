@@ -12,7 +12,6 @@ import {
 
 export type NavigationProviderProps = {
   items: (NavigationNode | React.ReactElement)[]
-  renderItem?: NavigationRender
   onChange?: (path: NavigationPath) => void
   hideRootOnNavigate?: boolean
   children?: React.ReactNode
@@ -20,14 +19,8 @@ export type NavigationProviderProps = {
 
 const nonNullable = <T,>(value: T): value is NonNullable<T> => value !== null && value !== undefined
 
-const NavigationRenderDefault: NavigationRender = ({ hasChildren, name, component }) => {
-  if (component) return <>{component}</>
-  if (hasChildren) return <Trans id='All {name}' values={{ name }} />
-  return <>{name}</>
-}
-
 export function NavigationProvider(props: NavigationProviderProps) {
-  const { items, renderItem, onChange, hideRootOnNavigate = true, children } = props
+  const { items, onChange, hideRootOnNavigate = true, children } = props
 
   const [path, select] = useState<NavigationPath>([])
   const value = useMemo<NavigationContextType>(
@@ -41,9 +34,8 @@ export function NavigationProvider(props: NavigationProviderProps) {
       items: items
         .map((item, index) => (isElement(item) ? { id: item.key ?? index, component: item } : item))
         .filter(nonNullable),
-      Render: renderItem ?? NavigationRenderDefault,
     }),
-    [hideRootOnNavigate, path, renderItem, items, onChange],
+    [hideRootOnNavigate, path, items, onChange],
   )
 
   return (

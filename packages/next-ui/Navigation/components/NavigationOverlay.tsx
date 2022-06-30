@@ -14,7 +14,7 @@ import { extendableComponent } from '../../Styles/extendableComponent'
 import { useFabSize } from '../../Theme'
 import { iconClose, iconChevronLeft } from '../../icons'
 import { NavigationContextType, NavigationNode, useNavigation } from '../hooks/useNavigation'
-import { NavigationItem, navigationItemClasses, NavigationList } from './NavigationItem'
+import { NavigationItems } from './NavigationItem'
 import { NavigationProviderProps } from './NavigationProvider'
 
 type NavigationOverlayProps = {
@@ -238,18 +238,7 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
               />
             )}
 
-            <NavigationList sx={{ display: 'contents' }} className={navigationItemClasses.ul}>
-              {items.map((item, idx) => (
-                <NavigationItem
-                  key={item.id}
-                  {...item}
-                  parentPath={[]}
-                  row={idx + 1}
-                  childItemsCount={items.length}
-                  onItemClick={handeOverlayClose}
-                />
-              ))}
-            </NavigationList>
+            <NavigationItems items={items} selected onLinkClick={handeOverlayClose} />
           </Box>
         </Box>
       </MotionDiv>
