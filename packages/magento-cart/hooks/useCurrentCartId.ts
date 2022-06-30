@@ -1,5 +1,6 @@
+import { useIsomorphicLayoutEffect } from '@graphcommerce/framer-utils'
 import { QueryHookOptions, useQuery } from '@graphcommerce/graphql'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { CurrentCartIdDocument, CurrentCartIdQuery } from './CurrentCartId.gql'
 
 export function useCurrentCartId<Q, V>(
@@ -11,7 +12,7 @@ export function useCurrentCartId<Q, V>(
     skip,
   })
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (skip) setSkip(false)
   }, [skip])
 

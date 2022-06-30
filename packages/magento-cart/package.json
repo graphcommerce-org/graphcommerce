@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@graphcommerce/ecommerce-ui": "1.0.23",
+    "@graphcommerce/framer-utils": "3.1.4",
     "@graphcommerce/framer-next-pages": "3.2.3",
     "@graphcommerce/framer-scroller": "2.1.20",
     "@graphcommerce/graphql": "3.3.0",
