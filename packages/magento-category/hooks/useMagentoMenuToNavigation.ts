@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Maybe } from '@graphcommerce/graphql-mesh'
-import { NavigationNode } from '@graphcommerce/next-ui/Navigation/components/Navigation'
+import { NavigationNode } from '@graphcommerce/next-ui'
 import { MenuQueryFragment } from '../queries/MenuQueryFragment.gql'
 
 function nonNullable<T>(value: T): value is NonNullable<T> {
