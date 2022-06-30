@@ -22,7 +22,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Box, Divider, Fab, Link } from '@mui/material'
+import { Divider, Fab } from '@mui/material'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import { useState } from 'react'

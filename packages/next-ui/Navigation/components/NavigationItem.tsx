@@ -1,4 +1,4 @@
-import { Box, ListItemButton } from '@mui/material'
+import { Box, ListItemButton, styled } from '@mui/material'
 import PageLink from 'next/link'
 import { IconSvg } from '../../IconSvg'
 import { extendableComponent } from '../../Styles/extendableComponent'
@@ -11,20 +11,26 @@ type NavigationItemProps = NavigationNode & {
 }
 
 const name = 'NavigationItem'
-const parts = ['li', 'item'] as const
+const parts = ['li', 'ul', 'item'] as const
 type OwnerState = {
   first: boolean
   last: boolean
 }
-const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
+const { withState, classes } = extendableComponent<OwnerState, typeof name, typeof parts>(
+  name,
+  parts,
+)
+export const navigationItemClasses = classes
+
+export const NavigationList = styled('ul')({})
+const NavigationListItem = styled('li')({ display: 'contents' })
 
 export function NavigationItem(props: NavigationItemProps) {
   const { id, href, component, childItems, parentPath, row, childItemsCount, onItemClick } = props
   const { Render, path, select, hideRootOnNavigate } = useNavigation()
 
   const itemPath = [...parentPath, id]
-  const level = itemPath.length
-  const selected = path.slice(0, level).join('/') === itemPath.join('/')
+  const selected = path.slice(0, itemPath.length).join('/') === itemPath.join('/')
 
   if (!href && (!childItems || childItems.length === 0) && !component) {
     if (process.env.NODE_ENV !== 'production')
@@ -34,27 +40,26 @@ export function NavigationItem(props: NavigationItemProps) {
 
   const first = row === 1
   const last = row === childItemsCount
-  const classes = withState({ first, last })
+  const stateClasses = withState({ first, last })
 
-  const isRoot = itemPath.length === 1
   const hidingRoot = hideRootOnNavigate && path.length > 0
-  const hideItem = hidingRoot && isRoot
+  const hideItem = hidingRoot && itemPath.length === 1
 
-  const levelOffset = hidingRoot ? -1 : 0
+  const column = hidingRoot ? itemPath.length - 1 : itemPath.length
 
   if (childItems) {
     return (
-      <Box sx={{ display: 'contents' }} component='li' className={classes.li}>
+      <NavigationListItem className={stateClasses.li}>
         <ListItemButton
-          className={classes.item}
+          className={stateClasses.item}
           role='button'
           sx={{
             gridRowStart: row,
-            gridColumnStart: level + levelOffset,
+            gridColumnStart: column,
             gap: (theme) => theme.spacings.xxs,
             display: hideItem ? 'none' : 'flex',
           }}
-          data-level={level + levelOffset}
+          data-level={column}
           disabled={selected}
           tabIndex={path.join(',').includes(parentPath.join(',')) ? undefined : -1}
           onClick={(e) => {
@@ -76,24 +81,24 @@ export function NavigationItem(props: NavigationItemProps) {
           <IconSvg src={iconChevronRight} sx={{ flexShrink: 0 }} />
         </ListItemButton>
 
-        <Box
+        <NavigationList
           sx={[
             { display: 'block', position: 'absolute', left: '-10000px', top: '-10000px' },
             selected && { display: 'contents' },
           ]}
-          component='ul'
+          className={classes.ul}
         >
           {href && (
-            <Box sx={{ display: 'contents' }} component='li' className={classes.li}>
+            <NavigationListItem className={stateClasses.li}>
               <PageLink href={href} passHref>
                 <ListItemButton
                   className={withState({ first: true, last }).item}
                   sx={(theme) => ({
                     gridRowStart: 1,
                     gap: theme.spacings.xs,
-                    gridColumnStart: level + 1 + levelOffset,
+                    gridColumnStart: column + 1,
                   })}
-                  data-level={level + 1 + levelOffset}
+                  data-level={column + 1}
                   tabIndex={path.join(',').includes(itemPath.join(',')) ? undefined : -1}
                   onClick={onItemClick}
                 >
@@ -111,7 +116,7 @@ export function NavigationItem(props: NavigationItemProps) {
                   <IconSvg src={iconChevronRight} sx={{ flexShrink: 0, visibility: 'hidden' }} />
                 </ListItemButton>
               </PageLink>
-            </Box>
+            </NavigationListItem>
           )}
 
           {childItems?.map((item, idx) => (
@@ -124,24 +129,24 @@ export function NavigationItem(props: NavigationItemProps) {
               onItemClick={onItemClick}
             />
           ))}
-        </Box>
-      </Box>
+        </NavigationList>
+      </NavigationListItem>
     )
   }
 
   return (
-    <Box component='li' sx={{ display: hideItem ? 'none' : 'contents' }} classes={classes.li}>
+    <NavigationListItem sx={[hideItem && { display: 'none' }]} className={stateClasses.li}>
       {href ? (
         <PageLink href={href} passHref>
           <ListItemButton
-            className={classes.item}
+            className={stateClasses.item}
             component='a'
             sx={(theme) => ({
               gridRowStart: row,
-              gridColumnStart: level + levelOffset,
+              gridColumnStart: column,
               gap: theme.spacings.xxs,
             })}
-            data-level={level + levelOffset}
+            data-level={column}
             tabIndex={path.join(',').includes(parentPath.join(',')) ? undefined : -1}
             onClick={onItemClick}
           >
@@ -161,13 +166,13 @@ export function NavigationItem(props: NavigationItemProps) {
         </PageLink>
       ) : (
         <Box
-          sx={{ gridRowStart: row, gridColumnStart: level + levelOffset }}
-          data-level={level + levelOffset}
-          className={classes.item}
+          sx={{ gridRowStart: row, gridColumnStart: column }}
+          data-level={column}
+          className={stateClasses.item}
         >
           {component}
         </Box>
       )}
-    </Box>
+    </NavigationListItem>
   )
 }
