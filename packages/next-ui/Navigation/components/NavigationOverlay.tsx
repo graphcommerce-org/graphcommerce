@@ -10,11 +10,12 @@ import { IconSvg, useIconSvgSize } from '../../IconSvg'
 import { LayoutHeaderContent } from '../../Layout/components/LayoutHeaderContent'
 import { LayoutTitle } from '../../Layout/components/LayoutTitle'
 import { Overlay } from '../../LayoutOverlay/components/Overlay'
+import { extendableComponent } from '../../Styles/extendableComponent'
 import { useFabSize } from '../../Theme'
 import { iconClose, iconChevronLeft } from '../../icons'
 import { NavigationContextType, NavigationNode, useNavigation } from '../hooks/useNavigation'
-import { NavigationBase } from './NavigationBase'
-import { NavigationProvider, NavigationProviderProps } from './NavigationProvider'
+import { NavigationItem } from './NavigationItem'
+import { NavigationProviderProps } from './NavigationProvider'
 
 type NavigationOverlayProps = {
   active: boolean
@@ -49,6 +50,10 @@ function findCurrent(props: FindCurrentProps) {
 
 const MotionDiv = styled(m.div)()
 
+const name = 'Navigation'
+const parts = ['root', 'navigation', 'header', 'column'] as const
+const { classes } = extendableComponent(name, parts)
+
 export function NavigationOverlay(props: NavigationOverlayProps) {
   const { active, sx, onClose: closeCallback, stretchColumns, itemWidth } = props
   const { path, select, items } = useNavigation()
@@ -77,6 +82,7 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
 
   return (
     <Overlay
+      className={classes.root}
       active={active}
       close={handeOverlayClose}
       variantSm='left'
@@ -98,6 +104,7 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
     >
       <MotionDiv layout style={{ display: 'grid' }}>
         <Box
+          className={classes.header}
           sx={(theme) => ({
             top: 0,
             position: 'sticky',
@@ -165,7 +172,85 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
             },
           })}
         >
-          <NavigationBase sx={sx} onItemClick={handeOverlayClose} />
+          <Box
+            className={classes.navigation}
+            sx={[
+              (theme) => ({
+                py: theme.spacings.md,
+                display: 'grid',
+                gridAutoFlow: 'column',
+                scrollSnapAlign: 'end',
+                '& > ul > li > a, & > ul > li > [role=button]': {
+                  '& span': {
+                    typography: 'h2',
+                  },
+                  // '& svg': { display: 'none' },
+                },
+                '& .Navigation-column': {},
+                '& .NavigationItem-item': {
+                  mx: theme.spacings.md,
+                  whiteSpace: 'nowrap',
+                },
+                '& .NavigationItem-item.first': {
+                  // mt: theme.spacings.md,
+                },
+                '& .Navigation-column:first-of-type': {
+                  boxShadow: 'none',
+                },
+              }),
+              ...(Array.isArray(sx) ? sx : [sx]),
+            ]}
+          >
+            {path.length >= 0 && (
+              <Box
+                sx={(theme) => ({
+                  gridArea: '1 / 1 / 999 / 2',
+                  boxShadow: `inset 1px 0 ${theme.palette.divider}`,
+                })}
+                className={classes.column}
+              />
+            )}
+            {path.length >= 1 && (
+              <Box
+                sx={(theme) => ({
+                  gridArea: '1 / 2 / 999 / 3',
+                  boxShadow: `inset 1px 0 ${theme.palette.divider}`,
+                })}
+                className={classes.column}
+              />
+            )}
+            {path.length >= 2 && (
+              <Box
+                sx={(theme) => ({
+                  gridArea: '1 / 3 / 999 / 4',
+                  boxShadow: `inset 1px 0 ${theme.palette.divider}`,
+                })}
+                className={classes.column}
+              />
+            )}
+            {path.length >= 3 && (
+              <Box
+                sx={(theme) => ({
+                  gridArea: '1 / 4 / 999 / 5',
+                  boxShadow: `inset 1px 0 ${theme.palette.divider}`,
+                })}
+                className={classes.column}
+              />
+            )}
+
+            <Box sx={{ display: 'contents' }} component='ul'>
+              {items.map((item, idx) => (
+                <NavigationItem
+                  key={item.id}
+                  {...item}
+                  parentPath={[]}
+                  row={idx + 1}
+                  childItemsCount={items.length}
+                  onItemClick={handeOverlayClose}
+                />
+              ))}
+            </Box>
+          </Box>
         </Box>
       </MotionDiv>
     </Overlay>

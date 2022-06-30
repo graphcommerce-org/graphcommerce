@@ -76,11 +76,8 @@ export function LayoutFull(props: LayoutFullProps) {
         <NavigationOverlay
           active={navigationActive}
           onClose={() => setNavigationActive(false)}
-          sx={(theme) => ({
-            py: theme.spacings.md,
-          })}
           itemWidth='230px'
-          stretchColumns={false}
+          // stretchColumns={false}
         />
       </NavigationProvider>
 
@@ -105,18 +102,10 @@ export function LayoutFull(props: LayoutFullProps) {
                 )
               })}
 
-              <Link
-                variant='h6'
-                color='text.primary'
-                underline='none'
-                onClick={() => setNavigationActive(true)}
-                sx={{ whiteSpace: 'nowrap', paddingTop: '6px' }}
-              >
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                  <Trans id='Shop' />
-                  <IconSvg src={iconChevronDown} />
-                </Box>
-              </Link>
+              <DesktopNavItem onClick={() => setNavigationActive(true)}>
+                <Trans id='Shop' />
+                <IconSvg src={iconChevronDown} />
+              </DesktopNavItem>
 
               <DesktopNavItem href='/blog'>
                 <Trans id='Blog' />
