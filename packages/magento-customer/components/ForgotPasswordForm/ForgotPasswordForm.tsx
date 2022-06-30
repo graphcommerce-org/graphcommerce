@@ -44,7 +44,7 @@ export function ForgotPasswordForm(props: { sx?: SxProps<Theme> }) {
           required={required.email}
           {...muiRegister('email', {
             required: required.email,
-            pattern: { value: emailPattern, message: i18n._(/* i18n */ `Invalid email address`) },
+            pattern: { value: emailPattern, message: i18n._(/* i18n */ 'Invalid email address') },
           })}
           helperText={formState.errors.email?.message}
           disabled={formState.isSubmitting}

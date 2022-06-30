@@ -21,7 +21,7 @@ export function RemoveItemFromCartFab(props: RemoveItemFromCartProps) {
   return (
     <Form noValidate onSubmit={submitHandler} {...formProps}>
       <Fab
-        aria-label={i18n._(/* i18n */ `Remove Product`)}
+        aria-label={i18n._(/* i18n */ 'Remove Product')}
         size='small'
         type='submit'
         disabled={formState.isSubmitting}

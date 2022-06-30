@@ -10,8 +10,8 @@ export function useAuthorizationErrorMasked(error?: ApolloError) {
     category: 'graphql-authorization',
     error,
     mask: token
-      ? i18n._(/* i18n */ `Please reauthenticate and try again`)
-      : i18n._(/* i18n */ `You must sign in to continue`),
+      ? i18n._(/* i18n */ 'Please reauthenticate and try again')
+      : i18n._(/* i18n */ 'You must sign in to continue'),
     extract: false,
   })
 }

@@ -1,5 +1,105 @@
 # Change Log
 
+## 3.15.0
+
+### Minor Changes
+
+- [#1544](https://github.com/graphcommerce-org/graphcommerce/pull/1544) [`5f927ebdc`](https://github.com/graphcommerce-org/graphcommerce/commit/5f927ebdc6f0331833e02b96e4f169bfe475ac6b) Thanks [@mikekeehnen](https://github.com/mikekeehnen)! - Fixed hydration errors on account, cart and wishlist
+
+* [#1534](https://github.com/graphcommerce-org/graphcommerce/pull/1534) [`c756f42e5`](https://github.com/graphcommerce-org/graphcommerce/commit/c756f42e503761a497e4a5a7a02d02141df231c3) Thanks [@mikekeehnen](https://github.com/mikekeehnen)! - Added the method title to the action card title for shipping methods.
+
+### Patch Changes
+
+- [#1542](https://github.com/graphcommerce-org/graphcommerce/pull/1542) [`84df00e00`](https://github.com/graphcommerce-org/graphcommerce/commit/84df00e008af99b377029da93d25881bd87644ee) Thanks [@NickdeK](https://github.com/NickdeK)! - Updated @mui/material and @mui/labs
+
+* [#1545](https://github.com/graphcommerce-org/graphcommerce/pull/1545) [`c87a28e7d`](https://github.com/graphcommerce-org/graphcommerce/commit/c87a28e7dad87bffd0bd125ad5fdca65aaa389cc) Thanks [@paales](https://github.com/paales)! - Faster hydration with useLayoutEffect
+
+* Updated dependencies [[`5f927ebdc`](https://github.com/graphcommerce-org/graphcommerce/commit/5f927ebdc6f0331833e02b96e4f169bfe475ac6b), [`1e0a8b0a3`](https://github.com/graphcommerce-org/graphcommerce/commit/1e0a8b0a3842d150fdfd6e040b408a6fb3f76c7c), [`c87a28e7d`](https://github.com/graphcommerce-org/graphcommerce/commit/c87a28e7dad87bffd0bd125ad5fdca65aaa389cc), [`c756f42e5`](https://github.com/graphcommerce-org/graphcommerce/commit/c756f42e503761a497e4a5a7a02d02141df231c3)]:
+  - @graphcommerce/ecommerce-ui@1.1.0
+  - @graphcommerce/graphql@3.4.0
+  - @graphcommerce/magento-cart@4.5.0
+  - @graphcommerce/magento-cart-payment-method@3.4.0
+  - @graphcommerce/magento-cart-shipping-method@3.3.0
+  - @graphcommerce/magento-customer@4.7.0
+  - @graphcommerce/magento-graphql@3.1.0
+  - @graphcommerce/mollie-magento-payment@3.4.0
+  - @graphcommerce/lingui-next@2.1.11
+  - @graphcommerce/next-ui@4.12.0
+  - @graphcommerce/googlerecaptcha@2.1.10
+  - @graphcommerce/graphcms-ui@3.0.28
+  - @graphcommerce/magento-cart-billing-address@3.0.33
+  - @graphcommerce/magento-cart-checkout@3.0.35
+  - @graphcommerce/magento-cart-coupon@3.1.3
+  - @graphcommerce/magento-cart-email@3.0.35
+  - @graphcommerce/magento-cart-items@3.0.36
+  - @graphcommerce/magento-cart-shipping-address@3.2.5
+  - @graphcommerce/magento-category@4.1.21
+  - @graphcommerce/magento-cms@4.0.26
+  - @graphcommerce/magento-customer-account@3.1.28
+  - @graphcommerce/magento-customer-order@3.0.29
+  - @graphcommerce/magento-newsletter@2.0.33
+  - @graphcommerce/magento-payment-braintree@3.0.34
+  - @graphcommerce/magento-payment-included@3.1.6
+  - @graphcommerce/magento-product@4.4.13
+  - @graphcommerce/magento-product-bundle@4.0.35
+  - @graphcommerce/magento-product-configurable@4.1.20
+  - @graphcommerce/magento-product-downloadable@4.0.35
+  - @graphcommerce/magento-product-grouped@3.0.35
+  - @graphcommerce/magento-product-simple@4.0.35
+  - @graphcommerce/magento-product-virtual@4.0.35
+  - @graphcommerce/magento-review@3.2.21
+  - @graphcommerce/magento-search@4.1.23
+  - @graphcommerce/magento-store@4.2.15
+  - @graphcommerce/magento-wishlist@1.3.7
+  - @graphcommerce/framer-scroller@2.1.21
+
+## 3.14.4
+
+### Patch Changes
+
+- [#1538](https://github.com/graphcommerce-org/graphcommerce/pull/1538) [`fe4baa42d`](https://github.com/graphcommerce-org/graphcommerce/commit/fe4baa42db0081ed960d62aef688bd36a7ac974f) Thanks [@paales](https://github.com/paales)! - add missing translations
+
+- Updated dependencies [[`fe4baa42d`](https://github.com/graphcommerce-org/graphcommerce/commit/fe4baa42db0081ed960d62aef688bd36a7ac974f)]:
+  - @graphcommerce/magento-cart@4.4.8
+  - @graphcommerce/magento-cart-billing-address@3.0.32
+  - @graphcommerce/magento-cart-items@3.0.35
+  - @graphcommerce/magento-cart-payment-method@3.3.5
+  - @graphcommerce/magento-cart-shipping-address@3.2.4
+  - @graphcommerce/magento-cart-shipping-method@3.2.4
+  - @graphcommerce/magento-customer@4.6.3
+  - @graphcommerce/magento-search@4.1.22
+  - @graphcommerce/magento-wishlist@1.3.6
+  - @graphcommerce/next-ui@4.11.2
+  - @graphcommerce/magento-cart-checkout@3.0.34
+  - @graphcommerce/magento-cart-coupon@3.1.2
+  - @graphcommerce/magento-cart-email@3.0.34
+  - @graphcommerce/magento-newsletter@2.0.32
+  - @graphcommerce/magento-payment-braintree@3.0.33
+  - @graphcommerce/magento-payment-included@3.1.5
+  - @graphcommerce/magento-product@4.4.12
+  - @graphcommerce/magento-product-bundle@4.0.34
+  - @graphcommerce/magento-product-configurable@4.1.19
+  - @graphcommerce/magento-product-downloadable@4.0.34
+  - @graphcommerce/magento-product-grouped@3.0.34
+  - @graphcommerce/magento-product-simple@4.0.34
+  - @graphcommerce/magento-product-virtual@4.0.34
+  - @graphcommerce/mollie-magento-payment@3.3.5
+  - @graphcommerce/magento-customer-account@3.1.27
+  - @graphcommerce/magento-review@3.2.20
+  - @graphcommerce/ecommerce-ui@1.0.23
+  - @graphcommerce/framer-scroller@2.1.20
+  - @graphcommerce/graphcms-ui@3.0.27
+  - @graphcommerce/magento-category@4.1.20
+  - @graphcommerce/magento-customer-order@3.0.28
+  - @graphcommerce/magento-store@4.2.14
+  - @graphcommerce/magento-cms@4.0.25
+
+## 3.14.3
+
+### Patch Changes
+
+- [#1536](https://github.com/graphcommerce-org/graphcommerce/pull/1536) [`574256d53`](https://github.com/graphcommerce-org/graphcommerce/commit/574256d53dd88313d2c89aae59e10f6b66bdb9c2) Thanks [@paales](https://github.com/paales)! - make sure we don’t have a dependency mismatch where @lingui/react will still try to install 3.14.0
+
 ## 3.14.2
 
 ### Patch Changes

@@ -13,18 +13,18 @@ export function PaymentMethodPlaceOrderNoop(props: PaymentPlaceOrderProps) {
   const { step, code } = props
   const clearCurrentCartId = useClearCurrentCartId()
 
-  const cartId = useCurrentCartId()
+  const { currentCartId } = useCurrentCartId()
   const form = useFormGqlMutationCart(PaymentMethodPlaceOrderNoopDocument)
 
   const { handleSubmit, data, error } = form
   const { push } = useRouter()
 
   useEffect(() => {
-    if (!data?.placeOrder?.order || error || !cartId) return
+    if (!data?.placeOrder?.order || error || !currentCartId) return
     clearCurrentCartId()
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    push({ pathname: '/checkout/success', query: { cart_id: cartId } })
-  }, [cartId, clearCurrentCartId, data?.placeOrder?.order, error, push])
+    push({ pathname: '/checkout/success', query: { cart_id: currentCartId } })
+  }, [clearCurrentCartId, currentCartId, data?.placeOrder?.order, error, push])
 
   const submit = handleSubmit(() => {})
 

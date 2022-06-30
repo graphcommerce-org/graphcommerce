@@ -22,14 +22,14 @@ function invalidateToken(cache: InMemoryCache) {
   }
 }
 
-export const onAuthenticationError = onError(({ graphQLErrors, operation }) => {
+export const onAuthorizationError = onError(({ graphQLErrors, operation }) => {
   const { cache } = operation.getContext()
   if (graphQLErrors) {
     for (const err of graphQLErrors) {
       if (err.extensions?.category === 'graphql-authorization') {
         // Modify the operation context with a new token
         invalidateToken(cache as InMemoryCache)
-        break;
+        break
       }
     }
   }

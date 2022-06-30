@@ -5,7 +5,7 @@ import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, PageMeta, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Container, NoSsr } from '@mui/material'
+import { Container } from '@mui/material'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
 import { DefaultPageDocument } from '../../../graphql/DefaultPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
@@ -18,7 +18,7 @@ function EditBillingAddress() {
   return (
     <>
       <PageMeta
-        title={i18n._(/* i18n */ `Edit billing address`)}
+        title={i18n._(/* i18n */ 'Edit billing address')}
         metaRobots={['noindex', 'nofollow']}
       />
 
@@ -33,9 +33,7 @@ function EditBillingAddress() {
       </LayoutTitle>
 
       <Container maxWidth='md'>
-        <NoSsr>
-          <EditBillingAddressForm />
-        </NoSsr>
+        <EditBillingAddressForm />
       </Container>
     </>
   )

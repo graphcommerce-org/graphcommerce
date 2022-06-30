@@ -82,7 +82,7 @@ export function ActionCard(props: ActionCardProps) {
           gridTemplateAreas: `
             "image title action"
             "image details ${price ? 'price' : 'details'}"
-            "image secondaryActio additionalDetails"
+            "image secondaryAction additionalDetails"
             "after after after"
           `,
           justifyContent: 'unset',

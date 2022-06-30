@@ -16,7 +16,7 @@ import {
 } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { useEffect, useMemo, VFC } from 'react'
+import { FC, useEffect, useMemo } from 'react'
 import { GetShippingMethodsDocument } from './GetShippingMethods.gql'
 import { ShippingMethodActionCard } from './ShippingMethodActionCard'
 import {
@@ -44,6 +44,15 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
         // eslint-disable-next-line no-nested-ternary
       ].sort((a, b) => (a === b ? 0 : a ? -1 : 1)),
     [currentAddress?.available_shipping_methods],
+  )
+
+  console.log(
+    'sortedAvailableShippingMethods',
+    sortedAvailableShippingMethods.filter(Boolean).map((sortedMethod) => ({
+      ...sortedMethod,
+      disabled: !sortedMethod?.available,
+      value: `${sortedMethod?.carrier_code}-${sortedMethod?.method_code}`,
+    })),
   )
 
   const form = useFormGqlMutationCart<
@@ -96,13 +105,13 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
         <ActionCardListForm
           control={control}
           name='carrierMethod'
-          errorMessage={i18n._(/* i18n */ `Please select a shipping method`)}
+          errorMessage={i18n._(/* i18n */ 'Please select a shipping method')}
           items={sortedAvailableShippingMethods.filter(Boolean).map((sortedMethod) => ({
             ...sortedMethod,
             disabled: !sortedMethod?.available,
             value: `${sortedMethod?.carrier_code}-${sortedMethod?.method_code}`,
           }))}
-          render={ShippingMethodActionCard as VFC<ActionCardItemRenderProps<ActionCardItemBase>>}
+          render={ShippingMethodActionCard as FC<ActionCardItemRenderProps<ActionCardItemBase>>}
         />
         <ApolloCartErrorAlert error={error} />
       </Form>

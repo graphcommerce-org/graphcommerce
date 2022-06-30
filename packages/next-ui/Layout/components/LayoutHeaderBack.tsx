@@ -46,7 +46,7 @@ export function LayoutHeaderBack(props: BackProps) {
   const backIcon = <IconSvg src={iconChevronLeft} size='medium' />
   const canClickBack = backSteps > 0 && path !== prevUp?.href
 
-  let label = i18n._(/* i18n */ `Back`)
+  let label = i18n._(/* i18n */ 'Back')
   if (up?.href === path && up?.title) label = up.title
   if (prevUp?.href === path && prevUp?.title) label = prevUp.title
 

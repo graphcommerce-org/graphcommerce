@@ -5,15 +5,15 @@ import { useAssignCurrentCartId } from './useAssignCurrentCartId'
 import { useCurrentCartId } from './useCurrentCartId'
 
 export function useCartIdCreate() {
-  const cartId = useCurrentCartId()
+  const { currentCartId } = useCurrentCartId()
   const [create] = useMutation(CreateEmptyCartDocument)
   const assignCurrentCartId = useAssignCurrentCartId()
 
   return async (): Promise<string> => {
-    if (cartId) return cartId
+    if (currentCartId) return currentCartId
 
     const { data } = await create()
-    if (!data?.createEmptyCart) throw Error(i18n._(/* i18n */ `Could not create an empty cart`))
+    if (!data?.createEmptyCart) throw Error(i18n._(/* i18n */ 'Could not create an empty cart'))
 
     // We store the cartId that is returned as the currentCartId result
     assignCurrentCartId(data.createEmptyCart)
