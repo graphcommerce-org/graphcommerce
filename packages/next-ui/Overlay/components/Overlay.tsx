@@ -2,7 +2,7 @@ import { ScrollerProvider, ScrollSnapType } from '@graphcommerce/framer-scroller
 import { Box } from '@mui/material'
 import { useEffect, useState } from 'react'
 import type { SetOptional } from 'type-fest'
-import { LayoutOverlayBase, LayoutOverlayBaseProps } from './LayoutOverlayBase'
+import { OverlayBase, LayoutOverlayBaseProps } from './OverlayBase'
 
 export type OverlayProps = Omit<
   SetOptional<LayoutOverlayBaseProps, 'variantSm' | 'variantMd'>,
@@ -43,7 +43,7 @@ export function Overlay(props: OverlayProps) {
       }}
     >
       <ScrollerProvider scrollSnapTypeSm={scrollSnapTypeSm} scrollSnapTypeMd={scrollSnapTypeMd}>
-        <LayoutOverlayBase
+        <OverlayBase
           offsetPageY={0}
           variantMd={variantMd}
           variantSm={variantSm}
@@ -54,7 +54,7 @@ export function Overlay(props: OverlayProps) {
           {...otherProps}
         >
           {children}
-        </LayoutOverlayBase>
+        </OverlayBase>
       </ScrollerProvider>
     </Box>
   )

@@ -2,9 +2,7 @@ import { usePageContext, useGo, useScrollOffset } from '@graphcommerce/framer-ne
 import { ScrollerProvider, ScrollSnapType } from '@graphcommerce/framer-scroller'
 import { usePresence } from 'framer-motion'
 import type { SetOptional } from 'type-fest'
-import { LayoutOverlayBase, LayoutOverlayBaseProps } from './LayoutOverlayBase'
-
-export type { LayoutOverlayVariant } from './LayoutOverlayBase'
+import { OverlayBase, LayoutOverlayBaseProps } from '../../Overlay/components/OverlayBase'
 
 export type LayoutOverlayProps = Omit<
   SetOptional<LayoutOverlayBaseProps, 'variantSm' | 'variantMd'>,
@@ -26,7 +24,7 @@ export function LayoutOverlay(props: LayoutOverlayProps) {
 
   return (
     <ScrollerProvider scrollSnapTypeSm={scrollSnapTypeSm} scrollSnapTypeMd={scrollSnapTypeMd}>
-      <LayoutOverlayBase
+      <OverlayBase
         active={active}
         direction={direction}
         onClosed={onCloseHandler}
@@ -38,7 +36,7 @@ export function LayoutOverlay(props: LayoutOverlayProps) {
         {...otherProps}
       >
         {children}
-      </LayoutOverlayBase>
+      </OverlayBase>
     </ScrollerProvider>
   )
 }

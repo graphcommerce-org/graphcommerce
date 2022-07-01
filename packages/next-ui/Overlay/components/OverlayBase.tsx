@@ -5,7 +5,7 @@ import {
   useIsomorphicLayoutEffect,
 } from '@graphcommerce/framer-utils'
 import { Box, styled, SxProps, Theme, useTheme, useThemeProps } from '@mui/material'
-import { m, useDomEvent, useMotionValue, usePresence, useTransform } from 'framer-motion'
+import { m, useDomEvent, useMotionValue, useTransform } from 'framer-motion'
 import React, { useCallback, useEffect, useRef } from 'react'
 import { LayoutProvider } from '../../Layout/components/LayoutProvider'
 import { ExtendableComponent, extendableComponent } from '../../Styles'
@@ -66,7 +66,7 @@ const clearScrollLock = () => {
   document.body.style.overflow = ''
 }
 
-export function LayoutOverlayBase(incommingProps: LayoutOverlayBaseProps) {
+export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
   const props = useThemeProps({ name, props: incommingProps })
 
   const {

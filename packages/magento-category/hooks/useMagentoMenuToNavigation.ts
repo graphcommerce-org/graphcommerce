@@ -29,6 +29,10 @@ function categoryToNav(props: Item | null | undefined): NavigationNode | undefin
   return { name, id: uid, href: `/${url_path}` } as NavigationNodeHref
 }
 
+/**
+ * Converts the Magento GraphQL category tree to a NavigationNode tree, which can be used in the
+ * Navigation component.
+ */
 export function useMagentoMenuToNavigation(menu: MenuQueryFragment['menu']) {
   return (menu?.items ?? []).map(categoryToNav).filter(nonNullable)
 }
