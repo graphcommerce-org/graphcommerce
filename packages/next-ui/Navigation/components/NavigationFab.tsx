@@ -12,7 +12,7 @@ import { iconMenu, iconClose } from '../../icons'
 
 const MotionDiv = styled(m.div)({})
 
-export type MenuFabProps = {
+export type NavigationFabProps = {
   menuIcon?: React.ReactNode
   closeIcon?: React.ReactNode
   sx?: SxProps<Theme>
@@ -26,7 +26,7 @@ type OwnerState = {
 
 const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 
-export function NavigationFab(props: MenuFabProps) {
+export function NavigationFab(props: NavigationFabProps) {
   const { menuIcon, closeIcon, sx = [], ...fabProps } = props
   const router = useRouter()
   const [openEl, setOpenEl] = React.useState<null | HTMLElement>(null)

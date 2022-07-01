@@ -1,7 +1,5 @@
 ---
-'@graphcommerce/magento-graphcms': minor
-'@graphcommerce/framer-scroller': minor
-'@graphcommerce/magento-category': minor
+'@graphcommerce/magento-category': patch
 '@graphcommerce/next-ui': minor
 ---
 

@@ -7,5 +7,5 @@ export function useFabAnimation() {
   const scale = useTransform(scrollY, [50, 130], [0.4, 1])
   const opacity = useTransform(scrollY, [50, 130], [0, 1])
   const shadowOpacity = useTransform(scrollY, [131, 140], [0, 1])
-  return { opacity, shadowOpacity }
+  return { opacity, scale, shadowOpacity }
 }
