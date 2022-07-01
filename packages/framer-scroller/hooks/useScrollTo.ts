@@ -8,7 +8,8 @@ export function useScrollTo() {
   const { scrollerRef, register, disableSnap, enableSnap } = useScrollerContext()
   const scroll = useElementScroll(scrollerRef)
 
-  const duration = (useContext(MotionConfigContext).transition as Tween | undefined)?.duration ?? 0
+  const duration =
+    ((useContext(MotionConfigContext).transition as Tween | undefined)?.duration ?? 0.375) * 1000
 
   const scrollTo = useCallback(
     async (to: Point) => {
@@ -41,7 +42,7 @@ export function useScrollTo() {
               },
               onComplete,
               onStop: onComplete,
-              duration: duration !== null ? duration * 1000 : 375,
+              duration,
             }),
           )
         } else onComplete()
@@ -61,7 +62,7 @@ export function useScrollTo() {
               },
               onComplete,
               onStop: onComplete,
-              duration: duration !== null ? duration * 1000 : 375,
+              duration,
             }),
           )
         } else {
