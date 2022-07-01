@@ -8,7 +8,7 @@ export type { LayoutOverlayVariant } from './LayoutOverlayBase'
 
 export type LayoutOverlayProps = Omit<
   SetOptional<LayoutOverlayBaseProps, 'variantSm' | 'variantMd'>,
-  'active' | 'direction' | 'close' | 'offsetPageY' | 'isPresent' | 'safeToRemove'
+  'active' | 'direction' | 'onClosed' | 'offsetPageY' | 'isPresent' | 'safeToRemove'
 >
 
 export function LayoutOverlay(props: LayoutOverlayProps) {
@@ -20,7 +20,7 @@ export function LayoutOverlay(props: LayoutOverlayProps) {
     variantMd === 'left' || variantMd === 'right' ? 'inline mandatory' : 'block proximity'
 
   const { closeSteps, active, direction } = usePageContext()
-  const close = useGo(closeSteps * -1)
+  const onCloseHandler = useGo(closeSteps * -1)
   const offsetPageY = useScrollOffset().y
   const [isPresent, safeToRemove] = usePresence()
 
@@ -29,7 +29,7 @@ export function LayoutOverlay(props: LayoutOverlayProps) {
       <LayoutOverlayBase
         active={active}
         direction={direction}
-        close={close}
+        onClosed={onCloseHandler}
         offsetPageY={offsetPageY}
         variantMd={variantMd}
         variantSm={variantSm}

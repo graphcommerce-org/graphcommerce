@@ -36,7 +36,7 @@ export type LayoutOverlayBaseProps = {
   sxBackdrop?: SxProps<Theme>
   active: boolean
   direction: 1 | -1
-  close: () => void
+  onClosed: () => void
   offsetPageY: number
   isPresent: boolean
   safeToRemove: (() => void) | null | undefined
@@ -81,7 +81,7 @@ export function LayoutOverlayBase(incommingProps: LayoutOverlayBaseProps) {
     sx = [],
     sxBackdrop = [],
     active,
-    close,
+    onClosed,
     direction,
     offsetPageY,
     isPresent,
@@ -179,8 +179,8 @@ export function LayoutOverlayBase(incommingProps: LayoutOverlayBaseProps) {
     if (position.get() !== OverlayPosition.OPENED) return
     position.set(OverlayPosition.CLOSED)
     clearScrollLock()
-    close()
-  }, [close, position])
+    onClosed()
+  }, [onClosed, position])
 
   // Handle escape key
   const windowRef = useRef(typeof window !== 'undefined' ? window : null)

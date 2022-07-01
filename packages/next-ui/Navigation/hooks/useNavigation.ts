@@ -7,11 +7,16 @@ export type NavigationRender = React.FC<
   (NavigationNodeComponent | NavigationNodeHref) & { children?: React.ReactNode }
 >
 
+export type NavigationOnClose = (
+  event?: React.MouseEvent<HTMLAnchorElement>,
+  href?: string | undefined,
+) => void
 export type NavigationContextType = {
   selected: NavigationPath
   select: NavigationSelect
   items: NavigationNode[]
   hideRootOnNavigate: boolean
+  onClose: NavigationOnClose
 }
 
 type NavigationNodeBase = {

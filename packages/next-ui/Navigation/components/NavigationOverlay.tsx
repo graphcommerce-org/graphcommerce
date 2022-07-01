@@ -2,9 +2,7 @@ import styled from '@emotion/styled'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, Fab, SxProps, Theme, useEventCallback, useMediaQuery } from '@mui/material'
-import { m, MotionConfigContext } from 'framer-motion'
-import { Tween } from 'framer-motion/types/types'
-import { useContext } from 'react'
+import { m } from 'framer-motion'
 import { IconSvg, useIconSvgSize } from '../../IconSvg'
 import { LayoutHeaderContent } from '../../Layout/components/LayoutHeaderContent'
 import { LayoutTitle } from '../../Layout/components/LayoutTitle'
@@ -20,14 +18,13 @@ import {
   NavigationNodeHref,
   useNavigation,
 } from '../hooks/useNavigation'
-import { NavigationItems } from './NavigationItem'
+import { NavigationList } from './NavigationList'
 
 type NavigationOverlayProps = {
   active: boolean
   sx?: SxProps<Theme>
   stretchColumns?: boolean
   itemWidth: string
-  onClose: () => void
 }
 
 function findCurrent(
@@ -58,23 +55,16 @@ const parts = ['root', 'navigation', 'header', 'column'] as const
 const { classes } = extendableComponent(componentName, parts)
 
 export function NavigationOverlay(props: NavigationOverlayProps) {
-  const { active, sx, onClose: closeCallback, stretchColumns, itemWidth } = props
-  const { selected, select, items } = useNavigation()
-
-  const duration = (useContext(MotionConfigContext).transition as Tween | undefined)?.duration ?? 0
+  const { active, sx, stretchColumns, itemWidth } = props
+  const { selected, select, items, onClose } = useNavigation()
 
   const fabSize = useFabSize('responsive')
   const svgSize = useIconSvgSize('large')
 
   const isMobile = useMediaQuery<Theme>((theme) => theme.breakpoints.down('md'))
-  const handleReset = useEventCallback(() => {
+  const handleOnBack = useEventCallback(() => {
     if (isMobile) select(selected.slice(0, -1))
     else select([])
-  })
-
-  const handeOverlayClose = useEventCallback(() => {
-    closeCallback()
-    setTimeout(() => select([]), duration * 1000)
   })
 
   const showBack = selected.length > 0
@@ -83,7 +73,7 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
     <Overlay
       className={classes.root}
       active={active}
-      close={handeOverlayClose}
+      onClosed={onClose}
       variantSm='left'
       sizeSm='floating'
       justifySm='start'
@@ -119,7 +109,7 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
               showBack && (
                 <Fab
                   color='inherit'
-                  onClick={handleReset}
+                  onClick={handleOnBack}
                   sx={{
                     boxShadow: 'none',
                     marginLeft: `calc((${fabSize} - ${svgSize}) * -0.5)`,
@@ -135,7 +125,7 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
             right={
               <Fab
                 color='inherit'
-                onClick={handeOverlayClose}
+                onClick={() => onClose()}
                 sx={{
                   boxShadow: 'none',
                   marginLeft: `calc((${fabSize} - ${svgSize}) * -0.5)`,
@@ -237,7 +227,7 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
               />
             )}
 
-            <NavigationItems items={items} selected onLinkClick={handeOverlayClose} />
+            <NavigationList items={items} selected />
           </Box>
         </Box>
       </MotionDiv>

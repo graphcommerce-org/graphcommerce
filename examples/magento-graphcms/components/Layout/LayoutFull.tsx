@@ -44,6 +44,7 @@ export function LayoutFull(props: LayoutFullProps) {
   return (
     <>
       <NavigationProvider
+        onClose={() => setNavigationActive(false)}
         items={[
           <SearchLink href='/search' sx={(theme) => ({ width: '100%', mb: theme.spacings.xs })}>
             <Trans id='Search...' />
@@ -75,7 +76,6 @@ export function LayoutFull(props: LayoutFullProps) {
       >
         <NavigationOverlay
           active={navigationActive}
-          onClose={() => setNavigationActive(false)}
           itemWidth='230px'
           // stretchColumns={false}
         />
