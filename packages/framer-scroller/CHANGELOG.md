@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.1.22
+
+### Patch Changes
+
+- [#1522](https://github.com/graphcommerce-org/graphcommerce/pull/1522) [`584b683a2`](https://github.com/graphcommerce-org/graphcommerce/commit/584b683a2aedcdf5067644c8dcc0e63a5b9e894c) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Make sure useScrollTo uses the MotionConfigContext to determine the speed of the animation
+
+- Updated dependencies [[`8d8fda262`](https://github.com/graphcommerce-org/graphcommerce/commit/8d8fda2623e561cb43441110c67ffa34b692668a), [`cefa7b365`](https://github.com/graphcommerce-org/graphcommerce/commit/cefa7b3652b55108d2178927e3c5d98a111cf373)]:
+  - @graphcommerce/next-ui@4.13.0
+
 ## 2.1.21
 
 ### Patch Changes
