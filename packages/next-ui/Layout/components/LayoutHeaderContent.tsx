@@ -1,9 +1,12 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
-import { Box, SxProps, Theme } from '@mui/material'
+import { Box, styled, SxProps, Theme } from '@mui/material'
+import { m } from 'framer-motion'
 import React, { useRef } from 'react'
 import { extendableComponent } from '../../Styles'
 import { useScrollY } from '../hooks/useScrollY'
 import { FloatingProps } from './LayoutHeadertypes'
+
+const MotionDiv = styled(m.div)({})
 
 export type LayoutHeaderContentProps = FloatingProps & {
   children?: React.ReactNode
@@ -139,7 +142,7 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
               justifyContent: 'start',
             })}
           >
-            {left}
+            <MotionDiv layout='position'>{left}</MotionDiv>
           </Box>
         )}
         <Box
@@ -172,7 +175,7 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
             },
           })}
         >
-          {children}
+          <MotionDiv layout='position'>{children}</MotionDiv>
         </Box>
         <Box
           className={classes.right}
@@ -188,7 +191,7 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
             justifyContent: 'end',
           })}
         >
-          {right}
+          <MotionDiv layout='position'>{right}</MotionDiv>
         </Box>
         {divider && (
           <Box

@@ -5,11 +5,45 @@ import { extendableComponent } from '../Styles/extendableComponent'
 
 const { classes, selectors } = extendableComponent('DesktopNavItem', ['root', 'line'] as const)
 
-export type DesktopNavItemProps = LinkProps & Pick<PageLinkProps, 'href'>
+export type DesktopNavItemLinkProps = LinkProps<'a'> & Pick<PageLinkProps, 'href'>
+export type DesktopNavItemButtonProps = LinkProps<'div'> & {
+  onClick: LinkProps<'button'>['onClick']
+}
 
-export function DesktopNavItem(props: DesktopNavItemProps) {
+function isLinkProps(
+  props: DesktopNavItemLinkProps | DesktopNavItemButtonProps,
+): props is DesktopNavItemLinkProps {
+  return 'href' in props
+}
+
+export function DesktopNavItem(props: DesktopNavItemLinkProps | DesktopNavItemButtonProps) {
+  const router = useRouter()
+
+  if (!isLinkProps(props)) {
+    const { onClick, children, sx = [], ...linkProps } = props
+
+    return (
+      <Link
+        className={classes.root}
+        component='div'
+        variant='h6'
+        color='text.primary'
+        underline='none'
+        {...linkProps}
+        onClick={onClick}
+        sx={[
+          { whiteSpace: 'nowrap', paddingTop: '6px', cursor: 'pointer' },
+          ...(Array.isArray(sx) ? sx : [sx]),
+        ]}
+      >
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>{children}</Box>
+      </Link>
+    )
+  }
+
   const { href, children, sx = [], ...linkProps } = props
-  const active = useRouter().asPath.startsWith(href.toString())
+
+  const active = router.asPath.startsWith(href.toString())
 
   return (
     <PageLink href={href} passHref>
@@ -21,7 +55,7 @@ export function DesktopNavItem(props: DesktopNavItemProps) {
         {...linkProps}
         sx={[{ whiteSpace: 'nowrap', paddingTop: '6px' }, ...(Array.isArray(sx) ? sx : [sx])]}
       >
-        {children}
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>{children}</Box>
         <Box
           component='span'
           className={classes.line}

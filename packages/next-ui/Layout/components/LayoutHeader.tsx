@@ -60,7 +60,7 @@ export function LayoutHeader(props: LayoutHeaderProps) {
   let left = secondary
   let right = primary
 
-  if (back) left = back
+  if (back && !secondary) left = back
 
   if (!right) right = close
   else if (!left) left = close

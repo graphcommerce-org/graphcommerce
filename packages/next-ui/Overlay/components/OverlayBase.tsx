@@ -1,4 +1,3 @@
-import { useGo, usePageContext, useScrollOffset } from '@graphcommerce/framer-next-pages'
 import { Scroller, useScrollerContext, useScrollTo } from '@graphcommerce/framer-scroller'
 import {
   clientSizeCssVar,
@@ -6,7 +5,7 @@ import {
   useIsomorphicLayoutEffect,
 } from '@graphcommerce/framer-utils'
 import { Box, styled, SxProps, Theme, useTheme, useThemeProps } from '@mui/material'
-import { m, useDomEvent, useMotionValue, usePresence, useTransform } from 'framer-motion'
+import { m, useDomEvent, useMotionValue, useTransform } from 'framer-motion'
 import React, { useCallback, useEffect, useRef } from 'react'
 import { LayoutProvider } from '../../Layout/components/LayoutProvider'
 import { ExtendableComponent, extendableComponent } from '../../Styles'
@@ -35,6 +34,12 @@ export type LayoutOverlayBaseProps = {
   className?: string
   sx?: SxProps<Theme>
   sxBackdrop?: SxProps<Theme>
+  active: boolean
+  direction: 1 | -1
+  onClosed: () => void
+  offsetPageY: number
+  isPresent: boolean
+  safeToRemove: (() => void) | null | undefined
 } & StyleProps &
   OverridableProps
 
@@ -61,7 +66,7 @@ const clearScrollLock = () => {
   document.body.style.overflow = ''
 }
 
-export function LayoutOverlayBase(incommingProps: LayoutOverlayBaseProps) {
+export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
   const props = useThemeProps({ name, props: incommingProps })
 
   const {
@@ -75,6 +80,12 @@ export function LayoutOverlayBase(incommingProps: LayoutOverlayBaseProps) {
     justifyMd = 'stretch',
     sx = [],
     sxBackdrop = [],
+    active,
+    onClosed,
+    direction,
+    offsetPageY,
+    isPresent,
+    safeToRemove,
   } = props
 
   const th = useTheme()
@@ -88,11 +99,7 @@ export function LayoutOverlayBase(incommingProps: LayoutOverlayBaseProps) {
   const { scrollerRef, snap } = useScrollerContext()
   const positions = useOverlayPosition()
   const scrollTo = useScrollTo()
-  const [isPresent, safeToRemove] = usePresence()
   const beforeRef = useRef<HTMLDivElement>(null)
-
-  const { closeSteps, active, direction } = usePageContext()
-  const close = useGo(closeSteps * -1)
 
   const position = useMotionValue<OverlayPosition>(OverlayPosition.UNOPENED)
 
@@ -105,7 +112,15 @@ export function LayoutOverlayBase(incommingProps: LayoutOverlayBaseProps) {
   // When the component is mounted, we need to set the initial position of the overlay.
   useIsomorphicLayoutEffect(() => {
     const scroller = scrollerRef.current
-    if (!scroller || !isPresent) return undefined
+
+    if (!scroller) return undefined
+
+    if (!isPresent && position.get() === OverlayPosition.UNOPENED) {
+      scroller.scrollLeft = positions.closed.x.get()
+      scroller.scrollTop = positions.closed.y.get()
+    }
+
+    if (!isPresent) return undefined
 
     const open = { x: positions.open.x.get(), y: positions.open.y.get() }
 
@@ -148,7 +163,7 @@ export function LayoutOverlayBase(incommingProps: LayoutOverlayBaseProps) {
 
   // When the overlay is closed by navigating away, we're closing the overlay.
   useEffect(() => {
-    if (isPresent) return
+    if (isPresent || position.get() === OverlayPosition.UNOPENED) return
     position.set(OverlayPosition.CLOSED)
     clearScrollLock()
 
@@ -164,8 +179,8 @@ export function LayoutOverlayBase(incommingProps: LayoutOverlayBaseProps) {
     if (position.get() !== OverlayPosition.OPENED) return
     position.set(OverlayPosition.CLOSED)
     clearScrollLock()
-    close()
-  }, [close, position])
+    onClosed()
+  }, [onClosed, position])
 
   // Handle escape key
   const windowRef = useRef(typeof window !== 'undefined' ? window : null)
@@ -187,7 +202,6 @@ export function LayoutOverlayBase(incommingProps: LayoutOverlayBaseProps) {
   }, [offsetY])
 
   // Create the exact position for the LayoutProvider which offsets the top of the overlay
-  const offsetPageY = useScrollOffset().y
   const scrollWithoffset = useTransform(
     [scroll.y, positions.open.y, offsetY],
     ([y, openY, offsetYv]: number[]) => Math.max(0, y - openY - offsetYv + offsetPageY),
@@ -333,7 +347,6 @@ export function LayoutOverlayBase(incommingProps: LayoutOverlayBaseProps) {
                 marginTop: `calc(${smSpacingTop} * -1)`,
                 paddingTop: smSpacingTop,
               },
-
               '&.sizeSmFloating': {
                 padding: `${theme.page.vertical} ${theme.page.horizontal}`,
               },
@@ -353,7 +366,8 @@ export function LayoutOverlayBase(incommingProps: LayoutOverlayBaseProps) {
             },
           })}
         >
-          <Box
+          <MotionDiv
+            layout
             className={classes.overlayPane}
             sx={(theme) => ({
               pointerEvents: 'all',
@@ -419,7 +433,7 @@ export function LayoutOverlayBase(incommingProps: LayoutOverlayBaseProps) {
             })}
           >
             <LayoutProvider scroll={scrollWithoffset}>{children}</LayoutProvider>
-          </Box>
+          </MotionDiv>
         </Box>
       </Scroller>
     </>

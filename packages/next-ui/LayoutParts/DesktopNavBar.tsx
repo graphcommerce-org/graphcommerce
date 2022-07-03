@@ -43,7 +43,7 @@ export function DesktopNavBar(props: MenuTabsProps) {
           sx={(theme) => ({
             gridArea: `1 / 1 / 1 / 4`,
             columnGap: theme.spacings.md,
-            padding: `0 ${theme.spacings.sm}`,
+            padding: `0 ${theme.spacings.md}`,
             gridAutoColumns: 'min-content',
           })}
           className={classes.scroller}
