@@ -1,5 +1,18 @@
 # Change Log
 
+## 4.13.0
+
+### Minor Changes
+
+- [#1522](https://github.com/graphcommerce-org/graphcommerce/pull/1522) [`8d8fda262`](https://github.com/graphcommerce-org/graphcommerce/commit/8d8fda2623e561cb43441110c67ffa34b692668a) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Introducing a new Navigation component that builds on the existing navigation component and tries to address the 'mega menu' question where there are tons of categories that need to be navigated quickly.
+
+* [#1522](https://github.com/graphcommerce-org/graphcommerce/pull/1522) [`cefa7b365`](https://github.com/graphcommerce-org/graphcommerce/commit/cefa7b3652b55108d2178927e3c5d98a111cf373) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Introducting a new Overlay component with is the generic part of LayoutOverlay into OverlayBase. The new Overlay is used to render the new Navigation component.
+
+### Patch Changes
+
+- Updated dependencies [[`584b683a2`](https://github.com/graphcommerce-org/graphcommerce/commit/584b683a2aedcdf5067644c8dcc0e63a5b9e894c)]:
+  - @graphcommerce/framer-scroller@2.1.22
+
 ## 4.12.0
 
 ### Minor Changes
