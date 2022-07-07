@@ -1,7 +1,10 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { useGoogleRecaptcha } from '@graphcommerce/googlerecaptcha'
-import { useQuery } from '@graphcommerce/graphql'
-import { ApolloCustomerErrorFullPage, EditAddressForm } from '@graphcommerce/magento-customer'
+import {
+  ApolloCustomerErrorFullPage,
+  EditAddressForm,
+  useCustomerQuery,
+} from '@graphcommerce/magento-customer'
 import { AccountDashboardAddressesDocument } from '@graphcommerce/magento-customer-account'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
@@ -11,10 +14,11 @@ import {
   SectionContainer,
   LayoutOverlayHeader,
   LayoutTitle,
+  FullPageMessage,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Box, Container, NoSsr, Skeleton } from '@mui/material'
+import { Box, CircularProgress, Container, Skeleton } from '@mui/material'
 import { useRouter } from 'next/router'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../../components'
 import { graphqlSharedClient } from '../../../../lib/graphql/graphqlSsrClient'
@@ -25,26 +29,19 @@ function CheckoutCustomerAddressesEdit() {
   const router = useRouter()
   useGoogleRecaptcha()
 
-  const { addressId } = router.query
-
-  const { data, loading, error } = useQuery(AccountDashboardAddressesDocument, {
+  const { data, loading, error, called } = useCustomerQuery(AccountDashboardAddressesDocument, {
     fetchPolicy: 'network-only',
-    ssr: false,
   })
 
-  const numAddressId = Number(addressId)
-  const addresses = data?.customer?.addresses
-  const address = addresses?.find((a) => a?.id === numAddressId)
+  const address = data?.customer?.addresses?.find((a) => a?.id === Number(router.query.addressId))
 
-  if (loading) return <div />
-  if (error)
+  if (loading || !called)
     return (
-      <ApolloCustomerErrorFullPage
-        error={error}
-        signInHref='/account/signin'
-        signUpHref='/account/signin'
-      />
+      <FullPageMessage icon={<CircularProgress />} title='Loading your account'>
+        <Trans id='This may take a second' />
+      </FullPageMessage>
     )
+  if (error) return <ApolloCustomerErrorFullPage error={error} />
 
   return (
     <>
@@ -54,37 +51,34 @@ function CheckoutCustomerAddressesEdit() {
         </LayoutTitle>
       </LayoutOverlayHeader>
       <Container maxWidth='md'>
-        <PageMeta title={i18n._(/* i18n */ `Edit address`)} metaRobots={['noindex']} />
-        <NoSsr>
-          <LayoutTitle icon={iconAddresses}>
-            <Trans id='Edit address' />
-          </LayoutTitle>
+        <PageMeta title={i18n._(/* i18n */ 'Edit address')} metaRobots={['noindex']} />
 
-          <SectionContainer labelLeft={<Trans id='Edit address' />}>
-            {!address && !loading && (
-              <Box marginTop={3}>
-                <IconHeader src={iconAddresses} size='small'>
-                  <Trans id='Address not found' />
-                </IconHeader>
-              </Box>
-            )}
+        <LayoutTitle icon={iconAddresses}>
+          <Trans id='Edit address' />
+        </LayoutTitle>
 
-            {loading && (
-              <div>
-                <Skeleton height={72} />
-                <Skeleton height={72} />
-                <Skeleton height={72} />
-                <Skeleton height={72} />
-                <Skeleton height={72} />
-                <Skeleton height={72} />
-              </div>
-            )}
+        <SectionContainer labelLeft={<Trans id='Edit address' />}>
+          {!address && !loading && (
+            <Box marginTop={3}>
+              <IconHeader src={iconAddresses} size='small'>
+                <Trans id='Address not found' />
+              </IconHeader>
+            </Box>
+          )}
 
-            {address && !loading && (
-              <EditAddressForm onCompleteRoute='/checkout' address={address} />
-            )}
-          </SectionContainer>
-        </NoSsr>
+          {loading && (
+            <div>
+              <Skeleton height={72} />
+              <Skeleton height={72} />
+              <Skeleton height={72} />
+              <Skeleton height={72} />
+              <Skeleton height={72} />
+              <Skeleton height={72} />
+            </div>
+          )}
+
+          {address && !loading && <EditAddressForm onCompleteRoute='/checkout' address={address} />}
+        </SectionContainer>
       </Container>
     </>
   )

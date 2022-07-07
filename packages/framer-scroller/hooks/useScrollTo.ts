@@ -1,12 +1,15 @@
 import { useElementScroll } from '@graphcommerce/framer-utils'
-import { Point } from 'framer-motion'
+import { MotionConfigContext, Point, Tween } from 'framer-motion'
 import { animate } from 'popmotion'
-import { useCallback } from 'react'
+import { useCallback, useContext } from 'react'
 import { useScrollerContext } from './useScrollerContext'
 
 export function useScrollTo() {
   const { scrollerRef, register, disableSnap, enableSnap } = useScrollerContext()
   const scroll = useElementScroll(scrollerRef)
+
+  const duration =
+    ((useContext(MotionConfigContext).transition as Tween | undefined)?.duration ?? 0.375) * 1000
 
   const scrollTo = useCallback(
     async (to: Point) => {
@@ -39,7 +42,7 @@ export function useScrollTo() {
               },
               onComplete,
               onStop: onComplete,
-              duration: 375,
+              duration,
             }),
           )
         } else onComplete()
@@ -59,7 +62,7 @@ export function useScrollTo() {
               },
               onComplete,
               onStop: onComplete,
-              duration: 375,
+              duration,
             }),
           )
         } else {
@@ -72,7 +75,7 @@ export function useScrollTo() {
       scroll.scroll.stop()
       enableSnap()
     },
-    [disableSnap, enableSnap, register, scroll, scrollerRef],
+    [disableSnap, enableSnap, register, scroll, scrollerRef, duration],
   )
 
   return scrollTo

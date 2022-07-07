@@ -1,0 +1,58 @@
+import { createContext, useContext } from 'react'
+
+export type NavigationId = string | number
+export type NavigationPath = NavigationId[]
+export type NavigationSelect = (selected: NavigationPath) => void
+export type NavigationRender = React.FC<
+  (NavigationNodeComponent | NavigationNodeHref) & { children?: React.ReactNode }
+>
+
+export type NavigationOnClose = (
+  event?: React.MouseEvent<HTMLAnchorElement>,
+  href?: string | undefined,
+) => void
+export type NavigationContextType = {
+  selected: NavigationPath
+  select: NavigationSelect
+  items: NavigationNode[]
+  hideRootOnNavigate: boolean
+  onClose: NavigationOnClose
+}
+
+type NavigationNodeBase = {
+  id: NavigationId
+}
+
+export type NavigationNodeHref = NavigationNodeBase & {
+  name: string
+  href: string
+}
+
+export type NavigationNodeButton = NavigationNodeBase & {
+  name: string
+  childItems: NavigationNode[]
+}
+
+export type NavigationNodeComponent = NavigationNodeBase & {
+  component: React.ReactNode
+}
+
+export type NavigationNode = NavigationNodeHref | NavigationNodeButton | NavigationNodeComponent
+
+export function isNavigationHref(node: NavigationNodeBase): node is NavigationNodeHref {
+  return 'href' in node
+}
+
+export function isNavigationButton(node: NavigationNodeBase): node is NavigationNodeButton {
+  return (node as NavigationNodeButton).childItems?.length > 0
+}
+
+export function isNavigationComponent(node: NavigationNodeBase): node is NavigationNodeComponent {
+  return 'component' in node
+}
+
+export const NavigationContext = createContext(undefined as unknown as NavigationContextType)
+
+export function useNavigation() {
+  return useContext(NavigationContext)
+}

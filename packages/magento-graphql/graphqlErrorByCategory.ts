@@ -12,22 +12,30 @@ export type ErrorCategory =
 export type GraphQLErrorByCategoryProps = {
   category: ErrorCategory
   error?: ApolloError
-  extract?: boolean
+  extract?: true
   mask?: string
 }
 
+export type GraphQLErrorByCategoryPropsNoExtract = Omit<GraphQLErrorByCategoryProps, 'extract'> & {
+  extract?: false
+}
+
 /**
- * Extract Magento specific erros from the error object.
+ * Extract Magento specific errors from the error object.
  *
  * It recognizes the errors specified here:
  * https://devdocs.magento.com/guides/v2.4/graphql/develop/exceptions.html
  */
-export function graphqlErrorByCategory({
-  category,
-  error,
-  extract = true,
-  mask,
-}: GraphQLErrorByCategoryProps): [ApolloError | undefined, GraphQLError | undefined] {
+export function graphqlErrorByCategory(
+  props: GraphQLErrorByCategoryPropsNoExtract,
+): [ApolloError, GraphQLError | undefined]
+export function graphqlErrorByCategory(
+  props: GraphQLErrorByCategoryProps,
+): [ApolloError | undefined, GraphQLError | undefined]
+export function graphqlErrorByCategory(
+  props: GraphQLErrorByCategoryProps | GraphQLErrorByCategoryPropsNoExtract,
+): [ApolloError | undefined, GraphQLError | undefined] {
+  const { category, error, extract = true, mask } = props
   if (!error) return [error, undefined]
 
   const newError = new ApolloError({

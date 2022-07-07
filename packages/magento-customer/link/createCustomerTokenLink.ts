@@ -6,7 +6,7 @@ import {
   setContext,
 } from '@graphcommerce/graphql'
 import { CustomerTokenDocument } from '../hooks'
-import { onAuthenticationError } from './onAuthenticationError'
+import { onAuthorizationError } from './onAuthenticationError'
 
 export const addTokenHeader = setContext((_, context: ClientContext) => {
   if (!context.headers) context.headers = {}
@@ -22,7 +22,7 @@ export const addTokenHeader = setContext((_, context: ClientContext) => {
   }
 })
 
-export const customerTokenLink = ApolloLink.from([addTokenHeader, onAuthenticationError])
+export const customerTokenLink = ApolloLink.from([addTokenHeader, onAuthorizationError])
 
 /** Not really required anymore, you can use customerTokenLink directly */
 export const createCustomerTokenLink = (_: ApolloCache<NormalizedCacheObject>) => customerTokenLink

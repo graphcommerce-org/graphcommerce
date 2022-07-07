@@ -20,7 +20,7 @@ function CustomerAccountCreatePasswordPage() {
 
   return (
     <>
-      <PageMeta title={i18n._(/* i18n */ `Create new password`)} metaRobots={['noindex']} />
+      <PageMeta title={i18n._(/* i18n */ 'Create new password')} metaRobots={['noindex']} />
       <LayoutOverlayHeader>
         <LayoutTitle size='small' component='span'>
           {!success ? (
@@ -30,48 +30,46 @@ function CustomerAccountCreatePasswordPage() {
           )}
         </LayoutTitle>
       </LayoutOverlayHeader>
-      <NoSsr>
-        <Box pt={4} pb={4}>
-          {!success && (
-            <Container maxWidth='sm'>
-              <LayoutTitle>
-                <Trans id='Set your new password' />
-              </LayoutTitle>
+      <Box pt={4} pb={4}>
+        {!success && (
+          <Container maxWidth='sm'>
+            <LayoutTitle>
+              <Trans id='Set your new password' />
+            </LayoutTitle>
 
-              <Box textAlign='center'>
-                <p>
-                  <Trans id='Fill in your new password, confirm it and click on the save button.' />
-                </p>
-              </Box>
+            <Box textAlign='center'>
+              <p>
+                <Trans id='Fill in your new password, confirm it and click on the save button.' />
+              </p>
+            </Box>
 
-              <ResetPasswordForm token={(token as string) ?? ''} />
-            </Container>
-          )}
+            <ResetPasswordForm token={(token as string) ?? ''} />
+          </Container>
+        )}
 
-          {success && (
-            <Container>
-              <LayoutTitle>
-                <Trans id='You have now successfully reset your password' />
-              </LayoutTitle>
+        {success && (
+          <Container>
+            <LayoutTitle>
+              <Trans id='You have now successfully reset your password' />
+            </LayoutTitle>
 
-              <Box textAlign='center'>
-                <p>
-                  <Trans
-                    id='You can now<0>sign in again</0>.'
-                    components={{
-                      0: <Link color='primary' href='/account/signin' underline='hover' />,
-                    }}
-                  />
-                </p>
+            <Box textAlign='center'>
+              <p>
+                <Trans
+                  id='You can now<0>sign in again</0>.'
+                  components={{
+                    0: <Link color='primary' href='/account/signin' underline='hover' />,
+                  }}
+                />
+              </p>
 
-                <Button onClick={() => router.back()} variant='pill' color='secondary' size='large'>
-                  <Trans id='Continue shopping' />
-                </Button>
-              </Box>
-            </Container>
-          )}
-        </Box>
-      </NoSsr>
+              <Button onClick={() => router.back()} variant='pill' color='secondary' size='large'>
+                <Trans id='Continue shopping' />
+              </Button>
+            </Box>
+          </Container>
+        )}
+      </Box>
     </>
   )
 }

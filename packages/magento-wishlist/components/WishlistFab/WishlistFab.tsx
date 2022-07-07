@@ -35,7 +35,7 @@ function WishlistFabContent(props: WishlistFabContentProps) {
       <Fab
         color='inherit'
         data-test-id='wishlist-fab'
-        aria-label={i18n._(/* i18n */ `Wishlist`)}
+        aria-label={i18n._(/* i18n */ 'Wishlist')}
         size='large'
         className={classes.root}
         {...FabProps}
@@ -74,7 +74,15 @@ export function WishlistFab(props: WishlistFabProps) {
     activeWishlist = wishlist.length > 0
   }
 
-  if (!isWishlistEnabled || hideForGuest) return null
+  if (!isWishlistEnabled) return null
+
+  if (hideForGuest) {
+    return (
+      <NoSsr fallback={null}>
+        <WishlistFabContent {...props} activeWishlist={activeWishlist} />
+      </NoSsr>
+    )
+  }
 
   return (
     <NoSsr fallback={<WishlistFabContent {...props} activeWishlist={false} />}>

@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-customer-order",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "3.0.27",
+  "version": "3.0.30",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -18,12 +18,12 @@
     "@playwright/test": "^1.21.1"
   },
   "dependencies": {
-    "@graphcommerce/graphql": "3.3.0",
+    "@graphcommerce/graphql": "3.4.0",
     "@graphcommerce/graphql-mesh": "4.1.4",
     "@graphcommerce/image": "3.1.7",
-    "@graphcommerce/magento-graphql": "3.0.15",
-    "@graphcommerce/magento-store": "4.2.13",
-    "@graphcommerce/next-ui": "4.11.1"
+    "@graphcommerce/magento-graphql": "3.1.0",
+    "@graphcommerce/magento-store": "4.2.16",
+    "@graphcommerce/next-ui": "4.13.0"
   },
   "peerDependencies": {
     "@lingui/react": "^3.13.2",

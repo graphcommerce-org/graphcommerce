@@ -1,3 +1,4 @@
+/* eslint-disable spaced-comment */
 import { extendableComponent, FlagAvatar } from '@graphcommerce/next-ui'
 import {
   List,
@@ -31,7 +32,7 @@ export function StoreSwitcherList(props: StoreSwitcherListProps) {
     (availableStores ?? []).reduce<{
       [group: string]: { name: Store['store_group_name']; stores: Store[] }
     }>((storesGrouped, store) => {
-      const code = store?.locale?.split('_')[1].toLowerCase()
+      const code = store?.store_group_code
       if (!store?.store_group_code || !code) return storesGrouped
 
       if (!storesGrouped[code]) storesGrouped[code] = { name: store.store_group_name, stores: [] }
@@ -48,16 +49,16 @@ export function StoreSwitcherList(props: StoreSwitcherListProps) {
           <PageLink
             key={group.stores[0].locale}
             href='/switch-stores'
-            locale={storeToLocale(group.stores[0].locale)}
+            locale={storeToLocale(group.stores[0].store_code)}
             replace
             passHref
           >
             <ListItem
-              disabled={!storeToLocale(group.stores[0].locale)}
+              disabled={!storeToLocale(group.stores[0].store_code)}
               button
               component='a'
               selected={
-                group.stores.length <= 1 && localeToStore(locale) === group.stores[0].locale
+                group.stores.length <= 1 && localeToStore(locale) === group.stores[0].store_code
               }
               color='inherit'
               className={classes.listItem}
@@ -78,7 +79,7 @@ export function StoreSwitcherList(props: StoreSwitcherListProps) {
                 {group.stores.length <= 1 && ` — ${group.stores[0].store_name}`}
 
                 {process.env.NODE_ENV !== 'production' &&
-                  !storeToLocale(group.stores[0].locale) && (
+                  !storeToLocale(group.stores[0].store_code) && (
                     <> 🚨 Could not find configuration in .env</>
                   )}
               </ListItemText>
@@ -90,7 +91,7 @@ export function StoreSwitcherList(props: StoreSwitcherListProps) {
                 <PageLink
                   key={store.locale}
                   href='/switch-stores'
-                  locale={storeToLocale(store.locale)}
+                  locale={storeToLocale(store.store_code)}
                   replace
                   passHref
                 >
@@ -98,7 +99,7 @@ export function StoreSwitcherList(props: StoreSwitcherListProps) {
                     disabled={!localeToStore(locale)}
                     button
                     component='a'
-                    selected={localeToStore(locale) === store.locale}
+                    selected={localeToStore(locale) === store.store_code}
                     color='inherit'
                     className={classes.listItemIndented}
                     sx={{

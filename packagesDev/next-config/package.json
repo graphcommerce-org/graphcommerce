@@ -13,7 +13,7 @@
     "prepack": "yarn build"
   },
   "dependencies": {
-    "@lingui/loader": "^3.13.3",
+    "@lingui/loader": "^3.14.0",
     "js-yaml-loader": "^1.2.2",
     "next-transpile-modules": "^9.0.0",
     "webpack": "^5.73.0"

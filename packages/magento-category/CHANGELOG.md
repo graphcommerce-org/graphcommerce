@@ -1,5 +1,38 @@
 # Change Log
 
+## 4.1.22
+
+### Patch Changes
+
+- [#1522](https://github.com/graphcommerce-org/graphcommerce/pull/1522) [`8d8fda262`](https://github.com/graphcommerce-org/graphcommerce/commit/8d8fda2623e561cb43441110c67ffa34b692668a) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Introducing a new Navigation component that builds on the existing navigation component and tries to address the 'mega menu' question where there are tons of categories that need to be navigated quickly.
+
+- Updated dependencies [[`8d8fda262`](https://github.com/graphcommerce-org/graphcommerce/commit/8d8fda2623e561cb43441110c67ffa34b692668a), [`d41cff721`](https://github.com/graphcommerce-org/graphcommerce/commit/d41cff7211230561ceeb7786cf75790efd6377cd), [`cefa7b365`](https://github.com/graphcommerce-org/graphcommerce/commit/cefa7b3652b55108d2178927e3c5d98a111cf373), [`584b683a2`](https://github.com/graphcommerce-org/graphcommerce/commit/584b683a2aedcdf5067644c8dcc0e63a5b9e894c)]:
+  - @graphcommerce/next-ui@4.13.0
+  - @graphcommerce/magento-store@4.2.16
+  - @graphcommerce/framer-scroller@2.1.22
+  - @graphcommerce/magento-product@4.4.14
+
+## 4.1.21
+
+### Patch Changes
+
+- Updated dependencies [[`5f927ebdc`](https://github.com/graphcommerce-org/graphcommerce/commit/5f927ebdc6f0331833e02b96e4f169bfe475ac6b), [`c756f42e5`](https://github.com/graphcommerce-org/graphcommerce/commit/c756f42e503761a497e4a5a7a02d02141df231c3)]:
+  - @graphcommerce/graphql@3.4.0
+  - @graphcommerce/next-ui@4.12.0
+  - @graphcommerce/magento-product@4.4.13
+  - @graphcommerce/magento-store@4.2.15
+  - @graphcommerce/framer-scroller@2.1.21
+
+## 4.1.20
+
+### Patch Changes
+
+- Updated dependencies [[`fe4baa42d`](https://github.com/graphcommerce-org/graphcommerce/commit/fe4baa42db0081ed960d62aef688bd36a7ac974f)]:
+  - @graphcommerce/next-ui@4.11.2
+  - @graphcommerce/magento-product@4.4.12
+  - @graphcommerce/framer-scroller@2.1.20
+  - @graphcommerce/magento-store@4.2.14
+
 ## 4.1.19
 
 ### Patch Changes

@@ -1,5 +1,30 @@
 # Change Log
 
+## 4.1.24
+
+### Patch Changes
+
+- Updated dependencies [[`8d8fda262`](https://github.com/graphcommerce-org/graphcommerce/commit/8d8fda2623e561cb43441110c67ffa34b692668a), [`cefa7b365`](https://github.com/graphcommerce-org/graphcommerce/commit/cefa7b3652b55108d2178927e3c5d98a111cf373)]:
+  - @graphcommerce/next-ui@4.13.0
+
+## 4.1.23
+
+### Patch Changes
+
+- Updated dependencies [[`5f927ebdc`](https://github.com/graphcommerce-org/graphcommerce/commit/5f927ebdc6f0331833e02b96e4f169bfe475ac6b), [`c756f42e5`](https://github.com/graphcommerce-org/graphcommerce/commit/c756f42e503761a497e4a5a7a02d02141df231c3)]:
+  - @graphcommerce/graphql@3.4.0
+  - @graphcommerce/react-hook-form@3.3.0
+  - @graphcommerce/next-ui@4.12.0
+
+## 4.1.22
+
+### Patch Changes
+
+- [#1538](https://github.com/graphcommerce-org/graphcommerce/pull/1538) [`fe4baa42d`](https://github.com/graphcommerce-org/graphcommerce/commit/fe4baa42db0081ed960d62aef688bd36a7ac974f) Thanks [@paales](https://github.com/paales)! - add missing translations
+
+- Updated dependencies [[`fe4baa42d`](https://github.com/graphcommerce-org/graphcommerce/commit/fe4baa42db0081ed960d62aef688bd36a7ac974f)]:
+  - @graphcommerce/next-ui@4.11.2
+
 ## 4.1.21
 
 ### Patch Changes

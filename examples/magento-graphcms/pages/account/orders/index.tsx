@@ -1,6 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { useQuery } from '@graphcommerce/graphql'
-import { ApolloCustomerErrorFullPage } from '@graphcommerce/magento-customer'
+import { ApolloCustomerErrorFullPage, useCustomerQuery } from '@graphcommerce/magento-customer'
 import {
   AccountDashboardOrdersDocument,
   AccountOrders,
@@ -16,9 +16,8 @@ import {
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Container, NoSsr } from '@mui/material'
+import { CircularProgress, Container } from '@mui/material'
 import { useRouter } from 'next/router'
-import React from 'react'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
 import { graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
@@ -27,9 +26,8 @@ type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 function AccountOrdersPage() {
   const { query } = useRouter()
 
-  const { data, loading, error } = useQuery(AccountDashboardOrdersDocument, {
+  const { data, loading, error, called } = useCustomerQuery(AccountDashboardOrdersDocument, {
     fetchPolicy: 'cache-and-network',
-    ssr: false,
     variables: {
       pageSize: 5,
       currentPage: Number(query?.page ?? 1),
@@ -37,15 +35,13 @@ function AccountOrdersPage() {
   })
   const customer = data?.customer
 
-  if (loading) return <div />
-  if (error)
+  if (loading || !called)
     return (
-      <ApolloCustomerErrorFullPage
-        error={error}
-        signInHref='/account/signin'
-        signUpHref='/account/signin'
-      />
+      <FullPageMessage icon={<CircularProgress />} title='Loading your account'>
+        <Trans id='This may take a second' />
+      </FullPageMessage>
     )
+  if (error) return <ApolloCustomerErrorFullPage error={error} />
 
   return (
     <>
@@ -55,24 +51,22 @@ function AccountOrdersPage() {
         </LayoutTitle>
       </LayoutOverlayHeader>
       <Container maxWidth='md'>
-        <PageMeta title={i18n._(/* i18n */ `Orders`)} metaRobots={['noindex']} />
-        <NoSsr>
-          {customer?.orders && customer.orders.items.length > 0 && (
-            <>
-              <LayoutTitle icon={iconBox}>Orders</LayoutTitle>
-              <AccountOrders {...customer} />
-            </>
-          )}
+        <PageMeta title={i18n._(/* i18n */ 'Orders')} metaRobots={['noindex']} />
+        {customer?.orders && customer.orders.items.length > 0 && (
+          <>
+            <LayoutTitle icon={iconBox}>Orders</LayoutTitle>
+            <AccountOrders {...customer} />
+          </>
+        )}
 
-          {customer?.orders && customer.orders.items.length < 1 && (
-            <FullPageMessage
-              title={i18n._(/* i18n */ `You have no orders yet`)}
-              icon={<IconSvg src={iconBox} size='xxl' />}
-            >
-              <Trans id='Discover our collection and place your first order!' />
-            </FullPageMessage>
-          )}
-        </NoSsr>
+        {customer?.orders && customer.orders.items.length < 1 && (
+          <FullPageMessage
+            title={<Trans id='You have no orders yet' />}
+            icon={<IconSvg src={iconBox} size='xxl' />}
+          >
+            <Trans id='Discover our collection and place your first order!' />
+          </FullPageMessage>
+        )}
       </Container>
     </>
   )

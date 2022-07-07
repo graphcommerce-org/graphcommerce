@@ -5,6 +5,7 @@ import {
   ApolloCustomerErrorFullPage,
   ChangePasswordForm,
   CustomerDocument,
+  useCustomerQuery,
 } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
@@ -13,10 +14,11 @@ import {
   iconLock,
   LayoutOverlayHeader,
   LayoutTitle,
+  FullPageMessage,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Container, NoSsr } from '@mui/material'
+import { CircularProgress, Container } from '@mui/material'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
 import { graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
@@ -24,20 +26,17 @@ type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
 function AccountAuthenticationPage() {
   useGoogleRecaptcha()
-  const { loading, data, error } = useQuery(CustomerDocument, {
-    ssr: false,
-  })
+  const { loading, data, error, called } = useCustomerQuery(CustomerDocument)
   const customer = data?.customer
 
-  if (loading) return <div />
-  if (error)
+  if (loading || !called)
     return (
-      <ApolloCustomerErrorFullPage
-        error={error}
-        signInHref='/account/signin'
-        signUpHref='/account/signin'
-      />
+      <FullPageMessage icon={<CircularProgress />} title='Loading your account'>
+        <Trans id='This may take a second' />
+      </FullPageMessage>
     )
+
+  if (error) return <ApolloCustomerErrorFullPage error={error} />
 
   return (
     <>
@@ -47,15 +46,13 @@ function AccountAuthenticationPage() {
         </LayoutTitle>
       </LayoutOverlayHeader>
       <Container maxWidth='md'>
-        <PageMeta title={i18n._(/* i18n */ `Authentication`)} metaRobots={['noindex']} />
-        <NoSsr>
-          <LayoutTitle icon={iconLock}>
-            <Trans id='Authentication' />
-          </LayoutTitle>
-          <SectionContainer labelLeft={i18n._(/* i18n */ `Password`)}>
-            {customer && <ChangePasswordForm />}
-          </SectionContainer>
-        </NoSsr>
+        <PageMeta title={i18n._(/* i18n */ 'Authentication')} metaRobots={['noindex']} />
+        <LayoutTitle icon={iconLock}>
+          <Trans id='Authentication' />
+        </LayoutTitle>
+        <SectionContainer labelLeft={<Trans id='Password' />}>
+          {customer && <ChangePasswordForm />}
+        </SectionContainer>
       </Container>
     </>
   )

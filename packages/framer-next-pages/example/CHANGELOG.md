@@ -1,5 +1,29 @@
 # Change Log
 
+## 3.0.28
+
+### Patch Changes
+
+- Updated dependencies [[`8d8fda262`](https://github.com/graphcommerce-org/graphcommerce/commit/8d8fda2623e561cb43441110c67ffa34b692668a), [`cefa7b365`](https://github.com/graphcommerce-org/graphcommerce/commit/cefa7b3652b55108d2178927e3c5d98a111cf373)]:
+  - @graphcommerce/next-ui@4.13.0
+
+## 3.0.27
+
+### Patch Changes
+
+- [#1542](https://github.com/graphcommerce-org/graphcommerce/pull/1542) [`84df00e00`](https://github.com/graphcommerce-org/graphcommerce/commit/84df00e008af99b377029da93d25881bd87644ee) Thanks [@NickdeK](https://github.com/NickdeK)! - Updated @mui/material and @mui/labs
+
+- Updated dependencies [[`1e0a8b0a3`](https://github.com/graphcommerce-org/graphcommerce/commit/1e0a8b0a3842d150fdfd6e040b408a6fb3f76c7c), [`c756f42e5`](https://github.com/graphcommerce-org/graphcommerce/commit/c756f42e503761a497e4a5a7a02d02141df231c3)]:
+  - @graphcommerce/lingui-next@2.1.11
+  - @graphcommerce/next-ui@4.12.0
+
+## 3.0.26
+
+### Patch Changes
+
+- Updated dependencies [[`fe4baa42d`](https://github.com/graphcommerce-org/graphcommerce/commit/fe4baa42db0081ed960d62aef688bd36a7ac974f)]:
+  - @graphcommerce/next-ui@4.11.2
+
 ## 3.0.25
 
 ### Patch Changes

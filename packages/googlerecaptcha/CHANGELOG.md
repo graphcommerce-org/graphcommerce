@@ -1,5 +1,12 @@
 # Change Log
 
+## 2.1.10
+
+### Patch Changes
+
+- Updated dependencies [[`5f927ebdc`](https://github.com/graphcommerce-org/graphcommerce/commit/5f927ebdc6f0331833e02b96e4f169bfe475ac6b)]:
+  - @graphcommerce/graphql@3.4.0
+
 ## 2.1.9
 
 ### Patch Changes

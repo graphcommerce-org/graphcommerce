@@ -109,7 +109,7 @@ export function ShippingAddressForm(props: ShippingAddressFormProps) {
             label={<Trans id='Telephone' />}
             {...muiRegister('telephone', {
               required: required.telephone,
-              pattern: { value: phonePattern, message: i18n._(/* i18n */ `Invalid phone number`) },
+              pattern: { value: phonePattern, message: i18n._(/* i18n */ 'Invalid phone number') },
             })}
             helperText={formState.isSubmitted && formState.errors.telephone?.message}
             InputProps={{

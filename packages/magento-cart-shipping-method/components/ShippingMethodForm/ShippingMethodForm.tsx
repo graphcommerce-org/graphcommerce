@@ -16,7 +16,7 @@ import {
 } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { FC, useEffect, useMemo, VFC } from 'react'
+import { FC, useEffect, useMemo } from 'react'
 import { GetShippingMethodsDocument } from './GetShippingMethods.gql'
 import { ShippingMethodActionCard } from './ShippingMethodActionCard'
 import {
@@ -96,7 +96,7 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
         <ActionCardListForm
           control={control}
           name='carrierMethod'
-          errorMessage={i18n._(/* i18n */ `Please select a shipping method`)}
+          errorMessage={i18n._(/* i18n */ 'Please select a shipping method')}
           items={sortedAvailableShippingMethods.filter(Boolean).map((sortedMethod) => ({
             ...sortedMethod,
             disabled: !sortedMethod?.available,

@@ -104,7 +104,7 @@ export function LayoutDefault(props: LayoutDefaultProps) {
               justifyContent: 'space-between',
               width: '100%',
               height: 0,
-              zIndex: 'drawer',
+              zIndex: 'speedDial',
               [theme.breakpoints.up('sm')]: {
                 padding: `0 ${theme.page.horizontal}`,
                 position: 'sticky',

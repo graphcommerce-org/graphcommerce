@@ -108,11 +108,7 @@ export function DarkLightModeMenuSecondaryItem(props: ListItemButtonProps) {
         <IconSvg src={currentMode === 'light' ? iconMoon : iconSun} size='medium' />
       </ListItemIcon>
       <ListItemText>
-        {currentMode === 'light' ? (
-          <Trans id='Switch to Dark Mode' />
-        ) : (
-          <Trans id='Switch to Light Mode' />
-        )}
+        {currentMode === 'light' ? <Trans id='Dark Mode' /> : <Trans id='Light Mode' />}
       </ListItemText>
     </ListItemButton>
   )
