@@ -87,17 +87,6 @@ export function ActionCard(props: ActionCardProps) {
       disabled={disabled}
       sx={[
         (theme) => ({
-          '&.variantDefault': {
-            py: theme.spacings.xxs,
-            borderBottom: `1px solid ${theme.palette.divider}`,
-          },
-
-          '&.variantOutlined': {
-            padding: `${theme.spacings.xxs} ${theme.spacings.xs}`,
-            backgroundColor: theme.palette.background.paper,
-            border: `${responsiveVal(2, 3)} solid ${theme.palette.divider}`,
-          },
-
           '&.sizeSmall': {
             display: 'flex',
             borderRadius: 2,
@@ -113,9 +102,28 @@ export function ActionCard(props: ActionCardProps) {
               borderBottomColor: 'transparent',
             },
           },
-          '&.selected': {
-            border: `${responsiveVal(2, 3)} solid ${theme.palette.secondary.main} !important`,
+
+          '&.variantDefault': {
             padding: `${theme.spacings.xxs} ${theme.spacings.xs}`,
+            borderBottom: `2px solid ${theme.palette.divider}`,
+
+            '&:not(:last-child)': {
+              borderBottom: `2px solid ${theme.palette.divider}`,
+            },
+            '&.selected': {
+              borderBottom: `2px solid ${theme.palette.secondary.main}`,
+              backgroundColor: `${theme.palette.secondary.main}10`,
+            },
+          },
+
+          '&.variantOutlined': {
+            padding: `${theme.spacings.xxs} ${theme.spacings.xs}`,
+            backgroundColor: theme.palette.background.paper,
+            border: `${responsiveVal(2, 3)} solid ${theme.palette.divider}`,
+            '&.selected': {
+              border: `${responsiveVal(2, 3)} solid ${theme.palette.secondary.main} !important`,
+              padding: `${theme.spacings.xxs} ${theme.spacings.xs}`,
+            },
           },
         }),
         hidden && {
@@ -169,10 +177,7 @@ export function ActionCard(props: ActionCardProps) {
             )}
 
             {details && (
-              <Box
-                className={classes.details}
-                sx={{ gridArea: 'details', color: 'text.secondary' }}
-              >
+              <Box className={classes.details} sx={{ color: 'text.secondary' }}>
                 {details}
               </Box>
             )}
@@ -196,17 +201,14 @@ export function ActionCard(props: ActionCardProps) {
           )}
 
           {price && !disabled && (
-            <Box
-              className={classes.price}
-              sx={{ gridArea: 'price', textAlign: 'right', typography: 'h5' }}
-            >
+            <Box className={classes.price} sx={{ textAlign: 'right', typography: 'h5' }}>
               {price}
             </Box>
           )}
         </Box>
 
         {after && (
-          <Box className={classes.after} sx={{ gridArea: 'after' }}>
+          <Box className={classes.after} sx={{ backgroundColor: 'yellow' }}>
             {after}
           </Box>
         )}

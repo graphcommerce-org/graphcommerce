@@ -18,7 +18,7 @@ export type ConfigurableOptionsInputProps = Pick<
   optionEndLabels?: Record<string, React.ReactNode>
 }
 
-function ConfigurableOptionsActionCard(cardProps: ConfigurableOptionsActionCardProps) {
+export function ConfigurableOptionsActionCard(cardProps: ConfigurableOptionsActionCardProps) {
   const { swatch_data, uid, size } = cardProps
 
   return (
@@ -45,6 +45,8 @@ export function ConfigurableOptionsInput(props: ConfigurableOptionsInputProps) {
   const { control } = form
 
   const typeProduct = useConfigurableTypeProduct()
+
+  console.log(typeProduct?.configurable_options)
 
   return (
     <>
