@@ -9,6 +9,7 @@ import {
   iconChevronRight,
   MessageSnackbar,
   IconSvg,
+  TextInputNumber,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Divider, Alert, Box, SxProps, Theme, Typography } from '@mui/material'
@@ -17,8 +18,6 @@ import PageLink from 'next/link'
 import React from 'react'
 import { ConfigurableOptionsInput } from '../ConfigurableOptions/ConfigurableOptionsInput'
 import { useConfigurableTypeProduct } from '../hooks'
-import { ConfigurableProductQuantityField } from './ConfigurableProductQuantityField'
-import { ConfigurableProductSubmitButton } from './ConfigurableProductSubmitButton'
 
 type ConfigurableProductAddToCartProps = {
   name: string
@@ -37,7 +36,7 @@ export function ConfigurableProductAddToCart(props: ConfigurableProductAddToCart
   const { name, children, priceRange, optionEndLabels, additionalButtons, sx = [] } = props
 
   const form = useFormProductAddToCart()
-  const { formState, error, data } = form
+  const { formState, error, data, muiRegister, required } = form
 
   const typeProduct = useConfigurableTypeProduct()
   const regular_price =
@@ -47,12 +46,27 @@ export function ConfigurableProductAddToCart(props: ConfigurableProductAddToCart
   return (
     <Box className={classes.form} sx={[{ width: '100%' }, ...(Array.isArray(sx) ? sx : [sx])]}>
       <Divider className={classes.divider} sx={(theme) => ({ margin: `${theme.spacings.sm} 0` })} />
+
+      {/* Add to cart component */}
       <ConfigurableOptionsInput optionEndLabels={optionEndLabels} />
 
-      <ConfigurableProductQuantityField className={classes.quantity} />
+      {/* Quantity component */}
+      <TextInputNumber
+        variant='outlined'
+        error={formState.isSubmitted && !!formState.errors.quantity}
+        required={required.quantity}
+        inputProps={{ min: 1 }}
+        {...muiRegister('quantity', { required: required.quantity })}
+        helperText={formState.isSubmitted && formState.errors.quantity?.message}
+        defaultValue={1}
+        size='small'
+        className={classes.quantity}
+        sx={(theme) => ({ marginTop: theme.spacings.sm })}
+      />
 
       <Divider className={classes.divider} sx={(theme) => ({ margin: `${theme.spacings.sm} 0` })} />
 
+      {/* Final price component */}
       <Typography
         component='div'
         variant='h3'
@@ -62,12 +76,32 @@ export function ConfigurableProductAddToCart(props: ConfigurableProductAddToCart
         <Money {...(regular_price ?? priceRange?.minimum_price.regular_price)} />
       </Typography>
 
+      {/* Renders any given child components */}
+
       {children}
 
-      <ConfigurableProductSubmitButton
-        classes={{ button: classes.button, buttonWrapper: classes.buttonWrapper }}
-        additionalButtons={additionalButtons}
-      />
+      {/* Submit button component */}
+      <Box
+        sx={(theme) => ({ display: 'flex', alignItems: 'center', columnGap: theme.spacings.xs })}
+        className={classes.buttonWrapper}
+      >
+        <Button
+          type='submit'
+          loading={formState.isSubmitting}
+          color='primary'
+          variant='pill'
+          size='large'
+          className={classes.button}
+          sx={(theme) => ({
+            marginTop: theme.spacings.sm,
+            marginBottom: theme.spacings.sm,
+            width: '100%',
+          })}
+        >
+          <Trans id='Add to Cart' />
+        </Button>
+        {additionalButtons}
+      </Box>
 
       <ApolloCartErrorAlert error={error} />
 

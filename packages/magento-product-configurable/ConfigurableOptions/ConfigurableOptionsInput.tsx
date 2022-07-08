@@ -46,8 +46,6 @@ export function ConfigurableOptionsInput(props: ConfigurableOptionsInputProps) {
 
   const typeProduct = useConfigurableTypeProduct()
 
-  console.log(typeProduct?.configurable_options)
-
   return (
     <>
       {typeProduct?.configurable_options?.map((option, index) => {
