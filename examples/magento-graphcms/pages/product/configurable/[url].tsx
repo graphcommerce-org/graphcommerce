@@ -86,8 +86,6 @@ function ProductConfigurable(props: Props) {
 
           <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
           <ConfigurableProductAddToCart
-            name={product.name ?? ''}
-            priceRange={product.price_range}
             optionEndLabels={{
               size: (
                 <Link

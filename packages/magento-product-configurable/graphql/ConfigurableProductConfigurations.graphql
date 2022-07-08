@@ -2,6 +2,16 @@ fragment ConfigurableProductConfigurations on ConfigurableProduct {
   __typename
   uid
   sku
+  name
+  price_range {
+    minimum_price {
+      regular_price {
+        __typename
+        currency
+        value
+      }
+    }
+  }
   configurable_options {
     attribute_code
     uid

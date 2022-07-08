@@ -20,8 +20,6 @@ import { ConfigurableOptionsInput } from '../ConfigurableOptions/ConfigurableOpt
 import { useConfigurableTypeProduct } from '../hooks'
 
 type ConfigurableProductAddToCartProps = {
-  name: string
-  priceRange?: PriceRange
   optionEndLabels?: Record<string, React.ReactNode>
   children?: React.ReactNode
   additionalButtons?: React.ReactNode
@@ -33,15 +31,14 @@ const parts = ['form', 'button', 'finalPrice', 'quantity', 'divider', 'buttonWra
 const { classes } = extendableComponent(compName, parts)
 
 export function ConfigurableProductAddToCart(props: ConfigurableProductAddToCartProps) {
-  const { name, children, priceRange, optionEndLabels, additionalButtons, sx = [] } = props
+  const { children, optionEndLabels, additionalButtons, sx = [] } = props
 
   const form = useFormProductAddToCart()
   const { formState, error, data, muiRegister, required } = form
-
-  const typeProduct = useConfigurableTypeProduct()
+  const { name, configurable_product_options_selection, price_range } = useConfigurableTypeProduct()
   const regular_price =
-    typeProduct?.configurable_product_options_selection?.variant?.price_range.minimum_price
-      .regular_price
+    configurable_product_options_selection?.variant?.price_range.minimum_price.regular_price ??
+    price_range.minimum_price.regular_price
 
   return (
     <Box className={classes.form} sx={[{ width: '100%' }, ...(Array.isArray(sx) ? sx : [sx])]}>
@@ -73,7 +70,7 @@ export function ConfigurableProductAddToCart(props: ConfigurableProductAddToCart
         className={classes.finalPrice}
         sx={(theme) => ({ marginTop: theme.spacings.sm })}
       >
-        <Money {...(regular_price ?? priceRange?.minimum_price.regular_price)} />
+        <Money {...regular_price} />
       </Typography>
 
       {/* Renders any given child components */}
