@@ -1,26 +1,14 @@
 import { useForm } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { ConfigurableOptionsActionCard } from '@graphcommerce/magento-product-configurable/ConfigurableOptions/ConfigurableOptionsInput'
-import { ColorSwatchData } from '@graphcommerce/magento-product-configurable/Swatches/ColorSwatchData'
-import { ImageSwatchData } from '@graphcommerce/magento-product-configurable/Swatches/ImageSwatchData'
-import { TextSwatchData } from '@graphcommerce/magento-product-configurable/Swatches/TextSwatchData'
-import {
-  SwatchSize,
-  SwatchTypeRenderer,
-} from '@graphcommerce/magento-product-configurable/Swatches/types'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   LayoutTitle,
   responsiveVal,
-  IconSvg,
-  iconChevronRight,
-  iconBox,
   GetStaticProps,
   Button,
-  ButtonProps,
   ActionCardProps,
   ActionCard,
-  RenderType,
 } from '@graphcommerce/next-ui'
 import {
   ActionCardItemRenderProps,
@@ -28,26 +16,12 @@ import {
 } from '@graphcommerce/next-ui/ActionCard/ActionCardListForm'
 import { Trans } from '@lingui/react'
 import { Box, Container, Typography, Divider, styled } from '@mui/material'
-import React, { useState } from 'react'
+import React from 'react'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
 import { graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
 const variants = ['default', 'outlined'] as const
 const sizes = ['small', 'medium', 'large'] as const
-
-const swatches: Record<string, ActionCardProps> = {
-  TextSwatch: {
-    value: 'default',
-  },
-  ColorSwatch: {
-    size: 'medium',
-    value: 'outlined',
-  },
-  ImageSwatch: {
-    size: 'large',
-    value: 'large',
-  },
-}
 
 const options = [
   {
@@ -153,12 +127,6 @@ const options = [
     ],
   },
 ]
-
-const renderer: SwatchTypeRenderer = {
-  TextSwatchData,
-  ImageSwatchData,
-  ColorSwatchData,
-}
 
 const Grid = styled('div')(({ theme }) => ({
   marginTop: `${5 * 8}px`,
