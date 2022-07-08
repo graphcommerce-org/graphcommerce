@@ -17,7 +17,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Container, NoSsr } from '@mui/material'
+import { Container } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 
@@ -27,7 +27,7 @@ import { graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
 
-function WishlistPage(props: Props) {
+function WishlistPage() {
   const wishlistItemsData = useWishlistItems()
 
   return (
