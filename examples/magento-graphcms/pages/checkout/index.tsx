@@ -6,7 +6,6 @@ import {
 } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { useGoogleRecaptcha } from '@graphcommerce/googlerecaptcha'
-import { useQuery } from '@graphcommerce/graphql'
 import { ApolloCartErrorAlert, EmptyCart, useCartQuery } from '@graphcommerce/magento-cart'
 import { ShippingPageDocument } from '@graphcommerce/magento-cart-checkout'
 import { EmailForm } from '@graphcommerce/magento-cart-email'
@@ -47,7 +46,7 @@ function ShippingPage() {
   useGoogleRecaptcha()
   useMergeGuestWishlistWithCustomer()
 
-  const { data, loading, called, error } = useCartQuery(ShippingPageDocument, {
+  const { data, called, error } = useCartQuery(ShippingPageDocument, {
     fetchPolicy: 'cache-and-network',
   })
 
@@ -55,8 +54,10 @@ function ShippingPage() {
   const router = useRouter()
 
   const onSubmitSuccessful = () => {
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    router.push('/checkout/payment')
+    if (!error) {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      router.push('/checkout/payment')
+    }
   }
 
   const customerAddresses = useCustomerQuery(CustomerDocument)

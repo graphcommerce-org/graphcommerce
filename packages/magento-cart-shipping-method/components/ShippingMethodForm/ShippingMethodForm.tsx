@@ -35,7 +35,6 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
   const selected = currentAddress?.selected_shipping_method
   const carrier = selected?.carrier_code ?? available?.[0]?.carrier_code
   const method = selected?.method_code ?? available?.[0]?.method_code ?? undefined
-  const carrierMethod = `${carrier}-${method}`
 
   const sortedAvailableShippingMethods = useMemo(
     () =>
@@ -50,7 +49,7 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
     ShippingMethodFormMutation,
     ShippingMethodFormMutationVariables & { carrierMethod?: string }
   >(ShippingMethodFormDocument, {
-    defaultValues: { carrierMethod, carrier, method },
+    defaultValues: { carrier, method },
     onBeforeSubmit: (variables) => {
       const splitCarrierMethod = variables?.carrierMethod?.split('-')
       return {
@@ -69,11 +68,9 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
 
   useEffect(() => {
     const availableMethods = sortedAvailableShippingMethods.filter((m) => m?.available)
+
     if (availableMethods.length === 1) {
-      setValue(
-        'carrierMethod',
-        `${availableMethods[0]?.carrier_code}-${availableMethods[0]?.method_code}`,
-      )
+      setValue('carrierMethod', `${carrier}-${method}`)
     }
   }, [
     carrier,
