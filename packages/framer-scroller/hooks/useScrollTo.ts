@@ -6,7 +6,7 @@ import { useScrollerContext } from './useScrollerContext'
 
 export function useScrollTo() {
   const { scrollerRef, register, disableSnap, enableSnap } = useScrollerContext()
-  const scroll = useElementScroll(scrollerRef)
+  const { scroll, y, x } = useElementScroll(scrollerRef)
 
   const duration =
     ((useContext(MotionConfigContext).transition as Tween | undefined)?.duration ?? 0.375) * 1000
@@ -26,7 +26,7 @@ export function useScrollTo() {
       // }
 
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      scroll.scroll.start(() => () => {})
+      // scroll.start(() => () => {})
 
       const xDone = new Promise<void>((onComplete) => {
         if (ref.scrollLeft !== to.x) {
@@ -35,10 +35,10 @@ export function useScrollTo() {
             animate({
               from: ref.scrollLeft,
               to: to.x,
-              velocity: scroll.x.getVelocity(),
+              velocity: x.getVelocity(),
               onUpdate: (v) => {
                 ref.scrollLeft = v
-                scroll.scroll.set({ ...scroll.scroll.get(), x: v })
+                scroll.set({ ...scroll.get(), x: v })
               },
               onComplete,
               onStop: onComplete,
@@ -55,10 +55,10 @@ export function useScrollTo() {
             animate({
               from: ref.scrollTop,
               to: to.y,
-              velocity: scroll.y.getVelocity(),
+              velocity: y.getVelocity(),
               onUpdate: (v: number) => {
                 ref.scrollTop = v
-                scroll.scroll.set({ ...scroll.scroll.get(), y: v })
+                scroll.set({ ...scroll.get(), y: v })
               },
               onComplete,
               onStop: onComplete,
@@ -72,10 +72,10 @@ export function useScrollTo() {
 
       await xDone
       await yDone
-      scroll.scroll.stop()
+      scroll.stop()
       enableSnap()
     },
-    [disableSnap, enableSnap, register, scroll, scrollerRef, duration],
+    [scrollerRef, scroll, enableSnap, disableSnap, register, x, duration, y],
   )
 
   return scrollTo

@@ -25,7 +25,9 @@
     "@graphcommerce/magento-cms": "4.0.27",
     "@graphcommerce/next-ui": "4.13.0",
     "@graphcommerce/react-hook-form": "3.3.0",
-    "jsdom": "^19.0.0"
+    "jsdom": "^19.0.0",
+    "@graphcommerce/framer-utils": "3.1.4",
+    "@graphcommerce/framer-scroller": "2.1.22"
   },
   "peerDependencies": {
     "@lingui/react": "^3.13.2",
