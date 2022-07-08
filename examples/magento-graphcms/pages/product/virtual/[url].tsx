@@ -139,7 +139,6 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   return {
     props: {
       ...(await productPage).data,
-      ...(await typeProductPage).data,
       apolloState: await conf.then(() => client.cache.extract()),
       up,
     },
