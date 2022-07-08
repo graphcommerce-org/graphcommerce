@@ -47,7 +47,7 @@ function ShippingPage() {
   useGoogleRecaptcha()
   useMergeGuestWishlistWithCustomer()
 
-  const { data, loading, called, error } = useCartQuery(ShippingPageDocument, {
+  const { data, called, error } = useCartQuery(ShippingPageDocument, {
     fetchPolicy: 'cache-and-network',
   })
 
@@ -55,8 +55,10 @@ function ShippingPage() {
   const router = useRouter()
 
   const onSubmitSuccessful = () => {
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    router.push('/checkout/payment')
+    if (!error) {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      router.push('/checkout/payment')
+    }
   }
 
   const customerAddresses = useCustomerQuery(CustomerDocument)
