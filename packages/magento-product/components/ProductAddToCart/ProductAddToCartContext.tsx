@@ -5,15 +5,15 @@ import {
   useFormProductAddToCartBase,
 } from './useFormProductAddToCartBase'
 
-type ProductAddToCartContextType<TypeProduct extends Record<string, unknown>> =
+type ProductAddToCartContextType<T extends Record<string, unknown>> =
   UseFormProductAddToCartReturn & {
     urlKey: string
     sku: string
-    typeProduct?: TypeProduct
+    typeProduct?: T
   }
 
 export const productAddToCartContext = createContext(
-  undefined as unknown as ProductAddToCartContextType,
+  undefined as ProductAddToCartContextType<Record<'unknown', unknown>> | undefined,
 )
 
 type ProductAddToCartContextProps<TypeProduct extends Record<string, unknown>> = {

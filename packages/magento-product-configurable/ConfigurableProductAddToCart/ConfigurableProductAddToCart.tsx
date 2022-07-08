@@ -35,7 +35,8 @@ export function ConfigurableProductAddToCart(props: ConfigurableProductAddToCart
 
   const form = useFormProductAddToCart()
   const { formState, error, data, muiRegister, required } = form
-  const { name, configurable_product_options_selection, price_range } = useConfigurableTypeProduct()
+  const { uid, name, configurable_product_options_selection, price_range } =
+    useConfigurableTypeProduct()
   const regular_price =
     configurable_product_options_selection?.variant?.price_range.minimum_price.regular_price ??
     price_range.minimum_price.regular_price
@@ -70,7 +71,7 @@ export function ConfigurableProductAddToCart(props: ConfigurableProductAddToCart
         className={classes.finalPrice}
         sx={(theme) => ({ marginTop: theme.spacings.sm })}
       >
-        <Money {...regular_price} />
+        <Money {...regular_price} key={`${uid}-${regular_price.value}`} />
       </Typography>
 
       {/* Renders any given child components */}
