@@ -1,8 +1,16 @@
-import { SxProps, ButtonBase, Box, Theme } from '@mui/material'
+import { SxProps, ButtonBase, Box, Theme, ButtonProps, BoxProps } from '@mui/material'
 import React, { FormEvent } from 'react'
 import { extendableComponent } from '../Styles'
 
+function isButtonProps(props: ButtonProps<'div'> | BoxProps<'div'>): props is ButtonProps<'div'> {
+  return props.onClick !== undefined
+}
+
+const RenderComponent = (props: ButtonProps<'div'> | BoxProps<'div'>) =>
+  isButtonProps(props) ? <ButtonBase component='div' {...props} /> : <Box {...props} />
+
 export type ActionCardProps = {
+  variant?: 'outlined' | 'default'
   sx?: SxProps<Theme>
   title?: string | React.ReactNode
   image?: React.ReactNode
@@ -33,10 +41,11 @@ const parts = [
 const name = 'ActionCard'
 
 type StateProps = {
-  selected?: boolean
-  hidden?: boolean
-  disabled?: boolean
-  image?: boolean
+  variant?: 'outlined' | 'default'
+  selected: boolean
+  hidden: boolean
+  disabled: boolean
+  image: boolean
 }
 
 const { withState, selectors } = extendableComponent<StateProps, typeof name, typeof parts>(
@@ -62,17 +71,15 @@ export function ActionCard(props: ActionCardProps) {
     hidden = false,
     reset,
     disabled = false,
+    variant = 'default',
   } = props
 
-  const classes = withState({ hidden, disabled, selected, image: Boolean(image) })
-
-  const handleClick = (event: FormEvent<HTMLElement>) => onClick?.(event, value)
+  const classes = withState({ hidden, disabled, selected, image: Boolean(image), variant })
 
   return (
-    <ButtonBase
-      component='div'
+    <RenderComponent
       className={classes.root}
-      onClick={handleClick}
+      onClick={onClick && ((event) => onClick?.(event, value))}
       disabled={disabled}
       sx={[
         (theme) => ({
@@ -87,64 +94,68 @@ export function ActionCard(props: ActionCardProps) {
           `,
           justifyContent: 'unset',
           typography: 'body1',
-          // textAlign: 'left',
-          background: theme.palette.background.paper,
-          padding: `calc(${theme.spacings.xxs} + 1px) calc(${theme.spacings.xs} + 1px)`,
           columnGap: theme.spacings.xxs,
-          border: `1px solid ${theme.palette.divider}`,
-          borderBottomColor: `transparent`,
-          '&:first-of-type': {
-            borderTopLeftRadius: theme.shape.borderRadius,
-            borderTopRightRadius: theme.shape.borderRadius,
-          },
-          '&:last-of-type': {
-            borderBottomLeftRadius: theme.shape.borderRadius,
-            borderBottomRightRadius: theme.shape.borderRadius,
+
+          '&.variantDefault': {
+            py: theme.spacings.xxs,
             borderBottom: `1px solid ${theme.palette.divider}`,
+            '&:last-of-type': {
+              // borderBottom: 'none',
+            },
           },
-        }),
-        !image && {
-          gridTemplateColumns: 'auto auto',
-          gridTemplateAreas: `
-            "title action"
-            "details ${price ? 'price' : 'details'}"
-            "secondaryAction additionalDetails"
-            "after after"
-          `,
-        },
-        hidden && {
-          display: 'none',
-        },
-        selected &&
-          ((theme) => ({
+          '&+ActionCard-root': {},
+          '&.variantContained': {
+            padding: `${theme.spacings.xxs} ${theme.spacings.xs}`,
+            background: theme.palette.background.paper,
+            border: `1px solid ${theme.palette.divider}`,
+            borderBottomColor: `transparent`,
+            '&:first-of-type': {
+              borderTopLeftRadius: theme.shape.borderRadius,
+              borderTopRightRadius: theme.shape.borderRadius,
+            },
+            '&:last-of-type': {
+              borderBottomLeftRadius: theme.shape.borderRadius,
+              borderBottomRightRadius: theme.shape.borderRadius,
+              borderBottom: `1px solid ${theme.palette.divider}`,
+            },
+          },
+          '&.variantContained.selected:not(.disabled)': {
             border: `2px solid ${theme.palette.secondary.main} !important`,
             borderTopLeftRadius: theme.shape.borderRadius,
             borderTopRightRadius: theme.shape.borderRadius,
             borderBottomLeftRadius: theme.shape.borderRadius,
             borderBottomRightRadius: theme.shape.borderRadius,
-            padding: `${theme.spacings.xxs} ${theme.spacings.xs}`,
-          })),
-        disabled &&
-          ((theme) => ({
+            padding: `calc(${theme.spacings.xxs} - 1) calc(${theme.spacings.xs} - 1)`,
+          },
+          '&:not(.image)': {
+            gridTemplateColumns: 'auto auto',
+            gridTemplateAreas: `
+              "title action"
+              "details ${price ? 'price' : 'details'}"
+              "secondaryAction additionalDetails"
+              "after after"
+            `,
+          },
+          '&.hidden': {
+            display: 'none',
+          },
+          '&.disabled': {
             background: theme.palette.background.default,
-          })),
-
+          },
+        }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
       {image && (
-        <Box
-          className={classes.image}
-          sx={{
-            gridArea: 'image',
-            display: 'flex',
-          }}
-        >
+        <Box className={classes.image} sx={{ gridArea: 'image', display: 'flex' }}>
           {image}
         </Box>
       )}
       {title && (
-        <Box className={classes.title} sx={{ gridArea: 'title', display: 'flex' }}>
+        <Box
+          className={classes.title}
+          sx={{ gridArea: 'title', display: 'flex', typography: 'h6' }}
+        >
           {title}
         </Box>
       )}
@@ -154,13 +165,7 @@ export function ActionCard(props: ActionCardProps) {
         </Box>
       )}
       {details && (
-        <Box
-          className={classes.details}
-          sx={{
-            gridArea: 'details',
-            color: 'text.secondary',
-          }}
-        >
+        <Box className={classes.details} sx={{ gridArea: 'details', color: 'text.secondary' }}>
           {details}
         </Box>
       )}
@@ -184,6 +189,6 @@ export function ActionCard(props: ActionCardProps) {
           {after}
         </Box>
       )}
-    </ButtonBase>
+    </RenderComponent>
   )
 }

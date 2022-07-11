@@ -1,6 +1,5 @@
 import { useCartQuery } from '@graphcommerce/magento-cart'
-import { AnimatedRow, RenderType, TypeRenderer } from '@graphcommerce/next-ui'
-import { AnimatePresence } from 'framer-motion'
+import { RenderType, TypeRenderer } from '@graphcommerce/next-ui'
 import React from 'react'
 import { CartItemsFragment } from '../Api/CartItems.gql'
 import { CartItemsQueryDocument } from './CartItemsQuery.gql'
@@ -14,15 +13,11 @@ export function CartItems(props: CartProps) {
   const { renderer } = props
 
   return (
-    <AnimatePresence initial={false}>
+    <>
       {data?.cart?.items?.map((item) => {
         if (!item?.uid || !data.cart?.id) return null
-        return (
-          <AnimatedRow key={item.uid}>
-            <RenderType renderer={renderer} {...item} />
-          </AnimatedRow>
-        )
+        return <RenderType key={item.uid} renderer={renderer} {...item} />
       })}
-    </AnimatePresence>
+    </>
   )
 }

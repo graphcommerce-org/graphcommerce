@@ -2,6 +2,7 @@ export * from './Api/CartItem.gql'
 export * from './Api/CartItems.gql'
 
 export * from './CartItem/CartItem'
+export * from './CartItem/ActionCardItem'
 export * from './CartItem/CartItemOptionDropdown'
 export * from './CartItems/CartItems'
 export * from './DeliveryLabel/DeliveryLabel'
