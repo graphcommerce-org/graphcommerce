@@ -1,5 +1,16 @@
-query PickupLocationsQuery($searchTerm: String!) {
-  pickupLocations(area: { search_term: $searchTerm, radius: 100 }, pageSize: 1000) {
+query GetPickupLocationsForProducts(
+  $searchTerm: String!
+  $radiusKm: Int = 100
+  $productInput: [ProductInfoInput!]!
+  $currentPage: Int = 1
+) {
+  pickupLocations(
+    area: { search_term: $searchTerm, radius: $radiusKm }
+    sort: { distance: ASC }
+    productsInfo: $productInput
+    pageSize: 20
+    currentPage: $currentPage
+  ) {
     items {
       city
       pickup_location_code
