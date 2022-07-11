@@ -63,6 +63,16 @@ function extendConfig(nextConfig: NextConfig): NextConfig {
         ignored: ['**/.git/**', '**/node_modules/!(@graphcommerce)**', '**/.next/**'],
       }
 
+      if (!config.resolve) config.resolve = {}
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        '@mui/base': '@mui/base/modern',
+        '@mui/lab': '@mui/lab/modern',
+        '@mui/material': '@mui/material/modern',
+        '@mui/styled-engine': '@mui/styled-engine/modern',
+        '@mui/system': '@mui/system/modern',
+      }
+
       return typeof nextConfig.webpack === 'function' ? nextConfig.webpack(config, options) : config
     },
   }

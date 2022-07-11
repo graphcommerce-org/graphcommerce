@@ -1,6 +1,7 @@
 import { clientSizeCssVar, useClientSizeCssVar } from '@graphcommerce/framer-utils'
 import { AnimatePresence, m } from 'framer-motion'
 import { requestIdleCallback, cancelIdleCallback } from 'next/dist/client/request-idle-callback'
+import { PrivateRouteInfo } from 'next/dist/shared/lib/router/router'
 import { AppPropsType } from 'next/dist/shared/lib/utils'
 import { NextRouter, Router } from 'next/router'
 import { useEffect, useRef, useState } from 'react'
@@ -102,16 +103,23 @@ export function FramerNextPages(props: PagesProps) {
         // todo: implement fallback loading for up property
         // const up = items.current[0].PageComponent.pageOptions?.up?.href ?? '/'
         const up = '/'
-        const info = await (router as Router).getRouteInfo(
-          fallbackRoute,
-          fallback,
-          {},
-          fallback,
-          fallback,
-          { shallow: false },
-          router.locale,
-          false,
-        )
+        const info = await (router as Router).getRouteInfo({
+          route: fallbackRoute,
+          pathname: fallback,
+          query: {},
+          as: fallback,
+          resolvedAs: fallback,
+          routeProps: { shallow: false },
+          locale: router.locale,
+          hasMiddleware: false,
+          isPreview: false,
+        })
+
+        const isPrivateRouteInfo = (
+          infoResult: Awaited<ReturnType<Router['getRouteInfo']>>,
+        ): infoResult is PrivateRouteInfo => 'Component' in infoResult
+
+        if (!isPrivateRouteInfo(info)) return
 
         const pageInfo = { asPath: up, pathname: up, locale: router.locale, query: {} }
         const Fallback = info.Component as PageComponent
