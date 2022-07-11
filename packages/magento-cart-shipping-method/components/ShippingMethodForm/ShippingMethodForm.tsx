@@ -46,20 +46,11 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
     [currentAddress?.available_shipping_methods],
   )
 
-  console.log(
-    'sortedAvailableShippingMethods',
-    sortedAvailableShippingMethods.filter(Boolean).map((sortedMethod) => ({
-      ...sortedMethod,
-      disabled: !sortedMethod?.available,
-      value: `${sortedMethod?.carrier_code}-${sortedMethod?.method_code}`,
-    })),
-  )
-
   const form = useFormGqlMutationCart<
     ShippingMethodFormMutation,
     ShippingMethodFormMutationVariables & { carrierMethod?: string }
   >(ShippingMethodFormDocument, {
-    defaultValues: { carrierMethod, carrier, method },
+    defaultValues: { carrier, method },
     onBeforeSubmit: (variables) => {
       const splitCarrierMethod = variables?.carrierMethod?.split('-')
       return {
@@ -79,10 +70,7 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
   useEffect(() => {
     const availableMethods = sortedAvailableShippingMethods.filter((m) => m?.available)
     if (availableMethods.length === 1) {
-      setValue(
-        'carrierMethod',
-        `${availableMethods[0]?.carrier_code}-${availableMethods[0]?.method_code}`,
-      )
+      setValue('carrierMethod', `${carrier}-${method}`)
     }
   }, [
     carrier,
