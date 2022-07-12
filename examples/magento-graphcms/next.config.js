@@ -39,6 +39,8 @@ if (!process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT) {
 const nextConfig = {
   experimental: {
     scrollRestoration: true,
+    browsersListForSwc: true,
+    legacyBrowsers: false,
   },
   compiler: {
     emotion: {
