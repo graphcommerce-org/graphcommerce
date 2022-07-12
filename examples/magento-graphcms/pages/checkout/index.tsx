@@ -6,10 +6,10 @@ import {
 } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { useGoogleRecaptcha } from '@graphcommerce/googlerecaptcha'
-import { useQuery } from '@graphcommerce/graphql'
 import { ApolloCartErrorAlert, EmptyCart, useCartQuery } from '@graphcommerce/magento-cart'
 import { ShippingPageDocument } from '@graphcommerce/magento-cart-checkout'
 import { EmailForm } from '@graphcommerce/magento-cart-email'
+import { PickupLocationSelector } from '@graphcommerce/magento-cart-pickup'
 import {
   ShippingAddressForm,
   CustomerAddressForm,
@@ -35,7 +35,6 @@ import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { CircularProgress, Container } from '@mui/material'
 import { useRouter } from 'next/router'
-import React from 'react'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
 import { DefaultPageDocument } from '../../graphql/DefaultPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
@@ -115,6 +114,8 @@ function ShippingPage() {
             )}
 
             <ShippingMethodForm step={4} />
+
+            <PickupLocationSelector step={5} />
 
             <ComposedSubmit
               onSubmitSuccessful={onSubmitSuccessful}

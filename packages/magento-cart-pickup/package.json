@@ -18,16 +18,19 @@
     "@playwright/test": "^1.21.1"
   },
   "dependencies": {
+    "@graphcommerce/ecommerce-ui": "1.1.1",
     "@graphcommerce/graphql": "3.4.0",
+    "@graphcommerce/graphql-mesh": "4.1.4",
     "@graphcommerce/image": "3.1.7",
+    "@graphcommerce/magento-cart": "4.5.1",
     "@graphcommerce/magento-cart-shipping-method": "3.3.1",
     "@graphcommerce/magento-store": "4.2.16",
     "@graphcommerce/next-ui": "4.13.0",
     "@graphcommerce/react-hook-form": "3.3.0"
   },
   "peerDependencies": {
-    "@lingui/react": "^3.13.2",
     "@lingui/core": "^3.13.2",
+    "@lingui/react": "^3.13.2",
     "@mui/material": "5.5.3",
     "framer-motion": "^6.2.4",
     "next": "^12.1.2",
