@@ -105,6 +105,7 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
             floatingMd={false}
             floatingSm={false}
             switchPoint={0}
+            layout='position'
             left={
               showBack && (
                 <Fab
