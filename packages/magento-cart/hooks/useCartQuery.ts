@@ -19,7 +19,7 @@ export function useCartQuery<Q, V extends { cartId: string; [index: string]: unk
 ) {
   const { allowUrl = true, ...queryOptions } = options
   const router = useRouter()
-  const { currentCartId } = useCurrentCartId()
+  const { currentCartId } = useCurrentCartId({ skip: queryOptions?.skip })
   const urlCartId = router.query.cart_id
   const usingUrl = allowUrl && typeof urlCartId === 'string'
   const cartId = usingUrl ? urlCartId : currentCartId

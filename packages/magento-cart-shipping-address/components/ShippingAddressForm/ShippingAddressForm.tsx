@@ -30,6 +30,7 @@ export type ShippingAddressFormProps = Pick<UseFormComposeOptions, 'step'> & {
 export function ShippingAddressForm(props: ShippingAddressFormProps) {
   const { step, ignoreCache = false } = props
   const { data: cartQuery } = useCartQuery(GetAddressesDocument)
+  const { data: cartQuery } = useCartQuery(GetAddressesDocument, { skip: false })
   const { data: config } = useQuery(StoreConfigDocument)
   const { data: countriesData } = useQuery(CountryRegionsDocument)
   const { data: customerQuery } = useQuery(CustomerDocument, { fetchPolicy: 'cache-only' })
