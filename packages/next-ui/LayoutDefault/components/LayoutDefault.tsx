@@ -39,8 +39,10 @@ export function LayoutDefault(props: LayoutDefaultProps) {
     sx = [],
   } = props
 
-  const offset = useScrollOffset().y
-  const scrollWithOffset = useTransform(useViewportScroll().scrollY, (y) => y + offset)
+  const scrollWithOffset = useTransform(
+    [useViewportScroll().scrollY, useScrollOffset()],
+    ([y, offset]: number[]) => y + offset,
+  )
 
   const classes = withState({ noSticky })
 
