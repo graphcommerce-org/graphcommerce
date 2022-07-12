@@ -10,6 +10,7 @@ import {
   ActionCardListForm,
 } from '@graphcommerce/next-ui/ActionCard/ActionCardListForm'
 import {
+  useFormAutoSubmit,
   useFormCompose,
   UseFormComposeOptions,
   useFormPersist,
@@ -29,7 +30,7 @@ export type ShippingMethodFormProps = Pick<UseFormComposeOptions, 'step'>
 
 export function ShippingMethodForm(props: ShippingMethodFormProps) {
   const { step } = props
-  const { data: cartQuery, loading } = useCartQuery(GetShippingMethodsDocument)
+  const { data: cartQuery, loading } = useCartQuery(GetShippingMethodsDocument, { skip: false })
   const currentAddress = cartQuery?.cart?.shipping_addresses?.[0]
   const available = currentAddress?.available_shipping_methods
   const selected = currentAddress?.selected_shipping_method
@@ -50,7 +51,11 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
     ShippingMethodFormMutation,
     ShippingMethodFormMutationVariables & { carrierMethod?: string }
   >(ShippingMethodFormDocument, {
-    defaultValues: { carrier, method },
+    defaultValues: {
+      carrier,
+      method,
+      carrierMethod,
+    },
     onBeforeSubmit: (variables) => {
       const splitCarrierMethod = variables?.carrierMethod?.split('-')
       return {
@@ -66,6 +71,7 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
 
   useFormPersist({ form, name: 'ShippingMethodForm' })
   useFormCompose({ form, step, submit, key: 'ShippingMethodForm' })
+  useFormAutoSubmit({ form, submit, fields: ['carrierMethod'] })
 
   useEffect(() => {
     const availableMethods = sortedAvailableShippingMethods.filter((m) => m?.available)

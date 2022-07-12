@@ -1,6 +1,7 @@
 import { useHistoryGo } from '@graphcommerce/framer-next-pages'
 import { useQuery } from '@graphcommerce/graphql'
 import { useCartQuery, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
+import { SetBillingAddressOnCartDocument } from '@graphcommerce/magento-cart-shipping-address/components/ShippingAddressForm/SetBillingAddressOnCart.gql'
 import {
   AddressFields,
   ApolloCustomerErrorAlert,
@@ -20,7 +21,6 @@ import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { SxProps, TextField, Theme } from '@mui/material'
 import { GetBillingAddressDocument } from './GetBillingAddress.gql'
-import { SetBillingAddressOnCartDocument } from './SetBillingAddressOnCart.gql'
 
 export type EditBillingAddressFormProps = { sx?: SxProps<Theme> }
 
