@@ -28,7 +28,6 @@ export function PickupLocationSelector(props: PickupProps) {
   return (
     <>
       <PickupLocationSearch
-        key={`${address.postcode}:${address.country.code}`}
         countryCode={address.country.code}
         searchTerm={address.postcode}
         productInput={productInput}

@@ -48,17 +48,15 @@ export function PickupLocationActionCardListForm(props: PickupLocationActionCard
     }),
   })
 
-  const { control, handleSubmit, watch, formState } = form
+  const { control, handleSubmit } = form
 
   const submit = handleSubmit(() => {})
 
   useFormAutoSubmit({ form, submit })
   useFormCompose({ form, step, submit, key: 'PickupLocationForm' })
 
-  console.log(formState.errors)
   return (
     <Form onSubmit={submit} noValidate>
-      HALLOOO {formState.isValid}
       <ActionCardListForm<Location & ActionCardItemBase>
         control={control}
         name='pickupLocationCode'
