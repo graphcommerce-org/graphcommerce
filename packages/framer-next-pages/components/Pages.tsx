@@ -1,6 +1,7 @@
 import { clientSizeCssVar, useClientSizeCssVar } from '@graphcommerce/framer-utils'
 import { AnimatePresence, m } from 'framer-motion'
 import { requestIdleCallback, cancelIdleCallback } from 'next/dist/client/request-idle-callback'
+import { HistoryState, PrivateRouteInfo } from 'next/dist/shared/lib/router/router'
 import { AppPropsType } from 'next/dist/shared/lib/utils'
 import { NextRouter, Router } from 'next/router'
 import { useEffect, useRef, useState } from 'react'
@@ -44,13 +45,22 @@ function getPageInfo(router: NextRouter) {
 export function FramerNextPages(props: PagesProps) {
   const { router, Component, pageProps: incomingProps, fallback = '/', fallbackRoute = '/' } = props
 
+  // @ts-expect-error Key of the route is still private, should be fixed in https://github.com/vercel/next.js/pull/37192
+  // eslint-disable-next-line no-underscore-dangle
+  const key = router._key as string
+
   useClientSizeCssVar()
   const items = useRef<PageItem[]>([])
-  const idx = Number(global.window?.history.state?.idx ?? 0)
+
+  const routerKeys = items.current.map((item) => item.routerKey)
+  if (routerKeys.indexOf(key) === -1) routerKeys.push(key)
+  const idx = routerKeys.indexOf(key)
+
   const prevHistory = useRef<number>(-1)
-  const [fb, setFallback] = useState<PageItem>()
   const direction = idx > prevHistory.current ? 1 : -1
   prevHistory.current = idx
+
+  const [fb, setFallback] = useState<PageItem>()
 
   /** We never need to render anything beyong the current idx and we can safely omit everything */
   items.current = items.current.slice(0, idx + 1)
@@ -76,6 +86,7 @@ export function FramerNextPages(props: PagesProps) {
       sharedKey: Component.pageOptions?.sharedKey?.(pageInfo) ?? pageInfo.pathname,
       overlayGroup: Component.pageOptions?.overlayGroup,
       historyIdx: idx,
+      routerKey: key,
       routerContext: {
         pageInfo,
         prevPage: items.current[idx - 1]?.routerContext,
@@ -102,16 +113,23 @@ export function FramerNextPages(props: PagesProps) {
         // todo: implement fallback loading for up property
         // const up = items.current[0].PageComponent.pageOptions?.up?.href ?? '/'
         const up = '/'
-        const info = await (router as Router).getRouteInfo(
-          fallbackRoute,
-          fallback,
-          {},
-          fallback,
-          fallback,
-          { shallow: false },
-          router.locale,
-          false,
-        )
+        const info = await (router as Router).getRouteInfo({
+          route: fallbackRoute,
+          pathname: fallback,
+          query: {},
+          as: fallback,
+          resolvedAs: fallback,
+          routeProps: { shallow: false },
+          locale: router.locale,
+          hasMiddleware: false,
+          isPreview: false,
+        })
+
+        const isPrivateRouteInfo = (
+          infoResult: Awaited<ReturnType<Router['getRouteInfo']>>,
+        ): infoResult is PrivateRouteInfo => 'Component' in infoResult
+
+        if (!isPrivateRouteInfo(info)) return
 
         const pageInfo = { asPath: up, pathname: up, locale: router.locale, query: {} }
         const Fallback = info.Component as PageComponent
@@ -122,6 +140,7 @@ export function FramerNextPages(props: PagesProps) {
           sharedKey: Fallback.pageOptions?.sharedKey?.(pageInfo) ?? pageInfo.pathname,
           overlayGroup: Fallback.pageOptions?.overlayGroup,
           historyIdx: -1,
+          routerKey: 'fallback',
           routerContext: {
             pageInfo,
             up: Fallback.pageOptions?.up ?? info.props?.pageProps?.up,
@@ -192,7 +211,7 @@ and pass it as a param in <FramerNextPages fallbackRoute='/[...url]' /> in your 
       />
       <AnimatePresence initial={false}>
         {renderItems.map((item, itemIdx) => {
-          const { historyIdx, sharedKey, overlayGroup } = item
+          const { historyIdx, sharedKey, overlayGroup, routerKey } = item
           const active = itemIdx === renderItems.length - 1
           const depth = itemIdx - (renderItems.length - 1)
           const closeIdx = renderItems[itemIdx - 1]?.historyIdx ?? -1
@@ -204,9 +223,9 @@ and pass it as a param in <FramerNextPages fallbackRoute='/[...url]' /> in your 
               key={sharedKey}
               // We're actually rerendering here but since the actual page renderer is memoized we can safely do this
               // eslint-disable-next-line react/jsx-no-constructed-context-values
-              value={{ depth, active, direction, closeSteps, backSteps, historyIdx, overlayGroup }}
+              value={{ depth, active, direction, closeSteps, backSteps, routerKey, overlayGroup }}
             >
-              <Page active={active} historyIdx={historyIdx}>
+              <Page active={active} routerKey={routerKey}>
                 <PageRenderer {...item} />
               </Page>
             </pageContext.Provider>

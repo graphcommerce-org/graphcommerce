@@ -25,6 +25,7 @@ export function useScrollTo() {
       //   return
       // }
 
+      // @ts-expect-error private api, but we're updating the animation value here manually instead of relying on the event listener.
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       // scroll.start(() => () => {})
 

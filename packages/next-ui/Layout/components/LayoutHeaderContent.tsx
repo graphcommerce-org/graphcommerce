@@ -1,6 +1,6 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import { Box, styled, SxProps, Theme } from '@mui/material'
-import { m } from 'framer-motion'
+import { LayoutProps, m } from 'framer-motion'
 import React, { useRef } from 'react'
 import { extendableComponent } from '../../Styles'
 import { useScrollY } from '../hooks/useScrollY'
@@ -16,6 +16,7 @@ export type LayoutHeaderContentProps = FloatingProps & {
   switchPoint?: number
   sx?: SxProps<Theme>
   sxBg?: SxProps<Theme>
+  layout?: LayoutProps['layout']
 }
 
 type OwnerState = { floatingSm: boolean; floatingMd: boolean; scrolled: boolean; divider: boolean }
@@ -36,6 +37,7 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
     switchPoint = 50,
     sx = [],
     sxBg = [],
+    layout,
   } = props
 
   const scroll = useScrollY()
@@ -142,7 +144,7 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
               justifyContent: 'start',
             })}
           >
-            <MotionDiv layout='position'>{left}</MotionDiv>
+            <MotionDiv layout={layout}>{left}</MotionDiv>
           </Box>
         )}
         <Box
@@ -175,7 +177,7 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
             },
           })}
         >
-          <MotionDiv layout='position'>{children}</MotionDiv>
+          <MotionDiv layout={layout}>{children}</MotionDiv>
         </Box>
         <Box
           className={classes.right}
@@ -191,7 +193,7 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
             justifyContent: 'end',
           })}
         >
-          <MotionDiv layout='position'>{right}</MotionDiv>
+          <MotionDiv layout={layout}>{right}</MotionDiv>
         </Box>
         {divider && (
           <Box

@@ -5,7 +5,9 @@ import React from 'react'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import { SignOutFormDocument } from './SignOutForm.gql'
 
-type SignOutFormProps = { button: (props: { formState: FormState<unknown> }) => React.ReactNode }
+type SignOutFormProps = {
+  button: (props: { formState: FormState<Record<string, unknown>> }) => React.ReactNode
+}
 
 export function SignOutForm(props: SignOutFormProps) {
   const { button } = props

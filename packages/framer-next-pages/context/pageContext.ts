@@ -39,7 +39,7 @@ export type PageContext = {
   overlayGroup?: string
 
   /** @private */
-  historyIdx: number
+  routerKey: string
 }
 
 export const pageContext = createContext(undefined as unknown as PageContext)

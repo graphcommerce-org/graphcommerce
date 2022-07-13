@@ -119,6 +119,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
       <Row maxWidth={false} disableGutters className={classes.row} sx={sx}>
         <MotionBox
           layout
+          layoutDependency={zoomed}
           className={classes.root}
           sx={[
             {
@@ -146,6 +147,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
         >
           <MotionBox
             layout
+            layoutDependency={zoomed}
             className={classes.scrollerContainer}
             sx={[
               {
@@ -193,6 +195,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                 <MotionImageAspect
                   key={typeof image.src === 'string' ? image.src : idx}
                   layout
+                  layoutDependency={zoomed}
                   src={image.src}
                   width={image.width}
                   height={image.height}
@@ -209,6 +212,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
             </Scroller>
             <MotionBox
               layout='position'
+              layoutDependency={zoomed}
               className={classes.topRight}
               sx={{
                 display: 'grid',
@@ -243,6 +247,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
             >
               <ScrollerButton
                 layout
+                layoutDependency={zoomed}
                 direction='left'
                 size='small'
                 className={classes.sliderButtons}
@@ -262,6 +267,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
             >
               <ScrollerButton
                 layout
+                layoutDependency={zoomed}
                 direction='right'
                 size='small'
                 className={classes.sliderButtons}
@@ -288,6 +294,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
             >
               <ScrollerDots
                 layout='position'
+                layoutDependency={zoomed}
                 sx={{ backgroundColor: 'background.paper', boxShadow: 6 }}
               />
             </Box>
@@ -322,6 +329,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
           >
             <MotionBox
               layout='position'
+              layoutDependency={zoomed}
               className={classes.sidebar}
               sx={{
                 boxSizing: 'border-box',

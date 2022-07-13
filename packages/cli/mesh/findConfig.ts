@@ -1,10 +1,16 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import path from 'path'
 import { ConfigProcessOptions } from '@graphql-mesh/config'
-import { defaultImportFn, loadYaml } from '@graphql-mesh/utils'
+import { defaultImportFn, loadYaml, DefaultLogger } from '@graphql-mesh/utils'
 import { cosmiconfig, defaultLoaders } from 'cosmiconfig'
 
-function customLoader(ext: 'json' | 'yaml' | 'js', importFn = defaultImportFn) {
+function customLoader(
+  ext: 'json' | 'yaml' | 'js',
+  importFn = defaultImportFn,
+  initialLoggerPrefix = '🕸️  Mesh',
+) {
+  const logger = new DefaultLogger(initialLoggerPrefix).child('config')
+
   // eslint-disable-next-line consistent-return
   function loader(filepath: string, content: string) {
     if (process.env) {
@@ -28,7 +34,7 @@ function customLoader(ext: 'json' | 'yaml' | 'js', importFn = defaultImportFn) {
     }
 
     if (ext === 'yaml') {
-      return loadYaml(filepath, content)
+      return loadYaml(filepath, content, logger)
     }
 
     if (ext === 'js') {
@@ -40,9 +46,9 @@ function customLoader(ext: 'json' | 'yaml' | 'js', importFn = defaultImportFn) {
 }
 
 export async function findConfig(
-  options?: Pick<ConfigProcessOptions, 'configName' | 'dir' | 'importFn'>,
+  options?: Pick<ConfigProcessOptions, 'configName' | 'dir' | 'importFn' | 'initialLoggerPrefix'>,
 ) {
-  const { configName = 'mesh', dir: configDir = '' } = options || {}
+  const { configName = 'mesh', dir: configDir = '', initialLoggerPrefix } = options || {}
   const dir = path.isAbsolute(configDir) ? configDir : path.join(process.cwd(), configDir)
   const explorer = cosmiconfig(configName, {
     searchPlaces: [
@@ -58,12 +64,12 @@ export async function findConfig(
       `${configName}.config.cjs`,
     ],
     loaders: {
-      '.json': customLoader('json', options?.importFn),
-      '.yaml': customLoader('yaml', options?.importFn),
-      '.yml': customLoader('yaml', options?.importFn),
-      '.js': customLoader('js', options?.importFn),
-      '.ts': customLoader('js', options?.importFn),
-      noExt: customLoader('yaml', options?.importFn),
+      '.json': customLoader('json', options?.importFn, initialLoggerPrefix),
+      '.yaml': customLoader('yaml', options?.importFn, initialLoggerPrefix),
+      '.yml': customLoader('yaml', options?.importFn, initialLoggerPrefix),
+      '.js': customLoader('js', options?.importFn, initialLoggerPrefix),
+      '.ts': customLoader('js', options?.importFn, initialLoggerPrefix),
+      noExt: customLoader('yaml', options?.importFn, initialLoggerPrefix),
     },
   })
   const results = await explorer.search(dir)

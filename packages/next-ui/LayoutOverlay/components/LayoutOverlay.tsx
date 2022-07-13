@@ -1,5 +1,6 @@
 import { usePageContext, useGo, useScrollOffset } from '@graphcommerce/framer-next-pages'
 import { ScrollerProvider, ScrollSnapType } from '@graphcommerce/framer-scroller'
+import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import { usePresence } from 'framer-motion'
 import type { SetOptional } from 'type-fest'
 import { OverlayBase, LayoutOverlayBaseProps } from '../../Overlay/components/OverlayBase'
@@ -19,7 +20,7 @@ export function LayoutOverlay(props: LayoutOverlayProps) {
 
   const { closeSteps, active, direction } = usePageContext()
   const onCloseHandler = useGo(closeSteps * -1)
-  const offsetPageY = useScrollOffset().y
+  const offsetPageY = useMotionValueValue(useScrollOffset(), (v) => v)
   const [isPresent, safeToRemove] = usePresence()
 
   return (
