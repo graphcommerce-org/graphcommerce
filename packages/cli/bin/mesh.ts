@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
-import { promises as fs } from 'fs'
-import path from 'path'
-import { exit } from 'process'
+import { promises as fs } from 'node:fs'
+import path from 'node:path'
+import { exit } from 'node:process'
 import { graphqlMesh, DEFAULT_CLI_PARAMS, GraphQLMeshCLIParams } from '@graphql-mesh/cli'
 import { Logger, YamlConfig } from '@graphql-mesh/types'
 import { DefaultLogger } from '@graphql-mesh/utils'
@@ -24,7 +24,7 @@ const root = process.cwd()
 const meshDir = path.dirname(require.resolve('@graphcommerce/graphql-mesh'))
 const relativePath = path.join(path.relative(meshDir, root), '/')
 
-const isMonoRepo = relativePath.startsWith('../../examples')
+const isMonoRepo = relativePath.startsWith(`..${path.sep}..${path.sep}examples`)
 
 const cliParams: GraphQLMeshCLIParams = {
   ...DEFAULT_CLI_PARAMS,
@@ -84,9 +84,11 @@ const main = async () => {
   await fs.writeFile(tmpMeshLocation, yaml.stringify(conf))
 
   // Reexport the mesh to is can be used by packages
-  await fs.writeFile(`${meshDir}/.mesh.ts`, `export * from '${relativePath}.mesh'`, {
-    encoding: 'utf8',
-  })
+  await fs.writeFile(
+    `${meshDir}/.mesh.ts`,
+    `export * from '${relativePath.split(path.sep).join('/')}.mesh'`,
+    { encoding: 'utf8' },
+  )
 
   await graphqlMesh({ ...cliParams, configName: tmpMesh })
 
