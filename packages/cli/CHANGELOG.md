@@ -1,5 +1,11 @@
 # @graphcommerce/cli
 
+## 1.0.6
+
+### Patch Changes
+
+- [#1552](https://github.com/graphcommerce-org/graphcommerce/pull/1552) [`18054c441`](https://github.com/graphcommerce-org/graphcommerce/commit/18054c441962ba750bed3acc39ab46c8d3a341ce) Thanks [@paales](https://github.com/paales)! - Updated to Next.js v12.2.2 and other packages and made compatible
+
 ## 1.0.5
 
 ### Patch Changes
