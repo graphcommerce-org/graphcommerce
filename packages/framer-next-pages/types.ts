@@ -80,9 +80,9 @@ export type PageOptions<T extends Record<string, unknown> = Record<string, unkno
    * FramerNextPages uses Framer Motion's <AnimatePresence/> to animate pages in and out. From the
    * [docs](https://www.framer.com/api/motion/animate-presence/#usage):
    *
-   * *In React, changing a component's key makes React treat it as an entirely new component. So the
+   * _In React, changing a component's key makes React treat it as an entirely new component. So the
    * old one is unmounted before the new one is mounted. So by changing the key of a single child of
-   * AnimatePresence, we can easily make animated page transitions! 🎉*
+   * AnimatePresence, we can easily make animated page transitions! 🎉_
    *
    * To create transitions we need to let React know if we should create a new component. We do this
    * by specifying a 'sharedKey'. By default this key is the same as the pathname:
@@ -143,6 +143,7 @@ export type PageItem = {
   routerOverride?: Partial<NextRouter>
   PageComponent: PageComponent
   historyIdx: number
+  routerKey: string
   sharedKey: string
   pageProps?: Record<string, unknown>
   routerContext: PageContext

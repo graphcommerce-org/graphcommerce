@@ -18,19 +18,19 @@
     "graphql": "14.x.x || 15.x.x || 16.x.x"
   },
   "dependencies": {
-    "@graphql-codegen/plugin-helpers": "2.4.2",
+    "@graphql-codegen/plugin-helpers": "2.5.0",
     "relay-compiler": "12.0.0"
   },
   "devDependencies": {
     "@graphcommerce/eslint-config-pwa": "^4.1.8",
     "@graphcommerce/prettier-config-pwa": "^4.0.6",
     "@graphql-codegen/testing": "1.17.7",
-    "@types/jest": "28.1.1",
+    "@types/jest": "28.1.4",
     "@types/relay-compiler": "8.0.3",
     "graphql": "16.5.0",
-    "jest": "28.1.1",
-    "ts-jest": "28.0.4",
-    "typescript": "4.7.3"
+    "jest": "28.1.2",
+    "ts-jest": "28.0.5",
+    "typescript": "4.7.4"
   },
   "scripts": {
     "test": "jest",

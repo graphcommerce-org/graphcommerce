@@ -39,6 +39,8 @@ if (!process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT) {
 const nextConfig = {
   experimental: {
     scrollRestoration: true,
+    browsersListForSwc: true,
+    legacyBrowsers: false,
   },
   compiler: {
     emotion: {
@@ -60,20 +62,6 @@ const nextConfig = {
   },
   eslint: {
     ignoreDuringBuilds: true,
-  },
-  webpack: (config) => {
-    config.optimization.providedExports = true
-
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      '@mui/base': '@mui/base/modern',
-      '@mui/lab': '@mui/lab/modern',
-      '@mui/material': '@mui/material/modern',
-      '@mui/styled-engine': '@mui/styled-engine/modern',
-      '@mui/system': '@mui/system/modern',
-    }
-
-    return config
   },
 }
 

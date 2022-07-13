@@ -87,7 +87,7 @@ export function ConfigurableProductAddToCart(props: ConfigurableProductAddToCart
         sku={variables.sku}
         control={control}
         rules={{ required: required.selectedOptions }}
-        errors={formState.errors.selectedOptions}
+        errors={formState.errors}
         optionEndLabels={optionEndLabels}
         {...optionsProps}
       />

@@ -19,17 +19,17 @@
     "graphql-code-generator": "dist/bin/codegen.js"
   },
   "dependencies": {
-    "@graphql-codegen/cli": "2.6.2",
-    "@graphql-mesh/cli": "0.73.1",
-    "@graphql-mesh/types": "0.74.2",
-    "@graphql-mesh/utils": "0.35.6"
+    "@graphql-codegen/cli": "2.8.0",
+    "@graphql-mesh/cli": "0.74.1",
+    "@graphql-mesh/types": "0.78.0",
+    "@graphql-mesh/utils": "0.37.1"
   },
   "devDependencies": {
     "@graphcommerce/eslint-config-pwa": "^4.1.8",
     "@graphcommerce/prettier-config-pwa": "^4.0.6",
     "@graphcommerce/typescript-config-pwa": "^4.0.2",
     "@playwright/test": "^1.21.1",
-    "typescript": "4.7.3"
+    "typescript": "4.7.4"
   },
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",

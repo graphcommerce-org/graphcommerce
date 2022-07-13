@@ -21,15 +21,15 @@
   "dependencies": {
     "@graphcommerce/graphql": "3.4.0",
     "@graphcommerce/magento-category": "4.1.22",
-    "@graphcommerce/magento-product": "4.4.14",
     "@graphcommerce/magento-cms": "4.0.27",
+    "@graphcommerce/magento-product": "4.4.14",
     "@graphcommerce/next-ui": "4.13.0",
     "@graphcommerce/react-hook-form": "3.3.0",
-    "jsdom": "^19.0.0"
+    "jsdom": "^20.0.0"
   },
   "peerDependencies": {
-    "@lingui/react": "^3.13.2",
     "@lingui/core": "^3.13.2",
+    "@lingui/react": "^3.13.2",
     "@mui/material": "5.5.3",
     "framer-motion": "^6.2.4",
     "next": "^12.1.2",
