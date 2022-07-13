@@ -15,7 +15,7 @@
     "start": "next start",
     "tsc:lint": "tsc --noEmit -p .",
     "lingui": "cross-env NEXT_PUBLIC_LOCALE_STORES='{\"en\": \"en\", \"nl\": \"nl\", \"fr\": \"fr\", \"nl\": \"nl\", \"de\": \"de\", \"es\": \"es\", \"it\": \"it\"}' NODE_ENV=development lingui extract --clean",
-    "postinstall": "concurrently \"yarn:workspace @graphcommerce/next-config prepack\" \"yarn workspace @graphcommerce/graphql-codegen-near-operation-file prepack\" \"yarn workspace @graphcommerce/graphql-codegen-relay-optimizer-plugin prepack\" \"yarn workspace @graphcommerce/cli prepack\" \"cd ../.. && yarn patch-package\""
+    "postinstall": "cd ../.. && yarn postinstall"
   },
   "scripts_local": {
     "dev": "concurrently -k -n codegen,next 'graphql-codegen -w' 'next dev'",
