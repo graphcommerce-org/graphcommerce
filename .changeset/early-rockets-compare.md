@@ -19,4 +19,4 @@
 '@graphcommerce/typescript-config-pwa': patch
 ---
 
-Update packages
+Updated to Next.js v12.2.2 and other packages and made compatible
