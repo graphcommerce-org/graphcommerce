@@ -17,7 +17,7 @@ import {
 } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { FC, useEffect, useMemo } from 'react'
+import { useMemo } from 'react'
 import { GetShippingMethodsDocument } from './GetShippingMethods.gql'
 import { ShippingMethodActionCard } from './ShippingMethodActionCard'
 import {
@@ -28,68 +28,59 @@ import {
 
 export type ShippingMethodFormProps = Pick<UseFormComposeOptions, 'step'>
 
+function notEmpty<TValue>(value: TValue | null | undefined): value is TValue {
+  return value !== null && value !== undefined
+}
+
 export function ShippingMethodForm(props: ShippingMethodFormProps) {
   const { step } = props
-  const { data: cartQuery, loading } = useCartQuery(GetShippingMethodsDocument, { skip: false })
-  const currentAddress = cartQuery?.cart?.shipping_addresses?.[0]
-  const available = currentAddress?.available_shipping_methods
-  const selected = currentAddress?.selected_shipping_method
-  const carrier = selected?.carrier_code ?? available?.[0]?.carrier_code
-  const method = selected?.method_code ?? available?.[0]?.method_code ?? undefined
-  const carrierMethod = `${carrier}-${method}`
+  const { data: cartQuery, loading } = useCartQuery(GetShippingMethodsDocument, { hydration: true })
+  const availableMethods = (
+    cartQuery?.cart?.shipping_addresses?.[0]?.available_shipping_methods ?? []
+  ).filter(notEmpty)
+  const selectedMethod = cartQuery?.cart?.shipping_addresses?.[0]?.selected_shipping_method
 
-  const sortedAvailableShippingMethods = useMemo(
+  const items = useMemo(
     () =>
-      [
-        ...(currentAddress?.available_shipping_methods ?? []),
-        // eslint-disable-next-line no-nested-ternary
-      ].sort((a, b) => (a === b ? 0 : a ? -1 : 1)),
-    [currentAddress?.available_shipping_methods],
+      availableMethods
+        // Move disabled items to the bottom
+        .sort((a, b) => (a.available ? -1 : 1))
+        .map((method) => ({
+          ...method,
+          disabled: !method?.available,
+          value: `${method?.carrier_code}-${method?.method_code ?? ''}`,
+        })),
+    [availableMethods],
   )
+
+  // The default: When there is only a single shipping method, select that one.
+  let carrierMethod: string | undefined = items[0]?.value
+
+  // Override with the currently selected method if there is one.
+  if (selectedMethod?.method_code)
+    carrierMethod = `${selectedMethod.carrier_code}-${selectedMethod.method_code}`
 
   const form = useFormGqlMutationCart<
     ShippingMethodFormMutation,
     ShippingMethodFormMutationVariables & { carrierMethod?: string }
   >(ShippingMethodFormDocument, {
-    defaultValues: {
-      carrier,
-      method,
-      carrierMethod,
-    },
+    defaultValues: { carrierMethod },
     onBeforeSubmit: (variables) => {
-      const splitCarrierMethod = variables?.carrierMethod?.split('-')
-      return {
-        ...variables,
-        carrier: splitCarrierMethod?.[0] ?? available?.[0]?.carrier_code ?? '',
-        method: splitCarrierMethod?.[1] ?? available?.[0]?.method_code ?? '',
-      }
+      const [carrier, method] = (variables.carrierMethod ?? '').split('-')
+      return { ...variables, carrier, method }
     },
   })
 
-  const { handleSubmit, control, error, setValue } = form
+  const { handleSubmit, control, error } = form
   const submit = handleSubmit(() => {})
 
   useFormPersist({ form, name: 'ShippingMethodForm' })
   useFormCompose({ form, step, submit, key: 'ShippingMethodForm' })
   useFormAutoSubmit({ form, submit, fields: ['carrierMethod'] })
 
-  useEffect(() => {
-    const availableMethods = sortedAvailableShippingMethods.filter((m) => m?.available)
-    if (availableMethods.length === 1) {
-      setValue('carrierMethod', `${carrier}-${method}`)
-    }
-  }, [
-    carrier,
-    method,
-    selected?.carrier_code,
-    selected?.method_code,
-    setValue,
-    sortedAvailableShippingMethods,
-  ])
-
   return (
     <>
-      {!loading && sortedAvailableShippingMethods.length > 0 && (
+      {!loading && items.length > 0 && (
         <FormHeader variant='h5' sx={{ marginBottom: 0 }}>
           <Trans id='Shipping method' />
         </FormHeader>
@@ -100,12 +91,10 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
           control={control}
           name='carrierMethod'
           errorMessage={i18n._(/* i18n */ 'Please select a shipping method')}
-          items={sortedAvailableShippingMethods.filter(Boolean).map((sortedMethod) => ({
-            ...sortedMethod,
-            disabled: !sortedMethod?.available,
-            value: `${sortedMethod?.carrier_code}-${sortedMethod?.method_code}`,
-          }))}
-          render={ShippingMethodActionCard as FC<ActionCardItemRenderProps<ActionCardItemBase>>}
+          items={items}
+          render={
+            ShippingMethodActionCard as React.FC<ActionCardItemRenderProps<ActionCardItemBase>>
+          }
         />
         <ApolloCartErrorAlert error={error} />
       </Form>
