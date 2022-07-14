@@ -19,6 +19,7 @@ import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { TextField } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
+import React from 'react'
 import { isSameAddress } from '../../utils/isSameAddress'
 import { GetAddressesDocument } from './GetAddresses.gql'
 import { SetBillingAddressDocument } from './SetBillingAddress.gql'
@@ -29,7 +30,7 @@ export type ShippingAddressFormProps = Pick<UseFormComposeOptions, 'step'> & {
   ignoreCache?: boolean
 }
 
-export function ShippingAddressForm(props: ShippingAddressFormProps) {
+export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) => {
   const { step, ignoreCache = false } = props
   const { data: cartQuery } = useCartQuery(GetAddressesDocument, { skip: false })
   const { data: config } = useQuery(StoreConfigDocument)
@@ -142,4 +143,4 @@ export function ShippingAddressForm(props: ShippingAddressFormProps) {
       </AnimatePresence>
     </Form>
   )
-}
+})
