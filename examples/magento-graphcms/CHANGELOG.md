@@ -1,5 +1,59 @@
 # Change Log
 
+## 3.16.0
+
+### Minor Changes
+
+- [#1548](https://github.com/graphcommerce-org/graphcommerce/pull/1548) [`4b8c0a3ef`](https://github.com/graphcommerce-org/graphcommerce/commit/4b8c0a3efa163bc7e4e590f1c251a2a78e000a81) Thanks [@mikekeehnen](https://github.com/mikekeehnen)! - Fix for empty shipping methods in checkout
+
+### Patch Changes
+
+- [#1552](https://github.com/graphcommerce-org/graphcommerce/pull/1552) [`18054c441`](https://github.com/graphcommerce-org/graphcommerce/commit/18054c441962ba750bed3acc39ab46c8d3a341ce) Thanks [@paales](https://github.com/paales)! - Updated to Next.js v12.2.2 and other packages and made compatible
+
+* [#1550](https://github.com/graphcommerce-org/graphcommerce/pull/1550) [`b4936e961`](https://github.com/graphcommerce-org/graphcommerce/commit/b4936e96175fe80717895822e245274db05638bd) Thanks [@paales](https://github.com/paales)! - Upgraded Framer Motion to latest version, which reduces initial bundle size load
+
+* Updated dependencies [[`4b8c0a3ef`](https://github.com/graphcommerce-org/graphcommerce/commit/4b8c0a3efa163bc7e4e590f1c251a2a78e000a81), [`18054c441`](https://github.com/graphcommerce-org/graphcommerce/commit/18054c441962ba750bed3acc39ab46c8d3a341ce), [`c5c539c44`](https://github.com/graphcommerce-org/graphcommerce/commit/c5c539c44eeac524cd62ce649e132d2e00333794), [`6f69bc54c`](https://github.com/graphcommerce-org/graphcommerce/commit/6f69bc54c6e0224452817c532ae58d9c332b61ea), [`21886d6fa`](https://github.com/graphcommerce-org/graphcommerce/commit/21886d6fa64a48d9e932bfaf8d138c9b13c36e43), [`b4936e961`](https://github.com/graphcommerce-org/graphcommerce/commit/b4936e96175fe80717895822e245274db05638bd)]:
+  - @graphcommerce/magento-cart-shipping-method@3.4.0
+  - @graphcommerce/cli@1.0.6
+  - @graphcommerce/framer-next-pages@3.2.4
+  - @graphcommerce/graphql@3.4.1
+  - @graphcommerce/graphql-mesh@4.1.5
+  - @graphcommerce/magento-customer@4.7.2
+  - @graphcommerce/magento-payment-braintree@3.0.36
+  - @graphcommerce/magento-product-configurable@4.1.22
+  - @graphcommerce/next-ui@4.13.1
+  - @graphcommerce/next-config@3.1.6
+  - @graphcommerce/framer-scroller@2.1.23
+  - @graphcommerce/magento-cart@4.5.2
+  - @graphcommerce/magento-cart-billing-address@3.0.35
+  - @graphcommerce/ecommerce-ui@1.1.2
+  - @graphcommerce/googlerecaptcha@2.1.11
+  - @graphcommerce/graphcms-ui@3.0.30
+  - @graphcommerce/magento-cart-checkout@3.0.37
+  - @graphcommerce/magento-cart-coupon@3.1.5
+  - @graphcommerce/magento-cart-email@3.0.37
+  - @graphcommerce/magento-cart-items@3.0.38
+  - @graphcommerce/magento-cart-payment-method@3.4.2
+  - @graphcommerce/magento-cart-shipping-address@3.2.7
+  - @graphcommerce/magento-category@4.1.23
+  - @graphcommerce/magento-cms@4.0.28
+  - @graphcommerce/magento-customer-account@3.1.30
+  - @graphcommerce/magento-customer-order@3.0.31
+  - @graphcommerce/magento-graphql@3.1.1
+  - @graphcommerce/magento-newsletter@2.0.35
+  - @graphcommerce/magento-payment-included@3.1.8
+  - @graphcommerce/magento-product@4.4.15
+  - @graphcommerce/magento-product-bundle@4.0.37
+  - @graphcommerce/magento-product-downloadable@4.0.37
+  - @graphcommerce/magento-product-grouped@3.0.37
+  - @graphcommerce/magento-product-simple@4.0.37
+  - @graphcommerce/magento-product-virtual@4.0.37
+  - @graphcommerce/magento-review@3.2.23
+  - @graphcommerce/magento-search@4.1.25
+  - @graphcommerce/magento-store@4.2.17
+  - @graphcommerce/magento-wishlist@1.3.9
+  - @graphcommerce/mollie-magento-payment@3.4.2
+
 ## 3.15.1
 
 ### Patch Changes

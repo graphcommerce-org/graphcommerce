@@ -1,5 +1,15 @@
 # Change Log
 
+## 3.4.1
+
+### Patch Changes
+
+- [#1552](https://github.com/graphcommerce-org/graphcommerce/pull/1552) [`18054c441`](https://github.com/graphcommerce-org/graphcommerce/commit/18054c441962ba750bed3acc39ab46c8d3a341ce) Thanks [@paales](https://github.com/paales)! - Updated to Next.js v12.2.2 and other packages and made compatible
+
+- Updated dependencies [[`18054c441`](https://github.com/graphcommerce-org/graphcommerce/commit/18054c441962ba750bed3acc39ab46c8d3a341ce)]:
+  - @graphcommerce/graphql-codegen-near-operation-file@3.0.15
+  - @graphcommerce/graphql-codegen-relay-optimizer-plugin@3.0.9
+
 ## 3.4.0
 
 ### Minor Changes
