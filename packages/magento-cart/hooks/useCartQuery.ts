@@ -1,6 +1,5 @@
 import { useQuery, TypedDocumentNode, QueryHookOptions } from '@graphcommerce/graphql'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
 import { useCurrentCartId } from './useCurrentCartId'
 
 /**
@@ -15,11 +14,15 @@ import { useCurrentCartId } from './useCurrentCartId'
  */
 export function useCartQuery<Q, V extends { cartId: string; [index: string]: unknown }>(
   document: TypedDocumentNode<Q, V>,
-  options: QueryHookOptions<Q, Omit<V, 'cartId'>> & { allowUrl?: boolean } = {},
+  options: QueryHookOptions<Q, Omit<V, 'cartId'>> & {
+    allowUrl?: boolean
+    hydration?: boolean
+  } = {},
 ) {
-  const { allowUrl = true, ...queryOptions } = options
+  const { allowUrl = true, hydration, ...queryOptions } = options
   const router = useRouter()
-  const { currentCartId } = useCurrentCartId({ skip: queryOptions?.skip })
+  const { currentCartId } = useCurrentCartId({ hydration })
+
   const urlCartId = router.query.cart_id
   const usingUrl = allowUrl && typeof urlCartId === 'string'
   const cartId = usingUrl ? urlCartId : currentCartId

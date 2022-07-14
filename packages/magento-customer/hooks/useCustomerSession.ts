@@ -3,27 +3,28 @@ import { useQuery } from '@graphcommerce/graphql'
 import { useState } from 'react'
 import { CustomerTokenDocument, CustomerTokenQuery } from './CustomerToken.gql'
 
-type TokenResponse = Omit<NonNullable<CustomerTokenQuery['customerToken']>, '__typename'> & {
-  called: boolean
-}
+export type UseCustomerSessionOptions = { hydration?: boolean }
 
 export type UseCustomerSessionReturn =
-  | Partial<TokenResponse> & { loggedIn: boolean; requireAuth: boolean }
+  | Partial<
+      Omit<NonNullable<CustomerTokenQuery['customerToken']>, '__typename'> & {
+        called: boolean
+      }
+    > & { loggedIn: boolean; requireAuth: boolean }
 
-export function useCustomerSession(): UseCustomerSessionReturn {
-  const [skip, setSkip] = useState(true)
+export function useCustomerSession(
+  options: UseCustomerSessionOptions = {},
+): UseCustomerSessionReturn {
+  const { hydration = false } = options
+  const [waitUntilAfterHydration, setWaitUntilAfterHydration] = useState(!hydration)
+  useIsomorphicLayoutEffect(() => {
+    if (waitUntilAfterHydration) setWaitUntilAfterHydration(false)
+  }, [waitUntilAfterHydration])
+  const skip = waitUntilAfterHydration
 
-  const { called, data } = useQuery(CustomerTokenDocument, {
-    ssr: false,
-    fetchPolicy: 'cache-only',
-    skip,
-  })
+  const { called, data } = useQuery(CustomerTokenDocument, { skip })
 
   const token = data?.customerToken
-
-  useIsomorphicLayoutEffect(() => {
-    if (skip) setSkip(false)
-  }, [skip])
 
   if (!token) return { called, loggedIn: false, requireAuth: true }
 
