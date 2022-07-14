@@ -21,7 +21,6 @@ import {
   useCustomerQuery,
 } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { useMergeGuestWishlistWithCustomer } from '@graphcommerce/magento-wishlist'
 import {
   FormActions,
   GetStaticProps,
@@ -44,7 +43,6 @@ type GetPageStaticProps = GetStaticProps<LayoutMinimalProps, Props>
 
 function ShippingPage() {
   useGoogleRecaptcha()
-  useMergeGuestWishlistWithCustomer()
 
   const { data, called, error } = useCartQuery(ShippingPageDocument, {
     fetchPolicy: 'cache-and-network',
