@@ -11,7 +11,7 @@ export type ActionCardProps = {
   price?: React.ReactNode
   after?: React.ReactNode
   secondaryAction?: React.ReactNode
-  onClick?: (e: FormEvent<HTMLElement>, v: string | number) => void
+  onClick?: (event: React.MouseEvent<HTMLElement>, value: string | number) => void
   selected?: boolean
   hidden?: boolean
   value: string | number
@@ -66,7 +66,7 @@ export function ActionCard(props: ActionCardProps) {
 
   const classes = withState({ hidden, disabled, selected, image: Boolean(image) })
 
-  const handleClick = (event: FormEvent<HTMLElement>) => onClick?.(event, value)
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => onClick?.(event, value)
 
   return (
     <ButtonBase
