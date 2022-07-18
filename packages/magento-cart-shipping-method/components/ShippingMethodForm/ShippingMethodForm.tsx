@@ -79,26 +79,22 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
   useFormCompose({ form, step, submit, key: 'ShippingMethodForm' })
   useFormAutoSubmit({ form, submit, fields: ['carrierMethod'] })
 
-  return (
-    <Box sx={sx}>
-      {!loading && items.length > 0 && (
-        <FormHeader variant='h5' sx={{ marginBottom: 0 }}>
-          <Trans id='Shipping method' />
-        </FormHeader>
-      )}
+  if (loading || items.length === 0) return null
 
-      <Form onSubmit={submit} noValidate>
-        <ActionCardListForm
-          control={control}
-          name='carrierMethod'
-          errorMessage={i18n._(/* i18n */ 'Please select a shipping method')}
-          items={items}
-          render={
-            ShippingMethodActionCard as React.FC<ActionCardItemRenderProps<ActionCardItemBase>>
-          }
-        />
-        <ApolloCartErrorAlert error={error} />
-      </Form>
-    </Box>
+  return (
+    <Form onSubmit={submit} noValidate sx={sx}>
+      <FormHeader variant='h3' sx={(theme) => ({ marginBottom: 0, mb: theme.spacings.sm })}>
+        <Trans id='Shipping method' />
+      </FormHeader>
+
+      <ActionCardListForm
+        control={control}
+        name='carrierMethod'
+        errorMessage={i18n._(/* i18n */ 'Please select a shipping method')}
+        items={items}
+        render={ShippingMethodActionCard as React.FC<ActionCardItemRenderProps<ActionCardItemBase>>}
+      />
+      <ApolloCartErrorAlert error={error} />
+    </Form>
   )
 }

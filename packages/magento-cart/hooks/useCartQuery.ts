@@ -4,7 +4,11 @@ import { useRouter } from 'next/router'
 import { useCurrentCartId } from './useCurrentCartId'
 
 const noCartError = new ApolloError({
-  graphQLErrors: [new GraphQLError('No cart found', {})],
+  graphQLErrors: [
+    new GraphQLError('No cart found', {
+      extensions: { category: 'graphql-no-such-entity' },
+    }),
+  ],
 })
 
 /**

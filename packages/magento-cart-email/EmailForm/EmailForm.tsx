@@ -13,7 +13,7 @@ import {
   UseFormComposeOptions,
 } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
-import { TextField, Typography, Button, NoSsr } from '@mui/material'
+import { TextField, Typography, Button, NoSsr, SxProps, Box } from '@mui/material'
 import PageLink from 'next/link'
 import React from 'react'
 import { CartEmailDocument } from './CartEmail.gql'
@@ -21,6 +21,7 @@ import { SetGuestEmailOnCartDocument } from './SetGuestEmailOnCart.gql'
 
 export type EmailFormProps = Pick<UseFormComposeOptions, 'step'> & {
   children?: React.ReactNode
+  sx?: SxProps<Theme>
 }
 
 const name = 'EmailForm' as const
@@ -28,7 +29,7 @@ const parts = ['root', 'formRow'] as const
 const { classes } = extendableComponent(name, parts)
 
 export const EmailForm = React.memo<EmailFormProps>((props) => {
-  const { step } = props
+  const { step, sx } = props
 
   const cartEmail = useCartQuery(CartEmailDocument, { hydration: true })
 
@@ -51,12 +52,7 @@ export const EmailForm = React.memo<EmailFormProps>((props) => {
   useFormAutoSubmit({ form, submit })
 
   return (
-    <form noValidate onSubmit={submit}>
-      <FormRow>
-        <Typography variant='h5' component='h2' gutterBottom>
-          <Trans id='Personal details' />
-        </Typography>
-      </FormRow>
+    <Box component='form' noValidate onSubmit={submit} sx={sx}>
       <FormRow className={classes.formRow} sx={{ py: 0 }}>
         <TextField
           variant='outlined'
@@ -87,6 +83,6 @@ export const EmailForm = React.memo<EmailFormProps>((props) => {
         />
       </FormRow>
       <ApolloCartErrorAlert error={error} />
-    </form>
+    </Box>
   )
 })

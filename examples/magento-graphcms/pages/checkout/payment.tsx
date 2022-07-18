@@ -2,12 +2,15 @@ import { ComposedForm, WaitForQueries } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { useGoogleRecaptcha } from '@graphcommerce/googlerecaptcha'
 import {
+  ApolloCartErrorFullPage,
   CartAgreementsForm,
   CartSummary,
   CartTotals,
   EmptyCart,
+  useCartQuery,
   useCurrentCartId,
 } from '@graphcommerce/magento-cart'
+import { BillingPageDocument } from '@graphcommerce/magento-cart-checkout'
 import { CouponAccordion } from '@graphcommerce/magento-cart-coupon'
 import {
   PaymentMethodButton,
@@ -45,25 +48,25 @@ type GetPageStaticProps = GetStaticProps<LayoutMinimalProps>
 function PaymentPage() {
   useGoogleRecaptcha()
 
-  const currentCart = useCurrentCartId()
-  const { currentCartId, error } = currentCart
+  const billingPage = useCartQuery(BillingPageDocument, { fetchPolicy: 'cache-and-network' })
   const [{ locked }] = useCartLock()
 
-  return (
-    <WaitForQueries
-      waitFor={[currentCart]}
-      fallback={
-        <FullPageMessage icon={<CircularProgress />} title='Loading'>
-          <Trans id='This may take a second' />
-        </FullPageMessage>
-      }
-    >
-      <ComposedForm>
-        <PageMeta title={i18n._(/* i18n */ 'Payment')} metaRobots={['noindex']} />
+  const cartExists = typeof billingPage.data?.cart !== 'undefined'
 
-        {error && <ApolloCustomerErrorFullPage error={error} />}
-        {!currentCartId && <EmptyCart />}
-        {currentCartId && (
+  return (
+    <ComposedForm>
+      <PageMeta title={i18n._(/* i18n */ 'Payment')} metaRobots={['noindex']} />
+
+      <WaitForQueries
+        waitFor={[billingPage]}
+        fallback={
+          <FullPageMessage icon={<CircularProgress />} title='Loading'>
+            <Trans id='This may take a second' />
+          </FullPageMessage>
+        }
+      >
+        {billingPage.error && <ApolloCartErrorFullPage error={billingPage.error} />}
+        {cartExists && !billingPage.error && (
           <>
             <LayoutHeader
               primary={
@@ -90,6 +93,7 @@ function PaymentPage() {
                 <Trans id='Payment' />
               </LayoutTitle>
             </LayoutHeader>
+
             <Container maxWidth='md'>
               <Dialog open={!!locked} fullWidth>
                 <FullPageMessage
@@ -147,8 +151,8 @@ function PaymentPage() {
             </Container>
           </>
         )}
-      </ComposedForm>
-    </WaitForQueries>
+      </WaitForQueries>
+    </ComposedForm>
   )
 }
 
