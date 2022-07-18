@@ -20,7 +20,7 @@ const { classes } = extendableComponent(name, parts)
 export function BlogListItem(props: BlogListItemProps) {
   const { asset, url, date, title, sx = [] } = props
 
-  const formatter = useDateTimeFormat({ year: 'numeric', month: 'long', day: 'numeric' })
+  const formatter = useDateTimeFormat({ dateStyle: 'long' })
 
   return (
     <Box
