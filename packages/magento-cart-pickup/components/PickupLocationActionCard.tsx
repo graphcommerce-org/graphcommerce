@@ -1,4 +1,3 @@
-import { RichText } from '@graphcommerce/graphcms-ui'
 import { ActionCard } from '@graphcommerce/next-ui'
 import { ActionCardItemRenderProps } from '@graphcommerce/next-ui/ActionCard/ActionCardListForm'
 import { Trans } from '@lingui/react'
