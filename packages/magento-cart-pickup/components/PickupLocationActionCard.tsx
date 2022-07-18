@@ -1,7 +1,8 @@
+import { RichText } from '@graphcommerce/graphcms-ui'
 import { ActionCard } from '@graphcommerce/next-ui'
 import { ActionCardItemRenderProps } from '@graphcommerce/next-ui/ActionCard/ActionCardListForm'
 import { Trans } from '@lingui/react'
-import { Button } from '@mui/material'
+import { Box, Button } from '@mui/material'
 import { GetPickupLocationsForProductsQuery } from '../graphql/GetPickupLocationsForProducts.gql'
 
 export type Location = NonNullable<
@@ -9,7 +10,7 @@ export type Location = NonNullable<
 >
 
 export function PickupLocationActionCard(props: ActionCardItemRenderProps<Location>) {
-  const { onReset, name, contact_name, street, ...cardProps } = props
+  const { onReset, name, contact_name, street, postcode, city, description, ...cardProps } = props
 
   return (
     <ActionCard
@@ -19,7 +20,37 @@ export function PickupLocationActionCard(props: ActionCardItemRenderProps<Locati
           {name} {contact_name}
         </>
       }
-      details={<>{street}</>}
+      details={
+        <>
+          <div>{`${street}, ${postcode} ${city}`}</div>
+          {cardProps.selected && description && (
+            // eslint-disable-next-line react/no-danger
+            <Box
+              dangerouslySetInnerHTML={{ __html: description }}
+              sx={(theme) => ({
+                '& table': {
+                  border: '0 transparent',
+                  width: 'auto!important',
+                  maxWidth: '100%',
+
+                  '& td': {
+                    width: 'auto!important',
+                    padding: `0 ${theme.spacings.xl}`,
+
+                    '&:first-child': {
+                      paddingLeft: 0,
+                    },
+
+                    '&:last-child': {
+                      paddingRight: 0,
+                    },
+                  },
+                },
+              })}
+            />
+          )}
+        </>
+      }
       action={
         <Button disableRipple variant='inline' color='secondary'>
           <Trans id='Select' />
