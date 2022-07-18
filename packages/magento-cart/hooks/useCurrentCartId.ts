@@ -19,6 +19,7 @@ export function useCurrentCartId<Q, V>(options: UseCurrentCartIdOptions<Q, V> = 
 
   return {
     currentCartId: data?.currentCartId?.id || '',
+    data,
     ...queryResults,
   }
 }

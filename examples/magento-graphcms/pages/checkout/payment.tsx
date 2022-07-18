@@ -1,4 +1,4 @@
-import { ComposedForm } from '@graphcommerce/ecommerce-ui'
+import { ComposedForm, WaitForQueries } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { useGoogleRecaptcha } from '@graphcommerce/googlerecaptcha'
 import {
@@ -45,107 +45,110 @@ type GetPageStaticProps = GetStaticProps<LayoutMinimalProps>
 function PaymentPage() {
   useGoogleRecaptcha()
 
-  const { currentCartId, called, error, loading } = useCurrentCartId()
+  const currentCart = useCurrentCartId()
+  const { currentCartId, error } = currentCart
   const [{ locked }] = useCartLock()
 
-  if (loading || !called)
-    return (
-      <FullPageMessage icon={<CircularProgress />} title='Loading your account'>
-        <Trans id='This may take a second' />
-      </FullPageMessage>
-    )
-
-  if (error) return <ApolloCustomerErrorFullPage error={error} />
-
   return (
-    <ComposedForm>
-      <PageMeta title={i18n._(/* i18n */ 'Payment')} metaRobots={['noindex']} />
-      {!currentCartId && !loading && called && <EmptyCart />}
-      {currentCartId && (
-        <>
-          <LayoutHeader
-            primary={
-              <PaymentMethodButton
-                type='submit'
-                color='secondary'
-                button={{
-                  variant: 'pill',
-                  size: 'medium',
-                  endIcon: <IconSvg src={iconChevronRight} size='small' />,
-                }}
-                display='inline'
-              >
-                <Trans id='Pay' />
-              </PaymentMethodButton>
-            }
-            divider={
-              <Container maxWidth='md'>
-                <Stepper steps={3} currentStep={3} />
-              </Container>
-            }
-          >
-            <LayoutTitle size='small' icon={iconId}>
-              <Trans id='Payment' />
-            </LayoutTitle>
-          </LayoutHeader>
-          <Container maxWidth='md'>
-            <Dialog open={!!locked} fullWidth>
-              <FullPageMessage
-                disableMargin
-                icon={<CircularProgress />}
-                title='Processing your payment'
-              >
-                <Trans id='We’re processing your payment, this will take a few seconds.' />
-              </FullPageMessage>
-            </Dialog>
+    <WaitForQueries
+      waitFor={[currentCart]}
+      fallback={
+        <FullPageMessage icon={<CircularProgress />} title='Loading'>
+          <Trans id='This may take a second' />
+        </FullPageMessage>
+      }
+    >
+      <ComposedForm>
+        <PageMeta title={i18n._(/* i18n */ 'Payment')} metaRobots={['noindex']} />
 
-            <>
-              <LayoutTitle icon={iconId}>
+        {error && <ApolloCustomerErrorFullPage error={error} />}
+        {!currentCartId && <EmptyCart />}
+        {currentCartId && (
+          <>
+            <LayoutHeader
+              primary={
+                <PaymentMethodButton
+                  type='submit'
+                  color='secondary'
+                  button={{
+                    variant: 'pill',
+                    size: 'medium',
+                    endIcon: <IconSvg src={iconChevronRight} size='small' />,
+                  }}
+                  display='inline'
+                >
+                  <Trans id='Pay' />
+                </PaymentMethodButton>
+              }
+              divider={
+                <Container maxWidth='md'>
+                  <Stepper steps={3} currentStep={3} />
+                </Container>
+              }
+            >
+              <LayoutTitle size='small' icon={iconId}>
                 <Trans id='Payment' />
               </LayoutTitle>
+            </LayoutHeader>
+            <Container maxWidth='md'>
+              <Dialog open={!!locked} fullWidth>
+                <FullPageMessage
+                  disableMargin
+                  icon={<CircularProgress />}
+                  title='Processing your payment'
+                >
+                  <Trans id='We’re processing your payment, this will take a few seconds.' />
+                </FullPageMessage>
+              </Dialog>
 
-              <PaymentMethodContextProvider
-                modules={{
-                  braintree_local_payment,
-                  braintree,
-                  ...included_methods,
-                  ...mollie_methods,
-                }}
-              >
-                <AnimatePresence initial={false}>
-                  <PaymentMethodActionCardListForm step={3} />
+              <>
+                <LayoutTitle icon={iconId}>
+                  <Trans id='Payment' />
+                </LayoutTitle>
 
-                  <CartSummary editable key='cart-summary'>
-                    <Divider />
-                    <CartTotals />
-                  </CartSummary>
+                <PaymentMethodContextProvider
+                  modules={{
+                    braintree_local_payment,
+                    braintree,
+                    ...included_methods,
+                    ...mollie_methods,
+                  }}
+                >
+                  <AnimatePresence initial={false}>
+                    <PaymentMethodActionCardListForm step={3} />
 
-                  <CouponAccordion key='coupon' />
+                    <CartSummary editable key='cart-summary'>
+                      <Divider />
+                      <CartTotals />
+                    </CartSummary>
 
-                  <CartAgreementsForm step={2} key='agreements' />
+                    <CouponAccordion key='coupon' />
 
-                  <PaymentMethodPlaceOrder key='placeorder' step={4} />
+                    <CartAgreementsForm step={2} key='agreements' />
 
-                  <FormActions>
-                    <PaymentMethodButton
-                      id='place-order'
-                      key='button'
-                      type='submit'
-                      color='secondary'
-                      button={{ variant: 'pill', size: 'large' }}
-                      breakpoint='xs'
-                      endIcon={<IconSvg src={iconChevronRight} />}
-                    >
-                      <Trans id='Place order' />
-                    </PaymentMethodButton>
-                  </FormActions>
-                </AnimatePresence>
-              </PaymentMethodContextProvider>
-            </>
-          </Container>
-        </>
-      )}
-    </ComposedForm>
+                    <PaymentMethodPlaceOrder key='placeorder' step={4} />
+
+                    <FormActions>
+                      <PaymentMethodButton
+                        id='place-order'
+                        key='button'
+                        type='submit'
+                        color='secondary'
+                        button={{ variant: 'pill', size: 'large' }}
+                        breakpoint='xs'
+                        endIcon={<IconSvg src={iconChevronRight} />}
+                      >
+                        <Trans id='Place order' />
+                      </PaymentMethodButton>
+                    </FormActions>
+                  </AnimatePresence>
+                </PaymentMethodContextProvider>
+              </>
+            </Container>
+          </>
+        )}
+      </ComposedForm>
+    </WaitForQueries>
   )
 }
 
