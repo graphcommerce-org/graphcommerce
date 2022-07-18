@@ -13,7 +13,7 @@ import {
   UseFormComposeOptions,
 } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
-import { TextField, Typography, Button, NoSsr, SxProps, Box } from '@mui/material'
+import { TextField, Typography, Button, NoSsr, SxProps, Box, Theme } from '@mui/material'
 import PageLink from 'next/link'
 import React from 'react'
 import { CartEmailDocument } from './CartEmail.gql'
