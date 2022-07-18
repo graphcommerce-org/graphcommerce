@@ -17,7 +17,7 @@ import {
 } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { TextField } from '@mui/material'
+import { SxProps, TextField, Theme } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'
 import { isSameAddress } from '../../utils/isSameAddress'
@@ -28,11 +28,12 @@ import { SetShippingBillingAddressDocument } from './SetShippingBillingAddress.g
 
 export type ShippingAddressFormProps = Pick<UseFormComposeOptions, 'step'> & {
   ignoreCache?: boolean
+  sx?: SxProps<Theme>
 }
 
 export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) => {
-  const { step, ignoreCache = false } = props
-  const { data: cartQuery } = useCartQuery(GetAddressesDocument, { skip: false })
+  const { step, sx, ignoreCache = false } = props
+  const { data: cartQuery } = useCartQuery(GetAddressesDocument)
   const { data: config } = useQuery(StoreConfigDocument)
   const { data: countriesData } = useQuery(CountryRegionsDocument)
   const { data: customerQuery } = useQuery(CustomerDocument, { fetchPolicy: 'cache-only' })
@@ -117,7 +118,7 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
   const readOnly = formState.isSubmitting && !autoSubmitting
 
   return (
-    <Form onSubmit={submit} noValidate>
+    <Form onSubmit={submit} noValidate sx={sx}>
       <AnimatePresence initial={false}>
         <NameFields form={form} key='name' readOnly={readOnly} />
         <AddressFields form={form} key='addressfields' readOnly={readOnly} />

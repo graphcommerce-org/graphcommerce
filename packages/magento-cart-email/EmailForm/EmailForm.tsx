@@ -6,9 +6,14 @@ import {
 } from '@graphcommerce/magento-cart'
 import { IsEmailAvailableDocument } from '@graphcommerce/magento-customer'
 import { extendableComponent, FormRow } from '@graphcommerce/next-ui'
-import { emailPattern, useFormCompose, UseFormComposeOptions } from '@graphcommerce/react-hook-form'
+import {
+  emailPattern,
+  useFormAutoSubmit,
+  useFormCompose,
+  UseFormComposeOptions,
+} from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
-import { TextField, Typography, Button } from '@mui/material'
+import { TextField, Typography, Button, NoSsr } from '@mui/material'
 import PageLink from 'next/link'
 import React from 'react'
 import { CartEmailDocument } from './CartEmail.gql'
@@ -26,9 +31,13 @@ export const EmailForm = React.memo<EmailFormProps>((props) => {
   const { step } = props
 
   const cartEmail = useCartQuery(CartEmailDocument, { hydration: true })
+
   const email = cartEmail.data?.cart?.email ?? ''
 
-  const form = useFormGqlMutationCart(SetGuestEmailOnCartDocument, { defaultValues: { email } })
+  const form = useFormGqlMutationCart(SetGuestEmailOnCartDocument, {
+    mode: 'onChange',
+    defaultValues: { email },
+  })
 
   const isEmailAvailable = useQuery(IsEmailAvailableDocument, {
     variables: { email },
@@ -39,6 +48,7 @@ export const EmailForm = React.memo<EmailFormProps>((props) => {
   const submit = handleSubmit(() => {})
 
   useFormCompose({ form, step, submit, key: 'EmailForm' })
+  useFormAutoSubmit({ form, submit })
 
   return (
     <form noValidate onSubmit={submit}>
@@ -62,12 +72,16 @@ export const EmailForm = React.memo<EmailFormProps>((props) => {
           })}
           InputProps={{
             autoComplete: 'email',
-            endAdornment: isEmailAvailable.data?.isEmailAvailable && (
-              <PageLink href='/account/signin' passHref>
-                <Button color='secondary' style={{ whiteSpace: 'nowrap' }}>
-                  <Trans id='Sign in' />
-                </Button>
-              </PageLink>
+            endAdornment: (
+              <NoSsr>
+                {isEmailAvailable.data?.isEmailAvailable && (
+                  <PageLink href='/account/signin' passHref>
+                    <Button color='secondary' style={{ whiteSpace: 'nowrap' }}>
+                      <Trans id='Sign in' />
+                    </Button>
+                  </PageLink>
+                )}
+              </NoSsr>
             ),
           }}
         />

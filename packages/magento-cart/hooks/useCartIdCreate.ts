@@ -1,4 +1,4 @@
-import { useApolloClient, useMutation } from '@graphcommerce/graphql'
+import { useApolloClient } from '@graphcommerce/graphql'
 import { i18n } from '@lingui/core'
 import { CreateEmptyCartDocument } from './CreateEmptyCart.gql'
 import { CurrentCartIdDocument } from './CurrentCartId.gql'

@@ -10,12 +10,10 @@ type UseCurrentCartIdOptions<Q, V> = QueryHookOptions<
 > & { hydration?: boolean }
 
 export function useCurrentCartId<Q, V>(options: UseCurrentCartIdOptions<Q, V> = {}) {
-  const { hydration = false, ...queryOptions } = options
-  const [waitUntilAfterHydration, setWaitUntilAfterHydration] = useState(!hydration)
-  useIsomorphicLayoutEffect(() => {
-    if (waitUntilAfterHydration) setWaitUntilAfterHydration(false)
-  }, [waitUntilAfterHydration])
-  const skip = options.skip !== undefined ? options.skip : waitUntilAfterHydration
+  const { hydration = true, ...queryOptions } = options
+  const [hydrating, setHydrating] = useState(!hydration)
+  useIsomorphicLayoutEffect(() => setHydrating(false), [])
+  const skip = options.skip !== undefined ? options.skip : hydrating
 
   const { data, ...queryResults } = useQuery(CurrentCartIdDocument, { ...queryOptions, skip })
 

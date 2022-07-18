@@ -26,7 +26,9 @@ type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
 function AccountAuthenticationPage() {
   useGoogleRecaptcha()
-  const { loading, data, error, called } = useCustomerQuery(CustomerDocument)
+  const { loading, data, error, called } = useCustomerQuery(CustomerDocument, {
+    fetchPolicy: 'cache-and-network',
+  })
   const customer = data?.customer
 
   if (loading || !called)

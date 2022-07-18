@@ -17,6 +17,7 @@ import {
 } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
+import { Box, SxProps, Theme } from '@mui/material'
 import { useMemo } from 'react'
 import { GetShippingMethodsDocument } from './GetShippingMethods.gql'
 import { ShippingMethodActionCard } from './ShippingMethodActionCard'
@@ -26,15 +27,15 @@ import {
   ShippingMethodFormMutationVariables,
 } from './ShippingMethodForm.gql'
 
-export type ShippingMethodFormProps = Pick<UseFormComposeOptions, 'step'>
+export type ShippingMethodFormProps = Pick<UseFormComposeOptions, 'step'> & { sx?: SxProps<Theme> }
 
 function notEmpty<TValue>(value: TValue | null | undefined): value is TValue {
   return value !== null && value !== undefined
 }
 
 export function ShippingMethodForm(props: ShippingMethodFormProps) {
-  const { step } = props
-  const { data: cartQuery, loading } = useCartQuery(GetShippingMethodsDocument, { hydration: true })
+  const { step, sx } = props
+  const { data: cartQuery, loading } = useCartQuery(GetShippingMethodsDocument)
   const availableMethods = (
     cartQuery?.cart?.shipping_addresses?.[0]?.available_shipping_methods ?? []
   ).filter(notEmpty)
@@ -54,7 +55,7 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
   )
 
   // The default: When there is only a single shipping method, select that one.
-  let carrierMethod: string | undefined = items[0]?.value
+  let carrierMethod: string | undefined = items.length === 1 ? items[0]?.value : undefined
 
   // Override with the currently selected method if there is one.
   if (selectedMethod?.method_code)
@@ -79,7 +80,7 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
   useFormAutoSubmit({ form, submit, fields: ['carrierMethod'] })
 
   return (
-    <>
+    <Box sx={sx}>
       {!loading && items.length > 0 && (
         <FormHeader variant='h5' sx={{ marginBottom: 0 }}>
           <Trans id='Shipping method' />
@@ -98,6 +99,6 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
         />
         <ApolloCartErrorAlert error={error} />
       </Form>
-    </>
+    </Box>
   )
 }

@@ -30,7 +30,9 @@ function EditAddressPage() {
   const router = useRouter()
   useGoogleRecaptcha()
 
-  const { data, loading, error, called } = useCustomerQuery(AccountDashboardAddressesDocument)
+  const { data, loading, error, called } = useCustomerQuery(AccountDashboardAddressesDocument, {
+    fetchPolicy: 'cache-and-network',
+  })
 
   const address = data?.customer?.addresses?.find((a) => a?.id === Number(router.query.addressId))
 

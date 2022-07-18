@@ -30,7 +30,7 @@ function CheckoutCustomerAddressesEdit() {
   useGoogleRecaptcha()
 
   const { data, loading, error, called } = useCustomerQuery(AccountDashboardAddressesDocument, {
-    fetchPolicy: 'network-only',
+    fetchPolicy: 'cache-and-network',
   })
 
   const address = data?.customer?.addresses?.find((a) => a?.id === Number(router.query.addressId))

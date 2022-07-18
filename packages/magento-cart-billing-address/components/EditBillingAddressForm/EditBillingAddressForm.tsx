@@ -1,7 +1,7 @@
 import { useHistoryGo } from '@graphcommerce/framer-next-pages'
 import { useQuery } from '@graphcommerce/graphql'
 import { useCartQuery, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
-import { SetBillingAddressOnCartDocument } from '@graphcommerce/magento-cart-shipping-address/components/ShippingAddressForm/SetBillingAddressOnCart.gql'
+import { SetBillingAddressDocument } from '@graphcommerce/magento-cart-shipping-address/components/ShippingAddressForm/SetBillingAddress.gql'
 import {
   AddressFields,
   ApolloCustomerErrorAlert,
@@ -31,7 +31,7 @@ export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
 
   const goToCheckout = useHistoryGo({ href: '/checkout/payment' })
 
-  const form = useFormGqlMutationCart(SetBillingAddressOnCartDocument, {
+  const form = useFormGqlMutationCart(SetBillingAddressDocument, {
     defaultValues: {
       firstname: address?.firstname,
       lastname: address?.lastname,

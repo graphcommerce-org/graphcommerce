@@ -15,12 +15,10 @@ export type UseCustomerSessionReturn =
 export function useCustomerSession(
   options: UseCustomerSessionOptions = {},
 ): UseCustomerSessionReturn {
-  const { hydration = false } = options
-  const [waitUntilAfterHydration, setWaitUntilAfterHydration] = useState(!hydration)
-  useIsomorphicLayoutEffect(() => {
-    if (waitUntilAfterHydration) setWaitUntilAfterHydration(false)
-  }, [waitUntilAfterHydration])
-  const skip = waitUntilAfterHydration
+  const { hydration = true } = options
+  const [hydrating, setHydrating] = useState(!hydration)
+  useIsomorphicLayoutEffect(() => setHydrating(false), [])
+  const skip = hydrating
 
   const { called, data } = useQuery(CustomerTokenDocument, { skip })
 
