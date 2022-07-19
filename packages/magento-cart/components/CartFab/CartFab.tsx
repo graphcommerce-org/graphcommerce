@@ -1,3 +1,4 @@
+import { WaitForQueries } from '@graphcommerce/ecommerce-ui'
 import {
   extendableComponent,
   iconShoppingBag,
@@ -69,13 +70,14 @@ function CartFabContent(props: CartFabContentProps) {
           })}
           {...fabProps}
         >
-          {total_quantity > 0 ? (
-            <DesktopHeaderBadge color='primary' variant='dot' overlap='circular'>
-              {cartIcon}
-            </DesktopHeaderBadge>
-          ) : (
-            cartIcon
-          )}
+          <DesktopHeaderBadge
+            color='primary'
+            variant='dot'
+            overlap='circular'
+            hidden={total_quantity === 0}
+          >
+            {cartIcon}
+          </DesktopHeaderBadge>
         </MotionFab>
       </PageLink>
       <MotionDiv
@@ -109,15 +111,14 @@ function CartFabContent(props: CartFabContentProps) {
  * product to the cart. This would mean that it would immediately start executing this query.
  */
 export function CartFab(props: CartFabProps) {
-  const { data, loading, called } = useCartQuery(CartFabDocument, {
+  const cartQuery = useCartQuery(CartFabDocument, {
     fetchPolicy: 'cache-only',
     nextFetchPolicy: 'cache-first',
   })
-  const qty = data?.cart?.total_quantity ?? 0
 
-  if (loading || !called) {
-    return <CartFabContent {...props} total_quantity={0} />
-  }
-
-  return <CartFabContent total_quantity={qty} {...props} />
+  return (
+    <WaitForQueries waitFor={cartQuery} fallback={<CartFabContent {...props} total_quantity={0} />}>
+      <CartFabContent total_quantity={cartQuery.data?.cart?.total_quantity ?? 0} {...props} />
+    </WaitForQueries>
+  )
 }
