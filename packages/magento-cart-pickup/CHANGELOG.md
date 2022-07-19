@@ -1,5 +1,20 @@
 # Change Log
 
+## 3.1.0
+
+### Minor Changes
+
+- [#1553](https://github.com/graphcommerce-org/graphcommerce/pull/1553) [`db5d485a2`](https://github.com/graphcommerce-org/graphcommerce/commit/db5d485a23b6b90cfabc9a1320d3c05acbaeb8e2) Thanks [@NickdeK](https://github.com/NickdeK)! - Pickup in store functionality added to checkout
+
+### Patch Changes
+
+- Updated dependencies [[`1afc6a547`](https://github.com/graphcommerce-org/graphcommerce/commit/1afc6a5473d6e31f47b5d0188801803b31865290), [`4a4579bb2`](https://github.com/graphcommerce-org/graphcommerce/commit/4a4579bb2f7da378f3fcc504405caf2560dc10f6), [`db5d485a2`](https://github.com/graphcommerce-org/graphcommerce/commit/db5d485a23b6b90cfabc9a1320d3c05acbaeb8e2), [`afcd8e4bf`](https://github.com/graphcommerce-org/graphcommerce/commit/afcd8e4bfb7010da4d5faeed85b61991ed7975f4), [`02e1988e5`](https://github.com/graphcommerce-org/graphcommerce/commit/02e1988e5f361c6f66ae30d3bbee38ef2ac062df), [`323fdee4b`](https://github.com/graphcommerce-org/graphcommerce/commit/323fdee4b15ae23e0e84dd0588cb2c6446dcfd50)]:
+  - @graphcommerce/graphql@3.4.2
+  - @graphcommerce/react-hook-form@3.3.1
+  - @graphcommerce/magento-cart-shipping-method@3.5.0
+  - @graphcommerce/next-ui@4.14.0
+  - @graphcommerce/magento-store@4.2.18
+
 ## 3.0.36
 
 ### Patch Changes

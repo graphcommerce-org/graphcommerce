@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/magento-wishlist",
-  "version": "1.3.9",
+  "version": "1.3.10",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [
@@ -19,15 +19,15 @@
     "@playwright/test": "^1.21.1"
   },
   "dependencies": {
-    "@graphcommerce/graphql": "3.4.1",
+    "@graphcommerce/graphql": "3.4.2",
     "@graphcommerce/graphql-mesh": "4.1.5",
     "@graphcommerce/image": "3.1.7",
-    "@graphcommerce/magento-cart": "4.5.2",
-    "@graphcommerce/magento-customer": "4.7.2",
-    "@graphcommerce/magento-product": "4.4.15",
-    "@graphcommerce/magento-product-configurable": "4.1.22",
-    "@graphcommerce/magento-store": "4.2.17",
-    "@graphcommerce/next-ui": "4.13.1"
+    "@graphcommerce/magento-cart": "4.6.0",
+    "@graphcommerce/magento-customer": "4.8.0",
+    "@graphcommerce/magento-product": "4.4.16",
+    "@graphcommerce/magento-product-configurable": "4.1.23",
+    "@graphcommerce/magento-store": "4.2.18",
+    "@graphcommerce/next-ui": "4.14.0"
   },
   "peerDependencies": {
     "@lingui/react": "^3.13.2",

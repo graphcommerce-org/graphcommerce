@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.4.2
+
+### Patch Changes
+
+- [#1553](https://github.com/graphcommerce-org/graphcommerce/pull/1553) [`1afc6a547`](https://github.com/graphcommerce-org/graphcommerce/commit/1afc6a5473d6e31f47b5d0188801803b31865290) Thanks [@NickdeK](https://github.com/NickdeK)! - Remove unused useClientQuery
+
 ## 3.4.1
 
 ### Patch Changes

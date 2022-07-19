@@ -1,5 +1,20 @@
 # Change Log
 
+## 4.14.0
+
+### Minor Changes
+
+- [#1553](https://github.com/graphcommerce-org/graphcommerce/pull/1553) [`323fdee4b`](https://github.com/graphcommerce-org/graphcommerce/commit/323fdee4b15ae23e0e84dd0588cb2c6446dcfd50) Thanks [@NickdeK](https://github.com/NickdeK)! - Added a new cookies utility to load cookies on the frontend
+
+### Patch Changes
+
+- [#1553](https://github.com/graphcommerce-org/graphcommerce/pull/1553) [`afcd8e4bf`](https://github.com/graphcommerce-org/graphcommerce/commit/afcd8e4bfb7010da4d5faeed85b61991ed7975f4) Thanks [@NickdeK](https://github.com/NickdeK)! - ActionCardList will now show all options when the selected value isn't in any of the options
+
+* [#1553](https://github.com/graphcommerce-org/graphcommerce/pull/1553) [`02e1988e5`](https://github.com/graphcommerce-org/graphcommerce/commit/02e1988e5f361c6f66ae30d3bbee38ef2ac062df) Thanks [@NickdeK](https://github.com/NickdeK)! - Make sure the useDateTimeFormat isn't giving hydration warnings
+
+* Updated dependencies []:
+  - @graphcommerce/framer-scroller@2.1.24
+
 ## 4.13.1
 
 ### Patch Changes
