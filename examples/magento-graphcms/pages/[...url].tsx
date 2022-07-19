@@ -111,18 +111,13 @@ function CategoryPage(props: Props) {
           <CategoryChildren params={params}>{category.children}</CategoryChildren>
 
           <StickyBelowHeader>
-            <Suspense>
-              <ProductListFiltersContainer>
-                <ProductListSort
-                  sort_fields={products?.sort_fields}
-                  total_count={products?.total_count}
-                />
-                <ProductListFilters
-                  aggregations={filters?.aggregations}
-                  filterTypes={filterTypes}
-                />
-              </ProductListFiltersContainer>
-            </Suspense>
+            <ProductListFiltersContainer>
+              <ProductListSort
+                sort_fields={products?.sort_fields}
+                total_count={products?.total_count}
+              />
+              <ProductListFilters aggregations={filters?.aggregations} filterTypes={filterTypes} />
+            </ProductListFiltersContainer>
           </StickyBelowHeader>
 
           <Container maxWidth={false}>
