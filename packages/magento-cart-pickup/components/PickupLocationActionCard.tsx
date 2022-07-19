@@ -43,6 +43,9 @@ export function PickupLocationActionCard(props: ActionCardItemRenderProps<Locati
                     },
                   },
                 },
+                '& p': {
+                  margin: 0,
+                },
               })}
             />
           )}
