@@ -1,5 +1,54 @@
 # Change Log
 
+## 3.17.0
+
+### Minor Changes
+
+- [#1553](https://github.com/graphcommerce-org/graphcommerce/pull/1553) [`db5d485a2`](https://github.com/graphcommerce-org/graphcommerce/commit/db5d485a23b6b90cfabc9a1320d3c05acbaeb8e2) Thanks [@NickdeK](https://github.com/NickdeK)! - Pickup in store functionality added to checkout
+
+### Patch Changes
+
+- [#1553](https://github.com/graphcommerce-org/graphcommerce/pull/1553) [`798034363`](https://github.com/graphcommerce-org/graphcommerce/commit/798034363c96c8cd19e01bd54b96c89959411f16) Thanks [@NickdeK](https://github.com/NickdeK)! - Do not merge the guest wishlist with in checkout, because we're not logging in there
+
+- Updated dependencies [[`1afc6a547`](https://github.com/graphcommerce-org/graphcommerce/commit/1afc6a5473d6e31f47b5d0188801803b31865290), [`03d01c06c`](https://github.com/graphcommerce-org/graphcommerce/commit/03d01c06c6dc13df8d38ab5b40bd100c567a9e8d), [`db5d485a2`](https://github.com/graphcommerce-org/graphcommerce/commit/db5d485a23b6b90cfabc9a1320d3c05acbaeb8e2), [`afcd8e4bf`](https://github.com/graphcommerce-org/graphcommerce/commit/afcd8e4bfb7010da4d5faeed85b61991ed7975f4), [`02e1988e5`](https://github.com/graphcommerce-org/graphcommerce/commit/02e1988e5f361c6f66ae30d3bbee38ef2ac062df), [`323fdee4b`](https://github.com/graphcommerce-org/graphcommerce/commit/323fdee4b15ae23e0e84dd0588cb2c6446dcfd50), [`4ad45a2f3`](https://github.com/graphcommerce-org/graphcommerce/commit/4ad45a2f3389838c33da8c447f9647c1cd17aa91), [`d03f0860b`](https://github.com/graphcommerce-org/graphcommerce/commit/d03f0860b882db4f280d9467aef9d66e56c1c030), [`b68d0b44a`](https://github.com/graphcommerce-org/graphcommerce/commit/b68d0b44a87688c80fb0aa4a5c840f262ce48d2f)]:
+  - @graphcommerce/graphql@3.4.2
+  - @graphcommerce/magento-cart@4.6.0
+  - @graphcommerce/magento-customer@4.8.0
+  - @graphcommerce/magento-cart-pickup@3.1.0
+  - @graphcommerce/magento-cart-shipping-address@3.3.0
+  - @graphcommerce/magento-cart-shipping-method@3.5.0
+  - @graphcommerce/next-ui@4.14.0
+  - @graphcommerce/magento-customer-order@3.0.32
+  - @graphcommerce/magento-review@3.2.24
+  - @graphcommerce/magento-cart-email@3.0.38
+  - @graphcommerce/ecommerce-ui@1.1.3
+  - @graphcommerce/googlerecaptcha@2.1.12
+  - @graphcommerce/graphcms-ui@3.0.31
+  - @graphcommerce/magento-cart-billing-address@3.0.36
+  - @graphcommerce/magento-cart-checkout@3.0.38
+  - @graphcommerce/magento-cart-coupon@3.1.6
+  - @graphcommerce/magento-cart-items@3.0.39
+  - @graphcommerce/magento-cart-payment-method@3.4.3
+  - @graphcommerce/magento-category@4.1.24
+  - @graphcommerce/magento-cms@4.0.29
+  - @graphcommerce/magento-customer-account@3.1.31
+  - @graphcommerce/magento-graphql@3.1.2
+  - @graphcommerce/magento-newsletter@2.0.36
+  - @graphcommerce/magento-payment-braintree@3.0.37
+  - @graphcommerce/magento-payment-included@3.1.9
+  - @graphcommerce/magento-product@4.4.16
+  - @graphcommerce/magento-product-bundle@4.0.38
+  - @graphcommerce/magento-product-configurable@4.1.23
+  - @graphcommerce/magento-product-downloadable@4.0.38
+  - @graphcommerce/magento-product-grouped@3.0.38
+  - @graphcommerce/magento-product-simple@4.0.38
+  - @graphcommerce/magento-product-virtual@4.0.38
+  - @graphcommerce/magento-search@4.1.26
+  - @graphcommerce/magento-store@4.2.18
+  - @graphcommerce/magento-wishlist@1.3.10
+  - @graphcommerce/mollie-magento-payment@3.4.3
+  - @graphcommerce/framer-scroller@2.1.24
+
 ## 3.16.0
 
 ### Minor Changes
