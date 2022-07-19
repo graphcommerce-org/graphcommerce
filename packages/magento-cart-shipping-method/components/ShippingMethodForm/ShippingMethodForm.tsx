@@ -3,17 +3,21 @@ import {
   useCartQuery,
   useFormGqlMutationCart,
 } from '@graphcommerce/magento-cart'
-import { Form, FormHeader } from '@graphcommerce/next-ui'
 import {
+  Form,
+  FormHeader,
   ActionCardItemBase,
   ActionCardItemRenderProps,
   ActionCardListForm,
-} from '@graphcommerce/next-ui/ActionCard/ActionCardListForm'
+} from '@graphcommerce/next-ui'
 import {
+  FormProvider,
+  useForm,
   useFormAutoSubmit,
   useFormCompose,
   UseFormComposeOptions,
   useFormPersist,
+  useWatch,
 } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
@@ -27,14 +31,17 @@ import {
   ShippingMethodFormMutationVariables,
 } from './ShippingMethodForm.gql'
 
-export type ShippingMethodFormProps = Pick<UseFormComposeOptions, 'step'> & { sx?: SxProps<Theme> }
+export type ShippingMethodFormProps = Pick<UseFormComposeOptions, 'step'> & {
+  sx?: SxProps<Theme>
+  children?: React.ReactNode
+}
 
 function notEmpty<TValue>(value: TValue | null | undefined): value is TValue {
   return value !== null && value !== undefined
 }
 
 export function ShippingMethodForm(props: ShippingMethodFormProps) {
-  const { step, sx } = props
+  const { step, sx, children } = props
   const { data: cartQuery, loading } = useCartQuery(GetShippingMethodsDocument)
   const availableMethods = (
     cartQuery?.cart?.shipping_addresses?.[0]?.available_shipping_methods ?? []
@@ -82,19 +89,28 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
   if (loading || items.length === 0) return null
 
   return (
-    <Form onSubmit={submit} noValidate sx={sx}>
-      <FormHeader variant='h3' sx={(theme) => ({ marginBottom: 0, mb: theme.spacings.sm })}>
-        <Trans id='Shipping method' />
-      </FormHeader>
+    <FormProvider {...form}>
+      <Form onSubmit={submit} noValidate sx={sx}>
+        <FormHeader variant='h3' sx={(theme) => ({ marginBottom: 0, mb: theme.spacings.sm })}>
+          <Trans id='Shipping method' />
+        </FormHeader>
 
-      <ActionCardListForm
-        control={control}
-        name='carrierMethod'
-        errorMessage={i18n._(/* i18n */ 'Please select a shipping method')}
-        items={items}
-        render={ShippingMethodActionCard as React.FC<ActionCardItemRenderProps<ActionCardItemBase>>}
-      />
-      <ApolloCartErrorAlert error={error} />
-    </Form>
+        <ActionCardListForm
+          control={control}
+          name='carrierMethod'
+          errorMessage={i18n._(/* i18n */ 'Please select a shipping method')}
+          items={items}
+          render={
+            ShippingMethodActionCard as React.FC<ActionCardItemRenderProps<ActionCardItemBase>>
+          }
+        />
+        <ApolloCartErrorAlert error={error} />
+      </Form>
+      {children}
+    </FormProvider>
   )
+}
+
+export function useShippingMethod() {
+  return useWatch<{ carrierMethod?: string }>({ name: 'carrierMethod' })
 }

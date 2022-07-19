@@ -5,8 +5,7 @@ import {
   useFormGqlMutationCart,
 } from '@graphcommerce/magento-cart'
 import { CustomerDocument } from '@graphcommerce/magento-customer'
-import { Form } from '@graphcommerce/next-ui'
-import { ActionCardListForm } from '@graphcommerce/next-ui/ActionCard/ActionCardListForm'
+import { Form, ActionCardListForm } from '@graphcommerce/next-ui'
 import {
   useFormPersist,
   useFormCompose,

@@ -39,112 +39,115 @@ function isValueSelected(
   return value === candidate
 }
 
-export function ActionCardList(props: ActionCardListProps) {
-  const { children, required, error = false, errorMessage } = props
+export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListProps>(
+  (props, ref) => {
+    const { children, required, error = false, errorMessage } = props
 
-  const handleChange: ActionCardProps['onClick'] = isMulti(props)
-    ? (event, v) => {
-        const { onChange, value } = props
-        const index = Boolean(value) && value?.indexOf(v)
-        let newValue: typeof value
+    const handleChange: ActionCardProps['onClick'] = isMulti(props)
+      ? (event, v) => {
+          const { onChange, value } = props
+          const index = Boolean(value) && value?.indexOf(v)
+          let newValue: typeof value
 
-        if (value.length && index && index >= 0) {
-          newValue = value.slice()
-          newValue.splice(index, 1)
-        } else {
-          newValue = value ? [...value, v] : [v]
+          if (value.length && index && index >= 0) {
+            newValue = value.slice()
+            newValue.splice(index, 1)
+          } else {
+            newValue = value ? [...value, v] : [v]
+          }
+          onChange?.(event, newValue)
         }
-        onChange?.(event, newValue)
-      }
-    : (event, v) => {
-        const { onChange, value } = props
+      : (event, v) => {
+          const { onChange, value } = props
 
-        if (value !== v) {
-          if (required) onChange?.(event, v)
-          else onChange?.(event, value === v ? null : v)
+          if (value !== v) {
+            if (required) onChange?.(event, v)
+            else onChange?.(event, value === v ? null : v)
+          }
         }
-      }
 
-  type ActionCardLike = React.ReactElement<
-    Pick<ActionCardProps, 'value' | 'selected' | 'disabled' | 'onClick'>
-  >
-  function isActionCardLike(el: React.ReactElement): el is ActionCardLike {
-    const hasValue = (el as ActionCardLike).props.value
-
-    if (process.env.NODE_ENV !== 'production') {
-      if (!hasValue) console.error(el, `must be an instance of ActionCard`)
-    }
-    return (el as ActionCardLike).props.value !== undefined
-  }
-
-  // Make sure the children are cardlike
-  const childReactNodes = React.Children.toArray(children)
-    .filter(React.isValidElement)
-    .filter(isActionCardLike)
-    .filter((child) => {
-      if (process.env.NODE_ENV !== 'production') {
-        if (isFragment(child))
-          console.error(
-            [
-              "@graphcommerce/next-ui: The ActionCardList component doesn't accept a Fragment as a child.",
-              'Consider providing an array instead',
-            ].join('\n'),
-          )
-      }
-
-      return !isFragment(child)
-    })
-
-  // Make sure the selected values is in the list of all possible values
-  const value = childReactNodes.find(
-    // eslint-disable-next-line react/destructuring-assignment
-    (child) => child.props.value === props.value && child.props.disabled !== true,
-  )?.props.value
-
-  return (
-    <Box
-      sx={[
-        error &&
-          ((theme) => ({
-            '& .ActionCard-root': {
-              borderLeft: 2,
-              borderRight: 2,
-              borderLeftColor: 'error.main',
-              borderRightColor: 'error.main',
-              paddingLeft: theme.spacings.xs,
-              paddingRight: theme.spacings.xs,
-            },
-            '& > div:first-of-type.ActionCard-root': {
-              borderTop: 2,
-              borderTopColor: 'error.main',
-              paddingTop: theme.spacings.xxs,
-            },
-            '& > div:last-of-type.ActionCard-root': {
-              borderBottom: 2,
-              borderBottomColor: 'error.main',
-              paddingBottom: theme.spacings.xxs,
-            },
-          })),
-      ]}
+    type ActionCardLike = React.ReactElement<
+      Pick<ActionCardProps, 'value' | 'selected' | 'disabled' | 'onClick'>
     >
-      {childReactNodes.map((child) =>
-        React.cloneElement(child, {
-          onClick: handleChange,
-          selected:
-            child.props.selected === undefined
-              ? isValueSelected(child.props.value, value)
-              : child.props.selected,
-        }),
-      )}
-      {error && (
-        <Alert
-          severity='error'
-          variant='filled'
-          sx={{ borderStartStartRadius: 0, borderStartEndRadius: 0 }}
-        >
-          {errorMessage}
-        </Alert>
-      )}
-    </Box>
-  )
-}
+    function isActionCardLike(el: React.ReactElement): el is ActionCardLike {
+      const hasValue = (el as ActionCardLike).props.value
+
+      if (process.env.NODE_ENV !== 'production') {
+        if (!hasValue) console.error(el, `must be an instance of ActionCard`)
+      }
+      return (el as ActionCardLike).props.value !== undefined
+    }
+
+    // Make sure the children are cardlike
+    const childReactNodes = React.Children.toArray(children)
+      .filter(React.isValidElement)
+      .filter(isActionCardLike)
+      .filter((child) => {
+        if (process.env.NODE_ENV !== 'production') {
+          if (isFragment(child))
+            console.error(
+              [
+                "@graphcommerce/next-ui: The ActionCardList component doesn't accept a Fragment as a child.",
+                'Consider providing an array instead',
+              ].join('\n'),
+            )
+        }
+
+        return !isFragment(child)
+      })
+
+    // Make sure the selected values is in the list of all possible values
+    const value = childReactNodes.find(
+      // eslint-disable-next-line react/destructuring-assignment
+      (child) => child.props.value === props.value && child.props.disabled !== true,
+    )?.props.value
+
+    return (
+      <Box
+        ref={ref}
+        sx={[
+          error &&
+            ((theme) => ({
+              '& .ActionCard-root': {
+                borderLeft: 2,
+                borderRight: 2,
+                borderLeftColor: 'error.main',
+                borderRightColor: 'error.main',
+                paddingLeft: theme.spacings.xs,
+                paddingRight: theme.spacings.xs,
+              },
+              '& > div:first-of-type.ActionCard-root': {
+                borderTop: 2,
+                borderTopColor: 'error.main',
+                paddingTop: theme.spacings.xxs,
+              },
+              '& > div:last-of-type.ActionCard-root': {
+                borderBottom: 2,
+                borderBottomColor: 'error.main',
+                paddingBottom: theme.spacings.xxs,
+              },
+            })),
+        ]}
+      >
+        {childReactNodes.map((child) =>
+          React.cloneElement(child, {
+            onClick: handleChange,
+            selected:
+              child.props.selected === undefined
+                ? isValueSelected(child.props.value, value)
+                : child.props.selected,
+          }),
+        )}
+        {error && (
+          <Alert
+            severity='error'
+            variant='filled'
+            sx={{ borderStartStartRadius: 0, borderStartEndRadius: 0 }}
+          >
+            {errorMessage}
+          </Alert>
+        )}
+      </Box>
+    )
+  },
+)

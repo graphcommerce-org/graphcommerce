@@ -1,5 +1,4 @@
-import { ActionCard } from '@graphcommerce/next-ui'
-import { ActionCardItemRenderProps } from '@graphcommerce/next-ui/ActionCard/ActionCardListForm'
+import { ActionCard, ActionCardItemRenderProps } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box, Button } from '@mui/material'
 import { GetPickupLocationsForProductsQuery } from '../graphql/GetPickupLocationsForProducts.gql'
@@ -36,11 +35,10 @@ export function PickupLocationActionCard(props: ActionCardItemRenderProps<Locati
                     width: 'auto!important',
                     padding: `0 ${theme.spacings.xl}`,
 
-                    '&:first-child': {
+                    '&:first-of-type': {
                       paddingLeft: 0,
                     },
-
-                    '&:last-child': {
+                    '&:last-of-child': {
                       paddingRight: 0,
                     },
                   },

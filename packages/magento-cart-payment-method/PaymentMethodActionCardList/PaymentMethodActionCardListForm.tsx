@@ -1,10 +1,14 @@
 import { Image } from '@graphcommerce/image'
-import { ActionCard, Button, Form, FormDiv, useIconSvgSize } from '@graphcommerce/next-ui'
 import {
+  ActionCard,
+  Button,
+  Form,
+  FormDiv,
+  useIconSvgSize,
   ActionCardItemBase,
   ActionCardItemRenderProps,
   ActionCardListForm,
-} from '@graphcommerce/next-ui/ActionCard/ActionCardListForm'
+} from '@graphcommerce/next-ui'
 import {
   useForm,
   useFormCompose,

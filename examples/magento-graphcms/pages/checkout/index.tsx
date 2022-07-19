@@ -106,9 +106,9 @@ function ShippingPage() {
                   </>
                 )}
 
-                <ShippingMethodForm step={4} sx={(theme) => ({ mt: theme.spacings.lg })} />
-
-                <PickupLocationSelector step={5} />
+                <ShippingMethodForm step={4} sx={(theme) => ({ mt: theme.spacings.lg })}>
+                  <PickupLocationSelector step={5} />
+                </ShippingMethodForm>
 
                 <ComposedSubmit
                   onSubmitSuccessful={() => router.push('/checkout/payment')}

@@ -34,10 +34,11 @@ export function ActionCardListForm<T extends ActionCardItemBase>(
       control={control}
       name={name}
       rules={{ required, ...rules, validate: (v) => (v ? true : errorMessage) }}
-      render={({ field: { onChange, value }, fieldState, formState }) => (
+      render={({ field: { onChange, value, onBlur, ref }, fieldState, formState }) => (
         <ActionCardList
           required
           value={value}
+          ref={ref}
           onChange={(_, incomming) => onChange(incomming)}
           error={formState.isSubmitted && !!fieldState.error}
           errorMessage={fieldState.error?.message}
