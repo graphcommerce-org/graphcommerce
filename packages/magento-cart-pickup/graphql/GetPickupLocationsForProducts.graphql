@@ -1,0 +1,32 @@
+query GetPickupLocationsForProducts(
+  $searchTerm: String!
+  $radiusKm: Int = 100
+  $productInput: [ProductInfoInput!]!
+  $currentPage: Int = 1
+) {
+  pickupLocations(
+    area: { search_term: $searchTerm, radius: $radiusKm }
+    sort: { distance: ASC }
+    productsInfo: $productInput
+    pageSize: 20
+    currentPage: $currentPage
+  ) {
+    items {
+      city
+      pickup_location_code
+      contact_name
+      country_id
+      description
+      email
+      fax
+      latitude
+      longitude
+      name
+      phone
+      postcode
+      region
+      region_id
+      street
+    }
+  }
+}

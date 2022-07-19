@@ -1,77 +1,58 @@
-import { useMutation } from '@graphcommerce/graphql'
+import { useQuery } from '@graphcommerce/graphql'
 import {
   ApolloCartErrorAlert,
   useCartQuery,
-  useMergeCustomerCart,
+  useFormGqlMutationCart,
 } from '@graphcommerce/magento-cart'
+import { IsEmailAvailableDocument } from '@graphcommerce/magento-customer'
+import { extendableComponent, FormRow } from '@graphcommerce/next-ui'
 import {
-  SignInFormInline,
-  SignUpFormInline,
-  useFormIsEmailAvailable,
-} from '@graphcommerce/magento-customer'
-import { AnimatedRow, extendableComponent, FormDiv, FormRow } from '@graphcommerce/next-ui'
-import { emailPattern, useFormCompose, UseFormComposeOptions } from '@graphcommerce/react-hook-form'
+  emailPattern,
+  useFormAutoSubmit,
+  useFormCompose,
+  UseFormComposeOptions,
+} from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
-import { CircularProgress, TextField, Typography, Alert, Button } from '@mui/material'
-import { AnimatePresence } from 'framer-motion'
+import { TextField, Typography, Button, NoSsr, SxProps, Box, Theme } from '@mui/material'
 import PageLink from 'next/link'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { CartEmailDocument } from './CartEmail.gql'
 import { SetGuestEmailOnCartDocument } from './SetGuestEmailOnCart.gql'
 
 export type EmailFormProps = Pick<UseFormComposeOptions, 'step'> & {
   children?: React.ReactNode
+  sx?: SxProps<Theme>
 }
 
 const name = 'EmailForm' as const
 const parts = ['root', 'formRow'] as const
 const { classes } = extendableComponent(name, parts)
 
-export function EmailForm(props: EmailFormProps) {
-  const { step, children } = props
+export const EmailForm = React.memo<EmailFormProps>((props) => {
+  const { step, sx } = props
 
-  const [setGuestEmailOnCart] = useMutation(SetGuestEmailOnCartDocument)
-  const { data: cartData } = useCartQuery(CartEmailDocument)
+  const cartEmail = useCartQuery(CartEmailDocument, { hydration: true })
 
-  const { mode, form, submit } = useFormIsEmailAvailable({ email: cartData?.cart?.email })
+  const email = cartEmail.data?.cart?.email ?? ''
 
-  const { formState, muiRegister, required, watch, error, getValues } = form
+  const form = useFormGqlMutationCart(SetGuestEmailOnCartDocument, {
+    mode: 'onChange',
+    defaultValues: { email },
+  })
+
+  const isEmailAvailable = useQuery(IsEmailAvailableDocument, {
+    variables: { email },
+    skip: !email,
+  })
+
+  const { formState, muiRegister, required, error, handleSubmit } = form
+  const submit = handleSubmit(() => {})
 
   useFormCompose({ form, step, submit, key: 'EmailForm' })
-
-  useEffect(() => {
-    if (!cartData?.cart?.id) return
-
-    // Customer isn't logged in, but we do have a valid email
-    if (mode === 'signin' || mode === 'signup') {
-      const [email] = getValues(['email'])
-
-      if (cartData.cart.email === email) return
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      setGuestEmailOnCart({ variables: { email, cartId: cartData.cart.id } })
-    }
-  }, [mode, getValues, cartData?.cart?.id, setGuestEmailOnCart, cartData?.cart?.email])
-
-  let endAdornment: React.ReactNode = null
-
-  if (mode === 'signin') {
-    endAdornment = (
-      <PageLink href='/account/signin' passHref>
-        <Button color='secondary' style={{ whiteSpace: 'nowrap' }}>
-          <Trans id='Sign in' />
-        </Button>
-      </PageLink>
-    )
-  }
-  if (formState.isSubmitting) endAdornment = <CircularProgress />
+  useFormAutoSubmit({ form, submit })
 
   return (
-    <form noValidate onSubmit={submit}>
-      <FormRow>
-        <Typography variant='h5' component='h2' gutterBottom>
-          <Trans id='Personal details' />
-        </Typography>
-      </FormRow>
+    <Box component='form' noValidate onSubmit={submit} sx={sx}>
       <FormRow className={classes.formRow} sx={{ py: 0 }}>
         <TextField
           variant='outlined'
@@ -80,18 +61,28 @@ export function EmailForm(props: EmailFormProps) {
           helperText={formState.isSubmitted && formState.errors.email?.message}
           label={<Trans id='Email' />}
           required={required.email}
+          disabled={cartEmail.loading}
           {...muiRegister('email', {
             required: required.email,
             pattern: { value: emailPattern, message: '' },
           })}
           InputProps={{
             autoComplete: 'email',
-            endAdornment,
-            readOnly: mode === 'signedin' || mode === 'session-expired',
+            endAdornment: (
+              <NoSsr>
+                {isEmailAvailable.data?.isEmailAvailable && (
+                  <PageLink href='/account/signin' passHref>
+                    <Button color='secondary' style={{ whiteSpace: 'nowrap' }}>
+                      <Trans id='Sign in' />
+                    </Button>
+                  </PageLink>
+                )}
+              </NoSsr>
+            ),
           }}
         />
       </FormRow>
       <ApolloCartErrorAlert error={error} />
-    </form>
+    </Box>
   )
-}
+})

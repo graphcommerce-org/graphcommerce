@@ -11,4 +11,3 @@ export * from './createCacheReviver'
 
 export * from './apollo'
 export * from './types'
-export * from './apollo-hooks/useClientQuery'

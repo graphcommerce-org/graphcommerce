@@ -1,5 +1,6 @@
-mutation SetBillingAddressOnCart(
+mutation SetBillingAddress(
   $cartId: String!
+  $company: String
   $firstname: String!
   $lastname: String!
   $postcode: String!
@@ -11,12 +12,14 @@ mutation SetBillingAddressOnCart(
   $houseNumber: String!
   $addition: String
   $telephone: String = "000 - 000 0000"
+  $saveInAddressBook: Boolean!
 ) {
   setBillingAddressOnCart(
     input: {
       cart_id: $cartId
       billing_address: {
         address: {
+          company: $company
           firstname: $firstname
           lastname: $lastname
           postcode: $postcode
@@ -26,14 +29,16 @@ mutation SetBillingAddressOnCart(
           region_id: $regionId
           street: [$street, $houseNumber, $addition]
           telephone: $telephone
-          save_in_address_book: true
+          save_in_address_book: $saveInAddressBook
         }
         same_as_shipping: false
       }
     }
   ) {
     cart {
-      ...CartBillingAddress
+      id
+      __typename
+      ...BillingAddress
     }
   }
 }

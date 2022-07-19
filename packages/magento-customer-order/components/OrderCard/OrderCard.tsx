@@ -45,7 +45,7 @@ const OrderRow = styled(Box, { name: componentName, target: classes.orderRow })(
 export function OrderCard(props: OrderCardProps) {
   const { number, shipments, total, items, order_date, images, loading, sx = [] } = props
 
-  const dateFormatter = useDateTimeFormat({ year: 'numeric', month: 'long', day: 'numeric' })
+  const dateFormatter = useDateTimeFormat({ dateStyle: 'long' })
 
   const totalItems = items?.length ?? 0
   const maxItemsInRow = 5

@@ -1,4 +1,4 @@
-import { useFormAutoSubmit, useFormGqlQuery, useFormPersist } from '@graphcommerce/react-hook-form'
+import { useFormAutoSubmit, useFormGqlQuery } from '@graphcommerce/react-hook-form'
 import { useEffect, useState } from 'react'
 import { CustomerDocument } from './Customer.gql'
 import { IsEmailAvailableDocument } from './IsEmailAvailable.gql'

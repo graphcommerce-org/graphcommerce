@@ -1,7 +1,15 @@
-import { useQuery, TypedDocumentNode, QueryHookOptions } from '@graphcommerce/graphql'
+import { useQuery, TypedDocumentNode, QueryHookOptions, ApolloError } from '@graphcommerce/graphql'
+import { GraphQLError } from 'graphql'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
 import { useCurrentCartId } from './useCurrentCartId'
+
+const noCartError = new ApolloError({
+  graphQLErrors: [
+    new GraphQLError('No cart found', {
+      extensions: { category: 'graphql-no-such-entity' },
+    }),
+  ],
+})
 
 /**
  * Requires the query to have a `$cartId: String!` argument. It will automatically inject the
@@ -15,11 +23,15 @@ import { useCurrentCartId } from './useCurrentCartId'
  */
 export function useCartQuery<Q, V extends { cartId: string; [index: string]: unknown }>(
   document: TypedDocumentNode<Q, V>,
-  options: QueryHookOptions<Q, Omit<V, 'cartId'>> & { allowUrl?: boolean } = {},
+  options: QueryHookOptions<Q, Omit<V, 'cartId'>> & {
+    allowUrl?: boolean
+    hydration?: boolean
+  } = {},
 ) {
-  const { allowUrl = true, ...queryOptions } = options
+  const { allowUrl = true, hydration, ...queryOptions } = options
   const router = useRouter()
-  const { currentCartId } = useCurrentCartId()
+  const { currentCartId, called } = useCurrentCartId({ hydration })
+
   const urlCartId = router.query.cart_id
   const usingUrl = allowUrl && typeof urlCartId === 'string'
   const cartId = usingUrl ? urlCartId : currentCartId
@@ -32,7 +44,13 @@ export function useCartQuery<Q, V extends { cartId: string; [index: string]: unk
 
   queryOptions.variables = { cartId, ...options?.variables } as V
   queryOptions.skip = queryOptions?.skip || !cartId
-  queryOptions.ssr = false
+  queryOptions.ssr = !!hydration
 
-  return useQuery(document, queryOptions)
+  const result = useQuery(document, queryOptions)
+
+  return {
+    ...useQuery(document, queryOptions),
+    ...result,
+    error: called && !currentCartId ? noCartError : result.error,
+  }
 }

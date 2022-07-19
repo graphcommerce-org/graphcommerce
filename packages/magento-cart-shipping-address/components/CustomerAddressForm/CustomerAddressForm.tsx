@@ -5,14 +5,14 @@ import {
   useFormGqlMutationCart,
 } from '@graphcommerce/magento-cart'
 import { CustomerDocument } from '@graphcommerce/magento-customer'
-import { Form } from '@graphcommerce/next-ui'
-import { ActionCardListForm } from '@graphcommerce/next-ui/ActionCard/ActionCardListForm'
+import { Form, ActionCardListForm } from '@graphcommerce/next-ui'
 import {
   useFormPersist,
   useFormCompose,
   UseFormComposeOptions,
   useFormAutoSubmit,
 } from '@graphcommerce/react-hook-form'
+import { Box, SxProps, Theme } from '@mui/material'
 import React, { useEffect } from 'react'
 import { isSameAddress } from '../../utils/isSameAddress'
 import { GetAddressesDocument } from '../ShippingAddressForm/GetAddresses.gql'
@@ -20,12 +20,17 @@ import { CustomerAddressActionCard } from './CustomerAddressActionCard'
 import { SetCustomerShippingAddressOnCartDocument } from './SetCustomerShippingAddressOnCart.gql'
 import { SetCustomerShippingBillingAddressOnCartDocument } from './SetCustomerShippingBillingAddressOnCart.gql'
 
-type CustomerAddressListProps = Pick<UseFormComposeOptions, 'step'> & { children?: React.ReactNode }
+type CustomerAddressListProps = Pick<UseFormComposeOptions, 'step'> & {
+  children?: React.ReactNode
+  sx?: SxProps<Theme>
+}
 
 export function CustomerAddressForm(props: CustomerAddressListProps) {
+  const { step, children, sx } = props
+
   const customerAddresses = useQuery(CustomerDocument)
   const addresses = customerAddresses.data?.customer?.addresses
-  const { step, children } = props
+
   const { data: cartQuery } = useCartQuery(GetAddressesDocument)
 
   const shippingAddress = cartQuery?.cart?.shipping_addresses?.[0]
@@ -90,7 +95,7 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
 
   return (
     <>
-      <Form onSubmit={submit} noValidate>
+      <Box component='form' onSubmit={submit} noValidate sx={sx}>
         <ActionCardListForm
           control={control}
           name='customerAddressId'
@@ -105,7 +110,7 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
           render={CustomerAddressActionCard}
         />
         <ApolloCartErrorAlert error={error} />
-      </Form>
+      </Box>
       {customerAddressId === -1 && children}
     </>
   )

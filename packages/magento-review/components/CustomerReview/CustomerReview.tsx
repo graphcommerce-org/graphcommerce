@@ -24,7 +24,7 @@ export function CustomerReview(props: CustomerReviewProps) {
   const valuePerStar = maxAverageRating / totalStars
   const totalFilledStars = (average_rating / maxAverageRating / valuePerStar) * 100
 
-  const dateFormatter = useDateTimeFormat({ year: 'numeric', month: 'long', day: 'numeric' })
+  const dateFormatter = useDateTimeFormat({ dateStyle: 'long' })
 
   return (
     <Box
