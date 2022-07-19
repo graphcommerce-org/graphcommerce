@@ -1,5 +1,21 @@
 # Change Log
 
+## 3.4.0
+
+### Minor Changes
+
+- [#1548](https://github.com/graphcommerce-org/graphcommerce/pull/1548) [`4b8c0a3ef`](https://github.com/graphcommerce-org/graphcommerce/commit/4b8c0a3efa163bc7e4e590f1c251a2a78e000a81) Thanks [@mikekeehnen](https://github.com/mikekeehnen)! - Fix for empty shipping methods in checkout
+
+### Patch Changes
+
+- Updated dependencies [[`18054c441`](https://github.com/graphcommerce-org/graphcommerce/commit/18054c441962ba750bed3acc39ab46c8d3a341ce), [`c5c539c44`](https://github.com/graphcommerce-org/graphcommerce/commit/c5c539c44eeac524cd62ce649e132d2e00333794), [`6f69bc54c`](https://github.com/graphcommerce-org/graphcommerce/commit/6f69bc54c6e0224452817c532ae58d9c332b61ea), [`21886d6fa`](https://github.com/graphcommerce-org/graphcommerce/commit/21886d6fa64a48d9e932bfaf8d138c9b13c36e43), [`b4936e961`](https://github.com/graphcommerce-org/graphcommerce/commit/b4936e96175fe80717895822e245274db05638bd)]:
+  - @graphcommerce/graphql@3.4.1
+  - @graphcommerce/next-ui@4.13.1
+  - @graphcommerce/framer-scroller@2.1.23
+  - @graphcommerce/magento-cart@4.5.2
+  - @graphcommerce/magento-cart-shipping-address@3.2.7
+  - @graphcommerce/magento-store@4.2.17
+
 ## 3.3.1
 
 ### Patch Changes

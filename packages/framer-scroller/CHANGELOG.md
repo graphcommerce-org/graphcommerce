@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.1.23
+
+### Patch Changes
+
+- [#1550](https://github.com/graphcommerce-org/graphcommerce/pull/1550) [`b4936e961`](https://github.com/graphcommerce-org/graphcommerce/commit/b4936e96175fe80717895822e245274db05638bd) Thanks [@paales](https://github.com/paales)! - Upgraded Framer Motion to latest version, which reduces initial bundle size load
+
+- Updated dependencies [[`18054c441`](https://github.com/graphcommerce-org/graphcommerce/commit/18054c441962ba750bed3acc39ab46c8d3a341ce), [`c5c539c44`](https://github.com/graphcommerce-org/graphcommerce/commit/c5c539c44eeac524cd62ce649e132d2e00333794), [`6f69bc54c`](https://github.com/graphcommerce-org/graphcommerce/commit/6f69bc54c6e0224452817c532ae58d9c332b61ea), [`21886d6fa`](https://github.com/graphcommerce-org/graphcommerce/commit/21886d6fa64a48d9e932bfaf8d138c9b13c36e43)]:
+  - @graphcommerce/next-ui@4.13.1
+
 ## 2.1.22
 
 ### Patch Changes
