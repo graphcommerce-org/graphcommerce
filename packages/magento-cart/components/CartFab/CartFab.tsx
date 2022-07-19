@@ -74,7 +74,7 @@ function CartFabContent(props: CartFabContentProps) {
             color='primary'
             variant='dot'
             overlap='circular'
-            hidden={total_quantity === 0}
+            badgeContent={total_quantity}
           >
             {cartIcon}
           </DesktopHeaderBadge>
