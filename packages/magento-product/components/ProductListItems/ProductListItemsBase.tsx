@@ -1,5 +1,6 @@
 import { RenderType, responsiveVal } from '@graphcommerce/next-ui'
 import { Box, BoxProps } from '@mui/material'
+import { Suspense } from 'react'
 import { ProductListItemFragment } from '../../Api/ProductListItem.gql'
 import { ProductListItemProps } from '../ProductListItem/ProductListItem'
 import { ProductListItemRenderer } from './renderer'
@@ -38,19 +39,20 @@ export function ProductListItemsBase(props: ProductItemsGridProps) {
     >
       {items?.map((item, idx) =>
         item ? (
-          <RenderType
-            key={item.uid ?? ''}
-            renderer={renderers}
-            {...item}
-            loading={loadingEager > idx ? 'eager' : 'lazy'}
-            sizes={
-              size === 'small'
-                ? { 0: '100vw', 354: '50vw', 675: '30vw', 1255: '23vw', 1500: '337px' }
-                : { 0: '100vw', 367: '48vw', 994: '30vw', 1590: '23vw', 1920: '443px' }
-            }
-            titleComponent={titleComponent}
-            noReport
-          />
+          <Suspense key={item.uid ?? ''}>
+            <RenderType
+              renderer={renderers}
+              {...item}
+              loading={loadingEager > idx ? 'eager' : 'lazy'}
+              sizes={
+                size === 'small'
+                  ? { 0: '100vw', 354: '50vw', 675: '30vw', 1255: '23vw', 1500: '337px' }
+                  : { 0: '100vw', 367: '48vw', 994: '30vw', 1590: '23vw', 1920: '443px' }
+              }
+              titleComponent={titleComponent}
+              noReport
+            />
+          </Suspense>
         ) : null,
       )}
     </Box>
