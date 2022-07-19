@@ -47,7 +47,7 @@
     "@graphcommerce/magento-cart-email": "3.0.37",
     "@graphcommerce/magento-cart-items": "3.0.38",
     "@graphcommerce/magento-cart-payment-method": "3.4.2",
-    "@graphcommerce/magento-cart-pickup": "3.0.35",
+    "@graphcommerce/magento-cart-pickup": "3.0.36",
     "@graphcommerce/magento-cart-shipping-address": "3.2.7",
     "@graphcommerce/magento-cart-shipping-method": "3.4.0",
     "@graphcommerce/magento-category": "4.1.23",
