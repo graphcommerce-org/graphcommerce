@@ -1,7 +1,9 @@
 import { SxProps, ButtonBase, Box, Theme, ButtonProps, BoxProps } from '@mui/material'
 import React, { FormEvent } from 'react'
 import { extendableComponent, responsiveVal } from '../Styles'
-import { Variants } from './ActionCardList'
+
+type Variants = 'outlined' | 'default'
+type Size = 'large' | 'medium' | 'small'
 
 function isButtonProps(props: ButtonProps<'div'> | BoxProps<'div'>): props is ButtonProps<'div'> {
   return props.onClick !== undefined
@@ -12,7 +14,7 @@ const RenderComponent = (props: ButtonProps<'div'> | BoxProps<'div'>) =>
 
 export type ActionCardProps = {
   variant?: Variants
-  size?: 'large' | 'medium' | 'small'
+  size?: Size
   sx?: SxProps<Theme>
   title?: string | React.ReactNode
   image?: React.ReactNode
@@ -43,8 +45,8 @@ const parts = [
 const name = 'ActionCard'
 
 type StateProps = {
-  variant?: 'outlined' | 'default'
-  size?: 'large' | 'medium' | 'small'
+  variant?: Variants
+  size?: Size
   selected: boolean
   hidden: boolean
   disabled: boolean

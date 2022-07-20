@@ -1,8 +1,6 @@
 import { Alert, Box, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { isFragment } from 'react-is'
-import { AnimatedRow } from '../AnimatedRow/AnimatedRow'
-import { Size } from '../Layout/components/LayoutHeadertypes'
 import { extendableComponent } from '../Styles/extendableComponent'
 import { ActionCardProps } from './ActionCard'
 
@@ -22,8 +20,6 @@ type Select = {
 
 const parts = ['root'] as const
 const name = 'ActionCardList'
-
-export type Variants = 'outlined' | 'default'
 
 type StateProps = {
   size?: 'large' | 'medium' | 'small'
