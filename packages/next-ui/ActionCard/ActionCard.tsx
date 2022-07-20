@@ -90,15 +90,19 @@ export function ActionCard(props: ActionCardProps) {
       sx={[
         (theme) => ({
           '&.sizeSmall': {
+            padding: `5px 10px`,
             display: 'flex',
-            borderRadius: 2,
+            typography: 'body2',
           },
 
           '&.sizeMedium': {
-            borderRadius: 2,
+            padding: `10px 12px`,
+            typography: 'body2',
           },
 
           '&.sizeLarge': {
+            padding: `${theme.spacings.xxs} ${theme.spacings.xs}`,
+
             width: '100%',
             '&:not(:last-child)': {
               borderBottomColor: 'transparent',
@@ -106,7 +110,6 @@ export function ActionCard(props: ActionCardProps) {
           },
 
           '&.variantDefault': {
-            padding: `${theme.spacings.xxs} ${theme.spacings.xs}`,
             borderBottom: `2px solid ${theme.palette.divider}`,
 
             '&:not(:last-child)': {
@@ -119,13 +122,26 @@ export function ActionCard(props: ActionCardProps) {
           },
 
           '&.variantOutlined': {
-            padding: `${theme.spacings.xxs} ${theme.spacings.xs}`,
             backgroundColor: theme.palette.background.paper,
-            border: `${responsiveVal(2, 3)} solid ${theme.palette.divider}`,
+            border: `1px solid ${theme.palette.divider}`,
             '&.selected': {
-              border: `${responsiveVal(2, 3)} solid ${theme.palette.secondary.main} !important`,
-              padding: `${theme.spacings.xxs} ${theme.spacings.xs}`,
+              border: `1px solid ${theme.palette.secondary.main} !important`,
             },
+          },
+
+          '&.variantOutlined.sizeLarge': {
+            '&:first-of-type': {
+              borderTopLeftRadius: theme.shape.borderRadius * 1.5,
+              borderTopRightRadius: theme.shape.borderRadius * 1.5,
+            },
+            '&:last-of-type': {
+              borderBottomLeftRadius: theme.shape.borderRadius * 1.5,
+              borderBottomRightRadius: theme.shape.borderRadius * 1.5,
+            },
+          },
+
+          '&.variantOutlined:not(.sizeLarge)': {
+            borderRadius: 1,
           },
         }),
         hidden && {
@@ -173,7 +189,15 @@ export function ActionCard(props: ActionCardProps) {
             }}
           >
             {title && (
-              <Box className={classes.title} sx={{ typography: 'h6', number: 2 }}>
+              <Box
+                className={classes.title}
+                sx={{
+                  typography: 'subtitle2',
+                  '&.sizeMedium': { typographty: 'subtitle1' },
+                  '&.sizeLarge': { typography: 'h6' },
+                  number: 2,
+                }}
+              >
                 {title}
               </Box>
             )}
@@ -203,7 +227,15 @@ export function ActionCard(props: ActionCardProps) {
           )}
 
           {price && !disabled && (
-            <Box className={classes.price} sx={{ textAlign: 'right', typography: 'h5' }}>
+            <Box
+              className={classes.price}
+              sx={{
+                textAlign: 'right',
+                typography: 'body1',
+                '&.sizeMedium': { typographty: 'subtitle1' },
+                '&.sizeLarge': { typography: 'h6' },
+              }}
+            >
               {price}
             </Box>
           )}

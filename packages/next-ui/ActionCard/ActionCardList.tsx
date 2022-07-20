@@ -136,7 +136,7 @@ export const ActionCardList = React.forwardRef<any, ActionCardListProps>((props,
               paddingTop: theme.spacings.xxs,
             },
             '& > div:last-of-type.ActionCard-root': {
-              borderBottom: 2,
+              borderBottom: 1,
               borderBottomColor: 'error.main',
               paddingBottom: theme.spacings.xxs,
             },
