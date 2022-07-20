@@ -3,7 +3,7 @@ import {
   getProductStaticPaths,
   jsonLdProduct,
   jsonLdProductOffer,
-  ProductAddToCartContext,
+  ProductAddToCartForm,
   productPageCategory,
   ProductPageDescription,
   ProductPageMeta,
@@ -66,9 +66,8 @@ function ProductConfigurable(props: Props) {
           ...jsonLdProductReview(product),
         }}
       />
-      <ProductAddToCartContext sku={product.sku} urlKey={product.url_key} typeProduct={typeProduct}>
-        <ProductPageMeta {...product} />
-
+      <ProductPageMeta {...product} />
+      <ProductAddToCartForm sku={product.sku} urlKey={product.url_key} typeProduct={typeProduct}>
         <ConfigurableProductPageGallery {...product}>
           <div>
             <Typography component='span' variant='body2' color='text.disabled'>
@@ -85,6 +84,7 @@ function ProductConfigurable(props: Props) {
           <ProductShortDescription short_description={product?.short_description} />
 
           <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
+
           <ConfigurableProductAddToCart
             optionEndLabels={{
               size: (
@@ -107,25 +107,25 @@ function ProductConfigurable(props: Props) {
           </ConfigurableProductAddToCart>
           <Usps usps={sidebarUsps} size='small' />
         </ConfigurableProductPageGallery>
+      </ProductAddToCartForm>
 
-        <ProductPageDescription {...product} right={<Usps usps={usps} />} fontSize='responsive' />
+      <ProductPageDescription {...product} right={<Usps usps={usps} />} fontSize='responsive' />
 
-        {pages?.[0] && (
-          <RowRenderer
-            content={pages?.[0].content}
-            renderer={{
-              RowProduct: (rowProps) => (
-                <RowProduct
-                  {...rowProps}
-                  {...product}
-                  items={products?.items}
-                  aggregations={aggregations}
-                />
-              ),
-            }}
-          />
-        )}
-      </ProductAddToCartContext>
+      {pages?.[0] && (
+        <RowRenderer
+          content={pages?.[0].content}
+          renderer={{
+            RowProduct: (rowProps) => (
+              <RowProduct
+                {...rowProps}
+                {...product}
+                items={products?.items}
+                aggregations={aggregations}
+              />
+            ),
+          }}
+        />
+      )}
     </>
   )
 }

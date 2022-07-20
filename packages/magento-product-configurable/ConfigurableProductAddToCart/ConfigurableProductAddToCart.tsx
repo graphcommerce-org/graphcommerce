@@ -1,20 +1,12 @@
-import { PriceRange } from '@graphcommerce/graphql-mesh'
-import { ApolloCartErrorAlert } from '@graphcommerce/magento-cart'
-import { useFormProductAddToCart } from '@graphcommerce/magento-product'
-import { Money } from '@graphcommerce/magento-store'
 import {
-  AnimatedRow,
-  Button,
-  extendableComponent,
-  iconChevronRight,
-  MessageSnackbar,
-  IconSvg,
-  TextInputNumber,
-} from '@graphcommerce/next-ui'
+  useFormProductAddToCart,
+  AddToCartSnackbar,
+  AddToCartQuantity,
+} from '@graphcommerce/magento-product'
+import { Money } from '@graphcommerce/magento-store'
+import { Button, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Divider, Alert, Box, SxProps, Theme, Typography } from '@mui/material'
-import { AnimatePresence } from 'framer-motion'
-import PageLink from 'next/link'
+import { Divider, Box, SxProps, Theme, Typography } from '@mui/material'
 import React from 'react'
 import { ConfigurableOptionsInput } from '../ConfigurableOptions/ConfigurableOptionsInput'
 import { useConfigurableTypeProduct } from '../hooks'
@@ -34,35 +26,25 @@ export function ConfigurableProductAddToCart(props: ConfigurableProductAddToCart
   const { children, optionEndLabels, additionalButtons, sx = [] } = props
 
   const form = useFormProductAddToCart()
-  const { formState, error, data, muiRegister, required } = form
+  const { formState } = form
   const { uid, name, configurable_product_options_selection, price_range } =
     useConfigurableTypeProduct()
+
   const regular_price =
-    configurable_product_options_selection?.variant?.price_range.minimum_price.regular_price ??
-    price_range.minimum_price.regular_price
+    configurable_product_options_selection?.variant?.price_range.minimum_price.final_price ??
+    price_range.minimum_price.final_price
 
   return (
     <Box className={classes.form} sx={[{ width: '100%' }, ...(Array.isArray(sx) ? sx : [sx])]}>
-      <Divider className={classes.divider} sx={(theme) => ({ margin: `${theme.spacings.sm} 0` })} />
+      <Divider className={classes.divider} sx={(theme) => ({ my: theme.spacings.sm })} />
 
       {/* Add to cart component */}
       <ConfigurableOptionsInput optionEndLabels={optionEndLabels} />
 
       {/* Quantity component */}
-      <TextInputNumber
-        variant='outlined'
-        error={formState.isSubmitted && !!formState.errors.quantity}
-        required={required.quantity}
-        inputProps={{ min: 1 }}
-        {...muiRegister('quantity', { required: required.quantity })}
-        helperText={formState.isSubmitted && formState.errors.quantity?.message}
-        defaultValue={1}
-        size='small'
-        className={classes.quantity}
-        sx={(theme) => ({ marginTop: theme.spacings.sm })}
-      />
+      <AddToCartQuantity sx={(theme) => ({ mt: theme.spacings.sm })} />
 
-      <Divider className={classes.divider} sx={(theme) => ({ margin: `${theme.spacings.sm} 0` })} />
+      <Divider className={classes.divider} sx={(theme) => ({ mt: theme.spacings.sm })} />
 
       {/* Final price component */}
       <Typography
@@ -101,44 +83,7 @@ export function ConfigurableProductAddToCart(props: ConfigurableProductAddToCart
         {additionalButtons}
       </Box>
 
-      <ApolloCartErrorAlert error={error} />
-
-      <AnimatePresence initial={false}>
-        {data?.addProductsToCart?.user_errors.map((e) => (
-          <AnimatedRow key={e?.code}>
-            <Alert severity='error'>{e?.message}</Alert>
-          </AnimatedRow>
-        ))}
-      </AnimatePresence>
-
-      <MessageSnackbar
-        open={
-          !formState.isSubmitting &&
-          formState.isSubmitSuccessful &&
-          !error?.message &&
-          !data?.addProductsToCart?.user_errors?.length
-        }
-        variant='pill'
-        action={
-          <PageLink href='/cart' passHref>
-            <Button
-              id='view-shopping-cart-button'
-              size='medium'
-              variant='pill'
-              color='secondary'
-              endIcon={<IconSvg src={iconChevronRight} />}
-            >
-              <Trans id='View shopping cart' />
-            </Button>
-          </PageLink>
-        }
-      >
-        <Trans
-          id='<0>{name}</0> has been added to your shopping cart!'
-          components={{ 0: <strong /> }}
-          values={{ name }}
-        />
-      </MessageSnackbar>
+      <AddToCartSnackbar name={name} />
     </Box>
   )
 }

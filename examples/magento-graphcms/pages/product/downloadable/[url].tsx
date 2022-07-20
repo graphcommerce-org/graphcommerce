@@ -5,6 +5,7 @@ import {
   jsonLdProductOffer,
   ProductAddToCart,
   productPageCategory,
+  ProductAddToCartForm,
   ProductPageDescription,
   ProductPageGallery,
   ProductPageMeta,
@@ -65,34 +66,35 @@ function ProductDownloadable(props: Props) {
       />
 
       <ProductPageMeta {...product} />
-      <ProductPageGallery {...product}>
-        <Typography variant='h3' component='div'>
-          {product.name}
-        </Typography>
+      <ProductAddToCartForm sku={product.sku} urlKey={product.url_key}>
+        <ProductPageGallery {...product}>
+          <Typography variant='h3' component='div'>
+            {product.name}
+          </Typography>
 
-        <ProductShortDescription short_description={product?.short_description} />
+          <ProductShortDescription short_description={product?.short_description} />
 
-        <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
-        <ProductAddToCart
-          variables={{ sku: product.sku ?? '', quantity: 1 }}
-          name={product.name ?? ''}
-          price={product.price_range.minimum_price.final_price}
-          additionalButtons={<ProductWishlistChipDetail {...product} />}
-        >
-          <ProductSidebarDelivery />
-        </ProductAddToCart>
-        {typeProduct.downloadable_product_links?.map((option) => (
-          <div key={option?.title}>
-            {option?.title} + {option?.price}
-          </div>
-        ))}
-        {typeProduct.downloadable_product_samples?.map((sample) => (
-          <div key={sample?.title}>
-            {sample?.title} {sample?.sample_url} {sample?.sort_order}
-          </div>
-        ))}
-        <Usps usps={sidebarUsps} size='small' />
-      </ProductPageGallery>
+          <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
+          <ProductAddToCart
+            name={product.name ?? ''}
+            price={product.price_range.minimum_price.final_price}
+            additionalButtons={<ProductWishlistChipDetail {...product} />}
+          >
+            <ProductSidebarDelivery />
+          </ProductAddToCart>
+          {typeProduct.downloadable_product_links?.map((option) => (
+            <div key={option?.title}>
+              {option?.title} + {option?.price}
+            </div>
+          ))}
+          {typeProduct.downloadable_product_samples?.map((sample) => (
+            <div key={sample?.title}>
+              {sample?.title} {sample?.sample_url} {sample?.sort_order}
+            </div>
+          ))}
+          <Usps usps={sidebarUsps} size='small' />
+        </ProductPageGallery>
+      </ProductAddToCartForm>
       <ProductPageDescription {...product} right={<Usps usps={usps} />} fontSize='responsive' />
 
       {pages?.[0] && (
@@ -148,7 +150,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const product = findByTypename((await productPage).data.products?.items, 'DownloadableProduct')
   const typeProduct = findByTypename(
     (await typeProductPage).data.typeProducts?.items,
-    'GroupedProduct',
+    'DownloadableProduct',
   )
   if (!product || !typeProduct) return { notFound: true }
 

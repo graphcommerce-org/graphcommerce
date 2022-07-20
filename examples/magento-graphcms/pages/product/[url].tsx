@@ -7,6 +7,7 @@ import {
   productPageCategory,
   ProductPageDescription,
   ProductPageGallery,
+  ProductAddToCartForm,
   ProductPageMeta,
   ProductSidebarDelivery,
   ProductWeight,
@@ -59,29 +60,30 @@ function ProductSimple(props: Props) {
       />
 
       <ProductPageMeta {...product} />
-      <ProductPageGallery {...product}>
-        <Typography variant='h2' component='div'>
-          {product.name}
-        </Typography>
+      <ProductAddToCartForm sku={product.sku} urlKey={product.url_key}>
+        <ProductPageGallery {...product}>
+          <Typography variant='h2' component='div'>
+            {product.name}
+          </Typography>
 
-        <Typography
-          variant='body1'
-          component='div'
-          dangerouslySetInnerHTML={{ __html: product.short_description?.html ?? '' }}
-        />
+          <Typography
+            variant='body1'
+            component='div'
+            dangerouslySetInnerHTML={{ __html: product.short_description?.html ?? '' }}
+          />
 
-        <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
-        <ProductAddToCart
-          variables={{ sku: product.sku ?? '', quantity: 1 }}
-          name={product.name ?? ''}
-          price={product.price_range.minimum_price.final_price}
-          additionalButtons={<ProductWishlistChipDetail {...product} />}
-        >
-          <ProductSidebarDelivery />
-        </ProductAddToCart>
-        <ProductWeight weight={product.weight} />
-        <Usps usps={sidebarUsps} size='small' />
-      </ProductPageGallery>
+          <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
+          <ProductAddToCart
+            name={product.name ?? ''}
+            price={product.price_range.minimum_price.final_price}
+            additionalButtons={<ProductWishlistChipDetail {...product} />}
+          >
+            <ProductSidebarDelivery />
+          </ProductAddToCart>
+          <ProductWeight weight={product.weight} />
+          <Usps usps={sidebarUsps} size='small' />
+        </ProductPageGallery>
+      </ProductAddToCartForm>
 
       <ProductPageDescription {...product} right={<Usps usps={usps} />} fontSize='responsive' />
 
