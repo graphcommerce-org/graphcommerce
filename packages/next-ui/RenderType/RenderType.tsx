@@ -2,7 +2,7 @@ import React from 'react'
 /** To make renderers customizable we need to be able to provide renders for all types */
 type TypeObject = { __typename: string; [index: string]: unknown }
 
-export type FilterTypeByTypename<A extends TypeObject, Typename extends string> = A extends unknown
+type FilterTypeByTypename<A extends TypeObject, Typename extends string> = A extends unknown
   ? A['__typename'] extends Typename
     ? A
     : never
