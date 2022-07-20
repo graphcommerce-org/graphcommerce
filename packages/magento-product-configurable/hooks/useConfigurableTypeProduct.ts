@@ -1,5 +1,5 @@
 import { useQuery } from '@graphcommerce/graphql'
-import { useFormProductAddToCart } from '@graphcommerce/magento-product/components'
+import { useFormProductAddToCart } from '@graphcommerce/magento-product'
 import { findByTypename } from '@graphcommerce/next-ui'
 import { ConfigurableProductConfigurationsFragment } from '../graphql/ConfigurableProductConfigurations.gql'
 import { GetConfigurableProductConfigurationsDocument } from '../graphql/GetConfigurableProductConfigurations.gql'

@@ -48,6 +48,23 @@ export function ProductAddToCartContext<TypeProduct extends Record<string, unkno
   )
 }
 
-export function useFormProductAddToCart<TypeProduct extends Record<string, unknown>>() {
-  return useContext(productAddToCartContext) as ProductAddToCartContextType<TypeProduct>
+export function useFormProductAddToCart<TypeProduct extends Record<string, unknown>>(
+  optional: true,
+): ProductAddToCartContextType<TypeProduct> | undefined
+export function useFormProductAddToCart<TypeProduct extends Record<string, unknown>>(
+  optional?: false,
+): ProductAddToCartContextType<TypeProduct>
+export function useFormProductAddToCart<TypeProduct extends Record<string, unknown>>(
+  optional = false,
+) {
+  const context = useContext(productAddToCartContext) as
+    | ProductAddToCartContextType<TypeProduct>
+    | undefined
+
+  if (!optional && typeof context === 'undefined') {
+    throw Error(
+      'useFormProductAddToCart must be used within a ProductAddToCartContext or provide the optional=true option',
+    )
+  }
+  return context
 }
