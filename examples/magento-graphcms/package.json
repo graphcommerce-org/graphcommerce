@@ -9,23 +9,21 @@
     "node": ">=14.18.3"
   },
   "scripts": {
-    "dev": "yarn concurrently -k -n codegen,next 'yarn codegen-base -w' 'yarn next dev'",
-    "codegen": "yarn mesh build && find . -type f -name '*.gql.ts' -delete && yarn codegen-base",
-    "build": "yarn codegen && yarn next build && yarn next-sitemap",
+    "dev": "concurrently -k -n codegen,next \"yarn:graphql-codegen -c ../../scripts/codegen.magento-graphcms.yml -w\" \"yarn:next dev\"",
+    "codegen": "mesh build && graphql-codegen -c ../../scripts/codegen.magento-graphcms.yml",
+    "build": "mesh build && graphql-codegen -c ../../scripts/codegen.magento-graphcms.yml && next build && next-sitemap",
     "start": "next start",
-    "tsc:lint": "yarn tsc --noEmit -p .",
-    "lingui": "NEXT_PUBLIC_LOCALE_STORES='{\"en\": \"en\", \"nl\": \"nl\", \"fr\": \"fr\", \"nl\": \"nl\", \"de\": \"de\", \"es\": \"es\", \"it\": \"it\"}' NODE_ENV=development lingui extract --clean",
-    "codegen-base": "yarn graphql-codegen -c ../../scripts/codegen.magento-graphcms.yml",
-    "postinstall": "concurrently 'yarn workspace @graphcommerce/next-config prepack' 'yarn workspace @graphcommerce/graphql-codegen-near-operation-file prepack' 'yarn workspace @graphcommerce/graphql-codegen-relay-optimizer-plugin prepack' 'yarn workspace @graphcommerce/cli prepack' 'cd ../.. && yarn patch-package'"
+    "tsc:lint": "tsc --noEmit -p .",
+    "lingui": "cross-env NEXT_PUBLIC_LOCALE_STORES='{\"en\": \"en\", \"nl\": \"nl\", \"fr\": \"fr\", \"nl\": \"nl\", \"de\": \"de\", \"es\": \"es\", \"it\": \"it\"}' NODE_ENV=development lingui extract --clean",
+    "postinstall": "cd ../.. && yarn postinstall"
   },
   "scripts_local": {
-    "dev": "yarn concurrently -k -n codegen,next 'yarn codegen-base -w' 'yarn next dev'",
-    "codegen": "yarn mesh build && find . -type f -name '*.gql.ts' -delete && yarn codegen-base",
-    "build": "yarn codegen && yarn next build && yarn next-sitemap",
+    "dev": "concurrently -k -n codegen,next 'graphql-codegen -w' 'next dev'",
+    "codegen": "mesh build && graphql-codegen",
+    "build": "mesh build && graphql-codegen && next build && next-sitemap",
     "start": "next start",
-    "tsc:lint": "yarn tsc --noEmit -p .",
-    "lingui": "NODE_ENV=development lingui extract",
-    "codegen-base": "yarn graphql-codegen"
+    "tsc:lint": "tsc --noEmit -p .",
+    "lingui": "cross-env NODE_ENV=development lingui extract"
   },
   "dependencies": {
     "@graphcommerce/cli": "1.0.6",
@@ -78,6 +76,7 @@
     "@mui/lab": "5.0.0-alpha.89",
     "@mui/material": "5.8.7",
     "concurrently": "7.2.2",
+    "cross-env": "^7.0.3",
     "dotenv": "16.0.1",
     "framer-motion": "6.4.3",
     "next": "12.2.2",
