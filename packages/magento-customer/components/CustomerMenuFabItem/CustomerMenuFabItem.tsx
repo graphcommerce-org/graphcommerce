@@ -40,8 +40,8 @@ export function CustomerMenuFabItem(props: CustomerMenuFabItemProps) {
   const session = useCustomerSession()
 
   return (
-    <WaitForQueries waitFor={session} fallback={<CustomerMenuFabItemContent {...props} />}>
+    <NoSsr fallback={<CustomerMenuFabItemContent {...props} />}>
       <CustomerMenuFabItemContent session={session} {...props} />
-    </WaitForQueries>
+    </NoSsr>
   )
 }
