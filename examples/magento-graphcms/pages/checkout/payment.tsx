@@ -1,13 +1,16 @@
-import { ComposedForm } from '@graphcommerce/ecommerce-ui'
+import { ComposedForm, WaitForQueries } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { useGoogleRecaptcha } from '@graphcommerce/googlerecaptcha'
 import {
+  ApolloCartErrorFullPage,
   CartAgreementsForm,
   CartSummary,
   CartTotals,
   EmptyCart,
+  useCartQuery,
   useCurrentCartId,
 } from '@graphcommerce/magento-cart'
+import { BillingPageDocument } from '@graphcommerce/magento-cart-checkout'
 import { CouponAccordion } from '@graphcommerce/magento-cart-coupon'
 import {
   PaymentMethodButton,
@@ -45,106 +48,110 @@ type GetPageStaticProps = GetStaticProps<LayoutMinimalProps>
 function PaymentPage() {
   useGoogleRecaptcha()
 
-  const { currentCartId, called, error, loading } = useCurrentCartId()
+  const billingPage = useCartQuery(BillingPageDocument, { fetchPolicy: 'cache-and-network' })
   const [{ locked }] = useCartLock()
 
-  if (loading || !called)
-    return (
-      <FullPageMessage icon={<CircularProgress />} title='Loading your account'>
-        <Trans id='This may take a second' />
-      </FullPageMessage>
-    )
-
-  if (error) return <ApolloCustomerErrorFullPage error={error} />
+  const cartExists = typeof billingPage.data?.cart !== 'undefined'
 
   return (
     <ComposedForm>
       <PageMeta title={i18n._(/* i18n */ 'Payment')} metaRobots={['noindex']} />
-      {!currentCartId && !loading && called && <EmptyCart />}
-      {currentCartId && (
-        <>
-          <LayoutHeader
-            primary={
-              <PaymentMethodButton
-                type='submit'
-                color='secondary'
-                button={{
-                  variant: 'pill',
-                  size: 'medium',
-                  endIcon: <IconSvg src={iconChevronRight} size='small' />,
-                }}
-                display='inline'
-              >
-                <Trans id='Pay' />
-              </PaymentMethodButton>
-            }
-            divider={
-              <Container maxWidth='md'>
-                <Stepper steps={3} currentStep={3} />
-              </Container>
-            }
-          >
-            <LayoutTitle size='small' icon={iconId}>
-              <Trans id='Payment' />
-            </LayoutTitle>
-          </LayoutHeader>
-          <Container maxWidth='md'>
-            <Dialog open={!!locked} fullWidth>
-              <FullPageMessage
-                disableMargin
-                icon={<CircularProgress />}
-                title='Processing your payment'
-              >
-                <Trans id='We’re processing your payment, this will take a few seconds.' />
-              </FullPageMessage>
-            </Dialog>
 
-            <>
-              <LayoutTitle icon={iconId}>
+      <WaitForQueries
+        waitFor={[billingPage]}
+        fallback={
+          <FullPageMessage icon={<CircularProgress />} title='Loading'>
+            <Trans id='This may take a second' />
+          </FullPageMessage>
+        }
+      >
+        {billingPage.error && <ApolloCartErrorFullPage error={billingPage.error} />}
+        {cartExists && !billingPage.error && (
+          <>
+            <LayoutHeader
+              primary={
+                <PaymentMethodButton
+                  type='submit'
+                  color='secondary'
+                  button={{
+                    variant: 'pill',
+                    size: 'medium',
+                    endIcon: <IconSvg src={iconChevronRight} size='small' />,
+                  }}
+                  display='inline'
+                >
+                  <Trans id='Pay' />
+                </PaymentMethodButton>
+              }
+              divider={
+                <Container maxWidth='md'>
+                  <Stepper steps={3} currentStep={3} />
+                </Container>
+              }
+            >
+              <LayoutTitle size='small' icon={iconId}>
                 <Trans id='Payment' />
               </LayoutTitle>
+            </LayoutHeader>
 
-              <PaymentMethodContextProvider
-                modules={{
-                  braintree_local_payment,
-                  braintree,
-                  ...included_methods,
-                  ...mollie_methods,
-                }}
-              >
-                <AnimatePresence initial={false}>
-                  <PaymentMethodActionCardListForm step={3} />
+            <Container maxWidth='md'>
+              <Dialog open={!!locked} fullWidth>
+                <FullPageMessage
+                  disableMargin
+                  icon={<CircularProgress />}
+                  title='Processing your payment'
+                >
+                  <Trans id='We’re processing your payment, this will take a few seconds.' />
+                </FullPageMessage>
+              </Dialog>
 
-                  <CartSummary editable key='cart-summary'>
-                    <Divider />
-                    <CartTotals />
-                  </CartSummary>
+              <>
+                <LayoutTitle icon={iconId}>
+                  <Trans id='Payment' />
+                </LayoutTitle>
 
-                  <CouponAccordion key='coupon' />
+                <PaymentMethodContextProvider
+                  modules={{
+                    braintree_local_payment,
+                    braintree,
+                    ...included_methods,
+                    ...mollie_methods,
+                  }}
+                >
+                  <AnimatePresence initial={false}>
+                    <PaymentMethodActionCardListForm step={3} />
 
-                  <CartAgreementsForm step={2} key='agreements' />
+                    <CartSummary editable key='cart-summary'>
+                      <Divider />
+                      <CartTotals />
+                    </CartSummary>
 
-                  <PaymentMethodPlaceOrder key='placeorder' step={4} />
+                    <CouponAccordion key='coupon' />
 
-                  <FormActions>
-                    <PaymentMethodButton
-                      id='place-order'
-                      key='button'
-                      type='submit'
-                      color='secondary'
-                      button={{ variant: 'pill', size: 'large' }}
-                      breakpoint='xs'
-                      endIcon={<IconSvg src={iconChevronRight} />}
-                    >
-                      <Trans id='Place order' />
-                    </PaymentMethodButton>
-                  </FormActions>
-                </AnimatePresence>
-              </PaymentMethodContextProvider>
-            </>
-          </Container>
-        </>
-      )}
+                    <CartAgreementsForm step={2} key='agreements' />
+
+                    <PaymentMethodPlaceOrder key='placeorder' step={4} />
+
+                    <FormActions>
+                      <PaymentMethodButton
+                        id='place-order'
+                        key='button'
+                        type='submit'
+                        color='secondary'
+                        button={{ variant: 'pill', size: 'large' }}
+                        breakpoint='xs'
+                        endIcon={<IconSvg src={iconChevronRight} />}
+                      >
+                        <Trans id='Place order' />
+                      </PaymentMethodButton>
+                    </FormActions>
+                  </AnimatePresence>
+                </PaymentMethodContextProvider>
+              </>
+            </Container>
+          </>
+        )}
+      </WaitForQueries>
     </ComposedForm>
   )
 }

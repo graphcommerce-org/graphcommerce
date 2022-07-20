@@ -21,7 +21,7 @@ export type ActionCardProps = {
   price?: React.ReactNode
   after?: React.ReactNode
   secondaryAction?: React.ReactNode
-  onClick?: (e: FormEvent<HTMLElement>, v: string | number) => void
+  onClick?: (event: React.MouseEvent<HTMLElement>, value: string | number) => void
   selected?: boolean
   hidden?: boolean
   value: string | number

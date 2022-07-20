@@ -1,5 +1,36 @@
 # Change Log
 
+## 4.14.0
+
+### Minor Changes
+
+- [#1553](https://github.com/graphcommerce-org/graphcommerce/pull/1553) [`323fdee4b`](https://github.com/graphcommerce-org/graphcommerce/commit/323fdee4b15ae23e0e84dd0588cb2c6446dcfd50) Thanks [@NickdeK](https://github.com/NickdeK)! - Added a new cookies utility to load cookies on the frontend
+
+### Patch Changes
+
+- [#1553](https://github.com/graphcommerce-org/graphcommerce/pull/1553) [`afcd8e4bf`](https://github.com/graphcommerce-org/graphcommerce/commit/afcd8e4bfb7010da4d5faeed85b61991ed7975f4) Thanks [@NickdeK](https://github.com/NickdeK)! - ActionCardList will now show all options when the selected value isn't in any of the options
+
+* [#1553](https://github.com/graphcommerce-org/graphcommerce/pull/1553) [`02e1988e5`](https://github.com/graphcommerce-org/graphcommerce/commit/02e1988e5f361c6f66ae30d3bbee38ef2ac062df) Thanks [@NickdeK](https://github.com/NickdeK)! - Make sure the useDateTimeFormat isn't giving hydration warnings
+
+* Updated dependencies []:
+  - @graphcommerce/framer-scroller@2.1.24
+
+## 4.13.1
+
+### Patch Changes
+
+- [#1552](https://github.com/graphcommerce-org/graphcommerce/pull/1552) [`18054c441`](https://github.com/graphcommerce-org/graphcommerce/commit/18054c441962ba750bed3acc39ab46c8d3a341ce) Thanks [@paales](https://github.com/paales)! - Updated to Next.js v12.2.2 and other packages and made compatible
+
+* [#1552](https://github.com/graphcommerce-org/graphcommerce/pull/1552) [`c5c539c44`](https://github.com/graphcommerce-org/graphcommerce/commit/c5c539c44eeac524cd62ce649e132d2e00333794) Thanks [@paales](https://github.com/paales)! - Make sure the gallery doesn't scroll when overlays are opened
+
+- [#1552](https://github.com/graphcommerce-org/graphcommerce/pull/1552) [`6f69bc54c`](https://github.com/graphcommerce-org/graphcommerce/commit/6f69bc54c6e0224452817c532ae58d9c332b61ea) Thanks [@paales](https://github.com/paales)! - Prevent back button scrolling when navigating between overlays
+
+* [#1552](https://github.com/graphcommerce-org/graphcommerce/pull/1552) [`21886d6fa`](https://github.com/graphcommerce-org/graphcommerce/commit/21886d6fa64a48d9e932bfaf8d138c9b13c36e43) Thanks [@paales](https://github.com/paales)! - Fix page stacking and scroll restoration when navigating
+
+* Updated dependencies [[`18054c441`](https://github.com/graphcommerce-org/graphcommerce/commit/18054c441962ba750bed3acc39ab46c8d3a341ce), [`21886d6fa`](https://github.com/graphcommerce-org/graphcommerce/commit/21886d6fa64a48d9e932bfaf8d138c9b13c36e43), [`b4936e961`](https://github.com/graphcommerce-org/graphcommerce/commit/b4936e96175fe80717895822e245274db05638bd)]:
+  - @graphcommerce/framer-next-pages@3.2.4
+  - @graphcommerce/framer-scroller@2.1.23
+
 ## 4.13.0
 
 ### Minor Changes

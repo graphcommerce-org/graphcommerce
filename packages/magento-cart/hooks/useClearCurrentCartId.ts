@@ -1,5 +1,7 @@
 import { useApolloClient } from '@graphcommerce/graphql'
+import { cookie } from '@graphcommerce/next-ui'
 import { CurrentCartIdDocument } from './CurrentCartId.gql'
+import { CART_ID_COOKIE } from './useAssignCurrentCartId'
 
 export function useClearCurrentCartId() {
   const { cache } = useApolloClient()
@@ -13,5 +15,6 @@ export function useClearCurrentCartId() {
       data: { currentCartId: { __typename: 'CurrentCartId', id: null } },
       broadcast: true,
     })
+    cookie(CART_ID_COOKIE, null)
   }
 }

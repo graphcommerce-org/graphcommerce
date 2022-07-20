@@ -7,6 +7,7 @@ import {
   ApolloError,
   LazyQueryResultTuple,
 } from '@apollo/client'
+import { useEffect, useRef } from 'react'
 import { UseFormProps, UseFormReturn, UnpackNestedValue, DeepPartial } from 'react-hook-form'
 import diff from './diff'
 import { useGqlDocumentHandler, UseGqlDocumentHandler } from './useGqlDocumentHandler'
@@ -50,6 +51,18 @@ export function useFormGql<Q, V>(
   const { encode, type, ...gqlDocumentHandler } = useGqlDocumentHandler<Q, V>(document)
   const [execute, { data, error }] = tuple
   const client = useApolloClient()
+
+  // automatically updates the default values
+  const initital = useRef(true)
+  const valuesString = JSON.stringify(defaultValues)
+  useEffect(() => {
+    if (initital.current) {
+      initital.current = false
+      return
+    }
+    form.reset(defaultValues, { keepDirtyValues: true })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [valuesString, form])
 
   const handleSubmit: UseFormReturn<V>['handleSubmit'] = (onValid, onInvalid) =>
     form.handleSubmit(async (formValues, event) => {

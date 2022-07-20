@@ -1,0 +1,26 @@
+fragment PickupLocationitems on Cart @inject(into: ["AvailableShippingMethods"]) {
+  items {
+    __typename
+    uid
+    ... on ConfigurableCartItem {
+      configured_variant {
+        uid
+        sku
+      }
+    }
+    product {
+      uid
+      sku
+    }
+  }
+  shipping_addresses {
+    pickup_location_code
+    firstname
+    lastname
+    telephone
+    postcode
+    country {
+      code
+    }
+  }
+}

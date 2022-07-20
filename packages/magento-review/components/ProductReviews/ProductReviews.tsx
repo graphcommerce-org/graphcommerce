@@ -52,13 +52,7 @@ export function ProductReviews(props: ProductReviewsProps) {
 
   const { current_page, total_pages } = myReviews.page_info
 
-  const formatter = useDateTimeFormat({
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
-  })
+  const formatter = useDateTimeFormat({ dateStyle: 'long', timeStyle: 'short' })
 
   if (!reviews) {
     return null

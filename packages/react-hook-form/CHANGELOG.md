@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.3.1
+
+### Patch Changes
+
+- [#1553](https://github.com/graphcommerce-org/graphcommerce/pull/1553) [`4a4579bb2`](https://github.com/graphcommerce-org/graphcommerce/commit/4a4579bb2f7da378f3fcc504405caf2560dc10f6) Thanks [@NickdeK](https://github.com/NickdeK)! - When using a useFormGqlMutation or useFormGqlQuery and defaultValues change, the form values will update for fields that aren't dirty.
+
 ## 3.3.0
 
 ### Minor Changes

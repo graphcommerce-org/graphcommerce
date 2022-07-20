@@ -170,6 +170,6 @@ export function resolveDocumentImports<T>(
   })
 
   return resDocuments.filter((result) =>
-    result.filename.startsWith(resolve(baseDir, baseOutputDir)),
+    result.filename.startsWith(resolve(baseDir, baseOutputDir).replace(/\\/g, '/')),
   )
 }

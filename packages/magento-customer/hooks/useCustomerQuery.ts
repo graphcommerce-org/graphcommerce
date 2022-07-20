@@ -19,9 +19,10 @@ const notLoggedInError = new ApolloError({
 /** Will only execute when the customer is signed in. */
 export function useCustomerQuery<Q, V>(
   document: TypedDocumentNode<Q, V>,
-  queryOptions: QueryHookOptions<Q, V> = {},
+  options: QueryHookOptions<Q, V> & { hydration?: boolean } = {},
 ): QueryResult<Q, V> {
-  const { loggedIn, called } = useCustomerSession()
+  const { hydration, ...queryOptions } = options
+  const { loggedIn, called } = useCustomerSession({ hydration })
 
   const result = useQuery(document, {
     ...queryOptions,

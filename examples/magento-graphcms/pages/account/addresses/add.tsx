@@ -25,7 +25,9 @@ type Props = AccountDashboardAddressesQuery
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
 
 function AddNewAddressPage() {
-  const { loading, error, called } = useCustomerQuery(CustomerDocument)
+  const { loading, error, called } = useCustomerQuery(CustomerDocument, {
+    fetchPolicy: 'cache-and-network',
+  })
 
   if (loading || !called)
     return (

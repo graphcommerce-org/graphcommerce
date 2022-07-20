@@ -1,5 +1,41 @@
 # Change Log
 
+## 4.6.0
+
+### Minor Changes
+
+- [#1553](https://github.com/graphcommerce-org/graphcommerce/pull/1553) [`03d01c06c`](https://github.com/graphcommerce-org/graphcommerce/commit/03d01c06c6dc13df8d38ab5b40bd100c567a9e8d) Thanks [@NickdeK](https://github.com/NickdeK)! - Added a `{ hydrate: boolean }` option to `useCartQuery`, `useCurrentCartId`, `useCustomerQuery` and `useCustomerSession` to allow for data during the hydration phase. This can cause hydration warnings, but prevents an additional rerender.
+
+### Patch Changes
+
+- [#1553](https://github.com/graphcommerce-org/graphcommerce/pull/1553) [`d03f0860b`](https://github.com/graphcommerce-org/graphcommerce/commit/d03f0860b882db4f280d9467aef9d66e56c1c030) Thanks [@NickdeK](https://github.com/NickdeK)! - Checkout address would incorrectly be null instead of an actual address
+
+* [#1553](https://github.com/graphcommerce-org/graphcommerce/pull/1553) [`b68d0b44a`](https://github.com/graphcommerce-org/graphcommerce/commit/b68d0b44a87688c80fb0aa4a5c840f262ce48d2f) Thanks [@NickdeK](https://github.com/NickdeK)! - Simplify `useCartIdCreate` hook to reduce a potential rerender when not nessesary
+
+* Updated dependencies [[`1afc6a547`](https://github.com/graphcommerce-org/graphcommerce/commit/1afc6a5473d6e31f47b5d0188801803b31865290), [`03d01c06c`](https://github.com/graphcommerce-org/graphcommerce/commit/03d01c06c6dc13df8d38ab5b40bd100c567a9e8d), [`4a4579bb2`](https://github.com/graphcommerce-org/graphcommerce/commit/4a4579bb2f7da378f3fcc504405caf2560dc10f6), [`afcd8e4bf`](https://github.com/graphcommerce-org/graphcommerce/commit/afcd8e4bfb7010da4d5faeed85b61991ed7975f4), [`02e1988e5`](https://github.com/graphcommerce-org/graphcommerce/commit/02e1988e5f361c6f66ae30d3bbee38ef2ac062df), [`323fdee4b`](https://github.com/graphcommerce-org/graphcommerce/commit/323fdee4b15ae23e0e84dd0588cb2c6446dcfd50)]:
+  - @graphcommerce/graphql@3.4.2
+  - @graphcommerce/magento-customer@4.8.0
+  - @graphcommerce/react-hook-form@3.3.1
+  - @graphcommerce/next-ui@4.14.0
+  - @graphcommerce/ecommerce-ui@1.1.3
+  - @graphcommerce/magento-graphql@3.1.2
+  - @graphcommerce/magento-store@4.2.18
+  - @graphcommerce/framer-scroller@2.1.24
+
+## 4.5.2
+
+### Patch Changes
+
+- Updated dependencies [[`18054c441`](https://github.com/graphcommerce-org/graphcommerce/commit/18054c441962ba750bed3acc39ab46c8d3a341ce), [`c5c539c44`](https://github.com/graphcommerce-org/graphcommerce/commit/c5c539c44eeac524cd62ce649e132d2e00333794), [`6f69bc54c`](https://github.com/graphcommerce-org/graphcommerce/commit/6f69bc54c6e0224452817c532ae58d9c332b61ea), [`21886d6fa`](https://github.com/graphcommerce-org/graphcommerce/commit/21886d6fa64a48d9e932bfaf8d138c9b13c36e43), [`b4936e961`](https://github.com/graphcommerce-org/graphcommerce/commit/b4936e96175fe80717895822e245274db05638bd)]:
+  - @graphcommerce/framer-next-pages@3.2.4
+  - @graphcommerce/graphql@3.4.1
+  - @graphcommerce/magento-customer@4.7.2
+  - @graphcommerce/next-ui@4.13.1
+  - @graphcommerce/framer-scroller@2.1.23
+  - @graphcommerce/ecommerce-ui@1.1.2
+  - @graphcommerce/magento-graphql@3.1.1
+  - @graphcommerce/magento-store@4.2.17
+
 ## 4.5.1
 
 ### Patch Changes

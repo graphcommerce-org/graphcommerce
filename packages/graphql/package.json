@@ -2,7 +2,7 @@
   "name": "@graphcommerce/graphql",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "3.4.0",
+  "version": "3.4.2",
   "sideEffects": false,
   "main": "index.ts",
   "prettier": "@graphcommerce/prettier-config-pwa",
@@ -13,15 +13,15 @@
     }
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "^4.1.8",
+    "@graphcommerce/eslint-config-pwa": "^4.1.9",
     "@graphcommerce/prettier-config-pwa": "^4.0.6",
-    "@graphcommerce/typescript-config-pwa": "^4.0.3",
+    "@graphcommerce/typescript-config-pwa": "^4.0.4",
     "@playwright/test": "^1.21.1"
   },
   "dependencies": {
     "@apollo/client": "^3.6.9",
-    "@graphcommerce/graphql-codegen-near-operation-file": "3.0.14",
-    "@graphcommerce/graphql-codegen-relay-optimizer-plugin": "3.0.8",
+    "@graphcommerce/graphql-codegen-near-operation-file": "3.0.15",
+    "@graphcommerce/graphql-codegen-relay-optimizer-plugin": "3.0.9",
     "@graphql-codegen/add": "3.2.0",
     "@graphql-codegen/fragment-matcher": "3.3.0",
     "@graphql-codegen/introspection": "2.2.0",

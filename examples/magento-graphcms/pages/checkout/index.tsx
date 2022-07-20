@@ -3,24 +3,25 @@ import {
   ComposedSubmitLinkOrButton,
   ComposedForm,
   ComposedSubmit,
+  WaitForQueries,
 } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { useGoogleRecaptcha } from '@graphcommerce/googlerecaptcha'
-import { ApolloCartErrorAlert, EmptyCart, useCartQuery } from '@graphcommerce/magento-cart'
+import {
+  ApolloCartErrorAlert,
+  ApolloCartErrorFullPage,
+  useCartQuery,
+} from '@graphcommerce/magento-cart'
 import { ShippingPageDocument } from '@graphcommerce/magento-cart-checkout'
 import { EmailForm } from '@graphcommerce/magento-cart-email'
+import { PickupLocationSelector } from '@graphcommerce/magento-cart-pickup'
 import {
   ShippingAddressForm,
   CustomerAddressForm,
 } from '@graphcommerce/magento-cart-shipping-address'
 import { ShippingMethodForm } from '@graphcommerce/magento-cart-shipping-method'
-import {
-  ApolloCustomerErrorFullPage,
-  CustomerDocument,
-  useCustomerQuery,
-} from '@graphcommerce/magento-customer'
+import { CustomerDocument, useCustomerQuery } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { useMergeGuestWishlistWithCustomer } from '@graphcommerce/magento-wishlist'
 import {
   FormActions,
   GetStaticProps,
@@ -32,9 +33,8 @@ import {
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { CircularProgress, Container } from '@mui/material'
+import { CircularProgress, Container, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
-import React from 'react'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
 import { DefaultPageDocument } from '../../graphql/DefaultPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
@@ -44,96 +44,93 @@ type GetPageStaticProps = GetStaticProps<LayoutMinimalProps, Props>
 
 function ShippingPage() {
   useGoogleRecaptcha()
-  useMergeGuestWishlistWithCustomer()
-
-  const { data, called, error } = useCartQuery(ShippingPageDocument, {
-    fetchPolicy: 'cache-and-network',
-  })
-
-  const cartExists = typeof data?.cart !== 'undefined'
   const router = useRouter()
+  const shippingPage = useCartQuery(ShippingPageDocument, { fetchPolicy: 'cache-and-network' })
+  const customerAddresses = useCustomerQuery(CustomerDocument, { fetchPolicy: 'cache-and-network' })
 
-  const onSubmitSuccessful = () => {
-    if (!error) {
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      router.push('/checkout/payment')
-    }
-  }
-
-  const customerAddresses = useCustomerQuery(CustomerDocument)
-  const addresses = customerAddresses.data?.customer?.addresses
-  if (!data || !called)
-    return (
-      <FullPageMessage icon={<CircularProgress />} title='Loading'>
-        <Trans id='This may take a second' />
-      </FullPageMessage>
-    )
-  if (error) return <ApolloCustomerErrorFullPage error={error} />
+  const cartExists = typeof shippingPage.data?.cart !== 'undefined'
 
   return (
-    <ComposedForm>
-      <PageMeta title={i18n._(/* i18n */ 'Checkout')} metaRobots={['noindex']} />
-      <LayoutHeader
-        primary={
-          <ComposedSubmit
-            onSubmitSuccessful={onSubmitSuccessful}
-            render={(renderProps) => (
-              <ComposedSubmitLinkOrButton {...renderProps}>
-                <Trans id='Next' />
-              </ComposedSubmitLinkOrButton>
-            )}
-          />
-        }
-        divider={
-          <Container maxWidth='md'>
-            <Stepper currentStep={2} steps={3} />
-          </Container>
+    <>
+      <PageMeta title={i18n._(/* i18n */ 'Shipping')} metaRobots={['noindex']} />
+      <WaitForQueries
+        waitFor={[shippingPage, customerAddresses]}
+        fallback={
+          <FullPageMessage icon={<CircularProgress />} title='Loading'>
+            <Trans id='This may take a second' />
+          </FullPageMessage>
         }
       >
-        <LayoutTitle size='small' icon={iconBox}>
-          <Trans id='Shipping' />
-        </LayoutTitle>
-      </LayoutHeader>
-      <Container maxWidth='md'>
-        {!cartExists && <EmptyCart />}
-
-        {cartExists && (
-          <>
-            <LayoutTitle icon={iconBox}>
-              <Trans id='Shipping' />
-            </LayoutTitle>
-            {addresses ? (
-              <CustomerAddressForm step={2}>
-                <ShippingAddressForm ignoreCache step={3} />
-              </CustomerAddressForm>
-            ) : (
-              <>
-                <EmailForm step={1} />
-                <ShippingAddressForm step={3} />
-              </>
-            )}
-
-            <ShippingMethodForm step={4} />
-
-            <ComposedSubmit
-              onSubmitSuccessful={onSubmitSuccessful}
-              render={(renderProps) => (
-                <>
-                  <FormActions>
-                    <ComposedSubmitButton {...renderProps} size='large' id='next'>
+        {shippingPage.error && <ApolloCartErrorFullPage error={shippingPage.error} />}
+        {!shippingPage.error && cartExists && (
+          <ComposedForm>
+            <LayoutHeader
+              switchPoint={0}
+              primary={
+                <ComposedSubmit
+                  onSubmitSuccessful={() => router.push('/checkout/payment')}
+                  render={(renderProps) => (
+                    <ComposedSubmitLinkOrButton {...renderProps}>
                       <Trans id='Next' />
-                    </ComposedSubmitButton>
-                  </FormActions>
-                  <ApolloCartErrorAlert
-                    error={renderProps.buttonState.isSubmitting ? undefined : renderProps.error}
-                  />
-                </>
-              )}
-            />
-          </>
+                    </ComposedSubmitLinkOrButton>
+                  )}
+                />
+              }
+              divider={
+                <Container maxWidth='md'>
+                  <Stepper currentStep={2} steps={3} />
+                </Container>
+              }
+            >
+              <LayoutTitle size='small' icon={iconBox}>
+                <Trans id='Shipping' />
+              </LayoutTitle>
+            </LayoutHeader>
+            <Container maxWidth='md'>
+              <>
+                {customerAddresses.data?.customer?.addresses ? (
+                  <CustomerAddressForm step={2} sx={(theme) => ({ mt: theme.spacings.lg })}>
+                    <ShippingAddressForm ignoreCache step={3} />
+                  </CustomerAddressForm>
+                ) : (
+                  <>
+                    <Typography
+                      variant='h3'
+                      gutterBottom
+                      sx={(theme) => ({ mt: theme.spacings.lg, mb: theme.spacings.sm })}
+                    >
+                      <Trans id='Personal details' />
+                    </Typography>
+                    <EmailForm step={1} />
+                    <ShippingAddressForm step={3} />
+                  </>
+                )}
+
+                <ShippingMethodForm step={4} sx={(theme) => ({ mt: theme.spacings.lg })}>
+                  <PickupLocationSelector step={5} />
+                </ShippingMethodForm>
+
+                <ComposedSubmit
+                  onSubmitSuccessful={() => router.push('/checkout/payment')}
+                  render={(renderProps) => (
+                    <>
+                      <FormActions>
+                        <ComposedSubmitButton {...renderProps} size='large' id='next'>
+                          <Trans id='Next' />
+                        </ComposedSubmitButton>
+                      </FormActions>
+                      <ApolloCartErrorAlert
+                        error={renderProps.buttonState.isSubmitting ? undefined : renderProps.error}
+                      />
+                    </>
+                  )}
+                />
+              </>
+            </Container>
+          </ComposedForm>
         )}
-      </Container>
-    </ComposedForm>
+      </WaitForQueries>
+    </>
   )
 }
 

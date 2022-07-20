@@ -9,6 +9,7 @@ mutation ShippingMethodForm($cartId: String!, $carrier: String!, $method: String
       id
       __typename
       ...ShippingMethodSelected
+      ...ShippingAddress
     }
   }
 }

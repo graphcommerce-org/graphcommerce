@@ -7,9 +7,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.handleFatalError = void 0;
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
-const fs_1 = require("fs");
-const path_1 = __importDefault(require("path"));
-const process_1 = require("process");
+const node_fs_1 = require("node:fs");
+const node_path_1 = __importDefault(require("node:path"));
+const node_process_1 = require("node:process");
 const cli_1 = require("@graphql-mesh/cli");
 const utils_1 = require("@graphql-mesh/utils");
 const dotenv_1 = __importDefault(require("dotenv"));
@@ -21,24 +21,24 @@ function handleFatalError(e, logger = new utils_1.DefaultLogger('◈')) {
     // eslint-disable-next-line no-console
     console.log(e);
     if (process.env.JEST == null)
-        (0, process_1.exit)(1);
+        (0, node_process_1.exit)(1);
 }
 exports.handleFatalError = handleFatalError;
 const root = process.cwd();
-const meshDir = path_1.default.dirname(require.resolve('@graphcommerce/graphql-mesh'));
-const relativePath = path_1.default.join(path_1.default.relative(meshDir, root), '/');
-const isMonoRepo = relativePath.startsWith('../../examples');
+const meshDir = node_path_1.default.dirname(require.resolve('@graphcommerce/graphql-mesh'));
+const relativePath = node_path_1.default.join(node_path_1.default.relative(meshDir, root), '/');
+const isMonoRepo = relativePath.startsWith(`..${node_path_1.default.sep}..${node_path_1.default.sep}examples`);
 const cliParams = {
     ...cli_1.DEFAULT_CLI_PARAMS,
     playgroundTitle: 'GraphCommerce® Mesh',
 };
 const tmpMesh = `_tmp_mesh_${Math.random().toString(36).substring(2, 15)}`;
-const tmpMeshLocation = path_1.default.join(root, `.${tmpMesh}rc.yml`);
+const tmpMeshLocation = node_path_1.default.join(root, `.${tmpMesh}rc.yml`);
 async function cleanup() {
     try {
-        await fs_1.promises.stat(tmpMeshLocation).then((r) => {
+        await node_fs_1.promises.stat(tmpMeshLocation).then((r) => {
             if (r.isFile())
-                return fs_1.promises.unlink(tmpMeshLocation);
+                return node_fs_1.promises.unlink(tmpMeshLocation);
         });
     }
     catch (e) {
@@ -54,7 +54,7 @@ const main = async () => {
         if (typeof additionalResolver !== 'string')
             return additionalResolver;
         if (additionalResolver.startsWith('@'))
-            return path_1.default.relative(root, require.resolve(additionalResolver));
+            return node_path_1.default.relative(root, require.resolve(additionalResolver));
         return additionalResolver;
     });
     // Rewrite additionalTypeDefs so we can use module resolution more easily
@@ -62,7 +62,7 @@ const main = async () => {
         conf.additionalTypeDefs = [];
     conf.additionalTypeDefs = (Array.isArray(conf.additionalTypeDefs) ? conf.additionalTypeDefs : [conf.additionalTypeDefs]).map((additionalTypeDef) => {
         if (additionalTypeDef.startsWith('@'))
-            return path_1.default.relative(root, require.resolve(additionalTypeDef));
+            return node_path_1.default.relative(root, require.resolve(additionalTypeDef));
         return additionalTypeDef;
     });
     // Scan the current working directory to also read all graphqls files.
@@ -78,11 +78,9 @@ const main = async () => {
         conf.serve = {};
     if (!conf.serve.playgroundTitle)
         conf.serve.playgroundTitle = 'GraphCommerce® Mesh';
-    await fs_1.promises.writeFile(tmpMeshLocation, yaml_1.default.stringify(conf));
+    await node_fs_1.promises.writeFile(tmpMeshLocation, yaml_1.default.stringify(conf));
     // Reexport the mesh to is can be used by packages
-    await fs_1.promises.writeFile(`${meshDir}/.mesh.ts`, `export * from '${relativePath}.mesh'`, {
-        encoding: 'utf8',
-    });
+    await node_fs_1.promises.writeFile(`${meshDir}/.mesh.ts`, `export * from '${relativePath.split(node_path_1.default.sep).join('/')}.mesh'`, { encoding: 'utf8' });
     await (0, cli_1.graphqlMesh)({ ...cliParams, configName: tmpMesh });
     await cleanup();
 };
