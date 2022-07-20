@@ -1,18 +1,22 @@
 diff --git a/node_modules/next/dist/client/index.js b/node_modules/next/dist/client/index.js
-index 0b2ce2a..ba5c20c 100755
+index 0b2ce2a..3cd298e 100755
 --- a/node_modules/next/dist/client/index.js
 +++ b/node_modules/next/dist/client/index.js
-@@ -475,8 +475,12 @@ function renderReactElement(domEl, fn) {
+@@ -475,8 +475,16 @@ function renderReactElement(domEl, fn) {
      const reactEl = fn(shouldHydrate ? markHydrateComplete : markRenderComplete);
      if (process.env.__NEXT_REACT_ROOT) {
          if (!reactRoot) {
 -            // Unlike with createRoot, you don't need a separate root.render() call here
 -            reactRoot = ReactDOM.hydrateRoot(domEl, reactEl);
 +            const startTransition = _react.default.startTransition;
-+            startTransition(()=>{ 
-+                // Unlike with createRoot, you don't need a separate root.render() call here
-+                reactRoot = ReactDOM.hydrateRoot(domEl, reactEl);
-+            });
++
++            const defer = window.requestIdleCallback || window.setTimeout
++            defer(() => {
++                startTransition(()=>{ 
++                    // Unlike with createRoot, you don't need a separate root.render() call here
++                    reactRoot = ReactDOM.hydrateRoot(domEl, reactEl);
++                });
++            })
 +           
              // TODO: Remove shouldHydrate variable when React 18 is stable as it can depend on `reactRoot` existing
              shouldHydrate = false;
