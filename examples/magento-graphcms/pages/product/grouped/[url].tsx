@@ -47,7 +47,7 @@ function ProductGrouped(props: Props) {
   const typeProduct = findByTypename(typeProducts?.items, 'GroupedProduct')
   const aggregations = products?.aggregations
 
-  if (!product || !typeProduct) return null
+  if (!product?.sku || !product.url_key || !typeProduct) return null
 
   return (
     <>

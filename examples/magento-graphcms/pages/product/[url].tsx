@@ -39,7 +39,7 @@ function ProductSimple(props: Props) {
   const { products, usps, sidebarUsps, pages } = props
 
   const product = findByTypename(products?.items, 'SimpleProduct')
-  if (!product) return null
+  if (!product?.sku || !product.url_key) return null
 
   const aggregations = products?.aggregations
 

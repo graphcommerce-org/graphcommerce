@@ -42,7 +42,7 @@ function ProductVirtual(props: Props) {
   const product = findByTypename(products?.items, 'VirtualProduct')
   const aggregations = products?.aggregations
 
-  if (!product) return null
+  if (!product?.sku || !product.url_key) return null
 
   return (
     <>
