@@ -1,0 +1,75 @@
+diff --git a/node_modules/next/dist/client/index.js b/node_modules/next/dist/client/index.js
+index 0b2ce2a..3cd298e 100755
+--- a/node_modules/next/dist/client/index.js
++++ b/node_modules/next/dist/client/index.js
+@@ -475,8 +475,16 @@ function renderReactElement(domEl, fn) {
+     const reactEl = fn(shouldHydrate ? markHydrateComplete : markRenderComplete);
+     if (process.env.__NEXT_REACT_ROOT) {
+         if (!reactRoot) {
+-            // Unlike with createRoot, you don't need a separate root.render() call here
+-            reactRoot = ReactDOM.hydrateRoot(domEl, reactEl);
++            const startTransition = _react.default.startTransition;
++
++            const defer = window.requestIdleCallback || window.setTimeout
++            defer(() => {
++                startTransition(()=>{ 
++                    // Unlike with createRoot, you don't need a separate root.render() call here
++                    reactRoot = ReactDOM.hydrateRoot(domEl, reactEl);
++                });
++            })
++           
+             // TODO: Remove shouldHydrate variable when React 18 is stable as it can depend on `reactRoot` existing
+             shouldHydrate = false;
+         } else {
+diff --git a/node_modules/next/dist/server/dev/next-dev-server.js b/node_modules/next/dist/server/dev/next-dev-server.js
+index f0258dc..0f33a7c 100755
+--- a/node_modules/next/dist/server/dev/next-dev-server.js
++++ b/node_modules/next/dist/server/dev/next-dev-server.js
+@@ -746,6 +746,8 @@ class DevServer extends _nextServer.default {
+         const __getStaticPaths = async ()=>{
+             const { configFileName , publicRuntimeConfig , serverRuntimeConfig , httpAgentOptions ,  } = this.nextConfig;
+             const { locales , defaultLocale  } = this.nextConfig.i18n || {};
++            
++            return { paths: [], fallback: 'blocking'}
+             const paths = await this.getStaticPathsWorker().loadStaticPaths(this.distDir, pathname, !this.renderOpts.dev && this._isLikeServerless, {
+                 configFileName,
+                 publicRuntimeConfig,
+diff --git a/node_modules/next/dist/server/dev/static-paths-worker.js b/node_modules/next/dist/server/dev/static-paths-worker.js
+index f4565d1..40f0614 100755
+--- a/node_modules/next/dist/server/dev/static-paths-worker.js
++++ b/node_modules/next/dist/server/dev/static-paths-worker.js
+@@ -8,12 +8,20 @@ var _utils = require("../../build/utils");
+ var _loadComponents = require("../load-components");
+ var _config = require("../config");
+ let workerWasUsed = false;
++
++// store initial require modules so we don't clear them below
++const initialCache = new Set(Object.keys(require.cache))
++
+ async function loadStaticPaths(distDir, pathname, serverless, config, httpAgentOptions, locales, defaultLocale) {
+-    // we only want to use each worker once to prevent any invalid
+-    // caches
+-    if (workerWasUsed) {
+-        process.exit(1);
+-    }
++    // we need to clear any modules manually here since the
++    // require-cache-hot-loader doesn't affect require cache here
++    // since we're in a separate process
++    Object.keys(require.cache).forEach(mod => {
++        if (!initialCache.has(mod)) {
++            delete require.cache[mod]
++        }
++    });
++
+     // update work memory runtime-config
+     require("../../shared/lib/runtime-config").setConfig(config);
+     (0, _config).setHttpAgentOptions(httpAgentOptions);
+@@ -23,7 +31,7 @@ async function loadStaticPaths(distDir, pathname, serverless, config, httpAgentO
+         // only be called for SSG pages with getStaticPaths
+         throw new Error(`Invariant: failed to load page with getStaticPaths for ${pathname}`);
+     }
+-    workerWasUsed = true;
++
+     return (0, _utils).buildStaticPaths(pathname, components.getStaticPaths, config.configFileName, locales, defaultLocale);
+ }
+ 

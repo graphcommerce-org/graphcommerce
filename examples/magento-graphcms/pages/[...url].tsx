@@ -34,7 +34,6 @@ import {
 } from '@graphcommerce/next-ui'
 import { Container } from '@mui/material'
 import { GetStaticPaths } from 'next'
-import { Suspense } from 'react'
 import {
   LayoutFull,
   LayoutFullProps,
