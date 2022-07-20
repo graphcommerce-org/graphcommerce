@@ -1,5 +1,4 @@
 import { RenderType, TypeRenderer } from '@graphcommerce/next-ui'
-import { Suspense } from 'react'
 import { RowBlogContent } from '../Blog'
 import { PageContentQueryFragment } from './PageContentQueryFragment.gql'
 import { RowButtonLinkList } from './RowButtonLinkList/RowButtonLinkList'
