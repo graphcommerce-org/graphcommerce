@@ -2,14 +2,14 @@ import { useFormProductAddToCart } from '@graphcommerce/magento-product'
 import { SectionHeader, RenderType } from '@graphcommerce/next-ui'
 import { ActionCardListForm } from '@graphcommerce/next-ui/ActionCard/ActionCardListForm'
 import { i18n } from '@lingui/core'
-import { BaseTextFieldProps } from '@mui/material'
+import { BaseTextFieldProps, Box } from '@mui/material'
 import React from 'react'
-import { ColorSwatchData } from '../Swatches/ColorSwatchData'
-import { ImageSwatchData } from '../Swatches/ImageSwatchData'
-import { TextSwatchData } from '../Swatches/TextSwatchData'
+import { ColorSwatchData } from '../../Swatches/ColorSwatchData'
+import { ImageSwatchData } from '../../Swatches/ImageSwatchData'
+import { TextSwatchData } from '../../Swatches/TextSwatchData'
 
-import { ConfigurableOptionsActionCardProps } from '../Swatches/types'
-import { useConfigurableTypeProduct } from '../hooks'
+import { ConfigurableOptionsActionCardProps } from '../../Swatches/types'
+import { useConfigurableTypeProduct } from '../../hooks'
 
 export type ConfigurableOptionsInputProps = Pick<
   BaseTextFieldProps,
@@ -54,13 +54,13 @@ export function ConfigurableOptionsInput(props: ConfigurableOptionsInputProps) {
         const fieldName = `selectedOptions.${index}` as const
         const { values, label } = option
         return (
-          <React.Fragment key={fieldName}>
+          <Box key={fieldName}>
             <SectionHeader
               labelLeft={label}
               labelRight={optionEndLabels?.[option?.attribute_code ?? '']}
+              sx={{ mt: 0 }}
             />
             <ActionCardListForm
-              key={fieldName}
               name={fieldName}
               control={control}
               size='medium'
@@ -80,7 +80,7 @@ export function ConfigurableOptionsInput(props: ConfigurableOptionsInputProps) {
                 },
               })}
             />
-          </React.Fragment>
+          </Box>
         )
       })}
     </>

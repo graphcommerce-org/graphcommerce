@@ -1,5 +1,8 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
+  AddToCartButton,
+  AddToCartQuantity,
+  AddToCartSnackbar,
   getProductStaticPaths,
   jsonLdProduct,
   jsonLdProductOffer,
@@ -11,26 +14,27 @@ import {
   ProductSidebarDelivery,
 } from '@graphcommerce/magento-product'
 import {
-  ConfigurableProductAddToCart,
+  ConfigurableAddToCartPrice,
+  ConfigurableOptionsInput,
+  ConfigurableProductPageGallery,
   GetConfigurableProductConfigurationsDocument,
   GetConfigurableProductConfigurationsQuery,
-  ConfigurableProductPageGallery,
 } from '@graphcommerce/magento-product-configurable'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
 import { Money, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
 import {
+  findByTypename,
   GetStaticProps,
   JsonLd,
   LayoutHeader,
   LayoutTitle,
   SchemaDts,
-  findByTypename,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Link, Typography } from '@mui/material'
+import { Box, Divider, Link, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
-import { useRouter } from 'next/router'
+import PageLink from 'next/link'
 import { LayoutFull, LayoutFullProps, RowProduct, RowRenderer, Usps } from '../../../components'
 import { ProductPageDocument, ProductPageQuery } from '../../../graphql/ProductPage.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../../lib/graphql/graphqlSsrClient'
@@ -43,7 +47,6 @@ type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
 
 function ProductConfigurable(props: Props) {
   const { products, usps, typeProducts, sidebarUsps, pages } = props
-  const router = useRouter()
 
   const product = findByTypename(products?.items, 'ConfigurableProduct')
   const typeProduct = findByTypename(typeProducts?.items, 'ConfigurableProduct')
@@ -67,44 +70,62 @@ function ProductConfigurable(props: Props) {
         }}
       />
       <ProductPageMeta {...product} />
+
       <ProductAddToCartForm sku={product.sku} urlKey={product.url_key} typeProduct={typeProduct}>
-        <ConfigurableProductPageGallery {...product}>
+        <ConfigurableProductPageGallery
+          {...product}
+          sx={(theme) => ({
+            '& .SidebarGallery-sidebar': { display: 'grid', rowGap: theme.spacings.sm },
+          })}
+        >
           <div>
-            <Typography component='span' variant='body2' color='text.disabled'>
+            <Typography component='div' variant='body2' color='text.disabled'>
               <Trans
                 id='As low as <0/>'
                 components={{ 0: <Money {...product.price_range.minimum_price.final_price} /> }}
               />
             </Typography>
+            <Typography variant='h3' component='div' gutterBottom>
+              {product.name}
+            </Typography>
+            <ProductShortDescription short_description={product?.short_description} />
+            <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
           </div>
-          <Typography variant='h3' component='div' gutterBottom>
-            {product.name}
-          </Typography>
 
-          <ProductShortDescription short_description={product?.short_description} />
+          <Divider />
 
-          <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
-
-          <ConfigurableProductAddToCart
+          <ConfigurableOptionsInput
             optionEndLabels={{
               size: (
-                <Link
-                  component='button'
-                  color='primary'
-                  underline='hover'
-                  onClick={(e) => {
-                    e.preventDefault()
-                    return router.push('/modal/product/global/size')
-                  }}
-                >
-                  <Trans id='Which size is right?' />
-                </Link>
+                <PageLink href='/modal/product/global/size'>
+                  <Link rel='nofollow' component='button' color='primary' underline='hover'>
+                    <Trans id='Which size is right?' />
+                  </Link>
+                </PageLink>
               ),
             }}
-            additionalButtons={<ProductWishlistChipDetail {...product} />}
+          />
+
+          <Divider />
+          <AddToCartQuantity />
+
+          <Typography component='div' variant='h3' lineHeight='1'>
+            <ConfigurableAddToCartPrice />
+          </Typography>
+
+          <ProductSidebarDelivery />
+          <Box
+            sx={(theme) => ({
+              display: 'flex',
+              alignItems: 'center',
+              columnGap: theme.spacings.xs,
+            })}
           >
-            <ProductSidebarDelivery />
-          </ConfigurableProductAddToCart>
+            <AddToCartButton sx={{ width: '100%' }} />
+            <ProductWishlistChipDetail {...product} />
+          </Box>
+
+          <AddToCartSnackbar name={product.name} />
           <Usps usps={sidebarUsps} size='small' />
         </ConfigurableProductPageGallery>
       </ProductAddToCartForm>
@@ -161,7 +182,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
       rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
     },
   })
-  const typeProductPage = client.query({
+  const typeProductPage = staticClient.query({
     query: GetConfigurableProductConfigurationsDocument,
     variables: { urlKey, selectedOptions: [] },
   })

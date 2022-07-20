@@ -47,7 +47,7 @@ function ProductDownloadable(props: Props) {
   const typeProduct = findByTypename(typeProducts?.items, 'DownloadableProduct')
   const aggregations = products?.aggregations
 
-  if (!product?.sku || !product.url_key || !typeProduct) return null
+  if (!product || !typeProduct) return null
 
   return (
     <>

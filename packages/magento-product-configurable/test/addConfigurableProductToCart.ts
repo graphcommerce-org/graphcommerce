@@ -1,7 +1,7 @@
 import { waitForGraphQlResponse } from '@graphcommerce/graphql/test/apolloClient.fixture'
 import { CreateEmptyCartDocument } from '@graphcommerce/magento-cart/hooks/CreateEmptyCart.gql'
+import { ProductAddToCartDocument } from '@graphcommerce/magento-product/components'
 import { Page, expect } from '@playwright/test'
-import { ConfigurableProductAddToCartDocument } from '../ConfigurableProductAddToCart/ConfigurableProductAddToCart.gql'
 
 export async function addConfigurableProductToCart(page: Page, productUrl: string) {
   await page.goto(productUrl)
@@ -18,7 +18,7 @@ export async function addConfigurableProductToCart(page: Page, productUrl: strin
   expect(createCart.errors).toBeUndefined()
   expect(createCart.data?.createEmptyCart).toBeDefined()
 
-  const addToCart = await waitForGraphQlResponse(page, ConfigurableProductAddToCartDocument)
+  const addToCart = await waitForGraphQlResponse(page, ProductAddToCartDocument)
   expect(addToCart.errors).toBeUndefined()
   expect(addToCart.data?.addProductsToCart?.user_errors.length).toBe(0)
 }

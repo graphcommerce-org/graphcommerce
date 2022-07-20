@@ -6,7 +6,7 @@ import { useScrollerContext } from './useScrollerContext'
 
 export function useScrollTo() {
   const { scrollerRef, register, disableSnap, enableSnap } = useScrollerContext()
-  const { scroll, y, x } = useElementScroll(scrollerRef)
+  const scroll = useElementScroll(scrollerRef)
 
   const duration =
     ((useContext(MotionConfigContext).transition as Tween | undefined)?.duration ?? 0.375) * 1000
@@ -25,8 +25,9 @@ export function useScrollTo() {
       //   return
       // }
 
+      // @ts-expect-error private api, but we're updating the animation value here manually instead of relying on the event listener.
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      // scroll.start(() => () => {})
+      scroll.scroll.start(() => () => {})
 
       const xDone = new Promise<void>((onComplete) => {
         if (ref.scrollLeft !== to.x) {
@@ -35,10 +36,10 @@ export function useScrollTo() {
             animate({
               from: ref.scrollLeft,
               to: to.x,
-              velocity: x.getVelocity(),
+              velocity: scroll.x.getVelocity(),
               onUpdate: (v) => {
                 ref.scrollLeft = v
-                scroll.set({ ...scroll.get(), x: v })
+                scroll.scroll.set({ ...scroll.scroll.get(), x: v })
               },
               onComplete,
               onStop: onComplete,
@@ -55,10 +56,10 @@ export function useScrollTo() {
             animate({
               from: ref.scrollTop,
               to: to.y,
-              velocity: y.getVelocity(),
+              velocity: scroll.y.getVelocity(),
               onUpdate: (v: number) => {
                 ref.scrollTop = v
-                scroll.set({ ...scroll.get(), y: v })
+                scroll.scroll.set({ ...scroll.scroll.get(), y: v })
               },
               onComplete,
               onStop: onComplete,
@@ -72,10 +73,10 @@ export function useScrollTo() {
 
       await xDone
       await yDone
-      scroll.stop()
+      scroll.scroll.stop()
       enableSnap()
     },
-    [scrollerRef, scroll, enableSnap, disableSnap, register, x, duration, y],
+    [disableSnap, enableSnap, register, scroll, scrollerRef, duration],
   )
 
   return scrollTo

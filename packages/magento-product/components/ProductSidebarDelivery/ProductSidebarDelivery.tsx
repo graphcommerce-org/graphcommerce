@@ -22,7 +22,6 @@ export function ProductSidebarDelivery() {
         `,
         gridTemplateColumns: `min-content auto`,
         columnGap: theme.spacings.xxs,
-        marginTop: theme.spacings.xxs,
         background:
           theme.palette.mode === 'light'
             ? darken(theme.palette.background.default, 0.01)
