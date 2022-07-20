@@ -1,3 +1,4 @@
+import { WaitForQueries } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import {
   ApolloCartErrorAlert,
@@ -69,7 +70,7 @@ export const EmailForm = React.memo<EmailFormProps>((props) => {
           InputProps={{
             autoComplete: 'email',
             endAdornment: (
-              <NoSsr>
+              <WaitForQueries waitFor={isEmailAvailable}>
                 {isEmailAvailable.data?.isEmailAvailable && (
                   <PageLink href='/account/signin' passHref>
                     <Button color='secondary' style={{ whiteSpace: 'nowrap' }}>
@@ -77,7 +78,7 @@ export const EmailForm = React.memo<EmailFormProps>((props) => {
                     </Button>
                   </PageLink>
                 )}
-              </NoSsr>
+              </WaitForQueries>
             ),
           }}
         />
