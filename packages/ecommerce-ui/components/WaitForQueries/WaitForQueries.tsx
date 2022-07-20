@@ -1,10 +1,11 @@
 import { useIsomorphicLayoutEffect } from '@graphcommerce/framer-utils'
 import { QueryResult } from '@graphcommerce/graphql'
-import { NoSsr, NoSsrProps } from '@mui/material'
-import { useState } from 'react'
+import React, { useState } from 'react'
 
-export type WaitForQueriesProps = Omit<NoSsrProps, 'defer'> & {
+export type WaitForQueriesProps = {
   waitFor: QueryResult<any, any> | QueryResult<any, any>[]
+  children: React.ReactNode
+  fallback?: React.ReactNode
 }
 
 /**
@@ -14,11 +15,15 @@ export type WaitForQueriesProps = Omit<NoSsrProps, 'defer'> & {
  */
 export const WaitForQueries = (props: WaitForQueriesProps) => {
   const { waitFor, fallback, children } = props
-  const queries = Array.isArray(waitFor) ? waitFor : [waitFor]
-  const isDone = queries.every(({ data, error }) => data || error)
 
+  // We are done when all queries either have data or an error
+  const isDone = (Array.isArray(waitFor) ? waitFor : [waitFor]).every(
+    ({ data, error }) => data || error,
+  )
+
+  // Wait for the queries to finish
   const [mountedState, setMountedState] = useState(false)
   useIsomorphicLayoutEffect(() => setMountedState(true), [])
 
-  return <NoSsr fallback={fallback}>{isDone && mountedState ? children : fallback}</NoSsr>
+  return <>{isDone && mountedState ? children : fallback}</>
 }
