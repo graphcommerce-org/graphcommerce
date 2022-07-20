@@ -6,7 +6,7 @@ export type ProductPageGalleryRenderers = TypeRenderer<
   NonNullable<NonNullable<ProductPageGalleryFragment['media_gallery']>[0]>
 >
 
-type ProductPageGalleryProps = PropsWithChildren<ProductPageGalleryFragment> &
+export type ProductPageGalleryProps = PropsWithChildren<ProductPageGalleryFragment> &
   Omit<SidebarGalleryProps, 'sidebar' | 'images'>
 
 export function ProductPageGallery(props: ProductPageGalleryProps) {
