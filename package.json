@@ -42,6 +42,9 @@
       "project": "./tsconfig.json"
     }
   },
+  "resolutions": {
+    "cross-undici-fetch": "0.4.13"
+  },
   "dependencies": {
     "@changesets/changelog-github": "0.4.4",
     "@changesets/cli": "2.22.0",
