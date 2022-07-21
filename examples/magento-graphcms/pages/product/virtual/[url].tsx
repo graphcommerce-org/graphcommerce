@@ -20,12 +20,10 @@ import {
   JsonLd,
   LayoutTitle,
   LayoutHeader,
-  SchemaDts,
   findByTypename,
 } from '@graphcommerce/next-ui'
 import { Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
-import React from 'react'
 import { LayoutFull, LayoutFullProps, RowProduct, RowRenderer, Usps } from '../../../components'
 import { ProductPageDocument, ProductPageQuery } from '../../../graphql/ProductPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
@@ -51,7 +49,7 @@ function ProductVirtual(props: Props) {
           {product.name}
         </LayoutTitle>
       </LayoutHeader>
-      <JsonLd<SchemaDts.Product>
+      <JsonLd
         item={{
           '@context': 'https://schema.org',
           ...jsonLdProduct(product),

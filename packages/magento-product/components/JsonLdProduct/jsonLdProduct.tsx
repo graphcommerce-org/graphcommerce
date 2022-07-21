@@ -21,7 +21,7 @@ export function jsonLdProduct(props: JsonLdProductFragment): Product {
   }
 }
 
-export function jsonLdProductOffer(props: JsonLdProductOfferFragment): Partial<Product> {
+export function jsonLdProductOffer(props: JsonLdProductOfferFragment): Pick<Product, 'offers'> {
   const { price_range } = props
 
   return {

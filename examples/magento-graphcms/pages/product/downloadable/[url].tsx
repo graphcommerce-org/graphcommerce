@@ -24,7 +24,6 @@ import {
   JsonLd,
   LayoutHeader,
   LayoutTitle,
-  SchemaDts,
   findByTypename,
 } from '@graphcommerce/next-ui'
 import { Typography } from '@mui/material'
@@ -56,7 +55,7 @@ function ProductDownloadable(props: Props) {
           {product.name}
         </LayoutTitle>
       </LayoutHeader>
-      <JsonLd<SchemaDts.Product>
+      <JsonLd
         item={{
           '@context': 'https://schema.org',
           ...jsonLdProduct(product),

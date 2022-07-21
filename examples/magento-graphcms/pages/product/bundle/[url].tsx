@@ -27,7 +27,6 @@ import {
   JsonLd,
   LayoutHeader,
   LayoutTitle,
-  SchemaDts,
 } from '@graphcommerce/next-ui'
 import { Box, Divider, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
@@ -57,7 +56,7 @@ function ProductBundle(props: Props) {
           {product.name}
         </LayoutTitle>
       </LayoutHeader>
-      <JsonLd<SchemaDts.Product>
+      <JsonLd
         item={{
           '@context': 'https://schema.org',
           ...jsonLdProduct(product),
@@ -158,12 +157,12 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     variables: { urlKey },
   })
 
-  if (
-    (await productPage).data.products?.items?.[0]?.__typename !== 'BundleProduct' ||
-    (await typeProductPage).data.typeProducts?.items?.[0]?.__typename !== 'BundleProduct'
-  ) {
-    return { notFound: true }
-  }
+  const product = findByTypename((await productPage).data.products?.items, 'BundleProduct')
+  const typeProduct = findByTypename(
+    (await typeProductPage).data.typeProducts?.items,
+    'BundleProduct',
+  )
+  if (!product || !typeProduct) return { notFound: true }
 
   const category = productPageCategory((await productPage).data?.products?.items?.[0])
   const up =
