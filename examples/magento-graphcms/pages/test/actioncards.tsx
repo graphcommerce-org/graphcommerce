@@ -1,6 +1,6 @@
 import { useForm } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { ConfigurableOptionsActionCard } from '@graphcommerce/magento-product-configurable/ConfigurableOptions/ConfigurableOptionsInput'
+import { ConfigurableOptionsActionCard } from '@graphcommerce/magento-product-configurable'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   LayoutTitle,

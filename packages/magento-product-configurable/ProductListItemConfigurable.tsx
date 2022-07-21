@@ -9,10 +9,7 @@ import React from 'react'
 import { ProductListItemConfigurableFragment } from './ProductListItemConfigurable.gql'
 import { SwatchList } from './SwatchList'
 
-export type ProductListItemConfigurableActionProps = ProductListItemConfigurableFragment & {
-  variant?: NonNullable<ProductListItemConfigurableFragment['variants']>[0]
-}
-
+export type ProductListItemConfigurableActionProps = ProductListItemConfigurableFragment
 export type ProdustListItemConfigurableProps = ProductListItemConfigurableFragment &
   ProductListItemProps & {
     Actions?: React.VFC<ProductListItemConfigurableActionProps>
@@ -22,7 +19,6 @@ export type ProdustListItemConfigurableProps = ProductListItemConfigurableFragme
 export function ProductListItemConfigurable(props: ProdustListItemConfigurableProps) {
   const {
     Actions,
-    variants,
     configurable_options,
     children,
     swatchLocations = { bottomLeft: [], bottomRight: [], topLeft: [], topRight: [] },
@@ -53,22 +49,9 @@ export function ProductListItemConfigurable(props: ProdustListItemConfigurablePr
     if (!selected[attr]) selected[attr] = values
   })
 
-  const matchingVariants = variants?.filter(
-    (variant) =>
-      variant?.attributes?.filter(
-        (attribute) =>
-          selected[attribute?.code ?? ''] !== undefined &&
-          selected[attribute?.code ?? ''].includes(String(attribute?.uid)),
-      ).length,
-  )
-
-  const productProps = matchingVariants?.[0]?.product
-    ? { ...configurableProduct, ...matchingVariants?.[0]?.product }
-    : configurableProduct
-
   return (
     <ProductListItem
-      {...productProps}
+      {...configurableProduct}
       topLeft={
         <>
           {topLeft}
@@ -106,7 +89,7 @@ export function ProductListItemConfigurable(props: ProdustListItemConfigurablePr
         </>
       }
     >
-      {Actions && <Actions {...configurableProduct} variant={matchingVariants?.[0]} />}
+      {Actions && <Actions {...configurableProduct} />}
       {children}
     </ProductListItem>
   )
