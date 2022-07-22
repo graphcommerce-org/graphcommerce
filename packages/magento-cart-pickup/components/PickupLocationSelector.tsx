@@ -106,6 +106,7 @@ export function PickupLocationSelector(props: PickupProps) {
       <ActionCardListForm<Location & ActionCardItemBase>
         control={control}
         name='pickupLocationCode'
+        collapse
         errorMessage='Please select a pickup location'
         items={locations.map((location) => ({
           ...location,

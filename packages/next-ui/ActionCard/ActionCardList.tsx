@@ -6,6 +6,7 @@ import { ActionCardProps } from './ActionCard'
 
 type MultiSelect = {
   multiple: true
+  collapse?: false
   value: (string | number)[]
 
   onChange?: (event: React.MouseEvent<HTMLElement>, value: MultiSelect['value']) => void
@@ -13,6 +14,7 @@ type MultiSelect = {
 type Select = {
   multiple?: false
   value: string | number
+  collapse?: boolean
 
   /** Value is null when deselected when not required */
   onChange?: (event: React.MouseEvent<HTMLElement>, value: Select['value'] | null) => void
@@ -55,7 +57,15 @@ const { withState, selectors } = extendableComponent<StateProps, typeof name, ty
 export const actionCardListSelectors = selectors
 
 export const ActionCardList = React.forwardRef<any, ActionCardListProps>((props, ref) => {
-  const { children, required, error = false, errorMessage, size = 'large', sx = [] } = props
+  const {
+    children,
+    required,
+    error = false,
+    errorMessage,
+    size = 'large',
+    collapse = false,
+    sx = [],
+  } = props
   const classes = withState({ size })
 
   const handleChange: ActionCardProps['onClick'] = isMulti(props)
@@ -82,7 +92,7 @@ export const ActionCardList = React.forwardRef<any, ActionCardListProps>((props,
       }
 
   type ActionCardLike = React.ReactElement<
-    Pick<ActionCardProps, 'value' | 'selected' | 'disabled' | 'onClick'>
+    Pick<ActionCardProps, 'value' | 'selected' | 'disabled' | 'onClick' | 'hidden'>
   >
   function isActionCardLike(el: React.ReactElement): el is ActionCardLike {
     const hasValue = (el as ActionCardLike).props.value
@@ -162,6 +172,7 @@ export const ActionCardList = React.forwardRef<any, ActionCardListProps>((props,
       {childReactNodes.map((child) =>
         React.cloneElement(child, {
           onClick: handleChange,
+          hidden: collapse && Boolean(value) && !isValueSelected(child.props.value, value),
           selected:
             child.props.selected === undefined
               ? isValueSelected(child.props.value, value)

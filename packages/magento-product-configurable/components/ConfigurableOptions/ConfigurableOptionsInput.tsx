@@ -25,7 +25,6 @@ export function ConfigurableOptionsActionCard(cardProps: ConfigurableOptionsActi
     <RenderType
       {...cardProps}
       __typename={swatch_data?.__typename ?? 'TextSwatchData'}
-      hidden={false}
       value={uid}
       variant='outlined'
       description={swatch_data?.value ?? ''}

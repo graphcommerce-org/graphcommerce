@@ -14,9 +14,9 @@ export type ActionCardItemRenderProps<T> = Pick<
 
 export type ActionCardListFormProps<T extends ActionCardItemBase> = Omit<
   ActionCardListProps,
-  'value'
+  'value' | 'error' | 'onChange' | 'children' | 'multiple'
 > &
-  Omit<ControllerProps<any>, 'render'> & {
+  Omit<ControllerProps<any>, 'render' | 'shouldUnregister'> & {
     items: T[]
     render: React.FC<ActionCardItemRenderProps<T>>
   }
@@ -24,7 +24,19 @@ export type ActionCardListFormProps<T extends ActionCardItemBase> = Omit<
 export function ActionCardListForm<T extends ActionCardItemBase>(
   props: ActionCardListFormProps<T>,
 ) {
-  const { required, rules, items, render, control, name, errorMessage, size, sx } = props
+  const {
+    required,
+    rules,
+    items,
+    render,
+    control,
+    name,
+    errorMessage,
+    size,
+    sx,
+    defaultValue,
+    ...other
+  } = props
   const RenderItem = render as React.FC<ActionCardItemRenderProps<ActionCardItemBase>>
 
   return (
@@ -32,9 +44,11 @@ export function ActionCardListForm<T extends ActionCardItemBase>(
       {...props}
       control={control}
       name={name}
+      defaultValue={defaultValue}
       rules={{ required: errorMessage, ...rules }}
       render={({ field: { onChange, value, onBlur, ref }, fieldState, formState }) => (
         <ActionCardList
+          {...other}
           required={required}
           value={value}
           ref={ref}
@@ -49,7 +63,6 @@ export function ActionCardListForm<T extends ActionCardItemBase>(
               key={item.value}
               value={item.value}
               selected={value === item.value}
-              hidden={!!value && value !== item.value}
               size={size}
               onReset={(e) => {
                 e.preventDefault()

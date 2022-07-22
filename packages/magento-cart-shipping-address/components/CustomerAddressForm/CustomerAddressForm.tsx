@@ -99,6 +99,7 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
         <ActionCardListForm
           control={control}
           name='customerAddressId'
+          collapse
           errorMessage='Please select a shipping address'
           items={[
             ...(addresses ?? []).filter(Boolean).map((address) => ({
