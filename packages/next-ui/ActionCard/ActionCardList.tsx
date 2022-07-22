@@ -169,16 +169,16 @@ export const ActionCardList = React.forwardRef<any, ActionCardListProps>((props,
         },
       ]}
     >
-      {childReactNodes.map((child) =>
-        React.cloneElement(child, {
+      {childReactNodes.map((child) => {
+        if (collapse && Boolean(value) && !isValueSelected(child.props.value, value)) return null
+        return React.cloneElement(child, {
           onClick: handleChange,
-          hidden: collapse && Boolean(value) && !isValueSelected(child.props.value, value),
           selected:
             child.props.selected === undefined
               ? isValueSelected(child.props.value, value)
               : child.props.selected,
-        }),
-      )}
+        })
+      })}
       {error && (
         <Alert
           severity='error'

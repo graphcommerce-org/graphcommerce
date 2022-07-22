@@ -25,7 +25,6 @@ export type ActionCardProps = {
   secondaryAction?: React.ReactNode
   onClick?: (event: React.MouseEvent<HTMLElement>, value: string | number) => void
   selected?: boolean
-  hidden?: boolean
   value: string | number
   reset?: React.ReactNode
   disabled?: boolean
@@ -48,7 +47,6 @@ type StateProps = {
   variant?: Variants
   size?: Size
   selected: boolean
-  hidden: boolean
   disabled: boolean
   image: boolean
 }
@@ -73,14 +71,13 @@ export function ActionCard(props: ActionCardProps) {
     onClick,
     value,
     selected = false,
-    hidden = false,
     reset,
     disabled = false,
     variant = 'default',
     size = 'large',
   } = props
 
-  const classes = withState({ hidden, disabled, selected, image: Boolean(image), variant, size })
+  const classes = withState({ disabled, selected, image: Boolean(image), variant, size })
 
   return (
     <RenderComponent
@@ -144,9 +141,6 @@ export function ActionCard(props: ActionCardProps) {
             borderRadius: 1,
           },
         }),
-        hidden && {
-          display: 'none',
-        },
 
         disabled &&
           ((theme) => ({
