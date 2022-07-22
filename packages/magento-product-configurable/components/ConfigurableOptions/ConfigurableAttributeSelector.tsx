@@ -38,7 +38,7 @@ export function ConfigurableOptionsActionCard(cardProps: ConfigurableOptionsActi
   )
 }
 
-export function ConfigurableOptionsInput(props: ConfigurableOptionsInputProps) {
+export function ConfigurableAttributeSelector(props: ConfigurableOptionsInputProps) {
   const { optionEndLabels } = props
   const form = useFormProductAddToCart()
   const { control } = form

@@ -1,3 +1,3 @@
 export * from './ConfigurableProductPageGallery/ConfigurableProductPageGallery'
-export * from './ConfigurableProductPrice/ConfigurableAddToCartPrice'
-export * from './ConfigurableOptions/ConfigurableOptionsInput'
+export * from './ConfigurablePrice/ConfigurableAddToCartPrice'
+export * from './ConfigurableOptions/ConfigurableAttributeSelector'

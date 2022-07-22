@@ -1,7 +1,7 @@
 import { Money } from '@graphcommerce/magento-store'
 import { useConfigurableTypeProduct } from '../../hooks/useConfigurableTypeProduct'
 
-export function ConfigurableAddToCartPrice() {
+export function ConfigurablePrice() {
   const { configurable_product_options_selection, price_range } = useConfigurableTypeProduct()
 
   const regular_price =

@@ -42,6 +42,10 @@ const compName = 'ConfigurableOptionsInput' as const
 const parts = ['form', 'button', 'finalPrice', 'quantity', 'divider', 'buttonWrapper'] as const
 const { classes } = extendableComponent(compName, parts)
 
+/**
+ * @deprecated Use ProductAddToCartForm with ConfigurableAttributeSelector,
+ *   ConfigurableProductPageGallery and ConfigurablePrice
+ */
 export function ConfigurableProductAddToCart(props: ConfigurableProductAddToCartProps) {
   const {
     name,
@@ -55,6 +59,12 @@ export function ConfigurableProductAddToCart(props: ConfigurableProductAddToCart
   } = props
 
   const { getUids, getVariants, selection } = useConfigurableContext(variables.sku)
+
+  if (process.env.NODE_ENV !== 'production') {
+    console.warn(
+      'ConfigurableProductAddToCart is deprecated. Use ProductAddToCartForm with ConfigurableAttributeSelector, ConfigurableProductPageGallery and ConfigurablePrice',
+    )
+  }
 
   const form = useFormGqlMutationCart(ConfigurableProductAddToCartDocument, {
     defaultValues: { ...variables },

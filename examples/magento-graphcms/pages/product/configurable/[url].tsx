@@ -14,8 +14,8 @@ import {
   ProductSidebarDelivery,
 } from '@graphcommerce/magento-product'
 import {
-  ConfigurableAddToCartPrice,
-  ConfigurableOptionsInput,
+  ConfigurablePrice,
+  ConfigurableAttributeSelector,
   ConfigurableProductPageGallery,
   GetConfigurableProductConfigurationsDocument,
   GetConfigurableProductConfigurationsQuery,
@@ -93,7 +93,7 @@ function ProductConfigurable(props: Props) {
 
           <Divider />
 
-          <ConfigurableOptionsInput
+          <ConfigurableAttributeSelector
             optionEndLabels={{
               size: (
                 <PageLink href='/modal/product/global/size'>
@@ -109,7 +109,7 @@ function ProductConfigurable(props: Props) {
           <AddToCartQuantity />
 
           <Typography component='div' variant='h3' lineHeight='1'>
-            <ConfigurableAddToCartPrice />
+            <ConfigurablePrice />
           </Typography>
 
           <ProductSidebarDelivery />
