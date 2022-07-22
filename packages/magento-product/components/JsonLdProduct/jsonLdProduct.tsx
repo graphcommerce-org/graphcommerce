@@ -14,13 +14,13 @@ export function jsonLdProduct(props: JsonLdProductFragment): Product {
       ? media_gallery?.map((img) => (img as ProductImage)?.url ?? '')
       : undefined,
     category: categories?.[0]?.name ?? undefined,
-    identifier: url_key ?? undefined,
     description: description?.html
       ? (description.html ?? '').replace(/(<([^>]+)>)/gi, '')
       : undefined,
   }
 }
 
+/** @see https://developers.google.com/search/docs/advanced/structured-data/product */
 export function jsonLdProductOffer(props: JsonLdProductOfferFragment): Pick<Product, 'offers'> {
   const { price_range } = props
 
