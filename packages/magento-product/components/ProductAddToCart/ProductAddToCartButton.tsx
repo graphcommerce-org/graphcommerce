@@ -7,7 +7,7 @@ type AddToCartButtonProps = {
   sx?: SxProps<Theme>
 }
 
-export function AddToCartButton(props: AddToCartButtonProps) {
+export function ProductAddToCartButton(props: AddToCartButtonProps) {
   const { sx } = props
   const { formState } = useFormProductAddToCart()
 

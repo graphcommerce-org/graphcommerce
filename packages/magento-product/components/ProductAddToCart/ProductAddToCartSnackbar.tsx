@@ -12,7 +12,7 @@ import { useFormProductAddToCart } from './ProductAddToCartForm'
 
 type AddToCartMessageProps = { name?: string | null }
 
-export function AddToCartSnackbar(props: AddToCartMessageProps) {
+export function ProductAddToCartSnackbar(props: AddToCartMessageProps) {
   const { name } = props
   const { formState, error, data } = useFormProductAddToCart()
 

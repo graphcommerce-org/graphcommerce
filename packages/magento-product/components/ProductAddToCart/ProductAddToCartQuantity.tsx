@@ -6,7 +6,7 @@ type AddToCartQuantityProps = Omit<
   'error' | 'required' | 'inputProps' | 'inputRef' | 'helperText' | 'disabled'
 >
 
-export function AddToCartQuantity(props: AddToCartQuantityProps) {
+export function ProductAddToCartQuantity(props: AddToCartQuantityProps) {
   const form = useFormProductAddToCart()
   const { formState, muiRegister, required } = form
 
