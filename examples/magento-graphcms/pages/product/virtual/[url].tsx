@@ -3,7 +3,6 @@ import {
   getProductStaticPaths,
   jsonLdProduct,
   jsonLdProductOffer,
-  ProductAddToCart,
   productPageCategory,
   ProductAddToCartForm,
   ProductPageDescription,
@@ -11,9 +10,12 @@ import {
   ProductPageMeta,
   ProductShortDescription,
   ProductSidebarDelivery,
+  AddToCartButton,
+  AddToCartQuantity,
+  AddToCartSnackbar,
 } from '@graphcommerce/magento-product'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { Money, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
 import {
   GetStaticProps,
@@ -22,7 +24,7 @@ import {
   LayoutHeader,
   findByTypename,
 } from '@graphcommerce/next-ui'
-import { Typography } from '@mui/material'
+import { Box, Divider, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import { LayoutFull, LayoutFullProps, RowProduct, RowRenderer, Usps } from '../../../components'
 import { ProductPageDocument, ProductPageQuery } from '../../../graphql/ProductPage.gql'
@@ -60,21 +62,41 @@ function ProductVirtual(props: Props) {
 
       <ProductPageMeta {...product} />
       <ProductAddToCartForm sku={product.sku} urlKey={product.url_key}>
-        <ProductPageGallery {...product}>
-          <Typography variant='h3' component='div'>
-            {product.name}
+        <ProductPageGallery
+          {...product}
+          sx={(theme) => ({
+            '& .SidebarGallery-sidebar': { display: 'grid', rowGap: theme.spacings.sm },
+          })}
+        >
+          <div>
+            <Typography variant='h2' component='div'>
+              {product.name}
+            </Typography>
+
+            <ProductShortDescription short_description={product?.short_description} />
+            <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
+          </div>
+
+          {/* <Divider /> */}
+          <AddToCartQuantity />
+
+          <Typography component='div' variant='h3' lineHeight='1'>
+            <Money {...product.price_range.minimum_price.final_price} />
           </Typography>
 
-          <ProductShortDescription short_description={product?.short_description} />
-
-          <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
-          <ProductAddToCart
-            name={product.name ?? ''}
-            price={product.price_range.minimum_price.final_price}
-            additionalButtons={<ProductWishlistChipDetail {...product} />}
+          <ProductSidebarDelivery />
+          <Box
+            sx={(theme) => ({
+              display: 'flex',
+              alignItems: 'center',
+              columnGap: theme.spacings.xs,
+            })}
           >
-            <ProductSidebarDelivery />
-          </ProductAddToCart>
+            <AddToCartButton sx={{ width: '100%' }} />
+            <ProductWishlistChipDetail {...product} />
+          </Box>
+
+          <AddToCartSnackbar name={product.name} />
           <Usps usps={sidebarUsps} size='small' />
         </ProductPageGallery>
       </ProductAddToCartForm>

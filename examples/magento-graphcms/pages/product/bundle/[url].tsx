@@ -64,8 +64,9 @@ function ProductBundle(props: Props) {
           ...jsonLdProductReview(product),
         }}
       />
+
       <ProductPageMeta {...product} />
-      <ProductAddToCartForm sku={product.sku} urlKey={product.url_key}>
+      <ProductAddToCartForm sku={product.sku} urlKey={product.url_key} typeProduct={typeProduct}>
         <ProductPageGallery
           {...product}
           sx={(theme) => ({

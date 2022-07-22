@@ -66,14 +66,21 @@ function ProductDownloadable(props: Props) {
 
       <ProductPageMeta {...product} />
       <ProductAddToCartForm sku={product.sku} urlKey={product.url_key}>
-        <ProductPageGallery {...product}>
-          <Typography variant='h3' component='div'>
-            {product.name}
-          </Typography>
+        <ProductPageGallery
+          {...product}
+          sx={(theme) => ({
+            '& .SidebarGallery-sidebar': { display: 'grid', rowGap: theme.spacings.sm },
+          })}
+        >
+          <div>
+            <Typography variant='h2' component='div'>
+              {product.name}
+            </Typography>
 
-          <ProductShortDescription short_description={product?.short_description} />
+            <ProductShortDescription short_description={product?.short_description} />
+            <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
+          </div>
 
-          <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
           <ProductAddToCart
             name={product.name ?? ''}
             price={product.price_range.minimum_price.final_price}
