@@ -167,7 +167,6 @@ export function ActionCard(props: ActionCardProps) {
           sx={{
             display: 'flex',
             flexDirection: 'row',
-
             justifyContent: 'space-between',
           }}
         >
