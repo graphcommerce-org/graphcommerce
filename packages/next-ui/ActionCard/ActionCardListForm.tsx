@@ -32,10 +32,10 @@ export function ActionCardListForm<T extends ActionCardItemBase>(
       {...props}
       control={control}
       name={name}
-      rules={{ required, ...rules, validate: (v) => (v ? true : errorMessage) }}
+      rules={{ required: errorMessage, ...rules }}
       render={({ field: { onChange, value, onBlur, ref }, fieldState, formState }) => (
         <ActionCardList
-          required
+          required={required}
           value={value}
           ref={ref}
           onChange={(_, incomming) => onChange(incomming)}
