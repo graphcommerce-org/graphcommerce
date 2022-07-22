@@ -9,7 +9,7 @@ import { SwatchSize, SwatchTypeRenderer } from './Swatches/types'
 
 type SwatchListProps = {
   attributes: string[]
-  configurable_options: Maybe<ProductListItemConfigurableFragment['configurable_options']>
+  configurable_options?: Maybe<ProductListItemConfigurableFragment['configurable_options']>
 }
 
 const renderer: SwatchTypeRenderer = {

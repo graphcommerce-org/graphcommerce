@@ -29,8 +29,7 @@
     "@graphcommerce/magento-product": "4.4.16",
     "@graphcommerce/magento-product-simple": "4.0.38",
     "@graphcommerce/magento-store": "4.2.18",
-    "@graphcommerce/next-ui": "4.14.0",
-    "@graphcommerce/react-hook-form": "3.3.1"
+    "@graphcommerce/next-ui": "4.14.0"
   },
   "peerDependencies": {
     "@lingui/react": "^3.13.2",
