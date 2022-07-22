@@ -1,8 +1,8 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
-  AddToCartButton,
-  AddToCartQuantity,
-  AddToCartSnackbar,
+  ProductAddToCartButton,
+  ProductAddToCartQuantity,
+  ProductAddToCartSnackbar,
   getProductStaticPaths,
   jsonLdProduct,
   jsonLdProductOffer,
@@ -15,6 +15,7 @@ import {
   ProductSidebarDelivery,
 } from '@graphcommerce/magento-product'
 import {
+  BundleOptions,
   BundleProductPageDocument,
   BundleProductPageQuery,
 } from '@graphcommerce/magento-product-bundle'
@@ -82,8 +83,10 @@ function ProductBundle(props: Props) {
             <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
           </div>
 
+          <BundleOptions />
+
           <Divider />
-          <AddToCartQuantity />
+          <ProductAddToCartQuantity />
 
           <Typography component='div' variant='h3' lineHeight='1'>
             <Money {...product.price_range.minimum_price.final_price} />
@@ -97,11 +100,11 @@ function ProductBundle(props: Props) {
               columnGap: theme.spacings.xs,
             })}
           >
-            <AddToCartButton sx={{ width: '100%' }} />
+            <ProductAddToCartButton sx={{ width: '100%' }} />
             <ProductWishlistChipDetail {...product} />
           </Box>
 
-          <AddToCartSnackbar name={product.name} />
+          <ProductAddToCartSnackbar name={product.name} />
           <Usps usps={sidebarUsps} size='small' />
         </ProductPageGallery>
       </ProductAddToCartForm>

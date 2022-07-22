@@ -12,9 +12,9 @@ import {
   ProductPageMeta,
   ProductShortDescription,
   ProductSidebarDelivery,
-  AddToCartButton,
-  AddToCartQuantity,
-  AddToCartSnackbar,
+  ProductAddToCartButton,
+  ProductAddToCartQuantity,
+  ProductAddToCartSnackbar,
 } from '@graphcommerce/magento-product'
 import {
   GroupedProductPageDocument,
@@ -87,7 +87,7 @@ function ProductGrouped(props: Props) {
           </div>
 
           <Divider />
-          <AddToCartQuantity />
+          <ProductAddToCartQuantity />
 
           <ul>
             {typeProduct.items?.map(
@@ -117,11 +117,11 @@ function ProductGrouped(props: Props) {
               columnGap: theme.spacings.xs,
             })}
           >
-            <AddToCartButton sx={{ width: '100%' }} />
+            <ProductAddToCartButton sx={{ width: '100%' }} />
             <ProductWishlistChipDetail {...product} />
           </Box>
 
-          <AddToCartSnackbar name={product.name} />
+          <ProductAddToCartSnackbar name={product.name} />
           <Usps usps={sidebarUsps} size='small' />
         </ProductPageGallery>
       </ProductAddToCartForm>

@@ -1,8 +1,8 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
-  AddToCartButton,
-  AddToCartQuantity,
-  AddToCartSnackbar,
+  ProductAddToCartButton,
+  ProductAddToCartQuantity,
+  ProductAddToCartSnackbar,
   getProductStaticPaths,
   jsonLdProduct,
   jsonLdProductOffer,
@@ -106,7 +106,7 @@ function ProductConfigurable(props: Props) {
           />
 
           <Divider />
-          <AddToCartQuantity />
+          <ProductAddToCartQuantity />
 
           <Typography component='div' variant='h3' lineHeight='1'>
             <ConfigurablePrice />
@@ -120,11 +120,11 @@ function ProductConfigurable(props: Props) {
               columnGap: theme.spacings.xs,
             })}
           >
-            <AddToCartButton sx={{ width: '100%' }} />
+            <ProductAddToCartButton sx={{ width: '100%' }} />
             <ProductWishlistChipDetail {...product} />
           </Box>
 
-          <AddToCartSnackbar name={product.name} />
+          <ProductAddToCartSnackbar name={product.name} />
           <Usps usps={sidebarUsps} size='small' />
         </ConfigurableProductPageGallery>
       </ProductAddToCartForm>

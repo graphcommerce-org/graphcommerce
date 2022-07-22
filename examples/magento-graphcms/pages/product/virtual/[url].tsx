@@ -10,9 +10,9 @@ import {
   ProductPageMeta,
   ProductShortDescription,
   ProductSidebarDelivery,
-  AddToCartButton,
-  AddToCartQuantity,
-  AddToCartSnackbar,
+  ProductAddToCartButton,
+  ProductAddToCartQuantity,
+  ProductAddToCartSnackbar,
 } from '@graphcommerce/magento-product'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
 import { Money, StoreConfigDocument } from '@graphcommerce/magento-store'
@@ -78,7 +78,7 @@ function ProductVirtual(props: Props) {
           </div>
 
           {/* <Divider /> */}
-          <AddToCartQuantity />
+          <ProductAddToCartQuantity />
 
           <Typography component='div' variant='h3' lineHeight='1'>
             <Money {...product.price_range.minimum_price.final_price} />
@@ -92,11 +92,11 @@ function ProductVirtual(props: Props) {
               columnGap: theme.spacings.xs,
             })}
           >
-            <AddToCartButton sx={{ width: '100%' }} />
+            <ProductAddToCartButton sx={{ width: '100%' }} />
             <ProductWishlistChipDetail {...product} />
           </Box>
 
-          <AddToCartSnackbar name={product.name} />
+          <ProductAddToCartSnackbar name={product.name} />
           <Usps usps={sidebarUsps} size='small' />
         </ProductPageGallery>
       </ProductAddToCartForm>
