@@ -1,3 +1,4 @@
+import { url } from 'inspector'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   getProductStaticPaths,
@@ -11,6 +12,9 @@ import {
   ProductPageMeta,
   ProductShortDescription,
   ProductSidebarDelivery,
+  AddToCartButton,
+  AddToCartQuantity,
+  AddToCartSnackbar,
 } from '@graphcommerce/magento-product'
 import {
   GroupedProductPageDocument,
@@ -26,7 +30,7 @@ import {
   LayoutHeader,
   findByTypename,
 } from '@graphcommerce/next-ui'
-import { Typography } from '@mui/material'
+import { Box, Divider, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import { LayoutFull, LayoutFullProps, RowProduct, RowRenderer, Usps } from '../../../components'
@@ -65,15 +69,26 @@ function ProductGrouped(props: Props) {
       />
 
       <ProductPageMeta {...product} />
+
       <ProductAddToCartForm sku={product.sku} urlKey={product.url_key}>
-        <ProductPageGallery {...product}>
-          <Typography variant='h3' component='div'>
-            {product.name}
-          </Typography>
+        <ProductPageGallery
+          {...product}
+          sx={(theme) => ({
+            '& .SidebarGallery-sidebar': { display: 'grid', rowGap: theme.spacings.sm },
+          })}
+        >
+          <div>
+            <Typography variant='h2' component='div'>
+              {product.name}
+            </Typography>
 
-          <ProductShortDescription short_description={product?.short_description} />
+            <ProductShortDescription short_description={product?.short_description} />
+            <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
+          </div>
 
-          <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
+          <Divider />
+          <AddToCartQuantity />
+
           <ul>
             {typeProduct.items?.map(
               (item) =>
@@ -93,6 +108,20 @@ function ProductGrouped(props: Props) {
                 ),
             )}
           </ul>
+
+          <ProductSidebarDelivery />
+          <Box
+            sx={(theme) => ({
+              display: 'flex',
+              alignItems: 'center',
+              columnGap: theme.spacings.xs,
+            })}
+          >
+            <AddToCartButton sx={{ width: '100%' }} />
+            <ProductWishlistChipDetail {...product} />
+          </Box>
+
+          <AddToCartSnackbar name={product.name} />
           <Usps usps={sidebarUsps} size='small' />
         </ProductPageGallery>
       </ProductAddToCartForm>
