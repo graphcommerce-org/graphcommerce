@@ -30,7 +30,6 @@ export function CustomerAddressActionCard(props: CustomerAddressActionCardProps)
     return (
       <ActionCard
         {...cardProps}
-        variant='outlined'
         image={<IconSvg src={iconHome} size='large' />}
         title={<Trans id='New address' />}
         details={<Trans id='Add new address' />}
@@ -51,7 +50,6 @@ export function CustomerAddressActionCard(props: CustomerAddressActionCardProps)
   return (
     <ActionCard
       {...cardProps}
-      variant='outlined'
       image={<IconSvg src={iconHome} size='large' />}
       title={
         <>

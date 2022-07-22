@@ -30,7 +30,6 @@ export function ShippingMethodActionCard(props: ShippingMethodActionCardProps) {
       {...cardProps}
       title={title}
       details={error_message}
-      variant='outlined'
       action={
         <Button
           variant='inline'
