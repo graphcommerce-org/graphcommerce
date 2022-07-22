@@ -92,7 +92,7 @@ export const ActionCardList = React.forwardRef<any, ActionCardListProps>((props,
       }
 
   type ActionCardLike = React.ReactElement<
-    Pick<ActionCardProps, 'value' | 'selected' | 'disabled' | 'onClick' | 'hidden'>
+    Pick<ActionCardProps, 'value' | 'selected' | 'disabled' | 'onClick'>
   >
   function isActionCardLike(el: React.ReactElement): el is ActionCardLike {
     const hasValue = (el as ActionCardLike).props.value
