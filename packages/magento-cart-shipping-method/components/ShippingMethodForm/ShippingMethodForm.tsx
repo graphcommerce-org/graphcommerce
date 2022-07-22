@@ -12,7 +12,6 @@ import {
 } from '@graphcommerce/next-ui'
 import {
   FormProvider,
-  useForm,
   useFormAutoSubmit,
   useFormCompose,
   UseFormComposeOptions,
@@ -21,7 +20,7 @@ import {
 } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Box, SxProps, Theme } from '@mui/material'
+import { SxProps, Theme } from '@mui/material'
 import { useMemo } from 'react'
 import { GetShippingMethodsDocument } from './GetShippingMethods.gql'
 import { ShippingMethodActionCard } from './ShippingMethodActionCard'
@@ -53,6 +52,10 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
       availableMethods
         // Move disabled items to the bottom
         .sort((a, b) => (a.available ? -1 : 1))
+        .filter((m) => {
+          if (m.carrier_code === 'freeshipping') return m.available === true
+          return m.method_code
+        })
         .map((method) => ({
           ...method,
           disabled: !method?.available,

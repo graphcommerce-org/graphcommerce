@@ -73,7 +73,7 @@ export function ActionCard(props: ActionCardProps) {
     selected = false,
     reset,
     disabled = false,
-    variant = 'default',
+    variant = 'outlined',
     size = 'large',
   } = props
 

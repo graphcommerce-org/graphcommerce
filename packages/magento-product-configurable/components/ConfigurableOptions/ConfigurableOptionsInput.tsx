@@ -68,7 +68,6 @@ export function ConfigurableOptionsInput(props: ConfigurableOptionsInputProps) {
                 value: ov?.uid ?? '',
                 ...ov,
               }))}
-              error={false}
               render={ConfigurableOptionsActionCard}
               errorMessage={i18n._(/* i18n*/ 'Please select a value for {0}', {
                 0: label?.toLocaleLowerCase(),

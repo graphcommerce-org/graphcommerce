@@ -5,10 +5,7 @@ import { ActionCardList, ActionCardListProps } from './ActionCardList'
 
 export type ActionCardItemBase = Pick<ActionCardProps, 'value'>
 
-export type ActionCardItemRenderProps<T> = Pick<
-  ActionCardProps,
-  'selected' | 'hidden' | 'value'
-> & {
+export type ActionCardItemRenderProps<T> = Pick<ActionCardProps, 'selected' | 'value'> & {
   onReset: MouseEventHandler<HTMLAnchorElement> & MouseEventHandler<HTMLSpanElement>
 } & T
 

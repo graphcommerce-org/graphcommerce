@@ -144,7 +144,6 @@ function ActionCardWithDemoState(props: ActionCardItemRenderProps<ActionCardProp
   return (
     <ActionCard
       {...props}
-      hidden={false}
       price={size === 'small' ? undefined : price}
       details={size === 'small' ? undefined : details}
       action={
@@ -240,7 +239,6 @@ export default function ActionCardsPage() {
                         value: `${size}-${index}-${variant}`,
                       })) ?? []
                     }
-                    error={false}
                     render={ActionCardWithDemoState}
                   />
                 </React.Fragment>
@@ -269,7 +267,6 @@ export default function ActionCardsPage() {
                     value: ov?.uid ?? '',
                     ...ov,
                   }))}
-                  error={false}
                   render={ConfigurableOptionsActionCard}
                   sx={(theme) => ({
                     '&.selected': {
