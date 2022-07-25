@@ -12,14 +12,14 @@ import { useConfigurableTypeProduct } from '../../hooks'
 import { ConfigurableOptionValue } from '../ConfigurableOptionValue/ConfigurableOptionValue'
 import { ConfigurableOptionValueFragment } from '../ConfigurableOptionValue/ConfigurableOptionValue.gql'
 
-export type ConfigurableAttributesSelectorProps = Pick<
+export type ConfigurableProductOptionsProps = Pick<
   BaseTextFieldProps,
   'FormHelperTextProps' | 'helperText'
 > & {
   optionEndLabels?: Record<string, React.ReactNode>
 }
 
-export function ConfigurableAttributesSelector(props: ConfigurableAttributesSelectorProps) {
+export function ConfigurableProductOptions(props: ConfigurableProductOptionsProps) {
   const { optionEndLabels } = props
   const form = useFormProductAddToCart()
   const { control } = form
@@ -57,6 +57,7 @@ export function ConfigurableAttributesSelector(props: ConfigurableAttributesSele
               name={fieldName}
               control={control}
               size='medium'
+              color='primary'
               required
               items={values}
               render={ConfigurableOptionValue}

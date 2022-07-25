@@ -27,14 +27,16 @@ type StateProps = {
   size?: 'large' | 'medium' | 'small'
 }
 
+type PassedProps = Pick<ActionCardProps, 'color' | 'variant' | 'size'>
+
 export type ActionCardListProps<SelectOrMulti = MultiSelect | Select> = {
-  size?: StateProps['size']
   children?: React.ReactNode
   required?: boolean
   error?: boolean
   errorMessage?: string
   sx?: SxProps<Theme>
-} & SelectOrMulti
+} & SelectOrMulti &
+  PassedProps
 
 function isMulti(props: ActionCardListProps): props is ActionCardListProps<MultiSelect> {
   return props.multiple === true
@@ -63,6 +65,8 @@ export const ActionCardList = React.forwardRef<any, ActionCardListProps>((props,
     error = false,
     errorMessage,
     size = 'large',
+    color,
+    variant,
     collapse = false,
     sx = [],
   } = props
@@ -92,7 +96,7 @@ export const ActionCardList = React.forwardRef<any, ActionCardListProps>((props,
       }
 
   type ActionCardLike = React.ReactElement<
-    Pick<ActionCardProps, 'value' | 'selected' | 'disabled' | 'onClick'>
+    Pick<ActionCardProps, 'value' | 'selected' | 'disabled' | 'onClick'> & PassedProps
   >
   function isActionCardLike(el: React.ReactElement): el is ActionCardLike {
     const hasValue = (el as ActionCardLike).props.value
@@ -167,12 +171,16 @@ export const ActionCardList = React.forwardRef<any, ActionCardListProps>((props,
         {
           height: ' min-content',
         },
+        ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
       {childReactNodes.map((child) => {
         if (collapse && Boolean(value) && !isValueSelected(child.props.value, value)) return null
         return React.cloneElement(child, {
           onClick: handleChange,
+          color: child.props.color ?? color,
+          variant: child.props.variant ?? variant,
+          size: child.props.size ?? size,
           selected:
             child.props.selected === undefined
               ? isValueSelected(child.props.value, value)

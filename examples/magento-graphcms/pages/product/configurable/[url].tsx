@@ -15,7 +15,7 @@ import {
 } from '@graphcommerce/magento-product'
 import {
   ConfigurablePrice,
-  ConfigurableAttributeSelector,
+  ConfigurableProductOptions,
   ConfigurableProductPageGallery,
   GetConfigurableProductConfigurationsDocument,
   GetConfigurableProductConfigurationsQuery,
@@ -93,7 +93,7 @@ function ProductConfigurable(props: Props) {
 
           <Divider />
 
-          <ConfigurableAttributeSelector
+          <ConfigurableProductOptions
             optionEndLabels={{
               size: (
                 <PageLink href='/modal/product/global/size'>

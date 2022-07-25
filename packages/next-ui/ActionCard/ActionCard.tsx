@@ -1,9 +1,10 @@
-import { SxProps, ButtonBase, Box, Theme, ButtonProps, BoxProps } from '@mui/material'
-import React, { FormEvent } from 'react'
-import { extendableComponent, responsiveVal } from '../Styles'
+import { Box, BoxProps, ButtonBase, ButtonProps, SxProps, Theme } from '@mui/material'
+import React from 'react'
+import { extendableComponent } from '../Styles'
 
 type Variants = 'outlined' | 'default'
 type Size = 'large' | 'medium' | 'small'
+type Color = 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning'
 
 function isButtonProps(props: ButtonProps<'div'> | BoxProps<'div'>): props is ButtonProps<'div'> {
   return props.onClick !== undefined
@@ -15,6 +16,7 @@ const RenderComponent = (props: ButtonProps<'div'> | BoxProps<'div'>) =>
 export type ActionCardProps = {
   variant?: Variants
   size?: Size
+  color?: Color
   sx?: SxProps<Theme>
   title?: string | React.ReactNode
   image?: React.ReactNode
@@ -46,6 +48,7 @@ const name = 'ActionCard'
 type StateProps = {
   variant?: Variants
   size?: Size
+  color?: Color
   selected: boolean
   disabled: boolean
   image: boolean
@@ -75,10 +78,12 @@ export function ActionCard(props: ActionCardProps) {
     disabled = false,
     variant = 'outlined',
     size = 'large',
+    color = 'secondary',
   } = props
 
-  const classes = withState({ disabled, selected, image: Boolean(image), variant, size })
+  const classes = withState({ disabled, selected, image: Boolean(image), variant, size, color })
 
+  console.log(variant)
   return (
     <RenderComponent
       className={classes.root}
@@ -113,8 +118,8 @@ export function ActionCard(props: ActionCardProps) {
               borderBottom: `2px solid ${theme.palette.divider}`,
             },
             '&.selected': {
-              borderBottom: `2px solid ${theme.palette.secondary.main}`,
-              backgroundColor: `${theme.palette.secondary.main}10`,
+              borderBottom: `2px solid ${theme.palette[color].main}`,
+              backgroundColor: `${theme.palette[color].main}10`,
             },
           },
 
@@ -122,7 +127,7 @@ export function ActionCard(props: ActionCardProps) {
             backgroundColor: theme.palette.background.paper,
             border: `1px solid ${theme.palette.divider}`,
             '&.selected': {
-              border: `1px solid ${theme.palette.secondary.main} !important`,
+              border: `1px solid ${theme.palette[color].main} !important`,
             },
           },
 

@@ -45,7 +45,3 @@ export function findByTypename<T extends TypeObject, Typename extends T['__typen
 ): FilterTypeByTypename<T, Typename> {
   return type?.find((item) => item?.__typename === typename) as FilterTypeByTypename<T, Typename>
 }
-
-export function nonNullable<T>(value: T): value is NonNullable<T> {
-  return value !== null && value !== undefined
-}
