@@ -1,29 +1,19 @@
-import { SchemaLink, NormalizedCacheObject, ApolloClient, ApolloLink } from '@graphcommerce/graphql'
-import { defaultLocale, localeToStore } from '@graphcommerce/magento-store'
-import { createCache, httpLink } from './GraphQLProvider'
+import { NormalizedCacheObject, ApolloClient, ApolloLink, errorLink } from '@graphcommerce/graphql'
+import { MeshApolloLink, getBuiltMesh } from '@graphcommerce/graphql-mesh'
+import { createStoreLink, defaultLocale } from '@graphcommerce/magento-store'
+import type { MeshInstance } from '@graphql-mesh/runtime'
+import { createCache } from './GraphQLProvider'
 
-const fastDev =
-  process.env.NODE_ENV !== 'production' &&
-  process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT?.includes('localhost')
-
-// Do not import the mesh when we're running in fastDev mode.
-const mesh = fastDev
-  ? undefined
-  : await import('@graphcommerce/graphql-mesh').then(({ getBuiltMesh }) => getBuiltMesh())
-
-export function meshLink(locale: string) {
-  if (!mesh) throw Error('Mesh not available')
-  return ApolloLink.from([
-    new SchemaLink({
-      ...mesh,
-      context: { ...mesh.meshContext, headers: { store: localeToStore(locale) } },
-    }),
-  ])
-}
+const mesh: MeshInstance = await getBuiltMesh()
 
 function client(locale: string) {
   return new ApolloClient({
-    link: meshLink(locale),
+    link: ApolloLink.from([
+      errorLink,
+      // Add the correct store header for the Magento user.
+      createStoreLink(locale),
+      new MeshApolloLink(mesh),
+    ]),
     cache: createCache(),
     ssrMode: true,
     name: 'ssr',
@@ -51,17 +41,6 @@ export function graphqlClient(
   locale: string | undefined = defaultLocale(),
   shared = true,
 ): ApolloClient<NormalizedCacheObject> {
-  // We're using the HttpLink for development environments so it doesn't have to reload the mesh on every dev change.
-  if (fastDev) {
-    const cache = createCache()
-    return new ApolloClient({
-      link: httpLink(cache, locale),
-      cache,
-      name: 'fastDev',
-      ssrMode: typeof window === 'undefined',
-    })
-  }
-
   // If the client isn't shared we create a new client.
   if (!shared) return client(locale)
 
