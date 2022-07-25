@@ -4,6 +4,19 @@ import { isFragment } from 'react-is'
 import { extendableComponent } from '../Styles/extendableComponent'
 import { ActionCardProps } from './ActionCard'
 
+function isMulti(props: ActionCardListProps): props is ActionCardListProps<MultiSelect> {
+  return props.multiple === true
+}
+
+function isValueSelected(
+  value: ActionCardProps['value'],
+  candidate?: Select['value'] | MultiSelect['value'],
+) {
+  if (candidate === undefined) return false
+  if (Array.isArray(candidate)) return candidate.indexOf(value) >= 0
+  return value === candidate
+}
+
 type MultiSelect = {
   multiple: true
   collapse?: false
@@ -20,14 +33,7 @@ type Select = {
   onChange?: (event: React.MouseEvent<HTMLElement>, value: Select['value'] | null) => void
 }
 
-const parts = ['root'] as const
-const name = 'ActionCardList'
-
-type StateProps = {
-  size?: 'large' | 'medium' | 'small'
-}
-
-type PassedProps = Pick<ActionCardProps, 'color' | 'variant' | 'size'>
+type HoistedActionCardProps = Pick<ActionCardProps, 'color' | 'variant' | 'size' | 'layout'>
 
 export type ActionCardListProps<SelectOrMulti = MultiSelect | Select> = {
   children?: React.ReactNode
@@ -36,25 +42,15 @@ export type ActionCardListProps<SelectOrMulti = MultiSelect | Select> = {
   errorMessage?: string
   sx?: SxProps<Theme>
 } & SelectOrMulti &
-  PassedProps
+  HoistedActionCardProps
 
-function isMulti(props: ActionCardListProps): props is ActionCardListProps<MultiSelect> {
-  return props.multiple === true
-}
-
-function isValueSelected(
-  value: ActionCardProps['value'],
-  candidate?: Select['value'] | MultiSelect['value'],
-) {
-  if (candidate === undefined) return false
-  if (Array.isArray(candidate)) return candidate.indexOf(value) >= 0
-  return value === candidate
-}
-
-const { withState, selectors } = extendableComponent<StateProps, typeof name, typeof parts>(
-  name,
-  parts,
-)
+const parts = ['root'] as const
+const name = 'ActionCardList'
+const { withState, selectors } = extendableComponent<
+  HoistedActionCardProps,
+  typeof name,
+  typeof parts
+>(name, parts)
 
 export const actionCardListSelectors = selectors
 
@@ -65,12 +61,12 @@ export const ActionCardList = React.forwardRef<any, ActionCardListProps>((props,
     error = false,
     errorMessage,
     size = 'large',
-    color,
-    variant,
+    color = 'secondary',
+    variant = 'outlined',
+    layout = 'list',
     collapse = false,
     sx = [],
   } = props
-  const classes = withState({ size })
 
   const handleChange: ActionCardProps['onClick'] = isMulti(props)
     ? (event, v) => {
@@ -96,7 +92,7 @@ export const ActionCardList = React.forwardRef<any, ActionCardListProps>((props,
       }
 
   type ActionCardLike = React.ReactElement<
-    Pick<ActionCardProps, 'value' | 'selected' | 'disabled' | 'onClick'> & PassedProps
+    Pick<ActionCardProps, 'value' | 'selected' | 'disabled' | 'onClick'> & HoistedActionCardProps
   >
   function isActionCardLike(el: React.ReactElement): el is ActionCardLike {
     const hasValue = (el as ActionCardLike).props.value
@@ -131,11 +127,29 @@ export const ActionCardList = React.forwardRef<any, ActionCardListProps>((props,
     (child) => child.props.value === props.value && child.props.disabled !== true,
   )?.props.value
 
+  const classes = withState({ size, color, variant, layout })
+
   return (
     <Box
       className={classes.root}
       ref={ref}
       sx={[
+        (theme) => ({
+          '&.layoutList': {
+            display: 'grid',
+            height: 'min-content',
+          },
+          '&.layoutGrid': {
+            display: 'grid',
+            gridTemplateColumns: 'repeat(2, 1fr)',
+            gap: theme.spacings.xxs,
+          },
+          '&.layoutInline': {
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: theme.spacings.xxs,
+          },
+        }),
         error &&
           ((theme) => ({
             '& .ActionCard-root': {
@@ -155,22 +169,6 @@ export const ActionCardList = React.forwardRef<any, ActionCardListProps>((props,
               paddingBottom: theme.spacings.xxs,
             },
           })),
-        size === 'small' &&
-          ((theme) => ({
-            display: 'flex',
-            flexWrap: 'wrap',
-            gridGap: theme.spacings.xxs,
-          })),
-        size === 'medium' &&
-          ((theme) => ({
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gridGap: theme.spacings.xxs,
-          })),
-        size === 'large' && (() => ({})),
-        {
-          height: ' min-content',
-        },
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
@@ -181,6 +179,7 @@ export const ActionCardList = React.forwardRef<any, ActionCardListProps>((props,
           color: child.props.color ?? color,
           variant: child.props.variant ?? variant,
           size: child.props.size ?? size,
+          layout: child.props.layout ?? layout,
           selected:
             child.props.selected === undefined
               ? isValueSelected(child.props.value, value)

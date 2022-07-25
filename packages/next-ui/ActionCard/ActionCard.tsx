@@ -5,6 +5,7 @@ import { extendableComponent } from '../Styles'
 type Variants = 'outlined' | 'default'
 type Size = 'large' | 'medium' | 'small'
 type Color = 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning'
+type Layout = 'inline' | 'grid' | 'list'
 
 function isButtonProps(props: ButtonProps<'div'> | BoxProps<'div'>): props is ButtonProps<'div'> {
   return props.onClick !== undefined
@@ -17,6 +18,7 @@ export type ActionCardProps = {
   variant?: Variants
   size?: Size
   color?: Color
+  layout?: Layout
   sx?: SxProps<Theme>
   title?: string | React.ReactNode
   image?: React.ReactNode
@@ -46,9 +48,10 @@ const parts = [
 const name = 'ActionCard'
 
 type StateProps = {
-  variant?: Variants
-  size?: Size
-  color?: Color
+  variant: Variants
+  size: Size
+  color: Color
+  layout: Layout
   selected: boolean
   disabled: boolean
   image: boolean
@@ -79,11 +82,19 @@ export function ActionCard(props: ActionCardProps) {
     variant = 'outlined',
     size = 'large',
     color = 'secondary',
+    layout = 'list',
   } = props
 
-  const classes = withState({ disabled, selected, image: Boolean(image), variant, size, color })
+  const classes = withState({
+    disabled,
+    selected,
+    image: Boolean(image),
+    variant,
+    size,
+    color,
+    layout,
+  })
 
-  console.log(variant)
   return (
     <RenderComponent
       className={classes.root}
@@ -112,13 +123,10 @@ export function ActionCard(props: ActionCardProps) {
           },
 
           '&.variantDefault': {
-            borderBottom: `2px solid ${theme.palette.divider}`,
-
-            '&:not(:last-child)': {
-              borderBottom: `2px solid ${theme.palette.divider}`,
-            },
+            borderBottom: `1px solid ${theme.palette.divider}`,
             '&.selected': {
               borderBottom: `2px solid ${theme.palette[color].main}`,
+              marginBottom: '-1px',
               backgroundColor: `${theme.palette[color].main}10`,
             },
           },
@@ -126,24 +134,29 @@ export function ActionCard(props: ActionCardProps) {
           '&.variantOutlined': {
             backgroundColor: theme.palette.background.paper,
             border: `1px solid ${theme.palette.divider}`,
+            '&:not(:last-of-type)': {
+              marginBottom: '-1px',
+            },
+
+            '&.layoutList': {
+              '&:first-of-type': {
+                borderTopLeftRadius: theme.shape.borderRadius * 1.5,
+                borderTopRightRadius: theme.shape.borderRadius * 1.5,
+              },
+              '&:last-of-type': {
+                borderBottomLeftRadius: theme.shape.borderRadius * 1.5,
+                borderBottomRightRadius: theme.shape.borderRadius * 1.5,
+              },
+            },
+            '&:not(.layoutList)': {
+              borderRadius: 1.5,
+            },
+
             '&.selected': {
-              border: `1px solid ${theme.palette[color].main} !important`,
+              border: `1px solid ${theme.palette[color].main}`,
+              outline: `1px solid ${theme.palette[color].main}`,
+              zIndex: 1,
             },
-          },
-
-          '&.variantOutlined.sizeLarge': {
-            '&:first-of-type': {
-              borderTopLeftRadius: theme.shape.borderRadius * 1.5,
-              borderTopRightRadius: theme.shape.borderRadius * 1.5,
-            },
-            '&:last-of-type': {
-              borderBottomLeftRadius: theme.shape.borderRadius * 1.5,
-              borderBottomRightRadius: theme.shape.borderRadius * 1.5,
-            },
-          },
-
-          '&.variantOutlined:not(.sizeLarge)': {
-            borderRadius: 1,
           },
         }),
 

@@ -1,26 +1,30 @@
 import { useFormProductAddToCart } from '@graphcommerce/magento-product'
-import { SectionHeader, filterNonNullableKeys } from '@graphcommerce/next-ui'
+import { SectionHeader, filterNonNullableKeys, ActionCardListProps } from '@graphcommerce/next-ui'
 import {
   ActionCardItemBase,
   ActionCardListForm,
 } from '@graphcommerce/next-ui/ActionCard/ActionCardListForm'
 import { i18n } from '@lingui/core'
-import { BaseTextFieldProps, Box } from '@mui/material'
+import { Box, SxProps, Theme } from '@mui/material'
 import React, { useMemo } from 'react'
 
 import { useConfigurableTypeProduct } from '../../hooks'
 import { ConfigurableOptionValue } from '../ConfigurableOptionValue/ConfigurableOptionValue'
 import { ConfigurableOptionValueFragment } from '../ConfigurableOptionValue/ConfigurableOptionValue.gql'
 
-export type ConfigurableProductOptionsProps = Pick<
-  BaseTextFieldProps,
-  'FormHelperTextProps' | 'helperText'
-> & {
+export type ConfigurableProductOptionsProps = {
   optionEndLabels?: Record<string, React.ReactNode>
-}
+} & Pick<ActionCardListProps, 'color' | 'variant' | 'size' | 'layout'> & { sx?: SxProps<Theme> }
 
 export function ConfigurableProductOptions(props: ConfigurableProductOptionsProps) {
-  const { optionEndLabels } = props
+  const {
+    optionEndLabels,
+    sx,
+    color = 'primary',
+    size = 'medium',
+    layout = 'grid',
+    variant = 'outlined',
+  } = props
   const form = useFormProductAddToCart()
   const { control } = form
 
@@ -47,17 +51,19 @@ export function ConfigurableProductOptions(props: ConfigurableProductOptionsProp
         const fieldName = `selectedOptions.${index}` as const
 
         return (
-          <Box key={fieldName}>
+          <Box key={fieldName} sx={sx}>
             <SectionHeader
               labelLeft={label}
               labelRight={optionEndLabels?.[option?.attribute_code ?? '']}
               sx={{ mt: 0 }}
             />
             <ActionCardListForm<ActionCardItemBase & ConfigurableOptionValueFragment>
+              color={color}
+              layout={layout}
+              variant={variant}
+              size={size}
               name={fieldName}
               control={control}
-              size='medium'
-              color='primary'
               required
               items={values}
               render={ConfigurableOptionValue}

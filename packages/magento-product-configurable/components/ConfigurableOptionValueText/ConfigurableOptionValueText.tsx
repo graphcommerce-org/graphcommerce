@@ -1,11 +1,11 @@
-import { ActionCard, ActionCardItemRenderProps } from '@graphcommerce/next-ui'
+import { ActionCard, ActionCardItemRenderProps, ActionCardProps } from '@graphcommerce/next-ui'
 import { ConfigurableOptionValueTextFragment } from './ConfigurableOptionValueText.gql'
 
 export type ConfigurableOptionValueTextProps =
-  ActionCardItemRenderProps<ConfigurableOptionValueTextFragment>
+  ActionCardItemRenderProps<ConfigurableOptionValueTextFragment> & Pick<ActionCardProps, 'size'>
 
 export function ConfigurableOptionValueText(props: ConfigurableOptionValueTextProps) {
-  const { swatch_data, store_label, uid, use_default_value, ...actionCardProps } = props
+  const { swatch_data, store_label, uid, use_default_value, size, ...actionCardProps } = props
 
   if (swatch_data?.__typename !== 'TextSwatchData')
     throw Error(`ConfigurableOptionValueText can not render a ${swatch_data?.__typename}`)
@@ -13,8 +13,9 @@ export function ConfigurableOptionValueText(props: ConfigurableOptionValueTextPr
   return (
     <ActionCard
       {...actionCardProps}
+      size={size}
       title={swatch_data?.value ?? store_label}
-      details={swatch_data?.value ? store_label : undefined}
+      details={size !== 'small' && swatch_data?.value ? store_label : undefined}
     />
   )
 }

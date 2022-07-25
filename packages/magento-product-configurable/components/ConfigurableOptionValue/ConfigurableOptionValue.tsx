@@ -12,7 +12,6 @@ export function ConfigurableOptionValue(props: ConfigurabeOptionValueProps) {
     <RenderType
       {...props}
       __typename={swatch_data?.__typename ?? 'TextSwatchData'}
-      variant='outlined'
       description={swatch_data?.value ?? ''}
       renderer={{
         ColorSwatchData: ConfigurableOptionValueImage,
