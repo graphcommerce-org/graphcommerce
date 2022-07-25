@@ -14,7 +14,10 @@ import { ConfigurableOptionValueFragment } from '../ConfigurableOptionValue/Conf
 
 export type ConfigurableProductOptionsProps = {
   optionEndLabels?: Record<string, React.ReactNode>
-} & Pick<ActionCardListProps, 'color' | 'variant' | 'size' | 'layout'> & { sx?: SxProps<Theme> }
+} & Pick<ActionCardListProps, 'color' | 'variant' | 'size' | 'layout'> & {
+    sx?: SxProps<Theme>
+    render?: typeof ConfigurableOptionValue
+  }
 
 export function ConfigurableProductOptions(props: ConfigurableProductOptionsProps) {
   const {
@@ -24,6 +27,7 @@ export function ConfigurableProductOptions(props: ConfigurableProductOptionsProp
     size = 'medium',
     layout = 'grid',
     variant = 'outlined',
+    render = ConfigurableOptionValue,
   } = props
   const form = useFormProductAddToCart()
   const { control } = form
@@ -66,7 +70,7 @@ export function ConfigurableProductOptions(props: ConfigurableProductOptionsProp
               control={control}
               required
               items={values}
-              render={ConfigurableOptionValue}
+              render={render}
               errorMessage={i18n._(/* i18n*/ 'Please select a value for {0}', { 0: label })}
             />
           </Box>
