@@ -94,15 +94,7 @@ function ProductGrouped(props: Props) {
                 item?.product?.sku && (
                   <li key={item?.product?.name}>
                     <div>{item?.product?.name}</div>
-                    <div>
-                      <ProductAddToCart
-                        name={product.name ?? ''}
-                        price={product.price_range.minimum_price.final_price}
-                        additionalButtons={<ProductWishlistChipDetail {...product} />}
-                      >
-                        <ProductSidebarDelivery />
-                      </ProductAddToCart>
-                    </div>
+                    <div />
                   </li>
                 ),
             )}
@@ -116,7 +108,7 @@ function ProductGrouped(props: Props) {
               columnGap: theme.spacings.xs,
             })}
           >
-            <ProductAddToCartButton sx={{ width: '100%' }} />
+            <ProductAddToCartButton fullWidth />
             <ProductWishlistChipDetail {...product} />
           </Box>
 

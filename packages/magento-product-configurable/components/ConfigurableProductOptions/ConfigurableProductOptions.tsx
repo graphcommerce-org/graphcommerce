@@ -1,5 +1,10 @@
 import { useFormProductAddToCart } from '@graphcommerce/magento-product'
-import { SectionHeader, filterNonNullableKeys, ActionCardListProps } from '@graphcommerce/next-ui'
+import {
+  SectionHeader,
+  filterNonNullableKeys,
+  ActionCardListProps,
+  nonNullable,
+} from '@graphcommerce/next-ui'
 import {
   ActionCardItemBase,
   ActionCardListForm,

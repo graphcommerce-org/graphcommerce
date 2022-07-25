@@ -92,7 +92,7 @@ function ProductSimple(props: Props) {
               columnGap: theme.spacings.xs,
             })}
           >
-            <ProductAddToCartButton sx={{ width: '100%' }} />
+            <ProductAddToCartButton fullWidth />
             <ProductWishlistChipDetail {...product} />
           </Box>
 

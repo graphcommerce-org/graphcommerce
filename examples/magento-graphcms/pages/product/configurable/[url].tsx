@@ -14,6 +14,7 @@ import {
   ProductSidebarDelivery,
 } from '@graphcommerce/magento-product'
 import {
+  ConfigurableAddToCartButton,
   ConfigurablePrice,
   ConfigurableProductOptions,
   ConfigurableProductPageGallery,
@@ -120,7 +121,7 @@ function ProductConfigurable(props: Props) {
               columnGap: theme.spacings.xs,
             })}
           >
-            <ProductAddToCartButton sx={{ width: '100%' }} />
+            <ConfigurableAddToCartButton fullWidth />
             <ProductWishlistChipDetail {...product} />
           </Box>
 

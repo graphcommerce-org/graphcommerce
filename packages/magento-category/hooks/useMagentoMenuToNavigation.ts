@@ -1,9 +1,10 @@
-import { NavigationNode, NavigationNodeButton, NavigationNodeHref } from '@graphcommerce/next-ui'
+import {
+  NavigationNode,
+  NavigationNodeButton,
+  NavigationNodeHref,
+  nonNullable,
+} from '@graphcommerce/next-ui'
 import { MenuQueryFragment } from '../queries/MenuQueryFragment.gql'
-
-function nonNullable<T>(value: T): value is NonNullable<T> {
-  return value !== null && value !== undefined
-}
 
 type Item = NonNullable<NonNullable<MenuQueryFragment['menu']>['items']>[0]
 
