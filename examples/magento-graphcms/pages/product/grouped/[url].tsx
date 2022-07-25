@@ -1,4 +1,3 @@
-import { url } from 'inspector'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   getProductStaticPaths,

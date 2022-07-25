@@ -3,7 +3,6 @@ import {
   getProductStaticPaths,
   jsonLdProduct,
   jsonLdProductOffer,
-  ProductAddToCart,
   productPageCategory,
   ProductAddToCartForm,
   ProductPageDescription,
@@ -11,13 +10,16 @@ import {
   ProductPageMeta,
   ProductShortDescription,
   ProductSidebarDelivery,
+  ProductAddToCartQuantity,
+  ProductAddToCartButton,
+  ProductAddToCartSnackbar,
 } from '@graphcommerce/magento-product'
 import {
   DownloadableProductPageDocument,
   DownloadableProductPageQuery,
 } from '@graphcommerce/magento-product-downloadable'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { Money, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
 import {
   GetStaticProps,
@@ -26,7 +28,7 @@ import {
   LayoutTitle,
   findByTypename,
 } from '@graphcommerce/next-ui'
-import { Typography } from '@mui/material'
+import { Box, Divider, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import { LayoutFull, LayoutFullProps, RowProduct, RowRenderer, Usps } from '../../../components'
@@ -81,13 +83,27 @@ function ProductDownloadable(props: Props) {
             <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
           </div>
 
-          <ProductAddToCart
-            name={product.name ?? ''}
-            price={product.price_range.minimum_price.final_price}
-            additionalButtons={<ProductWishlistChipDetail {...product} />}
+          <Divider />
+          <ProductAddToCartQuantity />
+
+          <Typography component='div' variant='h3' lineHeight='1'>
+            <Money {...product.price_range.minimum_price.final_price} />
+          </Typography>
+
+          <ProductSidebarDelivery />
+          <Box
+            sx={(theme) => ({
+              display: 'flex',
+              alignItems: 'center',
+              columnGap: theme.spacings.xs,
+            })}
           >
-            <ProductSidebarDelivery />
-          </ProductAddToCart>
+            <ProductAddToCartButton sx={{ width: '100%' }} />
+            <ProductWishlistChipDetail {...product} />
+          </Box>
+
+          <ProductAddToCartSnackbar name={product.name} />
+          <Usps usps={sidebarUsps} size='small' />
           {typeProduct.downloadable_product_links?.map((option) => (
             <div key={option?.title}>
               {option?.title} + {option?.price}
