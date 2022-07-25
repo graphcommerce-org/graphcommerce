@@ -1,6 +1,6 @@
 import { useForm } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { ConfigurableOptionsActionCard } from '@graphcommerce/magento-product-configurable'
+import { ConfigurableOptionValue } from '@graphcommerce/magento-product-configurable'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   LayoutTitle,
@@ -267,7 +267,8 @@ export default function ActionCardsPage() {
                     value: ov?.uid ?? '',
                     ...ov,
                   }))}
-                  render={ConfigurableOptionsActionCard}
+                  // @ts-expect-error go away for now
+                  render={ConfigurableOptionValue}
                   sx={(theme) => ({
                     '&.selected': {
                       borderColor: `${theme.palette.primary.main} !important`,
