@@ -1,7 +1,6 @@
+import { MoneyProps } from '@graphcommerce/magento-store'
 import { TypeRenderer } from '@graphcommerce/next-ui'
-import { ActionCardItemRenderProps } from '@graphcommerce/next-ui/ActionCard/ActionCardListForm'
-import { ProductListItemConfigurableFragment } from '../ProductListItemConfigurable.gql'
-import { ConfigurableProductConfigurationsFragment } from '../graphql'
+import { ProductListItemConfigurableFragment } from '../components/ProductListItemConfigurable/ProductListItemConfigurable.gql'
 import { SwatchDataFragment } from './SwatchData.gql'
 
 type ConfigurableOption = NonNullable<
@@ -13,19 +12,7 @@ export type SwatchSize = 'small' | 'medium' | 'large'
 
 export type SwatchDataProps = ConfigurableOptionValue & {
   size?: SwatchSize
+  price?: MoneyProps
 }
 
-export type SwatchTypeRenderer = TypeRenderer<
-  SwatchDataFragment,
-  ConfigurableOptionsActionCardProps
->
-
-export type ConfigurableOptionsActionCardProps = ActionCardItemRenderProps<
-  | (NonNullable<
-      NonNullable<
-        NonNullable<ConfigurableProductConfigurationsFragment['configurable_options']>[0]
-      >['values']
-    >[0] & { size?: SwatchSize })
-  | null
-  | undefined
->
+export type SwatchTypeRenderer = TypeRenderer<SwatchDataFragment, SwatchDataProps>

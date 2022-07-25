@@ -3,8 +3,8 @@ import {
   OverlayAreaKeys,
   ProductListItemProps,
 } from '@graphcommerce/magento-product'
+import { SwatchList } from '../../SwatchList'
 import { ProductListItemConfigurableFragment } from './ProductListItemConfigurable.gql'
-import { SwatchList } from './SwatchList'
 
 export type ProductListItemConfigurableActionProps = ProductListItemConfigurableFragment
 

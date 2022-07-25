@@ -20,22 +20,7 @@ fragment ConfigurableProductConfigurations on ConfigurableProduct {
     position
     use_default
     values {
-      uid
-      use_default_value
-      store_label
-      swatch_data {
-        __typename
-        ... on TextSwatchData {
-          value
-        }
-        ... on ImageSwatchData {
-          thumbnail
-          value
-        }
-        ... on ColorSwatchData {
-          value
-        }
-      }
+      ...ConfigurableOptionValue
     }
   }
   configurable_product_options_selection(configurableOptionValueUids: $selectedOptions) {

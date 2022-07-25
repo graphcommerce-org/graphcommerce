@@ -1,10 +1,10 @@
 import { Image } from '@graphcommerce/image'
-import { extendableComponent, ActionCard } from '@graphcommerce/next-ui'
-import { SxProps, Theme } from '@mui/material'
-import { ConfigurableOptionsActionCardProps, SwatchDataProps } from './types'
+import { responsiveVal, extendableComponent } from '@graphcommerce/next-ui'
+import { Box, SxProps, Theme } from '@mui/material'
+import { ImageSwatchDataFragment } from './ImageSwatchData.gql'
+import { SwatchDataProps } from './types'
 
-type ImageSwatchDataProps = ConfigurableOptionsActionCardProps &
-  Pick<SwatchDataProps, 'size'> & { sx?: SxProps<Theme> }
+type ImageSwatchDataProps = ImageSwatchDataFragment & SwatchDataProps & { sx?: SxProps<Theme> }
 
 type OwnerState = Pick<SwatchDataProps, 'size'>
 const name = 'ColorSwatchData' as const
@@ -12,26 +12,41 @@ const parts = ['root', 'image', 'label'] as const
 const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 
 export function ImageSwatchData(props: ImageSwatchDataProps) {
-  const { swatch_data, store_label, size, sx = [] } = props
+  const { value, thumbnail, store_label, size, sx = [] } = props
 
   const classes = withState({ size })
 
-  const image = swatch_data?.__typename === 'ImageSwatchData' && swatch_data.thumbnail && (
-    <Image
-      className={classes.image}
-      src={swatch_data.thumbnail ?? ''}
-      layout='fixed'
-      width={size === 'small' ? 30 : 50}
-      height={size === 'small' ? 30 : 50}
-      alt={swatch_data.value ?? ''}
-      sx={{
-        marginTop: 1,
-        borderRadius: '50%',
-      }}
-    />
-  )
-
   return (
-    <ActionCard key={swatch_data?.value} image={image} title={store_label} size={size} {...props} />
+    <Box
+      sx={[
+        (theme) => ({
+          '& .image': {
+            height: responsiveVal(40, 80),
+            width: responsiveVal(40, 80),
+            border: `3px solid ${theme.palette.divider}`,
+            boxSizing: 'border-box',
+            borderRadius: '50%',
+            objectFit: 'cover',
+          },
+          '&.small .image': {
+            width: 20,
+            height: 20,
+          },
+        }),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    >
+      {thumbnail ? (
+        <Image
+          src={thumbnail}
+          width={size === 'small' ? 20 : 40}
+          height={size === 'small' ? 20 : 40}
+          alt={value ?? ''}
+          className={classes.image}
+        />
+      ) : (
+        <div className={classes.image}>{store_label}</div>
+      )}
+    </Box>
   )
 }

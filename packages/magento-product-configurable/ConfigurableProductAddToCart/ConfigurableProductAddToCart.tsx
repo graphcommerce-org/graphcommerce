@@ -23,7 +23,7 @@ import {
 import {
   ConfigurableProductAddToCartDocument,
   ConfigurableProductAddToCartMutationVariables,
-} from './ConfigurableProductAddToCart.gql'
+} from '../graphql/ConfigurableProductAddToCart.gql'
 
 type ConfigurableProductAddToCartProps = {
   variables: Omit<ConfigurableProductAddToCartMutationVariables, 'cartId' | 'selectedOptions'>

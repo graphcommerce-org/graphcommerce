@@ -1,0 +1,12 @@
+fragment ConfigurableOptionValueImage on ConfigurableProductOptionsValues {
+  uid
+  use_default_value
+  store_label
+  swatch_data {
+    __typename
+    ... on ImageSwatchData {
+      thumbnail
+      value
+    }
+  }
+}

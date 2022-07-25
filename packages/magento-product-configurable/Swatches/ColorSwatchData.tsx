@@ -1,9 +1,9 @@
-import { isArray } from 'util'
-import { responsiveVal, extendableComponent, ActionCard } from '@graphcommerce/next-ui'
+import { responsiveVal, extendableComponent } from '@graphcommerce/next-ui'
 import { Box, SxProps, Theme } from '@mui/material'
-import { ConfigurableOptionsActionCardProps, SwatchDataProps } from './types'
+import { ColorSwatchDataFragment } from './ColorSwatchData.gql'
+import { SwatchDataProps } from './types'
 
-type ColorSwatchDataProps = ConfigurableOptionsActionCardProps &
+type ColorSwatchDataProps = ColorSwatchDataFragment &
   SwatchDataProps & {
     sx?: SxProps<Theme>
   }
@@ -14,48 +14,33 @@ const parts = ['root', 'color', 'label'] as const
 const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 
 export function ColorSwatchData(props: ColorSwatchDataProps) {
-  const { value, store_label, swatch_data, size, sx } = props
+  const { value, store_label, size, sx } = props
   const classes = withState({ size })
 
-  const color = swatch_data?.__typename === 'ColorSwatchData' && (
-    <Box
-      className={classes.color}
-      sx={{
-        width: '40px',
-        height: '40px',
-        backgroundColor: swatch_data.value,
-        borderRadius: '50%',
-      }}
-    />
-  )
-
-  if (size === 'small')
-    return (
-      <Box className={classes.root} sx={sx}>
-        <Box
-          className={classes.color}
-          style={{ backgroundColor: `${value}` ?? undefined }}
-          sx={[
-            {
-              margin: '0 auto',
-              height: responsiveVal(22, 30),
-              width: responsiveVal(22, 30),
-              borderRadius: '50%',
-              '&.sizeSmall': {
-                height: responsiveVal(8, 12),
-                width: responsiveVal(8, 12),
-                marginTop: responsiveVal(2, 4),
-              },
+  return (
+    <Box className={classes.root} sx={sx}>
+      <Box
+        className={classes.color}
+        style={{ backgroundColor: value ?? undefined }}
+        sx={[
+          {
+            margin: '0 auto',
+            height: responsiveVal(22, 30),
+            width: responsiveVal(22, 30),
+            borderRadius: '50%',
+            '&.sizeSmall': {
+              height: responsiveVal(8, 12),
+              width: responsiveVal(8, 12),
+              marginTop: responsiveVal(2, 4),
             },
-          ]}
-        />
-        {size !== 'small' && (
-          <Box component='span' className={classes.label}>
-            {store_label}
-          </Box>
-        )}
-      </Box>
-    )
-
-  return <ActionCard {...props} key={value} image={color} title={store_label} />
+          },
+        ]}
+      />
+      {size !== 'small' && (
+        <Box component='span' className={classes.label}>
+          {store_label}
+        </Box>
+      )}
+    </Box>
+  )
 }
