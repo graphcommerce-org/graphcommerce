@@ -15,7 +15,7 @@ import {
   ProductSidebarDelivery,
 } from '@graphcommerce/magento-product'
 import {
-  BundleOptions,
+  // BundleOptions,
   BundleProductPageDocument,
   BundleProductPageQuery,
 } from '@graphcommerce/magento-product-bundle'
@@ -83,7 +83,7 @@ function ProductBundle(props: Props) {
             <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
           </div>
 
-          <BundleOptions />
+          {/* <BundleOptions /> */}
 
           <Divider />
           <ProductAddToCartQuantity />
