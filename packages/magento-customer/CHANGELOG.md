@@ -1,5 +1,18 @@
 # Change Log
 
+## 4.8.1
+
+### Patch Changes
+
+- [#1557](https://github.com/graphcommerce-org/graphcommerce/pull/1557) [`84428ccab`](https://github.com/graphcommerce-org/graphcommerce/commit/84428ccab8d1d263893766197076651eae68759c) Thanks [@paales](https://github.com/paales)! - Use WaitForQuery component to handle the loading state
+
+- Updated dependencies [[`01f1588c9`](https://github.com/graphcommerce-org/graphcommerce/commit/01f1588c9200bb39dd61146e260bfa2b32060612), [`c0a7f9427`](https://github.com/graphcommerce-org/graphcommerce/commit/c0a7f9427466f0a3886b2c3ebf2f0aa5d79ee081)]:
+  - @graphcommerce/graphql-mesh@4.1.6
+  - @graphcommerce/graphql@3.4.3
+  - @graphcommerce/ecommerce-ui@1.1.4
+  - @graphcommerce/magento-store@4.2.19
+  - @graphcommerce/magento-graphql@3.1.3
+
 ## 4.8.0
 
 ### Minor Changes

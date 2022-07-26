@@ -2,7 +2,7 @@
   "name": "@graphcommerce/graphql-mesh",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "4.1.5",
+  "version": "4.1.6",
   "author": "",
   "license": "MIT",
   "main": "index.ts",

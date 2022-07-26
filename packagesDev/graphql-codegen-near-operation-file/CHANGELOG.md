@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.16
+
+### Patch Changes
+
+- [#1501](https://github.com/graphcommerce-org/graphcommerce/pull/1501) [`475d23197`](https://github.com/graphcommerce-org/graphcommerce/commit/475d23197a6ce4b08cc325f872834ca592aa28dc) Thanks [@paales](https://github.com/paales)! - Native windows support added: Directory separator differences and package.json interpretation differences
+
 ## 3.0.15
 
 ### Patch Changes

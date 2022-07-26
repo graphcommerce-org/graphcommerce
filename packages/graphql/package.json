@@ -2,7 +2,7 @@
   "name": "@graphcommerce/graphql",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "3.4.2",
+  "version": "3.4.3",
   "sideEffects": false,
   "main": "index.ts",
   "prettier": "@graphcommerce/prettier-config-pwa",
@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.6.9",
-    "@graphcommerce/graphql-codegen-near-operation-file": "3.0.15",
+    "@graphcommerce/graphql-codegen-near-operation-file": "3.0.16",
     "@graphcommerce/graphql-codegen-relay-optimizer-plugin": "3.0.9",
     "@graphql-codegen/add": "3.2.0",
     "@graphql-codegen/fragment-matcher": "3.3.0",
