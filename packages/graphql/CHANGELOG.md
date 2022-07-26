@@ -1,5 +1,14 @@
 # Change Log
 
+## 3.4.3
+
+### Patch Changes
+
+- [#1562](https://github.com/graphcommerce-org/graphcommerce/pull/1562) [`01f1588c9`](https://github.com/graphcommerce-org/graphcommerce/commit/01f1588c9200bb39dd61146e260bfa2b32060612) Thanks [@paales](https://github.com/paales)! - The context was missing in apollo client
+
+- Updated dependencies [[`475d23197`](https://github.com/graphcommerce-org/graphcommerce/commit/475d23197a6ce4b08cc325f872834ca592aa28dc)]:
+  - @graphcommerce/graphql-codegen-near-operation-file@3.0.16
+
 ## 3.4.2
 
 ### Patch Changes

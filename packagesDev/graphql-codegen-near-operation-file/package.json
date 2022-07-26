@@ -2,7 +2,7 @@
   "name": "@graphcommerce/graphql-codegen-near-operation-file",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "3.0.15",
+  "version": "3.0.16",
   "sideEffects": false,
   "main": "dist/index.js",
   "files": [

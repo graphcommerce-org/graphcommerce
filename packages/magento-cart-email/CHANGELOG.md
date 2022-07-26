@@ -1,5 +1,18 @@
 # Change Log
 
+## 3.0.39
+
+### Patch Changes
+
+- [#1557](https://github.com/graphcommerce-org/graphcommerce/pull/1557) [`84428ccab`](https://github.com/graphcommerce-org/graphcommerce/commit/84428ccab8d1d263893766197076651eae68759c) Thanks [@paales](https://github.com/paales)! - Use WaitForQuery component to handle the loading state
+
+- Updated dependencies [[`01f1588c9`](https://github.com/graphcommerce-org/graphcommerce/commit/01f1588c9200bb39dd61146e260bfa2b32060612), [`84428ccab`](https://github.com/graphcommerce-org/graphcommerce/commit/84428ccab8d1d263893766197076651eae68759c), [`2ce406727`](https://github.com/graphcommerce-org/graphcommerce/commit/2ce406727c01a3367cea26c331d8455748592ce9)]:
+  - @graphcommerce/graphql@3.4.3
+  - @graphcommerce/magento-customer@4.8.1
+  - @graphcommerce/magento-cart@4.6.1
+  - @graphcommerce/magento-product@4.4.17
+  - @graphcommerce/magento-store@4.2.19
+
 ## 3.0.38
 
 ### Patch Changes
