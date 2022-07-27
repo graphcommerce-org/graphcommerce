@@ -24,7 +24,7 @@ type NavigationOverlayProps = {
   active: boolean
   sx?: SxProps<Theme>
   stretchColumns?: boolean
-  itemWidth: string
+  itemWidth?: string
 }
 
 function findCurrent(
@@ -151,16 +151,23 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
           sx={(theme) => ({
             display: 'grid',
             alignItems: !stretchColumns ? 'start' : undefined,
-
+            '& .NavigationItem-item': {
+              width: itemWidth || 'auto',
+            },
             [theme.breakpoints.down('md')]: {
               overflow: 'hidden',
               scrollSnapType: 'x mandatory',
-              width: `calc(${theme.spacings.md} + ${theme.spacings.md} + ${itemWidth})`,
-            },
-            '& .NavigationItem-item': {
-              width: itemWidth,
+              width: itemWidth
+                ? `calc(${theme.spacings.md} + ${theme.spacings.md} + ${itemWidth})`
+                : `calc(100vw - ${theme.page.horizontal} - ${theme.page.horizontal})`,
+              '& .NavigationItem-item': {
+                width:
+                  itemWidth ||
+                  `calc(100vw - ${theme.page.horizontal} - ${theme.page.horizontal} - ${theme.spacings.md} - ${theme.spacings.md})`,
+              },
             },
           })}
+          className='test'
         >
           <Box
             className={classes.navigation}
