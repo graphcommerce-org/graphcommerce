@@ -78,7 +78,7 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
       sizeSm='floating'
       justifySm='start'
       variantMd='left'
-      sizeMd='floating'
+      sizeMd='full'
       justifyMd='start'
       sx={{
         zIndex: 'drawer',
