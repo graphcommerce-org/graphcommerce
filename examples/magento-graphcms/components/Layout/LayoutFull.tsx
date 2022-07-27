@@ -49,7 +49,8 @@ export function LayoutFull(props: LayoutFullProps) {
           <SearchLink href='/search' sx={(theme) => ({ width: '100%', mb: theme.spacings.xs })}>
             <Trans id='Search...' />
           </SearchLink>,
-          { id: 'home', name: 'Home', href: '/' },
+          { id: 'women', name: 'Women', href: 'women' },
+          { id: 'men', name: 'Men', href: 'men' },
           // ...useMagentoMenuToNavigation(menu),
           {
             id: 'shop',
@@ -89,14 +90,13 @@ export function LayoutFull(props: LayoutFullProps) {
             <Logo />
             <DesktopNavBar>
               {menu?.items?.map((item) => {
-                const saleItem = item?.name?.toLowerCase().includes('sale')
-                if (!saleItem) return false
+                if (
+                  !item?.name?.toLowerCase().includes('women') &&
+                  !item?.name?.toLowerCase().includes('men')
+                )
+                  return false
                 return (
-                  <DesktopNavItem
-                    key={item?.uid}
-                    href={`/${item?.url_path}`}
-                    sx={{ textTransform: 'uppercase', letterSpacing: 0.3, color: 'primary.main' }}
-                  >
+                  <DesktopNavItem key={item?.uid} href={`/${item?.url_path}`}>
                     {item?.name}
                   </DesktopNavItem>
                 )
