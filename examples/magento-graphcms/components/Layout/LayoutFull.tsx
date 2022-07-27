@@ -4,6 +4,7 @@ import { CustomerFab, CustomerMenuFabItem } from '@graphcommerce/magento-custome
 import { SearchLink } from '@graphcommerce/magento-search'
 import { WishlistFab, WishlistMenuFabItem } from '@graphcommerce/magento-wishlist'
 import {
+  NavigationPath,
   DesktopNavActions,
   DesktopNavBar,
   LayoutDefault,
@@ -38,6 +39,7 @@ export type LayoutFullProps = Omit<
 export function LayoutFull(props: LayoutFullProps) {
   const { footer, menu = {}, children, ...uiProps } = props
 
+  const [selected, setSelected] = useState<NavigationPath>([])
   const [navigationActive, setNavigationActive] = useState(false)
   const router = useRouter()
 
@@ -45,6 +47,8 @@ export function LayoutFull(props: LayoutFullProps) {
     <>
       <NavigationProvider
         onClose={() => setNavigationActive(false)}
+        selected={selected}
+        setSelected={setSelected}
         items={[
           <SearchLink href='/search' sx={(theme) => ({ width: '100%', mb: theme.spacings.xs })}>
             <Trans id='Search...' />
@@ -102,7 +106,12 @@ export function LayoutFull(props: LayoutFullProps) {
                 )
               })}
 
-              <DesktopNavItem onClick={() => setNavigationActive(true)}>
+              <DesktopNavItem
+                onClick={() => {
+                  setSelected(['shop'])
+                  setNavigationActive(true)
+                }}
+              >
                 <Trans id='Shop' />
                 <IconSvg src={iconChevronDown} />
               </DesktopNavItem>
