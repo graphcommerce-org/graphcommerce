@@ -1,23 +1,11 @@
-import { useIsomorphicLayoutEffect, useMotionValueValue } from '@graphcommerce/framer-utils'
-import {
-  Divider,
-  Fab,
-  ListItem,
-  Menu,
-  styled,
-  Box,
-  SxProps,
-  Theme,
-  FabProps,
-  MenuProps as MenuPropsType,
-} from '@mui/material'
+import { useMotionValueValue } from '@graphcommerce/framer-utils'
+import { Fab, styled, Box, SxProps, Theme, FabProps } from '@mui/material'
 import { m } from 'framer-motion'
 import { useRouter } from 'next/router'
-import React, { useEffect, useCallback, useRef } from 'react'
+import React, { useEffect } from 'react'
 import { IconSvg } from '../IconSvg'
 import { useScrollY } from '../Layout/hooks/useScrollY'
 import { extendableComponent } from '../Styles/extendableComponent'
-import { responsiveVal } from '../Styles/responsiveVal'
 import { useFabSize } from '../Theme'
 import { iconMenu, iconClose } from '../icons'
 import { useFabAnimation } from './useFabAnimation'
@@ -25,14 +13,10 @@ import { useFabAnimation } from './useFabAnimation'
 const MotionDiv = styled(m.div)({})
 
 export type MenuFabProps = {
-  children?: React.ReactNode
-  secondary?: React.ReactNode
-  search?: React.ReactNode
   menuIcon?: React.ReactNode
   closeIcon?: React.ReactNode
   sx?: SxProps<Theme>
-  MenuProps?: MenuPropsType
-} & Pick<FabProps, 'color' | 'size' | 'variant'>
+} & Pick<FabProps, 'color' | 'size' | 'variant' | 'onClick'>
 
 const name = 'MenuFab'
 const parts = ['wrapper', 'fab', 'shadow', 'menu'] as const
@@ -43,20 +27,11 @@ type OwnerState = {
 const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 
 export function MenuFab(props: MenuFabProps) {
-  const {
-    children,
-    secondary,
-    search,
-    menuIcon,
-    closeIcon,
-    sx = [],
-    MenuProps,
-    ...fabProps
-  } = props
+  const { menuIcon, closeIcon, sx = [], ...fabProps } = props
   const router = useRouter()
   const [openEl, setOpenEl] = React.useState<null | HTMLElement>(null)
 
-  const { opacity, scale, shadowOpacity } = useFabAnimation()
+  const { opacity, shadowOpacity } = useFabAnimation()
   const scrollY = useScrollY()
   const scrolled = useMotionValueValue(scrollY, (y) => y > 10)
 
@@ -85,14 +60,11 @@ export function MenuFab(props: MenuFabProps) {
             transform: 'none !important',
           },
         })}
-        style={{ scale, opacity }}
+        style={{ opacity }}
       >
         <Fab
-          // todo: replace color='inverted' and remove styles here when Fab color is extendable
-          // https://github.com/mui/material-ui/blob/master/packages/mui-material/src/Fab/Fab.js#L193-L202
           color='inherit'
           aria-label='Open Menu'
-          onClick={(event) => setOpenEl(event.currentTarget)}
           size='responsive'
           sx={(theme) => ({
             boxShadow: 'none',
@@ -128,41 +100,6 @@ export function MenuFab(props: MenuFabProps) {
           className={classes.shadow}
           style={{ opacity: shadowOpacity }}
         />
-
-        <Menu
-          anchorEl={openEl}
-          open={!!openEl}
-          onClose={() => setOpenEl(null)}
-          disableScrollLock
-          disablePortal
-          transitionDuration={{ appear: 175, enter: 175, exit: 175 }}
-          PaperProps={{
-            sx: (theme) => ({
-              backgroundColor: theme.palette.background.paper,
-              backgroundImage: 'unset',
-              color: theme.palette.text.primary,
-              minWidth: responsiveVal(200, 280),
-              marginTop: '12px',
-              [theme.breakpoints.down('md')]: {
-                marginTop: `calc((${fabIconSize} + 12px) * -1)`,
-              },
-            }),
-          }}
-          className={classes.menu}
-          MenuListProps={{ dense: true }}
-          {...MenuProps}
-        >
-          {[
-            search ? (
-              <ListItem key='search' dense sx={{ mb: '6px' }}>
-                {search}
-              </ListItem>
-            ) : null,
-            ...React.Children.toArray(children),
-            <Divider key='divider' variant='middle' sx={{ my: '6px' }} />,
-            ...React.Children.toArray(secondary),
-          ]}
-        </Menu>
       </MotionDiv>
     </Box>
   )
