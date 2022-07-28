@@ -152,7 +152,12 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
             display: 'grid',
             alignItems: !stretchColumns ? 'start' : undefined,
             '& .NavigationItem-item': {
-              width: itemWidth || 'auto',
+              // eslint-disable-next-line no-nested-ternary
+              width: itemWidth
+                ? selected.length === 1
+                  ? itemWidth + selected.length
+                  : itemWidth
+                : 'auto',
             },
             [theme.breakpoints.down('md')]: {
               overflow: 'hidden',
