@@ -42,6 +42,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
   const [selected, setSelected] = useState<NavigationPath>([])
   const [navigationActive, setNavigationActive] = useState(false)
   const router = useRouter()
+  const magentoItems = useMagentoMenuToNavigation(menu)
 
   return (
     <>
@@ -53,8 +54,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
           <SearchLink href='/search' sx={(theme) => ({ width: '100%', mb: theme.spacings.xs })}>
             <Trans id='Search...' />
           </SearchLink>,
-          { id: 'women', name: 'Women', href: 'women' },
-          { id: 'men', name: 'Men', href: 'men' },
+          ...magentoItems.slice(0, 2),
           // ...useMagentoMenuToNavigation(menu),
           {
             id: 'shop',
@@ -100,18 +100,11 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
           <>
             <Logo />
             <DesktopNavBar>
-              {menu?.items?.map((item) => {
-                if (
-                  !item?.name?.toLowerCase().includes('women') &&
-                  !item?.name?.toLowerCase().includes('men')
-                )
-                  return false
-                return (
-                  <DesktopNavItem key={item?.uid} href={`/${item?.url_path}`}>
-                    {item?.name}
-                  </DesktopNavItem>
-                )
-              })}
+              {menu?.items?.slice(0, 2).map((item) => (
+                <DesktopNavItem key={item?.uid} href={`/${item?.url_path}`}>
+                  {item?.name}
+                </DesktopNavItem>
+              ))}
 
               <DesktopNavItem
                 onClick={() => {
