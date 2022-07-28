@@ -24,7 +24,7 @@ type NavigationOverlayProps = {
   active: boolean
   sx?: SxProps<Theme>
   stretchColumns?: boolean
-  itemWidth?: number
+  itemWidthMd?: number
 }
 
 function findCurrent(
@@ -55,7 +55,7 @@ const parts = ['root', 'navigation', 'header', 'column'] as const
 const { classes } = extendableComponent(componentName, parts)
 
 export function NavigationOverlay(props: NavigationOverlayProps) {
-  const { active, sx, stretchColumns, itemWidth } = props
+  const { active, sx, stretchColumns, itemWidthMd } = props
   const { selected, select, items, onClose } = useNavigation()
 
   const fabSize = useFabSize('responsive')
@@ -153,21 +153,21 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
             alignItems: !stretchColumns ? 'start' : undefined,
             '& .NavigationItem-item': {
               // eslint-disable-next-line no-nested-ternary
-              width: itemWidth
+              width: itemWidthMd
                 ? selected.length === 1
-                  ? itemWidth + selected.length
-                  : itemWidth
+                  ? itemWidthMd + selected.length
+                  : itemWidthMd
                 : 'auto',
             },
             [theme.breakpoints.down('md')]: {
               overflow: 'hidden',
               scrollSnapType: 'x mandatory',
-              width: itemWidth
-                ? `calc(${theme.spacings.md} + ${theme.spacings.md} + ${itemWidth}px)`
+              width: itemWidthMd
+                ? `calc(${theme.spacings.md} + ${theme.spacings.md} + ${itemWidthMd}px)`
                 : `calc(100vw - ${theme.page.horizontal} - ${theme.page.horizontal})`,
               '& .NavigationItem-item': {
                 width:
-                  itemWidth ||
+                  itemWidthMd ||
                   `calc(100vw - ${theme.page.horizontal} - ${theme.page.horizontal} - ${theme.spacings.md} - ${theme.spacings.md})`,
               },
             },
