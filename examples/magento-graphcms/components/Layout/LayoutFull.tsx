@@ -79,7 +79,18 @@ export function LayoutFull(props: LayoutFullProps) {
           <DarkLightModeMenuSecondaryItem key='darkmode' />,
         ]}
       >
-        <NavigationOverlay active={navigationActive} stretchColumns={false} itemWidthMd={230} />
+        <NavigationOverlay
+          active={navigationActive}
+          stretchColumns={false}
+          variantSm='left'
+          sizeSm='full'
+          justifySm='start'
+          // itemWidthSm={210}
+          variantMd='left'
+          sizeMd='full'
+          justifyMd='start'
+          itemWidthMd={230}
+        />
       </NavigationProvider>
 
       <LayoutDefault

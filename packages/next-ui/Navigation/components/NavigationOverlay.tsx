@@ -20,10 +20,21 @@ import {
 } from '../hooks/useNavigation'
 import { NavigationList } from './NavigationList'
 
+type LayoutOverlayVariant = 'left' | 'bottom' | 'right'
+type LayoutOverlaySize = 'floating' | 'minimal' | 'full'
+type LayoutOverlayAlign = 'start' | 'end' | 'center' | 'stretch'
+
 type NavigationOverlayProps = {
   active: boolean
   sx?: SxProps<Theme>
   stretchColumns?: boolean
+  variantSm: LayoutOverlayVariant
+  variantMd: LayoutOverlayVariant
+  sizeSm?: LayoutOverlaySize
+  sizeMd?: LayoutOverlaySize
+  justifySm?: LayoutOverlayAlign
+  justifyMd?: LayoutOverlayAlign
+  itemWidthSm?: number
   itemWidthMd?: number
 }
 
@@ -55,7 +66,19 @@ const parts = ['root', 'navigation', 'header', 'column'] as const
 const { classes } = extendableComponent(componentName, parts)
 
 export function NavigationOverlay(props: NavigationOverlayProps) {
-  const { active, sx, stretchColumns, itemWidthMd } = props
+  const {
+    active,
+    sx,
+    stretchColumns,
+    variantMd,
+    variantSm,
+    justifyMd,
+    justifySm,
+    sizeMd,
+    sizeSm,
+    itemWidthSm,
+    itemWidthMd,
+  } = props
   const { selected, select, items, onClose } = useNavigation()
 
   const fabSize = useFabSize('responsive')
@@ -74,12 +97,12 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
       className={classes.root}
       active={active}
       onClosed={onClose}
-      variantSm='left'
-      sizeSm='floating'
-      justifySm='start'
-      variantMd='left'
-      sizeMd='full'
-      justifyMd='start'
+      variantSm={variantSm}
+      sizeSm={sizeSm}
+      justifySm={justifySm}
+      variantMd={variantMd}
+      sizeMd={sizeMd}
+      justifyMd={justifyMd}
       sx={{
         zIndex: 'drawer',
         '& .LayoutOverlayBase-overlayPane': {
@@ -162,12 +185,12 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
             [theme.breakpoints.down('md')]: {
               overflow: 'hidden',
               scrollSnapType: 'x mandatory',
-              width: itemWidthMd
-                ? `calc(${theme.spacings.md} + ${theme.spacings.md} + ${itemWidthMd}px)`
+              width: itemWidthSm
+                ? `calc(${theme.spacings.md} + ${theme.spacings.md} + ${itemWidthSm}px)`
                 : `calc(100vw - ${theme.page.horizontal} - ${theme.page.horizontal})`,
               '& .NavigationItem-item': {
                 width:
-                  itemWidthMd ||
+                  itemWidthSm ||
                   `calc(100vw - ${theme.page.horizontal} - ${theme.page.horizontal} - ${theme.spacings.md} - ${theme.spacings.md})`,
               },
             },
