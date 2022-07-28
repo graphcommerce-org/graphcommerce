@@ -44,7 +44,7 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
   const [inWishlist, setInWishlist] = useState(false)
   const [displayMessageBar, setDisplayMessageBar] = useState(false)
 
-  const { loggedIn } = useCustomerSession()
+  const { loggedIn } = useCustomerSession({ hydration: false })
   const [addWishlistItem] = useMutation(AddProductToWishlistDocument)
   const [removeWishlistItem] = useMutation(RemoveProductFromWishlistDocument)
 

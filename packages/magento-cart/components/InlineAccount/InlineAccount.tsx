@@ -30,7 +30,7 @@ export function InlineAccount(props: InlineAccountProps) {
   const { loading, data } = useCartQuery(InlineAccountDocument)
   const cart = data?.cart
 
-  const { loggedIn } = useCustomerSession()
+  const { loggedIn } = useCustomerSession({ hydration: false })
   const { data: isEmailAvailableData } = useQuery(IsEmailAvailableDocument, {
     variables: { email: cart?.email ?? '' },
   })
