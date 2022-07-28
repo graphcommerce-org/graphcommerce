@@ -176,11 +176,7 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
             alignItems: !stretchColumns ? 'start' : undefined,
             '& .NavigationItem-item': {
               // eslint-disable-next-line no-nested-ternary
-              width: itemWidthMd
-                ? selected.length === 1
-                  ? itemWidthMd + selected.length
-                  : itemWidthMd
-                : 'auto',
+              width: itemWidthMd ? (selected.length === 1 ? itemWidthMd + 1 : itemWidthMd) : 'auto',
             },
             [theme.breakpoints.down('md')]: {
               overflow: 'hidden',
