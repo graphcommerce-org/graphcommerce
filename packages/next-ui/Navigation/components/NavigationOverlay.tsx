@@ -24,7 +24,7 @@ type NavigationOverlayProps = {
   active: boolean
   sx?: SxProps<Theme>
   stretchColumns?: boolean
-  itemWidth?: string
+  itemWidth?: number
 }
 
 function findCurrent(
@@ -158,7 +158,7 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
               overflow: 'hidden',
               scrollSnapType: 'x mandatory',
               width: itemWidth
-                ? `calc(${theme.spacings.md} + ${theme.spacings.md} + ${itemWidth})`
+                ? `calc(${theme.spacings.md} + ${theme.spacings.md} + ${itemWidth}px)`
                 : `calc(100vw - ${theme.page.horizontal} - ${theme.page.horizontal})`,
               '& .NavigationItem-item': {
                 width:
@@ -167,7 +167,6 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
               },
             },
           })}
-          className='test'
         >
           <Box
             className={classes.navigation}
