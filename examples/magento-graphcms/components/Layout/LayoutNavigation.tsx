@@ -11,7 +11,7 @@ import {
   LayoutDefaultProps,
   iconCustomerService,
   iconHeart,
-  MenuFab,
+  NavigationFab,
   MenuFabSecondaryItem,
   PlaceholderFab,
   IconSvg,
@@ -33,7 +33,7 @@ import { Logo } from './Logo'
 
 export type LayoutNavigationProps = Omit<
   DefaultPageQuery & Omit<LayoutDefaultProps, 'footer'>,
-  'pages' | 'header' | 'cartFab' | 'menuFab'
+  'pages' | 'header' | 'cartFab' | 'navigationFab'
 >
 
 export function LayoutNavigation(props: LayoutNavigationProps) {
@@ -144,7 +144,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
         }
         footer={<Footer footer={footer} />}
         cartFab={<CartFab />}
-        menuFab={<MenuFab onClick={() => setNavigationActive(true)} />}
+        menuFab={<NavigationFab onClick={() => setNavigationActive(true)} />}
       >
         {children}
       </LayoutDefault>
