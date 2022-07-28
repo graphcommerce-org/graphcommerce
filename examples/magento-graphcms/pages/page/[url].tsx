@@ -10,14 +10,14 @@ import {
 } from '@graphcommerce/next-ui'
 import { GetStaticPaths } from 'next'
 import { useRouter } from 'next/router'
-import { LayoutFullProps, RowRenderer, RowProduct, LayoutFull } from '../../components'
+import { LayoutNavigationProps, RowRenderer, RowProduct, LayoutNavigation } from '../../components'
 import { DefaultPageQuery, DefaultPageDocument } from '../../graphql/DefaultPage.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
 type Props = DefaultPageQuery & ProductListQuery
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
-export type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
+export type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
 function CmsPage(props: Props) {
   const router = useRouter()
@@ -63,7 +63,7 @@ function CmsPage(props: Props) {
 }
 
 CmsPage.pageOptions = {
-  Layout: LayoutFull,
+  Layout: LayoutNavigation,
 } as PageOptions
 
 export default CmsPage

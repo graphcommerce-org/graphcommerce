@@ -3,7 +3,12 @@ import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { PageMeta, GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { Container } from '@mui/material'
 import { GetStaticPaths } from 'next'
-import { LayoutOverlay, LayoutOverlayProps, LayoutFullProps, RowRenderer } from '../../components'
+import {
+  LayoutOverlay,
+  LayoutOverlayProps,
+  LayoutNavigationProps,
+  RowRenderer,
+} from '../../components'
 import { DefaultPageDocument, DefaultPageQuery } from '../../graphql/DefaultPage.gql'
 import { PagesStaticPathsDocument } from '../../graphql/PagesStaticPaths.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
@@ -11,7 +16,7 @@ import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphql
 type Props = DefaultPageQuery
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
 function ServicePage({ pages }: Props) {
   const title = pages?.[0].title ?? ''
