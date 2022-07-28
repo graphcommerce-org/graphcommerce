@@ -26,12 +26,12 @@ import { DefaultPageQuery } from '../../graphql/DefaultPage.gql'
 import { Footer } from './Footer'
 import { Logo } from './Logo'
 
-export type LayoutNavigationProps = Omit<
+export type LayoutFullProps = Omit<
   DefaultPageQuery & Omit<LayoutDefaultProps, 'footer'>,
   'pages' | 'header' | 'cartFab' | 'menuFab'
 >
 
-export function LayoutNavigation(props: LayoutNavigationProps) {
+export function LayoutFull(props: LayoutFullProps) {
   const { footer, menu = {}, children, ...uiProps } = props
 
   const router = useRouter()
