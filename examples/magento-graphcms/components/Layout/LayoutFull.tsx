@@ -85,7 +85,7 @@ export function LayoutFull(props: LayoutFullProps) {
           variantSm='left'
           sizeSm='full'
           justifySm='start'
-          // itemWidthSm={210}
+          itemWidthSm={250}
           variantMd='left'
           sizeMd='full'
           justifyMd='start'
