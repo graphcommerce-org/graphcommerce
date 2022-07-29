@@ -34,8 +34,8 @@ type NavigationOverlayProps = {
   sizeMd?: LayoutOverlaySize
   justifySm?: LayoutOverlayAlign
   justifyMd?: LayoutOverlayAlign
-  itemWidthSm?: number
-  itemWidthMd?: number
+  itemWidthSm?: string
+  itemWidthMd?: string
 }
 
 function findCurrent(
@@ -176,13 +176,17 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
             alignItems: !stretchColumns ? 'start' : undefined,
             '& .NavigationItem-item': {
               // eslint-disable-next-line no-nested-ternary
-              width: itemWidthMd ? (selected.length === 1 ? itemWidthMd + 1 : itemWidthMd) : 'auto',
+              width: itemWidthMd
+                ? selected.length === 1
+                  ? `calc(${itemWidthMd} + 1px)`
+                  : itemWidthMd
+                : 'auto',
             },
             [theme.breakpoints.down('md')]: {
               overflow: 'hidden',
               scrollSnapType: 'x mandatory',
               width: itemWidthSm
-                ? `calc(${theme.spacings.md} + ${theme.spacings.md} + ${itemWidthSm}px)`
+                ? `calc(${theme.spacings.md} + ${theme.spacings.md} + ${itemWidthSm})`
                 : `calc(100vw - ${theme.page.horizontal} - ${theme.page.horizontal})`,
               '& .NavigationItem-item': {
                 width:
