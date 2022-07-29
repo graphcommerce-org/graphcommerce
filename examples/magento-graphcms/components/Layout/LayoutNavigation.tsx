@@ -1,5 +1,9 @@
 import { CartFab } from '@graphcommerce/magento-cart'
-import { useMagentoMenuToNavigation } from '@graphcommerce/magento-category'
+import {
+  useMagentoMenuToNavigation,
+  categoryToNav,
+  Item as NavigationItem,
+} from '@graphcommerce/magento-category'
 import { CustomerFab, CustomerMenuFabItem } from '@graphcommerce/magento-customer'
 import { SearchLink } from '@graphcommerce/magento-search'
 import { WishlistFab, WishlistMenuFabItem } from '@graphcommerce/magento-wishlist'
@@ -20,6 +24,7 @@ import {
   iconChevronDown,
   NavigationProvider,
   NavigationOverlay,
+  NavigationNode,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
@@ -37,12 +42,14 @@ export type LayoutNavigationProps = Omit<
 >
 
 export function LayoutNavigation(props: LayoutNavigationProps) {
-  const { footer, menu = {}, children, ...uiProps } = props
+  const { footer, menu = {}, ...uiProps } = props
 
   const [selected, setSelected] = useState<NavigationPath>([])
   const [navigationActive, setNavigationActive] = useState(false)
   const router = useRouter()
-  const magentoItems = useMagentoMenuToNavigation(menu)
+
+  const firstItem = categoryToNav({ ...menu?.items?.[0], children: [] } as NavigationItem)
+  const secondItem = categoryToNav({ ...menu?.items?.[1], children: [] } as NavigationItem)
 
   return (
     <>
@@ -54,8 +61,8 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
           <SearchLink href='/search' sx={(theme) => ({ width: '100%', mb: theme.spacings.xs })}>
             <Trans id='Search...' />
           </SearchLink>,
-          ...magentoItems.slice(0, 2),
-          // ...useMagentoMenuToNavigation(menu),
+          firstItem as NavigationNode,
+          secondItem as NavigationNode,
           {
             id: 'shop',
             name: i18n._(/* i18n */ `Shop`),
@@ -139,7 +146,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
         cartFab={<CartFab />}
         menuFab={<NavigationFab onClick={() => setNavigationActive(true)} />}
       >
-        {children}
+        {uiProps.children}
       </LayoutDefault>
     </>
   )

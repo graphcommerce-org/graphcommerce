@@ -6,9 +6,9 @@ function nonNullable<T>(value: T): value is NonNullable<T> {
   return value !== null && value !== undefined
 }
 
-type Item = NonNullable<NonNullable<MenuQueryFragment['menu']>['items']>[0]
+export type Item = NonNullable<NonNullable<MenuQueryFragment['menu']>['items']>[0]
 
-function categoryToNav(props: Item | null | undefined): NavigationNode | undefined {
+export function categoryToNav(props: Item | null | undefined): NavigationNode | undefined {
   if (!props) return undefined
   const { uid, children, include_in_menu, name, url_path } = props
 
