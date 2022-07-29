@@ -83,9 +83,9 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
           active={navigationActive}
           stretchColumns={false}
           variantSm='left'
-          sizeSm='floating'
+          sizeSm='full'
           justifySm='start'
-          itemWidthSm='100vw'
+          itemWidthSm='70vw'
           variantMd='left'
           sizeMd='full'
           justifyMd='start'

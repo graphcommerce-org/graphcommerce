@@ -183,15 +183,15 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
                 : 'auto',
             },
             [theme.breakpoints.down('md')]: {
+              width: itemWidthSm
+                ? `calc(${itemWidthSm})`
+                : `calc(100vw - ${theme.page.horizontal} - ${theme.page.horizontal})`,
               overflow: 'hidden',
               scrollSnapType: 'x mandatory',
-              width: itemWidthSm
-                ? `calc(${theme.spacings.md} + ${theme.spacings.md} + ${itemWidthSm})`
-                : `calc(100vw - ${theme.page.horizontal} - ${theme.page.horizontal})`,
               '& .NavigationItem-item': {
-                width:
-                  itemWidthSm ||
-                  `calc(100vw - ${theme.page.horizontal} - ${theme.page.horizontal} - ${theme.spacings.md} - ${theme.spacings.md})`,
+                width: itemWidthSm
+                  ? `calc(${itemWidthSm} - ${theme.spacings.md} - ${theme.spacings.md})`
+                  : `calc(100vw - ${theme.page.horizontal} - ${theme.page.horizontal} - ${theme.spacings.md} - ${theme.spacings.md})`,
               },
             },
           })}
