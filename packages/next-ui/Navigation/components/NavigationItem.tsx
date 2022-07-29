@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { Box, ListItemButton, styled, Theme, useEventCallback, useMediaQuery } from '@mui/material'
 import PageLink from 'next/link'
+import { useEffect } from 'react'
 import { IconSvg } from '../../IconSvg'
 import { extendableComponent } from '../../Styles/extendableComponent'
 import { iconChevronRight } from '../../icons'
@@ -41,10 +42,10 @@ const { withState } = extendableComponent<OwnerState, typeof componentName, type
 const NavigationLI = styled('li')({ display: 'contents' })
 
 export function NavigationItem(props: NavigationItemProps) {
-  const { id, parentPath, idx, first, last, NavigationList, event = 'hover' } = props
+  const { id, parentPath, idx, first, last, NavigationList, event } = props
 
   const row = idx + 1
-  const { selected, select, hideRootOnNavigate, onClose } = useNavigation()
+  const { selected, select, hideRootOnNavigate, onClose, animating } = useNavigation()
 
   const itemPath = [...parentPath, id]
   const isSelected = selected.slice(0, itemPath.length).join('/') === itemPath.join('/')
@@ -71,12 +72,16 @@ export function NavigationItem(props: NavigationItemProps) {
           className={classes.item}
           role='button'
           sx={[
-            {
+            (theme) => ({
               gridRowStart: row,
               gridColumnStart: column,
-              gap: (theme) => theme.spacings.xxs,
+              gap: theme.spacings.xxs,
               display: hideItem ? 'none' : 'flex',
-            },
+              '&.Mui-disabled': {
+                opacity: 1,
+                background: theme.palette.action.hover,
+              },
+            }),
             event === 'hover'
               ? {
                   '&.Mui-disabled': {
@@ -90,14 +95,16 @@ export function NavigationItem(props: NavigationItemProps) {
           tabIndex={selected.join(',').includes(parentPath.join(',')) ? undefined : -1}
           onClick={(e) => {
             e.preventDefault()
-            if (!isSelected) select(itemPath)
+            if (!isSelected && animating.current === false) {
+              select(itemPath)
+            }
           }}
           onMouseEnter={
-            itemPath.length > 1 && event === 'hover' && isDesktop
+            itemPath.length > 1 && event === 'hover'
               ? (e) => {
-                  e.preventDefault()
-                  if (!isSelected) {
-                    setTimeout(() => select(itemPath), 110)
+                  if (isDesktop && animating.current === false && !isSelected) {
+                    e.preventDefault()
+                    setTimeout(() => select(itemPath), 60)
                   }
                 }
               : undefined

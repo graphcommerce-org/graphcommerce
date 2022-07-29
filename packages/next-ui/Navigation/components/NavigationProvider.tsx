@@ -1,6 +1,6 @@
 import { useEventCallback } from '@mui/material'
 import { MotionConfig } from 'framer-motion'
-import { useState, useMemo, SetStateAction } from 'react'
+import { useState, useMemo, SetStateAction, useRef } from 'react'
 import { isElement } from 'react-is'
 import {
   NavigationNode,
@@ -37,6 +37,8 @@ export function NavigationProvider(props: NavigationProviderProps) {
     setSelected,
   } = props
 
+  const animating = useRef(false)
+
   const select = useEventCallback((incomming: NavigationPath) => {
     setSelected(incomming)
     onChange?.(incomming)
@@ -52,6 +54,7 @@ export function NavigationProvider(props: NavigationProviderProps) {
       hideRootOnNavigate,
       selected,
       select,
+      animating,
       items: items
         .map((item, index) => (isElement(item) ? { id: item.key ?? index, component: item } : item))
         .filter(nonNullable),

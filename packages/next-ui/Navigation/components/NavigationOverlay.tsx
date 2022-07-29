@@ -3,6 +3,7 @@ import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, Fab, SxProps, Theme, useEventCallback, useMediaQuery } from '@mui/material'
 import { m } from 'framer-motion'
+import { useState } from 'react'
 import { IconSvg, useIconSvgSize } from '../../IconSvg'
 import { LayoutHeaderContent } from '../../Layout/components/LayoutHeaderContent'
 import { LayoutTitle } from '../../Layout/components/LayoutTitle'
@@ -79,7 +80,7 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
     itemWidthSm,
     itemWidthMd,
   } = props
-  const { selected, select, items, onClose } = useNavigation()
+  const { selected, select, items, onClose, animating } = useNavigation()
 
   const fabSize = useFabSize('responsive')
   const svgSize = useIconSvgSize('large')
@@ -103,6 +104,14 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
       variantMd={variantMd}
       sizeMd={sizeMd}
       justifyMd={justifyMd}
+      overlayPaneProps={{
+        onLayoutAnimationStart: () => {
+          animating.current = true
+        },
+        onLayoutAnimationComplete: () => {
+          animating.current = false
+        },
+      }}
       sx={{
         zIndex: 'drawer',
         '& .LayoutOverlayBase-overlayPane': {

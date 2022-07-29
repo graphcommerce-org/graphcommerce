@@ -43,6 +43,7 @@ export function NavigationList(props: NavigationItemsProps) {
           first={idx === 0}
           last={idx === items.length - 1}
           column={0}
+          event='hover'
         />
       ))}
     </NavigationUList>
