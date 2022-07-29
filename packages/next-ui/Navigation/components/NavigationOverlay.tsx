@@ -186,12 +186,14 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
               width: itemWidthSm
                 ? `calc(${itemWidthSm})`
                 : `calc(100vw - ${theme.page.horizontal} - ${theme.page.horizontal})`,
+              minWidth: 200,
               overflow: 'hidden',
               scrollSnapType: 'x mandatory',
               '& .NavigationItem-item': {
                 width: itemWidthSm
                   ? `calc(${itemWidthSm} - ${theme.spacings.md} - ${theme.spacings.md})`
                   : `calc(100vw - ${theme.page.horizontal} - ${theme.page.horizontal} - ${theme.spacings.md} - ${theme.spacings.md})`,
+                minWidth: `calc(${200}px - ${theme.spacings.md} - ${theme.spacings.md})`,
               },
             },
           })}
