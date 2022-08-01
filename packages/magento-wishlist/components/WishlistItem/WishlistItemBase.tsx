@@ -57,7 +57,7 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
   const productLink = useProductLink({ url_key, __typename: productType })
   const { cache } = useApolloClient()
 
-  const { loggedIn } = useCustomerSession({ hydration: false })
+  const { loggedIn } = useCustomerSession()
 
   const { data: GetCustomerWishlistData } = useCustomerQuery(GetIsInWishlistsDocument)
 
