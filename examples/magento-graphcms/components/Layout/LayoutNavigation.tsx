@@ -48,9 +48,6 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
   const [navigationActive, setNavigationActive] = useState(false)
   const router = useRouter()
 
-  const firstItem = categoryToNav({ ...menu?.items?.[0], children: [] } as NavigationItem)
-  const secondItem = categoryToNav({ ...menu?.items?.[1], children: [] } as NavigationItem)
-
   return (
     <>
       <Suspense>
@@ -62,8 +59,17 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
             <SearchLink href='/search' sx={(theme) => ({ width: '100%', mb: theme.spacings.xs })}>
               <Trans id='Search...' />
             </SearchLink>,
-            firstItem as NavigationNode,
-            secondItem as NavigationNode,
+            // ...useMagentoMenuToNavigation(menu),
+            {
+              id: 'manual-item-one',
+              href: `/${menu?.items?.[0]?.url_path}`,
+              name: menu?.items?.[0]?.name ?? ''
+            },
+            {
+              id: 'manual-item-two',
+              href: `/${menu?.items?.[1]?.url_path}`,
+              name: menu?.items?.[1]?.name ?? ''
+            },
             {
               id: 'shop',
               name: i18n._(/* i18n */ `Shop`),
