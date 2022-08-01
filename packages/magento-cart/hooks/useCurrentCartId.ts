@@ -10,7 +10,7 @@ type UseCurrentCartIdOptions<Q, V> = QueryHookOptions<
 > & { hydration?: boolean }
 
 export function useCurrentCartId<Q, V>(options: UseCurrentCartIdOptions<Q, V> = {}) {
-  const { hydration = true, ...queryOptions } = options
+  const { hydration = false, ...queryOptions } = options
   const [hydrating, setHydrating] = useState(!hydration)
   useIsomorphicLayoutEffect(() => startTransition(() => setHydrating(false)), [])
   const skip = options.skip !== undefined ? options.skip : hydrating

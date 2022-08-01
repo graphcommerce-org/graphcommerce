@@ -15,7 +15,7 @@ export type UseCustomerSessionReturn =
 export function useCustomerSession(
   options: UseCustomerSessionOptions = {},
 ): UseCustomerSessionReturn {
-  const { hydration = true } = options
+  const { hydration = false } = options
   const [hydrating, setHydrating] = useState(!hydration)
   useIsomorphicLayoutEffect(() => startTransition(() => setHydrating(false)), [])
   const skip = hydrating
