@@ -107,7 +107,7 @@ export function NavigationItem(props: NavigationItemProps) {
               ? (e) => {
                   if (isDesktop && animating.current === false && !isSelected) {
                     e.preventDefault()
-                    setTimeout(() => select(itemPath), 60)
+                    setTimeout(() => select(itemPath), 0)
                   }
                 }
               : undefined
