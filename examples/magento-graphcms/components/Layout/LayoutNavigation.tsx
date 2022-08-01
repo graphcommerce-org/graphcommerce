@@ -1,6 +1,8 @@
 import { CartFab } from '@graphcommerce/magento-cart'
 import {
   useMagentoMenuToNavigation,
+  categoryToNav,
+  Item as NavigationItem,
 } from '@graphcommerce/magento-category'
 import { CustomerFab, CustomerMenuFabItem } from '@graphcommerce/magento-customer'
 import { SearchLink } from '@graphcommerce/magento-search'
@@ -22,13 +24,14 @@ import {
   iconChevronDown,
   NavigationProvider,
   NavigationOverlay,
+  NavigationNode,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Divider, Fab } from '@mui/material'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useState, Suspense } from 'react'
 import { DefaultPageQuery } from '../../graphql/DefaultPage.gql'
 import { Footer } from './Footer'
 import { Logo } from './Logo'
@@ -47,7 +50,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
 
   return (
     <>
-
+      <Suspense>
         <NavigationProvider
           onClose={() => setNavigationActive(false)}
           selected={selected}
@@ -104,7 +107,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
             mouseEvent='hover'
           />
         </NavigationProvider>
-
+      </Suspense>
 
       <LayoutDefault
         {...uiProps}
