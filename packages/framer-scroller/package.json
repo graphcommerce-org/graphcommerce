@@ -2,7 +2,7 @@
   "name": "@graphcommerce/framer-scroller",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "2.1.25",
+  "version": "2.1.26",
   "sideEffects": false,
   "scripts": {
     "dev": "tsc -W"
@@ -17,7 +17,7 @@
   "dependencies": {
     "@graphcommerce/framer-utils": "3.1.4",
     "@graphcommerce/image": "3.1.7",
-    "@graphcommerce/next-ui": "4.15.0"
+    "@graphcommerce/next-ui": "4.15.1"
   },
   "devDependencies": {
     "@graphcommerce/eslint-config-pwa": "^4.1.9",

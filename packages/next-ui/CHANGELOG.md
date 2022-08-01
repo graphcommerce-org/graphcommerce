@@ -1,5 +1,14 @@
 # Change Log
 
+## 4.15.1
+
+### Patch Changes
+
+- [#1570](https://github.com/graphcommerce-org/graphcommerce/pull/1570) [`a88f166f0`](https://github.com/graphcommerce-org/graphcommerce/commit/a88f166f0115c58254fe47171da51a5850658a32) Thanks [@paales](https://github.com/paales)! - Solve issue where chrome would report duplicate ids
+
+- Updated dependencies []:
+  - @graphcommerce/framer-scroller@2.1.26
+
 ## 4.15.0
 
 ### Minor Changes
