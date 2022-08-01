@@ -19,6 +19,7 @@ import {
   NavigationNodeHref,
   useNavigation,
 } from '../hooks/useNavigation'
+import { mouseEventPref } from './NavigationItem'
 import { NavigationList } from './NavigationList'
 
 type LayoutOverlayVariant = 'left' | 'bottom' | 'right'
@@ -37,8 +38,7 @@ type NavigationOverlayProps = {
   justifyMd?: LayoutOverlayAlign
   itemWidthSm?: string
   itemWidthMd?: string
-  mouseEvent: 'click' | 'hover'
-}
+} & mouseEventPref
 
 function findCurrent(
   items: NavigationContextType['items'],

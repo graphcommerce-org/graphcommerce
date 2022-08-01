@@ -1,7 +1,7 @@
 import { styled } from '@mui/material'
 import { extendableComponent } from '../../Styles/extendableComponent'
 import { NavigationNode, NavigationPath } from '../hooks/useNavigation'
-import { NavigationItem } from './NavigationItem'
+import { NavigationItem, mouseEventPref } from './NavigationItem'
 
 const NavigationUList = styled('ul')({})
 
@@ -9,7 +9,7 @@ type NavigationItemsProps = {
   parentPath?: NavigationPath
   items: NavigationNode[]
   selected?: boolean
-} & { mouseEvent: 'click' | 'hover' }
+} & mouseEventPref
 
 type OwnerState = {
   column: number

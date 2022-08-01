@@ -27,9 +27,12 @@ type NavigationItemProps = NavigationNode & {
   parentPath: NavigationPath
   idx: number
   NavigationList: typeof NavigationList
-} & OwnerState & {
-    mouseEvent: 'click' | 'hover'
-  }
+} & OwnerState &
+  mouseEventPref
+
+export type mouseEventPref = {
+  mouseEvent: 'click' | 'hover'
+}
 
 const componentName = 'NavigationItem'
 const parts = ['li', 'ul', 'item'] as const
