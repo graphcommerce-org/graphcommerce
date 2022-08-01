@@ -42,7 +42,7 @@ export type LayoutNavigationProps = Omit<
 >
 
 export function LayoutNavigation(props: LayoutNavigationProps) {
-  const { footer, menu = {}, ...uiProps } = props
+  const { footer, menu = {}, children, ...uiProps } = props
 
   const [selected, setSelected] = useState<NavigationPath>([])
   const [navigationActive, setNavigationActive] = useState(false)
@@ -155,7 +155,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
         cartFab={<CartFab />}
         menuFab={<NavigationFab onClick={() => setNavigationActive(true)} />}
       >
-        {uiProps.children}
+        {children}
       </LayoutDefault>
     </>
   )
