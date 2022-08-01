@@ -1,6 +1,6 @@
 import { useIsomorphicLayoutEffect } from '@graphcommerce/framer-utils'
 import { QueryResult } from '@graphcommerce/graphql'
-import React, { useState } from 'react'
+import React, { startTransition, useState } from 'react'
 
 export type WaitForQueriesProps = {
   waitFor: QueryResult<any, any> | QueryResult<any, any>[]
@@ -23,7 +23,7 @@ export const WaitForQueries = (props: WaitForQueriesProps) => {
 
   // Wait for the queries to finish
   const [mountedState, setMountedState] = useState(false)
-  useIsomorphicLayoutEffect(() => setMountedState(true), [])
+  useIsomorphicLayoutEffect(() => startTransition(() => setMountedState(true)), [])
 
   return <>{isDone && mountedState ? children : fallback}</>
 }

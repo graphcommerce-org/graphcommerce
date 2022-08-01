@@ -100,7 +100,6 @@ export function TextInputNumber(props: TextInputNumberProps) {
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
       autoComplete='off'
-      id='quantity-input'
       InputProps={{
         ...textFieldProps.InputProps,
         startAdornment: (

@@ -1,6 +1,6 @@
 import { useIsomorphicLayoutEffect } from '@graphcommerce/framer-utils'
 import { QueryHookOptions, useQuery } from '@graphcommerce/graphql'
-import { useState } from 'react'
+import { startTransition, useState } from 'react'
 import { CurrentCartIdDocument, CurrentCartIdQuery } from './CurrentCartId.gql'
 import {} from 'react-dom'
 
@@ -10,9 +10,9 @@ type UseCurrentCartIdOptions<Q, V> = QueryHookOptions<
 > & { hydration?: boolean }
 
 export function useCurrentCartId<Q, V>(options: UseCurrentCartIdOptions<Q, V> = {}) {
-  const { hydration = true, ...queryOptions } = options
+  const { hydration = false, ...queryOptions } = options
   const [hydrating, setHydrating] = useState(!hydration)
-  useIsomorphicLayoutEffect(() => setHydrating(false), [])
+  useIsomorphicLayoutEffect(() => startTransition(() => setHydrating(false)), [])
   const skip = options.skip !== undefined ? options.skip : hydrating
 
   const { data, ...queryResults } = useQuery(CurrentCartIdDocument, { ...queryOptions, skip })

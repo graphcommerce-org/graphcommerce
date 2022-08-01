@@ -1,6 +1,6 @@
 import { useIsomorphicLayoutEffect } from '@graphcommerce/framer-utils'
 import { useQuery } from '@graphcommerce/graphql'
-import { useState } from 'react'
+import { startTransition, useState } from 'react'
 import { CustomerTokenDocument, CustomerTokenQuery } from './CustomerToken.gql'
 
 export type UseCustomerSessionOptions = { hydration?: boolean }
@@ -15,9 +15,9 @@ export type UseCustomerSessionReturn =
 export function useCustomerSession(
   options: UseCustomerSessionOptions = {},
 ): UseCustomerSessionReturn {
-  const { hydration = true } = options
+  const { hydration = false } = options
   const [hydrating, setHydrating] = useState(!hydration)
-  useIsomorphicLayoutEffect(() => setHydrating(false), [])
+  useIsomorphicLayoutEffect(() => startTransition(() => setHydrating(false)), [])
   const skip = hydrating
 
   const { called, data } = useQuery(CustomerTokenDocument, { skip })
