@@ -31,7 +31,7 @@ import { Trans } from '@lingui/react'
 import { Divider, Fab } from '@mui/material'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useState, Suspense } from 'react'
 import { DefaultPageQuery } from '../../graphql/DefaultPage.gql'
 import { Footer } from './Footer'
 import { Logo } from './Logo'
@@ -53,53 +53,55 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
 
   return (
     <>
-      <NavigationProvider
-        onClose={() => setNavigationActive(false)}
-        selected={selected}
-        setSelected={setSelected}
-        items={[
-          <SearchLink href='/search' sx={(theme) => ({ width: '100%', mb: theme.spacings.xs })}>
-            <Trans id='Search...' />
-          </SearchLink>,
-          firstItem as NavigationNode,
-          secondItem as NavigationNode,
-          {
-            id: 'shop',
-            name: i18n._(/* i18n */ `Shop`),
-            childItems: useMagentoMenuToNavigation(menu),
-          },
-          { id: 'blog', name: 'Blog', href: '/blog' },
-          <Divider sx={(theme) => ({ my: theme.spacings.xs })} />,
-          <CustomerMenuFabItem key='account' guestHref='/account/signin' authHref='/account'>
-            <Trans id='Account' />
-          </CustomerMenuFabItem>,
-          <MenuFabSecondaryItem
-            key='service'
-            icon={<IconSvg src={iconCustomerService} size='medium' />}
-            href='/service'
-          >
-            <Trans id='Customer Service' />
-          </MenuFabSecondaryItem>,
-          <WishlistMenuFabItem key='wishlist' icon={<IconSvg src={iconHeart} size='medium' />}>
-            <Trans id='Wishlist' />
-          </WishlistMenuFabItem>,
-          <DarkLightModeMenuSecondaryItem key='darkmode' />,
-        ]}
-      >
-        <NavigationOverlay
-          active={navigationActive}
-          stretchColumns={false}
-          variantSm='left'
-          sizeSm='full'
-          justifySm='start'
-          itemWidthSm='70vw'
-          variantMd='left'
-          sizeMd='full'
-          justifyMd='start'
-          itemWidthMd='230px'
-          mouseEvent='hover'
-        />
-      </NavigationProvider>
+      <Suspense>
+        <NavigationProvider
+          onClose={() => setNavigationActive(false)}
+          selected={selected}
+          setSelected={setSelected}
+          items={[
+            <SearchLink href='/search' sx={(theme) => ({ width: '100%', mb: theme.spacings.xs })}>
+              <Trans id='Search...' />
+            </SearchLink>,
+            firstItem as NavigationNode,
+            secondItem as NavigationNode,
+            {
+              id: 'shop',
+              name: i18n._(/* i18n */ `Shop`),
+              childItems: useMagentoMenuToNavigation(menu),
+            },
+            { id: 'blog', name: 'Blog', href: '/blog' },
+            <Divider sx={(theme) => ({ my: theme.spacings.xs })} />,
+            <CustomerMenuFabItem key='account' guestHref='/account/signin' authHref='/account'>
+              <Trans id='Account' />
+            </CustomerMenuFabItem>,
+            <MenuFabSecondaryItem
+              key='service'
+              icon={<IconSvg src={iconCustomerService} size='medium' />}
+              href='/service'
+            >
+              <Trans id='Customer Service' />
+            </MenuFabSecondaryItem>,
+            <WishlistMenuFabItem key='wishlist' icon={<IconSvg src={iconHeart} size='medium' />}>
+              <Trans id='Wishlist' />
+            </WishlistMenuFabItem>,
+            <DarkLightModeMenuSecondaryItem key='darkmode' />,
+          ]}
+        >
+          <NavigationOverlay
+            active={navigationActive}
+            stretchColumns={false}
+            variantSm='bottom'
+            sizeSm='full'
+            // justifySm='start'
+            itemWidthSm='100vw'
+            variantMd='left'
+            sizeMd='full'
+            justifyMd='start'
+            itemWidthMd='230px'
+            mouseEvent='hover'
+          />
+        </NavigationProvider>
+      </Suspense>
 
       <LayoutDefault
         {...uiProps}
