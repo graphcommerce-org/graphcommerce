@@ -20,7 +20,7 @@ export function categoryToNav(props: Item | null | undefined): NavigationNode | 
       name,
       id: uid,
       childItems: [
-        { name: i18n._(/* i18n */ 'All {name}', { name }), href: `/${url_path}` },
+        { name: i18n._(/* i18n */ 'All {name}', { name }), href: `/${url_path}`, id: `${uid}-all` },
         ...children.map(categoryToNav).filter(nonNullable),
       ],
     } as NavigationNodeButton
