@@ -1,5 +1,12 @@
 # Change Log
 
+## 3.0.29
+
+### Patch Changes
+
+- Updated dependencies [[`a88f166f0`](https://github.com/graphcommerce-org/graphcommerce/commit/a88f166f0115c58254fe47171da51a5850658a32)]:
+  - @graphcommerce/next-ui@4.15.1
+
 ## 3.0.28
 
 ### Patch Changes
