@@ -1,8 +1,6 @@
 import { CartFab } from '@graphcommerce/magento-cart'
 import {
   useMagentoMenuToNavigation,
-  categoryToNav,
-  Item as NavigationItem,
 } from '@graphcommerce/magento-category'
 import { CustomerFab, CustomerMenuFabItem } from '@graphcommerce/magento-customer'
 import { SearchLink } from '@graphcommerce/magento-search'
@@ -24,7 +22,6 @@ import {
   iconChevronDown,
   NavigationProvider,
   NavigationOverlay,
-  NavigationNode,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
@@ -38,7 +35,7 @@ import { Logo } from './Logo'
 
 export type LayoutNavigationProps = Omit<
   DefaultPageQuery & Omit<LayoutDefaultProps, 'footer'>,
-  'pages' | 'header' | 'cartFab' | 'navigationFab'
+  'pages' | 'header' | 'cartFab' | 'menuFab'
 >
 
 export function LayoutNavigation(props: LayoutNavigationProps) {
