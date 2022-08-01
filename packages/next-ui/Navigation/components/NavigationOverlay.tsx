@@ -194,7 +194,7 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
             [theme.breakpoints.down('md')]: {
               width:
                 sizeSm !== 'floating'
-                  ? `calc(${itemWidthSm || '100vw'})`
+                  ? `calc(${itemWidthSm || '70vw'} + ${selected.length}px)`
                   : `calc(${itemWidthSm || '100vw'} - ${theme.page.horizontal} - ${
                       theme.page.horizontal
                     })`,
@@ -204,9 +204,9 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
               '& .NavigationItem-item': {
                 width:
                   sizeSm !== 'floating'
-                    ? `calc(${itemWidthSm || '100vw'} - ${theme.spacings.md} - ${
+                    ? `calc(${itemWidthSm || '70vw'} - ${theme.spacings.md} - ${
                         theme.spacings.md
-                      })`
+                      } + ${selected.length}px)`
                     : `calc(${itemWidthSm || '100vw'} - ${theme.spacings.md} - ${
                         theme.spacings.md
                       } - ${theme.page.horizontal} - ${theme.page.horizontal})`,
