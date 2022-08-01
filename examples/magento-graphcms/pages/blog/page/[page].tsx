@@ -18,8 +18,8 @@ import {
   BlogListQuery,
   BlogPathsDocument,
   BlogPathsQuery,
-  LayoutFull,
-  LayoutFullProps,
+  LayoutNavigation,
+  LayoutNavigationProps,
 } from '../../../components'
 import { DefaultPageDocument, DefaultPageQuery } from '../../../graphql/DefaultPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
@@ -27,7 +27,7 @@ import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/grap
 type Props = DefaultPageQuery & BlogListQuery & BlogPathsQuery
 type RouteProps = { page: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
 const pageSize = 16
 
@@ -68,7 +68,7 @@ function BlogPage(props: Props) {
 }
 
 BlogPage.pageOptions = {
-  Layout: LayoutFull,
+  Layout: LayoutNavigation,
 } as PageOptions
 
 export default BlogPage

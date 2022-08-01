@@ -35,8 +35,8 @@ import {
 import { Container } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import {
-  LayoutFull,
-  LayoutFullProps,
+  LayoutNavigation,
+  LayoutNavigationProps,
   ProductListItems,
   sxLargeItem,
   RowProduct,
@@ -52,7 +52,7 @@ type Props = CategoryPageQuery &
   }
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
 function CategoryPage(props: Props) {
   const { categories, products, filters, params, filterTypes, pages } = props
@@ -140,7 +140,7 @@ function CategoryPage(props: Props) {
 }
 
 CategoryPage.pageOptions = {
-  Layout: LayoutFull,
+  Layout: LayoutNavigation,
 } as PageOptions
 
 export default CategoryPage

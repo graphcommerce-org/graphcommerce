@@ -16,12 +16,12 @@ import { Trans } from '@lingui/react'
 import { Button, Box, Container, NoSsr } from '@mui/material'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { LayoutFull, LayoutFullProps, LayoutMinimalProps } from '../../components'
+import { LayoutNavigation, LayoutNavigationProps, LayoutMinimalProps } from '../../components'
 import { DefaultPageDocument } from '../../graphql/DefaultPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
 type Props = Record<string, unknown>
-type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props>
+type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props>
 
 function OrderSuccessPage() {
   const hasCartId = !!useRouter().query.cart_id
@@ -79,7 +79,7 @@ function OrderSuccessPage() {
 }
 
 const pageOptions: PageOptions<LayoutMinimalProps> = {
-  Layout: LayoutFull,
+  Layout: LayoutNavigation,
   sharedKey: () => 'checkout',
 }
 OrderSuccessPage.pageOptions = pageOptions

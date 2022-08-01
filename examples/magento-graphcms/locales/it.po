@@ -636,3 +636,6 @@ msgstr "{totalResults} risultati"
 
 msgid "{total_count} products"
 msgstr "{total_count} prodotti"
+
+msgid "All {name}"
+msgstr "Tutto {name}"

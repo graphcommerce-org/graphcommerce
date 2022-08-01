@@ -1,6 +1,6 @@
 import { useEventCallback } from '@mui/material'
 import { MotionConfig } from 'framer-motion'
-import { useState, useMemo } from 'react'
+import { useState, useMemo, SetStateAction, useRef } from 'react'
 import { isElement } from 'react-is'
 import {
   NavigationNode,
@@ -16,6 +16,8 @@ export type NavigationProviderProps = {
   closeAfterNavigate?: boolean
   children?: React.ReactNode
   animationDuration?: number
+  selected: NavigationPath
+  setSelected: (value: SetStateAction<NavigationPath>) => void
   onChange?: NavigationSelect
   onClose?: NavigationContextType['onClose']
 }
@@ -31,9 +33,11 @@ export function NavigationProvider(props: NavigationProviderProps) {
     animationDuration = 0.275,
     children,
     onClose: onCloseUnstable,
+    selected,
+    setSelected,
   } = props
 
-  const [selected, setSelected] = useState<NavigationPath>([])
+  const animating = useRef(false)
 
   const select = useEventCallback((incomming: NavigationPath) => {
     setSelected(incomming)
@@ -50,6 +54,7 @@ export function NavigationProvider(props: NavigationProviderProps) {
       hideRootOnNavigate,
       selected,
       select,
+      animating,
       items: items
         .map((item, index) => (isElement(item) ? { id: item.key ?? index, component: item } : item))
         .filter(nonNullable),

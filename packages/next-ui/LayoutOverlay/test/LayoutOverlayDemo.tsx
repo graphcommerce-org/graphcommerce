@@ -3,7 +3,7 @@ import { LayoutOverlay, LayoutOverlayProps } from '../components/LayoutOverlay'
 
 export type LayoutOverlayState = Omit<
   LayoutOverlayProps,
-  'children' | 'sx' | 'sxBackdrop' | 'mdSpacingTop' | 'smSpacingTop'
+  'children' | 'sx' | 'sxBackdrop' | 'mdSpacingTop' | 'smSpacingTop' | 'overlayPaneProps'
 >
 
 export function useLayoutState() {

@@ -29,7 +29,13 @@ import {
 import { Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import React from 'react'
-import { LayoutFull, LayoutFullProps, RowProduct, RowRenderer, Usps } from '../../../components'
+import {
+  LayoutNavigation,
+  LayoutNavigationProps,
+  RowProduct,
+  RowRenderer,
+  Usps,
+} from '../../../components'
 import { ProductPageDocument, ProductPageQuery } from '../../../graphql/ProductPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
@@ -37,7 +43,7 @@ type Props = ProductPageQuery & GroupedProductPageQuery
 
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
 function ProductGrouped(props: Props) {
   const { products, usps, sidebarUsps, typeProducts, pages } = props
@@ -115,7 +121,7 @@ function ProductGrouped(props: Props) {
 }
 
 ProductGrouped.pageOptions = {
-  Layout: LayoutFull,
+  Layout: LayoutNavigation,
 } as PageOptions
 
 export default ProductGrouped

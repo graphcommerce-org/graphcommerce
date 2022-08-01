@@ -5,7 +5,7 @@ import {
   useIsomorphicLayoutEffect,
 } from '@graphcommerce/framer-utils'
 import { Box, styled, SxProps, Theme, useTheme, useThemeProps } from '@mui/material'
-import { m, useDomEvent, useMotionValue, useTransform } from 'framer-motion'
+import { m, MotionProps, useDomEvent, useMotionValue, useTransform } from 'framer-motion'
 import React, { useCallback, useEffect, useRef } from 'react'
 import { LayoutProvider } from '../../Layout/components/LayoutProvider'
 import { ExtendableComponent, extendableComponent } from '../../Styles'
@@ -40,6 +40,7 @@ export type LayoutOverlayBaseProps = {
   offsetPageY: number
   isPresent: boolean
   safeToRemove: (() => void) | null | undefined
+  overlayPaneProps?: MotionProps
 } & StyleProps &
   OverridableProps
 
@@ -86,6 +87,7 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
     offsetPageY,
     isPresent,
     safeToRemove,
+    overlayPaneProps,
   } = props
 
   const th = useTheme()
@@ -367,6 +369,7 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
           })}
         >
           <MotionDiv
+            {...overlayPaneProps}
             layout
             className={classes.overlayPane}
             sx={(theme) => ({

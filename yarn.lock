@@ -2748,7 +2748,7 @@
   dependencies:
     "@types/gapi.client" "*"
 
-"@motionone/animation@^10.12.0", "@motionone/animation@^10.13.1":
+"@motionone/animation@^10.12.0":
   version "10.13.1"
   resolved "https://registry.yarnpkg.com/@motionone/animation/-/animation-10.13.1.tgz#ebacb50df4b7eb4957cf398c221ae10852f28520"
   integrity sha512-dxQ+1wWxL6iFHDy1uv6hhcPjIdOg36eDT56jN4LI7Z5HZRyLpq8x1t7JFQclo/IEIb+6Bk4atmyinGFdXVECuA==
@@ -2770,18 +2770,6 @@
     hey-listen "^1.0.8"
     tslib "^2.3.1"
 
-"@motionone/dom@^10.11.1":
-  version "10.13.1"
-  resolved "https://registry.yarnpkg.com/@motionone/dom/-/dom-10.13.1.tgz#fc29ea5d12538f21b211b3168e502cfc07a24882"
-  integrity sha512-zjfX+AGMIt/fIqd/SL1Lj93S6AiJsEA3oc5M9VkUr+Gz+juRmYN1vfvZd6MvEkSqEjwPQgcjN7rGZHrDB9APfQ==
-  dependencies:
-    "@motionone/animation" "^10.13.1"
-    "@motionone/generators" "^10.13.1"
-    "@motionone/types" "^10.13.0"
-    "@motionone/utils" "^10.13.1"
-    hey-listen "^1.0.8"
-    tslib "^2.3.1"
-
 "@motionone/easing@^10.13.1":
   version "10.13.1"
   resolved "https://registry.yarnpkg.com/@motionone/easing/-/easing-10.13.1.tgz#7927b7fe96135989e37c2cda957e4101a4b85aa8"
@@ -2790,7 +2778,7 @@
     "@motionone/utils" "^10.13.1"
     tslib "^2.3.1"
 
-"@motionone/generators@^10.12.0", "@motionone/generators@^10.13.1":
+"@motionone/generators@^10.12.0":
   version "10.13.1"
   resolved "https://registry.yarnpkg.com/@motionone/generators/-/generators-10.13.1.tgz#d4989d887b864e0aefbbec63eed35ce298a73773"
   integrity sha512-+HK5u2YcNJCckTTqfOLgSVcrWv2z1dVwrSZEMVJuAh0EnWEWGDJRvMBoPc0cFf/osbkA2Rq9bH2+vP0Ex/D8uw==
@@ -6074,21 +6062,7 @@ framebus@5.1.2:
   dependencies:
     "@braintree/uuid" "^0.1.0"
 
-framer-motion@6.4.3:
-  version "6.4.3"
-  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-6.4.3.tgz#1d60f352ccc2840b0302c35c0993d972da550d03"
-  integrity sha512-prcyOGFkGjwGEgbxObIWteVz1ihuWaDLdR03626cbA1GxTaPRpLb8ioJfWPmP5mwcWC7TlhMOjS5kBYnuiktFA==
-  dependencies:
-    "@motionone/dom" "^10.11.1"
-    framesync "6.0.1"
-    hey-listen "^1.0.8"
-    popmotion "11.0.3"
-    style-value-types "5.0.0"
-    tslib "^2.1.0"
-  optionalDependencies:
-    "@emotion/is-prop-valid" "^0.8.2"
-
-framer-motion@^6.4.3:
+framer-motion@6.5.1, framer-motion@^6.4.3:
   version "6.5.1"
   resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-6.5.1.tgz#802448a16a6eb764124bf36d8cbdfa6dd6b931a7"
   integrity sha512-o1BGqqposwi7cgDrtg0dNONhkmPsUFDaLcKXigzuTFC5x58mE8iyTazxSudFzmT6MEyJKfjjU8ItoMe3W+3fiw==
