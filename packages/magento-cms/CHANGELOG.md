@@ -1,5 +1,12 @@
 # Change Log
 
+## 4.0.31
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/magento-store@4.2.20
+
 ## 4.0.30
 
 ### Patch Changes

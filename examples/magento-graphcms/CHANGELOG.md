@@ -1,5 +1,56 @@
 # Change Log
 
+## 3.18.0
+
+### Minor Changes
+
+- [#1566](https://github.com/graphcommerce-org/graphcommerce/pull/1566) [`e167992df`](https://github.com/graphcommerce-org/graphcommerce/commit/e167992dfdc6964a392af719667f8a188626ab1b) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Introduced `@graphcommerce/next-ui/navigation` component.
+
+  - Navigation is always present in the DOM
+  - Configurable in LayoutNavigation.tsx
+  - Show categories directly, or nest them in a 'products' button
+  - Choose prefered mouseEvent: click or hover
+
+* [#1566](https://github.com/graphcommerce-org/graphcommerce/pull/1566) [`9c2504b4e`](https://github.com/graphcommerce-org/graphcommerce/commit/9c2504b4ed75f41d3003c4d3339814010e85e37e) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - publish navigation
+
+### Patch Changes
+
+- Updated dependencies [[`e167992df`](https://github.com/graphcommerce-org/graphcommerce/commit/e167992dfdc6964a392af719667f8a188626ab1b), [`9c2504b4e`](https://github.com/graphcommerce-org/graphcommerce/commit/9c2504b4ed75f41d3003c4d3339814010e85e37e)]:
+  - @graphcommerce/magento-category@4.2.0
+  - @graphcommerce/next-ui@4.15.0
+  - @graphcommerce/magento-product-configurable@4.1.25
+  - @graphcommerce/ecommerce-ui@1.1.5
+  - @graphcommerce/framer-scroller@2.1.25
+  - @graphcommerce/graphcms-ui@3.0.33
+  - @graphcommerce/magento-cart@4.6.2
+  - @graphcommerce/magento-cart-billing-address@3.0.38
+  - @graphcommerce/magento-cart-checkout@3.0.40
+  - @graphcommerce/magento-cart-coupon@3.1.8
+  - @graphcommerce/magento-cart-email@3.0.40
+  - @graphcommerce/magento-cart-items@3.0.41
+  - @graphcommerce/magento-cart-payment-method@3.4.5
+  - @graphcommerce/magento-cart-pickup@3.1.2
+  - @graphcommerce/magento-cart-shipping-address@3.3.2
+  - @graphcommerce/magento-cart-shipping-method@3.5.2
+  - @graphcommerce/magento-customer@4.8.2
+  - @graphcommerce/magento-customer-account@3.1.33
+  - @graphcommerce/magento-customer-order@3.0.34
+  - @graphcommerce/magento-newsletter@2.0.38
+  - @graphcommerce/magento-payment-braintree@3.0.39
+  - @graphcommerce/magento-payment-included@3.1.11
+  - @graphcommerce/magento-product@4.4.18
+  - @graphcommerce/magento-review@3.2.26
+  - @graphcommerce/magento-search@4.1.28
+  - @graphcommerce/magento-store@4.2.20
+  - @graphcommerce/magento-wishlist@1.3.12
+  - @graphcommerce/mollie-magento-payment@3.4.5
+  - @graphcommerce/magento-product-bundle@4.0.40
+  - @graphcommerce/magento-product-downloadable@4.0.40
+  - @graphcommerce/magento-product-grouped@3.0.40
+  - @graphcommerce/magento-product-simple@4.0.40
+  - @graphcommerce/magento-product-virtual@4.0.40
+  - @graphcommerce/magento-cms@4.0.31
+
 ## 3.17.1
 
 ### Patch Changes
