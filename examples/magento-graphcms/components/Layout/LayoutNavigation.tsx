@@ -97,6 +97,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
           sizeMd='full'
           justifyMd='start'
           itemWidthMd='230px'
+          mouseEvent='hover'
         />
       </NavigationProvider>
 

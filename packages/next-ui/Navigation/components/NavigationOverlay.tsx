@@ -37,6 +37,7 @@ type NavigationOverlayProps = {
   justifyMd?: LayoutOverlayAlign
   itemWidthSm?: string
   itemWidthMd?: string
+  mouseEvent: 'click' | 'hover'
 }
 
 function findCurrent(
@@ -79,6 +80,7 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
     sizeSm,
     itemWidthSm,
     itemWidthMd,
+    mouseEvent,
   } = props
   const { selected, select, items, onClose, animating } = useNavigation()
 
@@ -186,7 +188,7 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
             '& .NavigationItem-item': {
               // eslint-disable-next-line no-nested-ternary
               width: itemWidthMd
-                ? selected.length === 1
+                ? selected.length >= 1
                   ? `calc(${itemWidthMd} + 1px)`
                   : itemWidthMd
                 : 'auto',
@@ -281,7 +283,7 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
               />
             )}
 
-            <NavigationList items={items} selected />
+            <NavigationList items={items} selected mouseEvent={mouseEvent} />
           </Box>
         </Box>
       </MotionDiv>

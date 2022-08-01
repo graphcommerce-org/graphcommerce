@@ -9,7 +9,7 @@ type NavigationItemsProps = {
   parentPath?: NavigationPath
   items: NavigationNode[]
   selected?: boolean
-}
+} & { mouseEvent: 'click' | 'hover' }
 
 type OwnerState = {
   column: number
@@ -23,7 +23,7 @@ const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>
 // const parts = ['li', 'ul', 'item'] as const
 
 export function NavigationList(props: NavigationItemsProps) {
-  const { items, parentPath = [], selected = false } = props
+  const { items, parentPath = [], selected = false, mouseEvent } = props
 
   return (
     <NavigationUList
@@ -43,7 +43,7 @@ export function NavigationList(props: NavigationItemsProps) {
           first={idx === 0}
           last={idx === items.length - 1}
           column={0}
-          event='hover'
+          mouseEvent={mouseEvent}
         />
       ))}
     </NavigationUList>

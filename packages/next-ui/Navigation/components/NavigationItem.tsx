@@ -28,7 +28,7 @@ type NavigationItemProps = NavigationNode & {
   idx: number
   NavigationList: typeof NavigationList
 } & OwnerState & {
-    event: 'click' | 'hover'
+    mouseEvent: 'click' | 'hover'
   }
 
 const componentName = 'NavigationItem'
@@ -42,7 +42,7 @@ const { withState } = extendableComponent<OwnerState, typeof componentName, type
 const NavigationLI = styled('li')({ display: 'contents' })
 
 export function NavigationItem(props: NavigationItemProps) {
-  const { id, parentPath, idx, first, last, NavigationList, event } = props
+  const { id, parentPath, idx, first, last, NavigationList, mouseEvent } = props
 
   const row = idx + 1
   const { selected, select, hideRootOnNavigate, onClose, animating } = useNavigation()
@@ -82,7 +82,7 @@ export function NavigationItem(props: NavigationItemProps) {
                 background: theme.palette.action.hover,
               },
             }),
-            event === 'hover'
+            mouseEvent === 'hover'
               ? {
                   '&.Mui-disabled': {
                     cursor: 'pointer',
@@ -100,7 +100,7 @@ export function NavigationItem(props: NavigationItemProps) {
             }
           }}
           onMouseEnter={
-            itemPath.length > 1 && event === 'hover'
+            itemPath.length > 1 && mouseEvent === 'hover'
               ? (e) => {
                   if (isDesktop && animating.current === false && !isSelected) {
                     e.preventDefault()
@@ -124,7 +124,12 @@ export function NavigationItem(props: NavigationItemProps) {
           <IconSvg src={iconChevronRight} sx={{ flexShrink: 0 }} />
         </ListItemButton>
 
-        <NavigationList items={childItems} selected={isSelected} parentPath={itemPath} />
+        <NavigationList
+          items={childItems}
+          selected={isSelected}
+          parentPath={itemPath}
+          mouseEvent={mouseEvent}
+        />
       </NavigationLI>
     )
   }
