@@ -90,10 +90,10 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
           <NavigationOverlay
             active={navigationActive}
             stretchColumns={false}
-            variantSm='left'
+            variantSm='bottom'
             sizeSm='full'
             justifySm='start'
-            itemWidthSm='70vw'
+            // itemWidthSm='70vw'
             variantMd='left'
             sizeMd='full'
             justifyMd='start'
