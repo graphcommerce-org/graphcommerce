@@ -12,13 +12,13 @@ export type UseFormIsEmailAvailableProps = {
 
 export function useFormIsEmailAvailable(props: UseFormIsEmailAvailableProps) {
   const { email, onSubmitted } = props
-  const { loggedIn, requireAuth } = useCustomerSession()
+  const { loggedIn, requireAuth } = useCustomerSession({ hydration: false })
   const customerQuery = useCustomerQuery(CustomerDocument)
 
   const form = useFormGqlQuery(
     IsEmailAvailableDocument,
     { mode: 'onChange', defaultValues: { email: email ?? '' } },
-    // { fetchPolicy: 'cache-and-network' },
+    { fetchPolicy: 'cache-and-network' },
   )
   const { formState, data, handleSubmit } = form
 

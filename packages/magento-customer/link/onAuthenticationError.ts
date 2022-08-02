@@ -13,6 +13,7 @@ function invalidateToken(cache: InMemoryCache) {
       data: {
         customerToken: {
           ...res.customerToken,
+          token: null,
           createdAt: new Date('2000').toUTCString(),
           valid: false,
         },

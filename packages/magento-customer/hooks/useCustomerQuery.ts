@@ -22,7 +22,7 @@ export function useCustomerQuery<Q, V>(
   options: QueryHookOptions<Q, V> & { hydration?: boolean } = {},
 ): QueryResult<Q, V> {
   const { hydration, ...queryOptions } = options
-  const { loggedIn, called } = useCustomerSession({ hydration })
+  const { loggedIn, query } = useCustomerSession({ hydration })
 
   const result = useQuery(document, {
     ...queryOptions,
@@ -32,6 +32,6 @@ export function useCustomerQuery<Q, V>(
 
   return {
     ...result,
-    error: called && !loggedIn ? notLoggedInError : result.error,
+    error: query.called && !loggedIn ? notLoggedInError : result.error,
   }
 }
