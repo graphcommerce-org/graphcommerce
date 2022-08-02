@@ -14,6 +14,28 @@ export function nonNullable<T>(value: T): value is NonNullable<T> {
   return value !== null && value !== undefined
 }
 
+/**
+ * A full page wrapper to render customer specific information.
+ *
+ * - Shows a loading spinner during: SSR, Hydration and Query Loading.
+ * - Will show a login message if the customer isn't logged in.
+ * - Will show an error message for any query that has that are passed.
+ * - Will show the contents if none of the above matches.
+ *
+ * ```tsx
+ * import { useQuery } from '@graphcommerce/graphql'
+ * import { WaitForCustomer } from '@graphcommerce/magento-customer'
+ *
+ * function MyComponent() {
+ *   const optionalAdditionalQuery = useQuery(MyQueryDocument)
+ *   return (
+ *     <WaitForCustomer waitFor={optionalAdditionalQuery}>
+ *       Customer logged in and {optionalAdditionalQuery.data.myField} data available
+ *     </WaitForCustomer>
+ *   )
+ * }
+ * ```
+ */
 export function WaitForCustomer(props: WaitForCustomerProps) {
   const { waitFor = [], children } = props
 
