@@ -1,5 +1,36 @@
 # Change Log
 
+## 3.1.34
+
+### Patch Changes
+
+- Updated dependencies [[`a88f166f0`](https://github.com/graphcommerce-org/graphcommerce/commit/a88f166f0115c58254fe47171da51a5850658a32), [`d92780d5c`](https://github.com/graphcommerce-org/graphcommerce/commit/d92780d5c3bb80b5a1519c087338548303e4cc2f)]:
+  - @graphcommerce/next-ui@4.15.1
+  - @graphcommerce/magento-customer@4.8.3
+  - @graphcommerce/magento-customer-order@3.0.35
+  - @graphcommerce/magento-store@4.2.21
+
+## 3.1.33
+
+### Patch Changes
+
+- Updated dependencies [[`e167992df`](https://github.com/graphcommerce-org/graphcommerce/commit/e167992dfdc6964a392af719667f8a188626ab1b), [`9c2504b4e`](https://github.com/graphcommerce-org/graphcommerce/commit/9c2504b4ed75f41d3003c4d3339814010e85e37e)]:
+  - @graphcommerce/next-ui@4.15.0
+  - @graphcommerce/magento-customer@4.8.2
+  - @graphcommerce/magento-customer-order@3.0.34
+  - @graphcommerce/magento-store@4.2.20
+
+## 3.1.32
+
+### Patch Changes
+
+- Updated dependencies [[`01f1588c9`](https://github.com/graphcommerce-org/graphcommerce/commit/01f1588c9200bb39dd61146e260bfa2b32060612), [`84428ccab`](https://github.com/graphcommerce-org/graphcommerce/commit/84428ccab8d1d263893766197076651eae68759c)]:
+  - @graphcommerce/graphql@3.4.3
+  - @graphcommerce/magento-customer@4.8.1
+  - @graphcommerce/magento-customer-order@3.0.33
+  - @graphcommerce/magento-store@4.2.19
+  - @graphcommerce/magento-graphql@3.1.3
+
 ## 3.1.31
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.1.6
+
+### Patch Changes
+
+- [#1562](https://github.com/graphcommerce-org/graphcommerce/pull/1562) [`01f1588c9`](https://github.com/graphcommerce-org/graphcommerce/commit/01f1588c9200bb39dd61146e260bfa2b32060612) Thanks [@paales](https://github.com/paales)! - The context was missing in apollo client
+
 ## 4.1.5
 
 ### Patch Changes

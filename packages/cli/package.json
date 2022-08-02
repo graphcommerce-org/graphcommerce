@@ -2,7 +2,7 @@
   "name": "@graphcommerce/cli",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "author": "",
   "license": "MIT",
   "scripts": {
@@ -20,9 +20,9 @@
   },
   "dependencies": {
     "@graphql-codegen/cli": "2.8.0",
-    "@graphql-mesh/cli": "0.74.1",
-    "@graphql-mesh/types": "0.78.0",
-    "@graphql-mesh/utils": "0.37.1"
+    "@graphql-mesh/cli": "0.75.2",
+    "@graphql-mesh/types": "0.78.4",
+    "@graphql-mesh/utils": "0.37.5"
   },
   "devDependencies": {
     "@graphcommerce/eslint-config-pwa": "^4.1.9",

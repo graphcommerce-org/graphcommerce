@@ -1,15 +1,19 @@
 import { CartFab } from '@graphcommerce/magento-cart'
-import { useMagentoMenuToNavigation } from '@graphcommerce/magento-category'
+import {
+  useMagentoMenuToNavigation,
+} from '@graphcommerce/magento-category'
 import { CustomerFab, CustomerMenuFabItem } from '@graphcommerce/magento-customer'
 import { SearchLink } from '@graphcommerce/magento-search'
 import { WishlistFab, WishlistMenuFabItem } from '@graphcommerce/magento-wishlist'
 import {
+  NavigationPath,
   DesktopNavActions,
   DesktopNavBar,
   LayoutDefault,
   LayoutDefaultProps,
   iconCustomerService,
   iconHeart,
+  NavigationFab,
   MenuFabSecondaryItem,
   PlaceholderFab,
   IconSvg,
@@ -18,14 +22,13 @@ import {
   iconChevronDown,
   NavigationProvider,
   NavigationOverlay,
-  NavigationFab,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Divider, Fab } from '@mui/material'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useState, Suspense } from 'react'
 import { DefaultPageQuery } from '../../graphql/DefaultPage.gql'
 import { Footer } from './Footer'
 import { Logo } from './Logo'
@@ -38,48 +41,70 @@ export type LayoutNavigationProps = Omit<
 export function LayoutNavigation(props: LayoutNavigationProps) {
   const { footer, menu = {}, children, ...uiProps } = props
 
+  const [selected, setSelected] = useState<NavigationPath>([])
   const [navigationActive, setNavigationActive] = useState(false)
   const router = useRouter()
 
   return (
     <>
-      <NavigationProvider
-        onClose={() => setNavigationActive(false)}
-        items={[
-          <SearchLink href='/search' sx={(theme) => ({ width: '100%', mb: theme.spacings.xs })}>
-            <Trans id='Search...' />
-          </SearchLink>,
-          { id: 'home', name: 'Home', href: '/' },
-          // ...useMagentoMenuToNavigation(menu),
-          {
-            id: 'shop',
-            name: i18n._(/* i18n */ `Shop`),
-            childItems: useMagentoMenuToNavigation(menu),
-          },
-          { id: 'blog', name: 'Blog', href: '/blog' },
-          <Divider sx={(theme) => ({ my: theme.spacings.xs })} />,
-          <CustomerMenuFabItem key='account' guestHref='/account/signin' authHref='/account'>
-            <Trans id='Account' />
-          </CustomerMenuFabItem>,
-          <MenuFabSecondaryItem
-            key='service'
-            icon={<IconSvg src={iconCustomerService} size='medium' />}
-            href='/service'
-          >
-            <Trans id='Customer Service' />
-          </MenuFabSecondaryItem>,
-          <WishlistMenuFabItem key='wishlist' icon={<IconSvg src={iconHeart} size='medium' />}>
-            <Trans id='Wishlist' />
-          </WishlistMenuFabItem>,
-          <DarkLightModeMenuSecondaryItem key='darkmode' />,
-        ]}
-      >
-        <NavigationOverlay
-          active={navigationActive}
-          itemWidth='230px'
-          // stretchColumns={false}
-        />
-      </NavigationProvider>
+      <Suspense>
+        <NavigationProvider
+          onClose={() => setNavigationActive(false)}
+          selected={selected}
+          setSelected={setSelected}
+          items={[
+            <SearchLink href='/search' sx={(theme) => ({ width: `calc(100% - ${theme.spacing(4)})`, m: 2, mb: theme.spacings.xs })}>
+              <Trans id='Search...' />
+            </SearchLink>,
+            // ...useMagentoMenuToNavigation(menu),
+            {
+              id: 'manual-item-one',
+              href: `/${menu?.items?.[0]?.url_path}`,
+              name: menu?.items?.[0]?.name ?? ''
+            },
+            {
+              id: 'manual-item-two',
+              href: `/${menu?.items?.[1]?.url_path}`,
+              name: menu?.items?.[1]?.name ?? ''
+            },
+            {
+              id: 'shop',
+              name: i18n._(/* i18n */ `Shop`),
+              childItems: useMagentoMenuToNavigation(menu),
+            },
+            { id: 'blog', name: 'Blog', href: '/blog' },
+            <Divider sx={(theme) => ({ my: theme.spacings.xs })} />,
+            <CustomerMenuFabItem key='account' guestHref='/account/signin' authHref='/account'>
+              <Trans id='Account' />
+            </CustomerMenuFabItem>,
+            <MenuFabSecondaryItem
+              key='service'
+              icon={<IconSvg src={iconCustomerService} size='medium' />}
+              href='/service'
+            >
+              <Trans id='Customer Service' />
+            </MenuFabSecondaryItem>,
+            <WishlistMenuFabItem key='wishlist' icon={<IconSvg src={iconHeart} size='medium' />}>
+              <Trans id='Wishlist' />
+            </WishlistMenuFabItem>,
+            <DarkLightModeMenuSecondaryItem key='darkmode' />,
+          ]}
+        >
+          <NavigationOverlay
+            active={navigationActive}
+            stretchColumns={false}
+            variantSm='left'
+            sizeSm='full'
+            justifySm='start'
+            itemWidthSm='70vw'
+            variantMd='left'
+            sizeMd='full'
+            justifyMd='start'
+            itemWidthMd='230px'
+            mouseEvent='hover'
+          />
+        </NavigationProvider>
+      </Suspense>
 
       <LayoutDefault
         {...uiProps}
@@ -88,21 +113,18 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
           <>
             <Logo />
             <DesktopNavBar>
-              {menu?.items?.map((item) => {
-                const saleItem = item?.name?.toLowerCase().includes('sale')
-                if (!saleItem) return false
-                return (
-                  <DesktopNavItem
-                    key={item?.uid}
-                    href={`/${item?.url_path}`}
-                    sx={{ textTransform: 'uppercase', letterSpacing: 0.3, color: 'primary.main' }}
-                  >
-                    {item?.name}
-                  </DesktopNavItem>
-                )
-              })}
+              {menu?.items?.slice(0, 2).map((item) => (
+                <DesktopNavItem key={item?.uid} href={`/${item?.url_path}`}>
+                  {item?.name}
+                </DesktopNavItem>
+              ))}
 
-              <DesktopNavItem onClick={() => setNavigationActive(true)}>
+              <DesktopNavItem
+                onClick={() => {
+                  setSelected(['shop'])
+                  setNavigationActive(true)
+                }}
+              >
                 <Trans id='Shop' />
                 <IconSvg src={iconChevronDown} />
               </DesktopNavItem>

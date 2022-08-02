@@ -1,5 +1,32 @@
 # Change Log
 
+## 4.15.1
+
+### Patch Changes
+
+- [#1570](https://github.com/graphcommerce-org/graphcommerce/pull/1570) [`a88f166f0`](https://github.com/graphcommerce-org/graphcommerce/commit/a88f166f0115c58254fe47171da51a5850658a32) Thanks [@paales](https://github.com/paales)! - Solve issue where chrome would report duplicate ids
+
+- Updated dependencies []:
+  - @graphcommerce/framer-scroller@2.1.26
+
+## 4.15.0
+
+### Minor Changes
+
+- [#1566](https://github.com/graphcommerce-org/graphcommerce/pull/1566) [`e167992df`](https://github.com/graphcommerce-org/graphcommerce/commit/e167992dfdc6964a392af719667f8a188626ab1b) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Introduced `@graphcommerce/next-ui/navigation` component.
+
+  - Navigation is always present in the DOM
+  - Configurable in LayoutNavigation.tsx
+  - Show categories directly, or nest them in a 'products' button
+  - Choose prefered mouseEvent: click or hover
+
+* [#1566](https://github.com/graphcommerce-org/graphcommerce/pull/1566) [`9c2504b4e`](https://github.com/graphcommerce-org/graphcommerce/commit/9c2504b4ed75f41d3003c4d3339814010e85e37e) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - publish navigation
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/framer-scroller@2.1.25
+
 ## 4.14.0
 
 ### Minor Changes

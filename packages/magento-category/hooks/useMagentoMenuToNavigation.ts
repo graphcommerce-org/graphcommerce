@@ -4,11 +4,12 @@ import {
   NavigationNodeHref,
   nonNullable,
 } from '@graphcommerce/next-ui'
+import { i18n } from '@lingui/core'
 import { MenuQueryFragment } from '../queries/MenuQueryFragment.gql'
 
-type Item = NonNullable<NonNullable<MenuQueryFragment['menu']>['items']>[0]
+export type Item = NonNullable<NonNullable<MenuQueryFragment['menu']>['items']>[0]
 
-function categoryToNav(props: Item | null | undefined): NavigationNode | undefined {
+export function categoryToNav(props: Item | null | undefined): NavigationNode | undefined {
   if (!props) return undefined
   const { uid, children, include_in_menu, name, url_path } = props
 
@@ -20,7 +21,7 @@ function categoryToNav(props: Item | null | undefined): NavigationNode | undefin
       name,
       id: uid,
       childItems: [
-        { name: `All ${name}`, href: `/${url_path}` },
+        { name: i18n._(/* i18n */ 'All {name}', { name }), href: `/${url_path}`, id: `${uid}-all` },
         ...children.map(categoryToNav).filter(nonNullable),
       ],
     } as NavigationNodeButton

@@ -6,12 +6,12 @@ import { Trans } from '@lingui/react'
 import { Box, Container, Typography, Link } from '@mui/material'
 import PageLink from 'next/link'
 import React from 'react'
-import { LayoutFull, LayoutFullProps } from '../components'
+import { LayoutNavigation, LayoutNavigationProps } from '../components'
 import { DefaultPageDocument, DefaultPageQuery } from '../graphql/DefaultPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
 
 type Props = DefaultPageQuery
-type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props>
+type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props>
 
 function RouteNotFoundPage() {
   const links = [
@@ -59,7 +59,7 @@ function RouteNotFoundPage() {
 }
 
 RouteNotFoundPage.pageOptions = {
-  Layout: LayoutFull,
+  Layout: LayoutNavigation,
 } as PageOptions
 
 export default RouteNotFoundPage

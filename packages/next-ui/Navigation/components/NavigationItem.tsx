@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
-import { Box, ListItemButton, styled, useEventCallback } from '@mui/material'
+import { Box, ListItemButton, styled, Theme, useEventCallback, useMediaQuery } from '@mui/material'
 import PageLink from 'next/link'
+import { useEffect } from 'react'
 import { IconSvg } from '../../IconSvg'
 import { extendableComponent } from '../../Styles/extendableComponent'
 import { iconChevronRight } from '../../icons'
@@ -26,7 +27,12 @@ type NavigationItemProps = NavigationNode & {
   parentPath: NavigationPath
   idx: number
   NavigationList: typeof NavigationList
-} & OwnerState
+} & OwnerState &
+  mouseEventPref
+
+export type mouseEventPref = {
+  mouseEvent: 'click' | 'hover'
+}
 
 const componentName = 'NavigationItem'
 const parts = ['li', 'ul', 'item'] as const
@@ -39,10 +45,10 @@ const { withState } = extendableComponent<OwnerState, typeof componentName, type
 const NavigationLI = styled('li')({ display: 'contents' })
 
 export function NavigationItem(props: NavigationItemProps) {
-  const { id, parentPath, idx, first, last, NavigationList } = props
+  const { id, parentPath, idx, first, last, NavigationList, mouseEvent } = props
 
   const row = idx + 1
-  const { selected, select, hideRootOnNavigate, onClose } = useNavigation()
+  const { selected, select, hideRootOnNavigate, onClose, animating } = useNavigation()
 
   const itemPath = [...parentPath, id]
   const isSelected = selected.slice(0, itemPath.length).join('/') === itemPath.join('/')
@@ -59,6 +65,8 @@ export function NavigationItem(props: NavigationItemProps) {
     onClose?.(e, href)
   })
 
+  const isDesktop = useMediaQuery<Theme>((theme) => theme.breakpoints.up('md'))
+
   if (isNavigationButton(props)) {
     const { childItems, name } = props
     return (
@@ -66,18 +74,44 @@ export function NavigationItem(props: NavigationItemProps) {
         <ListItemButton
           className={classes.item}
           role='button'
-          sx={{
-            gridRowStart: row,
-            gridColumnStart: column,
-            gap: (theme) => theme.spacings.xxs,
-            display: hideItem ? 'none' : 'flex',
-          }}
+          sx={[
+            (theme) => ({
+              gridRowStart: row,
+              gridColumnStart: column,
+              gap: theme.spacings.xxs,
+              display: hideItem ? 'none' : 'flex',
+              '&.Mui-disabled': {
+                opacity: 1,
+                background: theme.palette.action.hover,
+              },
+            }),
+            mouseEvent === 'hover'
+              ? {
+                  '&.Mui-disabled': {
+                    cursor: 'pointer',
+                    pointerEvents: 'auto',
+                  },
+                }
+              : {},
+          ]}
           disabled={isSelected}
           tabIndex={selected.join(',').includes(parentPath.join(',')) ? undefined : -1}
           onClick={(e) => {
             e.preventDefault()
-            if (!isSelected) select(itemPath)
+            if (!isSelected && animating.current === false) {
+              select(itemPath)
+            }
           }}
+          onMouseEnter={
+            itemPath.length > 1 && mouseEvent === 'hover'
+              ? (e) => {
+                  if (isDesktop && animating.current === false && !isSelected) {
+                    e.preventDefault()
+                    setTimeout(() => select(itemPath), 0)
+                  }
+                }
+              : undefined
+          }
         >
           <Box
             component='span'
@@ -93,7 +127,12 @@ export function NavigationItem(props: NavigationItemProps) {
           <IconSvg src={iconChevronRight} sx={{ flexShrink: 0 }} />
         </ListItemButton>
 
-        <NavigationList items={childItems} selected={isSelected} parentPath={itemPath} />
+        <NavigationList
+          items={childItems}
+          selected={isSelected}
+          parentPath={itemPath}
+          mouseEvent={mouseEvent}
+        />
       </NavigationLI>
     )
   }

@@ -32,7 +32,7 @@ import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Container, Hidden } from '@mui/material'
 import { GetStaticPaths } from 'next'
-import { LayoutFull, LayoutFullProps, ProductListItems } from '../../components'
+import { LayoutNavigation, LayoutNavigationProps, ProductListItems } from '../../components'
 import { DefaultPageDocument, DefaultPageQuery } from '../../graphql/DefaultPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
@@ -40,7 +40,7 @@ type Props = DefaultPageQuery &
   SearchQuery & { filterTypes: FilterTypes; params: ProductListParams }
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
 function SearchResultPage(props: Props) {
   const { products, categories, params, filters, filterTypes } = props
@@ -113,7 +113,7 @@ function SearchResultPage(props: Props) {
 }
 
 SearchResultPage.pageOptions = {
-  Layout: LayoutFull,
+  Layout: LayoutNavigation,
 } as PageOptions
 
 export default SearchResultPage

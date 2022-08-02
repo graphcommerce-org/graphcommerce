@@ -1,4 +1,4 @@
-import { createContext, useContext } from 'react'
+import { createContext, MutableRefObject, SetStateAction, useContext } from 'react'
 
 export type NavigationId = string | number
 export type NavigationPath = NavigationId[]
@@ -17,6 +17,7 @@ export type NavigationContextType = {
   items: NavigationNode[]
   hideRootOnNavigate: boolean
   onClose: NavigationOnClose
+  animating: MutableRefObject<boolean>
 }
 
 type NavigationNodeBase = {

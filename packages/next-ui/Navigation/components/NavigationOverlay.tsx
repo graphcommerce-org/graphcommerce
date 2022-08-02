@@ -3,6 +3,7 @@ import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, Fab, SxProps, Theme, useEventCallback, useMediaQuery } from '@mui/material'
 import { m } from 'framer-motion'
+import { useState } from 'react'
 import { IconSvg, useIconSvgSize } from '../../IconSvg'
 import { LayoutHeaderContent } from '../../Layout/components/LayoutHeaderContent'
 import { LayoutTitle } from '../../Layout/components/LayoutTitle'
@@ -18,14 +19,26 @@ import {
   NavigationNodeHref,
   useNavigation,
 } from '../hooks/useNavigation'
+import { mouseEventPref } from './NavigationItem'
 import { NavigationList } from './NavigationList'
+
+type LayoutOverlayVariant = 'left' | 'bottom' | 'right'
+type LayoutOverlaySize = 'floating' | 'minimal' | 'full'
+type LayoutOverlayAlign = 'start' | 'end' | 'center' | 'stretch'
 
 type NavigationOverlayProps = {
   active: boolean
   sx?: SxProps<Theme>
   stretchColumns?: boolean
-  itemWidth: string
-}
+  variantSm: LayoutOverlayVariant
+  variantMd: LayoutOverlayVariant
+  sizeSm?: LayoutOverlaySize
+  sizeMd?: LayoutOverlaySize
+  justifySm?: LayoutOverlayAlign
+  justifyMd?: LayoutOverlayAlign
+  itemWidthSm?: string
+  itemWidthMd?: string
+} & mouseEventPref
 
 function findCurrent(
   items: NavigationContextType['items'],
@@ -55,8 +68,21 @@ const parts = ['root', 'navigation', 'header', 'column'] as const
 const { classes } = extendableComponent(componentName, parts)
 
 export function NavigationOverlay(props: NavigationOverlayProps) {
-  const { active, sx, stretchColumns, itemWidth } = props
-  const { selected, select, items, onClose } = useNavigation()
+  const {
+    active,
+    sx,
+    stretchColumns,
+    variantMd,
+    variantSm,
+    justifyMd,
+    justifySm,
+    sizeMd,
+    sizeSm,
+    itemWidthSm,
+    itemWidthMd,
+    mouseEvent,
+  } = props
+  const { selected, select, items, onClose, animating } = useNavigation()
 
   const fabSize = useFabSize('responsive')
   const svgSize = useIconSvgSize('large')
@@ -74,12 +100,20 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
       className={classes.root}
       active={active}
       onClosed={onClose}
-      variantSm='left'
-      sizeSm='floating'
-      justifySm='start'
-      variantMd='left'
-      sizeMd='floating'
-      justifyMd='start'
+      variantSm={variantSm}
+      sizeSm={sizeSm}
+      justifySm={justifySm}
+      variantMd={variantMd}
+      sizeMd={sizeMd}
+      justifyMd={justifyMd}
+      overlayPaneProps={{
+        onLayoutAnimationStart: () => {
+          animating.current = true
+        },
+        onLayoutAnimationComplete: () => {
+          animating.current = false
+        },
+      }}
       sx={{
         zIndex: 'drawer',
         '& .LayoutOverlayBase-overlayPane': {
@@ -151,14 +185,35 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
           sx={(theme) => ({
             display: 'grid',
             alignItems: !stretchColumns ? 'start' : undefined,
-
+            '& .NavigationItem-item': {
+              // eslint-disable-next-line no-nested-ternary
+              width: itemWidthMd
+                ? selected.length >= 1
+                  ? `calc(${itemWidthMd} + 1px)`
+                  : itemWidthMd
+                : 'auto',
+            },
             [theme.breakpoints.down('md')]: {
+              width:
+                sizeSm !== 'floating'
+                  ? `calc(${itemWidthSm || '100vw'} + ${selected.length}px)`
+                  : `calc(${itemWidthSm || '100vw'} - ${theme.page.horizontal} - ${
+                      theme.page.horizontal
+                    })`,
+              minWidth: 200,
               overflow: 'hidden',
               scrollSnapType: 'x mandatory',
-              width: `calc(${theme.spacings.md} + ${theme.spacings.md} + ${itemWidth})`,
-            },
-            '& .NavigationItem-item': {
-              width: itemWidth,
+              '& .NavigationItem-item': {
+                width:
+                  sizeSm !== 'floating'
+                    ? `calc(${itemWidthSm || '100vw'} - ${theme.spacings.md} - ${
+                        theme.spacings.md
+                      } + ${selected.length}px)`
+                    : `calc(${itemWidthSm || '100vw'} - ${theme.spacings.md} - ${
+                        theme.spacings.md
+                      } - ${theme.page.horizontal} - ${theme.page.horizontal})`,
+                minWidth: `calc(${200}px - ${theme.spacings.md} - ${theme.spacings.md})`,
+              },
             },
           })}
         >
@@ -228,7 +283,7 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
               />
             )}
 
-            <NavigationList items={items} selected />
+            <NavigationList items={items} selected mouseEvent={mouseEvent} />
           </Box>
         </Box>
       </MotionDiv>

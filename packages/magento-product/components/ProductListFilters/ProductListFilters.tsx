@@ -52,11 +52,12 @@ export function ProductListFilters(props: ProductFiltersProps) {
               />
             )
         }
-        console.error(
-          'Filter not recognized',
-          aggregation.attribute_code,
-          filterTypes[aggregation.attribute_code],
-        )
+        // console.log(
+        //   'Filter not recognized',
+        //   aggregation.attribute_code,
+        //   aggregation.__typename,
+        //   filterTypes[aggregation.attribute_code],
+        // )
         return null // `FilterMatchTypeInput not ${aggregation.attribute_code}`
       })}
     </>

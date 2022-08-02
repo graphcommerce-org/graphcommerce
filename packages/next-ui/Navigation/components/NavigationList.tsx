@@ -1,7 +1,7 @@
 import { styled } from '@mui/material'
 import { extendableComponent } from '../../Styles/extendableComponent'
 import { NavigationNode, NavigationPath } from '../hooks/useNavigation'
-import { NavigationItem } from './NavigationItem'
+import { NavigationItem, mouseEventPref } from './NavigationItem'
 
 const NavigationUList = styled('ul')({})
 
@@ -9,7 +9,7 @@ type NavigationItemsProps = {
   parentPath?: NavigationPath
   items: NavigationNode[]
   selected?: boolean
-}
+} & mouseEventPref
 
 type OwnerState = {
   column: number
@@ -23,7 +23,7 @@ const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>
 // const parts = ['li', 'ul', 'item'] as const
 
 export function NavigationList(props: NavigationItemsProps) {
-  const { items, parentPath = [], selected = false } = props
+  const { items, parentPath = [], selected = false, mouseEvent } = props
 
   return (
     <NavigationUList
@@ -43,6 +43,7 @@ export function NavigationList(props: NavigationItemsProps) {
           first={idx === 0}
           last={idx === items.length - 1}
           column={0}
+          mouseEvent={mouseEvent}
         />
       ))}
     </NavigationUList>

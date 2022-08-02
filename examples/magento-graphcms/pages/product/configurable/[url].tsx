@@ -1,12 +1,11 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
-  ProductAddToCartButton,
-  ProductAddToCartQuantity,
-  ProductAddToCartSnackbar,
   getProductStaticPaths,
   jsonLdProduct,
   jsonLdProductOffer,
   ProductAddToCartForm,
+  ProductAddToCartQuantity,
+  ProductAddToCartSnackbar,
   productPageCategory,
   ProductPageDescription,
   ProductPageMeta,
@@ -35,7 +34,13 @@ import { Trans } from '@lingui/react'
 import { Box, Divider, Link, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
-import { LayoutFull, LayoutFullProps, RowProduct, RowRenderer, Usps } from '../../../components'
+import {
+  LayoutNavigation,
+  LayoutNavigationProps,
+  RowProduct,
+  RowRenderer,
+  Usps,
+} from '../../../components'
 import { ProductPageDocument, ProductPageQuery } from '../../../graphql/ProductPage.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../../lib/graphql/graphqlSsrClient'
 
@@ -43,7 +48,7 @@ type Props = ProductPageQuery & GetConfigurableProductConfigurationsQuery
 
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
 function ProductConfigurable(props: Props) {
   const { products, usps, typeProducts, sidebarUsps, pages } = props
@@ -152,7 +157,7 @@ function ProductConfigurable(props: Props) {
 }
 
 ProductConfigurable.pageOptions = {
-  Layout: LayoutFull,
+  Layout: LayoutNavigation,
 } as PageOptions
 
 export default ProductConfigurable

@@ -3,38 +3,44 @@ import {
   getProductStaticPaths,
   jsonLdProduct,
   jsonLdProductOffer,
-  productPageCategory,
+  ProductAddToCartButton,
   ProductAddToCartForm,
+  ProductAddToCartQuantity,
+  ProductAddToCartSnackbar,
+  productPageCategory,
   ProductPageDescription,
   ProductPageGallery,
   ProductPageMeta,
   ProductShortDescription,
   ProductSidebarDelivery,
-  ProductAddToCartButton,
-  ProductAddToCartQuantity,
-  ProductAddToCartSnackbar,
 } from '@graphcommerce/magento-product'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
 import { Money, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
 import {
+  findByTypename,
   GetStaticProps,
   JsonLd,
-  LayoutTitle,
   LayoutHeader,
-  findByTypename,
+  LayoutTitle,
 } from '@graphcommerce/next-ui'
-import { Box, Divider, Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
-import { LayoutFull, LayoutFullProps, RowProduct, RowRenderer, Usps } from '../../../components'
+import {
+  LayoutNavigation,
+  LayoutNavigationProps,
+  RowProduct,
+  RowRenderer,
+  Usps,
+} from '../../../components'
 import { ProductPageDocument, ProductPageQuery } from '../../../graphql/ProductPage.gql'
-import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
+import { graphqlSharedClient, graphqlSsrClient } from '../../../lib/graphql/graphqlSsrClient'
 
 type Props = ProductPageQuery
 
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
 function ProductVirtual(props: Props) {
   const { products, usps, sidebarUsps, pages } = props
@@ -118,7 +124,7 @@ function ProductVirtual(props: Props) {
 }
 
 ProductVirtual.pageOptions = {
-  Layout: LayoutFull,
+  Layout: LayoutNavigation,
 } as PageOptions
 
 export default ProductVirtual

@@ -31,7 +31,13 @@ import {
 import { Box, Divider, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import React from 'react'
-import { LayoutFull, LayoutFullProps, RowProduct, RowRenderer, Usps } from '../../../components'
+import {
+  LayoutNavigation,
+  LayoutNavigationProps,
+  RowProduct,
+  RowRenderer,
+  Usps,
+} from '../../../components'
 import { ProductPageDocument, ProductPageQuery } from '../../../graphql/ProductPage.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../../lib/graphql/graphqlSsrClient'
 
@@ -39,7 +45,7 @@ type Props = ProductPageQuery & DownloadableProductPageQuery
 
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
 function ProductDownloadable(props: Props) {
   const { products, usps, typeProducts, sidebarUsps, pages } = props
@@ -134,7 +140,7 @@ function ProductDownloadable(props: Props) {
 }
 
 ProductDownloadable.pageOptions = {
-  Layout: LayoutFull,
+  Layout: LayoutNavigation,
 } as PageOptions
 
 export default ProductDownloadable
