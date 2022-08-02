@@ -25,6 +25,7 @@ import {
   LayoutTitle,
   LayoutHeader,
   SchemaDts,
+  findByTypename,
 } from '@graphcommerce/next-ui'
 import { Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
@@ -48,12 +49,11 @@ type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProp
 function ProductGrouped(props: Props) {
   const { products, usps, sidebarUsps, typeProducts, pages } = props
 
-  const product = products?.items?.[0]
-  const typeProduct = typeProducts?.items?.[0]
-  const aggregations = typeProducts?.aggregations
+  const product = findByTypename(products?.items, 'GroupedProduct')
+  const typeProduct = findByTypename(typeProducts?.items, 'GroupedProduct')
+  const aggregations = products?.aggregations
 
-  if (product?.__typename !== 'GroupedProduct' || typeProduct?.__typename !== 'GroupedProduct')
-    return <div />
+  if (!product?.sku || !product.url_key || !typeProduct) return null
 
   return (
     <>
@@ -156,12 +156,12 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     variables: { urlKey },
   })
 
-  if (
-    (await productPage).data.products?.items?.[0]?.__typename !== 'GroupedProduct' ||
-    (await typeProductPage).data.typeProducts?.items?.[0]?.__typename !== 'GroupedProduct'
-  ) {
-    return { notFound: true }
-  }
+  const product = findByTypename((await productPage).data.products?.items, 'GroupedProduct')
+  const typeProduct = findByTypename(
+    (await typeProductPage).data.typeProducts?.items,
+    'GroupedProduct',
+  )
+  if (!product || !typeProduct) return { notFound: true }
 
   const category = productPageCategory((await productPage).data?.products?.items?.[0])
   const up =

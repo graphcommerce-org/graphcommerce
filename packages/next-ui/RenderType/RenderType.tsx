@@ -38,3 +38,10 @@ export function RenderType<
 
   return <TypeItem {...typeItemProps} __typename={__typename} />
 }
+
+export function findByTypename<T extends TypeObject, Typename extends T['__typename']>(
+  type: (T | undefined | null)[] | undefined | null,
+  typename: Typename,
+): FilterTypeByTypename<T, Typename> {
+  return type?.find((item) => item?.__typename === typename) as FilterTypeByTypename<T, Typename>
+}
