@@ -124,7 +124,7 @@ export function handlerFactory<Q, V>(document: TypedDocumentNode<Q, V>): UseGqlD
   }
 
   function encodeItem(enc: FieldTypes, val: unknown) {
-    if (Array.isArray(enc)) return [encodeItem(enc[0], val)]
+    if (Array.isArray(val)) return val.map((v, i) => encodeItem(enc[i], v))
     if (val && typeof val === 'object') {
       return Object.fromEntries(
         Object.entries(val).map(([key, v]) => [key, heuristicEncode(v as string)]),

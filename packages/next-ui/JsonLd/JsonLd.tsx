@@ -1,19 +1,21 @@
 import Head from 'next/head'
-import { jsonLdScriptProps } from 'react-schemaorg'
-import { Thing, WithContext } from 'schema-dts'
+import { safeJsonLdReplacer } from './safeJsonLdReplacer'
 
 export * as SchemaDts from 'schema-dts'
 
-export type JsonLdProps<T extends Thing> = {
-  item: WithContext<T>
-}
-
-export function JsonLd<T extends Thing>(props: JsonLdProps<T>) {
+export function JsonLd<T extends { '@type': string }>(props: {
+  item: T & { '@context': 'https://schema.org' }
+}) {
   const { item } = props
 
   return (
     <Head>
-      <script key='jsonld' {...jsonLdScriptProps<T>(item)} />
+      <script
+        key='jsonld'
+        type='application/ld+json'
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(item, safeJsonLdReplacer) }}
+      />
     </Head>
   )
 }

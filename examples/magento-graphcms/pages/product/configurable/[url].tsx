@@ -20,11 +20,11 @@ import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-r
 import { Money, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { ProductWishlistChipDetailConfigurable } from '@graphcommerce/magento-wishlist'
 import {
+  findByTypename,
   GetStaticProps,
   JsonLd,
   LayoutHeader,
   LayoutTitle,
-  SchemaDts,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Link, Typography } from '@mui/material'
@@ -49,18 +49,12 @@ type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProp
 function ProductConfigurable(props: Props) {
   const { products, usps, typeProducts, sidebarUsps, pages } = props
 
-  const product = products?.items?.[0]
-  const typeProduct = typeProducts?.items?.[0]
-  const aggregations = typeProducts?.aggregations
-
   const router = useRouter()
+  const product = findByTypename(products?.items, 'ConfigurableProduct')
+  const typeProduct = findByTypename(typeProducts?.items, 'ConfigurableProduct')
+  const aggregations = products?.aggregations
 
-  if (
-    product?.__typename !== 'ConfigurableProduct' ||
-    typeProduct?.__typename !== 'ConfigurableProduct' ||
-    !product.sku
-  )
-    return <div />
+  if (!product?.sku || !product.url_key || !typeProduct) return null
 
   return (
     <>
@@ -69,7 +63,7 @@ function ProductConfigurable(props: Props) {
           {product.name}
         </LayoutTitle>
       </LayoutHeader>
-      <JsonLd<SchemaDts.Product>
+      <JsonLd
         item={{
           '@context': 'https://schema.org',
           ...jsonLdProduct(product),
@@ -179,12 +173,12 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     variables: { urlKey },
   })
 
-  if (
-    (await productPage).data.products?.items?.[0]?.__typename !== 'ConfigurableProduct' ||
-    (await typeProductPage).data.typeProducts?.items?.[0]?.__typename !== 'ConfigurableProduct'
-  ) {
-    return { notFound: true }
-  }
+  const product = findByTypename((await productPage).data.products?.items, 'ConfigurableProduct')
+  const typeProduct = findByTypename(
+    (await typeProductPage).data.typeProducts?.items,
+    'ConfigurableProduct',
+  )
+  if (!product || !typeProduct) return { notFound: true }
 
   const category = productPageCategory((await productPage).data?.products?.items?.[0])
 
