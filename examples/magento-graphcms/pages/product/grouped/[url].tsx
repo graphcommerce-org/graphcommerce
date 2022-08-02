@@ -24,7 +24,6 @@ import {
   JsonLd,
   LayoutTitle,
   LayoutHeader,
-  SchemaDts,
   findByTypename,
 } from '@graphcommerce/next-ui'
 import { Typography } from '@mui/material'
@@ -62,7 +61,7 @@ function ProductGrouped(props: Props) {
           {product.name}
         </LayoutTitle>
       </LayoutHeader>
-      <JsonLd<SchemaDts.Product>
+      <JsonLd
         item={{
           '@context': 'https://schema.org',
           ...jsonLdProduct(product),

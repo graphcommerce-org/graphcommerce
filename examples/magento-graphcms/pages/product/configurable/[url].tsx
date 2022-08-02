@@ -25,7 +25,6 @@ import {
   JsonLd,
   LayoutHeader,
   LayoutTitle,
-  SchemaDts,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Link, Typography } from '@mui/material'
@@ -62,7 +61,7 @@ function ProductConfigurable(props: Props) {
           {product.name}
         </LayoutTitle>
       </LayoutHeader>
-      <JsonLd<SchemaDts.Product>
+      <JsonLd
         item={{
           '@context': 'https://schema.org',
           ...jsonLdProduct(product),

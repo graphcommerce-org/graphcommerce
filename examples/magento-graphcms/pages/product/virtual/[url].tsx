@@ -20,7 +20,6 @@ import {
   JsonLd,
   LayoutTitle,
   LayoutHeader,
-  SchemaDts,
 } from '@graphcommerce/next-ui'
 import { Box, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
@@ -55,7 +54,7 @@ function ProductVirtual(props: Props) {
           {product.name}
         </LayoutTitle>
       </LayoutHeader>
-      <JsonLd<SchemaDts.Product>
+      <JsonLd
         item={{
           '@context': 'https://schema.org',
           ...jsonLdProduct(product),

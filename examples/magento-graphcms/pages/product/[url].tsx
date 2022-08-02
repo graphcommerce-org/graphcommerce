@@ -18,7 +18,6 @@ import {
   findByTypename,
   GetStaticProps,
   JsonLd,
-  SchemaDts,
   LayoutTitle,
   LayoutHeader,
 } from '@graphcommerce/next-ui'
@@ -55,7 +54,7 @@ function ProductSimple(props: Props) {
           {product.name}
         </LayoutTitle>
       </LayoutHeader>
-      <JsonLd<SchemaDts.Product>
+      <JsonLd
         item={{
           '@context': 'https://schema.org',
           ...jsonLdProduct(product),
