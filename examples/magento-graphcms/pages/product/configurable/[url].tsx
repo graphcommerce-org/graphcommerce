@@ -29,6 +29,7 @@ import {
 import { Trans } from '@lingui/react'
 import { Link, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
+import { useRouter } from 'next/router'
 import {
   LayoutNavigation,
   LayoutNavigationProps,
@@ -48,6 +49,7 @@ type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProp
 function ProductConfigurable(props: Props) {
   const { products, usps, typeProducts, sidebarUsps, pages } = props
 
+  const router = useRouter()
   const product = findByTypename(products?.items, 'ConfigurableProduct')
   const typeProduct = findByTypename(typeProducts?.items, 'ConfigurableProduct')
   const aggregations = products?.aggregations

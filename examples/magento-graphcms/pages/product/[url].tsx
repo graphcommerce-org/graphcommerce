@@ -9,7 +9,6 @@ import {
   ProductPageGallery,
   ProductPageMeta,
   ProductSidebarDelivery,
-  ProductWeight,
 } from '@graphcommerce/magento-product'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
@@ -84,7 +83,6 @@ function ProductSimple(props: Props) {
         >
           <ProductSidebarDelivery />
         </ProductAddToCart>
-        <ProductWeight weight={typeProduct?.weight} />
         <Usps usps={sidebarUsps} size='small' />
       </ProductPageGallery>
 
