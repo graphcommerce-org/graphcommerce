@@ -211,7 +211,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
               ))}
             </Scroller>
             <MotionBox
-              layout
+              layout='position'
               layoutDependency={zoomed}
               className={classes.topRight}
               sx={{
@@ -293,7 +293,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
               }}
             >
               <ScrollerDots
-                layout
+                layout='position'
                 layoutDependency={zoomed}
                 sx={{ backgroundColor: 'background.paper', boxShadow: 6 }}
               />
@@ -328,7 +328,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
             ]}
           >
             <MotionBox
-              layout
+              layout='position'
               layoutDependency={zoomed}
               className={classes.sidebar}
               sx={{

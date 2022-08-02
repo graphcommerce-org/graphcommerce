@@ -124,7 +124,6 @@ export function ScrollerProvider(props: ScrollerProviderProps) {
       const count = React.Children.count(children)
       if (!count && process.env.NODE_ENV !== 'production')
         console.warn('[@graphcommerce/framer-scroller]: Can not find children')
-      if (count === items.get().length) return
 
       const itemsArr: unknown[] = items.get().slice()
       itemsArr.length = count
