@@ -97,9 +97,6 @@ msgstr "Warenkorbgesamt"
 msgid "Change"
 msgstr "Ändern"
 
-msgid "Checkout"
-msgstr "Kasse"
-
 msgid "Checkout summary"
 msgstr "Kassensummary"
 
@@ -108,6 +105,9 @@ msgstr "Wählen Sie Ihre Bank und führen Sie Ihre Bestellung aus."
 
 msgid "City"
 msgstr "Stadt"
+
+msgid "Close"
+msgstr "Schließen"
 
 msgid "Complete the payment on your bank’s website."
 msgstr "Führen Sie die Zahlung auf Ihrer Bank-Website aus."
@@ -153,6 +153,9 @@ msgstr "Aktuelles Passwort"
 
 msgid "Customer Service"
 msgstr "Kundenservice"
+
+msgid "Dark Mode"
+msgstr "Dunkler Modus"
 
 msgid "Delete this address"
 msgstr "Diese Adresse löschen"
@@ -247,17 +250,26 @@ msgstr "Nachname"
 msgid "Latest orders"
 msgstr "Neueste Bestellungen"
 
+msgid "Light Mode"
+msgstr "Heller Modus"
+
 msgid "Loading cart"
 msgstr "Warenkorb wird geladen"
 
 msgid "Loading wishlist"
 msgstr "Wunschliste wird geladen"
 
+msgid "Loading your data"
+msgstr "Ihre Daten werden geladen"
+
 msgid "Log in"
 msgstr "Anmelden"
 
 msgid "Log in to continue shopping"
 msgstr "Anmelden, um den Einkauf fortzusetzen"
+
+msgid "Menu"
+msgstr "Menü"
 
 msgid "Mr"
 msgstr "Herr"
@@ -442,6 +454,9 @@ msgstr "Lieferadresse"
 msgid "Shipping method"
 msgstr "Versandart"
 
+msgid "Shop"
+msgstr "Shop"
+
 msgid "Sign in"
 msgstr "Anmelden"
 
@@ -484,12 +499,6 @@ msgstr "E-Mail erfolgreich aktualisiert"
 msgid "Switch stores"
 msgstr "Shop wechseln"
 
-msgid "Switch to Dark Mode"
-msgstr "In den dunklen Modus wechseln"
-
-msgid "Switch to Light Mode"
-msgstr "In den hellen Modus wechseln"
-
 msgid "Tagged in: {title}"
 msgstr "Getaggt in: {title}"
 
@@ -501,6 +510,9 @@ msgstr "Vielen Dank für Ihre Bestellung!"
 
 msgid "Thank you! Your review was successfully submitted for approval"
 msgstr "Vielen Dank! Ihre Bewertung wurde erfolgreich zur Freischaltung eingereicht"
+
+msgid "This may take a second"
+msgstr "Das kann einen Moment dauern"
 
 msgid "Try a different product"
 msgstr "Versuchen Sie ein anderes Produkt"
@@ -592,6 +604,9 @@ msgstr "Sie müssen zustimmen, um fortzufahren"
 msgid "You haven't placed any reviews yet"
 msgstr "Sie haben noch keine Bewertungen abgegeben"
 
+msgid "You must sign in to continue"
+msgstr "Sie müssen sich anmelden, um fortzufahren"
+
 msgid "Your cart is empty"
 msgstr "Ihr Warenkorb ist leer"
 
@@ -600,6 +615,9 @@ msgstr "Ihre Sitzung ist abgelaufen"
 
 msgid "Your wishlist is empty"
 msgstr "Ihre Wunschliste ist leer"
+
+msgid "Zip code or city"
+msgstr "Postleitzahl oder Stadt"
 
 msgid "canceled"
 msgstr "abgebrochen"
@@ -628,6 +646,12 @@ msgstr "zurückgesandt"
 msgid "shipped"
 msgstr "versandt"
 
+msgid "{metaDescription} - Page {currentPage}"
+msgstr "{metaDescription} - Seite {currentPage}"
+
+msgid "{title} - Page {currentPage}"
+msgstr "{title} - Seite {currentPage}"
+
 msgid "{totalResults} result"
 msgstr "{totalResults} Ergebnis"
 
@@ -636,6 +660,3 @@ msgstr "{totalResults} Ergebnisse"
 
 msgid "{total_count} products"
 msgstr "{total_count} Produkte"
-
-msgid "All {name}"
-msgstr "Alle {name}"
