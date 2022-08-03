@@ -1289,10 +1289,10 @@
     human-id "^1.0.2"
     prettier "^1.19.1"
 
-"@corex/deepmerge@^2.6.148":
-  version "2.6.148"
-  resolved "https://registry.yarnpkg.com/@corex/deepmerge/-/deepmerge-2.6.148.tgz#8fa825d53ffd1cbcafce1b6a830eefd3dcc09dd5"
-  integrity sha512-6QMz0/2h5C3ua51iAnXMPWFbb1QOU1UvSM4bKBw5mzdT+WtLgjbETBBIQZ+Sh9WvEcGwlAt/DEdRpIC3XlDBMA==
+"@corex/deepmerge@^4.0.29":
+  version "4.0.29"
+  resolved "https://registry.yarnpkg.com/@corex/deepmerge/-/deepmerge-4.0.29.tgz#af9debf07d7f6b0d2a9d04a266abf2c1418ed2f6"
+  integrity sha512-q/yVUnqckA8Do+EvAfpy7RLdumnBy9ZsducMUtZTvpdbJC7azEf1hGtnYYxm0QfphYxjwggv6XtH64prvS1W+A==
 
 "@cspotcode/source-map-support@^0.8.0":
   version "0.8.1"
@@ -8410,12 +8410,12 @@ next-pwa@5.5.4:
     workbox-webpack-plugin "^6.5.3"
     workbox-window "^6.5.3"
 
-next-sitemap@2.5.26:
-  version "2.5.26"
-  resolved "https://registry.yarnpkg.com/next-sitemap/-/next-sitemap-2.5.26.tgz#b11cf9fa7b6c23a4c855812b0b506afa648aeccb"
-  integrity sha512-ojW0ncbusBANyjuaaZhJtV/M4MIbKkxkuq/EM9ftBfqAC34UuIhbluTHXKIrEGCSql4RJow9EhkYh627ycBZ6g==
+next-sitemap@3.1.15:
+  version "3.1.15"
+  resolved "https://registry.yarnpkg.com/next-sitemap/-/next-sitemap-3.1.15.tgz#abb68abeffc5aa5d3a88bd7441092fba0c69c481"
+  integrity sha512-zLLbSRQjArBlwQp3SUG1nt9TDdJGvLzRj/sQaV4ZovIl4VlocKuFxlX5aWbVQ7iLhTxr8uGU7v8cFENiZCGRjA==
   dependencies:
-    "@corex/deepmerge" "^2.6.148"
+    "@corex/deepmerge" "^4.0.29"
     minimist "^1.2.6"
 
 next-transpile-modules@^9.0.0:
