@@ -1,5 +1,49 @@
 # Change Log
 
+## 3.18.2
+
+### Patch Changes
+
+- [#1573](https://github.com/graphcommerce-org/graphcommerce/pull/1573) [`2014f10e9`](https://github.com/graphcommerce-org/graphcommerce/commit/2014f10e935fd112ac98eca69f030d30982ba18e) Thanks [@paales](https://github.com/paales)! - SchemaDts caused major Typescript performance issues when running in VSCode, types were loosened and react-schemaorg dependency was removed.
+
+* [#1573](https://github.com/graphcommerce-org/graphcommerce/pull/1573) [`1eb131766`](https://github.com/graphcommerce-org/graphcommerce/commit/1eb131766c32db6fcb0a8e83dba2c3d241658595) Thanks [@paales](https://github.com/paales)! - Solve issue where the products query would return multiple products while requesting a single url_key. Filter the result by findByTypename which finds the correct `typename` but also narrows the typescript type.
+
+* Updated dependencies [[`87a188d6f`](https://github.com/graphcommerce-org/graphcommerce/commit/87a188d6f216b7f7b9ec95afbe74f1146cb07ce4), [`3c809a3a4`](https://github.com/graphcommerce-org/graphcommerce/commit/3c809a3a438995503f6d2290d6c0bb90fbc489be), [`2c66cca15`](https://github.com/graphcommerce-org/graphcommerce/commit/2c66cca154098a09445977428983e05fe19b9510), [`199dc8599`](https://github.com/graphcommerce-org/graphcommerce/commit/199dc859989c376281243b59a59addc35138f119), [`2014f10e9`](https://github.com/graphcommerce-org/graphcommerce/commit/2014f10e935fd112ac98eca69f030d30982ba18e), [`8e3b24500`](https://github.com/graphcommerce-org/graphcommerce/commit/8e3b24500a55fa2a1fb4a3ef08c1f1990a46a0ae), [`2c66cca15`](https://github.com/graphcommerce-org/graphcommerce/commit/2c66cca154098a09445977428983e05fe19b9510), [`2c66cca15`](https://github.com/graphcommerce-org/graphcommerce/commit/2c66cca154098a09445977428983e05fe19b9510), [`1eb131766`](https://github.com/graphcommerce-org/graphcommerce/commit/1eb131766c32db6fcb0a8e83dba2c3d241658595)]:
+  - @graphcommerce/framer-scroller@2.1.27
+  - @graphcommerce/next-ui@4.16.0
+  - @graphcommerce/magento-customer@4.9.0
+  - @graphcommerce/ecommerce-ui@1.1.7
+  - @graphcommerce/magento-product@4.4.20
+  - @graphcommerce/magento-review@3.2.28
+  - @graphcommerce/magento-cart@4.6.4
+  - @graphcommerce/magento-cart-billing-address@3.0.40
+  - @graphcommerce/magento-cart-checkout@3.0.42
+  - @graphcommerce/magento-cart-coupon@3.1.10
+  - @graphcommerce/magento-cart-email@3.0.42
+  - @graphcommerce/magento-cart-items@3.0.43
+  - @graphcommerce/magento-cart-payment-method@3.4.7
+  - @graphcommerce/magento-cart-pickup@3.1.4
+  - @graphcommerce/magento-cart-shipping-address@3.3.4
+  - @graphcommerce/magento-cart-shipping-method@3.5.4
+  - @graphcommerce/magento-customer-account@3.1.35
+  - @graphcommerce/magento-newsletter@2.0.40
+  - @graphcommerce/magento-payment-braintree@3.0.41
+  - @graphcommerce/magento-payment-included@3.1.13
+  - @graphcommerce/magento-product-configurable@4.1.27
+  - @graphcommerce/magento-search@4.1.30
+  - @graphcommerce/mollie-magento-payment@3.4.7
+  - @graphcommerce/magento-category@4.2.2
+  - @graphcommerce/graphcms-ui@3.0.35
+  - @graphcommerce/magento-customer-order@3.0.36
+  - @graphcommerce/magento-store@4.2.22
+  - @graphcommerce/magento-wishlist@1.3.14
+  - @graphcommerce/magento-product-bundle@4.0.42
+  - @graphcommerce/magento-product-downloadable@4.0.42
+  - @graphcommerce/magento-product-grouped@3.0.42
+  - @graphcommerce/magento-product-simple@4.0.42
+  - @graphcommerce/magento-product-virtual@4.0.42
+  - @graphcommerce/magento-cms@4.0.33
+
 ## 3.18.1
 
 ### Patch Changes

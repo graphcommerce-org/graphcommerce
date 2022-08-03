@@ -1,5 +1,27 @@
 # Change Log
 
+## 4.9.0
+
+### Minor Changes
+
+- [#1572](https://github.com/graphcommerce-org/graphcommerce/pull/1572) [`8e3b24500`](https://github.com/graphcommerce-org/graphcommerce/commit/8e3b24500a55fa2a1fb4a3ef08c1f1990a46a0ae) Thanks [@paales](https://github.com/paales)! - Added an WaitForCustomer component to allow for easy wrapping of pages and handle loading of queries, handle errors and make sure the customer is logged in.
+
+### Patch Changes
+
+- [#1572](https://github.com/graphcommerce-org/graphcommerce/pull/1572) [`3c809a3a4`](https://github.com/graphcommerce-org/graphcommerce/commit/3c809a3a438995503f6d2290d6c0bb90fbc489be) Thanks [@paales](https://github.com/paales)! - Make sure the useCustomerSession returns the full query so it can be awaited
+
+* [#1572](https://github.com/graphcommerce-org/graphcommerce/pull/1572) [`2c66cca15`](https://github.com/graphcommerce-org/graphcommerce/commit/2c66cca154098a09445977428983e05fe19b9510) Thanks [@paales](https://github.com/paales)! - useGuestQuery also should accept the hydration prop to allow it to return earlier
+
+- [#1572](https://github.com/graphcommerce-org/graphcommerce/pull/1572) [`2c66cca15`](https://github.com/graphcommerce-org/graphcommerce/commit/2c66cca154098a09445977428983e05fe19b9510) Thanks [@paales](https://github.com/paales)! - useFormIsEmailAvailable now always checks if the email is available to prevent issues with it returning the wrong value.
+
+* [#1572](https://github.com/graphcommerce-org/graphcommerce/pull/1572) [`2c66cca15`](https://github.com/graphcommerce-org/graphcommerce/commit/2c66cca154098a09445977428983e05fe19b9510) Thanks [@paales](https://github.com/paales)! - When an authentication error occurs, remove the invalid token from the storage.
+
+* Updated dependencies [[`02023d8d8`](https://github.com/graphcommerce-org/graphcommerce/commit/02023d8d89c8138144243edce67290bd79ff49a7), [`87a188d6f`](https://github.com/graphcommerce-org/graphcommerce/commit/87a188d6f216b7f7b9ec95afbe74f1146cb07ce4), [`199dc8599`](https://github.com/graphcommerce-org/graphcommerce/commit/199dc859989c376281243b59a59addc35138f119), [`1eb131766`](https://github.com/graphcommerce-org/graphcommerce/commit/1eb131766c32db6fcb0a8e83dba2c3d241658595)]:
+  - @graphcommerce/react-hook-form@3.3.2
+  - @graphcommerce/next-ui@4.16.0
+  - @graphcommerce/ecommerce-ui@1.1.7
+  - @graphcommerce/magento-store@4.2.22
+
 ## 4.8.3
 
 ### Patch Changes

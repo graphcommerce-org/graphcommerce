@@ -3,17 +3,17 @@
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
   "private": true,
-  "version": "3.0.30",
+  "version": "3.0.31",
   "scripts": {
     "dev": "next",
     "build": "next build",
     "start": "next start"
   },
   "dependencies": {
-    "@graphcommerce/framer-scroller": "2.1.26",
+    "@graphcommerce/framer-scroller": "2.1.27",
     "@graphcommerce/image": "3.1.7",
     "@graphcommerce/next-config": "3.1.6",
-    "@graphcommerce/next-ui": "4.15.1",
+    "@graphcommerce/next-ui": "4.16.0",
     "@mui/material": "5.8.7",
     "framer-motion": "^6.4.3",
     "next": "12.2.2",

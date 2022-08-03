@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-product-configurable",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "4.1.26",
+  "version": "4.1.27",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -22,15 +22,15 @@
     "@graphcommerce/graphql": "3.4.3",
     "@graphcommerce/graphql-mesh": "4.1.6",
     "@graphcommerce/image": "3.1.7",
-    "@graphcommerce/magento-cart": "4.6.3",
-    "@graphcommerce/magento-cart-items": "3.0.42",
-    "@graphcommerce/magento-category": "4.2.1",
-    "@graphcommerce/magento-customer": "4.8.3",
-    "@graphcommerce/magento-product": "4.4.19",
-    "@graphcommerce/magento-product-simple": "4.0.41",
-    "@graphcommerce/magento-store": "4.2.21",
-    "@graphcommerce/next-ui": "4.15.1",
-    "@graphcommerce/react-hook-form": "3.3.1"
+    "@graphcommerce/magento-cart": "4.6.4",
+    "@graphcommerce/magento-cart-items": "3.0.43",
+    "@graphcommerce/magento-category": "4.2.2",
+    "@graphcommerce/magento-customer": "4.9.0",
+    "@graphcommerce/magento-product": "4.4.20",
+    "@graphcommerce/magento-product-simple": "4.0.42",
+    "@graphcommerce/magento-store": "4.2.22",
+    "@graphcommerce/next-ui": "4.16.0",
+    "@graphcommerce/react-hook-form": "3.3.2"
   },
   "peerDependencies": {
     "@lingui/react": "^3.13.2",

@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.3.2
+
+### Patch Changes
+
+- [#1573](https://github.com/graphcommerce-org/graphcommerce/pull/1573) [`02023d8d8`](https://github.com/graphcommerce-org/graphcommerce/commit/02023d8d89c8138144243edce67290bd79ff49a7) Thanks [@paales](https://github.com/paales)! - useGqlDocumentHandler would not encode array items correctly
+
 ## 3.3.1
 
 ### Patch Changes

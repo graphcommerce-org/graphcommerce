@@ -1,5 +1,15 @@
 # @graphcommerce/ecommerce-ui
 
+## 1.1.7
+
+### Patch Changes
+
+- [#1575](https://github.com/graphcommerce-org/graphcommerce/pull/1575) [`199dc8599`](https://github.com/graphcommerce-org/graphcommerce/commit/199dc859989c376281243b59a59addc35138f119) Thanks [@paales](https://github.com/paales)! - WaitForQueries should also accept undefined when there is nothing to actually wait for
+
+- Updated dependencies [[`02023d8d8`](https://github.com/graphcommerce-org/graphcommerce/commit/02023d8d89c8138144243edce67290bd79ff49a7), [`87a188d6f`](https://github.com/graphcommerce-org/graphcommerce/commit/87a188d6f216b7f7b9ec95afbe74f1146cb07ce4), [`1eb131766`](https://github.com/graphcommerce-org/graphcommerce/commit/1eb131766c32db6fcb0a8e83dba2c3d241658595)]:
+  - @graphcommerce/react-hook-form@3.3.2
+  - @graphcommerce/next-ui@4.16.0
+
 ## 1.1.6
 
 ### Patch Changes
