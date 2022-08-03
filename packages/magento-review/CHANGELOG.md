@@ -1,5 +1,18 @@
 # Change Log
 
+## 3.2.28
+
+### Patch Changes
+
+- [#1573](https://github.com/graphcommerce-org/graphcommerce/pull/1573) [`2014f10e9`](https://github.com/graphcommerce-org/graphcommerce/commit/2014f10e935fd112ac98eca69f030d30982ba18e) Thanks [@paales](https://github.com/paales)! - SchemaDts caused major Typescript performance issues when running in VSCode, types were loosened and react-schemaorg dependency was removed.
+
+- Updated dependencies [[`02023d8d8`](https://github.com/graphcommerce-org/graphcommerce/commit/02023d8d89c8138144243edce67290bd79ff49a7), [`87a188d6f`](https://github.com/graphcommerce-org/graphcommerce/commit/87a188d6f216b7f7b9ec95afbe74f1146cb07ce4), [`3c809a3a4`](https://github.com/graphcommerce-org/graphcommerce/commit/3c809a3a438995503f6d2290d6c0bb90fbc489be), [`2c66cca15`](https://github.com/graphcommerce-org/graphcommerce/commit/2c66cca154098a09445977428983e05fe19b9510), [`2014f10e9`](https://github.com/graphcommerce-org/graphcommerce/commit/2014f10e935fd112ac98eca69f030d30982ba18e), [`8e3b24500`](https://github.com/graphcommerce-org/graphcommerce/commit/8e3b24500a55fa2a1fb4a3ef08c1f1990a46a0ae), [`2c66cca15`](https://github.com/graphcommerce-org/graphcommerce/commit/2c66cca154098a09445977428983e05fe19b9510), [`2c66cca15`](https://github.com/graphcommerce-org/graphcommerce/commit/2c66cca154098a09445977428983e05fe19b9510), [`1eb131766`](https://github.com/graphcommerce-org/graphcommerce/commit/1eb131766c32db6fcb0a8e83dba2c3d241658595)]:
+  - @graphcommerce/react-hook-form@3.3.2
+  - @graphcommerce/next-ui@4.16.0
+  - @graphcommerce/magento-customer@4.9.0
+  - @graphcommerce/magento-product@4.4.20
+  - @graphcommerce/magento-store@4.2.22
+
 ## 3.2.27
 
 ### Patch Changes

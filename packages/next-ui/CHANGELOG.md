@@ -1,5 +1,18 @@
 # Change Log
 
+## 4.16.0
+
+### Minor Changes
+
+- [#1573](https://github.com/graphcommerce-org/graphcommerce/pull/1573) [`1eb131766`](https://github.com/graphcommerce-org/graphcommerce/commit/1eb131766c32db6fcb0a8e83dba2c3d241658595) Thanks [@paales](https://github.com/paales)! - Solve issue where the products query would return multiple products while requesting a single url_key. Filter the result by findByTypename which finds the correct `typename` but also narrows the typescript type.
+
+### Patch Changes
+
+- [#1573](https://github.com/graphcommerce-org/graphcommerce/pull/1573) [`87a188d6f`](https://github.com/graphcommerce-org/graphcommerce/commit/87a188d6f216b7f7b9ec95afbe74f1146cb07ce4) Thanks [@paales](https://github.com/paales)! - Sovle issue where changing images in the scroller causes issues rerendering
+
+- Updated dependencies [[`87a188d6f`](https://github.com/graphcommerce-org/graphcommerce/commit/87a188d6f216b7f7b9ec95afbe74f1146cb07ce4)]:
+  - @graphcommerce/framer-scroller@2.1.27
+
 ## 4.15.1
 
 ### Patch Changes
