@@ -44,6 +44,6 @@ module.exports = {
       { userAgent: 'AhrefsBot', allow: '/' },
       { userAgent: 'SiteAuditBot', allow: '/' },
     ],
-    additionalSitemaps: [`${isProduction ? PUBLIC_SITE_URL : DEV_SITE_URL}products-sitemap.xml`],
+    additionalSitemaps: [`${isProduction ? PUBLIC_SITE_URL : DEV_SITE_URL}/products-sitemap.xml`],
   },
 }
