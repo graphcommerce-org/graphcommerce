@@ -31,7 +31,10 @@ export function CategoryMeta(props: CategoryMetaProps) {
 
   const metaDescriptionTrans =
     metaDescription && isPaginated
-      ? i18n._(/* i18n */ '{description} - Page {currentPage}', { metaDescription, currentPage })
+      ? i18n._(/* i18n */ '{metaDescription} - Page {currentPage}', {
+          metaDescription,
+          currentPage,
+        })
       : metaDescription
 
   return (
