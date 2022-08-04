@@ -368,9 +368,7 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
             },
           })}
         >
-          <MotionDiv
-            {...overlayPaneProps}
-            layout
+          <Box
             className={classes.overlayPane}
             sx={(theme) => ({
               pointerEvents: 'all',
@@ -436,7 +434,7 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
             })}
           >
             <LayoutProvider scroll={scrollWithoffset}>{children}</LayoutProvider>
-          </MotionDiv>
+          </Box>
         </Box>
       </Scroller>
     </>

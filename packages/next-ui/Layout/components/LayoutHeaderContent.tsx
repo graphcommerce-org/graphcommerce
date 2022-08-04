@@ -144,7 +144,7 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
               justifyContent: 'start',
             })}
           >
-            <MotionDiv layout={layout}>{left}</MotionDiv>
+            <Box>{left}</Box>
           </Box>
         )}
         <Box
@@ -177,7 +177,7 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
             },
           })}
         >
-          <MotionDiv layout={layout}>{children}</MotionDiv>
+          <Box>{children}</Box>
         </Box>
         <Box
           className={classes.right}
@@ -193,7 +193,7 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
             justifyContent: 'end',
           })}
         >
-          <MotionDiv layout={layout}>{right}</MotionDiv>
+          <Box>{right}</Box>
         </Box>
         {divider && (
           <Box
