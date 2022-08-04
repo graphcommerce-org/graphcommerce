@@ -94,7 +94,6 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
   })
 
   useEffect(() => {
-    console.log('false')
     animating.current = false
   })
 
