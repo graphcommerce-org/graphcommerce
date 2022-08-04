@@ -23,7 +23,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   )
 
   async function getPaths(client: ApolloClient<NormalizedCacheObject>, locale: string) {
-    const query = graphqlSsrClient(locale).query({
+    const pageInfo = graphqlSsrClient(locale).query({
       query: ProductStaticPathsDocument,
       variables: {
         currentPage: 1,
@@ -31,9 +31,22 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       },
     })
 
-    const pages: Promise<ApolloQueryResult<ProductStaticPathsQuery>>[] = [query]
+    const total = Math.ceil((await pageInfo).data.products?.page_info?.total_pages || 0)
+    const result: Promise<ApolloQueryResult<ProductStaticPathsQuery>>[] = []
 
-    const paths = (await Promise.all(pages))
+    for (let i = 1; i < total + 1; i++) {
+      const page = graphqlSsrClient(locale).query({
+        query: ProductStaticPathsDocument,
+        variables: {
+          currentPage: i,
+          pageSize: 300,
+        },
+      })
+      result.push(page)
+    }
+
+    const paths = (await Promise.all(result))
+      .flat(1)
       .map((q) => q.data.products?.items)
       .flat(1)
       .filter(nonNullable)
