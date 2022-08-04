@@ -3,7 +3,7 @@ import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, Fab, SxProps, Theme, useEventCallback, useMediaQuery } from '@mui/material'
 import { m } from 'framer-motion'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { IconSvg, useIconSvgSize } from '../../IconSvg'
 import { LayoutHeaderContent } from '../../Layout/components/LayoutHeaderContent'
 import { LayoutTitle } from '../../Layout/components/LayoutTitle'
@@ -92,6 +92,10 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
     if (isMobile) select(selected.slice(0, -1))
     else select([])
   })
+
+  useEffect(() => {
+    animating.current = false
+  }, [active, animating])
 
   const showBack = selected.length > 0
 

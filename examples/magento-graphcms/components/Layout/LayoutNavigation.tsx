@@ -56,6 +56,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
             <SearchLink href='/search' sx={(theme) => ({ width: `calc(100% - ${theme.spacing(4)})`, m: 2, mb: theme.spacings.xs })}>
               <Trans id='Search...' />
             </SearchLink>,
+            { id: 'home', name: 'Home', href: '/' },
             // ...useMagentoMenuToNavigation(menu),
             {
               id: 'manual-item-one',

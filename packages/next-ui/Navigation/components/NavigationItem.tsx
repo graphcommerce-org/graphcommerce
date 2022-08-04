@@ -102,7 +102,7 @@ export function NavigationItem(props: NavigationItemProps) {
               select(itemPath)
             }
           }}
-          onMouseEnter={
+          onMouseMove={
             itemPath.length > 1 && mouseEvent === 'hover'
               ? (e) => {
                   if (isDesktop && animating.current === false && !isSelected) {
