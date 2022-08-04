@@ -211,7 +211,7 @@ API. GraphCommerce uses GraphQL Mesh, which adds the ability to add extra
 (micro)services as data sources. In the magento-graphcms example, a headless CMS
 called [GraphCMS](../getting-started/../framework/graphcms.md) is integrated.
 
-By default, the GraphQL Mesh endpoint runs on route /api/grapql. You can query
+By default, the GraphQL Mesh endpoint runs on route /api/graphql. You can query
 both the Magento GraphQL schema and the GraphCMS GraphQL schema. Try out the
 GraphCommerce demo
 [GraphQL Explorer ↗](https://graphcommerce.vercel.app/api/graphql) with the
