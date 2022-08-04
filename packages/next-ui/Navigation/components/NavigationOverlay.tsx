@@ -95,7 +95,7 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
 
   useEffect(() => {
     animating.current = false
-  })
+  }, [active, animating])
 
   const showBack = selected.length > 0
 
