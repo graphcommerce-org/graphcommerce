@@ -129,7 +129,7 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
         },
       }}
     >
-      <Box style={{ display: 'grid' }}>
+      <MotionDiv layout style={{ display: 'grid' }}>
         <Box
           className={classes.header}
           sx={(theme) => ({
@@ -182,9 +182,9 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
             </LayoutTitle>
           </LayoutHeaderContent>
         </Box>
-      </Box>
+      </MotionDiv>
 
-      <Box style={{ display: 'grid' }}>
+      <MotionDiv layout='position' style={{ display: 'grid' }}>
         <Box
           sx={(theme) => ({
             display: 'grid',
@@ -290,7 +290,7 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
             <NavigationList items={items} selected mouseEvent={mouseEvent} />
           </Box>
         </Box>
-      </Box>
+      </MotionDiv>
     </Overlay>
   )
 }
