@@ -1,5 +1,16 @@
 # Change Log
 
+## 4.17.0
+
+### Minor Changes
+
+- [#1583](https://github.com/graphcommerce-org/graphcommerce/pull/1583) [`b6ce5548c`](https://github.com/graphcommerce-org/graphcommerce/commit/b6ce5548c66a8ca62d3aee29467045f7f07f30c8) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Navigation fixes
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/framer-scroller@2.1.28
+
 ## 4.16.0
 
 ### Minor Changes

@@ -1,5 +1,18 @@
 # Change Log
 
+## 4.4.21
+
+### Patch Changes
+
+- [#1578](https://github.com/graphcommerce-org/graphcommerce/pull/1578) [`bfbcd59d8`](https://github.com/graphcommerce-org/graphcommerce/commit/bfbcd59d8f7652d7a7c028f79cc994216e8dbe3a) Thanks [@paales](https://github.com/paales)! - Make sure the jsonLdProduct and jsonLdProductReview have simpler type definitions for better performance
+
+- Updated dependencies [[`49370878a`](https://github.com/graphcommerce-org/graphcommerce/commit/49370878a48b90a4579026a7c56c54f97840cebb), [`b6ce5548c`](https://github.com/graphcommerce-org/graphcommerce/commit/b6ce5548c66a8ca62d3aee29467045f7f07f30c8)]:
+  - @graphcommerce/graphql@3.4.4
+  - @graphcommerce/next-ui@4.17.0
+  - @graphcommerce/magento-cart@4.6.5
+  - @graphcommerce/magento-store@4.2.23
+  - @graphcommerce/framer-scroller@2.1.28
+
 ## 4.4.20
 
 ### Patch Changes
