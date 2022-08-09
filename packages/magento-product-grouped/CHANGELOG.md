@@ -1,5 +1,16 @@
 # Change Log
 
+## 3.0.44
+
+### Patch Changes
+
+- Updated dependencies [[`6ce2cbaf2`](https://github.com/graphcommerce-org/graphcommerce/commit/6ce2cbaf2cf27e21b753f7cb71e7e74826294de6), [`6ce2cbaf2`](https://github.com/graphcommerce-org/graphcommerce/commit/6ce2cbaf2cf27e21b753f7cb71e7e74826294de6)]:
+  - @graphcommerce/magento-product@4.4.22
+  - @graphcommerce/graphql@3.4.5
+  - @graphcommerce/magento-product-simple@4.0.44
+  - @graphcommerce/magento-product-virtual@4.0.44
+  - @graphcommerce/magento-cart@4.6.6
+
 ## 3.0.43
 
 ### Patch Changes

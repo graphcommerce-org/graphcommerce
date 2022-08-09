@@ -1,5 +1,18 @@
 # Change Log
 
+## 3.2.30
+
+### Patch Changes
+
+- [#1587](https://github.com/graphcommerce-org/graphcommerce/pull/1587) [`6ce2cbaf2`](https://github.com/graphcommerce-org/graphcommerce/commit/6ce2cbaf2cf27e21b753f7cb71e7e74826294de6) Thanks [@paales](https://github.com/paales)! - Make sure the jsonLdProduct and jsonLdProductReview have simpler type definitions for better performance
+
+- Updated dependencies [[`6ce2cbaf2`](https://github.com/graphcommerce-org/graphcommerce/commit/6ce2cbaf2cf27e21b753f7cb71e7e74826294de6), [`6ce2cbaf2`](https://github.com/graphcommerce-org/graphcommerce/commit/6ce2cbaf2cf27e21b753f7cb71e7e74826294de6), [`6ce2cbaf2`](https://github.com/graphcommerce-org/graphcommerce/commit/6ce2cbaf2cf27e21b753f7cb71e7e74826294de6)]:
+  - @graphcommerce/magento-product@4.4.22
+  - @graphcommerce/graphql@3.4.5
+  - @graphcommerce/next-ui@4.18.0
+  - @graphcommerce/magento-customer@4.9.2
+  - @graphcommerce/magento-store@4.2.24
+
 ## 3.2.29
 
 ### Patch Changes

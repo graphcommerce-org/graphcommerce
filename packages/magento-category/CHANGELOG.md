@@ -1,5 +1,20 @@
 # Change Log
 
+## 4.3.0
+
+### Minor Changes
+
+- [#1577](https://github.com/graphcommerce-org/graphcommerce/pull/1577) [`ad55e6c50`](https://github.com/graphcommerce-org/graphcommerce/commit/ad55e6c50c3a3223ee2c17826881808fa9d8f27c) Thanks [@mikekeehnen](https://github.com/mikekeehnen)! - Added improvements voor the category pages' meta description
+
+### Patch Changes
+
+- Updated dependencies [[`6ce2cbaf2`](https://github.com/graphcommerce-org/graphcommerce/commit/6ce2cbaf2cf27e21b753f7cb71e7e74826294de6), [`6ce2cbaf2`](https://github.com/graphcommerce-org/graphcommerce/commit/6ce2cbaf2cf27e21b753f7cb71e7e74826294de6), [`6ce2cbaf2`](https://github.com/graphcommerce-org/graphcommerce/commit/6ce2cbaf2cf27e21b753f7cb71e7e74826294de6)]:
+  - @graphcommerce/magento-product@4.4.22
+  - @graphcommerce/graphql@3.4.5
+  - @graphcommerce/next-ui@4.18.0
+  - @graphcommerce/magento-store@4.2.24
+  - @graphcommerce/framer-scroller@2.1.29
+
 ## 4.2.3
 
 ### Patch Changes
