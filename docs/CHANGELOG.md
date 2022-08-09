@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.6.6
+
+### Patch Changes
+
+- [#1587](https://github.com/graphcommerce-org/graphcommerce/pull/1587) [`6ce2cbaf2`](https://github.com/graphcommerce-org/graphcommerce/commit/6ce2cbaf2cf27e21b753f7cb71e7e74826294de6) Thanks [@paales](https://github.com/paales)! - fixed typo from grapql to graphql
+
 ## 4.6.5
 
 ### Patch Changes

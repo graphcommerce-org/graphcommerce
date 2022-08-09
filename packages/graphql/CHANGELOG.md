@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.4.5
+
+### Patch Changes
+
+- [#1587](https://github.com/graphcommerce-org/graphcommerce/pull/1587) [`6ce2cbaf2`](https://github.com/graphcommerce-org/graphcommerce/commit/6ce2cbaf2cf27e21b753f7cb71e7e74826294de6) Thanks [@paales](https://github.com/paales)! - Apollo client cache is restored during development when it has encountered a runtime error
+
 ## 3.4.4
 
 ### Patch Changes

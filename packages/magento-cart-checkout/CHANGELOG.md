@@ -1,5 +1,18 @@
 # Change Log
 
+## 3.0.44
+
+### Patch Changes
+
+- Updated dependencies [[`6ce2cbaf2`](https://github.com/graphcommerce-org/graphcommerce/commit/6ce2cbaf2cf27e21b753f7cb71e7e74826294de6), [`6ce2cbaf2`](https://github.com/graphcommerce-org/graphcommerce/commit/6ce2cbaf2cf27e21b753f7cb71e7e74826294de6)]:
+  - @graphcommerce/graphql@3.4.5
+  - @graphcommerce/next-ui@4.18.0
+  - @graphcommerce/magento-cart-items@3.0.45
+  - @graphcommerce/magento-cart@4.6.6
+  - @graphcommerce/magento-cart-coupon@3.1.12
+  - @graphcommerce/magento-customer@4.9.2
+  - @graphcommerce/magento-store@4.2.24
+
 ## 3.0.43
 
 ### Patch Changes
