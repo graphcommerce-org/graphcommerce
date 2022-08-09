@@ -1,5 +1,5 @@
 import { Path, useWatch, FieldValues } from '@graphcommerce/react-hook-form'
-import PasswordElement, { PasswordElementProps } from './PasswordElement'
+import { PasswordElement, PasswordElementProps } from './PasswordElement'
 
 export type PasswordRepeatElementProps<T> = PasswordElementProps<T> & {
   passwordFieldName: Path<T>

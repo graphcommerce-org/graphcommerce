@@ -1,5 +1,5 @@
+import { Control, Controller, FieldError, Path, FieldValues } from '@graphcommerce/react-hook-form'
 import CloseIcon from '@mui/icons-material/Cancel'
-import { Control, Controller, FieldError, Path } from '@graphcommerce/react-hook-form'
 import {
   Checkbox,
   Chip,
@@ -12,7 +12,6 @@ import {
   Select,
   SelectProps,
 } from '@mui/material'
-import { FieldValues } from '@graphcommerce/react-hook-form'
 
 export type MultiSelectElementProps<T> = Omit<SelectProps, 'value'> & {
   options: { id: string | number; label: string }[] | any[]
