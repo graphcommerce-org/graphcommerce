@@ -31,6 +31,7 @@ import {
   GetStaticProps,
   MetaRobots,
   PageMeta,
+  PageMetaProps,
 } from '@graphcommerce/next-ui'
 import { Container } from '@mui/material'
 import { GetStaticPaths } from 'next'
@@ -68,22 +69,16 @@ function CategoryPage(props: Props) {
   const product = products?.items?.[0]
   const page = pages?.[0]
 
+  const pageMeta: Partial<PageMetaProps> = {
+    title: page?.metaTitle,
+    metaDescription: page?.metaDescription,
+    metaRobots: (page?.metaRobots.toLowerCase().split('_').flat(1) as MetaRobots[]) ?? undefined,
+    canonical: page?.url ? `/${page.url}` : undefined,
+  }
+
   return (
     <>
-      {page ? (
-        <PageMeta
-          title={page?.metaTitle ?? ''}
-          metaDescription={page?.metaDescription ?? ''}
-          metaRobots={page?.metaRobots.toLowerCase().split('_').flat(1) as MetaRobots[]}
-          canonical={page?.url ? `/${page?.url}` : undefined}
-        />
-      ) : (
-        <CategoryMeta
-          params={params}
-          current_page={products?.page_info?.current_page}
-          {...category}
-        />
-      )}
+      <CategoryMeta params={params} {...pageMeta} {...category} />
 
       <LayoutHeader floatingMd>
         <LayoutTitle size='small' component='span'>

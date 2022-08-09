@@ -1,32 +1,48 @@
 import { ProductListParams } from '@graphcommerce/magento-product'
 import { PageMeta } from '@graphcommerce/magento-store'
 import { PageMetaProps } from '@graphcommerce/next-ui'
+import { i18n } from '@lingui/core'
 import { CategoryMetaFragment } from './CategoryMeta.gql'
 
-type CategoryMetaProps = CategoryMetaFragment &
-  Omit<PageMetaProps, 'title' | 'metaDescription'> & {
+export type CategoryMetaProps = CategoryMetaFragment &
+  Partial<PageMetaProps> & {
     params?: ProductListParams
     current_page?: number | null | undefined
   }
 
 export function CategoryMeta(props: CategoryMetaProps) {
-  const { name, meta_title, meta_description, current_page, params, ...pageMetaProps } = props
+  const { meta_title, meta_description, name, params, current_page } = props
+  const {
+    title = meta_title ?? name ?? '',
+    metaDescription = meta_description ?? undefined,
+    metaRobots,
+    canonical = params?.url,
+  } = props
+
   // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
   const anyFilterActive = Object.keys(params?.filters ?? {}).length > 0
+  const currentPage = params?.currentPage ?? 1
+  const isPaginated = currentPage > 1 && !anyFilterActive
+
+  const titleTrans =
+    title && isPaginated
+      ? i18n._(/* i18n */ '{title} - Page {currentPage}', { title, currentPage })
+      : title
+
+  const metaDescriptionTrans =
+    metaDescription && isPaginated
+      ? i18n._(/* i18n */ '{metaDescription} - Page {currentPage}', {
+          metaDescription,
+          currentPage,
+        })
+      : metaDescription
 
   return (
     <PageMeta
-      title={`${meta_title ?? name ?? ''} ${
-        current_page && current_page > 1 ? `- Page ${current_page}` : ''
-      }`}
-      metaDescription={`${meta_description ?? undefined} ${
-        current_page && current_page > 1 ? `- Page ${current_page}` : ''
-      }`}
-      metaRobots={anyFilterActive ? ['noindex'] : undefined}
-      canonical={`/${params?.url}${
-        (params?.currentPage ?? 1) > 1 ? `/q/page/${params?.currentPage}` : ''
-      }`}
-      {...pageMetaProps}
+      title={titleTrans}
+      metaDescription={metaDescriptionTrans}
+      metaRobots={anyFilterActive ? ['noindex'] : metaRobots}
+      canonical={isPaginated ? `/${canonical}/q/page/${currentPage}` : canonical}
     />
   )
 }
