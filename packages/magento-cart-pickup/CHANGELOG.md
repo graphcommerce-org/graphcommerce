@@ -1,5 +1,17 @@
 # Change Log
 
+## 3.1.5
+
+### Patch Changes
+
+- [#1578](https://github.com/graphcommerce-org/graphcommerce/pull/1578) [`b93988eee`](https://github.com/graphcommerce-org/graphcommerce/commit/b93988eeea007ced5ed365971f01913601fc2603) Thanks [@paales](https://github.com/paales)! - Make sure the pickup location form is unmounted so that it doesn’t get submitted when navigating to the payment step
+
+- Updated dependencies [[`49370878a`](https://github.com/graphcommerce-org/graphcommerce/commit/49370878a48b90a4579026a7c56c54f97840cebb), [`b6ce5548c`](https://github.com/graphcommerce-org/graphcommerce/commit/b6ce5548c66a8ca62d3aee29467045f7f07f30c8)]:
+  - @graphcommerce/graphql@3.4.4
+  - @graphcommerce/next-ui@4.17.0
+  - @graphcommerce/magento-cart-shipping-method@3.5.5
+  - @graphcommerce/magento-store@4.2.23
+
 ## 3.1.4
 
 ### Patch Changes
