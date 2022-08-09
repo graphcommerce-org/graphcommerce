@@ -194,6 +194,7 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
 
       <MessageSnackbar
         open={showFeedbackMessage && displayMessageBar}
+        onClose={() => setDisplayMessageBar(false)}
         variant='pill'
         action={
           <PageLink href='/wishlist' passHref>
