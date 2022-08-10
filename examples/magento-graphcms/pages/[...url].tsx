@@ -152,6 +152,8 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   return { paths, fallback: 'blocking' }
 }
 
+const reqId = Math.random().toString(36).substring(7)
+
 export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
   const [url, query] = extractUrlQuery(params)
   if (!url || !query) return { notFound: true }
@@ -198,6 +200,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
       params: productListParams,
       apolloState: await conf.then(() => client.cache.extract()),
       up,
+      reqId,
     },
     revalidate: 60 * 20,
   }
