@@ -43,6 +43,8 @@ export function categoryToNav(props: Item | null | undefined): NavigationNode | 
  * Converts the Magento GraphQL category tree to a NavigationNode tree, which can be used in the
  * Navigation component.
  */
-export function useMagentoMenuToNavigation(menu: MenuQueryFragment['menu']) {
-  return (menu?.items ?? []).map(categoryToNav).filter(nonNullable)
+export function useMagentoMenuToNavigation(menu: MenuQueryFragment['menu'], includeRoot: boolean) {
+  return ((includeRoot ? menu?.items : menu?.items?.[0]?.children) || [])
+    .map(categoryToNav)
+    .filter(nonNullable)
 }

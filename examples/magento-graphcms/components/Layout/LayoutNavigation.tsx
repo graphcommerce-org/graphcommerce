@@ -73,7 +73,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
               href: `/${menu?.items?.[0]?.children?.[1]?.url_path}`,
               name: menu?.items?.[0]?.children?.[1]?.name ?? '',
             },
-            ...useMagentoMenuToNavigation(menu),
+            ...useMagentoMenuToNavigation(menu, true),
             { id: 'blog', name: 'Blog', href: '/blog' },
             <Divider sx={(theme) => ({ my: theme.spacings.xs })} />,
             <CustomerMenuFabItem key='account' guestHref='/account/signin' authHref='/account'>
