@@ -49,6 +49,9 @@ msgstr "Addresses"
 msgid "All products"
 msgstr "All products"
 
+msgid "All {name}"
+msgstr "All {name}"
+
 msgid "Apply"
 msgstr "Apply"
 
@@ -129,6 +132,9 @@ msgstr "Continue"
 
 msgid "Continue shopping"
 msgstr "Continue shopping"
+
+msgid "Could not create an empty cart"
+msgstr "Could not create an empty cart"
 
 msgid "Country"
 msgstr "Country"
@@ -381,6 +387,9 @@ msgstr "Please check your inbox to validate your email ({email})"
 
 msgid "Please provide a valid house number"
 msgstr "Please provide a valid house number"
+
+msgid "Please reauthenticate and try again"
+msgstr "Please reauthenticate and try again"
 
 msgid "Please select a payment method"
 msgstr "Please select a payment method"
