@@ -12,7 +12,7 @@ export type UseFormIsEmailAvailableProps = {
 
 export function useFormIsEmailAvailable(props: UseFormIsEmailAvailableProps) {
   const { email, onSubmitted } = props
-  const { loggedIn, requireAuth } = useCustomerSession({ hydration: false })
+  const { loggedIn, requireAuth } = useCustomerSession()
   const customerQuery = useCustomerQuery(CustomerDocument)
 
   const form = useFormGqlQuery(

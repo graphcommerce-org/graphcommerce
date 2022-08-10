@@ -1,5 +1,6 @@
-import { darken, lighten, styled, experimental_sx, Theme } from '@mui/material'
+import { darken, lighten, styled, Theme } from '@mui/material'
 import { responsiveVal } from '../Styles/responsiveVal'
+import { sx } from '../Theme/themeDefaults'
 
 type FormStyleProps = {
   contained?: boolean
@@ -7,7 +8,7 @@ type FormStyleProps = {
 }
 
 const styles = ({ theme, contained = false, background }: { theme: Theme } & FormStyleProps) =>
-  experimental_sx([
+  sx([
     {
       display: 'grid',
       alignItems: 'center',

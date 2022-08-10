@@ -1,5 +1,6 @@
-import { ComponentsVariants, darken, experimental_sx as sx } from '@mui/material'
+import { ComponentsVariants, darken } from '@mui/material'
 import { responsiveVal } from '../Styles'
+import { sx } from './themeDefaults'
 
 declare module '@mui/material/Chip/Chip' {
   interface ChipPropsSizeOverrides {

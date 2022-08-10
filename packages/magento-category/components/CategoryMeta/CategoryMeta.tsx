@@ -12,12 +12,14 @@ export type CategoryMetaProps = CategoryMetaFragment &
 
 export function CategoryMeta(props: CategoryMetaProps) {
   const { meta_title, meta_description, name, params, current_page } = props
-  const {
+  let {
     title = meta_title ?? name ?? '',
     metaDescription = meta_description ?? undefined,
     metaRobots,
-    canonical = params?.url,
+    canonical,
   } = props
+
+  if (params?.url && !canonical) canonical = `/${params.url}`
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
   const anyFilterActive = Object.keys(params?.filters ?? {}).length > 0
@@ -42,7 +44,7 @@ export function CategoryMeta(props: CategoryMetaProps) {
       title={titleTrans}
       metaDescription={metaDescriptionTrans}
       metaRobots={anyFilterActive ? ['noindex'] : metaRobots}
-      canonical={isPaginated ? `/${canonical}/q/page/${currentPage}` : canonical}
+      canonical={isPaginated ? `${canonical}/q/page/${currentPage}` : canonical}
     />
   )
 }
