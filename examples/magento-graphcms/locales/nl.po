@@ -454,9 +454,6 @@ msgstr "Verzendadres"
 msgid "Shipping method"
 msgstr "Verzendmethode"
 
-msgid "Shop"
-msgstr "Winkel"
-
 msgid "Sign in"
 msgstr "Inloggen"
 

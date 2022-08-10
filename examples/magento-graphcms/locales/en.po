@@ -454,9 +454,6 @@ msgstr "Shipping address"
 msgid "Shipping method"
 msgstr "Shipping method"
 
-msgid "Shop"
-msgstr "Shop"
-
 msgid "Sign in"
 msgstr "Sign in"
 

@@ -454,9 +454,6 @@ msgstr "Dirección de envío"
 msgid "Shipping method"
 msgstr "Método de envío"
 
-msgid "Shop"
-msgstr "Tienda"
-
 msgid "Sign in"
 msgstr "Iniciar sesión"
 
