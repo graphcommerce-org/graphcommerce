@@ -78,7 +78,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   const conf = client.query({ query: StoreConfigDocument })
   const page = staticClient.query({
     query: DefaultPageDocument,
-    variables: { url, rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '' },
+    variables: { url },
   })
 
   if (!(await page).data.pages?.[0]) return { notFound: true }

@@ -139,7 +139,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const staticClient = graphqlSsrClient(locale)
   const page = staticClient.query({
     query: DefaultPageDocument,
-    variables: { url: 'search', rootCategory },
+    variables: { url: 'search' },
   })
 
   const productListParams = parseParams(

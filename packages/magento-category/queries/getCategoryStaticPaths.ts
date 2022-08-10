@@ -12,12 +12,8 @@ const getCategoryStaticPaths = async (
   client: ApolloClient<NormalizedCacheObject>,
   locale: string,
 ) => {
-  const rootCategory =
-    (await client.query({ query: StoreConfigDocument })).data.storeConfig?.root_category_uid ?? ''
-
   const { data } = await client.query({
     query: GetCategoryStaticPathsDocument,
-    variables: { rootCategory },
   })
 
   const paths: StaticPathsResult['paths'] = []

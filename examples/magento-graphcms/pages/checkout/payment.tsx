@@ -174,7 +174,6 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
     query: DefaultPageDocument,
     variables: {
       url: `checkout/payment`,
-      rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
     },
   })
 
