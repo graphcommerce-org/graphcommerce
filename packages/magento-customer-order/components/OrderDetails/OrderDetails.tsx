@@ -6,9 +6,10 @@ import {
   IconSvg,
   extendableComponent,
   useDateTimeFormat,
+  sx,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { experimental_sx, Skeleton, styled, SxProps, Theme } from '@mui/material'
+import { Skeleton, styled, SxProps, Theme } from '@mui/material'
 import { TrackingLink } from '../TrackingLink/TrackingLink'
 import { OrderDetailsFragment } from './OrderDetails.gql'
 
@@ -32,7 +33,7 @@ const parts = [
 const { classes } = extendableComponent(componentName, parts)
 
 const OrderDetailTitle = styled('span', { target: classes.orderDetailTitle })(
-  experimental_sx<Theme>((theme) => ({
+  sx((theme) => ({
     borderBottom: `1px solid ${theme.palette.divider}`,
     fontWeight: 'bold',
     display: 'block',
@@ -43,7 +44,7 @@ const OrderDetailTitle = styled('span', { target: classes.orderDetailTitle })(
 )
 
 const OrderDetailsInnerContainer = styled('span', { target: classes.orderDetailsInnerContainer })(
-  experimental_sx<Theme>((theme) => ({
+  sx((theme) => ({
     display: 'grid',
     gridColumnGap: theme.spacings.sm,
     gridRowGap: theme.spacings.lg,
@@ -58,20 +59,20 @@ const OrderDetailsInnerContainer = styled('span', { target: classes.orderDetails
 )
 
 const TotalsContainer = styled('span', { target: classes.totalsContainer })(
-  experimental_sx<Theme>((theme) => ({
+  sx((theme) => ({
     padding: `${theme.spacings.xxs} 0`,
   })),
 )
 
 const TotalsRow = styled('span', { target: classes.totalsRow })(
-  experimental_sx<Theme>({
+  sx({
     display: 'flex',
     justifyContent: 'space-between',
     padding: '4px 0',
   }),
 )
 const TotalsDivider = styled('span', { target: classes.totalsDivider })(
-  experimental_sx<Theme>((theme) => ({
+  sx((theme) => ({
     height: 1,
     width: '100%',
     background: theme.palette.divider,
@@ -80,13 +81,13 @@ const TotalsDivider = styled('span', { target: classes.totalsDivider })(
 )
 
 const TotalsVat = styled(TotalsRow, { target: classes.totalsVat })(
-  experimental_sx<Theme>((theme) => ({
+  sx((theme) => ({
     fontWeight: 'bold',
     padding: `${theme.spacings.xxs} 0`,
   })),
 )
 const IconContainer = styled(TotalsRow, { target: classes.iconContainer })(
-  experimental_sx<Theme>({
+  sx({
     marginLeft: '-6px',
     '& > div': {
       padding: '4px 0',
@@ -95,7 +96,7 @@ const IconContainer = styled(TotalsRow, { target: classes.iconContainer })(
 )
 
 const Invoice = styled(TotalsRow, { target: classes.invoice })(
-  experimental_sx<Theme>((theme) => ({
+  sx((theme) => ({
     display: 'flex',
     alignItems: 'center',
     color: theme.palette.primary.main,
