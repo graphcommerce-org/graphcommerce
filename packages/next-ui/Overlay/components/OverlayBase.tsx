@@ -153,10 +153,15 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
     if (!scroller) return () => {}
 
     const resize = () => {
-      if (positions.open.visible.get() !== 1) return
+      if (positions.open.visible.get() === 1) {
+        scroller.scrollLeft = positions.open.x.get()
+        scroller.scrollTop = positions.open.y.get()
+      }
 
-      scroller.scrollLeft = positions.open.x.get()
-      scroller.scrollTop = positions.open.y.get()
+      if (positions.open.visible.get() === 0) {
+        scroller.scrollLeft = positions.closed.x.get()
+        scroller.scrollTop = positions.closed.y.get()
+      }
     }
 
     window.addEventListener('resize', resize)
