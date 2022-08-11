@@ -7,10 +7,17 @@ import { OverlayBase, LayoutOverlayBaseProps } from './OverlayBase'
 export type OverlayProps = Omit<
   SetOptional<LayoutOverlayBaseProps, 'variantSm' | 'variantMd'>,
   'direction' | 'offsetPageY' | 'isPresent' | 'safeToRemove'
->
+> & { animatePane?: boolean }
 
 export function Overlay(props: OverlayProps) {
-  const { children, variantSm = 'bottom', variantMd = 'right', active, ...otherProps } = props
+  const {
+    children,
+    variantSm = 'bottom',
+    variantMd = 'right',
+    active,
+    animatePane,
+    ...otherProps
+  } = props
 
   const scrollSnapTypeSm: ScrollSnapType =
     variantSm === 'left' || variantSm === 'right' ? 'inline mandatory' : 'block proximity'
@@ -51,6 +58,7 @@ export function Overlay(props: OverlayProps) {
           active={active}
           isPresent={active}
           safeToRemove={undefined}
+          animatePane={animatePane}
           {...otherProps}
         >
           {children}

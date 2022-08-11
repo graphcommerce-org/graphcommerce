@@ -41,6 +41,7 @@ export type LayoutOverlayBaseProps = {
   isPresent: boolean
   safeToRemove: (() => void) | null | undefined
   overlayPaneProps?: MotionProps
+  animatePane?: boolean
 } & StyleProps &
   OverridableProps
 
@@ -88,6 +89,7 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
     isPresent,
     safeToRemove,
     overlayPaneProps,
+    animatePane,
   } = props
 
   const th = useTheme()
@@ -370,7 +372,7 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
         >
           <MotionDiv
             {...overlayPaneProps}
-            layout
+            layout={animatePane ? true : undefined}
             className={classes.overlayPane}
             sx={(theme) => ({
               pointerEvents: 'all',

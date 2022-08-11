@@ -128,6 +128,7 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
           gridTemplateRows: 'auto 1fr',
         },
       }}
+      animatePane
     >
       <MotionDiv layout style={{ display: 'grid' }}>
         <Box
