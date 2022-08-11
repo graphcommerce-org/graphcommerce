@@ -1,5 +1,49 @@
 # Change Log
 
+## 3.21.0
+
+### Minor Changes
+
+- [#1576](https://github.com/graphcommerce-org/graphcommerce/pull/1576) [`b6d3a3c13`](https://github.com/graphcommerce-org/graphcommerce/commit/b6d3a3c13ea63ef0f691f497507f07c0e094de5b) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Create products sitemap
+
+### Patch Changes
+
+- Updated dependencies [[`42030e04b`](https://github.com/graphcommerce-org/graphcommerce/commit/42030e04b2ebe004379c6f052e10407c2f5df18f), [`b6d3a3c13`](https://github.com/graphcommerce-org/graphcommerce/commit/b6d3a3c13ea63ef0f691f497507f07c0e094de5b), [`1be392e42`](https://github.com/graphcommerce-org/graphcommerce/commit/1be392e42241d38b0ce1862e8ba184d2b5ec23c3)]:
+  - @graphcommerce/magento-category@4.3.1
+  - @graphcommerce/next-ui@4.19.0
+  - @graphcommerce/magento-customer@4.9.3
+  - @graphcommerce/magento-product-configurable@4.1.30
+  - @graphcommerce/ecommerce-ui@1.1.10
+  - @graphcommerce/framer-scroller@2.1.30
+  - @graphcommerce/graphcms-ui@3.0.38
+  - @graphcommerce/magento-cart@4.6.7
+  - @graphcommerce/magento-cart-billing-address@3.0.43
+  - @graphcommerce/magento-cart-checkout@3.0.45
+  - @graphcommerce/magento-cart-coupon@3.1.13
+  - @graphcommerce/magento-cart-email@3.0.45
+  - @graphcommerce/magento-cart-items@3.0.46
+  - @graphcommerce/magento-cart-payment-method@3.4.10
+  - @graphcommerce/magento-cart-pickup@3.1.7
+  - @graphcommerce/magento-cart-shipping-address@3.3.7
+  - @graphcommerce/magento-cart-shipping-method@3.5.7
+  - @graphcommerce/magento-customer-account@3.1.38
+  - @graphcommerce/magento-customer-order@3.0.39
+  - @graphcommerce/magento-newsletter@2.0.43
+  - @graphcommerce/magento-payment-braintree@3.0.44
+  - @graphcommerce/magento-payment-included@3.1.16
+  - @graphcommerce/magento-product@4.4.23
+  - @graphcommerce/magento-review@3.2.31
+  - @graphcommerce/magento-search@4.1.33
+  - @graphcommerce/magento-store@4.2.25
+  - @graphcommerce/magento-wishlist@1.5.1
+  - @graphcommerce/mollie-magento-payment@3.4.10
+  - @graphcommerce/magento-product-bundle@4.0.45
+  - @graphcommerce/magento-product-downloadable@4.0.45
+  - @graphcommerce/magento-product-grouped@3.0.45
+  - @graphcommerce/magento-product-simple@4.0.45
+  - @graphcommerce/magento-product-virtual@4.0.45
+  - @graphcommerce/magento-cms@4.0.36
+
 ## 3.20.0
 
 ### Minor Changes

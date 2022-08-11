@@ -1,5 +1,16 @@
 # Change Log
 
+## 4.19.0
+
+### Minor Changes
+
+- [#1576](https://github.com/graphcommerce-org/graphcommerce/pull/1576) [`b6d3a3c13`](https://github.com/graphcommerce-org/graphcommerce/commit/b6d3a3c13ea63ef0f691f497507f07c0e094de5b) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Create products sitemap
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/framer-scroller@2.1.30
+
 ## 4.18.0
 
 ### Minor Changes
