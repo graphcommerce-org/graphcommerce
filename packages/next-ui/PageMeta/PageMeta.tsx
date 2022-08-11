@@ -2,7 +2,7 @@ import { usePageContext } from '@graphcommerce/framer-next-pages'
 import { addBasePath } from 'next/dist/client/add-base-path'
 import { addLocale } from 'next/dist/client/add-locale'
 import { getDomainLocale } from 'next/dist/client/get-domain-locale'
-import { resolveHref } from 'next/dist/shared/lib/router/router'
+import { NextRouter, resolveHref } from 'next/dist/shared/lib/router/router'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 
@@ -29,8 +29,11 @@ export type PageMetaProps = {
   metaRobots?: MetaRobotsAll | MetaRobots[]
 }
 
-export function useCanonical(incomming?: Canonical) {
-  const router = useRouter()
+type PartialNextRouter = Pick<
+  NextRouter,
+  'pathname' | 'locale' | 'locales' | 'isLocaleDomain' | 'domainLocales' | 'defaultLocale'
+>
+export function canonicalize(router: PartialNextRouter, incomming?: Canonical) {
   let canonical = incomming
 
   if (!canonical) return canonical
@@ -51,17 +54,16 @@ export function useCanonical(incomming?: Canonical) {
       }
     }
 
-    let [href, as] = resolveHref(router, canonical, true)
+    let [href, as] = resolveHref(router as NextRouter, canonical, true)
 
     const curLocale = router.locale
 
-    // Copied from here https://github.com/vercel/next.js/blob/canary/packages/next/client/link.tsx#L313-L327
+    // Copied from here https://github.com/vercel/next.js/blob/213c42f446874d29d07fa2cca6e6b11fc9c3b711/packages/next/client/link.tsx#L512
     const localeDomain =
-      router &&
       router.isLocaleDomain &&
-      getDomainLocale(as, curLocale, router && router.locales, router && router.domainLocales)
+      getDomainLocale(as, curLocale, router && router.locales, router.domainLocales)
 
-    href = localeDomain || addBasePath(addLocale(as, curLocale, router && router.defaultLocale))
+    href = localeDomain || addBasePath(addLocale(as, curLocale, router.defaultLocale))
 
     let siteUrl = process.env.NEXT_PUBLIC_SITE_URL
     if (siteUrl && siteUrl.endsWith('/')) {
@@ -81,6 +83,11 @@ export function useCanonical(incomming?: Canonical) {
   }
 
   return canonical
+}
+
+export function useCanonical(incomming?: Canonical) {
+  const router = useRouter()
+  return canonicalize(router, incomming)
 }
 
 export function PageMeta(props: PageMetaProps) {

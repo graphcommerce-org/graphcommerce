@@ -12,6 +12,14 @@ query GetCategoryStaticPaths($rootCategory: String!) {
           children {
             uid
             url_path
+            children {
+              uid
+              url_path
+              children {
+                uid
+                url_path
+              }
+            }
           }
         }
       }
