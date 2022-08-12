@@ -1,5 +1,16 @@
 # Change Log
 
+## 4.9.4
+
+### Patch Changes
+
+- [#1596](https://github.com/graphcommerce-org/graphcommerce/pull/1596) [`3a619b70d`](https://github.com/graphcommerce-org/graphcommerce/commit/3a619b70d082804b8de46a8e8232f9431479a8b7) Thanks [@paales](https://github.com/paales)! - Do not activate the customer session during hydration only in the next step
+
+- Updated dependencies [[`43822fd61`](https://github.com/graphcommerce-org/graphcommerce/commit/43822fd61c949215b8ddce9fb37d09f29b638426), [`3a619b70d`](https://github.com/graphcommerce-org/graphcommerce/commit/3a619b70d082804b8de46a8e8232f9431479a8b7)]:
+  - @graphcommerce/next-ui@4.20.0
+  - @graphcommerce/ecommerce-ui@1.1.11
+  - @graphcommerce/magento-store@4.2.26
+
 ## 4.9.3
 
 ### Patch Changes

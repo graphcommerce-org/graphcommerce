@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.2.0
+
+### Minor Changes
+
+- [#1591](https://github.com/graphcommerce-org/graphcommerce/pull/1591) [`79f057889`](https://github.com/graphcommerce-org/graphcommerce/commit/79f057889847c61d75db7f567fd6575a57cf1022) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Remove need for query rootCategory
+
 ## 2.1.11
 
 ### Patch Changes

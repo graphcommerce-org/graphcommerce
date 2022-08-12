@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.7.0
+
+### Minor Changes
+
+- [#1594](https://github.com/graphcommerce-org/graphcommerce/pull/1594) [`f00f3c27f`](https://github.com/graphcommerce-org/graphcommerce/commit/f00f3c27f6631da39127727da0ae1e991b687bed) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Update roadmap
+
 ## 4.6.6
 
 ### Patch Changes
