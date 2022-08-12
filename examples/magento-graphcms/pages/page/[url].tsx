@@ -89,7 +89,6 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
     query: DefaultPageDocument,
     variables: {
       url: `page/${urlKey}`,
-      rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
     },
   })
 

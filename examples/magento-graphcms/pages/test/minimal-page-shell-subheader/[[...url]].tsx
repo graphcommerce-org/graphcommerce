@@ -91,7 +91,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const staticClient = graphqlSsrClient(locale)
   const page = staticClient.query({
     query: DefaultPageDocument,
-    variables: { url: 'minimal-page-shell-subheader', rootCategory },
+    variables: { url: 'minimal-page-shell-subheader' },
   })
 
   const products = staticClient.query({

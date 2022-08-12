@@ -160,7 +160,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const staticClient = graphqlSsrClient(locale)
   const categoryPage = staticClient.query({
     query: CategoryPageDocument,
-    variables: { url, rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '' },
+    variables: { url },
   })
   const categoryUid = categoryPage.then((res) => res.data.categories?.items?.[0]?.uid ?? '')
 

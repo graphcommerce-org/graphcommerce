@@ -49,6 +49,9 @@ msgstr "Adressen"
 msgid "All products"
 msgstr "Alle producten"
 
+msgid "All {name}"
+msgstr "Alle {name}"
+
 msgid "Apply"
 msgstr "Toepassen"
 
@@ -129,6 +132,9 @@ msgstr "Doorgaan"
 
 msgid "Continue shopping"
 msgstr "Verder winkelen"
+
+msgid "Could not create an empty cart"
+msgstr "Kon geen lege winkelwagen aanmaken"
 
 msgid "Country"
 msgstr "Land"
@@ -382,6 +388,9 @@ msgstr "Controleer uw inbox om uw e-mailadres te valideren ({email})"
 msgid "Please provide a valid house number"
 msgstr "Vul een geldig huisnummer in"
 
+msgid "Please reauthenticate and try again"
+msgstr "Verifieer opnieuw en probeer het opnieuw"
+
 msgid "Please select a payment method"
 msgstr "Selecteer een betaalmethode a.u.b."
 
@@ -453,9 +462,6 @@ msgstr "Verzendadres"
 
 msgid "Shipping method"
 msgstr "Verzendmethode"
-
-msgid "Shop"
-msgstr "Winkel"
 
 msgid "Sign in"
 msgstr "Inloggen"

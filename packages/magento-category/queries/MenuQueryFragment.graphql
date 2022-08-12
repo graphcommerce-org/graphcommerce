@@ -1,6 +1,7 @@
 fragment MenuQueryFragment on Query {
-  menu: categories(filters: { parent_category_uid: { eq: $rootCategory } }) {
+  menu: categories {
     items {
+      uid
       ...NavigationItem
       children {
         uid
@@ -8,6 +9,10 @@ fragment MenuQueryFragment on Query {
         children {
           uid
           ...NavigationItem
+          children {
+            uid
+            ...NavigationItem
+          }
         }
       }
     }

@@ -88,7 +88,6 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
     query: DefaultPageDocument,
     variables: {
       url: `blog/tagged/${urlKey}`,
-      rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
     },
   })
   const blogPosts = staticClient.query({

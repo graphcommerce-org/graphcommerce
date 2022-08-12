@@ -16,7 +16,11 @@ function linguiNextConfig(config) {
     catalogs: [
       {
         path: 'locales/{locale}',
-        include: ['<rootDir>/**/*.tsx', '<rootDir>/../../packages/**/*.tsx'],
+        include: [
+          '<rootDir>/**/*.tsx',
+          '<rootDir>/../../packages/**/*.tsx',
+          '<rootDir>/../../packages/**/*.ts',
+        ],
         exclude: ['**/node_modules/!(@graphcommerce)/**'],
       },
     ],

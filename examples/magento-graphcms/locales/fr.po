@@ -49,6 +49,9 @@ msgstr "Adresses"
 msgid "All products"
 msgstr "Tous les produits"
 
+msgid "All {name}"
+msgstr "Tout {name}"
+
 msgid "Apply"
 msgstr "Appliquer"
 
@@ -129,6 +132,9 @@ msgstr "Continuer"
 
 msgid "Continue shopping"
 msgstr "Continuer les achats"
+
+msgid "Could not create an empty cart"
+msgstr "Impossible de créer un panier vide"
 
 msgid "Country"
 msgstr "Pays"
@@ -382,6 +388,9 @@ msgstr "Veuillez vérifier votre boîte de réception pour valider votre email (
 msgid "Please provide a valid house number"
 msgstr "Veuillez fournir un numéro de rue valide"
 
+msgid "Please reauthenticate and try again"
+msgstr "Veuillez vous authentifier à nouveau et réessayer"
+
 msgid "Please select a payment method"
 msgstr "Veuillez sélectionner une méthode de paiement"
 
@@ -453,9 +462,6 @@ msgstr "Adresse d'expédition"
 
 msgid "Shipping method"
 msgstr "Méthode d'expédition"
-
-msgid "Shop"
-msgstr "Boutique"
 
 msgid "Sign in"
 msgstr "Identifiez-vous"

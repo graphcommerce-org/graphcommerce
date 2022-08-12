@@ -1,4 +1,4 @@
-query CategoryPage($url: String!, $rootCategory: String!) {
+query CategoryPage($url: String!) {
   ...MenuQueryFragment
   ...FooterQueryFragment
   ...PageContentQueryFragment

@@ -1,7 +1,5 @@
 import { CartFab } from '@graphcommerce/magento-cart'
-import {
-  useMagentoMenuToNavigation,
-} from '@graphcommerce/magento-category'
+import { useMagentoMenuToNavigation } from '@graphcommerce/magento-category'
 import { CustomerFab, CustomerMenuFabItem } from '@graphcommerce/magento-customer'
 import { SearchLink } from '@graphcommerce/magento-search'
 import { WishlistFab, WishlistMenuFabItem } from '@graphcommerce/magento-wishlist'
@@ -53,26 +51,29 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
           selected={selected}
           setSelected={setSelected}
           items={[
-            <SearchLink href='/search' sx={(theme) => ({ width: `calc(100% - ${theme.spacing(4)})`, m: 2, mb: theme.spacings.xs })}>
+            <SearchLink
+              href='/search'
+              sx={(theme) => ({
+                width: `calc(100% - ${theme.spacing(4)})`,
+                m: 2,
+                mb: theme.spacings.xs,
+              })}
+            >
               <Trans id='Search...' />
             </SearchLink>,
             { id: 'home', name: 'Home', href: '/' },
-            // ...useMagentoMenuToNavigation(menu),
+
             {
               id: 'manual-item-one',
-              href: `/${menu?.items?.[0]?.url_path}`,
-              name: menu?.items?.[0]?.name ?? ''
+              href: `/${menu?.items?.[0]?.children?.[0]?.url_path}`,
+              name: menu?.items?.[0]?.children?.[0]?.name ?? '',
             },
             {
               id: 'manual-item-two',
-              href: `/${menu?.items?.[1]?.url_path}`,
-              name: menu?.items?.[1]?.name ?? ''
+              href: `/${menu?.items?.[0]?.children?.[1]?.url_path}`,
+              name: menu?.items?.[0]?.children?.[1]?.name ?? '',
             },
-            {
-              id: 'shop',
-              name: i18n._(/* i18n */ `Shop`),
-              childItems: useMagentoMenuToNavigation(menu),
-            },
+            ...useMagentoMenuToNavigation(menu, true),
             { id: 'blog', name: 'Blog', href: '/blog' },
             <Divider sx={(theme) => ({ my: theme.spacings.xs })} />,
             <CustomerMenuFabItem key='account' guestHref='/account/signin' authHref='/account'>
@@ -114,7 +115,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
           <>
             <Logo />
             <DesktopNavBar>
-              {menu?.items?.slice(0, 2).map((item) => (
+              {menu?.items?.[0]?.children?.slice(0, 2).map((item) => (
                 <DesktopNavItem key={item?.uid} href={`/${item?.url_path}`}>
                   {item?.name}
                 </DesktopNavItem>
@@ -122,11 +123,11 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
 
               <DesktopNavItem
                 onClick={() => {
-                  setSelected(['shop'])
+                  setSelected([menu?.items?.[0]?.uid || ''])
                   setNavigationActive(true)
                 }}
               >
-                <Trans id='Shop' />
+                {menu?.items?.[0]?.name}
                 <IconSvg src={iconChevronDown} />
               </DesktopNavItem>
 
