@@ -13,7 +13,7 @@ export function AnimatedRow(props: AnimatedRowProps) {
   return (
     <StyledDiv
       {...props}
-      initial={{ opacity: 0, height: 0 }}
+      initial={{ opacity: 0, height: 'auto' }}
       animate={{ opacity: 1, height: 'auto' }}
       exit={{ opacity: 0, height: 0 }}
       transition={{ type: 'tween' }}
