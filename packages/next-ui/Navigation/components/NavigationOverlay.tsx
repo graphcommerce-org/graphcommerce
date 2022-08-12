@@ -117,6 +117,7 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
         onLayoutAnimationComplete: () => {
           animating.current = false
         },
+        layout: true,
       }}
       sx={{
         zIndex: 'drawer',
@@ -128,7 +129,6 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
           gridTemplateRows: 'auto 1fr',
         },
       }}
-      animatePane
     >
       <MotionDiv layout style={{ display: 'grid' }}>
         <Box
