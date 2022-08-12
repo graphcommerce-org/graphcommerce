@@ -1,5 +1,23 @@
 # Change Log
 
+## 4.4.0
+
+### Minor Changes
+
+- [#1591](https://github.com/graphcommerce-org/graphcommerce/pull/1591) [`eee08c956`](https://github.com/graphcommerce-org/graphcommerce/commit/eee08c956fbcc4fe8d915b6fa8b399dafca69acd) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Remove need for rootCategory query
+
+* [#1591](https://github.com/graphcommerce-org/graphcommerce/pull/1591) [`79f057889`](https://github.com/graphcommerce-org/graphcommerce/commit/79f057889847c61d75db7f567fd6575a57cf1022) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Remove need for query rootCategory
+
+### Patch Changes
+
+- [#1596](https://github.com/graphcommerce-org/graphcommerce/pull/1596) [`3a619b70d`](https://github.com/graphcommerce-org/graphcommerce/commit/3a619b70d082804b8de46a8e8232f9431479a8b7) Thanks [@paales](https://github.com/paales)! - Make sure the canonical of a page doesn’t contain a double forward slash
+
+- Updated dependencies [[`43822fd61`](https://github.com/graphcommerce-org/graphcommerce/commit/43822fd61c949215b8ddce9fb37d09f29b638426), [`3a619b70d`](https://github.com/graphcommerce-org/graphcommerce/commit/3a619b70d082804b8de46a8e8232f9431479a8b7)]:
+  - @graphcommerce/next-ui@4.20.0
+  - @graphcommerce/framer-scroller@2.1.31
+  - @graphcommerce/magento-product@4.4.24
+  - @graphcommerce/magento-store@4.2.26
+
 ## 4.3.1
 
 ### Patch Changes

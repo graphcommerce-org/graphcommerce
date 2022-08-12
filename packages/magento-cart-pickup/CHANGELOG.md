@@ -1,5 +1,14 @@
 # Change Log
 
+## 3.1.8
+
+### Patch Changes
+
+- Updated dependencies [[`43822fd61`](https://github.com/graphcommerce-org/graphcommerce/commit/43822fd61c949215b8ddce9fb37d09f29b638426), [`3a619b70d`](https://github.com/graphcommerce-org/graphcommerce/commit/3a619b70d082804b8de46a8e8232f9431479a8b7)]:
+  - @graphcommerce/next-ui@4.20.0
+  - @graphcommerce/magento-cart-shipping-method@3.5.8
+  - @graphcommerce/magento-store@4.2.26
+
 ## 3.1.7
 
 ### Patch Changes

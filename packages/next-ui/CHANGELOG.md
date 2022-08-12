@@ -1,5 +1,18 @@
 # Change Log
 
+## 4.20.0
+
+### Minor Changes
+
+- [#1592](https://github.com/graphcommerce-org/graphcommerce/pull/1592) [`43822fd61`](https://github.com/graphcommerce-org/graphcommerce/commit/43822fd61c949215b8ddce9fb37d09f29b638426) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Animation fixes
+
+* [#1596](https://github.com/graphcommerce-org/graphcommerce/pull/1596) [`3a619b70d`](https://github.com/graphcommerce-org/graphcommerce/commit/3a619b70d082804b8de46a8e8232f9431479a8b7) Thanks [@paales](https://github.com/paales)! - Create products sitemap
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/framer-scroller@2.1.31
+
 ## 4.19.0
 
 ### Minor Changes
