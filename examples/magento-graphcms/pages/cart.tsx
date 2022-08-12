@@ -88,7 +88,7 @@ function CartPage() {
           <AnimatePresence initial={false}>
             {hasItems ? (
               <>
-                <AnimatedRow key='quick-checkout'>
+                <AnimatedRow layout key='quick-checkout'>
                   <LayoutTitle icon={iconShoppingBag}>
                     <Trans id='Cart Total' />: <Money {...data?.cart?.prices?.grand_total} />
                   </LayoutTitle>
@@ -111,7 +111,7 @@ function CartPage() {
                 <CouponAccordion key='couponform' />
                 <CartTotals containerMargin />
                 <ApolloCartErrorAlert error={error} />
-                <AnimatedRow key='checkout-button'>
+                <AnimatedRow layout key='checkout-button'>
                   <CartStartCheckout {...data?.cart} />
                 </AnimatedRow>
               </>

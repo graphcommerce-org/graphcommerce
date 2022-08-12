@@ -23,7 +23,7 @@ export function WishlistItems(props: WishlistProps) {
 
         const productData = item?.product ? item?.product : item
         return (
-          <AnimatedRow key={item.id || item.uid}>
+          <AnimatedRow layout key={item.id || item.uid}>
             <RenderType renderer={renderer} wishlistItemId={item.id || null} {...productData} />
           </AnimatedRow>
         )
