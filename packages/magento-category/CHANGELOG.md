@@ -1,5 +1,17 @@
 # Change Log
 
+## 4.3.1
+
+### Patch Changes
+
+- [#1588](https://github.com/graphcommerce-org/graphcommerce/pull/1588) [`42030e04b`](https://github.com/graphcommerce-org/graphcommerce/commit/42030e04b2ebe004379c6f052e10407c2f5df18f) Thanks [@paales](https://github.com/paales)! - Make sure the canonical of a page doesn’t contain a double forward slash
+
+- Updated dependencies [[`b6d3a3c13`](https://github.com/graphcommerce-org/graphcommerce/commit/b6d3a3c13ea63ef0f691f497507f07c0e094de5b)]:
+  - @graphcommerce/next-ui@4.19.0
+  - @graphcommerce/framer-scroller@2.1.30
+  - @graphcommerce/magento-product@4.4.23
+  - @graphcommerce/magento-store@4.2.25
+
 ## 4.3.0
 
 ### Minor Changes

@@ -1,5 +1,15 @@
 # Change Log
 
+## 3.0.45
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/magento-cart@4.6.7
+  - @graphcommerce/magento-product@4.4.23
+  - @graphcommerce/magento-product-simple@4.0.45
+  - @graphcommerce/magento-product-virtual@4.0.45
+
 ## 3.0.44
 
 ### Patch Changes
