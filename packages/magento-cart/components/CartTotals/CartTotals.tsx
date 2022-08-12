@@ -3,6 +3,7 @@ import { AnimatedRow, extendableComponent, responsiveVal } from '@graphcommerce/
 import { Trans } from '@lingui/react'
 import { Box, Divider, lighten, SxProps, Theme } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
+import { useRouter } from 'next/router'
 import { useCartQuery, useDisplayInclTax } from '../../hooks'
 import { GetCartTotalsDocument } from './GetCartTotals.gql'
 
@@ -30,6 +31,8 @@ const { withState } = extendableComponent<OwnerProps, typeof name, typeof parts>
 export function CartTotals(props: CartTotalsProps) {
   const { data } = useCartQuery(GetCartTotalsDocument, { allowUrl: true })
   const { containerMargin, sx = [] } = props
+  const { asPath } = useRouter()
+  const animateLayout = asPath === '/checkout/payment' ? undefined : true
 
   const classes = withState({ containerMargin })
   const inclTax = useDisplayInclTax()
@@ -48,6 +51,7 @@ export function CartTotals(props: CartTotalsProps) {
 
   return (
     <AnimatedRow
+      layout={animateLayout}
       className={classes.root}
       sx={[
         (theme) => ({
@@ -69,6 +73,7 @@ export function CartTotals(props: CartTotalsProps) {
       <AnimatePresence initial={false}>
         {prices?.subtotal_including_tax && (
           <AnimatedRow
+            layout={animateLayout}
             className={classes.costsRow}
             key='subtotal'
             sx={{ display: 'flex', justifyContent: 'space-between', typography: 'subtitle1' }}
@@ -94,6 +99,7 @@ export function CartTotals(props: CartTotalsProps) {
 
           return (
             <AnimatedRow
+              layout={animateLayout}
               key={discount?.label}
               sx={{
                 display: 'flex',
@@ -111,6 +117,7 @@ export function CartTotals(props: CartTotalsProps) {
 
         {shippingMethod && (
           <AnimatedRow
+            layout={animateLayout}
             className={classes.costsRow}
             key='shippingMethod'
             sx={{ display: 'flex', justifyContent: 'space-between', typography: 'subtitle1' }}
@@ -134,6 +141,7 @@ export function CartTotals(props: CartTotalsProps) {
         {!inclTax &&
           prices?.applied_taxes?.map((tax) => (
             <AnimatedRow
+              layout={animateLayout}
               className={classes.costsRow}
               key={`excl${tax?.label}`}
               sx={{ display: 'flex', justifyContent: 'space-between', typography: 'subtitle1' }}
@@ -145,12 +153,13 @@ export function CartTotals(props: CartTotalsProps) {
             </AnimatedRow>
           ))}
 
-        <AnimatedRow key='divider'>
+        <AnimatedRow layout key='divider'>
           <Divider className={classes.costsDivider} sx={{ margin: `1em 0` }} />
         </AnimatedRow>
 
         {prices?.grand_total && (
           <AnimatedRow
+            layout={animateLayout}
             className={`${classes.costsRow} ${classes.costsGrandTotal}`}
             key='grand_total'
             sx={(theme) => ({
@@ -172,6 +181,7 @@ export function CartTotals(props: CartTotalsProps) {
         {inclTax &&
           prices?.applied_taxes?.map((tax) => (
             <AnimatedRow
+              layout={animateLayout}
               className={`${classes.costsRow} ${classes.costsTax}`}
               key={`incl${tax?.label}`}
               sx={{

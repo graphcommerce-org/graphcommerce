@@ -18,12 +18,12 @@ export function ApolloErrorAlert(props: ApolloErrorAlertProps) {
   return (
     <AnimatePresence initial={false}>
       {error && (
-        <AnimatedRow key='alerts'>
+        <AnimatedRow layout key='alerts'>
           <Box sx={sx} className={classes.root}>
             <AnimatePresence initial={false}>
               {error.graphQLErrors.map((e, index) => (
                 // eslint-disable-next-line react/no-array-index-key
-                <AnimatedRow key={index}>
+                <AnimatedRow layout key={index}>
                   <div className={classes.alert}>
                     <Alert severity='error' {...graphqlErrorAlertProps}>
                       {e.message}
@@ -32,7 +32,7 @@ export function ApolloErrorAlert(props: ApolloErrorAlertProps) {
                 </AnimatedRow>
               ))}
               {error.networkError && (
-                <AnimatedRow key='networkError'>
+                <AnimatedRow layout key='networkError'>
                   <Box
                     sx={(theme) => ({
                       paddingTop: theme.spacings.xxs,

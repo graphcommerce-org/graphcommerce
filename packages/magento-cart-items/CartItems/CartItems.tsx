@@ -18,7 +18,7 @@ export function CartItems(props: CartProps) {
       {data?.cart?.items?.map((item) => {
         if (!item?.uid || !data.cart?.id) return null
         return (
-          <AnimatedRow key={item.uid}>
+          <AnimatedRow layout key={item.uid}>
             <RenderType renderer={renderer} {...item} />
           </AnimatedRow>
         )
