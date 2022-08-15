@@ -26,6 +26,8 @@
     "lingui": "cross-env NODE_ENV=development lingui extract"
   },
   "dependencies": {
+    "@changesets/changelog-github": "0.4.6",
+    "@changesets/cli": "2.24.3",
     "@graphcommerce/cli": "1.0.7",
     "@graphcommerce/ecommerce-ui": "1.1.11",
     "@graphcommerce/framer-next-pages": "3.2.4",
@@ -73,15 +75,15 @@
     "@graphcommerce/next-ui": "4.20.0",
     "@lingui/core": "3.14.0",
     "@lingui/react": "3.14.0",
-    "@mui/lab": "5.0.0-alpha.89",
-    "@mui/material": "5.8.7",
-    "concurrently": "7.2.2",
+    "@mui/lab": "5.0.0-alpha.94",
+    "@mui/material": "5.10.0",
+    "concurrently": "7.3.0",
     "cross-env": "^7.0.3",
     "dotenv": "16.0.1",
     "framer-motion": "7.1.0",
-    "next": "12.2.2",
-    "next-pwa": "5.5.4",
-    "next-sitemap": "3.1.15",
+    "next": "12.2.5",
+    "next-pwa": "5.5.5",
+    "next-sitemap": "3.1.17",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sharp": "0.30.7"
@@ -93,9 +95,6 @@
     "@lingui/cli": "3.14.0",
     "eslint": "8.19.0",
     "typescript": "4.7.4"
-  },
-  "resolutions": {
-    "cross-undici-fetch": "0.4.13"
   },
   "browserslist": [
     "> 1% in alt-EU",
