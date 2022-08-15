@@ -1,12 +1,13 @@
 import { styled } from '@mui/material'
+import React from 'react'
 import { extendableComponent } from '../../Styles/extendableComponent'
-import { NavigationNode, NavigationPath } from '../hooks/useNavigation'
+import { NavigationNode } from '../hooks/useNavigation'
 import { NavigationItem, mouseEventPref } from './NavigationItem'
 
 const NavigationUList = styled('ul')({})
 
 type NavigationItemsProps = {
-  parentPath?: NavigationPath
+  parentPath?: string
   items: NavigationNode[]
   selected?: boolean
 } & mouseEventPref
@@ -19,11 +20,8 @@ const name = 'NavigationList'
 const parts = ['root'] as const
 const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 
-// const componentName = 'NavigationItem'
-// const parts = ['li', 'ul', 'item'] as const
-
-export function NavigationList(props: NavigationItemsProps) {
-  const { items, parentPath = [], selected = false, mouseEvent } = props
+export const NavigationList = React.memo<NavigationItemsProps>((props) => {
+  const { items, parentPath = '', selected = false, mouseEvent } = props
 
   return (
     <NavigationUList
@@ -48,4 +46,8 @@ export function NavigationList(props: NavigationItemsProps) {
       ))}
     </NavigationUList>
   )
+})
+
+if (process.env.NODE_ENV !== 'production') {
+  NavigationList.displayName = 'NavigationList'
 }

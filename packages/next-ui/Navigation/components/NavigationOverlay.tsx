@@ -1,9 +1,10 @@
 import styled from '@emotion/styled'
+import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, Fab, SxProps, Theme, useEventCallback, useMediaQuery } from '@mui/material'
 import { m } from 'framer-motion'
-import { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { IconSvg, useIconSvgSize } from '../../IconSvg'
 import { LayoutHeaderContent } from '../../Layout/components/LayoutHeaderContent'
 import { LayoutTitle } from '../../Layout/components/LayoutTitle'
@@ -17,6 +18,7 @@ import {
   NavigationContextType,
   NavigationNodeButton,
   NavigationNodeHref,
+  NavigationPath,
   useNavigation,
 } from '../hooks/useNavigation'
 import { mouseEventPref } from './NavigationItem'
@@ -27,7 +29,6 @@ type LayoutOverlaySize = 'floating' | 'minimal' | 'full'
 type LayoutOverlayAlign = 'start' | 'end' | 'center' | 'stretch'
 
 type NavigationOverlayProps = {
-  active: boolean
   sx?: SxProps<Theme>
   stretchColumns?: boolean
   variantSm: LayoutOverlayVariant
@@ -42,8 +43,9 @@ type NavigationOverlayProps = {
 
 function findCurrent(
   items: NavigationContextType['items'],
-  selected: NavigationContextType['selected'],
+  selected: NavigationPath | false,
 ): NavigationNodeHref | NavigationNodeButton | undefined {
+  if (selected === false) return undefined
   const lastItem = selected.slice(-1)[0]
 
   if (!lastItem) return undefined
@@ -67,9 +69,8 @@ const componentName = 'Navigation'
 const parts = ['root', 'navigation', 'header', 'column'] as const
 const { classes } = extendableComponent(componentName, parts)
 
-export function NavigationOverlay(props: NavigationOverlayProps) {
+export const NavigationOverlay = React.memo<NavigationOverlayProps>((props) => {
   const {
-    active,
     sx,
     stretchColumns,
     variantMd,
@@ -82,22 +83,25 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
     itemWidthMd,
     mouseEvent,
   } = props
-  const { selected, select, items, onClose, animating } = useNavigation()
+  const { selection, items, onClose, animating } = useNavigation()
 
   const fabSize = useFabSize('responsive')
   const svgSize = useIconSvgSize('large')
 
   const isMobile = useMediaQuery<Theme>((theme) => theme.breakpoints.down('md'))
   const handleOnBack = useEventCallback(() => {
-    if (isMobile) select(selected.slice(0, -1))
-    else select([])
+    if (isMobile) {
+      const current = selection.get()
+      selection.set(current !== false ? current.slice(0, -1) : false)
+    } else selection.set([])
   })
+
+  const active = useMotionValueValue(selection, (s) => s !== false)
+  const selectedLevel = useMotionValueValue(selection, (s) => (s === false ? -1 : s.length))
 
   useEffect(() => {
     animating.current = false
   }, [active, animating])
-
-  const showBack = selected.length > 0
 
   return (
     <Overlay
@@ -146,7 +150,7 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
             switchPoint={0}
             layout='position'
             left={
-              showBack && (
+              selectedLevel > 0 && (
                 <Fab
                   color='inherit'
                   onClick={handleOnBack}
@@ -179,7 +183,7 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
             }
           >
             <LayoutTitle size='small' component='span'>
-              {findCurrent(items, selected)?.name ?? <Trans id='Menu' />}
+              {findCurrent(items, selection.get())?.name ?? <Trans id='Menu' />}
             </LayoutTitle>
           </LayoutHeaderContent>
         </Box>
@@ -193,7 +197,7 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
             '& .NavigationItem-item': {
               // eslint-disable-next-line no-nested-ternary
               width: itemWidthMd
-                ? selected.length >= 1
+                ? selectedLevel >= 1
                   ? `calc(${itemWidthMd} + 1px)`
                   : itemWidthMd
                 : 'stretch',
@@ -201,7 +205,7 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
             [theme.breakpoints.down('md')]: {
               width:
                 sizeSm !== 'floating'
-                  ? `calc(${itemWidthSm || '100vw'} + ${selected.length}px)`
+                  ? `calc(${itemWidthSm || '100vw'} + ${selection.length}px)`
                   : `calc(${itemWidthSm || '100vw'} - ${theme.page.horizontal} - ${
                       theme.page.horizontal
                     })`,
@@ -213,7 +217,7 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
                   sizeSm !== 'floating'
                     ? `calc(${itemWidthSm || '100vw'} - ${theme.spacings.md} - ${
                         theme.spacings.md
-                      } + ${selected.length}px)`
+                      } + ${selectedLevel}px)`
                     : `calc(${itemWidthSm || '100vw'} - ${theme.spacings.md} - ${
                         theme.spacings.md
                       } - ${theme.page.horizontal} - ${theme.page.horizontal})`,
@@ -251,7 +255,7 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
               ...(Array.isArray(sx) ? sx : [sx]),
             ]}
           >
-            {selected.length >= 0 && (
+            {selectedLevel >= 0 && (
               <Box
                 sx={(theme) => ({
                   gridArea: '1 / 1 / 999 / 2',
@@ -260,7 +264,7 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
                 className={classes.column}
               />
             )}
-            {selected.length >= 1 && (
+            {selectedLevel >= 1 && (
               <Box
                 sx={(theme) => ({
                   gridArea: '1 / 2 / 999 / 3',
@@ -269,7 +273,7 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
                 className={classes.column}
               />
             )}
-            {selected.length >= 2 && (
+            {selectedLevel >= 2 && (
               <Box
                 sx={(theme) => ({
                   gridArea: '1 / 3 / 999 / 4',
@@ -278,7 +282,7 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
                 className={classes.column}
               />
             )}
-            {selected.length >= 3 && (
+            {selectedLevel >= 3 && (
               <Box
                 sx={(theme) => ({
                   gridArea: '1 / 4 / 999 / 5',
@@ -294,4 +298,8 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
       </MotionDiv>
     </Overlay>
   )
+})
+
+if (process.env.NODE_ENV !== 'production') {
+  NavigationOverlay.displayName = 'NavigationOverlay'
 }

@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
+import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import { Box, ListItemButton, styled, Theme, useEventCallback, useMediaQuery } from '@mui/material'
 import PageLink from 'next/link'
-import { useEffect } from 'react'
+import React from 'react'
 import { IconSvg } from '../../IconSvg'
 import { extendableComponent } from '../../Styles/extendableComponent'
 import { iconChevronRight } from '../../icons'
@@ -10,7 +11,6 @@ import {
   isNavigationComponent,
   isNavigationHref,
   NavigationNode,
-  NavigationPath,
   useNavigation,
 } from '../hooks/useNavigation'
 import type { NavigationList } from './NavigationList'
@@ -24,7 +24,7 @@ type OwnerState = {
 }
 
 type NavigationItemProps = NavigationNode & {
-  parentPath: NavigationPath
+  parentPath: string
   idx: number
   NavigationList: typeof NavigationList
 } & OwnerState &
@@ -44,16 +44,27 @@ const { withState } = extendableComponent<OwnerState, typeof componentName, type
 
 const NavigationLI = styled('li')({ display: 'contents' })
 
-export function NavigationItem(props: NavigationItemProps) {
+export const NavigationItem = React.memo<NavigationItemProps>((props) => {
   const { id, parentPath, idx, first, last, NavigationList, mouseEvent } = props
 
   const row = idx + 1
-  const { selected, select, hideRootOnNavigate, onClose, animating } = useNavigation()
+  const { selection, hideRootOnNavigate, onClose, animating } = useNavigation()
 
-  const itemPath = [...parentPath, id]
-  const isSelected = selected.slice(0, itemPath.length).join('/') === itemPath.join('/')
+  const itemPath = [...(parentPath ? parentPath.split(',') : []), id]
 
-  const hidingRoot = hideRootOnNavigate && selected.length > 0
+  const isSelected = useMotionValueValue(
+    selection,
+    (s) => s !== false && s.slice(0, itemPath.length).join('/') === itemPath.join('/'),
+  )
+  const hidingRoot = useMotionValueValue(
+    selection,
+    (s) => s === false || (hideRootOnNavigate && s.length > 0),
+  )
+
+  const tabIndex = useMotionValueValue(selection, (s) =>
+    s !== false && s.join(',').includes(parentPath) ? undefined : -1,
+  )
+
   const hideItem = hidingRoot && itemPath.length === 1
 
   const column = hidingRoot ? itemPath.length - 1 : itemPath.length
@@ -95,11 +106,11 @@ export function NavigationItem(props: NavigationItemProps) {
               : {},
           ]}
           disabled={isSelected}
-          tabIndex={selected.join(',').includes(parentPath.join(',')) ? undefined : -1}
+          tabIndex={tabIndex}
           onClick={(e) => {
             e.preventDefault()
             if (!isSelected && animating.current === false) {
-              select(itemPath)
+              selection.set(itemPath)
             }
           }}
           onMouseMove={
@@ -107,7 +118,7 @@ export function NavigationItem(props: NavigationItemProps) {
               ? (e) => {
                   if (isDesktop && animating.current === false && !isSelected) {
                     e.preventDefault()
-                    setTimeout(() => select(itemPath), 0)
+                    setTimeout(() => selection.set(itemPath), 0)
                   }
                 }
               : undefined
@@ -130,7 +141,7 @@ export function NavigationItem(props: NavigationItemProps) {
         <NavigationList
           items={childItems}
           selected={isSelected}
-          parentPath={itemPath}
+          parentPath={itemPath.join(',')}
           mouseEvent={mouseEvent}
         />
       </NavigationLI>
@@ -150,7 +161,7 @@ export function NavigationItem(props: NavigationItemProps) {
               gridColumnStart: column,
               gap: theme.spacings.xxs,
             })}
-            tabIndex={selected.join(',').includes(parentPath.join(',')) ? undefined : -1}
+            tabIndex={tabIndex}
             onClick={onCloseHandler}
           >
             <Box
@@ -183,4 +194,8 @@ export function NavigationItem(props: NavigationItemProps) {
   if (process.env.NODE_ENV !== 'production') throw Error('NavigationItem: unknown type')
 
   return null
+})
+
+if (process.env.NODE_ENV !== 'production') {
+  NavigationItem.displayName = 'NavigationItem'
 }

@@ -1,10 +1,15 @@
-import { createContext, MutableRefObject, SetStateAction, useContext } from 'react'
+import { MotionValue, useMotionValue } from 'framer-motion'
+import { createContext, MutableRefObject, useContext } from 'react'
 
 export type NavigationId = string | number
 export type NavigationPath = NavigationId[]
-export type NavigationSelect = (selected: NavigationPath) => void
 export type NavigationRender = React.FC<
   (NavigationNodeComponent | NavigationNodeHref) & { children?: React.ReactNode }
+>
+
+export type UseNavigationSelection = Pick<
+  MotionValue<NavigationPath | false>,
+  'set' | 'get' | 'onChange'
 >
 
 export type NavigationOnClose = (
@@ -12,8 +17,7 @@ export type NavigationOnClose = (
   href?: string | undefined,
 ) => void
 export type NavigationContextType = {
-  selected: NavigationPath
-  select: NavigationSelect
+  selection: UseNavigationSelection
   items: NavigationNode[]
   hideRootOnNavigate: boolean
   onClose: NavigationOnClose
@@ -56,4 +60,30 @@ export const NavigationContext = createContext(undefined as unknown as Navigatio
 
 export function useNavigation() {
   return useContext(NavigationContext)
+}
+
+/**
+ * To prevent excessive rerenders we're not using plain React useState, but we're using a reactive
+ * motion value (could easily be any other reactive variable like Zustand, MobX, etc).
+ *
+ * Usage:
+ *
+ * ```tsx
+ * const selection = useNavigationSelection()
+ *
+ * function onClose() {
+ *   selection.set(false)
+ * }
+ *
+ * function openRoot() {
+ *   selection.set([])
+ * }
+ *
+ * function openPath() {
+ *   selection.set(['my-path'])
+ * }
+ * ```
+ */
+export function useNavigationSelection(): UseNavigationSelection {
+  return useMotionValue<NavigationPath | false>(false)
 }

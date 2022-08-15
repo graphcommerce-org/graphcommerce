@@ -1,10 +1,9 @@
 import { CartFab } from '@graphcommerce/magento-cart'
-import { useMagentoMenuToNavigation } from '@graphcommerce/magento-category'
+import { magentoMenuToNavigation } from '@graphcommerce/magento-category'
 import { CustomerFab, CustomerMenuFabItem } from '@graphcommerce/magento-customer'
 import { SearchLink } from '@graphcommerce/magento-search'
 import { WishlistFab, WishlistMenuFabItem } from '@graphcommerce/magento-wishlist'
 import {
-  NavigationPath,
   DesktopNavActions,
   DesktopNavBar,
   LayoutDefault,
@@ -20,13 +19,14 @@ import {
   iconChevronDown,
   NavigationProvider,
   NavigationOverlay,
+  useNavigationSelection,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Divider, Fab } from '@mui/material'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
-import { useState, Suspense } from 'react'
+import { Suspense } from 'react'
 import { DefaultPageQuery } from '../../graphql/DefaultPage.gql'
 import { Footer } from './Footer'
 import { Logo } from './Logo'
@@ -39,17 +39,14 @@ export type LayoutNavigationProps = Omit<
 export function LayoutNavigation(props: LayoutNavigationProps) {
   const { footer, menu = {}, children, ...uiProps } = props
 
-  const [selected, setSelected] = useState<NavigationPath>([])
-  const [navigationActive, setNavigationActive] = useState(false)
+  const selection = useNavigationSelection()
   const router = useRouter()
 
   return (
     <>
       <Suspense>
         <NavigationProvider
-          onClose={() => setNavigationActive(false)}
-          selected={selected}
-          setSelected={setSelected}
+          selection={selection}
           items={[
             <SearchLink
               href='/search'
@@ -62,7 +59,6 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
               <Trans id='Search...' />
             </SearchLink>,
             { id: 'home', name: 'Home', href: '/' },
-
             {
               id: 'manual-item-one',
               href: `/${menu?.items?.[0]?.children?.[0]?.url_path}`,
@@ -73,7 +69,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
               href: `/${menu?.items?.[0]?.children?.[1]?.url_path}`,
               name: menu?.items?.[0]?.children?.[1]?.name ?? '',
             },
-            ...useMagentoMenuToNavigation(menu, true),
+            ...magentoMenuToNavigation(menu, true),
             { id: 'blog', name: 'Blog', href: '/blog' },
             <Divider sx={(theme) => ({ my: theme.spacings.xs })} />,
             <CustomerMenuFabItem key='account' guestHref='/account/signin' authHref='/account'>
@@ -93,7 +89,6 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
           ]}
         >
           <NavigationOverlay
-            active={navigationActive}
             stretchColumns={false}
             variantSm='left'
             sizeSm='full'
@@ -121,12 +116,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
                 </DesktopNavItem>
               ))}
 
-              <DesktopNavItem
-                onClick={() => {
-                  setSelected([menu?.items?.[0]?.uid || ''])
-                  setNavigationActive(true)
-                }}
-              >
+              <DesktopNavItem onClick={() => selection.set([menu?.items?.[0]?.uid || ''])}>
                 {menu?.items?.[0]?.name}
                 <IconSvg src={iconChevronDown} />
               </DesktopNavItem>
@@ -152,7 +142,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
         }
         footer={<Footer footer={footer} />}
         cartFab={<CartFab />}
-        menuFab={<NavigationFab onClick={() => setNavigationActive(true)} />}
+        menuFab={<NavigationFab onClick={() => selection.set([])} />}
       >
         {children}
       </LayoutDefault>
