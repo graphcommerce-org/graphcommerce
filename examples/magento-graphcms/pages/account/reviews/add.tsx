@@ -81,7 +81,7 @@ function AccountReviewsAddPage() {
         </LayoutTitle>
       </LayoutOverlayHeader>
 
-      <LayoutTitle variant='h1'>
+      <LayoutTitle variant='h2'>
         <Trans id='You are reviewing {0}' values={{ 0: product?.name }} />
       </LayoutTitle>
 

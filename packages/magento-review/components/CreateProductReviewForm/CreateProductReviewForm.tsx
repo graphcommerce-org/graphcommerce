@@ -199,8 +199,6 @@ export function CreateProductReviewForm(props: CreateProductReviewFormProps) {
         className={classes.formActions}
         sx={(theme) => ({
           gridAutoFlow: 'row',
-          gap: 8,
-          marginTop: theme.spacings.xxs,
         })}
       >
         <Button
@@ -209,23 +207,15 @@ export function CreateProductReviewForm(props: CreateProductReviewFormProps) {
           type='submit'
           size='medium'
           className={classes.submitButton}
-          sx={{
-            width: responsiveVal(200, 250),
-            height: responsiveVal(40, 50),
-          }}
         >
           <Trans id='Submit review' />
         </Button>
         <Button
           variant='text'
           color='primary'
+          size='medium'
           onClick={() => router.back()}
           className={classes.cancelButton}
-          sx={{
-            display: 'block',
-            maxWidth: 'max-content',
-            margin: '0 auto',
-          }}
         >
           <Trans id='Cancel' />
         </Button>
