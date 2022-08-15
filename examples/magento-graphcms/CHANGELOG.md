@@ -1,5 +1,58 @@
 # Change Log
 
+## 3.22.1
+
+### Patch Changes
+
+- [#1600](https://github.com/graphcommerce-org/graphcommerce/pull/1600) [`127593b65`](https://github.com/graphcommerce-org/graphcommerce/commit/127593b65b0cc367dcb38ba88b589a2abcca75c2) Thanks [@paales](https://github.com/paales)! - Make sure \*.ts files are also scanned when extracting lingui files
+
+* [#1598](https://github.com/graphcommerce-org/graphcommerce/pull/1598) [`707dbc73d`](https://github.com/graphcommerce-org/graphcommerce/commit/707dbc73d181204d88fdbbd2e09340e25b2b5f7b) Thanks [@paales](https://github.com/paales)! - Upgraded dependencies
+
+* Updated dependencies [[`7949c1ce1`](https://github.com/graphcommerce-org/graphcommerce/commit/7949c1ce1fd9babba5f7a440e2bb18e71f7ea515), [`127593b65`](https://github.com/graphcommerce-org/graphcommerce/commit/127593b65b0cc367dcb38ba88b589a2abcca75c2), [`1f7ee6f6c`](https://github.com/graphcommerce-org/graphcommerce/commit/1f7ee6f6cfb28544439ed36e10929ac530d1b2b7), [`707dbc73d`](https://github.com/graphcommerce-org/graphcommerce/commit/707dbc73d181204d88fdbbd2e09340e25b2b5f7b)]:
+  - @graphcommerce/next-config@3.2.0
+  - @graphcommerce/lingui-next@2.2.1
+  - @graphcommerce/next-ui@4.21.0
+  - @graphcommerce/cli@1.0.8
+  - @graphcommerce/graphql@3.4.6
+  - @graphcommerce/graphql-mesh@4.1.7
+  - @graphcommerce/magento-payment-braintree@3.0.46
+  - @graphcommerce/mollie-magento-payment@3.4.12
+  - @graphcommerce/ecommerce-ui@1.1.12
+  - @graphcommerce/framer-scroller@2.1.32
+  - @graphcommerce/graphcms-ui@3.0.40
+  - @graphcommerce/magento-cart@4.6.9
+  - @graphcommerce/magento-cart-billing-address@3.0.45
+  - @graphcommerce/magento-cart-checkout@3.0.47
+  - @graphcommerce/magento-cart-coupon@3.1.15
+  - @graphcommerce/magento-cart-email@3.0.47
+  - @graphcommerce/magento-cart-items@3.0.48
+  - @graphcommerce/magento-cart-payment-method@3.4.12
+  - @graphcommerce/magento-cart-pickup@3.1.9
+  - @graphcommerce/magento-cart-shipping-address@3.3.9
+  - @graphcommerce/magento-cart-shipping-method@3.5.9
+  - @graphcommerce/magento-category@4.4.1
+  - @graphcommerce/magento-customer@4.9.5
+  - @graphcommerce/magento-customer-account@3.1.40
+  - @graphcommerce/magento-customer-order@3.0.41
+  - @graphcommerce/magento-newsletter@2.0.45
+  - @graphcommerce/magento-payment-included@3.1.18
+  - @graphcommerce/magento-product@4.4.25
+  - @graphcommerce/magento-product-configurable@4.1.32
+  - @graphcommerce/magento-review@3.2.33
+  - @graphcommerce/magento-search@4.1.35
+  - @graphcommerce/magento-store@4.2.27
+  - @graphcommerce/magento-wishlist@1.5.3
+  - @graphcommerce/framer-next-pages@3.2.5
+  - @graphcommerce/image@3.1.8
+  - @graphcommerce/googlerecaptcha@2.1.16
+  - @graphcommerce/magento-cms@4.0.38
+  - @graphcommerce/magento-graphql@3.1.6
+  - @graphcommerce/magento-product-bundle@4.0.47
+  - @graphcommerce/magento-product-downloadable@4.0.47
+  - @graphcommerce/magento-product-grouped@3.0.47
+  - @graphcommerce/magento-product-simple@4.0.47
+  - @graphcommerce/magento-product-virtual@4.0.47
+
 ## 3.22.0
 
 ### Minor Changes

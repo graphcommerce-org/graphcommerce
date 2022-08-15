@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.2.1
+
+### Patch Changes
+
+- [#1600](https://github.com/graphcommerce-org/graphcommerce/pull/1600) [`127593b65`](https://github.com/graphcommerce-org/graphcommerce/commit/127593b65b0cc367dcb38ba88b589a2abcca75c2) Thanks [@paales](https://github.com/paales)! - Make sure \*.ts files are also scanned when extracting lingui files
+
 ## 2.2.0
 
 ### Minor Changes

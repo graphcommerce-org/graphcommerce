@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-customer-account",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "3.1.39",
+  "version": "3.1.40",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -12,19 +12,19 @@
     }
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "^4.1.9",
+    "@graphcommerce/eslint-config-pwa": "^4.1.10",
     "@graphcommerce/prettier-config-pwa": "^4.0.6",
     "@graphcommerce/typescript-config-pwa": "^4.0.4",
     "@playwright/test": "^1.21.1"
   },
   "dependencies": {
-    "@graphcommerce/graphql": "3.4.5",
-    "@graphcommerce/image": "3.1.7",
-    "@graphcommerce/magento-customer": "4.9.4",
-    "@graphcommerce/magento-customer-order": "3.0.40",
-    "@graphcommerce/magento-graphql": "3.1.5",
-    "@graphcommerce/magento-store": "4.2.26",
-    "@graphcommerce/next-ui": "4.20.0",
+    "@graphcommerce/graphql": "3.4.6",
+    "@graphcommerce/image": "3.1.8",
+    "@graphcommerce/magento-customer": "4.9.5",
+    "@graphcommerce/magento-customer-order": "3.0.41",
+    "@graphcommerce/magento-graphql": "3.1.6",
+    "@graphcommerce/magento-store": "4.2.27",
+    "@graphcommerce/next-ui": "4.21.0",
     "@graphcommerce/react-hook-form": "3.3.2"
   },
   "peerDependencies": {

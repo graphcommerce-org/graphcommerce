@@ -1,5 +1,19 @@
 # Change Log
 
+## 4.21.0
+
+### Minor Changes
+
+- [#1597](https://github.com/graphcommerce-org/graphcommerce/pull/1597) [`1f7ee6f6c`](https://github.com/graphcommerce-org/graphcommerce/commit/1f7ee6f6cfb28544439ed36e10929ac530d1b2b7) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Fix safari nav bug
+
+### Patch Changes
+
+- Updated dependencies [[`707dbc73d`](https://github.com/graphcommerce-org/graphcommerce/commit/707dbc73d181204d88fdbbd2e09340e25b2b5f7b), [`5c5645e6e`](https://github.com/graphcommerce-org/graphcommerce/commit/5c5645e6eaf5314c063f05547707fcd4b34a8717)]:
+  - @graphcommerce/framer-utils@3.1.5
+  - @graphcommerce/framer-scroller@2.1.32
+  - @graphcommerce/framer-next-pages@3.2.5
+  - @graphcommerce/image@3.1.8
+
 ## 4.20.0
 
 ### Minor Changes

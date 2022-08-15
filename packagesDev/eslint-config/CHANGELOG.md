@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.1.10
+
+### Patch Changes
+
+- [#1598](https://github.com/graphcommerce-org/graphcommerce/pull/1598) [`707dbc73d`](https://github.com/graphcommerce-org/graphcommerce/commit/707dbc73d181204d88fdbbd2e09340e25b2b5f7b) Thanks [@paales](https://github.com/paales)! - Upgraded dependencies
+
 ## 4.1.9
 
 ### Patch Changes
