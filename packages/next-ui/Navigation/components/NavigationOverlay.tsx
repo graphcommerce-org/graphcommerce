@@ -196,7 +196,7 @@ export function NavigationOverlay(props: NavigationOverlayProps) {
                 ? selected.length >= 1
                   ? `calc(${itemWidthMd} + 1px)`
                   : itemWidthMd
-                : 'auto',
+                : 'stretch',
             },
             [theme.breakpoints.down('md')]: {
               width:
