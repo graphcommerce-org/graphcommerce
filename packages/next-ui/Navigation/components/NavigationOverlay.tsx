@@ -205,7 +205,7 @@ export const NavigationOverlay = React.memo<NavigationOverlayProps>((props) => {
             [theme.breakpoints.down('md')]: {
               width:
                 sizeSm !== 'floating'
-                  ? `calc(${itemWidthSm || '100vw'} + ${selection.length}px)`
+                  ? `calc(${itemWidthSm || '100vw'} + ${selectedLevel}px)`
                   : `calc(${itemWidthSm || '100vw'} - ${theme.page.horizontal} - ${
                       theme.page.horizontal
                     })`,
