@@ -17,7 +17,8 @@ export type NavigationContextType = {
   selection: UseNavigationSelection
   items: NavigationNode[]
   hideRootOnNavigate: boolean
-  animating: MutableRefObject<boolean>
+  animating: MotionValue<boolean>
+  closing: MotionValue<boolean>
 }
 
 type NavigationNodeBase = {

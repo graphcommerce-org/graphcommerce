@@ -26,7 +26,7 @@ import { Trans } from '@lingui/react'
 import { Divider, Fab } from '@mui/material'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
-import { Suspense } from 'react'
+import { Suspense, useMemo } from 'react'
 import { DefaultPageQuery } from '../../graphql/DefaultPage.gql'
 import { Footer } from './Footer'
 import { Logo } from './Logo'
@@ -44,10 +44,10 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
 
   return (
     <>
-      <Suspense>
-        <NavigationProvider
-          selection={selection}
-          items={[
+      <NavigationProvider
+        selection={selection}
+        items={useMemo(
+          () => [
             <SearchLink
               href='/search'
               sx={(theme) => ({
@@ -86,22 +86,23 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
               <Trans id='Wishlist' />
             </WishlistMenuFabItem>,
             <DarkLightModeMenuSecondaryItem key='darkmode' />,
-          ]}
-        >
-          <NavigationOverlay
-            stretchColumns={false}
-            variantSm='left'
-            sizeSm='full'
-            justifySm='start'
-            itemWidthSm='70vw'
-            variantMd='left'
-            sizeMd='full'
-            justifyMd='start'
-            itemWidthMd='230px'
-            mouseEvent='hover'
-          />
-        </NavigationProvider>
-      </Suspense>
+          ],
+          [menu],
+        )}
+      >
+        <NavigationOverlay
+          stretchColumns={false}
+          variantSm='left'
+          sizeSm='full'
+          justifySm='start'
+          itemWidthSm='70vw'
+          variantMd='left'
+          sizeMd='full'
+          justifyMd='start'
+          itemWidthMd='230px'
+          mouseEvent='hover'
+        />
+      </NavigationProvider>
 
       <LayoutDefault
         {...uiProps}

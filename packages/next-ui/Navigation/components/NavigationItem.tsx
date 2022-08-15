@@ -48,7 +48,7 @@ export const NavigationItem = React.memo<NavigationItemProps>((props) => {
   const { id, parentPath, idx, first, last, NavigationList, mouseEvent } = props
 
   const row = idx + 1
-  const { selection, hideRootOnNavigate, onClose, animating } = useNavigation()
+  const { selection, hideRootOnNavigate, closing, animating } = useNavigation()
 
   const itemPath = [...(parentPath ? parentPath.split(',') : []), id]
 
@@ -72,8 +72,7 @@ export const NavigationItem = React.memo<NavigationItemProps>((props) => {
 
   const onCloseHandler: React.MouseEventHandler<HTMLAnchorElement> = useEventCallback((e) => {
     if (!isNavigationHref(props)) return
-    const { href } = props
-    onClose?.(e, href)
+    closing.set(true)
   })
 
   const isDesktop = useMediaQuery<Theme>((theme) => theme.breakpoints.up('md'))
@@ -109,14 +108,14 @@ export const NavigationItem = React.memo<NavigationItemProps>((props) => {
           tabIndex={tabIndex}
           onClick={(e) => {
             e.preventDefault()
-            if (!isSelected && animating.current === false) {
+            if (!isSelected && animating.get() === false) {
               selection.set(itemPath)
             }
           }}
           onMouseMove={
             itemPath.length > 1 && mouseEvent === 'hover'
               ? (e) => {
-                  if (isDesktop && animating.current === false && !isSelected) {
+                  if (isDesktop && animating.get() === false && !isSelected) {
                     e.preventDefault()
                     setTimeout(() => selection.set(itemPath), 0)
                   }

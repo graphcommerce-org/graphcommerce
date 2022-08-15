@@ -4,7 +4,15 @@ import { extendableComponent } from '../../Styles/extendableComponent'
 import { NavigationNode } from '../hooks/useNavigation'
 import { NavigationItem, mouseEventPref } from './NavigationItem'
 
-const NavigationUList = styled('ul')({})
+const NavigationUList = styled('ul')({
+  display: 'block',
+  position: 'absolute',
+  left: '-10000px',
+  top: '-10000px',
+  '&.selected': {
+    display: 'contents',
+  },
+})
 
 type NavigationItemsProps = {
   parentPath?: string
@@ -14,6 +22,7 @@ type NavigationItemsProps = {
 
 type OwnerState = {
   column: number
+  selected: boolean
 }
 
 const name = 'NavigationList'
@@ -23,14 +32,9 @@ const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>
 export const NavigationList = React.memo<NavigationItemsProps>((props) => {
   const { items, parentPath = '', selected = false, mouseEvent } = props
 
+  const classes = withState({ column: 0, selected })
   return (
-    <NavigationUList
-      sx={[
-        { display: 'block', position: 'absolute', left: '-10000px', top: '-10000px' },
-        selected && { display: 'contents' },
-      ]}
-      className={withState({ column: 0 }).root}
-    >
+    <NavigationUList className={classes.root}>
       {items.map((item, idx) => (
         <NavigationItem
           NavigationList={NavigationList}

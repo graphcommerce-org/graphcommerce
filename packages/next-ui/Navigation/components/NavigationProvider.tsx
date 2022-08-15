@@ -1,4 +1,4 @@
-import { MotionConfig } from 'framer-motion'
+import { MotionConfig, useMotionValue } from 'framer-motion'
 import React, { useMemo, useRef } from 'react'
 import { isElement } from 'react-is'
 import {
@@ -29,18 +29,20 @@ export const NavigationProvider = React.memo<NavigationProviderProps>((props) =>
     selection,
   } = props
 
-  const animating = useRef(false)
+  const animating = useMotionValue(false)
+  const closing = useMotionValue(false)
 
   const value = useMemo<NavigationContextType>(
     () => ({
       hideRootOnNavigate,
       selection,
       animating,
+      closing,
       items: items
         .map((item, index) => (isElement(item) ? { id: item.key ?? index, component: item } : item))
         .filter(nonNullable),
     }),
-    [hideRootOnNavigate, selection, items],
+    [hideRootOnNavigate, selection, animating, closing, items],
   )
 
   return (

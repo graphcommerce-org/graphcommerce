@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { useMotionValueValue } from '@graphcommerce/framer-utils'
+import { useMotionValueValue, useMotionSelector } from '@graphcommerce/framer-utils'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, Fab, SxProps, Theme, useEventCallback, useMediaQuery } from '@mui/material'
@@ -83,7 +83,7 @@ export const NavigationOverlay = React.memo<NavigationOverlayProps>((props) => {
     itemWidthMd,
     mouseEvent,
   } = props
-  const { selection, items, animating } = useNavigation()
+  const { selection, items, animating, closing } = useNavigation()
 
   const fabSize = useFabSize('responsive')
   const svgSize = useIconSvgSize('large')
@@ -96,25 +96,22 @@ export const NavigationOverlay = React.memo<NavigationOverlayProps>((props) => {
     } else selection.set([])
   })
 
-  const [closing, setClosing] = useState(false)
-  const active = useMotionValueValue(selection, (s) => s !== false)
   const selectedLevel = useMotionValueValue(selection, (s) => (s === false ? -1 : s.length))
-
-  const activeAndNotClosing = closing === false ? active : false
-
-  useEffect(() => {
-    animating.current = false
-  }, [active, animating])
-
-  const afterClose = useEventCallback(() =>
-    startTransition(() => {
-      if (!closing) return
-      setClosing(false)
-      selection.set(false)
-    }),
+  const activeAndNotClosing = useMotionSelector([selection, closing], ([s, c]) =>
+    c ? false : s !== false,
   )
 
-  const handleClose = useEventCallback(() => setClosing(true))
+  useEffect(() => {
+    animating.set(false)
+  }, [activeAndNotClosing, animating])
+
+  const afterClose = useEventCallback(() => {
+    if (!closing.get()) return
+    closing.set(false)
+    selection.set(false)
+  })
+
+  const handleClose = useEventCallback(() => closing.set(true))
 
   return (
     <Overlay
@@ -132,10 +129,10 @@ export const NavigationOverlay = React.memo<NavigationOverlayProps>((props) => {
         layout: true,
         initial: false,
         onLayoutAnimationStart: () => {
-          animating.current = true
+          animating.set(true)
         },
         onLayoutAnimationComplete: () => {
-          animating.current = false
+          animating.set(false)
         },
       }}
       sx={{
