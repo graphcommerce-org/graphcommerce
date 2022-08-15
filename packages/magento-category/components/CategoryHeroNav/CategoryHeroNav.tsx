@@ -33,7 +33,6 @@ export function CategoryHeroNav({ children, title, asset, sx = [] }: CategoryHer
           marginBottom: theme.spacings.xxl,
           paddingBottom: theme.page.vertical,
           [theme.breakpoints.up('md')]: {
-            rowGap: theme.spacings.md,
             width: '100%',
             paddingRight: theme.page.horizontal,
             paddingTop: 0,

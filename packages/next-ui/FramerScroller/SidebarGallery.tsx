@@ -292,11 +292,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                 },
               }}
             >
-              <ScrollerDots
-                layout='position'
-                layoutDependency={zoomed}
-                sx={{ backgroundColor: 'background.paper', boxShadow: 6 }}
-              />
+              <ScrollerDots layout='position' layoutDependency={zoomed} />
             </Box>
           </MotionBox>
 

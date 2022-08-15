@@ -1,3 +1,4 @@
+import { responsiveVal } from '@graphcommerce/next-ui'
 import {
   Fab,
   Snackbar,
@@ -99,7 +100,10 @@ export default function MessageSnackbarImpl(props: MessageSnackbarImplProps) {
               backgroundColor: theme.palette.background.paper,
               color: theme.palette.text.primary,
               [theme.breakpoints.up('md')]: {
-                borderRadius: '99em',
+                borderRadius: responsiveVal(
+                  theme.shape.borderRadius * 3,
+                  theme.shape.borderRadius * 4,
+                ),
               },
               padding: theme.spacings.xxs,
             },

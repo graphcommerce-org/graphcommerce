@@ -18,9 +18,9 @@ import { Components, PaletteOptions } from '@mui/material/styles'
 const lightPalette: PaletteOptions = {
   mode: 'light',
   primary: {
-    main: '#ff4a55',
+    main: '#47C489',
     contrastText: '#ffffff',
-    dark: '#f33642',
+    dark: '#47C489',
   },
   secondary: {
     main: '#006bff',
@@ -85,7 +85,7 @@ const createThemeWithPalette = (palette: PaletteOptions) =>
   createTheme({
     palette,
     ...themeBaseDefaults,
-    shape: { borderRadius: 4 },
+    shape: { borderRadius: 3 },
     typography: {
       fontFamily:
         '-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji',
@@ -105,25 +105,25 @@ const createThemeWithPalette = (palette: PaletteOptions) =>
       h3: {
         ...fontSize(22, 30),
         fontWeight: 700,
-        fontVariationSettings: "'wght' 680",
+        fontVariationSettings: "'wght' 660",
         lineHeight: 1.55,
       },
       h4: {
         ...fontSize(18, 26),
         fontWeight: 500,
-        fontVariationSettings: "'wght' 520",
+        fontVariationSettings: "'wght' 490",
         lineHeight: 1.55,
       },
       h5: {
         ...fontSize(17, 20),
         fontWeight: 700,
-        fontVariationSettings: "'wght' 680",
+        fontVariationSettings: "'wght' 650",
         lineHeight: 1.55,
       },
       h6: {
         ...fontSize(17, 20),
         fontWeight: 550,
-        fontVariationSettings: "'wght' 530",
+        fontVariationSettings: "'wght' 480",
         lineHeight: 1.8,
       },
       subtitle1: {

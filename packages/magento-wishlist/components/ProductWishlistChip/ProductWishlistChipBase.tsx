@@ -63,7 +63,9 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
       className={classes.wishlistIcon}
       sx={(theme) => ({
         color:
-          theme.palette.mode === 'light' ? theme.palette.text.primary : theme.palette.primary.main,
+          theme.palette.mode === 'light'
+            ? theme.palette.text.secondary
+            : theme.palette.primary.main,
       })}
     />
   )

@@ -22,7 +22,7 @@ export const MuiButtonResponsive: ButtonVariants = [
     props: { size: 'small' },
     style: ({ theme }) => ({
       ...theme.typography.body2,
-      padding: `${responsiveVal(3, 5)} ${responsiveVal(9, 15)}`,
+      padding: `${responsiveVal(3, 5)} ${responsiveVal(8, 15)}`,
       '& .MuiLoadingButton-loadingIndicatorEnd': { right: responsiveVal(9, 15) },
       '& .MuiLoadingButton-loadingIndicatorStart': { left: responsiveVal(9, 15) },
     }),
@@ -31,7 +31,7 @@ export const MuiButtonResponsive: ButtonVariants = [
     props: { size: 'medium' },
     style: ({ theme }) => ({
       ...theme.typography.body1,
-      padding: `${responsiveVal(8, 11)} ${responsiveVal(16, 24)}`,
+      padding: `${responsiveVal(7, 9)} ${responsiveVal(15, 22)}`,
       '& .MuiLoadingButton-loadingIndicatorEnd': { right: responsiveVal(16, 24) },
       '& .MuiLoadingButton-loadingIndicatorStart': { left: responsiveVal(16, 24) },
     }),
@@ -41,7 +41,7 @@ export const MuiButtonResponsive: ButtonVariants = [
     style: ({ theme }) => ({
       ...theme.typography.subtitle1,
       fontWeight: theme.typography.fontWeightBold,
-      padding: `${responsiveVal(10, 15)} ${responsiveVal(30, 60)}`,
+      padding: `${responsiveVal(10, 15)} ${responsiveVal(28, 58)}`,
       '& .MuiLoadingButton-loadingIndicatorEnd': { right: responsiveVal(30, 60) },
       '& .MuiLoadingButton-loadingIndicatorStart': { left: responsiveVal(30, 60) },
     }),
@@ -86,12 +86,14 @@ export const MuiButtonPill: ButtonVariants = [
   {
     props: { variant: 'pill', size: 'medium' },
     style: ({ theme }) => ({
+      borderRadius: responsiveVal(theme.shape.borderRadius * 3, theme.shape.borderRadius * 4),
       '&:not(.Mui-disabled)': { boxShadow: theme.shadows[4] },
     }),
   },
   {
     props: { variant: 'pill', size: 'large' },
     style: ({ theme }) => ({
+      borderRadius: responsiveVal(theme.shape.borderRadius * 5, theme.shape.borderRadius * 6),
       '&:not(.Mui-disabled)': { boxShadow: theme.shadows[6] },
     }),
   },
@@ -104,7 +106,11 @@ export const MuiButtonPill: ButtonVariants = [
     style: ({ theme }) => ({
       backgroundColor: theme.palette.primary.main,
       color: theme.palette.primary.contrastText,
-      '&:hover:not(.Mui-disabled)': { backgroundColor: theme.palette.primary.dark },
+      boxShadow: 'none !important',
+      '&:hover:not(.Mui-disabled)': {
+        backgroundColor: theme.palette.primary.dark,
+        boxShadow: 'none',
+      },
     }),
   },
   {
@@ -112,7 +118,11 @@ export const MuiButtonPill: ButtonVariants = [
     style: ({ theme }) => ({
       backgroundColor: theme.palette.secondary.main,
       color: theme.palette.secondary.contrastText,
-      '&:hover:not(.Mui-disabled)': { backgroundColor: theme.palette.secondary.dark },
+      boxShadow: 'none !important',
+      '&:hover:not(.Mui-disabled)': {
+        backgroundColor: theme.palette.secondary.dark,
+        boxShadow: 'none',
+      },
     }),
   },
   {

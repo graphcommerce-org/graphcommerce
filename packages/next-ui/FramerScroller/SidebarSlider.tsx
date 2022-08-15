@@ -87,7 +87,7 @@ export function SidebarSlider(props: SidebarSliderProps) {
                 sx={{ display: { xs: 'none', md: 'flex' } }}
                 size={buttonSize}
               >
-                <IconSvg src={iconChevronLeft} />
+                <IconSvg src={iconChevronLeft} size='large' />
               </ScrollerButton>
             </Box>
             <Box
@@ -106,7 +106,7 @@ export function SidebarSlider(props: SidebarSliderProps) {
                 sx={{ display: { xs: 'none', md: 'flex' } }}
                 size={buttonSize}
               >
-                <IconSvg src={iconChevronRight} />
+                <IconSvg src={iconChevronRight} size='large' />
               </ScrollerButton>
             </Box>
           </Box>
