@@ -1,5 +1,13 @@
 # Change Log
 
+## 3.1.5
+
+### Patch Changes
+
+- [#1598](https://github.com/graphcommerce-org/graphcommerce/pull/1598) [`707dbc73d`](https://github.com/graphcommerce-org/graphcommerce/commit/707dbc73d181204d88fdbbd2e09340e25b2b5f7b) Thanks [@paales](https://github.com/paales)! - Upgraded dependencies
+
+* [#1600](https://github.com/graphcommerce-org/graphcommerce/pull/1600) [`5c5645e6e`](https://github.com/graphcommerce-org/graphcommerce/commit/5c5645e6eaf5314c063f05547707fcd4b34a8717) Thanks [@paales](https://github.com/paales)! - Reduce the required properties for useMotionValueValue
+
 ## 3.1.4
 
 ### Patch Changes

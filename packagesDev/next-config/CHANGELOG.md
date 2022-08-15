@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.2.0
+
+### Minor Changes
+
+- [#1600](https://github.com/graphcommerce-org/graphcommerce/pull/1600) [`7949c1ce1`](https://github.com/graphcommerce-org/graphcommerce/commit/7949c1ce1fd9babba5f7a440e2bb18e71f7ea515) Thanks [@paales](https://github.com/paales)! - Allow for multiple packages to be watched by webpack at the same time
+
 ## 3.1.6
 
 ### Patch Changes

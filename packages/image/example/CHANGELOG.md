@@ -1,5 +1,16 @@
 # Change Log
 
+## 3.0.35
+
+### Patch Changes
+
+- [#1598](https://github.com/graphcommerce-org/graphcommerce/pull/1598) [`707dbc73d`](https://github.com/graphcommerce-org/graphcommerce/commit/707dbc73d181204d88fdbbd2e09340e25b2b5f7b) Thanks [@paales](https://github.com/paales)! - Upgraded dependencies
+
+- Updated dependencies [[`7949c1ce1`](https://github.com/graphcommerce-org/graphcommerce/commit/7949c1ce1fd9babba5f7a440e2bb18e71f7ea515), [`1f7ee6f6c`](https://github.com/graphcommerce-org/graphcommerce/commit/1f7ee6f6cfb28544439ed36e10929ac530d1b2b7)]:
+  - @graphcommerce/next-config@3.2.0
+  - @graphcommerce/next-ui@4.21.0
+  - @graphcommerce/image@3.1.8
+
 ## 3.0.34
 
 ### Patch Changes

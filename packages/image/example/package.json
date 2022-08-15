@@ -3,16 +3,16 @@
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
   "private": true,
-  "version": "3.0.34",
+  "version": "3.0.35",
   "scripts": {
     "dev": "next",
     "build": "next build",
     "start": "next start"
   },
   "dependencies": {
-    "@graphcommerce/image": "3.1.7",
-    "@graphcommerce/next-config": "3.1.6",
-    "@graphcommerce/next-ui": "4.20.0",
+    "@graphcommerce/image": "3.1.8",
+    "@graphcommerce/next-config": "3.2.0",
+    "@graphcommerce/next-ui": "4.21.0",
     "framer-motion": "^7.1.0",
     "next": "12.2.5",
     "react": "^18.2.0",

@@ -2,7 +2,7 @@
   "name": "@graphcommerce/googlerecaptcha",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "2.1.15",
+  "version": "2.1.16",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -12,14 +12,14 @@
     }
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "^4.1.9",
+    "@graphcommerce/eslint-config-pwa": "^4.1.10",
     "@graphcommerce/prettier-config-pwa": "^4.0.6",
     "@graphcommerce/typescript-config-pwa": "^4.0.4",
     "@playwright/test": "^1.21.1",
     "@types/grecaptcha": "^3.0.4"
   },
   "dependencies": {
-    "@graphcommerce/graphql": "3.4.5"
+    "@graphcommerce/graphql": "3.4.6"
   },
   "peerDependencies": {
     "next": "^12.1.2",
