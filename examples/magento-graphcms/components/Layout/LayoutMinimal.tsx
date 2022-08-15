@@ -10,7 +10,12 @@ export function LayoutMinimal(props: LayoutMinimalProps) {
   const { footer, menu, children, ...uiProps } = props
 
   return (
-    <LayoutDefault {...uiProps} header={<Logo />} footer={<Footer footer={footer} />}>
+    <LayoutDefault
+      {...uiProps}
+      header={<Logo />}
+      footer={<Footer footer={footer} />}
+      sx={{ background: (theme) => theme.palette.background.paper }}
+    >
       {children}
     </LayoutDefault>
   )
