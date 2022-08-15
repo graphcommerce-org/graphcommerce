@@ -7,10 +7,7 @@ export type NavigationRender = React.FC<
   (NavigationNodeComponent | NavigationNodeHref) & { children?: React.ReactNode }
 >
 
-export type UseNavigationSelection = Pick<
-  MotionValue<NavigationPath | false>,
-  'set' | 'get' | 'onChange'
->
+export type UseNavigationSelection = MotionValue<NavigationPath | false>
 
 export type NavigationOnClose = (
   event?: React.MouseEvent<HTMLAnchorElement>,
@@ -20,7 +17,6 @@ export type NavigationContextType = {
   selection: UseNavigationSelection
   items: NavigationNode[]
   hideRootOnNavigate: boolean
-  onClose: NavigationOnClose
   animating: MutableRefObject<boolean>
 }
 

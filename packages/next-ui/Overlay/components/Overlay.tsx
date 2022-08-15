@@ -6,7 +6,7 @@ import { OverlayBase, LayoutOverlayBaseProps } from './OverlayBase'
 
 export type OverlayProps = Omit<
   SetOptional<LayoutOverlayBaseProps, 'variantSm' | 'variantMd'>,
-  'direction' | 'offsetPageY' | 'isPresent' | 'safeToRemove'
+  'direction' | 'offsetPageY' | 'isPresent'
 >
 
 export function Overlay(props: OverlayProps) {
@@ -50,7 +50,6 @@ export function Overlay(props: OverlayProps) {
           direction={1}
           active={active}
           isPresent={active}
-          safeToRemove={undefined}
           {...otherProps}
         >
           {children}

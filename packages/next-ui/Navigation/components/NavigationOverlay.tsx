@@ -3,8 +3,8 @@ import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, Fab, SxProps, Theme, useEventCallback, useMediaQuery } from '@mui/material'
-import { m } from 'framer-motion'
-import React, { useEffect } from 'react'
+import { m, useMotionValue } from 'framer-motion'
+import React, { startTransition, useEffect, useRef, useState } from 'react'
 import { IconSvg, useIconSvgSize } from '../../IconSvg'
 import { LayoutHeaderContent } from '../../Layout/components/LayoutHeaderContent'
 import { LayoutTitle } from '../../Layout/components/LayoutTitle'
@@ -83,7 +83,7 @@ export const NavigationOverlay = React.memo<NavigationOverlayProps>((props) => {
     itemWidthMd,
     mouseEvent,
   } = props
-  const { selection, items, onClose, animating } = useNavigation()
+  const { selection, items, animating } = useNavigation()
 
   const fabSize = useFabSize('responsive')
   const svgSize = useIconSvgSize('large')
@@ -96,18 +96,32 @@ export const NavigationOverlay = React.memo<NavigationOverlayProps>((props) => {
     } else selection.set([])
   })
 
+  const [closing, setClosing] = useState(false)
   const active = useMotionValueValue(selection, (s) => s !== false)
   const selectedLevel = useMotionValueValue(selection, (s) => (s === false ? -1 : s.length))
+
+  const activeAndNotClosing = closing === false ? active : false
 
   useEffect(() => {
     animating.current = false
   }, [active, animating])
 
+  const afterClose = useEventCallback(() =>
+    startTransition(() => {
+      if (!closing) return
+      setClosing(false)
+      selection.set(false)
+    }),
+  )
+
+  const handleClose = useEventCallback(() => setClosing(true))
+
   return (
     <Overlay
       className={classes.root}
-      active={active}
-      onClosed={onClose}
+      active={activeAndNotClosing}
+      safeToRemove={afterClose}
+      onClosed={handleClose}
       variantSm={variantSm}
       sizeSm={sizeSm}
       justifySm={justifySm}
@@ -115,13 +129,14 @@ export const NavigationOverlay = React.memo<NavigationOverlayProps>((props) => {
       sizeMd={sizeMd}
       justifyMd={justifyMd}
       overlayPaneProps={{
+        layout: true,
+        initial: false,
         onLayoutAnimationStart: () => {
           animating.current = true
         },
         onLayoutAnimationComplete: () => {
           animating.current = false
         },
-        layout: true,
       }}
       sx={{
         zIndex: 'drawer',
@@ -169,7 +184,7 @@ export const NavigationOverlay = React.memo<NavigationOverlayProps>((props) => {
             right={
               <Fab
                 color='inherit'
-                onClick={() => onClose()}
+                onClick={handleClose}
                 sx={{
                   boxShadow: 'none',
                   marginLeft: `calc((${fabSize} - ${svgSize}) * -0.5)`,
