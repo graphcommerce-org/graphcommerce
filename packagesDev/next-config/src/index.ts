@@ -31,7 +31,7 @@ export type ListInfo = {
   }
 }
 
-function extendConfig(nextConfig: NextConfig): NextConfig {
+function extendConfig(nextConfig: NextConfig, modules: string[]): NextConfig {
   return {
     ...nextConfig,
     webpack: (config: Configuration, options) => {
@@ -53,14 +53,13 @@ function extendConfig(nextConfig: NextConfig): NextConfig {
 
       config.snapshot = {
         ...(config.snapshot ?? {}),
-        managedPaths: [/^(.+?[\\/]node_modules[\\/])(?!@graphcommerce)/],
+        managedPaths: [new RegExp(`^(.+?[\\/]node_modules[\\/])(?!${modules.join('|')})`)],
       }
 
       // `config.watchOptions.ignored = ['**/.git/**', '**/node_modules/**', '**/.next/**']
-      // Replace the '**/node_modules/**' with a regex that excludes node_modules except @graphcommerce
       config.watchOptions = {
         ...(config.watchOptions ?? {}),
-        ignored: ['**/.git/**', '**/node_modules/!(@graphcommerce)**', '**/.next/**'],
+        ignored: ['**/.git/**', `**/node_modules/!(${modules.join('|')})**`, '**/.next/**'],
       }
 
       if (!config.resolve) config.resolve = {}
@@ -119,7 +118,7 @@ export function withYarn1Scopes(
     writeFileSync(cacheKey, JSON.stringify(modules))
   }
 
-  return (config) => extendConfig(withTranspileModules(modules)(config))
+  return (config) => extendConfig(withTranspileModules(modules)(config), modules)
 }
 
 export function withYarn1Workspaces(modules: string[] = []): (config: NextConfig) => NextConfig {
@@ -160,5 +159,5 @@ export function withYarn1Workspaces(modules: string[] = []): (config: NextConfig
     }
   })
 
-  return (config) => extendConfig(withTranspileModules([...m.values()])(config))
+  return (config) => extendConfig(withTranspileModules([...m.values()])(config), [...m.values()])
 }
