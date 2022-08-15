@@ -50,7 +50,7 @@ msgid "All products"
 msgstr "Alle Produkte"
 
 msgid "All {name}"
-msgid "Alle {name}"
+msgstr "Alle {name}"
 
 msgid "Apply"
 msgstr "Anwenden"
