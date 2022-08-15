@@ -7,14 +7,14 @@
   "license": "MIT",
   "main": "index.ts",
   "dependencies": {
-    "@graphql-mesh/apollo-link": "^0.0.3",
-    "@graphql-mesh/config": "5.1.2",
-    "@graphql-mesh/graphql": "0.29.5",
-    "@graphql-mesh/types": "0.78.4",
-    "@graphql-mesh/utils": "0.37.5",
+    "@graphql-mesh/apollo-link": "^5.0.1",
+    "@graphql-mesh/config": "5.1.6",
+    "@graphql-mesh/graphql": "0.29.8",
+    "@graphql-mesh/types": "0.78.7",
+    "@graphql-mesh/utils": "0.37.8",
     "@graphql-yoga/node": "^2.13.4",
     "graphql": "16.5.0",
-    "next": "12.2.2"
+    "next": "12.2.5"
   },
   "devDependencies": {
     "@graphcommerce/eslint-config-pwa": "^4.1.9",

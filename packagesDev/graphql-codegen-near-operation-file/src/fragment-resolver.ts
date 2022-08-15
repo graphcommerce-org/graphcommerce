@@ -186,6 +186,7 @@ export default function buildFragmentResolver<T>(
             path: fragmentsFilePath,
             identifiers,
           },
+          emitLegacyCommonJSImports: presetOptions.config.emitLegacyCommonJSImports,
           typesImport,
         }),
       ),

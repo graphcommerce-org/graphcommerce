@@ -26,6 +26,6 @@
     "react-dom": "^18.0.0"
   },
   "dependencies": {
-    "framesync": "^6.1.0"
+    "framesync": "^6.1.1"
   }
 }
