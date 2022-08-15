@@ -86,7 +86,7 @@ export const MuiButtonPill: ButtonVariants = [
   {
     props: { variant: 'pill', size: 'medium' },
     style: ({ theme }) => ({
-      borderRadius: responsiveVal(theme.shape.borderRadius * 3, theme.shape.borderRadius * 4),
+      borderRadius: responsiveVal(theme.shape.borderRadius * 3.2, theme.shape.borderRadius * 4.4),
       '&:not(.Mui-disabled)': { boxShadow: theme.shadows[4] },
     }),
   },
