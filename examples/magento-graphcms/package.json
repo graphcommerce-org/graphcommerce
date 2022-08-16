@@ -26,8 +26,6 @@
     "lingui": "cross-env NODE_ENV=development lingui extract"
   },
   "dependencies": {
-    "@changesets/changelog-github": "0.4.6",
-    "@changesets/cli": "2.24.3",
     "@graphcommerce/cli": "1.0.8",
     "@graphcommerce/ecommerce-ui": "1.1.12",
     "@graphcommerce/framer-next-pages": "3.2.5",
@@ -94,6 +92,7 @@
     "@graphcommerce/typescript-config-pwa": "^4.0.4",
     "@lingui/cli": "3.14.0",
     "eslint": "8.19.0",
+    "prettier": "2.7.1",
     "typescript": "4.7.4"
   },
   "browserslist": [
