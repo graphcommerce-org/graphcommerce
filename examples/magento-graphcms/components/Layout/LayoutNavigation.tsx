@@ -44,65 +44,67 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
 
   return (
     <>
-      <NavigationProvider
-        selection={selection}
-        items={useMemo(
-          () => [
-            <SearchLink
-              href='/search'
-              sx={(theme) => ({
-                width: `calc(100% - ${theme.spacing(4)})`,
-                m: 2,
-                mb: theme.spacings.xs,
-              })}
-            >
-              <Trans id='Search...' />
-            </SearchLink>,
-            { id: 'home', name: 'Home', href: '/' },
-            {
-              id: 'manual-item-one',
-              href: `/${menu?.items?.[0]?.children?.[0]?.url_path}`,
-              name: menu?.items?.[0]?.children?.[0]?.name ?? '',
-            },
-            {
-              id: 'manual-item-two',
-              href: `/${menu?.items?.[0]?.children?.[1]?.url_path}`,
-              name: menu?.items?.[0]?.children?.[1]?.name ?? '',
-            },
-            ...magentoMenuToNavigation(menu, true),
-            { id: 'blog', name: 'Blog', href: '/blog' },
-            <Divider sx={(theme) => ({ my: theme.spacings.xs })} />,
-            <CustomerMenuFabItem key='account' guestHref='/account/signin' authHref='/account'>
-              <Trans id='Account' />
-            </CustomerMenuFabItem>,
-            <MenuFabSecondaryItem
-              key='service'
-              icon={<IconSvg src={iconCustomerService} size='medium' />}
-              href='/service'
-            >
-              <Trans id='Customer Service' />
-            </MenuFabSecondaryItem>,
-            <WishlistMenuFabItem key='wishlist' icon={<IconSvg src={iconHeart} size='medium' />}>
-              <Trans id='Wishlist' />
-            </WishlistMenuFabItem>,
-            <DarkLightModeMenuSecondaryItem key='darkmode' />,
-          ],
-          [menu],
-        )}
-      >
-        <NavigationOverlay
-          stretchColumns={false}
-          variantSm='left'
-          sizeSm='full'
-          justifySm='start'
-          itemWidthSm='70vw'
-          variantMd='left'
-          sizeMd='full'
-          justifyMd='start'
-          itemWidthMd='230px'
-          mouseEvent='hover'
-        />
-      </NavigationProvider>
+      <Suspense>
+        <NavigationProvider
+          selection={selection}
+          items={useMemo(
+            () => [
+              <SearchLink
+                href='/search'
+                sx={(theme) => ({
+                  width: `calc(100% - ${theme.spacing(4)})`,
+                  m: 2,
+                  mb: theme.spacings.xs,
+                })}
+              >
+                <Trans id='Search...' />
+              </SearchLink>,
+              { id: 'home', name: 'Home', href: '/' },
+              {
+                id: 'manual-item-one',
+                href: `/${menu?.items?.[0]?.children?.[0]?.url_path}`,
+                name: menu?.items?.[0]?.children?.[0]?.name ?? '',
+              },
+              {
+                id: 'manual-item-two',
+                href: `/${menu?.items?.[0]?.children?.[1]?.url_path}`,
+                name: menu?.items?.[0]?.children?.[1]?.name ?? '',
+              },
+              ...magentoMenuToNavigation(menu, true),
+              { id: 'blog', name: 'Blog', href: '/blog' },
+              <Divider sx={(theme) => ({ my: theme.spacings.xs })} />,
+              <CustomerMenuFabItem key='account' guestHref='/account/signin' authHref='/account'>
+                <Trans id='Account' />
+              </CustomerMenuFabItem>,
+              <MenuFabSecondaryItem
+                key='service'
+                icon={<IconSvg src={iconCustomerService} size='medium' />}
+                href='/service'
+              >
+                <Trans id='Customer Service' />
+              </MenuFabSecondaryItem>,
+              <WishlistMenuFabItem key='wishlist' icon={<IconSvg src={iconHeart} size='medium' />}>
+                <Trans id='Wishlist' />
+              </WishlistMenuFabItem>,
+              <DarkLightModeMenuSecondaryItem key='darkmode' />,
+            ],
+            [menu],
+          )}
+        >
+          <NavigationOverlay
+            stretchColumns={false}
+            variantSm='left'
+            sizeSm='full'
+            justifySm='start'
+            itemWidthSm='70vw'
+            variantMd='left'
+            sizeMd='full'
+            justifyMd='start'
+            itemWidthMd='230px'
+            mouseEvent='hover'
+          />
+        </NavigationProvider>
+      </Suspense>
 
       <LayoutDefault
         {...uiProps}
