@@ -161,6 +161,9 @@ without fills. The path must be wrapped in a `<symbol>` that has an attribute
 </svg>
 ```
 
+Some icons may contain a `<ellipse>`, `<line>`, `<polygon>`, `<polyline>`,
+`<rect>` elements, make sure these are also wrapped in the `<symbol>` tag.
+
 Icons can be placed in the same directory as a page or component and can be
 imported from there (the `<IconSvg>` component will convert the relative path to
 an absolute path)
