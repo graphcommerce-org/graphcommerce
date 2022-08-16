@@ -1,5 +1,4 @@
 fragment CategoryMeta on CategoryTree {
-  uid
   name
   meta_title
   meta_description
