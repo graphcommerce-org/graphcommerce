@@ -161,31 +161,8 @@ without fills. The path must be wrapped in a `<symbol>` that has an attribute
 </svg>
 ```
 
-Some icons may contain a `<polyline>` tag, make sure this tag is also wrapped in
-a `<symbol>` tag.
-
-```svg
-<svg
-  role="img"
-  xmlns="http://www.w3.org/2000/svg"
-  width="48px"
-  height="48px"
-  aria-labelledby="clipboardIconTitle"
-  stroke="#2329D6"
-  stroke-width="1"
-  stroke-linecap="square"
-  stroke-linejoin="miter"
-  fill="none"
-  color="#2329D6"
-  >
-    <title id="clipboardIconTitle">Clipboard</title>
-    <symbol id='icon' viewBox='0 0 24 24'>
-      <polyline points="15 3 19 3 19 21 5 21 5 3 5 3 9 3"/>
-      <path d="M14,4 L10,4 C9.44771525,4 9,3.55228475 9,3 C9,2.44771525 9.44771525,2 10,2 L14,2 C14.5522847,2 15,2.44771525 15,3 C15,3.55228475 14.5522847,
-      4 14,4 Z"/>
-  </symbol>
-</svg>
-```
+Some icons may contain an `<ellipse>`, `<line>`, `<polygon>`, `<polyline>`,
+`<rect>`, make sure these tag is also wrapped in the `<symbol>` tag.
 
 Icons can be placed in the same directory as a page or component and can be
 imported from there (the `<IconSvg>` component will convert the relative path to
