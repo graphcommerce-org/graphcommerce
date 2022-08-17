@@ -7,7 +7,6 @@ export function useMemoDeep<T>(factory: () => T, deps: DependencyList | undefine
 
   if (!equal(deps, ref.current)) {
     ref.current = deps
-    console.log('not the same', deps)
     signalRef.current += 1
   }
 
