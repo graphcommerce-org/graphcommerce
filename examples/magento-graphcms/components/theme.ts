@@ -116,14 +116,14 @@ const createThemeWithPalette = (palette: PaletteOptions) =>
       },
       h5: {
         ...fontSize(17, 20),
-        fontWeight: 700,
+        fontWeight: 650,
         fontVariationSettings: "'wght' 650",
         lineHeight: 1.55,
       },
       h6: {
         ...fontSize(17, 20),
         fontWeight: 550,
-        fontVariationSettings: "'wght' 480",
+        fontVariationSettings: "'wght' 510",
         lineHeight: 1.8,
       },
       subtitle1: {
@@ -248,6 +248,12 @@ const createOverrides = (theme: Theme): Components => ({
       {
         props: { variant: 'inline' },
         style: { borderRadius: '99em' },
+      },
+      {
+        props: { variant: 'pill', size: 'large' },
+        style: {
+          borderRadius: responsiveVal(theme.shape.borderRadius * 5, theme.shape.borderRadius * 6),
+        },
       },
     ],
   },
