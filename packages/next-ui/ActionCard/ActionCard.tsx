@@ -1,7 +1,7 @@
-import { responsiveVal } from '@graphcommerce/next-ui'
 import { SxProps, ButtonBase, Box, Theme, alpha } from '@mui/material'
 import React, { FormEvent } from 'react'
 import { extendableComponent } from '../Styles'
+import { responsiveVal } from '../Styles/responsiveVal'
 
 export type ActionCardProps = {
   sx?: SxProps<Theme>
