@@ -1,5 +1,10 @@
 import { useCartQuery } from '@graphcommerce/magento-cart'
-import { iconChevronDown, IconSvg, extendableComponent } from '@graphcommerce/next-ui'
+import {
+  iconChevronDown,
+  IconSvg,
+  extendableComponent,
+  responsiveVal,
+} from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { SxProps, Theme, Accordion, AccordionSummary, AccordionDetails } from '@mui/material'
 import { useState } from 'react'
@@ -36,10 +41,10 @@ export function CouponAccordion(props: CouponAccordionProps) {
       expanded={!coupon && open}
       variant='outlined'
       sx={[
-        {
-          borderRadius: 1,
+        (theme) => ({
+          borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
           '::before': { display: 'none' },
-        },
+        }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
