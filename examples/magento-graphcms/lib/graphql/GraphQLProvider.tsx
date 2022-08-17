@@ -11,6 +11,7 @@ import {
   fragments,
   mergeTypePolicies,
   errorLink,
+  measurePerformanceLink,
 } from '@graphcommerce/graphql'
 import { cartTypePolicies, migrateCart, createCartErrorLink } from '@graphcommerce/magento-cart'
 import { CreateEmptyCartDocument } from '@graphcommerce/magento-cart/hooks/CreateEmptyCart.gql'
@@ -43,7 +44,12 @@ const clientRef: { current: ApolloClient<NormalizedCacheObject> | null } = { cur
 /** HttpLink to connecto to the GraphQL Backend. */
 export function httpLink(cache: ApolloCache<NormalizedCacheObject>, locale?: string) {
   return ApolloLink.from([
-    ...(process.env.NODE_ENV !== 'production' ? [errorLink] : []),
+    ...(process.env.NODE_ENV !== 'production'
+      ? [
+          errorLink,
+          // measurePerformanceLink
+        ]
+      : []),
     // Add the correct store header for the Magento user.
     createStoreLink(locale),
     // Add the correct authorization header for the Magento user.

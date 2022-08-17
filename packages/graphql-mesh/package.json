@@ -7,6 +7,7 @@
   "license": "MIT",
   "main": "index.ts",
   "dependencies": {
+    "@envelop/apollo-tracing": "^3.5.0",
     "@graphql-mesh/apollo-link": "^5.0.1",
     "@graphql-mesh/config": "5.1.6",
     "@graphql-mesh/graphql": "0.29.8",
