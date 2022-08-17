@@ -111,8 +111,8 @@ const createThemeWithPalette = (palette: PaletteOptions) =>
       },
       h4: {
         ...fontSize(18, 26),
-        fontWeight: 500,
-        fontVariationSettings: "'wght' 490",
+        fontWeight: 550,
+        fontVariationSettings: "'wght' 550",
         lineHeight: 1.55,
       },
       h5: {
