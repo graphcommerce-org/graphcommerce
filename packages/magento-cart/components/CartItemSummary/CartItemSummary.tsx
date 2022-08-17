@@ -137,7 +137,7 @@ export function CartItemSummary(props: OrderSummaryProps) {
         />
         <CartTotals
           sx={(theme) => ({
-            background: theme.palette.background.default,
+            background: 'none',
             padding: 0,
           })}
         />

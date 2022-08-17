@@ -1,7 +1,7 @@
 import { Money } from '@graphcommerce/magento-store'
 import { ActionCard, ActionCardItemRenderProps } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box, Button } from '@mui/material'
+import { Box, Button, Chip } from '@mui/material'
 import { AvailableShippingMethodFragment } from '../../AvailableShippingMethod/AvailableShippingMethod.gql'
 
 type ShippingMethodActionCardProps = ActionCardItemRenderProps<
@@ -50,9 +50,14 @@ export function ShippingMethodActionCard(props: ShippingMethodActionCardProps) {
         !isFree ? (
           <Money {...amount} />
         ) : (
-          <Box sx={{ color: '#05C642' }}>
-            <Trans id='Free' />
-          </Box>
+          <Chip
+            sx={{
+              borderRadius: 2,
+              fontWeight: 'initial',
+              fontVariationSettings: 'initial',
+            }}
+            label={<Trans id='Free' />}
+          />
         )
       }
       reset={

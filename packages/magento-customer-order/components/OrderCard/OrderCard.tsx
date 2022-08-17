@@ -1,6 +1,6 @@
 import { Money } from '@graphcommerce/magento-store'
 import { extendableComponent, useDateTimeFormat } from '@graphcommerce/next-ui'
-import { Box, Button, styled, SxProps, Theme, Skeleton } from '@mui/material'
+import { Box, Button, styled, SxProps, Theme, Skeleton, ListItemButton } from '@mui/material'
 import PageLink from 'next/link'
 import { UseOrderCardItemImages } from '../../hooks/useOrderCardItemImages'
 import { OrderCardItemImage } from '../OrderCardItemImage/OrderCardItemImage'
@@ -76,8 +76,7 @@ export function OrderCard(props: OrderCardProps) {
 
   return (
     <PageLink href={`/account/orders/view?orderId=${number}`} passHref>
-      <Button
-        variant='pill'
+      <ListItemButton
         className={classes.buttonRoot}
         sx={[
           (theme) => ({
@@ -155,7 +154,7 @@ export function OrderCard(props: OrderCardProps) {
             {shipments?.[0]?.tracking?.[0] && <TrackingLink {...shipments?.[0].tracking?.[0]} />}
           </Box>
         </OrderContainer>
-      </Button>
+      </ListItemButton>
     </PageLink>
   )
 }

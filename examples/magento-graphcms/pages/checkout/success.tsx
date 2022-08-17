@@ -16,7 +16,7 @@ import { Trans } from '@lingui/react'
 import { Button, Box, Container, NoSsr } from '@mui/material'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { LayoutNavigation, LayoutNavigationProps, LayoutMinimalProps } from '../../components'
+import { LayoutMinimal, LayoutNavigationProps, LayoutMinimalProps } from '../../components'
 import { DefaultPageDocument } from '../../graphql/DefaultPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
@@ -66,7 +66,7 @@ function OrderSuccessPage() {
 
             <Box textAlign='center' m={8}>
               <Link href='/' passHref>
-                <Button color='secondary' variant='pill' size='large' id='back-to-home'>
+                <Button color='primary' variant='pill' size='large' id='back-to-home'>
                   <Trans id='Back to home' />
                 </Button>
               </Link>
@@ -79,7 +79,7 @@ function OrderSuccessPage() {
 }
 
 const pageOptions: PageOptions<LayoutMinimalProps> = {
-  Layout: LayoutNavigation,
+  Layout: LayoutMinimal,
   sharedKey: () => 'checkout',
 }
 OrderSuccessPage.pageOptions = pageOptions

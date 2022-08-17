@@ -58,7 +58,7 @@ export function CartTotals(props: CartTotalsProps) {
           borderRadius: responsiveVal(theme.shape.borderRadius * 3, theme.shape.borderRadius * 4),
           background:
             theme.palette.mode === 'light'
-              ? '#FFE10820'
+              ? theme.palette.background.default
               : lighten(theme.palette.background.default, 0.15),
           padding: `${theme.spacings.xs} ${theme.spacings.sm}`,
 

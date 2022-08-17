@@ -48,7 +48,10 @@ export function CartSummary(props: CartSummaryProps) {
         className={classes.detailsContainer}
         sx={(theme) => ({
           borderRadius: '4px 4px 0 0',
-          background: theme.palette.mode === 'light' ? '#FFE10820' : theme.palette.background.paper,
+          background:
+            theme.palette.mode === 'light'
+              ? theme.palette.background.default
+              : theme.palette.background.paper,
           padding: theme.spacings.sm,
           gridColumnGap: theme.spacings.xxl,
           gridRowGap: theme.spacings.sm,
