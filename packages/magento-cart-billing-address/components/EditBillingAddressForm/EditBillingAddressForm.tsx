@@ -88,7 +88,7 @@ export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
         <FormActions sx={{ paddingBottom: 0 }}>
           <Button
             type='submit'
-            variant='contained'
+            variant='pill'
             color='primary'
             size='large'
             loading={formState.isSubmitting}

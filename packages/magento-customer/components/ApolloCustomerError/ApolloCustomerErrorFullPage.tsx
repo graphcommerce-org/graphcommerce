@@ -27,7 +27,7 @@ export function ApolloCustomerErrorFullPage(props: ApolloCustomerErrorFullPagePr
       button={
         unauthorized ? (
           <PageLink href='/account/signin' passHref>
-            <Button variant='contained' color='primary' size='large'>
+            <Button variant='pill' color='primary' size='large'>
               {token ? <Trans id='Sign in' /> : <Trans id='Sign in or create an account!' />}
             </Button>
           </PageLink>

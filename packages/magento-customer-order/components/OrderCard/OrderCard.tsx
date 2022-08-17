@@ -77,7 +77,7 @@ export function OrderCard(props: OrderCardProps) {
   return (
     <PageLink href={`/account/orders/view?orderId=${number}`} passHref>
       <Button
-        variant='contained'
+        variant='pill'
         className={classes.buttonRoot}
         sx={[
           (theme) => ({

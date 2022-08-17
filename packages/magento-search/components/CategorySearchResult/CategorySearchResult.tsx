@@ -20,7 +20,7 @@ export function CategorySearchResult(props: CategorySearchResultProps) {
     <PageLink href={`/${catProps?.url_path ?? ''}`} passHref>
       <Button
         fullWidth
-        variant='contained'
+        variant='pill'
         className={classes.root}
         disableElevation
         endIcon={<IconSvg src={iconChevronRight} size='small' />}

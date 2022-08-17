@@ -57,7 +57,7 @@ function WishlistPage(props: Props) {
                 icon={<IconSvg src={iconHeart} size='xxl' />}
                 button={
                   <Link href='/' passHref>
-                    <Button variant='contained' color='primary' size='large'>
+                    <Button variant='pill' color='primary' size='large'>
                       <Trans id='Continue shopping' />
                     </Button>
                   </Link>

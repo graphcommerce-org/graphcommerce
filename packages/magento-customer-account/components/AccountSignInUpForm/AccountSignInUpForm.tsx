@@ -143,7 +143,7 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
                   <Button
                     type='submit'
                     loading={formState.isSubmitting}
-                    variant='contained'
+                    variant='pill'
                     color='primary'
                     size='large'
                   >

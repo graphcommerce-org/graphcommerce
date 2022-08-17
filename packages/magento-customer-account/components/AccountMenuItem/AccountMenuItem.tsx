@@ -41,7 +41,7 @@ export function AccountMenuItem(props: AccountMenuItemProps) {
 
   const button = (
     <Button
-      variant='contained'
+      variant='pill'
       disableElevation
       disabled={disabled}
       className={classes.root}
