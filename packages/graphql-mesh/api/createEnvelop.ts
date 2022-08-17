@@ -10,15 +10,7 @@ export async function createServer(endpoint: string) {
 
   // pass the Mesh instance to Yoga and configure GraphiQL
   const server = createYogaServer({
-    plugins: [
-      ...mesh.plugins,
-      useExtendContext(({ req, res }) => ({
-        ...req,
-        headers: req.headers,
-        cookies: req.cookies,
-        res,
-      })),
-    ],
+    plugins: mesh.plugins,
     context: ({ req }) => ({ ...req, ...mesh.meshContext }),
     graphiql: {
       endpoint,
