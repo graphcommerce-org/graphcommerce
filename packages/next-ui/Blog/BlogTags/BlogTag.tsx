@@ -15,9 +15,8 @@ export function BlogTag(props: BlogTagsProps) {
         label={title}
         sx={[
           {
-            marginRight: '8px',
-            borderRadius: '4px',
-            fontSize: '14px',
+            marginRight: 3,
+            borderRadius: 2,
           },
           ...(Array.isArray(sx) ? sx : [sx]),
         ]}
