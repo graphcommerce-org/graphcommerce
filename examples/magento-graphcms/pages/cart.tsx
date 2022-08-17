@@ -47,6 +47,7 @@ function CartPage() {
         metaRobots={['noindex']}
       />
       <LayoutOverlayHeader
+        switchPoint={0}
         primary={
           <PageLink href='/checkout' passHref>
             <LinkOrButton
@@ -88,11 +89,6 @@ function CartPage() {
           <AnimatePresence initial={false}>
             {hasItems ? (
               <>
-                <AnimatedRow layout key='quick-checkout'>
-                  <LayoutTitle icon={iconShoppingBag}>
-                    <Trans id='Cart Total' />: <Money {...data?.cart?.prices?.grand_total} />
-                  </LayoutTitle>
-                </AnimatedRow>
                 <CartItems
                   items={data?.cart?.items}
                   id={data?.cart?.id ?? ''}
