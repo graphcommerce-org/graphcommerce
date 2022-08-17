@@ -9,6 +9,7 @@ import {
   SxProps,
   Theme,
   Portal,
+  useMediaQuery,
 } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { IconSvg } from '../IconSvg'
@@ -66,8 +67,7 @@ export default function MessageSnackbarImpl(props: MessageSnackbarImplProps) {
   }, [open])
 
   const hideSnackbar = (e) => {
-    e.preventDefault()
-
+    // e.preventDefault()
     setShowSnackbar(false)
     onClose?.()
   }
@@ -80,20 +80,22 @@ export default function MessageSnackbarImpl(props: MessageSnackbarImplProps) {
   let icon = iconCheckmark
   if (severity === 'error') icon = iconSadFace
 
+  const isMobile = useMediaQuery<Theme>((theme) => theme.breakpoints.down('md'))
+
   return (
     <Portal>
       <Snackbar
         {...snackbarProps}
         message={message}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+        anchorOrigin={{ vertical: isMobile ? 'top' : 'bottom', horizontal: 'center' }}
         open={showSnackbar}
-        autoHideDuration={autoHide ? 6000 : null}
+        autoHideDuration={autoHide ? 5000 : null}
         className={classes.root}
         sx={sx}
         onClose={hideSnackbar}
       >
         <SnackbarContent
-          elevation={12}
+          elevation={16}
           className={classes.content}
           sx={(theme) => ({
             '&.variantPill': {

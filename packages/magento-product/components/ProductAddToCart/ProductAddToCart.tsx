@@ -11,7 +11,7 @@ import {
   AnimatedRow,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Divider, Typography, ButtonProps, Box, Alert } from '@mui/material'
+import { Divider, Typography, ButtonProps, Box, Alert, useMediaQuery, Theme } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'
@@ -44,6 +44,7 @@ export function ProductAddToCart(
 
   const { handleSubmit, formState, error, muiRegister, required, data } = form
   const submitHandler = handleSubmit(() => {})
+  const isMobile = useMediaQuery<Theme>((theme) => theme.breakpoints.down('md'))
 
   return (
     <Box component='form' onSubmit={submitHandler} noValidate className={classes.root} sx={sx}>
@@ -116,18 +117,21 @@ export function ProductAddToCart(
           !data?.addProductsToCart?.user_errors?.length
         }
         variant='pill'
+        autoHide
         action={
-          <PageLink href='/cart' passHref>
-            <Button
-              id='view-shopping-cart-button'
-              size='medium'
-              variant='pill'
-              color='secondary'
-              endIcon={<IconSvg src={iconChevronRight} />}
-            >
-              <Trans id='View shopping cart' />
-            </Button>
-          </PageLink>
+          !isMobile && (
+            <PageLink href='/cart' passHref>
+              <Button
+                id='view-shopping-cart-button'
+                size='medium'
+                variant='pill'
+                color='secondary'
+                endIcon={<IconSvg src={iconChevronRight} />}
+              >
+                <Trans id='View shopping cart' />
+              </Button>
+            </PageLink>
+          )
         }
       >
         <Trans
