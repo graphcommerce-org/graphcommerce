@@ -69,8 +69,6 @@ export function ActionCard(props: ActionCardProps) {
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => onClick?.(event, value)
 
-  if (hidden) return false
-
   return (
     <ButtonBase
       component='div'
