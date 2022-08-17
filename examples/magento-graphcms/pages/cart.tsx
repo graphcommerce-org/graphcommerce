@@ -25,7 +25,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Container } from '@mui/material'
+import { Box, Container } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
 import { LayoutOverlay, LayoutOverlayProps } from '../components'
@@ -88,7 +88,7 @@ function CartPage() {
         ) : (
           <AnimatePresence initial={false}>
             {hasItems ? (
-              <>
+              <Box sx={(theme) => ({ mt: theme.spacings.lg })}>
                 <CartItems
                   items={data?.cart?.items}
                   id={data?.cart?.id ?? ''}
@@ -110,7 +110,7 @@ function CartPage() {
                 <AnimatedRow layout key='checkout-button'>
                   <CartStartCheckout {...data?.cart} />
                 </AnimatedRow>
-              </>
+              </Box>
             ) : (
               <EmptyCart>{error && <ApolloCartErrorAlert error={error} />}</EmptyCart>
             )}

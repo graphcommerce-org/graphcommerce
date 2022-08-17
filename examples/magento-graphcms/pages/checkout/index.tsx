@@ -95,7 +95,7 @@ function ShippingPage() {
                 ) : (
                   <>
                     <Typography
-                      variant='h3'
+                      variant='h4'
                       gutterBottom
                       sx={(theme) => ({ mt: theme.spacings.lg, mb: theme.spacings.sm })}
                     >
