@@ -131,7 +131,7 @@ export function ActionCard(props: ActionCardProps) {
         selected &&
           ((theme) => ({
             border: `2px solid ${theme.palette.secondary.main} !important`,
-            outline: `3px solid ${alpha(
+            boxShadow: `0 0 0 4px ${alpha(
               theme.palette.secondary.main,
               theme.palette.action.activatedOpacity,
             )} !important`,

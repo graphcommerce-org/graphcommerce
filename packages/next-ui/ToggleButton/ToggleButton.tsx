@@ -72,8 +72,7 @@ export const ToggleButton = React.forwardRef<any, ToggleButtonProps>((props, ref
             border: `1px solid ${theme.palette[color]?.main ?? theme.palette.primary.main}`,
             boxShadow: `inset 0 0 0 1px ${
               theme.palette[color]?.main ?? theme.palette.primary.main
-            }`,
-            outline: `3px solid ${alpha(
+            },0 0 0 4px ${alpha(
               theme.palette.primary.main,
               theme.palette.action.activatedOpacity,
             )} !important`,
