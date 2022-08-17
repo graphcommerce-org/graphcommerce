@@ -131,6 +131,10 @@ export function ActionCard(props: ActionCardProps) {
         selected &&
           ((theme) => ({
             border: `2px solid ${theme.palette.secondary.main} !important`,
+            outline: `3px solid ${alpha(
+              theme.palette.secondary.main,
+              theme.palette.action.activatedOpacity,
+            )} !important`,
             borderTopLeftRadius: responsiveVal(
               theme.shape.borderRadius * 3,
               theme.shape.borderRadius * 4,
@@ -187,10 +191,11 @@ export function ActionCard(props: ActionCardProps) {
       {details && (
         <Box
           className={classes.details}
-          sx={{
+          sx={(theme) => ({
+            ...theme.typography.body2,
             gridArea: 'details',
             color: 'text.secondary',
-          }}
+          })}
         >
           {details}
         </Box>

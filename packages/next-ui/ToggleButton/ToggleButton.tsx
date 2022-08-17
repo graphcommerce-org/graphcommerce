@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Button, ButtonProps } from '@mui/material'
+import { alpha, Button, ButtonProps } from '@mui/material'
 import React, { FormEvent } from 'react'
 import { extendableComponent } from '../Styles'
 import { responsiveVal } from '../Styles/responsiveVal'
@@ -73,6 +73,10 @@ export const ToggleButton = React.forwardRef<any, ToggleButtonProps>((props, ref
             boxShadow: `inset 0 0 0 1px ${
               theme.palette[color]?.main ?? theme.palette.primary.main
             }`,
+            outline: `3px solid ${alpha(
+              theme.palette.primary.main,
+              theme.palette.action.activatedOpacity,
+            )} !important`,
           },
           ':not(&.sizeSmall)': {
             borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
