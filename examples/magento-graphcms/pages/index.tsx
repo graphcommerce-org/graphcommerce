@@ -1,14 +1,7 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { ProductListDocument, ProductListQuery } from '@graphcommerce/magento-product'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import {
-  GetStaticProps,
-  LayoutHeader,
-  LayoutTitle,
-  MetaRobots,
-  PageMeta,
-} from '@graphcommerce/next-ui'
-import { useRouter } from 'next/router'
+import { GetStaticProps, LayoutHeader, MetaRobots, PageMeta } from '@graphcommerce/next-ui'
 import { LayoutNavigation, LayoutNavigationProps, RowProduct, RowRenderer } from '../components'
 import { DefaultPageDocument, DefaultPageQuery } from '../graphql/DefaultPage.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
@@ -66,10 +59,9 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   })
 
   // todo(paales): Remove when https://github.com/Urigo/graphql-mesh/issues/1257 is resolved
-  const categoryUid = String((await conf).data.storeConfig?.root_category_uid ?? '')
   const productList = staticClient.query({
     query: ProductListDocument,
-    variables: { categoryUid, pageSize: 8, filters: { category_uid: { eq: 'MTAy' } } },
+    variables: { pageSize: 8, filters: { category_uid: { eq: 'MTAy' } }, categoryUid: 'MTAy' },
   })
 
   if (!(await page).data.pages?.[0]) return { notFound: true }

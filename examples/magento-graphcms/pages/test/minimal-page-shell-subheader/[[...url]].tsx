@@ -108,7 +108,6 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     props: {
       ...(await page).data,
       ...(await products).data,
-      scrolled: true,
       filterTypes: await filterTypes,
       params: productListParams,
       up: { href: '/', title: 'Home' },

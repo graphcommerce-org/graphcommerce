@@ -63,7 +63,7 @@ function CategoryPage(props: Props) {
     <>
       <CategoryMeta
         params={params}
-        title={page?.metaTitle ?? page?.titlepage?.metaTitle}
+        title={page?.metaTitle ?? page?.title}
         metaDescription={page?.metaDescription}
         metaRobots={page?.metaRobots.toLowerCase().split('_') as MetaRobots[]}
         canonical={page?.url ? `/${page.url}` : undefined}
@@ -101,7 +101,7 @@ function CategoryPage(props: Props) {
         />
       )}
 
-      {isCategory && (
+      {isCategory && !isLanding && (
         <ProductListParamsProvider value={params}>
           <CategoryDescription description={category.description} />
           <CategoryChildren params={params}>{category.children}</CategoryChildren>
@@ -164,7 +164,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const staticClient = graphqlSsrClient(locale)
   const categoryPage = staticClient.query({
     query: CategoryPageDocument,
-    variables: { url, rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '' },
+    variables: { url },
   })
 
   const productListParams = parseParams(url, query, await filterTypes)
@@ -184,8 +184,6 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
       revalidate: 60 * 20,
     }
   }
-
-  console.log(productListParams)
 
   const products = staticClient.query({
     query: ProductListDocument,
