@@ -82,11 +82,15 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'react/require-default-props': 'off',
     'react/jsx-no-useless-fragment': ['error', { allowExpressions: true }],
-    'react-hooks/exhaustive-deps': ['error', { additionalHooks: '(useIsomorphicLayoutEffect)' }],
+    'react-hooks/exhaustive-deps': [
+      'error',
+      { additionalHooks: '(useIsomorphicLayoutEffect|useMemoDeep)' },
+    ],
     'react/jsx-no-duplicate-props': ['error', { ignoreCase: false }],
     'react/function-component-definition': 'off',
 
     // typescript
+    // '@typescript-eslint/consistent-type-imports': 'error',
     '@typescript-eslint/indent': 'off',
     '@typescript-eslint/semi': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',

@@ -20,6 +20,7 @@ import {
   NavigationProvider,
   NavigationOverlay,
   useNavigationSelection,
+  useMemoDeep,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
@@ -47,7 +48,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
       <Suspense>
         <NavigationProvider
           selection={selection}
-          items={useMemo(
+          items={useMemoDeep(
             () => [
               <SearchLink
                 href='/search'
