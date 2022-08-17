@@ -38,6 +38,7 @@ const lightPalette: PaletteOptions = {
   },
   action: {
     hoverOpacity: 0.16,
+    activatedOpacity: 0.14,
   },
   text: {
     primary: '#000000',
@@ -331,19 +332,8 @@ const createOverrides = (theme: Theme): Components => ({
 
   MuiSwitch: {
     styleOverrides: {
-      track: {
-        '.Mui-colorPrimary + &': {
-          backgroundColor: theme.palette.primary,
-          borderRadius: '30px',
-        },
-        '.Mui-checked.Mui-colorPrimary + &': {
-          opacity: 1,
-          backgroundColor: theme.palette.primary,
-          borderRadius: '30px',
-        },
-      },
       thumb: {
-        backgroundColor: '#fff',
+        boxShadow: theme.shadows[6],
       },
     },
   },
