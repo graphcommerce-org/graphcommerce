@@ -83,7 +83,7 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
           </LayoutTitle>
           <Typography variant='h6' align='center'>
             <PageLink href='/account' passHref>
-              <Link underline='hover'>
+              <Link underline='hover' color='secondary'>
                 <Trans id='View your account' />
               </Link>
             </PageLink>
