@@ -1,4 +1,5 @@
-import { SxProps, ButtonBase, Box, Theme } from '@mui/material'
+import { responsiveVal } from '@graphcommerce/next-ui'
+import { SxProps, ButtonBase, Box, Theme, alpha } from '@mui/material'
 import React, { FormEvent } from 'react'
 import { extendableComponent } from '../Styles'
 
@@ -68,6 +69,8 @@ export function ActionCard(props: ActionCardProps) {
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => onClick?.(event, value)
 
+  if (hidden) return false
+
   return (
     <ButtonBase
       component='div'
@@ -94,12 +97,24 @@ export function ActionCard(props: ActionCardProps) {
           border: `1px solid ${theme.palette.divider}`,
           borderBottomColor: `transparent`,
           '&:first-of-type': {
-            borderTopLeftRadius: theme.shape.borderRadius,
-            borderTopRightRadius: theme.shape.borderRadius,
+            borderTopLeftRadius: responsiveVal(
+              theme.shape.borderRadius * 3,
+              theme.shape.borderRadius * 4,
+            ),
+            borderTopRightRadius: responsiveVal(
+              theme.shape.borderRadius * 3,
+              theme.shape.borderRadius * 4,
+            ),
           },
           '&:last-of-type': {
-            borderBottomLeftRadius: theme.shape.borderRadius,
-            borderBottomRightRadius: theme.shape.borderRadius,
+            borderBottomLeftRadius: responsiveVal(
+              theme.shape.borderRadius * 3,
+              theme.shape.borderRadius * 4,
+            ),
+            borderBottomRightRadius: responsiveVal(
+              theme.shape.borderRadius * 3,
+              theme.shape.borderRadius * 4,
+            ),
             borderBottom: `1px solid ${theme.palette.divider}`,
           },
         }),
@@ -118,15 +133,33 @@ export function ActionCard(props: ActionCardProps) {
         selected &&
           ((theme) => ({
             border: `2px solid ${theme.palette.secondary.main} !important`,
-            borderTopLeftRadius: theme.shape.borderRadius,
-            borderTopRightRadius: theme.shape.borderRadius,
-            borderBottomLeftRadius: theme.shape.borderRadius,
-            borderBottomRightRadius: theme.shape.borderRadius,
+            borderTopLeftRadius: responsiveVal(
+              theme.shape.borderRadius * 3,
+              theme.shape.borderRadius * 4,
+            ),
+            borderTopRightRadius: responsiveVal(
+              theme.shape.borderRadius * 3,
+              theme.shape.borderRadius * 4,
+            ),
+            borderBottomLeftRadius: responsiveVal(
+              theme.shape.borderRadius * 3,
+              theme.shape.borderRadius * 4,
+            ),
+            borderBottomRightRadius: responsiveVal(
+              theme.shape.borderRadius * 3,
+              theme.shape.borderRadius * 4,
+            ),
             padding: `${theme.spacings.xxs} ${theme.spacings.xs}`,
           })),
         disabled &&
           ((theme) => ({
-            background: theme.palette.background.default,
+            '& *': {
+              opacity: theme.palette.action.disabledOpacity,
+            },
+            background: alpha(
+              theme.palette.action.disabledBackground,
+              theme.palette.action.disabledOpacity / 10,
+            ),
           })),
 
         ...(Array.isArray(sx) ? sx : [sx]),
