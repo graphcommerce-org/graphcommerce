@@ -41,7 +41,6 @@ export function AccountMenuItem(props: AccountMenuItemProps) {
 
   const button = (
     <Button
-      variant='pill'
       disableElevation
       disabled={disabled}
       className={classes.root}
@@ -51,7 +50,7 @@ export function AccountMenuItem(props: AccountMenuItemProps) {
           height: responsiveVal(88, 104),
           padding: 0,
           borderRadius: 0,
-          background: theme.palette.background.default,
+          background: theme.palette.background.paper,
           '&:hover': {
             background: theme.palette.background.default,
           },
