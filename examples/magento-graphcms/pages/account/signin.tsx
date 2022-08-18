@@ -51,7 +51,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
       variantMd: 'right',
       justifyMd: 'start',
       sizeMd: 'floating',
-      size: 'max',
+      sizeSm: 'full',
     },
   }
 }
