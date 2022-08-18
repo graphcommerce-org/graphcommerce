@@ -384,7 +384,7 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
               [theme.breakpoints.down('md')]: {
                 minWidth: '80vw',
                 '&:not(.sizeMdFull)': {
-                  width: 'max-content',
+                  width: 'auto',
                 },
 
                 '&.variantSmBottom.sizeSmFull': {
