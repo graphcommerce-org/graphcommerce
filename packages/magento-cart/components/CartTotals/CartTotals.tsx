@@ -76,7 +76,7 @@ export function CartTotals(props: CartTotalsProps) {
             layout={animateLayout}
             className={classes.costsRow}
             key='subtotal'
-            sx={{ display: 'flex', justifyContent: 'space-between', typography: 'subtitle1' }}
+            sx={{ display: 'flex', justifyContent: 'space-between' }}
           >
             <Box>
               <Trans id='Products' />
@@ -104,7 +104,6 @@ export function CartTotals(props: CartTotalsProps) {
               sx={{
                 display: 'flex',
                 justifyContent: 'space-between',
-                typography: 'subtitle1',
               }}
             >
               <Box>{discount?.label}</Box>
@@ -120,7 +119,7 @@ export function CartTotals(props: CartTotalsProps) {
             layout={animateLayout}
             className={classes.costsRow}
             key='shippingMethod'
-            sx={{ display: 'flex', justifyContent: 'space-between', typography: 'subtitle1' }}
+            sx={{ display: 'flex', justifyContent: 'space-between' }}
           >
             <Box>
               <Trans
@@ -144,7 +143,7 @@ export function CartTotals(props: CartTotalsProps) {
               layout={animateLayout}
               className={classes.costsRow}
               key={`excl${tax?.label}`}
-              sx={{ display: 'flex', justifyContent: 'space-between', typography: 'subtitle1' }}
+              sx={{ display: 'flex', justifyContent: 'space-between' }}
             >
               <Box>{tax?.label}</Box>
               <Box className={classes.money} sx={{ whiteSpace: 'nowrap' }}>
@@ -165,7 +164,6 @@ export function CartTotals(props: CartTotalsProps) {
             sx={(theme) => ({
               display: 'flex',
               justifyContent: 'space-between',
-              typography: 'subtitle1',
               color: theme.palette.primary.main,
             })}
           >
@@ -187,7 +185,6 @@ export function CartTotals(props: CartTotalsProps) {
               sx={{
                 display: 'flex',
                 justifyContent: 'space-between',
-                typography: 'body1',
                 color: 'text.disabled',
                 paddingTop: 0,
               }}

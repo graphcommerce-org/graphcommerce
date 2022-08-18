@@ -121,7 +121,7 @@ function PaymentPage() {
 
                   <CartSummary editable key='cart-summary'>
                     <Divider />
-                    <CartTotals />
+                    <CartTotals sx={{ typography: 'body1' }} />
                   </CartSummary>
 
                   <CouponAccordion key='coupon' />
