@@ -1,0 +1,21 @@
+diff --git a/node_modules/@graphql-tools/url-loader/esm/index.js b/node_modules/@graphql-tools/url-loader/esm/index.js
+index e4b2914..17b5d91 100644
+--- a/node_modules/@graphql-tools/url-loader/esm/index.js
++++ b/node_modules/@graphql-tools/url-loader/esm/index.js
+@@ -1,6 +1,6 @@
+ /* eslint-disable no-case-declarations */
+ /// <reference lib="dom" />
+-import { print, buildASTSchema, buildSchema, } from 'graphql';
++import { print, buildASTSchema, buildSchema, stripIgnoredCharacters } from 'graphql';
+ import { observableToAsyncIterable, isAsyncIterable, parseGraphQLSDL, getOperationASTFromRequest, } from '@graphql-tools/utils';
+ import { introspectSchema, wrapSchema } from '@graphql-tools/wrap';
+ import { createClient } from 'graphql-ws';
+@@ -132,7 +132,7 @@ export class UrlLoader {
+                 ? `${dummyHostname}${HTTP_URL}`
+                 : `${dummyHostname}/${HTTP_URL}`;
+         const urlObj = new URL(validUrl);
+-        urlObj.searchParams.set('query', query);
++        urlObj.searchParams.set('query', stripIgnoredCharacters(query));
+         if (variables && Object.keys(variables).length > 0) {
+             urlObj.searchParams.set('variables', JSON.stringify(variables));
+         }
