@@ -24,7 +24,7 @@ function client(locale: string) {
   if (!mesh) throw Error('Mesh is not available')
   return new ApolloClient({
     link: ApolloLink.from([
-      // measurePerformanceLink,
+      measurePerformanceLink,
       errorLink,
       // Add the correct store header for the Magento user.
       createStoreLink(locale),
