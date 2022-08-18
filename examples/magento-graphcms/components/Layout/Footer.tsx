@@ -15,7 +15,7 @@ export function Footer(props: FooterProps) {
     <FooterBase
       socialLinks={footer?.socialLinks?.map((link) => (
         <PageLink key={link.title} href={link.url} passHref>
-          <IconButton color='inherit' size='large' edge='start'>
+          <IconButton color='inherit' size='medium' edge='start'>
             {link.asset ? (
               <Image
                 layout='fill'
