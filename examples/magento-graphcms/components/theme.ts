@@ -136,7 +136,7 @@ const createThemeWithPalette = (palette: PaletteOptions) =>
       },
       fontWeightBold: 600,
       body1: {
-        ...fontSize(14, 17),
+        ...fontSize(14, 18),
         lineHeight: 1.7,
       },
       subtitle2: {
