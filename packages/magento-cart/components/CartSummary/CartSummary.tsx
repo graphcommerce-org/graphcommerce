@@ -65,7 +65,7 @@ export function CartSummary(props: CartSummaryProps) {
           ),
           background:
             theme.palette.mode === 'light'
-              ? theme.palette.background.paper
+              ? theme.palette.background.default
               : lighten(theme.palette.background.default, 0.15),
           padding: theme.spacings.sm,
           gridColumnGap: theme.spacings.xxl,
