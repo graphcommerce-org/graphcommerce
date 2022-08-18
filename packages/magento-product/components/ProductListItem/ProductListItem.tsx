@@ -94,6 +94,7 @@ export function ProductListItem(props: ProductListItemProps) {
             display: 'grid',
             bgcolor: 'background.image',
             borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
+            overflow: 'hidden',
             padding: responsiveVal(8, 12),
             '& > picture': {
               gridArea: `1 / 1 / 3 / 3`,
