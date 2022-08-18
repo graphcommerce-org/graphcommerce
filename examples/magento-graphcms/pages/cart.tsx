@@ -105,7 +105,7 @@ function CartPage() {
                   }}
                 />
                 <CouponAccordion key='couponform' />
-                <CartTotals containerMargin sx={{ typography: 'subtitle1' }} />
+                <CartTotals containerMargin sx={{ typography: 'body1' }} />
                 <ApolloCartErrorAlert error={error} />
                 <AnimatedRow layout key='checkout-button'>
                   <CartStartCheckout {...data?.cart} />
