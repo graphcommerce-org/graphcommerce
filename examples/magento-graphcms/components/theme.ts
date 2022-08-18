@@ -329,6 +329,15 @@ const createOverrides = (theme: Theme): Components => ({
         },
       },
     },
+
+    variants: [
+      {
+        props: { size: 'medium' },
+        style: {
+          padding: 7,
+        },
+      },
+    ],
   },
 
   MuiSwitch: {
