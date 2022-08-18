@@ -71,7 +71,7 @@ export function Footer(props: FooterProps) {
           justifyContent: 'start',
           gridAutoFlow: 'column',
           gridArea: 'social',
-          gap: { xs: `0 ${theme.spacings.xs}`, md: `0 ${theme.spacings.xxs}` },
+          gap: { xs: `0 ${theme.spacings.xs}`, md: `0 ${theme.spacings.xs}` },
           '& > *': {
             minWidth: 'min-content',
           },
