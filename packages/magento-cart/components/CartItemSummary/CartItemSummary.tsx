@@ -65,9 +65,6 @@ export function CartItemSummary(props: OrderSummaryProps) {
         <Box
           className={classes.imageScrollerContainer}
           sx={(theme) => ({
-            display: 'flex',
-            alignItems: 'center',
-            gap: theme.spacings.sm,
             position: 'relative',
           })}
         >

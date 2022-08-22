@@ -8,7 +8,7 @@ import { OrderItemFragment } from './OrderItem.gql'
 
 type OrderItemProps = OrderItemFragment & Omit<OrderCardItemImageFragment, 'uid'>
 
-const rowImageSize = responsiveVal(70, 125)
+const rowImageSize = responsiveVal(70, 110)
 
 type OwnerState = { hasOptions: boolean }
 const componentName = 'OrderItem' as const
@@ -94,7 +94,7 @@ export function OrderItem(props: OrderItemProps) {
           gridArea: 'picture',
           width: rowImageSize,
           height: rowImageSize,
-          padding: responsiveVal(5, 10),
+          padding: responsiveVal(3, 6),
           border: `1px solid rgba(0,0,0,0.15)`,
           borderRadius: '50%',
         }}
@@ -118,7 +118,6 @@ export function OrderItem(props: OrderItemProps) {
                 userSelect: 'none',
                 borderRadius: '50%',
                 justifyContent: 'center',
-                backgroundColor: 'rgb(248,248,248)',
               })}
             >
               {thumbnail?.url && thumbnail?.label && (
