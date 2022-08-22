@@ -25,7 +25,14 @@ export function ApolloErrorAlert(props: ApolloErrorAlertProps) {
                 // eslint-disable-next-line react/no-array-index-key
                 <AnimatedRow layout key={index}>
                   <div className={classes.alert}>
-                    <Alert severity='error' {...graphqlErrorAlertProps}>
+                    <Alert
+                      severity='error'
+                      {...graphqlErrorAlertProps}
+                      sx={(theme) => ({
+                        borderRadius: theme.shape.borderRadius * 1,
+                        marginTop: 0.5,
+                      })}
+                    >
                       {e.message}
                     </Alert>
                   </div>

@@ -113,18 +113,14 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
                 borderRight: 2,
                 borderLeftColor: 'error.main',
                 borderRightColor: 'error.main',
-                paddingLeft: theme.spacings.xs,
-                paddingRight: theme.spacings.xs,
               },
               '& > div:first-of-type.ActionCard-root': {
                 borderTop: 2,
                 borderTopColor: 'error.main',
-                paddingTop: theme.spacings.xxs,
               },
               '& > div:last-of-type.ActionCard-root': {
                 borderBottom: 2,
                 borderBottomColor: 'error.main',
-                paddingBottom: theme.spacings.xxs,
               },
             })),
         ]}
@@ -140,13 +136,20 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
           }),
         )}
         {error && (
-          <Alert
-            severity='error'
-            variant='filled'
-            sx={{ borderStartStartRadius: 0, borderStartEndRadius: 0 }}
-          >
-            {errorMessage}
-          </Alert>
+          <Box component='span'>
+            <Alert
+              severity='error'
+              variant='standard'
+              sx={(theme) => ({
+                marginTop: 0.5,
+                borderStartStartRadius: 0,
+                borderStartEndRadius: 0,
+                borderRadius: theme.shape.borderRadius * 1,
+              })}
+            >
+              {errorMessage}
+            </Alert>
+          </Box>
         )}
       </Box>
     )
