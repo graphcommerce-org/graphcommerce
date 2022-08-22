@@ -1,6 +1,11 @@
 import { useQuery, TypedDocumentNode, QueryHookOptions, ApolloError } from '@graphcommerce/graphql'
 import { GraphQLError } from 'graphql'
 import { useRouter } from 'next/router'
+import { useState } from 'react'
+import { CustomerCartDocument } from './CustomerCart.gql'
+import { useAssignCurrentCartId } from './useAssignCurrentCartId'
+import { useCartIdCreate } from './useCartIdCreate'
+import { useClearCurrentCartId } from './useClearCurrentCartId'
 import { useCurrentCartId } from './useCurrentCartId'
 
 const noCartError = new ApolloError({
@@ -31,7 +36,8 @@ export function useCartQuery<Q, V extends { cartId: string; [index: string]: unk
   const { allowUrl = true, hydration, ...queryOptions } = options
   const router = useRouter()
   const { currentCartId, called } = useCurrentCartId({ hydration })
-
+  const clearCurrentCartId = useClearCurrentCartId()
+  const createCartId = useCartIdCreate()
   const urlCartId = router.query.cart_id
   const usingUrl = allowUrl && typeof urlCartId === 'string'
   const cartId = usingUrl ? urlCartId : currentCartId
@@ -46,7 +52,17 @@ export function useCartQuery<Q, V extends { cartId: string; [index: string]: unk
   queryOptions.skip = queryOptions?.skip || !cartId
   queryOptions.ssr = !!hydration
 
-  const result = useQuery(document, queryOptions)
+  queryOptions.onError = async (error: ApolloError) => {
+    if (error.graphQLErrors.some((e) => e.extensions?.category === 'graphql-no-such-entity')) {
+      clearCurrentCartId()
+      await createCartId()
+    }
+    return error
+  }
+
+  const result = useQuery(document, {
+    ...queryOptions,
+  })
 
   return {
     ...useQuery(document, queryOptions),
