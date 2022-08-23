@@ -35,6 +35,7 @@ export function AccountMenuItem(props: AccountMenuItemProps) {
     disabled,
     noBorderBottom = false,
     sx = [],
+    disableRipple,
     ...buttonProps
   } = props
   const classes = withState({ noBorderBottom })
@@ -67,6 +68,7 @@ export function AccountMenuItem(props: AccountMenuItemProps) {
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
+      disableRipple={disableRipple}
     >
       <ListItem disableGutters>
         <ListItemIcon
