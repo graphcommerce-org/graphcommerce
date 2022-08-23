@@ -19,9 +19,9 @@ export function PaymentMethodOptions(props: PaymentMethodOptionsProps & { sx?: S
     >
       <AnimatePresence initial={false}>
         {selectedModule && selectedMethod && (
-          <AnimatedRow layout key={selectedMethod.code}>
+          <Box key={selectedMethod.code}>
             <selectedModule.PaymentOptions {...selectedMethod} {...optionsProps} />
-          </AnimatedRow>
+          </Box>
         )}
       </AnimatePresence>
     </Box>

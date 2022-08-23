@@ -50,8 +50,7 @@ export function CartTotals(props: CartTotalsProps) {
   )
 
   return (
-    <AnimatedRow
-      layout={animateLayout}
+    <Box
       className={classes.root}
       sx={[
         (theme) => ({
@@ -72,8 +71,7 @@ export function CartTotals(props: CartTotalsProps) {
     >
       <AnimatePresence initial={false}>
         {prices?.subtotal_including_tax && (
-          <AnimatedRow
-            layout={animateLayout}
+          <Box
             className={classes.costsRow}
             key='subtotal'
             sx={{ display: 'flex', justifyContent: 'space-between' }}
@@ -86,7 +84,7 @@ export function CartTotals(props: CartTotalsProps) {
                 {...(inclTax ? prices.subtotal_including_tax : prices.subtotal_excluding_tax)}
               />
             </Box>
-          </AnimatedRow>
+          </Box>
         )}
 
         {prices?.discounts?.map((discount) => {
@@ -98,8 +96,7 @@ export function CartTotals(props: CartTotalsProps) {
               -1
 
           return (
-            <AnimatedRow
-              layout={animateLayout}
+            <Box
               key={discount?.label}
               sx={{
                 display: 'flex',
@@ -110,13 +107,12 @@ export function CartTotals(props: CartTotalsProps) {
               <Box className={classes.money} sx={{ whiteSpace: 'nowrap' }}>
                 {discount?.amount && <Money {...discount.amount} value={value} />}
               </Box>
-            </AnimatedRow>
+            </Box>
           )
         })}
 
         {shippingMethod && (
-          <AnimatedRow
-            layout={animateLayout}
+          <Box
             className={classes.costsRow}
             key='shippingMethod'
             sx={{ display: 'flex', justifyContent: 'space-between' }}
@@ -134,13 +130,12 @@ export function CartTotals(props: CartTotalsProps) {
                   : shippingMethodPrices?.price_excl_tax)}
               />
             </Box>
-          </AnimatedRow>
+          </Box>
         )}
 
         {!inclTax &&
           prices?.applied_taxes?.map((tax) => (
-            <AnimatedRow
-              layout={animateLayout}
+            <Box
               className={classes.costsRow}
               key={`excl${tax?.label}`}
               sx={{ display: 'flex', justifyContent: 'space-between' }}
@@ -149,16 +144,15 @@ export function CartTotals(props: CartTotalsProps) {
               <Box className={classes.money} sx={{ whiteSpace: 'nowrap' }}>
                 <Money {...tax?.amount} />
               </Box>
-            </AnimatedRow>
+            </Box>
           ))}
 
-        <AnimatedRow layout key='divider'>
+        <Box key='divider'>
           <Divider className={classes.costsDivider} sx={{ margin: `1em 0` }} />
-        </AnimatedRow>
+        </Box>
 
         {prices?.grand_total && (
-          <AnimatedRow
-            layout={animateLayout}
+          <Box
             className={`${classes.costsRow} ${classes.costsGrandTotal}`}
             key='grand_total'
             sx={(theme) => ({
@@ -173,13 +167,12 @@ export function CartTotals(props: CartTotalsProps) {
             <Box className={classes.money} sx={{ whiteSpace: 'nowrap' }}>
               <Money {...prices.grand_total} />
             </Box>
-          </AnimatedRow>
+          </Box>
         )}
 
         {inclTax &&
           prices?.applied_taxes?.map((tax) => (
-            <AnimatedRow
-              layout={animateLayout}
+            <Box
               className={`${classes.costsRow} ${classes.costsTax}`}
               key={`incl${tax?.label}`}
               sx={{
@@ -195,9 +188,9 @@ export function CartTotals(props: CartTotalsProps) {
               <Box className={classes.money} sx={{ whiteSpace: 'nowrap' }}>
                 <Money {...tax?.amount} />
               </Box>
-            </AnimatedRow>
+            </Box>
           ))}
       </AnimatePresence>
-    </AnimatedRow>
+    </Box>
   )
 }

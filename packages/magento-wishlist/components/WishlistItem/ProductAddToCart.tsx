@@ -98,9 +98,9 @@ export function ProductAddToCart(
 
       <AnimatePresence initial={false}>
         {data?.addProductsToCart?.user_errors.map((e) => (
-          <AnimatedRow layout key={e?.code}>
+          <Box key={e?.code}>
             <Alert severity='error'>{e?.message}</Alert>
-          </AnimatedRow>
+          </Box>
         ))}
       </AnimatePresence>
 

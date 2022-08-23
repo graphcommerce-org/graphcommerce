@@ -1,5 +1,6 @@
 import { useCartQuery } from '@graphcommerce/magento-cart'
 import { AnimatedRow, RenderType, TypeRenderer } from '@graphcommerce/next-ui'
+import { Box } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'
 import { CartItemsFragment } from '../Api/CartItems.gql'
@@ -18,9 +19,9 @@ export function CartItems(props: CartProps) {
       {data?.cart?.items?.map((item) => {
         if (!item?.uid || !data.cart?.id) return null
         return (
-          <AnimatedRow layout key={item.uid}>
+          <Box key={item.uid}>
             <RenderType renderer={renderer} {...item} />
-          </AnimatedRow>
+          </Box>
         )
       })}
     </AnimatePresence>

@@ -111,7 +111,7 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
       <AnimatePresence>
         {mode !== 'signedin' && (
           <form noValidate onSubmit={submit} key='emailform'>
-            <AnimatedRow layout key='email'>
+            <Box key='email'>
               <FormRow>
                 <TextField
                   key='email'
@@ -133,12 +133,12 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
                   }}
                 />
               </FormRow>
-            </AnimatedRow>
+            </Box>
 
             <ApolloCustomerErrorAlert error={error} />
 
             {(mode === 'email' || mode === 'session-expired') && (
-              <AnimatedRow layout key='submit-form'>
+              <Box key='submit-form'>
                 <FormActions>
                   <Button
                     type='submit'
@@ -150,21 +150,21 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
                     <Trans id='Continue' />
                   </Button>
                 </FormActions>
-              </AnimatedRow>
+              </Box>
             )}
           </form>
         )}
 
         {mode === 'signin' && (
-          <AnimatedRow layout key='signin'>
+          <Box key='signin'>
             <SignInForm email={watch('email')} />
-          </AnimatedRow>
+          </Box>
         )}
 
         {mode === 'signup' && (
-          <AnimatedRow layout key='signup'>
+          <Box key='signup'>
             <SignUpForm email={watch('email')} />
-          </AnimatedRow>
+          </Box>
         )}
       </AnimatePresence>
     </FormDiv>

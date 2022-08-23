@@ -96,21 +96,23 @@ export function OrderItems(props: OrderItemsProps) {
       >
         <AnimatePresence initial={false}>
           {items?.slice(0, maxItemsAboveFold).map((orderItem) => (
-            <AnimatedRow layout key={`orderItem-${orderItem?.id}`}>
+            <Box key={`orderItem-${orderItem?.id}`}>
               {orderItem && (
                 <OrderItem {...orderItem} {...images?.[orderItem?.product_url_key ?? '']} />
               )}
-            </AnimatedRow>
+            </Box>
           ))}
 
           {expanded &&
-            items?.slice(maxItemsAboveFold, items?.length).map((orderItem) => (
-              <AnimatedRow layout key={`orderItem-${orderItem?.id}`}>
-                {orderItem && (
-                  <OrderItem {...orderItem} {...images?.[orderItem?.product_url_key ?? '']} />
-                )}
-              </AnimatedRow>
-            ))}
+            items
+              ?.slice(maxItemsAboveFold, items?.length)
+              .map((orderItem) => (
+                <Box key={`orderItem-${orderItem?.id}`}>
+                  {orderItem && (
+                    <OrderItem {...orderItem} {...images?.[orderItem?.product_url_key ?? '']} />
+                  )}
+                </Box>
+              ))}
         </AnimatePresence>
       </Box>
 

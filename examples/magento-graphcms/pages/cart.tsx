@@ -107,9 +107,9 @@ function CartPage() {
                 <CouponAccordion key='couponform' />
                 <CartTotals containerMargin sx={{ typography: 'body1' }} />
                 <ApolloCartErrorAlert error={error} />
-                <AnimatedRow layout key='checkout-button'>
+                <Box key='checkout-button'>
                   <CartStartCheckout {...data?.cart} />
-                </AnimatedRow>
+                </Box>
               </Box>
             ) : (
               <EmptyCart>{error && <ApolloCartErrorAlert error={error} />}</EmptyCart>
