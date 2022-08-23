@@ -1,7 +1,6 @@
 import { useScrollOffset } from '@graphcommerce/framer-next-pages'
 import { Box, SxProps, Theme } from '@mui/material'
 import { useTransform, useScroll } from 'framer-motion'
-import { useEffect } from 'react'
 import { LayoutProvider } from '../../Layout/components/LayoutProvider'
 import { extendableComponent } from '../../Styles'
 import { useFabSize } from '../../Theme'
