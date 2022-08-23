@@ -257,6 +257,20 @@ const createOverrides = (theme: Theme): Components => ({
           borderRadius: responsiveVal(theme.shape.borderRadius * 5, theme.shape.borderRadius * 6),
         },
       },
+      {
+        props: { color: 'secondary' },
+        style: {
+          boxShadow: 'none !important',
+          '&:hover:not(.Mui-disabled)': { boxShadow: 'none !important' },
+        },
+      },
+      {
+        props: { color: 'primary' },
+        style: {
+          boxShadow: 'none !important',
+          '&:hover:not(.Mui-disabled)': { boxShadow: 'none !important' },
+        },
+      },
     ],
   },
 
