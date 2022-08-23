@@ -7,8 +7,8 @@ const [, , cmd] = process.argv
 // console.log(process.argv)
 
 runCli(cmd)
-  .then(() => {
-    process.exit(0)
+  .then((result) => {
+    process.exit(result)
   })
   .catch((error) => {
     cliError(error)
