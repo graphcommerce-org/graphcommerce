@@ -53,14 +53,14 @@ function AccountIndexPage() {
   const orders = customer?.orders
   const latestOrder = orders?.items?.[(orders?.items?.length ?? 1) - 1]
 
+  if (error) return <ApolloCustomerErrorFullPage error={error} />
+
   if (loading || !called)
     return (
       <FullPageMessage icon={<CircularProgress />} title='Loading your account'>
         <Trans id='This may take a second' />
       </FullPageMessage>
     )
-
-  if (error) return <ApolloCustomerErrorFullPage error={error} />
 
   const latestOrderDate = new Date(latestOrder?.order_date ?? new Date())
 
