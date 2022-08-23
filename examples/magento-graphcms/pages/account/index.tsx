@@ -149,7 +149,10 @@ function AccountIndexPage() {
             title={<Trans id='Newsletter' />}
             subtitle={<Trans id='Be the first to know about everything new!' />}
             endIcon={<CustomerNewsletterToggle color='primary' />}
-            sx={{ cursor: 'default', '&:hover': { background: 'none' } }}
+            sx={(theme) => ({
+              cursor: 'default',
+              '&:hover': { background: theme.palette.background.paper },
+            })}
           />
           <SignOutForm
             // eslint-disable-next-line react/no-unstable-nested-components
