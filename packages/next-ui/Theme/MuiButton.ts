@@ -23,6 +23,7 @@ export const MuiButtonResponsive: ButtonVariants = [
     style: ({ theme }) => ({
       ...theme.typography.body2,
       padding: `${responsiveVal(3, 5)} ${responsiveVal(8, 15)}`,
+      '&.MuiLoadingButton-root:hover': { backgroundColor: theme.palette.action.disabledBackground },
       '& .MuiLoadingButton-loadingIndicatorEnd': { right: responsiveVal(9, 15) },
       '& .MuiLoadingButton-loadingIndicatorStart': { left: responsiveVal(9, 15) },
     }),
@@ -32,6 +33,7 @@ export const MuiButtonResponsive: ButtonVariants = [
     style: ({ theme }) => ({
       ...theme.typography.body1,
       padding: `${responsiveVal(7, 9)} ${responsiveVal(15, 22)}`,
+      '&.MuiLoadingButton-root:hover': { backgroundColor: theme.palette.action.disabledBackground },
       '& .MuiLoadingButton-loadingIndicatorEnd': { right: responsiveVal(16, 24) },
       '& .MuiLoadingButton-loadingIndicatorStart': { left: responsiveVal(16, 24) },
     }),
@@ -42,6 +44,7 @@ export const MuiButtonResponsive: ButtonVariants = [
       ...theme.typography.subtitle1,
       fontWeight: theme.typography.fontWeightBold,
       padding: `${responsiveVal(10, 15)} ${responsiveVal(28, 58)}`,
+      '&.MuiLoadingButton-root:hover': { backgroundColor: theme.palette.action.disabledBackground },
       '& .MuiLoadingButton-loadingIndicatorEnd': { right: responsiveVal(30, 60) },
       '& .MuiLoadingButton-loadingIndicatorStart': { left: responsiveVal(30, 60) },
     }),
@@ -183,7 +186,7 @@ export const MuiButtonInline: ButtonVariants = [
     props: { variant: 'inline', disableRipple: true },
     style: {
       '&:hover:not(.Mui-disabled)': {
-        backgroundColor: 'transparent',
+        // backgroundColor: 'transparent',
       },
     },
   },
