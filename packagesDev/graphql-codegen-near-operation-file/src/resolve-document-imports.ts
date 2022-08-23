@@ -161,7 +161,7 @@ export function resolveDocumentImports<T>(
     } catch (e) {
       if (e instanceof Error) {
         throw new DetailedError(
-          `Unable to validate GraphQL document!`,
+          e.message || e.toString(),
           `File ${documentFile.location} caused error: ${e.message || e.toString()}`,
           documentFile.location,
         )
