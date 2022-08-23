@@ -12,7 +12,6 @@ import { CartItem, CartItems } from '@graphcommerce/magento-cart-items'
 import { ConfigurableCartItem } from '@graphcommerce/magento-product-configurable'
 import { Money, PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
-  AnimatedRow,
   GetStaticProps,
   iconShoppingBag,
   Stepper,

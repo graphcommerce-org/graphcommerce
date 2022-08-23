@@ -1,5 +1,4 @@
 import { ApolloError } from '@graphcommerce/graphql'
-import { AnimatedRow } from '@graphcommerce/next-ui'
 import { extendableComponent } from '@graphcommerce/next-ui/Styles/extendableComponent'
 import { AlertProps, Alert, Box, SxProps, Theme } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'

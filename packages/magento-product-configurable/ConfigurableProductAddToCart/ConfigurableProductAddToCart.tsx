@@ -1,7 +1,6 @@
 import { ApolloCartErrorAlert, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { Money } from '@graphcommerce/magento-store'
 import {
-  AnimatedRow,
   Button,
   extendableComponent,
   iconChevronRight,

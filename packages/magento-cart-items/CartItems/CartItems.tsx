@@ -1,8 +1,7 @@
 import { useCartQuery } from '@graphcommerce/magento-cart'
-import { AnimatedRow, RenderType, TypeRenderer } from '@graphcommerce/next-ui'
+import { RenderType, TypeRenderer } from '@graphcommerce/next-ui'
 import { Box } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
-import React from 'react'
 import { CartItemsFragment } from '../Api/CartItems.gql'
 import { CartItemsQueryDocument } from './CartItemsQuery.gql'
 

@@ -1,5 +1,5 @@
 import { Money } from '@graphcommerce/magento-store'
-import { AnimatedRow, extendableComponent, responsiveVal } from '@graphcommerce/next-ui'
+import { extendableComponent, responsiveVal } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box, Divider, lighten, SxProps, Theme } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'

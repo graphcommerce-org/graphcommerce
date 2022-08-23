@@ -7,7 +7,6 @@ import {
 } from '@graphcommerce/magento-customer'
 import { useCustomerQuery } from '@graphcommerce/magento-customer/hooks'
 import {
-  AnimatedRow,
   Button,
   FormDiv,
   FormActions,

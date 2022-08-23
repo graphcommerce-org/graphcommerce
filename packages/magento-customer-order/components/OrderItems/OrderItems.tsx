@@ -1,9 +1,4 @@
-import {
-  AnimatedRow,
-  SectionContainer,
-  responsiveVal,
-  extendableComponent,
-} from '@graphcommerce/next-ui'
+import { SectionContainer, responsiveVal, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Skeleton, Button, Box, SxProps, Theme } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'

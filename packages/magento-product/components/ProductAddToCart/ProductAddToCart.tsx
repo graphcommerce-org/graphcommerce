@@ -8,7 +8,6 @@ import {
   iconChevronRight,
   IconSvg,
   extendableComponent,
-  AnimatedRow,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Divider, Typography, ButtonProps, Box, Alert, useMediaQuery, Theme } from '@mui/material'

@@ -1,4 +1,4 @@
-import { AnimatedRow, extendableComponent } from '@graphcommerce/next-ui'
+import { extendableComponent } from '@graphcommerce/next-ui'
 import { Box, SxProps, Theme } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import { PaymentMethodOptionsProps } from '../Api/PaymentMethod'
