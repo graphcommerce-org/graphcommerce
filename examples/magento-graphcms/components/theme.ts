@@ -258,17 +258,19 @@ const createOverrides = (theme: Theme): Components => ({
         },
       },
       {
-        props: { color: 'secondary' },
+        props: { color: 'primary' },
         style: {
-          boxShadow: 'none !important',
-          '&:hover:not(.Mui-disabled)': { boxShadow: 'none !important' },
+          '&:not(.Mui-disabled)': {
+            boxShadow: 'none',
+          },
         },
       },
       {
-        props: { color: 'primary' },
+        props: { color: 'secondary' },
         style: {
-          boxShadow: 'none !important',
-          '&:hover:not(.Mui-disabled)': { boxShadow: 'none !important' },
+          '&:not(.Mui-disabled)': {
+            boxShadow: 'none',
+          },
         },
       },
     ],
