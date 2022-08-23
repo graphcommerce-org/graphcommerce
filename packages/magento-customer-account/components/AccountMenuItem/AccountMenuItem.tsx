@@ -7,7 +7,7 @@ import {
   ButtonProps,
   extendableComponent,
 } from '@graphcommerce/next-ui'
-import { ListItem, ListItemButton, ListItemIcon, ListItemText, SxProps, Theme } from '@mui/material'
+import { ListItem, ListItemIcon, ListItemText, SxProps, Theme } from '@mui/material'
 import PageLink from 'next/link'
 import React from 'react'
 
@@ -17,7 +17,7 @@ export type AccountMenuItemProps = {
   subtitle?: React.ReactNode
   endIcon?: React.ReactNode
   sx?: SxProps<Theme>
-} & Omit<ButtonProps, 'endIcon' | 'startIcon' | 'disableElevation' | 'title'> &
+} & Omit<ButtonProps, 'endIcon' | 'startIcon' | 'title'> &
   OwnerState
 
 type OwnerState = { noBorderBottom?: boolean }
@@ -35,13 +35,12 @@ export function AccountMenuItem(props: AccountMenuItemProps) {
     disabled,
     noBorderBottom = false,
     sx = [],
-    disableRipple,
     ...buttonProps
   } = props
   const classes = withState({ noBorderBottom })
 
   const button = (
-    <ListItemButton
+    <Button
       disabled={disabled}
       className={classes.root}
       sx={[
@@ -68,7 +67,7 @@ export function AccountMenuItem(props: AccountMenuItemProps) {
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
-      disableRipple={disableRipple}
+      {...buttonProps}
     >
       <ListItem disableGutters>
         <ListItemIcon
@@ -93,7 +92,7 @@ export function AccountMenuItem(props: AccountMenuItemProps) {
         />
         {endIcon ?? <IconSvg src={iconChevronRight} />}
       </ListItem>
-    </ListItemButton>
+    </Button>
   )
 
   return href ? (
