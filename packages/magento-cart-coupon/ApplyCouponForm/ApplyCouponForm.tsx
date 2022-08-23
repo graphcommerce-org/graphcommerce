@@ -54,7 +54,7 @@ export function ApplyCouponForm(props: ApplyCouponFormProps) {
         </Button>
       </FormControl>
 
-      <ApolloCartErrorAlert error={error} />
+      <ApolloCartErrorAlert error={error} resetCart={false} />
     </Box>
   )
 }
