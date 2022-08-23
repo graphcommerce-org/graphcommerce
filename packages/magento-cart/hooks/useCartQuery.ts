@@ -50,7 +50,12 @@ export function useCartQuery<Q, V extends { cartId: string; [index: string]: unk
   queryOptions.ssr = !!hydration
 
   queryOptions.onError = async (error: ApolloError) => {
-    if (error.graphQLErrors.some((e) => e.extensions?.category === 'graphql-no-such-entity')) {
+    console.dir(error)
+    if (
+      error.graphQLErrors.some(
+        (e) => e.extensions?.category === 'graphql-no-such-entity' && e.path?.join() === 'cart',
+      )
+    ) {
       clearCurrentCartId()
       await createCartId()
     }
