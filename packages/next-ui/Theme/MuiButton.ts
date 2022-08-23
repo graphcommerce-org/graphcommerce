@@ -86,14 +86,12 @@ export const MuiButtonPill: ButtonVariants = [
   {
     props: { variant: 'pill', size: 'medium' },
     style: ({ theme }) => ({
-      borderRadius: '99em',
       '&:not(.Mui-disabled)': { boxShadow: theme.shadows[4] },
     }),
   },
   {
     props: { variant: 'pill', size: 'large' },
     style: ({ theme }) => ({
-      borderRadius: '99em',
       '&:not(.Mui-disabled)': { boxShadow: theme.shadows[6] },
     }),
   },
@@ -106,11 +104,7 @@ export const MuiButtonPill: ButtonVariants = [
     style: ({ theme }) => ({
       backgroundColor: theme.palette.primary.main,
       color: theme.palette.primary.contrastText,
-      boxShadow: 'none !important',
-      '&:hover:not(.Mui-disabled)': {
-        backgroundColor: theme.palette.primary.dark,
-        boxShadow: 'none',
-      },
+      '&:hover:not(.Mui-disabled)': { backgroundColor: theme.palette.primary.dark },
     }),
   },
   {
@@ -118,11 +112,7 @@ export const MuiButtonPill: ButtonVariants = [
     style: ({ theme }) => ({
       backgroundColor: theme.palette.secondary.main,
       color: theme.palette.secondary.contrastText,
-      boxShadow: 'none !important',
-      '&:hover:not(.Mui-disabled)': {
-        backgroundColor: theme.palette.secondary.dark,
-        boxShadow: 'none',
-      },
+      '&:hover:not(.Mui-disabled)': { backgroundColor: theme.palette.secondary.dark },
     }),
   },
   {
