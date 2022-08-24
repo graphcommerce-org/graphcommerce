@@ -43,6 +43,7 @@ export function BlogListItem(props: BlogListItemProps) {
             className={classes.asset}
             sx={(theme) => ({
               display: 'grid',
+              alignContent: 'center',
               overflow: 'hidden',
               height: '100%',
               width: '100%',
