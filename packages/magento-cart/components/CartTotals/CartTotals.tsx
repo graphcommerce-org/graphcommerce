@@ -1,5 +1,5 @@
 import { Money } from '@graphcommerce/magento-store'
-import { extendableComponent, responsiveVal } from '@graphcommerce/next-ui'
+import { extendableComponent, breakpointVal } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box, Divider, lighten, SxProps, Theme } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
@@ -54,7 +54,12 @@ export function CartTotals(props: CartTotalsProps) {
       className={classes.root}
       sx={[
         (theme) => ({
-          borderRadius: responsiveVal(theme.shape.borderRadius * 3, theme.shape.borderRadius * 4),
+          ...breakpointVal(
+            'borderRadius',
+            theme.shape.borderRadius * 3,
+            theme.shape.borderRadius * 5,
+            theme.breakpoints.values,
+          ),
           background:
             theme.palette.mode === 'light'
               ? theme.palette.background.default

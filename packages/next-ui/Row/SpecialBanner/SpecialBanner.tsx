@@ -1,5 +1,6 @@
 import { Box, ContainerProps, Typography } from '@mui/material'
 import { extendableComponent } from '../../Styles'
+import { breakpointVal } from '../../Styles/breakpointVal'
 import { responsiveVal } from '../../Styles/responsiveVal'
 import { Row } from '../Row'
 
@@ -31,7 +32,12 @@ export function SpecialBanner(props: SpecialBannerProps) {
           paddingTop: theme.spacings.lg,
           paddingBottom: theme.spacings.lg,
           justifySelf: 'start',
-          borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
+          ...breakpointVal(
+            'borderRadius',
+            theme.shape.borderRadius * 2,
+            theme.shape.borderRadius * 3,
+            theme.breakpoints.values,
+          ),
           [theme.breakpoints.up('md')]: {
             padding: 0,
             background: 'none',
@@ -51,9 +57,11 @@ export function SpecialBanner(props: SpecialBannerProps) {
               width: responsiveVal(200, 900),
               height: 'auto',
               objectFit: 'cover',
-              borderRadius: responsiveVal(
+              ...breakpointVal(
+                'borderRadius',
                 theme.shape.borderRadius * 2,
                 theme.shape.borderRadius * 3,
+                theme.breakpoints.values,
               ),
             },
             [theme.breakpoints.up('lg')]: {

@@ -2,6 +2,7 @@ import { Box, Link, SxProps, Theme, Typography } from '@mui/material'
 import PageLink from 'next/link'
 import React from 'react'
 import { extendableComponent } from '../../Styles'
+import { breakpointVal } from '../../Styles/breakpointVal'
 import { responsiveVal } from '../../Styles/responsiveVal'
 import { useDateTimeFormat } from '../../hooks'
 
@@ -47,9 +48,11 @@ export function BlogListItem(props: BlogListItemProps) {
               overflow: 'hidden',
               height: '100%',
               width: '100%',
-              borderRadius: responsiveVal(
+              ...breakpointVal(
+                'borderRadius',
                 theme.shape.borderRadius * 2,
                 theme.shape.borderRadius * 3,
+                theme.breakpoints.values,
               ),
               '& img': {
                 height: '100% !important',

@@ -2,7 +2,7 @@
 import { alpha, Button, ButtonProps } from '@mui/material'
 import React, { FormEvent } from 'react'
 import { extendableComponent } from '../Styles'
-import { responsiveVal } from '../Styles/responsiveVal'
+import { breakpointVal } from '../Styles/breakpointVal'
 
 export type ToggleButtonProps = Omit<ButtonProps, 'onClick' | 'onChange'> & {
   selected?: boolean
@@ -78,13 +78,20 @@ export const ToggleButton = React.forwardRef<any, ToggleButtonProps>((props, ref
             )} !important`,
           },
           ':not(&.sizeSmall)': {
-            borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
+            ...breakpointVal(
+              'borderRadius',
+              theme.shape.borderRadius * 2,
+              theme.shape.borderRadius * 3,
+              theme.breakpoints.values,
+            ),
             padding: `${theme.spacings.xxs} ${theme.spacings.xs}`,
           },
           '&.sizeSmall': {
-            borderRadius: responsiveVal(
+            ...breakpointVal(
+              'borderRadius',
               theme.shape.borderRadius * 1,
               theme.shape.borderRadius * 1.5,
+              theme.breakpoints.values,
             ),
             padding: `8px 12px`,
           },

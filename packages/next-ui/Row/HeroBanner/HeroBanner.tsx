@@ -3,6 +3,7 @@ import { m, useTransform } from 'framer-motion'
 import React from 'react'
 import { useScrollY } from '../../Layout/hooks/useScrollY'
 import { extendableComponent } from '../../Styles'
+import { breakpointVal } from '../../Styles/breakpointVal'
 import { responsiveVal } from '../../Styles/responsiveVal'
 import { Row } from '../Row'
 
@@ -84,9 +85,11 @@ export function HeroBanner(props: HeroBannerProps) {
               width: '100%',
               height: '100%',
               [theme.breakpoints.down('md')]: {
-                borderRadius: responsiveVal(
+                ...breakpointVal(
+                  'borderRadius',
                   theme.shape.borderRadius * 2,
                   theme.shape.borderRadius * 3,
+                  theme.breakpoints.values,
                 ),
               },
             },
@@ -99,9 +102,11 @@ export function HeroBanner(props: HeroBannerProps) {
             style={{ width: !matches ? width : 0, borderRadius }}
             className={classes.animated}
             sx={(theme) => ({
-              borderRadius: responsiveVal(
+              ...breakpointVal(
+                'borderRadius',
                 theme.shape.borderRadius * 2,
                 theme.shape.borderRadius * 3,
+                theme.breakpoints.values,
               ),
               overflow: 'hidden',
               transform: 'translateZ(0)',

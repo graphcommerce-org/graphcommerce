@@ -240,7 +240,12 @@ const createOverrides = (theme: Theme): Components => ({
       {
         props: { variant: 'outlined' },
         style: {
-          borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
+          ...breakpointVal(
+            'borderRadius',
+            theme.shape.borderRadius * 2,
+            theme.shape.borderRadius * 3,
+            theme.breakpoints.values,
+          ),
         },
       },
       {
@@ -254,7 +259,12 @@ const createOverrides = (theme: Theme): Components => ({
       {
         props: { variant: 'pill', size: 'large' },
         style: {
-          borderRadius: responsiveVal(theme.shape.borderRadius * 5, theme.shape.borderRadius * 6),
+          ...breakpointVal(
+            'borderRadius',
+            theme.shape.borderRadius * 5,
+            theme.shape.borderRadius * 6,
+            theme.breakpoints.values,
+          ),
         },
       },
       {
@@ -312,7 +322,12 @@ const createOverrides = (theme: Theme): Components => ({
     styleOverrides: {
       root: {
         '& .MuiOutlinedInput-root': {
-          borderRadius: responsiveVal(theme.shape.borderRadius * 1.5, theme.shape.borderRadius * 2),
+          ...breakpointVal(
+            'borderRadius',
+            theme.shape.borderRadius * 1.5,
+            theme.shape.borderRadius * 2,
+            theme.breakpoints.values,
+          ),
         },
       },
     },

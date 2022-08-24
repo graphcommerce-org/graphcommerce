@@ -1,6 +1,7 @@
 import { Box, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { extendableComponent } from '../../Styles'
+import { breakpointVal } from '../../Styles/breakpointVal'
 import { responsiveVal } from '../../Styles/responsiveVal'
 import { Row } from '../Row'
 
@@ -32,7 +33,12 @@ export function ImageTextBoxed(props: ImageTextBoxedProps) {
             gridTemplateColumns: '1fr auto',
             columnGap: `${theme.spacings.lg}`,
           },
-          borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
+          ...breakpointVal(
+            'borderRadius',
+            theme.shape.borderRadius * 2,
+            theme.shape.borderRadius * 3,
+            theme.breakpoints.values,
+          ),
           overflow: 'hidden',
         })}
       >

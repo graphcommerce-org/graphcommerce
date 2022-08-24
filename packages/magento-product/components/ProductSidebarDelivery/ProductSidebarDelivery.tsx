@@ -1,5 +1,6 @@
 import {
   responsiveVal,
+  breakpointVal,
   iconOrderBefore,
   IconSvg,
   extendableComponent,
@@ -28,7 +29,12 @@ export function ProductSidebarDelivery() {
             ? darken(theme.palette.background.default, 0.01)
             : lighten(theme.palette.background.default, 0.2),
         padding: theme.spacings.xxs,
-        borderRadius: responsiveVal(theme.shape.borderRadius * 3, theme.shape.borderRadius * 4),
+        ...breakpointVal(
+          'borderRadius',
+          theme.shape.borderRadius * 3,
+          theme.shape.borderRadius * 4,
+          theme.breakpoints.values,
+        ),
       })}
     >
       <IconSvg

@@ -4,6 +4,7 @@ import {
   IconSvg,
   extendableComponent,
   responsiveVal,
+  breakpointVal,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { SxProps, Theme, Accordion, AccordionSummary, AccordionDetails } from '@mui/material'
@@ -42,7 +43,12 @@ export function CouponAccordion(props: CouponAccordionProps) {
       variant='outlined'
       sx={[
         (theme) => ({
-          borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
+          ...breakpointVal(
+            'borderRadius',
+            theme.shape.borderRadius * 2,
+            theme.shape.borderRadius * 3,
+            theme.breakpoints.values,
+          ),
           '::before': { display: 'none' },
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
