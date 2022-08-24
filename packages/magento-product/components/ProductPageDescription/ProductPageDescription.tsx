@@ -54,7 +54,7 @@ export function ProductPageDescription(props: ProductPageDescriptionProps) {
               },
               fontSize === 'responsive' && {
                 '& p, & li': {
-                  fontSize: responsiveVal(16, 30),
+                  fontSize: (theme) => `calc(${theme.typography.h1.fontSize} * 1.1)`,
                 },
               },
               fontSize !== 'responsive' && {
