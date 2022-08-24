@@ -48,16 +48,15 @@ type Props = CategoryPageQuery &
   ProductListQuery & { filterTypes?: FilterTypes; params?: ProductListParams }
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
+export type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
 function CategoryPage(props: Props) {
   const { categories, products, filters, params, filterTypes, pages } = props
 
   const category = categories?.items?.[0]
   const isLanding = category?.display_mode === 'PAGE'
-  const product = products?.items?.[0]
   const page = pages?.[0]
-  const isCategory = params && category && product && filterTypes
+  const isCategory = params && category && products?.items && filterTypes
 
   return (
     <>
@@ -129,7 +128,11 @@ function CategoryPage(props: Props) {
           content={page.content}
           renderer={{
             RowProduct: (rowProps) => (
-              <RowProduct {...rowProps} {...product} items={products?.items?.slice(0, 8)} />
+              <RowProduct
+                {...rowProps}
+                {...products?.items?.[0]}
+                items={products?.items?.slice(0, 8)}
+              />
             ),
           }}
         />
@@ -162,18 +165,26 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const filterTypes = getFilterTypes(client)
 
   const staticClient = graphqlSsrClient(locale)
+
   const categoryPage = staticClient.query({
     query: CategoryPageDocument,
     variables: { url },
   })
 
   const productListParams = parseParams(url, query, await filterTypes)
-  const categoryUid = (await categoryPage).data.categories?.items?.[0]?.uid ?? ''
+  const filteredCategoryUid = productListParams && productListParams.filters.category_uid?.in?.[0]
 
-  const hasPage = (await categoryPage).data.pages.length > 0
+  let categoryUid = filteredCategoryUid
+  if (!categoryUid) {
+    categoryUid = (await categoryPage).data.categories?.items?.[0]?.uid ?? ''
+    if (productListParams) productListParams.filters.category_uid = { in: [categoryUid] }
+  }
+
+  const hasPage = filteredCategoryUid ? false : (await categoryPage).data.pages.length > 0
   const hasCategory = Boolean(productListParams && categoryUid)
 
-  if (!productListParams || !(hasPage || hasCategory)) return { notFound: true }
+  if (!productListParams || !(hasPage || hasCategory))
+    return { notFound: true, revalidate: 60 * 20 }
 
   if (!hasCategory) {
     return {
@@ -188,6 +199,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const products = staticClient.query({
     query: ProductListDocument,
     variables: {
+      // pageSize: 10,
       ...productListParams,
       filters: { ...productListParams.filters, category_uid: { eq: categoryUid } },
       categoryUid,
@@ -195,7 +207,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   })
 
   // assertAllowedParams(await params, (await products).data)
-  if (!(await products).data) return { notFound: true }
+  if (!(await products).data) return { notFound: true, revalidate: 60 * 20 }
 
   const { category_name, category_url_path } =
     (await categoryPage).data.categories?.items?.[0]?.breadcrumbs?.[0] ?? {}

@@ -6,31 +6,38 @@ import {
 } from '../components/ProductListItems/filterTypes'
 
 export function createProductListLink(props: ProductListParams): string {
-  const { url, sort, currentPage, filters } = props
+  const { url, sort, currentPage, filters: incomming } = props
+
+  const filters = { ...incomming, category_uid: undefined }
+  const uid = incomming.category_uid?.eq || incomming.category_uid?.in?.[0]
 
   // base url path generation
-  let href = ``
+  let paginateSort = ``
+  let query = ``
 
-  if (currentPage && currentPage > 1) href += `/page/${currentPage}`
+  if (currentPage && currentPage > 1) paginateSort += `/page/${currentPage}`
 
   // todo(paales): How should the URL look like with multiple sorts?
   // Something like: /sort/position,price/dir/asc,asc
   const [sortBy] = Object.keys(sort)
-  if (sort && sortBy) href += `/sort/${sortBy}`
-  if (sort && sortBy && sort[sortBy] && sort[sortBy] === 'DESC') href += `/dir/desc`
+  if (sort && sortBy) paginateSort += `/sort/${sortBy}`
+  if (sort && sortBy && sort[sortBy] && sort[sortBy] === 'DESC') paginateSort += `/dir/desc`
 
   // Apply filters
   if (filters)
     Object.entries(filters).forEach(([param, value]) => {
-      if (value && isFilterTypeEqual(value) && value.in?.length)
-        href += `/${param}/${value.in?.join(',')}`
-      if (value && isFilterTypeMatch(value)) href += `/${param}/${value.match}`
-      if (value && isFilterTypeRange(value))
-        href += `/${param}/${value.from ?? '*'}-${value.to ?? '*'}`
+      if (!value) return
+      if (isFilterTypeEqual(value) && value.in?.length) query += `/${param}/${value.in?.join(',')}`
+      if (isFilterTypeEqual(value) && value.eq) query += `/${param}/${value.eq}`
+      if (isFilterTypeMatch(value)) paginateSort += `/${param}/${value.match}`
+      if (isFilterTypeRange(value)) query += `/${param}/${value.from ?? '*'}-${value.to ?? '*'}`
     })
 
-  href = `/${url}${href && `/q${href}`}`
-  return href
+  const result = query
+    ? `/c/${url}${paginateSort}/q/category_uid/${uid}${query}`
+    : `/${url}${paginateSort}`
+
+  return result
 }
 
 export function useProductListLink(props: ProductListParams): string {

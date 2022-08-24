@@ -30,7 +30,7 @@ export function FilterCheckboxType(props: FilterCheckboxTypeProps) {
       filters={{ ...params.filters, [attribute_code]: filter }}
       currentPage={undefined}
       noLink
-      link={{ scroll: false, replace: true }}
+      link={{ replace: true, prefetch: false }}
     >
       <Chip
         component='button'
