@@ -94,9 +94,6 @@ msgstr "Warenkorb"
 msgid "Cart ({0})"
 msgstr "Warenkorb ({0})"
 
-msgid "Cart Total"
-msgstr "Warenkorbgesamt"
-
 msgid "Change"
 msgstr "Ändern"
 
@@ -162,6 +159,9 @@ msgstr "Kundenservice"
 
 msgid "Dark Mode"
 msgstr "Dunkler Modus"
+
+msgid "Decrease quantity"
+msgstr "Menge verringern"
 
 msgid "Delete this address"
 msgstr "Diese Adresse löschen"
@@ -243,6 +243,9 @@ msgstr "Wenn Sie Ihre Bestellung erfolgreich bezahlt haben, wird die Bestellung 
 
 msgid "Including {0}"
 msgstr "Inklusive {0}"
+
+msgid "Increase quantity"
+msgstr "Menge erhöhen"
 
 msgid "Invalid email address"
 msgstr "Ungültige E-Mail-Adresse"
@@ -409,6 +412,9 @@ msgstr "Produkt konnte nicht gefunden werden"
 msgid "Products"
 msgstr "Produkte"
 
+msgid "Quantity"
+msgstr ""
+
 msgid "Region"
 msgstr "Region"
 
@@ -519,6 +525,9 @@ msgstr "Vielen Dank! Ihre Bewertung wurde erfolgreich zur Freischaltung eingerei
 
 msgid "This may take a second"
 msgstr "Das kann einen Moment dauern"
+
+msgid "Total"
+msgstr "Gesamt"
 
 msgid "Try a different product"
 msgstr "Versuchen Sie ein anderes Produkt"

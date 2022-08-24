@@ -94,9 +94,6 @@ msgstr "Winkelwagen"
 msgid "Cart ({0})"
 msgstr "Winkelwagen ({0})"
 
-msgid "Cart Total"
-msgstr "Winkelwagen totaal"
-
 msgid "Change"
 msgstr "Verander"
 
@@ -162,6 +159,9 @@ msgstr "Klantenservice"
 
 msgid "Dark Mode"
 msgstr "Donker modus"
+
+msgid "Decrease quantity"
+msgstr "Hoeveelheid verminderen"
 
 msgid "Delete this address"
 msgstr "Verwijder dit adres"
@@ -243,6 +243,9 @@ msgstr "Als u uw bestelling succesvol heeft betaald, dan zal de bestelling <0>do
 
 msgid "Including {0}"
 msgstr "Inclusief {0}"
+
+msgid "Increase quantity"
+msgstr "Hoeveelheid verhogen"
 
 msgid "Invalid email address"
 msgstr "Ongeldig e-mailadres"
@@ -409,6 +412,9 @@ msgstr "Product kan niet worden gevonden"
 msgid "Products"
 msgstr "Producten"
 
+msgid "Quantity"
+msgstr "Aantal"
+
 msgid "Region"
 msgstr "Regio"
 
@@ -519,6 +525,9 @@ msgstr "Bedankt! Uw review is succesvol verstuurd voor goedkeuring"
 
 msgid "This may take a second"
 msgstr "Dit kan een seconde duren"
+
+msgid "Total"
+msgstr "Totaal"
 
 msgid "Try a different product"
 msgstr "Probeer een ander product"

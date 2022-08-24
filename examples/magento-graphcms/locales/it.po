@@ -94,9 +94,6 @@ msgstr "Carrello"
 msgid "Cart ({0})"
 msgstr "Carrello ({0})"
 
-msgid "Cart Total"
-msgstr "Totale carrello"
-
 msgid "Change"
 msgstr "Cambia"
 
@@ -162,6 +159,9 @@ msgstr "Servizio clienti"
 
 msgid "Dark Mode"
 msgstr "Modalità scura"
+
+msgid "Decrease quantity"
+msgstr "Diminuire la quantità"
 
 msgid "Delete this address"
 msgstr "Elimina questo indirizzo"
@@ -243,6 +243,9 @@ msgstr "Se hai pagato con successo l'ordine, l'ordine <0>verrà</0> inviato, ma 
 
 msgid "Including {0}"
 msgstr "Incluso {0}"
+
+msgid "Increase quantity"
+msgstr "Aumentare la quantità"
 
 msgid "Invalid email address"
 msgstr "Indirizzo email non valido"
@@ -409,6 +412,9 @@ msgstr "Prodotto non trovato"
 msgid "Products"
 msgstr "Prodotti"
 
+msgid "Quantity"
+msgstr "Quantità"
+
 msgid "Region"
 msgstr "Regione"
 
@@ -519,6 +525,9 @@ msgstr "Grazie! La tua recensione è stata inviata con successo per l'approvazio
 
 msgid "This may take a second"
 msgstr "Questo potrebbe richiedere un secondo"
+
+msgid "Total"
+msgstr "Totale"
 
 msgid "Try a different product"
 msgstr "Prova un altro prodotto"

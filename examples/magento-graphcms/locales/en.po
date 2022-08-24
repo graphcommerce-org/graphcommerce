@@ -94,9 +94,6 @@ msgstr "Cart"
 msgid "Cart ({0})"
 msgstr "Cart ({0})"
 
-msgid "Cart Total"
-msgstr "Cart Total"
-
 msgid "Change"
 msgstr "Change"
 
@@ -162,6 +159,9 @@ msgstr "Customer Service"
 
 msgid "Dark Mode"
 msgstr "Dark Mode"
+
+msgid "Decrease quantity"
+msgstr "Decrease quantity"
 
 msgid "Delete this address"
 msgstr "Delete this address"
@@ -243,6 +243,9 @@ msgstr "If you’ve successfully paid your order, the order <0>will</0> come thr
 
 msgid "Including {0}"
 msgstr "Including {0}"
+
+msgid "Increase quantity"
+msgstr "Increase quantity"
 
 msgid "Invalid email address"
 msgstr "Invalid email address"
@@ -409,6 +412,9 @@ msgstr "Product could not be found"
 msgid "Products"
 msgstr "Products"
 
+msgid "Quantity"
+msgstr "Quantity"
+
 msgid "Region"
 msgstr "Region"
 
@@ -519,6 +525,9 @@ msgstr "Thank you! Your review was successfully submitted for approval"
 
 msgid "This may take a second"
 msgstr "This may take a second"
+
+msgid "Total"
+msgstr "Total"
 
 msgid "Try a different product"
 msgstr "Try a different product"

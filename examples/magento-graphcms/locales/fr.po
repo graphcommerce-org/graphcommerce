@@ -94,9 +94,6 @@ msgstr "Panier"
 msgid "Cart ({0})"
 msgstr "Panier ({0})"
 
-msgid "Cart Total"
-msgstr "Montant total du panier"
-
 msgid "Change"
 msgstr "Changer"
 
@@ -162,6 +159,9 @@ msgstr "Service client"
 
 msgid "Dark Mode"
 msgstr "Mode sombre"
+
+msgid "Decrease quantity"
+msgstr "Diminuer la quantité"
 
 msgid "Delete this address"
 msgstr "Supprimer cette adresse"
@@ -243,6 +243,9 @@ msgstr "Si vous avez réalisé votre paiement, la commande <0>va</0> arriver, ma
 
 msgid "Including {0}"
 msgstr "Incluant {0}"
+
+msgid "Increase quantity"
+msgstr "Augmenter la quantité"
 
 msgid "Invalid email address"
 msgstr "Adresse email invalide"
@@ -409,6 +412,9 @@ msgstr "Le produit n'a pas pu être trouvé"
 msgid "Products"
 msgstr "Produits"
 
+msgid "Quantity"
+msgstr "Quantité"
+
 msgid "Region"
 msgstr "Région"
 
@@ -519,6 +525,9 @@ msgstr "Merci! Votre évaluation a été soumise avec succès pour approbation"
 
 msgid "This may take a second"
 msgstr "Ceci peut prendre un instant"
+
+msgid "Total"
+msgstr "Totale"
 
 msgid "Try a different product"
 msgstr "Essayez un autre produit"
