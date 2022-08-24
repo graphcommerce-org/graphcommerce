@@ -1,4 +1,5 @@
 import { useGo, usePageContext } from '@graphcommerce/framer-next-pages'
+import { i18n } from '@lingui/core'
 import { Fab } from '@mui/material'
 import { useState } from 'react'
 import { IconSvg, useIconSvgSize } from '../../IconSvg'
@@ -32,6 +33,7 @@ export function LayoutHeaderClose() {
       }}
       size='responsive'
       disabled={disabled}
+      {...{ 'aria-label': i18n._(/* i18n */ 'Close') }}
     >
       <IconSvg src={iconClose} size='large' />
     </Fab>
