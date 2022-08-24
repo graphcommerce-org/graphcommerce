@@ -144,7 +144,9 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
               justifyContent: 'start',
             })}
           >
-            <MotionDiv layout={layout}>{left}</MotionDiv>
+            <MotionDiv layout={layout} sx={{ display: 'grid' }}>
+              {left}
+            </MotionDiv>
           </Box>
         )}
         <Box
