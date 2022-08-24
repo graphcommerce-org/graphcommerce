@@ -67,6 +67,7 @@ function OrderDetailPage() {
           <>
             <PageMeta
               title={i18n._(/* i18n */ 'Order #{orderId}', { orderId })}
+              metaDescription={i18n._(/* i18n */ 'Order #{orderId}', { orderId })}
               metaRobots={['noindex']}
             />
             <OrderItems {...order} loading={isLoading} images={images} />

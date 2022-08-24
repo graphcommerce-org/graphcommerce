@@ -51,7 +51,11 @@ function AccountOrdersPage() {
         </LayoutTitle>
       </LayoutOverlayHeader>
       <Container maxWidth='md'>
-        <PageMeta title={i18n._(/* i18n */ 'Orders')} metaRobots={['noindex']} />
+        <PageMeta
+          title={i18n._(/* i18n */ 'Orders')}
+          metaDescription={i18n._(/* i18n */ 'Orders')}
+          metaRobots={['noindex']}
+        />
         {customer?.orders && customer.orders.items.length > 0 && (
           <>
             <LayoutTitle icon={iconBox}>Orders</LayoutTitle>

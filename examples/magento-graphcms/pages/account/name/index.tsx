@@ -48,7 +48,11 @@ function AccountNamePage() {
       </LayoutOverlayHeader>
 
       <Container maxWidth='md'>
-        <PageMeta title={i18n._(/* i18n */ 'Name')} metaRobots={['noindex']} />
+        <PageMeta
+          title={i18n._(/* i18n */ 'Name')}
+          metaDescription={i18n._(/* i18n */ 'Name')}
+          metaRobots={['noindex']}
+        />
 
         <LayoutTitle icon={iconId}>
           <Trans id='Name' />

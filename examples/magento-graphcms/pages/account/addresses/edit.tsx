@@ -52,7 +52,11 @@ function EditAddressPage() {
         </LayoutTitle>
       </LayoutOverlayHeader>
       <Container maxWidth='md'>
-        <PageMeta title={i18n._(/* i18n */ 'Edit address')} metaRobots={['noindex']} />
+        <PageMeta
+          title={i18n._(/* i18n */ 'Edit address')}
+          metaRobots={['noindex']}
+          metaDescription={i18n._(/* i18n */ 'Edit address')}
+        />
 
         <LayoutTitle icon={iconAddresses}>
           <Trans id='Addresses' />
