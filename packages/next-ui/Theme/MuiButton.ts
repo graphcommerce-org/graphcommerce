@@ -186,7 +186,7 @@ export const MuiButtonInline: ButtonVariants = [
     props: { variant: 'inline', disableRipple: true },
     style: {
       '&:hover:not(.Mui-disabled)': {
-        // backgroundColor: 'transparent',
+        backgroundColor: 'transparent',
       },
     },
   },
