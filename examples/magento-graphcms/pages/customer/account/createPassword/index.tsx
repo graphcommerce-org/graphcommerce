@@ -20,7 +20,11 @@ function CustomerAccountCreatePasswordPage() {
 
   return (
     <>
-      <PageMeta title={i18n._(/* i18n */ 'Create new password')} metaRobots={['noindex']} />
+      <PageMeta
+        title={i18n._(/* i18n */ 'Create new password')}
+        metaDescription={i18n._(/* i18n */ 'Create new password')}
+        metaRobots={['noindex']}
+      />
       <LayoutOverlayHeader>
         <LayoutTitle size='small' component='span'>
           {!success ? (
