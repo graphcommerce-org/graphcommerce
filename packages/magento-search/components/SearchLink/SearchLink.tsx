@@ -5,6 +5,7 @@ import {
   extendableComponent,
   useFabSize,
 } from '@graphcommerce/next-ui'
+import { i18n } from '@lingui/core'
 import { Link, LinkProps } from '@mui/material'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
@@ -38,6 +39,7 @@ export function SearchLink(props: SearchLinkProps) {
         e.preventDefault()
         return router.push(href)
       }}
+      {...{ 'aria-label': i18n._(/* i18n */ 'Search') }}
       sx={[
         (theme) => ({
           justifySelf: 'center',
