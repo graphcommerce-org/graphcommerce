@@ -72,7 +72,6 @@ function AccountReviewsAddPage() {
     <>
       <PageMeta
         title={i18n._(/* i18n */ 'You are reviewing {0}', { 0: product?.name })}
-        metaDescription={i18n._(/* i18n */ 'You are reviewing {0}', { 0: product?.name })}
         metaRobots={['noindex']}
       />
 

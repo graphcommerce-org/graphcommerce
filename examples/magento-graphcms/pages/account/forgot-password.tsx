@@ -22,11 +22,7 @@ function AccountForgotPasswordPage() {
         </LayoutTitle>
       </LayoutOverlayHeader>
       <Container maxWidth='sm'>
-        <PageMeta
-          title={i18n._(/* i18n */ 'Forgot Password')}
-          metaDescription={i18n._(/* i18n */ 'Forgot Password')}
-          metaRobots={['noindex']}
-        />
+        <PageMeta title={i18n._(/* i18n */ 'Forgot Password')} metaRobots={['noindex']} />
         <LayoutTitle size='medium'>
           <Trans id='Forgot your password?' />
         </LayoutTitle>
