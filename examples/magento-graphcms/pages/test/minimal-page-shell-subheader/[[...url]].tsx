@@ -87,17 +87,13 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const conf = client.query({ query: StoreConfigDocument })
   const filterTypes = getFilterTypes(client)
 
-  const rootCategory = (await conf).data.storeConfig?.root_category_uid ?? ''
   const staticClient = graphqlSsrClient(locale)
   const page = staticClient.query({
     query: DefaultPageDocument,
     variables: { url: 'minimal-page-shell-subheader' },
   })
 
-  const products = staticClient.query({
-    query: ProductListDocument,
-    variables: { categoryUid: rootCategory },
-  })
+  const products = staticClient.query({ query: ProductListDocument })
 
   const [url, query] = extractUrlQuery(params)
   if (!url || !query) return { notFound: true }
