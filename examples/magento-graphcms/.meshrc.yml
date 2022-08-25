@@ -4,6 +4,7 @@ sources:
       graphql:
         useGETForQueries: true
         endpoint: ${GRAPHCMS_URL}
+        retry: 3
   - name: m2
     handler:
       graphql:
