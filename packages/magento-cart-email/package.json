@@ -18,6 +18,7 @@
     "@playwright/test": "^1.21.1"
   },
   "dependencies": {
+    "@graphcommerce/ecommerce-ui": "1.1.12",
     "@graphcommerce/graphql": "3.4.6",
     "@graphcommerce/image": "3.1.8",
     "@graphcommerce/magento-cart": "4.6.9",
