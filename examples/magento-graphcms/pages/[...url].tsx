@@ -144,9 +144,11 @@ function CategoryPage(props: Props) {
   )
 }
 
-CategoryPage.pageOptions = {
+const pageOptions: PageOptions<LayoutNavigationProps> = {
   Layout: LayoutNavigation,
-} as PageOptions
+  sharedKey: () => 'category',
+}
+CategoryPage.pageOptions = pageOptions
 
 export default CategoryPage
 
