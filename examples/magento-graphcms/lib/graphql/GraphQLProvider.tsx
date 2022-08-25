@@ -12,7 +12,7 @@ import {
   mergeTypePolicies,
   errorLink,
 } from '@graphcommerce/graphql'
-import { cartTypePolicies, migrateCart, createCartLink } from '@graphcommerce/magento-cart'
+import { cartTypePolicies, migrateCart, cartErrorLink } from '@graphcommerce/magento-cart'
 import { CreateEmptyCartDocument } from '@graphcommerce/magento-cart/hooks/CreateEmptyCart.gql'
 import {
   createCustomerTokenLink,
@@ -49,7 +49,7 @@ export function httpLink(cache: ApolloCache<NormalizedCacheObject>, locale?: str
     // Add the correct authorization header for the Magento user.
     createCustomerTokenLink(cache),
     // Replace current cart id with renewed cart id and forward operation
-    createCartLink(() =>
+    cartErrorLink(() =>
       client
         ?.mutate({
           mutation: CreateEmptyCartDocument,
