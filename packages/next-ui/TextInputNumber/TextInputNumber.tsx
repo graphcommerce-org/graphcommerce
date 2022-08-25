@@ -104,7 +104,7 @@ export function TextInputNumber(props: TextInputNumberProps) {
         ...textFieldProps.InputProps,
         startAdornment: (
           <IconButton
-            aria-label={i18n._(/* i18n */ 'Decrease quantity')}
+            aria-label={i18n._(/* i18n */ 'Decrease')}
             size='medium'
             edge='start'
             onPointerDown={() => setDirection('down')}
@@ -120,7 +120,7 @@ export function TextInputNumber(props: TextInputNumberProps) {
         ),
         endAdornment: (
           <IconButton
-            aria-label={i18n._(/* i18n */ 'Increase quantity')}
+            aria-label={i18n._(/* i18n */ 'Increase')}
             size='medium'
             edge='end'
             onPointerDown={() => setDirection('up')}
@@ -141,7 +141,7 @@ export function TextInputNumber(props: TextInputNumberProps) {
       }}
       inputProps={{
         ...inputProps,
-        'aria-label': i18n._(/* i18n */ 'Quantity'),
+        'aria-label': i18n._(/* i18n */ 'Number'),
         sx: [
           {
             textAlign: 'center',

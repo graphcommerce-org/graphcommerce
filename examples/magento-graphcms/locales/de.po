@@ -160,8 +160,8 @@ msgstr "Kundenservice"
 msgid "Dark Mode"
 msgstr "Dunkler Modus"
 
-msgid "Decrease quantity"
-msgstr "Menge verringern"
+msgid "Decrease"
+msgstr "Verringerung"
 
 msgid "Delete this address"
 msgstr "Diese Adresse löschen"
@@ -244,8 +244,8 @@ msgstr "Wenn Sie Ihre Bestellung erfolgreich bezahlt haben, wird die Bestellung 
 msgid "Including {0}"
 msgstr "Inklusive {0}"
 
-msgid "Increase quantity"
-msgstr "Menge erhöhen"
+msgid "Increase"
+msgstr "Erhöhen"
 
 msgid "Invalid email address"
 msgstr "Ungültige E-Mail-Adresse"
@@ -321,6 +321,9 @@ msgstr "Keine Zahlungsinformationen"
 
 msgid "No worries! Enter your email address and we will send an email with instructions to reset your password."
 msgstr "Keine Sorge! Geben Sie Ihre E-Mail-Adresse ein und wir senden Ihnen eine E-Mail mit Anweisungen zum Zurücksetzen Ihres Passworts."
+
+msgid "Number"
+msgstr "Nummer
 
 msgid "Ok"
 msgstr "Ok"
@@ -411,9 +414,6 @@ msgstr "Produkt konnte nicht gefunden werden"
 
 msgid "Products"
 msgstr "Produkte"
-
-msgid "Quantity"
-msgstr ""
 
 msgid "Region"
 msgstr "Region"

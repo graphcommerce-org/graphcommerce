@@ -160,8 +160,8 @@ msgstr "Klantenservice"
 msgid "Dark Mode"
 msgstr "Donker modus"
 
-msgid "Decrease quantity"
-msgstr "Hoeveelheid verminderen"
+msgid "Decrease"
+msgstr "Verminderen"
 
 msgid "Delete this address"
 msgstr "Verwijder dit adres"
@@ -244,8 +244,8 @@ msgstr "Als u uw bestelling succesvol heeft betaald, dan zal de bestelling <0>do
 msgid "Including {0}"
 msgstr "Inclusief {0}"
 
-msgid "Increase quantity"
-msgstr "Hoeveelheid verhogen"
+msgid "Increase"
+msgstr "Verhogen"
 
 msgid "Invalid email address"
 msgstr "Ongeldig e-mailadres"
@@ -321,6 +321,9 @@ msgstr "Geen betalingsinformatie"
 
 msgid "No worries! Enter your email address and we will send an email with instructions to reset your password."
 msgstr "Geen zorgen! Vul uw e-mailadres in en we sturen een email met instructies om het wachtwoord te resetten."
+
+msgid "Number"
+msgstr "Nummer"
 
 msgid "Ok"
 msgstr "Ok"
@@ -411,9 +414,6 @@ msgstr "Product kan niet worden gevonden"
 
 msgid "Products"
 msgstr "Producten"
-
-msgid "Quantity"
-msgstr "Aantal"
 
 msgid "Region"
 msgstr "Regio"
