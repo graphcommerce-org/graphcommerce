@@ -80,14 +80,12 @@ export default function MessageSnackbarImpl(props: MessageSnackbarImplProps) {
   let icon = iconCheckmark
   if (severity === 'error') icon = iconSadFace
 
-  const isMobile = useMediaQuery<Theme>((theme) => theme.breakpoints.down('md'))
-
   return (
     <Portal>
       <Snackbar
         {...snackbarProps}
         message={message}
-        anchorOrigin={{ vertical: isMobile ? 'top' : 'bottom', horizontal: 'center' }}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
         open={showSnackbar}
         autoHideDuration={autoHide ? 5000 : null}
         className={classes.root}

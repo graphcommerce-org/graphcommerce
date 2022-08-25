@@ -65,7 +65,6 @@ export function ConfigurableProductAddToCart(props: ConfigurableProductAddToCart
 
   const { handleSubmit, formState, muiRegister, required, control, error, data } = form
   const submitHandler = handleSubmit(() => {})
-  const isMobile = useMediaQuery<Theme>((theme) => theme.breakpoints.down('md'))
 
   return (
     <Box
@@ -161,19 +160,17 @@ export function ConfigurableProductAddToCart(props: ConfigurableProductAddToCart
         variant='pill'
         autoHide
         action={
-          !isMobile && (
-            <PageLink href='/cart' passHref>
-              <Button
-                id='view-shopping-cart-button'
-                size='medium'
-                variant='pill'
-                color='secondary'
-                endIcon={<IconSvg src={iconChevronRight} />}
-              >
-                <Trans id='View shopping cart' />
-              </Button>
-            </PageLink>
-          )
+          <PageLink href='/cart' passHref>
+            <Button
+              id='view-shopping-cart-button'
+              size='medium'
+              variant='pill'
+              color='secondary'
+              endIcon={<IconSvg src={iconChevronRight} />}
+            >
+              <Trans id='View shopping cart' />
+            </Button>
+          </PageLink>
         }
       >
         <Trans
