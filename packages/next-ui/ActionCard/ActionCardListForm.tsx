@@ -34,7 +34,7 @@ export function ActionCardListForm<T extends ActionCardItemBase>(
       control={control}
       name={name}
       rules={{ required, ...rules, validate: (v) => (v ? true : errorMessage) }}
-      render={({ field: { onChange, value, onBlur, ref }, fieldState, formState }) => (
+      render={({ field: { onChange, value, ref }, fieldState, formState }) => (
         <ActionCardList
           required
           value={value}
@@ -49,7 +49,6 @@ export function ActionCardListForm<T extends ActionCardItemBase>(
               key={item.value}
               value={item.value}
               selected={value === item.value}
-              hidden={!!value && value !== item.value}
               onReset={(e) => {
                 e.preventDefault()
                 onChange(null)
