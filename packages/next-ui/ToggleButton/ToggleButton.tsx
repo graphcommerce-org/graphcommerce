@@ -74,7 +74,7 @@ export const ToggleButton = React.forwardRef<any, ToggleButtonProps>((props, ref
               theme.palette[color]?.main ?? theme.palette.primary.main
             },0 0 0 4px ${alpha(
               theme.palette.primary.main,
-              theme.palette.action.activatedOpacity,
+              theme.palette.action.hoverOpacity,
             )} !important`,
           },
           ':not(&.sizeSmall)': {

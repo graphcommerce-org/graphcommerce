@@ -38,7 +38,6 @@ const lightPalette: PaletteOptions = {
   },
   action: {
     hoverOpacity: 0.16,
-    activatedOpacity: 0.14,
   },
   text: {
     primary: '#000000',
@@ -70,7 +69,6 @@ const darkPalette: PaletteOptions = {
   },
   action: {
     hoverOpacity: 0.16,
-    activatedOpacity: 0.14,
   },
   text: {
     primary: '#ffffff',

@@ -133,7 +133,7 @@ export function ActionCard(props: ActionCardProps) {
             border: `2px solid ${theme.palette.secondary.main} !important`,
             boxShadow: `0 0 0 4px ${alpha(
               theme.palette.secondary.main,
-              theme.palette.action.activatedOpacity,
+              theme.palette.action.hoverOpacity,
             )} !important`,
             borderTopLeftRadius: responsiveVal(
               theme.shape.borderRadius * 3,
