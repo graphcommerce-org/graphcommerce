@@ -4,6 +4,7 @@
 '@graphcommerce/magento-cart': minor
 '@graphcommerce/magento-cart-billing-address': minor
 '@graphcommerce/magento-cart-coupon': minor
+'@graphcommerce/magento-cart-items': minor
 '@graphcommerce/magento-cart-payment-method': minor
 '@graphcommerce/magento-cart-shipping-method': minor
 '@graphcommerce/magento-category': minor
@@ -20,4 +21,10 @@
 '@graphcommerce/next-ui': minor
 ---
 
-Default styles
+Default styles and layout fixes
+
+- Scaled icons and fonts down. Size in typography is now more gradual: https://graphcommerce.vercel.app/test/typography
+- Multiple accessibility fixes. Missing button/input labels, and fixed spacing issues resulting in high %  appropriately sized tap targets
+- Replaced responsiveVal usage with better performaning breakpointVal where possible
+- All buttons are now Pill by default. Added removable addition in theme.ts to convert larges buttons to squircle.
+- Cleaned up checkout styles
