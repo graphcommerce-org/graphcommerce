@@ -1,5 +1,0 @@
-fragment ProductFiltersQueryFragment on Query {
-  filters: products(filter: { category_uid: { eq: $categoryUid } }) {
-    ...ProductListFilters
-  }
-}

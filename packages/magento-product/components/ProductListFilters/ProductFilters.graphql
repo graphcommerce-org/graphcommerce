@@ -1,0 +1,5 @@
+query ProductFilters($filters: ProductAttributeFilterInput = {}) {
+  filters: products(filter: $filters, currentPage: 1, pageSize: 1) {
+    ...ProductListFilters
+  }
+}

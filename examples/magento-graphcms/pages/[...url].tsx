@@ -13,6 +13,8 @@ import {
   FilterTypes,
   getFilterTypes,
   parseParams,
+  ProductFiltersDocument,
+  ProductFiltersQuery,
   ProductListCount,
   ProductListDocument,
   ProductListFilters,
@@ -45,7 +47,8 @@ import { CategoryPageDocument, CategoryPageQuery } from '../graphql/CategoryPage
 import { graphqlSsrClient, graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
 
 type Props = CategoryPageQuery &
-  ProductListQuery & { filterTypes?: FilterTypes; params?: ProductListParams }
+  ProductListQuery &
+  ProductFiltersQuery & { filterTypes?: FilterTypes; params?: ProductListParams }
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 export type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
@@ -196,13 +199,16 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     }
   }
 
+  const filters = staticClient.query({
+    query: ProductFiltersDocument,
+    variables: { filters: { category_uid: { eq: categoryUid } } },
+  })
   const products = staticClient.query({
     query: ProductListDocument,
     variables: {
       // pageSize: 10,
       ...productListParams,
       filters: { ...productListParams.filters, category_uid: { eq: categoryUid } },
-      categoryUid,
     },
   })
 
@@ -221,6 +227,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     props: {
       ...(await categoryPage).data,
       ...(await products).data,
+      ...(await filters).data,
       filterTypes: await filterTypes,
       params: productListParams,
       apolloState: await conf.then(() => client.cache.extract()),
