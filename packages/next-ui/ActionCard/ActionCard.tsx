@@ -192,7 +192,7 @@ export function ActionCard(props: ActionCardProps) {
         <Box
           className={classes.details}
           sx={(theme) => ({
-            ...theme.typography.body2,
+            typography: 'body2',
             gridArea: 'details',
             color: 'text.secondary',
           })}
