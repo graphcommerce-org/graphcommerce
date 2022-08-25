@@ -67,7 +67,7 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
         }
 
     type ActionCardLike = React.ReactElement<
-      Pick<ActionCardProps, 'value' | 'selected' | 'disabled' | 'onClick'>
+      Pick<ActionCardProps, 'value' | 'selected' | 'disabled' | 'onClick' | 'hidden'>
     >
     function isActionCardLike(el: React.ReactElement): el is ActionCardLike {
       const hasValue = (el as ActionCardLike).props.value
@@ -132,6 +132,7 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
         {childReactNodes.map((child) =>
           React.cloneElement(child, {
             onClick: handleChange,
+            hidden: !!value && value !== child.props.value,
             selected:
               child.props.selected === undefined
                 ? isValueSelected(child.props.value, value)
