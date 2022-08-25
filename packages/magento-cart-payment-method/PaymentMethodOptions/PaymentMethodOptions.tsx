@@ -1,6 +1,5 @@
 import { extendableComponent } from '@graphcommerce/next-ui'
 import { Box, SxProps, Theme } from '@mui/material'
-import { AnimatePresence } from 'framer-motion'
 import { PaymentMethodOptionsProps } from '../Api/PaymentMethod'
 import { usePaymentMethodContext } from '../PaymentMethodContext/PaymentMethodContext'
 
@@ -17,13 +16,11 @@ export function PaymentMethodOptions(props: PaymentMethodOptionsProps & { sx?: S
       className={classes.root}
       sx={[(theme) => ({ marginBottom: theme.spacings.sm }), ...(Array.isArray(sx) ? sx : [sx])]}
     >
-      <AnimatePresence initial={false}>
-        {selectedModule && selectedMethod && (
-          <Box key={selectedMethod.code}>
-            <selectedModule.PaymentOptions {...selectedMethod} {...optionsProps} />
-          </Box>
-        )}
-      </AnimatePresence>
+      {selectedModule && selectedMethod && (
+        <Box key={selectedMethod.code}>
+          <selectedModule.PaymentOptions {...selectedMethod} {...optionsProps} />
+        </Box>
+      )}
     </Box>
   )
 }

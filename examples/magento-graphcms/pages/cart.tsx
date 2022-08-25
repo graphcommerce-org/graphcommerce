@@ -25,7 +25,6 @@ import {
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, Container } from '@mui/material'
-import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
 import { LayoutOverlay, LayoutOverlayProps } from '../components'
 import { graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
@@ -85,7 +84,7 @@ function CartPage() {
             <Trans id='We are fetching your products, one moment please!' />
           </FullPageMessage>
         ) : (
-          <AnimatePresence initial={false}>
+          <>
             {hasItems ? (
               <Box sx={(theme) => ({ mt: theme.spacings.lg })}>
                 <CartItems
@@ -113,7 +112,7 @@ function CartPage() {
             ) : (
               <EmptyCart>{error && <ApolloCartErrorAlert error={error} />}</EmptyCart>
             )}
-          </AnimatePresence>
+          </>
         )}
       </Container>
     </>

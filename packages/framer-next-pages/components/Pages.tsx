@@ -1,5 +1,5 @@
 import { clientSizeCssVar, useClientSizeCssVar } from '@graphcommerce/framer-utils'
-import { AnimatePresence, m } from 'framer-motion'
+import { m } from 'framer-motion'
 import { requestIdleCallback, cancelIdleCallback } from 'next/dist/client/request-idle-callback'
 import { HistoryState, PrivateRouteInfo } from 'next/dist/shared/lib/router/router'
 import { AppPropsType } from 'next/dist/shared/lib/utils'
@@ -209,29 +209,28 @@ and pass it as a param in <FramerNextPages fallbackRoute='/[...url]' /> in your 
       <m.div
         style={{ position: 'absolute', top: 0, minHeight: clientSizeCssVar.y, left: 0, right: 0 }}
       />
-      <AnimatePresence initial={false}>
-        {renderItems.map((item, itemIdx) => {
-          const { historyIdx, sharedKey, overlayGroup, routerKey } = item
-          const active = itemIdx === renderItems.length - 1
-          const depth = itemIdx - (renderItems.length - 1)
-          const closeIdx = renderItems[itemIdx - 1]?.historyIdx ?? -1
-          const closeSteps = closeIdx > -1 ? historyIdx - closeIdx : 0
-          const backSteps = historyIdx - closeIdx - 1
 
-          return (
-            <pageContext.Provider
-              key={sharedKey}
-              // We're actually rerendering here but since the actual page renderer is memoized we can safely do this
-              // eslint-disable-next-line react/jsx-no-constructed-context-values
-              value={{ depth, active, direction, closeSteps, backSteps, routerKey, overlayGroup }}
-            >
-              <Page active={active} routerKey={routerKey}>
-                <PageRenderer {...item} />
-              </Page>
-            </pageContext.Provider>
-          )
-        })}
-      </AnimatePresence>
+      {renderItems.map((item, itemIdx) => {
+        const { historyIdx, sharedKey, overlayGroup, routerKey } = item
+        const active = itemIdx === renderItems.length - 1
+        const depth = itemIdx - (renderItems.length - 1)
+        const closeIdx = renderItems[itemIdx - 1]?.historyIdx ?? -1
+        const closeSteps = closeIdx > -1 ? historyIdx - closeIdx : 0
+        const backSteps = historyIdx - closeIdx - 1
+
+        return (
+          <pageContext.Provider
+            key={sharedKey}
+            // We're actually rerendering here but since the actual page renderer is memoized we can safely do this
+            // eslint-disable-next-line react/jsx-no-constructed-context-values
+            value={{ depth, active, direction, closeSteps, backSteps, routerKey, overlayGroup }}
+          >
+            <Page active={active} routerKey={routerKey}>
+              <PageRenderer {...item} />
+            </Page>
+          </pageContext.Provider>
+        )
+      })}
     </>
   )
 }

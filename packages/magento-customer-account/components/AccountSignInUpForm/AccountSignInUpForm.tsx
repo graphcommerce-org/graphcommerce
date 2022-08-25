@@ -17,7 +17,6 @@ import {
 import { emailPattern, useFormPersist } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
 import { Box, CircularProgress, Link, SxProps, TextField, Theme, Typography } from '@mui/material'
-import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
 import router from 'next/router'
 
@@ -107,65 +106,63 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
         </Box>
       )}
 
-      <AnimatePresence>
-        {mode !== 'signedin' && (
-          <form noValidate onSubmit={submit} key='emailform'>
-            <Box key='email'>
-              <FormRow>
-                <TextField
-                  key='email'
-                  variant='outlined'
-                  type='text'
-                  autoComplete='email'
-                  error={formState.isSubmitted && !!formState.errors.email}
-                  helperText={formState.isSubmitted && formState.errors.email?.message}
-                  label={<Trans id='Email' />}
-                  required={required.email}
-                  disabled={disableFields}
-                  {...muiRegister('email', {
-                    required: required.email,
-                    pattern: { value: emailPattern, message: '' },
-                  })}
-                  InputProps={{
-                    endAdornment: formState.isSubmitting && <CircularProgress />,
-                    readOnly: !!customerQuery.data?.customer?.email,
-                  }}
-                />
-              </FormRow>
+      {mode !== 'signedin' && (
+        <form noValidate onSubmit={submit} key='emailform'>
+          <Box key='email'>
+            <FormRow>
+              <TextField
+                key='email'
+                variant='outlined'
+                type='text'
+                autoComplete='email'
+                error={formState.isSubmitted && !!formState.errors.email}
+                helperText={formState.isSubmitted && formState.errors.email?.message}
+                label={<Trans id='Email' />}
+                required={required.email}
+                disabled={disableFields}
+                {...muiRegister('email', {
+                  required: required.email,
+                  pattern: { value: emailPattern, message: '' },
+                })}
+                InputProps={{
+                  endAdornment: formState.isSubmitting && <CircularProgress />,
+                  readOnly: !!customerQuery.data?.customer?.email,
+                }}
+              />
+            </FormRow>
+          </Box>
+
+          <ApolloCustomerErrorAlert error={error} />
+
+          {(mode === 'email' || mode === 'session-expired') && (
+            <Box key='submit-form'>
+              <FormActions>
+                <Button
+                  type='submit'
+                  loading={formState.isSubmitting}
+                  variant='pill'
+                  color='primary'
+                  size='large'
+                >
+                  <Trans id='Continue' />
+                </Button>
+              </FormActions>
             </Box>
+          )}
+        </form>
+      )}
 
-            <ApolloCustomerErrorAlert error={error} />
+      {mode === 'signin' && (
+        <Box key='signin'>
+          <SignInForm email={watch('email')} />
+        </Box>
+      )}
 
-            {(mode === 'email' || mode === 'session-expired') && (
-              <Box key='submit-form'>
-                <FormActions>
-                  <Button
-                    type='submit'
-                    loading={formState.isSubmitting}
-                    variant='pill'
-                    color='primary'
-                    size='large'
-                  >
-                    <Trans id='Continue' />
-                  </Button>
-                </FormActions>
-              </Box>
-            )}
-          </form>
-        )}
-
-        {mode === 'signin' && (
-          <Box key='signin'>
-            <SignInForm email={watch('email')} />
-          </Box>
-        )}
-
-        {mode === 'signup' && (
-          <Box key='signup'>
-            <SignUpForm email={watch('email')} />
-          </Box>
-        )}
-      </AnimatePresence>
+      {mode === 'signup' && (
+        <Box key='signup'>
+          <SignUpForm email={watch('email')} />
+        </Box>
+      )}
     </FormDiv>
   )
 }
