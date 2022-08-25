@@ -18,8 +18,8 @@ export function CategoryMeta(props: CategoryMetaProps) {
 
   if (params?.url && !canonical) canonical = `/${params.url}`
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-  const anyFilterActive = Object.keys(params?.filters ?? {}).length > 0
+  const anyFilterActive =
+    Object.keys(params?.filters ?? {}).filter((k) => k !== 'category_uid').length > 0
   const currentPage = params?.currentPage ?? 1
   const isPaginated = currentPage > 1 && !anyFilterActive
 
