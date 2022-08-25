@@ -255,17 +255,6 @@ const createOverrides = (theme: Theme): Components => ({
         style: { borderRadius: '99em' },
       },
       {
-        props: { variant: 'pill', size: 'large' },
-        style: {
-          ...breakpointVal(
-            'borderRadius',
-            theme.shape.borderRadius * 5,
-            theme.shape.borderRadius * 6,
-            theme.breakpoints.values,
-          ),
-        },
-      },
-      {
         props: { color: 'primary' },
         style: {
           '&:not(.Mui-disabled)': {
