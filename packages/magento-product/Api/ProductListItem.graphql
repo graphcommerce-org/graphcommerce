@@ -8,9 +8,6 @@ fragment ProductListItem on ProductInterface @injectable {
     label
   }
   price_range {
-    maximum_price {
-      ...ProductListPrice
-    }
     minimum_price {
       ...ProductListPrice
     }
