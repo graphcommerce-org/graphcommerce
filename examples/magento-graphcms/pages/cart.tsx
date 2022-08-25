@@ -43,7 +43,6 @@ function CartPage() {
     <>
       <PageMeta
         title={i18n._(/* i18n */ 'Cart ({0})', { 0: data?.cart?.total_quantity ?? 0 })}
-        metaDescription={i18n._(/* i18n */ 'Cart ({0})', { 0: data?.cart?.total_quantity ?? 0 })}
         metaRobots={['noindex']}
       />
       <LayoutOverlayHeader
