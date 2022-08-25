@@ -60,7 +60,9 @@ export function LayoutFull(props: LayoutFullProps) {
             </DesktopNavItem>
           </DesktopNavBar>
           <DesktopNavActions>
-            {!router.pathname.startsWith('/search') && <SearchLink href='/search' />}
+            {!router.pathname.startsWith('/search') && (
+              <SearchLink href='/search' aria-label={i18n._(/* i18n */ 'Search...')} />
+            )}
             <PageLink href='/service' passHref>
               <Fab aria-label={i18n._(/* i18n*/ `Account`)} size='large' color='inherit'>
                 <IconSvg src={iconCustomerService} size='large' />
@@ -78,7 +80,11 @@ export function LayoutFull(props: LayoutFullProps) {
       menuFab={
         <MenuFab
           search={
-            <SearchLink href='/search' sx={{ width: '100%' }}>
+            <SearchLink
+              href='/search'
+              sx={{ width: '100%' }}
+              aria-label={i18n._(/* i18n */ 'Search...')}
+            >
               <Trans id='Search...' />
             </SearchLink>
           }
