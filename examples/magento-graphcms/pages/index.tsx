@@ -61,7 +61,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   // todo(paales): Remove when https://github.com/Urigo/graphql-mesh/issues/1257 is resolved
   const productList = staticClient.query({
     query: ProductListDocument,
-    variables: { pageSize: 8, filters: { category_uid: { eq: 'MTAy' } }, categoryUid: 'MTAy' },
+    variables: { pageSize: 8, filters: { category_uid: { eq: 'MTAy' } } },
   })
 
   if (!(await page).data.pages?.[0]) return { notFound: true }
