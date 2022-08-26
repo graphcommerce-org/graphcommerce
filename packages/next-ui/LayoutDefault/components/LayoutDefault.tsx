@@ -1,6 +1,7 @@
 import { useScrollOffset } from '@graphcommerce/framer-next-pages'
 import { Box, SxProps, Theme } from '@mui/material'
-import { useTransform, useViewportScroll } from 'framer-motion'
+import { useTransform, useScroll } from 'framer-motion'
+import { useEffect } from 'react'
 import { LayoutProvider } from '../../Layout/components/LayoutProvider'
 import { extendableComponent } from '../../Styles'
 import { useFabSize } from '../../Theme'
@@ -40,7 +41,7 @@ export function LayoutDefault(props: LayoutDefaultProps) {
   } = props
 
   const scrollWithOffset = useTransform(
-    [useViewportScroll().scrollY, useScrollOffset()],
+    [useScroll().scrollY, useScrollOffset()],
     ([y, offset]: number[]) => y + offset,
   )
 

@@ -39,7 +39,7 @@ export type LayoutOverlayBaseProps = {
   onClosed: () => void
   offsetPageY: number
   isPresent: boolean
-  safeToRemove: (() => void) | null | undefined
+  safeToRemove?: (() => void) | null | undefined
   overlayPaneProps?: MotionProps
 } & StyleProps &
   OverridableProps

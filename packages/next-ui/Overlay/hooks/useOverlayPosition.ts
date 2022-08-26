@@ -26,6 +26,7 @@ export function useOverlayPosition() {
 
     const measure = () => {
       const positions = getScrollSnapPositions()
+
       state.open.x.set(positions.x[1] ?? 0)
       state.closed.x.set(positions.x[0])
       state.open.y.set(positions.y[1] ?? 0)
@@ -50,10 +51,14 @@ export function useOverlayPosition() {
 
       const xC = state.closed.x.get()
       const xO = state.open.x.get()
+
       const visX = xO === xC ? 1 : Math.max(0, Math.min(1, (x - xC) / (xO - xC)))
 
+      let vis = visY * visX
+      if (xC === 0 && xO === 0 && yC === 0 && yO === 0) vis = 0
+
       // todo: visibility sometimes flickers
-      state.open.visible.set(visY * visX)
+      state.open.visible.set(vis)
     }
 
     const cancelY = scroll.y.onChange(calc)
