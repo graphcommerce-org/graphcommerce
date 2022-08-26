@@ -1,10 +1,10 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { useGoogleRecaptcha } from '@graphcommerce/googlerecaptcha'
 import {
-  ApolloCustomerErrorFullPage,
   CustomerDocument,
   UpdateCustomerEmailForm,
   useCustomerQuery,
+  WaitForCustomer,
 } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
@@ -13,11 +13,10 @@ import {
   SectionContainer,
   LayoutOverlayHeader,
   LayoutTitle,
-  FullPageMessage,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { CircularProgress, Container } from '@mui/material'
+import { Container } from '@mui/material'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
 import { graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
@@ -26,18 +25,10 @@ type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 function AccountContactPage() {
   useGoogleRecaptcha()
 
-  const { loading, data, error, called } = useCustomerQuery(CustomerDocument, {
+  const dashboard = useCustomerQuery(CustomerDocument, {
     fetchPolicy: 'cache-and-network',
   })
-  const customer = data?.customer
-
-  if (loading || !called)
-    return (
-      <FullPageMessage icon={<CircularProgress />} title='Loading your account'>
-        <Trans id='This may take a second' />
-      </FullPageMessage>
-    )
-  if (error) return <ApolloCustomerErrorFullPage error={error} />
+  const customer = dashboard.data?.customer
 
   return (
     <>
@@ -46,18 +37,19 @@ function AccountContactPage() {
           <Trans id='Contact' />
         </LayoutTitle>
       </LayoutOverlayHeader>
+      <WaitForCustomer waitFor={dashboard}>
+        <Container maxWidth='md'>
+          <PageMeta title={i18n._(/* i18n */ 'Contact')} metaRobots={['noindex']} />
 
-      <Container maxWidth='md'>
-        <PageMeta title={i18n._(/* i18n */ 'Contact')} metaRobots={['noindex']} />
+          <LayoutTitle icon={iconEmailOutline}>
+            <Trans id='Contact' />
+          </LayoutTitle>
 
-        <LayoutTitle icon={iconEmailOutline}>
-          <Trans id='Contact' />
-        </LayoutTitle>
-
-        <SectionContainer labelLeft='Email'>
-          {customer && <UpdateCustomerEmailForm email={customer.email ?? ''} />}
-        </SectionContainer>
-      </Container>
+          <SectionContainer labelLeft='Email'>
+            {customer && <UpdateCustomerEmailForm email={customer.email ?? ''} />}
+          </SectionContainer>
+        </Container>
+      </WaitForCustomer>
     </>
   )
 }

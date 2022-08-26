@@ -1,12 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { useGoogleRecaptcha } from '@graphcommerce/googlerecaptcha'
-import { useQuery } from '@graphcommerce/graphql'
-import {
-  ApolloCustomerErrorFullPage,
-  ChangePasswordForm,
-  CustomerDocument,
-  useCustomerQuery,
-} from '@graphcommerce/magento-customer'
+import { ChangePasswordForm, WaitForCustomer } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   GetStaticProps,
@@ -14,11 +8,10 @@ import {
   iconLock,
   LayoutOverlayHeader,
   LayoutTitle,
-  FullPageMessage,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { CircularProgress, Container } from '@mui/material'
+import { Container } from '@mui/material'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
 import { graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
@@ -26,19 +19,6 @@ type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
 function AccountAuthenticationPage() {
   useGoogleRecaptcha()
-  const { loading, data, error, called } = useCustomerQuery(CustomerDocument, {
-    fetchPolicy: 'cache-and-network',
-  })
-  const customer = data?.customer
-
-  if (loading || !called)
-    return (
-      <FullPageMessage icon={<CircularProgress />} title='Loading your account'>
-        <Trans id='This may take a second' />
-      </FullPageMessage>
-    )
-
-  if (error) return <ApolloCustomerErrorFullPage error={error} />
 
   return (
     <>
@@ -48,13 +28,15 @@ function AccountAuthenticationPage() {
         </LayoutTitle>
       </LayoutOverlayHeader>
       <Container maxWidth='md'>
-        <PageMeta title={i18n._(/* i18n */ 'Authentication')} metaRobots={['noindex']} />
-        <LayoutTitle icon={iconLock}>
-          <Trans id='Authentication' />
-        </LayoutTitle>
-        <SectionContainer labelLeft={<Trans id='Password' />}>
-          {customer && <ChangePasswordForm />}
-        </SectionContainer>
+        <WaitForCustomer>
+          <PageMeta title={i18n._(/* i18n */ 'Authentication')} metaRobots={['noindex']} />
+          <LayoutTitle icon={iconLock}>
+            <Trans id='Authentication' />
+          </LayoutTitle>
+          <SectionContainer labelLeft={<Trans id='Password' />}>
+            <ChangePasswordForm />
+          </SectionContainer>
+        </WaitForCustomer>
       </Container>
     </>
   )
