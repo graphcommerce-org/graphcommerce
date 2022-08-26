@@ -526,8 +526,8 @@ msgstr "Bedankt! Uw review is succesvol verstuurd voor goedkeuring"
 msgid "This may take a second"
 msgstr "Dit kan een seconde duren"
 
-msgid "Total"
-msgstr "Totaal"
+msgid "Total <0/>"
+msgstr "Totaal <0/>"
 
 msgid "Try a different product"
 msgstr "Probeer een ander product"

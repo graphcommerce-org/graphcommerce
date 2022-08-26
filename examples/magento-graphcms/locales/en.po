@@ -526,8 +526,8 @@ msgstr "Thank you! Your review was successfully submitted for approval"
 msgid "This may take a second"
 msgstr "This may take a second"
 
-msgid "Total"
-msgstr "Total"
+msgid "Total <0/>"
+msgstr "Total <0/>"
 
 msgid "Try a different product"
 msgstr "Try a different product"

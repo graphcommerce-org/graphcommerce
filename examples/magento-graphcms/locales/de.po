@@ -323,7 +323,7 @@ msgid "No worries! Enter your email address and we will send an email with instr
 msgstr "Keine Sorge! Geben Sie Ihre E-Mail-Adresse ein und wir senden Ihnen eine E-Mail mit Anweisungen zum Zurücksetzen Ihres Passworts."
 
 msgid "Number"
-msgstr "Nummer
+msgstr "Nummer"
 
 msgid "Ok"
 msgstr "Ok"
@@ -526,8 +526,8 @@ msgstr "Vielen Dank! Ihre Bewertung wurde erfolgreich zur Freischaltung eingerei
 msgid "This may take a second"
 msgstr "Das kann einen Moment dauern"
 
-msgid "Total"
-msgstr "Gesamt"
+msgid "Total <0/>"
+msgstr "Gesamt <0/>"
 
 msgid "Try a different product"
 msgstr "Versuchen Sie ein anderes Produkt"
