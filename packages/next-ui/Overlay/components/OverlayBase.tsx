@@ -115,14 +115,7 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
   useIsomorphicLayoutEffect(() => {
     const scroller = scrollerRef.current
 
-    if (!scroller) return undefined
-
-    if (!isPresent && position.get() === OverlayPosition.UNOPENED) {
-      scroller.scrollLeft = positions.closed.x.get()
-      scroller.scrollTop = positions.closed.y.get()
-    }
-
-    if (!isPresent) return undefined
+    if (!scroller || !isPresent) return undefined
 
     const open = { x: positions.open.x.get(), y: positions.open.y.get() }
 
@@ -170,16 +163,23 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
 
   // When the overlay is closed by navigating away, we're closing the overlay.
   useEffect(() => {
-    if (isPresent) return
-    position.set(OverlayPosition.CLOSED)
-    clearScrollLock()
+    const scroller = scrollerRef.current
+    if (isPresent || !scroller) return
 
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    scrollTo({
-      x: positions.closed.x.get(),
-      y: positions.closed.y.get(),
-    }).then(() => safeToRemove?.())
-  }, [isPresent, position, positions, safeToRemove, scrollTo])
+    if (position.get() === OverlayPosition.UNOPENED) {
+      position.set(OverlayPosition.CLOSED)
+      clearScrollLock()
+      scroller.scrollLeft = positions.closed.x.get()
+      scroller.scrollTop = positions.closed.y.get()
+      safeToRemove?.()
+    } else {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      scrollTo({
+        x: positions.closed.x.get(),
+        y: positions.closed.y.get(),
+      }).then(() => safeToRemove?.())
+    }
+  }, [isPresent, position, positions, safeToRemove, scrollTo, scrollerRef])
 
   // Only go back to a previous page if the overlay isn't closed.
   const closeOverlay = useCallback(() => {
