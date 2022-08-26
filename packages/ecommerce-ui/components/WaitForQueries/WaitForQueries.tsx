@@ -18,7 +18,7 @@ export const WaitForQueries = (props: WaitForQueriesProps) => {
 
   // We are done when all queries either have data or an error.
   const isDone = (Array.isArray(waitFor) ? waitFor : [waitFor]).every(
-    (res) => typeof res === 'undefined' || res.data || res.error,
+    (res) => (typeof res === 'undefined' || res.data || res.error || !res.loading) && mounted,
   )
 
   return <>{isDone && mounted ? children : fallback}</>

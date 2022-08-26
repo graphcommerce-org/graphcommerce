@@ -5,6 +5,7 @@ import {
   ChangeNameForm,
   CustomerDocument,
   useCustomerQuery,
+  WaitForCustomer,
 } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
@@ -26,18 +27,10 @@ type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 function AccountNamePage() {
   useGoogleRecaptcha()
 
-  const { loading, data, error, called } = useCustomerQuery(CustomerDocument, {
+  const dashboard = useCustomerQuery(CustomerDocument, {
     fetchPolicy: 'cache-and-network',
   })
-  const customer = data?.customer
-
-  if (loading || !called)
-    return (
-      <FullPageMessage icon={<CircularProgress />} title='Loading your account'>
-        <Trans id='This may take a second' />
-      </FullPageMessage>
-    )
-  if (error) return <ApolloCustomerErrorFullPage error={error} />
+  const customer = dashboard.data?.customer
 
   return (
     <>
@@ -48,21 +41,23 @@ function AccountNamePage() {
       </LayoutOverlayHeader>
 
       <Container maxWidth='md'>
-        <PageMeta title={i18n._(/* i18n */ 'Name')} metaRobots={['noindex']} />
+        <WaitForCustomer waitFor={dashboard}>
+          <PageMeta title={i18n._(/* i18n */ 'Name')} metaRobots={['noindex']} />
 
-        <LayoutTitle icon={iconId}>
-          <Trans id='Name' />
-        </LayoutTitle>
+          <LayoutTitle icon={iconId}>
+            <Trans id='Name' />
+          </LayoutTitle>
 
-        <SectionContainer labelLeft={<Trans id='Name' />}>
-          {customer && (
-            <ChangeNameForm
-              prefix={customer.prefix ?? ''}
-              firstname={customer.firstname ?? ''}
-              lastname={customer.lastname ?? ''}
-            />
-          )}
-        </SectionContainer>
+          <SectionContainer labelLeft={<Trans id='Name' />}>
+            {customer && (
+              <ChangeNameForm
+                prefix={customer.prefix ?? ''}
+                firstname={customer.firstname ?? ''}
+                lastname={customer.lastname ?? ''}
+              />
+            )}
+          </SectionContainer>
+        </WaitForCustomer>
       </Container>
     </>
   )

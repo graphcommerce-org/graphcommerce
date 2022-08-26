@@ -1,28 +1,18 @@
 import { SectionContainer, extendableComponent } from '@graphcommerce/next-ui'
-import { Box, Skeleton } from '@mui/material'
+import { Box } from '@mui/material'
 import { CustomerReview } from '../CustomerReview/CustomerReview'
 import { AccountReviewsFragment } from './AccountReviews.gql'
 
-type AccountReviewsProps = AccountReviewsFragment & { loading: boolean }
+type AccountReviewsProps = AccountReviewsFragment
 
 const { classes } = extendableComponent('AccountReviews', ['root', 'older'] as const)
 
 export function AccountReviews(props: AccountReviewsProps) {
-  const { items, loading } = props
+  const { items } = props
   const showLatestReviews = 2
   const latestReviews = items?.slice(0, Math.min(items?.length, showLatestReviews))
   const olderReviews = items?.slice(Math.min(items?.length, showLatestReviews), items?.length)
 
-  if (loading) {
-    return (
-      <Box className={classes.root} sx={(theme) => ({ marginBottom: theme.spacings.md })}>
-        <SectionContainer labelLeft='Latest'>
-          <Skeleton height={196} />
-          <Skeleton height={196} />
-        </SectionContainer>
-      </Box>
-    )
-  }
   return (
     <Box className={classes.root} sx={(theme) => ({ marginBottom: theme.spacings.md })}>
       <SectionContainer labelLeft='Latest'>

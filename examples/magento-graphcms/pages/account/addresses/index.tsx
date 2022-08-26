@@ -1,13 +1,12 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   AccountAddresses,
-  ApolloCustomerErrorFullPage,
   useCustomerQuery,
+  WaitForCustomer,
 } from '@graphcommerce/magento-customer'
 import { AccountDashboardAddressesDocument } from '@graphcommerce/magento-customer-account'
 import { CountryRegionsDocument, PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
-  FullPageMessage,
   GetStaticProps,
   iconAddresses,
   LayoutOverlayHeader,
@@ -15,7 +14,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { CircularProgress, Container } from '@mui/material'
+import { Container } from '@mui/material'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
@@ -23,18 +22,11 @@ type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
 
 function AccountAddressesPage() {
-  const { data, loading, error, called } = useCustomerQuery(AccountDashboardAddressesDocument, {
+  const addresses = useCustomerQuery(AccountDashboardAddressesDocument, {
     fetchPolicy: 'cache-and-network',
   })
+  const { data } = addresses
   const customer = data?.customer
-
-  if (loading || !called)
-    return (
-      <FullPageMessage icon={<CircularProgress />} title='Loading your account'>
-        <Trans id='This may take a second' />
-      </FullPageMessage>
-    )
-  if (error) return <ApolloCustomerErrorFullPage error={error} />
 
   return (
     <>
@@ -45,12 +37,14 @@ function AccountAddressesPage() {
       </LayoutOverlayHeader>
       <Container maxWidth='md'>
         <PageMeta title={i18n._(/* i18n */ 'Addresses')} metaRobots={['noindex']} />
-        {((customer?.addresses && customer.addresses.length > 1) || !customer?.addresses) && (
-          <LayoutTitle icon={iconAddresses}>
-            <Trans id='Addresses' />
-          </LayoutTitle>
-        )}
-        <AccountAddresses {...data} loading={!data} addresses={customer?.addresses} />
+        <WaitForCustomer waitFor={addresses}>
+          {((customer?.addresses && customer.addresses.length > 1) || !customer?.addresses) && (
+            <LayoutTitle icon={iconAddresses}>
+              <Trans id='Addresses' />
+            </LayoutTitle>
+          )}
+          <AccountAddresses {...data} loading={!data} addresses={customer?.addresses} />
+        </WaitForCustomer>
       </Container>
     </>
   )

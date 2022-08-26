@@ -1,5 +1,9 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { ApolloCustomerErrorFullPage, useCustomerQuery } from '@graphcommerce/magento-customer'
+import {
+  ApolloCustomerErrorFullPage,
+  useCustomerQuery,
+  WaitForCustomer,
+} from '@graphcommerce/magento-customer'
 import {
   useOrderCardItemImages,
   OrderDetails,
@@ -28,22 +32,14 @@ function OrderDetailPage() {
   const router = useRouter()
   const { orderId } = router.query
 
-  const { data, loading, error, called } = useCustomerQuery(OrderDetailPageDocument, {
+  const orders = useCustomerQuery(OrderDetailPageDocument, {
     fetchPolicy: 'cache-and-network',
     variables: { orderNumber: orderId as string },
   })
-
+  const { data, loading } = orders
   const images = useOrderCardItemImages(data?.customer?.orders)
   const order = data?.customer?.orders?.items?.[0]
   const isLoading = orderId ? loading : true
-
-  if (loading || !called)
-    return (
-      <FullPageMessage icon={<CircularProgress />} title='Loading your account'>
-        <Trans id='This may take a second' />
-      </FullPageMessage>
-    )
-  if (error) return <ApolloCustomerErrorFullPage error={error} />
 
   return (
     <>
@@ -53,26 +49,28 @@ function OrderDetailPage() {
         </LayoutTitle>
       </LayoutOverlayHeader>
       <Container maxWidth='md'>
-        {(!orderId || !order) && (
-          <IconHeader src={iconBox} size='large'>
-            <Trans id='Order not found' />
-          </IconHeader>
-        )}
+        <WaitForCustomer waitFor={orders}>
+          {(!orderId || !order) && (
+            <IconHeader src={iconBox} size='large'>
+              <Trans id='Order not found' />
+            </IconHeader>
+          )}
 
-        <LayoutTitle icon={iconBox}>
-          <Trans id='Order #{orderId}' values={{ orderId }} />
-        </LayoutTitle>
+          <LayoutTitle icon={iconBox}>
+            <Trans id='Order #{orderId}' values={{ orderId }} />
+          </LayoutTitle>
 
-        {orderId && order && (
-          <>
-            <PageMeta
-              title={i18n._(/* i18n */ 'Order #{orderId}', { orderId })}
-              metaRobots={['noindex']}
-            />
-            <OrderItems {...order} loading={isLoading} images={images} />
-            <OrderDetails {...order} loading={isLoading} />
-          </>
-        )}
+          {orderId && order && (
+            <>
+              <PageMeta
+                title={i18n._(/* i18n */ 'Order #{orderId}', { orderId })}
+                metaRobots={['noindex']}
+              />
+              <OrderItems {...order} loading={isLoading} images={images} />
+              <OrderDetails {...order} loading={isLoading} />
+            </>
+          )}
+        </WaitForCustomer>
       </Container>
     </>
   )

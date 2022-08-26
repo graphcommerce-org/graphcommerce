@@ -1,3 +1,4 @@
+import { WaitForQueries } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   ApolloCartErrorAlert,
@@ -24,7 +25,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Box, Container } from '@mui/material'
+import { Box, CircularProgress, Container } from '@mui/material'
 import PageLink from 'next/link'
 import { LayoutOverlay, LayoutOverlayProps } from '../components'
 import { graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
@@ -33,7 +34,8 @@ type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
 
 function CartPage() {
-  const { data, error, loading } = useCartQuery(CartPageDocument, { returnPartialData: true })
+  const cart = useCartQuery(CartPageDocument, { returnPartialData: true })
+  const { data, error } = cart
   const hasItems =
     (data?.cart?.total_quantity ?? 0) > 0 &&
     typeof data?.cart?.prices?.grand_total?.value !== 'undefined'
@@ -76,15 +78,15 @@ function CartPage() {
         </LayoutTitle>
       </LayoutOverlayHeader>
 
-      <Container maxWidth='md'>
-        {loading ? (
-          <FullPageMessage
-            title={<Trans id='Loading cart' />}
-            icon={<IconSvg src={iconShoppingBag} size='xxl' />}
-          >
-            <Trans id='We are fetching your products, one moment please!' />
+      <WaitForQueries
+        waitFor={cart}
+        fallback={
+          <FullPageMessage icon={<CircularProgress />} title='Loading'>
+            <Trans id='This may take a second' />
           </FullPageMessage>
-        ) : (
+        }
+      >
+        <Container maxWidth='md'>
           <>
             {hasItems ? (
               <Box sx={(theme) => ({ mt: theme.spacings.lg })}>
@@ -114,8 +116,8 @@ function CartPage() {
               <EmptyCart>{error && <ApolloCartErrorAlert error={error} />}</EmptyCart>
             )}
           </>
-        )}
-      </Container>
+        </Container>
+      </WaitForQueries>
     </>
   )
 }

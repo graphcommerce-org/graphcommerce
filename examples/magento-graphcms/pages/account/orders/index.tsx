@@ -1,6 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { useQuery } from '@graphcommerce/graphql'
-import { ApolloCustomerErrorFullPage, useCustomerQuery } from '@graphcommerce/magento-customer'
+import { useCustomerQuery, WaitForCustomer } from '@graphcommerce/magento-customer'
 import {
   AccountDashboardOrdersDocument,
   AccountOrders,
@@ -16,7 +15,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { CircularProgress, Container } from '@mui/material'
+import { Container } from '@mui/material'
 import { useRouter } from 'next/router'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
 import { graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
@@ -26,22 +25,15 @@ type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 function AccountOrdersPage() {
   const { query } = useRouter()
 
-  const { data, loading, error, called } = useCustomerQuery(AccountDashboardOrdersDocument, {
+  const orders = useCustomerQuery(AccountDashboardOrdersDocument, {
     fetchPolicy: 'cache-and-network',
     variables: {
       pageSize: 5,
       currentPage: Number(query?.page ?? 1),
     },
   })
+  const { data } = orders
   const customer = data?.customer
-
-  if (loading || !called)
-    return (
-      <FullPageMessage icon={<CircularProgress />} title='Loading your account'>
-        <Trans id='This may take a second' />
-      </FullPageMessage>
-    )
-  if (error) return <ApolloCustomerErrorFullPage error={error} />
 
   return (
     <>
@@ -52,21 +44,23 @@ function AccountOrdersPage() {
       </LayoutOverlayHeader>
       <Container maxWidth='md'>
         <PageMeta title={i18n._(/* i18n */ 'Orders')} metaRobots={['noindex']} />
-        {customer?.orders && customer.orders.items.length > 0 && (
-          <>
-            <LayoutTitle icon={iconBox}>Orders</LayoutTitle>
-            <AccountOrders {...customer} />
-          </>
-        )}
+        <WaitForCustomer waitFor={orders}>
+          {customer?.orders && customer.orders.items.length > 0 && (
+            <>
+              <LayoutTitle icon={iconBox}>Orders</LayoutTitle>
+              <AccountOrders {...customer} />
+            </>
+          )}
 
-        {customer?.orders && customer.orders.items.length < 1 && (
-          <FullPageMessage
-            title={<Trans id='You have no orders yet' />}
-            icon={<IconSvg src={iconBox} size='xxl' />}
-          >
-            <Trans id='Discover our collection and place your first order!' />
-          </FullPageMessage>
-        )}
+          {customer?.orders && customer.orders.items.length < 1 && (
+            <FullPageMessage
+              title={<Trans id='You have no orders yet' />}
+              icon={<IconSvg src={iconBox} size='xxl' />}
+            >
+              <Trans id='Discover our collection and place your first order!' />
+            </FullPageMessage>
+          )}
+        </WaitForCustomer>
       </Container>
     </>
   )
