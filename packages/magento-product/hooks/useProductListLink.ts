@@ -20,8 +20,8 @@ export function createProductListLink(props: ProductListParams): string {
   // todo(paales): How should the URL look like with multiple sorts?
   // Something like: /sort/position,price/dir/asc,asc
   const [sortBy] = Object.keys(sort)
-  if (sort && sortBy) paginateSort += `/sort/${sortBy}`
-  if (sort && sortBy && sort[sortBy] && sort[sortBy] === 'DESC') paginateSort += `/dir/desc`
+  if (sort && sortBy) query += `/sort/${sortBy}`
+  if (sort && sortBy && sort[sortBy] && sort[sortBy] === 'DESC') query += `/dir/desc`
 
   // Apply filters
   if (filters)
