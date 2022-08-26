@@ -42,7 +42,7 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
   return (
     <FormDiv sx={sx} className={classes.root}>
       {mode === 'email' && (
-        <Box className={classes.titleContainer} key='email' sx={titleContainerSx}>
+        <Box className={classes.titleContainer} sx={titleContainerSx}>
           <LayoutTitle variant='h2' gutterBottom={false}>
             <Trans id='Sign in or create an account!' />
           </LayoutTitle>
@@ -53,7 +53,7 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
       )}
 
       {mode === 'signin' && (
-        <Box className={classes.titleContainer} key='signin' sx={titleContainerSx}>
+        <Box className={classes.titleContainer} sx={titleContainerSx}>
           <LayoutTitle variant='h2' gutterBottom={false}>
             <Trans id='Welcome back!' />
           </LayoutTitle>
@@ -64,7 +64,7 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
       )}
 
       {mode === 'signup' && (
-        <Box className={classes.titleContainer} key='signup' sx={titleContainerSx}>
+        <Box className={classes.titleContainer} sx={titleContainerSx}>
           <LayoutTitle variant='h2' gutterBottom={false}>
             <Trans id='Create account!' />
           </LayoutTitle>
@@ -75,7 +75,7 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
       )}
 
       {mode === 'signedin' && (
-        <Box className={classes.titleContainer} key='signup' sx={titleContainerSx}>
+        <Box className={classes.titleContainer} sx={titleContainerSx}>
           <LayoutTitle variant='h2' gutterBottom={false}>
             <Trans id='Hi {firstname}! You’re now logged in!' values={{ firstname }} />
           </LayoutTitle>
@@ -96,7 +96,7 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
       )}
 
       {mode === 'session-expired' && (
-        <Box className={classes.titleContainer} key='email' sx={titleContainerSx}>
+        <Box className={classes.titleContainer} sx={titleContainerSx}>
           <LayoutTitle variant='h2' gutterBottom={false}>
             <Trans id='Your session is expired' />
           </LayoutTitle>
@@ -107,11 +107,10 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
       )}
 
       {mode !== 'signedin' && (
-        <form noValidate onSubmit={submit} key='emailform'>
-          <Box key='email'>
+        <form noValidate onSubmit={submit}>
+          <Box>
             <FormRow>
               <TextField
-                key='email'
                 variant='outlined'
                 type='text'
                 autoComplete='email'
@@ -135,7 +134,7 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
           <ApolloCustomerErrorAlert error={error} />
 
           {(mode === 'email' || mode === 'session-expired') && (
-            <Box key='submit-form'>
+            <Box>
               <FormActions>
                 <Button
                   type='submit'
@@ -153,13 +152,13 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
       )}
 
       {mode === 'signin' && (
-        <Box key='signin'>
+        <Box>
           <SignInForm email={watch('email')} />
         </Box>
       )}
 
       {mode === 'signup' && (
-        <Box key='signup'>
+        <Box>
           <SignUpForm email={watch('email')} />
         </Box>
       )}

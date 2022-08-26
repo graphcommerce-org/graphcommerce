@@ -1,5 +1,10 @@
 import { Image } from '@graphcommerce/image'
-import { responsiveVal, extendableComponent, useDateTimeFormat } from '@graphcommerce/next-ui'
+import {
+  responsiveVal,
+  extendableComponent,
+  useDateTimeFormat,
+  IconSvg,
+} from '@graphcommerce/next-ui'
 import { Box, SxProps, Theme } from '@mui/material'
 import { CustomerReviewFragment } from './CustomerReview.gql'
 import filledStar from './review_star_filled.svg'
@@ -73,7 +78,7 @@ export function CustomerReview(props: CustomerReviewProps) {
       <Box className={classes.stars} sx={{ gridArea: 'stars', margin: '-6px 0 -6px -6px' }}>
         {[...new Array(totalStars)].map((_, index) => (
           // eslint-disable-next-line react/no-array-index-key
-          <Image key={index} src={index < totalFilledStars ? filledStar : outlinedStar} />
+          <IconSvg key={index} src={index < totalFilledStars ? filledStar : outlinedStar} />
         ))}
       </Box>
       <Box

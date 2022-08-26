@@ -1,3 +1,4 @@
+import { WaitForQueries } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   ApolloCartErrorAlert,
@@ -20,7 +21,6 @@ import {
   IconSvg,
   LayoutOverlayHeader,
   LinkOrButton,
-  FullPageMessage,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
@@ -33,7 +33,8 @@ type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
 
 function CartPage() {
-  const { data, error, loading } = useCartQuery(CartPageDocument, { returnPartialData: true })
+  const cart = useCartQuery(CartPageDocument, { returnPartialData: true })
+  const { data, error } = cart
   const hasItems =
     (data?.cart?.total_quantity ?? 0) > 0 &&
     typeof data?.cart?.prices?.grand_total?.value !== 'undefined'
@@ -76,15 +77,8 @@ function CartPage() {
         </LayoutTitle>
       </LayoutOverlayHeader>
 
-      <Container maxWidth='md'>
-        {loading ? (
-          <FullPageMessage
-            title={<Trans id='Loading cart' />}
-            icon={<IconSvg src={iconShoppingBag} size='xxl' />}
-          >
-            <Trans id='We are fetching your products, one moment please!' />
-          </FullPageMessage>
-        ) : (
+      <WaitForQueries waitFor={cart}>
+        <Container maxWidth='md'>
           <>
             {hasItems ? (
               <Box sx={(theme) => ({ mt: theme.spacings.lg })}>
@@ -114,8 +108,8 @@ function CartPage() {
               <EmptyCart>{error && <ApolloCartErrorAlert error={error} />}</EmptyCart>
             )}
           </>
-        )}
-      </Container>
+        </Container>
+      </WaitForQueries>
     </>
   )
 }
