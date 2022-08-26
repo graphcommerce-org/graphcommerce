@@ -33,7 +33,7 @@ export function LayoutHeaderClose() {
       }}
       size='responsive'
       disabled={disabled}
-      {...{ 'aria-label': i18n._(/* i18n */ 'Close') }}
+      aria-label={i18n._(/* i18n */ 'Close')}
     >
       <IconSvg src={iconClose} size='large' />
     </Fab>
