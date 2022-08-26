@@ -49,7 +49,6 @@ export function useCartQuery<Q, V extends { cartId: string; [index: string]: unk
   const result = useQuery(document, queryOptions)
 
   return {
-    ...useQuery(document, queryOptions),
     ...result,
     error: called && !currentCartId ? noCartError : result.error,
   }

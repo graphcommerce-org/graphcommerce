@@ -10,23 +10,5 @@ import { useClearCurrentCartId } from '../../hooks/useClearCurrentCartId'
 export type ApolloCartErrorSnackbarProps = ApolloCustomerErrorSnackbarProps
 
 export function ApolloCartErrorSnackbar(props: ApolloCartErrorSnackbarProps) {
-  const { error, action } = props
-  const clear = useClearCurrentCartId()
-
-  const [, noSuchEntity] = graphqlErrorByCategory({ category: 'graphql-no-such-entity', error })
-
-  return (
-    <ApolloCustomerErrorSnackbar
-      {...props}
-      action={
-        noSuchEntity ? (
-          <Button onClick={clear} variant='pill' color='secondary'>
-            <Trans id='Reset Cart' />
-          </Button>
-        ) : (
-          action
-        )
-      }
-    />
-  )
+  return <ApolloCustomerErrorSnackbar {...props} />
 }

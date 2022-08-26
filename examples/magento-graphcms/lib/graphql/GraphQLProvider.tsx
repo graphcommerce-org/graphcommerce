@@ -12,7 +12,8 @@ import {
   mergeTypePolicies,
   errorLink,
 } from '@graphcommerce/graphql'
-import { cartTypePolicies, migrateCart } from '@graphcommerce/magento-cart'
+import { cartTypePolicies, migrateCart, createCartErrorLink } from '@graphcommerce/magento-cart'
+import { CreateEmptyCartDocument } from '@graphcommerce/magento-cart/hooks/CreateEmptyCart.gql'
 import {
   createCustomerTokenLink,
   customerTypePolicies,
@@ -23,7 +24,7 @@ import { createStoreLink } from '@graphcommerce/magento-store'
 import { wishlistTypePolicies } from '@graphcommerce/magento-wishlist'
 import { ApolloStateProps } from '@graphcommerce/next-ui'
 import { AppProps } from 'next/app'
-import { useMemo } from 'react'
+import { createRef, RefObject, useMemo, useRef } from 'react'
 
 /**
  * This is a list of type policies which are used to influence how cache is handled.
@@ -37,6 +38,8 @@ const policies = [magentoTypePolicies, cartTypePolicies, customerTypePolicies, w
  */
 const migrations = [migrateCart, migrateCustomer]
 
+const clientRef: { current: ApolloClient<NormalizedCacheObject> | null } = { current: null }
+
 /** HttpLink to connecto to the GraphQL Backend. */
 export function httpLink(cache: ApolloCache<NormalizedCacheObject>, locale?: string) {
   return ApolloLink.from([
@@ -45,6 +48,8 @@ export function httpLink(cache: ApolloCache<NormalizedCacheObject>, locale?: str
     createStoreLink(locale),
     // Add the correct authorization header for the Magento user.
     createCustomerTokenLink(cache),
+    // Replace current cart id with renewed cart id and forward operation
+    createCartErrorLink(clientRef),
     // Add recaptcha headers to the request.
     recaptchaLink,
     // The actual Http connection to the Mesh backend.
@@ -74,7 +79,7 @@ type GraphQLProviderProps = {
 export function GraphQLProvider({ children, router, pageProps }: GraphQLProviderProps) {
   const state = (pageProps as Partial<ApolloStateProps>).apolloState
 
-  const client = useMemo(() => {
+  clientRef.current = useMemo(() => {
     const cache = createCache()
     return new ApolloClient({
       link: httpLink(cache, router.locale),
@@ -86,9 +91,11 @@ export function GraphQLProvider({ children, router, pageProps }: GraphQLProvider
 
   // Update the cache with the latest incomming data, but only when it is changed.
   useMemo(
-    () => createCacheReviver(client, createCache, policies, migrations, state),
-    [client, state],
+    () =>
+      clientRef.current &&
+      createCacheReviver(clientRef.current, createCache, policies, migrations, state),
+    [state],
   )
 
-  return <ApolloProvider client={client}>{children}</ApolloProvider>
+  return <ApolloProvider client={clientRef.current}>{children}</ApolloProvider>
 }
