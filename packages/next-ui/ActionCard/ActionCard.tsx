@@ -1,7 +1,7 @@
 import { SxProps, ButtonBase, Box, Theme, alpha } from '@mui/material'
 import React, { FormEvent } from 'react'
 import { extendableComponent } from '../Styles'
-import { responsiveVal } from '../Styles/responsiveVal'
+import { breakpointVal } from '../Styles/breakpointVal'
 
 export type ActionCardProps = {
   sx?: SxProps<Theme>
@@ -95,23 +95,31 @@ export function ActionCard(props: ActionCardProps) {
           border: `1px solid ${theme.palette.divider}`,
           borderBottomColor: `transparent`,
           '&:first-of-type': {
-            borderTopLeftRadius: responsiveVal(
+            ...breakpointVal(
+              'borderTopLeftRadius',
               theme.shape.borderRadius * 3,
               theme.shape.borderRadius * 4,
+              theme.breakpoints.values,
             ),
-            borderTopRightRadius: responsiveVal(
+            ...breakpointVal(
+              'borderTopRightRadius',
               theme.shape.borderRadius * 3,
               theme.shape.borderRadius * 4,
+              theme.breakpoints.values,
             ),
           },
           '&:last-of-type': {
-            borderBottomLeftRadius: responsiveVal(
+            ...breakpointVal(
+              'borderBottomLeftRadius',
               theme.shape.borderRadius * 3,
               theme.shape.borderRadius * 4,
+              theme.breakpoints.values,
             ),
-            borderBottomRightRadius: responsiveVal(
+            ...breakpointVal(
+              'borderBottomRightRadius',
               theme.shape.borderRadius * 3,
               theme.shape.borderRadius * 4,
+              theme.breakpoints.values,
             ),
             borderBottom: `1px solid ${theme.palette.divider}`,
           },
@@ -135,21 +143,11 @@ export function ActionCard(props: ActionCardProps) {
               theme.palette.secondary.main,
               theme.palette.action.hoverOpacity,
             )} !important`,
-            borderTopLeftRadius: responsiveVal(
+            ...breakpointVal(
+              'borderRadius',
               theme.shape.borderRadius * 3,
               theme.shape.borderRadius * 4,
-            ),
-            borderTopRightRadius: responsiveVal(
-              theme.shape.borderRadius * 3,
-              theme.shape.borderRadius * 4,
-            ),
-            borderBottomLeftRadius: responsiveVal(
-              theme.shape.borderRadius * 3,
-              theme.shape.borderRadius * 4,
-            ),
-            borderBottomRightRadius: responsiveVal(
-              theme.shape.borderRadius * 3,
-              theme.shape.borderRadius * 4,
+              theme.breakpoints.values,
             ),
             padding: `${theme.spacings.xxs} ${theme.spacings.xs}`,
           })),

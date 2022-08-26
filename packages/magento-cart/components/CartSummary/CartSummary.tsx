@@ -1,5 +1,5 @@
 import { useHistoryLink } from '@graphcommerce/framer-next-pages'
-import { SectionContainer, extendableComponent, responsiveVal } from '@graphcommerce/next-ui'
+import { SectionContainer, extendableComponent, breakpointVal } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box, Link, SxProps, Theme, Typography, lighten } from '@mui/material'
 import PageLink from 'next/link'
@@ -39,13 +39,17 @@ export function CartSummary(props: CartSummaryProps) {
           margin: `${theme.spacings.sm} 0`,
           '& > div:last-of-type': {
             borderRadius: '0',
-            borderBottomLeftRadius: responsiveVal(
+            ...breakpointVal(
+              'borderBottomLeftRadius',
               theme.shape.borderRadius * 2,
               theme.shape.borderRadius * 3,
+              theme.breakpoints.values,
             ),
-            borderBottomRightRadius: responsiveVal(
+            ...breakpointVal(
+              'borderBottomRightRadius',
               theme.shape.borderRadius * 2,
               theme.shape.borderRadius * 3,
+              theme.breakpoints.values,
             ),
           },
         }),
@@ -55,13 +59,17 @@ export function CartSummary(props: CartSummaryProps) {
       <Box
         className={classes.detailsContainer}
         sx={(theme) => ({
-          borderTopLeftRadius: responsiveVal(
+          ...breakpointVal(
+            'borderTopLeftRadius',
             theme.shape.borderRadius * 2,
             theme.shape.borderRadius * 3,
+            theme.breakpoints.values,
           ),
-          borderTopRightRadius: responsiveVal(
+          ...breakpointVal(
+            'borderTopRightRadius',
             theme.shape.borderRadius * 2,
             theme.shape.borderRadius * 3,
+            theme.breakpoints.values,
           ),
           background:
             theme.palette.mode === 'light'
