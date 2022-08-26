@@ -170,7 +170,7 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
 
   // When the overlay is closed by navigating away, we're closing the overlay.
   useEffect(() => {
-    if (isPresent || position.get() === OverlayPosition.UNOPENED) return
+    if (isPresent) return
     position.set(OverlayPosition.CLOSED)
     clearScrollLock()
 
