@@ -9,7 +9,6 @@ import {
   SxProps,
   Theme,
   Portal,
-  useMediaQuery,
 } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { IconSvg } from '../IconSvg'
