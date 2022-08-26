@@ -1,5 +1,11 @@
 # @graphcommerce/cli
 
+## 1.0.9
+
+### Patch Changes
+
+- [#1607](https://github.com/graphcommerce-org/graphcommerce/pull/1607) [`b7009c3eb`](https://github.com/graphcommerce-org/graphcommerce/commit/b7009c3ebf4e4062eeaa00eaae8d572725d3eeb1) Thanks [@paales](https://github.com/paales)! - Add proper exit code to codegen
+
 ## 1.0.8
 
 ### Patch Changes

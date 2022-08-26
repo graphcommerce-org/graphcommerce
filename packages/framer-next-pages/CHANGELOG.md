@@ -1,5 +1,22 @@
 # Change Log
 
+## 3.3.0
+
+### Minor Changes
+
+- [#1602](https://github.com/graphcommerce-org/graphcommerce/pull/1602) [`5f781a217`](https://github.com/graphcommerce-org/graphcommerce/commit/5f781a217ce63ed56bc1a9983487b04400a8a315) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Default styles and layout fixes
+
+  - Scaled icons and fonts down. Size in typography is now more gradual: https://graphcommerce.vercel.app/test/typography
+  - Multiple accessibility fixes. Missing button/input labels, and fixed spacing issues resulting in high % appropriately sized tap targets
+  - Replaced responsiveVal usage with better performaning breakpointVal where possible
+  - All buttons are now Pill by default.
+  - Cleaned up checkout styles
+
+### Patch Changes
+
+- Updated dependencies [[`01372b918`](https://github.com/graphcommerce-org/graphcommerce/commit/01372b918a291e01cbf5db40edcb40fb1c2af313)]:
+  - @graphcommerce/framer-utils@3.2.0
+
 ## 3.2.5
 
 ### Patch Changes

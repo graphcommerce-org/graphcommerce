@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.1.8
+
+### Patch Changes
+
+- [#1590](https://github.com/graphcommerce-org/graphcommerce/pull/1590) [`3ff0e7f2d`](https://github.com/graphcommerce-org/graphcommerce/commit/3ff0e7f2d26edad228848268d24e9aaf56cd2c30) Thanks [@paales](https://github.com/paales)! - useExtendContext doesn’t need to be added in createEnvelop already added by default
+
 ## 4.1.7
 
 ### Patch Changes

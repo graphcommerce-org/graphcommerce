@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.2.0
+
+### Minor Changes
+
+- [#1601](https://github.com/graphcommerce-org/graphcommerce/pull/1601) [`01372b918`](https://github.com/graphcommerce-org/graphcommerce/commit/01372b918a291e01cbf5db40edcb40fb1c2af313) Thanks [@paales](https://github.com/paales)! - Added a useMotionSelector which acceps an array of motion values
+
 ## 3.1.5
 
 ### Patch Changes

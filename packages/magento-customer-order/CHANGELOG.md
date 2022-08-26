@@ -1,5 +1,27 @@
 # Change Log
 
+## 3.1.0
+
+### Minor Changes
+
+- [#1602](https://github.com/graphcommerce-org/graphcommerce/pull/1602) [`5f781a217`](https://github.com/graphcommerce-org/graphcommerce/commit/5f781a217ce63ed56bc1a9983487b04400a8a315) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Default styles and layout fixes
+
+  - Scaled icons and fonts down. Size in typography is now more gradual: https://graphcommerce.vercel.app/test/typography
+  - Multiple accessibility fixes. Missing button/input labels, and fixed spacing issues resulting in high % appropriately sized tap targets
+  - Replaced responsiveVal usage with better performaning breakpointVal where possible
+  - All buttons are now Pill by default.
+  - Cleaned up checkout styles
+
+### Patch Changes
+
+- Updated dependencies [[`3ff0e7f2d`](https://github.com/graphcommerce-org/graphcommerce/commit/3ff0e7f2d26edad228848268d24e9aaf56cd2c30), [`04708dacc`](https://github.com/graphcommerce-org/graphcommerce/commit/04708daccc213c6ea927bc67fa3bd0d5b1fad619), [`bb94e7045`](https://github.com/graphcommerce-org/graphcommerce/commit/bb94e7045460cb671c45d612a0833731d7c20c30), [`b0dc4e2e1`](https://github.com/graphcommerce-org/graphcommerce/commit/b0dc4e2e1982d502d38dd50a0f493396360a7a15), [`4a5286dfe`](https://github.com/graphcommerce-org/graphcommerce/commit/4a5286dfeaa1719e594a0078f274fbab53969c4e), [`d46d5ed0c`](https://github.com/graphcommerce-org/graphcommerce/commit/d46d5ed0cc5794391b7527fc17bbb68ec2212e33), [`5f781a217`](https://github.com/graphcommerce-org/graphcommerce/commit/5f781a217ce63ed56bc1a9983487b04400a8a315)]:
+  - @graphcommerce/graphql-mesh@4.1.8
+  - @graphcommerce/next-ui@4.22.0
+  - @graphcommerce/magento-store@4.2.28
+  - @graphcommerce/graphql@3.4.7
+  - @graphcommerce/image@3.1.9
+  - @graphcommerce/magento-graphql@3.1.7
+
 ## 3.0.41
 
 ### Patch Changes

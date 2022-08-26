@@ -1,5 +1,35 @@
 # Change Log
 
+## 4.22.0
+
+### Minor Changes
+
+- [#1610](https://github.com/graphcommerce-org/graphcommerce/pull/1610) [`bb94e7045`](https://github.com/graphcommerce-org/graphcommerce/commit/bb94e7045460cb671c45d612a0833731d7c20c30) Thanks [@mikekeehnen](https://github.com/mikekeehnen)! - Previously when the persisted selected value didn't exist in the list of ActionCard items, all items would be hidden. In this fix we set the hidden prop in the ActionCardList component, where we check if the value exists, if not, we display all items
+
+* [#1602](https://github.com/graphcommerce-org/graphcommerce/pull/1602) [`5f781a217`](https://github.com/graphcommerce-org/graphcommerce/commit/5f781a217ce63ed56bc1a9983487b04400a8a315) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Default styles and layout fixes
+
+  - Scaled icons and fonts down. Size in typography is now more gradual: https://graphcommerce.vercel.app/test/typography
+  - Multiple accessibility fixes. Missing button/input labels, and fixed spacing issues resulting in high % appropriately sized tap targets
+  - Replaced responsiveVal usage with better performaning breakpointVal where possible
+  - All buttons are now Pill by default.
+  - Cleaned up checkout styles
+
+### Patch Changes
+
+- [#1601](https://github.com/graphcommerce-org/graphcommerce/pull/1601) [`04708dacc`](https://github.com/graphcommerce-org/graphcommerce/commit/04708daccc213c6ea927bc67fa3bd0d5b1fad619) Thanks [@paales](https://github.com/paales)! - Navigation now uses a single `const selection = useNavigationSelection()` motionValue to control the state of the menu, to prevent excessive rerenders.
+
+* [#1611](https://github.com/graphcommerce-org/graphcommerce/pull/1611) [`b0dc4e2e1`](https://github.com/graphcommerce-org/graphcommerce/commit/b0dc4e2e1982d502d38dd50a0f493396360a7a15) Thanks [@FrankHarland](https://github.com/FrankHarland)! - Fix overlay doule click
+
+- [#1609](https://github.com/graphcommerce-org/graphcommerce/pull/1609) [`4a5286dfe`](https://github.com/graphcommerce-org/graphcommerce/commit/4a5286dfeaa1719e594a0078f274fbab53969c4e) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Solve issue where navigation back would happen twice when closing an overlay
+
+* [#1601](https://github.com/graphcommerce-org/graphcommerce/pull/1601) [`d46d5ed0c`](https://github.com/graphcommerce-org/graphcommerce/commit/d46d5ed0cc5794391b7527fc17bbb68ec2212e33) Thanks [@paales](https://github.com/paales)! - Move to newer useScroll hook to watch body scroll, prevents deprecation warnings.
+
+* Updated dependencies [[`5f781a217`](https://github.com/graphcommerce-org/graphcommerce/commit/5f781a217ce63ed56bc1a9983487b04400a8a315), [`01372b918`](https://github.com/graphcommerce-org/graphcommerce/commit/01372b918a291e01cbf5db40edcb40fb1c2af313)]:
+  - @graphcommerce/framer-next-pages@3.3.0
+  - @graphcommerce/framer-utils@3.2.0
+  - @graphcommerce/framer-scroller@2.1.33
+  - @graphcommerce/image@3.1.9
+
 ## 4.21.0
 
 ### Minor Changes

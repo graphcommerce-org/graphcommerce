@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.8.0
+
+### Minor Changes
+
+- [#1603](https://github.com/graphcommerce-org/graphcommerce/pull/1603) [`26221795d`](https://github.com/graphcommerce-org/graphcommerce/commit/26221795d5ab7d4d66adae756fc02273b1500a53) Thanks [@Jessevdpoel](https://github.com/Jessevdpoel)! - changed icon docs
+
 ## 4.7.0
 
 ### Minor Changes
