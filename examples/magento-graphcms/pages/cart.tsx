@@ -21,10 +21,11 @@ import {
   IconSvg,
   LayoutOverlayHeader,
   LinkOrButton,
+  FullPageMessage,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Box, Container } from '@mui/material'
+import { Box, CircularProgress, Container } from '@mui/material'
 import PageLink from 'next/link'
 import { LayoutOverlay, LayoutOverlayProps } from '../components'
 import { graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
@@ -77,7 +78,14 @@ function CartPage() {
         </LayoutTitle>
       </LayoutOverlayHeader>
 
-      <WaitForQueries waitFor={cart}>
+      <WaitForQueries
+        waitFor={cart}
+        fallback={
+          <FullPageMessage icon={<CircularProgress />} title='Loading'>
+            <Trans id='This may take a second' />
+          </FullPageMessage>
+        }
+      >
         <Container maxWidth='md'>
           <>
             {hasItems ? (
