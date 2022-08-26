@@ -67,7 +67,10 @@ function CartPage() {
         <LayoutTitle size='small' component='span' icon={hasItems ? iconShoppingBag : undefined}>
           {hasItems ? (
             <>
-              <Trans id='Total' />: <Money {...data?.cart?.prices?.grand_total} />
+<Trans
+  id='Total <0/>'
+  components={{ 0: <Money {...data?.cart?.prices?.grand_total} /> }}
+/>
             </>
           ) : (
             <Trans id='Cart' />
