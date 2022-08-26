@@ -1,0 +1,7 @@
+query CategorySearch($pageSize: Int = 10, $search: String = "") {
+  categories(filters: { name: { match: $search } }, pageSize: $pageSize) {
+    items {
+      ...CategorySearchResult
+    }
+  }
+}

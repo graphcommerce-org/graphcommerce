@@ -4,14 +4,16 @@ import {
   FilterTypes,
   getFilterTypes,
   parseParams,
+  ProductFiltersDocument,
+  ProductFiltersQuery,
   ProductListDocument,
   ProductListFilters,
   ProductListFiltersContainer,
   ProductListParams,
   ProductListParamsProvider,
+  ProductListQuery,
   ProductListSort,
 } from '@graphcommerce/magento-product'
-import { SearchQuery } from '@graphcommerce/magento-search'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { StickyBelowHeader, LayoutTitle, LayoutHeader, LinkOrButton } from '@graphcommerce/next-ui'
 import { GetStaticProps } from '@graphcommerce/next-ui/Page/types'
@@ -23,7 +25,8 @@ import { DefaultPageDocument, DefaultPageQuery } from '../../../graphql/DefaultP
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
 type Props = DefaultPageQuery &
-  SearchQuery & { filterTypes: FilterTypes; params: ProductListParams }
+  ProductListQuery &
+  ProductFiltersQuery & { filterTypes: FilterTypes; params: ProductListParams }
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutMinimalProps, Props, RouteProps>
@@ -87,17 +90,14 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const conf = client.query({ query: StoreConfigDocument })
   const filterTypes = getFilterTypes(client)
 
-  const rootCategory = (await conf).data.storeConfig?.root_category_uid ?? ''
   const staticClient = graphqlSsrClient(locale)
   const page = staticClient.query({
     query: DefaultPageDocument,
     variables: { url: 'minimal-page-shell-subheader' },
   })
 
-  const products = staticClient.query({
-    query: ProductListDocument,
-    variables: { categoryUid: rootCategory },
-  })
+  const products = staticClient.query({ query: ProductListDocument })
+  const filters = staticClient.query({ query: ProductFiltersDocument })
 
   const [url, query] = extractUrlQuery(params)
   if (!url || !query) return { notFound: true }
@@ -108,7 +108,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     props: {
       ...(await page).data,
       ...(await products).data,
-      scrolled: true,
+      ...(await filters).data,
       filterTypes: await filterTypes,
       params: productListParams,
       up: { href: '/', title: 'Home' },

@@ -4,8 +4,6 @@ query ProductList(
   $filters: ProductAttributeFilterInput = {}
   $sort: ProductAttributeSortInput = {}
   $search: String = ""
-  $categoryUid: String!
 ) {
   ...ProductListQueryFragment
-  ...ProductFiltersQueryFragment
 }

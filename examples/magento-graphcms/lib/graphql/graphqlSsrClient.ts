@@ -1,14 +1,30 @@
-import { NormalizedCacheObject, ApolloClient, ApolloLink, errorLink } from '@graphcommerce/graphql'
-import { MeshApolloLink, getBuiltMesh } from '@graphcommerce/graphql-mesh'
+import {
+  NormalizedCacheObject,
+  ApolloClient,
+  ApolloLink,
+  errorLink,
+  measurePerformanceLink,
+} from '@graphcommerce/graphql'
+import { MeshApolloLink } from '@graphcommerce/graphql-mesh'
 import { createStoreLink, defaultLocale } from '@graphcommerce/magento-store'
 import type { MeshInstance } from '@graphql-mesh/runtime'
-import { createCache } from './GraphQLProvider'
+import { createCache, httpLink } from './GraphQLProvider'
 
-const mesh: MeshInstance = await getBuiltMesh()
+const loopback =
+  process.env.NODE_ENV === 'development' || (process.env.VERCEL === '1' && process.env.CI !== '1')
+
+// Do not import the mesh when we're running in loopback mode.
+const mesh = loopback
+  ? undefined
+  : await import('@graphcommerce/graphql-mesh').then(
+      ({ getBuiltMesh }) => getBuiltMesh() as Promise<MeshInstance>,
+    )
 
 function client(locale: string) {
+  if (!mesh) throw Error('Mesh is not available')
   return new ApolloClient({
     link: ApolloLink.from([
+      measurePerformanceLink,
       errorLink,
       // Add the correct store header for the Magento user.
       createStoreLink(locale),
@@ -41,6 +57,16 @@ export function graphqlClient(
   locale: string | undefined = defaultLocale(),
   shared = true,
 ): ApolloClient<NormalizedCacheObject> {
+  if (loopback) {
+    const cache = createCache()
+    return new ApolloClient({
+      link: httpLink(cache, locale),
+      cache,
+      name: 'fastDev',
+      ssrMode: true,
+    })
+  }
+
   // If the client isn't shared we create a new client.
   if (!shared) return client(locale)
 

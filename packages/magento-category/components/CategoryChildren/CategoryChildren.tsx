@@ -40,16 +40,14 @@ export function CategoryChildren(props: CategoryChildrenProps) {
           {children.map((cat) => {
             if (!cat?.url_path || !cat.name || !cat.include_in_menu) return null
 
-            const linkParams = cloneDeep(params)
-            linkParams.url = cat.url_path
-            delete linkParams.currentPage
-
             return (
               <ProductListLink
                 key={cat.url_path}
                 underline='none'
                 color='inherit'
-                {...linkParams}
+                url={cat.url_path}
+                filters={{ category_uid: { eq: cat.uid } }}
+                sort={params.sort}
                 className={classes.link}
                 sx={(theme) => ({
                   whiteSpace: 'nowrap',

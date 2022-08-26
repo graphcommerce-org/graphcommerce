@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { createServer as createYogaServer, useExtendContext } from '@graphql-yoga/node'
+import { useApolloTracing } from '@envelop/apollo-tracing'
+import { createServer as createYogaServer } from '@graphql-yoga/node'
 import { getBuiltMesh, rawServeConfig } from '../.mesh'
 
 export async function createServer(endpoint: string) {
@@ -10,15 +11,7 @@ export async function createServer(endpoint: string) {
 
   // pass the Mesh instance to Yoga and configure GraphiQL
   const server = createYogaServer({
-    plugins: [
-      ...mesh.plugins,
-      useExtendContext(({ req, res }) => ({
-        ...req,
-        headers: req.headers,
-        cookies: req.cookies,
-        res,
-      })),
-    ],
+    plugins: [...mesh.plugins, useApolloTracing()],
     context: ({ req }) => ({ ...req, ...mesh.meshContext }),
     graphiql: {
       endpoint,

@@ -1,23 +1,5 @@
 fragment ProductPagePrice on ProductInterface {
   price_range {
-    maximum_price {
-      regular_price {
-        ...Money
-      }
-      discount {
-        amount_off
-        percent_off
-      }
-      final_price {
-        ...Money
-      }
-      fixed_product_taxes {
-        amount {
-          ...Money
-        }
-        label
-      }
-    }
     minimum_price {
       regular_price {
         ...Money

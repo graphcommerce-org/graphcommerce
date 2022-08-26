@@ -115,7 +115,7 @@ export function FilterEqualType(props: FilterEqualTypeProps) {
               currentPage={undefined}
               key={option?.value}
               color='inherit'
-              link={{ replace: anyFilterActive }}
+              link={{ replace: anyFilterActive, prefetch: false }}
             >
               <ListItem
                 dense

@@ -2,11 +2,14 @@ sources:
   - name: graphcms
     handler:
       graphql:
+        useGETForQueries: true
         endpoint: ${GRAPHCMS_URL}
+        retry: 3
   - name: m2
     handler:
       graphql:
         endpoint: ${MAGENTO_ENDPOINT}
+        useGETForQueries: true
         schemaHeaders:
           Store: '{context.headers.store}'
           Authorization: '{context.headers.authorization}'

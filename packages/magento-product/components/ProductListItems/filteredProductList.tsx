@@ -18,7 +18,7 @@ export function parseParams(
   let error = false
   query.reduce<string | undefined>((param, value) => {
     // We parse everything in pairs, every second loop we parse
-    if (!param) return value
+    if (!param || param === 'q') return value
 
     if (param === 'page') {
       categoryVariables.currentPage = Number(value)
@@ -64,10 +64,12 @@ export function parseParams(
 export function extractUrlQuery(params?: { url: string[] }) {
   if (!params?.url) return [undefined, undefined] as const
 
-  const queryIndex = params.url.findIndex((slug) => slug === 'q')
+  const queryIndex = params.url.findIndex(
+    (slug) => slug === 'q' || slug === 'page' || slug === 'dir',
+  )
   const qIndex = queryIndex < 0 ? params.url.length : queryIndex
   const url = params.url.slice(0, qIndex).join('/')
-  const query = params.url.slice(qIndex + 1)
+  const query = params.url.slice(qIndex)
 
   if (queryIndex > 0 && !query.length) return [undefined, undefined] as const
   return [url, query] as const

@@ -12,14 +12,17 @@ import {
   FilterTypes,
   ProductListParams,
   getFilterTypes,
+  ProductFiltersDocument,
+  ProductListQuery,
+  ProductFiltersQuery,
 } from '@graphcommerce/magento-product'
 import {
+  CategorySearchDocument,
+  CategorySearchQuery,
   CategorySearchResult,
   NoSearchResults,
   SearchDivider,
-  SearchDocument,
   SearchForm,
-  SearchQuery,
 } from '@graphcommerce/magento-search'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
@@ -31,18 +34,22 @@ import {
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Container, Hidden } from '@mui/material'
-import { GetStaticPaths } from 'next'
 import { LayoutNavigation, LayoutNavigationProps, ProductListItems } from '../../components'
 import { DefaultPageDocument, DefaultPageQuery } from '../../graphql/DefaultPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
-type Props = DefaultPageQuery &
-  SearchQuery & { filterTypes: FilterTypes; params: ProductListParams }
+type SearchResultProps = DefaultPageQuery &
+  ProductListQuery &
+  ProductFiltersQuery &
+  CategorySearchQuery & { filterTypes: FilterTypes; params: ProductListParams }
 type RouteProps = { url: string[] }
-type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
+export type GetPageStaticProps = GetStaticProps<
+  LayoutNavigationProps,
+  SearchResultProps,
+  RouteProps
+>
 
-function SearchResultPage(props: Props) {
+function SearchResultPage(props: SearchResultProps) {
   const { products, categories, params, filters, filterTypes } = props
   const search = params.url.split('/')[1]
   const totalSearchResults = (categories?.items?.length ?? 0) + (products?.total_count ?? 0)
@@ -112,30 +119,23 @@ function SearchResultPage(props: Props) {
   )
 }
 
-SearchResultPage.pageOptions = {
+const pageOptions: PageOptions<LayoutNavigationProps> = {
   Layout: LayoutNavigation,
-} as PageOptions
+  sharedKey: () => 'search',
+}
+
+SearchResultPage.pageOptions = pageOptions
 
 export default SearchResultPage
 
-export const getStaticPaths: GetPageStaticPaths = async () => {
-  // Disable getStaticPaths while in development mode
-  if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
-
-  return Promise.resolve({
-    paths: [{ params: { url: [] } }],
-    fallback: 'blocking',
-  })
-}
-
 export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
-  const [search = '', query = []] = extractUrlQuery(params)
+  const [searchShort = '', query = []] = extractUrlQuery(params)
+  const search = searchShort.length >= 3 ? searchShort : undefined
 
   const client = graphqlSharedClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
   const filterTypes = getFilterTypes(client)
 
-  const rootCategory = (await conf).data.storeConfig?.root_category_uid ?? ''
   const staticClient = graphqlSsrClient(locale)
   const page = staticClient.query({
     query: DefaultPageDocument,
@@ -143,33 +143,35 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   })
 
   const productListParams = parseParams(
-    `search${search.length > 2 ? `/${search}` : search}`,
+    search ? `search/${search}` : 'search',
     query,
     await filterTypes,
   )
 
-  if (!productListParams) return { notFound: true }
+  if (!productListParams) return { notFound: true, revalidate: 60 * 20 }
 
-  const products =
-    search && search.length > 2
-      ? staticClient.query({
-          query: SearchDocument,
-          variables: { ...productListParams, categoryUid: rootCategory, search },
-        })
-      : staticClient.query({
-          query: ProductListDocument,
-          variables: { ...productListParams, categoryUid: rootCategory },
-        })
+  const filters = staticClient.query({ query: ProductFiltersDocument, variables: { search } })
+
+  const products = staticClient.query({
+    query: ProductListDocument,
+    variables: { ...productListParams, search, pageSize: 12 },
+  })
+
+  const categories = search
+    ? staticClient.query({ query: CategorySearchDocument, variables: { search } })
+    : undefined
 
   return {
     props: {
       ...(await page).data,
       ...(await products).data,
+      ...(await filters).data,
+      ...(await categories)?.data,
       filterTypes: await filterTypes,
       params: productListParams,
       up: { href: '/', title: 'Home' },
       apolloState: await conf.then(() => client.cache.extract()),
     },
-    revalidate: 1,
+    revalidate: 60 * 20,
   }
 }
