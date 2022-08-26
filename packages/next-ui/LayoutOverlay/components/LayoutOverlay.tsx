@@ -1,6 +1,7 @@
 import { usePageContext, useGo, useScrollOffset } from '@graphcommerce/framer-next-pages'
 import { ScrollerProvider, ScrollSnapType } from '@graphcommerce/framer-scroller'
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
+import { useEventCallback } from '@mui/material'
 import { usePresence } from 'framer-motion'
 import type { SetOptional } from 'type-fest'
 import { OverlayBase, LayoutOverlayBaseProps } from '../../Overlay/components/OverlayBase'
@@ -28,7 +29,7 @@ export function LayoutOverlay(props: LayoutOverlayProps) {
       <OverlayBase
         active={active}
         direction={direction}
-        onClosed={onCloseHandler}
+        onClosed={useEventCallback(() => isPresent && onCloseHandler())}
         offsetPageY={offsetPageY}
         variantMd={variantMd}
         variantSm={variantSm}
