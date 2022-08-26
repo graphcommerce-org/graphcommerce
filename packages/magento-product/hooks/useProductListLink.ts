@@ -34,7 +34,9 @@ export function createProductListLink(props: ProductListParams): string {
     })
 
   const result = query
-    ? `/c/${url}${paginateSort}/q/category_uid/${uid}${query}`
+    ? `/${url.startsWith('search') ? url : `c/${url}`}${paginateSort}/q${
+        uid ? `/category_uid/${uid}` : ''
+      }${query}`
     : `/${url}${paginateSort}`
 
   return result
