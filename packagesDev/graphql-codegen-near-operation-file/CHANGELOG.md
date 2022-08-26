@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.18
+
+### Patch Changes
+
+- [#1607](https://github.com/graphcommerce-org/graphcommerce/pull/1607) [`860b4afc0`](https://github.com/graphcommerce-org/graphcommerce/commit/860b4afc0a2f79b1e660a5f9ce204532ce4fca47) Thanks [@paales](https://github.com/paales)! - Print error message directly instead of masking the error as it hides more than it helps
+
 ## 3.0.17
 
 ### Patch Changes

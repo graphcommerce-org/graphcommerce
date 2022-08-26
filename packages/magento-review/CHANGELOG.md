@@ -1,5 +1,30 @@
 # Change Log
 
+## 3.3.0
+
+### Minor Changes
+
+- [#1602](https://github.com/graphcommerce-org/graphcommerce/pull/1602) [`5f781a217`](https://github.com/graphcommerce-org/graphcommerce/commit/5f781a217ce63ed56bc1a9983487b04400a8a315) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Default styles and layout fixes
+
+  - Scaled icons and fonts down. Size in typography is now more gradual: https://graphcommerce.vercel.app/test/typography
+  - Multiple accessibility fixes. Missing button/input labels, and fixed spacing issues resulting in high % appropriately sized tap targets
+  - Replaced responsiveVal usage with better performaning breakpointVal where possible
+  - All buttons are now Pill by default.
+  - Cleaned up checkout styles
+
+### Patch Changes
+
+- [#1609](https://github.com/graphcommerce-org/graphcommerce/pull/1609) [`e573278e4`](https://github.com/graphcommerce-org/graphcommerce/commit/e573278e43506a6b17a2981e61d0e9fad41eb2eb) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Fix the account review modal
+
+- Updated dependencies [[`b40a352f7`](https://github.com/graphcommerce-org/graphcommerce/commit/b40a352f7bccdb831dce1d45baf98d51b0921d58), [`3ff0e7f2d`](https://github.com/graphcommerce-org/graphcommerce/commit/3ff0e7f2d26edad228848268d24e9aaf56cd2c30), [`04708dacc`](https://github.com/graphcommerce-org/graphcommerce/commit/04708daccc213c6ea927bc67fa3bd0d5b1fad619), [`bb94e7045`](https://github.com/graphcommerce-org/graphcommerce/commit/bb94e7045460cb671c45d612a0833731d7c20c30), [`b0dc4e2e1`](https://github.com/graphcommerce-org/graphcommerce/commit/b0dc4e2e1982d502d38dd50a0f493396360a7a15), [`4a5286dfe`](https://github.com/graphcommerce-org/graphcommerce/commit/4a5286dfeaa1719e594a0078f274fbab53969c4e), [`0ad5159eb`](https://github.com/graphcommerce-org/graphcommerce/commit/0ad5159ebef54b4ce7fee6f71b4bf710dba9ef8e), [`40983df17`](https://github.com/graphcommerce-org/graphcommerce/commit/40983df170ed0435c47496285dfe30aafeb2eeac), [`d46d5ed0c`](https://github.com/graphcommerce-org/graphcommerce/commit/d46d5ed0cc5794391b7527fc17bbb68ec2212e33), [`5f781a217`](https://github.com/graphcommerce-org/graphcommerce/commit/5f781a217ce63ed56bc1a9983487b04400a8a315), [`ec96a0eb0`](https://github.com/graphcommerce-org/graphcommerce/commit/ec96a0eb049ee2204f32f9c578455cf9c131dbd2)]:
+  - @graphcommerce/magento-product@4.5.0
+  - @graphcommerce/graphql-mesh@4.1.8
+  - @graphcommerce/next-ui@4.22.0
+  - @graphcommerce/magento-customer@4.10.0
+  - @graphcommerce/magento-store@4.2.28
+  - @graphcommerce/graphql@3.4.7
+  - @graphcommerce/image@3.1.9
+
 ## 3.2.33
 
 ### Patch Changes

@@ -1,5 +1,95 @@
 # Change Log
 
+## 3.23.0
+
+### Minor Changes
+
+- [#1609](https://github.com/graphcommerce-org/graphcommerce/pull/1609) [`0ad5159eb`](https://github.com/graphcommerce-org/graphcommerce/commit/0ad5159ebef54b4ce7fee6f71b4bf710dba9ef8e) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Use WaitForCustomer component
+
+  - Fixes bugs where loaders where shown on all pages that require user to log in
+
+* [#1602](https://github.com/graphcommerce-org/graphcommerce/pull/1602) [`5f781a217`](https://github.com/graphcommerce-org/graphcommerce/commit/5f781a217ce63ed56bc1a9983487b04400a8a315) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Default styles and layout fixes
+
+  - Scaled icons and fonts down. Size in typography is now more gradual: https://graphcommerce.vercel.app/test/typography
+  - Multiple accessibility fixes. Missing button/input labels, and fixed spacing issues resulting in high % appropriately sized tap targets
+  - Replaced responsiveVal usage with better performaning breakpointVal where possible
+  - All buttons are now Pill by default.
+  - Cleaned up checkout styles
+
+- [#1608](https://github.com/graphcommerce-org/graphcommerce/pull/1608) [`ac6eedbb1`](https://github.com/graphcommerce-org/graphcommerce/commit/ac6eedbb14d3abd8cf1231a98dc2a8b7f4659f1f) Thanks [@mikekeehnen](https://github.com/mikekeehnen)! - Added global errorhandling on cart errors. When a cart query return an error, the currentCartId wil be renewed with the actual cartId when the user is authenticated. When there is an error in a guest cart, a new cartId will be generated and the cart will be empty
+
+### Patch Changes
+
+- [#1590](https://github.com/graphcommerce-org/graphcommerce/pull/1590) [`06a691fe4`](https://github.com/graphcommerce-org/graphcommerce/commit/06a691fe46d8ca97dd526bd2d171c8c3fd96724f) Thanks [@paales](https://github.com/paales)! - Make sure the CategoryPage/Index/testpages document doesn’t rely on the the root_category_uid
+
+* [#1590](https://github.com/graphcommerce-org/graphcommerce/pull/1590) [`b40a352f7`](https://github.com/graphcommerce-org/graphcommerce/commit/b40a352f7bccdb831dce1d45baf98d51b0921d58) Thanks [@paales](https://github.com/paales)! - Split ProductList query into two separate queries so the backend can use varnish more effectively
+
+- [#1590](https://github.com/graphcommerce-org/graphcommerce/pull/1590) [`d3bbe3058`](https://github.com/graphcommerce-org/graphcommerce/commit/d3bbe3058ab7db8c1e5e1c0dd325ff0b3e4e4d7f) Thanks [@paales](https://github.com/paales)! - Added retry functionality for the graphcms backend to make deployments more stable
+
+* [#1601](https://github.com/graphcommerce-org/graphcommerce/pull/1601) [`04708dacc`](https://github.com/graphcommerce-org/graphcommerce/commit/04708daccc213c6ea927bc67fa3bd0d5b1fad619) Thanks [@paales](https://github.com/paales)! - Navigation now uses a single `const selection = useNavigationSelection()` motionValue to control the state of the menu, to prevent excessive rerenders.
+
+- [#1590](https://github.com/graphcommerce-org/graphcommerce/pull/1590) [`9660fe5d1`](https://github.com/graphcommerce-org/graphcommerce/commit/9660fe5d1839662a5064943538c4a15ce36364cc) Thanks [@paales](https://github.com/paales)! - Leverage Magento Varnish caching by enabling useGETForQueries to backends
+
+* [#1604](https://github.com/graphcommerce-org/graphcommerce/pull/1604) [`c98cef65e`](https://github.com/graphcommerce-org/graphcommerce/commit/c98cef65eb7cfed42f016b6134d10bf5d3c67d92) Thanks [@paales](https://github.com/paales)! - Downgrade next-pwa because there are issue with the latest release:
+
+  - https://github.com/shadowwalker/next-pwa/issues/375
+  - https://github.com/shadowwalker/next-pwa/pull/384
+
+  Note: It will currently generate a warning `Invalid next.config.js options detected`.
+
+- [#1590](https://github.com/graphcommerce-org/graphcommerce/pull/1590) [`40983df17`](https://github.com/graphcommerce-org/graphcommerce/commit/40983df170ed0435c47496285dfe30aafeb2eeac) Thanks [@paales](https://github.com/paales)! - Implement search results with a base static page and dynamic pages after paginating/filtering
+
+* [#1609](https://github.com/graphcommerce-org/graphcommerce/pull/1609) [`e573278e4`](https://github.com/graphcommerce-org/graphcommerce/commit/e573278e43506a6b17a2981e61d0e9fad41eb2eb) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Fix the account review modal
+
+- [#1590](https://github.com/graphcommerce-org/graphcommerce/pull/1590) [`ec96a0eb0`](https://github.com/graphcommerce-org/graphcommerce/commit/ec96a0eb049ee2204f32f9c578455cf9c131dbd2) Thanks [@paales](https://github.com/paales)! - Filtered category pages are now servered by a separate route with getServerSideProps. Since there are practically infinite variations of filters, it doesn't make sense to query those on a URL level and we're leveraging the backend caching possibilities.
+
+* [#1590](https://github.com/graphcommerce-org/graphcommerce/pull/1590) [`c13b65373`](https://github.com/graphcommerce-org/graphcommerce/commit/c13b6537300e61bc0d281a134d971f5ab62c7026) Thanks [@paales](https://github.com/paales)! - Added prettier config to vscode default config for typescript files
+
+- [#1604](https://github.com/graphcommerce-org/graphcommerce/pull/1604) [`3e983e2af`](https://github.com/graphcommerce-org/graphcommerce/commit/3e983e2af223d1dcfc49a2b10ce92114eeb246be) Thanks [@paales](https://github.com/paales)! - Remove unused dependencies from main package
+
+- Updated dependencies [[`b40a352f7`](https://github.com/graphcommerce-org/graphcommerce/commit/b40a352f7bccdb831dce1d45baf98d51b0921d58), [`3ff0e7f2d`](https://github.com/graphcommerce-org/graphcommerce/commit/3ff0e7f2d26edad228848268d24e9aaf56cd2c30), [`04708dacc`](https://github.com/graphcommerce-org/graphcommerce/commit/04708daccc213c6ea927bc67fa3bd0d5b1fad619), [`bb94e7045`](https://github.com/graphcommerce-org/graphcommerce/commit/bb94e7045460cb671c45d612a0833731d7c20c30), [`b0dc4e2e1`](https://github.com/graphcommerce-org/graphcommerce/commit/b0dc4e2e1982d502d38dd50a0f493396360a7a15), [`4a5286dfe`](https://github.com/graphcommerce-org/graphcommerce/commit/4a5286dfeaa1719e594a0078f274fbab53969c4e), [`0ad5159eb`](https://github.com/graphcommerce-org/graphcommerce/commit/0ad5159ebef54b4ce7fee6f71b4bf710dba9ef8e), [`40983df17`](https://github.com/graphcommerce-org/graphcommerce/commit/40983df170ed0435c47496285dfe30aafeb2eeac), [`d46d5ed0c`](https://github.com/graphcommerce-org/graphcommerce/commit/d46d5ed0cc5794391b7527fc17bbb68ec2212e33), [`e573278e4`](https://github.com/graphcommerce-org/graphcommerce/commit/e573278e43506a6b17a2981e61d0e9fad41eb2eb), [`5f781a217`](https://github.com/graphcommerce-org/graphcommerce/commit/5f781a217ce63ed56bc1a9983487b04400a8a315), [`e573278e4`](https://github.com/graphcommerce-org/graphcommerce/commit/e573278e43506a6b17a2981e61d0e9fad41eb2eb), [`ec96a0eb0`](https://github.com/graphcommerce-org/graphcommerce/commit/ec96a0eb049ee2204f32f9c578455cf9c131dbd2), [`b7009c3eb`](https://github.com/graphcommerce-org/graphcommerce/commit/b7009c3ebf4e4062eeaa00eaae8d572725d3eeb1), [`ac6eedbb1`](https://github.com/graphcommerce-org/graphcommerce/commit/ac6eedbb14d3abd8cf1231a98dc2a8b7f4659f1f)]:
+  - @graphcommerce/magento-product@4.5.0
+  - @graphcommerce/graphql-mesh@4.1.8
+  - @graphcommerce/magento-category@4.5.0
+  - @graphcommerce/next-ui@4.22.0
+  - @graphcommerce/ecommerce-ui@1.2.0
+  - @graphcommerce/magento-customer@4.10.0
+  - @graphcommerce/magento-search@4.2.0
+  - @graphcommerce/magento-cart@4.7.0
+  - @graphcommerce/framer-next-pages@3.3.0
+  - @graphcommerce/magento-cart-billing-address@3.1.0
+  - @graphcommerce/magento-cart-coupon@3.2.0
+  - @graphcommerce/magento-cart-items@3.1.0
+  - @graphcommerce/magento-cart-payment-method@3.5.0
+  - @graphcommerce/magento-cart-shipping-address@3.4.0
+  - @graphcommerce/magento-cart-shipping-method@3.6.0
+  - @graphcommerce/magento-customer-account@3.2.0
+  - @graphcommerce/magento-customer-order@3.1.0
+  - @graphcommerce/magento-newsletter@2.1.0
+  - @graphcommerce/magento-product-configurable@4.2.0
+  - @graphcommerce/magento-review@3.3.0
+  - @graphcommerce/magento-wishlist@1.6.0
+  - @graphcommerce/mollie-magento-payment@3.5.0
+  - @graphcommerce/cli@1.0.9
+  - @graphcommerce/magento-cart-email@3.0.48
+  - @graphcommerce/magento-payment-braintree@3.0.47
+  - @graphcommerce/magento-payment-included@3.1.19
+  - @graphcommerce/magento-product-bundle@4.0.48
+  - @graphcommerce/magento-product-downloadable@4.0.48
+  - @graphcommerce/magento-product-grouped@3.0.48
+  - @graphcommerce/magento-product-simple@4.0.48
+  - @graphcommerce/magento-product-virtual@4.0.48
+  - @graphcommerce/magento-store@4.2.28
+  - @graphcommerce/framer-scroller@2.1.33
+  - @graphcommerce/graphcms-ui@3.0.41
+  - @graphcommerce/magento-cart-checkout@3.0.48
+  - @graphcommerce/magento-cart-pickup@3.1.10
+  - @graphcommerce/graphql@3.4.7
+  - @graphcommerce/image@3.1.9
+  - @graphcommerce/magento-cms@4.0.39
+  - @graphcommerce/googlerecaptcha@2.1.17
+  - @graphcommerce/magento-graphql@3.1.7
+
 ## 3.22.1
 
 ### Patch Changes
