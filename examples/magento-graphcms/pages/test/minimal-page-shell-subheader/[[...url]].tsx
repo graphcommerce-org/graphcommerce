@@ -4,6 +4,8 @@ import {
   FilterTypes,
   getFilterTypes,
   parseParams,
+  ProductFiltersDocument,
+  ProductFiltersQuery,
   ProductListDocument,
   ProductListFilters,
   ProductListFiltersContainer,
@@ -22,7 +24,9 @@ import { LayoutMinimal, LayoutMinimalProps } from '../../../components'
 import { DefaultPageDocument, DefaultPageQuery } from '../../../graphql/DefaultPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
-type Props = DefaultPageQuery & ProductListQuery { filterTypes: FilterTypes; params: ProductListParams }
+type Props = DefaultPageQuery &
+  ProductListQuery &
+  ProductFiltersQuery & { filterTypes: FilterTypes; params: ProductListParams }
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutMinimalProps, Props, RouteProps>
@@ -93,6 +97,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   })
 
   const products = staticClient.query({ query: ProductListDocument })
+  const filters = staticClient.query({ query: ProductFiltersDocument })
 
   const [url, query] = extractUrlQuery(params)
   if (!url || !query) return { notFound: true }
@@ -103,6 +108,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     props: {
       ...(await page).data,
       ...(await products).data,
+      ...(await filters).data,
       filterTypes: await filterTypes,
       params: productListParams,
       up: { href: '/', title: 'Home' },
