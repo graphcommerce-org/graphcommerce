@@ -9,9 +9,9 @@ import {
   ProductListFiltersContainer,
   ProductListParams,
   ProductListParamsProvider,
+  ProductListQuery,
   ProductListSort,
 } from '@graphcommerce/magento-product'
-import { SearchQuery } from '@graphcommerce/magento-search'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { StickyBelowHeader, LayoutTitle, LayoutHeader, LinkOrButton } from '@graphcommerce/next-ui'
 import { GetStaticProps } from '@graphcommerce/next-ui/Page/types'
@@ -22,8 +22,7 @@ import { LayoutMinimal, LayoutMinimalProps } from '../../../components'
 import { DefaultPageDocument, DefaultPageQuery } from '../../../graphql/DefaultPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
-type Props = DefaultPageQuery &
-  SearchQuery & { filterTypes: FilterTypes; params: ProductListParams }
+type Props = DefaultPageQuery & ProductListQuery { filterTypes: FilterTypes; params: ProductListParams }
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutMinimalProps, Props, RouteProps>
