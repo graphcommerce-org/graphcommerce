@@ -208,7 +208,6 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const products = staticClient.query({
     query: ProductListDocument,
     variables: {
-      // pageSize: 10,
       ...productListParams,
       filters: { ...productListParams.filters, category_uid: { eq: categoryUid } },
     },
