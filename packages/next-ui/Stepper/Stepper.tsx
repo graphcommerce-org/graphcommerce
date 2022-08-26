@@ -32,7 +32,7 @@ export function Stepper(props: StepperProps) {
         <Box
           sx={[
             {
-              height: responsiveVal(2, 2),
+              height: 2,
               bgcolor: 'divider',
             },
             currentStep - 1 >= step && {
