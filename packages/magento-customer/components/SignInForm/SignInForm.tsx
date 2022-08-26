@@ -60,7 +60,7 @@ export function SignInForm(props: SignInFormProps) {
             type='submit'
             loading={formState.isSubmitting}
             color='primary'
-            variant='contained'
+            variant='pill'
             size='large'
           >
             <Trans id='Log in' />

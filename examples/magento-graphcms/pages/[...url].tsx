@@ -97,6 +97,9 @@ function CategoryPage(props: Props) {
           <LayoutTitle
             variant='h1'
             gutterTop
+            sx={(theme) => ({
+              marginBottom: category.description && theme.spacings.md,
+            })}
             gutterBottom={!category.description && category.children?.length === 0}
           >
             {category?.name}

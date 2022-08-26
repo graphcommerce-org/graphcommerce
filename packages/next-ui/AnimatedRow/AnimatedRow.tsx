@@ -9,6 +9,7 @@ export type AnimatedRowProps = Omit<
 
 const StyledDiv = styled(m.div)({})
 
+/** @deprecated Should be replaced with Box component */
 export function AnimatedRow(props: AnimatedRowProps) {
   return (
     <StyledDiv

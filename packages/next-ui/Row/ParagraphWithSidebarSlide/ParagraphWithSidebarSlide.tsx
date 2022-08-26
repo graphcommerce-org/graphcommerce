@@ -1,6 +1,6 @@
 import { Box, ContainerProps } from '@mui/material'
 import { extendableComponent } from '../../Styles'
-import { responsiveVal } from '../../Styles/responsiveVal'
+import { breakpointVal } from '../../Styles/breakpointVal'
 import { Row } from '../Row'
 
 export type ParagraphWithSidebarSlideProps = ContainerProps & {
@@ -46,9 +46,11 @@ export function ParagraphWithSidebarSlide(props: ParagraphWithSidebarSlideProps)
                 filter: 'brightness(100%)',
                 height: '100%',
               },
-              borderRadius: responsiveVal(
+              ...breakpointVal(
+                'borderRadius',
                 theme.shape.borderRadius * 2,
                 theme.shape.borderRadius * 3,
+                theme.breakpoints.values,
               ),
             },
           })}

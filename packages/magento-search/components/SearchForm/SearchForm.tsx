@@ -47,7 +47,7 @@ export function SearchForm(props: SearchFormProps) {
   }
 
   const endAdornment = !watch('search') ? (
-    <IconButton size='small'>
+    <IconButton size='small' aria-label={i18n._(/* i18n */ 'Search')}>
       <IconSvg src={iconSearch} />
     </IconButton>
   ) : (

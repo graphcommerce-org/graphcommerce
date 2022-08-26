@@ -1,4 +1,5 @@
 import { darken, lighten, styled, Theme } from '@mui/material'
+import { breakpointVal } from '../Styles/breakpointVal'
 import { responsiveVal } from '../Styles/responsiveVal'
 import { sx } from '../Theme/themeDefaults'
 
@@ -27,7 +28,12 @@ const styles = ({ theme, contained = false, background }: { theme: Theme } & For
       padding: `${theme.spacings.xxs} ${theme.spacings.sm}`,
       // paddingTop: theme.spacings.md,
       overflow: 'hidden',
-      borderRadius: responsiveVal(theme.shape.borderRadius * 3, theme.shape.borderRadius * 4),
+      ...breakpointVal(
+        'borderRadius',
+        theme.shape.borderRadius * 3,
+        theme.shape.borderRadius * 4,
+        theme.breakpoints.values,
+      ),
     },
   ])
 

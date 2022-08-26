@@ -100,7 +100,7 @@ export function SignUpForm(props: SignUpFormProps) {
         <Button
           type='submit'
           id='create-account'
-          variant='contained'
+          variant='pill'
           color='primary'
           size='large'
           loading={formState.isSubmitting}

@@ -41,10 +41,10 @@ export type IconSvgProps = StyleProps &
   Pick<ComponentProps<'svg'>, 'className' | 'style'> & { sx?: SxProps<Theme> }
 
 export const sizes = {
-  xs: rv(11, 13),
-  small: rv(12, 16),
-  medium: rv(22, 24),
-  large: rv(24, 28),
+  xs: rv(11, 12),
+  small: rv(12, 15),
+  medium: rv(22, 23),
+  large: rv(24, 26),
   xl: rv(38, 62),
   xxl: rv(96, 148),
 } as const

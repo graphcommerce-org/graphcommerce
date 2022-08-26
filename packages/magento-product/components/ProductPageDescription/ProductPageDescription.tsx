@@ -2,7 +2,7 @@ import {
   ColumnTwoWithTop,
   ColumnTwoWithTopProps,
   extendableComponent,
-  responsiveVal,
+  breakpointVal,
 } from '@graphcommerce/next-ui'
 import { Box, SxProps, Theme, Typography } from '@mui/material'
 import { Variant } from '@mui/material/styles/createTypography'
@@ -52,11 +52,12 @@ export function ProductPageDescription(props: ProductPageDescriptionProps) {
                   display: 'inline',
                 },
               },
-              fontSize === 'responsive' && {
-                '& p, & li': {
-                  fontSize: responsiveVal(16, 30),
-                },
-              },
+              fontSize === 'responsive' &&
+                ((theme) => ({
+                  '& p, & li': {
+                    ...breakpointVal('fontSize', 16, 30, theme.breakpoints.values),
+                  },
+                })),
               fontSize !== 'responsive' && {
                 '& p, & li': {
                   fontSize,

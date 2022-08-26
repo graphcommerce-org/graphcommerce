@@ -7,6 +7,7 @@ import {
   SectionContainer,
   IconSvg,
   extendableComponent,
+  breakpointVal,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box, Divider, SxProps, Theme } from '@mui/material'
@@ -47,7 +48,12 @@ export function CartItemSummary(props: OrderSummaryProps) {
         (theme) => ({
           padding: `${theme.spacings.sm} ${theme.spacings.sm}`,
           border: `1px ${theme.palette.divider} solid`,
-          borderRadius: '4px',
+          ...breakpointVal(
+            'borderRadius',
+            theme.shape.borderRadius * 2,
+            theme.shape.borderRadius * 3,
+            theme.breakpoints.values,
+          ),
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
@@ -65,9 +71,6 @@ export function CartItemSummary(props: OrderSummaryProps) {
         <Box
           className={classes.imageScrollerContainer}
           sx={(theme) => ({
-            display: 'flex',
-            alignItems: 'center',
-            gap: theme.spacings.sm,
             position: 'relative',
           })}
         >
@@ -137,7 +140,7 @@ export function CartItemSummary(props: OrderSummaryProps) {
         />
         <CartTotals
           sx={(theme) => ({
-            background: theme.palette.background.default,
+            background: 'none',
             padding: 0,
           })}
         />

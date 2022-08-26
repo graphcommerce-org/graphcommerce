@@ -81,7 +81,7 @@ export function MolliePaymentHandler({ code }: PaymentHandlerProps) {
         disableMargin
         button={
           <Button
-            variant='contained'
+            variant='pill'
             color='primary'
             size='large'
             onClick={() => {

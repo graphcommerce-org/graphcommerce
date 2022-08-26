@@ -58,7 +58,7 @@ export function WaitForCustomer(props: WaitForCustomerProps) {
           title={<Trans id='You must sign in to continue' />}
           button={
             <PageLink href='/account/signin' passHref>
-              <Button variant='contained' color='secondary' size='large'>
+              <Button variant='pill' color='secondary' size='large'>
                 {!session.valid ? (
                   <Trans id='Sign in' />
                 ) : (

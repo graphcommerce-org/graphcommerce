@@ -1,3 +1,4 @@
+import { breakpointVal } from '@graphcommerce/next-ui'
 import {
   Fab,
   Snackbar,
@@ -65,8 +66,6 @@ export default function MessageSnackbarImpl(props: MessageSnackbarImplProps) {
   }, [open])
 
   const hideSnackbar = (e) => {
-    e.preventDefault()
-
     setShowSnackbar(false)
     onClose?.()
   }
@@ -86,20 +85,25 @@ export default function MessageSnackbarImpl(props: MessageSnackbarImplProps) {
         message={message}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
         open={showSnackbar}
-        autoHideDuration={autoHide ? 6000 : null}
+        autoHideDuration={autoHide ? 5000 : null}
         className={classes.root}
         sx={sx}
         onClose={hideSnackbar}
       >
         <SnackbarContent
-          elevation={12}
+          elevation={16}
           className={classes.content}
           sx={(theme) => ({
             '&.variantPill': {
               backgroundColor: theme.palette.background.paper,
               color: theme.palette.text.primary,
               [theme.breakpoints.up('md')]: {
-                borderRadius: '99em',
+                ...breakpointVal(
+                  'borderRadius',
+                  theme.shape.borderRadius * 3,
+                  theme.shape.borderRadius * 4,
+                  theme.breakpoints.values,
+                ),
               },
               padding: theme.spacings.xxs,
             },

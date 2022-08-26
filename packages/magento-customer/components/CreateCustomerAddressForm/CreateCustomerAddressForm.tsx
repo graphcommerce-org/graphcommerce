@@ -82,7 +82,7 @@ export function CreateCustomerAddressForm() {
         <FormActions>
           <Button
             type='submit'
-            variant='contained'
+            variant='pill'
             color='primary'
             size='large'
             loading={formState.isSubmitting}

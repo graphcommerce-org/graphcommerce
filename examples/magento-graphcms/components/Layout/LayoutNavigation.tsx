@@ -57,6 +57,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
                   m: 2,
                   mb: theme.spacings.xs,
                 })}
+                aria-label={i18n._(/* i18n */ 'Search...')}
               >
                 <Trans id='Search...' />
               </SearchLink>,
@@ -131,7 +132,9 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
             </DesktopNavBar>
 
             <DesktopNavActions>
-              {!router.pathname.startsWith('/search') && <SearchLink href='/search' />}
+              {!router.pathname.startsWith('/search') && (
+                <SearchLink href='/search' aria-label={i18n._(/* i18n */ 'Search...')} />
+              )}
               <PageLink href='/service' passHref>
                 <Fab aria-label={i18n._(/* i18n */ `Account`)} size='large' color='inherit'>
                   <IconSvg src={iconCustomerService} size='large' />

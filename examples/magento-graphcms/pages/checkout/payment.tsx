@@ -37,8 +37,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { CircularProgress, Container, Dialog, Divider } from '@mui/material'
-import { AnimatePresence } from 'framer-motion'
+import { Box, CircularProgress, Container, Dialog, Divider } from '@mui/material'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
 import { DefaultPageDocument } from '../../graphql/DefaultPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
@@ -69,6 +68,7 @@ function PaymentPage() {
         {cartExists && !billingPage.error && (
           <>
             <LayoutHeader
+              switchPoint={0}
               primary={
                 <PaymentMethodButton
                   type='submit'
@@ -105,49 +105,43 @@ function PaymentPage() {
                 </FullPageMessage>
               </Dialog>
 
-              <>
-                <LayoutTitle icon={iconId}>
-                  <Trans id='Payment' />
-                </LayoutTitle>
+              <PaymentMethodContextProvider
+                modules={{
+                  braintree_local_payment,
+                  braintree,
+                  ...included_methods,
+                  ...mollie_methods,
+                }}
+              >
+                <Box sx={(theme) => ({ mt: theme.spacings.lg })}>
+                  <PaymentMethodActionCardListForm step={3} />
+                </Box>
 
-                <PaymentMethodContextProvider
-                  modules={{
-                    braintree_local_payment,
-                    braintree,
-                    ...included_methods,
-                    ...mollie_methods,
-                  }}
-                >
-                  <AnimatePresence initial={false}>
-                    <PaymentMethodActionCardListForm step={3} />
+                <CartSummary editable key='cart-summary'>
+                  <Divider />
+                  <CartTotals sx={{ typography: 'body1' }} />
+                </CartSummary>
 
-                    <CartSummary editable key='cart-summary'>
-                      <Divider />
-                      <CartTotals />
-                    </CartSummary>
+                <CouponAccordion key='coupon' />
 
-                    <CouponAccordion key='coupon' />
+                <CartAgreementsForm step={2} key='agreements' />
 
-                    <CartAgreementsForm step={2} key='agreements' />
+                <PaymentMethodPlaceOrder key='placeorder' step={4} />
 
-                    <PaymentMethodPlaceOrder key='placeorder' step={4} />
-
-                    <FormActions>
-                      <PaymentMethodButton
-                        id='place-order'
-                        key='button'
-                        type='submit'
-                        color='secondary'
-                        button={{ variant: 'pill', size: 'large' }}
-                        breakpoint='xs'
-                        endIcon={<IconSvg src={iconChevronRight} />}
-                      >
-                        <Trans id='Place order' />
-                      </PaymentMethodButton>
-                    </FormActions>
-                  </AnimatePresence>
-                </PaymentMethodContextProvider>
-              </>
+                <FormActions>
+                  <PaymentMethodButton
+                    id='place-order'
+                    key='button'
+                    type='submit'
+                    color='secondary'
+                    button={{ variant: 'pill', size: 'large' }}
+                    breakpoint='xs'
+                    endIcon={<IconSvg src={iconChevronRight} />}
+                  >
+                    <Trans id='Place order' />
+                  </PaymentMethodButton>
+                </FormActions>
+              </PaymentMethodContextProvider>
             </Container>
           </>
         )}

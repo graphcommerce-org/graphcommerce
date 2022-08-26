@@ -43,10 +43,11 @@ export function Footer(props: FooterProps) {
             'social social'
             'links links'
           `,
-          gap: theme.spacings.sm,
+          gap: theme.spacings.md,
           '& > *': { maxWidth: 'max-content' },
 
           [theme.breakpoints.up('sm')]: {
+            gap: theme.spacings.sm,
             gridTemplateAreas: `
               'social switcher'
               'links support'
@@ -70,7 +71,7 @@ export function Footer(props: FooterProps) {
           justifyContent: 'start',
           gridAutoFlow: 'column',
           gridArea: 'social',
-          gap: { xs: `0 ${theme.spacings.xs}`, md: `0 ${theme.spacings.sm}` },
+          gap: { xs: `0 ${theme.spacings.xs}`, md: `0 ${theme.spacings.xs}` },
           '& > *': {
             minWidth: 'min-content',
           },

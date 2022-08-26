@@ -1,7 +1,7 @@
 import { Box, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { extendableComponent } from '../../Styles'
-import { responsiveVal } from '../../Styles/responsiveVal'
+import { breakpointVal } from '../../Styles/breakpointVal'
 import { Row } from '../Row'
 
 export type ImageTextProps = {
@@ -37,7 +37,12 @@ export function ImageText(props: ImageTextProps) {
             background: 'none',
             gridTemplateColumns: '1fr 1fr',
           },
-          borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
+          ...breakpointVal(
+            'borderRadius',
+            theme.shape.borderRadius * 2,
+            theme.shape.borderRadius * 3,
+            theme.breakpoints.values,
+          ),
         })}
       >
         <Box
@@ -49,9 +54,11 @@ export function ImageText(props: ImageTextProps) {
               height: '100%',
               width: '100%',
               objectFit: 'cover',
-              borderRadius: responsiveVal(
+              ...breakpointVal(
+                'borderRadius',
                 theme.shape.borderRadius * 2,
                 theme.shape.borderRadius * 3,
+                theme.breakpoints.values,
               ),
             },
           })}

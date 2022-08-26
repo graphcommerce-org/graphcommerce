@@ -1,6 +1,7 @@
 import { Box, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { extendableComponent } from '../../Styles'
+import { breakpointVal } from '../../Styles/breakpointVal'
 import { responsiveVal } from '../../Styles/responsiveVal'
 
 export type BlogHeaderProps = {
@@ -24,7 +25,12 @@ export function BlogHeader(props: BlogHeaderProps) {
           margin: `0 auto`,
           marginBottom: theme.spacings.md,
           '& img': {
-            borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
+            ...breakpointVal(
+              'borderRadius',
+              theme.shape.borderRadius * 2,
+              theme.shape.borderRadius * 3,
+              theme.breakpoints.values,
+            ),
           },
         }),
         ...(Array.isArray(sx) ? sx : [sx]),

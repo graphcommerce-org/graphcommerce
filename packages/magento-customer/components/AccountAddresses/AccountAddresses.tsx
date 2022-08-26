@@ -36,7 +36,7 @@ export function AccountAddresses(props: AccountAddressesProps) {
         </Box>
         <Button
           className={classes.button}
-          variant='contained'
+          variant='pill'
           color='primary'
           disabled
           size='large'
@@ -60,7 +60,7 @@ export function AccountAddresses(props: AccountAddressesProps) {
           icon={<IconSvg src={iconHome} size='xxl' />}
           button={
             <Link href='/account/addresses/add' passHref>
-              <Button size='large' variant='contained' color='primary'>
+              <Button size='large' variant='pill' color='primary'>
                 <Trans id='Add new address' />
               </Button>
             </Link>
@@ -82,7 +82,7 @@ export function AccountAddresses(props: AccountAddressesProps) {
           <Link href='/account/addresses/add' passHref>
             <Button
               className={classes.button}
-              variant='contained'
+              variant='pill'
               color='primary'
               size='large'
               sx={(theme) => ({

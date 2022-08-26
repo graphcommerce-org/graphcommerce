@@ -1,5 +1,5 @@
 import { ProductListLink } from '@graphcommerce/magento-product'
-import { responsiveVal, Row, extendableComponent } from '@graphcommerce/next-ui'
+import { responsiveVal, breakpointVal, Row, extendableComponent } from '@graphcommerce/next-ui'
 import { Box, SxProps, Theme, Typography } from '@mui/material'
 import React from 'react'
 import { CategoryHeroNavFragment } from './CategoryHeroNav.gql'
@@ -33,7 +33,6 @@ export function CategoryHeroNav({ children, title, asset, sx = [] }: CategoryHer
           marginBottom: theme.spacings.xxl,
           paddingBottom: theme.page.vertical,
           [theme.breakpoints.up('md')]: {
-            rowGap: theme.spacings.md,
             width: '100%',
             paddingRight: theme.page.horizontal,
             paddingTop: 0,
@@ -117,7 +116,12 @@ export function CategoryHeroNav({ children, title, asset, sx = [] }: CategoryHer
           '& video': {
             objectFit: 'cover',
             width: '100%',
-            borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
+            ...breakpointVal(
+              'borderRadius',
+              theme.shape.borderRadius * 2,
+              theme.shape.borderRadius * 3,
+              theme.breakpoints.values,
+            ),
           },
           [theme.breakpoints.up('md')]: {
             minHeight: '80vh',

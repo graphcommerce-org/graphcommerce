@@ -77,7 +77,7 @@ export function ChangePasswordForm() {
           type='submit'
           loading={formState.isSubmitting}
           color='primary'
-          variant='contained'
+          variant='pill'
           size='large'
         >
           <Trans id='Save new password' />

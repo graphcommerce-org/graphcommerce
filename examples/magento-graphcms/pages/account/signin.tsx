@@ -48,8 +48,10 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   return {
     props: {
       apolloState: await conf.then(() => client.cache.extract()),
-      variantMd: 'bottom',
-      size: 'max',
+      variantMd: 'right',
+      justifyMd: 'start',
+      sizeMd: 'floating',
+      sizeSm: 'full',
     },
   }
 }

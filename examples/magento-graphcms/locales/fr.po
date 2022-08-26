@@ -94,9 +94,6 @@ msgstr "Panier"
 msgid "Cart ({0})"
 msgstr "Panier ({0})"
 
-msgid "Cart Total"
-msgstr "Montant total du panier"
-
 msgid "Change"
 msgstr "Changer"
 
@@ -162,6 +159,9 @@ msgstr "Service client"
 
 msgid "Dark Mode"
 msgstr "Mode sombre"
+
+msgid "Decrease"
+msgstr "Diminuer"
 
 msgid "Delete this address"
 msgstr "Supprimer cette adresse"
@@ -244,6 +244,9 @@ msgstr "Si vous avez réalisé votre paiement, la commande <0>va</0> arriver, ma
 msgid "Including {0}"
 msgstr "Incluant {0}"
 
+msgid "Increase"
+msgstr "Augmenter"
+
 msgid "Invalid email address"
 msgstr "Adresse email invalide"
 
@@ -318,6 +321,9 @@ msgstr "Pas d'information de paiement"
 
 msgid "No worries! Enter your email address and we will send an email with instructions to reset your password."
 msgstr "Pas de soucis! Entrez votre adresse email et nous vous enverrons un email avec les instructions pour réinitialiser votre mot de passe."
+
+msgid "Number"
+msgstr "Nombre"
 
 msgid "Ok"
 msgstr "Ok"
@@ -519,6 +525,9 @@ msgstr "Merci! Votre évaluation a été soumise avec succès pour approbation"
 
 msgid "This may take a second"
 msgstr "Ceci peut prendre un instant"
+
+msgid "Total <0/>"
+msgstr "Totale <0/>"
 
 msgid "Try a different product"
 msgstr "Essayez un autre produit"

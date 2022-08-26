@@ -94,9 +94,6 @@ msgstr "Carrello"
 msgid "Cart ({0})"
 msgstr "Carrello ({0})"
 
-msgid "Cart Total"
-msgstr "Totale carrello"
-
 msgid "Change"
 msgstr "Cambia"
 
@@ -162,6 +159,9 @@ msgstr "Servizio clienti"
 
 msgid "Dark Mode"
 msgstr "Modalità scura"
+
+msgid "Decrease"
+msgstr "Diminuire"
 
 msgid "Delete this address"
 msgstr "Elimina questo indirizzo"
@@ -244,6 +244,9 @@ msgstr "Se hai pagato con successo l'ordine, l'ordine <0>verrà</0> inviato, ma 
 msgid "Including {0}"
 msgstr "Incluso {0}"
 
+msgid "Increase"
+msgstr "Aumentare"
+
 msgid "Invalid email address"
 msgstr "Indirizzo email non valido"
 
@@ -318,6 +321,9 @@ msgstr "Nessuna informazione di pagamento"
 
 msgid "No worries! Enter your email address and we will send an email with instructions to reset your password."
 msgstr "Nessun problema! Inserisci il tuo indirizzo email e ti invieremo un'email con le istruzioni per reimpostare la tua password."
+
+msgid "Number"
+msgstr "Numero"
 
 msgid "Ok"
 msgstr "Ok"
@@ -519,6 +525,9 @@ msgstr "Grazie! La tua recensione è stata inviata con successo per l'approvazio
 
 msgid "This may take a second"
 msgstr "Questo potrebbe richiedere un secondo"
+
+msgid "Total <0/>"
+msgstr "Totale <0/>"
 
 msgid "Try a different product"
 msgstr "Prova un altro prodotto"

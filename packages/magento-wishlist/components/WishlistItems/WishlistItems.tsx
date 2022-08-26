@@ -1,5 +1,5 @@
-import { AnimatedRow, RenderType, TypeRenderer } from '@graphcommerce/next-ui'
-import { AnimatePresence } from 'framer-motion'
+import { RenderType, TypeRenderer } from '@graphcommerce/next-ui'
+import { Box } from '@mui/material'
 import { useWishlistItems } from '../../hooks'
 import { WishlistItemsFragment } from './WishlistItems.gql'
 
@@ -17,17 +17,17 @@ export function WishlistItems(props: WishlistProps) {
 
   /** Structure between guest and customer wishlist differs */
   return (
-    <AnimatePresence initial={false}>
+    <>
       {wishlistItemsData.items?.map((item) => {
         if (!item?.uid && !item?.id) return null
 
         const productData = item?.product ? item?.product : item
         return (
-          <AnimatedRow layout key={item.id || item.uid}>
+          <Box key={item.id || item.uid}>
             <RenderType renderer={renderer} wishlistItemId={item.id || null} {...productData} />
-          </AnimatedRow>
+          </Box>
         )
       })}
-    </AnimatePresence>
+    </>
   )
 }

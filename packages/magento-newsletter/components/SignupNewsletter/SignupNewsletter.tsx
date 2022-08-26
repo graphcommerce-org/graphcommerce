@@ -27,7 +27,7 @@ export function SignupNewsletter(props: SignupNewsletterProps) {
       className={classes.signup}
       sx={[
         (theme) => ({
-          background: theme.palette.background.paper,
+          background: theme.palette.background.default,
           display: 'grid',
           alignItems: 'center',
           gridAutoFlow: 'column',
@@ -43,10 +43,6 @@ export function SignupNewsletter(props: SignupNewsletterProps) {
             gridTemplateAreas: `"a b c"`,
             gridTemplateColumns: '2fr 1fr',
           },
-
-          '&.loggedIn': {
-            background: theme.palette.background.image,
-          },
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
@@ -58,7 +54,7 @@ export function SignupNewsletter(props: SignupNewsletterProps) {
         className={classes.signupForm}
         sx={(theme) => ({
           display: 'flex',
-          gap: 8,
+          gap: theme.spacings.sm,
           justifySelf: 'start',
           alignItems: 'center',
           [theme.breakpoints.up('sm')]: { justifySelf: 'end' },

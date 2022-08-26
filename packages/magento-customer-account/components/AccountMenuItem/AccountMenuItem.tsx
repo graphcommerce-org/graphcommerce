@@ -17,7 +17,7 @@ export type AccountMenuItemProps = {
   subtitle?: React.ReactNode
   endIcon?: React.ReactNode
   sx?: SxProps<Theme>
-} & Omit<ButtonProps, 'endIcon' | 'startIcon' | 'disableElevation' | 'title'> &
+} & Omit<ButtonProps, 'endIcon' | 'startIcon' | 'title'> &
   OwnerState
 
 type OwnerState = { noBorderBottom?: boolean }
@@ -41,8 +41,6 @@ export function AccountMenuItem(props: AccountMenuItemProps) {
 
   const button = (
     <Button
-      variant='contained'
-      disableElevation
       disabled={disabled}
       className={classes.root}
       sx={[
@@ -51,7 +49,7 @@ export function AccountMenuItem(props: AccountMenuItemProps) {
           height: responsiveVal(88, 104),
           padding: 0,
           borderRadius: 0,
-          background: theme.palette.background.default,
+          background: theme.palette.background.paper,
           '&:hover': {
             background: theme.palette.background.default,
           },

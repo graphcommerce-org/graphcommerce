@@ -18,9 +18,9 @@ import { Components, PaletteOptions } from '@mui/material/styles'
 const lightPalette: PaletteOptions = {
   mode: 'light',
   primary: {
-    main: '#ff4a55',
+    main: '#47C489',
     contrastText: '#ffffff',
-    dark: '#f33642',
+    dark: '#47C489',
   },
   secondary: {
     main: '#006bff',
@@ -85,7 +85,7 @@ const createThemeWithPalette = (palette: PaletteOptions) =>
   createTheme({
     palette,
     ...themeBaseDefaults,
-    shape: { borderRadius: 4 },
+    shape: { borderRadius: 3 },
     typography: {
       fontFamily:
         '-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji',
@@ -105,25 +105,25 @@ const createThemeWithPalette = (palette: PaletteOptions) =>
       h3: {
         ...fontSize(22, 30),
         fontWeight: 700,
-        fontVariationSettings: "'wght' 680",
+        fontVariationSettings: "'wght' 660",
         lineHeight: 1.55,
       },
       h4: {
         ...fontSize(18, 26),
-        fontWeight: 500,
-        fontVariationSettings: "'wght' 520",
+        fontWeight: 550,
+        fontVariationSettings: "'wght' 550",
         lineHeight: 1.55,
       },
       h5: {
         ...fontSize(17, 20),
-        fontWeight: 700,
-        fontVariationSettings: "'wght' 680",
+        fontWeight: 650,
+        fontVariationSettings: "'wght' 650",
         lineHeight: 1.55,
       },
       h6: {
         ...fontSize(17, 20),
         fontWeight: 550,
-        fontVariationSettings: "'wght' 530",
+        fontVariationSettings: "'wght' 510",
         lineHeight: 1.8,
       },
       subtitle1: {
@@ -134,7 +134,7 @@ const createThemeWithPalette = (palette: PaletteOptions) =>
       },
       fontWeightBold: 600,
       body1: {
-        ...fontSize(15, 18),
+        ...fontSize(14, 18),
         lineHeight: 1.7,
       },
       subtitle2: {
@@ -176,7 +176,7 @@ const createThemeWithPalette = (palette: PaletteOptions) =>
     },
     appShell: {
       headerHeightSm: '46px',
-      headerHeightMd: '110px',
+      headerHeightMd: '100px',
       appBarHeightMd: '80px',
       appBarInnerHeightMd: '46px',
     },
@@ -194,7 +194,7 @@ const createOverrides = (theme: Theme): Components => ({
       '#__next': {
         position: 'relative',
       },
-      img: {
+      'picture img': {
         filter: 'brightness(1.03)',
         willChange: 'filter',
       },
@@ -238,7 +238,12 @@ const createOverrides = (theme: Theme): Components => ({
       {
         props: { variant: 'outlined' },
         style: {
-          borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
+          ...breakpointVal(
+            'borderRadius',
+            theme.shape.borderRadius * 2,
+            theme.shape.borderRadius * 3,
+            theme.breakpoints.values,
+          ),
         },
       },
       {
@@ -248,6 +253,22 @@ const createOverrides = (theme: Theme): Components => ({
       {
         props: { variant: 'inline' },
         style: { borderRadius: '99em' },
+      },
+      {
+        props: { color: 'primary' },
+        style: {
+          '&:not(.Mui-disabled)': {
+            boxShadow: 'none',
+          },
+        },
+      },
+      {
+        props: { color: 'secondary' },
+        style: {
+          '&:not(.Mui-disabled)': {
+            boxShadow: 'none',
+          },
+        },
       },
     ],
   },
@@ -288,7 +309,12 @@ const createOverrides = (theme: Theme): Components => ({
     styleOverrides: {
       root: {
         '& .MuiOutlinedInput-root': {
-          borderRadius: responsiveVal(theme.shape.borderRadius * 1.5, theme.shape.borderRadius * 2),
+          ...breakpointVal(
+            'borderRadius',
+            theme.shape.borderRadius * 1.5,
+            theme.shape.borderRadius * 2,
+            theme.breakpoints.values,
+          ),
         },
       },
     },
@@ -321,23 +347,21 @@ const createOverrides = (theme: Theme): Components => ({
         },
       },
     },
+
+    variants: [
+      {
+        props: { size: 'medium' },
+        style: {
+          padding: 7,
+        },
+      },
+    ],
   },
 
   MuiSwitch: {
     styleOverrides: {
-      track: {
-        '.Mui-colorPrimary + &': {
-          backgroundColor: theme.palette.primary,
-          borderRadius: '30px',
-        },
-        '.Mui-checked.Mui-colorPrimary + &': {
-          opacity: 1,
-          backgroundColor: theme.palette.primary,
-          borderRadius: '30px',
-        },
-      },
       thumb: {
-        backgroundColor: '#fff',
+        boxShadow: theme.shadows[6],
       },
     },
   },

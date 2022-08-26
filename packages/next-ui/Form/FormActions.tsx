@@ -6,5 +6,5 @@ export const FormActions = styled('div', { name: 'FormActions' })(({ theme }) =>
   justifyContent: 'center',
   display: 'grid',
   gridAutoFlow: 'column',
-  gap: `calc(${theme.spacings.xxs} * 2)`,
+  gap: theme.spacings.sm,
 }))

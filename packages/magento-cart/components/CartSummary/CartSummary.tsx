@@ -1,7 +1,7 @@
 import { useHistoryLink } from '@graphcommerce/framer-next-pages'
-import { SectionContainer, extendableComponent } from '@graphcommerce/next-ui'
+import { SectionContainer, extendableComponent, breakpointVal } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box, Link, SxProps, Theme, Typography } from '@mui/material'
+import { Box, Link, SxProps, Theme, Typography, lighten } from '@mui/material'
 import PageLink from 'next/link'
 import React from 'react'
 import { useCartQuery } from '../../hooks'
@@ -37,8 +37,20 @@ export function CartSummary(props: CartSummaryProps) {
       sx={[
         (theme) => ({
           margin: `${theme.spacings.sm} 0`,
-          '& div:last-of-type': {
-            borderRadius: '0 0 4px 4px',
+          '& > div:last-of-type': {
+            borderRadius: '0',
+            ...breakpointVal(
+              'borderBottomLeftRadius',
+              theme.shape.borderRadius * 2,
+              theme.shape.borderRadius * 3,
+              theme.breakpoints.values,
+            ),
+            ...breakpointVal(
+              'borderBottomRightRadius',
+              theme.shape.borderRadius * 2,
+              theme.shape.borderRadius * 3,
+              theme.breakpoints.values,
+            ),
           },
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
@@ -47,8 +59,22 @@ export function CartSummary(props: CartSummaryProps) {
       <Box
         className={classes.detailsContainer}
         sx={(theme) => ({
-          borderRadius: '4px 4px 0 0',
-          background: theme.palette.mode === 'light' ? '#FFE10820' : theme.palette.background.paper,
+          ...breakpointVal(
+            'borderTopLeftRadius',
+            theme.shape.borderRadius * 2,
+            theme.shape.borderRadius * 3,
+            theme.breakpoints.values,
+          ),
+          ...breakpointVal(
+            'borderTopRightRadius',
+            theme.shape.borderRadius * 2,
+            theme.shape.borderRadius * 3,
+            theme.breakpoints.values,
+          ),
+          background:
+            theme.palette.mode === 'light'
+              ? theme.palette.background.default
+              : lighten(theme.palette.background.default, 0.15),
           padding: theme.spacings.sm,
           gridColumnGap: theme.spacings.xxl,
           gridRowGap: theme.spacings.sm,

@@ -18,7 +18,6 @@ import {
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { SxProps, TextField, Theme } from '@mui/material'
-import { AnimatePresence } from 'framer-motion'
 import React from 'react'
 import { isSameAddress } from '../../utils/isSameAddress'
 import { GetAddressesDocument } from './GetAddresses.gql'
@@ -119,29 +118,27 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
 
   return (
     <Form onSubmit={submit} noValidate sx={sx}>
-      <AnimatePresence initial={false}>
-        <NameFields form={form} key='name' readOnly={readOnly} />
-        <AddressFields form={form} key='addressfields' readOnly={readOnly} />
-        <FormRow key='telephone'>
-          <TextField
-            variant='outlined'
-            type='text'
-            error={!!formState.errors.telephone}
-            required={required.telephone}
-            label={<Trans id='Telephone' />}
-            {...muiRegister('telephone', {
-              required: required.telephone,
-              pattern: { value: phonePattern, message: i18n._(/* i18n */ 'Invalid phone number') },
-            })}
-            helperText={formState.isSubmitted && formState.errors.telephone?.message}
-            InputProps={{
-              readOnly,
-              endAdornment: <InputCheckmark show={valid.telephone} />,
-            }}
-          />
-        </FormRow>
-        <ApolloCartErrorAlert error={error} />
-      </AnimatePresence>
+      <NameFields form={form} key='name' readOnly={readOnly} />
+      <AddressFields form={form} key='addressfields' readOnly={readOnly} />
+      <FormRow key='telephone'>
+        <TextField
+          variant='outlined'
+          type='text'
+          error={!!formState.errors.telephone}
+          required={required.telephone}
+          label={<Trans id='Telephone' />}
+          {...muiRegister('telephone', {
+            required: required.telephone,
+            pattern: { value: phonePattern, message: i18n._(/* i18n */ 'Invalid phone number') },
+          })}
+          helperText={formState.isSubmitted && formState.errors.telephone?.message}
+          InputProps={{
+            readOnly,
+            endAdornment: <InputCheckmark show={valid.telephone} />,
+          }}
+        />
+      </FormRow>
+      <ApolloCartErrorAlert error={error} />
     </Form>
   )
 })

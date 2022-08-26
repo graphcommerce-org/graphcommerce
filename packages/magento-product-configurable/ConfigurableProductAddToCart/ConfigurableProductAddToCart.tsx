@@ -1,7 +1,6 @@
 import { ApolloCartErrorAlert, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { Money } from '@graphcommerce/magento-store'
 import {
-  AnimatedRow,
   Button,
   extendableComponent,
   iconChevronRight,
@@ -10,8 +9,7 @@ import {
   TextInputNumber,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Divider, Typography, Alert, Box, SxProps, Theme } from '@mui/material'
-import { AnimatePresence } from 'framer-motion'
+import { Divider, Typography, Alert, Box, SxProps, Theme, useMediaQuery } from '@mui/material'
 import PageLink from 'next/link'
 import React from 'react'
 import { Selected, useConfigurableContext } from '../ConfigurableContext/ConfigurableContext'
@@ -146,13 +144,11 @@ export function ConfigurableProductAddToCart(props: ConfigurableProductAddToCart
 
       <ApolloCartErrorAlert error={error} />
 
-      <AnimatePresence initial={false}>
-        {data?.addProductsToCart?.user_errors.map((e) => (
-          <AnimatedRow layout key={e?.code}>
-            <Alert severity='error'>{e?.message}</Alert>
-          </AnimatedRow>
-        ))}
-      </AnimatePresence>
+      {data?.addProductsToCart?.user_errors.map((e) => (
+        <Box key={e?.code}>
+          <Alert severity='error'>{e?.message}</Alert>
+        </Box>
+      ))}
 
       <MessageSnackbar
         open={
@@ -162,6 +158,7 @@ export function ConfigurableProductAddToCart(props: ConfigurableProductAddToCart
           !data?.addProductsToCart?.user_errors?.length
         }
         variant='pill'
+        autoHide
         action={
           <PageLink href='/cart' passHref>
             <Button

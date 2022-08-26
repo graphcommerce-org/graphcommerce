@@ -1,3 +1,4 @@
+import { i18n } from '@lingui/core'
 import {
   IconButton,
   IconButtonProps,
@@ -15,7 +16,7 @@ import { iconMin, iconPlus } from '../icons'
 
 export type IconButtonPropsOmit = Omit<
   IconButtonProps,
-  'aria-label' | 'size' | 'onMouseDown' | 'onMouseUp' | 'disabled'
+  'aria-labelledby' | 'aria-label' | 'size' | 'onMouseDown' | 'onMouseUp' | 'disabled'
 >
 
 export type TextInputNumberProps = Omit<TextFieldProps, 'type'> & {
@@ -95,7 +96,6 @@ export function TextInputNumber(props: TextInputNumberProps) {
       sx={[
         {
           width: responsiveVal(80, 120),
-          backgroundColor: 'inherit',
         },
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
@@ -104,7 +104,7 @@ export function TextInputNumber(props: TextInputNumberProps) {
         ...textFieldProps.InputProps,
         startAdornment: (
           <IconButton
-            aria-label='step down'
+            aria-label={i18n._(/* i18n */ 'Decrease')}
             size='medium'
             edge='start'
             onPointerDown={() => setDirection('down')}
@@ -120,7 +120,7 @@ export function TextInputNumber(props: TextInputNumberProps) {
         ),
         endAdornment: (
           <IconButton
-            aria-label='step up'
+            aria-label={i18n._(/* i18n */ 'Increase')}
             size='medium'
             edge='end'
             onPointerDown={() => setDirection('up')}
@@ -141,6 +141,7 @@ export function TextInputNumber(props: TextInputNumberProps) {
       }}
       inputProps={{
         ...inputProps,
+        'aria-label': i18n._(/* i18n */ 'Number'),
         sx: [
           {
             textAlign: 'center',

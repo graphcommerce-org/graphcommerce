@@ -116,7 +116,7 @@ export function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormProps) {
         <Button
           type='submit'
           color='primary'
-          variant='contained'
+          variant='pill'
           size='large'
           loading={formState.isSubmitting}
         >

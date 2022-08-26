@@ -13,13 +13,13 @@ export function DesktopHeaderBadge(props: BadgeProps) {
             bgcolor: 'text.disabled',
           },
           '& .MuiBadge-anchorOriginTopRightCircular': {
-            right: { xs: '3px', md: '8px' },
-            top: { xs: '3px', md: '8px' },
+            right: { xs: '3px', md: '5px' },
+            top: { xs: '3px', md: '5px' },
           },
           '& .MuiBadge-badge': {
             typography: 'caption',
             borderRadius: '100%',
-            padding: { xs: '3px', md: '6px' },
+            padding: { xs: '3px', md: '5px' },
           },
         },
         ...(Array.isArray(sx) ? sx : [sx]),

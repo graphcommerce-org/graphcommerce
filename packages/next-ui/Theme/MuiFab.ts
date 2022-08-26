@@ -27,8 +27,8 @@ const defaultSizes: FabSizes = {
    */
   small: '40px',
   medium: '48px',
-  large: '56px',
-  responsive: responsiveVal(40, 56),
+  large: '54px',
+  responsive: responsiveVal(40, 54),
 }
 
 function fabSize(size: FabSize, theme: Theme) {

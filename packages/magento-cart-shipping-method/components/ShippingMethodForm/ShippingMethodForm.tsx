@@ -91,7 +91,7 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
   return (
     <FormProvider {...form}>
       <Form onSubmit={submit} noValidate sx={sx}>
-        <FormHeader variant='h3' sx={(theme) => ({ marginBottom: 0, mb: theme.spacings.sm })}>
+        <FormHeader variant='h4' sx={(theme) => ({ marginBottom: 0, mb: theme.spacings.sm })}>
           <Trans id='Shipping method' />
         </FormHeader>
 

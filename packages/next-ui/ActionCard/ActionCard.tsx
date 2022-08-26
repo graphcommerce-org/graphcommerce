@@ -1,6 +1,7 @@
-import { SxProps, ButtonBase, Box, Theme } from '@mui/material'
+import { SxProps, ButtonBase, Box, Theme, alpha } from '@mui/material'
 import React, { FormEvent } from 'react'
 import { extendableComponent } from '../Styles'
+import { breakpointVal } from '../Styles/breakpointVal'
 
 export type ActionCardProps = {
   sx?: SxProps<Theme>
@@ -94,12 +95,32 @@ export function ActionCard(props: ActionCardProps) {
           border: `1px solid ${theme.palette.divider}`,
           borderBottomColor: `transparent`,
           '&:first-of-type': {
-            borderTopLeftRadius: theme.shape.borderRadius,
-            borderTopRightRadius: theme.shape.borderRadius,
+            ...breakpointVal(
+              'borderTopLeftRadius',
+              theme.shape.borderRadius * 3,
+              theme.shape.borderRadius * 4,
+              theme.breakpoints.values,
+            ),
+            ...breakpointVal(
+              'borderTopRightRadius',
+              theme.shape.borderRadius * 3,
+              theme.shape.borderRadius * 4,
+              theme.breakpoints.values,
+            ),
           },
           '&:last-of-type': {
-            borderBottomLeftRadius: theme.shape.borderRadius,
-            borderBottomRightRadius: theme.shape.borderRadius,
+            ...breakpointVal(
+              'borderBottomLeftRadius',
+              theme.shape.borderRadius * 3,
+              theme.shape.borderRadius * 4,
+              theme.breakpoints.values,
+            ),
+            ...breakpointVal(
+              'borderBottomRightRadius',
+              theme.shape.borderRadius * 3,
+              theme.shape.borderRadius * 4,
+              theme.breakpoints.values,
+            ),
             borderBottom: `1px solid ${theme.palette.divider}`,
           },
         }),
@@ -118,15 +139,27 @@ export function ActionCard(props: ActionCardProps) {
         selected &&
           ((theme) => ({
             border: `2px solid ${theme.palette.secondary.main} !important`,
-            borderTopLeftRadius: theme.shape.borderRadius,
-            borderTopRightRadius: theme.shape.borderRadius,
-            borderBottomLeftRadius: theme.shape.borderRadius,
-            borderBottomRightRadius: theme.shape.borderRadius,
+            boxShadow: `0 0 0 4px ${alpha(
+              theme.palette.secondary.main,
+              theme.palette.action.hoverOpacity,
+            )} !important`,
+            ...breakpointVal(
+              'borderRadius',
+              theme.shape.borderRadius * 3,
+              theme.shape.borderRadius * 4,
+              theme.breakpoints.values,
+            ),
             padding: `${theme.spacings.xxs} ${theme.spacings.xs}`,
           })),
         disabled &&
           ((theme) => ({
-            background: theme.palette.background.default,
+            '& *': {
+              opacity: theme.palette.action.disabledOpacity,
+            },
+            background: alpha(
+              theme.palette.action.disabledBackground,
+              theme.palette.action.disabledOpacity / 10,
+            ),
           })),
 
         ...(Array.isArray(sx) ? sx : [sx]),
@@ -156,10 +189,11 @@ export function ActionCard(props: ActionCardProps) {
       {details && (
         <Box
           className={classes.details}
-          sx={{
+          sx={(theme) => ({
+            typography: 'body2',
             gridArea: 'details',
             color: 'text.secondary',
-          }}
+          })}
         >
           {details}
         </Box>

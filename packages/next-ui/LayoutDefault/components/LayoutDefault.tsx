@@ -1,7 +1,6 @@
 import { useScrollOffset } from '@graphcommerce/framer-next-pages'
 import { Box, SxProps, Theme } from '@mui/material'
 import { useTransform, useScroll } from 'framer-motion'
-import { useEffect } from 'react'
 import { LayoutProvider } from '../../Layout/components/LayoutProvider'
 import { extendableComponent } from '../../Styles'
 import { useFabSize } from '../../Theme'
@@ -111,7 +110,7 @@ export function LayoutDefault(props: LayoutDefaultProps) {
               [theme.breakpoints.up('sm')]: {
                 padding: `0 ${theme.page.horizontal}`,
                 position: 'sticky',
-                marginTop: `calc(${theme.appShell.headerHeightMd} * -1 + calc(${fabIconSize} / 2))`,
+                marginTop: `calc(${theme.appShell.headerHeightMd} * -1 - calc(${fabIconSize} / 2))`,
                 top: `calc(${theme.appShell.headerHeightMd} / 2 - (${fabIconSize} / 2))`,
               },
               [theme.breakpoints.down('md')]: {

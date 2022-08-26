@@ -12,7 +12,6 @@ import { CartItem, CartItems } from '@graphcommerce/magento-cart-items'
 import { ConfigurableCartItem } from '@graphcommerce/magento-product-configurable'
 import { Money, PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
-  AnimatedRow,
   GetStaticProps,
   iconShoppingBag,
   Stepper,
@@ -25,8 +24,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Container } from '@mui/material'
-import { AnimatePresence } from 'framer-motion'
+import { Box, Container } from '@mui/material'
 import PageLink from 'next/link'
 import { LayoutOverlay, LayoutOverlayProps } from '../components'
 import { graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
@@ -47,6 +45,7 @@ function CartPage() {
         metaRobots={['noindex']}
       />
       <LayoutOverlayHeader
+        switchPoint={0}
         primary={
           <PageLink href='/checkout' passHref>
             <LinkOrButton
@@ -67,9 +66,10 @@ function CartPage() {
       >
         <LayoutTitle size='small' component='span' icon={hasItems ? iconShoppingBag : undefined}>
           {hasItems ? (
-            <>
-              <Trans id='Cart Total' />: <Money {...data?.cart?.prices?.grand_total} />
-            </>
+            <Trans
+              id='Total <0/>'
+              components={{ 0: <Money {...data?.cart?.prices?.grand_total} /> }}
+            />
           ) : (
             <Trans id='Cart' />
           )}
@@ -85,14 +85,9 @@ function CartPage() {
             <Trans id='We are fetching your products, one moment please!' />
           </FullPageMessage>
         ) : (
-          <AnimatePresence initial={false}>
+          <>
             {hasItems ? (
-              <>
-                <AnimatedRow layout key='quick-checkout'>
-                  <LayoutTitle icon={iconShoppingBag}>
-                    <Trans id='Cart Total' />: <Money {...data?.cart?.prices?.grand_total} />
-                  </LayoutTitle>
-                </AnimatedRow>
+              <Box sx={(theme) => ({ mt: theme.spacings.lg })}>
                 <CartItems
                   items={data?.cart?.items}
                   id={data?.cart?.id ?? ''}
@@ -109,16 +104,16 @@ function CartPage() {
                   }}
                 />
                 <CouponAccordion key='couponform' />
-                <CartTotals containerMargin />
+                <CartTotals containerMargin sx={{ typography: 'body1' }} />
                 <ApolloCartErrorAlert error={error} />
-                <AnimatedRow layout key='checkout-button'>
+                <Box key='checkout-button'>
                   <CartStartCheckout {...data?.cart} />
-                </AnimatedRow>
-              </>
+                </Box>
+              </Box>
             ) : (
               <EmptyCart>{error && <ApolloCartErrorAlert error={error} />}</EmptyCart>
             )}
-          </AnimatePresence>
+          </>
         )}
       </Container>
     </>

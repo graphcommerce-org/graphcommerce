@@ -37,7 +37,7 @@ export function ChangeNameForm(props: ChangeNameFormProps) {
           <Button
             type='submit'
             color='primary'
-            variant='contained'
+            variant='pill'
             size='large'
             loading={formState.isSubmitting}
           >

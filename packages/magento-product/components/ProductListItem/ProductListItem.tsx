@@ -1,5 +1,10 @@
 import { Image, ImageProps } from '@graphcommerce/image'
-import { responsiveVal, extendableComponent, useNumberFormat } from '@graphcommerce/next-ui'
+import {
+  responsiveVal,
+  extendableComponent,
+  useNumberFormat,
+  breakpointVal,
+} from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { ButtonBase, Typography, Box, styled, SxProps, Theme } from '@mui/material'
 import PageLink from 'next/link'
@@ -83,7 +88,12 @@ export function ProductListItem(props: ProductListItemProps) {
             display: 'block',
             position: 'relative',
             height: '100%',
-            borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
+            ...breakpointVal(
+              'borderRadius',
+              theme.shape.borderRadius * 2,
+              theme.shape.borderRadius * 3,
+              theme.breakpoints.values,
+            ),
           }),
           ...(Array.isArray(sx) ? sx : [sx]),
         ]}
@@ -93,7 +103,13 @@ export function ProductListItem(props: ProductListItemProps) {
           sx={(theme) => ({
             display: 'grid',
             bgcolor: 'background.image',
-            borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
+            ...breakpointVal(
+              'borderRadius',
+              theme.shape.borderRadius * 2,
+              theme.shape.borderRadius * 3,
+              theme.breakpoints.values,
+            ),
+            overflow: 'hidden',
             padding: responsiveVal(8, 12),
             '& > picture': {
               gridArea: `1 / 1 / 3 / 3`,

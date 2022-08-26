@@ -1,12 +1,6 @@
-import {
-  AnimatedRow,
-  SectionContainer,
-  responsiveVal,
-  extendableComponent,
-} from '@graphcommerce/next-ui'
+import { SectionContainer, responsiveVal, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Skeleton, Button, Box, SxProps, Theme } from '@mui/material'
-import { AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
 import { UseOrderCardItemImages } from '../../hooks/useOrderCardItemImages'
 import { OrderItem } from '../OrderItem/OrderItem'
@@ -94,24 +88,24 @@ export function OrderItems(props: OrderItemsProps) {
         className={classes.orderItemsInnerContainer}
         sx={(theme) => ({ borderBottom: `1px solid ${theme.palette.divider}` })}
       >
-        <AnimatePresence initial={false}>
-          {items?.slice(0, maxItemsAboveFold).map((orderItem) => (
-            <AnimatedRow layout key={`orderItem-${orderItem?.id}`}>
-              {orderItem && (
-                <OrderItem {...orderItem} {...images?.[orderItem?.product_url_key ?? '']} />
-              )}
-            </AnimatedRow>
-          ))}
+        {items?.slice(0, maxItemsAboveFold).map((orderItem) => (
+          <Box key={`orderItem-${orderItem?.id}`}>
+            {orderItem && (
+              <OrderItem {...orderItem} {...images?.[orderItem?.product_url_key ?? '']} />
+            )}
+          </Box>
+        ))}
 
-          {expanded &&
-            items?.slice(maxItemsAboveFold, items?.length).map((orderItem) => (
-              <AnimatedRow layout key={`orderItem-${orderItem?.id}`}>
+        {expanded &&
+          items
+            ?.slice(maxItemsAboveFold, items?.length)
+            .map((orderItem) => (
+              <Box key={`orderItem-${orderItem?.id}`}>
                 {orderItem && (
                   <OrderItem {...orderItem} {...images?.[orderItem?.product_url_key ?? '']} />
                 )}
-              </AnimatedRow>
+              </Box>
             ))}
-        </AnimatePresence>
       </Box>
 
       {items && maxItemsAboveFold < items?.length && (
