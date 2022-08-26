@@ -57,11 +57,6 @@ function SearchResultPage(props: Props) {
             : i18n._(/* i18n */ 'Search')
         }
         metaRobots={['noindex']}
-        metaDescription={
-          search
-            ? i18n._(/* i18n */ 'Results for ‘{search}’', { search })
-            : i18n._(/* i18n */ 'Search')
-        }
         canonical='/search'
       />
       <LayoutHeader floatingMd switchPoint={0}>
