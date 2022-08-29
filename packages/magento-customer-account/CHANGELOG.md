@@ -1,5 +1,14 @@
 # Change Log
 
+## 3.2.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/magento-customer@4.10.1
+  - @graphcommerce/magento-customer-order@3.1.1
+  - @graphcommerce/magento-store@4.2.29
+
 ## 3.2.0
 
 ### Minor Changes

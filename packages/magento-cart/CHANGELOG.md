@@ -1,5 +1,13 @@
 # Change Log
 
+## 4.7.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/magento-customer@4.10.1
+  - @graphcommerce/magento-store@4.2.29
+
 ## 4.7.0
 
 ### Minor Changes

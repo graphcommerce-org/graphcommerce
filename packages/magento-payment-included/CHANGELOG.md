@@ -1,5 +1,14 @@
 # Change Log
 
+## 3.1.20
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/magento-store@4.2.29
+  - @graphcommerce/magento-cart@4.7.1
+  - @graphcommerce/magento-cart-payment-method@3.5.1
+
 ## 3.1.19
 
 ### Patch Changes

@@ -1,5 +1,12 @@
 # Change Log
 
+## 4.2.29
+
+### Patch Changes
+
+- Updated dependencies [[`448c77681`](https://github.com/graphcommerce-org/graphcommerce/commit/448c77681f9a7794e84ec93139d7e0f16afafbd9)]:
+  - @graphcommerce/graphql-mesh@4.1.9
+
 ## 4.2.28
 
 ### Patch Changes
