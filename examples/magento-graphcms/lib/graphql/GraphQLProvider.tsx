@@ -44,7 +44,7 @@ const clientRef: { current: ApolloClient<NormalizedCacheObject> | null } = { cur
 /** HttpLink to connecto to the GraphQL Backend. */
 export function httpLink(cache: ApolloCache<NormalizedCacheObject>, locale?: string) {
   return ApolloLink.from([
-    ...(process.env.NODE_ENV !== 'production' ? [errorLink] : []),
+    ...(process.env.NODE_ENV !== 'production' || typeof window === 'undefined' ? [errorLink] : []),
     ...(typeof window === 'undefined' ? [measurePerformanceLink] : []),
     // Add the correct store header for the Magento user.
     createStoreLink(locale),
