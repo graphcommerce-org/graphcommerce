@@ -45,7 +45,7 @@ const clientRef: { current: ApolloClient<NormalizedCacheObject> | null } = { cur
 export function httpLink(cache: ApolloCache<NormalizedCacheObject>, locale?: string) {
   return ApolloLink.from([
     ...(process.env.NODE_ENV !== 'production' ? [errorLink] : []),
-    ...(typeof window !== 'undefined' ? [measurePerformanceLink] : []),
+    ...(typeof window === 'undefined' ? [measurePerformanceLink] : []),
     // Add the correct store header for the Magento user.
     createStoreLink(locale),
     // Add the correct authorization header for the Magento user.
