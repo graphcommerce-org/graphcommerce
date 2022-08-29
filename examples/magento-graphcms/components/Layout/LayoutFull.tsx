@@ -30,7 +30,7 @@ export type LayoutFullProps = LayoutQuery &
   Omit<LayoutDefaultProps, 'footer' | 'header' | 'cartFab' | 'menuFab'>
 
 export function LayoutFull(props: LayoutFullProps) {
-  const { footer, menu = {}, children, ...uiProps } = props
+  const { footer, menu, children, ...uiProps } = props
 
   const router = useRouter()
   const menuItemsIncludeInMenu = menu?.items?.filter((items) => items?.include_in_menu === 1)

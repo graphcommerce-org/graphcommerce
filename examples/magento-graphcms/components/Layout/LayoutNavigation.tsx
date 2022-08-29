@@ -36,7 +36,7 @@ export type LayoutNavigationProps = LayoutQuery &
   Omit<LayoutDefaultProps, 'footer' | 'header' | 'cartFab' | 'menuFab'>
 
 export function LayoutNavigation(props: LayoutNavigationProps) {
-  const { footer, menu = {}, children, ...uiProps } = props
+  const { footer, menu, children, ...uiProps } = props
 
   const selection = useNavigationSelection()
   const router = useRouter()
