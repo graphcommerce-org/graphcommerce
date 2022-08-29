@@ -1,7 +1,4 @@
 query CategoryPage($url: String!) {
-  ...MenuQueryFragment
-  ...FooterQueryFragment
   ...PageContentQueryFragment
-
   ...CategoryQueryFragment
 }

@@ -3,6 +3,7 @@ import { ProductListDocument, ProductListQuery } from '@graphcommerce/magento-pr
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, LayoutHeader, MetaRobots, PageMeta } from '@graphcommerce/next-ui'
 import { LayoutNavigation, LayoutNavigationProps, RowProduct, RowRenderer } from '../components'
+import { LayoutDocument } from '../components/Layout/Layout.gql'
 import { DefaultPageDocument, DefaultPageQuery } from '../graphql/DefaultPage.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
 
@@ -51,12 +52,8 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const staticClient = graphqlSsrClient(locale)
 
   const conf = client.query({ query: StoreConfigDocument })
-  const page = staticClient.query({
-    query: DefaultPageDocument,
-    variables: {
-      url: `page/home`,
-    },
-  })
+  const page = staticClient.query({ query: DefaultPageDocument, variables: { url: `page/home` } })
+  const layout = staticClient.query({ query: LayoutDocument })
 
   // todo(paales): Remove when https://github.com/Urigo/graphql-mesh/issues/1257 is resolved
   const productList = staticClient.query({
@@ -69,6 +66,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   return {
     props: {
       ...(await page).data,
+      ...(await layout).data,
       ...(await productList).data,
       apolloState: await conf.then(() => client.cache.extract()),
     },

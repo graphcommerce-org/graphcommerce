@@ -16,6 +16,7 @@ import {
   LayoutNavigationProps,
   RowRenderer,
 } from '../../../components'
+import { LayoutDocument } from '../../../components/Layout/Layout.gql'
 import { DefaultPageDocument, DefaultPageQuery } from '../../../graphql/DefaultPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
@@ -86,10 +87,10 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   const conf = client.query({ query: StoreConfigDocument })
   const page = staticClient.query({
     query: DefaultPageDocument,
-    variables: {
-      url: `blog/tagged/${urlKey}`,
-    },
+    variables: { url: `blog/tagged/${urlKey}` },
   })
+  const layout = staticClient.query({ query: LayoutDocument })
+
   const blogPosts = staticClient.query({
     query: BlogListTaggedDocument,
     variables: { currentUrl: [`blog/tagged/${urlKey}`], first: limit, tagged: params?.url },
@@ -100,6 +101,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
     props: {
       ...(await page).data,
       ...(await blogPosts).data,
+      ...(await layout).data,
       up: { href: '/blog', title: 'Blog' },
       apolloState: await conf.then(() => client.cache.extract()),
     },

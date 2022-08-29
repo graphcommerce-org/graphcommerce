@@ -43,6 +43,7 @@ import {
   RowProduct,
   RowRenderer,
 } from '../components'
+import { LayoutDocument } from '../components/Layout/Layout.gql'
 import { CategoryPageDocument, CategoryPageQuery } from '../graphql/CategoryPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
 
@@ -175,6 +176,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     query: CategoryPageDocument,
     variables: { url },
   })
+  const layout = staticClient.query({ query: LayoutDocument })
 
   const productListParams = parseParams(url, query, await filterTypes)
   const filteredCategoryUid = productListParams && productListParams.filters.category_uid?.in?.[0]
@@ -229,6 +231,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
       ...(await categoryPage).data,
       ...(await products).data,
       ...(await filters).data,
+      ...(await layout).data,
       filterTypes: await filterTypes,
       params: productListParams,
       apolloState: await conf.then(() => client.cache.extract()),

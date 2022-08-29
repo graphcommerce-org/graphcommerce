@@ -39,6 +39,7 @@ import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, CircularProgress, Container, Dialog, Divider } from '@mui/material'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
+import { LayoutDocument } from '../../components/Layout/Layout.gql'
 import { DefaultPageDocument } from '../../graphql/DefaultPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
@@ -166,14 +167,14 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
 
   const page = staticClient.query({
     query: DefaultPageDocument,
-    variables: {
-      url: `checkout/payment`,
-    },
+    variables: { url: `checkout/payment` },
   })
+  const layout = staticClient.query({ query: LayoutDocument })
 
   return {
     props: {
       ...(await page).data,
+      ...(await layout).data,
       up: { href: '/checkout', title: 'Shipping' },
       apolloState: await conf.then(() => client.cache.extract()),
     },

@@ -37,6 +37,7 @@ import {
   RowRenderer,
   Usps,
 } from '../../../components'
+import { LayoutDocument } from '../../../components/Layout/Layout.gql'
 import { ProductPageDocument, ProductPageQuery } from '../../../graphql/ProductPage.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../../lib/graphql/graphqlSsrClient'
 
@@ -171,6 +172,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     query: ConfigurableProductPageDocument,
     variables: { urlKey },
   })
+  const layout = staticClient.query({ query: LayoutDocument })
 
   const product = findByTypename((await productPage).data.products?.items, 'ConfigurableProduct')
   const typeProduct = findByTypename(
@@ -190,6 +192,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     props: {
       ...(await productPage).data,
       ...(await typeProductPage).data,
+      ...(await layout).data,
       apolloState: await conf.then(() => client.cache.extract()),
       up,
     },

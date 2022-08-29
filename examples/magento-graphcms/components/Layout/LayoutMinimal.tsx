@@ -1,9 +1,9 @@
 import { LayoutDefault, LayoutDefaultProps } from '@graphcommerce/next-ui'
-import { DefaultPageQuery } from '../../graphql/DefaultPage.gql'
 import { Footer } from './Footer'
+import { LayoutQuery } from './Layout.gql'
 import { Logo } from './Logo'
 
-export type LayoutMinimalProps = Omit<DefaultPageQuery, 'pages'> &
+export type LayoutMinimalProps = LayoutQuery &
   Omit<LayoutDefaultProps, 'header' | 'footer' | 'cartFab' | 'noSticky'>
 
 export function LayoutMinimal(props: LayoutMinimalProps) {
