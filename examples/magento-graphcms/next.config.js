@@ -47,6 +47,7 @@ const nextConfig = {
       labelFormat: '[filename]--[local]',
     },
   },
+  optimizeFonts: false,
   swcMinify: true,
   pwa: {
     dest: 'public',
@@ -66,4 +67,4 @@ const nextConfig = {
 }
 
 /** @type {import('next').NextConfig} */
-module.exports = withPWA(withYarn1Workspaces(nextConfig))
+module.exports = withYarn1Workspaces(nextConfig)

@@ -50,91 +50,91 @@ const renderLine = (line: {
   return ['', ...line.additional, result]
 }
 
+export const flushMeasurePerf = () => {
+  const entries = Array.from(running.entries())
+  if (entries.length === 0 || !entries.every(([k, v]) => v.end)) return
+
+  /**
+   * Print to the console a timeline that gives a visual reprentation of the starting time and
+   * duration of each operation like so;
+   *
+   * ╞═════════ QueryOne (250ms) ═════════╡ ╞══════════════════ Query Two (450ms)
+   * ══════════════════╡ ╞═════════ QueryThree ═════════╡
+   */
+
+  let start = Number.MAX_VALUE
+  let end = 0
+  entries.forEach(([key, value]) => {
+    if (value.start.getTime() < start) start = value.start.getTime()
+    if (value.end && value.end.getTime() > end) end = value.end.getTime()
+  })
+  end -= start
+
+  const colDivider = Math.max(Math.floor(end / 150), 20)
+
+  const lines = entries.map(([key, value]) => {
+    const requestStart = value.start.getTime() - start
+    const requestEnd = value.end ? value.end.getTime() - start : 0
+    const duration = requestEnd - requestStart
+
+    const serverStart = value.internalStart
+      ? value.internalStart.getTime() - value.start.getTime()
+      : 0
+
+    return renderLine({
+      serverStart,
+      requestStart,
+      requestEnd,
+      additional: [
+        value.operationName,
+        `${duration - (duration - serverStart)}ms`,
+        `${duration - serverStart}ms`,
+      ],
+      colDivider,
+    })
+  })
+
+  const items = [
+    ['', 'GraphQL requests', 'Bootup', 'Mesh', 'Waterfall'],
+    ['', '', '', '', ''],
+    ...lines,
+    renderLine({
+      serverStart: 0,
+      requestStart: 0,
+      requestEnd: end,
+      additional: [`Total time`, '', `${end}ms`],
+      colDivider,
+    }),
+  ]
+
+  // Rewrite the above so it can handle abritraty columns
+  const colWidths: number[] = Array(items[0].length).fill(0)
+  items.forEach((item) => {
+    item.forEach((t, index) => {
+      colWidths[index] = Math.max(colWidths[index], t.length)
+    })
+  })
+
+  // padd the items to the max length
+  items.forEach((item) => {
+    item.forEach((t, index) => {
+      item[index] = `${item[index].padEnd(colWidths[index], ' ')}${
+        index !== item.length - 1 ? ` │ ` : ''
+      }`
+    })
+  })
+
+  // render the items to a string
+  const output = [[''], ...items].map((item) => item.join(' ')).join('\n')
+  console.log(output)
+
+  running.clear()
+}
+
 let timeout: NodeJS.Timeout | undefined
 const markTimeout = () => {
-  if (timeout) {
-    clearTimeout(timeout)
-  }
-  timeout = setTimeout(() => {
-    const entries = Array.from(running.entries())
-    if (!entries.every(([k, v]) => v.end)) return
-
-    /**
-     * Print to the console a timeline that gives a visual reprentation of the starting time and
-     * duration of each operation like so;
-     *
-     * ╞═════════ QueryOne (250ms) ═════════╡ ╞══════════════════ Query Two (450ms)
-     * ══════════════════╡ ╞═════════ QueryThree ═════════╡
-     */
-
-    let start = Number.MAX_VALUE
-    let end = 0
-    entries.forEach(([key, value]) => {
-      if (value.start.getTime() < start) start = value.start.getTime()
-      if (value.end && value.end.getTime() > end) end = value.end.getTime()
-    })
-    end -= start
-
-    const colDivider = Math.max(Math.floor(end / 150), 20)
-
-    const lines = entries.map(([key, value]) => {
-      const requestStart = value.start.getTime() - start
-      const requestEnd = value.end ? value.end.getTime() - start : 0
-      const duration = requestEnd - requestStart
-
-      const serverStart = value.internalStart
-        ? value.internalStart.getTime() - value.start.getTime()
-        : 0
-
-      return renderLine({
-        serverStart,
-        requestStart,
-        requestEnd,
-        additional: [
-          value.operationName,
-          `${duration - (duration - serverStart)}ms`,
-          `${duration - serverStart}ms`,
-        ],
-        colDivider,
-      })
-    })
-
-    const items = [
-      ['', 'GraphQL requests', 'Bootup', 'Mesh', 'Waterfall'],
-      ['', '', '', '', ''],
-      ...lines,
-      renderLine({
-        serverStart: 0,
-        requestStart: 0,
-        requestEnd: end,
-        additional: [`Total time`, '', `${end}ms`],
-        colDivider,
-      }),
-    ]
-
-    // Rewrite the above so it can handle abritraty columns
-    const colWidths: number[] = Array(items[0].length).fill(0)
-    items.forEach((item) => {
-      item.forEach((t, index) => {
-        colWidths[index] = Math.max(colWidths[index], t.length)
-      })
-    })
-
-    // padd the items to the max length
-    items.forEach((item) => {
-      item.forEach((t, index) => {
-        item[index] = `${item[index].padEnd(colWidths[index], ' ')}${
-          index !== item.length - 1 ? ` │ ` : ''
-        }`
-      })
-    })
-
-    // render the items to a string
-    const output = [[''], ...items].map((item) => item.join(' ')).join('\n')
-    console.log(output)
-
-    running.clear()
-  }, 1000)
+  if (timeout) clearTimeout(timeout)
+  timeout = setTimeout(flushMeasurePerf, 1000)
 }
 
 /**

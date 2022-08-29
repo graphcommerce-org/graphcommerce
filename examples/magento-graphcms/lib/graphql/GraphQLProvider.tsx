@@ -14,7 +14,6 @@ import {
   measurePerformanceLink,
 } from '@graphcommerce/graphql'
 import { cartTypePolicies, migrateCart, createCartErrorLink } from '@graphcommerce/magento-cart'
-import { CreateEmptyCartDocument } from '@graphcommerce/magento-cart/hooks/CreateEmptyCart.gql'
 import {
   createCustomerTokenLink,
   customerTypePolicies,
@@ -25,7 +24,7 @@ import { createStoreLink } from '@graphcommerce/magento-store'
 import { wishlistTypePolicies } from '@graphcommerce/magento-wishlist'
 import { ApolloStateProps } from '@graphcommerce/next-ui'
 import { AppProps } from 'next/app'
-import { createRef, RefObject, useMemo, useRef } from 'react'
+import { useMemo } from 'react'
 
 /**
  * This is a list of type policies which are used to influence how cache is handled.
@@ -45,7 +44,7 @@ const clientRef: { current: ApolloClient<NormalizedCacheObject> | null } = { cur
 export function httpLink(cache: ApolloCache<NormalizedCacheObject>, locale?: string) {
   return ApolloLink.from([
     ...(process.env.NODE_ENV !== 'production' ? [errorLink] : []),
-    ...(typeof window !== 'undefined' ? [measurePerformanceLink] : []),
+    ...(typeof window === 'undefined' ? [measurePerformanceLink] : []),
     // Add the correct store header for the Magento user.
     createStoreLink(locale),
     // Add the correct authorization header for the Magento user.
