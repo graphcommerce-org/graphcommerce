@@ -43,7 +43,7 @@
     }
   },
   "resolutions": {
-    "cross-undici-fetch": "0.4.13"
+    "@graphql-tools/url-loader": "7.14.1"
   },
   "dependencies": {
     "@changesets/changelog-github": "0.4.6",
