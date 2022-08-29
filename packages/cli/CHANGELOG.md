@@ -1,5 +1,11 @@
 # @graphcommerce/cli
 
+## 1.0.10
+
+### Patch Changes
+
+- [#1614](https://github.com/graphcommerce-org/graphcommerce/pull/1614) [`448c77681`](https://github.com/graphcommerce-org/graphcommerce/commit/448c77681f9a7794e84ec93139d7e0f16afafbd9) Thanks [@paales](https://github.com/paales)! - Update mesh versions
+
 ## 1.0.9
 
 ### Patch Changes

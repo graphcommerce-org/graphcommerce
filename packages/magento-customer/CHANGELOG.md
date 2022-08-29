@@ -1,5 +1,13 @@
 # Change Log
 
+## 4.10.1
+
+### Patch Changes
+
+- Updated dependencies [[`448c77681`](https://github.com/graphcommerce-org/graphcommerce/commit/448c77681f9a7794e84ec93139d7e0f16afafbd9)]:
+  - @graphcommerce/graphql-mesh@4.1.9
+  - @graphcommerce/magento-store@4.2.29
+
 ## 4.10.0
 
 ### Minor Changes

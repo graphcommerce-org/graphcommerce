@@ -1,5 +1,13 @@
 # Change Log
 
+## 4.5.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/magento-product@4.5.1
+  - @graphcommerce/magento-store@4.2.29
+
 ## 4.5.0
 
 ### Minor Changes
