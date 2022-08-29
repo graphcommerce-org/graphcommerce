@@ -19,10 +19,10 @@
     "graphql-code-generator": "dist/bin/codegen.js"
   },
   "dependencies": {
-    "@graphql-codegen/cli": "2.11.6",
-    "@graphql-mesh/cli": "0.75.11",
-    "@graphql-mesh/types": "0.79.0",
-    "@graphql-mesh/utils": "0.38.0"
+    "@graphql-codegen/cli": "2.11.8",
+    "@graphql-mesh/cli": "0.76.2",
+    "@graphql-mesh/types": "0.80.2",
+    "@graphql-mesh/utils": "0.40.0"
   },
   "devDependencies": {
     "@graphcommerce/eslint-config-pwa": "^4.1.10",

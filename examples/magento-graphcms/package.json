@@ -101,6 +101,9 @@
     "> 1% in alt-EU",
     "not IE 11"
   ],
+  "resolutions": {
+    "@graphql-tools/url-loader": "7.14.1"
+  },
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
     "extends": "@graphcommerce/eslint-config-pwa",
