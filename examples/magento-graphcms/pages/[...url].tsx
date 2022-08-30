@@ -1,5 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { Asset } from '@graphcommerce/graphcms-ui'
+import { flushMeasurePerf } from '@graphcommerce/graphql'
 import {
   CategoryChildren,
   CategoryDescription,
@@ -47,14 +48,14 @@ import { LayoutDocument } from '../components/Layout/Layout.gql'
 import { CategoryPageDocument, CategoryPageQuery } from '../graphql/CategoryPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
 
-type Props = CategoryPageQuery &
+export type CategoryProps = CategoryPageQuery &
   ProductListQuery &
   ProductFiltersQuery & { filterTypes?: FilterTypes; params?: ProductListParams }
-type RouteProps = { url: string[] }
-type GetPageStaticPaths = GetStaticPaths<RouteProps>
-export type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
+export type CategoryRoute = { url: string[] }
+type GetPageStaticPaths = GetStaticPaths<CategoryRoute>
+type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, CategoryProps, CategoryRoute>
 
-function CategoryPage(props: Props) {
+function CategoryPage(props: CategoryProps) {
   const { categories, products, filters, params, filterTypes, pages } = props
 
   const category = categories?.items?.[0]
@@ -226,7 +227,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
       ? { href: `/${category_url_path}`, title: category_name }
       : { href: `/`, title: 'Home' }
 
-  return {
+  const result = {
     props: {
       ...(await categoryPage).data,
       ...(await products).data,
@@ -239,4 +240,6 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     },
     revalidate: 60 * 20,
   }
+  flushMeasurePerf()
+  return result
 }
