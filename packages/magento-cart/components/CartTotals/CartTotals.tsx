@@ -2,7 +2,6 @@ import { Money } from '@graphcommerce/magento-store'
 import { extendableComponent, breakpointVal } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box, Divider, lighten, SxProps, Theme } from '@mui/material'
-import { useRouter } from 'next/router'
 import { useCartQuery, useDisplayInclTax } from '../../hooks'
 import { GetCartTotalsDocument } from './GetCartTotals.gql'
 
@@ -30,8 +29,6 @@ const { withState } = extendableComponent<OwnerProps, typeof name, typeof parts>
 export function CartTotals(props: CartTotalsProps) {
   const { data } = useCartQuery(GetCartTotalsDocument, { allowUrl: true })
   const { containerMargin, sx = [] } = props
-  const { asPath } = useRouter()
-  const animateLayout = asPath === '/checkout/payment' ? undefined : true
 
   const classes = withState({ containerMargin })
   const inclTax = useDisplayInclTax()

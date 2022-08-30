@@ -8,7 +8,7 @@ import {
   useFabSize,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
-import { alpha, Fab, FabProps, NoSsr, styled, useTheme, Box, SxProps, Theme } from '@mui/material'
+import { alpha, Fab, FabProps, styled, useTheme, Box, SxProps, Theme } from '@mui/material'
 import { m, useTransform } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'

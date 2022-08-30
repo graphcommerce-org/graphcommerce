@@ -13,7 +13,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Button, Box, Container, NoSsr } from '@mui/material'
+import { Button, Box, Container } from '@mui/material'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { LayoutMinimal, LayoutNavigationProps, LayoutMinimalProps } from '../../components'

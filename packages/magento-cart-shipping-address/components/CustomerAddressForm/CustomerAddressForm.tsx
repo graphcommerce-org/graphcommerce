@@ -1,11 +1,11 @@
-import { fallbackHttpConfig, useQuery } from '@graphcommerce/graphql'
+import { useQuery } from '@graphcommerce/graphql'
 import {
   ApolloCartErrorAlert,
   useCartQuery,
   useFormGqlMutationCart,
 } from '@graphcommerce/magento-cart'
 import { CustomerDocument } from '@graphcommerce/magento-customer'
-import { Form, ActionCardListForm } from '@graphcommerce/next-ui'
+import { ActionCardListForm } from '@graphcommerce/next-ui'
 import {
   useFormPersist,
   useFormCompose,

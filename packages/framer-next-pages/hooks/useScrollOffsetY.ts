@@ -1,5 +1,5 @@
 import { useMotionValue } from 'framer-motion'
-import { useEffect, useMemo } from 'react'
+import { useEffect } from 'react'
 import { scrollPos } from '../components/Page'
 import { usePageContext } from './usePageContext'
 

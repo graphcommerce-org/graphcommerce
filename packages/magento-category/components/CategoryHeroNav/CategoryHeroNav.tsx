@@ -1,5 +1,5 @@
 import { ProductListLink } from '@graphcommerce/magento-product'
-import { responsiveVal, breakpointVal, Row, extendableComponent } from '@graphcommerce/next-ui'
+import { breakpointVal, Row, extendableComponent } from '@graphcommerce/next-ui'
 import { Box, SxProps, Theme, Typography } from '@mui/material'
 import React from 'react'
 import { CategoryHeroNavFragment } from './CategoryHeroNav.gql'

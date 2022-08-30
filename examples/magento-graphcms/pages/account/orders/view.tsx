@@ -1,9 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import {
-  ApolloCustomerErrorFullPage,
-  useCustomerQuery,
-  WaitForCustomer,
-} from '@graphcommerce/magento-customer'
+import { useCustomerQuery, WaitForCustomer } from '@graphcommerce/magento-customer'
 import {
   useOrderCardItemImages,
   OrderDetails,
@@ -17,11 +13,10 @@ import {
   iconBox,
   LayoutOverlayHeader,
   LayoutTitle,
-  FullPageMessage,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { CircularProgress, Container } from '@mui/material'
+import { Container } from '@mui/material'
 import { useRouter } from 'next/router'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'

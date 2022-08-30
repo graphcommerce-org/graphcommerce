@@ -1,5 +1,5 @@
 import { MotionConfig, useMotionValue } from 'framer-motion'
-import React, { useMemo, useRef } from 'react'
+import React, { useMemo } from 'react'
 import { isElement } from 'react-is'
 import {
   NavigationNode,

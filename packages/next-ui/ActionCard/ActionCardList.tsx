@@ -104,23 +104,22 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
       <Box
         ref={ref}
         sx={[
-          error &&
-            ((theme) => ({
-              '& .ActionCard-root': {
-                borderLeft: 2,
-                borderRight: 2,
-                borderLeftColor: 'error.main',
-                borderRightColor: 'error.main',
-              },
-              '& > div:first-of-type.ActionCard-root': {
-                borderTop: 2,
-                borderTopColor: 'error.main',
-              },
-              '& > div:last-of-type.ActionCard-root': {
-                borderBottom: 2,
-                borderBottomColor: 'error.main',
-              },
-            })),
+          error && {
+            '& .ActionCard-root': {
+              borderLeft: 2,
+              borderRight: 2,
+              borderLeftColor: 'error.main',
+              borderRightColor: 'error.main',
+            },
+            '& > div:first-of-type.ActionCard-root': {
+              borderTop: 2,
+              borderTopColor: 'error.main',
+            },
+            '& > div:last-of-type.ActionCard-root': {
+              borderBottom: 2,
+              borderBottomColor: 'error.main',
+            },
+          },
         ]}
       >
         {childReactNodes.map((child) =>

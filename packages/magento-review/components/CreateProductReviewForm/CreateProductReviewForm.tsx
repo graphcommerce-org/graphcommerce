@@ -195,12 +195,7 @@ export function CreateProductReviewForm(props: CreateProductReviewFormProps) {
         />
       </FormRow>
 
-      <FormActions
-        className={classes.formActions}
-        sx={(theme) => ({
-          gridAutoFlow: 'row',
-        })}
-      >
+      <FormActions className={classes.formActions} sx={{ gridAutoFlow: 'row' }}>
         <Button
           variant='pill'
           color='primary'

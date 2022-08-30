@@ -1,6 +1,5 @@
 import { darken, lighten, styled, Theme } from '@mui/material'
 import { breakpointVal } from '../Styles/breakpointVal'
-import { responsiveVal } from '../Styles/responsiveVal'
 import { sx } from '../Theme/themeDefaults'
 
 type FormStyleProps = {

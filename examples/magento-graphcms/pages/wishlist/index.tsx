@@ -17,7 +17,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Container, NoSsr } from '@mui/material'
+import { Container } from '@mui/material'
 import Link from 'next/link'
 
 import { LayoutOverlay, LayoutOverlayProps } from '../../components'

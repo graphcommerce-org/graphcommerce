@@ -1,7 +1,7 @@
 import { clientSizeCssVar, useClientSizeCssVar } from '@graphcommerce/framer-utils'
 import { AnimatePresence, m } from 'framer-motion'
 import { requestIdleCallback, cancelIdleCallback } from 'next/dist/client/request-idle-callback'
-import { HistoryState, PrivateRouteInfo } from 'next/dist/shared/lib/router/router'
+import { PrivateRouteInfo } from 'next/dist/shared/lib/router/router'
 import { AppPropsType } from 'next/dist/shared/lib/utils'
 import { NextRouter, Router } from 'next/router'
 import { useEffect, useRef, useState } from 'react'

@@ -9,7 +9,7 @@ import {
   TextInputNumber,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Divider, Typography, Alert, Box, SxProps, Theme, useMediaQuery } from '@mui/material'
+import { Divider, Typography, Alert, Box, SxProps, Theme } from '@mui/material'
 import PageLink from 'next/link'
 import React from 'react'
 import { Selected, useConfigurableContext } from '../ConfigurableContext/ConfigurableContext'

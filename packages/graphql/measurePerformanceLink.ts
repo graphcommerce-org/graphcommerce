@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-import { text } from 'stream/consumers'
 import { ApolloLink } from '@apollo/client'
 
 const running = new Map<
@@ -64,7 +63,7 @@ export const flushMeasurePerf = () => {
 
   let start = Number.MAX_VALUE
   let end = 0
-  entries.forEach(([key, value]) => {
+  entries.forEach(([_, value]) => {
     if (value.start.getTime() < start) start = value.start.getTime()
     if (value.end && value.end.getTime() > end) end = value.end.getTime()
   })
@@ -72,7 +71,7 @@ export const flushMeasurePerf = () => {
 
   const colDivider = Math.max(Math.floor(end / 150), 20)
 
-  const lines = entries.map(([key, value]) => {
+  const lines = entries.map(([_, value]) => {
     const requestStart = value.start.getTime() - start
     const requestEnd = value.end ? value.end.getTime() - start : 0
     const duration = requestEnd - requestStart
@@ -117,7 +116,7 @@ export const flushMeasurePerf = () => {
 
   // padd the items to the max length
   items.forEach((item) => {
-    item.forEach((t, index) => {
+    item.forEach((_, index) => {
       item[index] = `${item[index].padEnd(colWidths[index], ' ')}${
         index !== item.length - 1 ? ` │ ` : ''
       }`
