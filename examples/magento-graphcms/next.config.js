@@ -43,11 +43,6 @@ const nextConfig = {
     legacyBrowsers: false,
     outputFileTracingRoot: `${__dirname}/../../`,
   },
-  compiler: {
-    emotion: {
-      labelFormat: '[filename]--[local]',
-    },
-  },
   optimizeFonts: false,
   swcMinify: true,
   pwa: {
