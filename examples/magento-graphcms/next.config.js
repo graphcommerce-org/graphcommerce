@@ -41,6 +41,7 @@ const nextConfig = {
     scrollRestoration: true,
     browsersListForSwc: true,
     legacyBrowsers: false,
+    outputFileTracingRoot: `${__dirname}/../../`,
   },
   compiler: {
     emotion: {
