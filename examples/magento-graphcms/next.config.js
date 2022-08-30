@@ -67,4 +67,4 @@ const nextConfig = {
 }
 
 /** @type {import('next').NextConfig} */
-module.exports = withYarn1Workspaces(nextConfig)
+module.exports = withPWA(withYarn1Workspaces(nextConfig))
