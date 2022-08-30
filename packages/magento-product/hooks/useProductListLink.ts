@@ -27,7 +27,8 @@ export function createProductListLink(props: ProductListParams): string {
   if (filters)
     Object.entries(filters).forEach(([param, value]) => {
       if (!value) return
-      if (isFilterTypeEqual(value) && value.in?.length) query += `/${param}/${value.in?.join(',')}`
+      if (isFilterTypeEqual(value) && value.in?.length)
+        query += `/${param}/${value.in.sort()?.join(',')}`
       if (isFilterTypeEqual(value) && value.eq) query += `/${param}/${value.eq}`
       if (isFilterTypeMatch(value)) paginateSort += `/${param}/${value.match}`
       if (isFilterTypeRange(value)) query += `/${param}/${value.from ?? '*'}-${value.to ?? '*'}`
