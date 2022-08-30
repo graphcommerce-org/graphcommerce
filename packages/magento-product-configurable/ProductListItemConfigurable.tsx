@@ -62,8 +62,12 @@ export function ProductListItemConfigurable(props: ProdustListItemConfigurablePr
       ).length,
   )
 
-  const productProps = matchingVariants?.[0]?.product
-    ? { ...configurableProduct, ...matchingVariants?.[0]?.product }
+  const productProps: typeof configurableProduct = matchingVariants?.[0]?.product
+    ? {
+        ...configurableProduct,
+        ...matchingVariants?.[0]?.product,
+        url_key: configurableProduct.url_key,
+      }
     : configurableProduct
 
   return (

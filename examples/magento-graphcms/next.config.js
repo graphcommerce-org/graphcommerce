@@ -47,7 +47,6 @@ const nextConfig = {
       labelFormat: '[filename]--[local]',
     },
   },
-  outputFileTracing: false,
   optimizeFonts: false,
   swcMinify: true,
   pwa: {
