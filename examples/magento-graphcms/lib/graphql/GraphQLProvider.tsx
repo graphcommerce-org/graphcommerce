@@ -1,6 +1,5 @@
 import { recaptchaLink } from '@graphcommerce/googlerecaptcha'
 import {
-  ApolloCache,
   ApolloClient,
   ApolloLink,
   ApolloProvider,
@@ -15,7 +14,7 @@ import {
 } from '@graphcommerce/graphql'
 import { cartTypePolicies, migrateCart, createCartErrorLink } from '@graphcommerce/magento-cart'
 import {
-  createCustomerTokenLink,
+  customerTokenLink,
   customerTypePolicies,
   migrateCustomer,
 } from '@graphcommerce/magento-customer'
@@ -41,21 +40,24 @@ const migrations = [migrateCart, migrateCustomer]
 const clientRef: { current: ApolloClient<NormalizedCacheObject> | null } = { current: null }
 
 /** HttpLink to connecto to the GraphQL Backend. */
-export function httpLink(cache: ApolloCache<NormalizedCacheObject>, locale?: string) {
+export function httpLink(locale?: string) {
   return ApolloLink.from([
     ...(process.env.NODE_ENV !== 'production' ? [errorLink] : []),
     ...(typeof window === 'undefined' ? [measurePerformanceLink] : []),
     // Add the correct store header for the Magento user.
     createStoreLink(locale),
     // Add the correct authorization header for the Magento user.
-    createCustomerTokenLink(cache),
+    customerTokenLink,
     // Replace current cart id with renewed cart id and forward operation
     createCartErrorLink(clientRef),
     // Add recaptcha headers to the request.
     recaptchaLink,
     // The actual Http connection to the Mesh backend.
     new HttpLink({
-      uri: process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT,
+      uri:
+        process.env.CI === '1'
+          ? 'http://localhost:4000/graphql'
+          : process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT,
       credentials: 'same-origin',
     }),
   ])
@@ -66,6 +68,15 @@ export function createCache() {
   return new InMemoryCache({
     possibleTypes: fragments.possibleTypes,
     typePolicies: mergeTypePolicies(policies),
+  })
+}
+
+export function apolloClient(locale: string | undefined) {
+  return new ApolloClient({
+    link: httpLink(locale),
+    cache: createCache(),
+    name: 'web',
+    ssrMode: typeof window === 'undefined',
   })
 }
 
@@ -80,15 +91,7 @@ type GraphQLProviderProps = {
 export function GraphQLProvider({ children, router, pageProps }: GraphQLProviderProps) {
   const state = (pageProps as Partial<ApolloStateProps>).apolloState
 
-  clientRef.current = useMemo(() => {
-    const cache = createCache()
-    return new ApolloClient({
-      link: httpLink(cache, router.locale),
-      cache,
-      name: 'web',
-      ssrMode: typeof window === 'undefined',
-    })
-  }, [router.locale])
+  clientRef.current = useMemo(() => apolloClient(router.locale), [router.locale])
 
   // Update the cache with the latest incomming data, but only when it is changed.
   useMemo(

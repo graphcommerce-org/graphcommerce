@@ -9,7 +9,7 @@ sources:
     handler:
       graphql:
         endpoint: ${MAGENTO_ENDPOINT}
-        useGETForQueries: true
+        useGETForQueries: false
         schemaHeaders:
           Store: '{context.headers.store}'
           Authorization: '{context.headers.authorization}'
