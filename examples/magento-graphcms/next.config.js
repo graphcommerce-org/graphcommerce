@@ -6,8 +6,6 @@ const withYarn1Workspaces = require('@graphcommerce/next-config').withYarn1Scope
 
 require('dotenv').config({ path: `${__dirname}/.env` })
 
-const withPWA = require('next-pwa')
-
 const obs = new PerformanceObserver((entryList) => {
   entryList.getEntries().forEach((item) => {
     console.log(`${item.name}: ${Math.round(item.duration)}ms`)
@@ -48,10 +46,6 @@ const nextConfig = {
     },
   },
   swcMinify: true,
-  pwa: {
-    dest: 'public',
-    disable: process.env.NODE_ENV === 'development',
-  },
   images: {
     domains: (process.env.IMAGE_DOMAINS ?? '').split(',').map((s) => s.trim()),
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
@@ -66,4 +60,4 @@ const nextConfig = {
 }
 
 /** @type {import('next').NextConfig} */
-module.exports = withPWA(withYarn1Workspaces(nextConfig))
+module.exports = withYarn1Workspaces(nextConfig)
