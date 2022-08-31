@@ -11,8 +11,7 @@
   "scripts": {
     "dev": "concurrently -k -n codegen,next \"yarn:graphql-codegen -c ../../scripts/codegen.magento-graphcms.yml -w\" \"yarn:next dev\"",
     "codegen": "mesh build && graphql-codegen -c ../../scripts/codegen.magento-graphcms.yml",
-    "meshbg": "mesh start </dev/null &>/dev/null & echo $! > .mesh/mesh.pid",
-    "build": "mesh build && graphql-codegen -c ../../scripts/codegen.magento-graphcms.yml && yarn meshbg && CI=1 next build && next-sitemap; kill `cat mesh.pid`; rm .mesh/mesh.pid;",
+    "build": "mesh build && graphql-codegen -c ../../scripts/codegen.magento-graphcms.yml && next build && next-sitemap",
     "start": "next start",
     "tsc:lint": "tsc --noEmit -p .",
     "lingui": "cross-env NEXT_PUBLIC_LOCALE_STORES='{\"en\": \"en\", \"nl\": \"nl\", \"fr\": \"fr\", \"nl\": \"nl\", \"de\": \"de\", \"es\": \"es\", \"it\": \"it\"}' NODE_ENV=development lingui extract --clean",
