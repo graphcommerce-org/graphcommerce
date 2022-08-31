@@ -58,10 +58,9 @@ export function graphqlClient(
   shared = true,
 ): ApolloClient<NormalizedCacheObject> {
   if (loopback) {
-    const cache = createCache()
     return new ApolloClient({
-      link: httpLink(cache, locale),
-      cache,
+      link: httpLink(locale),
+      cache: createCache(),
       name: 'fastDev',
       ssrMode: true,
     })
