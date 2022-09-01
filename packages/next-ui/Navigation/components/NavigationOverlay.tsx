@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import { useMotionValueValue, useMotionSelector } from '@graphcommerce/framer-utils'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Box, Fab, SxProps, Theme, useEventCallback, useMediaQuery } from '@mui/material'
+import { Box, Fab, SxProps, Theme, useEventCallback, useMediaQuery, useTheme } from '@mui/material'
 import { m, useMotionValue } from 'framer-motion'
 import React, { startTransition, useEffect, useRef, useState } from 'react'
 import { IconSvg, useIconSvgSize } from '../../IconSvg'
@@ -27,6 +27,7 @@ import { NavigationList } from './NavigationList'
 type LayoutOverlayVariant = 'left' | 'bottom' | 'right'
 type LayoutOverlaySize = 'floating' | 'minimal' | 'full'
 type LayoutOverlayAlign = 'start' | 'end' | 'center' | 'stretch'
+type ItemPadding = 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | number
 
 type NavigationOverlayProps = {
   sx?: SxProps<Theme>
@@ -39,6 +40,7 @@ type NavigationOverlayProps = {
   justifyMd?: LayoutOverlayAlign
   itemWidthSm?: string
   itemWidthMd?: string
+  itemPadding?: ItemPadding
 } & mouseEventPref
 
 function findCurrent(
@@ -82,6 +84,7 @@ export const NavigationOverlay = React.memo<NavigationOverlayProps>((props) => {
     itemWidthSm,
     itemWidthMd,
     mouseEvent,
+    itemPadding,
   } = props
   const { selection, items, animating, closing } = useNavigation()
 
@@ -112,6 +115,18 @@ export const NavigationOverlay = React.memo<NavigationOverlayProps>((props) => {
   })
 
   const handleClose = useEventCallback(() => closing.set(true))
+
+  const theme2 = useTheme()
+  let paddingMd
+  if (typeof itemPadding === 'number') {
+    paddingMd = itemPadding
+  }
+  if (typeof itemPadding === 'string') {
+    paddingMd = theme2.spacings[itemPadding]
+  }
+  if (itemPadding === undefined) {
+    paddingMd = theme2.spacings.md
+  }
 
   return (
     <Overlay
@@ -227,13 +242,13 @@ export const NavigationOverlay = React.memo<NavigationOverlayProps>((props) => {
               '& .NavigationItem-item': {
                 width:
                   sizeSm !== 'floating'
-                    ? `calc(${itemWidthSm || '100vw'} - ${theme.spacings.md} - ${
-                        theme.spacings.md
-                      } + ${selectedLevel}px)`
-                    : `calc(${itemWidthSm || '100vw'} - ${theme.spacings.md} - ${
-                        theme.spacings.md
-                      } - ${theme.page.horizontal} - ${theme.page.horizontal})`,
-                minWidth: `calc(${200}px - ${theme.spacings.md} - ${theme.spacings.md})`,
+                    ? `calc(${
+                        itemWidthSm || '100vw'
+                      } - ${paddingMd} - ${paddingMd} + ${selectedLevel}px)`
+                    : `calc(${itemWidthSm || '100vw'} - ${paddingMd} - ${paddingMd} - ${
+                        theme.page.horizontal
+                      } - ${theme.page.horizontal})`,
+                minWidth: `calc(${200}px - ${paddingMd} - ${paddingMd})`,
               },
             },
           })}
@@ -242,7 +257,7 @@ export const NavigationOverlay = React.memo<NavigationOverlayProps>((props) => {
             className={classes.navigation}
             sx={[
               (theme) => ({
-                py: theme.spacings.md,
+                py: paddingMd,
                 display: 'grid',
                 gridAutoFlow: 'column',
                 scrollSnapAlign: 'end',
@@ -254,11 +269,11 @@ export const NavigationOverlay = React.memo<NavigationOverlayProps>((props) => {
                 },
                 '& .Navigation-column': {},
                 '& .NavigationItem-item': {
-                  mx: theme.spacings.md,
+                  mx: paddingMd,
                   whiteSpace: 'nowrap',
                 },
                 '& .NavigationItem-item.first': {
-                  // mt: theme.spacings.md,
+                  // mt: paddingMd,
                 },
                 '& .Navigation-column:first-of-type': {
                   boxShadow: 'none',
