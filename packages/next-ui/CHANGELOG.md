@@ -1,5 +1,18 @@
 # Change Log
 
+## 4.23.0
+
+### Minor Changes
+
+- [#1620](https://github.com/graphcommerce-org/graphcommerce/pull/1620) [`755d2cf83`](https://github.com/graphcommerce-org/graphcommerce/commit/755d2cf83343a5ad3d61063eff595d821de360aa) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Add spacing feature to navItems
+
+* [#1618](https://github.com/graphcommerce-org/graphcommerce/pull/1618) [`dc7f2dda4`](https://github.com/graphcommerce-org/graphcommerce/commit/dc7f2dda40ff8572fc11161de6eb62ca13e720dd) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Remove prefetch from navigation links
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/framer-scroller@2.1.34
+
 ## 4.22.0
 
 ### Minor Changes
