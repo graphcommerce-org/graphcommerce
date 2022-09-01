@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-product-grouped",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "3.0.49",
+  "version": "3.0.50",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -19,10 +19,10 @@
   },
   "dependencies": {
     "@graphcommerce/graphql": "3.4.7",
-    "@graphcommerce/magento-cart": "4.7.1",
-    "@graphcommerce/magento-product": "4.5.1",
-    "@graphcommerce/magento-product-simple": "4.0.49",
-    "@graphcommerce/magento-product-virtual": "4.0.49"
+    "@graphcommerce/magento-cart": "4.7.2",
+    "@graphcommerce/magento-product": "4.5.2",
+    "@graphcommerce/magento-product-simple": "4.0.50",
+    "@graphcommerce/magento-product-virtual": "4.0.50"
   },
   "peerDependencies": {
     "@lingui/react": "^3.13.2",
