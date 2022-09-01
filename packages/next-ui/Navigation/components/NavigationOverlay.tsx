@@ -2,9 +2,10 @@ import styled from '@emotion/styled'
 import { useMotionValueValue, useMotionSelector } from '@graphcommerce/framer-utils'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Box, Fab, SxProps, Theme, useEventCallback, useMediaQuery, useTheme } from '@mui/material'
+import { Box, Fab, SxProps, Theme, useEventCallback, useMediaQuery } from '@mui/material'
 import { m, useMotionValue } from 'framer-motion'
 import React, { startTransition, useEffect, useRef, useState } from 'react'
+import type { LiteralUnion } from 'type-fest'
 import { IconSvg, useIconSvgSize } from '../../IconSvg'
 import { LayoutHeaderContent } from '../../Layout/components/LayoutHeaderContent'
 import { LayoutTitle } from '../../Layout/components/LayoutTitle'
@@ -27,7 +28,7 @@ import { NavigationList } from './NavigationList'
 type LayoutOverlayVariant = 'left' | 'bottom' | 'right'
 type LayoutOverlaySize = 'floating' | 'minimal' | 'full'
 type LayoutOverlayAlign = 'start' | 'end' | 'center' | 'stretch'
-type ItemPadding = 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | number
+type ItemPadding = LiteralUnion<keyof Theme['spacings'], string | number>
 
 type NavigationOverlayProps = {
   sx?: SxProps<Theme>
@@ -84,7 +85,7 @@ export const NavigationOverlay = React.memo<NavigationOverlayProps>((props) => {
     itemWidthSm,
     itemWidthMd,
     mouseEvent,
-    itemPadding,
+    itemPadding = 'md',
   } = props
   const { selection, items, animating, closing } = useNavigation()
 
@@ -115,18 +116,6 @@ export const NavigationOverlay = React.memo<NavigationOverlayProps>((props) => {
   })
 
   const handleClose = useEventCallback(() => closing.set(true))
-
-  const theme2 = useTheme()
-  let paddingMd
-  if (typeof itemPadding === 'number') {
-    paddingMd = itemPadding
-  }
-  if (typeof itemPadding === 'string') {
-    paddingMd = theme2.spacings[itemPadding]
-  }
-  if (itemPadding === undefined) {
-    paddingMd = theme2.spacings.md
-  }
 
   return (
     <Overlay
@@ -242,13 +231,17 @@ export const NavigationOverlay = React.memo<NavigationOverlayProps>((props) => {
               '& .NavigationItem-item': {
                 width:
                   sizeSm !== 'floating'
-                    ? `calc(${
-                        itemWidthSm || '100vw'
-                      } - ${paddingMd} - ${paddingMd} + ${selectedLevel}px)`
-                    : `calc(${itemWidthSm || '100vw'} - ${paddingMd} - ${paddingMd} - ${
+                    ? `calc(${itemWidthSm || '100vw'} - ${
+                        theme.spacings[itemPadding] ?? itemPadding
+                      } - ${theme.spacings[itemPadding] ?? itemPadding} + ${selectedLevel}px)`
+                    : `calc(${itemWidthSm || '100vw'} - ${
+                        theme.spacings[itemPadding] ?? itemPadding
+                      } - ${theme.spacings[itemPadding] ?? itemPadding} - ${
                         theme.page.horizontal
                       } - ${theme.page.horizontal})`,
-                minWidth: `calc(${200}px - ${paddingMd} - ${paddingMd})`,
+                minWidth: `calc(${200}px - ${theme.spacings[itemPadding] ?? itemPadding} - ${
+                  theme.spacings[itemPadding] ?? itemPadding
+                })`,
               },
             },
           })}
@@ -257,7 +250,7 @@ export const NavigationOverlay = React.memo<NavigationOverlayProps>((props) => {
             className={classes.navigation}
             sx={[
               (theme) => ({
-                py: paddingMd,
+                py: theme.spacings[itemPadding] ?? itemPadding,
                 display: 'grid',
                 gridAutoFlow: 'column',
                 scrollSnapAlign: 'end',
@@ -269,7 +262,7 @@ export const NavigationOverlay = React.memo<NavigationOverlayProps>((props) => {
                 },
                 '& .Navigation-column': {},
                 '& .NavigationItem-item': {
-                  mx: paddingMd,
+                  mx: theme.spacings[itemPadding] ?? itemPadding,
                   whiteSpace: 'nowrap',
                 },
                 '& .NavigationItem-item.first': {
