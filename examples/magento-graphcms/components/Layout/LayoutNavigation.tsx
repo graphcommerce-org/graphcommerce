@@ -104,6 +104,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
             justifyMd='start'
             itemWidthMd='230px'
             mouseEvent='hover'
+            itemPadding='md'
           />
         </NavigationProvider>
       </Suspense>
