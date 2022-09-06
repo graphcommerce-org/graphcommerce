@@ -1,5 +1,24 @@
 # Change Log
 
+## 3.25.0
+
+### Minor Changes
+
+- [#1617](https://github.com/graphcommerce-org/graphcommerce/pull/1617) [`47db867ef`](https://github.com/graphcommerce-org/graphcommerce/commit/47db867efd5f7f54c2912d576f00db57a42c95bc) Thanks [@paales](https://github.com/paales)! - Implement a separate Layout query to allow for better caching from Magento
+
+### Patch Changes
+
+- [#1617](https://github.com/graphcommerce-org/graphcommerce/pull/1617) [`a2fccf87c`](https://github.com/graphcommerce-org/graphcommerce/commit/a2fccf87c84d56d02b7dee0df2e223eb4507a93f) Thanks [@paales](https://github.com/paales)! - Make sure the measurePerformanceLink only gets included on the server
+
+* [#1617](https://github.com/graphcommerce-org/graphcommerce/pull/1617) [`a2fccf87c`](https://github.com/graphcommerce-org/graphcommerce/commit/a2fccf87c84d56d02b7dee0df2e223eb4507a93f) Thanks [@paales](https://github.com/paales)! - Make sure the error link always gets included on the server
+
+- [#1617](https://github.com/graphcommerce-org/graphcommerce/pull/1617) [`fd55e94bf`](https://github.com/graphcommerce-org/graphcommerce/commit/fd55e94bf8321983acb1e325d5c92d003b1f1504) Thanks [@paales](https://github.com/paales)! - Add Cache Control headers to the filtered pages so they stay relatively fresh.
+
+- Updated dependencies [[`978e22c1e`](https://github.com/graphcommerce-org/graphcommerce/commit/978e22c1e1c8f29cfda246a7ec2a24e3b570435c), [`b6427e375`](https://github.com/graphcommerce-org/graphcommerce/commit/b6427e37597b2d0970cc0a14556d8517f2754b73)]:
+  - @graphcommerce/googletagmanager@2.0.9
+  - @graphcommerce/magento-product-configurable@4.2.3
+  - @graphcommerce/magento-wishlist@1.6.3
+
 ## 3.24.0
 
 ### Minor Changes
