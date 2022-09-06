@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-category",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "4.5.1",
+  "version": "4.5.2",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -19,12 +19,12 @@
     "type-fest": "^2.12.2"
   },
   "dependencies": {
-    "@graphcommerce/framer-scroller": "2.1.33",
+    "@graphcommerce/framer-scroller": "2.1.34",
     "@graphcommerce/graphql": "3.4.7",
     "@graphcommerce/image": "3.1.9",
-    "@graphcommerce/magento-product": "4.5.1",
-    "@graphcommerce/magento-store": "4.2.29",
-    "@graphcommerce/next-ui": "4.22.0"
+    "@graphcommerce/magento-product": "4.5.2",
+    "@graphcommerce/magento-store": "4.2.30",
+    "@graphcommerce/next-ui": "4.23.0"
   },
   "peerDependencies": {
     "@lingui/react": "^3.13.2",

@@ -5,6 +5,7 @@ import { Trans } from '@lingui/react'
 import { Box, Fab, SxProps, Theme, useEventCallback, useMediaQuery } from '@mui/material'
 import { m } from 'framer-motion'
 import React, { useEffect } from 'react'
+import type { LiteralUnion } from 'type-fest'
 import { IconSvg, useIconSvgSize } from '../../IconSvg'
 import { LayoutHeaderContent } from '../../Layout/components/LayoutHeaderContent'
 import { LayoutTitle } from '../../Layout/components/LayoutTitle'
@@ -27,6 +28,7 @@ import { NavigationList } from './NavigationList'
 type LayoutOverlayVariant = 'left' | 'bottom' | 'right'
 type LayoutOverlaySize = 'floating' | 'minimal' | 'full'
 type LayoutOverlayAlign = 'start' | 'end' | 'center' | 'stretch'
+type ItemPadding = LiteralUnion<keyof Theme['spacings'], string | number>
 
 type NavigationOverlayProps = {
   sx?: SxProps<Theme>
@@ -39,6 +41,7 @@ type NavigationOverlayProps = {
   justifyMd?: LayoutOverlayAlign
   itemWidthSm?: string
   itemWidthMd?: string
+  itemPadding?: ItemPadding
 } & mouseEventPref
 
 function findCurrent(
@@ -82,6 +85,7 @@ export const NavigationOverlay = React.memo<NavigationOverlayProps>((props) => {
     itemWidthSm,
     itemWidthMd,
     mouseEvent,
+    itemPadding = 'md',
   } = props
   const { selection, items, animating, closing } = useNavigation()
 
@@ -227,13 +231,17 @@ export const NavigationOverlay = React.memo<NavigationOverlayProps>((props) => {
               '& .NavigationItem-item': {
                 width:
                   sizeSm !== 'floating'
-                    ? `calc(${itemWidthSm || '100vw'} - ${theme.spacings.md} - ${
-                        theme.spacings.md
-                      } + ${selectedLevel}px)`
-                    : `calc(${itemWidthSm || '100vw'} - ${theme.spacings.md} - ${
-                        theme.spacings.md
-                      } - ${theme.page.horizontal} - ${theme.page.horizontal})`,
-                minWidth: `calc(${200}px - ${theme.spacings.md} - ${theme.spacings.md})`,
+                    ? `calc(${itemWidthSm || '100vw'} - ${
+                        theme.spacings[itemPadding] ?? itemPadding
+                      } - ${theme.spacings[itemPadding] ?? itemPadding} + ${selectedLevel}px)`
+                    : `calc(${itemWidthSm || '100vw'} - ${
+                        theme.spacings[itemPadding] ?? itemPadding
+                      } - ${theme.spacings[itemPadding] ?? itemPadding} - ${
+                        theme.page.horizontal
+                      } - ${theme.page.horizontal})`,
+                minWidth: `calc(${200}px - ${theme.spacings[itemPadding] ?? itemPadding} - ${
+                  theme.spacings[itemPadding] ?? itemPadding
+                })`,
               },
             },
           })}
@@ -242,7 +250,7 @@ export const NavigationOverlay = React.memo<NavigationOverlayProps>((props) => {
             className={classes.navigation}
             sx={[
               (theme) => ({
-                py: theme.spacings.md,
+                py: theme.spacings[itemPadding] ?? itemPadding,
                 display: 'grid',
                 gridAutoFlow: 'column',
                 scrollSnapAlign: 'end',
@@ -254,11 +262,11 @@ export const NavigationOverlay = React.memo<NavigationOverlayProps>((props) => {
                 },
                 '& .Navigation-column': {},
                 '& .NavigationItem-item': {
-                  mx: theme.spacings.md,
+                  mx: theme.spacings[itemPadding] ?? itemPadding,
                   whiteSpace: 'nowrap',
                 },
                 '& .NavigationItem-item.first': {
-                  // mt: theme.spacings.md,
+                  // mt: paddingMd,
                 },
                 '& .Navigation-column:first-of-type': {
                   boxShadow: 'none',

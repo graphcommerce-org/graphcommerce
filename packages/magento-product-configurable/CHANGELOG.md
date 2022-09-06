@@ -1,5 +1,19 @@
 # Change Log
 
+## 4.2.2
+
+### Patch Changes
+
+- Updated dependencies [[`755d2cf83`](https://github.com/graphcommerce-org/graphcommerce/commit/755d2cf83343a5ad3d61063eff595d821de360aa), [`dc7f2dda4`](https://github.com/graphcommerce-org/graphcommerce/commit/dc7f2dda40ff8572fc11161de6eb62ca13e720dd)]:
+  - @graphcommerce/next-ui@4.23.0
+  - @graphcommerce/magento-cart@4.7.2
+  - @graphcommerce/magento-cart-items@3.1.2
+  - @graphcommerce/magento-category@4.5.2
+  - @graphcommerce/magento-customer@4.10.2
+  - @graphcommerce/magento-product@4.5.2
+  - @graphcommerce/magento-store@4.2.30
+  - @graphcommerce/magento-product-simple@4.0.50
+
 ## 4.2.1
 
 ### Patch Changes
