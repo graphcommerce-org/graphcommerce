@@ -1,5 +1,5 @@
 import { SxProps, ButtonBase, Box, Theme, alpha } from '@mui/material'
-import React, { FormEvent } from 'react'
+import React from 'react'
 import { extendableComponent } from '../Styles'
 import { breakpointVal } from '../Styles/breakpointVal'
 

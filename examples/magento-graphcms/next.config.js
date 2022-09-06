@@ -42,11 +42,7 @@ const nextConfig = {
     browsersListForSwc: true,
     legacyBrowsers: false,
   },
-  compiler: {
-    emotion: {
-      labelFormat: '[filename]--[local]',
-    },
-  },
+  optimizeFonts: false,
   swcMinify: true,
   pwa: {
     dest: 'public',

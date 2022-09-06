@@ -1,4 +1,4 @@
-import { useIsomorphicLayoutEffect, useMotionValueValue } from '@graphcommerce/framer-utils'
+import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import {
   Divider,
   Fab,
@@ -13,7 +13,7 @@ import {
 } from '@mui/material'
 import { m } from 'framer-motion'
 import { useRouter } from 'next/router'
-import React, { useEffect, useCallback, useRef } from 'react'
+import React, { useEffect } from 'react'
 import { IconSvg } from '../IconSvg'
 import { useScrollY } from '../Layout/hooks/useScrollY'
 import { extendableComponent } from '../Styles/extendableComponent'

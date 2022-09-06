@@ -12,8 +12,8 @@ export function GoogleTagManagerScript() {
 
   useEffect(() => {
     const onRouteChangeComplete = (url: string) => {
-      const dataLayer = globalThis.dataLayer as Record<string, unknown>[]
-      dataLayer.push({ event: 'pageview', page: url })
+      const dataLayer = globalThis.dataLayer as Record<string, unknown>[] | undefined
+      dataLayer?.push({ event: 'pageview', page: url })
     }
 
     router.events.on('routeChangeComplete', onRouteChangeComplete)

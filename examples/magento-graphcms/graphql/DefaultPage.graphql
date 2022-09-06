@@ -1,5 +1,3 @@
 query DefaultPage($url: String!) {
-  ...MenuQueryFragment
-  ...FooterQueryFragment
   ...PageContentQueryFragment
 }

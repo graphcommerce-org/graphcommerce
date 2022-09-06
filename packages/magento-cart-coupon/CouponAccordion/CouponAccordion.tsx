@@ -3,7 +3,6 @@ import {
   iconChevronDown,
   IconSvg,
   extendableComponent,
-  responsiveVal,
   breakpointVal,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'

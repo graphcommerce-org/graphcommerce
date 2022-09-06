@@ -1,5 +1,5 @@
 query GetGuestWishlistProducts(
-  $pageSize: Int = 33
+  $pageSize: Int = 24
   $currentPage: Int = 1
   $filters: ProductAttributeFilterInput = {}
   $sort: ProductAttributeSortInput = {}

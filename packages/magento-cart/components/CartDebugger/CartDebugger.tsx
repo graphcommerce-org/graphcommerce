@@ -14,9 +14,11 @@ export function CartDebugger() {
         onClick={() => {
           const currentCardId = client.readQuery({ query: CurrentCartIdDocument })
           if (!currentCardId?.currentCartId) {
+            // eslint-disable-next-line no-console
             console.log('No customerToken available, nothing to break')
           } else {
-            console.log(`Changing current token to a random one)`)
+            // eslint-disable-next-line no-console
+            console.log(`Changing current token to a random one`)
 
             client.writeQuery({
               query: CurrentCartIdDocument,

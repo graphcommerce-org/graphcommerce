@@ -14,7 +14,8 @@
     "**/*.code-search": true,
     "**/.next": true,
     ".yarn": true,
-    "yarn.lock": true
+    "yarn.lock": true,
+    "**/*.tsbuildinfo": true
   },
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"

@@ -1,5 +1,4 @@
 import { Box } from '@mui/material'
-import { useState, useRef } from 'react'
 import { ButtonLink } from '../../components/ButtonLink/ButtonLink'
 import { MediaBackground } from '../../components/MediaBackground/MediaBackground'
 import { TextRenderer } from '../../components/TextRenderer/TextRenderer'
@@ -11,7 +10,7 @@ import { BannerContentType } from './types'
  * This component is part of the Page Builder / PWA integration. It can be consumed without Page Builder.
  */
 export const Banner: BannerContentType['component'] = (props) => {
-  const { minHeight, content, showOverlay, overlayColor } = props
+  const { minHeight, content, overlayColor } = props
 
   return (
     <Box sx={{ display: 'grid', minHeight }}>

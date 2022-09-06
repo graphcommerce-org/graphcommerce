@@ -13,7 +13,6 @@ import { phonePattern, useFormGqlMutation } from '@graphcommerce/react-hook-form
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { SxProps, TextField, Theme } from '@mui/material'
-import { useRouter } from 'next/router'
 import { AccountAddressFragment } from '../AccountAddress/AccountAddress.gql'
 import { AddressFields } from '../AddressFields/AddressFields'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'

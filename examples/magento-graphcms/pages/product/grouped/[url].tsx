@@ -36,6 +36,7 @@ import {
   RowRenderer,
   Usps,
 } from '../../../components'
+import { LayoutDocument } from '../../../components/Layout/Layout.gql'
 import { ProductPageDocument, ProductPageQuery } from '../../../graphql/ProductPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
@@ -144,15 +145,13 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const conf = client.query({ query: StoreConfigDocument })
   const productPage = staticClient.query({
     query: ProductPageDocument,
-    variables: {
-      url: 'product/global',
-      urlKey,
-    },
+    variables: { url: 'product/global', urlKey },
   })
   const typeProductPage = staticClient.query({
     query: GroupedProductPageDocument,
     variables: { urlKey },
   })
+  const layout = staticClient.query({ query: LayoutDocument })
 
   const product = findByTypename((await productPage).data.products?.items, 'GroupedProduct')
   const typeProduct = findByTypename(
@@ -171,6 +170,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     props: {
       ...(await productPage).data,
       ...(await typeProductPage).data,
+      ...(await layout).data,
       apolloState: await conf.then(() => client.cache.extract()),
       up,
     },

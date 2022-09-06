@@ -70,7 +70,7 @@ export const NavigationItem = React.memo<NavigationItemProps>((props) => {
   const column = hidingRoot ? itemPath.length - 1 : itemPath.length
   const classes = withState({ first, last, column: itemPath.length })
 
-  const onCloseHandler: React.MouseEventHandler<HTMLAnchorElement> = useEventCallback((e) => {
+  const onCloseHandler: React.MouseEventHandler<HTMLAnchorElement> = useEventCallback(() => {
     if (!isNavigationHref(props)) return
     closing.set(true)
   })

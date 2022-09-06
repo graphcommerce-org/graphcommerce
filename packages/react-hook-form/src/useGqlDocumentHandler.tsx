@@ -1,5 +1,5 @@
 import type { TypedDocumentNode } from '@apollo/client'
-import {
+import type {
   DefinitionNode,
   OperationDefinitionNode,
   ValueNode,

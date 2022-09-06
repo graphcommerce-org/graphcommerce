@@ -68,12 +68,7 @@ export function CartItemSummary(props: OrderSummaryProps) {
         // }
         variantLeft='h6'
       >
-        <Box
-          className={classes.imageScrollerContainer}
-          sx={(theme) => ({
-            position: 'relative',
-          })}
-        >
+        <Box className={classes.imageScrollerContainer} sx={{ position: 'relative' }}>
           <ScrollerProvider scrollSnapAlign='start'>
             <ScrollerButton
               direction='left'
@@ -138,12 +133,7 @@ export function CartItemSummary(props: OrderSummaryProps) {
             margin: `${theme.spacings.xs} 0 ${theme.spacings.xs} 0`,
           })}
         />
-        <CartTotals
-          sx={(theme) => ({
-            background: 'none',
-            padding: 0,
-          })}
-        />
+        <CartTotals sx={{ background: 'none', padding: 0 }} />
       </SectionContainer>
     </Box>
   )

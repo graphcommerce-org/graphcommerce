@@ -17,6 +17,7 @@ import { cartTypePolicies, migrateCart, createCartErrorLink } from '@graphcommer
 import { CreateEmptyCartDocument } from '@graphcommerce/magento-cart/hooks/CreateEmptyCart.gql'
 import {
   createCustomerTokenLink,
+  customerTokenLink,
   customerTypePolicies,
   migrateCustomer,
 } from '@graphcommerce/magento-customer'
@@ -42,14 +43,13 @@ const migrations = [migrateCart, migrateCustomer]
 const clientRef: { current: ApolloClient<NormalizedCacheObject> | null } = { current: null }
 
 /** HttpLink to connecto to the GraphQL Backend. */
-export function httpLink(cache: ApolloCache<NormalizedCacheObject>, locale?: string) {
+export function httpLink(locale?: string) {
   return ApolloLink.from([
-    ...(process.env.NODE_ENV !== 'production' ? [errorLink] : []),
-    ...(typeof window !== 'undefined' ? [measurePerformanceLink] : []),
+    ...(typeof window === 'undefined' ? [errorLink, measurePerformanceLink] : []),
     // Add the correct store header for the Magento user.
     createStoreLink(locale),
     // Add the correct authorization header for the Magento user.
-    createCustomerTokenLink(cache),
+    customerTokenLink,
     // Replace current cart id with renewed cart id and forward operation
     createCartErrorLink(clientRef),
     // Add recaptcha headers to the request.
@@ -81,15 +81,16 @@ type GraphQLProviderProps = {
 export function GraphQLProvider({ children, router, pageProps }: GraphQLProviderProps) {
   const state = (pageProps as Partial<ApolloStateProps>).apolloState
 
-  clientRef.current = useMemo(() => {
-    const cache = createCache()
-    return new ApolloClient({
-      link: httpLink(cache, router.locale),
-      cache,
-      name: 'web',
-      ssrMode: typeof window === 'undefined',
-    })
-  }, [router.locale])
+  clientRef.current = useMemo(
+    () =>
+      new ApolloClient({
+        link: httpLink(router.locale),
+        cache: createCache(),
+        name: 'web',
+        ssrMode: typeof window === 'undefined',
+      }),
+    [router.locale],
+  )
 
   // Update the cache with the latest incomming data, but only when it is changed.
   useMemo(

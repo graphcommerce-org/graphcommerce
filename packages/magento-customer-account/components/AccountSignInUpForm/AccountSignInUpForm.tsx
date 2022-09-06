@@ -14,7 +14,7 @@ import {
   LayoutTitle,
   extendableComponent,
 } from '@graphcommerce/next-ui'
-import { emailPattern, useFormPersist } from '@graphcommerce/react-hook-form'
+import { emailPattern } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
 import { Box, CircularProgress, Link, SxProps, TextField, Theme, Typography } from '@mui/material'
 import PageLink from 'next/link'

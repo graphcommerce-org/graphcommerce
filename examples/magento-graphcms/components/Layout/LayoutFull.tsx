@@ -22,17 +22,15 @@ import { Trans } from '@lingui/react'
 import { Fab } from '@mui/material'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
-import { DefaultPageQuery } from '../../graphql/DefaultPage.gql'
 import { Footer } from './Footer'
+import { LayoutQuery } from './Layout.gql'
 import { Logo } from './Logo'
 
-export type LayoutFullProps = Omit<
-  DefaultPageQuery & Omit<LayoutDefaultProps, 'footer'>,
-  'pages' | 'header' | 'cartFab' | 'menuFab'
->
+export type LayoutFullProps = LayoutQuery &
+  Omit<LayoutDefaultProps, 'footer' | 'header' | 'cartFab' | 'menuFab'>
 
 export function LayoutFull(props: LayoutFullProps) {
-  const { footer, menu = {}, children, ...uiProps } = props
+  const { footer, menu, children, ...uiProps } = props
 
   const router = useRouter()
   const menuItemsIncludeInMenu = menu?.items?.filter((items) => items?.include_in_menu === 1)

@@ -6,9 +6,7 @@ import {
   CartAgreementsForm,
   CartSummary,
   CartTotals,
-  EmptyCart,
   useCartQuery,
-  useCurrentCartId,
 } from '@graphcommerce/magento-cart'
 import { BillingPageDocument } from '@graphcommerce/magento-cart-checkout'
 import { CouponAccordion } from '@graphcommerce/magento-cart-coupon'
@@ -19,7 +17,6 @@ import {
   useCartLock,
   PaymentMethodActionCardListForm,
 } from '@graphcommerce/magento-cart-payment-method'
-import { ApolloCustomerErrorFullPage } from '@graphcommerce/magento-customer'
 import { braintree, braintree_local_payment } from '@graphcommerce/magento-payment-braintree'
 import { included_methods } from '@graphcommerce/magento-payment-included'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
@@ -39,6 +36,7 @@ import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, CircularProgress, Container, Dialog, Divider } from '@mui/material'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
+import { LayoutDocument } from '../../components/Layout/Layout.gql'
 import { DefaultPageDocument } from '../../graphql/DefaultPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
@@ -166,14 +164,14 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
 
   const page = staticClient.query({
     query: DefaultPageDocument,
-    variables: {
-      url: `checkout/payment`,
-    },
+    variables: { url: `checkout/payment` },
   })
+  const layout = staticClient.query({ query: LayoutDocument })
 
   return {
     props: {
       ...(await page).data,
+      ...(await layout).data,
       up: { href: '/checkout', title: 'Shipping' },
       apolloState: await conf.then(() => client.cache.extract()),
     },

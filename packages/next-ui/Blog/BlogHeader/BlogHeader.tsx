@@ -2,7 +2,6 @@ import { Box, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { extendableComponent } from '../../Styles'
 import { breakpointVal } from '../../Styles/breakpointVal'
-import { responsiveVal } from '../../Styles/responsiveVal'
 
 export type BlogHeaderProps = {
   sx?: SxProps<Theme>

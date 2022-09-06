@@ -1,20 +1,5 @@
-import {
-  useQuery,
-  TypedDocumentNode,
-  QueryHookOptions,
-  QueryResult,
-  ApolloError,
-} from '@graphcommerce/graphql'
-import { GraphQLError } from 'graphql'
+import { useQuery, TypedDocumentNode, QueryHookOptions, QueryResult } from '@graphcommerce/graphql'
 import { useCustomerSession } from './useCustomerSession'
-
-const notLoggedInError = new ApolloError({
-  graphQLErrors: [
-    new GraphQLError('Not authorized', {
-      extensions: { category: 'graphql-authorization' },
-    }),
-  ],
-})
 
 /** Will only execute when the customer is signed in. */
 export function useCustomerQuery<Q, V>(
@@ -22,7 +7,7 @@ export function useCustomerQuery<Q, V>(
   options: QueryHookOptions<Q, V> & { hydration?: boolean } = {},
 ): QueryResult<Q, V> {
   const { hydration, ...queryOptions } = options
-  const { loggedIn, query } = useCustomerSession({ hydration })
+  const { loggedIn } = useCustomerSession({ hydration })
 
   const result = useQuery(document, {
     ...queryOptions,
@@ -30,8 +15,5 @@ export function useCustomerQuery<Q, V>(
     skip: !loggedIn,
   })
 
-  return {
-    ...result,
-    error: query.called && !loggedIn ? notLoggedInError : result.error,
-  }
+  return result
 }

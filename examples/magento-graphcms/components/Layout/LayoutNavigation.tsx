@@ -27,18 +27,16 @@ import { Trans } from '@lingui/react'
 import { Divider, Fab } from '@mui/material'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
-import { Suspense, useMemo } from 'react'
-import { DefaultPageQuery } from '../../graphql/DefaultPage.gql'
+import { Suspense } from 'react'
 import { Footer } from './Footer'
+import { LayoutQuery } from './Layout.gql'
 import { Logo } from './Logo'
 
-export type LayoutNavigationProps = Omit<
-  DefaultPageQuery & Omit<LayoutDefaultProps, 'footer'>,
-  'pages' | 'header' | 'cartFab' | 'menuFab'
->
+export type LayoutNavigationProps = LayoutQuery &
+  Omit<LayoutDefaultProps, 'footer' | 'header' | 'cartFab' | 'menuFab'>
 
 export function LayoutNavigation(props: LayoutNavigationProps) {
-  const { footer, menu = {}, children, ...uiProps } = props
+  const { footer, menu, children, ...uiProps } = props
 
   const selection = useNavigationSelection()
   const router = useRouter()

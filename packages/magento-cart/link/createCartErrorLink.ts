@@ -1,16 +1,13 @@
 import {
   ApolloClient,
-  FetchResult,
   fromPromise,
-  InMemoryCache,
   NormalizedCacheObject,
   onError,
   Operation,
 } from '@graphcommerce/graphql'
 import { RefObject } from 'react'
-import { useAssignCurrentCartId, writeCartId } from '../hooks'
+import { writeCartId } from '../hooks'
 import { CreateEmptyCartDocument } from '../hooks/CreateEmptyCart.gql'
-import { CurrentCartIdDocument } from '../hooks/CurrentCartId.gql'
 
 type CartOperation = Operation & { variables: { cartId: string } }
 function isCartOperation(operation: Operation): operation is CartOperation {

@@ -6,7 +6,6 @@ import {
   useFabSize,
 } from '@graphcommerce/next-ui'
 import { Link, LinkProps } from '@mui/material'
-import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import type { SetRequired } from 'type-fest'
 

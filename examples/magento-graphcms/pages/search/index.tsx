@@ -35,6 +35,7 @@ import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Container, Hidden } from '@mui/material'
 import { LayoutNavigation, LayoutNavigationProps, ProductListItems } from '../../components'
+import { LayoutDocument } from '../../components/Layout/Layout.gql'
 import { DefaultPageDocument, DefaultPageQuery } from '../../graphql/DefaultPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
@@ -137,10 +138,8 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const filterTypes = getFilterTypes(client)
 
   const staticClient = graphqlSsrClient(locale)
-  const page = staticClient.query({
-    query: DefaultPageDocument,
-    variables: { url: 'search' },
-  })
+  const page = staticClient.query({ query: DefaultPageDocument, variables: { url: 'search' } })
+  const layout = staticClient.query({ query: LayoutDocument })
 
   const productListParams = parseParams(
     search ? `search/${search}` : 'search',
@@ -167,6 +166,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
       ...(await products).data,
       ...(await filters).data,
       ...(await categories)?.data,
+      ...(await layout)?.data,
       filterTypes: await filterTypes,
       params: productListParams,
       up: { href: '/', title: 'Home' },

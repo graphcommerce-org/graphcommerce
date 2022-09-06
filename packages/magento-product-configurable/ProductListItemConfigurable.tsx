@@ -62,13 +62,10 @@ export function ProductListItemConfigurable(props: ProdustListItemConfigurablePr
       ).length,
   )
 
-  const productProps = matchingVariants?.[0]?.product
-    ? { ...configurableProduct, ...matchingVariants?.[0]?.product }
-    : configurableProduct
-
   return (
     <ProductListItem
-      {...productProps}
+      {...configurableProduct}
+      small_image={matchingVariants?.[0]?.product?.small_image ?? configurableProduct.small_image}
       topLeft={
         <>
           {topLeft}

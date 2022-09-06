@@ -9,6 +9,7 @@ import {
   LayoutNavigationProps,
   RowRenderer,
 } from '../../components'
+import { LayoutDocument } from '../../components/Layout/Layout.gql'
 import { DefaultPageDocument, DefaultPageQuery } from '../../graphql/DefaultPage.gql'
 import { PagesStaticPathsDocument } from '../../graphql/PagesStaticPaths.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
@@ -76,10 +77,8 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   const client = graphqlSharedClient(locale)
   const staticClient = graphqlSsrClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
-  const page = staticClient.query({
-    query: DefaultPageDocument,
-    variables: { url },
-  })
+  const page = staticClient.query({ query: DefaultPageDocument, variables: { url } })
+  const layout = staticClient.query({ query: LayoutDocument })
 
   if (!(await page).data.pages?.[0]) return { notFound: true }
 
@@ -88,6 +87,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   return {
     props: {
       ...(await page).data,
+      ...(await layout).data,
       up: isRoot ? null : { href: '/service', title: 'Customer Service' },
       apolloState: await conf.then(() => client.cache.extract()),
     },

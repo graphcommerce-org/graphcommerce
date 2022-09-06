@@ -10,6 +10,7 @@ import {
 import { Box, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import { LayoutOverlay, LayoutOverlayProps, RowRenderer } from '../../components'
+import { LayoutDocument } from '../../components/Layout/Layout.gql'
 import { DefaultPageDocument, DefaultPageQuery } from '../../graphql/DefaultPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
@@ -76,16 +77,16 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   const conf = client.query({ query: StoreConfigDocument })
   const page = staticClient.query({
     query: DefaultPageDocument,
-    variables: {
-      url: `modal/${urlKey}`,
-    },
+    variables: { url: `modal/${urlKey}` },
   })
+  const layout = staticClient.query({ query: LayoutDocument })
 
   if (!(await page).data.pages?.[0]) return { notFound: true }
 
   return {
     props: {
       ...(await page).data,
+      ...(await layout).data,
       apolloState: await conf.then(() => client.cache.extract()),
       variantMd: 'bottom',
       size: 'max',

@@ -4,17 +4,16 @@ import { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { FormRow } from '@graphcommerce/next-ui'
 import { useFormCompose } from '@graphcommerce/react-hook-form'
-import { Trans } from '@lingui/react'
-import { Typography, Alert } from '@mui/material'
+import { Alert } from '@mui/material'
 import Script from 'next/script'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Mollie } from '../../Mollie'
 import { MollieField } from './MollieField'
 import { SetMolliePaymentMethodTokenOnCartDocument } from './SetMolliePaymentMethodTokenOnCart.gql'
 import { mollieContext, MollieContext } from './mollieContext'
 
 export function MollieCreditCardOptions(props: PaymentOptionsProps) {
-  const { code, step, Container, title = '' } = props
+  const { code, step, Container } = props
   const [loaded, setLoaded] = useState<boolean>(false)
   const [mollie, setMollie] = useState<MollieContext>(undefined)
   const conf = useQuery(StoreConfigDocument)

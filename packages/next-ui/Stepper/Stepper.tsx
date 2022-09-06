@@ -1,6 +1,5 @@
 import { Box, SxProps, Theme } from '@mui/material'
 import { extendableComponent } from '../Styles'
-import { responsiveVal } from '../Styles/responsiveVal'
 
 export type StepperProps = {
   steps: number

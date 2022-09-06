@@ -13,10 +13,11 @@ import {
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Button, Box, Container, NoSsr } from '@mui/material'
+import { Button, Box, Container } from '@mui/material'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { LayoutMinimal, LayoutNavigationProps, LayoutMinimalProps } from '../../components'
+import { LayoutDocument } from '../../components/Layout/Layout.gql'
 import { DefaultPageDocument } from '../../graphql/DefaultPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
@@ -92,14 +93,14 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const conf = client.query({ query: StoreConfigDocument })
   const page = staticClient.query({
     query: DefaultPageDocument,
-    variables: {
-      url: `checkout/success`,
-    },
+    variables: { url: `checkout/success` },
   })
+  const layout = staticClient.query({ query: LayoutDocument })
 
   return {
     props: {
       ...(await page).data,
+      ...(await layout).data,
       up: { href: '/', title: 'Home' },
       apolloState: await conf.then(() => client.cache.extract()),
     },
