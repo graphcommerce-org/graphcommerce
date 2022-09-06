@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.2.3
+
+### Patch Changes
+
+- [#1617](https://github.com/graphcommerce-org/graphcommerce/pull/1617) [`b6427e375`](https://github.com/graphcommerce-org/graphcommerce/commit/b6427e37597b2d0970cc0a14556d8517f2754b73) Thanks [@paales](https://github.com/paales)! - Solve issue where the ProductListItemConfigurable would result in a wrong URL
+
 ## 4.2.2
 
 ### Patch Changes

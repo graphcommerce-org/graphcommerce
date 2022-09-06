@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.0.9
+
+### Patch Changes
+
+- [#1617](https://github.com/graphcommerce-org/graphcommerce/pull/1617) [`978e22c1e`](https://github.com/graphcommerce-org/graphcommerce/commit/978e22c1e1c8f29cfda246a7ec2a24e3b570435c) Thanks [@paales](https://github.com/paales)! - Prevent error when dataLayer isn’t present in the window
+
 ## 2.0.8
 
 ### Patch Changes

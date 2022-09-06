@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/magento-wishlist",
-  "version": "1.6.2",
+  "version": "1.6.3",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [
@@ -25,7 +25,7 @@
     "@graphcommerce/magento-cart": "4.7.2",
     "@graphcommerce/magento-customer": "4.10.2",
     "@graphcommerce/magento-product": "4.5.2",
-    "@graphcommerce/magento-product-configurable": "4.2.2",
+    "@graphcommerce/magento-product-configurable": "4.2.3",
     "@graphcommerce/magento-store": "4.2.30",
     "@graphcommerce/next-ui": "4.23.0"
   },
