@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-product-downloadable",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "4.0.51",
+  "version": "4.0.52",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -19,8 +19,8 @@
   },
   "dependencies": {
     "@graphcommerce/graphql": "3.4.8",
-    "@graphcommerce/magento-cart": "4.7.3",
-    "@graphcommerce/magento-product": "4.5.3"
+    "@graphcommerce/magento-cart": "4.7.4",
+    "@graphcommerce/magento-product": "4.5.4"
   },
   "peerDependencies": {
     "@lingui/react": "^3.13.2",
