@@ -104,7 +104,7 @@ function PaymentPage() {
               </Dialog>
 
               <Typography
-                variant='h3'
+                variant='h4'
                 sx={(theme) => ({ mt: theme.spacings.lg, mb: theme.spacings.sm })}
               >
                 <Trans id='Payment method' />
