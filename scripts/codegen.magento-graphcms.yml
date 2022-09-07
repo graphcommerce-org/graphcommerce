@@ -45,9 +45,12 @@ generates:
       baseTypesPath: ~@graphcommerce/graphql-mesh/.mesh
       injectables: true
     config:
+      documentMode: graphQLTag,
       skipTypename: true
       namingConvention: 'keep'
       dedupeOperationSuffix: true
-      content: '/* eslint-disable */'
+      content: |
+        /* eslint-disable */
+        import { gql } from '@graphcommerce/graphql'
 watchConfig:
   usePolling: false
