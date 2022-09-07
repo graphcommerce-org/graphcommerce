@@ -1,5 +1,4 @@
 fragment CustomizableDropDownOption on CustomizableDropDownOption {
-  ...CustomizableOption
   dropdownValue: value {
     option_type_id
     price

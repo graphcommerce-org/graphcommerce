@@ -1,5 +1,4 @@
 fragment CustomizableDateOption on CustomizableDateOption {
-  ...CustomizableOption
   product_sku
   dateValue: value {
     price
