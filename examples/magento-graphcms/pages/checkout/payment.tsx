@@ -129,20 +129,7 @@ function PaymentPage() {
 
                 <CartAgreementsForm step={2} />
 
-                <PaymentMethodPlaceOrder key='placeorder' step={4} />
-=======
-                <PaymentMethodActionCardListForm step={3} />
-
-                <CartSummary editable>
-                  <CartTotals />
-                </CartSummary>
-
-                <CouponAccordion />
-
-                <CartAgreementsForm step={2} />
-
                 <PaymentMethodPlaceOrder step={4} />
->>>>>>> 6bb5e4c91 (Collapsed header for payment step, header color fixes in checkout, totals color fixes)
 
                 <FormActions>
                   <PaymentMethodButton
