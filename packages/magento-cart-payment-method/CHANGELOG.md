@@ -1,5 +1,12 @@
 # Change Log
 
+## 3.5.5
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/magento-cart@4.7.5
+
 ## 3.5.4
 
 ### Patch Changes

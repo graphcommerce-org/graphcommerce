@@ -1,5 +1,13 @@
 # Change Log
 
+## 4.7.5
+
+### Patch Changes
+
+- Updated dependencies [[`e8639ec5f`](https://github.com/graphcommerce-org/graphcommerce/commit/e8639ec5f6759504211d70a966f5c348c6b3a7f6)]:
+  - @graphcommerce/ecommerce-ui@1.3.0
+  - @graphcommerce/magento-customer@4.10.5
+
 ## 4.7.4
 
 ### Patch Changes
