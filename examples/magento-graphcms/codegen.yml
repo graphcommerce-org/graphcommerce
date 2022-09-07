@@ -40,7 +40,6 @@ generates:
       baseTypesPath: ~@graphcommerce/graphql-mesh/.mesh
       injectables: true
     config:
-      documentMode: graphQLTag
       skipTypename: true
       namingConvention: 'keep'
       dedupeOperationSuffix: true
