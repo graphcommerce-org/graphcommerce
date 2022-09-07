@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.4.8
+
+### Patch Changes
+
+- [#1622](https://github.com/graphcommerce-org/graphcommerce/pull/1622) [`396b5de5d`](https://github.com/graphcommerce-org/graphcommerce/commit/396b5de5d50c7b8f59bf636807e7a4b50f14e0b2) Thanks [@paales](https://github.com/paales)! - Make sure the measurePerformanceLink only gets included on the server and flush the current timings.
+
 ## 3.4.7
 
 ### Patch Changes
