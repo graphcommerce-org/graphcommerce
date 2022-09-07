@@ -52,6 +52,10 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
       availableMethods
         // Move disabled items to the bottom
         .sort((a, b) => (a.available ? -1 : 1))
+        .filter((m) => {
+          if (m.carrier_code === 'freeshipping') return m.available === true
+          return m.method_code
+        })
         .map((method) => ({
           ...method,
           disabled: !method?.available,

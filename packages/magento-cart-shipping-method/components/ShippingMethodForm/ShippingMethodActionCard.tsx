@@ -19,13 +19,8 @@ export function ShippingMethodActionCard(props: ShippingMethodActionCardProps) {
     onReset,
     ...cardProps
   } = props
-  let { hidden = false } = props
 
   const isFree = amount && amount.value === 0
-
-  if (carrier_code !== 'freeshipping') hidden = !available ? true : hidden
-
-  if (hidden) return false
 
   const title =
     carrier_title === 'Free Shipping' ? carrier_title : `${carrier_title} ${method_title}`
@@ -33,7 +28,6 @@ export function ShippingMethodActionCard(props: ShippingMethodActionCardProps) {
   return (
     <ActionCard
       {...cardProps}
-      hidden={hidden}
       title={title}
       details={error_message}
       action={

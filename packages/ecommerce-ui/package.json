@@ -12,10 +12,9 @@
     }
   },
   "dependencies": {
-    "@graphcommerce/framer-utils": "3.2.0",
+    "@graphcommerce/graphql": "3.4.8",
     "@graphcommerce/next-ui": "4.23.1",
-    "@graphcommerce/react-hook-form": "3.3.2",
-    "@graphcommerce/graphql": "3.4.8"
+    "@graphcommerce/react-hook-form": "3.3.2"
   },
   "devDependencies": {
     "@graphcommerce/eslint-config-pwa": "^4.1.10",
@@ -24,9 +23,9 @@
     "@playwright/test": "^1.21.1"
   },
   "peerDependencies": {
-    "@mui/material": "5.5.3",
-    "@lingui/react": "^3.13.2",
     "@lingui/core": "^3.13.2",
+    "@lingui/react": "^3.13.2",
+    "@mui/material": "5.5.3",
     "framer-motion": "^6.2.4",
     "next": "^12.1.2",
     "react": "^18.0.0",

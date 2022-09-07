@@ -1,3 +1,11 @@
+import {
+  phonePattern,
+  useFormAutoSubmit,
+  useFormCompose,
+  UseFormComposeOptions,
+  useFormPersist,
+  TextFieldElement,
+} from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import {
   ApolloCartErrorAlert,
@@ -5,19 +13,17 @@ import {
   useFormGqlMutationCart,
 } from '@graphcommerce/magento-cart'
 import { CartAddressFragment } from '@graphcommerce/magento-cart/components/CartAddress/CartAddress.gql'
-import { AddressFields, CustomerDocument, NameFields } from '@graphcommerce/magento-customer'
+import {
+  AddressFields,
+  CustomerDocument,
+  NameFields,
+  useCustomerQuery,
+} from '@graphcommerce/magento-customer'
 import { CountryRegionsDocument, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Form, FormRow, InputCheckmark } from '@graphcommerce/next-ui'
-import {
-  phonePattern,
-  useFormAutoSubmit,
-  useFormCompose,
-  UseFormComposeOptions,
-  useFormPersist,
-} from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { SxProps, TextField, Theme } from '@mui/material'
+import { SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { isSameAddress } from '../../utils/isSameAddress'
 import { GetAddressesDocument } from './GetAddresses.gql'
@@ -35,7 +41,7 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
   const { data: cartQuery } = useCartQuery(GetAddressesDocument)
   const { data: config } = useQuery(StoreConfigDocument)
   const { data: countriesData } = useQuery(CountryRegionsDocument)
-  const { data: customerQuery } = useQuery(CustomerDocument, { fetchPolicy: 'cache-only' })
+  const { data: customerQuery } = useCustomerQuery(CustomerDocument)
 
   const shopCountry = config?.storeConfig?.locale?.split('_')?.[1].toUpperCase()
 
@@ -103,7 +109,7 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
       }
     },
   })
-  const { muiRegister, handleSubmit, valid, formState, required, error } = form
+  const { handleSubmit, valid, formState, required, error } = form
   const submit = handleSubmit(() => {})
 
   useFormPersist({ form, name: 'ShippingAddressForm' })
@@ -121,17 +127,16 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
       <NameFields form={form} key='name' readOnly={readOnly} />
       <AddressFields form={form} key='addressfields' readOnly={readOnly} />
       <FormRow key='telephone'>
-        <TextField
+        <TextFieldElement
+          control={form.control}
+          name='telephone'
           variant='outlined'
           type='text'
-          error={!!formState.errors.telephone}
           required={required.telephone}
-          label={<Trans id='Telephone' />}
-          {...muiRegister('telephone', {
-            required: required.telephone,
+          validation={{
             pattern: { value: phonePattern, message: i18n._(/* i18n */ 'Invalid phone number') },
-          })}
-          helperText={formState.isSubmitted && formState.errors.telephone?.message}
+          }}
+          label={<Trans id='Telephone' />}
           InputProps={{
             readOnly,
             endAdornment: <InputCheckmark show={valid.telephone} />,

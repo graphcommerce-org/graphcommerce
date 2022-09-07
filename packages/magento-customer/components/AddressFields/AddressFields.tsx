@@ -1,6 +1,7 @@
+import { SelectElement, TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import { CountryRegionsDocument } from '@graphcommerce/magento-store'
-import { FormRow, InputCheckmark } from '@graphcommerce/next-ui'
+import { filterNonNullableKeys, FormRow, InputCheckmark } from '@graphcommerce/next-ui'
 import {
   assertFormGqlOperation,
   houseNumberPattern,
@@ -8,7 +9,6 @@ import {
 } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { TextField } from '@mui/material'
 import React, { useMemo } from 'react'
 
 type AddressFieldValues = {
@@ -26,9 +26,10 @@ type AddressFieldsProps = { form: UseFormReturn<any>; readOnly?: boolean }
 
 export function AddressFields(props: AddressFieldsProps) {
   const { form, readOnly } = props
+
   const countries = useQuery(CountryRegionsDocument).data?.countries
   assertFormGqlOperation<AddressFieldValues>(form)
-  const { watch, formState, required, muiRegister, valid } = form
+  const { watch, required, valid, control } = form
 
   const country = watch('countryCode')
 
@@ -48,56 +49,52 @@ export function AddressFields(props: AddressFieldsProps) {
     const compare: (a: Region, b: Region) => number = (a, b) =>
       (a?.name ?? '')?.localeCompare(b?.name ?? '')
 
-    const regions = availableRegions?.sort(compare)
-    return regions
+    return availableRegions?.sort(compare)
   }, [country, countryList])
 
   return (
     <>
       <FormRow>
-        <TextField
+        <TextFieldElement
           variant='outlined'
+          control={control}
+          required={required.street}
+          name='street'
           type='text'
-          error={!!formState.errors.street}
           label={<Trans id='Street' />}
           autoComplete='address-line1'
-          required={!!required?.street}
-          {...muiRegister('street', { required: required?.street })}
-          helperText={formState.isSubmitted && formState.errors.street?.message}
           InputProps={{
             readOnly,
             endAdornment: <InputCheckmark show={valid.street} />,
           }}
         />
-        <TextField
-          variant='outlined'
-          type='text'
-          error={!!formState.errors.houseNumber}
-          label={<Trans id='Housenumber' />}
-          autoComplete='address-line2'
-          required={!!required?.houseNumber}
-          {...muiRegister('houseNumber', {
-            required: required?.houseNumber,
+        <TextFieldElement
+          control={control}
+          name='houseNumber'
+          required={required.houseNumber}
+          validation={{
             pattern: {
               value: houseNumberPattern,
               message: i18n._(/* i18n */ 'Please provide a valid house number'),
             },
-          })}
-          helperText={formState.isSubmitted && formState.errors.houseNumber?.message}
+          }}
+          variant='outlined'
+          type='text'
+          label={<Trans id='Housenumber' />}
+          autoComplete='address-line2'
           InputProps={{
             readOnly,
             endAdornment: <InputCheckmark show={valid.houseNumber} />,
           }}
         />
-        <TextField
+        <TextFieldElement
+          control={control}
+          name='addition'
           variant='outlined'
           type='text'
-          error={!!formState.errors.addition}
-          required={!!required?.addition}
+          required={required.addition}
           label={<Trans id='Addition' />}
           autoComplete='address-line3'
-          {...muiRegister('addition', { required: required?.addition })}
-          helperText={formState.isSubmitted && formState.errors.addition?.message}
           InputProps={{
             readOnly,
             endAdornment: <InputCheckmark show={valid.addition} />,
@@ -105,27 +102,25 @@ export function AddressFields(props: AddressFieldsProps) {
         />
       </FormRow>
       <FormRow>
-        <TextField
+        <TextFieldElement
+          control={control}
+          name='postcode'
           variant='outlined'
           type='text'
-          error={!!formState.errors.postcode}
-          required={!!required?.postcode}
+          required={required.postcode}
           label={<Trans id='Postcode' />}
-          {...muiRegister('postcode', { required: required?.postcode })}
-          helperText={formState.isSubmitted && formState.errors.postcode?.message}
           InputProps={{
             readOnly,
             endAdornment: <InputCheckmark show={valid.postcode} />,
           }}
         />
-        <TextField
+        <TextFieldElement
+          control={control}
+          name='city'
           variant='outlined'
           type='text'
-          error={!!formState.errors.city}
-          required={!!required?.city}
+          required={required.city}
           label={<Trans id='City' />}
-          {...muiRegister('city', { required: required?.city })}
-          helperText={formState.isSubmitted && formState.errors.city?.message}
           InputProps={{
             readOnly,
             endAdornment: <InputCheckmark show={valid.city} />,
@@ -133,63 +128,39 @@ export function AddressFields(props: AddressFieldsProps) {
         />
       </FormRow>
       <FormRow>
-        <TextField
-          select
-          SelectProps={{ native: true, displayEmpty: true }}
-          {...muiRegister('countryCode', { required: required.countryCode })}
+        <SelectElement
+          control={control}
+          name='countryCode'
+          SelectProps={{ autoWidth: true }}
           variant='outlined'
-          error={!!formState.errors.countryCode}
           label={<Trans id='Country' />}
-          required={!!required?.countryCode}
-          helperText={formState.errors.countryCode?.message}
-          // onBlur={onBlur}
+          required={required.countryCode}
           InputProps={{
             readOnly,
             endAdornment: <InputCheckmark show={valid.countryCode} select />,
           }}
-        >
-          {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
-          <option value='' />
-          {countryList.map((c) => {
-            if (!c?.two_letter_abbreviation) return null
-            return (
-              <option key={c.two_letter_abbreviation} value={c.two_letter_abbreviation}>
-                {c.full_name_locale}
-              </option>
-            )
-          })}
-        </TextField>
+          options={filterNonNullableKeys(countryList, [
+            'two_letter_abbreviation',
+            'full_name_locale',
+          ]).map(({ two_letter_abbreviation: id, full_name_locale: label }) => ({ id, label }))}
+        />
 
         {regionList.length > 0 && (
-          <TextField
-            select
-            SelectProps={{ native: true, displayEmpty: true }}
+          <SelectElement
+            control={control}
+            name='regionId'
+            // SelectProps={{ native: true, displayEmpty: true }}
             variant='outlined'
-            error={!!formState.errors.regionId}
             label={<Trans id='Region' />}
-            {...muiRegister('regionId', {
-              required: true,
-              shouldUnregister: true,
-              valueAsNumber: true,
-            })}
             required
-            helperText={formState.errors.regionId?.message}
             InputProps={{
               readOnly,
               endAdornment: <InputCheckmark show={valid.regionId} select />,
             }}
-          >
-            {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
-            <option value='' />
-            {regionList.map((r) => {
-              if (!r?.id) return null
-              return (
-                <option key={r.id} value={r.id}>
-                  {r.name}
-                </option>
-              )
-            })}
-          </TextField>
+            options={filterNonNullableKeys(regionList, ['id', 'name']).map(
+              ({ id, name: label }) => ({ id, label }),
+            )}
+          />
         )}
       </FormRow>
     </>

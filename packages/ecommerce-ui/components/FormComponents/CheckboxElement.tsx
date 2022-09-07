@@ -1,0 +1,79 @@
+import {
+  Control,
+  Controller,
+  ControllerProps,
+  FieldError,
+  Path,
+  FieldValues,
+} from '@graphcommerce/react-hook-form'
+import {
+  Checkbox,
+  CheckboxProps,
+  FormControl,
+  FormControlLabel,
+  FormControlLabelProps,
+  FormGroup,
+  FormHelperText,
+} from '@mui/material'
+
+export type CheckboxElementProps<T> = Omit<CheckboxProps, 'name'> & {
+  validation?: ControllerProps['rules']
+  name: Path<T>
+  parseError?: (error: FieldError) => string
+  label?: FormControlLabelProps['label']
+  helperText?: string
+  control?: Control<T>
+}
+
+export function CheckboxElement<TFieldValues extends FieldValues>({
+  name,
+  validation = {},
+  required,
+  parseError,
+  label,
+  control,
+  helperText,
+  ...rest
+}: CheckboxElementProps<TFieldValues>): JSX.Element {
+  if (required && !validation.required) {
+    validation.required = 'This field is required'
+  }
+
+  return (
+    <Controller
+      name={name}
+      rules={validation}
+      control={control}
+      render={({ field: { value, onChange }, fieldState: { error } }) => {
+        const parsedHelperText = error ? parseError?.(error) ?? error.message : helperText
+        return (
+          <FormControl required={required} error={Boolean(error)}>
+            <FormGroup row>
+              <FormControlLabel
+                label={label || ''}
+                control={
+                  <Checkbox
+                    {...rest}
+                    color={rest.color || 'primary'}
+                    sx={{
+                      ...rest.sx,
+                      color: error ? 'error.main' : undefined,
+                    }}
+                    value={value}
+                    checked={!!value}
+                    onChange={() => {
+                      onChange(!value)
+                    }}
+                  />
+                }
+              />
+            </FormGroup>
+            {parsedHelperText && (
+              <FormHelperText error={Boolean(error)}>{parsedHelperText}</FormHelperText>
+            )}
+          </FormControl>
+        )
+      }}
+    />
+  )
+}
