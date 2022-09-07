@@ -67,6 +67,7 @@ function ShippingPage() {
           <ComposedForm>
             <LayoutHeader
               switchPoint={0}
+              sx={{ '& .LayoutHeaderContent-bg': { backgroundColor: 'background.default' } }}
               primary={
                 <ComposedSubmit
                   onSubmitSuccessful={() => router.push('/checkout/payment')}
