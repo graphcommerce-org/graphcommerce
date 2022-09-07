@@ -67,7 +67,6 @@ function PaymentPage() {
           <>
             <LayoutHeader
               switchPoint={0}
-              sx={{ '& .LayoutHeaderContent-bg': { backgroundColor: 'background.default' } }}
               primary={
                 <PaymentMethodButton
                   type='submit'
