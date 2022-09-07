@@ -1,3 +1,4 @@
+import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import { FormRow, InputCheckmark } from '@graphcommerce/next-ui'
 import { assertFormGqlOperation, Controller, UseFormReturn } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
@@ -65,31 +66,29 @@ export function NameFields(props: NameFieldProps) {
       )}
 
       <FormRow>
-        <TextField
+        <TextFieldElement
+          control={form.control}
+          name='firstname'
+          required={required.firstname}
           variant='outlined'
           type='text'
           label={<Trans id='First Name' />}
-          required={!!required}
-          error={!!formState.errors.firstname}
-          helperText={formState.isSubmitted && formState.errors.firstname?.message}
           InputProps={{
             readOnly,
             endAdornment: <InputCheckmark show={valid.firstname} />,
           }}
-          {...muiRegister('firstname', { required: required?.firstname })}
         />
-        <TextField
+        <TextFieldElement
+          control={form.control}
+          name='lastname'
+          required={required.lastname}
           variant='outlined'
           type='text'
-          error={!!formState.errors.lastname}
           label={<Trans id='Last Name' />}
-          required={!!required?.lastname}
-          helperText={formState.isSubmitted && formState.errors.lastname?.message}
           InputProps={{
             readOnly,
             endAdornment: <InputCheckmark show={valid.lastname} />,
           }}
-          {...muiRegister('lastname', { required: required?.lastname })}
         />
       </FormRow>
     </>

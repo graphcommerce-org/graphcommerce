@@ -34,7 +34,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Box, CircularProgress, Container, Dialog, Divider } from '@mui/material'
+import { CircularProgress, Container, Dialog, Typography } from '@mui/material'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
 import { DefaultPageDocument } from '../../graphql/DefaultPage.gql'
@@ -103,6 +103,13 @@ function PaymentPage() {
                 </FullPageMessage>
               </Dialog>
 
+              <Typography
+                variant='h4'
+                sx={(theme) => ({ mt: theme.spacings.lg, mb: theme.spacings.sm })}
+              >
+                <Trans id='Payment method' />
+              </Typography>
+
               <PaymentMethodContextProvider
                 modules={{
                   braintree_local_payment,
@@ -111,25 +118,21 @@ function PaymentPage() {
                   ...mollie_methods,
                 }}
               >
-                <Box sx={(theme) => ({ mt: theme.spacings.lg })}>
-                  <PaymentMethodActionCardListForm step={3} />
-                </Box>
+                <PaymentMethodActionCardListForm step={3} />
 
-                <CartSummary editable key='cart-summary'>
-                  <Divider />
-                  <CartTotals sx={{ typography: 'body1' }} />
+                <CartSummary editable>
+                  <CartTotals />
                 </CartSummary>
 
-                <CouponAccordion key='coupon' />
+                <CouponAccordion />
 
-                <CartAgreementsForm step={2} key='agreements' />
+                <CartAgreementsForm step={2} />
 
-                <PaymentMethodPlaceOrder key='placeorder' step={4} />
+                <PaymentMethodPlaceOrder step={4} />
 
                 <FormActions>
                   <PaymentMethodButton
                     id='place-order'
-                    key='button'
                     type='submit'
                     color='secondary'
                     button={{ variant: 'pill', size: 'large' }}

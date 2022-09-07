@@ -89,7 +89,7 @@ export function CartSummary(props: CartSummaryProps) {
           <SectionContainer
             variantLeft='h5'
             labelLeft={<Trans id='Confirmation + Track & trace' />}
-            sx={{ '& .SectionHeader': { marginTop: 0, paddingBottom: '8px' } }}
+            sx={{ '& .SectionHeader-root': { marginTop: 0, paddingBottom: '8px' } }}
           />
           <Typography variant='body1'>{email || ''}</Typography>
         </Box>
@@ -97,7 +97,7 @@ export function CartSummary(props: CartSummaryProps) {
           <SectionContainer
             variantLeft='h5'
             labelLeft={<Trans id='Shipping method' />}
-            sx={{ '& .SectionHeader': { marginTop: 0, paddingBottom: '8px' } }}
+            sx={{ '& .SectionHeader-root': { marginTop: 0, paddingBottom: '8px' } }}
           />
           <Typography variant='body1'>
             {shipping_addresses?.[0]?.selected_shipping_method?.carrier_title}
