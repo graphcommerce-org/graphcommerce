@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-product",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "4.5.4",
+  "version": "4.5.5",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -23,7 +23,7 @@
     "@graphcommerce/graphql": "3.4.8",
     "@graphcommerce/graphql-mesh": "4.1.9",
     "@graphcommerce/image": "3.1.9",
-    "@graphcommerce/magento-cart": "4.7.4",
+    "@graphcommerce/magento-cart": "4.7.5",
     "@graphcommerce/magento-store": "4.2.32",
     "@graphcommerce/next-ui": "4.23.1",
     "schema-dts": "^1.1.0"

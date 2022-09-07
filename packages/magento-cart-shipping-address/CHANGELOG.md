@@ -1,5 +1,16 @@
 # Change Log
 
+## 3.4.5
+
+### Patch Changes
+
+- [#1579](https://github.com/graphcommerce-org/graphcommerce/pull/1579) [`e8639ec5f`](https://github.com/graphcommerce-org/graphcommerce/commit/e8639ec5f6759504211d70a966f5c348c6b3a7f6) Thanks [@paales](https://github.com/paales)! - New FormComponents added which combines react-hook-form and mui's form components for easier form handling
+
+- Updated dependencies [[`e8639ec5f`](https://github.com/graphcommerce-org/graphcommerce/commit/e8639ec5f6759504211d70a966f5c348c6b3a7f6)]:
+  - @graphcommerce/ecommerce-ui@1.3.0
+  - @graphcommerce/magento-customer@4.10.5
+  - @graphcommerce/magento-cart@4.7.5
+
 ## 3.4.4
 
 ### Patch Changes
