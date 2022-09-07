@@ -1,5 +1,14 @@
 # Change Log
 
+## 4.23.1
+
+### Patch Changes
+
+- [#1624](https://github.com/graphcommerce-org/graphcommerce/pull/1624) [`9b84a68a1`](https://github.com/graphcommerce-org/graphcommerce/commit/9b84a68a1e7311a79eb687c7dcee905d3000facf) Thanks [@paales](https://github.com/paales)! - Create a GetServerSideProps
+
+- Updated dependencies []:
+  - @graphcommerce/framer-scroller@2.1.35
+
 ## 4.23.0
 
 ### Minor Changes
