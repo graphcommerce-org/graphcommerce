@@ -1,5 +1,4 @@
 fragment CustomizableFileOption on CustomizableFileOption {
-  ...CustomizableOption
   product_sku
   fileValue: value {
     file_extension

@@ -1,5 +1,4 @@
 fragment CustomizableMultipleOption on CustomizableMultipleOption {
-  ...CustomizableOption
   multipleValue: value {
     option_type_id
     price

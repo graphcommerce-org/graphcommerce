@@ -48,6 +48,6 @@ generates:
       skipTypename: true
       namingConvention: 'keep'
       dedupeOperationSuffix: true
-      content: '/* eslint-disable */'
+      content: /* eslint-disable */
 watchConfig:
   usePolling: false

@@ -1,6 +1,5 @@
 fragment CustomizableRadioOption on CustomizableRadioOption {
-  ...CustomizableOption
-  value {
+  radioValue: value {
     option_type_id
     price
     price_type

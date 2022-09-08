@@ -1,5 +1,4 @@
 fragment CustomizableCheckboxOption on CustomizableCheckboxOption {
-  ...CustomizableOption
   checkboxValue: value {
     price
     price_type

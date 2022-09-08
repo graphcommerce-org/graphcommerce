@@ -1,5 +1,4 @@
 fragment CustomizableAreaOption on CustomizableAreaOption {
-  ...CustomizableOption
   product_sku
   areaValue: value {
     max_characters

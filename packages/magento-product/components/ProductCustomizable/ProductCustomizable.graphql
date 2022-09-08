@@ -2,6 +2,7 @@ fragment ProductCustomizable on CustomizableProductInterface @injectable {
   options {
     uid
     __typename
+    ...CustomizableOption
     ...CustomizableAreaOption
     ...CustomizableCheckboxOption
     ...CustomizableDateOption

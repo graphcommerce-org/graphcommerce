@@ -1,5 +1,4 @@
 fragment CustomizableFieldOption on CustomizableFieldOption {
-  ...CustomizableOption
   product_sku
   fieldValue: value {
     max_characters
