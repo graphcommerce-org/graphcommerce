@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.5.6
+
+### Patch Changes
+
+- [#1626](https://github.com/graphcommerce-org/graphcommerce/pull/1626) [`b20f3e52a`](https://github.com/graphcommerce-org/graphcommerce/commit/b20f3e52a48751da217e574f0339282155748995) Thanks [@paales](https://github.com/paales)! - Simplified generated query for ProductCustomizable
+
 ## 4.5.5
 
 ### Patch Changes
