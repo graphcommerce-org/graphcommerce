@@ -380,7 +380,7 @@ msgid "Payment failed with status: {paymentStatus}"
 msgstr "Betaling mislukt met status: {paymentStatus}"
 
 msgid "Payment method"
-msgstr "Betalingsmethode"
+msgstr "Betaalmethode"
 
 msgid "Personal details"
 msgstr "Persoonlijke details"

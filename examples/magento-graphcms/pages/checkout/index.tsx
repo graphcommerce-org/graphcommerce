@@ -10,6 +10,7 @@ import { useGoogleRecaptcha } from '@graphcommerce/googlerecaptcha'
 import {
   ApolloCartErrorAlert,
   ApolloCartErrorFullPage,
+  EmptyCart,
   useCartQuery,
 } from '@graphcommerce/magento-cart'
 import { ShippingPageDocument } from '@graphcommerce/magento-cart-checkout'
@@ -49,7 +50,9 @@ function ShippingPage() {
   const shippingPage = useCartQuery(ShippingPageDocument, { fetchPolicy: 'cache-and-network' })
   const customerAddresses = useCustomerQuery(CustomerDocument, { fetchPolicy: 'cache-and-network' })
 
-  const cartExists = typeof shippingPage.data?.cart !== 'undefined'
+  const cartExists =
+    typeof shippingPage.data?.cart !== 'undefined' &&
+    (shippingPage.data.cart?.items?.length ?? 0) > 0
 
   return (
     <>
@@ -63,6 +66,7 @@ function ShippingPage() {
         }
       >
         {shippingPage.error && <ApolloCartErrorFullPage error={shippingPage.error} />}
+        {!shippingPage.error && !cartExists && <EmptyCart />}
         {!shippingPage.error && cartExists && (
           <ComposedForm>
             <LayoutHeader

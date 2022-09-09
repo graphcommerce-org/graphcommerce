@@ -104,7 +104,12 @@ export function ComposedSubmit(props: ComposedSubmitProps) {
           throw e
         }
       }
-      dispatch({ type: 'SUBMITTING' })
+
+      dispatch(
+        invalidKeys.length === 0
+          ? { type: 'SUBMITTING' }
+          : { type: 'SUBMITTED', isSubmitSuccessful: false },
+      )
     } catch (error) {
       dispatch({ type: 'SUBMITTED', isSubmitSuccessful: false })
     }

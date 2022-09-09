@@ -6,6 +6,7 @@ import {
   CartAgreementsForm,
   CartSummary,
   CartTotals,
+  EmptyCart,
   useCartQuery,
 } from '@graphcommerce/magento-cart'
 import { BillingPageDocument } from '@graphcommerce/magento-cart-checkout'
@@ -48,7 +49,8 @@ function PaymentPage() {
   const billingPage = useCartQuery(BillingPageDocument, { fetchPolicy: 'cache-and-network' })
   const [{ locked }] = useCartLock()
 
-  const cartExists = typeof billingPage.data?.cart !== 'undefined'
+  const cartExists =
+    typeof billingPage.data?.cart !== 'undefined' && (billingPage.data.cart?.items?.length ?? 0) > 0
 
   return (
     <ComposedForm>
@@ -63,6 +65,7 @@ function PaymentPage() {
         }
       >
         {billingPage.error && <ApolloCartErrorFullPage error={billingPage.error} />}
+        {!cartExists && <EmptyCart />}
         {cartExists && !billingPage.error && (
           <>
             <LayoutHeader
