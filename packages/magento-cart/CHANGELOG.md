@@ -1,5 +1,18 @@
 # Change Log
 
+## 4.8.0
+
+### Minor Changes
+
+- [#1630](https://github.com/graphcommerce-org/graphcommerce/pull/1630) [`8d5207288`](https://github.com/graphcommerce-org/graphcommerce/commit/8d52072887f124831ed85d28ec79998f0ce55f1c) Thanks [@mikekeehnen](https://github.com/mikekeehnen)! - Bug that caused multiple cart creations, for guest, on returning from a successful checkout
+
+### Patch Changes
+
+- Updated dependencies [[`c1b8b0352`](https://github.com/graphcommerce-org/graphcommerce/commit/c1b8b03520532223f7b572ff23f1d368a4dfe306), [`662f510c2`](https://github.com/graphcommerce-org/graphcommerce/commit/662f510c21fc44a63036e5c7a0726ccb33c31600)]:
+  - @graphcommerce/magento-customer@4.11.0
+  - @graphcommerce/react-hook-form@3.3.3
+  - @graphcommerce/ecommerce-ui@1.3.1
+
 ## 4.7.5
 
 ### Patch Changes
