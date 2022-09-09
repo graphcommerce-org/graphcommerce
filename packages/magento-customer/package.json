@@ -28,7 +28,7 @@
     "@graphcommerce/magento-store": "4.2.32",
     "@graphcommerce/next-ui": "4.23.1",
     "@graphcommerce/react-hook-form": "3.3.2",
-    "apollo-cache-persist": "0.1.1"
+    "apollo3-cache-persist": "0.14.1"
   },
   "peerDependencies": {
     "@lingui/react": "^3.13.2",
