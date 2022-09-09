@@ -1,5 +1,13 @@
 # Change Log
 
+## 3.5.6
+
+### Patch Changes
+
+- Updated dependencies [[`8d5207288`](https://github.com/graphcommerce-org/graphcommerce/commit/8d52072887f124831ed85d28ec79998f0ce55f1c), [`662f510c2`](https://github.com/graphcommerce-org/graphcommerce/commit/662f510c21fc44a63036e5c7a0726ccb33c31600)]:
+  - @graphcommerce/magento-cart@4.8.0
+  - @graphcommerce/react-hook-form@3.3.3
+
 ## 3.5.5
 
 ### Patch Changes

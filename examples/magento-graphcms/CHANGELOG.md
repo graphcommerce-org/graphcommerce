@@ -1,5 +1,43 @@
 # Change Log
 
+## 3.25.5
+
+### Patch Changes
+
+- [#1629](https://github.com/graphcommerce-org/graphcommerce/pull/1629) [`cb94be945`](https://github.com/graphcommerce-org/graphcommerce/commit/cb94be9456622995b83c80d15fa34aab075c0c16) Thanks [@paales](https://github.com/paales)! - Make sure that pages that come from graphcms can render when it isn't associated with a magent ocategory
+
+* [#1629](https://github.com/graphcommerce-org/graphcommerce/pull/1629) [`cb94be945`](https://github.com/graphcommerce-org/graphcommerce/commit/cb94be9456622995b83c80d15fa34aab075c0c16) Thanks [@paales](https://github.com/paales)! - Make sure the checkout pages dont show anything when there is nothing in your cart
+
+* Updated dependencies [[`c1b8b0352`](https://github.com/graphcommerce-org/graphcommerce/commit/c1b8b03520532223f7b572ff23f1d368a4dfe306), [`8d5207288`](https://github.com/graphcommerce-org/graphcommerce/commit/8d52072887f124831ed85d28ec79998f0ce55f1c)]:
+  - @graphcommerce/magento-customer@4.11.0
+  - @graphcommerce/magento-cart@4.8.0
+  - @graphcommerce/magento-cart-billing-address@3.1.6
+  - @graphcommerce/magento-cart-checkout@3.0.55
+  - @graphcommerce/magento-cart-email@3.0.55
+  - @graphcommerce/magento-cart-items@3.1.7
+  - @graphcommerce/magento-cart-shipping-address@3.4.6
+  - @graphcommerce/magento-customer-account@3.2.6
+  - @graphcommerce/magento-newsletter@2.1.6
+  - @graphcommerce/magento-product-configurable@4.2.8
+  - @graphcommerce/magento-review@3.3.7
+  - @graphcommerce/magento-wishlist@1.6.8
+  - @graphcommerce/magento-cart-coupon@3.2.6
+  - @graphcommerce/magento-cart-payment-method@3.5.6
+  - @graphcommerce/magento-cart-shipping-method@3.6.6
+  - @graphcommerce/magento-payment-braintree@3.0.53
+  - @graphcommerce/magento-payment-included@3.1.25
+  - @graphcommerce/magento-product@4.5.7
+  - @graphcommerce/magento-product-bundle@4.0.55
+  - @graphcommerce/magento-product-downloadable@4.0.55
+  - @graphcommerce/magento-product-grouped@3.0.55
+  - @graphcommerce/magento-product-simple@4.0.55
+  - @graphcommerce/magento-product-virtual@4.0.55
+  - @graphcommerce/mollie-magento-payment@3.5.6
+  - @graphcommerce/ecommerce-ui@1.3.1
+  - @graphcommerce/magento-cart-pickup@3.1.16
+  - @graphcommerce/magento-search@4.2.4
+  - @graphcommerce/magento-category@4.5.7
+
 ## 3.25.4
 
 ### Patch Changes
