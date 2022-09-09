@@ -7,6 +7,10 @@ sources:
         retry: 3
         operationHeaders:
           gcms-locales: "{context.headers['gcms-locales']}"
+    transforms:
+      - filterSchema:
+          filters:
+            - 'Query.*.!locales'
   - name: m2
     handler:
       graphql:
