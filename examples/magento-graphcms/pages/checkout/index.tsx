@@ -10,6 +10,7 @@ import { useGoogleRecaptcha } from '@graphcommerce/googlerecaptcha'
 import {
   ApolloCartErrorAlert,
   ApolloCartErrorFullPage,
+  EmptyCart,
   useCartQuery,
 } from '@graphcommerce/magento-cart'
 import { ShippingPageDocument } from '@graphcommerce/magento-cart-checkout'
