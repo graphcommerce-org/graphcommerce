@@ -5,6 +5,8 @@ sources:
         useGETForQueries: true
         endpoint: ${GRAPHCMS_URL}
         retry: 3
+        operationHeaders:
+          gcms-locales: "{context.headers['gcms-locales']}"
   - name: m2
     handler:
       graphql:
