@@ -12,6 +12,8 @@ import {
   mergeTypePolicies,
   errorLink,
   measurePerformanceLink,
+  ClientContext,
+  setContext,
 } from '@graphcommerce/graphql'
 import { cartTypePolicies, migrateCart, createCartErrorLink } from '@graphcommerce/magento-cart'
 import { CreateEmptyCartDocument } from '@graphcommerce/magento-cart/hooks/CreateEmptyCart.gql'
@@ -42,12 +44,28 @@ const migrations = [migrateCart, migrateCustomer]
 
 const clientRef: { current: ApolloClient<NormalizedCacheObject> | null } = { current: null }
 
+/**
+ * We need the gcms-locales to force all Hygraph query results to a specific language
+ *
+ * @param locale
+ * @returns
+ */
+export const createLocaleLink = (locale?: string) =>
+  setContext((_, context: ClientContext) => {
+    if (!context.headers) context.headers = {}
+    const defaultLocale = process.env.NEXT_PUBLIC_HYGRAPH_FALLBACK_LOCALE || 'en'
+    context.headers['gcms-locales'] = locale ? `${locale}, ${defaultLocale}` : defaultLocale
+    return context
+  })
+
 /** HttpLink to connecto to the GraphQL Backend. */
 export function httpLink(locale?: string) {
   return ApolloLink.from([
     ...(typeof window === 'undefined' ? [errorLink, measurePerformanceLink] : []),
     // Add the correct store header for the Magento user.
     createStoreLink(locale),
+    // Add the correct locale header for Hygraph localized content.
+    createLocaleLink(locale),
     // Add the correct authorization header for the Magento user.
     customerTokenLink,
     // Replace current cart id with renewed cart id and forward operation
