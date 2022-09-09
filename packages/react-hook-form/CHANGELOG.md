@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.3.3
+
+### Patch Changes
+
+- [#1629](https://github.com/graphcommerce-org/graphcommerce/pull/1629) [`662f510c2`](https://github.com/graphcommerce-org/graphcommerce/commit/662f510c21fc44a63036e5c7a0726ccb33c31600) Thanks [@paales](https://github.com/paales)! - The submit button would remain in a loading state when all composed forms were invalid
+
 ## 3.3.2
 
 ### Patch Changes
