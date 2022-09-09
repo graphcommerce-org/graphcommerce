@@ -198,6 +198,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     return {
       props: {
         ...(await categoryPage).data,
+        ...(await layout).data,
         apolloState: await conf.then(() => client.cache.extract()),
       },
       revalidate: 60 * 20,
