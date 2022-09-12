@@ -1,5 +1,16 @@
 # Change Log
 
+## 4.8.1
+
+### Patch Changes
+
+- Updated dependencies [[`104103bc2`](https://github.com/graphcommerce-org/graphcommerce/commit/104103bc2a0fbaa510af2e26b6b00ddc63e8495b)]:
+  - @graphcommerce/next-ui@4.24.0
+  - @graphcommerce/ecommerce-ui@1.3.2
+  - @graphcommerce/framer-scroller@2.1.36
+  - @graphcommerce/magento-customer@4.11.1
+  - @graphcommerce/magento-store@4.2.33
+
 ## 4.8.0
 
 ### Minor Changes
