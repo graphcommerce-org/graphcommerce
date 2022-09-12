@@ -207,44 +207,50 @@ export const NavigationOverlay = React.memo<NavigationOverlayProps>((props) => {
 
       <MotionDiv layout='position' style={{ display: 'grid' }}>
         <Box
-          sx={(theme) => ({
-            display: 'grid',
-            alignItems: !stretchColumns ? 'start' : undefined,
-            '& .NavigationItem-item': {
-              // eslint-disable-next-line no-nested-ternary
-              width: itemWidthMd
-                ? selectedLevel >= 1
-                  ? `calc(${itemWidthMd} + 1px)`
-                  : itemWidthMd
-                : 'stretch',
-            },
-            [theme.breakpoints.down('md')]: {
-              width:
-                sizeSm !== 'floating'
-                  ? `calc(${itemWidthSm || '100vw'} + ${selectedLevel}px)`
-                  : `calc(${itemWidthSm || '100vw'} - ${theme.page.horizontal} - ${
-                      theme.page.horizontal
-                    })`,
-              minWidth: 200,
-              overflow: 'hidden',
-              scrollSnapType: 'x mandatory',
+          sx={[
+            (theme) => ({
+              display: 'grid',
+              alignItems: !stretchColumns ? 'start' : undefined,
               '& .NavigationItem-item': {
-                width:
-                  sizeSm !== 'floating'
-                    ? `calc(${itemWidthSm || '100vw'} - ${
-                        theme.spacings[itemPadding] ?? itemPadding
-                      } - ${theme.spacings[itemPadding] ?? itemPadding} + ${selectedLevel}px)`
-                    : `calc(${itemWidthSm || '100vw'} - ${
-                        theme.spacings[itemPadding] ?? itemPadding
-                      } - ${theme.spacings[itemPadding] ?? itemPadding} - ${
-                        theme.page.horizontal
-                      } - ${theme.page.horizontal})`,
-                minWidth: `calc(${200}px - ${theme.spacings[itemPadding] ?? itemPadding} - ${
-                  theme.spacings[itemPadding] ?? itemPadding
-                })`,
+                // eslint-disable-next-line no-nested-ternary
+                width: itemWidthMd
+                  ? selectedLevel >= 1
+                    ? `calc(${itemWidthMd} + 1px)`
+                    : itemWidthMd
+                  : 'stretch',
               },
-            },
-          })}
+            }),
+            activeAndNotClosing
+              ? (theme) => ({
+                  [theme.breakpoints.down('md')]: {
+                    width:
+                      sizeSm !== 'floating'
+                        ? `calc(${itemWidthSm || '100vw'} + ${selectedLevel}px)`
+                        : `calc(${itemWidthSm || '100vw'} - ${theme.page.horizontal} - ${
+                            theme.page.horizontal
+                          })`,
+                    minWidth: 200,
+                    overflow: 'hidden',
+                    scrollSnapType: 'x mandatory',
+                    '& .NavigationItem-item': {
+                      width:
+                        sizeSm !== 'floating'
+                          ? `calc(${itemWidthSm || '100vw'} - ${
+                              theme.spacings[itemPadding] ?? itemPadding
+                            } - ${theme.spacings[itemPadding] ?? itemPadding} + ${selectedLevel}px)`
+                          : `calc(${itemWidthSm || '100vw'} - ${
+                              theme.spacings[itemPadding] ?? itemPadding
+                            } - ${theme.spacings[itemPadding] ?? itemPadding} - ${
+                              theme.page.horizontal
+                            } - ${theme.page.horizontal})`,
+                      minWidth: `calc(${200}px - ${theme.spacings[itemPadding] ?? itemPadding} - ${
+                        theme.spacings[itemPadding] ?? itemPadding
+                      })`,
+                    },
+                  },
+                })
+              : {},
+          ]}
         >
           <Box
             className={classes.navigation}
