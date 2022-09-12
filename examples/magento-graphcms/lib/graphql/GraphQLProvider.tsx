@@ -1,6 +1,5 @@
 import { recaptchaLink } from '@graphcommerce/googlerecaptcha'
 import {
-  ApolloCache,
   ApolloClient,
   ApolloLink,
   ApolloProvider,
@@ -16,19 +15,17 @@ import {
   setContext,
 } from '@graphcommerce/graphql'
 import { cartTypePolicies, migrateCart, createCartErrorLink } from '@graphcommerce/magento-cart'
-import { CreateEmptyCartDocument } from '@graphcommerce/magento-cart/hooks/CreateEmptyCart.gql'
 import {
-  createCustomerTokenLink,
   customerTokenLink,
   customerTypePolicies,
   migrateCustomer,
 } from '@graphcommerce/magento-customer'
 import { magentoTypePolicies } from '@graphcommerce/magento-graphql'
-import { createStoreLink } from '@graphcommerce/magento-store'
+import { createStoreLink, defaultLocale } from '@graphcommerce/magento-store'
 import { wishlistTypePolicies } from '@graphcommerce/magento-wishlist'
 import { ApolloStateProps } from '@graphcommerce/next-ui'
 import { AppProps } from 'next/app'
-import { createRef, RefObject, useMemo, useRef } from 'react'
+import { useMemo } from 'react'
 
 /**
  * This is a list of type policies which are used to influence how cache is handled.
@@ -45,16 +42,14 @@ const migrations = [migrateCart, migrateCustomer]
 const clientRef: { current: ApolloClient<NormalizedCacheObject> | null } = { current: null }
 
 /**
- * We need the gcms-locales to force all Hygraph query results to a specific language
- *
- * @param locale
- * @returns
+ * Add a gcms-locales header to make sure queries return in a certain language with a fallback to
+ * defaultLocale().
  */
-export const createLocaleLink = (locale?: string) =>
+export const createHygraphLink = (locale: string = defaultLocale()) =>
   setContext((_, context: ClientContext) => {
     if (!context.headers) context.headers = {}
-    const defaultLocale = process.env.NEXT_PUBLIC_HYGRAPH_FALLBACK_LOCALE || 'en'
-    context.headers['gcms-locales'] = locale ? `${locale}, ${defaultLocale}` : defaultLocale
+    context.headers['gcms-locales'] =
+      locale !== defaultLocale() ? `${locale}, ${defaultLocale()}` : locale
     return context
   })
 
@@ -65,7 +60,7 @@ export function httpLink(locale?: string) {
     // Add the correct store header for the Magento user.
     createStoreLink(locale),
     // Add the correct locale header for Hygraph localized content.
-    createLocaleLink(locale),
+    createHygraphLink(locale),
     // Add the correct authorization header for the Magento user.
     customerTokenLink,
     // Replace current cart id with renewed cart id and forward operation
