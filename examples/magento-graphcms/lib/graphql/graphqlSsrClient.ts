@@ -8,7 +8,7 @@ import {
 import { MeshApolloLink } from '@graphcommerce/graphql-mesh'
 import { createStoreLink, defaultLocale } from '@graphcommerce/magento-store'
 import type { MeshInstance } from '@graphql-mesh/runtime'
-import { createCache, httpLink } from './GraphQLProvider'
+import { createCache, createHygraphLink, httpLink } from './GraphQLProvider'
 
 const loopback =
   process.env.NODE_ENV === 'development' || (process.env.VERCEL === '1' && process.env.CI !== '1')
@@ -26,6 +26,7 @@ function client(locale: string) {
     link: ApolloLink.from([
       measurePerformanceLink,
       errorLink,
+      createHygraphLink(locale),
       // Add the correct store header for the Magento user.
       createStoreLink(locale),
       new MeshApolloLink(mesh),
