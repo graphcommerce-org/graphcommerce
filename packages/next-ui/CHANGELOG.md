@@ -1,5 +1,16 @@
 # Change Log
 
+## 4.24.0
+
+### Minor Changes
+
+- [#1638](https://github.com/graphcommerce-org/graphcommerce/pull/1638) [`104103bc2`](https://github.com/graphcommerce-org/graphcommerce/commit/104103bc2a0fbaa510af2e26b6b00ddc63e8495b) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Fix navigation overlay visibility bug
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/framer-scroller@2.1.36
+
 ## 4.23.1
 
 ### Patch Changes
