@@ -72,7 +72,6 @@
     "@graphcommerce/mollie-magento-payment": "3.5.6",
     "@graphcommerce/next-config": "3.2.0",
     "@graphcommerce/next-ui": "4.23.1",
-    "@graphql-mesh/transform-filter-schema": "^0.14.87",
     "@lingui/core": "3.14.0",
     "@lingui/react": "3.14.0",
     "@mui/lab": "5.0.0-alpha.94",
