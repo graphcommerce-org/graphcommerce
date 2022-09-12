@@ -122,7 +122,13 @@ function CategoryPage(props: CategoryProps) {
 
           <Container maxWidth={false}>
             <ProductListCount total_count={products?.total_count} />
-            <ProductListItems items={products?.items} loadingEager={1} sx={sxLargeItem} />
+            <ProductListItems
+              title={category.name ?? ''}
+              item_list_id={category.uid}
+              items={products?.items}
+              loadingEager={1}
+              sx={sxLargeItem}
+            />
             <ProductListPagination page_info={products?.page_info} />
           </Container>
         </ProductListParamsProvider>
