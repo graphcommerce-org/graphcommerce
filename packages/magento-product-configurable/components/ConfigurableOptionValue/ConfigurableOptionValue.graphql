@@ -1,0 +1,7 @@
+fragment ConfigurableOptionValue on ConfigurableProductOptionsValues {
+  __typename
+  uid
+  ...ConfigurableOptionValueColor
+  ...ConfigurableOptionValueText
+  ...ConfigurableOptionValueImage
+}

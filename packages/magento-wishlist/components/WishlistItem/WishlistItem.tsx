@@ -11,7 +11,7 @@ type OptionalProductWishlistParent = {
 
 export type WishlistItemProps = PropsWithChildren<WishlistItemProductFragment> & {
   sx?: SxProps<Theme>
-  selectedOptions?: InputMaybe<InputMaybe<string> | InputMaybe<string>[]> | undefined
+  selectedOptions?: InputMaybe<string | string[]> | undefined
 } & OptionalProductWishlistParent
 
 export function WishlistItem(props: WishlistItemProps) {

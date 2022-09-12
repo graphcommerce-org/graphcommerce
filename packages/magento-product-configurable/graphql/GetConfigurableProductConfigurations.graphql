@@ -1,0 +1,11 @@
+query GetConfigurableProductConfigurations($urlKey: String!, $selectedOptions: [ID!] = []) {
+  typeProducts: products(filter: { url_key: { eq: $urlKey } }) {
+    items {
+      __typename
+      uid
+      ... on ConfigurableProduct {
+        ...ConfigurableProductConfigurations
+      }
+    }
+  }
+}

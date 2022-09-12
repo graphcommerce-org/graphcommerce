@@ -15,7 +15,13 @@ export function ProductShortDescription(props: ProductShortDescriptionProps) {
       component='div'
       className={classes.description}
       dangerouslySetInnerHTML={{ __html: short_description?.html ?? '' }}
-      sx={[{ '& > p': { marginTop: 0 } }, ...(Array.isArray(sx) ? sx : [sx])]}
+      sx={[
+        {
+          '& > p:first-child': { marginTop: 0 },
+          '& > p:last-child': { marginBottom: 0 },
+        },
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
     />
   )
 }

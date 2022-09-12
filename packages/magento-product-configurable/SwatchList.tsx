@@ -1,15 +1,15 @@
 import type { Maybe } from '@graphcommerce/graphql-mesh'
 import { RenderType } from '@graphcommerce/next-ui'
 import React from 'react'
-import type { ProductListItemConfigurableFragment } from './ProductListItemConfigurable.gql'
 import { ColorSwatchData } from './Swatches/ColorSwatchData'
 import { ImageSwatchData } from './Swatches/ImageSwatchData'
 import { TextSwatchData } from './Swatches/TextSwatchData'
 import { SwatchSize, SwatchTypeRenderer } from './Swatches/types'
+import { ProductListItemConfigurableFragment } from './components/ProductListItemConfigurable/ProductListItemConfigurable.gql'
 
 type SwatchListProps = {
   attributes: string[]
-  configurable_options: Maybe<ProductListItemConfigurableFragment['configurable_options']>
+  configurable_options?: Maybe<ProductListItemConfigurableFragment['configurable_options']>
 }
 
 const renderer: SwatchTypeRenderer = {
@@ -34,6 +34,7 @@ export function SwatchList({ attributes, configurable_options }: SwatchListProps
                 renderer={renderer}
                 {...val}
                 {...val.swatch_data}
+                __typename={val?.swatch_data?.__typename ?? 'TextSwatchData'}
                 size={'small' as SwatchSize}
               />
             ) : null,

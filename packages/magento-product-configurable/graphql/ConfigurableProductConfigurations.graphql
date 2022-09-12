@@ -1,0 +1,76 @@
+fragment ConfigurableProductConfigurations on ConfigurableProduct {
+  __typename
+  uid
+  sku
+  name
+  price_range {
+    minimum_price {
+      final_price {
+        ...Money
+      }
+      regular_price {
+        ...Money
+      }
+    }
+  }
+  configurable_options {
+    attribute_code
+    uid
+    label
+    position
+    use_default
+    values {
+      ...ConfigurableOptionValue
+    }
+  }
+  configurable_product_options_selection(configurableOptionValueUids: $selectedOptions) {
+    configurable_options {
+      attribute_code
+      label
+      values {
+        is_available
+        is_use_default
+        label
+        swatch {
+          value
+          ... on ImageSwatchData {
+            thumbnail
+          }
+        }
+        uid
+      }
+    }
+    options_available_for_selection {
+      attribute_code
+      option_value_uids
+    }
+    media_gallery {
+      __typename
+      label
+      position
+      disabled
+      ...ProductImage
+      ...ProductVideo
+    }
+    variant {
+      uid
+      name
+      thumbnail {
+        disabled
+        label
+        position
+        url
+      }
+      price_range {
+        minimum_price {
+          final_price {
+            ...Money
+          }
+          regular_price {
+            ...Money
+          }
+        }
+      }
+    }
+  }
+}

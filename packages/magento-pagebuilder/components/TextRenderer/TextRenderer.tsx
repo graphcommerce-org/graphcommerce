@@ -13,7 +13,6 @@ export function TextRenderer(props: TextRendererProps) {
 
   const clickHandler = (event) => {
     event.prventDefault()
-    console.log('handleclick')
   }
 
   if (!textContent) return null

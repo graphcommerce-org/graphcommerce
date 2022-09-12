@@ -25,6 +25,7 @@ const { classes, selectors } = extendableComponent('ProductAddToCart', [
 
 export type AddToCartProps = React.ComponentProps<typeof ProductAddToCart>
 
+/** @deprecated ProductAddToCart is deprecated. Use ProductAddToCartForm */
 export function ProductAddToCart(
   props: Pick<ProductInterface, 'name'> & {
     variables: Omit<ProductAddToCartMutationVariables, 'cartId'>
@@ -35,6 +36,10 @@ export function ProductAddToCart(
   } & Omit<ButtonProps, 'type' | 'name'>,
 ) {
   const { name, children, variables, price, sx, additionalButtons, ...buttonProps } = props
+
+  if (process.env.NODE_ENV !== 'production') {
+    console.warn('ProductAddToCart is deprecated. Use ProductAddToCartForm')
+  }
 
   const form = useFormGqlMutationCart(ProductAddToCartDocument, {
     defaultValues: { ...variables },

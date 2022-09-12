@@ -4,6 +4,7 @@ import {
   useCustomerSession,
   useGuestQuery,
 } from '@graphcommerce/magento-customer'
+import { useFormProductAddToCart } from '@graphcommerce/magento-product'
 import {
   IconSvg,
   iconHeart,
@@ -29,7 +30,6 @@ const ignoreProductWishlistStatus =
   process.env.NEXT_PUBLIC_WISHLIST_IGNORE_PRODUCT_WISHLIST_STATUS === '1'
 
 export type ProductWishlistChipProps = ProductWishlistChipFragment & { sx?: SxProps<Theme> } & {
-  selectedOptions?: string[]
   showFeedbackMessage?: boolean
   buttonProps?: IconButtonProps
 }
@@ -39,7 +39,9 @@ const parts = ['root', 'wishlistIcon', 'wishlistIconActive', 'wishlistButton'] a
 const { classes } = extendableComponent(compName, parts)
 
 export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
-  const { name, sku, showFeedbackMessage, selectedOptions = [], buttonProps, sx = [] } = props
+  const { name, sku, showFeedbackMessage, buttonProps, sx = [] } = props
+
+  const addToCartForm = useFormProductAddToCart(true)
 
   const [inWishlist, setInWishlist] = useState(false)
   const [displayMessageBar, setDisplayMessageBar] = useState(false)
@@ -110,6 +112,9 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
   const handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault()
 
+    const selectedOptions = addToCartForm?.getValues().selectedOptions ?? []
+    const selected_options = Array.isArray(selectedOptions) ? selectedOptions : [selectedOptions]
+
     if (!sku) {
       return
     }
@@ -127,9 +132,7 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
         }
       } else {
         // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        addWishlistItem({
-          variables: { input: { sku, quantity: 1, selected_options: selectedOptions } },
-        })
+        addWishlistItem({ variables: { input: { sku, quantity: 1, selected_options } } })
         setDisplayMessageBar(true)
       }
     } else if (inWishlist) {
@@ -154,7 +157,7 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
                 __typename: 'GuestWishlistItem',
                 sku,
                 quantity: 1,
-                selected_options: selectedOptions,
+                selected_options,
               },
             ],
           },
