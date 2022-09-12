@@ -27,7 +27,6 @@ to find resources to build more complex features on your own.
 - Edited the layout component to remove components
 - Add a simplified search Icon button
 - Make a local copy of the MenuFab component and update its imports
-- Change the Menu component's styling to a fullscreen overlay
 
 ### Requirements
 
@@ -39,31 +38,9 @@ frontend React framework that uses Next.js for server-side rendering.
 
 ---
 
-<figure>
-
-https://user-images.githubusercontent.com/1251986/154978614-8d2eaee1-d64b-4bae-a7d7-cfee2e9175d3.mp4
-
-<video width="100%" controls autoPlay loop muted playsInline>
-<source src="https://user-images.githubusercontent.com/1251986/154978614-8d2eaee1-d64b-4bae-a7d7-cfee2e9175d3.mp4" type="video/mp4"/>
-</video>
-
-  <figcaption>Before customization of the header</figcaption>
-</figure>
-
-<figure>
-
-https://user-images.githubusercontent.com/1251986/154979091-89c72d68-c62f-451c-af49-6f36f3fa6609.mp4
-
-<video width="100%" controls autoPlay loop muted playsInline>
-<source src="https://user-images.githubusercontent.com/1251986/154979091-89c72d68-c62f-451c-af49-6f36f3fa6609.mp4" type="video/mp4"/>
-</video>
-
-  <figcaption>After customization of the header</figcaption>
-</figure>
-
 ### Move and justify the logo
 
-- In /components/Layout/LayoutFull.tsx, move `<Logo />` after
+- In /components/Layout/LayoutNavigation.tsx, move `<Logo />` after
   `<DesktopNavBar>...</DesktopNavBar>`
 - Wrap the `<Logo />` component in a `<Box>` component:
 
@@ -93,7 +70,7 @@ https://user-images.githubusercontent.com/1251986/154979091-89c72d68-c62f-451c-a
 
 ### Remove DesktopNavBar
 
-- In /components/Layout/LayoutFull.tsx, remove the
+- In /components/Layout/LayoutNavigation.tsx, remove the
   `<DesktopNavBar>...</DesktopNavBar>` component.
 
 <figure>
@@ -105,8 +82,8 @@ https://user-images.githubusercontent.com/1251986/154979091-89c72d68-c62f-451c-a
 
 ### Replace Search input with Search Fab
 
-- In /components/Layout/LayoutFull.tsx, replace `<SearchLink href='/search' />`
-  with:
+- In /components/Layout/LayoutNavigation.tsx, replace
+  `<SearchLink href='/search' />` with:
 
 ```tsx
 <PageLink href='/search' passHref>
@@ -121,8 +98,8 @@ https://user-images.githubusercontent.com/1251986/154979091-89c72d68-c62f-451c-a
 
 ### Remove Customer Service Fab
 
-- In /components/Layout/LayoutFull.tsx, remove the Customer Service floating
-  action button by removing it completely:
+- In /components/Layout/LayoutNavigation.tsx, remove the Customer Service
+  floating action button by removing it completely:
 
 ```tsx
 <PageLink href='/service' passHref>
@@ -141,7 +118,7 @@ https://user-images.githubusercontent.com/1251986/154979091-89c72d68-c62f-451c-a
 
 ### Make a local copy of the MenuFab component
 
-- In /components/Layout/LayoutFull.tsx, remove `MenuFab` from the
+- In /components/Layout/LayoutNavigation.tsx, remove `MenuFab` from the
   `'@graphcommerce/next-ui'` import
 - Add `import { MenuFab } from './MenuFab'` to the list of imports at the top of
   the file
@@ -172,58 +149,6 @@ import React, { useEffect } from 'react'
 ![Local copy of the MenuFab component](https://user-images.githubusercontent.com/1251986/157832754-3766f92c-ffd7-48ed-8cb8-09e1cccfc044.png)
 
  <figcaption>Local copy of the MenuFab component with Fab scroll animation removed</figcaption>
-</figure>
-
-### Change the Menu component's styling
-
-- In /components/Layout/MenuFab.tsx, change the `<Menu>` component's PaperProps
-  prop to:
-
-```tsx
-PaperProps={{
-  sx: (theme) => ({
-    width: '100vw',
-    height: '100vh',
-    maxWidth: '100vw',
-    maxHeight: '100vh',
-    backgroundColor: alpha(theme.palette.text.primary, 0.95),
-    color: theme.palette.background.paper,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 0,
-    '& svg': {
-      color: theme.palette.background.paper,
-    },
-  }),
-}}
-```
-
-- Remove the `<Menu>` component's prop 'disableScrollLock`
-- Add a two props to the `<Menu>` component:
-
-```tsx
-marginThreshold={0}
-TransitionComponent={Fade}
-```
-
-- Add the import of 'alpha' and 'Fade' to the list of the `'@mui/material'`
-  imports at the top of the file
-- Remove the search component by removing:
-
-```tsx
-  search ? (
-    <ListItem key='search' dense sx={{ mb: '6px', borderColor: 'red' }}>
-      {search}
-    </ListItem>
-  ) : null,
-```
-
-<figure>
-
-![Menu component with custom styling](https://user-images.githubusercontent.com/1251986/157832794-711774b6-8bde-4166-bec7-d2de542fc184.png)
-
- <figcaption>Menu component with custom styling</figcaption>
 </figure>
 
 ## Next steps
