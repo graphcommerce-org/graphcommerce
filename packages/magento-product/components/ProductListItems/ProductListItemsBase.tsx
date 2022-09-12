@@ -12,12 +12,19 @@ export type ProductItemsGridProps = {
   renderers: ProductListItemRenderer
   loadingEager?: number
   size?: 'normal' | 'small'
-  titleComponent?: React.ElementType
   sx?: BoxProps['sx']
-}
+} & Pick<ProductListItemProps, 'onClick' | 'titleComponent'>
 
 export function ProductListItemsBase(props: ProductItemsGridProps) {
-  const { items, sx = [], renderers, loadingEager = 0, size = 'normal', titleComponent } = props
+  const {
+    items,
+    sx = [],
+    renderers,
+    loadingEager = 0,
+    size = 'normal',
+    titleComponent,
+    onClick,
+  } = props
 
   return (
     <Box
@@ -49,6 +56,7 @@ export function ProductListItemsBase(props: ProductItemsGridProps) {
                 : { 0: '100vw', 367: '48vw', 994: '30vw', 1590: '23vw', 1920: '443px' }
             }
             titleComponent={titleComponent}
+            onClick={onClick}
             noReport
           />
         ) : null,
