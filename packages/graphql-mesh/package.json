@@ -11,7 +11,7 @@
     "@graphql-mesh/apollo-link": "^6.0.0",
     "@graphql-mesh/config": "6.2.0",
     "@graphql-mesh/graphql": "0.30.0",
-    "@graphql-mesh/transform-filter-schema": "^0.14.87",
+    "@graphql-mesh/transform-filter-schema": "0.14.87",
     "@graphql-mesh/types": "0.80.2",
     "@graphql-mesh/utils": "0.40.0",
     "@graphql-yoga/node": "^2.13.11",

@@ -1995,7 +1995,7 @@
     json-pointer "0.6.2"
     lodash.get "4.4.2"
 
-"@graphql-mesh/transform-filter-schema@^0.14.87":
+"@graphql-mesh/transform-filter-schema@0.14.87":
   version "0.14.87"
   resolved "https://registry.yarnpkg.com/@graphql-mesh/transform-filter-schema/-/transform-filter-schema-0.14.87.tgz#eb628d3a70959b16e8c846dd36713b4bf14a5a02"
   integrity sha512-GEIgd/3PM/ORDyl+bUiXrPjXZXaIQ3gjZtZ6W4mSq7uxFZtYyXVmKcyqkIkQ5rckUS5L9XW1TnJiu7lSUoRT6g==
@@ -2420,10 +2420,10 @@
     "@graphql-tools/utils" "8.10.0"
     tslib "^2.4.0"
 
-"@graphql-tools/url-loader@7.14.0", "@graphql-tools/url-loader@7.14.1", "@graphql-tools/url-loader@^7.13.2", "@graphql-tools/url-loader@^7.9.7":
-  version "7.14.1"
-  resolved "https://registry.yarnpkg.com/@graphql-tools/url-loader/-/url-loader-7.14.1.tgz#090558c47f801f0ab6a50bdaf01f184216700679"
-  integrity sha512-PMxPjzPDkKc1hg8CiTnxchz7pbxbiH4riDk9822eDJLye7SBHzRTeBkJTrytDAQDvtRcDaDvoLugVUStluCuzQ==
+"@graphql-tools/url-loader@7.14.0", "@graphql-tools/url-loader@7.14.1", "@graphql-tools/url-loader@7.14.2", "@graphql-tools/url-loader@^7.13.2", "@graphql-tools/url-loader@^7.9.7":
+  version "7.14.2"
+  resolved "https://registry.yarnpkg.com/@graphql-tools/url-loader/-/url-loader-7.14.2.tgz#170c909f07b35e29c4d27af7764516f1b31d9484"
+  integrity sha512-pcPkFDM7nfo/eWnFL0Qrf3dlCMdniTznI8JUuE3dxFOS4aU5lRNIcfQy4rGKAECN+Vx3OoLb34mRdBNo4jVe9g==
   dependencies:
     "@ardatan/sync-fetch" "0.0.1"
     "@graphql-tools/delegate" "9.0.4"

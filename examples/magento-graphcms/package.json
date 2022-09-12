@@ -102,7 +102,7 @@
     "not IE 11"
   ],
   "resolutions": {
-    "@graphql-tools/url-loader": "7.14.1"
+    "@graphql-tools/url-loader": "7.14.2"
   },
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
