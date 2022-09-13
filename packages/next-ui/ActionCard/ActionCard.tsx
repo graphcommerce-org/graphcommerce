@@ -1,9 +1,25 @@
-import { SxProps, ButtonBase, Box, Theme, alpha } from '@mui/material'
+import { alpha, Box, BoxProps, ButtonBase, ButtonProps, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { extendableComponent } from '../Styles'
 import { breakpointVal } from '../Styles/breakpointVal'
 
+type Variants = 'outlined' | 'default'
+type Size = 'large' | 'medium' | 'small'
+type Color = 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning'
+type Layout = 'inline' | 'grid' | 'list'
+
+function isButtonProps(props: ButtonProps<'div'> | BoxProps<'div'>): props is ButtonProps<'div'> {
+  return props.onClick !== undefined
+}
+
+const RenderComponent = (props: ButtonProps<'div'> | BoxProps<'div'>) =>
+  isButtonProps(props) ? <ButtonBase component='div' {...props} /> : <Box {...props} />
+
 export type ActionCardProps = {
+  variant?: Variants
+  size?: Size
+  color?: Color
+  layout?: Layout
   sx?: SxProps<Theme>
   title?: string | React.ReactNode
   image?: React.ReactNode
@@ -14,10 +30,10 @@ export type ActionCardProps = {
   secondaryAction?: React.ReactNode
   onClick?: (event: React.MouseEvent<HTMLElement>, value: string | number) => void
   selected?: boolean
-  hidden?: boolean
   value: string | number
   reset?: React.ReactNode
   disabled?: boolean
+  error?: boolean
 }
 
 const parts = [
@@ -34,10 +50,14 @@ const parts = [
 const name = 'ActionCard'
 
 type StateProps = {
-  selected?: boolean
-  hidden?: boolean
-  disabled?: boolean
-  image?: boolean
+  variant: Variants
+  size: Size
+  color: Color
+  layout: Layout
+  selected: boolean
+  disabled: boolean
+  image: boolean
+  error: boolean
 }
 
 const { withState, selectors } = extendableComponent<StateProps, typeof name, typeof parts>(
@@ -60,99 +80,129 @@ export function ActionCard(props: ActionCardProps) {
     onClick,
     value,
     selected = false,
-    hidden = false,
     reset,
     disabled = false,
+    color = 'secondary',
+    variant = 'outlined',
+    size = 'large',
+    layout = 'list',
+    error = false,
   } = props
 
-  const classes = withState({ hidden, disabled, selected, image: Boolean(image) })
-
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => onClick?.(event, value)
+  const classes = withState({
+    disabled,
+    selected,
+    image: Boolean(image),
+    variant,
+    size,
+    color,
+    layout,
+    error,
+  })
 
   return (
-    <ButtonBase
-      component='div'
+    <RenderComponent
       className={classes.root}
-      onClick={handleClick}
+      onClick={onClick && ((event) => onClick?.(event, value))}
       disabled={disabled}
       sx={[
         (theme) => ({
-          display: 'grid',
-          width: '100%',
-          gridTemplateColumns: 'min-content auto auto',
-          gridTemplateAreas: `
-            "image title action"
-            "image details ${price ? 'price' : 'details'}"
-            "image secondaryAction additionalDetails"
-            "after after after"
-          `,
-          justifyContent: 'unset',
-          typography: 'body1',
-          // textAlign: 'left',
-          background: theme.palette.background.paper,
-          padding: `calc(${theme.spacings.xxs} + 1px) calc(${theme.spacings.xs} + 1px)`,
-          columnGap: theme.spacings.xxs,
-          border: `1px solid ${theme.palette.divider}`,
-          borderBottomColor: `transparent`,
-          '&:first-of-type': {
-            ...breakpointVal(
-              'borderTopLeftRadius',
-              theme.shape.borderRadius * 3,
-              theme.shape.borderRadius * 4,
-              theme.breakpoints.values,
-            ),
-            ...breakpointVal(
-              'borderTopRightRadius',
-              theme.shape.borderRadius * 3,
-              theme.shape.borderRadius * 4,
-              theme.breakpoints.values,
-            ),
+          '&.sizeSmall': {
+            padding: `5px 10px`,
+            display: 'flex',
+            typography: 'body2',
           },
-          '&:last-of-type': {
-            ...breakpointVal(
-              'borderBottomLeftRadius',
-              theme.shape.borderRadius * 3,
-              theme.shape.borderRadius * 4,
-              theme.breakpoints.values,
-            ),
-            ...breakpointVal(
-              'borderBottomRightRadius',
-              theme.shape.borderRadius * 3,
-              theme.shape.borderRadius * 4,
-              theme.breakpoints.values,
-            ),
-            borderBottom: `1px solid ${theme.palette.divider}`,
+
+          '&.sizeMedium': {
+            padding: `10px 12px`,
+            typography: 'body2',
           },
-        }),
-        !image && {
-          gridTemplateColumns: 'auto auto',
-          gridTemplateAreas: `
-            "title action"
-            "details ${price ? 'price' : 'details'}"
-            "secondaryAction additionalDetails"
-            "after after"
-          `,
-        },
-        hidden && {
-          display: 'none',
-        },
-        selected &&
-          ((theme) => ({
-            border: `2px solid ${theme.palette.secondary.main} !important`,
-            boxShadow: `0 0 0 4px ${alpha(
-              theme.palette.secondary.main,
-              theme.palette.action.hoverOpacity,
-            )} !important`,
-            ...breakpointVal(
-              'borderRadius',
-              theme.shape.borderRadius * 3,
-              theme.shape.borderRadius * 4,
-              theme.breakpoints.values,
-            ),
+
+          '&.sizeLarge': {
             padding: `${theme.spacings.xxs} ${theme.spacings.xs}`,
-          })),
-        disabled &&
-          ((theme) => ({
+          },
+
+          '&.variantDefault': {
+            borderBottom: `1px solid ${theme.palette.divider}`,
+            '&.selected': {
+              borderBottom: `2px solid ${theme.palette[color].main}`,
+              marginBottom: '-1px',
+              backgroundColor: `${theme.palette[color].main}10`,
+            },
+            '&.error': {
+              borderBottom: `2px solid ${theme.palette.error.main}`,
+              marginBottom: '-1px',
+              backgroundColor: `${theme.palette.error.main}10`,
+            },
+          },
+
+          '&.variantOutlined': {
+            backgroundColor: theme.palette.background.paper,
+            border: `1px solid ${theme.palette.divider}`,
+            '&:not(:last-of-type)': {
+              marginBottom: '-1px',
+            },
+
+            '&.layoutList': {
+              '&:first-of-type, &.selected': {
+                ...breakpointVal(
+                  'borderTopLeftRadius',
+                  theme.shape.borderRadius * 3,
+                  theme.shape.borderRadius * 4,
+                  theme.breakpoints.values,
+                ),
+                ...breakpointVal(
+                  'borderTopRightRadius',
+                  theme.shape.borderRadius * 3,
+                  theme.shape.borderRadius * 4,
+                  theme.breakpoints.values,
+                ),
+              },
+              '&:last-of-type, &.selected': {
+                ...breakpointVal(
+                  'borderBottomLeftRadius',
+                  theme.shape.borderRadius * 3,
+                  theme.shape.borderRadius * 4,
+                  theme.breakpoints.values,
+                ),
+                ...breakpointVal(
+                  'borderBottomRightRadius',
+                  theme.shape.borderRadius * 3,
+                  theme.shape.borderRadius * 4,
+                  theme.breakpoints.values,
+                ),
+              },
+            },
+            '&:not(.layoutList)': {
+              ...breakpointVal(
+                'borderRadius',
+                theme.shape.borderRadius * 3,
+                theme.shape.borderRadius * 4,
+                theme.breakpoints.values,
+              ),
+            },
+
+            '&.selected': {
+              border: `2px solid ${theme.palette[color].main}`,
+              boxShadow: `0 0 0 4px ${alpha(
+                theme.palette[color].main,
+                theme.palette.action.hoverOpacity,
+              )}`,
+
+              '&.sizeSmall': { padding: `4px 9px` },
+              '&.sizeMedium': { padding: `9px 11px` },
+              '&.sizeLarge': {
+                padding: `calc(${theme.spacings.xxs} - 1px) calc(${theme.spacings.xs} - 1px)`,
+              },
+            },
+            '&.error': {
+              border: `2px solid ${theme.palette.error.main}`,
+            },
+          },
+          '&.selected': {
+            zIndex: 1,
+          },
+          '&.disabled': {
             '& *': {
               opacity: theme.palette.action.disabledOpacity,
             },
@@ -160,64 +210,102 @@ export function ActionCard(props: ActionCardProps) {
               theme.palette.action.disabledBackground,
               theme.palette.action.disabledOpacity / 10,
             ),
-          })),
-
+          },
+        }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
-      {image && (
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          width: '100%',
+          justifyContent: 'space-between',
+        }}
+      >
         <Box
-          className={classes.image}
           sx={{
-            gridArea: 'image',
             display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
           }}
         >
-          {image}
-        </Box>
-      )}
-      {title && (
-        <Box className={classes.title} sx={{ gridArea: 'title', display: 'flex' }}>
-          {title}
-        </Box>
-      )}
-      {action && (
-        <Box className={classes.action} sx={{ gridArea: 'action', textAlign: 'right' }}>
-          {!selected ? action : reset}
-        </Box>
-      )}
-      {details && (
-        <Box
-          className={classes.details}
-          sx={(theme) => ({
-            typography: 'body2',
-            gridArea: 'details',
-            color: 'text.secondary',
-          })}
-        >
-          {details}
-        </Box>
-      )}
+          {image && (
+            <Box
+              className={classes.image}
+              sx={{ display: 'flex', paddingRight: '15px', alignSelf: 'center' }}
+            >
+              {image}
+            </Box>
+          )}
 
-      {price && !disabled && (
-        <Box
-          className={classes.price}
-          sx={{ gridArea: 'price', textAlign: 'right', typography: 'h5' }}
-        >
-          {price}
-        </Box>
-      )}
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              flexDirection: 'column',
+              alignItems: 'flex-start',
+            }}
+          >
+            {title && (
+              <Box
+                className={classes.title}
+                sx={{
+                  typography: 'subtitle2',
+                  '&.sizeMedium': { typographty: 'subtitle1' },
+                  '&.sizeLarge': { typography: 'h6' },
+                  number: 2,
+                }}
+              >
+                {title}
+              </Box>
+            )}
 
-      {secondaryAction && (
-        <Box className={classes.secondaryAction} sx={{ gridArea: 'secondaryAction' }}>
-          {secondaryAction}
+            {details && (
+              <Box className={classes.details} sx={{ color: 'text.secondary' }}>
+                {details}
+              </Box>
+            )}
+
+            {secondaryAction && <Box className={classes.secondaryAction}>{secondaryAction}</Box>}
+          </Box>
         </Box>
-      )}
-      {after && (
-        <Box className={classes.after} sx={{ gridArea: 'after' }}>
-          {after}
+
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            alignItems: 'flex-end',
+          }}
+        >
+          {action && (
+            <Box className={classes.action} sx={{ marginBottom: '5px' }}>
+              {!selected ? action : reset}
+            </Box>
+          )}
+
+          {price && !disabled && (
+            <Box
+              className={classes.price}
+              sx={{
+                textAlign: 'right',
+                typography: 'body1',
+                '&.sizeMedium': { typographty: 'subtitle1' },
+                '&.sizeLarge': { typography: 'h6' },
+              }}
+            >
+              {price}
+            </Box>
+          )}
         </Box>
-      )}
-    </ButtonBase>
+
+        {after && (
+          <Box className={classes.after} sx={{ backgroundColor: 'yellow' }}>
+            {after}
+          </Box>
+        )}
+      </Box>
+    </RenderComponent>
   )
 }

@@ -6,37 +6,37 @@ import { ActionCardList, ActionCardListProps } from './ActionCardList'
 
 export type ActionCardItemBase = Pick<ActionCardProps, 'value'>
 
-export type ActionCardItemRenderProps<T> = Pick<
-  ActionCardProps,
-  'selected' | 'hidden' | 'value'
-> & {
+export type ActionCardItemRenderProps<T> = ActionCardProps & {
   onReset: MouseEventHandler<HTMLAnchorElement> & MouseEventHandler<HTMLSpanElement>
 } & T
 
 export type ActionCardListFormProps<T extends ActionCardItemBase> = Omit<
   ActionCardListProps,
-  'value'
+  'value' | 'error' | 'onChange' | 'children' | 'multiple'
 > &
-  Omit<ControllerProps<any>, 'render'> & {
+  Omit<ControllerProps<any>, 'render' | 'shouldUnregister'> & {
     items: T[]
-    render: React.VFC<ActionCardItemRenderProps<T>>
+    render: React.FC<ActionCardItemRenderProps<T>>
   }
 
 export function ActionCardListForm<T extends ActionCardItemBase>(
   props: ActionCardListFormProps<T>,
 ) {
-  const { required, rules, items, render, control, name, errorMessage } = props
-  const RenderItem = render as React.VFC<ActionCardItemRenderProps<ActionCardItemBase>>
+  const { required, rules, items, render, control, name, errorMessage, defaultValue, ...other } =
+    props
+  const RenderItem = render as React.FC<ActionCardItemRenderProps<ActionCardItemBase>>
 
   return (
     <Controller
       {...props}
       control={control}
       name={name}
-      rules={{ required, ...rules, validate: (v) => (v ? true : errorMessage) }}
+      defaultValue={defaultValue}
+      rules={{ required: errorMessage, ...rules }}
       render={({ field: { onChange, value, ref }, fieldState, formState }) => (
         <ActionCardList
-          required
+          {...other}
+          required={required}
           value={value}
           ref={ref}
           onChange={(_, incomming) => onChange(incomming)}

@@ -108,6 +108,7 @@ export function PickupLocationForm(props: PickupLocationFormProps) {
         control={control}
         name='pickupLocationCode'
         errorMessage='Please select a pickup location'
+        collapse
         items={locations.map((location) => ({
           ...location,
           value: String(location?.pickup_location_code),

@@ -113,6 +113,7 @@ export function PaymentMethodActionCardListForm(props: PaymentMethodActionCardLi
       control={control}
       name='paymentMethod'
       errorMessage='Please select a payment method'
+      collapse
       items={methods.map((method) => ({
         ...method,
         value: `${method.code}___${method.child}`,
