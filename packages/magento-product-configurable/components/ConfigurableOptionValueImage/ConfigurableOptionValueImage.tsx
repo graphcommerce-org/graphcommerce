@@ -25,7 +25,13 @@ export function ConfigurableOptionValueImage(props: ConfigurableOptionValueImage
       layout='fill'
       alt={swatch_data.value ?? ''}
       sizes={imageSize}
-      sx={{ display: 'block', borderRadius: '50%', width: imageSize }}
+      sx={{
+        display: 'block',
+        borderRadius: '50%',
+        width: imageSize,
+        height: imageSize,
+        objectFit: 'cover',
+      }}
     />
   )
 
