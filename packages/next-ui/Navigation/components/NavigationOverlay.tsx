@@ -92,9 +92,8 @@ export const NavigationOverlay = React.memo<NavigationOverlayProps>((props) => {
   const fabSize = useFabSize('responsive')
   const svgSize = useIconSvgSize('large')
 
-  const isMobile = useMediaQuery<Theme>((theme) => theme.breakpoints.down('md'))
   const handleOnBack = useEventCallback(() => {
-    if (isMobile) {
+    if (window.matchMedia('(max-width: 992px)').matches) {
       const current = selection.get()
       selection.set(current !== false ? current.slice(0, -1) : false)
     } else selection.set([])
