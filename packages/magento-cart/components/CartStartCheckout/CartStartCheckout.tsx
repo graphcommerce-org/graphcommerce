@@ -8,6 +8,7 @@ import { CartStartCheckoutFragment } from './CartStartCheckout.gql'
 export type CartStartCheckoutProps = CartStartCheckoutFragment & {
   children?: React.ReactNode
   sx?: SxProps<Theme>
+  onClick: React.MouseEventHandler<HTMLAnchorElement>
 }
 
 const name = 'CartStartCheckout' as const
@@ -20,7 +21,7 @@ const parts = [
 const { classes } = extendableComponent(name, parts)
 
 export function CartStartCheckout(props: CartStartCheckoutProps) {
-  const { prices, children, sx = [] } = props
+  const { prices, children, onClick, sx = [] } = props
 
   const hasTotals = (prices?.grand_total?.value ?? 0) > 0
   return (
@@ -44,6 +45,7 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
           className={classes.checkoutButton}
           endIcon={<IconSvg src={iconChevronRight} />}
           disabled={!hasTotals}
+          onClick={onClick}
         >
           <Box
             component='span'

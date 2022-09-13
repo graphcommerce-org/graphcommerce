@@ -24,9 +24,6 @@ export function ProductListItems(props: ProductListItemsProps) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     clickHandler = useEventCallback((e, item) => {
       gtagSelectItem(item, item_list_id, title)
-      e.preventDefault()
-      e.stopPropagation()
-      return false
     })
   }
 

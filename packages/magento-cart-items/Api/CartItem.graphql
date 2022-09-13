@@ -6,6 +6,7 @@ fragment CartItem on CartItemInterface @injectable {
     ...ProductLink
     name
     url_key
+    sku
     thumbnail {
       url
       label

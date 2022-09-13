@@ -40,6 +40,32 @@ function CartPage() {
     (data?.cart?.total_quantity ?? 0) > 0 &&
     typeof data?.cart?.prices?.grand_total?.value !== 'undefined'
 
+  let clickHandler
+  if (process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS) {
+    clickHandler = () => {
+      gtag('event', 'begin_checkout', {
+        currency: data?.cart?.prices?.grand_total?.currency,
+        value: data?.cart?.prices?.grand_total?.value,
+        coupon: data?.cart?.applied_coupons?.map((coupon) => coupon?.code),
+        items: data?.cart?.items?.map((item) => ({
+          item_id: item?.product.sku,
+          item_name: item?.product.name,
+          currency: item?.prices?.price.currency,
+          discount: item?.prices?.discounts?.reduce(
+            (sum, discount) => sum + (discount?.amount?.value ?? 0),
+            0,
+          ),
+          item_variant:
+            item?.__typename === 'ConfigurableCartItem'
+              ? item.configurable_options.map((option) => option?.value_label)?.join(' - ')
+              : '',
+          price: item?.prices?.price.value,
+          quantity: item?.quantity,
+        })),
+      })
+    }
+  }
+
   return (
     <>
       <PageMeta
@@ -109,7 +135,7 @@ function CartPage() {
                 <CartTotals containerMargin sx={{ typography: 'body1' }} />
                 <ApolloCartErrorAlert error={error} />
                 <Box key='checkout-button'>
-                  <CartStartCheckout {...data?.cart} />
+                  <CartStartCheckout {...data?.cart} onClick={clickHandler} />
                 </Box>
               </Box>
             ) : (

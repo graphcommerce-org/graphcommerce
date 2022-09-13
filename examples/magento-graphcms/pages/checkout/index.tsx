@@ -54,6 +54,35 @@ function ShippingPage() {
     typeof shippingPage.data?.cart !== 'undefined' &&
     (shippingPage.data.cart?.items?.length ?? 0) > 0
 
+  let clickHandler
+  if (process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS) {
+    clickHandler = (e) => {
+      gtag('event', 'begin_checkout', {
+        currency: shippingPage.data?.cart?.prices?.grand_total?.currency,
+        value: shippingPage.data?.cart?.prices?.grand_total?.value,
+        coupon: shippingPage.data?.cart?.applied_coupons?.map((coupon) => coupon?.code),
+        items: shippingPage.data?.cart?.items?.map((item) => ({
+          item_id: item?.product.sku,
+          item_name: item?.product.name,
+          currency: item?.prices?.price.currency,
+          discount: item?.prices?.discounts?.reduce(
+            // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
+            (sum, discount) => sum + (discount?.amount?.value ?? 0),
+            0,
+          ),
+          price: item?.prices?.price.value,
+          quantity: item?.quantity,
+        })),
+      })
+
+      e.preventDefault()
+      e.stopPropagation()
+      return false
+    }
+  }
+
+  console.log(shippingPage.data?.cart)
+
   return (
     <>
       <PageMeta title={i18n._(/* i18n */ 'Shipping')} metaRobots={['noindex']} />
@@ -120,7 +149,12 @@ function ShippingPage() {
                   render={(renderProps) => (
                     <>
                       <FormActions>
-                        <ComposedSubmitButton {...renderProps} size='large' id='next'>
+                        <ComposedSubmitButton
+                          {...renderProps}
+                          size='large'
+                          id='next'
+                          onClick={clickHandler}
+                        >
                           <Trans id='Next' />
                         </ComposedSubmitButton>
                       </FormActions>
