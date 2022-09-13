@@ -91,7 +91,7 @@ export const NavigationOverlay = React.memo<NavigationOverlayProps>((props) => {
 
   const fabSize = useFabSize('responsive')
   const svgSize = useIconSvgSize('large')
-  const elementRef = useRef<HTMLDivElement | null>(null)
+  const title = useRef<HTMLDivElement | null>(null)
 
   const handleOnBack = useEventCallback(() => {
     if (window.matchMedia('(max-width: 992px)').matches) {
@@ -107,8 +107,8 @@ export const NavigationOverlay = React.memo<NavigationOverlayProps>((props) => {
 
   useEffect(() =>
     selection.onChange((latestSelection) => {
-      if (elementRef.current) {
-        elementRef.current.textContent =
+      if (title.current) {
+        title.current.textContent =
           findCurrent(items, latestSelection)?.name ?? i18n._(/* i18n */ 'Menu')
       }
     }),
@@ -208,7 +208,7 @@ export const NavigationOverlay = React.memo<NavigationOverlayProps>((props) => {
             }
           >
             <LayoutTitle size='small' component='span'>
-              <div ref={elementRef}>
+              <div ref={title}>
                 <Trans id='Menu' />
               </div>
             </LayoutTitle>
