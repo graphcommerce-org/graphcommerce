@@ -48,6 +48,7 @@ generates:
       skipTypename: true
       namingConvention: 'keep'
       dedupeOperationSuffix: true
+      arrayInputCoercion: false
       content: /* eslint-disable */
 watchConfig:
   usePolling: false
