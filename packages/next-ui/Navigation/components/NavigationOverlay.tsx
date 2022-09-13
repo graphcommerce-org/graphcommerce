@@ -106,7 +106,7 @@ export const NavigationOverlay = React.memo<NavigationOverlayProps>((props) => {
   )
 
   useEffect(() => {
-    animating.set(false)
+    animating.set(true)
   }, [activeAndNotClosing, animating])
 
   const afterClose = useEventCallback(() => {
