@@ -1,0 +1,13 @@
+mutation AddProductsToCart($cartId: String!, $cartItems: [CartItemInput!]!) {
+  addProductsToCart(cartId: $cartId, cartItems: $cartItems) {
+    cart {
+      id
+      __typename
+      ...CartItemCountChanged
+    }
+    user_errors {
+      code
+      message
+    }
+  }
+}

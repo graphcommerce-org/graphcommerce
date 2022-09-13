@@ -1,4 +1,5 @@
 export * from './JsonLdProduct/jsonLdProduct'
+export * from './AddProductsToCart'
 export * from './ProductAddToCart'
 export * from './ProductList/ProductList.gql'
 export * from './ProductListCount/ProductListCount'

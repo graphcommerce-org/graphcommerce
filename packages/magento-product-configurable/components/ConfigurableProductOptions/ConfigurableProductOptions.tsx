@@ -1,10 +1,5 @@
-import { useFormProductAddToCart } from '@graphcommerce/magento-product'
-import {
-  SectionHeader,
-  filterNonNullableKeys,
-  ActionCardListProps,
-  nonNullable,
-} from '@graphcommerce/next-ui'
+import { useFormAddProductsToCart } from '@graphcommerce/magento-product'
+import { SectionHeader, filterNonNullableKeys, ActionCardListProps } from '@graphcommerce/next-ui'
 import {
   ActionCardItemBase,
   ActionCardListForm,
@@ -21,11 +16,19 @@ export type ConfigurableProductOptionsProps = {
   optionEndLabels?: Record<string, React.ReactNode>
   sx?: SxProps<Theme>
   render?: typeof ConfigurableOptionValue
-}
+} & Pick<ActionCardListProps, 'color' | 'variant' | 'size' | 'layout'>
 
 export function ConfigurableProductOptions(props: ConfigurableProductOptionsProps) {
-  const { optionEndLabels, sx, render = ConfigurableOptionValue } = props
-  const form = useFormProductAddToCart()
+  const {
+    optionEndLabels,
+    sx,
+    color = 'primary',
+    size = 'medium',
+    layout = 'grid',
+    variant = 'outlined',
+    render = ConfigurableOptionValue,
+  } = props
+  const form = useFormAddProductsToCart()
   const { control } = form
 
   const typeProduct = useConfigurableTypeProduct()
@@ -48,7 +51,7 @@ export function ConfigurableProductOptions(props: ConfigurableProductOptionsProp
     <>
       {options.map((option, index) => {
         const { values, label } = option
-        const fieldName = `selectedOptions.${index}` as const
+        const fieldName = `cartItems.0.selected_options.${index}` as const
 
         return (
           <Box key={fieldName} sx={sx}>
@@ -58,10 +61,10 @@ export function ConfigurableProductOptions(props: ConfigurableProductOptionsProp
               sx={{ mt: 0 }}
             />
             <ActionCardListForm<ActionCardItemBase & ConfigurableOptionValueFragment>
-              // color={color}
-              // layout={layout}
-              // variant={variant}
-              // size={size}
+              color={color}
+              layout={layout}
+              variant={variant}
+              size={size}
               name={fieldName}
               control={control}
               required

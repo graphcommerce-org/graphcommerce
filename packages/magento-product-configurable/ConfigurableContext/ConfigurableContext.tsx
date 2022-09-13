@@ -123,7 +123,7 @@ export function ConfigurableContextProvider(
 ) {
   if (process.env.NODE_ENV !== 'production') {
     console.warn(
-      'ConfigurableContextProvider is deprecated. Use ProductAddToCartForm with ConfigurableAttributeSelector, ConfigurableProductPageGallery and ConfigurablePrice',
+      'ConfigurableContextProvider is deprecated. Use AddProductsToCartForm with ConfigurableProductOptions, ConfigurableProductPageGallery and ConfigurablePrice',
     )
   }
 

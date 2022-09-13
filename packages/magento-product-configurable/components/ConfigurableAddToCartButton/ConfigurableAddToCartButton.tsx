@@ -1,28 +1,32 @@
 import {
-  ProductAddToCartButton,
-  ProductAddToCartButtonProps,
-  useFormProductAddToCart,
+  AddProductsToCartButton,
+  AddProductsToCartButtonProps,
+  useFormAddProductsToCart,
 } from '@graphcommerce/magento-product'
+import { nonNullable } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box } from '@mui/material'
 import { useConfigurableTypeProduct } from '../../hooks/useConfigurableTypeProduct'
 
-export function ConfigurableAddToCartButton(props: ProductAddToCartButtonProps) {
+export function ConfigurableAddToCartButton(props: AddProductsToCartButtonProps) {
   const typeProduct = useConfigurableTypeProduct()
-  const form = useFormProductAddToCart()
+  const form = useFormAddProductsToCart()
 
-  const formVal = form.watch('selectedOptions') ?? []
-  const options = Array.isArray(formVal) ? formVal : [formVal]
+  const { watch, formState } = form
+  const options = (watch('cartItems.0.selected_options') ?? []).filter(nonNullable).filter(Boolean)
+
+  const optionCount = typeProduct?.configurable_options?.length ?? 0
   const items = options.slice(0, typeProduct?.configurable_options?.length ?? 0)
 
-  const partial = items.every((item) => item !== undefined)
+  const allOptionsComplete = items.length === optionCount
+
   const combinationNotAvailable =
-    partial && !typeProduct.configurable_product_options_selection?.variant
+    allOptionsComplete && !typeProduct.configurable_product_options_selection?.variant
 
   return (
     <Box width='100%'>
-      <ProductAddToCartButton {...props} disabled={combinationNotAvailable} />
-      {combinationNotAvailable && (
+      <AddProductsToCartButton {...props} disabled={combinationNotAvailable} />
+      {combinationNotAvailable && !formState.isSubmitting && (
         <Box
           sx={{
             color: 'error.main',

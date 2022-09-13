@@ -4,7 +4,7 @@ import {
   useCustomerSession,
   useGuestQuery,
 } from '@graphcommerce/magento-customer'
-import { useFormProductAddToCart } from '@graphcommerce/magento-product'
+import { useFormAddProductsToCart } from '@graphcommerce/magento-product'
 import {
   IconSvg,
   iconHeart,
@@ -41,7 +41,7 @@ const { classes } = extendableComponent(compName, parts)
 export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
   const { name, sku, showFeedbackMessage, buttonProps, sx = [] } = props
 
-  const addToCartForm = useFormProductAddToCart(true)
+  const addToCartForm = useFormAddProductsToCart(true)
 
   const [inWishlist, setInWishlist] = useState(false)
   const [displayMessageBar, setDisplayMessageBar] = useState(false)
@@ -112,7 +112,7 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
   const handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault()
 
-    const selectedOptions = addToCartForm?.getValues().selectedOptions ?? []
+    const selectedOptions = addToCartForm?.getValues().cartItems[0].selected_options ?? []
     const selected_options = Array.isArray(selectedOptions) ? selectedOptions : [selectedOptions]
 
     if (!sku) {
@@ -132,7 +132,7 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
         }
       } else {
         // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        addWishlistItem({ variables: { input: { sku, quantity: 1, selected_options } } })
+        addWishlistItem({ variables: { input: [{ sku, quantity: 1, selected_options }] } })
         setDisplayMessageBar(true)
       }
     } else if (inWishlist) {

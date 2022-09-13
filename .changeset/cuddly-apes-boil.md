@@ -15,7 +15,7 @@
 '@graphcommerce/next-ui': minor
 ---
 
-Introduced `<ProductAddToCartForm/>`, bla. which is allows for adding all product types to the cart with a single react-hook-form form.
+Introduced `<AddProductsToCartForm/>`, which is allows for adding all product types to the cart with a single react-hook-form form.
 
 The old `<ProductAddToCart/>` component is split into multiple components:
 

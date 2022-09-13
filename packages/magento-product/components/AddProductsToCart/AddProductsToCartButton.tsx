@@ -1,17 +1,17 @@
 import { Button } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { ButtonProps, SxProps, Theme } from '@mui/material'
-import { useFormProductAddToCart } from './ProductAddToCartForm'
+import { useFormAddProductsToCart } from './AddProductsToCartForm'
 
-export type ProductAddToCartButtonProps = {
+export type AddProductsToCartButtonProps = {
   sx?: SxProps<Theme>
 } & Pick<
   ButtonProps<'button'>,
   'variant' | 'color' | 'size' | 'disabled' | 'fullWidth' | 'startIcon' | 'endIcon' | 'onClick'
 >
 
-export function ProductAddToCartButton(props: ProductAddToCartButtonProps) {
-  const { formState } = useFormProductAddToCart()
+export function AddProductsToCartButton(props: AddProductsToCartButtonProps) {
+  const { formState } = useFormAddProductsToCart()
 
   return (
     <Button

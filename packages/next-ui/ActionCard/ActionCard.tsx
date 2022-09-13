@@ -116,10 +116,12 @@ export function ActionCard(props: ActionCardProps) {
           '&.sizeMedium': {
             padding: `10px 12px`,
             typography: 'body2',
+            display: 'block',
           },
 
           '&.sizeLarge': {
             padding: `${theme.spacings.xxs} ${theme.spacings.xs}`,
+            display: 'block',
           },
 
           '&.variantDefault': {
@@ -299,13 +301,8 @@ export function ActionCard(props: ActionCardProps) {
             </Box>
           )}
         </Box>
-
-        {after && (
-          <Box className={classes.after} sx={{ backgroundColor: 'yellow' }}>
-            {after}
-          </Box>
-        )}
       </Box>
+      {after && <Box className={classes.after}>{after}</Box>}
     </RenderComponent>
   )
 }

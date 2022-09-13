@@ -1,4 +1,5 @@
 import { ActionCardItemRenderProps, RenderType } from '@graphcommerce/next-ui'
+import { ConfigurableOptionValueColor } from '../ConfigurableOptionValueColor'
 import { ConfigurableOptionValueImage } from '../ConfigurableOptionValueImage/ConfigurableOptionValueImage'
 import { ConfigurableOptionValueText } from '../ConfigurableOptionValueText/ConfigurableOptionValueText'
 import { ConfigurableOptionValueFragment } from './ConfigurableOptionValue.gql'
@@ -14,7 +15,7 @@ export function ConfigurableOptionValue(props: ConfigurabeOptionValueProps) {
       __typename={swatch_data?.__typename ?? 'TextSwatchData'}
       description={swatch_data?.value ?? ''}
       renderer={{
-        ColorSwatchData: ConfigurableOptionValueImage,
+        ColorSwatchData: ConfigurableOptionValueColor,
         ImageSwatchData: ConfigurableOptionValueImage,
         TextSwatchData: ConfigurableOptionValueText,
       }}

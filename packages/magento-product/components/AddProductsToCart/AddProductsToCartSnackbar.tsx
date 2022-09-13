@@ -8,13 +8,13 @@ import {
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import PageLink from 'next/link'
-import { useFormProductAddToCart } from './ProductAddToCartForm'
+import { useFormAddProductsToCart } from './AddProductsToCartForm'
 
 type AddToCartMessageProps = { name?: string | null }
 
-export function ProductAddToCartSnackbar(props: AddToCartMessageProps) {
+export function AddProductsToCartSnackbar(props: AddToCartMessageProps) {
   const { name } = props
-  const { formState, error, data } = useFormProductAddToCart()
+  const { formState, error, data } = useFormAddProductsToCart()
 
   return (
     <>

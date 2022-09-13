@@ -3,22 +3,25 @@ import {
   getProductStaticPaths,
   jsonLdProduct,
   jsonLdProductOffer,
+  AddProductsToCartQuantity,
+  AddProductsToCartSnackbar,
   productPageCategory,
   ProductPageDescription,
-  ProductPageGallery,
   ProductPageMeta,
   ProductShortDescription,
-  ProductSidebarDelivery,
+  AddProductsToCartForm,
 } from '@graphcommerce/magento-product'
 import {
-  ConfigurableContextProvider,
-  ConfigurableProductAddToCart,
-  ConfigurableProductPageDocument,
-  ConfigurableProductPageQuery,
+  ConfigurableAddToCartButton,
+  ConfigurablePrice,
+  ConfigurableProductOptions,
+  ConfigurableProductPageGallery,
+  GetConfigurableProductConfigurationsDocument,
+  GetConfigurableProductConfigurationsQuery,
 } from '@graphcommerce/magento-product-configurable'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
 import { Money, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { ProductWishlistChipDetailConfigurable } from '@graphcommerce/magento-wishlist'
+import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
 import {
   findByTypename,
   GetStaticProps,
@@ -27,8 +30,9 @@ import {
   LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Link, Typography } from '@mui/material'
+import { Box, Divider, Link, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
+import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import {
   LayoutNavigation,
@@ -41,7 +45,7 @@ import { LayoutDocument } from '../../../components/Layout/Layout.gql'
 import { ProductPageDocument, ProductPageQuery } from '../../../graphql/ProductPage.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../../lib/graphql/graphqlSsrClient'
 
-type Props = ProductPageQuery & ConfigurableProductPageQuery
+type Props = ProductPageQuery & GetConfigurableProductConfigurationsQuery
 
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
@@ -72,68 +76,86 @@ function ProductConfigurable(props: Props) {
           ...jsonLdProductReview(product),
         }}
       />
-      <ConfigurableContextProvider {...typeProduct} sku={product.sku}>
-        <ProductPageMeta {...product} />
+      <ProductPageMeta {...product} />
 
-        <ProductPageGallery {...product}>
+      <AddProductsToCartForm sku={product.sku} urlKey={product.url_key} typeProduct={typeProduct}>
+        <ConfigurableProductPageGallery
+          {...product}
+          sx={(theme) => ({
+            '& .SidebarGallery-sidebar': { display: 'grid', rowGap: theme.spacings.sm },
+          })}
+        >
           <div>
-            <Typography component='span' variant='body2' color='text.disabled'>
+            <Typography component='div' variant='body2' color='text.disabled'>
               <Trans
                 id='As low as <0/>'
                 components={{ 0: <Money {...product.price_range.minimum_price.final_price} /> }}
               />
             </Typography>
+
+            <Typography variant='h3' component='div' gutterBottom>
+              {product.name}
+            </Typography>
+
+            <ProductShortDescription short_description={product?.short_description} />
+
+            <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
           </div>
-          <Typography variant='h3' component='div' gutterBottom>
-            {product.name}
-          </Typography>
 
-          <ProductShortDescription short_description={product?.short_description} />
+          <Divider />
 
-          <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
-          <ConfigurableProductAddToCart
-            variables={{ sku: product.sku ?? '', quantity: 1 }}
-            name={product.name ?? ''}
+          <ConfigurableProductOptions
             optionEndLabels={{
               size: (
-                <Link
-                  component='button'
-                  color='primary'
-                  underline='hover'
-                  onClick={(e) => {
-                    e.preventDefault()
-                    return router.push('/modal/product/global/size')
-                  }}
-                >
-                  <Trans id='Which size is right?' />
-                </Link>
-              ),
-            }}
-            additionalButtons={<ProductWishlistChipDetailConfigurable {...product} />}
-          >
-            <ProductSidebarDelivery />
-          </ConfigurableProductAddToCart>
-          <Usps usps={sidebarUsps} size='small' />
-        </ProductPageGallery>
-
-        <ProductPageDescription {...product} right={<Usps usps={usps} />} fontSize='responsive' />
-
-        {pages?.[0] && (
-          <RowRenderer
-            content={pages?.[0].content}
-            renderer={{
-              RowProduct: (rowProps) => (
-                <RowProduct
-                  {...rowProps}
-                  {...product}
-                  items={products?.items}
-                  aggregations={aggregations}
-                />
+                <PageLink href='/modal/product/global/size'>
+                  <Link rel='nofollow' component='button' color='primary' underline='hover'>
+                    <Trans id='Which size is right?' />
+                  </Link>
+                </PageLink>
               ),
             }}
           />
-        )}
-      </ConfigurableContextProvider>
+
+          <Divider />
+          <AddProductsToCartQuantity />
+
+          <Typography component='div' variant='h3' lineHeight='1'>
+            <ConfigurablePrice />
+          </Typography>
+
+          <Box
+            sx={(theme) => ({
+              display: 'flex',
+              alignItems: 'center',
+              columnGap: theme.spacings.xs,
+            })}
+          >
+            <ConfigurableAddToCartButton fullWidth />
+            <ProductWishlistChipDetail {...product} />
+          </Box>
+
+          <AddProductsToCartSnackbar name={product.name} />
+          <Usps usps={sidebarUsps} size='small' />
+        </ConfigurableProductPageGallery>
+      </AddProductsToCartForm>
+
+      <ProductPageDescription {...product} right={<Usps usps={usps} />} fontSize='responsive' />
+
+      {pages?.[0] && (
+        <RowRenderer
+          content={pages?.[0].content}
+          renderer={{
+            RowProduct: (rowProps) => (
+              <RowProduct
+                {...rowProps}
+                {...product}
+                items={products?.items}
+                aggregations={aggregations}
+              />
+            ),
+          }}
+        />
+      )}
     </>
   )
 }
@@ -169,8 +191,8 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     },
   })
   const typeProductPage = staticClient.query({
-    query: ConfigurableProductPageDocument,
-    variables: { urlKey },
+    query: GetConfigurableProductConfigurationsDocument,
+    variables: { urlKey, selectedOptions: [] },
   })
   const layout = staticClient.query({ query: LayoutDocument })
 
