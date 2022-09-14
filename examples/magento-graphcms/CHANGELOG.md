@@ -1,5 +1,45 @@
 # Change Log
 
+## 3.26.1
+
+### Patch Changes
+
+- Updated dependencies [[`dc6237644`](https://github.com/graphcommerce-org/graphcommerce/commit/dc6237644ac349debb728059e4c937cec25bf4fd), [`48273bccd`](https://github.com/graphcommerce-org/graphcommerce/commit/48273bccd2e471ce4bc024a600e693da791f1cde)]:
+  - @graphcommerce/next-ui@4.25.0
+  - @graphcommerce/ecommerce-ui@1.3.3
+  - @graphcommerce/framer-scroller@2.1.37
+  - @graphcommerce/graphcms-ui@3.0.46
+  - @graphcommerce/magento-cart@4.8.2
+  - @graphcommerce/magento-cart-billing-address@3.1.8
+  - @graphcommerce/magento-cart-checkout@3.0.57
+  - @graphcommerce/magento-cart-coupon@3.2.8
+  - @graphcommerce/magento-cart-email@3.0.57
+  - @graphcommerce/magento-cart-items@3.1.9
+  - @graphcommerce/magento-cart-payment-method@3.5.8
+  - @graphcommerce/magento-cart-pickup@3.1.18
+  - @graphcommerce/magento-cart-shipping-address@3.4.8
+  - @graphcommerce/magento-cart-shipping-method@3.6.8
+  - @graphcommerce/magento-category@4.5.9
+  - @graphcommerce/magento-customer@4.11.2
+  - @graphcommerce/magento-customer-account@3.2.8
+  - @graphcommerce/magento-customer-order@3.1.6
+  - @graphcommerce/magento-newsletter@2.1.8
+  - @graphcommerce/magento-payment-braintree@3.0.55
+  - @graphcommerce/magento-payment-included@3.1.27
+  - @graphcommerce/magento-product@4.5.9
+  - @graphcommerce/magento-product-configurable@4.2.10
+  - @graphcommerce/magento-review@3.3.9
+  - @graphcommerce/magento-search@4.2.6
+  - @graphcommerce/magento-store@4.2.34
+  - @graphcommerce/magento-wishlist@1.6.10
+  - @graphcommerce/mollie-magento-payment@3.5.8
+  - @graphcommerce/magento-product-bundle@4.0.57
+  - @graphcommerce/magento-product-downloadable@4.0.57
+  - @graphcommerce/magento-product-grouped@3.0.57
+  - @graphcommerce/magento-product-simple@4.0.57
+  - @graphcommerce/magento-product-virtual@4.0.57
+  - @graphcommerce/magento-cms@4.0.45
+
 ## 3.26.0
 
 ### Minor Changes
