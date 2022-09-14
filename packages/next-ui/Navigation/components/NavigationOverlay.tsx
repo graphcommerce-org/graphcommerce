@@ -1,10 +1,9 @@
 import styled from '@emotion/styled'
 import { useMotionValueValue, useMotionSelector } from '@graphcommerce/framer-utils'
 import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
-import { Box, Fab, SxProps, Theme, useEventCallback, useMediaQuery } from '@mui/material'
+import { Box, Fab, SxProps, Theme, useEventCallback } from '@mui/material'
 import { m } from 'framer-motion'
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect } from 'react'
 import type { LiteralUnion } from 'type-fest'
 import { IconSvg, useIconSvgSize } from '../../IconSvg'
 import { LayoutHeaderContent } from '../../Layout/components/LayoutHeaderContent'
@@ -13,14 +12,10 @@ import { Overlay } from '../../Overlay/components/Overlay'
 import { extendableComponent } from '../../Styles/extendableComponent'
 import { useFabSize } from '../../Theme'
 import { iconClose, iconChevronLeft } from '../../icons'
-import {
-  NavigationNodeButton,
-  NavigationNodeHref,
-  NavigationPath,
-  useNavigation,
-} from '../hooks/useNavigation'
+import { useNavigation } from '../hooks/useNavigation'
 import { mouseEventPref } from './NavigationItem'
 import { NavigationList } from './NavigationList'
+import { NavigationTitle } from './NavigationTitle'
 
 type LayoutOverlayVariant = 'left' | 'bottom' | 'right'
 type LayoutOverlaySize = 'floating' | 'minimal' | 'full'
@@ -40,31 +35,6 @@ type NavigationOverlayProps = {
   itemWidthMd?: string
   itemPadding?: ItemPadding
 } & mouseEventPref
-
-function findCurrent(
-  items,
-  selected: NavigationPath | false,
-): NavigationNodeHref | NavigationNodeButton | undefined {
-  if (selected === false) return undefined
-  const lastItem = selected.slice(-1)[0]
-
-  if (!lastItem) return undefined
-
-  let result
-  for (const item of items) {
-    if (item.id === lastItem) {
-      result = item
-      break
-    }
-    if (item.childItems) {
-      result = findCurrent(item.childItems, selected)
-      if (result) {
-        break
-      }
-    }
-  }
-  return result
-}
 
 const MotionDiv = styled(m.div)()
 
@@ -91,7 +61,6 @@ export const NavigationOverlay = React.memo<NavigationOverlayProps>((props) => {
 
   const fabSize = useFabSize('responsive')
   const svgSize = useIconSvgSize('large')
-  const title = useRef<HTMLDivElement | null>(null)
 
   const handleOnBack = useEventCallback(() => {
     if (window.matchMedia('(max-width: 992px)').matches) {
@@ -103,15 +72,6 @@ export const NavigationOverlay = React.memo<NavigationOverlayProps>((props) => {
   const selectedLevel = useMotionValueValue(selection, (s) => (s === false ? -1 : s.length))
   const activeAndNotClosing = useMotionSelector([selection, closing], ([s, c]) =>
     c ? false : s !== false,
-  )
-
-  useEffect(() =>
-    selection.onChange((latestSelection) => {
-      if (title.current) {
-        title.current.textContent =
-          findCurrent(items, latestSelection)?.name ?? i18n._(/* i18n */ 'Menu')
-      }
-    }),
   )
 
   useEffect(() => {
@@ -208,9 +168,7 @@ export const NavigationOverlay = React.memo<NavigationOverlayProps>((props) => {
             }
           >
             <LayoutTitle size='small' component='span'>
-              <div ref={title}>
-                <Trans id='Menu' />
-              </div>
+              <NavigationTitle />
             </LayoutTitle>
           </LayoutHeaderContent>
         </Box>
