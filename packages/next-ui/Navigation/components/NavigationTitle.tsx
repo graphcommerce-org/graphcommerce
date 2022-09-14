@@ -34,5 +34,7 @@ function findCurrent(
 
 export const NavigationTitle = () => {
   const { selection, items } = useNavigation()
-  return useMotionValueValue(selection, (v) => findCurrent(items, v))?.name ?? <Trans id='Menu' />
+  return (
+    <>{useMotionValueValue(selection, (v) => findCurrent(items, v))?.name ?? <Trans id='Menu' />}</>
+  )
 }
