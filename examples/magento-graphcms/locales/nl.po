@@ -262,9 +262,6 @@ msgstr "Laatste bestellingen"
 msgid "Light Mode"
 msgstr "Licht modus"
 
-msgid "Loading cart"
-msgstr "Ophalen winkelwagen"
-
 msgid "Loading wishlist"
 msgstr "Ophalen verlanglijst"
 
@@ -403,6 +400,9 @@ msgstr "Selecteer een betaalmethode a.u.b."
 msgid "Please select a shipping method"
 msgstr "Selecteer een verzendmethode a.u.b."
 
+msgid "Please select a value for {label}"
+msgstr "Selecteer een waarde voor {label}"
+
 msgid "Postcode"
 msgstr "Postcode"
 
@@ -423,9 +423,6 @@ msgstr "Verwijder product"
 
 msgid "Remove from wishlist"
 msgstr "Verwijder van verlanglijst"
-
-msgid "Reset Cart"
-msgstr "Reset winkelwagen"
 
 msgid "Reset Cart and Return to home"
 msgstr "Reset winkelwagen en ga terug naar home"
@@ -523,6 +520,9 @@ msgstr "Bedankt voor je bestelling!"
 msgid "Thank you! Your review was successfully submitted for approval"
 msgstr "Bedankt! Uw review is succesvol verstuurd voor goedkeuring"
 
+msgid "The selected option combination is not available"
+msgstr ""
+
 msgid "This may take a second"
 msgstr "Dit kan een seconde duren"
 
@@ -552,9 +552,6 @@ msgstr "Bekijk uw account"
 
 msgid "We are fetching your favorite products, one moment please!"
 msgstr "Je favoriete artikelen worden momenteel ingeladen!"
-
-msgid "We are fetching your products, one moment please!"
-msgstr "Je producten worden momenteel ingeladen!"
 
 msgid "We couldn't find any results for {term}"
 msgstr "We konden geen resultaten vinden voor {term}"

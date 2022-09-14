@@ -262,9 +262,6 @@ msgstr "Últimas compras"
 msgid "Light Mode"
 msgstr "Modo claro"
 
-msgid "Loading cart"
-msgstr "Cargando carrito"
-
 msgid "Loading wishlist"
 msgstr "Cargando lista de deseos"
 
@@ -403,6 +400,9 @@ msgstr "Por favor, seleccione un método de pago"
 msgid "Please select a shipping method"
 msgstr "Por favor, seleccione un método de envío"
 
+msgid "Please select a value for {label}"
+msgstr "Seleccione un valor para {label}"
+
 msgid "Postcode"
 msgstr "Código postal"
 
@@ -423,9 +423,6 @@ msgstr "Eliminar producto"
 
 msgid "Remove from wishlist"
 msgstr "Eliminar de la lista de deseos"
-
-msgid "Reset Cart"
-msgstr "Restablecer carrito"
 
 msgid "Reset Cart and Return to home"
 msgstr "Restablecer carrito y volver a inicio"
@@ -523,6 +520,9 @@ msgstr "¡Gracias por su pedido!"
 msgid "Thank you! Your review was successfully submitted for approval"
 msgstr "¡Gracias! Su comentario se ha enviado correctamente para su aprobación"
 
+msgid "The selected option combination is not available"
+msgstr ""
+
 msgid "This may take a second"
 msgstr "Esto puede tardar un segundo"
 
@@ -552,9 +552,6 @@ msgstr "Ver su cuenta"
 
 msgid "We are fetching your favorite products, one moment please!"
 msgstr "Estamos obteniendo sus productos favoritos, un momento por favor!"
-
-msgid "We are fetching your products, one moment please!"
-msgstr "Estamos obteniendo sus productos, un momento por favor!"
 
 msgid "We couldn't find any results for {term}"
 msgstr "No se encontraron resultados para {term}"
