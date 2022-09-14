@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { useMotionValueValue, useMotionSelector } from '@graphcommerce/framer-utils'
 import { i18n } from '@lingui/core'
-import { Box, Fab, SxProps, Theme, useEventCallback } from '@mui/material'
+import { Box, Fab, SxProps, Theme, useEventCallback, useTheme } from '@mui/material'
 import { m } from 'framer-motion'
 import React, { useEffect } from 'react'
 import type { LiteralUnion } from 'type-fest'
@@ -62,8 +62,9 @@ export const NavigationOverlay = React.memo<NavigationOverlayProps>((props) => {
   const fabSize = useFabSize('responsive')
   const svgSize = useIconSvgSize('large')
 
+  const theme2 = useTheme()
   const handleOnBack = useEventCallback(() => {
-    if (window.matchMedia('(max-width: 992px)').matches) {
+    if (window.matchMedia(`(max-width: ${theme2.breakpoints.values.md}px)`).matches) {
       const current = selection.get()
       selection.set(current !== false ? current.slice(0, -1) : false)
     } else selection.set([])
