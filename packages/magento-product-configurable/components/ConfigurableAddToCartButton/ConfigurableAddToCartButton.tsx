@@ -9,7 +9,7 @@ import { Box } from '@mui/material'
 import { useConfigurableTypeProduct } from '../../hooks/useConfigurableTypeProduct'
 
 export function ConfigurableAddToCartButton(props: AddProductsToCartButtonProps) {
-  const typeProduct = useConfigurableTypeProduct()
+  const { typeProduct, loading } = useConfigurableTypeProduct()
   const form = useFormAddProductsToCart()
 
   const { watch, formState } = form
@@ -25,8 +25,8 @@ export function ConfigurableAddToCartButton(props: AddProductsToCartButtonProps)
 
   return (
     <Box width='100%'>
-      <AddProductsToCartButton {...props} disabled={combinationNotAvailable} />
-      {combinationNotAvailable && !formState.isSubmitting && (
+      <AddProductsToCartButton {...props} disabled={combinationNotAvailable} loading={loading} />
+      {combinationNotAvailable && !formState.isSubmitting && !loading && (
         <Box
           sx={{
             color: 'error.main',

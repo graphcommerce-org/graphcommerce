@@ -31,7 +31,7 @@ export function ConfigurableProductOptions(props: ConfigurableProductOptionsProp
   const form = useFormAddProductsToCart()
   const { control } = form
 
-  const typeProduct = useConfigurableTypeProduct()
+  const { typeProduct } = useConfigurableTypeProduct()
 
   const options = useMemo(
     () =>

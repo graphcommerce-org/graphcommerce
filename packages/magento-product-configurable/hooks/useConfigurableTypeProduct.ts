@@ -5,8 +5,8 @@ import { ConfigurableProductConfigurationsFragment } from '../graphql/Configurab
 import { GetConfigurableProductConfigurationsDocument } from '../graphql/GetConfigurableProductConfigurations.gql'
 
 export function useConfigurableTypeProduct() {
-  const { watch, urlKey, typeProduct } =
-    useFormAddProductsToCart<ConfigurableProductConfigurationsFragment>()
+  const form = useFormAddProductsToCart<ConfigurableProductConfigurationsFragment>()
+  const { watch, urlKey, typeProduct: typeProductDefault } = form
 
   const selectedOptions = (watch('cartItems.0.selected_options') ?? [])
     .filter(nonNullable)
@@ -18,10 +18,10 @@ export function useConfigurableTypeProduct() {
     ssr: false,
   })
 
-  return (
+  const typeProduct =
     findByTypename(
       cpc.data?.typeProducts?.items ?? cpc.previousData?.typeProducts?.items,
       'ConfigurableProduct',
-    ) ?? typeProduct
-  )
+    ) ?? typeProductDefault
+  return { ...cpc, typeProduct }
 }

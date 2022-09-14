@@ -3,16 +3,6 @@ fragment ConfigurableProductConfigurations on ConfigurableProduct {
   uid
   sku
   name
-  price_range {
-    minimum_price {
-      final_price {
-        ...Money
-      }
-      regular_price {
-        ...Money
-      }
-    }
-  }
   configurable_options {
     attribute_code
     uid

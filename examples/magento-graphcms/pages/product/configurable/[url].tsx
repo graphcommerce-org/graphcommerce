@@ -120,7 +120,7 @@ function ProductConfigurable(props: Props) {
           <AddProductsToCartQuantity />
 
           <Typography component='div' variant='h3' lineHeight='1'>
-            <ConfigurablePrice />
+            <ConfigurablePrice price_range={product.price_range} />
           </Typography>
 
           <Box
