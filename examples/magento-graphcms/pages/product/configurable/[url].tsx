@@ -13,6 +13,7 @@ import {
 } from '@graphcommerce/magento-product'
 import {
   ConfigurableAddToCartButton,
+  ConfigurableName,
   ConfigurablePrice,
   ConfigurableProductOptions,
   ConfigurableProductPageGallery,
@@ -94,7 +95,7 @@ function ProductConfigurable(props: Props) {
             </Typography>
 
             <Typography variant='h3' component='div' gutterBottom>
-              {product.name}
+              <ConfigurableName />
             </Typography>
 
             <ProductShortDescription short_description={product?.short_description} />

@@ -1,4 +1,4 @@
-fragment ConfigurableProductConfigurations on ConfigurableProduct {
+fragment ConfigurableProductConfigurations on ConfigurableProduct @injectable {
   __typename
   uid
   sku
