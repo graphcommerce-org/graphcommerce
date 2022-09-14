@@ -24,7 +24,7 @@ export const NavigationProvider = React.memo<NavigationProviderProps>((props) =>
     items,
     hideRootOnNavigate = true,
     closeAfterNavigate = false,
-    animationDuration = 0.275,
+    animationDuration = 0.2,
     children,
     selection,
   } = props
