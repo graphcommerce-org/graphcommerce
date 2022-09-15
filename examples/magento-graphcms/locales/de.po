@@ -262,9 +262,6 @@ msgstr "Neueste Bestellungen"
 msgid "Light Mode"
 msgstr "Heller Modus"
 
-msgid "Loading cart"
-msgstr "Warenkorb wird geladen"
-
 msgid "Loading wishlist"
 msgstr "Wunschliste wird geladen"
 
@@ -424,9 +421,6 @@ msgstr "Produkt entfernen"
 msgid "Remove from wishlist"
 msgstr "Aus Wunschliste entfernen"
 
-msgid "Reset Cart"
-msgstr "Warenkorb zurücksetzen"
-
 msgid "Reset Cart and Return to home"
 msgstr "Warenkorb zurücksetzen und zurück zur Startseite"
 
@@ -499,6 +493,9 @@ msgstr "Bewertung abschicken"
 msgid "Subscribe to newsletter"
 msgstr "Newsletter abonnieren"
 
+msgid "Subscribe to our newsletter to stay informed about our new products!"
+msgstr "Abonnieren Sie unseren Newsletter, um über unsere neuen Produkte informiert zu bleiben!"
+
 msgid "Successfully changed password"
 msgstr "Passwort erfolgreich geändert"
 
@@ -552,9 +549,6 @@ msgstr "Ihr Konto anzeigen"
 
 msgid "We are fetching your favorite products, one moment please!"
 msgstr "Wir laden Ihre Favoritenprodukte herunter, einen Moment bitte!"
-
-msgid "We are fetching your products, one moment please!"
-msgstr "Wir laden Ihre Produkte herunter, einen Moment bitte!"
 
 msgid "We couldn't find any results for {term}"
 msgstr "Wir konnten keine Ergebnisse für {term} finden"

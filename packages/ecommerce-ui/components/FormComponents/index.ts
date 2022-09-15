@@ -1,2 +1,28 @@
-export { TextFieldElement, SelectElement } from 'react-hook-form-mui'
-export type { TextFieldElementProps, SelectElementProps } from 'react-hook-form-mui'
+export {
+  AutocompleteElement,
+  CheckboxButtonGroup,
+  CheckboxElement,
+  MultiSelectElement,
+  PasswordElement,
+  PasswordRepeatElement,
+  RadioButtonGroup,
+  SelectElement,
+  SliderElement,
+  SwitchElement,
+  TextFieldElement,
+  ToggleButtonGroupElement,
+} from 'react-hook-form-mui'
+export type {
+  AutocompleteElementProps,
+  CheckboxButtonGroupProps,
+  CheckboxElementProps,
+  MultiSelectElementProps,
+  PasswordElementProps,
+  PasswordRepeatElementProps,
+  RadioButtonGroupProps,
+  SelectElementProps,
+  SliderElementProps,
+  SwitchElementProps,
+  TextFieldElementProps,
+  ToggleButtonGroupElementProps,
+} from 'react-hook-form-mui'
