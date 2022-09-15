@@ -54,7 +54,7 @@ export function AddProductsToCartForm<TypeProduct extends Record<string, unknown
   const submit = form.handleSubmit(() => {})
 
   const value = useMemo(
-    () => ({ ...form, sku, urlKey, typeProduct }),
+    () => ({ ...form, sku, urlKey, typeProduct: typeProduct ?? undefined }),
     [form, sku, urlKey, typeProduct],
   )
 
