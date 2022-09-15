@@ -7,7 +7,7 @@ export function ConfigurablePrice(props: ProductPagePriceFragment) {
   const { typeProduct } = useConfigurableTypeProduct()
 
   const regular_price =
-    typeProduct.configurable_product_options_selection?.variant?.price_range.minimum_price
+    typeProduct?.configurable_product_options_selection?.variant?.price_range.minimum_price
       .final_price ?? price_range.minimum_price.final_price
 
   return <Money {...regular_price} />

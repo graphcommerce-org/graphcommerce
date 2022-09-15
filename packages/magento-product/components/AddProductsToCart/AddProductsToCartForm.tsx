@@ -25,7 +25,7 @@ type AddProductsToCartFormProps<TypeProduct extends Record<string, unknown>> = {
   children: React.ReactNode
   urlKey: string
   sku: string
-  typeProduct?: TypeProduct
+  typeProduct?: TypeProduct | null
   sx?: SxProps<Theme>
 } & Omit<
   UseFormGraphQlOptions<AddProductsToCartMutation, AddProductsToCartMutationVariables>,
@@ -38,6 +38,16 @@ export function AddProductsToCartForm<TypeProduct extends Record<string, unknown
   const { children, sku, urlKey, defaultValues, typeProduct, sx, ...formProps } = props
   const form = useFormGqlMutationCart(AddProductsToCartDocument, {
     defaultValues: { ...defaultValues, cartItems: [{ sku, quantity: 1 }] },
+
+    // We're stripping out incomplete entered options.
+    onBeforeSubmit: ({ cartId, cartItems }) => ({
+      cartId,
+      cartItems: cartItems.map((cartItem) => ({
+        ...cartItem,
+        selected_options: cartItem.selected_options?.filter(Boolean),
+        entered_options: cartItem.entered_options?.filter((option) => option?.value),
+      })),
+    }),
     ...formProps,
   })
 

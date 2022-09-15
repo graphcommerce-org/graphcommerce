@@ -400,7 +400,7 @@ msgstr "Seleziona un metodo di pagamento"
 msgid "Please select a shipping method"
 msgstr "Seleziona un metodo di spedizione"
 
-msgid "Please select a value for {label}"
+msgid "Please select a value for ‘{label}’"
 msgstr "Seleziona un valore per {label}"
 
 msgid "Postcode"

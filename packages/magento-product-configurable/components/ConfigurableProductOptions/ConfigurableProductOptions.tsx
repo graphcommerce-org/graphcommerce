@@ -70,7 +70,7 @@ export function ConfigurableProductOptions(props: ConfigurableProductOptionsProp
               required
               items={values}
               render={render}
-              errorMessage={i18n._(/* i18n*/ 'Please select a value for {label}', { label })}
+              errorMessage={i18n._(/* i18n*/ 'Please select a value for ‘{label}’', { label })}
             />
           </Box>
         )

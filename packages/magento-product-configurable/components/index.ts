@@ -1,4 +1,3 @@
-export * from './ConfigurableAddToCartButton'
 export * from './ConfigurableOptionValue'
 export * from './ConfigurableOptionValueColor'
 export * from './ConfigurableOptionValueImage'

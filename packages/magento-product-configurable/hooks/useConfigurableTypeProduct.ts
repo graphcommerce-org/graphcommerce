@@ -14,7 +14,10 @@ export function useConfigurableTypeProduct() {
 
   const cpc = useQuery(GetConfigurableProductConfigurationsDocument, {
     variables: { urlKey, selectedOptions },
-    skip: !urlKey || !selectedOptions.length,
+    skip:
+      !urlKey ||
+      !selectedOptions.length ||
+      typeProductDefault?.__typename !== 'ConfigurableProduct',
     ssr: false,
   })
 
