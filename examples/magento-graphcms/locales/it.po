@@ -496,6 +496,9 @@ msgstr "Invia recensione"
 msgid "Subscribe to newsletter"
 msgstr "Iscriviti alla newsletter"
 
+msgid "Subscribe to our newsletter to stay informed about our new products!"
+msgstr "Iscriviti alla nostra newsletter per rimanere informato sui nostri nuovi prodotti!"
+
 msgid "Successfully changed password"
 msgstr "Password cambiata con successo"
 

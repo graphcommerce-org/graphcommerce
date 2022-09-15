@@ -496,6 +496,9 @@ msgstr "Verstuur review"
 msgid "Subscribe to newsletter"
 msgstr "Abonneer op de nieuwsbrief"
 
+msgid "Subscribe to our newsletter to stay informed about our new products!"
+msgstr "Schrijf u in voor onze nieuwsbrief om op de hoogte te blijven van onze nieuwe producten! "
+
 msgid "Successfully changed password"
 msgstr "Wachtwoord aangepast"
 
