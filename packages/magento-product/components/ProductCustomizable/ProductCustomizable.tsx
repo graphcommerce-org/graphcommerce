@@ -52,13 +52,19 @@ const CustomizableDropDownOption: OptionTypeRenderer['CustomizableDropDownOption
 
 const renderer: OptionTypeRenderer = {
   CustomizableAreaOption,
-  CustomizableCheckboxOption: () => <div>checkbox</div>,
-  CustomizableDateOption: () => <div>da`te</div>,
+  CustomizableCheckboxOption: () => <div>checkbox not implemented</div>,
+  CustomizableDateOption: () => <div>date not implemented</div>,
   CustomizableDropDownOption,
-  CustomizableFieldOption: () => <div>field</div>,
-  CustomizableFileOption: () => <div>file</div>,
-  CustomizableMultipleOption: () => <div>multi</div>,
-  CustomizableRadioOption: () => <div>radiios</div>,
+  CustomizableFieldOption: () => <div>field not implemented</div>,
+  CustomizableFileOption: () => <div>file not implemented</div>,
+  CustomizableMultipleOption: () => <div>multi not implemented</div>,
+  CustomizableRadioOption: () => <div>radios not implemented</div>,
+}
+
+export function isProductCustomizable(
+  product: Record<string, unknown>,
+): product is ProductCustomizableFragment {
+  return typeof product.options !== 'undefined'
 }
 
 export function ProductCustomizable(props: ProductCustomizableFragment) {
