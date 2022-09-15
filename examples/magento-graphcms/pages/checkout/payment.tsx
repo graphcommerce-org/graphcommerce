@@ -130,8 +130,8 @@ function PaymentPage() {
 
                 <CouponAccordion />
 
-                <CartAgreementsForm step={3} />
-                <SubscribeToNewsletter step={2} />
+                <CartAgreementsForm step={2} />
+                <SubscribeToNewsletter step={3} />
 
                 <PaymentMethodPlaceOrder step={5} />
 
