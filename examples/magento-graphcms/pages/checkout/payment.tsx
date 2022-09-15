@@ -18,6 +18,7 @@ import {
   useCartLock,
   PaymentMethodActionCardListForm,
 } from '@graphcommerce/magento-cart-payment-method'
+import { SubscribeToNewsletter } from '@graphcommerce/magento-newsletter'
 import { braintree, braintree_local_payment } from '@graphcommerce/magento-payment-braintree'
 import { included_methods } from '@graphcommerce/magento-payment-included'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
@@ -121,7 +122,7 @@ function PaymentPage() {
                   ...mollie_methods,
                 }}
               >
-                <PaymentMethodActionCardListForm step={3} />
+                <PaymentMethodActionCardListForm step={4} />
 
                 <CartSummary editable>
                   <CartTotals />
@@ -129,9 +130,10 @@ function PaymentPage() {
 
                 <CouponAccordion />
 
-                <CartAgreementsForm step={2} />
+                <CartAgreementsForm step={3} />
+                <SubscribeToNewsletter step={2} />
 
-                <PaymentMethodPlaceOrder step={4} />
+                <PaymentMethodPlaceOrder step={5} />
 
                 <FormActions>
                   <PaymentMethodButton
