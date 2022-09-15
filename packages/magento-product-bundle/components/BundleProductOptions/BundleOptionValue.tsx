@@ -1,0 +1,89 @@
+import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
+import { Image } from '@graphcommerce/image'
+import { useFormAddProductsToCart } from '@graphcommerce/magento-product/components'
+import { Money } from '@graphcommerce/magento-store'
+import {
+  responsiveVal,
+  ActionCardItemRenderProps,
+  ActionCard,
+  Button,
+} from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/react'
+import { BundleOptionValueProps } from './types'
+
+const swatchSizes = {
+  small: responsiveVal(30, 40),
+  medium: responsiveVal(30, 50),
+  large: responsiveVal(50, 80),
+}
+
+export const BundleOptionValue = (props: ActionCardItemRenderProps<BundleOptionValueProps>) => {
+  const {
+    selected,
+    idx,
+    price,
+    product,
+    label,
+    size,
+    can_change_quantity,
+    quantity = 1,
+    required,
+    onReset,
+  } = props
+  const { control } = useFormAddProductsToCart()
+
+  const thumbnail = product?.thumbnail?.url
+
+  const imageSize = swatchSizes[size ?? 'large']
+
+  return (
+    <ActionCard
+      {...props}
+      title={label}
+      price={price ? <Money value={price} /> : undefined}
+      image={
+        thumbnail &&
+        !thumbnail.includes('/placeholder/') && (
+          <Image
+            src={thumbnail}
+            width={40}
+            height={40}
+            alt={label ?? ''}
+            sizes={imageSize}
+            sx={{ display: 'block', width: imageSize, height: imageSize, objectFit: 'cover' }}
+          />
+        )
+      }
+      action={
+        (can_change_quantity || !required) && (
+          <Button disableRipple variant='inline' color='secondary' size='small'>
+            <Trans id='Select' />
+          </Button>
+        )
+      }
+      reset={
+        (can_change_quantity || !required) && (
+          <Button disableRipple variant='inline' color='secondary' size='small' onClick={onReset}>
+            {can_change_quantity ? <Trans id='Change' /> : <Trans id='Remove' />}
+          </Button>
+        )
+      }
+      secondaryAction={
+        selected &&
+        can_change_quantity && (
+          <TextFieldElement
+            size='small'
+            label='Quantity'
+            required
+            defaultValue={quantity}
+            control={control}
+            sx={{ width: responsiveVal(80, 120), mt: 2 }}
+            name={`cartItems.0.entered_options.${idx}.value`}
+            type='number'
+            onMouseDown={(e) => e.stopPropagation()}
+          />
+        )
+      }
+    />
+  )
+}

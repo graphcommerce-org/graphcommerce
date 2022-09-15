@@ -3,9 +3,7 @@ fragment ProductPageBundleQueryFragment on Query {
     items {
       __typename
       uid
-      ... on BundleProduct {
-        ...BundleItems
-      }
+      ...BundleProductOptions
     }
   }
 }
