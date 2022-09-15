@@ -101,6 +101,8 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
           name='customerAddressId'
           errorMessage='Please select a shipping address'
           collapse
+          size='large'
+          color='secondary'
           items={[
             ...(addresses ?? []).filter(Boolean).map((address) => ({
               ...address,

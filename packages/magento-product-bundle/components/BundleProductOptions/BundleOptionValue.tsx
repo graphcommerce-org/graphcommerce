@@ -25,6 +25,7 @@ export const BundleOptionValue = (props: ActionCardItemRenderProps<BundleOptionV
     product,
     label,
     size,
+    color,
     can_change_quantity,
     quantity = 1,
     required,
@@ -56,14 +57,20 @@ export const BundleOptionValue = (props: ActionCardItemRenderProps<BundleOptionV
       }
       action={
         (can_change_quantity || !required) && (
-          <Button disableRipple variant='inline' color='secondary' size='small'>
+          <Button disableTouchRipple variant='inline' color='secondary' size='small'>
             <Trans id='Select' />
           </Button>
         )
       }
       reset={
         (can_change_quantity || !required) && (
-          <Button disableRipple variant='inline' color='secondary' size='small' onClick={onReset}>
+          <Button
+            disableTouchRipple
+            variant='inline'
+            color='secondary'
+            size='small'
+            onClick={onReset}
+          >
             {can_change_quantity ? <Trans id='Change' /> : <Trans id='Remove' />}
           </Button>
         )
@@ -74,8 +81,9 @@ export const BundleOptionValue = (props: ActionCardItemRenderProps<BundleOptionV
           <TextFieldElement
             size='small'
             label='Quantity'
+            color={color}
             required
-            defaultValue={quantity}
+            defaultValue={`${quantity}`}
             control={control}
             sx={{ width: responsiveVal(80, 120), mt: 2 }}
             name={`cartItems.0.entered_options.${idx}.value`}

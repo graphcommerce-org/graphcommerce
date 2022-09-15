@@ -20,6 +20,7 @@ export function BundleProductOptions(props: BundelProductOptionsProps) {
       {filterNonNullableKeys(typeProduct?.items, ['uid', 'title', 'type']).map((item) => (
         <BundleOption
           key={item.uid}
+          color='primary'
           {...props}
           {...item}
           idx={item.position ?? 0 + 1000}

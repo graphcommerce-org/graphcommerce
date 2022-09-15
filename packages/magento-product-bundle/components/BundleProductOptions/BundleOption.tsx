@@ -16,14 +16,22 @@ export const BundleOption = React.memo<BundleOptionProps>((props) => {
 
   const can_change_quantity = options?.some((o) => o?.can_change_quantity)
   const required = _required ?? false
+  const errorMessage = required
+    ? i18n._(/* i18n*/ 'Please select a value for ‘{label}’', { label: title })
+    : undefined
+
   return (
     <div>
       <SectionHeader labelLeft={title} sx={{ mt: 0 }} />
       <ActionCardListForm<BundleOptionValueProps & ActionCardItemBase>
         control={control}
         required={required}
+        color={color}
+        layout={layout}
+        size={size}
+        variant={variant}
         defaultValue={options?.find((opt) => opt?.is_default)?.uid}
-        errorMessage={i18n._(/* i18n*/ 'Please select a value for ‘{label}’', { label: title })}
+        errorMessage={errorMessage}
         name={
           options?.some((o) => o?.can_change_quantity)
             ? `cartItems.0.entered_options.${idx}.uid`
@@ -37,13 +45,9 @@ export const BundleOption = React.memo<BundleOptionProps>((props) => {
               ...option,
               value: option.uid,
               idx,
-              color,
-              layout,
-              size,
-              variant,
               required,
             })),
-          [color, idx, layout, options, required, size, variant],
+          [idx, options, required],
         )}
       />
     </div>

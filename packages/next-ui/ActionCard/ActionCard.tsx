@@ -1,4 +1,3 @@
-import { isHTMLMousePointerEvent } from '@graphcommerce/framer-scroller/utils/isHTMLMousePointerEvent'
 import { alpha, Box, BoxProps, ButtonBase, ButtonProps, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { extendableComponent } from '../Styles'
@@ -83,10 +82,10 @@ export function ActionCard(props: ActionCardProps) {
     selected = false,
     reset,
     disabled = false,
-    color = 'secondary',
-    variant = 'outlined',
     size = 'medium',
-    layout = 'stack',
+    color = 'primary',
+    variant = 'outlined',
+    layout = 'list',
     error = false,
   } = props
 

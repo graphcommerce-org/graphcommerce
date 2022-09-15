@@ -22,11 +22,9 @@ export function ConfigurableProductOptions(props: ConfigurableProductOptionsProp
   const {
     optionEndLabels,
     sx,
-    color = 'primary',
-    size = 'medium',
-    layout = 'grid',
-    variant = 'outlined',
+
     render = ConfigurableOptionValue,
+    ...other
   } = props
   const form = useFormAddProductsToCart()
   const { control } = form
@@ -61,10 +59,8 @@ export function ConfigurableProductOptions(props: ConfigurableProductOptionsProp
               sx={{ mt: 0 }}
             />
             <ActionCardListForm<ActionCardItemBase & ConfigurableOptionValueFragment>
-              color={color}
-              layout={layout}
-              variant={variant}
-              size={size}
+              layout='grid'
+              {...other}
               name={fieldName}
               control={control}
               required

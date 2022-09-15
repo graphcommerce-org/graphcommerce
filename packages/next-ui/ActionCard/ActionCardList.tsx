@@ -60,7 +60,7 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
       error = false,
       errorMessage,
       size = 'medium',
-      color = 'secondary',
+      color = 'primary',
       variant = 'outlined',
       layout = 'list',
       collapse = false,

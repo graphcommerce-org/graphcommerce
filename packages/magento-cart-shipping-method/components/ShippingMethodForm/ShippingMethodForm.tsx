@@ -101,6 +101,8 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
         <ActionCardListForm
           control={control}
           name='carrierMethod'
+          size='large'
+          color='secondary'
           errorMessage={i18n._(/* i18n */ 'Please select a shipping method')}
           items={items}
           render={
