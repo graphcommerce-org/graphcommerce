@@ -262,9 +262,6 @@ msgstr "Ultimi ordini"
 msgid "Light Mode"
 msgstr "Modalità chiara"
 
-msgid "Loading cart"
-msgstr "Caricamento carrello"
-
 msgid "Loading wishlist"
 msgstr "Caricamento lista desideri"
 
@@ -424,9 +421,6 @@ msgstr "Rimuovi prodotto"
 msgid "Remove from wishlist"
 msgstr "Rimuovi dalla lista desideri"
 
-msgid "Reset Cart"
-msgstr "Ripristina carrello"
-
 msgid "Reset Cart and Return to home"
 msgstr "Reset carrello e torna alla home"
 
@@ -499,6 +493,9 @@ msgstr "Invia recensione"
 msgid "Subscribe to newsletter"
 msgstr "Iscriviti alla newsletter"
 
+msgid "Subscribe to our newsletter to stay informed about our new products!"
+msgstr "Iscriviti alla nostra newsletter per rimanere informato sui nostri nuovi prodotti!"
+
 msgid "Successfully changed password"
 msgstr "Password cambiata con successo"
 
@@ -552,9 +549,6 @@ msgstr "Visualizza il tuo account"
 
 msgid "We are fetching your favorite products, one moment please!"
 msgstr "Stiamo scaricando i tuoi prodotti preferiti, un momento per favore!"
-
-msgid "We are fetching your products, one moment please!"
-msgstr "Stiamo scaricando i tuoi prodotti, un momento per favore!"
 
 msgid "We couldn't find any results for {term}"
 msgstr "Non abbiamo trovato nessun risultato per {term}"

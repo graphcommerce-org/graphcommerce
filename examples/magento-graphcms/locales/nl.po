@@ -262,9 +262,6 @@ msgstr "Laatste bestellingen"
 msgid "Light Mode"
 msgstr "Licht modus"
 
-msgid "Loading cart"
-msgstr "Ophalen winkelwagen"
-
 msgid "Loading wishlist"
 msgstr "Ophalen verlanglijst"
 
@@ -424,9 +421,6 @@ msgstr "Verwijder product"
 msgid "Remove from wishlist"
 msgstr "Verwijder van verlanglijst"
 
-msgid "Reset Cart"
-msgstr "Reset winkelwagen"
-
 msgid "Reset Cart and Return to home"
 msgstr "Reset winkelwagen en ga terug naar home"
 
@@ -499,6 +493,9 @@ msgstr "Verstuur review"
 msgid "Subscribe to newsletter"
 msgstr "Abonneer op de nieuwsbrief"
 
+msgid "Subscribe to our newsletter to stay informed about our new products!"
+msgstr "Schrijf u in voor onze nieuwsbrief om op de hoogte te blijven van onze nieuwe producten! "
+
 msgid "Successfully changed password"
 msgstr "Wachtwoord aangepast"
 
@@ -552,9 +549,6 @@ msgstr "Bekijk uw account"
 
 msgid "We are fetching your favorite products, one moment please!"
 msgstr "Je favoriete artikelen worden momenteel ingeladen!"
-
-msgid "We are fetching your products, one moment please!"
-msgstr "Je producten worden momenteel ingeladen!"
 
 msgid "We couldn't find any results for {term}"
 msgstr "We konden geen resultaten vinden voor {term}"

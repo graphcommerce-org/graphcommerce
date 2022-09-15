@@ -131,8 +131,10 @@ function PaymentPage() {
                 <CouponAccordion />
                 <SubscribeToNewsletter
                   step={3}
-                  label='Subscribe to our newsletter to stay informed about our new products!'
-                  sx={(theme) => ({ paddingTop: theme.spacings.md })}
+                  label={i18n._(
+                    /* i18n */ 'Subscribe to our newsletter to stay informed about our new products!',
+                  )}
+                  sx={(theme) => ({ marginTop: theme.spacings.md })}
                 />
                 <CartAgreementsForm step={2} sx={{ pt: 0 }} />
 
