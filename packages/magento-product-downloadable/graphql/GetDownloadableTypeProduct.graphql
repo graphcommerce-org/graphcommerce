@@ -1,0 +1,9 @@
+query DownloadableProductPage($urlKey: String) {
+  typeProducts: products(filter: { url_key: { eq: $urlKey } }) {
+    items {
+      __typename
+      uid
+      ...DownloadableProductOptions
+    }
+  }
+}
