@@ -1,2 +1,4 @@
-export { TextFieldElement, SelectElement } from 'react-hook-form-mui'
-export type { TextFieldElementProps, SelectElementProps } from 'react-hook-form-mui'
+export { SelectElement } from 'react-hook-form-mui'
+export type { SelectElementProps } from 'react-hook-form-mui'
+
+export * from './TextFieldElement'
