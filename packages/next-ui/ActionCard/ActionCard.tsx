@@ -1,3 +1,4 @@
+import { isHTMLMousePointerEvent } from '@graphcommerce/framer-scroller/utils/isHTMLMousePointerEvent'
 import { alpha, Box, BoxProps, ButtonBase, ButtonProps, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { extendableComponent } from '../Styles'
@@ -6,7 +7,7 @@ import { breakpointVal } from '../Styles/breakpointVal'
 type Variants = 'outlined' | 'default'
 type Size = 'large' | 'medium' | 'small'
 type Color = 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning'
-type Layout = 'inline' | 'grid' | 'list'
+type Layout = 'inline' | 'grid' | 'list' | 'stack'
 
 function isButtonProps(props: ButtonProps<'div'> | BoxProps<'div'>): props is ButtonProps<'div'> {
   return props.onClick !== undefined
@@ -84,8 +85,8 @@ export function ActionCard(props: ActionCardProps) {
     disabled = false,
     color = 'secondary',
     variant = 'outlined',
-    size = 'large',
-    layout = 'list',
+    size = 'medium',
+    layout = 'stack',
     error = false,
   } = props
 

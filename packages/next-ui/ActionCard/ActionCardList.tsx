@@ -59,7 +59,7 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
       required,
       error = false,
       errorMessage,
-      size = 'large',
+      size = 'medium',
       color = 'secondary',
       variant = 'outlined',
       layout = 'list',
@@ -131,12 +131,17 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
     const classes = withState({ size, color, variant, layout })
 
     return (
-      <>
+      <div>
         <Box
           className={classes.root}
           ref={ref}
           sx={[
             (theme) => ({
+              '&.layoutStack': {
+                display: 'grid',
+                height: 'min-content',
+                gap: theme.spacings.xxs,
+              },
               '&.layoutList': {
                 display: 'grid',
                 height: 'min-content',
@@ -173,7 +178,7 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
             })
           })}
         </Box>
-        {error && (
+        {error && errorMessage && (
           <Alert
             severity='error'
             variant='standard'
@@ -187,7 +192,7 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
             {errorMessage}
           </Alert>
         )}
-      </>
+      </div>
     )
   },
 )
