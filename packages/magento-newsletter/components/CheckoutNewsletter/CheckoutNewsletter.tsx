@@ -3,6 +3,7 @@ import { DocumentNode } from '@graphcommerce/graphql'
 import { useCartQuery } from '@graphcommerce/magento-cart'
 import { useCustomerQuery, useCustomerSession } from '@graphcommerce/magento-customer'
 import { useFormGql, useFormGqlMutation } from '@graphcommerce/react-hook-form'
+import { Box, SxProps, Theme } from '@mui/material'
 import { GetCustomerNewsletterToggleDocument } from '../CustomerNewsletterToggle/GetCustomerNewsLetterToggle.gql'
 import { GetCartEmailDocument } from '../SignupNewsletter/GetCartEmail.gql'
 import { SubscribeCustomerDocument } from './SubscribeCustomer.gql'
@@ -12,10 +13,15 @@ import {
   SubscribeGuestMutationVariables,
 } from './SubscribeGuest.gql'
 
-type CheckoutNewsletterProps = { step: number; checked?: boolean }
+type CheckoutNewsletterProps = {
+  step: number
+  checked?: boolean
+  label: string
+  sx?: SxProps<Theme>
+}
 
 export function SubscribeToNewsletter(props: CheckoutNewsletterProps) {
-  const { step, checked = false } = props
+  const { step, checked = false, label, sx } = props
   const cartEmail = useCartQuery(GetCartEmailDocument).data?.cart?.email
 
   const { loggedIn } = useCustomerSession()
@@ -42,13 +48,10 @@ export function SubscribeToNewsletter(props: CheckoutNewsletterProps) {
   if (isCustomerSubscribed) return null
 
   return (
-    <form onSubmit={submit} noValidate>
-      <CheckboxElement
-        color='secondary'
-        control={control}
-        name='subscribe'
-        label='Subscriiibeeee'
-      />
-    </form>
+    <Box sx={sx}>
+      <form onSubmit={submit} noValidate>
+        <CheckboxElement color='secondary' control={control} name='subscribe' label={label} />
+      </form>
+    </Box>
   )
 }

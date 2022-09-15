@@ -129,9 +129,12 @@ function PaymentPage() {
                 </CartSummary>
 
                 <CouponAccordion />
-
-                <CartAgreementsForm step={2} />
-                <SubscribeToNewsletter step={3} />
+                <SubscribeToNewsletter
+                  step={3}
+                  label='Subscribe to our newsletter to stay informed about our new products!'
+                  sx={(theme) => ({ paddingTop: theme.spacings.md })}
+                />
+                <CartAgreementsForm step={2} sx={{ pt: 0 }} />
 
                 <PaymentMethodPlaceOrder step={5} />
 
