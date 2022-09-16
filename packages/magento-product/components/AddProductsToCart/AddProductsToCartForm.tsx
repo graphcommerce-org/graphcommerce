@@ -8,34 +8,30 @@ import {
   AddProductsToCartMutationVariables,
 } from './AddProductsToCart.gql'
 
-type AddProductsToCartContextType<T extends Record<string, unknown>> = UseFormGqlMutationReturn<
+type AddProductsToCartContextType = UseFormGqlMutationReturn<
   AddProductsToCartMutation,
   AddProductsToCartMutationVariables
 > & {
   urlKey: string
   sku: string
-  typeProduct?: T
 }
 
 export const addProductsToCartContext = createContext(
-  undefined as AddProductsToCartContextType<Record<'unknown', unknown>> | undefined,
+  undefined as AddProductsToCartContextType | undefined,
 )
 
-type AddProductsToCartFormProps<TypeProduct extends Record<string, unknown>> = {
+type AddProductsToCartFormProps = {
   children: React.ReactNode
   urlKey: string
   sku: string
-  typeProduct?: TypeProduct | null
   sx?: SxProps<Theme>
 } & Omit<
   UseFormGraphQlOptions<AddProductsToCartMutation, AddProductsToCartMutationVariables>,
   'onBeforeSubmit'
 >
 
-export function AddProductsToCartForm<TypeProduct extends Record<string, unknown>>(
-  props: AddProductsToCartFormProps<TypeProduct>,
-) {
-  const { children, sku, urlKey, defaultValues, typeProduct, sx, ...formProps } = props
+export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
+  const { children, sku, urlKey, defaultValues, sx, ...formProps } = props
   const form = useFormGqlMutationCart(AddProductsToCartDocument, {
     defaultValues: { ...defaultValues, cartItems: [{ sku, quantity: 1 }] },
 
@@ -53,10 +49,7 @@ export function AddProductsToCartForm<TypeProduct extends Record<string, unknown
 
   const submit = form.handleSubmit(() => {})
 
-  const value = useMemo(
-    () => ({ ...form, sku, urlKey, typeProduct: typeProduct ?? undefined }),
-    [form, sku, urlKey, typeProduct],
-  )
+  const value = useMemo(() => ({ ...form, sku, urlKey }), [form, sku, urlKey])
 
   return (
     <addProductsToCartContext.Provider value={value}>
@@ -67,18 +60,14 @@ export function AddProductsToCartForm<TypeProduct extends Record<string, unknown
   )
 }
 
-export function useFormAddProductsToCart<TypeProduct extends Record<string, unknown>>(
-  optional: true,
-): AddProductsToCartContextType<TypeProduct> | undefined
-export function useFormAddProductsToCart<TypeProduct extends Record<string, unknown>>(
-  optional?: false,
-): AddProductsToCartContextType<TypeProduct>
+export function useFormAddProductsToCart(optional: true): AddProductsToCartContextType | undefined
+export function useFormAddProductsToCart(optional?: false): AddProductsToCartContextType
 export function useFormAddProductsToCart(optional = false) {
   const context = useContext(addProductsToCartContext)
 
   if (!optional && typeof context === 'undefined') {
     throw Error(
-      'useFormAddProductsToCart must be used within a AddProductsToCartForm or provide the optional=true option',
+      'useFormAddProductsToCart must be used within a AddProductsToCartForm or provide the optional=true argument',
     )
   }
   return context

@@ -1,4 +1,3 @@
-import { useFormAddProductsToCart } from '@graphcommerce/magento-product'
 import { ActionCardListProps, filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { BundleOption } from './BundleOption'
 import { BundleOptionValue } from './BundleOptionValue'
@@ -10,14 +9,15 @@ type BundelProductOptionsProps = Pick<
   'size' | 'layout' | 'color' | 'variant'
 > & {
   renderer?: React.FC<BundleOptionValueProps>
+  product: BundleProductOptionsFragment
 }
 
 export function BundleProductOptions(props: BundelProductOptionsProps) {
-  const { typeProduct } = useFormAddProductsToCart<BundleProductOptionsFragment>()
+  const { product } = props
 
   return (
     <>
-      {filterNonNullableKeys(typeProduct?.items, ['uid', 'title', 'type']).map((item) => (
+      {filterNonNullableKeys(product?.items, ['uid', 'title', 'type']).map((item) => (
         <BundleOption
           key={item.uid}
           color='primary'

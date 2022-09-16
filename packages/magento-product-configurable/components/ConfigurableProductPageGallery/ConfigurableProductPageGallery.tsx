@@ -6,8 +6,11 @@ type ConfigurableProductPageGalleryProps = ProductPageGalleryProps
 export function ConfigurableProductPageGallery(props: ConfigurableProductPageGalleryProps) {
   const { media_gallery } = props
 
-  const { typeProduct } = useConfigurableTypeProduct()
-  const media = typeProduct?.configurable_product_options_selection?.media_gallery ?? media_gallery
+  const { configured } = useConfigurableTypeProduct()
+  const media =
+    (configured?.configurable_product_options_selection?.media_gallery?.length ?? 0) > 0
+      ? configured?.configurable_product_options_selection?.media_gallery
+      : media_gallery
 
   return <ProductPageGallery {...props} media_gallery={media} />
 }

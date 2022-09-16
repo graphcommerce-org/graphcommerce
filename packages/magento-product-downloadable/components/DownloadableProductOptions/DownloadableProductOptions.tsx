@@ -9,13 +9,18 @@ import {
 import { useMemo } from 'react'
 import { DownloadableProductOptionsFragment } from './DownloadableProductOptions.gql'
 
-export function DownloadableProductOptions() {
-  const form = useFormAddProductsToCart<DownloadableProductOptionsFragment>()
-  const { typeProduct, control } = form
+type DownloadableProductOptionsProps = {
+  product: DownloadableProductOptionsFragment
+}
+
+export function DownloadableProductOptions(props: DownloadableProductOptionsProps) {
+  const { product } = props
+  const form = useFormAddProductsToCart()
+  const { control } = form
 
   const items = useMemo(
     () =>
-      filterNonNullableKeys(typeProduct?.downloadable_product_links, ['title']).map((item) => {
+      filterNonNullableKeys(product.downloadable_product_links, ['title']).map((item) => {
         const newItem: ActionCardProps = {
           value: item.uid,
           title: item.title,
@@ -23,7 +28,7 @@ export function DownloadableProductOptions() {
         }
         return newItem
       }),
-    [typeProduct?.downloadable_product_links],
+    [product.downloadable_product_links],
   )
 
   return (

@@ -1,12 +1,10 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { ApolloQueryResult } from '@graphcommerce/graphql'
 import {
   AddProductsToCartButton,
   AddProductsToCartForm,
   AddProductsToCartQuantity,
   AddProductsToCartSnackbar,
   getProductStaticPaths,
-  isProductCustomizable,
   jsonLdProduct,
   jsonLdProductOffer,
   ProductCustomizable,
@@ -15,28 +13,24 @@ import {
   ProductPageMeta,
   ProductShortDescription,
 } from '@graphcommerce/magento-product'
-import {
-  BundleProductOptions,
-  BundleProductPageDocument,
-  BundleProductPageQuery,
-} from '@graphcommerce/magento-product-bundle'
+import { BundleProductOptions } from '@graphcommerce/magento-product-bundle'
 import {
   ConfigurableName,
   ConfigurablePrice,
   ConfigurableProductOptions,
   ConfigurableProductPageGallery,
-  GetConfigurableProductConfigurationsDocument,
-  GetConfigurableProductConfigurationsQuery,
 } from '@graphcommerce/magento-product-configurable'
-import {
-  DownloadableProductOptions,
-  DownloadableProductPageDocument,
-  DownloadableProductPageQuery,
-} from '@graphcommerce/magento-product-downloadable'
+import { DownloadableProductOptions } from '@graphcommerce/magento-product-downloadable'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
 import { Money, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
-import { GetStaticProps, JsonLd, LayoutHeader, LayoutTitle } from '@graphcommerce/next-ui'
+import {
+  GetStaticProps,
+  JsonLd,
+  LayoutHeader,
+  LayoutTitle,
+  isTypename,
+} from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box, Divider, Link, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
@@ -50,26 +44,19 @@ import {
   Usps,
 } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
-import { ProductPageDocument, ProductPageQuery } from '../../graphql/ProductPage.gql'
+import { ProductPage2Document, ProductPage2Query } from '../../graphql/ProductPage2.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
-type TypeQueries =
-  | GetConfigurableProductConfigurationsQuery
-  | DownloadableProductPageQuery
-  | BundleProductPageQuery
-  | undefined
-type Props = ProductPageQuery & TypeQueries
+type Props = ProductPage2Query
 
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
 function ProductConfigurable(props: Props) {
-  const { products, usps, typeProducts, sidebarUsps, pages } = props
+  const { products, usps, sidebarUsps, pages } = props
 
-  const router = useRouter()
   const product = products?.items?.[0]
-  const typeProduct = typeProducts?.items?.[0]
   const aggregations = products?.aggregations
 
   if (!product?.sku || !product.url_key) return null
@@ -91,9 +78,9 @@ function ProductConfigurable(props: Props) {
       />
       <ProductPageMeta {...product} />
 
-      <AddProductsToCartForm sku={product.sku} urlKey={product.url_key} typeProduct={typeProduct}>
+      <AddProductsToCartForm sku={product.sku} urlKey={product.url_key}>
         <ConfigurableProductPageGallery
-          {...product}
+          media_gallery={product.media_gallery}
           sx={(theme) => ({
             '& .SidebarGallery-sidebar': { display: 'grid', rowGap: theme.spacings.sm },
           })}
@@ -107,7 +94,11 @@ function ProductConfigurable(props: Props) {
             </Typography>
 
             <Typography variant='h3' component='div' gutterBottom>
-              <ConfigurableName>{product.name}</ConfigurableName>
+              {isTypename(product, ['ConfigurableProduct']) ? (
+                <ConfigurableName product={product} />
+              ) : (
+                product.name
+              )}
             </Typography>
 
             <ProductShortDescription short_description={product?.short_description} />
@@ -115,8 +106,9 @@ function ProductConfigurable(props: Props) {
             <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
           </div>
 
-          {product.__typename === 'ConfigurableProduct' && (
+          {isTypename(product, ['ConfigurableProduct']) && (
             <ConfigurableProductOptions
+              product={product}
               optionEndLabels={{
                 size: (
                   <PageLink href='/modal/product/global/size'>
@@ -128,18 +120,21 @@ function ProductConfigurable(props: Props) {
               }}
             />
           )}
-
-          {product.__typename === 'BundleProduct' && <BundleProductOptions />}
-
-          {product.__typename === 'DownloadableProduct' && <DownloadableProductOptions />}
-
-          {isProductCustomizable(product) && <ProductCustomizable {...product} />}
+          {isTypename(product, ['BundleProduct']) && <BundleProductOptions product={product} />}
+          {isTypename(product, ['DownloadableProduct']) && (
+            <DownloadableProductOptions product={product} />
+          )}
+          {!isTypename(product, ['GroupedProduct']) && <ProductCustomizable product={product} />}
 
           <Divider />
           <AddProductsToCartQuantity />
 
           <Typography component='div' variant='h3' lineHeight='1'>
-            <ConfigurablePrice price_range={product.price_range} />
+            {isTypename(product, ['ConfigurableProduct']) ? (
+              <ConfigurablePrice product={product} />
+            ) : (
+              <Money {...product.price_range.minimum_price.final_price} />
+            )}
           </Typography>
 
           <Box
@@ -203,30 +198,13 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
 
   const conf = client.query({ query: StoreConfigDocument })
   const productPage = staticClient.query({
-    query: ProductPageDocument,
-    variables: {
-      url: 'product/global',
-      urlKey,
-    },
+    query: ProductPage2Document,
+    variables: { url: 'product/global', urlKey },
   })
   const layout = staticClient.query({ query: LayoutDocument })
 
   const product = (await productPage).data.products?.items?.find((p) => p?.url_key === urlKey)
   if (!product) return { notFound: true, revalidate: 60 * 20 }
-
-  let typeProd: Promise<ApolloQueryResult<TypeQueries>> | undefined
-  if (product.__typename === 'ConfigurableProduct') {
-    typeProd = staticClient.query({
-      query: GetConfigurableProductConfigurationsDocument,
-      variables: { urlKey, selectedOptions: [] },
-    })
-  }
-  if (product.__typename === 'DownloadableProduct') {
-    typeProd = staticClient.query({ query: DownloadableProductPageDocument, variables: { urlKey } })
-  }
-  if (product.__typename === 'BundleProduct') {
-    typeProd = staticClient.query({ query: BundleProductPageDocument, variables: { urlKey } })
-  }
 
   const category = productPageCategory(product)
   const up =
@@ -237,7 +215,6 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   return {
     props: {
       ...(await productPage).data,
-      ...(await typeProd)?.data,
       ...(await layout).data,
       apolloState: await conf.then(() => client.cache.extract()),
       up,

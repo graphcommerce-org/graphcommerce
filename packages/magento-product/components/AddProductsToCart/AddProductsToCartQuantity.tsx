@@ -7,8 +7,7 @@ type AddToCartQuantityProps = Omit<
 >
 
 export function AddProductsToCartQuantity(props: AddToCartQuantityProps) {
-  const form = useFormAddProductsToCart()
-  const { formState, muiRegister } = form
+  const { formState, muiRegister } = useFormAddProductsToCart()
 
   return (
     <TextInputNumber

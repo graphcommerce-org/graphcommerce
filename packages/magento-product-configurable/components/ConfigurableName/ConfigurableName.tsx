@@ -1,14 +1,13 @@
+import { ConfigurableOptionsFragment } from '../../graphql/ConfigurableOptions.gql'
 import { useConfigurableTypeProduct } from '../../hooks/useConfigurableTypeProduct'
 
-export function ConfigurableName(props: { children?: React.ReactNode }) {
-  const { children } = props
-  const { typeProduct } = useConfigurableTypeProduct()
+type ConfigurableNameProps = {
+  product: ConfigurableOptionsFragment
+}
 
-  return (
-    <>
-      {typeProduct?.configurable_product_options_selection?.variant?.name ??
-        typeProduct?.name ??
-        children}
-    </>
-  )
+export function ConfigurableName(props: ConfigurableNameProps) {
+  const { product } = props
+  const { configured } = useConfigurableTypeProduct()
+
+  return <>{configured?.configurable_product_options_selection?.variant?.name ?? product.name}</>
 }

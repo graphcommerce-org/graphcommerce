@@ -1,18 +1,4 @@
 fragment ConfigurableProductConfigurations on ConfigurableProduct @injectable {
-  __typename
-  uid
-  sku
-  name
-  configurable_options {
-    attribute_code
-    uid
-    label
-    position
-    use_default
-    values {
-      ...ConfigurableOptionValue
-    }
-  }
   configurable_product_options_selection(configurableOptionValueUids: $selectedOptions) {
     configurable_options {
       attribute_code

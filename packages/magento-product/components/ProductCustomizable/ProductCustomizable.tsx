@@ -61,18 +61,14 @@ const renderer: OptionTypeRenderer = {
   CustomizableRadioOption: () => <div>radios not implemented</div>,
 }
 
-export function isProductCustomizable(
-  product: Record<string, unknown>,
-): product is ProductCustomizableFragment {
-  return typeof product.options !== 'undefined'
-}
+type ProductCustomizableProps = { product: ProductCustomizableFragment }
 
-export function ProductCustomizable(props: ProductCustomizableFragment) {
-  const { options } = props
+export function ProductCustomizable(props: ProductCustomizableProps) {
+  const { product } = props
 
   return (
     <>
-      {filterNonNullableKeys(options, ['sort_order']).map((option) => (
+      {filterNonNullableKeys(product.options, ['sort_order']).map((option) => (
         <RenderType key={option.uid} renderer={renderer} {...option} idx={option.sort_order - 1} />
       ))}
     </>

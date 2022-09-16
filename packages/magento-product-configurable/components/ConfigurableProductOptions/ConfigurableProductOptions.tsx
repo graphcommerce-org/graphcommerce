@@ -7,8 +7,7 @@ import {
 import { i18n } from '@lingui/core'
 import { Box, SxProps, Theme } from '@mui/material'
 import React, { useMemo } from 'react'
-
-import { useConfigurableTypeProduct } from '../../hooks'
+import { ConfigurableOptionsFragment } from '../../graphql/ConfigurableOptions.gql'
 import { ConfigurableOptionValue } from '../ConfigurableOptionValue/ConfigurableOptionValue'
 import { ConfigurableOptionValueFragment } from '../ConfigurableOptionValue/ConfigurableOptionValue.gql'
 
@@ -16,33 +15,24 @@ export type ConfigurableProductOptionsProps = {
   optionEndLabels?: Record<string, React.ReactNode>
   sx?: SxProps<Theme>
   render?: typeof ConfigurableOptionValue
-} & Pick<ActionCardListProps, 'color' | 'variant' | 'size' | 'layout'>
+  product: ConfigurableOptionsFragment
+} & Pick<ActionCardListProps, 'color' | 'variant' | 'size' | 'layout' | 'collapse'>
 
 export function ConfigurableProductOptions(props: ConfigurableProductOptionsProps) {
-  const {
-    optionEndLabels,
-    sx,
-
-    render = ConfigurableOptionValue,
-    ...other
-  } = props
+  const { optionEndLabels, sx, render = ConfigurableOptionValue, product, ...other } = props
   const form = useFormAddProductsToCart()
   const { control } = form
 
-  const { typeProduct } = useConfigurableTypeProduct()
-
   const options = useMemo(
     () =>
-      filterNonNullableKeys(typeProduct?.configurable_options, ['attribute_code']).map(
-        (option) => ({
-          ...option,
-          values: filterNonNullableKeys(option.values, ['uid', 'swatch_data']).map((ov) => ({
-            value: ov.uid,
-            ...ov,
-          })),
-        }),
-      ),
-    [typeProduct?.configurable_options],
+      filterNonNullableKeys(product.configurable_options, ['attribute_code']).map((option) => ({
+        ...option,
+        values: filterNonNullableKeys(option.values, ['uid', 'swatch_data']).map((ov) => ({
+          value: ov.uid,
+          ...ov,
+        })),
+      })),
+    [product.configurable_options],
   )
 
   return (
