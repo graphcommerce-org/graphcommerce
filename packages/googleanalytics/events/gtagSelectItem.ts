@@ -1,5 +1,5 @@
 import { ProductInterface } from '@graphcommerce/graphql-mesh'
-import { itemToEvent } from '.'
+import { itemToEvent } from '../utils'
 
 export function gtagSelectItem(
   item: Partial<ProductInterface>,

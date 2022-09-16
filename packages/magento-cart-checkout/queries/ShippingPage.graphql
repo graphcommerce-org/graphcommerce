@@ -3,36 +3,8 @@ query ShippingPage($cartId: String!) {
     __typename
     id
     email
-    applied_coupons {
-      code
-    }
-    items {
-      prices {
-        price {
-          currency
-          value
-        }
-        discounts {
-          amount {
-            currency
-            value
-          }
-        }
-      }
-      quantity
-      product {
-        name
-        sku
-      }
-    }
-    prices {
-      grand_total {
-        currency
-        value
-      }
-    }
-
     ...BillingAddress
     ...ShippingAddress
+    ...AdditionalShippingFields
   }
 }

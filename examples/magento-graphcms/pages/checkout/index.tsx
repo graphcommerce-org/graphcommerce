@@ -6,6 +6,7 @@ import {
   WaitForQueries,
 } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { gtagAddShippingInfo } from '@graphcommerce/googleanalytics'
 import { useGoogleRecaptcha } from '@graphcommerce/googlerecaptcha'
 import {
   ApolloCartErrorAlert,
@@ -34,7 +35,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { CircularProgress, Container, Typography } from '@mui/material'
+import { CircularProgress, Container, Typography, useEventCallback } from '@mui/material'
 import { useRouter } from 'next/router'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
@@ -54,34 +55,11 @@ function ShippingPage() {
     typeof shippingPage.data?.cart !== 'undefined' &&
     (shippingPage.data.cart?.items?.length ?? 0) > 0
 
-  let clickHandler
-  if (process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS) {
-    clickHandler = (e) => {
-      gtag('event', 'begin_checkout', {
-        currency: shippingPage.data?.cart?.prices?.grand_total?.currency,
-        value: shippingPage.data?.cart?.prices?.grand_total?.value,
-        coupon: shippingPage.data?.cart?.applied_coupons?.map((coupon) => coupon?.code),
-        items: shippingPage.data?.cart?.items?.map((item) => ({
-          item_id: item?.product.sku,
-          item_name: item?.product.name,
-          currency: item?.prices?.price.currency,
-          discount: item?.prices?.discounts?.reduce(
-            // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
-            (sum, discount) => sum + (discount?.amount?.value ?? 0),
-            0,
-          ),
-          price: item?.prices?.price.value,
-          quantity: item?.quantity,
-        })),
-      })
-
-      e.preventDefault()
-      e.stopPropagation()
-      return false
-    }
-  }
-
-  console.log(shippingPage.data?.cart)
+  const submitSuccessFull = useEventCallback(() => {
+    if (process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS) gtagAddShippingInfo(shippingPage.data?.cart)
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    router.push('/checkout/payment')
+  })
 
   return (
     <>
@@ -102,7 +80,6 @@ function ShippingPage() {
               switchPoint={0}
               primary={
                 <ComposedSubmit
-                  onSubmitSuccessful={() => router.push('/checkout/payment')}
                   render={(renderProps) => (
                     <ComposedSubmitLinkOrButton {...renderProps}>
                       <Trans id='Next' />
@@ -145,16 +122,11 @@ function ShippingPage() {
                 </ShippingMethodForm>
 
                 <ComposedSubmit
-                  onSubmitSuccessful={() => router.push('/checkout/payment')}
+                  onSubmitSuccessful={submitSuccessFull}
                   render={(renderProps) => (
                     <>
                       <FormActions>
-                        <ComposedSubmitButton
-                          {...renderProps}
-                          size='large'
-                          id='next'
-                          onClick={clickHandler}
-                        >
+                        <ComposedSubmitButton {...renderProps} size='large' id='next'>
                           <Trans id='Next' />
                         </ComposedSubmitButton>
                       </FormActions>

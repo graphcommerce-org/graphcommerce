@@ -1,5 +1,6 @@
 import { WaitForQueries } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { gtagBeginCheckout } from '@graphcommerce/googleanalytics'
 import {
   ApolloCartErrorAlert,
   CartStartCheckout,
@@ -25,7 +26,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Box, CircularProgress, Container } from '@mui/material'
+import { Box, CircularProgress, Container, useEventCallback } from '@mui/material'
 import PageLink from 'next/link'
 import { LayoutOverlay, LayoutOverlayProps } from '../components'
 import { graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
@@ -35,36 +36,15 @@ type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
 
 function CartPage() {
   const cart = useCartQuery(CartPageDocument, { returnPartialData: true })
+
   const { data, error } = cart
   const hasItems =
     (data?.cart?.total_quantity ?? 0) > 0 &&
     typeof data?.cart?.prices?.grand_total?.value !== 'undefined'
 
-  let clickHandler
-  if (process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS) {
-    clickHandler = () => {
-      gtag('event', 'begin_checkout', {
-        currency: data?.cart?.prices?.grand_total?.currency,
-        value: data?.cart?.prices?.grand_total?.value,
-        coupon: data?.cart?.applied_coupons?.map((coupon) => coupon?.code),
-        items: data?.cart?.items?.map((item) => ({
-          item_id: item?.product.sku,
-          item_name: item?.product.name,
-          currency: item?.prices?.price.currency,
-          discount: item?.prices?.discounts?.reduce(
-            (sum, discount) => sum + (discount?.amount?.value ?? 0),
-            0,
-          ),
-          item_variant:
-            item?.__typename === 'ConfigurableCartItem'
-              ? item.configurable_options.map((option) => option?.value_label)?.join(' - ')
-              : '',
-          price: item?.prices?.price.value,
-          quantity: item?.quantity,
-        })),
-      })
-    }
-  }
+  const handleBeginCheckout = useEventCallback(() => {
+    if (process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS) gtagBeginCheckout(cart.data?.cart)
+  })
 
   return (
     <>
@@ -81,6 +61,7 @@ function CartPage() {
               link={{ 'aria-disabled': true }}
               color='secondary'
               endIcon={<IconSvg src={iconChevronRight} />}
+              onClick={handleBeginCheckout}
             >
               <Trans id='Next' />
             </LinkOrButton>
@@ -135,7 +116,7 @@ function CartPage() {
                 <CartTotals containerMargin sx={{ typography: 'body1' }} />
                 <ApolloCartErrorAlert error={error} />
                 <Box key='checkout-button'>
-                  <CartStartCheckout {...data?.cart} onClick={clickHandler} />
+                  <CartStartCheckout {...data?.cart} onClick={handleBeginCheckout} />
                 </Box>
               </Box>
             ) : (

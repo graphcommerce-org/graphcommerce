@@ -7,9 +7,14 @@ type ComposedSubmitButtonProps = ComposedSubmitRenderComponentProps &
 
 /** Makes a ComposedSubmitRenderComponent rendered as a LinkOrButton */
 export const ComposedSubmitButton = forwardRef<HTMLButtonElement, ComposedSubmitButtonProps>(
-  ({ buttonState, submit, error, children, ...otherProps }, ref) => {
+  ({ buttonState, submit, error, children, onClick, ...otherProps }, ref) => {
     const loading =
       buttonState.isSubmitting || (buttonState.isSubmitSuccessful && !error) ? true : undefined
+
+    const handleSubmit = (e) => {
+      onClick?.()
+      submit()
+    }
 
     return (
       <Button
@@ -20,7 +25,7 @@ export const ComposedSubmitButton = forwardRef<HTMLButtonElement, ComposedSubmit
         type='submit'
         {...otherProps}
         loading={loading}
-        onClick={submit}
+        onClick={handleSubmit}
       >
         {children}
       </Button>

@@ -6,5 +6,6 @@ query BillingPage($cartId: String!) {
     ...BillingAddress
     ...ShippingAddress
     ...Coupon
+    ...PaymentMethodContext
   }
 }

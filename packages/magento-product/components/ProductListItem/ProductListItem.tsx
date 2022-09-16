@@ -1,4 +1,3 @@
-import { gtagSelectItem } from '@graphcommerce/googleanalytics'
 import { Image, ImageProps } from '@graphcommerce/image'
 import {
   responsiveVal,

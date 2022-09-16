@@ -1,5 +1,6 @@
 import { ComposedForm, WaitForQueries } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { gtagAddPaymentInfo } from '@graphcommerce/googleanalytics'
 import { useGoogleRecaptcha } from '@graphcommerce/googlerecaptcha'
 import {
   ApolloCartErrorFullPage,
@@ -35,7 +36,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { CircularProgress, Container, Dialog, Typography } from '@mui/material'
+import { CircularProgress, Container, Dialog, Typography, useEventCallback } from '@mui/material'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
 import { DefaultPageDocument } from '../../graphql/DefaultPage.gql'
@@ -51,6 +52,10 @@ function PaymentPage() {
 
   const cartExists =
     typeof billingPage.data?.cart !== 'undefined' && (billingPage.data.cart?.items?.length ?? 0) > 0
+
+  const onSubmitSuccessfull = useEventCallback(() => {
+    if (process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS) gtagAddPaymentInfo(billingPage.data?.cart)
+  })
 
   return (
     <ComposedForm>
@@ -141,6 +146,7 @@ function PaymentPage() {
                     button={{ variant: 'pill', size: 'large' }}
                     breakpoint='xs'
                     endIcon={<IconSvg src={iconChevronRight} />}
+                    onSubmitSuccessful={onSubmitSuccessfull}
                   >
                     <Trans id='Place order' />
                   </PaymentMethodButton>

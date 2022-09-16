@@ -38,6 +38,8 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
     >
       <PageLink href='/checkout' passHref>
         <Button
+          href='/checkout'
+          onClick={onClick}
           id='cart-start-checkout'
           variant='pill'
           color='secondary'
@@ -45,7 +47,6 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
           className={classes.checkoutButton}
           endIcon={<IconSvg src={iconChevronRight} />}
           disabled={!hasTotals}
-          onClick={onClick}
         >
           <Box
             component='span'

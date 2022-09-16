@@ -1,4 +1,4 @@
-fragment PaymentMethodContext on Cart @injectable @inject(into: ["ShippingMethodSelected"]) {
+fragment PaymentMethodContext on Cart @injectable {
   id
   available_payment_methods {
     ...AvailablePaymentMethod
