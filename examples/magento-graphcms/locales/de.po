@@ -286,6 +286,12 @@ msgstr "Frau"
 msgid "Name"
 msgstr "Name"
 
+msgid "Summary"
+msgstr "Beschreibung"
+
+msgid "Review"
+msgstr "Review"
+
 msgid "Navigate to item {0}"
 msgstr "Zum Artikel {0} navigieren"
 

@@ -286,6 +286,12 @@ msgstr "Sig.ra"
 msgid "Name"
 msgstr "Nome"
 
+msgid "Summary"
+msgstr "Descrizione"
+
+msgid "Review"
+msgstr "Review"
+
 msgid "Navigate to item {0}"
 msgstr "Vai all'articolo {0}"
 
