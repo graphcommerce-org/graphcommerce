@@ -93,12 +93,11 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
         >
           <NavigationOverlay
             stretchColumns={false}
-            variantSm='left'
+            variantSm='bottom'
             sizeSm='full'
-            justifySm='start'
-            itemWidthSm='70vw'
+            justifySm='center'
             variantMd='left'
-            sizeMd='full'
+            sizeMd='floating'
             justifyMd='start'
             itemWidthMd='230px'
             mouseEvent='hover'
