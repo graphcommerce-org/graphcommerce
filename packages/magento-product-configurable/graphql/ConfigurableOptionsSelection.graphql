@@ -28,5 +28,25 @@ fragment ConfigurableOptionsSelection on ConfigurableProduct @injectable {
       ...ProductImage
       ...ProductVideo
     }
+    variant {
+      uid
+      name
+      thumbnail {
+        disabled
+        label
+        position
+        url
+      }
+      price_range {
+        minimum_price {
+          final_price {
+            ...Money
+          }
+          regular_price {
+            ...Money
+          }
+        }
+      }
+    }
   }
 }
