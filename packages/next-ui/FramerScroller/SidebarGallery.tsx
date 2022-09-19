@@ -330,8 +330,8 @@ export function SidebarGallery(props: SidebarGalleryProps) {
               sx={{
                 boxSizing: 'border-box',
                 width: '100%',
-                padding: `${theme.spacings.lg} ${theme.page.horizontal}`,
-                [theme.breakpoints.up('md')]: {
+                padding: `${theme.spacings.sm} ${theme.page.horizontal}`,
+                [theme.breakpoints.up('lg')]: {
                   paddingLeft: theme.spacings.lg,
                 },
               }}
