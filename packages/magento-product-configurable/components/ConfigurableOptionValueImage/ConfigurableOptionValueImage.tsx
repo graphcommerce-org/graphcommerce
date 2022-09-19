@@ -12,24 +12,29 @@ export const swatchSizes = {
 }
 
 export function ConfigurableOptionValueImage(props: ConfigurableOptionValueImageProps) {
-  const { swatch_data, store_label, uid, use_default_value, size, ...actionCardProps } = props
+  const {
+    swatch_data,
+    store_label,
+    uid,
+    use_default_value,
+    size = 'large',
+    ...actionCardProps
+  } = props
 
   if (swatch_data?.__typename !== 'ImageSwatchData')
     throw Error(`ConfigurableOptionValueImage can not render a ${swatch_data?.__typename}`)
-
-  const imageSize = swatchSizes[size ?? 'large']
 
   const image = swatch_data.thumbnail && (
     <Image
       src={swatch_data.thumbnail ?? ''}
       layout='fill'
       alt={swatch_data.value ?? ''}
-      sizes={imageSize}
+      sizes={swatchSizes[size]}
       sx={{
         display: 'block',
         borderRadius: '50%',
-        width: imageSize,
-        height: imageSize,
+        width: swatchSizes[size],
+        height: swatchSizes[size],
         objectFit: 'cover',
       }}
     />

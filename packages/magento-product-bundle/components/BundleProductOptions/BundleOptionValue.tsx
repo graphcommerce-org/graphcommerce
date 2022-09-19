@@ -25,8 +25,7 @@ export const BundleOptionValue = (props: ActionCardItemRenderProps<BundleOptionV
     price,
     product,
     label,
-    size,
-
+    size = 'large',
     color,
     can_change_quantity,
     quantity = 1,
@@ -36,8 +35,6 @@ export const BundleOptionValue = (props: ActionCardItemRenderProps<BundleOptionV
   const { control } = useFormAddProductsToCart()
 
   const thumbnail = product?.thumbnail?.url
-
-  const imageSize = swatchSizes[size ?? 'large']
 
   return (
     <ActionCard
@@ -52,8 +49,13 @@ export const BundleOptionValue = (props: ActionCardItemRenderProps<BundleOptionV
             width={40}
             height={40}
             alt={label ?? ''}
-            sizes={imageSize}
-            sx={{ display: 'block', width: imageSize, height: imageSize, objectFit: 'cover' }}
+            sizes={swatchSizes[size]}
+            sx={{
+              display: 'block',
+              width: swatchSizes[size],
+              height: swatchSizes[size],
+              objectFit: 'cover',
+            }}
           />
         )
       }
