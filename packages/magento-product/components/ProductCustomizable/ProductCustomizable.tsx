@@ -4,22 +4,29 @@ import { useFormAddProductsToCart } from '../AddProductsToCart'
 import { ProductCustomizableFragment } from './ProductCustomizable.gql'
 
 type OptionTypeRenderer = TypeRenderer<
-  NonNullable<NonNullable<ProductCustomizableFragment['options']>[number]> & { idx: number }
+  NonNullable<NonNullable<ProductCustomizableFragment['options']>[number]> & {
+    optionIndex: number
+    index: number
+  }
 >
 
 const CustomizableAreaOption: OptionTypeRenderer['CustomizableAreaOption'] = (props) => {
-  const { uid, areaValue, required, idx, title } = props
+  const { uid, areaValue, required, optionIndex, index, title } = props
   const maxLength = areaValue?.max_characters ?? undefined
   const { control, register } = useFormAddProductsToCart()
 
   return (
     <>
-      <input type='hidden' {...register(`cartItems.0.entered_options.${idx}.uid`)} value={uid} />
+      <input
+        type='hidden'
+        {...register(`cartItems.${index}.entered_options.${optionIndex}.uid`)}
+        value={uid}
+      />
       <TextFieldElement
         multiline
         minRows={3}
         control={control}
-        name={`cartItems.0.entered_options.${idx}.value`}
+        name={`cartItems.${index}.entered_options.${optionIndex}.value`}
         label={title}
         required={Boolean(required)}
         validation={{ maxLength }}
@@ -30,15 +37,19 @@ const CustomizableAreaOption: OptionTypeRenderer['CustomizableAreaOption'] = (pr
 }
 
 const CustomizableDropDownOption: OptionTypeRenderer['CustomizableDropDownOption'] = (props) => {
-  const { uid, required, idx, title, dropdownValue } = props
+  const { uid, required, optionIndex, index, title, dropdownValue } = props
   const { control, register } = useFormAddProductsToCart()
 
   return (
     <>
-      <input type='hidden' {...register(`cartItems.0.entered_options.${idx}.uid`)} value={uid} />
+      <input
+        type='hidden'
+        {...register(`cartItems.${index}.entered_options.${optionIndex}.uid`)}
+        value={uid}
+      />
       <SelectElement
         control={control}
-        name={`cartItems.0.entered_options.${idx}.value`}
+        name={`cartItems.${index}.entered_options.${optionIndex}.value`}
         label={title}
         required={Boolean(required)}
         options={filterNonNullableKeys(dropdownValue, ['title']).map((option) => ({
@@ -61,15 +72,21 @@ const renderer: OptionTypeRenderer = {
   CustomizableRadioOption: () => <div>radios not implemented</div>,
 }
 
-type ProductCustomizableProps = { product: ProductCustomizableFragment }
+type ProductCustomizableProps = { product: ProductCustomizableFragment; index?: number }
 
 export function ProductCustomizable(props: ProductCustomizableProps) {
-  const { product } = props
+  const { product, index = 0 } = props
 
   return (
     <>
       {filterNonNullableKeys(product.options, ['sort_order']).map((option) => (
-        <RenderType key={option.uid} renderer={renderer} {...option} idx={option.sort_order - 1} />
+        <RenderType
+          key={option.uid}
+          renderer={renderer}
+          {...option}
+          optionIndex={option.sort_order - 1}
+          index={index}
+        />
       ))}
     </>
   )

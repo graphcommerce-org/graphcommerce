@@ -78,8 +78,9 @@ function ProductConfigurable(props: Props) {
       />
       <ProductPageMeta {...product} />
 
-      <AddProductsToCartForm sku={product.sku} urlKey={product.url_key}>
+      <AddProductsToCartForm>
         <ConfigurableProductPageGallery
+          url_key={product.url_key}
           media_gallery={product.media_gallery}
           sx={(theme) => ({
             '& .SidebarGallery-sidebar': { display: 'grid', rowGap: theme.spacings.sm },
@@ -132,7 +133,7 @@ function ProductConfigurable(props: Props) {
             sx={(theme) => ({
               display: 'flex',
               alignItems: 'center',
-              columnGap: theme.spacings.sm,
+              columnGap: theme.spacings.xs,
             })}
           >
             <AddProductsToCartQuantity sx={{ flexShrink: '0' }} />
@@ -155,11 +156,11 @@ function ProductConfigurable(props: Props) {
               columnGap: theme.spacings.xs,
             })}
           >
-            <AddProductsToCartButton fullWidth />
+            <AddProductsToCartButton fullWidth sku={product.sku} />
             <ProductWishlistChipDetail {...product} />
           </Box>
 
-          <AddProductsToCartSnackbar name={product.name} />
+          <AddProductsToCartSnackbar {...product} />
           <Usps usps={sidebarUsps} size='small' />
         </ConfigurableProductPageGallery>
       </AddProductsToCartForm>

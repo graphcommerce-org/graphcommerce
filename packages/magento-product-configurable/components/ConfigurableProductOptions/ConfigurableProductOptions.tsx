@@ -18,10 +18,18 @@ export type ConfigurableProductOptionsProps = {
   sx?: SxProps<Theme>
   render?: typeof ConfigurableOptionValue
   product: ConfigurableOptionsFragment
+  index?: number
 } & Pick<ActionCardListProps, 'color' | 'variant' | 'size' | 'layout' | 'collapse'>
 
 export function ConfigurableProductOptions(props: ConfigurableProductOptionsProps) {
-  const { optionEndLabels, sx, render = ConfigurableOptionValue, product, ...other } = props
+  const {
+    optionEndLabels,
+    sx,
+    render = ConfigurableOptionValue,
+    product,
+    index = 0,
+    ...other
+  } = props
   const { control, setError, clearErrors } = useFormAddProductsToCart()
   const { locale } = useRouter()
 
@@ -39,7 +47,7 @@ export function ConfigurableProductOptions(props: ConfigurableProductOptionsProp
     [product.configurable_options],
   )
 
-  const { configured } = useConfigurableOptionsSelection()
+  const { configured } = useConfigurableOptionsSelection({ url_key: product.url_key, index })
 
   useEffect(() => {
     const unavailable =
@@ -51,25 +59,25 @@ export function ConfigurableProductOptions(props: ConfigurableProductOptionsProp
       const formatter = new Intl.ListFormat(locale, { style: 'long', type: 'conjunction' })
       const allLabels = formatter.format(options.map((o) => o.label))
 
-      setError('cartItems.0.sku', {
+      setError(`cartItems.${index}.sku`, {
         message: i18n._(/* i18n */ 'Product not available in {allLabels}', { allLabels }),
       })
     }
-    if (!unavailable) clearErrors('cartItems.0.sku')
-  }, [clearErrors, configured, locale, options, setError])
+    if (!unavailable) clearErrors(`cartItems.${index}.sku`)
+  }, [clearErrors, configured, index, locale, options, setError])
 
   return (
-    <div>
-      {options.map((option, index) => {
+    <Box sx={(theme) => ({ display: 'grid', rowGap: theme.spacings.sm })}>
+      {options.map((option, idx) => {
         const { values, label } = option
-        const fieldName = `cartItems.0.selected_options.${index}` as const
+        const fieldName = `cartItems.${index}.selected_options.${idx}` as const
 
         return (
           <Box key={fieldName} sx={sx}>
             <SectionHeader
               labelLeft={label}
               labelRight={optionEndLabels?.[option?.attribute_code ?? '']}
-              sx={(theme) => ({ mt: 0, '&:not(:first-of-type)': { mt: theme.spacings.sm } })}
+              sx={{ mt: 0 }}
             />
 
             <ActionCardListForm<ActionCardItemBase & ConfigurableOptionValueFragment>
@@ -87,6 +95,6 @@ export function ConfigurableProductOptions(props: ConfigurableProductOptionsProp
           </Box>
         )
       })}
-    </div>
+    </Box>
   )
 }

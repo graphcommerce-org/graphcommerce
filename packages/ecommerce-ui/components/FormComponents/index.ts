@@ -26,3 +26,4 @@ export type {
 } from 'react-hook-form-mui'
 
 export * from './TextFieldElement'
+export * from './NumberFieldElement'

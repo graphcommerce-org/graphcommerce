@@ -11,7 +11,7 @@ import { BundleOptionValue } from './BundleOptionValue'
 import { BundleOptionProps, BundleOptionValueProps } from './types'
 
 export const BundleOption = React.memo<BundleOptionProps>((props) => {
-  const { idx, options, title, color, layout, size, variant, required: _required } = props
+  const { idx, index, options, title, color, layout, size, variant, required: _required } = props
   const { control } = useFormAddProductsToCart()
 
   const can_change_quantity = options?.some((o) => o?.can_change_quantity)
@@ -35,8 +35,8 @@ export const BundleOption = React.memo<BundleOptionProps>((props) => {
         }}
         name={
           options?.some((o) => o?.can_change_quantity)
-            ? `cartItems.0.entered_options.${idx}.uid`
-            : `cartItems.0.selected_options.${idx}`
+            ? `cartItems.${index}.entered_options.${idx}.uid`
+            : `cartItems.${index}.selected_options.${idx}`
         }
         collapse={can_change_quantity}
         render={BundleOptionValue}
@@ -46,9 +46,10 @@ export const BundleOption = React.memo<BundleOptionProps>((props) => {
               ...option,
               value: option.uid,
               idx,
+              index,
               required,
             })),
-          [idx, options, required],
+          [idx, index, options, required],
         )}
       />
     </div>

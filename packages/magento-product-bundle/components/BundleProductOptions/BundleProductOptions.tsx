@@ -9,16 +9,18 @@ type BundelProductOptionsProps = Pick<
   'size' | 'layout' | 'color' | 'variant'
 > & {
   renderer?: React.FC<BundleOptionValueProps>
+  index?: number
   product: BundleProductOptionsFragment
 }
 
 export function BundleProductOptions(props: BundelProductOptionsProps) {
-  const { product } = props
+  const { product, index = 0 } = props
 
   return (
     <>
       {filterNonNullableKeys(product?.items, ['uid', 'title', 'type']).map((item) => (
         <BundleOption
+          index={index}
           key={item.uid}
           color='primary'
           {...props}

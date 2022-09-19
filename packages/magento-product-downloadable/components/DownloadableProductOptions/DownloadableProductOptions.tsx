@@ -11,12 +11,12 @@ import { DownloadableProductOptionsFragment } from './DownloadableProductOptions
 
 type DownloadableProductOptionsProps = {
   product: DownloadableProductOptionsFragment
+  index: number
 }
 
 export function DownloadableProductOptions(props: DownloadableProductOptionsProps) {
-  const { product } = props
-  const form = useFormAddProductsToCart()
-  const { control } = form
+  const { product, index } = props
+  const { control } = useFormAddProductsToCart()
 
   const items = useMemo(
     () =>
@@ -37,7 +37,7 @@ export function DownloadableProductOptions(props: DownloadableProductOptionsProp
       required
       errorMessage='Please select an option'
       control={control}
-      name='cartItems.0.selected_options.0'
+      name={`cartItems.${index}.selected_options.0`}
       render={ActionCard}
       items={items}
     />

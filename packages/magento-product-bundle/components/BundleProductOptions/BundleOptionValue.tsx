@@ -21,10 +21,12 @@ export const BundleOptionValue = (props: ActionCardItemRenderProps<BundleOptionV
   const {
     selected,
     idx,
+    index,
     price,
     product,
     label,
     size,
+
     color,
     can_change_quantity,
     quantity = 1,
@@ -86,7 +88,7 @@ export const BundleOptionValue = (props: ActionCardItemRenderProps<BundleOptionV
             defaultValue={`${quantity}`}
             control={control}
             sx={{ width: responsiveVal(80, 120), mt: 2 }}
-            name={`cartItems.0.entered_options.${idx}.value`}
+            name={`cartItems.${index}.entered_options.${idx}.value`}
             type='number'
             onMouseDown={(e) => e.stopPropagation()}
           />

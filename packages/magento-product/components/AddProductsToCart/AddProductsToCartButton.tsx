@@ -1,10 +1,12 @@
 import { Button, ButtonProps } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box, SxProps, Theme } from '@mui/material'
+import { SxProps, Theme } from '@mui/material'
 import { useFormAddProductsToCart } from './AddProductsToCartForm'
 
 export type AddProductsToCartButtonProps = {
   sx?: SxProps<Theme>
+  sku: string
+  index?: number
 } & Pick<
   ButtonProps<'button'>,
   | 'variant'
@@ -19,8 +21,8 @@ export type AddProductsToCartButtonProps = {
 >
 
 export function AddProductsToCartButton(props: AddProductsToCartButtonProps) {
-  const { formState } = useFormAddProductsToCart()
-  const { loading } = props
+  const { formState, setValue } = useFormAddProductsToCart()
+  const { loading, sku, index = 0 } = props
 
   return (
     <Button
@@ -31,6 +33,7 @@ export function AddProductsToCartButton(props: AddProductsToCartButtonProps) {
       {...props}
       disabled={Boolean(formState.errors.cartItems?.[0].sku?.message)}
       loading={formState.isSubmitting || loading}
+      onClick={() => setValue(`cartItems.${index}.sku`, sku)}
     >
       <Trans id='Add to Cart' />
     </Button>

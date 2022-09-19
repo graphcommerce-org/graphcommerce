@@ -11,10 +11,7 @@ import {
 type AddProductsToCartContextType = UseFormGqlMutationReturn<
   AddProductsToCartMutation,
   AddProductsToCartMutationVariables
-> & {
-  urlKey: string
-  sku: string
-}
+>
 
 export const addProductsToCartContext = createContext(
   undefined as AddProductsToCartContextType | undefined,
@@ -22,8 +19,6 @@ export const addProductsToCartContext = createContext(
 
 type AddProductsToCartFormProps = {
   children: React.ReactNode
-  urlKey: string
-  sku: string
   sx?: SxProps<Theme>
 } & Omit<
   UseFormGraphQlOptions<AddProductsToCartMutation, AddProductsToCartMutationVariables>,
@@ -31,28 +26,28 @@ type AddProductsToCartFormProps = {
 >
 
 export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
-  const { children, sku, urlKey, defaultValues, sx, ...formProps } = props
+  const { children, defaultValues, sx, ...formProps } = props
   const form = useFormGqlMutationCart(AddProductsToCartDocument, {
-    defaultValues: { ...defaultValues, cartItems: [{ sku, quantity: 1 }] },
+    defaultValues,
 
     // We're stripping out incomplete entered options.
     onBeforeSubmit: ({ cartId, cartItems }) => ({
       cartId,
-      cartItems: cartItems.map((cartItem) => ({
-        ...cartItem,
-        selected_options: cartItem.selected_options?.filter(Boolean),
-        entered_options: cartItem.entered_options?.filter((option) => option?.value),
-      })),
+      cartItems: cartItems
+        .filter((cartItem) => cartItem.sku)
+        .map((cartItem) => ({
+          ...cartItem,
+          selected_options: cartItem.selected_options?.filter(Boolean),
+          entered_options: cartItem.entered_options?.filter((option) => option?.value),
+        })),
     }),
     ...formProps,
   })
 
   const submit = form.handleSubmit(() => {})
 
-  const value = useMemo(() => ({ ...form, sku, urlKey }), [form, sku, urlKey])
-
   return (
-    <addProductsToCartContext.Provider value={value}>
+    <addProductsToCartContext.Provider value={form}>
       <Box component='form' onSubmit={submit} noValidate sx={sx}>
         {children}
       </Box>

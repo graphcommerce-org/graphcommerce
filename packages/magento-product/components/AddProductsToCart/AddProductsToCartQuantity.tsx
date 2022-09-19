@@ -1,25 +1,25 @@
-import { TextInputNumber, TextInputNumberProps } from '@graphcommerce/next-ui'
+import { NumberFieldElement, NumberFieldElementProps } from '@graphcommerce/ecommerce-ui'
 import { useFormAddProductsToCart } from './AddProductsToCartForm'
 
 type AddToCartQuantityProps = Omit<
-  TextInputNumberProps,
-  'error' | 'required' | 'inputProps' | 'inputRef' | 'helperText' | 'disabled'
->
+  NumberFieldElementProps,
+  'error' | 'required' | 'inputProps' | 'inputRef' | 'helperText' | 'name'
+> & { index?: number }
 
 export function AddProductsToCartQuantity(props: AddToCartQuantityProps) {
-  const { formState, muiRegister } = useFormAddProductsToCart()
+  const { formState, control, index = 0 } = useFormAddProductsToCart()
 
   return (
-    <TextInputNumber
+    <NumberFieldElement
       variant='outlined'
       size='small'
       {...props}
-      error={formState.isSubmitted && !!formState.errors.cartItems?.[0].quantity}
       required
       inputProps={{ min: 1 }}
-      {...muiRegister('cartItems.0.quantity', { required: true })}
-      helperText={formState.isSubmitted && formState.errors.cartItems?.[0].quantity?.message}
-      disabled={formState.isSubmitting}
+      defaultValue='1'
+      control={control}
+      name={`cartItems.${index}.quantity`}
+      helperText={formState.isSubmitted && formState.errors.cartItems?.[index].quantity?.message}
     />
   )
 }
