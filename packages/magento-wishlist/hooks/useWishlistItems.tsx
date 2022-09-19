@@ -1,7 +1,7 @@
 import { QueryResult, useQuery } from '@graphcommerce/graphql'
 import { Wishlist, WishlistItemInterface, WishlistItems } from '@graphcommerce/graphql-mesh'
 import { useCustomerSession } from '@graphcommerce/magento-customer'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import {
   GetGuestWishlistProductsDocument,
   GetGuestWishlistProductsQuery,
@@ -12,14 +12,7 @@ import {
 } from '../queries/GetWishlistProducts.gql'
 import { GuestWishlistDocument } from '../queries/GuestWishlist.gql'
 
-type WishListState =
-  | NonNullable<GetGuestWishlistProductsQuery['products']>['items']
-  | NonNullable<
-      NonNullable<NonNullable<GetWishlistProductsQuery['customer']>['wishlists'][0]>['items_v2']
-    >['items']
-
 export function useWishlistItems(): QueryResult<any> {
-  const [wishlistItems, setWishlistItems] = useState<WishListState>()
   const { loggedIn } = useCustomerSession()
 
   /** Get customer wishlist from session */
@@ -37,13 +30,22 @@ export function useWishlistItems(): QueryResult<any> {
 
   const loading = guestWl.loading || guestProducts.loading || customerWl.loading
 
-  useEffect(() => {
-    setWishlistItems((prev) => {
-      if (loading) return prev
-      if (loggedIn) return customerWl.data?.customer?.wishlists[0]?.items_v2?.items
-      return guestProducts.data?.products?.items || []
-    })
-  }, [customerWl.data?.customer?.wishlists, guestProducts.data?.products?.items, loading, loggedIn])
+  const wishlistItems = useMemo(() => {
+    // When loading the queries, data will return undefined. While we load the new data, we want
+    // to return the previous data, to prevent the UI for going in a loading state
+    if (loading && !loggedIn) return guestProducts.previousData?.products?.items
+    if (loading && loggedIn) return customerWl.previousData?.customer?.wishlists[0]?.items_v2?.items
+
+    if (loggedIn) return customerWl.data?.customer?.wishlists[0]?.items_v2?.items
+    return guestProducts.data?.products?.items
+  }, [
+    customerWl.data?.customer?.wishlists,
+    customerWl.previousData?.customer?.wishlists,
+    guestProducts.data?.products?.items,
+    guestProducts.previousData?.products?.items,
+    loading,
+    loggedIn,
+  ])
 
   return {
     ...guestProducts,
