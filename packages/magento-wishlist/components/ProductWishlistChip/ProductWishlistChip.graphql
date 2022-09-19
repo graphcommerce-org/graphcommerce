@@ -1,4 +1,5 @@
 fragment ProductWishlistChip on ProductInterface {
   name
   sku
+  url_key
 }
