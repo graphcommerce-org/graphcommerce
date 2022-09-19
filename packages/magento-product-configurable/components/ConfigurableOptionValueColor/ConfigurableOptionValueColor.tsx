@@ -7,12 +7,10 @@ export type ConfigurableOptionValueColorProps =
   ActionCardItemRenderProps<ConfigurableOptionValueColorFragment>
 
 export function ConfigurableOptionValueColor(props: ConfigurableOptionValueColorProps) {
-  const { swatch_data, store_label, size } = props
+  const { swatch_data, store_label, size = 'large' } = props
 
   if (swatch_data?.__typename !== 'ColorSwatchData')
     throw Error(`ConfigurableOptionValueColor can not render a ${swatch_data?.__typename}`)
-
-  const imageSize = swatchSizes[size ?? 'large']
 
   return (
     <ActionCard
@@ -20,8 +18,8 @@ export function ConfigurableOptionValueColor(props: ConfigurableOptionValueColor
       image={
         <Box
           sx={{
-            width: imageSize,
-            height: imageSize,
+            width: swatchSizes[size],
+            height: swatchSizes[size],
             backgroundColor: swatch_data.value,
             borderRadius: '50%',
           }}
