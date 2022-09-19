@@ -1,13 +1,26 @@
 import { QueryResult, useQuery } from '@graphcommerce/graphql'
 import { useCustomerSession } from '@graphcommerce/magento-customer'
-import { useMemo } from 'react'
-import { GetGuestWishlistProductsDocument } from '../queries/GetGuestWishlistProducts.gql'
-import { GetWishlistProductsDocument } from '../queries/GetWishlistProducts.gql'
+import {
+  GetGuestWishlistProductsDocument,
+  GetGuestWishlistProductsQuery,
+} from '../queries/GetGuestWishlistProducts.gql'
+import {
+  GetWishlistProductsDocument,
+  GetWishlistProductsQuery,
+} from '../queries/GetWishlistProducts.gql'
 import { GuestWishlistDocument } from '../queries/GuestWishlist.gql'
 
-export function useWishlistItems(): QueryResult<any> {
-  const { loggedIn } = useCustomerSession()
+type WishListData =
+  | NonNullable<GetGuestWishlistProductsQuery['products']>['items']
+  | NonNullable<
+      NonNullable<NonNullable<GetWishlistProductsQuery['customer']>['wishlists'][0]>['items_v2']
+    >['items']
 
+export function useWishlistItems(): Omit<QueryResult<GetGuestWishlistProductsQuery>, 'data'> & {
+  data: WishListData
+} {
+  const { loggedIn } = useCustomerSession()
+  let wishlistItems: WishListData = []
   /** Get customer wishlist from session */
   const customerWl = useQuery(GetWishlistProductsDocument, { ssr: false, skip: !loggedIn })
 
@@ -23,22 +36,14 @@ export function useWishlistItems(): QueryResult<any> {
 
   const loading = guestWl.loading || guestProducts.loading || customerWl.loading
 
-  const wishlistItems = useMemo(() => {
-    // When loading the queries, data will return undefined. While we load the new data, we want
-    // to return the previous data, to prevent the UI for going in a loading state
-    if (loading && !loggedIn) return guestProducts.previousData?.products?.items
-    if (loading && loggedIn) return customerWl.previousData?.customer?.wishlists[0]?.items_v2?.items
+  // When loading the queries, data will return undefined. While we load the new data, we want
+  // to return the previous data, to prevent the UI for going in a loading state
+  if (loading && !loggedIn) wishlistItems = guestProducts.previousData?.products?.items
+  if (loading && loggedIn)
+    wishlistItems = customerWl.previousData?.customer?.wishlists[0]?.items_v2?.items
 
-    if (loggedIn) return customerWl.data?.customer?.wishlists[0]?.items_v2?.items
-    return guestProducts.data?.products?.items
-  }, [
-    customerWl.data?.customer?.wishlists,
-    customerWl.previousData?.customer?.wishlists,
-    guestProducts.data?.products?.items,
-    guestProducts.previousData?.products?.items,
-    loading,
-    loggedIn,
-  ])
+  if (!loading && loggedIn) wishlistItems = customerWl.data?.customer?.wishlists[0]?.items_v2?.items
+  if (!loading && !loggedIn) wishlistItems = guestProducts.data?.products?.items
 
   return {
     ...guestProducts,
