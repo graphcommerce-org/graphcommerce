@@ -1,4 +1,3 @@
-import { useEventCallback } from '@mui/material'
 import {
   FieldValues,
   FieldPath,
@@ -15,9 +14,9 @@ export type UseMuiFormRegister<TFieldValues extends FieldValues> = <
 ) => Omit<UseFormRegisterReturn, 'ref'> & { inputRef: UseFormRegisterReturn['ref'] }
 
 export function useFormMuiRegister<V>({ register }: Pick<UseFormReturn<V>, 'register'>) {
-  const muiRegister: UseMuiFormRegister<V> = useEventCallback((name, opts) => {
+  const muiRegister: UseMuiFormRegister<V> = (name, opts) => {
     const { ref: inputRef, ...fields } = register(name, opts)
     return { ...fields, inputRef }
-  })
-  return useEventCallback(muiRegister)
+  }
+  return muiRegister
 }
