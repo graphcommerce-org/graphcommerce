@@ -1,15 +1,8 @@
 import { QueryResult, useQuery } from '@graphcommerce/graphql'
-import { Wishlist, WishlistItemInterface, WishlistItems } from '@graphcommerce/graphql-mesh'
 import { useCustomerSession } from '@graphcommerce/magento-customer'
-import { useEffect, useMemo, useState } from 'react'
-import {
-  GetGuestWishlistProductsDocument,
-  GetGuestWishlistProductsQuery,
-} from '../queries/GetGuestWishlistProducts.gql'
-import {
-  GetWishlistProductsDocument,
-  GetWishlistProductsQuery,
-} from '../queries/GetWishlistProducts.gql'
+import { useMemo } from 'react'
+import { GetGuestWishlistProductsDocument } from '../queries/GetGuestWishlistProducts.gql'
+import { GetWishlistProductsDocument } from '../queries/GetWishlistProducts.gql'
 import { GuestWishlistDocument } from '../queries/GuestWishlist.gql'
 
 export function useWishlistItems(): QueryResult<any> {
