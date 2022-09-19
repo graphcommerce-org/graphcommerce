@@ -1,5 +1,18 @@
 # Change Log
 
+## 2.2.0
+
+### Minor Changes
+
+- [#1645](https://github.com/graphcommerce-org/graphcommerce/pull/1645) [`f0ddcb868`](https://github.com/graphcommerce-org/graphcommerce/commit/f0ddcb86815d0525842c79a168c08e99f5799c76) Thanks [@Jessevdpoel](https://github.com/Jessevdpoel)! - Added Subscribe to newsletter checkbox
+
+### Patch Changes
+
+- Updated dependencies [[`42e7fac75`](https://github.com/graphcommerce-org/graphcommerce/commit/42e7fac75712f9bda7a6b919ede14b3c75d07771)]:
+  - @graphcommerce/next-ui@4.26.0
+  - @graphcommerce/magento-cart@4.8.3
+  - @graphcommerce/magento-customer@4.11.3
+
 ## 2.1.8
 
 ### Patch Changes
