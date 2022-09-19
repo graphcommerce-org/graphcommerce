@@ -48,23 +48,24 @@ export function ConfigurableProductOptions(props: ConfigurableProductOptionsProp
   )
 
   const { configured } = useConfigurableOptionsSelection({ url_key: product.url_key, index })
+  const unavailable =
+    configured &&
+    (configured?.configurable_product_options_selection?.options_available_for_selection ?? [])
+      .length === 0
+
+  const allLabels = useMemo(() => {
+    const formatter = new Intl.ListFormat(locale, { style: 'long', type: 'conjunction' })
+    return formatter.format(options.map((o) => o.label))
+  }, [locale, options])
 
   useEffect(() => {
-    const unavailable =
-      configured &&
-      (configured?.configurable_product_options_selection?.options_available_for_selection ?? [])
-        .length === 0
-
     if (unavailable) {
-      const formatter = new Intl.ListFormat(locale, { style: 'long', type: 'conjunction' })
-      const allLabels = formatter.format(options.map((o) => o.label))
-
       setError(`cartItems.${index}.sku`, {
         message: i18n._(/* i18n */ 'Product not available in {allLabels}', { allLabels }),
       })
     }
     if (!unavailable) clearErrors(`cartItems.${index}.sku`)
-  }, [clearErrors, configured, index, locale, options, setError])
+  }, [allLabels, clearErrors, index, setError, unavailable])
 
   return (
     <Box sx={(theme) => ({ display: 'grid', rowGap: theme.spacings.sm })}>

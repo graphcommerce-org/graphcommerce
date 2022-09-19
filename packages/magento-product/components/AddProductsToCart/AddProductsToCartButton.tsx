@@ -31,7 +31,7 @@ export function AddProductsToCartButton(props: AddProductsToCartButtonProps) {
       variant='pill'
       size='large'
       {...props}
-      disabled={Boolean(formState.errors.cartItems?.[0].sku?.message)}
+      disabled={Boolean(formState.errors.cartItems?.[index].sku?.message)}
       loading={formState.isSubmitting || loading}
       onClick={() => setValue(`cartItems.${index}.sku`, sku)}
     >
