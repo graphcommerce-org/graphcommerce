@@ -11,11 +11,11 @@ import { DownloadableProductOptionsFragment } from './DownloadableProductOptions
 
 type DownloadableProductOptionsProps = {
   product: DownloadableProductOptionsFragment
-  index: number
+  index?: number
 }
 
 export function DownloadableProductOptions(props: DownloadableProductOptionsProps) {
-  const { product, index } = props
+  const { product, index = 0 } = props
   const { control } = useFormAddProductsToCart()
 
   const items = useMemo(
