@@ -1,6 +1,7 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   AddProductsToCartButton,
+  AddProductsToCartError,
   AddProductsToCartForm,
   AddProductsToCartQuantity,
   AddProductsToCartSnackbar,
@@ -35,7 +36,6 @@ import { Trans } from '@lingui/react'
 import { Box, Divider, Link, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
-import { useRouter } from 'next/router'
 import {
   LayoutNavigation,
   LayoutNavigationProps,
@@ -127,24 +127,35 @@ function ProductConfigurable(props: Props) {
           {!isTypename(product, ['GroupedProduct']) && <ProductCustomizable product={product} />}
 
           <Divider />
-          <AddProductsToCartQuantity />
-
-          <Typography component='div' variant='h3' lineHeight='1'>
-            {isTypename(product, ['ConfigurableProduct']) ? (
-              <ConfigurablePrice product={product} />
-            ) : (
-              <Money {...product.price_range.minimum_price.final_price} />
-            )}
-          </Typography>
 
           <Box
             sx={(theme) => ({
               display: 'flex',
               alignItems: 'center',
+              columnGap: theme.spacings.sm,
+            })}
+          >
+            <AddProductsToCartQuantity sx={{ flexShrink: '0' }} />
+
+            <AddProductsToCartError>
+              <Typography component='div' variant='h3' lineHeight='1'>
+                {isTypename(product, ['ConfigurableProduct']) ? (
+                  <ConfigurablePrice product={product} />
+                ) : (
+                  <Money {...product.price_range.minimum_price.final_price} />
+                )}
+              </Typography>
+            </AddProductsToCartError>
+          </Box>
+
+          <Box
+            sx={(theme) => ({
+              display: 'flex',
+              alignItems: 'start',
               columnGap: theme.spacings.xs,
             })}
           >
-            <AddProductsToCartButton {...props} fullWidth />
+            <AddProductsToCartButton fullWidth />
             <ProductWishlistChipDetail {...product} />
           </Box>
 

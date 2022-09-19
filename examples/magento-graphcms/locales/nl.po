@@ -412,11 +412,17 @@ msgstr "Voorvoegsel"
 msgid "Product could not be found"
 msgstr "Product kan niet worden gevonden"
 
+msgid "Product not available in {allLabels}"
+msgstr "Product niet beschikbaar in {allLabels}"
+
 msgid "Products"
 msgstr "Producten"
 
 msgid "Region"
 msgstr "Regio"
+
+msgid "Remove"
+msgstr "Verwijder"
 
 msgid "Remove Product"
 msgstr "Verwijder product"
@@ -522,9 +528,6 @@ msgstr "Bedankt voor je bestelling!"
 
 msgid "Thank you! Your review was successfully submitted for approval"
 msgstr "Bedankt! Uw review is succesvol verstuurd voor goedkeuring"
-
-msgid "The selected option combination is not available"
-msgstr ""
 
 msgid "This may take a second"
 msgstr "Dit kan een seconde duren"

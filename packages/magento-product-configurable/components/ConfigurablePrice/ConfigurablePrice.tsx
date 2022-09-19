@@ -1,6 +1,6 @@
 import { Money } from '@graphcommerce/magento-store'
 import { ConfigurableOptionsFragment } from '../../graphql/ConfigurableOptions.gql'
-import { useConfigurableTypeProduct } from '../../hooks/useConfigurableTypeProduct'
+import { useConfigurableOptionsSelection } from '../../hooks/useConfigurableOptionsSelection'
 
 type ConfigurablePriceProps = {
   product: ConfigurableOptionsFragment
@@ -8,7 +8,7 @@ type ConfigurablePriceProps = {
 
 export function ConfigurablePrice(props: ConfigurablePriceProps) {
   const { product } = props
-  const { configured } = useConfigurableTypeProduct()
+  const { configured } = useConfigurableOptionsSelection()
 
   const regular_price =
     configured?.configurable_product_options_selection?.variant?.price_range.minimum_price

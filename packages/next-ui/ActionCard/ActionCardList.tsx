@@ -184,9 +184,6 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
             variant='standard'
             sx={(theme) => ({
               marginTop: theme.spacings.xxs,
-              borderStartStartRadius: 0,
-              borderStartEndRadius: 0,
-              borderRadius: theme.shape.borderRadius * 1,
             })}
           >
             {errorMessage}

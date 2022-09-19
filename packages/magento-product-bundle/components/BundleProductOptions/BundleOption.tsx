@@ -16,9 +16,6 @@ export const BundleOption = React.memo<BundleOptionProps>((props) => {
 
   const can_change_quantity = options?.some((o) => o?.can_change_quantity)
   const required = _required ?? false
-  const errorMessage = required
-    ? i18n._(/* i18n*/ 'Please select a value for ‘{label}’', { label: title })
-    : undefined
 
   return (
     <div>
@@ -31,7 +28,11 @@ export const BundleOption = React.memo<BundleOptionProps>((props) => {
         size={size}
         variant={variant}
         defaultValue={options?.find((opt) => opt?.is_default)?.uid}
-        errorMessage={errorMessage}
+        rules={{
+          required: required
+            ? i18n._(/* i18n*/ 'Please select a value for ‘{label}’', { label: title })
+            : false,
+        }}
         name={
           options?.some((o) => o?.can_change_quantity)
             ? `cartItems.0.entered_options.${idx}.uid`

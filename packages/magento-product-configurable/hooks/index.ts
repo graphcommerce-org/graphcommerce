@@ -1,1 +1,1 @@
-export * from './useConfigurableTypeProduct'
+export * from './useConfigurableOptionsSelection'

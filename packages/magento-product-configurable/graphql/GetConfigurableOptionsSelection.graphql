@@ -1,0 +1,9 @@
+query GetConfigurableOptionsSelection($urlKey: String!, $selectedOptions: [ID!] = []) {
+  products(filter: { url_key: { eq: $urlKey } }) {
+    items {
+      __typename
+      uid
+      ...ConfigurableOptionsSelection
+    }
+  }
+}

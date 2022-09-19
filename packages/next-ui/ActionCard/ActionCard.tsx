@@ -256,7 +256,6 @@ export function ActionCard(props: ActionCardProps) {
                   typography: 'subtitle2',
                   '&.sizeMedium': { typographty: 'subtitle1' },
                   '&.sizeLarge': { typography: 'h6' },
-                  number: 2,
                 }}
               >
                 {title}

@@ -412,11 +412,17 @@ msgstr "Präfix"
 msgid "Product could not be found"
 msgstr "Produkt konnte nicht gefunden werden"
 
+msgid "Product not available in {allLabels}"
+msgstr "Produkt nicht verfügbar in {allLabels}"
+
 msgid "Products"
 msgstr "Produkte"
 
 msgid "Region"
 msgstr "Region"
+
+msgid "Remove"
+msgstr "Entfernen"
 
 msgid "Remove Product"
 msgstr "Produkt entfernen"
@@ -522,9 +528,6 @@ msgstr "Vielen Dank für Ihre Bestellung!"
 
 msgid "Thank you! Your review was successfully submitted for approval"
 msgstr "Vielen Dank! Ihre Bewertung wurde erfolgreich zur Freischaltung eingereicht"
-
-msgid "The selected option combination is not available"
-msgstr ""
 
 msgid "This may take a second"
 msgstr "Das kann einen Moment dauern"

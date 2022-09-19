@@ -1,6 +1,6 @@
 import { Button, ButtonProps } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { SxProps, Theme } from '@mui/material'
+import { Box, SxProps, Theme } from '@mui/material'
 import { useFormAddProductsToCart } from './AddProductsToCartForm'
 
 export type AddProductsToCartButtonProps = {
@@ -29,6 +29,7 @@ export function AddProductsToCartButton(props: AddProductsToCartButtonProps) {
       variant='pill'
       size='large'
       {...props}
+      disabled={Boolean(formState.errors.cartItems?.[0].sku?.message)}
       loading={formState.isSubmitting || loading}
     >
       <Trans id='Add to Cart' />

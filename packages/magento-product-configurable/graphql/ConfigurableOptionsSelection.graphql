@@ -1,4 +1,4 @@
-fragment ConfigurableProductConfigurations on ConfigurableProduct @injectable {
+fragment ConfigurableOptionsSelection on ConfigurableProduct @injectable {
   configurable_product_options_selection(configurableOptionValueUids: $selectedOptions) {
     configurable_options {
       attribute_code
