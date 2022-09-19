@@ -7,7 +7,8 @@ type AddToCartQuantityProps = Omit<
 > & { index?: number }
 
 export function AddProductsToCartQuantity(props: AddToCartQuantityProps) {
-  const { formState, control, index = 0 } = useFormAddProductsToCart()
+  const { index = 0 } = props
+  const { formState, control } = useFormAddProductsToCart()
 
   return (
     <NumberFieldElement
