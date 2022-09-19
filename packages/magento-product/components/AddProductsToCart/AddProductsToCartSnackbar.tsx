@@ -49,6 +49,7 @@ export function AddProductsToCartSnackbar(props: AddToCartMessageProps) {
               variant='pill'
               color='secondary'
               endIcon={<IconSvg src={iconChevronRight} />}
+              sx={{ display: 'flex' }}
             >
               <Trans id='View shopping cart' />
             </Button>
