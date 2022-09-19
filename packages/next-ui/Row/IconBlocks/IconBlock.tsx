@@ -1,4 +1,4 @@
-import { Typography, Button, SxProps, Theme, Box } from '@mui/material'
+import { Typography, Button, SxProps, Theme, Box, ButtonProps } from '@mui/material'
 import React from 'react'
 import { extendableComponent } from '../../Styles'
 
@@ -8,65 +8,43 @@ export type IconBlockProps = {
   children: React.ReactNode
   href?: string
   sx?: SxProps<Theme>
-}
+} & ButtonProps
 
 const name = 'IconBlock' as const
 const parts = ['block', 'link', 'title'] as const
 const { classes } = extendableComponent(name, parts)
 
 export const IconBlock = React.forwardRef<HTMLAnchorElement, IconBlockProps>((props, ref) => {
-  const { title, children, icon, href, sx = [] } = props
-
-  const content = (
-    <>
-      {icon}
-      <Typography
-        variant='subtitle1'
-        className={classes.title}
-        sx={(theme) => ({ fontWeight: theme.typography.fontWeightBold })}
-        component='span'
-      >
-        {title}
-      </Typography>
-      {children}
-    </>
-  )
-
-  const blockSx: SxProps<Theme> = [
-    (theme) => ({
-      border: `1px solid ${theme.palette.divider}`,
-      padding: `${theme.spacings.sm}`,
-      borderRadius: '6px',
-      textAlign: 'center',
-      color: theme.palette.text.primary,
-      '& > *': {
-        display: 'grid',
-        gridAutoFlow: 'row',
-        justifyItems: 'center',
-        gap: `${theme.spacings.xxs}`,
-      },
-    }),
-    ...(Array.isArray(sx) ? sx : [sx]),
-  ]
-
-  if (href) {
-    return (
-      <Button
-        href={href}
-        variant='text'
-        color='primary'
-        className={classes.block}
-        ref={ref}
-        sx={blockSx}
-      >
-        <div>{content}</div>
-      </Button>
-    )
-  }
+  const { title, children, icon, href = '#', sx = [], ...buttonProps } = props
 
   return (
-    <Box className={classes.block} sx={blockSx}>
-      {content}
-    </Box>
+    <Button
+      href={href}
+      variant='outlined'
+      color='primary'
+      className={classes.block}
+      {...buttonProps}
+      sx={[
+        (theme) => ({
+          padding: `${theme.spacings.sm}`,
+          textAlign: 'center',
+          '& > *': {
+            display: 'grid',
+            gridAutoFlow: 'row',
+            justifyItems: 'center',
+            gap: `${theme.spacings.xxs}`,
+          },
+        }),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    >
+      <Box>
+        {icon}
+        <Typography variant='subtitle1' className={classes.title} component='span'>
+          {title}
+        </Typography>
+        {children}
+      </Box>
+    </Button>
   )
 })
