@@ -172,7 +172,7 @@ export function CreateProductReviewForm(props: CreateProductReviewFormProps) {
           variant='outlined'
           type='text'
           error={!!formState.errors.summary || !!error}
-          label='Summary'
+          label={<Trans id='Summary' />}
           required={required.summary}
           {...muiRegister('summary', { required: required.summary })}
           helperText={formState.errors.summary?.message}
@@ -185,7 +185,7 @@ export function CreateProductReviewForm(props: CreateProductReviewFormProps) {
           variant='outlined'
           type='text'
           error={!!formState.errors.text || !!error}
-          label='Review'
+          label={<Trans id='Review' />}
           required={required.text}
           {...muiRegister('text', { required: required.text })}
           helperText={formState.errors.text?.message}

@@ -286,6 +286,12 @@ msgstr "Sra."
 msgid "Name"
 msgstr "Nombre"
 
+msgid "Summary"
+msgstr "Descripción"
+
+msgid "Review"
+msgstr "Review"
+
 msgid "Navigate to item {0}"
 msgstr "Navegar al artículo {0}"
 
