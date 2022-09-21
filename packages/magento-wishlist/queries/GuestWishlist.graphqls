@@ -8,6 +8,7 @@ type GuestWishlist {
 
 type GuestWishlistItem {
   sku: String!
+  url_key: String!
   selected_options: [ID]
   quantity: Float!
 }

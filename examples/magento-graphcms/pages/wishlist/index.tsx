@@ -1,3 +1,4 @@
+import { WaitForQueries } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
@@ -26,7 +27,7 @@ import { graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
 
-function WishlistPage(props: Props) {
+function WishlistPage() {
   const wishlistItemsData = useWishlistItems()
 
   return (
@@ -38,18 +39,21 @@ function WishlistPage(props: Props) {
         </LayoutTitle>
       </LayoutOverlayHeader>
 
-      {wishlistItemsData.loading ? (
+      <WaitForQueries
+        waitFor={[wishlistItemsData]}
+        fallback={
+          <Container maxWidth='md'>
+            <FullPageMessage
+              title={<Trans id='Loading wishlist' />}
+              icon={<IconSvg src={iconHeart} size='xxl' />}
+            >
+              <Trans id='We are fetching your favorite products, one moment please!' />
+            </FullPageMessage>
+          </Container>
+        }
+      >
         <Container maxWidth='md'>
-          <FullPageMessage
-            title={<Trans id='Loading wishlist' />}
-            icon={<IconSvg src={iconHeart} size='xxl' />}
-          >
-            <Trans id='We are fetching your favorite products, one moment please!' />
-          </FullPageMessage>
-        </Container>
-      ) : (
-        <Container maxWidth='md'>
-          {!wishlistItemsData.items || wishlistItemsData.items?.length === 0 ? (
+          {!wishlistItemsData.data || wishlistItemsData.data.length === 0 ? (
             <FullPageMessage
               title={<Trans id='Your wishlist is empty' />}
               icon={<IconSvg src={iconHeart} size='xxl' />}
@@ -63,7 +67,9 @@ function WishlistPage(props: Props) {
             >
               <Trans id='Discover our collection and add items to your wishlist!' />
             </FullPageMessage>
-          ) : (
+          ) : null}
+
+          {wishlistItemsData.data && wishlistItemsData.data.length > 0 ? (
             <>
               <LayoutTitle icon={iconHeart}>
                 <Trans id='Wishlist' />
@@ -83,9 +89,9 @@ function WishlistPage(props: Props) {
                 />
               </Container>
             </>
-          )}
+          ) : null}
         </Container>
-      )}
+      </WaitForQueries>
     </>
   )
 }

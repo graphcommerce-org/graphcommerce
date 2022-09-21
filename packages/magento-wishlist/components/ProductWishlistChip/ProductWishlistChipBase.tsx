@@ -1,4 +1,5 @@
 import { useMutation, useApolloClient } from '@graphcommerce/graphql'
+import { WishlistItem } from '@graphcommerce/graphql-mesh'
 import {
   useCustomerQuery,
   useCustomerSession,
@@ -23,6 +24,7 @@ import { AddProductToWishlistDocument } from '../../queries/AddProductToWishlist
 import { GetIsInWishlistsDocument } from '../../queries/GetIsInWishlists.gql'
 import { GuestWishlistDocument } from '../../queries/GuestWishlist.gql'
 import { RemoveProductFromWishlistDocument } from '../../queries/RemoveProductFromWishlist.gql'
+import { WishlistSummaryFragment } from '../../queries/WishlistSummaryFragment.gql'
 import { ProductWishlistChipFragment } from './ProductWishlistChip.gql'
 
 const hideForGuest = process.env.NEXT_PUBLIC_WISHLIST_HIDE_FOR_GUEST === '1'
@@ -34,12 +36,16 @@ export type ProductWishlistChipProps = ProductWishlistChipFragment & { sx?: SxPr
   buttonProps?: IconButtonProps
 }
 
+export type WishListItemType = NonNullable<
+  NonNullable<NonNullable<WishlistSummaryFragment['items_v2']>['items']>[0]
+>['product']
+
 const compName = 'ProductWishlistChipBase' as const
 const parts = ['root', 'wishlistIcon', 'wishlistIconActive', 'wishlistButton'] as const
 const { classes } = extendableComponent(compName, parts)
 
 export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
-  const { name, sku, showFeedbackMessage, buttonProps, sx = [] } = props
+  const { name, sku, url_key, showFeedbackMessage, buttonProps, sx = [] } = props
 
   const addToCartForm = useFormAddProductsToCart(true)
 
@@ -87,7 +93,7 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
       return
     }
 
-    if (!sku) {
+    if (!url_key || !sku) {
       return
     }
 
@@ -95,14 +101,15 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
     if (loggedIn && !loading) {
       const inWishlistTest =
         GetCustomerWishlistData?.customer?.wishlists[0]?.items_v2?.items.map(
-          (item) => item?.product?.sku,
+          (item) => item?.product?.url_key,
         ) || []
-      setInWishlist(inWishlistTest.includes(sku))
+      setInWishlist(inWishlistTest.includes(url_key))
     } else if (!loggedIn) {
-      const inWishlistTest = guestWishlistData?.guestWishlist?.items.map((item) => item?.sku) || []
-      setInWishlist(inWishlistTest.includes(sku))
+      const inWishlistTest =
+        guestWishlistData?.guestWishlist?.items.map((item) => item?.url_key) || []
+      setInWishlist(inWishlistTest.includes(url_key))
     }
-  }, [loggedIn, sku, loading, GetCustomerWishlistData, guestWishlistData])
+  }, [loggedIn, url_key, loading, GetCustomerWishlistData, guestWishlistData, sku])
 
   const preventAnimationBubble: React.MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault()
@@ -115,7 +122,7 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
     const selectedOptions = addToCartForm?.getValues().cartItems[0].selected_options ?? []
     const selected_options = Array.isArray(selectedOptions) ? selectedOptions : [selectedOptions]
 
-    if (!sku) {
+    if (!url_key || !sku) {
       return
     }
 
@@ -124,7 +131,7 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
         const wishlistItemsInSession =
           GetCustomerWishlistData?.customer?.wishlists[0]?.items_v2?.items || []
 
-        const item = wishlistItemsInSession.find((element) => element?.product?.sku === sku)
+        const item = wishlistItemsInSession.find((element) => element?.product?.url_key === url_key)
 
         if (item?.id) {
           // eslint-disable-next-line @typescript-eslint/no-floating-promises
@@ -139,8 +146,8 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
       cache.modify({
         id: cache.identify({ __typename: 'GuestWishlist' }),
         fields: {
-          items(existingItems = []) {
-            const items = existingItems.filter((item) => item.sku !== sku)
+          items(existingItems: WishListItemType[] = []) {
+            const items = existingItems.filter((item) => item?.url_key !== url_key)
             return items
           },
         },
@@ -156,6 +163,7 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
               {
                 __typename: 'GuestWishlistItem',
                 sku,
+                url_key,
                 quantity: 1,
                 selected_options,
               },
@@ -171,7 +179,7 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
   const output = (
     <Box>
       <IconButton
-        key={sku}
+        key={url_key}
         onClick={handleClick}
         onMouseDown={preventAnimationBubble}
         size='small'

@@ -286,6 +286,12 @@ msgstr "Mvr"
 msgid "Name"
 msgstr "Naam"
 
+msgid "Summary"
+msgstr "Omschrijving"
+
+msgid "Review"
+msgstr "Review"
+
 msgid "Navigate to item {0}"
 msgstr "Navigeer naar item {0}"
 

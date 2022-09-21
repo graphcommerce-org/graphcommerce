@@ -80,7 +80,9 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
           const wishlistItemsInSession =
             GetCustomerWishlistData?.customer?.wishlists[0]?.items_v2?.items || []
 
-          const item = wishlistItemsInSession.find((element) => element?.product?.sku === sku)
+          const item = wishlistItemsInSession.find(
+            (element) => element?.product?.url_key === url_key,
+          )
           if (item?.id) {
             itemIdToDelete = item.id
           }
