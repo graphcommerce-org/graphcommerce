@@ -1,5 +1,25 @@
 # @graphcommerce/magento-wishlist
 
+## 1.7.0
+
+### Minor Changes
+
+- [#1642](https://github.com/graphcommerce-org/graphcommerce/pull/1642) [`ad63ebf4e`](https://github.com/graphcommerce-org/graphcommerce/commit/ad63ebf4e33bfb0e5c9e5e68ab69b14775f3f8a8) Thanks [@paales](https://github.com/paales)! - Introduced `<AddProductsToCartForm/>`, which is allows for adding all product types to the cart with a single react-hook-form form.
+
+  Which allows you to fully compose the form on the product page without having to modify the page.
+
+* [#1652](https://github.com/graphcommerce-org/graphcommerce/pull/1652) [`961b06fbb`](https://github.com/graphcommerce-org/graphcommerce/commit/961b06fbbfef3dd9b7b41b3dcdefbe78ddbc58c3) Thanks [@mikekeehnen](https://github.com/mikekeehnen)! - Improved useWishlistItems hook, and merge guest wishlist based on url_key instead of sku
+
+### Patch Changes
+
+- Updated dependencies [[`ad63ebf4e`](https://github.com/graphcommerce-org/graphcommerce/commit/ad63ebf4e33bfb0e5c9e5e68ab69b14775f3f8a8), [`87c897cda`](https://github.com/graphcommerce-org/graphcommerce/commit/87c897cda1934f072887d5302b7b7ef5ecccd1c0), [`b6bf2c941`](https://github.com/graphcommerce-org/graphcommerce/commit/b6bf2c94197ddacbf8f1fc0d352cd0d46e096f30), [`b91b9eb1f`](https://github.com/graphcommerce-org/graphcommerce/commit/b91b9eb1f3f9c2740fcbe03d8047f23941b10dcc)]:
+  - @graphcommerce/magento-product@4.6.0
+  - @graphcommerce/magento-product-configurable@4.3.0
+  - @graphcommerce/magento-store@4.3.0
+  - @graphcommerce/next-ui@4.27.0
+  - @graphcommerce/magento-cart@4.8.4
+  - @graphcommerce/magento-customer@4.11.4
+
 ## 1.6.11
 
 ### Patch Changes

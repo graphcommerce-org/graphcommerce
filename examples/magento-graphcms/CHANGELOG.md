@@ -1,5 +1,57 @@
 # Change Log
 
+## 3.27.0
+
+### Minor Changes
+
+- [#1642](https://github.com/graphcommerce-org/graphcommerce/pull/1642) [`ad63ebf4e`](https://github.com/graphcommerce-org/graphcommerce/commit/ad63ebf4e33bfb0e5c9e5e68ab69b14775f3f8a8) Thanks [@paales](https://github.com/paales)! - Introduced `<AddProductsToCartForm/>`, which is allows for adding all product types to the cart with a single react-hook-form form.
+
+  Which allows you to fully compose the form on the product page without having to modify the page.
+
+* [#1652](https://github.com/graphcommerce-org/graphcommerce/pull/1652) [`961b06fbb`](https://github.com/graphcommerce-org/graphcommerce/commit/961b06fbbfef3dd9b7b41b3dcdefbe78ddbc58c3) Thanks [@mikekeehnen](https://github.com/mikekeehnen)! - Improved useWishlistItems hook, and merge guest wishlist based on url_key instead of sku
+
+- [#1648](https://github.com/graphcommerce-org/graphcommerce/pull/1648) [`f18e47d04`](https://github.com/graphcommerce-org/graphcommerce/commit/f18e47d044ca765cfef82bb47831070afa8ff494) Thanks [@LaurensFranken](https://github.com/LaurensFranken)! - Make review textfield labels translatable and add translations
+
+### Patch Changes
+
+- [#1642](https://github.com/graphcommerce-org/graphcommerce/pull/1642) [`580f0bb67`](https://github.com/graphcommerce-org/graphcommerce/commit/580f0bb67932c1a979177decbea6005492b589fe) Thanks [@paales](https://github.com/paales)! - Disable arrayInputCoercion, this makes handling GraphQL array input types easier in the codebase. Although GraphQL accepts both array and a single value and it is following the spec, this makes handing it much easier.
+
+- Updated dependencies [[`ad63ebf4e`](https://github.com/graphcommerce-org/graphcommerce/commit/ad63ebf4e33bfb0e5c9e5e68ab69b14775f3f8a8), [`9e6fd498e`](https://github.com/graphcommerce-org/graphcommerce/commit/9e6fd498e3242ab30602767ae77a8e22f80d9fd3), [`87c897cda`](https://github.com/graphcommerce-org/graphcommerce/commit/87c897cda1934f072887d5302b7b7ef5ecccd1c0), [`961b06fbb`](https://github.com/graphcommerce-org/graphcommerce/commit/961b06fbbfef3dd9b7b41b3dcdefbe78ddbc58c3), [`b6bf2c941`](https://github.com/graphcommerce-org/graphcommerce/commit/b6bf2c94197ddacbf8f1fc0d352cd0d46e096f30), [`f18e47d04`](https://github.com/graphcommerce-org/graphcommerce/commit/f18e47d044ca765cfef82bb47831070afa8ff494), [`b91b9eb1f`](https://github.com/graphcommerce-org/graphcommerce/commit/b91b9eb1f3f9c2740fcbe03d8047f23941b10dcc)]:
+  - @graphcommerce/ecommerce-ui@1.5.0
+  - @graphcommerce/magento-cart-payment-method@3.6.0
+  - @graphcommerce/magento-cart-pickup@3.2.0
+  - @graphcommerce/magento-cart-shipping-address@3.5.0
+  - @graphcommerce/magento-cart-shipping-method@3.7.0
+  - @graphcommerce/magento-product@4.6.0
+  - @graphcommerce/magento-product-bundle@4.1.0
+  - @graphcommerce/magento-product-configurable@4.3.0
+  - @graphcommerce/magento-product-downloadable@4.1.0
+  - @graphcommerce/magento-product-grouped@3.1.0
+  - @graphcommerce/magento-product-simple@4.1.0
+  - @graphcommerce/magento-product-virtual@4.1.0
+  - @graphcommerce/magento-store@4.3.0
+  - @graphcommerce/magento-wishlist@1.7.0
+  - @graphcommerce/next-ui@4.27.0
+  - @graphcommerce/magento-review@3.4.0
+  - @graphcommerce/magento-cart@4.8.4
+  - @graphcommerce/magento-cart-email@3.0.59
+  - @graphcommerce/magento-customer@4.11.4
+  - @graphcommerce/magento-payment-braintree@3.0.57
+  - @graphcommerce/magento-payment-included@3.1.29
+  - @graphcommerce/mollie-magento-payment@3.5.10
+  - @graphcommerce/magento-cart-items@3.1.11
+  - @graphcommerce/magento-category@4.5.11
+  - @graphcommerce/magento-cart-billing-address@3.1.10
+  - @graphcommerce/magento-cart-checkout@3.0.59
+  - @graphcommerce/magento-cart-coupon@3.2.10
+  - @graphcommerce/magento-cms@4.0.47
+  - @graphcommerce/magento-customer-account@3.2.10
+  - @graphcommerce/magento-customer-order@3.1.8
+  - @graphcommerce/framer-scroller@2.1.39
+  - @graphcommerce/graphcms-ui@3.0.48
+  - @graphcommerce/magento-newsletter@2.2.1
+  - @graphcommerce/magento-search@4.2.8
+
 ## 3.26.2
 
 ### Patch Changes
