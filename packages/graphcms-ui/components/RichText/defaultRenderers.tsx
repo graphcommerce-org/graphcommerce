@@ -32,11 +32,15 @@ export const defaultRenderers: Renderers = {
       />
     )
   },
-  image: ({ src, width, height, title, mimeType }) => (
-    <Asset asset={{ url: src, alt: title, width, height, mimeType }} />
+  image: ({ src, width, height, title, mimeType, sx }) => (
+    <Box sx={sx}>
+      <Asset asset={{ url: src, alt: title, width, height, mimeType }} />
+    </Box>
   ),
-  video: ({ src, width, height, title, mimeType }) => (
-    <Asset asset={{ url: src, alt: title, width, height, mimeType }} />
+  video: ({ src, width, height, title, mimeType, sx }) => (
+    <Box sx={sx}>
+      <Asset asset={{ url: src, alt: title, width, height, mimeType }} />
+    </Box>
   ),
   link: ({ href, openInNewTab, ...props }) => (
     <PageLink href={href} passHref>
