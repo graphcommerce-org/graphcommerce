@@ -9,7 +9,6 @@ export {
   SelectElement,
   SliderElement,
   SwitchElement,
-  TextFieldElement,
   ToggleButtonGroupElement,
 } from 'react-hook-form-mui'
 export type {
@@ -23,6 +22,8 @@ export type {
   SelectElementProps,
   SliderElementProps,
   SwitchElementProps,
-  TextFieldElementProps,
   ToggleButtonGroupElementProps,
 } from 'react-hook-form-mui'
+
+export * from './TextFieldElement'
+export * from './NumberFieldElement'

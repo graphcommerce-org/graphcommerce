@@ -3,7 +3,7 @@ import type { OptionalKeysOf, Simplify } from 'type-fest'
 export function filterNonNullableKeys<
   T extends Record<string, unknown>,
   Keys extends OptionalKeysOf<T>,
->(items: (T | null | undefined)[] | null | undefined, values: Keys[]) {
+>(items: (T | null | undefined)[] | null | undefined, values: Keys[] = []) {
   if (!items) return []
 
   type ResultWithRequired = Simplify<

@@ -21,7 +21,7 @@ import {
 import {
   ConfigurableProductAddToCartDocument,
   ConfigurableProductAddToCartMutationVariables,
-} from './ConfigurableProductAddToCart.gql'
+} from '../graphql/ConfigurableProductAddToCart.gql'
 
 type ConfigurableProductAddToCartProps = {
   variables: Omit<ConfigurableProductAddToCartMutationVariables, 'cartId' | 'selectedOptions'>
@@ -52,14 +52,13 @@ export function ConfigurableProductAddToCart(props: ConfigurableProductAddToCart
     ...buttonProps
   } = props
 
-  const { getUids, getVariants, selection } = useConfigurableContext(variables.sku)
+  const { getVariants, selection } = useConfigurableContext(variables.sku)
 
   const form = useFormGqlMutationCart(ConfigurableProductAddToCartDocument, {
     defaultValues: { ...variables },
     onBeforeSubmit: ({ selectedOptions, ...vars }) => ({
       ...vars,
-      // todo: selectedOptions should contain the correct values directly
-      selectedOptions: getUids(selectedOptions?.[0] as unknown as Selected),
+      selectedOptions: Object.values(selectedOptions),
     }),
   })
 

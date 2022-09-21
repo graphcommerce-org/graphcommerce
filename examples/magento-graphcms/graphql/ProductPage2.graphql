@@ -1,0 +1,22 @@
+query ProductPage2(
+  $url: String!
+  $urlKey: String!
+  $reviewPageSize: Int = 3
+  $reviewPage: Int = 1
+) {
+  ...UspsQueryFragment
+  ...ProductPageQueryFragment
+  ...PageContentQueryFragment
+  products(filter: { url_key: { eq: $urlKey } }) {
+    items {
+      __typename
+      uid
+      ...ProductCustomizable
+      ...ProductWeight
+      ...ProductPageItem
+      ...ConfigurableOptions
+      ...DownloadableProductOptions
+      ...BundleProductOptions
+    }
+  }
+}

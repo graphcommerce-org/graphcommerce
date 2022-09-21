@@ -406,6 +406,9 @@ msgstr "Selecteer een betaalmethode a.u.b."
 msgid "Please select a shipping method"
 msgstr "Selecteer een verzendmethode a.u.b."
 
+msgid "Please select a value for ‘{label}’"
+msgstr "Selecteer een waarde voor {label}"
+
 msgid "Postcode"
 msgstr "Postcode"
 
@@ -415,11 +418,17 @@ msgstr "Voorvoegsel"
 msgid "Product could not be found"
 msgstr "Product kan niet worden gevonden"
 
+msgid "Product not available in {allLabels}"
+msgstr "Product niet beschikbaar in {allLabels}"
+
 msgid "Products"
 msgstr "Producten"
 
 msgid "Region"
 msgstr "Regio"
+
+msgid "Remove"
+msgstr "Verwijder"
 
 msgid "Remove Product"
 msgstr "Verwijder product"

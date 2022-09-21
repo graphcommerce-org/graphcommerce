@@ -44,7 +44,7 @@ export function Money(props: MoneyProps) {
   )
   const numberFormatter = useNumberFormat(options)
 
-  if (!value) return null
+  if (typeof value === 'undefined' || value === null) return null
 
   return <>{numberFormatter.format(value)}</>
 }

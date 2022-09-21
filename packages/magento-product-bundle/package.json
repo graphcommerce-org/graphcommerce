@@ -18,12 +18,16 @@
     "@playwright/test": "^1.21.1"
   },
   "dependencies": {
+    "@graphcommerce/ecommerce-ui": "1.4.0",
     "@graphcommerce/graphql": "3.4.8",
+    "@graphcommerce/image": "3.1.9",
     "@graphcommerce/magento-cart": "4.8.3",
     "@graphcommerce/magento-cart-items": "3.1.10",
     "@graphcommerce/magento-product": "4.5.10",
     "@graphcommerce/magento-product-simple": "4.0.58",
-    "@graphcommerce/magento-product-virtual": "4.0.58"
+    "@graphcommerce/magento-product-virtual": "4.0.58",
+    "@graphcommerce/magento-store": "4.2.35",
+    "@graphcommerce/next-ui": "4.26.0"
   },
   "peerDependencies": {
     "@lingui/react": "^3.13.2",

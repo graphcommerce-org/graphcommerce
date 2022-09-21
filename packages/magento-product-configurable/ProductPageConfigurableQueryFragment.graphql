@@ -4,11 +4,7 @@ fragment ProductPageConfigurableQueryFragment on Query {
     items {
       __typename
       uid
-      ... on ConfigurableProduct {
-        ...ProductWeight
-        ...ProductCustomizable
-        ...ConfigurableProductForm
-      }
+      ...ConfigurableProductForm
     }
   }
 }

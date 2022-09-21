@@ -1,4 +1,4 @@
-fragment BundleItems on BundleProduct {
+fragment BundleProductOptions on BundleProduct {
   ship_bundle_items
   dynamic_sku
   dynamic_price
@@ -21,11 +21,17 @@ fragment BundleItems on BundleProduct {
       quantity
       uid
       product {
+        swatch_image
         uid
         __typename
-        ...ProductListItem
-        ...ProductListItemSimple
-        ...ProductListItemVirtual
+        name
+        url_key
+        thumbnail {
+          disabled
+          label
+          position
+          url
+        }
       }
     }
   }

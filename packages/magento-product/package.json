@@ -19,6 +19,7 @@
     "type-fest": "^2.12.2"
   },
   "dependencies": {
+    "@graphcommerce/ecommerce-ui": "1.4.0",
     "@graphcommerce/framer-scroller": "2.1.38",
     "@graphcommerce/graphql": "3.4.8",
     "@graphcommerce/graphql-mesh": "4.2.0",

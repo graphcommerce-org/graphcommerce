@@ -406,6 +406,9 @@ msgstr "Bitte wählen Sie eine Zahlungsmethode aus"
 msgid "Please select a shipping method"
 msgstr "Bitte wählen Sie eine Versandmethode aus"
 
+msgid "Please select a value for ‘{label}’"
+msgstr "Bitte wählen Sie einen Wert für {label}"
+
 msgid "Postcode"
 msgstr "Postleitzahl"
 
@@ -415,11 +418,17 @@ msgstr "Präfix"
 msgid "Product could not be found"
 msgstr "Produkt konnte nicht gefunden werden"
 
+msgid "Product not available in {allLabels}"
+msgstr "Produkt nicht verfügbar in {allLabels}"
+
 msgid "Products"
 msgstr "Produkte"
 
 msgid "Region"
 msgstr "Region"
+
+msgid "Remove"
+msgstr "Entfernen"
 
 msgid "Remove Product"
 msgstr "Produkt entfernen"

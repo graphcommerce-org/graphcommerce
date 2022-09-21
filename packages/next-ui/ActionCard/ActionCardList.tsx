@@ -1,10 +1,12 @@
-import { Alert, Box } from '@mui/material'
+import { Alert, Box, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { isFragment } from 'react-is'
+import { extendableComponent } from '../Styles'
 import { ActionCardProps } from './ActionCard'
 
 type MultiSelect = {
   multiple: true
+  collapse?: false
   value: (string | number)[]
 
   onChange?: (event: React.MouseEvent<HTMLElement>, value: MultiSelect['value']) => void
@@ -12,6 +14,7 @@ type MultiSelect = {
 type Select = {
   multiple?: false
   value: string | number
+  collapse?: boolean
 
   /** Value is null when deselected when not required */
   onChange?: (event: React.MouseEvent<HTMLElement>, value: Select['value'] | null) => void
@@ -22,7 +25,9 @@ export type ActionCardListProps<SelectOrMulti = MultiSelect | Select> = {
   required?: boolean
   error?: boolean
   errorMessage?: string
-} & SelectOrMulti
+  sx?: SxProps<Theme>
+} & SelectOrMulti &
+  HoistedActionCardProps
 
 function isMulti(props: ActionCardListProps): props is ActionCardListProps<MultiSelect> {
   return props.multiple === true
@@ -37,9 +42,30 @@ function isValueSelected(
   return value === candidate
 }
 
+type HoistedActionCardProps = Pick<ActionCardProps, 'color' | 'variant' | 'size' | 'layout'>
+
+const parts = ['root'] as const
+const name = 'ActionCardList'
+const { withState, selectors } = extendableComponent<
+  HoistedActionCardProps,
+  typeof name,
+  typeof parts
+>(name, parts)
+
 export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListProps>(
   (props, ref) => {
-    const { children, required, error = false, errorMessage } = props
+    const {
+      children,
+      required,
+      error = false,
+      errorMessage,
+      size = 'medium',
+      color = 'primary',
+      variant = 'outlined',
+      layout = 'list',
+      collapse = false,
+      sx = [],
+    } = props
 
     const handleChange: ActionCardProps['onClick'] = isMulti(props)
       ? (event, v) => {
@@ -65,8 +91,10 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
         }
 
     type ActionCardLike = React.ReactElement<
-      Pick<ActionCardProps, 'value' | 'selected' | 'disabled' | 'onClick' | 'hidden'>
+      Pick<ActionCardProps, 'value' | 'selected' | 'disabled' | 'onClick' | 'error' | 'onClick'> &
+        HoistedActionCardProps
     >
+
     function isActionCardLike(el: React.ReactElement): el is ActionCardLike {
       const hasValue = (el as ActionCardLike).props.value
 
@@ -100,55 +128,68 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
       (child) => child.props.value === props.value && child.props.disabled !== true,
     )?.props.value
 
+    const classes = withState({ size, color, variant, layout })
+
     return (
-      <Box
-        ref={ref}
-        sx={[
-          error && {
-            '& .ActionCard-root': {
-              borderLeft: 2,
-              borderRight: 2,
-              borderLeftColor: 'error.main',
-              borderRightColor: 'error.main',
-            },
-            '& > div:first-of-type.ActionCard-root': {
-              borderTop: 2,
-              borderTopColor: 'error.main',
-            },
-            '& > div:last-of-type.ActionCard-root': {
-              borderBottom: 2,
-              borderBottomColor: 'error.main',
-            },
-          },
-        ]}
-      >
-        {childReactNodes.map((child) =>
-          React.cloneElement(child, {
-            onClick: handleChange,
-            hidden: !!value && value !== child.props.value,
-            selected:
-              child.props.selected === undefined
-                ? isValueSelected(child.props.value, value)
-                : child.props.selected,
-          }),
+      <div>
+        <Box
+          className={classes.root}
+          ref={ref}
+          sx={[
+            (theme) => ({
+              '&.layoutStack': {
+                display: 'grid',
+                height: 'min-content',
+                gap: theme.spacings.xxs,
+              },
+              '&.layoutList': {
+                display: 'grid',
+                height: 'min-content',
+              },
+              '&.layoutGrid': {
+                display: 'grid',
+                gridTemplateColumns: 'repeat(2, 1fr)',
+                gap: theme.spacings.xxs,
+              },
+              '&.layoutInline': {
+                display: 'flex',
+                flexWrap: 'wrap',
+                gap: theme.spacings.xxs,
+              },
+            }),
+
+            ...(Array.isArray(sx) ? sx : [sx]),
+          ]}
+        >
+          {childReactNodes.map((child) => {
+            if (collapse && Boolean(value) && !isValueSelected(child.props.value, value))
+              return null
+            return React.cloneElement(child, {
+              onClick: handleChange,
+              error: child.props.error ?? error,
+              color: child.props.color ?? color,
+              variant: child.props.variant ?? variant,
+              size: child.props.size ?? size,
+              layout: child.props.layout ?? layout,
+              selected:
+                child.props.selected === undefined
+                  ? isValueSelected(child.props.value, value)
+                  : child.props.selected,
+            })
+          })}
+        </Box>
+        {error && errorMessage && (
+          <Alert
+            severity='error'
+            variant='standard'
+            sx={(theme) => ({
+              marginTop: theme.spacings.xxs,
+            })}
+          >
+            {errorMessage}
+          </Alert>
         )}
-        {error && (
-          <Box component='span'>
-            <Alert
-              severity='error'
-              variant='standard'
-              sx={(theme) => ({
-                marginTop: 0.5,
-                borderStartStartRadius: 0,
-                borderStartEndRadius: 0,
-                borderRadius: theme.shape.borderRadius * 1,
-              })}
-            >
-              {errorMessage}
-            </Alert>
-          </Box>
-        )}
-      </Box>
+      </div>
     )
   },
 )

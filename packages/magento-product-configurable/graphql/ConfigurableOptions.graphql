@@ -1,0 +1,25 @@
+fragment ConfigurableOptions on ConfigurableProduct {
+  __typename
+  uid
+  sku
+  name
+  url_key
+  price_range {
+    minimum_price {
+      final_price {
+        currency
+        value
+      }
+    }
+  }
+  configurable_options {
+    attribute_code
+    uid
+    label
+    position
+    use_default
+    values {
+      ...ConfigurableOptionValue
+    }
+  }
+}

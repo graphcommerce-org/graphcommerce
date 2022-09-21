@@ -4,6 +4,7 @@ fragment ProductPageQueryFragment on Query {
     items {
       __typename
       uid
+      ...ProductWeight
       ...ProductPageItem
     }
   }

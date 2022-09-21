@@ -2,12 +2,11 @@ import {
   ProductListItem,
   OverlayAreaKeys,
   ProductListItemProps,
-  isFilterTypeEqual,
   useProductListParamsContext,
+  isFilterTypeEqual,
 } from '@graphcommerce/magento-product'
-import React from 'react'
+import { SwatchList } from '../../SwatchList'
 import { ProductListItemConfigurableFragment } from './ProductListItemConfigurable.gql'
-import { SwatchList } from './SwatchList'
 
 export type ProductListItemConfigurableActionProps = ProductListItemConfigurableFragment & {
   variant?: NonNullable<ProductListItemConfigurableFragment['variants']>[0]
@@ -15,13 +14,11 @@ export type ProductListItemConfigurableActionProps = ProductListItemConfigurable
 
 export type ProdustListItemConfigurableProps = ProductListItemConfigurableFragment &
   ProductListItemProps & {
-    Actions?: React.VFC<ProductListItemConfigurableActionProps>
     swatchLocations?: Record<OverlayAreaKeys, string[]>
   }
 
 export function ProductListItemConfigurable(props: ProdustListItemConfigurableProps) {
   const {
-    Actions,
     variants,
     configurable_options,
     children,
@@ -103,7 +100,6 @@ export function ProductListItemConfigurable(props: ProdustListItemConfigurablePr
         </>
       }
     >
-      {Actions && <Actions {...configurableProduct} variant={matchingVariants?.[0]} />}
       {children}
     </ProductListItem>
   )

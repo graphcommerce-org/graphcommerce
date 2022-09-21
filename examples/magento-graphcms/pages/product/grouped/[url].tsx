@@ -10,7 +10,6 @@ import {
   ProductPageMeta,
   ProductShortDescription,
   ProductSidebarDelivery,
-  ProductWeight,
 } from '@graphcommerce/magento-product'
 import {
   GroupedProductPageDocument,
@@ -100,7 +99,6 @@ function ProductGrouped(props: Props) {
               ),
           )}
         </ul>
-        <ProductWeight weight={typeProduct?.weight} />
         <Usps usps={sidebarUsps} size='small' />
       </ProductPageGallery>
 

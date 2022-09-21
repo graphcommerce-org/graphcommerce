@@ -1,3 +1,4 @@
+import { Controller, FieldErrors, UseControllerProps } from '@graphcommerce/ecommerce-ui'
 import {
   RenderType,
   SectionHeader,
@@ -5,7 +6,6 @@ import {
   ToggleButtonGroup,
   extendableComponent,
 } from '@graphcommerce/next-ui'
-import { Controller, FieldErrors, UseControllerProps } from '@graphcommerce/react-hook-form'
 import { BaseTextFieldProps, FormHelperText, SxProps } from '@mui/material'
 import React from 'react'
 import { Selected, useConfigurableContext } from '../ConfigurableContext/ConfigurableContext'

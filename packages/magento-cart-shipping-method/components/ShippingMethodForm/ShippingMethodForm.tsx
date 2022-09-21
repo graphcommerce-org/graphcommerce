@@ -101,7 +101,9 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
         <ActionCardListForm
           control={control}
           name='carrierMethod'
-          errorMessage={i18n._(/* i18n */ 'Please select a shipping method')}
+          size='large'
+          color='secondary'
+          rules={{ required: i18n._(/* i18n */ 'Please select a shipping method') }}
           items={items}
           render={
             ShippingMethodActionCard as React.FC<ActionCardItemRenderProps<ActionCardItemBase>>

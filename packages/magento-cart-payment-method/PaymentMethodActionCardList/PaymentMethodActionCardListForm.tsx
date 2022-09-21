@@ -48,12 +48,12 @@ function PaymentMethodActionCard(
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
       action={
-        <Button disableRipple variant='inline' color='secondary'>
+        <Button disableTouchRipple variant='inline' color='secondary'>
           <Trans id='Select' />
         </Button>
       }
       reset={
-        <Button disableRipple variant='inline' color='secondary' onClick={onReset}>
+        <Button disableTouchRipple variant='inline' color='secondary' onClick={onReset}>
           <Trans id='Change' />
         </Button>
       }
@@ -113,6 +113,9 @@ export function PaymentMethodActionCardListForm(props: PaymentMethodActionCardLi
       control={control}
       name='paymentMethod'
       errorMessage='Please select a payment method'
+      collapse
+      size='large'
+      color='secondary'
       items={methods.map((method) => ({
         ...method,
         value: `${method.code}___${method.child}`,
