@@ -114,19 +114,9 @@ function traverseAttrTree(selection: Selected, attrTree: AttributeTree | undefin
   return variantList
 }
 
-/**
- * @deprecated ConfigurableContextProvider is deprecated. UUse ProductAddToCartForm with
- *   ConfigurableAttributeSelector, ConfigurableProductPageGallery and ConfigurablePrice
- */
 export function ConfigurableContextProvider(
   props: PropsWithChildren<ConfigurableProductFormProps>,
 ) {
-  if (process.env.NODE_ENV !== 'production') {
-    console.warn(
-      'ConfigurableContextProvider is deprecated. Use AddProductsToCartForm with ConfigurableProductOptions, ConfigurableProductPageGallery and ConfigurablePrice',
-    )
-  }
-
   const { children, sku, configurable_options, variants: providedVariants } = props
   const [selection, select] = useState<Selected>({})
 

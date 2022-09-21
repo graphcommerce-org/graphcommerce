@@ -31,10 +31,6 @@ const compName = 'ConfigurableOptionsInput' as const
 const parts = ['buttonGroup', 'button', 'helperText'] as const
 const { classes } = extendableComponent(compName, parts)
 
-/**
- * @deprecated Use ProductAddToCartForm with ConfigurableAttributeSelector,
- *   ConfigurableProductPageGallery and ConfigurablePrice
- */
 export function ConfigurableOptionsInput(props: ConfigurableOptionsInputProps) {
   const {
     sku,
@@ -48,12 +44,6 @@ export function ConfigurableOptionsInput(props: ConfigurableOptionsInputProps) {
     sx,
     ...controlProps
   } = props
-
-  if (process.env.NODE_ENV !== 'production') {
-    console.warn(
-      'ConfigurableOptionsInput is deprecated. Use ProductAddToCartForm with ConfigurableAttributeSelector, ConfigurableProductPageGallery and ConfigurablePrice',
-    )
-  }
 
   const { options, selection, select, getVariants } = useConfigurableContext(sku)
 
