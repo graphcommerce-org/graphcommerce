@@ -2,7 +2,7 @@
 '@graphcommerce/magento-graphcms': minor
 '@graphcommerce/ecommerce-ui': minor
 '@graphcommerce/magento-cart-payment-method': minor
-'@graphcommerce/magento-cart-pickup': minors
+'@graphcommerce/magento-cart-pickup': minor
 '@graphcommerce/magento-cart-shipping-address': minor
 '@graphcommerce/magento-cart-shipping-method': minor
 '@graphcommerce/magento-product': minor
