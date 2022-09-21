@@ -1,5 +1,19 @@
 # Change Log
 
+## 3.4.0
+
+### Minor Changes
+
+- [#1648](https://github.com/graphcommerce-org/graphcommerce/pull/1648) [`f18e47d04`](https://github.com/graphcommerce-org/graphcommerce/commit/f18e47d044ca765cfef82bb47831070afa8ff494) Thanks [@LaurensFranken](https://github.com/LaurensFranken)! - Make review textfield labels translatable and add translations
+
+### Patch Changes
+
+- Updated dependencies [[`ad63ebf4e`](https://github.com/graphcommerce-org/graphcommerce/commit/ad63ebf4e33bfb0e5c9e5e68ab69b14775f3f8a8), [`b6bf2c941`](https://github.com/graphcommerce-org/graphcommerce/commit/b6bf2c94197ddacbf8f1fc0d352cd0d46e096f30)]:
+  - @graphcommerce/magento-product@4.6.0
+  - @graphcommerce/magento-store@4.3.0
+  - @graphcommerce/next-ui@4.27.0
+  - @graphcommerce/magento-customer@4.11.4
+
 ## 3.3.10
 
 ### Patch Changes

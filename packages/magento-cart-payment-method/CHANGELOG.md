@@ -1,5 +1,21 @@
 # Change Log
 
+## 3.6.0
+
+### Minor Changes
+
+- [#1642](https://github.com/graphcommerce-org/graphcommerce/pull/1642) [`ad63ebf4e`](https://github.com/graphcommerce-org/graphcommerce/commit/ad63ebf4e33bfb0e5c9e5e68ab69b14775f3f8a8) Thanks [@paales](https://github.com/paales)! - Introduced `<AddProductsToCartForm/>`, which is allows for adding all product types to the cart with a single react-hook-form form.
+
+  Which allows you to fully compose the form on the product page without having to modify the page.
+
+### Patch Changes
+
+- Updated dependencies [[`ad63ebf4e`](https://github.com/graphcommerce-org/graphcommerce/commit/ad63ebf4e33bfb0e5c9e5e68ab69b14775f3f8a8)]:
+  - @graphcommerce/magento-store@4.3.0
+  - @graphcommerce/next-ui@4.27.0
+  - @graphcommerce/magento-cart@4.8.4
+  - @graphcommerce/framer-scroller@2.1.39
+
 ## 3.5.9
 
 ### Patch Changes

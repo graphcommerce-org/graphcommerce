@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.2.1
+
+### Patch Changes
+
+- Updated dependencies [[`ad63ebf4e`](https://github.com/graphcommerce-org/graphcommerce/commit/ad63ebf4e33bfb0e5c9e5e68ab69b14775f3f8a8)]:
+  - @graphcommerce/next-ui@4.27.0
+  - @graphcommerce/magento-cart@4.8.4
+  - @graphcommerce/magento-customer@4.11.4
+
 ## 2.2.0
 
 ### Minor Changes
