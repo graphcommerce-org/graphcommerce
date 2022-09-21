@@ -1,4 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { gtagAddToCart } from '@graphcommerce/googleanalytics'
 import {
   getProductStaticPaths,
   jsonLdProduct,
@@ -55,6 +56,11 @@ function ProductConfigurable(props: Props) {
   const typeProduct = findByTypename(typeProducts?.items, 'ConfigurableProduct')
   const aggregations = products?.aggregations
 
+  let addToCartSubmitCallback
+  if (process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS) {
+    addToCartSubmitCallback = gtagAddToCart
+  }
+
   if (!product?.sku || !product.url_key || !typeProduct) return null
 
   return (
@@ -110,6 +116,7 @@ function ProductConfigurable(props: Props) {
               ),
             }}
             additionalButtons={<ProductWishlistChipDetailConfigurable {...product} />}
+            submitCallback={addToCartSubmitCallback}
           >
             <ProductSidebarDelivery />
           </ConfigurableProductAddToCart>

@@ -30,6 +30,7 @@ type ConfigurableProductAddToCartProps = {
   children?: React.ReactNode
   additionalButtons?: React.ReactNode
   sx?: SxProps<Theme>
+  submitCallback?: (result, vars) => void
   optionsProps?: Omit<
     ConfigurableOptionsInputProps,
     'name' | 'sku' | 'control' | 'rules' | 'errors' | 'optionEndLabels'
@@ -48,6 +49,7 @@ export function ConfigurableProductAddToCart(props: ConfigurableProductAddToCart
     optionEndLabels,
     optionsProps,
     additionalButtons,
+    submitCallback,
     sx = [],
     ...buttonProps
   } = props
@@ -61,6 +63,9 @@ export function ConfigurableProductAddToCart(props: ConfigurableProductAddToCart
       // todo: selectedOptions should contain the correct values directly
       selectedOptions: getUids(selectedOptions?.[0] as unknown as Selected),
     }),
+    onComplete: (result, vars) => {
+      submitCallback?.(result, vars)
+    },
   })
 
   const { handleSubmit, formState, muiRegister, required, control, error, data } = form
