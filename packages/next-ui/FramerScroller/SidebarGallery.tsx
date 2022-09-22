@@ -10,7 +10,7 @@ import {
 import { Fab, useTheme, Box, styled, SxProps, Theme } from '@mui/material'
 import { m, useDomEvent, useMotionValue } from 'framer-motion'
 import { useRouter } from 'next/router'
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { IconSvg } from '../IconSvg'
 import { Row } from '../Row/Row'
 import { extendableComponent } from '../Styles'
@@ -107,9 +107,8 @@ export function SidebarGallery(props: SidebarGalleryProps) {
 
   const headerHeight = `${theme.appShell.headerHeightSm} - ${theme.spacings.sm} * 2`
   const galleryMargin = theme.spacings.lg
-  const extraSpacing = theme.spacings.md
 
-  const maxHeight = `calc(100vh - ${headerHeight} - ${galleryMargin} - ${extraSpacing})`
+  const maxHeight = `calc(100vh - ${headerHeight} - ${galleryMargin})`
   const ratio = `calc(${height} / ${width} * 100%)`
 
   const hasImages = images.length > 0
@@ -200,7 +199,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                   width={image.width}
                   height={image.height}
                   loading={idx === 0 ? 'eager' : 'lazy'}
-                  sx={{ display: 'block' }}
+                  sx={{ display: 'block', objectFit: 'contain' }}
                   sizes={{
                     0: '100vw',
                     [theme.breakpoints.values.md]: zoomed ? '100vw' : '60vw',
