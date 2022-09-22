@@ -1,4 +1,4 @@
-import { Theme, useMediaQuery } from '@mui/material'
+import { useTheme } from '@mui/material'
 import { PanInfo } from 'framer-motion'
 import { inertia, InertiaOptions } from 'popmotion'
 import { scrollSnapTypeDirection } from '../utils/scrollSnapTypeDirection'
@@ -21,9 +21,15 @@ export const useVelocitySnapTo = (
 ) => {
   const { disableSnap, enableSnap, register, getScrollSnapPositions, scrollSnap } =
     useScrollerContext()
-  const direction = useMediaQuery<Theme>((theme) => theme.breakpoints.down('md'))
-    ? scrollSnapTypeDirection(scrollSnap.scrollSnapTypeSm)
-    : scrollSnapTypeDirection(scrollSnap.scrollSnapTypeMd)
+
+  const downMd = useTheme()
+    .breakpoints.down('md')
+    .replace(/^@media( ?)/m, '')
+
+  const direction = () =>
+    matchMedia(downMd)
+      ? scrollSnapTypeDirection(scrollSnap.scrollSnapTypeSm)
+      : scrollSnapTypeDirection(scrollSnap.scrollSnapTypeMd)
 
   const inertiaOptions: InertiaOptions = {
     power: 1,
@@ -43,7 +49,7 @@ export const useVelocitySnapTo = (
     const xDone = new Promise<void>((onComplete) => {
       const targetX = clamp(info, 'x') * -1 + scrollLeft
       const closestX =
-        direction !== 'block' ? closest(getScrollSnapPositions().x, targetX) : undefined
+        direction() !== 'block' ? closest(getScrollSnapPositions().x, targetX) : undefined
 
       if ((closestX ?? 0) !== scrollLeft) {
         disableSnap()
@@ -67,7 +73,7 @@ export const useVelocitySnapTo = (
     const yDone = new Promise<void>((onComplete) => {
       const targetY = clamp(info, 'y') * -1 + scrollTop
       const closestY =
-        direction !== 'inline' ? closest(getScrollSnapPositions().y, targetY) : undefined
+        direction() !== 'inline' ? closest(getScrollSnapPositions().y, targetY) : undefined
 
       if ((closestY ?? 0) !== scrollTop) {
         disableSnap()
