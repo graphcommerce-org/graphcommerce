@@ -1,0 +1,8 @@
+fragment ProductPageCategoryBreadcrumb on CategoryInterface {
+  name
+  breadcrumbs {
+    category_name
+    category_url_path
+    category_uid
+  }
+}
