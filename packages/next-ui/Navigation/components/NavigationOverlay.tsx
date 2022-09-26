@@ -11,6 +11,7 @@ import { LayoutTitle } from '../../Layout/components/LayoutTitle'
 import { Overlay } from '../../Overlay/components/Overlay'
 import { extendableComponent } from '../../Styles/extendableComponent'
 import { useFabSize } from '../../Theme'
+import { useMatchMedia } from '../../hooks'
 import { iconClose, iconChevronLeft } from '../../icons'
 import { useNavigation } from '../hooks/useNavigation'
 import { mouseEventPref } from './NavigationItem'
@@ -57,7 +58,7 @@ export const NavigationOverlay = React.memo<NavigationOverlayProps>((props) => {
     mouseEvent,
     itemPadding = 'md',
   } = props
-  const { selection, items, animating, closing } = useNavigation()
+  const { selection, items, animating, closing, serverRenderDepth } = useNavigation()
 
   const fabSize = useFabSize('responsive')
   const svgSize = useIconSvgSize('large')
@@ -87,6 +88,8 @@ export const NavigationOverlay = React.memo<NavigationOverlayProps>((props) => {
   })
 
   const handleClose = useEventCallback(() => closing.set(true))
+
+  if (selectedLevel === -1 && serverRenderDepth <= 0) return null
 
   return (
     <Overlay
