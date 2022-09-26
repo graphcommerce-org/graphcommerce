@@ -122,6 +122,7 @@ ProductDownloadable.pageOptions = {
 export default ProductDownloadable
 
 export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
+  if (process.env.NEXT_PUBLIC_SINGLE_PRODUCT_PAGE === '1') return { paths: [], fallback: false }
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
 
   const path = (locale: string) =>
@@ -132,6 +133,8 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 }
 
 export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
+  if (process.env.NEXT_PUBLIC_SINGLE_PRODUCT_PAGE === '1') return { notFound: true }
+
   const client = graphqlSharedClient(locale)
   const staticClient = graphqlSsrClient(locale)
 
