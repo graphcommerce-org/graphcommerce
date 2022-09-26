@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.0
+
+### Minor Changes
+
+- [#1658](https://github.com/graphcommerce-org/graphcommerce/pull/1658) [`140004b2b`](https://github.com/graphcommerce-org/graphcommerce/commit/140004b2bda44e17a4fe6b3c13c1253ff9e99c92) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Add ability to style image, video with sxRenderer
+
 ## 3.0.48
 
 ### Patch Changes

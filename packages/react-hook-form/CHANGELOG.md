@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.3.4
+
+### Patch Changes
+
+- [#1660](https://github.com/graphcommerce-org/graphcommerce/pull/1660) [`75ae24a93`](https://github.com/graphcommerce-org/graphcommerce/commit/75ae24a93bd74e3b9b7efda21ec7ba6fbe9a3a75) Thanks [@paales](https://github.com/paales)! - Remove heuristicEncode for GraphQL input objects provided by react-hook-form
+
 ## 3.3.3
 
 ### Patch Changes

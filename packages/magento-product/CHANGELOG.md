@@ -1,5 +1,17 @@
 # Change Log
 
+## 4.6.1
+
+### Patch Changes
+
+- [#1660](https://github.com/graphcommerce-org/graphcommerce/pull/1660) [`48e6522bb`](https://github.com/graphcommerce-org/graphcommerce/commit/48e6522bb9424d4bd77fd77c68065f5625f3ec8d) Thanks [@paales](https://github.com/paales)! - Forward onChange handler for AddProductsToCartButton
+
+* [#1660](https://github.com/graphcommerce-org/graphcommerce/pull/1660) [`37b1980a0`](https://github.com/graphcommerce-org/graphcommerce/commit/37b1980a04a4a3d77663b404ae83539620cf65b9) Thanks [@paales](https://github.com/paales)! - Do not static build old product pages when the new product page is used an vice versa
+
+* Updated dependencies [[`e5048c5ec`](https://github.com/graphcommerce-org/graphcommerce/commit/e5048c5ec52b83dbe70a246ffdcea65b55a884c6)]:
+  - @graphcommerce/ecommerce-ui@1.5.1
+  - @graphcommerce/magento-cart@4.8.5
+
 ## 4.6.0
 
 ### Minor Changes
