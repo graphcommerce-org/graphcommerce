@@ -6,7 +6,9 @@ import { ProductPageCategoryFragment } from './ProductPageCategory.gql'
  * - Prefers categories that are included in the menu
  * - Prefers categories that have a longer path than shorter ones.
  */
-export function productPageCategory(product?: ProductPageCategoryFragment | null) {
+export function productPageCategory<Product extends ProductPageCategoryFragment>(
+  product?: Product | null,
+): NonNullable<Product['categories']>[number] | undefined {
   if (!product?.categories?.length) return undefined
   return product?.categories?.reduce((carry, value) => {
     if (!value?.include_in_menu) return carry

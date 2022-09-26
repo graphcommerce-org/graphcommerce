@@ -2,6 +2,7 @@ fragment ProductPageItem on ProductInterface @injectable {
   __typename
   uid
   ...ProductPageCategory
+  ...ProductPageBreadcrumb
   ...ProductPageDescription
   ...ProductPageGallery
   ...ProductPageMeta
