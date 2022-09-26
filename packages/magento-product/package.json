@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-product",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "4.6.1",
+  "version": "4.7.0",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {

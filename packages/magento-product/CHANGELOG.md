@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.7.0
+
+### Minor Changes
+
+- [#1659](https://github.com/graphcommerce-org/graphcommerce/pull/1659) [`6987ec7d2`](https://github.com/graphcommerce-org/graphcommerce/commit/6987ec7d21ce2d481fabbd6eda039702fcf5242b) Thanks [@Jessevdpoel](https://github.com/Jessevdpoel)! - Added product and category breadcrumbs
+
 ## 4.6.1
 
 ### Patch Changes
