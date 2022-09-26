@@ -1,5 +1,24 @@
 # Change Log
 
+## 3.27.2
+
+### Patch Changes
+
+- Updated dependencies [[`6987ec7d2`](https://github.com/graphcommerce-org/graphcommerce/commit/6987ec7d21ce2d481fabbd6eda039702fcf5242b)]:
+  - @graphcommerce/magento-category@4.6.0
+  - @graphcommerce/magento-product@4.7.0
+  - @graphcommerce/magento-product-configurable@4.3.2
+  - @graphcommerce/magento-cart-email@3.0.61
+  - @graphcommerce/magento-cart-items@3.1.13
+  - @graphcommerce/magento-product-bundle@4.1.2
+  - @graphcommerce/magento-product-downloadable@4.1.2
+  - @graphcommerce/magento-product-grouped@3.1.2
+  - @graphcommerce/magento-product-simple@4.1.2
+  - @graphcommerce/magento-product-virtual@4.1.2
+  - @graphcommerce/magento-review@3.4.2
+  - @graphcommerce/magento-wishlist@1.7.2
+  - @graphcommerce/magento-cart-checkout@3.0.61
+
 ## 3.27.1
 
 ### Patch Changes

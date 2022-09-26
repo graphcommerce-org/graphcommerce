@@ -1,5 +1,16 @@
 # Change Log
 
+## 4.6.0
+
+### Minor Changes
+
+- [#1659](https://github.com/graphcommerce-org/graphcommerce/pull/1659) [`6987ec7d2`](https://github.com/graphcommerce-org/graphcommerce/commit/6987ec7d21ce2d481fabbd6eda039702fcf5242b) Thanks [@Jessevdpoel](https://github.com/Jessevdpoel)! - Added product and category breadcrumbs
+
+### Patch Changes
+
+- Updated dependencies [[`6987ec7d2`](https://github.com/graphcommerce-org/graphcommerce/commit/6987ec7d21ce2d481fabbd6eda039702fcf5242b)]:
+  - @graphcommerce/magento-product@4.7.0
+
 ## 4.5.12
 
 ### Patch Changes
