@@ -260,7 +260,7 @@ msgid "Latest orders"
 msgstr "Laatste bestellingen"
 
 msgid "Light Mode"
-msgstr "Licht modus"
+msgstr "Lichte modus"
 
 msgid "Loading wishlist"
 msgstr "Ophalen verlanglijst"
