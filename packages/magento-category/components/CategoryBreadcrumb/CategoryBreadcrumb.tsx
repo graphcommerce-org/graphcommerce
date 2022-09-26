@@ -1,6 +1,32 @@
+import { Trans } from '@lingui/react'
+import { Breadcrumbs, BreadcrumbsProps, Container, Link, Typography } from '@mui/material'
+import PageLink from 'next/link'
 import { CategoryBreadcrumbFragment } from './CategoryBreadcrumb.gql'
 
-export function CategoryBreadcrumb(props: CategoryBreadcrumbFragment) {
+type CategoryPageBreadcrumbsProps = CategoryBreadcrumbFragment & BreadcrumbsProps
+
+export function CategoryBreadcrumb(props: CategoryPageBreadcrumbsProps) {
   const { breadcrumbs, name } = props
-  return null
+  return (
+    <Container maxWidth={false}>
+      <Breadcrumbs>
+        <PageLink href='/' passHref>
+          <Link underline='hover' color='inherit'>
+            <Trans id='Home' />
+          </Link>
+        </PageLink>
+        {breadcrumbs?.map((mapped_category, i) => (
+          <Link
+            underline='hover'
+            key={mapped_category?.category_uid}
+            color='inherit'
+            href={`/${mapped_category?.category_url_path}`}
+          >
+            {mapped_category?.category_name}
+          </Link>
+        ))}
+        <Typography color='text.primary'>{name}</Typography>
+      </Breadcrumbs>
+    </Container>
+  )
 }

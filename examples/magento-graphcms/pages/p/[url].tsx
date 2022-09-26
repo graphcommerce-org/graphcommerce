@@ -9,7 +9,6 @@ import {
   jsonLdProduct,
   jsonLdProductOffer,
   ProductCustomizable,
-  ProductPageBreadcrumb,
   productPageCategory,
   ProductPageDescription,
   ProductPageMeta,
@@ -78,8 +77,6 @@ function ProductConfigurable(props: Props) {
         }}
       />
       <ProductPageMeta {...product} />
-
-      <ProductPageBreadcrumb {...product} />
 
       <AddProductsToCartForm>
         <ConfigurableProductPageGallery

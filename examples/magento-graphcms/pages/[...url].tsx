@@ -25,7 +25,6 @@ import {
   ProductListParamsProvider,
   ProductListQuery,
   ProductListSort,
-  ProductPageCategoryBreadcrumb,
 } from '@graphcommerce/magento-product'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
@@ -79,7 +78,7 @@ function CategoryPage(props: CategoryProps) {
           {category?.name ?? page.title}
         </LayoutTitle>
       </LayoutHeader>
-      <ProductPageCategoryBreadcrumb {...categories?.items?.[0]} />
+
       {!isLanding && (
         <Container maxWidth={false}>
           <LayoutTitle
