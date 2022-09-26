@@ -1,14 +1,6 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
-import {
-  Box,
-  ListItemButton,
-  styled,
-  Theme,
-  useEventCallback,
-  useMediaQuery,
-  alpha,
-} from '@mui/material'
+import { alpha, Box, ListItemButton, styled, useEventCallback, useTheme } from '@mui/material'
 import PageLink from 'next/link'
 import React from 'react'
 import { IconSvg } from '../../IconSvg'
@@ -83,7 +75,9 @@ export const NavigationItem = React.memo<NavigationItemProps>((props) => {
     closing.set(true)
   })
 
-  const isDesktop = useMediaQuery<Theme>((theme) => theme.breakpoints.up('md'))
+  const upMd = useTheme()
+    .breakpoints.up('md')
+    .replace(/^@media( ?)/m, '')
 
   if (isNavigationButton(props)) {
     const { childItems, name } = props
@@ -116,14 +110,14 @@ export const NavigationItem = React.memo<NavigationItemProps>((props) => {
           tabIndex={tabIndex}
           onClick={(e) => {
             e.preventDefault()
-            if (!isSelected && animating.get() === false) {
+            if (!isSelected && !animating.get()) {
               selection.set(itemPath)
             }
           }}
           onMouseMove={
-            itemPath.length > 1 && mouseEvent === 'hover'
+            (itemPath.length > 1 || !hideRootOnNavigate) && mouseEvent === 'hover'
               ? (e) => {
-                  if (isDesktop && animating.get() === false && !isSelected) {
+                  if (!isSelected && !animating.get() && matchMedia(upMd).matches) {
                     e.preventDefault()
                     setTimeout(() => selection.set(itemPath), 0)
                   }

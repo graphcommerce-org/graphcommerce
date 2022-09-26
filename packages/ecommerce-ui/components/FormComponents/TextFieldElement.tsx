@@ -4,6 +4,7 @@ import {
   FieldError,
   FieldValues,
 } from '@graphcommerce/react-hook-form'
+import { i18n } from '@lingui/core'
 import { TextField, TextFieldProps } from '@mui/material'
 
 export type TextFieldElementProps<T extends FieldValues = FieldValues> = Omit<
@@ -26,7 +27,7 @@ export function TextFieldElement<TFieldValues extends FieldValues = FieldValues>
   ...rest
 }: TextFieldElementProps<TFieldValues>): JSX.Element {
   if (required && !validation.required) {
-    validation.required = 'This field is required'
+    validation.required = i18n._(/* i18n */ 'This field is required')
   }
 
   if (type === 'email' && !validation.pattern) {
