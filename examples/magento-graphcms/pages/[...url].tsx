@@ -73,6 +73,7 @@ function CategoryPage(props: CategoryProps) {
         canonical={page?.url ? `/${page.url}` : undefined}
         {...category}
       />
+
       <LayoutHeader floatingMd>
         <LayoutTitle size='small' component='span'>
           {category?.name ?? page.title}
@@ -95,6 +96,7 @@ function CategoryPage(props: CategoryProps) {
           </LayoutTitle>
         </Container>
       )}
+
       {isCategory && isLanding && (
         <CategoryHeroNav
           {...category}
@@ -102,6 +104,7 @@ function CategoryPage(props: CategoryProps) {
           title={<CategoryHeroNavTitle>{category?.name}</CategoryHeroNavTitle>}
         />
       )}
+
       {isCategory && !isLanding && (
         <ProductListParamsProvider value={params}>
           <CategoryDescription description={category.description} />
@@ -124,6 +127,7 @@ function CategoryPage(props: CategoryProps) {
           </Container>
         </ProductListParamsProvider>
       )}
+
       {page && (
         <RowRenderer
           content={page.content}
