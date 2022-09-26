@@ -286,12 +286,6 @@ msgstr "Mme"
 msgid "Name"
 msgstr "Nom"
 
-msgid "Summary"
-msgstr "Description"
-
-msgid "Review"
-msgstr "Review"
-
 msgid "Navigate to item {0}"
 msgstr "Naviguer vers l'article {0}"
 
@@ -442,6 +436,9 @@ msgstr "Réinitialiser le panier et retourner à l'accueil"
 msgid "Results for ‘{search}’"
 msgstr "Résultats pour ‘{search}’"
 
+msgid "Review"
+msgstr "Review"
+
 msgid "Reviews"
 msgstr "Évaluations"
 
@@ -520,6 +517,9 @@ msgstr "Modifications sauvegardées avec succès"
 msgid "Successfully updated email"
 msgstr "Email mis à jour avec succès"
 
+msgid "Summary"
+msgstr "Description"
+
 msgid "Switch stores"
 msgstr "Changer de boutique"
 
@@ -534,6 +534,9 @@ msgstr "Merci pour votre commande!"
 
 msgid "Thank you! Your review was successfully submitted for approval"
 msgstr "Merci! Votre évaluation a été soumise avec succès pour approbation"
+
+msgid "This field is required"
+msgstr "Ce champ est requis"
 
 msgid "This may take a second"
 msgstr "Ceci peut prendre un instant"

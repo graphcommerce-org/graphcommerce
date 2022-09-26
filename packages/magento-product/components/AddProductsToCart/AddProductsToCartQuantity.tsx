@@ -3,12 +3,12 @@ import { useFormAddProductsToCart } from './AddProductsToCartForm'
 
 type AddToCartQuantityProps = Omit<
   NumberFieldElementProps,
-  'error' | 'required' | 'inputProps' | 'inputRef' | 'helperText' | 'name'
+  'error' | 'required' | 'inputProps' | 'helperText' | 'name' | 'control' | 'name'
 > & { index?: number }
 
 export function AddProductsToCartQuantity(props: AddToCartQuantityProps) {
   const { index = 0 } = props
-  const { formState, control } = useFormAddProductsToCart()
+  const { control } = useFormAddProductsToCart()
 
   return (
     <NumberFieldElement
@@ -17,10 +17,9 @@ export function AddProductsToCartQuantity(props: AddToCartQuantityProps) {
       {...props}
       required
       inputProps={{ min: 1 }}
-      defaultValue='1'
+      defaultValue={1}
       control={control}
       name={`cartItems.${index}.quantity`}
-      helperText={formState.isSubmitted && formState.errors.cartItems?.[index].quantity?.message}
     />
   )
 }
