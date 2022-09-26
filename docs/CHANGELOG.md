@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.9.1
+
+### Patch Changes
+
+- [#1656](https://github.com/graphcommerce-org/graphcommerce/pull/1656) [`4ad159784`](https://github.com/graphcommerce-org/graphcommerce/commit/4ad15978407f46574bf6ec561a2f50d6e39138cd) Thanks [@Jessevdpoel](https://github.com/Jessevdpoel)! - Added yarn codegen step to docs
+
 ## 4.9.0
 
 ### Minor Changes

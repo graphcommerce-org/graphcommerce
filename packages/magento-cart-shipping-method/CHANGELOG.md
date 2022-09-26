@@ -1,5 +1,14 @@
 # Change Log
 
+## 3.7.1
+
+### Patch Changes
+
+- Updated dependencies [[`75ae24a93`](https://github.com/graphcommerce-org/graphcommerce/commit/75ae24a93bd74e3b9b7efda21ec7ba6fbe9a3a75)]:
+  - @graphcommerce/react-hook-form@3.3.4
+  - @graphcommerce/magento-cart@4.8.5
+  - @graphcommerce/magento-cart-shipping-address@3.5.1
+
 ## 3.7.0
 
 ### Minor Changes

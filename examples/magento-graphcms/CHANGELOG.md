@@ -1,5 +1,42 @@
 # Change Log
 
+## 3.27.1
+
+### Patch Changes
+
+- [#1660](https://github.com/graphcommerce-org/graphcommerce/pull/1660) [`37b1980a0`](https://github.com/graphcommerce-org/graphcommerce/commit/37b1980a04a4a3d77663b404ae83539620cf65b9) Thanks [@paales](https://github.com/paales)! - Do not static build old product pages when the new product page is used an vice versa
+
+- Updated dependencies [[`48e6522bb`](https://github.com/graphcommerce-org/graphcommerce/commit/48e6522bb9424d4bd77fd77c68065f5625f3ec8d), [`37b1980a0`](https://github.com/graphcommerce-org/graphcommerce/commit/37b1980a04a4a3d77663b404ae83539620cf65b9), [`140004b2b`](https://github.com/graphcommerce-org/graphcommerce/commit/140004b2bda44e17a4fe6b3c13c1253ff9e99c92), [`e5048c5ec`](https://github.com/graphcommerce-org/graphcommerce/commit/e5048c5ec52b83dbe70a246ffdcea65b55a884c6)]:
+  - @graphcommerce/magento-product@4.6.1
+  - @graphcommerce/graphcms-ui@3.1.0
+  - @graphcommerce/ecommerce-ui@1.5.1
+  - @graphcommerce/magento-cart-email@3.0.60
+  - @graphcommerce/magento-cart-items@3.1.12
+  - @graphcommerce/magento-category@4.5.12
+  - @graphcommerce/magento-payment-braintree@3.0.58
+  - @graphcommerce/magento-payment-included@3.1.30
+  - @graphcommerce/magento-product-bundle@4.1.1
+  - @graphcommerce/magento-product-configurable@4.3.1
+  - @graphcommerce/magento-product-downloadable@4.1.1
+  - @graphcommerce/magento-product-grouped@3.1.1
+  - @graphcommerce/magento-product-simple@4.1.1
+  - @graphcommerce/magento-product-virtual@4.1.1
+  - @graphcommerce/magento-review@3.4.1
+  - @graphcommerce/magento-wishlist@1.7.1
+  - @graphcommerce/mollie-magento-payment@3.5.11
+  - @graphcommerce/magento-cart@4.8.5
+  - @graphcommerce/magento-cart-billing-address@3.1.11
+  - @graphcommerce/magento-cart-checkout@3.0.60
+  - @graphcommerce/magento-cart-coupon@3.2.11
+  - @graphcommerce/magento-cart-payment-method@3.6.1
+  - @graphcommerce/magento-cart-pickup@3.2.1
+  - @graphcommerce/magento-cart-shipping-method@3.7.1
+  - @graphcommerce/magento-customer@4.11.5
+  - @graphcommerce/magento-customer-account@3.2.11
+  - @graphcommerce/magento-newsletter@2.2.2
+  - @graphcommerce/magento-search@4.2.9
+  - @graphcommerce/magento-cart-shipping-address@3.5.1
+
 ## 3.27.0
 
 ### Minor Changes
