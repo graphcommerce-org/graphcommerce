@@ -57,7 +57,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
             >
               <Trans id='Search...' />
             </SearchLink>,
-              { id: 'home', name: 'Home', href: '/' },
+            { id: 'home', name: <Trans id='Home' />, href: '/' },
             {
               id: 'manual-item-one',
               href: `/${menu?.items?.[0]?.children?.[0]?.url_path}`,

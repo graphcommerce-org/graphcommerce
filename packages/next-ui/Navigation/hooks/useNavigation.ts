@@ -34,12 +34,12 @@ export enum NavigationNodeType {
 }
 
 export type NavigationNodeHref = NavigationNodeBase & {
-  name: string
+  name: React.ReactNode
   href: string
 }
 
 export type NavigationNodeButton = NavigationNodeBase & {
-  name: string
+  name: React.ReactNode
   type: NavigationNodeType.BUTTON
   href?: string
   childItems: NavigationNode[]
