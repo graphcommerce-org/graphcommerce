@@ -1,3 +1,4 @@
+import { useMatchMedia } from '@graphcommerce/next-ui'
 import { useTheme } from '@mui/material'
 import { PanInfo } from 'framer-motion'
 import { inertia, InertiaOptions } from 'popmotion'
@@ -22,12 +23,10 @@ export const useVelocitySnapTo = (
   const { disableSnap, enableSnap, register, getScrollSnapPositions, scrollSnap } =
     useScrollerContext()
 
-  const downMd = useTheme()
-    .breakpoints.down('md')
-    .replace(/^@media( ?)/m, '')
+  const matchMedia = useMatchMedia()
 
   const direction = () =>
-    matchMedia(downMd)
+    matchMedia.down('md')
       ? scrollSnapTypeDirection(scrollSnap.scrollSnapTypeSm)
       : scrollSnapTypeDirection(scrollSnap.scrollSnapTypeMd)
 

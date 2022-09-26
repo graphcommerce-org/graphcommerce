@@ -5,6 +5,7 @@ import PageLink from 'next/link'
 import React from 'react'
 import { IconSvg } from '../../IconSvg'
 import { extendableComponent } from '../../Styles/extendableComponent'
+import { useMatchMedia } from '../../hooks'
 import { iconChevronRight } from '../../icons'
 import {
   isNavigationButton,
@@ -75,9 +76,7 @@ export const NavigationItem = React.memo<NavigationItemProps>((props) => {
     closing.set(true)
   })
 
-  const upMd = useTheme()
-    .breakpoints.up('md')
-    .replace(/^@media( ?)/m, '')
+  const matchMedia = useMatchMedia()
 
   if (isNavigationButton(props)) {
     const { childItems, name } = props
@@ -117,7 +116,7 @@ export const NavigationItem = React.memo<NavigationItemProps>((props) => {
           onMouseMove={
             (itemPath.length > 1 || !hideRootOnNavigate) && mouseEvent === 'hover'
               ? (e) => {
-                  if (!isSelected && !animating.get() && matchMedia(upMd).matches) {
+                  if (!isSelected && !animating.get() && matchMedia.up('md')) {
                     e.preventDefault()
                     setTimeout(() => selection.set(itemPath), 0)
                   }
