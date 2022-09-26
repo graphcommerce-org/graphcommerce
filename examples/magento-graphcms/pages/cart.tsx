@@ -51,10 +51,10 @@ function CartPage() {
         primary={
           <PageLink href='/checkout' passHref>
             <LinkOrButton
-              button={{ variant: 'pill', disabled: !hasItems }}
-              link={{ 'aria-disabled': true }}
+              button={{ variant: 'pill' }}
               color='secondary'
               endIcon={<IconSvg src={iconChevronRight} />}
+              disabled={!hasItems}
             >
               <Trans id='Next' />
             </LinkOrButton>
