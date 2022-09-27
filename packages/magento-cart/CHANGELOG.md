@@ -1,5 +1,19 @@
 # Change Log
 
+## 4.8.6
+
+### Patch Changes
+
+- [#1662](https://github.com/graphcommerce-org/graphcommerce/pull/1662) [`93c8f3a3f`](https://github.com/graphcommerce-org/graphcommerce/commit/93c8f3a3f2fd2d16e5a5132652bf489858583f63) Thanks [@paales](https://github.com/paales)! - Allow passing buttonProps to the CartStartCheckout component
+
+- Updated dependencies [[`0c21c5c23`](https://github.com/graphcommerce-org/graphcommerce/commit/0c21c5c233ebab15f6629c234e3de1cc8c0452e1), [`de8925aa9`](https://github.com/graphcommerce-org/graphcommerce/commit/de8925aa910b191c62041530c68c697a58a1e52d), [`f5eae0afd`](https://github.com/graphcommerce-org/graphcommerce/commit/f5eae0afdbd474b1f81c450425ffadf2d025187a), [`9e0ca73eb`](https://github.com/graphcommerce-org/graphcommerce/commit/9e0ca73eb50ded578f4a98e40a7eb920bf8ab421)]:
+  - @graphcommerce/next-ui@4.28.0
+  - @graphcommerce/framer-scroller@2.1.40
+  - @graphcommerce/framer-next-pages@3.3.1
+  - @graphcommerce/ecommerce-ui@1.5.2
+  - @graphcommerce/magento-customer@4.11.6
+  - @graphcommerce/magento-store@4.3.1
+
 ## 4.8.5
 
 ### Patch Changes

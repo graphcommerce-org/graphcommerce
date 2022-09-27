@@ -1,5 +1,50 @@
 # Change Log
 
+## 3.27.3
+
+### Patch Changes
+
+- [#1662](https://github.com/graphcommerce-org/graphcommerce/pull/1662) [`0c21c5c23`](https://github.com/graphcommerce-org/graphcommerce/commit/0c21c5c233ebab15f6629c234e3de1cc8c0452e1) Thanks [@paales](https://github.com/paales)! - Implement serverRenderDepth prop to the Navigation to limit initial render time and TBT
+
+* [#1662](https://github.com/graphcommerce-org/graphcommerce/pull/1662) [`de8925aa9`](https://github.com/graphcommerce-org/graphcommerce/commit/de8925aa910b191c62041530c68c697a58a1e52d) Thanks [@paales](https://github.com/paales)! - Allow for a custom Component for magentoMenuToNavigation and allow React.ReactNode for items
+
+* Updated dependencies [[`93c8f3a3f`](https://github.com/graphcommerce-org/graphcommerce/commit/93c8f3a3f2fd2d16e5a5132652bf489858583f63), [`0c21c5c23`](https://github.com/graphcommerce-org/graphcommerce/commit/0c21c5c233ebab15f6629c234e3de1cc8c0452e1), [`de8925aa9`](https://github.com/graphcommerce-org/graphcommerce/commit/de8925aa910b191c62041530c68c697a58a1e52d), [`f5eae0afd`](https://github.com/graphcommerce-org/graphcommerce/commit/f5eae0afdbd474b1f81c450425ffadf2d025187a), [`9e0ca73eb`](https://github.com/graphcommerce-org/graphcommerce/commit/9e0ca73eb50ded578f4a98e40a7eb920bf8ab421)]:
+  - @graphcommerce/magento-cart@4.8.6
+  - @graphcommerce/next-ui@4.28.0
+  - @graphcommerce/magento-category@4.7.0
+  - @graphcommerce/framer-scroller@2.1.40
+  - @graphcommerce/framer-next-pages@3.3.1
+  - @graphcommerce/magento-cart-billing-address@3.1.12
+  - @graphcommerce/magento-cart-checkout@3.0.62
+  - @graphcommerce/magento-cart-coupon@3.2.12
+  - @graphcommerce/magento-cart-email@3.0.62
+  - @graphcommerce/magento-cart-items@3.1.14
+  - @graphcommerce/magento-cart-payment-method@3.6.2
+  - @graphcommerce/magento-cart-shipping-address@3.5.2
+  - @graphcommerce/magento-cart-shipping-method@3.7.2
+  - @graphcommerce/magento-newsletter@2.2.3
+  - @graphcommerce/magento-payment-braintree@3.0.59
+  - @graphcommerce/magento-payment-included@3.1.31
+  - @graphcommerce/magento-product@4.7.1
+  - @graphcommerce/magento-product-bundle@4.1.3
+  - @graphcommerce/magento-product-configurable@4.3.3
+  - @graphcommerce/magento-product-downloadable@4.1.3
+  - @graphcommerce/magento-product-grouped@3.1.3
+  - @graphcommerce/magento-product-simple@4.1.3
+  - @graphcommerce/magento-product-virtual@4.1.3
+  - @graphcommerce/magento-wishlist@1.7.3
+  - @graphcommerce/mollie-magento-payment@3.5.12
+  - @graphcommerce/ecommerce-ui@1.5.2
+  - @graphcommerce/graphcms-ui@3.1.1
+  - @graphcommerce/magento-cart-pickup@3.2.2
+  - @graphcommerce/magento-customer@4.11.6
+  - @graphcommerce/magento-customer-account@3.2.12
+  - @graphcommerce/magento-customer-order@3.1.9
+  - @graphcommerce/magento-review@3.4.3
+  - @graphcommerce/magento-search@4.2.10
+  - @graphcommerce/magento-store@4.3.1
+  - @graphcommerce/magento-cms@4.0.48
+
 ## 3.27.2
 
 ### Patch Changes

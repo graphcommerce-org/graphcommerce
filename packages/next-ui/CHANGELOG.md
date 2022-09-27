@@ -1,5 +1,21 @@
 # Change Log
 
+## 4.28.0
+
+### Minor Changes
+
+- [#1662](https://github.com/graphcommerce-org/graphcommerce/pull/1662) [`0c21c5c23`](https://github.com/graphcommerce-org/graphcommerce/commit/0c21c5c233ebab15f6629c234e3de1cc8c0452e1) Thanks [@paales](https://github.com/paales)! - Implement serverRenderDepth prop to the Navigation to limit initial render time and TBT
+
+* [#1662](https://github.com/graphcommerce-org/graphcommerce/pull/1662) [`f5eae0afd`](https://github.com/graphcommerce-org/graphcommerce/commit/f5eae0afdbd474b1f81c450425ffadf2d025187a) Thanks [@paales](https://github.com/paales)! - Move to useMatchMedia to have a simple boolean utility that allows to match to a certain breakpoint
+
+### Patch Changes
+
+- [#1662](https://github.com/graphcommerce-org/graphcommerce/pull/1662) [`de8925aa9`](https://github.com/graphcommerce-org/graphcommerce/commit/de8925aa910b191c62041530c68c697a58a1e52d) Thanks [@paales](https://github.com/paales)! - Allow for a custom Component for magentoMenuToNavigation and allow React.ReactNode for items
+
+- Updated dependencies [[`f5eae0afd`](https://github.com/graphcommerce-org/graphcommerce/commit/f5eae0afdbd474b1f81c450425ffadf2d025187a), [`9e0ca73eb`](https://github.com/graphcommerce-org/graphcommerce/commit/9e0ca73eb50ded578f4a98e40a7eb920bf8ab421)]:
+  - @graphcommerce/framer-scroller@2.1.40
+  - @graphcommerce/framer-next-pages@3.3.1
+
 ## 4.27.0
 
 ### Minor Changes

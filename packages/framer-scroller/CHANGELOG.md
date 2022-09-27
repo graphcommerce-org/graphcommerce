@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.1.40
+
+### Patch Changes
+
+- [#1662](https://github.com/graphcommerce-org/graphcommerce/pull/1662) [`f5eae0afd`](https://github.com/graphcommerce-org/graphcommerce/commit/f5eae0afdbd474b1f81c450425ffadf2d025187a) Thanks [@paales](https://github.com/paales)! - Move to useMatchMedia to have a simple boolean utility that allows to match to a certain breakpoint
+
+- Updated dependencies [[`0c21c5c23`](https://github.com/graphcommerce-org/graphcommerce/commit/0c21c5c233ebab15f6629c234e3de1cc8c0452e1), [`de8925aa9`](https://github.com/graphcommerce-org/graphcommerce/commit/de8925aa910b191c62041530c68c697a58a1e52d), [`f5eae0afd`](https://github.com/graphcommerce-org/graphcommerce/commit/f5eae0afdbd474b1f81c450425ffadf2d025187a)]:
+  - @graphcommerce/next-ui@4.28.0
+
 ## 2.1.39
 
 ### Patch Changes
