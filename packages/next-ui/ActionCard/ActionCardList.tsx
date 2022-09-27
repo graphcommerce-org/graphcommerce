@@ -12,7 +12,7 @@ type MultiSelect = {
   onChange?: (event: React.MouseEvent<HTMLElement>, value: MultiSelect['value']) => void
 }
 type Select = {
-  multiple?: false
+  multiple?: boolean
   value: string | number
   collapse?: boolean
 
@@ -72,8 +72,7 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
           const { onChange, value } = props
           const index = Boolean(value) && value?.indexOf(v)
           let newValue: typeof value
-
-          if (value.length && index && index >= 0) {
+          if (value?.length && index !== false && index >= 0) {
             newValue = value.slice()
             newValue.splice(index, 1)
           } else {
@@ -83,7 +82,6 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
         }
       : (event, v) => {
           const { onChange, value } = props
-
           if (value !== v) {
             if (required) onChange?.(event, v)
             else onChange?.(event, value === v ? null : v)
