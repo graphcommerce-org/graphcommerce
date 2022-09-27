@@ -5,6 +5,7 @@ import PageLink from 'next/link'
 import React from 'react'
 import { IconSvg } from '../../IconSvg'
 import { extendableComponent } from '../../Styles/extendableComponent'
+import { useMatchMedia } from '../../hooks'
 import { iconChevronRight } from '../../icons'
 import {
   isNavigationButton,
@@ -46,9 +47,9 @@ const NavigationLI = styled('li')({ display: 'contents' })
 
 export const NavigationItem = React.memo<NavigationItemProps>((props) => {
   const { id, parentPath, idx, first, last, NavigationList, mouseEvent } = props
+  const { selection, hideRootOnNavigate, closing, animating, serverRenderDepth } = useNavigation()
 
   const row = idx + 1
-  const { selection, hideRootOnNavigate, closing, animating } = useNavigation()
 
   const itemPath = [...(parentPath ? parentPath.split(',') : []), id]
 
@@ -75,15 +76,18 @@ export const NavigationItem = React.memo<NavigationItemProps>((props) => {
     closing.set(true)
   })
 
-  const upMd = useTheme()
-    .breakpoints.up('md')
-    .replace(/^@media( ?)/m, '')
+  const matchMedia = useMatchMedia()
 
   if (isNavigationButton(props)) {
-    const { childItems, name } = props
+    const { childItems, name, href } = props
+
+    const skipChildren = itemPath.length + 1 > serverRenderDepth && !isSelected && !!href
+
     return (
       <NavigationLI className={classes.li}>
         <ListItemButton
+          component={href ? 'a' : 'div'}
+          href={href || undefined}
           className={classes.item}
           role='button'
           sx={[
@@ -117,7 +121,7 @@ export const NavigationItem = React.memo<NavigationItemProps>((props) => {
           onMouseMove={
             (itemPath.length > 1 || !hideRootOnNavigate) && mouseEvent === 'hover'
               ? (e) => {
-                  if (!isSelected && !animating.get() && matchMedia(upMd).matches) {
+                  if (!isSelected && !animating.get() && matchMedia.up('md')) {
                     e.preventDefault()
                     setTimeout(() => selection.set(itemPath), 0)
                   }
@@ -139,18 +143,21 @@ export const NavigationItem = React.memo<NavigationItemProps>((props) => {
           <IconSvg src={iconChevronRight} sx={{ flexShrink: 0 }} />
         </ListItemButton>
 
-        <NavigationList
-          items={childItems}
-          selected={isSelected}
-          parentPath={itemPath.join(',')}
-          mouseEvent={mouseEvent}
-        />
+        {!skipChildren && (
+          <NavigationList
+            items={childItems}
+            selected={isSelected}
+            parentPath={itemPath.join(',')}
+            mouseEvent={mouseEvent}
+          />
+        )}
       </NavigationLI>
     )
   }
 
   if (isNavigationHref(props)) {
     const { name, href } = props
+
     return (
       <NavigationLI sx={[hideItem && { display: 'none' }]} className={classes.li}>
         <PageLink href={href} passHref prefetch={false}>
@@ -191,8 +198,6 @@ export const NavigationItem = React.memo<NavigationItemProps>((props) => {
       </NavigationLI>
     )
   }
-
-  if (process.env.NODE_ENV !== 'production') throw Error('NavigationItem: unknown type')
 
   return null
 })

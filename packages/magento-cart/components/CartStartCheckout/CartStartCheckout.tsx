@@ -1,13 +1,14 @@
 import { Money } from '@graphcommerce/magento-store'
 import { iconChevronRight, IconSvg, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box, Button, SxProps, Theme } from '@mui/material'
+import { Box, Button, ButtonProps, SxProps, Theme } from '@mui/material'
 import PageLink from 'next/link'
 import { CartStartCheckoutFragment } from './CartStartCheckout.gql'
 
 export type CartStartCheckoutProps = CartStartCheckoutFragment & {
   children?: React.ReactNode
   sx?: SxProps<Theme>
+  buttonProps?: ButtonProps<'button'>
 }
 
 const name = 'CartStartCheckout' as const
@@ -20,7 +21,7 @@ const parts = [
 const { classes } = extendableComponent(name, parts)
 
 export function CartStartCheckout(props: CartStartCheckoutProps) {
-  const { prices, children, sx = [] } = props
+  const { prices, children, sx = [], buttonProps } = props
 
   const hasTotals = (prices?.grand_total?.value ?? 0) > 0
   return (
@@ -29,8 +30,7 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
       sx={[
         (theme) => ({
           textAlign: 'center',
-          marginTop: theme.spacings.md,
-          marginBottom: theme.spacings.md,
+          my: theme.spacings.md,
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
@@ -43,7 +43,8 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
           size='large'
           className={classes.checkoutButton}
           endIcon={<IconSvg src={iconChevronRight} />}
-          disabled={!hasTotals}
+          {...buttonProps}
+          disabled={!hasTotals || buttonProps?.disabled}
         >
           <Box
             component='span'
