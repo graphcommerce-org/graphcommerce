@@ -1,5 +1,5 @@
 import { Chip, ChipProps, SxProps, Theme } from '@mui/material'
-import React, { useState } from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
 import { IconSvg } from '../IconSvg'
 import { iconChevronDown, iconChevronUp, iconCancelAlt } from '../icons'
 import { ResponsiveMenu } from './ResponsiveMenu'
@@ -7,17 +7,29 @@ import { ResponsiveMenu } from './ResponsiveMenu'
 export type ChipMenuProps = Omit<ChipProps<'button'>, 'children' | 'component'> & {
   selectedLabel?: React.ReactNode
   selected: boolean
+  openEl: HTMLElement | null
+  setOpenEl: Dispatch<SetStateAction<HTMLElement | null>>
   onClose?: () => void
+  onReset?: () => void
   labelRight?: React.ReactNode
   sx?: SxProps<Theme>
   children?: React.ReactNode
 }
 
 export function ChipMenu(props: ChipMenuProps) {
-  const { children, selected, onDelete, label, labelRight, onClose, selectedLabel, ...chipProps } =
-    props
-
-  const [openEl, setOpenEl] = useState<null | HTMLElement>(null)
+  const {
+    children,
+    selected,
+    onDelete,
+    onReset,
+    label,
+    labelRight,
+    onClose,
+    selectedLabel,
+    openEl,
+    setOpenEl,
+    ...chipProps
+  } = props
 
   let deleteIcon = <IconSvg src={iconChevronDown} size='medium' />
   if (selected) deleteIcon = <IconSvg src={iconCancelAlt} size='medium' fillIcon />
@@ -30,7 +42,7 @@ export function ChipMenu(props: ChipMenuProps) {
       {...props}
       openEl={openEl}
       setOpenEl={setOpenEl}
-      onDelete={onDelete}
+      onReset={onReset}
       chip={
         <Chip
           component='button'

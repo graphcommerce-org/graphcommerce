@@ -10,6 +10,8 @@ import {
   ActionCard,
 } from '@graphcommerce/next-ui'
 import { Box, Checkbox, Typography } from '@mui/material'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
 import type { SetRequired } from 'type-fest'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
@@ -45,7 +47,7 @@ type Filter = NonNullable<NonNullable<ProductListFiltersFragment['aggregations']
 
 type FilterEqualTypeProps = Filter & Omit<ChipMenuProps, 'selected'>
 
-function Item(
+function FilterEqualActionCard(
   props: ActionCardItemRenderProps<{
     option: NonNullable<Filter['options']>[0]
     attribute_code: string
@@ -54,7 +56,8 @@ function Item(
     anyFilterActive: boolean
   }>,
 ) {
-  const { option, attribute_code, params, currentFilter, anyFilterActive, onReset, value } = props
+  const { option, attribute_code, params, currentFilter, anyFilterActive, onReset, ...cardProps } =
+    props
   if (!option?.value) return null
   const labelId = `filter-equal-${attribute_code}-${option?.value}`
   const filters = cloneDeep(params.filters)
@@ -76,12 +79,14 @@ function Item(
 
   return (
     <ActionCard
-      {...props}
+      {...cardProps}
       size='small'
       title={
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Typography sx={{ marginRight: 1 }}>{option.label}</Typography>
-          <Typography variant='caption'>({option.count})</Typography>
+          <Typography variant='caption' color='text.disabled'>
+            ({option.count})
+          </Typography>
         </Box>
       }
       price={
@@ -92,6 +97,7 @@ function Item(
           size='medium'
           color='primary'
           disableRipple
+          onClick={onReset}
           inputProps={{ 'aria-labelledby': labelId }}
           className={cls.checkbox}
           sx={[
@@ -125,10 +131,14 @@ function Item(
 
 export function FilterEqualType(props: FilterEqualTypeProps) {
   const { attribute_code, count, label, options, __typename, ...chipProps } = props
+  const [openEl, setOpenEl] = useState<null | HTMLElement>(null)
+
   const { params } = useProductListParamsContext()
   const replaceRoute = useProductListLinkReplace({ scroll: false })
-  const form = useForm<{ options: string[] }>({ defaultValues: { options: [] } })
-  const { control, reset } = form
+  const form = useForm<{ FilterEqualType: string[] | null }>({
+    defaultValues: { FilterEqualType: [] },
+  })
+  const { control, reset, handleSubmit } = form
   const currentFilter: FilterEqualTypeInput = cloneDeep(params.filters[attribute_code]) ?? {
     in: [],
   }
@@ -144,38 +154,53 @@ export function FilterEqualType(props: FilterEqualTypeProps) {
     const linkParams = cloneDeep(params)
     delete linkParams.filters[attribute_code]
     delete linkParams.currentPage
-
+    reset()
     replaceRoute(linkParams)
   }
 
+  const onSubmit = (data: { FilterEqualType: string[] | null }) => {
+    const filters = cloneDeep(params.filters)
+    filters[attribute_code] = {
+      ...currentFilter,
+      in: [...(currentFilter?.in ?? []), data.FilterEqualType],
+    }
+    setOpenEl(null)
+    replaceRoute({ ...params, filters })
+  }
+
   return (
-    <ChipMenu
-      variant='outlined'
-      {...chipProps}
-      onDelete={() => reset()}
-      label={label}
-      selected={currentLabels.length > 0}
-      selectedLabel={currentLabels.length > 0 ? currentLabels.join(', ') : undefined}
-      className={componentName}
-    >
-      <ActionCardListForm
-        name='FilterEqualType'
-        control={control}
-        multiple
-        layout='grid'
-        items={
-          options?.map((option) => ({
-            option,
-            attribute_code,
-            params,
-            currentFilter,
-            anyFilterActive,
-            value: option?.value ?? '',
-          })) ?? []
-        }
-        render={Item}
-      />
-    </ChipMenu>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <ChipMenu
+        variant='outlined'
+        {...chipProps}
+        openEl={openEl}
+        setOpenEl={setOpenEl}
+        onReset={() => reset()}
+        onDelete={removeFilter}
+        label={label}
+        selected={currentLabels.length > 0}
+        selectedLabel={currentLabels.length > 0 ? currentLabels.join(', ') : undefined}
+        className={componentName}
+      >
+        <ActionCardListForm
+          name='FilterEqualType'
+          control={control}
+          multiple
+          layout='grid'
+          items={
+            options?.map((option) => ({
+              option,
+              attribute_code,
+              params,
+              currentFilter,
+              anyFilterActive,
+              value: option?.value ?? '',
+            })) ?? []
+          }
+          render={FilterEqualActionCard}
+        />
+      </ChipMenu>
+    </form>
   )
 }
 
