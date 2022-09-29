@@ -1,5 +1,12 @@
 # Change Log
 
+## 3.27.5
+
+### Patch Changes
+
+- Updated dependencies [[`97185dc67`](https://github.com/graphcommerce-org/graphcommerce/commit/97185dc670a6d0ce5428393e5b62f786131575fb)]:
+  - @graphcommerce/googlerecaptcha@2.1.19
+
 ## 3.27.4
 
 ### Patch Changes
