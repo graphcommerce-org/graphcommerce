@@ -132,7 +132,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
                 <SearchLink href='/search' aria-label={i18n._(/* i18n */ 'Search...')} />
               )}
               <PageLink href='/service' passHref>
-                <Fab aria-label={i18n._(/* i18n */ `Account`)} size='large' color='inherit'>
+                <Fab aria-label={i18n._(/* i18n */ 'Account')} size='large' color='inherit'>
                   <IconSvg src={iconCustomerService} size='large' />
                 </Fab>
               </PageLink>
