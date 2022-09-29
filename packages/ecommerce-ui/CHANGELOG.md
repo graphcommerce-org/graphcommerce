@@ -1,5 +1,14 @@
 # @graphcommerce/ecommerce-ui
 
+## 1.5.3
+
+### Patch Changes
+
+- [#1665](https://github.com/graphcommerce-org/graphcommerce/pull/1665) [`fc32b9ab3`](https://github.com/graphcommerce-org/graphcommerce/commit/fc32b9ab3818eb99c546a89e7f42045a6fbfba81) Thanks [@paales](https://github.com/paales)! - Checkout page didn’t work, because the SelectElement broke when it received a null value.
+
+- Updated dependencies [[`1f2e14ba8`](https://github.com/graphcommerce-org/graphcommerce/commit/1f2e14ba8b674b87257a123e8cb215157890eb22)]:
+  - @graphcommerce/react-hook-form@3.3.5
+
 ## 1.5.2
 
 ### Patch Changes
