@@ -16,7 +16,7 @@ export type UseCustomerSessionReturn =
       query: QueryResult<CustomerTokenQuery, CustomerTokenQueryVariables>
     } & Partial<Omit<NonNullable<CustomerTokenQuery['customerToken']>, '__typename'>>
 
-export function useCustomerSession() {
+export function useCustomerSession(options: UseCustomerSessionOptions = {}) {
   /**
    * We current always assume the initial render is during hydration.
    *
@@ -27,7 +27,8 @@ export function useCustomerSession() {
    * useCustomerSession hook is called later and we're still in the hydration phase for this
    * component while other components are rendering for the second time.
    */
-  const [hydrating, setHydrating] = useState(true)
+  const { hydration = false } = options
+  const [hydrating, setHydrating] = useState(!hydration)
 
   /**
    * After the initital render we are definitely sure we're not hydrating anymore so we can flip the
@@ -35,7 +36,9 @@ export function useCustomerSession() {
    */
   useIsomorphicLayoutEffect(() => startTransition(() => setHydrating(false)), [])
 
-  const query = useQuery(CustomerTokenDocument, { skip: hydrating })
+  const skip = hydrating
+
+  const query = useQuery(CustomerTokenDocument, { skip })
 
   const token = query.data?.customerToken
 
