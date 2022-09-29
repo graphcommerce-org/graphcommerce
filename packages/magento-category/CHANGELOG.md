@@ -1,5 +1,12 @@
 # Change Log
 
+## 4.7.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/magento-product@4.7.2
+
 ## 4.7.0
 
 ### Minor Changes

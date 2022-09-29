@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-cart-payment-method",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "3.6.2",
+  "version": "3.6.3",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -15,7 +15,7 @@
     "@graphcommerce/eslint-config-pwa": "^4.1.10",
     "@graphcommerce/prettier-config-pwa": "^4.0.6",
     "@graphcommerce/typescript-config-pwa": "^4.0.4",
-    "@graphcommerce/magento-cart-shipping-address": "3.5.2",
+    "@graphcommerce/magento-cart-shipping-address": "3.5.3",
     "@playwright/test": "^1.21.1",
     "type-fest": "^2.12.2"
   },
@@ -23,10 +23,10 @@
     "@graphcommerce/framer-scroller": "2.1.40",
     "@graphcommerce/graphql": "3.4.8",
     "@graphcommerce/image": "3.1.9",
-    "@graphcommerce/magento-cart": "4.8.6",
+    "@graphcommerce/magento-cart": "4.8.7",
     "@graphcommerce/magento-store": "4.3.1",
     "@graphcommerce/next-ui": "4.28.0",
-    "@graphcommerce/react-hook-form": "3.3.4"
+    "@graphcommerce/react-hook-form": "3.3.5"
   },
   "peerDependencies": {
     "@lingui/react": "^3.13.2",

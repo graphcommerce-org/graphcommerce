@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.3.5
+
+### Patch Changes
+
+- [#1665](https://github.com/graphcommerce-org/graphcommerce/pull/1665) [`1f2e14ba8`](https://github.com/graphcommerce-org/graphcommerce/commit/1f2e14ba8b674b87257a123e8cb215157890eb22) Thanks [@paales](https://github.com/paales)! - Make sure the onComplete callback also sends the variables
+
 ## 3.3.4
 
 ### Patch Changes
