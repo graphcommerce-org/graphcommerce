@@ -5,6 +5,6 @@ export const useGoogleRecaptcha = () => {
   const context = useContext(recaptchaContext)
 
   useEffect(() => {
-    if (context.enabled) context.enable?.()
+    if (!context.enabled) context.enable?.()
   }, [context])
 }
