@@ -78,7 +78,7 @@ export function useFormGql<Q, V>(
       // if (variables === false) onInvalid?.(formValues, event)
 
       const result = await execute({ variables })
-      if (onComplete && result.data) await onComplete(result, client)
+      if (onComplete && result.data) await onComplete(result, variables)
 
       // Reset the state of the form if it is unmodified afterwards
       if (typeof diff(form.getValues(), formValues) === 'undefined')
