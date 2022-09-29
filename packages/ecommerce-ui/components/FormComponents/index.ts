@@ -6,7 +6,6 @@ export {
   PasswordElement,
   PasswordRepeatElement,
   RadioButtonGroup,
-  SelectElement,
   SliderElement,
   SwitchElement,
   ToggleButtonGroupElement,
@@ -19,11 +18,11 @@ export type {
   PasswordElementProps,
   PasswordRepeatElementProps,
   RadioButtonGroupProps,
-  SelectElementProps,
   SliderElementProps,
   SwitchElementProps,
   ToggleButtonGroupElementProps,
 } from 'react-hook-form-mui'
 
 export * from './TextFieldElement'
+export * from './SelectElement'
 export * from './NumberFieldElement'
