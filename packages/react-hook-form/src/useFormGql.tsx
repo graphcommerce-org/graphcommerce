@@ -1,8 +1,6 @@
 import {
   FetchResult,
-  ApolloClient,
   TypedDocumentNode,
-  useApolloClient,
   MutationTuple,
   ApolloError,
   LazyQueryResultTuple,
@@ -47,7 +45,6 @@ export function useFormGql<Q, V>(
   const { onComplete, onBeforeSubmit, document, form, tuple, defaultValues } = options
   const { encode, type, ...gqlDocumentHandler } = useGqlDocumentHandler<Q, V>(document)
   const [execute, { data, error }] = tuple
-  const client = useApolloClient()
 
   // automatically updates the default values
   const initital = useRef(true)
