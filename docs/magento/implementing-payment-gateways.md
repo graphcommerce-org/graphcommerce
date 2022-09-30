@@ -8,7 +8,7 @@ There are multiple flows to handle payments.
 
 ## Flow 1: Redirecting payment gateway
 
-Step 1: Call setPaymentMethodOnCart and placeOrder in a single mutation:
+The first step is to call setPaymentMethodOnCart and placeOrder.
 
 ```ts
 const variables = {
@@ -95,10 +95,14 @@ input MyGatewayPaymentInput {
 
   This will should be a fully qualified URL: `https://mydomain.com/checkout/payment?token=$TOKEN`
   $TOKEN will be repaced with the payment gateway token.
+
+  This information should be stored in the database (encryped if required)
   """
   return_url: String!
   """
   Payment gateway can accept any custom field, for example an issuer or any additional information that can be configured in the checkout.
+
+  This information should be stored in the database (encryped if required)
   """
   custom_field: String
 }
