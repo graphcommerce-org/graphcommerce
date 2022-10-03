@@ -148,7 +148,6 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
         scroller.scrollLeft = positions.open.x.get()
         scroller.scrollTop = positions.open.y.get()
       }
-
       if (positions.open.visible.get() === 0) {
         scroller.scrollLeft = positions.closed.x.get()
         scroller.scrollTop = positions.closed.y.get()
@@ -197,7 +196,13 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
   useDomEvent(windowRef, 'keyup', handleEscape, { passive: true })
 
   // When the overlay isn't visible anymore, we navigate back.
-  useEffect(() => positions.open.visible.onChange((o) => o === 0 && closeOverlay()))
+  useEffect(
+    () =>
+      positions.open.visible.onChange(
+        (o) => position.get() !== OverlayPosition.OPENED && o === 0 && closeOverlay(),
+      ),
+    [closeOverlay, position, positions.open.visible],
+  )
 
   // Measure the offset of the overlay in the scroller.
   const offsetY = useMotionValue(0)
@@ -380,7 +385,7 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
               pointerEvents: 'all',
               backgroundColor: theme.palette.background.paper,
               boxShadow: theme.shadows[24],
-              scrollSnapAlign: 'end',
+
               [theme.breakpoints.down('md')]: {
                 minWidth: '80vw',
                 '&:not(.sizeMdFull)': {
@@ -394,6 +399,7 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
                 '&.variantSmBottom': {
                   borderTopLeftRadius: `${theme.shape.borderRadius * 3}px`,
                   borderTopRightRadius: `${theme.shape.borderRadius * 3}px`,
+                  scrollSnapAlign: 'end',
                 },
                 '&.sizeSmFloating': {
                   borderRadius: `${theme.shape.borderRadius * 3}px`,
@@ -410,7 +416,7 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
               },
               [theme.breakpoints.up('md')]: {
                 '&.sizeMdFull': {
-                  minWidth: 'max(600px, 50vw)',
+                  // minWidth: 'max(600px, 50vw)',
                 },
                 '&:not(.sizeMdFull)': {
                   width: 'max-content',
@@ -418,6 +424,7 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
 
                 '&.sizeMdFull.variantMdBottom': {
                   minHeight: `calc(${clientSizeCssVar.y} - ${mdSpacingTop})`,
+                  scrollSnapAlign: 'end',
                 },
                 '&.sizeMdFull.variantMdLeft': {
                   paddingBottom: '1px',

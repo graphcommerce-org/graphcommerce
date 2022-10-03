@@ -1,4 +1,3 @@
-import { breakpointVal } from '@graphcommerce/next-ui'
 import {
   Fab,
   Snackbar,
@@ -12,7 +11,7 @@ import {
 } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { IconSvg } from '../IconSvg'
-import { extendableComponent } from '../Styles'
+import { extendableComponent, breakpointVal } from '../Styles'
 import { iconClose, iconCheckmark, iconSadFace } from '../icons'
 
 type Size = 'normal' | 'wide'

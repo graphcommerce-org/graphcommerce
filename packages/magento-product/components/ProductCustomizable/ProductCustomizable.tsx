@@ -1,5 +1,6 @@
 import { SelectElement, TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import { filterNonNullableKeys, RenderType, TypeRenderer } from '@graphcommerce/next-ui'
+import React from 'react'
 import { useFormAddProductsToCart } from '../AddProductsToCart'
 import { ProductCustomizableFragment } from './ProductCustomizable.gql'
 
@@ -10,7 +11,9 @@ type OptionTypeRenderer = TypeRenderer<
   }
 >
 
-const CustomizableAreaOption: OptionTypeRenderer['CustomizableAreaOption'] = (props) => {
+const CustomizableAreaOption = React.memo<
+  React.ComponentProps<OptionTypeRenderer['CustomizableAreaOption']>
+>((props) => {
   const { uid, areaValue, required, optionIndex, index, title } = props
   const maxLength = areaValue?.max_characters ?? undefined
   const { control, register } = useFormAddProductsToCart()
@@ -34,9 +37,11 @@ const CustomizableAreaOption: OptionTypeRenderer['CustomizableAreaOption'] = (pr
       />
     </>
   )
-}
+})
 
-const CustomizableDropDownOption: OptionTypeRenderer['CustomizableDropDownOption'] = (props) => {
+const CustomizableDropDownOption = React.memo<
+  React.ComponentProps<OptionTypeRenderer['CustomizableDropDownOption']>
+>((props) => {
   const { uid, required, optionIndex, index, title, dropdownValue } = props
   const { control, register } = useFormAddProductsToCart()
 
@@ -52,6 +57,7 @@ const CustomizableDropDownOption: OptionTypeRenderer['CustomizableDropDownOption
         name={`cartItems.${index}.entered_options.${optionIndex}.value`}
         label={title}
         required={Boolean(required)}
+        defaultValue=''
         options={filterNonNullableKeys(dropdownValue, ['title']).map((option) => ({
           id: option.uid,
           label: option.title,
@@ -59,7 +65,7 @@ const CustomizableDropDownOption: OptionTypeRenderer['CustomizableDropDownOption
       />
     </>
   )
-}
+})
 
 const renderer: OptionTypeRenderer = {
   CustomizableAreaOption,
@@ -84,7 +90,7 @@ export function ProductCustomizable(props: ProductCustomizableProps) {
           key={option.uid}
           renderer={renderer}
           {...option}
-          optionIndex={option.sort_order - 1}
+          optionIndex={option.sort_order + 100}
           index={index}
         />
       ))}

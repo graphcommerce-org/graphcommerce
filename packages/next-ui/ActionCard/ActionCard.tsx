@@ -12,7 +12,7 @@ function isButtonProps(props: ButtonProps<'div'> | BoxProps<'div'>): props is Bu
   return props.onClick !== undefined
 }
 
-const RenderComponent = (props: ButtonProps<'div'> | BoxProps<'div'>) =>
+const ButtonOrBox = (props: ButtonProps<'div'> | BoxProps<'div'>) =>
   isButtonProps(props) ? <ButtonBase component='div' {...props} /> : <Box {...props} />
 
 export type ActionCardProps = {
@@ -101,26 +101,26 @@ export function ActionCard(props: ActionCardProps) {
   })
 
   return (
-    <RenderComponent
+    <ButtonOrBox
       className={classes.root}
       onClick={onClick && ((event) => onClick?.(event, value))}
       disabled={disabled}
       sx={[
         (theme) => ({
           '&.sizeSmall': {
-            padding: `5px 10px`,
+            py: `5px`,
             display: 'flex',
             typography: 'body2',
           },
 
           '&.sizeMedium': {
-            padding: `10px 12px`,
+            py: `10px`,
             typography: 'body2',
             display: 'block',
           },
 
           '&.sizeLarge': {
-            padding: `${theme.spacings.xxs} ${theme.spacings.xs}`,
+            py: theme.spacings.xxs,
             display: 'block',
           },
 
@@ -184,6 +184,10 @@ export function ActionCard(props: ActionCardProps) {
               ),
             },
 
+            '&.sizeSmall': { px: `10px` },
+            '&.sizeMedium': { px: `12px` },
+            '&.sizeLarge': { px: theme.spacings.xs },
+
             '&.selected': {
               border: `2px solid ${theme.palette[color].main}`,
               boxShadow: `0 0 0 4px ${alpha(
@@ -223,6 +227,7 @@ export function ActionCard(props: ActionCardProps) {
           flexDirection: 'row',
           width: '100%',
           justifyContent: 'space-between',
+          alignContent: 'stretch',
         }}
       >
         <Box
@@ -230,6 +235,7 @@ export function ActionCard(props: ActionCardProps) {
             display: 'flex',
             flexDirection: 'row',
             justifyContent: 'space-between',
+            alignContent: 'stretch',
           }}
         >
           {image && (
@@ -244,7 +250,7 @@ export function ActionCard(props: ActionCardProps) {
           <Box
             sx={{
               display: 'flex',
-              justifyContent: 'center',
+              justifyContent: 'space-between',
               flexDirection: 'column',
               alignItems: 'flex-start',
             }}
@@ -302,6 +308,6 @@ export function ActionCard(props: ActionCardProps) {
         </Box>
       </Box>
       {after && <Box className={classes.after}>{after}</Box>}
-    </RenderComponent>
+    </ButtonOrBox>
   )
 }

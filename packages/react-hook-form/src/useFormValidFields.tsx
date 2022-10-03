@@ -15,8 +15,10 @@ export function useFormValidFields<TFieldValues extends FieldValues>(
   const { watch, formState } = form
   const fields: Partial<Record<Path<TFieldValues>, boolean>> = {}
 
-  Object.keys(required).forEach((key) => {
-    fields[key] = !formState.errors[key] && watch(key as Path<TFieldValues>)
+  watch((values) => {
+    Object.keys(required).forEach((key) => {
+      fields[key] = !formState.errors[key] && values[key]
+    })
   })
 
   return fields

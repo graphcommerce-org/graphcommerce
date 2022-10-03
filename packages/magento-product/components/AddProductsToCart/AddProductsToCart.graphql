@@ -4,6 +4,7 @@ mutation AddProductsToCart($cartId: String!, $cartItems: [CartItemInput!]!) {
       id
       __typename
       ...CartItemCountChanged
+      ...CartPageFragment
     }
     user_errors {
       code

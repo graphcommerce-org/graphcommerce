@@ -50,21 +50,28 @@ export function CartTotals(props: CartTotalsProps) {
       className={classes.root}
       sx={[
         (theme) => ({
-          ...breakpointVal(
-            'borderRadius',
-            theme.shape.borderRadius * 3,
-            theme.shape.borderRadius * 5,
-            theme.breakpoints.values,
-          ),
-          background:
-            theme.palette.mode === 'light'
-              ? theme.palette.background.default
-              : lighten(theme.palette.background.default, 0.15),
-          padding: `${theme.spacings.xs} ${theme.spacings.sm}`,
+          // ...breakpointVal(
+          //   'borderRadius',
+          //   theme.shape.borderRadius * 3,
+          //   theme.shape.borderRadius * 5,
+          //   theme.breakpoints.values,
+          // ),
+          // background:
+          //   theme.palette.mode === 'light'
+          //     ? theme.palette.background.default
+          //     : lighten(theme.palette.background.default, 0.15),
+          // padding: `${theme.spacings.xs} ${theme.spacings.sm}`,
 
-          '&.containerMargin': {
-            marginTop: theme.spacings.md,
-          },
+          // '&.containerMargin': {
+          //   marginTop: theme.spacings.md,
+          // },
+
+          border: 1,
+          borderRadius: 1,
+          borderColor: 'divider',
+          backgroundColor: 'background.default',
+          py: theme.spacings.xs,
+          px: theme.spacings.sm,
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
