@@ -19,8 +19,7 @@ export function SignOutForm(props: SignOutFormProps) {
     {
       onComplete: async () => {
         await client.clearStore()
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        router.push('/')
+        await router.push('/')
       },
     },
     { errorPolicy: 'all' },
