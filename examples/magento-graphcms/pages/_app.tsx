@@ -11,7 +11,6 @@ import {
 } from '@graphcommerce/next-ui'
 import { CssBaseline } from '@mui/material'
 import { AppProps } from 'next/app'
-import { SessionDebugger } from '../components/SessionDebugger'
 import { lightTheme, darkTheme } from '../components/theme'
 import { GraphQLProvider } from '../lib/graphql/GraphQLProvider'
 import { I18nProvider } from '../lib/i18n/I18nProvider'
@@ -32,7 +31,6 @@ export default function ThemedApp(props: AppProps) {
             <PageLoadIndicator />
             <GoogleRecaptchaProvider>
               <FramerNextPages {...props} />
-              {/* <SessionDebugger /> */}
             </GoogleRecaptchaProvider>
           </DarkLightModeThemeProvider>
         </GraphQLProvider>
