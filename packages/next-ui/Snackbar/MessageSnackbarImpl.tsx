@@ -1,3 +1,4 @@
+import { i18n } from '@lingui/core'
 import {
   Fab,
   Snackbar,
@@ -113,7 +114,8 @@ export default function MessageSnackbarImpl(props: MessageSnackbarImplProps) {
               alignItems: 'center',
               gap: theme.spacings.xxs,
               gridTemplate: {
-                xs: `"icon children close" "action action action"`,
+                xs: `"icon children close"
+                    "action action action"`,
                 md: '"icon children action close"',
               },
               gridTemplateColumns: {
@@ -138,7 +140,7 @@ export default function MessageSnackbarImpl(props: MessageSnackbarImplProps) {
               )}
               <Fab
                 className={classes.close}
-                aria-label='Close'
+                aria-label={i18n._(/* i18n */ 'Close')}
                 size='small'
                 onClick={hideSnackbar}
                 onMouseDown={preventAnimationBubble}
