@@ -38,9 +38,7 @@ export function useOverlayPosition() {
 
     const ro = new ResizeObserver(measure)
     ro.observe(scrollerRef.current)
-    ;[...scrollerRef.current.children].forEach((child) => {
-      if (child instanceof HTMLElement) ro.observe(child)
-    })
+    ;[...scrollerRef.current.children].forEach((child) => ro.observe(child))
 
     return () => ro.disconnect()
   }, [getScrollSnapPositions, scrollerRef, state])
@@ -48,19 +46,22 @@ export function useOverlayPosition() {
   // sets a float between 0 and 1 for the visibility of the overlay
   useEffect(() => {
     const calc = () => {
-      const x = scroll.x.get()
-      const y = scroll.y.get()
+      const x = scrollerRef.current?.scrollLeft ?? scroll.x.get()
+      const y = scrollerRef.current?.scrollTop ?? scroll.y.get()
 
-      const yC = state.closed.y.get()
-      const yO = state.open.y.get()
+      const positions = getScrollSnapPositions()
+
+      const yC = positions.y[0]
+      const yO = positions.y[1] ?? 0
       const visY = yC === yO ? 1 : Math.max(0, Math.min(1, (y - yC) / (yO - yC)))
 
-      const xC = state.closed.x.get()
-      const xO = state.open.x.get()
+      const xC = positions.x[0]
+      const xO = positions.x[1] ?? 0
 
       const visX = xO === xC ? 1 : Math.max(0, Math.min(1, (x - xC) / (xO - xC)))
 
-      let vis = visY * visX
+      let vis = Math.round(visY * visX * 100) / 100
+
       if (xC === 0 && xO === 0 && yC === 0 && yO === 0) vis = 0
 
       // todo: visibility sometimes flickers
@@ -75,7 +76,7 @@ export function useOverlayPosition() {
       cancelY()
       cancelX()
     }
-  }, [state, scroll])
+  }, [getScrollSnapPositions, scroll.x, scroll.y, scrollerRef, state.open.visible])
 
   return state
 }
