@@ -28,6 +28,7 @@ export function ChipMenu(props: ChipMenuProps) {
     selectedLabel,
     openEl,
     setOpenEl,
+    onSubmit,
     ...chipProps
   } = props
 

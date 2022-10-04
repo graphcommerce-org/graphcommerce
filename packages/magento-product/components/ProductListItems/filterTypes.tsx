@@ -41,5 +41,6 @@ export type AllFilterInputTypes =
   | 'FilterEqualTypeInput'
   | 'FilterMatchTypeInput'
   | 'FilterRangeTypeInput'
+  | 'AllFilterTypeInput'
 
 export type FilterTypes = Partial<Record<string, AllFilterInputTypes>>

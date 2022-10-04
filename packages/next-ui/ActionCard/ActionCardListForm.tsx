@@ -10,13 +10,13 @@ export type ActionCardItemRenderProps<T> = ActionCardProps & {
   onReset: MouseEventHandler<HTMLAnchorElement> & MouseEventHandler<HTMLSpanElement>
 } & T
 
-export type ActionCardListFormProps<T extends ActionCardItemBase> = Omit<
+export type ActionCardListFormProps<A> = Omit<
   ActionCardListProps,
   'value' | 'error' | 'onChange' | 'children'
 > &
   Omit<ControllerProps<any>, 'render' | 'shouldUnregister'> & {
-    items: T[]
-    render: React.FC<ActionCardItemRenderProps<T>>
+    items: A[]
+    render: React.FC<ActionCardItemRenderProps<A>>
   }
 
 export function ActionCardListForm<T extends ActionCardItemBase>(
