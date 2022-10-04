@@ -119,7 +119,7 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
   const handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault()
 
-    const selectedOptions = addToCartForm?.getValues().cartItems[0].selected_options ?? []
+    const selectedOptions = addToCartForm?.getValues().cartItems?.[0]?.selected_options ?? []
     const selected_options = Array.isArray(selectedOptions) ? selectedOptions : [selectedOptions]
 
     if (!url_key || !sku) {
