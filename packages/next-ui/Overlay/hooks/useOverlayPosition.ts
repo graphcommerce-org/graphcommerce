@@ -16,7 +16,10 @@ export function useOverlayPosition() {
       y: motionValue(0),
       visible: motionValue(0),
     },
-    closed: { x: motionValue(0), y: motionValue(0) },
+    closed: {
+      x: motionValue(0),
+      y: motionValue(0),
+    },
   }))
 
   const scroll = useElementScroll(scrollerRef)
@@ -26,18 +29,21 @@ export function useOverlayPosition() {
 
     const measure = () => {
       const positions = getScrollSnapPositions()
-
-      state.open.x.set(positions.x[1] ?? 0)
-      state.closed.x.set(positions.x[0])
-      state.open.y.set(positions.y[1] ?? 0)
-      state.closed.y.set(positions.y[0])
+      if (state.open.x.get() !== positions.x[1]) state.open.x.set(positions.x[1] ?? 0)
+      if (state.open.y.get() !== positions.y[1]) state.open.y.set(positions.y[1] ?? 0)
+      if (state.closed.x.get() !== positions.x[0]) state.closed.x.set(positions.x[0])
+      if (state.closed.y.get() !== positions.y[0]) state.closed.y.set(positions.y[0])
     }
-    const ro = new ResizeObserver(measure)
     measure()
 
+    const ro = new ResizeObserver(measure)
     ro.observe(scrollerRef.current)
+    ;[...scrollerRef.current.children].forEach((child) => {
+      if (child instanceof HTMLElement) ro.observe(child)
+    })
+
     return () => ro.disconnect()
-  })
+  }, [getScrollSnapPositions, scrollerRef, state])
 
   // sets a float between 0 and 1 for the visibility of the overlay
   useEffect(() => {
