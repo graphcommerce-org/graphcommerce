@@ -99,7 +99,7 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
   )(th)
 
   const { scrollerRef, snap } = useScrollerContext()
-  const positions = useOverlayPosition()
+  const positions = useOverlayPosition(variantSm, variantMd)
   const scrollTo = useScrollTo()
   const beforeRef = useRef<HTMLDivElement>(null)
 
