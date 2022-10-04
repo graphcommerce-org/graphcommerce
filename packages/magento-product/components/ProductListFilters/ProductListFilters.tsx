@@ -1,4 +1,9 @@
-import { ChipMenuProps } from '@graphcommerce/next-ui'
+import { useForm, useFormPersist } from '@graphcommerce/ecommerce-ui'
+import { cloneDeep } from '@graphcommerce/graphql'
+import { FilterTypeInput, ProductAttributeFilterInput } from '@graphcommerce/graphql-mesh'
+import { ChipMenuProps, Form } from '@graphcommerce/next-ui'
+import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
+import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
 import { FilterTypes } from '../ProductListItems/filterTypes'
 import { FilterCheckboxType } from './FilterCheckboxType'
 import { FilterEqualType } from './FilterEqualType'
@@ -7,14 +12,29 @@ import { ProductListFiltersFragment } from './ProductListFilters.gql'
 
 export type ProductFiltersProps = ProductListFiltersFragment & {
   filterTypes: FilterTypes
-} & Omit<ChipMenuProps, 'selected' | 'selectedLabel' | 'children' | 'label' | 'onDelete'>
+} & Omit<
+    ChipMenuProps,
+    'selected' | 'selectedLabel' | 'children' | 'label' | 'onDelete' | 'openEl' | 'setOpenEl'
+  >
 
 export function ProductListFilters(props: ProductFiltersProps) {
   const { aggregations, filterTypes, ...chipMenuProps } = props
+  const filterForm = useForm<ProductAttributeFilterInput>({ defaultValues: {} })
+  const { handleSubmit } = filterForm
+  const { params } = useProductListParamsContext()
+  const replaceRoute = useProductListLinkReplace({ scroll: false })
+
+  useFormPersist({ form: filterForm, name: 'ProductListFilterForm' })
+
+  const submit = handleSubmit((e) => {
+    replaceRoute({ ...params, filters: e })
+  })
+
+  const filteredAggregations: ProductFiltersProps['aggregations'] = aggregations
 
   return (
-    <>
-      {aggregations?.map((aggregation) => {
+    <form id='filter-form' noValidate onSubmit={submit} style={{ display: 'flex' }}>
+      {filteredAggregations?.map((aggregation) => {
         if (!aggregation?.attribute_code || aggregation?.attribute_code === 'category_id')
           return null
 
@@ -31,6 +51,7 @@ export function ProductListFilters(props: ProductFiltersProps) {
                   key={aggregation.attribute_code}
                   {...aggregation}
                   {...chipMenuProps}
+                  filterForm={filterForm}
                 />
               )
             }
@@ -40,6 +61,7 @@ export function ProductListFilters(props: ProductFiltersProps) {
                 key={aggregation.attribute_code}
                 {...aggregation}
                 {...chipMenuProps}
+                filterForm={filterForm}
               />
             )
 
@@ -49,17 +71,14 @@ export function ProductListFilters(props: ProductFiltersProps) {
                 key={aggregation.attribute_code}
                 {...aggregation}
                 {...chipMenuProps}
+                filterForm={filterForm}
               />
             )
+
+          default:
+            return aggregation.attribute_code === 'all' ? <AllFilterType /> : null // `FilterMatchTypeInput not ${aggregation.attribute_code}`
         }
-        // console.log(
-        //   'Filter not recognized',
-        //   aggregation.attribute_code,
-        //   aggregation.__typename,
-        //   filterTypes[aggregation.attribute_code],
-        // )
-        return null // `FilterMatchTypeInput not ${aggregation.attribute_code}`
       })}
-    </>
+    </form>
   )
 }

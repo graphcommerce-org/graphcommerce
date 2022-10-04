@@ -1,4 +1,6 @@
+import { UseFormReturn } from '@graphcommerce/ecommerce-ui'
 import { cloneDeep } from '@graphcommerce/graphql'
+import { FilterTypeInput, ProductAttributeFilterInput } from '@graphcommerce/graphql-mesh'
 import { iconCancelAlt, IconSvg } from '@graphcommerce/next-ui'
 import { Chip, ChipProps, SxProps, Theme } from '@mui/material'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
@@ -9,7 +11,10 @@ import { ProductListFiltersFragment } from './ProductListFilters.gql'
 
 type Filter = NonNullable<NonNullable<ProductListFiltersFragment['aggregations']>[number]>
 export type FilterCheckboxTypeProps = Filter &
-  Omit<ChipProps<'button'>, 'selected' | 'onDelete' | 'component'> & { sx?: SxProps<Theme> }
+  Omit<ChipProps<'button'>, 'selected' | 'onDelete' | 'component'> & {
+    filterForm: UseFormReturn<ProductAttributeFilterInput, any>
+    sx?: SxProps<Theme>
+  }
 
 export function FilterCheckboxType(props: FilterCheckboxTypeProps) {
   const { attribute_code, count, label, options, ...chipProps } = props

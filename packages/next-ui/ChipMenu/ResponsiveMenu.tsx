@@ -1,7 +1,20 @@
 import { EmotionJSX } from '@emotion/react/types/jsx-namespace'
 
-import { ChipProps, menuClasses, Theme, useMediaQuery, Menu, MenuProps, Box } from '@mui/material'
-import { PropsWithChildren } from 'react'
+import { Trans } from '@lingui/react'
+import {
+  ChipProps,
+  menuClasses,
+  Theme,
+  useMediaQuery,
+  Menu,
+  MenuProps,
+  Box,
+  ButtonBase,
+  Portal,
+  Typography,
+  Popover,
+} from '@mui/material'
+import React, { PropsWithChildren } from 'react'
 import { Button } from '../Button'
 import { IconSvg } from '../IconSvg'
 import { Overlay } from '../Overlay'
@@ -30,64 +43,92 @@ export function ResponsiveMenu(props: ResponsiveMenuProps) {
     return (
       <>
         {chip}
-        <Overlay
-          active={!!openEl}
-          onClosed={() => {
-            if (onClose) onClose()
-            setOpenEl(null)
-          }}
-          sizeSm='floating'
-          variantSm='right'
-          overlayPaneProps={{
-            initial: false,
-          }}
-          sx={{
-            zIndex: 'drawer',
-            '& .LayoutOverlayBase-overlayPane': {
-              padding: 2,
-              overflow: 'hidden',
-              maxHeight: 'calc(-webkit-fill-available)',
-              width: '94vw',
-            },
-          }}
-        >
-          <Box
+        <Portal>
+          <Overlay
+            active={!!openEl}
+            onClosed={() => {
+              if (onClose) onClose()
+              setOpenEl(null)
+            }}
+            sizeSm='minimal'
+            variantSm='bottom'
+            overlayPaneProps={{
+              initial: false,
+            }}
             sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-              height: '100%',
+              zIndex: 'drawer',
+              '& .LayoutOverlayBase-overlayPane': {
+                padding: 2,
+                maxHeight: '90vh',
+              },
             }}
           >
             <Box
               sx={{
-                marginBottom: 2,
                 display: 'flex',
+                flexDirection: 'column',
                 justifyContent: 'space-between',
-                width: '100%',
+                height: '100%',
               }}
             >
-              <Button
-                variant='inline'
-                size='large'
-                onClick={() => {
-                  if (onClose) onClose()
-                  setOpenEl(null)
+              <Box
+                sx={{
+                  marginBottom: 2,
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  width: '100%',
                 }}
               >
-                <IconSvg src={iconClose} size='medium' />
-              </Button>
-              {label}
-              <Button variant='inline' onClick={onReset}>
-                Reset
-              </Button>
+                <Button
+                  variant='inline'
+                  onClick={(e) => {
+                    if (onClose) onClose()
+                    setOpenEl(null)
+                  }}
+                  sx={{ minWidth: '45px' }}
+                >
+                  <IconSvg src={iconClose} size='medium' />
+                </Button>
+                {label}
+                <Button variant='inline' onClick={onReset}>
+                  Reset
+                </Button>
+              </Box>
+              <Box
+                sx={{
+                  flex: 1,
+                  overflow: 'visible',
+                  overflowY: 'scroll',
+                  scroll: 20,
+                  '&::-webkit-scrollbar': {
+                    display: 'none',
+                  },
+                }}
+              >
+                {children}
+                <Box sx={{ height: 40 }} />
+                <Button
+                  form='filter-form'
+                  variant='pill'
+                  color='primary'
+                  size='large'
+                  sx={{
+                    position: 'sticky',
+                    bottom: 10,
+                    zIndex: 100,
+                    width: '100%',
+                  }}
+                  type='submit'
+                  onClick={() => {
+                    setOpenEl(null)
+                  }}
+                >
+                  <Trans id='Apply' />
+                </Button>
+              </Box>
             </Box>
-            <Box sx={{ flex: 1, overflow: 'hidden', overflowY: 'scroll' }}>{children}</Box>
-            <Button variant='outlined' sx={{ marginTop: 2 }} type='submit'>
-              Apply
-            </Button>
-          </Box>
-        </Overlay>
+          </Overlay>
+        </Portal>
       </>
     )
   }
@@ -95,7 +136,7 @@ export function ResponsiveMenu(props: ResponsiveMenuProps) {
   return (
     <>
       {chip}
-      <Menu
+      <Popover
         anchorEl={openEl}
         open={!!openEl}
         onClose={() => {
@@ -104,7 +145,9 @@ export function ResponsiveMenu(props: ResponsiveMenuProps) {
         }}
         anchorPosition={{ top: 6, left: 0 }}
         anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
-        {...menuProps}
+        // {...menuProps}
+        disableScrollLock
+        disablePortal
         sx={[
           (theme) => ({
             marginTop: theme.spacings.xxs,
@@ -131,7 +174,7 @@ export function ResponsiveMenu(props: ResponsiveMenuProps) {
       >
         <SectionHeader labelLeft={label ?? ''} labelRight={labelRight ?? ''} usePadding />
         {children}
-      </Menu>
+      </Popover>
     </>
   )
 }
