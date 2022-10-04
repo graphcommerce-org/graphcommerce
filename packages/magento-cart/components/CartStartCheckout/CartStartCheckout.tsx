@@ -31,6 +31,11 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
         (theme) => ({
           textAlign: 'center',
           my: theme.spacings.md,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          rowGap: theme.spacings.xxs,
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}

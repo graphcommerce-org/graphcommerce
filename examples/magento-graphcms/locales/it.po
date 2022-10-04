@@ -97,6 +97,9 @@ msgstr "Carrello ({0})"
 msgid "Change"
 msgstr "Cambia"
 
+msgid "Checkout"
+msgstr "Checkout"
+
 msgid "Checkout summary"
 msgstr "Riepilogo checkout"
 
@@ -228,6 +231,9 @@ msgstr "Totale"
 
 msgid "Have an account?"
 msgstr "Hai già un account?"
+
+msgid "Have you thought about this yet?"
+msgstr "Hai pensato a questo ancora?"
 
 msgid "Hi {firstname}! You’re now logged in!"
 msgstr "Ciao {firstname}! Ora sei loggato!"
@@ -540,9 +546,6 @@ msgstr "Questo campo è obbligatorio"
 
 msgid "This may take a second"
 msgstr "Questo potrebbe richiedere un secondo"
-
-msgid "Total <0/>"
-msgstr "Totale <0/>"
 
 msgid "Try a different product"
 msgstr "Prova un altro prodotto"

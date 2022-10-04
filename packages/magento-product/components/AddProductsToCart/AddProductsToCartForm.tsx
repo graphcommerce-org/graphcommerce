@@ -67,14 +67,8 @@ export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
           return
 
         if (redirect === 'checkout') await router.push('/checkout')
-
-        await router.push({
-          pathname: '/cart',
-          query: {
-            summary: redirect === 'summary' ? '1' : undefined,
-            added: variables.cartItems.map((i) => i.sku),
-          },
-        })
+        if (redirect === 'summary') await router.push({ pathname: '/checkout/added' })
+        if (redirect === 'cart') await router.push({ pathname: '/cart' })
       },
       ...formProps,
     },

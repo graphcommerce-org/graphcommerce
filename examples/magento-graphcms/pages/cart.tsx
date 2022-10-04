@@ -1,19 +1,22 @@
 import { WaitForQueries } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { useQuery } from '@graphcommerce/graphql'
+import { Image } from '@graphcommerce/image'
 import {
   ApolloCartErrorAlert,
   CartStartCheckout,
   CartTotals,
+  CrosssellsDocument,
   EmptyCart,
   useCartQuery,
 } from '@graphcommerce/magento-cart'
 import { CartPageDocument } from '@graphcommerce/magento-cart-checkout'
 import { CouponAccordion } from '@graphcommerce/magento-cart-coupon'
-import { ActionCartItem, CartItems } from '@graphcommerce/magento-cart-items'
+import { ActionCartItem } from '@graphcommerce/magento-cart-items'
 import { ProductListItemFragment } from '@graphcommerce/magento-product'
 import { BundleCartItem } from '@graphcommerce/magento-product-bundle'
 import { ConfigurableCartItemOptions } from '@graphcommerce/magento-product-configurable'
-import { Money, PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   GetStaticProps,
   iconShoppingBag,
@@ -25,17 +28,26 @@ import {
   LinkOrButton,
   FullPageMessage,
   ActionCardLayout,
-  nonNullable,
   filterNonNullableKeys,
   iconCheckmark,
   RenderType,
+  Button,
+  iconClose,
+  responsiveVal,
+  ItemScroller,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Box, CircularProgress, Container, Typography } from '@mui/material'
+import { Alert, Box, CircularProgress, Container, Fab, Typography, lighten } from '@mui/material'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
-import { LayoutOverlay, LayoutOverlayProps, ProductListItems } from '../components'
+import { useMemo } from 'react'
+import {
+  LayoutOverlay,
+  LayoutOverlayProps,
+  ProductListItems,
+  productListRenderer,
+} from '../components'
 import { graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
 
 type Props = Record<string, unknown>
@@ -48,31 +60,17 @@ function CartPage() {
     (data?.cart?.total_quantity ?? 0) > 0 &&
     typeof data?.cart?.prices?.grand_total?.value !== 'undefined'
 
-  console.log(data?.cart?.total_quantity)
-  const { query, isReady } = useRouter()
-
-  const summaryItems =
-    query.summary === '1' && query.added
-      ? Array.isArray(query.added)
-        ? query.added
-        : [query.added]
-      : []
-
-  const isSummary = summaryItems.length > 0
   const cartItems = filterNonNullableKeys(data?.cart?.items)
-    .filter((item) => {
-      if (isSummary && item.product.sku) {
-        const foundItem = summaryItems.indexOf(item.product.sku)
-        if (foundItem < 0) return false
-        delete summaryItems[foundItem]
-      }
-      return true
-    })
-    .slice(0, 1)
 
-  const crossSellItems = cartItems
-    .map((cartItem) => cartItem.product?.crosssell_products)
-    .flat() as ProductListItemFragment[]
+  const lastItem = cartItems[cartItems.length - 1]
+  const crosssels = useQuery(CrosssellsDocument, {
+    variables: { pageSize: 1, filters: { sku: { eq: lastItem?.product.sku } } },
+    ssr: false,
+  })
+  const crossSellItems = useMemo(
+    () => filterNonNullableKeys(crosssels.data?.products?.items?.[0]?.crosssell_products),
+    [crosssels.data?.products?.items],
+  )
 
   return (
     <>
@@ -80,7 +78,9 @@ function CartPage() {
         title={i18n._(/* i18n */ 'Cart ({0})', { 0: data?.cart?.total_quantity ?? 0 })}
         metaRobots={['noindex']}
       />
+
       <LayoutOverlayHeader
+        noAlign
         switchPoint={0}
         primary={
           <PageLink href='/checkout' passHref>
@@ -100,99 +100,78 @@ function CartPage() {
           </Container>
         }
       >
-        <LayoutTitle size='small' component='span' icon={hasItems ? iconShoppingBag : undefined}>
-          {hasItems ? <Trans id='Cart' /> : <Trans id='Cart' />}
+        <LayoutTitle size='small' component='span' icon={iconShoppingBag}>
+          <Trans id='Cart' />
         </LayoutTitle>
       </LayoutOverlayHeader>
 
       <WaitForQueries
-        waitFor={[cart, isReady]}
+        waitFor={[cart]}
         fallback={
-          <FullPageMessage
-            icon={<CircularProgress />}
-            title='Loading'
-            sx={{ width: 800, maxWidth: '100vw' }}
-          >
+          <FullPageMessage icon={<CircularProgress />} title='Loading'>
             <Trans id='This may take a second' />
           </FullPageMessage>
         }
       >
-        <Container maxWidth='md' sx={{ width: 800, maxWidth: '100vw' }}>
+        {hasItems ? (
           <>
-            {hasItems ? (
-              <>
-                {isSummary && (
-                  <Typography
-                    variant='h6'
-                    sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', mt: 3 }}
-                  >
-                    <IconSvg src={iconCheckmark} size='large' />
-                    <Trans
-                      id='<0>{name}</0> has been added to your shopping cart!'
-                      components={{ 0: <strong /> }}
-                      values={{ name: cartItems?.[0].product.name }}
-                    />
-                  </Typography>
-                )}
-                <ActionCardLayout sx={(theme) => ({ my: theme.spacings.sm })}>
-                  {cartItems.map((item) => (
-                    <ActionCartItem
-                      key={item.uid}
-                      {...item}
-                      size='large'
-                      variant='default'
-                      readonly={isSummary}
-                      details={
-                        <RenderType
-                          {...item}
-                          renderer={{
-                            BundleCartItem,
-                            ConfigurableCartItem: ConfigurableCartItemOptions,
-                          }}
-                        />
-                      }
-                    />
-                  ))}
-                </ActionCardLayout>
+            <Container maxWidth={false}>
+              <ActionCardLayout sx={(theme) => ({ my: theme.spacings.sm })}>
+                {cartItems.map((item) => (
+                  <ActionCartItem
+                    key={item.uid}
+                    {...item}
+                    size='large'
+                    variant='default'
+                    details={
+                      <RenderType
+                        {...item}
+                        renderer={{
+                          BundleCartItem,
+                          ConfigurableCartItem: ConfigurableCartItemOptions,
+                          DownloadableCartItem: () => null,
+                          SimpleCartItem: () => null,
+                          VirtualCartItem: () => null,
+                        }}
+                      />
+                    }
+                  />
+                ))}
+              </ActionCardLayout>
 
-                {!isSummary && (
-                  <>
-                    <CouponAccordion
-                      key='couponform'
-                      sx={{ '&:not(.Mui-expanded)': { borderColor: 'transparent' } }}
-                    />
-                    <CartTotals />
+              <CouponAccordion
+                key='couponform'
+                sx={{ '&:not(.Mui-expanded)': { borderColor: 'transparent' } }}
+              />
+              <CartTotals />
 
-                    <ApolloCartErrorAlert error={error} />
-                    <Box key='checkout-button'>
-                      <CartStartCheckout {...data?.cart} />
-                    </Box>
-                  </>
-                )}
+              <ApolloCartErrorAlert error={error} />
 
-                <Typography
-                  variant='h4'
-                  gutterBottom
-                  sx={(theme) => ({ mt: theme.spacings.lg, mb: theme.spacings.sm })}
-                >
-                  <Trans id='Have you thought about this?' />
+              <CartStartCheckout {...data?.cart} />
+
+              {crossSellItems.length > 0 && (
+                <Typography variant='h4' gutterBottom sx={(theme) => ({ my: theme.spacings.sm })}>
+                  <Trans id='Have you thought about this yet?' />
                 </Typography>
-                <ProductListItems
-                  size='small'
-                  items={crossSellItems}
-                  sx={{
-                    gridTemplateColumns: {
-                      xs: `repeat(2, 1fr)`,
-                      // md: `repeat(3, 1fr)`,
-                    },
-                  }}
-                />
-              </>
-            ) : (
-              <EmptyCart>{error && <ApolloCartErrorAlert error={error} />}</EmptyCart>
+              )}
+            </Container>
+
+            {crossSellItems.length > 0 && (
+              <ItemScroller sx={{ maxWidth: { md: '80vw' } }}>
+                {crossSellItems.map((item) => (
+                  <RenderType
+                    key={item.uid ?? ''}
+                    renderer={productListRenderer}
+                    {...item}
+                    sizes={responsiveVal(200, 300)}
+                  />
+                ))}
+              </ItemScroller>
             )}
           </>
-        </Container>
+        ) : (
+          <EmptyCart>{error && <ApolloCartErrorAlert error={error} />}</EmptyCart>
+        )}
       </WaitForQueries>
     </>
   )

@@ -8,11 +8,9 @@ import { UpdateItemQuantity } from '../../UpdateItemQuantity/UpdateItemQuantity'
 export type ActionCartItemProps = Omit<
   ActionCardProps,
   'value' | 'image' | 'price' | 'title' | 'action'
-> & {
-  readonly?: boolean
-}
+>
 
-export const swatchSizes = {
+export const productImageSizes = {
   small: responsiveVal(50, 60),
   medium: responsiveVal(60, 80),
   large: responsiveVal(80, 100),
@@ -26,12 +24,9 @@ export function ActionCartItem(props: CartItemFragment & ActionCartItemProps) {
     product: { name, thumbnail },
     sx = [],
     details,
-    readonly = false,
     size = 'medium',
     ...cardProps
   } = props
-
-  const iconsizze = swatchSizes[size]
 
   return (
     <ActionCard
@@ -42,10 +37,16 @@ export function ActionCartItem(props: CartItemFragment & ActionCartItemProps) {
       image={
         thumbnail?.url && (
           <Image
-            layout='fill'
             src={thumbnail?.url}
-            sx={{ width: iconsizze, height: iconsizze, display: 'block', borderRadius: 1 }}
-            sizes={iconsizze}
+            width={50}
+            height={50}
+            sx={{
+              width: productImageSizes[size],
+              height: productImageSizes[size],
+              display: 'block',
+              borderRadius: 1,
+            }}
+            sizes={productImageSizes[size]}
           />
         )
       }
@@ -54,7 +55,7 @@ export function ActionCartItem(props: CartItemFragment & ActionCartItemProps) {
       details={
         <>
           {details}
-          {!readonly && <UpdateItemQuantity uid={uid} quantity={quantity} />}
+          <UpdateItemQuantity uid={uid} quantity={quantity} />
         </>
       }
       action={<RemoveItemFromCartFab uid={uid} />}

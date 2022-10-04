@@ -97,6 +97,9 @@ msgstr "Carrito ({0})"
 msgid "Change"
 msgstr "Cambiar"
 
+msgid "Checkout"
+msgstr "Pagar"
+
 msgid "Checkout summary"
 msgstr "Resumen de la compra"
 
@@ -228,6 +231,9 @@ msgstr "Total"
 
 msgid "Have an account?"
 msgstr "¿Tiene una cuenta?"
+
+msgid "Have you thought about this yet?"
+msgstr "¿Ya lo has pensado?"
 
 msgid "Hi {firstname}! You’re now logged in!"
 msgstr "¡Hola {firstname}! Ya estás conectado!"
@@ -540,9 +546,6 @@ msgstr "Este campo es obligatorio"
 
 msgid "This may take a second"
 msgstr "Esto puede tardar un segundo"
-
-msgid "Total <0/>"
-msgstr "Total <0/>"
 
 msgid "Try a different product"
 msgstr "Pruebe un producto diferente"

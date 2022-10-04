@@ -1,9 +1,18 @@
 fragment CartItemCountChanged on Cart @injectable {
   __typename
   id
+  total_quantity
   items {
     __typename
     uid
     quantity
+    product {
+      uid
+      name
+      sku
+      thumbnail {
+        url
+      }
+    }
   }
 }

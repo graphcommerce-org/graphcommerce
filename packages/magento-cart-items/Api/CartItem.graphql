@@ -11,9 +11,6 @@ fragment CartItem on CartItemInterface @injectable {
       url
       label
     }
-    crosssell_products {
-      ...ProductListItem
-    }
   }
 
   prices {

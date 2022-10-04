@@ -156,8 +156,6 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
 
     window.addEventListener('resize', resize)
     return () => window.removeEventListener('resize', resize)
-    // We're not checking for all deps, because that will cause rerenders.
-    // The scroller context shouldn't be changing, but at the moment it is.
   }, [positions, scrollerRef])
 
   // When the overlay is closed by navigating away, we're closing the overlay.
@@ -350,7 +348,6 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
             gridArea: 'overlay',
             scrollSnapAlign: 'start',
             scrollSnapStop: 'always',
-
             [theme.breakpoints.down('md')]: {
               justifyContent: justifySm,
               alignItems: justifySm,
@@ -374,6 +371,9 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
               },
               '&.sizeMdFloating': {
                 padding: `${theme.page.vertical} ${theme.page.horizontal}`,
+              },
+              '&.sizeMdFloating.variantMdBottom': {
+                marginTop: `calc(${theme.page.vertical} * -1)`,
               },
             },
           })}
@@ -418,9 +418,7 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
                 '&.sizeMdFull': {
                   // minWidth: 'max(600px, 50vw)',
                 },
-                '&:not(.sizeMdFull)': {
-                  width: 'max-content',
-                },
+                minWidth: '1px',
 
                 '&.sizeMdFull.variantMdBottom': {
                   minHeight: `calc(${clientSizeCssVar.y} - ${mdSpacingTop})`,
@@ -440,6 +438,10 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
                   borderTopLeftRadius: `${theme.shape.borderRadius * 4}px`,
                   borderTopRightRadius: `${theme.shape.borderRadius * 4}px`,
                 },
+                '&.variantMdLeft, &.variantMdRight': {
+                  width: 'max-content',
+                },
+
                 '&.sizeMdFloating': {
                   borderRadius: `${theme.shape.borderRadius * 4}px`,
                 },
