@@ -8,6 +8,8 @@ import { motionValue } from 'framer-motion'
 import { useCallback, useEffect } from 'react'
 import { useMatchMedia } from '../../hooks'
 
+const clampRound = (value: number) => Math.round(Math.max(0, Math.min(1, value)) * 100) / 100
+
 export function useOverlayPosition(
   variantSm: 'left' | 'bottom' | 'right',
   variantMd: 'left' | 'bottom' | 'right',
@@ -71,27 +73,16 @@ export function useOverlayPosition(
       const positions = getScrollSnapPositions()
 
       if (variant() === 'left') {
-        const xO = 0
-        const xC = positions.x[1] ?? 0
-
-        const visX = xO === xC ? 1 : Math.max(0, Math.min(1, (x - xC) / (xO - xC)))
-        let vis = Math.round(visX * 100) / 100
-        if (xC === 0 && xO === 0) vis = 0
-        state.open.visible.set(vis)
+        const closedX = positions.x[1] ?? 0
+        state.open.visible.set(closedX === 0 ? 0 : clampRound((x - closedX) / -closedX))
       }
       if (variant() === 'right') {
-        const xO = positions.x[1] ?? 0
-        const xC = 0
-
-        const visX = xO === xC ? 1 : Math.max(0, Math.min(1, (x - xC) / (xO - xC)))
-        let vis = Math.round(visX * 100) / 100
-        if (xC === 0 && xO === 0) vis = 0
-        state.open.visible.set(vis)
+        const openedX = positions.x[1] ?? 0
+        state.open.visible.set(openedX === 0 ? 0 : clampRound(x / openedX))
       }
       if (variant() === 'bottom') {
-        const yO = positions.y[1] ?? 0
-        const visY = yO === 0 ? 1 : Math.max(0, Math.min(y / yO, 1))
-        state.open.visible.set(Math.round(visY * 100) / 100)
+        const openedY = positions.y[1] ?? 0
+        state.open.visible.set(openedY === 0 ? 0 : clampRound(y / openedY))
       }
     }
 
