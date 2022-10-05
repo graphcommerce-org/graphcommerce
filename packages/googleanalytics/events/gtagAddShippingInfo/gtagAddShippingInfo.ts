@@ -1,8 +1,8 @@
-import { GtagBeginCheckoutFragment } from './GtagBeginCheckout.gql'
+import { GtagAddShippingInfoFragment } from './GtagAddShippingInfo.gql'
 
-export function gtagBeginCheckout(cart?: GtagBeginCheckoutFragment | null) {
+export function gtagAddShippingInfo<C extends GtagAddShippingInfoFragment>(cart?: C | null) {
   if (process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS) {
-    window.gtag?.('event', 'begin_checkout', {
+    globalThis.gtag?.('event', 'add_shipping_info', {
       currency: cart?.prices?.grand_total?.currency,
       value: cart?.prices?.grand_total?.value,
       coupon: cart?.applied_coupons?.map((coupon) => coupon?.code),
