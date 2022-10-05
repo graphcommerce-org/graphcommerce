@@ -11,6 +11,11 @@
       "project": "./tsconfig.json"
     }
   },
+  "dependencies": {
+    "@graphcommerce/graphql-mesh": "4.2.0",
+    "@graphcommerce/magento-product": "4.7.2",
+    "@graphcommerce/next-ui": "4.28.0"
+  },
   "devDependencies": {
     "@graphcommerce/eslint-config-pwa": "^4.1.8",
     "@graphcommerce/prettier-config-pwa": "^4.0.6",
@@ -18,6 +23,7 @@
     "@types/gtag.js": "^0.0.10"
   },
   "peerDependencies": {
+    "@mui/material": "5.10.0",
     "next": "^12.1.2",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"

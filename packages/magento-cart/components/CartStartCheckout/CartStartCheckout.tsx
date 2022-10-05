@@ -21,7 +21,7 @@ const parts = [
 const { classes } = extendableComponent(name, parts)
 
 export function CartStartCheckout(props: CartStartCheckoutProps) {
-  const { prices, children, sx = [], buttonProps } = props
+  const { prices, children,  buttonProps, sx = [] } = props
 
   const hasTotals = (prices?.grand_total?.value ?? 0) > 0
   return (
@@ -37,6 +37,7 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
     >
       <PageLink href='/checkout' passHref>
         <Button
+          href='/checkout'
           id='cart-start-checkout'
           variant='pill'
           color='secondary'

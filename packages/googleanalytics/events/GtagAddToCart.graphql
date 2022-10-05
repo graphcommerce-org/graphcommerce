@@ -1,0 +1,10 @@
+fragment GtagAddToCart on Cart @inject(into: ["CartItemCountChanged"]) {
+  items {
+    prices {
+      price {
+        currency
+        value
+      }
+    }
+  }
+}

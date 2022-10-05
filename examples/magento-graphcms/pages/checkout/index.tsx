@@ -6,6 +6,7 @@ import {
   WaitForQueries,
 } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { gtagAddShippingInfo } from '@graphcommerce/googleanalytics'
 import { useGoogleRecaptcha } from '@graphcommerce/googlerecaptcha'
 import {
   ApolloCartErrorAlert,
@@ -74,7 +75,6 @@ function ShippingPage() {
               switchPoint={0}
               primary={
                 <ComposedSubmit
-                  onSubmitSuccessful={() => router.push('/checkout/payment')}
                   render={(renderProps) => (
                     <ComposedSubmitLinkOrButton {...renderProps}>
                       <Trans id='Next' />
@@ -125,7 +125,11 @@ function ShippingPage() {
                 )}
 
                 <ComposedSubmit
-                  onSubmitSuccessful={() => router.push('/checkout/payment')}
+                  onSubmitSuccessful={() => {
+                    gtagAddShippingInfo(shippingPage.data?.cart)
+                    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+                    router.push('/checkout/payment')
+                  }}
                   render={(renderProps) => (
                     <>
                       <FormActions>

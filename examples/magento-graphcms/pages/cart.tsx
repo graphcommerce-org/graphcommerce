@@ -1,5 +1,6 @@
 import { WaitForQueries } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { gtagBeginCheckout } from '@graphcommerce/googleanalytics'
 import {
   ApolloCartErrorAlert,
   CartStartCheckout,
@@ -54,6 +55,7 @@ function CartPage() {
               button={{ variant: 'pill' }}
               color='secondary'
               endIcon={<IconSvg src={iconChevronRight} />}
+              onClick={() => gtagBeginCheckout(cart.data?.cart)}
               disabled={!hasItems}
             >
               <Trans id='Next' />
@@ -109,7 +111,12 @@ function CartPage() {
                 <CartTotals containerMargin sx={{ typography: 'body1' }} />
                 <ApolloCartErrorAlert error={error} />
                 <Box key='checkout-button'>
-                  <CartStartCheckout {...data?.cart} />
+                  <CartStartCheckout
+                    {...data?.cart}
+                    buttonProps={{
+                      onClick: () => gtagBeginCheckout(cart.data?.cart),
+                    }}
+                  />
                 </Box>
               </Box>
             ) : (

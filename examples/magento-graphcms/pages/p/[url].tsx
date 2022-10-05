@@ -1,4 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { gtagAddToCart } from '@graphcommerce/googleanalytics'
 import {
   AddProductsToCartButton,
   AddProductsToCartError,
@@ -77,7 +78,7 @@ function ProductPage(props: Props) {
       />
       <ProductPageMeta {...product} />
 
-      <AddProductsToCartForm redirect='added'>
+      <AddProductsToCartForm redirect='added' onComplete={gtagAddToCart}>
         <ConfigurableProductPageGallery
           url_key={product.url_key}
           media_gallery={product.media_gallery}

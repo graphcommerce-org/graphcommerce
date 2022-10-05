@@ -6,7 +6,16 @@ import {
   breakpointVal,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { ButtonBase, Typography, Box, styled, SxProps, Theme } from '@mui/material'
+import {
+  ButtonBase,
+  Typography,
+  Box,
+  styled,
+  SxProps,
+  Theme,
+  ButtonBaseProps,
+  useEventCallback,
+} from '@mui/material'
 import PageLink from 'next/link'
 import React, { PropsWithChildren } from 'react'
 import { ProductListItemFragment } from '../../Api/ProductListItem.gql'
@@ -40,16 +49,15 @@ type StyleProps = {
   imageOnly?: boolean
 }
 
-type BaseProps = PropsWithChildren<
-  { subTitle?: React.ReactNode } & StyleProps &
-    OverlayAreas &
-    ProductListItemFragment &
-    Pick<ImageProps, 'loading' | 'sizes' | 'dontReportWronglySizedImages'>
->
+type BaseProps = { subTitle?: React.ReactNode; children?: React.ReactNode } & StyleProps &
+  OverlayAreas &
+  ProductListItemFragment &
+  Pick<ImageProps, 'loading' | 'sizes' | 'dontReportWronglySizedImages'>
 
 export type ProductListItemProps = BaseProps & {
   sx?: SxProps<Theme>
   titleComponent?: React.ElementType
+  onClick?: (event: React.MouseEvent<HTMLAnchorElement>, item: ProductListItemFragment) => void
 }
 
 const StyledImage = styled(Image)({})
@@ -72,7 +80,12 @@ export function ProductListItem(props: ProductListItemProps) {
     aspectRatio = [4, 3],
     titleComponent = 'h2',
     sx = [],
+    onClick,
   } = props
+
+  const handleClick = useEventCallback((e: React.MouseEvent<HTMLAnchorElement>) =>
+    onClick?.(e, props),
+  )
 
   const productLink = useProductLink(props)
   const discount = Math.floor(price_range.minimum_price.discount?.percent_off ?? 0)
@@ -98,6 +111,7 @@ export function ProductListItem(props: ProductListItemProps) {
           ...(Array.isArray(sx) ? sx : [sx]),
         ]}
         className={classes.root}
+        onClick={onClick ? handleClick : undefined}
       >
         <Box
           sx={(theme) => ({
