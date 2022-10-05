@@ -35,12 +35,12 @@ export async function createCacheReviver(
 
       client.onClearStore(async () => {
         client.cache.restore(incommingState)
-        return persistor?.persist()
+        await persistor?.persist()
       })
 
-      client.onResetStore(() => {
+      client.onResetStore(async () => {
         client.cache.restore(incommingState)
-        return persistor.persist()
+        await persistor?.persist()
       })
 
       const storedState = window.localStorage[APOLLO_CACHE_PERSIST] as string | undefined
