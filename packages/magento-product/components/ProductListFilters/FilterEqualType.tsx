@@ -142,8 +142,12 @@ export function FilterEqualType(props: FilterEqualTypeProps) {
   const { attribute_code, count, label, options, __typename, filterForm, ...chipProps } = props
   const [openEl, setOpenEl] = useState<null | HTMLElement>(null)
   const { params } = useProductListParamsContext()
-  const { control, reset } = filterForm
-  const { emptyFilters, resetFilters } = useFilterActions({ params, attribute_code, reset })
+  const { control } = filterForm
+  const { emptyFilters, resetFilters } = useFilterActions({
+    params,
+    attribute_code,
+    form: filterForm,
+  })
   const currentFilter: FilterEqualTypeInput = cloneDeep(params.filters[attribute_code]) ?? {
     in: [],
   }
