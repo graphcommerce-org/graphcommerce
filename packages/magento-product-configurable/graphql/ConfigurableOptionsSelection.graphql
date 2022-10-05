@@ -32,10 +32,7 @@ fragment ConfigurableOptionsSelection on ConfigurableProduct @injectable {
       uid
       name
       thumbnail {
-        disabled
-        label
-        position
-        url
+        ...ProductImage
       }
       price_range {
         minimum_price {

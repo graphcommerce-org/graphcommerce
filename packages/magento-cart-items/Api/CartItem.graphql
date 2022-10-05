@@ -8,8 +8,7 @@ fragment CartItem on CartItemInterface @injectable {
     name
     url_key
     thumbnail {
-      url
-      label
+      ...ProductImage
     }
   }
 

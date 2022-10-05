@@ -11,7 +11,7 @@ fragment CartItemCountChanged on Cart @injectable {
       name
       sku
       thumbnail {
-        url
+        ...ProductImage
       }
     }
   }
