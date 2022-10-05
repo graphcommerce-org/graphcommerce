@@ -2,14 +2,14 @@ import { UseFormGqlMutationReturn, UseFormGraphQlOptions } from '@graphcommerce/
 import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { Box, SxProps, Theme } from '@mui/material'
 import { useRouter } from 'next/router'
-import { createContext, useContext, useEffect, useMemo } from 'react'
+import { createContext, useContext, useEffect } from 'react'
 import {
   AddProductsToCartDocument,
   AddProductsToCartMutation,
   AddProductsToCartMutationVariables,
 } from './AddProductsToCart.gql'
 
-type RedirectType = 'summary' | 'cart' | 'checkout' | undefined
+type RedirectType = 'added' | 'cart' | 'checkout' | undefined
 
 type AddProductsToCartFormState = AddProductsToCartMutationVariables & {
   redirect?: RedirectType
@@ -67,7 +67,7 @@ export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
           return
 
         if (redirect === 'checkout') await router.push('/checkout')
-        if (redirect === 'summary') await router.push({ pathname: '/checkout/added' })
+        if (redirect === 'added') await router.push({ pathname: '/checkout/added' })
         if (redirect === 'cart') await router.push({ pathname: '/cart' })
       },
       ...formProps,

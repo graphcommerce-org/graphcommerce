@@ -2,4 +2,4 @@
 '@graphcommerce/magento-graphcms': patch
 ---
 
-Update URL loader to latest version
+Update `@graphql-tools/url-loader` to latest version
