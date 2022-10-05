@@ -1,10 +1,8 @@
-import { useCartQuery, CartItemSummaryDocument } from '@graphcommerce/magento-cart'
-
 export const useGtagPurchase = () => {
-  const bla = useCartQuery(CartItemSummaryDocument)
+  // const bla = useCartQuery(CartItemSummaryDocument)
 
   if (process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS) {
-    console.log(cart, 'trigger gtagPurchase')
+    // console.log(cart, 'trigger gtagPurchase')
     // window.gtag?.('event', 'purchase', {
     //   currency: cart?.prices?.grand_total?.currency,
     //   // transaction_id:,
