@@ -115,7 +115,7 @@ export default function MessageSnackbarImpl(props: MessageSnackbarImplProps) {
               gap: theme.spacings.xxs,
               gridTemplate: {
                 xs: `"icon children close"
-                    "action action action"`,
+                     "action action action"`,
                 md: '"icon children action close"',
               },
               gridTemplateColumns: {
