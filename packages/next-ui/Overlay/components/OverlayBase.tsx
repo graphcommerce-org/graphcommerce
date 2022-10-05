@@ -415,9 +415,6 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
                 },
               },
               [theme.breakpoints.up('md')]: {
-                '&.sizeMdFull': {
-                  // minWidth: 'max(600px, 50vw)',
-                },
                 minWidth: '1px',
 
                 '&.sizeMdFull.variantMdBottom': {
