@@ -23,6 +23,7 @@ import { Trans } from '@lingui/react'
 import { Button, Box, Container } from '@mui/material'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 import { LayoutMinimal, LayoutNavigationProps, LayoutMinimalProps } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
 import { DefaultPageDocument } from '../../graphql/DefaultPage.gql'
@@ -37,7 +38,9 @@ function OrderSuccessPage() {
   const { data } = useCartQuery(CartItemSummaryDocument, { allowUrl: true })
   // @todo get order_number
 
-  if (process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS) gtagPurchase(data?.cart)
+  useEffect(() => {
+    if (data?.cart) gtagPurchase(data.cart)
+  }, [data?.cart])
 
   return (
     <>

@@ -1,10 +1,5 @@
 import { gtagSelectItem, useGtagViewItemList } from '@graphcommerce/googleanalytics'
-import {
-  ProductListItemsBase,
-  ProductItemsGridProps,
-  ProductListItemProps,
-} from '@graphcommerce/magento-product'
-import { useEventCallback } from '@mui/material'
+import { ProductListItemsBase, ProductItemsGridProps } from '@graphcommerce/magento-product'
 import { productListRenderer } from './productListRenderer'
 
 export type ProductListItemsProps = Omit<ProductItemsGridProps, 'renderers'> & {
@@ -17,9 +12,13 @@ export function ProductListItems(props: ProductListItemsProps) {
 
   useGtagViewItemList(title, items, item_list_id)
 
-  const clickHandler: ProductListItemProps['onClick'] = useEventCallback((e, item) => {
-    gtagSelectItem(item, item_list_id, title)
-  })
-
-  return <ProductListItemsBase renderers={productListRenderer} {...props} onClick={clickHandler} />
+  return (
+    <ProductListItemsBase
+      renderers={productListRenderer}
+      {...props}
+      onClick={(e, item) => {
+        gtagSelectItem(item, item_list_id, title)
+      }}
+    />
+  )
 }

@@ -1,12 +1,10 @@
 import Script from 'next/script'
 
 export function GoogleAnalyticsScript() {
-  const id = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS
-
   if (process.env.NODE_ENV !== 'production' && !id)
     console.warn('[@graphcommerce/googletagmanager]: NEXT_PUBLIC_GOOGLE_ANALYTICS not found')
 
-  if (!id) return null
+  if (!process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS) return null
 
   return (
     <>
@@ -18,7 +16,7 @@ export function GoogleAnalyticsScript() {
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', '${id}', { 'debug_mode':true });
+          gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', { 'debug_mode':true });
       `}</Script>
     </>
   )

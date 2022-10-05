@@ -42,10 +42,6 @@ function CartPage() {
     (data?.cart?.total_quantity ?? 0) > 0 &&
     typeof data?.cart?.prices?.grand_total?.value !== 'undefined'
 
-  const handleBeginCheckout = useEventCallback(() => {
-    if (process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS) gtagBeginCheckout(cart.data?.cart)
-  })
-
   return (
     <>
       <PageMeta
@@ -60,7 +56,7 @@ function CartPage() {
               button={{ variant: 'pill' }}
               color='secondary'
               endIcon={<IconSvg src={iconChevronRight} />}
-              onClick={handleBeginCheckout}
+              onClick={() => gtagBeginCheckout(cart.data?.cart)}
               disabled={!hasItems}
             >
               <Trans id='Next' />
@@ -118,7 +114,9 @@ function CartPage() {
                 <Box key='checkout-button'>
                   <CartStartCheckout
                     {...data?.cart}
-                    buttonProps={{ onClick: handleBeginCheckout }}
+                    buttonProps={{
+                      onClick: () => gtagBeginCheckout(cart.data?.cart),
+                    }}
                   />
                 </Box>
               </Box>

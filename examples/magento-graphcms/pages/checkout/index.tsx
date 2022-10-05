@@ -36,7 +36,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { CircularProgress, Container, Typography, useEventCallback } from '@mui/material'
+import { CircularProgress, Container, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
@@ -55,12 +55,6 @@ function ShippingPage() {
   const cartExists =
     typeof shippingPage.data?.cart !== 'undefined' &&
     (shippingPage.data.cart?.items?.length ?? 0) > 0
-
-  const submitSuccessFull = useEventCallback(() => {
-    if (process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS) gtagAddShippingInfo(shippingPage.data?.cart)
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    router.push('/checkout/payment')
-  })
 
   return (
     <>
@@ -131,7 +125,11 @@ function ShippingPage() {
                 )}
 
                 <ComposedSubmit
-                  onSubmitSuccessful={submitSuccessFull}
+                  onSubmitSuccessful={() => {
+                    gtagAddShippingInfo(shippingPage.data?.cart)
+                    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+                    router.push('/checkout/payment')
+                  }}
                   render={(renderProps) => (
                     <>
                       <FormActions>
