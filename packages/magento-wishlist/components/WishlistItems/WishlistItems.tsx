@@ -18,7 +18,7 @@ export function WishlistItems(props: WishlistProps) {
   /** Structure between guest and customer wishlist differs */
   return (
     <>
-      {wishlistItemsData.items?.map((item) => {
+      {wishlistItemsData.data?.map((item) => {
         if (!item?.uid && !item?.id) return null
 
         const productData = item?.product ? item?.product : item

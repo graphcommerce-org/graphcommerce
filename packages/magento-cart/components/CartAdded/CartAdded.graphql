@@ -1,0 +1,5 @@
+query CartAdded($cartId: String!) {
+  cart(cart_id: $cartId) {
+    ...CartItemCountChanged
+  }
+}

@@ -1,4 +1,4 @@
-fragment GtagAddShippingInfo on Cart @inject(into: ["AdditionalShippingFields"]) {
+fragment GtagAddShippingInfo on Cart @inject(into: ["ShippingPageFragment"]) {
   prices {
     grand_total {
       currency

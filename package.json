@@ -43,7 +43,7 @@
     }
   },
   "resolutions": {
-    "@graphql-tools/url-loader": "7.14.1"
+    "@graphql-tools/url-loader": "7.16.4"
   },
   "dependencies": {
     "@changesets/changelog-github": "0.4.6",

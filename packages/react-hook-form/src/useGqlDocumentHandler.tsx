@@ -116,20 +116,8 @@ export function handlerFactory<Q, V>(document: TypedDocumentNode<Q, V>): UseGqlD
   const required = requiredPartial as Required
   const encoding = encodingPartial as Encoding
 
-  function heuristicEncode(val: string) {
-    if (Number(val).toString() === val) return Number(val)
-    if (val === 'true') return true
-    if (val === 'false') return false
-    return val
-  }
-
   function encodeItem(enc: FieldTypes, val: unknown) {
     if (Array.isArray(val)) return val.map((v, i) => encodeItem(enc[i], v))
-    if (val && typeof val === 'object') {
-      return Object.fromEntries(
-        Object.entries(val).map(([key, v]) => [key, heuristicEncode(v as string)]),
-      )
-    }
     if (enc === 'Boolean') return Boolean(val)
     if (enc === 'Float' || enc === 'Int') return Number(val)
     return val

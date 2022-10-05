@@ -1,8 +1,6 @@
 import {
   FetchResult,
-  ApolloClient,
   TypedDocumentNode,
-  useApolloClient,
   MutationTuple,
   ApolloError,
   LazyQueryResultTuple,

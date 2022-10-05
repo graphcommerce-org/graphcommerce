@@ -1,6 +1,8 @@
 fragment CartSummary on Cart {
   email
 
+  is_virtual
+
   shipping_addresses {
     selected_shipping_method {
       carrier_code

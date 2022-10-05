@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.1.19
+
+### Patch Changes
+
+- [#1664](https://github.com/graphcommerce-org/graphcommerce/pull/1664) [`97185dc67`](https://github.com/graphcommerce-org/graphcommerce/commit/97185dc670a6d0ce5428393e5b62f786131575fb) Thanks [@FrankHarland](https://github.com/FrankHarland)! - enable recaptchaContext if it isnt enabled
+
 ## 2.1.18
 
 ### Patch Changes

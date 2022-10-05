@@ -42,6 +42,13 @@ export function RenderType<
 export function findByTypename<T extends TypeObject, Typename extends T['__typename']>(
   type: (T | undefined | null)[] | undefined | null,
   typename: Typename,
-): FilterTypeByTypename<T, Typename> {
+): FilterTypeByTypename<T, Typename> | undefined {
   return type?.find((item) => item?.__typename === typename) as FilterTypeByTypename<T, Typename>
+}
+
+export function isTypename<T extends TypeObject, Typenames extends T['__typename'][]>(
+  type: FilterTypeByTypename<T, T['__typename']>,
+  typename: Typenames,
+): type is FilterTypeByTypename<T, Typenames[number]> {
+  return typename.includes(type.__typename)
 }

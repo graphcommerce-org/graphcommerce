@@ -32,6 +32,7 @@ import {
   Stepper,
   LayoutTitle,
   FullPageMessage,
+  iconAddresses,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
@@ -93,9 +94,15 @@ function ShippingPage() {
                 </Container>
               }
             >
-              <LayoutTitle size='small' icon={iconBox}>
-                <Trans id='Shipping' />
-              </LayoutTitle>
+              {shippingPage.data?.cart?.is_virtual ? (
+                <LayoutTitle size='small' icon={iconAddresses}>
+                  <Trans id='Billing address' />
+                </LayoutTitle>
+              ) : (
+                <LayoutTitle size='small' icon={iconBox}>
+                  <Trans id='Shipping' />
+                </LayoutTitle>
+              )}
             </LayoutHeader>
             <Container maxWidth='md'>
               <>
@@ -117,9 +124,11 @@ function ShippingPage() {
                   </>
                 )}
 
-                <ShippingMethodForm step={4} sx={(theme) => ({ mt: theme.spacings.lg })}>
-                  <PickupLocationSelector step={5} />
-                </ShippingMethodForm>
+                {!shippingPage.data?.cart?.is_virtual && (
+                  <ShippingMethodForm step={4} sx={(theme) => ({ mt: theme.spacings.lg })}>
+                    <PickupLocationSelector step={5} />
+                  </ShippingMethodForm>
+                )}
 
                 <ComposedSubmit
                   onSubmitSuccessful={submitSuccessFull}

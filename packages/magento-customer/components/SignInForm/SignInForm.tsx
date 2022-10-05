@@ -1,9 +1,11 @@
+import { useApolloClient } from '@graphcommerce/graphql'
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
 import { Button, FormRow, FormActions } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
 import { Box, FormControl, Link, SxProps, TextField, Theme } from '@mui/material'
 import PageLink from 'next/link'
+import { CustomerDocument } from '../../hooks'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import { SignInDocument } from './SignIn.gql'
 
@@ -11,9 +13,20 @@ type SignInFormProps = { email: string; sx?: SxProps<Theme> }
 
 export function SignInForm(props: SignInFormProps) {
   const { email, sx } = props
+
+  const client = useApolloClient()
   const form = useFormGqlMutation(
     SignInDocument,
-    { defaultValues: { email }, onBeforeSubmit: (values) => ({ ...values, email }) },
+    {
+      defaultValues: { email },
+      onBeforeSubmit: async (values) => {
+        const oldEmail = client.cache.readQuery({ query: CustomerDocument })
+        if (oldEmail?.customer?.email !== email) {
+          await client.resetStore()
+        }
+        return { ...values, email }
+      },
+    },
     { errorPolicy: 'all' },
   )
 

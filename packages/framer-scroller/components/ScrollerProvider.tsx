@@ -21,6 +21,9 @@ export type ScrollerProviderProps = {
   scrollSnapTypeMd?: ScrollSnapType
   scrollSnapAlign?: ScrollSnapAlign
   scrollSnapStop?: ScrollSnapStop
+
+  /** @private */
+  _inititalSnap?: boolean
 }
 
 function useObserveItems(scrollerRef: ReactHtmlRefObject, items: MotionValue<ItemState[]>) {
@@ -71,6 +74,7 @@ export function ScrollerProvider(props: ScrollerProviderProps) {
     scrollSnapStop = 'normal',
     scrollSnapTypeSm = 'inline mandatory',
     scrollSnapTypeMd = 'inline mandatory',
+    _inititalSnap = true,
     ...providerProps
   } = props
 
@@ -79,7 +83,7 @@ export function ScrollerProvider(props: ScrollerProviderProps) {
     [scrollSnapAlign, scrollSnapStop, scrollSnapTypeMd, scrollSnapTypeSm],
   )
 
-  const snap = useMotionValue(true)
+  const snap = useMotionValue(_inititalSnap)
 
   // Monitor the visbility of all elements and store them for later use.
   const items = useMotionValue<ItemState[]>([])
@@ -190,7 +194,9 @@ export function ScrollerProvider(props: ScrollerProviderProps) {
           continue
         }
 
-        const align = getComputedStyle(child).scrollSnapAlign
+        const { scrollSnapAlign: align } = getComputedStyle(child)
+
+        // console.trace(scrollPaddingTop, scrollPaddingRight, scrollPaddingBottom, scrollPaddingLeft)
         let [childAlignY, childAlignX] = align.split(' ') as [
           ScrollSnapAlignAxis,
           ScrollSnapAlignAxis | undefined,
@@ -266,20 +272,32 @@ export function ScrollerProvider(props: ScrollerProviderProps) {
     }
 
     const clamp = (min: number, max: number) => (value: number) =>
-      Math.max(min, Math.min(max, value))
+      Math.round(Math.max(min, Math.min(max, value)))
 
     return {
       x: [
-        ...snapPositions.x.start.map((v) => v - scrollPadding.x.before),
-        ...snapPositions.x.center.map((v) => v - rect.width / 2),
-        ...snapPositions.x.end.map((v) => v - rect.width + scrollPadding.x.after),
-      ].map(clamp(0, maxScroll.x)),
+        ...new Set(
+          [
+            ...snapPositions.x.start.map((v) => v - scrollPadding.x.before),
+            ...snapPositions.x.center.map((v) => v - rect.width / 2),
+            ...snapPositions.x.end.map((v) => v - rect.width + scrollPadding.x.after),
+          ]
+            .map(clamp(0, maxScroll.x))
+            .sort((a, b) => a - b),
+        ),
+      ],
 
       y: [
-        ...snapPositions.y.start.map((v) => v - scrollPadding.y.before),
-        ...snapPositions.y.center.map((v) => v - rect.height / 2),
-        ...snapPositions.y.end.map((v) => v - rect.height + scrollPadding.y.after),
-      ].map(clamp(0, maxScroll.y)),
+        ...new Set(
+          [
+            ...snapPositions.y.start.map((v) => v - scrollPadding.y.before),
+            ...snapPositions.y.center.map((v) => v - rect.height / 2),
+            ...snapPositions.y.end.map((v) => v - rect.height + scrollPadding.y.after),
+          ]
+            .map(clamp(0, maxScroll.y))
+            .sort((a, b) => a - b),
+        ),
+      ],
     }
   }
 

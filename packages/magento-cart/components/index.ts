@@ -1,4 +1,5 @@
 export * from './ApolloCartError'
+export * from './CartAdded'
 export * from './CartAddressMultiLine/CartAddressMultiLine'
 export * from './CartAddressSingleLine/CartAddressSingleLine'
 export * from './CartAgreementsForm/CartAgreements.gql'

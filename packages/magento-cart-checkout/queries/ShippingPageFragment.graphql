@@ -1,0 +1,6 @@
+fragment ShippingPageFragment on Cart @injectable {
+  ...BillingAddress
+  ...ShippingAddress
+  ...CartSummary
+  ...CartStartCheckout
+}

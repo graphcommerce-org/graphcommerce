@@ -1,5 +1,84 @@
 # Change Log
 
+## 4.7.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/magento-product@4.7.2
+
+## 4.7.0
+
+### Minor Changes
+
+- [#1662](https://github.com/graphcommerce-org/graphcommerce/pull/1662) [`de8925aa9`](https://github.com/graphcommerce-org/graphcommerce/commit/de8925aa910b191c62041530c68c697a58a1e52d) Thanks [@paales](https://github.com/paales)! - Allow for a custom Component for magentoMenuToNavigation and allow React.ReactNode for items
+
+### Patch Changes
+
+- Updated dependencies [[`0c21c5c23`](https://github.com/graphcommerce-org/graphcommerce/commit/0c21c5c233ebab15f6629c234e3de1cc8c0452e1), [`de8925aa9`](https://github.com/graphcommerce-org/graphcommerce/commit/de8925aa910b191c62041530c68c697a58a1e52d), [`f5eae0afd`](https://github.com/graphcommerce-org/graphcommerce/commit/f5eae0afdbd474b1f81c450425ffadf2d025187a)]:
+  - @graphcommerce/next-ui@4.28.0
+  - @graphcommerce/framer-scroller@2.1.40
+  - @graphcommerce/magento-product@4.7.1
+  - @graphcommerce/magento-store@4.3.1
+
+## 4.6.0
+
+### Minor Changes
+
+- [#1659](https://github.com/graphcommerce-org/graphcommerce/pull/1659) [`6987ec7d2`](https://github.com/graphcommerce-org/graphcommerce/commit/6987ec7d21ce2d481fabbd6eda039702fcf5242b) Thanks [@Jessevdpoel](https://github.com/Jessevdpoel)! - Added product and category breadcrumbs
+
+### Patch Changes
+
+- Updated dependencies [[`6987ec7d2`](https://github.com/graphcommerce-org/graphcommerce/commit/6987ec7d21ce2d481fabbd6eda039702fcf5242b)]:
+  - @graphcommerce/magento-product@4.7.0
+
+## 4.5.12
+
+### Patch Changes
+
+- Updated dependencies [[`48e6522bb`](https://github.com/graphcommerce-org/graphcommerce/commit/48e6522bb9424d4bd77fd77c68065f5625f3ec8d), [`37b1980a0`](https://github.com/graphcommerce-org/graphcommerce/commit/37b1980a04a4a3d77663b404ae83539620cf65b9)]:
+  - @graphcommerce/magento-product@4.6.1
+
+## 4.5.11
+
+### Patch Changes
+
+- Updated dependencies [[`ad63ebf4e`](https://github.com/graphcommerce-org/graphcommerce/commit/ad63ebf4e33bfb0e5c9e5e68ab69b14775f3f8a8), [`b6bf2c941`](https://github.com/graphcommerce-org/graphcommerce/commit/b6bf2c94197ddacbf8f1fc0d352cd0d46e096f30)]:
+  - @graphcommerce/magento-product@4.6.0
+  - @graphcommerce/magento-store@4.3.0
+  - @graphcommerce/next-ui@4.27.0
+  - @graphcommerce/framer-scroller@2.1.39
+
+## 4.5.10
+
+### Patch Changes
+
+- Updated dependencies [[`42e7fac75`](https://github.com/graphcommerce-org/graphcommerce/commit/42e7fac75712f9bda7a6b919ede14b3c75d07771)]:
+  - @graphcommerce/next-ui@4.26.0
+  - @graphcommerce/framer-scroller@2.1.38
+  - @graphcommerce/magento-product@4.5.10
+  - @graphcommerce/magento-store@4.2.35
+
+## 4.5.9
+
+### Patch Changes
+
+- Updated dependencies [[`dc6237644`](https://github.com/graphcommerce-org/graphcommerce/commit/dc6237644ac349debb728059e4c937cec25bf4fd), [`48273bccd`](https://github.com/graphcommerce-org/graphcommerce/commit/48273bccd2e471ce4bc024a600e693da791f1cde)]:
+  - @graphcommerce/next-ui@4.25.0
+  - @graphcommerce/framer-scroller@2.1.37
+  - @graphcommerce/magento-product@4.5.9
+  - @graphcommerce/magento-store@4.2.34
+
+## 4.5.8
+
+### Patch Changes
+
+- Updated dependencies [[`104103bc2`](https://github.com/graphcommerce-org/graphcommerce/commit/104103bc2a0fbaa510af2e26b6b00ddc63e8495b)]:
+  - @graphcommerce/next-ui@4.24.0
+  - @graphcommerce/framer-scroller@2.1.36
+  - @graphcommerce/magento-product@4.5.8
+  - @graphcommerce/magento-store@4.2.33
+
 ## 4.5.7
 
 ### Patch Changes

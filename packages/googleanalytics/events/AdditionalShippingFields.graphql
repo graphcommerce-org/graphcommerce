@@ -1,3 +1,0 @@
-fragment AdditionalShippingFields on Cart @injectable {
-  id
-}

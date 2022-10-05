@@ -10,18 +10,18 @@ export function useMergeGuestWishlistWithCustomer() {
   const { loggedIn } = useCustomerSession()
   const { cache } = useApolloClient()
 
-  const guestSkus = useQuery(GuestWishlistDocument, { ssr: false }).data?.guestWishlist?.items
+  const guestItems = useQuery(GuestWishlistDocument, { ssr: false }).data?.guestWishlist?.items
 
   const guestProducts = useQuery(GetGuestWishlistProductsDocument, {
     ssr: false,
-    variables: { filters: { sku: { in: guestSkus?.map((item) => item?.sku) } } },
-    skip: guestSkus && guestSkus?.length === 0,
+    variables: { filters: { url_key: { in: guestItems?.map((item) => item?.url_key) } } },
+    skip: guestItems && guestItems?.length === 0,
   }).data?.products?.items
 
   const [addWishlistItem] = useMutation(AddProductToWishlistDocument)
 
   useEffect(() => {
-    if (!loggedIn || !guestSkus || guestSkus.length === 0) return
+    if (!loggedIn || !guestItems || guestItems.length === 0) return
 
     const clearGuestList = () =>
       cache.evict({ id: cache.identify({ __typename: 'GuestWishlist' }) })
@@ -29,12 +29,12 @@ export function useMergeGuestWishlistWithCustomer() {
     if (guestProducts?.length === 0) {
       clearGuestList()
     } else {
-      const input = guestSkus
+      const input = guestItems
         .filter((item) => guestProducts?.find((i) => i?.sku === item.sku))
         .map(({ sku, selected_options, quantity }) => ({ sku, selected_options, quantity }))
 
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       if (input.length) addWishlistItem({ variables: { input } }).then(clearGuestList)
     }
-  }, [addWishlistItem, cache, guestProducts, guestSkus, loggedIn])
+  }, [addWishlistItem, cache, guestProducts, guestItems, loggedIn])
 }

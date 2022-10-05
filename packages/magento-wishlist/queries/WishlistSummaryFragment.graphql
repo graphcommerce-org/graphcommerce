@@ -6,7 +6,7 @@ fragment WishlistSummaryFragment on Wishlist {
       id
       product {
         uid
-        sku
+        url_key
       }
     }
   }

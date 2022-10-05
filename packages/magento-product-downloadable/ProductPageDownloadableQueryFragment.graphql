@@ -1,11 +1,9 @@
 fragment ProductPageDownloadableQueryFragment on Query {
   typeProducts: products(filter: { url_key: { eq: $urlKey } }) {
-    ...ProductSpecs
     items {
       __typename
       uid
       ... on DownloadableProduct {
-        ...ProductCustomizable
         downloadable_product_links {
           price
           sample_url

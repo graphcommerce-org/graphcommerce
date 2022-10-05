@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.2.0
+
+### Minor Changes
+
+- [#1633](https://github.com/graphcommerce-org/graphcommerce/pull/1633) [`4487db309`](https://github.com/graphcommerce-org/graphcommerce/commit/4487db309df01a22f49876cf4a5574ece303a8ca) Thanks [@timhofman](https://github.com/timhofman)! - Send gcms-locales header to the Hypgraph backend so requests are translated.
+
 ## 4.1.9
 
 ### Patch Changes

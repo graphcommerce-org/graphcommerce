@@ -229,6 +229,9 @@ msgstr "Total"
 msgid "Have an account?"
 msgstr "¿Tiene una cuenta?"
 
+msgid "Have you thought about this yet?"
+msgstr "¿Ya lo has pensado?"
+
 msgid "Hi {firstname}! You’re now logged in!"
 msgstr "¡Hola {firstname}! Ya estás conectado!"
 
@@ -261,9 +264,6 @@ msgstr "Últimas compras"
 
 msgid "Light Mode"
 msgstr "Modo claro"
-
-msgid "Loading cart"
-msgstr "Cargando carrito"
 
 msgid "Loading wishlist"
 msgstr "Cargando lista de deseos"
@@ -403,6 +403,9 @@ msgstr "Por favor, seleccione un método de pago"
 msgid "Please select a shipping method"
 msgstr "Por favor, seleccione un método de envío"
 
+msgid "Please select a value for ‘{label}’"
+msgstr "Seleccione un valor para {label}"
+
 msgid "Postcode"
 msgstr "Código postal"
 
@@ -412,11 +415,17 @@ msgstr "Prefijo"
 msgid "Product could not be found"
 msgstr "No se encontró el producto"
 
+msgid "Product not available in {allLabels}"
+msgstr "Producto no disponible en {allLabels}"
+
 msgid "Products"
 msgstr "Productos"
 
 msgid "Region"
 msgstr "Región"
+
+msgid "Remove"
+msgstr "Eliminar"
 
 msgid "Remove Product"
 msgstr "Eliminar producto"
@@ -424,14 +433,14 @@ msgstr "Eliminar producto"
 msgid "Remove from wishlist"
 msgstr "Eliminar de la lista de deseos"
 
-msgid "Reset Cart"
-msgstr "Restablecer carrito"
-
 msgid "Reset Cart and Return to home"
 msgstr "Restablecer carrito y volver a inicio"
 
 msgid "Results for ‘{search}’"
 msgstr "Resultados para ‘{search}’"
+
+msgid "Review"
+msgstr "Review"
 
 msgid "Reviews"
 msgstr "Comentarios"
@@ -499,6 +508,9 @@ msgstr "Enviar comentario"
 msgid "Subscribe to newsletter"
 msgstr "Suscribirse al boletín"
 
+msgid "Subscribe to our newsletter to stay informed about our new products!"
+msgstr "¡Suscríbete a nuestro boletín para mantenerte informado sobre nuestros nuevos productos!"
+
 msgid "Successfully changed password"
 msgstr "Contraseña cambiada correctamente"
 
@@ -507,6 +519,9 @@ msgstr "Cambios guardados correctamente"
 
 msgid "Successfully updated email"
 msgstr "Correo electrónico actualizado correctamente"
+
+msgid "Summary"
+msgstr "Descripción"
 
 msgid "Switch stores"
 msgstr "Cambiar tiendas"
@@ -522,6 +537,9 @@ msgstr "¡Gracias por su pedido!"
 
 msgid "Thank you! Your review was successfully submitted for approval"
 msgstr "¡Gracias! Su comentario se ha enviado correctamente para su aprobación"
+
+msgid "This field is required"
+msgstr "Este campo es obligatorio"
 
 msgid "This may take a second"
 msgstr "Esto puede tardar un segundo"
@@ -552,9 +570,6 @@ msgstr "Ver su cuenta"
 
 msgid "We are fetching your favorite products, one moment please!"
 msgstr "Estamos obteniendo sus productos favoritos, un momento por favor!"
-
-msgid "We are fetching your products, one moment please!"
-msgstr "Estamos obteniendo sus productos, un momento por favor!"
 
 msgid "We couldn't find any results for {term}"
 msgstr "No se encontraron resultados para {term}"

@@ -1,6 +1,6 @@
 import { ScrollSnapType } from '../types'
 
-export type SnapTypeDirection = 'block' | 'inline' | 'both' | 'inline'
+export type SnapTypeDirection = 'block' | 'inline' | 'both'
 export function scrollSnapTypeDirection(scrollSnapType: ScrollSnapType): SnapTypeDirection {
   let snapDir = scrollSnapType.split(' ')[0]
   snapDir = snapDir.replace('y', 'block')

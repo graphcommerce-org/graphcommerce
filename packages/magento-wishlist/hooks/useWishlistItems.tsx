@@ -1,14 +1,26 @@
-import { useQuery } from '@graphcommerce/graphql'
+import { QueryResult, useQuery } from '@graphcommerce/graphql'
 import { useCustomerSession } from '@graphcommerce/magento-customer'
-import { GetGuestWishlistProductsDocument } from '../queries/GetGuestWishlistProducts.gql'
-import { GetWishlistProductsDocument } from '../queries/GetWishlistProducts.gql'
+import {
+  GetGuestWishlistProductsDocument,
+  GetGuestWishlistProductsQuery,
+} from '../queries/GetGuestWishlistProducts.gql'
+import {
+  GetWishlistProductsDocument,
+  GetWishlistProductsQuery,
+} from '../queries/GetWishlistProducts.gql'
 import { GuestWishlistDocument } from '../queries/GuestWishlist.gql'
 
-export function useWishlistItems() {
+type WishListData =
+  | NonNullable<GetGuestWishlistProductsQuery['products']>['items']
+  | NonNullable<
+      NonNullable<NonNullable<GetWishlistProductsQuery['customer']>['wishlists'][0]>['items_v2']
+    >['items']
+
+export function useWishlistItems(): Omit<QueryResult<GetGuestWishlistProductsQuery>, 'data'> & {
+  data: WishListData
+} {
   const { loggedIn } = useCustomerSession()
-
-  let wishlistItems
-
+  let wishlistItems: WishListData = []
   /** Get customer wishlist from session */
   const customerWl = useQuery(GetWishlistProductsDocument, { ssr: false, skip: !loggedIn })
 
@@ -22,14 +34,20 @@ export function useWishlistItems() {
     skip: guestSkus.length === 0,
   })
 
-  if (loggedIn) {
-    wishlistItems = customerWl.data?.customer?.wishlists[0]?.items_v2?.items
-  } else {
-    wishlistItems = guestProducts.data?.products?.items || []
-  }
+  const loading = guestWl.loading || guestProducts.loading || customerWl.loading
+
+  // When loading the queries, data will return undefined. While we load the new data, we want
+  // to return the previous data, to prevent the UI for going in a loading state
+  if (loading && !loggedIn) wishlistItems = guestProducts.previousData?.products?.items
+  if (loading && loggedIn)
+    wishlistItems = customerWl.previousData?.customer?.wishlists[0]?.items_v2?.items
+
+  if (!loading && loggedIn) wishlistItems = customerWl.data?.customer?.wishlists[0]?.items_v2?.items
+  if (!loading && !loggedIn) wishlistItems = guestProducts.data?.products?.items
 
   return {
-    items: wishlistItems,
-    loading: guestWl.loading || guestProducts.loading || customerWl.loading,
+    ...guestProducts,
+    data: wishlistItems,
+    loading,
   }
 }

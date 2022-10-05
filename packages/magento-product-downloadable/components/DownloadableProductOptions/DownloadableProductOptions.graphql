@@ -1,0 +1,18 @@
+fragment DownloadableProductOptions on DownloadableProduct {
+  __typename
+  uid
+  ... on DownloadableProduct {
+    downloadable_product_links {
+      price
+      sample_url
+      sort_order
+      title
+      uid
+    }
+    downloadable_product_samples {
+      title
+      sort_order
+      sample_url
+    }
+  }
+}

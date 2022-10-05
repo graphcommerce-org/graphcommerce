@@ -5,21 +5,35 @@ import {
   useIsomorphicLayoutEffect,
 } from '@graphcommerce/framer-utils'
 import { motionValue } from 'framer-motion'
-import { useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
+import { useMatchMedia } from '../../hooks'
 
-export function useOverlayPosition() {
+const clampRound = (value: number) => Math.round(Math.max(0, Math.min(1, value)) * 100) / 100
+
+export function useOverlayPosition(
+  variantSm: 'left' | 'bottom' | 'right',
+  variantMd: 'left' | 'bottom' | 'right',
+) {
+  const match = useMatchMedia()
   const { getScrollSnapPositions, scrollerRef } = useScrollerContext()
-
   const state = useConstant(() => ({
     open: {
       x: motionValue(0),
       y: motionValue(0),
       visible: motionValue(0),
     },
-    closed: { x: motionValue(0), y: motionValue(0) },
+    closed: {
+      x: motionValue(0),
+      y: motionValue(0),
+    },
   }))
 
   const scroll = useElementScroll(scrollerRef)
+
+  const variant = useCallback(
+    () => (match.up('md') ? variantMd : variantSm),
+    [match, variantMd, variantSm],
+  )
 
   useIsomorphicLayoutEffect(() => {
     if (!scrollerRef.current) return () => {}
@@ -27,49 +41,65 @@ export function useOverlayPosition() {
     const measure = () => {
       const positions = getScrollSnapPositions()
 
-      state.open.x.set(positions.x[1] ?? 0)
-      state.closed.x.set(positions.x[0])
-      state.open.y.set(positions.y[1] ?? 0)
-      state.closed.y.set(positions.y[0])
+      if (variant() === 'left') {
+        state.open.x.set(0)
+        state.closed.x.set(positions.x[positions.x.length - 1] ?? 0)
+      }
+      if (variant() === 'right') {
+        state.open.x.set(positions.x[positions.x.length - 1] ?? 0)
+        state.closed.x.set(0)
+      }
+      if (variant() === 'bottom') {
+        state.open.y.set(positions.y[positions.y.length - 1] ?? 0)
+        state.closed.y.set(0)
+      }
     }
-    const ro = new ResizeObserver(measure)
     measure()
 
+    const ro = new ResizeObserver(measure)
     ro.observe(scrollerRef.current)
+    ;[...scrollerRef.current.children].forEach((child) => ro.observe(child))
+
     return () => ro.disconnect()
-  })
+  }, [getScrollSnapPositions, scrollerRef, state, variant])
 
   // sets a float between 0 and 1 for the visibility of the overlay
   useEffect(() => {
+    if (!scrollerRef.current) return () => {}
     const calc = () => {
-      const x = scroll.x.get()
-      const y = scroll.y.get()
+      const x = scrollerRef.current?.scrollLeft ?? scroll.x.get()
+      const y = scrollerRef.current?.scrollTop ?? scroll.y.get()
 
-      const yC = state.closed.y.get()
-      const yO = state.open.y.get()
-      const visY = yC === yO ? 1 : Math.max(0, Math.min(1, (y - yC) / (yO - yC)))
+      const positions = getScrollSnapPositions()
 
-      const xC = state.closed.x.get()
-      const xO = state.open.x.get()
-
-      const visX = xO === xC ? 1 : Math.max(0, Math.min(1, (x - xC) / (xO - xC)))
-
-      let vis = visY * visX
-      if (xC === 0 && xO === 0 && yC === 0 && yO === 0) vis = 0
-
-      // todo: visibility sometimes flickers
-      state.open.visible.set(vis)
+      if (variant() === 'left') {
+        const closedX = positions.x[1] ?? 0
+        state.open.visible.set(closedX === 0 ? 0 : clampRound((x - closedX) / -closedX))
+      }
+      if (variant() === 'right') {
+        const openedX = positions.x[1] ?? 0
+        state.open.visible.set(openedX === 0 ? 0 : clampRound(x / openedX))
+      }
+      if (variant() === 'bottom') {
+        const openedY = positions.y[1] ?? 0
+        state.open.visible.set(openedY === 0 ? 0 : clampRound(y / openedY))
+      }
     }
 
     const cancelY = scroll.y.onChange(calc)
     const cancelX = scroll.x.onChange(calc)
     calc()
 
+    const ro = new ResizeObserver(calc)
+    ro.observe(scrollerRef.current)
+    ;[...scrollerRef.current.children].forEach((child) => ro.observe(child))
+
     return () => {
       cancelY()
       cancelX()
+      ro.disconnect()
     }
-  }, [state, scroll])
+  }, [getScrollSnapPositions, scroll, scrollerRef, state, variant])
 
   return state
 }

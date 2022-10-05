@@ -1,11 +1,9 @@
 fragment ProductPageGroupedQueryFragment on Query {
   typeProducts: products(filter: { url_key: { eq: $urlKey } }) {
-    ...ProductSpecs
     items {
       __typename
       uid
       ... on GroupedProduct {
-        ...ProductWeight
         items {
           position
           qty

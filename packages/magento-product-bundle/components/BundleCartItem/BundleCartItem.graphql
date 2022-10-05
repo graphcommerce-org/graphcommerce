@@ -1,0 +1,16 @@
+fragment BundleCartItem on BundleCartItem @inject(into: ["CartItem"]) {
+  bundle_options {
+    uid
+    label
+    type
+    values {
+      uid
+      label
+      quantity
+      price
+    }
+  }
+  bundle_customizable: customizable_options {
+    ...SelectedCustomizableOption
+  }
+}

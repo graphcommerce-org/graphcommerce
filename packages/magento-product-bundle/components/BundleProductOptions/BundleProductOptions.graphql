@@ -1,0 +1,35 @@
+fragment BundleProductOptions on BundleProduct {
+  ship_bundle_items
+  dynamic_sku
+  dynamic_price
+  dynamic_weight
+  items {
+    uid
+    position
+    required
+    sku
+    title
+    type
+    options {
+      can_change_quantity
+      uid
+      is_default
+      label
+      position
+      price
+      price_type
+      quantity
+      uid
+      product {
+        swatch_image
+        uid
+        __typename
+        name
+        url_key
+        thumbnail {
+          ...ProductImage
+        }
+      }
+    }
+  }
+}

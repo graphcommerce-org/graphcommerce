@@ -19,19 +19,18 @@ export function useClientSizeCssVar() {
     if (watching === true) return () => {}
 
     const recalc = () => {
-      if (typeof window !== 'undefined') {
-        const { x, y } = clientSize
-        document.body.style.setProperty('--client-size-x', `${x.get()}px`)
-        document.body.style.setProperty('--client-size-y', `${y.get()}px`)
-      }
+      document.body.style.setProperty('--client-size-x', `${global.window?.innerWidth ?? 0}px`)
+      document.body.style.setProperty('--client-size-y', `${global.window?.innerHeight ?? 0}px`)
     }
+
+    window.addEventListener('resize', recalc)
+
     recalc()
     watching = true
-    const reset = clientSize.y.onChange(recalc)
 
     return () => {
       watching = false
-      reset()
+      window.removeEventListener('resize', recalc)
     }
   }, [])
 }

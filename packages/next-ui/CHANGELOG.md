@@ -1,5 +1,69 @@
 # Change Log
 
+## 4.28.0
+
+### Minor Changes
+
+- [#1662](https://github.com/graphcommerce-org/graphcommerce/pull/1662) [`0c21c5c23`](https://github.com/graphcommerce-org/graphcommerce/commit/0c21c5c233ebab15f6629c234e3de1cc8c0452e1) Thanks [@paales](https://github.com/paales)! - Implement serverRenderDepth prop to the Navigation to limit initial render time and TBT
+
+* [#1662](https://github.com/graphcommerce-org/graphcommerce/pull/1662) [`f5eae0afd`](https://github.com/graphcommerce-org/graphcommerce/commit/f5eae0afdbd474b1f81c450425ffadf2d025187a) Thanks [@paales](https://github.com/paales)! - Move to useMatchMedia to have a simple boolean utility that allows to match to a certain breakpoint
+
+### Patch Changes
+
+- [#1662](https://github.com/graphcommerce-org/graphcommerce/pull/1662) [`de8925aa9`](https://github.com/graphcommerce-org/graphcommerce/commit/de8925aa910b191c62041530c68c697a58a1e52d) Thanks [@paales](https://github.com/paales)! - Allow for a custom Component for magentoMenuToNavigation and allow React.ReactNode for items
+
+- Updated dependencies [[`f5eae0afd`](https://github.com/graphcommerce-org/graphcommerce/commit/f5eae0afdbd474b1f81c450425ffadf2d025187a), [`9e0ca73eb`](https://github.com/graphcommerce-org/graphcommerce/commit/9e0ca73eb50ded578f4a98e40a7eb920bf8ab421)]:
+  - @graphcommerce/framer-scroller@2.1.40
+  - @graphcommerce/framer-next-pages@3.3.1
+
+## 4.27.0
+
+### Minor Changes
+
+- [#1642](https://github.com/graphcommerce-org/graphcommerce/pull/1642) [`ad63ebf4e`](https://github.com/graphcommerce-org/graphcommerce/commit/ad63ebf4e33bfb0e5c9e5e68ab69b14775f3f8a8) Thanks [@paales](https://github.com/paales)! - Introduced `<AddProductsToCartForm/>`, which is allows for adding all product types to the cart with a single react-hook-form form.
+
+  Which allows you to fully compose the form on the product page without having to modify the page.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/framer-scroller@2.1.39
+
+## 4.26.0
+
+### Minor Changes
+
+- [#1651](https://github.com/graphcommerce-org/graphcommerce/pull/1651) [`42e7fac75`](https://github.com/graphcommerce-org/graphcommerce/commit/42e7fac75712f9bda7a6b919ede14b3c75d07771) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Correct component usage in /service
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/framer-scroller@2.1.38
+
+## 4.25.0
+
+### Minor Changes
+
+- [#1641](https://github.com/graphcommerce-org/graphcommerce/pull/1641) [`dc6237644`](https://github.com/graphcommerce-org/graphcommerce/commit/dc6237644ac349debb728059e4c937cec25bf4fd) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Fix overlay content stretch bug on hover while animating
+
+* [#1643](https://github.com/graphcommerce-org/graphcommerce/pull/1643) [`48273bccd`](https://github.com/graphcommerce-org/graphcommerce/commit/48273bccd2e471ce4bc024a600e693da791f1cde) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Show current navigation title on item interaction
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/framer-scroller@2.1.37
+
+## 4.24.0
+
+### Minor Changes
+
+- [#1638](https://github.com/graphcommerce-org/graphcommerce/pull/1638) [`104103bc2`](https://github.com/graphcommerce-org/graphcommerce/commit/104103bc2a0fbaa510af2e26b6b00ddc63e8495b) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Fix navigation overlay visibility bug
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/framer-scroller@2.1.36
+
 ## 4.23.1
 
 ### Patch Changes

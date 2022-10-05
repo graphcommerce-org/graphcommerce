@@ -12,7 +12,7 @@ export type RequiredKeys<
 export function filterNonNullableKeys<
   T extends Record<string, unknown>,
   Keys extends OptionalKeysOf<T>,
->(items: (T | null | undefined)[] | null | undefined, values: Keys[]) {
+>(items: (T | null | undefined)[] | null | undefined, values: Keys[] = []) {
   if (!items) return []
 
   const result = items.filter(

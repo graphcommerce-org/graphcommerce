@@ -1,5 +1,90 @@
 # Change Log
 
+## 3.1.4
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/magento-cart@4.8.7
+  - @graphcommerce/magento-product@4.7.2
+  - @graphcommerce/magento-product-simple@4.1.4
+  - @graphcommerce/magento-product-virtual@4.1.4
+
+## 3.1.3
+
+### Patch Changes
+
+- Updated dependencies [[`93c8f3a3f`](https://github.com/graphcommerce-org/graphcommerce/commit/93c8f3a3f2fd2d16e5a5132652bf489858583f63)]:
+  - @graphcommerce/magento-cart@4.8.6
+  - @graphcommerce/magento-product@4.7.1
+  - @graphcommerce/magento-product-simple@4.1.3
+  - @graphcommerce/magento-product-virtual@4.1.3
+
+## 3.1.2
+
+### Patch Changes
+
+- Updated dependencies [[`6987ec7d2`](https://github.com/graphcommerce-org/graphcommerce/commit/6987ec7d21ce2d481fabbd6eda039702fcf5242b)]:
+  - @graphcommerce/magento-product@4.7.0
+  - @graphcommerce/magento-product-simple@4.1.2
+  - @graphcommerce/magento-product-virtual@4.1.2
+
+## 3.1.1
+
+### Patch Changes
+
+- Updated dependencies [[`48e6522bb`](https://github.com/graphcommerce-org/graphcommerce/commit/48e6522bb9424d4bd77fd77c68065f5625f3ec8d), [`37b1980a0`](https://github.com/graphcommerce-org/graphcommerce/commit/37b1980a04a4a3d77663b404ae83539620cf65b9)]:
+  - @graphcommerce/magento-product@4.6.1
+  - @graphcommerce/magento-product-simple@4.1.1
+  - @graphcommerce/magento-product-virtual@4.1.1
+  - @graphcommerce/magento-cart@4.8.5
+
+## 3.1.0
+
+### Minor Changes
+
+- [#1642](https://github.com/graphcommerce-org/graphcommerce/pull/1642) [`ad63ebf4e`](https://github.com/graphcommerce-org/graphcommerce/commit/ad63ebf4e33bfb0e5c9e5e68ab69b14775f3f8a8) Thanks [@paales](https://github.com/paales)! - Introduced `<AddProductsToCartForm/>`, which is allows for adding all product types to the cart with a single react-hook-form form.
+
+  Which allows you to fully compose the form on the product page without having to modify the page.
+
+### Patch Changes
+
+- Updated dependencies [[`ad63ebf4e`](https://github.com/graphcommerce-org/graphcommerce/commit/ad63ebf4e33bfb0e5c9e5e68ab69b14775f3f8a8), [`b6bf2c941`](https://github.com/graphcommerce-org/graphcommerce/commit/b6bf2c94197ddacbf8f1fc0d352cd0d46e096f30)]:
+  - @graphcommerce/magento-product@4.6.0
+  - @graphcommerce/magento-product-simple@4.1.0
+  - @graphcommerce/magento-product-virtual@4.1.0
+  - @graphcommerce/magento-cart@4.8.4
+
+## 3.0.58
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/magento-cart@4.8.3
+  - @graphcommerce/magento-product@4.5.10
+  - @graphcommerce/magento-product-simple@4.0.58
+  - @graphcommerce/magento-product-virtual@4.0.58
+
+## 3.0.57
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/magento-cart@4.8.2
+  - @graphcommerce/magento-product@4.5.9
+  - @graphcommerce/magento-product-simple@4.0.57
+  - @graphcommerce/magento-product-virtual@4.0.57
+
+## 3.0.56
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/magento-cart@4.8.1
+  - @graphcommerce/magento-product@4.5.8
+  - @graphcommerce/magento-product-simple@4.0.56
+  - @graphcommerce/magento-product-virtual@4.0.56
+
 ## 3.0.55
 
 ### Patch Changes

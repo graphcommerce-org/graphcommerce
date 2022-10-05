@@ -1,5 +1,81 @@
 # @graphcommerce/magento-pagebuilder
 
+## 1.0.52
+
+### Patch Changes
+
+- Updated dependencies [[`1f2e14ba8`](https://github.com/graphcommerce-org/graphcommerce/commit/1f2e14ba8b674b87257a123e8cb215157890eb22)]:
+  - @graphcommerce/react-hook-form@3.3.5
+  - @graphcommerce/magento-product@4.7.2
+  - @graphcommerce/magento-category@4.7.1
+
+## 1.0.51
+
+### Patch Changes
+
+- Updated dependencies [[`0c21c5c23`](https://github.com/graphcommerce-org/graphcommerce/commit/0c21c5c233ebab15f6629c234e3de1cc8c0452e1), [`de8925aa9`](https://github.com/graphcommerce-org/graphcommerce/commit/de8925aa910b191c62041530c68c697a58a1e52d), [`f5eae0afd`](https://github.com/graphcommerce-org/graphcommerce/commit/f5eae0afdbd474b1f81c450425ffadf2d025187a)]:
+  - @graphcommerce/next-ui@4.28.0
+  - @graphcommerce/magento-category@4.7.0
+  - @graphcommerce/magento-product@4.7.1
+  - @graphcommerce/magento-cms@4.0.48
+
+## 1.0.50
+
+### Patch Changes
+
+- Updated dependencies [[`6987ec7d2`](https://github.com/graphcommerce-org/graphcommerce/commit/6987ec7d21ce2d481fabbd6eda039702fcf5242b)]:
+  - @graphcommerce/magento-category@4.6.0
+  - @graphcommerce/magento-product@4.7.0
+
+## 1.0.49
+
+### Patch Changes
+
+- Updated dependencies [[`48e6522bb`](https://github.com/graphcommerce-org/graphcommerce/commit/48e6522bb9424d4bd77fd77c68065f5625f3ec8d), [`75ae24a93`](https://github.com/graphcommerce-org/graphcommerce/commit/75ae24a93bd74e3b9b7efda21ec7ba6fbe9a3a75), [`37b1980a0`](https://github.com/graphcommerce-org/graphcommerce/commit/37b1980a04a4a3d77663b404ae83539620cf65b9)]:
+  - @graphcommerce/magento-product@4.6.1
+  - @graphcommerce/react-hook-form@3.3.4
+  - @graphcommerce/magento-category@4.5.12
+
+## 1.0.48
+
+### Patch Changes
+
+- Updated dependencies [[`ad63ebf4e`](https://github.com/graphcommerce-org/graphcommerce/commit/ad63ebf4e33bfb0e5c9e5e68ab69b14775f3f8a8), [`b6bf2c941`](https://github.com/graphcommerce-org/graphcommerce/commit/b6bf2c94197ddacbf8f1fc0d352cd0d46e096f30)]:
+  - @graphcommerce/magento-product@4.6.0
+  - @graphcommerce/next-ui@4.27.0
+  - @graphcommerce/magento-category@4.5.11
+  - @graphcommerce/magento-cms@4.0.47
+
+## 1.0.47
+
+### Patch Changes
+
+- Updated dependencies [[`42e7fac75`](https://github.com/graphcommerce-org/graphcommerce/commit/42e7fac75712f9bda7a6b919ede14b3c75d07771)]:
+  - @graphcommerce/next-ui@4.26.0
+  - @graphcommerce/magento-category@4.5.10
+  - @graphcommerce/magento-product@4.5.10
+  - @graphcommerce/magento-cms@4.0.46
+
+## 1.0.46
+
+### Patch Changes
+
+- Updated dependencies [[`dc6237644`](https://github.com/graphcommerce-org/graphcommerce/commit/dc6237644ac349debb728059e4c937cec25bf4fd), [`48273bccd`](https://github.com/graphcommerce-org/graphcommerce/commit/48273bccd2e471ce4bc024a600e693da791f1cde)]:
+  - @graphcommerce/next-ui@4.25.0
+  - @graphcommerce/magento-category@4.5.9
+  - @graphcommerce/magento-product@4.5.9
+  - @graphcommerce/magento-cms@4.0.45
+
+## 1.0.45
+
+### Patch Changes
+
+- Updated dependencies [[`104103bc2`](https://github.com/graphcommerce-org/graphcommerce/commit/104103bc2a0fbaa510af2e26b6b00ddc63e8495b)]:
+  - @graphcommerce/next-ui@4.24.0
+  - @graphcommerce/magento-category@4.5.8
+  - @graphcommerce/magento-product@4.5.8
+  - @graphcommerce/magento-cms@4.0.44
+
 ## 1.0.44
 
 ### Patch Changes

@@ -114,6 +114,8 @@ relationship between the Banner model and the Content field of the Page model.
 
 ### Validate GraphQL Schema
 
+- Go to your local environment and run `yarn codegen`, this ensures the changes
+  you just made are added to your local environment.
 - To validate the addition of the Banner model and the relation with the Page
   model Content field, try out the following GraphQL query in your local GraphQL
   endpoint (running at http://localhost:3000/api/graphql):

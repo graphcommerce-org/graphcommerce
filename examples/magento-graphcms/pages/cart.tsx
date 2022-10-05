@@ -57,11 +57,11 @@ function CartPage() {
         primary={
           <PageLink href='/checkout' passHref>
             <LinkOrButton
-              button={{ variant: 'pill', disabled: !hasItems }}
-              link={{ 'aria-disabled': true }}
+              button={{ variant: 'pill' }}
               color='secondary'
               endIcon={<IconSvg src={iconChevronRight} />}
               onClick={handleBeginCheckout}
+              disabled={!hasItems}
             >
               <Trans id='Next' />
             </LinkOrButton>
@@ -116,7 +116,10 @@ function CartPage() {
                 <CartTotals containerMargin sx={{ typography: 'body1' }} />
                 <ApolloCartErrorAlert error={error} />
                 <Box key='checkout-button'>
-                  <CartStartCheckout {...data?.cart} onClick={handleBeginCheckout} />
+                  <CartStartCheckout
+                    {...data?.cart}
+                    buttonProps={{ onClick: handleBeginCheckout }}
+                  />
                 </Box>
               </Box>
             ) : (

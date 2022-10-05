@@ -6,6 +6,8 @@ import {
   NavigationContextType,
   NavigationContext,
   UseNavigationSelection,
+  NavigationNodeType,
+  NavigationNodeComponent,
 } from '../hooks/useNavigation'
 
 export type NavigationProviderProps = {
@@ -15,6 +17,7 @@ export type NavigationProviderProps = {
   children?: React.ReactNode
   animationDuration?: number
   selection: UseNavigationSelection
+  serverRenderDepth?: number
 }
 
 const nonNullable = <T,>(value: T): value is NonNullable<T> => value !== null && value !== undefined
@@ -24,9 +27,10 @@ export const NavigationProvider = React.memo<NavigationProviderProps>((props) =>
     items,
     hideRootOnNavigate = true,
     closeAfterNavigate = false,
-    animationDuration = 0.275,
+    animationDuration = 0.225,
     children,
     selection,
+    serverRenderDepth = 2,
   } = props
 
   const animating = useMotionValue(false)
@@ -39,10 +43,19 @@ export const NavigationProvider = React.memo<NavigationProviderProps>((props) =>
       animating,
       closing,
       items: items
-        .map((item, index) => (isElement(item) ? { id: item.key ?? index, component: item } : item))
+        .map((item, index) =>
+          isElement(item)
+            ? ({
+                type: NavigationNodeType.COMPONENT,
+                id: item.key ?? index,
+                component: item,
+              } as NavigationNodeComponent)
+            : item,
+        )
         .filter(nonNullable),
+      serverRenderDepth,
     }),
-    [hideRootOnNavigate, selection, animating, closing, items],
+    [hideRootOnNavigate, selection, animating, closing, items, serverRenderDepth],
   )
 
   return (

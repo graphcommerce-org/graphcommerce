@@ -1,0 +1,31 @@
+fragment ProductListItemConfigurable on ConfigurableProduct @inject(into: ["ProductListItem"]) {
+  __typename
+  uid
+  configurable_options {
+    attribute_code
+    uid
+    label
+    values {
+      store_label
+      uid
+      swatch_data {
+        ...SwatchData
+      }
+    }
+  }
+  variants {
+    attributes {
+      value_index
+      uid
+      code
+    }
+    product {
+      uid
+      sku
+      name
+      small_image {
+        ...ProductImage
+      }
+    }
+  }
+}

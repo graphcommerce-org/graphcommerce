@@ -1,8 +1,7 @@
 fragment OrderCardItemImage on ProductInterface {
   uid
   thumbnail {
-    label
-    url
+    ...ProductImage
   }
   url_key
 }

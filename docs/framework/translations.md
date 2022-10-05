@@ -26,7 +26,7 @@ msgstr "cancelado"
 
 The msgid is the message being translated. In
 /node_modules/@graphcommerce/magento-cart/components/EmptyCart/EmptyCart.tsx,
-you can see that the first msgid is passed as a the id prop to the <Trans>
+you can see that the first msgid is passed as a the id prop to the `<Trans>`
 component:
 
 ```tsx
