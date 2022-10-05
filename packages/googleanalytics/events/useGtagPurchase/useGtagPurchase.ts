@@ -3,7 +3,7 @@ export const useGtagPurchase = () => {
 
   if (process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS) {
     // console.log(cart, 'trigger gtagPurchase')
-    // window.gtag?.('event', 'purchase', {
+    // globalThis.gtag?.('event', 'purchase', {
     //   currency: cart?.prices?.grand_total?.currency,
     //   // transaction_id:,
     //   // shipping:,
