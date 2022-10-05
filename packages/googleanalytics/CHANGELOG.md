@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.1
+
+### Patch Changes
+
+- [#1676](https://github.com/graphcommerce-org/graphcommerce/pull/1676) [`55cabbbc5`](https://github.com/graphcommerce-org/graphcommerce/commit/55cabbbc517b35c5f909bd771e619a87614e4c97) Thanks [@paales](https://github.com/paales)! - Fix issue where gtag wouldn't exist
+
 ## 3.0.0
 
 ### Major Changes
