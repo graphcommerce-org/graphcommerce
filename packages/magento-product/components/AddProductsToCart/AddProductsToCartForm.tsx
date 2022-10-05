@@ -1,16 +1,23 @@
 import { UseFormGqlMutationReturn, UseFormGraphQlOptions } from '@graphcommerce/ecommerce-ui'
 import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { Box, SxProps, Theme } from '@mui/material'
-import { createContext, useContext, useMemo } from 'react'
+import { useRouter } from 'next/router'
+import { createContext, useContext, useEffect } from 'react'
 import {
   AddProductsToCartDocument,
   AddProductsToCartMutation,
   AddProductsToCartMutationVariables,
 } from './AddProductsToCart.gql'
 
+type RedirectType = 'added' | 'cart' | 'checkout' | undefined
+
+type AddProductsToCartFormState = AddProductsToCartMutationVariables & {
+  redirect?: RedirectType
+}
+
 type AddProductsToCartContextType = UseFormGqlMutationReturn<
   AddProductsToCartMutation,
-  AddProductsToCartMutationVariables
+  AddProductsToCartFormState
 >
 
 export const addProductsToCartContext = createContext(
@@ -20,29 +27,57 @@ export const addProductsToCartContext = createContext(
 type AddProductsToCartFormProps = {
   children: React.ReactNode
   sx?: SxProps<Theme>
+  redirect?: RedirectType
 } & Omit<
-  UseFormGraphQlOptions<AddProductsToCartMutation, AddProductsToCartMutationVariables>,
+  UseFormGraphQlOptions<AddProductsToCartMutation, AddProductsToCartFormState>,
   'onBeforeSubmit'
 >
 
 export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
-  const { children, defaultValues, sx, ...formProps } = props
-  const form = useFormGqlMutationCart(AddProductsToCartDocument, {
-    defaultValues,
+  const { children, defaultValues, redirect, onComplete, sx, ...formProps } = props
+  const router = useRouter()
 
-    // We're stripping out incomplete entered options.
-    onBeforeSubmit: ({ cartId, cartItems }) => ({
-      cartId,
-      cartItems: cartItems
-        .filter((cartItem) => cartItem.sku)
-        .map((cartItem) => ({
-          ...cartItem,
-          selected_options: cartItem.selected_options?.filter(Boolean),
-          entered_options: cartItem.entered_options?.filter((option) => option?.value),
-        })),
-    }),
-    ...formProps,
-  })
+  const form = useFormGqlMutationCart<AddProductsToCartMutation, AddProductsToCartFormState>(
+    AddProductsToCartDocument,
+    {
+      defaultValues: {
+        ...defaultValues,
+        redirect,
+      },
+
+      // We're stripping out incomplete entered options.
+      onBeforeSubmit: ({ cartId, cartItems }) => ({
+        cartId,
+        cartItems: cartItems
+          .filter((cartItem) => cartItem.sku)
+          .map((cartItem) => ({
+            ...cartItem,
+            selected_options: cartItem.selected_options?.filter(Boolean),
+            entered_options: cartItem.entered_options?.filter((option) => option?.value),
+          })),
+      }),
+      onComplete: async (result, variables) => {
+        await onComplete?.(result, variables)
+
+        if (
+          result.data?.addProductsToCart?.user_errors?.length ||
+          result.errors?.length ||
+          !redirect
+        )
+          return
+
+        if (redirect === 'checkout') await router.push('/checkout')
+        if (redirect === 'added') await router.push({ pathname: '/checkout/added' })
+        if (redirect === 'cart') await router.push({ pathname: '/cart' })
+      },
+      ...formProps,
+    },
+  )
+
+  // When the value changes, update the value in the form
+  useEffect(() => {
+    if (form.getValues('redirect') !== redirect) form.setValue('redirect', redirect)
+  }, [form, redirect])
 
   const submit = form.handleSubmit(() => {})
 

@@ -77,7 +77,7 @@ function ProductPage(props: Props) {
       />
       <ProductPageMeta {...product} />
 
-      <AddProductsToCartForm>
+      <AddProductsToCartForm redirect='added'>
         <ConfigurableProductPageGallery
           url_key={product.url_key}
           media_gallery={product.media_gallery}

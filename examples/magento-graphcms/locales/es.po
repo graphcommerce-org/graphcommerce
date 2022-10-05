@@ -229,6 +229,9 @@ msgstr "Total"
 msgid "Have an account?"
 msgstr "¿Tiene una cuenta?"
 
+msgid "Have you thought about this yet?"
+msgstr "¿Ya lo has pensado?"
+
 msgid "Hi {firstname}! You’re now logged in!"
 msgstr "¡Hola {firstname}! Ya estás conectado!"
 

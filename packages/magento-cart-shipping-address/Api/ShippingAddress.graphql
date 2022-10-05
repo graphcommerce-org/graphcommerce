@@ -1,5 +1,6 @@
 fragment ShippingAddress on Cart @injectable {
   id
+  is_virtual
   shipping_addresses {
     ...CartAddress
   }

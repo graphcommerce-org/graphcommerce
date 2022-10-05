@@ -1,7 +1,7 @@
 import {
   Scroller,
   ScrollerButton,
-  ScrollerButtonProps as ScrollerButtonPropsType,
+  ScrollerButtonProps,
   ScrollerPageCounter,
   ScrollerProvider,
 } from '@graphcommerce/framer-scroller'
@@ -28,7 +28,7 @@ export type SidebarSliderProps = {
   children: ReactNode
   sidebar: ReactNode
   sx?: SxProps<Theme>
-  buttonSize?: ScrollerButtonPropsType['size']
+  buttonSize?: ScrollerButtonProps['size']
 }
 
 export function SidebarSlider(props: SidebarSliderProps) {

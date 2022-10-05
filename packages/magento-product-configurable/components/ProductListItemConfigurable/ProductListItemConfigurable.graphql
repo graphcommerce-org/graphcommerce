@@ -24,8 +24,7 @@ fragment ProductListItemConfigurable on ConfigurableProduct @inject(into: ["Prod
       sku
       name
       small_image {
-        label
-        url
+        ...ProductImage
       }
     }
   }

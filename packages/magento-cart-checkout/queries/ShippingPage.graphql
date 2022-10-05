@@ -5,5 +5,7 @@ query ShippingPage($cartId: String!) {
     email
     ...BillingAddress
     ...ShippingAddress
+    ...CartSummary
+    ...CartStartCheckout
   }
 }

@@ -7,8 +7,10 @@ import { getTypePoliciesVersion } from './typePolicies'
 const APOLLO_CACHE_PERSIST = 'apollo-cache-persist'
 const APOLLO_CACHE_VERSION = 'apollo-cache-version'
 
+let persistor: CachePersistor<NormalizedCacheObject> | null = null
+
 /** Revives the cache from the localStorage if it is available. */
-export function createCacheReviver(
+export async function createCacheReviver(
   client: ApolloClient<NormalizedCacheObject>,
   createCache: () => ApolloCache<NormalizedCacheObject>,
   policies: StrictTypedTypePolicies[],
@@ -22,22 +24,23 @@ export function createCacheReviver(
     try {
       const { cache } = client
 
+      if (persistor) await persistor.persist()
       // todo https://github.com/apollographql/apollo-cache-persist/tree/master/examples/react-native/src/utils/persistence
-      const persistor = new CachePersistor({
+      persistor = new CachePersistor({
         cache,
         storage: new LocalStorageWrapper(window.localStorage),
         maxSize: false,
         key: APOLLO_CACHE_PERSIST,
       })
 
-      client.onClearStore(() => {
+      client.onClearStore(async () => {
         client.cache.restore(incommingState)
-        return persistor.persist()
+        await persistor?.persist()
       })
 
-      client.onResetStore(() => {
+      client.onResetStore(async () => {
         client.cache.restore(incommingState)
-        return persistor.persist()
+        await persistor?.persist()
       })
 
       const storedState = window.localStorage[APOLLO_CACHE_PERSIST] as string | undefined

@@ -25,7 +25,11 @@ export function LayoutOverlay(props: LayoutOverlayProps) {
   const [isPresent, safeToRemove] = usePresence()
 
   return (
-    <ScrollerProvider scrollSnapTypeSm={scrollSnapTypeSm} scrollSnapTypeMd={scrollSnapTypeMd}>
+    <ScrollerProvider
+      scrollSnapTypeSm={scrollSnapTypeSm}
+      scrollSnapTypeMd={scrollSnapTypeMd}
+      _inititalSnap={false}
+    >
       <OverlayBase
         active={active}
         direction={direction}

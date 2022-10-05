@@ -229,6 +229,9 @@ msgstr "Grand total"
 msgid "Have an account?"
 msgstr "Have an account?"
 
+msgid "Have you thought about this yet?"
+msgstr "Have you thought about this yet?"
+
 msgid "Hi {firstname}! You’re now logged in!"
 msgstr "Hi {firstname}! You’re now logged in!"
 

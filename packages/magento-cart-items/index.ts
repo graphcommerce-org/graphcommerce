@@ -1,9 +1,9 @@
 export * from './Api/CartItem.gql'
 export * from './Api/CartItems.gql'
-
 export * from './CartItem/CartItem'
-export * from './CartItem/CartItemOptionDropdown'
 export * from './CartItems/CartItems'
+export * from './components/ActionCartItem/ActionCartItem'
+export * from './components/SelectedCustomizableOptions/SelectedCustomizableOptions'
 export * from './DeliveryLabel/DeliveryLabel'
 export * from './RemoveItemFromCart/RemoveItemFromCartFab'
 export * from './UpdateItemQuantity/UpdateItemQuantity'

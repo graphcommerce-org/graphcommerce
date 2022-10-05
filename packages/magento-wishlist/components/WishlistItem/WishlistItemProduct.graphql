@@ -4,8 +4,7 @@ fragment WishlistItemProduct on ProductInterface @injectable {
   name
   url_key
   thumbnail {
-    url
-    label
+    ...ProductImage
   }
   ...ProductListItem
 }

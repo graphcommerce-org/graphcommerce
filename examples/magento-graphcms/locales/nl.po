@@ -229,6 +229,9 @@ msgstr "Totaal"
 msgid "Have an account?"
 msgstr "Heeft u al een account?"
 
+msgid "Have you thought about this yet?"
+msgstr "Heb je hier al over nagedacht?"
+
 msgid "Hi {firstname}! You’re now logged in!"
 msgstr "Hallo {firstname}! U bent nu ingelogd!"
 

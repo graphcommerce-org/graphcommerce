@@ -229,6 +229,9 @@ msgstr "Total"
 msgid "Have an account?"
 msgstr "Vous avez déjà un compte?"
 
+msgid "Have you thought about this yet?"
+msgstr "Avez-vous pensé à cela?"
+
 msgid "Hi {firstname}! You’re now logged in!"
 msgstr "Bonjour {firstname}! Vous êtes maintenant connecté!"
 
@@ -542,7 +545,7 @@ msgid "This may take a second"
 msgstr "Ceci peut prendre un instant"
 
 msgid "Total <0/>"
-msgstr "Totale <0/>"
+msgstr "Total <0/>"
 
 msgid "Try a different product"
 msgstr "Essayez un autre produit"

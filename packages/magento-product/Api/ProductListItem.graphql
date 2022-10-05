@@ -4,8 +4,7 @@ fragment ProductListItem on ProductInterface @injectable {
   sku
   name
   small_image {
-    url
-    label
+    ...ProductImage
   }
   price_range {
     minimum_price {

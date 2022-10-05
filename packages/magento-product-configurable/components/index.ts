@@ -1,3 +1,4 @@
+export * from './ConfigurableCartItemOptions'
 export * from './ConfigurableOptionValue'
 export * from './ConfigurableOptionValueColor'
 export * from './ConfigurableOptionValueImage'

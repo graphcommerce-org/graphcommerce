@@ -38,7 +38,7 @@ export const BundleOption = React.memo<BundleOptionProps>((props) => {
             ? `cartItems.${index}.entered_options.${idx}.uid`
             : `cartItems.${index}.selected_options.${idx}`
         }
-        collapse={can_change_quantity}
+        // collapse={can_change_quantity}
         render={BundleOptionValue}
         items={useMemo(
           () =>

@@ -2,28 +2,19 @@ import { useElementScroll } from '@graphcommerce/framer-utils'
 import { MotionConfigContext, Point, Tween } from 'framer-motion'
 import { animate } from 'popmotion'
 import { useCallback, useContext } from 'react'
+import { distanceAnimationDuration } from '../utils/distanceAnimationDuration'
 import { useScrollerContext } from './useScrollerContext'
 
 export function useScrollTo() {
   const { scrollerRef, register, disableSnap, enableSnap } = useScrollerContext()
   const scroll = useElementScroll(scrollerRef)
 
-  const duration =
-    ((useContext(MotionConfigContext).transition as Tween | undefined)?.duration ?? 0.375) * 1000
+  const duration = (useContext(MotionConfigContext).transition as Tween | undefined)?.duration ?? 0
 
   const scrollTo = useCallback(
     async (to: Point) => {
       const ref = scrollerRef.current
       if (!ref) return
-
-      // In the future we want to move to browser native scrolling behavior, but since the animation timing isn't configurable we can't use it.
-      // if ('scrollBehavior' in document.documentElement.style) {
-      //   scrollerRef.current.scrollTo({ left: to.x, top: to.y, behavior: 'smooth' })
-      //   await new Promise((onComplete) => {
-      //     setTimeout(onComplete, 2000)
-      //   })
-      //   return
-      // }
 
       // @ts-expect-error private api, but we're updating the animation value here manually instead of relying on the event listener.
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
@@ -43,7 +34,7 @@ export function useScrollTo() {
               },
               onComplete,
               onStop: onComplete,
-              duration,
+              duration: duration * 1000 || distanceAnimationDuration(ref.scrollLeft, to.x),
             }),
           )
         } else onComplete()
@@ -63,7 +54,7 @@ export function useScrollTo() {
               },
               onComplete,
               onStop: onComplete,
-              duration,
+              duration: duration * 1000 || distanceAnimationDuration(ref.scrollTop, to.y),
             }),
           )
         } else {

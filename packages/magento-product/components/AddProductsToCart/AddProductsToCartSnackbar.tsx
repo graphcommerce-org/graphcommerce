@@ -14,7 +14,14 @@ type AddToCartMessageProps = { name?: string | null }
 
 export function AddProductsToCartSnackbar(props: AddToCartMessageProps) {
   const { name } = props
-  const { formState, error, data } = useFormAddProductsToCart()
+  const { formState, error, data, getValues } = useFormAddProductsToCart()
+
+  const showSuccess =
+    !formState.isSubmitting &&
+    formState.isSubmitSuccessful &&
+    !error?.message &&
+    !data?.addProductsToCart?.user_errors?.length &&
+    !getValues('redirect')
 
   return (
     <>
@@ -34,12 +41,7 @@ export function AddProductsToCartSnackbar(props: AddToCartMessageProps) {
       </ErrorSnackbar>
 
       <MessageSnackbar
-        open={
-          !formState.isSubmitting &&
-          formState.isSubmitSuccessful &&
-          !error?.message &&
-          !data?.addProductsToCart?.user_errors?.length
-        }
+        open={showSuccess}
         variant='pill'
         action={
           <PageLink href='/cart' passHref>

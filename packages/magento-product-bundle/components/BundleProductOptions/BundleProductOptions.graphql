@@ -27,10 +27,7 @@ fragment BundleProductOptions on BundleProduct {
         name
         url_key
         thumbnail {
-          disabled
-          label
-          position
-          url
+          ...ProductImage
         }
       }
     }

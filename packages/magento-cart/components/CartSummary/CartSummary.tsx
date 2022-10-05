@@ -29,7 +29,7 @@ export function CartSummary(props: CartSummaryProps) {
 
   if (!data?.cart) return null
 
-  const { email, shipping_addresses, billing_address } = data.cart
+  const { email, shipping_addresses, billing_address, is_virtual } = data.cart
 
   return (
     <Box
@@ -93,61 +93,61 @@ export function CartSummary(props: CartSummaryProps) {
           />
           <Typography variant='body1'>{email || ''}</Typography>
         </Box>
+        {!is_virtual && (
+          <Box>
+            <SectionContainer
+              variantLeft='h5'
+              labelLeft={<Trans id='Shipping method' />}
+              sx={{ '& .SectionHeader-root': { marginTop: 0, paddingBottom: '8px' } }}
+            />
+            <Typography variant='body1'>
+              {shipping_addresses?.[0]?.selected_shipping_method?.carrier_title}
+              {shipping_addresses?.[0]?.selected_shipping_method?.method_title}
+            </Typography>
+          </Box>
+        )}
+        {!is_virtual && shipping_addresses && (
+          <Box>
+            <SectionContainer
+              variantLeft='h5'
+              labelLeft={<Trans id='Shipping address' />}
+              sx={{ '& .SectionHeader-root': { marginTop: 0, paddingBottom: '8px' } }}
+              labelRight={
+                editable ? (
+                  <PageLink href={historyHref} passHref>
+                    <Link
+                      color='secondary'
+                      variant='body2'
+                      onClick={historyOnClick}
+                      underline='hover'
+                    >
+                      <Trans id='Edit' />
+                    </Link>
+                  </PageLink>
+                ) : undefined
+              }
+            />
+            <CartAddressMultiLine {...shipping_addresses[0]} />
+          </Box>
+        )}
         <Box>
           <SectionContainer
             variantLeft='h5'
-            labelLeft={<Trans id='Shipping method' />}
+            labelLeft={<Trans id='Billing address' />}
             sx={{ '& .SectionHeader-root': { marginTop: 0, paddingBottom: '8px' } }}
-          />
-          <Typography variant='body1'>
-            {shipping_addresses?.[0]?.selected_shipping_method?.carrier_title}
-            {shipping_addresses?.[0]?.selected_shipping_method?.method_title}
-          </Typography>
+            labelRight={
+              editable ? (
+                <PageLink href='/checkout/edit/billing-address' passHref>
+                  <Link color='secondary' variant='body2' underline='hover'>
+                    <Trans id='Edit' />
+                  </Link>
+                </PageLink>
+              ) : undefined
+            }
+          >
+            <CartAddressMultiLine {...billing_address} />
+          </SectionContainer>
         </Box>
-        {shipping_addresses && (
-          <>
-            <Box>
-              <SectionContainer
-                variantLeft='h5'
-                labelLeft={<Trans id='Shipping address' />}
-                sx={{ '& .SectionHeader': { marginTop: 0, paddingBottom: '8px' } }}
-                labelRight={
-                  editable ? (
-                    <PageLink href={historyHref} passHref>
-                      <Link
-                        color='secondary'
-                        variant='body2'
-                        onClick={historyOnClick}
-                        underline='hover'
-                      >
-                        <Trans id='Edit' />
-                      </Link>
-                    </PageLink>
-                  ) : undefined
-                }
-              />
-              <CartAddressMultiLine {...shipping_addresses[0]} />
-            </Box>
-            <Box>
-              <SectionContainer
-                variantLeft='h5'
-                labelLeft={<Trans id='Billing address' />}
-                sx={{ '& .SectionHeader': { marginTop: 0, paddingBottom: '8px' } }}
-                labelRight={
-                  editable ? (
-                    <PageLink href='/checkout/edit/billing-address' passHref>
-                      <Link color='secondary' variant='body2' underline='hover'>
-                        <Trans id='Edit' />
-                      </Link>
-                    </PageLink>
-                  ) : undefined
-                }
-              >
-                <CartAddressMultiLine {...billing_address} />
-              </SectionContainer>
-            </Box>
-          </>
-        )}
       </Box>
       {children}
     </Box>

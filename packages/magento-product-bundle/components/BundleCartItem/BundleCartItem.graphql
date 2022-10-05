@@ -10,4 +10,7 @@ fragment BundleCartItem on BundleCartItem @inject(into: ["CartItem"]) {
       price
     }
   }
+  bundle_customizable: customizable_options {
+    ...SelectedCustomizableOption
+  }
 }

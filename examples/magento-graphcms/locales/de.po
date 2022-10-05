@@ -229,6 +229,9 @@ msgstr "Gesamtsumme"
 msgid "Have an account?"
 msgstr "Haben Sie ein Konto?"
 
+msgid "Have you thought about this yet?"
+msgstr "Haben Sie das schon überlegt?"
+
 msgid "Hi {firstname}! You’re now logged in!"
 msgstr "Hallo {firstname}! Sie sind jetzt angemeldet!"
 
