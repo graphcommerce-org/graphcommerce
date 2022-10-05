@@ -34,10 +34,7 @@ type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props>
 function OrderSuccessPage() {
   const hasCartId = !!useRouter().query.cart_id
 
-  const { data } = useCartQuery(CartItemSummaryDocument, { allowUrl: true })
-  // @todo get order_number
-
-  useGtagPurchase(data?.cart)
+  useGtagPurchase()
 
   return (
     <>
