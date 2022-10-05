@@ -1,5 +1,12 @@
 # Change Log
 
+## 3.28.1
+
+### Patch Changes
+
+- Updated dependencies [[`55cabbbc5`](https://github.com/graphcommerce-org/graphcommerce/commit/55cabbbc517b35c5f909bd771e619a87614e4c97)]:
+  - @graphcommerce/googleanalytics@3.0.1
+
 ## 3.28.0
 
 ### Minor Changes

@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-graphcms",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "3.28.0",
+  "version": "3.28.1",
   "private": true,
   "sideEffects": false,
   "engines": {
@@ -31,7 +31,7 @@
     "@graphcommerce/ecommerce-ui": "1.5.4",
     "@graphcommerce/framer-next-pages": "3.3.2",
     "@graphcommerce/framer-scroller": "2.1.41",
-    "@graphcommerce/googleanalytics": "3.0.0",
+    "@graphcommerce/googleanalytics": "3.0.1",
     "@graphcommerce/googlerecaptcha": "2.1.20",
     "@graphcommerce/googletagmanager": "2.0.9",
     "@graphcommerce/graphcms-ui": "3.1.2",
