@@ -1,4 +1,4 @@
-export const gtagPurchase = (cart) => {
+export const useGtagPurchase = (cart: any) => {
   if (process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS) {
     console.log(cart, 'trigger gtagPurchase')
     // window.gtag?.('event', 'purchase', {

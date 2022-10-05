@@ -4,21 +4,19 @@ import { productListRenderer } from './productListRenderer'
 
 export type ProductListItemsProps = Omit<ProductItemsGridProps, 'renderers'> & {
   title: string
-  item_list_id?: string
+  listId?: string
 }
 
 export function ProductListItems(props: ProductListItemsProps) {
-  const { title, item_list_id, items } = props
+  const { title, listId, items } = props
 
-  useGtagViewItemList(title, items, item_list_id)
+  useGtagViewItemList(title, items, listId)
 
   return (
     <ProductListItemsBase
       renderers={productListRenderer}
       {...props}
-      onClick={(e, item) => {
-        gtagSelectItem(item, item_list_id, title)
-      }}
+      onClick={(e, item) => gtagSelectItem(item, listId, title)}
     />
   )
 }

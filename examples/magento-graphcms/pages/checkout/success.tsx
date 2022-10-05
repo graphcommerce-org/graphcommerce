@@ -1,5 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { gtagPurchase } from '@graphcommerce/googleanalytics'
+import { useGtagPurchase } from '@graphcommerce/googleanalytics'
 import {
   CartItemSummary,
   CartSummary,
@@ -38,9 +38,7 @@ function OrderSuccessPage() {
   const { data } = useCartQuery(CartItemSummaryDocument, { allowUrl: true })
   // @todo get order_number
 
-  useEffect(() => {
-    if (data?.cart) gtagPurchase(data.cart)
-  }, [data?.cart])
+  useGtagPurchase(data?.cart)
 
   return (
     <>
