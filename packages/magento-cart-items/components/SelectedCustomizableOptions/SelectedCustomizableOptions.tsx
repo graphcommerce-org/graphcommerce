@@ -2,7 +2,7 @@ import { Money } from '@graphcommerce/magento-store'
 import { filterNonNullableKeys, nonNullable } from '@graphcommerce/next-ui'
 import { Typography } from '@mui/material'
 import { CartItem_ConfigurableCartItem_Fragment } from '../../Api/CartItem.gql'
-import { ActionCartItemProps } from '../ActionCartItem/ActionCardItem'
+import { ActionCartItemProps } from '../ActionCartItem/ActionCartItem'
 import { SelectedCustomizableOptionFragment } from './SelectedCustomizableOption.gql'
 
 type ConfigurableActionCartItemProps = {
