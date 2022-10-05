@@ -1,5 +1,12 @@
 # Change Log
 
+## 3.3.2
+
+### Patch Changes
+
+- Updated dependencies [[`1b1504c9b`](https://github.com/graphcommerce-org/graphcommerce/commit/1b1504c9b0e51f2787bce91e1ff1940f540411d6), [`6c2e27b1b`](https://github.com/graphcommerce-org/graphcommerce/commit/6c2e27b1be4aaa888e65a2bd69eaeb467a54a023)]:
+  - @graphcommerce/framer-utils@3.2.1
+
 ## 3.3.1
 
 ### Patch Changes

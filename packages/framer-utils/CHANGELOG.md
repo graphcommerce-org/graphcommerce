@@ -1,5 +1,13 @@
 # Change Log
 
+## 3.2.1
+
+### Patch Changes
+
+- [#1675](https://github.com/graphcommerce-org/graphcommerce/pull/1675) [`1b1504c9b`](https://github.com/graphcommerce-org/graphcommerce/commit/1b1504c9b0e51f2787bce91e1ff1940f540411d6) Thanks [@paales](https://github.com/paales)! - Added crosssel functionality
+
+- [#1675](https://github.com/graphcommerce-org/graphcommerce/pull/1675) [`6c2e27b1b`](https://github.com/graphcommerce-org/graphcommerce/commit/6c2e27b1be4aaa888e65a2bd69eaeb467a54a023) Thanks [@paales](https://github.com/paales)! - Use event listeners directly for the client-size, because it wasn’t updating properly it seemed
+
 ## 3.2.0
 
 ### Minor Changes

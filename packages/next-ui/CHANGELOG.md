@@ -1,5 +1,23 @@
 # Change Log
 
+## 4.28.1
+
+### Patch Changes
+
+- [#1675](https://github.com/graphcommerce-org/graphcommerce/pull/1675) [`9e630670f`](https://github.com/graphcommerce-org/graphcommerce/commit/9e630670ff6c952ab7b938d890b5509804985cf3) Thanks [@paales](https://github.com/paales)! - Added a new ItemScroller component to be able to make horizontal product scrollers
+
+- [#1675](https://github.com/graphcommerce-org/graphcommerce/pull/1675) [`2e9fa5984`](https://github.com/graphcommerce-org/graphcommerce/commit/2e9fa5984a07ff14fc1b3a4f62189a26e8e3ecdd) Thanks [@paales](https://github.com/paales)! - Measure the size of children of the overlay to determine the size of children
+
+- [#1675](https://github.com/graphcommerce-org/graphcommerce/pull/1675) [`adf13069a`](https://github.com/graphcommerce-org/graphcommerce/commit/adf13069af6460c960276b402237371c12fc6dec) Thanks [@paales](https://github.com/paales)! - Use realtime measurements for useOverlayPosition instead of computed values, to improve flickering issues
+
+- [#1675](https://github.com/graphcommerce-org/graphcommerce/pull/1675) [`1b1504c9b`](https://github.com/graphcommerce-org/graphcommerce/commit/1b1504c9b0e51f2787bce91e1ff1940f540411d6) Thanks [@paales](https://github.com/paales)! - Added crosssel functionality
+
+- Updated dependencies [[`81f31d1e5`](https://github.com/graphcommerce-org/graphcommerce/commit/81f31d1e54397368088a4289aaddd29facfceeef), [`a8905d263`](https://github.com/graphcommerce-org/graphcommerce/commit/a8905d263273cb9322583d5759a5fdc66eceb8e4), [`1b1504c9b`](https://github.com/graphcommerce-org/graphcommerce/commit/1b1504c9b0e51f2787bce91e1ff1940f540411d6), [`6c2e27b1b`](https://github.com/graphcommerce-org/graphcommerce/commit/6c2e27b1be4aaa888e65a2bd69eaeb467a54a023)]:
+  - @graphcommerce/framer-scroller@2.1.41
+  - @graphcommerce/framer-utils@3.2.1
+  - @graphcommerce/framer-next-pages@3.3.2
+  - @graphcommerce/image@3.1.10
+
 ## 4.28.0
 
 ### Minor Changes

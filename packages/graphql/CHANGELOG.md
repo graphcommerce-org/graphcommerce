@@ -1,5 +1,17 @@
 # Change Log
 
+## 3.5.0
+
+### Minor Changes
+
+- [#1670](https://github.com/graphcommerce-org/graphcommerce/pull/1670) [`8a34f8081`](https://github.com/graphcommerce-org/graphcommerce/commit/8a34f808186274a6fe1d4f309472f1a9c6d00efd) Thanks [@Jessevdpoel](https://github.com/Jessevdpoel)! - Added cache resetting when token expires and logging in with a different account than cached.
+
+### Patch Changes
+
+- [#1675](https://github.com/graphcommerce-org/graphcommerce/pull/1675) [`cf3518499`](https://github.com/graphcommerce-org/graphcommerce/commit/cf351849999ad6fe73ce2bb258098a7dd301d517) Thanks [@paales](https://github.com/paales)! - ApolloClient is not persisted to localStorage before we restore from localStorage. Fixes a race condition where the current cartId wasn't persisted.
+
+- [#1675](https://github.com/graphcommerce-org/graphcommerce/pull/1675) [`1b1504c9b`](https://github.com/graphcommerce-org/graphcommerce/commit/1b1504c9b0e51f2787bce91e1ff1940f540411d6) Thanks [@paales](https://github.com/paales)! - Added crosssel functionality
+
 ## 3.4.8
 
 ### Patch Changes

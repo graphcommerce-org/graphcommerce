@@ -2,7 +2,7 @@
   "name": "@graphcommerce/googleanalytics",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "2.0.7",
+  "version": "3.0.0",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -13,8 +13,8 @@
   },
   "dependencies": {
     "@graphcommerce/graphql-mesh": "4.2.0",
-    "@graphcommerce/magento-product": "4.7.2",
-    "@graphcommerce/next-ui": "4.28.0"
+    "@graphcommerce/magento-product": "4.7.3",
+    "@graphcommerce/next-ui": "4.28.1"
   },
   "devDependencies": {
     "@graphcommerce/eslint-config-pwa": "^4.1.8",

@@ -1,5 +1,14 @@
 # Change Log
 
+## 3.0.45
+
+### Patch Changes
+
+- Updated dependencies [[`9e630670f`](https://github.com/graphcommerce-org/graphcommerce/commit/9e630670ff6c952ab7b938d890b5509804985cf3), [`81f31d1e5`](https://github.com/graphcommerce-org/graphcommerce/commit/81f31d1e54397368088a4289aaddd29facfceeef), [`2e9fa5984`](https://github.com/graphcommerce-org/graphcommerce/commit/2e9fa5984a07ff14fc1b3a4f62189a26e8e3ecdd), [`adf13069a`](https://github.com/graphcommerce-org/graphcommerce/commit/adf13069af6460c960276b402237371c12fc6dec), [`a8905d263`](https://github.com/graphcommerce-org/graphcommerce/commit/a8905d263273cb9322583d5759a5fdc66eceb8e4), [`1b1504c9b`](https://github.com/graphcommerce-org/graphcommerce/commit/1b1504c9b0e51f2787bce91e1ff1940f540411d6)]:
+  - @graphcommerce/next-ui@4.28.1
+  - @graphcommerce/framer-scroller@2.1.41
+  - @graphcommerce/image@3.1.10
+
 ## 3.0.44
 
 ### Patch Changes
