@@ -97,9 +97,6 @@ msgstr "Winkelwagen ({0})"
 msgid "Change"
 msgstr "Verander"
 
-msgid "Checkout"
-msgstr "Afrekenen"
-
 msgid "Checkout summary"
 msgstr "Samenvatting"
 
@@ -546,6 +543,9 @@ msgstr "Dit veld is verplicht"
 
 msgid "This may take a second"
 msgstr "Dit kan een seconde duren"
+
+msgid "Total <0/>"
+msgstr "Totaal <0/>"
 
 msgid "Try a different product"
 msgstr "Probeer een ander product"

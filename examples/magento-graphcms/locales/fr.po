@@ -97,9 +97,6 @@ msgstr "Panier ({0})"
 msgid "Change"
 msgstr "Changer"
 
-msgid "Checkout"
-msgstr "Commander"
-
 msgid "Checkout summary"
 msgstr "Résumé du paiement"
 
@@ -546,6 +543,9 @@ msgstr "Ce champ est requis"
 
 msgid "This may take a second"
 msgstr "Ceci peut prendre un instant"
+
+msgid "Total <0/>"
+msgstr "Total <0/>"
 
 msgid "Try a different product"
 msgstr "Essayez un autre produit"

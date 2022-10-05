@@ -1,6 +1,7 @@
 import { ApolloCartErrorSnackbar, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
-import { Trans } from '@lingui/react'
-import { SxProps, Theme, styled, Button } from '@mui/material'
+import { iconClose, IconSvg } from '@graphcommerce/next-ui'
+import { i18n } from '@lingui/core'
+import { Fab, SxProps, Theme, styled } from '@mui/material'
 import {
   RemoveItemFromCartDocument,
   RemoveItemFromCartMutationVariables,
@@ -19,9 +20,14 @@ export function RemoveItemFromCartFab(props: RemoveItemFromCartProps) {
 
   return (
     <Form noValidate onSubmit={submitHandler} {...formProps}>
-      <Button type='submit' variant='inline' color='secondary' disabled={formState.isSubmitting}>
-        <Trans id='Remove' />
-      </Button>
+      <Fab
+        aria-label={i18n._(/* i18n */ 'Remove Product')}
+        size='small'
+        type='submit'
+        disabled={formState.isSubmitting}
+      >
+        <IconSvg src={iconClose} />
+      </Fab>
       <ApolloCartErrorSnackbar error={error} />
     </Form>
   )
