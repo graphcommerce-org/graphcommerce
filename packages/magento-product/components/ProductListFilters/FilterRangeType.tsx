@@ -50,8 +50,6 @@ export function FilterRangeActionCard(
 ) {
   const { value, min, max, params, onReset, onChangeCommitted, onChange } = props
 
-  console.log({ props })
-
   return (
     <Box
       sx={(theme) => ({
