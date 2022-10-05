@@ -1,5 +1,23 @@
 # @graphcommerce/magento-wishlist
 
+## 1.7.5
+
+### Patch Changes
+
+- [#1675](https://github.com/graphcommerce-org/graphcommerce/pull/1675) [`f2276e263`](https://github.com/graphcommerce-org/graphcommerce/commit/f2276e2639cb6d58035962c36a6a8cfc53460395) Thanks [@paales](https://github.com/paales)! - Solve issue for wishlist where not all options were set and couldn’t add the product to the wishlist
+
+- [#1675](https://github.com/graphcommerce-org/graphcommerce/pull/1675) [`1b1504c9b`](https://github.com/graphcommerce-org/graphcommerce/commit/1b1504c9b0e51f2787bce91e1ff1940f540411d6) Thanks [@paales](https://github.com/paales)! - Added crosssel functionality
+
+- Updated dependencies [[`9e630670f`](https://github.com/graphcommerce-org/graphcommerce/commit/9e630670ff6c952ab7b938d890b5509804985cf3), [`cf3518499`](https://github.com/graphcommerce-org/graphcommerce/commit/cf351849999ad6fe73ce2bb258098a7dd301d517), [`2e9fa5984`](https://github.com/graphcommerce-org/graphcommerce/commit/2e9fa5984a07ff14fc1b3a4f62189a26e8e3ecdd), [`adf13069a`](https://github.com/graphcommerce-org/graphcommerce/commit/adf13069af6460c960276b402237371c12fc6dec), [`1b1504c9b`](https://github.com/graphcommerce-org/graphcommerce/commit/1b1504c9b0e51f2787bce91e1ff1940f540411d6), [`8a34f8081`](https://github.com/graphcommerce-org/graphcommerce/commit/8a34f808186274a6fe1d4f309472f1a9c6d00efd), [`3dde492ad`](https://github.com/graphcommerce-org/graphcommerce/commit/3dde492ad3a49d96481eeb7453fb305d0017b1a5)]:
+  - @graphcommerce/next-ui@4.28.1
+  - @graphcommerce/graphql@3.5.0
+  - @graphcommerce/magento-cart@4.9.0
+  - @graphcommerce/magento-customer@4.12.0
+  - @graphcommerce/magento-product@4.7.3
+  - @graphcommerce/magento-product-configurable@4.3.5
+  - @graphcommerce/magento-store@4.3.2
+  - @graphcommerce/image@3.1.10
+
 ## 1.7.4
 
 ### Patch Changes

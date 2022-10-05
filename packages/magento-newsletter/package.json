@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-newsletter",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "2.2.4",
+  "version": "2.2.5",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -18,10 +18,10 @@
     "@playwright/test": "^1.21.1"
   },
   "dependencies": {
-    "@graphcommerce/graphql": "3.4.8",
-    "@graphcommerce/magento-cart": "4.8.7",
-    "@graphcommerce/magento-customer": "4.11.7",
-    "@graphcommerce/next-ui": "4.28.0",
+    "@graphcommerce/graphql": "3.5.0",
+    "@graphcommerce/magento-cart": "4.9.0",
+    "@graphcommerce/magento-customer": "4.12.0",
+    "@graphcommerce/next-ui": "4.28.1",
     "@graphcommerce/react-hook-form": "3.3.5"
   },
   "peerDependencies": {

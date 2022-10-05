@@ -1,5 +1,27 @@
 # Change Log
 
+## 4.9.0
+
+### Minor Changes
+
+- [#1675](https://github.com/graphcommerce-org/graphcommerce/pull/1675) [`1b1504c9b`](https://github.com/graphcommerce-org/graphcommerce/commit/1b1504c9b0e51f2787bce91e1ff1940f540411d6) Thanks [@paales](https://github.com/paales)! - Added crosssel functionality
+
+### Patch Changes
+
+- [#1655](https://github.com/graphcommerce-org/graphcommerce/pull/1655) [`3dde492ad`](https://github.com/graphcommerce-org/graphcommerce/commit/3dde492ad3a49d96481eeb7453fb305d0017b1a5) Thanks [@FrankHarland](https://github.com/FrankHarland)! - Added Google Analytics support.
+
+- Updated dependencies [[`9e630670f`](https://github.com/graphcommerce-org/graphcommerce/commit/9e630670ff6c952ab7b938d890b5509804985cf3), [`cf3518499`](https://github.com/graphcommerce-org/graphcommerce/commit/cf351849999ad6fe73ce2bb258098a7dd301d517), [`81f31d1e5`](https://github.com/graphcommerce-org/graphcommerce/commit/81f31d1e54397368088a4289aaddd29facfceeef), [`2e9fa5984`](https://github.com/graphcommerce-org/graphcommerce/commit/2e9fa5984a07ff14fc1b3a4f62189a26e8e3ecdd), [`adf13069a`](https://github.com/graphcommerce-org/graphcommerce/commit/adf13069af6460c960276b402237371c12fc6dec), [`a8905d263`](https://github.com/graphcommerce-org/graphcommerce/commit/a8905d263273cb9322583d5759a5fdc66eceb8e4), [`1b1504c9b`](https://github.com/graphcommerce-org/graphcommerce/commit/1b1504c9b0e51f2787bce91e1ff1940f540411d6), [`8a34f8081`](https://github.com/graphcommerce-org/graphcommerce/commit/8a34f808186274a6fe1d4f309472f1a9c6d00efd), [`6c2e27b1b`](https://github.com/graphcommerce-org/graphcommerce/commit/6c2e27b1be4aaa888e65a2bd69eaeb467a54a023), [`3dde492ad`](https://github.com/graphcommerce-org/graphcommerce/commit/3dde492ad3a49d96481eeb7453fb305d0017b1a5)]:
+  - @graphcommerce/next-ui@4.28.1
+  - @graphcommerce/graphql@3.5.0
+  - @graphcommerce/framer-scroller@2.1.41
+  - @graphcommerce/framer-utils@3.2.1
+  - @graphcommerce/magento-customer@4.12.0
+  - @graphcommerce/ecommerce-ui@1.5.4
+  - @graphcommerce/magento-store@4.3.2
+  - @graphcommerce/magento-graphql@3.1.9
+  - @graphcommerce/framer-next-pages@3.3.2
+  - @graphcommerce/image@3.1.10
+
 ## 4.8.7
 
 ### Patch Changes
