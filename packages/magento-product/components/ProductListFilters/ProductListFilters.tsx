@@ -30,11 +30,9 @@ export function ProductListFilters(props: ProductFiltersProps) {
     replaceRoute({ ...params, filters: e })
   })
 
-  const filteredAggregations: ProductFiltersProps['aggregations'] = aggregations
-
   return (
     <form id='filter-form' noValidate onSubmit={submit} style={{ display: 'flex' }}>
-      {filteredAggregations?.map((aggregation) => {
+      {aggregations?.map((aggregation) => {
         if (!aggregation?.attribute_code || aggregation?.attribute_code === 'category_id')
           return null
 
@@ -76,7 +74,7 @@ export function ProductListFilters(props: ProductFiltersProps) {
             )
 
           default:
-            return aggregation.attribute_code === 'all' ? <AllFilterType /> : null // `FilterMatchTypeInput not ${aggregation.attribute_code}`
+            return null // `FilterMatchTypeInput not ${aggregation.attribute_code}`
         }
       })}
     </form>

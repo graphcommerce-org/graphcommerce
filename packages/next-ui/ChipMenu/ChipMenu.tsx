@@ -31,6 +31,8 @@ export function ChipMenu(props: ChipMenuProps) {
     openEl,
     setOpenEl,
     onSubmit,
+    accessKey,
+    id = 'filterpopper',
     ...chipProps
   } = props
 
@@ -43,11 +45,13 @@ export function ChipMenu(props: ChipMenuProps) {
   return (
     <ResponsiveMenu
       {...props}
+      id={id}
       openEl={openEl}
       setOpenEl={setOpenEl}
       onReset={onReset}
       chip={
         <Chip
+          aria-describedby={id}
           component='button'
           size='responsive'
           color={selectedAndMenuHidden ? 'primary' : 'default'}
@@ -58,7 +62,7 @@ export function ChipMenu(props: ChipMenuProps) {
               setOpenEl(event.currentTarget.parentElement))
           }
           onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-            setOpenEl(event.currentTarget)
+            setOpenEl(openEl ? null : event.currentTarget)
           }}
           deleteIcon={deleteIcon}
           {...chipProps}
