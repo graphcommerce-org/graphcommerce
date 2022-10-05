@@ -194,13 +194,7 @@ export function ScrollerProvider(props: ScrollerProviderProps) {
           continue
         }
 
-        const {
-          scrollSnapAlign: align,
-          scrollPaddingTop,
-          scrollPaddingRight,
-          scrollPaddingBottom,
-          scrollPaddingLeft,
-        } = getComputedStyle(child)
+        const { scrollSnapAlign: align } = getComputedStyle(child)
 
         // console.trace(scrollPaddingTop, scrollPaddingRight, scrollPaddingBottom, scrollPaddingLeft)
         let [childAlignY, childAlignX] = align.split(' ') as [
