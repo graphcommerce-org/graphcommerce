@@ -1,4 +1,3 @@
-import { ParsedUrlQuery } from 'querystring'
 import { clientSizeCssVar, useClientSizeCssVar } from '@graphcommerce/framer-utils'
 import { AnimatePresence, m } from 'framer-motion'
 import { requestIdleCallback, cancelIdleCallback } from 'next/dist/client/request-idle-callback'
@@ -26,11 +25,22 @@ type PagesProps = Omit<AppPropsType<NextRouter>, 'pageProps' | 'Component'> & {
   fallbackRoute?: `/${string}`
 }
 
-type PageInfo = { asPath: string; pathname: string; query: ParsedUrlQuery; locale?: string }
-function getPageInfo(router: NextRouter): PageInfo {
+function getPageInfo(router: NextRouter) {
   const { asPath, pathname, query, locale } = router
   return { asPath, pathname, query, locale }
 }
+
+// function useEarlyRerender() {
+//   const router = useRouter()
+//   const [url, set] = useState<string>()
+
+//   useEffect(() => {
+//     router.events.on('routeChangeStart', set)
+//     return () => router.events.off('routeChangeStart', set)
+//   }, [router.events])
+
+//   return url
+// }
 
 export function FramerNextPages(props: PagesProps) {
   const { router, Component, pageProps: incomingProps, fallback = '/', fallbackRoute = '/' } = props
@@ -59,21 +69,12 @@ export function FramerNextPages(props: PagesProps) {
 
   const currentItem = items.current[idx]
 
-  const routerJson = JSON.stringify(getPageInfo(router))
   const mustRerender = () => {
-    const differentRouter = JSON.stringify(currentItem?.routerContext.pageInfo) !== routerJson
+    const differentRouter =
+      JSON.stringify(currentItem?.routerContext.pageInfo) !== JSON.stringify(getPageInfo(router))
     const differentProps = JSON.stringify(incomingProps) !== JSON.stringify(currentItem?.pageProps)
     return differentRouter || differentProps
   }
-
-  useEffect(() => {
-    if (typeof window !== 'undefined' && window.sessionStorage) {
-      const routerKey = items.current[idx - 1]?.routerKey
-      if (routerKey) {
-        // window.sessionStorage.setItem('__prevRouter', routerJson)
-      }
-    }
-  }, [idx, routerJson])
 
   if (!activeItem || mustRerender()) {
     const pageInfo = getPageInfo(router)
@@ -106,13 +107,9 @@ export function FramerNextPages(props: PagesProps) {
   useEffect(() => {
     if (!shouldLoadFb) return () => {}
 
-    return
     let cancel: number
     async function loadFallback() {
       try {
-        const prevRouter = globalThis.sessionStorage?.getItem('__prevRouter')
-
-        console.log('shoudLoad', prevRouter)
         // todo: implement fallback loading for up property
         // const up = items.current[0].PageComponent.pageOptions?.up?.href ?? '/'
         const up = '/'
