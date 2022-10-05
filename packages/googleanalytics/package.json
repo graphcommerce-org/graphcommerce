@@ -12,9 +12,9 @@
     }
   },
   "dependencies": {
-    "@graphcommerce/graphql-mesh": "4.1.9",
-    "@graphcommerce/magento-product": "4.5.7",
-    "@graphcommerce/next-ui": "4.23.1"
+    "@graphcommerce/graphql-mesh": "4.2.0",
+    "@graphcommerce/magento-product": "4.7.2",
+    "@graphcommerce/next-ui": "4.28.0"
   },
   "devDependencies": {
     "@graphcommerce/eslint-config-pwa": "^4.1.8",
