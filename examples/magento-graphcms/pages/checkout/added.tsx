@@ -86,7 +86,6 @@ function CheckoutAdded() {
           '&.IconSvg': {
             gridArea: 'children',
           },
-          scrollSnapAlign: 'end',
         })}
       >
         {lastItem?.product.thumbnail?.url ? (
@@ -148,6 +147,14 @@ function CheckoutAdded() {
         <LayoutHeaderClose />
       </Container>
 
+      <Box
+        sx={(theme) => ({
+          height: { md: theme.page.vertical },
+          marginBottom: { md: `calc(${theme.page.vertical} * -1)` },
+          scrollSnapAlign: 'end',
+        })}
+      />
+
       {showCrossSell && (
         <>
           <Container maxWidth={false}>
@@ -193,7 +200,7 @@ const pageOptions: PageOptions<LayoutOverlayProps> = {
   layoutProps: {
     variantMd: 'bottom',
     variantSm: 'bottom',
-    sizeMd: 'minimal',
+    sizeMd: 'floating',
     sizeSm: 'minimal',
     justifyMd: 'stretch',
     justifySm: 'stretch',
