@@ -112,6 +112,9 @@ msgstr "Fermer"
 msgid "Complete the payment on your bank’s website."
 msgstr "Complétez le paiement sur le site de votre banque."
 
+msgid "Complete your purchase"
+msgstr "Complétez votre achat"
+
 msgid "Confirm new email"
 msgstr "Confirmer le nouvel email"
 
@@ -228,9 +231,6 @@ msgstr "Total"
 
 msgid "Have an account?"
 msgstr "Vous avez déjà un compte?"
-
-msgid "Have you thought about this yet?"
-msgstr "Avez-vous pensé à cela?"
 
 msgid "Hi {firstname}! You’re now logged in!"
 msgstr "Bonjour {firstname}! Vous êtes maintenant connecté!"

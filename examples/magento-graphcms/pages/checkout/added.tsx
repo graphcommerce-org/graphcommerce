@@ -29,8 +29,8 @@ type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
 
 function CheckoutAdded() {
-  const latestItems = useCartQuery(CartAddedDocument)
-  const items = filterNonNullableKeys(latestItems.data?.cart?.items)
+  const cartAdded = useCartQuery(CartAddedDocument)
+  const items = filterNonNullableKeys(cartAdded.data?.cart?.items)
   const lastItem = items[items.length - 1]
 
   const crosssels = useQuery(CrosssellsDocument, {
@@ -38,8 +38,12 @@ function CheckoutAdded() {
     ssr: false,
   })
   const crossSellItems = useMemo(
-    () => filterNonNullableKeys(crosssels.data?.products?.items?.[0]?.crosssell_products),
-    [crosssels.data?.products?.items],
+    () =>
+      filterNonNullableKeys(
+        crosssels.data?.products?.items?.[0]?.crosssell_products ??
+          crosssels.previousData?.products?.items?.[0]?.crosssell_products,
+      ).filter((item) => items.every((i) => i.product.sku !== item.sku)),
+    [crosssels.data?.products?.items, crosssels.previousData?.products?.items, items],
   )
 
   const readyOnce = useRef(false)
@@ -64,7 +68,6 @@ function CheckoutAdded() {
       <Container
         maxWidth={false}
         sx={(theme) => ({
-          // width: '100%', // `min(1400px, ${clientSizeCssVar.x})`,
           display: 'grid',
           py: 2,
           alignItems: { xs: 'start', md: 'center' },
@@ -82,7 +85,6 @@ function CheckoutAdded() {
           '&.IconSvg': {
             gridArea: 'children',
           },
-          scrollSnapAlign: 'end',
         })}
       >
         {lastItem?.product.thumbnail?.url ? (
@@ -112,7 +114,6 @@ function CheckoutAdded() {
           />
         )}
 
-        {/* <IconSvg src={iconCheckmark} size='large' /> */}
         <Box gridArea='children'>
           <Box sx={{ typography: 'h6' }}>
             <Trans
@@ -123,7 +124,7 @@ function CheckoutAdded() {
           </Box>
           {showCrossSell && (
             <Box sx={{ typography: 'body1', display: { xs: 'none', md: 'block' } }}>
-              <Trans id='Have you thought about this yet?' />{' '}
+              <Trans id='Complete your purchase' />
             </Box>
           )}
         </Box>
@@ -144,6 +145,14 @@ function CheckoutAdded() {
         <LayoutHeaderClose />
       </Container>
 
+      <Box
+        sx={(theme) => ({
+          height: { md: theme.page.vertical },
+          marginBottom: { md: `calc(${theme.page.vertical} * -1)` },
+          scrollSnapAlign: 'end',
+        })}
+      />
+
       {showCrossSell && (
         <>
           <Container maxWidth={false}>
@@ -157,13 +166,13 @@ function CheckoutAdded() {
                 textAlign: 'center',
               })}
             >
-              <Trans id='Have you thought about this yet?' />
+              <Trans id='Complete your purchase' />
             </Typography>
           </Container>
           <AddProductsToCartForm>
             <ItemScroller
               sx={(theme) => ({
-                width: 'auto', // `min(1400px, ${clientSizeCssVar.x})`,
+                width: 'auto',
                 mb: theme.page.vertical,
               })}
             >
@@ -189,7 +198,7 @@ const pageOptions: PageOptions<LayoutOverlayProps> = {
   layoutProps: {
     variantMd: 'bottom',
     variantSm: 'bottom',
-    sizeMd: 'minimal',
+    sizeMd: 'floating',
     sizeSm: 'minimal',
     justifyMd: 'stretch',
     justifySm: 'stretch',

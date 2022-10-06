@@ -1,69 +1,84 @@
 import { ApolloCartErrorSnackbar } from '@graphcommerce/magento-cart'
 import {
   Button,
+  ErrorSnackbar,
+  ErrorSnackbarProps,
+  filterNonNullableKeys,
   iconChevronRight,
   IconSvg,
   MessageSnackbar,
-  ErrorSnackbar,
+  MessageSnackbarProps,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import PageLink from 'next/link'
-import { useFormAddProductsToCart } from './AddProductsToCartForm'
+import { useFormAddProductsToCart } from './useFormAddProductsToCart'
 
-type AddToCartMessageProps = { name?: string | null }
+export type AddProductsToCartSnackbarProps = {
+  errorSnackbar?: Omit<ErrorSnackbarProps, 'open'>
+  successSnackbar?: Omit<MessageSnackbarProps, 'open' | 'action'>
+}
 
-export function AddProductsToCartSnackbar(props: AddToCartMessageProps) {
-  const { name } = props
-  const { formState, error, data, getValues } = useFormAddProductsToCart()
+export function AddProductsToCartSnackbar(props: AddProductsToCartSnackbarProps) {
+  const { errorSnackbar, successSnackbar } = props
+  const { formState, error, data, redirect } = useFormAddProductsToCart()
 
   const showSuccess =
     !formState.isSubmitting &&
     formState.isSubmitSuccessful &&
     !error?.message &&
     !data?.addProductsToCart?.user_errors?.length &&
-    !getValues('redirect')
+    !redirect
 
+  const items = filterNonNullableKeys(data?.addProductsToCart?.cart.items)
+
+  const showErrorSnackbar = (data?.addProductsToCart?.user_errors?.length ?? 0) > 0
   return (
     <>
-      <ApolloCartErrorSnackbar error={error} />
+      {error && <ApolloCartErrorSnackbar error={error} />}
 
-      <ErrorSnackbar
-        variant='pill'
-        severity='error'
-        open={(data?.addProductsToCart?.user_errors?.length ?? 0) > 0}
-        action={
-          <Button size='medium' variant='pill' color='secondary'>
-            <Trans id='Ok' />
-          </Button>
-        }
-      >
-        <>{data?.addProductsToCart?.user_errors?.map((e) => e?.message).join(', ')}</>
-      </ErrorSnackbar>
-
-      <MessageSnackbar
-        open={showSuccess}
-        variant='pill'
-        action={
-          <PageLink href='/cart' passHref>
-            <Button
-              id='view-shopping-cart-button'
-              size='medium'
-              variant='pill'
-              color='secondary'
-              endIcon={<IconSvg src={iconChevronRight} />}
-              sx={{ display: 'flex' }}
-            >
-              <Trans id='View shopping cart' />
+      {showErrorSnackbar && (
+        <ErrorSnackbar
+          variant='pill'
+          severity='error'
+          action={
+            <Button size='medium' variant='pill' color='secondary'>
+              <Trans id='Ok' />
             </Button>
-          </PageLink>
-        }
-      >
-        <Trans
-          id='<0>{name}</0> has been added to your shopping cart!'
-          components={{ 0: <strong /> }}
-          values={{ name }}
-        />
-      </MessageSnackbar>
+          }
+          {...errorSnackbar}
+          open={showErrorSnackbar}
+        >
+          <>{data?.addProductsToCart?.user_errors?.map((e) => e?.message).join(', ')}</>
+        </ErrorSnackbar>
+      )}
+
+      {showSuccess && (
+        <MessageSnackbar
+          variant='pill'
+          {...successSnackbar}
+          open={showSuccess}
+          action={
+            <PageLink href='/cart' passHref>
+              <Button
+                id='view-shopping-cart-button'
+                size='medium'
+                variant='pill'
+                color='secondary'
+                endIcon={<IconSvg src={iconChevronRight} />}
+                sx={{ display: 'flex' }}
+              >
+                <Trans id='View shopping cart' />
+              </Button>
+            </PageLink>
+          }
+        >
+          <Trans
+            id='<0>{name}</0> has been added to your shopping cart!'
+            components={{ 0: <strong /> }}
+            values={{ name: items[items.length - 1]?.product.name }}
+          />
+        </MessageSnackbar>
+      )}
     </>
   )
 }

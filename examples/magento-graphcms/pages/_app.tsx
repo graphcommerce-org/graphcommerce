@@ -24,8 +24,8 @@ export default function ThemedApp(props: AppProps) {
       <I18nProvider key={locale} locale={locale}>
         <GraphQLProvider {...props}>
           <DarkLightModeThemeProvider light={lightTheme} dark={darkTheme}>
-            <GoogleAnalyticsScript />
-            <GoogleTagManagerScript />
+            {/* <GoogleAnalyticsScript /> */}
+            {/* <GoogleTagManagerScript /> */}
             <GlobalHead />
             <CssBaseline />
             <PageLoadIndicator />
