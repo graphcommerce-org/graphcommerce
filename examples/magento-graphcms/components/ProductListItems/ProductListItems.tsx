@@ -3,7 +3,11 @@ import {
   useGtagViewItemList,
   UseGtagViewItemListProps,
 } from '@graphcommerce/googleanalytics'
-import { ProductListItemsBase, ProductItemsGridProps } from '@graphcommerce/magento-product'
+import {
+  ProductListItemsBase,
+  ProductItemsGridProps,
+  AddProductsToCartForm,
+} from '@graphcommerce/magento-product'
 import { productListRenderer } from './productListRenderer'
 
 export type ProductListItemsProps = Omit<ProductItemsGridProps, 'renderers'> &
@@ -15,10 +19,12 @@ export function ProductListItems(props: ProductListItemsProps) {
   useGtagViewItemList(props)
 
   return (
-    <ProductListItemsBase
-      renderers={productListRenderer}
-      {...props}
-      onClick={(e, item) => gtagSelectItem({ item, listId, title })}
-    />
+    <AddProductsToCartForm>
+      <ProductListItemsBase
+        renderers={productListRenderer}
+        {...props}
+        onClick={(e, item) => gtagSelectItem({ item, listId, title })}
+      />
+    </AddProductsToCartForm>
   )
 }

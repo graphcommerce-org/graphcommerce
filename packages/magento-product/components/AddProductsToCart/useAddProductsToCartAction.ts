@@ -26,12 +26,12 @@ export function useAddProductsToCartAction(
     disabled: Boolean(formState.errors.cartItems?.[index].sku?.message || disabled),
     loading: Boolean(formState.isSubmitting || loading),
     onClick: useEventCallback((e) => {
-      if (formState.isSubmitting) return
       e.stopPropagation()
+      if (formState.isSubmitting) return
       if (process.env.NODE_ENV !== 'production') {
-        if (!sku) console.warn('You must provide a SKU to AddProductsToCartFab')
+        if (!sku) console.warn(`You must provide a 'sku' to useAddProductsToCartAction`)
       }
-      if (sku) setValue(`cartItems.${index}.sku`, sku)
+      setValue(`cartItems.${index}.sku`, sku ?? '')
       onClickIncomming?.(e)
     }),
     onMouseDown: useEventCallback((e) => e.stopPropagation()),
