@@ -1,5 +1,56 @@
 # Change Log
 
+## 3.28.2
+
+### Patch Changes
+
+- [#1679](https://github.com/graphcommerce-org/graphcommerce/pull/1679) [`2b5451395`](https://github.com/graphcommerce-org/graphcommerce/commit/2b5451395dc1173de55d18d08968866e561f90ab) Thanks [@paales](https://github.com/paales)! - Move AddProductsToCartSnackbar to inside AddProductsToCartForm and make AddProductsToCartForm configrable via theme.ts
+
+- [#1679](https://github.com/graphcommerce-org/graphcommerce/pull/1679) [`63212f475`](https://github.com/graphcommerce-org/graphcommerce/commit/63212f47509acc88b0d88cfd9f9b85f5813eb31f) Thanks [@paales](https://github.com/paales)! - When adding a crosssell to the cart directly from the list, it would jump down while it was loading, show the old crosssels while loading
+
+- [#1679](https://github.com/graphcommerce-org/graphcommerce/pull/1679) [`2f303401f`](https://github.com/graphcommerce-org/graphcommerce/commit/2f303401f68c95a3a547ebe1ac5caed2623a989e) Thanks [@paales](https://github.com/paales)! - Explicitly use a type=“button” so it isn’t registered as a submit handler
+
+- [#1679](https://github.com/graphcommerce-org/graphcommerce/pull/1679) [`ac4a7481d`](https://github.com/graphcommerce-org/graphcommerce/commit/ac4a7481dc7a90222074751f32a65eccec97ba52) Thanks [@paales](https://github.com/paales)! - Let crosssels use a floating variant on desktop
+
+- [#1679](https://github.com/graphcommerce-org/graphcommerce/pull/1679) [`5d5da13fd`](https://github.com/graphcommerce-org/graphcommerce/commit/5d5da13fd873cd0eb4539c129a4e4baba779fc27) Thanks [@paales](https://github.com/paales)! - Renamed crosssell label to Complete your purchase
+
+- Updated dependencies [[`2b5451395`](https://github.com/graphcommerce-org/graphcommerce/commit/2b5451395dc1173de55d18d08968866e561f90ab), [`e76df6dc3`](https://github.com/graphcommerce-org/graphcommerce/commit/e76df6dc37c11c793a5d008ba36932d17dc23855), [`c4ed376e2`](https://github.com/graphcommerce-org/graphcommerce/commit/c4ed376e2c72b16b34704d7d1ca69c074de172ba), [`78d7d51cb`](https://github.com/graphcommerce-org/graphcommerce/commit/78d7d51cb1551601d3a4756cd1f2157a49ff93b9), [`0bd9ea582`](https://github.com/graphcommerce-org/graphcommerce/commit/0bd9ea58230dde79c5fe2cdb07e9860151460270)]:
+  - @graphcommerce/magento-product@4.8.0
+  - @graphcommerce/next-ui@4.29.0
+  - @graphcommerce/magento-category@4.8.0
+  - @graphcommerce/googleanalytics@3.0.2
+  - @graphcommerce/magento-cart-email@3.0.65
+  - @graphcommerce/magento-cart-items@3.1.17
+  - @graphcommerce/magento-payment-braintree@3.0.62
+  - @graphcommerce/magento-payment-included@3.2.1
+  - @graphcommerce/magento-product-bundle@4.1.6
+  - @graphcommerce/magento-product-configurable@4.3.6
+  - @graphcommerce/magento-product-downloadable@4.1.6
+  - @graphcommerce/magento-product-grouped@3.1.6
+  - @graphcommerce/magento-product-simple@4.1.6
+  - @graphcommerce/magento-product-virtual@4.1.6
+  - @graphcommerce/magento-review@3.4.6
+  - @graphcommerce/magento-wishlist@1.7.6
+  - @graphcommerce/mollie-magento-payment@3.5.15
+  - @graphcommerce/ecommerce-ui@1.5.5
+  - @graphcommerce/framer-scroller@2.1.42
+  - @graphcommerce/graphcms-ui@3.1.3
+  - @graphcommerce/magento-cart@4.9.1
+  - @graphcommerce/magento-cart-billing-address@3.1.15
+  - @graphcommerce/magento-cart-checkout@3.0.65
+  - @graphcommerce/magento-cart-coupon@3.2.15
+  - @graphcommerce/magento-cart-payment-method@3.6.5
+  - @graphcommerce/magento-cart-pickup@3.2.5
+  - @graphcommerce/magento-cart-shipping-address@3.5.5
+  - @graphcommerce/magento-cart-shipping-method@3.7.5
+  - @graphcommerce/magento-customer@4.12.1
+  - @graphcommerce/magento-customer-account@3.2.15
+  - @graphcommerce/magento-customer-order@3.1.11
+  - @graphcommerce/magento-newsletter@2.2.6
+  - @graphcommerce/magento-search@4.2.13
+  - @graphcommerce/magento-store@4.3.3
+  - @graphcommerce/magento-cms@4.0.50
+
 ## 3.28.1
 
 ### Patch Changes

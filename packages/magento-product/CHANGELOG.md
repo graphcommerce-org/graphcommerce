@@ -1,5 +1,26 @@
 # Change Log
 
+## 4.8.0
+
+### Minor Changes
+
+- [#1679](https://github.com/graphcommerce-org/graphcommerce/pull/1679) [`2b5451395`](https://github.com/graphcommerce-org/graphcommerce/commit/2b5451395dc1173de55d18d08968866e561f90ab) Thanks [@paales](https://github.com/paales)! - Move AddProductsToCartSnackbar to inside AddProductsToCartForm and make AddProductsToCartForm configrable via theme.ts
+
+- [#1679](https://github.com/graphcommerce-org/graphcommerce/pull/1679) [`e76df6dc3`](https://github.com/graphcommerce-org/graphcommerce/commit/e76df6dc37c11c793a5d008ba36932d17dc23855) Thanks [@paales](https://github.com/paales)! - Added AddProductsToCartFab for a smaller add to cart button
+
+- [#1678](https://github.com/graphcommerce-org/graphcommerce/pull/1678) [`78d7d51cb`](https://github.com/graphcommerce-org/graphcommerce/commit/78d7d51cb1551601d3a4756cd1f2157a49ff93b9) Thanks [@Jessevdpoel](https://github.com/Jessevdpoel)! - Changed styling and forwarded breadcrumbprops
+
+### Patch Changes
+
+- [#1679](https://github.com/graphcommerce-org/graphcommerce/pull/1679) [`c4ed376e2`](https://github.com/graphcommerce-org/graphcommerce/commit/c4ed376e2c72b16b34704d7d1ca69c074de172ba) Thanks [@paales](https://github.com/paales)! - Support passing children to AddProductsToCartButton instead of Add To Cart
+
+- Updated dependencies [[`e76df6dc3`](https://github.com/graphcommerce-org/graphcommerce/commit/e76df6dc37c11c793a5d008ba36932d17dc23855), [`0bd9ea582`](https://github.com/graphcommerce-org/graphcommerce/commit/0bd9ea58230dde79c5fe2cdb07e9860151460270)]:
+  - @graphcommerce/next-ui@4.29.0
+  - @graphcommerce/ecommerce-ui@1.5.5
+  - @graphcommerce/framer-scroller@2.1.42
+  - @graphcommerce/magento-cart@4.9.1
+  - @graphcommerce/magento-store@4.3.3
+
 ## 4.7.3
 
 ### Patch Changes
