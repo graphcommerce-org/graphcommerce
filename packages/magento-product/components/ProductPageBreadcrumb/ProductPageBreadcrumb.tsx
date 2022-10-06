@@ -5,7 +5,7 @@ import PageLink from 'next/link'
 import { productPageCategory } from '../ProductPageCategory/productPageCategory'
 import { ProductPageBreadcrumbFragment } from './ProductPageBreadcrumb.gql'
 
-type ProductPageBreadcrumbsProps = ProductPageBreadcrumbFragment & BreadcrumbsProps
+type ProductPageBreadcrumbsProps = ProductPageBreadcrumbFragment & Omit<BreadcrumbsProps, 'children'>
 
 export function ProductPageBreadcrumb(props: ProductPageBreadcrumbsProps) {
   const { categories, name, ...breadcrumbProps } = props
