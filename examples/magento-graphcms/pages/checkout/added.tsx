@@ -29,8 +29,8 @@ type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
 
 function CheckoutAdded() {
-  const latestItems = useCartQuery(CartAddedDocument)
-  const items = filterNonNullableKeys(latestItems.data?.cart?.items)
+  const cartAdded = useCartQuery(CartAddedDocument)
+  const items = filterNonNullableKeys(cartAdded.data?.cart?.items)
   const lastItem = items[items.length - 1]
 
   const crosssels = useQuery(CrosssellsDocument, {
@@ -38,8 +38,12 @@ function CheckoutAdded() {
     ssr: false,
   })
   const crossSellItems = useMemo(
-    () => filterNonNullableKeys(crosssels.data?.products?.items?.[0]?.crosssell_products),
-    [crosssels.data?.products?.items],
+    () =>
+      filterNonNullableKeys(
+        crosssels.data?.products?.items?.[0]?.crosssell_products ??
+          crosssels.previousData?.products?.items?.[0]?.crosssell_products,
+      ).filter((item) => items.every((i) => i.product.sku !== item.sku)),
+    [crosssels.data?.products?.items, crosssels.previousData?.products?.items, items],
   )
 
   const readyOnce = useRef(false)
