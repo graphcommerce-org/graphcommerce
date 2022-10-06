@@ -127,7 +127,7 @@ function CheckoutAdded() {
           </Box>
           {showCrossSell && (
             <Box sx={{ typography: 'body1', display: { xs: 'none', md: 'block' } }}>
-              <Trans id='Have you thought about this yet?' />{' '}
+              <Trans id='Complete your purchase' />
             </Box>
           )}
         </Box>
@@ -161,7 +161,7 @@ function CheckoutAdded() {
                 textAlign: 'center',
               })}
             >
-              <Trans id='Have you thought about this yet?' />
+              <Trans id='Complete your purchase' />
             </Typography>
           </Container>
           <AddProductsToCartForm>

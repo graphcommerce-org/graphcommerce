@@ -112,6 +112,9 @@ msgstr "Sluiten"
 msgid "Complete the payment on your bank’s website."
 msgstr "Voltooi de betaling op uw bank's website."
 
+msgid "Complete your purchase"
+msgstr "Maak uw bestelling compleet"
+
 msgid "Confirm new email"
 msgstr "Bevestig nieuwe email"
 
@@ -228,9 +231,6 @@ msgstr "Totaal"
 
 msgid "Have an account?"
 msgstr "Heeft u al een account?"
-
-msgid "Have you thought about this yet?"
-msgstr "Heb je hier al over nagedacht?"
 
 msgid "Hi {firstname}! You’re now logged in!"
 msgstr "Hallo {firstname}! U bent nu ingelogd!"
