@@ -1,4 +1,5 @@
 import { useEventCallback } from '@mui/material'
+import { useMemo } from 'react'
 import { useFormAddProductsToCart } from './useFormAddProductsToCart'
 
 export type UseAddProductsToCartActionProps = {
@@ -19,12 +20,12 @@ export type UseAddProductsToCartActionReturn = {
 export function useAddProductsToCartAction(
   props: UseAddProductsToCartActionProps,
 ): UseAddProductsToCartActionReturn {
-  const { formState, setValue } = useFormAddProductsToCart()
+  const { formState, setValue, getValues } = useFormAddProductsToCart()
   const { sku, index = 0, onClick: onClickIncomming, disabled, loading } = props
 
   return {
     disabled: Boolean(formState.errors.cartItems?.[index].sku?.message || disabled),
-    loading: Boolean(formState.isSubmitting || loading),
+    loading: loading || (formState.isSubmitting && getValues(`cartItems.${index}.sku`) === sku),
     onClick: useEventCallback((e) => {
       e.stopPropagation()
       if (formState.isSubmitting) return
