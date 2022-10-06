@@ -7,11 +7,10 @@ import {
   Box,
   Portal,
   Popper,
+  Grow,
   ClickAwayListener,
-  Fade,
-  Slide,
 } from '@mui/material'
-import { FC, forwardRef, PropsWithChildren } from 'react'
+import { forwardRef, PropsWithChildren } from 'react'
 import { Button } from '../Button'
 import { IconSvg } from '../IconSvg'
 import { Overlay } from '../Overlay'
@@ -30,21 +29,20 @@ type ResponsiveMenuProps = PropsWithChildren<
 type MenuContentProps = Pick<
   ResponsiveMenuProps,
   'onClose' | 'setOpenEl' | 'label' | 'onReset' | 'children'
->
+> & { isDesktop: boolean }
 
 const MenuContent = forwardRef<any, MenuContentProps>(
-  ({ onClose, onReset, setOpenEl, label, children }, ref) => (
+  ({ onClose, onReset, setOpenEl, label, children, isDesktop }, ref) => (
     <Box
       ref={ref}
       sx={{
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
-        height: '100%',
-        minWidth: 300,
-        maxheight: 500,
+        minWidth: 325,
+        maxHeight: isDesktop ? 500 : '90vh',
         backgroundColor: 'background.paper',
-        padding: 2,
+        padding: isDesktop ? '15px 15px 5px 15px' : 0,
       }}
     >
       <Box
@@ -73,41 +71,39 @@ const MenuContent = forwardRef<any, MenuContentProps>(
       <Box
         sx={{
           flex: 1,
+          padding: 2,
           overflow: 'visible',
           overflowY: 'scroll',
           scroll: 20,
           '&::-webkit-scrollbar': {
-            display: 'none',
+            display: isDesktop ? 'visable' : 'none',
           },
         }}
       >
         {children}
-        <Box sx={{ height: 40 }} />
-        <Button
-          form='filter-form'
-          variant='pill'
-          color='primary'
-          size='large'
-          sx={{
-            position: 'sticky',
-            bottom: 10,
-            zIndex: 100,
-            width: '100%',
-          }}
-          type='submit'
-          onClick={() => {
-            setOpenEl(null)
-          }}
-        >
-          <Trans id='Apply' />
-        </Button>
       </Box>
+      <Button
+        form='filter-form'
+        variant='pill'
+        color='primary'
+        size='large'
+        sx={{
+          width: '100%',
+          margin: 1,
+        }}
+        type='submit'
+        onClick={() => {
+          setOpenEl(null)
+        }}
+      >
+        <Trans id='Apply' />
+      </Button>
     </Box>
   ),
 )
 
 export function ResponsiveMenu(props: ResponsiveMenuProps) {
-  const { chip, openEl, setOpenEl, onClose, id = 'filterpopper' } = props
+  const { chip, openEl, setOpenEl, onClose } = props
   const isDesktop = useMediaQuery<Theme>((theme) => theme.breakpoints.up('md'))
   const open = Boolean(openEl)
   if (!isDesktop) {
@@ -134,7 +130,7 @@ export function ResponsiveMenu(props: ResponsiveMenuProps) {
               },
             }}
           >
-            <MenuContent {...props} />
+            <MenuContent {...props} isDesktop={isDesktop} />
           </Overlay>
         </Portal>
       </>
@@ -151,21 +147,13 @@ export function ResponsiveMenu(props: ResponsiveMenuProps) {
       <Box>
         {chip}
         <Popper
-          id={id}
           open={open}
           anchorEl={openEl}
-          // disablePortal
-          placement='bottom'
-          sx={{ paddingTop: 1, zIndex: 1000 }}
-          transition
+          sx={{ padding: 1, zIndex: 1 }}
+          keepMounted
+          disablePortal
         >
-          {({ TransitionProps }) => (
-            <Fade {...TransitionProps} timeout={350}>
-              <div>
-                <MenuContent {...props} />
-              </div>
-            </Fade>
-          )}
+          <MenuContent {...props} isDesktop={isDesktop} />
         </Popper>
       </Box>
     </ClickAwayListener>

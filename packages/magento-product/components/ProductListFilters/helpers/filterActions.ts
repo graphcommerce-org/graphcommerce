@@ -13,19 +13,28 @@ type FunctionProps = {
 export const emptyFilters = (props: FunctionProps) => {
   const { params, attribute_code, form } = props
   const linkParams = cloneDeep(params)
-  console.log({ ...linkParams.filters })
-
   delete linkParams.filters[attribute_code]
   delete linkParams.currentPage
-  console.log({ ...linkParams.filters })
   form.reset({ ...linkParams.filters })
   return linkParams
+}
+
+export const removeAllFilters = (
+  props: FunctionProps & { onReplace: (params: ProductListParams) => void },
+) => {
+  const { params, form, onReplace } = props
+  const linkParams = cloneDeep(params)
+  Object.keys(linkParams.filters).forEach((filter) => delete linkParams.filters[filter])
+  delete linkParams.currentPage
+  form.reset(linkParams.filters)
+  onReplace(linkParams)
 }
 
 export const useFilterActions = (props: FunctionProps) => {
   const replaceRoute = useProductListLinkReplace({ scroll: false })
   return {
-    resetFilters: () => replaceRoute({ ...emptyFilters(props) }),
+    resetFilters: () => replaceRoute(emptyFilters(props)),
     emptyFilters: () => emptyFilters(props),
+    clearAllFilters: () => removeAllFilters({ ...props, onReplace: replaceRoute }),
   }
 }
