@@ -12,6 +12,7 @@ import {
   ProductPageDescription,
   ProductPageMeta,
   ProductShortDescription,
+  ProductSidebarDelivery,
 } from '@graphcommerce/magento-product'
 import { BundleProductOptions } from '@graphcommerce/magento-product-bundle'
 import {
@@ -32,7 +33,7 @@ import {
   isTypename,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box, Divider, Link, Typography } from '@mui/material'
+import { Box, Divider, Link, Typography, darken, lighten } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
 import {
@@ -80,9 +81,6 @@ function ProductPage(props: Props) {
         <ConfigurableProductPageGallery
           url_key={product.url_key}
           media_gallery={product.media_gallery}
-          sx={(theme) => ({
-            '& .SidebarGallery-sidebar': { display: 'grid', rowGap: theme.spacings.sm },
-          })}
         >
           <div>
             {isTypename(product, ['ConfigurableProduct', 'BundleProduct']) && (
@@ -102,7 +100,10 @@ function ProductPage(props: Props) {
               )}
             </Typography>
 
-            <ProductShortDescription short_description={product?.short_description} />
+            <ProductShortDescription
+              short_description={product?.short_description}
+              sx={(theme) => ({ mb: theme.spacings.xs })}
+            />
 
             <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
           </div>
@@ -127,7 +128,17 @@ function ProductPage(props: Props) {
               }}
             />
           )}
-          {isTypename(product, ['BundleProduct']) && <BundleProductOptions product={product} />}
+          {isTypename(product, ['BundleProduct']) && (
+            <Box
+              sx={(theme) => ({
+                display: 'grid',
+                rowGap: theme.spacings.lg,
+                pb: theme.spacings.lg,
+              })}
+            >
+              <BundleProductOptions product={product} />
+            </Box>
+          )}
           {isTypename(product, ['DownloadableProduct']) && (
             <DownloadableProductOptions product={product} />
           )}
@@ -139,7 +150,7 @@ function ProductPage(props: Props) {
             sx={(theme) => ({
               display: 'flex',
               alignItems: 'center',
-              columnGap: theme.spacings.xs,
+              columnGap: theme.spacings.md,
             })}
           >
             <AddProductsToCartQuantity sx={{ flexShrink: '0' }} />
@@ -154,6 +165,8 @@ function ProductPage(props: Props) {
               </Typography>
             </AddProductsToCartError>
           </Box>
+
+          <ProductSidebarDelivery />
 
           <Box
             sx={(theme) => ({

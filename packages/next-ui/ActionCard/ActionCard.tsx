@@ -2,6 +2,7 @@ import { alpha, Box, BoxProps, ButtonBase, ButtonProps, SxProps, Theme } from '@
 import React from 'react'
 import { extendableComponent } from '../Styles'
 import { breakpointVal } from '../Styles/breakpointVal'
+import { responsiveVal } from '../Styles/responsiveVal'
 
 type Variants = 'outlined' | 'default'
 type Size = 'large' | 'medium' | 'small'
@@ -108,72 +109,85 @@ export function ActionCard(props: ActionCardProps) {
       sx={[
         (theme) => ({
           '&.sizeSmall': {
+            px: `10px`,
             py: `5px`,
             display: 'flex',
             typography: 'body2',
           },
 
           '&.sizeMedium': {
-            py: `10px`,
+            px: responsiveVal(10, 16),
+            py: responsiveVal(8, 14),
             typography: 'body2',
             display: 'block',
           },
 
           '&.sizeLarge': {
+            px: theme.spacings.xs,
             py: theme.spacings.xxs,
             display: 'block',
           },
 
-          '&.variantDefault': {
-            borderBottom: `1px solid ${theme.palette.divider}`,
-            '&.selected': {
-              borderBottom: `2px solid ${theme.palette[color].main}`,
-              marginBottom: '-1px',
-              backgroundColor: `${theme.palette[color].main}10`,
-            },
-            '&.error': {
-              borderBottom: `2px solid ${theme.palette.error.main}`,
-              marginBottom: '-1px',
-              backgroundColor: `${theme.palette.error.main}10`,
-            },
-          },
+          // '&.variantDefault': {
+          //   borderBottom: `1px solid ${theme.palette.divider}`,
+          //   '&.selected': {
+          //     borderBottom: `2px solid ${theme.palette[color].main}`,
+          //     marginBottom: '-1px',
+          //     backgroundColor: `${theme.palette[color].main}10`,
+          //   },
+          //   '&.error': {
+          //     borderBottom: `2px solid ${theme.palette.error.main}`,
+          //     marginBottom: '-1px',
+          //     backgroundColor: `${theme.palette.error.main}10`,
+          //   },
+          // },
 
           '&.variantOutlined': {
             backgroundColor: theme.palette.background.paper,
-            border: `1px solid ${theme.palette.divider}`,
+            boxShadow: `inset 0 0 0 1px ${theme.palette.divider}`,
             '&:not(:last-of-type)': {
               marginBottom: '-1px',
             },
 
             '&.layoutList': {
-              '&:first-of-type, &.selected': {
-                ...breakpointVal(
-                  'borderTopLeftRadius',
-                  theme.shape.borderRadius * 3,
-                  theme.shape.borderRadius * 4,
-                  theme.breakpoints.values,
-                ),
-                ...breakpointVal(
-                  'borderTopRightRadius',
-                  theme.shape.borderRadius * 3,
-                  theme.shape.borderRadius * 4,
-                  theme.breakpoints.values,
-                ),
-              },
-              '&:last-of-type, &.selected': {
-                ...breakpointVal(
-                  'borderBottomLeftRadius',
-                  theme.shape.borderRadius * 3,
-                  theme.shape.borderRadius * 4,
-                  theme.breakpoints.values,
-                ),
-                ...breakpointVal(
-                  'borderBottomRightRadius',
-                  theme.shape.borderRadius * 3,
-                  theme.shape.borderRadius * 4,
-                  theme.breakpoints.values,
-                ),
-              },
+              // '&.selected': {
+              //   boxShadow: 'none',
+              // },
+              ...breakpointVal(
+                'borderRadius',
+                theme.shape.borderRadius * 3,
+                theme.shape.borderRadius * 4,
+                theme.breakpoints.values,
+              ),
+
+              // '&:first-of-type, &.selected': {
+              //   ...breakpointVal(
+              //     'borderTopLeftRadius',
+              //     theme.shape.borderRadius * 3,
+              //     theme.shape.borderRadius * 4,
+              //     theme.breakpoints.values,
+              //   ),
+              //   ...breakpointVal(
+              //     'borderTopRightRadius',
+              //     theme.shape.borderRadius * 3,
+              //     theme.shape.borderRadius * 4,
+              //     theme.breakpoints.values,
+              //   ),
+              // },
+              // '&:last-of-type, &.selected': {
+              //   ...breakpointVal(
+              //     'borderBottomLeftRadius',
+              //     theme.shape.borderRadius * 3,
+              //     theme.shape.borderRadius * 4,
+              //     theme.breakpoints.values,
+              //   ),
+              //   ...breakpointVal(
+              //     'borderBottomRightRadius',
+              //     theme.shape.borderRadius * 3,
+              //     theme.shape.borderRadius * 4,
+              //     theme.breakpoints.values,
+              //   ),
+              // },
             },
             '&:not(.layoutList)': {
               ...breakpointVal(
@@ -184,25 +198,12 @@ export function ActionCard(props: ActionCardProps) {
               ),
             },
 
-            '&.sizeSmall': { px: `10px` },
-            '&.sizeMedium': { px: `12px` },
-            '&.sizeLarge': { px: theme.spacings.xs },
-
             '&.selected': {
-              border: `2px solid ${theme.palette[color].main}`,
-              boxShadow: `0 0 0 4px ${alpha(
-                theme.palette[color].main,
-                theme.palette.action.hoverOpacity,
-              )}`,
-
-              '&.sizeSmall': { padding: `4px 9px` },
-              '&.sizeMedium': { padding: `9px 11px` },
-              '&.sizeLarge': {
-                padding: `calc(${theme.spacings.xxs} - 1px) calc(${theme.spacings.xs} - 1px)`,
-              },
+              borderColor: 'transparent',
+              boxShadow: `inset 0 0 0 2px ${theme.palette[color].main}`,
             },
             '&.error': {
-              border: `2px solid ${theme.palette.error.main}`,
+              boxShadow: `0 0 0 2px ${theme.palette.error.main}`,
             },
           },
           '&.selected': {
@@ -287,7 +288,10 @@ export function ActionCard(props: ActionCardProps) {
           }}
         >
           {action && (
-            <Box className={classes.action} sx={{ marginBottom: '5px' }}>
+            <Box
+              className={classes.action}
+              sx={(theme) => ({ marginBottom: '5px', color: theme.palette[color].main })}
+            >
               {!selected ? action : reset}
             </Box>
           )}

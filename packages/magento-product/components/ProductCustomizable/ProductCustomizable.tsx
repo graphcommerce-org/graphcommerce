@@ -26,6 +26,7 @@ const CustomizableAreaOption = React.memo<
         value={uid}
       />
       <TextFieldElement
+        color='primary'
         multiline
         minRows={3}
         control={control}
@@ -53,6 +54,7 @@ const CustomizableDropDownOption = React.memo<
         value={uid}
       />
       <SelectElement
+        color='primary'
         control={control}
         name={`cartItems.${index}.entered_options.${optionIndex}.value`}
         label={title}
