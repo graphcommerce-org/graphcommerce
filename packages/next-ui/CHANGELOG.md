@@ -1,5 +1,18 @@
 # Change Log
 
+## 4.29.0
+
+### Minor Changes
+
+- [#1679](https://github.com/graphcommerce-org/graphcommerce/pull/1679) [`0bd9ea582`](https://github.com/graphcommerce-org/graphcommerce/commit/0bd9ea58230dde79c5fe2cdb07e9860151460270) Thanks [@paales](https://github.com/paales)! - Added a new Fab component which adds a loading state
+
+### Patch Changes
+
+- [#1679](https://github.com/graphcommerce-org/graphcommerce/pull/1679) [`e76df6dc3`](https://github.com/graphcommerce-org/graphcommerce/commit/e76df6dc37c11c793a5d008ba36932d17dc23855) Thanks [@paales](https://github.com/paales)! - Added AddProductsToCartFab for a smaller add to cart button
+
+- Updated dependencies []:
+  - @graphcommerce/framer-scroller@2.1.42
+
 ## 4.28.1
 
 ### Patch Changes

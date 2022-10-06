@@ -1,5 +1,19 @@
 # Change Log
 
+## 4.8.0
+
+### Minor Changes
+
+- [#1678](https://github.com/graphcommerce-org/graphcommerce/pull/1678) [`78d7d51cb`](https://github.com/graphcommerce-org/graphcommerce/commit/78d7d51cb1551601d3a4756cd1f2157a49ff93b9) Thanks [@Jessevdpoel](https://github.com/Jessevdpoel)! - Changed styling and forwarded breadcrumbprops
+
+### Patch Changes
+
+- Updated dependencies [[`2b5451395`](https://github.com/graphcommerce-org/graphcommerce/commit/2b5451395dc1173de55d18d08968866e561f90ab), [`e76df6dc3`](https://github.com/graphcommerce-org/graphcommerce/commit/e76df6dc37c11c793a5d008ba36932d17dc23855), [`c4ed376e2`](https://github.com/graphcommerce-org/graphcommerce/commit/c4ed376e2c72b16b34704d7d1ca69c074de172ba), [`78d7d51cb`](https://github.com/graphcommerce-org/graphcommerce/commit/78d7d51cb1551601d3a4756cd1f2157a49ff93b9), [`0bd9ea582`](https://github.com/graphcommerce-org/graphcommerce/commit/0bd9ea58230dde79c5fe2cdb07e9860151460270)]:
+  - @graphcommerce/magento-product@4.8.0
+  - @graphcommerce/next-ui@4.29.0
+  - @graphcommerce/framer-scroller@2.1.42
+  - @graphcommerce/magento-store@4.3.3
+
 ## 4.7.2
 
 ### Patch Changes
