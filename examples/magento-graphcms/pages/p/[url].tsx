@@ -113,7 +113,13 @@ function ProductPage(props: Props) {
               optionEndLabels={{
                 size: (
                   <PageLink href='/modal/product/global/size'>
-                    <Link rel='nofollow' component='button' color='primary' underline='hover'>
+                    <Link
+                      rel='nofollow'
+                      component='button'
+                      type='button'
+                      color='primary'
+                      underline='hover'
+                    >
                       <Trans id='Which size is right?' />
                     </Link>
                   </PageLink>
