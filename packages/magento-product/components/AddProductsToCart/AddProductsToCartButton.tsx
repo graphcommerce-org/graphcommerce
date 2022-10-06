@@ -8,15 +8,24 @@ import {
 export type AddProductsToCartButtonProps = UseAddProductsToCartActionProps &
   Pick<
     ButtonProps<'button'>,
-    'variant' | 'color' | 'size' | 'fullWidth' | 'startIcon' | 'endIcon' | 'onClick' | 'sx'
+    | 'variant'
+    | 'color'
+    | 'size'
+    | 'fullWidth'
+    | 'startIcon'
+    | 'endIcon'
+    | 'onClick'
+    | 'sx'
+    | 'children'
   >
 
 export function AddProductsToCartButton(props: AddProductsToCartButtonProps) {
+  const { children } = props
   const action = useAddProductsToCartAction(props)
 
   return (
     <Button type='submit' color='primary' variant='pill' size='large' {...props} {...action}>
-      <Trans id='Add to Cart' />
+      {children || <Trans id='Add to Cart' />}
     </Button>
   )
 }
