@@ -7,6 +7,7 @@ import type {
 } from '@graphcommerce/graphql-mesh'
 import { Money } from '@graphcommerce/magento-store'
 import {
+  ActionCard,
   ActionCardItemRenderProps,
   ActionCardListForm,
   ChipMenu,
@@ -40,7 +41,6 @@ export function FilterRangeActionCard(
     min: number
     max: number
     currentFilter?: FilterRangeTypeInput
-
     onChangeCommitted?: (
       event: Event | React.SyntheticEvent<Element, Event>,
       value: number | number[],
@@ -48,28 +48,30 @@ export function FilterRangeActionCard(
     onChange?: (event: Event, value: number | number[], activeThumb: number) => void
   }>,
 ) {
-  const { value, min, max, params, onReset, onChangeCommitted, onChange } = props
+  const { value, max, onChangeCommitted, onChange, ...cardProps } = props
 
   return (
-    <Box
-      sx={(theme) => ({
-        padding: `${theme.spacings.xxs} ${theme.spacings.xxs} !important`,
-        width: '100%',
-      })}
-      className={classes.container}
-    >
-      <Slider
-        min={min}
-        max={max}
-        size='large'
-        aria-labelledby='range-slider'
-        value={Number(value) ?? 0}
-        onChange={onChange}
-        onChangeCommitted={onChangeCommitted}
-        valueLabelDisplay='off'
-        className={classes.slider}
-      />
-    </Box>
+    <ActionCard value={value} {...cardProps}>
+      <Box
+        sx={(theme) => ({
+          padding: `${theme.spacings.xxs} ${theme.spacings.xxs} !important`,
+          width: '100%',
+        })}
+        className={classes.container}
+      >
+        <Slider
+          min={0}
+          max={max}
+          size='large'
+          aria-labelledby='range-slider'
+          value={Number(value) ?? 0}
+          onChange={onChange}
+          onChangeCommitted={onChangeCommitted}
+          valueLabelDisplay='off'
+          className={classes.slider}
+        />
+      </Box>
+    </ActionCard>
   )
 }
 
@@ -185,7 +187,15 @@ export function FilterRangeType(props: FilterRangeTypeProps) {
         name={`${attribute_code}`}
         control={control}
         layout='stack'
-        items={options}
+        items={[
+          {
+            value: '',
+            min: 0,
+            max,
+            params,
+            onChangeCommitted: () => {},
+          },
+        ]}
         render={FilterRangeActionCard}
       />
     </ChipMenu>
