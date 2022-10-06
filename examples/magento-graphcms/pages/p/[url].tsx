@@ -1,11 +1,9 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { gtagAddToCart } from '@graphcommerce/googleanalytics'
 import {
   AddProductsToCartButton,
   AddProductsToCartError,
   AddProductsToCartForm,
   AddProductsToCartQuantity,
-  AddProductsToCartSnackbar,
   getProductStaticPaths,
   jsonLdProduct,
   jsonLdProductOffer,
@@ -78,7 +76,7 @@ function ProductPage(props: Props) {
       />
       <ProductPageMeta {...product} />
 
-      <AddProductsToCartForm redirect='added' onComplete={gtagAddToCart}>
+      <AddProductsToCartForm>
         <ConfigurableProductPageGallery
           url_key={product.url_key}
           media_gallery={product.media_gallery}
@@ -162,7 +160,6 @@ function ProductPage(props: Props) {
             <ProductWishlistChipDetail {...product} />
           </Box>
 
-          <AddProductsToCartSnackbar {...product} />
           <Usps usps={sidebarUsps} size='small' />
         </ConfigurableProductPageGallery>
       </AddProductsToCartForm>

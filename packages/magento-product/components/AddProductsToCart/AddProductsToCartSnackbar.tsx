@@ -1,27 +1,35 @@
 import { ApolloCartErrorSnackbar } from '@graphcommerce/magento-cart'
 import {
   Button,
+  ErrorSnackbar,
+  ErrorSnackbarProps,
+  filterNonNullableKeys,
   iconChevronRight,
   IconSvg,
   MessageSnackbar,
-  ErrorSnackbar,
+  MessageSnackbarProps,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import PageLink from 'next/link'
-import { useFormAddProductsToCart } from './AddProductsToCartForm'
+import { useFormAddProductsToCart } from './useFormAddProductsToCart'
 
-type AddToCartMessageProps = { name?: string | null }
+export type AddProductsToCartSnackbarProps = {
+  errorSnackbar?: Omit<ErrorSnackbarProps, 'open'>
+  successSnackbar?: Omit<MessageSnackbarProps, 'open' | 'action'>
+}
 
-export function AddProductsToCartSnackbar(props: AddToCartMessageProps) {
-  const { name } = props
-  const { formState, error, data, getValues } = useFormAddProductsToCart()
+export function AddProductsToCartSnackbar(props: AddProductsToCartSnackbarProps) {
+  const { errorSnackbar, successSnackbar } = props
+  const { formState, error, data, redirect } = useFormAddProductsToCart()
 
   const showSuccess =
     !formState.isSubmitting &&
     formState.isSubmitSuccessful &&
     !error?.message &&
     !data?.addProductsToCart?.user_errors?.length &&
-    !getValues('redirect')
+    !redirect
+
+  const items = filterNonNullableKeys(data?.addProductsToCart?.cart.items)
 
   return (
     <>
@@ -30,19 +38,21 @@ export function AddProductsToCartSnackbar(props: AddToCartMessageProps) {
       <ErrorSnackbar
         variant='pill'
         severity='error'
-        open={(data?.addProductsToCart?.user_errors?.length ?? 0) > 0}
         action={
           <Button size='medium' variant='pill' color='secondary'>
             <Trans id='Ok' />
           </Button>
         }
+        {...errorSnackbar}
+        open={(data?.addProductsToCart?.user_errors?.length ?? 0) > 0}
       >
         <>{data?.addProductsToCart?.user_errors?.map((e) => e?.message).join(', ')}</>
       </ErrorSnackbar>
 
       <MessageSnackbar
-        open={showSuccess}
         variant='pill'
+        {...successSnackbar}
+        open={showSuccess}
         action={
           <PageLink href='/cart' passHref>
             <Button
@@ -61,7 +71,7 @@ export function AddProductsToCartSnackbar(props: AddToCartMessageProps) {
         <Trans
           id='<0>{name}</0> has been added to your shopping cart!'
           components={{ 0: <strong /> }}
-          values={{ name }}
+          values={{ name: items[items.length - 1].product.name }}
         />
       </MessageSnackbar>
     </>
