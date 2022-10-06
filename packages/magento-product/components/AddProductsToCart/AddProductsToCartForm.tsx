@@ -102,7 +102,7 @@ export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
     <AddProductsToCartContext.Provider
       value={useMemo(() => ({ ...form, redirect }), [form, redirect])}
     >
-      <Box component='form' onSubmit={submit} noValidate sx={sx}>
+      <Box component='form' onSubmit={submit} noValidate sx={sx} className={name}>
         {children}
       </Box>
       <AddProductsToCartSnackbar errorSnackbar={errorSnackbar} successSnackbar={successSnackbar} />
