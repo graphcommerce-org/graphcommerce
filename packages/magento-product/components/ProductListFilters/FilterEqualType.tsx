@@ -163,7 +163,7 @@ export function FilterEqualType(props: FilterEqualTypeProps) {
       {...chipProps}
       openEl={openEl}
       setOpenEl={setOpenEl}
-      onReset={emptyFilters}
+      onReset={() => emptyFilters()}
       onDelete={resetFilters}
       label={label}
       selected={currentLabels.length > 0}
