@@ -195,10 +195,7 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
 
   // When the overlay isn't visible anymore, we navigate back.
   useEffect(
-    () =>
-      positions.open.visible.onChange(
-        (o) => position.get() !== OverlayPosition.OPENED && o === 0 && closeOverlay(),
-      ),
+    () => positions.open.visible.onChange((o) => o === 0 && closeOverlay()),
     [closeOverlay, position, positions.open.visible],
   )
 
