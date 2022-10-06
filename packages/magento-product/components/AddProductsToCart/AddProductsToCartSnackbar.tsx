@@ -31,49 +31,54 @@ export function AddProductsToCartSnackbar(props: AddProductsToCartSnackbarProps)
 
   const items = filterNonNullableKeys(data?.addProductsToCart?.cart.items)
 
+  const showErrorSnackbar = (data?.addProductsToCart?.user_errors?.length ?? 0) > 0
   return (
     <>
-      <ApolloCartErrorSnackbar error={error} />
+      {error && <ApolloCartErrorSnackbar error={error} />}
 
-      <ErrorSnackbar
-        variant='pill'
-        severity='error'
-        action={
-          <Button size='medium' variant='pill' color='secondary'>
-            <Trans id='Ok' />
-          </Button>
-        }
-        {...errorSnackbar}
-        open={(data?.addProductsToCart?.user_errors?.length ?? 0) > 0}
-      >
-        <>{data?.addProductsToCart?.user_errors?.map((e) => e?.message).join(', ')}</>
-      </ErrorSnackbar>
-
-      <MessageSnackbar
-        variant='pill'
-        {...successSnackbar}
-        open={showSuccess}
-        action={
-          <PageLink href='/cart' passHref>
-            <Button
-              id='view-shopping-cart-button'
-              size='medium'
-              variant='pill'
-              color='secondary'
-              endIcon={<IconSvg src={iconChevronRight} />}
-              sx={{ display: 'flex' }}
-            >
-              <Trans id='View shopping cart' />
+      {showErrorSnackbar && (
+        <ErrorSnackbar
+          variant='pill'
+          severity='error'
+          action={
+            <Button size='medium' variant='pill' color='secondary'>
+              <Trans id='Ok' />
             </Button>
-          </PageLink>
-        }
-      >
-        <Trans
-          id='<0>{name}</0> has been added to your shopping cart!'
-          components={{ 0: <strong /> }}
-          values={{ name: items[items.length - 1].product.name }}
-        />
-      </MessageSnackbar>
+          }
+          {...errorSnackbar}
+          open={showErrorSnackbar}
+        >
+          <>{data?.addProductsToCart?.user_errors?.map((e) => e?.message).join(', ')}</>
+        </ErrorSnackbar>
+      )}
+
+      {showSuccess && (
+        <MessageSnackbar
+          variant='pill'
+          {...successSnackbar}
+          open={showSuccess}
+          action={
+            <PageLink href='/cart' passHref>
+              <Button
+                id='view-shopping-cart-button'
+                size='medium'
+                variant='pill'
+                color='secondary'
+                endIcon={<IconSvg src={iconChevronRight} />}
+                sx={{ display: 'flex' }}
+              >
+                <Trans id='View shopping cart' />
+              </Button>
+            </PageLink>
+          }
+        >
+          <Trans
+            id='<0>{name}</0> has been added to your shopping cart!'
+            components={{ 0: <strong /> }}
+            values={{ name: items[items.length - 1]?.product.name }}
+          />
+        </MessageSnackbar>
+      )}
     </>
   )
 }
