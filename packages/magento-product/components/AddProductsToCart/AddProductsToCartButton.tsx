@@ -1,7 +1,7 @@
 import { Button, ButtonProps } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { SxProps, Theme, useEventCallback } from '@mui/material'
-import { useFormAddProductsToCart } from './AddProductsToCartForm'
+import { useFormAddProductsToCart } from './useFormAddProductsToCart'
 
 export type AddProductsToCartButtonProps = {
   sx?: SxProps<Theme>

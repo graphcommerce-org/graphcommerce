@@ -1,5 +1,5 @@
 import { NumberFieldElement, NumberFieldElementProps } from '@graphcommerce/ecommerce-ui'
-import { useFormAddProductsToCart } from './AddProductsToCartForm'
+import { useFormAddProductsToCart } from './useFormAddProductsToCart'
 
 type AddToCartQuantityProps = Omit<
   NumberFieldElementProps,
