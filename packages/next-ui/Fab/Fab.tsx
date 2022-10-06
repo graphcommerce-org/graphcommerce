@@ -1,17 +1,34 @@
-import { Box, CircularProgress, Fab as FabBase, FabProps as FabPropsBase } from '@mui/material'
+import {
+  Box,
+  CircularProgress,
+  CircularProgressProps,
+  Fab as FabBase,
+  FabProps as FabPropsBase,
+} from '@mui/material'
 import { IconSvg, IconSvgProps } from '../IconSvg'
 import { useFabSize } from '../Theme/MuiFab'
 
 export type FabProps = Omit<FabPropsBase<'button'>, 'variant' | 'children'> & {
   loading?: boolean
   icon: IconSvgProps['src']
+  circularProgress?: Omit<CircularProgressProps, 'size'>
 }
 
 /** Adds loading functionality to the Fab component. */
 export function Fab(props: FabProps) {
-  const { size = 'responsive', disabled, loading, sx = [], icon, ...fabProps } = props
+  const {
+    size = 'responsive',
+    disabled,
+    loading,
+    sx = [],
+    icon,
+    circularProgress,
+    ...fabProps
+  } = props
 
   const fabSize = useFabSize(size)
+
+  const circSx = circularProgress?.sx ?? []
 
   return (
     <FabBase
@@ -27,8 +44,12 @@ export function Fab(props: FabProps) {
       </Box>
       {loading && (
         <CircularProgress
-          sx={{ display: 'flex', placeContent: 'center', gridArea: '1/1' }}
           size={fabSize}
+          {...circularProgress}
+          sx={[
+            { display: 'flex', placeContent: 'center', gridArea: '1/1' },
+            ...(Array.isArray(circSx) ? circSx : [circSx]),
+          ]}
         />
       )}
     </FabBase>
