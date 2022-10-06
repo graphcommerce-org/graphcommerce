@@ -68,7 +68,6 @@ function CheckoutAdded() {
       <Container
         maxWidth={false}
         sx={(theme) => ({
-          // width: '100%', // `min(1400px, ${clientSizeCssVar.x})`,
           display: 'grid',
           py: 2,
           alignItems: { xs: 'start', md: 'center' },
@@ -115,7 +114,6 @@ function CheckoutAdded() {
           />
         )}
 
-        {/* <IconSvg src={iconCheckmark} size='large' /> */}
         <Box gridArea='children'>
           <Box sx={{ typography: 'h6' }}>
             <Trans
@@ -174,7 +172,7 @@ function CheckoutAdded() {
           <AddProductsToCartForm>
             <ItemScroller
               sx={(theme) => ({
-                width: 'auto', // `min(1400px, ${clientSizeCssVar.x})`,
+                width: 'auto',
                 mb: theme.page.vertical,
               })}
             >
