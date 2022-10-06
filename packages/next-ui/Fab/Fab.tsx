@@ -28,9 +28,7 @@ export function Fab(props: FabProps) {
       {loading && (
         <CircularProgress
           sx={{ display: 'flex', placeContent: 'center', gridArea: '1/1' }}
-          thickness={1.5}
           size={fabSize}
-          color='inherit'
         />
       )}
     </FabBase>
