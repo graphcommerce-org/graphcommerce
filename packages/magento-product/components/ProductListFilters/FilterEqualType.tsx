@@ -1,10 +1,6 @@
 import { UseFormReturn } from '@graphcommerce/ecommerce-ui'
 import { cloneDeep } from '@graphcommerce/graphql'
-import type {
-  FilterEqualTypeInput,
-  FilterTypeInput,
-  ProductAttributeFilterInput,
-} from '@graphcommerce/graphql-mesh'
+import type { FilterEqualTypeInput, ProductAttributeFilterInput } from '@graphcommerce/graphql-mesh'
 import {
   ChipMenu,
   ChipMenuProps,
@@ -16,7 +12,6 @@ import {
 import { Box, Checkbox, Typography } from '@mui/material'
 import { useState } from 'react'
 import type { SetRequired } from 'type-fest'
-import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
 import { ProductListParams } from '../ProductListItems/filterTypes'
 import { ProductListFiltersFragment } from './ProductListFilters.gql'

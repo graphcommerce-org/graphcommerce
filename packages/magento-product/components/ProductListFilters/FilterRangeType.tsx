@@ -1,28 +1,14 @@
 import { UseFormReturn } from '@graphcommerce/ecommerce-ui'
 import { cloneDeep } from '@graphcommerce/graphql'
-import type {
-  FilterRangeTypeInput,
-  FilterTypeInput,
-  ProductAttributeFilterInput,
-} from '@graphcommerce/graphql-mesh'
+import type { FilterRangeTypeInput, ProductAttributeFilterInput } from '@graphcommerce/graphql-mesh'
 import { Money } from '@graphcommerce/magento-store'
-import {
-  ActionCard,
-  ActionCardItemRenderProps,
-  ActionCardListForm,
-  ChipMenu,
-  ChipMenuProps,
-  extendableComponent,
-} from '@graphcommerce/next-ui'
+import { ChipMenu, ChipMenuProps, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box, Slider } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
-import { ProductListParams } from '../ProductListItems/filterTypes'
 import { ProductListFiltersFragment } from './ProductListFilters.gql'
-
-type Filter = NonNullable<NonNullable<ProductListFiltersFragment['aggregations']>[number]>
 
 type FilterRangeTypeProps = NonNullable<
   NonNullable<ProductListFiltersFragment['aggregations']>[0]
@@ -33,25 +19,39 @@ type FilterRangeTypeProps = NonNullable<
 
 const { classes } = extendableComponent('FilterRangeType', ['root', 'container', 'slider'] as const)
 
-export function FilterRangeActionCard(
-  props: ActionCardItemRenderProps<{
-    option: NonNullable<Filter['options']>[0]
-    attribute_code: string
-    params: ProductListParams
-    min: number
-    max: number
-    currentFilter?: FilterRangeTypeInput
-    onChangeCommitted?: (
-      event: Event | React.SyntheticEvent<Element, Event>,
-      value: number | number[],
-    ) => void
-    onChange?: (event: Event, value: number | number[], activeThumb: number) => void
-  }>,
-) {
-  const { value, max, onChangeCommitted, onChange, ...cardProps } = props
+export function FilterRangeType(props: FilterRangeTypeProps) {
+  const { attribute_code, label, options, filterForm, ...chipProps } = props
+  const { setValue, watch } = filterForm
+  const { params } = useProductListParamsContext()
+
+  const [openEl, setOpenEl] = useState<null | HTMLElement>(null)
+
+  const values = options?.map((v) => v?.value.split('_').map((mv) => Number(mv))).flat(1)
+
+  const value: { from: number; to: number } | undefined = {
+    from: Number(values?.[0]),
+    to: Number(values?.[values.length - 1]),
+  }
+
+  const priceFilterUrl = cloneDeep(params)
+  delete priceFilterUrl.currentPage
+  priceFilterUrl.filters[attribute_code] = {
+    from: String(value?.from),
+    to: String(value?.to),
+  } as FilterRangeTypeInput
 
   return (
-    <ActionCard value={value} {...cardProps}>
+    <ChipMenu
+      variant='outlined'
+      label={label}
+      selectedLabel={label}
+      selected={!!openEl}
+      {...chipProps}
+      openEl={openEl}
+      setOpenEl={setOpenEl}
+      // onDelete={currentLabel ? resetFilter : undefined}
+      className={classes.root}
+    >
       <Box
         sx={(theme) => ({
           padding: `${theme.spacings.xxs} ${theme.spacings.xxs} !important`,
@@ -59,145 +59,30 @@ export function FilterRangeActionCard(
         })}
         className={classes.container}
       >
+        <>
+          <Money round value={Number(value?.from)} />
+          {value?.to ? ' — ' : false}
+          <Money round value={Number(value?.to)} />
+        </>
         <Slider
-          min={0}
-          max={max}
+          min={values ? values[0] : 0}
+          max={values ? values[values.length - 1] : 0}
           size='large'
           aria-labelledby='range-slider'
-          value={Number(value) ?? 0}
-          onChange={onChange}
-          onChangeCommitted={onChangeCommitted}
+          value={value ? [value?.from, value?.to] : [0, 0]}
+          onChange={(e, newValue) => {
+            setValue(`${attribute_code}` as unknown as any, {
+              from: newValue?.[0] ?? 0,
+              to: newValue?.[1] ?? 0,
+            })
+            setOpenEl(openEl)
+          }}
           valueLabelDisplay='off'
           className={classes.slider}
+          step={null}
+          marks={values?.map((v) => ({ value: v, label: v })) as any}
         />
       </Box>
-    </ActionCard>
-  )
-}
-
-export function FilterRangeType(props: FilterRangeTypeProps) {
-  const { attribute_code, label, options, filterForm, ...chipProps } = props
-  const [openEl, setOpenEl] = useState<null | HTMLElement>(null)
-
-  const { params } = useProductListParamsContext()
-  const replaceRoute = useProductListLinkReplace({ scroll: false })
-
-  const priceFilterUrl = cloneDeep(params)
-
-  const marks: { [index: number]: { value: number; label?: React.ReactNode } } = {}
-  const paramValues = params.filters[attribute_code]
-
-  const { control, reset, setValue, watch } = filterForm
-  const [min, maxish] = options
-    ?.map((option) => {
-      let val = option?.value.replace('*_', '0_') ?? ''
-      val = val.replace('_*', '_0')
-      const [minVal, maxVal] = val.split('_').map((value) => Number(value))
-
-      marks[minVal] = { value: minVal, label: minVal }
-      marks[maxVal] = { value: maxVal, label: maxVal }
-      return [minVal, maxVal]
-    })
-    .reduce(([prevMin, prevMax], [curMin, curMax]) => [
-      Math.min(prevMin, curMin),
-      Math.max(curMax, prevMax),
-    ]) ?? [0, 0]
-
-  const max = (maxish / (options?.length ?? 2 - 1)) * (options?.length ?? 1)
-  marks[max] = { value: max, label: max }
-
-  useEffect(() => {
-    if (!paramValues) {
-      setValue(attribute_code as keyof ProductAttributeFilterInput, {
-        from: `${min}`,
-        to: `${max}`,
-      })
-    }
-  }, [attribute_code, max, min, paramValues, setValue])
-
-  const resetFilter = () => {
-    const linkParams = cloneDeep(params)
-
-    delete linkParams.currentPage
-    delete linkParams.filters[attribute_code]
-
-    setValue(attribute_code as keyof ProductAttributeFilterInput, {
-      from: `${min}`,
-      to: `${max}`,
-    })
-    replaceRoute(linkParams)
-  }
-
-  const currentFilter = params.filters[attribute_code] as FilterRangeTypeInput | undefined
-
-  let currentLabel: React.ReactNode | undefined
-
-  if (currentFilter) {
-    const from = Number(currentFilter?.from ?? 0)
-    const to = Number(currentFilter?.to ?? 0)
-
-    if (from === min && to !== max)
-      currentLabel = (
-        <Trans
-          id='Below <0/>'
-          components={{ 0: <Money round value={Number(currentFilter?.to)} /> }}
-        />
-      )
-
-    if (from !== min && to === max)
-      currentLabel = (
-        <Trans
-          id='Above <0/>'
-          components={{ 0: <Money round value={Number(currentFilter?.from)} /> }}
-        />
-      )
-
-    if (from !== min && to !== max)
-      currentLabel = (
-        <>
-          <Money round value={Number(currentFilter?.from)} />
-          {' — '}
-          <Money round value={Number(currentFilter.to)} />
-        </>
-      )
-  }
-
-  const current = watch(`${attribute_code}` as keyof ProductAttributeFilterInput)
-
-  return (
-    <ChipMenu
-      variant='outlined'
-      label={label}
-      selectedLabel={currentLabel}
-      selected={!!currentLabel}
-      openEl={openEl}
-      setOpenEl={setOpenEl}
-      {...chipProps}
-      onDelete={currentLabel ? resetFilter : undefined}
-      className={classes.root}
-      labelRight={
-        <>
-          <Money round value={current?.[0]} />
-          {current?.[0] ? ' — ' : false}
-          <Money round value={current?.[1]} />
-        </>
-      }
-    >
-      <ActionCardListForm
-        name={`${attribute_code}`}
-        control={control}
-        layout='stack'
-        items={[
-          {
-            value: '',
-            min: 0,
-            max,
-            params,
-            onChangeCommitted: () => {},
-          },
-        ]}
-        render={FilterRangeActionCard}
-      />
     </ChipMenu>
   )
 }
