@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-payment-braintree",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "3.0.63",
+  "version": "3.0.64",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -13,9 +13,9 @@
   },
   "devDependencies": {
     "@graphcommerce/eslint-config-pwa": "^4.1.10",
-    "@graphcommerce/magento-cart-shipping-address": "3.5.6",
-    "@graphcommerce/magento-product": "4.8.1",
-    "@graphcommerce/magento-product-configurable": "4.3.7",
+    "@graphcommerce/magento-cart-shipping-address": "3.5.7",
+    "@graphcommerce/magento-product": "4.8.2",
+    "@graphcommerce/magento-product-configurable": "4.3.8",
     "@graphcommerce/prettier-config-pwa": "^4.0.6",
     "@graphcommerce/typescript-config-pwa": "^4.0.4",
     "@playwright/test": "^1.21.1",
@@ -25,10 +25,10 @@
   "dependencies": {
     "@graphcommerce/graphql": "3.5.0",
     "@graphcommerce/image": "3.1.10",
-    "@graphcommerce/magento-cart": "4.9.2",
-    "@graphcommerce/magento-cart-payment-method": "3.6.6",
-    "@graphcommerce/magento-store": "4.3.4",
-    "@graphcommerce/next-ui": "4.29.1",
+    "@graphcommerce/magento-cart": "4.9.3",
+    "@graphcommerce/magento-cart-payment-method": "3.6.7",
+    "@graphcommerce/magento-store": "4.3.5",
+    "@graphcommerce/next-ui": "4.29.2",
     "@graphcommerce/react-hook-form": "3.3.5",
     "braintree-web": "^3.86.0"
   },

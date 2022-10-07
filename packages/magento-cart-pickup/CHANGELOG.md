@@ -1,5 +1,16 @@
 # Change Log
 
+## 3.2.7
+
+### Patch Changes
+
+- [#1686](https://github.com/graphcommerce-org/graphcommerce/pull/1686) [`1953c7e27`](https://github.com/graphcommerce-org/graphcommerce/commit/1953c7e27eb606a825fce1ad361393b3c781c6da) Thanks [@paales](https://github.com/paales)! - Product page markup and sticky product image when the sidebar is fairly large
+
+- Updated dependencies [[`1953c7e27`](https://github.com/graphcommerce-org/graphcommerce/commit/1953c7e27eb606a825fce1ad361393b3c781c6da)]:
+  - @graphcommerce/magento-cart-shipping-method@3.7.7
+  - @graphcommerce/next-ui@4.29.2
+  - @graphcommerce/magento-store@4.3.5
+
 ## 3.2.6
 
 ### Patch Changes

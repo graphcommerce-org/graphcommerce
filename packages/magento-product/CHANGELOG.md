@@ -1,5 +1,18 @@
 # Change Log
 
+## 4.8.2
+
+### Patch Changes
+
+- [#1686](https://github.com/graphcommerce-org/graphcommerce/pull/1686) [`1953c7e27`](https://github.com/graphcommerce-org/graphcommerce/commit/1953c7e27eb606a825fce1ad361393b3c781c6da) Thanks [@paales](https://github.com/paales)! - Product page markup and sticky product image when the sidebar is fairly large
+
+- Updated dependencies [[`1953c7e27`](https://github.com/graphcommerce-org/graphcommerce/commit/1953c7e27eb606a825fce1ad361393b3c781c6da)]:
+  - @graphcommerce/next-ui@4.29.2
+  - @graphcommerce/ecommerce-ui@1.5.7
+  - @graphcommerce/framer-scroller@2.1.44
+  - @graphcommerce/magento-cart@4.9.3
+  - @graphcommerce/magento-store@4.3.5
+
 ## 4.8.1
 
 ### Patch Changes

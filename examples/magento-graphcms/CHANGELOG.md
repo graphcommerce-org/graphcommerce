@@ -1,5 +1,48 @@
 # Change Log
 
+## 3.28.4
+
+### Patch Changes
+
+- [#1686](https://github.com/graphcommerce-org/graphcommerce/pull/1686) [`1953c7e27`](https://github.com/graphcommerce-org/graphcommerce/commit/1953c7e27eb606a825fce1ad361393b3c781c6da) Thanks [@paales](https://github.com/paales)! - Product page markup and sticky product image when the sidebar is fairly large
+
+- Updated dependencies [[`1953c7e27`](https://github.com/graphcommerce-org/graphcommerce/commit/1953c7e27eb606a825fce1ad361393b3c781c6da)]:
+  - @graphcommerce/magento-cart-payment-method@3.6.7
+  - @graphcommerce/magento-cart-pickup@3.2.7
+  - @graphcommerce/magento-cart-shipping-address@3.5.7
+  - @graphcommerce/magento-cart-shipping-method@3.7.7
+  - @graphcommerce/magento-product@4.8.2
+  - @graphcommerce/magento-product-bundle@4.1.8
+  - @graphcommerce/next-ui@4.29.2
+  - @graphcommerce/magento-payment-braintree@3.0.64
+  - @graphcommerce/magento-payment-included@3.2.3
+  - @graphcommerce/mollie-magento-payment@3.5.17
+  - @graphcommerce/googleanalytics@3.0.4
+  - @graphcommerce/magento-cart-email@3.0.67
+  - @graphcommerce/magento-cart-items@3.1.19
+  - @graphcommerce/magento-category@4.8.2
+  - @graphcommerce/magento-product-configurable@4.3.8
+  - @graphcommerce/magento-product-downloadable@4.1.8
+  - @graphcommerce/magento-product-grouped@3.1.8
+  - @graphcommerce/magento-product-simple@4.1.8
+  - @graphcommerce/magento-product-virtual@4.1.8
+  - @graphcommerce/magento-review@3.4.8
+  - @graphcommerce/magento-wishlist@1.7.8
+  - @graphcommerce/ecommerce-ui@1.5.7
+  - @graphcommerce/framer-scroller@2.1.44
+  - @graphcommerce/graphcms-ui@3.1.5
+  - @graphcommerce/magento-cart@4.9.3
+  - @graphcommerce/magento-cart-billing-address@3.1.17
+  - @graphcommerce/magento-cart-checkout@3.0.67
+  - @graphcommerce/magento-cart-coupon@3.2.17
+  - @graphcommerce/magento-customer@4.12.3
+  - @graphcommerce/magento-customer-account@3.2.17
+  - @graphcommerce/magento-customer-order@3.1.13
+  - @graphcommerce/magento-newsletter@2.2.8
+  - @graphcommerce/magento-search@4.2.15
+  - @graphcommerce/magento-store@4.3.5
+  - @graphcommerce/magento-cms@4.0.52
+
 ## 3.28.3
 
 ### Patch Changes
