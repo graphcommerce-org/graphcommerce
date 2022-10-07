@@ -114,8 +114,6 @@ function ProductPage(props: Props) {
           {isTypename(product, ['ConfigurableProduct']) && (
             <ConfigurableProductOptions
               product={product}
-              layout='grid'
-              size='medium'
               optionEndLabels={{
                 size: (
                   <PageLink href='/modal/product/global/size'>
