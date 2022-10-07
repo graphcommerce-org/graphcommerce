@@ -37,7 +37,6 @@ export const ActionCardLayout = React.forwardRef<HTMLDivElement, ActionCardLayou
             '&.layoutList': {
               display: 'grid',
               height: 'min-content',
-              gap: theme.spacings.xxs,
             },
             '&.layoutGrid': {
               display: 'grid',

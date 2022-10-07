@@ -108,39 +108,45 @@ export function ActionCard(props: ActionCardProps) {
       disabled={disabled}
       sx={[
         (theme) => ({
+          ...breakpointVal(
+            'borderRadius',
+            theme.shape.borderRadius * 3,
+            theme.shape.borderRadius * 4,
+            theme.breakpoints.values,
+          ),
+
           '&.sizeSmall': {
-            px: `10px`,
-            py: `5px`,
+            px: responsiveVal(8, 12),
+            py: responsiveVal(6, 8),
             display: 'flex',
             typography: 'body2',
           },
-
           '&.sizeMedium': {
             px: responsiveVal(10, 16),
             py: responsiveVal(8, 14),
             typography: 'body2',
             display: 'block',
           },
-
           '&.sizeLarge': {
             px: theme.spacings.xs,
             py: theme.spacings.xxs,
             display: 'block',
           },
 
-          // '&.variantDefault': {
-          //   borderBottom: `1px solid ${theme.palette.divider}`,
-          //   '&.selected': {
-          //     borderBottom: `2px solid ${theme.palette[color].main}`,
-          //     marginBottom: '-1px',
-          //     backgroundColor: `${theme.palette[color].main}10`,
-          //   },
-          //   '&.error': {
-          //     borderBottom: `2px solid ${theme.palette.error.main}`,
-          //     marginBottom: '-1px',
-          //     backgroundColor: `${theme.palette.error.main}10`,
-          //   },
-          // },
+          '&.variantDefault': {
+            borderRadius: 0,
+            borderBottom: `1px solid ${theme.palette.divider}`,
+            '&.selected': {
+              borderBottom: `2px solid ${theme.palette[color].main}`,
+              marginBottom: '-1px',
+              backgroundColor: `${theme.palette[color].main}10`,
+            },
+            '&.error': {
+              borderBottom: `2px solid ${theme.palette.error.main}`,
+              marginBottom: '-1px',
+              backgroundColor: `${theme.palette.error.main}10`,
+            },
+          },
 
           '&.variantOutlined': {
             backgroundColor: theme.palette.background.paper,
@@ -150,57 +156,47 @@ export function ActionCard(props: ActionCardProps) {
             },
 
             '&.layoutList': {
-              // '&.selected': {
-              //   boxShadow: 'none',
-              // },
-              ...breakpointVal(
-                'borderRadius',
-                theme.shape.borderRadius * 3,
-                theme.shape.borderRadius * 4,
-                theme.breakpoints.values,
-              ),
-
-              // '&:first-of-type, &.selected': {
-              //   ...breakpointVal(
-              //     'borderTopLeftRadius',
-              //     theme.shape.borderRadius * 3,
-              //     theme.shape.borderRadius * 4,
-              //     theme.breakpoints.values,
-              //   ),
-              //   ...breakpointVal(
-              //     'borderTopRightRadius',
-              //     theme.shape.borderRadius * 3,
-              //     theme.shape.borderRadius * 4,
-              //     theme.breakpoints.values,
-              //   ),
-              // },
-              // '&:last-of-type, &.selected': {
-              //   ...breakpointVal(
-              //     'borderBottomLeftRadius',
-              //     theme.shape.borderRadius * 3,
-              //     theme.shape.borderRadius * 4,
-              //     theme.breakpoints.values,
-              //   ),
-              //   ...breakpointVal(
-              //     'borderBottomRightRadius',
-              //     theme.shape.borderRadius * 3,
-              //     theme.shape.borderRadius * 4,
-              //     theme.breakpoints.values,
-              //   ),
-              // },
-            },
-            '&:not(.layoutList)': {
-              ...breakpointVal(
-                'borderRadius',
-                theme.shape.borderRadius * 3,
-                theme.shape.borderRadius * 4,
-                theme.breakpoints.values,
-              ),
+              borderRadius: 0,
+              '&:first-of-type': {
+                ...breakpointVal(
+                  'borderTopLeftRadius',
+                  theme.shape.borderRadius * 3,
+                  theme.shape.borderRadius * 4,
+                  theme.breakpoints.values,
+                ),
+                ...breakpointVal(
+                  'borderTopRightRadius',
+                  theme.shape.borderRadius * 3,
+                  theme.shape.borderRadius * 4,
+                  theme.breakpoints.values,
+                ),
+              },
+              '&:last-of-type': {
+                ...breakpointVal(
+                  'borderBottomLeftRadius',
+                  theme.shape.borderRadius * 3,
+                  theme.shape.borderRadius * 4,
+                  theme.breakpoints.values,
+                ),
+                ...breakpointVal(
+                  'borderBottomRightRadius',
+                  theme.shape.borderRadius * 3,
+                  theme.shape.borderRadius * 4,
+                  theme.breakpoints.values,
+                ),
+              },
             },
 
             '&.selected': {
               borderColor: 'transparent',
               boxShadow: `inset 0 0 0 2px ${theme.palette[color].main}`,
+            },
+            '&.selected:focus': {
+              borderColor: 'transparent',
+              boxShadow: `inset 0 0 0 2px ${theme.palette[color].main}, 0 0 0 4px ${alpha(
+                theme.palette[color].main,
+                theme.palette.action.hoverOpacity,
+              )}`,
             },
             '&.error': {
               boxShadow: `0 0 0 2px ${theme.palette.error.main}`,
