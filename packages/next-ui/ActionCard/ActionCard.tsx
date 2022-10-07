@@ -198,6 +198,13 @@ export function ActionCard(props: ActionCardProps) {
                 theme.palette.action.hoverOpacity,
               )}`,
             },
+            '&:focus': {
+              boxShadow: `inset 0 0 0 1px ${theme.palette.divider},0 0 0 4px ${alpha(
+                theme.palette[color].main,
+                theme.palette.action.hoverOpacity,
+              )}`,
+            },
+
             '&.error': {
               boxShadow: `0 0 0 2px ${theme.palette.error.main}`,
             },
