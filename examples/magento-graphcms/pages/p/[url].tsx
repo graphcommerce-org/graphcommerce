@@ -134,15 +134,7 @@ function ProductPage(props: Props) {
             />
           )}
           {isTypename(product, ['BundleProduct']) && (
-            <Box
-              sx={(theme) => ({
-                display: 'grid',
-                rowGap: theme.spacings.lg,
-                mb: theme.spacings.lg,
-              })}
-            >
-              <BundleProductOptions product={product} layout='stack' />
-            </Box>
+            <BundleProductOptions product={product} layout='stack' />
           )}
           {isTypename(product, ['DownloadableProduct']) && (
             <DownloadableProductOptions product={product} />
