@@ -1,5 +1,14 @@
 # Change Log
 
+## 4.29.1
+
+### Patch Changes
+
+- [#1684](https://github.com/graphcommerce-org/graphcommerce/pull/1684) [`98d6a9cce`](https://github.com/graphcommerce-org/graphcommerce/commit/98d6a9cce1bb9514088be0af2736721b3edda467) Thanks [@paales](https://github.com/paales)! - When dragging the overlay down it doesn't close
+
+- Updated dependencies []:
+  - @graphcommerce/framer-scroller@2.1.43
+
 ## 4.29.0
 
 ### Minor Changes

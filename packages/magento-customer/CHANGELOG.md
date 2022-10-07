@@ -1,5 +1,14 @@
 # Change Log
 
+## 4.12.2
+
+### Patch Changes
+
+- Updated dependencies [[`98d6a9cce`](https://github.com/graphcommerce-org/graphcommerce/commit/98d6a9cce1bb9514088be0af2736721b3edda467)]:
+  - @graphcommerce/next-ui@4.29.1
+  - @graphcommerce/ecommerce-ui@1.5.6
+  - @graphcommerce/magento-store@4.3.4
+
 ## 4.12.1
 
 ### Patch Changes
