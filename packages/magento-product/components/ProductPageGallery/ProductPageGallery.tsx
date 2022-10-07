@@ -1,4 +1,9 @@
-import { SidebarGallery, SidebarGalleryProps, TypeRenderer } from '@graphcommerce/next-ui'
+import {
+  nonNullable,
+  SidebarGallery,
+  SidebarGalleryProps,
+  TypeRenderer,
+} from '@graphcommerce/next-ui'
 import { PropsWithChildren } from 'react'
 import { ProductPageGalleryFragment } from './ProductPageGallery.gql'
 
@@ -23,14 +28,17 @@ export function ProductPageGallery(props: ProductPageGalleryProps) {
       sidebar={children}
       aspectRatio={[width, height]}
       images={
-        media_gallery?.map((item) => {
-          if (item?.__typename === 'ProductImage')
-            return { src: item.url ?? '', alt: item.label || undefined, width, height }
-          return {
-            src: '',
-            alt: `{${item?.__typename} not yet supported}`,
-          }
-        }) ?? []
+        media_gallery
+          ?.filter(nonNullable)
+          .sort((a, b) => (a.position ?? 0) - (b.position ?? 0))
+          .map((item) => {
+            if (item.__typename === 'ProductImage')
+              return { src: item.url ?? '', alt: item.label || undefined, width, height }
+            return {
+              src: '',
+              alt: `{${item.__typename} not yet supported}`,
+            }
+          }) ?? []
       }
     />
   )
