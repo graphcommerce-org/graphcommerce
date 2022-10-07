@@ -225,6 +225,7 @@ export function ActionCard(props: ActionCardProps) {
           width: '100%',
           justifyContent: 'space-between',
           alignContent: 'stretch',
+          alignItems: 'flex-start',
         }}
       >
         <Box
