@@ -42,7 +42,10 @@ function CheckoutAdded() {
       filterNonNullableKeys(
         crosssels.data?.products?.items?.[0]?.crosssell_products ??
           crosssels.previousData?.products?.items?.[0]?.crosssell_products,
-      ).filter((item) => items.every((i) => i.product.sku !== item.sku)),
+      ).filter(
+        (item) =>
+          items.every((i) => i.product.sku !== item.sku) && item.stock_status === 'IN_STOCK',
+      ),
     [crosssels.data?.products?.items, crosssels.previousData?.products?.items, items],
   )
 

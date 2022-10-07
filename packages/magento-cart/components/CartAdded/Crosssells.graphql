@@ -8,6 +8,7 @@ query Crosssells(
       __typename
       uid
       crosssell_products {
+        stock_status
         ...ProductListItem
       }
     }

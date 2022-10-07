@@ -46,7 +46,7 @@ dependencies, while keeping your customizations.
    `@graphcommerce/next-ui`:
 
    ```bash
-   git diff --relative=examples/magento-graphcms "@graphcommerce/next-ui@OLD_VERSION" examples/magento-graphcms ':!examples/magento-graphcms/CHANGELOG.md' > changes.patch
+   git diff -w --relative=examples/magento-graphcms "@graphcommerce/next-ui@OLD_VERSION" examples/magento-graphcms ':!examples/magento-graphcms/CHANGELOG.md' > changes.patch
    ```
 
 4. Move the `changes.patch` file from the /upgrade directory to the root of your
