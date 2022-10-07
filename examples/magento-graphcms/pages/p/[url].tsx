@@ -81,6 +81,9 @@ function ProductPage(props: Props) {
         <ConfigurableProductPageGallery
           url_key={product.url_key}
           media_gallery={product.media_gallery}
+          sx={(theme) => ({
+            '& .SidebarGallery-sidebar': { display: 'grid', rowGap: theme.spacings.sm },
+          })}
         >
           <div>
             {isTypename(product, ['ConfigurableProduct', 'BundleProduct']) && (
