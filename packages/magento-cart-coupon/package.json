@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-cart-coupon",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "3.2.15",
+  "version": "3.2.16",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -20,9 +20,9 @@
   "dependencies": {
     "@graphcommerce/graphql": "3.5.0",
     "@graphcommerce/image": "3.1.10",
-    "@graphcommerce/magento-cart": "4.9.1",
-    "@graphcommerce/magento-store": "4.3.3",
-    "@graphcommerce/next-ui": "4.29.0",
+    "@graphcommerce/magento-cart": "4.9.2",
+    "@graphcommerce/magento-store": "4.3.4",
+    "@graphcommerce/next-ui": "4.29.1",
     "@graphcommerce/react-hook-form": "3.3.5"
   },
   "peerDependencies": {

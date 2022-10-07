@@ -1,5 +1,48 @@
 # Change Log
 
+## 3.28.3
+
+### Patch Changes
+
+- [#1684](https://github.com/graphcommerce-org/graphcommerce/pull/1684) [`ae28fb14c`](https://github.com/graphcommerce-org/graphcommerce/commit/ae28fb14cec298c52970260a4fc2c2551b5f175e) Thanks [@paales](https://github.com/paales)! - Only show products in stock on crosssells
+
+- Updated dependencies [[`ae28fb14c`](https://github.com/graphcommerce-org/graphcommerce/commit/ae28fb14cec298c52970260a4fc2c2551b5f175e), [`98d6a9cce`](https://github.com/graphcommerce-org/graphcommerce/commit/98d6a9cce1bb9514088be0af2736721b3edda467), [`aab6b4fa5`](https://github.com/graphcommerce-org/graphcommerce/commit/aab6b4fa5b4708003cfb5bf673a617dc5dbf3078)]:
+  - @graphcommerce/magento-cart@4.9.2
+  - @graphcommerce/next-ui@4.29.1
+  - @graphcommerce/magento-product@4.8.1
+  - @graphcommerce/magento-cart-billing-address@3.1.16
+  - @graphcommerce/magento-cart-checkout@3.0.66
+  - @graphcommerce/magento-cart-coupon@3.2.16
+  - @graphcommerce/magento-cart-email@3.0.66
+  - @graphcommerce/magento-cart-items@3.1.18
+  - @graphcommerce/magento-cart-payment-method@3.6.6
+  - @graphcommerce/magento-cart-shipping-address@3.5.6
+  - @graphcommerce/magento-cart-shipping-method@3.7.6
+  - @graphcommerce/magento-newsletter@2.2.7
+  - @graphcommerce/magento-payment-braintree@3.0.63
+  - @graphcommerce/magento-payment-included@3.2.2
+  - @graphcommerce/magento-product-bundle@4.1.7
+  - @graphcommerce/magento-product-configurable@4.3.7
+  - @graphcommerce/magento-product-downloadable@4.1.7
+  - @graphcommerce/magento-product-grouped@3.1.7
+  - @graphcommerce/magento-product-simple@4.1.7
+  - @graphcommerce/magento-product-virtual@4.1.7
+  - @graphcommerce/magento-wishlist@1.7.7
+  - @graphcommerce/mollie-magento-payment@3.5.16
+  - @graphcommerce/ecommerce-ui@1.5.6
+  - @graphcommerce/framer-scroller@2.1.43
+  - @graphcommerce/googleanalytics@3.0.3
+  - @graphcommerce/graphcms-ui@3.1.4
+  - @graphcommerce/magento-cart-pickup@3.2.6
+  - @graphcommerce/magento-category@4.8.1
+  - @graphcommerce/magento-customer@4.12.2
+  - @graphcommerce/magento-customer-account@3.2.16
+  - @graphcommerce/magento-customer-order@3.1.12
+  - @graphcommerce/magento-review@3.4.7
+  - @graphcommerce/magento-search@4.2.14
+  - @graphcommerce/magento-store@4.3.4
+  - @graphcommerce/magento-cms@4.0.51
+
 ## 3.28.2
 
 ### Patch Changes

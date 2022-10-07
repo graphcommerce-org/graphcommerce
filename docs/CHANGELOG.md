@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.9.2
+
+### Patch Changes
+
+- [#1684](https://github.com/graphcommerce-org/graphcommerce/pull/1684) [`f90933627`](https://github.com/graphcommerce-org/graphcommerce/commit/f909336273ff4b6e14b29acce4acfae178ccb6fa) Thanks [@paales](https://github.com/paales)! - Add instruction to ignore whitespace when creating diff patch
+
 ## 4.9.1
 
 ### Patch Changes

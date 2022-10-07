@@ -1,5 +1,18 @@
 # Change Log
 
+## 4.9.2
+
+### Patch Changes
+
+- [#1684](https://github.com/graphcommerce-org/graphcommerce/pull/1684) [`ae28fb14c`](https://github.com/graphcommerce-org/graphcommerce/commit/ae28fb14cec298c52970260a4fc2c2551b5f175e) Thanks [@paales](https://github.com/paales)! - Only show products in stock on crosssells
+
+- Updated dependencies [[`98d6a9cce`](https://github.com/graphcommerce-org/graphcommerce/commit/98d6a9cce1bb9514088be0af2736721b3edda467)]:
+  - @graphcommerce/next-ui@4.29.1
+  - @graphcommerce/ecommerce-ui@1.5.6
+  - @graphcommerce/framer-scroller@2.1.43
+  - @graphcommerce/magento-customer@4.12.2
+  - @graphcommerce/magento-store@4.3.4
+
 ## 4.9.1
 
 ### Patch Changes
