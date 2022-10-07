@@ -2,6 +2,12 @@
 menu: Roadmap
 ---
 
+<div data-nosnippet>
+
+> Last update: October 7, 2022
+
+</div>
+
 # Roadmap
 
 The following overview contains the status of items on the GraphCommerce roadmap
@@ -9,22 +15,33 @@ The following overview contains the status of items on the GraphCommerce roadmap
 
 ## In progress
 
-- [ ] Adyen payment service (Braintree, Mollie, already implemented)
-- [ ] Core stability (hydratation, caching, query optimization)
-- [ ] Multilingual product sitemap generation
+- [ ] Redesigned layered navigation for mobile and desktop
+- [ ] GA4 datalayer implementation
+- [ ] Paypal payment service (Multisafepay, Braintree, Mollie already
+      implemented)
 
 ## Just released
 
+- [x] Crosssells overlay after adding a product to cart
+- [x] Bundle product
+      [example ↗](https://graphcommerce.vercel.app/nl/p/giftcard-bundle-gc-570)
+- [x] Configurable product image swatches
+      [example ↗](https://graphcommerce.vercel.app/nl/p/gc-puncturing-sock)
+- [x] Virtual product, downloadable products
+- [x] Multilingual Hygraph (GraphCMS) setup support
+- [x] Multisafepay payment service
+- [x] Multilingual product sitemap generation
 - [x] Multi level Navigation (Mega Menu)
 - [x] Pick up in store checkout integration
 - [x] Checkout shipping method selection rebuild
 - [x] Checkout payment selection rebuild
+- [x] Core stability (hydratation, caching, query optimization)
 
 ## Planned
 
 - [ ] Store locator
+- [ ] Adyen payment service
 - [ ] Buckaroo payment service
-- [ ] Multisafepay payment service
 - [ ] Fetch Magento image sizes (probe-image-size)
 - [ ] Postcode check integration
 - [ ] Windows support
