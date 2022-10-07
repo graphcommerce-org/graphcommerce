@@ -158,7 +158,7 @@ function ProductPage(props: Props) {
               columnGap: theme.spacings.md,
             })}
           >
-            <AddProductsToCartQuantity sx={{ flexShrink: '0' }} />
+            <AddProductsToCartQuantity sx={{ flexShrink: '0' }} color='primary' />
 
             <AddProductsToCartError>
               <Typography component='div' variant='h3' lineHeight='1'>
