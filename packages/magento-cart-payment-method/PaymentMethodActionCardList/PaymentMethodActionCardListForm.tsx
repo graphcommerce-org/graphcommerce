@@ -49,7 +49,7 @@ function PaymentMethodActionCard(
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
       action={
-        <Button disableTouchRipple variant='inline' color='secondary'>
+        <Button disableTouchRipple variant='inline' color='secondary' tabIndex={-1}>
           <Trans id='Select' />
         </Button>
       }

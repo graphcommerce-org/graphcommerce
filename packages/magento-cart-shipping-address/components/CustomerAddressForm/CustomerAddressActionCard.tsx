@@ -34,7 +34,7 @@ export function CustomerAddressActionCard(props: CustomerAddressActionCardProps)
         title={<Trans id='New address' />}
         details={<Trans id='Add new address' />}
         action={
-          <Button disableTouchRipple variant='inline' color='secondary'>
+          <Button disableTouchRipple variant='inline' color='secondary' tabIndex={-1}>
             <Trans id='Select' />
           </Button>
         }
@@ -63,7 +63,7 @@ export function CustomerAddressActionCard(props: CustomerAddressActionCardProps)
         </>
       }
       action={
-        <Button disableTouchRipple variant='inline' color='secondary'>
+        <Button disableTouchRipple variant='inline' color='secondary' tabIndex={-1}>
           <Trans id='Select' />
         </Button>
       }
