@@ -33,7 +33,7 @@ import {
   isTypename,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box, Divider, Link, Typography, darken, lighten } from '@mui/material'
+import { Box, Divider, Link, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
 import {
@@ -111,6 +111,8 @@ function ProductPage(props: Props) {
           {isTypename(product, ['ConfigurableProduct']) && (
             <ConfigurableProductOptions
               product={product}
+              layout='grid'
+              size='medium'
               optionEndLabels={{
                 size: (
                   <PageLink href='/modal/product/global/size'>
@@ -133,10 +135,10 @@ function ProductPage(props: Props) {
               sx={(theme) => ({
                 display: 'grid',
                 rowGap: theme.spacings.lg,
-                pb: theme.spacings.lg,
+                mb: theme.spacings.lg,
               })}
             >
-              <BundleProductOptions product={product} />
+              <BundleProductOptions product={product} layout='stack' />
             </Box>
           )}
           {isTypename(product, ['DownloadableProduct']) && (
