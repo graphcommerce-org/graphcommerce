@@ -14,6 +14,7 @@ export function AddProductsToCartQuantity(props: AddToCartQuantityProps) {
     <NumberFieldElement
       variant='outlined'
       size='small'
+      color='primary'
       {...props}
       required
       inputProps={{ min: 1 }}
