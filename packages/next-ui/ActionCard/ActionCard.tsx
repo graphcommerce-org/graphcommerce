@@ -135,6 +135,7 @@ export function ActionCard(props: ActionCardProps) {
 
           '&.variantDefault': {
             borderRadius: 0,
+            px: 0,
             borderBottom: `1px solid ${theme.palette.divider}`,
             '&.selected': {
               borderBottom: `2px solid ${theme.palette[color].main}`,
