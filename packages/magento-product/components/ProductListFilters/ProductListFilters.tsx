@@ -27,6 +27,7 @@ export function ProductListFilters(props: ProductFiltersProps) {
   useFormPersist({ form: filterForm, name: 'ProductListFilterForm' })
 
   const submit = handleSubmit((e) => {
+    console.log({ e })
     replaceRoute({ ...params, filters: e })
   })
 
