@@ -59,7 +59,7 @@ export function CartItemSummary(props: OrderSummaryProps) {
       ]}
     >
       <SectionContainer
-        sx={{ '& .SectionHeader': { mt: 0 } }}
+        sx={{ '& .SectionHeader-root': { mt: 0 } }}
         labelLeft={<Trans id='Order summary' />}
         // labelRight={
         //   <PageLink href='/download' passHref>
@@ -78,7 +78,7 @@ export function CartItemSummary(props: OrderSummaryProps) {
                 top: '50%',
                 transform: 'translateY(-50%)',
                 zIndex: 2,
-                left: 8,
+                left: `8px`,
               }}
             >
               <IconSvg src={iconChevronLeft} />

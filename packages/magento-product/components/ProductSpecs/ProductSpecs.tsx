@@ -24,7 +24,7 @@ export function ProductSpecs(props: ProductSpecsProps) {
     >
       <SectionContainer
         labelLeft={title}
-        sx={(theme) => ({ '& .SectionHeader': { marginBottom: theme.spacings.md } })}
+        sx={(theme) => ({ '& .SectionHeader-root': { marginBottom: theme.spacings.md } })}
       >
         <Box
           component='ul'
