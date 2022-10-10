@@ -1,5 +1,12 @@
 # Change Log
 
+## 3.28.7
+
+### Patch Changes
+
+- Updated dependencies [[`63e52a25d`](https://github.com/graphcommerce-org/graphcommerce/commit/63e52a25d35aa9600820155760fce23e91920185)]:
+  - @graphcommerce/magento-payment-paypal@1.0.2
+
 ## 3.28.6
 
 ### Patch Changes

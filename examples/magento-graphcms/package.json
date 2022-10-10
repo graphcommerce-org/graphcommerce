@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-graphcms",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "3.28.6",
+  "version": "3.28.7",
   "private": true,
   "sideEffects": false,
   "engines": {
@@ -58,7 +58,7 @@
     "@graphcommerce/magento-newsletter": "2.2.10",
     "@graphcommerce/magento-payment-braintree": "3.0.66",
     "@graphcommerce/magento-payment-included": "3.2.5",
-    "@graphcommerce/magento-payment-paypal": "1.0.1",
+    "@graphcommerce/magento-payment-paypal": "1.0.2",
     "@graphcommerce/magento-product": "4.8.4",
     "@graphcommerce/magento-product-bundle": "4.1.10",
     "@graphcommerce/magento-product-configurable": "4.3.10",
