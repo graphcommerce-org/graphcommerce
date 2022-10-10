@@ -1,5 +1,5 @@
-import { UseFormReset, UseFormReturn } from '@graphcommerce/ecommerce-ui'
-import { cloneDeep, empty } from '@graphcommerce/graphql'
+import { UseFormReturn } from '@graphcommerce/ecommerce-ui'
+import { cloneDeep } from '@graphcommerce/graphql'
 import { ProductAttributeFilterInput } from '@graphcommerce/graphql-mesh'
 import { useProductListLinkReplace } from '../../../hooks/useProductListLinkReplace'
 import { ProductListParams } from '../../ProductListItems/filterTypes'
@@ -7,7 +7,7 @@ import { ProductListParams } from '../../ProductListItems/filterTypes'
 type FunctionProps = {
   params: ProductListParams
   attribute_code: string
-  form: UseFormReturn<ProductAttributeFilterInput, any>
+  form: UseFormReturn<ProductAttributeFilterInput>
 }
 
 export const emptyFilters = (props: FunctionProps) => {

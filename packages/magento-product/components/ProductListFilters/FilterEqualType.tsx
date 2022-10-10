@@ -47,7 +47,7 @@ type Filter = NonNullable<NonNullable<ProductListFiltersFragment['aggregations']
 
 type FilterEqualTypeProps = Filter &
   Omit<ChipMenuProps, 'selected' | 'openEl' | 'setOpenEl'> & {
-    filterForm: UseFormReturn<ProductAttributeFilterInput, any>
+    filterForm: UseFormReturn<ProductAttributeFilterInput>
   }
 
 function FilterEqualActionCard(
