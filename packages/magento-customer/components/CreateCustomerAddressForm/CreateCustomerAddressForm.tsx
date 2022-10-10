@@ -19,7 +19,8 @@ import { NameFields } from '../NameFields/NameFields'
 import { CreateCustomerAddressDocument } from './CreateCustomerAddress.gql'
 
 export function CreateCustomerAddressForm() {
-  const countries = useQuery(CountryRegionsDocument).data?.countries
+  const countryQuery = useQuery(CountryRegionsDocument, { fetchPolicy: 'cache-and-network' })
+  const countries = countryQuery.data?.countries ?? countryQuery.previousData?.countries
   const router = useRouter()
 
   const form = useFormGqlMutation(
