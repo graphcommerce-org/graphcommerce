@@ -58,6 +58,7 @@
     "@graphcommerce/magento-newsletter": "2.2.8",
     "@graphcommerce/magento-payment-braintree": "3.0.64",
     "@graphcommerce/magento-payment-included": "3.2.3",
+    "@graphcommerce/magento-payment-paypal": "0.0.0",
     "@graphcommerce/magento-product": "4.8.2",
     "@graphcommerce/magento-product-bundle": "4.1.8",
     "@graphcommerce/magento-product-configurable": "4.3.8",

@@ -1,0 +1,40 @@
+{
+  "name": "@graphcommerce/magento-payment-paypal",
+  "homepage": "https://www.graphcommerce.org/",
+  "repository": "github:graphcommerce-org/graphcommerce",
+  "version": "0.0.0",
+  "private": true,
+  "sideEffects": false,
+  "prettier": "@graphcommerce/prettier-config-pwa",
+  "eslintConfig": {
+    "extends": "@graphcommerce/eslint-config-pwa",
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    }
+  },
+  "devDependencies": {
+    "@graphcommerce/eslint-config-pwa": "^4.1.10",
+    "@graphcommerce/prettier-config-pwa": "^4.0.6",
+    "@graphcommerce/typescript-config-pwa": "^4.0.4",
+    "@playwright/test": "^1.21.1",
+    "type-fest": "^2.12.2"
+  },
+  "dependencies": {
+    "@graphcommerce/ecommerce-ui": "1.5.7",
+    "@graphcommerce/graphql": "3.5.0",
+    "@graphcommerce/image": "3.1.10",
+    "@graphcommerce/magento-cart": "4.9.3",
+    "@graphcommerce/magento-cart-payment-method": "3.6.7",
+    "@graphcommerce/magento-store": "4.3.5",
+    "@graphcommerce/next-ui": "4.29.2"
+  },
+  "peerDependencies": {
+    "@lingui/react": "^3.13.2",
+    "@lingui/core": "^3.13.2",
+    "@mui/material": "5.5.3",
+    "framer-motion": "^6.2.4",
+    "next": "^12.1.2",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  }
+}
