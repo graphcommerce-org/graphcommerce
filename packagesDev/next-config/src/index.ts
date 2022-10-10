@@ -79,7 +79,7 @@ type GCConf = {
   packages?: string[]
 }
 
-export function withGraphCommerce(conf: GCConf): (config: NextConfig) => NextConfig {
+export function withGraphCommerce(conf: GCConf = {}): (config: NextConfig) => NextConfig {
   const { packages = [] } = conf
   const dependencies = [...resolveDependenciesSync().keys()]
 
