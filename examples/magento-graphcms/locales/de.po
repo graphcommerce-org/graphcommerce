@@ -286,12 +286,6 @@ msgstr "Frau"
 msgid "Name"
 msgstr "Name"
 
-msgid "Summary"
-msgstr "Beschreibung"
-
-msgid "Review"
-msgstr "Review"
-
 msgid "Navigate to item {0}"
 msgstr "Zum Artikel {0} navigieren"
 
@@ -442,6 +436,9 @@ msgstr "Warenkorb zurücksetzen und zurück zur Startseite"
 msgid "Results for ‘{search}’"
 msgstr "Ergebnisse für ‘{search}’"
 
+msgid "Review"
+msgstr "Review"
+
 msgid "Reviews"
 msgstr "Bewertungen"
 
@@ -520,6 +517,9 @@ msgstr "Änderungen erfolgreich gespeichert"
 msgid "Successfully updated email"
 msgstr "E-Mail erfolgreich aktualisiert"
 
+msgid "Summary"
+msgstr "Beschreibung"
+
 msgid "Switch stores"
 msgstr "Shop wechseln"
 
@@ -534,6 +534,9 @@ msgstr "Vielen Dank für Ihre Bestellung!"
 
 msgid "Thank you! Your review was successfully submitted for approval"
 msgstr "Vielen Dank! Ihre Bewertung wurde erfolgreich zur Freischaltung eingereicht"
+
+msgid "This field is required"
+msgstr "Dieses Feld ist erforderlich"
 
 msgid "This may take a second"
 msgstr "Das kann einen Moment dauern"

@@ -286,12 +286,6 @@ msgstr "Sig.ra"
 msgid "Name"
 msgstr "Nome"
 
-msgid "Summary"
-msgstr "Descrizione"
-
-msgid "Review"
-msgstr "Review"
-
 msgid "Navigate to item {0}"
 msgstr "Vai all'articolo {0}"
 
@@ -442,6 +436,9 @@ msgstr "Reset carrello e torna alla home"
 msgid "Results for ‘{search}’"
 msgstr "Risultati per ‘{search}’"
 
+msgid "Review"
+msgstr "Review"
+
 msgid "Reviews"
 msgstr "Recensioni"
 
@@ -520,6 +517,9 @@ msgstr "Modifiche salvate con successo"
 msgid "Successfully updated email"
 msgstr "Email aggiornata con successo"
 
+msgid "Summary"
+msgstr "Descrizione"
+
 msgid "Switch stores"
 msgstr "Cambia negozio"
 
@@ -534,6 +534,9 @@ msgstr "Grazie per aver effettuato l'ordine!"
 
 msgid "Thank you! Your review was successfully submitted for approval"
 msgstr "Grazie! La tua recensione è stata inviata con successo per l'approvazione"
+
+msgid "This field is required"
+msgstr "Questo campo è obbligatorio"
 
 msgid "This may take a second"
 msgstr "Questo potrebbe richiedere un secondo"

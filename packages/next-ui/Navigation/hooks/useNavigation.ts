@@ -1,5 +1,5 @@
 import { MotionValue, useMotionValue } from 'framer-motion'
-import { createContext, MutableRefObject, useContext } from 'react'
+import React, { createContext, MutableRefObject, useContext } from 'react'
 
 export type NavigationId = string | number
 export type NavigationPath = NavigationId[]
@@ -19,38 +19,51 @@ export type NavigationContextType = {
   hideRootOnNavigate: boolean
   animating: MotionValue<boolean>
   closing: MotionValue<boolean>
+  serverRenderDepth: number
 }
 
 type NavigationNodeBase = {
+  type?: NavigationNodeType
   id: NavigationId
 }
 
+export enum NavigationNodeType {
+  LINK,
+  BUTTON,
+  COMPONENT,
+}
+
 export type NavigationNodeHref = NavigationNodeBase & {
-  name: string
+  name: React.ReactNode
   href: string
 }
 
 export type NavigationNodeButton = NavigationNodeBase & {
-  name: string
+  name: React.ReactNode
+  type: NavigationNodeType.BUTTON
+  href?: string
   childItems: NavigationNode[]
 }
 
 export type NavigationNodeComponent = NavigationNodeBase & {
+  type: NavigationNodeType.COMPONENT
   component: React.ReactNode
 }
 
 export type NavigationNode = NavigationNodeHref | NavigationNodeButton | NavigationNodeComponent
 
 export function isNavigationHref(node: NavigationNodeBase): node is NavigationNodeHref {
-  return 'href' in node
+  return 'href' in node && node.type !== NavigationNodeType.BUTTON
 }
 
 export function isNavigationButton(node: NavigationNodeBase): node is NavigationNodeButton {
-  return (node as NavigationNodeButton).childItems?.length > 0
+  return (
+    node.type === NavigationNodeType.BUTTON && (node as NavigationNodeButton).childItems?.length > 0
+  )
 }
 
 export function isNavigationComponent(node: NavigationNodeBase): node is NavigationNodeComponent {
-  return 'component' in node
+  return node.type === NavigationNodeType.COMPONENT && 'component' in node
 }
 
 export const NavigationContext = createContext(undefined as unknown as NavigationContextType)

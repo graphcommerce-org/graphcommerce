@@ -260,7 +260,7 @@ msgid "Latest orders"
 msgstr "Laatste bestellingen"
 
 msgid "Light Mode"
-msgstr "Licht modus"
+msgstr "Lichte modus"
 
 msgid "Loading wishlist"
 msgstr "Ophalen verlanglijst"
@@ -285,12 +285,6 @@ msgstr "Mvr"
 
 msgid "Name"
 msgstr "Naam"
-
-msgid "Summary"
-msgstr "Omschrijving"
-
-msgid "Review"
-msgstr "Review"
 
 msgid "Navigate to item {0}"
 msgstr "Navigeer naar item {0}"
@@ -442,6 +436,9 @@ msgstr "Reset winkelwagen en ga terug naar home"
 msgid "Results for ‘{search}’"
 msgstr "Resultaten voor ‘{search}’"
 
+msgid "Review"
+msgstr "Review"
+
 msgid "Reviews"
 msgstr "Reviews"
 
@@ -520,6 +517,9 @@ msgstr "Wijzigingen succesvol opgeslagen"
 msgid "Successfully updated email"
 msgstr "Email succesvol bijgewerkt"
 
+msgid "Summary"
+msgstr "Omschrijving"
+
 msgid "Switch stores"
 msgstr "Verander winkel"
 
@@ -534,6 +534,9 @@ msgstr "Bedankt voor je bestelling!"
 
 msgid "Thank you! Your review was successfully submitted for approval"
 msgstr "Bedankt! Uw review is succesvol verstuurd voor goedkeuring"
+
+msgid "This field is required"
+msgstr "Dit veld is verplicht"
 
 msgid "This may take a second"
 msgstr "Dit kan een seconde duren"

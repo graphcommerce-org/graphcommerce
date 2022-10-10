@@ -1,5 +1,53 @@
 # Change Log
 
+## 4.1.4
+
+### Patch Changes
+
+- Updated dependencies [[`fc32b9ab3`](https://github.com/graphcommerce-org/graphcommerce/commit/fc32b9ab3818eb99c546a89e7f42045a6fbfba81)]:
+  - @graphcommerce/ecommerce-ui@1.5.3
+  - @graphcommerce/magento-cart@4.8.7
+  - @graphcommerce/magento-cart-items@3.1.15
+  - @graphcommerce/magento-product@4.7.2
+  - @graphcommerce/magento-product-simple@4.1.4
+  - @graphcommerce/magento-product-virtual@4.1.4
+
+## 4.1.3
+
+### Patch Changes
+
+- Updated dependencies [[`93c8f3a3f`](https://github.com/graphcommerce-org/graphcommerce/commit/93c8f3a3f2fd2d16e5a5132652bf489858583f63), [`0c21c5c23`](https://github.com/graphcommerce-org/graphcommerce/commit/0c21c5c233ebab15f6629c234e3de1cc8c0452e1), [`de8925aa9`](https://github.com/graphcommerce-org/graphcommerce/commit/de8925aa910b191c62041530c68c697a58a1e52d), [`f5eae0afd`](https://github.com/graphcommerce-org/graphcommerce/commit/f5eae0afdbd474b1f81c450425ffadf2d025187a)]:
+  - @graphcommerce/magento-cart@4.8.6
+  - @graphcommerce/next-ui@4.28.0
+  - @graphcommerce/magento-cart-items@3.1.14
+  - @graphcommerce/magento-product@4.7.1
+  - @graphcommerce/magento-product-simple@4.1.3
+  - @graphcommerce/magento-product-virtual@4.1.3
+  - @graphcommerce/ecommerce-ui@1.5.2
+  - @graphcommerce/magento-store@4.3.1
+
+## 4.1.2
+
+### Patch Changes
+
+- Updated dependencies [[`6987ec7d2`](https://github.com/graphcommerce-org/graphcommerce/commit/6987ec7d21ce2d481fabbd6eda039702fcf5242b)]:
+  - @graphcommerce/magento-product@4.7.0
+  - @graphcommerce/magento-cart-items@3.1.13
+  - @graphcommerce/magento-product-simple@4.1.2
+  - @graphcommerce/magento-product-virtual@4.1.2
+
+## 4.1.1
+
+### Patch Changes
+
+- Updated dependencies [[`48e6522bb`](https://github.com/graphcommerce-org/graphcommerce/commit/48e6522bb9424d4bd77fd77c68065f5625f3ec8d), [`37b1980a0`](https://github.com/graphcommerce-org/graphcommerce/commit/37b1980a04a4a3d77663b404ae83539620cf65b9), [`e5048c5ec`](https://github.com/graphcommerce-org/graphcommerce/commit/e5048c5ec52b83dbe70a246ffdcea65b55a884c6)]:
+  - @graphcommerce/magento-product@4.6.1
+  - @graphcommerce/ecommerce-ui@1.5.1
+  - @graphcommerce/magento-cart-items@3.1.12
+  - @graphcommerce/magento-product-simple@4.1.1
+  - @graphcommerce/magento-product-virtual@4.1.1
+  - @graphcommerce/magento-cart@4.8.5
+
 ## 4.1.0
 
 ### Minor Changes

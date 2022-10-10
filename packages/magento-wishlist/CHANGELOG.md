@@ -1,5 +1,45 @@
 # @graphcommerce/magento-wishlist
 
+## 1.7.4
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/magento-cart@4.8.7
+  - @graphcommerce/magento-customer@4.11.7
+  - @graphcommerce/magento-product-configurable@4.3.4
+  - @graphcommerce/magento-product@4.7.2
+
+## 1.7.3
+
+### Patch Changes
+
+- Updated dependencies [[`93c8f3a3f`](https://github.com/graphcommerce-org/graphcommerce/commit/93c8f3a3f2fd2d16e5a5132652bf489858583f63), [`0c21c5c23`](https://github.com/graphcommerce-org/graphcommerce/commit/0c21c5c233ebab15f6629c234e3de1cc8c0452e1), [`de8925aa9`](https://github.com/graphcommerce-org/graphcommerce/commit/de8925aa910b191c62041530c68c697a58a1e52d), [`f5eae0afd`](https://github.com/graphcommerce-org/graphcommerce/commit/f5eae0afdbd474b1f81c450425ffadf2d025187a)]:
+  - @graphcommerce/magento-cart@4.8.6
+  - @graphcommerce/next-ui@4.28.0
+  - @graphcommerce/magento-product@4.7.1
+  - @graphcommerce/magento-product-configurable@4.3.3
+  - @graphcommerce/magento-customer@4.11.6
+  - @graphcommerce/magento-store@4.3.1
+
+## 1.7.2
+
+### Patch Changes
+
+- Updated dependencies [[`6987ec7d2`](https://github.com/graphcommerce-org/graphcommerce/commit/6987ec7d21ce2d481fabbd6eda039702fcf5242b)]:
+  - @graphcommerce/magento-product@4.7.0
+  - @graphcommerce/magento-product-configurable@4.3.2
+
+## 1.7.1
+
+### Patch Changes
+
+- Updated dependencies [[`48e6522bb`](https://github.com/graphcommerce-org/graphcommerce/commit/48e6522bb9424d4bd77fd77c68065f5625f3ec8d), [`37b1980a0`](https://github.com/graphcommerce-org/graphcommerce/commit/37b1980a04a4a3d77663b404ae83539620cf65b9)]:
+  - @graphcommerce/magento-product@4.6.1
+  - @graphcommerce/magento-product-configurable@4.3.1
+  - @graphcommerce/magento-cart@4.8.5
+  - @graphcommerce/magento-customer@4.11.5
+
 ## 1.7.0
 
 ### Minor Changes

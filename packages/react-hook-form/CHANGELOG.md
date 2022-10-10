@@ -1,5 +1,17 @@
 # Change Log
 
+## 3.3.5
+
+### Patch Changes
+
+- [#1665](https://github.com/graphcommerce-org/graphcommerce/pull/1665) [`1f2e14ba8`](https://github.com/graphcommerce-org/graphcommerce/commit/1f2e14ba8b674b87257a123e8cb215157890eb22) Thanks [@paales](https://github.com/paales)! - Make sure the onComplete callback also sends the variables
+
+## 3.3.4
+
+### Patch Changes
+
+- [#1660](https://github.com/graphcommerce-org/graphcommerce/pull/1660) [`75ae24a93`](https://github.com/graphcommerce-org/graphcommerce/commit/75ae24a93bd74e3b9b7efda21ec7ba6fbe9a3a75) Thanks [@paales](https://github.com/paales)! - Remove heuristicEncode for GraphQL input objects provided by react-hook-form
+
 ## 3.3.3
 
 ### Patch Changes

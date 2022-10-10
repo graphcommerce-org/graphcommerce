@@ -1,5 +1,26 @@
 # Change Log
 
+## 4.2.11
+
+### Patch Changes
+
+- Updated dependencies [[`1f2e14ba8`](https://github.com/graphcommerce-org/graphcommerce/commit/1f2e14ba8b674b87257a123e8cb215157890eb22)]:
+  - @graphcommerce/react-hook-form@3.3.5
+
+## 4.2.10
+
+### Patch Changes
+
+- Updated dependencies [[`0c21c5c23`](https://github.com/graphcommerce-org/graphcommerce/commit/0c21c5c233ebab15f6629c234e3de1cc8c0452e1), [`de8925aa9`](https://github.com/graphcommerce-org/graphcommerce/commit/de8925aa910b191c62041530c68c697a58a1e52d), [`f5eae0afd`](https://github.com/graphcommerce-org/graphcommerce/commit/f5eae0afdbd474b1f81c450425ffadf2d025187a)]:
+  - @graphcommerce/next-ui@4.28.0
+
+## 4.2.9
+
+### Patch Changes
+
+- Updated dependencies [[`75ae24a93`](https://github.com/graphcommerce-org/graphcommerce/commit/75ae24a93bd74e3b9b7efda21ec7ba6fbe9a3a75)]:
+  - @graphcommerce/react-hook-form@3.3.4
+
 ## 4.2.8
 
 ### Patch Changes

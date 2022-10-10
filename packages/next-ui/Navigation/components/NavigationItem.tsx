@@ -1,18 +1,11 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
-import {
-  Box,
-  ListItemButton,
-  styled,
-  Theme,
-  useEventCallback,
-  useMediaQuery,
-  alpha,
-} from '@mui/material'
+import { alpha, Box, ListItemButton, styled, useEventCallback, useTheme } from '@mui/material'
 import PageLink from 'next/link'
 import React from 'react'
 import { IconSvg } from '../../IconSvg'
 import { extendableComponent } from '../../Styles/extendableComponent'
+import { useMatchMedia } from '../../hooks'
 import { iconChevronRight } from '../../icons'
 import {
   isNavigationButton,
@@ -54,9 +47,9 @@ const NavigationLI = styled('li')({ display: 'contents' })
 
 export const NavigationItem = React.memo<NavigationItemProps>((props) => {
   const { id, parentPath, idx, first, last, NavigationList, mouseEvent } = props
+  const { selection, hideRootOnNavigate, closing, animating, serverRenderDepth } = useNavigation()
 
   const row = idx + 1
-  const { selection, hideRootOnNavigate, closing, animating } = useNavigation()
 
   const itemPath = [...(parentPath ? parentPath.split(',') : []), id]
 
@@ -83,13 +76,18 @@ export const NavigationItem = React.memo<NavigationItemProps>((props) => {
     closing.set(true)
   })
 
-  const isDesktop = useMediaQuery<Theme>((theme) => theme.breakpoints.up('md'))
+  const matchMedia = useMatchMedia()
 
   if (isNavigationButton(props)) {
-    const { childItems, name } = props
+    const { childItems, name, href } = props
+
+    const skipChildren = itemPath.length + 1 > serverRenderDepth && !isSelected && !!href
+
     return (
       <NavigationLI className={classes.li}>
         <ListItemButton
+          component={href ? 'a' : 'div'}
+          href={href || undefined}
           className={classes.item}
           role='button'
           sx={[
@@ -116,14 +114,14 @@ export const NavigationItem = React.memo<NavigationItemProps>((props) => {
           tabIndex={tabIndex}
           onClick={(e) => {
             e.preventDefault()
-            if (!isSelected && animating.get() === false) {
+            if (!isSelected && !animating.get()) {
               selection.set(itemPath)
             }
           }}
           onMouseMove={
-            itemPath.length > 1 && mouseEvent === 'hover'
+            (itemPath.length > 1 || !hideRootOnNavigate) && mouseEvent === 'hover'
               ? (e) => {
-                  if (isDesktop && animating.get() === false && !isSelected) {
+                  if (!isSelected && !animating.get() && matchMedia.up('md')) {
                     e.preventDefault()
                     setTimeout(() => selection.set(itemPath), 0)
                   }
@@ -145,18 +143,21 @@ export const NavigationItem = React.memo<NavigationItemProps>((props) => {
           <IconSvg src={iconChevronRight} sx={{ flexShrink: 0 }} />
         </ListItemButton>
 
-        <NavigationList
-          items={childItems}
-          selected={isSelected}
-          parentPath={itemPath.join(',')}
-          mouseEvent={mouseEvent}
-        />
+        {!skipChildren && (
+          <NavigationList
+            items={childItems}
+            selected={isSelected}
+            parentPath={itemPath.join(',')}
+            mouseEvent={mouseEvent}
+          />
+        )}
       </NavigationLI>
     )
   }
 
   if (isNavigationHref(props)) {
     const { name, href } = props
+
     return (
       <NavigationLI sx={[hideItem && { display: 'none' }]} className={classes.li}>
         <PageLink href={href} passHref prefetch={false}>
@@ -197,8 +198,6 @@ export const NavigationItem = React.memo<NavigationItemProps>((props) => {
       </NavigationLI>
     )
   }
-
-  if (process.env.NODE_ENV !== 'production') throw Error('NavigationItem: unknown type')
 
   return null
 })

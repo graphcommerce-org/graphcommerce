@@ -53,11 +53,10 @@ type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
-function ProductConfigurable(props: Props) {
+function ProductPage(props: Props) {
   const { products, usps, sidebarUsps, pages } = props
 
   const product = products?.items?.[0]
-  const aggregations = products?.aggregations
 
   if (!product?.sku || !product.url_key) return null
 
@@ -87,12 +86,14 @@ function ProductConfigurable(props: Props) {
           })}
         >
           <div>
-            <Typography component='div' variant='body2' color='text.disabled'>
-              <Trans
-                id='As low as <0/>'
-                components={{ 0: <Money {...product.price_range.minimum_price.final_price} /> }}
-              />
-            </Typography>
+            {isTypename(product, ['ConfigurableProduct', 'BundleProduct']) && (
+              <Typography component='div' variant='body2' color='text.disabled'>
+                <Trans
+                  id='As low as <0/>'
+                  components={{ 0: <Money {...product.price_range.minimum_price.final_price} /> }}
+                />
+              </Typography>
+            )}
 
             <Typography variant='h3' component='div' gutterBottom>
               {isTypename(product, ['ConfigurableProduct']) ? (
@@ -176,7 +177,7 @@ function ProductConfigurable(props: Props) {
                 {...rowProps}
                 {...product}
                 items={products?.items}
-                aggregations={aggregations}
+                aggregations={products?.aggregations}
               />
             ),
           }}
@@ -186,23 +187,25 @@ function ProductConfigurable(props: Props) {
   )
 }
 
-ProductConfigurable.pageOptions = {
+ProductPage.pageOptions = {
   Layout: LayoutNavigation,
 } as PageOptions
 
-export default ProductConfigurable
+export default ProductPage
 
 export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
+  if (process.env.NEXT_PUBLIC_SINGLE_PRODUCT_PAGE !== '1') return { paths: [], fallback: false }
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
 
-  const path = (locale: string) =>
-    getProductStaticPaths(graphqlSsrClient(locale), locale, 'ConfigurableProduct')
+  const path = (locale: string) => getProductStaticPaths(graphqlSsrClient(locale), locale)
   const paths = (await Promise.all(locales.map(path))).flat(1)
 
   return { paths, fallback: 'blocking' }
 }
 
 export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
+  if (process.env.NEXT_PUBLIC_SINGLE_PRODUCT_PAGE !== '1') return { notFound: true }
+
   const client = graphqlSharedClient(locale)
   const staticClient = graphqlSsrClient(locale)
 

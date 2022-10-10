@@ -286,12 +286,6 @@ msgstr "Mrs"
 msgid "Name"
 msgstr "Name"
 
-msgid "Summary"
-msgstr "Summary"
-
-msgid "Review"
-msgstr "Review"
-
 msgid "Navigate to item {0}"
 msgstr "Navigate to item {0}"
 
@@ -442,6 +436,9 @@ msgstr "Reset Cart and Return to home"
 msgid "Results for ‘{search}’"
 msgstr "Results for ‘{search}’"
 
+msgid "Review"
+msgstr "Review"
+
 msgid "Reviews"
 msgstr "Reviews"
 
@@ -520,6 +517,9 @@ msgstr "Successfully saved changes"
 msgid "Successfully updated email"
 msgstr "Successfully updated email"
 
+msgid "Summary"
+msgstr "Summary"
+
 msgid "Switch stores"
 msgstr "Switch stores"
 
@@ -534,6 +534,9 @@ msgstr "Thank you for your order!"
 
 msgid "Thank you! Your review was successfully submitted for approval"
 msgstr "Thank you! Your review was successfully submitted for approval"
+
+msgid "This field is required"
+msgstr "This field is required"
 
 msgid "This may take a second"
 msgstr "This may take a second"

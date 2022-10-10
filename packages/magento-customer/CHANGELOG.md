@@ -1,5 +1,30 @@
 # Change Log
 
+## 4.11.7
+
+### Patch Changes
+
+- Updated dependencies [[`1f2e14ba8`](https://github.com/graphcommerce-org/graphcommerce/commit/1f2e14ba8b674b87257a123e8cb215157890eb22), [`fc32b9ab3`](https://github.com/graphcommerce-org/graphcommerce/commit/fc32b9ab3818eb99c546a89e7f42045a6fbfba81)]:
+  - @graphcommerce/react-hook-form@3.3.5
+  - @graphcommerce/ecommerce-ui@1.5.3
+
+## 4.11.6
+
+### Patch Changes
+
+- Updated dependencies [[`0c21c5c23`](https://github.com/graphcommerce-org/graphcommerce/commit/0c21c5c233ebab15f6629c234e3de1cc8c0452e1), [`de8925aa9`](https://github.com/graphcommerce-org/graphcommerce/commit/de8925aa910b191c62041530c68c697a58a1e52d), [`f5eae0afd`](https://github.com/graphcommerce-org/graphcommerce/commit/f5eae0afdbd474b1f81c450425ffadf2d025187a)]:
+  - @graphcommerce/next-ui@4.28.0
+  - @graphcommerce/ecommerce-ui@1.5.2
+  - @graphcommerce/magento-store@4.3.1
+
+## 4.11.5
+
+### Patch Changes
+
+- Updated dependencies [[`75ae24a93`](https://github.com/graphcommerce-org/graphcommerce/commit/75ae24a93bd74e3b9b7efda21ec7ba6fbe9a3a75), [`e5048c5ec`](https://github.com/graphcommerce-org/graphcommerce/commit/e5048c5ec52b83dbe70a246ffdcea65b55a884c6)]:
+  - @graphcommerce/react-hook-form@3.3.4
+  - @graphcommerce/ecommerce-ui@1.5.1
+
 ## 4.11.4
 
 ### Patch Changes

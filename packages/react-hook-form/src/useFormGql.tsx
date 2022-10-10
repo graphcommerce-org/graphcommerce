@@ -12,10 +12,7 @@ import { UseFormProps, UseFormReturn, UnpackNestedValue, DeepPartial } from 'rea
 import diff from './diff'
 import { useGqlDocumentHandler, UseGqlDocumentHandler } from './useGqlDocumentHandler'
 
-export type OnCompleteFn<Q> = (
-  data: FetchResult<Q>,
-  client: ApolloClient<unknown>,
-) => void | Promise<void>
+export type OnCompleteFn<Q, V> = (data: FetchResult<Q>, variables: V) => void | Promise<void>
 
 type UseFormGraphQLCallbacks<Q, V> = {
   /**
@@ -23,7 +20,7 @@ type UseFormGraphQLCallbacks<Q, V> = {
    * Mutation. Also allows you to send false to skip submission.
    */
   onBeforeSubmit?: (variables: V) => V | false | Promise<V | false>
-  onComplete?: OnCompleteFn<Q>
+  onComplete?: OnCompleteFn<Q, V>
 }
 
 export type UseFormGraphQlOptions<Q, V> = UseFormProps<V> & UseFormGraphQLCallbacks<Q, V>
@@ -81,7 +78,7 @@ export function useFormGql<Q, V>(
       // if (variables === false) onInvalid?.(formValues, event)
 
       const result = await execute({ variables })
-      if (onComplete && result.data) await onComplete(result, client)
+      if (onComplete && result.data) await onComplete(result, variables)
 
       // Reset the state of the form if it is unmodified afterwards
       if (typeof diff(form.getValues(), formValues) === 'undefined')

@@ -1,5 +1,46 @@
 # Change Log
 
+## 3.0.63
+
+### Patch Changes
+
+- Updated dependencies [[`1f2e14ba8`](https://github.com/graphcommerce-org/graphcommerce/commit/1f2e14ba8b674b87257a123e8cb215157890eb22)]:
+  - @graphcommerce/react-hook-form@3.3.5
+  - @graphcommerce/magento-cart@4.8.7
+  - @graphcommerce/magento-cart-coupon@3.2.13
+  - @graphcommerce/magento-cart-items@3.1.15
+  - @graphcommerce/magento-customer@4.11.7
+
+## 3.0.62
+
+### Patch Changes
+
+- Updated dependencies [[`93c8f3a3f`](https://github.com/graphcommerce-org/graphcommerce/commit/93c8f3a3f2fd2d16e5a5132652bf489858583f63), [`0c21c5c23`](https://github.com/graphcommerce-org/graphcommerce/commit/0c21c5c233ebab15f6629c234e3de1cc8c0452e1), [`de8925aa9`](https://github.com/graphcommerce-org/graphcommerce/commit/de8925aa910b191c62041530c68c697a58a1e52d), [`f5eae0afd`](https://github.com/graphcommerce-org/graphcommerce/commit/f5eae0afdbd474b1f81c450425ffadf2d025187a)]:
+  - @graphcommerce/magento-cart@4.8.6
+  - @graphcommerce/next-ui@4.28.0
+  - @graphcommerce/magento-cart-coupon@3.2.12
+  - @graphcommerce/magento-cart-items@3.1.14
+  - @graphcommerce/magento-customer@4.11.6
+  - @graphcommerce/magento-store@4.3.1
+
+## 3.0.61
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/magento-cart-items@3.1.13
+
+## 3.0.60
+
+### Patch Changes
+
+- Updated dependencies [[`75ae24a93`](https://github.com/graphcommerce-org/graphcommerce/commit/75ae24a93bd74e3b9b7efda21ec7ba6fbe9a3a75)]:
+  - @graphcommerce/react-hook-form@3.3.4
+  - @graphcommerce/magento-cart-items@3.1.12
+  - @graphcommerce/magento-cart@4.8.5
+  - @graphcommerce/magento-cart-coupon@3.2.11
+  - @graphcommerce/magento-customer@4.11.5
+
 ## 3.0.59
 
 ### Patch Changes

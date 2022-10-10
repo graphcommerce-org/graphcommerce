@@ -1,5 +1,43 @@
 # Change Log
 
+## 4.7.2
+
+### Patch Changes
+
+- Updated dependencies [[`fc32b9ab3`](https://github.com/graphcommerce-org/graphcommerce/commit/fc32b9ab3818eb99c546a89e7f42045a6fbfba81)]:
+  - @graphcommerce/ecommerce-ui@1.5.3
+  - @graphcommerce/magento-cart@4.8.7
+
+## 4.7.1
+
+### Patch Changes
+
+- Updated dependencies [[`93c8f3a3f`](https://github.com/graphcommerce-org/graphcommerce/commit/93c8f3a3f2fd2d16e5a5132652bf489858583f63), [`0c21c5c23`](https://github.com/graphcommerce-org/graphcommerce/commit/0c21c5c233ebab15f6629c234e3de1cc8c0452e1), [`de8925aa9`](https://github.com/graphcommerce-org/graphcommerce/commit/de8925aa910b191c62041530c68c697a58a1e52d), [`f5eae0afd`](https://github.com/graphcommerce-org/graphcommerce/commit/f5eae0afdbd474b1f81c450425ffadf2d025187a), [`9e0ca73eb`](https://github.com/graphcommerce-org/graphcommerce/commit/9e0ca73eb50ded578f4a98e40a7eb920bf8ab421)]:
+  - @graphcommerce/magento-cart@4.8.6
+  - @graphcommerce/next-ui@4.28.0
+  - @graphcommerce/framer-scroller@2.1.40
+  - @graphcommerce/framer-next-pages@3.3.1
+  - @graphcommerce/ecommerce-ui@1.5.2
+  - @graphcommerce/magento-store@4.3.1
+
+## 4.7.0
+
+### Minor Changes
+
+- [#1659](https://github.com/graphcommerce-org/graphcommerce/pull/1659) [`6987ec7d2`](https://github.com/graphcommerce-org/graphcommerce/commit/6987ec7d21ce2d481fabbd6eda039702fcf5242b) Thanks [@Jessevdpoel](https://github.com/Jessevdpoel)! - Added product and category breadcrumbs
+
+## 4.6.1
+
+### Patch Changes
+
+- [#1660](https://github.com/graphcommerce-org/graphcommerce/pull/1660) [`48e6522bb`](https://github.com/graphcommerce-org/graphcommerce/commit/48e6522bb9424d4bd77fd77c68065f5625f3ec8d) Thanks [@paales](https://github.com/paales)! - Forward onChange handler for AddProductsToCartButton
+
+* [#1660](https://github.com/graphcommerce-org/graphcommerce/pull/1660) [`37b1980a0`](https://github.com/graphcommerce-org/graphcommerce/commit/37b1980a04a4a3d77663b404ae83539620cf65b9) Thanks [@paales](https://github.com/paales)! - Do not static build old product pages when the new product page is used an vice versa
+
+* Updated dependencies [[`e5048c5ec`](https://github.com/graphcommerce-org/graphcommerce/commit/e5048c5ec52b83dbe70a246ffdcea65b55a884c6)]:
+  - @graphcommerce/ecommerce-ui@1.5.1
+  - @graphcommerce/magento-cart@4.8.5
+
 ## 4.6.0
 
 ### Minor Changes
