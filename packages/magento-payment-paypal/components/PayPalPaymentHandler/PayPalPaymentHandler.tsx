@@ -27,7 +27,7 @@ export const PayPalPaymentHandler = (props: PaymentHandlerProps) => {
       cartId,
       paymentMethod: {
         code,
-        payflow_express: {
+        paypal_express: {
           payer_id: PayerID ?? '',
           token: token ?? '',
         },
