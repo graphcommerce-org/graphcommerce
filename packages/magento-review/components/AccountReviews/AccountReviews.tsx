@@ -25,7 +25,7 @@ export function AccountReviews(props: AccountReviewsProps) {
         <SectionContainer
           labelLeft='Older'
           sx={(theme) => ({
-            '&.SectionHeader': {
+            '&.SectionHeader-root': {
               [theme.breakpoints.up('md')]: {
                 marginTop: theme.spacings.lg,
                 marginBottom: theme.spacings.lg,
