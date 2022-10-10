@@ -17,8 +17,9 @@ The following overview contains the status of items on the GraphCommerce roadmap
 
 - [ ] Redesigned layered navigation for mobile and desktop
 - [ ] GA4 datalayer implementation
-- [ ] Paypal payment service (Multisafepay, Braintree, Mollie already
+- [ ] Paypal Express payment service (Multisafepay, Braintree, Mollie already
       implemented)
+- [ ] Adyen payment service
 
 ## Just released
 
