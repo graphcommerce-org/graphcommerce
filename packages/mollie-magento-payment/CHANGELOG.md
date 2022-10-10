@@ -1,5 +1,21 @@
 # Change Log
 
+## 3.5.18
+
+### Patch Changes
+
+- [#1688](https://github.com/graphcommerce-org/graphcommerce/pull/1688) [`8393cb266`](https://github.com/graphcommerce-org/graphcommerce/commit/8393cb2662860be0c2aa5df432447bb73c427d8e) Thanks [@paales](https://github.com/paales)! - Add missing icons for payment methods
+
+- [#1688](https://github.com/graphcommerce-org/graphcommerce/pull/1688) [`f544401c7`](https://github.com/graphcommerce-org/graphcommerce/commit/f544401c7b653fda39c7c260ad0dcfb3bf543b65) Thanks [@paales](https://github.com/paales)! - Return the promise when changing the URL
+
+- [#1688](https://github.com/graphcommerce-org/graphcommerce/pull/1688) [`ea6f120eb`](https://github.com/graphcommerce-org/graphcommerce/commit/ea6f120eb46d18c8be48fd7ecfa9b5b838875c6c) Thanks [@paales](https://github.com/paales)! - Correctly show the error message returned when payment hasn’t succeeded
+
+- Updated dependencies [[`8393cb266`](https://github.com/graphcommerce-org/graphcommerce/commit/8393cb2662860be0c2aa5df432447bb73c427d8e), [`f544401c7`](https://github.com/graphcommerce-org/graphcommerce/commit/f544401c7b653fda39c7c260ad0dcfb3bf543b65), [`f105d4223`](https://github.com/graphcommerce-org/graphcommerce/commit/f105d4223aa68df30970149e51ae72897e489bf9)]:
+  - @graphcommerce/next-ui@4.29.3
+  - @graphcommerce/magento-cart-payment-method@3.6.8
+  - @graphcommerce/magento-cart@4.9.4
+  - @graphcommerce/magento-store@4.3.6
+
 ## 3.5.17
 
 ### Patch Changes
