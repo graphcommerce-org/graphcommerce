@@ -37,17 +37,7 @@ export function AddProductsToCartSnackbar(props: AddProductsToCartSnackbarProps)
       {error && <ApolloCartErrorSnackbar error={error} />}
 
       {showErrorSnackbar && (
-        <ErrorSnackbar
-          variant='pill'
-          severity='error'
-          action={
-            <Button size='medium' variant='pill' color='secondary'>
-              <Trans id='Ok' />
-            </Button>
-          }
-          {...errorSnackbar}
-          open={showErrorSnackbar}
-        >
+        <ErrorSnackbar variant='pill' severity='error' {...errorSnackbar} open={showErrorSnackbar}>
           <>{data?.addProductsToCart?.user_errors?.map((e) => e?.message).join(', ')}</>
         </ErrorSnackbar>
       )}
