@@ -27,7 +27,9 @@ type AddressFieldsProps = { form: UseFormReturn<any>; readOnly?: boolean }
 export function AddressFields(props: AddressFieldsProps) {
   const { form, readOnly } = props
 
-  const countries = useQuery(CountryRegionsDocument).data?.countries
+  const countryQuery = useQuery(CountryRegionsDocument, { fetchPolicy: 'cache-and-network' })
+  const countries = countryQuery.data?.countries ?? countryQuery.previousData?.countries
+
   assertFormGqlOperation<AddressFieldValues>(form)
   const { watch, required, valid, control } = form
 

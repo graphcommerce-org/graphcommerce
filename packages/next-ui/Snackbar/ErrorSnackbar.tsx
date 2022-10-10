@@ -14,7 +14,7 @@ export function ErrorSnackbar(props: ErrorSnackbarProps) {
       {...passedProps}
       action={
         action ?? (
-          <Button size='medium' variant='pill' color='secondary'>
+          <Button size='medium' variant='pill' color='secondary' fullWidth>
             <Trans id='Ok' />
           </Button>
         )

@@ -20,17 +20,17 @@ export function useCartLock<E extends CartLockState>() {
   const [queryState, setRouterQuery] = useUrlQuery<E>()
 
   const lock = (params: Omit<E, 'locked' | 'cart_id'>) => {
-    if (!currentCartId) return
+    if (!currentCartId) return undefined
     setJustLocked(true)
-    setRouterQuery({
+    return setRouterQuery({
       locked: '1',
       cart_id: currentCartId,
       ...params,
     } as unknown as E)
   }
 
-  const unlock = (params: Omit<E, 'locked' | 'cart_id' | 'method'>) => {
-    setRouterQuery({ cart_id: null, locked: null, method: null, ...params } as E)
+  const unlock = async (params: Omit<E, 'locked' | 'cart_id' | 'method'>) => {
+    await setRouterQuery({ cart_id: null, locked: null, method: null, ...params } as E)
     return queryState
   }
 

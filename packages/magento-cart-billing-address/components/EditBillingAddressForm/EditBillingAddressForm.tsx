@@ -26,7 +26,8 @@ export type EditBillingAddressFormProps = { sx?: SxProps<Theme> }
 
 export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
   const { sx } = props
-  const countriesData = useQuery(CountryRegionsDocument).data
+  const countryQuery = useQuery(CountryRegionsDocument, { fetchPolicy: 'cache-and-network' })
+  const countries = countryQuery.data?.countries ?? countryQuery.previousData?.countries
   const address = useCartQuery(GetBillingAddressDocument)?.data?.cart?.billing_address
 
   const goToCheckout = useHistoryGo({ href: '/checkout/payment' })
@@ -44,7 +45,7 @@ export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
       addition: address?.street?.[2] ?? undefined,
     },
     onBeforeSubmit: (variables) => {
-      const regionId = countriesData?.countries
+      const regionId = countries
         ?.find((country) => country?.two_letter_abbreviation === variables.countryCode)
         ?.available_regions?.find((region) => region?.id === variables.regionId)?.id
 

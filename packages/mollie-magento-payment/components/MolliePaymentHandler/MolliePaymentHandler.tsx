@@ -65,12 +65,13 @@ export function MolliePaymentHandler({ code }: PaymentHandlerProps) {
   }, [called, clear, error, handle, isActive, lockState, recoverCart, router])
 
   const paymentStatus = data?.mollieProcessTransaction?.paymentStatus
-  if (paymentStatus)
+  if (paymentStatus) {
     return (
       <ErrorSnackbar open>
-        <Trans id='Payment failed with status: {paymentStatus}' />
+        <Trans id='Payment failed with status: {paymentStatus}' values={{ paymentStatus }} />
       </ErrorSnackbar>
     )
+  }
 
   if (!error || recoverResult.loading) return null
 

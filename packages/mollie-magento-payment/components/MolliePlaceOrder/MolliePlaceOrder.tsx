@@ -38,16 +38,16 @@ export function MolliePlaceOrder(props: PaymentPlaceOrderProps) {
     const redirectUrl = data?.placeOrder?.order.mollie_redirect_url
     const mollie_payment_token = data?.placeOrder?.order.mollie_payment_token
 
-    // When redirecting to the payment gateway
-    if (redirectUrl && mollie_payment_token) {
-      lock({
-        mollie_payment_token,
-        method: selectedMethod?.code ?? null,
-      })
-
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      push(redirectUrl)
+    async function redirect() {
+      // When redirecting to the payment gateway
+      if (redirectUrl && mollie_payment_token) {
+        await lock({ mollie_payment_token, method: selectedMethod?.code ?? null })
+        await push(redirectUrl)
+      }
     }
+
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    redirect()
   }, [currentCartId, data?.placeOrder?.order, error, lock, push, selectedMethod?.code])
 
   useFormCompose({ form, step, submit, key: `PaymentMethodPlaceOrder_${code}` })
