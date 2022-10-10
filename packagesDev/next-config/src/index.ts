@@ -88,11 +88,9 @@ export function withGraphCommerce(conf: GCConf = {}): (config: NextConfig) => Ne
 }
 
 export function withYarn1Workspaces(packages: string[] = []): (config: NextConfig) => NextConfig {
-  console.warn('Please use withGraphCommerce instead of withYarn1Workspaces')
   return withGraphCommerce({ packages })
 }
 
 export function withYarn1Scopes(packages?: string[]): (config: NextConfig) => NextConfig {
-  console.warn('Please use withGraphCommerce instead of withYarn1Scopes')
   return withGraphCommerce({ packages })
 }

@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-var-requires */
 const { PerformanceObserver, performance } = require('perf_hooks')
-const withGraphCommerce = require('@graphcommerce/next-config').withGraphCommerce()
+const withYarn1Workspaces = require('@graphcommerce/next-config').withYarn1Scopes()
 
 require('dotenv').config({ path: `${__dirname}/.env` })
 
@@ -63,4 +63,4 @@ const nextConfig = {
 }
 
 /** @type {import('next').NextConfig} */
-module.exports = withPWA(withGraphCommerce(nextConfig))
+module.exports = withPWA(withYarn1Workspaces(nextConfig))

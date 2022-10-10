@@ -22,7 +22,6 @@ generates:
     documents:
       - 'components/**/*.graphql'
       - 'graphql/**/*.graphql'
-      # graphcommerce graphqls files automatically appended
     plugins:
       - '@graphcommerce/graphql-codegen-relay-optimizer-plugin'
       - typed-document-node
