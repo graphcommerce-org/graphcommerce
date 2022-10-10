@@ -1,6 +1,7 @@
 {
   "exclude": ["**/node_modules", "**/.*/"],
   "include": ["**/*.ts", "**/*.tsx"],
+  "files": ["bin/codegen.ts", "bin/mesh.ts", "index.ts"],
   "extends": "@graphcommerce/typescript-config-pwa/node.json",
   "compilerOptions": {
     "noEmit": false,

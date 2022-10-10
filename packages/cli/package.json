@@ -10,6 +10,7 @@
     "build": "tsc --outDir dist",
     "prepack": "yarn build"
   },
+  "main": "dist/index.js",
   "bin": {
     "mesh": "dist/bin/mesh.js",
     "gql-mesh": "dist/bin/mesh.js",

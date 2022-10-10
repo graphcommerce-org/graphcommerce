@@ -10,7 +10,7 @@ const node_path_1 = __importDefault(require("node:path"));
 const cli_1 = require("@graphql-codegen/cli");
 const rimraf_1 = __importDefault(require("rimraf"));
 const yaml_1 = __importDefault(require("yaml"));
-const resolveDependencies_1 = require("../dependencies/resolveDependencies");
+const resolveDependenciesSync_1 = require("../utils/resolveDependenciesSync");
 const [, , cmd] = process.argv;
 const root = process.cwd();
 const configLocation = node_path_1.default.join(root, `._tmp_codegen.yml`);
@@ -37,8 +37,8 @@ async function main() {
     if (process.argv.includes('--config') || process.argv.includes('-c')) {
         throw Error('--config or -c argument is not supported, modify codegen.yml to make changes');
     }
+    const packages = [...(0, resolveDependenciesSync_1.resolveDependenciesSync)().values()].filter((p) => p !== '.');
     // Get a list of all GraphCommerce packages
-    const packages = (await (0, resolveDependencies_1.resolveDependencies)()).filter((p) => p !== '.');
     // Detect if we're operating in the monorepo environment or in an installation
     const isMono = !!packages.find((p) => p.startsWith('../..'));
     // Load the current codegen.yml

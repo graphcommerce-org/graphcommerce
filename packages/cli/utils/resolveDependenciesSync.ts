@@ -1,10 +1,14 @@
-import fs from 'node:fs/promises'
+import fs from 'node:fs'
 import path from 'node:path'
 import type { PackageJson } from 'type-fest'
 
-async function resolveRecursivePackageJson(packageJsonFilename: string, packageNames: Set<string>) {
+function resolveRecursivePackageJson(
+  packageJsonFilename: string,
+  packageNames: Map<string, string>,
+) {
   try {
-    const packageJsonFile = (await fs.readFile(packageJsonFilename, 'utf-8')).toString()
+    const packageJsonFile = fs.readFileSync(packageJsonFilename, 'utf-8').toString()
+
     const packageJson = JSON.parse(packageJsonFile) as PackageJson
 
     if (!packageJson.name) throw Error('Package does not have a name')
@@ -20,22 +24,22 @@ async function resolveRecursivePackageJson(packageJsonFilename: string, packageN
 
     const dirName = path.dirname(path.relative(process.cwd(), packageJsonFilename))
 
-    if (packageNames.has(dirName)) return packageNames
-    packageNames.add(dirName)
+    if (packageNames.has(packageJson.name)) return packageNames
 
-    await Promise.allSettled(
-      dependencies.map((dependency) => {
-        try {
-          const filePath = require.resolve(path.join(dependency, 'package.json'))
-          if (filePath) return resolveRecursivePackageJson(filePath, packageNames)
-        } catch {
-          return false
-        }
+    // Package not found, recursively scan
+    packageNames.set(packageJson.name, dirName)
+
+    dependencies.map((dependency) => {
+      try {
+        const filePath = require.resolve(path.join(dependency, 'package.json'))
+        if (filePath) return resolveRecursivePackageJson(filePath, packageNames)
+      } catch {
         return false
-      }),
-    )
+      }
+      return false
+    })
   } catch (e) {
-    console.log('done', e)
+    // File is not a JSON file or something like that, we now skip this file
   }
 
   return packageNames
@@ -50,6 +54,6 @@ async function resolveRecursivePackageJson(packageJsonFilename: string, packageN
  * It will traverse children until it finds a package that doesn't contain graphcommerce in the name
  * and stop there, not checking children.
  */
-export async function resolveDependencies(root = process.cwd()) {
-  return [...(await resolveRecursivePackageJson(path.join(root, 'package.json'), new Set()))]
+export function resolveDependenciesSync(root = process.cwd()) {
+  return resolveRecursivePackageJson(path.join(root, 'package.json'), new Map())
 }

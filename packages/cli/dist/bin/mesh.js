@@ -14,7 +14,7 @@ const cli_1 = require("@graphql-mesh/cli");
 const utils_1 = require("@graphql-mesh/utils");
 const dotenv_1 = __importDefault(require("dotenv"));
 const yaml_1 = __importDefault(require("yaml"));
-const findConfig_1 = require("../mesh/findConfig");
+const findConfig_1 = require("../utils/findConfig");
 dotenv_1.default.config();
 function handleFatalError(e, logger = new utils_1.DefaultLogger('◈')) {
     logger.error(e.stack || e.message);

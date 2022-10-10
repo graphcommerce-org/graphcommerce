@@ -6,7 +6,7 @@ import { runCli, cliError, loadCodegenConfig } from '@graphql-codegen/cli'
 import { Types } from '@graphql-codegen/plugin-helpers'
 import rimraf from 'rimraf'
 import yaml from 'yaml'
-import { resolveDependencies } from '../dependencies/resolveDependencies'
+import { resolveDependenciesSync } from '../utils/resolveDependenciesSync'
 
 const [, , cmd] = process.argv
 
@@ -41,8 +41,8 @@ async function main() {
     throw Error('--config or -c argument is not supported, modify codegen.yml to make changes')
   }
 
+  const packages = [...resolveDependenciesSync().values()].filter((p) => p !== '.')
   // Get a list of all GraphCommerce packages
-  const packages = (await resolveDependencies()).filter((p) => p !== '.')
 
   // Detect if we're operating in the monorepo environment or in an installation
   const isMono = !!packages.find((p) => p.startsWith('../..'))

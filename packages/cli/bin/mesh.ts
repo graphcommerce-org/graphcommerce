@@ -9,7 +9,7 @@ import { Logger, YamlConfig } from '@graphql-mesh/types'
 import { DefaultLogger } from '@graphql-mesh/utils'
 import dotenv from 'dotenv'
 import yaml from 'yaml'
-import { findConfig } from '../mesh/findConfig'
+import { findConfig } from '../utils/findConfig'
 
 dotenv.config()
 
