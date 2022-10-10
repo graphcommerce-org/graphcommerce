@@ -2,11 +2,12 @@
 const isProduction = process.env.VERCEL_ENV === 'production'
 const DEV_SITE_URL = process.env.VERCEL_URL || 'http://localhost:3000'
 const PUBLIC_SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || DEV_SITE_URL
+const siteUrl = isProduction ? PUBLIC_SITE_URL : DEV_SITE_URL
 
 /** @link https://github.com/iamvishnusankar/next-sitemap */
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: isProduction ? PUBLIC_SITE_URL : DEV_SITE_URL,
+  siteUrl,
   generateRobotsTxt: true,
   exclude: [
     '/products-sitemap.xml',
@@ -44,6 +45,6 @@ module.exports = {
       { userAgent: 'AhrefsBot', allow: '/' },
       { userAgent: 'SiteAuditBot', allow: '/' },
     ],
-    additionalSitemaps: [`${isProduction ? PUBLIC_SITE_URL : DEV_SITE_URL}/products-sitemap.xml`],
+    additionalSitemaps: [`${siteUrl}/products-sitemap.xml`],
   },
 }

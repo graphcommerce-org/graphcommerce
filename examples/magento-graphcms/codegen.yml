@@ -3,8 +3,6 @@ generates:
   node_modules/@graphcommerce/graphql/generated/types.ts:
     schema:
       - .mesh/schema.graphql
-      - '**/*.graphqls'
-      - node_modules/@graphcommerce/**/*.graphqls
     plugins:
       - typescript-apollo-client-helpers
       - add
@@ -15,20 +13,16 @@ generates:
   node_modules/@graphcommerce/graphql/generated/fragments.json:
     schema:
       - .mesh/schema.graphql
-      - '**/*.graphqls'
-      - node_modules/@graphcommerce/**/*.graphqls
     plugins:
       - fragment-matcher
   # Generate .gql.ts files for each GraphQL file
   .:
     schema:
       - .mesh/schema.graphql
-      - '**/*.graphqls'
-      - node_modules/@graphcommerce/**/*.graphqls
     documents:
       - 'components/**/*.graphql'
       - 'graphql/**/*.graphql'
-      - 'node_modules/@graphcommerce/**/*.graphql'
+      # graphcommerce graphqls files automatically appended
     plugins:
       - '@graphcommerce/graphql-codegen-relay-optimizer-plugin'
       - typed-document-node

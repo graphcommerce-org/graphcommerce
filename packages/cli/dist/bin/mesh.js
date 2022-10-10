@@ -86,4 +86,7 @@ const main = async () => {
 };
 process.on('SIGINT', cleanup);
 process.on('SIGTERM', cleanup);
-main().catch((e) => handleFatalError(e, new utils_1.DefaultLogger(cli_1.DEFAULT_CLI_PARAMS.initialLoggerPrefix)));
+main().catch((e) => {
+    cleanup();
+    return handleFatalError(e, new utils_1.DefaultLogger(cli_1.DEFAULT_CLI_PARAMS.initialLoggerPrefix));
+});
