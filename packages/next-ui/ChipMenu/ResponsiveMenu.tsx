@@ -139,6 +139,7 @@ export function ResponsiveMenu(props: ResponsiveMenuProps) {
 
   return (
     <ClickAwayListener
+      mouseEvent='onMouseDown'
       onClickAway={() => {
         if (onClose) onClose()
         setOpenEl?.(null)

@@ -3,14 +3,17 @@ import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { ChipMenu, ChipMenuProps, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { ListItem, ListItemText, SxProps, Theme } from '@mui/material'
-import React from 'react'
+import React, { useState } from 'react'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
 import { ProductListLink } from '../ProductListLink/ProductListLink'
 import { ProductListSortFragment } from './ProductListSort.gql'
 
 export type ProductListSortProps = ProductListSortFragment &
-  Omit<ChipMenuProps, 'selected' | 'selectedLabel' | 'children' | 'label' | 'onDelete'> & {
+  Omit<
+    ChipMenuProps,
+    'selected' | 'selectedLabel' | 'children' | 'label' | 'onDelete' | 'openEl' | 'setOpenEl'
+  > & {
     sx?: SxProps<Theme>
   }
 
@@ -24,7 +27,7 @@ export function ProductListSort(props: ProductListSortProps) {
   const replaceRoute = useProductListLinkReplace()
   const { data: storeConfigQuery } = useQuery(StoreConfigDocument)
   const defaultSort = storeConfigQuery?.storeConfig?.catalog_default_sort_by
-
+  const [openEl, setOpenEl] = useState<HTMLElement | null>(null)
   const [currentSort = defaultSort] = Object.keys(params.sort)
   const currentOption = sort_fields?.options?.find((option) => option?.value === currentSort)
   const selected = currentSort !== defaultSort
@@ -48,6 +51,8 @@ export function ProductListSort(props: ProductListSortProps) {
       selectedLabel={selected ? currentOption?.label ?? '' : label}
       onDelete={selected ? removeFilter : undefined}
       sx={Array.isArray(sx) ? sx : [sx]}
+      openEl={openEl}
+      setOpenEl={setOpenEl}
     >
       {sort_fields?.options?.map((option) => {
         const linkParams = cloneDeep(params)
@@ -58,11 +63,11 @@ export function ProductListSort(props: ProductListSortProps) {
         return (
           <ListItem
             className={classes.item}
-            button
+            button={undefined}
             key={option?.value ?? ''}
-            dense
             selected={option?.value === currentSort}
             component={React.memo(
+              // eslint-disable-next-line react/no-unstable-nested-components
               React.forwardRef<HTMLAnchorElement>((chipProps, ref) => (
                 <ProductListLink
                   {...chipProps}
