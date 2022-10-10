@@ -21,7 +21,7 @@ export const PayPalPaymentHandler = (props: PaymentHandlerProps) => {
   const clearCurrentCartId = useClearCurrentCartId()
   const { currentCartId: cartId } = useCurrentCartId()
 
-  const { token, PayerID } = lockStatus
+  const { token, PayerID, locked, justLocked, method } = lockStatus
   const [placeOrder, { error, called }] = useMutation(PayPalPaymentHandlerDocument, {
     variables: {
       cartId,
@@ -35,6 +35,11 @@ export const PayPalPaymentHandler = (props: PaymentHandlerProps) => {
     },
     errorPolicy: 'all',
   })
+
+  useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    if (locked && !justLocked && method === code && !PayerID) unlock({ token: null })
+  }, [PayerID, code, justLocked, locked, method, unlock])
 
   // If successfull we clear it's cart and redirect to the success page.
   useEffect(() => {

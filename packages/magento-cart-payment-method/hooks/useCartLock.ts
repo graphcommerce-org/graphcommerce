@@ -8,6 +8,8 @@ export type CartLockState = {
   method: string | null
 }
 
+let justLocked = false
+
 /**
  * Locking a cart might is usefull in the following cases: We want to disable cart modifications
  * while still keeping the cart active on the website.
@@ -16,12 +18,11 @@ export type CartLockState = {
  */
 export function useCartLock<E extends CartLockState>() {
   const { currentCartId } = useCurrentCartId()
-  const [justLocked, setJustLocked] = useState(false)
   const [queryState, setRouterQuery] = useUrlQuery<E>()
 
   const lock = (params: Omit<E, 'locked' | 'cart_id'>) => {
     if (!currentCartId) return undefined
-    setJustLocked(true)
+    justLocked = true
     return setRouterQuery({
       locked: '1',
       cart_id: currentCartId,
