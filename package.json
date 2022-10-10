@@ -1,5 +1,4 @@
 {
-  "name": "@graphcommerce/graphcommerce",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
   "version": "2.165.3",
@@ -50,7 +49,11 @@
     "@changesets/cli": "2.24.3",
     "@graphcommerce/eslint-config-pwa": "^4.1.5",
     "@graphcommerce/prettier-config-pwa": "^4.0.6",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
     "concurrently": "7.3.0",
+    "jest-environment-jsdom": "^29.1.2",
+    "next": "12.2.5",
     "patch-package": "6.4.7"
   },
   "devDependencies": {
