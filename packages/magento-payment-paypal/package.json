@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-payment-paypal",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {

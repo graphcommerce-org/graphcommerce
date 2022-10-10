@@ -1,5 +1,11 @@
 # @graphcommerce/magento-payment-paypal
 
+## 1.0.2
+
+### Patch Changes
+
+- [#1693](https://github.com/graphcommerce-org/graphcommerce/pull/1693) [`63e52a25d`](https://github.com/graphcommerce-org/graphcommerce/commit/63e52a25d35aa9600820155760fce23e91920185) Thanks [@paales](https://github.com/paales)! - Make release public
+
 ## 1.0.1
 
 ### Patch Changes
