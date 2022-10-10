@@ -3,7 +3,6 @@ query ShippingPage($cartId: String!) {
     __typename
     id
     email
-    ...BillingAddress
-    ...ShippingAddress
+    ...ShippingPageFragment
   }
 }

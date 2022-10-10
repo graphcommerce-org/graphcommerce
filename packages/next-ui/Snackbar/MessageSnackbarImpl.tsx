@@ -1,4 +1,4 @@
-import { breakpointVal } from '@graphcommerce/next-ui'
+import { i18n } from '@lingui/core'
 import {
   Fab,
   Snackbar,
@@ -12,13 +12,13 @@ import {
 } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { IconSvg } from '../IconSvg'
-import { extendableComponent } from '../Styles'
+import { extendableComponent, breakpointVal } from '../Styles'
 import { iconClose, iconCheckmark, iconSadFace } from '../icons'
 
 type Size = 'normal' | 'wide'
 type Variant = 'contained' | 'pill'
 
-export type MessageSnackbarImplProps = Omit<
+export type MessageSnackbarProps = Omit<
   SnackbarProps,
   'autoHideDuration' | 'anchorOrigin' | 'color'
 > & {
@@ -41,7 +41,7 @@ const parts = ['root', 'content', 'children', 'actionButton', 'close'] as const
 const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 
 // eslint-disable-next-line import/no-default-export
-export default function MessageSnackbarImpl(props: MessageSnackbarImplProps) {
+export default function MessageSnackbarImpl(props: MessageSnackbarProps) {
   const [showSnackbar, setShowSnackbar] = useState<boolean>(false)
 
   const {
@@ -114,7 +114,8 @@ export default function MessageSnackbarImpl(props: MessageSnackbarImplProps) {
               alignItems: 'center',
               gap: theme.spacings.xxs,
               gridTemplate: {
-                xs: `"icon children close" "action action action"`,
+                xs: `"icon children close"
+                     "action action action"`,
                 md: '"icon children action close"',
               },
               gridTemplateColumns: {
@@ -139,7 +140,7 @@ export default function MessageSnackbarImpl(props: MessageSnackbarImplProps) {
               )}
               <Fab
                 className={classes.close}
-                aria-label='Close'
+                aria-label={i18n._(/* i18n */ 'Close')}
                 size='small'
                 onClick={hideSnackbar}
                 onMouseDown={preventAnimationBubble}

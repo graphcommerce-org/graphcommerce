@@ -1,5 +1,53 @@
 # Change Log
 
+## 3.7.7
+
+### Patch Changes
+
+- [#1686](https://github.com/graphcommerce-org/graphcommerce/pull/1686) [`1953c7e27`](https://github.com/graphcommerce-org/graphcommerce/commit/1953c7e27eb606a825fce1ad361393b3c781c6da) Thanks [@paales](https://github.com/paales)! - Product page markup and sticky product image when the sidebar is fairly large
+
+- Updated dependencies [[`1953c7e27`](https://github.com/graphcommerce-org/graphcommerce/commit/1953c7e27eb606a825fce1ad361393b3c781c6da)]:
+  - @graphcommerce/magento-cart-shipping-address@3.5.7
+  - @graphcommerce/next-ui@4.29.2
+  - @graphcommerce/framer-scroller@2.1.44
+  - @graphcommerce/magento-cart@4.9.3
+  - @graphcommerce/magento-store@4.3.5
+
+## 3.7.6
+
+### Patch Changes
+
+- Updated dependencies [[`ae28fb14c`](https://github.com/graphcommerce-org/graphcommerce/commit/ae28fb14cec298c52970260a4fc2c2551b5f175e), [`98d6a9cce`](https://github.com/graphcommerce-org/graphcommerce/commit/98d6a9cce1bb9514088be0af2736721b3edda467)]:
+  - @graphcommerce/magento-cart@4.9.2
+  - @graphcommerce/next-ui@4.29.1
+  - @graphcommerce/magento-cart-shipping-address@3.5.6
+  - @graphcommerce/framer-scroller@2.1.43
+  - @graphcommerce/magento-store@4.3.4
+
+## 3.7.5
+
+### Patch Changes
+
+- Updated dependencies [[`e76df6dc3`](https://github.com/graphcommerce-org/graphcommerce/commit/e76df6dc37c11c793a5d008ba36932d17dc23855), [`0bd9ea582`](https://github.com/graphcommerce-org/graphcommerce/commit/0bd9ea58230dde79c5fe2cdb07e9860151460270)]:
+  - @graphcommerce/next-ui@4.29.0
+  - @graphcommerce/framer-scroller@2.1.42
+  - @graphcommerce/magento-cart@4.9.1
+  - @graphcommerce/magento-cart-shipping-address@3.5.5
+  - @graphcommerce/magento-store@4.3.3
+
+## 3.7.4
+
+### Patch Changes
+
+- Updated dependencies [[`9e630670f`](https://github.com/graphcommerce-org/graphcommerce/commit/9e630670ff6c952ab7b938d890b5509804985cf3), [`cf3518499`](https://github.com/graphcommerce-org/graphcommerce/commit/cf351849999ad6fe73ce2bb258098a7dd301d517), [`81f31d1e5`](https://github.com/graphcommerce-org/graphcommerce/commit/81f31d1e54397368088a4289aaddd29facfceeef), [`2e9fa5984`](https://github.com/graphcommerce-org/graphcommerce/commit/2e9fa5984a07ff14fc1b3a4f62189a26e8e3ecdd), [`adf13069a`](https://github.com/graphcommerce-org/graphcommerce/commit/adf13069af6460c960276b402237371c12fc6dec), [`a8905d263`](https://github.com/graphcommerce-org/graphcommerce/commit/a8905d263273cb9322583d5759a5fdc66eceb8e4), [`1b1504c9b`](https://github.com/graphcommerce-org/graphcommerce/commit/1b1504c9b0e51f2787bce91e1ff1940f540411d6), [`8a34f8081`](https://github.com/graphcommerce-org/graphcommerce/commit/8a34f808186274a6fe1d4f309472f1a9c6d00efd), [`3dde492ad`](https://github.com/graphcommerce-org/graphcommerce/commit/3dde492ad3a49d96481eeb7453fb305d0017b1a5)]:
+  - @graphcommerce/next-ui@4.28.1
+  - @graphcommerce/graphql@3.5.0
+  - @graphcommerce/framer-scroller@2.1.41
+  - @graphcommerce/magento-cart@4.9.0
+  - @graphcommerce/magento-cart-shipping-address@3.5.4
+  - @graphcommerce/magento-store@4.3.2
+  - @graphcommerce/image@3.1.10
+
 ## 3.7.3
 
 ### Patch Changes

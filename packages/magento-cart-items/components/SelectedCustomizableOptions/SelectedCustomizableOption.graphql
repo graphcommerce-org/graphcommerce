@@ -1,0 +1,16 @@
+fragment SelectedCustomizableOption on SelectedCustomizableOption {
+  customizable_option_uid
+  is_required
+  label
+  type
+  values {
+    customizable_option_value_uid
+    label
+    price {
+      type
+      units
+      value
+    }
+    value
+  }
+}

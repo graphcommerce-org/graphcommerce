@@ -6,6 +6,7 @@ import {
   WaitForQueries,
 } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { gtagAddShippingInfo } from '@graphcommerce/googleanalytics'
 import { useGoogleRecaptcha } from '@graphcommerce/googlerecaptcha'
 import {
   ApolloCartErrorAlert,
@@ -31,6 +32,7 @@ import {
   Stepper,
   LayoutTitle,
   FullPageMessage,
+  iconAddresses,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
@@ -73,7 +75,6 @@ function ShippingPage() {
               switchPoint={0}
               primary={
                 <ComposedSubmit
-                  onSubmitSuccessful={() => router.push('/checkout/payment')}
                   render={(renderProps) => (
                     <ComposedSubmitLinkOrButton {...renderProps}>
                       <Trans id='Next' />
@@ -87,9 +88,15 @@ function ShippingPage() {
                 </Container>
               }
             >
-              <LayoutTitle size='small' icon={iconBox}>
-                <Trans id='Shipping' />
-              </LayoutTitle>
+              {shippingPage.data?.cart?.is_virtual ? (
+                <LayoutTitle size='small' icon={iconAddresses}>
+                  <Trans id='Billing address' />
+                </LayoutTitle>
+              ) : (
+                <LayoutTitle size='small' icon={iconBox}>
+                  <Trans id='Shipping' />
+                </LayoutTitle>
+              )}
             </LayoutHeader>
             <Container maxWidth='md'>
               <>
@@ -111,12 +118,18 @@ function ShippingPage() {
                   </>
                 )}
 
-                <ShippingMethodForm step={4} sx={(theme) => ({ mt: theme.spacings.lg })}>
-                  <PickupLocationSelector step={5} />
-                </ShippingMethodForm>
+                {!shippingPage.data?.cart?.is_virtual && (
+                  <ShippingMethodForm step={4} sx={(theme) => ({ mt: theme.spacings.lg })}>
+                    <PickupLocationSelector step={5} />
+                  </ShippingMethodForm>
+                )}
 
                 <ComposedSubmit
-                  onSubmitSuccessful={() => router.push('/checkout/payment')}
+                  onSubmitSuccessful={() => {
+                    gtagAddShippingInfo(shippingPage.data?.cart)
+                    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+                    router.push('/checkout/payment')
+                  }}
                   render={(renderProps) => (
                     <>
                       <FormActions>

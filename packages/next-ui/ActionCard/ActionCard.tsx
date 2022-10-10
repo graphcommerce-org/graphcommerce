@@ -2,6 +2,7 @@ import { alpha, Box, BoxProps, ButtonBase, ButtonProps, SxProps, Theme } from '@
 import React from 'react'
 import { extendableComponent } from '../Styles'
 import { breakpointVal } from '../Styles/breakpointVal'
+import { responsiveVal } from '../Styles/responsiveVal'
 
 type Variants = 'outlined' | 'default'
 type Size = 'large' | 'medium' | 'small'
@@ -12,7 +13,7 @@ function isButtonProps(props: ButtonProps<'div'> | BoxProps<'div'>): props is Bu
   return props.onClick !== undefined
 }
 
-const RenderComponent = (props: ButtonProps<'div'> | BoxProps<'div'>) =>
+const ButtonOrBox = (props: ButtonProps<'div'> | BoxProps<'div'>) =>
   isButtonProps(props) ? <ButtonBase component='div' {...props} /> : <Box {...props} />
 
 export type ActionCardProps = {
@@ -101,30 +102,40 @@ export function ActionCard(props: ActionCardProps) {
   })
 
   return (
-    <RenderComponent
+    <ButtonOrBox
       className={classes.root}
       onClick={onClick && ((event) => onClick?.(event, value))}
       disabled={disabled}
       sx={[
         (theme) => ({
+          ...breakpointVal(
+            'borderRadius',
+            theme.shape.borderRadius * 3,
+            theme.shape.borderRadius * 4,
+            theme.breakpoints.values,
+          ),
+
           '&.sizeSmall': {
-            padding: `5px 10px`,
+            px: responsiveVal(8, 12),
+            py: responsiveVal(6, 8),
             display: 'flex',
             typography: 'body2',
           },
-
           '&.sizeMedium': {
-            padding: `10px 12px`,
+            px: responsiveVal(10, 16),
+            py: responsiveVal(8, 14),
             typography: 'body2',
             display: 'block',
           },
-
           '&.sizeLarge': {
-            padding: `${theme.spacings.xxs} ${theme.spacings.xs}`,
+            px: theme.spacings.xs,
+            py: theme.spacings.xxs,
             display: 'block',
           },
 
           '&.variantDefault': {
+            borderRadius: 0,
+            px: 0,
             borderBottom: `1px solid ${theme.palette.divider}`,
             '&.selected': {
               borderBottom: `2px solid ${theme.palette[color].main}`,
@@ -140,13 +151,14 @@ export function ActionCard(props: ActionCardProps) {
 
           '&.variantOutlined': {
             backgroundColor: theme.palette.background.paper,
-            border: `1px solid ${theme.palette.divider}`,
+            boxShadow: `inset 0 0 0 1px ${theme.palette.divider}`,
             '&:not(:last-of-type)': {
               marginBottom: '-1px',
             },
 
             '&.layoutList': {
-              '&:first-of-type, &.selected': {
+              borderRadius: 0,
+              '&:first-of-type': {
                 ...breakpointVal(
                   'borderTopLeftRadius',
                   theme.shape.borderRadius * 3,
@@ -160,7 +172,7 @@ export function ActionCard(props: ActionCardProps) {
                   theme.breakpoints.values,
                 ),
               },
-              '&:last-of-type, &.selected': {
+              '&:last-of-type': {
                 ...breakpointVal(
                   'borderBottomLeftRadius',
                   theme.shape.borderRadius * 3,
@@ -175,30 +187,27 @@ export function ActionCard(props: ActionCardProps) {
                 ),
               },
             },
-            '&:not(.layoutList)': {
-              ...breakpointVal(
-                'borderRadius',
-                theme.shape.borderRadius * 3,
-                theme.shape.borderRadius * 4,
-                theme.breakpoints.values,
-              ),
-            },
 
             '&.selected': {
-              border: `2px solid ${theme.palette[color].main}`,
-              boxShadow: `0 0 0 4px ${alpha(
+              borderColor: 'transparent',
+              boxShadow: `inset 0 0 0 2px ${theme.palette[color].main}`,
+            },
+            '&.selected:focus': {
+              borderColor: 'transparent',
+              boxShadow: `inset 0 0 0 2px ${theme.palette[color].main}, 0 0 0 4px ${alpha(
                 theme.palette[color].main,
                 theme.palette.action.hoverOpacity,
               )}`,
-
-              '&.sizeSmall': { padding: `4px 9px` },
-              '&.sizeMedium': { padding: `9px 11px` },
-              '&.sizeLarge': {
-                padding: `calc(${theme.spacings.xxs} - 1px) calc(${theme.spacings.xs} - 1px)`,
-              },
             },
+            '&:focus': {
+              boxShadow: `inset 0 0 0 1px ${theme.palette.divider},0 0 0 4px ${alpha(
+                theme.palette[color].main,
+                theme.palette.action.hoverOpacity,
+              )}`,
+            },
+
             '&.error': {
-              border: `2px solid ${theme.palette.error.main}`,
+              boxShadow: `0 0 0 2px ${theme.palette.error.main}`,
             },
           },
           '&.selected': {
@@ -223,6 +232,8 @@ export function ActionCard(props: ActionCardProps) {
           flexDirection: 'row',
           width: '100%',
           justifyContent: 'space-between',
+          alignContent: 'stretch',
+          alignItems: 'flex-start',
         }}
       >
         <Box
@@ -230,6 +241,7 @@ export function ActionCard(props: ActionCardProps) {
             display: 'flex',
             flexDirection: 'row',
             justifyContent: 'space-between',
+            alignContent: 'stretch',
           }}
         >
           {image && (
@@ -281,7 +293,10 @@ export function ActionCard(props: ActionCardProps) {
           }}
         >
           {action && (
-            <Box className={classes.action} sx={{ marginBottom: '5px' }}>
+            <Box
+              className={classes.action}
+              sx={(theme) => ({ marginBottom: '5px', color: theme.palette[color].main })}
+            >
               {!selected ? action : reset}
             </Box>
           )}
@@ -302,6 +317,6 @@ export function ActionCard(props: ActionCardProps) {
         </Box>
       </Box>
       {after && <Box className={classes.after}>{after}</Box>}
-    </RenderComponent>
+    </ButtonOrBox>
   )
 }

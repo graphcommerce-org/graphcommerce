@@ -114,6 +114,7 @@ export function GraphQLProvider({ children, router, pageProps }: GraphQLProvider
   )
 
   // Update the cache with the latest incomming data, but only when it is changed.
+  // eslint-disable-next-line @typescript-eslint/no-floating-promises
   useMemo(
     () =>
       clientRef.current &&

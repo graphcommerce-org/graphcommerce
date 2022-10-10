@@ -112,6 +112,9 @@ msgstr "Fermer"
 msgid "Complete the payment on your bank’s website."
 msgstr "Complétez le paiement sur le site de votre banque."
 
+msgid "Complete your purchase"
+msgstr "Complétez votre achat"
+
 msgid "Confirm new email"
 msgstr "Confirmer le nouvel email"
 
@@ -542,7 +545,7 @@ msgid "This may take a second"
 msgstr "Ceci peut prendre un instant"
 
 msgid "Total <0/>"
-msgstr "Totale <0/>"
+msgstr "Total <0/>"
 
 msgid "Try a different product"
 msgstr "Essayez un autre produit"

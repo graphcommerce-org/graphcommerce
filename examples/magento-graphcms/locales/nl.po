@@ -112,6 +112,9 @@ msgstr "Sluiten"
 msgid "Complete the payment on your bank’s website."
 msgstr "Voltooi de betaling op uw bank's website."
 
+msgid "Complete your purchase"
+msgstr "Maak uw bestelling compleet"
+
 msgid "Confirm new email"
 msgstr "Bevestig nieuwe email"
 

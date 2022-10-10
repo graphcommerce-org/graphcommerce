@@ -1,5 +1,51 @@
 # Change Log
 
+## 4.12.3
+
+### Patch Changes
+
+- Updated dependencies [[`1953c7e27`](https://github.com/graphcommerce-org/graphcommerce/commit/1953c7e27eb606a825fce1ad361393b3c781c6da)]:
+  - @graphcommerce/next-ui@4.29.2
+  - @graphcommerce/ecommerce-ui@1.5.7
+  - @graphcommerce/magento-store@4.3.5
+
+## 4.12.2
+
+### Patch Changes
+
+- Updated dependencies [[`98d6a9cce`](https://github.com/graphcommerce-org/graphcommerce/commit/98d6a9cce1bb9514088be0af2736721b3edda467)]:
+  - @graphcommerce/next-ui@4.29.1
+  - @graphcommerce/ecommerce-ui@1.5.6
+  - @graphcommerce/magento-store@4.3.4
+
+## 4.12.1
+
+### Patch Changes
+
+- Updated dependencies [[`e76df6dc3`](https://github.com/graphcommerce-org/graphcommerce/commit/e76df6dc37c11c793a5d008ba36932d17dc23855), [`0bd9ea582`](https://github.com/graphcommerce-org/graphcommerce/commit/0bd9ea58230dde79c5fe2cdb07e9860151460270)]:
+  - @graphcommerce/next-ui@4.29.0
+  - @graphcommerce/ecommerce-ui@1.5.5
+  - @graphcommerce/magento-store@4.3.3
+
+## 4.12.0
+
+### Minor Changes
+
+- [#1670](https://github.com/graphcommerce-org/graphcommerce/pull/1670) [`8a34f8081`](https://github.com/graphcommerce-org/graphcommerce/commit/8a34f808186274a6fe1d4f309472f1a9c6d00efd) Thanks [@Jessevdpoel](https://github.com/Jessevdpoel)! - Added cache resetting when token expires and logging in with a different account than cached.
+
+### Patch Changes
+
+- [#1675](https://github.com/graphcommerce-org/graphcommerce/pull/1675) [`1b1504c9b`](https://github.com/graphcommerce-org/graphcommerce/commit/1b1504c9b0e51f2787bce91e1ff1940f540411d6) Thanks [@paales](https://github.com/paales)! - Added crosssel functionality
+
+- Updated dependencies [[`9e630670f`](https://github.com/graphcommerce-org/graphcommerce/commit/9e630670ff6c952ab7b938d890b5509804985cf3), [`cf3518499`](https://github.com/graphcommerce-org/graphcommerce/commit/cf351849999ad6fe73ce2bb258098a7dd301d517), [`2e9fa5984`](https://github.com/graphcommerce-org/graphcommerce/commit/2e9fa5984a07ff14fc1b3a4f62189a26e8e3ecdd), [`adf13069a`](https://github.com/graphcommerce-org/graphcommerce/commit/adf13069af6460c960276b402237371c12fc6dec), [`1b1504c9b`](https://github.com/graphcommerce-org/graphcommerce/commit/1b1504c9b0e51f2787bce91e1ff1940f540411d6), [`8a34f8081`](https://github.com/graphcommerce-org/graphcommerce/commit/8a34f808186274a6fe1d4f309472f1a9c6d00efd), [`6c2e27b1b`](https://github.com/graphcommerce-org/graphcommerce/commit/6c2e27b1be4aaa888e65a2bd69eaeb467a54a023), [`3dde492ad`](https://github.com/graphcommerce-org/graphcommerce/commit/3dde492ad3a49d96481eeb7453fb305d0017b1a5)]:
+  - @graphcommerce/next-ui@4.28.1
+  - @graphcommerce/graphql@3.5.0
+  - @graphcommerce/framer-utils@3.2.1
+  - @graphcommerce/ecommerce-ui@1.5.4
+  - @graphcommerce/magento-store@4.3.2
+  - @graphcommerce/magento-graphql@3.1.9
+  - @graphcommerce/image@3.1.10
+
 ## 4.11.7
 
 ### Patch Changes

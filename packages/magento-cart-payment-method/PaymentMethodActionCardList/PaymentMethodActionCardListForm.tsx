@@ -12,6 +12,7 @@ import {
   UseFormComposeOptions,
   useFormPersist,
 } from '@graphcommerce/react-hook-form'
+import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { SxProps, Theme } from '@mui/material'
 import { useEffect } from 'react'
@@ -48,7 +49,7 @@ function PaymentMethodActionCard(
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
       action={
-        <Button disableTouchRipple variant='inline' color='secondary'>
+        <Button disableTouchRipple variant='inline' color='secondary' tabIndex={-1}>
           <Trans id='Select' />
         </Button>
       }
@@ -112,7 +113,7 @@ export function PaymentMethodActionCardListForm(props: PaymentMethodActionCardLi
     <ActionCardListForm<PaymentOptionsProps & ActionCardItemBase>
       control={control}
       name='paymentMethod'
-      errorMessage='Please select a payment method'
+      errorMessage={i18n._(/* i18n */ 'Please select a payment method')}
       collapse
       size='large'
       color='secondary'

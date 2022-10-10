@@ -112,6 +112,9 @@ msgstr "Schließen"
 msgid "Complete the payment on your bank’s website."
 msgstr "Führen Sie die Zahlung auf Ihrer Bank-Website aus."
 
+msgid "Complete your purchase"
+msgstr "Beenden Sie Ihren Kauf"
+
 msgid "Confirm new email"
 msgstr "Neue E-Mail bestätigen"
 

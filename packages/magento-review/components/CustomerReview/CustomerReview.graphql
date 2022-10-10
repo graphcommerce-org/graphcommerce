@@ -6,8 +6,7 @@ fragment CustomerReview on ProductReview {
     url_key
     name
     thumbnail {
-      url
-      label
+      ...ProductImage
     }
   }
   nickname

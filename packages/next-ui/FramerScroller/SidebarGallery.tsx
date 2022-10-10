@@ -113,6 +113,21 @@ export function SidebarGallery(props: SidebarGalleryProps) {
 
   const hasImages = images.length > 0
 
+  // sx={(theme) => ({
+  //   [SidebarGallery.selectors.scrollerContainer]: {
+  //     minHeight: 0,
+  //     [theme.breakpoints.up('md')]: {
+  //       position: 'sticky',
+  //       top: 0,
+  //     },
+  //     '&.zoomed': {
+  //       position: 'relative',
+  //       top: 0,
+  //       marginTop: 0,
+  //     },
+  //   },
+  // })}
+
   return (
     <ScrollerProvider scrollSnapAlign='center'>
       <Row maxWidth={false} disableGutters className={classes.row} sx={sx}>
@@ -154,13 +169,20 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                 height: 0, // https://stackoverflow.com/questions/44770074/css-grid-row-height-safari-bug
                 backgroundColor: theme.palette.background.image,
                 position: 'relative',
-                minHeight: '100%',
                 paddingTop: `min(${ratio}, ${maxHeight})`,
                 [theme.breakpoints.down('md')]: {
                   width: '100vw',
                 },
+                minHeight: 0,
+                [theme.breakpoints.up('md')]: {
+                  position: 'sticky',
+                  top: 0,
+                },
               },
               zoomed && {
+                position: 'relative',
+                top: 0,
+                marginTop: 0,
                 paddingTop: `var(--client-size-y)`,
               },
             ]}

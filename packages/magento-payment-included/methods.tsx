@@ -18,3 +18,8 @@ export const free: PaymentModule = {
   PaymentOptions: PaymentMethodOptionsNoop,
   PaymentPlaceOrder: PaymentMethodPlaceOrderNoop,
 }
+
+export const cashondelivery: PaymentModule = {
+  PaymentOptions: PaymentMethodOptionsNoop,
+  PaymentPlaceOrder: PaymentMethodPlaceOrderNoop,
+}

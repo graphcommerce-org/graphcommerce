@@ -18,7 +18,7 @@ export function GoogleAnalyticsScript() {
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', '${id}');
+          gtag('config', '${id}', { 'debug_mode':true });
       `}</Script>
     </>
   )

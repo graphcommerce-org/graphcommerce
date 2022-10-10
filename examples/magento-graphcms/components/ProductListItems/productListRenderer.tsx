@@ -1,4 +1,4 @@
-import { ProductListItemRenderer } from '@graphcommerce/magento-product'
+import { AddProductsToCartFab, ProductListItemRenderer } from '@graphcommerce/magento-product'
 import { ProductListItemBundle } from '@graphcommerce/magento-product-bundle'
 import { ProductListItemConfigurable } from '@graphcommerce/magento-product-configurable'
 import { ProductListItemDownloadable } from '@graphcommerce/magento-product-downloadable'
@@ -14,15 +14,19 @@ const Subtitle = (props: TypographyProps) => (
 )
 
 export const productListRenderer: ProductListItemRenderer = {
-  SimpleProduct: (props) => (
-    <ProductListItemSimple
-      {...props}
-      subTitle={<Subtitle>BY GC</Subtitle>}
-      aspectRatio={[1, 1]}
-      bottomLeft={<ProductReviewSummary {...props} />}
-      topRight={<ProductWishlistChip {...props} />}
-    />
-  ),
+  SimpleProduct: (props) => {
+    const { sku } = props
+    return (
+      <ProductListItemSimple
+        {...props}
+        subTitle={<Subtitle>BY GC</Subtitle>}
+        aspectRatio={[1, 1]}
+        bottomLeft={<ProductReviewSummary {...props} />}
+        topRight={<ProductWishlistChip {...props} />}
+        bottomRight={<AddProductsToCartFab sku={sku} />}
+      />
+    )
+  },
   ConfigurableProduct: (props) => (
     <ProductListItemConfigurable
       {...props}
@@ -47,15 +51,19 @@ export const productListRenderer: ProductListItemRenderer = {
       topRight={<ProductWishlistChip {...props} />}
     />
   ),
-  VirtualProduct: (props) => (
-    <ProductListItemVirtual
-      {...props}
-      subTitle={<Subtitle>BY GC</Subtitle>}
-      aspectRatio={[1, 1]}
-      bottomLeft={<ProductReviewSummary {...props} />}
-      topRight={<ProductWishlistChip {...props} />}
-    />
-  ),
+  VirtualProduct: (props) => {
+    const { sku } = props
+    return (
+      <ProductListItemVirtual
+        {...props}
+        subTitle={<Subtitle>BY GC</Subtitle>}
+        aspectRatio={[1, 1]}
+        bottomLeft={<ProductReviewSummary {...props} />}
+        topRight={<ProductWishlistChip {...props} />}
+        bottomRight={<AddProductsToCartFab sku={sku} />}
+      />
+    )
+  },
   DownloadableProduct: (props) => (
     <ProductListItemDownloadable
       {...props}

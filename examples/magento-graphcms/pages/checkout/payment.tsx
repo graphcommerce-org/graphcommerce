@@ -1,5 +1,6 @@
 import { ComposedForm, WaitForQueries } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { gtagAddPaymentInfo } from '@graphcommerce/googleanalytics'
 import { useGoogleRecaptcha } from '@graphcommerce/googlerecaptcha'
 import {
   ApolloCartErrorFullPage,
@@ -148,6 +149,7 @@ function PaymentPage() {
                     button={{ variant: 'pill', size: 'large' }}
                     breakpoint='xs'
                     endIcon={<IconSvg src={iconChevronRight} />}
+                    onSubmitSuccessful={() => gtagAddPaymentInfo(billingPage.data?.cart)}
                   >
                     <Trans id='Place order' />
                   </PaymentMethodButton>

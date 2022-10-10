@@ -4,13 +4,15 @@ fragment CartItem on CartItemInterface @injectable {
   product {
     uid
     ...ProductLink
+    sku
     name
     url_key
+    sku
     thumbnail {
-      url
-      label
+      ...ProductImage
     }
   }
+
   prices {
     discounts {
       amount {

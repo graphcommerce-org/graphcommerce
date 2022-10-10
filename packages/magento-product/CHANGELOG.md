@@ -1,5 +1,68 @@
 # Change Log
 
+## 4.8.2
+
+### Patch Changes
+
+- [#1686](https://github.com/graphcommerce-org/graphcommerce/pull/1686) [`1953c7e27`](https://github.com/graphcommerce-org/graphcommerce/commit/1953c7e27eb606a825fce1ad361393b3c781c6da) Thanks [@paales](https://github.com/paales)! - Product page markup and sticky product image when the sidebar is fairly large
+
+- Updated dependencies [[`1953c7e27`](https://github.com/graphcommerce-org/graphcommerce/commit/1953c7e27eb606a825fce1ad361393b3c781c6da)]:
+  - @graphcommerce/next-ui@4.29.2
+  - @graphcommerce/ecommerce-ui@1.5.7
+  - @graphcommerce/framer-scroller@2.1.44
+  - @graphcommerce/magento-cart@4.9.3
+  - @graphcommerce/magento-store@4.3.5
+
+## 4.8.1
+
+### Patch Changes
+
+- [#1684](https://github.com/graphcommerce-org/graphcommerce/pull/1684) [`aab6b4fa5`](https://github.com/graphcommerce-org/graphcommerce/commit/aab6b4fa5b4708003cfb5bf673a617dc5dbf3078) Thanks [@paales](https://github.com/paales)! - Make sure the images are sorted according to their position field
+
+- Updated dependencies [[`ae28fb14c`](https://github.com/graphcommerce-org/graphcommerce/commit/ae28fb14cec298c52970260a4fc2c2551b5f175e), [`98d6a9cce`](https://github.com/graphcommerce-org/graphcommerce/commit/98d6a9cce1bb9514088be0af2736721b3edda467)]:
+  - @graphcommerce/magento-cart@4.9.2
+  - @graphcommerce/next-ui@4.29.1
+  - @graphcommerce/ecommerce-ui@1.5.6
+  - @graphcommerce/framer-scroller@2.1.43
+  - @graphcommerce/magento-store@4.3.4
+
+## 4.8.0
+
+### Minor Changes
+
+- [#1679](https://github.com/graphcommerce-org/graphcommerce/pull/1679) [`2b5451395`](https://github.com/graphcommerce-org/graphcommerce/commit/2b5451395dc1173de55d18d08968866e561f90ab) Thanks [@paales](https://github.com/paales)! - Move AddProductsToCartSnackbar to inside AddProductsToCartForm and make AddProductsToCartForm configrable via theme.ts
+
+- [#1679](https://github.com/graphcommerce-org/graphcommerce/pull/1679) [`e76df6dc3`](https://github.com/graphcommerce-org/graphcommerce/commit/e76df6dc37c11c793a5d008ba36932d17dc23855) Thanks [@paales](https://github.com/paales)! - Added AddProductsToCartFab for a smaller add to cart button
+
+- [#1678](https://github.com/graphcommerce-org/graphcommerce/pull/1678) [`78d7d51cb`](https://github.com/graphcommerce-org/graphcommerce/commit/78d7d51cb1551601d3a4756cd1f2157a49ff93b9) Thanks [@Jessevdpoel](https://github.com/Jessevdpoel)! - Changed styling and forwarded breadcrumbprops
+
+### Patch Changes
+
+- [#1679](https://github.com/graphcommerce-org/graphcommerce/pull/1679) [`c4ed376e2`](https://github.com/graphcommerce-org/graphcommerce/commit/c4ed376e2c72b16b34704d7d1ca69c074de172ba) Thanks [@paales](https://github.com/paales)! - Support passing children to AddProductsToCartButton instead of Add To Cart
+
+- Updated dependencies [[`e76df6dc3`](https://github.com/graphcommerce-org/graphcommerce/commit/e76df6dc37c11c793a5d008ba36932d17dc23855), [`0bd9ea582`](https://github.com/graphcommerce-org/graphcommerce/commit/0bd9ea58230dde79c5fe2cdb07e9860151460270)]:
+  - @graphcommerce/next-ui@4.29.0
+  - @graphcommerce/ecommerce-ui@1.5.5
+  - @graphcommerce/framer-scroller@2.1.42
+  - @graphcommerce/magento-cart@4.9.1
+  - @graphcommerce/magento-store@4.3.3
+
+## 4.7.3
+
+### Patch Changes
+
+- [#1675](https://github.com/graphcommerce-org/graphcommerce/pull/1675) [`1b1504c9b`](https://github.com/graphcommerce-org/graphcommerce/commit/1b1504c9b0e51f2787bce91e1ff1940f540411d6) Thanks [@paales](https://github.com/paales)! - Added crosssel functionality
+
+- Updated dependencies [[`9e630670f`](https://github.com/graphcommerce-org/graphcommerce/commit/9e630670ff6c952ab7b938d890b5509804985cf3), [`cf3518499`](https://github.com/graphcommerce-org/graphcommerce/commit/cf351849999ad6fe73ce2bb258098a7dd301d517), [`81f31d1e5`](https://github.com/graphcommerce-org/graphcommerce/commit/81f31d1e54397368088a4289aaddd29facfceeef), [`2e9fa5984`](https://github.com/graphcommerce-org/graphcommerce/commit/2e9fa5984a07ff14fc1b3a4f62189a26e8e3ecdd), [`adf13069a`](https://github.com/graphcommerce-org/graphcommerce/commit/adf13069af6460c960276b402237371c12fc6dec), [`a8905d263`](https://github.com/graphcommerce-org/graphcommerce/commit/a8905d263273cb9322583d5759a5fdc66eceb8e4), [`1b1504c9b`](https://github.com/graphcommerce-org/graphcommerce/commit/1b1504c9b0e51f2787bce91e1ff1940f540411d6), [`8a34f8081`](https://github.com/graphcommerce-org/graphcommerce/commit/8a34f808186274a6fe1d4f309472f1a9c6d00efd), [`3dde492ad`](https://github.com/graphcommerce-org/graphcommerce/commit/3dde492ad3a49d96481eeb7453fb305d0017b1a5)]:
+  - @graphcommerce/next-ui@4.28.1
+  - @graphcommerce/graphql@3.5.0
+  - @graphcommerce/framer-scroller@2.1.41
+  - @graphcommerce/magento-cart@4.9.0
+  - @graphcommerce/ecommerce-ui@1.5.4
+  - @graphcommerce/magento-store@4.3.2
+  - @graphcommerce/framer-next-pages@3.3.2
+  - @graphcommerce/image@3.1.10
+
 ## 4.7.2
 
 ### Patch Changes

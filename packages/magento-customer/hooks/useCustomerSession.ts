@@ -34,7 +34,10 @@ export function useCustomerSession(options: UseCustomerSessionOptions = {}) {
    * After the initital render we are definitely sure we're not hydrating anymore so we can flip the
    * switch and rerender.
    */
-  useIsomorphicLayoutEffect(() => startTransition(() => setHydrating(false)), [])
+  useIsomorphicLayoutEffect(() => {
+    if (!hydrating) return
+    startTransition(() => setHydrating(false))
+  }, [hydrating])
 
   const skip = hydrating
 

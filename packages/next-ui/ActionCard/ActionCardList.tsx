@@ -3,6 +3,7 @@ import React from 'react'
 import { isFragment } from 'react-is'
 import { extendableComponent } from '../Styles'
 import { ActionCardProps } from './ActionCard'
+import { ActionCardLayout } from './ActionCardLayout'
 
 type MultiSelect = {
   multiple: true
@@ -130,52 +131,25 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
 
     return (
       <div>
-        <Box
-          className={classes.root}
-          ref={ref}
-          sx={[
-            (theme) => ({
-              '&.layoutStack': {
-                display: 'grid',
-                height: 'min-content',
-                gap: theme.spacings.xxs,
-              },
-              '&.layoutList': {
-                display: 'grid',
-                height: 'min-content',
-              },
-              '&.layoutGrid': {
-                display: 'grid',
-                gridTemplateColumns: 'repeat(2, 1fr)',
-                gap: theme.spacings.xxs,
-              },
-              '&.layoutInline': {
-                display: 'flex',
-                flexWrap: 'wrap',
-                gap: theme.spacings.xxs,
-              },
-            }),
-
-            ...(Array.isArray(sx) ? sx : [sx]),
-          ]}
-        >
+        <ActionCardLayout sx={sx} className={classes.root} layout={layout}>
           {childReactNodes.map((child) => {
             if (collapse && Boolean(value) && !isValueSelected(child.props.value, value))
               return null
             return React.cloneElement(child, {
               onClick: handleChange,
-              error: child.props.error ?? error,
-              color: child.props.color ?? color,
-              variant: child.props.variant ?? variant,
-              size: child.props.size ?? size,
-              layout: child.props.layout ?? layout,
+              error,
+              color,
+              variant,
+              size,
+              layout,
+              ...child.props,
               selected:
                 child.props.selected === undefined
                   ? isValueSelected(child.props.value, value)
                   : child.props.selected,
             })
           })}
-        </Box>
+        </ActionCardLayout>
         {error && errorMessage && (
           <Alert
             severity='error'

@@ -1,5 +1,6 @@
 /// <reference types="@graphcommerce/next-ui/types" />
 
+import { gtagAddToCart } from '@graphcommerce/googleanalytics'
 import {
   responsiveVal,
   breakpointVal,
@@ -377,6 +378,19 @@ const createOverrides = (theme: Theme): Components => ({
   },
 
   MuiSlider: { variants: [...MuiSlider] },
+
+  MuiCircularProgress: {
+    defaultProps: {
+      thickness: 2,
+    },
+  },
+
+  AddProductsToCartForm: {
+    defaultProps: {
+      redirect: 'added',
+      onComplete: gtagAddToCart,
+    },
+  },
 })
 
 export const lightTheme = createThemeWithPalette(lightPalette)

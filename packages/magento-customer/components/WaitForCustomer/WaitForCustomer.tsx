@@ -41,7 +41,9 @@ export function WaitForCustomer(props: WaitForCustomerProps) {
 
   const session = useCustomerSession()
   const queries = Array.isArray(waitFor) ? waitFor : [waitFor]
-  const error = mergeErrors(queries.map((query) => query.error).filter(nonNullable))
+  const error = mergeErrors(
+    queries.map((query) => (typeof query === 'boolean' ? null : query.error)).filter(nonNullable),
+  )
 
   return (
     <WaitForQueries

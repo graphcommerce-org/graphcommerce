@@ -1,26 +1,18 @@
-import {
-  Control,
-  Controller,
-  ControllerProps,
-  Path,
-  FieldValues,
-} from '@graphcommerce/react-hook-form'
+import { Controller, ControllerProps, FieldValues } from '@graphcommerce/react-hook-form'
 import { MenuItem, TextField, TextFieldProps } from '@mui/material'
 
 export type SelectElementProps<T extends FieldValues> = Omit<
   TextFieldProps,
-  'name' | 'type' | 'onChange'
+  'name' | 'type' | 'onChange' | 'defaultValue'
 > & {
   validation?: ControllerProps['rules']
-  name: Path<T>
   options?: { id: string | number; label: string | number }[] | any[]
   valueKey?: string
   labelKey?: string
   type?: 'string' | 'number'
   objectOnChange?: boolean
   onChange?: (value: any) => void
-  control?: Control<T>
-}
+} & Pick<ControllerProps<T>, 'control' | 'defaultValue' | 'name'>
 
 export function SelectElement<TFieldValues extends FieldValues>({
   name,
@@ -32,6 +24,7 @@ export function SelectElement<TFieldValues extends FieldValues>({
   objectOnChange,
   validation = {},
   control,
+  defaultValue,
   ...rest
 }: SelectElementProps<TFieldValues>): JSX.Element {
   const isNativeSelect = !!rest.SelectProps?.native
@@ -46,6 +39,7 @@ export function SelectElement<TFieldValues extends FieldValues>({
       name={name}
       rules={validation}
       control={control}
+      defaultValue={defaultValue}
       render={({ field: { onBlur, onChange, value }, fieldState: { invalid, error } }) => {
         // handle shrink on number input fields
         if (type === 'number' && typeof value !== 'undefined') {

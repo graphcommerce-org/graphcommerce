@@ -158,6 +158,7 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
             gridArea: 'center',
             justifyContent: 'start',
             overflow: 'hidden',
+            justifySelf: 'center',
 
             transition: `opacity 150ms`,
             opacity: 0,

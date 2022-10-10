@@ -1,9 +1,16 @@
 import { ApolloCartErrorSnackbar } from '@graphcommerce/magento-cart'
 import { LinkOrButton, LinkOrButtonProps } from '@graphcommerce/next-ui'
-import { ComposedSubmit, ComposedSubmitRenderComponentProps } from '@graphcommerce/react-hook-form'
+import {
+  ComposedSubmit,
+  ComposedSubmitProps,
+  ComposedSubmitRenderComponentProps,
+} from '@graphcommerce/react-hook-form'
 import { usePaymentMethodContext } from '../PaymentMethodContext/PaymentMethodContext'
 
-export type PaymentMethodButtonProps = LinkOrButtonProps & { display?: 'inline' | 'block' }
+export type PaymentMethodButtonProps = LinkOrButtonProps & { display?: 'inline' | 'block' } & Pick<
+    ComposedSubmitProps,
+    'onSubmitSuccessful'
+  >
 
 function PaymentMethodButtonRenderer(
   props: { buttonProps: LinkOrButtonProps } & ComposedSubmitRenderComponentProps,
@@ -44,10 +51,11 @@ function PaymentMethodButtonRenderer(
 }
 
 export function PaymentMethodButton(props: PaymentMethodButtonProps) {
-  const { display, ...buttonProps } = props
+  const { display, onSubmitSuccessful, ...buttonProps } = props
 
   return (
     <ComposedSubmit
+      onSubmitSuccessful={onSubmitSuccessful}
       render={({ submit, buttonState, error }) => {
         const errorVal = buttonState.isSubmitting ? undefined : error
         const button = (

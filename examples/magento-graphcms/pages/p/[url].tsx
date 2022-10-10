@@ -4,7 +4,6 @@ import {
   AddProductsToCartError,
   AddProductsToCartForm,
   AddProductsToCartQuantity,
-  AddProductsToCartSnackbar,
   getProductStaticPaths,
   jsonLdProduct,
   jsonLdProductOffer,
@@ -13,6 +12,7 @@ import {
   ProductPageDescription,
   ProductPageMeta,
   ProductShortDescription,
+  ProductSidebarDelivery,
 } from '@graphcommerce/magento-product'
 import { BundleProductOptions } from '@graphcommerce/magento-product-bundle'
 import {
@@ -103,7 +103,10 @@ function ProductPage(props: Props) {
               )}
             </Typography>
 
-            <ProductShortDescription short_description={product?.short_description} />
+            <ProductShortDescription
+              short_description={product?.short_description}
+              sx={(theme) => ({ mb: theme.spacings.xs })}
+            />
 
             <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
           </div>
@@ -114,7 +117,13 @@ function ProductPage(props: Props) {
               optionEndLabels={{
                 size: (
                   <PageLink href='/modal/product/global/size'>
-                    <Link rel='nofollow' component='button' color='primary' underline='hover'>
+                    <Link
+                      rel='nofollow'
+                      component='button'
+                      type='button'
+                      color='primary'
+                      underline='hover'
+                    >
                       <Trans id='Which size is right?' />
                     </Link>
                   </PageLink>
@@ -122,7 +131,9 @@ function ProductPage(props: Props) {
               }}
             />
           )}
-          {isTypename(product, ['BundleProduct']) && <BundleProductOptions product={product} />}
+          {isTypename(product, ['BundleProduct']) && (
+            <BundleProductOptions product={product} layout='stack' />
+          )}
           {isTypename(product, ['DownloadableProduct']) && (
             <DownloadableProductOptions product={product} />
           )}
@@ -134,7 +145,7 @@ function ProductPage(props: Props) {
             sx={(theme) => ({
               display: 'flex',
               alignItems: 'center',
-              columnGap: theme.spacings.xs,
+              columnGap: theme.spacings.md,
             })}
           >
             <AddProductsToCartQuantity sx={{ flexShrink: '0' }} />
@@ -150,6 +161,8 @@ function ProductPage(props: Props) {
             </AddProductsToCartError>
           </Box>
 
+          <ProductSidebarDelivery />
+
           <Box
             sx={(theme) => ({
               display: 'flex',
@@ -161,7 +174,6 @@ function ProductPage(props: Props) {
             <ProductWishlistChipDetail {...product} />
           </Box>
 
-          <AddProductsToCartSnackbar {...product} />
           <Usps usps={sidebarUsps} size='small' />
         </ConfigurableProductPageGallery>
       </AddProductsToCartForm>

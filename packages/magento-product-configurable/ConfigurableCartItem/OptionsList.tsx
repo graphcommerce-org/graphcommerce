@@ -10,6 +10,7 @@ const name = 'ColorSwatchData' as const
 const parts = ['root', 'option'] as const
 const { classes } = extendableComponent(name, parts)
 
+/** @deprecated */
 export function OptionsList(props: CartItemOptionsListProps) {
   const { configurable_options, sx = [] } = props
 

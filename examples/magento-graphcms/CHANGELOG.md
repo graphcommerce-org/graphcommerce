@@ -1,5 +1,203 @@
 # Change Log
 
+## 3.28.4
+
+### Patch Changes
+
+- [#1686](https://github.com/graphcommerce-org/graphcommerce/pull/1686) [`1953c7e27`](https://github.com/graphcommerce-org/graphcommerce/commit/1953c7e27eb606a825fce1ad361393b3c781c6da) Thanks [@paales](https://github.com/paales)! - Product page markup and sticky product image when the sidebar is fairly large
+
+- Updated dependencies [[`1953c7e27`](https://github.com/graphcommerce-org/graphcommerce/commit/1953c7e27eb606a825fce1ad361393b3c781c6da)]:
+  - @graphcommerce/magento-cart-payment-method@3.6.7
+  - @graphcommerce/magento-cart-pickup@3.2.7
+  - @graphcommerce/magento-cart-shipping-address@3.5.7
+  - @graphcommerce/magento-cart-shipping-method@3.7.7
+  - @graphcommerce/magento-product@4.8.2
+  - @graphcommerce/magento-product-bundle@4.1.8
+  - @graphcommerce/next-ui@4.29.2
+  - @graphcommerce/magento-payment-braintree@3.0.64
+  - @graphcommerce/magento-payment-included@3.2.3
+  - @graphcommerce/mollie-magento-payment@3.5.17
+  - @graphcommerce/googleanalytics@3.0.4
+  - @graphcommerce/magento-cart-email@3.0.67
+  - @graphcommerce/magento-cart-items@3.1.19
+  - @graphcommerce/magento-category@4.8.2
+  - @graphcommerce/magento-product-configurable@4.3.8
+  - @graphcommerce/magento-product-downloadable@4.1.8
+  - @graphcommerce/magento-product-grouped@3.1.8
+  - @graphcommerce/magento-product-simple@4.1.8
+  - @graphcommerce/magento-product-virtual@4.1.8
+  - @graphcommerce/magento-review@3.4.8
+  - @graphcommerce/magento-wishlist@1.7.8
+  - @graphcommerce/ecommerce-ui@1.5.7
+  - @graphcommerce/framer-scroller@2.1.44
+  - @graphcommerce/graphcms-ui@3.1.5
+  - @graphcommerce/magento-cart@4.9.3
+  - @graphcommerce/magento-cart-billing-address@3.1.17
+  - @graphcommerce/magento-cart-checkout@3.0.67
+  - @graphcommerce/magento-cart-coupon@3.2.17
+  - @graphcommerce/magento-customer@4.12.3
+  - @graphcommerce/magento-customer-account@3.2.17
+  - @graphcommerce/magento-customer-order@3.1.13
+  - @graphcommerce/magento-newsletter@2.2.8
+  - @graphcommerce/magento-search@4.2.15
+  - @graphcommerce/magento-store@4.3.5
+  - @graphcommerce/magento-cms@4.0.52
+
+## 3.28.3
+
+### Patch Changes
+
+- [#1684](https://github.com/graphcommerce-org/graphcommerce/pull/1684) [`ae28fb14c`](https://github.com/graphcommerce-org/graphcommerce/commit/ae28fb14cec298c52970260a4fc2c2551b5f175e) Thanks [@paales](https://github.com/paales)! - Only show products in stock on crosssells
+
+- Updated dependencies [[`ae28fb14c`](https://github.com/graphcommerce-org/graphcommerce/commit/ae28fb14cec298c52970260a4fc2c2551b5f175e), [`98d6a9cce`](https://github.com/graphcommerce-org/graphcommerce/commit/98d6a9cce1bb9514088be0af2736721b3edda467), [`aab6b4fa5`](https://github.com/graphcommerce-org/graphcommerce/commit/aab6b4fa5b4708003cfb5bf673a617dc5dbf3078)]:
+  - @graphcommerce/magento-cart@4.9.2
+  - @graphcommerce/next-ui@4.29.1
+  - @graphcommerce/magento-product@4.8.1
+  - @graphcommerce/magento-cart-billing-address@3.1.16
+  - @graphcommerce/magento-cart-checkout@3.0.66
+  - @graphcommerce/magento-cart-coupon@3.2.16
+  - @graphcommerce/magento-cart-email@3.0.66
+  - @graphcommerce/magento-cart-items@3.1.18
+  - @graphcommerce/magento-cart-payment-method@3.6.6
+  - @graphcommerce/magento-cart-shipping-address@3.5.6
+  - @graphcommerce/magento-cart-shipping-method@3.7.6
+  - @graphcommerce/magento-newsletter@2.2.7
+  - @graphcommerce/magento-payment-braintree@3.0.63
+  - @graphcommerce/magento-payment-included@3.2.2
+  - @graphcommerce/magento-product-bundle@4.1.7
+  - @graphcommerce/magento-product-configurable@4.3.7
+  - @graphcommerce/magento-product-downloadable@4.1.7
+  - @graphcommerce/magento-product-grouped@3.1.7
+  - @graphcommerce/magento-product-simple@4.1.7
+  - @graphcommerce/magento-product-virtual@4.1.7
+  - @graphcommerce/magento-wishlist@1.7.7
+  - @graphcommerce/mollie-magento-payment@3.5.16
+  - @graphcommerce/ecommerce-ui@1.5.6
+  - @graphcommerce/framer-scroller@2.1.43
+  - @graphcommerce/googleanalytics@3.0.3
+  - @graphcommerce/graphcms-ui@3.1.4
+  - @graphcommerce/magento-cart-pickup@3.2.6
+  - @graphcommerce/magento-category@4.8.1
+  - @graphcommerce/magento-customer@4.12.2
+  - @graphcommerce/magento-customer-account@3.2.16
+  - @graphcommerce/magento-customer-order@3.1.12
+  - @graphcommerce/magento-review@3.4.7
+  - @graphcommerce/magento-search@4.2.14
+  - @graphcommerce/magento-store@4.3.4
+  - @graphcommerce/magento-cms@4.0.51
+
+## 3.28.2
+
+### Patch Changes
+
+- [#1679](https://github.com/graphcommerce-org/graphcommerce/pull/1679) [`2b5451395`](https://github.com/graphcommerce-org/graphcommerce/commit/2b5451395dc1173de55d18d08968866e561f90ab) Thanks [@paales](https://github.com/paales)! - Move AddProductsToCartSnackbar to inside AddProductsToCartForm and make AddProductsToCartForm configrable via theme.ts
+
+- [#1679](https://github.com/graphcommerce-org/graphcommerce/pull/1679) [`63212f475`](https://github.com/graphcommerce-org/graphcommerce/commit/63212f47509acc88b0d88cfd9f9b85f5813eb31f) Thanks [@paales](https://github.com/paales)! - When adding a crosssell to the cart directly from the list, it would jump down while it was loading, show the old crosssels while loading
+
+- [#1679](https://github.com/graphcommerce-org/graphcommerce/pull/1679) [`2f303401f`](https://github.com/graphcommerce-org/graphcommerce/commit/2f303401f68c95a3a547ebe1ac5caed2623a989e) Thanks [@paales](https://github.com/paales)! - Explicitly use a type=“button” so it isn’t registered as a submit handler
+
+- [#1679](https://github.com/graphcommerce-org/graphcommerce/pull/1679) [`ac4a7481d`](https://github.com/graphcommerce-org/graphcommerce/commit/ac4a7481dc7a90222074751f32a65eccec97ba52) Thanks [@paales](https://github.com/paales)! - Let crosssels use a floating variant on desktop
+
+- [#1679](https://github.com/graphcommerce-org/graphcommerce/pull/1679) [`5d5da13fd`](https://github.com/graphcommerce-org/graphcommerce/commit/5d5da13fd873cd0eb4539c129a4e4baba779fc27) Thanks [@paales](https://github.com/paales)! - Renamed crosssell label to Complete your purchase
+
+- Updated dependencies [[`2b5451395`](https://github.com/graphcommerce-org/graphcommerce/commit/2b5451395dc1173de55d18d08968866e561f90ab), [`e76df6dc3`](https://github.com/graphcommerce-org/graphcommerce/commit/e76df6dc37c11c793a5d008ba36932d17dc23855), [`c4ed376e2`](https://github.com/graphcommerce-org/graphcommerce/commit/c4ed376e2c72b16b34704d7d1ca69c074de172ba), [`78d7d51cb`](https://github.com/graphcommerce-org/graphcommerce/commit/78d7d51cb1551601d3a4756cd1f2157a49ff93b9), [`0bd9ea582`](https://github.com/graphcommerce-org/graphcommerce/commit/0bd9ea58230dde79c5fe2cdb07e9860151460270)]:
+  - @graphcommerce/magento-product@4.8.0
+  - @graphcommerce/next-ui@4.29.0
+  - @graphcommerce/magento-category@4.8.0
+  - @graphcommerce/googleanalytics@3.0.2
+  - @graphcommerce/magento-cart-email@3.0.65
+  - @graphcommerce/magento-cart-items@3.1.17
+  - @graphcommerce/magento-payment-braintree@3.0.62
+  - @graphcommerce/magento-payment-included@3.2.1
+  - @graphcommerce/magento-product-bundle@4.1.6
+  - @graphcommerce/magento-product-configurable@4.3.6
+  - @graphcommerce/magento-product-downloadable@4.1.6
+  - @graphcommerce/magento-product-grouped@3.1.6
+  - @graphcommerce/magento-product-simple@4.1.6
+  - @graphcommerce/magento-product-virtual@4.1.6
+  - @graphcommerce/magento-review@3.4.6
+  - @graphcommerce/magento-wishlist@1.7.6
+  - @graphcommerce/mollie-magento-payment@3.5.15
+  - @graphcommerce/ecommerce-ui@1.5.5
+  - @graphcommerce/framer-scroller@2.1.42
+  - @graphcommerce/graphcms-ui@3.1.3
+  - @graphcommerce/magento-cart@4.9.1
+  - @graphcommerce/magento-cart-billing-address@3.1.15
+  - @graphcommerce/magento-cart-checkout@3.0.65
+  - @graphcommerce/magento-cart-coupon@3.2.15
+  - @graphcommerce/magento-cart-payment-method@3.6.5
+  - @graphcommerce/magento-cart-pickup@3.2.5
+  - @graphcommerce/magento-cart-shipping-address@3.5.5
+  - @graphcommerce/magento-cart-shipping-method@3.7.5
+  - @graphcommerce/magento-customer@4.12.1
+  - @graphcommerce/magento-customer-account@3.2.15
+  - @graphcommerce/magento-customer-order@3.1.11
+  - @graphcommerce/magento-newsletter@2.2.6
+  - @graphcommerce/magento-search@4.2.13
+  - @graphcommerce/magento-store@4.3.3
+  - @graphcommerce/magento-cms@4.0.50
+
+## 3.28.1
+
+### Patch Changes
+
+- Updated dependencies [[`55cabbbc5`](https://github.com/graphcommerce-org/graphcommerce/commit/55cabbbc517b35c5f909bd771e619a87614e4c97)]:
+  - @graphcommerce/googleanalytics@3.0.1
+
+## 3.28.0
+
+### Minor Changes
+
+- [#1675](https://github.com/graphcommerce-org/graphcommerce/pull/1675) [`1b1504c9b`](https://github.com/graphcommerce-org/graphcommerce/commit/1b1504c9b0e51f2787bce91e1ff1940f540411d6) Thanks [@paales](https://github.com/paales)! - Added crosssel functionality
+
+- [#1655](https://github.com/graphcommerce-org/graphcommerce/pull/1655) [`3dde492ad`](https://github.com/graphcommerce-org/graphcommerce/commit/3dde492ad3a49d96481eeb7453fb305d0017b1a5) Thanks [@FrankHarland](https://github.com/FrankHarland)! - Added Google Analytics support.
+
+### Patch Changes
+
+- [#1675](https://github.com/graphcommerce-org/graphcommerce/pull/1675) [`4b1706fef`](https://github.com/graphcommerce-org/graphcommerce/commit/4b1706fef05488600ed93ce6cf04972d632a8e65) Thanks [@paales](https://github.com/paales)! - Update `@graphql-tools/url-loader` to latest version
+
+- Updated dependencies [[`9e630670f`](https://github.com/graphcommerce-org/graphcommerce/commit/9e630670ff6c952ab7b938d890b5509804985cf3), [`cf3518499`](https://github.com/graphcommerce-org/graphcommerce/commit/cf351849999ad6fe73ce2bb258098a7dd301d517), [`81f31d1e5`](https://github.com/graphcommerce-org/graphcommerce/commit/81f31d1e54397368088a4289aaddd29facfceeef), [`2e9fa5984`](https://github.com/graphcommerce-org/graphcommerce/commit/2e9fa5984a07ff14fc1b3a4f62189a26e8e3ecdd), [`82a0c9049`](https://github.com/graphcommerce-org/graphcommerce/commit/82a0c904992f104bc1ffc3b1be65eb17bdd0ef1d), [`f2276e263`](https://github.com/graphcommerce-org/graphcommerce/commit/f2276e2639cb6d58035962c36a6a8cfc53460395), [`adf13069a`](https://github.com/graphcommerce-org/graphcommerce/commit/adf13069af6460c960276b402237371c12fc6dec), [`a8905d263`](https://github.com/graphcommerce-org/graphcommerce/commit/a8905d263273cb9322583d5759a5fdc66eceb8e4), [`1b1504c9b`](https://github.com/graphcommerce-org/graphcommerce/commit/1b1504c9b0e51f2787bce91e1ff1940f540411d6), [`1b1504c9b`](https://github.com/graphcommerce-org/graphcommerce/commit/1b1504c9b0e51f2787bce91e1ff1940f540411d6), [`8a34f8081`](https://github.com/graphcommerce-org/graphcommerce/commit/8a34f808186274a6fe1d4f309472f1a9c6d00efd), [`3dde492ad`](https://github.com/graphcommerce-org/graphcommerce/commit/3dde492ad3a49d96481eeb7453fb305d0017b1a5)]:
+  - @graphcommerce/next-ui@4.28.1
+  - @graphcommerce/graphql@3.5.0
+  - @graphcommerce/framer-scroller@2.1.41
+  - @graphcommerce/magento-cart-payment-method@3.6.4
+  - @graphcommerce/magento-wishlist@1.7.5
+  - @graphcommerce/magento-cart@4.9.0
+  - @graphcommerce/magento-cart-checkout@3.0.64
+  - @graphcommerce/magento-cart-items@3.1.16
+  - @graphcommerce/magento-customer@4.12.0
+  - @graphcommerce/magento-customer-order@3.1.10
+  - @graphcommerce/magento-product@4.7.3
+  - @graphcommerce/magento-product-bundle@4.1.5
+  - @graphcommerce/magento-product-configurable@4.3.5
+  - @graphcommerce/magento-review@3.4.5
+  - @graphcommerce/magento-payment-included@3.2.0
+  - @graphcommerce/ecommerce-ui@1.5.4
+  - @graphcommerce/googleanalytics@3.0.0
+  - @graphcommerce/graphcms-ui@3.1.2
+  - @graphcommerce/magento-cart-billing-address@3.1.14
+  - @graphcommerce/magento-cart-coupon@3.2.14
+  - @graphcommerce/magento-cart-email@3.0.64
+  - @graphcommerce/magento-cart-pickup@3.2.4
+  - @graphcommerce/magento-cart-shipping-address@3.5.4
+  - @graphcommerce/magento-cart-shipping-method@3.7.4
+  - @graphcommerce/magento-category@4.7.2
+  - @graphcommerce/magento-customer-account@3.2.14
+  - @graphcommerce/magento-newsletter@2.2.5
+  - @graphcommerce/magento-payment-braintree@3.0.61
+  - @graphcommerce/magento-product-downloadable@4.1.5
+  - @graphcommerce/magento-search@4.2.12
+  - @graphcommerce/magento-store@4.3.2
+  - @graphcommerce/mollie-magento-payment@3.5.14
+  - @graphcommerce/googlerecaptcha@2.1.20
+  - @graphcommerce/magento-cms@4.0.49
+  - @graphcommerce/magento-graphql@3.1.9
+  - @graphcommerce/magento-product-grouped@3.1.5
+  - @graphcommerce/magento-product-simple@4.1.5
+  - @graphcommerce/magento-product-virtual@4.1.5
+  - @graphcommerce/framer-next-pages@3.3.2
+  - @graphcommerce/image@3.1.10
+
 ## 3.27.5
 
 ### Patch Changes

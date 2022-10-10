@@ -1,0 +1,10 @@
+fragment CartPageFragment on Cart @injectable {
+  id
+  __typename
+  email
+  total_quantity
+  ...CartStartCheckout
+  ...Coupon
+  ...CartItems
+  ...CartTotals
+}

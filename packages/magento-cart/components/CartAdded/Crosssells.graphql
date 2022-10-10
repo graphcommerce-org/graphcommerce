@@ -1,0 +1,16 @@
+query Crosssells(
+  $pageSize: Int = 8
+  $currentPage: Int = 1
+  $filters: ProductAttributeFilterInput = {}
+) {
+  products(pageSize: $pageSize, currentPage: $currentPage, filter: $filters) {
+    items {
+      __typename
+      uid
+      crosssell_products {
+        stock_status
+        ...ProductListItem
+      }
+    }
+  }
+}

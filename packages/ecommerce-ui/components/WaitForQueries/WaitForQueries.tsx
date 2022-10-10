@@ -2,7 +2,7 @@ import { QueryResult } from '@graphcommerce/graphql'
 import React, { startTransition, useEffect, useState } from 'react'
 
 export type WaitForQueriesProps = {
-  waitFor: QueryResult<any, any> | QueryResult<any, any>[] | undefined
+  waitFor: QueryResult<any, any> | boolean | (QueryResult<any, any> | boolean)[] | undefined
   children: React.ReactNode
   fallback?: React.ReactNode
 }
@@ -17,9 +17,10 @@ export const WaitForQueries = (props: WaitForQueriesProps) => {
   useEffect(() => startTransition(() => setMounted(true)), [])
 
   // We are done when all queries either have data or an error.
-  const isDone = (Array.isArray(waitFor) ? waitFor : [waitFor]).every(
-    (res) => (typeof res === 'undefined' || res.data || res.error || !res.loading) && mounted,
-  )
+  const isDone = (Array.isArray(waitFor) ? waitFor : [waitFor]).every((res) => {
+    if (typeof res === 'boolean') return res && mounted
+    return (typeof res === 'undefined' || res.data || res.error || !res.loading) && mounted
+  })
 
   return <>{isDone && mounted ? children : fallback}</>
 }
