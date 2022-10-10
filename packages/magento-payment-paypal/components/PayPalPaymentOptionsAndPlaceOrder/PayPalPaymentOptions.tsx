@@ -35,19 +35,12 @@ export function PayPalPaymentOptions(props: PaymentOptionsProps) {
     },
   })
 
-  const { handleSubmit, register } = form
+  const submit = form.handleSubmit(() => {})
+  useFormCompose({ form, step, submit, key: `PaymentMethodOptions_${code}` })
 
-  const submit = handleSubmit(() => {})
-
-  const key = `PaymentMethodOptions_${code}`
-
-  /** To use an external Pay button we register the current form to be handled there as well. */
-  useFormCompose({ form, step, submit, key })
-
-  /** This is the form that the user can fill in. In this case we don't wat the user to fill in anything. */
   return (
-    <form key={key} onSubmit={submit} noValidate>
-      <input type='hidden' value={code} {...register('code')} />
+    <form onSubmit={submit} noValidate>
+      <input type='hidden' value={code} {...form.register('code')} />
     </form>
   )
 }

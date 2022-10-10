@@ -1,6 +1,6 @@
 import { useCurrentCartId } from '@graphcommerce/magento-cart'
 import { useUrlQuery } from '@graphcommerce/next-ui'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export type CartLockState = {
   cart_id: string | null
@@ -19,6 +19,19 @@ let justLocked = false
 export function useCartLock<E extends CartLockState>() {
   const { currentCartId } = useCurrentCartId()
   const [queryState, setRouterQuery] = useUrlQuery<E>()
+  const [, setForceRender] = useState(0)
+
+  useEffect(() => {
+    const pageshow = (e: PageTransitionEvent) => {
+      if (!e.persisted) return
+      justLocked = false
+      setForceRender((cnt) => cnt + 1)
+    }
+    window.addEventListener('pageshow', pageshow)
+    return () => {
+      window.removeEventListener('pageshow', pageshow)
+    }
+  })
 
   const lock = (params: Omit<E, 'locked' | 'cart_id'>) => {
     if (!currentCartId) return undefined
