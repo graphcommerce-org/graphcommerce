@@ -1,5 +1,14 @@
 # Change Log
 
+## 4.8.4
+
+### Patch Changes
+
+- [#1692](https://github.com/graphcommerce-org/graphcommerce/pull/1692) [`a26a2d05e`](https://github.com/graphcommerce-org/graphcommerce/commit/a26a2d05eecabeeef70e4d69105343197ae092b7) Thanks [@paales](https://github.com/paales)! - Fix incorrect selector for SectionHeadr
+
+- Updated dependencies [[`a26a2d05e`](https://github.com/graphcommerce-org/graphcommerce/commit/a26a2d05eecabeeef70e4d69105343197ae092b7)]:
+  - @graphcommerce/magento-cart@4.9.5
+
 ## 4.8.3
 
 ### Patch Changes

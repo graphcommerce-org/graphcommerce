@@ -1,5 +1,14 @@
 # Change Log
 
+## 3.0.69
+
+### Patch Changes
+
+- Updated dependencies [[`a26a2d05e`](https://github.com/graphcommerce-org/graphcommerce/commit/a26a2d05eecabeeef70e4d69105343197ae092b7)]:
+  - @graphcommerce/magento-cart@4.9.5
+  - @graphcommerce/magento-cart-coupon@3.2.19
+  - @graphcommerce/magento-cart-items@3.1.21
+
 ## 3.0.68
 
 ### Patch Changes
