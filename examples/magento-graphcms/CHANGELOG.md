@@ -1,5 +1,39 @@
 # Change Log
 
+## 3.28.6
+
+### Patch Changes
+
+- Updated dependencies [[`a7fbe58d4`](https://github.com/graphcommerce-org/graphcommerce/commit/a7fbe58d4bbb43c59fa2ead05935757d2013404c), [`a26a2d05e`](https://github.com/graphcommerce-org/graphcommerce/commit/a26a2d05eecabeeef70e4d69105343197ae092b7), [`edbecfbfd`](https://github.com/graphcommerce-org/graphcommerce/commit/edbecfbfd532a6c78ae75ffe850c4bcf898e855d)]:
+  - @graphcommerce/magento-cart-payment-method@3.6.9
+  - @graphcommerce/magento-payment-paypal@1.0.1
+  - @graphcommerce/magento-cart@4.9.5
+  - @graphcommerce/magento-customer-order@3.1.15
+  - @graphcommerce/magento-product@4.8.4
+  - @graphcommerce/magento-review@3.4.10
+  - @graphcommerce/magento-payment-braintree@3.0.66
+  - @graphcommerce/magento-payment-included@3.2.5
+  - @graphcommerce/mollie-magento-payment@3.5.19
+  - @graphcommerce/magento-cart-billing-address@3.1.19
+  - @graphcommerce/magento-cart-checkout@3.0.69
+  - @graphcommerce/magento-cart-coupon@3.2.19
+  - @graphcommerce/magento-cart-email@3.0.69
+  - @graphcommerce/magento-cart-items@3.1.21
+  - @graphcommerce/magento-cart-shipping-address@3.5.9
+  - @graphcommerce/magento-cart-shipping-method@3.7.9
+  - @graphcommerce/magento-newsletter@2.2.10
+  - @graphcommerce/magento-product-bundle@4.1.10
+  - @graphcommerce/magento-product-configurable@4.3.10
+  - @graphcommerce/magento-product-downloadable@4.1.10
+  - @graphcommerce/magento-product-grouped@3.1.10
+  - @graphcommerce/magento-product-simple@4.1.10
+  - @graphcommerce/magento-product-virtual@4.1.10
+  - @graphcommerce/magento-wishlist@1.7.10
+  - @graphcommerce/magento-customer-account@3.2.19
+  - @graphcommerce/googleanalytics@3.0.6
+  - @graphcommerce/magento-category@4.8.4
+  - @graphcommerce/magento-cart-pickup@3.2.9
+
 ## 3.28.5
 
 ### Patch Changes

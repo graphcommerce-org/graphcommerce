@@ -1,5 +1,12 @@
 # Change Log
 
+## 3.2.9
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/magento-cart-shipping-method@3.7.9
+
 ## 3.2.8
 
 ### Patch Changes

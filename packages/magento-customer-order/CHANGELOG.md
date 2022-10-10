@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.15
+
+### Patch Changes
+
+- [#1692](https://github.com/graphcommerce-org/graphcommerce/pull/1692) [`a26a2d05e`](https://github.com/graphcommerce-org/graphcommerce/commit/a26a2d05eecabeeef70e4d69105343197ae092b7) Thanks [@paales](https://github.com/paales)! - Fix incorrect selector for SectionHeadr
+
 ## 3.1.14
 
 ### Patch Changes

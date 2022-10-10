@@ -1,5 +1,17 @@
 # @graphcommerce/magento-payment-paypal
 
+## 1.0.1
+
+### Patch Changes
+
+- [#1692](https://github.com/graphcommerce-org/graphcommerce/pull/1692) [`a7fbe58d4`](https://github.com/graphcommerce-org/graphcommerce/commit/a7fbe58d4bbb43c59fa2ead05935757d2013404c) Thanks [@paales](https://github.com/paales)! - Make sure the cartLock state is refreshed when the page is loaded with the bfcache
+
+- [#1692](https://github.com/graphcommerce-org/graphcommerce/pull/1692) [`edbecfbfd`](https://github.com/graphcommerce-org/graphcommerce/commit/edbecfbfd532a6c78ae75ffe850c4bcf898e855d) Thanks [@paales](https://github.com/paales)! - Locking the cart when navigating away from the checkout and unlock the cart when pressing back. Made the justLocked flag a global state.
+
+- Updated dependencies [[`a7fbe58d4`](https://github.com/graphcommerce-org/graphcommerce/commit/a7fbe58d4bbb43c59fa2ead05935757d2013404c), [`a26a2d05e`](https://github.com/graphcommerce-org/graphcommerce/commit/a26a2d05eecabeeef70e4d69105343197ae092b7), [`edbecfbfd`](https://github.com/graphcommerce-org/graphcommerce/commit/edbecfbfd532a6c78ae75ffe850c4bcf898e855d)]:
+  - @graphcommerce/magento-cart-payment-method@3.6.9
+  - @graphcommerce/magento-cart@4.9.5
+
 ## 1.0.0
 
 ### Major Changes
