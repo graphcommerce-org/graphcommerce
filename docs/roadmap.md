@@ -4,7 +4,7 @@ menu: Roadmap
 
 <div data-nosnippet>
 
-> Last update: October 7, 2022
+> Last update: October 10, 2022
 
 </div>
 
