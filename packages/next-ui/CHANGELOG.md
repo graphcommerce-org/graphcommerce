@@ -1,5 +1,18 @@
 # Change Log
 
+## 4.29.3
+
+### Patch Changes
+
+- [#1688](https://github.com/graphcommerce-org/graphcommerce/pull/1688) [`8393cb266`](https://github.com/graphcommerce-org/graphcommerce/commit/8393cb2662860be0c2aa5df432447bb73c427d8e) Thanks [@paales](https://github.com/paales)! - Add missing icons for payment methods
+
+- [#1688](https://github.com/graphcommerce-org/graphcommerce/pull/1688) [`f544401c7`](https://github.com/graphcommerce-org/graphcommerce/commit/f544401c7b653fda39c7c260ad0dcfb3bf543b65) Thanks [@paales](https://github.com/paales)! - Return the promise when changing the URL
+
+- [#1688](https://github.com/graphcommerce-org/graphcommerce/pull/1688) [`f105d4223`](https://github.com/graphcommerce-org/graphcommerce/commit/f105d4223aa68df30970149e51ae72897e489bf9) Thanks [@paales](https://github.com/paales)! - Remove redunant confirmation button on ErrorSnackbar implementations
+
+- Updated dependencies []:
+  - @graphcommerce/framer-scroller@2.1.45
+
 ## 4.29.2
 
 ### Patch Changes
