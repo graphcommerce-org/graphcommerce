@@ -32,7 +32,7 @@ const cliParams = {
     ...cli_1.DEFAULT_CLI_PARAMS,
     playgroundTitle: 'GraphCommerce® Mesh',
 };
-const tmpMesh = `_tmp_mesh_${Math.random().toString(36).substring(2, 15)}`;
+const tmpMesh = `_tmp_codegen`;
 const tmpMeshLocation = node_path_1.default.join(root, `.${tmpMesh}rc.yml`);
 async function cleanup() {
     try {
