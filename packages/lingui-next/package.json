@@ -21,6 +21,9 @@
     "@lingui/conf": "^3.14.0",
     "@playwright/test": "^1.21.1"
   },
+  "dependencies": {
+    "@graphcommerce/next-config": "3.2.0"
+  },
   "peerDependencies": {
     "@lingui/core": "^3.13.2",
     "@lingui/react": "^3.13.2",

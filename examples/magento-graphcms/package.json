@@ -14,7 +14,7 @@
     "build": "mesh build && graphql-codegen && next build && next-sitemap",
     "start": "next start",
     "tsc:lint": "tsc --noEmit -p .",
-    "lingui": "cross-env NEXT_PUBLIC_LOCALE_STORES='{\"en\": \"en\", \"nl\": \"nl\", \"fr\": \"fr\", \"nl\": \"nl\", \"de\": \"de\", \"es\": \"es\", \"it\": \"it\"}' NODE_ENV=development lingui extract --clean",
+    "lingui": "cross-env NODE_ENV=development lingui extract --clean",
     "postinstall": "cd ../.. && yarn postinstall"
   },
   "scripts_local": {
@@ -23,7 +23,7 @@
     "build": "mesh build && graphql-codegen && next build && next-sitemap",
     "start": "next start",
     "tsc:lint": "tsc --noEmit -p .",
-    "lingui": "cross-env NODE_ENV=development lingui extract",
+    "lingui": "cross-env NODE_ENV=development lingui extract --clean",
     "postinstall": "patch-package"
   },
   "dependencies": {
