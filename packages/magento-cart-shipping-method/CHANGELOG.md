@@ -1,5 +1,19 @@
 # Change Log
 
+## 4.13.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/magento-cart@4.13.0
+  - @graphcommerce/magento-cart-shipping-address@4.13.0
+  - @graphcommerce/magento-store@4.13.0
+  - @graphcommerce/framer-scroller@4.30.0
+  - @graphcommerce/graphql@4.30.0
+  - @graphcommerce/image@4.30.0
+  - @graphcommerce/next-ui@4.30.0
+  - @graphcommerce/react-hook-form@4.30.0
+
 ## 3.7.9
 
 ### Patch Changes

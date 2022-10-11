@@ -1,5 +1,15 @@
 # Change Log
 
+## 4.30.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/framer-next-pages@4.30.0
+  - @graphcommerce/framer-scroller@4.30.0
+  - @graphcommerce/framer-utils@4.30.0
+  - @graphcommerce/image@4.30.0
+
 ## 4.29.3
 
 ### Patch Changes

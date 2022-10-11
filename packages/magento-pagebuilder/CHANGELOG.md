@@ -1,5 +1,17 @@
 # @graphcommerce/magento-pagebuilder
 
+## 4.13.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/magento-category@4.13.0
+  - @graphcommerce/magento-cms@4.13.0
+  - @graphcommerce/magento-product@4.13.0
+  - @graphcommerce/graphql@4.30.0
+  - @graphcommerce/next-ui@4.30.0
+  - @graphcommerce/react-hook-form@4.30.0
+
 ## 1.0.58
 
 ### Patch Changes

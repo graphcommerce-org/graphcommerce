@@ -1,5 +1,14 @@
 # Change Log
 
+## 4.30.0
+
+### Patch Changes
+
+- [#1613](https://github.com/graphcommerce-org/graphcommerce/pull/1613) [`d95ec2ae6`](https://github.com/graphcommerce-org/graphcommerce/commit/d95ec2ae6d8da574995c2b110425c4445b30351b) Thanks [@paales](https://github.com/paales)! - Removed the usage of a separate env variables for the monorepo for lingui, creating command parity with non monorepo setups.
+
+- Updated dependencies [[`6c1c69ca4`](https://github.com/graphcommerce-org/graphcommerce/commit/6c1c69ca45ea1c8737cc7dcdc341fe5d825ed380)]:
+  - @graphcommerce/next-config@4.30.0
+
 ## 2.2.1
 
 ### Patch Changes

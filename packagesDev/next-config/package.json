@@ -2,7 +2,7 @@
   "name": "@graphcommerce/next-config",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "3.2.0",
+  "version": "4.30.0",
   "type": "commonjs",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -13,7 +13,7 @@
     "prepack": "yarn build"
   },
   "dependencies": {
-    "@graphcommerce/cli": "1.0.9",
+    "@graphcommerce/cli": "4.30.0",
     "@lingui/loader": "^3.14.0",
     "js-yaml-loader": "^1.2.2",
     "next-transpile-modules": "^9.0.0",

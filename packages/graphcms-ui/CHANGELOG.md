@@ -1,5 +1,14 @@
 # Change Log
 
+## 3.1.7
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/graphql@4.30.0
+  - @graphcommerce/image@4.30.0
+  - @graphcommerce/next-ui@4.30.0
+
 ## 3.1.6
 
 ### Patch Changes

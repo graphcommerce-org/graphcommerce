@@ -1,5 +1,17 @@
 # Change Log
 
+## 4.13.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/magento-cart-shipping-method@4.13.0
+  - @graphcommerce/magento-store@4.13.0
+  - @graphcommerce/graphql@4.30.0
+  - @graphcommerce/image@4.30.0
+  - @graphcommerce/next-ui@4.30.0
+  - @graphcommerce/react-hook-form@4.30.0
+
 ## 3.2.9
 
 ### Patch Changes

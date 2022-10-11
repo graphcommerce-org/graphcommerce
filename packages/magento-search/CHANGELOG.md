@@ -1,5 +1,15 @@
 # Change Log
 
+## 4.13.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/graphql@4.30.0
+  - @graphcommerce/image@4.30.0
+  - @graphcommerce/next-ui@4.30.0
+  - @graphcommerce/react-hook-form@4.30.0
+
 ## 4.2.16
 
 ### Patch Changes

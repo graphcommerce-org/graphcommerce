@@ -1,5 +1,12 @@
 # Change Log
 
+## 4.30.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/framer-utils@4.30.0
+
 ## 3.1.10
 
 ### Patch Changes

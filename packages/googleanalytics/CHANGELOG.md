@@ -1,5 +1,14 @@
 # Change Log
 
+## 3.0.7
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/magento-product@4.13.0
+  - @graphcommerce/graphql-mesh@4.30.0
+  - @graphcommerce/next-ui@4.30.0
+
 ## 3.0.6
 
 ### Patch Changes

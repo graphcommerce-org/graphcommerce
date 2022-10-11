@@ -1,5 +1,14 @@
 # @graphcommerce/ecommerce-ui
 
+## 4.30.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/graphql@4.30.0
+  - @graphcommerce/next-ui@4.30.0
+  - @graphcommerce/react-hook-form@4.30.0
+
 ## 1.5.8
 
 ### Patch Changes

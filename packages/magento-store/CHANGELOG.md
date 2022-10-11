@@ -1,5 +1,15 @@
 # Change Log
 
+## 4.13.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/graphql@4.30.0
+  - @graphcommerce/graphql-mesh@4.30.0
+  - @graphcommerce/image@4.30.0
+  - @graphcommerce/next-ui@4.30.0
+
 ## 4.3.6
 
 ### Patch Changes

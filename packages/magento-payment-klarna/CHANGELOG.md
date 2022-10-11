@@ -1,5 +1,16 @@
 # Change Log
 
+## 4.13.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/magento-cart@4.13.0
+  - @graphcommerce/magento-store@4.13.0
+  - @graphcommerce/graphql@4.30.0
+  - @graphcommerce/image@4.30.0
+  - @graphcommerce/next-ui@4.30.0
+
 ## 3.0.65
 
 ### Patch Changes

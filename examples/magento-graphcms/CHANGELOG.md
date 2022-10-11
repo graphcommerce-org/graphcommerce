@@ -1,5 +1,68 @@
 # Change Log
 
+## 4.13.0
+
+### Minor Changes
+
+- [#1613](https://github.com/graphcommerce-org/graphcommerce/pull/1613) [`6c1c69ca4`](https://github.com/graphcommerce-org/graphcommerce/commit/6c1c69ca45ea1c8737cc7dcdc341fe5d825ed380) Thanks [@paales](https://github.com/paales)! - Refactor next-config to also use the new resolveDependenciesSync by exposing withGraphCommerce
+
+- [#1613](https://github.com/graphcommerce-org/graphcommerce/pull/1613) [`1ef81efa2`](https://github.com/graphcommerce-org/graphcommerce/commit/1ef81efa238b2e79312ab35c6829abec266e4ad1) Thanks [@paales](https://github.com/paales)! - All codegen files that need to be scanned will be handled by a new resolveDependenciesSync method
+
+- [#1613](https://github.com/graphcommerce-org/graphcommerce/pull/1613) [`c5af837f8`](https://github.com/graphcommerce-org/graphcommerce/commit/c5af837f86ac097089eded39dcdd0100f61a1990) Thanks [@paales](https://github.com/paales)! - Remove the usage of scripts_local
+
+### Patch Changes
+
+- [#1613](https://github.com/graphcommerce-org/graphcommerce/pull/1613) [`d95ec2ae6`](https://github.com/graphcommerce-org/graphcommerce/commit/d95ec2ae6d8da574995c2b110425c4445b30351b) Thanks [@paales](https://github.com/paales)! - Removed the usage of a separate env variables for the monorepo for lingui, creating command parity with non monorepo setups.
+
+- [#1613](https://github.com/graphcommerce-org/graphcommerce/pull/1613) [`da20e4e72`](https://github.com/graphcommerce-org/graphcommerce/commit/da20e4e72ca3f29216592e0ecfb59c0e44bcbe20) Thanks [@paales](https://github.com/paales)! - Created an is-monorepo command to exectute scripts based if they are in the monorepo or in a project
+
+- Updated dependencies [[`6c1c69ca4`](https://github.com/graphcommerce-org/graphcommerce/commit/6c1c69ca45ea1c8737cc7dcdc341fe5d825ed380), [`1ef81efa2`](https://github.com/graphcommerce-org/graphcommerce/commit/1ef81efa238b2e79312ab35c6829abec266e4ad1), [`d95ec2ae6`](https://github.com/graphcommerce-org/graphcommerce/commit/d95ec2ae6d8da574995c2b110425c4445b30351b), [`da20e4e72`](https://github.com/graphcommerce-org/graphcommerce/commit/da20e4e72ca3f29216592e0ecfb59c0e44bcbe20)]:
+  - @graphcommerce/next-config@4.30.0
+  - @graphcommerce/cli@4.30.0
+  - @graphcommerce/lingui-next@4.30.0
+  - @graphcommerce/magento-cart@4.13.0
+  - @graphcommerce/magento-cart-billing-address@4.13.0
+  - @graphcommerce/magento-cart-checkout@4.13.0
+  - @graphcommerce/magento-cart-coupon@4.13.0
+  - @graphcommerce/magento-cart-email@4.13.0
+  - @graphcommerce/magento-cart-items@4.13.0
+  - @graphcommerce/magento-cart-payment-method@4.13.0
+  - @graphcommerce/magento-cart-pickup@4.13.0
+  - @graphcommerce/magento-cart-shipping-address@4.13.0
+  - @graphcommerce/magento-cart-shipping-method@4.13.0
+  - @graphcommerce/magento-category@4.13.0
+  - @graphcommerce/magento-cms@4.13.0
+  - @graphcommerce/magento-customer@4.13.0
+  - @graphcommerce/magento-customer-account@4.13.0
+  - @graphcommerce/magento-customer-order@4.13.0
+  - @graphcommerce/magento-graphql@4.13.0
+  - @graphcommerce/magento-newsletter@4.13.0
+  - @graphcommerce/magento-payment-braintree@4.13.0
+  - @graphcommerce/magento-payment-included@4.13.0
+  - @graphcommerce/magento-payment-paypal@4.13.0
+  - @graphcommerce/magento-product@4.13.0
+  - @graphcommerce/magento-product-bundle@4.13.0
+  - @graphcommerce/magento-product-configurable@4.13.0
+  - @graphcommerce/magento-product-downloadable@4.13.0
+  - @graphcommerce/magento-product-grouped@4.13.0
+  - @graphcommerce/magento-product-simple@4.13.0
+  - @graphcommerce/magento-product-virtual@4.13.0
+  - @graphcommerce/magento-review@4.13.0
+  - @graphcommerce/magento-search@4.13.0
+  - @graphcommerce/magento-store@4.13.0
+  - @graphcommerce/magento-wishlist@4.13.0
+  - @graphcommerce/mollie-magento-payment@4.13.0
+  - @graphcommerce/ecommerce-ui@4.30.0
+  - @graphcommerce/framer-next-pages@4.30.0
+  - @graphcommerce/framer-scroller@4.30.0
+  - @graphcommerce/graphql@4.30.0
+  - @graphcommerce/graphql-mesh@4.30.0
+  - @graphcommerce/image@4.30.0
+  - @graphcommerce/next-ui@4.30.0
+  - @graphcommerce/googleanalytics@3.0.7
+  - @graphcommerce/googlerecaptcha@2.1.21
+  - @graphcommerce/graphcms-ui@3.1.7
+
 ## 3.28.7
 
 ### Patch Changes

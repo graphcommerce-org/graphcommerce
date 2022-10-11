@@ -1,5 +1,14 @@
 # Change Log
 
+## 4.30.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/framer-utils@4.30.0
+  - @graphcommerce/image@4.30.0
+  - @graphcommerce/next-ui@4.30.0
+
 ## 2.1.45
 
 ### Patch Changes

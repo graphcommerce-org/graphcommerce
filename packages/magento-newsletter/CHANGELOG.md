@@ -1,5 +1,16 @@
 # Change Log
 
+## 4.13.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/magento-cart@4.13.0
+  - @graphcommerce/magento-customer@4.13.0
+  - @graphcommerce/graphql@4.30.0
+  - @graphcommerce/next-ui@4.30.0
+  - @graphcommerce/react-hook-form@4.30.0
+
 ## 2.2.10
 
 ### Patch Changes
