@@ -2687,28 +2687,7 @@
     "@graphql-tools/utils" "8.10.0"
     tslib "^2.4.0"
 
-"@graphql-tools/url-loader@7.14.0":
-  version "7.14.0"
-  resolved "https://registry.yarnpkg.com/@graphql-tools/url-loader/-/url-loader-7.14.0.tgz#ea11addaf394d46e4230fbaaf0862f3d11c3e4b8"
-  integrity sha512-AE3p1JymSUJugTx2y6ysoN9vqDJgHvirLH2g8AYm9Cn59bfTQdjSaQI6I3tFWSbBx8bTnpoxgYiTOz7v/EO//A==
-  dependencies:
-    "@ardatan/sync-fetch" "0.0.1"
-    "@graphql-tools/delegate" "9.0.3"
-    "@graphql-tools/utils" "8.10.0"
-    "@graphql-tools/wrap" "9.0.4"
-    "@n1ru4l/graphql-live-query" "^0.10.0"
-    "@types/ws" "^8.0.0"
-    "@whatwg-node/fetch" "^0.2.9"
-    dset "^3.1.2"
-    extract-files "^11.0.0"
-    graphql-ws "^5.4.1"
-    isomorphic-ws "^5.0.0"
-    meros "^1.1.4"
-    tslib "^2.4.0"
-    value-or-promise "^1.0.11"
-    ws "^8.3.0"
-
-"@graphql-tools/url-loader@7.16.4", "@graphql-tools/url-loader@^7.13.2", "@graphql-tools/url-loader@^7.9.7":
+"@graphql-tools/url-loader@7.14.0", "@graphql-tools/url-loader@7.16.4", "@graphql-tools/url-loader@^7.13.2", "@graphql-tools/url-loader@^7.9.7":
   version "7.16.4"
   resolved "https://registry.yarnpkg.com/@graphql-tools/url-loader/-/url-loader-7.16.4.tgz#d27787ef9f35fe71b456c067c3a1759b1ecd76a8"
   integrity sha512-7yGrJJNcqVQIplCyVLk7tW2mAgYyZ06FRmCBnzw3B61+aIjFavrm6YlnKkhdqYSYyFmIbVcigdP3vkoYIu23TA==
@@ -3479,11 +3458,6 @@
     prop-types "^15.7.2"
     react-transition-group "^4.4.5"
     rifm "^0.12.1"
-
-"@n1ru4l/graphql-live-query@^0.10.0":
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/@n1ru4l/graphql-live-query/-/graphql-live-query-0.10.0.tgz#2306151630b0e74b017cc1067ebbea351acf56f8"
-  integrity sha512-qZ7OHH/NB0NcG/Xa7irzgjE63UH0CkofZT0Bw4Ko6iRFagPRHBM8RgFXwTt/6JbFGIEUS4STRtaFoc/Eq/ZtzQ==
 
 "@next/env@12.2.5":
   version "12.2.5"
@@ -4479,7 +4453,7 @@
     undici "^5.8.0"
     web-streams-polyfill "^3.2.0"
 
-"@whatwg-node/fetch@^0.2.3", "@whatwg-node/fetch@^0.2.7", "@whatwg-node/fetch@^0.2.9":
+"@whatwg-node/fetch@^0.2.3", "@whatwg-node/fetch@^0.2.7":
   version "0.2.9"
   resolved "https://registry.yarnpkg.com/@whatwg-node/fetch/-/fetch-0.2.9.tgz#0f0e72f79957a0544d2a9455082802d87be93ffe"
   integrity sha512-h+ehuqE/ZqJdRy+xywHyKpBIPmST0ms8Itgf4gGSu10pJrmod3/t9DbG/GlATvLBE4pvqYHrxKAKo3NNQVJc3g==

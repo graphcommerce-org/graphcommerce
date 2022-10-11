@@ -26,7 +26,7 @@ jobs:
           echo "::set-output name=date::$(date +"%B %d, %Y")"
       - name: maybe set canary
         if: ${{ github.ref == 'refs/heads/canary' }}
-        run: yarn changeset pre enter next
+        run: yarn changeset pre enter canary
       - name: maybe set release
         if: ${{ github.ref != 'refs/heads/canary' }}
         run: yarn changeset pre exit

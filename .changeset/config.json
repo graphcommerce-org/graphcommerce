@@ -1,6 +1,9 @@
 {
   "$schema": "https://unpkg.com/@changesets/config@2.2.0/schema.json",
-  "changelog": ["@changesets/changelog-github", { "repo": "graphcommerce-org/graphcommerce" }],
+  "changelog": [
+    "@graphcommerce/changeset-changelog",
+    { "repo": "graphcommerce-org/graphcommerce" }
+  ],
   "commit": false,
   "fixed": [
     ["@graphcommerce/magento*", "@graphcommerce/mollie-magento-payment"],
