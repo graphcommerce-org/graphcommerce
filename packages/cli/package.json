@@ -17,7 +17,9 @@
     "graphql-mesh": "dist/bin/mesh.js",
     "gql-gen": "dist/bin/codegen.js",
     "graphql-codegen": "dist/bin/codegen.js",
-    "graphql-code-generator": "dist/bin/codegen.js"
+    "graphql-code-generator": "dist/bin/codegen.js",
+    "is-monorepo": "dist/bin/is-monorepo.js",
+    "graphcommerce": "dist/bin/graphcommerce.js"
   },
   "dependencies": {
     "@graphcommerce/next-config": "3.2.0",
@@ -25,6 +27,8 @@
     "@graphql-mesh/cli": "0.76.2",
     "@graphql-mesh/types": "0.80.2",
     "@graphql-mesh/utils": "0.40.0",
+    "cosmiconfig": "^7.0.1",
+    "detect-package-manager": "^2.0.1",
     "rimraf": "^3.0.2"
   },
   "devDependencies": {
