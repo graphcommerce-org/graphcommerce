@@ -162,7 +162,7 @@ export function FilterEqualType(props: FilterEqualTypeProps) {
       onDelete={resetFilters}
       label={label}
       selected={currentLabels.length > 0}
-      selectedLabel={currentLabels.length > 0 ? currentLabels.join(', ') : undefined}
+      filterCount={currentLabels.length > 0 ? currentLabels.length : undefined}
       className={componentName}
     >
       <ActionCardListForm

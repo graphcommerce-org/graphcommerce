@@ -1,14 +1,13 @@
-import { Trans } from '@lingui/react'
-import { Chip, ChipProps, SxProps, Theme } from '@mui/material'
-import React, { Dispatch, PropsWithChildren, SetStateAction, useState } from 'react'
+import { Box, Chip, ChipProps, SxProps, Theme, Typography } from '@mui/material'
+import React, { Dispatch, PropsWithChildren, SetStateAction } from 'react'
 import { IconSvg } from '../IconSvg'
-import { iconChevronDown, iconChevronUp, iconCancelAlt } from '../icons'
+import { iconChevronDown } from '../icons'
 import { ResponsiveMenu } from './ResponsiveMenu'
 
 export type ChipMenuProps = PropsWithChildren<
   Omit<ChipProps<'button'>, 'children' | 'component'>
 > & {
-  selectedLabel?: React.ReactNode
+  filterCount?: number
   selected: boolean
   openEl: HTMLElement | null
   setOpenEl: Dispatch<SetStateAction<HTMLElement | null>>
@@ -27,7 +26,7 @@ export function ChipMenu(props: ChipMenuProps) {
     label,
     labelRight,
     onClose,
-    selectedLabel,
+    filterCount,
     openEl,
     setOpenEl,
     onSubmit,
@@ -37,10 +36,24 @@ export function ChipMenu(props: ChipMenuProps) {
   } = props
 
   let deleteIcon = <IconSvg src={iconChevronDown} size='medium' />
-  if (selected) deleteIcon = <IconSvg src={iconCancelAlt} size='medium' fillIcon />
-  if (openEl) deleteIcon = <IconSvg src={iconChevronUp} size='medium' />
+  if (selected && filterCount)
+    deleteIcon = (
+      <Box
+        sx={{
+          backgroundColor: 'primary.main',
+          borderRadius: 4,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Typography color='white' variant='caption' sx={{ paddingX: '7px', marginTop: '1px' }}>
+          {filterCount}
+        </Typography>
+      </Box>
+    )
 
-  const selectedAndMenuHidden = selected && !openEl && !!selectedLabel
+  const selectedAndMenuHidden = selected && !openEl
 
   return (
     <ResponsiveMenu
@@ -66,7 +79,19 @@ export function ChipMenu(props: ChipMenuProps) {
           }}
           deleteIcon={deleteIcon}
           {...chipProps}
-          label={selectedLabel ?? label}
+          label={label}
+          sx={[
+            ...(selected
+              ? [
+                  {
+                    backgroundColor: '#E6F3ED',
+                    borderColor: 'transparent',
+                    '& .MuiChip-label': { marginRight: 1 },
+                    '&:hover': { background: '#b0ebd0 !important' },
+                  },
+                ]
+              : [{ borderColor: 'black' }]),
+          ]}
         />
       }
     >
