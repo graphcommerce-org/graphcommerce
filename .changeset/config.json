@@ -19,7 +19,6 @@
       "@graphcommerce/next-confg"
     ]
   ],
-  "ignore": ["*-example"],
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
