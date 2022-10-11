@@ -13,6 +13,7 @@
     "prepack": "yarn build"
   },
   "dependencies": {
+    "@graphcommerce/cli": "1.0.9",
     "@lingui/loader": "^3.14.0",
     "js-yaml-loader": "^1.2.2",
     "next-transpile-modules": "^9.0.0",

@@ -20,7 +20,7 @@ describe('useGqlDocumentHandler', () => {
       city: 'City',
       telephone: '0987654321',
       postcode: '1234AB',
-      save_in_address_book: 'true',
+      save_in_address_book: true,
     },
   }
 
