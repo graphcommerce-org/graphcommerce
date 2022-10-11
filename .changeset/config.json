@@ -3,7 +3,7 @@
   "changelog": ["@changesets/changelog-github", { "repo": "graphcommerce-org/graphcommerce" }],
   "commit": false,
   "fixed": [
-    ["@graphcommerce/magento*", "@graphcommerce/magento-mollie-payment"],
+    ["@graphcommerce/magento*", "@graphcommerce/mollie-magento-payment"],
     [
       "@graphcommerce/cli",
       "@graphcommerce/ecommerce-ui",
