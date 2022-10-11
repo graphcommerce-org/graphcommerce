@@ -1,42 +1,16 @@
-name: Release
+name: release
 on:
   push:
     branches:
-      - main
+      - 'main'
+      - 'canary'
 jobs:
-  release:
-    name: Release
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - uses: fregante/setup-git-user@v1
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 16
-          registry-url: 'https://registry.npmjs.org'
-          scope: '@graphcommerce'
-      - uses: pnpm/action-setup@v2.2.2
-        with:
-          version: latest
-      - uses: bahmutov/npm-install@v1
-        with:
-          useRollingCache: true
-      - name: Create Release Pull Request or Publish to npm
-        id: changesets
-        uses: changesets/action@v1
-        with:
-          title: 'ci(changesets): versions updated'
-          commit: 'ci(changesets): versions updated'
-          publish: 'yarn release'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      # - name: Do stuff when published
-      #   if: steps.changesets.outputs.published == 'true'
-      #   # You can do something when a publish happens.
-      #   run:
-      #     my-slack-bot send-notification --message "A new version of ${GITHUB_REPOSITORY} was
-      #     published!"
+  stable:
+    uses: the-guild-org/shared-config/.github/workflows/release-stable.yml@main
+    with:
+      releaseScript: release
+      releasePrName: Upcoming Release Changes (${{ github.ref }})
+      nodeVersion: 18
+    secrets:
+      githubToken: ${{ secrets.GITHUB_TOKEN }}
+      npmToken: ${{ secrets.NPM_TOKEN }}
