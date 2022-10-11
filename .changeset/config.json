@@ -16,7 +16,7 @@
       "@graphcommerce/lingui-next",
       "@graphcommerce/next-ui",
       "@graphcommerce/react-hook-form",
-      "@graphcommerce/next-confg"
+      "@graphcommerce/next-config"
     ]
   ],
   "access": "public",
