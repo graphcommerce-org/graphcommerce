@@ -17,6 +17,9 @@ jobs:
           node-version: 16
           registry-url: 'https://registry.npmjs.org'
           scope: '@graphcommerce'
+      - uses: pnpm/action-setup@v2.2.2
+        with:
+          version: latest
       - uses: bahmutov/npm-install@v1
         with:
           useRollingCache: true
