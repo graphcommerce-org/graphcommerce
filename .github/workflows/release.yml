@@ -10,7 +10,7 @@ jobs:
     with:
       releaseScript: release
       releasePrName: Upcoming Release Changes (${{ github.ref }})
-      nodeVersion: 18
+      nodeVersion: 16
     secrets:
       githubToken: ${{ secrets.GITHUB_TOKEN }}
       npmToken: ${{ secrets.NPM_TOKEN }}

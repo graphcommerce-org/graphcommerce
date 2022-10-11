@@ -38,8 +38,6 @@ async function main() {
         throw Error('--config or -c argument is not supported, modify codegen.yml to make changes');
     }
     const packages = [...(0, next_config_1.resolveDependenciesSync)().values()].filter((p) => p !== '.');
-    console.log((0, next_config_1.resolveDependenciesSync)());
-    // Get a list of all GraphCommerce packages
     // Detect if we're operating in the monorepo environment or in an installation
     const isMono = !!packages.find((p) => p.startsWith('../..'));
     // Load the current codegen.yml

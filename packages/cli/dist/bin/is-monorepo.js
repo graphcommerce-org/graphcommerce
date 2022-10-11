@@ -16,7 +16,13 @@ const detect_package_manager_1 = require("detect-package-manager");
 async function main() {
     const isMono = (0, next_config_1.isMonorepo)();
     const command = isMono ? process.argv.slice(2)[0] : process.argv.slice(2)[1];
-    const packageManager = await (0, detect_package_manager_1.detect)();
+    let packageManager = 'yarn';
+    try {
+        packageManager = await (0, detect_package_manager_1.detect)({ cwd: isMono ? `../..` : `.` });
+    }
+    catch {
+        console.error('Could not detect package manager, defaulting to yarn');
+    }
     const commandArray = command
         .split(' ')
         .map((arg) => arg.replace('[pkgrun]', `${packageManager} run`));

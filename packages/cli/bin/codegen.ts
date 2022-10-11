@@ -43,9 +43,6 @@ async function main() {
 
   const packages = [...resolveDependenciesSync().values()].filter((p) => p !== '.')
 
-  console.log(resolveDependenciesSync())
-  // Get a list of all GraphCommerce packages
-
   // Detect if we're operating in the monorepo environment or in an installation
   const isMono = !!packages.find((p) => p.startsWith('../..'))
 
