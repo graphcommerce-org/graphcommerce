@@ -16,7 +16,7 @@ import { detect } from 'detect-package-manager'
 async function main() {
   const isMono = isMonorepo()
   const command = isMono ? process.argv.slice(2)[0] : process.argv.slice(2)[1]
-  const packageManager = await detect()
+  const packageManager = await detect({ cwd: isMono ? `../..` : `.` })
 
   const commandArray = command
     .split(' ')
