@@ -4,6 +4,7 @@
 import { promises as fs } from 'node:fs'
 import path from 'node:path'
 import { exit } from 'node:process'
+import { isMonorepo } from '@graphcommerce/next-config'
 import { graphqlMesh, DEFAULT_CLI_PARAMS, GraphQLMeshCLIParams } from '@graphql-mesh/cli'
 import { Logger, YamlConfig } from '@graphql-mesh/types'
 import { DefaultLogger } from '@graphql-mesh/utils'
@@ -23,8 +24,6 @@ export function handleFatalError(e: Error, logger: Logger = new DefaultLogger('â
 const root = process.cwd()
 const meshDir = path.dirname(require.resolve('@graphcommerce/graphql-mesh'))
 const relativePath = path.join(path.relative(meshDir, root), '/')
-
-const isMonoRepo = relativePath.startsWith(`..${path.sep}..${path.sep}examples`)
 
 const cliParams: GraphQLMeshCLIParams = {
   ...DEFAULT_CLI_PARAMS,
@@ -71,7 +70,7 @@ const main = async () => {
 
   // Scan the current working directory to also read all graphqls files.
   conf.additionalTypeDefs.push('**/*.graphqls')
-  if (isMonoRepo) {
+  if (isMonorepo()) {
     conf.additionalTypeDefs.push('../../packages/**/*.graphqls')
     conf.additionalTypeDefs.push('../../packagesDev/**/*.graphqls')
   } else {

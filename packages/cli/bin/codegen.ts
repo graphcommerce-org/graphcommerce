@@ -2,11 +2,11 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import fs from 'node:fs/promises'
 import path from 'node:path'
+import { resolveDependenciesSync } from '@graphcommerce/next-config'
 import { runCli, cliError, loadCodegenConfig } from '@graphql-codegen/cli'
 import { Types } from '@graphql-codegen/plugin-helpers'
 import rimraf from 'rimraf'
 import yaml from 'yaml'
-import { resolveDependenciesSync } from '../utils/resolveDependenciesSync'
 
 const [, , cmd] = process.argv
 
@@ -42,6 +42,8 @@ async function main() {
   }
 
   const packages = [...resolveDependenciesSync().values()].filter((p) => p !== '.')
+
+  console.log(resolveDependenciesSync())
   // Get a list of all GraphCommerce packages
 
   // Detect if we're operating in the monorepo environment or in an installation

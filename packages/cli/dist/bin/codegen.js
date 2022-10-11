@@ -7,10 +7,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /* eslint-disable import/no-extraneous-dependencies */
 const promises_1 = __importDefault(require("node:fs/promises"));
 const node_path_1 = __importDefault(require("node:path"));
+const next_config_1 = require("@graphcommerce/next-config");
 const cli_1 = require("@graphql-codegen/cli");
 const rimraf_1 = __importDefault(require("rimraf"));
 const yaml_1 = __importDefault(require("yaml"));
-const resolveDependenciesSync_1 = require("../utils/resolveDependenciesSync");
 const [, , cmd] = process.argv;
 const root = process.cwd();
 const configLocation = node_path_1.default.join(root, `._tmp_codegen.yml`);
@@ -37,7 +37,8 @@ async function main() {
     if (process.argv.includes('--config') || process.argv.includes('-c')) {
         throw Error('--config or -c argument is not supported, modify codegen.yml to make changes');
     }
-    const packages = [...(0, resolveDependenciesSync_1.resolveDependenciesSync)().values()].filter((p) => p !== '.');
+    const packages = [...(0, next_config_1.resolveDependenciesSync)().values()].filter((p) => p !== '.');
+    console.log((0, next_config_1.resolveDependenciesSync)());
     // Get a list of all GraphCommerce packages
     // Detect if we're operating in the monorepo environment or in an installation
     const isMono = !!packages.find((p) => p.startsWith('../..'));

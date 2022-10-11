@@ -1,1 +1,1 @@
-export * from './utils/resolveDependenciesSync'
+export {}
