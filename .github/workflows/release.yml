@@ -32,13 +32,13 @@ jobs:
         run: yarn changeset pre exit
       - name: release / pull_request
         id: changesets
-        uses: dotansimha/changesets-action@v1.3.3
+        uses: dotansimha/changesets-action@aggregate-release-mode
         with:
           publish: 'yarn release'
           commit: 'chore(release): update monorepo packages versions'
           title: 'Upcoming Release Changes (${{ github.ref }})'
-          createGithubReleases: ${{ inputs.createGithubReleases }}
-          githubReleaseName: ${{ inputs.githubReleaseName || steps.vars.outputs.date }}
+          createGithubReleases: aggregate
+          githubReleaseName: ${{ steps.vars.outputs.date }}
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
