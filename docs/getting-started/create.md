@@ -65,24 +65,14 @@ https://user-images.githubusercontent.com/1251986/158647122-dc57002f-a9c2-4661-a
 
 ### Download the example
 
-1. `git clone https://github.com/graphcommerce-org/graphcommerce.git` — clone repository
+1. `git clone https://github.com/graphcommerce-org/graphcommerce.git` — clone
+   repository
 2. `mkdir my-project` — create project folder
-3. `cp -R graphcommerce/examples/magento-graphcms/. my-project && rm -rf graphcommerce` — copy example, delete repo
+3. `cp -R graphcommerce/examples/magento-graphcms/. my-project && rm -rf graphcommerce`
+   — copy example, delete repo
 4. `cd my-project` — change directory to project folder
 5. `cp -R .env.example .env` — create .env file
 6. `rm CHANGELOG.md` — remove changelog
-
-Edit /package.json. Delete `"scripts": {...}` and rename `scripts_local` to
-`scripts`:
-
-```json
-{
-  "name": "@my-company/my-project",
-  "scripts": {
-    ...
-  }
-}
-```
 
 ## Step 2: Magento and GraphCMS API keys
 
@@ -149,7 +139,9 @@ List of routes and store_codes:
 The example has Payment Service Providers integrated (Mollie, Braintree). Remove
 the ones your Magento backend doesn't support.
 
-- Remove Payment Service integrations from package.json: `@graphcommerce/mollie-magento-payment` and/or `@graphcommerce/magento-payment-braintree`
+- Remove Payment Service integrations from package.json:
+  `@graphcommerce/mollie-magento-payment` and/or
+  `@graphcommerce/magento-payment-braintree`
 - Remove Payment Service references from `pages/checkout/payment.tsx`
 
 ## Step 3: Start the development environment
