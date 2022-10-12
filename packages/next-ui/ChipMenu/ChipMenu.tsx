@@ -46,7 +46,7 @@ export function ChipMenu(props: ChipMenuProps) {
           justifyContent: 'center',
         }}
       >
-        <Typography color='white' variant='caption' sx={{ paddingX: '7px', marginTop: '1px' }}>
+        <Typography color='white' variant='caption' sx={{ paddingX: '7px', marginTop: '0px' }}>
           {filterCount}
         </Typography>
       </Box>
