@@ -51,11 +51,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           number: ${{ steps.changesets.outputs.pullRequestNumber }}
-      - name: checkout
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-          ref: canary
+      - run: git pull
       - name: release
         id: changesets-publish
         uses: paales/changesets-action@aggregate-release-mode
