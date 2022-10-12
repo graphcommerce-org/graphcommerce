@@ -43,10 +43,7 @@
     "@graphql-tools/url-loader": "7.16.4"
   },
   "dependencies": {
-    "@graphcommerce/changeset-changelog": "0.0.0",
     "@changesets/cli": "2.24.3",
-    "@graphcommerce/eslint-config-pwa": "^4.1.5",
-    "@graphcommerce/prettier-config-pwa": "^4.0.6",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "concurrently": "7.3.0",
