@@ -1,8 +1,6 @@
 name: canary-to-main-only
 on:
-  pull_request_target:
-    branches:
-      - 'main'
+  - pull_request
 jobs:
   # Disallow all merged that are not from the canary branch
   disallow:
