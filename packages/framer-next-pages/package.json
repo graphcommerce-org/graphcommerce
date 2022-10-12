@@ -2,7 +2,7 @@
   "name": "@graphcommerce/framer-next-pages",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "3.3.2",
+  "version": "4.30.0-canary.0",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -12,7 +12,7 @@
     }
   },
   "dependencies": {
-    "@graphcommerce/framer-utils": "3.2.1"
+    "@graphcommerce/framer-utils": "4.30.0-canary.0"
   },
   "devDependencies": {
     "@graphcommerce/eslint-config-pwa": "^4.1.10",

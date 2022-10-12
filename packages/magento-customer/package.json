@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-customer",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "4.12.4",
+  "version": "4.13.0-canary.0",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -19,15 +19,15 @@
     "type-fest": "^2.12.2"
   },
   "dependencies": {
-    "@graphcommerce/ecommerce-ui": "1.5.8",
-    "@graphcommerce/framer-utils": "3.2.1",
-    "@graphcommerce/graphql": "3.5.0",
-    "@graphcommerce/graphql-mesh": "4.2.0",
-    "@graphcommerce/image": "3.1.10",
-    "@graphcommerce/magento-graphql": "3.1.9",
-    "@graphcommerce/magento-store": "4.3.6",
-    "@graphcommerce/next-ui": "4.29.3",
-    "@graphcommerce/react-hook-form": "3.3.5"
+    "@graphcommerce/ecommerce-ui": "4.30.0-canary.0",
+    "@graphcommerce/framer-utils": "4.30.0-canary.0",
+    "@graphcommerce/graphql": "4.30.0-canary.0",
+    "@graphcommerce/graphql-mesh": "4.30.0-canary.0",
+    "@graphcommerce/image": "4.30.0-canary.0",
+    "@graphcommerce/magento-graphql": "4.13.0-canary.0",
+    "@graphcommerce/magento-store": "4.13.0-canary.0",
+    "@graphcommerce/next-ui": "4.30.0-canary.0",
+    "@graphcommerce/react-hook-form": "4.30.0-canary.0"
   },
   "peerDependencies": {
     "@lingui/react": "^3.13.2",

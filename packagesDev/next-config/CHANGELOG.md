@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.30.0-canary.0
+
+### Minor Changes
+
+- [#1613](https://github.com/graphcommerce-org/graphcommerce/pull/1613) [`6c1c69ca4`](https://github.com/graphcommerce-org/graphcommerce/commit/6c1c69ca45ea1c8737cc7dcdc341fe5d825ed380) Thanks [@paales](https://github.com/paales)! - Refactor next-config to also use the new resolveDependenciesSync by exposing withGraphCommerce
+
 ## 3.2.0
 
 ### Minor Changes
