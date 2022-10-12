@@ -45,3 +45,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: automerge pr
+        uses: juliangruber/merge-pull-request-action@v1
+        if: steps.changesets.outputs.pullRequestNumber != ''
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          number: ${{ steps.changesets.outputs.pullRequestNumber }}
