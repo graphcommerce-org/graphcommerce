@@ -14,10 +14,16 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - uses: the-guild-org/shared-config/setup@main
-        name: setup env
+      - uses: actions/setup-node@v3
         with:
-          nodeVersion: 16
+          node-version: 16
+          registry-url: 'https://registry.npmjs.org'
+          scope: '@graphcommerce'
+      - uses: bahmutov/npm-install@v1
+        with:
+          useRollingCache: true
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: set version variables
         id: vars
         shell: bash
