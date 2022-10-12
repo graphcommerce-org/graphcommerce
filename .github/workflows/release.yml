@@ -27,9 +27,11 @@ jobs:
       - name: maybe set canary
         if: ${{ github.ref == 'refs/heads/canary' }}
         run: '[ ! -f .changeset/pre.json ] && yarn changeset pre enter canary'
+        continue-on-error: true
       - name: maybe set release
         if: ${{ github.ref != 'refs/heads/canary' }}
         run: '[ -f .changeset/pre.json ] && yarn changeset pre exit'
+        continue-on-error: true
       - name: release / pull_request
         id: changesets
         uses: paales/changesets-action@aggregate-release-mode
