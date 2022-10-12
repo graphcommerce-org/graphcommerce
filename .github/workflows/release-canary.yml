@@ -51,8 +51,11 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           number: ${{ steps.changesets.outputs.pullRequestNumber }}
-      - run: git pull
+      - name: pull latest
+        run: git pull
+        if: steps.changesets.outputs.pullRequestNumber != ''
       - name: release
+        if: steps.changesets.outputs.pullRequestNumber != ''
         id: changesets-publish
         uses: paales/changesets-action@aggregate-release-mode
         with:
