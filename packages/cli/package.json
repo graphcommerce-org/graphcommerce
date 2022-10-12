@@ -2,7 +2,7 @@
   "name": "@graphcommerce/cli",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "1.0.10",
+  "version": "4.30.0-canary.0",
   "author": "",
   "license": "MIT",
   "scripts": {
@@ -22,7 +22,7 @@
     "graphcommerce": "dist/bin/graphcommerce.js"
   },
   "dependencies": {
-    "@graphcommerce/next-config": "3.2.0",
+    "@graphcommerce/next-config": "4.30.0-canary.0",
     "@graphql-codegen/cli": "2.11.8",
     "@graphql-mesh/cli": "0.76.2",
     "@graphql-mesh/types": "0.80.2",
