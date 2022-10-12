@@ -1,6 +1,7 @@
-name: canary-to-main-only
+name: target-branch-is-canary
 on:
-  - pull_request
+  pull_request:
+    types: [synchronize, opened, reopened, edited]
 jobs:
   # Disallow all merged that are not from the canary branch
   disallow:
@@ -9,5 +10,5 @@ jobs:
       - name: disallow if not from canary
         if: ${{ github.base_ref != 'canary' }}
         run: |
-          echo "Make sure the PR is targeting the canary branch instead of the main branch"
+          echo "Please target the canary branch, only releases are supposed to be merged into main"
           exit 1
