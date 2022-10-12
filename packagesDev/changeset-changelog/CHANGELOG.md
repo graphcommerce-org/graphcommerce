@@ -1,5 +1,11 @@
 # @graphcommerce/changeset-changelog
 
+## 0.0.2-canary.0
+
+### Patch Changes
+
+- [#1709](https://github.com/graphcommerce-org/graphcommerce/pull/1709) [`1b7166419`](https://github.com/graphcommerce-org/graphcommerce/commit/1b7166419a22a2de6a87aa620ca2bb28dbbced1e) Thanks [@github-actions](https://github.com/apps/github-actions)! - Automerge back to canary
+
 ## 0.0.1
 
 ### Patch Changes
