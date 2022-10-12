@@ -4,13 +4,13 @@ import { ProductAttributeFilterInput } from '@graphcommerce/graphql-mesh'
 import { useProductListLinkReplace } from '../../../hooks/useProductListLinkReplace'
 import { ProductListParams } from '../../ProductListItems/filterTypes'
 
-type FunctionProps = {
+export type FilterActionProps = {
   params: ProductListParams
   attribute_code: string
   form: UseFormReturn<ProductAttributeFilterInput>
 }
 
-export const emptyFilters = (props: FunctionProps) => {
+export const emptyFilters = (props: FilterActionProps) => {
   const { params, attribute_code, form } = props
   const linkParams = cloneDeep(params)
   delete linkParams.filters[attribute_code]
@@ -20,7 +20,7 @@ export const emptyFilters = (props: FunctionProps) => {
 }
 
 export const removeAllFilters = (
-  props: FunctionProps & { onReplace: (params: ProductListParams) => void },
+  props: FilterActionProps & { onReplace: (params: ProductListParams) => void },
 ) => {
   const { params, form, onReplace } = props
   const linkParams = cloneDeep(params)
@@ -30,7 +30,7 @@ export const removeAllFilters = (
   onReplace(linkParams)
 }
 
-export const useFilterActions = (props: FunctionProps) => {
+export const useFilterActions = (props: FilterActionProps) => {
   const replaceRoute = useProductListLinkReplace({ scroll: false })
   return {
     resetFilters: () => replaceRoute(emptyFilters(props)),

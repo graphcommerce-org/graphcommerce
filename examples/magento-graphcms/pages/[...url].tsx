@@ -25,6 +25,7 @@ import {
   ProductListParamsProvider,
   ProductListQuery,
   ProductListSort,
+  ProductListActions,
 } from '@graphcommerce/magento-product'
 import { StoreConfigDocument, redirectOrNotFound } from '@graphcommerce/magento-store'
 import {
@@ -34,7 +35,7 @@ import {
   GetStaticProps,
   MetaRobots,
 } from '@graphcommerce/next-ui'
-import { Container } from '@mui/material'
+import { Box, Container } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import {
   LayoutNavigation,
@@ -110,14 +111,14 @@ function CategoryPage(props: CategoryProps) {
           <CategoryChildren params={params}>{category.children}</CategoryChildren>
 
           <StickyBelowHeader>
-            <ProductListFiltersContainer>
-              <ProductListSort
-                sort_fields={products?.sort_fields}
-                total_count={products?.total_count}
-              />
-              <ProductListFilters aggregations={filters?.aggregations} filterTypes={filterTypes} />
-              <ProductListActions />
-            </ProductListFiltersContainer>
+            {/* <ProductListFiltersContainer> */}
+
+            <ProductListFilters
+              products={products}
+              aggregations={filters?.aggregations}
+              filterTypes={filterTypes}
+            />
+            {/* </ProductListFiltersContainer> */}
           </StickyBelowHeader>
 
           <Container maxWidth={false}>

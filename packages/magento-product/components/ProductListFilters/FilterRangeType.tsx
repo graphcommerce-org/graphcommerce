@@ -38,7 +38,7 @@ export function FilterRangeType(props: FilterRangeTypeProps) {
             {...chipProps}
             variant='outlined'
             label={label}
-            selectedLabel={label}
+            filterCount={2}
             selected={!!openEl}
             openEl={openEl}
             setOpenEl={setOpenEl}
