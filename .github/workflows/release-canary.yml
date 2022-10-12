@@ -2,7 +2,6 @@ name: release
 on:
   push:
     branches:
-      - 'main'
       - 'canary'
 jobs:
   publish:
@@ -30,19 +29,14 @@ jobs:
         run: |
           echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
           echo "::set-output name=date::$(date +"%B %d, %Y")"
-      - name: maybe set canary
-        if: ${{ github.ref == 'refs/heads/canary' }}
+      - name: set pre canary
         run: '[ ! -f .changeset/pre.json ] && yarn changeset pre enter canary'
-        continue-on-error: true
-      - name: maybe set release
-        if: ${{ github.ref != 'refs/heads/canary' }}
-        run: '[ -f .changeset/pre.json ] && yarn changeset pre exit'
         continue-on-error: true
       - name: release / pull_request
         id: changesets
         uses: paales/changesets-action@aggregate-release-mode
         with:
-          publish: 'yarn release'
+          publish: 'yarn changeset publish && git push --follow-tags'
           commit: 'chore(release): update monorepo packages versions'
           title: 'Upcoming Release Changes (${{ github.ref }})'
           createGithubReleases: aggregate
