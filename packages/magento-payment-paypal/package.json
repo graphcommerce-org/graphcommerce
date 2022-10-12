@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-payment-paypal",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "4.13.0-canary.1",
+  "version": "4.13.0-canary.2",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -22,9 +22,9 @@
     "@graphcommerce/ecommerce-ui": "4.30.0-canary.1",
     "@graphcommerce/graphql": "4.30.0-canary.1",
     "@graphcommerce/image": "4.30.0-canary.1",
-    "@graphcommerce/magento-cart": "4.13.0-canary.1",
-    "@graphcommerce/magento-cart-payment-method": "4.13.0-canary.1",
-    "@graphcommerce/magento-store": "4.13.0-canary.1",
+    "@graphcommerce/magento-cart": "4.13.0-canary.2",
+    "@graphcommerce/magento-cart-payment-method": "4.13.0-canary.2",
+    "@graphcommerce/magento-store": "4.13.0-canary.2",
     "@graphcommerce/next-ui": "4.30.0-canary.1"
   },
   "peerDependencies": {

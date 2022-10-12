@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-customer-account",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "4.13.0-canary.1",
+  "version": "4.13.0-canary.2",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -20,10 +20,10 @@
   "dependencies": {
     "@graphcommerce/graphql": "4.30.0-canary.1",
     "@graphcommerce/image": "4.30.0-canary.1",
-    "@graphcommerce/magento-customer": "4.13.0-canary.1",
-    "@graphcommerce/magento-customer-order": "4.13.0-canary.1",
-    "@graphcommerce/magento-graphql": "4.13.0-canary.1",
-    "@graphcommerce/magento-store": "4.13.0-canary.1",
+    "@graphcommerce/magento-customer": "4.13.0-canary.2",
+    "@graphcommerce/magento-customer-order": "4.13.0-canary.2",
+    "@graphcommerce/magento-graphql": "4.13.0-canary.2",
+    "@graphcommerce/magento-store": "4.13.0-canary.2",
     "@graphcommerce/next-ui": "4.30.0-canary.1",
     "@graphcommerce/react-hook-form": "4.30.0-canary.1"
   },
