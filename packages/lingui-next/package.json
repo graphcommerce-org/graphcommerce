@@ -2,7 +2,7 @@
   "name": "@graphcommerce/lingui-next",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "2.2.1",
+  "version": "4.30.0-canary.0",
   "sideEffects": false,
   "scripts": {
     "dev": "tsc -W"
@@ -22,7 +22,7 @@
     "@playwright/test": "^1.21.1"
   },
   "dependencies": {
-    "@graphcommerce/next-config": "3.2.0"
+    "@graphcommerce/next-config": "4.30.0-canary.0"
   },
   "peerDependencies": {
     "@lingui/core": "^3.13.2",
