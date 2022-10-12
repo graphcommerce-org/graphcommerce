@@ -1,0 +1,15 @@
+name: canary-to-main-only
+on:
+  pull_request_target:
+    branches:
+      - 'main'
+jobs:
+  # Disallow all merged that are not from the canary branch
+  disallow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: disallow if not from canary
+        if: ${{ github.base_ref != 'canary' }}
+        run: |
+          echo "Make sure the PR is targeting the canary branch instead of the main branch"
+          exit 1
