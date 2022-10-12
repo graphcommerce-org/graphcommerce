@@ -62,7 +62,7 @@ export function InlineAccount(props: InlineAccountProps) {
                 justifyContent: 'space-between',
                 flexDirection: 'column',
                 alignItems: 'flex-start',
-                gap: 32,
+                gap: theme.spacings.md,
                 [theme.breakpoints.up('sm')]: {
                   alignItems: 'flex-end',
                   flexDirection: 'unset',
