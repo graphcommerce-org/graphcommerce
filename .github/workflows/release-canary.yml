@@ -51,9 +51,6 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           number: ${{ steps.changesets.outputs.pullRequestNumber }}
-      - name: pull latest
-        run: git pull
-        if: steps.changesets.outputs.pullRequestNumber != ''
       - name: release
         if: steps.changesets.outputs.pullRequestNumber != ''
         id: changesets-publish
