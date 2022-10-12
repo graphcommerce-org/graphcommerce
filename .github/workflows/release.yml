@@ -32,7 +32,7 @@ jobs:
         run: yarn changeset pre exit
       - name: release / pull_request
         id: changesets
-        uses: dotansimha/changesets-action@aggregate-release-mode
+        uses: paales/changesets-action@aggregate-release-mode
         with:
           publish: 'yarn release'
           commit: 'chore(release): update monorepo packages versions'
