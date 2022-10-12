@@ -1,18 +1,20 @@
-name: Release
+name: release
 on:
   push:
     branches:
-      - main
+      - 'main'
+      - 'canary'
 jobs:
-  release:
-    name: Release
+  publish:
     runs-on: ubuntu-latest
+    outputs:
+      published: ${{ steps.changesets.outputs.published }}
     steps:
-      - uses: actions/checkout@v2
+      - name: checkout
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - uses: fregante/setup-git-user@v1
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
           node-version: 16
           registry-url: 'https://registry.npmjs.org'
@@ -20,20 +22,32 @@ jobs:
       - uses: bahmutov/npm-install@v1
         with:
           useRollingCache: true
-      - name: Create Release Pull Request or Publish to npm
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: set version variables
+        id: vars
+        shell: bash
+        run: |
+          echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+          echo "::set-output name=date::$(date +"%B %d, %Y")"
+      - name: maybe set canary
+        if: ${{ github.ref == 'refs/heads/canary' }}
+        run: '[ ! -f .changeset/pre.json ] && yarn changeset pre enter canary'
+        continue-on-error: true
+      - name: maybe set release
+        if: ${{ github.ref != 'refs/heads/canary' }}
+        run: '[ -f .changeset/pre.json ] && yarn changeset pre exit'
+        continue-on-error: true
+      - name: release / pull_request
         id: changesets
-        uses: changesets/action@v1
+        uses: paales/changesets-action@aggregate-release-mode
         with:
-          title: 'ci(changesets): versions updated'
-          commit: 'ci(changesets): versions updated'
           publish: 'yarn release'
+          commit: 'chore(release): update monorepo packages versions'
+          title: 'Upcoming Release Changes (${{ github.ref }})'
+          createGithubReleases: aggregate
+          githubReleaseName: ${{ steps.vars.outputs.date }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      # - name: Do stuff when published
-      #   if: steps.changesets.outputs.published == 'true'
-      #   # You can do something when a publish happens.
-      #   run:
-      #     my-slack-bot send-notification --message "A new version of ${GITHUB_REPOSITORY} was
-      #     published!"

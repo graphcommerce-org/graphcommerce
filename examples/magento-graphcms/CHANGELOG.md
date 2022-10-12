@@ -1,5 +1,27 @@
 # Change Log
 
+## 4.13.0-canary.1
+
+### Patch Changes
+
+- [`abb15ef4a`](https://github.com/graphcommerce-org/graphcommerce/commit/abb15ef4a79b12eddb32cc006e5d1d31dd06ac2d) Thanks [@paales](https://github.com/paales)! - Added canary releases to GraphCommerce
+
+## 4.13.0-canary.0
+
+### Minor Changes
+
+- [#1613](https://github.com/graphcommerce-org/graphcommerce/pull/1613) [`6c1c69ca4`](https://github.com/graphcommerce-org/graphcommerce/commit/6c1c69ca45ea1c8737cc7dcdc341fe5d825ed380) Thanks [@paales](https://github.com/paales)! - Refactor next-config to also use the new resolveDependenciesSync by exposing withGraphCommerce
+
+- [#1613](https://github.com/graphcommerce-org/graphcommerce/pull/1613) [`1ef81efa2`](https://github.com/graphcommerce-org/graphcommerce/commit/1ef81efa238b2e79312ab35c6829abec266e4ad1) Thanks [@paales](https://github.com/paales)! - All codegen files that need to be scanned will be handled by a new resolveDependenciesSync method
+
+- [#1613](https://github.com/graphcommerce-org/graphcommerce/pull/1613) [`c5af837f8`](https://github.com/graphcommerce-org/graphcommerce/commit/c5af837f86ac097089eded39dcdd0100f61a1990) Thanks [@paales](https://github.com/paales)! - Remove the usage of scripts_local
+
+### Patch Changes
+
+- [#1613](https://github.com/graphcommerce-org/graphcommerce/pull/1613) [`d95ec2ae6`](https://github.com/graphcommerce-org/graphcommerce/commit/d95ec2ae6d8da574995c2b110425c4445b30351b) Thanks [@paales](https://github.com/paales)! - Removed the usage of a separate env variables for the monorepo for lingui, creating command parity with non monorepo setups.
+
+- [#1613](https://github.com/graphcommerce-org/graphcommerce/pull/1613) [`da20e4e72`](https://github.com/graphcommerce-org/graphcommerce/commit/da20e4e72ca3f29216592e0ecfb59c0e44bcbe20) Thanks [@paales](https://github.com/paales)! - Created an is-monorepo command to exectute scripts based if they are in the monorepo or in a project
+
 ## 3.28.7
 
 ### Patch Changes

@@ -1,5 +1,4 @@
 {
-  "name": "@graphcommerce/graphcommerce",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
   "version": "2.165.3",
@@ -23,11 +22,9 @@
     "playwright": "npx playwright test --headed --project=chrome",
     "postinstall": "patch-package && yarn prepack",
     "release": "changeset publish; git push --follow-tags",
-    "prepack": "concurrently 'yarn:prepack:1' 'yarn:prepack:2' 'yarn:prepack:3' 'yarn:prepack:4'",
-    "prepack:1": "yarn workspace @graphcommerce/next-config prepack",
+    "prepack": "concurrently 'yarn:prepack:2' 'yarn:prepack:3'",
     "prepack:2": "yarn workspace @graphcommerce/graphql-codegen-near-operation-file prepack",
     "prepack:3": "yarn workspace @graphcommerce/graphql-codegen-relay-optimizer-plugin prepack",
-    "prepack:4": "yarn workspace @graphcommerce/cli prepack",
     "packages": "concurrently 'yarn:packages:1' 'yarn:packages:2' 'yarn:packages:3' 'yarn:packages:4'",
     "packages:1": "yarn workspace @graphcommerce/next-config dev",
     "packages:2": "yarn workspace @graphcommerce/graphql-codegen-near-operation-file dev",
@@ -46,11 +43,12 @@
     "@graphql-tools/url-loader": "7.16.4"
   },
   "dependencies": {
-    "@changesets/changelog-github": "0.4.6",
     "@changesets/cli": "2.24.3",
-    "@graphcommerce/eslint-config-pwa": "^4.1.5",
-    "@graphcommerce/prettier-config-pwa": "^4.0.6",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
     "concurrently": "7.3.0",
+    "jest-environment-jsdom": "^29.1.2",
+    "next": "12.2.5",
     "patch-package": "6.4.7"
   },
   "devDependencies": {

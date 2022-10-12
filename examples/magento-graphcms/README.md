@@ -43,18 +43,6 @@ https://user-images.githubusercontent.com/1251986/158570386-ea831ae4-f6b8-4776-8
 6. `rm CHANGELOG.md`
 7. `rm -r node_modules && rm -r .next`
 
-Edit /package.json. Delete `"scripts": {...}` and rename `scripts_local` to
-`scripts`:
-
-```json
-{
-  "name": "@my-company/my-project",
-  "scripts": {
-    ...
-  }
-}
-```
-
 ## Start the development environment
 
 - `yarn` Install the dependencies
