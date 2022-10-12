@@ -48,7 +48,7 @@ export function ProductListSort(props: ProductListSortProps) {
       selected={selected}
       label={label}
       {...filterMenuProps}
-      selectedLabel={selected ? currentOption?.label ?? '' : label}
+      filterCount={currentOption ? 1 : 0}
       onDelete={selected ? removeFilter : undefined}
       sx={Array.isArray(sx) ? sx : [sx]}
       openEl={openEl}
