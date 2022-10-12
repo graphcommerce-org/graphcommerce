@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.13.1-canary.0
+
+### Patch Changes
+
+- [`c6f6cb102`](https://github.com/graphcommerce-org/graphcommerce/commit/c6f6cb102d71b7b4b478cc2eeb8a9f2a784b5bbf) Thanks [@paales](https://github.com/paales)! - Remove spacing from InlineAccount on the checkout
+
 ## 4.13.0
 
 ### Patch Changes
