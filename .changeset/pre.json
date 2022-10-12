@@ -67,6 +67,7 @@
     "@graphcommerce/typescript-config-pwa": "4.0.5"
   },
   "changesets": [
+    "angry-mice-adasd",
     "angry-mice-dream",
     "wise-turkeys-speak"
   ]
