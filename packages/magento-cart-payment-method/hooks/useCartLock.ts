@@ -1,12 +1,14 @@
 import { useCurrentCartId } from '@graphcommerce/magento-cart'
 import { useUrlQuery } from '@graphcommerce/next-ui'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export type CartLockState = {
   cart_id: string | null
   locked: string | null
   method: string | null
 }
+
+let justLocked = false
 
 /**
  * Locking a cart might is usefull in the following cases: We want to disable cart modifications
@@ -16,21 +18,33 @@ export type CartLockState = {
  */
 export function useCartLock<E extends CartLockState>() {
   const { currentCartId } = useCurrentCartId()
-  const [justLocked, setJustLocked] = useState(false)
   const [queryState, setRouterQuery] = useUrlQuery<E>()
+  const [, setForceRender] = useState(0)
+
+  useEffect(() => {
+    const pageshow = (e: PageTransitionEvent) => {
+      if (!e.persisted) return
+      justLocked = false
+      setForceRender((cnt) => cnt + 1)
+    }
+    window.addEventListener('pageshow', pageshow)
+    return () => {
+      window.removeEventListener('pageshow', pageshow)
+    }
+  })
 
   const lock = (params: Omit<E, 'locked' | 'cart_id'>) => {
-    if (!currentCartId) return
-    setJustLocked(true)
-    setRouterQuery({
+    if (!currentCartId) return undefined
+    justLocked = true
+    return setRouterQuery({
       locked: '1',
       cart_id: currentCartId,
       ...params,
     } as unknown as E)
   }
 
-  const unlock = (params: Omit<E, 'locked' | 'cart_id' | 'method'>) => {
-    setRouterQuery({ cart_id: null, locked: null, method: null, ...params } as E)
+  const unlock = async (params: Omit<E, 'locked' | 'cart_id' | 'method'>) => {
+    await setRouterQuery({ cart_id: null, locked: null, method: null, ...params } as E)
     return queryState
   }
 

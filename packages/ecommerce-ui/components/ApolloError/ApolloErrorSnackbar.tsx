@@ -13,19 +13,7 @@ export function ApolloErrorSnackbar(props: ApolloErrorSnackbarProps) {
   if (!error) return null
 
   return (
-    <ErrorSnackbar
-      variant='pill'
-      severity='error'
-      {...passedProps}
-      open={!!error}
-      action={
-        action ?? (
-          <Button size='medium' variant='pill' color='secondary'>
-            <Trans id='Ok' />
-          </Button>
-        )
-      }
-    >
+    <ErrorSnackbar variant='pill' severity='error' {...passedProps} open={!!error}>
       <>
         {error.graphQLErrors.map((e) => e.message).join(', ')}
         {error.networkError && <>Network Error: {error.networkError.message}</>}

@@ -18,20 +18,17 @@ metaUrl: magento-open-source-full-feature-list-with-graphcommerce
 
 # Magento Open Source + GraphCommerce® full feature list
 
-Magento Open Source full feature list, extracted from Adobe Commerce
-[[PDF ↗]](https://drive.google.com/file/d/1S9u0DocJkRnK-Z_9wtKh4ilJM05FW50c).
-
 <div className='tags'>
 
-- [Feature] New, GraphCommerce unique feature.
-- [Enhanced] Feature is replaced with a GraphCommerce implementation. Often
-  enhanced.
-- [Todo] Magento Open Source feature not yet implemented in GraphCommerce.
-- [Commerce] Commercial feature, requires Adobe Commerce.
+- [Feature] GraphCommerce _unique_ feature
+- [Commerce] Requires Adobe Commerce
 
 </div>
 
-Black checkbox is a feature unaffected by GraphCommerce
+Features taken from the Magento Commerce 2 Feature List
+[[PDF ↗]](https://drive.google.com/file/d/1S9u0DocJkRnK-Z_9wtKh4ilJM05FW50c)
+
+---
 
 ### Promotions and pricing
 
@@ -135,8 +132,8 @@ Black checkbox is a feature unaffected by GraphCommerce
 
 - [x] Create simple, configurable (e.g., choose size, color, etc.), bundled, and
       grouped products.
-- [ ] Offer virtual products like memberships, services and warranties. — [Todo]
-- [ ] Include downloadable/digital products with samples. — [Todo]
+- [x] Offer virtual products like memberships, services and warranties. — [Todo]
+- [x] Include downloadable/digital products with samples.
 - [ ] Allow customer-personalized products (e.g., upload images and text for
       monogramming). — [Todo]
 - [x] Manage inventory across multiple locations
@@ -211,7 +208,7 @@ Black checkbox is a feature unaffected by GraphCommerce
 - [x] Show multiple images per product.
 - [x] Zoom-in on product images.
 - [ ] Display product videos from YouTube or Vimeo. — [Todo]
-- [ ] Include swatches to show colors, fabrics, and more. — [Todo]
+- [x] Include swatches to show colors, fabrics, and more.
 - [ ] Show multiple products in a grouped view. — [Todo]
 - [x] Indicate stock availability.
 - [x] Set related products, up-sell, and cross-sell recommendations to increase

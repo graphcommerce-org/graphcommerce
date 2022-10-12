@@ -11,10 +11,9 @@ export function useUrlQuery<T extends Record<string, string | null>>() {
         Object.entries({ ...current, ...incomming }).filter(([, value]) => value !== null),
       )
 
-      if (JSON.stringify(current) === JSON.stringify(newQuery)) return
+      if (JSON.stringify(current) === JSON.stringify(newQuery)) return undefined
 
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      replace({ query: newQuery }, undefined, { shallow: true })
+      return replace({ query: newQuery }, undefined, { shallow: true })
     },
     [replace],
   )

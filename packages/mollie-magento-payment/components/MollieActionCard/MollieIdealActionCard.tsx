@@ -13,7 +13,12 @@ export function MollieActionCard(props: MollieActionCardProps) {
       {...props}
       image={
         mollie_meta?.image && (
-          <Image layout='fixed' sx={{ width: iconSize, height: iconSize }} unoptimized src={icon} />
+          <Image
+            layout='fixed'
+            sx={{ width: iconSize, height: iconSize, objectFit: 'contain' }}
+            unoptimized
+            src={icon}
+          />
         )
       }
     />

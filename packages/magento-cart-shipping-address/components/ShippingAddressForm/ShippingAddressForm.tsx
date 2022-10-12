@@ -40,7 +40,8 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
   const { step, sx, ignoreCache = false } = props
   const { data: cartQuery } = useCartQuery(GetAddressesDocument)
   const { data: config } = useQuery(StoreConfigDocument)
-  const { data: countriesData } = useQuery(CountryRegionsDocument)
+  const countryQuery = useQuery(CountryRegionsDocument, { fetchPolicy: 'cache-and-network' })
+  const countries = countryQuery.data?.countries ?? countryQuery.previousData?.countries
   const { data: customerQuery } = useCustomerQuery(CustomerDocument)
 
   const shopCountry = config?.storeConfig?.locale?.split('_')?.[1].toUpperCase()
@@ -97,7 +98,7 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
         },
     mode: 'onChange',
     onBeforeSubmit: (variables) => {
-      const regionId = countriesData?.countries
+      const regionId = countries
         ?.find((country) => country?.two_letter_abbreviation === variables.countryCode)
         ?.available_regions?.find((region) => region?.id === variables.regionId)?.id
 

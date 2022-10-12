@@ -1,5 +1,21 @@
 # Change Log
 
+## 4.1.10
+
+### Patch Changes
+
+- Updated dependencies [[`a26a2d05e`](https://github.com/graphcommerce-org/graphcommerce/commit/a26a2d05eecabeeef70e4d69105343197ae092b7)]:
+  - @graphcommerce/magento-cart@4.9.5
+  - @graphcommerce/magento-product@4.8.4
+
+## 4.1.9
+
+### Patch Changes
+
+- Updated dependencies [[`f105d4223`](https://github.com/graphcommerce-org/graphcommerce/commit/f105d4223aa68df30970149e51ae72897e489bf9)]:
+  - @graphcommerce/magento-product@4.8.3
+  - @graphcommerce/magento-cart@4.9.4
+
 ## 4.1.8
 
 ### Patch Changes

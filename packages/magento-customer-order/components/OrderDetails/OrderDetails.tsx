@@ -139,7 +139,10 @@ export function OrderDetails(props: OrderDetailsProps) {
         labelLeft='Order details'
         sx={[
           (theme) => ({
-            '& .SectionHeader': { marginTop: theme.spacings.sm, marginBottom: theme.spacings.sm },
+            '& .SectionHeader-root': {
+              marginTop: theme.spacings.sm,
+              marginBottom: theme.spacings.sm,
+            },
           }),
           ...(Array.isArray(sx) ? sx : [sx]),
         ]}
@@ -209,7 +212,10 @@ export function OrderDetails(props: OrderDetailsProps) {
       borderBottom
       sx={[
         (theme) => ({
-          '& .SectionHeader': { marginTop: theme.spacings.sm, marginBottom: theme.spacings.sm },
+          '& .SectionHeader-root': {
+            marginTop: theme.spacings.sm,
+            marginBottom: theme.spacings.sm,
+          },
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}

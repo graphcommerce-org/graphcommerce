@@ -26,7 +26,8 @@ type EditAddressFormProps = {
 }
 
 export function EditAddressForm(props: EditAddressFormProps) {
-  const countries = useQuery(CountryRegionsDocument).data?.countries
+  const countryQuery = useQuery(CountryRegionsDocument, { fetchPolicy: 'cache-and-network' })
+  const countries = countryQuery.data?.countries ?? countryQuery.previousData?.countries
   const { address, sx } = props
 
   const { closeSteps } = usePageContext()
