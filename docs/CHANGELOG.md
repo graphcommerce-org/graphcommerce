@@ -1,5 +1,15 @@
 # Change Log
 
+## 4.11.0
+
+### Minor Changes
+
+- [#1613](https://github.com/graphcommerce-org/graphcommerce/pull/1613) [`c5af837f8`](https://github.com/graphcommerce-org/graphcommerce/commit/c5af837f86ac097089eded39dcdd0100f61a1990) Thanks [@paales](https://github.com/paales)! - Remove the usage of scripts_local
+
+### Patch Changes
+
+- [#1702](https://github.com/graphcommerce-org/graphcommerce/pull/1702) [`abb15ef4a`](https://github.com/graphcommerce-org/graphcommerce/commit/abb15ef4a79b12eddb32cc006e5d1d31dd06ac2d) Thanks [@paales](https://github.com/paales)! - Added canary releases to GraphCommerce
+
 ## 4.11.0-canary.1
 
 ### Patch Changes

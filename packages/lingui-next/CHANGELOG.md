@@ -1,5 +1,13 @@
 # Change Log
 
+## 4.30.0
+
+### Patch Changes
+
+- [#1613](https://github.com/graphcommerce-org/graphcommerce/pull/1613) [`d95ec2ae6`](https://github.com/graphcommerce-org/graphcommerce/commit/d95ec2ae6d8da574995c2b110425c4445b30351b) Thanks [@paales](https://github.com/paales)! - Removed the usage of a separate env variables for the monorepo for lingui, creating command parity with non monorepo setups.
+
+- [#1702](https://github.com/graphcommerce-org/graphcommerce/pull/1702) [`abb15ef4a`](https://github.com/graphcommerce-org/graphcommerce/commit/abb15ef4a79b12eddb32cc006e5d1d31dd06ac2d) Thanks [@paales](https://github.com/paales)! - Added canary releases to GraphCommerce
+
 ## 4.30.0-canary.1
 
 ### Patch Changes
