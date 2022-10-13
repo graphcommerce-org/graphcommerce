@@ -31,38 +31,23 @@ jobs:
           echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
           echo "::set-output name=date::$(date +"%B %d, %Y")"
       - name: set pre canary
-        run: '[ ! -f .changeset/pre.json ] && yarn changeset pre enter canary'
+        run: 'yarn changeset pre enter canary'
         continue-on-error: true
-      - name: release pull_request
-        id: changesets
-        uses: paales/changesets-action@aggregate-release-mode
-        with:
-          publish: 'yarn publish-canary'
-          commit: 'chore(release): update monorepo packages versions'
-          title: 'Upcoming Release Changes (${{ github.ref }})'
-          createGithubReleases: aggregate
-          githubReleaseName: ${{ steps.vars.outputs.date }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - name: automerge pr
-        uses: juliangruber/merge-pull-request-action@v1
-        if: steps.changesets.outputs.pullRequestNumber != ''
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          number: ${{ steps.changesets.outputs.pullRequestNumber }}
-      - name: release
-        if: steps.changesets.outputs.pullRequestNumber != ''
-        id: changesets-publish
-        uses: paales/changesets-action@aggregate-release-mode
-        with:
-          publish: 'yarn publish-canary'
-          commit: 'chore(release): update monorepo packages versions'
-          title: 'Upcoming Release Changes (${{ github.ref }})'
-          createGithubReleases: aggregate
-          githubReleaseName: ${{ steps.vars.outputs.date }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Run a prerelease version and commit to the canary branch
+        run: |
+          yarn changeset version
+          git add .
+          git commit -m "chore(release): update prerelease versions"
+      # - name: release
+      #   id: changesets-publish
+      #   uses: paales/changesets-action@aggregate-release-mode
+      #   with:
+      #     publish: 'yarn publish-canary'
+      #     commit: 'chore(release): update monorepo packages versions'
+      #     title: 'Upcoming Release Changes (${{ github.ref }})'
+      #     createGithubReleases: aggregate
+      #     githubReleaseName: ${{ steps.vars.outputs.date }}
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
