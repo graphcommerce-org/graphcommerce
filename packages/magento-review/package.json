@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-review",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "4.13.1-canary.0",
+  "version": "4.13.1-canary.1",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -21,9 +21,9 @@
     "@graphcommerce/graphql": "4.30.0",
     "@graphcommerce/graphql-mesh": "4.30.0",
     "@graphcommerce/image": "4.30.0",
-    "@graphcommerce/magento-customer": "4.13.1-canary.0",
-    "@graphcommerce/magento-product": "4.13.1-canary.0",
-    "@graphcommerce/magento-store": "4.13.1-canary.0",
+    "@graphcommerce/magento-customer": "4.13.1-canary.1",
+    "@graphcommerce/magento-product": "4.13.1-canary.1",
+    "@graphcommerce/magento-store": "4.13.1-canary.1",
     "@graphcommerce/next-ui": "4.30.0",
     "@graphcommerce/react-hook-form": "4.30.0",
     "schema-dts": "^1.1.0"
