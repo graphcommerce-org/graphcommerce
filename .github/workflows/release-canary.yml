@@ -67,3 +67,5 @@ jobs:
           git push --force origin changeset-release/main
           gh pr create --title "Upcoming Release Changes (${{ github.ref }})" --body "-" --base main --head changeset-release/main;
           echo 0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
