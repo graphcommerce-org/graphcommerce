@@ -24,11 +24,6 @@ jobs:
           useRollingCache: true
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - name: set version variables
-        shell: bash
-        run: |
-          echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
-          echo "::set-output name=date::$(date +"%B %d, %Y")"
       - name: set pre canary
         run: 'yarn changeset pre enter canary'
         continue-on-error: true
@@ -43,6 +38,12 @@ jobs:
         continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: set version variables
+        id: vars
+        shell: bash
+        run: |
+          echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+          echo "::set-output name=date::$(date +"%B %d, %Y")"
       - name: release
         uses: paales/changesets-action@aggregate-release-mode
         with:
@@ -50,7 +51,7 @@ jobs:
           commit: 'chore(release): update monorepo packages versions'
           title: 'Upcoming Release Changes (${{ github.ref }})'
           createGithubReleases: aggregate
-          githubReleaseName: ${{ steps.vars.outputs.date }}
+          githubReleaseName: '${{ steps.vars.outputs.date }} (canary)'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
