@@ -3,38 +3,51 @@ import { cloneDeep } from '@graphcommerce/graphql'
 import { ProductAttributeFilterInput } from '@graphcommerce/graphql-mesh'
 import { useProductListLinkReplace } from '../../../hooks/useProductListLinkReplace'
 import { ProductListParams } from '../../ProductListItems/filterTypes'
+import { useFilterForm } from '../FilterFormContext'
 
 export type FilterActionProps = {
-  params: ProductListParams
-  attribute_code: string
-  form: UseFormReturn<ProductAttributeFilterInput>
+  attribute_code?: string
 }
 
-export const emptyFilters = (props: FilterActionProps) => {
+type LocalFilterInputProps = FilterActionProps & {
+  form: UseFormReturn<ProductAttributeFilterInput>
+  params: ProductListParams
+}
+
+export const emptyFilters = (props: LocalFilterInputProps) => {
   const { params, attribute_code, form } = props
   const linkParams = cloneDeep(params)
-  delete linkParams.filters[attribute_code]
-  delete linkParams.currentPage
-  form.reset({ ...linkParams.filters })
+  if (linkParams && attribute_code) {
+    delete linkParams.filters[attribute_code]
+    delete linkParams.currentPage
+    form?.reset({ ...linkParams.filters })
+  }
+
   return linkParams
 }
 
 export const removeAllFilters = (
-  props: FilterActionProps & { onReplace: (params: ProductListParams) => void },
+  props: LocalFilterInputProps & { onReplace: (params: ProductListParams) => void },
 ) => {
   const { params, form, onReplace } = props
   const linkParams = cloneDeep(params)
-  Object.keys(linkParams.filters).forEach((filter) => delete linkParams.filters[filter])
-  delete linkParams.currentPage
-  form.reset(linkParams.filters)
-  onReplace(linkParams)
+  if (linkParams) {
+    Object.keys(linkParams.filters).forEach((filter) => delete linkParams.filters[filter])
+    delete linkParams.currentPage
+    form?.reset(linkParams.filters)
+    onReplace(linkParams)
+  }
 }
 
 export const useFilterActions = (props: FilterActionProps) => {
   const replaceRoute = useProductListLinkReplace({ scroll: false })
+  const { form, params } = useFilterForm()
   return {
-    resetFilters: () => replaceRoute(emptyFilters(props)),
-    emptyFilters: () => emptyFilters(props),
-    clearAllFilters: () => removeAllFilters({ ...props, onReplace: replaceRoute }),
+    resetFilters: () => {
+      const result = emptyFilters({ ...props, form, params })
+      if (result) replaceRoute(result)
+    },
+    emptyFilters: () => emptyFilters({ ...props, form, params }),
+    clearAllFilters: () => removeAllFilters({ ...props, form, params, onReplace: replaceRoute }),
   }
 }
