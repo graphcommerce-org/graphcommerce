@@ -1,5 +1,11 @@
 # @graphcommerce/changeset-changelog
 
+## 0.0.2-canary.3
+
+### Patch Changes
+
+- [`09dbc6397`](https://github.com/graphcommerce-org/graphcommerce/commit/09dbc63972cded1fc27c5a9df00126ad5d9356ff) Thanks [@paales](https://github.com/paales)! - Simplified publishing releases
+
 ## 0.0.2-canary.2
 
 ### Patch Changes
