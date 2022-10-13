@@ -1,6 +1,5 @@
-import { UseFormReturn } from '@graphcommerce/ecommerce-ui'
 import { cloneDeep } from '@graphcommerce/graphql'
-import type { FilterEqualTypeInput, ProductAttributeFilterInput } from '@graphcommerce/graphql-mesh'
+import type { FilterEqualTypeInput } from '@graphcommerce/graphql-mesh'
 import {
   ChipMenu,
   ChipMenuProps,
@@ -14,6 +13,7 @@ import { useState } from 'react'
 import type { SetRequired } from 'type-fest'
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
 import { ProductListParams } from '../ProductListItems/filterTypes'
+import { useFilterForm } from './FilterFormContext'
 import { ProductListFiltersFragment } from './ProductListFilters.gql'
 import { useFilterActions } from './helpers/filterActions'
 
@@ -45,11 +45,7 @@ export type FilterIn = SetRequired<Omit<FilterEqualTypeInput, 'eq'>, 'in'>
 
 type Filter = NonNullable<NonNullable<ProductListFiltersFragment['aggregations']>[number]>
 
-type FilterEqualTypeProps = Filter &
-  Omit<ChipMenuProps, 'selected' | 'openEl' | 'setOpenEl'> & {
-    filterForm: UseFormReturn<ProductAttributeFilterInput>
-  }
-
+type FilterEqualTypeProps = Filter & Omit<ChipMenuProps, 'selected' | 'openEl' | 'setOpenEl'>
 function FilterEqualActionCard(
   props: ActionCardItemRenderProps<{
     option: NonNullable<Filter['options']>[0]
@@ -134,14 +130,16 @@ function FilterEqualActionCard(
 }
 
 export function FilterEqualType(props: FilterEqualTypeProps) {
-  const { attribute_code, count, label, options, __typename, filterForm, ...chipProps } = props
+  const { attribute_code, count, label, options, __typename, ...chipProps } = props
   const [openEl, setOpenEl] = useState<null | HTMLElement>(null)
+  const {
+    form: { control },
+  } = useFilterForm()
+
   const { params } = useProductListParamsContext()
-  const { control } = filterForm
   const { emptyFilters, resetFilters } = useFilterActions({
     params,
     attribute_code,
-    form: filterForm,
   })
   const currentFilter: FilterEqualTypeInput = cloneDeep(params.filters[attribute_code]) ?? {
     in: [],
