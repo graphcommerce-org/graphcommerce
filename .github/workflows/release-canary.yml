@@ -25,7 +25,6 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: set version variables
-        id: vars
         shell: bash
         run: |
           echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
@@ -41,10 +40,10 @@ jobs:
           git config user.name "github-actions[bot]"
           git commit -m "chore(release): update prerelease versions"
           git push
+        continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: release
-        id: changesets-publish
         uses: paales/changesets-action@aggregate-release-mode
         with:
           publish: 'yarn publish-canary'
