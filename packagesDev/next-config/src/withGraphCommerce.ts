@@ -58,7 +58,7 @@ export function withGraphCommerce(
   conf: GraphCommerceConfig = {},
 ): (config: NextConfig) => NextConfig {
   const { packages = [] } = conf
-  const dependencies = [...resolveDependenciesSync().keys()]
+  const dependencies = [...resolveDependenciesSync().keys()].slice(1)
 
   const modules = [...dependencies, ...packages]
   return (config) => extendConfig(withTranspileModules(modules)(config), modules)
