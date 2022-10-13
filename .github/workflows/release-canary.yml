@@ -56,3 +56,14 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: create branch disable pre and create main pr
+        shell: bash
+        run: |
+          git switch -C changeset-release/main
+          yarn changeset pre exit
+          yarn changeset version
+          git add .
+          git commit -m "Exit prerelease mode and version packages"
+          git push --force origin changeset-release/main
+          gh pr create --title "Upcoming Release Changes (${{ github.ref }})" --body "-" --base main --head changeset-release/main;
+          echo 0
