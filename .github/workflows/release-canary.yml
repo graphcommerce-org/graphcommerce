@@ -38,6 +38,8 @@ jobs:
           yarn changeset version
           git add .
           git commit -m "chore(release): update prerelease versions"
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # - name: release
       #   id: changesets-publish
       #   uses: paales/changesets-action@aggregate-release-mode
