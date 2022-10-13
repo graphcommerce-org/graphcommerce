@@ -1,23 +1,25 @@
-import { Controller, UseFormReturn } from '@graphcommerce/ecommerce-ui'
+import { Controller } from '@graphcommerce/ecommerce-ui'
 import type { FilterRangeTypeInput, ProductAttributeFilterInput } from '@graphcommerce/graphql-mesh'
 import { Money } from '@graphcommerce/magento-store'
 import { ChipMenu, ChipMenuProps, extendableComponent } from '@graphcommerce/next-ui'
 import { Mark } from '@mui/base/SliderUnstyled/useSlider.types'
 import { Box, Slider } from '@mui/material'
 import { useState } from 'react'
+import { useFilterForm } from './FilterFormContext'
 import { ProductListFiltersFragment } from './ProductListFilters.gql'
 
 type FilterRangeTypeProps = NonNullable<
   NonNullable<ProductListFiltersFragment['aggregations']>[0]
 > &
-  Omit<ChipMenuProps, 'selected' | 'openEl' | 'setOpenEl'> & {
-    filterForm: UseFormReturn<ProductAttributeFilterInput>
-  }
+  Omit<ChipMenuProps, 'selected' | 'openEl' | 'setOpenEl'>
 
 const { classes } = extendableComponent('FilterRangeType', ['root', 'container', 'slider'] as const)
 
 export function FilterRangeType(props: FilterRangeTypeProps) {
-  const { attribute_code, label, options, filterForm, ...chipProps } = props
+  const { attribute_code, label, options, ...chipProps } = props
+  const {
+    form: { control },
+  } = useFilterForm()
   const [openEl, setOpenEl] = useState<null | HTMLElement>(null)
   const values = options?.map((v) => v?.value.split('_').map((mv) => Number(mv))).flat(1)
 
@@ -25,7 +27,7 @@ export function FilterRangeType(props: FilterRangeTypeProps) {
 
   return (
     <Controller
-      control={filterForm.control}
+      control={control}
       name={`${attribute_code}` as keyof ProductAttributeFilterInput}
       defaultValue={{
         from: `${values?.[0] ?? 0}`,

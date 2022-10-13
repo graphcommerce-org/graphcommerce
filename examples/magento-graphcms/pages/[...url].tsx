@@ -26,6 +26,8 @@ import {
   ProductListQuery,
   ProductListSort,
   ProductListActions,
+  ProductListActionGroup,
+  FilterFormProvider,
 } from '@graphcommerce/magento-product'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
@@ -112,14 +114,13 @@ function CategoryPage(props: CategoryProps) {
           <CategoryChildren params={params}>{category.children}</CategoryChildren>
 
           <StickyBelowHeader>
-            {/* <ProductListFiltersContainer> */}
-
-            <ProductListFilters
-              products={products}
-              aggregations={filters?.aggregations}
-              filterTypes={filterTypes}
-            />
-            {/* </ProductListFiltersContainer> */}
+            <FilterFormProvider>
+              <ProductListActionGroup
+                products={products}
+                filters={filters}
+                filterTypes={filterTypes}
+              />
+            </FilterFormProvider>
           </StickyBelowHeader>
 
           <Container maxWidth={false}>
