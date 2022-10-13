@@ -33,12 +33,12 @@ jobs:
       - name: set pre canary
         run: 'yarn changeset pre enter canary'
         continue-on-error: true
-      - name: Run a prerelease version and commit to the canary branch
+      - name: run changeset version and commit
         run: |
           yarn changeset version
           git add .
           git commit -m "chore(release): update prerelease versions"
-        with:
+        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # - name: release
       #   id: changesets-publish
