@@ -9,6 +9,7 @@ fragment ProductPageBreadcrumb on ProductInterface {
       category_name
       category_uid
       category_url_path
+      category_level
     }
   }
 }

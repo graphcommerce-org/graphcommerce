@@ -1,4 +1,5 @@
 import { usePrevPageRouter } from '@graphcommerce/framer-next-pages'
+import { filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Breadcrumbs, BreadcrumbsProps, Container, Link, Typography } from '@mui/material'
 import PageLink from 'next/link'
@@ -21,14 +22,15 @@ export function ProductPageBreadcrumb(props: ProductPageBreadcrumbsProps) {
           <Trans id='Home' />
         </Link>
       </PageLink>
-      {category?.breadcrumbs?.map((mapped_category, i) => (
+      {filterNonNullableKeys(category?.breadcrumbs, ['category_level'])
+        .sort((a, b) => a.category_level - b.category_level).map((breadcrumb, i) => (
         <Link
           underline='hover'
-          key={mapped_category?.category_uid}
+          key={breadcrumb.category_uid}
           color='inherit'
-          href={`/${mapped_category?.category_url_path}`}
+          href={`/${breadcrumb.category_url_path}`}
         >
-          {mapped_category?.category_name}
+          {breadcrumb.category_name}
         </Link>
       ))}
       <Link underline='hover' color='inherit' href={`/${category?.url_path}`}>
