@@ -7,5 +7,6 @@ fragment CategoryBreadcrumb on CategoryInterface {
     category_uid
     category_name
     category_url_path
+    category_level
   }
 }
