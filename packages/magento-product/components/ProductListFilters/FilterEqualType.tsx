@@ -138,7 +138,6 @@ export function FilterEqualType(props: FilterEqualTypeProps) {
 
   const { params } = useProductListParamsContext()
   const { emptyFilters, resetFilters } = useFilterActions({
-    params,
     attribute_code,
   })
   const currentFilter: FilterEqualTypeInput = cloneDeep(params.filters[attribute_code]) ?? {
