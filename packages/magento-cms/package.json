@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-cms",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "4.13.1-canary.2",
+  "version": "4.13.1",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@graphcommerce/graphql": "4.30.0",
-    "@graphcommerce/magento-store": "4.13.1-canary.2"
+    "@graphcommerce/magento-store": "4.13.1"
   },
   "peerDependencies": {
     "@lingui/react": "^3.13.2",
