@@ -112,7 +112,7 @@ function PaymentPage() {
                 <Trans id='Payment method' />
               </Typography>
 
-              <PaymentMethodContextProvider>
+              <PaymentMethodContextProvider modules={{}}>
                 <PaymentMethodActionCardListForm step={4} />
 
                 <CartSummary editable>
