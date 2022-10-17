@@ -1,6 +1,10 @@
 /// <reference types="@graphcommerce/next-ui/types" />
 
 import { gtagAddToCart } from '@graphcommerce/googleanalytics'
+import { braintree_local_payment, braintree } from '@graphcommerce/magento-payment-braintree'
+import { included_methods } from '@graphcommerce/magento-payment-included'
+import { paypal } from '@graphcommerce/magento-payment-paypal'
+import { mollie_methods } from '@graphcommerce/mollie-magento-payment'
 import {
   responsiveVal,
   breakpointVal,
@@ -389,6 +393,18 @@ const createOverrides = (theme: Theme): Components => ({
     defaultProps: {
       redirect: 'added',
       onComplete: gtagAddToCart,
+    },
+  },
+
+  PaymentMethodContextProvider: {
+    defaultProps: {
+      modules: {
+        braintree_local_payment,
+        braintree,
+        ...paypal,
+        ...included_methods,
+        ...mollie_methods,
+      },
     },
   },
 })

@@ -1,5 +1,6 @@
 import { useApolloClient } from '@graphcommerce/graphql'
 import { useCartQuery } from '@graphcommerce/magento-cart'
+import { ExtendableComponent } from '@graphcommerce/next-ui'
 import React, { PropsWithChildren, useContext, useEffect, useMemo, useState } from 'react'
 import {
   ExpandPaymentMethodsContext,
@@ -27,6 +28,15 @@ const paymentMethodContext = React.createContext<PaymentMethodContextProps>({
 paymentMethodContext.displayName = 'PaymentMethodContext'
 
 export type PaymentMethodContextProviderProps = PropsWithChildren<{ modules: PaymentMethodModules }>
+
+/** Expose the component to be exendable in your theme.components */
+declare module '@mui/material/styles/components' {
+  interface Components {
+    PaymentMethodContextProvider?: ExtendableComponent<
+      Omit<PaymentMethodContextProviderProps, 'children'>
+    >
+  }
+}
 
 export function PaymentMethodContextProvider(props: PaymentMethodContextProviderProps) {
   const { modules, children } = props

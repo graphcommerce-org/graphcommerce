@@ -20,11 +20,7 @@ import {
   PaymentMethodActionCardListForm,
 } from '@graphcommerce/magento-cart-payment-method'
 import { SubscribeToNewsletter } from '@graphcommerce/magento-newsletter'
-import { braintree, braintree_local_payment } from '@graphcommerce/magento-payment-braintree'
-import { included_methods } from '@graphcommerce/magento-payment-included'
-import { paypal } from '@graphcommerce/magento-payment-paypal'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { mollie_methods } from '@graphcommerce/mollie-magento-payment'
 import {
   FormActions,
   FullPageMessage,
@@ -116,15 +112,7 @@ function PaymentPage() {
                 <Trans id='Payment method' />
               </Typography>
 
-              <PaymentMethodContextProvider
-                modules={{
-                  braintree_local_payment,
-                  braintree,
-                  ...paypal,
-                  ...included_methods,
-                  ...mollie_methods,
-                }}
-              >
+              <PaymentMethodContextProvider>
                 <PaymentMethodActionCardListForm step={4} />
 
                 <CartSummary editable>
