@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.11.1-canary.1
+
+### Patch Changes
+
+- [`cfcc02bb8`](https://github.com/graphcommerce-org/graphcommerce/commit/cfcc02bb8091a5266d5c4a30dc4220d2a99fd3cd) Thanks [@paales](https://github.com/paales)! - Always checkout the main branch when starting a new project
+
 ## 4.11.1-canary.0
 
 ### Patch Changes
