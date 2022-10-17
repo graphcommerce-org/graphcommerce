@@ -2,7 +2,7 @@
   "name": "@graphcommerce/googleanalytics",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "3.0.8-canary.1",
+  "version": "3.0.8-canary.2",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@graphcommerce/graphql-mesh": "4.30.0",
-    "@graphcommerce/magento-product": "4.13.1-canary.1",
+    "@graphcommerce/magento-product": "4.13.1-canary.2",
     "@graphcommerce/next-ui": "4.30.0"
   },
   "devDependencies": {

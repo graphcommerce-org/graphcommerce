@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.13.1-canary.2
+
+### Patch Changes
+
+- [#1715](https://github.com/graphcommerce-org/graphcommerce/pull/1715) [`c478585c0`](https://github.com/graphcommerce-org/graphcommerce/commit/c478585c050a389828a636208de7596e0d396f70) Thanks [@Jessevdpoel](https://github.com/Jessevdpoel)! - Added sorting on category_level
+
 ## 4.13.1-canary.1
 
 ## 4.13.1-canary.0
