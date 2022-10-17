@@ -64,8 +64,9 @@ jobs:
           yarn changeset version
           git add .
           git commit -m "Exit prerelease mode and version packages"
-          git push --force origin changeset-release/main
-          gh pr create --title "Upcoming Release Changes (${{ github.ref }})" --body "-" --base main --head changeset-release/main;
-          echo 0
+          git push --force origin changeset-release/main;
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create Pull Request
+        id: cpr
+        uses: peter-evans/create-pull-request@v4
