@@ -69,6 +69,7 @@ jobs:
         uses: peter-evans/create-pull-request@v4
         with:
           branch: changeset-release/main
+          title: Upcomming release
       - name: Check outputs
         if: ${{ steps.cpr.outputs.pull-request-number }}
         run: |

@@ -66,7 +66,7 @@ https://user-images.githubusercontent.com/1251986/158647122-dc57002f-a9c2-4661-a
 
 ### Download the example
 
-1. `git clone --depth 1 https://github.com/graphcommerce-org/graphcommerce.git`
+1. `git clone -b main --depth 1 https://github.com/graphcommerce-org/graphcommerce.git`
    — clone repository
 2. `mkdir my-project` — create project folder
 3. `cp -R graphcommerce/examples/magento-graphcms/. my-project && rm -rf graphcommerce`
