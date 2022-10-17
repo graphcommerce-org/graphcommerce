@@ -59,14 +59,18 @@ jobs:
       - name: create branch disable pre and create main pr
         shell: bash
         run: |
-          git switch -C changeset-release/main
           yarn changeset pre exit
           yarn changeset version
           git add .
-          git commit -m "Exit prerelease mode and version packages"
-          git push --force origin changeset-release/main;
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create Pull Request
         id: cpr
         uses: peter-evans/create-pull-request@v4
+        with:
+          branch: changeset-release/main
+      - name: Check outputs
+        if: ${{ steps.cpr.outputs.pull-request-number }}
+        run: |
+          echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
+          echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
