@@ -21,7 +21,7 @@
     "tsc:lint": "tsc --noEmit -p .",
     "playwright": "npx playwright test --headed --project=chrome",
     "postinstall": "patch-package && yarn prepack",
-    "publish": "yarn changeset publish && git push --follow-tags",
+    "release": "yarn changeset publish && git push --follow-tags",
     "prepack": "concurrently 'yarn:prepack:2' 'yarn:prepack:3'",
     "prepack:2": "yarn workspace @graphcommerce/graphql-codegen-near-operation-file prepack",
     "prepack:3": "yarn workspace @graphcommerce/graphql-codegen-relay-optimizer-plugin prepack",

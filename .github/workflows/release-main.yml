@@ -33,7 +33,7 @@ jobs:
         id: changesets
         uses: paales/changesets-action@aggregate-release-mode
         with:
-          publish: 'yarn publish'
+          publish: 'yarn release'
           commit: 'chore(release): update monorepo packages versions'
           title: 'Upcoming Release Changes (${{ github.ref }})'
           createGithubReleases: aggregate
