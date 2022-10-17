@@ -56,7 +56,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - name: create branch disable pre and create main pr
+      - name: create branch disable pre and version
         shell: bash
         run: |
           yarn changeset pre exit
@@ -69,7 +69,7 @@ jobs:
         uses: peter-evans/create-pull-request@v4
         with:
           branch: changeset-release/main
-          title: Upcomming release
+          title: 'Release ${{ steps.vars.outputs.date }}'
       - name: Check outputs
         if: ${{ steps.cpr.outputs.pull-request-number }}
         run: |
