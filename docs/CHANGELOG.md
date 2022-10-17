@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.11.1
+
+### Patch Changes
+
+- [#1714](https://github.com/graphcommerce-org/graphcommerce/pull/1714) [`2eb6665d3`](https://github.com/graphcommerce-org/graphcommerce/commit/2eb6665d3bcb0c05f785fdac2a0b70c91e4dc833) Thanks [@github-actions](https://github.com/apps/github-actions)! - Recommend node 16 and depth=1 for cloning
+
 ## 4.11.1-canary.0
 
 ### Patch Changes

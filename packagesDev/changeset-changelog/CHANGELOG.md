@@ -1,5 +1,17 @@
 # @graphcommerce/changeset-changelog
 
+## 0.0.2
+
+### Patch Changes
+
+- [#1714](https://github.com/graphcommerce-org/graphcommerce/pull/1714) [`208d95f75`](https://github.com/graphcommerce-org/graphcommerce/commit/208d95f7574facc42871e400ef201845bd4a7927) Thanks [@github-actions](https://github.com/apps/github-actions)! - Automatically create a new canary release when packages are merged
+
+- [#1714](https://github.com/graphcommerce-org/graphcommerce/pull/1714) [`aaf676f5f`](https://github.com/graphcommerce-org/graphcommerce/commit/aaf676f5f23f38a7349684f6e0f6b5fd8f21ce38) Thanks [@github-actions](https://github.com/apps/github-actions)! - Automerge back to canary
+
+- [#1714](https://github.com/graphcommerce-org/graphcommerce/pull/1714) [`ceaf2831f`](https://github.com/graphcommerce-org/graphcommerce/commit/ceaf2831f0612ed70bc4155c8144ce241a4b1a01) Thanks [@github-actions](https://github.com/apps/github-actions)! - Simplified publishing releases
+
+- [#1714](https://github.com/graphcommerce-org/graphcommerce/pull/1714) [`3477fb699`](https://github.com/graphcommerce-org/graphcommerce/commit/3477fb69951be0cec7aa4f7c21dd9074c747fef9) Thanks [@github-actions](https://github.com/apps/github-actions)! - Automatically commit canary version changes
+
 ## 0.0.2-canary.3
 
 ### Patch Changes
