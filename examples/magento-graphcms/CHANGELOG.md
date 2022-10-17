@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.13.1
+
+### Patch Changes
+
+- [#1716](https://github.com/graphcommerce-org/graphcommerce/pull/1716) [`074d501f8`](https://github.com/graphcommerce-org/graphcommerce/commit/074d501f86a2c692d64e6a8b03edeea9487557ad) Thanks [@github-actions](https://github.com/apps/github-actions)! - Fix issue where standalone installations would throw an error
+
 ## 4.13.1-canary.2
 
 ## 4.13.1-canary.1
