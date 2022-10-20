@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.withGraphCommerce = void 0;
 const next_transpile_modules_1 = __importDefault(require("next-transpile-modules"));
 const webpack_1 = require("webpack");
+const InterceptorPlugin_1 = require("./InterceptorPlugin");
 const resolveDependenciesSync_1 = require("./utils/resolveDependenciesSync");
 function extendConfig(nextConfig, modules) {
     return {
@@ -42,13 +43,39 @@ function extendConfig(nextConfig, modules) {
                 '@mui/styled-engine': '@mui/styled-engine/modern',
                 '@mui/system': '@mui/system/modern',
             };
+            config.plugins = [
+                ...(config.plugins ?? []),
+                // new VirtualModulesPlugin(),
+                new InterceptorPlugin_1.InterceptorPlugin([
+                    {
+                        component: 'PaymentMethodContextProvider',
+                        exported: '@graphcommerce/magento-cart-payment-method/PaymentMethodContext/PaymentMethodContext',
+                        plugin: '@graphcommerce/mollie-magento-payment/plugins/AddMollieMethods',
+                    },
+                    {
+                        component: 'PaymentMethodContextProvider',
+                        exported: '@graphcommerce/magento-cart-payment-method/PaymentMethodContext/PaymentMethodContext',
+                        plugin: '@graphcommerce/magento-payment-braintree/plugins/AddBraintreeMethods',
+                    },
+                    {
+                        component: 'PaymentMethodContextProvider',
+                        exported: '@graphcommerce/magento-cart-payment-method/PaymentMethodContext/PaymentMethodContext',
+                        plugin: '@graphcommerce/magento-payment-included/plugins/AddIncludedMethods',
+                    },
+                    {
+                        component: 'PaymentMethodContextProvider',
+                        exported: '@graphcommerce/magento-cart-payment-method/PaymentMethodContext/PaymentMethodContext',
+                        plugin: '@graphcommerce/magento-payment-paypal/plugins/AddPaypalMethods',
+                    },
+                ]),
+            ];
             return typeof nextConfig.webpack === 'function' ? nextConfig.webpack(config, options) : config;
         },
     };
 }
 function withGraphCommerce(conf = {}) {
     const { packages = [] } = conf;
-    const dependencies = [...(0, resolveDependenciesSync_1.resolveDependenciesSync)().keys()];
+    const dependencies = [...(0, resolveDependenciesSync_1.resolveDependenciesSync)().keys()].slice(1);
     const modules = [...dependencies, ...packages];
     return (config) => extendConfig((0, next_transpile_modules_1.default)(modules)(config), modules);
 }

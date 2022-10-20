@@ -2,6 +2,8 @@ import fs from 'node:fs'
 import path from 'node:path'
 import type { PackageJson } from 'type-fest'
 
+const resolveCache: Map<string, Map<string, string>> = new Map<string, Map<string, string>>()
+
 function resolveRecursivePackageJson(
   packageJsonFilename: string,
   packageNames: Map<string, string>,
@@ -55,5 +57,9 @@ function resolveRecursivePackageJson(
  * and stop there, not checking children.
  */
 export function resolveDependenciesSync(root = process.cwd()) {
-  return resolveRecursivePackageJson(path.join(root, 'package.json'), new Map())
+  const cached = resolveCache.get(root)
+  if (cached) return cached
+  const result = resolveRecursivePackageJson(path.join(root, 'package.json'), new Map())
+  resolveCache.set(root, result)
+  return result
 }
