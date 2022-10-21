@@ -1,4 +1,4 @@
-import { ResolveDependency, ResolveDependencyReturn } from './utils/resolveDependency';
+import { ResolveDependency, ResolveDependencyReturn } from '../utils/resolveDependency';
 export declare type PluginConfig = {
     component: string;
     exported: string;
@@ -15,6 +15,4 @@ export declare type MaterializedPlugin = Plugin & {
 export declare function generateInterceptor(plugin: Plugin): MaterializedPlugin;
 export declare type GenerateInterceptorsReturn = Record<string, MaterializedPlugin>;
 export declare function generateInterceptors(plugins: PluginConfig[], resolve: ResolveDependency): GenerateInterceptorsReturn;
-export declare function rmInterceptors(cwd?: string): string[];
-export declare function writeInterceptors(interceptors: GenerateInterceptorsReturn, cwd?: string): void;
 export {};

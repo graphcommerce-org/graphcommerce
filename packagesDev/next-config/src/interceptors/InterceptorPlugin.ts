@@ -1,21 +1,18 @@
 import path from 'path'
 import { Compiler } from 'webpack'
-import {
-  PluginConfig,
-  generateInterceptors,
-  GenerateInterceptorsReturn,
-  writeInterceptors,
-} from './generateInterceptors'
-import { ResolveDependency, resolveDependency } from './utils/resolveDependency'
+import { ResolveDependency, resolveDependency } from '../utils/resolveDependency'
+import { findPlugins } from './findPlugins'
+import { generateInterceptors, GenerateInterceptorsReturn } from './generateInterceptors'
+import { writeInterceptors } from './writeInterceptors'
 
 export class InterceptorPlugin {
   private interceptors: GenerateInterceptorsReturn
 
   private resolveDependency: ResolveDependency
 
-  constructor(plugins: PluginConfig[]) {
+  constructor() {
     this.resolveDependency = resolveDependency()
-    this.interceptors = generateInterceptors(plugins, this.resolveDependency)
+    this.interceptors = generateInterceptors(findPlugins(), this.resolveDependency)
     writeInterceptors(this.interceptors)
   }
 

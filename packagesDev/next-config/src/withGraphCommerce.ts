@@ -1,7 +1,7 @@
 import type { NextConfig } from 'next'
 import withTranspileModules from 'next-transpile-modules'
 import { DefinePlugin, Configuration } from 'webpack'
-import { InterceptorPlugin } from './InterceptorPlugin'
+import { InterceptorPlugin } from './interceptors/InterceptorPlugin'
 import { resolveDependenciesSync } from './utils/resolveDependenciesSync'
 
 function extendConfig(nextConfig: NextConfig, modules: string[]): NextConfig {
@@ -48,32 +48,7 @@ function extendConfig(nextConfig: NextConfig, modules: string[]): NextConfig {
       config.plugins = [
         ...(config.plugins ?? []),
         // new VirtualModulesPlugin(),
-        new InterceptorPlugin([
-          {
-            component: 'PaymentMethodContextProvider',
-            exported:
-              '@graphcommerce/magento-cart-payment-method/PaymentMethodContext/PaymentMethodContext',
-            plugin: '@graphcommerce/mollie-magento-payment/plugins/AddMollieMethods',
-          },
-          {
-            component: 'PaymentMethodContextProvider',
-            exported:
-              '@graphcommerce/magento-cart-payment-method/PaymentMethodContext/PaymentMethodContext',
-            plugin: '@graphcommerce/magento-payment-braintree/plugins/AddBraintreeMethods',
-          },
-          {
-            component: 'PaymentMethodContextProvider',
-            exported:
-              '@graphcommerce/magento-cart-payment-method/PaymentMethodContext/PaymentMethodContext',
-            plugin: '@graphcommerce/magento-payment-included/plugins/AddIncludedMethods',
-          },
-          {
-            component: 'PaymentMethodContextProvider',
-            exported:
-              '@graphcommerce/magento-cart-payment-method/PaymentMethodContext/PaymentMethodContext',
-            plugin: '@graphcommerce/magento-payment-paypal/plugins/AddPaypalMethods',
-          },
-        ]),
+        new InterceptorPlugin(),
       ]
 
       return typeof nextConfig.webpack === 'function' ? nextConfig.webpack(config, options) : config

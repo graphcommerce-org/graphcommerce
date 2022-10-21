@@ -3,6 +3,10 @@ import { PayPalExpressActionCard } from '../components/PayPalPaymentActionCard/P
 import { PayPalPaymentHandler } from '../components/PayPalPaymentHandler/PayPalPaymentHandler'
 import { PayPalPaymentOptions } from '../components/PayPalPaymentOptionsAndPlaceOrder/PayPalPaymentOptions'
 
+export const component = 'PaymentMethodContextProvider'
+export const exported =
+  '@graphcommerce/magento-cart-payment-method/PaymentMethodContext/PaymentMethodContext'
+
 const paypal_express = {
   PaymentOptions: PayPalPaymentOptions,
   PaymentActionCard: PayPalExpressActionCard,

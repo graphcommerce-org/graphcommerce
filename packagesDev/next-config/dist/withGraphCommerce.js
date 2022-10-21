@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.withGraphCommerce = void 0;
 const next_transpile_modules_1 = __importDefault(require("next-transpile-modules"));
 const webpack_1 = require("webpack");
-const InterceptorPlugin_1 = require("./InterceptorPlugin");
+const InterceptorPlugin_1 = require("./interceptors/InterceptorPlugin");
 const resolveDependenciesSync_1 = require("./utils/resolveDependenciesSync");
 function extendConfig(nextConfig, modules) {
     return {
@@ -46,28 +46,7 @@ function extendConfig(nextConfig, modules) {
             config.plugins = [
                 ...(config.plugins ?? []),
                 // new VirtualModulesPlugin(),
-                new InterceptorPlugin_1.InterceptorPlugin([
-                    {
-                        component: 'PaymentMethodContextProvider',
-                        exported: '@graphcommerce/magento-cart-payment-method/PaymentMethodContext/PaymentMethodContext',
-                        plugin: '@graphcommerce/mollie-magento-payment/plugins/AddMollieMethods',
-                    },
-                    {
-                        component: 'PaymentMethodContextProvider',
-                        exported: '@graphcommerce/magento-cart-payment-method/PaymentMethodContext/PaymentMethodContext',
-                        plugin: '@graphcommerce/magento-payment-braintree/plugins/AddBraintreeMethods',
-                    },
-                    {
-                        component: 'PaymentMethodContextProvider',
-                        exported: '@graphcommerce/magento-cart-payment-method/PaymentMethodContext/PaymentMethodContext',
-                        plugin: '@graphcommerce/magento-payment-included/plugins/AddIncludedMethods',
-                    },
-                    {
-                        component: 'PaymentMethodContextProvider',
-                        exported: '@graphcommerce/magento-cart-payment-method/PaymentMethodContext/PaymentMethodContext',
-                        plugin: '@graphcommerce/magento-payment-paypal/plugins/AddPaypalMethods',
-                    },
-                ]),
+                new InterceptorPlugin_1.InterceptorPlugin(),
             ];
             return typeof nextConfig.webpack === 'function' ? nextConfig.webpack(config, options) : config;
         },

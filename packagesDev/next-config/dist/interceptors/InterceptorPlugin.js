@@ -5,13 +5,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.InterceptorPlugin = void 0;
 const path_1 = __importDefault(require("path"));
+const resolveDependency_1 = require("../utils/resolveDependency");
+const findPlugins_1 = require("./findPlugins");
 const generateInterceptors_1 = require("./generateInterceptors");
-const resolveDependency_1 = require("./utils/resolveDependency");
+const writeInterceptors_1 = require("./writeInterceptors");
 class InterceptorPlugin {
-    constructor(plugins) {
+    constructor() {
         this.resolveDependency = (0, resolveDependency_1.resolveDependency)();
-        this.interceptors = (0, generateInterceptors_1.generateInterceptors)(plugins, this.resolveDependency);
-        (0, generateInterceptors_1.writeInterceptors)(this.interceptors);
+        this.interceptors = (0, generateInterceptors_1.generateInterceptors)((0, findPlugins_1.findPlugins)(), this.resolveDependency);
+        (0, writeInterceptors_1.writeInterceptors)(this.interceptors);
     }
     apply(compiler) {
         const logger = compiler.getInfrastructureLogger('InterceptorPlugin');
