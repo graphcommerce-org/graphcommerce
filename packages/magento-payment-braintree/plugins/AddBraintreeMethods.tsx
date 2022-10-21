@@ -24,7 +24,3 @@ export const plugin: Plugin<typeof Aliasje, PaymentMethodContextProviderProps> =
       />
     )
   }
-
-export function plugggg(Component: typeof PaymentMethodContextProvider) {
-  return (props: PaymentMethodContextProviderProps) => <Component {...props} />
-}
