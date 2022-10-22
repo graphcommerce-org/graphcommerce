@@ -8,22 +8,22 @@ it.only('finds plugins', () => {
       Object {
         "component": "PaymentMethodContextProvider",
         "exported": "@graphcommerce/magento-cart-payment-method/PaymentMethodContext/PaymentMethodContext",
-        "plugin": "packages/magento-payment-braintree/plugins/AddBraintreeMethods",
+        "plugin": "@graphcommerce/magento-payment-braintree/plugins/AddBraintreeMethods",
       },
       Object {
         "component": "PaymentMethodContextProvider",
         "exported": "@graphcommerce/magento-cart-payment-method/PaymentMethodContext/PaymentMethodContext",
-        "plugin": "packages/magento-payment-included/plugins/AddIncludedMethods",
+        "plugin": "@graphcommerce/magento-payment-included/plugins/AddIncludedMethods",
       },
       Object {
         "component": "PaymentMethodContextProvider",
         "exported": "@graphcommerce/magento-cart-payment-method/PaymentMethodContext/PaymentMethodContext",
-        "plugin": "packages/magento-payment-paypal/plugins/AddPaypalMethods",
+        "plugin": "@graphcommerce/magento-payment-paypal/plugins/AddPaypalMethods",
       },
       Object {
         "component": "PaymentMethodContextProvider",
         "exported": "@graphcommerce/magento-cart-payment-method/PaymentMethodContext/PaymentMethodContext",
-        "plugin": "packages/mollie-magento-payment/plugins/AddMollieMethods",
+        "plugin": "@graphcommerce/mollie-magento-payment/plugins/AddMollieMethods",
       },
     ]
   `)

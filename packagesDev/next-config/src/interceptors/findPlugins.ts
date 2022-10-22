@@ -55,13 +55,14 @@ export function findPlugins(cwd: string = process.cwd()) {
   const dependencies = resolveDependenciesSync(cwd)
 
   const plugins: PluginConfig[] = []
-  dependencies.forEach((dependency) => {
+  dependencies.forEach((dependency, path) => {
     const files = glob.sync(`${dependency}/plugins/**/*.tsx`)
     files.forEach((file) => {
       try {
         const result = parseStructure(file)
         if (!result) return
-        plugins.push({ ...result, plugin: file.replace('.tsx', '') })
+
+        plugins.push({ ...result, plugin: file.replace(dependency, path).replace('.tsx', '') })
       } catch (e) {
         console.error(`Error parsing ${file}`, e)
       }

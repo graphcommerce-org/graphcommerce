@@ -54,14 +54,14 @@ function parseStructure(file) {
 function findPlugins(cwd = process.cwd()) {
     const dependencies = (0, resolveDependenciesSync_1.resolveDependenciesSync)(cwd);
     const plugins = [];
-    dependencies.forEach((dependency) => {
+    dependencies.forEach((dependency, path) => {
         const files = glob_1.default.sync(`${dependency}/plugins/**/*.tsx`);
         files.forEach((file) => {
             try {
                 const result = parseStructure(file);
                 if (!result)
                     return;
-                plugins.push({ ...result, plugin: file.replace('.tsx', '') });
+                plugins.push({ ...result, plugin: file.replace(dependency, path).replace('.tsx', '') });
             }
             catch (e) {
                 console.error(`Error parsing ${file}`, e);
