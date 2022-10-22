@@ -61,7 +61,7 @@ function findPlugins(cwd = process.cwd()) {
                 const result = parseStructure(file);
                 if (!result)
                     return;
-                plugins.push({ ...result, plugin: file });
+                plugins.push({ ...result, plugin: file.replace('.tsx', '') });
             }
             catch (e) {
                 console.error(`Error parsing ${file}`, e);
