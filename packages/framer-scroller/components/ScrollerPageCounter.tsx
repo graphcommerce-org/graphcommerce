@@ -24,7 +24,7 @@ export const ScrollerPageCounter = React.forwardRef<HTMLDivElement, SliderPageCo
         .filter((i) => i[1] > 0)
         .sort((a, b) => b[1] - a[1])
 
-      setCurrent(visibleItems[0]?.[0] ?? '?')
+      setCurrent(visibleItems[0]?.[0] ?? 1)
     })
 
     return (
