@@ -27,12 +27,12 @@ const paymentMethodContext = React.createContext<PaymentMethodContextProps>({
 paymentMethodContext.displayName = 'PaymentMethodContext'
 
 export type PaymentMethodContextProviderProps = {
-  modules: PaymentMethodModules
+  modules?: PaymentMethodModules
   children: React.ReactNode
 }
 
 export function PaymentMethodContextProvider(props: PaymentMethodContextProviderProps) {
-  const { modules, children } = props
+  const { modules = {}, children } = props
 
   const context = useCartQuery(GetPaymentMethodContextDocument)
   const client = useApolloClient()
