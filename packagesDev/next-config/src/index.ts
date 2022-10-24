@@ -14,7 +14,4 @@ export function withYarn1Scopes(packages?: string[]): (config: NextConfig) => Ne
   return withGraphCommerce({ packages })
 }
 
-export declare type Plugin<
-  P extends Record<string, unknown> = Record<string, unknown>,
-  C extends React.FC<P> = React.FC<P>,
-> = (Component: C) => React.FC<P>
+export type Plugin<P> = (config: { Component: React.FC<P> }) => (props: P) => any

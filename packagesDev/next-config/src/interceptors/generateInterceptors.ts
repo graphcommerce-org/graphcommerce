@@ -58,7 +58,7 @@ export function generateInterceptor(plugin: Plugin): MaterializedPlugin {
           return true
         })
         .join(', ')}].reduce(
-  (acc, plugin) => plugin(acc),
+  (Component, plugin) => plugin({ Component }),
   ${component}Base,
 )
 `

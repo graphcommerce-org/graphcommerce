@@ -45,7 +45,7 @@ it('it generates an interceptor', () => {
     export * from '.'
 
     export const PaymentMethodContextProvider = [AddMollieMethods].reduce(
-      (acc, plugin) => plugin(acc),
+      (Component, plugin) => plugin({ Component }),
       PaymentMethodContextProviderBase,
     )
     "
@@ -93,12 +93,12 @@ it('it can apply multiple plugins to a single export', () => {
     export * from './PaymentMethodContext'
 
     export const PaymentMethodContextProvider = [AddBraintreeMethods, AddMollieMethods].reduce(
-      (acc, plugin) => plugin(acc),
+      (Component, plugin) => plugin({ Component }),
       PaymentMethodContextProviderBase,
     )
 
     export const OneMoreComponent = [AddOneMore].reduce(
-      (acc, plugin) => plugin(acc),
+      (Component, plugin) => plugin({ Component }),
       OneMoreComponentBase,
     )
     "
@@ -138,7 +138,7 @@ it('it handles on duplicates gracefully', () => {
     export * from './PaymentMethodContext'
 
     export const PaymentMethodContextProvider = [AddBraintreeMethods].reduce(
-      (acc, plugin) => plugin(acc),
+      (Component, plugin) => plugin({ Component }),
       PaymentMethodContextProviderBase,
     )
     "

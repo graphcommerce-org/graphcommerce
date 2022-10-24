@@ -7,7 +7,7 @@ export const component = 'PaymentMethodContextProvider'
 export const exported =
   '@graphcommerce/magento-cart-payment-method/PaymentMethodContext/PaymentMethodContext'
 
-export const plugin: Plugin<PaymentMethodContextProviderProps> = (Component) =>
+export const plugin: Plugin<PaymentMethodContextProviderProps> = ({ Component }) =>
   function AddBraintreeMethods(props) {
     const { modules } = props
     return (

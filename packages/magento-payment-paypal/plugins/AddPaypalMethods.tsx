@@ -15,8 +15,8 @@ const paypal_express = {
   PaymentPlaceOrder: () => null,
 }
 
-export const plugin: Plugin<PaymentMethodContextProviderProps> = (PaymentMethodContextProvider) =>
+export const plugin: Plugin<PaymentMethodContextProviderProps> = ({ Component }) =>
   function AddPaypalMethods(props) {
     const { modules } = props
-    return <PaymentMethodContextProvider {...props} modules={{ ...modules, paypal_express }} />
+    return <Component {...props} modules={{ ...modules, paypal_express }} />
   }

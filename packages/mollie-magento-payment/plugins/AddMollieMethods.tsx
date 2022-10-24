@@ -9,7 +9,7 @@ export const component = 'PaymentMethodContextProvider'
 export const exported =
   '@graphcommerce/magento-cart-payment-method/PaymentMethodContext/PaymentMethodContext'
 
-export const plugin: Plugin<PaymentMethodContextProviderProps> = (Component) =>
+export const plugin: Plugin<PaymentMethodContextProviderProps> = ({ Component }) =>
   function AddMollieMethods(props) {
     const { modules } = props
 
