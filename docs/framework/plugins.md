@@ -7,6 +7,8 @@ right places.
 - Plug-and-play: It is be possible to install packages after which they
   immediately work.
 - No runtime overhead: The plugin system is fully implemented in webpack and
+- Easy plugin creation: Configuration should happen in the plugin file, not a
+  separate configuration file.
 
 ## What problem are we solving?
 
@@ -120,6 +122,15 @@ work for other things such as:
 ### Limitations
 
 - It is not possible to write a plugin in the root of a project. This means that
-  this functionality (for now) only works for GraphCommerce packages.
-- It is currently only possible to extend React Components. In theory other
-  types of plugins should also be possible.
+  this functionality (for now) only works to create plugins for GraphCommerce
+  packages.
+- It is currently is only possible to extend React Components. This however sets
+  the foundation to allow for a more flexible plugin system in the future.
+- It currently isn't possible to provide a plugin sort order. The sort order of
+  the plugin isn't guaranteed at the moment. This effectively means that it
+  isn't possible to override a plugin.
+- It currently isn't possible to disable a single plugin, the only way is to
+  remove the package from your package.json.
+- There currently isn't a way for the plugin to determine if the plugin should
+  be activated. For example, the code for Google Analytics should only be added
+  if the user has configured it. This is currently not possible.
