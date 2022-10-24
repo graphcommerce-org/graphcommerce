@@ -1,64 +1,60 @@
 # Plugins
 
-GraphCommerce plugin systeem stelt het in staat om GraphCommerce uit te breiden
-op een plug-and-play manier. Installeer een nieuwe package en de code wordt op
-de juiste plekken toegevoegd.
+GraphCommerce plugin system allows you to extend GraphCommerce in a
+plug-and-play manner. Install a new package and the code will be added at the
+right places.
 
-- Plug-and-play: Het moet mogelijk zijn om packages te installeeren waarna deze
-  direct volledig werken.
-- Geen runtime overhead: Het plugin systeem is volledig geimplementeerd in
-  webpack en heeft daarmee geen runtime overhead en 0kB bundlesize increase.
+- Plug-and-play: It is be possible to install packages after which they
+  immediately work.
+- No runtime overhead: The plugin system is fully implemented in webpack and
 
-## Welk probleem lossen we op?
+## What problem are we solving?
 
-Zonder plugins is de enige manier om nieuwe functionaliteit toe te voegen door
-de code van je project op verschillende plekken aan te passen. Veelal geven we
-props op van components om deze aan te passen om passen components in z'n geheel
-aan, maar plaatsen soms ook hooks op verschillende plekken.
+Without plugins the only way to add new functionality is by modifying the code
+of your project at multiple places. We often pass props to components to
+customize them, but sometimes we also place hooks at multiple places.
 
-Bijvoorbeeld voor het toevoegen van een nieuwe betaalmethode was het nodig om de
-props aan te passen van
+For example, to add a new payment method it was necessary to modify the props of
 `<PaymentMethodContextProvider methods={[...braintree]}>`
 
-Dit zorgt voor problemen:
+This causes problems:
 
-- Upgrades: Past GraphCommerce op ergens in de code iets aan, waar je als
-  gebruiker de code al hebt aangepast, dan krijg je een upgrade conflict welke
-  je handmatig moet oplossen. Door plugins te gebruiken
-- Nieuwe packages: Installeer je een complexe nieuwe package, dan kan het
-  voorkomen dat je op veel locaties code moet aanpassen.
+- Upgrades: If GraphCommerce changes something somewhere in the code where you
+  have already modified the code, you get an upgrade conflict which you have to
+  manually resolve. By using plugins you can avoid this.
+- New packages: When you install a complex new package, it can happen that you
+  have to modify the code of your project at multiple places. This is not
+  necessary with plugins.
 
-## Wat is een Plugin?
+## What is a plugin?
 
-Met een plugin moet het mogelijk worden om _React Components_ aan te kunnen
-passen door deze te 'wrappen', maar zonder dat de code in de
-`examples/magento-graphcms` of `your-project` aangepast hoeft te worden.
+A plugin is a way to modify React Components by wrapping them, without having to
+modify the code in `examples/magento-graphcms` or `your-project`.
 
-Voor de M2 mensen: Denk aan around plugins, maar dan zonder configuratie files
-en geen performance penalty.
+For the M2 people: Think of around plugins, but without configuration files and
+no performance penalty.
 
-In de [PR](https://github.com/graphcommerce-org/graphcommerce/pull/1718) heb ik
-als eerste kandidaat de
+In the [PR](https://github.com/graphcommerce-org/graphcommerce/pull/1718) I have
+made the
 [`<PaymentMethodContextProvider />`](https://github.com/graphcommerce-org/graphcommerce/pull/1718/files#diff-d5b4da6c34d4b40dc8ac5d1c5967bc6f5aaa70d0d5ac79552f3a980b17a88ea9R115)
-via plugins laten werken.
+work with plugins.
 
-De daadwerkelijke plugins zijn:
+The actual plugins are:
 
 - [AddBraintreeMethods](https://github.com/graphcommerce-org/graphcommerce/pull/1718/files#diff-14391e8c8f598e720b3e99ece1248987d68eb6133d354a3a55ef82331905be5b)
 - [AddIncludedMethods](https://github.com/graphcommerce-org/graphcommerce/pull/1718/files#diff-c3d57b802463ed40925b558049a56992202be975f3c86982e6a753e2830bdb9f)
 - [AddPaypalMethods](https://github.com/graphcommerce-org/graphcommerce/pull/1718/files#diff-934d7a9d597b01b6da875f61ca1cdfd57e0e0817e7126ce6216fd82dc4b6f899)
 - [AddMollieMethods](https://github.com/graphcommerce-org/graphcommerce/pull/1718/files#diff-76e6fc63dee67f55cbad4f13dc7b1b764da6235b88ed8d987c7044b7ef7fc942)
 
-Het resultaat hiervan is dat:
+The result of this is that:
 
-- De betaalmethoden worden toegevoegd aan de `<PaymentMethodContextProvider />`
-  via plugins.
-- Deze plugins alleen worden toegepast als de relevante package is
-  geinstalleerd.
+- The payment methods are added to the `<PaymentMethodContextProvider />` via
+  plugins.
+- These plugins are only applied if the relevant package is installed.
 
-### Hoe maak ik een plugin?
+### How do I make a plugin?
 
-Een GraphCommerce plugin moet het volgende bevatten om het werkend te krijgen:
+A GraphCommerce plugin must contain the following to work:
 
 ```tsx
 import {
@@ -80,21 +76,20 @@ export const plugin: Plugin<ComponentToExtendProps> = ({ Component }) =>
   }
 ```
 
-Alle drie de exports zijn op dit moment verplicht (!), anders werkt de plugin
-niet. `component` en `exported` zijn op dit moment verplicht.
+All three exports are currently required (!), otherwise the plugin will not
+work. `component` and `exported` are currently required.
 
-### Hoe werkt het?
+### How does it work?
 
-1. Genereer een lijst met alle packages met `graphcommerce` in de package `name`
-   (bijvoorbeeld `@graphcommerce/core-package` of
-   `@my-company/graphcommerce-plugin-name`.).
-2. Zoek naar plugins in de packages `plugins/**/*.tsx`.
-3. Analyseer de plugins, check of de `component` en `exported` exports bestaan
-   en genereer de plugin configuratie.
-4. Genereer `ComponentToExtend.interceptor.tsx` en plaats deze naast het het
-   component.
+1. Generate a list of all packages with `graphcommerce` in the package `name`
+   (for example `@graphcommerce/core-package` or
+   `@my-company/graphcommerce-plugin-name`).
+2. Search for plugins in the packages `plugins/**/*.tsx`.
+3. Statically Analyse the plugins, check if the `component` and `exported`
+   exports exist and generate the plugin configuration.
+4. Generate `ComponentToExtend.interceptor.tsx` and place it next to the
 
-De genereerde interceptor ziet er als volgt uit:
+The generated interceptor looks like this:
 
 ```tsx
 import { plugin as MyPlugin } from '@my-company/graphcommerce-plugin-name/plugins/MyPlugin'
@@ -108,35 +103,23 @@ export const ComponentToExtend = [MyPlugin].reduce(
 )
 ```
 
-### Mogelijkheden
+### Possible use cases
 
-In de PR heb ik de payment gateways als voorbeeld gebruikt om werkend te
-krijgen, maar het moet ook gaan werken voor ander zaken zoals:
+In the PR I have used the payment gateways as an example, but it should also
+work for other things such as:
 
 - Googletagmanager
 - Googleanalytics
 - Google recaptcha
-- Andere payment gateways zoals we nu gebruikt hebben bij de klanten.
-- Compare functionaliteit?
-- Wishlist functionaliteit?
-- Abstractie tussen GraphCommerce en Backends (Magento, BigCommerce,
+- Other payment gateways like we currently use with customers.
+- Compare functionality?
+- Wishlist functionality?
+- Abstraction between GraphCommerce and Backends? (Magento, BigCommerce,
   CommerceTools, etc.)
 
-### Limitaties
+### Limitations
 
-- Het is niet mogelijk om in de root van een project een plugin te schrijven.
-  Dit houd in dat deze functionaliteit (voor nu) alleen voor GraphCommerce
-  packages werkt.
-- Het is op dit moment álleen mogelijk om React Components uit te breiden. In
-  theorie zouden andere typen plugins ook mogelijk moeten kunnen zijn.
-
-### Persoonlijke ervaringen:
-
-- Ik heb een Webpack plugin geschreven, wat een grote uitdaging was. Holy moly
-  wat is er veel informatie over Webpack plugins te vinden, maar bijna niets
-  over hoe je een Webpack plugin schrijft.
-- Ik heb een AST (Abstract Syntax Tree) parser op basis van `@swc/core`
-  geschreven. Dit bleek eigenlijk best goed te doen te zijn. De AST lijkt
-  behoorlijk op de GraphQL AST welke ik in het verleden heb verwerkt. In de
-  toekomst wil ik `component` en `exported` niet meer nodig maken, door volledig
-  de AST en alle relevante informatie uit de plugin te halen.
+- It is not possible to write a plugin in the root of a project. This means that
+  this functionality (for now) only works for GraphCommerce packages.
+- It is currently only possible to extend React Components. In theory other
+  types of plugins should also be possible.
