@@ -5,15 +5,15 @@ import { Money } from '@graphcommerce/magento-store'
 import { responsiveVal, extendableComponent } from '@graphcommerce/next-ui'
 import { Badge, Box, Link, SxProps, Theme } from '@mui/material'
 import PageLink from 'next/link'
-import { PropsWithChildren } from 'react'
 import { CartItemFragment } from '../Api/CartItem.gql'
 import { RemoveItemFromCartFab } from '../RemoveItemFromCart/RemoveItemFromCartFab'
 import { UpdateItemQuantity } from '../UpdateItemQuantity/UpdateItemQuantity'
 
 const rowImageSize = responsiveVal(70, 125)
 
-export type CartItemProps = PropsWithChildren<CartItemFragment> & {
+export type CartItemProps = CartItemFragment & {
   sx?: SxProps<Theme>
+  children?: React.ReactNode
 } & OwnerState
 
 type OwnerState = { withOptions?: boolean }

@@ -1,11 +1,14 @@
-import { PropsWithChildren, useState, useEffect, useMemo } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { productListParamsContext } from '../../context/productListParamsContext'
 import { ProductListParams } from './filterTypes'
 
 export function ProductListParamsProvider({
   children,
   value,
-}: PropsWithChildren<{ value: ProductListParams }>) {
+}: {
+  value: ProductListParams
+  children: React.ReactNode
+}) {
   const [params, setParams] = useState<ProductListParams>(value)
 
   useEffect(() => setParams(value), [value])

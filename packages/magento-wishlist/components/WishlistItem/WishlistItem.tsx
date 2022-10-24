@@ -1,6 +1,5 @@
 import { InputMaybe } from '@graphcommerce/graphql-mesh'
 import { SxProps, Theme } from '@mui/material'
-import { PropsWithChildren } from 'react'
 import { ProductAddToCart } from './ProductAddToCart'
 import { WishlistItemBase } from './WishlistItemBase'
 import { WishlistItemProductFragment } from './WishlistItemProduct.gql'
@@ -9,9 +8,10 @@ type OptionalProductWishlistParent = {
   wishlistItemId?: string
 }
 
-export type WishlistItemProps = PropsWithChildren<WishlistItemProductFragment> & {
+export type WishlistItemProps = WishlistItemProductFragment & {
   sx?: SxProps<Theme>
   selectedOptions?: InputMaybe<string[]> | undefined
+  children?: React.ReactNode
 } & OptionalProductWishlistParent
 
 export function WishlistItem(props: WishlistItemProps) {

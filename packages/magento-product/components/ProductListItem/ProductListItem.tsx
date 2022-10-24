@@ -13,11 +13,10 @@ import {
   styled,
   SxProps,
   Theme,
-  ButtonBaseProps,
   useEventCallback,
 } from '@mui/material'
 import PageLink from 'next/link'
-import React, { PropsWithChildren } from 'react'
+import React from 'react'
 import { ProductListItemFragment } from '../../Api/ProductListItem.gql'
 import { useProductLink } from '../../hooks/useProductLink'
 import { ProductListPrice } from '../ProductListPrice/ProductListPrice'
