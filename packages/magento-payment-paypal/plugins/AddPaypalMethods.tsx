@@ -1,5 +1,5 @@
 import type { PaymentMethodContextProviderProps } from '@graphcommerce/magento-cart-payment-method'
-import type { Plugin } from '@graphcommerce/next-config'
+import type { PluginProps } from '@graphcommerce/next-config'
 import { PayPalExpressActionCard } from '../components/PayPalPaymentActionCard/PayPalPaymentActionCard'
 import { PayPalPaymentHandler } from '../components/PayPalPaymentHandler/PayPalPaymentHandler'
 import { PayPalPaymentOptions } from '../components/PayPalPaymentOptionsAndPlaceOrder/PayPalPaymentOptions'
@@ -15,8 +15,9 @@ const paypal_express = {
   PaymentPlaceOrder: () => null,
 }
 
-export const plugin: Plugin<PaymentMethodContextProviderProps> = ({ Component }) =>
-  function AddPaypalMethods(props) {
-    const { modules } = props
-    return <Component {...props} modules={{ ...modules, paypal_express }} />
-  }
+function AddPaypalMethods(props: PluginProps<PaymentMethodContextProviderProps>) {
+  const { modules, Component } = props
+  return <Component {...props} modules={{ ...modules, paypal_express }} />
+}
+
+export const Plugin = AddPaypalMethods

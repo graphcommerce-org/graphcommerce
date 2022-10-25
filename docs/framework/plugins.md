@@ -56,64 +56,93 @@ The result of this is that:
 
 ### How do I make a plugin?
 
-A GraphCommerce plugin must contain the following to work:
+In the root of my project, i've created a plugin
+`examples/magento-graphcms/plugins/AddPaymentMethodEnhancer.tsx` that adds
+purchaseorder to `<PaymentMethodContextProvider/>`
 
 ```tsx
-import {
-  ComponentToExtend,
-  ComponentToExtendProps,
-} from '@graphcommerce/core-package/ComponentToExtend'
+import type { PaymentMethodContextProviderProps } from '@graphcommerce/magento-cart-payment-method'
+import type { PluginProps } from '@graphcommerce/next-config'
+import { purchaseorder } from '../PurchaseOrder'
 
 // Component to extend, required
-export const component = 'ComponentToExtend'
+export const component = 'PaymentMethodContextProvider'
 
 // Exported location of the component that you are extending, required
-export const exported = '@graphcommerce/core-package/ComponentToExtend'
+export const exported =
+  '@graphcommerce/magento-cart-payment-method/PaymentMethodContext/PaymentMethodContext'
 
-// The actual plugin
-export const plugin: Plugin<ComponentToExtendProps> = ({ Component }) =>
-  function MyPlugin(props) {
-    // Do stuff here like, wrapping, modifying props, etc.
-    return <Component {...props} />
-  }
+function AddPaymentMethodEnhancer(
+  props: PluginProps<PaymentMethodContextProviderProps>,
+) {
+  const { Component, modules, ...rest } = props
+  return <Component {...rest} modules={{ ...modules, purchaseorder }} />
+}
+
+/** The export must be named `Plugin` and must accept a Component to render */
+export const Plugin = AddIncludedMethods
 ```
-
-All three exports are currently required (!), otherwise the plugin will not
-work. `component` and `exported` are currently required.
 
 ### How does it work?
 
-1. Generate a list of all packages with `graphcommerce` in the package `name`
-   (for example `@graphcommerce/core-package` or
+1. It generates a list of all packages with `graphcommerce` in the package
+   `name` (All `@graphcommerce/*` packages and
    `@my-company/graphcommerce-plugin-name`).
-2. Search for plugins in the packages `plugins/**/*.tsx`.
+2. It does a glob search for plugins in the plugins folders for each package:
+   `${packageLocation}/plugins/**/*.tsx`.
 3. Statically Analyse the plugins, check if the `component` and `exported`
    exports exist and generate the plugin configuration.
-4. Generate `ComponentToExtend.interceptor.tsx` and place it next to the
+4. Generate `PaymentMethodContext.interceptor.tsx` and place it next to the
+   existing component
 
-The generated interceptor looks like this:
+Example of generated interceptor with additional comments:
 
 ```tsx
-import { plugin as MyPlugin } from '@my-company/graphcommerce-plugin-name/plugins/MyPlugin'
-import { ComponentToExtend as ComponentToExtendBase } from './ComponentToExtend'
+// All plugins are imported, which will be used to enhance the original component.
+import { Plugin as AddIncludedMethods } from '@graphcommerce/magento-payment-included/plugins/AddIncludedMethods'
+import { Plugin as AddPaypalMethods } from '@graphcommerce/magento-payment-paypal/plugins/AddPaypalMethods'
 
-export * from './ComponentToExtend'
+// This file is placed next to the original component, so it is imported with a relative path, in the Webpack plugin we
+// load the original file if it is loaded from the interceptor.
+import { PaymentMethodContextProvider as PaymentMethodContextProviderBase } from './PaymentMethodContext'
 
-export const ComponentToExtend = [MyPlugin].reduce(
-  (Component, plugin) => plugin({ Component }),
-  ComponentToExtendBase,
+// All original exports are exported, if the original file exports more than we're intercepting, it will still work.
+export * from './PaymentMethodContext'
+
+type PaymentMethodContextProviderBaseProps = React.ComponentProps<
+  typeof PaymentMethodContextProviderBase
+>
+
+// We create new Interceptor components here, which allows us to wrap multiple plugins around the original component.
+const AddIncludedMethodsInterceptor = (
+  props: PaymentMethodContextProviderBaseProps,
+) => (
+  //For the first plugin we use the original component.
+  <AddIncludedMethods {...props} Component={PaymentMethodContextProviderBase} />
 )
+const AddPaypalMethodsInterceptor = (
+  props: PaymentMethodContextProviderBaseProps,
+) => (
+  // For the next components we use the previous Interceptor component.
+  <AddPaypalMethods {...props} Component={AddIncludedMethodsInterceptor} />
+)
+
+// Finally we return the resulting interceptor component.
+export const PaymentMethodContextProvider = AddPaypalMethodsInterceptor
 ```
+
+React profile will show that all components are nested:
+
+![](https://user-images.githubusercontent.com/1244416/197813853-e8aa329e-41bc-4f56-8aac-2464cc37032f.png)
 
 ### Possible use cases
 
-In the PR I have used the payment gateways as an example, but it should also
+In the examples above we've extended the payment methods, but it should also
 work for other things such as:
 
 - Googletagmanager
 - Googleanalytics
 - Google recaptcha
-- Other payment gateways like we currently use with customers.
 - Compare functionality?
 - Wishlist functionality?
 - Abstraction between GraphCommerce and Backends? (Magento, BigCommerce,
@@ -121,16 +150,23 @@ work for other things such as:
 
 ### Limitations
 
-- It is not possible to write a plugin in the root of a project. This means that
-  this functionality (for now) only works to create plugins for GraphCommerce
-  packages.
-- It is currently is only possible to extend React Components. This however sets
-  the foundation to allow for a more flexible plugin system in the future.
-- It currently isn't possible to provide a plugin sort order. The sort order of
-  the plugin isn't guaranteed at the moment. This effectively means that it
-  isn't possible to override a plugin.
-- It currently isn't possible to disable a single plugin, the only way is to
-  remove the package from your package.json.
-- There currently isn't a way for the plugin to determine if the plugin should
-  be activated. For example, the code for Google Analytics should only be added
-  if the user has configured it. This is currently not possible.
+Work is planned to lift these limitations, but for now:
+
+React Refresh doesn't work correctly with Plugins, it will force a page reload
+on each file change and will throw an error in the console. To solve this issue,
+move your actual plugin outside of the plugin file and only have the plugin be a
+configuration file.
+
+It currently isn't possible to provide a plugin sort order. The project root is
+intercepting last, followed by the packages in reverse alphabetical order,
+followed by dependencies' dependencies. We don't generate a proper graph at the
+moment to figure out the actual dependencies but is an artifact of how we
+resolve the dependencies.
+
+There currently isn't a way for the plugin to determine if the plugin should be
+activated at all. For example, the code for Google Analytics should only be
+added if the user has configured it. This is currently not possible. Of if a
+user wants to disable a plugin, this is currently not possible.
+
+It is currently is only possible to extend React Components. This however sets
+the foundation to allow for a more flexible plugin system in the future.

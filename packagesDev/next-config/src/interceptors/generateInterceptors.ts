@@ -1,4 +1,3 @@
-import { format } from 'prettier'
 import { ResolveDependency, ResolveDependencyReturn } from '../utils/resolveDependency'
 
 export type PluginConfig = {
@@ -25,7 +24,7 @@ export function generateInterceptor(plugin: Plugin): MaterializedPlugin {
         .sort((a, b) => a.plugin.localeCompare(b.plugin))
         .map(
           (p) =>
-            `import { plugin as ${p.plugin.split('/')[p.plugin.split('/').length - 1]} } from '${
+            `import { Plugin as ${p.plugin.split('/')[p.plugin.split('/').length - 1]} } from '${
               p.plugin
             }'`,
         )
@@ -48,7 +47,9 @@ export function generateInterceptor(plugin: Plugin): MaterializedPlugin {
     .map(([component, plugins]) => {
       const duplicateImports = new Set()
 
-      return `export const ${component} = [${plugins
+      let carry = `${component}Base`
+      const pluginStr = plugins
+        .reverse()
         .map((p) => p.plugin.split('/')[p.plugin.split('/').length - 1])
         .filter((importStr) => {
           if (duplicateImports.has(importStr)) {
@@ -57,11 +58,19 @@ export function generateInterceptor(plugin: Plugin): MaterializedPlugin {
           duplicateImports.add(importStr)
           return true
         })
-        .join(', ')}].reduce(
-  (Component, plugin) => plugin({ Component }),
-  ${component}Base,
-)
-`
+        .map((name) => {
+          const result = `const ${name}Interceptor = (props: ${component}BaseProps) => (
+  <${name} {...props} Component={${carry}} />
+)`
+          carry = `${name}Interceptor`
+          return result
+        })
+        .join('\n')
+
+      return `type ${component}BaseProps = React.ComponentProps<typeof ${component}Base>
+
+${pluginStr}
+export const ${component} = ${carry}`
     })
     .join('\n')
 
@@ -77,7 +86,8 @@ ${importInjectables}
 
 ${componentExports}
 
-${pluginExports}`
+${pluginExports}
+`
 
   return { ...plugin, template }
 }

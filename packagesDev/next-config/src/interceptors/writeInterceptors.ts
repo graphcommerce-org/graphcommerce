@@ -9,6 +9,9 @@ export function writeInterceptors(
   Object.entries(interceptors).forEach(([target, plugin]) => {
     // eslint-disable-next-line no-console
     const fileToWrite = `${path.join(cwd, plugin.fromRoot)}.interceptor.tsx`
-    fs.writeFileSync(fileToWrite, plugin.template)
+
+    if (fs.readFileSync(fileToWrite, 'utf8').toString() !== plugin.template) {
+      fs.writeFileSync(fileToWrite, plugin.template)
+    }
   })
 }

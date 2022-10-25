@@ -1,28 +1,15 @@
-import type { PaymentMethodContextProviderProps } from '@graphcommerce/magento-cart-payment-method'
-import type { Plugin } from '@graphcommerce/next-config'
-import { mollie_methods_creditcard } from '../methods/mollie_methods_creditcard'
-import { mollie_methods_ideal } from '../methods/mollie_methods_ideal'
-import { mollie_methods_klarnapaylater } from '../methods/mollie_methods_klarnapaylater'
-import { mollie_methods_paypal } from '../methods/mollie_methods_paypal'
+/* eslint-disable import/no-mutable-exports */
+import type { PaymentMethodContextProviderProps } from '@graphcommerce/magento-cart-payment-method/PaymentMethodContext/PaymentMethodContext'
+import type { PluginProps } from '@graphcommerce/next-config'
+import * as methods from '../methods'
 
 export const component = 'PaymentMethodContextProvider'
 export const exported =
   '@graphcommerce/magento-cart-payment-method/PaymentMethodContext/PaymentMethodContext'
 
-export const plugin: Plugin<PaymentMethodContextProviderProps> = ({ Component }) =>
-  function AddMollieMethods(props) {
-    const { modules } = props
-
-    return (
-      <Component
-        {...props}
-        modules={{
-          ...modules,
-          mollie_methods_creditcard,
-          mollie_methods_ideal,
-          mollie_methods_klarnapaylater,
-          mollie_methods_paypal,
-        }}
-      />
-    )
-  }
+function AddMollieMethods(props: PluginProps<PaymentMethodContextProviderProps>) {
+  const { modules, Component } = props
+  return <Component {...props} modules={{ ...modules, ...methods }} />
+}
+// eslint-disable-next-line prefer-const
+export let Plugin = AddMollieMethods
