@@ -2,7 +2,7 @@ import { useQuery, cloneDeep } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { ChipMenu, ChipMenuProps, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { ListItem, ListItemText, SxProps, Theme } from '@mui/material'
+import { Box, ListItem, ListItemText, SxProps, Theme, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
@@ -39,6 +39,10 @@ export function ProductListSort(props: ProductListSortProps) {
     replaceRoute(linkParams)
   }
 
+  const handleClose = () => {
+    setOpenEl(null)
+  }
+
   if (!total_count) return null
 
   return (
@@ -48,43 +52,55 @@ export function ProductListSort(props: ProductListSortProps) {
       selected={selected}
       label={label}
       {...filterMenuProps}
-      filterCount={currentOption ? 1 : 0}
       onDelete={selected ? removeFilter : undefined}
+      onClose={handleClose}
       sx={Array.isArray(sx) ? sx : [sx]}
       openEl={openEl}
       setOpenEl={setOpenEl}
+      actionable={false}
     >
-      {sort_fields?.options?.map((option) => {
-        const linkParams = cloneDeep(params)
-        linkParams.sort = {}
-        if (option?.value !== defaultSort) linkParams.sort[option?.value ?? ''] = 'ASC'
-        delete linkParams.currentPage
+      <Box
+        sx={(theme) => ({
+          py: theme.spacings.xxs,
+          '& > a:not(:last-of-type) > h6': {
+            borderBottom: `1px solid ${theme.palette.divider}`,
+          },
+        })}
+      >
+        {sort_fields?.options?.map((option) => {
+          const linkParams = cloneDeep(params)
+          linkParams.sort = {}
+          if (option?.value !== defaultSort) linkParams.sort[option?.value ?? ''] = 'ASC'
+          delete linkParams.currentPage
 
-        return (
-          <ListItem
-            className={classes.item}
-            button={undefined}
-            key={option?.value ?? ''}
-            selected={option?.value === currentSort}
-            component={React.memo(
-              // eslint-disable-next-line react/no-unstable-nested-components
-              React.forwardRef<HTMLAnchorElement>((chipProps, ref) => (
-                <ProductListLink
-                  {...chipProps}
-                  {...linkParams}
-                  className={classes.link}
-                  ref={ref}
-                  color='inherit'
-                  underline='none'
-                  link={{ scroll: false, replace: true }}
-                />
-              )),
-            )}
-          >
-            <ListItemText>{option?.label}</ListItemText>
-          </ListItem>
-        )
-      })}
+          return (
+            <ListItem
+              className={classes.item}
+              button={undefined}
+              key={option?.value ?? ''}
+              selected={option?.value === currentSort}
+              component={React.memo(
+                // eslint-disable-next-line react/no-unstable-nested-components
+                React.forwardRef<HTMLAnchorElement>((chipProps, ref) => (
+                  <ProductListLink
+                    {...chipProps}
+                    {...linkParams}
+                    className={classes.link}
+                    ref={ref}
+                    color='inherit'
+                    underline='none'
+                    link={{ scroll: false, replace: true }}
+                  />
+                )),
+              )}
+            >
+              <Typography variant='subtitle1' sx={{ py: 2 }}>
+                {option?.label}
+              </Typography>
+            </ListItem>
+          )
+        })}
+      </Box>
     </ChipMenu>
   )
 }
