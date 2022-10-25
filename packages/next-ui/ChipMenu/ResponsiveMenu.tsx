@@ -16,7 +16,7 @@ import { Button, LinkOrButton } from '../Button'
 import { IconSvg, useIconSvgSize } from '../IconSvg'
 import { LayoutTitle } from '../Layout'
 import { LayoutHeaderContent } from '../Layout/components/LayoutHeaderContent'
-import { Overlay } from '../Overlay'
+import { LayoutOverlaySize, Overlay } from '../Overlay'
 import { useFabSize } from '../Theme'
 import { iconClose } from '../icons'
 
@@ -29,6 +29,7 @@ type ResponsiveMenuProps = PropsWithChildren<
   onClose?: () => void
   onReset?: (event: any) => void
   actionable?: boolean
+  mode: LayoutOverlaySize
 }
 
 type MenuContentProps = Pick<
@@ -47,17 +48,15 @@ const MenuContent = forwardRef<any, MenuContentProps>(
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'space-between',
+          // justifyContent: 'space-between',
           minWidth: 350,
           backgroundColor: 'background.paper',
-          overflow: 'hidden',
-          maxHeight: isDesktop ? 700 : '85vh',
+          height: '100%',
         }}
       >
         <LayoutHeaderContent
           switchPoint={0}
-          sx={isDesktop ? undefined : { position: 'static' }}
-          sxBg={{ boxShadow: 0 }}
+          sx={{ position: 'relative', mb: 0.5 }}
           left={
             <Fab
               color='inherit'
@@ -94,7 +93,8 @@ const MenuContent = forwardRef<any, MenuContentProps>(
             padding: `0 ${theme.page.horizontal}`,
             overflow: 'visible',
             overflowY: 'scroll',
-            marginTop: isDesktop ? 8 : 1,
+            maxHeight: isDesktop ? '500px' : 'calc(99vh - 275px)',
+            borderBottom: `1px solid ${theme.palette.divider}`,
           })}
         >
           {children}
@@ -122,11 +122,9 @@ const MenuContent = forwardRef<any, MenuContentProps>(
 )
 
 export function ResponsiveMenu(props: ResponsiveMenuProps) {
-  const { chip, openEl, setOpenEl, onClose } = props
+  const { chip, openEl, setOpenEl, onClose, mode } = props
   const isDesktop = useMediaQuery<Theme>((theme) => theme.breakpoints.up('md'))
   const open = Boolean(openEl)
-
-  console.log({ open })
 
   if (!isDesktop) {
     return (
@@ -136,18 +134,12 @@ export function ResponsiveMenu(props: ResponsiveMenuProps) {
           <Overlay
             active={!!openEl}
             onClosed={onClose ?? (() => {})}
-            sizeSm='minimal'
+            sizeSm={mode}
             variantSm='bottom'
             overlayPaneProps={{
               initial: false,
             }}
-            sx={{
-              zIndex: 'drawer',
-              '& .LayoutOverlayBase-overlayPane': {
-                padding: 2,
-                // maxHeight: '90vh',
-              },
-            }}
+            sx={{ '& .LayoutOverlayBase-overlayPane': { p: 1 } }}
           >
             <MenuContent {...props} isDesktop={isDesktop} />
           </Overlay>
@@ -173,6 +165,7 @@ export function ResponsiveMenu(props: ResponsiveMenuProps) {
             boxShadow: 12,
             borderRadius: theme.shape.borderRadius,
             overflow: 'hidden',
+            zIndex: 1,
           })}
           keepMounted
           disablePortal
@@ -181,6 +174,25 @@ export function ResponsiveMenu(props: ResponsiveMenuProps) {
               name: 'offset',
               options: {
                 offset: [0, 10],
+              },
+            },
+
+            {
+              name: 'flip',
+              enabled: true,
+              options: {
+                altBoundary: true,
+                rootBoundary: 'viewport',
+              },
+            },
+            {
+              name: 'preventOverflow',
+              enabled: false,
+              options: {
+                altAxis: true,
+                altBoundary: false,
+                tether: false,
+                rootBoundary: 'viewport',
               },
             },
           ]}

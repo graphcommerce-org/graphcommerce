@@ -4,7 +4,6 @@ import { createContext, PropsWithChildren, useContext, useMemo } from 'react'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
 import { ProductListParams } from '../ProductListItems/filterTypes'
-import { useFilterActions } from './helpers/filterActions'
 
 type FilterFormContextProps = {
   form: UseFormReturn<ProductAttributeFilterInput>

@@ -28,14 +28,8 @@ import {
   ProductListFilters,
 } from '@graphcommerce/magento-product'
 import { StoreConfigDocument, redirectOrNotFound } from '@graphcommerce/magento-store'
-import {
-  StickyBelowHeader,
-  LayoutTitle,
-  LayoutHeader,
-  GetStaticProps,
-  MetaRobots,
-} from '@graphcommerce/next-ui'
-import { Container } from '@mui/material'
+import { LayoutTitle, LayoutHeader, GetStaticProps, MetaRobots } from '@graphcommerce/next-ui'
+import { Container, Box } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import {
   LayoutNavigation,
@@ -110,7 +104,7 @@ function CategoryPage(props: CategoryProps) {
           <CategoryDescription description={category.description} />
           <CategoryChildren params={params}>{category.children}</CategoryChildren>
 
-          <StickyBelowHeader>
+          <Box>
             <FilterFormProvider>
               <ProductListFiltersContainer>
                 <ProductListSort
@@ -124,7 +118,7 @@ function CategoryPage(props: CategoryProps) {
                 />
               </ProductListFiltersContainer>
             </FilterFormProvider>
-          </StickyBelowHeader>
+          </Box>
 
           <Container maxWidth={false}>
             <ProductListCount total_count={products?.total_count} />

@@ -14,8 +14,6 @@ type LocalFilterInputProps = FilterActionProps & {
   params: ProductListParams
 }
 
-type IgnoreProps = { ignore: [{ [key: string]: any[] }] }
-
 const emptyFilters = (props: LocalFilterInputProps) => {
   const { params, attribute_code, form } = props
   const linkParams = cloneDeep(params)
@@ -43,22 +41,6 @@ const removeAllFilters = (
 
 const showAll = (params) => {}
 
-const submitForm = (props: Pick<LocalFilterInputProps, 'form'> & IgnoreProps) => {
-  const { form, ignore } = props
-  const { handleSubmit } = form
-
-  handleSubmit(
-    (data) => {
-      console.log({ data })
-      // ignore.filter((entry) =>
-      //   console.log({ even: entry === data[Object.keys(entry)[0]], entry, data }),
-      // )
-      // return data
-    },
-    (data) => console.log('Invalid data', data),
-  )
-}
-
 export const useFilterActions = (props: FilterActionProps) => {
   const replaceRoute = useProductListLinkReplace({ scroll: false })
   const { form, params } = useFilterForm()
@@ -70,6 +52,5 @@ export const useFilterActions = (props: FilterActionProps) => {
     emptyFilters: () => emptyFilters({ ...props, form, params }),
     clearAllFilters: () => removeAllFilters({ ...props, form, params, onReplace: replaceRoute }),
     showAll: () => showAll(params),
-    sumbitForm: (ignore: IgnoreProps) => submitForm({ form, ...ignore }),
   }
 }
