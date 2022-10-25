@@ -8,8 +8,9 @@ import {
   ActionCardItemRenderProps,
   ActionCard,
 } from '@graphcommerce/next-ui'
-import { Box, Checkbox, Typography } from '@mui/material'
-import { useState } from 'react'
+import { i18n } from '@lingui/core'
+import { Box, Checkbox, TextField, Typography } from '@mui/material'
+import { ChangeEvent, useState } from 'react'
 import type { SetRequired } from 'type-fest'
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
 import { ProductListParams } from '../ProductListItems/filterTypes'
@@ -79,7 +80,7 @@ function FilterEqualActionCard(
       {...cardProps}
       size='small'
       title={
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', paddingY: !isColor ? 1 : 0 }}>
           <Typography className={cls.filterLabel} sx={{ marginRight: 1 }}>
             {option.label}
           </Typography>
@@ -88,10 +89,10 @@ function FilterEqualActionCard(
           </Typography>
         </Box>
       }
-      price={
+      image={
         isColor ? (
           <Checkbox
-            edge='start'
+            // edge='end'
             checked={currentFilter?.in?.includes(option?.value ?? '')}
             tabIndex={-1}
             size='medium'
@@ -99,7 +100,7 @@ function FilterEqualActionCard(
             disableRipple
             inputProps={{ 'aria-labelledby': labelId }}
             className={cls.checkbox}
-            sx={[
+            sx={
               isColor && {
                 padding: 1,
                 border: 1,
@@ -107,13 +108,8 @@ function FilterEqualActionCard(
                 '& > *': {
                   opacity: 0,
                 },
-              },
-              isActive &&
-                ((theme) => ({
-                  border: `1px solid ${theme.palette.primary.main}`,
-                  boxShadow: `inset 0 0 0 4px ${theme.palette.background.paper}`,
-                })),
-            ]}
+              }
+            }
             style={
               isColor
                 ? {
@@ -132,6 +128,7 @@ function FilterEqualActionCard(
 export function FilterEqualType(props: FilterEqualTypeProps) {
   const { attribute_code, count, label, options, __typename, ...chipProps } = props
   const [openEl, setOpenEl] = useState<null | HTMLElement>(null)
+  const [filteredOption, setFilteredOptions] = useState<Filter['options']>(options)
   const {
     form: { control },
   } = useFilterForm()
@@ -149,6 +146,21 @@ export function FilterEqualType(props: FilterEqualTypeProps) {
       ?.filter((option) => option && currentFilter.in?.includes(option.value))
       .map((option) => option && option.label) ?? []
 
+  const currentLabel =
+    options?.find((option) => option && currentFilter.in?.includes(option.value))?.label ?? label
+
+  const handleClose = () => {
+    setOpenEl(null)
+  }
+
+  const handleSearch = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFilteredOptions(
+      options?.filter((option) =>
+        option?.label?.toLowerCase().includes(e.target.value.toLowerCase()),
+      ),
+    )
+  }
+
   return (
     <ChipMenu
       variant='outlined'
@@ -156,19 +168,32 @@ export function FilterEqualType(props: FilterEqualTypeProps) {
       openEl={openEl}
       setOpenEl={setOpenEl}
       onReset={() => emptyFilters()}
-      onDelete={resetFilters}
-      label={label}
+      onClose={handleClose}
+      label={currentLabel}
       selected={currentLabels.length > 0}
-      filterCount={currentLabels.length > 0 ? currentLabels.length : undefined}
+      filterValue={currentLabels.length > 1 ? `+${currentLabels.length - 1}` : undefined}
       className={componentName}
     >
+      {options && options.length > 10 ? (
+        <TextField
+          type='search'
+          fullWidth
+          size='small'
+          sx={(theme) => ({ py: theme.spacings.xxs })}
+          color='primary'
+          placeholder={i18n._(/* 18n */ 'Search {filter}', { filter: label?.toLowerCase() })}
+          onChange={(e) => handleSearch(e)}
+        />
+      ) : null}
+
       <ActionCardListForm
         name={`${attribute_code}.in`}
         control={control}
         multiple
         layout='list'
+        variant='default'
         items={
-          options?.map((option) => ({
+          filteredOption?.map((option) => ({
             option,
             attribute_code,
             params,

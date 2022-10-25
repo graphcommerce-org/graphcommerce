@@ -1,6 +1,8 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { Scroller } from '@graphcommerce/framer-scroller'
 import {
   extractUrlQuery,
+  FilterFormProvider,
   FilterTypes,
   getFilterTypes,
   parseParams,
@@ -60,10 +62,12 @@ function MinimalLayoutSubheader(props: Props) {
         </LayoutTitle>
 
         <StickyBelowHeader>
-          <ProductListFiltersContainer>
-            <ProductListSort sort_fields={products?.sort_fields} />
-            <ProductListFilters aggregations={filters?.aggregations} filterTypes={filterTypes} />
-          </ProductListFiltersContainer>
+          <FilterFormProvider>
+            <ProductListFiltersContainer>
+              <ProductListFilters aggregations={filters?.aggregations} filterTypes={filterTypes} />
+              <ProductListSort sort_fields={products?.sort_fields} />
+            </ProductListFiltersContainer>
+          </FilterFormProvider>
         </StickyBelowHeader>
       </Container>
     </ProductListParamsProvider>
