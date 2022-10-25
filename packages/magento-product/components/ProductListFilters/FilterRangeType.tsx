@@ -55,16 +55,10 @@ export function FilterRangeType(props: FilterRangeTypeProps) {
     <Controller
       control={control}
       name={name}
-      // defaultValue={{
-      //   from: `${values?.[0] ?? 0}`,
-      //   to: `${values ? values?.[values.length - 1] : 0}`,
-      // }}
       render={({ field: { onChange, value } }) => {
         const typedValue = value as FilterRangeTypeInput | undefined
         const from = Number(typedValue?.from ?? initialFrom)
         const to = Number(typedValue?.to ?? initialTo)
-
-        console.log({ from, to })
 
         const fromElement = <Money currency={currency as CurrencyEnum} value={from} />
         const toElement = <Money currency={currency as CurrencyEnum} value={to} />
@@ -100,7 +94,6 @@ export function FilterRangeType(props: FilterRangeTypeProps) {
                 <Money round value={from} />
                 {typedValue?.to ? ' — ' : false}
                 <Money round value={to} />
-
                 <Slider
                   min={values ? values[0] : 0}
                   max={values ? values[values.length - 1] : 0}

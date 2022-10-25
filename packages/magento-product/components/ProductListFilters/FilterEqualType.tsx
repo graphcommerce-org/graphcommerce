@@ -161,6 +161,9 @@ export function FilterEqualType(props: FilterEqualTypeProps) {
     )
   }
 
+  const searchCompatible = options && options?.length > 10
+  const mode = searchCompatible ? 'full' : 'minimal'
+
   return (
     <ChipMenu
       variant='outlined'
@@ -171,10 +174,11 @@ export function FilterEqualType(props: FilterEqualTypeProps) {
       onClose={handleClose}
       label={currentLabel}
       selected={currentLabels.length > 0}
-      filterValue={currentLabels.length > 1 ? `+${currentLabels.length - 1}` : undefined}
+      filterValue={currentLabels.length}
       className={componentName}
+      mode={mode}
     >
-      {options && options.length > 10 ? (
+      {searchCompatible ? (
         <TextField
           type='search'
           fullWidth
