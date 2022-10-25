@@ -31,7 +31,12 @@ export function ProductListSort(props: ProductListSortProps) {
   const [currentSort = defaultSort] = Object.keys(params.sort)
   const currentOption = sort_fields?.options?.find((option) => option?.value === currentSort)
   const selected = currentSort !== defaultSort
-  const label = <Trans id='Sort By' />
+  const label =
+    currentOption?.label !== (undefined || 'Position') ? (
+      currentOption?.label
+    ) : (
+      <Trans id='Sort By' />
+    )
 
   const removeFilter = () => {
     const linkParams = cloneDeep(params)
