@@ -59,7 +59,7 @@ export function WaitForCustomer(props: WaitForCustomerProps) {
           icon={<IconSvg src={iconPerson} size='xxl' />}
           title={<Trans id='You must sign in to continue' />}
           button={
-            <PageLink href='/account/signin' passHref>
+            <PageLink href='/account/signin' passHref legacyBehavior>
               <Button variant='pill' color='secondary' size='large'>
                 {!session.valid ? (
                   <Trans id='Sign in' />

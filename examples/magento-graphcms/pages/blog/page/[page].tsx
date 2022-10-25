@@ -57,7 +57,7 @@ function BlogPage(props: Props) {
         count={Math.ceil(pagesConnection.aggregate.count / pageSize)}
         page={Number(router.query.page ? router.query.page : 1)}
         renderLink={(p: number, icon: React.ReactNode) => (
-          <PageLink href={p === 1 ? '/blog' : `/blog/page/${p}`} passHref>
+          <PageLink href={p === 1 ? '/blog' : `/blog/page/${p}`} passHref legacyBehavior>
             <Link color='primary' underline='hover'>
               {icon}
             </Link>

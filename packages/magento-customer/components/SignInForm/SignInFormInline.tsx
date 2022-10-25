@@ -56,7 +56,7 @@ export function SignInFormInline(props: InlineSignInFormProps) {
         disabled={formState.isSubmitting}
         InputProps={{
           endAdornment: (
-            <PageLink href='/account/forgot-password' key='forgot-password' passHref>
+            <PageLink href='/account/forgot-password' key='forgot-password' passHref legacyBehavior>
               <Button
                 color='secondary'
                 variant='text'

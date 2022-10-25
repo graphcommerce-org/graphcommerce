@@ -53,7 +53,12 @@ export function SignInForm(props: SignInFormProps) {
           {...muiRegister('password', { required: required.password })}
           InputProps={{
             endAdornment: (
-              <PageLink href='/account/forgot-password' key='forgot-password' passHref>
+              <PageLink
+                href='/account/forgot-password'
+                key='forgot-password'
+                passHref
+                legacyBehavior
+              >
                 <Link underline='hover' sx={{ whiteSpace: 'nowrap' }}>
                   <Trans id='Forgot password?' />
                 </Link>

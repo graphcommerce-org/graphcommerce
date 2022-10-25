@@ -9,7 +9,7 @@ export function RowContentLinks(props: RowContentLinksFragment) {
   return (
     <ContentLinks title={title}>
       {contentLinks.map((contentLink) => (
-        <PageLink href={contentLink.url} key={contentLink.id} passHref>
+        <PageLink href={contentLink.url} key={contentLink.id} passHref legacyBehavior>
           <Link href={contentLink.url} variant='body1' color='inherit' underline='hover'>
             {contentLink.title}
           </Link>

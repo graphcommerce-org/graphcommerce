@@ -21,7 +21,7 @@ export function RowServiceOptions(props: RowServiceOptionsProps) {
         const iconTitle = serviceOption.title.toLowerCase()
 
         return (
-          <PageLink key={serviceOption.title} href={serviceOption.url} passHref>
+          <PageLink key={serviceOption.title} href={serviceOption.url} passHref legacyBehavior>
             <IconBlock
               title={serviceOption.title}
               icon={

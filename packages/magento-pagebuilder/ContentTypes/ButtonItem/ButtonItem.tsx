@@ -55,7 +55,7 @@ export const ButtonItem: ButtonItemContentType['component'] = (props) => {
   }
 
   return (
-    <Link href={link ?? ''} passHref>
+    <Link href={link ?? ''} passHref legacyBehavior>
       <Button component='a' sx={cssProps} {...buttonProps} onClick={handleClick}>
         {buttonText}
       </Button>

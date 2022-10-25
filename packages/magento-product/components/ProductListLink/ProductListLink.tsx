@@ -38,7 +38,7 @@ export const ProductListLink = React.forwardRef<HTMLAnchorElement, ProductListLi
       rel = 'nofollow'
 
     return (
-      <PageLink href={productListLink} passHref {...link}>
+      <PageLink href={productListLink} passHref {...link} legacyBehavior>
         {noLink ? (
           children
         ) : (

@@ -72,7 +72,7 @@ export const EmailForm = React.memo<EmailFormProps>((props) => {
             endAdornment: (
               <WaitForQueries waitFor={isEmailAvailable}>
                 {isEmailAvailable.data?.isEmailAvailable && (
-                  <PageLink href='/account/signin' passHref>
+                  <PageLink href='/account/signin' passHref legacyBehavior>
                     <Button color='secondary' style={{ whiteSpace: 'nowrap' }}>
                       <Trans id='Sign in' />
                     </Button>

@@ -50,7 +50,7 @@ function CartPage() {
       <LayoutOverlayHeader
         switchPoint={0}
         primary={
-          <PageLink href='/checkout' passHref>
+          <PageLink href='/checkout' passHref legacyBehavior>
             <LinkOrButton
               button={{ variant: 'pill' }}
               color='secondary'

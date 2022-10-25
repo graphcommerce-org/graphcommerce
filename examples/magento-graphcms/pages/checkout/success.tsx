@@ -52,7 +52,7 @@ function OrderSuccessPage() {
             title={<Trans id='You have not placed an order' />}
             icon={<IconSvg src={iconSadFace} size='xxl' />}
             button={
-              <Link href='/' passHref>
+              <Link href='/' passHref legacyBehavior>
                 <Button variant='pill' color='secondary' size='large'>
                   <Trans id='Continue shopping' />
                 </Button>
@@ -75,7 +75,7 @@ function OrderSuccessPage() {
             <InlineAccount accountHref='/account' />
 
             <Box textAlign='center' m={8}>
-              <Link href='/' passHref>
+              <Link href='/' passHref legacyBehavior>
                 <Button color='primary' variant='pill' size='large' id='back-to-home'>
                   <Trans id='Back to home' />
                 </Button>

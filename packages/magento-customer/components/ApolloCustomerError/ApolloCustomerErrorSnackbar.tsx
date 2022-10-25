@@ -18,7 +18,7 @@ export function ApolloCustomerErrorSnackbar(props: ApolloCustomerErrorSnackbarPr
       error={newError}
       action={
         unauthorized ? (
-          <NextLink href='/account/signin' passHref>
+          <NextLink href='/account/signin' passHref legacyBehavior>
             <Button variant='pill' color='secondary'>
               {token ? <Trans id='Sign in' /> : <Trans id='Create Account' />}
             </Button>

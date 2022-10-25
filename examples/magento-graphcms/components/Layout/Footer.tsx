@@ -14,7 +14,7 @@ export function Footer(props: FooterProps) {
   return (
     <FooterBase
       socialLinks={footer?.socialLinks?.map((link) => (
-        <PageLink key={link.title} href={link.url} passHref>
+        <PageLink key={link.title} href={link.url} passHref legacyBehavior>
           <IconButton color='inherit' size='medium' edge='start'>
             {link.asset ? (
               <Image
@@ -36,7 +36,7 @@ export function Footer(props: FooterProps) {
       ))}
       storeSwitcher={<StoreSwitcherButton />}
       customerService={
-        <PageLink href='/service' passHref>
+        <PageLink href='/service' passHref legacyBehavior>
           <Button variant='pill'>
             <Trans id='Customer Service' />
           </Button>
@@ -46,7 +46,7 @@ export function Footer(props: FooterProps) {
         <>
           <span>{footer?.copyright}</span>
           {footer?.legalLinks?.map((link) => (
-            <PageLink key={link.title} href={link.url} passHref>
+            <PageLink key={link.title} href={link.url} passHref legacyBehavior>
               <Link color='textPrimary' underline='always'>
                 {link.title}
               </Link>

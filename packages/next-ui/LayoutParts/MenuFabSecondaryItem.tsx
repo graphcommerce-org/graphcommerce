@@ -20,7 +20,7 @@ export function MenuFabSecondaryItem(props: FabMenuSecondaryItemProps) {
   const router = useRouter()
 
   return (
-    <PageLink href={href} passHref>
+    <PageLink href={href} passHref legacyBehavior>
       <ListItemButton
         className={classes.root}
         sx={[{}, ...(Array.isArray(sx) ? sx : [sx])]}

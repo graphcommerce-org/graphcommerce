@@ -18,7 +18,7 @@ export function ButtonLinkListItem(props: ButtonLinkListItemProps) {
   } = props
 
   return (
-    <PageLink href={url} passHref>
+    <PageLink href={url} passHref legacyBehavior>
       <ListItemButton
         LinkComponent='a'
         sx={(theme) => ({

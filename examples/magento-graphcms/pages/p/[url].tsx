@@ -116,7 +116,7 @@ function ProductPage(props: Props) {
               product={product}
               optionEndLabels={{
                 size: (
-                  <PageLink href='/modal/product/global/size'>
+                  <PageLink href='/modal/product/global/size' legacyBehavior>
                     <Link
                       rel='nofollow'
                       component='button'

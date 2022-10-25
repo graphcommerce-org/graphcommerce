@@ -31,7 +31,7 @@ function WishlistFabContent(props: WishlistFabContentProps) {
   const wishlistIcon = icon ?? <IconSvg src={iconHeart} size='large' />
 
   return (
-    <PageLink href='/wishlist' passHref>
+    <PageLink href='/wishlist' passHref legacyBehavior>
       <Fab
         color='inherit'
         data-test-id='wishlist-fab'

@@ -56,7 +56,7 @@ function CartFabContent(props: CartFabContentProps) {
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
-      <PageLink href='/cart' passHref>
+      <PageLink href='/cart' passHref legacyBehavior>
         <MotionFab
           className={classes.cart}
           aria-label={i18n._(/* i18n */ 'Cart')}

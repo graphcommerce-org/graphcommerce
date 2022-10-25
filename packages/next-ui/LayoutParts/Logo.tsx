@@ -68,7 +68,7 @@ export const Logo = forwardRef<HTMLDivElement, LogoProps>((props, ref) => {
       {img}
     </LogoContainer>
   ) : (
-    <PageLink href={href} passHref>
+    <PageLink href={href} passHref legacyBehavior>
       <LogoContainer ref={ref} as='a' sx={sx} className={classes.parent}>
         {img}
       </LogoContainer>

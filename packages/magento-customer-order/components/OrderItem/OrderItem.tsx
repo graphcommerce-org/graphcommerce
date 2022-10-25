@@ -99,7 +99,7 @@ export function OrderItem(props: OrderItemProps) {
           borderRadius: '50%',
         }}
       >
-        <PageLink href={productLink} passHref>
+        <PageLink href={productLink} passHref legacyBehavior>
           <Box
             component='a'
             className={classes.productLink}
@@ -141,7 +141,7 @@ export function OrderItem(props: OrderItemProps) {
         </PageLink>
       </Box>
 
-      <PageLink href={productLink} passHref>
+      <PageLink href={productLink} passHref legacyBehavior>
         <Box
           component='a'
           className={classes.itemName}

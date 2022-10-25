@@ -131,7 +131,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
               {!router.pathname.startsWith('/search') && (
                 <SearchLink href='/search' aria-label={i18n._(/* i18n */ 'Search...')} />
               )}
-              <PageLink href='/service' passHref>
+              <PageLink href='/service' passHref legacyBehavior>
                 <Fab aria-label={i18n._(/* i18n */ 'Account')} size='large' color='inherit'>
                   <IconSvg src={iconCustomerService} size='large' />
                 </Fab>

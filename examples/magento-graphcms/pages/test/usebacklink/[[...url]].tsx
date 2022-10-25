@@ -10,14 +10,14 @@ function BackLinkDemo() {
   return (
     <>
       <div>
-        <PageLink href={href} passHref>
+        <PageLink href={href} passHref legacyBehavior>
           <Link onClick={onClick} color='primary' underline='hover'>
             Cart
           </Link>
         </PageLink>
       </div>
       <div>
-        <PageLink href={hrefb} passHref>
+        <PageLink href={hrefb} passHref legacyBehavior>
           <Link color='primary' onClick={onClickB} underline='hover'>
             Shipping
           </Link>

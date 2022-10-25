@@ -75,7 +75,7 @@ export function OrderCard(props: OrderCardProps) {
   }
 
   return (
-    <PageLink href={`/account/orders/view?orderId=${number}`} passHref>
+    <PageLink href={`/account/orders/view?orderId=${number}`} passHref legacyBehavior>
       <ListItemButton
         className={classes.buttonRoot}
         sx={[

@@ -98,7 +98,7 @@ export function CartAgreementsForm(props: CartAgreementsFormProps) {
                               />
                             }
                             label={
-                              <PageLink href={href} passHref>
+                              <PageLink href={href} passHref legacyBehavior>
                                 <Link color='secondary' underline='hover'>
                                   {agreement.checkbox_text}
                                 </Link>
@@ -111,7 +111,7 @@ export function CartAgreementsForm(props: CartAgreementsFormProps) {
                     />
                   ) : (
                     <Box className={classes.manualCheck} sx={{ padding: `9px 0` }}>
-                      <PageLink href={href} passHref>
+                      <PageLink href={href} passHref legacyBehavior>
                         <Link color='secondary' underline='hover'>
                           {agreement.checkbox_text}
                         </Link>

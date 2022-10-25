@@ -159,7 +159,7 @@ export function ConfigurableProductAddToCart(props: ConfigurableProductAddToCart
         variant='pill'
         autoHide
         action={
-          <PageLink href='/cart' passHref>
+          <PageLink href='/cart' passHref legacyBehavior>
             <Button
               id='view-shopping-cart-button'
               size='medium'

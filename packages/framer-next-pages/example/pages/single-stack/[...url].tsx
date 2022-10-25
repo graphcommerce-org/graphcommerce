@@ -34,15 +34,8 @@ function SingleStack() {
         <LayoutTitle>
           Overlay {variant} {page}
         </LayoutTitle>
-        {page > 0 && (
-          <Link href={`/single-stack/${variant}/${page - 1}`}>
-            <a>{page - 1}</a>
-          </Link>
-        )}{' '}
-        {page}{' '}
-        <Link href={`/single-stack/${variant}/${page + 1}`}>
-          <a>{page + 1}</a>
-        </Link>
+        {page > 0 && <Link href={`/single-stack/${variant}/${page - 1}`}>{page - 1}</Link>} {page}{' '}
+        <Link href={`/single-stack/${variant}/${page + 1}`}>{page + 1}</Link>
         <button type='button' onClick={() => setExpanded(!expanded)}>
           {expanded ? 'collapse' : 'expand'}
         </button>

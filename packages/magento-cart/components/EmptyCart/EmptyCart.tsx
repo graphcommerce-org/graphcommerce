@@ -19,7 +19,7 @@ export function EmptyCart(props: EmptyCartProps) {
       icon={<IconSvg src={iconShoppingBag} size='xxl' />}
       button={
         button || (
-          <Link href='/' passHref>
+          <Link href='/' passHref legacyBehavior>
             <Button variant='pill' color='secondary' size='large'>
               <Trans id='Continue shopping' />
             </Button>

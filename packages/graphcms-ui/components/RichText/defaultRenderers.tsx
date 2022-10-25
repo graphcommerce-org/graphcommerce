@@ -43,7 +43,7 @@ export const defaultRenderers: Renderers = {
     </Box>
   ),
   link: ({ href, openInNewTab, ...props }) => (
-    <PageLink href={href} passHref>
+    <PageLink href={href} passHref legacyBehavior>
       <Link underline='hover' {...props} target={openInNewTab ? '_blank' : undefined} />
     </PageLink>
   ),

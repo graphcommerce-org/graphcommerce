@@ -48,7 +48,7 @@ export function AddProductsToCartSnackbar(props: AddProductsToCartSnackbarProps)
           {...successSnackbar}
           open={showSuccess}
           action={
-            <PageLink href='/cart' passHref>
+            <PageLink href='/cart' passHref legacyBehavior>
               <Button
                 id='view-shopping-cart-button'
                 size='medium'

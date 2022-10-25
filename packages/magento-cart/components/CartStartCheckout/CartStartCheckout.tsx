@@ -21,7 +21,7 @@ const parts = [
 const { classes } = extendableComponent(name, parts)
 
 export function CartStartCheckout(props: CartStartCheckoutProps) {
-  const { prices, children,  buttonProps, sx = [] } = props
+  const { prices, children, buttonProps, sx = [] } = props
 
   const hasTotals = (prices?.grand_total?.value ?? 0) > 0
   return (
@@ -35,7 +35,7 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
-      <PageLink href='/checkout' passHref>
+      <PageLink href='/checkout' passHref legacyBehavior>
         <Button
           href='/checkout'
           id='cart-start-checkout'

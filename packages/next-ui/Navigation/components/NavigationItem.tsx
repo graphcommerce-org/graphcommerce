@@ -160,7 +160,7 @@ export const NavigationItem = React.memo<NavigationItemProps>((props) => {
 
     return (
       <NavigationLI sx={[hideItem && { display: 'none' }]} className={classes.li}>
-        <PageLink href={href} passHref prefetch={false}>
+        <PageLink href={href} passHref prefetch={false} legacyBehavior>
           <ListItemButton
             className={classes.item}
             component='a'

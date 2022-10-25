@@ -78,7 +78,11 @@ export function AccountOrders(props: AccountOrdersProps) {
         count={pageInfo?.total_pages ?? 1}
         page={pageInfo?.current_page ?? 1}
         renderLink={(p: number, icon: React.ReactNode) => (
-          <PageLink href={p === 1 ? '/account/orders' : `/account/orders?page=${p}`} passHref>
+          <PageLink
+            href={p === 1 ? '/account/orders' : `/account/orders?page=${p}`}
+            passHref
+            legacyBehavior
+          >
             <Link color='primary' underline='hover'>
               {icon}
             </Link>

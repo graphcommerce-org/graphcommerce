@@ -92,7 +92,7 @@ export function ProductListItem(props: ProductListItemProps) {
   const formatter = useNumberFormat({ style: 'percent', maximumFractionDigits: 1 })
 
   return (
-    <PageLink href={productLink} passHref>
+    <PageLink href={productLink} passHref legacyBehavior>
       <ButtonBase
         component='a'
         sx={[

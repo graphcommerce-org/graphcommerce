@@ -17,7 +17,7 @@ export function CategorySearchResult(props: CategorySearchResultProps) {
   const { search = '', sx = [], ...catProps } = props
 
   return (
-    <PageLink href={`/${catProps?.url_path ?? ''}`} passHref>
+    <PageLink href={`/${catProps?.url_path ?? ''}`} passHref legacyBehavior>
       <Button
         fullWidth
         variant='pill'
