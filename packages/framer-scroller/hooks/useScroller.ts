@@ -96,7 +96,7 @@ export function useScroller<
 
     // If we're not dealing with the mouse we don't need to do anything
     if (!isHTMLMousePointerEvent(event)) return
-    if (event.target.closest('.Scroller-root') !== scrollerRef.current) return
+    if (!isPanning) return
 
     scrollerRef.current.scrollLeft = scrollStart.x.get() - info.offset.x
     scrollerRef.current.scrollTop = scrollStart.y.get() - info.offset.y
@@ -105,7 +105,7 @@ export function useScroller<
   const onPanEnd: PanHandlers['onPanEnd'] = (event, info) => {
     // If we're not dealing with the mouse we don't need to do anything
     if (!isHTMLMousePointerEvent(event)) return
-    if (event.target.closest('.Scroller-root') !== scrollerRef.current) return
+    if (!isPanning) return
 
     setPanning(false)
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
