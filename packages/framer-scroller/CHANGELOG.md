@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.31.0-canary.0
+
+### Minor Changes
+
+- [#1719](https://github.com/graphcommerce-org/graphcommerce/pull/1719) [`dc4996bfe`](https://github.com/graphcommerce-org/graphcommerce/commit/dc4996bfe8a3d6aa950ec79972b3b0c84dfe1c9d) Thanks [@mikekeehnen](https://github.com/mikekeehnen)! - Changed pan gesture in useScroller to look at pan state instead of the root component
+
 ## 4.30.0
 
 ### Patch Changes
