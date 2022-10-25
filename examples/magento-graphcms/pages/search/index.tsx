@@ -15,6 +15,7 @@ import {
   ProductFiltersDocument,
   ProductListQuery,
   ProductFiltersQuery,
+  FilterFormProvider,
 } from '@graphcommerce/magento-product'
 import {
   CategorySearchDocument,
@@ -104,10 +105,15 @@ function SearchResultPage(props: SearchResultProps) {
       {products && products.items && products?.items?.length > 0 && (
         <ProductListParamsProvider value={params}>
           <StickyBelowHeader>
-            <ProductListFiltersContainer>
-              <ProductListSort sort_fields={products?.sort_fields} />
-              <ProductListFilters aggregations={filters?.aggregations} filterTypes={filterTypes} />
-            </ProductListFiltersContainer>
+            <FilterFormProvider>
+              <ProductListFiltersContainer>
+                <ProductListSort sort_fields={products?.sort_fields} />
+                <ProductListFilters
+                  aggregations={filters?.aggregations}
+                  filterTypes={filterTypes}
+                />
+              </ProductListFiltersContainer>
+            </FilterFormProvider>
           </StickyBelowHeader>
           <Container maxWidth={false}>
             <ProductListCount total_count={products?.total_count} />

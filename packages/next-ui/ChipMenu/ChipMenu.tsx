@@ -5,7 +5,7 @@ import { iconChevronDown } from '../icons'
 import { ResponsiveMenu } from './ResponsiveMenu'
 
 export type ChipMenuProps = Omit<ChipProps<'button'>, 'children' | 'component'> & {
-  filterCount?: number
+  filterValue?: string | React.ReactNode
   selected: boolean
   openEl: HTMLElement | null
   setOpenEl: Dispatch<SetStateAction<HTMLElement | null>>
@@ -14,6 +14,7 @@ export type ChipMenuProps = Omit<ChipProps<'button'>, 'children' | 'component'> 
   labelRight?: React.ReactNode
   sx?: SxProps<Theme>
   children?: React.ReactNode
+  actionable?: boolean
 }
 
 export function ChipMenu(props: ChipMenuProps) {
@@ -25,32 +26,27 @@ export function ChipMenu(props: ChipMenuProps) {
     label,
     labelRight,
     onClose,
-    filterCount,
+    filterValue,
     openEl,
     setOpenEl,
     onSubmit,
     accessKey,
     id = 'filterpopper',
+    actionable = true,
     ...chipProps
   } = props
 
-  let deleteIcon = <IconSvg src={iconChevronDown} size='medium' />
-  if (selected && filterCount)
-    deleteIcon = (
-      <Box
-        sx={{
-          backgroundColor: 'primary.main',
-          borderRadius: 4,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <Typography color='white' variant='caption' sx={{ paddingX: '7px', marginTop: '0px' }}>
-          {filterCount}
+  const deleteIcon = <IconSvg src={iconChevronDown} size='medium' />
+  const labelFilterValue = (
+    <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+      <Typography variant='caption'>{label}</Typography>
+      {filterValue ? (
+        <Typography variant='caption' sx={{ marginLeft: '5px' }}>
+          {filterValue}
         </Typography>
-      </Box>
-    )
+      ) : null}
+    </Box>
+  )
 
   const selectedAndMenuHidden = selected && !openEl
 
@@ -61,6 +57,7 @@ export function ChipMenu(props: ChipMenuProps) {
       openEl={openEl}
       setOpenEl={setOpenEl}
       onReset={onReset}
+      actionable={actionable}
       chip={
         <Chip
           aria-describedby={id}
@@ -71,25 +68,29 @@ export function ChipMenu(props: ChipMenuProps) {
           onDelete={
             onDelete ||
             ((event: React.MouseEvent<HTMLButtonElement>) =>
-              setOpenEl(event.currentTarget.parentElement))
+              setOpenEl(!openEl ? event.currentTarget.parentElement : null))
           }
           onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
             setOpenEl(openEl ? null : event.currentTarget)
           }}
           deleteIcon={deleteIcon}
           {...chipProps}
-          label={label}
+          label={labelFilterValue}
           sx={[
             ...(selected
               ? [
                   {
+                    color: 'primary.main',
                     backgroundColor: '#E6F3ED',
-                    borderColor: 'transparent',
+                    borderColor: 'primary.main',
                     '& .MuiChip-label': { marginRight: 1 },
                     '&:hover': { background: '#b0ebd0 !important' },
                   },
                 ]
               : [{ borderColor: 'black' }]),
+            {
+              m: 0.1,
+            },
           ]}
         />
       }

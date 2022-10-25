@@ -1,6 +1,11 @@
 import { Controller } from '@graphcommerce/ecommerce-ui'
-import type { FilterRangeTypeInput, ProductAttributeFilterInput } from '@graphcommerce/graphql-mesh'
-import { Money } from '@graphcommerce/magento-store'
+import { useQuery } from '@graphcommerce/graphql'
+import type {
+  CurrencyEnum,
+  FilterRangeTypeInput,
+  ProductAttributeFilterInput,
+} from '@graphcommerce/graphql-mesh'
+import { Money, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   ChipMenu,
   ChipMenuProps,
@@ -8,9 +13,11 @@ import {
   filterNonNullableKeys,
 } from '@graphcommerce/next-ui'
 import { Box, Slider } from '@mui/material'
+import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { useFilterForm } from './FilterFormContext'
 import { ProductListFiltersFragment } from './ProductListFilters.gql'
+import { useFilterActions } from './helpers/filterActions'
 
 type FilterRangeTypeProps = NonNullable<
   NonNullable<ProductListFiltersFragment['aggregations']>[0]
@@ -21,37 +28,66 @@ const { classes } = extendableComponent('FilterRangeType', ['root', 'container',
 
 export function FilterRangeType(props: FilterRangeTypeProps) {
   const { attribute_code, label, options, ...chipProps } = props
+  const currency = useQuery(StoreConfigDocument).data?.storeConfig?.base_currency_code
   const {
     form: { control },
   } = useFilterForm()
+  const router = useRouter()
+  const { emptyFilters, resetFilters } = useFilterActions({
+    attribute_code,
+  })
   const [openEl, setOpenEl] = useState<null | HTMLElement>(null)
   const values = filterNonNullableKeys(options)
     ?.map((v) => v?.value.split('_').map((mv) => Number(mv)))
     .flat(1)
 
+  const handleClose = () => {
+    setOpenEl(null)
+  }
+
   if (options === (null || undefined)) return null
+
+  const name = `${attribute_code}` as keyof ProductAttributeFilterInput
+  const initialFrom = values?.[0]
+  const initialTo = values?.[values.length - 1]
 
   return (
     <Controller
       control={control}
-      name={`${attribute_code}` as keyof ProductAttributeFilterInput}
-      defaultValue={{
-        from: `${values?.[0] ?? 0}`,
-        to: `${values ? values?.[values.length - 1] : 0}`,
-      }}
+      name={name}
+      // defaultValue={{
+      //   from: `${values?.[0] ?? 0}`,
+      //   to: `${values ? values?.[values.length - 1] : 0}`,
+      // }}
       render={({ field: { onChange, value } }) => {
-        const typedValue = value as FilterRangeTypeInput
+        const typedValue = value as FilterRangeTypeInput | undefined
+        const from = Number(typedValue?.from ?? initialFrom)
+        const to = Number(typedValue?.to ?? initialTo)
+
+        console.log({ from, to })
+
+        const fromElement = <Money currency={currency as CurrencyEnum} value={from} />
+        const toElement = <Money currency={currency as CurrencyEnum} value={to} />
+        const hasValue =
+          typedValue?.from !== undefined && Number(typedValue?.from) >= 0 && typedValue?.to
+        const l = hasValue ? (
+          <>
+            {fromElement} - {toElement}
+          </>
+        ) : (
+          label
+        )
         return (
           <ChipMenu
             {...chipProps}
             variant='outlined'
-            label={label}
-            filterCount={2}
-            selected={!!openEl}
+            label={l}
+            selected={router.asPath.includes('price')}
             openEl={openEl}
             setOpenEl={setOpenEl}
-            // onDelete={currentLabel ? resetFilter : undefined}
+            onClose={handleClose}
             className={classes.root}
+            onReset={() => emptyFilters()}
           >
             <Box
               sx={(theme) => ({
@@ -61,22 +97,22 @@ export function FilterRangeType(props: FilterRangeTypeProps) {
               className={classes.container}
             >
               <Box>
-                <Money round value={Number(typedValue?.from)} />
+                <Money round value={from} />
                 {typedValue?.to ? ' — ' : false}
-                <Money round value={Number(typedValue?.to)} />
+                <Money round value={to} />
 
                 <Slider
                   min={values ? values[0] : 0}
                   max={values ? values[values.length - 1] : 0}
                   aria-labelledby='range-slider'
-                  value={[Number(typedValue?.from) ?? 0, Number(typedValue?.to) ?? 0]}
+                  value={[from, to]}
                   onChange={(_e, newValue) => {
                     onChange({ from: newValue[0], to: newValue[1] })
                   }}
                   valueLabelDisplay='off'
                   className={classes.slider}
                   step={null}
-                  marks={values?.map((v) => ({ value: v, label: '' })) as Mark[]}
+                  marks={values?.map((v) => ({ value: v, label: '' }))}
                 />
               </Box>
             </Box>
