@@ -45,11 +45,7 @@ function extendConfig(nextConfig: NextConfig, modules: string[]): NextConfig {
         '@mui/system': '@mui/system/modern',
       }
 
-      config.plugins = [
-        ...(config.plugins ?? []),
-        // new VirtualModulesPlugin(),
-        new InterceptorPlugin(),
-      ]
+      config.plugins = [...(config.plugins ?? []), new InterceptorPlugin()]
 
       return typeof nextConfig.webpack === 'function' ? nextConfig.webpack(config, options) : config
     },

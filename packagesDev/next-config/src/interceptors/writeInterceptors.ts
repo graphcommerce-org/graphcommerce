@@ -10,7 +10,10 @@ export function writeInterceptors(
     // eslint-disable-next-line no-console
     const fileToWrite = `${path.join(cwd, plugin.fromRoot)}.interceptor.tsx`
 
-    if (fs.readFileSync(fileToWrite, 'utf8').toString() !== plugin.template) {
+    if (
+      !fs.existsSync(fileToWrite) ||
+      fs.readFileSync(fileToWrite, 'utf8').toString() !== plugin.template
+    ) {
       fs.writeFileSync(fileToWrite, plugin.template)
     }
   })

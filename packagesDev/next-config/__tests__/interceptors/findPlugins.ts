@@ -8,11 +8,6 @@ it('finds plugins', () => {
       Object {
         "component": "PaymentMethodContextProvider",
         "exported": "@graphcommerce/magento-cart-payment-method/PaymentMethodContext/PaymentMethodContext",
-        "plugin": "@graphcommerce/magento-graphcms/plugins/AddPaymentMethodEnhancer",
-      },
-      Object {
-        "component": "PaymentMethodContextProvider",
-        "exported": "@graphcommerce/magento-cart-payment-method/PaymentMethodContext/PaymentMethodContext",
         "plugin": "@graphcommerce/magento-payment-braintree/plugins/AddBraintreeMethods",
       },
       Object {

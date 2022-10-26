@@ -43,11 +43,7 @@ function extendConfig(nextConfig, modules) {
                 '@mui/styled-engine': '@mui/styled-engine/modern',
                 '@mui/system': '@mui/system/modern',
             };
-            config.plugins = [
-                ...(config.plugins ?? []),
-                // new VirtualModulesPlugin(),
-                new InterceptorPlugin_1.InterceptorPlugin(),
-            ];
+            config.plugins = [...(config.plugins ?? []), new InterceptorPlugin_1.InterceptorPlugin()];
             return typeof nextConfig.webpack === 'function' ? nextConfig.webpack(config, options) : config;
         },
     };

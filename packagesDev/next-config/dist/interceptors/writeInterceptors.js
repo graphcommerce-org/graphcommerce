@@ -10,7 +10,8 @@ function writeInterceptors(interceptors, cwd = process.cwd()) {
     Object.entries(interceptors).forEach(([target, plugin]) => {
         // eslint-disable-next-line no-console
         const fileToWrite = `${path_1.default.join(cwd, plugin.fromRoot)}.interceptor.tsx`;
-        if (node_fs_1.default.readFileSync(fileToWrite, 'utf8').toString() !== plugin.template) {
+        if (!node_fs_1.default.existsSync(fileToWrite) ||
+            node_fs_1.default.readFileSync(fileToWrite, 'utf8').toString() !== plugin.template) {
             node_fs_1.default.writeFileSync(fileToWrite, plugin.template);
         }
     });
