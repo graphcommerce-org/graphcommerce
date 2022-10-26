@@ -21,6 +21,7 @@ import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, Container, Divider, Typography } from '@mui/material'
 import PageLink from 'next/link'
+import { useRouter } from 'next/router'
 import { useEffect, useMemo, useRef } from 'react'
 import { LayoutOverlay, LayoutOverlayProps, productListRenderer } from '../../components'
 import { graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
@@ -31,7 +32,9 @@ type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
 function CheckoutAdded() {
   const cartAdded = useCartQuery(CartAddedDocument)
   const items = filterNonNullableKeys(cartAdded.data?.cart?.items)
-  const lastItem = items[items.length - 1]
+  const router = useRouter()
+  const { sku } = router.query
+  const lastItem = items.find((item) => item.product.sku === sku)
 
   const crosssels = useQuery(CrosssellsDocument, {
     variables: { pageSize: 1, filters: { sku: { eq: lastItem?.product.sku } } },
