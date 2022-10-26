@@ -67,7 +67,16 @@
     "@graphcommerce/typescript-config-pwa": "4.0.5"
   },
   "changesets": [
+    "chilly-ears-prove",
+    "hip-cycles-serve",
+    "honest-snakes-play",
     "khaki-bikes-boil",
-    "moody-glasses-deny"
+    "mean-bananas-clap",
+    "mighty-sheep-judge",
+    "moody-glasses-deny",
+    "olive-news-return",
+    "rich-eggs-flash",
+    "silent-waves-eat",
+    "sweet-meals-impress"
   ]
 }

@@ -1,5 +1,15 @@
 # Change Log
 
+## 4.14.0-canary.2
+
+### Minor Changes
+
+- [#1718](https://github.com/graphcommerce-org/graphcommerce/pull/1718) [`876c8253d`](https://github.com/graphcommerce-org/graphcommerce/commit/876c8253d62af8bfe534cda50cb13d88543fc117) - Export useAddProductsToCartAction and do not set the default to redirect ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#1718](https://github.com/graphcommerce-org/graphcommerce/pull/1718) [`37e86cdc8`](https://github.com/graphcommerce-org/graphcommerce/commit/37e86cdc86ccca3db77d6c59b1e14c8112bb7893) - Remove usage of PropsWithChildren ([@paales](https://github.com/paales))
+
 ## 4.13.2-canary.1
 
 ### Patch Changes

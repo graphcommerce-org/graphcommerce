@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.31.0-canary.1
+
+### Patch Changes
+
+- [#1718](https://github.com/graphcommerce-org/graphcommerce/pull/1718) [`37e86cdc8`](https://github.com/graphcommerce-org/graphcommerce/commit/37e86cdc86ccca3db77d6c59b1e14c8112bb7893) - Remove usage of PropsWithChildren ([@paales](https://github.com/paales))
+
 ## 4.31.0-canary.0
 
 ## 4.30.0

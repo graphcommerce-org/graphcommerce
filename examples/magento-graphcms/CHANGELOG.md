@@ -1,5 +1,13 @@
 # Change Log
 
+## 4.14.0-canary.2
+
+### Patch Changes
+
+- [#1718](https://github.com/graphcommerce-org/graphcommerce/pull/1718) [`416ce4e99`](https://github.com/graphcommerce-org/graphcommerce/commit/416ce4e996910b83dd229cbaeef64d8c49f5da2f) - Do not use the loopback method for local development, as that doesn’t improve perf ([@paales](https://github.com/paales))
+
+- [#1718](https://github.com/graphcommerce-org/graphcommerce/pull/1718) [`acef2a3ae`](https://github.com/graphcommerce-org/graphcommerce/commit/acef2a3aedd60e1882330cde56877bf26857d238) - Make the modules prop optional for the `<PaymentMethodContextProvider />` component ([@paales](https://github.com/paales))
+
 ## 4.13.2-canary.1
 
 ### Patch Changes

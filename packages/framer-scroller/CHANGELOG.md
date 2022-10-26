@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.31.0-canary.1
+
+### Patch Changes
+
+- [#1718](https://github.com/graphcommerce-org/graphcommerce/pull/1718) [`6407e8719`](https://github.com/graphcommerce-org/graphcommerce/commit/6407e87191aaf3ad49eca536efcabf3641296e80) - ScrollerPageCounter shouldn’t set visibleItems to a string as that isn’t the correct type ([@paales](https://github.com/paales))
+
 ## 4.31.0-canary.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # @graphcommerce/changeset-changelog
 
+## 0.0.3-canary.0
+
+### Patch Changes
+
+- [#1718](https://github.com/graphcommerce-org/graphcommerce/pull/1718) [`7cc186513`](https://github.com/graphcommerce-org/graphcommerce/commit/7cc186513e100eb85856fc194740a279bc6e5605) - Removed the 'Thanks!' from the release notes, make it more subtle ([@paales](https://github.com/paales))
+
 ## 0.0.2
 
 ### Patch Changes

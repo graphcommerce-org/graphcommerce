@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.14.0-canary.2
+
+### Minor Changes
+
+- [#1718](https://github.com/graphcommerce-org/graphcommerce/pull/1718) [`f08bffd63`](https://github.com/graphcommerce-org/graphcommerce/commit/f08bffd63780cb626f072b25c2fd4da37543b6f7) - Add payment methods with a plugin ([@paales](https://github.com/paales))
+
 ## 4.13.2-canary.1
 
 ## 4.13.2-canary.0

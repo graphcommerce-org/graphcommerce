@@ -1,5 +1,11 @@
 # @graphcommerce/cli
 
+## 4.31.0-canary.1
+
+### Patch Changes
+
+- [#1718](https://github.com/graphcommerce-org/graphcommerce/pull/1718) [`f218e533b`](https://github.com/graphcommerce-org/graphcommerce/commit/f218e533bd7abfc6c949cdf380df0d166f89e145) - Make the tmp file to \_tmp_mesh instead of \_tmp_codegen ([@paales](https://github.com/paales))
+
 ## 4.31.0-canary.0
 
 ## 4.30.0

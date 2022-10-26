@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-product-bundle",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "4.13.2-canary.1",
+  "version": "4.14.0-canary.2",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -18,16 +18,16 @@
     "@playwright/test": "^1.21.1"
   },
   "dependencies": {
-    "@graphcommerce/ecommerce-ui": "4.31.0-canary.0",
-    "@graphcommerce/graphql": "4.31.0-canary.0",
-    "@graphcommerce/image": "4.31.0-canary.0",
-    "@graphcommerce/magento-cart": "4.13.2-canary.1",
-    "@graphcommerce/magento-cart-items": "4.13.2-canary.1",
-    "@graphcommerce/magento-product": "4.13.2-canary.1",
-    "@graphcommerce/magento-product-simple": "4.13.2-canary.1",
-    "@graphcommerce/magento-product-virtual": "4.13.2-canary.1",
-    "@graphcommerce/magento-store": "4.13.2-canary.1",
-    "@graphcommerce/next-ui": "4.31.0-canary.0"
+    "@graphcommerce/ecommerce-ui": "4.31.0-canary.1",
+    "@graphcommerce/graphql": "4.31.0-canary.1",
+    "@graphcommerce/image": "4.31.0-canary.1",
+    "@graphcommerce/magento-cart": "4.14.0-canary.2",
+    "@graphcommerce/magento-cart-items": "4.14.0-canary.2",
+    "@graphcommerce/magento-product": "4.14.0-canary.2",
+    "@graphcommerce/magento-product-simple": "4.14.0-canary.2",
+    "@graphcommerce/magento-product-virtual": "4.14.0-canary.2",
+    "@graphcommerce/magento-store": "4.14.0-canary.2",
+    "@graphcommerce/next-ui": "4.31.0-canary.1"
   },
   "peerDependencies": {
     "@lingui/react": "^3.13.2",
