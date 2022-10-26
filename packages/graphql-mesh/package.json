@@ -16,7 +16,7 @@
     "@graphql-mesh/utils": "0.40.0",
     "@graphql-yoga/node": "^2.13.11",
     "graphql": "16.5.0",
-    "next": "12.2.5"
+    "next": "13.0.0"
   },
   "devDependencies": {
     "@graphcommerce/eslint-config-pwa": "^4.1.11",

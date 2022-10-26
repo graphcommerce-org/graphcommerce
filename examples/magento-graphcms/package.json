@@ -72,7 +72,7 @@
     "cross-env": "^7.0.3",
     "dotenv": "16.0.1",
     "framer-motion": "7.5.1",
-    "next": "12.2.5",
+    "next": "13.0.0",
     "next-pwa": "5.5.4",
     "next-sitemap": "3.1.17",
     "patch-package": "6.4.7",
