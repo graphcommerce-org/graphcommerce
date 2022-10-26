@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.13.2-canary.1
+
+### Patch Changes
+
+- [#1722](https://github.com/graphcommerce-org/graphcommerce/pull/1722) [`7b36ea1d1`](https://github.com/graphcommerce-org/graphcommerce/commit/7b36ea1d100239892f21f67e5606852dd29b7c75) Thanks [@FrankHarland](https://github.com/FrankHarland)! - Feature/fix cross sell item
+
 ## 4.13.2-canary.0
 
 ## 4.13.1
