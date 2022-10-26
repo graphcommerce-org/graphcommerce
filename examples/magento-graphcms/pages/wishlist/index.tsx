@@ -58,11 +58,9 @@ function WishlistPage() {
               title={<Trans id='Your wishlist is empty' />}
               icon={<IconSvg src={iconHeart} size='xxl' />}
               button={
-                <Link href='/' passHref legacyBehavior>
-                  <Button variant='pill' color='primary' size='large'>
-                    <Trans id='Continue shopping' />
-                  </Button>
-                </Link>
+                <Button href='/' variant='pill' color='primary' size='large'>
+                  <Trans id='Continue shopping' />
+                </Button>
               }
             >
               <Trans id='Discover our collection and add items to your wishlist!' />

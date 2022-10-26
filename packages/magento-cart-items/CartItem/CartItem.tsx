@@ -2,8 +2,8 @@ import { Image } from '@graphcommerce/image'
 import { useDisplayInclTax } from '@graphcommerce/magento-cart'
 import { useProductLink } from '@graphcommerce/magento-product'
 import { Money } from '@graphcommerce/magento-store'
-import { responsiveVal, extendableComponent } from '@graphcommerce/next-ui'
-import { Badge, Box, Link, SxProps, Theme } from '@mui/material'
+import { responsiveVal, extendableComponent, Link } from '@graphcommerce/next-ui'
+import { Badge, Box, SxProps, Theme } from '@mui/material'
 import PageLink from 'next/link'
 import { CartItemFragment } from '../Api/CartItem.gql'
 import { RemoveItemFromCartFab } from '../RemoveItemFromCart/RemoveItemFromCartFab'
@@ -122,56 +122,54 @@ export function CartItem(props: CartItemProps) {
           alignSelf: 'center',
         })}
       >
-        <PageLink href={productLink} passHref legacyBehavior>
-          <Box
-            component='a'
-            className={classes.productLink}
-            sx={{ display: 'block', width: '100%', borderRadius: '50%', overflow: 'hidden' }}
-          >
-            {product?.thumbnail?.url && (
-              <Image
-                src={product.thumbnail.url ?? ''}
-                layout='fill'
-                alt={product.thumbnail.label ?? product.name ?? ''}
-                sizes={responsiveVal(70, 125)}
-                className={classes.image}
-                sx={(theme) => ({
-                  gridColumn: 1,
-                  backgroundColor: theme.palette.background.image,
-                  objectFit: 'cover',
-                  display: 'block',
-                  width: '110% !important',
-                  height: '110% !important',
-                  marginLeft: '-5%',
-                  marginTop: '-5%',
-                })}
-              />
-            )}
-          </Box>
-        </PageLink>
+        <Box
+          component={PageLink}
+          href={productLink}
+          className={classes.productLink}
+          sx={{ display: 'block', width: '100%', borderRadius: '50%', overflow: 'hidden' }}
+        >
+          {product?.thumbnail?.url && (
+            <Image
+              src={product.thumbnail.url ?? ''}
+              layout='fill'
+              alt={product.thumbnail.label ?? product.name ?? ''}
+              sizes={responsiveVal(70, 125)}
+              className={classes.image}
+              sx={(theme) => ({
+                gridColumn: 1,
+                backgroundColor: theme.palette.background.image,
+                objectFit: 'cover',
+                display: 'block',
+                width: '110% !important',
+                height: '110% !important',
+                marginLeft: '-5%',
+                marginTop: '-5%',
+              })}
+            />
+          )}
+        </Box>
       </Badge>
 
-      <PageLink href={productLink} passHref legacyBehavior>
-        <Link
-          variant='body1'
-          className={classes.itemName}
-          underline='hover'
-          sx={(theme) => ({
-            typgrapht: 'subtitle1',
-            fontWeight: theme.typography.fontWeightBold,
-            gridArea: 'itemName',
-            color: theme.palette.text.primary,
-            textDecoration: 'none',
-            flexWrap: 'nowrap',
-            maxWidth: 'max-content',
-            '&:not(.withOptions)': {
-              alignSelf: 'flex-end',
-            },
-          })}
-        >
-          {name}
-        </Link>
-      </PageLink>
+      <Link
+        href={productLink}
+        variant='body1'
+        className={classes.itemName}
+        underline='hover'
+        sx={(theme) => ({
+          typgrapht: 'subtitle1',
+          fontWeight: theme.typography.fontWeightBold,
+          gridArea: 'itemName',
+          color: theme.palette.text.primary,
+          textDecoration: 'none',
+          flexWrap: 'nowrap',
+          maxWidth: 'max-content',
+          '&:not(.withOptions)': {
+            alignSelf: 'flex-end',
+          },
+        })}
+      >
+        {name}
+      </Link>
 
       <Box
         className={classes.itemPrice}

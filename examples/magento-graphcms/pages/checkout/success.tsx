@@ -1,15 +1,10 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { useGtagPurchase } from '@graphcommerce/googleanalytics'
-import {
-  CartItemSummary,
-  CartSummary,
-  InlineAccount,
-  useCartQuery,
-} from '@graphcommerce/magento-cart'
-import { CartItemSummaryDocument } from '@graphcommerce/magento-cart/components/CartItemSummary/GetCartItemSummary.gql'
+import { CartItemSummary, CartSummary, InlineAccount } from '@graphcommerce/magento-cart'
 import { SignupNewsletter } from '@graphcommerce/magento-newsletter'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
+  Button,
   FullPageMessage,
   GetStaticProps,
   iconParty,
@@ -20,8 +15,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Button, Box, Container } from '@mui/material'
-import Link from 'next/link'
+import { Box, Container } from '@mui/material'
 import { useRouter } from 'next/router'
 import { LayoutMinimal, LayoutNavigationProps, LayoutMinimalProps } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
@@ -52,11 +46,9 @@ function OrderSuccessPage() {
             title={<Trans id='You have not placed an order' />}
             icon={<IconSvg src={iconSadFace} size='xxl' />}
             button={
-              <Link href='/' passHref legacyBehavior>
-                <Button variant='pill' color='secondary' size='large'>
-                  <Trans id='Continue shopping' />
-                </Button>
-              </Link>
+              <Button href='/' variant='pill' color='secondary' size='large'>
+                <Trans id='Continue shopping' />
+              </Button>
             }
           >
             <Trans id='Discover our collection and add items to your cart!' />
@@ -75,11 +67,9 @@ function OrderSuccessPage() {
             <InlineAccount accountHref='/account' />
 
             <Box textAlign='center' m={8}>
-              <Link href='/' passHref legacyBehavior>
-                <Button color='primary' variant='pill' size='large' id='back-to-home'>
-                  <Trans id='Back to home' />
-                </Button>
-              </Link>
+              <Button href='/' color='primary' variant='pill' size='large' id='back-to-home'>
+                <Trans id='Back to home' />
+              </Button>
             </Box>
           </>
         )}

@@ -1,8 +1,8 @@
 import { Image } from '@graphcommerce/image'
 import { StoreSwitcherButton } from '@graphcommerce/magento-store'
-import { Footer as FooterBase } from '@graphcommerce/next-ui'
+import { Footer as FooterBase, Button, Link } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Button, IconButton, Link } from '@mui/material'
+import { IconButton } from '@mui/material'
 import PageLink from 'next/link'
 import { FooterQueryFragment } from './FooterQueryFragment.gql'
 
@@ -13,44 +13,46 @@ export function Footer(props: FooterProps) {
 
   return (
     <FooterBase
-      socialLinks={footer?.socialLinks?.map((link) => (
-        <PageLink key={link.title} href={link.url} passHref legacyBehavior>
-          <IconButton color='inherit' size='medium' edge='start'>
-            {link.asset ? (
-              <Image
-                layout='fill'
-                src={link.asset.url}
-                width={24}
-                height={24}
-                unoptimized
-                alt={link.title}
-                sx={(theme) => ({
-                  filter: theme.palette.mode === 'dark' ? 'invert(100%)' : 'invert(0%)',
-                })}
-              />
-            ) : (
-              link.title
-            )}
-          </IconButton>
-        </PageLink>
+      socialLinks={footer?.socialLinks?.map(({ url, title, asset }) => (
+        <IconButton
+          key={title}
+          LinkComponent={PageLink}
+          href={url}
+          title={title}
+          color='inherit'
+          size='medium'
+          edge='start'
+        >
+          {asset ? (
+            <Image
+              layout='fill'
+              src={asset.url}
+              width={24}
+              height={24}
+              unoptimized
+              alt={title}
+              sx={(theme) => ({
+                filter: theme.palette.mode === 'dark' ? 'invert(100%)' : 'invert(0%)',
+              })}
+            />
+          ) : (
+            title
+          )}
+        </IconButton>
       ))}
       storeSwitcher={<StoreSwitcherButton />}
       customerService={
-        <PageLink href='/service' passHref legacyBehavior>
-          <Button variant='pill'>
-            <Trans id='Customer Service' />
-          </Button>
-        </PageLink>
+        <Button href='/service' variant='pill'>
+          <Trans id='Customer Service' />
+        </Button>
       }
       copyright={
         <>
           <span>{footer?.copyright}</span>
           {footer?.legalLinks?.map((link) => (
-            <PageLink key={link.title} href={link.url} passHref legacyBehavior>
-              <Link color='textPrimary' underline='always'>
-                {link.title}
-              </Link>
-            </PageLink>
+            <Link key={link.title} href={link.url} color='textPrimary' underline='always'>
+              {link.title}
+            </Link>
           ))}
         </>
       }

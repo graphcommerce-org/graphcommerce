@@ -1,6 +1,7 @@
-import { Link, LinkProps, useForkRef } from '@mui/material'
+import { useForkRef } from '@mui/material'
 import React, { useRef } from 'react'
 import type { ConditionalExcept } from 'type-fest'
+import { Link, LinkProps } from '../Link/Link'
 import { Button, ButtonProps } from './Button'
 
 type OmitNever<T extends Record<string, unknown>> = {

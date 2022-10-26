@@ -1,9 +1,12 @@
 /* eslint-disable react/forbid-foreign-prop-types */
-import { LoadingButton as Button, LoadingButtonProps, LoadingButtonTypeMap } from '@mui/lab'
+import { LoadingButton, LoadingButtonProps, LoadingButtonTypeMap } from '@mui/lab'
+import PageLink from 'next/link'
 
 export type ButtonProps<
   D extends React.ElementType = LoadingButtonTypeMap['defaultComponent'],
   P = {},
-> = LoadingButtonProps<D, P>
+> = Omit<LoadingButtonProps<D, P>, 'LinkComponent'>
 
-export { Button }
+export function Button(props: ButtonProps) {
+  return <LoadingButton LinkComponent={PageLink} {...props} />
+}

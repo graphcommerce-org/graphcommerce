@@ -27,7 +27,6 @@ import {
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, CircularProgress, Container } from '@mui/material'
-import PageLink from 'next/link'
 import { LayoutOverlay, LayoutOverlayProps } from '../components'
 import { graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
 
@@ -50,17 +49,16 @@ function CartPage() {
       <LayoutOverlayHeader
         switchPoint={0}
         primary={
-          <PageLink href='/checkout' passHref legacyBehavior>
-            <LinkOrButton
-              button={{ variant: 'pill' }}
-              color='secondary'
-              endIcon={<IconSvg src={iconChevronRight} />}
-              onClick={() => gtagBeginCheckout(cart.data?.cart)}
-              disabled={!hasItems}
-            >
-              <Trans id='Next' />
-            </LinkOrButton>
-          </PageLink>
+          <LinkOrButton
+            button={{ variant: 'pill' }}
+            href='/checkout'
+            color='secondary'
+            endIcon={<IconSvg src={iconChevronRight} />}
+            onClick={() => gtagBeginCheckout(cart.data?.cart)}
+            disabled={!hasItems}
+          >
+            <Trans id='Next' />
+          </LinkOrButton>
         }
         divider={
           <Container maxWidth='md'>

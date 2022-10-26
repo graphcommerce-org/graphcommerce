@@ -3,6 +3,7 @@ import { CustomerFab, CustomerMenuFabItem } from '@graphcommerce/magento-custome
 import { SearchLink } from '@graphcommerce/magento-search'
 import { WishlistFab, WishlistMenuFabItem } from '@graphcommerce/magento-wishlist'
 import {
+  Fab,
   DesktopNavActions,
   DesktopNavBar,
   LayoutDefault,
@@ -19,8 +20,6 @@ import {
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Fab } from '@mui/material'
-import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import { Footer } from './Footer'
 import { LayoutQuery } from './Layout.gql'
@@ -61,11 +60,14 @@ export function LayoutFull(props: LayoutFullProps) {
             {!router.pathname.startsWith('/search') && (
               <SearchLink href='/search' aria-label={i18n._(/* i18n */ 'Search...')} />
             )}
-            <PageLink href='/service' passHref legacyBehavior>
-              <Fab aria-label={i18n._(/* i18n*/ `Account`)} size='large' color='inherit'>
-                <IconSvg src={iconCustomerService} size='large' />
-              </Fab>
-            </PageLink>
+            <Fab
+              href='/service'
+              aria-label={i18n._(/* i18n*/ `Account`)}
+              size='large'
+              color='inherit'
+            >
+              <IconSvg src={iconCustomerService} size='large' />
+            </Fab>
             <WishlistFab icon={<IconSvg src={iconHeart} size='large' />} />
             <CustomerFab guestHref='/account/signin' authHref='/account' />
             {/* The placeholder exists because the CartFab is sticky but we want to reserve the space for the <CartFab /> */}

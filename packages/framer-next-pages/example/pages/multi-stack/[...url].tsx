@@ -31,15 +31,14 @@ function MultiStack() {
       <LayoutHeader
         noAlign
         primary={
-          <Link href={`/multi-stack/${variant}/${page + 1}`} passHref legacyBehavior>
-            <LinkOrButton
-              color='secondary'
-              button={{ variant: 'pill' }}
-              endIcon={<IconSvg src={iconChevronRight} />}
-            >
-              {page + 1}
-            </LinkOrButton>
-          </Link>
+          <LinkOrButton
+            href={`/multi-stack/${variant}/${page + 1}`}
+            color='secondary'
+            button={{ variant: 'pill' }}
+            endIcon={<IconSvg src={iconChevronRight} />}
+          >
+            {page + 1}
+          </LinkOrButton>
         }
       >
         <LayoutTitle size='small' component='span'>

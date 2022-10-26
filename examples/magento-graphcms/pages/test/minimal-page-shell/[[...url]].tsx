@@ -46,20 +46,24 @@ export function LayoutDemo(props: LayoutDemoProps) {
 
   if (withPrimary)
     primaryAction = (
-      <PageLink href={`${baseUrl}/with-primary-navigated`} passHref legacyBehavior>
-        <LinkOrButton color='secondary' button={{ variant: 'pill' }}>
-          Navigate
-        </LinkOrButton>
-      </PageLink>
+      <LinkOrButton
+        href={`${baseUrl}/with-primary-navigated`}
+        color='secondary'
+        button={{ variant: 'pill' }}
+      >
+        Navigate
+      </LinkOrButton>
     )
 
   if (withStepper && step < 3) {
     primaryAction = (
-      <PageLink href={`${baseUrl}/with-stepper-${step + 1}`} passHref legacyBehavior>
-        <LinkOrButton color='secondary' button={{ variant: 'pill' }}>
-          Navigate
-        </LinkOrButton>
-      </PageLink>
+      <LinkOrButton
+        href={`${baseUrl}/with-stepper-${step + 1}`}
+        color='secondary'
+        button={{ variant: 'pill' }}
+      >
+        Navigate
+      </LinkOrButton>
     )
   }
 
@@ -126,128 +130,110 @@ export function LayoutDemo(props: LayoutDemoProps) {
 
         <List>
           {primaryAction || backSteps === 0 ? (
-            <PageLink href={`${baseUrl}/navigated`} passHref legacyBehavior>
-              <ListItem button component='a' style={{ paddingLeft: 0, paddingRight: 0 }}>
-                Navigate
-              </ListItem>
-            </PageLink>
+            <ListItem
+              button
+              component={PageLink}
+              href={`${baseUrl}/navigated`}
+              style={{ paddingLeft: 0, paddingRight: 0 }}
+            >
+              Navigate
+            </ListItem>
           ) : null}
 
-          <PageLink href={`${baseUrl}/with-primary`} passHref legacyBehavior>
-            <ListItem
-              button
-              component='a'
-              disabled={!!primaryAction}
-              style={{ paddingLeft: 0, paddingRight: 0 }}
-            >
-              With primary action
-            </ListItem>
-          </PageLink>
+          <ListItem
+            button
+            href={`${baseUrl}/with-primary`}
+            component={PageLink}
+            disabled={!!primaryAction}
+            style={{ paddingLeft: 0, paddingRight: 0 }}
+          >
+            With primary action
+          </ListItem>
 
-          <PageLink href={`${baseUrl}/with-stepper-1`} passHref legacyBehavior>
-            <ListItem
-              button
-              component='a'
-              disabled={withStepper}
-              style={{ paddingLeft: 0, paddingRight: 0 }}
-            >
-              With stepper
-            </ListItem>
-          </PageLink>
+          <ListItem
+            button
+            href={`${baseUrl}/with-stepper-1`}
+            component={PageLink}
+            disabled={withStepper}
+            style={{ paddingLeft: 0, paddingRight: 0 }}
+          >
+            With stepper
+          </ListItem>
 
-          <PageLink href={`${baseUrl}/with-icon`} passHref legacyBehavior>
-            <ListItem
-              button
-              component='a'
-              disabled={withIcon}
-              style={{ paddingLeft: 0, paddingRight: 0 }}
-            >
-              With icon
-            </ListItem>
-          </PageLink>
-          <PageLink
+          <ListItem
+            button
+            href={`${baseUrl}/with-icon`}
+            component={PageLink}
+            disabled={withIcon}
+            style={{ paddingLeft: 0, paddingRight: 0 }}
+          >
+            With icon
+          </ListItem>
+          <ListItem
+            button
             href='/test/sheet?sizeMd=full&sizeSm=full&justifyMd=stretch&justifySm=stretch&variantMd=bottom&variantSm=bottom'
-            passHref
-            legacyBehavior
+            component={PageLink}
+            disabled={isSheet && !isSidebarDrawer}
+            style={{ paddingLeft: 0, paddingRight: 0 }}
           >
-            <ListItem
-              button
-              component='a'
-              disabled={isSheet && !isSidebarDrawer}
-              style={{ paddingLeft: 0, paddingRight: 0 }}
-            >
-              Bottom sheet
-            </ListItem>
-          </PageLink>
-          <PageLink
+            Bottom sheet
+          </ListItem>
+          <ListItem
+            button
             href='/test/sheet?sizeMd=full&sizeSm=full&justifyMd=start&justifySm=start&variantMd=left&variantSm=left'
-            passHref
-            legacyBehavior
+            component={PageLink}
+            disabled={isLeftSidebarDrawer}
+            style={{ paddingLeft: 0, paddingRight: 0 }}
           >
-            <ListItem
-              button
-              component='a'
-              disabled={isLeftSidebarDrawer}
-              style={{ paddingLeft: 0, paddingRight: 0 }}
-            >
-              Left side sheet
-            </ListItem>
-          </PageLink>
-          <PageLink
-            href='/test/sheet?sizeMd=full&sizeSm=full&justifyMd=start&justifySm=start&variantMd=right&variantSm=right'
-            passHref
-            legacyBehavior
-          >
-            <ListItem
-              button
-              component='a'
-              disabled={isSidebarDrawer && !isLeftSidebarDrawer}
-              style={{ paddingLeft: 0, paddingRight: 0 }}
-            >
-              Right side sheet
-            </ListItem>
-          </PageLink>
-          <PageLink href='/test/minimal-page-shell' passHref legacyBehavior>
-            <ListItem
-              button
-              component='a'
-              disabled={isMinimal}
-              style={{ paddingLeft: 0, paddingRight: 0 }}
-            >
-              Minimal Page Shell
-            </ListItem>
-          </PageLink>
-          <PageLink href='/test' passHref legacyBehavior>
-            <ListItem
-              button
-              component='a'
-              disabled={isFullPage}
-              style={{ paddingLeft: 0, paddingRight: 0 }}
-            >
-              Full Page Shell
-            </ListItem>
-          </PageLink>
-          <PageLink href='/test/with-title' passHref legacyBehavior>
-            <ListItem
-              button
-              component='a'
-              disabled={withTitle}
-              style={{ paddingLeft: 0, paddingRight: 0 }}
-            >
-              Full Page Shell + Title
-            </ListItem>
-          </PageLink>
+            Left side sheet
+          </ListItem>
 
-          <PageLink href='/test/minimal-page-shell-subheader' passHref legacyBehavior>
-            <ListItem
-              button
-              component='a'
-              disabled={isMinimalPageShellSubheader}
-              style={{ paddingLeft: 0, paddingRight: 0 }}
-            >
-              Minimal Page Shell + Subheader
-            </ListItem>
-          </PageLink>
+          <ListItem
+            button
+            href='/test/sheet?sizeMd=full&sizeSm=full&justifyMd=start&justifySm=start&variantMd=right&variantSm=right'
+            component={PageLink}
+            disabled={isSidebarDrawer && !isLeftSidebarDrawer}
+            style={{ paddingLeft: 0, paddingRight: 0 }}
+          >
+            Right side sheet
+          </ListItem>
+          <ListItem
+            button
+            href='/test/minimal-page-shell'
+            component={PageLink}
+            disabled={isMinimal}
+            style={{ paddingLeft: 0, paddingRight: 0 }}
+          >
+            Minimal Page Shell
+          </ListItem>
+          <ListItem
+            button
+            href='/test'
+            component={PageLink}
+            disabled={isFullPage}
+            style={{ paddingLeft: 0, paddingRight: 0 }}
+          >
+            Full Page Shell
+          </ListItem>
+          <ListItem
+            button
+            href='/test/with-title'
+            component={PageLink}
+            disabled={withTitle}
+            style={{ paddingLeft: 0, paddingRight: 0 }}
+          >
+            Full Page Shell + Title
+          </ListItem>
+
+          <ListItem
+            button
+            href='/test/minimal-page-shell-subheader'
+            component={PageLink}
+            disabled={isMinimalPageShellSubheader}
+            style={{ paddingLeft: 0, paddingRight: 0 }}
+          >
+            Minimal Page Shell + Subheader
+          </ListItem>
 
           <ListItem
             button

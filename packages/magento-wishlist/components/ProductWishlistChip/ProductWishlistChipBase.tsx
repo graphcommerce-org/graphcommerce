@@ -17,7 +17,6 @@ import {
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { SxProps, Theme, IconButton, Box, IconButtonProps } from '@mui/material'
-import PageLink from 'next/link'
 import { useState, useEffect } from 'react'
 import { useWishlistEnabled } from '../../hooks'
 import { AddProductToWishlistDocument } from '../../queries/AddProductToWishlist.gql'
@@ -210,17 +209,16 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
         onClose={() => setDisplayMessageBar(false)}
         variant='pill'
         action={
-          <PageLink href='/wishlist' passHref legacyBehavior>
-            <Button
-              id='view-wishlist-button'
-              size='medium'
-              variant='pill'
-              color='secondary'
-              endIcon={<IconSvg src={iconChevronRight} />}
-            >
-              <Trans id='View wishlist' />
-            </Button>
-          </PageLink>
+          <Button
+            href='/wishlist'
+            id='view-wishlist-button'
+            size='medium'
+            variant='pill'
+            color='secondary'
+            endIcon={<IconSvg src={iconChevronRight} />}
+          >
+            <Trans id='View wishlist' />
+          </Button>
         }
       >
         <Trans

@@ -23,7 +23,7 @@ const useUtilityClasses = ({ classes }: LogoClassProps) =>
   composeClasses({ logo: ['logo'], parent: ['parent'] }, getLogoUtilityClass, classes)
 
 /** Creating styled components */
-const LogoContainer = styled('div', {
+const LogoContainer = styled('a', {
   name,
   slot: 'parent',
   overridesResolver: (_props, styles) => styles.parent,
@@ -48,7 +48,7 @@ export type LogoProps = {
   sx?: SxProps<Theme>
 } & LogoClassProps
 
-export const Logo = forwardRef<HTMLDivElement, LogoProps>((props, ref) => {
+export const Logo = forwardRef<HTMLAnchorElement, LogoProps>((props, ref) => {
   const { href = '/', image, sx } = props
   const router = useRouter()
 
@@ -64,14 +64,12 @@ export const Logo = forwardRef<HTMLDivElement, LogoProps>((props, ref) => {
   )
 
   return router.asPath.split('?')[0] === '/' ? (
-    <LogoContainer ref={ref} sx={sx} className={classes.parent}>
+    <LogoContainer ref={ref} sx={sx} as='div' className={classes.parent}>
       {img}
     </LogoContainer>
   ) : (
-    <PageLink href={href} passHref legacyBehavior>
-      <LogoContainer ref={ref} as='a' sx={sx} className={classes.parent}>
-        {img}
-      </LogoContainer>
-    </PageLink>
+    <LogoContainer ref={ref} as={PageLink} href={href} sx={sx} className={classes.parent}>
+      {img}
+    </LogoContainer>
   )
 })

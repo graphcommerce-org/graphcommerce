@@ -46,33 +46,33 @@ export function DesktopNavItem(props: DesktopNavItemLinkProps | DesktopNavItemBu
   const active = router.asPath.startsWith(href.toString())
 
   return (
-    <PageLink href={href} passHref legacyBehavior>
-      <Link
-        className={classes.root}
-        variant='h6'
-        color='text.primary'
-        underline='none'
-        {...linkProps}
-        sx={[{ whiteSpace: 'nowrap', paddingTop: '6px' }, ...(Array.isArray(sx) ? sx : [sx])]}
-      >
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>{children}</Box>
-        <Box
-          component='span'
-          className={classes.line}
-          sx={{
-            maxWidth: 40,
-            width: '100%',
-            display: 'flex',
-            justifyContent: 'center',
-            height: 2,
-            background: (theme) => theme.palette.primary.main,
-            margin: '0 auto',
-            marginTop: '6px',
-            opacity: active ? 1 : 0,
-          }}
-        />
-      </Link>
-    </PageLink>
+    <Link
+      href={href}
+      component={PageLink}
+      className={classes.root}
+      variant='h6'
+      color='text.primary'
+      underline='none'
+      {...linkProps}
+      sx={[{ whiteSpace: 'nowrap', paddingTop: '6px' }, ...(Array.isArray(sx) ? sx : [sx])]}
+    >
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>{children}</Box>
+      <Box
+        component='span'
+        className={classes.line}
+        sx={{
+          maxWidth: 40,
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'center',
+          height: 2,
+          background: (theme) => theme.palette.primary.main,
+          margin: '0 auto',
+          marginTop: '6px',
+          opacity: active ? 1 : 0,
+        }}
+      />
+    </Link>
   )
 }
 DesktopNavItem.selectors = selectors

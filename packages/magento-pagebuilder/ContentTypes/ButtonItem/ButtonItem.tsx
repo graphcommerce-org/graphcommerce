@@ -2,8 +2,7 @@
 import { useApolloClient, useQuery } from '@graphcommerce/graphql'
 import { productLink, ProductLinkProps } from '@graphcommerce/magento-product'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { Button, ButtonProps } from '@mui/material'
-import Link from 'next/link'
+import { Button, ButtonProps } from '@graphcommerce/next-ui'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { RouteDocument } from '../../Route.gql'
@@ -55,10 +54,8 @@ export const ButtonItem: ButtonItemContentType['component'] = (props) => {
   }
 
   return (
-    <Link href={link ?? ''} passHref legacyBehavior>
-      <Button component='a' sx={cssProps} {...buttonProps} onClick={handleClick}>
-        {buttonText}
-      </Button>
-    </Link>
+    <Button href={link} sx={cssProps} {...buttonProps} onClick={handleClick}>
+      {buttonText}
+    </Button>
   )
 }

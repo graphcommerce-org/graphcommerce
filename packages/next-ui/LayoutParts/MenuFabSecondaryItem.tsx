@@ -20,19 +20,18 @@ export function MenuFabSecondaryItem(props: FabMenuSecondaryItemProps) {
   const router = useRouter()
 
   return (
-    <PageLink href={href} passHref legacyBehavior>
-      <ListItemButton
-        className={classes.root}
-        sx={[{}, ...(Array.isArray(sx) ? sx : [sx])]}
-        component='a'
-        dense
-        selected={router.asPath.startsWith(href)}
-      >
-        <ListItemIcon className={classes.text} sx={{ paddingRight: '8px', minWidth: 'unset' }}>
-          {icon}
-        </ListItemIcon>
-        <ListItemText className={classes.icon}>{children}</ListItemText>
-      </ListItemButton>
-    </PageLink>
+    <ListItemButton
+      component={PageLink}
+      href={href}
+      className={classes.root}
+      sx={[{}, ...(Array.isArray(sx) ? sx : [sx])]}
+      dense
+      selected={router.asPath.startsWith(href)}
+    >
+      <ListItemIcon className={classes.text} sx={{ paddingRight: '8px', minWidth: 'unset' }}>
+        {icon}
+      </ListItemIcon>
+      <ListItemText className={classes.icon}>{children}</ListItemText>
+    </ListItemButton>
   )
 }

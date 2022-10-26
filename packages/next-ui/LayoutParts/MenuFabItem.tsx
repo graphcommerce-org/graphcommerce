@@ -1,9 +1,8 @@
 import { ListItemButton, ListItemButtonProps, ListItemText } from '@mui/material'
-import PageLink, { LinkProps as PageLinkProps } from 'next/link'
+import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 
-export type MenuFabItemProps = Omit<ListItemButtonProps<'a'>, 'href' | 'button'> &
-  Pick<PageLinkProps, 'href'>
+export type MenuFabItemProps = Omit<ListItemButtonProps<typeof PageLink>, 'button'>
 
 export function MenuFabItem(props: MenuFabItemProps) {
   const { href, children, sx = [], ...listItemProps } = props
@@ -12,14 +11,12 @@ export function MenuFabItem(props: MenuFabItemProps) {
   const active = hrefString === '/' ? path === hrefString : path.startsWith(hrefString)
 
   return (
-    <PageLink key={href.toString()} href={href} passHref legacyBehavior>
-      <ListItemButton component='a' dense selected={active} {...listItemProps}>
-        <ListItemText
-          sx={[{ typography: 'h4', lineHeight: 1.1 }, ...(Array.isArray(sx) ? sx : [sx])]}
-          disableTypography
-          primary={children}
-        />
-      </ListItemButton>
-    </PageLink>
+    <ListItemButton component={PageLink} href={href} dense selected={active} {...listItemProps}>
+      <ListItemText
+        sx={[{ typography: 'h4', lineHeight: 1.1 }, ...(Array.isArray(sx) ? sx : [sx])]}
+        disableTypography
+        primary={children}
+      />
+    </ListItemButton>
   )
 }

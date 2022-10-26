@@ -6,7 +6,7 @@ import {
   useFormGqlMutationCart,
 } from '@graphcommerce/magento-cart'
 import { IsEmailAvailableDocument } from '@graphcommerce/magento-customer'
-import { extendableComponent, FormRow } from '@graphcommerce/next-ui'
+import { extendableComponent, FormRow, Button } from '@graphcommerce/next-ui'
 import {
   emailPattern,
   useFormAutoSubmit,
@@ -14,8 +14,7 @@ import {
   UseFormComposeOptions,
 } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
-import { TextField, Typography, Button, NoSsr, SxProps, Box, Theme } from '@mui/material'
-import PageLink from 'next/link'
+import { TextField, SxProps, Box, Theme } from '@mui/material'
 import React from 'react'
 import { CartEmailDocument } from './CartEmail.gql'
 import { SetGuestEmailOnCartDocument } from './SetGuestEmailOnCart.gql'
@@ -72,11 +71,9 @@ export const EmailForm = React.memo<EmailFormProps>((props) => {
             endAdornment: (
               <WaitForQueries waitFor={isEmailAvailable}>
                 {isEmailAvailable.data?.isEmailAvailable && (
-                  <PageLink href='/account/signin' passHref legacyBehavior>
-                    <Button color='secondary' style={{ whiteSpace: 'nowrap' }}>
-                      <Trans id='Sign in' />
-                    </Button>
-                  </PageLink>
+                  <Button href='/account/signin' color='secondary' style={{ whiteSpace: 'nowrap' }}>
+                    <Trans id='Sign in' />
+                  </Button>
                 )}
               </WaitForQueries>
             ),

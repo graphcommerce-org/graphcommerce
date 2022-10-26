@@ -160,30 +160,30 @@ export const NavigationItem = React.memo<NavigationItemProps>((props) => {
 
     return (
       <NavigationLI sx={[hideItem && { display: 'none' }]} className={classes.li}>
-        <PageLink href={href} passHref prefetch={false} legacyBehavior>
-          <ListItemButton
-            className={classes.item}
-            component='a'
-            sx={(theme) => ({
-              gridRowStart: row,
-              gridColumnStart: column,
-              gap: theme.spacings.xxs,
-            })}
-            tabIndex={tabIndex}
-            onClick={onCloseHandler}
+        <ListItemButton
+          className={classes.item}
+          component={PageLink}
+          href={href}
+          prefetch={false}
+          sx={(theme) => ({
+            gridRowStart: row,
+            gridColumnStart: column,
+            gap: theme.spacings.xxs,
+          })}
+          tabIndex={tabIndex}
+          onClick={onCloseHandler}
+        >
+          <Box
+            component='span'
+            sx={{
+              whiteSpace: 'nowrap',
+              overflowX: 'hidden',
+              textOverflow: 'ellipsis',
+            }}
           >
-            <Box
-              component='span'
-              sx={{
-                whiteSpace: 'nowrap',
-                overflowX: 'hidden',
-                textOverflow: 'ellipsis',
-              }}
-            >
-              {name}
-            </Box>
-          </ListItemButton>
-        </PageLink>
+            {name}
+          </Box>
+        </ListItemButton>
       </NavigationLI>
     )
   }

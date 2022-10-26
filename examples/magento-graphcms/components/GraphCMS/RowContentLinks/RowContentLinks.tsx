@@ -1,6 +1,4 @@
-import { ContentLinks } from '@graphcommerce/next-ui'
-import { Link } from '@mui/material'
-import PageLink from 'next/link'
+import { ContentLinks, Link } from '@graphcommerce/next-ui'
 import { RowContentLinksFragment } from './RowContentLinks.gql'
 
 export function RowContentLinks(props: RowContentLinksFragment) {
@@ -9,11 +7,15 @@ export function RowContentLinks(props: RowContentLinksFragment) {
   return (
     <ContentLinks title={title}>
       {contentLinks.map((contentLink) => (
-        <PageLink href={contentLink.url} key={contentLink.id} passHref legacyBehavior>
-          <Link href={contentLink.url} variant='body1' color='inherit' underline='hover'>
-            {contentLink.title}
-          </Link>
-        </PageLink>
+        <Link
+          key={contentLink.id}
+          href={contentLink.url}
+          variant='body1'
+          color='inherit'
+          underline='hover'
+        >
+          {contentLink.title}
+        </Link>
       ))}
     </ContentLinks>
   )

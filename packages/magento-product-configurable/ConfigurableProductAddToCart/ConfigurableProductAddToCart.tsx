@@ -10,9 +10,8 @@ import {
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Divider, Typography, Alert, Box, SxProps, Theme } from '@mui/material'
-import PageLink from 'next/link'
 import React from 'react'
-import { Selected, useConfigurableContext } from '../ConfigurableContext/ConfigurableContext'
+import { useConfigurableContext } from '../ConfigurableContext/ConfigurableContext'
 import cheapestVariant from '../ConfigurableContext/cheapestVariant'
 import {
   ConfigurableOptionsInput,
@@ -159,17 +158,16 @@ export function ConfigurableProductAddToCart(props: ConfigurableProductAddToCart
         variant='pill'
         autoHide
         action={
-          <PageLink href='/cart' passHref legacyBehavior>
-            <Button
-              id='view-shopping-cart-button'
-              size='medium'
-              variant='pill'
-              color='secondary'
-              endIcon={<IconSvg src={iconChevronRight} />}
-            >
-              <Trans id='View shopping cart' />
-            </Button>
-          </PageLink>
+          <Button
+            href='/cart'
+            id='view-shopping-cart-button'
+            size='medium'
+            variant='pill'
+            color='secondary'
+            endIcon={<IconSvg src={iconChevronRight} />}
+          >
+            <Trans id='View shopping cart' />
+          </Button>
         }
       >
         <Trans

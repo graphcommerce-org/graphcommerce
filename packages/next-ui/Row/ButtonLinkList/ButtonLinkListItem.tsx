@@ -7,7 +7,7 @@ import { iconChevronRight } from '../../icons'
 export type ButtonLinkListItemProps = {
   url: string
   endIcon?: React.ReactNode
-} & ListItemButtonProps
+} & Omit<ListItemButtonProps<typeof PageLink>, 'href'>
 
 export function ButtonLinkListItem(props: ButtonLinkListItemProps) {
   const {
@@ -18,19 +18,18 @@ export function ButtonLinkListItem(props: ButtonLinkListItemProps) {
   } = props
 
   return (
-    <PageLink href={url} passHref legacyBehavior>
-      <ListItemButton
-        LinkComponent='a'
-        sx={(theme) => ({
-          padding: `${theme.spacings.xxs} 0`,
-          borderBottom: `1px solid ${theme.palette.divider}`,
-          justifyContent: 'space-between',
-        })}
-        {...ButtonLinkListItemProps}
-      >
-        <ListItemText>{children}</ListItemText>
-        <ListItemIcon>{endIcon}</ListItemIcon>
-      </ListItemButton>
-    </PageLink>
+    <ListItemButton
+      component={PageLink}
+      href={url}
+      sx={(theme) => ({
+        padding: `${theme.spacings.xxs} 0`,
+        borderBottom: `1px solid ${theme.palette.divider}`,
+        justifyContent: 'space-between',
+      })}
+      {...ButtonLinkListItemProps}
+    >
+      <ListItemText>{children}</ListItemText>
+      <ListItemIcon>{endIcon}</ListItemIcon>
+    </ListItemButton>
   )
 }
