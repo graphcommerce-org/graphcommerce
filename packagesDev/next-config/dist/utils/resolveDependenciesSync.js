@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.resolveDependenciesSync = void 0;
 const node_fs_1 = __importDefault(require("node:fs"));
 const node_path_1 = __importDefault(require("node:path"));
+const resolveCache = new Map();
 function resolveRecursivePackageJson(packageJsonFilename, packageNames) {
     try {
         const packageJsonFile = node_fs_1.default.readFileSync(packageJsonFilename, 'utf-8').toString();
@@ -52,6 +53,11 @@ function resolveRecursivePackageJson(packageJsonFilename, packageNames) {
  * and stop there, not checking children.
  */
 function resolveDependenciesSync(root = process.cwd()) {
-    return resolveRecursivePackageJson(node_path_1.default.join(root, 'package.json'), new Map());
+    const cached = resolveCache.get(root);
+    if (cached)
+        return cached;
+    const result = resolveRecursivePackageJson(node_path_1.default.join(root, 'package.json'), new Map());
+    resolveCache.set(root, result);
+    return result;
 }
 exports.resolveDependenciesSync = resolveDependenciesSync;

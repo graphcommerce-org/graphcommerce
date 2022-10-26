@@ -3,14 +3,16 @@ import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
 import { Box, SxProps, TextField, Theme } from '@mui/material'
 import PageLink from 'next/link'
-import { PropsWithChildren } from 'react'
 import { SignInDocument, SignInMutationVariables } from './SignIn.gql'
 
-type InlineSignInFormProps = Omit<SignInMutationVariables, 'password'> & { sx?: SxProps<Theme> }
+type InlineSignInFormProps = Omit<SignInMutationVariables, 'password'> & {
+  sx?: SxProps<Theme>
+  children?: React.ReactNode
+}
 
 const { classes } = extendableComponent('SignInFormInline', ['form', 'button'] as const)
 
-export function SignInFormInline(props: PropsWithChildren<InlineSignInFormProps>) {
+export function SignInFormInline(props: InlineSignInFormProps) {
   const { email, sx = [] } = props
   const form = useFormGqlMutation(
     SignInDocument,

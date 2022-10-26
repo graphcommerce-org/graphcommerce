@@ -1,17 +1,16 @@
 import { Link, LinkProps } from '@mui/material'
 import PageLink, { LinkProps as PageLinkProps } from 'next/link'
-import React, { PropsWithChildren } from 'react'
+import React from 'react'
 import { useProductListLink } from '../../hooks/useProductListLink'
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
 import { ProductListParams } from '../ProductListItems/filterTypes'
 
-export type ProductListLinkProps = PropsWithChildren<
-  LinkProps &
-    ProductListParams & {
-      noLink?: boolean
-      link?: Omit<PageLinkProps, 'href' | 'passHref'>
-    }
->
+export type ProductListLinkProps = LinkProps &
+  ProductListParams & {
+    noLink?: boolean
+    link?: Omit<PageLinkProps, 'href' | 'passHref'>
+    children?: React.ReactNode
+  }
 
 export const ProductListLink = React.forwardRef<HTMLAnchorElement, ProductListLinkProps>(
   (props, ref) => {

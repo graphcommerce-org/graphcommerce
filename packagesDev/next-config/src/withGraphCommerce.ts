@@ -1,6 +1,7 @@
 import type { NextConfig } from 'next'
 import withTranspileModules from 'next-transpile-modules'
 import { DefinePlugin, Configuration } from 'webpack'
+import { InterceptorPlugin } from './interceptors/InterceptorPlugin'
 import { resolveDependenciesSync } from './utils/resolveDependenciesSync'
 
 function extendConfig(nextConfig: NextConfig, modules: string[]): NextConfig {
@@ -43,6 +44,8 @@ function extendConfig(nextConfig: NextConfig, modules: string[]): NextConfig {
         '@mui/styled-engine': '@mui/styled-engine/modern',
         '@mui/system': '@mui/system/modern',
       }
+
+      config.plugins = [...(config.plugins ?? []), new InterceptorPlugin()]
 
       return typeof nextConfig.webpack === 'function' ? nextConfig.webpack(config, options) : config
     },

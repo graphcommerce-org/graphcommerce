@@ -5,7 +5,7 @@ import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, TextField } from '@mui/material'
-import React, { PropsWithChildren } from 'react'
+import React from 'react'
 import { SignUpMutationVariables, SignUpMutation, SignUpDocument } from './SignUp.gql'
 
 type SignUpFormInlineProps = Pick<SignUpMutationVariables, 'email'> & {
@@ -28,7 +28,7 @@ export function SignUpFormInline({
   firstname,
   lastname,
   onSubmitted = () => {},
-}: PropsWithChildren<SignUpFormInlineProps>) {
+}: SignUpFormInlineProps) {
   const form = useFormGqlMutation<
     SignUpMutation,
     SignUpMutationVariables & { confirmPassword?: string }

@@ -10,8 +10,7 @@ import { createStoreLink, defaultLocale } from '@graphcommerce/magento-store'
 import type { MeshInstance } from '@graphql-mesh/runtime'
 import { createCache, createHygraphLink, httpLink } from './GraphQLProvider'
 
-const loopback =
-  process.env.NODE_ENV === 'development' || (process.env.VERCEL === '1' && process.env.CI !== '1')
+const loopback = process.env.VERCEL === '1' && process.env.CI !== '1'
 
 // Do not import the mesh when we're running in loopback mode.
 const mesh = loopback

@@ -1,0 +1,172 @@
+# Plugins
+
+GraphCommerce plugin system allows you to extend GraphCommerce in a
+plug-and-play manner. Install a new package and the code will be added at the
+right places.
+
+- Plug-and-play: It is be possible to install packages after which they
+  immediately work.
+- No runtime overhead: The plugin system is fully implemented in webpack and
+- Easy plugin creation: Configuration should happen in the plugin file, not a
+  separate configuration file.
+
+## What problem are we solving?
+
+Without plugins the only way to add new functionality is by modifying the code
+of your project at multiple places. We often pass props to components to
+customize them, but sometimes we also place hooks at multiple places.
+
+For example, to add a new payment method it was necessary to modify the props of
+`<PaymentMethodContextProvider methods={[...braintree]}>`
+
+This causes problems:
+
+- Upgrades: If GraphCommerce changes something somewhere in the code where you
+  have already modified the code, you get an upgrade conflict which you have to
+  manually resolve. By using plugins you can avoid this.
+- New packages: When you install a complex new package, it can happen that you
+  have to modify the code of your project at multiple places. This is not
+  necessary with plugins.
+
+## What is a plugin?
+
+A plugin is a way to modify React Components by wrapping them, without having to
+modify the code in `examples/magento-graphcms` or `your-project`.
+
+For the M2 people: Think of around plugins, but without configuration files and
+no performance penalty.
+
+In the [PR](https://github.com/graphcommerce-org/graphcommerce/pull/1718) I have
+made the
+[`<PaymentMethodContextProvider />`](https://github.com/graphcommerce-org/graphcommerce/pull/1718/files#diff-d5b4da6c34d4b40dc8ac5d1c5967bc6f5aaa70d0d5ac79552f3a980b17a88ea9R115)
+work with plugins.
+
+The actual plugins are:
+
+- [AddBraintreeMethods](https://github.com/graphcommerce-org/graphcommerce/pull/1718/files#diff-14391e8c8f598e720b3e99ece1248987d68eb6133d354a3a55ef82331905be5b)
+- [AddIncludedMethods](https://github.com/graphcommerce-org/graphcommerce/pull/1718/files#diff-c3d57b802463ed40925b558049a56992202be975f3c86982e6a753e2830bdb9f)
+- [AddPaypalMethods](https://github.com/graphcommerce-org/graphcommerce/pull/1718/files#diff-934d7a9d597b01b6da875f61ca1cdfd57e0e0817e7126ce6216fd82dc4b6f899)
+- [AddMollieMethods](https://github.com/graphcommerce-org/graphcommerce/pull/1718/files#diff-76e6fc63dee67f55cbad4f13dc7b1b764da6235b88ed8d987c7044b7ef7fc942)
+
+The result of this is that:
+
+- The payment methods are added to the `<PaymentMethodContextProvider />` via
+  plugins.
+- These plugins are only applied if the relevant package is installed.
+
+### How do I make a plugin?
+
+In the root of my project, i've created a plugin
+`examples/magento-graphcms/plugins/AddPaymentMethodEnhancer.tsx` that adds
+purchaseorder to `<PaymentMethodContextProvider/>`
+
+```tsx
+import type { PaymentMethodContextProviderProps } from '@graphcommerce/magento-cart-payment-method'
+import type { PluginProps } from '@graphcommerce/next-config'
+import { purchaseorder } from '../PurchaseOrder'
+
+// Component to extend, required
+export const component = 'PaymentMethodContextProvider'
+
+// Exported location of the component that you are extending, required
+export const exported =
+  '@graphcommerce/magento-cart-payment-method/PaymentMethodContext/PaymentMethodContext'
+
+function AddPaymentMethodEnhancer(
+  props: PluginProps<PaymentMethodContextProviderProps>,
+) {
+  const { Component, modules, ...rest } = props
+  return <Component {...rest} modules={{ ...modules, purchaseorder }} />
+}
+
+/** The export must be named `Plugin` and must accept a Component to render */
+export const Plugin = AddIncludedMethods
+```
+
+### How does it work?
+
+1. It generates a list of all packages with `graphcommerce` in the package
+   `name` (All `@graphcommerce/*` packages and
+   `@my-company/graphcommerce-plugin-name`).
+2. It does a glob search for plugins in the plugins folders for each package:
+   `${packageLocation}/plugins/**/*.tsx`.
+3. Statically Analyse the plugins, check if the `component` and `exported`
+   exports exist and generate the plugin configuration.
+4. Generate `PaymentMethodContext.interceptor.tsx` and place it next to the
+   existing component
+
+Example of generated interceptor with additional comments:
+
+```tsx
+// All plugins are imported, which will be used to enhance the original component.
+import { Plugin as AddIncludedMethods } from '@graphcommerce/magento-payment-included/plugins/AddIncludedMethods'
+import { Plugin as AddPaypalMethods } from '@graphcommerce/magento-payment-paypal/plugins/AddPaypalMethods'
+
+// This file is placed next to the original component, so it is imported with a relative path, in the Webpack plugin we
+// load the original file if it is loaded from the interceptor.
+import { PaymentMethodContextProvider as PaymentMethodContextProviderBase } from './PaymentMethodContext'
+
+// All original exports are exported, if the original file exports more than we're intercepting, it will still work.
+export * from './PaymentMethodContext'
+
+type PaymentMethodContextProviderBaseProps = React.ComponentProps<
+  typeof PaymentMethodContextProviderBase
+>
+
+// We create new Interceptor components here, which allows us to wrap multiple plugins around the original component.
+const AddIncludedMethodsInterceptor = (
+  props: PaymentMethodContextProviderBaseProps,
+) => (
+  //For the first plugin we use the original component.
+  <AddIncludedMethods {...props} Component={PaymentMethodContextProviderBase} />
+)
+const AddPaypalMethodsInterceptor = (
+  props: PaymentMethodContextProviderBaseProps,
+) => (
+  // For the next components we use the previous Interceptor component.
+  <AddPaypalMethods {...props} Component={AddIncludedMethodsInterceptor} />
+)
+
+// Finally we return the resulting interceptor component.
+export const PaymentMethodContextProvider = AddPaypalMethodsInterceptor
+```
+
+React profile will show that all components are nested:
+
+![](https://user-images.githubusercontent.com/1244416/197813853-e8aa329e-41bc-4f56-8aac-2464cc37032f.png)
+
+### Possible use cases
+
+In the examples above we've extended the payment methods, but it should also
+work for other things such as:
+
+- Googletagmanager
+- Googleanalytics
+- Google recaptcha
+- Compare functionality?
+- Wishlist functionality?
+- Abstraction between GraphCommerce and Backends? (Magento, BigCommerce,
+  CommerceTools, etc.)
+
+### Limitations
+
+Work is planned to lift these limitations, but for now:
+
+React Refresh doesn't work correctly with Plugins, it will force a page reload
+on each file change and will throw an error in the console. To solve this issue,
+move your actual plugin outside of the plugin file and only have the plugin be a
+configuration file.
+
+It currently isn't possible to provide a plugin sort order. The project root is
+intercepting last, followed by the packages in reverse alphabetical order,
+followed by dependencies' dependencies. We don't generate a proper graph at the
+moment to figure out the actual dependencies but is an artifact of how we
+resolve the dependencies.
+
+There currently isn't a way for the plugin to determine if the plugin should be
+activated at all. For example, the code for Google Analytics should only be
+added if the user has configured it. This is currently not possible. Of if a
+user wants to disable a plugin, this is currently not possible.
+
+It is currently is only possible to extend React Components. This however sets
+the foundation to allow for a more flexible plugin system in the future.
