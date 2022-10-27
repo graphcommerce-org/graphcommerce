@@ -1,12 +1,20 @@
 import { useQuery, cloneDeep } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { ChipMenu, ChipMenuProps, extendableComponent } from '@graphcommerce/next-ui'
+import {
+  ActionCard,
+  ActionCardItemRenderProps,
+  ActionCardListForm,
+  ChipMenu,
+  ChipMenuProps,
+  extendableComponent,
+} from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box, ListItem, ListItemText, SxProps, Theme, Typography } from '@mui/material'
-import React, { useState } from 'react'
+import { SxProps, Theme, Typography } from '@mui/material'
+import { useState } from 'react'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
-import { ProductListLink } from '../ProductListLink/ProductListLink'
+import { useFilterForm } from '../ProductListFilters/FilterFormContext'
+import { ProductListParams } from '../ProductListItems/filterTypes'
 import { ProductListSortFragment } from './ProductListSort.gql'
 
 export type ProductListSortProps = ProductListSortFragment &
@@ -19,11 +27,45 @@ export type ProductListSortProps = ProductListSortFragment &
 
 const name = 'ProductListSort' as const
 const parts = ['menu', 'item', 'link'] as const
-const { classes } = extendableComponent(name, parts)
+const { classes, withState } = extendableComponent(name, parts)
+
+function FilterSortActionCard(
+  props: ActionCardItemRenderProps<{
+    option: NonNullable<NonNullable<ProductListSortFragment['sort_fields']>['options']>[0]
+    attribute_code: string
+    params: ProductListParams
+    currentOption: NonNullable<NonNullable<ProductListSortFragment['sort_fields']>['options']>[0]
+  }>,
+) {
+  const { option, attribute_code, currentOption, params, onReset, ...cardProps } = props
+  if (!option?.value) return null
+  const labelId = `filter-equal-${attribute_code}-${option?.value}`
+  const filters = cloneDeep(params.filters)
+  const isColor = !!attribute_code?.toLowerCase().includes('color')
+  const isActive = Boolean(isColor && currentOption?.value?.includes(option?.value) && isColor)
+
+  const cls = withState({ isActive })
+
+  return (
+    <ActionCard
+      {...cardProps}
+      size='small'
+      title={
+        <Typography className={cls.link} sx={{ py: 1 }}>
+          {option.label}
+        </Typography>
+      }
+    />
+  )
+}
 
 export function ProductListSort(props: ProductListSortProps) {
   const { sort_fields, total_count, sx = [], ...filterMenuProps } = props
   const { params } = useProductListParamsContext()
+  const {
+    form: { control },
+  } = useFilterForm()
+
   const replaceRoute = useProductListLinkReplace()
   const { data: storeConfigQuery } = useQuery(StoreConfigDocument)
   const defaultSort = storeConfigQuery?.storeConfig?.catalog_default_sort_by
@@ -57,55 +99,27 @@ export function ProductListSort(props: ProductListSortProps) {
       selected={selected}
       label={label}
       {...filterMenuProps}
-      onDelete={selected ? removeFilter : undefined}
       onClose={handleClose}
       sx={Array.isArray(sx) ? sx : [sx]}
       openEl={openEl}
       setOpenEl={setOpenEl}
-      actionable={false}
     >
-      <Box
-        sx={(theme) => ({
-          py: theme.spacings.xxs,
-          '& > a:not(:last-of-type) > h6': {
-            borderBottom: `1px solid ${theme.palette.divider}`,
-          },
-        })}
-      >
-        {sort_fields?.options?.map((option) => {
-          const linkParams = cloneDeep(params)
-          linkParams.sort = {}
-          if (option?.value !== defaultSort) linkParams.sort[option?.value ?? ''] = 'ASC'
-          delete linkParams.currentPage
-
-          return (
-            <ListItem
-              className={classes.item}
-              button={undefined}
-              key={option?.value ?? ''}
-              selected={option?.value === currentSort}
-              component={React.memo(
-                // eslint-disable-next-line react/no-unstable-nested-components
-                React.forwardRef<HTMLAnchorElement>((chipProps, ref) => (
-                  <ProductListLink
-                    {...chipProps}
-                    {...linkParams}
-                    className={classes.link}
-                    ref={ref}
-                    color='inherit'
-                    underline='none'
-                    link={{ scroll: false, replace: true }}
-                  />
-                )),
-              )}
-            >
-              <Typography variant='subtitle1' sx={{ py: 2 }}>
-                {option?.label}
-              </Typography>
-            </ListItem>
-          )
-        })}
-      </Box>
+      <ActionCardListForm
+        name='sort'
+        control={control}
+        layout='list'
+        variant='default'
+        items={
+          sort_fields?.options?.map((option) => ({
+            option,
+            label,
+            params,
+            value: option?.value ?? '',
+            currentOption,
+          })) ?? []
+        }
+        render={FilterSortActionCard}
+      />
     </ChipMenu>
   )
 }

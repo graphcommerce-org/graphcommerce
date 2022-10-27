@@ -10,12 +10,14 @@ import {
   Popper,
   ClickAwayListener,
   Fab,
+  TextField,
 } from '@mui/material'
 import { forwardRef, PropsWithChildren } from 'react'
 import { Button, LinkOrButton } from '../Button'
 import { IconSvg, useIconSvgSize } from '../IconSvg'
 import { LayoutTitle } from '../Layout'
 import { LayoutHeaderContent } from '../Layout/components/LayoutHeaderContent'
+import { LayoutOverlayHeader } from '../LayoutOverlay'
 import { LayoutOverlaySize, Overlay } from '../Overlay'
 import { useFabSize } from '../Theme'
 import { iconClose } from '../icons'
@@ -45,25 +47,33 @@ const MenuContent = forwardRef<any, MenuContentProps>(
     return (
       <Box
         ref={ref}
-        sx={{
+        sx={(theme) => ({
           display: 'flex',
           flexDirection: 'column',
           // justifyContent: 'space-between',
           minWidth: 350,
           backgroundColor: 'background.paper',
-          height: '100%',
-        }}
+          '& .MuiTextField-root': {
+            borderBottom: `1px solid ${theme.palette.divider}`,
+          },
+        })}
       >
-        <LayoutHeaderContent
+        <LayoutOverlayHeader
           switchPoint={0}
-          sx={{ position: 'relative', mb: 0.5 }}
-          left={
+          primary={
+            actionable ? (
+              <Button color='primary' variant='inline' size='large' onClick={onReset}>
+                <Trans id='Reset' />
+              </Button>
+            ) : null
+          }
+          secondary={
             <Fab
               color='inherit'
               onClick={onClose}
               sx={{
                 boxShadow: 'none',
-                marginLeft: `calc((${fabSize} - ${svgSize}) * -0.5)`,
+                marginLeft: `calc((${fabSize} - ${svgSize}) * -0.6)`,
                 marginRight: `calc((${fabSize} - ${svgSize}) * -0.5)`,
               }}
               aria-label={i18n._(/* i18n */ 'Close')}
@@ -71,51 +81,57 @@ const MenuContent = forwardRef<any, MenuContentProps>(
               <IconSvg src={iconClose} size='medium' aria-hidden />
             </Fab>
           }
-          right={
-            actionable ? (
-              <LinkOrButton
-                button={{ variant: 'inline', size: 'large' }}
-                color='primary'
-                onClick={onReset}
-              >
-                <Trans id='Reset' />
-              </LinkOrButton>
-            ) : null
+          divider={
+            <TextField
+              type='search'
+              fullWidth
+              size='small'
+              color='primary'
+              placeholder={i18n._(/* 18n */ 'Search {filter}', { filter: label })}
+              sx={{ backgroundColor: 'green', marginTop: 10 }}
+              // onChange={handleSearch}
+            />
           }
         >
           <LayoutTitle size='small' component='span'>
             {label}
           </LayoutTitle>
-        </LayoutHeaderContent>
+        </LayoutOverlayHeader>
+
         <Box
           sx={(theme) => ({
             flex: 1,
             padding: `0 ${theme.page.horizontal}`,
             overflow: 'visible',
             overflowY: 'scroll',
-            maxHeight: isDesktop ? '500px' : 'calc(99vh - 275px)',
-            borderBottom: `1px solid ${theme.palette.divider}`,
+            maxHeight: isDesktop ? '500px' : undefined,
+            boxShadow: theme.shadows[1],
           })}
         >
           {children}
+          <Box sx={(theme) => ({ height: theme.spacings.sm })} />
+          {actionable ? (
+            <Button
+              form='filter-form'
+              variant='pill'
+              size='large'
+              fullWidth
+              sx={(theme) => ({
+                // position: 'sticky',
+                bottom: theme.spacings.xxs,
+                backgroundColor: 'primary.main',
+                color: 'primary.contrastText',
+                position: '-webkit-sticky',
+              })}
+              type='submit'
+              onClick={() => {
+                setOpenEl(null)
+              }}
+            >
+              <Trans id='Apply' />
+            </Button>
+          ) : null}
         </Box>
-        {actionable ? (
-          <Button
-            form='filter-form'
-            variant='pill'
-            color='primary'
-            size='large'
-            sx={(theme) => ({
-              margin: theme.spacings.xxs,
-            })}
-            type='submit'
-            onClick={() => {
-              setOpenEl(null)
-            }}
-          >
-            <Trans id='Apply' />
-          </Button>
-        ) : null}
       </Box>
     )
   },
