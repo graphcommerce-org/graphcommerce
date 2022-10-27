@@ -1,5 +1,47 @@
 # Change Log
 
+## 4.11.1
+
+### Patch Changes
+
+- [#1716](https://github.com/graphcommerce-org/graphcommerce/pull/1716) [`cfcc02bb8`](https://github.com/graphcommerce-org/graphcommerce/commit/cfcc02bb8091a5266d5c4a30dc4220d2a99fd3cd) Thanks [@github-actions](https://github.com/apps/github-actions)! - Always checkout the main branch when starting a new project
+
+- [#1716](https://github.com/graphcommerce-org/graphcommerce/pull/1716) [`2eb6665d3`](https://github.com/graphcommerce-org/graphcommerce/commit/2eb6665d3bcb0c05f785fdac2a0b70c91e4dc833) Thanks [@github-actions](https://github.com/apps/github-actions)! - Recommend node 16 and depth=1 for cloning
+
+## 4.11.1-canary.1
+
+### Patch Changes
+
+- [`cfcc02bb8`](https://github.com/graphcommerce-org/graphcommerce/commit/cfcc02bb8091a5266d5c4a30dc4220d2a99fd3cd) Thanks [@paales](https://github.com/paales)! - Always checkout the main branch when starting a new project
+
+## 4.11.1-canary.0
+
+### Patch Changes
+
+- [#1710](https://github.com/graphcommerce-org/graphcommerce/pull/1710) [`ba81dc2b9`](https://github.com/graphcommerce-org/graphcommerce/commit/ba81dc2b9233c281bd5d943a9762dd4b9658462d) Thanks [@paales](https://github.com/paales)! - Recommend node 16 and depth=1 for cloning
+
+## 4.11.0
+
+### Minor Changes
+
+- [#1613](https://github.com/graphcommerce-org/graphcommerce/pull/1613) [`c5af837f8`](https://github.com/graphcommerce-org/graphcommerce/commit/c5af837f86ac097089eded39dcdd0100f61a1990) Thanks [@paales](https://github.com/paales)! - Remove the usage of scripts_local
+
+### Patch Changes
+
+- [#1702](https://github.com/graphcommerce-org/graphcommerce/pull/1702) [`abb15ef4a`](https://github.com/graphcommerce-org/graphcommerce/commit/abb15ef4a79b12eddb32cc006e5d1d31dd06ac2d) Thanks [@paales](https://github.com/paales)! - Added canary releases to GraphCommerce
+
+## 4.11.0-canary.1
+
+### Patch Changes
+
+- [`abb15ef4a`](https://github.com/graphcommerce-org/graphcommerce/commit/abb15ef4a79b12eddb32cc006e5d1d31dd06ac2d) Thanks [@paales](https://github.com/paales)! - Added canary releases to GraphCommerce
+
+## 4.11.0-canary.0
+
+### Minor Changes
+
+- [#1613](https://github.com/graphcommerce-org/graphcommerce/pull/1613) [`c5af837f8`](https://github.com/graphcommerce-org/graphcommerce/commit/c5af837f86ac097089eded39dcdd0100f61a1990) Thanks [@paales](https://github.com/paales)! - Remove the usage of scripts_local
+
 ## 4.10.0
 
 ### Minor Changes

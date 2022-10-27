@@ -47,8 +47,9 @@ If you want to test a GraphCommerce storefront using a pre-configured Magento
 demo store and a pre-configured GraphCMS project with demo content, then you
 need to only install the dependencies. This is the quickest approach.
 
-- Install and use node 14: `nvm install 14` or `nvm use 14`
-- Install yarn: `npm install --global yarn`
+- Install and use node 14/16: `nvm install 16` or `nvm use 16`
+- Install yarn: `corepack enable` (for node 16) or `npm install --global yarn`
+  (for node 14)
 
 ## Step 1: Create a new GraphCommerce app
 
@@ -65,24 +66,14 @@ https://user-images.githubusercontent.com/1251986/158647122-dc57002f-a9c2-4661-a
 
 ### Download the example
 
-1. `git clone https://github.com/graphcommerce-org/graphcommerce.git` — clone repository
+1. `git clone -b main --depth 1 https://github.com/graphcommerce-org/graphcommerce.git`
+   — clone repository
 2. `mkdir my-project` — create project folder
-3. `cp -R graphcommerce/examples/magento-graphcms/. my-project && rm -rf graphcommerce` — copy example, delete repo
+3. `cp -R graphcommerce/examples/magento-graphcms/. my-project && rm -rf graphcommerce`
+   — copy example, delete repo
 4. `cd my-project` — change directory to project folder
 5. `cp -R .env.example .env` — create .env file
 6. `rm CHANGELOG.md` — remove changelog
-
-Edit /package.json. Delete `"scripts": {...}` and rename `scripts_local` to
-`scripts`:
-
-```json
-{
-  "name": "@my-company/my-project",
-  "scripts": {
-    ...
-  }
-}
-```
 
 ## Step 2: Magento and GraphCMS API keys
 
@@ -149,7 +140,9 @@ List of routes and store_codes:
 The example has Payment Service Providers integrated (Mollie, Braintree). Remove
 the ones your Magento backend doesn't support.
 
-- Remove Payment Service integrations from package.json: `@graphcommerce/mollie-magento-payment` and/or `@graphcommerce/magento-payment-braintree`
+- Remove Payment Service integrations from package.json:
+  `@graphcommerce/mollie-magento-payment` and/or
+  `@graphcommerce/magento-payment-braintree`
 - Remove Payment Service references from `pages/checkout/payment.tsx`
 
 ## Step 3: Start the development environment

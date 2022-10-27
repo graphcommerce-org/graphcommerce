@@ -1,5 +1,35 @@
 # Change Log
 
+## 4.13.1
+
+### Patch Changes
+
+- [#1716](https://github.com/graphcommerce-org/graphcommerce/pull/1716) [`3cc6a4014`](https://github.com/graphcommerce-org/graphcommerce/commit/3cc6a401405bebeb30ff45c8509b189407bb7f77) Thanks [@github-actions](https://github.com/apps/github-actions)! - Remove spacing from InlineAccount on the checkout
+
+## 4.13.1-canary.2
+
+## 4.13.1-canary.1
+
+## 4.13.1-canary.0
+
+### Patch Changes
+
+- [`c6f6cb102`](https://github.com/graphcommerce-org/graphcommerce/commit/c6f6cb102d71b7b4b478cc2eeb8a9f2a784b5bbf) Thanks [@paales](https://github.com/paales)! - Remove spacing from InlineAccount on the checkout
+
+## 4.13.0
+
+### Patch Changes
+
+- [#1702](https://github.com/graphcommerce-org/graphcommerce/pull/1702) [`abb15ef4a`](https://github.com/graphcommerce-org/graphcommerce/commit/abb15ef4a79b12eddb32cc006e5d1d31dd06ac2d) Thanks [@paales](https://github.com/paales)! - Added canary releases to GraphCommerce
+
+## 4.13.0-canary.1
+
+### Patch Changes
+
+- [`abb15ef4a`](https://github.com/graphcommerce-org/graphcommerce/commit/abb15ef4a79b12eddb32cc006e5d1d31dd06ac2d) Thanks [@paales](https://github.com/paales)! - Added canary releases to GraphCommerce
+
+## 4.13.0-canary.0
+
 ## 4.9.5
 
 ### Patch Changes

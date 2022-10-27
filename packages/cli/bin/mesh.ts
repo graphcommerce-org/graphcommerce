@@ -4,12 +4,13 @@
 import { promises as fs } from 'node:fs'
 import path from 'node:path'
 import { exit } from 'node:process'
+import { isMonorepo } from '@graphcommerce/next-config'
 import { graphqlMesh, DEFAULT_CLI_PARAMS, GraphQLMeshCLIParams } from '@graphql-mesh/cli'
 import { Logger, YamlConfig } from '@graphql-mesh/types'
 import { DefaultLogger } from '@graphql-mesh/utils'
 import dotenv from 'dotenv'
 import yaml from 'yaml'
-import { findConfig } from '../mesh/findConfig'
+import { findConfig } from '../utils/findConfig'
 
 dotenv.config()
 
@@ -24,14 +25,12 @@ const root = process.cwd()
 const meshDir = path.dirname(require.resolve('@graphcommerce/graphql-mesh'))
 const relativePath = path.join(path.relative(meshDir, root), '/')
 
-const isMonoRepo = relativePath.startsWith(`..${path.sep}..${path.sep}examples`)
-
 const cliParams: GraphQLMeshCLIParams = {
   ...DEFAULT_CLI_PARAMS,
   playgroundTitle: 'GraphCommerce® Mesh',
 }
 
-const tmpMesh = `_tmp_mesh_${Math.random().toString(36).substring(2, 15)}`
+const tmpMesh = `_tmp_codegen`
 const tmpMeshLocation = path.join(root, `.${tmpMesh}rc.yml`)
 
 async function cleanup() {
@@ -71,7 +70,7 @@ const main = async () => {
 
   // Scan the current working directory to also read all graphqls files.
   conf.additionalTypeDefs.push('**/*.graphqls')
-  if (isMonoRepo) {
+  if (isMonorepo()) {
     conf.additionalTypeDefs.push('../../packages/**/*.graphqls')
     conf.additionalTypeDefs.push('../../packagesDev/**/*.graphqls')
   } else {
@@ -98,4 +97,7 @@ const main = async () => {
 process.on('SIGINT', cleanup)
 process.on('SIGTERM', cleanup)
 
-main().catch((e) => handleFatalError(e, new DefaultLogger(DEFAULT_CLI_PARAMS.initialLoggerPrefix)))
+main().catch((e) => {
+  cleanup()
+  return handleFatalError(e, new DefaultLogger(DEFAULT_CLI_PARAMS.initialLoggerPrefix))
+})

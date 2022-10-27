@@ -1,5 +1,35 @@
 # Change Log
 
+## 4.13.1
+
+### Patch Changes
+
+- [#1715](https://github.com/graphcommerce-org/graphcommerce/pull/1715) [`c478585c0`](https://github.com/graphcommerce-org/graphcommerce/commit/c478585c050a389828a636208de7596e0d396f70) Thanks [@Jessevdpoel](https://github.com/Jessevdpoel)! - Added sorting on category_level
+
+## 4.13.1-canary.2
+
+### Patch Changes
+
+- [#1715](https://github.com/graphcommerce-org/graphcommerce/pull/1715) [`c478585c0`](https://github.com/graphcommerce-org/graphcommerce/commit/c478585c050a389828a636208de7596e0d396f70) Thanks [@Jessevdpoel](https://github.com/Jessevdpoel)! - Added sorting on category_level
+
+## 4.13.1-canary.1
+
+## 4.13.1-canary.0
+
+## 4.13.0
+
+### Patch Changes
+
+- [#1702](https://github.com/graphcommerce-org/graphcommerce/pull/1702) [`abb15ef4a`](https://github.com/graphcommerce-org/graphcommerce/commit/abb15ef4a79b12eddb32cc006e5d1d31dd06ac2d) Thanks [@paales](https://github.com/paales)! - Added canary releases to GraphCommerce
+
+## 4.13.0-canary.1
+
+### Patch Changes
+
+- [`abb15ef4a`](https://github.com/graphcommerce-org/graphcommerce/commit/abb15ef4a79b12eddb32cc006e5d1d31dd06ac2d) Thanks [@paales](https://github.com/paales)! - Added canary releases to GraphCommerce
+
+## 4.13.0-canary.0
+
 ## 4.8.4
 
 ### Patch Changes

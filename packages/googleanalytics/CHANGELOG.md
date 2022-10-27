@@ -1,5 +1,27 @@
 # Change Log
 
+## 3.0.8
+
+## 3.0.8-canary.2
+
+## 3.0.8-canary.1
+
+## 3.0.8-canary.0
+
+## 3.0.7
+
+### Patch Changes
+
+- [#1702](https://github.com/graphcommerce-org/graphcommerce/pull/1702) [`abb15ef4a`](https://github.com/graphcommerce-org/graphcommerce/commit/abb15ef4a79b12eddb32cc006e5d1d31dd06ac2d) Thanks [@paales](https://github.com/paales)! - Added canary releases to GraphCommerce
+
+## 3.0.7-canary.1
+
+### Patch Changes
+
+- [`abb15ef4a`](https://github.com/graphcommerce-org/graphcommerce/commit/abb15ef4a79b12eddb32cc006e5d1d31dd06ac2d) Thanks [@paales](https://github.com/paales)! - Added canary releases to GraphCommerce
+
+## 3.0.7-canary.0
+
 ## 3.0.6
 
 ### Patch Changes

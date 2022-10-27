@@ -10,11 +10,12 @@ exports.handleFatalError = void 0;
 const node_fs_1 = require("node:fs");
 const node_path_1 = __importDefault(require("node:path"));
 const node_process_1 = require("node:process");
+const next_config_1 = require("@graphcommerce/next-config");
 const cli_1 = require("@graphql-mesh/cli");
 const utils_1 = require("@graphql-mesh/utils");
 const dotenv_1 = __importDefault(require("dotenv"));
 const yaml_1 = __importDefault(require("yaml"));
-const findConfig_1 = require("../mesh/findConfig");
+const findConfig_1 = require("../utils/findConfig");
 dotenv_1.default.config();
 function handleFatalError(e, logger = new utils_1.DefaultLogger('◈')) {
     logger.error(e.stack || e.message);
@@ -27,12 +28,11 @@ exports.handleFatalError = handleFatalError;
 const root = process.cwd();
 const meshDir = node_path_1.default.dirname(require.resolve('@graphcommerce/graphql-mesh'));
 const relativePath = node_path_1.default.join(node_path_1.default.relative(meshDir, root), '/');
-const isMonoRepo = relativePath.startsWith(`..${node_path_1.default.sep}..${node_path_1.default.sep}examples`);
 const cliParams = {
     ...cli_1.DEFAULT_CLI_PARAMS,
     playgroundTitle: 'GraphCommerce® Mesh',
 };
-const tmpMesh = `_tmp_mesh_${Math.random().toString(36).substring(2, 15)}`;
+const tmpMesh = `_tmp_codegen`;
 const tmpMeshLocation = node_path_1.default.join(root, `.${tmpMesh}rc.yml`);
 async function cleanup() {
     try {
@@ -67,7 +67,7 @@ const main = async () => {
     });
     // Scan the current working directory to also read all graphqls files.
     conf.additionalTypeDefs.push('**/*.graphqls');
-    if (isMonoRepo) {
+    if ((0, next_config_1.isMonorepo)()) {
         conf.additionalTypeDefs.push('../../packages/**/*.graphqls');
         conf.additionalTypeDefs.push('../../packagesDev/**/*.graphqls');
     }
@@ -86,4 +86,7 @@ const main = async () => {
 };
 process.on('SIGINT', cleanup);
 process.on('SIGTERM', cleanup);
-main().catch((e) => handleFatalError(e, new utils_1.DefaultLogger(cli_1.DEFAULT_CLI_PARAMS.initialLoggerPrefix)));
+main().catch((e) => {
+    cleanup();
+    return handleFatalError(e, new utils_1.DefaultLogger(cli_1.DEFAULT_CLI_PARAMS.initialLoggerPrefix));
+});

@@ -75,7 +75,6 @@ Compare your local /package.json with the example's
    doesn't support.
 2. Replace your local `devDependencies` with the example's `devDependencies`
 3. Replace your local `resolutions` with the example's `resolutions`
-4. Replace your local `scripts` with the example's `scripts_local`
 
 After updating the package.json file, run the following to install the latest
 packages:

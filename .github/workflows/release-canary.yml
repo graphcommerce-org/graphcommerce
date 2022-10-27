@@ -1,0 +1,78 @@
+name: release
+on:
+  push:
+    branches:
+      - 'canary'
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    outputs:
+      published: ${{ steps.changesets.outputs.published }}
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          ref: canary
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          registry-url: 'https://registry.npmjs.org'
+          scope: '@graphcommerce'
+      - uses: bahmutov/npm-install@v1
+        with:
+          useRollingCache: true
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: set pre canary
+        run: 'yarn changeset pre enter canary'
+        continue-on-error: true
+      - name: run changeset version and commit
+        run: |
+          yarn changeset version
+          git add .
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git commit -m "chore(release): update prerelease versions"
+          git push
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: set version variables
+        id: vars
+        shell: bash
+        run: |
+          echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+          echo "::set-output name=date::$(date +"%B %d, %Y")"
+      - name: release
+        uses: paales/changesets-action@aggregate-release-mode
+        with:
+          publish: 'yarn release'
+          commit: 'chore(release): update monorepo packages versions'
+          title: 'Upcoming Release Changes (${{ github.ref }})'
+          createGithubReleases: aggregate
+          githubReleaseName: '${{ steps.vars.outputs.date }} (canary)'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: create branch disable pre and version
+        shell: bash
+        run: |
+          yarn changeset pre exit
+          yarn changeset version
+          git add .
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create Pull Request
+        id: cpr
+        uses: peter-evans/create-pull-request@v4
+        with:
+          branch: changeset-release/main
+          title: 'Release ${{ steps.vars.outputs.date }}'
+          base: main
+      - name: Check outputs
+        if: ${{ steps.cpr.outputs.pull-request-number }}
+        run: |
+          echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
+          echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
