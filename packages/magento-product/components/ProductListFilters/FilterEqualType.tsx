@@ -36,7 +36,7 @@ const parts = [
   'isActive',
 ] as const
 
-const { classes, selectors, withState } = extendableComponent<
+const { selectors, withState } = extendableComponent<
   OwnerState,
   typeof componentName,
   typeof parts
@@ -134,7 +134,7 @@ export function FilterEqualType(props: FilterEqualTypeProps) {
   } = useFilterForm()
 
   const { params } = useProductListParamsContext()
-  const { emptyFilters, resetFilters } = useFilterActions({
+  const { emptyFilters } = useFilterActions({
     attribute_code,
   })
   const currentFilter: FilterEqualTypeInput = cloneDeep(params.filters[attribute_code]) ?? {
@@ -178,18 +178,6 @@ export function FilterEqualType(props: FilterEqualTypeProps) {
       className={componentName}
       mode={mode}
     >
-      {searchCompatible ? (
-        <TextField
-          type='search'
-          fullWidth
-          size='small'
-          sx={(theme) => ({ py: theme.spacings.xxs })}
-          color='primary'
-          placeholder={i18n._(/* 18n */ 'Search {filter}', { filter: label?.toLowerCase() })}
-          onChange={(e) => handleSearch(e)}
-        />
-      ) : null}
-
       <ActionCardListForm
         name={`${attribute_code}.in`}
         control={control}
