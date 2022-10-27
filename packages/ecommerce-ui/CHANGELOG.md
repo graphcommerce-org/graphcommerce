@@ -1,5 +1,7 @@
 # @graphcommerce/ecommerce-ui
 
+## 4.30.2
+
 ## 4.30.1
 
 ## 4.30.0
