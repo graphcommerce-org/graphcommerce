@@ -53,7 +53,8 @@ async function main() {
         if (gen.presetConfig?.extension)
             extension = gen.presetConfig.extension;
     });
-    if (extension)
+    const isWatching = process.argv.includes('--watch') || process.argv.includes('-w');
+    if (!isWatching && extension)
         (0, rimraf_1.default)(node_path_1.default.join(root, `**/*${extension}`), console.error);
     // - Prepend the all targets with ../../ if we're running in a monorepo setup.
     // - Append all the Graphcommerce packages to the configuration
