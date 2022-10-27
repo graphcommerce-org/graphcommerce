@@ -1,5 +1,7 @@
 # Change Log
 
+## 3.0.53
+
 ## 3.0.52
 
 ### Patch Changes

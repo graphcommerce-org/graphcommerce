@@ -1,5 +1,7 @@
 # Change Log
 
+## 3.1.8
+
 ## 3.1.7
 
 ### Patch Changes
