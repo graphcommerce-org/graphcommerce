@@ -1,5 +1,7 @@
 # @graphcommerce/cli
 
+## 4.30.1
+
 ## 4.30.0
 
 ### Minor Changes
