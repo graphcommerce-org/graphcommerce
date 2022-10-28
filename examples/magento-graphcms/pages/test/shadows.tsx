@@ -42,12 +42,11 @@ const normalize = (number, currentScaleMin, currentScaleMax, newScaleMin = 0, ne
   return (newScaleMax - newScaleMin) * standardNormalization + newScaleMin
 }
 
-export const splitCommaSeparatedArray = (str) => {
-  return str.replace(/,\s+/g, ',').split(',')
-}
+export const splitCommaSeparatedArray = (str) => str.replace(/,\s+/g, ',').split(',')
 
 const getValuesForBezierCurve = ({ startPoint, endPoint, controlPoint1, controlPoint2 }, t) => {
-  let x, y
+  let x
+  let y
   if (controlPoint2) {
     x =
       (1 - t) ** 3 * startPoint[0] +
@@ -68,9 +67,9 @@ const getValuesForBezierCurve = ({ startPoint, endPoint, controlPoint1, controlP
 }
 
 function calculateShadowOffsets({ size, curve, spread, layerIndex, lightSource, numOfLayers }) {
-  let maxOffsetBySize = new Object()
+  const maxOffsetBySize = new Object()
 
-  for (var i = 1; i <= shadowCount; i++) {
+  for (let i = 1; i <= shadowCount; i++) {
     maxOffsetBySize[i] = normalize(
       curve,
       0,
@@ -124,7 +123,7 @@ function calculateShadowOpacity({
     initialOpacityMultiplier,
     finalOpacityMultiplier,
   )
-  let opacity = baseOpacity * layerOpacityMultiplier
+  const opacity = baseOpacity * layerOpacityMultiplier
   const averageLayers = (minLayers + maxLayers) / 2
   const ratio = averageLayers / numOfLayers
   let layerOpacity = opacity * ratio
@@ -152,9 +151,9 @@ function generateShadows({
   tintShadows,
   layerOpacityConfig,
 }) {
-  let output = []
-  let SHADOW_LAYER_LIMITS = new Object()
-  for (var i = 1; i <= shadowCount; i++) {
+  const output = []
+  const SHADOW_LAYER_LIMITS = new Object()
+  for (let i = 1; i <= shadowCount; i++) {
     SHADOW_LAYER_LIMITS[i] = {
       min: 2 + Math.floor(i * (addToMinimumShadows / shadowCount)),
       max: 3 + Math.floor(i * (addToMaximumShadows / shadowCount)),
@@ -164,7 +163,7 @@ function generateShadows({
     const numOfLayers = Math.round(
       normalize(resolution, 0, 1, SHADOW_LAYER_LIMITS[size].min, SHADOW_LAYER_LIMITS[size].max),
     )
-    let layersForSize = []
+    const layersForSize = []
 
     range(numOfLayers).map((layerIndex) => {
       const opacity = calculateShadowOpacity({
@@ -249,13 +248,13 @@ function Shadows() {
   const shadows = generateShadows({
     lightSource: distance,
     resolution,
-    curve: curve,
+    curve,
     spread,
     tintShadows: false,
     layerOpacityConfig: opacity,
   })
   const maxZindex = Object.keys(shadows).length
-  const devMode = false
+  const devMode = true
 
   return (
     <Container
