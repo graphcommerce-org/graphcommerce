@@ -34,7 +34,9 @@ export function useScrollTo() {
               },
               onComplete,
               onStop: onComplete,
-              duration: duration * 1000 || distanceAnimationDuration(ref.scrollLeft, to.x),
+              type: 'spring',
+              bounce: 0,
+              duration: duration * 2000 || distanceAnimationDuration(ref.scrollLeft, to.x),
             }),
           )
         } else onComplete()
@@ -54,7 +56,9 @@ export function useScrollTo() {
               },
               onComplete,
               onStop: onComplete,
-              duration: duration * 1000 || distanceAnimationDuration(ref.scrollTop, to.y),
+              type: 'spring',
+              bounce: 0,
+              duration: duration * 2000 || distanceAnimationDuration(ref.scrollTop, to.y),
             }),
           )
         } else {
