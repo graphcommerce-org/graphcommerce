@@ -199,7 +199,7 @@ function CheckoutAdded() {
 }
 
 const pageOptions: PageOptions<LayoutOverlayProps> = {
-  overlayGroup: 'checkout',
+  overlayGroup: 'added',
   Layout: LayoutOverlay,
   layoutProps: {
     variantMd: 'bottom',
