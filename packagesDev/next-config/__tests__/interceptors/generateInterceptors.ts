@@ -56,10 +56,10 @@ it('it generates an interceptor', () => {
     type PaymentMethodContextProviderBaseProps = React.ComponentProps<typeof PaymentMethodContextProviderBase>
 
     const AddMollieMethodsInterceptor = (props: PaymentMethodContextProviderBaseProps) => (
-      <AddMollieMethods {...props} Component={PaymentMethodContextProviderBase} />
+      <AddMollieMethods {...props} Prev={PaymentMethodContextProviderBase} />
     )
     const AddBraintreeMethodsInterceptor = (props: PaymentMethodContextProviderBaseProps) => (
-      <AddBraintreeMethods {...props} Component={AddMollieMethodsInterceptor} />
+      <AddBraintreeMethods {...props} Prev={AddMollieMethodsInterceptor} />
     )
     export const PaymentMethodContextProvider = AddBraintreeMethodsInterceptor
     "
@@ -92,7 +92,7 @@ it('resolves a root plugin to be relative to the interceptor', () => {
     type PaymentMethodContextProviderBaseProps = React.ComponentProps<typeof PaymentMethodContextProviderBase>
 
     const AddPaymentMethodEnhancerInterceptor = (props: PaymentMethodContextProviderBaseProps) => (
-      <AddPaymentMethodEnhancer {...props} Component={PaymentMethodContextProviderBase} />
+      <AddPaymentMethodEnhancer {...props} Prev={PaymentMethodContextProviderBase} />
     )
     export const PaymentMethodContextProvider = AddPaymentMethodEnhancerInterceptor
     "
@@ -135,13 +135,13 @@ it('it can apply multiple plugins to a single export', () => {
     type PaymentMethodContextProviderBaseProps = React.ComponentProps<typeof PaymentMethodContextProviderBase>
 
     const AddMollieMethodsInterceptor = (props: PaymentMethodContextProviderBaseProps) => (
-      <AddMollieMethods {...props} Component={PaymentMethodContextProviderBase} />
+      <AddMollieMethods {...props} Prev={PaymentMethodContextProviderBase} />
     )
     export const PaymentMethodContextProvider = AddMollieMethodsInterceptor
     type OneMoreComponentBaseProps = React.ComponentProps<typeof OneMoreComponentBase>
 
     const AddOneMoreInterceptor = (props: OneMoreComponentBaseProps) => (
-      <AddOneMore {...props} Component={OneMoreComponentBase} />
+      <AddOneMore {...props} Prev={OneMoreComponentBase} />
     )
     export const OneMoreComponent = AddOneMoreInterceptor
     "
@@ -183,7 +183,7 @@ it('it handles on duplicates gracefully', () => {
     type PaymentMethodContextProviderBaseProps = React.ComponentProps<typeof PaymentMethodContextProviderBase>
 
     const AddBraintreeMethodsInterceptor = (props: PaymentMethodContextProviderBaseProps) => (
-      <AddBraintreeMethods {...props} Component={PaymentMethodContextProviderBase} />
+      <AddBraintreeMethods {...props} Prev={PaymentMethodContextProviderBase} />
     )
     export const PaymentMethodContextProvider = AddBraintreeMethodsInterceptor
     "
@@ -219,7 +219,7 @@ it('it handles root plugins', () => {
     type PaymentMethodContextProviderBaseProps = React.ComponentProps<typeof PaymentMethodContextProviderBase>
 
     const AddMyMethodsInterceptor = (props: PaymentMethodContextProviderBaseProps) => (
-      <AddMyMethods {...props} Component={PaymentMethodContextProviderBase} />
+      <AddMyMethods {...props} Prev={PaymentMethodContextProviderBase} />
     )
     export const PaymentMethodContextProvider = AddMyMethodsInterceptor
     "

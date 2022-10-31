@@ -1,5 +1,5 @@
 import { NextConfig } from 'next/dist/server/config-shared'
-import React from 'react'
+import type React from 'react'
 import { withGraphCommerce } from './withGraphCommerce'
 
 export * from './utils/isMonorepo'
@@ -15,5 +15,5 @@ export function withYarn1Scopes(packages?: string[]): (config: NextConfig) => Ne
 }
 
 export type PluginProps<P extends Record<string, unknown> = Record<string, unknown>> = P & {
-  Component: React.FC<P>
+  Prev: React.FC<P>
 }

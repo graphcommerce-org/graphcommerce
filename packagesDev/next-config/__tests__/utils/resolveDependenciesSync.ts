@@ -39,18 +39,15 @@ it('resolves dependences', () => {
       "@graphcommerce/magento-cart-email" => "packages/magento-cart-email",
       "@graphcommerce/magento-cart-payment-method" => "packages/magento-cart-payment-method",
       "@graphcommerce/magento-cart-shipping-address" => "packages/magento-cart-shipping-address",
-      "@graphcommerce/magento-cart-pickup" => "packages/magento-cart-pickup",
       "@graphcommerce/magento-cart-shipping-method" => "packages/magento-cart-shipping-method",
       "@graphcommerce/magento-category" => "packages/magento-category",
       "@graphcommerce/magento-cms" => "packages/magento-cms",
       "@graphcommerce/magento-customer-account" => "packages/magento-customer-account",
       "@graphcommerce/magento-customer-order" => "packages/magento-customer-order",
       "@graphcommerce/magento-newsletter" => "packages/magento-newsletter",
-      "@graphcommerce/magento-payment-braintree" => "packages/magento-payment-braintree",
+      "@graphcommerce/magento-payment-included" => "packages/magento-payment-included",
       "@graphcommerce/magento-product-configurable" => "packages/magento-product-configurable",
       "@graphcommerce/magento-product-simple" => "packages/magento-product-simple",
-      "@graphcommerce/magento-payment-included" => "packages/magento-payment-included",
-      "@graphcommerce/magento-payment-paypal" => "packages/magento-payment-paypal",
       "@graphcommerce/magento-product-bundle" => "packages/magento-product-bundle",
       "@graphcommerce/magento-product-virtual" => "packages/magento-product-virtual",
       "@graphcommerce/magento-product-downloadable" => "packages/magento-product-downloadable",
@@ -58,7 +55,6 @@ it('resolves dependences', () => {
       "@graphcommerce/magento-review" => "packages/magento-review",
       "@graphcommerce/magento-search" => "packages/magento-search",
       "@graphcommerce/magento-wishlist" => "packages/magento-wishlist",
-      "@graphcommerce/mollie-magento-payment" => "packages/mollie-magento-payment",
     }
   `)
 })

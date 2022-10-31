@@ -74,11 +74,11 @@ export const exported = '@graphcommerce/magento-cart-payment-method'
 function AddPaymentMethodEnhancer(
   props: PluginProps<PaymentMethodContextProviderProps>,
 ) {
-  const { Component, modules, ...rest } = props
-  return <Component {...rest} modules={{ ...modules, purchaseorder }} />
+  const { Prev, modules, ...rest } = props
+  return <Prev {...rest} modules={{ ...modules, purchaseorder }} />
 }
 
-/** The export must be named `Plugin` and must accept a Component to render */
+/** The export must be named `Plugin` and must accept a Prev component to render */
 export const Plugin = AddIncludedMethods
 ```
 
@@ -117,13 +117,13 @@ const AddIncludedMethodsInterceptor = (
   props: PaymentMethodContextProviderBaseProps,
 ) => (
   //For the first plugin we use the original component.
-  <AddIncludedMethods {...props} Component={PaymentMethodContextProviderBase} />
+  <AddIncludedMethods {...props} Prev={PaymentMethodContextProviderBase} />
 )
 const AddPaypalMethodsInterceptor = (
   props: PaymentMethodContextProviderBaseProps,
 ) => (
   // For the next components we use the previous Interceptor component.
-  <AddPaypalMethods {...props} Component={AddIncludedMethodsInterceptor} />
+  <AddPaypalMethods {...props} Prev={AddIncludedMethodsInterceptor} />
 )
 
 // Finally we return the resulting interceptor component.

@@ -41,6 +41,7 @@ class InterceptorPlugin {
             }
             if (added.length > 0 || removed.length > 0) {
                 this.interceptors = (0, generateInterceptors_1.generateInterceptors)((0, findPlugins_1.findPlugins)(), this.resolveDependency);
+                this.interceptorByDepependency = Object.fromEntries(Object.values(this.interceptors).map((i) => [i.dependency, i]));
                 (0, writeInterceptors_1.writeInterceptors)(this.interceptors);
             }
         });

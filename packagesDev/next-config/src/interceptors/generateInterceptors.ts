@@ -60,7 +60,7 @@ export function generateInterceptor(plugin: Plugin): MaterializedPlugin {
         })
         .map((name) => {
           const result = `const ${name}Interceptor = (props: ${component}BaseProps) => (
-  <${name} {...props} Component={${carry}} />
+  <${name} {...props} Prev={${carry}} />
 )`
           carry = `${name}Interceptor`
           return result

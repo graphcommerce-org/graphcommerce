@@ -6,24 +6,14 @@ it('finds plugins', () => {
   expect(findPlugins(projectRoot)).toMatchInlineSnapshot(`
     Array [
       Object {
-        "component": "PaymentMethodContextProvider",
-        "exported": "@graphcommerce/magento-cart-payment-method",
-        "plugin": "@graphcommerce/magento-payment-braintree/plugins/AddBraintreeMethods",
+        "component": "FramerNextPages",
+        "exported": "@graphcommerce/framer-next-pages",
+        "plugin": "@graphcommerce/googletagmanager/plugins/AddGoogleTagmanager",
       },
       Object {
         "component": "PaymentMethodContextProvider",
         "exported": "@graphcommerce/magento-cart-payment-method",
         "plugin": "@graphcommerce/magento-payment-included/plugins/AddIncludedMethods",
-      },
-      Object {
-        "component": "PaymentMethodContextProvider",
-        "exported": "@graphcommerce/magento-cart-payment-method",
-        "plugin": "@graphcommerce/magento-payment-paypal/plugins/AddPaypalMethods",
-      },
-      Object {
-        "component": "PaymentMethodContextProvider",
-        "exported": "@graphcommerce/magento-cart-payment-method",
-        "plugin": "@graphcommerce/mollie-magento-payment/plugins/AddMollieMethods",
       },
     ]
   `)
