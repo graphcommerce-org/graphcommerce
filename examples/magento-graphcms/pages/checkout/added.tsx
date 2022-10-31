@@ -20,6 +20,7 @@ import { LayoutHeaderClose } from '@graphcommerce/next-ui/Layout/components/Layo
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, Container, Divider, Typography } from '@mui/material'
+import { useRouter } from 'next/router'
 import { useEffect, useMemo, useRef } from 'react'
 import { LayoutOverlay, LayoutOverlayProps, productListRenderer } from '../../components'
 import { graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
