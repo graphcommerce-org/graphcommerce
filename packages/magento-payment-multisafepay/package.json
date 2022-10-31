@@ -1,0 +1,43 @@
+{
+  "name": "@graphcommerce/magento-payment-multisafepay",
+  "homepage": "https://www.graphcommerce.org/",
+  "repository": "github:graphcommerce-org/graphcommerce",
+  "version": "1.0.0",
+  "sideEffects": false,
+  "prettier": "@graphcommerce/prettier-config-pwa",
+  "eslintConfig": {
+    "extends": "@graphcommerce/eslint-config-pwa",
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    }
+  },
+  "devDependencies": {
+    "@graphcommerce/next-ui": "4.31.0-canary.1",
+    "@graphcommerce/eslint-config-pwa": "^4.1.11",
+    "@graphcommerce/magento-cart-shipping-address": "4.14.0-canary.2",
+    "@graphcommerce/magento-product": "4.14.0-canary.2",
+    "@graphcommerce/magento-product-configurable": "4.14.0-canary.2",
+    "@graphcommerce/prettier-config-pwa": "^4.0.7",
+    "@graphcommerce/typescript-config-pwa": "^4.0.5",
+    "@playwright/test": "^1.21.1",
+    "type-fest": "^2.12.2"
+  },
+  "dependencies": {
+    "@graphcommerce/graphql": "4.31.0-canary.1",
+    "@graphcommerce/graphql-mesh": "4.31.0-canary.1",
+    "@graphcommerce/image": "4.31.0-canary.1",
+    "@graphcommerce/magento-cart": "4.14.0-canary.2",
+    "@graphcommerce/magento-cart-payment-method": "4.14.0-canary.2",
+    "@graphcommerce/magento-store": "4.14.0-canary.2",
+    "@graphcommerce/next-ui": "4.31.0-canary.1",
+    "@graphcommerce/react-hook-form": "4.31.0-canary.1"
+  },
+  "peerDependencies": {
+    "@lingui/react": "^3.13.2",
+    "@lingui/core": "^3.13.2",
+    "@mui/material": "5.5.3",
+    "next": "^12.1.2",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  }
+}

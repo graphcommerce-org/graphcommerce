@@ -69,8 +69,7 @@ import { purchaseorder } from '../PurchaseOrder'
 export const component = 'PaymentMethodContextProvider'
 
 // Exported location of the component that you are extending, required
-export const exported =
-  '@graphcommerce/magento-cart-payment-method/PaymentMethodContext/PaymentMethodContext'
+export const exported = '@graphcommerce/magento-cart-payment-method'
 
 function AddPaymentMethodEnhancer(
   props: PluginProps<PaymentMethodContextProviderProps>,
@@ -170,3 +169,6 @@ user wants to disable a plugin, this is currently not possible.
 
 It is currently is only possible to extend React Components. This however sets
 the foundation to allow for a more flexible plugin system in the future.
+
+Plugins should be optional for GraphCommerce to function properly. Plugins for
+mandatory packages shouldn't exist.

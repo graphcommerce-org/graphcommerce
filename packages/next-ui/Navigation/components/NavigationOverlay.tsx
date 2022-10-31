@@ -1,7 +1,6 @@
-import styled from '@emotion/styled'
 import { useMotionValueValue, useMotionSelector } from '@graphcommerce/framer-utils'
 import { i18n } from '@lingui/core'
-import { Box, Fab, SxProps, Theme, useEventCallback, useTheme } from '@mui/material'
+import { Box, Fab, SxProps, Theme, useEventCallback, styled } from '@mui/material'
 import { m } from 'framer-motion'
 import React, { useEffect } from 'react'
 import type { LiteralUnion } from 'type-fest'
@@ -37,7 +36,7 @@ type NavigationOverlayProps = {
   itemPadding?: ItemPadding
 } & mouseEventPref
 
-const MotionDiv = styled(m.div)()
+const MotionDiv = styled(m.div)({})
 
 const componentName = 'Navigation'
 const parts = ['root', 'navigation', 'header', 'column'] as const
@@ -124,7 +123,7 @@ export const NavigationOverlay = React.memo<NavigationOverlayProps>((props) => {
         },
       }}
     >
-      <MotionDiv layout style={{ display: 'grid' }}>
+      <MotionDiv layout sx={{ display: 'grid' }}>
         <Box
           className={classes.header}
           sx={(theme) => ({
@@ -179,7 +178,7 @@ export const NavigationOverlay = React.memo<NavigationOverlayProps>((props) => {
         </Box>
       </MotionDiv>
 
-      <MotionDiv layout='position' style={{ display: 'grid' }}>
+      <MotionDiv layout='position' sx={{ display: 'grid' }}>
         <Box
           sx={[
             (theme) => ({

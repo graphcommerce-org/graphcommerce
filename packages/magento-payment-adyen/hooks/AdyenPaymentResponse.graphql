@@ -1,0 +1,6 @@
+fragment AdyenPaymentResponse on AdyenPaymentStatus {
+  action
+  additionalData
+  isFinal
+  resultCode
+}

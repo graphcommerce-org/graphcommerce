@@ -47,9 +47,9 @@ If you want to test a GraphCommerce storefront using a pre-configured Magento
 demo store and a pre-configured GraphCMS project with demo content, then you
 need to only install the dependencies. This is the quickest approach.
 
-- Install and use node 14/16: `nvm install 16` or `nvm use 16`
-- Install yarn: `corepack enable` (for node 16) or `npm install --global yarn`
-  (for node 14)
+- Install and use node 14/16/18: `nvm install 16` or `nvm use 16`
+- Install yarn: `corepack enable` (for node 16/18) or
+  `npm install --global yarn` (for node 14)
 
 ## Step 1: Create a new GraphCommerce app
 
@@ -135,16 +135,6 @@ List of routes and store_codes:
 > }
 > ```
 
-### Remove unused PSP's
-
-The example has Payment Service Providers integrated (Mollie, Braintree). Remove
-the ones your Magento backend doesn't support.
-
-- Remove Payment Service integrations from package.json:
-  `@graphcommerce/mollie-magento-payment` and/or
-  `@graphcommerce/magento-payment-braintree`
-- Remove Payment Service references from `pages/checkout/payment.tsx`
-
 ## Step 3: Start the development environment
 
 - `yarn` Install the dependencies
@@ -166,3 +156,4 @@ Visit the GraphQL Playground running at http://localhost:3000/api/graphql
 - [Start building a GraphCommerce custom storefront](../getting-started/start-building.md)
   by customizing text and component styles, fetching data from server
   components, and making changes to GraphQL queries.
+- [Install optional Magento packages](../magento/readme.md)

@@ -1,0 +1,3 @@
+mutation MSPPaymentHandler($cartId: String!) {
+  getPaymentMeta(input: { cart_id: $cartId })
+}
