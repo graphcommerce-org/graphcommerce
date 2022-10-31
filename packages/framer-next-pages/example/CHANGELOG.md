@@ -1,5 +1,7 @@
 # Change Log
 
+## 3.0.53-canary.2
+
 ## 3.0.53-canary.1
 
 ### Patch Changes

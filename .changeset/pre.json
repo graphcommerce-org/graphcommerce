@@ -64,17 +64,24 @@
     "@graphcommerce/graphql-codegen-relay-optimizer-plugin": "3.0.11",
     "@graphcommerce/next-config": "4.30.0",
     "@graphcommerce/prettier-config-pwa": "4.0.7",
-    "@graphcommerce/typescript-config-pwa": "4.0.5"
+    "@graphcommerce/typescript-config-pwa": "4.0.5",
+    "@graphcommerce/magento-payment-adyen": "1.0.0",
+    "@graphcommerce/magento-payment-multisafepay": "1.0.0"
   },
   "changesets": [
+    "chatty-eels-invite",
     "chilly-ears-prove",
+    "dry-spoons-hear",
     "hip-cycles-serve",
     "honest-snakes-play",
     "khaki-bikes-boil",
     "mean-bananas-clap",
     "mighty-sheep-judge",
     "moody-glasses-deny",
+    "neat-zebras-float",
     "olive-news-return",
+    "polite-avocados-happen",
+    "popular-spiders-teach",
     "rich-eggs-flash",
     "silent-waves-eat",
     "sweet-meals-impress"

@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.14.0-canary.3
+
+### Patch Changes
+
+- [#1729](https://github.com/graphcommerce-org/graphcommerce/pull/1729) [`4f85e4878`](https://github.com/graphcommerce-org/graphcommerce/commit/4f85e4878e4ad0dd528d60ad35826da0677059a9) - Add the ability to specificy plugins on the package name (e.g. `@graphcommerce/magento-cart-payment-method`) ([@paales](https://github.com/paales))
+
 ## 4.14.0-canary.2
 
 ### Minor Changes

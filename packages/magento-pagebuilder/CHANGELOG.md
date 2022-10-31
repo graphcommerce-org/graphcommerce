@@ -1,5 +1,7 @@
 # @graphcommerce/magento-pagebuilder
 
+## 4.14.0-canary.3
+
 ## 4.14.0-canary.2
 
 ## 4.13.2-canary.1

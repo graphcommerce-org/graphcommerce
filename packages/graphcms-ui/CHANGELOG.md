@@ -1,5 +1,7 @@
 # Change Log
 
+## 3.1.8-canary.2
+
 ## 3.1.8-canary.1
 
 ## 3.1.8-canary.0

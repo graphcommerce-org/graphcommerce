@@ -1,5 +1,7 @@
 # Change Log
 
+## 4.31.0-canary.2
+
 ## 4.31.0-canary.1
 
 ### Patch Changes
