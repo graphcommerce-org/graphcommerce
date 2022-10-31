@@ -11,7 +11,7 @@ Moved all Payment methods to the [GraphCommerce plugin system](https://www.graph
 Upgrade guide:
 
 - The upgrade removes all the payment gateway packages from the `package.json`, remove them for now.
-- Proceed to update normally
+- Proceed to upgrade normally
 - Add back all the payment modules following the [GraphCommerce Magento docs](https://graphcommerce.org/docs/magento).
 
 (This removes the requirement to cleanup the payment methods when creating a first installation. 🎉)

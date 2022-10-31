@@ -16,7 +16,6 @@ import {
 } from '@graphcommerce/magento-cart'
 import { ShippingPageDocument } from '@graphcommerce/magento-cart-checkout'
 import { EmailForm } from '@graphcommerce/magento-cart-email'
-import { PickupLocationSelector } from '@graphcommerce/magento-cart-pickup'
 import {
   ShippingAddressForm,
   CustomerAddressForm,
@@ -119,9 +118,7 @@ function ShippingPage() {
                 )}
 
                 {!shippingPage.data?.cart?.is_virtual && (
-                  <ShippingMethodForm step={4} sx={(theme) => ({ mt: theme.spacings.lg })}>
-                    <PickupLocationSelector step={5} />
-                  </ShippingMethodForm>
+                  <ShippingMethodForm step={4} sx={(theme) => ({ mt: theme.spacings.lg })} />
                 )}
 
                 <ComposedSubmit

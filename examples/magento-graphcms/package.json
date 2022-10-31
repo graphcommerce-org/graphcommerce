@@ -37,7 +37,6 @@
     "@graphcommerce/magento-cart-email": "4.14.0-canary.2",
     "@graphcommerce/magento-cart-items": "4.14.0-canary.2",
     "@graphcommerce/magento-cart-payment-method": "4.14.0-canary.2",
-    "@graphcommerce/magento-cart-pickup": "4.14.0-canary.2",
     "@graphcommerce/magento-cart-shipping-address": "4.14.0-canary.2",
     "@graphcommerce/magento-cart-shipping-method": "4.14.0-canary.2",
     "@graphcommerce/magento-category": "4.14.0-canary.2",
