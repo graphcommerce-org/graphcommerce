@@ -2,4 +2,4 @@
 '@graphcommerce/next-ui': minor
 ---
 
-fix scrollsnapalign customer service
+fix customer service scrollSnapAlign
