@@ -12,4 +12,5 @@ if Magento exposes a working GraphQL API.
 - [PayPal](https://github.com/graphcommerce-org/graphcommerce/tree/main/packages/magento-payment-paypal)
 - [Mollie](https://github.com/graphcommerce-org/graphcommerce/tree/main/packages/mollie-magento-payment)
 - [Braintree](https://github.com/graphcommerce-org/graphcommerce/tree/main/packages/magento-payment-braintree)
+- [Adyen](https://github.com/graphcommerce-org/graphcommerce/tree/main/packages/magento-payment-adyen)
 - [Klarna](https://github.com/graphcommerce-org/graphcommerce/tree/main/packages/magento-payment-klarna)

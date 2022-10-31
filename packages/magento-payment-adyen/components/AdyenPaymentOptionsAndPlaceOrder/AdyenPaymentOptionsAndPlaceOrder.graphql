@@ -1,0 +1,29 @@
+mutation AdyenPaymentOptionsAndPlaceOrder(
+  $cartId: String!
+  $brandCode: String!
+  $stateData: String!
+) {
+  setPaymentMethodOnCart(
+    input: {
+      cart_id: $cartId
+      payment_method: {
+        code: "adyen_hpp"
+        adyen_additional_data_hpp: { brand_code: $brandCode, stateData: $stateData }
+      }
+    }
+  ) {
+    cart {
+      selected_payment_method {
+        ...SelectedPaymentMethod
+      }
+    }
+  }
+  placeOrder(input: { cart_id: $cartId }) {
+    order {
+      order_number
+      adyen_payment_status {
+        ...AdyenPaymentResponse
+      }
+    }
+  }
+}

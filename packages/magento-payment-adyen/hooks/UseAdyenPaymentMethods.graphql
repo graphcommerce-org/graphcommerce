@@ -1,0 +1,46 @@
+query UseAdyenPaymentMethods($cartId: String!) {
+  adyenPaymentMethods(cart_id: $cartId) {
+    paymentMethodsExtraDetails {
+      type
+      isOpenInvoice
+      configuration {
+        currency
+        amount {
+          currency
+          value
+        }
+      }
+      icon {
+        height
+        url
+        width
+      }
+    }
+    paymentMethodsResponse {
+      paymentMethods {
+        brand
+        brands
+        configuration {
+          merchantId
+          merchantName
+        }
+        details {
+          items {
+            id
+            name
+          }
+          key
+          optional
+          type
+          value
+        }
+        issuers {
+          id
+          name
+        }
+        name
+        type
+      }
+    }
+  }
+}

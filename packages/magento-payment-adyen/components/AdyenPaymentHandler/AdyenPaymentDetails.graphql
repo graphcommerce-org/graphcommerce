@@ -1,0 +1,5 @@
+mutation AdyenPaymentDetails($cartId: String!, $payload: String!) {
+  adyenPaymentDetails(cart_id: $cartId, payload: $payload) {
+    ...AdyenPaymentResponse
+  }
+}
