@@ -4,8 +4,7 @@ import { purchaseorder } from '../PurchaseOrder'
 import { banktransfer, checkmo, free, cashondelivery } from '../methods'
 
 export const component = 'PaymentMethodContextProvider'
-export const exported =
-  '@graphcommerce/magento-cart-payment-method/PaymentMethodContext/PaymentMethodContext'
+export const exported = '@graphcommerce/magento-cart-payment-method'
 
 function AddIncludedMethods(props: PluginProps<PaymentMethodContextProviderProps>) {
   const { Component, modules, ...rest } = props

@@ -1,5 +1,6 @@
 export declare type ResolveDependencyReturn = {
     dependency: string;
+    denormalized: string;
     root: string;
     fromRoot: string;
     fromModule: string;

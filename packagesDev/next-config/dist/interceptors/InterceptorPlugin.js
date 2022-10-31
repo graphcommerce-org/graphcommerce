@@ -15,6 +15,7 @@ class InterceptorPlugin {
         this.resolveDependency = (0, resolveDependency_1.resolveDependency)();
         this.watched = this.watchList();
         this.interceptors = (0, generateInterceptors_1.generateInterceptors)((0, findPlugins_1.findPlugins)(), this.resolveDependency);
+        this.interceptorByDepependency = Object.fromEntries(Object.values(this.interceptors).map((i) => [i.dependency, i]));
         (0, writeInterceptors_1.writeInterceptors)(this.interceptors);
     }
     watchList() {
@@ -51,8 +52,14 @@ class InterceptorPlugin {
                     logger.log(`Interceptor ${issuer} is requesting the original ${requestPath}`);
                     return;
                 }
-                if (this.interceptors[requestPath]) {
-                    logger.log(`Intercepting... ${this.interceptors[requestPath].fromRoot}}`);
+                const interceptorForRequest = this.interceptorByDepependency[resource.request];
+                if (interceptorForRequest) {
+                    logger.log(`Intercepting... ${interceptorForRequest.dependency}`);
+                    resource.request = `${interceptorForRequest.denormalized}.interceptor.tsx`;
+                }
+                const interceptorForPath = this.interceptors[requestPath];
+                if (interceptorForPath) {
+                    logger.log(`Intercepting... ${interceptorForPath.fromRoot}`);
                     resource.request = `${resource.request}.interceptor.tsx`;
                 }
             });

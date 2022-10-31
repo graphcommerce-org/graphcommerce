@@ -69,8 +69,7 @@ import { purchaseorder } from '../PurchaseOrder'
 export const component = 'PaymentMethodContextProvider'
 
 // Exported location of the component that you are extending, required
-export const exported =
-  '@graphcommerce/magento-cart-payment-method/PaymentMethodContext/PaymentMethodContext'
+export const exported = '@graphcommerce/magento-cart-payment-method'
 
 function AddPaymentMethodEnhancer(
   props: PluginProps<PaymentMethodContextProviderProps>,

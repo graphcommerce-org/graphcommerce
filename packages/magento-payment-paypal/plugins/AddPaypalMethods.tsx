@@ -5,8 +5,7 @@ import { PayPalPaymentHandler } from '../components/PayPalPaymentHandler/PayPalP
 import { PayPalPaymentOptions } from '../components/PayPalPaymentOptionsAndPlaceOrder/PayPalPaymentOptions'
 
 export const component = 'PaymentMethodContextProvider'
-export const exported =
-  '@graphcommerce/magento-cart-payment-method/PaymentMethodContext/PaymentMethodContext'
+export const exported = '@graphcommerce/magento-cart-payment-method'
 
 const paypal_express = {
   PaymentOptions: PayPalPaymentOptions,

@@ -8,6 +8,8 @@ import { writeInterceptors } from './writeInterceptors'
 export class InterceptorPlugin {
   private interceptors: GenerateInterceptorsReturn
 
+  private interceptorByDepependency: GenerateInterceptorsReturn
+
   private resolveDependency: ResolveDependency
 
   constructor() {
@@ -15,6 +17,10 @@ export class InterceptorPlugin {
 
     this.watched = this.watchList()
     this.interceptors = generateInterceptors(findPlugins(), this.resolveDependency)
+    this.interceptorByDepependency = Object.fromEntries(
+      Object.values(this.interceptors).map((i) => [i.dependency, i]),
+    )
+
     writeInterceptors(this.interceptors)
   }
 
@@ -48,6 +54,9 @@ export class InterceptorPlugin {
       }
       if (added.length > 0 || removed.length > 0) {
         this.interceptors = generateInterceptors(findPlugins(), this.resolveDependency)
+        this.interceptorByDepependency = Object.fromEntries(
+          Object.values(this.interceptors).map((i) => [i.dependency, i]),
+        )
         writeInterceptors(this.interceptors)
       }
     })
@@ -66,8 +75,15 @@ export class InterceptorPlugin {
           return
         }
 
-        if (this.interceptors[requestPath]) {
-          logger.log(`Intercepting... ${this.interceptors[requestPath].fromRoot}}`)
+        const interceptorForRequest = this.interceptorByDepependency[resource.request]
+        if (interceptorForRequest) {
+          logger.log(`Intercepting... ${interceptorForRequest.dependency}`)
+          resource.request = `${interceptorForRequest.denormalized}.interceptor.tsx`
+        }
+
+        const interceptorForPath = this.interceptors[requestPath]
+        if (interceptorForPath) {
+          logger.log(`Intercepting... ${interceptorForPath.fromRoot}`)
           resource.request = `${resource.request}.interceptor.tsx`
         }
       })
