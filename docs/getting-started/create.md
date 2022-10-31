@@ -135,16 +135,6 @@ List of routes and store_codes:
 > }
 > ```
 
-### Remove unused PSP's
-
-The example has Payment Service Providers integrated (Mollie, Braintree). Remove
-the ones your Magento backend doesn't support.
-
-- Remove Payment Service integrations from package.json:
-  `@graphcommerce/mollie-magento-payment` and/or
-  `@graphcommerce/magento-payment-braintree`
-- Remove Payment Service references from `pages/checkout/payment.tsx`
-
 ## Step 3: Start the development environment
 
 - `yarn` Install the dependencies
@@ -166,3 +156,4 @@ Visit the GraphQL Playground running at http://localhost:3000/api/graphql
 - [Start building a GraphCommerce custom storefront](../getting-started/start-building.md)
   by customizing text and component styles, fetching data from server
   components, and making changes to GraphQL queries.
+- [Install optional Magento packages](../magento/readme.md)

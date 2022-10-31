@@ -169,3 +169,6 @@ user wants to disable a plugin, this is currently not possible.
 
 It is currently is only possible to extend React Components. This however sets
 the foundation to allow for a more flexible plugin system in the future.
+
+Plugins should be optional for GraphCommerce to function properly. Plugins for
+mandatory packages shouldn't exist.
