@@ -1,6 +1,16 @@
 # Change Log
 
-## 4.30.2
+## 4.31.0
+
+### Minor Changes
+
+- [#1719](https://github.com/graphcommerce-org/graphcommerce/pull/1719) [`dc4996bfe`](https://github.com/graphcommerce-org/graphcommerce/commit/dc4996bfe8a3d6aa950ec79972b3b0c84dfe1c9d) - Changed pan gesture in useScroller to look at pan state instead of the root component ([@mikekeehnen](https://github.com/mikekeehnen))
+
+### Patch Changes
+
+- [#1718](https://github.com/graphcommerce-org/graphcommerce/pull/1718) [`6407e8719`](https://github.com/graphcommerce-org/graphcommerce/commit/6407e87191aaf3ad49eca536efcabf3641296e80) - ScrollerPageCounter shouldn’t set visibleItems to a string as that isn’t the correct type ([@paales](https://github.com/paales))
+
+## 4.31.0-canary.1
 
 ## 4.30.1
 

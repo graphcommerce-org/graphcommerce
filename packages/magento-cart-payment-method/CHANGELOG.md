@@ -1,6 +1,14 @@
 # Change Log
 
-## 4.13.3
+## 4.14.0
+
+### Patch Changes
+
+- [#1718](https://github.com/graphcommerce-org/graphcommerce/pull/1718) [`37e86cdc8`](https://github.com/graphcommerce-org/graphcommerce/commit/37e86cdc86ccca3db77d6c59b1e14c8112bb7893) - Remove usage of PropsWithChildren ([@paales](https://github.com/paales))
+
+- [#1718](https://github.com/graphcommerce-org/graphcommerce/pull/1718) [`acef2a3ae`](https://github.com/graphcommerce-org/graphcommerce/commit/acef2a3aedd60e1882330cde56877bf26857d238) - Make the modules prop optional for the `<PaymentMethodContextProvider />` component ([@paales](https://github.com/paales))
+
+## 4.14.0-canary.2
 
 ## 4.13.2
 
