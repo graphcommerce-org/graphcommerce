@@ -14,6 +14,7 @@
   "dependencies": {
     "@graphcommerce/graphql-mesh": "4.31.0-canary.2",
     "@graphcommerce/magento-cart": "4.14.0-canary.3",
+    "@graphcommerce/magento-cart-payment-method": "4.14.0-canary.3",
     "@graphcommerce/magento-cart-shipping-method": "4.14.0-canary.3",
     "@graphcommerce/magento-product": "4.14.0-canary.3",
     "@graphcommerce/next-ui": "4.31.0-canary.2",
