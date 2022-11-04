@@ -8,7 +8,7 @@ export const exported = '@graphcommerce/framer-next-pages'
 
 let warned = false
 
-function AddGoogleTagmanager(props: PluginProps<PagesProps>) {
+function GtagFramerNextPages(props: PluginProps<PagesProps>) {
   const { Prev } = props
 
   if (process.env.NEXT_PUBLIC_GTM_ID) {
@@ -29,4 +29,5 @@ function AddGoogleTagmanager(props: PluginProps<PagesProps>) {
 
   return <Prev {...props} />
 }
-export const Plugin = AddGoogleTagmanager
+
+export const Plugin = GtagFramerNextPages
