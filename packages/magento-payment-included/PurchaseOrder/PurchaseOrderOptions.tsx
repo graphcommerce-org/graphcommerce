@@ -19,23 +19,21 @@ export function PurchaseOrderOptions(props: PaymentOptionsProps) {
   const valid = useFormValidFields(form, required)
 
   return (
-    <Container>
-      <form onSubmit={submit} noValidate>
-        <FormRow>
-          <TextField
-            variant='outlined'
-            type='text'
-            error={formState.isSubmitted && !!formState.errors.poNumber}
-            helperText={formState.isSubmitted && formState.errors.poNumber?.message}
-            label='Purchase Order Nr.'
-            required={required.poNumber}
-            {...muiRegister('poNumber', { required: required.poNumber, minLength: 2 })}
-            InputProps={{
-              endAdornment: <InputCheckmark show={valid.poNumber} />,
-            }}
-          />
-        </FormRow>
-      </form>
-    </Container>
+    <form onSubmit={submit} noValidate>
+      <FormRow>
+        <TextField
+          variant='outlined'
+          type='text'
+          error={formState.isSubmitted && !!formState.errors.poNumber}
+          helperText={formState.isSubmitted && formState.errors.poNumber?.message}
+          label='Purchase Order Nr.'
+          required={required.poNumber}
+          {...muiRegister('poNumber', { required: required.poNumber, minLength: 2 })}
+          InputProps={{
+            endAdornment: <InputCheckmark show={valid.poNumber} />,
+          }}
+        />
+      </FormRow>
+    </form>
   )
 }
