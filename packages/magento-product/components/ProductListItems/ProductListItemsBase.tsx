@@ -11,6 +11,7 @@ export type ProductItemsGridProps = {
     | undefined
   renderers: ProductListItemRenderer
   loadingEager?: number
+  title: string
   size?: 'normal' | 'small'
   sx?: BoxProps['sx']
 } & Pick<ProductListItemProps, 'onClick' | 'titleComponent'>

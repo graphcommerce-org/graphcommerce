@@ -3,9 +3,6 @@ import Script from 'next/script'
 export function GoogleAnalyticsScript() {
   const id = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS
 
-  if (process.env.NODE_ENV !== 'production' && !id)
-    console.warn('[@graphcommerce/googletagmanager]: NEXT_PUBLIC_GOOGLE_ANALYTICS not found')
-
   if (!id) return null
 
   return (
