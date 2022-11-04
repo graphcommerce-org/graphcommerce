@@ -18,12 +18,10 @@ const successStatusses: PaymentStatusEnum[] = ['AUTHORIZED', 'COMPLETED', 'PAID'
 
 export function MolliePaymentHandler({ code }: PaymentHandlerProps) {
   const router = useRouter()
-  const method = usePaymentMethodContext()
-  const clear = useClearCurrentCartId()
-
+  const { selectedMethod, onSuccess } = usePaymentMethodContext()
   const [lockState] = useCartLockWithToken()
 
-  const isActive = method.selectedMethod?.code === code || lockState.method === code
+  const isActive = selectedMethod?.code === code || lockState.method === code
 
   const [handle, handleResult] = useMutation(MolliePaymentHandlerDocument)
   const [recoverCart, recoverResult] = useMutation(MollieRecoverCartDocument)
@@ -54,15 +52,14 @@ export function MolliePaymentHandler({ code }: PaymentHandlerProps) {
       if (result.errors || !paymentStatus) return
 
       if (successStatusses.includes(paymentStatus)) {
-        clear()
         // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        await router.push({ pathname: '/checkout/success', query: { cart_id: lockState.cart_id } })
+        onSuccess(lockState.order_number ?? '')
       } else if (returnedCartId) {
         // eslint-disable-next-line @typescript-eslint/no-floating-promises
         router.replace('/checkout/payment')
       }
     })()
-  }, [called, clear, error, handle, isActive, lockState, recoverCart, router])
+  }, [called, error, handle, isActive, lockState, onSuccess, recoverCart, router])
 
   const paymentStatus = data?.mollieProcessTransaction?.paymentStatus
   if (paymentStatus) {

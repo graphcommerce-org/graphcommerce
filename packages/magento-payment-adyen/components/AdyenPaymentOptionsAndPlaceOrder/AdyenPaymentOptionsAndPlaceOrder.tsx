@@ -48,7 +48,7 @@ export function HppOptions(props: PaymentOptionsProps) {
       if (result.errors || !merchantReference || !selectedMethod?.code || !action) return
 
       const url = JSON.parse(action).url as string
-      lock({ method: selectedMethod.code, adyen: '1', merchantReference })
+      await lock({ method: selectedMethod.code, adyen: '1', merchantReference })
       await push(url)
     },
   })

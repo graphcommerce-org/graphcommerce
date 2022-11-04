@@ -19,7 +19,7 @@ type PaymentMethodContextProps = {
   modules: PaymentMethodModules
   selectedModule?: PaymentModule
   setSelectedModule: (module: PaymentModule | undefined) => void
-  onSuccess: (order_number: string) => Promise<void>
+  onSuccess: (orderNumber: string) => Promise<void>
 }
 
 const paymentMethodContext = React.createContext<PaymentMethodContextProps>(
@@ -32,7 +32,7 @@ export type PaymentMethodContextProviderProps = {
   children: React.ReactNode
   successUrl?: string
   onSuccess?: (
-    order_number: string,
+    orderNumber: string,
     cart?: PaymentMethodContextFragment | null,
   ) => Promise<void> | void
 }
@@ -57,10 +57,13 @@ export function PaymentMethodContextProvider(props: PaymentMethodContextProvider
   )
 
   const onSuccessCb: NonNullable<PaymentMethodContextProps['onSuccess']> = useEventCallback(
-    async (order_number) => {
-      await onSuccess?.(order_number, context.data?.cart)
+    async (orderNumber) => {
+      await onSuccess?.(orderNumber, context.data?.cart)
       clearCurrentCartId()
-      await push({ pathname: successUrl, query: { order_number, cart_id: context.data?.cart?.id } })
+      await push({
+        pathname: successUrl,
+        query: { order_number: orderNumber, cart_id: context.data?.cart?.id },
+      })
     },
   )
 
