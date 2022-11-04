@@ -53,6 +53,12 @@ it('it generates an interceptor', () => {
 
     export * from './index'
 
+    /**
+     * Generated an interceptor for \`PaymentMethodContextProvider\` with these plugins:
+     * 
+     * - \`@graphcommerce/mollie-magento-payment/plugins/AddMollieMethods\`
+     * - \`@graphcommerce/magento-payment-braintree/plugins/AddBraintreeMethods\`
+     */
     type PaymentMethodContextProviderBaseProps = React.ComponentProps<typeof PaymentMethodContextProviderBase>
 
     const AddMollieMethodsInterceptor = (props: PaymentMethodContextProviderBaseProps) => (
@@ -89,6 +95,11 @@ it('resolves a root plugin to be relative to the interceptor', () => {
 
     export * from '.'
 
+    /**
+     * Generated an interceptor for \`PaymentMethodContextProvider\` with these plugins:
+     * 
+     * - \`@graphcommerce/magento-graphcms/plugins/AddPaymentMethodEnhancer\`
+     */
     type PaymentMethodContextProviderBaseProps = React.ComponentProps<typeof PaymentMethodContextProviderBase>
 
     const AddPaymentMethodEnhancerInterceptor = (props: PaymentMethodContextProviderBaseProps) => (
@@ -132,12 +143,22 @@ it('it can apply multiple plugins to a single export', () => {
 
     export * from './PaymentMethodContext'
 
+    /**
+     * Generated an interceptor for \`PaymentMethodContextProvider\` with these plugins:
+     * 
+     * - \`@graphcommerce/mollie-magento-payment/plugins/AddMollieMethods\`
+     */
     type PaymentMethodContextProviderBaseProps = React.ComponentProps<typeof PaymentMethodContextProviderBase>
 
     const AddMollieMethodsInterceptor = (props: PaymentMethodContextProviderBaseProps) => (
       <AddMollieMethods {...props} Prev={PaymentMethodContextProviderBase} />
     )
     export const PaymentMethodContextProvider = AddMollieMethodsInterceptor
+    /**
+     * Generated an interceptor for \`OneMoreComponent\` with these plugins:
+     * 
+     * - \`@graphcommerce/magento-payment-braintree/plugins/AddOneMore\`
+     */
     type OneMoreComponentBaseProps = React.ComponentProps<typeof OneMoreComponentBase>
 
     const AddOneMoreInterceptor = (props: OneMoreComponentBaseProps) => (
@@ -180,6 +201,12 @@ it('it handles on duplicates gracefully', () => {
 
     export * from './PaymentMethodContext'
 
+    /**
+     * Generated an interceptor for \`PaymentMethodContextProvider\` with these plugins:
+     * 
+     * - \`@graphcommerce/magento-payment-braintree/plugins/AddBraintreeMethods\`
+     * - \`@graphcommerce/magento-payment-braintree/plugins/AddBraintreeMethods\`
+     */
     type PaymentMethodContextProviderBaseProps = React.ComponentProps<typeof PaymentMethodContextProviderBase>
 
     const AddBraintreeMethodsInterceptor = (props: PaymentMethodContextProviderBaseProps) => (
@@ -216,6 +243,11 @@ it('it handles root plugins', () => {
 
     export * from './PaymentMethodContext'
 
+    /**
+     * Generated an interceptor for \`PaymentMethodContextProvider\` with these plugins:
+     * 
+     * - \`@graphcommerce/magento-graphcms/plugins/AddMyMethods\`
+     */
     type PaymentMethodContextProviderBaseProps = React.ComponentProps<typeof PaymentMethodContextProviderBase>
 
     const AddMyMethodsInterceptor = (props: PaymentMethodContextProviderBaseProps) => (

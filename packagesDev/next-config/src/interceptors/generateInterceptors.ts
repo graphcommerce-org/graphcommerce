@@ -67,7 +67,12 @@ export function generateInterceptor(plugin: Plugin): MaterializedPlugin {
         })
         .join('\n')
 
-      return `type ${component}BaseProps = React.ComponentProps<typeof ${component}Base>
+      return `/**
+ * Generated an interceptor for \`${component}\` with these plugins:
+ * 
+${plugins.map((p) => ` * - \`${p.plugin}\``).join('\n')}
+ */
+type ${component}BaseProps = React.ComponentProps<typeof ${component}Base>
 
 ${pluginStr}
 export const ${component} = ${carry}`
