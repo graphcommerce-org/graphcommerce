@@ -15,7 +15,7 @@ import {
 } from './AddProductsToCartSnackbar'
 import { AddProductsToCartContext, RedirectType } from './useFormAddProductsToCart'
 
-type AddProductsToCartFormProps = {
+export type AddProductsToCartFormProps = {
   // The props are actually used, but are passed through useThemeProps and that breaks react/no-unused-prop-types
   // eslint-disable-next-line react/no-unused-prop-types
   children: React.ReactNode

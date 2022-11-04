@@ -13,8 +13,10 @@
   },
   "dependencies": {
     "@graphcommerce/graphql-mesh": "4.31.0-canary.2",
+    "@graphcommerce/magento-cart": "4.14.0-canary.3",
     "@graphcommerce/magento-product": "4.14.0-canary.3",
-    "@graphcommerce/next-ui": "4.31.0-canary.2"
+    "@graphcommerce/next-ui": "4.31.0-canary.2",
+    "@graphcommerce/next-config": "4.31.0-canary.2"
   },
   "devDependencies": {
     "@graphcommerce/eslint-config-pwa": "^4.1.11",
