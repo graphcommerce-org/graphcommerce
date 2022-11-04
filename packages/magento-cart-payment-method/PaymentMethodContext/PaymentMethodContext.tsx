@@ -1,5 +1,7 @@
 import { useApolloClient } from '@graphcommerce/graphql'
-import { useCartQuery } from '@graphcommerce/magento-cart'
+import { useCartQuery, useClearCurrentCartId } from '@graphcommerce/magento-cart'
+import { useEventCallback } from '@mui/material'
+import { useRouter } from 'next/router'
 import React, { useContext, useEffect, useMemo, useState } from 'react'
 import {
   ExpandPaymentMethodsContext,
@@ -7,6 +9,7 @@ import {
   PaymentMethodModules,
   PaymentModule,
 } from '../Api/PaymentMethod'
+import { PaymentMethodContextFragment } from '../Api/PaymentMethodContext.gql'
 import { GetPaymentMethodContextDocument } from './GetPaymentMethodContext.gql'
 
 type PaymentMethodContextProps = {
@@ -16,30 +19,49 @@ type PaymentMethodContextProps = {
   modules: PaymentMethodModules
   selectedModule?: PaymentModule
   setSelectedModule: (module: PaymentModule | undefined) => void
+  onSuccess: (order_number: string) => Promise<void>
 }
 
-const paymentMethodContext = React.createContext<PaymentMethodContextProps>({
-  methods: [],
-  setSelectedMethod: () => {},
-  modules: {},
-  setSelectedModule: () => {},
-})
+const paymentMethodContext = React.createContext<PaymentMethodContextProps>(
+  undefined as unknown as PaymentMethodContextProps,
+)
 paymentMethodContext.displayName = 'PaymentMethodContext'
 
 export type PaymentMethodContextProviderProps = {
   modules?: PaymentMethodModules
   children: React.ReactNode
+  successUrl?: string
+  onSuccess?: (
+    order_number: string,
+    cart?: PaymentMethodContextFragment | null,
+  ) => Promise<void> | void
 }
 
+/**
+ * The PaymentMethodContextProvider configures all available PaymentMethods.
+ *
+ * You are able to provide a modules object to new PaymentMethods. Most provided payment methods are
+ * integrated with Plugins.
+ */
 export function PaymentMethodContextProvider(props: PaymentMethodContextProviderProps) {
-  const { modules = {}, children } = props
+  const { modules = {}, successUrl = '/checkout/success', onSuccess, children } = props
 
   const context = useCartQuery(GetPaymentMethodContextDocument)
   const client = useApolloClient()
+  const clearCurrentCartId = useClearCurrentCartId()
+  const { push } = useRouter()
 
   const cartContext: ExpandPaymentMethodsContext = useMemo(
     () => ({ ...context?.data?.cart, client }),
     [client, context?.data?.cart],
+  )
+
+  const onSuccessCb: NonNullable<PaymentMethodContextProps['onSuccess']> = useEventCallback(
+    async (order_number) => {
+      await onSuccess?.(order_number, context.data?.cart)
+      clearCurrentCartId()
+      await push({ pathname: successUrl, query: { order_number, cart_id: context.data?.cart?.id } })
+    },
   )
 
   const [methods, setMethods] = useState<PaymentMethod[]>([])
@@ -62,7 +84,6 @@ export function PaymentMethodContextProvider(props: PaymentMethodContextProvider
           ? modules[method.code]?.expandMethods?.(method, cartContext) ?? [{ ...method, child: '' }]
           : Promise.resolve([]),
       )
-
       const loaded = (await Promise.all(promises)).flat(1).sort((a) => (a.preferred ? 1 : 0))
 
       setMethods(loaded)
@@ -77,8 +98,9 @@ export function PaymentMethodContextProvider(props: PaymentMethodContextProvider
       modules,
       selectedModule,
       setSelectedModule,
+      onSuccess: onSuccessCb,
     }),
-    [methods, modules, selectedMethod, selectedModule],
+    [methods, modules, onSuccessCb, selectedMethod, selectedModule],
   )
 
   return (
