@@ -55,12 +55,12 @@ class InterceptorPlugin {
                 }
                 const interceptorForRequest = this.interceptorByDepependency[resource.request];
                 if (interceptorForRequest) {
-                    logger.log(`Intercepting... ${interceptorForRequest.dependency}`);
+                    logger.log(`Intercepting dep... ${interceptorForRequest.dependency}`);
                     resource.request = `${interceptorForRequest.denormalized}.interceptor.tsx`;
                 }
                 const interceptorForPath = this.interceptors[requestPath];
                 if (interceptorForPath) {
-                    logger.log(`Intercepting... ${interceptorForPath.fromRoot}`);
+                    logger.log(`Intercepting fromRoot... ${interceptorForPath.fromRoot}`);
                     resource.request = `${resource.request}.interceptor.tsx`;
                 }
             });
