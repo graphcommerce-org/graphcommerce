@@ -16,6 +16,11 @@ it('finds plugins', () => {
         "plugin": "@graphcommerce/googleanalytics/plugins/GaCartStartCheckout",
       },
       Object {
+        "component": "CartStartCheckoutLinkOrButton",
+        "exported": "@graphcommerce/magento-cart",
+        "plugin": "@graphcommerce/googleanalytics/plugins/GaCartStartCheckoutLinkOrButton",
+      },
+      Object {
         "component": "FramerNextPages",
         "exported": "@graphcommerce/framer-next-pages",
         "plugin": "@graphcommerce/googleanalytics/plugins/GaFramerNextPages",

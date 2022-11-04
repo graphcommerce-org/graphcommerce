@@ -1,0 +1,45 @@
+import { iconChevronRight, IconSvg, LinkOrButton, LinkOrButtonProps } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/react'
+import { SxProps, Theme } from '@mui/material'
+import PageLink from 'next/link'
+import React from 'react'
+import { CartStartCheckoutFragment } from './CartStartCheckout.gql'
+
+export type CartStartCheckoutLinkOrButtonProps = CartStartCheckoutFragment & {
+  children?: React.ReactNode
+  sx?: SxProps<Theme>
+  onStart?: (
+    e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>,
+    cart: CartStartCheckoutFragment,
+  ) => void
+  linkOrButtonProps?: LinkOrButtonProps
+}
+
+export function CartStartCheckoutLinkOrButton(props: CartStartCheckoutLinkOrButtonProps) {
+  const {
+    children,
+    onStart,
+    linkOrButtonProps: { onClick, button, ...linkOrButtonProps } = {},
+    ...cart
+  } = props
+
+  const hasTotals = (cart.prices?.grand_total?.value ?? 0) > 0
+
+  return (
+    <PageLink href='/checkout' passHref>
+      <LinkOrButton
+        onClick={(e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => {
+          onClick?.(e)
+          onStart?.(e, cart)
+        }}
+        button={{ variant: 'pill', ...button }}
+        disabled={!hasTotals}
+        color='secondary'
+        endIcon={<IconSvg src={iconChevronRight} />}
+        {...linkOrButtonProps}
+      >
+        <Trans id='Next' />
+      </LinkOrButton>
+    </PageLink>
+  )
+}
