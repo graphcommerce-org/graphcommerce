@@ -22,9 +22,7 @@ type PaymentMethodContextProps = {
   onSuccess: (orderNumber: string) => Promise<void>
 }
 
-const paymentMethodContext = React.createContext<PaymentMethodContextProps>(
-  undefined as unknown as PaymentMethodContextProps,
-)
+const paymentMethodContext = React.createContext<PaymentMethodContextProps | undefined>(undefined)
 paymentMethodContext.displayName = 'PaymentMethodContext'
 
 export type PaymentMethodContextProviderProps = {
@@ -116,6 +114,15 @@ export function PaymentMethodContextProvider(props: PaymentMethodContextProvider
   )
 }
 
-export function usePaymentMethodContext() {
+export function usePaymentMethodContext(optional: true): PaymentMethodContextProps | undefined
+export function usePaymentMethodContext(optional?: false): PaymentMethodContextProps
+export function usePaymentMethodContext(optional = false) {
+  const context = useContext(paymentMethodContext)
+  if (!optional && typeof context === 'undefined') {
+    throw Error(
+      'usePaymentMethodContext must be used within a PaymentMethodContextProvider or provide the optional=true argument',
+    )
+  }
+
   return useContext(paymentMethodContext)
 }

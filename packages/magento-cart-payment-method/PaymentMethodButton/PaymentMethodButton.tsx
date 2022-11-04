@@ -16,7 +16,7 @@ function PaymentMethodButtonRenderer(
   props: { buttonProps: LinkOrButtonProps } & ComposedSubmitRenderComponentProps,
 ) {
   const { buttonProps, error, buttonState, submit } = props
-  const { selectedMethod, selectedModule } = usePaymentMethodContext()
+  const { selectedMethod, selectedModule } = usePaymentMethodContext(true) ?? {}
 
   const PaymentButton = selectedModule?.PaymentButton
 
