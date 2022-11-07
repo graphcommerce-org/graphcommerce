@@ -48,6 +48,11 @@ it('finds plugins', () => {
       Object {
         "component": "FramerNextPages",
         "exported": "@graphcommerce/framer-next-pages",
+        "plugin": "@graphcommerce/googlerecaptcha/plugins/GrecaptchaFramerNextPages",
+      },
+      Object {
+        "component": "FramerNextPages",
+        "exported": "@graphcommerce/framer-next-pages",
         "plugin": "@graphcommerce/googletagmanager/plugins/GtagFramerNextPages",
       },
       Object {
