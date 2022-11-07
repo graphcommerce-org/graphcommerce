@@ -1,6 +1,7 @@
 import { FramerNextPages } from '@graphcommerce/framer-next-pages'
 import { GoogleRecaptchaProvider } from '@graphcommerce/googlerecaptcha'
 // import { GoogleRecaptchaV3Script } from '@graphcommerce/googlerecaptcha'
+import { GraphQLProvider } from '@graphcommerce/graphql'
 import { GlobalHead } from '@graphcommerce/magento-store'
 import {
   CssAndFramerMotionProvider,
@@ -10,7 +11,6 @@ import {
 import { CssBaseline } from '@mui/material'
 import { AppProps } from 'next/app'
 import { lightTheme, darkTheme } from '../components/theme'
-import { GraphQLProvider } from '../lib/graphql/GraphQLProvider'
 import { I18nProvider } from '../lib/i18n/I18nProvider'
 
 export default function ThemedApp(props: AppProps) {
@@ -26,7 +26,7 @@ export default function ThemedApp(props: AppProps) {
             <CssBaseline />
             <PageLoadIndicator />
             <GoogleRecaptchaProvider>
-              <FramerNextPages {...props} />
+            <FramerNextPages {...props} />
             </GoogleRecaptchaProvider>
           </DarkLightModeThemeProvider>
         </GraphQLProvider>

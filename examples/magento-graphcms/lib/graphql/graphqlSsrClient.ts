@@ -1,14 +1,16 @@
+import { createHygraphLink } from '@graphcommerce/graphcms-ui'
 import {
   NormalizedCacheObject,
   ApolloClient,
   ApolloLink,
   errorLink,
   measurePerformanceLink,
+  InMemoryCache,
+  fragments,
 } from '@graphcommerce/graphql'
 import { MeshApolloLink } from '@graphcommerce/graphql-mesh'
 import { createStoreLink, defaultLocale } from '@graphcommerce/magento-store'
 import type { MeshInstance } from '@graphql-mesh/runtime'
-import { createCache, createHygraphLink, httpLink } from './GraphQLProvider'
 
 const loopback = process.env.VERCEL === '1' && process.env.CI !== '1'
 
@@ -30,7 +32,7 @@ function client(locale: string) {
       createStoreLink(locale),
       new MeshApolloLink(mesh),
     ]),
-    cache: createCache(),
+    cache: new InMemoryCache({ possibleTypes: fragments.possibleTypes }),
     ssrMode: true,
     name: 'ssr',
   })
@@ -44,14 +46,6 @@ const sharedClient: {
  * Gives back an instance of `ApolloClient` to query the GraphQL Mesh api.
  *
  * We're instantiating in a few different modes to have the best performance/usage possible:
- *
- * 1. When running locally in development mode we can assume the
- *    process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT is available and we call that. We don't want to
- *    create a new mesh every pageload.
- * 2. When running in production mode we load the GraphQL Mesh with a SchemaLink, this prevents a
- *    roundtrip to its own endpoint because that would double the costs (although it might be better
- *    for performance.)\
- *    It will actually only bootup the client when a new serverless instance is created.
  */
 export function graphqlClient(
   locale: string | undefined = defaultLocale(),
@@ -59,8 +53,16 @@ export function graphqlClient(
 ): ApolloClient<NormalizedCacheObject> {
   if (loopback) {
     return new ApolloClient({
-      link: httpLink(locale),
-      cache: createCache(),
+      link: ApolloLink.from([
+        // Add the correct store header for the Magento user.
+        createStoreLink(locale),
+        // Add the correct locale header for Hygraph localized content.
+        createHygraphLink(locale),
+      ]),
+      cache: new InMemoryCache({
+        possibleTypes: fragments.possibleTypes,
+        // typePolicies: mergeTypePolicies(policies),
+      }),
       name: 'fastDev',
       ssrMode: true,
     })
