@@ -1,5 +1,7 @@
 # Change Log
 
+## 2.2.0-canary.4
+
 ## 2.2.0-canary.3
 
 ### Minor Changes

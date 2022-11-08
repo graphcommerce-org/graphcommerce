@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.31.0-canary.4
+
+### Minor Changes
+
+- [#1732](https://github.com/graphcommerce-org/graphcommerce/pull/1732) [`4bf1f606f`](https://github.com/graphcommerce-org/graphcommerce/commit/4bf1f606f3281a2664d6e2a70202a22af4d2c849) - fix customer service scrollSnapAlign ([@StefanAngenent](https://github.com/StefanAngenent))
+
 ## 4.31.0-canary.3
 
 ### Patch Changes

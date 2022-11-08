@@ -2,7 +2,7 @@
   "name": "@graphcommerce/googletagmanager",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "2.1.0-canary.0",
+  "version": "2.1.0-canary.1",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -19,7 +19,7 @@
     "@types/gapi.client.tagmanager": "^2.0.2"
   },
   "dependencies": {
-    "@graphcommerce/magento-product": "4.14.0-canary.4"
+    "@graphcommerce/magento-product": "4.14.0-canary.5"
   },
   "peerDependencies": {
     "next": "^12.1.2",
