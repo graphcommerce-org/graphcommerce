@@ -48,7 +48,7 @@ function extendConfig(nextConfig, modules) {
 }
 function withGraphCommerce(conf = {}) {
     const { packages = [] } = conf;
-    const dependencies = [...(0, resolveDependenciesSync_1.resolveDependenciesSync)().keys()];
+    const dependencies = [...(0, resolveDependenciesSync_1.resolveDependenciesSync)().keys()].slice(1);
     const modules = [...dependencies, ...packages];
     return (config) => extendConfig((0, next_transpile_modules_1.default)(modules)(config), modules);
 }

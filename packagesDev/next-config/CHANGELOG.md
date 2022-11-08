@@ -1,5 +1,13 @@
 # Change Log
 
+## 4.30.2
+
+## 4.30.1
+
+### Patch Changes
+
+- [#1724](https://github.com/graphcommerce-org/graphcommerce/pull/1724) [`0c54f0b78`](https://github.com/graphcommerce-org/graphcommerce/commit/0c54f0b7828d78df373a96dc6d6dcd1ee108704f) Thanks [@paales](https://github.com/paales)! - Fix issue where the build version of next-config wasn't available
+
 ## 4.30.0
 
 ### Minor Changes
