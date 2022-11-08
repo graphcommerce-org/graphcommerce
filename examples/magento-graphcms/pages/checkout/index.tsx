@@ -6,7 +6,6 @@ import {
   WaitForQueries,
 } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { useGoogleRecaptcha } from '@graphcommerce/googlerecaptcha'
 import {
   ApolloCartErrorAlert,
   ApolloCartErrorFullPage,
@@ -45,7 +44,6 @@ type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutMinimalProps, Props>
 
 function ShippingPage() {
-  useGoogleRecaptcha()
   const router = useRouter()
   const shippingPage = useCartQuery(ShippingPageDocument, { fetchPolicy: 'cache-and-network' })
   const customerAddresses = useCustomerQuery(CustomerDocument, { fetchPolicy: 'cache-and-network' })

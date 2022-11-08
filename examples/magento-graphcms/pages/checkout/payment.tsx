@@ -1,6 +1,5 @@
 import { ComposedForm, WaitForQueries } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { useGoogleRecaptcha } from '@graphcommerce/googlerecaptcha'
 import {
   ApolloCartErrorFullPage,
   CartAgreementsForm,
@@ -42,8 +41,6 @@ import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphql
 type GetPageStaticProps = GetStaticProps<LayoutMinimalProps>
 
 function PaymentPage() {
-  useGoogleRecaptcha()
-
   const billingPage = useCartQuery(BillingPageDocument, { fetchPolicy: 'cache-and-network' })
   const [{ locked }] = useCartLock()
 

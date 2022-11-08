@@ -8,17 +8,14 @@ initialized on all pages.
 
 1. Add `NEXT_PUBLIC_GOOGLE_RECAPTCHA_V3_SITE_KEY` to your .env file.
    [example](../../examples/magento-graphcms/.env.example)
-2. Add `<GoogleRecaptchaProvider/>` to your `pages/_app.tsx` file
-   [example](../../examples/magento-graphcms/pages/_app.tsx)
-3. Add `recaptchaLink` to your Apollo Client.
-   [example](../../examples/magento-graphcms/lib/graphql/GraphQLProvider.tsx)
-4. Add `X-Recaptcha` header to your `.meshrc.yml`.
+2. Add `X-Recaptcha` header to your `.meshrc.yml`.
    [example](../../examples/magento-graphcms/.meshrc.yml)
 
 ### Usage
 
-If you have a form that uses GoogleRecaptcha add `useGoogleRecaptcha()` in the
-root of your component.
+If you have a form that uses GoogleRecaptcha make sure you are using one of
+ApolloErrorAlert, ApolloErrorFullPage and ApolloErrorSnackbar components. This
+will activate the Google Recaptcha plugins.
 
 ### Troubleshooting
 

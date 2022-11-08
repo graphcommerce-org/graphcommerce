@@ -1,4 +1,3 @@
-/* eslint-disable import/no-mutable-exports */
 import type { PagesProps } from '@graphcommerce/framer-next-pages'
 import type { PluginProps } from '@graphcommerce/next-config'
 import { GoogleAnalyticsScript } from '../components/GoogleAnalyticsScript'

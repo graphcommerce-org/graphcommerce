@@ -1,5 +1,4 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { useGoogleRecaptcha } from '@graphcommerce/googlerecaptcha'
 import { ChangePasswordForm, WaitForCustomer } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
@@ -18,8 +17,6 @@ import { graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
 function AccountAuthenticationPage() {
-  useGoogleRecaptcha()
-
   return (
     <>
       <LayoutOverlayHeader>

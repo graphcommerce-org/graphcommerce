@@ -1,4 +1,3 @@
-/* eslint-disable import/no-mutable-exports */
 import { GraphQLProviderProps } from '@graphcommerce/graphql'
 import type { PluginProps } from '@graphcommerce/next-config'
 import { wishlistTypePolicies } from '../typePolicies'

@@ -1,4 +1,3 @@
-/* eslint-disable import/no-mutable-exports */
 import type { PaymentMethodContextProviderProps } from '@graphcommerce/magento-cart-payment-method'
 import type { PluginProps } from '@graphcommerce/next-config'
 import * as methods from '../methods'
