@@ -1,30 +1,21 @@
-import {
-  useFormGqlMutationCart,
-  useCurrentCartId,
-  useClearCurrentCartId,
-} from '@graphcommerce/magento-cart'
+import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { useFormCompose } from '@graphcommerce/react-hook-form'
-import { useRouter } from 'next/router'
-import { useEffect } from 'react'
 import { PaymentPlaceOrderProps } from '../Api/PaymentMethod'
+import { usePaymentMethodContext } from '../PaymentMethodContext/PaymentMethodContext'
 import { PaymentMethodPlaceOrderNoopDocument } from './PaymentMethodPlaceOrderNoop.gql'
 
 export function PaymentMethodPlaceOrderNoop(props: PaymentPlaceOrderProps) {
   const { step, code } = props
-  const clearCurrentCartId = useClearCurrentCartId()
+  const { onSuccess } = usePaymentMethodContext()
 
-  const { currentCartId } = useCurrentCartId()
-  const form = useFormGqlMutationCart(PaymentMethodPlaceOrderNoopDocument)
+  const form = useFormGqlMutationCart(PaymentMethodPlaceOrderNoopDocument, {
+    onComplete: async (result) => {
+      if (!result.data?.placeOrder) return
+      await onSuccess(result.data.placeOrder.order.order_number)
+    },
+  })
 
-  const { handleSubmit, data, error } = form
-  const { push } = useRouter()
-
-  useEffect(() => {
-    if (!data?.placeOrder?.order || error || !currentCartId) return
-    clearCurrentCartId()
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    push({ pathname: '/checkout/success', query: { cart_id: currentCartId } })
-  }, [clearCurrentCartId, currentCartId, data?.placeOrder?.order, error, push])
+  const { handleSubmit } = form
 
   const submit = handleSubmit(() => {})
 

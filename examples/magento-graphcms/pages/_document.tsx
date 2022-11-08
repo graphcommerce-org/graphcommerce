@@ -1,4 +1,3 @@
-// import { GoogleTagManagerNoScript } from '@graphcommerce/googletagmanager'
 import { withLingui, LinguiDocumentProps } from '@graphcommerce/lingui-next'
 import { EmotionCacheProps } from '@graphcommerce/next-ui'
 import NextDocument, { Html, Head, Main, NextScript } from 'next/document'

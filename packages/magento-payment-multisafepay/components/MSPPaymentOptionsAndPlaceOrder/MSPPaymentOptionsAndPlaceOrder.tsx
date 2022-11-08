@@ -39,12 +39,15 @@ export function MSPPaymentOptionsAndPlaceOrder(props: PaymentOptionsProps) {
 
       if (result.errors || !selectedMethod?.code || url?.error || !url?.payment_url) return
 
-      lock({ method: selectedMethod.code })
+      await lock({
+        method: selectedMethod.code,
+        order_number: result.data?.placeOrder?.order.order_number,
+      })
       await push(url.payment_url)
     },
   })
 
-  const { handleSubmit, muiRegister, formState, required, register, control } = form
+  const { handleSubmit, required, register, control } = form
 
   const submit = handleSubmit(() => {})
 

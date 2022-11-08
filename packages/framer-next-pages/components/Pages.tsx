@@ -14,7 +14,7 @@ function findPlainIdx(items: PageItem[]) {
   return items.reduce((acc, item, i) => (typeof item.overlayGroup === 'string' ? acc : i), -1)
 }
 
-type PagesProps = Omit<AppPropsType<NextRouter>, 'pageProps' | 'Component'> & {
+export type PagesProps = Omit<AppPropsType<NextRouter>, 'pageProps' | 'Component'> & {
   Component: PageComponent
   pageProps?: { up?: UpPage | null }
 

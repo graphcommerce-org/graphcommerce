@@ -15,6 +15,7 @@ import {
   useFormAutoSubmit,
   useFormCompose,
   UseFormComposeOptions,
+  UseFormGraphQlOptions,
   useFormPersist,
   useWatch,
 } from '@graphcommerce/react-hook-form'
@@ -33,14 +34,17 @@ import {
 export type ShippingMethodFormProps = Pick<UseFormComposeOptions, 'step'> & {
   sx?: SxProps<Theme>
   children?: React.ReactNode
-}
+} & UseFormGraphQlOptions<
+    ShippingMethodFormMutation,
+    ShippingMethodFormMutationVariables & { carrierMethod?: string }
+  >
 
 function notEmpty<TValue>(value: TValue | null | undefined): value is TValue {
   return value !== null && value !== undefined
 }
 
 export function ShippingMethodForm(props: ShippingMethodFormProps) {
-  const { step, sx, children } = props
+  const { step, sx, children, onBeforeSubmit = (vars) => vars, ...options } = props
   const { data: cartQuery, loading } = useCartQuery(GetShippingMethodsDocument)
   const availableMethods = (
     cartQuery?.cart?.shipping_addresses?.[0]?.available_shipping_methods ?? []
@@ -78,8 +82,9 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
     defaultValues: { carrierMethod },
     onBeforeSubmit: (variables) => {
       const [carrier, method] = (variables.carrierMethod ?? '').split('-')
-      return { ...variables, carrier, method }
+      return onBeforeSubmit({ ...variables, carrier, method })
     },
+    ...options,
   })
 
   const { handleSubmit, control, error } = form

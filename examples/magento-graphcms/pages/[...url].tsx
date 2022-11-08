@@ -124,7 +124,6 @@ function CategoryPage(props: CategoryProps) {
             <ProductListCount total_count={products?.total_count} />
             <ProductListItems
               title={category.name ?? ''}
-              listId={category.uid}
               items={products?.items}
               loadingEager={1}
               sx={sxLargeItem}

@@ -6,8 +6,6 @@ import {
   WaitForQueries,
 } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { gtagAddShippingInfo } from '@graphcommerce/googleanalytics'
-import { useGoogleRecaptcha } from '@graphcommerce/googlerecaptcha'
 import {
   ApolloCartErrorAlert,
   ApolloCartErrorFullPage,
@@ -46,7 +44,6 @@ type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutMinimalProps, Props>
 
 function ShippingPage() {
-  useGoogleRecaptcha()
   const router = useRouter()
   const shippingPage = useCartQuery(ShippingPageDocument, { fetchPolicy: 'cache-and-network' })
   const customerAddresses = useCustomerQuery(CustomerDocument, { fetchPolicy: 'cache-and-network' })
@@ -122,11 +119,7 @@ function ShippingPage() {
                 )}
 
                 <ComposedSubmit
-                  onSubmitSuccessful={() => {
-                    gtagAddShippingInfo(shippingPage.data?.cart)
-                    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-                    router.push('/checkout/payment')
-                  }}
+                  onSubmitSuccessful={() => router.push('/checkout/payment')}
                   render={(renderProps) => (
                     <>
                       <FormActions>

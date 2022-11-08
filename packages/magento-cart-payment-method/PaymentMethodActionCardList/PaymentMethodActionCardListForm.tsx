@@ -2,9 +2,9 @@ import {
   ActionCard,
   Button,
   FormDiv,
-  ActionCardItemBase,
   ActionCardItemRenderProps,
   ActionCardListForm,
+  ActionCardProps,
 } from '@graphcommerce/next-ui'
 import {
   useForm,
@@ -16,13 +16,9 @@ import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { SxProps, Theme } from '@mui/material'
 import { useEffect } from 'react'
-import { PaymentMethodActionCardProps, PaymentOptionsProps } from '../Api/PaymentMethod'
+import { PaymentOptionsProps } from '../Api/PaymentMethod'
 import { usePaymentMethodContext } from '../PaymentMethodContext/PaymentMethodContext'
 import { useCartLock } from '../hooks'
-
-function DefaultPaymentActionCard(props: PaymentMethodActionCardProps) {
-  return <ActionCard {...props} />
-}
 
 function PaymentMethodActionCard(
   props: ActionCardItemRenderProps<PaymentOptionsProps> & {
@@ -37,7 +33,7 @@ function PaymentMethodActionCard(
     selectedMethod.child === child &&
     selectedModule?.PaymentOptions
 
-  const Card = modules[code]?.PaymentActionCard ?? DefaultPaymentActionCard
+  const Card = modules[code]?.PaymentActionCard ?? ActionCard
 
   return (
     <Card
@@ -110,7 +106,7 @@ export function PaymentMethodActionCardListForm(props: PaymentMethodActionCardLi
   if (!methods || methods.length < 1) return null
 
   return (
-    <ActionCardListForm<PaymentOptionsProps & ActionCardItemBase>
+    <ActionCardListForm<PaymentOptionsProps & ActionCardProps>
       control={control}
       name='paymentMethod'
       errorMessage={i18n._(/* i18n */ 'Please select a payment method')}
@@ -122,6 +118,7 @@ export function PaymentMethodActionCardListForm(props: PaymentMethodActionCardLi
         value: `${method.code}___${method.child}`,
         step,
         Container: FormDiv,
+        disabled: !modules?.[method.code ?? ''],
       }))}
       render={PaymentMethodActionCard}
     />

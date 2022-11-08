@@ -29,7 +29,7 @@ export function AdyenPaymentHandler() {
 
   useEffect(() => {
     const call = async () => {
-      if (!orderNumber || !isAdyen || !currentCartId || called) return
+      if (!orderNumber || !isAdyen || !currentCartId || called) return undefined
 
       const payload = JSON.stringify({ orderId: orderNumber, details: { redirectResult } })
 
@@ -49,7 +49,7 @@ export function AdyenPaymentHandler() {
         })
         paymentStatus = status.data?.adyenPaymentStatus
       }
-      handleResponse(paymentStatus)
+      return handleResponse(orderNumber, paymentStatus)
     }
 
     // eslint-disable-next-line @typescript-eslint/no-floating-promises

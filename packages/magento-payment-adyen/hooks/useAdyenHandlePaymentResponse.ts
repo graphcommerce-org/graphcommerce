@@ -1,8 +1,7 @@
 import type { Types } from '@adyen/api-library'
 import { makeVar, useReactiveVar } from '@graphcommerce/graphql'
-import { useClearCurrentCartId, useCurrentCartId } from '@graphcommerce/magento-cart'
+import { usePaymentMethodContext } from '@graphcommerce/magento-cart-payment-method'
 import { useEventCallback } from '@mui/material'
-import { useRouter } from 'next/router'
 import { AdyenPaymentResponseFragment } from './AdyenPaymentResponse.gql'
 import { useAdyenCartLock } from './useAdyenCartLock'
 
@@ -88,14 +87,12 @@ const paymentResult = makeVar<AdyenPaymentResponse | undefined>(undefined)
 export const useAdyenPaymentResponse = () => useReactiveVar(paymentResult)
 
 export function useAdyenHandlePaymentResponse() {
-  const clearCurrentCartId = useClearCurrentCartId()
-  const { currentCartId } = useCurrentCartId()
-  const { push } = useRouter()
   const [, , unlockAdyen] = useAdyenCartLock()
+  const { onSuccess } = usePaymentMethodContext()
 
   const unlock = () => unlockAdyen({ adyen: null, redirectResult: null })
 
-  return useEventCallback((status?: AdyenPaymentResponseFragment | null) => {
+  return useEventCallback((orderNumber: string, status?: AdyenPaymentResponseFragment | null) => {
     const parsedResponse = parsePaymentResponse(status)
     const resultCode = parsedResponse?.resultCode
 
@@ -105,12 +102,12 @@ export function useAdyenHandlePaymentResponse() {
       case ResultCodeEnum.Refused:
       case ResultCodeEnum.Pending:
       case ResultCodeEnum.Error:
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
         unlock()
         break
       case ResultCodeEnum.Authorised:
-        clearCurrentCartId()
         // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        push({ pathname: '/checkout/success', query: { cart_id: currentCartId } })
+        onSuccess(orderNumber)
         break
       default:
         if (process.env.NODE_ENV !== 'production') {
@@ -118,5 +115,6 @@ export function useAdyenHandlePaymentResponse() {
         }
     }
     paymentResult(parsedResponse)
+    return undefined
   })
 }

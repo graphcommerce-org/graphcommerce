@@ -1,12 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { useGtagPurchase } from '@graphcommerce/googleanalytics'
-import {
-  CartItemSummary,
-  CartSummary,
-  InlineAccount,
-  useCartQuery,
-} from '@graphcommerce/magento-cart'
-import { CartItemSummaryDocument } from '@graphcommerce/magento-cart/components/CartItemSummary/GetCartItemSummary.gql'
+import { CartItemSummary, CartSummary, InlineAccount } from '@graphcommerce/magento-cart'
 import { SignupNewsletter } from '@graphcommerce/magento-newsletter'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
@@ -33,8 +26,6 @@ type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props>
 
 function OrderSuccessPage() {
   const hasCartId = !!useRouter().query.cart_id
-
-  useGtagPurchase()
 
   return (
     <>

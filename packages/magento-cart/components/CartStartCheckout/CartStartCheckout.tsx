@@ -3,12 +3,14 @@ import { iconChevronRight, IconSvg, extendableComponent } from '@graphcommerce/n
 import { Trans } from '@lingui/react'
 import { Box, Button, ButtonProps, SxProps, Theme } from '@mui/material'
 import PageLink from 'next/link'
+import React from 'react'
 import { CartStartCheckoutFragment } from './CartStartCheckout.gql'
 
 export type CartStartCheckoutProps = CartStartCheckoutFragment & {
   children?: React.ReactNode
   sx?: SxProps<Theme>
   buttonProps?: ButtonProps<'button'>
+  onStart?: (e: React.MouseEvent<HTMLButtonElement>, cart: CartStartCheckoutFragment) => void
 }
 
 const name = 'CartStartCheckout' as const
@@ -21,17 +23,20 @@ const parts = [
 const { classes } = extendableComponent(name, parts)
 
 export function CartStartCheckout(props: CartStartCheckoutProps) {
-  const { prices, children,  buttonProps, sx = [] } = props
+  const {
+    children,
+    onStart,
+    buttonProps: { onClick, ...buttonProps } = {},
+    sx = [],
+    ...cart
+  } = props
 
-  const hasTotals = (prices?.grand_total?.value ?? 0) > 0
+  const hasTotals = (cart.prices?.grand_total?.value ?? 0) > 0
   return (
     <Box
       className={classes.checkoutButtonContainer}
       sx={[
-        (theme) => ({
-          textAlign: 'center',
-          my: theme.spacings.md,
-        }),
+        (theme) => ({ textAlign: 'center', my: theme.spacings.md }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
@@ -45,6 +50,11 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
           className={classes.checkoutButton}
           endIcon={<IconSvg src={iconChevronRight} />}
           {...buttonProps}
+          onClick={(e) => {
+            onClick?.(e)
+            onStart?.(e, cart)
+            return onClick?.(e)
+          }}
           disabled={!hasTotals || buttonProps?.disabled}
         >
           <Box
@@ -59,7 +69,7 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
           </Box>{' '}
           {hasTotals && (
             <span className={classes.checkoutMoney}>
-              <Money {...prices?.grand_total} />
+              <Money {...cart.prices?.grand_total} />
             </span>
           )}
         </Button>

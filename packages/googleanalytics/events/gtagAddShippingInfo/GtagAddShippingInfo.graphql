@@ -1,4 +1,4 @@
-fragment GtagAddShippingInfo on Cart @inject(into: ["ShippingPageFragment"]) {
+fragment GtagAddShippingInfo on Cart @inject(into: ["ShippingMethodSelected"]) {
   prices {
     grand_total {
       currency

@@ -32,5 +32,5 @@ it('writes all interceptors to disk', () => {
     resolve,
   )
 
-  writeInterceptors(interceptors)
+  // writeInterceptors(interceptors)
 })

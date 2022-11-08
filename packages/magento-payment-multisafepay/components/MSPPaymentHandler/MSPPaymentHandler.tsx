@@ -1,23 +1,24 @@
 import { useMutation } from '@graphcommerce/graphql'
 import { useAssignCurrentCartId, useClearCurrentCartId } from '@graphcommerce/magento-cart'
-import { PaymentHandlerProps } from '@graphcommerce/magento-cart-payment-method'
+import {
+  PaymentHandlerProps,
+  usePaymentMethodContext,
+} from '@graphcommerce/magento-cart-payment-method'
 import { ErrorSnackbar } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { useMSPCartLock } from '../../hooks/useMSPCartLock'
 import { MSPPaymentHandlerDocument } from './MSPPaymentHandler.gql'
 
 export const MSPPaymentHandler = (props: PaymentHandlerProps) => {
   const { code } = props
-  const { push } = useRouter()
   const [lockStatus, , unlock] = useMSPCartLock()
   const assignCurrentCartId = useAssignCurrentCartId()
-  const clearCurrentCartId = useClearCurrentCartId()
+  const { onSuccess } = usePaymentMethodContext()
 
   const [restore, { error }] = useMutation(MSPPaymentHandlerDocument)
 
-  const { justLocked, success, cart_id: cartId, locked, method } = lockStatus
+  const { justLocked, success, cart_id: cartId, locked, method, order_number } = lockStatus
 
   const canProceed = !(justLocked || !locked || !cartId || method !== code)
 
@@ -28,23 +29,21 @@ export const MSPPaymentHandler = (props: PaymentHandlerProps) => {
 
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     restore({ variables: { cartId } }).then(({ data }) => {
-      if (!data?.getPaymentMeta) return
+      if (!data?.getPaymentMeta) return undefined
 
       assignCurrentCartId(data.getPaymentMeta)
-      unlock({ success: null })
+      return unlock({ success: null })
     })
   }, [assignCurrentCartId, cartId, restore, shouldRestore, unlock])
 
   // If successfull we clear it's cart and redirect to the success page.
   const shouldRedirect = canProceed && success === '1'
   useEffect(() => {
-    if (!shouldRedirect) return
+    if (!shouldRedirect || !order_number) return
 
-    // We're done with the current cart, we clear the current cartId.
-    clearCurrentCartId()
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    push({ pathname: '/checkout/success', query: { cart_id: cartId } })
-  }, [cartId, clearCurrentCartId, push, shouldRedirect])
+    onSuccess(order_number)
+  }, [cartId, onSuccess, order_number, shouldRedirect])
 
   if (error) {
     return (

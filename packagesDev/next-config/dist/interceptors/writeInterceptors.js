@@ -7,13 +7,9 @@ exports.writeInterceptors = void 0;
 const node_fs_1 = __importDefault(require("node:fs"));
 const path_1 = __importDefault(require("path"));
 function writeInterceptors(interceptors, cwd = process.cwd()) {
-    Object.entries(interceptors).forEach(([, plugin]) => {
-        // An import can also be at the index, handle that as well.
-        const targetFile = [
-            `${path_1.default.join(cwd, plugin.fromRoot)}`,
-            `${path_1.default.join(cwd, plugin.fromRoot)}/index`,
-        ].find((location) => ['ts', 'tsx'].find((extension) => node_fs_1.default.existsSync(`${location}.${extension}`)));
-        const fileToWrite = `${targetFile}.interceptor.tsx`;
+    Object.entries(interceptors).forEach(([target, plugin]) => {
+        // eslint-disable-next-line no-console
+        const fileToWrite = `${path_1.default.join(cwd, plugin.fromRoot)}.interceptor.tsx`;
         if (!node_fs_1.default.existsSync(fileToWrite) ||
             node_fs_1.default.readFileSync(fileToWrite, 'utf8').toString() !== plugin.template) {
             node_fs_1.default.writeFileSync(fileToWrite, plugin.template);
