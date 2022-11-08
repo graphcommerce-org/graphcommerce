@@ -396,7 +396,6 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
                 '&.variantSmBottom': {
                   borderTopLeftRadius: `${theme.shape.borderRadius * 3}px`,
                   borderTopRightRadius: `${theme.shape.borderRadius * 3}px`,
-                  scrollSnapAlign: 'end',
                 },
                 '&.sizeSmFloating': {
                   borderRadius: `${theme.shape.borderRadius * 3}px`,
@@ -408,7 +407,6 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
                 '&.variantSmRight.sizeSmFull': {
                   paddingBottom: '1px',
                   minHeight: clientSizeCssVar.y,
-                  scrollSnapAlign: 'end',
                 },
               },
               [theme.breakpoints.up('md')]: {
@@ -416,7 +414,6 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
 
                 '&.sizeMdFull.variantMdBottom': {
                   minHeight: `calc(${clientSizeCssVar.y} - ${mdSpacingTop})`,
-                  scrollSnapAlign: 'end',
                 },
                 '&.sizeMdFull.variantMdLeft': {
                   paddingBottom: '1px',
@@ -425,7 +422,6 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
                 '&.sizeMdFull.variantMdRight': {
                   paddingBottom: '1px',
                   minHeight: clientSizeCssVar.y,
-                  scrollSnapAlign: 'end',
                 },
 
                 '&.variantMdBottom': {
