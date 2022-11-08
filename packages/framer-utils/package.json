@@ -2,7 +2,7 @@
   "name": "@graphcommerce/framer-utils",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "4.31.0-canary.2",
+  "version": "4.31.0-canary.3",
   "sideEffects": false,
   "scripts": {
     "dev": "tsc -W"

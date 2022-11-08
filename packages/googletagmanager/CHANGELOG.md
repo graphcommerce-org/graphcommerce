@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.1.0-canary.0
+
+### Minor Changes
+
+- [#1733](https://github.com/graphcommerce-org/graphcommerce/pull/1733) [`85afcf4d0`](https://github.com/graphcommerce-org/graphcommerce/commit/85afcf4d011701f4b80e59e2b2b52a2e1f99a655) - Google Tagmanager now uses the new plugin system ([@paales](https://github.com/paales))
+
+- [#1733](https://github.com/graphcommerce-org/graphcommerce/pull/1733) [`fc9de1160`](https://github.com/graphcommerce-org/graphcommerce/commit/fc9de1160714cb909a9d0cb6fc0c068422f35310) - GoogleTagManagerScript is now added with a plugin ([@paales](https://github.com/paales))
+
 ## 2.0.10
 
 ### Patch Changes

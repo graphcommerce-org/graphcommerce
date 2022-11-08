@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.2.0-canary.3
+
+### Minor Changes
+
+- [#1733](https://github.com/graphcommerce-org/graphcommerce/pull/1733) [`493506480`](https://github.com/graphcommerce-org/graphcommerce/commit/4935064809501682ec4df55ea47e022550dcd336) - Google Recaptcha now uses the new plugin system. Whenever the @graphcommerce/ecommerce-ui ApolloErrorAlert, ApolloErrorFullPage and ApolloErrorSnackbar components are rendered it will activate the Google Recaptcha plugins. ([@paales](https://github.com/paales))
+
 ## 2.1.22-canary.2
 
 ## 2.1.22-canary.1

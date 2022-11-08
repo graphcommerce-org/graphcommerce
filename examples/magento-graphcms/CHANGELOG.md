@@ -1,5 +1,21 @@
 # Change Log
 
+## 4.14.0-canary.4
+
+### Minor Changes
+
+- [#1733](https://github.com/graphcommerce-org/graphcommerce/pull/1733) [`761bd2832`](https://github.com/graphcommerce-org/graphcommerce/commit/761bd2832f115afc8b95bedbf479266309dd5acc) - ApolloLinks, typePolicies and migration scripts are now handled with plugins on the new library component `<GraphQLProvider/>`. Hygraph's, Magento Cart, Customer, Store, Wishlist and Magento GraphQL are all migrated to be using plugins.
+
+  If you are using custom `links` / `policies` / `migrations` you can pass them as props to the `<GraphQLProvider/>` or create your own local plugin. ([@paales](https://github.com/paales))
+
+- [#1733](https://github.com/graphcommerce-org/graphcommerce/pull/1733) [`85afcf4d0`](https://github.com/graphcommerce-org/graphcommerce/commit/85afcf4d011701f4b80e59e2b2b52a2e1f99a655) - Google Tagmanager now uses the new plugin system ([@paales](https://github.com/paales))
+
+- [#1733](https://github.com/graphcommerce-org/graphcommerce/pull/1733) [`493506480`](https://github.com/graphcommerce-org/graphcommerce/commit/4935064809501682ec4df55ea47e022550dcd336) - Google Recaptcha now uses the new plugin system. Whenever the @graphcommerce/ecommerce-ui ApolloErrorAlert, ApolloErrorFullPage and ApolloErrorSnackbar components are rendered it will activate the Google Recaptcha plugins. ([@paales](https://github.com/paales))
+
+- [#1733](https://github.com/graphcommerce-org/graphcommerce/pull/1733) [`fc9de1160`](https://github.com/graphcommerce-org/graphcommerce/commit/fc9de1160714cb909a9d0cb6fc0c068422f35310) - GoogleTagManagerScript is now added with a plugin ([@paales](https://github.com/paales))
+
+- [#1733](https://github.com/graphcommerce-org/graphcommerce/pull/1733) [`85afcf4d0`](https://github.com/graphcommerce-org/graphcommerce/commit/85afcf4d011701f4b80e59e2b2b52a2e1f99a655) - Google Analytics now uses the new plugin system ([@paales](https://github.com/paales))
+
 ## 4.14.0-canary.3
 
 ## 4.14.0-canary.2

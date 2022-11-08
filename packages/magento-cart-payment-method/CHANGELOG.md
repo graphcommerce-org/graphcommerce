@@ -1,5 +1,17 @@
 # Change Log
 
+## 4.14.0-canary.4
+
+### Minor Changes
+
+- [#1733](https://github.com/graphcommerce-org/graphcommerce/pull/1733) [`0173d9307`](https://github.com/graphcommerce-org/graphcommerce/commit/0173d93075e1e3bdfb4667cf1ef3e53113b38994) - Add props to <PaymentMethodContextProvider/>: onSuccess and successUrl. ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#1733](https://github.com/graphcommerce-org/graphcommerce/pull/1733) [`a0eefa762`](https://github.com/graphcommerce-org/graphcommerce/commit/a0eefa762f93f817f506b87753dfe0b92e3318f8) - Added better disabled state for an ActionCard ([@paales](https://github.com/paales))
+
+- [#1733](https://github.com/graphcommerce-org/graphcommerce/pull/1733) [`be10e8cd1`](https://github.com/graphcommerce-org/graphcommerce/commit/be10e8cd1dce172a914ee9e5f65fdca4d0929fc8) - Migrated payment methods to use the new `onSuccess` method from `PaymentMethodContextProvider` instead of redirecting manually, makes sure the onSuccess method can be used by plugins. ([@paales](https://github.com/paales))
+
 ## 4.14.0-canary.3
 
 ## 4.14.0-canary.2

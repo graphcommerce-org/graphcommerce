@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.31.0-canary.3
+
+### Patch Changes
+
+- [#1733](https://github.com/graphcommerce-org/graphcommerce/pull/1733) [`a0eefa762`](https://github.com/graphcommerce-org/graphcommerce/commit/a0eefa762f93f817f506b87753dfe0b92e3318f8) - Added better disabled state for an ActionCard ([@paales](https://github.com/paales))
+
 ## 4.31.0-canary.2
 
 ## 4.31.0-canary.1

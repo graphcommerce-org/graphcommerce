@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.0-canary.4
+
+### Minor Changes
+
+- [#1733](https://github.com/graphcommerce-org/graphcommerce/pull/1733) [`85afcf4d0`](https://github.com/graphcommerce-org/graphcommerce/commit/85afcf4d011701f4b80e59e2b2b52a2e1f99a655) - Google Analytics now uses the new plugin system ([@paales](https://github.com/paales))
+
 ## 3.0.9-canary.3
 
 ## 3.0.9-canary.2

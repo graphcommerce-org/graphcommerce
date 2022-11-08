@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.14.0-canary.4
+
+### Patch Changes
+
+- [#1733](https://github.com/graphcommerce-org/graphcommerce/pull/1733) [`29eb2e94f`](https://github.com/graphcommerce-org/graphcommerce/commit/29eb2e94f04b120bc060ab945ff28aabf3f3ecfd) - Dependency issue with Magento 2.4.5 ([@paales](https://github.com/paales))
+
 ## 4.14.0-canary.3
 
 ## 4.14.0-canary.2
