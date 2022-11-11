@@ -3,13 +3,24 @@ import { ConfigurableCartItemFragment } from './ConfigurableCartItem.gql'
 import { OptionsList } from './OptionsList'
 
 export function ConfigurableCartItem(props: ConfigurableCartItemFragment & CartItemProps) {
-  const { configurable_options, configurable_customizable, ...cartItemProps } = props
+  const {
+    configurable_options,
+    configurable_customizable,
+    configured_variant,
+    product,
+    ...cartItemProps
+  } = props
   return (
-    <CartItem {...cartItemProps} withOptions>
-      <OptionsList
-        configurable_options={configurable_options}
-        configurable_customizable={configurable_customizable}
-      />
+    <CartItem
+      {...cartItemProps}
+      product={{
+        ...product,
+        name: configured_variant?.name ?? product.name,
+        thumbnail: configured_variant?.thumbnail ?? product.thumbnail,
+      }}
+      withOptions
+    >
+      <OptionsList configurable_options={configurable_options} />
     </CartItem>
   )
 }
