@@ -3,6 +3,7 @@ import {
   AddProductsToCartButton,
   AddProductsToCartError,
   AddProductsToCartForm,
+  AddProductsToCartFormProps,
   AddProductsToCartQuantity,
   getProductStaticPaths,
   jsonLdProduct,
@@ -20,6 +21,7 @@ import {
   ConfigurablePrice,
   ConfigurableProductOptions,
   ConfigurableProductPageGallery,
+  defaultConfigurableOptionsSelection,
 } from '@graphcommerce/magento-product-configurable'
 import { DownloadableProductOptions } from '@graphcommerce/magento-product-downloadable'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
@@ -47,14 +49,14 @@ import { LayoutDocument } from '../../components/Layout/Layout.gql'
 import { ProductPage2Document, ProductPage2Query } from '../../graphql/ProductPage2.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
-type Props = ProductPage2Query
+type Props = ProductPage2Query & Pick<AddProductsToCartFormProps, 'defaultValues'>
 
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
 function ProductPage(props: Props) {
-  const { products, usps, sidebarUsps, pages } = props
+  const { products, usps, sidebarUsps, pages, defaultValues } = props
 
   const product = products?.items?.[0]
 
@@ -77,7 +79,7 @@ function ProductPage(props: Props) {
       />
       <ProductPageMeta {...product} />
 
-      <AddProductsToCartForm>
+      <AddProductsToCartForm defaultValues={defaultValues}>
         <ConfigurableProductPageGallery
           url_key={product.url_key}
           media_gallery={product.media_gallery}
@@ -241,7 +243,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
 
   return {
     props: {
-      ...(await productPage).data,
+      ...defaultConfigurableOptionsSelection(urlKey, client, (await productPage).data),
       ...(await layout).data,
       apolloState: await conf.then(() => client.cache.extract()),
       up,
