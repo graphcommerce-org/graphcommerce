@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-payment-included",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "4.14.0-canary.5",
+  "version": "4.14.0-canary.6",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -13,9 +13,9 @@
   },
   "devDependencies": {
     "@graphcommerce/eslint-config-pwa": "^4.1.11",
-    "@graphcommerce/magento-cart-shipping-address": "4.14.0-canary.5",
-    "@graphcommerce/magento-product": "4.14.0-canary.5",
-    "@graphcommerce/magento-product-configurable": "4.14.0-canary.5",
+    "@graphcommerce/magento-cart-shipping-address": "4.14.0-canary.6",
+    "@graphcommerce/magento-product": "4.14.0-canary.6",
+    "@graphcommerce/magento-product-configurable": "4.14.0-canary.6",
     "@graphcommerce/prettier-config-pwa": "^4.0.7",
     "@graphcommerce/typescript-config-pwa": "^4.0.5",
     "@playwright/test": "^1.21.1",
@@ -24,9 +24,9 @@
   "dependencies": {
     "@graphcommerce/graphql": "4.31.0-canary.4",
     "@graphcommerce/image": "4.31.0-canary.4",
-    "@graphcommerce/magento-cart": "4.14.0-canary.5",
-    "@graphcommerce/magento-cart-payment-method": "4.14.0-canary.5",
-    "@graphcommerce/magento-store": "4.14.0-canary.5",
+    "@graphcommerce/magento-cart": "4.14.0-canary.6",
+    "@graphcommerce/magento-cart-payment-method": "4.14.0-canary.6",
+    "@graphcommerce/magento-store": "4.14.0-canary.6",
     "@graphcommerce/next-ui": "4.31.0-canary.4",
     "@graphcommerce/react-hook-form": "4.31.0-canary.4"
   },

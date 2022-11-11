@@ -1,5 +1,17 @@
 # Change Log
 
+## 4.14.0-canary.6
+
+### Minor Changes
+
+- [#1737](https://github.com/graphcommerce-org/graphcommerce/pull/1737) [`1f5ece0c2`](https://github.com/graphcommerce-org/graphcommerce/commit/1f5ece0c24524f33561614adf09f669d305666b0) - Allow Simple Products to show the Confgurable product page. Created a new defaultConfigurableOptionsSelection utility function to set up all the data correctly. ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#1737](https://github.com/graphcommerce-org/graphcommerce/pull/1737) [`c278116d4`](https://github.com/graphcommerce-org/graphcommerce/commit/c278116d4c6f984a0b542fbf9426b8fc676ab36e) - Render the configured_variant image in the cart ([@paales](https://github.com/paales))
+
+- [#1737](https://github.com/graphcommerce-org/graphcommerce/pull/1737) [`3916fdd7a`](https://github.com/graphcommerce-org/graphcommerce/commit/3916fdd7a801b381df6ce1708bf388a2c581eab1) - Make sure configurable_options without swatch data still render correctly ([@paales](https://github.com/paales))
+
 ## 4.14.0-canary.5
 
 ## 4.14.0-canary.4

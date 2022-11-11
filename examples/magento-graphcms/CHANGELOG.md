@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.14.0-canary.6
+
+### Minor Changes
+
+- [#1737](https://github.com/graphcommerce-org/graphcommerce/pull/1737) [`1f5ece0c2`](https://github.com/graphcommerce-org/graphcommerce/commit/1f5ece0c24524f33561614adf09f669d305666b0) - Allow Simple Products to show the Confgurable product page. Created a new defaultConfigurableOptionsSelection utility function to set up all the data correctly. ([@paales](https://github.com/paales))
+
 ## 4.14.0-canary.5
 
 ## 4.14.0-canary.4

@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-newsletter",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "4.14.0-canary.5",
+  "version": "4.14.0-canary.6",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -19,8 +19,8 @@
   },
   "dependencies": {
     "@graphcommerce/graphql": "4.31.0-canary.4",
-    "@graphcommerce/magento-cart": "4.14.0-canary.5",
-    "@graphcommerce/magento-customer": "4.14.0-canary.5",
+    "@graphcommerce/magento-cart": "4.14.0-canary.6",
+    "@graphcommerce/magento-customer": "4.14.0-canary.6",
     "@graphcommerce/next-ui": "4.31.0-canary.4",
     "@graphcommerce/react-hook-form": "4.31.0-canary.4"
   },
