@@ -38,7 +38,7 @@ export function ConfigurableProductOptions(props: ConfigurableProductOptionsProp
       filterNonNullableKeys(product.configurable_options, ['attribute_code', 'label']).map(
         (option) => ({
           ...option,
-          values: filterNonNullableKeys(option.values, ['uid', 'swatch_data']).map((ov) => ({
+          values: filterNonNullableKeys(option.values, ['uid']).map((ov) => ({
             value: ov.uid,
             ...ov,
           })),
