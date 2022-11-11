@@ -19,7 +19,6 @@ export function useConfigurableOptionsSelection({
   const cpc = useQuery(GetConfigurableOptionsSelectionDocument, {
     variables: { urlKey: url_key ?? '', selectedOptions },
     skip: !url_key || !selectedOptions.length,
-    ssr: false,
   })
 
   const configured = findByTypename(

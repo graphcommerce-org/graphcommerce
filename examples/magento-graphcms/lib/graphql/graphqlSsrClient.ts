@@ -9,6 +9,7 @@ import {
   fragments,
 } from '@graphcommerce/graphql'
 import { MeshApolloLink } from '@graphcommerce/graphql-mesh'
+import { magentoTypePolicies } from '@graphcommerce/magento-graphql'
 import { createStoreLink, defaultLocale } from '@graphcommerce/magento-store'
 import type { MeshInstance } from '@graphql-mesh/runtime'
 
@@ -32,7 +33,10 @@ function client(locale: string) {
       createStoreLink(locale),
       new MeshApolloLink(mesh),
     ]),
-    cache: new InMemoryCache({ possibleTypes: fragments.possibleTypes }),
+    cache: new InMemoryCache({
+      possibleTypes: fragments.possibleTypes,
+      typePolicies: magentoTypePolicies,
+    }),
     ssrMode: true,
     name: 'ssr',
   })

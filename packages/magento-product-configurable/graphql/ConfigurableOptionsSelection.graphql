@@ -1,24 +1,9 @@
 fragment ConfigurableOptionsSelection on ConfigurableProduct @injectable {
   configurable_product_options_selection(configurableOptionValueUids: $selectedOptions) {
-    configurable_options {
-      attribute_code
-      label
-      values {
-        is_available
-        is_use_default
-        label
-        swatch {
-          value
-          ... on ImageSwatchData {
-            thumbnail
-          }
-        }
-        uid
-      }
-    }
+    __typename
     options_available_for_selection {
+      __typename
       attribute_code
-      option_value_uids
     }
     media_gallery {
       __typename
@@ -29,21 +14,7 @@ fragment ConfigurableOptionsSelection on ConfigurableProduct @injectable {
       ...ProductVideo
     }
     variant {
-      uid
-      name
-      thumbnail {
-        ...ProductImage
-      }
-      price_range {
-        minimum_price {
-          final_price {
-            ...Money
-          }
-          regular_price {
-            ...Money
-          }
-        }
-      }
+      ...ConfiguredVariant
     }
   }
 }

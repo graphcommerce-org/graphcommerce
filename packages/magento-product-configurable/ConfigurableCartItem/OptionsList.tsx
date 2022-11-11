@@ -2,7 +2,7 @@ import { extendableComponent } from '@graphcommerce/next-ui'
 import { Box, SxProps, Theme } from '@mui/material'
 import { ConfigurableCartItemFragment } from './ConfigurableCartItem.gql'
 
-type CartItemOptionsListProps = ConfigurableCartItemFragment & {
+type CartItemOptionsListProps = Partial<ConfigurableCartItemFragment> & {
   sx?: SxProps<Theme>
 }
 

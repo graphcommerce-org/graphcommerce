@@ -1,0 +1,13 @@
+fragment DefaultConfigurableOptionsSelection on Products {
+  items {
+    uid
+    __typename
+    url_key
+    ...ProductPageGallery
+    ...ConfigurableOptions
+
+    ... on SimpleProduct {
+      ...ConfiguredVariant
+    }
+  }
+}
