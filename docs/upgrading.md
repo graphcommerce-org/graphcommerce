@@ -38,7 +38,7 @@ dependencies, while keeping your customizations.
 2. Download a fresh copy of the repository:
 
    ```bash
-   git clone git@github.com:graphcommerce-org/graphcommerce.git upgrade
+   git clone -b main --depth 1 https://github.com/graphcommerce-org/graphcommerce.git
    ```
 
 3. Navigate to the /upgrade directory you've just created. Run the following
