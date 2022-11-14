@@ -83,6 +83,11 @@ export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
     onComplete: async (result, variables) => {
       await onComplete?.(result, variables)
 
+      // After the form has been submitted, we're resetting the submitted SKU's
+      form.getValues('cartItems').forEach((item, index) => {
+        if (item.sku) form.setValue(`cartItems.${index}.sku`, '')
+      })
+
       if (result.data?.addProductsToCart?.user_errors?.length || result.errors?.length || !redirect)
         return
 
