@@ -14,7 +14,8 @@ module.exports = {
     MagentoGraphCms: {
       schema: [
         'examples/magento-graphcms/.mesh/schema.graphql',
-        'packagesDev/graphql-codegen-near-operation-file/src/injectable.graphqls',
+        'packagesDev/graphql-codegen-near-operation-file/src/directive/env.graphqls',
+        'packagesDev/graphql-codegen-near-operation-file/src/directive/injectable.graphqls',
       ],
       documents: [
         'examples/magento-graphcms/components/**/*.graphql',

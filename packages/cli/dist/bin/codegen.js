@@ -9,9 +9,11 @@ const promises_1 = __importDefault(require("node:fs/promises"));
 const node_path_1 = __importDefault(require("node:path"));
 const next_config_1 = require("@graphcommerce/next-config");
 const cli_1 = require("@graphql-codegen/cli");
+const dotenv_1 = __importDefault(require("dotenv"));
 const rimraf_1 = __importDefault(require("rimraf"));
 const yaml_1 = __importDefault(require("yaml"));
 const [, , cmd] = process.argv;
+dotenv_1.default.config();
 const root = process.cwd();
 const configLocation = node_path_1.default.join(root, `._tmp_codegen.yml`);
 async function cleanup() {

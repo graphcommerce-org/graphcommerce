@@ -13,3 +13,7 @@ https://graphcommerce.vercel.app:
 4. `yarn install`
 5. `yarn codegen`
 6. `yarn dev`
+
+## Demo usage
+
+DEMO_MAGENTO_GRAPHCOMMERCE=1;
