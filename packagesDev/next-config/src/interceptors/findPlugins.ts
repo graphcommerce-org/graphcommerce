@@ -3,7 +3,13 @@ import glob from 'glob'
 import { resolveDependenciesSync } from '../utils/resolveDependenciesSync'
 import type { PluginConfig } from './generateInterceptors'
 
-function parseStructure(file: string): { component: string; exported: string } | undefined {
+type ParseResult = {
+  component: string
+  exported: string
+  ifEnv?: string
+}
+
+function parseStructure(file: string): ParseResult | undefined {
   const ast = parseFileSync(file, { syntax: 'typescript', tsx: true })
   // const ast = swc.parseFileSync(file, { syntax: 'typescript' })
 
@@ -61,6 +67,7 @@ export function findPlugins(cwd: string = process.cwd()) {
       try {
         const result = parseStructure(file)
         if (!result) return
+        if (result.ifEnv && !process.env[result.ifEnv]) return
 
         plugins.push({ ...result, plugin: file.replace(dependency, path).replace('.tsx', '') })
       } catch (e) {

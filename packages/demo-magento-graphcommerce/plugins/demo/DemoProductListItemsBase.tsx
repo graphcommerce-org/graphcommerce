@@ -4,6 +4,7 @@ import { Theme } from '@mui/material'
 
 export const component = 'ProductListItemsBase'
 export const exported = '@graphcommerce/magento-product'
+export const ifEnv = 'DEMO_MAGENTO_GRAPHCOMMERCE'
 
 export const sxLargeItem = (theme: Theme) => ({
   [theme.breakpoints.up('xl')]: {

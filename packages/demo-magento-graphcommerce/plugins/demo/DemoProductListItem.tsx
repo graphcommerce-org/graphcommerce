@@ -4,6 +4,7 @@ import { Typography } from '@mui/material'
 
 export const component = 'ProductListItem'
 export const exported = '@graphcommerce/magento-product'
+export const ifEnv = 'DEMO_MAGENTO_GRAPHCOMMERCE'
 
 function DemoProductListItem(props: PluginProps<ProductListItemProps>) {
   const { Prev, ...rest } = props

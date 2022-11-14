@@ -16,4 +16,4 @@ https://graphcommerce.vercel.app:
 
 ## Demo usage
 
-DEMO_MAGENTO_GRAPHCOMMERCE=1;
+DEMO_MAGENTO_GRAPHCOMMERCE="1"

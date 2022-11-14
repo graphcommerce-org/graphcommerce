@@ -3,6 +3,7 @@ import type { PluginProps } from '@graphcommerce/next-config'
 
 export const component = 'ProductListItemConfigurable'
 export const exported = '@graphcommerce/magento-product-configurable'
+export const ifEnv = 'DEMO_MAGENTO_GRAPHCOMMERCE'
 
 function DemoProductListItemConfigurable(props: PluginProps<ProdustListItemConfigurableProps>) {
   const { Prev, ...rest } = props

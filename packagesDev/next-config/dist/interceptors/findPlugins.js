@@ -61,6 +61,8 @@ function findPlugins(cwd = process.cwd()) {
                 const result = parseStructure(file);
                 if (!result)
                     return;
+                if (result.ifEnv && !process.env[result.ifEnv])
+                    return;
                 plugins.push({ ...result, plugin: file.replace(dependency, path).replace('.tsx', '') });
             }
             catch (e) {

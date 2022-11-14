@@ -169,28 +169,21 @@ work for other things such as:
 - Abstraction between GraphCommerce and Backends? (Magento, BigCommerce,
   CommerceTools, etc.)
 
-### Limitations
+### Conditionally include a plugin
 
-Work is planned to lift these limitations, but for now:
+Provide an ifEnv export in the plugin that will only include the plugin if the
+environment variable is set.
 
-React Refresh doesn't work correctly with Plugins, it will force a page reload
-on each file change and will throw an error in the console. To solve this issue,
-move your actual plugin outside of the plugin file and only have the plugin be a
-configuration file.
+```tsx
+export const ifEnv = 'MY_ENV_VARIABLE'
+```
 
-It currently isn't possible to provide a plugin sort order. The project root is
-intercepting last, followed by the packages in reverse alphabetical order,
-followed by dependencies' dependencies. We don't generate a proper graph at the
-moment to figure out the actual dependencies but is an artifact of how we
-resolve the dependencies.
+### When to use a plugin?
 
-There currently isn't a way for the plugin to determine if the plugin should be
-activated at all. For example, the code for Google Analytics should only be
-added if the user has configured it. This is currently not possible. Of if a
-user wants to disable a plugin, this is currently not possible.
+A plugin should be used when a new package is created that influences the
+behavior of other packages.
 
-It is currently is only possible to extend React Components. This however sets
-the foundation to allow for a more flexible plugin system in the future.
+### Plugin loading order
 
-Plugins should be optional for GraphCommerce to function properly. Plugins for
-mandatory packages shouldn't exist.
+A plugin is injected later than the dependencies of the package. So if a plugin
+is loaded to early, make sure the package has a dependency on the other package.

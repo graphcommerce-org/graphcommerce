@@ -1,50 +1,67 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import type { PackageJson } from 'type-fest'
+import { PackagesSort } from './PackagesSort'
+import { TopologicalSort } from './TopologicalSort'
 
-const resolveCache: Map<string, Map<string, string>> = new Map<string, Map<string, string>>()
+type PackageNames = Map<string, string>
+type DependencyStructure = Record<string, { dirName: string; dependencies: string[] }>
+
+const resolveCache: Map<string, PackageNames> = new Map<string, PackageNames>()
 
 function resolveRecursivePackageJson(
   packageJsonFilename: string,
-  packageNames: Map<string, string>,
+  dependencyStructure: DependencyStructure,
 ) {
-  try {
-    const packageJsonFile = fs.readFileSync(packageJsonFilename, 'utf-8').toString()
+  const packageJsonFile = fs.readFileSync(packageJsonFilename, 'utf-8').toString()
+  const packageJson = JSON.parse(packageJsonFile) as PackageJson
 
-    const packageJson = JSON.parse(packageJsonFile) as PackageJson
+  if (!packageJson.name) throw Error('Package does not have a name')
 
-    if (!packageJson.name) throw Error('Package does not have a name')
+  if (dependencyStructure[packageJson.name]) return dependencyStructure
 
-    const dependencies = [
-      ...Object.keys(packageJson.dependencies ?? {}),
-      ...Object.keys(packageJson.devDependencies ?? {}),
-      ...Object.keys(packageJson.peerDependencies ?? {}),
-    ]
+  const dependencies = [
+    ...new Set(
+      [
+        ...Object.keys(packageJson.dependencies ?? {}),
+        ...Object.keys(packageJson.devDependencies ?? {}),
+        // ...Object.keys(packageJson.peerDependencies ?? {}),
+      ].filter((name) => name.includes('graphcommerce')),
+    ),
+  ]
 
-    const isGraphCommerce = !!dependencies.some((name) => name.includes('graphcommerce'))
-    if (!isGraphCommerce) return packageNames
+  if (!packageJson.name.includes('graphcommerce')) return dependencyStructure
 
-    const dirName = path.dirname(path.relative(process.cwd(), packageJsonFilename))
-
-    if (packageNames.has(packageJson.name)) return packageNames
-
-    // Package not found, recursively scan
-    packageNames.set(packageJson.name, dirName)
-
-    dependencies.map((dependency) => {
-      try {
-        const filePath = require.resolve(path.join(dependency, 'package.json'))
-        if (filePath) return resolveRecursivePackageJson(filePath, packageNames)
-      } catch {
-        return false
-      }
-      return false
-    })
-  } catch (e) {
-    // File is not a JSON file or something like that, we now skip this file
+  dependencyStructure[packageJson.name] = {
+    dirName: path.dirname(path.relative(process.cwd(), packageJsonFilename)),
+    dependencies,
   }
 
-  return packageNames
+  dependencies.forEach((dependency) => {
+    resolveRecursivePackageJson(
+      require.resolve(path.join(dependency, 'package.json')),
+      dependencyStructure,
+    )
+  })
+
+  return dependencyStructure
+}
+
+/**
+ * We're sorting all dependencies topologically
+ *
+ * This can detect dependency cycles and throw an error
+ */
+export function sortDependencies(dependencyStructure: DependencyStructure): PackageNames {
+  const packages = Object.entries(dependencyStructure)
+  const sorter = new PackagesSort(new Map(packages.map(([key, value]) => [key, value.dirName])))
+
+  packages.forEach(([key, { dependencies }]) =>
+    dependencies.forEach((dependency) => sorter.addEdge(key, dependency)),
+  )
+
+  const sortedKeys = [...sorter.sort().keys()]
+  return new Map(sortedKeys.map((key) => [key, dependencyStructure[key].dirName]))
 }
 
 /**
@@ -59,7 +76,9 @@ function resolveRecursivePackageJson(
 export function resolveDependenciesSync(root = process.cwd()) {
   const cached = resolveCache.get(root)
   if (cached) return cached
-  const result = resolveRecursivePackageJson(path.join(root, 'package.json'), new Map())
-  resolveCache.set(root, result)
-  return result
+  const dependencyStructure = resolveRecursivePackageJson(path.join(root, 'package.json'), {})
+
+  const sorted = sortDependencies(dependencyStructure)
+  resolveCache.set(root, sorted)
+  return sorted
 }
