@@ -14,7 +14,7 @@ export type ProductListItemConfigurableActionProps = ProductListItemConfigurable
 
 export type ProdustListItemConfigurableProps = ProductListItemConfigurableFragment &
   ProductListItemProps & {
-    swatchLocations?: Record<OverlayAreaKeys, string[]>
+    swatchLocations?: Partial<Record<OverlayAreaKeys, string[]>>
   }
 
 export function ProductListItemConfigurable(props: ProdustListItemConfigurableProps) {

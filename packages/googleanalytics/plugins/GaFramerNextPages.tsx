@@ -8,13 +8,13 @@ export const exported = '@graphcommerce/framer-next-pages'
 let warned = false
 
 function GaFramerNextPages(props: PluginProps<PagesProps>) {
-  const { Prev } = props
+  const { Prev, ...rest } = props
 
   if (process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS) {
     return (
       <>
         <GoogleAnalyticsScript />
-        <Prev {...props} />
+        <Prev {...rest} />
       </>
     )
   }
@@ -28,7 +28,7 @@ function GaFramerNextPages(props: PluginProps<PagesProps>) {
     }
   }
 
-  return <Prev {...props} />
+  return <Prev {...rest} />
 }
 
 export const Plugin = GaFramerNextPages

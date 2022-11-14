@@ -6,9 +6,9 @@ export const component = 'ShippingMethodForm'
 export const exported = '@graphcommerce/magento-cart-shipping-method'
 
 function AddPickupInStore(props: PluginProps<ShippingMethodFormProps>) {
-  const { Prev, children, step } = props
+  const { Prev, children, step, ...rest } = props
   return (
-    <Prev {...props}>
+    <Prev {...rest} step={step}>
       <PickupLocationSelector step={step + 1} />
       {children}
     </Prev>

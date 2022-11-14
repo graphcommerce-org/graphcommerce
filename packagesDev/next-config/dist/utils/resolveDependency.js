@@ -17,7 +17,7 @@ const resolveDependency = (cwd = process.cwd()) => {
             denormalized: dependency,
         };
         dependencies.forEach((root, depCandidate) => {
-            if (dependency.startsWith(depCandidate)) {
+            if (dependency === depCandidate || dependency.startsWith(`${depCandidate}/`)) {
                 const relative = dependency.replace(depCandidate, '');
                 const rootCandidate = dependency.replace(depCandidate, root);
                 const fromRoot = [`${rootCandidate}`, `${rootCandidate}/index`].find((location) => ['ts', 'tsx'].find((extension) => node_fs_1.default.existsSync(`${location}.${extension}`)));

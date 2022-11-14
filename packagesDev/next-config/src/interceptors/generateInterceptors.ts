@@ -4,6 +4,7 @@ export type PluginConfig = {
   component: string
   exported: string
   plugin: string
+  ifEnv?: string
 }
 
 type Plugin = ResolveDependencyReturn & {

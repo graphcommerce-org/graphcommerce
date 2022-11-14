@@ -7,11 +7,6 @@ import { ProductListItemSimple } from '@graphcommerce/magento-product-simple'
 import { ProductListItemVirtual } from '@graphcommerce/magento-product-virtual'
 import { ProductReviewSummary } from '@graphcommerce/magento-review'
 import { ProductWishlistChip } from '@graphcommerce/magento-wishlist'
-import { Typography, TypographyProps } from '@mui/material'
-
-const Subtitle = (props: TypographyProps) => (
-  <Typography component='span' variant='caption' {...props} />
-)
 
 export const productListRenderer: ProductListItemRenderer = {
   SimpleProduct: (props) => {
@@ -19,7 +14,6 @@ export const productListRenderer: ProductListItemRenderer = {
     return (
       <ProductListItemSimple
         {...props}
-        subTitle={<Subtitle>BY GC</Subtitle>}
         aspectRatio={[1, 1]}
         bottomLeft={<ProductReviewSummary {...props} />}
         topRight={<ProductWishlistChip {...props} />}
@@ -30,13 +24,12 @@ export const productListRenderer: ProductListItemRenderer = {
   ConfigurableProduct: (props) => (
     <ProductListItemConfigurable
       {...props}
-      subTitle={<Subtitle>BY GC</Subtitle>}
       aspectRatio={[1, 1]}
       swatchLocations={{
         topLeft: [],
-        topRight: [], // ['size']
+        topRight: [],
         bottomLeft: [],
-        bottomRight: ['dominant_color'],
+        bottomRight: [],
       }}
       bottomLeft={<ProductReviewSummary {...props} />}
       topRight={<ProductWishlistChip {...props} />}
@@ -45,7 +38,6 @@ export const productListRenderer: ProductListItemRenderer = {
   BundleProduct: (props) => (
     <ProductListItemBundle
       {...props}
-      subTitle={<Subtitle>BY GC</Subtitle>}
       aspectRatio={[1, 1]}
       bottomLeft={<ProductReviewSummary {...props} />}
       topRight={<ProductWishlistChip {...props} />}
@@ -56,7 +48,6 @@ export const productListRenderer: ProductListItemRenderer = {
     return (
       <ProductListItemVirtual
         {...props}
-        subTitle={<Subtitle>BY GC</Subtitle>}
         aspectRatio={[1, 1]}
         bottomLeft={<ProductReviewSummary {...props} />}
         topRight={<ProductWishlistChip {...props} />}
@@ -67,7 +58,6 @@ export const productListRenderer: ProductListItemRenderer = {
   DownloadableProduct: (props) => (
     <ProductListItemDownloadable
       {...props}
-      subTitle={<Subtitle>BY GC</Subtitle>}
       aspectRatio={[1, 1]}
       bottomLeft={<ProductReviewSummary {...props} />}
       topRight={<ProductWishlistChip {...props} />}
@@ -76,7 +66,6 @@ export const productListRenderer: ProductListItemRenderer = {
   GroupedProduct: (props) => (
     <ProductListItemGrouped
       {...props}
-      subTitle={<Subtitle>BY GC</Subtitle>}
       aspectRatio={[1, 1]}
       bottomLeft={<ProductReviewSummary {...props} />}
       topRight={<ProductWishlistChip {...props} />}
@@ -85,6 +74,6 @@ export const productListRenderer: ProductListItemRenderer = {
   // // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // // @ts-ignore GiftCardProduct is only available in Commerce
   // GiftCardProduct: (props) => (
-  //   <ProductListItem {...props} subTitle={<Subtitle>BY GC</Subtitle>} aspectRatio={[1, 1]} />
+  //   <ProductListItem {...props} aspectRatio={[1, 1]} />
   // ),
 }

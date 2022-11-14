@@ -23,7 +23,7 @@ export const resolveDependency = (cwd: string = process.cwd()) => {
     }
 
     dependencies.forEach((root, depCandidate) => {
-      if (dependency.startsWith(depCandidate)) {
+      if (dependency === depCandidate || dependency.startsWith(`${depCandidate}/`)) {
         const relative = dependency.replace(depCandidate, '')
 
         const rootCandidate = dependency.replace(depCandidate, root)

@@ -40,7 +40,6 @@ import {
   LayoutNavigation,
   LayoutNavigationProps,
   ProductListItems,
-  sxLargeItem,
   RowProduct,
   RowRenderer,
 } from '../components'
@@ -126,7 +125,6 @@ function CategoryPage(props: CategoryProps) {
               title={category.name ?? ''}
               items={products?.items}
               loadingEager={1}
-              sx={sxLargeItem}
             />
             <ProductListPagination page_info={products?.page_info} />
           </Container>

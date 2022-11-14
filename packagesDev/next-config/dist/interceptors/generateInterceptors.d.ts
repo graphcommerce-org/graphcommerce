@@ -3,6 +3,7 @@ export declare type PluginConfig = {
     component: string;
     exported: string;
     plugin: string;
+    ifEnv?: string;
 };
 declare type Plugin = ResolveDependencyReturn & {
     components: Record<string, PluginConfig[]>;

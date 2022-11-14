@@ -15,8 +15,8 @@ const paypal_express = {
 }
 
 function AddPaypalMethods(props: PluginProps<PaymentMethodContextProviderProps>) {
-  const { modules, Prev } = props
-  return <Prev {...props} modules={{ ...modules, paypal_express }} />
+  const { modules, Prev, ...rest } = props
+  return <Prev {...rest} modules={{ ...modules, paypal_express }} />
 }
 
 export const Plugin = AddPaypalMethods

@@ -7,8 +7,8 @@ export const component = 'PaymentMethodContextProvider'
 export const exported = '@graphcommerce/magento-cart-payment-method'
 
 function AddBrainTreeMethods(props: PluginProps<PaymentMethodContextProviderProps>) {
-  const { modules, Prev } = props
-  return <Prev {...props} modules={{ ...modules, braintree, braintree_local_payment }} />
+  const { modules, Prev, ...rest } = props
+  return <Prev {...rest} modules={{ ...modules, braintree, braintree_local_payment }} />
 }
 
 export const Plugin = AddBrainTreeMethods
