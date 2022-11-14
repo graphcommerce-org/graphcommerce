@@ -48,6 +48,7 @@ export function GraphQLProvider(props: GraphQLProviderProps) {
 
   const [client] = useState(() => {
     const link = ApolloLink.from([
+      ...(typeof window === 'undefined' ? [errorLink, measurePerformanceLink] : []),
       ...links,
       // The actual Http connection to the Mesh backend.
       new HttpLink({
