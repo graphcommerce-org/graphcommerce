@@ -7,10 +7,10 @@ export const component = 'GraphQLProvider'
 export const exported = '@graphcommerce/graphql'
 
 function MagentoCustomerGraphqlProvider(props: PluginProps<GraphQLProviderProps>) {
-  const { Prev, links = [], policies = [], migrations = [], ...prev } = props
+  const { Prev, links = [], policies = [], migrations = [], ...rest } = props
   return (
     <Prev
-      {...prev}
+      {...rest}
       links={[...links, customerTokenLink]}
       policies={[...policies, customerTypePolicies]}
       migrations={[...migrations, migrateCustomer]}

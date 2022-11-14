@@ -6,9 +6,9 @@ export const component = 'ApolloErrorSnackbar'
 export const exported = '@graphcommerce/ecommerce-ui'
 
 function GrecaptchaApolloErrorSnackbar(props: PluginProps<ApolloErrorSnackbarProps>) {
-  const { Prev } = props
+  const { Prev, ...rest } = props
   useGoogleRecaptcha()
-  return <Prev {...props} />
+  return <Prev {...rest} />
 }
 
 export const Plugin = GrecaptchaApolloErrorSnackbar

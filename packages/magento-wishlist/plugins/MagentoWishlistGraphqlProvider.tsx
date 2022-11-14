@@ -6,8 +6,8 @@ export const component = 'GraphQLProvider'
 export const exported = '@graphcommerce/graphql'
 
 function MagentoWishlistGraphqlProvider(props: PluginProps<GraphQLProviderProps>) {
-  const { Prev, policies = [], ...prev } = props
-  return <Prev {...prev} policies={[...policies, wishlistTypePolicies]} />
+  const { Prev, policies = [], ...rest } = props
+  return <Prev {...rest} policies={[...policies, wishlistTypePolicies]} />
 }
 
 export const Plugin = MagentoWishlistGraphqlProvider

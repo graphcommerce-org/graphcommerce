@@ -6,9 +6,9 @@ export const component = 'ApolloErrorFullPage'
 export const exported = '@graphcommerce/ecommerce-ui'
 
 function GrecaptchaApolloErrorFullPage(props: PluginProps<ApolloErrorFullPageProps>) {
-  const { Prev } = props
+  const { Prev, ...rest } = props
   useGoogleRecaptcha()
-  return <Prev {...props} />
+  return <Prev {...rest} />
 }
 
 export const Plugin = GrecaptchaApolloErrorFullPage

@@ -20,8 +20,8 @@ export const component = 'PaymentMethodContextProvider'
 export const exported = '@graphcommerce/magento-cart-payment-method'
 
 function AddAdyenMethods(props: PluginProps<PaymentMethodContextProviderProps>) {
-  const { modules, Prev } = props
-  return <Prev {...props} modules={{ ...modules, adyen_hpp }} />
+  const { modules, Prev, ...rest } = props
+  return <Prev {...rest} modules={{ ...modules, adyen_hpp }} />
 }
 
 export const Plugin = AddAdyenMethods

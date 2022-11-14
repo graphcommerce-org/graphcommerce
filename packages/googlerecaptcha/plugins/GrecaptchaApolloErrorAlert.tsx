@@ -6,9 +6,9 @@ export const component = 'ApolloErrorAlert'
 export const exported = '@graphcommerce/ecommerce-ui'
 
 function GrecaptchaApolloErrorAlert(props: PluginProps<ApolloErrorAlertProps>) {
-  const { Prev } = props
+  const { Prev, ...rest } = props
   useGoogleRecaptcha()
-  return <Prev {...props} />
+  return <Prev {...rest} />
 }
 
 export const Plugin = GrecaptchaApolloErrorAlert
