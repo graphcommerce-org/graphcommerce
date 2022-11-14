@@ -9,6 +9,7 @@ fragment ConfigurableCartItem on ConfigurableCartItem @inject(into: ["CartItem"]
     ...SelectedCustomizableOption
   }
   configured_variant {
+    uid
     name
     thumbnail {
       ...ProductImage
