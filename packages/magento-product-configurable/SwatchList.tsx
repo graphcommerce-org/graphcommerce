@@ -8,7 +8,7 @@ import { SwatchSize, SwatchTypeRenderer } from './Swatches/types'
 import { ProductListItemConfigurableFragment } from './components/ProductListItemConfigurable/ProductListItemConfigurable.gql'
 
 type SwatchListProps = {
-  attributes: string[]
+  attributes?: string[]
   configurable_options?: Maybe<ProductListItemConfigurableFragment['configurable_options']>
 }
 
@@ -18,7 +18,8 @@ const renderer: SwatchTypeRenderer = {
   ColorSwatchData,
 }
 
-export function SwatchList({ attributes, configurable_options }: SwatchListProps) {
+export function SwatchList(props: SwatchListProps) {
+  const { attributes = [], configurable_options } = props
   const options =
     configurable_options?.filter((option) => attributes.includes(option?.attribute_code ?? '')) ??
     []

@@ -6,7 +6,11 @@
   ],
   "commit": false,
   "fixed": [
-    ["@graphcommerce/magento*", "@graphcommerce/mollie-magento-payment"],
+    [
+      "@graphcommerce/magento*",
+      "@graphcommerce/mollie-magento-payment",
+      "@graphcommerce/demo-magento-graphcommerce"
+    ],
     [
       "@graphcommerce/cli",
       "@graphcommerce/ecommerce-ui",
