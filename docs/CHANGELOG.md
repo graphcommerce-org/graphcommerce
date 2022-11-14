@@ -1,5 +1,13 @@
 # Change Log
 
+## 4.12.0-canary.3
+
+### Patch Changes
+
+- [#1738](https://github.com/graphcommerce-org/graphcommerce/pull/1738) [`163be59f2`](https://github.com/graphcommerce-org/graphcommerce/commit/163be59f2bf0f1573e91da036e56455262c6abd5) - Better clone instructions when upgrading ([@paales](https://github.com/paales))
+
+- [#1738](https://github.com/graphcommerce-org/graphcommerce/pull/1738) [`6171ad02c`](https://github.com/graphcommerce-org/graphcommerce/commit/6171ad02c19782b1e1f0eb00ea25ea6b764250b5) - Added topological sorting to plugins and added ifEnv export to plugins to conditionally load plugins ([@paales](https://github.com/paales))
+
 ## 4.12.0-canary.2
 
 ### Patch Changes

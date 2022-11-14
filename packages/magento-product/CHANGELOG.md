@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.14.0-canary.7
+
+### Patch Changes
+
+- [#1738](https://github.com/graphcommerce-org/graphcommerce/pull/1738) [`9ee6f7def`](https://github.com/graphcommerce-org/graphcommerce/commit/9ee6f7def14919548fedb01f65e9f0cda2e949dc) - After the AddProductsToCartForm has been submitted, reset the submitted SKU's ([@paales](https://github.com/paales))
+
 ## 4.14.0-canary.6
 
 ## 4.14.0-canary.5

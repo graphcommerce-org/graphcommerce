@@ -66,7 +66,8 @@
     "@graphcommerce/prettier-config-pwa": "4.0.7",
     "@graphcommerce/typescript-config-pwa": "4.0.5",
     "@graphcommerce/magento-payment-adyen": "1.0.0",
-    "@graphcommerce/magento-payment-multisafepay": "1.0.0"
+    "@graphcommerce/magento-payment-multisafepay": "1.0.0",
+    "@graphcommerce/demo-magento-graphcommerce": "4.14.0-canary.6"
   },
   "changesets": [
     "chatty-eels-invite",
@@ -77,10 +78,12 @@
     "gentle-lizards-occur",
     "giant-beans-sparkle",
     "giant-guests-joke",
+    "healthy-rice-grow",
     "hip-cycles-serve",
     "hip-tomatoes-smoke",
     "honest-snakes-play",
     "khaki-bikes-boil",
+    "many-buses-hang",
     "mean-bananas-clap",
     "mighty-sheep-judge",
     "mighty-teachers-dream",
@@ -96,9 +99,13 @@
     "slimy-lemons-double",
     "slow-hats-listen",
     "slow-hats-talk",
+    "slow-radios-unite",
     "stale-tables-roll",
     "sweet-meals-impress",
+    "swift-cars-press",
     "ten-impalas-teach",
-    "twelve-keys-brush"
+    "twelve-keys-brush",
+    "unlucky-dots-sip",
+    "weak-carrots-agree"
   ]
 }

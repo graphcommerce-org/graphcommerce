@@ -1,5 +1,11 @@
 # @graphcommerce/magento-payment-paypal
 
+## 4.14.0-canary.7
+
+### Patch Changes
+
+- [#1738](https://github.com/graphcommerce-org/graphcommerce/pull/1738) [`52882a63e`](https://github.com/graphcommerce-org/graphcommerce/commit/52882a63e96c0d3ba9641c3714d288fa4f420c82) - Do not forward the Prev prop in plugins ([@paales](https://github.com/paales))
+
 ## 4.14.0-canary.6
 
 ## 4.14.0-canary.5

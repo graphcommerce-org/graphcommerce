@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.0-canary.0
+
+### Minor Changes
+
+- [#1738](https://github.com/graphcommerce-org/graphcommerce/pull/1738) [`bd3a30438`](https://github.com/graphcommerce-org/graphcommerce/commit/bd3a30438cf6b69cd37a191406c8190a20e572cc) - Created directive @env(if: String!) on FRAGMENT_DEFINITION to conditionally include a fragment ([@paales](https://github.com/paales))
+
 ## 3.0.19
 
 ### Patch Changes

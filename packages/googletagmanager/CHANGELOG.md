@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.1.0-canary.3
+
+### Patch Changes
+
+- [#1738](https://github.com/graphcommerce-org/graphcommerce/pull/1738) [`52882a63e`](https://github.com/graphcommerce-org/graphcommerce/commit/52882a63e96c0d3ba9641c3714d288fa4f420c82) - Do not forward the Prev prop in plugins ([@paales](https://github.com/paales))
+
 ## 2.1.0-canary.2
 
 ## 2.1.0-canary.1

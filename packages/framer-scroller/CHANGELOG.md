@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.31.0-canary.5
+
+### Patch Changes
+
+- [#1738](https://github.com/graphcommerce-org/graphcommerce/pull/1738) [`6171ad02c`](https://github.com/graphcommerce-org/graphcommerce/commit/6171ad02c19782b1e1f0eb00ea25ea6b764250b5) - Added topological sorting to plugins and added ifEnv export to plugins to conditionally load plugins ([@paales](https://github.com/paales))
+
 ## 4.31.0-canary.4
 
 ## 4.31.0-canary.3

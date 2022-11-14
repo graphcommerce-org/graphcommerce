@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.14.0-canary.7
+
+### Patch Changes
+
+- [#1738](https://github.com/graphcommerce-org/graphcommerce/pull/1738) [`41f907dd4`](https://github.com/graphcommerce-org/graphcommerce/commit/41f907dd4eea20624ba87bdea48d9c330b8c0762) - Fix issue where the configurable cart item couldn’t be properly loaded ([@paales](https://github.com/paales))
+
 ## 4.14.0-canary.6
 
 ### Minor Changes
