@@ -1,5 +1,7 @@
 # Change Log
 
+## 2.2.0-canary.6
+
 ## 2.2.0-canary.5
 
 ### Patch Changes

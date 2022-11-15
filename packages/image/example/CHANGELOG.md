@@ -1,5 +1,7 @@
 # Change Log
 
+## 3.0.50-canary.6
+
 ## 3.0.50-canary.5
 
 ## 3.0.50-canary.4

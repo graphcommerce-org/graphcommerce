@@ -1,5 +1,13 @@
 # Change Log
 
+## 4.31.0-canary.6
+
+### Patch Changes
+
+- [`243d0dad2`](https://github.com/graphcommerce-org/graphcommerce/commit/243d0dad263f7b886a3d68e82729818c7df265bc) - Solve issue where the gallery of the product page would scroll obsessively ([@paales](https://github.com/paales))
+
+- [`0623f8ce7`](https://github.com/graphcommerce-org/graphcommerce/commit/0623f8ce738ace69aa44e55cf6a6ddb33cf0617a) - When clicking on a navigationlink it would animate on mobile ([@paales](https://github.com/paales))
+
 ## 4.31.0-canary.5
 
 ## 4.31.0-canary.4

@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/magento-wishlist",
-  "version": "4.14.0-canary.9",
+  "version": "4.14.0-canary.10",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [
@@ -19,15 +19,15 @@
     "@playwright/test": "^1.21.1"
   },
   "dependencies": {
-    "@graphcommerce/graphql": "4.31.0-canary.5",
-    "@graphcommerce/graphql-mesh": "4.31.0-canary.5",
-    "@graphcommerce/image": "4.31.0-canary.5",
-    "@graphcommerce/magento-cart": "4.14.0-canary.9",
-    "@graphcommerce/magento-customer": "4.14.0-canary.9",
-    "@graphcommerce/magento-product": "4.14.0-canary.9",
-    "@graphcommerce/magento-product-configurable": "4.14.0-canary.9",
-    "@graphcommerce/magento-store": "4.14.0-canary.9",
-    "@graphcommerce/next-ui": "4.31.0-canary.5"
+    "@graphcommerce/graphql": "4.31.0-canary.6",
+    "@graphcommerce/graphql-mesh": "4.31.0-canary.6",
+    "@graphcommerce/image": "4.31.0-canary.6",
+    "@graphcommerce/magento-cart": "4.14.0-canary.10",
+    "@graphcommerce/magento-customer": "4.14.0-canary.10",
+    "@graphcommerce/magento-product": "4.14.0-canary.10",
+    "@graphcommerce/magento-product-configurable": "4.14.0-canary.10",
+    "@graphcommerce/magento-store": "4.14.0-canary.10",
+    "@graphcommerce/next-ui": "4.31.0-canary.6"
   },
   "peerDependencies": {
     "@lingui/react": "^3.13.2",
