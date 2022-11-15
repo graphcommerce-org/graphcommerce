@@ -1,4 +1,5 @@
 import { EmotionJSX } from '@emotion/react/types/jsx-namespace'
+import { clientSizeCssVar } from '@graphcommerce/framer-utils'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import {
@@ -9,18 +10,20 @@ import {
   Portal,
   Popper,
   ClickAwayListener,
-  Fab,
   TextField,
 } from '@mui/material'
-import { forwardRef, PropsWithChildren } from 'react'
-import { Button, LinkOrButton } from '../Button'
-import { IconSvg, useIconSvgSize } from '../IconSvg'
-import { LayoutTitle } from '../Layout'
-import { LayoutHeaderContent } from '../Layout/components/LayoutHeaderContent'
+import React, {
+  forwardRef,
+  PropsWithChildren,
+  ReactElement,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
+import { Button } from '../Button'
 import { LayoutOverlayHeader } from '../LayoutOverlay'
 import { LayoutOverlaySize, Overlay } from '../Overlay'
-import { useFabSize } from '../Theme'
-import { iconClose } from '../icons'
 
 type ResponsiveMenuProps = PropsWithChildren<
   Omit<ChipProps<'button'>, 'children' | 'component'>
@@ -39,97 +42,133 @@ type MenuContentProps = Pick<
   'onClose' | 'setOpenEl' | 'label' | 'onReset' | 'children' | 'actionable'
 > & { isDesktop: boolean }
 
-const MenuContent = forwardRef<any, MenuContentProps>(
-  ({ onClose, onReset, setOpenEl, label, children, isDesktop, actionable }, ref) => {
-    const fabSize = useFabSize('responsive')
-    const svgSize = useIconSvgSize('large')
+type ComputedStyleDictionary = {
+  [key: string]: CSSStyleDeclaration
+}
+
+function transformObject(object: { [key: string]: unknown }): ComputedStyleDictionary {
+  const newObject: ComputedStyleDictionary = {}
+  const style = getComputedStyle(document.createElement('div'))
+
+  Object.keys(object).forEach((key) => {
+    newObject[key] = style
+  })
+
+  return newObject
+}
+
+function useComputedStyle(elementRefs: {
+  [key: string]: React.MutableRefObject<null> | undefined
+}) {
+  const initialStyles = transformObject(elementRefs)
+
+  const [styles, setStyles] = useState<ComputedStyleDictionary>(initialStyles)
+
+  useEffect(() => {
+    if (!elementRefs) return
+    const newStyles = {}
+    Object.keys(elementRefs).forEach((key) => {
+      const current = elementRefs[key]?.current
+      if (current) {
+        newStyles[key] = getComputedStyle(current)
+      }
+    })
+    setStyles(newStyles)
+  }, [elementRefs])
+
+  console.log({ styles })
+  return { ...styles }
+}
+
+const MenuContent = forwardRef<HTMLElement, MenuContentProps>(
+  ({ setOpenEl, label, children, isDesktop, actionable }, ref) => {
+    const [search, setSearch] = useState<string>()
+    const contentRef = useRef(null)
+    const buttonRef = useRef(null)
+    const castedChildren = children as ReactElement
+    const menuLength = castedChildren?.props.items?.length
+    const { content, button } = useComputedStyle({ content: contentRef, button: buttonRef })
+
+    console.log({ content, button })
+
+    const filteredChildren = useMemo(() => {
+      const { items } = (children as ReactElement).props
+      const filteredItems = items?.filter((item) => {
+        const optionLabelLowerCase = item.option.label.toLowerCase()
+        const searchLowerCase = search?.toLowerCase() ?? ''
+        return search ? optionLabelLowerCase?.includes(searchLowerCase) : true
+      })
+      return React.cloneElement(castedChildren, { items: filteredItems })
+    }, [castedChildren, children, search])
 
     return (
       <Box
-        ref={ref}
-        sx={(theme) => ({
+        ref={contentRef}
+        sx={() => ({
           display: 'flex',
           flexDirection: 'column',
-          // justifyContent: 'space-between',
           minWidth: 350,
           backgroundColor: 'background.paper',
-          '& .MuiTextField-root': {
-            borderBottom: `1px solid ${theme.palette.divider}`,
-          },
         })}
       >
-        <LayoutOverlayHeader
-          switchPoint={0}
-          primary={
-            actionable ? (
-              <Button color='primary' variant='inline' size='large' onClick={onReset}>
-                <Trans id='Reset' />
-              </Button>
-            ) : null
-          }
-          secondary={
-            <Fab
-              color='inherit'
-              onClick={onClose}
-              sx={{
-                boxShadow: 'none',
-                marginLeft: `calc((${fabSize} - ${svgSize}) * -0.6)`,
-                marginRight: `calc((${fabSize} - ${svgSize}) * -0.5)`,
-              }}
-              aria-label={i18n._(/* i18n */ 'Close')}
-            >
-              <IconSvg src={iconClose} size='medium' aria-hidden />
-            </Fab>
-          }
-          divider={
-            <TextField
-              type='search'
-              fullWidth
-              size='small'
-              color='primary'
-              placeholder={i18n._(/* 18n */ 'Search {filter}', { filter: label })}
-              sx={{ backgroundColor: 'green', marginTop: 10 }}
-              // onChange={handleSearch}
-            />
-          }
-        >
-          <LayoutTitle size='small' component='span'>
-            {label}
-          </LayoutTitle>
+        <LayoutOverlayHeader switchPoint={0}>
+          <TextField
+            type='search'
+            fullWidth
+            variant='standard'
+            size='small'
+            color='primary'
+            placeholder={i18n._(/* 18n */ 'Search {filter}', { filter: label })}
+            onChange={(e) => setSearch(e.target.value)}
+          />
         </LayoutOverlayHeader>
 
         <Box
           sx={(theme) => ({
+            mt: theme.appShell.headerHeightSm,
             flex: 1,
             padding: `0 ${theme.page.horizontal}`,
-            overflow: 'visible',
-            overflowY: 'scroll',
+            overflow: 'visable',
+            overflowY: isDesktop ? 'scroll' : undefined,
             maxHeight: isDesktop ? '500px' : undefined,
             boxShadow: theme.shadows[1],
           })}
         >
-          {children}
+          {filteredChildren}
+          {filteredChildren}
+
           <Box sx={(theme) => ({ height: theme.spacings.sm })} />
           {actionable ? (
-            <Button
-              form='filter-form'
-              variant='pill'
-              size='large'
-              fullWidth
-              sx={(theme) => ({
-                // position: 'sticky',
-                bottom: theme.spacings.xxs,
-                backgroundColor: 'primary.main',
-                color: 'primary.contrastText',
-                position: '-webkit-sticky',
-              })}
-              type='submit'
-              onClick={() => {
-                setOpenEl(null)
+            <Box
+              sx={{
+                // height: `calc(${height} - ${clientSizeCssVar.y} + 100px)`,
+                // mt: `calc(-${height} + ${clientSizeCssVar.y} - 100px)`,
+                position: 'relative',
               }}
             >
-              <Trans id='Apply' />
-            </Button>
+              <Button
+                ref={buttonRef}
+                form='filter-form'
+                variant='pill'
+                size='large'
+                fullWidth
+                sx={(theme) => ({
+                  // position: 'sticky',
+                  display: 'block',
+                  bottom: theme.spacings.xxs,
+                  top: `calc(${clientSizeCssVar.y} - 60px)`,
+                  backgroundColor: 'primary.main',
+                  color: 'primary.contrastText',
+                  position: 'sticky',
+                })}
+                type='submit'
+                onClick={() => {
+                  setOpenEl(null)
+                }}
+              >
+                <Trans id='Apply' />
+              </Button>
+            </Box>
           ) : null}
         </Box>
       </Box>
@@ -146,20 +185,21 @@ export function ResponsiveMenu(props: ResponsiveMenuProps) {
     return (
       <>
         {chip}
-        <Portal>
-          <Overlay
-            active={!!openEl}
-            onClosed={onClose ?? (() => {})}
-            sizeSm={mode}
-            variantSm='bottom'
-            overlayPaneProps={{
-              initial: false,
-            }}
-            sx={{ '& .LayoutOverlayBase-overlayPane': { p: 1 } }}
-          >
-            <MenuContent {...props} isDesktop={isDesktop} />
-          </Overlay>
-        </Portal>
+        {open ? (
+          <Portal>
+            <Overlay
+              active={!!openEl}
+              onClosed={onClose ?? (() => {})}
+              sizeSm={mode}
+              variantSm='bottom'
+              overlayPaneProps={{
+                initial: false,
+              }}
+            >
+              <MenuContent {...props} isDesktop={isDesktop} />
+            </Overlay>
+          </Portal>
+        ) : null}
       </>
     )
   }
@@ -174,47 +214,49 @@ export function ResponsiveMenu(props: ResponsiveMenuProps) {
     >
       <Box>
         {chip}
-        <Popper
-          open={open}
-          anchorEl={openEl}
-          sx={(theme) => ({
-            boxShadow: 12,
-            borderRadius: theme.shape.borderRadius,
-            overflow: 'hidden',
-            zIndex: 1,
-          })}
-          keepMounted
-          disablePortal
-          modifiers={[
-            {
-              name: 'offset',
-              options: {
-                offset: [0, 10],
+        {open ? (
+          <Popper
+            open={open}
+            anchorEl={openEl}
+            sx={(theme) => ({
+              boxShadow: 12,
+              borderRadius: theme.shape.borderRadius,
+              overflow: 'hidden',
+              zIndex: 1,
+            })}
+            keepMounted
+            disablePortal
+            modifiers={[
+              {
+                name: 'offset',
+                options: {
+                  offset: [0, 10],
+                },
               },
-            },
 
-            {
-              name: 'flip',
-              enabled: true,
-              options: {
-                altBoundary: true,
-                rootBoundary: 'viewport',
+              {
+                name: 'flip',
+                enabled: true,
+                options: {
+                  altBoundary: true,
+                  rootBoundary: 'viewport',
+                },
               },
-            },
-            {
-              name: 'preventOverflow',
-              enabled: false,
-              options: {
-                altAxis: true,
-                altBoundary: false,
-                tether: false,
-                rootBoundary: 'viewport',
+              {
+                name: 'preventOverflow',
+                enabled: false,
+                options: {
+                  altAxis: true,
+                  altBoundary: false,
+                  tether: false,
+                  rootBoundary: 'viewport',
+                },
               },
-            },
-          ]}
-        >
-          <MenuContent {...props} isDesktop={isDesktop} />
-        </Popper>
+            ]}
+          >
+            <MenuContent {...props} isDesktop={isDesktop} />
+          </Popper>
+        ) : null}
       </Box>
     </ClickAwayListener>
   )
