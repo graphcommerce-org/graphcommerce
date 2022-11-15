@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.12.0-canary.4
+
+### Patch Changes
+
+- [`9c3047c2f`](https://github.com/graphcommerce-org/graphcommerce/commit/9c3047c2fc6ea11ef9bd0c5128af883bffccc7e5) - Added GraphQL Injectable documentation ([@paales](https://github.com/paales))
+
 ## 4.12.0-canary.3
 
 ### Patch Changes

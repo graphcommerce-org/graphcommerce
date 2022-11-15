@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-customer-order",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "4.14.0-canary.8",
+  "version": "4.14.0-canary.9",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -21,8 +21,8 @@
     "@graphcommerce/graphql": "4.31.0-canary.5",
     "@graphcommerce/graphql-mesh": "4.31.0-canary.5",
     "@graphcommerce/image": "4.31.0-canary.5",
-    "@graphcommerce/magento-graphql": "4.14.0-canary.8",
-    "@graphcommerce/magento-store": "4.14.0-canary.8",
+    "@graphcommerce/magento-graphql": "4.14.0-canary.9",
+    "@graphcommerce/magento-store": "4.14.0-canary.9",
     "@graphcommerce/next-ui": "4.31.0-canary.5"
   },
   "peerDependencies": {
