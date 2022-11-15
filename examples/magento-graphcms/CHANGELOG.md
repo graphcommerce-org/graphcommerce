@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.14.0-canary.8
+
+### Patch Changes
+
+- [`e2683dbfc`](https://github.com/graphcommerce-org/graphcommerce/commit/e2683dbfce440b8e1f745228d8ca4747156c87e6) - GraphQL HttpLink wasn't created, not allow to generate new pages on Vercel. ([@paales](https://github.com/paales))
+
 ## 4.14.0-canary.7
 
 ## 4.14.0-canary.6
