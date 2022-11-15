@@ -1,11 +1,10 @@
-import { useTheme } from '@emotion/react'
 import {
   useMotionValueValue,
   useMotionSelector,
   clientSizeCssVar,
 } from '@graphcommerce/framer-utils'
 import { i18n } from '@lingui/core'
-import { Box, Fab, SxProps, Theme, useEventCallback, styled } from '@mui/material'
+import { useTheme, Box, Fab, SxProps, Theme, useEventCallback, styled } from '@mui/material'
 import { m } from 'framer-motion'
 import React, { useEffect } from 'react'
 import type { LiteralUnion } from 'type-fest'
