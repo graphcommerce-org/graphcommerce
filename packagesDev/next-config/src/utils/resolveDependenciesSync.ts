@@ -12,6 +12,7 @@ const resolveCache: Map<string, PackageNames> = new Map<string, PackageNames>()
 function resolveRecursivePackageJson(
   packageJsonFilename: string,
   dependencyStructure: DependencyStructure,
+  force = false,
 ) {
   const packageJsonFile = fs.readFileSync(packageJsonFilename, 'utf-8').toString()
   const packageJson = JSON.parse(packageJsonFile) as PackageJson
@@ -30,7 +31,7 @@ function resolveRecursivePackageJson(
     ),
   ]
 
-  if (!packageJson.name.includes('graphcommerce')) return dependencyStructure
+  if (!force && !packageJson.name.includes('graphcommerce')) return dependencyStructure
 
   dependencyStructure[packageJson.name] = {
     dirName: path.dirname(path.relative(process.cwd(), packageJsonFilename)),
@@ -76,7 +77,7 @@ export function sortDependencies(dependencyStructure: DependencyStructure): Pack
 export function resolveDependenciesSync(root = process.cwd()) {
   const cached = resolveCache.get(root)
   if (cached) return cached
-  const dependencyStructure = resolveRecursivePackageJson(path.join(root, 'package.json'), {})
+  const dependencyStructure = resolveRecursivePackageJson(path.join(root, 'package.json'), {}, true)
 
   const sorted = sortDependencies(dependencyStructure)
   resolveCache.set(root, sorted)

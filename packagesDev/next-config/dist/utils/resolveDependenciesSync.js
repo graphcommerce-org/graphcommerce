@@ -8,7 +8,7 @@ const node_fs_1 = __importDefault(require("node:fs"));
 const node_path_1 = __importDefault(require("node:path"));
 const PackagesSort_1 = require("./PackagesSort");
 const resolveCache = new Map();
-function resolveRecursivePackageJson(packageJsonFilename, dependencyStructure) {
+function resolveRecursivePackageJson(packageJsonFilename, dependencyStructure, force = false) {
     const packageJsonFile = node_fs_1.default.readFileSync(packageJsonFilename, 'utf-8').toString();
     const packageJson = JSON.parse(packageJsonFile);
     if (!packageJson.name)
@@ -22,7 +22,7 @@ function resolveRecursivePackageJson(packageJsonFilename, dependencyStructure) {
             // ...Object.keys(packageJson.peerDependencies ?? {}),
         ].filter((name) => name.includes('graphcommerce'))),
     ];
-    if (!packageJson.name.includes('graphcommerce'))
+    if (!force && !packageJson.name.includes('graphcommerce'))
         return dependencyStructure;
     dependencyStructure[packageJson.name] = {
         dirName: node_path_1.default.dirname(node_path_1.default.relative(process.cwd(), packageJsonFilename)),
@@ -59,7 +59,7 @@ function resolveDependenciesSync(root = process.cwd()) {
     const cached = resolveCache.get(root);
     if (cached)
         return cached;
-    const dependencyStructure = resolveRecursivePackageJson(node_path_1.default.join(root, 'package.json'), {});
+    const dependencyStructure = resolveRecursivePackageJson(node_path_1.default.join(root, 'package.json'), {}, true);
     const sorted = sortDependencies(dependencyStructure);
     resolveCache.set(root, sorted);
     return sorted;
