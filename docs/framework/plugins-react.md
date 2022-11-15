@@ -1,6 +1,6 @@
-# Plugins
+# Plugins React
 
-GraphCommerce plugin system allows you to extend GraphCommerce in a
+GraphCommerce's React plugin system allows you to extend GraphCommerce in a
 plug-and-play manner. Install a new package and the code will be added at the
 right places.
 

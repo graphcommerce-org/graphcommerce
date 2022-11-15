@@ -5,5 +5,16 @@ query ProductList(
   $sort: ProductAttributeSortInput = {}
   $search: String = ""
 ) {
-  ...ProductListQueryFragment
+  products(
+    pageSize: $pageSize
+    currentPage: $currentPage
+    filter: $filters
+    sort: $sort
+    search: $search
+  ) {
+    ...ProductListCount
+    ...ProductListPagination
+    ...ProductListSort
+    ...ProductListItems
+  }
 }
