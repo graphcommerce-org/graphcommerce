@@ -7,6 +7,7 @@ import {
   measurePerformanceLink,
   InMemoryCache,
   fragments,
+  HttpLink,
 } from '@graphcommerce/graphql'
 import { MeshApolloLink } from '@graphcommerce/graphql-mesh'
 import { magentoTypePolicies } from '@graphcommerce/magento-graphql'
@@ -58,14 +59,20 @@ export function graphqlClient(
   if (loopback) {
     return new ApolloClient({
       link: ApolloLink.from([
+        measurePerformanceLink,
+        errorLink,
         // Add the correct store header for the Magento user.
         createStoreLink(locale),
         // Add the correct locale header for Hygraph localized content.
         createHygraphLink(locale),
+        new HttpLink({
+          uri: process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT,
+          credentials: 'same-origin',
+        }),
       ]),
       cache: new InMemoryCache({
         possibleTypes: fragments.possibleTypes,
-        // typePolicies: mergeTypePolicies(policies),
+        typePolicies: magentoTypePolicies,
       }),
       name: 'fastDev',
       ssrMode: true,
