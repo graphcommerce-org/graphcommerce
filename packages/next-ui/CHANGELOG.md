@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.31.0-canary.7
+
+### Patch Changes
+
+- [`d1c2f9901`](https://github.com/graphcommerce-org/graphcommerce/commit/d1c2f9901dbe76d4ca23c48614b05990aeb59161) - useTheme() was imported from the wrong file ([@paales](https://github.com/paales))
+
 ## 4.31.0-canary.6
 
 ### Patch Changes

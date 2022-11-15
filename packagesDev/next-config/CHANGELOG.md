@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.31.0-canary.7
+
+### Patch Changes
+
+- [`fdb33b4e6`](https://github.com/graphcommerce-org/graphcommerce/commit/fdb33b4e6cace84a370aa000bf86c9c3c377aaae) - Make sure the root package is always included even if it doesn't include graphcommerce in the name ([@paales](https://github.com/paales))
+
 ## 4.31.0-canary.6
 
 ## 4.31.0-canary.5

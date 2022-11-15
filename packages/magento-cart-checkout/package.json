@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-cart-checkout",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "4.14.0-canary.10",
+  "version": "4.14.0-canary.11",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -18,15 +18,15 @@
     "@playwright/test": "^1.21.1"
   },
   "dependencies": {
-    "@graphcommerce/graphql": "4.31.0-canary.6",
-    "@graphcommerce/image": "4.31.0-canary.6",
-    "@graphcommerce/magento-cart": "4.14.0-canary.10",
-    "@graphcommerce/magento-cart-coupon": "4.14.0-canary.10",
-    "@graphcommerce/magento-cart-items": "4.14.0-canary.10",
-    "@graphcommerce/magento-customer": "4.14.0-canary.10",
-    "@graphcommerce/magento-store": "4.14.0-canary.10",
-    "@graphcommerce/next-ui": "4.31.0-canary.6",
-    "@graphcommerce/react-hook-form": "4.31.0-canary.6"
+    "@graphcommerce/graphql": "4.31.0-canary.7",
+    "@graphcommerce/image": "4.31.0-canary.7",
+    "@graphcommerce/magento-cart": "4.14.0-canary.11",
+    "@graphcommerce/magento-cart-coupon": "4.14.0-canary.11",
+    "@graphcommerce/magento-cart-items": "4.14.0-canary.11",
+    "@graphcommerce/magento-customer": "4.14.0-canary.11",
+    "@graphcommerce/magento-store": "4.14.0-canary.11",
+    "@graphcommerce/next-ui": "4.31.0-canary.7",
+    "@graphcommerce/react-hook-form": "4.31.0-canary.7"
   },
   "peerDependencies": {
     "@lingui/react": "^3.13.2",
