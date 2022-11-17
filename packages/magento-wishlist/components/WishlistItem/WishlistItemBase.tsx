@@ -10,7 +10,7 @@ import IconButton from '@mui/material/IconButton'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import PageLink from 'next/link'
-import { useState, PropsWithChildren } from 'react'
+import { useState } from 'react'
 import { GetIsInWishlistsDocument } from '../../queries/GetIsInWishlists.gql'
 import { RemoveProductFromWishlistDocument } from '../../queries/RemoveProductFromWishlist.gql'
 import { WishlistItemProductFragment } from './WishlistItemProduct.gql'
@@ -21,8 +21,9 @@ type OptionalProductWishlistParent = {
   wishlistItemId?: string
 }
 
-export type WishlistItemBaseProps = PropsWithChildren<WishlistItemProductFragment> & {
+export type WishlistItemBaseProps = WishlistItemProductFragment & {
   sx?: SxProps<Theme>
+  children?: React.ReactNode
 } & OwnerState &
   OptionalProductWishlistParent
 

@@ -1,0 +1,15 @@
+fragment ConfiguredVariant on SimpleProduct @injectable {
+  __typename
+  uid
+  name
+  price_range {
+    minimum_price {
+      final_price {
+        ...Money
+      }
+      regular_price {
+        ...Money
+      }
+    }
+  }
+}

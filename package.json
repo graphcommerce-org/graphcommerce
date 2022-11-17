@@ -1,7 +1,7 @@
 {
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "2.165.3",
+  "version": "5.0.0",
   "private": true,
   "workspaces": [
     "docs",

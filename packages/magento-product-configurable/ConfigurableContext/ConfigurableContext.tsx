@@ -1,7 +1,6 @@
 import {
   useContext,
   createContext,
-  PropsWithChildren,
   Context,
   useState,
   Dispatch,
@@ -12,7 +11,10 @@ import {
 import { ConfigurableProductFormFragment } from './ConfigurableProductForm.gql'
 import cheapestVariant from './cheapestVariant'
 
-type ConfigurableProductFormProps = ConfigurableProductFormFragment & { sku: string }
+type ConfigurableProductFormProps = ConfigurableProductFormFragment & {
+  sku: string
+  children?: React.ReactNode
+}
 
 export type Selected = { [attrCode: string]: number }
 export type Variants = NonNullable<ConfigurableProductFormProps['variants']>
@@ -114,9 +116,7 @@ function traverseAttrTree(selection: Selected, attrTree: AttributeTree | undefin
   return variantList
 }
 
-export function ConfigurableContextProvider(
-  props: PropsWithChildren<ConfigurableProductFormProps>,
-) {
+export function ConfigurableContextProvider(props: ConfigurableProductFormProps) {
   const { children, sku, configurable_options, variants: providedVariants } = props
   const [selection, select] = useState<Selected>({})
 

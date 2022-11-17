@@ -1,5 +1,4 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { useGoogleRecaptcha } from '@graphcommerce/googlerecaptcha'
 import { EditAddressForm, useCustomerQuery, WaitForCustomer } from '@graphcommerce/magento-customer'
 import { AccountDashboardAddressesDocument } from '@graphcommerce/magento-customer-account'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
@@ -22,7 +21,6 @@ type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
 function EditAddressPage() {
   const router = useRouter()
-  useGoogleRecaptcha()
 
   const addresses = useCustomerQuery(AccountDashboardAddressesDocument, {
     fetchPolicy: 'cache-and-network',

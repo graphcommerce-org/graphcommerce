@@ -15,7 +15,7 @@ import {
 } from './AddProductsToCartSnackbar'
 import { AddProductsToCartContext, RedirectType } from './useFormAddProductsToCart'
 
-type AddProductsToCartFormProps = {
+export type AddProductsToCartFormProps = {
   // The props are actually used, but are passed through useThemeProps and that breaks react/no-unused-prop-types
   // eslint-disable-next-line react/no-unused-prop-types
   children: React.ReactNode
@@ -50,16 +50,12 @@ declare module '@mui/material/styles/components' {
  * - Redirects the user to the cart/checkout/added page after successful submission.
  */
 export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
-  const {
-    children,
-    redirect = 'cart',
-    onComplete,
-    sx,
-    errorSnackbar,
-    successSnackbar,
-    ...formProps
-  } = useThemeProps({ name, props })
+  let { children, redirect, onComplete, sx, errorSnackbar, successSnackbar, ...formProps } =
+    useThemeProps({ name, props })
   const router = useRouter()
+
+  if (typeof redirect !== 'undefined' && redirect !== 'added' && router.pathname === redirect)
+    redirect = undefined
 
   const form = useFormGqlMutationCart<
     AddProductsToCartMutation,
@@ -87,12 +83,23 @@ export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
     onComplete: async (result, variables) => {
       await onComplete?.(result, variables)
 
+      // After the form has been submitted, we're resetting the submitted SKU's
+      form.getValues('cartItems').forEach((item, index) => {
+        if (item.sku) form.setValue(`cartItems.${index}.sku`, '')
+      })
+
       if (result.data?.addProductsToCart?.user_errors?.length || result.errors?.length || !redirect)
         return
 
-      if (redirect === 'checkout') await router.push('/checkout')
-      if (redirect === 'added') await router.push({ pathname: '/checkout/added' })
-      if (redirect === 'cart') await router.push({ pathname: '/cart' })
+      if (redirect === 'added') {
+        const method = router.pathname.startsWith('/checkout/added') ? router.replace : router.push
+        await method({
+          pathname: '/checkout/added',
+          query: { sku: variables.cartItems.map((i) => i.sku) },
+        })
+      } else {
+        await router.push({ pathname: redirect })
+      }
     },
   })
 

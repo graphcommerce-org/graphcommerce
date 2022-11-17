@@ -1,0 +1,11 @@
+fragment MSPAvailablePaymentMethod on AvailablePaymentMethod
+@inject(into: ["AvailablePaymentMethod"]) {
+  multisafepay_additional_data {
+    image
+    is_preselected
+  }
+  multisafepay_available_issuers {
+    code
+    description
+  }
+}

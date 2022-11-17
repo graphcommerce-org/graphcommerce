@@ -1,9 +1,9 @@
 import { WaitForQueries } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { gtagBeginCheckout } from '@graphcommerce/googleanalytics'
 import {
   ApolloCartErrorAlert,
   CartStartCheckout,
+  CartStartCheckoutLinkOrButton,
   CartTotals,
   EmptyCart,
   useCartQuery,
@@ -18,16 +18,12 @@ import {
   iconShoppingBag,
   Stepper,
   LayoutTitle,
-  iconChevronRight,
-  IconSvg,
   LayoutOverlayHeader,
-  LinkOrButton,
   FullPageMessage,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, CircularProgress, Container } from '@mui/material'
-import PageLink from 'next/link'
 import { LayoutOverlay, LayoutOverlayProps } from '../components'
 import { graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
 
@@ -49,19 +45,7 @@ function CartPage() {
       />
       <LayoutOverlayHeader
         switchPoint={0}
-        primary={
-          <PageLink href='/checkout' passHref>
-            <LinkOrButton
-              button={{ variant: 'pill' }}
-              color='secondary'
-              endIcon={<IconSvg src={iconChevronRight} />}
-              onClick={() => gtagBeginCheckout(cart.data?.cart)}
-              disabled={!hasItems}
-            >
-              <Trans id='Next' />
-            </LinkOrButton>
-          </PageLink>
-        }
+        primary={<CartStartCheckoutLinkOrButton {...data?.cart} />}
         divider={
           <Container maxWidth='md'>
             <Stepper currentStep={hasItems ? 1 : 0} steps={3} />
@@ -111,12 +95,7 @@ function CartPage() {
                 <CartTotals containerMargin sx={{ typography: 'body1' }} />
                 <ApolloCartErrorAlert error={error} />
                 <Box key='checkout-button'>
-                  <CartStartCheckout
-                    {...data?.cart}
-                    buttonProps={{
-                      onClick: () => gtagBeginCheckout(cart.data?.cart),
-                    }}
-                  />
+                  <CartStartCheckout {...data?.cart} />
                 </Box>
               </Box>
             ) : (

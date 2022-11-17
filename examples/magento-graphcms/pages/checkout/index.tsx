@@ -6,8 +6,6 @@ import {
   WaitForQueries,
 } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { gtagAddShippingInfo } from '@graphcommerce/googleanalytics'
-import { useGoogleRecaptcha } from '@graphcommerce/googlerecaptcha'
 import {
   ApolloCartErrorAlert,
   ApolloCartErrorFullPage,
@@ -16,7 +14,6 @@ import {
 } from '@graphcommerce/magento-cart'
 import { ShippingPageDocument } from '@graphcommerce/magento-cart-checkout'
 import { EmailForm } from '@graphcommerce/magento-cart-email'
-import { PickupLocationSelector } from '@graphcommerce/magento-cart-pickup'
 import {
   ShippingAddressForm,
   CustomerAddressForm,
@@ -47,7 +44,6 @@ type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutMinimalProps, Props>
 
 function ShippingPage() {
-  useGoogleRecaptcha()
   const router = useRouter()
   const shippingPage = useCartQuery(ShippingPageDocument, { fetchPolicy: 'cache-and-network' })
   const customerAddresses = useCustomerQuery(CustomerDocument, { fetchPolicy: 'cache-and-network' })
@@ -119,17 +115,11 @@ function ShippingPage() {
                 )}
 
                 {!shippingPage.data?.cart?.is_virtual && (
-                  <ShippingMethodForm step={4} sx={(theme) => ({ mt: theme.spacings.lg })}>
-                    <PickupLocationSelector step={5} />
-                  </ShippingMethodForm>
+                  <ShippingMethodForm step={4} sx={(theme) => ({ mt: theme.spacings.lg })} />
                 )}
 
                 <ComposedSubmit
-                  onSubmitSuccessful={() => {
-                    gtagAddShippingInfo(shippingPage.data?.cart)
-                    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-                    router.push('/checkout/payment')
-                  }}
+                  onSubmitSuccessful={() => router.push('/checkout/payment')}
                   render={(renderProps) => (
                     <>
                       <FormActions>

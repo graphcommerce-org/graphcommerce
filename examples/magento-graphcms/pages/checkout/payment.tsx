@@ -1,7 +1,5 @@
 import { ComposedForm, WaitForQueries } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { gtagAddPaymentInfo } from '@graphcommerce/googleanalytics'
-import { useGoogleRecaptcha } from '@graphcommerce/googlerecaptcha'
 import {
   ApolloCartErrorFullPage,
   CartAgreementsForm,
@@ -14,17 +12,13 @@ import { BillingPageDocument } from '@graphcommerce/magento-cart-checkout'
 import { CouponAccordion } from '@graphcommerce/magento-cart-coupon'
 import {
   PaymentMethodButton,
-  PaymentMethodContextProvider,
   PaymentMethodPlaceOrder,
   useCartLock,
   PaymentMethodActionCardListForm,
+  PaymentMethodContextProvider,
 } from '@graphcommerce/magento-cart-payment-method'
 import { SubscribeToNewsletter } from '@graphcommerce/magento-newsletter'
-import { braintree, braintree_local_payment } from '@graphcommerce/magento-payment-braintree'
-import { included_methods } from '@graphcommerce/magento-payment-included'
-import { paypal } from '@graphcommerce/magento-payment-paypal'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { mollie_methods } from '@graphcommerce/mollie-magento-payment'
 import {
   FormActions,
   FullPageMessage,
@@ -47,8 +41,6 @@ import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphql
 type GetPageStaticProps = GetStaticProps<LayoutMinimalProps>
 
 function PaymentPage() {
-  useGoogleRecaptcha()
-
   const billingPage = useCartQuery(BillingPageDocument, { fetchPolicy: 'cache-and-network' })
   const [{ locked }] = useCartLock()
 
@@ -116,15 +108,7 @@ function PaymentPage() {
                 <Trans id='Payment method' />
               </Typography>
 
-              <PaymentMethodContextProvider
-                modules={{
-                  braintree_local_payment,
-                  braintree,
-                  ...paypal,
-                  ...included_methods,
-                  ...mollie_methods,
-                }}
-              >
+              <PaymentMethodContextProvider>
                 <PaymentMethodActionCardListForm step={4} />
 
                 <CartSummary editable>
@@ -151,7 +135,6 @@ function PaymentPage() {
                     button={{ variant: 'pill', size: 'large' }}
                     breakpoint='xs'
                     endIcon={<IconSvg src={iconChevronRight} />}
-                    onSubmitSuccessful={() => gtagAddPaymentInfo(billingPage.data?.cart)}
                   >
                     <Trans id='Place order' />
                   </PaymentMethodButton>

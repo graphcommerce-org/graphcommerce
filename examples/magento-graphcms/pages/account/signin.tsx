@@ -1,5 +1,4 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { useGoogleRecaptcha } from '@graphcommerce/googlerecaptcha'
 import { useMergeCustomerCart } from '@graphcommerce/magento-cart'
 import { AccountSignInUpForm } from '@graphcommerce/magento-customer-account'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
@@ -15,7 +14,6 @@ type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
 function AccountSignInPage() {
   useMergeCustomerCart()
-  useGoogleRecaptcha()
   useMergeGuestWishlistWithCustomer()
 
   return (

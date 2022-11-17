@@ -14,7 +14,7 @@ function findPlainIdx(items: PageItem[]) {
   return items.reduce((acc, item, i) => (typeof item.overlayGroup === 'string' ? acc : i), -1)
 }
 
-type PagesProps = Omit<AppPropsType<NextRouter>, 'pageProps' | 'Component'> & {
+export type PagesProps = Omit<AppPropsType<NextRouter>, 'pageProps' | 'Component'> & {
   Component: PageComponent
   pageProps?: { up?: UpPage | null }
 
@@ -209,7 +209,7 @@ and pass it as a param in <FramerNextPages fallbackRoute='/[...url]' /> in your 
       <m.div
         style={{ position: 'absolute', top: 0, minHeight: clientSizeCssVar.y, left: 0, right: 0 }}
       />
-      <AnimatePresence initial={false}>
+      <AnimatePresence>
         {renderItems.map((item, itemIdx) => {
           const { historyIdx, sharedKey, overlayGroup, routerKey } = item
           const active = itemIdx === renderItems.length - 1

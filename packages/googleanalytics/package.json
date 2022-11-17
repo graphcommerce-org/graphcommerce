@@ -2,7 +2,7 @@
   "name": "@graphcommerce/googleanalytics",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "3.0.10",
+  "version": "5.0.0",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -12,14 +12,18 @@
     }
   },
   "dependencies": {
-    "@graphcommerce/graphql-mesh": "4.30.2",
-    "@graphcommerce/magento-product": "4.13.3",
-    "@graphcommerce/next-ui": "4.30.2"
+    "@graphcommerce/graphql-mesh": "5.0.0",
+    "@graphcommerce/magento-cart": "5.0.0",
+    "@graphcommerce/magento-cart-payment-method": "5.0.0",
+    "@graphcommerce/magento-cart-shipping-method": "5.0.0",
+    "@graphcommerce/magento-product": "5.0.0",
+    "@graphcommerce/next-ui": "5.0.0",
+    "@graphcommerce/next-config": "5.0.0"
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "^4.1.11",
-    "@graphcommerce/prettier-config-pwa": "^4.0.7",
-    "@graphcommerce/typescript-config-pwa": "^4.0.5",
+    "@graphcommerce/eslint-config-pwa": "^5.0.0",
+    "@graphcommerce/prettier-config-pwa": "^5.0.0",
+    "@graphcommerce/typescript-config-pwa": "^5.0.0",
     "@types/gtag.js": "^0.0.10"
   },
   "peerDependencies": {

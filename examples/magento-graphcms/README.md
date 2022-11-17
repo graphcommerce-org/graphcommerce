@@ -35,7 +35,7 @@ https://user-images.githubusercontent.com/1251986/158570386-ea831ae4-f6b8-4776-8
 
 ### Download the example
 
-1. `git clone git@github.com:graphcommerce-org/graphcommerce.git`
+1. `git clone -b main --depth 1 https://github.com/graphcommerce-org/graphcommerce.git`
 2. `mkdir my-project`
 3. `cp -R graphcommerce/examples/magento-graphcms/. my-project`
 4. `cd my-project`

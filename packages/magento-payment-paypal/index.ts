@@ -3,13 +3,11 @@ import { PayPalExpressActionCard } from './components/PayPalPaymentActionCard/Pa
 import { PayPalPaymentHandler } from './components/PayPalPaymentHandler/PayPalPaymentHandler'
 import { PayPalPaymentOptions } from './components/PayPalPaymentOptionsAndPlaceOrder/PayPalPaymentOptions'
 
-const mspModule: PaymentModule = {
-  PaymentOptions: PayPalPaymentOptions,
-  PaymentActionCard: PayPalExpressActionCard,
-  PaymentHandler: PayPalPaymentHandler,
-  PaymentPlaceOrder: () => null,
-}
-
 export const paypal: Record<string, PaymentModule> = {
-  paypal_express: mspModule,
+  paypal_express: {
+    PaymentOptions: PayPalPaymentOptions,
+    PaymentActionCard: PayPalExpressActionCard,
+    PaymentHandler: PayPalPaymentHandler,
+    PaymentPlaceOrder: () => null,
+  },
 }

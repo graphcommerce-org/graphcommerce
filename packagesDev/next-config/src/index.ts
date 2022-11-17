@@ -1,4 +1,5 @@
 import { NextConfig } from 'next/dist/server/config-shared'
+import type React from 'react'
 import { withGraphCommerce } from './withGraphCommerce'
 
 export * from './utils/isMonorepo'
@@ -11,4 +12,8 @@ export function withYarn1Workspaces(packages: string[] = []): (config: NextConfi
 
 export function withYarn1Scopes(packages?: string[]): (config: NextConfig) => NextConfig {
   return withGraphCommerce({ packages })
+}
+
+export type PluginProps<P extends Record<string, unknown> = Record<string, unknown>> = P & {
+  Prev: React.FC<P>
 }

@@ -30,7 +30,7 @@ const cliParams: GraphQLMeshCLIParams = {
   playgroundTitle: 'GraphCommerce® Mesh',
 }
 
-const tmpMesh = `_tmp_codegen`
+const tmpMesh = `_tmp_mesh`
 const tmpMeshLocation = path.join(root, `.${tmpMesh}rc.yml`)
 
 async function cleanup() {

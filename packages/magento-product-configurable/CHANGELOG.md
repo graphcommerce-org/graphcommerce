@@ -1,5 +1,83 @@
 # Change Log
 
+## 5.0.0
+
+### Major Changes
+
+- [#1734](https://github.com/graphcommerce-org/graphcommerce/pull/1734) [`e4c7fe17e`](https://github.com/graphcommerce-org/graphcommerce/commit/e4c7fe17e413e37362ceae92e67f1b3a5f62d398) - Bump major version of all packages ([@github-actions](https://github.com/apps/github-actions))
+
+### Minor Changes
+
+- [#1737](https://github.com/graphcommerce-org/graphcommerce/pull/1737) [`1f5ece0c2`](https://github.com/graphcommerce-org/graphcommerce/commit/1f5ece0c24524f33561614adf09f669d305666b0) - Allow Simple Products to show the Confgurable product page. Created a new defaultConfigurableOptionsSelection utility function to set up all the data correctly. ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#1737](https://github.com/graphcommerce-org/graphcommerce/pull/1737) [`c278116d4`](https://github.com/graphcommerce-org/graphcommerce/commit/c278116d4c6f984a0b542fbf9426b8fc676ab36e) - Render the configured_variant image in the cart ([@paales](https://github.com/paales))
+
+- [#1738](https://github.com/graphcommerce-org/graphcommerce/pull/1738) [`41f907dd4`](https://github.com/graphcommerce-org/graphcommerce/commit/41f907dd4eea20624ba87bdea48d9c330b8c0762) - Fix issue where the configurable cart item couldn’t be properly loaded ([@paales](https://github.com/paales))
+
+- [#1718](https://github.com/graphcommerce-org/graphcommerce/pull/1718) [`37e86cdc8`](https://github.com/graphcommerce-org/graphcommerce/commit/37e86cdc86ccca3db77d6c59b1e14c8112bb7893) - Remove usage of PropsWithChildren ([@paales](https://github.com/paales))
+
+- [#1737](https://github.com/graphcommerce-org/graphcommerce/pull/1737) [`3916fdd7a`](https://github.com/graphcommerce-org/graphcommerce/commit/3916fdd7a801b381df6ce1708bf388a2c581eab1) - Make sure configurable_options without swatch data still render correctly ([@paales](https://github.com/paales))
+
+- [#1733](https://github.com/graphcommerce-org/graphcommerce/pull/1733) [`29eb2e94f`](https://github.com/graphcommerce-org/graphcommerce/commit/29eb2e94f04b120bc060ab945ff28aabf3f3ecfd) - Dependency issue with Magento 2.4.5 ([@paales](https://github.com/paales))
+
+## 5.0.0-canary.14
+
+## 5.0.0-canary.13
+
+### Major Changes
+
+- [`e4c7fe17e`](https://github.com/graphcommerce-org/graphcommerce/commit/e4c7fe17e413e37362ceae92e67f1b3a5f62d398) - Bump major version of all packages ([@paales](https://github.com/paales))
+
+## 4.14.0-canary.12
+
+## 4.14.0-canary.11
+
+## 4.14.0-canary.10
+
+## 4.14.0-canary.9
+
+## 4.14.0-canary.8
+
+## 4.14.0-canary.7
+
+### Patch Changes
+
+- [#1738](https://github.com/graphcommerce-org/graphcommerce/pull/1738) [`41f907dd4`](https://github.com/graphcommerce-org/graphcommerce/commit/41f907dd4eea20624ba87bdea48d9c330b8c0762) - Fix issue where the configurable cart item couldn’t be properly loaded ([@paales](https://github.com/paales))
+
+## 4.14.0-canary.6
+
+### Minor Changes
+
+- [#1737](https://github.com/graphcommerce-org/graphcommerce/pull/1737) [`1f5ece0c2`](https://github.com/graphcommerce-org/graphcommerce/commit/1f5ece0c24524f33561614adf09f669d305666b0) - Allow Simple Products to show the Confgurable product page. Created a new defaultConfigurableOptionsSelection utility function to set up all the data correctly. ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#1737](https://github.com/graphcommerce-org/graphcommerce/pull/1737) [`c278116d4`](https://github.com/graphcommerce-org/graphcommerce/commit/c278116d4c6f984a0b542fbf9426b8fc676ab36e) - Render the configured_variant image in the cart ([@paales](https://github.com/paales))
+
+- [#1737](https://github.com/graphcommerce-org/graphcommerce/pull/1737) [`3916fdd7a`](https://github.com/graphcommerce-org/graphcommerce/commit/3916fdd7a801b381df6ce1708bf388a2c581eab1) - Make sure configurable_options without swatch data still render correctly ([@paales](https://github.com/paales))
+
+## 4.14.0-canary.5
+
+## 4.14.0-canary.4
+
+### Patch Changes
+
+- [#1733](https://github.com/graphcommerce-org/graphcommerce/pull/1733) [`29eb2e94f`](https://github.com/graphcommerce-org/graphcommerce/commit/29eb2e94f04b120bc060ab945ff28aabf3f3ecfd) - Dependency issue with Magento 2.4.5 ([@paales](https://github.com/paales))
+
+## 4.14.0-canary.3
+
+## 4.14.0-canary.2
+
+### Patch Changes
+
+- [#1718](https://github.com/graphcommerce-org/graphcommerce/pull/1718) [`37e86cdc8`](https://github.com/graphcommerce-org/graphcommerce/commit/37e86cdc86ccca3db77d6c59b1e14c8112bb7893) - Remove usage of PropsWithChildren ([@paales](https://github.com/paales))
+
+## 4.13.2-canary.1
+
+## 4.13.2-canary.0
+
 ## 4.13.3
 
 ## 4.13.2

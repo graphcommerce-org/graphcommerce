@@ -1,19 +1,18 @@
 import { Chip, ChipProps, Menu, MenuProps, menuClasses, SxProps, Theme } from '@mui/material'
-import React, { PropsWithChildren, useState } from 'react'
+import React, { useState } from 'react'
 import { IconSvg } from '../IconSvg'
 import { SectionHeader } from '../SectionHeader/SectionHeader'
 import { responsiveVal } from '../Styles/responsiveVal'
 import { iconChevronDown, iconChevronUp, iconCancelAlt } from '../icons'
 
-export type ChipMenuProps = PropsWithChildren<
-  Omit<ChipProps<'button'>, 'children' | 'component'>
-> & {
+export type ChipMenuProps = Omit<ChipProps<'button'>, 'children' | 'component'> & {
   selectedLabel?: React.ReactNode
   selected: boolean
   onClose?: () => void
   labelRight?: React.ReactNode
   sx?: SxProps<Theme>
   menuProps?: Partial<MenuProps>
+  children?: React.ReactNode
 }
 
 export function ChipMenu(props: ChipMenuProps) {

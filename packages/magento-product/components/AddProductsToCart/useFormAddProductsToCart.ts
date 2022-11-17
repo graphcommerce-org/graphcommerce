@@ -1,11 +1,12 @@
 import { UseFormGqlMutationReturn } from '@graphcommerce/ecommerce-ui'
 import { createContext, useContext } from 'react'
+import type { LiteralUnion } from 'type-fest'
 import {
   AddProductsToCartMutation,
   AddProductsToCartMutationVariables,
 } from './AddProductsToCart.gql'
 
-export type RedirectType = 'added' | 'cart' | 'checkout' | undefined
+export type RedirectType = LiteralUnion<'added' | undefined, `/${string}`>
 
 export type AddProductsToCartContextType = { redirect: RedirectType } & UseFormGqlMutationReturn<
   AddProductsToCartMutation,

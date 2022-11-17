@@ -1,5 +1,4 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { useGoogleRecaptcha } from '@graphcommerce/googlerecaptcha'
 import {
   ApolloCustomerErrorFullPage,
   EditAddressForm,
@@ -27,8 +26,6 @@ type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
 function CheckoutCustomerAddressesEdit() {
   const router = useRouter()
-  useGoogleRecaptcha()
-
   const { data, loading, error, called } = useCustomerQuery(AccountDashboardAddressesDocument, {
     fetchPolicy: 'cache-and-network',
   })

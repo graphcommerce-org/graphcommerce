@@ -1,5 +1,4 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { useGoogleRecaptcha } from '@graphcommerce/googlerecaptcha'
 import {
   CustomerDocument,
   UpdateCustomerEmailForm,
@@ -23,8 +22,6 @@ import { graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
 function AccountContactPage() {
-  useGoogleRecaptcha()
-
   const dashboard = useCustomerQuery(CustomerDocument, {
     fetchPolicy: 'cache-and-network',
   })

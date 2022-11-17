@@ -214,13 +214,9 @@ export function ActionCard(props: ActionCardProps) {
             zIndex: 1,
           },
           '&.disabled': {
-            '& *': {
-              opacity: theme.palette.action.disabledOpacity,
-            },
-            background: alpha(
-              theme.palette.action.disabledBackground,
-              theme.palette.action.disabledOpacity / 10,
-            ),
+            background: theme.palette.action.disabledBackground,
+            opacity: theme.palette.action.disabledOpacity,
+            color: theme.palette.action.disabled,
           },
         }),
         ...(Array.isArray(sx) ? sx : [sx]),

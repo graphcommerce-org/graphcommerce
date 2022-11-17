@@ -111,7 +111,7 @@ function injectInjectable(injectables: DocumentNode[], injector: DocumentNode) {
   })
 }
 
-export function injectInjectables(documentFiles: Types.DocumentFile[]) {
+export function injectableDirective(documentFiles: Types.DocumentFile[]) {
   const documents = documentFiles
     .map(({ document }) => document)
     .filter((doc) => doc) as DocumentNode[]

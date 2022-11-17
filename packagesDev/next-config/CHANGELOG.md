@@ -1,5 +1,75 @@
 # Change Log
 
+## 5.0.0
+
+### Major Changes
+
+- [#1734](https://github.com/graphcommerce-org/graphcommerce/pull/1734) [`e4c7fe17e`](https://github.com/graphcommerce-org/graphcommerce/commit/e4c7fe17e413e37362ceae92e67f1b3a5f62d398) - Bump major version of all packages ([@github-actions](https://github.com/apps/github-actions))
+
+### Minor Changes
+
+- [#1729](https://github.com/graphcommerce-org/graphcommerce/pull/1729) [`4f85e4878`](https://github.com/graphcommerce-org/graphcommerce/commit/4f85e4878e4ad0dd528d60ad35826da0677059a9) - Add the ability to specificy plugins on the package name (e.g. `@graphcommerce/magento-cart-payment-method`) ([@paales](https://github.com/paales))
+
+- [#1718](https://github.com/graphcommerce-org/graphcommerce/pull/1718) [`16abc9995`](https://github.com/graphcommerce-org/graphcommerce/commit/16abc9995377f5c00032674de0a1ea3ebad88c4c) - Introducing a new **Plugin system for GraphCommerce** which allows you to extend GraphCommerce in a plug-and-play manner. [Read the documentation to learn more](https://github.com/graphcommerce-org/graphcommerce/blob/main/docs/framework/plugins.md) ([@paales](https://github.com/paales))
+
+- [#1738](https://github.com/graphcommerce-org/graphcommerce/pull/1738) [`6171ad02c`](https://github.com/graphcommerce-org/graphcommerce/commit/6171ad02c19782b1e1f0eb00ea25ea6b764250b5) - Added topological sorting to plugins and added ifEnv export to plugins to conditionally load plugins ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#1733](https://github.com/graphcommerce-org/graphcommerce/pull/1733) [`b2d73c726`](https://github.com/graphcommerce-org/graphcommerce/commit/b2d73c726fa123435fa6c54b4e0fd0db2df7c4ab) - Move to <Prev/> instead of <Component/> to call the plugin component ([@paales](https://github.com/paales))
+
+- [#1733](https://github.com/graphcommerce-org/graphcommerce/pull/1733) [`d6abe2646`](https://github.com/graphcommerce-org/graphcommerce/commit/d6abe26461d92e6f6c39da1cb7e6ac896bb9475f) - Added comments to generated interceptor ([@paales](https://github.com/paales))
+
+- [#1734](https://github.com/graphcommerce-org/graphcommerce/pull/1734) [`fdb33b4e6`](https://github.com/graphcommerce-org/graphcommerce/commit/fdb33b4e6cace84a370aa000bf86c9c3c377aaae) - Make sure the root package is always included even if it doesn't include graphcommerce in the name ([@github-actions](https://github.com/apps/github-actions))
+
+## 5.0.0-canary.14
+
+## 5.0.0-canary.9
+
+### Major Changes
+
+- [`e4c7fe17e`](https://github.com/graphcommerce-org/graphcommerce/commit/e4c7fe17e413e37362ceae92e67f1b3a5f62d398) - Bump major version of all packages ([@paales](https://github.com/paales))
+
+## 4.31.0-canary.8
+
+## 4.31.0-canary.7
+
+### Patch Changes
+
+- [`fdb33b4e6`](https://github.com/graphcommerce-org/graphcommerce/commit/fdb33b4e6cace84a370aa000bf86c9c3c377aaae) - Make sure the root package is always included even if it doesn't include graphcommerce in the name ([@paales](https://github.com/paales))
+
+## 4.31.0-canary.6
+
+## 4.31.0-canary.5
+
+### Minor Changes
+
+- [#1738](https://github.com/graphcommerce-org/graphcommerce/pull/1738) [`6171ad02c`](https://github.com/graphcommerce-org/graphcommerce/commit/6171ad02c19782b1e1f0eb00ea25ea6b764250b5) - Added topological sorting to plugins and added ifEnv export to plugins to conditionally load plugins ([@paales](https://github.com/paales))
+
+## 4.31.0-canary.4
+
+## 4.31.0-canary.3
+
+### Patch Changes
+
+- [#1733](https://github.com/graphcommerce-org/graphcommerce/pull/1733) [`b2d73c726`](https://github.com/graphcommerce-org/graphcommerce/commit/b2d73c726fa123435fa6c54b4e0fd0db2df7c4ab) - Move to <Prev/> instead of <Component/> to call the plugin component ([@paales](https://github.com/paales))
+
+- [#1733](https://github.com/graphcommerce-org/graphcommerce/pull/1733) [`d6abe2646`](https://github.com/graphcommerce-org/graphcommerce/commit/d6abe26461d92e6f6c39da1cb7e6ac896bb9475f) - Added comments to generated interceptor ([@paales](https://github.com/paales))
+
+## 4.31.0-canary.2
+
+### Minor Changes
+
+- [#1729](https://github.com/graphcommerce-org/graphcommerce/pull/1729) [`4f85e4878`](https://github.com/graphcommerce-org/graphcommerce/commit/4f85e4878e4ad0dd528d60ad35826da0677059a9) - Add the ability to specificy plugins on the package name (e.g. `@graphcommerce/magento-cart-payment-method`) ([@paales](https://github.com/paales))
+
+## 4.31.0-canary.1
+
+### Minor Changes
+
+- [#1718](https://github.com/graphcommerce-org/graphcommerce/pull/1718) [`16abc9995`](https://github.com/graphcommerce-org/graphcommerce/commit/16abc9995377f5c00032674de0a1ea3ebad88c4c) - Introducing a new **Plugin system for GraphCommerce** which allows you to extend GraphCommerce in a plug-and-play manner. [Read the documentation to learn more](https://github.com/graphcommerce-org/graphcommerce/blob/main/docs/framework/plugins.md) ([@paales](https://github.com/paales))
+
+## 4.31.0-canary.0
+
 ## 4.30.2
 
 ## 4.30.1

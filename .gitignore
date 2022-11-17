@@ -23,6 +23,7 @@ yarn-error.log*
 # application
 **/public/workbox-*.js
 **/public/sw.js
+*.interceptor.tsx
 
 .vercel
 
