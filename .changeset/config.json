@@ -5,27 +5,7 @@
     { "repo": "graphcommerce-org/graphcommerce" }
   ],
   "commit": false,
-  "fixed": [
-    [
-      "@graphcommerce/magento*",
-      "@graphcommerce/mollie-magento-payment",
-      "@graphcommerce/demo-magento-graphcommerce"
-    ],
-    [
-      "@graphcommerce/cli",
-      "@graphcommerce/ecommerce-ui",
-      "@graphcommerce/framer-next-pages",
-      "@graphcommerce/framer-scroller",
-      "@graphcommerce/framer-utils",
-      "@graphcommerce/graphql",
-      "@graphcommerce/graphql-mesh",
-      "@graphcommerce/image",
-      "@graphcommerce/lingui-next",
-      "@graphcommerce/next-ui",
-      "@graphcommerce/react-hook-form",
-      "@graphcommerce/next-config"
-    ]
-  ],
+  "fixed": [["@graphcommerce/*"]],
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
