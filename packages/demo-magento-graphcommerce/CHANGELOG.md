@@ -1,5 +1,7 @@
 # @graphcommerce/demo-magento-graphcommerce
 
+## 5.0.0-canary.14
+
 ## 5.0.0-canary.13
 
 ### Major Changes
