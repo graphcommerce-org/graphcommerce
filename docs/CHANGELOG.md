@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.12.0-canary.5
+
+### Patch Changes
+
+- [`16c29976d`](https://github.com/graphcommerce-org/graphcommerce/commit/16c29976d1968823c3632d0a06c6f5c99e72bcdd) - When upgrading it should git clone the full depth to be able to fetch older commits ([@paales](https://github.com/paales))
+
 ## 4.12.0-canary.4
 
 ### Patch Changes

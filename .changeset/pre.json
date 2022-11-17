@@ -70,6 +70,7 @@
     "@graphcommerce/demo-magento-graphcommerce": "4.14.0-canary.6"
   },
   "changesets": [
+    "afraid-foxes-train",
     "chatty-eels-invite",
     "chilly-ears-prove",
     "cool-lizards-hear",
@@ -104,6 +105,7 @@
     "slow-hats-listen",
     "slow-hats-talk",
     "slow-radios-unite",
+    "spicy-llamas-help",
     "stale-tables-roll",
     "stupid-mugs-march",
     "sweet-meals-impress",

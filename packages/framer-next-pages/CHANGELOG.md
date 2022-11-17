@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.31.0-canary.8
+
+### Patch Changes
+
+- [`f44dae2c5`](https://github.com/graphcommerce-org/graphcommerce/commit/f44dae2c5a82e62dc8b3f08ad672278faa1c9f54) - When rendering the page it should run the initial animations if a page doesn't want to do that it should disable initial it's self ([@paales](https://github.com/paales))
+
 ## 4.31.0-canary.7
 
 ## 4.31.0-canary.6

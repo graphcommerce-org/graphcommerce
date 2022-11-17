@@ -1,5 +1,7 @@
 # Change Log
 
+## 3.1.0-canary.12
+
 ## 3.1.0-canary.11
 
 ## 3.1.0-canary.10
