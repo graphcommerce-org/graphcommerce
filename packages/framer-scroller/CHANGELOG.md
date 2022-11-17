@@ -54,6 +54,10 @@
 
 - [#1719](https://github.com/graphcommerce-org/graphcommerce/pull/1719) [`dc4996bfe`](https://github.com/graphcommerce-org/graphcommerce/commit/dc4996bfe8a3d6aa950ec79972b3b0c84dfe1c9d) Thanks [@mikekeehnen](https://github.com/mikekeehnen)! - Changed pan gesture in useScroller to look at pan state instead of the root component
 
+## 4.30.2
+
+## 4.30.1
+
 ## 4.30.0
 
 ### Patch Changes

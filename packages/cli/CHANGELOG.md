@@ -46,6 +46,14 @@
 
 ## 4.31.0-canary.0
 
+## 4.30.2
+
+### Patch Changes
+
+- [#1726](https://github.com/graphcommerce-org/graphcommerce/pull/1726) [`6dde81d8c`](https://github.com/graphcommerce-org/graphcommerce/commit/6dde81d8c04730847c4c171cfac6ef0cf10d9929) Thanks [@paales](https://github.com/paales)! - When starting the dev server it would delete all .gql.ts files causing an error when starting
+
+## 4.30.1
+
 ## 4.30.0
 
 ### Minor Changes

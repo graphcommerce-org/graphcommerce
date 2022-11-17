@@ -63,7 +63,9 @@ async function main() {
     if (Array.isArray(gen)) return
     if (gen.presetConfig?.extension) extension = gen.presetConfig.extension
   })
-  if (extension) rimraf(path.join(root, `**/*${extension}`), console.error)
+
+  const isWatching = process.argv.includes('--watch') || process.argv.includes('-w')
+  if (!isWatching && extension) rimraf(path.join(root, `**/*${extension}`), console.error)
 
   // - Prepend the all targets with ../../ if we're running in a monorepo setup.
   // - Append all the Graphcommerce packages to the configuration
