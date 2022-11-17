@@ -1,5 +1,11 @@
 # @graphcommerce/demo-magento-graphcommerce
 
+## 5.0.0-canary.13
+
+### Major Changes
+
+- [`e4c7fe17e`](https://github.com/graphcommerce-org/graphcommerce/commit/e4c7fe17e413e37362ceae92e67f1b3a5f62d398) - Bump major version of all packages ([@paales](https://github.com/paales))
+
 ## 4.14.0-canary.12
 
 ## 4.14.0-canary.11

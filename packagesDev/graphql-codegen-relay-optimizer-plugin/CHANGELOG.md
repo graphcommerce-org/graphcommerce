@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.0-canary.0
+
+### Major Changes
+
+- [`e4c7fe17e`](https://github.com/graphcommerce-org/graphcommerce/commit/e4c7fe17e413e37362ceae92e67f1b3a5f62d398) - Bump major version of all packages ([@paales](https://github.com/paales))
+
 ## 3.0.11
 
 ### Patch Changes

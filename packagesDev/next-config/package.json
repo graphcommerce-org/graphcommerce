@@ -2,7 +2,7 @@
   "name": "@graphcommerce/next-config",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "4.31.0-canary.8",
+  "version": "5.0.0-canary.9",
   "type": "commonjs",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
