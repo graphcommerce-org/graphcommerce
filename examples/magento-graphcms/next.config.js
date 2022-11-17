@@ -43,6 +43,7 @@ const nextConfig = {
     legacyBrowsers: false,
   },
   optimizeFonts: false,
+  output: process.env.STANDALONE ? 'standalone' : undefined,
   swcMinify: true,
   pwa: {
     dest: 'public',
