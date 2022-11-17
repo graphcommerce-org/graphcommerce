@@ -1,9 +1,9 @@
 name: target-branch-is-canary
 on:
   pull_request:
-    types: [synchronize, opened, reopened, edited]
     branches-ignore:
       - 'changeset-release/**'
+    types: [synchronize, opened, reopened, edited]
 jobs:
   # Disallow all merged that are not from the canary branch
   disallow:
