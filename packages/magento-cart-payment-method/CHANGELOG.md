@@ -1,5 +1,25 @@
 # Change Log
 
+## 5.0.0
+
+### Major Changes
+
+- [#1734](https://github.com/graphcommerce-org/graphcommerce/pull/1734) [`e4c7fe17e`](https://github.com/graphcommerce-org/graphcommerce/commit/e4c7fe17e413e37362ceae92e67f1b3a5f62d398) - Bump major version of all packages ([@github-actions](https://github.com/apps/github-actions))
+
+### Minor Changes
+
+- [#1733](https://github.com/graphcommerce-org/graphcommerce/pull/1733) [`0173d9307`](https://github.com/graphcommerce-org/graphcommerce/commit/0173d93075e1e3bdfb4667cf1ef3e53113b38994) - Add props to <PaymentMethodContextProvider/>: onSuccess and successUrl. ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#1718](https://github.com/graphcommerce-org/graphcommerce/pull/1718) [`37e86cdc8`](https://github.com/graphcommerce-org/graphcommerce/commit/37e86cdc86ccca3db77d6c59b1e14c8112bb7893) - Remove usage of PropsWithChildren ([@paales](https://github.com/paales))
+
+- [#1733](https://github.com/graphcommerce-org/graphcommerce/pull/1733) [`a0eefa762`](https://github.com/graphcommerce-org/graphcommerce/commit/a0eefa762f93f817f506b87753dfe0b92e3318f8) - Added better disabled state for an ActionCard ([@paales](https://github.com/paales))
+
+- [#1718](https://github.com/graphcommerce-org/graphcommerce/pull/1718) [`acef2a3ae`](https://github.com/graphcommerce-org/graphcommerce/commit/acef2a3aedd60e1882330cde56877bf26857d238) - Make the modules prop optional for the `<PaymentMethodContextProvider />` component ([@paales](https://github.com/paales))
+
+- [#1733](https://github.com/graphcommerce-org/graphcommerce/pull/1733) [`be10e8cd1`](https://github.com/graphcommerce-org/graphcommerce/commit/be10e8cd1dce172a914ee9e5f65fdca4d0929fc8) - Migrated payment methods to use the new `onSuccess` method from `PaymentMethodContextProvider` instead of redirecting manually, makes sure the onSuccess method can be used by plugins. ([@paales](https://github.com/paales))
+
 ## 5.0.0-canary.14
 
 ## 5.0.0-canary.13

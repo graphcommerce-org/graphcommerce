@@ -1,5 +1,23 @@
 # Change Log
 
+## 5.0.0
+
+### Major Changes
+
+- [#1734](https://github.com/graphcommerce-org/graphcommerce/pull/1734) [`e4c7fe17e`](https://github.com/graphcommerce-org/graphcommerce/commit/e4c7fe17e413e37362ceae92e67f1b3a5f62d398) - Bump major version of all packages ([@github-actions](https://github.com/apps/github-actions))
+
+### Minor Changes
+
+- [#1733](https://github.com/graphcommerce-org/graphcommerce/pull/1733) [`761bd2832`](https://github.com/graphcommerce-org/graphcommerce/commit/761bd2832f115afc8b95bedbf479266309dd5acc) - ApolloLinks, typePolicies and migration scripts are now handled with plugins on the new library component `<GraphQLProvider/>`. Hygraph's, Magento Cart, Customer, Store, Wishlist and Magento GraphQL are all migrated to be using plugins.
+
+  If you are using custom `links` / `policies` / `migrations` you can pass them as props to the `<GraphQLProvider/>` or create your own local plugin. ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#1734](https://github.com/graphcommerce-org/graphcommerce/pull/1734) [`e2683dbfc`](https://github.com/graphcommerce-org/graphcommerce/commit/e2683dbfce440b8e1f745228d8ca4747156c87e6) - GraphQL HttpLink wasn't created, not allow to generate new pages on Vercel. ([@github-actions](https://github.com/apps/github-actions))
+
+- [#1738](https://github.com/graphcommerce-org/graphcommerce/pull/1738) [`52882a63e`](https://github.com/graphcommerce-org/graphcommerce/commit/52882a63e96c0d3ba9641c3714d288fa4f420c82) - Do not forward the Prev prop in plugins ([@paales](https://github.com/paales))
+
 ## 5.0.0-canary.14
 
 ## 4.0.0-canary.10

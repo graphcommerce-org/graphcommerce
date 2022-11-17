@@ -1,5 +1,51 @@
 # Change Log
 
+## 5.0.0
+
+### Major Changes
+
+- [#1734](https://github.com/graphcommerce-org/graphcommerce/pull/1734) [`e4c7fe17e`](https://github.com/graphcommerce-org/graphcommerce/commit/e4c7fe17e413e37362ceae92e67f1b3a5f62d398) - Bump major version of all packages ([@github-actions](https://github.com/apps/github-actions))
+
+### Minor Changes
+
+- [#1729](https://github.com/graphcommerce-org/graphcommerce/pull/1729) [`c37187a51`](https://github.com/graphcommerce-org/graphcommerce/commit/c37187a513670ebcf09e99eb4a762c8bdb5df7e4) - Moved Magento Cart Pickup shipping method to the [GraphCommerce plugin system](https://www.graphcommerce.org/docs/framework/plugins)
+
+  Upgrade guide:
+
+  - The upgrade removes `@graphcommerce/magento-cart-pickup` package from your `package.json`, remove them for now.
+  - Proceed to upgrade normally
+  - Add back `@graphcommerce/magento-cart-pickup`, following the [GraphCommerce Magento docs](https://graphcommerce.org/docs/magento). ([@paales](https://github.com/paales))
+
+- [#1729](https://github.com/graphcommerce-org/graphcommerce/pull/1729) [`2e68e0560`](https://github.com/graphcommerce-org/graphcommerce/commit/2e68e0560690bbf9bad6dc2b33d6e2ddb16197ce) - Adyen Payment gateway support ([@paales](https://github.com/paales))
+
+- [#1729](https://github.com/graphcommerce-org/graphcommerce/pull/1729) [`366b05a7d`](https://github.com/graphcommerce-org/graphcommerce/commit/366b05a7da174a8a7c665b44e11422d8c873e4ed) - MultiSafePay Payment gateway support ([@paales](https://github.com/paales))
+
+- [#1718](https://github.com/graphcommerce-org/graphcommerce/pull/1718) [`16abc9995`](https://github.com/graphcommerce-org/graphcommerce/commit/16abc9995377f5c00032674de0a1ea3ebad88c4c) - Introducing a new **Plugin system for GraphCommerce** which allows you to extend GraphCommerce in a plug-and-play manner. [Read the documentation to learn more](https://github.com/graphcommerce-org/graphcommerce/blob/main/docs/framework/plugins.md) ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#1729](https://github.com/graphcommerce-org/graphcommerce/pull/1729) [`78980b009`](https://github.com/graphcommerce-org/graphcommerce/commit/78980b009a3055006a50e0f54a4414ccf5570860) - Loosen node version constraint ([@paales](https://github.com/paales))
+
+- [#1718](https://github.com/graphcommerce-org/graphcommerce/pull/1718) [`f08bffd63`](https://github.com/graphcommerce-org/graphcommerce/commit/f08bffd63780cb626f072b25c2fd4da37543b6f7) - Moved all Payment methods to the [GraphCommerce plugin system](https://www.graphcommerce.org/docs/framework/plugins)
+
+  Upgrade guide:
+
+  - The upgrade removes all the payment gateway packages from the `package.json`, remove them for now.
+  - Proceed to upgrade normally
+  - Add back all the payment modules following the [GraphCommerce Magento docs](https://graphcommerce.org/docs/magento).
+
+  (This removes the requirement to cleanup the payment methods when creating a first installation. 🎉) ([@paales](https://github.com/paales))
+
+- [#1733](https://github.com/graphcommerce-org/graphcommerce/pull/1733) [`b2d73c726`](https://github.com/graphcommerce-org/graphcommerce/commit/b2d73c726fa123435fa6c54b4e0fd0db2df7c4ab) - Move to <Prev/> instead of <Component/> to call the plugin component ([@paales](https://github.com/paales))
+
+- [#1738](https://github.com/graphcommerce-org/graphcommerce/pull/1738) [`163be59f2`](https://github.com/graphcommerce-org/graphcommerce/commit/163be59f2bf0f1573e91da036e56455262c6abd5) - Better clone instructions when upgrading ([@paales](https://github.com/paales))
+
+- [#1734](https://github.com/graphcommerce-org/graphcommerce/pull/1734) [`9c3047c2f`](https://github.com/graphcommerce-org/graphcommerce/commit/9c3047c2fc6ea11ef9bd0c5128af883bffccc7e5) - Added GraphQL Injectable documentation ([@github-actions](https://github.com/apps/github-actions))
+
+- [#1734](https://github.com/graphcommerce-org/graphcommerce/pull/1734) [`16c29976d`](https://github.com/graphcommerce-org/graphcommerce/commit/16c29976d1968823c3632d0a06c6f5c99e72bcdd) - When upgrading it should git clone the full depth to be able to fetch older commits ([@github-actions](https://github.com/apps/github-actions))
+
+- [#1738](https://github.com/graphcommerce-org/graphcommerce/pull/1738) [`6171ad02c`](https://github.com/graphcommerce-org/graphcommerce/commit/6171ad02c19782b1e1f0eb00ea25ea6b764250b5) - Added topological sorting to plugins and added ifEnv export to plugins to conditionally load plugins ([@paales](https://github.com/paales))
+
 ## 5.0.0-canary.14
 
 ## 5.0.0-canary.6

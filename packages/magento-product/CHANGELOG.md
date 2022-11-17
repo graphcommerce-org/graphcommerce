@@ -1,5 +1,25 @@
 # Change Log
 
+## 5.0.0
+
+### Major Changes
+
+- [#1734](https://github.com/graphcommerce-org/graphcommerce/pull/1734) [`e4c7fe17e`](https://github.com/graphcommerce-org/graphcommerce/commit/e4c7fe17e413e37362ceae92e67f1b3a5f62d398) - Bump major version of all packages ([@github-actions](https://github.com/apps/github-actions))
+
+### Minor Changes
+
+- [#1718](https://github.com/graphcommerce-org/graphcommerce/pull/1718) [`876c8253d`](https://github.com/graphcommerce-org/graphcommerce/commit/876c8253d62af8bfe534cda50cb13d88543fc117) - Export useAddProductsToCartAction and do not set the default to redirect ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#1718](https://github.com/graphcommerce-org/graphcommerce/pull/1718) [`37e86cdc8`](https://github.com/graphcommerce-org/graphcommerce/commit/37e86cdc86ccca3db77d6c59b1e14c8112bb7893) - Remove usage of PropsWithChildren ([@paales](https://github.com/paales))
+
+- [#1722](https://github.com/graphcommerce-org/graphcommerce/pull/1722) [`7b36ea1d1`](https://github.com/graphcommerce-org/graphcommerce/commit/7b36ea1d100239892f21f67e5606852dd29b7c75) - Feature/fix cross sell item ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#1734](https://github.com/graphcommerce-org/graphcommerce/pull/1734) [`9c3047c2f`](https://github.com/graphcommerce-org/graphcommerce/commit/9c3047c2fc6ea11ef9bd0c5128af883bffccc7e5) - Added GraphQL Injectable documentation ([@github-actions](https://github.com/apps/github-actions))
+
+- [#1738](https://github.com/graphcommerce-org/graphcommerce/pull/1738) [`9ee6f7def`](https://github.com/graphcommerce-org/graphcommerce/commit/9ee6f7def14919548fedb01f65e9f0cda2e949dc) - After the AddProductsToCartForm has been submitted, reset the submitted SKU's ([@paales](https://github.com/paales))
+
 ## 5.0.0-canary.14
 
 ## 5.0.0-canary.13

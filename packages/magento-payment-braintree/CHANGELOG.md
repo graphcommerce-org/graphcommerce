@@ -1,5 +1,33 @@
 # Change Log
 
+## 5.0.0
+
+### Major Changes
+
+- [#1734](https://github.com/graphcommerce-org/graphcommerce/pull/1734) [`e4c7fe17e`](https://github.com/graphcommerce-org/graphcommerce/commit/e4c7fe17e413e37362ceae92e67f1b3a5f62d398) - Bump major version of all packages ([@github-actions](https://github.com/apps/github-actions))
+
+### Minor Changes
+
+- [#1718](https://github.com/graphcommerce-org/graphcommerce/pull/1718) [`f08bffd63`](https://github.com/graphcommerce-org/graphcommerce/commit/f08bffd63780cb626f072b25c2fd4da37543b6f7) - Moved all Payment methods to the [GraphCommerce plugin system](https://www.graphcommerce.org/docs/framework/plugins)
+
+  Upgrade guide:
+
+  - The upgrade removes all the payment gateway packages from the `package.json`, remove them for now.
+  - Proceed to upgrade normally
+  - Add back all the payment modules following the [GraphCommerce Magento docs](https://graphcommerce.org/docs/magento).
+
+  (This removes the requirement to cleanup the payment methods when creating a first installation. 🎉) ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#1733](https://github.com/graphcommerce-org/graphcommerce/pull/1733) [`b2d73c726`](https://github.com/graphcommerce-org/graphcommerce/commit/b2d73c726fa123435fa6c54b4e0fd0db2df7c4ab) - Move to <Prev/> instead of <Component/> to call the plugin component ([@paales](https://github.com/paales))
+
+- [#1729](https://github.com/graphcommerce-org/graphcommerce/pull/1729) [`4f85e4878`](https://github.com/graphcommerce-org/graphcommerce/commit/4f85e4878e4ad0dd528d60ad35826da0677059a9) - Add the ability to specificy plugins on the package name (e.g. `@graphcommerce/magento-cart-payment-method`) ([@paales](https://github.com/paales))
+
+- [#1733](https://github.com/graphcommerce-org/graphcommerce/pull/1733) [`be10e8cd1`](https://github.com/graphcommerce-org/graphcommerce/commit/be10e8cd1dce172a914ee9e5f65fdca4d0929fc8) - Migrated payment methods to use the new `onSuccess` method from `PaymentMethodContextProvider` instead of redirecting manually, makes sure the onSuccess method can be used by plugins. ([@paales](https://github.com/paales))
+
+- [#1738](https://github.com/graphcommerce-org/graphcommerce/pull/1738) [`52882a63e`](https://github.com/graphcommerce-org/graphcommerce/commit/52882a63e96c0d3ba9641c3714d288fa4f420c82) - Do not forward the Prev prop in plugins ([@paales](https://github.com/paales))
+
 ## 5.0.0-canary.14
 
 ## 5.0.0-canary.13

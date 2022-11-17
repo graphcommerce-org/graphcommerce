@@ -1,5 +1,27 @@
 # Change Log
 
+## 5.0.0
+
+### Major Changes
+
+- [#1734](https://github.com/graphcommerce-org/graphcommerce/pull/1734) [`e4c7fe17e`](https://github.com/graphcommerce-org/graphcommerce/commit/e4c7fe17e413e37362ceae92e67f1b3a5f62d398) - Bump major version of all packages ([@github-actions](https://github.com/apps/github-actions))
+
+### Minor Changes
+
+- [#1732](https://github.com/graphcommerce-org/graphcommerce/pull/1732) [`4bf1f606f`](https://github.com/graphcommerce-org/graphcommerce/commit/4bf1f606f3281a2664d6e2a70202a22af4d2c849) - fix customer service scrollSnapAlign ([@StefanAngenent](https://github.com/StefanAngenent))
+
+### Patch Changes
+
+- [#1734](https://github.com/graphcommerce-org/graphcommerce/pull/1734) [`243d0dad2`](https://github.com/graphcommerce-org/graphcommerce/commit/243d0dad263f7b886a3d68e82729818c7df265bc) - Solve issue where the gallery of the product page would scroll obsessively ([@github-actions](https://github.com/apps/github-actions))
+
+- [#1718](https://github.com/graphcommerce-org/graphcommerce/pull/1718) [`37e86cdc8`](https://github.com/graphcommerce-org/graphcommerce/commit/37e86cdc86ccca3db77d6c59b1e14c8112bb7893) - Remove usage of PropsWithChildren ([@paales](https://github.com/paales))
+
+- [#1733](https://github.com/graphcommerce-org/graphcommerce/pull/1733) [`a0eefa762`](https://github.com/graphcommerce-org/graphcommerce/commit/a0eefa762f93f817f506b87753dfe0b92e3318f8) - Added better disabled state for an ActionCard ([@paales](https://github.com/paales))
+
+- [#1734](https://github.com/graphcommerce-org/graphcommerce/pull/1734) [`d1c2f9901`](https://github.com/graphcommerce-org/graphcommerce/commit/d1c2f9901dbe76d4ca23c48614b05990aeb59161) - useTheme() was imported from the wrong file ([@github-actions](https://github.com/apps/github-actions))
+
+- [#1734](https://github.com/graphcommerce-org/graphcommerce/pull/1734) [`0623f8ce7`](https://github.com/graphcommerce-org/graphcommerce/commit/0623f8ce738ace69aa44e55cf6a6ddb33cf0617a) - When clicking on a navigationlink it would animate on mobile ([@github-actions](https://github.com/apps/github-actions))
+
 ## 5.0.0-canary.14
 
 ## 5.0.0-canary.9

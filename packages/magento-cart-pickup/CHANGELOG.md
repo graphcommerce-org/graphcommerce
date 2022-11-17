@@ -1,5 +1,27 @@
 # Change Log
 
+## 5.0.0
+
+### Major Changes
+
+- [#1734](https://github.com/graphcommerce-org/graphcommerce/pull/1734) [`e4c7fe17e`](https://github.com/graphcommerce-org/graphcommerce/commit/e4c7fe17e413e37362ceae92e67f1b3a5f62d398) - Bump major version of all packages ([@github-actions](https://github.com/apps/github-actions))
+
+### Minor Changes
+
+- [#1729](https://github.com/graphcommerce-org/graphcommerce/pull/1729) [`c37187a51`](https://github.com/graphcommerce-org/graphcommerce/commit/c37187a513670ebcf09e99eb4a762c8bdb5df7e4) - Moved Magento Cart Pickup shipping method to the [GraphCommerce plugin system](https://www.graphcommerce.org/docs/framework/plugins)
+
+  Upgrade guide:
+
+  - The upgrade removes `@graphcommerce/magento-cart-pickup` package from your `package.json`, remove them for now.
+  - Proceed to upgrade normally
+  - Add back `@graphcommerce/magento-cart-pickup`, following the [GraphCommerce Magento docs](https://graphcommerce.org/docs/magento). ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#1733](https://github.com/graphcommerce-org/graphcommerce/pull/1733) [`b2d73c726`](https://github.com/graphcommerce-org/graphcommerce/commit/b2d73c726fa123435fa6c54b4e0fd0db2df7c4ab) - Move to <Prev/> instead of <Component/> to call the plugin component ([@paales](https://github.com/paales))
+
+- [#1738](https://github.com/graphcommerce-org/graphcommerce/pull/1738) [`52882a63e`](https://github.com/graphcommerce-org/graphcommerce/commit/52882a63e96c0d3ba9641c3714d288fa4f420c82) - Do not forward the Prev prop in plugins ([@paales](https://github.com/paales))
+
 ## 5.0.0-canary.14
 
 ## 5.0.0-canary.13
