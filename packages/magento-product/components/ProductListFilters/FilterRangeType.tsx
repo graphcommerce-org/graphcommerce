@@ -29,7 +29,7 @@ export function FilterRangeType(props: FilterRangeTypeProps) {
     form: { control },
   } = useFilterForm()
   const router = useRouter()
-  const { emptyFilters, resetFilters } = useFilterActions({
+  const { emptyFilters, allowReset } = useFilterActions({
     attribute_code,
   })
   const [openEl, setOpenEl] = useState<null | HTMLElement>(null)
@@ -76,6 +76,7 @@ export function FilterRangeType(props: FilterRangeTypeProps) {
             onClose={handleClose}
             className={classes.root}
             onReset={() => emptyFilters()}
+            allowReset={allowReset}
           >
             <Box
               sx={(theme) => ({

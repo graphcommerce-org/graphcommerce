@@ -8,9 +8,8 @@ import {
   ActionCardItemRenderProps,
   ActionCard,
 } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
-import { Box, Checkbox, TextField, Typography } from '@mui/material'
-import { ChangeEvent, useState } from 'react'
+import { Box, Checkbox, Typography } from '@mui/material'
+import { useState } from 'react'
 import type { SetRequired } from 'type-fest'
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
 import { ProductListParams } from '../ProductListItems/filterTypes'
@@ -128,13 +127,12 @@ function FilterEqualActionCard(
 export function FilterEqualType(props: FilterEqualTypeProps) {
   const { attribute_code, count, label, options, __typename, ...chipProps } = props
   const [openEl, setOpenEl] = useState<null | HTMLElement>(null)
-  const [filteredOption, setFilteredOptions] = useState<Filter['options']>(options)
   const {
     form: { control },
   } = useFilterForm()
 
   const { params } = useProductListParamsContext()
-  const { emptyFilters } = useFilterActions({
+  const { emptyFilters, allowReset } = useFilterActions({
     attribute_code,
   })
   const currentFilter: FilterEqualTypeInput = cloneDeep(params.filters[attribute_code]) ?? {
@@ -153,17 +151,6 @@ export function FilterEqualType(props: FilterEqualTypeProps) {
     setOpenEl(null)
   }
 
-  const handleSearch = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFilteredOptions(
-      options?.filter((option) =>
-        option?.label?.toLowerCase().includes(e.target.value.toLowerCase()),
-      ),
-    )
-  }
-
-  const searchCompatible = options && options?.length > 10
-  const mode = searchCompatible ? 'full' : 'minimal'
-
   return (
     <ChipMenu
       variant='outlined'
@@ -176,7 +163,7 @@ export function FilterEqualType(props: FilterEqualTypeProps) {
       selected={currentLabels.length > 0}
       filterValue={currentLabels.length}
       className={componentName}
-      mode={mode}
+      allowReset={allowReset}
     >
       <ActionCardListForm
         name={`${attribute_code}.in`}
@@ -185,7 +172,7 @@ export function FilterEqualType(props: FilterEqualTypeProps) {
         layout='list'
         variant='default'
         items={
-          filteredOption?.map((option) => ({
+          options?.map((option) => ({
             option,
             attribute_code,
             params,
