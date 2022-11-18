@@ -1,9 +1,9 @@
 import { Box, Chip, ChipProps, SxProps, Theme, Typography } from '@mui/material'
 import React, { Dispatch, PropsWithChildren, ReactNode, SetStateAction } from 'react'
 import { IconSvg } from '../IconSvg'
-import { LayoutOverlaySize } from '../Overlay'
 import { iconChevronDown, iconChevronUp } from '../icons'
-import { ResponsiveMenu } from './ResponsiveMenu'
+import { OverlayFilterPanel } from './OverlayFilterPanel'
+import { PopperFilterPanel } from './PopperFilterPanel'
 
 export type ChipMenuProps = PropsWithChildren<
   Omit<ChipProps<'button'>, 'children' | 'component'>
@@ -16,8 +16,8 @@ export type ChipMenuProps = PropsWithChildren<
   onReset?: () => void
   labelRight?: React.ReactNode
   sx?: SxProps<Theme>
-  actionable?: boolean
-  mode?: LayoutOverlaySize
+  allowReset?: boolean
+  mode?: 'overlay' | 'popper'
 }
 
 export function ChipMenu(props: ChipMenuProps) {
@@ -35,8 +35,7 @@ export function ChipMenu(props: ChipMenuProps) {
     onSubmit,
     accessKey,
     id = 'filterpopper',
-    actionable = true,
-    mode = 'minimal',
+    mode = 'popper',
     ...chipProps
   } = props
 
@@ -59,65 +58,46 @@ export function ChipMenu(props: ChipMenuProps) {
         </Typography>
       </Box>
     )
-  // const labelFilterValue = (
-  //   <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-  //     <Typography variant='caption'>{label}</Typography>
-  //     {filterValue ? (
-  //       <Typography variant='caption' sx={{ marginLeft: '5px' }}>
-  //         {filterValue}
-  //       </Typography>
-  //     ) : null}
-  //   </Box>
-  // )
 
   const selectedAndMenuHidden = selected && !openEl
 
   return (
-    <ResponsiveMenu
-      {...props}
-      id={id}
-      openEl={openEl}
-      setOpenEl={setOpenEl}
-      onReset={onReset}
-      actionable={actionable}
-      mode={mode}
-      chip={
-        <Chip
-          aria-describedby={id}
-          component='button'
-          size='responsive'
-          color={selectedAndMenuHidden ? 'primary' : 'default'}
-          clickable
-          onDelete={
-            onDelete ||
-            ((event: React.MouseEvent<HTMLButtonElement>) =>
-              setOpenEl(!openEl ? event.currentTarget.parentElement : null))
-          }
-          onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-            setOpenEl(openEl ? null : event.currentTarget)
-          }}
-          deleteIcon={deleteIcon}
-          {...chipProps}
-          label={label}
-          sx={[
-            ...(selected
-              ? [
-                  {
-                    backgroundColor: '#E6F3ED',
-                    borderColor: 'transparent',
-                    '& .MuiChip-label': { marginRight: 1 },
-                    '&:hover': { background: '#b0ebd0 !important' },
-                  },
-                ]
-              : [{ borderColor: 'black' }]),
-            {
-              m: 0.1,
-            },
-          ]}
-        />
-      }
-    >
-      {children}
-    </ResponsiveMenu>
+    <>
+      <Chip
+        aria-describedby={id}
+        component='button'
+        size='responsive'
+        color={selectedAndMenuHidden ? 'primary' : 'default'}
+        clickable
+        onDelete={
+          onDelete ||
+          ((event: React.MouseEvent<HTMLButtonElement>) =>
+            setOpenEl(!openEl ? event.currentTarget.parentElement : null))
+        }
+        onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+          setOpenEl(openEl ? null : event.currentTarget)
+        }}
+        deleteIcon={deleteIcon}
+        {...chipProps}
+        label={label}
+        sx={[
+          ...(selected
+            ? [
+                {
+                  backgroundColor: '#E6F3ED',
+                  borderColor: 'transparent',
+                  '& .MuiChip-label': { marginRight: 1 },
+                  '&:hover': { background: '#b0ebd0 !important' },
+                },
+              ]
+            : [{ borderColor: 'black' }]),
+          {
+            m: 0.1,
+          },
+        ]}
+      />
+      {mode === 'overlay' && <OverlayFilterPanel {...props}>{children}</OverlayFilterPanel>}
+      {mode === 'popper' && <PopperFilterPanel {...props}>{children}</PopperFilterPanel>}
+    </>
   )
 }

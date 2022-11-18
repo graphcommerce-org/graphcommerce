@@ -26,6 +26,7 @@ export type LayoutHeaderProps = FloatingProps &
     noAlign?: boolean
 
     sx?: SxProps<Theme>
+    size?: 'small' | 'medium' | 'large'
   }
 
 type ComponentStyleProps = {
@@ -34,6 +35,7 @@ type ComponentStyleProps = {
   children: boolean
   floatingSm: boolean
   floatingMd: boolean
+  size: 'small' | 'medium' | 'large'
 }
 
 const { selectors, withState } = extendableComponent<ComponentStyleProps, 'LayoutHeader'>(
@@ -42,7 +44,16 @@ const { selectors, withState } = extendableComponent<ComponentStyleProps, 'Layou
 )
 
 export function LayoutHeader(props: LayoutHeaderProps) {
-  const { children, divider, primary, secondary, noAlign = false, switchPoint, sx = [] } = props
+  const {
+    children,
+    divider,
+    primary,
+    secondary,
+    noAlign = false,
+    switchPoint,
+    size = 'medium',
+    sx = [],
+  } = props
   const showBack = useShowBack()
   const showClose = useShowClose()
 
@@ -73,6 +84,7 @@ export function LayoutHeader(props: LayoutHeaderProps) {
     noAlign,
     children: !!children,
     divider: !!divider,
+    size,
   })
 
   return (

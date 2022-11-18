@@ -1,12 +1,12 @@
 import { UseFormReturn } from '@graphcommerce/ecommerce-ui'
 import { cloneDeep } from '@graphcommerce/graphql'
-import { ProductAttributeFilterInput } from '@graphcommerce/graphql-mesh'
+import { FilterEqualTypeInput, ProductAttributeFilterInput } from '@graphcommerce/graphql-mesh'
 import { useProductListLinkReplace } from '../../../hooks/useProductListLinkReplace'
 import { ProductListParams } from '../../ProductListItems/filterTypes'
 import { useFilterForm } from '../FilterFormContext'
 
 export type FilterActionProps = {
-  attribute_code?: string
+  attribute_code?: keyof ProductAttributeFilterInput | string
 }
 
 type LocalFilterInputProps = FilterActionProps & {
@@ -39,7 +39,15 @@ const removeAllFilters = (
   }
 }
 
-const showAll = (params) => {}
+const allowReset = (props: Pick<LocalFilterInputProps, 'form' | 'attribute_code'>) => {
+  const { attribute_code, form } = props
+  if (!attribute_code) return false
+  const { watch } = form
+  const filterValues = watch(attribute_code as keyof ProductAttributeFilterInput)
+  const castedFilterValue = filterValues as FilterEqualTypeInput
+  console.log(castedFilterValue)
+  return castedFilterValue?.in !== undefined ? (castedFilterValue.in?.length ?? 0) > 0 : false
+}
 
 export const useFilterActions = (props: FilterActionProps) => {
   const replaceRoute = useProductListLinkReplace({ scroll: false })
@@ -51,6 +59,6 @@ export const useFilterActions = (props: FilterActionProps) => {
     },
     emptyFilters: () => emptyFilters({ ...props, form, params }),
     clearAllFilters: () => removeAllFilters({ ...props, form, params, onReplace: replaceRoute }),
-    showAll: () => showAll(params),
+    allowReset: allowReset({ ...props, form }),
   }
 }
