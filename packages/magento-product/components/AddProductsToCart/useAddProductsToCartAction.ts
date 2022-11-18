@@ -24,7 +24,7 @@ export function useAddProductsToCartAction(
   const { sku, index = 0, onClick: onClickIncomming, disabled, loading } = props
 
   return {
-    disabled: Boolean(formState.errors.cartItems?.[index].sku?.message || disabled),
+    disabled: Boolean(formState.errors.cartItems?.[index]?.sku?.message || disabled),
     loading: loading || (formState.isSubmitting && getValues(`cartItems.${index}.sku`) === sku),
     onClick: useEventCallback((e) => {
       e.stopPropagation()
