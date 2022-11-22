@@ -33,3 +33,5 @@ build
 
 *.gql.ts
 *.tsbuildinfo
+
+*.interceptor.tsx

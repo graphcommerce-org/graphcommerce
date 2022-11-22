@@ -1,31 +1,42 @@
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Box, ChipProps, ClickAwayListener, Popper, TextField } from '@mui/material'
-import React, { forwardRef, PropsWithChildren, ReactElement, useMemo, useState } from 'react'
+import { Box, Button, ChipProps, ClickAwayListener, Fab, Popper, TextField } from '@mui/material'
+import React, {
+  forwardRef,
+  PropsWithChildren,
+  ReactElement,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react'
 import { LinkOrButton } from '../Button'
 import { IconSvg } from '../IconSvg'
 import { LayoutTitle } from '../Layout'
 import { LayoutOverlayHeader } from '../LayoutOverlay'
-import { OverlayButton } from '../Overlay/components/OverlayButton'
 import { iconClose } from '../icons'
 
+const MAX_LENGTH = 7
+
 type PopperFilterPanelProps = PropsWithChildren<
-  Omit<ChipProps<'button'>, 'children' | 'component'>
+  Omit<ChipProps<'button'>, 'children' | 'component' | 'onClick'>
 > & {
   openEl: null | HTMLElement
   setOpenEl: (input: null) => void
   onClose?: () => void
-  onReset?: (event: any) => void
-  allowReset?: boolean
+  onReset?:
+    | (React.MouseEventHandler<HTMLButtonElement> &
+        React.MouseEventHandler<HTMLAnchorElement> &
+        React.MouseEventHandler<HTMLSpanElement>)
+    | undefined
 }
 
 type PopperFilterContentProps = Pick<
   PopperFilterPanelProps,
-  'onClose' | 'setOpenEl' | 'label' | 'onReset' | 'children' | 'allowReset'
+  'onClose' | 'setOpenEl' | 'label' | 'onReset' | 'children'
 >
 
 const PopperFilterContent = forwardRef<HTMLElement, PopperFilterContentProps>(
-  ({ setOpenEl, label, children, allowReset, onReset }, ref) => {
+  ({ setOpenEl, label, children, onReset }, ref) => {
     const [search, setSearch] = useState<string>()
     const castedChildren = children as ReactElement
     const menuLength = castedChildren?.props.items?.length
@@ -39,8 +50,11 @@ const PopperFilterContent = forwardRef<HTMLElement, PopperFilterContentProps>(
       return React.cloneElement(castedChildren, { items: filteredItems })
     }, [castedChildren, children, search])
 
+    const inSearchMode = menuLength > MAX_LENGTH
+
     return (
       <Box
+        ref={ref}
         sx={{
           display: 'flex',
           flexDirection: 'column',
@@ -51,32 +65,41 @@ const PopperFilterContent = forwardRef<HTMLElement, PopperFilterContentProps>(
           switchPoint={0}
           primary={
             <LinkOrButton
-              button={{ variant: 'text' }}
+              button={{ variant: 'text', size: 'medium', sx: { mr: 1 } }}
               color='primary'
               onClick={onReset}
-              disabled={!allowReset}
             >
               <Trans id='Reset' />
             </LinkOrButton>
           }
           secondary={
-            <LinkOrButton
-              button={{ variant: 'inline' }}
-              color='inherit'
-              startIcon={<IconSvg src={iconClose} size='medium' />}
-              onClick={() => setOpenEl(null)}
-            />
+            <Box sx={{ width: '74px', display: 'flex', justifyContent: 'center' }}>
+              <Fab
+                onClick={() => setOpenEl(null)}
+                sx={{
+                  boxShadow: 'none',
+                }}
+                size='small'
+                aria-label={i18n._(/* i18n */ 'Close')}
+              >
+                <IconSvg src={iconClose} size='medium' />
+              </Fab>
+            </Box>
           }
+          sx={{
+            '& .LayoutHeaderContent-content': { height: '50px', padding: 0 },
+            '& .LayoutHeaderContent-bg': { height: '50px' },
+          }}
         >
-          {menuLength > 8 ? (
+          {inSearchMode ? (
             <TextField
               type='search'
-              fullWidth
               variant='standard'
               size='small'
               color='primary'
               placeholder={i18n._(/* 18n */ 'Search {filter}', { filter: label })}
               onChange={(e) => setSearch(e.target.value)}
+              sx={{ marginX: 3 }}
             />
           ) : (
             <LayoutTitle size='small' component='span'>
@@ -87,35 +110,33 @@ const PopperFilterContent = forwardRef<HTMLElement, PopperFilterContentProps>(
 
         <Box
           sx={(theme) => ({
-            mt: theme.appShell.headerHeightSm,
+            mt: `calc(${theme.appShell.headerHeightSm} + 5px)`,
             flex: 1,
             padding: `0 ${theme.page.horizontal}`,
-            overflow: 'visable',
-            overflowY: 'scroll',
+            ...{ overflow: 'visable', overflowY: inSearchMode ? 'scroll' : 'clip' },
             maxHeight: '500px',
           })}
         >
           {filteredChildren}
 
-          <Box sx={(theme) => ({ height: theme.spacings.xxl })} />
-          <OverlayButton
+          <Box sx={(theme) => ({ height: theme.spacings.sm })} />
+          <Button
             form='filter-form'
             variant='pill'
             size='large'
             type='submit'
+            color='primary'
+            fullWidth
             onClick={() => {
               setTimeout(() => setOpenEl(null), 500)
             }}
-            sx={{
-              backgroundColor: 'primary.main',
-              color: 'primary.contrastText',
-              position: 'absolute',
-              left: 10,
-              right: 10,
-            }}
+            sx={(theme) => ({
+              position: 'sticky',
+              bottom: theme.spacings.xs,
+            })}
           >
             <Trans id='Apply' />
-          </OverlayButton>
+          </Button>
         </Box>
       </Box>
     )
@@ -123,16 +144,15 @@ const PopperFilterContent = forwardRef<HTMLElement, PopperFilterContentProps>(
 )
 
 export function PopperFilterPanel(props: PopperFilterPanelProps) {
-  const { openEl, onClose, setOpenEl } = props
+  const { openEl, onClose } = props
   const open = Boolean(openEl)
 
   if (!open) return null
   return (
     <ClickAwayListener
-      mouseEvent='onMouseDown'
+      mouseEvent='onClick'
       onClickAway={() => {
-        if (onClose) onClose()
-        setOpenEl?.(null)
+        if (onClose && openEl) onClose()
       }}
     >
       <Popper

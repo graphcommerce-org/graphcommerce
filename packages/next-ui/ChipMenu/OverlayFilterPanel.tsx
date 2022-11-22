@@ -11,37 +11,41 @@ import { OverlayButton } from '../Overlay/components/OverlayButton'
 import { iconClose } from '../icons'
 
 type OverlayFilterPanelProps = PropsWithChildren<
-  Omit<ChipProps<'button'>, 'children' | 'component'>
+  Omit<ChipProps<'button'>, 'children' | 'component' | 'onClick'>
 > & {
   openEl: null | HTMLElement
   setOpenEl: (input: null) => void
   onClose?: () => void
-  onReset?: (event: any) => void
-  allowReset?: boolean
+  onReset?:
+    | (React.MouseEventHandler<HTMLButtonElement> &
+        React.MouseEventHandler<HTMLAnchorElement> &
+        React.MouseEventHandler<HTMLSpanElement>)
+    | undefined
 }
 
 type OverlayFilterContentProps = Pick<
   OverlayFilterPanelProps,
-  'onClose' | 'setOpenEl' | 'label' | 'onReset' | 'children' | 'allowReset'
+  'onClose' | 'setOpenEl' | 'label' | 'onReset' | 'children'
 >
 
 const OverlayFilterContent = forwardRef<HTMLElement, OverlayFilterContentProps>(
-  ({ setOpenEl, label, children, allowReset, onReset }, ref) => {
+  ({ setOpenEl, label, children, onReset }, ref) => {
     const [search, setSearch] = useState<string>()
     const castedChildren = children as ReactElement
     const menuLength = castedChildren?.props.items?.length
     const filteredChildren = useMemo(() => {
-      const { items } = (children as ReactElement).props
+      const { items } = castedChildren.props
       const filteredItems = items?.filter((item) => {
         const optionLabelLowerCase = item.option.label.toLowerCase()
         const searchLowerCase = search?.toLowerCase() ?? ''
         return search ? optionLabelLowerCase?.includes(searchLowerCase) : true
       })
       return React.cloneElement(castedChildren, { items: filteredItems })
-    }, [castedChildren, children, search])
+    }, [castedChildren, search])
 
     return (
       <Box
+        ref={ref}
         sx={{
           display: 'flex',
           flexDirection: 'column',
@@ -51,12 +55,7 @@ const OverlayFilterContent = forwardRef<HTMLElement, OverlayFilterContentProps>(
         <LayoutOverlayHeader
           switchPoint={0}
           primary={
-            <LinkOrButton
-              button={{ variant: 'text' }}
-              color='primary'
-              onClick={onReset}
-              disabled={!allowReset}
-            >
+            <LinkOrButton button={{ variant: 'text' }} color='primary' onClick={onReset}>
               <Trans id='Reset' />
             </LinkOrButton>
           }
@@ -103,7 +102,7 @@ const OverlayFilterContent = forwardRef<HTMLElement, OverlayFilterContentProps>(
             size='large'
             type='submit'
             onClick={() => {
-              setTimeout(() => setOpenEl(null), 500)
+              setOpenEl(null)
             }}
             sx={{
               backgroundColor: 'primary.main',
