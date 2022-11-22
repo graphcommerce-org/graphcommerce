@@ -1,5 +1,59 @@
 # Change Log
 
+## 5.0.0
+
+### Major Changes
+
+- [#1734](https://github.com/graphcommerce-org/graphcommerce/pull/1734) [`e4c7fe17e`](https://github.com/graphcommerce-org/graphcommerce/commit/e4c7fe17e413e37362ceae92e67f1b3a5f62d398) - Bump major version of all packages ([@github-actions](https://github.com/apps/github-actions))
+
+### Minor Changes
+
+- [#1719](https://github.com/graphcommerce-org/graphcommerce/pull/1719) [`dc4996bfe`](https://github.com/graphcommerce-org/graphcommerce/commit/dc4996bfe8a3d6aa950ec79972b3b0c84dfe1c9d) - Changed pan gesture in useScroller to look at pan state instead of the root component ([@mikekeehnen](https://github.com/mikekeehnen))
+
+### Patch Changes
+
+- [#1718](https://github.com/graphcommerce-org/graphcommerce/pull/1718) [`6407e8719`](https://github.com/graphcommerce-org/graphcommerce/commit/6407e87191aaf3ad49eca536efcabf3641296e80) - ScrollerPageCounter shouldn’t set visibleItems to a string as that isn’t the correct type ([@paales](https://github.com/paales))
+
+- [#1738](https://github.com/graphcommerce-org/graphcommerce/pull/1738) [`6171ad02c`](https://github.com/graphcommerce-org/graphcommerce/commit/6171ad02c19782b1e1f0eb00ea25ea6b764250b5) - Added topological sorting to plugins and added ifEnv export to plugins to conditionally load plugins ([@paales](https://github.com/paales))
+
+## 5.0.0-canary.14
+
+## 5.0.0-canary.9
+
+### Major Changes
+
+- [`e4c7fe17e`](https://github.com/graphcommerce-org/graphcommerce/commit/e4c7fe17e413e37362ceae92e67f1b3a5f62d398) - Bump major version of all packages ([@paales](https://github.com/paales))
+
+## 4.31.0-canary.8
+
+## 4.31.0-canary.7
+
+## 4.31.0-canary.6
+
+## 4.31.0-canary.5
+
+### Patch Changes
+
+- [#1738](https://github.com/graphcommerce-org/graphcommerce/pull/1738) [`6171ad02c`](https://github.com/graphcommerce-org/graphcommerce/commit/6171ad02c19782b1e1f0eb00ea25ea6b764250b5) - Added topological sorting to plugins and added ifEnv export to plugins to conditionally load plugins ([@paales](https://github.com/paales))
+
+## 4.31.0-canary.4
+
+## 4.31.0-canary.3
+
+## 4.31.0-canary.2
+
+## 4.31.0-canary.1
+
+### Patch Changes
+
+- [#1718](https://github.com/graphcommerce-org/graphcommerce/pull/1718) [`6407e8719`](https://github.com/graphcommerce-org/graphcommerce/commit/6407e87191aaf3ad49eca536efcabf3641296e80) - ScrollerPageCounter shouldn’t set visibleItems to a string as that isn’t the correct type ([@paales](https://github.com/paales))
+
+## 4.31.0-canary.0
+
+### Minor Changes
+
+- [#1719](https://github.com/graphcommerce-org/graphcommerce/pull/1719) [`dc4996bfe`](https://github.com/graphcommerce-org/graphcommerce/commit/dc4996bfe8a3d6aa950ec79972b3b0c84dfe1c9d) Thanks [@mikekeehnen](https://github.com/mikekeehnen)! - Changed pan gesture in useScroller to look at pan state instead of the root component
+
 ## 4.30.2
 
 ## 4.30.1

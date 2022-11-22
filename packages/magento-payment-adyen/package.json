@@ -1,0 +1,39 @@
+{
+  "name": "@graphcommerce/magento-payment-adyen",
+  "homepage": "https://www.graphcommerce.org/",
+  "repository": "github:graphcommerce-org/graphcommerce",
+  "version": "5.0.0",
+  "sideEffects": false,
+  "prettier": "@graphcommerce/prettier-config-pwa",
+  "eslintConfig": {
+    "extends": "@graphcommerce/eslint-config-pwa",
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    }
+  },
+  "devDependencies": {
+    "@graphcommerce/eslint-config-pwa": "^5.0.0",
+    "@graphcommerce/magento-product": "5.0.0",
+    "@graphcommerce/prettier-config-pwa": "^5.0.0",
+    "@graphcommerce/typescript-config-pwa": "^5.0.0",
+    "@playwright/test": "^1.21.1",
+    "type-fest": "^2.12.2"
+  },
+  "dependencies": {
+    "@graphcommerce/graphql": "5.0.0",
+    "@graphcommerce/graphql-mesh": "5.0.0",
+    "@graphcommerce/image": "5.0.0",
+    "@graphcommerce/magento-cart": "5.0.0",
+    "@graphcommerce/magento-cart-payment-method": "5.0.0",
+    "@graphcommerce/magento-store": "5.0.0",
+    "@graphcommerce/next-ui": "5.0.0"
+  },
+  "peerDependencies": {
+    "@lingui/react": "^3.13.2",
+    "@lingui/core": "^3.13.2",
+    "@mui/material": "5.5.3",
+    "next": "^12.1.2",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  }
+}

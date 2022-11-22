@@ -1,7 +1,10 @@
-import styled from '@emotion/styled'
-import { useMotionValueValue, useMotionSelector } from '@graphcommerce/framer-utils'
+import {
+  useMotionValueValue,
+  useMotionSelector,
+  clientSizeCssVar,
+} from '@graphcommerce/framer-utils'
 import { i18n } from '@lingui/core'
-import { Box, Fab, SxProps, Theme, useEventCallback, useTheme } from '@mui/material'
+import { useTheme, Box, Fab, SxProps, Theme, useEventCallback, styled } from '@mui/material'
 import { m } from 'framer-motion'
 import React, { useEffect } from 'react'
 import type { LiteralUnion } from 'type-fest'
@@ -43,7 +46,7 @@ const componentName = 'Navigation'
 const parts = ['root', 'navigation', 'header', 'column'] as const
 const { classes } = extendableComponent(componentName, parts)
 
-export const NavigationOverlay = React.memo<NavigationOverlayProps>((props) => {
+export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
   const {
     sx,
     stretchColumns,
@@ -53,16 +56,15 @@ export const NavigationOverlay = React.memo<NavigationOverlayProps>((props) => {
     justifySm,
     sizeMd,
     sizeSm,
-    itemWidthSm,
+    itemWidthSm = clientSizeCssVar.x,
     itemWidthMd,
     mouseEvent,
     itemPadding = 'md',
   } = props
   const { selection, items, animating, closing, serverRenderDepth } = useNavigation()
 
-  const fabSize = useFabSize('responsive')
-  const svgSize = useIconSvgSize('large')
-
+  const fabMarginY = `calc((${useFabSize('responsive')} - ${useIconSvgSize('large')}) * -0.5)`
+  const itemPad = useTheme().spacings[itemPadding] ?? itemPadding
   const matchMedia = useMatchMedia()
 
   const handleOnBack = useEventCallback(() => {
@@ -144,11 +146,7 @@ export const NavigationOverlay = React.memo<NavigationOverlayProps>((props) => {
                 <Fab
                   color='inherit'
                   onClick={handleOnBack}
-                  sx={{
-                    boxShadow: 'none',
-                    marginLeft: `calc((${fabSize} - ${svgSize}) * -0.5)`,
-                    marginRight: `calc((${fabSize} - ${svgSize}) * -0.5)`,
-                  }}
+                  sx={{ boxShadow: 'none', my: fabMarginY }}
                   size='responsive'
                   aria-label={i18n._(/* i18n */ 'Back')}
                 >
@@ -160,11 +158,7 @@ export const NavigationOverlay = React.memo<NavigationOverlayProps>((props) => {
               <Fab
                 color='inherit'
                 onClick={handleClose}
-                sx={{
-                  boxShadow: 'none',
-                  marginLeft: `calc((${fabSize} - ${svgSize}) * -0.5)`,
-                  marginRight: `calc((${fabSize} - ${svgSize}) * -0.5)`,
-                }}
+                sx={{ boxShadow: 'none', my: fabMarginY }}
                 size='responsive'
                 aria-label={i18n._(/* i18n */ 'Close')}
               >
@@ -178,59 +172,46 @@ export const NavigationOverlay = React.memo<NavigationOverlayProps>((props) => {
           </LayoutHeaderContent>
         </Box>
       </MotionDiv>
-
-      <MotionDiv layout='position' style={{ display: 'grid' }}>
+      <MotionDiv layout='position' sx={{ display: 'grid' }}>
         <Box
           sx={[
             (theme) => ({
               display: 'grid',
               alignItems: !stretchColumns ? 'start' : undefined,
-              '& .NavigationItem-item': {
-                // eslint-disable-next-line no-nested-ternary
-                width: itemWidthMd
-                  ? selectedLevel >= 1
-                    ? `calc(${itemWidthMd} + 1px)`
-                    : itemWidthMd
-                  : 'stretch',
+              [theme.breakpoints.down('md')]: {
+                width:
+                  sizeSm !== 'floating'
+                    ? `calc(${itemWidthSm} + ${selectedLevel}px)`
+                    : `calc(${itemWidthSm} - (${theme.page.horizontal} * 2))`,
+                minWidth: 200,
+                overflow: 'hidden',
+                scrollSnapType: 'x mandatory',
+                '& .NavigationItem-item': {
+                  width:
+                    sizeSm !== 'floating'
+                      ? `calc(${itemWidthSm} - (${itemPad} * 2) + ${selectedLevel}px)`
+                      : `calc(${itemWidthSm} - (${itemPad} * 2) - (${theme.page.horizontal} * 2))`,
+                  minWidth: `calc(200px - (${itemPad} * 2))`,
+                },
+              },
+              [theme.breakpoints.up('md')]: {
+                '& .NavigationItem-item': {
+                  // eslint-disable-next-line no-nested-ternary
+                  width: itemWidthMd
+                    ? selectedLevel >= 1
+                      ? `calc(${itemWidthMd} + 1px)`
+                      : itemWidthMd
+                    : 'stretch',
+                },
               },
             }),
-            activeAndNotClosing
-              ? (theme) => ({
-                  [theme.breakpoints.down('md')]: {
-                    width:
-                      sizeSm !== 'floating'
-                        ? `calc(${itemWidthSm || '100vw'} + ${selectedLevel}px)`
-                        : `calc(${itemWidthSm || '100vw'} - ${theme.page.horizontal} - ${
-                            theme.page.horizontal
-                          })`,
-                    minWidth: 200,
-                    overflow: 'hidden',
-                    scrollSnapType: 'x mandatory',
-                    '& .NavigationItem-item': {
-                      width:
-                        sizeSm !== 'floating'
-                          ? `calc(${itemWidthSm || '100vw'} - ${
-                              theme.spacings[itemPadding] ?? itemPadding
-                            } - ${theme.spacings[itemPadding] ?? itemPadding} + ${selectedLevel}px)`
-                          : `calc(${itemWidthSm || '100vw'} - ${
-                              theme.spacings[itemPadding] ?? itemPadding
-                            } - ${theme.spacings[itemPadding] ?? itemPadding} - ${
-                              theme.page.horizontal
-                            } - ${theme.page.horizontal})`,
-                      minWidth: `calc(${200}px - ${theme.spacings[itemPadding] ?? itemPadding} - ${
-                        theme.spacings[itemPadding] ?? itemPadding
-                      })`,
-                    },
-                  },
-                })
-              : {},
           ]}
         >
           <Box
             className={classes.navigation}
             sx={[
-              (theme) => ({
-                py: theme.spacings[itemPadding] ?? itemPadding,
+              {
+                py: itemPad,
                 display: 'grid',
                 gridAutoFlow: 'column',
                 scrollSnapAlign: 'end',
@@ -242,7 +223,7 @@ export const NavigationOverlay = React.memo<NavigationOverlayProps>((props) => {
                 },
                 '& .Navigation-column': {},
                 '& .NavigationItem-item': {
-                  mx: theme.spacings[itemPadding] ?? itemPadding,
+                  mx: itemPad,
                   whiteSpace: 'nowrap',
                 },
                 '& .NavigationItem-item.first': {
@@ -251,7 +232,7 @@ export const NavigationOverlay = React.memo<NavigationOverlayProps>((props) => {
                 '& .Navigation-column:first-of-type': {
                   boxShadow: 'none',
                 },
-              }),
+              },
               ...(Array.isArray(sx) ? sx : [sx]),
             ]}
           >

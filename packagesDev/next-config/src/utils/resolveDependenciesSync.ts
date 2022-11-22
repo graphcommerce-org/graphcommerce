@@ -4,7 +4,8 @@ import type { PackageJson } from 'type-fest'
 
 function resolveRecursivePackageJson(
   packageJsonFilename: string,
-  packageNames: Map<string, string>,
+  dependencyStructure: DependencyStructure,
+  force = false,
 ) {
   try {
     const packageJsonFile = fs.readFileSync(packageJsonFilename, 'utf-8').toString()
@@ -19,8 +20,7 @@ function resolveRecursivePackageJson(
       ...Object.keys(packageJson.peerDependencies ?? {}),
     ]
 
-    const isGraphCommerce = !!dependencies.some((name) => name.includes('graphcommerce'))
-    if (!isGraphCommerce) return packageNames
+    if (!force && !packageJson.name.includes('graphcommerce')) return dependencyStructure
 
     const dirName = path.dirname(path.relative(process.cwd(), packageJsonFilename))
 
@@ -55,5 +55,11 @@ function resolveRecursivePackageJson(
  * and stop there, not checking children.
  */
 export function resolveDependenciesSync(root = process.cwd()) {
-  return resolveRecursivePackageJson(path.join(root, 'package.json'), new Map())
+  const cached = resolveCache.get(root)
+  if (cached) return cached
+  const dependencyStructure = resolveRecursivePackageJson(path.join(root, 'package.json'), {}, true)
+
+  const sorted = sortDependencies(dependencyStructure)
+  resolveCache.set(root, sorted)
+  return sorted
 }

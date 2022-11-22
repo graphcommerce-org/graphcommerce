@@ -1,5 +1,51 @@
 # @graphcommerce/cli
 
+## 5.0.0
+
+### Major Changes
+
+- [#1734](https://github.com/graphcommerce-org/graphcommerce/pull/1734) [`e4c7fe17e`](https://github.com/graphcommerce-org/graphcommerce/commit/e4c7fe17e413e37362ceae92e67f1b3a5f62d398) - Bump major version of all packages ([@github-actions](https://github.com/apps/github-actions))
+
+### Patch Changes
+
+- [#1718](https://github.com/graphcommerce-org/graphcommerce/pull/1718) [`f218e533b`](https://github.com/graphcommerce-org/graphcommerce/commit/f218e533bd7abfc6c949cdf380df0d166f89e145) - Make the tmp file to \_tmp_mesh instead of \_tmp_codegen ([@paales](https://github.com/paales))
+
+- [#1738](https://github.com/graphcommerce-org/graphcommerce/pull/1738) [`bd3a30438`](https://github.com/graphcommerce-org/graphcommerce/commit/bd3a30438cf6b69cd37a191406c8190a20e572cc) - Created directive @env(if: String!) on FRAGMENT_DEFINITION to conditionally include a fragment ([@paales](https://github.com/paales))
+
+## 5.0.0-canary.14
+
+## 5.0.0-canary.9
+
+### Major Changes
+
+- [`e4c7fe17e`](https://github.com/graphcommerce-org/graphcommerce/commit/e4c7fe17e413e37362ceae92e67f1b3a5f62d398) - Bump major version of all packages ([@paales](https://github.com/paales))
+
+## 4.31.0-canary.8
+
+## 4.31.0-canary.7
+
+## 4.31.0-canary.6
+
+## 4.31.0-canary.5
+
+### Patch Changes
+
+- [#1738](https://github.com/graphcommerce-org/graphcommerce/pull/1738) [`bd3a30438`](https://github.com/graphcommerce-org/graphcommerce/commit/bd3a30438cf6b69cd37a191406c8190a20e572cc) - Created directive @env(if: String!) on FRAGMENT_DEFINITION to conditionally include a fragment ([@paales](https://github.com/paales))
+
+## 4.31.0-canary.4
+
+## 4.31.0-canary.3
+
+## 4.31.0-canary.2
+
+## 4.31.0-canary.1
+
+### Patch Changes
+
+- [#1718](https://github.com/graphcommerce-org/graphcommerce/pull/1718) [`f218e533b`](https://github.com/graphcommerce-org/graphcommerce/commit/f218e533bd7abfc6c949cdf380df0d166f89e145) - Make the tmp file to \_tmp_mesh instead of \_tmp_codegen ([@paales](https://github.com/paales))
+
+## 4.31.0-canary.0
+
 ## 4.30.2
 
 ### Patch Changes

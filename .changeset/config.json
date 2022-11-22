@@ -2,24 +2,14 @@
   "$schema": "https://unpkg.com/@changesets/config@2.2.0/schema.json",
   "changelog": [
     "@graphcommerce/changeset-changelog",
-    { "repo": "graphcommerce-org/graphcommerce" }
+    {
+      "repo": "graphcommerce-org/graphcommerce"
+    }
   ],
   "commit": false,
   "fixed": [
-    ["@graphcommerce/magento*", "@graphcommerce/mollie-magento-payment"],
     [
-      "@graphcommerce/cli",
-      "@graphcommerce/ecommerce-ui",
-      "@graphcommerce/framer-next-pages",
-      "@graphcommerce/framer-scroller",
-      "@graphcommerce/framer-utils",
-      "@graphcommerce/graphql",
-      "@graphcommerce/graphql-mesh",
-      "@graphcommerce/image",
-      "@graphcommerce/lingui-next",
-      "@graphcommerce/next-ui",
-      "@graphcommerce/react-hook-form",
-      "@graphcommerce/next-config"
+      "@graphcommerce/*"
     ]
   ],
   "access": "public",

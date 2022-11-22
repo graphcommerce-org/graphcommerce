@@ -1,5 +1,45 @@
 # Change Log
 
+## 5.0.0
+
+### Major Changes
+
+- [#1734](https://github.com/graphcommerce-org/graphcommerce/pull/1734) [`e4c7fe17e`](https://github.com/graphcommerce-org/graphcommerce/commit/e4c7fe17e413e37362ceae92e67f1b3a5f62d398) - Bump major version of all packages ([@github-actions](https://github.com/apps/github-actions))
+
+### Patch Changes
+
+- [#1734](https://github.com/graphcommerce-org/graphcommerce/pull/1734) [`f44dae2c5`](https://github.com/graphcommerce-org/graphcommerce/commit/f44dae2c5a82e62dc8b3f08ad672278faa1c9f54) - When rendering the page it should run the initial animations if a page doesn't want to do that it should disable initial it's self ([@github-actions](https://github.com/apps/github-actions))
+
+## 5.0.0-canary.14
+
+## 5.0.0-canary.9
+
+### Major Changes
+
+- [`e4c7fe17e`](https://github.com/graphcommerce-org/graphcommerce/commit/e4c7fe17e413e37362ceae92e67f1b3a5f62d398) - Bump major version of all packages ([@paales](https://github.com/paales))
+
+## 4.31.0-canary.8
+
+### Patch Changes
+
+- [`f44dae2c5`](https://github.com/graphcommerce-org/graphcommerce/commit/f44dae2c5a82e62dc8b3f08ad672278faa1c9f54) - When rendering the page it should run the initial animations if a page doesn't want to do that it should disable initial it's self ([@paales](https://github.com/paales))
+
+## 4.31.0-canary.7
+
+## 4.31.0-canary.6
+
+## 4.31.0-canary.5
+
+## 4.31.0-canary.4
+
+## 4.31.0-canary.3
+
+## 4.31.0-canary.2
+
+## 4.31.0-canary.1
+
+## 4.31.0-canary.0
+
 ## 4.30.2
 
 ## 4.30.1
