@@ -39,8 +39,6 @@ const removeAllFilters = (
   }
 }
 
-const showAll = (params) => {}
-
 export const useFilterActions = (props: FilterActionProps) => {
   const replaceRoute = useProductListLinkReplace({ scroll: false })
   const { form, params } = useFilterForm()
@@ -51,6 +49,5 @@ export const useFilterActions = (props: FilterActionProps) => {
     },
     emptyFilters: () => emptyFilters({ ...props, form, params }),
     clearAllFilters: () => removeAllFilters({ ...props, form, params, onReplace: replaceRoute }),
-    showAll: () => showAll(params),
   }
 }

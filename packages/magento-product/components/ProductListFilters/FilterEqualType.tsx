@@ -166,17 +166,17 @@ export function FilterEqualType(props: FilterEqualTypeProps) {
 
   return (
     <ChipMenu
-      variant='outlined'
       {...chipProps}
+      variant='outlined'
       openEl={openEl}
       setOpenEl={setOpenEl}
-      onReset={() => emptyFilters()}
+      onReset={emptyFilters}
       onClose={handleClose}
       label={currentLabel}
       selected={currentLabels.length > 0}
       filterValue={currentLabels.length}
       className={componentName}
-      mode={mode}
+      onClick={(e) => setOpenEl(e.currentTarget)}
     >
       <ActionCardListForm
         name={`${attribute_code}.in`}

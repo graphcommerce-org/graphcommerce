@@ -9,7 +9,7 @@ import {
   extendableComponent,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { SxProps, Theme, Typography } from '@mui/material'
+import { SxProps, Theme, Typography, useMediaQuery } from '@mui/material'
 import { useState } from 'react'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
@@ -66,25 +66,21 @@ export function ProductListSort(props: ProductListSortProps) {
     form: { control },
   } = useFilterForm()
 
-  const replaceRoute = useProductListLinkReplace()
   const { data: storeConfigQuery } = useQuery(StoreConfigDocument)
   const defaultSort = storeConfigQuery?.storeConfig?.catalog_default_sort_by
   const [openEl, setOpenEl] = useState<HTMLElement | null>(null)
   const [currentSort = defaultSort] = Object.keys(params.sort)
   const currentOption = sort_fields?.options?.find((option) => option?.value === currentSort)
   const selected = currentSort !== defaultSort
+  const filterMode = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'))
+    ? 'overlay'
+    : 'popper'
   const label =
     currentOption?.label !== (undefined || 'Position') ? (
       currentOption?.label
     ) : (
       <Trans id='Sort By' />
     )
-
-  const removeFilter = () => {
-    const linkParams = cloneDeep(params)
-    linkParams.sort = {}
-    replaceRoute(linkParams)
-  }
 
   const handleClose = () => {
     setOpenEl(null)
@@ -103,6 +99,8 @@ export function ProductListSort(props: ProductListSortProps) {
       sx={Array.isArray(sx) ? sx : [sx]}
       openEl={openEl}
       setOpenEl={setOpenEl}
+      onClick={(e) => setOpenEl(e.currentTarget)}
+      mode={filterMode}
     >
       <ActionCardListForm
         name='sort'
