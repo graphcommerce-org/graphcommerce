@@ -16,7 +16,6 @@ export type ChipMenuProps = PropsWithChildren<
   onReset?: () => void
   labelRight?: React.ReactNode
   sx?: SxProps<Theme>
-  allowReset?: boolean
   mode?: 'overlay' | 'popper'
 }
 
@@ -69,32 +68,11 @@ export function ChipMenu(props: ChipMenuProps) {
         size='responsive'
         color={selectedAndMenuHidden ? 'primary' : 'default'}
         clickable
-        onDelete={
-          onDelete ||
-          ((event: React.MouseEvent<HTMLButtonElement>) =>
-            setOpenEl(!openEl ? event.currentTarget.parentElement : null))
-        }
-        onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-          setOpenEl(openEl ? null : event.currentTarget)
-        }}
+        onDelete={onDelete || onClose}
         deleteIcon={deleteIcon}
         {...chipProps}
         label={label}
-        sx={[
-          ...(selected
-            ? [
-                {
-                  backgroundColor: '#E6F3ED',
-                  borderColor: 'transparent',
-                  '& .MuiChip-label': { marginRight: 1 },
-                  '&:hover': { background: '#b0ebd0 !important' },
-                },
-              ]
-            : [{ borderColor: 'black' }]),
-          {
-            m: 0.1,
-          },
-        ]}
+        sx={{ borderColor: !selected ? 'black' : 'primary.main' }}
       />
       {mode === 'overlay' && <OverlayFilterPanel {...props}>{children}</OverlayFilterPanel>}
       {mode === 'popper' && <PopperFilterPanel {...props}>{children}</PopperFilterPanel>}
