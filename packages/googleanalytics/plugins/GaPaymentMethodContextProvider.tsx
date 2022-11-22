@@ -1,5 +1,6 @@
 import type { PaymentMethodContextProviderProps } from '@graphcommerce/magento-cart-payment-method'
 import type { PluginProps } from '@graphcommerce/next-config'
+import { gtagAddPurchaseInfo } from '../events/gtagAddPurchaseInfo/gtagAddPurchaseInfo'
 
 export const component = 'PaymentMethodContextProvider'
 export const exported = '@graphcommerce/magento-cart-payment-method'
@@ -10,7 +11,7 @@ function GaPaymentMethodContextProvider(props: PluginProps<PaymentMethodContextP
     <Prev
       {...rest}
       onSuccess={async (orderNumber, cart) => {
-        // Todo - add GA event here
+        gtagAddPurchaseInfo(orderNumber, cart)
         await onSuccess?.(orderNumber, cart)
       }}
     />

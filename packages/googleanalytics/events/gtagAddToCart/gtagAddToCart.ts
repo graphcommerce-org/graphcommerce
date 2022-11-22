@@ -3,23 +3,46 @@ import {
   AddProductsToCartMutation,
   AddProductsToCartMutationVariables,
 } from '@graphcommerce/magento-product'
-import { GtagAddToCartFragment } from './GtagAddToCart.gql'
 
-// @todo add types
-// @todo some thing still needs to be done for configurables and bundles as you can have multiple items of the same SKU in your cart, but with different configurations/prices
-// F.E. 'sock-red' has 2 variants, 'sock-red:small' (€ 5) and 'sock-red:large' (€ 7,50). At this time we dont know the value of the item added if multiple variants are added
-export const gtagAddToCart = async (
+export const gtagAddToCart = (
   result: FetchResult<AddProductsToCartMutation>,
   variables: AddProductsToCartMutationVariables,
 ) => {
   if (process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS) {
     const addedItem = result.data?.addProductsToCart?.cart.items?.slice(-1)[0]
+    // @todo, currently only has support for adding one item at a time
+    // @paul: price is price excl btw
 
-    // console.log(result.data?.addProductsToCart, variables)
-    // console.log({
-    //   currency,
-    //   value,
-    //   items,
+    globalThis.gtag?.('event', 'add_to_cart', {
+      currency: addedItem?.prices?.price.currency,
+      value: addedItem?.prices?.price.value,
+      items: [
+        {
+          item_id: addedItem?.product.sku,
+          item_name: addedItem?.product.name,
+          currency: addedItem?.prices?.price.currency,
+          price: addedItem?.prices?.price.value,
+          quantity: variables.cartItems[0].quantity,
+        },
+      ],
+    })
+
+    console.clear()
+    console.log(addedItem?.prices?.price.value)
+    console.log({ addedItem })
+
+    // console.log('added', {
+    //   currency: addedItem?.prices?.price.currency,
+    //   value: addedItem?.prices?.price.value,
+    //   items: [
+    //     {
+    //       item_id: addedItem?.product.sku,
+    //       item_name: addedItem?.product.name,
+    //       currency: addedItem?.prices?.price.currency,
+    //       price: addedItem?.prices?.price.value,
+    //       quantity: addedItem?.quantity,
+    //     },
+    //   ],
     // })
   }
 }

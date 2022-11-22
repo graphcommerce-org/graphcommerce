@@ -6,4 +6,11 @@ fragment PaymentMethodContext on Cart @injectable {
   selected_payment_method {
     ...SelectedPaymentMethod
   }
+  prices {
+    applied_taxes {
+      amount {
+        value
+      }
+    }
+  }
 }

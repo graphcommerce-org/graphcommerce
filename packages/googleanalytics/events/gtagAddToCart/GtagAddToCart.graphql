@@ -1,6 +1,21 @@
 fragment GtagAddToCart on Cart @inject(into: ["CartItemCountChanged"]) {
   items {
     prices {
+      discounts {
+        amount {
+          currency
+          value
+        }
+      }
+      fixed_product_taxes {
+        amount {
+          value
+        }
+      }
+      row_total_including_tax {
+        currency
+        value
+      }
       price {
         currency
         value
