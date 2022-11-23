@@ -11,7 +11,6 @@ import {
 import { Trans } from '@lingui/react'
 import { SxProps, Theme, Typography, useMediaQuery } from '@mui/material'
 import { useState } from 'react'
-import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
 import { useFilterForm } from '../ProductListFilters/FilterFormContext'
 import { ProductListParams } from '../ProductListItems/filterTypes'
@@ -34,13 +33,15 @@ function FilterSortActionCard(
     option: NonNullable<NonNullable<ProductListSortFragment['sort_fields']>['options']>[0]
     attribute_code: string
     params: ProductListParams
-    currentOption: NonNullable<NonNullable<ProductListSortFragment['sort_fields']>['options']>[0]
+    currentOption:
+      | NonNullable<NonNullable<ProductListSortFragment['sort_fields']>['options']>[0]
+      | undefined
   }>,
 ) {
   const { option, attribute_code, currentOption, params, onReset, ...cardProps } = props
   if (!option?.value) return null
-  const labelId = `filter-equal-${attribute_code}-${option?.value}`
-  const filters = cloneDeep(params.filters)
+  // const labelId = `filter-equal-${attribute_code}-${option?.value}`
+  // const filters = cloneDeep(params.filters)
   const isColor = !!attribute_code?.toLowerCase().includes('color')
   const isActive = Boolean(isColor && currentOption?.value?.includes(option?.value) && isColor)
 
@@ -102,22 +103,22 @@ export function ProductListSort(props: ProductListSortProps) {
       onClick={(e) => setOpenEl(e.currentTarget)}
       mode={filterMode}
     >
-      <ActionCardListForm
-        name='sort'
-        control={control}
-        layout='list'
-        variant='default'
-        items={
-          sort_fields?.options?.map((option) => ({
+      {sort_fields?.options ? (
+        <ActionCardListForm
+          name='sort'
+          control={control}
+          layout='list'
+          variant='default'
+          items={sort_fields.options.map((option) => ({
             option,
-            label,
             params,
             value: option?.value ?? '',
             currentOption,
-          })) ?? []
-        }
-        render={FilterSortActionCard}
-      />
+            attribute_code: option?.label ?? '',
+          }))}
+          render={FilterSortActionCard}
+        />
+      ) : null}
     </ChipMenu>
   )
 }

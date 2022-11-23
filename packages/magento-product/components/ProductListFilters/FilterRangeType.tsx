@@ -7,6 +7,7 @@ import type {
 } from '@graphcommerce/graphql-mesh'
 import { Money, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { ChipMenu, ChipMenuProps, extendableComponent } from '@graphcommerce/next-ui'
+import { Mark } from '@mui/base'
 import { Box, Slider } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
@@ -99,7 +100,7 @@ export function FilterRangeType(props: FilterRangeTypeProps) {
                   valueLabelDisplay='off'
                   className={classes.slider}
                   step={null}
-                  marks={values?.map((v) => ({ value: v, label: '' })) as {value: string, label: string}[]}
+                  marks={values?.map((v) => ({ value: v, label: '' })) as Mark[]}
                 />
               </Box>
             </Box>
