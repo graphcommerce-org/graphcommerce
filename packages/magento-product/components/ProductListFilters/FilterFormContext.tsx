@@ -19,7 +19,7 @@ export const useFilterForm = () => useContext(filterFormContext)
 
 export function FilterFormProvider(props: PropsWithChildren) {
   const { children } = props
-  const form = useForm<ProductAttributeFilterInput>({ defaultValues: {} })
+  const form = useForm<ProductAttributeFilterInput & { sort?: string }>({ defaultValues: {} })
   const { params } = useProductListParamsContext()
   const { handleSubmit } = form
   const replaceRoute = useProductListLinkReplace({ scroll: false })
@@ -27,7 +27,8 @@ export function FilterFormProvider(props: PropsWithChildren) {
   useFormPersist({ form, name: 'ProductListFilterForm' })
 
   const submit = handleSubmit((e) => {
-    replaceRoute({ ...params, filters: e })
+    const { sort, ...filters } = e
+    replaceRoute({ ...params, filters, sort: { [sort ?? '']: 'ASC' } })
   })
 
   return (
