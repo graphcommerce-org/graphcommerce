@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.1.0-canary.0
+
+### Minor Changes
+
+- [#1744](https://github.com/graphcommerce-org/graphcommerce/pull/1744) [`cf1c864eb`](https://github.com/graphcommerce-org/graphcommerce/commit/cf1c864eb9819d5730f957be1d6c074ba14deb2a) - Fixed Sku undefined error when adding an item to the cart with an invalid configuration ([@mikekeehnen](https://github.com/mikekeehnen))
+
 ## 5.0.0
 
 ### Major Changes
