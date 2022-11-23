@@ -1,5 +1,5 @@
 {
-  "exclude": ["**/node_modules", "example", "dist", "**/.*/"],
+  "exclude": ["**/node_modules", "example", "dist", "**/.*/", "__tests__", "__mocks__"],
   "include": ["**/*.ts", "**/*.tsx"],
   "extends": "@graphcommerce/typescript-config-pwa/node.json",
   "compilerOptions": {

@@ -1,4 +1,4 @@
-import { Box, Chip, ChipProps, SxProps, Theme, Typography } from '@mui/material'
+import { alpha, Box, Chip, ChipProps, SxProps, Theme, Typography } from '@mui/material'
 import React, { Dispatch, PropsWithChildren, ReactNode, SetStateAction } from 'react'
 import { IconSvg } from '../IconSvg'
 import { iconChevronDown, iconChevronUp } from '../icons'
@@ -47,7 +47,7 @@ export function ChipMenu(props: ChipMenuProps) {
           backgroundColor: 'primary.main',
           borderRadius: 5,
           display: 'flex',
-          minWidth: '20px',
+          minWidth: '22px',
           alignItems: 'center',
           justifyContent: 'center',
         }}
@@ -72,7 +72,22 @@ export function ChipMenu(props: ChipMenuProps) {
         deleteIcon={deleteIcon}
         {...chipProps}
         label={label}
-        sx={{ borderColor: !selected ? 'black' : 'primary.main' }}
+        sx={(theme) => ({
+          '& .MuiChip-deleteIcon': {
+            ml: '0px',
+          },
+          ...(selected
+            ? {
+                border: `1px solid ${theme.palette.primary.main ?? theme.palette.primary.main}`,
+                boxShadow: `inset 0 0 0 1px ${
+                  theme.palette.primary.main ?? theme.palette.primary.main
+                },0 0 0 4px ${alpha(
+                  theme.palette.primary.main,
+                  theme.palette.action.hoverOpacity,
+                )} !important`,
+              }
+            : {}),
+        })}
       />
       {mode === 'overlay' && <OverlayFilterPanel {...props}>{children}</OverlayFilterPanel>}
       {mode === 'popper' && <PopperFilterPanel {...props}>{children}</PopperFilterPanel>}

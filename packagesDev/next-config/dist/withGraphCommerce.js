@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.withGraphCommerce = void 0;
 const next_transpile_modules_1 = __importDefault(require("next-transpile-modules"));
 const webpack_1 = require("webpack");
+const InterceptorPlugin_1 = require("./interceptors/InterceptorPlugin");
 const resolveDependenciesSync_1 = require("./utils/resolveDependenciesSync");
 function extendConfig(nextConfig, modules) {
     return {
@@ -42,6 +43,7 @@ function extendConfig(nextConfig, modules) {
                 '@mui/styled-engine': '@mui/styled-engine/modern',
                 '@mui/system': '@mui/system/modern',
             };
+            config.plugins = [...(config.plugins ?? []), new InterceptorPlugin_1.InterceptorPlugin()];
             return typeof nextConfig.webpack === 'function' ? nextConfig.webpack(config, options) : config;
         },
     };

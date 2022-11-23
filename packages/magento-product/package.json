@@ -28,6 +28,7 @@
     "@graphcommerce/magento-cart": "5.0.0",
     "@graphcommerce/magento-store": "5.0.0",
     "@graphcommerce/next-ui": "5.0.0",
+    "@mui/base": "5.0.0-alpha.107",
     "schema-dts": "^1.1.0"
   },
   "peerDependencies": {

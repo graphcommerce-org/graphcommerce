@@ -128,6 +128,14 @@ module.exports = {
       rules: { 'import/no-default-export': 'off' },
     },
     {
+      files: ['**/*.interceptor.tsx'],
+      rules: {
+        'import/export': 'off',
+        'import/first': 'off',
+        'import/no-extraneous-dependencies': 'off',
+      },
+    },
+    {
       files: ['generated/*'],
       rules: {
         '@typescript-eslint/camelcase': 'off',

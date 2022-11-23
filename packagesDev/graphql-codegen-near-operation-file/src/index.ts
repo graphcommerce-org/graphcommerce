@@ -7,7 +7,8 @@ import {
   ImportSource,
 } from '@graphql-codegen/visitor-plugin-common'
 import { FragmentDefinitionNode, buildASTSchema, visit } from 'graphql'
-import { injectInjectables } from './injectable'
+import { envDirective } from './directive/env'
+import { injectableDirective } from './directive/injectable'
 import { resolveDocumentImports, DocumentImportResolverOptions } from './resolve-document-imports'
 import { appendExtensionToFilePath, defineFilepathSubfolder } from './utils'
 
@@ -75,7 +76,7 @@ export type NearOperationFileConfig = {
    * Optional, override the `cwd` of the execution. We are using `cwd` to figure out the imports
    * between files. Use this if your execuion path is not your project root directory.
    *
-   * @default process.cwd()
+   * @default process
    * @exampleMarkdown ```yml generates:
    * src/:
    *   preset: near-operation-file
@@ -161,8 +162,9 @@ function isDocument(documentFiles: Types.DocumentFile[]) {
 
 export const preset: Types.OutputPreset<NearOperationFileConfig> = {
   buildGeneratesSection: (options) => {
+    options.documents = envDirective(options.documents)
     if (options.presetConfig.injectables) {
-      options.documents = injectInjectables(options.documents)
+      options.documents = injectableDirective(options.documents)
     }
 
     const schemaObject = options.schemaAst ?? buildASTSchema(options.schema, options.config)
