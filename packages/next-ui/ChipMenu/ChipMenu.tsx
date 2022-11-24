@@ -1,13 +1,12 @@
 import { alpha, Box, Chip, ChipProps, SxProps, Theme, Typography } from '@mui/material'
-import React, { Dispatch, PropsWithChildren, ReactNode, SetStateAction } from 'react'
+import React, { Dispatch, ReactNode, SetStateAction } from 'react'
 import { IconSvg } from '../IconSvg'
 import { iconChevronDown, iconChevronUp } from '../icons'
 import { OverlayFilterPanel } from './OverlayFilterPanel'
 import { PopperFilterPanel } from './PopperFilterPanel'
 
-export type ChipMenuProps = PropsWithChildren<
-  Omit<ChipProps<'button'>, 'children' | 'component'>
-> & {
+export type ChipMenuProps = Omit<ChipProps<'button'>, 'children' | 'component'> & {
+  children?: React.ReactNode
   filterValue?: string | ReactNode
   selected: boolean
   openEl: HTMLElement | null
