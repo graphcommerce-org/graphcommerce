@@ -126,7 +126,6 @@ function FilterEqualActionCard(
 
 export function FilterEqualType(props: FilterEqualTypeProps) {
   const { attribute_code, count, label, options, __typename, ...chipProps } = props
-  const [openEl, setOpenEl] = useState<null | HTMLElement>(null)
   const {
     form: { control },
   } = useFilterForm()
@@ -144,26 +143,16 @@ export function FilterEqualType(props: FilterEqualTypeProps) {
       ?.filter((option) => option && currentFilter.in?.includes(option.value))
       .map((option) => option && option.label) ?? []
 
-  const currentLabel =
-    options?.find((option) => option && currentFilter.in?.includes(option.value))?.label ?? label
-
-  const handleClose = () => {
-    setOpenEl(null)
-  }
-
   return (
     <ChipMenu
       {...chipProps}
       variant='outlined'
-      openEl={openEl}
-      setOpenEl={setOpenEl}
       onReset={emptyFilters}
-      onClose={handleClose}
-      label={currentLabel}
+      label={label}
+      selectedLabel={currentLabels[0]}
       selected={currentLabels.length > 0}
       filterValue={currentLabels.length}
       className={componentName}
-      onClick={(e) => setOpenEl(e.currentTarget)}
     >
       <ActionCardListForm
         name={`${attribute_code}.in`}

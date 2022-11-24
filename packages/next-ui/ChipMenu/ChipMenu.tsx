@@ -1,44 +1,54 @@
-import { alpha, Box, Chip, ChipProps, SxProps, Theme, Typography } from '@mui/material'
-import React, { Dispatch, ReactNode, SetStateAction } from 'react'
+import {
+  alpha,
+  Box,
+  Breakpoint,
+  Chip,
+  ChipProps,
+  SxProps,
+  Theme,
+  Typography,
+  useEventCallback,
+} from '@mui/material'
+import React, { ReactNode, useState } from 'react'
 import { IconSvg } from '../IconSvg'
+import { useMatchMedia } from '../hooks/useMatchMedia'
 import { iconChevronDown, iconChevronUp } from '../icons'
 import { OverlayFilterPanel } from './OverlayFilterPanel'
 import { PopperFilterPanel } from './PopperFilterPanel'
 
-export type ChipMenuProps = Omit<ChipProps<'button'>, 'children' | 'component'> & {
+export type ChipMenuProps = Omit<ChipProps<'button'>, 'children' | 'component' | 'onClick'> & {
+  selectedLabel?: React.ReactNode
   children?: React.ReactNode
   filterValue?: string | ReactNode
   selected: boolean
-  openEl: HTMLElement | null
-  setOpenEl: Dispatch<SetStateAction<HTMLElement | null>>
-  onClose?: () => void
   onReset?: () => void
-  labelRight?: React.ReactNode
   sx?: SxProps<Theme>
-  mode?: 'overlay' | 'popper'
+  breakpoint?: Breakpoint
 }
 
 export function ChipMenu(props: ChipMenuProps) {
   const {
     children,
+    label,
+    selectedLabel,
     selected,
     onDelete,
     onReset,
-    label,
-    labelRight,
-    onClose,
     filterValue,
-    openEl,
-    setOpenEl,
-    onSubmit,
     accessKey,
     id = 'filterpopper',
-    mode = 'popper',
+    breakpoint = 'md',
     ...chipProps
   } = props
 
+  const [activeEl, setActiveEl] = useState<HTMLElement | null>(null)
+
+  const matchMedia = useMatchMedia()
+  const active = Boolean(activeEl)
+  const mode = active && matchMedia.up(breakpoint) ? 'popper' : 'overlay'
+
   let deleteIcon = <IconSvg src={iconChevronDown} size='medium' />
-  if (openEl) deleteIcon = <IconSvg src={iconChevronUp} size='medium' />
+  if (activeEl) deleteIcon = <IconSvg src={iconChevronUp} size='medium' />
   if (filterValue)
     deleteIcon = (
       <Box
@@ -57,7 +67,15 @@ export function ChipMenu(props: ChipMenuProps) {
       </Box>
     )
 
-  const selectedAndMenuHidden = selected && !openEl
+  const selectedAndMenuHidden = selected && !activeEl
+
+  const deactivate = useEventCallback(() => setActiveEl(null))
+  const activate = useEventCallback((e: React.MouseEvent<HTMLElement>) => {
+    setActiveEl(e.currentTarget)
+  })
+  const toggle = useEventCallback((e: React.MouseEvent<HTMLElement>) => {
+    setActiveEl((el) => (el !== e.currentTarget ? e.currentTarget : null))
+  })
 
   return (
     <>
@@ -67,10 +85,11 @@ export function ChipMenu(props: ChipMenuProps) {
         size='responsive'
         color={selectedAndMenuHidden ? 'primary' : 'default'}
         clickable
-        onDelete={onDelete || onClose}
+        label={selected && selectedLabel ? selectedLabel : label}
+        onDelete={onDelete || toggle}
+        onClick={activate}
         deleteIcon={deleteIcon}
         {...chipProps}
-        label={label}
         sx={(theme) => ({
           '& .MuiChip-deleteIcon': {
             ml: '0px',
@@ -88,8 +107,16 @@ export function ChipMenu(props: ChipMenuProps) {
             : {}),
         })}
       />
-      {mode === 'overlay' && <OverlayFilterPanel {...props}>{children}</OverlayFilterPanel>}
-      {mode === 'popper' && <PopperFilterPanel {...props}>{children}</PopperFilterPanel>}
+      {mode === 'overlay' && (
+        <OverlayFilterPanel {...props} active={active} onClosed={deactivate}>
+          {children}
+        </OverlayFilterPanel>
+      )}
+      {mode === 'popper' && (
+        <PopperFilterPanel {...props} openEl={activeEl} onClose={deactivate}>
+          {children}
+        </PopperFilterPanel>
+      )}
     </>
   )
 }

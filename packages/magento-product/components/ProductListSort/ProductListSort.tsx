@@ -69,23 +69,15 @@ export function ProductListSort(props: ProductListSortProps) {
 
   const { data: storeConfigQuery } = useQuery(StoreConfigDocument)
   const defaultSort = storeConfigQuery?.storeConfig?.catalog_default_sort_by
-  const [openEl, setOpenEl] = useState<HTMLElement | null>(null)
   const [currentSort = defaultSort] = Object.keys(params.sort)
   const currentOption = sort_fields?.options?.find((option) => option?.value === currentSort)
   const selected = currentSort !== defaultSort
-  const filterMode = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'))
-    ? 'overlay'
-    : 'popper'
   const label =
     currentOption?.label !== (undefined || 'Position') ? (
       currentOption?.label
     ) : (
       <Trans id='Sort By' />
     )
-
-  const handleClose = () => {
-    setOpenEl(null)
-  }
 
   if (!total_count) return null
 
@@ -96,12 +88,7 @@ export function ProductListSort(props: ProductListSortProps) {
       selected={selected}
       label={label}
       {...filterMenuProps}
-      onClose={handleClose}
-      sx={Array.isArray(sx) ? sx : [sx]}
-      openEl={openEl}
-      setOpenEl={setOpenEl}
-      onClick={(e) => setOpenEl(e.currentTarget)}
-      mode={filterMode}
+      sx={sx}
     >
       {sort_fields?.options ? (
         <ActionCardListForm

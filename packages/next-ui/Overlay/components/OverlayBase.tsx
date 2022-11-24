@@ -2,7 +2,7 @@ import { Scroller, useScrollerContext, useScrollTo } from '@graphcommerce/framer
 import { dvh, dvw, useIsomorphicLayoutEffect } from '@graphcommerce/framer-utils'
 import { Box, styled, SxProps, Theme, useTheme, useThemeProps } from '@mui/material'
 import { m, MotionProps, useDomEvent, useMotionValue, useTransform } from 'framer-motion'
-import React, { useCallback, useEffect, useRef } from 'react'
+import React, { useCallback, useContext, useEffect, useMemo, useRef } from 'react'
 import { LayoutProvider } from '../../Layout/components/LayoutProvider'
 import { ExtendableComponent, extendableComponent } from '../../Styles'
 import { useOverlayPosition } from '../hooks/useOverlayPosition'
@@ -31,9 +31,9 @@ export type LayoutOverlayBaseProps = {
   sx?: SxProps<Theme>
   sxBackdrop?: SxProps<Theme>
   active: boolean
-  direction: 1 | -1
+  direction?: 1 | -1
   onClosed: () => void
-  offsetPageY: number
+  offsetPageY?: number
   isPresent: boolean
   safeToRemove?: (() => void) | null | undefined
   overlayPaneProps?: MotionProps
@@ -69,6 +69,18 @@ const clearScrollLock = () => {
   document.body.style.overflow = ''
 }
 
+type OverlayContextType = {
+  close?: () => void
+}
+const OverlayContext = React.createContext<OverlayContextType | null>(null)
+
+export function useOverlayContext() {
+  const context = useContext(OverlayContext)
+  if (!context)
+    throw Error(`[@graphcommerce/next-ui] useOverlayContext must be used inside an OverlayBase`)
+  return context
+}
+
 export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
   const props = useThemeProps({ name, props: incommingProps })
 
@@ -85,8 +97,8 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
     sxBackdrop = [],
     active,
     onClosed,
-    direction,
-    offsetPageY,
+    direction = 1,
+    offsetPageY = 0,
     isPresent,
     safeToRemove,
     overlayPaneProps,
@@ -230,8 +242,10 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
     [closeOverlay, scrollerRef, snap],
   )
 
+  const overlayContext = useMemo(() => ({ close: closeOverlay }), [closeOverlay])
+
   return (
-    <>
+    <OverlayContext.Provider value={overlayContext}>
       <MotionDiv
         inert={active ? undefined : 'true'}
         className={classes.backdrop}
@@ -457,6 +471,6 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
           </MotionDiv>
         </Box>
       </Scroller>
-    </>
+    </OverlayContext.Provider>
   )
 }

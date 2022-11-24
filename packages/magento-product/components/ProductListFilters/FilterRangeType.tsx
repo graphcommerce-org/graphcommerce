@@ -29,15 +29,8 @@ export function FilterRangeType(props: FilterRangeTypeProps) {
     form: { control },
   } = useFilterForm()
   const router = useRouter()
-  const { emptyFilters } = useFilterActions({
-    attribute_code,
-  })
-  const [openEl, setOpenEl] = useState<null | HTMLElement>(null)
+  const { emptyFilters } = useFilterActions({ attribute_code })
   const values = options?.map((v) => v?.value.split('_').map((mv) => Number(mv))).flat(1)
-
-  const handleClose = () => {
-    setOpenEl(null)
-  }
 
   if (options === (null || undefined)) return null
 
@@ -71,12 +64,8 @@ export function FilterRangeType(props: FilterRangeTypeProps) {
             variant='outlined'
             label={l}
             selected={router.asPath.includes('price')}
-            openEl={openEl}
-            setOpenEl={setOpenEl}
-            onClose={handleClose}
             className={classes.root}
             onReset={emptyFilters}
-            onClick={(e) => setOpenEl(e.currentTarget)}
           >
             <Box
               sx={(theme) => ({
