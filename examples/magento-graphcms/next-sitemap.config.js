@@ -30,7 +30,7 @@ module.exports = {
   ],
   robotsTxtOptions: {
     policies: [
-      ...(isProduction && !process.env.VERCEL_URL.includes('vercel')
+      ...(isProduction && !process.env.VERCEL_URL?.includes('vercel')
         ? []
         : [
             { userAgent: '*', disallow: '/' },
