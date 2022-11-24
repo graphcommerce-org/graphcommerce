@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.1.0-canary.1
+
+### Minor Changes
+
+- [#1743](https://github.com/graphcommerce-org/graphcommerce/pull/1743) [`80d3b2384`](https://github.com/graphcommerce-org/graphcommerce/commit/80d3b2384cea0c24317e06b3fe6f233857d91f33) - When deploying on a non Vercel env it expected process.env.VERCEL_ENV to exist ([@hnsr](https://github.com/hnsr))
+
 ## 5.1.0-canary.0
 
 ## 5.0.0

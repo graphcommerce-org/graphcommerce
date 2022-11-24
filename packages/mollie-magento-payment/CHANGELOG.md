@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.1.0-canary.1
+
+### Minor Changes
+
+- [#1740](https://github.com/graphcommerce-org/graphcommerce/pull/1740) [`cbc5d488b`](https://github.com/graphcommerce-org/graphcommerce/commit/cbc5d488bad4f8c85a053605135dc932c60dac23) - fixed clearCurrentCartId for Mollie ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
 ## 5.1.0-canary.0
 
 ## 5.0.0
