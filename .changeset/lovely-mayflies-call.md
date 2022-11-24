@@ -1,5 +1,5 @@
 ---
-'@graphcommerce/mollie-magento-payment': patch
+'@graphcommerce/mollie-magento-payment': minor
 ---
 
 fixed clearCurrentCartId for Mollie
