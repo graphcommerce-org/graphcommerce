@@ -13,8 +13,8 @@ import React, { ReactNode, useState } from 'react'
 import { IconSvg } from '../IconSvg'
 import { useMatchMedia } from '../hooks/useMatchMedia'
 import { iconChevronDown, iconChevronUp } from '../icons'
-import { OverlayFilterPanel } from './OverlayFilterPanel'
-import { PopperFilterPanel } from './PopperFilterPanel'
+import { OverlayFilterPanel } from './OverlayFilter/OverlayFilterPanel'
+import { PopperFilterPanel } from './PopperFilter/PopperFilterPanel'
 
 export type ChipMenuProps = Omit<ChipProps<'button'>, 'children' | 'component' | 'onClick'> & {
   selectedLabel?: React.ReactNode
