@@ -9,8 +9,6 @@ import { Money, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { ChipMenu, ChipMenuProps, extendableComponent } from '@graphcommerce/next-ui'
 import { Mark } from '@mui/base'
 import { Box, Slider } from '@mui/material'
-import { useRouter } from 'next/router'
-import { useState } from 'react'
 import { useFilterForm } from './FilterFormContext'
 import { ProductListFiltersFragment } from './ProductListFilters.gql'
 import { useFilterActions } from './helpers/filterActions'
@@ -26,9 +24,8 @@ export function FilterRangeType(props: FilterRangeTypeProps) {
   const { attribute_code, label, options, ...chipProps } = props
   const currency = useQuery(StoreConfigDocument).data?.storeConfig?.base_currency_code
   const {
-    form: { control },
+    form: { control, getValues },
   } = useFilterForm()
-  const router = useRouter()
   const { emptyFilters } = useFilterActions({ attribute_code })
   const values = options?.map((v) => v?.value.split('_').map((mv) => Number(mv))).flat(1)
 
@@ -37,6 +34,8 @@ export function FilterRangeType(props: FilterRangeTypeProps) {
   const name = `${attribute_code}` as keyof ProductAttributeFilterInput
   const initialFrom = values?.[0]
   const initialTo = values?.[values.length - 1]
+
+  const currentValue = getValues(name)
 
   return (
     <Controller
@@ -63,7 +62,7 @@ export function FilterRangeType(props: FilterRangeTypeProps) {
             {...chipProps}
             variant='outlined'
             label={l}
-            selected={router.asPath.includes('price')}
+            selected={currentValue !== undefined}
             className={classes.root}
             onReset={emptyFilters}
           >
