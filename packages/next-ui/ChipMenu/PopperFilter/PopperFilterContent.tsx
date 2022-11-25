@@ -11,11 +11,11 @@ import { FilterPanelProps } from '../types'
 
 type PopperFilterContentProps = Pick<
   FilterPanelProps,
-  'label' | 'onReset' | 'children' | 'maxLength'
+  'label' | 'onReset' | 'children' | 'maxLength' | 'onClosed'
 >
 
 export const PopperFilterContent = forwardRef<HTMLElement, PopperFilterContentProps>(
-  ({ label, children, onReset, maxLength = 20 }, ref) => {
+  ({ label, children, onReset, onClosed, maxLength = 20 }, ref) => {
     const [search, setSearch] = useState<string>()
     const castedChildren = children as ReactElement
     const menuLength = castedChildren?.props.items?.length
@@ -52,7 +52,10 @@ export const PopperFilterContent = forwardRef<HTMLElement, PopperFilterContentPr
             </LinkOrButton>
           }
           secondary={
-            <Box sx={{ width: '74px', display: 'flex', justifyContent: 'center' }}>
+            <Box
+              sx={{ width: '74px', display: 'flex', justifyContent: 'center' }}
+              onClick={onClosed}
+            >
               <Fab
                 sx={{
                   boxShadow: 'none',
@@ -91,7 +94,7 @@ export const PopperFilterContent = forwardRef<HTMLElement, PopperFilterContentPr
             mt: `calc(${theme.appShell.headerHeightSm} + 5px)`,
             flex: 1,
             padding: `0 ${theme.page.horizontal}`,
-            ...{ overflow: 'visable', overflowY: inSearchMode ? 'scroll' : 'clip' },
+            ...{ overflow: 'visable', overflowY: menuLength > 7 ? 'scroll' : 'clip' },
             maxHeight: '500px',
           })}
         >
@@ -108,7 +111,9 @@ export const PopperFilterContent = forwardRef<HTMLElement, PopperFilterContentPr
             sx={(theme) => ({
               position: 'sticky',
               bottom: theme.spacings.xs,
+              zIndex: 2,
             })}
+            onClick={() => setTimeout(onClosed, 100)}
           >
             <Trans id='Apply' />
           </Button>

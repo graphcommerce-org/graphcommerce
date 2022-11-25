@@ -28,7 +28,7 @@ export function FilterFormProvider(props: PropsWithChildren) {
 
   const submit = handleSubmit((e) => {
     const { sort, ...filters } = e
-    replaceRoute({ ...params, filters, sort: { [sort ?? '']: 'ASC' } })
+    replaceRoute({ ...params, filters, sort: sort ? { [sort]: 'ASC' } : {} })
   })
 
   return (

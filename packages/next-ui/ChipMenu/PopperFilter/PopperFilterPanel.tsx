@@ -66,7 +66,12 @@ export function PopperFilterPanel(props: PopperFilterPanelProps) {
           },
         ]}
       >
-        <PopperFilterContent {...props} />
+        <PopperFilterContent
+          {...props}
+          onClosed={() => {
+            if (onClose && openEl) onClose()
+          }}
+        />
       </Popper>
     </ClickAwayListener>
   )

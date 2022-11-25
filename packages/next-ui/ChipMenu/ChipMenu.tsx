@@ -47,18 +47,20 @@ export function ChipMenu(props: ChipMenuProps) {
   const active = Boolean(activeEl)
   const mode = active && matchMedia.up(breakpoint) ? 'popper' : 'overlay'
 
-  let deleteIcon = <IconSvg src={iconChevronDown} size='medium' />
-  if (activeEl) deleteIcon = <IconSvg src={iconChevronUp} size='medium' />
+  let chevronIcon = <IconSvg src={iconChevronDown} size='medium' sx={{ ml: 1, mr: -1 }} />
+  if (activeEl) chevronIcon = <IconSvg src={iconChevronUp} size='medium' sx={{ ml: 1, mr: -1 }} />
   if (filterValue)
-    deleteIcon = (
+    chevronIcon = (
       <Box
         sx={{
           backgroundColor: 'primary.main',
           borderRadius: 5,
           display: 'flex',
-          minWidth: '22px',
+          minWidth: '24px',
           alignItems: 'center',
           justifyContent: 'center',
+          ml: 1,
+          mr: -1,
         }}
       >
         <Typography variant='caption' color='primary.contrastText'>
@@ -77,6 +79,13 @@ export function ChipMenu(props: ChipMenuProps) {
     setActiveEl((el) => (el !== e.currentTarget ? e.currentTarget : null))
   })
 
+  const labelComponent = (
+    <Box sx={{ display: 'flex', flexDirection: 'row' }}>
+      {selected && selectedLabel ? selectedLabel : label}
+      {chevronIcon}
+    </Box>
+  )
+
   return (
     <>
       <Chip
@@ -85,10 +94,8 @@ export function ChipMenu(props: ChipMenuProps) {
         size='responsive'
         color={selectedAndMenuHidden ? 'primary' : 'default'}
         clickable
-        label={selected && selectedLabel ? selectedLabel : label}
-        onDelete={onDelete || toggle}
-        onClick={activate}
-        deleteIcon={deleteIcon}
+        label={labelComponent}
+        onClick={toggle}
         {...chipProps}
         sx={(theme) => ({
           '& .MuiChip-deleteIcon': {
