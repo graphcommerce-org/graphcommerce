@@ -22,6 +22,7 @@ export type ChipMenuProps = Omit<ChipProps<'button'>, 'children' | 'component' |
   filterValue?: string | ReactNode
   selected: boolean
   onReset?: () => void
+  onApply?: () => void
   sx?: SxProps<Theme>
   breakpoint?: Breakpoint
 }
@@ -51,30 +52,23 @@ export function ChipMenu(props: ChipMenuProps) {
   if (activeEl) chevronIcon = <IconSvg src={iconChevronUp} size='medium' sx={{ ml: 1, mr: -1 }} />
   if (filterValue)
     chevronIcon = (
-      <Box
+      <Typography
+        variant='caption'
+        color='primary.main'
         sx={{
-          backgroundColor: 'primary.main',
-          borderRadius: 5,
           display: 'flex',
-          minWidth: '24px',
           alignItems: 'center',
-          justifyContent: 'center',
           ml: 1,
-          mr: -1,
         }}
       >
-        <Typography variant='caption' color='primary.contrastText'>
-          {filterValue}
-        </Typography>
-      </Box>
+        + {filterValue}
+      </Typography>
     )
 
   const selectedAndMenuHidden = selected && !activeEl
 
   const deactivate = useEventCallback(() => setActiveEl(null))
-  const activate = useEventCallback((e: React.MouseEvent<HTMLElement>) => {
-    setActiveEl(e.currentTarget)
-  })
+
   const toggle = useEventCallback((e: React.MouseEvent<HTMLElement>) => {
     setActiveEl((el) => (el !== e.currentTarget ? e.currentTarget : null))
   })

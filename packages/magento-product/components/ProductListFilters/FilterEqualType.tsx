@@ -131,7 +131,7 @@ export function FilterEqualType(props: FilterEqualTypeProps) {
   } = useFilterForm()
 
   const { params } = useProductListParamsContext()
-  const { emptyFilters } = useFilterActions({
+  const { emptyFilters, applyFilters } = useFilterActions({
     attribute_code,
   })
   const currentFilter: FilterEqualTypeInput = cloneDeep(params.filters[attribute_code]) ?? {
@@ -147,12 +147,13 @@ export function FilterEqualType(props: FilterEqualTypeProps) {
     <ChipMenu
       {...chipProps}
       variant='outlined'
-      onReset={emptyFilters}
+      onReset={() => emptyFilters()}
       label={label}
       selectedLabel={currentLabels[0]}
       selected={currentLabels.length > 0}
-      filterValue={currentLabels.length}
+      filterValue={currentLabels.length > 1 ? currentLabels.length - 1 : undefined}
       className={componentName}
+      onApply={applyFilters}
     >
       <ActionCardListForm
         name={`${attribute_code}.in`}

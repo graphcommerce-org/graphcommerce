@@ -26,7 +26,7 @@ export function FilterRangeType(props: FilterRangeTypeProps) {
   const {
     form: { control, getValues },
   } = useFilterForm()
-  const { emptyFilters } = useFilterActions({ attribute_code })
+  const { emptyFilters, applyFilters } = useFilterActions({ attribute_code })
   const values = options?.map((v) => v?.value.split('_').map((mv) => Number(mv))).flat(1)
 
   if (options === (null || undefined)) return null
@@ -35,7 +35,7 @@ export function FilterRangeType(props: FilterRangeTypeProps) {
   const initialFrom = values?.[0]
   const initialTo = values?.[values.length - 1]
 
-  const currentValue = getValues(name)
+  const currentValue = getValues(name) as FilterRangeTypeInput
 
   return (
     <Controller
@@ -64,7 +64,8 @@ export function FilterRangeType(props: FilterRangeTypeProps) {
             label={l}
             selected={currentValue !== undefined}
             className={classes.root}
-            onReset={emptyFilters}
+            onReset={() => emptyFilters([initialFrom, initialTo])}
+            onApply={applyFilters}
           >
             <Box
               sx={(theme) => ({
