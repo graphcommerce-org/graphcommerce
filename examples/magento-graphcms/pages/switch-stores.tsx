@@ -8,7 +8,7 @@ import {
 } from '@graphcommerce/magento-store'
 import {
   GetStaticProps,
-  iconShoppingBag,
+  iconLanguage,
   LayoutOverlayHeader,
   LayoutTitle,
 } from '@graphcommerce/next-ui'
@@ -30,12 +30,12 @@ function StoresIndexPage({ availableStores }: Props) {
     <>
       <PageMeta title={i18n._(/* i18n */ 'Switch stores')} metaRobots={['noindex']} />
       <LayoutOverlayHeader>
-        <LayoutTitle size='small' component='span' icon={iconShoppingBag}>
+        <LayoutTitle size='small' component='span' icon={iconLanguage}>
           <Trans id='Country' />
         </LayoutTitle>
       </LayoutOverlayHeader>
       <Container maxWidth='md'>
-        <LayoutTitle icon={iconShoppingBag}>
+        <LayoutTitle icon={iconLanguage}>
           <Trans id='Country' />
         </LayoutTitle>
         <StoreSwitcherList availableStores={availableStores} locale={locale} />
