@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.1.0-canary.2
+
+### Patch Changes
+
+- [#1750](https://github.com/graphcommerce-org/graphcommerce/pull/1750) [`3479bc1e2`](https://github.com/graphcommerce-org/graphcommerce/commit/3479bc1e24da0e8a751ee301c59fa5f9755c8559) - show globe icon instead of shopping bag icon for store/language-switcher ([@FrankHarland](https://github.com/FrankHarland))
+
 ## 5.1.0-canary.1
 
 ## 5.1.0-canary.0

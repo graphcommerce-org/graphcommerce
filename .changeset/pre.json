@@ -70,6 +70,7 @@
     "@graphcommerce/typescript-config-pwa": "5.0.0"
   },
   "changesets": [
+    "cool-forks-smash",
     "lovely-mayflies-call",
     "old-gifts-warn",
     "silver-zebras-develop"
