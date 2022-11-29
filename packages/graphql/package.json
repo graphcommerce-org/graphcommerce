@@ -30,10 +30,10 @@
     "@graphql-codegen/typescript-apollo-client-helpers": "2.2.3",
     "@graphql-codegen/typescript-document-nodes": "2.3.3",
     "@graphql-codegen/typescript-operations": "2.5.3",
-    "apollo3-cache-persist": "^0.14.1",
-    "graphql": "16.5.0"
+    "apollo3-cache-persist": "^0.14.1"
   },
   "peerDependencies": {
+    "graphql": "^16.0.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   }

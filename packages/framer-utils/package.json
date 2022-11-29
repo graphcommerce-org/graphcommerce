@@ -20,7 +20,7 @@
     "@graphcommerce/typescript-config-pwa": "^5.1.0-canary.2"
   },
   "peerDependencies": {
-    "framer-motion": "^6.2.4",
+    "framer-motion": "^7.0.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },

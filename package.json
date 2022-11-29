@@ -46,10 +46,19 @@
     "@changesets/cli": "2.24.3",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
+    "@lingui/core": "3.14.0",
+    "@lingui/react": "3.14.0",
+    "@mui/lab": "5.0.0-alpha.110",
+    "@mui/material": "5.10.16",
     "concurrently": "7.3.0",
+    "framer-motion": "7.5.1",
+    "graphql": "16.5.0",
     "jest-environment-jsdom": "^29.1.2",
     "next": "12.2.5",
-    "patch-package": "6.4.7"
+    "patch-package": "6.4.7",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "webpack": "^5.73.0"
   },
   "devDependencies": {
     "@playwright/test": "1.28.1",

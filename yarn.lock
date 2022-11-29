@@ -843,7 +843,7 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.18.6"
 
-"@babel/plugin-transform-react-jsx@^7.0.0", "@babel/plugin-transform-react-jsx@^7.17.12":
+"@babel/plugin-transform-react-jsx@^7.0.0":
   version "7.19.0"
   resolved "https://registry.yarnpkg.com/@babel/plugin-transform-react-jsx/-/plugin-transform-react-jsx-7.19.0.tgz#b3cbb7c3a00b92ec8ae1027910e331ba5c500eb9"
   integrity sha512-UVEvX3tXie3Szm3emi1+G63jyw1w5IcMY0FSKM+CRnKRI5Mr1YbCNgsSTwoTwKphQEG9P+QqmuRFneJPZuHNhg==
@@ -1348,13 +1348,6 @@
   dependencies:
     "@jridgewell/trace-mapping" "0.3.9"
 
-"@emotion/babel-plugin-jsx-pragmatic@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@emotion/babel-plugin-jsx-pragmatic/-/babel-plugin-jsx-pragmatic-0.2.0.tgz#6fdd78600417973fa2610704693158181d8505b7"
-  integrity sha512-VPfKAtb/bVyu5y+HzCPj9bb2nHnj9yX5mMAU7N0pIDcrFZo8aqDyHXLYF8BD7tY4pNL09N87dygVLKIkQvshJw==
-  dependencies:
-    "@babel/plugin-syntax-jsx" "^7.17.12"
-
 "@emotion/babel-plugin@^11.10.0":
   version "11.10.2"
   resolved "https://registry.yarnpkg.com/@emotion/babel-plugin/-/babel-plugin-11.10.2.tgz#879db80ba622b3f6076917a1e6f648b1c7d008c7"
@@ -1372,16 +1365,6 @@
     find-root "^1.1.0"
     source-map "^0.5.7"
     stylis "4.0.13"
-
-"@emotion/babel-preset-css-prop@^11.2.0":
-  version "11.10.0"
-  resolved "https://registry.yarnpkg.com/@emotion/babel-preset-css-prop/-/babel-preset-css-prop-11.10.0.tgz#23922787561d8376782b0e9006323512fe797275"
-  integrity sha512-oN2lCP0NJTEt80IIeFM1RbmapeEVNYzKXYk2pYirAuom9WvV9Oz/aJQN5Hn3RyBMPaY+Of1OZYpTVMle2jUm4g==
-  dependencies:
-    "@babel/plugin-transform-react-jsx" "^7.17.12"
-    "@babel/runtime" "^7.18.3"
-    "@emotion/babel-plugin" "^11.10.0"
-    "@emotion/babel-plugin-jsx-pragmatic" "^0.2.0"
 
 "@emotion/cache@^11.10.0", "@emotion/cache@^11.9.3":
   version "11.10.3"
@@ -2504,6 +2487,13 @@
     camel-case "4.1.1"
     tslib "~2.0.1"
 
+"@graphql-tools/utils@^8.6.2":
+  version "8.13.1"
+  resolved "https://registry.yarnpkg.com/@graphql-tools/utils/-/utils-8.13.1.tgz#b247607e400365c2cd87ff54654d4ad25a7ac491"
+  integrity sha512-qIh9yYpdUFmctVqovwMdheVNJqFh+DQNWIhX87FJStfXYnmweBUDATok9fWPleKeFwxnW8IapKmY8m8toJEkAw==
+  dependencies:
+    tslib "^2.4.0"
+
 "@graphql-tools/wrap@9.0.4":
   version "9.0.4"
   resolved "https://registry.yarnpkg.com/@graphql-tools/wrap/-/wrap-9.0.4.tgz#771d1a90db8532c78faf49778703cdd29f79cb35"
@@ -3333,7 +3323,7 @@
     tslib "^2.4.0"
     webcrypto-core "^1.7.4"
 
-"@playwright/test@^1.28.1":
+"@playwright/test@1.28.1":
   version "1.28.1"
   resolved "https://registry.yarnpkg.com/@playwright/test/-/test-1.28.1.tgz#e5be297e024a3256610cac2baaa9347fd57c7860"
   integrity sha512-xN6spdqrNlwSn9KabIhqfZR7IWjPpFK1835tFNgjrlysaSezuX8PYUwaz38V/yI8TJLG9PkAMEXoHRXYXlpTPQ==
