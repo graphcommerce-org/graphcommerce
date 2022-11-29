@@ -4,6 +4,6 @@
   "repository": "github:graphcommerce-org/graphcommerce",
   "version": "5.1.0-canary.2",
   "dependencies": {
-    "prettier-plugin-jsdoc": "^0.3.38"
+    "prettier-plugin-jsdoc": "^0.4.2"
   }
 }
