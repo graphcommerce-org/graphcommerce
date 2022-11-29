@@ -1,6 +1,5 @@
+import { iconEye, iconEyeClosed, IconSvg } from '@graphcommerce/next-ui'
 import { FieldValues } from '@graphcommerce/react-hook-form'
-import Visibility from '@mui/icons-material/Visibility'
-import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import { IconButton, IconButtonProps, InputAdornment } from '@mui/material'
 import { MouseEvent, useState } from 'react'
 import { TextFieldElement, TextFieldElementProps } from './TextFieldElement'
@@ -9,7 +8,7 @@ export type PasswordElementProps<T extends FieldValues> = TextFieldElementProps<
   iconColor?: IconButtonProps['color']
 }
 
-export default function PasswordElement<TFieldValues extends FieldValues>({
+export function PasswordElement<TFieldValues extends FieldValues>({
   iconColor,
   ...props
 }: PasswordElementProps<TFieldValues>): JSX.Element {
@@ -26,7 +25,7 @@ export default function PasswordElement<TFieldValues extends FieldValues>({
               tabIndex={-1}
               color={iconColor ?? 'default'}
             >
-              {password ? <Visibility /> : <VisibilityOff />}
+              <IconSvg src={password ? iconEyeClosed : iconEye} />
             </IconButton>
           </InputAdornment>
         ),

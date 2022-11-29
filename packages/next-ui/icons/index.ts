@@ -14,6 +14,8 @@ export { default as iconChevronBack, default as iconChevronLeft } from './chevro
 export { default as iconChevronRight } from './chevron-right.svg'
 export { default as iconChevronUp } from './chevron-up.svg'
 export { default as iconClose } from './close.svg'
+export { default as iconEye } from './eye.svg'
+export { default as iconEyeClosed } from './eye-closed.svg'
 export { default as iconCreditCard, default as iconId } from './credit-card.svg'
 export { default as iconEllypsis } from './ellypsis.svg'
 export { default as iconEmail, default as iconEmailOutline } from './envelope-alt.svg'

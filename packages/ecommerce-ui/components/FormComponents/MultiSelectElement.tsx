@@ -1,5 +1,5 @@
+import { IconSvg, iconClose } from '@graphcommerce/next-ui'
 import { Control, Controller, FieldError, Path, FieldValues } from '@graphcommerce/react-hook-form'
-import CloseIcon from '@mui/icons-material/Cancel'
 import {
   Checkbox,
   Chip,
@@ -131,7 +131,8 @@ export function MultiSelectElement<TFieldValues extends FieldValues>({
                               // setValue(name, formValue.filter((i: any) => i !== value), { shouldValidate: true })
                             }}
                             deleteIcon={
-                              <CloseIcon
+                              <IconSvg
+                                src={iconClose}
                                 onMouseDown={(ev) => {
                                   ev.stopPropagation()
                                 }}
