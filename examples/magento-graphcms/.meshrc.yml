@@ -27,3 +27,4 @@ sources:
           Content-Currency: "{context.headers['content-currency']}"
 serve:
   playground: true
+  endpoint: /api/graphql

@@ -4,7 +4,9 @@ import { createServer as createYogaServer } from '@graphql-yoga/node'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { getBuiltMesh, rawServeConfig } from '../.mesh'
 
+/** @deprecated Use `createBuiltMeshHTTPHandler` instead */
 export async function createServer(endpoint: string) {
+  console.warn('createServer() is deprecated. Use createBuiltMeshHTTPHandler() instead.')
   // retrieve the mesh instance (with configured Envelop plugins)
   const mesh = await getBuiltMesh()
 

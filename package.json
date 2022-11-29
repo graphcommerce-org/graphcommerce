@@ -43,7 +43,7 @@
     "@graphql-tools/url-loader": "7.16.4"
   },
   "dependencies": {
-    "@changesets/cli": "2.24.3",
+    "@changesets/cli": "2.25.2",
     "@lingui/core": "3.15.0",
     "@lingui/react": "3.15.0",
     "@mui/lab": "5.0.0-alpha.110",

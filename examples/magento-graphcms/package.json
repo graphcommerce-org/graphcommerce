@@ -93,12 +93,6 @@
     "> 1% in alt-EU",
     "not IE 11"
   ],
-  "resolutions": {
-    "@graphql-tools/url-loader": "7.16.4",
-    "@lingui/core": "3.15.0",
-    "@lingui/react": "3.15.0",
-    "@lingui/cli": "3.15.0"
-  },
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
     "extends": "@graphcommerce/eslint-config-pwa",

@@ -7,13 +7,13 @@
   "license": "MIT",
   "main": "index.ts",
   "dependencies": {
-    "@envelop/apollo-tracing": "^3.5.0",
-    "@graphql-mesh/apollo-link": "^6.0.0",
-    "@graphql-mesh/config": "6.2.0",
-    "@graphql-mesh/graphql": "0.30.0",
-    "@graphql-mesh/transform-filter-schema": "0.14.87",
-    "@graphql-mesh/types": "0.80.2",
-    "@graphql-mesh/utils": "0.40.0",
+    "@envelop/apollo-tracing": "^4.0.4",
+    "@graphql-mesh/apollo-link": "^8.0.7",
+    "@graphql-mesh/config": "8.0.34",
+    "@graphql-mesh/graphql": "0.32.2",
+    "@graphql-mesh/transform-filter-schema": "0.14.112",
+    "@graphql-mesh/types": "0.87.0",
+    "@graphql-mesh/utils": "0.42.8",
     "@graphql-yoga/node": "^2.13.11"
   },
   "peerDependencies": {

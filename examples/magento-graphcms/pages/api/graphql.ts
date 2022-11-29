@@ -1,3 +1,3 @@
-import { createServer } from '@graphcommerce/graphql-mesh'
+import { createBuiltMeshHTTPHandler } from '../../.mesh'
 
-export default await createServer('/api/graphql')
+export default createBuiltMeshHTTPHandler()
