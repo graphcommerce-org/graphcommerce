@@ -73,10 +73,11 @@ export function AutocompleteElement<TFieldValues extends FieldValues>({
       control={control}
       rules={validationRules}
       render={({ field: { onChange, onBlur, value, ...fieldRest }, fieldState: { error } }) => {
+        const values = Array.isArray(value) ? (value as typeof value[]) : [value]
         let currentValue = multiple ? value || [] : value || null
         if (matchId) {
           currentValue = multiple
-            ? (value || []).map((i: any) => options.find((j) => (j.id || j) === i))
+            ? values.map((i: any) => options.find((j) => (j.id || j) === i))
             : options.find((i) => (i.id || i) === value) || null
         }
         return (
