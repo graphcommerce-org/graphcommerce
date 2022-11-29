@@ -14,8 +14,7 @@
   "devDependencies": {
     "@graphcommerce/eslint-config-pwa": "5.1.0-canary.2",
     "@graphcommerce/prettier-config-pwa": "5.1.0-canary.2",
-    "@graphcommerce/typescript-config-pwa": "5.1.0-canary.2",
-    "type-fest": "^2.12.2"
+    "@graphcommerce/typescript-config-pwa": "5.1.0-canary.2"
   },
   "dependencies": {
     "@graphcommerce/ecommerce-ui": "5.1.0-canary.2",
@@ -36,6 +35,7 @@
     "graphql": "^16.0.0",
     "next": "^12.1.2",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "type-fest": "^3.0.0"
   }
 }
