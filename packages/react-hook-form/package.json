@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.7.1",
-    "react-hook-form": "7.32.0"
+    "react-hook-form": "7.39.7"
   },
   "devDependencies": {
     "@graphcommerce/eslint-config-pwa": "5.1.0-canary.2",
