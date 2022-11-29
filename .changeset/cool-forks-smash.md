@@ -3,4 +3,4 @@
 "@graphcommerce/magento-graphcms": patch
 ---
 
-show globe icon instead of shopping bag icon for store/language-switcher
+Show globe icon instead of shopping bag icon for store/language-switcher

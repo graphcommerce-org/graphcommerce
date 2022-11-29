@@ -1,12 +1,10 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-import { useApolloTracing } from '@envelop/apollo-tracing'
 import { createServer as createYogaServer } from '@graphql-yoga/node'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { getBuiltMesh, rawServeConfig } from '../.mesh'
 
 /** @deprecated Use `createBuiltMeshHTTPHandler` instead */
 export async function createServer(endpoint: string) {
-  console.warn('createServer() is deprecated. Use createBuiltMeshHTTPHandler() instead.')
+  console.warn('createServer() is deprecated. Use .mesh/createBuiltMeshHTTPHandler() instead.')
   // retrieve the mesh instance (with configured Envelop plugins)
   const mesh = await getBuiltMesh()
 
@@ -17,7 +15,7 @@ export async function createServer(endpoint: string) {
     req: NextApiRequest
     res: NextApiResponse
   }>({
-    plugins: [...mesh.plugins, useApolloTracing()],
+    plugins: [...mesh.plugins],
     context: ({ req }) => ({ ...req, ...mesh.meshContext }),
     graphiql: {
       endpoint,

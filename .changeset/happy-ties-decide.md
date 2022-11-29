@@ -67,4 +67,5 @@
 '@graphcommerce/typescript-config-pwa': patch
 ---
 
-Removed dependencies on @playwright/test to reduce upgrade burden
+Updated dependencies to latest versions;
+- 

@@ -23,8 +23,8 @@
   },
   "peerDependencies": {
     "next": "^12.1.2",
-    "webpack": "^5.0.0",
-    "type-fest": "^3.0.0"
+    "type-fest": "^3.0.0",
+    "webpack": "^5.0.0"
   },
   "files": [
     "dist",
