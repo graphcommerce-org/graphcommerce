@@ -34,7 +34,7 @@
   "peerDependencies": {
     "@lingui/react": "^3.13.2",
     "@lingui/core": "^3.13.2",
-    "@mui/material": "5.5.3",
+    "@mui/material": "^5.10.16",
     "next": "^12.1.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"

@@ -21,7 +21,7 @@
     "@playwright/test": "^1.21.1"
   },
   "peerDependencies": {
-    "@mui/material": "5.5.3",
+    "@mui/material": "^5.10.16",
     "next": "^12.1.2",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"

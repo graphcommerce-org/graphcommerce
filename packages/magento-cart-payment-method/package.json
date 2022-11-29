@@ -31,7 +31,7 @@
   "peerDependencies": {
     "@lingui/react": "^3.13.2",
     "@lingui/core": "^3.13.2",
-    "@mui/material": "5.5.3",
+    "@mui/material": "^5.10.16",
     "framer-motion": "^6.2.4",
     "next": "^12.1.2",
     "react": "^17.0.1",
