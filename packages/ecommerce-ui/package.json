@@ -14,10 +14,7 @@
   "dependencies": {
     "@graphcommerce/graphql": "5.1.0-canary.2",
     "@graphcommerce/next-ui": "5.1.0-canary.2",
-    "@graphcommerce/react-hook-form": "5.1.0-canary.2",
-    "@mui/icons-material": "^5.10.16",
-    "@mui/x-date-pickers": "^5.0.9",
-    "react-hook-form-mui": "^5.7.1"
+    "@graphcommerce/react-hook-form": "5.1.0-canary.2"
   },
   "devDependencies": {
     "@graphcommerce/eslint-config-pwa": "^5.1.0-canary.2",
