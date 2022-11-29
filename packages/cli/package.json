@@ -24,9 +24,9 @@
   "dependencies": {
     "@graphcommerce/next-config": "5.1.0-canary.2",
     "@graphql-codegen/cli": "2.11.8",
-    "@graphql-mesh/cli": "0.80.1",
-    "@graphql-mesh/types": "0.87.0",
-    "@graphql-mesh/utils": "0.42.8",
+    "@graphql-mesh/cli": "0.80.2",
+    "@graphql-mesh/types": "0.87.1",
+    "@graphql-mesh/utils": "0.42.9",
     "cosmiconfig": "^8.0.0",
     "detect-package-manager": "^2.0.1",
     "rimraf": "^3.0.2"
