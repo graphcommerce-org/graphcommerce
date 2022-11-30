@@ -1,5 +1,5 @@
-declare type PackageNames = Map<string, string>;
-declare type DependencyStructure = Record<string, {
+type PackageNames = Map<string, string>;
+type DependencyStructure = Record<string, {
     dirName: string;
     dependencies: string[];
 }>;
