@@ -4,7 +4,6 @@ sources:
       graphql:
         useGETForQueries: true
         endpoint: ${GRAPHCMS_URL}
-        retry: 3
         operationHeaders:
           gcms-locales: "{context.headers['gcms-locales']}"
     transforms:
