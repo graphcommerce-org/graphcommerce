@@ -131,7 +131,7 @@ export default SearchResultPage
 
 export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
   const [searchShort = '', query = []] = extractUrlQuery(params)
-  const search = searchShort.length >= 3 ? searchShort : undefined
+  const search = searchShort.length >= 3 ? searchShort : ''
 
   const client = graphqlSharedClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
