@@ -47,6 +47,9 @@ async function cleanup() {
 const main = async () => {
   const conf = (await findConfig({})) as YamlConfig.Config
 
+  // We're configuring a custom fetch function
+  conf.customFetch = '@graphcommerce/graphql-mesh/customFetch'
+
   // Rewrite additionalResolvers so we can use module resolution more easily
   conf.additionalResolvers = conf.additionalResolvers ?? []
   conf.additionalResolvers = conf.additionalResolvers?.map((additionalResolver) => {

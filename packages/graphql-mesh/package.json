@@ -12,7 +12,9 @@
     "@graphql-mesh/graphql": "0.32.3",
     "@graphql-mesh/transform-filter-schema": "0.14.113",
     "@graphql-mesh/types": "0.87.1",
-    "@graphql-mesh/utils": "0.42.9"
+    "@graphql-mesh/utils": "0.42.9",
+    "@whatwg-node/fetch": "^0.5.3",
+    "fetch-retry": "^5.0.3"
   },
   "peerDependencies": {
     "graphql": "^16.0.0",
