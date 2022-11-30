@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import { IconSvg, iconClose } from '@graphcommerce/next-ui'
 import { Control, Controller, FieldError, Path, FieldValues } from '@graphcommerce/react-hook-form'
 import {
@@ -36,26 +37,29 @@ export type MultiSelectElementProps<T extends FieldValues> = Omit<SelectProps, '
 const ITEM_HEIGHT = 48
 const ITEM_PADDING_TOP = 8
 
-export function MultiSelectElement<TFieldValues extends FieldValues>({
-  options,
-  label = '',
-  itemKey = 'id',
-  itemValue = '',
-  itemLabel = 'label',
-  required = false,
-  validation = {},
-  parseError,
-  name,
-  menuMaxHeight = ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-  menuMaxWidth = 250,
-  minWidth = 120,
-  helperText,
-  showChips,
-  control,
-  showCheckbox,
-  formControlProps,
-  ...rest
-}: MultiSelectElementProps<TFieldValues>): JSX.Element {
+export function MultiSelectElement<TFieldValues extends FieldValues>(
+  props: MultiSelectElementProps<TFieldValues>,
+): JSX.Element {
+  let {
+    options,
+    label = '',
+    itemKey = 'id',
+    itemValue = '',
+    itemLabel = 'label',
+    required = false,
+    validation = {},
+    parseError,
+    name,
+    menuMaxHeight = ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+    menuMaxWidth = 250,
+    minWidth = 120,
+    helperText,
+    showChips,
+    control,
+    showCheckbox,
+    formControlProps,
+    ...rest
+  } = props
   if (required && !validation.required) {
     validation.required = 'This field is required'
   }
@@ -130,14 +134,7 @@ export function MultiSelectElement<TFieldValues extends FieldValues>({
                               onChange(value.filter((i: any) => i !== selectedValue))
                               // setValue(name, formValue.filter((i: any) => i !== value), { shouldValidate: true })
                             }}
-                            deleteIcon={
-                              <IconSvg
-                                src={iconClose}
-                                onMouseDown={(ev) => {
-                                  ev.stopPropagation()
-                                }}
-                              />
-                            }
+                            deleteIcon={<IconSvg src={iconClose} />}
                           />
                         ))}
                       </div>

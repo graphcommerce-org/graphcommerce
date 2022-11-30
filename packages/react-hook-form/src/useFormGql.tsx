@@ -6,7 +6,7 @@ import {
   LazyQueryResultTuple,
 } from '@apollo/client'
 import { useEffect, useRef } from 'react'
-import { UseFormProps, UseFormReturn, UnpackNestedValue, DeepPartial } from 'react-hook-form'
+import { UseFormProps, UseFormReturn } from 'react-hook-form'
 import diff from './diff'
 import { useGqlDocumentHandler, UseGqlDocumentHandler } from './useGqlDocumentHandler'
 
@@ -61,10 +61,7 @@ export function useFormGql<Q, V>(
   const handleSubmit: UseFormReturn<V>['handleSubmit'] = (onValid, onInvalid) =>
     form.handleSubmit(async (formValues, event) => {
       // Combine defaults with the formValues and encode
-      let variables = encode({
-        ...defaultValues,
-        ...(formValues as Record<string, unknown>),
-      })
+      let variables = encode({ ...defaultValues, ...formValues })
 
       // Wait for the onBeforeSubmit to complete
       if (onBeforeSubmit) {
@@ -78,8 +75,7 @@ export function useFormGql<Q, V>(
       if (onComplete && result.data) await onComplete(result, variables)
 
       // Reset the state of the form if it is unmodified afterwards
-      if (typeof diff(form.getValues(), formValues) === 'undefined')
-        form.reset(formValues as UnpackNestedValue<DeepPartial<V>>)
+      if (typeof diff(form.getValues(), formValues) === 'undefined') form.reset(formValues)
 
       await onValid(formValues, event)
     }, onInvalid)

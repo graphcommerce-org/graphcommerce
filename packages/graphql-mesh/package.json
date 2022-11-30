@@ -12,8 +12,7 @@
     "@graphql-mesh/graphql": "0.32.3",
     "@graphql-mesh/transform-filter-schema": "0.14.113",
     "@graphql-mesh/types": "0.87.1",
-    "@graphql-mesh/utils": "0.42.9",
-    "@graphql-yoga/node": "^2.13.11"
+    "@graphql-mesh/utils": "0.42.9"
   },
   "peerDependencies": {
     "graphql": "^16.0.0",

@@ -65,10 +65,7 @@ export function useFormPersist<V>(options: UseFormPersistOptions<V>) {
 
       const storedValues = JSON.parse(storedFormStr) as FieldValues
       if (storedValues) {
-        const entries = Object.entries(storedValues) as [
-          Path<V>,
-          UnpackNestedValue<FieldPathValue<V, Path<V>>>,
-        ][]
+        const entries = Object.entries(storedValues) as [Path<V>, FieldPathValue<V, Path<V>>][]
         entries.forEach(([entryName, value]) =>
           setValue(entryName, value, {
             shouldDirty: true,
