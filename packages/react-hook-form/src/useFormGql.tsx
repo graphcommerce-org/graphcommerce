@@ -6,7 +6,7 @@ import {
   LazyQueryResultTuple,
 } from '@apollo/client'
 import { useEffect, useRef } from 'react'
-import { UseFormProps, UseFormReturn } from 'react-hook-form'
+import { FieldValues, UseFormProps, UseFormReturn } from 'react-hook-form'
 import diff from './diff'
 import { useGqlDocumentHandler, UseGqlDocumentHandler } from './useGqlDocumentHandler'
 
@@ -21,9 +21,13 @@ type UseFormGraphQLCallbacks<Q, V> = {
   onComplete?: OnCompleteFn<Q, V>
 }
 
-export type UseFormGraphQlOptions<Q, V> = UseFormProps<V> & UseFormGraphQLCallbacks<Q, V>
+export type UseFormGraphQlOptions<Q, V extends FieldValues> = UseFormProps<V> &
+  UseFormGraphQLCallbacks<Q, V>
 
-export type UseFormGqlMethods<Q, V> = Omit<UseGqlDocumentHandler<V>, 'encode' | 'type'> &
+export type UseFormGqlMethods<Q, V extends FieldValues> = Omit<
+  UseGqlDocumentHandler<V>,
+  'encode' | 'type'
+> &
   Pick<UseFormReturn<V>, 'handleSubmit'> & { data?: Q | null; error?: ApolloError }
 
 /**
@@ -34,7 +38,7 @@ export type UseFormGqlMethods<Q, V> = Omit<UseGqlDocumentHandler<V>, 'encode' | 
  * - Updates the form when the query updates
  * - Resets the form after submitting the form when no modifications are found
  */
-export function useFormGql<Q, V>(
+export function useFormGql<Q, V extends FieldValues>(
   options: {
     document: TypedDocumentNode<Q, V>
     form: UseFormReturn<V>

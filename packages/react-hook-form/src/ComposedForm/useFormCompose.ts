@@ -4,7 +4,9 @@ import { isFormGqlOperation } from '../useFormGqlMutation'
 import { composedFormContext } from './context'
 import { UseFormComposeOptions } from './types'
 
-export function useFormCompose<V>(fields: UseFormComposeOptions<V>) {
+export function useFormCompose<V extends Record<string, unknown>>(
+  fields: UseFormComposeOptions<V>,
+) {
   const [state, dispatch] = useContext(composedFormContext)
   const { form, key, step, submit } = fields
 

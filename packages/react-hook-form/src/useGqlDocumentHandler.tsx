@@ -84,7 +84,9 @@ export type UseGqlDocumentHandler<V extends FieldValues> = {
   ) => V
 }
 
-export function handlerFactory<Q, V>(document: TypedDocumentNode<Q, V>): UseGqlDocumentHandler<V> {
+export function handlerFactory<Q, V extends FieldValues>(
+  document: TypedDocumentNode<Q, V>,
+): UseGqlDocumentHandler<V> {
   type Defaults = Partial<Pick<V, OptionalKeys<V>>>
   type Encoding = { [k in keyof V]: FieldTypes }
   type Required = IsRequired<V>
@@ -125,14 +127,14 @@ export function handlerFactory<Q, V>(document: TypedDocumentNode<Q, V>): UseGqlD
 
   function encode(variables: { [k in keyof V]?: DeepStringify<V[k]> }, enc = encoding) {
     return Object.fromEntries(
-      Object.entries(variables).map(([key, val]) => [key, encodeItem(enc[key] as FieldTypes, val)]),
+      Object.entries(variables).map(([key, val]) => [key, encodeItem(enc[key], val)]),
     ) as V
   }
 
   return { type, required, defaultVariables, encode }
 }
 
-export function useGqlDocumentHandler<Q, V>(
+export function useGqlDocumentHandler<Q, V extends FieldValues>(
   document: TypedDocumentNode<Q, V>,
 ): UseGqlDocumentHandler<V> {
   return useMemo(() => handlerFactory<Q, V>(document), [document])

@@ -37,7 +37,7 @@ export type UseFormPersistOptions<
  *
  * Todo: Use wath callback so it won't trigger a rerender
  */
-export function useFormPersist<V>(options: UseFormPersistOptions<V>) {
+export function useFormPersist<V extends FieldValues>(options: UseFormPersistOptions<V>) {
   const { form, name, storage = 'sessionStorage', exclude = [], persist = [] } = options
   const { setValue, watch, formState } = form
 
