@@ -57,6 +57,9 @@
     "react-dom": "^18.2.0",
     "webpack": "5.75.0"
   },
+  "resolutions": {
+    "@graphql-tools/url-loader": "7.16.13"
+  },
   "devDependencies": {
     "@playwright/test": "1.28.1",
     "@types/node": "16.11.7",

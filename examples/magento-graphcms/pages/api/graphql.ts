@@ -1,3 +1,3 @@
-import { createBuiltMeshHTTPHandler } from '../../.mesh'
+import { createServer } from '@graphcommerce/graphql-mesh'
 
-export default createBuiltMeshHTTPHandler()
+export default createServer('/api/graphql')
