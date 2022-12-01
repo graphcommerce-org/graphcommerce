@@ -29,7 +29,9 @@
     "@graphql-mesh/utils": "0.42.9",
     "cosmiconfig": "^8.0.0",
     "detect-package-manager": "^2.0.1",
-    "rimraf": "^3.0.2"
+    "rimraf": "^3.0.2",
+    "ts-node": "^10.9.1",
+    "graphql-tag": "^2.12.6"
   },
   "devDependencies": {
     "@graphcommerce/eslint-config-pwa": "5.1.0-canary.2",

@@ -18,7 +18,6 @@
     "@graphcommerce/typescript-config-pwa": "5.1.0-canary.2"
   },
   "dependencies": {
-    "@apollo/client": "^3.7.1",
     "@graphcommerce/graphql-codegen-near-operation-file": "5.1.0-canary.2",
     "@graphcommerce/graphql-codegen-relay-optimizer-plugin": "5.1.0-canary.2",
     "@graphql-codegen/add": "3.2.1",
@@ -33,8 +32,9 @@
     "apollo3-cache-persist": "^0.14.1"
   },
   "peerDependencies": {
+    "@apollo/client": "^3.7.1",
     "graphql": "^16.0.0",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }

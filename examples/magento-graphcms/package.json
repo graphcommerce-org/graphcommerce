@@ -18,6 +18,8 @@
     "postinstall": "is-monorepo '[pkgrun] postinstall' '[pkgrun] patch-package'"
   },
   "dependencies": {
+    "@apollo/client": "^3.7.1",
+    "@babel/core": "^7.20.5",
     "@graphcommerce/cli": "5.1.0-canary.2",
     "@graphcommerce/demo-magento-graphcommerce": "5.1.0-canary.2",
     "@graphcommerce/ecommerce-ui": "5.1.0-canary.2",
@@ -65,19 +67,21 @@
     "@lingui/react": "3.15.0",
     "@mui/lab": "5.0.0-alpha.110",
     "@mui/material": "5.10.16",
+    "@next/env": "12",
     "concurrently": "7.6.0",
     "cross-env": "^7.0.3",
     "dotenv": "16.0.3",
     "framer-motion": "7.6.15",
     "graphql": "16.6.0",
+    "make-plural": "6.2.2",
     "next": "12.2.5",
     "next-pwa": "5.5.4",
     "next-sitemap": "3.1.17",
     "patch-package": "6.5.0",
+    "popmotion": "11.0.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sharp": "0.31.2",
-    "type-fest": "^3.3.0",
     "webpack": "5.75.0"
   },
   "devDependencies": {
@@ -87,6 +91,7 @@
     "@lingui/cli": "3.15.0",
     "eslint": "8.28.0",
     "prettier": "2.8.0",
+    "type-fest": "^3.3.0",
     "typescript": "4.9.3"
   },
   "browserslist": [

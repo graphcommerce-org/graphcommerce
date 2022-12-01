@@ -28,7 +28,7 @@
     "@lingui/react": "^3.13.2",
     "make-plural": "^6.2.2",
     "next": "^12.1.2",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }
