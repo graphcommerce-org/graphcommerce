@@ -12,13 +12,16 @@ import {
 import { MeshApolloLink } from '@graphcommerce/graphql-mesh'
 import { magentoTypePolicies } from '@graphcommerce/magento-graphql'
 import { createStoreLink, defaultLocale } from '@graphcommerce/magento-store'
+import type { MeshInstance } from '@graphql-mesh/runtime'
 
 const loopback = process.env.VERCEL === '1' && process.env.CI !== '1'
 
 // Do not import the mesh when we're running in loopback mode.
 const mesh = loopback
   ? undefined
-  : await import('@graphcommerce/graphql-mesh').then(({ getBuiltMesh }) => getBuiltMesh())
+  : await import('@graphcommerce/graphql-mesh').then(
+      ({ getBuiltMesh }) => getBuiltMesh() as Promise<MeshInstance>,
+    )
 
 function client(locale: string) {
   if (!mesh) throw Error('Mesh is not available')
