@@ -13,11 +13,11 @@ import { FilterPanelProps } from '../types'
 
 type OverlayFilterContentProps = Pick<
   FilterPanelProps,
-  'label' | 'onReset' | 'children' | 'maxLength'
+  'label' | 'onReset' | 'children' | 'maxLength' | 'onApply' | 'closeOnAction'
 >
 
 export const OverlayFilterContent = forwardRef<HTMLElement, OverlayFilterContentProps>(
-  ({ label, children, onReset, maxLength = 20 }, ref) => {
+  ({ label, children, onReset, onApply, maxLength = 20, closeOnAction = true }, ref) => {
     const [search, setSearch] = useState<string>()
     const castedChildren = children as ReactElement
     const menuLength = castedChildren?.props.items?.length
@@ -35,6 +35,12 @@ export const OverlayFilterContent = forwardRef<HTMLElement, OverlayFilterContent
 
     const inSearchMode = menuLength > maxLength
 
+    const handleReset = () => {
+      if (onReset) onReset()
+      if (onApply) onApply()
+      if (closeOnAction && close) close()
+    }
+
     return (
       <Box
         sx={{
@@ -46,7 +52,7 @@ export const OverlayFilterContent = forwardRef<HTMLElement, OverlayFilterContent
         <LayoutOverlayHeader
           switchPoint={0}
           primary={
-            <LinkOrButton button={{ variant: 'text' }} color='primary' onClick={onReset}>
+            <LinkOrButton button={{ variant: 'text' }} color='primary' onClick={handleReset}>
               <Trans id='Reset' />
             </LinkOrButton>
           }

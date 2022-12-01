@@ -44,12 +44,20 @@ export function ChipMenu(props: ChipMenuProps) {
 
   const [activeEl, setActiveEl] = useState<HTMLElement | null>(null)
 
-  const matchMedia = useMatchMedia()
+  const { up } = useMatchMedia()
   const active = Boolean(activeEl)
-  const mode = active && matchMedia.up(breakpoint) ? 'popper' : 'overlay'
+  const mode = active && up(breakpoint) ? 'popper' : 'overlay'
 
-  let chevronIcon = <IconSvg src={iconChevronDown} size='medium' sx={{ ml: 1, mr: -1 }} />
-  if (activeEl) chevronIcon = <IconSvg src={iconChevronUp} size='medium' sx={{ ml: 1, mr: -1 }} />
+  let chevronIcon = (
+    <IconSvg
+      src={activeEl ? iconChevronUp : iconChevronDown}
+      size='medium'
+      sx={(theme) => ({
+        [theme.breakpoints.down('md')]: { bgcolor: 'green' },
+        [theme.breakpoints.up('md')]: { ml: 0.5, mr: -0.5 },
+      })}
+    />
+  )
   if (filterValue)
     chevronIcon = (
       <Typography

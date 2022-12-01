@@ -8,7 +8,7 @@ type OverlayFilterPanelProps = PropsWithChildren<
   Omit<ChipProps<'button'>, 'children' | 'component' | 'onClick'>
 > &
   Pick<OverlayProps, 'active' | 'onClosed'> & {
-    onReset?: React.MouseEventHandler<HTMLButtonElement | HTMLAnchorElement | HTMLSpanElement>
+    onReset?: () => void
     onApply?: () => void
   }
 

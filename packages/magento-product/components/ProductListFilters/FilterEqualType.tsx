@@ -7,6 +7,7 @@ import {
   ActionCardListForm,
   ActionCardItemRenderProps,
   ActionCard,
+  useOverlayContext,
 } from '@graphcommerce/next-ui'
 import { Box, Checkbox, Typography } from '@mui/material'
 import { useState } from 'react'
@@ -147,7 +148,7 @@ export function FilterEqualType(props: FilterEqualTypeProps) {
     <ChipMenu
       {...chipProps}
       variant='outlined'
-      onReset={() => emptyFilters()}
+      onReset={emptyFilters}
       label={label}
       selectedLabel={currentLabels[0]}
       selected={currentLabels.length > 0}

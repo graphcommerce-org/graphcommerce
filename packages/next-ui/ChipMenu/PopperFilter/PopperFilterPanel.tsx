@@ -1,19 +1,15 @@
 import { ChipProps, ClickAwayListener, Popper } from '@mui/material'
-import React, { PropsWithChildren, useCallback, useEffect, useRef, useState } from 'react'
+import { PropsWithChildren, useRef } from 'react'
 import { PopperFilterContent } from './PopperFilterContent'
 import { useMouseEvents } from './helpers/useMouseEvents'
 
 type PopperFilterPanelProps = PropsWithChildren<
-  Omit<ChipProps<'button'>, 'children' | 'component' | 'onClick'>
+  Omit<ChipProps<'button'>, 'children' | 'component' | 'onClick' | 'onReset'>
 > & {
   openEl: null | HTMLElement
   onClose?: () => void
   onApply?: () => void
-  onReset?:
-    | (React.MouseEventHandler<HTMLButtonElement> &
-        React.MouseEventHandler<HTMLAnchorElement> &
-        React.MouseEventHandler<HTMLSpanElement>)
-    | undefined
+  onReset?: () => void
 }
 
 export function PopperFilterPanel(props: PopperFilterPanelProps) {

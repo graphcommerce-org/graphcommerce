@@ -11,11 +11,11 @@ import { FilterPanelProps } from '../types'
 
 type PopperFilterContentProps = Pick<
   FilterPanelProps,
-  'label' | 'onReset' | 'children' | 'maxLength' | 'onClosed'
+  'label' | 'onReset' | 'children' | 'maxLength' | 'onClosed' | 'onApply'
 >
 
 export const PopperFilterContent = forwardRef<HTMLElement, PopperFilterContentProps>(
-  ({ label, children, onReset, onClosed, maxLength = 20 }, ref) => {
+  ({ label, children, onReset, onClosed, onApply, maxLength = 20 }, ref) => {
     const [search, setSearch] = useState<string>()
     const castedChildren = children as ReactElement
     const menuLength = castedChildren?.props.items?.length
@@ -30,6 +30,12 @@ export const PopperFilterContent = forwardRef<HTMLElement, PopperFilterContentPr
     }, [castedChildren, children, search])
 
     const inSearchMode = menuLength > maxLength
+
+    const handleReset = () => {
+      if (onReset) onReset()
+      if (onClosed) onClosed()
+      if (onApply) onApply()
+    }
 
     return (
       <Box
@@ -46,7 +52,7 @@ export const PopperFilterContent = forwardRef<HTMLElement, PopperFilterContentPr
             <LinkOrButton
               button={{ variant: 'text', size: 'medium', sx: { mr: 1 } }}
               color='primary'
-              onClick={onReset}
+              onClick={handleReset}
             >
               <Trans id='Reset' />
             </LinkOrButton>
