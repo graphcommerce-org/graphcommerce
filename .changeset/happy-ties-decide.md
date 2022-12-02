@@ -67,4 +67,4 @@
 '@graphcommerce/typescript-config-pwa': patch
 ---
 
-Updated dependencies to latest versions; Solve tons of peer dependency issues.
+Updated dependencies to latest versions, except for nextjs; Solve tons of peer dependency issues.
