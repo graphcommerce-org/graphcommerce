@@ -14,19 +14,19 @@
       "project": "./tsconfig.json"
     }
   },
+  "dependencies": {
+    "make-plural": "6.2.2",
+    "@graphcommerce/next-config": "5.1.0-canary.2"
+  },
   "devDependencies": {
     "@graphcommerce/eslint-config-pwa": "5.1.0-canary.2",
     "@graphcommerce/prettier-config-pwa": "5.1.0-canary.2",
     "@graphcommerce/typescript-config-pwa": "5.1.0-canary.2",
     "@lingui/conf": "^3.14.0"
   },
-  "dependencies": {
-    "@graphcommerce/next-config": "5.1.0-canary.2"
-  },
   "peerDependencies": {
     "@lingui/core": "^3.13.2",
     "@lingui/react": "^3.13.2",
-    "make-plural": "^6.2.2",
     "next": "^12.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"

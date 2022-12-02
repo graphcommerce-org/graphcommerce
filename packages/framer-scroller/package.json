@@ -15,6 +15,7 @@
     }
   },
   "dependencies": {
+    "popmotion": "11.0.5",
     "@graphcommerce/framer-utils": "5.1.0-canary.2",
     "@graphcommerce/image": "5.1.0-canary.2"
   },
@@ -29,7 +30,6 @@
     "@lingui/core": "^3.13.2",
     "framer-motion": "^7.0.0",
     "next": "^12.1.2",
-    "popmotion": "11.x.x",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }

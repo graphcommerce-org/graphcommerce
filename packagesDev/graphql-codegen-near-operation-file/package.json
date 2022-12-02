@@ -32,9 +32,7 @@
     "@graphql-codegen/visitor-plugin-common": "2.13.2",
     "@graphql-tools/utils": "^9.1.1",
     "@types/parse-filepath": "^1.0.0",
+    "graphql": "16.6.0",
     "parse-filepath": "^1.0.2"
-  },
-  "peerDependencies": {
-    "graphql": "^16.0.0"
   }
 }

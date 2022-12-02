@@ -7,6 +7,7 @@
   "license": "MIT",
   "main": "index.ts",
   "dependencies": {
+    "@apollo/client": "^3.7.1",
     "@graphql-mesh/apollo-link": "^8.0.7",
     "@graphql-mesh/config": "8.0.35",
     "@graphql-mesh/graphql": "0.32.3",
@@ -15,7 +16,8 @@
     "@graphql-mesh/types": "0.87.1",
     "@graphql-mesh/utils": "0.42.9",
     "@whatwg-node/fetch": "^0.5.3",
-    "fetch-retry": "^5.0.3"
+    "fetch-retry": "^5.0.3",
+    "graphql": "16.6.0"
   },
   "peerDependencies": {
     "graphql": "^16.0.0",
