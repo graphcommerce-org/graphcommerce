@@ -26,7 +26,7 @@ import {
   ProductListQuery,
   ProductListSort,
 } from '@graphcommerce/magento-product'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { StoreConfigDocument, redirectOrNotFound } from '@graphcommerce/magento-store'
 import {
   StickyBelowHeader,
   LayoutTitle,
@@ -195,7 +195,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const hasCategory = Boolean(productListParams && categoryUid)
 
   if (!productListParams || !(hasPage || hasCategory))
-    return { notFound: true, revalidate: 60 * 20 }
+    return redirectOrNotFound(client, params, locale)
 
   if (!hasCategory) {
     return {
@@ -221,7 +221,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   })
 
   // assertAllowedParams(await params, (await products).data)
-  if (!(await products).data) return { notFound: true, revalidate: 60 * 20 }
+  if (!(await products).data) return redirectOrNotFound(client, params, locale)
 
   const { category_name, category_url_path } =
     (await categoryPage).data.categories?.items?.[0]?.breadcrumbs?.[0] ?? {}
