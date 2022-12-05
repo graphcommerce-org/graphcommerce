@@ -68,3 +68,8 @@
 ---
 
 Updated dependencies to latest versions, except for nextjs; Solve tons of peer dependency issues.
+
+- Updated the @mui/material package
+- Removed dependencies on react-hook-form-mui and @playwright/test
+- Upgraded dependencies including type-fest and graphql-mesh
+- Solved peer dependency issues
