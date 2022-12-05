@@ -2,4 +2,4 @@
 '@graphcommerce/mollie-magento-payment': patch
 ---
 
-fixed clearCurrentCartId for Mollie
+Fixed clearCurrentCartId for Mollie

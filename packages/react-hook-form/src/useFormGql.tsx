@@ -6,7 +6,7 @@ import {
   LazyQueryResultTuple,
 } from '@apollo/client'
 import { useEffect, useRef } from 'react'
-import { UseFormProps, UseFormReturn, UnpackNestedValue, DeepPartial } from 'react-hook-form'
+import { FieldValues, UseFormProps, UseFormReturn } from 'react-hook-form'
 import diff from './diff'
 import { useGqlDocumentHandler, UseGqlDocumentHandler } from './useGqlDocumentHandler'
 
@@ -21,9 +21,13 @@ type UseFormGraphQLCallbacks<Q, V> = {
   onComplete?: OnCompleteFn<Q, V>
 }
 
-export type UseFormGraphQlOptions<Q, V> = UseFormProps<V> & UseFormGraphQLCallbacks<Q, V>
+export type UseFormGraphQlOptions<Q, V extends FieldValues> = UseFormProps<V> &
+  UseFormGraphQLCallbacks<Q, V>
 
-export type UseFormGqlMethods<Q, V> = Omit<UseGqlDocumentHandler<V>, 'encode' | 'type'> &
+export type UseFormGqlMethods<Q, V extends FieldValues> = Omit<
+  UseGqlDocumentHandler<V>,
+  'encode' | 'type'
+> &
   Pick<UseFormReturn<V>, 'handleSubmit'> & { data?: Q | null; error?: ApolloError }
 
 /**
@@ -34,7 +38,7 @@ export type UseFormGqlMethods<Q, V> = Omit<UseGqlDocumentHandler<V>, 'encode' | 
  * - Updates the form when the query updates
  * - Resets the form after submitting the form when no modifications are found
  */
-export function useFormGql<Q, V>(
+export function useFormGql<Q, V extends FieldValues>(
   options: {
     document: TypedDocumentNode<Q, V>
     form: UseFormReturn<V>
@@ -61,10 +65,7 @@ export function useFormGql<Q, V>(
   const handleSubmit: UseFormReturn<V>['handleSubmit'] = (onValid, onInvalid) =>
     form.handleSubmit(async (formValues, event) => {
       // Combine defaults with the formValues and encode
-      let variables = encode({
-        ...defaultValues,
-        ...(formValues as Record<string, unknown>),
-      })
+      let variables = encode({ ...defaultValues, ...formValues })
 
       // Wait for the onBeforeSubmit to complete
       if (onBeforeSubmit) {
@@ -78,8 +79,7 @@ export function useFormGql<Q, V>(
       if (onComplete && result.data) await onComplete(result, variables)
 
       // Reset the state of the form if it is unmodified afterwards
-      if (typeof diff(form.getValues(), formValues) === 'undefined')
-        form.reset(formValues as UnpackNestedValue<DeepPartial<V>>)
+      if (typeof diff(form.getValues(), formValues) === 'undefined') form.reset(formValues)
 
       await onValid(formValues, event)
     }, onInvalid)

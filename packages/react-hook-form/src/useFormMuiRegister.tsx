@@ -13,7 +13,9 @@ export type UseMuiFormRegister<TFieldValues extends FieldValues> = <
   options?: RegisterOptions<TFieldValues, TFieldName>,
 ) => Omit<UseFormRegisterReturn, 'ref'> & { inputRef: UseFormRegisterReturn['ref'] }
 
-export function useFormMuiRegister<V>({ register }: Pick<UseFormReturn<V>, 'register'>) {
+export function useFormMuiRegister<V extends FieldValues>({
+  register,
+}: Pick<UseFormReturn<V>, 'register'>) {
   const muiRegister: UseMuiFormRegister<V> = (name, opts) => {
     const { ref: inputRef, ...fields } = register(name, opts)
     return { ...fields, inputRef }

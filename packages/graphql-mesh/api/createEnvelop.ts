@@ -1,30 +1,11 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-import { useApolloTracing } from '@envelop/apollo-tracing'
-import { createServer as createYogaServer } from '@graphql-yoga/node'
 import { NextApiRequest, NextApiResponse } from 'next'
-import { getBuiltMesh, rawServeConfig } from '../.mesh'
+import { createBuiltMeshHTTPHandler } from '../.mesh'
 
-export async function createServer(endpoint: string) {
-  // retrieve the mesh instance (with configured Envelop plugins)
-  const mesh = await getBuiltMesh()
+const handler = createBuiltMeshHTTPHandler()
 
-  const { cors, playgroundTitle } = rawServeConfig ?? {}
-
-  // pass the Mesh instance to Yoga and configure GraphiQL
-  return createYogaServer<{
-    req: NextApiRequest
-    res: NextApiResponse
-  }>({
-    plugins: [...mesh.plugins, useApolloTracing()],
-    context: ({ req }) => ({ ...req, ...mesh.meshContext }),
-    graphiql: {
-      endpoint,
-      title: playgroundTitle,
-    },
-    maskedErrors: false,
-    parserCache: false,
-    validationCache: false,
-    logging: mesh.logger,
-    cors,
-  })
+// eslint-disable-next-line @typescript-eslint/require-await
+export const createServer = async (endpoint: string) => {
+  if (endpoint !== '/api/graphql')
+    throw Error('Moving the GraphQL Endpoint is not supported at the moment')
+  return (req: NextApiRequest, res: NextApiResponse) => handler(req, res)
 }

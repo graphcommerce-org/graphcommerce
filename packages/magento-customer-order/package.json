@@ -12,10 +12,9 @@
     }
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "^5.1.0-canary.2",
-    "@graphcommerce/prettier-config-pwa": "^5.1.0-canary.2",
-    "@graphcommerce/typescript-config-pwa": "^5.1.0-canary.2",
-    "@playwright/test": "^1.21.1"
+    "@graphcommerce/eslint-config-pwa": "5.1.0-canary.2",
+    "@graphcommerce/prettier-config-pwa": "5.1.0-canary.2",
+    "@graphcommerce/typescript-config-pwa": "5.1.0-canary.2"
   },
   "dependencies": {
     "@graphcommerce/graphql": "5.1.0-canary.2",
@@ -28,10 +27,10 @@
   "peerDependencies": {
     "@lingui/react": "^3.13.2",
     "@lingui/core": "^3.13.2",
-    "@mui/material": "5.5.3",
-    "framer-motion": "^6.2.4",
+    "@mui/material": "^5.10.16",
+    "framer-motion": "^7.0.0",
     "next": "^12.1.2",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }

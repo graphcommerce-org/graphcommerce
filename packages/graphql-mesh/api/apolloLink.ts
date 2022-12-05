@@ -9,7 +9,6 @@
  * https://github.com/Urigo/graphql-mesh/issues/4196
  */
 
-// export * from '@graphql-mesh/apollo-link'
 import { ApolloLink, FetchResult, Observable, Operation, RequestHandler } from '@apollo/client/core'
 import { ExecuteMeshFn, SubscribeMeshFn } from '@graphql-mesh/runtime'
 import { isAsyncIterable } from '@graphql-tools/utils'
@@ -31,7 +30,6 @@ function createMeshApolloRequestHandler(options: MeshApolloRequestHandlerOptions
       operationAst.operation === 'subscription' && options.subscribe
         ? options.subscribe
         : options.execute
-
     return new Observable((observer) => {
       Promise.resolve()
         .then(async () => {

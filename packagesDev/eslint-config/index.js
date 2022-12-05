@@ -64,7 +64,13 @@ module.exports = {
     'import/no-extraneous-dependencies': [
       'error',
       {
-        devDependencies: ['next.config.js', '**/test/**', '**/*.d.ts', '**/*.spec.ts'],
+        devDependencies: [
+          'next.config.js',
+          '**/test/**',
+          '**/*.d.ts',
+          '**/*.spec.ts',
+          '**/__tests__/**',
+        ],
       },
     ],
     'import/order': ['warn', { alphabetize: { order: 'asc' } }],

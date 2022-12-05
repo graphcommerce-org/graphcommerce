@@ -14,15 +14,15 @@
     "@graphcommerce/lingui-next": "5.1.0-canary.2",
     "@graphcommerce/next-config": "5.1.0-canary.2",
     "@graphcommerce/next-ui": "5.1.0-canary.2",
-    "@mui/material": "5.10.0",
-    "framer-motion": "^7.5.1",
+    "@mui/material": "5.10.16",
+    "framer-motion": "7.6.17",
     "next": "12.2.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "license": "MIT",
   "devDependencies": {
-    "typescript": "4.7.4"
+    "typescript": "4.9.3"
   },
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {

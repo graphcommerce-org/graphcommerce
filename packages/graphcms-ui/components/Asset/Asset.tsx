@@ -1,4 +1,3 @@
-import { removeNull } from '@graphcommerce/graphql'
 import { Image, ImageProps } from '@graphcommerce/image'
 import { AssetFragment } from './Asset.gql'
 
@@ -21,12 +20,13 @@ export function Asset(props: AssetProps) {
   const { asset, ...imgProps } = props
 
   if (isImage(asset)) {
-    const { url, height, mimeType, size, width, ...assetProps } = removeNull(asset)
+    const { url, height, mimeType, size, width, alt, ...assetProps } = asset
     return (
       <Image
         src={url}
         height={height}
         width={width}
+        alt={alt ?? undefined}
         {...imgProps}
         {...assetProps}
         unoptimized={mimeType === 'image/svg+xml'}

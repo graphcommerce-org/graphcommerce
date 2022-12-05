@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable import/no-cycle */
 import { resolve } from 'path'
-import { isUsingTypes, Types, DetailedError } from '@graphql-codegen/plugin-helpers'
+import { isUsingTypes, Types } from '@graphql-codegen/plugin-helpers'
 import {
   generateImportStatement,
   ImportSource,
@@ -160,11 +160,7 @@ export function resolveDocumentImports<T>(
       }
     } catch (e) {
       if (e instanceof Error) {
-        throw new DetailedError(
-          e.message || e.toString(),
-          `File ${documentFile.location} caused error: ${e.message || e.toString()}`,
-          documentFile.location,
-        )
+        throw new Error(`File ${documentFile.location} caused error: ${e.message || e.toString()}`)
       } else {
         throw e
       }
