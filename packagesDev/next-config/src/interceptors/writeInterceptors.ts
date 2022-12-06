@@ -1,20 +1,35 @@
 import fs from 'node:fs'
 import path from 'path'
+import glob from 'glob'
+import { resolveDependenciesSync } from '../utils/resolveDependenciesSync'
 import { GenerateInterceptorsReturn } from './generateInterceptors'
 
 export function writeInterceptors(
   interceptors: GenerateInterceptorsReturn,
   cwd: string = process.cwd(),
 ) {
-  Object.entries(interceptors).forEach(([target, plugin]) => {
-    // eslint-disable-next-line no-console
-    const fileToWrite = `${path.join(cwd, plugin.fromRoot)}.interceptor.tsx`
-
-    if (
-      !fs.existsSync(fileToWrite) ||
-      fs.readFileSync(fileToWrite, 'utf8').toString() !== plugin.template
-    ) {
-      fs.writeFileSync(fileToWrite, plugin.template)
-    }
+  const dependencies = resolveDependenciesSync(cwd)
+  const existing: string[] = []
+  dependencies.forEach((dependency) => {
+    const files = glob.sync(`${dependency}/**/*.interceptor.tsx`, { cwd })
+    existing.push(...files)
   })
+
+  Object.entries(interceptors).forEach(([, plugin]) => {
+    const relativeFile = `${plugin.fromRoot}.interceptor.tsx`
+
+    if (existing.includes(relativeFile)) {
+      delete existing[existing.indexOf(relativeFile)]
+    }
+    const fileToWrite = path.join(cwd, relativeFile)
+
+    const isSame =
+      fs.existsSync(fileToWrite) &&
+      fs.readFileSync(fileToWrite, 'utf8').toString() === plugin.template
+
+    if (!isSame) fs.writeFileSync(fileToWrite, plugin.template)
+  })
+
+  // Cleanup unused interceptors
+  existing.forEach((file) => fs.unlinkSync(file))
 }
