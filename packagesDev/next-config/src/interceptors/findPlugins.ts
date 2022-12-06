@@ -4,12 +4,12 @@ import { resolveDependenciesSync } from '../utils/resolveDependenciesSync'
 import type { PluginConfig } from './generateInterceptors'
 
 type ParseResult = {
-  component: string
-  exported: string
+  component?: string
+  exported?: string
   ifEnv?: string
 }
 
-function parseStructure(file: string): ParseResult | undefined {
+function parseStructure(file: string): ParseResult {
   const ast = parseFileSync(file, { syntax: 'typescript', tsx: true })
   // const ast = swc.parseFileSync(file, { syntax: 'typescript' })
 
@@ -52,9 +52,7 @@ function parseStructure(file: string): ParseResult | undefined {
     }
   })
 
-  return exports.component && exports.exported
-    ? (exports as { component: string; exported: string })
-    : undefined
+  return exports as ParseResult
 }
 
 export function findPlugins(cwd: string = process.cwd()) {
@@ -67,7 +65,7 @@ export function findPlugins(cwd: string = process.cwd()) {
       try {
         const result = parseStructure(file)
         if (!result) return
-        if (result.ifEnv && !process.env[result.ifEnv]) return
+        // if (result.ifEnv && !process.env[result.ifEnv]) return
 
         plugins.push({ ...result, plugin: file.replace(dependency, path).replace('.tsx', '') })
       } catch (e) {
@@ -75,5 +73,6 @@ export function findPlugins(cwd: string = process.cwd()) {
       }
     })
   })
+
   return plugins
 }

@@ -1,8 +1,8 @@
 import { ResolveDependency, ResolveDependencyReturn } from '../utils/resolveDependency'
 
 export type PluginConfig = {
-  component: string
-  exported: string
+  component?: string
+  exported?: string
   plugin: string
   ifEnv?: string
 }
@@ -19,7 +19,7 @@ export function generateInterceptor(plugin: Plugin): MaterializedPlugin {
   const { fromModule, dependency, components } = plugin
 
   const pluginImports = Object.entries(components)
-    .map(([_, plugins]) => {
+    .map(([, plugins]) => {
       const duplicateImports = new Set()
       return plugins
         .sort((a, b) => a.plugin.localeCompare(b.plugin))
@@ -109,7 +109,9 @@ export function generateInterceptors(
 ): GenerateInterceptorsReturn {
   // todo: Do not use reduce as we're passing the accumulator to the next iteration
   const byExportedComponent = plugins.reduce((acc, plug) => {
-    const { exported } = plug
+    const { exported, component } = plug
+    if (!exported || !component) return acc
+
     const resolved = resolve(exported)
 
     if (!acc[resolved.fromRoot])
@@ -119,10 +121,10 @@ export function generateInterceptors(
         components: {},
       } as Plugin
 
-    if (!acc[resolved.fromRoot].components[plug.component])
-      acc[resolved.fromRoot].components[plug.component] = []
+    if (!acc[resolved.fromRoot].components[component])
+      acc[resolved.fromRoot].components[component] = []
 
-    acc[resolved.fromRoot].components[plug.component].push(plug)
+    acc[resolved.fromRoot].components[component].push(plug)
     return acc
   }, {} as Record<string, Plugin>)
 
