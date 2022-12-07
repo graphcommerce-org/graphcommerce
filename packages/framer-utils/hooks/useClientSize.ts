@@ -9,7 +9,7 @@ export type UseClientSizeOptions = { x?: string; y?: string }
 
 export const clientSizeCssVar = {
   y: `var(--client-size-y, 100vh)`,
-  x: `var(--client-size-x, 100vh)`,
+  x: `var(--client-size-x, 100vw)`,
 }
 
 let watching = false
