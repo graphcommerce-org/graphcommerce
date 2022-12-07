@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 /* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { promises as fs } from 'node:fs'
 import path from 'node:path'
 import { exit } from 'node:process'
@@ -66,7 +65,7 @@ const main = async () => {
   conf.additionalTypeDefs = (
     Array.isArray(conf.additionalTypeDefs) ? conf.additionalTypeDefs : [conf.additionalTypeDefs]
   ).map((additionalTypeDef) => {
-    if (additionalTypeDef.startsWith('@'))
+    if (typeof additionalTypeDef === 'string' && additionalTypeDef.startsWith('@'))
       return path.relative(root, require.resolve(additionalTypeDef))
 
     return additionalTypeDef
@@ -102,6 +101,9 @@ process.on('SIGINT', cleanup)
 process.on('SIGTERM', cleanup)
 
 main().catch((e) => {
+  // eslint-disable-next-line @typescript-eslint/no-floating-promises
   cleanup()
-  return handleFatalError(e, new DefaultLogger(DEFAULT_CLI_PARAMS.initialLoggerPrefix))
+  if (e instanceof Error) {
+    handleFatalError(e, new DefaultLogger(DEFAULT_CLI_PARAMS.initialLoggerPrefix))
+  }
 })

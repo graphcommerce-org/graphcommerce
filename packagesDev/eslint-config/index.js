@@ -108,6 +108,7 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/naming-convention': 'off',
     '@typescript-eslint/no-misused-promises': ['error', { checksVoidReturn: false }],
+    '@typescript-eslint/no-unbound-method': 'off',
     '@typescript-eslint/no-restricted-imports': [
       'error',
       {

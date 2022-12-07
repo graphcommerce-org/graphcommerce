@@ -9,8 +9,7 @@ export type PageProps = Pick<PageItem, 'routerKey'> & {
 }
 
 export function scrollPos(key: string): { x: number; y: number } {
-  const scroll = global.window?.sessionStorage[`__next_scroll_${key}`]
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+  const scroll = global.window?.sessionStorage[`__next_scroll_${key}`] as string | undefined
   return scroll ? JSON.parse(scroll) : { x: 0, y: 0 }
 }
 

@@ -64,14 +64,13 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
 
   const [removeWishlistItem] = useMutation(RemoveProductFromWishlistDocument)
 
-  const [anchorEl, setAnchorEl] = useState(null)
+  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement>(null)
   const open = Boolean(anchorEl)
-  const handleClick = (event) => {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+  function handleClick(event: React.MouseEvent<HTMLButtonElement>) {
     setAnchorEl(event.currentTarget)
   }
 
-  const handleClose = (event) => {
+  function handleClose(event: React.MouseEvent<HTMLButtonElement>) {
     if (event.target.id === 'remove') {
       if (loggedIn) {
         let itemIdToDelete = wishlistItemId
