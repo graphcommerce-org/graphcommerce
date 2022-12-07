@@ -1860,6 +1860,17 @@
     "@graphql-tools/utils" "9.1.1"
     tslib "^2.4.0"
 
+"@graphql-mesh/plugin-http-details-extensions@^0.0.12":
+  version "0.0.12"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/plugin-http-details-extensions/-/plugin-http-details-extensions-0.0.12.tgz#732abbec1b65ba84df706beaa3f6ed8add38550c"
+  integrity sha512-cboFnUDWZNnCCdJEFyfx6pJcSzBevalEamzfl4JXzQZqWaSmzs8HRsLUZeRNbgQByvd1fgfSvh8i52VQMq23DA==
+  dependencies:
+    "@envelop/core" "3.0.4"
+    "@graphql-mesh/types" "0.87.1"
+    "@graphql-mesh/utils" "0.42.9"
+    "@whatwg-node/fetch" "0.5.3"
+    tslib "^2.4.0"
+
 "@graphql-mesh/runtime@0.44.37", "@graphql-mesh/runtime@^0.44.37":
   version "0.44.37"
   resolved "https://registry.yarnpkg.com/@graphql-mesh/runtime/-/runtime-0.44.37.tgz#14c5cc7261fbf286854b279f89b20d96236bec91"

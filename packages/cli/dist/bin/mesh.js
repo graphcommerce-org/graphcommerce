@@ -80,6 +80,14 @@ const main = async () => {
         conf.serve = {};
     if (!conf.serve.playgroundTitle)
         conf.serve.playgroundTitle = 'GraphCommerce® Mesh';
+    conf.plugins = [
+        ...(conf.plugins ?? []),
+        {
+            httpDetailsExtensions: {
+                if: "env.NODE_ENV === 'development'",
+            },
+        },
+    ];
     await node_fs_1.promises.writeFile(tmpMeshLocation, yaml_1.default.stringify(conf));
     // Reexport the mesh to is can be used by packages
     await node_fs_1.promises.writeFile(`${meshDir}/.mesh.ts`, `export * from '${relativePath.split(node_path_1.default.sep).join('/')}.mesh'`, { encoding: 'utf8' });
