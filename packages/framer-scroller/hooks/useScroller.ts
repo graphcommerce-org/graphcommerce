@@ -83,6 +83,8 @@ export function useScroller<
   const onPanStart: PanHandlers['onPanStart'] = (event) => {
     // If we're not dealing with the mouse we don't need to do anything
     if (!isHTMLMousePointerEvent(event)) return
+
+    if (event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA') return
     if (event.target.closest('.Scroller-root') !== scrollerRef.current) return
 
     scrollStart.x.set(scroll.x.get())
