@@ -259,7 +259,6 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
       <Scroller
         className={`${classes.scroller} ${className ?? ''}`}
         grid={false}
-        hideScrollbar
         onClick={onClickAway}
         sx={[
           (theme) => ({
@@ -297,11 +296,15 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
                 gridTemplate: `"overlay beforeOverlay"`,
                 borderTopRightRadius: theme.shape.borderRadius * 4,
                 borderBottomRightRadius: theme.shape.borderRadius * 4,
+
+                '&::-webkit-scrollbar': { display: 'none' },
               },
               '&.variantMdRight': {
                 gridTemplate: `"beforeOverlay overlay"`,
                 borderTopLeftRadius: theme.shape.borderRadius * 4,
                 borderBottomLeftRadius: theme.shape.borderRadius * 4,
+
+                '&::-webkit-scrollbar': { display: 'none' },
               },
               '&.variantMdBottom': {
                 borderTopLeftRadius: theme.shape.borderRadius * 4,
