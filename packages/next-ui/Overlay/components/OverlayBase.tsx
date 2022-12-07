@@ -4,7 +4,7 @@ import {
   useElementScroll,
   useIsomorphicLayoutEffect,
 } from '@graphcommerce/framer-utils'
-import { Box, styled, SxProps, Theme, useTheme, useThemeProps } from '@mui/material'
+import { Box, styled, SxProps, Theme, useTheme, useThemeProps, Breakpoint } from '@mui/material'
 import { m, MotionProps, useDomEvent, useMotionValue, useTransform } from 'framer-motion'
 import React, { useCallback, useEffect, useRef } from 'react'
 import { LayoutProvider } from '../../Layout/components/LayoutProvider'
@@ -41,6 +41,12 @@ export type LayoutOverlayBaseProps = {
   isPresent: boolean
   safeToRemove?: (() => void) | null | undefined
   overlayPaneProps?: MotionProps
+
+  /* For `variantSm='left|right' */
+  widthSm?: string | false
+
+  /* For `variantMd='left|right' */
+  widthMd?: string | false
 } & StyleProps &
   OverridableProps
 
@@ -88,6 +94,8 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
     isPresent,
     safeToRemove,
     overlayPaneProps,
+    widthMd = 'max(800px, 50vw)',
+    widthSm = 'max(300px, 80vw)',
   } = props
 
   const th = useTheme()
@@ -385,7 +393,7 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
 
               [theme.breakpoints.down('md')]: {
                 minWidth: '80vw',
-                '&:not(.sizeMdFull)': {
+                '&:not(.sizeSmFull)': {
                   width: 'auto',
                 },
 
@@ -408,6 +416,10 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
                   paddingBottom: '1px',
                   minHeight: clientSizeCssVar.y,
                 },
+                '&.variantSmLeft, &.variantSmRight': {
+                  width: widthSm || undefined,
+                  maxWidth: clientSizeCssVar.x,
+                },
               },
               [theme.breakpoints.up('md')]: {
                 minWidth: '1px',
@@ -429,7 +441,8 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
                   borderTopRightRadius: `${theme.shape.borderRadius * 4}px`,
                 },
                 '&.variantMdLeft, &.variantMdRight': {
-                  width: 'max-content',
+                  width: widthMd || 'max-content',
+                  maxWidth: clientSizeCssVar.x,
                 },
 
                 '&.sizeMdFloating': {

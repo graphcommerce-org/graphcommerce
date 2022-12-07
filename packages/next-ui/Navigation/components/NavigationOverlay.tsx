@@ -105,6 +105,8 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
       variantMd={variantMd}
       sizeMd={sizeMd}
       justifyMd={justifyMd}
+      widthMd={false}
+      widthSm={false}
       overlayPaneProps={{
         layout: true,
         initial: false,
