@@ -79,7 +79,7 @@ function ProductPage(props: Props) {
       />
       <ProductPageMeta {...product} />
 
-      <AddProductsToCartForm defaultValues={defaultValues}>
+      <AddProductsToCartForm key={product.uid} defaultValues={defaultValues}>
         <ConfigurableProductPageGallery
           url_key={product.url_key}
           media_gallery={product.media_gallery}
