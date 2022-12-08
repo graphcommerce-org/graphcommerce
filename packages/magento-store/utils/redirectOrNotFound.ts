@@ -1,6 +1,8 @@
 import { ParsedUrlQuery } from 'querystring'
-import { ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
+import { ApolloClient, flushMeasurePerf, NormalizedCacheObject } from '@graphcommerce/graphql'
+import { nonNullable } from '@graphcommerce/next-ui'
 import { Redirect } from 'next'
+import { StoreConfigDocument } from '../StoreConfig.gql'
 import { defaultLocale } from '../localeToStore'
 import { HandleRedirectDocument } from './HandleRedirect.gql'
 
@@ -9,11 +11,16 @@ export type RedirectOr404Return = Promise<
   | { notFound: true; revalidate?: number | boolean }
 >
 
-const notFound = () => ({ notFound: true, revalidate: 60 * 20 } as const)
+const notFound = () => {
+  flushMeasurePerf()
+  return { notFound: true, revalidate: 60 * 20 } as const
+}
 
 const redirect = (to: string, permanent: boolean, locale?: string) => {
   const prefix = locale === defaultLocale() ? '' : `/${locale}`
   const destination = `${prefix}${to}`
+
+  flushMeasurePerf()
 
   if (process.env.NODE_ENV === 'development') {
     // eslint-disable-next-line no-console
@@ -30,26 +37,51 @@ export async function redirectOrNotFound(
   params?: ParsedUrlQuery,
   locale?: string,
 ): RedirectOr404Return {
-  // Create a URL from the params provided.
-  const url = Object.values(params ?? {})
-    .map((v) => (Array.isArray(v) ? v.join('/') : v))
-    .join('/')
+  try {
+    // Create a URL from the params provided.
+    const urlKey = Object.values(params ?? {})
+      .map((v) => (Array.isArray(v) ? v.join('/') : v))
+      .join('/')
 
-  // There is a URL, so we need to check if it can be found in the database.
-  const { route } = (await client.query({ query: HandleRedirectDocument, variables: { url } })).data
-  const permanent = route?.redirect_code === 301
+    // Get the configured suffixes from the store config
+    const { product_url_suffix: prodSuffix, category_url_suffix: catSuffix } =
+      (await client.query({ query: StoreConfigDocument })).data.storeConfig ?? {}
 
-  // Add special handling for the homepage.
-  if (route?.url_key && route.__typename.endsWith('Product')) {
-    if (process.env.NEXT_PUBLIC_SINGLE_PRODUCT_PAGE !== '1') {
-      console.warn('Redirects are only supported for NEXT_PUBLIC_SINGLE_PRODUCT_PAGE')
+    const candidates = new Set([urlKey])
+
+    // If the incomming URL contains a suffix, we check if the URL without the suffix exists
+    // if the incomming URL does not contain a suffix, we check if the URL with the suffix exists
+    const suffixes = [prodSuffix, catSuffix].filter(nonNullable)
+    suffixes.forEach((suffix) => {
+      candidates.add(
+        urlKey.endsWith(suffix) ? urlKey.slice(0, -suffix.length) : `${urlKey}${suffix}`,
+      )
+    })
+
+    const routePromises = [...candidates].map(async (url) => {
+      const result = await client.query({ query: HandleRedirectDocument, variables: { url } })
+      if (!result.data.route) throw Error('No data')
+      return result.data.route
+    })
+
+    const route = await Promise.any(routePromises)
+
+    // There is a URL, so we need to check if it can be found in the database.
+    const permanent = route?.redirect_code === 301
+
+    // Add special handling for the homepage.
+    if (route?.url_key && route.__typename.endsWith('Product')) {
+      if (process.env.NEXT_PUBLIC_SINGLE_PRODUCT_PAGE !== '1') {
+        console.warn('Redirects are only supported for NEXT_PUBLIC_SINGLE_PRODUCT_PAGE')
+      }
+      return redirect(`/p/${route.url_key}`, permanent, locale)
     }
-    return redirect(`/p/${route.url_key}`, permanent, locale)
+
+    // The default URL for categories or CMS pages is handled by the pages/[...url].tsx file.
+    if (route?.url_key) return redirect(`/${route.url_key}`, permanent, locale)
+  } catch (e) {
+    // We're done
   }
 
-  // The default URL for categories or CMS pages is handled by the pages/[...url].tsx file.
-  if (route?.url_key) return redirect(`/${route.url_key}`, permanent, locale)
-
-  // No route found, so return a 404.
   return notFound()
 }
