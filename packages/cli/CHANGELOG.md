@@ -1,5 +1,13 @@
 # @graphcommerce/cli
 
+## 5.1.0-canary.4
+
+### Patch Changes
+
+- [#1755](https://github.com/graphcommerce-org/graphcommerce/pull/1755) [`b34c7b43a`](https://github.com/graphcommerce-org/graphcommerce/commit/b34c7b43a6e1338152e77f6f8427c3fe559021c5) - Disabled @typescript-eslint/no-unbound-method and fixed various eslint errors ([@paales](https://github.com/paales))
+
+- [#1755](https://github.com/graphcommerce-org/graphcommerce/pull/1755) [`053ef07d0`](https://github.com/graphcommerce-org/graphcommerce/commit/053ef07d0acf25fba840b50f3ad56746fc97d6a2) - Add [httpDetailsExtensions](https://the-guild.dev/graphql/mesh/docs/plugins/http-details-extensions) plugin to the mesh for a better debugging experience. ([@paales](https://github.com/paales))
+
 ## 5.1.0-canary.3
 
 ### Patch Changes

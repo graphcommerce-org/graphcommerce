@@ -1,5 +1,13 @@
 # Change Log
 
+## 5.1.0-canary.4
+
+### Patch Changes
+
+- [#1755](https://github.com/graphcommerce-org/graphcommerce/pull/1755) [`225a69dc9`](https://github.com/graphcommerce-org/graphcommerce/commit/225a69dc9eb76d85adee1c6ea8c4eff16a5fed63) - When a plugin doesn't target a file anymore, it will now cleanup the existing interceptor file. ([@paales](https://github.com/paales))
+
+- [#1755](https://github.com/graphcommerce-org/graphcommerce/pull/1755) [`4759c1781`](https://github.com/graphcommerce-org/graphcommerce/commit/4759c1781ebe94c18f557e2ba189000580a05692) - Interceptors are regenerated when a plugin contains a faulty configuration (happens a lot when building a plugin). ([@paales](https://github.com/paales))
+
 ## 5.1.0-canary.3
 
 ### Patch Changes

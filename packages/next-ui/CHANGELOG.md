@@ -1,5 +1,19 @@
 # Change Log
 
+## 5.1.0-canary.4
+
+### Patch Changes
+
+- [#1755](https://github.com/graphcommerce-org/graphcommerce/pull/1755) [`0025ad80f`](https://github.com/graphcommerce-org/graphcommerce/commit/0025ad80fb82d5d1e6c786bb8b5f39b2456c0932) - Renamed clientSizeCssVar.y/x to dvh(100) and dvw(100) ([@paales](https://github.com/paales))
+
+- [#1755](https://github.com/graphcommerce-org/graphcommerce/pull/1755) [`3fcb03b79`](https://github.com/graphcommerce-org/graphcommerce/commit/3fcb03b79ce634650fd982dc36a112dccd37282f) - New props added to LayoutOverlay and Overlay components: `widthSm` and `widthMd` to control the width of the overlay.
+
+  Defaults to `widthSm = 'max(300px, 80vw)', widthMd = 'max(800px, 50vw)'` ([@paales](https://github.com/paales))
+
+- [#1755](https://github.com/graphcommerce-org/graphcommerce/pull/1755) [`f44a05a6c`](https://github.com/graphcommerce-org/graphcommerce/commit/f44a05a6cedadc17e44c87f53cad5f462bc52aba) - Use a singlular useElementScroll and provide ther scroll from the useScrollerContext ([@paales](https://github.com/paales))
+
+- [#1755](https://github.com/graphcommerce-org/graphcommerce/pull/1755) [`9de7c6960`](https://github.com/graphcommerce-org/graphcommerce/commit/9de7c6960c7ec7d6d28a670f71ac678c5d3c838f) - The scrollbar was hidden for bottom sheets, while that wasn't necessary ([@paales](https://github.com/paales))
+
 ## 5.1.0-canary.3
 
 ### Patch Changes

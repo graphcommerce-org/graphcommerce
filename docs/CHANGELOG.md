@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.1.0-canary.4
+
+### Patch Changes
+
+- [#1755](https://github.com/graphcommerce-org/graphcommerce/pull/1755) [`41fa631b1`](https://github.com/graphcommerce-org/graphcommerce/commit/41fa631b15721625e521772da01fd2c3a2ae82de) - Add a chapter about SEO migration ([@paales](https://github.com/paales))
+
 ## 5.1.0-canary.3
 
 ### Patch Changes

@@ -70,13 +70,28 @@
     "@graphcommerce/typescript-config-pwa": "5.0.0"
   },
   "changesets": [
+    "brave-zebras-provide",
     "cool-forks-smash",
+    "cyan-monkeys-double",
+    "cyan-paws-float",
     "fuzzy-foxes-pay",
     "gorgeous-cheetahs-share",
     "happy-ties-decide",
+    "late-seahorses-develop",
+    "long-brooms-punch",
+    "long-spies-boil",
     "lovely-mayflies-call",
     "old-gifts-warn",
+    "proud-otters-rhyme",
+    "rotten-worms-begin",
+    "rude-shoes-exist",
+    "sharp-turkeys-accept",
+    "short-crabs-mate",
+    "silent-apes-bake",
     "silver-zebras-develop",
+    "tasty-horses-drum",
+    "ten-cats-rule",
+    "ten-trees-crash",
     "wild-cobras-float"
   ]
 }

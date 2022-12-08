@@ -1,5 +1,13 @@
 # Change Log
 
+## 5.1.0-canary.4
+
+### Patch Changes
+
+- [#1755](https://github.com/graphcommerce-org/graphcommerce/pull/1755) [`0025ad80f`](https://github.com/graphcommerce-org/graphcommerce/commit/0025ad80fb82d5d1e6c786bb8b5f39b2456c0932) - Renamed clientSizeCssVar.y/x to dvh(100) and dvw(100) ([@paales](https://github.com/paales))
+
+- [#1755](https://github.com/graphcommerce-org/graphcommerce/pull/1755) [`b34c7b43a`](https://github.com/graphcommerce-org/graphcommerce/commit/b34c7b43a6e1338152e77f6f8427c3fe559021c5) - Disabled @typescript-eslint/no-unbound-method and fixed various eslint errors ([@paales](https://github.com/paales))
+
 ## 5.1.0-canary.3
 
 ### Patch Changes
