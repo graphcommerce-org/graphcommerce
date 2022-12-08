@@ -1,4 +1,4 @@
-import { useConstant } from '@graphcommerce/framer-utils'
+import { useConstant, useElementScroll } from '@graphcommerce/framer-utils'
 import { MotionValue, motionValue, Point, useMotionValue } from 'framer-motion'
 import { PlaybackControls } from 'popmotion'
 import React, { useEffect, useRef, useMemo, useCallback } from 'react'
@@ -333,6 +333,8 @@ export function ScrollerProvider(props: ScrollerProviderProps) {
     return { x: 0, y: 0, [axis]: position }
   }
 
+  const scroll = useElementScroll(scrollerRef)
+
   const value = useConstant<ScrollerContext>(() => ({
     scrollerRef,
     scrollSnap,
@@ -345,6 +347,7 @@ export function ScrollerProvider(props: ScrollerProviderProps) {
     getSnapPosition,
     getScrollSnapPositions,
     registerChildren,
+    scroll,
   }))
 
   return <scrollerContext.Provider value={value} {...providerProps} />

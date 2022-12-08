@@ -5,7 +5,7 @@ import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect'
 
 type ScrollMotionValue = { x: number; y: number; xMax: number; yMax: number }
 
-interface ScrollMotionValues {
+export interface ScrollMotionValues {
   x: MotionValue<number>
   y: MotionValue<number>
   xProgress: MotionValue<number>

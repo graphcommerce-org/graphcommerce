@@ -1,9 +1,5 @@
 import { Scroller, useScrollerContext, useScrollTo } from '@graphcommerce/framer-scroller'
-import {
-  clientSizeCssVar,
-  useElementScroll,
-  useIsomorphicLayoutEffect,
-} from '@graphcommerce/framer-utils'
+import { clientSizeCssVar, useIsomorphicLayoutEffect } from '@graphcommerce/framer-utils'
 import { Box, styled, SxProps, Theme, useTheme, useThemeProps, Breakpoint } from '@mui/material'
 import { m, MotionProps, useDomEvent, useMotionValue, useTransform } from 'framer-motion'
 import React, { useCallback, useEffect, useRef } from 'react'
@@ -106,7 +102,7 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
     props.smSpacingTop ?? ((theme) => `calc(${theme.appShell.headerHeightSm} * 0.5)`)
   )(th)
 
-  const { scrollerRef, snap } = useScrollerContext()
+  const { scrollerRef, snap, scroll } = useScrollerContext()
   const positions = useOverlayPosition(variantSm, variantMd)
   const scrollTo = useScrollTo()
   const beforeRef = useRef<HTMLDivElement>(null)
@@ -116,8 +112,6 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
   const classes = withState({ variantSm, variantMd, sizeSm, sizeMd, justifySm, justifyMd })
 
   const overlayRef = useRef<HTMLDivElement>(null)
-
-  const scroll = useElementScroll(scrollerRef)
 
   // When the component is mounted, we need to set the initial position of the overlay.
   useIsomorphicLayoutEffect(() => {

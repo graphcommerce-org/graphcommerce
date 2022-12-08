@@ -1,4 +1,4 @@
-import { useConstant, useElementScroll, useMotionValueValue } from '@graphcommerce/framer-utils'
+import { useConstant, useMotionValueValue } from '@graphcommerce/framer-utils'
 import { extendableComponent } from '@graphcommerce/next-ui/Styles'
 import { SxProps, Theme } from '@mui/material'
 import {
@@ -43,14 +43,12 @@ export function useScroller<
 >(props: ScrollableProps<TagName>, forwardedRef: React.ForwardedRef<E>) {
   const { hideScrollbar = false, children, grid = false, ...divProps } = props
 
-  const { scrollSnap, scrollerRef, enableSnap, disableSnap, snap, registerChildren } =
+  const { scrollSnap, scrollerRef, enableSnap, disableSnap, snap, registerChildren, scroll } =
     useScrollerContext()
 
   useEffect(() => {
     registerChildren(children)
   }, [children, registerChildren])
-
-  const scroll = useElementScroll(scrollerRef)
 
   const canGrab = useMotionValueValue(
     useTransform(
