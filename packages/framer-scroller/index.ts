@@ -2,6 +2,7 @@ export * from './types'
 
 export * from './components/MotionImageAspect'
 export * from './components/Scroller'
+export * from './components/ScrollerBar'
 export * from './components/ScrollerButton'
 export * from './components/ScrollerDots'
 export * from './components/ScrollerPageCounter'

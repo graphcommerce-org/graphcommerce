@@ -7,7 +7,7 @@ import {
   ScrollerDots,
   ScrollerProvider,
 } from '@graphcommerce/framer-scroller'
-import { clientSizeCssVar } from '@graphcommerce/framer-utils'
+import { dvh } from '@graphcommerce/framer-utils'
 import { Fab, useTheme, Box, styled, SxProps, Theme } from '@mui/material'
 import { m, useDomEvent, useMotionValue } from 'framer-motion'
 import { useRouter } from 'next/router'
@@ -160,7 +160,9 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                   width: '100vw',
                 },
                 [theme.breakpoints.up('md')]: {
-                  height: `calc(${clientSizeCssVar.y} - ${theme.appShell.headerHeightMd} - ${theme.spacings.lg})`,
+                  height: `calc(${dvh(100)} - ${theme.appShell.headerHeightMd} - ${
+                    theme.spacings.lg
+                  })`,
                   position: 'sticky',
                   top: theme.appShell.headerHeightMd,
                 },
@@ -169,7 +171,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                 position: 'relative',
                 top: 0,
                 marginTop: 0,
-                paddingTop: clientSizeCssVar.y,
+                paddingTop: dvh(100),
               },
             ]}
             onLayoutAnimationComplete={() => {

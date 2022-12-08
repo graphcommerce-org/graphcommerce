@@ -15,7 +15,7 @@ export function useOverlayPosition(
   variantMd: 'left' | 'bottom' | 'right',
 ) {
   const match = useMatchMedia()
-  const { getScrollSnapPositions, scrollerRef } = useScrollerContext()
+  const { getScrollSnapPositions, scrollerRef, scroll } = useScrollerContext()
   const state = useConstant(() => ({
     open: {
       x: motionValue(0),
@@ -27,8 +27,6 @@ export function useOverlayPosition(
       y: motionValue(0),
     },
   }))
-
-  const scroll = useElementScroll(scrollerRef)
 
   const variant = useCallback(
     () => (match.up('md') ? variantMd : variantSm),

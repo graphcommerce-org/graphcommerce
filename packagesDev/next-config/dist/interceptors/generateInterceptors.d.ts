@@ -1,7 +1,7 @@
 import { ResolveDependency, ResolveDependencyReturn } from '../utils/resolveDependency';
 export type PluginConfig = {
-    component: string;
-    exported: string;
+    component?: string;
+    exported?: string;
     plugin: string;
     ifEnv?: string;
 };

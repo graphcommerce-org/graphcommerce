@@ -1,4 +1,4 @@
-import { clientSizeCssVar } from '@graphcommerce/framer-utils'
+import { dvh } from '@graphcommerce/framer-utils'
 import { m, useIsPresent } from 'framer-motion'
 import React from 'react'
 import type { PageItem } from '../types'
@@ -9,8 +9,7 @@ export type PageProps = Pick<PageItem, 'routerKey'> & {
 }
 
 export function scrollPos(key: string): { x: number; y: number } {
-  const scroll = global.window?.sessionStorage[`__next_scroll_${key}`]
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+  const scroll = global.window?.sessionStorage[`__next_scroll_${key}`] as string | undefined
   return scroll ? JSON.parse(scroll) : { x: 0, y: 0 }
 }
 
@@ -36,7 +35,7 @@ export function Page(props: PageProps) {
   return (
     <m.div
       layoutScroll
-      style={{ position, top, zIndex, minHeight: clientSizeCssVar.y, left: 0, right: 0 }}
+      style={{ position, top, zIndex, minHeight: dvh(100), left: 0, right: 0 }}
       // @ts-expect-error inert is not in the type definition yet
       inert={!active ? 'true' : undefined}
       data-nosnippet={!active ? true : undefined}

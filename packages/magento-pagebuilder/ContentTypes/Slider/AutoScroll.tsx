@@ -1,5 +1,4 @@
 import { useScrollerContext, useScrollTo } from '@graphcommerce/framer-scroller'
-import { useElementScroll } from '@graphcommerce/framer-utils'
 import { useEffect } from 'react'
 
 type AutoScrollProps = {
@@ -8,10 +7,10 @@ type AutoScrollProps = {
 }
 
 export function AutoScroll(props: AutoScrollProps) {
-  const { getScrollSnapPositions, getSnapPosition, scrollerRef } = useScrollerContext()
+  const { getScrollSnapPositions, getSnapPosition, scrollerRef, scroll } = useScrollerContext()
   const scrollTo = useScrollTo()
   const { pause = false, timePerSlide = 7500 } = props
-  const { xProgress } = useElementScroll(scrollerRef)
+  const { xProgress } = scroll
 
   useEffect(() => {
     const slide = () => {

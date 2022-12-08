@@ -40,6 +40,8 @@ function SheetDemo() {
             <div key={size}>
               <Typography variant='subtitle1'>{size}</Typography>
 
+              <input type='text' value='should be selectable' />
+
               <div>
                 Variant:
                 {(['left', 'bottom', 'right'] as const).map((value) => {

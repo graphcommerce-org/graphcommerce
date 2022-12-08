@@ -1,4 +1,4 @@
-import { clientSizeCssVar, useClientSizeCssVar } from '@graphcommerce/framer-utils'
+import { dvh, useMeasureDynamicViewportSize } from '@graphcommerce/framer-utils'
 import { AnimatePresence, m } from 'framer-motion'
 import { requestIdleCallback, cancelIdleCallback } from 'next/dist/client/request-idle-callback'
 import { PrivateRouteInfo } from 'next/dist/shared/lib/router/router'
@@ -49,7 +49,7 @@ export function FramerNextPages(props: PagesProps) {
   // eslint-disable-next-line no-underscore-dangle
   const key = router._key as string
 
-  useClientSizeCssVar()
+  useMeasureDynamicViewportSize()
   const items = useRef<PageItem[]>([])
 
   const routerKeys = items.current.map((item) => item.routerKey)
@@ -206,9 +206,7 @@ and pass it as a param in <FramerNextPages fallbackRoute='/[...url]' /> in your 
 
   return (
     <>
-      <m.div
-        style={{ position: 'absolute', top: 0, minHeight: clientSizeCssVar.y, left: 0, right: 0 }}
-      />
+      <m.div style={{ position: 'absolute', top: 0, minHeight: dvh(100), left: 0, right: 0 }} />
       <AnimatePresence>
         {renderItems.map((item, itemIdx) => {
           const { historyIdx, sharedKey, overlayGroup, routerKey } = item

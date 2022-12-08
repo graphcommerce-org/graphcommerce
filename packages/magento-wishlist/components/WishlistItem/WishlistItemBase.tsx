@@ -64,15 +64,16 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
 
   const [removeWishlistItem] = useMutation(RemoveProductFromWishlistDocument)
 
-  const [anchorEl, setAnchorEl] = useState(null)
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const open = Boolean(anchorEl)
-  const handleClick = (event) => {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+
+  const handleClick = <T extends HTMLElement>(event: React.MouseEvent<T>) => {
     setAnchorEl(event.currentTarget)
   }
 
-  const handleClose = (event) => {
-    if (event.target.id === 'remove') {
+  const handleClose = <T extends HTMLElement>(event: React.MouseEvent<T>) => {
+    const t = event.target as T
+    if (t.id === 'remove') {
       if (loggedIn) {
         let itemIdToDelete = wishlistItemId
 
@@ -116,10 +117,10 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
           position: 'relative',
           display: 'grid',
           gridTemplate: `
-            "picture itemName itemName iconMenu"
-            "picture itemOptions itemOptions"
-            "picture itemQuantity itemQuantity itemPrice"
-            "itemCartButton itemCartButton itemCartButton itemCartButton"`,
+              "picture itemName itemName iconMenu"
+              "picture itemOptions itemOptions"
+              "picture itemQuantity itemQuantity itemPrice"
+              "itemCartButton itemCartButton itemCartButton itemCartButton"`,
           gridTemplateColumns: `${rowImageSize} 1fr minmax(120px, 1fr) 1fr`,
           columnGap: theme.spacings.sm,
           alignItems: 'baseline',
@@ -129,9 +130,9 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
           [theme.breakpoints.up('sm')]: {
             paddingBottom: theme.spacings.md,
             gridTemplate: `
-              "picture itemName itemName itemName iconMenu"
-              "picture itemQuantity itemOptions itemPrice itemPrice"
-              "itemCartButton itemCartButton itemCartButton itemCartButton itemCartButton"`,
+                "picture itemName itemName itemName iconMenu"
+                "picture itemQuantity itemOptions itemPrice itemPrice"
+                "itemCartButton itemCartButton itemCartButton itemCartButton itemCartButton"`,
             gridTemplateColumns: `${rowImageSize} 4fr 1fr minmax(120px, 1fr) minmax(120px, 1fr)`,
           },
           borderBottom: `1px solid ${theme.palette.divider}`,
@@ -139,19 +140,19 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
           '&:not(.withOptions)': {
             display: 'grid',
             gridTemplate: `
-            "picture itemName itemName iconMenu"
-            "picture itemQuantity itemPrice itemPrice"
-            "itemCartButton itemCartButton itemCartButton itemCartButton"`,
+              "picture itemName itemName iconMenu"
+              "picture itemQuantity itemPrice itemPrice"
+              "itemCartButton itemCartButton itemCartButton itemCartButton"`,
             alignItems: 'center',
             paddingBottom: theme.spacings.xl,
             gridTemplateColumns: `${rowImageSize} 1fr minmax(120px, 1fr) 1fr`,
             [theme.breakpoints.up('sm')]: {
               paddingBottom: theme.spacings.md,
               gridTemplate: `
-              "picture itemName itemName itemName iconMenu"
-              "picture itemQuantity itemQuantity itemQuantity itemPrice"
-              "itemCartButton itemCartButton itemCartButton itemCartButton itemCartButton"
-            `,
+                "picture itemName itemName itemName iconMenu"
+                "picture itemQuantity itemQuantity itemQuantity itemPrice"
+                "itemCartButton itemCartButton itemCartButton itemCartButton itemCartButton"
+              `,
               gridTemplateColumns: `${rowImageSize} 4fr 1fr minmax(120px, 1fr) minmax(120px, 1fr)`,
             },
           },

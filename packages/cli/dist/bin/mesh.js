@@ -6,7 +6,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.handleFatalError = void 0;
 /* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
 const node_fs_1 = require("node:fs");
 const node_path_1 = __importDefault(require("node:path"));
 const node_process_1 = require("node:process");
@@ -64,7 +63,7 @@ const main = async () => {
     if (!conf.additionalTypeDefs)
         conf.additionalTypeDefs = [];
     conf.additionalTypeDefs = (Array.isArray(conf.additionalTypeDefs) ? conf.additionalTypeDefs : [conf.additionalTypeDefs]).map((additionalTypeDef) => {
-        if (additionalTypeDef.startsWith('@'))
+        if (typeof additionalTypeDef === 'string' && additionalTypeDef.startsWith('@'))
             return node_path_1.default.relative(root, require.resolve(additionalTypeDef));
         return additionalTypeDef;
     });
@@ -81,6 +80,14 @@ const main = async () => {
         conf.serve = {};
     if (!conf.serve.playgroundTitle)
         conf.serve.playgroundTitle = 'GraphCommerce® Mesh';
+    conf.plugins = [
+        ...(conf.plugins ?? []),
+        {
+            httpDetailsExtensions: {
+                if: "env.NODE_ENV === 'development'",
+            },
+        },
+    ];
     await node_fs_1.promises.writeFile(tmpMeshLocation, yaml_1.default.stringify(conf));
     // Reexport the mesh to is can be used by packages
     await node_fs_1.promises.writeFile(`${meshDir}/.mesh.ts`, `export * from '${relativePath.split(node_path_1.default.sep).join('/')}.mesh'`, { encoding: 'utf8' });
@@ -90,6 +97,9 @@ const main = async () => {
 process.on('SIGINT', cleanup);
 process.on('SIGTERM', cleanup);
 main().catch((e) => {
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     cleanup();
-    return handleFatalError(e, new utils_1.DefaultLogger(cli_1.DEFAULT_CLI_PARAMS.initialLoggerPrefix));
+    if (e instanceof Error) {
+        handleFatalError(e, new utils_1.DefaultLogger(cli_1.DEFAULT_CLI_PARAMS.initialLoggerPrefix));
+    }
 });

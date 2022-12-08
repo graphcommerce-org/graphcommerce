@@ -47,9 +47,7 @@ function parseStructure(file) {
             // console.log('hallo', node)
         }
     });
-    return exports.component && exports.exported
-        ? exports
-        : undefined;
+    return exports;
 }
 function findPlugins(cwd = process.cwd()) {
     const dependencies = (0, resolveDependenciesSync_1.resolveDependenciesSync)(cwd);
@@ -61,8 +59,7 @@ function findPlugins(cwd = process.cwd()) {
                 const result = parseStructure(file);
                 if (!result)
                     return;
-                if (result.ifEnv && !process.env[result.ifEnv])
-                    return;
+                // if (result.ifEnv && !process.env[result.ifEnv]) return
                 plugins.push({ ...result, plugin: file.replace(dependency, path).replace('.tsx', '') });
             }
             catch (e) {
