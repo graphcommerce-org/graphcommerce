@@ -1,6 +1,6 @@
 import { Scroller, useScrollerContext, useScrollTo } from '@graphcommerce/framer-scroller'
-import { clientSizeCssVar, useIsomorphicLayoutEffect } from '@graphcommerce/framer-utils'
-import { Box, styled, SxProps, Theme, useTheme, useThemeProps, Breakpoint } from '@mui/material'
+import { dvh, dvw, useIsomorphicLayoutEffect } from '@graphcommerce/framer-utils'
+import { Box, styled, SxProps, Theme, useTheme, useThemeProps } from '@mui/material'
 import { m, MotionProps, useDomEvent, useMotionValue, useTransform } from 'framer-motion'
 import React, { useCallback, useEffect, useRef } from 'react'
 import { LayoutProvider } from '../../Layout/components/LayoutProvider'
@@ -265,7 +265,7 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
               overflow: 'auto',
             },
 
-            height: clientSizeCssVar.y,
+            height: dvh(100),
 
             [theme.breakpoints.down('md')]: {
               '&.variantSmLeft': {
@@ -282,7 +282,7 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
                 borderTopLeftRadius: theme.shape.borderRadius * 3,
                 borderTopRightRadius: theme.shape.borderRadius * 3,
                 gridTemplate: `"beforeOverlay" "overlay"`,
-                height: clientSizeCssVar.y,
+                height: dvh(100),
               },
             },
             [theme.breakpoints.up('md')]: {
@@ -305,7 +305,7 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
                 borderTopRightRadius: theme.shape.borderRadius * 4,
                 [theme.breakpoints.up('md')]: {
                   gridTemplate: `"beforeOverlay" "overlay"`,
-                  height: clientSizeCssVar.y,
+                  height: dvh(100),
                 },
               },
             },
@@ -325,18 +325,18 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
 
             [theme.breakpoints.down('md')]: {
               '&.variantSmLeft, &.variantSmRight': {
-                width: '100vw',
+                width: dvh(100),
               },
               '&.variantSmBottom': {
-                height: clientSizeCssVar.y,
+                height: dvh(100),
               },
             },
             [theme.breakpoints.up('md')]: {
               '&.variantMdLeft, &.variantMdRight': {
-                width: '100vw',
+                width: dvw(100),
               },
               '&.variantMdBottom': {
-                height: clientSizeCssVar.y,
+                height: dvh(100),
               },
             },
           })}
@@ -395,7 +395,7 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
                 },
 
                 '&.variantSmBottom.sizeSmFull': {
-                  minHeight: `calc(${clientSizeCssVar.y} - ${smSpacingTop})`,
+                  minHeight: `calc(${dvh(100)} - ${smSpacingTop})`,
                 },
 
                 '&.variantSmBottom': {
@@ -407,30 +407,30 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
                 },
                 '&.variantSmLeft.sizeSmFull': {
                   paddingBottom: '1px',
-                  minHeight: clientSizeCssVar.y,
+                  minHeight: dvh(100),
                 },
                 '&.variantSmRight.sizeSmFull': {
                   paddingBottom: '1px',
-                  minHeight: clientSizeCssVar.y,
+                  minHeight: dvh(100),
                 },
                 '&.variantSmLeft, &.variantSmRight': {
                   width: widthSm || undefined,
-                  maxWidth: clientSizeCssVar.x,
+                  maxWidth: dvw(100),
                 },
               },
               [theme.breakpoints.up('md')]: {
                 minWidth: '1px',
 
                 '&.sizeMdFull.variantMdBottom': {
-                  minHeight: `calc(${clientSizeCssVar.y} - ${mdSpacingTop})`,
+                  minHeight: `calc(${dvh(100)} - ${mdSpacingTop})`,
                 },
                 '&.sizeMdFull.variantMdLeft': {
                   paddingBottom: '1px',
-                  minHeight: clientSizeCssVar.y,
+                  minHeight: dvh(100),
                 },
                 '&.sizeMdFull.variantMdRight': {
                   paddingBottom: '1px',
-                  minHeight: clientSizeCssVar.y,
+                  minHeight: dvh(100),
                 },
 
                 '&.variantMdBottom': {
@@ -439,7 +439,7 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
                 },
                 '&.variantMdLeft, &.variantMdRight': {
                   width: widthMd || 'max-content',
-                  maxWidth: clientSizeCssVar.x,
+                  maxWidth: dvw(100),
                 },
 
                 '&.sizeMdFloating': {

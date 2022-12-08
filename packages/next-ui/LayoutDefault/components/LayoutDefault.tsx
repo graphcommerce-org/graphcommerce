@@ -1,4 +1,5 @@
 import { useScrollOffset } from '@graphcommerce/framer-next-pages'
+import { dvh } from '@graphcommerce/framer-utils'
 import { Box, SxProps, Theme } from '@mui/material'
 import { useTransform, useScroll } from 'framer-motion'
 import { LayoutProvider } from '../../Layout/components/LayoutProvider'
@@ -53,7 +54,7 @@ export function LayoutDefault(props: LayoutDefaultProps) {
       className={`${classes.root} ${className ?? ''}`}
       sx={[
         (theme) => ({
-          minHeight: '100vh',
+          minHeight: dvh(100),
           '@supports (-webkit-touch-callout: none)': {
             minHeight: '-webkit-fill-available',
           },
