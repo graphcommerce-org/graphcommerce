@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.1.0-canary.5
+
+### Patch Changes
+
+- [`2a859970d`](https://github.com/graphcommerce-org/graphcommerce/commit/2a859970de34ad768a0ba54f50d53ad17823cc15) - Make sure the interceptors aren't cleaned up constantly ([@paales](https://github.com/paales))
+
 ## 5.1.0-canary.4
 
 ### Patch Changes

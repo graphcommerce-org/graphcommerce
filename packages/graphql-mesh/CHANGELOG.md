@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.1.0-canary.5
+
+### Patch Changes
+
+- [`c7816cd69`](https://github.com/graphcommerce-org/graphcommerce/commit/c7816cd693f2fad61be6e2ed119e7e8bf13f079f) - Added JS version of the customFetch method, node_module files aren't transpiled ([@paales](https://github.com/paales))
+
 ## 5.1.0-canary.4
 
 ### Minor Changes

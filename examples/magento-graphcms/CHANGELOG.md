@@ -1,5 +1,15 @@
 # Change Log
 
+## 5.1.0-canary.5
+
+### Patch Changes
+
+- [`b1444b933`](https://github.com/graphcommerce-org/graphcommerce/commit/b1444b9336107d3ac111563f9b62a884f1b26a8d) - Bring password reset page more in line with standard forms, add missing translations. ([@paales](https://github.com/paales))
+
+- [`23094f955`](https://github.com/graphcommerce-org/graphcommerce/commit/23094f955a2e9fa9beabe0a0b31060f6c9bc862c) - Password reset back button URL was incorrect, use one shared layout for all public account pages ([@paales](https://github.com/paales))
+
+- [`86afcf462`](https://github.com/graphcommerce-org/graphcommerce/commit/86afcf4620cc1053d28b9e77bf8f76490dec6f09) - Crosssells wouldn't show when navigating back from another page ([@paales](https://github.com/paales))
+
 ## 5.1.0-canary.4
 
 ### Minor Changes

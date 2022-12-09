@@ -1,5 +1,7 @@
 # @graphcommerce/magento-wishlist
 
+## 5.1.0-canary.5
+
 ## 5.1.0-canary.4
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # Change Log
 
+## 5.1.0-canary.5
+
+### Patch Changes
+
+- [`b1444b933`](https://github.com/graphcommerce-org/graphcommerce/commit/b1444b9336107d3ac111563f9b62a884f1b26a8d) - Bring password reset page more in line with standard forms, add missing translations. ([@paales](https://github.com/paales))
+
+- [`c7dc855af`](https://github.com/graphcommerce-org/graphcommerce/commit/c7dc855af5e096a53e17f3b2980b210642270fd5) - Added a spreadVal utility to replace responsiveVal and breakpointVal ([@paales](https://github.com/paales))
+
 ## 5.1.0-canary.4
 
 ### Patch Changes
