@@ -610,7 +610,7 @@ msgstr "Stai recensendo {0}"
 msgid "You can find your order history in your account!"
 msgstr "Puoi trovare la cronologia dei tuoi ordini nel tuo account!"
 
-msgid "You can now<0>sign in again</0>."
+msgid "You can now <0>sign in again</0>."
 msgstr "Ora puoi <0>accedere nuovamente</0>."
 
 msgid "You can track your order status and much more!"

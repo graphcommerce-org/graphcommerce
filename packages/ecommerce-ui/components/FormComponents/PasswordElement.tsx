@@ -1,4 +1,4 @@
-import { iconEye, iconEyeClosed, IconSvg } from '@graphcommerce/next-ui'
+import { iconEye, iconEyeCrossed, IconSvg } from '@graphcommerce/next-ui'
 import { FieldValues } from '@graphcommerce/react-hook-form'
 import { IconButton, IconButtonProps, InputAdornment } from '@mui/material'
 import { MouseEvent, useState } from 'react'
@@ -25,7 +25,7 @@ export function PasswordElement<TFieldValues extends FieldValues>({
               tabIndex={-1}
               color={iconColor ?? 'default'}
             >
-              <IconSvg src={password ? iconEyeClosed : iconEye} />
+              <IconSvg src={password ? iconEyeCrossed : iconEye} size='medium' />
             </IconButton>
           </InputAdornment>
         ),
