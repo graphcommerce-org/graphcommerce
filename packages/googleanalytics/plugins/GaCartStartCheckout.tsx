@@ -12,7 +12,7 @@ export function GaCartStartCheckout(props: PluginProps<CartStartCheckoutProps>) 
       {...rest}
       onStart={(e, cart) => {
         gtagBeginCheckout(cart)
-        onStart?.(e, cart)
+        return onStart?.(e, cart)
       }}
     />
   )

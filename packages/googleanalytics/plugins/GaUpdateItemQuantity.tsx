@@ -5,7 +5,10 @@ export const component = 'UpdateItemQuantity'
 export const exported = '@graphcommerce/magento-cart-items/UpdateItemQuantity/UpdateItemQuantity'
 export const ifEnv = 'NEXT_PUBLIC_GOOGLE_ANALYTICS' // @frank: chekcen of dit werr
 
-/** When a product is added to the Cart, by using the + button on cart page, send a Google Analytics event */
+/**
+ * When a product is added to the Cart, by using the + button on cart page, send a Google Analytics
+ * event
+ */
 function GaUpdateItemQuantity(props: PluginProps<UpdateItemQuantityProps>) {
   const { Prev, onComplete, quantity, ...rest } = props
 
@@ -13,7 +16,7 @@ function GaUpdateItemQuantity(props: PluginProps<UpdateItemQuantityProps>) {
     <Prev
       {...rest}
       quantity={quantity}
-      onComplete={async (data, variables) => {
+      onComplete={(data, variables) => {
         const original = onComplete?.(data, variables)
         const diffQuantity = variables.quantity - quantity
         if (diffQuantity === 0) return original
@@ -49,7 +52,7 @@ function GaUpdateItemQuantity(props: PluginProps<UpdateItemQuantityProps>) {
           })
         }
 
-        await Promise.all([original])
+        return original
       }}
     />
   )

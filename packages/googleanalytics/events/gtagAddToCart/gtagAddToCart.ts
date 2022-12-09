@@ -1,4 +1,4 @@
-import { FetchResult } from '@graphcommerce/graphql'
+import type { FetchResult } from '@graphcommerce/graphql'
 import {
   AddProductsToCartMutation,
   AddProductsToCartMutationVariables,

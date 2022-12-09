@@ -1,6 +1,8 @@
 import { GtagAddShippingInfoFragment } from './GtagAddShippingInfo.gql'
 
 export function gtagAddShippingInfo<C extends GtagAddShippingInfoFragment>(cart?: C | null) {
+  if (!cart) return
+
   globalThis.gtag?.('event', 'add_shipping_info', {
     currency: cart?.prices?.grand_total?.currency,
     value: cart?.prices?.grand_total?.value,

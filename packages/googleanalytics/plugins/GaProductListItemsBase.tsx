@@ -16,7 +16,7 @@ export function GaProductListItemsBase(props: PluginProps<ProductItemsGridProps>
       {...rest}
       onClick={(e, item) => {
         gtagSelectItem({ item })
-        onClick?.(e, item)
+        return onClick?.(e, item)
       }}
     />
   )

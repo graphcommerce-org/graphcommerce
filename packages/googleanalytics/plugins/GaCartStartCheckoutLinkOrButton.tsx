@@ -14,7 +14,7 @@ export function GaCartStartCheckoutLinkOrButton(
       {...rest}
       onStart={(e, cart) => {
         gtagBeginCheckout(cart)
-        onStart?.(e, cart)
+        return onStart?.(e, cart)
       }}
     />
   )

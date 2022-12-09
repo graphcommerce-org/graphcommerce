@@ -7,6 +7,7 @@ import { gtagAddPaymentInfo } from '../events/gtagAddPaymentInfo/gtagAddPaymentI
 export const component = 'PaymentMethodButton'
 export const exported = '@graphcommerce/magento-cart-payment-method'
 
+// @todo This plugin can probably be migrated to the actual form that is submitted.
 function GaPaymentMethodButton(props: PluginProps<PaymentMethodButtonProps>) {
   const { Prev, onSubmitSuccessful, ...rest } = props
   const methodContext = useCartQuery(GetPaymentMethodContextDocument)
@@ -16,7 +17,7 @@ function GaPaymentMethodButton(props: PluginProps<PaymentMethodButtonProps>) {
       {...rest}
       onSubmitSuccessful={() => {
         gtagAddPaymentInfo(methodContext.data?.cart)
-        onSubmitSuccessful?.()
+        return onSubmitSuccessful?.()
       }}
     />
   )

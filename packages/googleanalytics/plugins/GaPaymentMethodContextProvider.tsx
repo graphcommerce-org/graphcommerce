@@ -10,9 +10,9 @@ function GaPaymentMethodContextProvider(props: PluginProps<PaymentMethodContextP
   return (
     <Prev
       {...rest}
-      onSuccess={async (orderNumber, cart) => {
+      onSuccess={(orderNumber, cart) => {
         gtagAddPurchaseInfo(orderNumber, cart)
-        await onSuccess?.(orderNumber, cart)
+        return onSuccess?.(orderNumber, cart)
       }}
     />
   )

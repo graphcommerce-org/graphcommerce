@@ -12,8 +12,9 @@ function GaAddProductsToCartForm(props: PluginProps<AddProductsToCartFormProps>)
   return (
     <Prev
       {...rest}
-      onComplete={async (data, variables) => {
-        await Promise.all([gtagAddToCart(data, variables), onComplete?.(data, variables)])
+      onComplete={(data, variables) => {
+        gtagAddToCart(data, variables)
+        return onComplete?.(data, variables)
       }}
     />
   )
