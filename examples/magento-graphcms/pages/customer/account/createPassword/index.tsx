@@ -67,13 +67,13 @@ function CustomerAccountCreatePasswordPage() {
             </Box>
           </Container>
         )}
-      </Box>
     </>
   )
 }
 
 const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'account-public',
+  sharedKey: () => 'account-public',
   Layout: LayoutOverlay,
 }
 CustomerAccountCreatePasswordPage.pageOptions = pageOptions

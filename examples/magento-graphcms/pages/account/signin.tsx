@@ -33,6 +33,7 @@ function AccountSignInPage() {
 
 const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'account-public',
+  sharedKey: () => 'account-public',
   Layout: LayoutOverlay,
 }
 AccountSignInPage.pageOptions = pageOptions
