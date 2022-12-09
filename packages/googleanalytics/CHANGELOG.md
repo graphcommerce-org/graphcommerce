@@ -1,5 +1,13 @@
 # Change Log
 
+## 5.1.0-canary.6
+
+### Minor Changes
+
+- [#1754](https://github.com/graphcommerce-org/graphcommerce/pull/1754) [`f9cc9d45e`](https://github.com/graphcommerce-org/graphcommerce/commit/f9cc9d45ec500a719fd0b5f4c5673d23838ee77e) - Google analytics now supports configuration for multiple locales ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#1754](https://github.com/graphcommerce-org/graphcommerce/pull/1754) [`f9cc9d45e`](https://github.com/graphcommerce-org/graphcommerce/commit/f9cc9d45ec500a719fd0b5f4c5673d23838ee77e) - New events added to Google analytics: purchase and add_to_cart (when adding and updating items) ([@FrankHarland](https://github.com/FrankHarland))
+
 ## 5.1.0-canary.5
 
 ## 5.1.0-canary.4
