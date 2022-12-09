@@ -20,6 +20,9 @@ function writeInterceptors(interceptors, cwd = process.cwd()) {
         if (existing.includes(relativeFile)) {
             delete existing[existing.indexOf(relativeFile)];
         }
+        if (existing.includes(`./${relativeFile}`)) {
+            delete existing[existing.indexOf(`./${relativeFile}`)];
+        }
         const fileToWrite = path_1.default.join(cwd, relativeFile);
         const isSame = node_fs_1.default.existsSync(fileToWrite) &&
             node_fs_1.default.readFileSync(fileToWrite, 'utf8').toString() === plugin.template;

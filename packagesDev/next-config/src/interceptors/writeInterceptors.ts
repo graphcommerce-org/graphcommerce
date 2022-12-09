@@ -21,6 +21,10 @@ export function writeInterceptors(
     if (existing.includes(relativeFile)) {
       delete existing[existing.indexOf(relativeFile)]
     }
+    if (existing.includes(`./${relativeFile}`)) {
+      delete existing[existing.indexOf(`./${relativeFile}`)]
+    }
+
     const fileToWrite = path.join(cwd, relativeFile)
 
     const isSame =
