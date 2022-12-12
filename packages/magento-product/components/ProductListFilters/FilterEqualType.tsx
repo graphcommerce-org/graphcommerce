@@ -7,12 +7,9 @@ import {
   ActionCardListForm,
   ActionCardItemRenderProps,
   ActionCard,
-  useOverlayContext,
 } from '@graphcommerce/next-ui'
 import { Box, Checkbox, Typography } from '@mui/material'
-import { useState } from 'react'
 import type { SetRequired } from 'type-fest'
-import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
 import { ProductListParams } from '../ProductListItems/filterTypes'
 import { useFilterForm } from './FilterFormContext'
 import { ProductListFiltersFragment } from './ProductListFilters.gql'
@@ -57,6 +54,7 @@ function FilterEqualActionCard(
 ) {
   const { option, attribute_code, params, currentFilter, onReset, ...cardProps } = props
   if (!option?.value) return null
+
   const labelId = `filter-equal-${attribute_code}-${option?.value}`
   const filters = cloneDeep(params.filters)
   const isColor = !!attribute_code?.toLowerCase().includes('color')
@@ -131,7 +129,7 @@ export function FilterEqualType(props: FilterEqualTypeProps) {
     form: { control },
   } = useFilterForm()
 
-  const { params } = useProductListParamsContext()
+  const { params } = useFilterForm()
   const { emptyFilters, applyFilters } = useFilterActions({
     attribute_code,
   })
@@ -162,6 +160,7 @@ export function FilterEqualType(props: FilterEqualTypeProps) {
         multiple
         layout='list'
         variant='default'
+        size='small'
         items={
           options?.map((option) => ({
             option,

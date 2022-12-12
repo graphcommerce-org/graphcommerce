@@ -1,4 +1,4 @@
-import { ChipMenuProps } from '@graphcommerce/next-ui'
+import { ChipMenuProps, filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { Theme, useMediaQuery } from '@mui/material'
 import { ProductListQuery } from '../ProductList/ProductList.gql'
 import { FilterTypes } from '../ProductListItems/filterTypes'
@@ -61,16 +61,11 @@ function FilterChip({
 
 export function ProductListFilters(props: ProductFiltersProps) {
   const { aggregations } = props
-  const { form } = useFilterForm()
-  if (!form) return null
-
   return (
     <>
-      {aggregations?.map((aggregation) =>
-        aggregation ? (
-          <FilterChip key={aggregation.attribute_code} aggregation={aggregation} {...props} />
-        ) : null,
-      )}
+      {filterNonNullableKeys(aggregations).map((aggregation) => (
+        <FilterChip key={aggregation.attribute_code} aggregation={aggregation} {...props} />
+      ))}
     </>
   )
 }

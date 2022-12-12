@@ -4,6 +4,7 @@ import {
   FilterEqualTypeInput,
   FilterRangeTypeInput,
   ProductAttributeFilterInput,
+  ProductAttributeSortInput,
 } from '@graphcommerce/graphql-mesh'
 import { useProductListLinkReplace } from '../../../hooks/useProductListLinkReplace'
 import { ProductListParams } from '../../ProductListItems/filterTypes'
@@ -26,6 +27,7 @@ const emptyFilters = (props: LocalFilterInputProps & { defaultValue: unknown }) 
     const activeFilter = linkParams.filters[attribute_code] as
       | FilterEqualTypeInput
       | FilterRangeTypeInput
+      | ProductAttributeSortInput
     const filterkeys = Object.keys(activeFilter ?? {})
     const clearFilters = {}
     filterkeys.forEach((key, index) => {
@@ -56,6 +58,11 @@ const removeAllFilters = (
   }
 }
 
+const allowReset = (
+  attribute_code: NonNullable<FilterActionProps['attribute_code']>,
+  params: LocalFilterInputProps['params'],
+) => true
+
 export const useFilterActions = (props: FilterActionProps) => {
   const replaceRoute = useProductListLinkReplace({ scroll: false })
   const { form, params, submit } = useFilterForm()
@@ -64,5 +71,6 @@ export const useFilterActions = (props: FilterActionProps) => {
     emptyFilters: (defaultValue?: unknown) =>
       emptyFilters({ ...props, form, params, defaultValue }),
     clearAllFilters: () => removeAllFilters({ ...props, form, params, onReplace: replaceRoute }),
+    // allowReset: allowReset(at),
   }
 }

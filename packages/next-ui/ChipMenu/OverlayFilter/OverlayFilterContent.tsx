@@ -43,6 +43,7 @@ export const OverlayFilterContent = forwardRef<HTMLElement, OverlayFilterContent
 
     return (
       <Box
+        ref={ref}
         sx={{
           display: 'flex',
           flexDirection: 'column',

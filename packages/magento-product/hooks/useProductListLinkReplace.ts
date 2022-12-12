@@ -24,10 +24,9 @@ export function useProductListLinkReplace(props?: UseProductLinkPushProps) {
     // push the first filter, so the new route (on browser back) will be e.g. /women/fruit instead of /women
     if (comingFromURLWithoutFilters) {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      router.push(path, path, props)
-    } else {
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      router.replace(path, path, props)
+      return router.push(path, path, props)
     }
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    return router.replace(path, path, props)
   }
 }

@@ -19,9 +19,6 @@ msgstr "<0>{name}</0> is toegevoegd aan uw winkelwagen!"
 msgid "<0>{name}</0> has been added to your wishlist!"
 msgstr "<0>{name}</0> is toegevoegd aan je verlanglijst!"
 
-msgid "Above <0/>"
-msgstr "Boven <0/>"
-
 msgid "Account"
 msgstr "Account"
 
@@ -75,9 +72,6 @@ msgstr "Wees de eerste die op de hoogte is van alles wat er nieuw is!"
 
 msgid "Be the first to write a review!"
 msgstr "Wees de eerste die een review schrijft!"
-
-msgid "Below <0/>"
-msgstr "Onder <0/>"
 
 msgid "Billing address"
 msgstr "Factuuradres"
@@ -438,6 +432,9 @@ msgstr "Verwijder product"
 
 msgid "Remove from wishlist"
 msgstr "Verwijder van verlanglijst"
+
+msgid "Reset"
+msgstr "Resetten"
 
 msgid "Reset Cart and Return to home"
 msgstr "Reset winkelwagen en ga terug naar home"

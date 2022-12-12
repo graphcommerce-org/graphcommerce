@@ -2,7 +2,6 @@ import { useForm, useFormPersist, UseFormReturn } from '@graphcommerce/ecommerce
 import { ProductAttributeFilterInput } from '@graphcommerce/graphql-mesh'
 import { BaseSyntheticEvent, createContext, PropsWithChildren, useContext, useMemo } from 'react'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
-import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
 import { ProductListParams } from '../ProductListItems/filterTypes'
 
 type FilterFormContextProps = {
@@ -19,26 +18,29 @@ const filterFormContext = createContext<FilterFormContextProps>({
 
 export const useFilterForm = () => useContext(filterFormContext)
 
-export function FilterFormProvider(props: PropsWithChildren) {
-  const { children } = props
-  const form = useForm<ProductAttributeFilterInput & { sort?: string }>({ defaultValues: {} })
-  const { params } = useProductListParamsContext()
-  const { handleSubmit } = form
+export function FilterFormProvider(props: PropsWithChildren<{ initialParams: ProductListParams }>) {
+  const { children, initialParams: params } = props
+  const form = useForm<ProductAttributeFilterInput & { sort?: string }>({
+    defaultValues: params.filters,
+  })
+  const { handleSubmit, reset } = form
   const replaceRoute = useProductListLinkReplace({ scroll: false })
 
-  useFormPersist({ form, name: 'ProductListFilterForm' })
-
-  const submit = handleSubmit((e) => {
-    console.log(e)
-    const { sort, ...filters } = e
-    replaceRoute({ ...params, filters, sort: sort ? { [sort]: 'ASC' } : {} })
+  const submit = handleSubmit(async (formValues) => {
+    const { sort, ...filters } = formValues
+    await replaceRoute({
+      ...params,
+      filters,
+      sort: sort && typeof sort !== 'object' ? { [sort]: 'ASC' } : {},
+    })
+    // reset()
   })
 
   return (
     <filterFormContext.Provider
       value={useMemo(() => ({ form, params, submit }), [form, params, submit])}
     >
-      <form id='filter-form' noValidate onSubmit={submit} style={{ display: 'flex' }}>
+      <form id='filter-form' noValidate onSubmit={submit}>
         {children}
       </form>
     </filterFormContext.Provider>

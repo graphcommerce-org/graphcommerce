@@ -115,7 +115,7 @@ export function ProductListFiltersContainer(props: ProductListFiltersContainerPr
           sx={(theme) => ({
             position: 'relative',
             maxWidth: '100%',
-            padding: '4px',
+            padding: '2px',
             paddingLeft: 0,
             paddingRight: 0,
             [theme.breakpoints.up('md')]: {
@@ -133,12 +133,11 @@ export function ProductListFiltersContainer(props: ProductListFiltersContainerPr
               paddingLeft: theme.page.horizontal,
               paddingRight: theme.page.horizontal,
               paddingBottom: '1px',
-
               [theme.breakpoints.up('md')]: {
                 borderRadius: '99em',
                 paddingLeft: '8px',
                 paddingRight: '8px',
-                py: '3px',
+                py: '5px',
               },
               columnGap: '6px',
               gridAutoColumns: 'min-content',

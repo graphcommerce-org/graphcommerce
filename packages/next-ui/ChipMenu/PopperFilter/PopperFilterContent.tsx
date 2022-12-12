@@ -1,11 +1,12 @@
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Fab, TextField, Button, Box } from '@mui/material'
+import { Fab, TextField, Button, Box, Typography } from '@mui/material'
 import React, { forwardRef, useState, ReactElement, useMemo } from 'react'
 import { LinkOrButton } from '../../Button'
 import { IconSvg } from '../../IconSvg'
 import { LayoutTitle } from '../../Layout'
 import { LayoutOverlayHeader } from '../../LayoutOverlay'
+import { responsiveVal } from '../../Styles'
 import { iconClose } from '../../icons'
 import { FilterPanelProps } from '../types'
 
@@ -54,7 +55,9 @@ export const PopperFilterContent = forwardRef<HTMLElement, PopperFilterContentPr
               color='primary'
               onClick={handleReset}
             >
-              <Trans id='Reset' />
+              <Typography variant='body2'>
+                <Trans id='Reset' />
+              </Typography>
             </LinkOrButton>
           }
           secondary={
@@ -63,9 +66,10 @@ export const PopperFilterContent = forwardRef<HTMLElement, PopperFilterContentPr
               onClick={onClosed}
             >
               <Fab
-                sx={{
+                sx={(theme) => ({
                   boxShadow: 'none',
-                }}
+                  marginLeft: `calc(${theme.spacings.xxs} * -1)`,
+                })}
                 size='small'
                 aria-label={i18n._(/* i18n */ 'Close')}
               >

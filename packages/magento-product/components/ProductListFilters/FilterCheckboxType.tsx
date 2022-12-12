@@ -4,6 +4,7 @@ import { Chip, ChipProps, SxProps, Theme } from '@mui/material'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
 import { ProductListLink } from '../ProductListLink/ProductListLink'
+import { useFilterForm } from './FilterFormContext'
 import { ProductListFiltersFragment } from './ProductListFilters.gql'
 
 type Filter = NonNullable<NonNullable<ProductListFiltersFragment['aggregations']>[number]>
@@ -14,7 +15,8 @@ export type FilterCheckboxTypeProps = Filter &
 
 export function FilterCheckboxType(props: FilterCheckboxTypeProps) {
   const { attribute_code, count, label, options, ...chipProps } = props
-  const { params } = useProductListParamsContext()
+  const { params } = useFilterForm()
+  console.log({ params })
   const currentFilter = params.filters[attribute_code]
   const replaceRoute = useProductListLinkReplace({ scroll: false })
 

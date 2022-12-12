@@ -11,6 +11,7 @@ import {
 } from '@mui/material'
 import React, { ReactNode, useState } from 'react'
 import { IconSvg } from '../IconSvg'
+import { responsiveVal } from '../Styles'
 import { useMatchMedia } from '../hooks/useMatchMedia'
 import { iconChevronDown, iconChevronUp } from '../icons'
 import { OverlayFilterPanel } from './OverlayFilter/OverlayFilterPanel'
@@ -52,10 +53,10 @@ export function ChipMenu(props: ChipMenuProps) {
     <IconSvg
       src={activeEl ? iconChevronUp : iconChevronDown}
       size='medium'
-      sx={(theme) => ({
-        [theme.breakpoints.down('md')]: { bgcolor: 'green' },
-        [theme.breakpoints.up('md')]: { ml: 0.5, mr: -0.5 },
-      })}
+      sx={{
+        ml: responsiveVal(3, 8),
+        mr: '-5px',
+      }}
     />
   )
   if (filterValue)
@@ -66,10 +67,10 @@ export function ChipMenu(props: ChipMenuProps) {
         sx={{
           display: 'flex',
           alignItems: 'center',
-          ml: 1,
+          ml: responsiveVal(3, 8),
         }}
       >
-        + {filterValue}
+        +{filterValue}
       </Typography>
     )
 
@@ -82,10 +83,10 @@ export function ChipMenu(props: ChipMenuProps) {
   })
 
   const labelComponent = (
-    <Box sx={{ display: 'flex', flexDirection: 'row' }}>
+    <Typography variant='body2' sx={{ display: 'flex', flexDirection: 'row' }}>
       {selected && selectedLabel ? selectedLabel : label}
       {chevronIcon}
-    </Box>
+    </Typography>
   )
 
   return (

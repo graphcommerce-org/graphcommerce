@@ -23,9 +23,8 @@ const { classes } = extendableComponent('FilterRangeType', ['root', 'container',
 export function FilterRangeType(props: FilterRangeTypeProps) {
   const { attribute_code, label, options, ...chipProps } = props
   const currency = useQuery(StoreConfigDocument).data?.storeConfig?.base_currency_code
-  const {
-    form: { control, getValues },
-  } = useFilterForm()
+  const { form } = useFilterForm()
+  const { control, getValues } = form
   const { emptyFilters, applyFilters } = useFilterActions({ attribute_code })
   const values = options?.map((v) => v?.value.split('_').map((mv) => Number(mv))).flat(1)
 
@@ -34,8 +33,12 @@ export function FilterRangeType(props: FilterRangeTypeProps) {
   const name = `${attribute_code}` as keyof ProductAttributeFilterInput
   const initialFrom = values?.[0]
   const initialTo = values?.[values.length - 1]
-
   const currentValue = getValues(name) as FilterRangeTypeInput
+  const selected = currentValue
+    ? Number(currentValue.from) !== initialFrom || Number(currentValue.to) !== initialTo
+    : false
+
+  const handleReset = () => emptyFilters([initialFrom, initialTo])
 
   return (
     <Controller
@@ -61,10 +64,11 @@ export function FilterRangeType(props: FilterRangeTypeProps) {
           <ChipMenu
             {...chipProps}
             variant='outlined'
-            label={l}
-            selected={currentValue !== undefined}
+            label={label}
+            selectedLabel={l}
+            selected={selected}
             className={classes.root}
-            onReset={() => emptyFilters([initialFrom, initialTo])}
+            onReset={handleReset}
             onApply={applyFilters}
           >
             <Box
@@ -76,7 +80,7 @@ export function FilterRangeType(props: FilterRangeTypeProps) {
             >
               <Box>
                 <Money round value={from} />
-                {typedValue?.to ? ' — ' : false}
+                -
                 <Money round value={to} />
                 <Slider
                   min={values ? values[0] : 0}

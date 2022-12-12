@@ -1,5 +1,5 @@
 import { ChipProps } from '@mui/material'
-import React, { PropsWithChildren } from 'react'
+import React, { PropsWithChildren, ReactElement } from 'react'
 import { Overlay } from '../../Overlay/components/Overlay'
 import { OverlayProps } from '../../Overlay/components/OverlaySsr'
 import { OverlayFilterContent } from './OverlayFilterContent'
@@ -13,11 +13,16 @@ type OverlayFilterPanelProps = PropsWithChildren<
   }
 
 export function OverlayFilterPanel(props: OverlayFilterPanelProps) {
-  const { active, onClosed } = props
+  const { active, onClosed, children } = props
+
+  const maxLength = 20
+  const castedChildren = children as ReactElement
+  const menuLength = castedChildren?.props.items?.length
+  const mode = menuLength > maxLength ? 'full' : 'minimal'
 
   return (
-    <Overlay onClosed={onClosed} active={active} variantSm='bottom' sizeSm='minimal'>
-      <OverlayFilterContent {...props} />
+    <Overlay onClosed={onClosed} active={active} variantSm='bottom' sizeSm={mode}>
+      <OverlayFilterContent {...props} maxLength={maxLength} />
     </Overlay>
   )
 }

@@ -35,6 +35,8 @@ export function createProductListLink(props: ProductListParams): string {
       if (isFilterTypeRange(value)) query += `/${param}/${value.from ?? '*'}-${value.to ?? '*'}`
     })
 
+  console.log({ url })
+
   const result = query
     ? `/${url.startsWith('search') ? url : `c/${url}`}${paginateSort}/q${
         uid ? `/category_uid/${uid}` : ''

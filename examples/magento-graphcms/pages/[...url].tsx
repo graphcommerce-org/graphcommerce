@@ -20,7 +20,6 @@ import {
   ProductListDocument,
   ProductListPagination,
   ProductListParams,
-  ProductListParamsProvider,
   ProductListQuery,
   FilterFormProvider,
   ProductListFiltersContainer,
@@ -35,7 +34,7 @@ import {
   MetaRobots,
   StickyBelowHeader,
 } from '@graphcommerce/next-ui'
-import { Container, Box } from '@mui/material'
+import { Container } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import {
   LayoutNavigation,
@@ -106,12 +105,12 @@ function CategoryPage(props: CategoryProps) {
       )}
 
       {isCategory && !isLanding && (
-        <ProductListParamsProvider value={params}>
+        <>
           <CategoryDescription description={category.description} />
           <CategoryChildren params={params}>{category.children}</CategoryChildren>
 
           <StickyBelowHeader>
-            <FilterFormProvider>
+            <FilterFormProvider initialParams={params}>
               <ProductListFiltersContainer>
                 <ProductListSort
                   sort_fields={products?.sort_fields}
@@ -135,7 +134,7 @@ function CategoryPage(props: CategoryProps) {
             />
             <ProductListPagination page_info={products?.page_info} />
           </Container>
-        </ProductListParamsProvider>
+        </>
       )}
 
       {page && (

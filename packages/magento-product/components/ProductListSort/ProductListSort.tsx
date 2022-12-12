@@ -61,7 +61,7 @@ function FilterSortActionCard(
 
 export function ProductListSort(props: ProductListSortProps) {
   const { sort_fields, total_count, sx = [], ...filterMenuProps } = props
-  const { params } = useProductListParamsContext()
+  const { params } = useFilterForm()
   const {
     form: { control },
   } = useFilterForm()
@@ -69,7 +69,7 @@ export function ProductListSort(props: ProductListSortProps) {
   const { data: storeConfigQuery } = useQuery(StoreConfigDocument)
   const defaultSort = storeConfigQuery?.storeConfig?.catalog_default_sort_by
   const [currentSort = defaultSort] = Object.keys(params.sort)
-  const { emptyFilters } = useFilterActions({ attribute_code: 'sort' })
+  const { emptyFilters, applyFilters } = useFilterActions({ attribute_code: 'sort' })
 
   const currentOption = sort_fields?.options?.find((option) => option?.value === currentSort)
   const selected = currentSort !== defaultSort
@@ -91,6 +91,7 @@ export function ProductListSort(props: ProductListSortProps) {
       {...filterMenuProps}
       sx={sx}
       onReset={emptyFilters}
+      onApply={applyFilters}
     >
       {sort_fields?.options ? (
         <ActionCardListForm
