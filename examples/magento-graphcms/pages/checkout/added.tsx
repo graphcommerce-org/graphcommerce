@@ -136,7 +136,7 @@ function CheckoutAdded() {
           )}
         </Box>
         <Box gridArea='action'>
-          <PageLink href='/cart' passHref replace>
+          <PageLink href='/cart' passHref>
             <Button
               id='view-shopping-cart-button'
               size='large'
@@ -200,7 +200,7 @@ function CheckoutAdded() {
 }
 
 const pageOptions: PageOptions<LayoutOverlayProps> = {
-  overlayGroup: 'added',
+  overlayGroup: 'checkout',
   Layout: LayoutOverlay,
   layoutProps: {
     variantMd: 'bottom',
