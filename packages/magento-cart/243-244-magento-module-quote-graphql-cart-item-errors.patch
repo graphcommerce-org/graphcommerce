@@ -1,0 +1,148 @@
+diff -Nru magento/module-quote-graph-ql-orig/Model/Resolver/CartItemErrors.php magento/module-quote-graph-ql/Model/Resolver/CartItemErrors.php
+--- magento/module-quote-graph-ql-orig/Model/Resolver/CartItemErrors.php	1970-01-01 01:00:00
++++ magento/module-quote-graph-ql/Model/Resolver/CartItemErrors.php	2022-12-12 11:08:22
+@@ -0,0 +1,86 @@
++<?php
++/*
++ * Copyright © Reach Digital (https://www.reachdigital.io/)
++ * See LICENSE.txt for license details.
++ */
++declare(strict_types=1);
++
++namespace Magento\QuoteGraphQl\Model\Resolver;
++
++use Magento\Framework\Exception\LocalizedException;
++use Magento\Framework\Exception\RuntimeException;
++use Magento\Framework\GraphQl\Config\Element\Field;
++use Magento\Framework\GraphQl\Query\ResolverInterface;
++use Magento\Framework\GraphQl\Query\EnumLookup;
++use Magento\Framework\GraphQl\Schema\Type\ResolveInfo;
++use Magento\Quote\Model\Quote\Item;
++
++/**
++ * @inheritdoc
++ */
++class CartItemErrors implements ResolverInterface
++{
++    /**
++     * Error code
++     */
++    private const ERROR_UNDEFINED = 0;
++
++    /**
++     * @var EnumLookup
++     */
++    private $enumLookup;
++
++    /**
++     * @param EnumLookup $enumLookup
++     */
++    public function __construct(
++        EnumLookup $enumLookup
++    ) {
++        $this->enumLookup = $enumLookup;
++    }
++
++    /**
++     * @inheritdoc
++     */
++    public function resolve(Field $field, $context, ResolveInfo $info, array $value = null, array $args = null)
++    {
++        if (!isset($value['model'])) {
++            throw new LocalizedException(__('"model" value should be specified'));
++        }
++        /** @var Item $cartItem */
++        $cartItem = $value['model'];
++
++        return $this->getItemErrors($cartItem);
++    }
++
++    /**
++     * Get error messages for cart item
++     *
++     * @param Item $cartItem
++     * @return string[]|null
++     * @throws RuntimeException
++     */
++    private function getItemErrors(Item $cartItem): ?array
++    {
++        $hasError = (bool) $cartItem->getData('has_error');
++        if (!$hasError) {
++            return null;
++        }
++
++        $errors = [];
++        foreach ($cartItem->getErrorInfos() as $error) {
++            $errorType = $error['code'] ?? self::ERROR_UNDEFINED;
++            $message = $error['message'] ?? $cartItem->getMessage();
++            $errorEnumCode = $this->enumLookup->getEnumValueFromField(
++                'CartItemErrorType',
++                (string)$errorType
++            );
++            $errors[$message] = [
++                'code' => $errorEnumCode,
++                'message' => $message
++            ];
++        }
++
++        return array_values($errors);
++    }
++}
+diff -Nru magento/module-quote-graph-ql-orig/Model/Resolver/CartItems.php magento/module-quote-graph-ql/Model/Resolver/CartItems.php
+--- magento/module-quote-graph-ql-orig/Model/Resolver/CartItems.php	2021-07-13 21:08:00
++++ magento/module-quote-graph-ql/Model/Resolver/CartItems.php	2022-12-12 10:53:20
+@@ -54,13 +54,6 @@
+         $cart = $value['model'];
+ 
+         $itemsData = [];
+-        if ($cart->getData('has_error')) {
+-            $errors = $cart->getErrors();
+-            foreach ($errors as $error) {
+-                $itemsData[] = new GraphQlInputException(__($error->getText()));
+-            }
+-        }
+-
+         $cartProductsData = $this->getCartProductsData($cart);
+         $cartItems = $cart->getAllVisibleItems();
+         /** @var QuoteItem $cartItem */
+diff -Nru magento/module-quote-graph-ql-orig/etc/graphql/di.xml magento/module-quote-graph-ql/etc/graphql/di.xml
+--- magento/module-quote-graph-ql-orig/etc/graphql/di.xml	2021-07-13 21:08:00
++++ magento/module-quote-graph-ql/etc/graphql/di.xml	2022-12-12 11:06:31
+@@ -20,4 +20,15 @@
+             </argument>
+         </arguments>
+     </type>
++    <type name="Magento\Framework\GraphQl\Schema\Type\Enum\DefaultDataMapper">
++        <arguments>
++            <argument name="map" xsi:type="array">
++                <item name="CartItemErrorType" xsi:type="array">
++                    <item name="undefined" xsi:type="string">0</item>
++                    <item name="item_qty" xsi:type="string">1</item>
++                    <item name="item_increment" xsi:type="string">2</item>
++                </item>
++            </argument>
++        </arguments>
++    </type>
+ </config>
+diff -Nru magento/module-quote-graph-ql-orig/etc/schema.graphqls magento/module-quote-graph-ql/etc/schema.graphqls
+--- magento/module-quote-graph-ql-orig/etc/schema.graphqls	2021-07-13 21:08:00
++++ magento/module-quote-graph-ql/etc/schema.graphqls	2022-12-12 11:06:31
+@@ -335,6 +335,18 @@
+     quantity: Float!
+     prices: CartItemPrices @resolver(class: "\\Magento\\QuoteGraphQl\\Model\\Resolver\\CartItemPrices")
+     product: ProductInterface!
++    errors: [CartItemError!] @resolver(class: "\\Magento\\QuoteGraphQl\\Model\\Resolver\\CartItemErrors") @doc(description: "An array of errors encountered while loading the cart item")
++}
++
++type CartItemError {
++    code: CartItemErrorType! @doc(description: "An error code that describes the error encountered")
++    message: String! @doc(description: "A localized error message")
++}
++
++enum CartItemErrorType {
++    UNDEFINED
++    ITEM_QTY
++    ITEM_INCREMENTS
+ }
+ 
+ type Discount @doc(description:"Defines an individual discount. A discount can be applied to the cart as a whole or to an item.") {

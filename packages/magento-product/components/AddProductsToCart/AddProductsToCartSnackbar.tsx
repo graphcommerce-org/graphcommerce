@@ -11,6 +11,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import PageLink from 'next/link'
+import { toUserErrors } from './toUserErrors'
 import { useFormAddProductsToCart } from './useFormAddProductsToCart'
 
 export type AddProductsToCartSnackbarProps = {
@@ -22,16 +23,19 @@ export function AddProductsToCartSnackbar(props: AddProductsToCartSnackbarProps)
   const { errorSnackbar, successSnackbar } = props
   const { formState, error, data, redirect } = useFormAddProductsToCart()
 
+  const userErrors = toUserErrors(data)
+
   const showSuccess =
     !formState.isSubmitting &&
     formState.isSubmitSuccessful &&
     !error?.message &&
-    !data?.addProductsToCart?.user_errors?.length &&
+    !userErrors.length &&
     !redirect
 
   const items = filterNonNullableKeys(data?.addProductsToCart?.cart.items)
 
-  const showErrorSnackbar = (data?.addProductsToCart?.user_errors?.length ?? 0) > 0
+  const showErrorSnackbar = userErrors.length > 0
+
   return (
     <>
       {error && <ApolloCartErrorSnackbar error={error} />}

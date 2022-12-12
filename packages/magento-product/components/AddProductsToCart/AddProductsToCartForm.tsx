@@ -13,6 +13,7 @@ import {
   AddProductsToCartSnackbar,
   AddProductsToCartSnackbarProps,
 } from './AddProductsToCartSnackbar'
+import { toUserErrors } from './toUserErrors'
 import { AddProductsToCartContext, RedirectType } from './useFormAddProductsToCart'
 
 export type AddProductsToCartFormProps = {
@@ -88,8 +89,7 @@ export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
         if (item.sku) form.setValue(`cartItems.${index}.sku`, '')
       })
 
-      if (result.data?.addProductsToCart?.user_errors?.length || result.errors?.length || !redirect)
-        return
+      if (toUserErrors(result.data).length || result.errors?.length || !redirect) return
 
       if (redirect === 'added') {
         const method = router.pathname.startsWith('/checkout/added') ? router.replace : router.push
