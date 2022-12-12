@@ -373,11 +373,17 @@ msgstr "Passwörter stimmen nicht überein"
 msgid "Pay"
 msgstr "Bezahlen"
 
+msgid "Pay with iDEAL"
+msgstr "Mit iDEAL bezahlen"
+
 msgid "Payment"
 msgstr "Zahlung"
 
 msgid "Payment failed with status: {paymentStatus}"
 msgstr "Zahlung fehlgeschlagen mit Status: {paymentStatus}"
+
+msgid "Payment has not completed succesfully, please try again."
+msgstr "Zahlung wurde nicht erfolgreich abgeschlossen, bitte versuchen Sie es erneut."
 
 msgid "Payment method"
 msgstr "Zahlungsmethode"
@@ -541,6 +547,12 @@ msgstr "Vielen Dank für Ihre Bestellung!"
 msgid "Thank you! Your review was successfully submitted for approval"
 msgstr "Vielen Dank! Ihre Bewertung wurde erfolgreich zur Freischaltung eingereicht"
 
+msgid "The payment hasn't completed, please try again or select a different payment method."
+msgstr "Die Zahlung wurde nicht abgeschlossen, bitte versuchen Sie es erneut oder wählen Sie eine andere Zahlungsmethode aus."
+
+msgid "The payment is refused, please try again or select a different payment method."
+msgstr "Die Zahlung wurde abgelehnt, bitte versuchen Sie es erneut oder wählen Sie eine andere Zahlungsmethode aus."
+
 msgid "This field is required"
 msgstr "Dieses Feld ist erforderlich"
 
@@ -573,6 +585,9 @@ msgstr "Ihr Konto anzeigen"
 
 msgid "We are fetching your favorite products, one moment please!"
 msgstr "Wir laden Ihre Favoritenprodukte herunter, einen Moment bitte!"
+
+msgid "We can not process your payment, we received an unsupported status \"<0>{resultCode}</0>\". Please try again or select a different payment method."
+msgstr "Wir können Ihre Zahlung nicht verarbeiten, wir haben einen nicht unterstützten Status \"<0>{resultCode}</0>\" erhalten. Bitte versuchen Sie es erneut oder wählen Sie eine andere Zahlungsmethode aus."
 
 msgid "We couldn't find any results for {term}"
 msgstr "Wir konnten keine Ergebnisse für {term} finden"
