@@ -1,5 +1,19 @@
 # Change Log
 
+## 5.1.0-canary.7
+
+### Patch Changes
+
+- [#1756](https://github.com/graphcommerce-org/graphcommerce/pull/1756) [`1abaaedde`](https://github.com/graphcommerce-org/graphcommerce/commit/1abaaedde4062d3b19696e333d0016972681afaf) - Show cart item error messages when running Magento >= 2.4.5 or this [patch is applied](https://raw.githubusercontent.com/graphcommerce-org/graphcommerce/main/packages/magento-cart/243-244-magento-module-quote-graphql-cart-item-errors.patch)
+
+  - Fixes an issue where the cart can get into a broken state, if items contain errors.
+  - AddToCartForm now shows a success message if there is an error but the error is related to another item in the cart.
+  - Disable checkout buttons when there are cart item errors and show a message. ([@paales](https://github.com/paales))
+
+- [#1756](https://github.com/graphcommerce-org/graphcommerce/pull/1756) [`4eee6abf0`](https://github.com/graphcommerce-org/graphcommerce/commit/4eee6abf0133b16872fc70c625ce2c21d1a0a4f4) - Add missing translations ([@paales](https://github.com/paales))
+
+- [#1756](https://github.com/graphcommerce-org/graphcommerce/pull/1756) [`47cf3d49f`](https://github.com/graphcommerce-org/graphcommerce/commit/47cf3d49fda044220163ec6b0f0c4fe3dd8005fb) - When navigation from checkout/added the cart didn't animate and it didn't work properly. ([@paales](https://github.com/paales))
+
 ## 5.1.0-canary.6
 
 ## 5.1.0-canary.5
