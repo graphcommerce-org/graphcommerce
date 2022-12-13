@@ -32,6 +32,8 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
   } = props
 
   const hasTotals = (cart.prices?.grand_total?.value ?? 0) > 0
+  const hasErrors = cart.items?.some((item) => (item?.errors?.length ?? 0) > 0)
+
   return (
     <Box
       className={classes.checkoutButtonContainer}
@@ -49,13 +51,13 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
           size='large'
           className={classes.checkoutButton}
           endIcon={<IconSvg src={iconChevronRight} />}
-          {...buttonProps}
           onClick={(e) => {
             onClick?.(e)
             onStart?.(e, cart)
             return onClick?.(e)
           }}
-          disabled={!hasTotals || buttonProps?.disabled}
+          disabled={!hasTotals || hasErrors}
+          {...buttonProps}
         >
           <Box
             component='span'
@@ -75,6 +77,12 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
         </Button>
       </PageLink>
       {children}
+
+      {hasErrors && (
+        <Box sx={(theme) => ({ color: 'error.main', mt: theme.spacings.xs })}>
+          <Trans id='Some items in your cart contain errors, please update or remove them, then try again.' />
+        </Box>
+      )}
     </Box>
   )
 }

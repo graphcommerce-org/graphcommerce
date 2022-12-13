@@ -24,6 +24,7 @@ export function CartStartCheckoutLinkOrButton(props: CartStartCheckoutLinkOrButt
   } = props
 
   const hasTotals = (cart.prices?.grand_total?.value ?? 0) > 0
+  const hasErrors = cart.items?.some((item) => (item?.errors?.length ?? 0) > 0)
 
   return (
     <PageLink href='/checkout' passHref>
@@ -33,7 +34,7 @@ export function CartStartCheckoutLinkOrButton(props: CartStartCheckoutLinkOrButt
           onStart?.(e, cart)
         }}
         button={{ variant: 'pill', ...button }}
-        disabled={!hasTotals}
+        disabled={!hasTotals || hasErrors}
         color='secondary'
         endIcon={<IconSvg src={iconChevronRight} />}
         {...linkOrButtonProps}

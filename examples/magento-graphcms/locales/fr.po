@@ -373,11 +373,17 @@ msgstr "Les mots de passe ne correspondent pas"
 msgid "Pay"
 msgstr "Payer"
 
+msgid "Pay with iDEAL"
+msgstr "Payer avec iDEAL"
+
 msgid "Payment"
 msgstr "Paiement"
 
 msgid "Payment failed with status: {paymentStatus}"
 msgstr "Le paiement a échoué avec le statut: {paymentStatus}"
+
+msgid "Payment has not completed succesfully, please try again."
+msgstr "Le paiement n'a pas été effectué avec succès, veuillez réessayer."
 
 msgid "Payment method"
 msgstr "Méthode de paiement"
@@ -490,6 +496,9 @@ msgstr "Déconnexion"
 msgid "Sign up for our newsletter and stay updated"
 msgstr "Inscrivez-vous à notre newsletter et restez à jour"
 
+msgid "Some items in your cart contain errors, please update or remove them, then try again."
+msgstr "Certains articles de votre panier contiennent des erreurs, veuillez les mettre à jour ou les supprimer, puis réessayer."
+
 msgid "Sort By"
 msgstr "Trier par"
 
@@ -538,6 +547,12 @@ msgstr "Merci pour votre commande!"
 msgid "Thank you! Your review was successfully submitted for approval"
 msgstr "Merci! Votre évaluation a été soumise avec succès pour approbation"
 
+msgid "The payment hasn't completed, please try again or select a different payment method."
+msgstr "Le paiement n'a pas été complété, veuillez réessayer ou sélectionner une autre méthode de paiement."
+
+msgid "The payment is refused, please try again or select a different payment method."
+msgstr "Le paiement est refusé, veuillez réessayer ou sélectionner une autre méthode de paiement."
+
 msgid "This field is required"
 msgstr "Ce champ est requis"
 
@@ -570,6 +585,9 @@ msgstr "Voir votre compte"
 
 msgid "We are fetching your favorite products, one moment please!"
 msgstr "Nous recherchons vos produits favoris, un moment s'il vous plaît!"
+
+msgid "We can not process your payment, we received an unsupported status \"<0>{resultCode}</0>\". Please try again or select a different payment method."
+msgstr "Nous ne pouvons pas traiter votre paiement, nous avons reçu un statut non pris en charge \"<0>{resultCode}</0>\". Veuillez réessayer ou sélectionner une autre méthode de paiement."
 
 msgid "We couldn't find any results for {term}"
 msgstr "Nous n'avons trouvé aucun résultat pour {term}"

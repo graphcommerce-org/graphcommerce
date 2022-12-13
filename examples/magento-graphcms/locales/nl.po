@@ -373,11 +373,17 @@ msgstr "Wachtwoorden komen niet overeen"
 msgid "Pay"
 msgstr "Betaal"
 
+msgid "Pay with iDEAL"
+msgstr "Betaal met iDEAL"
+
 msgid "Payment"
 msgstr "Betaling"
 
 msgid "Payment failed with status: {paymentStatus}"
 msgstr "Betaling mislukt met status: {paymentStatus}"
+
+msgid "Payment has not completed succesfully, please try again."
+msgstr "Betaling is niet succesvol afgerond, probeer het opnieuw."
 
 msgid "Payment method"
 msgstr "Betaalmethode"
@@ -490,6 +496,9 @@ msgstr "Uitloggen"
 msgid "Sign up for our newsletter and stay updated"
 msgstr "Abonneer u op onze nieuwsbrief en blijf op de hoogte"
 
+msgid "Some items in your cart contain errors, please update or remove them, then try again."
+msgstr "Sommige items in uw winkelwagen bevatten fouten, pas deze aan of verwijder ze en probeer het opnieuw."
+
 msgid "Sort By"
 msgstr "Sorteer op"
 
@@ -538,6 +547,12 @@ msgstr "Bedankt voor je bestelling!"
 msgid "Thank you! Your review was successfully submitted for approval"
 msgstr "Bedankt! Uw review is succesvol verstuurd voor goedkeuring"
 
+msgid "The payment hasn't completed, please try again or select a different payment method."
+msgstr "De betaling is niet voltooid, probeer het opnieuw of selecteer een andere betaalmethode."
+
+msgid "The payment is refused, please try again or select a different payment method."
+msgstr "De betaling is geweigerd, probeer het opnieuw of selecteer een andere betaalmethode."
+
 msgid "This field is required"
 msgstr "Dit veld is verplicht"
 
@@ -570,6 +585,9 @@ msgstr "Bekijk uw account"
 
 msgid "We are fetching your favorite products, one moment please!"
 msgstr "Je favoriete artikelen worden momenteel ingeladen!"
+
+msgid "We can not process your payment, we received an unsupported status \"<0>{resultCode}</0>\". Please try again or select a different payment method."
+msgstr "We kunnen uw betaling niet verwerken, we hebben een niet-ondersteunde status ontvangen \"<0>{resultCode}</0>\". Probeer het opnieuw of selecteer een andere betaalmethode."
 
 msgid "We couldn't find any results for {term}"
 msgstr "We konden geen resultaten vinden voor {term}"

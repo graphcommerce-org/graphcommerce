@@ -6,6 +6,10 @@ fragment CartItemCountChanged on Cart @injectable {
     __typename
     uid
     quantity
+    errors {
+      code
+      message
+    }
     product {
       uid
       name
