@@ -70,6 +70,12 @@ it('finds plugins', () => {
         "plugin": "@graphcommerce/googleanalytics/plugins/GaShippingMethodForm",
       },
       {
+        "component": "UpdateItemQuantity",
+        "exported": "@graphcommerce/magento-cart-items/UpdateItemQuantity/UpdateItemQuantity",
+        "ifEnv": "NEXT_PUBLIC_GOOGLE_ANALYTICS",
+        "plugin": "@graphcommerce/googleanalytics/plugins/GaUpdateItemQuantity",
+      },
+      {
         "component": "ApolloErrorAlert",
         "exported": "@graphcommerce/ecommerce-ui",
         "plugin": "@graphcommerce/googlerecaptcha/plugins/GrecaptchaApolloErrorAlert",

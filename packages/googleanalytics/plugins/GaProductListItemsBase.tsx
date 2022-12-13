@@ -1,24 +1,16 @@
 import type { ProductItemsGridProps } from '@graphcommerce/magento-product'
 import { PluginProps } from '@graphcommerce/next-config'
-import { gtagSelectItem } from '../events/gtagSelectItem/gtagSelectItem'
-import { useGtagViewItemList } from '../events/useGtagViewItemList/useGtagViewItemList'
+import { GoogleAnalyticsItemList } from '../components/GoogleAnalyticsItemList'
 
 export const component = 'ProductListItemsBase'
 export const exported = '@graphcommerce/magento-product'
 
 export function GaProductListItemsBase(props: PluginProps<ProductItemsGridProps>) {
-  const { Prev, onClick, ...rest } = props
-
-  useGtagViewItemList(props)
-
+  const { Prev, ...rest } = props
   return (
-    <Prev
-      {...rest}
-      onClick={(e, item) => {
-        gtagSelectItem({ item })
-        return onClick?.(e, item)
-      }}
-    />
+    <GoogleAnalyticsItemList {...rest}>
+      <Prev {...rest} />
+    </GoogleAnalyticsItemList>
   )
 }
 

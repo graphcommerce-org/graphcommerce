@@ -163,7 +163,7 @@ function ProductPage(props: Props) {
             </AddProductsToCartError>
           </Box>
 
-          <ProductSidebarDelivery />
+          <ProductSidebarDelivery product={product} />
 
           <Box
             sx={(theme) => ({
@@ -172,7 +172,7 @@ function ProductPage(props: Props) {
               columnGap: theme.spacings.xs,
             })}
           >
-            <AddProductsToCartButton fullWidth sku={product.sku} />
+            <AddProductsToCartButton fullWidth product={product} />
             <ProductWishlistChipDetail {...product} />
           </Box>
 

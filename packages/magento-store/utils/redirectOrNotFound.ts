@@ -61,24 +61,28 @@ export async function redirectOrNotFound(
     const routePromises = [...candidates].map(async (url) => {
       const result = await client.query({ query: HandleRedirectDocument, variables: { url } })
       if (!result.data.route) throw Error('No data')
-      return result.data.route
+      return result.data
     })
 
-    const route = await Promise.any(routePromises)
+    const routeData = await Promise.any(routePromises)
 
     // There is a URL, so we need to check if it can be found in the database.
-    const permanent = route?.redirect_code === 301
+    const permanent = routeData.route?.redirect_code === 301
 
     // Add special handling for the homepage.
-    if (route?.url_key && route.__typename.endsWith('Product')) {
+    if (routeData.route?.url_key && routeData.route?.__typename.endsWith('Product')) {
       if (process.env.NEXT_PUBLIC_SINGLE_PRODUCT_PAGE !== '1') {
         console.warn('Redirects are only supported for NEXT_PUBLIC_SINGLE_PRODUCT_PAGE')
       }
-      return redirect(`/p/${route.url_key}`, permanent, locale)
+
+      if (routeData.products?.items?.find((i) => i?.url_key === routeData.route?.url_key)) {
+        return redirect(`/p/${routeData.route?.url_key}`, permanent, locale)
+      }
+      return notFound()
     }
 
     // The default URL for categories or CMS pages is handled by the pages/[...url].tsx file.
-    if (route?.url_key) return redirect(`/${route.url_key}`, permanent, locale)
+    if (routeData.route?.url_key) return redirect(`/${routeData.route?.url_key}`, permanent, locale)
   } catch (e) {
     // We're done
   }
