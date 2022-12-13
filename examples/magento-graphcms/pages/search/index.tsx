@@ -105,7 +105,7 @@ function SearchResultPage(props: SearchResultProps) {
       {products && products.items && products?.items?.length > 0 && (
         <ProductListParamsProvider value={params}>
           <StickyBelowHeader>
-            <FilterFormProvider>
+            <FilterFormProvider initialParams={params}>
               <ProductListFiltersContainer>
                 <ProductListSort sort_fields={products?.sort_fields} />
                 <ProductListFilters
