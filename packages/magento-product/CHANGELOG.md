@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.1.0-canary.8
+
+### Minor Changes
+
+- [#1757](https://github.com/graphcommerce-org/graphcommerce/pull/1757) [`ca2e2ab59`](https://github.com/graphcommerce-org/graphcommerce/commit/ca2e2ab594ab1cc0fedf908869829811e1f4009f) - Handle stock_status OUT_OF_STOCK properly and show only_x_left_in_stock if feature is enabled ([@paales](https://github.com/paales))
+
 ## 5.1.0-canary.7
 
 ### Minor Changes

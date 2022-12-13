@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.1.0-canary.8
+
+### Patch Changes
+
+- [#1757](https://github.com/graphcommerce-org/graphcommerce/pull/1757) [`430863c4a`](https://github.com/graphcommerce-org/graphcommerce/commit/430863c4addfb7f6417d7c808ccd5f75319aa2ff) - When a product is disabled it got in a redirect loop because of a Magento bug ([@paales](https://github.com/paales))
+
 ## 5.1.0-canary.7
 
 ## 5.1.0-canary.6

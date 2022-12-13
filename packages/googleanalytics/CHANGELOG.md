@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.1.0-canary.8
+
+### Patch Changes
+
+- [#1757](https://github.com/graphcommerce-org/graphcommerce/pull/1757) [`566beeee3`](https://github.com/graphcommerce-org/graphcommerce/commit/566beeee3b8300e836cb4cdb8102f1a239c281d7) - Make sure we can handle deeply nested items in a list ([@paales](https://github.com/paales))
+
 ## 5.1.0-canary.7
 
 ## 5.1.0-canary.6
