@@ -62,7 +62,7 @@ function MinimalLayoutSubheader(props: Props) {
         </LayoutTitle>
 
         <StickyBelowHeader>
-          <FilterFormProvider>
+          <FilterFormProvider initialParams={params}>
             <ProductListFiltersContainer>
               <ProductListFilters aggregations={filters?.aggregations} filterTypes={filterTypes} />
               <ProductListSort sort_fields={products?.sort_fields} />
