@@ -9,13 +9,12 @@ import {
   Typography,
   useEventCallback,
 } from '@mui/material'
+import dynamic from 'next/dynamic'
 import React, { ReactNode, useState } from 'react'
 import { IconSvg } from '../IconSvg'
 import { responsiveVal } from '../Styles'
 import { useMatchMedia } from '../hooks/useMatchMedia'
 import { iconChevronDown, iconChevronUp } from '../icons'
-import { OverlayFilterPanel } from './OverlayFilter/OverlayFilterPanel'
-import { PopperFilterPanel } from './PopperFilter/PopperFilterPanel'
 
 export type ChipMenuProps = Omit<ChipProps<'button'>, 'children' | 'component' | 'onClick'> & {
   selectedLabel?: React.ReactNode
@@ -27,6 +26,14 @@ export type ChipMenuProps = Omit<ChipProps<'button'>, 'children' | 'component' |
   sx?: SxProps<Theme>
   breakpoint?: Breakpoint
 }
+
+const OverlayFilterPanel = dynamic(
+  async () => (await import('./OverlayFilter/OverlayFilterPanel')).OverlayFilterPanel,
+)
+
+const PopperFilterPanel = dynamic(
+  async () => (await import('./PopperFilter/PopperFilterPanel')).PopperFilterPanel,
+)
 
 export function ChipMenu(props: ChipMenuProps) {
   const {
@@ -43,6 +50,7 @@ export function ChipMenu(props: ChipMenuProps) {
     ...chipProps
   } = props
 
+  const [firstActive, setFirstActive] = useState(false)
   const [activeEl, setActiveEl] = useState<HTMLElement | null>(null)
 
   const { up } = useMatchMedia()
@@ -80,6 +88,7 @@ export function ChipMenu(props: ChipMenuProps) {
 
   const toggle = useEventCallback((e: React.MouseEvent<HTMLElement>) => {
     setActiveEl((el) => (el !== e.currentTarget ? e.currentTarget : null))
+    setFirstActive(true)
   })
 
   const labelComponent = (
@@ -117,12 +126,12 @@ export function ChipMenu(props: ChipMenuProps) {
             : {}),
         })}
       />
-      {mode === 'overlay' && (
+      {firstActive && mode === 'overlay' && (
         <OverlayFilterPanel {...props} active={active} onClosed={deactivate}>
           {children}
         </OverlayFilterPanel>
       )}
-      {mode === 'popper' && (
+      {firstActive && mode === 'popper' && (
         <PopperFilterPanel {...props} openEl={activeEl} onClose={deactivate}>
           {children}
         </PopperFilterPanel>
