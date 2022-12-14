@@ -1,3 +1,4 @@
+import { ScrollMotionValues } from '@graphcommerce/framer-utils'
 import { MotionValue, Point } from 'framer-motion'
 import { PlaybackControls } from 'popmotion'
 import React from 'react'
@@ -26,6 +27,7 @@ export type ScrollerContext = {
   scrollerRef: ReactHtmlRefObject
   items: MotionValue<ItemState[]>
   snap: MotionValue<boolean>
+  scroll: ScrollMotionValues
 
   /** @private */
   enableSnap: () => void

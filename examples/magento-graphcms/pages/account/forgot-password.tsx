@@ -34,6 +34,7 @@ function AccountForgotPasswordPage() {
 
 const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'account-public',
+  sharedKey: () => 'account-signin',
   Layout: LayoutOverlay,
 }
 AccountForgotPasswordPage.pageOptions = pageOptions
@@ -49,7 +50,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
       apolloState: await conf.then(() => client.cache.extract()),
       variantMd: 'bottom',
       size: 'max',
-      up: { href: '/account-signin', title: i18n._(/* i18n */ 'Sign in') },
+      up: { href: '/account/signin', title: i18n._(/* i18n */ 'Sign in') },
     },
   }
 }

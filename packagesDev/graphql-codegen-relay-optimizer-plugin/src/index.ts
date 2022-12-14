@@ -1,16 +1,15 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
+
+import CompilerContext from '@ardatan/relay-compiler/lib/core/CompilerContext'
+import { print as relayPrint } from '@ardatan/relay-compiler/lib/core/IRPrinter'
+import { transform as relayParserTransform } from '@ardatan/relay-compiler/lib/core/RelayParser'
+import { create as relayCreate } from '@ardatan/relay-compiler/lib/core/Schema'
+import { transform as applyFragmentArgumentTransform } from '@ardatan/relay-compiler/lib/transforms/ApplyFragmentArgumentTransform'
+import { transformWithOptions as flattenTransformWithOptions } from '@ardatan/relay-compiler/lib/transforms/FlattenTransform'
+import { transform as inlineFragmentsTransform } from '@ardatan/relay-compiler/lib/transforms/InlineFragmentsTransform'
+import { transform as skipRedundantNodesTransform } from '@ardatan/relay-compiler/lib/transforms/SkipRedundantNodesTransform'
 import { Types, PluginFunction } from '@graphql-codegen/plugin-helpers'
 import { GraphQLSchema, parse, printSchema, DefinitionNode, visit } from 'graphql'
-
-import { Parser as RelayParser } from 'relay-compiler'
-import CompilerContext from 'relay-compiler/lib/core/CompilerContext'
-import { print as relayPrint } from 'relay-compiler/lib/core/IRPrinter'
-import { create as relayCreate } from 'relay-compiler/lib/core/Schema'
-
-import { transform as applyFragmentArgumentTransform } from 'relay-compiler/lib/transforms/ApplyFragmentArgumentTransform'
-import { transformWithOptions as flattenTransformWithOptions } from 'relay-compiler/lib/transforms/FlattenTransform'
-import { transform as inlineFragmentsTransform } from 'relay-compiler/lib/transforms/InlineFragmentsTransform'
-import { transform as skipRedundantNodesTransform } from 'relay-compiler/lib/transforms/SkipRedundantNodesTransform'
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface RelayOptimizerPluginConfig {}
@@ -52,7 +51,7 @@ export const plugin: PluginFunction<RelayOptimizerPluginConfig> = (
     [] as DefinitionNode[],
   )
 
-  const relayDocuments = RelayParser.transform(adjustedSchema, documentAsts)
+  const relayDocuments = relayParserTransform(adjustedSchema, documentAsts)
 
   const fragmentCompilerContext = new CompilerContext(adjustedSchema).addAll(relayDocuments)
 

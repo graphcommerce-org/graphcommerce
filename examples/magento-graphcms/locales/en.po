@@ -373,11 +373,17 @@ msgstr "Passwords don't match"
 msgid "Pay"
 msgstr "Pay"
 
+msgid "Pay with iDEAL"
+msgstr "Pay with iDEAL"
+
 msgid "Payment"
 msgstr "Payment"
 
 msgid "Payment failed with status: {paymentStatus}"
 msgstr "Payment failed with status: {paymentStatus}"
+
+msgid "Payment has not completed succesfully, please try again."
+msgstr "Payment has not completed succesfully, please try again."
 
 msgid "Payment method"
 msgstr "Payment method"
@@ -490,6 +496,9 @@ msgstr "Sign out"
 msgid "Sign up for our newsletter and stay updated"
 msgstr "Sign up for our newsletter and stay updated"
 
+msgid "Some items in your cart contain errors, please update or remove them, then try again."
+msgstr "Some items in your cart contain errors, please update or remove them, then try again."
+
 msgid "Sort By"
 msgstr "Sort By"
 
@@ -538,6 +547,12 @@ msgstr "Thank you for your order!"
 msgid "Thank you! Your review was successfully submitted for approval"
 msgstr "Thank you! Your review was successfully submitted for approval"
 
+msgid "The payment hasn't completed, please try again or select a different payment method."
+msgstr "The payment hasn't completed, please try again or select a different payment method."
+
+msgid "The payment is refused, please try again or select a different payment method."
+msgstr "The payment is refused, please try again or select a different payment method."
+
 msgid "This field is required"
 msgstr "This field is required"
 
@@ -570,6 +585,9 @@ msgstr "View your account"
 
 msgid "We are fetching your favorite products, one moment please!"
 msgstr "We are fetching your favorite products, one moment please!"
+
+msgid "We can not process your payment, we received an unsupported status \"<0>{resultCode}</0>\". Please try again or select a different payment method."
+msgstr "We can not process your payment, we received an unsupported status \"<0>{resultCode}</0>\". Please try again or select a different payment method."
 
 msgid "We couldn't find any results for {term}"
 msgstr "We couldn't find any results for {term}"
@@ -610,8 +628,8 @@ msgstr "You are reviewing {0}"
 msgid "You can find your order history in your account!"
 msgstr "You can find your order history in your account!"
 
-msgid "You can now<0>sign in again</0>."
-msgstr "You can now<0>sign in again</0>."
+msgid "You can now <0>sign in again</0>."
+msgstr "You can now <0>sign in again</0>."
 
 msgid "You can track your order status and much more!"
 msgstr "You can track your order status and much more!"

@@ -1,5 +1,67 @@
 # Change Log
 
+## 5.1.0
+
+### Minor Changes
+
+- [#1754](https://github.com/graphcommerce-org/graphcommerce/pull/1754) [`f9cc9d45e`](https://github.com/graphcommerce-org/graphcommerce/commit/f9cc9d45ec500a719fd0b5f4c5673d23838ee77e) - Google analytics now supports configuration for multiple locales ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#1754](https://github.com/graphcommerce-org/graphcommerce/pull/1754) [`f9cc9d45e`](https://github.com/graphcommerce-org/graphcommerce/commit/f9cc9d45ec500a719fd0b5f4c5673d23838ee77e) - New events added to Google analytics: purchase and add_to_cart (when adding and updating items) ([@FrankHarland](https://github.com/FrankHarland))
+
+### Patch Changes
+
+- [#1752](https://github.com/graphcommerce-org/graphcommerce/pull/1752) [`2a6a4d9ec`](https://github.com/graphcommerce-org/graphcommerce/commit/2a6a4d9ecfa1b58a66ba9b9d00016d6feda9aa95) - Updated dependencies to latest versions, except for nextjs; Solve tons of peer dependency issues.
+
+  - Updated the @mui/material package
+  - Removed dependencies on react-hook-form-mui and @playwright/test
+  - Upgraded dependencies including type-fest and graphql-mesh
+  - Solved peer dependency issues ([@paales](https://github.com/paales))
+
+- [#1757](https://github.com/graphcommerce-org/graphcommerce/pull/1757) [`566beeee3`](https://github.com/graphcommerce-org/graphcommerce/commit/566beeee3b8300e836cb4cdb8102f1a239c281d7) - Make sure we can handle deeply nested items in a list ([@paales](https://github.com/paales))
+
+## 5.1.0-canary.11
+
+## 5.1.0-canary.10
+
+## 5.1.0-canary.9
+
+## 5.1.0-canary.8
+
+### Patch Changes
+
+- [#1757](https://github.com/graphcommerce-org/graphcommerce/pull/1757) [`566beeee3`](https://github.com/graphcommerce-org/graphcommerce/commit/566beeee3b8300e836cb4cdb8102f1a239c281d7) - Make sure we can handle deeply nested items in a list ([@paales](https://github.com/paales))
+
+## 5.1.0-canary.7
+
+## 5.1.0-canary.6
+
+### Minor Changes
+
+- [#1754](https://github.com/graphcommerce-org/graphcommerce/pull/1754) [`f9cc9d45e`](https://github.com/graphcommerce-org/graphcommerce/commit/f9cc9d45ec500a719fd0b5f4c5673d23838ee77e) - Google analytics now supports configuration for multiple locales ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#1754](https://github.com/graphcommerce-org/graphcommerce/pull/1754) [`f9cc9d45e`](https://github.com/graphcommerce-org/graphcommerce/commit/f9cc9d45ec500a719fd0b5f4c5673d23838ee77e) - New events added to Google analytics: purchase and add_to_cart (when adding and updating items) ([@FrankHarland](https://github.com/FrankHarland))
+
+## 5.1.0-canary.5
+
+## 5.1.0-canary.4
+
+## 5.1.0-canary.3
+
+### Patch Changes
+
+- [#1752](https://github.com/graphcommerce-org/graphcommerce/pull/1752) [`2a6a4d9ec`](https://github.com/graphcommerce-org/graphcommerce/commit/2a6a4d9ecfa1b58a66ba9b9d00016d6feda9aa95) - Updated dependencies to latest versions, except for nextjs; Solve tons of peer dependency issues.
+
+  - Updated the @mui/material package
+  - Removed dependencies on react-hook-form-mui and @playwright/test
+  - Upgraded dependencies including type-fest and graphql-mesh
+  - Solved peer dependency issues ([@paales](https://github.com/paales))
+
+## 5.1.0-canary.2
+
+## 5.1.0-canary.1
+
+## 5.1.0-canary.0
+
 ## 5.0.0
 
 ### Major Changes

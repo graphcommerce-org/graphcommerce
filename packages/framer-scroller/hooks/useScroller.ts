@@ -1,4 +1,4 @@
-import { useConstant, useElementScroll, useMotionValueValue } from '@graphcommerce/framer-utils'
+import { useConstant, useMotionValueValue } from '@graphcommerce/framer-utils'
 import { extendableComponent } from '@graphcommerce/next-ui/Styles'
 import { SxProps, Theme } from '@mui/material'
 import {
@@ -43,14 +43,12 @@ export function useScroller<
 >(props: ScrollableProps<TagName>, forwardedRef: React.ForwardedRef<E>) {
   const { hideScrollbar = false, children, grid = false, ...divProps } = props
 
-  const { scrollSnap, scrollerRef, enableSnap, disableSnap, snap, registerChildren } =
+  const { scrollSnap, scrollerRef, enableSnap, disableSnap, snap, registerChildren, scroll } =
     useScrollerContext()
 
   useEffect(() => {
     registerChildren(children)
   }, [children, registerChildren])
-
-  const scroll = useElementScroll(scrollerRef)
 
   const canGrab = useMotionValueValue(
     useTransform(
@@ -83,6 +81,8 @@ export function useScroller<
   const onPanStart: PanHandlers['onPanStart'] = (event) => {
     // If we're not dealing with the mouse we don't need to do anything
     if (!isHTMLMousePointerEvent(event)) return
+
+    if (event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA') return
     if (event.target.closest('.Scroller-root') !== scrollerRef.current) return
 
     scrollStart.x.set(scroll.x.get())

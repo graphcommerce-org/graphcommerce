@@ -1,4 +1,4 @@
-import { useElementScroll, useMotionValueValue } from '@graphcommerce/framer-utils'
+import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import { Fab, FabProps, styled, SxProps, Theme } from '@mui/material'
 import { m, useTransform } from 'framer-motion'
 import React from 'react'
@@ -18,11 +18,11 @@ export const ScrollerButton = m(
   React.forwardRef<HTMLDivElement, ScrollerButtonProps>((props, ref) => {
     const { direction, sx = [], layout, className, sxContainer, ...buttonProps } = props
 
-    const { getSnapPosition, scrollerRef } = useScrollerContext()
+    const { getSnapPosition, scroll } = useScrollerContext()
     const scrollTo = useScrollTo()
     const handleClick = () => scrollTo(getSnapPosition(direction))
 
-    const { xProgress, yProgress, xMax, yMax } = useElementScroll(scrollerRef)
+    const { xProgress, yProgress, xMax, yMax } = scroll
 
     const visibility = useMotionValueValue(
       useTransform<number, number>([xProgress, yProgress, xMax, yMax], ([x, y, xM, yM]) => {

@@ -1,9 +1,19 @@
+import { useRouter } from 'next/router'
 import Script from 'next/script'
 
 export function GoogleAnalyticsScript() {
-  const id = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS
+  const gaEnv = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS
+  const { locale } = useRouter()
+  let id = ''
 
-  if (!id) return null
+  if (!gaEnv) return null
+
+  if (gaEnv.startsWith('{') && locale) {
+    const GAConfig = JSON.parse(gaEnv)
+    id = GAConfig[locale]
+  } else {
+    id = gaEnv
+  }
 
   return (
     <>

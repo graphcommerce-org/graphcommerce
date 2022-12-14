@@ -135,8 +135,11 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   return { paths, fallback: 'blocking' }
 }
 
-export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
-  if (process.env.NEXT_PUBLIC_SINGLE_PRODUCT_PAGE === '1') return { notFound: true }
+export const getStaticProps: GetPageStaticProps = async ({ params, locale, defaultLocale }) => {
+  if (process.env.NEXT_PUBLIC_SINGLE_PRODUCT_PAGE === '1') {
+    const destination = `${locale === defaultLocale ? '' : `/${locale}`}/p/${params?.url}`
+    return { redirect: { destination, permanent: true } }
+  }
 
   const client = graphqlSharedClient(locale)
   const staticClient = graphqlSsrClient(locale)

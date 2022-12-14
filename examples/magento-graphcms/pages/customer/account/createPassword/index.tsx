@@ -28,52 +28,52 @@ function CustomerAccountCreatePasswordPage() {
           )}
         </LayoutTitle>
       </LayoutOverlayHeader>
-      <Box pt={4} pb={4}>
-        {!success && (
-          <Container maxWidth='sm'>
-            <LayoutTitle>
-              <Trans id='Set your new password' />
-            </LayoutTitle>
 
-            <Box textAlign='center'>
-              <p>
-                <Trans id='Fill in your new password, confirm it and click on the save button.' />
-              </p>
-            </Box>
+      {!success && (
+        <Container maxWidth='sm'>
+          <LayoutTitle gutterBottom={false}>
+            <Trans id='Set your new password' />
+          </LayoutTitle>
 
-            <ResetPasswordForm token={(token as string) ?? ''} />
-          </Container>
-        )}
+          <Box textAlign='center'>
+            <p>
+              <Trans id='Fill in your new password, confirm it and click on the save button.' />
+            </p>
+          </Box>
 
-        {success && (
-          <Container>
-            <LayoutTitle>
-              <Trans id='You have now successfully reset your password' />
-            </LayoutTitle>
+          <ResetPasswordForm token={(token as string) ?? ''} />
+        </Container>
+      )}
 
-            <Box textAlign='center'>
-              <p>
-                <Trans
-                  id='You can now<0>sign in again</0>.'
-                  components={{
-                    0: <Link color='primary' href='/account/signin' underline='hover' />,
-                  }}
-                />
-              </p>
+      {success && (
+        <Container>
+          <LayoutTitle gutterBottom={false}>
+            <Trans id='You have now successfully reset your password' />
+          </LayoutTitle>
 
-              <Button onClick={() => router.back()} variant='pill' color='secondary' size='large'>
-                <Trans id='Continue shopping' />
-              </Button>
-            </Box>
-          </Container>
-        )}
-      </Box>
+          <Box textAlign='center'>
+            <p>
+              <Trans
+                id='You can now <0>sign in again</0>.'
+                components={{
+                  0: <Link color='primary' href='/account/signin' underline='hover' />,
+                }}
+              />
+            </p>
+
+            <Button onClick={() => router.back()} variant='pill' color='secondary' size='large'>
+              <Trans id='Continue shopping' />
+            </Button>
+          </Box>
+        </Container>
+      )}
     </>
   )
 }
 
 const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'account-public',
+  sharedKey: () => 'account-public',
   Layout: LayoutOverlay,
 }
 CustomerAccountCreatePasswordPage.pageOptions = pageOptions

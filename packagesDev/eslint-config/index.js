@@ -64,7 +64,13 @@ module.exports = {
     'import/no-extraneous-dependencies': [
       'error',
       {
-        devDependencies: ['next.config.js', '**/test/**', '**/*.d.ts', '**/*.spec.ts'],
+        devDependencies: [
+          'next.config.js',
+          '**/test/**',
+          '**/*.d.ts',
+          '**/*.spec.ts',
+          '**/__tests__/**',
+        ],
       },
     ],
     'import/order': ['warn', { alphabetize: { order: 'asc' } }],
@@ -102,6 +108,7 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/naming-convention': 'off',
     '@typescript-eslint/no-misused-promises': ['error', { checksVoidReturn: false }],
+    '@typescript-eslint/no-unbound-method': 'off',
     '@typescript-eslint/no-restricted-imports': [
       'error',
       {

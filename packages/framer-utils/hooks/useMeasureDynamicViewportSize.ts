@@ -7,14 +7,28 @@ import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect'
 export type UseClientSizeReturn = { x: MotionValue<string>; y: MotionValue<string> }
 export type UseClientSizeOptions = { x?: string; y?: string }
 
+/** @deprecated Please use dvh() or dvw() instead */
 export const clientSizeCssVar = {
   y: `var(--client-size-y, 100vh)`,
-  x: `var(--client-size-x, 100vh)`,
+  x: `var(--client-size-x, 100vw)`,
+}
+
+export const dvh = (p = 100) => {
+  if (p === 100) return 'var(--client-size-y, 100vh)'
+  return `calc(var(--client-size-y, 100vh) * ${p / 100})`
+}
+export const dvw = (p = 100) => {
+  if (p === 100) return 'var(--client-size-x, 100vw)'
+  return `calc(var(--client-size-x, 100vw) * ${p / 100})`
 }
 
 let watching = false
 
-export function useClientSizeCssVar() {
+/**
+ * Calculates the dvh and dvw css variables. Method should be deprecated when the real dvh/dvw are
+ * widelt available.
+ */
+export function useMeasureDynamicViewportSize() {
   useIsomorphicLayoutEffect(() => {
     if (watching === true) return () => {}
 

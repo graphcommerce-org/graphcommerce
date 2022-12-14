@@ -1,4 +1,4 @@
-import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { PageOptions, usePageContext } from '@graphcommerce/framer-next-pages'
 import { useScrollerContext, useScrollTo } from '@graphcommerce/framer-scroller'
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import { useQuery } from '@graphcommerce/graphql'
@@ -52,7 +52,8 @@ function CheckoutAdded() {
     [crosssels.data?.products?.items, crosssels.previousData?.products?.items, items],
   )
 
-  const readyOnce = useRef(false)
+  const { direction } = usePageContext()
+  const readyOnce = useRef(direction !== 1)
   const ready = useMotionValueValue(useScrollerContext().snap, (snapV) => {
     if (snapV) readyOnce.current = true
     return readyOnce.current
@@ -135,7 +136,7 @@ function CheckoutAdded() {
           )}
         </Box>
         <Box gridArea='action'>
-          <PageLink href='/cart' passHref replace>
+          <PageLink href='/cart' passHref>
             <Button
               id='view-shopping-cart-button'
               size='large'
@@ -199,7 +200,7 @@ function CheckoutAdded() {
 }
 
 const pageOptions: PageOptions<LayoutOverlayProps> = {
-  overlayGroup: 'added',
+  overlayGroup: 'checkout',
   Layout: LayoutOverlay,
   layoutProps: {
     variantMd: 'bottom',

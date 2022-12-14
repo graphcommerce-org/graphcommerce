@@ -1,11 +1,13 @@
 import { useMatchMedia } from '@graphcommerce/next-ui'
-import { useTheme } from '@mui/material'
 import { PanInfo } from 'framer-motion'
 import { inertia, InertiaOptions } from 'popmotion'
+import { ScrollerContext } from '../types'
 import { scrollSnapTypeDirection } from '../utils/scrollSnapTypeDirection'
 import { useScrollerContext } from './useScrollerContext'
 
-const clamp = ({ velocity, offset }: PanInfo, axis: 'x' | 'y') =>
+type LimitedPanInfo = Pick<PanInfo, 'velocity' | 'offset'>
+
+const clamp = ({ velocity, offset }: LimitedPanInfo, axis: 'x' | 'y') =>
   velocity[axis] < 0
     ? Math.max(velocity[axis], -Math.abs(offset[axis] * 3))
     : Math.min(velocity[axis], Math.abs(offset[axis] * 3))
@@ -20,7 +22,7 @@ const closest = (counts: number[], target: number) =>
 export const useVelocitySnapTo = (
   ref: React.RefObject<HTMLElement> | React.MutableRefObject<HTMLElement | undefined>,
 ) => {
-  const { disableSnap, enableSnap, register, getScrollSnapPositions, scrollSnap } =
+  const { disableSnap, enableSnap, register, getScrollSnapPositions, scrollSnap, scroll } =
     useScrollerContext()
 
   const matchMedia = useMatchMedia()
@@ -39,7 +41,7 @@ export const useVelocitySnapTo = (
     // restSpeed: 1,
   }
 
-  const animatePan = async (info: PanInfo) => {
+  const animatePan = async (info: LimitedPanInfo) => {
     const el = ref.current
     if (!el) throw Error(`Can't find html element`)
 
@@ -59,7 +61,9 @@ export const useVelocitySnapTo = (
             min: typeof closestX !== 'undefined' ? closestX - scrollLeft : undefined,
             ...inertiaOptions,
             onUpdate: (v: number) => {
-              el.scrollLeft = Math.round(v + scrollLeft)
+              const x = Math.round(v + scrollLeft)
+              el.scrollLeft = x
+              scroll.scroll.set({ ...scroll.scroll.get(), x })
             },
             onComplete,
           }),
@@ -83,7 +87,9 @@ export const useVelocitySnapTo = (
             min: typeof closestY !== 'undefined' ? closestY - scrollTop : undefined,
             ...inertiaOptions,
             onUpdate: (v: number) => {
-              el.scrollTop = Math.round(v + scrollTop)
+              const y = Math.round(v + scrollTop)
+              el.scrollTop = y
+              scroll.scroll.set({ ...scroll.scroll.get(), y })
             },
             onComplete,
           }),

@@ -11,10 +11,9 @@ export function GaShippingMethodForm(props: PluginProps<ShippingMethodFormProps>
   return (
     <Prev
       {...rest}
-      onComplete={(result) => {
-        const cart = result.data?.setShippingMethodsOnCart?.cart
-        if (!cart) return
-        gtagAddShippingInfo(cart)
+      onComplete={(result, variables) => {
+        gtagAddShippingInfo(result.data?.setShippingMethodsOnCart?.cart)
+        return onComplete?.(result, variables)
       }}
     />
   )

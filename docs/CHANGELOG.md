@@ -1,5 +1,55 @@
 # Change Log
 
+## 5.1.0
+
+### Patch Changes
+
+- [#1752](https://github.com/graphcommerce-org/graphcommerce/pull/1752) [`2a6a4d9ec`](https://github.com/graphcommerce-org/graphcommerce/commit/2a6a4d9ecfa1b58a66ba9b9d00016d6feda9aa95) - Updated dependencies to latest versions, except for nextjs; Solve tons of peer dependency issues.
+
+  - Updated the @mui/material package
+  - Removed dependencies on react-hook-form-mui and @playwright/test
+  - Upgraded dependencies including type-fest and graphql-mesh
+  - Solved peer dependency issues ([@paales](https://github.com/paales))
+
+- [#1755](https://github.com/graphcommerce-org/graphcommerce/pull/1755) [`41fa631b1`](https://github.com/graphcommerce-org/graphcommerce/commit/41fa631b15721625e521772da01fd2c3a2ae82de) - Add a chapter about SEO migration ([@paales](https://github.com/paales))
+
+## 5.1.0-canary.11
+
+## 5.1.0-canary.10
+
+## 5.1.0-canary.9
+
+## 5.1.0-canary.8
+
+## 5.1.0-canary.7
+
+## 5.1.0-canary.6
+
+## 5.1.0-canary.5
+
+## 5.1.0-canary.4
+
+### Patch Changes
+
+- [#1755](https://github.com/graphcommerce-org/graphcommerce/pull/1755) [`41fa631b1`](https://github.com/graphcommerce-org/graphcommerce/commit/41fa631b15721625e521772da01fd2c3a2ae82de) - Add a chapter about SEO migration ([@paales](https://github.com/paales))
+
+## 5.1.0-canary.3
+
+### Patch Changes
+
+- [#1752](https://github.com/graphcommerce-org/graphcommerce/pull/1752) [`2a6a4d9ec`](https://github.com/graphcommerce-org/graphcommerce/commit/2a6a4d9ecfa1b58a66ba9b9d00016d6feda9aa95) - Updated dependencies to latest versions, except for nextjs; Solve tons of peer dependency issues.
+
+  - Updated the @mui/material package
+  - Removed dependencies on react-hook-form-mui and @playwright/test
+  - Upgraded dependencies including type-fest and graphql-mesh
+  - Solved peer dependency issues ([@paales](https://github.com/paales))
+
+## 5.1.0-canary.2
+
+## 5.1.0-canary.1
+
+## 5.1.0-canary.0
+
 ## 5.0.0
 
 ### Major Changes

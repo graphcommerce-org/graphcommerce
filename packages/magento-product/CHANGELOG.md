@@ -1,5 +1,83 @@
 # Change Log
 
+## 5.1.0
+
+### Minor Changes
+
+- [#1757](https://github.com/graphcommerce-org/graphcommerce/pull/1757) [`ca2e2ab59`](https://github.com/graphcommerce-org/graphcommerce/commit/ca2e2ab594ab1cc0fedf908869829811e1f4009f) - Handle stock_status OUT_OF_STOCK properly and show only_x_left_in_stock if feature is enabled ([@paales](https://github.com/paales))
+
+- [#1756](https://github.com/graphcommerce-org/graphcommerce/pull/1756) [`1abaaedde`](https://github.com/graphcommerce-org/graphcommerce/commit/1abaaedde4062d3b19696e333d0016972681afaf) - Show cart item error messages when running Magento >= 2.4.5 or this [patch is applied](https://raw.githubusercontent.com/graphcommerce-org/graphcommerce/main/packages/magento-cart/243-244-magento-module-quote-graphql-cart-item-errors.patch)
+
+  - Fixes an issue where the cart can get into a broken state, if items contain errors.
+  - AddToCartForm now shows a success message if there is an error but the error is related to another item in the cart.
+  - Disable checkout buttons when there are cart item errors and show a message. ([@paales](https://github.com/paales))
+
+- [#1761](https://github.com/graphcommerce-org/graphcommerce/pull/1761) [`c17318d6e`](https://github.com/graphcommerce-org/graphcommerce/commit/c17318d6ee7ca9faaaaccff121d84d4e1b1f2a13) - Generate sitemaps per locale so it can better handle large number of products ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#1752](https://github.com/graphcommerce-org/graphcommerce/pull/1752) [`2a6a4d9ec`](https://github.com/graphcommerce-org/graphcommerce/commit/2a6a4d9ecfa1b58a66ba9b9d00016d6feda9aa95) - Updated dependencies to latest versions, except for nextjs; Solve tons of peer dependency issues.
+
+  - Updated the @mui/material package
+  - Removed dependencies on react-hook-form-mui and @playwright/test
+  - Upgraded dependencies including type-fest and graphql-mesh
+  - Solved peer dependency issues ([@paales](https://github.com/paales))
+
+- [#1744](https://github.com/graphcommerce-org/graphcommerce/pull/1744) [`cf1c864eb`](https://github.com/graphcommerce-org/graphcommerce/commit/cf1c864eb9819d5730f957be1d6c074ba14deb2a) - Fixed SKU undefined error when adding an item to the cart with an invalid configuration ([@mikekeehnen](https://github.com/mikekeehnen))
+
+## 5.1.0-canary.11
+
+### Minor Changes
+
+- [#1761](https://github.com/graphcommerce-org/graphcommerce/pull/1761) [`c17318d6e`](https://github.com/graphcommerce-org/graphcommerce/commit/c17318d6ee7ca9faaaaccff121d84d4e1b1f2a13) - Generate sitemaps per locale so it can better handle large number of products ([@paales](https://github.com/paales))
+
+## 5.1.0-canary.10
+
+## 5.1.0-canary.9
+
+## 5.1.0-canary.8
+
+### Minor Changes
+
+- [#1757](https://github.com/graphcommerce-org/graphcommerce/pull/1757) [`ca2e2ab59`](https://github.com/graphcommerce-org/graphcommerce/commit/ca2e2ab594ab1cc0fedf908869829811e1f4009f) - Handle stock_status OUT_OF_STOCK properly and show only_x_left_in_stock if feature is enabled ([@paales](https://github.com/paales))
+
+## 5.1.0-canary.7
+
+### Minor Changes
+
+- [#1756](https://github.com/graphcommerce-org/graphcommerce/pull/1756) [`1abaaedde`](https://github.com/graphcommerce-org/graphcommerce/commit/1abaaedde4062d3b19696e333d0016972681afaf) - Show cart item error messages when running Magento >= 2.4.5 or this [patch is applied](https://raw.githubusercontent.com/graphcommerce-org/graphcommerce/main/packages/magento-cart/243-244-magento-module-quote-graphql-cart-item-errors.patch)
+
+  - Fixes an issue where the cart can get into a broken state, if items contain errors.
+  - AddToCartForm now shows a success message if there is an error but the error is related to another item in the cart.
+  - Disable checkout buttons when there are cart item errors and show a message. ([@paales](https://github.com/paales))
+
+## 5.1.0-canary.6
+
+## 5.1.0-canary.5
+
+## 5.1.0-canary.4
+
+## 5.1.0-canary.3
+
+### Patch Changes
+
+- [#1752](https://github.com/graphcommerce-org/graphcommerce/pull/1752) [`2a6a4d9ec`](https://github.com/graphcommerce-org/graphcommerce/commit/2a6a4d9ecfa1b58a66ba9b9d00016d6feda9aa95) - Updated dependencies to latest versions, except for nextjs; Solve tons of peer dependency issues.
+
+  - Updated the @mui/material package
+  - Removed dependencies on react-hook-form-mui and @playwright/test
+  - Upgraded dependencies including type-fest and graphql-mesh
+  - Solved peer dependency issues ([@paales](https://github.com/paales))
+
+## 5.1.0-canary.2
+
+## 5.1.0-canary.1
+
+## 5.1.0-canary.0
+
+### Minor Changes
+
+- [#1744](https://github.com/graphcommerce-org/graphcommerce/pull/1744) [`cf1c864eb`](https://github.com/graphcommerce-org/graphcommerce/commit/cf1c864eb9819d5730f957be1d6c074ba14deb2a) - Fixed Sku undefined error when adding an item to the cart with an invalid configuration ([@mikekeehnen](https://github.com/mikekeehnen))
+
 ## 5.0.0
 
 ### Major Changes

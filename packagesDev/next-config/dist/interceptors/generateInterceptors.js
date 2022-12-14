@@ -4,7 +4,7 @@ exports.generateInterceptors = exports.generateInterceptor = void 0;
 function generateInterceptor(plugin) {
     const { fromModule, dependency, components } = plugin;
     const pluginImports = Object.entries(components)
-        .map(([_, plugins]) => {
+        .map(([, plugins]) => {
         const duplicateImports = new Set();
         return plugins
             .sort((a, b) => a.plugin.localeCompare(b.plugin))
@@ -74,7 +74,9 @@ exports.generateInterceptor = generateInterceptor;
 function generateInterceptors(plugins, resolve) {
     // todo: Do not use reduce as we're passing the accumulator to the next iteration
     const byExportedComponent = plugins.reduce((acc, plug) => {
-        const { exported } = plug;
+        const { exported, component } = plug;
+        if (!exported || !component)
+            return acc;
         const resolved = resolve(exported);
         if (!acc[resolved.fromRoot])
             acc[resolved.fromRoot] = {
@@ -82,9 +84,9 @@ function generateInterceptors(plugins, resolve) {
                 target: `${resolved.fromRoot}.interceptor`,
                 components: {},
             };
-        if (!acc[resolved.fromRoot].components[plug.component])
-            acc[resolved.fromRoot].components[plug.component] = [];
-        acc[resolved.fromRoot].components[plug.component].push(plug);
+        if (!acc[resolved.fromRoot].components[component])
+            acc[resolved.fromRoot].components[component] = [];
+        acc[resolved.fromRoot].components[component].push(plug);
         return acc;
     }, {});
     return Object.fromEntries(Object.entries(byExportedComponent).map(([target, plg]) => [target, generateInterceptor(plg)]));

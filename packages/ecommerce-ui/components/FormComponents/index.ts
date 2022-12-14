@@ -1,28 +1,13 @@
-export {
-  AutocompleteElement,
-  CheckboxButtonGroup,
-  CheckboxElement,
-  MultiSelectElement,
-  PasswordElement,
-  PasswordRepeatElement,
-  RadioButtonGroup,
-  SliderElement,
-  SwitchElement,
-  ToggleButtonGroupElement,
-} from 'react-hook-form-mui'
-export type {
-  AutocompleteElementProps,
-  CheckboxButtonGroupProps,
-  CheckboxElementProps,
-  MultiSelectElementProps,
-  PasswordElementProps,
-  PasswordRepeatElementProps,
-  RadioButtonGroupProps,
-  SliderElementProps,
-  SwitchElementProps,
-  ToggleButtonGroupElementProps,
-} from 'react-hook-form-mui'
-
-export * from './TextFieldElement'
-export * from './SelectElement'
+export * from './AutoCompleteElement'
+export * from './CheckboxButtonGroup'
+export * from './CheckboxElement'
+export * from './MultiSelectElement'
+export * from './PasswordElement'
+export * from './PasswordRepeatElement'
 export * from './NumberFieldElement'
+export * from './SliderElement'
+export * from './SwitchElement'
+export * from './RadioButtonGroup'
+export * from './SelectElement'
+export * from './TextFieldElement'
+export * from './ToggleButtonGroup'

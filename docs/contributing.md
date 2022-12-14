@@ -59,6 +59,7 @@ File structure of GraphCommerce
 GraphCommerce uses ESLint for linting and Prettier for code formatting. Install
 the [recommended VS Code extensions](../docs/getting-started/vscode.md)
 
+<!--
 ### Contributor License Agreement
 
 Please make sure you have signed our Contributor License Agreement. We are not
@@ -66,6 +67,13 @@ asking you to assign copyright to us, but to give us the right to distribute
 your code without restriction. We ask this of all contributors in order to
 assure our users of the origin and continuing existence of the code. You only
 need to sign the CLA once.
+-->
+
+### Creating a branch
+
+1. Fork the repository and clone it locally.
+2. Create a branch for your PR based on the `canary` branch. Use the following
+   naming convention: `feature/your-branch-name` or `fix/your-branch-name`
 
 ### Creating a pull request
 
@@ -73,14 +81,14 @@ need to sign the CLA once.
 2. Add your changes
 3. Add a changeset
 
-- Run 'yarn changeset' and select minor bump. Commit the changeset that is
-  created.
+- Run 'yarn changeset' and select 'patch' for bugfixes and 'minor' for new
+  features. Commit the changeset that is created.
 
 <figure>
 
 ![yarn changeset](https://user-images.githubusercontent.com/1251986/157868337-0fa27e88-cf35-4e38-a59c-72c72ef6b054.jpg)
 
-  <figcaption>Select minor bump when running `yarn changeset`</figcaption>
+  <figcaption>Select 'patch' or 'minor' when running `yarn changeset`</figcaption>
 </figure>
 
 ## Next steps

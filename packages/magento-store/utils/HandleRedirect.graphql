@@ -1,0 +1,28 @@
+query HandleRedirect($url: String!) {
+  route(url: $url) {
+    __typename
+    redirect_code
+    relative_url
+    type
+    ... on ProductInterface {
+      uid
+      url_key
+    }
+    ... on CategoryInterface {
+      uid
+      url_key
+    }
+    ... on CmsPage {
+      url_key
+      identifier
+    }
+  }
+  # https://github.com/magento/magento2/issues/36268
+  # We do a separate check if the product is available in the products collection because the route query will also return the product if it is disabled
+  products(filter: { url_key: { eq: $url } }) {
+    items {
+      uid
+      url_key
+    }
+  }
+}

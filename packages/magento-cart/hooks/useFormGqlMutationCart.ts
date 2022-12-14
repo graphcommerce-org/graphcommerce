@@ -6,7 +6,10 @@ import {
 } from '@graphcommerce/react-hook-form'
 import { useCartIdCreate } from './useCartIdCreate'
 
-export function useFormGqlMutationCart<Q, V extends { cartId: string; [index: string]: unknown }>(
+export function useFormGqlMutationCart<
+  Q extends Record<string, any>,
+  V extends { cartId: string; [index: string]: unknown },
+>(
   document: TypedDocumentNode<Q, V>,
   options: UseFormGraphQlOptions<Q, V> = {},
   operationOptions?: MutationHookOptions<Q, V>,

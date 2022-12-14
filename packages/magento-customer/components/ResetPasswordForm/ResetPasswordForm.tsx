@@ -1,3 +1,8 @@
+import {
+  PasswordElement,
+  PasswordRepeatElement,
+  TextFieldElement,
+} from '@graphcommerce/ecommerce-ui'
 import { Button, Form, FormActions, FormRow } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
@@ -20,19 +25,22 @@ export function ResetPasswordForm(props: ResetPasswordFormProps) {
   const form = useFormGqlMutation<
     ResetPasswordMutation,
     ResetPasswordMutationVariables & { confirmPassword?: string }
-  >(ResetPasswordDocument, {
-    onBeforeSubmit: (formData) => ({
-      ...formData,
-      resetPasswordToken: token,
-    }),
-  })
+  >(
+    ResetPasswordDocument,
+    {
+      onBeforeSubmit: (formData) => ({
+        ...formData,
+        resetPasswordToken: token,
+      }),
+    },
+    { errorPolicy: 'all' },
+  )
 
   const router = useRouter()
-  const { muiRegister, handleSubmit, required, watch, data, formState, error } = form
+  const { handleSubmit, data, formState, error, control } = form
   const submitHandler = handleSubmit(() => {})
-  const newPass = watch('newPassword')
 
-  if (formState.isSubmitSuccessful && data) {
+  if (formState.isSubmitSuccessful && data && !error) {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     router.replace(`${window.location.href.split('?')[0]}?success=1`)
   }
@@ -40,41 +48,34 @@ export function ResetPasswordForm(props: ResetPasswordFormProps) {
   return (
     <Form onSubmit={submitHandler} noValidate>
       <FormRow>
-        <TextField
+        <TextFieldElement
+          control={control}
+          name='email'
           variant='outlined'
           type='email'
-          error={!!formState.errors.email}
           label={<Trans id='Email' />}
-          required={required.email}
-          {...muiRegister('email', { required: required.email })}
-          helperText={formState.errors.email?.message}
+          required
           disabled={formState.isSubmitting}
         />
       </FormRow>
       <FormRow>
-        <TextField
+        <PasswordElement
+          control={control}
+          name='newPassword'
           variant='outlined'
           type='password'
-          error={!!formState.errors.newPassword}
           label={<Trans id='New password' />}
-          required={required.newPassword}
-          {...muiRegister('newPassword', { required: required.newPassword })}
-          helperText={formState.errors.newPassword?.message}
+          required
           disabled={formState.isSubmitting}
         />
-      </FormRow>
-      <FormRow>
-        <TextField
+        <PasswordRepeatElement
+          control={control}
+          name='confirmPassword'
+          passwordFieldName='newPassword'
           variant='outlined'
           type='password'
-          error={!!formState.errors.confirmPassword}
           label={<Trans id='Confirm password' />}
           required
-          {...muiRegister('confirmPassword', {
-            required: true,
-            validate: (value) => value === newPass || "Passwords don't match",
-          })}
-          helperText={formState.errors.confirmPassword?.message}
           disabled={formState.isSubmitting}
         />
       </FormRow>

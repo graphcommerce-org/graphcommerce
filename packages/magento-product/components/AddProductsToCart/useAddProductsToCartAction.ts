@@ -1,14 +1,15 @@
 import { useEventCallback } from '@mui/material'
-import { useMemo } from 'react'
+import { UseAddProductsToCartActionFragment } from './UseAddProductsToCartAction.gql'
 import { useFormAddProductsToCart } from './useFormAddProductsToCart'
 
 export type UseAddProductsToCartActionProps = {
-  sku: string | null | undefined
   index?: number
   disabled?: boolean
   loading?: boolean
   onClick?: React.MouseEventHandler<HTMLButtonElement>
-}
+  sku?: string | null | undefined
+  product?: UseAddProductsToCartActionFragment
+} & ({ sku: string | null | undefined } | { product: UseAddProductsToCartActionFragment })
 
 export type UseAddProductsToCartActionReturn = {
   disabled: boolean
@@ -21,10 +22,19 @@ export function useAddProductsToCartAction(
   props: UseAddProductsToCartActionProps,
 ): UseAddProductsToCartActionReturn {
   const { formState, setValue, getValues } = useFormAddProductsToCart()
-  const { sku, index = 0, onClick: onClickIncomming, disabled, loading } = props
+  const {
+    sku = props.product?.sku,
+    product,
+    index = 0,
+    onClick: onClickIncomming,
+    disabled,
+    loading,
+  } = props
 
   return {
-    disabled: Boolean(formState.errors.cartItems?.[index].sku?.message || disabled),
+    disabled:
+      product?.stock_status === 'OUT_OF_STOCK' ||
+      Boolean(formState.errors.cartItems?.[index]?.sku?.message || disabled),
     loading: loading || (formState.isSubmitting && getValues(`cartItems.${index}.sku`) === sku),
     onClick: useEventCallback((e) => {
       e.stopPropagation()

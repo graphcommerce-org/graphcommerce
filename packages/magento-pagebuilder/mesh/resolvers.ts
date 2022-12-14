@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-import { argumentsObjectFromField } from '@apollo/client/utilities'
-import type { Resolvers, MeshContext, RoutableInterface } from '@graphcommerce/graphql-mesh'
+import type { Resolvers, MeshContext } from '@graphcommerce/graphql-mesh'
 import { detectPageBuilder } from '../parser/detectPageBuilder'
 import { parser } from '../parser/parser'
 

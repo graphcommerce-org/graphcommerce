@@ -2,8 +2,8 @@ import { Image } from '@graphcommerce/image'
 import { useDisplayInclTax } from '@graphcommerce/magento-cart'
 import { useProductLink } from '@graphcommerce/magento-product'
 import { Money } from '@graphcommerce/magento-store'
-import { responsiveVal, extendableComponent } from '@graphcommerce/next-ui'
-import { Badge, Box, Link, SxProps, Theme } from '@mui/material'
+import { responsiveVal, extendableComponent, filterNonNullableKeys } from '@graphcommerce/next-ui'
+import { Alert, Badge, Box, Link, SxProps, Theme } from '@mui/material'
 import PageLink from 'next/link'
 import { CartItemFragment } from '../Api/CartItem.gql'
 import { RemoveItemFromCartFab } from '../RemoveItemFromCart/RemoveItemFromCartFab'
@@ -35,7 +35,7 @@ const { withState } = extendableComponent<OwnerState, typeof compName, typeof pa
 )
 
 export function CartItem(props: CartItemProps) {
-  const { product, uid, prices, quantity, children, withOptions = true, sx = [] } = props
+  const { product, errors, uid, prices, quantity, children, withOptions = true, sx = [] } = props
   const { name } = product
   const productLink = useProductLink(product)
   const inclTaxes = useDisplayInclTax()
@@ -151,27 +151,33 @@ export function CartItem(props: CartItemProps) {
         </PageLink>
       </Badge>
 
-      <PageLink href={productLink} passHref>
-        <Link
-          variant='body1'
-          className={classes.itemName}
-          underline='hover'
-          sx={(theme) => ({
-            typgrapht: 'subtitle1',
-            fontWeight: theme.typography.fontWeightBold,
-            gridArea: 'itemName',
-            color: theme.palette.text.primary,
-            textDecoration: 'none',
-            flexWrap: 'nowrap',
-            maxWidth: 'max-content',
-            '&:not(.withOptions)': {
-              alignSelf: 'flex-end',
-            },
-          })}
-        >
-          {name}
-        </Link>
-      </PageLink>
+      <Box sx={{ gridArea: 'itemName' }}>
+        <PageLink href={productLink} passHref>
+          <Link
+            variant='body1'
+            className={classes.itemName}
+            underline='hover'
+            sx={(theme) => ({
+              typgrapht: 'subtitle1',
+              fontWeight: theme.typography.fontWeightBold,
+              color: theme.palette.text.primary,
+              textDecoration: 'none',
+              flexWrap: 'nowrap',
+              maxWidth: 'max-content',
+              '&:not(.withOptions)': {
+                alignSelf: 'flex-end',
+              },
+            })}
+          >
+            {name}
+          </Link>
+        </PageLink>
+        {filterNonNullableKeys(errors).map((error) => (
+          <Box sx={{ color: 'error.main', typography: 'caption' }} key={error.message}>
+            {error.message}
+          </Box>
+        ))}
+      </Box>
 
       <Box
         className={classes.itemPrice}

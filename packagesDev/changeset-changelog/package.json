@@ -2,7 +2,7 @@
   "name": "@graphcommerce/changeset-changelog",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "5.0.0",
+  "version": "5.1.0",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "scripts": {
@@ -12,6 +12,6 @@
     "prepack": "yarn build"
   },
   "dependencies": {
-    "@changesets/changelog-github": "0.4.6"
+    "@changesets/changelog-github": "0.4.7"
   }
 }

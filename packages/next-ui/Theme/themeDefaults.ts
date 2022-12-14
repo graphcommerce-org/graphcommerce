@@ -1,17 +1,9 @@
-import { experimental_sx, SxProps, Theme } from '@mui/material'
+import { SxProps, Theme } from '@mui/material'
 import { Shadows } from '@mui/material/styles/shadows'
+import { spreadVal } from '../Styles/spreadVal'
+import { breakpoints } from './breakpoints'
 
 // https://material.io/design/environment/elevation.html#default-elevations
-
-const breakpoints = {
-  values: {
-    xs: 0,
-    sm: 600,
-    md: 960,
-    lg: 1536,
-    xl: 1920,
-  },
-}
 
 const shadows: Shadows = [
   /* 0 */ 'none',
@@ -43,7 +35,6 @@ const shadows: Shadows = [
 
 export const themeBaseDefaults = {
   breakpoints,
+  spreadVal,
   shadows,
 }
-
-export const sx = (props: SxProps<Theme>) => experimental_sx<Theme>(props)

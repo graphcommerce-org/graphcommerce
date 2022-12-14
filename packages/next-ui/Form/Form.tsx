@@ -1,6 +1,5 @@
 import { darken, lighten, styled, Theme } from '@mui/material'
 import { breakpointVal } from '../Styles/breakpointVal'
-import { sx } from '../Theme/themeDefaults'
 
 type FormStyleProps = {
   contained?: boolean
@@ -8,7 +7,7 @@ type FormStyleProps = {
 }
 
 const styles = ({ theme, contained = false, background }: { theme: Theme } & FormStyleProps) =>
-  sx([
+  theme.unstable_sx([
     {
       display: 'grid',
       alignItems: 'center',

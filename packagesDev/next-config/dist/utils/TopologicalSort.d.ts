@@ -2,7 +2,7 @@ export interface INodeWithChildren<KeyType, ValueType> {
     children: InternalNodesMap<KeyType, ValueType>;
     node: ValueType;
 }
-export declare type InternalNodesMap<KeyType, ValueType> = Map<KeyType, INodeWithChildren<KeyType, ValueType>>;
+export type InternalNodesMap<KeyType, ValueType> = Map<KeyType, INodeWithChildren<KeyType, ValueType>>;
 export declare class TopologicalSort<KeyType, ValueType> {
     #private;
     constructor(nodes: Map<KeyType, ValueType>);

@@ -1,5 +1,71 @@
 # Change Log
 
+## 5.1.0
+
+### Patch Changes
+
+- [#1755](https://github.com/graphcommerce-org/graphcommerce/pull/1755) [`225a69dc9`](https://github.com/graphcommerce-org/graphcommerce/commit/225a69dc9eb76d85adee1c6ea8c4eff16a5fed63) - When a plugin doesn't target a file anymore, it will now cleanup the existing interceptor file. ([@paales](https://github.com/paales))
+
+- [#1760](https://github.com/graphcommerce-org/graphcommerce/pull/1760) [`8badc8550`](https://github.com/graphcommerce-org/graphcommerce/commit/8badc8550c402ac7b80c8d3238d313550c28a055) - Updated dependencies ([@paales](https://github.com/paales))
+
+- [#1752](https://github.com/graphcommerce-org/graphcommerce/pull/1752) [`2a6a4d9ec`](https://github.com/graphcommerce-org/graphcommerce/commit/2a6a4d9ecfa1b58a66ba9b9d00016d6feda9aa95) - Updated dependencies to latest versions, except for nextjs; Solve tons of peer dependency issues.
+
+  - Updated the @mui/material package
+  - Removed dependencies on react-hook-form-mui and @playwright/test
+  - Upgraded dependencies including type-fest and graphql-mesh
+  - Solved peer dependency issues ([@paales](https://github.com/paales))
+
+- [#1755](https://github.com/graphcommerce-org/graphcommerce/pull/1755) [`4759c1781`](https://github.com/graphcommerce-org/graphcommerce/commit/4759c1781ebe94c18f557e2ba189000580a05692) - Interceptors are regenerated when a plugin contains a faulty configuration (happens a lot when building a plugin). ([@paales](https://github.com/paales))
+
+- [#1745](https://github.com/graphcommerce-org/graphcommerce/pull/1745) [`2a859970d`](https://github.com/graphcommerce-org/graphcommerce/commit/2a859970de34ad768a0ba54f50d53ad17823cc15) - Make sure the interceptors aren't cleaned up constantly ([@github-actions](https://github.com/apps/github-actions))
+
+## 5.1.0-canary.11
+
+## 5.1.0-canary.10
+
+### Patch Changes
+
+- [#1760](https://github.com/graphcommerce-org/graphcommerce/pull/1760) [`8badc8550`](https://github.com/graphcommerce-org/graphcommerce/commit/8badc8550c402ac7b80c8d3238d313550c28a055) - Updated dependencies ([@paales](https://github.com/paales))
+
+## 5.1.0-canary.9
+
+## 5.1.0-canary.8
+
+## 5.1.0-canary.7
+
+## 5.1.0-canary.6
+
+## 5.1.0-canary.5
+
+### Patch Changes
+
+- [`2a859970d`](https://github.com/graphcommerce-org/graphcommerce/commit/2a859970de34ad768a0ba54f50d53ad17823cc15) - Make sure the interceptors aren't cleaned up constantly ([@paales](https://github.com/paales))
+
+## 5.1.0-canary.4
+
+### Patch Changes
+
+- [#1755](https://github.com/graphcommerce-org/graphcommerce/pull/1755) [`225a69dc9`](https://github.com/graphcommerce-org/graphcommerce/commit/225a69dc9eb76d85adee1c6ea8c4eff16a5fed63) - When a plugin doesn't target a file anymore, it will now cleanup the existing interceptor file. ([@paales](https://github.com/paales))
+
+- [#1755](https://github.com/graphcommerce-org/graphcommerce/pull/1755) [`4759c1781`](https://github.com/graphcommerce-org/graphcommerce/commit/4759c1781ebe94c18f557e2ba189000580a05692) - Interceptors are regenerated when a plugin contains a faulty configuration (happens a lot when building a plugin). ([@paales](https://github.com/paales))
+
+## 5.1.0-canary.3
+
+### Patch Changes
+
+- [#1752](https://github.com/graphcommerce-org/graphcommerce/pull/1752) [`2a6a4d9ec`](https://github.com/graphcommerce-org/graphcommerce/commit/2a6a4d9ecfa1b58a66ba9b9d00016d6feda9aa95) - Updated dependencies to latest versions, except for nextjs; Solve tons of peer dependency issues.
+
+  - Updated the @mui/material package
+  - Removed dependencies on react-hook-form-mui and @playwright/test
+  - Upgraded dependencies including type-fest and graphql-mesh
+  - Solved peer dependency issues ([@paales](https://github.com/paales))
+
+## 5.1.0-canary.2
+
+## 5.1.0-canary.1
+
+## 5.1.0-canary.0
+
 ## 5.0.0
 
 ### Major Changes

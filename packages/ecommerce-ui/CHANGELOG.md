@@ -1,5 +1,59 @@
 # @graphcommerce/ecommerce-ui
 
+## 5.1.0
+
+### Patch Changes
+
+- [#1745](https://github.com/graphcommerce-org/graphcommerce/pull/1745) [`b1444b933`](https://github.com/graphcommerce-org/graphcommerce/commit/b1444b9336107d3ac111563f9b62a884f1b26a8d) - Bring password reset page more in line with standard forms, add missing translations. ([@github-actions](https://github.com/apps/github-actions))
+
+- [#1752](https://github.com/graphcommerce-org/graphcommerce/pull/1752) [`2a6a4d9ec`](https://github.com/graphcommerce-org/graphcommerce/commit/2a6a4d9ecfa1b58a66ba9b9d00016d6feda9aa95) - Updated dependencies to latest versions, except for nextjs; Solve tons of peer dependency issues.
+
+  - Updated the @mui/material package
+  - Removed dependencies on react-hook-form-mui and @playwright/test
+  - Upgraded dependencies including type-fest and graphql-mesh
+  - Solved peer dependency issues ([@paales](https://github.com/paales))
+
+- [#1752](https://github.com/graphcommerce-org/graphcommerce/pull/1752) [`56d950ba3`](https://github.com/graphcommerce-org/graphcommerce/commit/56d950ba3d31828467b34f7e163586b628567a43) - Removed dependency on react-hook-form-mui ([@paales](https://github.com/paales))
+
+## 5.1.0-canary.11
+
+## 5.1.0-canary.10
+
+## 5.1.0-canary.9
+
+## 5.1.0-canary.8
+
+## 5.1.0-canary.7
+
+## 5.1.0-canary.6
+
+## 5.1.0-canary.5
+
+### Patch Changes
+
+- [`b1444b933`](https://github.com/graphcommerce-org/graphcommerce/commit/b1444b9336107d3ac111563f9b62a884f1b26a8d) - Bring password reset page more in line with standard forms, add missing translations. ([@paales](https://github.com/paales))
+
+## 5.1.0-canary.4
+
+## 5.1.0-canary.3
+
+### Patch Changes
+
+- [#1752](https://github.com/graphcommerce-org/graphcommerce/pull/1752) [`2a6a4d9ec`](https://github.com/graphcommerce-org/graphcommerce/commit/2a6a4d9ecfa1b58a66ba9b9d00016d6feda9aa95) - Updated dependencies to latest versions, except for nextjs; Solve tons of peer dependency issues.
+
+  - Updated the @mui/material package
+  - Removed dependencies on react-hook-form-mui and @playwright/test
+  - Upgraded dependencies including type-fest and graphql-mesh
+  - Solved peer dependency issues ([@paales](https://github.com/paales))
+
+- [#1752](https://github.com/graphcommerce-org/graphcommerce/pull/1752) [`56d950ba3`](https://github.com/graphcommerce-org/graphcommerce/commit/56d950ba3d31828467b34f7e163586b628567a43) - Removed dependency on react-hook-form-mui ([@paales](https://github.com/paales))
+
+## 5.1.0-canary.2
+
+## 5.1.0-canary.1
+
+## 5.1.0-canary.0
+
 ## 5.0.0
 
 ### Major Changes

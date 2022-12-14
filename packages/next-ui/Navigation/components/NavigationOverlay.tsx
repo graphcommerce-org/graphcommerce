@@ -1,8 +1,4 @@
-import {
-  useMotionValueValue,
-  useMotionSelector,
-  clientSizeCssVar,
-} from '@graphcommerce/framer-utils'
+import { useMotionValueValue, useMotionSelector, dvw } from '@graphcommerce/framer-utils'
 import { i18n } from '@lingui/core'
 import { useTheme, Box, Fab, SxProps, Theme, useEventCallback, styled } from '@mui/material'
 import { m } from 'framer-motion'
@@ -56,7 +52,7 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
     justifySm,
     sizeMd,
     sizeSm,
-    itemWidthSm = clientSizeCssVar.x,
+    itemWidthSm = dvw(100),
     itemWidthMd,
     mouseEvent,
     itemPadding = 'md',
@@ -105,6 +101,8 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
       variantMd={variantMd}
       sizeMd={sizeMd}
       justifyMd={justifyMd}
+      widthMd={false}
+      widthSm={false}
       overlayPaneProps={{
         layout: true,
         initial: false,

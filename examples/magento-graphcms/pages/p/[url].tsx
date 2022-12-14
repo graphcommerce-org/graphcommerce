@@ -25,7 +25,7 @@ import {
 } from '@graphcommerce/magento-product-configurable'
 import { DownloadableProductOptions } from '@graphcommerce/magento-product-downloadable'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
-import { Money, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { redirectOrNotFound, Money, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
 import {
   GetStaticProps,
@@ -79,7 +79,7 @@ function ProductPage(props: Props) {
       />
       <ProductPageMeta {...product} />
 
-      <AddProductsToCartForm defaultValues={defaultValues}>
+      <AddProductsToCartForm key={product.uid} defaultValues={defaultValues}>
         <ConfigurableProductPageGallery
           url_key={product.url_key}
           media_gallery={product.media_gallery}
@@ -163,7 +163,7 @@ function ProductPage(props: Props) {
             </AddProductsToCartError>
           </Box>
 
-          <ProductSidebarDelivery />
+          <ProductSidebarDelivery product={product} />
 
           <Box
             sx={(theme) => ({
@@ -172,7 +172,7 @@ function ProductPage(props: Props) {
               columnGap: theme.spacings.xs,
             })}
           >
-            <AddProductsToCartButton fullWidth sku={product.sku} />
+            <AddProductsToCartButton fullWidth product={product} />
             <ProductWishlistChipDetail {...product} />
           </Box>
 
@@ -233,7 +233,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const layout = staticClient.query({ query: LayoutDocument })
 
   const product = (await productPage).data.products?.items?.find((p) => p?.url_key === urlKey)
-  if (!product) return { notFound: true, revalidate: 60 * 20 }
+  if (!product) return redirectOrNotFound(client, params, locale)
 
   const category = productPageCategory(product)
   const up =

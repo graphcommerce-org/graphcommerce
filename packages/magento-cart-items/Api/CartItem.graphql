@@ -33,4 +33,9 @@ fragment CartItem on CartItemInterface @injectable {
       ...Money
     }
   }
+
+  errors {
+    code
+    message
+  }
 }

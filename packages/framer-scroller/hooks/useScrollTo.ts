@@ -1,4 +1,3 @@
-import { useElementScroll } from '@graphcommerce/framer-utils'
 import { MotionConfigContext, Point, Tween } from 'framer-motion'
 import { animate } from 'popmotion'
 import { useCallback, useContext } from 'react'
@@ -6,8 +5,7 @@ import { distanceAnimationDuration } from '../utils/distanceAnimationDuration'
 import { useScrollerContext } from './useScrollerContext'
 
 export function useScrollTo() {
-  const { scrollerRef, register, disableSnap, enableSnap } = useScrollerContext()
-  const scroll = useElementScroll(scrollerRef)
+  const { scrollerRef, register, disableSnap, enableSnap, scroll } = useScrollerContext()
 
   const duration = (useContext(MotionConfigContext).transition as Tween | undefined)?.duration ?? 0
 

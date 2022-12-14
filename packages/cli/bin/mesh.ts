@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 /* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { promises as fs } from 'node:fs'
 import path from 'node:path'
 import { exit } from 'node:process'
@@ -47,6 +46,10 @@ async function cleanup() {
 const main = async () => {
   const conf = (await findConfig({})) as YamlConfig.Config
 
+  // We're configuring a custom fetch function
+  conf.customFetch = '@graphcommerce/graphql-mesh/customFetch'
+  conf.serve = { ...conf.serve, endpoint: '/api/graphql' }
+
   // Rewrite additionalResolvers so we can use module resolution more easily
   conf.additionalResolvers = conf.additionalResolvers ?? []
   conf.additionalResolvers = conf.additionalResolvers?.map((additionalResolver) => {
@@ -62,7 +65,7 @@ const main = async () => {
   conf.additionalTypeDefs = (
     Array.isArray(conf.additionalTypeDefs) ? conf.additionalTypeDefs : [conf.additionalTypeDefs]
   ).map((additionalTypeDef) => {
-    if (additionalTypeDef.startsWith('@'))
+    if (typeof additionalTypeDef === 'string' && additionalTypeDef.startsWith('@'))
       return path.relative(root, require.resolve(additionalTypeDef))
 
     return additionalTypeDef
@@ -79,6 +82,15 @@ const main = async () => {
 
   if (!conf.serve) conf.serve = {}
   if (!conf.serve.playgroundTitle) conf.serve.playgroundTitle = 'GraphCommerce® Mesh'
+
+  conf.plugins = [
+    ...(conf.plugins ?? []),
+    {
+      httpDetailsExtensions: {
+        if: "env.NODE_ENV === 'development'",
+      },
+    },
+  ]
 
   await fs.writeFile(tmpMeshLocation, yaml.stringify(conf))
 
@@ -98,6 +110,9 @@ process.on('SIGINT', cleanup)
 process.on('SIGTERM', cleanup)
 
 main().catch((e) => {
+  // eslint-disable-next-line @typescript-eslint/no-floating-promises
   cleanup()
-  return handleFatalError(e, new DefaultLogger(DEFAULT_CLI_PARAMS.initialLoggerPrefix))
+  if (e instanceof Error) {
+    handleFatalError(e, new DefaultLogger(DEFAULT_CLI_PARAMS.initialLoggerPrefix))
+  }
 })
