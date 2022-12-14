@@ -230,6 +230,7 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
   return (
     <>
       <MotionDiv
+        inert={active ? undefined : 'true'}
         className={classes.backdrop}
         style={{ opacity: positions.open.visible }}
         sx={[
@@ -251,6 +252,7 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
         ]}
       />
       <Scroller
+        inert={active ? undefined : 'true'}
         className={`${classes.scroller} ${className ?? ''}`}
         grid={false}
         onClick={onClickAway}
