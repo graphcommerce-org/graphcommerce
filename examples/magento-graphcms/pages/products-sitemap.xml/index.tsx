@@ -10,12 +10,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const { locale, res } = context
 
   const paths = await getSitemapPaths(graphqlSsrClient(locale), context, pageSize)
-  const result = getServerSideSitemap(context, paths)
 
   res.setHeader(
     'Cache-Control',
     `public, s-maxage=${60 * 60 * 2}, stale-while-revalidate=${60 * 60 * 24}`,
   )
+  const result = getServerSideSitemap(context, paths)
   return result
 }
 
