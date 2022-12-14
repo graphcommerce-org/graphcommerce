@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 const isProduction = process.env.VERCEL_ENV === 'production'
-const DEV_SITE_URL = process.env.VERCEL_URL || 'http://localhost:3000'
+const DEV_SITE_URL = process.env.VERCEL_URL
+  ? `https://${process.env.VERCEL_URL}`
+  : 'http://localhost:3000'
 const PUBLIC_SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || DEV_SITE_URL
 
 const locales = Object.keys(JSON.parse(process.env.NEXT_PUBLIC_LOCALE_STORES))
