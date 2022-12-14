@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.1.0-canary.11
+
+### Minor Changes
+
+- [#1761](https://github.com/graphcommerce-org/graphcommerce/pull/1761) [`c17318d6e`](https://github.com/graphcommerce-org/graphcommerce/commit/c17318d6ee7ca9faaaaccff121d84d4e1b1f2a13) - Generate sitemaps per locale so it can better handle large number of products ([@paales](https://github.com/paales))
+
 ## 5.1.0-canary.10
 
 ## 5.1.0-canary.9
