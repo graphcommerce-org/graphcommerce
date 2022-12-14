@@ -1,5 +1,52 @@
 # Change Log
 
+## 5.1.0
+
+### Minor Changes
+
+- [#1757](https://github.com/graphcommerce-org/graphcommerce/pull/1757) [`ca2e2ab59`](https://github.com/graphcommerce-org/graphcommerce/commit/ca2e2ab594ab1cc0fedf908869829811e1f4009f) - Handle stock_status OUT_OF_STOCK properly and show only_x_left_in_stock if feature is enabled ([@paales](https://github.com/paales))
+
+- [#1761](https://github.com/graphcommerce-org/graphcommerce/pull/1761) [`c17318d6e`](https://github.com/graphcommerce-org/graphcommerce/commit/c17318d6ee7ca9faaaaccff121d84d4e1b1f2a13) - Generate sitemaps per locale so it can better handle large number of products ([@paales](https://github.com/paales))
+
+- [#1755](https://github.com/graphcommerce-org/graphcommerce/pull/1755) [`472486194`](https://github.com/graphcommerce-org/graphcommerce/commit/472486194f4a085e8a4dc0251b862024fb62ec86) - Magento URL Rewrites support to GraphCommerce compatible URL's. ([@paales](https://github.com/paales))
+
+- [#1755](https://github.com/graphcommerce-org/graphcommerce/pull/1755) [`472486194`](https://github.com/graphcommerce-org/graphcommerce/commit/472486194f4a085e8a4dc0251b862024fb62ec86) - Magento URL Rewrites redirect 301 and 302 support ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#1750](https://github.com/graphcommerce-org/graphcommerce/pull/1750) [`3479bc1e2`](https://github.com/graphcommerce-org/graphcommerce/commit/3479bc1e24da0e8a751ee301c59fa5f9755c8559) - Show globe icon instead of shopping bag icon for store/language-switcher ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#1745](https://github.com/graphcommerce-org/graphcommerce/pull/1745) [`b1444b933`](https://github.com/graphcommerce-org/graphcommerce/commit/b1444b9336107d3ac111563f9b62a884f1b26a8d) - Bring password reset page more in line with standard forms, add missing translations. ([@github-actions](https://github.com/apps/github-actions))
+
+- [#1745](https://github.com/graphcommerce-org/graphcommerce/pull/1745) [`23094f955`](https://github.com/graphcommerce-org/graphcommerce/commit/23094f955a2e9fa9beabe0a0b31060f6c9bc862c) - Password reset back button URL was incorrect, use one shared layout for all public account pages ([@github-actions](https://github.com/apps/github-actions))
+
+- [#1760](https://github.com/graphcommerce-org/graphcommerce/pull/1760) [`8badc8550`](https://github.com/graphcommerce-org/graphcommerce/commit/8badc8550c402ac7b80c8d3238d313550c28a055) - Updated dependencies ([@paales](https://github.com/paales))
+
+- [#1752](https://github.com/graphcommerce-org/graphcommerce/pull/1752) [`f0816973b`](https://github.com/graphcommerce-org/graphcommerce/commit/f0816973ba38ed091189338b1863983da8c6e806) - Redirect old product URLs to the new /p/ route ([@paales](https://github.com/paales))
+
+- [#1756](https://github.com/graphcommerce-org/graphcommerce/pull/1756) [`1abaaedde`](https://github.com/graphcommerce-org/graphcommerce/commit/1abaaedde4062d3b19696e333d0016972681afaf) - Show cart item error messages when running Magento >= 2.4.5 or this [patch is applied](https://raw.githubusercontent.com/graphcommerce-org/graphcommerce/main/packages/magento-cart/243-244-magento-module-quote-graphql-cart-item-errors.patch)
+
+  - Fixes an issue where the cart can get into a broken state, if items contain errors.
+  - AddToCartForm now shows a success message if there is an error but the error is related to another item in the cart.
+  - Disable checkout buttons when there are cart item errors and show a message. ([@paales](https://github.com/paales))
+
+- [#1752](https://github.com/graphcommerce-org/graphcommerce/pull/1752) [`2a6a4d9ec`](https://github.com/graphcommerce-org/graphcommerce/commit/2a6a4d9ecfa1b58a66ba9b9d00016d6feda9aa95) - Updated dependencies to latest versions, except for nextjs; Solve tons of peer dependency issues.
+
+  - Updated the @mui/material package
+  - Removed dependencies on react-hook-form-mui and @playwright/test
+  - Upgraded dependencies including type-fest and graphql-mesh
+  - Solved peer dependency issues ([@paales](https://github.com/paales))
+
+- [#1743](https://github.com/graphcommerce-org/graphcommerce/pull/1743) [`80d3b2384`](https://github.com/graphcommerce-org/graphcommerce/commit/80d3b2384cea0c24317e06b3fe6f233857d91f33) - When deploying on a non Vercel env it expected process.env.VERCEL_ENV to exist ([@hnsr](https://github.com/hnsr))
+
+- [#1756](https://github.com/graphcommerce-org/graphcommerce/pull/1756) [`4eee6abf0`](https://github.com/graphcommerce-org/graphcommerce/commit/4eee6abf0133b16872fc70c625ce2c21d1a0a4f4) - Add missing translations ([@paales](https://github.com/paales))
+
+- [#1745](https://github.com/graphcommerce-org/graphcommerce/pull/1745) [`86afcf462`](https://github.com/graphcommerce-org/graphcommerce/commit/86afcf4620cc1053d28b9e77bf8f76490dec6f09) - Crosssells wouldn't show when navigating back from another page ([@github-actions](https://github.com/apps/github-actions))
+
+- [#1755](https://github.com/graphcommerce-org/graphcommerce/pull/1755) [`91d96772d`](https://github.com/graphcommerce-org/graphcommerce/commit/91d96772dd9bb250db98a760c4068b986b47a4cb) - AddProductsToCartForm should not be maintained when the ProductPage is rendered with new product information ([@paales](https://github.com/paales))
+
+- [#1756](https://github.com/graphcommerce-org/graphcommerce/pull/1756) [`47cf3d49f`](https://github.com/graphcommerce-org/graphcommerce/commit/47cf3d49fda044220163ec6b0f0c4fe3dd8005fb) - When navigation from checkout/added the cart didn't animate and it didn't work properly. ([@paales](https://github.com/paales))
+
 ## 5.1.0-canary.11
 
 ### Minor Changes

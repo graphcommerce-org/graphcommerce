@@ -1,5 +1,22 @@
 # Change Log
 
+## 5.1.0
+
+### Patch Changes
+
+- [#1755](https://github.com/graphcommerce-org/graphcommerce/pull/1755) [`0025ad80f`](https://github.com/graphcommerce-org/graphcommerce/commit/0025ad80fb82d5d1e6c786bb8b5f39b2456c0932) - Renamed clientSizeCssVar.y/x to dvh(100) and dvw(100) ([@paales](https://github.com/paales))
+
+- [#1752](https://github.com/graphcommerce-org/graphcommerce/pull/1752) [`2a6a4d9ec`](https://github.com/graphcommerce-org/graphcommerce/commit/2a6a4d9ecfa1b58a66ba9b9d00016d6feda9aa95) - Updated dependencies to latest versions, except for nextjs; Solve tons of peer dependency issues.
+
+  - Updated the @mui/material package
+  - Removed dependencies on react-hook-form-mui and @playwright/test
+  - Upgraded dependencies including type-fest and graphql-mesh
+  - Solved peer dependency issues ([@paales](https://github.com/paales))
+
+- [#1755](https://github.com/graphcommerce-org/graphcommerce/pull/1755) [`f44a05a6c`](https://github.com/graphcommerce-org/graphcommerce/commit/f44a05a6cedadc17e44c87f53cad5f462bc52aba) - Use a singlular useElementScroll and provide ther scroll from the useScrollerContext ([@paales](https://github.com/paales))
+
+- [#1755](https://github.com/graphcommerce-org/graphcommerce/pull/1755) [`c77f49e6e`](https://github.com/graphcommerce-org/graphcommerce/commit/c77f49e6ed6af0bf2890d51da4eaa4ac70ee2cc9) - clientSizeCssVar.x had a fallback to 100vw instead of 100vh ([@paales](https://github.com/paales))
+
 ## 5.1.0-canary.11
 
 ## 5.1.0-canary.10

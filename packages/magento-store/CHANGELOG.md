@@ -1,5 +1,26 @@
 # Change Log
 
+## 5.1.0
+
+### Minor Changes
+
+- [#1755](https://github.com/graphcommerce-org/graphcommerce/pull/1755) [`472486194`](https://github.com/graphcommerce-org/graphcommerce/commit/472486194f4a085e8a4dc0251b862024fb62ec86) - Magento URL Rewrites support to GraphCommerce compatible URL's. ([@paales](https://github.com/paales))
+
+- [#1755](https://github.com/graphcommerce-org/graphcommerce/pull/1755) [`472486194`](https://github.com/graphcommerce-org/graphcommerce/commit/472486194f4a085e8a4dc0251b862024fb62ec86) - Magento URL Rewrites redirect 301 and 302 support ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#1752](https://github.com/graphcommerce-org/graphcommerce/pull/1752) [`2a6a4d9ec`](https://github.com/graphcommerce-org/graphcommerce/commit/2a6a4d9ecfa1b58a66ba9b9d00016d6feda9aa95) - Updated dependencies to latest versions, except for nextjs; Solve tons of peer dependency issues.
+
+  - Updated the @mui/material package
+  - Removed dependencies on react-hook-form-mui and @playwright/test
+  - Upgraded dependencies including type-fest and graphql-mesh
+  - Solved peer dependency issues ([@paales](https://github.com/paales))
+
+- [#1757](https://github.com/graphcommerce-org/graphcommerce/pull/1757) [`430863c4a`](https://github.com/graphcommerce-org/graphcommerce/commit/430863c4addfb7f6417d7c808ccd5f75319aa2ff) - When a product is disabled it got in a redirect loop because of a Magento bug ([@paales](https://github.com/paales))
+
+- [#1755](https://github.com/graphcommerce-org/graphcommerce/pull/1755) [`dbe103963`](https://github.com/graphcommerce-org/graphcommerce/commit/dbe10396363313908858de5d681d4e38db94d132) - Redirect URL suffixes to their non suffix counterpart and vice versa ([@paales](https://github.com/paales))
+
 ## 5.1.0-canary.11
 
 ## 5.1.0-canary.10

@@ -1,5 +1,36 @@
 # Change Log
 
+## 5.1.0
+
+### Patch Changes
+
+- [#1755](https://github.com/graphcommerce-org/graphcommerce/pull/1755) [`0025ad80f`](https://github.com/graphcommerce-org/graphcommerce/commit/0025ad80fb82d5d1e6c786bb8b5f39b2456c0932) - Renamed clientSizeCssVar.y/x to dvh(100) and dvw(100) ([@paales](https://github.com/paales))
+
+- [#1760](https://github.com/graphcommerce-org/graphcommerce/pull/1760) [`06a81e661`](https://github.com/graphcommerce-org/graphcommerce/commit/06a81e66144b4d94a1e318c2e26cac8d13aa0eb7) - When you navigate back to an overlay (cart, etc.), it can no longer be closed by dragging or clicking on the backdrop. ([@paales](https://github.com/paales))
+
+- [#1750](https://github.com/graphcommerce-org/graphcommerce/pull/1750) [`3479bc1e2`](https://github.com/graphcommerce-org/graphcommerce/commit/3479bc1e24da0e8a751ee301c59fa5f9755c8559) - Show globe icon instead of shopping bag icon for store/language-switcher ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#1755](https://github.com/graphcommerce-org/graphcommerce/pull/1755) [`3fcb03b79`](https://github.com/graphcommerce-org/graphcommerce/commit/3fcb03b79ce634650fd982dc36a112dccd37282f) - New props added to LayoutOverlay and Overlay components: `widthSm` and `widthMd` to control the width of the overlay.
+
+  Defaults to `widthSm = 'max(300px, 80vw)', widthMd = 'max(800px, 50vw)'` ([@paales](https://github.com/paales))
+
+- [#1745](https://github.com/graphcommerce-org/graphcommerce/pull/1745) [`b1444b933`](https://github.com/graphcommerce-org/graphcommerce/commit/b1444b9336107d3ac111563f9b62a884f1b26a8d) - Bring password reset page more in line with standard forms, add missing translations. ([@github-actions](https://github.com/apps/github-actions))
+
+- [#1752](https://github.com/graphcommerce-org/graphcommerce/pull/1752) [`2a6a4d9ec`](https://github.com/graphcommerce-org/graphcommerce/commit/2a6a4d9ecfa1b58a66ba9b9d00016d6feda9aa95) - Updated dependencies to latest versions, except for nextjs; Solve tons of peer dependency issues.
+
+  - Updated the @mui/material package
+  - Removed dependencies on react-hook-form-mui and @playwright/test
+  - Upgraded dependencies including type-fest and graphql-mesh
+  - Solved peer dependency issues ([@paales](https://github.com/paales))
+
+- [#1760](https://github.com/graphcommerce-org/graphcommerce/pull/1760) [`f1ebaa2ae`](https://github.com/graphcommerce-org/graphcommerce/commit/f1ebaa2aea68fe395fddb1b7dd91624251b1d501) - Navigation received focus making the menu visible while it shouldn't ([@paales](https://github.com/paales))
+
+- [#1755](https://github.com/graphcommerce-org/graphcommerce/pull/1755) [`f44a05a6c`](https://github.com/graphcommerce-org/graphcommerce/commit/f44a05a6cedadc17e44c87f53cad5f462bc52aba) - Use a singlular useElementScroll and provide ther scroll from the useScrollerContext ([@paales](https://github.com/paales))
+
+- [#1745](https://github.com/graphcommerce-org/graphcommerce/pull/1745) [`c7dc855af`](https://github.com/graphcommerce-org/graphcommerce/commit/c7dc855af5e096a53e17f3b2980b210642270fd5) - Added a spreadVal utility to replace responsiveVal and breakpointVal ([@github-actions](https://github.com/apps/github-actions))
+
+- [#1755](https://github.com/graphcommerce-org/graphcommerce/pull/1755) [`9de7c6960`](https://github.com/graphcommerce-org/graphcommerce/commit/9de7c6960c7ec7d6d28a670f71ac678c5d3c838f) - The scrollbar was hidden for bottom sheets, while that wasn't necessary ([@paales](https://github.com/paales))
+
 ## 5.1.0-canary.11
 
 ## 5.1.0-canary.10

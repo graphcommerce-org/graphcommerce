@@ -1,5 +1,18 @@
 # Change Log
 
+## 5.1.0
+
+### Patch Changes
+
+- [#1759](https://github.com/graphcommerce-org/graphcommerce/pull/1759) [`d88e2e827`](https://github.com/graphcommerce-org/graphcommerce/commit/d88e2e8278df354946bf99119fb14b9ebf1cb94d) - Automatiically set focus on search input when loading search page (on Android) ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#1752](https://github.com/graphcommerce-org/graphcommerce/pull/1752) [`2a6a4d9ec`](https://github.com/graphcommerce-org/graphcommerce/commit/2a6a4d9ecfa1b58a66ba9b9d00016d6feda9aa95) - Updated dependencies to latest versions, except for nextjs; Solve tons of peer dependency issues.
+
+  - Updated the @mui/material package
+  - Removed dependencies on react-hook-form-mui and @playwright/test
+  - Upgraded dependencies including type-fest and graphql-mesh
+  - Solved peer dependency issues ([@paales](https://github.com/paales))
+
 ## 5.1.0-canary.11
 
 ## 5.1.0-canary.10
