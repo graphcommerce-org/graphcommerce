@@ -6,7 +6,6 @@ import {
   IconSvg,
   extendableComponent,
   useDateTimeFormat,
-  sx,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Skeleton, styled, SxProps, Theme } from '@mui/material'
@@ -32,62 +31,62 @@ const parts = [
 ] as const
 const { classes } = extendableComponent(componentName, parts)
 
-const OrderDetailTitle = styled('span', { target: classes.orderDetailTitle })(
-  sx((theme) => ({
-    borderBottom: `1px solid ${theme.palette.divider}`,
-    fontWeight: 'bold',
-    display: 'block',
-    width: '100%',
-    paddingBottom: responsiveVal(2, 8),
-    marginBottom: theme.spacings.xs,
-  })),
-)
+const OrderDetailTitle = styled('span', { target: classes.orderDetailTitle })(({ theme }) => ({
+  borderBottom: `1px solid ${theme.palette.divider}`,
+  fontWeight: 'bold',
+  display: 'block',
+  width: '100%',
+  paddingBottom: responsiveVal(2, 8),
+  marginBottom: theme.spacings.xs,
+}))
 
 const OrderDetailsInnerContainer = styled('span', { target: classes.orderDetailsInnerContainer })(
-  sx((theme) => ({
-    display: 'grid',
-    gridColumnGap: theme.spacings.sm,
-    gridRowGap: theme.spacings.lg,
-    padding: `${theme.spacings.md} 0`,
-    borderBottom: `1px solid ${theme.palette.divider}`,
-    [theme.breakpoints.up('sm')]: {
-      gridColumnGap: theme.spacings.xxl,
-      gridRowGap: theme.spacings.md,
-      gridTemplateColumns: 'repeat(2, 1fr)',
-    },
-  })),
+  ({ theme }) =>
+    theme.unstable_sx({
+      display: 'grid',
+      gridColumnGap: theme.spacings.sm,
+      gridRowGap: theme.spacings.lg,
+      padding: `${theme.spacings.md} 0`,
+      borderBottom: `1px solid ${theme.palette.divider}`,
+      [theme.breakpoints.up('sm')]: {
+        gridColumnGap: theme.spacings.xxl,
+        gridRowGap: theme.spacings.md,
+        gridTemplateColumns: 'repeat(2, 1fr)',
+      },
+    }),
 )
 
-const TotalsContainer = styled('span', { target: classes.totalsContainer })(
-  sx((theme) => ({
+const TotalsContainer = styled('span', { target: classes.totalsContainer })(({ theme }) =>
+  theme.unstable_sx({
     padding: `${theme.spacings.xxs} 0`,
-  })),
+  }),
 )
 
-const TotalsRow = styled('span', { target: classes.totalsRow })(
-  sx({
+const TotalsRow = styled('span', { target: classes.totalsRow })(({ theme }) =>
+  theme.unstable_sx({
     display: 'flex',
     justifyContent: 'space-between',
     padding: '4px 0',
   }),
 )
-const TotalsDivider = styled('span', { target: classes.totalsDivider })(
-  sx((theme) => ({
+
+const TotalsDivider = styled('span', { target: classes.totalsDivider })(({ theme }) =>
+  theme.unstable_sx({
     height: 1,
     width: '100%',
     background: theme.palette.divider,
     margin: `${theme.spacings.xxs} 0`,
-  })),
+  }),
 )
 
-const TotalsVat = styled(TotalsRow, { target: classes.totalsVat })(
-  sx((theme) => ({
+const TotalsVat = styled(TotalsRow, { target: classes.totalsVat })(({ theme }) =>
+  theme.unstable_sx({
     fontWeight: 'bold',
     padding: `${theme.spacings.xxs} 0`,
-  })),
+  }),
 )
-const IconContainer = styled(TotalsRow, { target: classes.iconContainer })(
-  sx({
+const IconContainer = styled(TotalsRow, { target: classes.iconContainer })(({ theme }) =>
+  theme.unstable_sx({
     marginLeft: '-6px',
     '& > div': {
       padding: '4px 0',
@@ -95,12 +94,12 @@ const IconContainer = styled(TotalsRow, { target: classes.iconContainer })(
   }),
 )
 
-const Invoice = styled(TotalsRow, { target: classes.invoice })(
-  sx((theme) => ({
+const Invoice = styled(TotalsRow, { target: classes.invoice })(({ theme }) =>
+  theme.unstable_sx({
     display: 'flex',
     alignItems: 'center',
-    color: theme.palette.primary.main,
-  })),
+    color: 'primary.main',
+  }),
 )
 
 export function OrderDetails(props: OrderDetailsProps) {

@@ -1,6 +1,5 @@
 import { ComponentsVariants, darken } from '@mui/material'
 import { responsiveVal } from '../Styles'
-import { sx } from './themeDefaults'
 
 declare module '@mui/material/Chip/Chip' {
   interface ChipPropsSizeOverrides {
@@ -21,32 +20,35 @@ export const MuiChip: ChipVariants = [
   },
   {
     props: { size: 'small' },
-    style: sx({
-      typography: 'caption',
-    }),
+    style: ({ theme }) =>
+      theme.unstable_sx({
+        typography: 'caption',
+      }),
   },
   {
     props: { size: 'medium' },
-    style: sx({
-      height: responsiveVal(26, 30),
-      paddingLeft: responsiveVal(3, 6),
-      paddingRight: responsiveVal(3, 6),
-      typography: 'caption',
-    }),
+    style: ({ theme }) =>
+      theme.unstable_sx({
+        height: responsiveVal(26, 30),
+        paddingLeft: responsiveVal(3, 6),
+        paddingRight: responsiveVal(3, 6),
+        typography: 'caption',
+      }),
   },
   {
     props: { size: 'responsive' },
-    style: sx({
-      height: responsiveVal(32, 40),
-      paddingLeft: responsiveVal(4, 8),
-      paddingRight: responsiveVal(4, 8),
-      borderRadius: '99em',
-      typography: 'body2',
-      '& .MuiChip-label': {
-        paddingLeft: responsiveVal(6, 10),
-        paddingRight: responsiveVal(6, 10),
-      },
-    }),
+    style: ({ theme }) =>
+      theme.unstable_sx({
+        height: responsiveVal(32, 40),
+        paddingLeft: responsiveVal(4, 8),
+        paddingRight: responsiveVal(4, 8),
+        borderRadius: '99em',
+        typography: 'body2',
+        '& .MuiChip-label': {
+          paddingLeft: responsiveVal(6, 10),
+          paddingRight: responsiveVal(6, 10),
+        },
+      }),
   },
   {
     props: { variant: 'outlined' },

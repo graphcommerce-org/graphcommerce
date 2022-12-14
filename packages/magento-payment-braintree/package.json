@@ -28,7 +28,7 @@
     "@graphcommerce/magento-store": "5.1.0-canary.9",
     "@graphcommerce/next-ui": "5.1.0-canary.9",
     "@graphcommerce/react-hook-form": "5.1.0-canary.9",
-    "braintree-web": "^3.86.0"
+    "braintree-web": "^3.88.5"
   },
   "peerDependencies": {
     "@lingui/core": "^3.13.2",

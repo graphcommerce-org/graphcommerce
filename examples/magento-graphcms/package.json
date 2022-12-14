@@ -63,17 +63,17 @@
     "@graphcommerce/next-ui": "5.1.0-canary.9",
     "@lingui/core": "3.15.0",
     "@lingui/react": "3.15.0",
-    "@mui/lab": "5.0.0-alpha.110",
-    "@mui/material": "5.10.16",
+    "@mui/lab": "5.0.0-alpha.112",
+    "@mui/material": "5.11.0",
     "@next/env": "12.2.5",
     "concurrently": "7.6.0",
     "cross-env": "^7.0.3",
     "dotenv": "16.0.3",
-    "framer-motion": "7.6.17",
+    "framer-motion": "7.9.0",
     "graphql": "16.6.0",
     "next": "12.2.5",
-    "next-pwa": "5.5.4",
-    "next-sitemap": "3.1.17",
+    "next-pwa": "5.6.0",
+    "next-sitemap": "3.1.32",
     "patch-package": "6.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -86,17 +86,14 @@
     "@graphcommerce/typescript-config-pwa": "5.1.0-canary.9",
     "@lingui/cli": "3.15.0",
     "eslint": "8.29.0",
-    "prettier": "2.8.0",
-    "type-fest": "^3.3.0",
-    "typescript": "4.9.3"
+    "prettier": "2.8.1",
+    "type-fest": "^3.4.0",
+    "typescript": "4.9.4"
   },
   "browserslist": [
     "> 1% in alt-EU",
     "not IE 11"
   ],
-  "resolutions": {
-    "@graphql-tools/url-loader": "7.16.13"
-  },
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
     "extends": "@graphcommerce/eslint-config-pwa",

@@ -1,4 +1,4 @@
-import { experimental_sx, SxProps, Theme } from '@mui/material'
+import { SxProps, Theme } from '@mui/material'
 import { Shadows } from '@mui/material/styles/shadows'
 import { spreadVal } from '../Styles/spreadVal'
 import { breakpoints } from './breakpoints'
@@ -38,5 +38,3 @@ export const themeBaseDefaults = {
   spreadVal,
   shadows,
 }
-
-export const sx = (props: SxProps<Theme>) => experimental_sx<Theme>(props)
