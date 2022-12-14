@@ -7,8 +7,8 @@ import './Theme/createTheme'
 import 'react'
 
 declare module 'react' {
-  interface IframeHTMLAttributes<T> extends HTMLAttributes<T> {
-    loading?: 'lazy' | 'eager' | 'auto'
+  interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
+    inert?: 'true'
   }
 }
 

@@ -3,6 +3,12 @@ import { m, useIsPresent } from 'framer-motion'
 import React from 'react'
 import type { PageItem } from '../types'
 
+declare module 'react' {
+  interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
+    inert?: 'true'
+  }
+}
+
 export type PageProps = Pick<PageItem, 'routerKey'> & {
   active: boolean
   children: React.ReactNode
@@ -36,7 +42,6 @@ export function Page(props: PageProps) {
     <m.div
       layoutScroll
       style={{ position, top, zIndex, minHeight: dvh(100), left: 0, right: 0 }}
-      // @ts-expect-error inert is not in the type definition yet
       inert={!active ? 'true' : undefined}
       data-nosnippet={!active ? true : undefined}
       aria-hidden={!active ? true : undefined}

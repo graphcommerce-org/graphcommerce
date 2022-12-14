@@ -13,13 +13,13 @@
     "@graphcommerce/image": "5.1.0-canary.9",
     "@graphcommerce/next-config": "5.1.0-canary.9",
     "@graphcommerce/next-ui": "5.1.0-canary.9",
-    "framer-motion": "^7.5.1",
+    "framer-motion": "^7.8.1",
     "next": "12.2.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "license": "MIT",
   "devDependencies": {
-    "typescript": "4.9.3"
+    "typescript": "4.9.4"
   }
 }

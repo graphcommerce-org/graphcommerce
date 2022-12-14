@@ -69,6 +69,12 @@ assure our users of the origin and continuing existence of the code. You only
 need to sign the CLA once.
 -->
 
+### Creating a branch
+
+1. Fork the repository and clone it locally.
+2. Create a branch for your PR based on the `canary` branch. Use the following
+   naming convention: `feature/your-branch-name` or `fix/your-branch-name`
+
 ### Creating a pull request
 
 1. Create a pull request. The PR can stay open until you are ready to merge.
