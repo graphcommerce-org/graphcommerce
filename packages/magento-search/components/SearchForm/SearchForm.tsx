@@ -10,6 +10,7 @@ import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, IconButton, SxProps, TextField, TextFieldProps, Theme } from '@mui/material'
 import { useRouter } from 'next/router'
+import { useEffect, useRef } from 'react'
 
 export type SearchFormProps = {
   totalResults?: number
@@ -25,6 +26,12 @@ const parts = ['root', 'totalProducts'] as const
 const { classes } = extendableComponent(name, parts)
 
 export function SearchForm(props: SearchFormProps) {
+  const searchInputElement = useRef<HTMLInputElement>(null)
+
+  useEffect(() => {
+    searchInputElement.current?.focus()
+  }, [])
+
   const { totalResults = 0, search = '', urlHandle = 'search', textFieldProps, sx = [] } = props
   const router = useRouter()
 
@@ -96,6 +103,7 @@ export function SearchForm(props: SearchFormProps) {
           {...muiRegister('search', { required: true, minLength: 2 })}
           InputProps={{ endAdornment }}
           {...textFieldProps}
+          inputRef={searchInputElement}
         />
       </FormRow>
     </Box>
