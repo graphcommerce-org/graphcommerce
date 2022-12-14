@@ -123,22 +123,26 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
 
     document.body.style.overflow = 'hidden'
 
-    if (direction === 1 && position.get() !== OverlayPosition.OPENED) {
-      scroller.scrollLeft = positions.closed.x.get()
-      scroller.scrollTop = positions.closed.y.get()
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      scrollTo(open).then(() => {
-        scroller.scrollLeft = positions.open.x.get()
-        scroller.scrollTop = positions.open.y.get()
+    if (position.get() !== OverlayPosition.OPENED) {
+      if (direction === 1) {
+        scroller.scrollLeft = positions.closed.x.get()
+        scroller.scrollTop = positions.closed.y.get()
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        scrollTo(open).then(() => {
+          scroller.scrollLeft = positions.open.x.get()
+          scroller.scrollTop = positions.open.y.get()
+          position.set(OverlayPosition.OPENED)
+        })
+      } else {
+        scroller.scrollLeft = open.x
+        scroller.scrollTop = open.y
         position.set(OverlayPosition.OPENED)
-      })
-    } else {
-      scroller.scrollLeft = open.x
-      scroller.scrollTop = open.y
+        snap.set(true)
+      }
     }
 
     return clearScrollLock
-  }, [direction, isPresent, position, positions, scrollTo, scrollerRef])
+  }, [direction, isPresent, position, positions, scrollTo, scrollerRef, snap])
 
   // Make sure the overlay stays open when resizing the window.
   useEffect(() => {
