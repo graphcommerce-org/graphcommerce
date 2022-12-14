@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.1.0-canary.9
+
+### Patch Changes
+
+- [#1759](https://github.com/graphcommerce-org/graphcommerce/pull/1759) [`d88e2e827`](https://github.com/graphcommerce-org/graphcommerce/commit/d88e2e8278df354946bf99119fb14b9ebf1cb94d) - Automatiically set focus on search input when loading search page (on Android) ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 5.1.0-canary.8
 
 ## 5.1.0-canary.7
