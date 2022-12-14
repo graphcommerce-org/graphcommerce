@@ -1,5 +1,11 @@
 # @graphcommerce/cli
 
+## 5.1.0-canary.10
+
+### Patch Changes
+
+- [#1760](https://github.com/graphcommerce-org/graphcommerce/pull/1760) [`8badc8550`](https://github.com/graphcommerce-org/graphcommerce/commit/8badc8550c402ac7b80c8d3238d313550c28a055) - Updated dependencies ([@paales](https://github.com/paales))
+
 ## 5.1.0-canary.9
 
 ## 5.1.0-canary.8

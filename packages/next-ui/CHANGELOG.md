@@ -1,5 +1,13 @@
 # Change Log
 
+## 5.1.0-canary.10
+
+### Patch Changes
+
+- [#1760](https://github.com/graphcommerce-org/graphcommerce/pull/1760) [`06a81e661`](https://github.com/graphcommerce-org/graphcommerce/commit/06a81e66144b4d94a1e318c2e26cac8d13aa0eb7) - When you navigate back to an overlay (cart, etc.), it can no longer be closed by dragging or clicking on the backdrop. ([@paales](https://github.com/paales))
+
+- [#1760](https://github.com/graphcommerce-org/graphcommerce/pull/1760) [`f1ebaa2ae`](https://github.com/graphcommerce-org/graphcommerce/commit/f1ebaa2aea68fe395fddb1b7dd91624251b1d501) - Navigation received focus making the menu visible while it shouldn't ([@paales](https://github.com/paales))
+
 ## 5.1.0-canary.9
 
 ## 5.1.0-canary.8
