@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.1.1-canary.0
+
+### Patch Changes
+
+- [#1762](https://github.com/graphcommerce-org/graphcommerce/pull/1762) [`0aab0bcc2`](https://github.com/graphcommerce-org/graphcommerce/commit/0aab0bcc2048793f43a76bf981ca18d9f3ccaf16) - yarn can not completele successfully when runnin in a monorepo setup if codegen hasn’t ran ([@paales](https://github.com/paales))
+
 ## 5.1.0
 
 ### Patch Changes

@@ -1,5 +1,7 @@
 # @graphcommerce/changeset-changelog
 
+## 5.1.1-canary.0
+
 ## 5.1.0
 
 ### Patch Changes
