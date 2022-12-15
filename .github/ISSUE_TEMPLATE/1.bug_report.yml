@@ -1,26 +1,10 @@
 name: Bug Report
 description: Create a bug report for GraphCommerce
-labels: 'template: bug'
+labels: ['template: bug']
 body:
   - type: markdown
     attributes:
-      value:
-        Thanks for taking the time to file a bug report! Please fill out this form as completely as
-        possible.
-  - type: textarea
-    attributes:
-      label: Provide environment information
-      description: Please run `node -v` in the root directory of your project and paste the results.
-    validations:
-      required: true
-  - type: input
-    attributes:
-      label: What browser are you using? (if relevant)
-      description: 'Please specify the exact version. For example: Chrome 100.0.4878.0'
-  - type: input
-    attributes:
-      label: How are you deploying your application? (if relevant)
-      description: 'For example: yarn dev, Vercel, Other platform'
+      value: Thanks for taking the time to file a bug report!
   - type: textarea
     attributes:
       label: Describe the Bug
@@ -36,13 +20,9 @@ body:
   - type: textarea
     attributes:
       label: To Reproduce
-      description:
-        Steps to reproduce the behavior, please provide a clear code snippets that always reproduces
-        the issue or a GitHub repository. Screenshots can be provided in the issue body below.
+      description: Steps to reproduce the behavior.
     validations:
       required: true
   - type: markdown
     attributes:
-      value:
-        Before posting the issue go through the steps you've written down to make sure the steps
-        provided are detailed and clear.
+      value: Before posting the issue go through the steps you've written down to make sure the steps provided are detailed and clear.

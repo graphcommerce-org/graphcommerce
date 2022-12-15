@@ -7,15 +7,6 @@ metaDescription:
 metaUrl: magento-open-source-full-feature-list-with-graphcommerce
 ---
 
-<div data-nosnippet>
-
-> **Developer preview**  
-> This is a developer preview of GraphCommerce. The documentation will be
-> updated as GraphCommerce introduces
-> [new features and refines existing functionality](https://github.com/graphcommerce-org/graphcommerce/releases).
-
-</div>
-
 # Magento Open Source + GraphCommerce® full feature list
 
 <div className='tags'>
