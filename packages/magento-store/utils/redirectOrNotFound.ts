@@ -66,6 +66,11 @@ export async function redirectOrNotFound(
 
     const routeData = await Promise.any(routePromises)
 
+    const relativeUrl =
+      routeData.route?.relative_url && routeData.route?.relative_url !== urlKey
+        ? routeData.route.relative_url
+        : undefined
+
     // There is a URL, so we need to check if it can be found in the database.
     const permanent = routeData.route?.redirect_code === 301
 
@@ -80,20 +85,24 @@ export async function redirectOrNotFound(
         'DownloadableProduct',
       ])
     ) {
-      // Add special handling for the homepage.
       if (process.env.NEXT_PUBLIC_SINGLE_PRODUCT_PAGE !== '1') {
         console.warn('Redirects are only supported for NEXT_PUBLIC_SINGLE_PRODUCT_PAGE')
+      }
+
+      if (relativeUrl) {
+        return redirect(`/p/${relativeUrl}`, permanent, locale)
       }
 
       if (routeData.products?.items?.find((i) => i?.url_key === routeData.route?.url_key)) {
         return redirect(`/p/${routeData.route?.url_key}`, permanent, locale)
       }
+
       return notFound()
     }
 
-    // The default URL for categories or CMS pages is handled by the pages/[...url].tsx file.
-    if (isTypename(routeData.route, ['CategoryTree', 'CmsPage']))
-      return redirect(`/${routeData.route?.url_key}`, permanent, locale)
+    if (relativeUrl) {
+      return redirect(`/${relativeUrl}`, permanent, locale)
+    }
   } catch (e) {
     // We're done
   }
