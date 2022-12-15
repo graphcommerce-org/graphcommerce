@@ -7,15 +7,6 @@ metaDescription:
 metaUrl: framework/static-generation-nextjs-ecommerce
 ---
 
-<div data-nosnippet>
-
-> **Developer preview**  
-> This is a developer preview of GraphCommerce. The documentation will be
-> updated as GraphCommerce introduces
-> [new features and refines existing functionality](https://github.com/graphcommerce-org/graphcommerce/releases).
-
-</div>
-
 # Static Site Generation (SSG) in GraphCommerce
 
 Pages that export a function called getStaticProps, will pre-render at

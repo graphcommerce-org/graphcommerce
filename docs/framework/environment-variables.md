@@ -1,12 +1,3 @@
-<div data-nosnippet>
-
-> **Developer preview**  
-> This is a developer preview of GraphCommerce. The documentation will be
-> updated as GraphCommerce introduces
-> [new features and refines existing functionality](https://github.com/graphcommerce-org/graphcommerce/releases).
-
-</div>
-
 # Environment Variables
 
 This guide describes how to store environment variables in your GraphCommerce

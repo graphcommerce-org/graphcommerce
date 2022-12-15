@@ -3,15 +3,6 @@ menu: 2. Customize a storefront
 metaTitle: Customize a storefront
 ---
 
-<div data-nosnippet>
-
-> **Developer preview**  
-> This is a developer preview of GraphCommerce. The documentation will be
-> updated as GraphCommerce introduces
-> [new features and refines existing functionality](https://github.com/graphcommerce-org/graphcommerce/releases).
-
-</div>
-
 # Start building a GraphCommerce custom storefront
 
 Previously, you [created a new GraphCommerce app](../getting-started/create.md).
