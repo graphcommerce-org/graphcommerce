@@ -1,0 +1,704 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2021-11-11 12:38+0100\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: en\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
+
+msgid "<0>{name}</0> has been added to your shopping cart!"
+msgstr "<0>{name}</0> has been added to your shopping cart!"
+
+msgid "<0>{name}</0> has been added to your wishlist!"
+msgstr "<0>{name}</0> has been added to your wishlist!"
+
+msgid "Above <0/>"
+msgstr "Above <0/>"
+
+msgid "Account"
+msgstr "Account"
+
+msgid "Add address"
+msgstr "Add address"
+
+msgid "Add new address"
+msgstr "Add new address"
+
+msgid "Add to Cart"
+msgstr "Add to Cart"
+
+msgid "Add to wishlist"
+msgstr "Add to wishlist"
+
+msgid "Addition"
+msgstr "Addition"
+
+msgid "Address not found"
+msgstr "Address not found"
+
+msgid "Addresses"
+msgstr "Addresses"
+
+msgid "All products"
+msgstr "All products"
+
+msgid "All {name}"
+msgstr "All {name}"
+
+msgid "Apply"
+msgstr "Apply"
+
+msgid "As low as <0/>"
+msgstr "As low as <0/>"
+
+msgid "As soon as the payment is completed, you will automatically return to the webshop."
+msgstr "As soon as the payment is completed, you will automatically return to the webshop."
+
+msgid "Authentication"
+msgstr "Authentication"
+
+msgid "Back"
+msgstr "Back"
+
+msgid "Back to home"
+msgstr "Back to home"
+
+msgid "Be the first to know about everything new!"
+msgstr "Be the first to know about everything new!"
+
+msgid "Be the first to write a review!"
+msgstr "Be the first to write a review!"
+
+msgid "Below <0/>"
+msgstr "Below <0/>"
+
+msgid "Billing address"
+msgstr "Billing address"
+
+msgid "Blog"
+msgstr "Blog"
+
+msgid "Cancel"
+msgstr "Cancel"
+
+msgid "Cart"
+msgstr "Cart"
+
+msgid "Cart ({0})"
+msgstr "Cart ({0})"
+
+msgid "Change"
+msgstr "Change"
+
+msgid "Checkout summary"
+msgstr "Checkout summary"
+
+msgid "Choose your bank, and place your order."
+msgstr "Choose your bank, and place your order."
+
+msgid "City"
+msgstr "City"
+
+msgid "Close"
+msgstr "Close"
+
+msgid "Complete the payment on your bank’s website."
+msgstr "Complete the payment on your bank’s website."
+
+msgid "Complete your purchase"
+msgstr "Complete your purchase"
+
+msgid "Confirm new email"
+msgstr "Confirm new email"
+
+msgid "Confirm password"
+msgstr "Confirm password"
+
+msgid "Confirmation + Track & trace"
+msgstr "Confirmation + Track & trace"
+
+msgid "Contact"
+msgstr "Contact"
+
+msgid "Continue"
+msgstr "Continue"
+
+msgid "Continue shopping"
+msgstr "Continue shopping"
+
+msgid "Could not create an empty cart"
+msgstr "Could not create an empty cart"
+
+msgid "Country"
+msgstr "Country"
+
+msgid "Create Account"
+msgstr "Create Account"
+
+msgid "Create a password and tell us your name"
+msgstr "Create a password and tell us your name"
+
+msgid "Create account!"
+msgstr "Create account!"
+
+msgid "Create an account"
+msgstr "Create an account"
+
+msgid "Create new password"
+msgstr "Create new password"
+
+msgid "Current Password"
+msgstr "Current Password"
+
+msgid "Dark Mode"
+msgstr "Dark Mode"
+
+msgid "Decrease"
+msgstr "Decrease"
+
+msgid "Delete this address"
+msgstr "Delete this address"
+
+msgid "Discount code"
+msgstr "Discount code"
+
+msgid "Discover our collection and add items to your cart!"
+msgstr "Discover our collection and add items to your cart!"
+
+msgid "Discover our collection and add items to your wishlist!"
+msgstr "Discover our collection and add items to your wishlist!"
+
+msgid "Discover our collection and place your first order!"
+msgstr "Discover our collection and place your first order!"
+
+msgid "Discover our collection and write your first review!"
+msgstr "Discover our collection and write your first review!"
+
+msgid "Edit"
+msgstr "Edit"
+
+msgid "Edit address"
+msgstr "Edit address"
+
+msgid "Edit billing address"
+msgstr "Edit billing address"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Emails don't match"
+msgstr "Emails don't match"
+
+msgid "Fill in your e-mail to login or create an account"
+msgstr "Fill in your e-mail to login or create an account"
+
+msgid "Fill in your new password, confirm it and click on the save button."
+msgstr "Fill in your new password, confirm it and click on the save button."
+
+msgid "Fill in your password"
+msgstr "Fill in your password"
+
+msgid "First Name"
+msgstr "First Name"
+
+msgid "Follow order"
+msgstr "Follow order"
+
+msgid "Forgot Password"
+msgstr "Forgot Password"
+
+msgid "Forgot password?"
+msgstr "Forgot password?"
+
+msgid "Forgot your password?"
+msgstr "Forgot your password?"
+
+msgid "Free"
+msgstr "Free"
+
+msgid "Grand total"
+msgstr "Grand total"
+
+msgid "Have an account?"
+msgstr "Have an account?"
+
+msgid "Hi {firstname}! You’re now logged in!"
+msgstr "Hi {firstname}! You’re now logged in!"
+
+msgid "Home"
+msgstr "Home"
+
+msgid "Housenumber"
+msgstr "Housenumber"
+
+msgid "If you’ve successfully paid your order, the order <0>will</0> come through, but there is a communication error with the website."
+msgstr "If you’ve successfully paid your order, the order <0>will</0> come through, but there is a communication error with the website."
+
+msgid "Including {0}"
+msgstr "Including {0}"
+
+msgid "Increase"
+msgstr "Increase"
+
+msgid "Invalid email address"
+msgstr "Invalid email address"
+
+msgid "Invalid phone number"
+msgstr "Invalid phone number"
+
+msgid "Last Name"
+msgstr "Last Name"
+
+msgid "Latest orders"
+msgstr "Latest orders"
+
+msgid "Light Mode"
+msgstr "Light Mode"
+
+msgid "Loading wishlist"
+msgstr "Loading wishlist"
+
+msgid "Loading your data"
+msgstr "Loading your data"
+
+msgid "Log in"
+msgstr "Log in"
+
+msgid "Log in to continue shopping"
+msgstr "Log in to continue shopping"
+
+msgid "Menu"
+msgstr "Menu"
+
+msgid "Mr"
+msgstr "Mr"
+
+msgid "Mrs"
+msgstr "Mrs"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Navigate to item {0}"
+msgstr "Navigate to item {0}"
+
+msgid "New address"
+msgstr "New address"
+
+msgid "New email"
+msgstr "New email"
+
+msgid "New password"
+msgstr "New password"
+
+msgid "Newsletter"
+msgstr "Newsletter"
+
+msgid "Next"
+msgstr "Next"
+
+msgid "No Image"
+msgstr "No Image"
+
+msgid "No account yet?"
+msgstr "No account yet?"
+
+msgid "No orders found"
+msgstr "No orders found"
+
+msgid "No payment information"
+msgstr "No payment information"
+
+msgid "No worries! Enter your email address and we will send an email with instructions to reset your password."
+msgstr "No worries! Enter your email address and we will send an email with instructions to reset your password."
+
+msgid "Number"
+msgstr "Number"
+
+msgid "Ok"
+msgstr "Ok"
+
+msgid "Older"
+msgstr "Older"
+
+msgid "Or follow these links to get you back on track!"
+msgstr "Or follow these links to get you back on track!"
+
+msgid "Order #{orderId}"
+msgstr "Order #{orderId}"
+
+msgid "Order not found"
+msgstr "Order not found"
+
+msgid "Order number"
+msgstr "Order number"
+
+msgid "Order status"
+msgstr "Order status"
+
+msgid "Order summary"
+msgstr "Order summary"
+
+msgid "Ordered items"
+msgstr "Ordered items"
+
+msgid "Orders"
+msgstr "Orders"
+
+msgid "Other"
+msgstr "Other"
+
+msgid "Page {page} of {count}"
+msgstr "Page {page} of {count}"
+
+msgid "Password"
+msgstr "Password"
+
+msgid "Password must have at least 8 characters"
+msgstr "Password must have at least 8 characters"
+
+msgid "Passwords don't match"
+msgstr "Passwords don't match"
+
+msgid "Pay"
+msgstr "Pay"
+
+msgid "Pay with iDEAL"
+msgstr "Pay with iDEAL"
+
+msgid "Payment"
+msgstr "Payment"
+
+msgid "Payment failed with status: {paymentStatus}"
+msgstr "Payment failed with status: {paymentStatus}"
+
+msgid "Payment has not completed succesfully, please try again."
+msgstr "Payment has not completed succesfully, please try again."
+
+msgid "Payment method"
+msgstr "Payment method"
+
+msgid "Personal details"
+msgstr "Personal details"
+
+msgid "Place order"
+msgstr "Place order"
+
+msgid "Please check your inbox to validate your email ({email})"
+msgstr "Please check your inbox to validate your email ({email})"
+
+msgid "Please provide a valid house number"
+msgstr "Please provide a valid house number"
+
+msgid "Please reauthenticate and try again"
+msgstr "Please reauthenticate and try again"
+
+msgid "Please select a payment method"
+msgstr "Please select a payment method"
+
+msgid "Please select a shipping method"
+msgstr "Please select a shipping method"
+
+msgid "Please select a value for ‘{label}’"
+msgstr "Please select a value for ‘{label}’"
+
+msgid "Postcode"
+msgstr "Postcode"
+
+msgid "Prefix"
+msgstr "Prefix"
+
+msgid "Product could not be found"
+msgstr "Product could not be found"
+
+msgid "Product not available in {allLabels}"
+msgstr "Product not available in {allLabels}"
+
+msgid "Products"
+msgstr "Products"
+
+msgid "Region"
+msgstr "Region"
+
+msgid "Remove"
+msgstr "Remove"
+
+msgid "Remove Product"
+msgstr "Remove Product"
+
+msgid "Remove from wishlist"
+msgstr "Remove from wishlist"
+
+msgid "Reset Cart and Return to home"
+msgstr "Reset Cart and Return to home"
+
+msgid "Results for ‘{search}’"
+msgstr "Results for ‘{search}’"
+
+msgid "Review"
+msgstr "Review"
+
+msgid "Reviews"
+msgstr "Reviews"
+
+msgid "Save changes"
+msgstr "Save changes"
+
+msgid "Save new password"
+msgstr "Save new password"
+
+msgid "Search"
+msgstr "Search"
+
+msgid "Search..."
+msgstr "Search..."
+
+msgid "Select"
+msgstr "Select"
+
+msgid "Send password reset email"
+msgstr "Send password reset email"
+
+msgid "Set your new password"
+msgstr "Set your new password"
+
+msgid "Shipping"
+msgstr "Shipping"
+
+msgid "Shipping ({0} {1})"
+msgstr "Shipping ({0} {1})"
+
+msgid "Shipping address"
+msgstr "Shipping address"
+
+msgid "Shipping method"
+msgstr "Shipping method"
+
+msgid "Sign in"
+msgstr "Sign in"
+
+msgid "Sign in or create an account!"
+msgstr "Sign in or create an account!"
+
+msgid "Sign out"
+msgstr "Sign out"
+
+msgid "Sign up for our newsletter and stay updated"
+msgstr "Sign up for our newsletter and stay updated"
+
+msgid "Some items in your cart contain errors, please update or remove them, then try again."
+msgstr "Some items in your cart contain errors, please update or remove them, then try again."
+
+msgid "Sort By"
+msgstr "Sort By"
+
+msgid "Start Checkout"
+msgstr "Start Checkout"
+
+msgid "Store home"
+msgstr "Store home"
+
+msgid "Street"
+msgstr "Street"
+
+msgid "Submit review"
+msgstr "Submit review"
+
+msgid "Subscribe to newsletter"
+msgstr "Subscribe to newsletter"
+
+msgid "Subscribe to our newsletter to stay informed about our new products!"
+msgstr "Subscribe to our newsletter to stay informed about our new products!"
+
+msgid "Successfully changed password"
+msgstr "Successfully changed password"
+
+msgid "Successfully saved changes"
+msgstr "Successfully saved changes"
+
+msgid "Successfully updated email"
+msgstr "Successfully updated email"
+
+msgid "Summary"
+msgstr "Summary"
+
+msgid "Switch stores"
+msgstr "Switch stores"
+
+msgid "Telephone"
+msgstr "Telephone"
+
+msgid "Thank you for your order!"
+msgstr "Thank you for your order!"
+
+msgid "Thank you! Your review was successfully submitted for approval"
+msgstr "Thank you! Your review was successfully submitted for approval"
+
+msgid "The payment hasn't completed, please try again or select a different payment method."
+msgstr "The payment hasn't completed, please try again or select a different payment method."
+
+msgid "The payment is refused, please try again or select a different payment method."
+msgstr "The payment is refused, please try again or select a different payment method."
+
+msgid "This field is required"
+msgstr "This field is required"
+
+msgid "This may take a second"
+msgstr "This may take a second"
+
+msgid "Total <0/>"
+msgstr "Total <0/>"
+
+msgid "Try a different product"
+msgstr "Try a different product"
+
+msgid "Try a different search"
+msgstr "Try a different search"
+
+msgid "View all items"
+msgstr "View all items"
+
+msgid "View less items"
+msgstr "View less items"
+
+msgid "View shopping cart"
+msgstr "View shopping cart"
+
+msgid "View wishlist"
+msgstr "View wishlist"
+
+msgid "View your account"
+msgstr "View your account"
+
+msgid "We are fetching your favorite products, one moment please!"
+msgstr "We are fetching your favorite products, one moment please!"
+
+msgid "We can not process your payment, we received an unsupported status \"<0>{resultCode}</0>\". Please try again or select a different payment method."
+msgstr "We can not process your payment, we received an unsupported status \"<0>{resultCode}</0>\". Please try again or select a different payment method."
+
+msgid "We couldn't find any results for {term}"
+msgstr "We couldn't find any results for {term}"
+
+msgid "We couldn't find the page you were looking for"
+msgstr "We couldn't find the page you were looking for"
+
+msgid "Welcome back!"
+msgstr "Welcome back!"
+
+msgid "We’re processing your payment, this will take a few seconds."
+msgstr "We’re processing your payment, this will take a few seconds."
+
+msgid "We’ve send a password reset link to your email address!"
+msgstr "We’ve send a password reset link to your email address!"
+
+msgid "Which size is right?"
+msgstr "Which size is right?"
+
+msgid "Whoops our bad..."
+msgstr "Whoops our bad..."
+
+msgid "Wishlist"
+msgstr "Wishlist"
+
+msgid "Write a review"
+msgstr "Write a review"
+
+msgid "Written by {nickname}"
+msgstr "Written by {nickname}"
+
+msgid "Written {0} reviews"
+msgstr "Written {0} reviews"
+
+msgid "You are reviewing {0}"
+msgstr "You are reviewing {0}"
+
+msgid "You can find your order history in your account!"
+msgstr "You can find your order history in your account!"
+
+msgid "You can now <0>sign in again</0>."
+msgstr "You can now <0>sign in again</0>."
+
+msgid "You can track your order status and much more!"
+msgstr "You can track your order status and much more!"
+
+msgid "You have no addresses saved yet"
+msgstr "You have no addresses saved yet"
+
+msgid "You have no orders yet"
+msgstr "You have no orders yet"
+
+msgid "You have not placed an order"
+msgstr "You have not placed an order"
+
+msgid "You have now successfully reset your password"
+msgstr "You have now successfully reset your password"
+
+msgid "You have to agree in order to proceed"
+msgstr "You have to agree in order to proceed"
+
+msgid "You haven't placed any reviews yet"
+msgstr "You haven't placed any reviews yet"
+
+msgid "You must sign in to continue"
+msgstr "You must sign in to continue"
+
+msgid "Your cart is empty"
+msgstr "Your cart is empty"
+
+msgid "Your session is expired"
+msgstr "Your session is expired"
+
+msgid "Your wishlist is empty"
+msgstr "Your wishlist is empty"
+
+msgid "Zip code or city"
+msgstr "Zip code or city"
+
+msgid "canceled"
+msgstr "canceled"
+
+msgid "invoiced"
+msgstr "invoiced"
+
+msgid "no products"
+msgstr "no products"
+
+msgid "one product"
+msgstr "one product"
+
+msgid "partially processed"
+msgstr "partially processed"
+
+msgid "processed"
+msgstr "processed"
+
+msgid "refunded"
+msgstr "refunded"
+
+msgid "returned"
+msgstr "returned"
+
+msgid "shipped"
+msgstr "shipped"
+
+msgid "{metaDescription} - Page {currentPage}"
+msgstr "{metaDescription} - Page {currentPage}"
+
+msgid "{title} - Page {currentPage}"
+msgstr "{title} - Page {currentPage}"
+
+msgid "{totalResults} result"
+msgstr "{totalResults} result"
+
+msgid "{totalResults} results"
+msgstr "{totalResults} results"
+
+msgid "{total_count} products"
+msgstr "{total_count} products"

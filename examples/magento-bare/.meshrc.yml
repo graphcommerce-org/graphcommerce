@@ -1,0 +1,21 @@
+sources:
+  - name: m2
+    handler:
+      graphql:
+        endpoint: ${MAGENTO_ENDPOINT}
+        useGETForQueries: true
+        schemaHeaders:
+          Store: '{context.headers.store}'
+          Authorization: '{context.headers.authorization}'
+        operationHeaders:
+          Store: '{context.headers.store}'
+          Authorization: '{context.headers.authorization}'
+          X-ReCaptcha: "{context.headers['x-recaptcha']}"
+          Preview-Version: "{context.headers['preview-version']}"
+          Content-Currency: "{context.headers['content-currency']}"
+serve:
+  playground: true
+additionalTypeDefs:
+  - '@graphcommerce/magento-pagebuilder/mesh/schema.graphqls'
+additionalResolvers:
+  - '@graphcommerce/magento-pagebuilder/mesh/resolvers.ts'
