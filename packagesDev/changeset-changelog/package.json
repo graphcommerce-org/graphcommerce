@@ -12,6 +12,6 @@
     "prepack": "yarn build"
   },
   "dependencies": {
-    "@changesets/changelog-github": "0.4.7"
+    "@changesets/changelog-github": "0.4.8"
   }
 }
