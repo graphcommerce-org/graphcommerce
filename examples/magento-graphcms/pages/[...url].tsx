@@ -106,7 +106,7 @@ function CategoryPage(props: CategoryProps) {
 
       {isCategory && !isLanding && (
         <ProductListParamsProvider value={params}>
-          <CategoryDescription description={category.description} />
+          <CategoryDescription {...category} />
           <CategoryChildren params={params}>{category.children}</CategoryChildren>
 
           <StickyBelowHeader>

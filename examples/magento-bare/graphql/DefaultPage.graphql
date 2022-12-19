@@ -1,0 +1,3 @@
+query DefaultPage($urlKey: String!) {
+  ...CmsPageQueryFragment
+}

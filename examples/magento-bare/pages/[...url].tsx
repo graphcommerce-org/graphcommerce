@@ -89,7 +89,7 @@ function CategoryPage(props: CategoryProps) {
 
       {isCategory && !isLanding && (
         <ProductListParamsProvider value={params}>
-          <CategoryDescription description={category.description} />
+          <CategoryDescription {...category} />
           <CategoryChildren params={params}>{category.children}</CategoryChildren>
 
           <StickyBelowHeader>
@@ -146,7 +146,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
 
   const categoryPage = staticClient.query({
     query: CategoryPageDocument,
-    variables: { url },
+    variables: { url, urlKey: url },
   })
   const layout = staticClient.query({ query: LayoutDocument })
 

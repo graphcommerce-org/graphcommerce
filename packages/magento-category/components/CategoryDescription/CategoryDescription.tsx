@@ -11,12 +11,11 @@ const parts = ['root'] as const
 const { classes } = extendableComponent(cmpName, parts)
 
 export function CategoryDescription(props: CategoryDescriptionProps) {
-  const { name, description, display_mode, sx = [], ...divProps } = props
+  const { name, description, display_mode, sx = [] } = props
 
   return description ? (
     // eslint-disable-next-line react/no-danger
     <Box
-      {...divProps}
       className={classes.root}
       dangerouslySetInnerHTML={{ __html: description }}
       sx={[

@@ -1,3 +1,4 @@
-query CategoryPage($url: String!) {
+query CategoryPage($urlKey: String!, $url: String!) {
   ...CategoryQueryFragment
+  ...CmsPageQueryFragment
 }

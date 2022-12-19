@@ -186,7 +186,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const conf = client.query({ query: StoreConfigDocument })
   const productPage = staticClient.query({
     query: ProductPage2Document,
-    variables: { url: 'product/global', urlKey },
+    variables: { urlKey },
   })
   const layout = staticClient.query({ query: LayoutDocument })
 

@@ -12,7 +12,7 @@ export function TextRenderer(props: TextRendererProps) {
   const { textContent, sx = [] } = props
 
   const clickHandler = (event) => {
-    event.prventDefault()
+    event.preventDefault()
     console.log('handleclick')
   }
 
