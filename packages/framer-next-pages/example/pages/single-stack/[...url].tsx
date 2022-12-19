@@ -10,7 +10,7 @@ import {
 import { Container } from '@mui/material'
 import { m } from 'framer-motion'
 import { GetStaticPathsResult, GetStaticProps } from 'next'
-import Link from 'next/link'
+import Link from '@mui/material'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import { Grid } from '../../components/Grid'

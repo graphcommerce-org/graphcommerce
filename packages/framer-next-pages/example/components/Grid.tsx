@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import { Link } from '@mui/material'
 import { useRouter } from 'next/router'
 import styles from './styles.module.css'
 

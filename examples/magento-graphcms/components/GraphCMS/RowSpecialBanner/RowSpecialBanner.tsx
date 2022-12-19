@@ -1,7 +1,6 @@
 import { RichText, Asset } from '@graphcommerce/graphcms-ui'
 import { breakpointVal, SpecialBanner } from '@graphcommerce/next-ui'
 import { Link } from '@mui/material'
-import PageLink from 'next/link'
 import { RowSpecialBannerFragment } from './RowSpecialBanner.gql'
 
 type RowSpecialBannerProps = RowSpecialBannerFragment
@@ -14,11 +13,15 @@ export function RowSpecialBanner(props: RowSpecialBannerProps) {
       topic={topic}
       asset={asset && <Asset asset={asset} sizes='50vw' />}
       pageLinks={pageLinks.map((pageLink) => (
-        <PageLink href={pageLink.url} key={pageLink.url} passHref legacyBehavior>
-          <Link underline='always' href={pageLink.url} title={pageLink.title} color='inherit'>
-            {pageLink.title}
-          </Link>
-        </PageLink>
+        <Link
+          underline='always'
+          href={pageLink.url}
+          key={pageLink.url}
+          title={pageLink.title}
+          color='inherit'
+        >
+          {pageLink.title}
+        </Link>
       ))}
     >
       <RichText

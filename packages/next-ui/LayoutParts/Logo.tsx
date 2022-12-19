@@ -6,9 +6,9 @@ import {
   Theme,
   unstable_composeClasses as composeClasses,
 } from '@mui/material'
-import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import { forwardRef } from 'react'
+import { NextLink } from '../Theme'
 
 /** We're creating some boilerplate */
 const name = 'GcLogo'
@@ -23,7 +23,7 @@ const useUtilityClasses = ({ classes }: LogoClassProps) =>
   composeClasses({ logo: ['logo'], parent: ['parent'] }, getLogoUtilityClass, classes)
 
 /** Creating styled components */
-const LogoContainer = styled('div', {
+const LogoContainer = styled(NextLink, {
   name,
   slot: 'parent',
   overridesResolver: (_props, styles) => styles.parent,
@@ -68,10 +68,8 @@ export const Logo = forwardRef<HTMLDivElement, LogoProps>((props, ref) => {
       {img}
     </LogoContainer>
   ) : (
-    <PageLink href={href} passHref legacyBehavior>
-      <LogoContainer ref={ref} as='a' sx={sx} className={classes.parent}>
-        {img}
-      </LogoContainer>
-    </PageLink>
+    <LogoContainer href={href} ref={ref} sx={sx} className={classes.parent}>
+      {img}
+    </LogoContainer>
   )
 })

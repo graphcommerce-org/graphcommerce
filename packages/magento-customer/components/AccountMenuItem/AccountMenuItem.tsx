@@ -8,7 +8,6 @@ import {
   extendableComponent,
 } from '@graphcommerce/next-ui'
 import { ListItem, ListItemIcon, ListItemText, SxProps, Theme } from '@mui/material'
-import PageLink from 'next/link'
 import React from 'react'
 
 export type AccountMenuItemProps = {
@@ -39,8 +38,9 @@ export function AccountMenuItem(props: AccountMenuItemProps) {
   } = props
   const classes = withState({ noBorderBottom })
 
-  const button = (
+  return (
     <Button
+      href={href}
       disabled={disabled}
       className={classes.root}
       sx={[
@@ -93,13 +93,5 @@ export function AccountMenuItem(props: AccountMenuItemProps) {
         {endIcon ?? <IconSvg src={iconChevronRight} />}
       </ListItem>
     </Button>
-  )
-
-  return href ? (
-    <PageLink href={href} passHref legacyBehavior>
-      {button}
-    </PageLink>
-  ) : (
-    button
   )
 }

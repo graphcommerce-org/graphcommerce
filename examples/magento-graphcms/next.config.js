@@ -42,8 +42,6 @@ if (!process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT) {
 const nextConfig = {
   experimental: {
     scrollRestoration: true,
-    browsersListForSwc: true,
-    legacyBrowsers: false,
   },
   optimizeFonts: false,
   swcMinify: true,

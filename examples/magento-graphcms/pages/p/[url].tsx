@@ -33,11 +33,11 @@ import {
   LayoutHeader,
   LayoutTitle,
   isTypename,
+  NextLink,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box, Divider, Link, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
-import PageLink from 'next/link'
 import {
   LayoutNavigation,
   LayoutNavigationProps,
@@ -118,17 +118,14 @@ function ProductPage(props: Props) {
               product={product}
               optionEndLabels={{
                 size: (
-                  <PageLink href='/modal/product/global/size' legacyBehavior>
-                    <Link
-                      rel='nofollow'
-                      component='button'
-                      type='button'
-                      color='primary'
-                      underline='hover'
-                    >
-                      <Trans id='Which size is right?' />
-                    </Link>
-                  </PageLink>
+                  <Link
+                    href='/modal/product/global/size'
+                    rel='nofollow'
+                    color='primary'
+                    underline='hover'
+                  >
+                    <Trans id='Which size is right?' />
+                  </Link>
                 ),
               }}
             />

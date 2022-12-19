@@ -13,7 +13,7 @@ import {
 import { Container } from '@mui/material'
 import { m } from 'framer-motion'
 import { GetStaticPathsResult, GetStaticProps } from 'next'
-import Link from 'next/link'
+import { Link } from '@mui/material'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import { Grid } from '../../components/Grid'
@@ -31,15 +31,14 @@ function MultiStack() {
       <LayoutHeader
         noAlign
         primary={
-          <Link href={`/multi-stack/${variant}/${page + 1}`} passHref legacyBehavior>
-            <LinkOrButton
-              color='secondary'
-              button={{ variant: 'pill' }}
-              endIcon={<IconSvg src={iconChevronRight} />}
-            >
-              {page + 1}
-            </LinkOrButton>
-          </Link>
+          <LinkOrButton
+            href={`/multi-stack/${variant}/${page + 1}`}
+            color='secondary'
+            button={{ variant: 'pill' }}
+            endIcon={<IconSvg src={iconChevronRight} />}
+          >
+            {page + 1}
+          </LinkOrButton>
         }
       >
         <LayoutTitle size='small' component='span'>

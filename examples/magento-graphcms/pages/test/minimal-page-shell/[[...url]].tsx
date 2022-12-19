@@ -8,7 +8,6 @@ import {
 } from '@graphcommerce/next-ui'
 import { Container, Divider, List, ListItem } from '@mui/material'
 import { m } from 'framer-motion'
-import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import { LayoutMinimal, LayoutMinimalProps } from '../../../components'
@@ -46,20 +45,24 @@ export function LayoutDemo(props: LayoutDemoProps) {
 
   if (withPrimary)
     primaryAction = (
-      <PageLink href={`${baseUrl}/with-primary-navigated`} passHref legacyBehavior>
-        <LinkOrButton color='secondary' button={{ variant: 'pill' }}>
-          Navigate
-        </LinkOrButton>
-      </PageLink>
+      <LinkOrButton
+        href={`${baseUrl}/with-primary-navigated`}
+        color='secondary'
+        button={{ variant: 'pill' }}
+      >
+        Navigate
+      </LinkOrButton>
     )
 
   if (withStepper && step < 3) {
     primaryAction = (
-      <PageLink href={`${baseUrl}/with-stepper-${step + 1}`} passHref legacyBehavior>
-        <LinkOrButton color='secondary' button={{ variant: 'pill' }}>
-          Navigate
-        </LinkOrButton>
-      </PageLink>
+      <LinkOrButton
+        href={`${baseUrl}/with-stepper-${step + 1}`}
+        color='secondary'
+        button={{ variant: 'pill' }}
+      >
+        Navigate
+      </LinkOrButton>
     )
   }
 

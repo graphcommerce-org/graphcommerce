@@ -1,5 +1,6 @@
 {
   "homepage": "https://www.graphcommerce.org/",
+  "name": "root",
   "repository": "github:graphcommerce-org/graphcommerce",
   "version": "5.0.0",
   "private": true,

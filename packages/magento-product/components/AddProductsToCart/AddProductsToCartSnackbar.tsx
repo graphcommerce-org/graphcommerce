@@ -10,7 +10,6 @@ import {
   MessageSnackbarProps,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import PageLink from 'next/link'
 import { toUserErrors } from './toUserErrors'
 import { useFormAddProductsToCart } from './useFormAddProductsToCart'
 
@@ -52,18 +51,17 @@ export function AddProductsToCartSnackbar(props: AddProductsToCartSnackbarProps)
           {...successSnackbar}
           open={showSuccess}
           action={
-            <PageLink href='/cart' passHref legacyBehavior>
-              <Button
-                id='view-shopping-cart-button'
-                size='medium'
-                variant='pill'
-                color='secondary'
-                endIcon={<IconSvg src={iconChevronRight} />}
-                sx={{ display: 'flex' }}
-              >
-                <Trans id='View shopping cart' />
-              </Button>
-            </PageLink>
+            <Button
+              href='/cart'
+              id='view-shopping-cart-button'
+              size='medium'
+              variant='pill'
+              color='secondary'
+              endIcon={<IconSvg src={iconChevronRight} />}
+              sx={{ display: 'flex' }}
+            >
+              <Trans id='View shopping cart' />
+            </Button>
           }
         >
           <Trans
