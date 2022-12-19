@@ -46,7 +46,7 @@ export function AccountAddress(props: AccountAddressProps) {
           textAlign: 'right',
         }}
       >
-        <PageLink href={`/account/addresses/edit?addressId=${id}`} passHref>
+        <PageLink href={`/account/addresses/edit?addressId=${id}`} passHref legacyBehavior>
           <Link color='primary' underline='hover'>
             <Trans id='Edit' />
           </Link>

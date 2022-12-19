@@ -27,7 +27,7 @@ export function CartStartCheckoutLinkOrButton(props: CartStartCheckoutLinkOrButt
   const hasErrors = cart.items?.some((item) => (item?.errors?.length ?? 0) > 0)
 
   return (
-    <PageLink href='/checkout' passHref>
+    <PageLink href='/checkout' passHref legacyBehavior>
       <LinkOrButton
         onClick={(e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => {
           onClick?.(e)

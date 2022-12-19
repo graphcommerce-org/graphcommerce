@@ -42,7 +42,7 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
-      <PageLink href='/checkout' passHref>
+      <PageLink href='/checkout' passHref legacyBehavior>
         <Button
           href='/checkout'
           id='cart-start-checkout'

@@ -114,7 +114,7 @@ export function CartSummary(props: CartSummaryProps) {
               sx={{ '& .SectionHeader-root': { marginTop: 0, paddingBottom: '8px' } }}
               labelRight={
                 editable ? (
-                  <PageLink href={historyHref} passHref>
+                  <PageLink href={historyHref} passHref legacyBehavior>
                     <Link
                       color='secondary'
                       variant='body2'
@@ -137,7 +137,7 @@ export function CartSummary(props: CartSummaryProps) {
             sx={{ '& .SectionHeader-root': { marginTop: 0, paddingBottom: '8px' } }}
             labelRight={
               editable ? (
-                <PageLink href='/checkout/edit/billing-address' passHref>
+                <PageLink href='/checkout/edit/billing-address' passHref legacyBehavior>
                   <Link color='secondary' variant='body2' underline='hover'>
                     <Trans id='Edit' />
                   </Link>

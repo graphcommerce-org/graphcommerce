@@ -16,12 +16,12 @@ type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props>
 
 function RouteNotFoundPage() {
   const links = [
-    <PageLink key={0} passHref href='/'>
+    <PageLink key={0} passHref href='/' legacyBehavior>
       <Link color='primary' underline='hover'>
         <Trans id='Store home' />
       </Link>
     </PageLink>,
-    <PageLink key={1} passHref href='/account'>
+    <PageLink key={1} passHref href='/account' legacyBehavior>
       <Link color='primary' underline='hover'>
         <Trans id='Account' />
       </Link>

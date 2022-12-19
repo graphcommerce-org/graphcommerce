@@ -80,7 +80,7 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
             <Trans id='Hi {firstname}! You’re now logged in!' values={{ firstname }} />
           </LayoutTitle>
           <Typography variant='h6' align='center'>
-            <PageLink href='/account' passHref>
+            <PageLink href='/account' passHref legacyBehavior>
               <Link underline='hover' color='secondary'>
                 <Trans id='View your account' />
               </Link>

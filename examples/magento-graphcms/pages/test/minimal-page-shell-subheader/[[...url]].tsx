@@ -38,7 +38,7 @@ function MinimalLayoutSubheader(props: Props) {
     <ProductListParamsProvider value={params}>
       <LayoutHeader
         primary={
-          <PageLink href='/test/minimal-page-shell' passHref>
+          <PageLink href='/test/minimal-page-shell' passHref legacyBehavior>
             <LinkOrButton color='secondary' button={{ variant: 'pill' }}>
               Navigate
             </LinkOrButton>

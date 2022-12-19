@@ -52,6 +52,7 @@ export function StoreSwitcherList(props: StoreSwitcherListProps) {
             locale={storeToLocale(group.stores[0].store_code)}
             replace
             passHref
+            legacyBehavior
           >
             <ListItem
               disabled={!storeToLocale(group.stores[0].store_code)}
@@ -94,6 +95,7 @@ export function StoreSwitcherList(props: StoreSwitcherListProps) {
                   locale={storeToLocale(store.store_code)}
                   replace
                   passHref
+                  legacyBehavior
                 >
                   <ListItem
                     disabled={!localeToStore(locale)}

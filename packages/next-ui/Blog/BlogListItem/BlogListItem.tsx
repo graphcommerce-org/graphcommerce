@@ -38,7 +38,7 @@ export function BlogListItem(props: BlogListItemProps) {
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
-      <PageLink href={`/${url}`} passHref>
+      <PageLink href={`/${url}`} passHref legacyBehavior>
         <Link color='inherit' underline='hover'>
           <Box
             className={classes.asset}
@@ -83,7 +83,7 @@ export function BlogListItem(props: BlogListItemProps) {
         {formatter.format(new Date(date))}
       </Box>
 
-      <PageLink href={`/${url}`} passHref>
+      <PageLink href={`/${url}`} passHref legacyBehavior>
         <Link href={`/${url}`} className={classes.title} color='inherit' underline='hover'>
           <Typography component='h2' variant='h4'>
             {title}

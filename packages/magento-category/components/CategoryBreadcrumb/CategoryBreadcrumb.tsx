@@ -11,7 +11,7 @@ export function CategoryBreadcrumb(props: CategoryPageBreadcrumbsProps) {
 
   return (
     <Breadcrumbs {...breadcrumbsProps}>
-      <PageLink href='/' passHref>
+      <PageLink href='/' passHref legacyBehavior>
         <Link underline='hover' color='inherit'>
           <Trans id='Home' />
         </Link>

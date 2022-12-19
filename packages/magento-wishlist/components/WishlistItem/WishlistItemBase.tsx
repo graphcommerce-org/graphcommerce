@@ -176,7 +176,7 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
           alignSelf: 'flex-start',
         })}
       >
-        <PageLink href={productLink} passHref>
+        <PageLink href={productLink} passHref legacyBehavior>
           <Box
             component='a'
             className={classes.productLink}
@@ -205,7 +205,7 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
         </PageLink>
       </Badge>
 
-      <PageLink href={productLink} passHref>
+      <PageLink href={productLink} passHref legacyBehavior>
         <Link
           variant='body1'
           className={classes.itemName}

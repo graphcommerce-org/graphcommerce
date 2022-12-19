@@ -46,7 +46,7 @@ export function LayoutDemo(props: LayoutDemoProps) {
 
   if (withPrimary)
     primaryAction = (
-      <PageLink href={`${baseUrl}/with-primary-navigated`} passHref>
+      <PageLink href={`${baseUrl}/with-primary-navigated`} passHref legacyBehavior>
         <LinkOrButton color='secondary' button={{ variant: 'pill' }}>
           Navigate
         </LinkOrButton>
@@ -55,7 +55,7 @@ export function LayoutDemo(props: LayoutDemoProps) {
 
   if (withStepper && step < 3) {
     primaryAction = (
-      <PageLink href={`${baseUrl}/with-stepper-${step + 1}`} passHref>
+      <PageLink href={`${baseUrl}/with-stepper-${step + 1}`} passHref legacyBehavior>
         <LinkOrButton color='secondary' button={{ variant: 'pill' }}>
           Navigate
         </LinkOrButton>
@@ -98,42 +98,42 @@ export function LayoutDemo(props: LayoutDemoProps) {
         {/* <LayoutTitle icon={withIcon ? iconPerson : undefined}>{title}</LayoutTitle> */}
 
         {/* {isSheet && !primaryAction && (
-          <Typography variant='body1' gutterBottom>
-            When opening a sheet a close icon is shown at the top right.
-          </Typography>
-        )}
+        <Typography variant='body1' gutterBottom>
+          When opening a sheet a close icon is shown at the top right.
+        </Typography>
+      )}
 
-        {primaryAction && backSteps === 0 && (
-          <Typography variant='body1' gutterBottom>
-            When a primary action is present, the close button moves to the left.
-          </Typography>
-        )}
+      {primaryAction && backSteps === 0 && (
+        <Typography variant='body1' gutterBottom>
+          When a primary action is present, the close button moves to the left.
+        </Typography>
+      )}
 
-        {backSteps > 0 && (
-          <Typography variant='body1' gutterBottom>
-            When navigated inside the overlay, a backbutton is shown on in the top left.
-          </Typography>
-        )}
+      {backSteps > 0 && (
+        <Typography variant='body1' gutterBottom>
+          When navigated inside the overlay, a backbutton is shown on in the top left.
+        </Typography>
+      )}
 
-        {primaryAction && backSteps > 0 && (
-          <Typography variant='body1' gutterBottom>
-            With a primary action and back button, there is no room for the close button. The close
-            button gets ommited
-          </Typography>
-        )} */}
+      {primaryAction && backSteps > 0 && (
+        <Typography variant='body1' gutterBottom>
+          With a primary action and back button, there is no room for the close button. The close
+          button gets ommited
+        </Typography>
+      )} */}
 
         <Divider />
 
         <List>
           {primaryAction || backSteps === 0 ? (
-            <PageLink href={`${baseUrl}/navigated`} passHref>
+            <PageLink href={`${baseUrl}/navigated`} passHref legacyBehavior>
               <ListItem button component='a' style={{ paddingLeft: 0, paddingRight: 0 }}>
                 Navigate
               </ListItem>
             </PageLink>
           ) : null}
 
-          <PageLink href={`${baseUrl}/with-primary`} passHref>
+          <PageLink href={`${baseUrl}/with-primary`} passHref legacyBehavior>
             <ListItem
               button
               component='a'
@@ -144,7 +144,7 @@ export function LayoutDemo(props: LayoutDemoProps) {
             </ListItem>
           </PageLink>
 
-          <PageLink href={`${baseUrl}/with-stepper-1`} passHref>
+          <PageLink href={`${baseUrl}/with-stepper-1`} passHref legacyBehavior>
             <ListItem
               button
               component='a'
@@ -155,7 +155,7 @@ export function LayoutDemo(props: LayoutDemoProps) {
             </ListItem>
           </PageLink>
 
-          <PageLink href={`${baseUrl}/with-icon`} passHref>
+          <PageLink href={`${baseUrl}/with-icon`} passHref legacyBehavior>
             <ListItem
               button
               component='a'
@@ -168,6 +168,7 @@ export function LayoutDemo(props: LayoutDemoProps) {
           <PageLink
             href='/test/sheet?sizeMd=full&sizeSm=full&justifyMd=stretch&justifySm=stretch&variantMd=bottom&variantSm=bottom'
             passHref
+            legacyBehavior
           >
             <ListItem
               button
@@ -181,6 +182,7 @@ export function LayoutDemo(props: LayoutDemoProps) {
           <PageLink
             href='/test/sheet?sizeMd=full&sizeSm=full&justifyMd=start&justifySm=start&variantMd=left&variantSm=left'
             passHref
+            legacyBehavior
           >
             <ListItem
               button
@@ -194,6 +196,7 @@ export function LayoutDemo(props: LayoutDemoProps) {
           <PageLink
             href='/test/sheet?sizeMd=full&sizeSm=full&justifyMd=start&justifySm=start&variantMd=right&variantSm=right'
             passHref
+            legacyBehavior
           >
             <ListItem
               button
@@ -204,7 +207,7 @@ export function LayoutDemo(props: LayoutDemoProps) {
               Right side sheet
             </ListItem>
           </PageLink>
-          <PageLink href='/test/minimal-page-shell' passHref>
+          <PageLink href='/test/minimal-page-shell' passHref legacyBehavior>
             <ListItem
               button
               component='a'
@@ -214,7 +217,7 @@ export function LayoutDemo(props: LayoutDemoProps) {
               Minimal Page Shell
             </ListItem>
           </PageLink>
-          <PageLink href='/test' passHref>
+          <PageLink href='/test' passHref legacyBehavior>
             <ListItem
               button
               component='a'
@@ -224,7 +227,7 @@ export function LayoutDemo(props: LayoutDemoProps) {
               Full Page Shell
             </ListItem>
           </PageLink>
-          <PageLink href='/test/with-title' passHref>
+          <PageLink href='/test/with-title' passHref legacyBehavior>
             <ListItem
               button
               component='a'
@@ -235,7 +238,7 @@ export function LayoutDemo(props: LayoutDemoProps) {
             </ListItem>
           </PageLink>
 
-          <PageLink href='/test/minimal-page-shell-subheader' passHref>
+          <PageLink href='/test/minimal-page-shell-subheader' passHref legacyBehavior>
             <ListItem
               button
               component='a'

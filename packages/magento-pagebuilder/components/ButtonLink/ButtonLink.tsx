@@ -57,7 +57,7 @@ export function ButtonLink(props: ButtonLinkComponentProps) {
   }
 
   return (
-    <Link href={link ?? ''} passHref>
+    <Link href={link ?? ''} passHref legacyBehavior>
       <Button component='a' sx={sx} {...buttonProps} onClick={handleClick}>
         {buttonText}
       </Button>

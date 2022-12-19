@@ -81,7 +81,7 @@ function CheckoutAdded() {
           gap: theme.spacings.xxs,
           gridTemplate: {
             xs: `"icon children close"
-                 "action action   action"`,
+               "action action   action"`,
             md: '"icon children action close"',
           },
           gridTemplateColumns: {
@@ -136,7 +136,7 @@ function CheckoutAdded() {
           )}
         </Box>
         <Box gridArea='action'>
-          <PageLink href='/cart' passHref>
+          <PageLink href='/cart' passHref legacyBehavior>
             <Button
               id='view-shopping-cart-button'
               size='large'

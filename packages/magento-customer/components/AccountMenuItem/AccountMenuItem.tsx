@@ -96,7 +96,7 @@ export function AccountMenuItem(props: AccountMenuItemProps) {
   )
 
   return href ? (
-    <PageLink href={href} passHref>
+    <PageLink href={href} passHref legacyBehavior>
       {button}
     </PageLink>
   ) : (

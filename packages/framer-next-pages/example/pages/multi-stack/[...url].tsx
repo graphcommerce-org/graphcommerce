@@ -31,7 +31,7 @@ function MultiStack() {
       <LayoutHeader
         noAlign
         primary={
-          <Link href={`/multi-stack/${variant}/${page + 1}`} passHref>
+          <Link href={`/multi-stack/${variant}/${page + 1}`} passHref legacyBehavior>
             <LinkOrButton
               color='secondary'
               button={{ variant: 'pill' }}
@@ -50,15 +50,8 @@ function MultiStack() {
         <LayoutTitle>
           Overlay {variant} {page}
         </LayoutTitle>
-        {page > 0 && (
-          <Link href={`/multi-stack/${variant}/${page - 1}`}>
-            <a>{page - 1}</a>
-          </Link>
-        )}{' '}
-        {page}{' '}
-        <Link href={`/multi-stack/${variant}/${page + 1}`}>
-          <a>{page + 1}</a>
-        </Link>
+        {page > 0 && <Link href={`/multi-stack/${variant}/${page - 1}`}>{page - 1}</Link>} {page}{' '}
+        <Link href={`/multi-stack/${variant}/${page + 1}`}>{page + 1}</Link>
         <button type='button' onClick={() => setExpanded(!expanded)}>
           {expanded ? 'collapse' : 'expand'}
         </button>

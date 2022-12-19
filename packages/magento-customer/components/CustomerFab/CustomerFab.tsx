@@ -27,7 +27,7 @@ function CustomerFabContent(props: CustomerFabContentProps) {
   const { session, icon, guestHref, authHref, FabProps, sx } = props
 
   return (
-    <PageLink href={session?.requireAuth ? guestHref : authHref} passHref>
+    <PageLink href={session?.requireAuth ? guestHref : authHref} passHref legacyBehavior>
       <Fab
         color='inherit'
         id='account'

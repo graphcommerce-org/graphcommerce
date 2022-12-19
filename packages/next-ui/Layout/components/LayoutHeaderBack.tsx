@@ -69,7 +69,7 @@ export function LayoutHeaderBack(props: BackProps) {
 
   if (up?.href && up.href !== path)
     return (
-      <PageLink href={up.href} passHref>
+      <PageLink href={up.href} passHref legacyBehavior>
         <LinkOrButton
           button={{ variant: 'pill', sx: buttonSx }}
           startIcon={backIcon}

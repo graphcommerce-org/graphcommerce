@@ -18,7 +18,7 @@ export function ApolloCustomerErrorAlert(props: ApolloCustomerErrorAlertProps) {
       error={newError}
       graphqlErrorAlertProps={{
         action: unauthorized ? (
-          <NextLink href='/account/signin' passHref>
+          <NextLink href='/account/signin' passHref legacyBehavior>
             <Link underline='hover'>
               {token ? <Trans id='Sign in' /> : <Trans id='Create Account' />}
             </Link>

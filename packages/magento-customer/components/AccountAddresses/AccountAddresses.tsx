@@ -59,7 +59,7 @@ export function AccountAddresses(props: AccountAddressesProps) {
           title={<Trans id='You have no addresses saved yet' />}
           icon={<IconSvg src={iconHome} size='xxl' />}
           button={
-            <Link href='/account/addresses/add' passHref>
+            <Link href='/account/addresses/add' passHref legacyBehavior>
               <Button size='large' variant='pill' color='primary'>
                 <Trans id='Add new address' />
               </Button>
@@ -79,7 +79,7 @@ export function AccountAddresses(props: AccountAddressesProps) {
             ))}
           </Box>
 
-          <Link href='/account/addresses/add' passHref>
+          <Link href='/account/addresses/add' passHref legacyBehavior>
             <Button
               className={classes.button}
               variant='pill'

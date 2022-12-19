@@ -46,7 +46,7 @@ export function DesktopNavItem(props: DesktopNavItemLinkProps | DesktopNavItemBu
   const active = router.asPath.startsWith(href.toString())
 
   return (
-    <PageLink href={href} passHref>
+    <PageLink href={href} passHref legacyBehavior>
       <Link
         className={classes.root}
         variant='h6'

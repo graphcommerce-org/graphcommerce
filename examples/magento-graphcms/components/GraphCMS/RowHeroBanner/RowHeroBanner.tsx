@@ -10,7 +10,7 @@ export function RowHeroBanner(props: RowHeroBannerFragment) {
   return (
     <HeroBanner
       pageLinks={pageLinks.map((pageLink) => (
-        <PageLink key={pageLink.url} href={pageLink.url} passHref>
+        <PageLink key={pageLink.url} href={pageLink.url} passHref legacyBehavior>
           <Button variant='outlined' size='large' color='inherit'>
             {pageLink.title}
           </Button>

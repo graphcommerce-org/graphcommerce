@@ -210,7 +210,7 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
         onClose={() => setDisplayMessageBar(false)}
         variant='pill'
         action={
-          <PageLink href='/wishlist' passHref>
+          <PageLink href='/wishlist' passHref legacyBehavior>
             <Button
               id='view-wishlist-button'
               size='medium'
