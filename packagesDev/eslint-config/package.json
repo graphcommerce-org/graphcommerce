@@ -2,10 +2,10 @@
   "name": "@graphcommerce/eslint-config-pwa",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "5.1.1-canary.0",
+  "version": "5.1.1-canary.1",
   "main": "index.js",
   "dependencies": {
-    "@graphcommerce/typescript-config-pwa": "5.1.1-canary.0",
+    "@graphcommerce/typescript-config-pwa": "5.1.1-canary.1",
     "@next/eslint-plugin-next": "12.2.5",
     "@typescript-eslint/eslint-plugin": "^5.46.1",
     "@typescript-eslint/parser": "^5.46.1",

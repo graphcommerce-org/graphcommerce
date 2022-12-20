@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.1.1-canary.1
+
+### Patch Changes
+
+- [#1764](https://github.com/graphcommerce-org/graphcommerce/pull/1764) [`5829ffc73`](https://github.com/graphcommerce-org/graphcommerce/commit/5829ffc732c6aea95da53314722385a2c0edce85) - Update dependencies ([@paales](https://github.com/paales))
+
 ## 5.1.1-canary.0
 
 ## 5.1.0
