@@ -1,5 +1,13 @@
 # Change Log
 
+## 5.1.1
+
+### Patch Changes
+
+- [#1762](https://github.com/graphcommerce-org/graphcommerce/pull/1762) [`0dcbc432a`](https://github.com/graphcommerce-org/graphcommerce/commit/0dcbc432a4595d8758b58e9f5871eb0614ec3d7e) - Requested URLs to product pages incorrectly return a notFound error ([@paales](https://github.com/paales))
+
+- [#1762](https://github.com/graphcommerce-org/graphcommerce/pull/1762) [`1d03b8b1e`](https://github.com/graphcommerce-org/graphcommerce/commit/1d03b8b1effbe45215e16add45e82f4632584bc9) - Addtional implementations of the RoutableInterface caused redirects to fail ([@paales](https://github.com/paales))
+
 ## 5.1.1-canary.1
 
 ## 5.1.1-canary.0

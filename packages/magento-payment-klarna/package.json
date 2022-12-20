@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-payment-klarna",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "5.1.1-canary.1",
+  "version": "5.1.1",
   "private": true,
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
@@ -13,16 +13,16 @@
     }
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "5.1.1-canary.1",
-    "@graphcommerce/prettier-config-pwa": "5.1.1-canary.1",
-    "@graphcommerce/typescript-config-pwa": "5.1.1-canary.1"
+    "@graphcommerce/eslint-config-pwa": "5.1.1",
+    "@graphcommerce/prettier-config-pwa": "5.1.1",
+    "@graphcommerce/typescript-config-pwa": "5.1.1"
   },
   "dependencies": {
-    "@graphcommerce/graphql": "5.1.1-canary.1",
-    "@graphcommerce/image": "5.1.1-canary.1",
-    "@graphcommerce/magento-cart": "5.1.1-canary.1",
-    "@graphcommerce/magento-store": "5.1.1-canary.1",
-    "@graphcommerce/next-ui": "5.1.1-canary.1"
+    "@graphcommerce/graphql": "5.1.1",
+    "@graphcommerce/image": "5.1.1",
+    "@graphcommerce/magento-cart": "5.1.1",
+    "@graphcommerce/magento-store": "5.1.1",
+    "@graphcommerce/next-ui": "5.1.1"
   },
   "peerDependencies": {
     "@lingui/react": "^3.13.2",
