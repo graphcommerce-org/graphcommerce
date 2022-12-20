@@ -1,3 +1,7 @@
+---
+menu: SEO Migration
+---
+
 # SEO Migration
 
 GraphCommerce uses a different URL structure than default Magento to achieve
@@ -8,7 +12,6 @@ better performance.
 - Products have a different URL structure: `/p/[url]`. e.g.
   `/p/my-product-url-key`.
 - Categories use same URL structure: `/[...url]`. e.g. `/my/category/path`.
-
 - GraphCommerce does not use any URL suffixes. e.g. `.html`.
 
 ## Why doesn't GraphCommerce support full URL rewrites?
@@ -32,3 +35,9 @@ A permanent redirect for product and category paths ending in the configured
 suffix (e.g. `.html`) is made automatically.
 
 Categories use the same URL structure as Magento, no redirection there.
+
+Redirects provided by Magento are automatically handled.
+
+## Next steps
+
+- [Overview](./readme)

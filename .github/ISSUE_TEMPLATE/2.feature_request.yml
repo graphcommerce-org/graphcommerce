@@ -1,15 +1,10 @@
 name: Feature Request
 description: Create a feature request for GraphCommerce
-labels: 'template: story'
+labels: ['template: story']
 body:
   - type: markdown
     attributes:
-      value:
-        Thanks for taking the time to file a feature request! Please fill out this form as
-        completely as possible.
-  - type: markdown
-    attributes:
-      value: 'Feature requests will be converted to the GitHub Discussions "Ideas" section.'
+      value: Thanks for taking the time to file a feature request!
   - type: textarea
     attributes:
       label: Describe the feature you'd like to request
@@ -25,7 +20,6 @@ body:
   - type: textarea
     attributes:
       label: Describe alternatives you've considered
-      description:
-        A clear and concise description of any alternative solutions or features you've considered.
+      description: A clear and concise description of any alternative solutions or features you've considered.
     validations:
       required: true

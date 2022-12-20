@@ -60,6 +60,11 @@ it('finds plugins', () => {
         "plugin": "@graphcommerce/googleanalytics/plugins/GaPaymentMethodContextProvider",
       },
       {
+        "component": "ProductListItem",
+        "exported": "@graphcommerce/magento-product",
+        "plugin": "@graphcommerce/googleanalytics/plugins/GaProductListItem",
+      },
+      {
         "component": "ProductListItemsBase",
         "exported": "@graphcommerce/magento-product",
         "plugin": "@graphcommerce/googleanalytics/plugins/GaProductListItemsBase",

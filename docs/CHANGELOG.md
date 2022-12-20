@@ -1,5 +1,19 @@
 # Change Log
 
+## 5.1.1
+
+### Patch Changes
+
+- [#1762](https://github.com/graphcommerce-org/graphcommerce/pull/1762) [`f7455e002`](https://github.com/graphcommerce-org/graphcommerce/commit/f7455e002259a71bb8db7ea0b8375134abf4ab50) - remove Developer preview snippet ([@paales](https://github.com/paales))
+
+## 5.1.1-canary.1
+
+## 5.1.1-canary.0
+
+### Patch Changes
+
+- [#1762](https://github.com/graphcommerce-org/graphcommerce/pull/1762) [`f7455e002`](https://github.com/graphcommerce-org/graphcommerce/commit/f7455e002259a71bb8db7ea0b8375134abf4ab50) - remove Developer preview snippet ([@paales](https://github.com/paales))
+
 ## 5.1.0
 
 ### Patch Changes

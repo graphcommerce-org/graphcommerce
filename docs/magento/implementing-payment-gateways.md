@@ -1,4 +1,19 @@
-# Magento payment gateway requirements
+---
+menu: Payment methods
+---
+
+# Magento Payment methods
+
+Currently supported methods:
+
+- [PayPal](https://github.com/graphcommerce-org/graphcommerce/tree/main/packages/magento-payment-paypal)
+- [Mollie](https://github.com/graphcommerce-org/graphcommerce/tree/main/packages/mollie-magento-payment)
+- [Braintree](https://github.com/graphcommerce-org/graphcommerce/tree/main/packages/magento-payment-braintree)
+- [Adyen](https://github.com/graphcommerce-org/graphcommerce/tree/main/packages/magento-payment-adyen)
+- [MultiSafePay](https://github.com/graphcommerce-org/graphcommerce/tree/main/packages/magento-payment-multisafepay)
+- [Klarna](https://github.com/graphcommerce-org/graphcommerce/tree/main/packages/magento-payment-klarna)
+
+## Creating a Magento compatible payment gateway
 
 Payment gateways are the most important part of any e-commerce store. In this
 section, we will discuss the requirements for implementing a payment gateway in
@@ -6,7 +21,7 @@ Magento 2 that is compatible with GraphCommerce.
 
 There are multiple flows to handle payments.
 
-## Flow 1: Redirecting payment gateway
+### Redirecting payment gateway
 
 The first step is to call setPaymentMethodOnCart and placeOrder.
 
@@ -166,3 +181,7 @@ enum MyGatewayStatusEnum {
   SUCCESS
 }
 ```
+
+## Next steps
+
+- [Overview](./readme)

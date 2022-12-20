@@ -1,6 +1,6 @@
 import { ParsedUrlQuery } from 'querystring'
 import { ApolloClient, flushMeasurePerf, NormalizedCacheObject } from '@graphcommerce/graphql'
-import { nonNullable } from '@graphcommerce/next-ui'
+import { nonNullable, isTypename } from '@graphcommerce/next-ui'
 import { Redirect } from 'next'
 import { StoreConfigDocument } from '../StoreConfig.gql'
 import { defaultLocale } from '../localeToStore'
@@ -66,23 +66,43 @@ export async function redirectOrNotFound(
 
     const routeData = await Promise.any(routePromises)
 
+    const relativeUrl =
+      routeData.route?.relative_url && routeData.route?.relative_url !== urlKey
+        ? routeData.route.relative_url
+        : undefined
+
     // There is a URL, so we need to check if it can be found in the database.
     const permanent = routeData.route?.redirect_code === 301
 
-    // Add special handling for the homepage.
-    if (routeData.route?.url_key && routeData.route?.__typename.endsWith('Product')) {
+    if (!routeData.route) return notFound()
+
+    if (
+      isTypename(routeData.route, [
+        'ConfigurableProduct',
+        'BundleProduct',
+        'SimpleProduct',
+        'VirtualProduct',
+        'DownloadableProduct',
+      ])
+    ) {
       if (process.env.NEXT_PUBLIC_SINGLE_PRODUCT_PAGE !== '1') {
         console.warn('Redirects are only supported for NEXT_PUBLIC_SINGLE_PRODUCT_PAGE')
+      }
+
+      if (relativeUrl) {
+        return redirect(`/p/${relativeUrl}`, permanent, locale)
       }
 
       if (routeData.products?.items?.find((i) => i?.url_key === routeData.route?.url_key)) {
         return redirect(`/p/${routeData.route?.url_key}`, permanent, locale)
       }
+
       return notFound()
     }
 
-    // The default URL for categories or CMS pages is handled by the pages/[...url].tsx file.
-    if (routeData.route?.url_key) return redirect(`/${routeData.route?.url_key}`, permanent, locale)
+    if (relativeUrl) {
+      return redirect(`/${relativeUrl}`, permanent, locale)
+    }
   } catch (e) {
     // We're done
   }
