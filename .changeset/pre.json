@@ -70,7 +70,6 @@
     "@graphcommerce/typescript-config-pwa": "5.1.0"
   },
   "changesets": [
-    "dirty-vans-lay",
     "fifty-moons-cough",
     "fifty-vans-prove",
     "poor-schools-doubt",
