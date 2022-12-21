@@ -1,13 +1,11 @@
-import {
-  NoOrdersFound,
-  OrderCard,
-  useOrderCardItemImages,
-} from '@graphcommerce/magento-customer-order'
 import { Pagination, SectionContainer, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box, Link, SxProps, Theme } from '@mui/material'
 import PageLink from 'next/link'
 import React from 'react'
+import useOrderCardItemImages from '../../hooks/useOrderCardItemImages'
+import { NoOrdersFound } from '../NoOrdersFound/NoOrdersFound'
+import { OrderCard } from '../OrderCard/OrderCard'
 import { AccountOrdersFragment } from './AccountOrders.gql'
 
 export type AccountOrdersProps = AccountOrdersFragment & { sx?: SxProps<Theme> }

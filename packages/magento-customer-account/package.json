@@ -20,7 +20,6 @@
     "@graphcommerce/graphql": "5.2.0-canary.0",
     "@graphcommerce/image": "5.2.0-canary.0",
     "@graphcommerce/magento-customer": "5.2.0-canary.0",
-    "@graphcommerce/magento-customer-order": "5.2.0-canary.0",
     "@graphcommerce/magento-graphql": "5.2.0-canary.0",
     "@graphcommerce/magento-store": "5.2.0-canary.0",
     "@graphcommerce/next-ui": "5.2.0-canary.0",
