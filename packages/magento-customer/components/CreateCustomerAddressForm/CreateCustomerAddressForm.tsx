@@ -44,7 +44,7 @@ export function CreateCustomerAddressForm() {
       },
       onComplete: (e) => {
         // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        router.push(`/account/addresses/edit?addressId=${e.data?.createCustomerAddress?.id}`)
+        router.push(`/account/addresses`)
       },
     },
     { errorPolicy: 'all' },
