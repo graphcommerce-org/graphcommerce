@@ -118,7 +118,7 @@ function SearchResultPage(props: SearchResultProps) {
           <Container maxWidth={false}>
             <ProductListCount total_count={products?.total_count} />
             <ProductListItems title={`Search ${search}`} items={products?.items} loadingEager={1} />
-            <ProductListPagination page_info={products?.page_info} />
+            <ProductListPagination page_info={products?.page_info} params={params} />
           </Container>
         </ProductListParamsProvider>
       )}

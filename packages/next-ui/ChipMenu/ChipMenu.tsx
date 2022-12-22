@@ -47,6 +47,7 @@ export function ChipMenu(props: ChipMenuProps) {
     accessKey,
     id = 'filterpopper',
     breakpoint = 'md',
+    onApply,
     ...chipProps
   } = props
 
@@ -139,3 +140,15 @@ export function ChipMenu(props: ChipMenuProps) {
     </>
   )
 }
+
+// ChipMenu
+// FilterRangeType
+
+/**
+ * PopperOrOverlayMenu { right?: React.ReactNode, bottom?: React.ReactNode, title: React.ReactNode }
+ *
+ * 
+ * Filter:
+ *   - Bepaal zelf children zoals ActionCardListForm of Slider
+ * - Binding met Chip of Button, of?
+ */

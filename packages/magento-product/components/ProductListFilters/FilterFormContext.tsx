@@ -10,20 +10,20 @@ type FilterFormContextProps = {
   submit: (e?: BaseSyntheticEvent<object, any, any> | undefined) => Promise<void>
 }
 
-const filterFormContext = createContext<FilterFormContextProps>({
-  form: {} as UseFormReturn<ProductAttributeFilterInput>,
-  params: {} as ProductListParams,
-  submit: () => new Promise(() => {}),
-})
+const filterFormContext = createContext<FilterFormContextProps | null>(null)
 
-export const useFilterForm = () => useContext(filterFormContext)
+export const useFilterForm = () => {
+  const context = useContext(filterFormContext)
+  if (!context) throw Error('useFilterForm should be used inside FilterFormProvider')
+  return context
+}
 
 export function FilterFormProvider(props: PropsWithChildren<{ initialParams: ProductListParams }>) {
   const { children, initialParams: params } = props
   const form = useForm<ProductAttributeFilterInput & { sort?: string }>({
     defaultValues: params.filters,
   })
-  const { handleSubmit, reset } = form
+  const { handleSubmit } = form
   const replaceRoute = useProductListLinkReplace({ scroll: false })
 
   const submit = handleSubmit(async (formValues) => {

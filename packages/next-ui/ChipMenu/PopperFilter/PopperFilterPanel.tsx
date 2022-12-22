@@ -13,7 +13,7 @@ type PopperFilterPanelProps = PropsWithChildren<
 }
 
 export function PopperFilterPanel(props: PopperFilterPanelProps) {
-  const { openEl, onClose, onApply } = props
+  const { openEl, onClose, onApply, ...filterContentProps } = props
   const open = Boolean(openEl)
 
   const ref = useRef(null)
@@ -69,7 +69,7 @@ export function PopperFilterPanel(props: PopperFilterPanelProps) {
         ]}
       >
         <PopperFilterContent
-          {...props}
+          {...filterContentProps}
           ref={ref}
           onClosed={() => {
             if (onClose && openEl) onClose()

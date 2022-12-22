@@ -16,7 +16,6 @@ export type FilterCheckboxTypeProps = Filter &
 export function FilterCheckboxType(props: FilterCheckboxTypeProps) {
   const { attribute_code, count, label, options, ...chipProps } = props
   const { params } = useFilterForm()
-  console.log({ params })
   const currentFilter = params.filters[attribute_code]
   const replaceRoute = useProductListLinkReplace({ scroll: false })
 
@@ -46,6 +45,7 @@ export function FilterCheckboxType(props: FilterCheckboxTypeProps) {
                 delete linkParams.currentPage
                 delete linkParams.filters[attribute_code]
 
+                // eslint-disable-next-line @typescript-eslint/no-floating-promises
                 replaceRoute(linkParams)
               }
             : undefined
