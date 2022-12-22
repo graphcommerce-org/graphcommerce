@@ -132,7 +132,7 @@ function CategoryPage(props: CategoryProps) {
               items={products?.items}
               loadingEager={1}
             />
-            <ProductListPagination page_info={products?.page_info} />
+            <ProductListPagination page_info={products?.page_info} params={params} />
           </Container>
         </>
       )}
