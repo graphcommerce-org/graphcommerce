@@ -14,7 +14,7 @@
   "dependencies": {
     "@apollo/client": "^3.7.2",
     "graphql": "16.6.0",
-    "react-hook-form": "7.40.0"
+    "react-hook-form": "7.41.0"
   },
   "devDependencies": {
     "@graphcommerce/eslint-config-pwa": "5.1.1",
