@@ -118,7 +118,7 @@ function CategoryPage(props: CategoryProps) {
                 />
                 <ProductListFilters
                   products={products}
-                  aggregations={filters?.aggregations?.filter((agg) => agg?.label !== 'Category')}
+                  aggregations={filters?.aggregations}
                   filterTypes={filterTypes}
                 />
               </ProductListFiltersContainer>

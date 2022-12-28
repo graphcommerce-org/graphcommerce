@@ -4,7 +4,6 @@ import {
   ProductListFilters,
   ProductListFiltersContainer,
   ProductListPagination,
-  ProductListParamsProvider,
   ProductListSort,
   ProductListDocument,
   extractUrlQuery,
@@ -103,9 +102,9 @@ function SearchResultPage(props: SearchResultProps) {
 
       {noSearchResults && <NoSearchResults search={search} />}
       {products && products.items && products?.items?.length > 0 && (
-        <ProductListParamsProvider value={params}>
-          <StickyBelowHeader>
-            <FilterFormProvider initialParams={params}>
+        <>
+          <FilterFormProvider initialParams={params}>
+            <StickyBelowHeader>
               <ProductListFiltersContainer>
                 <ProductListSort sort_fields={products?.sort_fields} />
                 <ProductListFilters
@@ -113,14 +112,14 @@ function SearchResultPage(props: SearchResultProps) {
                   filterTypes={filterTypes}
                 />
               </ProductListFiltersContainer>
-            </FilterFormProvider>
-          </StickyBelowHeader>
+            </StickyBelowHeader>
+          </FilterFormProvider>
           <Container maxWidth={false}>
             <ProductListCount total_count={products?.total_count} />
             <ProductListItems title={`Search ${search}`} items={products?.items} loadingEager={1} />
             <ProductListPagination page_info={products?.page_info} params={params} />
           </Container>
-        </ProductListParamsProvider>
+        </>
       )}
     </>
   )

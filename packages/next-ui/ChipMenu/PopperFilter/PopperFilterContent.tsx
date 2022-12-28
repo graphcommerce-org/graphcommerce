@@ -6,7 +6,6 @@ import { LinkOrButton } from '../../Button'
 import { IconSvg } from '../../IconSvg'
 import { LayoutTitle } from '../../Layout'
 import { LayoutOverlayHeader } from '../../LayoutOverlay'
-import { responsiveVal } from '../../Styles'
 import { iconClose } from '../../icons'
 import { FilterPanelProps } from '../types'
 

@@ -1,7 +1,7 @@
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, TextField } from '@mui/material'
-import React, { useState, ReactElement, useMemo, forwardRef } from 'react'
+import React, { useState, ReactElement, useMemo } from 'react'
 import { LinkOrButton } from '../../Button'
 import { IconSvg } from '../../IconSvg'
 import { LayoutTitle } from '../../Layout'
