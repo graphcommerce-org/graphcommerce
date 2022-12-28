@@ -9,8 +9,8 @@ import { ApolloCustomerErrorFullPage } from '../ApolloCustomerError/ApolloCustom
 
 type WaitForCustomerProps = Omit<WaitForQueriesProps, 'fallback' | 'waitFor'> & {
   waitFor?: WaitForQueriesProps['waitFor']
-  fallbackComponent?: React.ReactNode
-  unauthenticatedComponent?: React.ReactNode
+  fallback?: React.ReactNode
+  unauthenticated?: React.ReactNode
 }
 
 export function nonNullable<T>(value: T): value is NonNullable<T> {
@@ -40,7 +40,7 @@ export function nonNullable<T>(value: T): value is NonNullable<T> {
  * ```
  */
 export function WaitForCustomer(props: WaitForCustomerProps) {
-  const { waitFor = [], children, fallbackComponent, unauthenticatedComponent } = props
+  const { waitFor = [], children, fallback, unauthenticated } = props
 
   const session = useCustomerSession()
   const queries = Array.isArray(waitFor) ? waitFor : [waitFor]
@@ -52,7 +52,7 @@ export function WaitForCustomer(props: WaitForCustomerProps) {
     <WaitForQueries
       waitFor={!session.loggedIn ? session.query : queries}
       fallback={
-        fallbackComponent ?? (
+        fallback ?? (
           <FullPageMessage icon={<CircularProgress />} title={<Trans id='Loading your data' />}>
             <Trans id='This may take a second' />
           </FullPageMessage>
@@ -60,7 +60,7 @@ export function WaitForCustomer(props: WaitForCustomerProps) {
       }
     >
       {!session.loggedIn &&
-        (unauthenticatedComponent ?? (
+        (unauthenticated ?? (
           <FullPageMessage
             icon={<IconSvg src={iconPerson} size='xxl' />}
             title={<Trans id='You must sign in to continue' />}
