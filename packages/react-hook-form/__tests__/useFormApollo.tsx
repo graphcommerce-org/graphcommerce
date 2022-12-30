@@ -1,4 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
+import { useQuery } from '@apollo/client'
 import { MockedProvider, MockedResponse } from '@apollo/client/testing'
 import { render, fireEvent, waitFor } from '@testing-library/react'
 import { GraphQLError } from 'graphql'
@@ -9,6 +10,7 @@ import {
   TestEmailCartMutation,
   TestEmailCartMutationVariables,
 } from '../__mocks__/TestEmailCart.gql'
+import { TestEmailCartGetDocument, TestEmailCartGetQuery } from '../__mocks__/TestEmailCartGet.gql'
 import {
   TestShippingAddressFormDocument,
   TestShippingAddressFormMutation,
@@ -22,13 +24,8 @@ import {
   useFormApolloData,
   useFormApolloError,
 } from '../hooks/useFormApollo'
-import { useQuery } from '@apollo/client'
 
 import '@testing-library/jest-dom'
-import {
-  TestEmailCartGetDocument,
-  TestEmailCartGetQueryVariables,
-} from '../__mocks__/TestEmailCartGet.gql'
 
 const FormState = () => {
   const { isSubmitted, isSubmitting, isSubmitSuccessful, isDirty } =
@@ -240,12 +237,17 @@ describe('useFormApollo', () => {
   })
 
   function FormSyncWithQuery() {
-    const { reset } = useFormApolloContext<TestEmailCartMutation, TestEmailCartMutationVariables>()
+    const { reset, watch } = useFormApolloContext<
+      TestEmailCartMutation,
+      TestEmailCartMutationVariables
+    >()
     const { data } = useQuery(TestEmailCartGetDocument, { variables: { cartId: '123' } })
     const cartId = data?.cart?.id
     const email = data?.cart?.email ?? undefined
-    useEffect(() => reset({ cartId, email }), [cartId, email, reset])
-    return null
+    useEffect(async () => {
+      reset({ cartId, email }, { keepValues: true })
+    }, [cartId, email, reset])
+    return <div data-testid='watchedEmail'>{watch('email')}</div>
   }
 
   const FormEmailCart = () => {
@@ -262,13 +264,13 @@ describe('useFormApollo', () => {
           <div data-testid='rendercount'>{count}</div>
           <FormState />
           <FormResult />
-          {/* <FormSyncWithQuery /> */}
+          <FormSyncWithQuery />
         </form>
       </FormProviderApollo>
     )
   }
 
-  it('resets the form when the results come in', async () => {
+  it('updates the form when the results come in', async () => {
     const TestEmailCartMock: MockedResponse<TestEmailCartMutation> = {
       request: {
         query: TestEmailCartDocument,
@@ -279,8 +281,19 @@ describe('useFormApollo', () => {
       },
     }
 
+    const TestEmailCartGetMock: MockedResponse<TestEmailCartGetQuery> = {
+      request: {
+        query: TestEmailCartGetDocument,
+        variables: { cartId: '123' },
+      },
+      result: {
+        data: { cart: { id: '123', email: 'paul2@reachdigital.nl' } },
+      },
+      delay: 100,
+    }
+
     const { findByTestId, getByTestId, findByText } = render(
-      <MockedProvider mocks={[TestEmailCartMock]} addTypename={false}>
+      <MockedProvider mocks={[TestEmailCartMock, TestEmailCartGetMock]} addTypename={false}>
         <FormEmailCart />
       </MockedProvider>,
     )
@@ -290,16 +303,19 @@ describe('useFormApollo', () => {
     expect(await findByTestId('dirty')).toBeInTheDocument()
 
     fireEvent.click(await findByText('Submit'))
+
     expect((await findByTestId('isSubmitting')).innerHTML).toBeTruthy()
+
     await waitFor(() => expect(getByTestId('notSubmitting')).toBeTruthy())
 
     expect((await findByTestId('networkError')).innerHTML).toBeFalsy()
     expect((await findByTestId('graphQLErrors')).innerHTML).toBeFalsy()
+
     expect((await findByTestId('isSubmitSuccessful')).innerHTML).toBeTruthy()
     expect((await findByTestId('result')).innerHTML).toMatchInlineSnapshot(
       `"{"setGuestEmailOnCart":{"cart":{"id":"123","email":"paul@reachdigital.nl"}}}"`,
     )
 
-    expect(await findByTestId('notDirty')).toBeInTheDocument()
+    expect((await findByTestId('watchedEmail')).innerHTML).toBe('')
   })
 })
