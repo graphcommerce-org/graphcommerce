@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.2.0-canary.1
+
+### Patch Changes
+
+- [#1768](https://github.com/graphcommerce-org/graphcommerce/pull/1768) [`23e9a4728`](https://github.com/graphcommerce-org/graphcommerce/commit/23e9a472899dfc0b56b989f5d0e8ffb802c8cc5f) - Move magento-customer-account & magento-customer-order into magento-customer package (magento-customer-account & magento-customer-order are now deprecated) ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 5.2.0-canary.0
 
 ## 5.1.1

@@ -1,5 +1,15 @@
 # Change Log
 
+## 5.2.0-canary.1
+
+### Patch Changes
+
+- [#1768](https://github.com/graphcommerce-org/graphcommerce/pull/1768) [`23e9a4728`](https://github.com/graphcommerce-org/graphcommerce/commit/23e9a472899dfc0b56b989f5d0e8ffb802c8cc5f) - Move magento-customer-account & magento-customer-order into magento-customer package (magento-customer-account & magento-customer-order are now deprecated) ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#1768](https://github.com/graphcommerce-org/graphcommerce/pull/1768) [`7e8dcf447`](https://github.com/graphcommerce-org/graphcommerce/commit/7e8dcf44777aca527c07aaee397d272dd2f6ae44) - Update account address list after deleting an address ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#1768](https://github.com/graphcommerce-org/graphcommerce/pull/1768) [`9f0e9ab2d`](https://github.com/graphcommerce-org/graphcommerce/commit/9f0e9ab2dec3f9261ae00e9fd44d06a65ddb1d0d) - Redirect to address overview page after creating an address instead of redirecting to the edit page for the address that was just created ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 5.2.0-canary.0
 
 ### Minor Changes

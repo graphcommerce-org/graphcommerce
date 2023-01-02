@@ -1,5 +1,7 @@
 # Change Log
 
+## 5.2.0-canary.1
+
 ## 5.2.0-canary.0
 
 ## 5.1.1
