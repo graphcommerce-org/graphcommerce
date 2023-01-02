@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.2.0-canary.0
+
+### Minor Changes
+
+- [#1769](https://github.com/graphcommerce-org/graphcommerce/pull/1769) [`2693a616a`](https://github.com/graphcommerce-org/graphcommerce/commit/2693a616af2f9793012a5fb2eeacc084e695b83e) - WaitForCustomer now accepts overridable components for the fallback and unauthenticated state. ([@mikekeehnen](https://github.com/mikekeehnen))
+
 ## 5.1.1
 
 ## 5.1.1-canary.1
