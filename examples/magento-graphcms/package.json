@@ -43,8 +43,6 @@
     "@graphcommerce/magento-category": "5.2.0-canary.0",
     "@graphcommerce/magento-cms": "5.2.0-canary.0",
     "@graphcommerce/magento-customer": "5.2.0-canary.0",
-    "@graphcommerce/magento-customer-account": "5.2.0-canary.0",
-    "@graphcommerce/magento-customer-order": "5.2.0-canary.0",
     "@graphcommerce/magento-graphql": "5.2.0-canary.0",
     "@graphcommerce/magento-newsletter": "5.2.0-canary.0",
     "@graphcommerce/magento-payment-included": "5.2.0-canary.0",

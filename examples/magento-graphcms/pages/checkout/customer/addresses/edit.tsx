@@ -3,8 +3,8 @@ import {
   ApolloCustomerErrorFullPage,
   EditAddressForm,
   useCustomerQuery,
+  AccountDashboardAddressesDocument,
 } from '@graphcommerce/magento-customer'
-import { AccountDashboardAddressesDocument } from '@graphcommerce/magento-customer-account'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   GetStaticProps,

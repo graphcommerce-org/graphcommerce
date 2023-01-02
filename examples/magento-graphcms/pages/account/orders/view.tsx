@@ -1,11 +1,12 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { useCustomerQuery, WaitForCustomer } from '@graphcommerce/magento-customer'
 import {
+  useCustomerQuery,
+  WaitForCustomer,
   useOrderCardItemImages,
   OrderDetails,
   OrderItems,
   OrderDetailPageDocument,
-} from '@graphcommerce/magento-customer-order'
+} from '@graphcommerce/magento-customer'
 import { CountryRegionsDocument, PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   IconHeader,
