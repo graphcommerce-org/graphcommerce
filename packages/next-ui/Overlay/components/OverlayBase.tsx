@@ -150,19 +150,18 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
     if (!scroller) return () => {}
 
     const resize = () => {
-      if (positions.open.visible.get() === 1) {
-        scroller.scrollLeft = positions.open.x.get()
-        scroller.scrollTop = positions.open.y.get()
-      }
-      if (positions.open.visible.get() === 0) {
+      if (position.get() !== OverlayPosition.OPENED) {
         scroller.scrollLeft = positions.closed.x.get()
         scroller.scrollTop = positions.closed.y.get()
+      } else {
+        scroller.scrollLeft = positions.open.x.get()
+        scroller.scrollTop = positions.open.y.get()
       }
     }
 
     window.addEventListener('resize', resize)
     return () => window.removeEventListener('resize', resize)
-  }, [positions, scrollerRef])
+  }, [position, positions, scrollerRef])
 
   // When the overlay is closed by navigating away, we're closing the overlay.
   useEffect(() => {
