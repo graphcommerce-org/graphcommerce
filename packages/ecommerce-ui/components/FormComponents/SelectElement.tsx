@@ -12,7 +12,7 @@ export type SelectElementProps<T extends FieldValues> = Omit<
   type?: 'string' | 'number'
   objectOnChange?: boolean
   onChange?: (value: any) => void
-} & Pick<ControllerProps<T>, 'control' | 'defaultValue' | 'name'>
+} & Omit<ControllerProps<T>, 'render'>
 
 export function SelectElement<TFieldValues extends FieldValues>({
   name,

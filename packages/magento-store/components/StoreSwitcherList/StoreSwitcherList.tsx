@@ -1,5 +1,5 @@
 /* eslint-disable spaced-comment */
-import { extendableComponent, FlagAvatar, LinkBehavior } from '@graphcommerce/next-ui'
+import { extendableComponent, FlagAvatar, NextLink } from '@graphcommerce/next-ui'
 import {
   List,
   ListItem,
@@ -48,7 +48,7 @@ export function StoreSwitcherList(props: StoreSwitcherListProps) {
         <React.Fragment key={code}>
           <ListItemButton
             disabled={!storeToLocale(group.stores[0].store_code)}
-            component={LinkBehavior}
+            component={NextLink}
             key={group.stores[0].locale}
             href='/switch-stores'
             locale={storeToLocale(group.stores[0].store_code)}
@@ -90,7 +90,7 @@ export function StoreSwitcherList(props: StoreSwitcherListProps) {
                   locale={storeToLocale(store.store_code)}
                   replace
                   disabled={!localeToStore(locale)}
-                  component={LinkBehavior}
+                  component={NextLink}
                   selected={localeToStore(locale) === store.store_code}
                   color='inherit'
                   className={classes.listItemIndented}

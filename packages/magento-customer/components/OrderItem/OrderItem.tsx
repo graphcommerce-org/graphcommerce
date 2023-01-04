@@ -1,6 +1,6 @@
 import { Image } from '@graphcommerce/image'
 import { Money } from '@graphcommerce/magento-store'
-import { responsiveVal, extendableComponent, LinkBehavior } from '@graphcommerce/next-ui'
+import { responsiveVal, extendableComponent, NextLink } from '@graphcommerce/next-ui'
 import { Box } from '@mui/material'
 import { OrderCardItemImageFragment } from '../../hooks/OrderCardItemImage.gql'
 import { OrderItemFragment } from './OrderItem.gql'
@@ -100,7 +100,7 @@ export function OrderItem(props: OrderItemProps) {
       >
         <Box
           href={productLink}
-          component={LinkBehavior}
+          component={NextLink}
           className={classes.productLink}
           sx={{ display: 'block', width: '100%', height: '100%' }}
         >
@@ -141,7 +141,7 @@ export function OrderItem(props: OrderItemProps) {
 
       <Box
         href={productLink}
-        component={LinkBehavior}
+        component={NextLink}
         className={classes.itemName}
         sx={(theme) => ({
           typography: 'h5',

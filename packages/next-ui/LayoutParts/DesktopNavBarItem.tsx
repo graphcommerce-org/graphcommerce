@@ -42,7 +42,7 @@ export function DesktopNavItem(props: DesktopNavItemLinkProps | DesktopNavItemBu
 
   const { href, children, sx = [], ...linkProps } = props
 
-  const active = router.asPath.startsWith(href.toString())
+  const active = router.asPath.startsWith((href ?? '').toString())
 
   return (
     <Link

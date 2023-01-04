@@ -6,7 +6,7 @@ import {
   responsiveVal,
   extendableComponent,
   filterNonNullableKeys,
-  LinkBehavior,
+  NextLink,
 } from '@graphcommerce/next-ui'
 import { Badge, Box, Link, SxProps, Theme } from '@mui/material'
 import { CartItemFragment } from '../Api/CartItem.gql'
@@ -128,7 +128,7 @@ export function CartItem(props: CartItemProps) {
       >
         <Box
           href={productLink}
-          component={LinkBehavior}
+          component={NextLink}
           className={classes.productLink}
           sx={{ display: 'block', width: '100%', borderRadius: '50%', overflow: 'hidden' }}
         >

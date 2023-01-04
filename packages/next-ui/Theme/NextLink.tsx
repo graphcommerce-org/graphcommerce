@@ -1,10 +1,10 @@
-import Link, { LinkProps as NextLinkProps } from 'next/link'
 import { LinkProps as LinkPropsMui } from '@mui/material'
+import Link, { LinkProps as NextLinkProps } from 'next/link'
 import React, { forwardRef } from 'react'
 
 type LinkProps = Omit<NextLinkProps, 'legacyBehavior' | 'passHref' | 'as'>
 type AnchorWithoutLinkProps = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, keyof LinkProps>
-type LinkProppies = AnchorWithoutLinkProps & LinkProps
+type LinkProppies = AnchorWithoutLinkProps & Partial<LinkProps>
 
 /**
  * This is a wrapper around the Next.js Link component which can be used with MUI's Link component
@@ -31,10 +31,10 @@ export const NextLink = forwardRef<any, LinkProppies>((props, ref) => {
   const isExternal = hrefString.includes(':') || hrefString.startsWith('//')
 
   if (isExternal) target = target || '_blank'
-  const _target = typeof target === 'undefined' && isExternal ? '_blank' : target
+  target = typeof target === 'undefined' && isExternal ? '_blank' : target
 
   // Relative URL's cause more pain than they're worth
   if (!isExternal) href = hrefString.startsWith('/') ? href : `/${href}`
 
-  return <Link href={href} {...rest} target={_target} ref={ref} />
+  return <Link href={href} {...rest} target={target} ref={ref} />
 })

@@ -13,7 +13,7 @@ export type TextFieldElementProps<T extends FieldValues = FieldValues> = Omit<
 > & {
   validation?: ControllerProps['rules']
   parseError?: (error: FieldError) => string
-} & Pick<ControllerProps<T>, 'control' | 'defaultValue' | 'name'>
+} & Omit<ControllerProps<T>, 'render'>
 
 /** This is a copy of the default one, but allowing defaultValue */
 export function TextFieldElement<TFieldValues extends FieldValues = FieldValues>({
