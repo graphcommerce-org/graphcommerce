@@ -1,0 +1,23 @@
+diff --git a/node_modules/@graphql-mesh/cross-helpers/browser.js b/node_modules/@graphql-mesh/cross-helpers/browser.js
+index 6b8b5a9..8a80a4f 100644
+--- a/node_modules/@graphql-mesh/cross-helpers/browser.js
++++ b/node_modules/@graphql-mesh/cross-helpers/browser.js
+@@ -13,10 +13,6 @@ const processObj =
+     : {
+         platform: 'linux',
+         get env() {
+-          try {
+-            // eslint-disable-next-line no-new-func
+-            return new Function('return import.meta.env')();
+-          } catch {
+             return new Proxy(
+               {},
+               {
+@@ -28,7 +24,6 @@ const processObj =
+                 },
+               }
+             );
+-          }
+         },
+       };
+ 

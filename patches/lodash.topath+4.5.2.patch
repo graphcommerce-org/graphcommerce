@@ -1,0 +1,13 @@
+diff --git a/node_modules/lodash.topath/index.js b/node_modules/lodash.topath/index.js
+index a6ea795..2e5f602 100644
+--- a/node_modules/lodash.topath/index.js
++++ b/node_modules/lodash.topath/index.js
+@@ -44,7 +44,7 @@ var freeGlobal = typeof global == 'object' && global && global.Object === Object
+ var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
+ 
+ /** Used as a reference to the global object. */
+-var root = freeGlobal || freeSelf || Function('return this')();
++var root = freeGlobal || freeSelf || globalThis;
+ 
+ /**
+  * A specialized version of `_.map` for arrays without support for iteratee
