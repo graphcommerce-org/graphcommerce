@@ -44,11 +44,11 @@ const nextConfig = {
   redirects: async () => [
     // Redirect from the old product page routes to the new /p/[url] route.
     { source: '/product/configurable/:path*', destination: '/p/:path*', permanent: true },
-    { source: '/product/virtual/:key', destination: '/p/:path*', permanent: true },
-    { source: '/product/bundle/:key', destination: '/p/:path*', permanent: true },
-    { source: '/product/downloadable/:key', destination: '/p/:path*', permanent: true },
-    { source: '/product/grouped/:key', destination: '/p/:path*', permanent: true },
-    { source: '/product/:key', destination: '/p/:path*', permanent: true },
+    { source: '/product/virtual/:path*', destination: '/p/:path*', permanent: true },
+    { source: '/product/bundle/:path*', destination: '/p/:path*', permanent: true },
+    { source: '/product/downloadable/:path*', destination: '/p/:path*', permanent: true },
+    { source: '/product/grouped/:path*', destination: '/p/:path*', permanent: true },
+    { source: '/product/:path*', destination: '/p/:path*', permanent: true },
   ],
   experimental: {
     scrollRestoration: true,
