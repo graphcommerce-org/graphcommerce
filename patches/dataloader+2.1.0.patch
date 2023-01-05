@@ -1,0 +1,21 @@
+diff --git a/node_modules/dataloader/index.js b/node_modules/dataloader/index.js
+index f9a1c07..37682f0 100644
+--- a/node_modules/dataloader/index.js
++++ b/node_modules/dataloader/index.js
+@@ -222,15 +222,7 @@ function () {
+ // setImmediate or setTimeout) at a potential performance penalty.
+ 
+ 
+-var enqueuePostPromiseJob = typeof process === 'object' && typeof process.nextTick === 'function' ? function (fn) {
+-  if (!resolvedPromise) {
+-    resolvedPromise = Promise.resolve();
+-  }
+-
+-  resolvedPromise.then(function () {
+-    process.nextTick(fn);
+-  });
+-} : typeof setImmediate === 'function' ? function (fn) {
++var enqueuePostPromiseJob = typeof setImmediate === 'function' ? function (fn) {
+   setImmediate(fn);
+ } : function (fn) {
+   setTimeout(fn);
