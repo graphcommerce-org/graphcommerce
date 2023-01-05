@@ -1,7 +1,6 @@
 import { extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box, Link, SxProps, Theme } from '@mui/material'
-import PageLink from 'next/link'
 import { AddressMultiLine } from '../AddressMultiLine/AddressMultiLine'
 import { DeleteCustomerAddressForm } from '../DeleteCustomerAddressForm/DeleteCustomerAddressForm'
 import { UpdateDefaultAddressForm } from '../UpdateDefaultAddressForm/UpdateDefaultAddressForm'
@@ -46,11 +45,9 @@ export function AccountAddress(props: AccountAddressProps) {
           textAlign: 'right',
         }}
       >
-        <PageLink href={`/account/addresses/edit?addressId=${id}`} passHref>
-          <Link color='primary' underline='hover'>
-            <Trans id='Edit' />
-          </Link>
-        </PageLink>
+        <Link href={`/account/addresses/edit?addressId=${id}`} color='primary' underline='hover'>
+          <Trans id='Edit' />
+        </Link>
         <DeleteCustomerAddressForm addressId={id ?? undefined} />
       </Box>
     </Box>

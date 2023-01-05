@@ -54,7 +54,7 @@ export function canonicalize(router: PartialNextRouter, incomming?: Canonical) {
       }
     }
 
-    let [href, as] = resolveHref(router as NextRouter, canonical, true)
+    let [href, as = href] = resolveHref(router as NextRouter, canonical, true)
 
     const curLocale = router.locale
 

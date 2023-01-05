@@ -4,7 +4,6 @@ import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, Separator, icon404, IconSvg } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box, Container, Typography, Link } from '@mui/material'
-import PageLink from 'next/link'
 import React from 'react'
 import { LayoutNavigation, LayoutNavigationProps } from '../components'
 import { LayoutDocument } from '../components/Layout/Layout.gql'
@@ -16,16 +15,12 @@ type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props>
 
 function RouteNotFoundPage() {
   const links = [
-    <PageLink key={0} passHref href='/'>
-      <Link color='primary' underline='hover'>
-        <Trans id='Store home' />
-      </Link>
-    </PageLink>,
-    <PageLink key={1} passHref href='/account'>
-      <Link color='primary' underline='hover'>
-        <Trans id='Account' />
-      </Link>
-    </PageLink>,
+    <Link key={0} href='/' color='primary' underline='hover'>
+      <Trans id='Store home' />
+    </Link>,
+    <Link key={1} href='/account' color='primary' underline='hover'>
+      <Trans id='Account' />
+    </Link>,
   ]
 
   return (

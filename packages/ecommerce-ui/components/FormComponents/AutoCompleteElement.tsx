@@ -20,13 +20,10 @@ export type AutocompleteElementProps<
   M extends boolean | undefined,
   D extends boolean | undefined,
 > = {
-  name: Path<F>
-  control?: Control<F>
   options: T[]
   loading?: boolean
   multiple?: M
   matchId?: boolean
-  rules?: ControllerProps['rules']
   required?: boolean
   label?: TextFieldProps['label']
   showCheckbox?: boolean
@@ -35,7 +32,7 @@ export type AutocompleteElementProps<
     'name' | 'options' | 'loading' | 'renderInput'
   >
   textFieldProps?: Omit<TextFieldProps, 'name' | 'required' | 'label'>
-}
+} & ControllerProps<F>
 
 type AutoDefault = {
   id: string | number // must keep id in case of keepObject

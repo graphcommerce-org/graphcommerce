@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import { alpha, Box, ListItemButton, styled, useEventCallback, useTheme } from '@mui/material'
-import PageLink from 'next/link'
 import React from 'react'
 import { IconSvg } from '../../IconSvg'
 import { extendableComponent } from '../../Styles/extendableComponent'
@@ -15,6 +14,7 @@ import {
   useNavigation,
 } from '../hooks/useNavigation'
 import type { NavigationList } from './NavigationList'
+import { NextLink } from '../../Theme'
 
 type OwnerState = {
   first?: boolean
@@ -160,30 +160,30 @@ export const NavigationItem = React.memo<NavigationItemProps>((props) => {
 
     return (
       <NavigationLI sx={[hideItem && { display: 'none' }]} className={classes.li}>
-        <PageLink href={href} passHref prefetch={false}>
-          <ListItemButton
-            className={classes.item}
-            component='a'
-            sx={(theme) => ({
-              gridRowStart: row,
-              gridColumnStart: column,
-              gap: theme.spacings.xxs,
-            })}
-            tabIndex={tabIndex}
-            onClick={onCloseHandler}
+        <ListItemButton
+          component={NextLink}
+          prefetch={false}
+          href={href}
+          className={classes.item}
+          sx={(theme) => ({
+            gridRowStart: row,
+            gridColumnStart: column,
+            gap: theme.spacings.xxs,
+          })}
+          tabIndex={tabIndex}
+          onClick={onCloseHandler}
+        >
+          <Box
+            component='span'
+            sx={{
+              whiteSpace: 'nowrap',
+              overflowX: 'hidden',
+              textOverflow: 'ellipsis',
+            }}
           >
-            <Box
-              component='span'
-              sx={{
-                whiteSpace: 'nowrap',
-                overflowX: 'hidden',
-                textOverflow: 'ellipsis',
-              }}
-            >
-              {name}
-            </Box>
-          </ListItemButton>
-        </PageLink>
+            {name}
+          </Box>
+        </ListItemButton>
       </NavigationLI>
     )
   }

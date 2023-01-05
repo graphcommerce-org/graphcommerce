@@ -17,7 +17,6 @@ import {
 import { emailPattern } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
 import { Box, CircularProgress, Link, SxProps, TextField, Theme, Typography } from '@mui/material'
-import PageLink from 'next/link'
 import router from 'next/router'
 
 export type AccountSignInUpFormProps = { sx?: SxProps<Theme> }
@@ -80,11 +79,9 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
             <Trans id='Hi {firstname}! You’re now logged in!' values={{ firstname }} />
           </LayoutTitle>
           <Typography variant='h6' align='center'>
-            <PageLink href='/account' passHref>
-              <Link underline='hover' color='secondary'>
-                <Trans id='View your account' />
-              </Link>
-            </PageLink>
+            <Link href='/account' underline='hover' color='secondary'>
+              <Trans id='View your account' />
+            </Link>
           </Typography>
 
           <FormActions>

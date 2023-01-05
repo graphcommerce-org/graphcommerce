@@ -9,7 +9,6 @@ import {
 } from '@graphcommerce/next-ui'
 import { Container, Link } from '@mui/material'
 import { GetStaticPaths } from 'next'
-import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
 import {
@@ -57,11 +56,9 @@ function BlogPage(props: Props) {
         count={Math.ceil(pagesConnection.aggregate.count / pageSize)}
         page={Number(router.query.page ? router.query.page : 1)}
         renderLink={(p: number, icon: React.ReactNode) => (
-          <PageLink href={p === 1 ? '/blog' : `/blog/page/${p}`} passHref>
-            <Link color='primary' underline='hover'>
-              {icon}
-            </Link>
-          </PageLink>
+          <Link href={p === 1 ? '/blog' : `/blog/page/${p}`} color='primary' underline='hover'>
+            {icon}
+          </Link>
         )}
       />
     </>

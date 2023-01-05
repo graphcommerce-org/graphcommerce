@@ -2,7 +2,6 @@ import { useHistoryLink } from '@graphcommerce/framer-next-pages'
 import { SectionContainer, extendableComponent, breakpointVal } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box, Link, SxProps, Theme, Typography, lighten } from '@mui/material'
-import PageLink from 'next/link'
 import React from 'react'
 import { useCartQuery } from '../../hooks'
 import { CartAddressMultiLine } from '../CartAddressMultiLine/CartAddressMultiLine'
@@ -114,16 +113,15 @@ export function CartSummary(props: CartSummaryProps) {
               sx={{ '& .SectionHeader-root': { marginTop: 0, paddingBottom: '8px' } }}
               labelRight={
                 editable ? (
-                  <PageLink href={historyHref} passHref>
-                    <Link
-                      color='secondary'
-                      variant='body2'
-                      onClick={historyOnClick}
-                      underline='hover'
-                    >
-                      <Trans id='Edit' />
-                    </Link>
-                  </PageLink>
+                  <Link
+                    href={historyHref}
+                    color='secondary'
+                    variant='body2'
+                    onClick={historyOnClick}
+                    underline='hover'
+                  >
+                    <Trans id='Edit' />
+                  </Link>
                 ) : undefined
               }
             />
@@ -137,11 +135,14 @@ export function CartSummary(props: CartSummaryProps) {
             sx={{ '& .SectionHeader-root': { marginTop: 0, paddingBottom: '8px' } }}
             labelRight={
               editable ? (
-                <PageLink href='/checkout/edit/billing-address' passHref>
-                  <Link color='secondary' variant='body2' underline='hover'>
-                    <Trans id='Edit' />
-                  </Link>
-                </PageLink>
+                <Link
+                  href='/checkout/edit/billing-address'
+                  color='secondary'
+                  variant='body2'
+                  underline='hover'
+                >
+                  <Trans id='Edit' />
+                </Link>
               ) : undefined
             }
           >

@@ -18,7 +18,6 @@ import {
   SxProps,
   Theme,
 } from '@mui/material'
-import PageLink from 'next/link'
 import React from 'react'
 import { CartAgreementsDocument } from './CartAgreements.gql'
 
@@ -98,11 +97,9 @@ export function CartAgreementsForm(props: CartAgreementsFormProps) {
                               />
                             }
                             label={
-                              <PageLink href={href} passHref>
-                                <Link color='secondary' underline='hover'>
-                                  {agreement.checkbox_text}
-                                </Link>
-                              </PageLink>
+                              <Link href={href} color='secondary' underline='hover'>
+                                {agreement.checkbox_text}
+                              </Link>
                             }
                           />
                           {error?.message && <FormHelperText error>{error.message}</FormHelperText>}
@@ -111,11 +108,9 @@ export function CartAgreementsForm(props: CartAgreementsFormProps) {
                     />
                   ) : (
                     <Box className={classes.manualCheck} sx={{ padding: `9px 0` }}>
-                      <PageLink href={href} passHref>
-                        <Link color='secondary' underline='hover'>
-                          {agreement.checkbox_text}
-                        </Link>
-                      </PageLink>
+                      <Link href={href} color='secondary' underline='hover'>
+                        {agreement.checkbox_text}
+                      </Link>
                     </Box>
                   )}
                 </React.Fragment>

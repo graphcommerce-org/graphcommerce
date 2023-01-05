@@ -1,11 +1,10 @@
 import { Box, Link, LinkProps } from '@mui/material'
-import PageLink, { LinkProps as PageLinkProps } from 'next/link'
 import { useRouter } from 'next/router'
 import { extendableComponent } from '../Styles/extendableComponent'
 
 const { classes, selectors } = extendableComponent('DesktopNavItem', ['root', 'line'] as const)
 
-export type DesktopNavItemLinkProps = LinkProps<'a'> & Pick<PageLinkProps, 'href'>
+export type DesktopNavItemLinkProps = LinkProps<'a'>
 export type DesktopNavItemButtonProps = LinkProps<'div'> & {
   onClick: LinkProps<'button'>['onClick']
 }
@@ -43,36 +42,35 @@ export function DesktopNavItem(props: DesktopNavItemLinkProps | DesktopNavItemBu
 
   const { href, children, sx = [], ...linkProps } = props
 
-  const active = router.asPath.startsWith(href.toString())
+  const active = router.asPath.startsWith((href ?? '').toString())
 
   return (
-    <PageLink href={href} passHref>
-      <Link
-        className={classes.root}
-        variant='h6'
-        color='text.primary'
-        underline='none'
-        {...linkProps}
-        sx={[{ whiteSpace: 'nowrap', paddingTop: '6px' }, ...(Array.isArray(sx) ? sx : [sx])]}
-      >
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>{children}</Box>
-        <Box
-          component='span'
-          className={classes.line}
-          sx={{
-            maxWidth: 40,
-            width: '100%',
-            display: 'flex',
-            justifyContent: 'center',
-            height: 2,
-            background: (theme) => theme.palette.primary.main,
-            margin: '0 auto',
-            marginTop: '6px',
-            opacity: active ? 1 : 0,
-          }}
-        />
-      </Link>
-    </PageLink>
+    <Link
+      href={href}
+      className={classes.root}
+      variant='h6'
+      color='text.primary'
+      underline='none'
+      {...linkProps}
+      sx={[{ whiteSpace: 'nowrap', paddingTop: '6px' }, ...(Array.isArray(sx) ? sx : [sx])]}
+    >
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>{children}</Box>
+      <Box
+        component='span'
+        className={classes.line}
+        sx={{
+          maxWidth: 40,
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'center',
+          height: 2,
+          background: (theme) => theme.palette.primary.main,
+          margin: '0 auto',
+          marginTop: '6px',
+          opacity: active ? 1 : 0,
+        }}
+      />
+    </Link>
   )
 }
 DesktopNavItem.selectors = selectors

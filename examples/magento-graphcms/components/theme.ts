@@ -11,8 +11,9 @@ import {
   MuiSlider,
   MuiChip,
   MuiButtonInline,
+  NextLink,
 } from '@graphcommerce/next-ui'
-import { createTheme, Theme, alpha } from '@mui/material'
+import { createTheme, Theme, alpha, LinkProps } from '@mui/material'
 import { Components, PaletteOptions } from '@mui/material/styles'
 
 const lightPalette: PaletteOptions = {
@@ -200,6 +201,11 @@ const createOverrides = (theme: Theme): Components => ({
       },
     },
   },
+
+  // https://mui.com/material-ui/guides/routing/#global-theme-link
+  // https://www.graphcommerce.org/docs/framework/links
+  MuiLink: { defaultProps: { component: NextLink } as LinkProps },
+  MuiButtonBase: { defaultProps: { LinkComponent: NextLink } },
 
   MuiContainer: {
     variants: [

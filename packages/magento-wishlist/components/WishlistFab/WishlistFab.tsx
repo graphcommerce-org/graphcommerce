@@ -6,7 +6,6 @@ import {
 import { iconHeart, DesktopHeaderBadge, IconSvg, extendableComponent } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Fab, FabProps as FabPropsType, NoSsr, SxProps, Theme } from '@mui/material'
-import PageLink from 'next/link'
 import React from 'react'
 import { useWishlistEnabled } from '../../hooks'
 import { GetIsInWishlistsDocument } from '../../queries/GetIsInWishlists.gql'
@@ -31,27 +30,26 @@ function WishlistFabContent(props: WishlistFabContentProps) {
   const wishlistIcon = icon ?? <IconSvg src={iconHeart} size='large' />
 
   return (
-    <PageLink href='/wishlist' passHref>
-      <Fab
-        color='inherit'
-        data-test-id='wishlist-fab'
-        aria-label={i18n._(/* i18n */ 'Wishlist')}
-        size='large'
-        className={classes.root}
-        {...FabProps}
-        sx={sx}
-      >
-        <NoSsr fallback={wishlistIcon}>
-          {activeWishlist ? (
-            <DesktopHeaderBadge color='primary' variant='dot' overlap='circular'>
-              {wishlistIcon}
-            </DesktopHeaderBadge>
-          ) : (
-            wishlistIcon
-          )}
-        </NoSsr>
-      </Fab>
-    </PageLink>
+    <Fab
+      href='/wishlist'
+      color='inherit'
+      data-test-id='wishlist-fab'
+      aria-label={i18n._(/* i18n */ 'Wishlist')}
+      size='large'
+      className={classes.root}
+      {...FabProps}
+      sx={sx}
+    >
+      <NoSsr fallback={wishlistIcon}>
+        {activeWishlist ? (
+          <DesktopHeaderBadge color='primary' variant='dot' overlap='circular'>
+            {wishlistIcon}
+          </DesktopHeaderBadge>
+        ) : (
+          wishlistIcon
+        )}
+      </NoSsr>
+    </Fab>
   )
 }
 

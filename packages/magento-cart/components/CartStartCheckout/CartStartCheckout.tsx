@@ -2,7 +2,6 @@ import { Money } from '@graphcommerce/magento-store'
 import { iconChevronRight, IconSvg, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box, Button, ButtonProps, SxProps, Theme } from '@mui/material'
-import PageLink from 'next/link'
 import React from 'react'
 import { CartStartCheckoutFragment } from './CartStartCheckout.gql'
 
@@ -42,40 +41,39 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
-      <PageLink href='/checkout' passHref>
-        <Button
-          href='/checkout'
-          id='cart-start-checkout'
-          variant='pill'
-          color='secondary'
-          size='large'
-          className={classes.checkoutButton}
-          endIcon={<IconSvg src={iconChevronRight} />}
-          onClick={(e) => {
-            onClick?.(e)
-            onStart?.(e, cart)
-            return onClick?.(e)
-          }}
-          disabled={!hasTotals || hasErrors}
-          {...buttonProps}
+      <Button
+        href='/checkout'
+        id='cart-start-checkout'
+        variant='pill'
+        color='secondary'
+        size='large'
+        className={classes.checkoutButton}
+        endIcon={<IconSvg src={iconChevronRight} />}
+        onClick={(e) => {
+          onClick?.(e)
+          onStart?.(e, cart)
+          return onClick?.(e)
+        }}
+        disabled={!hasTotals || hasErrors}
+        {...buttonProps}
+      >
+        <Box
+          component='span'
+          className={classes.checkoutButtonTotal}
+          sx={(theme) => ({
+            paddingRight: theme.spacings.xxs,
+            '& ~ span.MuiButton-endIcon': { marginLeft: '6px' },
+          })}
         >
-          <Box
-            component='span'
-            className={classes.checkoutButtonTotal}
-            sx={(theme) => ({
-              paddingRight: theme.spacings.xxs,
-              '& ~ span.MuiButton-endIcon': { marginLeft: '6px' },
-            })}
-          >
-            <Trans id='Start Checkout' />
-          </Box>{' '}
-          {hasTotals && (
-            <span className={classes.checkoutMoney}>
-              <Money {...cart.prices?.grand_total} />
-            </span>
-          )}
-        </Button>
-      </PageLink>
+          <Trans id='Start Checkout' />
+        </Box>{' '}
+        {hasTotals && (
+          <span className={classes.checkoutMoney}>
+            <Money {...cart.prices?.grand_total} />
+          </span>
+        )}
+      </Button>
+
       {children}
 
       {hasErrors && (

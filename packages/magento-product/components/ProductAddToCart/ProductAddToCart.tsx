@@ -11,7 +11,6 @@ import {
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Divider, Typography, ButtonProps, Box, Alert } from '@mui/material'
-import PageLink from 'next/link'
 import React from 'react'
 import { ProductAddToCartDocument, ProductAddToCartMutationVariables } from './ProductAddToCart.gql'
 
@@ -114,17 +113,16 @@ export function ProductAddToCart(
         variant='pill'
         autoHide
         action={
-          <PageLink href='/cart' passHref>
-            <Button
-              id='view-shopping-cart-button'
-              size='medium'
-              variant='pill'
-              color='secondary'
-              endIcon={<IconSvg src={iconChevronRight} />}
-            >
-              <Trans id='View shopping cart' />
-            </Button>
-          </PageLink>
+          <Button
+            href='/cart'
+            id='view-shopping-cart-button'
+            size='medium'
+            variant='pill'
+            color='secondary'
+            endIcon={<IconSvg src={iconChevronRight} />}
+          >
+            <Trans id='View shopping cart' />
+          </Button>
         }
       >
         <Trans

@@ -1,5 +1,4 @@
 import { ListItemButton, ListItemIcon, ListItemText, SxProps, Theme } from '@mui/material'
-import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { extendableComponent } from '../Styles'
@@ -20,19 +19,18 @@ export function MenuFabSecondaryItem(props: FabMenuSecondaryItemProps) {
   const router = useRouter()
 
   return (
-    <PageLink href={href} passHref>
-      <ListItemButton
-        className={classes.root}
-        sx={[{}, ...(Array.isArray(sx) ? sx : [sx])]}
-        component='a'
-        dense
-        selected={router.asPath.startsWith(href)}
-      >
-        <ListItemIcon className={classes.text} sx={{ paddingRight: '8px', minWidth: 'unset' }}>
-          {icon}
-        </ListItemIcon>
-        <ListItemText className={classes.icon}>{children}</ListItemText>
-      </ListItemButton>
-    </PageLink>
+    <ListItemButton
+      href={href}
+      className={classes.root}
+      sx={[{}, ...(Array.isArray(sx) ? sx : [sx])]}
+      component='a'
+      dense
+      selected={router.asPath.startsWith(href)}
+    >
+      <ListItemIcon className={classes.text} sx={{ paddingRight: '8px', minWidth: 'unset' }}>
+        {icon}
+      </ListItemIcon>
+      <ListItemText className={classes.icon}>{children}</ListItemText>
+    </ListItemButton>
   )
 }

@@ -1,6 +1,5 @@
 import { ContainerWithHeader } from '@graphcommerce/next-ui'
 import { Link } from '@mui/material'
-import PageLink from 'next/link'
 import { ProductListItems, ProductListItemsProps } from '../../../ProductListItems/ProductListItems'
 import { RowProductFragment } from '../RowProduct.gql'
 
@@ -13,11 +12,9 @@ export function Grid(props: GridProps) {
     <ContainerWithHeader
       title={title}
       rightArea={pageLinks.map((pageLink) => (
-        <PageLink href={pageLink.url} key={pageLink.url} passHref>
-          <Link color='inherit' href={pageLink.url} underline='always'>
-            {pageLink.title}
-          </Link>
-        </PageLink>
+        <Link color='inherit' href={pageLink.url} key={pageLink.url} underline='always'>
+          {pageLink.title}
+        </Link>
       ))}
     >
       <ProductListItems title={title} {...productListItems} size='small' titleComponent='h3' />

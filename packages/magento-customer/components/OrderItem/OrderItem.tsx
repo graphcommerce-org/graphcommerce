@@ -1,8 +1,7 @@
 import { Image } from '@graphcommerce/image'
 import { Money } from '@graphcommerce/magento-store'
-import { responsiveVal, extendableComponent } from '@graphcommerce/next-ui'
+import { responsiveVal, extendableComponent, NextLink } from '@graphcommerce/next-ui'
 import { Box } from '@mui/material'
-import PageLink from 'next/link'
 import { OrderCardItemImageFragment } from '../../hooks/OrderCardItemImage.gql'
 import { OrderItemFragment } from './OrderItem.gql'
 
@@ -99,68 +98,66 @@ export function OrderItem(props: OrderItemProps) {
           borderRadius: '50%',
         }}
       >
-        <PageLink href={productLink} passHref>
+        <Box
+          href={productLink}
+          component={NextLink}
+          className={classes.productLink}
+          sx={{ display: 'block', width: '100%', height: '100%' }}
+        >
           <Box
-            component='a'
-            className={classes.productLink}
-            sx={{ display: 'block', width: '100%', height: '100%' }}
+            className={classes.pictureSpacing}
+            sx={() => ({
+              overflow: 'hidden',
+              width: '100%',
+              height: '100%',
+              display: 'flex',
+              position: 'relative',
+              alignItems: 'center',
+              flexShrink: 0,
+              userSelect: 'none',
+              borderRadius: '50%',
+              justifyContent: 'center',
+            })}
           >
-            <Box
-              className={classes.pictureSpacing}
-              sx={() => ({
-                overflow: 'hidden',
-                width: '100%',
-                height: '100%',
-                display: 'flex',
-                position: 'relative',
-                alignItems: 'center',
-                flexShrink: 0,
-                userSelect: 'none',
-                borderRadius: '50%',
-                justifyContent: 'center',
-              })}
-            >
-              {thumbnail?.url && thumbnail?.label && (
-                <Image
-                  alt={thumbnail?.label ?? ''}
-                  width={104}
-                  height={86}
-                  src={thumbnail?.url ?? ''}
-                  className={classes.image}
-                  sx={(theme) => ({
-                    gridColumn: 1,
-                    backgroundColor: theme.palette.background.image,
-                    objectFit: 'cover',
-                    display: 'block',
-                    transform: 'scale(1.1)',
-                  })}
-                />
-              )}
-            </Box>
+            {thumbnail?.url && thumbnail?.label && (
+              <Image
+                alt={thumbnail?.label ?? ''}
+                width={104}
+                height={86}
+                src={thumbnail?.url ?? ''}
+                className={classes.image}
+                sx={(theme) => ({
+                  gridColumn: 1,
+                  backgroundColor: theme.palette.background.image,
+                  objectFit: 'cover',
+                  display: 'block',
+                  transform: 'scale(1.1)',
+                })}
+              />
+            )}
           </Box>
-        </PageLink>
+        </Box>
       </Box>
 
-      <PageLink href={productLink} passHref>
-        <Box
-          component='a'
-          className={classes.itemName}
-          sx={(theme) => ({
-            typography: 'h5',
-            fontWeight: 500,
-            gridArea: 'itemName',
-            color: theme.palette.text.primary,
-            textDecoration: 'none',
-            flexWrap: 'nowrap',
-            maxWidth: 'max-content',
-            '&.hasOptions': {
-              alignSelf: 'flex-end',
-            },
-          })}
-        >
-          {product_name}
-        </Box>
-      </PageLink>
+      <Box
+        href={productLink}
+        component={NextLink}
+        className={classes.itemName}
+        sx={(theme) => ({
+          typography: 'h5',
+          fontWeight: 500,
+          gridArea: 'itemName',
+          color: theme.palette.text.primary,
+          textDecoration: 'none',
+          flexWrap: 'nowrap',
+          maxWidth: 'max-content',
+          '&.hasOptions': {
+            alignSelf: 'flex-end',
+          },
+        })}
+      >
+        {product_name}
+      </Box>
 
       <Box
         className={classes.itemPrice}

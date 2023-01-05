@@ -1,9 +1,7 @@
 import {
-  Control,
   Controller,
   ControllerProps,
   FieldError,
-  Path,
   FieldValues,
 } from '@graphcommerce/react-hook-form'
 import {
@@ -17,17 +15,14 @@ import {
 } from '@mui/material'
 
 export type CheckboxElementProps<T extends FieldValues> = Omit<CheckboxProps, 'name'> & {
-  validation?: ControllerProps['rules']
-  name: Path<T>
   parseError?: (error: FieldError) => string
   label?: FormControlLabelProps['label']
   helperText?: string
-  control?: Control<T>
-}
+} & Omit<ControllerProps<T>, 'render'>
 
 export function CheckboxElement<TFieldValues extends FieldValues>({
   name,
-  validation = {},
+  rules = {},
   required,
   parseError,
   label,
@@ -35,14 +30,14 @@ export function CheckboxElement<TFieldValues extends FieldValues>({
   helperText,
   ...rest
 }: CheckboxElementProps<TFieldValues>): JSX.Element {
-  if (required && !validation.required) {
-    validation.required = 'This field is required'
+  if (required && !rules.required) {
+    rules.required = 'This field is required'
   }
 
   return (
     <Controller
       name={name}
-      rules={validation}
+      rules={rules}
       control={control}
       render={({ field: { value, onChange }, fieldState: { invalid, error } }) => {
         const parsedHelperText = error

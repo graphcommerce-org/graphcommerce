@@ -1,7 +1,6 @@
 import { useUp, usePrevUp, usePageContext } from '@graphcommerce/framer-next-pages'
 import { i18n } from '@lingui/core'
 import { Box, SxProps, Theme } from '@mui/material'
-import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import { LinkOrButton, LinkOrButtonProps } from '../../Button/LinkOrButton'
 import { IconSvg } from '../../IconSvg'
@@ -69,19 +68,18 @@ export function LayoutHeaderBack(props: BackProps) {
 
   if (up?.href && up.href !== path)
     return (
-      <PageLink href={up.href} passHref>
-        <LinkOrButton
-          button={{ variant: 'pill', sx: buttonSx }}
-          startIcon={backIcon}
-          aria-label={up.title}
-          color='inherit'
-          {...props}
-        >
-          <Box component='span' sx={{ display: { xs: 'none', md: 'inline' } }}>
-            {up.title}
-          </Box>
-        </LinkOrButton>
-      </PageLink>
+      <LinkOrButton
+        href={up.href}
+        button={{ variant: 'pill', sx: buttonSx }}
+        startIcon={backIcon}
+        aria-label={up.title}
+        color='inherit'
+        {...props}
+      >
+        <Box component='span' sx={{ display: { xs: 'none', md: 'inline' } }}>
+          {up.title}
+        </Box>
+      </LinkOrButton>
     )
 
   return null

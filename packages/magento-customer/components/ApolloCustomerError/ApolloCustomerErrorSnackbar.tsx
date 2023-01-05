@@ -1,7 +1,6 @@
 import { ApolloErrorSnackbar, ApolloErrorSnackbarProps } from '@graphcommerce/ecommerce-ui'
 import { Trans } from '@lingui/react'
 import { Button } from '@mui/material'
-import NextLink from 'next/link'
 import { useCustomerSession } from '../../hooks/useCustomerSession'
 import { useAuthorizationErrorMasked } from './useAuthorizationErrorMasked'
 
@@ -18,11 +17,9 @@ export function ApolloCustomerErrorSnackbar(props: ApolloCustomerErrorSnackbarPr
       error={newError}
       action={
         unauthorized ? (
-          <NextLink href='/account/signin' passHref>
-            <Button variant='pill' color='secondary'>
-              {token ? <Trans id='Sign in' /> : <Trans id='Create Account' />}
-            </Button>
-          </NextLink>
+          <Button href='/account/signin' variant='pill' color='secondary'>
+            {token ? <Trans id='Sign in' /> : <Trans id='Create Account' />}
+          </Button>
         ) : (
           action
         )

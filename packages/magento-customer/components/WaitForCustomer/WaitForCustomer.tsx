@@ -2,7 +2,6 @@ import { mergeErrors, WaitForQueries, WaitForQueriesProps } from '@graphcommerce
 import { FullPageMessage, IconSvg, iconPerson } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Button, CircularProgress } from '@mui/material'
-import PageLink from 'next/link'
 import React from 'react'
 import { useCustomerSession } from '../../hooks/useCustomerSession'
 import { ApolloCustomerErrorFullPage } from '../ApolloCustomerError/ApolloCustomerErrorFullPage'
@@ -65,15 +64,13 @@ export function WaitForCustomer(props: WaitForCustomerProps) {
             icon={<IconSvg src={iconPerson} size='xxl' />}
             title={<Trans id='You must sign in to continue' />}
             button={
-              <PageLink href='/account/signin' passHref>
-                <Button variant='pill' color='secondary' size='large'>
-                  {!session.valid ? (
-                    <Trans id='Sign in' />
-                  ) : (
-                    <Trans id='Sign in or create an account!' />
-                  )}
-                </Button>
-              </PageLink>
+              <Button href='/account/signin' variant='pill' color='secondary' size='large'>
+                {!session.valid ? (
+                  <Trans id='Sign in' />
+                ) : (
+                  <Trans id='Sign in or create an account!' />
+                )}
+              </Button>
             }
           />
         ))}

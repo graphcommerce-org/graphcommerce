@@ -2,7 +2,6 @@ import { ApolloErrorFullPage, ApolloErrorFullPageProps } from '@graphcommerce/ec
 import { iconPerson, IconSvg } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Button } from '@mui/material'
-import PageLink from 'next/link'
 import type { SetOptional } from 'type-fest'
 import { useCustomerSession } from '../../hooks/useCustomerSession'
 import { useAuthorizationErrorMasked } from './useAuthorizationErrorMasked'
@@ -26,11 +25,9 @@ export function ApolloCustomerErrorFullPage(props: ApolloCustomerErrorFullPagePr
       error={newError}
       button={
         unauthorized ? (
-          <PageLink href='/account/signin' passHref>
-            <Button variant='pill' color='primary' size='large'>
-              {token ? <Trans id='Sign in' /> : <Trans id='Sign in or create an account!' />}
-            </Button>
-          </PageLink>
+          <Button href='/account/signin' variant='pill' color='primary' size='large'>
+            {token ? <Trans id='Sign in' /> : <Trans id='Sign in or create an account!' />}
+          </Button>
         ) : (
           button
         )

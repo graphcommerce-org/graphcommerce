@@ -1,7 +1,6 @@
 import { Pagination, SectionContainer, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box, Link, SxProps, Theme } from '@mui/material'
-import PageLink from 'next/link'
 import React from 'react'
 import useOrderCardItemImages from '../../hooks/useOrderCardItemImages'
 import { NoOrdersFound } from '../NoOrdersFound/NoOrdersFound'
@@ -76,11 +75,13 @@ export function AccountOrders(props: AccountOrdersProps) {
         count={pageInfo?.total_pages ?? 1}
         page={pageInfo?.current_page ?? 1}
         renderLink={(p: number, icon: React.ReactNode) => (
-          <PageLink href={p === 1 ? '/account/orders' : `/account/orders?page=${p}`} passHref>
-            <Link color='primary' underline='hover'>
-              {icon}
-            </Link>
-          </PageLink>
+          <Link
+            href={p === 1 ? '/account/orders' : `/account/orders?page=${p}`}
+            color='primary'
+            underline='hover'
+          >
+            {icon}
+          </Link>
         )}
       />
     </Box>
