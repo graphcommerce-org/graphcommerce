@@ -70,9 +70,11 @@
     "@graphcommerce/typescript-config-pwa": "5.1.1"
   },
   "changesets": [
+    "big-boats-unite",
     "giant-yaks-brake",
     "long-owls-raise",
     "lovely-countries-deliver",
-    "slow-parents-stare"
+    "slow-parents-stare",
+    "sour-zebras-reply"
   ]
 }
