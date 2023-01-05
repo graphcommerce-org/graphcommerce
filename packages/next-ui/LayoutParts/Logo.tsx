@@ -48,7 +48,7 @@ export type LogoProps = {
   sx?: SxProps<Theme>
 } & LogoClassProps
 
-export const Logo = forwardRef<HTMLDivElement, LogoProps>((props, ref) => {
+export const Logo = forwardRef<HTMLAnchorElement, LogoProps>((props, ref) => {
   const { href = '/', image, sx } = props
   const router = useRouter()
 

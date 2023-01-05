@@ -203,6 +203,7 @@ const createOverrides = (theme: Theme): Components => ({
   },
 
   // https://mui.com/material-ui/guides/routing/#global-theme-link
+  // https://www.graphcommerce.org/docs/framework/links
   MuiLink: { defaultProps: { component: NextLink } as LinkProps },
   MuiButtonBase: { defaultProps: { LinkComponent: NextLink } },
 

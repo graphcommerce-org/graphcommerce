@@ -1,4 +1,3 @@
-import { LinkProps as LinkPropsMui } from '@mui/material'
 import Link, { LinkProps as NextLinkProps } from 'next/link'
 import React, { forwardRef } from 'react'
 
@@ -21,10 +20,11 @@ type LinkProppies = AnchorWithoutLinkProps & Partial<LinkProps>
  * )
  * ```
  */
-export const NextLink = forwardRef<any, LinkProppies>((props, ref) => {
+export const NextLink = forwardRef<HTMLAnchorElement, LinkProppies>((props, ref) => {
   let { href, target, ...rest } = props
 
   // The href is optional in a MUI link, but required in a Next.js link
+  // eslint-disable-next-line jsx-a11y/anchor-has-content
   if (!href) return <a {...rest} ref={ref} />
 
   const hrefString = href.toString()
@@ -34,7 +34,7 @@ export const NextLink = forwardRef<any, LinkProppies>((props, ref) => {
   target = typeof target === 'undefined' && isExternal ? '_blank' : target
 
   // Relative URL's cause more pain than they're worth
-  if (!isExternal) href = hrefString.startsWith('/') ? href : `/${href}`
+  if (!isExternal && hrefString.startsWith('/')) href = `/${href}`
 
   return <Link href={href} {...rest} target={target} ref={ref} />
 })
