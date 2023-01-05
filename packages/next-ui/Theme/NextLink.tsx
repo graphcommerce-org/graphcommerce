@@ -29,12 +29,14 @@ export const NextLink = forwardRef<HTMLAnchorElement, LinkProppies>((props, ref)
 
   const hrefString = href.toString()
   const isExternal = hrefString.includes(':') || hrefString.startsWith('//')
+  const isHash = hrefString.startsWith('#')
 
   if (isExternal) target = target || '_blank'
   target = typeof target === 'undefined' && isExternal ? '_blank' : target
 
   // Relative URL's cause more pain than they're worth
-  if (!isExternal && hrefString.startsWith('/')) href = `/${href}`
+  if (!isExternal && !isHash && !hrefString.startsWith('/')) href = `/${href}`
 
+  console.log(href)
   return <Link href={href} {...rest} target={target} ref={ref} />
 })
