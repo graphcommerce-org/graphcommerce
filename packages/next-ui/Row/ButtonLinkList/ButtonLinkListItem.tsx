@@ -6,7 +6,8 @@ import { iconChevronRight } from '../../icons'
 
 export type ButtonLinkListItemProps = {
   endIcon?: React.ReactNode
-} & ListItemButtonProps<typeof NextLink>
+  url: string
+} & Omit<ListItemButtonProps<typeof NextLink>, 'href'>
 
 export function ButtonLinkListItem(props: ButtonLinkListItemProps) {
   const { children, endIcon = <IconSvg src={iconChevronRight} />, ...listItemButtonProps } = props

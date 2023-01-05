@@ -8,15 +8,9 @@ export function RowHeroBanner(props: RowHeroBannerFragment) {
 
   return (
     <HeroBanner
-      pageLinks={pageLinks.map((pageLink) => (
-        <Button
-          key={pageLink.url}
-          href={pageLink.url}
-          variant='outlined'
-          size='large'
-          color='inherit'
-        >
-          {pageLink.title}
+      pageLinks={pageLinks.map(({ url, title }) => (
+        <Button key={url} href={url} variant='outlined' size='large' color='inherit'>
+          {title}
         </Button>
       ))}
       videoSrc={heroAsset.url}

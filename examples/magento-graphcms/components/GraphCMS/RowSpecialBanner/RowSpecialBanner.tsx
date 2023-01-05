@@ -12,15 +12,9 @@ export function RowSpecialBanner(props: RowSpecialBannerProps) {
     <SpecialBanner
       topic={topic}
       asset={asset && <Asset asset={asset} sizes='50vw' />}
-      pageLinks={pageLinks.map((pageLink) => (
-        <Link
-          underline='always'
-          href={pageLink.url}
-          key={pageLink.url}
-          title={pageLink.title}
-          color='inherit'
-        >
-          {pageLink.title}
+      pageLinks={pageLinks.map(({ url, title }) => (
+        <Link underline='always' href={url} key={url} title={title} color='inherit'>
+          {title}
         </Link>
       ))}
     >

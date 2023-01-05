@@ -3,19 +3,13 @@ import { Link } from '@mui/material'
 import { RowContentLinksFragment } from './RowContentLinks.gql'
 
 export function RowContentLinks(props: RowContentLinksFragment) {
-  const { title, contentLinks } = props
+  const { title: mainTitle, contentLinks } = props
 
   return (
-    <ContentLinks title={title}>
-      {contentLinks.map((contentLink) => (
-        <Link
-          key={contentLink.id}
-          href={contentLink.url}
-          variant='body1'
-          color='inherit'
-          underline='hover'
-        >
-          {contentLink.title}
+    <ContentLinks title={mainTitle}>
+      {contentLinks.map(({ id, url, title }) => (
+        <Link key={id} href={url} variant='body1' color='inherit' underline='hover'>
+          {title}
         </Link>
       ))}
     </ContentLinks>

@@ -10,7 +10,7 @@ export function RowButtonLinkList(props: RowButtonLinkListProps) {
   return (
     <ButtonLinkList title={title} containsBigLinks={isBig} component='h2'>
       {links?.map((link) => (
-        <ButtonLinkListItem key={link.url} href={`/${link.url}`}>
+        <ButtonLinkListItem key={link.url} url={`/${link.url}`}>
           {link.title}
         </ButtonLinkListItem>
       ))}
