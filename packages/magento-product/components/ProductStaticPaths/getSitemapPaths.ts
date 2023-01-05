@@ -1,6 +1,5 @@
 import { ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
 import { canonicalize, nonNullable } from '@graphcommerce/next-ui'
-import { productLink } from '../../hooks/useProductLink'
 import { ProductStaticPathsDocument } from './ProductStaticPaths.gql'
 
 export async function getSitemapPaths(
@@ -26,7 +25,7 @@ export async function getSitemapPaths(
 
   const paths = (await Promise.all(result))
     .flat(1)
-    .map((urlKey) => (urlKey ? canonicalize(options, productLink(urlKey)) : undefined))
+    .map((urlKey) => (urlKey ? canonicalize(options, `/p/${urlKey.url_key}`) : undefined))
     .filter(nonNullable)
     .map((loc) => ({ loc, lastmod, changefreq, priority }))
   return paths

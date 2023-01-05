@@ -8,13 +8,16 @@ const { classes, selectors } = extendableComponent('ProductListPrice', [
   'discountPrice',
 ] as const)
 
-type ProductListPriceProps = ProductListPriceFragment & Pick<TypographyProps, 'sx'>
+export type ProductListPriceProps = ProductListPriceFragment & Pick<TypographyProps, 'sx'>
 
 export function ProductListPrice(props: ProductListPriceProps) {
   const { regular_price, final_price, sx } = props
 
   return (
-    <Typography component='div' variant='body1' className={classes.root} sx={sx}>
+    <Box
+      sx={[{ typography: 'body1' }, ...(Array.isArray(sx) ? sx : [sx])]}
+      className={classes.root}
+    >
       {regular_price.value !== final_price.value && (
         <Box
           component='span'
@@ -29,7 +32,7 @@ export function ProductListPrice(props: ProductListPriceProps) {
         </Box>
       )}
       <Money {...final_price} />
-    </Typography>
+    </Box>
   )
 }
 

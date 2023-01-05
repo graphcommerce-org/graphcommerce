@@ -8,6 +8,7 @@ import React from 'react'
 import { RouteDocument } from '../../Route.gql'
 import { extractAdvancedProps } from '../../utils'
 import { ButtonItemContentType } from './types'
+import { isTypename } from '@graphcommerce/next-ui'
 
 /**
  * Page Builder ButtonItem component.
@@ -49,8 +50,16 @@ export const ButtonItem: ButtonItemContentType['component'] = (props) => {
       return
     }
 
-    if (route.type === 'PRODUCT') {
-      await push(productLink(route as ProductLinkProps))
+    if (
+      isTypename(route, [
+        'ConfigurableProduct',
+        'BundleProduct',
+        'SimpleProduct',
+        'VirtualProduct',
+        'DownloadableProduct',
+      ])
+    ) {
+      await push(`/p/${route.url_key}`)
     }
   }
 

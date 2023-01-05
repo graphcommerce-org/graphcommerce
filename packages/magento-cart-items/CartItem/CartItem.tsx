@@ -1,6 +1,5 @@
 import { Image } from '@graphcommerce/image'
 import { useDisplayInclTax } from '@graphcommerce/magento-cart'
-import { useProductLink } from '@graphcommerce/magento-product'
 import { Money } from '@graphcommerce/magento-store'
 import {
   responsiveVal,
@@ -41,7 +40,6 @@ const { withState } = extendableComponent<OwnerState, typeof compName, typeof pa
 export function CartItem(props: CartItemProps) {
   const { product, errors, uid, prices, quantity, children, withOptions = true, sx = [] } = props
   const { name } = product
-  const productLink = useProductLink(product)
   const inclTaxes = useDisplayInclTax()
 
   const classes = withState({ withOptions })
@@ -127,7 +125,7 @@ export function CartItem(props: CartItemProps) {
         })}
       >
         <Box
-          href={productLink}
+          href={`/p/${product.url_key}`}
           component={NextLink}
           className={classes.productLink}
           sx={{ display: 'block', width: '100%', borderRadius: '50%', overflow: 'hidden' }}
@@ -156,7 +154,7 @@ export function CartItem(props: CartItemProps) {
 
       <Box sx={{ gridArea: 'itemName' }}>
         <Link
-          href={productLink}
+          href={`/p/${product.url_key}`}
           variant='body1'
           className={classes.itemName}
           underline='hover'

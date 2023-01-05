@@ -2,7 +2,6 @@
 import { test as base } from '@graphcommerce/magento-store/test/apolloClientStore.fixture'
 import { ProductStaticPathsDocument } from '../components/ProductStaticPaths/ProductStaticPaths.gql'
 import { ProductTypenames } from '../components/ProductStaticPaths/getProductStaticPaths'
-import { productLink } from '../hooks/useProductLink'
 
 type ProductUrls = {
   all: string[]
@@ -17,8 +16,8 @@ const test = base.extend<{ productURL: ProductUrls }>({
 
     const productUrls: Partial<Omit<ProductUrls, 'all'>> = {}
     const urls = (query.data.products?.items ?? []).map((p) => {
-      productUrls[`${p?.__typename}`] = `${baseURL}${productLink(p!)}`
-      return `${baseURL}${productLink(p!)}`
+      productUrls[`${p?.__typename}`] = `${baseURL}/${p?.url_key}`
+      return `${baseURL}/${p?.url_key}`
     })
 
     await use({ all: urls, ...productUrls } as ProductUrls)

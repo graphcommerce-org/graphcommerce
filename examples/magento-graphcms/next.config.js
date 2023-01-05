@@ -40,6 +40,16 @@ if (!process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT) {
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // eslint-disable-next-line @typescript-eslint/require-await
+  redirects: async () => [
+    // Redirect from the old product page routes to the new /p/[url] route.
+    { source: '/product/configurable/:path*', destination: '/p/:path*', permanent: true },
+    { source: '/product/virtual/:key', destination: '/p/:path*', permanent: true },
+    { source: '/product/bundle/:key', destination: '/p/:path*', permanent: true },
+    { source: '/product/downloadable/:key', destination: '/p/:path*', permanent: true },
+    { source: '/product/grouped/:key', destination: '/p/:path*', permanent: true },
+    { source: '/product/:key', destination: '/p/:path*', permanent: true },
+  ],
   experimental: {
     scrollRestoration: true,
   },

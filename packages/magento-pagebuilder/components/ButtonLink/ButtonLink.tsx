@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { useApolloClient, useQuery } from '@graphcommerce/graphql'
-import { productLink, ProductLinkProps } from '@graphcommerce/magento-product'
+import { isTypename } from '@graphcommerce/next-ui'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Button, ButtonProps, SxProps, Theme } from '@mui/material'
 import { useRouter } from 'next/router'
@@ -50,8 +50,16 @@ export function ButtonLink(props: ButtonLinkComponentProps) {
       return
     }
 
-    if (route.type === 'PRODUCT') {
-      await push(productLink(route as ProductLinkProps))
+    if (
+      isTypename(route, [
+        'ConfigurableProduct',
+        'BundleProduct',
+        'SimpleProduct',
+        'VirtualProduct',
+        'DownloadableProduct',
+      ])
+    ) {
+      await push(`/p/${route.url_key}`)
     }
   }
 

@@ -1,7 +1,6 @@
 import { useMutation, useApolloClient } from '@graphcommerce/graphql'
 import { Image } from '@graphcommerce/image'
 import { useCustomerQuery, useCustomerSession } from '@graphcommerce/magento-customer'
-import { useProductLink } from '@graphcommerce/magento-product'
 import { Money } from '@graphcommerce/magento-store'
 import { responsiveVal, extendableComponent, iconEllypsis, IconSvg } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
@@ -54,7 +53,6 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
     wishlistItemId,
   } = props
 
-  const productLink = useProductLink({ url_key, __typename: productType })
   const { cache } = useApolloClient()
 
   const { loggedIn } = useCustomerSession()
@@ -176,8 +174,7 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
         })}
       >
         <Box
-          href={productLink}
-          component='a'
+          href={`/p/${url_key}`}
           className={classes.productLink}
           sx={{ display: 'block', width: '100%', overflow: 'hidden' }}
         >
@@ -204,7 +201,7 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
       </Badge>
 
       <Link
-        href={productLink}
+        href={`/p/${url_key}`}
         variant='body1'
         className={classes.itemName}
         underline='hover'

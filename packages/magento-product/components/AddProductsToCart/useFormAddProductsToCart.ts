@@ -13,8 +13,8 @@ export type AddProductsToCartContextType = { redirect: RedirectType } & UseFormG
   AddProductsToCartMutationVariables
 >
 
-export const AddProductsToCartContext = createContext(
-  undefined as AddProductsToCartContextType | undefined,
+export const AddProductsToCartContext = createContext<AddProductsToCartContextType | undefined>(
+  undefined,
 )
 
 export function useFormAddProductsToCart(optional: true): AddProductsToCartContextType | undefined
