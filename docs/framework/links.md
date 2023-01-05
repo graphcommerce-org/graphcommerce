@@ -30,7 +30,7 @@ function MyComponent() {
 }
 ```
 
-### Using next/link's props.
+### Using next/link's props or relative URL's
 
 If you want to use props of next/link and satisfy typescript you need to provide
 `component={NextLink}`.
@@ -41,7 +41,7 @@ import { NextLink } from '@graphcommerce/next-ui'
 
 function MyComponent() {
   return (
-    <Link href='/cart' component={NextLink} prefetch={false}>
+    <Link href='subpage' relative component={NextLink} prefetch={false}>
       About
     </Link>
   )
