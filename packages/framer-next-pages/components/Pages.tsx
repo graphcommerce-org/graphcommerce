@@ -57,7 +57,8 @@ export function FramerNextPages(props: PagesProps) {
   const idx = routerKeys.indexOf(key)
 
   const prevHistory = useRef<number>(-1)
-  const direction = idx > prevHistory.current ? 1 : -1
+  const direction = idx >= prevHistory.current ? 1 : -1
+
   prevHistory.current = idx
 
   const [fb, setFallback] = useState<PageItem>()
