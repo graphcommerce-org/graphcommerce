@@ -1,3 +1,4 @@
+import { useDisplayInclTax } from '@graphcommerce/magento-cart'
 import { Money } from '@graphcommerce/magento-store'
 import { ToggleButton, ToggleButtonProps, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
@@ -20,7 +21,8 @@ const { withState } = extendableComponent<OwnerProps, typeof name, typeof parts>
 export const AvailableShippingMethod = React.forwardRef(
   (props: AvailableShippingMethodProps, ref) => {
     const {
-      amount,
+      price_excl_tax,
+      price_incl_tax,
       available,
       disabled,
       carrier_code,
@@ -32,6 +34,8 @@ export const AvailableShippingMethod = React.forwardRef(
       sx = [],
       ...toggleProps
     } = props
+
+    const amount = useDisplayInclTax() ? price_incl_tax : price_excl_tax
 
     const classes = withState({
       free: amount?.value === 0,
