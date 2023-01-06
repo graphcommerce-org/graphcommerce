@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.2.0-canary.4
+
+### Patch Changes
+
+- [#1773](https://github.com/graphcommerce-org/graphcommerce/pull/1773) [`cf501ba04`](https://github.com/graphcommerce-org/graphcommerce/commit/cf501ba045d337f4693c9f90f6f756dc39fec478) - Solve issue where the shipping method price is shown with the wrong tax. ([@paales](https://github.com/paales))
+
 ## 5.2.0-canary.3
 
 ## 5.2.0-canary.2
