@@ -36,3 +36,16 @@ index a58e0ab..b5ff289 100644
 +    return import(path);
  }
  export { defaultImportFn };
+diff --git a/node_modules/@graphql-mesh/utils/esm/resolve-additional-resolvers.js b/node_modules/@graphql-mesh/utils/esm/resolve-additional-resolvers.js
+index 089ebc3..cd35607 100644
+--- a/node_modules/@graphql-mesh/utils/esm/resolve-additional-resolvers.js
++++ b/node_modules/@graphql-mesh/utils/esm/resolve-additional-resolvers.js
+@@ -131,7 +131,7 @@ export function resolveAdditionalResolversWithoutImport(additionalResolver, pubs
+                         return pubsub.asyncIterator(topic);
+                     }, (root, args, context, info) => {
+                         // eslint-disable-next-line no-new-func
+-                        return additionalResolver.filterBy ? new Function(`return ${additionalResolver.filterBy}`)() : true;
++                        return additionalResolver.filterBy ? additionalResolver.filterBy() : true;
+                     }),
+                     resolve: (payload) => {
+                         if (baseOptions.valuesFromResults) {
