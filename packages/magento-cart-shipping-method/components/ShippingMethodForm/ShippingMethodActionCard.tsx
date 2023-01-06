@@ -1,3 +1,4 @@
+import { useDisplayInclTax } from '@graphcommerce/magento-cart/hooks'
 import { Money } from '@graphcommerce/magento-store'
 import { ActionCard, ActionCardItemRenderProps } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
@@ -11,7 +12,8 @@ type ShippingMethodActionCardProps = ActionCardItemRenderProps<
 export function ShippingMethodActionCard(props: ShippingMethodActionCardProps) {
   const {
     available,
-    amount,
+    price_incl_tax,
+    price_excl_tax,
     error_message,
     carrier_title,
     carrier_code,
@@ -20,6 +22,7 @@ export function ShippingMethodActionCard(props: ShippingMethodActionCardProps) {
     ...cardProps
   } = props
 
+  const amount = useDisplayInclTax() ? price_incl_tax : price_excl_tax
   const isFree = amount && amount.value === 0
 
   const title =
