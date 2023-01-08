@@ -33,3 +33,7 @@ sources:
           Content-Currency: "{context.headers['content-currency']}"
 serve:
   playground: true
+cache:
+  localforage:
+    driver:
+      - 'INMEMORY_LRU'
