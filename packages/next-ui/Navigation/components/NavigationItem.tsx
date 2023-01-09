@@ -114,7 +114,7 @@ export const NavigationItem = React.memo<NavigationItemProps>((props) => {
           tabIndex={tabIndex}
           onClick={(e) => {
             e.preventDefault()
-            if (!isSelected && !animating.get()) {
+            if (!isSelected && !(matchMedia.up('md') && animating.get())) {
               selection.set(itemPath)
             }
           }}
