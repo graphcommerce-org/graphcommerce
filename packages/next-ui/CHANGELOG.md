@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.2.0-canary.5
+
+### Patch Changes
+
+- [#1776](https://github.com/graphcommerce-org/graphcommerce/pull/1776) [`09f7312ae`](https://github.com/graphcommerce-org/graphcommerce/commit/09f7312ae44fae531947f9ce64711b7ac5983fc1) - add media query guard to category menu behaviour. ([@FrankHarland](https://github.com/FrankHarland))
+
 ## 5.2.0-canary.4
 
 ## 5.2.0-canary.3
