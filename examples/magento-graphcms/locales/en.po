@@ -466,6 +466,9 @@ msgstr "Search..."
 msgid "Select"
 msgstr "Select"
 
+msgid "Select your bank"
+msgstr "Select your bank"
+
 msgid "Send password reset email"
 msgstr "Send password reset email"
 

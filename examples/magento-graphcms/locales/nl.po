@@ -466,6 +466,9 @@ msgstr "Zoeken..."
 msgid "Select"
 msgstr "Selecteer"
 
+msgid "Select your bank"
+msgstr "Kies uw bank"
+
 msgid "Send password reset email"
 msgstr "Stuur een wachtwoord reset e-email"
 

@@ -10,6 +10,7 @@ import {
   usePaymentMethodContext,
 } from '@graphcommerce/magento-cart-payment-method'
 import { filterNonNullableKeys, FormRow } from '@graphcommerce/next-ui'
+import { i18n } from '@lingui/core'
 import { useRouter } from 'next/router'
 import { useMSPCartLock } from '../../hooks/useMSPCartLock'
 import {
@@ -66,7 +67,10 @@ export function MSPPaymentOptionsAndPlaceOrder(props: PaymentOptionsProps) {
 
   const issuers = filterNonNullableKeys(multisafepay_available_issuers, ['code', 'description'])
 
-  /** This is the form that the user can fill in. In this case we don't wat the user to fill in anything. */
+  /**
+   * This is the form that the user can fill in. In this case we don't wat the user to fill in
+   * anything.
+   */
   return (
     <form key={key} onSubmit={submit} noValidate>
       <input type='hidden' value={code} {...register('paymentMethod.code')} />
@@ -81,7 +85,7 @@ export function MSPPaymentOptionsAndPlaceOrder(props: PaymentOptionsProps) {
             variant='outlined'
             color='secondary'
             select
-            label='Select your bank'
+            label={i18n._(/* i18n */ 'Select your bank')}
             options={issuers.map(({ code: id, description: label }) => ({ id, label }))}
           />
         </FormRow>
