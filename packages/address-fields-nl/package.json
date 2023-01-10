@@ -1,0 +1,31 @@
+{
+  "name": "@graphcommerce/address-fields-nl",
+  "homepage": "https://www.graphcommerce.org/",
+  "repository": "github:graphcommerce-org/graphcommerce",
+  "version": "5.1.1",
+  "sideEffects": false,
+  "prettier": "@graphcommerce/prettier-config-pwa",
+  "eslintConfig": {
+    "extends": "@graphcommerce/eslint-config-pwa",
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    }
+  },
+  "devDependencies": {
+    "@graphcommerce/eslint-config-pwa": "5.1.1",
+    "@graphcommerce/prettier-config-pwa": "5.1.1",
+    "@graphcommerce/typescript-config-pwa": "5.1.1"
+  },
+  "dependencies": {
+    "@graphcommerce/graphql": "5.1.1",
+    "@graphcommerce/magento-customer": "5.1.1"
+  },
+  "peerDependencies": {
+    "@lingui/react": "^3.13.2",
+    "@lingui/core": "^3.13.2",
+    "@mui/material": "^5.10.16",
+    "next": "^12.1.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}

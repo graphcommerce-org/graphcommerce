@@ -1,30 +1,18 @@
-import { SelectElement, TextFieldElement } from '@graphcommerce/ecommerce-ui'
+import { TextFieldElement, SelectElement } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
-import { CountryRegionsDocument } from '@graphcommerce/magento-store'
-import { filterNonNullableKeys, FormRow, InputCheckmark } from '@graphcommerce/next-ui'
 import {
-  assertFormGqlOperation,
-  houseNumberPattern,
-  UseFormReturn,
-} from '@graphcommerce/react-hook-form'
+  AddressFieldsProps,
+  AddressFieldValues,
+} from '@graphcommerce/magento-customer'
+import { CountryRegionsDocument } from '@graphcommerce/magento-store'
+import { FormRow, InputCheckmark, filterNonNullableKeys } from '@graphcommerce/next-ui'
+import { assertFormGqlOperation, houseNumberPattern } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
+import { usePostcodeService } from '../helpers/usePostcodeService'
 
-export type AddressFieldValues = {
-  street?: string
-  houseNumber?: string
-  addition?: string
-  countryCode?: string
-  regionId?: string
-  postcode?: string
-  city?: string
-}
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type AddressFieldsProps = { form: UseFormReturn<any>; readOnly?: boolean }
-
-export function AddressFields(props: AddressFieldsProps) {
+export function PostcodeNLAddressFields(props: AddressFieldsProps) {
   const { form, readOnly } = props
 
   const countryQuery = useQuery(CountryRegionsDocument, { fetchPolicy: 'cache-and-network' })
@@ -34,6 +22,8 @@ export function AddressFields(props: AddressFieldsProps) {
   const { watch, required, valid, control } = form
 
   const country = watch('countryCode')
+
+  usePostcodeService(form)
 
   const countryList = useMemo(() => {
     const countriesWithLocale = (countries ?? [])?.filter((c) => c?.full_name_locale)
@@ -58,16 +48,15 @@ export function AddressFields(props: AddressFieldsProps) {
     <>
       <FormRow>
         <TextFieldElement
-          variant='outlined'
           control={control}
-          required={required.street}
-          name='street'
+          name='postcode'
+          variant='outlined'
           type='text'
-          label={<Trans id='Street' />}
-          autoComplete='address-line1'
+          required={required.postcode}
+          label={<Trans id='Postcode' />}
           InputProps={{
             readOnly,
-            endAdornment: <InputCheckmark show={valid.street} />,
+            endAdornment: <InputCheckmark show={valid.postcode} />,
           }}
         />
         <TextFieldElement
@@ -105,15 +94,16 @@ export function AddressFields(props: AddressFieldsProps) {
       </FormRow>
       <FormRow>
         <TextFieldElement
-          control={control}
-          name='postcode'
           variant='outlined'
+          control={control}
+          required={required.street}
+          name='street'
           type='text'
-          required={required.postcode}
-          label={<Trans id='Postcode' />}
+          label={<Trans id='Street' />}
+          autoComplete='address-line1'
           InputProps={{
             readOnly,
-            endAdornment: <InputCheckmark show={valid.postcode} />,
+            endAdornment: <InputCheckmark show={valid.street} />,
           }}
         />
         <TextFieldElement
