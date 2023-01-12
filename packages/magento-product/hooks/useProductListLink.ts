@@ -7,9 +7,8 @@ import {
 
 export function createProductListLink(props: ProductListParams): string {
   const { url, sort, currentPage, filters: incomming } = props
-
   const filters = { ...incomming, category_uid: undefined }
-  const uid = incomming.category_uid?.eq || incomming.category_uid?.in?.[0]
+  const uid = incomming?.category_uid?.eq || incomming?.category_uid?.in?.[0]
 
   // base url path generation
   let paginateSort = ``

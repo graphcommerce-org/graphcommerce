@@ -1,22 +1,23 @@
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Box, TextField } from '@mui/material'
+import { Box, ChipProps, TextField } from '@mui/material'
 import React, { useState, ReactElement, useMemo } from 'react'
-import { LinkOrButton } from '../../Button'
-import { IconSvg } from '../../IconSvg'
-import { LayoutTitle } from '../../Layout'
-import { LayoutOverlayHeader } from '../../LayoutOverlay'
-import { useOverlayContext } from '../../Overlay'
-import { OverlayButton } from '../../Overlay/components/OverlayButton'
-import { iconClose } from '../../icons'
-import { FilterPanelProps } from '../types'
+import { LinkOrButton } from '../../../Button'
+import { IconSvg } from '../../../IconSvg'
+import { LayoutTitle } from '../../../Layout'
+import { LayoutOverlayHeader } from '../../../LayoutOverlay'
+import { useOverlayContext } from '../../../Overlay'
+import { OverlayButton } from '../../../Overlay/components/OverlayButton'
+import { iconClose } from '../../../icons'
+import { PanelProps } from '../../types'
 
-type OverlayFilterContentProps = Pick<
-  FilterPanelProps,
-  'label' | 'onReset' | 'children' | 'maxLength' | 'onApply' | 'closeOnAction'
->
+type OverlayPanelActionsProps = Pick<
+  PanelProps,
+  'closeOnAction' | 'maxLength' | 'onApply' | 'onClose' | 'onReset' | 'children'
+> &
+  Pick<ChipProps, 'label'>
 
-export const OverlayFilterContent = (props: OverlayFilterContentProps) => {
+export const OverlayPanelActions = (props: OverlayPanelActionsProps) => {
   const { label, children, onReset, onApply, maxLength = 20, closeOnAction = true } = props
 
   const [search, setSearch] = useState<string>()

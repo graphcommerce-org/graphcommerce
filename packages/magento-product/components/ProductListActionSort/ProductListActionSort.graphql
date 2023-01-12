@@ -1,0 +1,10 @@
+fragment ProductListActionSort on Products {
+  total_count
+  sort_fields {
+    default
+    options {
+      label
+      value
+    }
+  }
+}

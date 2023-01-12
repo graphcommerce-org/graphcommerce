@@ -1,36 +1,33 @@
-import { ChipProps, ClickAwayListener, Popper } from '@mui/material'
-import { PropsWithChildren, useRef } from 'react'
-import { PopperFilterContent } from './PopperFilterContent'
+import { ClickAwayListener, Popper } from '@mui/material'
+import { useRef } from 'react'
+import { PanelProps } from '../../types'
+import { PopperPanelActions } from './PopperPanelActions'
 import { useMouseEvents } from './helpers/useMouseEvents'
 
-type PopperFilterPanelProps = PropsWithChildren<
-  Omit<ChipProps<'button'>, 'children' | 'component' | 'onClick' | 'onReset'>
-> & {
-  openEl: null | HTMLElement
+type PopperPanelProps = PanelProps & {
+  activeEl: null | HTMLElement
   onClose?: () => void
   onApply?: () => void
   onReset?: () => void
 }
 
-export function PopperFilterPanel(props: PopperFilterPanelProps) {
-  const { openEl, onClose, onApply, ...filterContentProps } = props
-  const open = Boolean(openEl)
-
+export function PopperPanel(props: PopperPanelProps) {
+  const { activeEl, onClose, onApply, closeOnAction, ...filterContentProps } = props
+  const open = Boolean(activeEl)
   const ref = useRef(null)
   const { movement } = useMouseEvents(ref)
 
+  const handleClickAway = () => {
+    if (onClose && open && movement !== 'drag') onClose()
+    if (onApply && movement !== 'drag') onApply()
+  }
   if (!open) return null
   return (
-    <ClickAwayListener
-      mouseEvent='onClick'
-      onClickAway={() => {
-        if (onClose && openEl && movement !== 'drag') onClose()
-        if (onApply && movement !== 'drag') onApply()
-      }}
-    >
+    <ClickAwayListener mouseEvent='onClick' onClickAway={handleClickAway}>
       <Popper
+        ref={ref}
         open={open}
-        anchorEl={openEl}
+        anchorEl={activeEl}
         sx={(theme) => ({
           boxShadow: 12,
           borderRadius: theme.shape.borderRadius,
@@ -68,13 +65,7 @@ export function PopperFilterPanel(props: PopperFilterPanelProps) {
           },
         ]}
       >
-        <PopperFilterContent
-          {...filterContentProps}
-          ref={ref}
-          onClosed={() => {
-            if (onClose && openEl) onClose()
-          }}
-        />
+        <PopperPanelActions {...filterContentProps} onClose={onClose} onApply={onApply} />
       </Popper>
     </ClickAwayListener>
   )

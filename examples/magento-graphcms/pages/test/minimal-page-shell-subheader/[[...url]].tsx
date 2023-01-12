@@ -1,5 +1,4 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { Scroller } from '@graphcommerce/framer-scroller'
 import {
   extractUrlQuery,
   FilterFormProvider,
@@ -14,6 +13,8 @@ import {
   ProductListParams,
   ProductListParamsProvider,
   ProductListQuery,
+  ProductListActionSort,
+  ProductListActionFilters,
   ProductListSort,
 } from '@graphcommerce/magento-product'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
@@ -62,12 +63,33 @@ function MinimalLayoutSubheader(props: Props) {
         </LayoutTitle>
 
         <StickyBelowHeader>
-          <FilterFormProvider initialParams={params}>
-            <ProductListFiltersContainer>
-              <ProductListFilters aggregations={filters?.aggregations} filterTypes={filterTypes} />
-              <ProductListSort sort_fields={products?.sort_fields} />
-            </ProductListFiltersContainer>
-          </FilterFormProvider>
+          {process.env.NEXT_PUBLIC_ADVANCED_FILTERS ? (
+            <FilterFormProvider initialParams={params}>
+              <ProductListFiltersContainer>
+                <ProductListActionSort
+                  sort_fields={products?.sort_fields}
+                  total_count={products?.total_count}
+                />
+                <ProductListActionFilters
+                  aggregations={filters?.aggregations}
+                  filterTypes={filterTypes}
+                />
+              </ProductListFiltersContainer>
+            </FilterFormProvider>
+          ) : (
+            <ProductListParamsProvider value={params}>
+              <ProductListFiltersContainer>
+                <ProductListSort
+                  sort_fields={products?.sort_fields}
+                  total_count={products?.total_count}
+                />
+                <ProductListFilters
+                  aggregations={filters?.aggregations}
+                  filterTypes={filterTypes}
+                />
+              </ProductListFiltersContainer>
+            </ProductListParamsProvider>
+          )}
         </StickyBelowHeader>
       </Container>
     </ProductListParamsProvider>

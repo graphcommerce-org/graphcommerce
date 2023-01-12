@@ -14,15 +14,18 @@ import {
   FilterTypes,
   getFilterTypes,
   parseParams,
-  ProductFiltersDocument,
-  ProductFiltersQuery,
   ProductListCount,
   ProductListDocument,
   ProductListPagination,
   ProductListParams,
   ProductListQuery,
-  FilterFormProvider,
   ProductListFiltersContainer,
+  ProductListActionSort,
+  ProductListActionFilters,
+  FilterFormProvider,
+  ProductActionFiltersDocument,
+  ProductActionFiltersQuery,
+  ProductListParamsProvider,
   ProductListSort,
   ProductListFilters,
 } from '@graphcommerce/magento-product'
@@ -49,7 +52,7 @@ import { graphqlSsrClient, graphqlSharedClient } from '../lib/graphql/graphqlSsr
 
 export type CategoryProps = CategoryPageQuery &
   ProductListQuery &
-  ProductFiltersQuery & { filterTypes?: FilterTypes; params?: ProductListParams }
+  ProductActionFiltersQuery & { filterTypes?: FilterTypes; params?: ProductListParams }
 export type CategoryRoute = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<CategoryRoute>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, CategoryProps, CategoryRoute>
@@ -106,25 +109,38 @@ function CategoryPage(props: CategoryProps) {
 
       {isCategory && !isLanding && (
         <>
+          {/* Use ProductListParamsProvider when using ProductListSort and ProductListFilter */}
           <CategoryDescription description={category.description} />
           <CategoryChildren params={params}>{category.children}</CategoryChildren>
-
           <StickyBelowHeader>
-            <FilterFormProvider initialParams={params}>
-              <ProductListFiltersContainer>
-                <ProductListSort
-                  sort_fields={products?.sort_fields}
-                  total_count={products?.total_count}
-                />
-                <ProductListFilters
-                  products={products}
-                  aggregations={filters?.aggregations}
-                  filterTypes={filterTypes}
-                />
-              </ProductListFiltersContainer>
-            </FilterFormProvider>
+            {process.env.NEXT_PUBLIC_ADVANCED_FILTERS ? (
+              <FilterFormProvider initialParams={params}>
+                <ProductListFiltersContainer>
+                  <ProductListActionSort
+                    sort_fields={products?.sort_fields}
+                    total_count={products?.total_count}
+                  />
+                  <ProductListActionFilters
+                    aggregations={filters?.aggregations}
+                    filterTypes={filterTypes}
+                  />
+                </ProductListFiltersContainer>
+              </FilterFormProvider>
+            ) : (
+              <ProductListParamsProvider value={params}>
+                <ProductListFiltersContainer>
+                  <ProductListSort
+                    sort_fields={products?.sort_fields}
+                    total_count={products?.total_count}
+                  />
+                  <ProductListFilters
+                    aggregations={filters?.aggregations}
+                    filterTypes={filterTypes}
+                  />
+                </ProductListFiltersContainer>
+              </ProductListParamsProvider>
+            )}
           </StickyBelowHeader>
-
           <Container maxWidth={false}>
             <ProductListCount total_count={products?.total_count} />
             <ProductListItems
@@ -215,7 +231,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   }
 
   const filters = staticClient.query({
-    query: ProductFiltersDocument,
+    query: ProductActionFiltersDocument,
     variables: { filters: { category_uid: { eq: categoryUid } } },
   })
   const products = staticClient.query({

@@ -1,154 +1,98 @@
-import {
-  alpha,
-  Box,
-  Breakpoint,
-  Chip,
-  ChipProps,
-  SxProps,
-  Theme,
-  Typography,
-  useEventCallback,
-} from '@mui/material'
-import dynamic from 'next/dynamic'
-import React, { ReactNode, useState } from 'react'
+import { Chip, ChipProps, Menu, MenuProps, menuClasses, SxProps, Theme } from '@mui/material'
+import React, { useState } from 'react'
 import { IconSvg } from '../IconSvg'
-import { responsiveVal } from '../Styles'
-import { useMatchMedia } from '../hooks/useMatchMedia'
-import { iconChevronDown, iconChevronUp } from '../icons'
+import { SectionHeader } from '../SectionHeader/SectionHeader'
+import { responsiveVal } from '../Styles/responsiveVal'
+import { iconChevronDown, iconChevronUp, iconCancelAlt } from '../icons'
 
-export type ChipMenuProps = Omit<ChipProps<'button'>, 'children' | 'component' | 'onClick'> & {
+export type ChipMenuProps = Omit<ChipProps<'button'>, 'children' | 'component'> & {
   selectedLabel?: React.ReactNode
-  children?: React.ReactNode
-  filterValue?: string | ReactNode
   selected: boolean
-  onReset?: () => void
-  onApply?: () => void
+  onClose?: () => void
+  labelRight?: React.ReactNode
   sx?: SxProps<Theme>
-  breakpoint?: Breakpoint
+  menuProps?: Partial<MenuProps>
+  children?: React.ReactNode
 }
-
-const OverlayFilterPanel = dynamic(
-  async () => (await import('./OverlayFilter/OverlayFilterPanel')).OverlayFilterPanel,
-)
-
-const PopperFilterPanel = dynamic(
-  async () => (await import('./PopperFilter/PopperFilterPanel')).PopperFilterPanel,
-)
 
 export function ChipMenu(props: ChipMenuProps) {
   const {
     children,
-    label,
-    selectedLabel,
     selected,
     onDelete,
-    onReset,
-    filterValue,
-    accessKey,
-    id = 'filterpopper',
-    breakpoint = 'md',
-    onApply,
+    label,
+    labelRight,
+    onClose,
+    selectedLabel,
+    menuProps,
     ...chipProps
   } = props
 
-  const [firstActive, setFirstActive] = useState(false)
-  const [activeEl, setActiveEl] = useState<HTMLElement | null>(null)
+  const [openEl, setOpenEl] = useState<null | HTMLElement>(null)
 
-  const { up } = useMatchMedia()
-  const active = Boolean(activeEl)
-  const mode = active && up(breakpoint) ? 'popper' : 'overlay'
+  let deleteIcon = <IconSvg src={iconChevronDown} size='medium' />
+  if (selected) deleteIcon = <IconSvg src={iconCancelAlt} size='medium' fillIcon />
+  if (openEl) deleteIcon = <IconSvg src={iconChevronUp} size='medium' />
 
-  let chevronIcon = (
-    <IconSvg
-      src={activeEl ? iconChevronUp : iconChevronDown}
-      size='medium'
-      sx={{
-        ml: responsiveVal(3, 8),
-        mr: '-5px',
-      }}
-    />
-  )
-  if (filterValue)
-    chevronIcon = (
-      <Typography
-        variant='caption'
-        color='primary.main'
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          ml: responsiveVal(3, 8),
-        }}
-      >
-        +{filterValue}
-      </Typography>
-    )
-
-  const selectedAndMenuHidden = selected && !activeEl
-
-  const deactivate = useEventCallback(() => setActiveEl(null))
-
-  const toggle = useEventCallback((e: React.MouseEvent<HTMLElement>) => {
-    setActiveEl((el) => (el !== e.currentTarget ? e.currentTarget : null))
-    setFirstActive(true)
-  })
-
-  const labelComponent = (
-    <Typography variant='body2' sx={{ display: 'flex', flexDirection: 'row' }}>
-      {selected && selectedLabel ? selectedLabel : label}
-      {chevronIcon}
-    </Typography>
-  )
+  const selectedAndMenuHidden = selected && !openEl && !!selectedLabel
 
   return (
     <>
       <Chip
-        aria-describedby={id}
         component='button'
         size='responsive'
         color={selectedAndMenuHidden ? 'primary' : 'default'}
         clickable
-        label={labelComponent}
-        onClick={toggle}
+        onDelete={
+          onDelete ||
+          ((event: React.MouseEvent<HTMLButtonElement>) =>
+            setOpenEl(event.currentTarget.parentElement))
+        }
+        onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+          setOpenEl(event.currentTarget)
+        }}
+        deleteIcon={deleteIcon}
         {...chipProps}
-        sx={(theme) => ({
-          '& .MuiChip-deleteIcon': {
-            ml: '0px',
-          },
-          ...(selected
-            ? {
-                border: `1px solid ${theme.palette.primary.main ?? theme.palette.primary.main}`,
-                boxShadow: `inset 0 0 0 1px ${
-                  theme.palette.primary.main ?? theme.palette.primary.main
-                },0 0 0 4px ${alpha(
-                  theme.palette.primary.main,
-                  theme.palette.action.hoverOpacity,
-                )} !important`,
-              }
-            : {}),
-        })}
+        label={selectedLabel ?? label}
       />
-      {firstActive && mode === 'overlay' && (
-        <OverlayFilterPanel {...props} active={active} onClosed={deactivate}>
-          {children}
-        </OverlayFilterPanel>
-      )}
-      {firstActive && mode === 'popper' && (
-        <PopperFilterPanel {...props} openEl={activeEl} onClose={deactivate}>
-          {children}
-        </PopperFilterPanel>
-      )}
+
+      <Menu
+        anchorEl={openEl}
+        open={!!openEl}
+        onClose={() => {
+          if (onClose) onClose()
+          setOpenEl(null)
+        }}
+        anchorPosition={{ top: 6, left: 0 }}
+        anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
+        {...menuProps}
+        sx={[
+          (theme) => ({
+            marginTop: theme.spacings.xxs,
+            [`& .${menuClasses.list}`]: {
+              padding: 0,
+              '&:focus': { outline: 'none' },
+            },
+            [`& .${menuClasses.paper}`]: {
+              minWidth: responsiveVal(200, 560),
+              maxWidth: 560,
+              padding: `0 ${theme.spacings.xs} ${theme.spacings.xs}`,
+              margin: 0,
+              [theme.breakpoints.down('sm')]: {
+                minWidth: 0,
+                width: '100%',
+                maxWidth: `calc(100% - (${theme.page.horizontal} * 2))`,
+                margin: '0 auto',
+              },
+            },
+          }),
+          // eslint-disable-next-line no-nested-ternary
+          ...(menuProps?.sx ? (Array.isArray(menuProps.sx) ? menuProps.sx : [menuProps.sx]) : []),
+        ]}
+      >
+        <SectionHeader labelLeft={label ?? ''} labelRight={labelRight ?? ''} usePadding />
+        {children}
+      </Menu>
     </>
   )
 }
-
-// ChipMenu
-// FilterRangeType
-
-/**
- * PopperOrOverlayMenu { right?: React.ReactNode, bottom?: React.ReactNode, title: React.ReactNode }
- *
- * 
- * Filter:
- *   - Bepaal zelf children zoals ActionCardListForm of Slider
- * - Binding met Chip of Button, of?
- */

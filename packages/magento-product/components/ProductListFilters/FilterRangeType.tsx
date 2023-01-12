@@ -1,105 +1,154 @@
-import { Controller } from '@graphcommerce/ecommerce-ui'
-import { useQuery } from '@graphcommerce/graphql'
-import type {
-  CurrencyEnum,
-  FilterRangeTypeInput,
-  ProductAttributeFilterInput,
-} from '@graphcommerce/graphql-mesh'
-import { Money, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { cloneDeep } from '@graphcommerce/graphql'
+import type { FilterRangeTypeInput } from '@graphcommerce/graphql-mesh'
+import { Money } from '@graphcommerce/magento-store'
 import { ChipMenu, ChipMenuProps, extendableComponent } from '@graphcommerce/next-ui'
-import { Mark } from '@mui/base'
+import { Trans } from '@lingui/react'
 import { Box, Slider } from '@mui/material'
-import { useFilterForm } from './FilterFormContext'
+import React, { useEffect } from 'react'
+import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
+import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
 import { ProductListFiltersFragment } from './ProductListFilters.gql'
-import { useFilterActions } from './helpers/filterActions'
 
 type FilterRangeTypeProps = NonNullable<
   NonNullable<ProductListFiltersFragment['aggregations']>[0]
 > &
-  Omit<ChipMenuProps, 'selected' | 'openEl' | 'setOpenEl'>
+  Omit<ChipMenuProps, 'selected'>
 
 const { classes } = extendableComponent('FilterRangeType', ['root', 'container', 'slider'] as const)
 
 export function FilterRangeType(props: FilterRangeTypeProps) {
   const { attribute_code, label, options, ...chipProps } = props
-  const currency = useQuery(StoreConfigDocument).data?.storeConfig?.base_currency_code
-  const { form } = useFilterForm()
-  const { control, getValues } = form
-  const { emptyFilters, applyFilters } = useFilterActions({ attribute_code })
-  const values = options?.map((v) => v?.value.split('_').map((mv) => Number(mv))).flat(1)
+  const { params } = useProductListParamsContext()
+  const replaceRoute = useProductListLinkReplace({ scroll: false })
 
-  if (options === (null || undefined)) return null
+  // eslint-disable-next-line no-case-declarations
+  const marks: { [index: number]: { value: number; label?: React.ReactNode } } = {}
+  const paramValues = params.filters[attribute_code]
 
-  const name = `${attribute_code}` as keyof ProductAttributeFilterInput
-  const initialFrom = values?.[0]
-  const initialTo = values?.[values.length - 1]
-  const currentValue = getValues(name) as FilterRangeTypeInput
-  const selected = currentValue
-    ? Number(currentValue.from) !== initialFrom || Number(currentValue.to) !== initialTo
-    : false
+  const [min, maxish] = options
+    ?.map((option) => {
+      let val = option?.value.replace('*_', '0_') ?? ''
+      val = val.replace('_*', '_0')
+      const [minVal, maxVal] = val.split('_').map((value) => Number(value))
 
-  const handleReset = () => emptyFilters([initialFrom, initialTo])
+      marks[minVal] = { value: minVal, label: minVal }
+      marks[maxVal] = { value: maxVal, label: maxVal }
+      return [minVal, maxVal]
+    })
+    .reduce(([prevMin, prevMax], [curMin, curMax]) => [
+      Math.min(prevMin, curMin),
+      Math.max(curMax, prevMax),
+    ]) ?? [0, 0]
+
+  // eslint-disable-next-line no-case-declarations
+  const max = (maxish / (options?.length ?? 2 - 1)) * (options?.length ?? 1)
+  marks[max] = { value: max, label: max }
+
+  const [value, setValue] = React.useState<[number, number]>(
+    paramValues ? [Number(paramValues.from), Number(paramValues.to)] : [min, max],
+  )
+
+  useEffect(() => {
+    if (!paramValues) setValue([min, max])
+  }, [max, min, paramValues])
+
+  const priceFilterUrl = cloneDeep(params)
+  delete priceFilterUrl.currentPage
+  priceFilterUrl.filters[attribute_code] = {
+    from: String(value[0]),
+    to: String(value[1]),
+  } as FilterRangeTypeInput
+
+  const resetFilter = () => {
+    const linkParams = cloneDeep(params)
+
+    delete linkParams.currentPage
+    delete linkParams.filters[attribute_code]
+
+    setValue([min, max])
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    replaceRoute(linkParams)
+  }
+
+  const currentFilter = params.filters[attribute_code] as FilterRangeTypeInput | undefined
+
+  let currentLabel: React.ReactNode | undefined
+
+  if (currentFilter) {
+    const from = Number(currentFilter?.from ?? 0)
+    const to = Number(currentFilter?.to ?? 0)
+
+    if (from === min && to !== max)
+      currentLabel = (
+        <Trans
+          id='Below <0/>'
+          components={{ 0: <Money round value={Number(currentFilter?.to)} /> }}
+        />
+      )
+
+    if (from !== min && to === max)
+      currentLabel = (
+        <Trans
+          id='Above <0/>'
+          components={{ 0: <Money round value={Number(currentFilter?.from)} /> }}
+        />
+      )
+
+    if (from !== min && to !== max)
+      currentLabel = (
+        <>
+          <Money round value={Number(currentFilter?.from)} />
+          {' — '}
+          <Money round value={Number(currentFilter.to)} />
+        </>
+      )
+  }
 
   return (
-    <Controller
-      control={control}
-      name={name}
-      render={({ field: { onChange, value } }) => {
-        const typedValue = value as FilterRangeTypeInput | undefined
-        const from = Number(typedValue?.from ?? initialFrom)
-        const to = Number(typedValue?.to ?? initialTo)
-
-        const fromElement = <Money currency={currency as CurrencyEnum} value={from} />
-        const toElement = <Money currency={currency as CurrencyEnum} value={to} />
-        const hasValue =
-          typedValue?.from !== undefined && Number(typedValue?.from) >= 0 && typedValue?.to
-        const l = hasValue ? (
-          <>
-            {fromElement} - {toElement}
-          </>
-        ) : (
-          label
-        )
-        return (
-          <ChipMenu
-            {...chipProps}
-            variant='outlined'
-            label={label}
-            selectedLabel={l}
-            selected={selected}
-            className={classes.root}
-            onReset={handleReset}
-            onApply={applyFilters}
-          >
-            <Box
-              sx={(theme) => ({
-                padding: `${theme.spacings.xxs} ${theme.spacings.xxs} !important`,
-                width: '100%',
-              })}
-              className={classes.container}
-            >
-              <Box>
-                <Money round value={from} />
-                -
-                <Money round value={to} />
-                <Slider
-                  min={values ? values[0] : 0}
-                  max={values ? values[values.length - 1] : 0}
-                  aria-labelledby='range-slider'
-                  value={[from, to]}
-                  onChange={(_e, newValue) => {
-                    onChange({ from: newValue[0], to: newValue[1] })
-                  }}
-                  valueLabelDisplay='off'
-                  className={classes.slider}
-                  step={null}
-                  marks={values?.map((v) => ({ value: v, label: '' })) as Mark[]}
-                />
-              </Box>
-            </Box>
-          </ChipMenu>
-        )
-      }}
-    />
+    <ChipMenu
+      variant='outlined'
+      label={label}
+      selectedLabel={currentLabel}
+      selected={!!currentLabel}
+      {...chipProps}
+      onDelete={currentLabel ? resetFilter : undefined}
+      className={classes.root}
+      labelRight={
+        <>
+          <Money round value={value[0]} />
+          {value[0] ? ' — ' : false}
+          <Money round value={value[1]} />
+        </>
+      }
+    >
+      <Box
+        sx={(theme) => ({
+          padding: `${theme.spacings.xxs} ${theme.spacings.xxs} !important`,
+          width: '100%',
+        })}
+        className={classes.container}
+      >
+        <Slider
+          min={min}
+          max={max}
+          size='large'
+          aria-labelledby='range-slider'
+          value={value}
+          onChange={(e, newValue) => {
+            setValue(Array.isArray(newValue) ? [newValue[0], newValue[1]] : [0, 0])
+          }}
+          onChangeCommitted={(e, newValue) => {
+            if (newValue[0] > min || newValue[1] < max) {
+              // eslint-disable-next-line @typescript-eslint/no-floating-promises
+              replaceRoute({ ...priceFilterUrl })
+            } else {
+              resetFilter()
+            }
+          }}
+          valueLabelDisplay='off'
+          className={classes.slider}
+        />
+      </Box>
+    </ChipMenu>
   )
 }

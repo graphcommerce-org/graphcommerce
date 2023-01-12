@@ -51,8 +51,14 @@ export function ProductListFiltersContainer(props: ProductListFiltersContainerPr
       const offset = wrapperRef.current?.getBoundingClientRect()?.top ?? 0
       const elemHeigh = entry.contentRect.height
       const nextOffset =
+        // If we use the FilterFormProvider in the pages/[...url].tsx file, to provide the our
+        // ProductListActionFilters with the correct parameters, the parentElement(FilterFormProvider) has no nextElementSibling
+        // resulting in an null value. If this is the case we check if the higher level parent does have a nextElementSibling,
+        // so we are able to calculate the spacing between the ProductListFiltersContainer and the next element in the DOM
         (
-          wrapperRef.current?.parentElement?.nextElementSibling as HTMLElement | null
+          (wrapperRef.current?.parentElement?.nextElementSibling ??
+            wrapperRef.current?.parentElement?.parentElement
+              ?.nextElementSibling) as HTMLElement | null
         )?.getBoundingClientRect()?.top ?? 0
       const modifier = 5
 
@@ -137,8 +143,9 @@ export function ProductListFiltersContainer(props: ProductListFiltersContainerPr
                 borderRadius: '99em',
                 paddingLeft: '8px',
                 paddingRight: '8px',
-                py: '5px',
               },
+              py: '5px',
+
               columnGap: '6px',
               gridAutoColumns: 'min-content',
             })}

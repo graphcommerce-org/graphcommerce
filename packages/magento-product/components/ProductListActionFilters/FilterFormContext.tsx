@@ -1,11 +1,12 @@
-import { useForm, useFormPersist, UseFormReturn } from '@graphcommerce/ecommerce-ui'
-import { ProductAttributeFilterInput } from '@graphcommerce/graphql-mesh'
+import { useForm, UseFormReturn } from '@graphcommerce/ecommerce-ui'
 import { BaseSyntheticEvent, createContext, PropsWithChildren, useContext, useMemo } from 'react'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import { ProductListParams } from '../ProductListItems/filterTypes'
 
+export type FilterFormReturnType = Pick<ProductListParams, 'filters'> & { sort?: string }
+
 type FilterFormContextProps = {
-  form: UseFormReturn<ProductAttributeFilterInput>
+  form: UseFormReturn<FilterFormReturnType>
   params: ProductListParams
   submit: (e?: BaseSyntheticEvent<object, any, any> | undefined) => Promise<void>
 }
@@ -20,20 +21,22 @@ export const useFilterForm = () => {
 
 export function FilterFormProvider(props: PropsWithChildren<{ initialParams: ProductListParams }>) {
   const { children, initialParams: params } = props
-  const form = useForm<ProductAttributeFilterInput & { sort?: string }>({
-    defaultValues: params.filters,
+  const form = useForm<FilterFormReturnType>({
+    defaultValues: {
+      ...params,
+      sort: undefined,
+    },
   })
   const { handleSubmit } = form
   const replaceRoute = useProductListLinkReplace({ scroll: false })
 
   const submit = handleSubmit(async (formValues) => {
-    const { sort, ...filters } = formValues
+    const { sort, filters } = formValues
     await replaceRoute({
       ...params,
       filters,
-      sort: sort && typeof sort !== 'object' ? { [sort]: 'ASC' } : {},
+      sort: sort ? { [sort]: 'ASC' } : {},
     })
-    // reset()
   })
 
   return (

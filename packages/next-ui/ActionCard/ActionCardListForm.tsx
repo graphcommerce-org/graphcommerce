@@ -36,7 +36,7 @@ export function ActionCardListForm<T extends ActionCardItemBase>(
   } = props
   const RenderItem = render as React.FC<ActionCardItemRenderProps<ActionCardItemBase>>
 
-  function onSelect(itemValue: number | string, selectValues: any) {
+  function onSelect(itemValue: number | string, selectValues: unknown) {
     return multiple
       ? Array.isArray(selectValues) && selectValues.some((selectValue) => selectValue === itemValue)
       : selectValues === itemValue

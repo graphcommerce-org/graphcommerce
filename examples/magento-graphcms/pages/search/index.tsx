@@ -4,7 +4,7 @@ import {
   ProductListFilters,
   ProductListFiltersContainer,
   ProductListPagination,
-  ProductListSort,
+  ProductListActionSort,
   ProductListDocument,
   extractUrlQuery,
   parseParams,
@@ -15,6 +15,9 @@ import {
   ProductListQuery,
   ProductFiltersQuery,
   FilterFormProvider,
+  ProductListActionFilters,
+  ProductListParamsProvider,
+  ProductListSort,
 } from '@graphcommerce/magento-product'
 import {
   CategorySearchDocument,
@@ -105,13 +108,33 @@ function SearchResultPage(props: SearchResultProps) {
         <>
           <FilterFormProvider initialParams={params}>
             <StickyBelowHeader>
-              <ProductListFiltersContainer>
-                <ProductListSort sort_fields={products?.sort_fields} />
-                <ProductListFilters
-                  aggregations={filters?.aggregations}
-                  filterTypes={filterTypes}
-                />
-              </ProductListFiltersContainer>
+              {process.env.NEXT_PUBLIC_ADVANCED_FILTERS ? (
+                <FilterFormProvider initialParams={params}>
+                  <ProductListFiltersContainer>
+                    <ProductListActionSort
+                      sort_fields={products?.sort_fields}
+                      total_count={products?.total_count}
+                    />
+                    <ProductListActionFilters
+                      aggregations={filters?.aggregations}
+                      filterTypes={filterTypes}
+                    />
+                  </ProductListFiltersContainer>
+                </FilterFormProvider>
+              ) : (
+                <ProductListParamsProvider value={params}>
+                  <ProductListFiltersContainer>
+                    <ProductListSort
+                      sort_fields={products?.sort_fields}
+                      total_count={products?.total_count}
+                    />
+                    <ProductListFilters
+                      aggregations={filters?.aggregations}
+                      filterTypes={filterTypes}
+                    />
+                  </ProductListFiltersContainer>
+                </ProductListParamsProvider>
+              )}
             </StickyBelowHeader>
           </FilterFormProvider>
           <Container maxWidth={false}>

@@ -1,0 +1,14 @@
+fragment ProductListActionFilters on Products {
+  aggregations {
+    __typename
+    label
+    count
+    attribute_code
+    options {
+      __typename
+      label
+      value
+      count
+    }
+  }
+}
