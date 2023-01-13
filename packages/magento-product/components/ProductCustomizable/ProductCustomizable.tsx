@@ -94,8 +94,9 @@ type OptionTypeRendererProp = Simplify<
 type ProductCustomizableProps = {
   product: ProductCustomizableFragment
   index?: number
-  renderer: OptionTypeRendererProp
-}
+} & (keyof MissingOptionTypeRenderer extends never
+  ? { renderer?: OptionTypeRendererProp }
+  : { renderer: OptionTypeRendererProp })
 
 export function ProductCustomizable(props: ProductCustomizableProps) {
   const { product, renderer, index = 0 } = props
