@@ -14,26 +14,26 @@ import {
   FilterTypes,
   getFilterTypes,
   parseParams,
+  ProductFiltersDocument,
+  ProductFiltersPro,
+  ProductFiltersProChips,
+  ProductFiltersProSort,
+  ProductFiltersQuery,
   ProductListCount,
   ProductListDocument,
+  ProductListFilters,
+  ProductListFiltersContainer,
   ProductListPagination,
   ProductListParams,
-  ProductListQuery,
-  ProductListFiltersContainer,
-  ProductListActionSort,
-  ProductListActionFilters,
-  FilterFormProvider,
-  ProductActionFiltersDocument,
-  ProductActionFiltersQuery,
   ProductListParamsProvider,
+  ProductListQuery,
   ProductListSort,
-  ProductListFilters,
 } from '@graphcommerce/magento-product'
-import { StoreConfigDocument, redirectOrNotFound } from '@graphcommerce/magento-store'
+import { redirectOrNotFound, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
-  LayoutTitle,
-  LayoutHeader,
   GetStaticProps,
+  LayoutHeader,
+  LayoutTitle,
   MetaRobots,
   StickyBelowHeader,
 } from '@graphcommerce/next-ui'
@@ -48,12 +48,13 @@ import {
 } from '../components'
 import { LayoutDocument } from '../components/Layout/Layout.gql'
 import { CategoryPageDocument, CategoryPageQuery } from '../graphql/CategoryPage.gql'
-import { graphqlSsrClient, graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
+import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
 
 export type CategoryProps = CategoryPageQuery &
   ProductListQuery &
-  ProductActionFiltersQuery & { filterTypes?: FilterTypes; params?: ProductListParams }
+  ProductFiltersQuery & { filterTypes?: FilterTypes; params?: ProductListParams }
 export type CategoryRoute = { url: string[] }
+
 type GetPageStaticPaths = GetStaticPaths<CategoryRoute>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, CategoryProps, CategoryRoute>
 
@@ -109,34 +110,21 @@ function CategoryPage(props: CategoryProps) {
 
       {isCategory && !isLanding && (
         <>
-          {/* Use ProductListParamsProvider when using ProductListSort and ProductListFilter */}
           <CategoryDescription description={category.description} />
           <CategoryChildren params={params}>{category.children}</CategoryChildren>
           <StickyBelowHeader>
             {process.env.NEXT_PUBLIC_ADVANCED_FILTERS ? (
-              <FilterFormProvider initialParams={params}>
+              <ProductFiltersPro params={params}>
                 <ProductListFiltersContainer>
-                  <ProductListActionSort
-                    sort_fields={products?.sort_fields}
-                    total_count={products?.total_count}
-                  />
-                  <ProductListActionFilters
-                    aggregations={filters?.aggregations}
-                    filterTypes={filterTypes}
-                  />
+                  <ProductFiltersProSort {...products} />
+                  <ProductFiltersProChips {...filters} filterTypes={filterTypes} />
                 </ProductListFiltersContainer>
-              </FilterFormProvider>
+              </ProductFiltersPro>
             ) : (
               <ProductListParamsProvider value={params}>
                 <ProductListFiltersContainer>
-                  <ProductListSort
-                    sort_fields={products?.sort_fields}
-                    total_count={products?.total_count}
-                  />
-                  <ProductListFilters
-                    aggregations={filters?.aggregations}
-                    filterTypes={filterTypes}
-                  />
+                  <ProductListSort {...products} />
+                  <ProductListFilters {...filters} filterTypes={filterTypes} />
                 </ProductListFiltersContainer>
               </ProductListParamsProvider>
             )}
@@ -231,7 +219,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   }
 
   const filters = staticClient.query({
-    query: ProductActionFiltersDocument,
+    query: ProductFiltersDocument,
     variables: { filters: { category_uid: { eq: categoryUid } } },
   })
   const products = staticClient.query({

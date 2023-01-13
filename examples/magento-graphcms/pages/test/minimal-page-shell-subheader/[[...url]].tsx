@@ -1,11 +1,13 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   extractUrlQuery,
-  FilterFormProvider,
   FilterTypes,
   getFilterTypes,
   parseParams,
   ProductFiltersDocument,
+  ProductFiltersPro,
+  ProductFiltersProChips,
+  ProductFiltersProSort,
   ProductFiltersQuery,
   ProductListDocument,
   ProductListFilters,
@@ -13,18 +15,16 @@ import {
   ProductListParams,
   ProductListParamsProvider,
   ProductListQuery,
-  ProductListActionSort,
-  ProductListActionFilters,
   ProductListSort,
 } from '@graphcommerce/magento-product'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { StickyBelowHeader, LayoutTitle, LayoutHeader, LinkOrButton } from '@graphcommerce/next-ui'
+import { LayoutHeader, LayoutTitle, LinkOrButton, StickyBelowHeader } from '@graphcommerce/next-ui'
 import { GetStaticProps } from '@graphcommerce/next-ui/Page/types'
 import { Box, Container, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import { LayoutMinimal, LayoutMinimalProps } from '../../../components'
 import { DefaultPageDocument, DefaultPageQuery } from '../../../graphql/DefaultPage.gql'
-import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
+import { graphqlSharedClient, graphqlSsrClient } from '../../../lib/graphql/graphqlSsrClient'
 
 type Props = DefaultPageQuery &
   ProductListQuery &
@@ -64,29 +64,17 @@ function MinimalLayoutSubheader(props: Props) {
 
         <StickyBelowHeader>
           {process.env.NEXT_PUBLIC_ADVANCED_FILTERS ? (
-            <FilterFormProvider initialParams={params}>
+            <ProductFiltersPro params={params}>
               <ProductListFiltersContainer>
-                <ProductListActionSort
-                  sort_fields={products?.sort_fields}
-                  total_count={products?.total_count}
-                />
-                <ProductListActionFilters
-                  aggregations={filters?.aggregations}
-                  filterTypes={filterTypes}
-                />
+                <ProductFiltersProSort {...products} />
+                <ProductFiltersProChips {...filters} filterTypes={filterTypes} />
               </ProductListFiltersContainer>
-            </FilterFormProvider>
+            </ProductFiltersPro>
           ) : (
             <ProductListParamsProvider value={params}>
               <ProductListFiltersContainer>
-                <ProductListSort
-                  sort_fields={products?.sort_fields}
-                  total_count={products?.total_count}
-                />
-                <ProductListFilters
-                  aggregations={filters?.aggregations}
-                  filterTypes={filterTypes}
-                />
+                <ProductListSort {...products} />
+                <ProductListFilters {...filters} filterTypes={filterTypes} />
               </ProductListFiltersContainer>
             </ProductListParamsProvider>
           )}

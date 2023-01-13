@@ -1,21 +1,16 @@
 import { Controller } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
-import type {
-  CurrencyEnum,
-  FilterRangeTypeInput,
-  ProductAttributeFilterInput,
-} from '@graphcommerce/graphql-mesh'
+import type { CurrencyEnum, FilterRangeTypeInput } from '@graphcommerce/graphql-mesh'
 import { Money, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { ChipPanel, extendableComponent } from '@graphcommerce/next-ui'
-// eslint-disable-next-line import/no-extraneous-dependencies
+import { ChipPanel, extendableComponent, filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { Mark } from '@mui/base'
 import { Box, Slider } from '@mui/material'
-import { FilterFormReturnType, useFilterForm } from './FilterFormContext'
-import { ProductListActionFiltersFragment } from './ProductListActionFilters.gql'
-import { useFilterActions } from './helpers/useFilterActions'
+import { FilterFormValues, useFilterForm } from './ProductFiltersPro'
+import { ProductListFiltersFragment } from '../ProductListFilters/ProductListFilters.gql'
+import { useFilterActions } from './useFilterActions'
 
 type FilterRangeTypeProps = NonNullable<
-  NonNullable<ProductListActionFiltersFragment['aggregations']>[0]
+  NonNullable<ProductListFiltersFragment['aggregations']>[number]
 >
 
 const { classes } = extendableComponent('FilterRangeType', ['root', 'container', 'slider'] as const)
@@ -27,13 +22,15 @@ export function FilterRangeType(props: FilterRangeTypeProps) {
   const { form } = useFilterForm()
   const { control, getValues } = form
   const { emptyFilters, applyFilters } = useFilterActions({ attribute_code })
-  const values = options?.map((v) => v?.value.split('_').map((mv) => Number(mv))).flat(1)
+  const values = filterNonNullableKeys(options, ['label'])
+    ?.map((v) => v?.value.split('_').map((mv) => Number(mv)))
+    .flat(1)
 
   if (options === (null || undefined)) return null
 
-  const name = `filters.${attribute_code}` as keyof FilterFormReturnType
-  const initialFrom = values?.[0]
-  const initialTo = values?.[values.length - 1]
+  const name = `filters.${attribute_code}` as keyof FilterFormValues
+  const initialFrom = values[0]
+  const initialTo = values[values.length - 1]
   const currentValue = getValues(name) as FilterRangeTypeInput
   const selected = currentValue
     ? Number(currentValue.from) !== initialFrom || Number(currentValue.to) !== initialTo
@@ -85,8 +82,8 @@ export function FilterRangeType(props: FilterRangeTypeProps) {
                 -
                 <Money round value={to} />
                 <Slider
-                  min={values ? values[0] : 0}
-                  max={values ? values[values.length - 1] : 0}
+                  min={values[0]}
+                  max={values[values.length - 1]}
                   aria-labelledby='range-slider'
                   value={[from, to]}
                   onChange={(_e, newValue) => {
@@ -95,7 +92,7 @@ export function FilterRangeType(props: FilterRangeTypeProps) {
                   valueLabelDisplay='off'
                   className={classes.slider}
                   step={null}
-                  marks={values?.map((v) => ({ value: v, label: '' })) as Mark[]}
+                  marks={values.map((value) => ({ value, label: '' }))}
                 />
               </Box>
             </Box>

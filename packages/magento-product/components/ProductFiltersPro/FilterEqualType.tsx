@@ -8,11 +8,10 @@ import {
   ActionCard,
 } from '@graphcommerce/next-ui'
 import { Box, Checkbox, Typography } from '@mui/material'
-import type { SetRequired } from 'type-fest'
 import { ProductListParams } from '../ProductListItems/filterTypes'
-import { useFilterForm } from './FilterFormContext'
-import { ProductListActionFiltersFragment } from './ProductListActionFilters.gql'
-import { useFilterActions } from './helpers/useFilterActions'
+import { useFilterForm } from './ProductFiltersPro'
+import { FilterProps } from './ProductFiltersProAggregations'
+import { useFilterActions } from './useFilterActions'
 
 type OwnerState = {
   isColor: boolean
@@ -38,15 +37,9 @@ const { selectors, withState } = extendableComponent<
   typeof parts
 >(componentName, parts)
 
-export type FilterIn = SetRequired<Omit<FilterEqualTypeInput, 'eq'>, 'in'>
-
-type Filter = NonNullable<NonNullable<ProductListActionFiltersFragment['aggregations']>[number]>
-
-type FilterEqualTypeProps = Filter
-
 function FilterEqualActionCard(
   props: ActionCardItemRenderProps<{
-    option: NonNullable<Filter['options']>[0]
+    option: NonNullable<FilterProps['options']>[0]
     attribute_code: string
     params: ProductListParams
     currentFilter?: FilterEqualTypeInput
@@ -123,10 +116,10 @@ function FilterEqualActionCard(
   )
 }
 
-export function FilterEqualType(props: FilterEqualTypeProps) {
+export function FilterEqualType(props: FilterProps) {
   const { attribute_code, label, options } = props
   const {
-    form: { control, watch },
+    form: { control },
   } = useFilterForm()
 
   const { params } = useFilterForm()

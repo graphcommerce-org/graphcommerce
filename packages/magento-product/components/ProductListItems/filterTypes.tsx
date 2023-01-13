@@ -19,7 +19,7 @@ export type ProductListParams = Exact<{
   url: string
 }>
 
-type AnyFilterType = FilterEqualTypeInput | FilterMatchTypeInput | FilterRangeTypeInput | undefined
+export type AnyFilterType = ProductAttributeFilterInput[keyof ProductAttributeFilterInput]
 
 export function isFilterTypeEqual(filter?: unknown): filter is FilterEqualTypeInput {
   return Boolean(
@@ -37,10 +37,4 @@ export function isFilterTypeRange(filter: AnyFilterType): filter is FilterRangeT
   )
 }
 
-export type AllFilterInputTypes =
-  | 'FilterEqualTypeInput'
-  | 'FilterMatchTypeInput'
-  | 'FilterRangeTypeInput'
-  | 'AllFilterTypeInput'
-
-export type FilterTypes = Partial<Record<string, AllFilterInputTypes>>
+export type FilterTypes = Partial<Record<string, string>>

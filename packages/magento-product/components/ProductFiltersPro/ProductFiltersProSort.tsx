@@ -9,12 +9,12 @@ import {
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { SxProps, Theme, Typography } from '@mui/material'
-import { useFilterForm } from '../ProductListActionFilters/FilterFormContext'
-import { useFilterActions } from '../ProductListActionFilters/helpers/useFilterActions'
+import { useFilterForm } from './ProductFiltersPro'
+import { ProductListSortFragment } from '../ProductListSort/ProductListSort.gql'
+import { useFilterActions } from './useFilterActions'
 import { ProductListParams } from '../ProductListItems/filterTypes'
-import { ProductListActionSortFragment } from './ProductListActionSort.gql'
 
-export type ProductListActionSortProps = ProductListActionSortFragment & {
+export type ProductListActionSortProps = ProductListSortFragment & {
   sx?: SxProps<Theme>
 }
 
@@ -24,11 +24,11 @@ const { classes, withState } = extendableComponent(name, parts)
 
 function FilterSortActionCard(
   props: ActionCardItemRenderProps<{
-    option: NonNullable<NonNullable<ProductListActionSortFragment['sort_fields']>['options']>[0]
+    option: NonNullable<NonNullable<ProductListSortFragment['sort_fields']>['options']>[0]
     attribute_code: string
     params: ProductListParams
     currentOption:
-      | NonNullable<NonNullable<ProductListActionSortFragment['sort_fields']>['options']>[0]
+      | NonNullable<NonNullable<ProductListSortFragment['sort_fields']>['options']>[0]
       | undefined
   }>,
 ) {
@@ -53,7 +53,7 @@ function FilterSortActionCard(
   )
 }
 
-export function ProductListActionSort(props: ProductListActionSortProps) {
+export function ProductFiltersProSort(props: ProductListActionSortProps) {
   const { sort_fields, total_count, sx = [], ...chipMenu } = props
   const { params } = useFilterForm()
   const {
@@ -66,7 +66,9 @@ export function ProductListActionSort(props: ProductListActionSortProps) {
   const { emptyFilters, applyFilters } = useFilterActions({ attribute_code: 'sort' })
 
   const currentOption = sort_fields?.options?.find((option) => option?.value === currentSort)
+
   const selected = currentSort !== defaultSort
+
   const label =
     currentOption?.label !== (undefined || 'Position') ? (
       currentOption?.label

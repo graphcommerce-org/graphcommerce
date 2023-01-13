@@ -1,12 +1,5 @@
-import { gql, ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
+import { gql, ApolloClient, NormalizedCacheObject, TypedDocumentNode } from '@graphcommerce/graphql'
 import type { Exact } from '@graphcommerce/graphql-mesh'
-import { AllFilterInputTypes, FilterTypes } from './filterTypes'
-
-const allFilterInputTypes: AllFilterInputTypes[] = [
-  'FilterEqualTypeInput',
-  'FilterMatchTypeInput',
-  'FilterRangeTypeInput',
-]
 
 type FilterInputTypesQueryVariables = Exact<{ [key: string]: never }>
 
@@ -14,7 +7,7 @@ type FilterInputTypesQuery = {
   __type: {
     inputFields: {
       name: string
-      type: { name: AllFilterInputTypes }
+      type: { name: string }
     }[]
   }
 }
@@ -30,22 +23,16 @@ const FilterInputTypesDocument = gql`
       }
     }
   }
-`
+` as TypedDocumentNode<FilterInputTypesQuery, FilterInputTypesQueryVariables>
 
 export async function getFilterTypes(
   client: ApolloClient<NormalizedCacheObject>,
-): Promise<FilterTypes> {
-  const filterInputTypes = client.query<FilterInputTypesQuery, FilterInputTypesQueryVariables>({
-    query: FilterInputTypesDocument,
-  })
+): Promise<Record<string, string | undefined>> {
+  const filterInputTypes = await client.query({ query: FilterInputTypesDocument })
 
-  const typeMap: FilterTypes = {}
-
-  ;(await filterInputTypes).data?.__type.inputFields.forEach(({ name, type }) => {
-    if (!allFilterInputTypes.includes(type.name))
-      console.warn(`filter ${name} with FilterTypeInput ${type.name} not implemented`)
-    typeMap[name] = type.name
-  })
+  const typeMap: Record<string, string | undefined> = Object.fromEntries(
+    filterInputTypes.data?.__type.inputFields.map(({ name, type }) => [name, type.name]),
+  )
 
   return typeMap
 }

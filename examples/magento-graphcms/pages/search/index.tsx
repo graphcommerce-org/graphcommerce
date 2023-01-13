@@ -1,22 +1,22 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
+  extractUrlQuery,
+  FilterTypes,
+  getFilterTypes,
+  parseParams,
+  ProductFiltersDocument,
+  ProductFiltersPro,
+  ProductFiltersProChips,
+  ProductFiltersProSort,
+  ProductFiltersQuery,
   ProductListCount,
+  ProductListDocument,
   ProductListFilters,
   ProductListFiltersContainer,
   ProductListPagination,
-  ProductListActionSort,
-  ProductListDocument,
-  extractUrlQuery,
-  parseParams,
-  FilterTypes,
   ProductListParams,
-  getFilterTypes,
-  ProductFiltersDocument,
-  ProductListQuery,
-  ProductFiltersQuery,
-  FilterFormProvider,
-  ProductListActionFilters,
   ProductListParamsProvider,
+  ProductListQuery,
   ProductListSort,
 } from '@graphcommerce/magento-product'
 import {
@@ -29,10 +29,10 @@ import {
 } from '@graphcommerce/magento-search'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
-  StickyBelowHeader,
   GetStaticProps,
-  LayoutTitle,
   LayoutHeader,
+  LayoutTitle,
+  StickyBelowHeader,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
@@ -40,7 +40,7 @@ import { Container, Hidden } from '@mui/material'
 import { LayoutNavigation, LayoutNavigationProps, ProductListItems } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
 import { DefaultPageDocument, DefaultPageQuery } from '../../graphql/DefaultPage.gql'
-import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
 type SearchResultProps = DefaultPageQuery &
   ProductListQuery &
@@ -106,37 +106,23 @@ function SearchResultPage(props: SearchResultProps) {
       {noSearchResults && <NoSearchResults search={search} />}
       {products && products.items && products?.items?.length > 0 && (
         <>
-          <FilterFormProvider initialParams={params}>
-            <StickyBelowHeader>
-              {process.env.NEXT_PUBLIC_ADVANCED_FILTERS ? (
-                <FilterFormProvider initialParams={params}>
-                  <ProductListFiltersContainer>
-                    <ProductListActionSort
-                      sort_fields={products?.sort_fields}
-                      total_count={products?.total_count}
-                    />
-                    <ProductListActionFilters
-                      aggregations={filters?.aggregations}
-                      filterTypes={filterTypes}
-                    />
-                  </ProductListFiltersContainer>
-                </FilterFormProvider>
-              ) : (
-                <ProductListParamsProvider value={params}>
-                  <ProductListFiltersContainer>
-                    <ProductListSort
-                      sort_fields={products?.sort_fields}
-                      total_count={products?.total_count}
-                    />
-                    <ProductListFilters
-                      aggregations={filters?.aggregations}
-                      filterTypes={filterTypes}
-                    />
-                  </ProductListFiltersContainer>
-                </ProductListParamsProvider>
-              )}
-            </StickyBelowHeader>
-          </FilterFormProvider>
+          <StickyBelowHeader>
+            {process.env.NEXT_PUBLIC_ADVANCED_FILTERS ? (
+              <ProductFiltersPro params={params}>
+                <ProductListFiltersContainer>
+                  <ProductFiltersProSort {...products} />
+                  <ProductFiltersProChips {...filters} filterTypes={filterTypes} />
+                </ProductListFiltersContainer>
+              </ProductFiltersPro>
+            ) : (
+              <ProductListParamsProvider value={params}>
+                <ProductListFiltersContainer>
+                  <ProductListSort {...products} />
+                  <ProductListFilters {...filters} filterTypes={filterTypes} />
+                </ProductListFiltersContainer>
+              </ProductListParamsProvider>
+            )}
+          </StickyBelowHeader>
           <Container maxWidth={false}>
             <ProductListCount total_count={products?.total_count} />
             <ProductListItems title={`Search ${search}`} items={products?.items} loadingEager={1} />

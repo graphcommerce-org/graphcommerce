@@ -6,16 +6,16 @@ import {
   ProductAttributeFilterInput,
   ProductAttributeSortInput,
 } from '@graphcommerce/graphql-mesh'
-import { useProductListLinkReplace } from '../../../hooks/useProductListLinkReplace'
-import { ProductListParams } from '../../ProductListItems/filterTypes'
-import { FilterFormReturnType, useFilterForm } from '../FilterFormContext'
+import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
+import { ProductListParams } from '../ProductListItems/filterTypes'
+import { FilterFormValues, useFilterForm } from './ProductFiltersPro'
 
 export type FilterActionProps = {
   attribute_code?: keyof ProductAttributeFilterInput | 'sort' | string
 }
 
 type LocalFilterInputProps = FilterActionProps & {
-  form: UseFormReturn<FilterFormReturnType>
+  form: UseFormReturn<FilterFormValues>
   params: ProductListParams
 }
 

@@ -44,13 +44,7 @@ export const OverlayPanelActions = (props: OverlayPanelActionsProps) => {
   }
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        minWidth: 350,
-      }}
-    >
+    <Box sx={{ display: 'flex', flexDirection: 'column' }}>
       <LayoutOverlayHeader
         switchPoint={0}
         primary={
