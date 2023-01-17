@@ -26,7 +26,7 @@ export function useAddProductsToCartAction(
     sku = props.product?.sku,
     product,
     index = 0,
-    onClick: onClickIncomming,
+    onClick: onClickIncoming,
     disabled,
     loading,
   } = props
@@ -43,7 +43,7 @@ export function useAddProductsToCartAction(
         if (!sku) console.warn(`You must provide a 'sku' to useAddProductsToCartAction`)
       }
       setValue(`cartItems.${index}.sku`, sku ?? '')
-      onClickIncomming?.(e)
+      onClickIncoming?.(e)
     }),
     onMouseDown: useEventCallback((e) => e.stopPropagation()),
   }

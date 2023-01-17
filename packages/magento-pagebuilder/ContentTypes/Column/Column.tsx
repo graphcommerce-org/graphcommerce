@@ -7,10 +7,11 @@ import { ColumnContentType } from './types'
 /**
  * Page Builder Column component.
  *
- * This component is part of the Page Builder / PWA integration. It can be consumed without Page Builder.
+ * This component is part of the Page Builder / PWA integration. It can be consumed without Page
+ * Builder.
  */
-export const Column: ColumnContentType['component'] = (incomming) => {
-  const [cssProps, cssClasses, additional] = extractAdvancedProps(incomming)
+export const Column: ColumnContentType['component'] = (incoming) => {
+  const [cssProps, cssClasses, additional] = extractAdvancedProps(incoming)
   const [imageProps, props] = extractImageBackgroundProps(additional)
 
   const columnElement = useRef(null)

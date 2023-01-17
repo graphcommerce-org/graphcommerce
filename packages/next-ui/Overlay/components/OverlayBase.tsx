@@ -81,8 +81,8 @@ export function useOverlayContext() {
   return context
 }
 
-export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
-  const props = useThemeProps({ name, props: incommingProps })
+export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
+  const props = useThemeProps({ name, props: incomingProps })
 
   const {
     children,
