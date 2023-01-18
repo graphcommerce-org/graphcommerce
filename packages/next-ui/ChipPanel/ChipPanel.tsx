@@ -13,16 +13,30 @@ export type ChipPanelProps = React.PropsWithChildren<{
   selectedLabel: React.ReactNode | React.ReactNode[]
 }>
 
-export function ChipPanel(props: ChipPanelProps) {
-  const { chipProps, panelProps, ...chipMenuProps } = props
-  let { selected, selectedLabel, children } = chipMenuProps
-  const { onApply, onClose, onReset } = panelProps ?? {}
+function isMulti(
+  selectedLabel: React.ReactNode | React.ReactNode[],
+): selectedLabel is React.ReactNode[] {
+  return Array.isArray(selectedLabel) && selectedLabel.length > 1
+}
 
+export function ChipPanel(props: ChipPanelProps) {
+  let { chipProps, panelProps, selected, selectedLabel, children } = props
+  const { onApply, onClose, onReset } = panelProps ?? {}
   const [activeEl, setActiveEl] = useState<HTMLElement | null>(null)
 
-  const id = 'filterpopper' as const
-
-  let chevronIcon = (
+  const chevronIcon = isMulti(selectedLabel) ? (
+    <Typography
+      variant='caption'
+      color='primary.main'
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        ml: responsiveVal(3, 8),
+      }}
+    >
+      +{selectedLabel.length - 1}
+    </Typography>
+  ) : (
     <IconSvg
       src={activeEl ? iconChevronUp : iconChevronDown}
       size='medium'
@@ -30,35 +44,19 @@ export function ChipPanel(props: ChipPanelProps) {
     />
   )
 
-  if (Array.isArray(selectedLabel) && selectedLabel.length > 1) {
-    chevronIcon = (
-      <Typography
-        variant='caption'
-        color='primary.main'
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          ml: responsiveVal(3, 8),
-        }}
-      >
-        +{selectedLabel.length - 1}
-      </Typography>
-    )
-    ;[selectedLabel] = selectedLabel
-  }
+  selectedLabel = isMulti(selectedLabel) ? selectedLabel[0] : selectedLabel
 
   return (
     <>
       <Chip
         {...chipProps}
-        aria-describedby={id}
         size='responsive'
         component='button'
         color={selected && !activeEl ? 'primary' : 'default'}
         clickable
         label={
           <Typography variant='body2' sx={{ display: 'flex', flexDirection: 'row' }}>
-            {selected && selectedLabel ? selectedLabel : chipProps?.label}
+            {selected ? selectedLabel : chipProps?.label}
             {chevronIcon}
           </Typography>
         }

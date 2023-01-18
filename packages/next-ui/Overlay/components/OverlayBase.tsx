@@ -69,18 +69,6 @@ const clearScrollLock = () => {
   document.body.style.overflow = ''
 }
 
-type OverlayContextType = {
-  close?: () => void
-}
-const OverlayContext = React.createContext<OverlayContextType | null>(null)
-
-export function useOverlayContext() {
-  const context = useContext(OverlayContext)
-  if (!context)
-    throw Error(`[@graphcommerce/next-ui] useOverlayContext must be used inside an OverlayBase`)
-  return context
-}
-
 export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
   const props = useThemeProps({ name, props: incomingProps })
 
@@ -242,10 +230,8 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
     [closeOverlay, scrollerRef, snap],
   )
 
-  const overlayContext = useMemo(() => ({ close: closeOverlay }), [closeOverlay])
-
   return (
-    <OverlayContext.Provider value={overlayContext}>
+    <>
       <MotionDiv
         inert={active ? undefined : 'true'}
         className={classes.backdrop}
@@ -471,6 +457,6 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
           </MotionDiv>
         </Box>
       </Scroller>
-    </OverlayContext.Provider>
+    </>
   )
 }

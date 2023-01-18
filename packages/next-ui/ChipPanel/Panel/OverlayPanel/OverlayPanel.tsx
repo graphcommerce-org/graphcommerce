@@ -11,8 +11,6 @@ type OverlayPanelProps = PropsWithChildren<
   OverlayProps & {
     sizeShift?: number
     size?: LayoutOverlaySize
-    onReset?: () => void
-    onApply?: () => void
   }
 
 export function OverlayPanel(props: OverlayPanelProps) {
