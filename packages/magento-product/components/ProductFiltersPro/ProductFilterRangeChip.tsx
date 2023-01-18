@@ -1,7 +1,7 @@
 import { Controller } from '@graphcommerce/ecommerce-ui'
 import type { ProductAttributeFilterInput } from '@graphcommerce/graphql-mesh'
 import { Money } from '@graphcommerce/magento-store'
-import { ChipPanel, extendableComponent, filterNonNullableKeys } from '@graphcommerce/next-ui'
+import { ChipPanel, extendableComponent } from '@graphcommerce/next-ui'
 import { isFilterTypeRange } from '../ProductListItems/filterTypes'
 import { getMinMaxFromOptions, PriceSlider } from './PriceSlider'
 import { useProductFiltersPro } from './ProductFiltersPro'
@@ -12,11 +12,10 @@ const { classes } = extendableComponent('FilterRangeType', ['root', 'container',
 export function ProductFilterRangeChip(props: FilterProps) {
   const { attribute_code, label, options } = props
   const { form, submit, params } = useProductFiltersPro()
-
+  const { control } = form
   const attrCode = attribute_code as keyof ProductAttributeFilterInput
   const name = `filters.${attrCode}` as const
   const param = params.filters?.[attrCode]
-
   if (param && !isFilterTypeRange(param)) throw new Error('Invalid filter type')
 
   const [min, max] = getMinMaxFromOptions(options)
@@ -25,7 +24,7 @@ export function ProductFilterRangeChip(props: FilterProps) {
 
   return (
     <Controller
-      control={form.control}
+      control={control}
       name={name}
       render={({ field: { onChange, value } }) => {
         if (value && !isFilterTypeRange(value)) throw new Error('Invalid filter type')

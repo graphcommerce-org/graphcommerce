@@ -10,13 +10,12 @@ export type ChipPanelProps = React.PropsWithChildren<{
   chipProps?: ChipProps<'button'>
   panelProps?: Omit<PanelProps, 'activeEl'>
   selected: boolean
-  selectedLabel: React.ReactNode
-  filterValue?: number
+  selectedLabel: React.ReactNode | React.ReactNode[]
 }>
 
 export function ChipPanel(props: ChipPanelProps) {
   const { chipProps, panelProps, ...chipMenuProps } = props
-  const { selected, selectedLabel, filterValue, children } = chipMenuProps
+  let { selected, selectedLabel, children } = chipMenuProps
   const { onApply, onClose, onReset } = panelProps ?? {}
 
   const [activeEl, setActiveEl] = useState<HTMLElement | null>(null)
@@ -30,7 +29,8 @@ export function ChipPanel(props: ChipPanelProps) {
       sx={{ ml: responsiveVal(3, 8), mr: '-5px' }}
     />
   )
-  if (filterValue)
+
+  if (Array.isArray(selectedLabel) && selectedLabel.length > 1) {
     chevronIcon = (
       <Typography
         variant='caption'
@@ -41,11 +41,11 @@ export function ChipPanel(props: ChipPanelProps) {
           ml: responsiveVal(3, 8),
         }}
       >
-        +{filterValue}
+        +{selectedLabel.length - 1}
       </Typography>
     )
-
-  const selectedAndMenuHidden = selected && !activeEl
+    ;[selectedLabel] = selectedLabel
+  }
 
   return (
     <>
@@ -54,7 +54,7 @@ export function ChipPanel(props: ChipPanelProps) {
         aria-describedby={id}
         size='responsive'
         component='button'
-        color={selectedAndMenuHidden ? 'primary' : 'default'}
+        color={selected && !activeEl ? 'primary' : 'default'}
         clickable
         label={
           <Typography variant='body2' sx={{ display: 'flex', flexDirection: 'row' }}>
