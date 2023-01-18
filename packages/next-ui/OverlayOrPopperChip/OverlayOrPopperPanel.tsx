@@ -1,10 +1,10 @@
 import { Theme, useMediaQuery } from '@mui/material'
 import dynamic from 'next/dynamic'
-import { PanelProps } from '../types'
+import { PanelProps } from './types'
 
-const OverlayPanel = dynamic(async () => (await import('./OverlayPanel/OverlayPanel')).OverlayPanel)
+const OverlayPanel = dynamic(async () => (await import('./OverlayPanel')).OverlayPanel)
 
-const PopperPanel = dynamic(async () => (await import('./PopperPanel/PopperPanel')).PopperPanel)
+const PopperPanel = dynamic(async () => (await import('./PopperPanel')).PopperPanel)
 
 /**
  * Todo: Implement a render function that will only trigger the render after the first activation

@@ -1,8 +1,8 @@
 import { ChipProps } from '@mui/material'
 import React, { PropsWithChildren, ReactElement } from 'react'
-import { LayoutOverlaySize } from '../../../Overlay'
-import { Overlay } from '../../../Overlay/components/Overlay'
-import { OverlayProps } from '../../../Overlay/components/OverlaySsr'
+import { LayoutOverlaySize } from '../Overlay'
+import { Overlay } from '../Overlay/components/Overlay'
+import { OverlayProps } from '../Overlay/components/OverlaySsr'
 import { OverlayPanelActions } from './OverlayPanelActions'
 
 type OverlayPanelProps = PropsWithChildren<

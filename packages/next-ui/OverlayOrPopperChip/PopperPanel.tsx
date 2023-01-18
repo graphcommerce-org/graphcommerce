@@ -1,8 +1,8 @@
 import { ClickAwayListener, Popper } from '@mui/material'
 import { useRef } from 'react'
-import { PanelProps } from '../../types'
 import { PopperPanelActions } from './PopperPanelActions'
-import { useMouseEvents } from './helpers/useMouseEvents'
+import { PanelProps } from './types'
+import { useMouseEvents } from './useMouseEvents'
 
 type PopperPanelProps = PanelProps
 

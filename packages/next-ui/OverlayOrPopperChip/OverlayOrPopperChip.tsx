@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { IconSvg } from '../IconSvg'
 import { responsiveVal } from '../Styles'
 import { iconChevronDown, iconChevronUp } from '../icons'
-import { OverlayOrPopperPanel } from './Panel/OverlayOrPopperPanel'
+import { OverlayOrPopperPanel } from './OverlayOrPopperPanel'
 import { PanelProps } from './types'
 
 export type ChipPanelProps = React.PropsWithChildren<{

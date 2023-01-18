@@ -14,7 +14,7 @@ export type ActionCardListFormProps<A, F extends FieldValues = FieldValues> = Om
   ActionCardListProps,
   'value' | 'error' | 'onChange' | 'children'
 > &
-  Omit<ControllerProps<F>, 'render' | 'shouldUnregister'> & {
+  Omit<ControllerProps<F>, 'render'> & {
     items: A[]
     render: React.FC<ActionCardItemRenderProps<A>>
   }

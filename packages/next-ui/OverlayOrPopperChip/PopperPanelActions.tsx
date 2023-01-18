@@ -2,18 +2,15 @@ import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Fab, TextField, Button, Box, Typography, ChipProps } from '@mui/material'
 import React, { useState, ReactElement, useMemo } from 'react'
-import { LinkOrButton } from '../../../Button'
-import { IconSvg } from '../../../IconSvg'
-import { LayoutTitle } from '../../../Layout'
-import { LayoutOverlayHeader } from '../../../LayoutOverlay'
-import { iconClose } from '../../../icons'
-import { PanelProps } from '../../types'
+import { LinkOrButton } from '../Button'
+import { IconSvg } from '../IconSvg'
+import { LayoutTitle } from '../Layout'
+import { LayoutOverlayHeader } from '../LayoutOverlay'
+import { iconClose } from '../icons'
+import { PanelProps } from './types'
 
-type PopperPanelProps = Pick<
-  PanelProps,
-  'children' | 'onApply' | 'onReset' | 'onClose' | 'maxLength'
-> &
-  Pick<ChipProps, 'label'>
+type PopperPanelProps = Pick<ChipProps, 'label'> &
+  Pick<PanelProps, 'children' | 'onApply' | 'onReset' | 'onClose' | 'maxLength'>
 
 export function PopperPanelActions(props: PopperPanelProps) {
   const { label, children, onReset, onClose, onApply, maxLength = 20 } = props

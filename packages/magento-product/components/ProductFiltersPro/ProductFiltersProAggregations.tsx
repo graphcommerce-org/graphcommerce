@@ -11,8 +11,7 @@ export type FilterRenderer = Record<string, React.FC<FilterProps>>
 export type ProductFiltersProAggregationsProps = {
   filterTypes: Record<string, string | undefined>
   renderer?: FilterRenderer
-} & ProductListFiltersFragment &
-  Omit<PanelProps, 'active' | 'label'>
+} & ProductListFiltersFragment
 
 export function ProductFiltersProAggregations(props: ProductFiltersProAggregationsProps) {
   const { aggregations, filterTypes, renderer } = props
