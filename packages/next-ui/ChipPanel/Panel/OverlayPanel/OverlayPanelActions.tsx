@@ -23,10 +23,13 @@ export const OverlayPanelActions = (props: OverlayPanelActionsProps) => {
   const [search, setSearch] = useState<string>()
   const castedChildren = children as ReactElement
   const menuLength = castedChildren?.props.items?.length
+
   const filteredChildren = useMemo(() => {
     const { items } = castedChildren.props
     const filteredItems = items?.filter((item) => {
-      const optionLabelLowerCase = item.option.label.toLowerCase()
+      return true
+
+      const optionLabelLowerCase = item.label.toLowerCase()
       const searchLowerCase = search?.toLowerCase() ?? ''
       return search ? optionLabelLowerCase?.includes(searchLowerCase) : true
     })
@@ -90,7 +93,6 @@ export const OverlayPanelActions = (props: OverlayPanelActionsProps) => {
 
         <Box sx={(theme) => ({ height: theme.spacings.xxl })} />
         <OverlayButton
-          form='filter-form'
           variant='pill'
           size='large'
           type='submit'

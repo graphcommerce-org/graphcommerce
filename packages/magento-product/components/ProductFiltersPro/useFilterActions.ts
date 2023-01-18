@@ -1,22 +1,17 @@
 import { UseFormReturn } from '@graphcommerce/ecommerce-ui'
 import { cloneDeep } from '@graphcommerce/graphql'
-import {
-  FilterEqualTypeInput,
-  FilterRangeTypeInput,
-  ProductAttributeFilterInput,
-  ProductAttributeSortInput,
-} from '@graphcommerce/graphql-mesh'
+import { ProductAttributeFilterInput } from '@graphcommerce/graphql-mesh'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
-import { ProductListParams } from '../ProductListItems/filterTypes'
-import { FilterFormValues, useFilterForm } from './ProductFiltersPro'
+import { ProductFilterParams } from '../ProductListItems/filterTypes'
+import { useFilterForm } from './ProductFiltersPro'
 
 export type FilterActionProps = {
-  attribute_code?: keyof ProductAttributeFilterInput | 'sort' | string
+  attribute_code: keyof ProductAttributeFilterInput
 }
 
 type LocalFilterInputProps = FilterActionProps & {
-  form: UseFormReturn<FilterFormValues>
-  params: ProductListParams
+  form: UseFormReturn<ProductFilterParams>
+  params: ProductFilterParams
 }
 
 const emptyFilters = (props: LocalFilterInputProps & { defaultValue: unknown }) => {
@@ -24,29 +19,18 @@ const emptyFilters = (props: LocalFilterInputProps & { defaultValue: unknown }) 
   const linkParams = cloneDeep(params)
 
   // If the attribute_code is a filter key, replace filter value with default value
-  if (attribute_code && Object.keys(params.filters).find((f) => f === attribute_code)) {
-    const activeFilter: FilterEqualTypeInput | FilterRangeTypeInput | ProductAttributeSortInput =
-      linkParams.filters[attribute_code]
-    const filterkeys = Object.keys(activeFilter ?? {})
-    const clearFilters = {}
-    filterkeys.forEach((key, index) => {
-      clearFilters[key] = Array.isArray(defaultValue) ? defaultValue[index] : defaultValue
-    })
+  const activeFilter = linkParams.filters[attribute_code]
 
-    if (linkParams && attribute_code) {
-      form?.reset({
-        ...linkParams,
-        filters: { ...linkParams.filters, [attribute_code]: clearFilters },
-        sort: Object.keys(linkParams.sort)[0],
-      })
-    }
-  }
+  const filterkeys = Object.keys(activeFilter ?? {})
+  const clearFilters = {}
+  filterkeys.forEach((key, index) => {
+    clearFilters[key] = Array.isArray(defaultValue) ? defaultValue[index] : defaultValue
+  })
 
-  // If the attribute_code is a sort key, replace sort value with default value
-  if (attribute_code === 'sort' && typeof defaultValue === 'string') {
+  if (linkParams && attribute_code) {
     form?.reset({
       ...linkParams,
-      sort: defaultValue,
+      filters: { ...linkParams.filters, [attribute_code]: clearFilters },
     })
   }
 
@@ -54,7 +38,7 @@ const emptyFilters = (props: LocalFilterInputProps & { defaultValue: unknown }) 
 }
 
 const removeAllFilters = (
-  props: LocalFilterInputProps & { onReplace: (params: ProductListParams) => void },
+  props: LocalFilterInputProps & { onReplace: (params: ProductFilterParams) => void },
 ) => {
   const { params, form, onReplace } = props
   const linkParams = cloneDeep(params)
@@ -70,7 +54,6 @@ export const useFilterActions = (props: FilterActionProps) => {
   const replaceRoute = useProductListLinkReplace({ scroll: false })
   const { form, params, submit } = useFilterForm()
   return {
-    applyFilters: submit,
     emptyFilters: (defaultValue?: unknown) =>
       emptyFilters({ ...props, form, params, defaultValue }),
     clearAllFilters: () => removeAllFilters({ ...props, form, params, onReplace: replaceRoute }),

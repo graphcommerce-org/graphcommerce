@@ -4,29 +4,25 @@ import { PanelProps } from '../../types'
 import { PopperPanelActions } from './PopperPanelActions'
 import { useMouseEvents } from './helpers/useMouseEvents'
 
-type PopperPanelProps = PanelProps & {
-  activeEl: null | HTMLElement
-  onClose?: () => void
-  onApply?: () => void
-  onReset?: () => void
-}
+type PopperPanelProps = PanelProps
 
 export function PopperPanel(props: PopperPanelProps) {
   const { activeEl, onClose, onApply, closeOnAction, ...filterContentProps } = props
-  const open = Boolean(activeEl)
+  const active = Boolean(activeEl)
   const ref = useRef(null)
   const { movement } = useMouseEvents(ref)
 
   const handleClickAway = () => {
-    if (onClose && open && movement !== 'drag') onClose()
+    if (onClose && active && movement !== 'drag') onClose()
     if (onApply && movement !== 'drag') onApply()
   }
-  if (!open) return null
+
+  if (!active) return null
   return (
     <ClickAwayListener mouseEvent='onClick' onClickAway={handleClickAway}>
       <Popper
         ref={ref}
-        open={open}
+        open={active}
         anchorEl={activeEl}
         sx={(theme) => ({
           boxShadow: 12,

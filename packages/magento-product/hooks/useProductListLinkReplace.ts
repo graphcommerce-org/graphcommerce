@@ -21,12 +21,10 @@ export function useProductListLinkReplace(props?: UseProductLinkPushProps) {
 
     const path = createProductListLink(params)
 
-    if (router.asPath === path) return
+    if (router.asPath === path) return false
 
     // push the first filter, so the new route (on browser back) will be e.g. /women/fruit instead of /women
-    if (comingFromURLWithoutFilters) {
-      return router.push(path, path, props)
-    }
+    if (comingFromURLWithoutFilters) return router.push(path, path, props)
     return router.replace(path, path, props)
   }
 }

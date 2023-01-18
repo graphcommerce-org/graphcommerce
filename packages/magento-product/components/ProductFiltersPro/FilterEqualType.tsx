@@ -8,7 +8,7 @@ import {
   ActionCard,
 } from '@graphcommerce/next-ui'
 import { Box, Checkbox, Typography } from '@mui/material'
-import { ProductListParams } from '../ProductListItems/filterTypes'
+import { ProductFilterParams } from '../ProductListItems/filterTypes'
 import { useFilterForm } from './ProductFiltersPro'
 import { FilterProps } from './ProductFiltersProAggregations'
 import { useFilterActions } from './useFilterActions'
@@ -41,7 +41,7 @@ function FilterEqualActionCard(
   props: ActionCardItemRenderProps<{
     option: NonNullable<FilterProps['options']>[0]
     attribute_code: string
-    params: ProductListParams
+    params: ProductFilterParams
     currentFilter?: FilterEqualTypeInput
   }>,
 ) {
@@ -118,12 +118,10 @@ function FilterEqualActionCard(
 
 export function FilterEqualType(props: FilterProps) {
   const { attribute_code, label, options } = props
-  const {
-    form: { control },
-  } = useFilterForm()
+  const { control } = useFilterForm().form
+  const { params, submit } = useFilterForm()
 
-  const { params } = useFilterForm()
-  const { emptyFilters, applyFilters } = useFilterActions({
+  const { emptyFilters } = useFilterActions({
     attribute_code,
   })
 
@@ -144,9 +142,9 @@ export function FilterEqualType(props: FilterProps) {
         className: componentName,
       }}
       panelProps={{
-        onApply: applyFilters,
+        onApply: submit,
         onReset: emptyFilters,
-        onClose: applyFilters,
+        onClose: submit,
         closeOnAction: true,
       }}
       selectedLabel={currentLabels[0]}

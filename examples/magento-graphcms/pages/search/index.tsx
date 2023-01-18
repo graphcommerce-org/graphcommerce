@@ -6,8 +6,8 @@ import {
   parseParams,
   ProductFiltersDocument,
   ProductFiltersPro,
-  ProductFiltersProChips,
-  ProductFiltersProSort,
+  ProductFiltersProFilterChips,
+  ProductFiltersProSortChip,
   ProductFiltersQuery,
   ProductListCount,
   ProductListDocument,
@@ -110,8 +110,8 @@ function SearchResultPage(props: SearchResultProps) {
             {process.env.NEXT_PUBLIC_ADVANCED_FILTERS ? (
               <ProductFiltersPro params={params}>
                 <ProductListFiltersContainer>
-                  <ProductFiltersProSort {...products} />
-                  <ProductFiltersProChips {...filters} filterTypes={filterTypes} />
+                  <ProductFiltersProFilterChips {...filters} filterTypes={filterTypes} />
+                  <ProductFiltersProSortChip {...products} />
                 </ProductListFiltersContainer>
               </ProductFiltersPro>
             ) : (

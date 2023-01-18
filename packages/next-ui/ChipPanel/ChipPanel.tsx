@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { IconSvg } from '../IconSvg'
 import { responsiveVal } from '../Styles'
 import { iconChevronDown, iconChevronUp } from '../icons'
-import { DynamicPanel } from './Panel/DynamicPanel'
+import { OverlayOrPopperPanel } from './Panel/OverlayOrPopperPanel'
 import { PanelProps } from './types'
 
 export type ChipPanelProps = React.PropsWithChildren<{
@@ -17,6 +17,7 @@ export type ChipPanelProps = React.PropsWithChildren<{
 export function ChipPanel(props: ChipPanelProps) {
   const { chipProps, panelProps, ...chipMenuProps } = props
   const { selected, selectedLabel, filterValue, children } = chipMenuProps
+  const { onApply, onClose, onReset } = panelProps ?? {}
 
   const [activeEl, setActiveEl] = useState<HTMLElement | null>(null)
 
@@ -26,10 +27,7 @@ export function ChipPanel(props: ChipPanelProps) {
     <IconSvg
       src={activeEl ? iconChevronUp : iconChevronDown}
       size='medium'
-      sx={{
-        ml: responsiveVal(3, 8),
-        mr: '-5px',
-      }}
+      sx={{ ml: responsiveVal(3, 8), mr: '-5px' }}
     />
   )
   if (filterValue)
@@ -49,22 +47,6 @@ export function ChipPanel(props: ChipPanelProps) {
 
   const selectedAndMenuHidden = selected && !activeEl
 
-  const toggle = useEventCallback((e: React.MouseEvent<HTMLElement>) => {
-    setActiveEl((el) => (el !== e.currentTarget ? e.currentTarget : null))
-  })
-
-  const labelComponent = (
-    <Typography variant='body2' sx={{ display: 'flex', flexDirection: 'row' }}>
-      {selected && selectedLabel ? selectedLabel : chipProps?.label}
-      {chevronIcon}
-    </Typography>
-  )
-
-  const handleClose = () => {
-    panelProps?.onClose?.()
-    setActiveEl(null)
-  }
-
   return (
     <>
       <Chip
@@ -74,8 +56,15 @@ export function ChipPanel(props: ChipPanelProps) {
         component='button'
         color={selectedAndMenuHidden ? 'primary' : 'default'}
         clickable
-        label={labelComponent}
-        onClick={toggle}
+        label={
+          <Typography variant='body2' sx={{ display: 'flex', flexDirection: 'row' }}>
+            {selected && selectedLabel ? selectedLabel : chipProps?.label}
+            {chevronIcon}
+          </Typography>
+        }
+        onClick={useEventCallback((e: React.MouseEvent<HTMLElement>) =>
+          setActiveEl((el) => (el !== e.currentTarget ? e.currentTarget : null)),
+        )}
         sx={(theme) => ({
           '& .MuiChip-deleteIcon': {
             ml: '0px',
@@ -93,15 +82,29 @@ export function ChipPanel(props: ChipPanelProps) {
             : {}),
         })}
       />
-      <DynamicPanel
+      <OverlayOrPopperPanel
         {...panelProps}
         label={chipProps?.label}
         activeEl={activeEl}
-        active={Boolean(activeEl)}
-        onClose={handleClose}
+        onReset={
+          onReset
+            ? () => {
+                onReset?.()
+                setActiveEl(null)
+              }
+            : undefined
+        }
+        onClose={() => {
+          onClose?.()
+          setActiveEl(null)
+        }}
+        onApply={() => {
+          onApply?.()
+          setActiveEl(null)
+        }}
       >
         {children}
-      </DynamicPanel>
+      </OverlayOrPopperPanel>
     </>
   )
 }

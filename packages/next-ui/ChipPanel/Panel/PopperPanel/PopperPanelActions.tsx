@@ -23,6 +23,8 @@ export function PopperPanelActions(props: PopperPanelProps) {
   const filteredChildren = useMemo(() => {
     const { items } = (children as ReactElement).props
     const filteredItems = items?.filter((item) => {
+      return true
+
       const optionLabelLowerCase = item.option.label.toLowerCase()
       const searchLowerCase = search?.toLowerCase() ?? ''
       return search ? optionLabelLowerCase?.includes(searchLowerCase) : true
@@ -32,32 +34,22 @@ export function PopperPanelActions(props: PopperPanelProps) {
 
   const inSearchMode = menuLength > maxLength
 
-  const handleReset = () => {
-    if (onReset) onReset()
-    if (onClose) onClose()
-    if (onApply) onApply()
-  }
-
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        minWidth: 350,
-      }}
-    >
+    <Box sx={{ display: 'flex', flexDirection: 'column', minWidth: 350 }}>
       <LayoutOverlayHeader
         switchPoint={0}
         primary={
-          <LinkOrButton
-            button={{ variant: 'text', size: 'medium', sx: { mr: 1 } }}
-            color='primary'
-            onClick={handleReset}
-          >
-            <Typography variant='body2'>
-              <Trans id='Reset' />
-            </Typography>
-          </LinkOrButton>
+          onReset && (
+            <LinkOrButton
+              button={{ variant: 'text', size: 'medium', sx: { mr: 1 } }}
+              color='primary'
+              onClick={onReset}
+            >
+              <Typography variant='body2'>
+                <Trans id='Reset' />
+              </Typography>
+            </LinkOrButton>
+          )
         }
         secondary={
           <Box sx={{ width: '74px', display: 'flex', justifyContent: 'center' }} onClick={onClose}>
@@ -108,10 +100,10 @@ export function PopperPanelActions(props: PopperPanelProps) {
 
         <Box sx={(theme) => ({ height: theme.spacings.sm })} />
         <Button
-          form='filter-form'
+          type='button'
+          onClick={onApply}
           variant='pill'
           size='large'
-          type='submit'
           color='primary'
           fullWidth
           sx={(theme) => ({
@@ -119,9 +111,6 @@ export function PopperPanelActions(props: PopperPanelProps) {
             bottom: theme.spacings.xs,
             zIndex: 2,
           })}
-          onClick={() => {
-            if (onClose) setTimeout(onClose, 100)
-          }}
         >
           <Trans id='Apply' />
         </Button>

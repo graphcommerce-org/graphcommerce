@@ -1,13 +1,16 @@
-import { useForm, UseFormReturn } from '@graphcommerce/ecommerce-ui'
+import { useForm, UseFormProps, UseFormReturn } from '@graphcommerce/ecommerce-ui'
 import React, { BaseSyntheticEvent, createContext, useContext, useMemo } from 'react'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
-import { ProductListParams } from '../ProductListItems/filterTypes'
-
-export type FilterFormValues = Pick<ProductListParams, 'filters'> & { sort?: string }
+import {
+  ProductFilterParams,
+  ProductListParams,
+  toFilterParams,
+  toProductListParams,
+} from '../ProductListItems/filterTypes'
 
 type FilterFormContextProps = {
-  form: UseFormReturn<FilterFormValues>
-  params: ProductListParams
+  form: UseFormReturn<ProductFilterParams>
+  params: ProductFilterParams
   submit: (e?: BaseSyntheticEvent<object, any, any> | undefined) => Promise<void>
 }
 
@@ -19,30 +22,30 @@ export const useFilterForm = () => {
   return context
 }
 
-export type FilterFormProviderProps = {
-  params: ProductListParams
-  children: React.ReactNode
-}
+export type FilterFormProviderProps = Omit<
+  UseFormProps<ProductFilterParams>,
+  'values' | 'defaultValues'
+> & { children: React.ReactNode; params: ProductListParams }
 
 export function ProductFiltersPro(props: FilterFormProviderProps) {
-  const { children, params } = props
+  const { children, params, ...formProps } = props
 
-  // sort wordt undefined gemaakt omdat het type van sort is anders.
-  const form = useForm<FilterFormValues>({ defaultValues: { ...params, sort: undefined } })
-
+  const form = useForm<ProductFilterParams>({ defaultValues: toFilterParams(params), ...formProps })
   const { handleSubmit } = form
-  const push = useProductListLinkReplace({ scroll: false })
 
-  const submit = handleSubmit(async (formValues) => {
-    const { sort, filters } = formValues
-    await push({ ...params, filters, sort: sort ? { [sort]: 'ASC' } : {} })
-  })
+  const push = useProductListLinkReplace({ scroll: false })
+  const submit = handleSubmit(async (formValues) =>
+    push({ ...params, ...toProductListParams(formValues) }),
+  )
 
   return (
     <FilterFormContext.Provider
-      value={useMemo(() => ({ form, params, submit }), [form, params, submit])}
+      value={useMemo(
+        () => ({ form, params: toFilterParams(params), submit }),
+        [form, params, submit],
+      )}
     >
-      <form id='filter-form' noValidate onSubmit={submit}>
+      <form noValidate onSubmit={submit}>
         {children}
       </form>
     </FilterFormContext.Provider>

@@ -11,7 +11,7 @@ const defaultRenderer = {
   FilterMatchTypeInput: () => <>notimplemented</>,
 }
 
-export function ProductFiltersProChips(props: ProductFiltersProAggregationsProps) {
+export function ProductFiltersProFilterChips(props: ProductFiltersProAggregationsProps) {
   const { renderer } = props
 
   return <ProductFiltersProAggregations {...props} renderer={{ ...defaultRenderer, ...renderer }} />

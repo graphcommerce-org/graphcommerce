@@ -7,8 +7,8 @@ const OverlayPanel = dynamic(async () => (await import('./OverlayPanel/OverlayPa
 
 const PopperPanel = dynamic(async () => (await import('./PopperPanel/PopperPanel')).PopperPanel)
 
-export function DynamicPanel(panel: PanelProps) {
-  const { children, onClose, mode = 'responsive', active, activeEl, ...panelProps } = panel
+export function OverlayOrPopperPanel(panel: PanelProps) {
+  const { children, onClose, mode = 'responsive', activeEl, ...panelProps } = panel
 
   const isMobile = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'))
 
@@ -23,12 +23,12 @@ export function DynamicPanel(panel: PanelProps) {
   return (
     <>
       {panelMode() === 'overlay' && (
-        <OverlayPanel {...panelProps} active={active} onClosed={() => onClose?.()}>
+        <OverlayPanel {...panelProps} active={Boolean(activeEl)} onClosed={() => onClose?.()}>
           {children}
         </OverlayPanel>
       )}
       {panelMode() === 'popper' && (
-        <PopperPanel {...panelProps} activeEl={activeEl ?? null} active={active} onClose={onClose}>
+        <PopperPanel {...panelProps} activeEl={activeEl} onClose={onClose}>
           {children}
         </PopperPanel>
       )}
