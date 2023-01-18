@@ -8,6 +8,5 @@ export type PanelProps = PropsWithChildren<{
   onReset?: () => void
   maxLength?: number
   closeOnAction?: boolean
-  mode?: 'popper' | 'overlay' | 'responsive'
   activeEl: HTMLElement | null
 }>

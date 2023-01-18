@@ -8,7 +8,7 @@ import { PanelProps } from './types'
 
 export type ChipPanelProps = React.PropsWithChildren<{
   chipProps?: ChipProps<'button'>
-  panelProps?: Omit<PanelProps, 'active'>
+  panelProps?: Omit<PanelProps, 'activeEl'>
   selected: boolean
   selectedLabel: React.ReactNode
   filterValue?: number

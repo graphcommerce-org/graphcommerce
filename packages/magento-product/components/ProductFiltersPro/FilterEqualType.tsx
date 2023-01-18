@@ -9,7 +9,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { Box, Checkbox, Typography } from '@mui/material'
 import { ProductFilterParams } from '../ProductListItems/filterTypes'
-import { useFilterForm } from './ProductFiltersPro'
+import { useProductFiltersPro } from './ProductFiltersPro'
 import { FilterProps } from './ProductFiltersProAggregations'
 import { useFilterActions } from './useFilterActions'
 
@@ -118,8 +118,8 @@ function FilterEqualActionCard(
 
 export function FilterEqualType(props: FilterProps) {
   const { attribute_code, label, options } = props
-  const { control } = useFilterForm().form
-  const { params, submit } = useFilterForm()
+  const { control } = useProductFiltersPro().form
+  const { params, submit } = useProductFiltersPro()
 
   const { emptyFilters } = useFilterActions({
     attribute_code,

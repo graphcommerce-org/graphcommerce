@@ -9,16 +9,22 @@ import {
 } from '../ProductListItems/filterTypes'
 
 type FilterFormContextProps = {
-  form: UseFormReturn<ProductFilterParams>
+  /**
+   * Watch and formState are known to cause performance issues.
+   *
+   * - `watch` -> `useWatch`
+   * - `formState` -> `useFormState`
+   */
+  form: Omit<UseFormReturn<ProductFilterParams>, 'formState' | 'watch'>
   params: ProductFilterParams
   submit: (e?: BaseSyntheticEvent<object, any, any> | undefined) => Promise<void>
 }
 
 const FilterFormContext = createContext<FilterFormContextProps | null>(null)
 
-export const useFilterForm = () => {
+export const useProductFiltersPro = () => {
   const context = useContext(FilterFormContext)
-  if (!context) throw Error('useFilterForm should be used inside ProductFiltersPro')
+  if (!context) throw Error('useProductFiltersPro should be used inside ProductFiltersPro')
   return context
 }
 

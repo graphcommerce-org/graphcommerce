@@ -1,5 +1,5 @@
 import { FilterEqualType } from './FilterEqualType'
-import { FilterRangeType } from './FilterRangeType'
+import { ProductFilterRangeChip } from './ProductFilterRangeChip'
 import {
   ProductFiltersProAggregations,
   ProductFiltersProAggregationsProps,
@@ -7,12 +7,11 @@ import {
 
 const defaultRenderer = {
   FilterEqualTypeInput: FilterEqualType,
-  FilterRangeTypeInput: FilterRangeType,
+  FilterRangeTypeInput: ProductFilterRangeChip,
   FilterMatchTypeInput: () => <>notimplemented</>,
 }
 
 export function ProductFiltersProFilterChips(props: ProductFiltersProAggregationsProps) {
   const { renderer } = props
-
   return <ProductFiltersProAggregations {...props} renderer={{ ...defaultRenderer, ...renderer }} />
 }

@@ -14,9 +14,7 @@ export type ProductFiltersProAggregationsProps = {
 } & ProductListFiltersFragment &
   Omit<PanelProps, 'active' | 'label'>
 
-export function ProductFiltersProAggregations<I extends string>(
-  props: ProductFiltersProAggregationsProps,
-) {
+export function ProductFiltersProAggregations(props: ProductFiltersProAggregationsProps) {
   const { aggregations, filterTypes, renderer } = props
 
   return (

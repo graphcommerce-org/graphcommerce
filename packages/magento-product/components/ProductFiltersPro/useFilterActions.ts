@@ -3,7 +3,7 @@ import { cloneDeep } from '@graphcommerce/graphql'
 import { ProductAttributeFilterInput } from '@graphcommerce/graphql-mesh'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import { ProductFilterParams } from '../ProductListItems/filterTypes'
-import { useFilterForm } from './ProductFiltersPro'
+import { useProductFiltersPro } from './ProductFiltersPro'
 
 export type FilterActionProps = {
   attribute_code: keyof ProductAttributeFilterInput
@@ -52,7 +52,7 @@ const removeAllFilters = (
 
 export const useFilterActions = (props: FilterActionProps) => {
   const replaceRoute = useProductListLinkReplace({ scroll: false })
-  const { form, params, submit } = useFilterForm()
+  const { form, params, submit } = useProductFiltersPro()
   return {
     emptyFilters: (defaultValue?: unknown) =>
       emptyFilters({ ...props, form, params, defaultValue }),
