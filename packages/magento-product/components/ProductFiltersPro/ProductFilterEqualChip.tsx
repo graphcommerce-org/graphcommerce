@@ -1,7 +1,7 @@
 import { useWatch } from '@graphcommerce/ecommerce-ui'
 import type { ProductAttributeFilterInput } from '@graphcommerce/graphql-mesh'
 import {
-  ChipPanel,
+  ChipOverlayOrPopper,
   ActionCardListForm,
   ActionCard,
   filterNonNullableKeys,
@@ -34,54 +34,58 @@ export function ProductFilterEqualChip(props: FilterProps) {
       .filter((option) => param?.in?.includes(option.value))
       .map((option) => option && option.label) ?? []
 
+  const items = useMemo(
+    () =>
+      filterNonNullableKeys(options, ['count', 'label']).map((option) => ({
+        ...option,
+        title: (
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <Typography sx={{ marginRight: 1 }}>{option.label}</Typography>
+            <Typography variant='caption' color='text.disabled'>
+              ({option.count})
+            </Typography>
+          </Box>
+        ),
+        image: attrCode?.toLowerCase().includes('color') && (
+          <IconSvg
+            src={iconCirle}
+            sx={{ color: `${option?.label}`, fill: 'currentcolor' }}
+            size='large'
+          />
+        ),
+      })),
+    [attrCode, options],
+  )
+
   return (
-    <ChipPanel
-      chipProps={{ variant: 'outlined', label }}
-      panelProps={{
-        onApply: submit,
-        onReset: activeSort
+    <ChipOverlayOrPopper
+      label={label}
+      chipProps={{ variant: 'outlined' }}
+      onApply={submit}
+      onReset={
+        activeSort
           ? () => {
               form.resetField(name, { defaultValue: null })
               return submit()
             }
-          : undefined,
-        onClose: submit,
-        closeOnAction: true,
-      }}
+          : undefined
+      }
+      onClose={submit}
       selectedLabel={selectedLabel}
       selected={active}
     >
-      <ActionCardListForm
-        render={ActionCard}
-        name={name}
-        control={control}
-        multiple
-        layout='list'
-        variant='default'
-        size='medium'
-        items={useMemo(
-          () =>
-            filterNonNullableKeys(options, ['count', 'label']).map((option) => ({
-              ...option,
-              title: (
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                  <Typography sx={{ marginRight: 1 }}>{option.label}</Typography>
-                  <Typography variant='caption' color='text.disabled'>
-                    ({option.count})
-                  </Typography>
-                </Box>
-              ),
-              image: attrCode?.toLowerCase().includes('color') && (
-                <IconSvg
-                  src={iconCirle}
-                  sx={{ color: `${option?.label}`, fill: 'currentcolor' }}
-                  size='large'
-                />
-              ),
-            })),
-          [attrCode, options],
-        )}
-      />
-    </ChipPanel>
+      {() => (
+        <ActionCardListForm
+          render={ActionCard}
+          name={name}
+          control={control}
+          multiple
+          layout='list'
+          variant='default'
+          size='medium'
+          items={items}
+        />
+      )}
+    </ChipOverlayOrPopper>
   )
 }

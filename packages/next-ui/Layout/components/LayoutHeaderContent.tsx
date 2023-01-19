@@ -17,9 +17,16 @@ export type LayoutHeaderContentProps = FloatingProps & {
   sx?: SxProps<Theme>
   sxBg?: SxProps<Theme>
   layout?: LayoutProps['layout']
+  size?: 'small' | 'responsive'
 }
 
-type OwnerState = { floatingSm: boolean; floatingMd: boolean; scrolled: boolean; divider: boolean }
+type OwnerState = {
+  floatingSm: boolean
+  floatingMd: boolean
+  scrolled: boolean
+  divider: boolean
+  size: 'small' | 'responsive'
+}
 const name = 'LayoutHeaderContent' as const
 const parts = ['bg', 'content', 'left', 'center', 'right', 'divider'] as const
 const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
@@ -38,17 +45,13 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
     sx = [],
     sxBg = [],
     layout,
+    size = 'responsive',
   } = props
 
   const scroll = useScrollY()
   const scrolled = useMotionValueValue(scroll, (y) => y >= switchPoint)
 
-  const classes = withState({
-    floatingSm,
-    floatingMd,
-    scrolled,
-    divider: !!divider,
-  })
+  const classes = withState({ floatingSm, floatingMd, scrolled, divider: !!divider, size })
 
   return (
     <>
@@ -65,6 +68,9 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
             height: theme.appShell.headerHeightSm,
             [theme.breakpoints.up('md')]: {
               height: theme.appShell.appBarHeightMd,
+            },
+            '&.sizeSmall': {
+              height: theme.appShell.headerHeightSm,
             },
             borderTopLeftRadius: theme.shape.borderRadius * 3,
             borderTopRightRadius: theme.shape.borderRadius * 3,
@@ -109,9 +115,14 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
 
             height: theme.appShell.headerHeightSm,
             padding: `0 ${theme.page.horizontal}`,
-
             [theme.breakpoints.up('md')]: {
               height: theme.appShell.appBarHeightMd,
+            },
+            '&.sizeSmall': {
+              height: theme.appShell.headerHeightSm,
+              [theme.breakpoints.up('md')]: {
+                padding: 0,
+              },
             },
 
             '&.floatingSm': {

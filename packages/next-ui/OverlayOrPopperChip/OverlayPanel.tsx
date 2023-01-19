@@ -1,31 +1,27 @@
-import { ChipProps } from '@mui/material'
-import React, { PropsWithChildren, ReactElement } from 'react'
-import { LayoutOverlaySize } from '../Overlay'
 import { Overlay } from '../Overlay/components/Overlay'
 import { OverlayProps } from '../Overlay/components/OverlaySsr'
 import { OverlayPanelActions } from './OverlayPanelActions'
+import { PanelProps } from './types'
 
-type OverlayPanelProps = PropsWithChildren<
-  Omit<ChipProps<'button'>, 'children' | 'component' | 'onClick'>
-> &
-  OverlayProps & {
-    sizeShift?: number
-    size?: LayoutOverlaySize
-  }
+export type OverlayPanelProps = PanelProps & {
+  overlayProps?: Omit<OverlayProps, 'active' | 'onClosed' | 'children'>
+}
 
 export function OverlayPanel(props: OverlayPanelProps) {
-  const { children, size, sizeShift = 20, ...rest } = props
+  const { activeEl, children, onClose, overlayProps, ...rest } = props
 
   // TODO: create max length prop to change panel behaviour
-  const castedChildren = children as ReactElement
-  const menuLength = castedChildren?.props.items?.length
-  const mode = size ?? menuLength > sizeShift ? 'full' : 'minimal'
+  // const castedChildren = children as ReactElement
+  // const menuLength = castedChildren?.props.items?.length
+  // const mode = size ?? menuLength > sizeShift ? 'full' : 'minimal'
 
   return (
-    <Overlay {...rest} sizeSm={mode} sizeMd={mode}>
-      <OverlayPanelActions {...rest} maxLength={sizeShift}>
-        {children}
-      </OverlayPanelActions>
+    <Overlay {...overlayProps} onClosed={onClose} active={Boolean(activeEl)}>
+      {() => (
+        <OverlayPanelActions onClose={onClose} {...rest}>
+          {children()}
+        </OverlayPanelActions>
+      )}
     </Overlay>
   )
 }

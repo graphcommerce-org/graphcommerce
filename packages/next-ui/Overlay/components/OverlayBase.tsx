@@ -26,7 +26,7 @@ type OverridableProps = {
 }
 
 export type LayoutOverlayBaseProps = {
-  children?: React.ReactNode
+  children?: React.ReactNode | (() => React.ReactNode)
   className?: string
   sx?: SxProps<Theme>
   sxBackdrop?: SxProps<Theme>
@@ -453,7 +453,9 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
               },
             })}
           >
-            <LayoutProvider scroll={scrollWithoffset}>{children}</LayoutProvider>
+            <LayoutProvider scroll={scrollWithoffset}>
+              {active && (typeof children === 'function' ? children() : children)}
+            </LayoutProvider>
           </MotionDiv>
         </Box>
       </Scroller>

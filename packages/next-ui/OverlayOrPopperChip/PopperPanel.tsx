@@ -1,28 +1,29 @@
-import { ClickAwayListener, Popper } from '@mui/material'
+import { ClickAwayListener, Popper, PopperProps } from '@mui/material'
 import { useRef } from 'react'
 import { PopperPanelActions } from './PopperPanelActions'
 import { PanelProps } from './types'
-import { useMouseEvents } from './useMouseEvents'
+import { useHandleClickNotDrag } from './useHandleClickNotDrag'
 
-type PopperPanelProps = PanelProps
+export type PopperPanelProps = PanelProps & {
+  popperProps?: Omit<PopperProps, 'open' | 'anchorEl' | 'children'>
+}
 
 export function PopperPanel(props: PopperPanelProps) {
-  const { activeEl, onClose, onApply, closeOnAction, ...filterContentProps } = props
-  const active = Boolean(activeEl)
+  const { activeEl, children, ...actionsProps } = props
   const ref = useRef(null)
-  const { movement } = useMouseEvents(ref)
-
+  const movement = useHandleClickNotDrag(ref)
   const handleClickAway = () => {
-    if (onClose && active && movement !== 'drag') onClose()
-    if (onApply && movement !== 'drag') onApply()
+    if (movement.get() === 'drag') return
+    actionsProps.onClose()
   }
 
-  if (!active) return null
+  if (!activeEl) return null
+
   return (
-    <ClickAwayListener mouseEvent='onClick' onClickAway={handleClickAway}>
+    <ClickAwayListener onClickAway={handleClickAway}>
       <Popper
         ref={ref}
-        open={active}
+        open={Boolean(activeEl)}
         anchorEl={activeEl}
         sx={(theme) => ({
           boxShadow: 12,
@@ -31,8 +32,6 @@ export function PopperPanel(props: PopperPanelProps) {
           zIndex: 1,
           bgcolor: 'background.paper',
         })}
-        keepMounted
-        disablePortal
         modifiers={[
           {
             name: 'offset',
@@ -61,7 +60,7 @@ export function PopperPanel(props: PopperPanelProps) {
           },
         ]}
       >
-        <PopperPanelActions {...filterContentProps} onClose={onClose} onApply={onApply} />
+        {() => <PopperPanelActions {...actionsProps}>{children()}</PopperPanelActions>}
       </Popper>
     </ClickAwayListener>
   )

@@ -1,7 +1,7 @@
 import { Controller } from '@graphcommerce/ecommerce-ui'
 import type { ProductAttributeFilterInput } from '@graphcommerce/graphql-mesh'
 import { Money } from '@graphcommerce/magento-store'
-import { ChipPanel, extendableComponent } from '@graphcommerce/next-ui'
+import { ChipOverlayOrPopper, extendableComponent } from '@graphcommerce/next-ui'
 import { isFilterTypeRange } from '../ProductListItems/filterTypes'
 import { getMinMaxFromOptions, PriceSlider } from './PriceSlider'
 import { useProductFiltersPro } from './ProductFiltersPro'
@@ -33,19 +33,19 @@ export function ProductFilterRangeChip(props: FilterProps) {
         const to = value?.to ? Number(value?.to) : max
 
         return (
-          <ChipPanel
-            chipProps={{ variant: 'outlined', label, className: classes.root }}
-            panelProps={{
-              onReset:
-                from !== min || to !== max
-                  ? () => {
-                      form.resetField(name, { defaultValue: null })
-                      return submit()
-                    }
-                  : undefined,
-              onApply: submit,
-              onClose: submit,
-            }}
+          <ChipOverlayOrPopper
+            label={label}
+            chipProps={{ variant: 'outlined', className: classes.root }}
+            onReset={
+              from !== min || to !== max
+                ? () => {
+                    form.resetField(name, { defaultValue: null })
+                    return submit()
+                  }
+                : undefined
+            }
+            onApply={submit}
+            onClose={submit}
             selected={param ? Number(param.from) !== min || Number(param.to) !== max : false}
             selectedLabel={
               <>
@@ -54,8 +54,8 @@ export function ProductFilterRangeChip(props: FilterProps) {
               </>
             }
           >
-            <PriceSlider options={options} value={value} onChange={onChange} />
-          </ChipPanel>
+            {() => <PriceSlider options={options} value={value} onChange={onChange} />}
+          </ChipOverlayOrPopper>
         )
       }}
     />

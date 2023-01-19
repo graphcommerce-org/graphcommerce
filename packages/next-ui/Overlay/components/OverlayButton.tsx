@@ -1,5 +1,5 @@
 import { useScrollerContext } from '@graphcommerce/framer-scroller'
-import { useElementScroll, useMotionValueValue } from '@graphcommerce/framer-utils'
+import { useElementScroll } from '@graphcommerce/framer-utils'
 import { Button, ButtonProps, styled } from '@mui/material'
 import { m, useTransform } from 'framer-motion'
 
@@ -12,31 +12,20 @@ export function OverlayButton(props: ButtonProps) {
   const initialScrollValue = getScrollSnapPositions().y[1]
   const stickyDistanceFromTop = window.innerHeight - initialDistanceFromTop
 
-  const y = useMotionValueValue(scroll.y, (v) => v)
-
   const distanceFromBottom = useTransform(
     scroll.y,
     [initialScrollValue + 1, initialScrollValue, initialDistanceFromTop, -0],
     [
       stickyDistanceFromTop + 1,
       stickyDistanceFromTop,
-      stickyDistanceFromTop + y,
+      stickyDistanceFromTop + scroll.y.get(),
       window.innerHeight + initialDistanceFromTop,
     ],
-    {
-      clamp: true,
-    },
+    { clamp: true },
   )
 
   return (
-    <MotionDiv
-      style={{
-        top: distanceFromBottom,
-        position: 'absolute',
-        left: 0,
-        right: 0,
-      }}
-    >
+    <MotionDiv style={{ top: distanceFromBottom, position: 'absolute', left: 0, right: 0 }}>
       <Button {...props} />
     </MotionDiv>
   )

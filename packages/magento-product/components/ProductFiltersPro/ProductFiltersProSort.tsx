@@ -4,17 +4,18 @@ import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   ActionCard,
   ActionCardListForm,
-  ChipPanel,
+  ChipOverlayOrPopper,
+  ChipOverlayOrPopperProps,
   extendableComponent,
   filterNonNullableKeys,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box, SxProps, Theme } from '@mui/material'
+import { Box } from '@mui/material'
 import { useMemo } from 'react'
 import { ProductListSortFragment } from '../ProductListSort/ProductListSort.gql'
 import { useProductFiltersPro } from './ProductFiltersPro'
 
-export type ProductListActionSortProps = ProductListSortFragment & { sx?: SxProps<Theme> }
+export type ProductListActionSortProps = ProductListSortFragment & ChipOverlayOrPopperProps
 
 const name = 'ProductListSort' as const
 const parts = ['menu', 'item', 'link'] as const
@@ -44,37 +45,35 @@ export function ProductFiltersProSortChip(props: ProductListActionSortProps) {
   if (!total_count) return null
 
   return (
-    <ChipPanel
+    <ChipOverlayOrPopper
+      chipProps={{ className: classes.menu, variant: 'outlined', sx }}
+      overlayProps={{ sizeSm: 'minimal', sizeMd: 'minimal' }}
+      label={<Trans id='Sort By' />}
+      selected={Boolean(params.sort)}
       selectedLabel={currentOption?.label}
-      chipProps={{
-        label: <Trans id='Sort By' />,
-        className: classes.menu,
-        variant: 'outlined',
-        sx,
-      }}
-      panelProps={{
-        onApply: submit,
-        onReset: activeSort
+      onApply={submit}
+      onReset={
+        activeSort
           ? () => {
               form.resetField('sort', { defaultValue: null })
               form.resetField('currentPage', { defaultValue: 1 })
               return submit()
             }
-          : undefined,
-        onClose: submit,
-        closeOnAction: true,
-      }}
-      selected={Boolean(params.sort)}
+          : undefined
+      }
+      onClose={submit}
     >
-      <ActionCardListForm
-        control={control}
-        name='sort'
-        layout='list'
-        variant='default'
-        size='medium'
-        render={ActionCard}
-        items={options}
-      />
-    </ChipPanel>
+      {() => (
+        <ActionCardListForm
+          control={control}
+          name='sort'
+          layout='list'
+          variant='default'
+          size='medium'
+          render={ActionCard}
+          items={options}
+        />
+      )}
+    </ChipOverlayOrPopper>
   )
 }

@@ -1,19 +1,19 @@
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Fab, TextField, Button, Box, Typography, ChipProps } from '@mui/material'
+import { Fab, TextField, Button, Box, Typography } from '@mui/material'
 import React, { useState, ReactElement, useMemo } from 'react'
 import { LinkOrButton } from '../Button'
 import { IconSvg } from '../IconSvg'
-import { LayoutTitle } from '../Layout'
+import { LayoutHeader, LayoutTitle } from '../Layout'
 import { LayoutOverlayHeader } from '../LayoutOverlay'
 import { iconClose } from '../icons'
-import { PanelProps } from './types'
+import { PanelActionsProps } from './types'
 
-type PopperPanelProps = Pick<ChipProps, 'label'> &
-  Pick<PanelProps, 'children' | 'onApply' | 'onReset' | 'onClose' | 'maxLength'>
+export function PopperPanelActions(props: PanelActionsProps) {
+  const { title, children, onReset, onClose, onApply, sx } = props
 
-export function PopperPanelActions(props: PopperPanelProps) {
-  const { label, children, onReset, onClose, onApply, maxLength = 20 } = props
+  const maxLength = 20
+
   const [search, setSearch] = useState<string>()
   const castedChildren = children as ReactElement
   const menuLength = castedChildren?.props.items?.length
@@ -32,9 +32,17 @@ export function PopperPanelActions(props: PopperPanelProps) {
   const inSearchMode = menuLength > maxLength
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', minWidth: 350 }}>
-      <LayoutOverlayHeader
+    <Box
+      sx={[
+        { display: 'flex', flexDirection: 'column', minWidth: 350 },
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    >
+      <LayoutHeader
+        noAlign
+        sx={{ '&.noAlign': { mb: 0 } }}
         switchPoint={0}
+        size='small'
         primary={
           onReset && (
             <LinkOrButton
@@ -62,10 +70,6 @@ export function PopperPanelActions(props: PopperPanelProps) {
             </Fab>
           </Box>
         }
-        sx={{
-          '& .LayoutHeaderContent-content': { height: '50px', padding: 0 },
-          '& .LayoutHeaderContent-bg': { height: '50px' },
-        }}
       >
         {inSearchMode ? (
           <TextField
@@ -73,20 +77,19 @@ export function PopperPanelActions(props: PopperPanelProps) {
             variant='standard'
             size='small'
             color='primary'
-            placeholder={i18n._(/* 18n */ 'Search {filter}', { filter: label })}
+            placeholder={i18n._(/* 18n */ 'Search {filter}', { filter: title })}
             onChange={(e) => setSearch(e.target.value)}
             sx={{ marginX: 3 }}
           />
         ) : (
           <LayoutTitle size='small' component='span'>
-            {label}
+            {title}
           </LayoutTitle>
         )}
-      </LayoutOverlayHeader>
+      </LayoutHeader>
 
       <Box
         sx={(theme) => ({
-          mt: `calc(${theme.appShell.headerHeightSm} + 5px)`,
           flex: 1,
           padding: `0 ${theme.page.horizontal}`,
           ...{ overflow: 'visable', overflowY: menuLength > 7 ? 'scroll' : 'clip' },

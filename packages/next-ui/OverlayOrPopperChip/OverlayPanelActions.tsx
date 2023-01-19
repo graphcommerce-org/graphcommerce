@@ -1,46 +1,41 @@
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Box, ChipProps, TextField } from '@mui/material'
+import { Box, TextField, Typography } from '@mui/material'
 import React, { useState, ReactElement, useMemo, startTransition } from 'react'
 import { LinkOrButton } from '../Button'
 import { IconSvg } from '../IconSvg'
-import { LayoutTitle } from '../Layout'
-import { LayoutOverlayHeader } from '../LayoutOverlay'
+import { LayoutHeader, LayoutTitle } from '../Layout'
 import { OverlayButton } from '../Overlay/components/OverlayButton'
+import { extendableComponent } from '../Styles'
 import { iconClose } from '../icons'
-import { PanelProps } from './types'
+import { PanelActionsProps } from './types'
 
-type OverlayPanelActionsProps = Pick<
-  PanelProps,
-  'closeOnAction' | 'maxLength' | 'onApply' | 'onClose' | 'onReset' | 'children'
-> &
-  Pick<ChipProps, 'label'>
+const { classes } = extendableComponent(
+  'OverlayPanelActions' as const,
+  ['root', 'header', 'content', 'footer'] as const,
+)
 
-export const OverlayPanelActions = (props: OverlayPanelActionsProps) => {
-  const { label, children, onReset, onApply, onClose, maxLength = 20, closeOnAction = true } = props
+export const OverlayPanelActions = (props: PanelActionsProps) => {
+  const { title, children, onReset, onApply, onClose, sx = [] } = props
+
+  const maxLength = 20
 
   const [search, setSearch] = useState<string>()
   const castedChildren = children as ReactElement
   const menuLength = castedChildren?.props.items?.length
 
-  const filteredChildren = useMemo(() => {
-    const { items } = castedChildren.props
-    const filteredItems = items?.filter((item) => {
-      return true
-
-      const optionLabelLowerCase = item.label.toLowerCase()
-      const searchLowerCase = search?.toLowerCase() ?? ''
-      return search ? optionLabelLowerCase?.includes(searchLowerCase) : true
-    })
-    return React.cloneElement(castedChildren, { items: filteredItems })
-  }, [castedChildren, search])
-
   const inSearchMode = menuLength > maxLength
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-      <LayoutOverlayHeader
+    <Box
+      sx={[{ display: 'flex', flexDirection: 'column' }, ...(Array.isArray(sx) ? sx : [sx])]}
+      className={classes.root}
+    >
+      <LayoutHeader
+        noAlign
+        sx={{ '&.noAlign': { mb: 0 } }}
         switchPoint={0}
+        size='small'
         primary={
           onReset && (
             <LinkOrButton button={{ variant: 'text' }} color='primary' onClick={onReset}>
@@ -57,46 +52,22 @@ export const OverlayPanelActions = (props: OverlayPanelActionsProps) => {
           />
         }
       >
-        {inSearchMode ? (
-          <TextField
-            type='search'
-            fullWidth
-            variant='standard'
-            size='small'
-            color='primary'
-            placeholder={i18n._(/* 18n */ 'Search {filter}', { filter: label })}
-            onChange={(e) => startTransition(() => setSearch(e.target.value))}
-          />
-        ) : (
-          <LayoutTitle size='small' component='span'>
-            {label}
-          </LayoutTitle>
-        )}
-      </LayoutOverlayHeader>
+        <Typography variant='h6' component='span'>
+          {title}
+        </Typography>
+      </LayoutHeader>
 
-      <Box
-        sx={(theme) => ({
-          mt: theme.appShell.headerHeightSm,
-          flex: 1,
-          padding: `0 ${theme.page.horizontal}`,
-          overflow: 'visable',
-        })}
-      >
-        {filteredChildren}
+      <Box sx={(theme) => ({ flex: 1, px: theme.page.horizontal })} className={classes.content}>
+        {children}
 
         <Box sx={(theme) => ({ height: theme.spacings.xxl })} />
         <OverlayButton
           type='button'
           onClick={onApply}
           variant='pill'
+          color='primary'
           size='large'
-          sx={{
-            backgroundColor: 'primary.main',
-            color: 'primary.contrastText',
-            position: 'absolute',
-            left: 10,
-            right: 10,
-          }}
+          sx={{ position: 'absolute', left: 10, right: 10 }}
         >
           <Trans id='Apply' />
         </OverlayButton>
