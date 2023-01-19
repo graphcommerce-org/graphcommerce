@@ -66,19 +66,17 @@ function CategoryPage(props: CategoryProps) {
     <>
       <CategoryMeta
         params={params}
-        title={page?.metaTitle ?? page?.title}
+        title={page?.metaTitle}
         metaDescription={page?.metaDescription}
         metaRobots={page?.metaRobots.toLowerCase().split('_') as MetaRobots[]}
         canonical={page?.url ? `/${page.url}` : undefined}
         {...category}
       />
-
       <LayoutHeader floatingMd>
         <LayoutTitle size='small' component='span'>
           {category?.name ?? page.title}
         </LayoutTitle>
       </LayoutHeader>
-
       {!isLanding && (
         <Container maxWidth={false}>
           <LayoutTitle
@@ -95,7 +93,6 @@ function CategoryPage(props: CategoryProps) {
           </LayoutTitle>
         </Container>
       )}
-
       {isCategory && isLanding && (
         <CategoryHeroNav
           {...category}
@@ -103,7 +100,6 @@ function CategoryPage(props: CategoryProps) {
           title={<CategoryHeroNavTitle>{category?.name}</CategoryHeroNavTitle>}
         />
       )}
-
       {isCategory && !isLanding && (
         <ProductListParamsProvider value={params}>
           <CategoryDescription description={category.description} />
@@ -130,7 +126,6 @@ function CategoryPage(props: CategoryProps) {
           </Container>
         </ProductListParamsProvider>
       )}
-
       {page && (
         <RowRenderer
           content={page.content}
