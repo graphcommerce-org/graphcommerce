@@ -23,9 +23,9 @@ type MetaRobotsAll = ['all' | 'none']
 type Canonical = `http://${string}` | `https://${string}` | `/${string}` | string
 
 export type PageMetaProps = {
-  title: string
+  title: string | null
   canonical?: Canonical
-  metaDescription?: string
+  metaDescription?: string | null
   metaRobots?: MetaRobotsAll | MetaRobots[]
 }
 
@@ -99,7 +99,7 @@ export function PageMeta(props: PageMetaProps) {
   if (!active) return null
   return (
     <Head>
-      <title>{title.trim()}</title>
+      <title>{title?.trim()}</title>
       {metaDescription && (
         <meta name='description' content={metaDescription.trim()} key='meta-description' />
       )}
