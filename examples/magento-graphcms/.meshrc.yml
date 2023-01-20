@@ -25,5 +25,19 @@ sources:
           X-ReCaptcha: "{context.headers['x-recaptcha']}"
           Preview-Version: "{context.headers['preview-version']}"
           Content-Currency: "{context.headers['content-currency']}"
+  - name: nationaalgeoregister
+    handler:
+      jsonSchema:
+        endpoint: https://geodata.nationaalgeoregister.nl/locatieserver/v3/
+        operations:
+          - type: Query
+            field: nationaalgeoregisterPostcodeService
+            path: /free?fq=type:adres&fq=postcode:{args.postcode}&q={args.housenumber}
+            method: GET
+            responseSample: './lib/free.json'
 serve:
   playground: true
+additionalTypeDefs:
+  - './graphql/PostcodeNL.graphqls'
+additionalResolvers:
+  - './lib/nationaalgeoregister.ts'
