@@ -34,10 +34,10 @@ sources:
             field: nationaalgeoregisterPostcodeService
             path: /free?fq=type:adres&fq=postcode:{args.postcode}&q={args.housenumber}
             method: GET
-            responseSample: './lib/free.json'
+            responseSample: './lib/address-fields-nl/free.json'
 serve:
   playground: true
 additionalTypeDefs:
   - './graphql/PostcodeNL.graphqls'
 additionalResolvers:
-  - './lib/nationaalgeoregister.ts'
+  - './lib/address-fields-nl/nationaalgeoregister.ts'
