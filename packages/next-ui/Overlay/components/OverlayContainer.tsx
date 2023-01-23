@@ -1,8 +1,9 @@
 import { Box } from '@mui/material'
 import { LayoutOverlayBaseProps } from './OverlayBase'
 
-type OverlayContainerProps = Pick<LayoutOverlayBaseProps, 'children' | 'active'> & {
+type OverlayContainerProps = Pick<LayoutOverlayBaseProps, 'active'> & {
   hidden?: boolean
+  children: React.ReactNode
 }
 
 export function OverlayContainer(props: OverlayContainerProps) {

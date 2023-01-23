@@ -29,7 +29,7 @@ export type ActionCardProps = {
   price?: React.ReactNode
   after?: React.ReactNode
   secondaryAction?: React.ReactNode
-  onClick?: (event: React.MouseEvent<HTMLElement>, value: string | number) => void
+  onClick?: (event: React.MouseEvent<HTMLElement>, value: string | number | null) => void
   selected?: boolean
   value: string | number | null
   reset?: React.ReactNode
