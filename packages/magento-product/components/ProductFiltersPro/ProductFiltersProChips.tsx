@@ -8,7 +8,6 @@ import {
 const defaultRenderer = {
   FilterEqualTypeInput: ProductFilterEqualChip,
   FilterRangeTypeInput: ProductFilterRangeChip,
-  FilterMatchTypeInput: () => <>notimplemented</>,
 }
 
 export function ProductFiltersProFilterChips(props: ProductFiltersProAggregationsProps) {

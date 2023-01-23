@@ -16,6 +16,7 @@ import {
   parseParams,
   ProductFiltersDocument,
   ProductFiltersPro,
+  ProductFiltersProAllFiltersChip,
   ProductFiltersProFilterChips,
   ProductFiltersProSortChip,
   ProductFiltersQuery,
@@ -113,21 +114,22 @@ function CategoryPage(props: CategoryProps) {
           <CategoryDescription description={category.description} />
           <CategoryChildren params={params}>{category.children}</CategoryChildren>
           <StickyBelowHeader>
-            {process.env.NEXT_PUBLIC_ADVANCED_FILTERS ? (
-              <ProductFiltersPro params={params}>
-                <ProductListFiltersContainer>
-                  <ProductFiltersProFilterChips {...filters} filterTypes={filterTypes} />
-                  <ProductFiltersProSortChip {...products} />
-                </ProductListFiltersContainer>
-              </ProductFiltersPro>
-            ) : (
+            {/* {process.env.NEXT_PUBLIC_ADVANCED_FILTERS ? ( */}
+            <ProductFiltersPro params={params}>
+              <ProductListFiltersContainer>
+                <ProductFiltersProFilterChips {...filters} filterTypes={filterTypes} />
+                <ProductFiltersProSortChip {...products} />
+                <ProductFiltersProAllFiltersChip {...filters} filterTypes={filterTypes} />
+              </ProductListFiltersContainer>
+            </ProductFiltersPro>
+            {/* ) : (
               <ProductListParamsProvider value={params}>
                 <ProductListFiltersContainer>
                   <ProductListSort {...products} />
                   <ProductListFilters {...filters} filterTypes={filterTypes} />
                 </ProductListFiltersContainer>
               </ProductListParamsProvider>
-            )}
+            )} */}
           </StickyBelowHeader>
           <Container maxWidth={false}>
             <ProductListCount total_count={products?.total_count} />

@@ -1,20 +1,22 @@
 import { useWatch } from '@graphcommerce/ecommerce-ui'
 import type { ProductAttributeFilterInput } from '@graphcommerce/graphql-mesh'
 import {
-  ChipOverlayOrPopper,
   ActionCardListForm,
   ActionCard,
   filterNonNullableKeys,
   IconSvg,
   iconCirle,
+  SectionHeader,
+  Button,
 } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/react'
 import { Box, Typography } from '@mui/material'
 import { useMemo } from 'react'
 import { isFilterTypeEqual } from '../ProductListItems/filterTypes'
 import { useProductFiltersPro } from './ProductFiltersPro'
 import { FilterProps } from './ProductFiltersProAggregations'
 
-export function ProductFilterEqualChip(props: FilterProps) {
+export function ProductFilterEqualSection(props: FilterProps) {
   const { attribute_code, label, options } = props
   const { form, submit, params } = useProductFiltersPro()
   const { control } = form
@@ -22,16 +24,10 @@ export function ProductFilterEqualChip(props: FilterProps) {
 
   // We are casting the name, because filters can have other types than equal which dont have the in property
   const name = `filters.${attrCode}.in` as 'filters.category_id.in'
-  const canReset = useWatch({ control, name })
+  const currentFilter = useWatch({ control, name })
   const param = params.filters?.[attrCode]
 
   if (param && !isFilterTypeEqual(param)) throw new Error('Invalid filter type')
-
-  const active = Boolean(param?.in?.length)
-  const selectedLabel =
-    filterNonNullableKeys(options)
-      .filter((option) => param?.in?.includes(option.value))
-      .map((option) => option && option.label) ?? []
 
   const items = useMemo(
     () =>
@@ -57,34 +53,35 @@ export function ProductFilterEqualChip(props: FilterProps) {
   )
 
   return (
-    <ChipOverlayOrPopper
-      label={label}
-      chipProps={{ variant: 'outlined' }}
-      onApply={submit}
-      onReset={
-        canReset
-          ? () => {
-              form.resetField(name, { defaultValue: null })
-              return submit()
-            }
-          : undefined
-      }
-      onClose={submit}
-      selectedLabel={selectedLabel}
-      selected={active}
-    >
-      {() => (
-        <ActionCardListForm
-          render={ActionCard}
-          name={name}
-          control={control}
-          multiple
-          layout='list'
-          variant='default'
-          size='medium'
-          items={items}
-        />
-      )}
-    </ChipOverlayOrPopper>
+    <Box sx={{ my: 2 }}>
+      <SectionHeader
+        labelLeft={label}
+        sx={{ mt: 0 }}
+        labelRight={
+          currentFilter && currentFilter.length > 0 ? (
+            <Button
+              variant='inline'
+              color='primary'
+              onClick={() => {
+                form.resetField(name, { defaultValue: null })
+              }}
+            >
+              <Trans id='Clear' />
+            </Button>
+          ) : undefined
+        }
+      />
+
+      <ActionCardListForm
+        render={ActionCard}
+        name={name}
+        control={control}
+        multiple
+        layout='list'
+        variant='default'
+        size='medium'
+        items={items}
+      />
+    </Box>
   )
 }
