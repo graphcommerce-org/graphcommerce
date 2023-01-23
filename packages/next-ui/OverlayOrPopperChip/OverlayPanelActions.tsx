@@ -1,12 +1,11 @@
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Box, TextField, Typography } from '@mui/material'
-import React, { useState, ReactElement, useMemo, startTransition } from 'react'
-import { LinkOrButton } from '../Button'
-import { IconSvg } from '../IconSvg'
-import { LayoutHeader, LayoutTitle } from '../Layout'
-import { OverlayButton } from '../Overlay/components/OverlayButton'
+import { Box, Button, Fab, Typography } from '@mui/material'
+import { IconSvg, useIconSvgSize } from '../IconSvg'
+import { LayoutHeader } from '../Layout'
+import { OverlayStickyBottom } from '../Overlay/components/OverlayStickyBottom'
 import { extendableComponent } from '../Styles'
+import { useFabSize } from '../Theme'
 import { iconClose } from '../icons'
 import { PanelActionsProps } from './types'
 
@@ -18,19 +17,11 @@ const { classes } = extendableComponent(
 export const OverlayPanelActions = (props: PanelActionsProps) => {
   const { title, children, onReset, onApply, onClose, sx = [] } = props
 
-  const maxLength = 20
-
-  const [search, setSearch] = useState<string>()
-  const castedChildren = children as ReactElement
-  const menuLength = castedChildren?.props.items?.length
-
-  const inSearchMode = menuLength > maxLength
+  const fabSize = useFabSize('small')
+  const svgSize = useIconSvgSize('large')
 
   return (
-    <Box
-      sx={[{ display: 'flex', flexDirection: 'column' }, ...(Array.isArray(sx) ? sx : [sx])]}
-      className={classes.root}
-    >
+    <>
       <LayoutHeader
         noAlign
         sx={{ '&.noAlign': { mb: 0 } }}
@@ -38,18 +29,24 @@ export const OverlayPanelActions = (props: PanelActionsProps) => {
         size='small'
         primary={
           onReset && (
-            <LinkOrButton button={{ variant: 'text' }} color='primary' onClick={onReset}>
+            <Button variant='inline' color='primary' onClick={onReset}>
               <Trans id='Reset' />
-            </LinkOrButton>
+            </Button>
           )
         }
         secondary={
-          <LinkOrButton
-            button={{ variant: 'inline' }}
+          <Fab
             color='inherit'
-            startIcon={<IconSvg src={iconClose} size='medium' />}
             onClick={onClose}
-          />
+            sx={{
+              boxShadow: 'none',
+              ml: `calc((${fabSize} - ${svgSize}) * -0.5)`,
+            }}
+            size='small'
+            aria-label={i18n._(/* i18n */ 'Close')}
+          >
+            <IconSvg src={iconClose} size='large' aria-hidden />
+          </Fab>
         }
       >
         <Typography variant='h6' component='span'>
@@ -57,21 +54,23 @@ export const OverlayPanelActions = (props: PanelActionsProps) => {
         </Typography>
       </LayoutHeader>
 
-      <Box sx={(theme) => ({ flex: 1, px: theme.page.horizontal })} className={classes.content}>
+      <Box sx={{ flex: 1, px: 2 }} className={classes.content}>
         {children}
+      </Box>
 
-        <Box sx={(theme) => ({ height: theme.spacings.xxl })} />
-        <OverlayButton
+      <OverlayStickyBottom className={classes.footer} sx={{ px: 2, py: 2 }}>
+        <Button
           type='button'
           onClick={onApply}
           variant='pill'
           color='primary'
           size='large'
-          sx={{ position: 'absolute', left: 10, right: 10 }}
+          fullWidth
+          // sx={(theme) => ({ mt: theme.spacings.md })}
         >
           <Trans id='Apply' />
-        </OverlayButton>
-      </Box>
-    </Box>
+        </Button>
+      </OverlayStickyBottom>
+    </>
   )
 }

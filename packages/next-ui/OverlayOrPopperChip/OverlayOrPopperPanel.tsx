@@ -8,12 +8,14 @@ const OverlayPanel = dynamic(async () => (await import('./OverlayPanel')).Overla
 const PopperPanel = dynamic(async () => (await import('./PopperPanel')).PopperPanel)
 
 export type OverlayOrPopperPanelProps = {
-  breakpoint?: Breakpoint
+  breakpoint?: Breakpoint | false
 } & PopperPanelProps &
   OverlayPanelProps
 
 export function OverlayOrPopperPanel(panel: OverlayOrPopperPanelProps) {
   const { breakpoint = 'md', ...panelProps } = panel
-  const isMobile = useMediaQuery((theme: Theme) => theme.breakpoints.down(breakpoint))
-  return <>{isMobile ? <OverlayPanel {...panelProps} /> : <PopperPanel {...panelProps} />}</>
+
+  const isDesktop = useMediaQuery((theme: Theme) => theme.breakpoints.up(breakpoint || 'md'))
+  const isPopper = isDesktop && breakpoint
+  return <>{isPopper ? <PopperPanel {...panelProps} /> : <OverlayPanel {...panelProps} />}</>
 }

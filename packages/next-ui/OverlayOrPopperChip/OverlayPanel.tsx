@@ -10,13 +10,18 @@ export type OverlayPanelProps = PanelProps & {
 export function OverlayPanel(props: OverlayPanelProps) {
   const { activeEl, children, onClose, overlayProps, ...rest } = props
 
-  // TODO: create max length prop to change panel behaviour
-  // const castedChildren = children as ReactElement
-  // const menuLength = castedChildren?.props.items?.length
-  // const mode = size ?? menuLength > sizeShift ? 'full' : 'minimal'
-
   return (
-    <Overlay {...overlayProps} onClosed={onClose} active={Boolean(activeEl)}>
+    <Overlay
+      {...overlayProps}
+      onClosed={onClose}
+      active={Boolean(activeEl)}
+      sx={{
+        '& .LayoutOverlayBase-overlayPane': {
+          display: 'grid',
+          gridTemplateRows: 'min-content auto min-content',
+        },
+      }}
+    >
       {() => (
         <OverlayPanelActions onClose={onClose} {...rest}>
           {children()}

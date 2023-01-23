@@ -15,14 +15,14 @@ import { useMemo } from 'react'
 import { ProductListSortFragment } from '../ProductListSort/ProductListSort.gql'
 import { useProductFiltersPro } from './ProductFiltersPro'
 
-export type ProductListActionSortProps = ProductListSortFragment & ChipOverlayOrPopperProps
-
-const name = 'ProductListSort' as const
-const parts = ['menu', 'item', 'link'] as const
-const { classes } = extendableComponent(name, parts)
+export type ProductListActionSortProps = ProductListSortFragment &
+  Omit<
+    ChipOverlayOrPopperProps,
+    'label' | 'selected' | 'selectedLabel' | 'onApply' | 'onReset' | 'onClose' | 'children'
+  >
 
 export function ProductFiltersProSortChip(props: ProductListActionSortProps) {
-  const { sort_fields, total_count, sx = [] } = props
+  const { sort_fields, chipProps, ...rest } = props
   const { params, form, submit } = useProductFiltersPro()
   const { control } = form
   const activeSort = useWatch({ control, name: 'sort' })
@@ -35,22 +35,18 @@ export function ProductFiltersProSortChip(props: ProductListActionSortProps) {
       filterNonNullableKeys(sort_fields?.options, ['value', 'label']).map((option) => ({
         ...option,
         value: option.value === defaultSort ? null : option.value,
-        title: <Box className={classes.link}>{option.label}</Box>,
+        title: option.label,
       })),
     [defaultSort, sort_fields?.options],
   )
 
-  const currentOption = options.find((option) => option?.value === params.sort)
-
-  if (!total_count) return null
-
   return (
     <ChipOverlayOrPopper
-      chipProps={{ className: classes.menu, variant: 'outlined', sx }}
-      overlayProps={{ sizeSm: 'minimal', sizeMd: 'minimal' }}
+      {...rest}
+      overlayProps={{ sizeSm: 'minimal', sizeMd: 'minimal', ...rest.overlayProps }}
       label={<Trans id='Sort By' />}
       selected={Boolean(params.sort)}
-      selectedLabel={currentOption?.label}
+      selectedLabel={options.find((option) => option.value === params.sort)?.label}
       onApply={submit}
       onReset={
         activeSort

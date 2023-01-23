@@ -54,6 +54,7 @@ export function ChipOverlayOrPopper(props: ChipOverlayOrPopperProps) {
       <Chip
         size='responsive'
         component='button'
+        variant='outlined'
         color={selected && !activeEl ? 'primary' : 'default'}
         {...chipProps}
         clickable

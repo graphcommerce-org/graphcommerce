@@ -114,27 +114,28 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
             // columnGap: theme.spacings.xs,
 
             height: theme.appShell.headerHeightSm,
-            padding: `0 ${theme.page.horizontal}`,
+            px: theme.page.horizontal,
             [theme.breakpoints.up('md')]: {
               height: theme.appShell.appBarHeightMd,
             },
             '&.sizeSmall': {
               height: theme.appShell.headerHeightSm,
+              px: 2,
               [theme.breakpoints.up('md')]: {
-                padding: 0,
+                px: 2,
               },
             },
 
             '&.floatingSm': {
               [theme.breakpoints.down('md')]: {
-                padding: `0 ${theme.page.horizontal}`,
+                px: theme.page.horizontal,
                 background: 'none',
                 pointerEvents: 'none',
               },
             },
             '&.floatingMd': {
               [theme.breakpoints.up('md')]: {
-                padding: `0 ${theme.page.horizontal}`,
+                px: theme.page.horizontal,
                 background: 'none',
                 pointerEvents: 'none',
               },

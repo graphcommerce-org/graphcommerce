@@ -214,9 +214,9 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
   }, [offsetY])
 
   // Create the exact position for the LayoutProvider which offsets the top of the overlay
-  const scrollWithoffset = useTransform(
-    [scroll.y, positions.open.y, offsetY],
-    ([y, openY, offsetYv]: number[]) => Math.max(0, y - openY - offsetYv + offsetPageY),
+  const scrollYOffset = useTransform(
+    [scroll.y, positions.open.y],
+    ([y, openY]: number[]) => y - openY + offsetPageY,
   )
 
   const onClickAway = useCallback(
@@ -447,13 +447,17 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
                   maxWidth: dvw(100),
                 },
 
+                '&.variantMdBottom.sizeMdFloating': {
+                  width: widthMd,
+                },
+
                 '&.sizeMdFloating': {
                   borderRadius: `${theme.shape.borderRadius * 4}px`,
                 },
               },
             })}
           >
-            <LayoutProvider scroll={scrollWithoffset}>
+            <LayoutProvider scroll={scrollYOffset}>
               {active && (typeof children === 'function' ? children() : children)}
             </LayoutProvider>
           </MotionDiv>

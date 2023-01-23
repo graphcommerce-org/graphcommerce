@@ -1,5 +1,4 @@
 import { filterNonNullableKeys } from '@graphcommerce/next-ui'
-import { PanelProps } from '@graphcommerce/next-ui/ChipPanel/types'
 import { ProductListFiltersFragment } from '../ProductListFilters/ProductListFilters.gql'
 
 export type FilterProps = NonNullable<

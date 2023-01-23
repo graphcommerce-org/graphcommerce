@@ -1,4 +1,5 @@
 import { ClickAwayListener, Popper, PopperProps } from '@mui/material'
+import { m } from 'framer-motion'
 import { useRef } from 'react'
 import { PopperPanelActions } from './PopperPanelActions'
 import { PanelProps } from './types'
@@ -25,39 +26,23 @@ export function PopperPanel(props: PopperPanelProps) {
         ref={ref}
         open={Boolean(activeEl)}
         anchorEl={activeEl}
-        sx={(theme) => ({
+        sx={{
           boxShadow: 12,
-          borderRadius: theme.shape.borderRadius,
+          borderRadius: 3,
           overflow: 'hidden',
           zIndex: 1,
           bgcolor: 'background.paper',
-        })}
+          display: 'grid',
+          gridTemplateRows: 'min-content auto min-content',
+          minWidth: 300,
+          overflowY: 'auto',
+          maxHeight: '500px',
+        }}
+        disablePortal
         modifiers={[
-          {
-            name: 'offset',
-            options: {
-              offset: [0, 10],
-            },
-          },
-
-          {
-            name: 'flip',
-            enabled: true,
-            options: {
-              altBoundary: true,
-              rootBoundary: 'viewport',
-            },
-          },
-          {
-            name: 'preventOverflow',
-            enabled: false,
-            options: {
-              altAxis: true,
-              altBoundary: false,
-              tether: false,
-              rootBoundary: 'viewport',
-            },
-          },
+          { name: 'offset', options: { offset: [0, 10] } },
+          { name: 'flip', enabled: true, options: { altBoundary: true, rootBoundary: 'viewport' } },
+          { name: 'preventOverflow', enabled: true, options: { altBoundary: false, padding: 10 } },
         ]}
       >
         {() => <PopperPanelActions {...actionsProps}>{children()}</PopperPanelActions>}
