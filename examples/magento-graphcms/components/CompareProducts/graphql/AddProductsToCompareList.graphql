@@ -1,0 +1,5 @@
+mutation AddProductsToCompareList($uid: ID!, $products: [ID!]!) {
+  compareList: addProductsToCompareList(input: { uid: $uid, products: $products }) {
+    ...CompareListFragment
+  }
+}

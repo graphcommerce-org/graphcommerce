@@ -1249,7 +1249,7 @@
   dependencies:
     chalk "^2.1.0"
 
-"@changesets/parse@^0.3.16":
+"@changesets/parse@^0.3.15", "@changesets/parse@^0.3.16":
   version "0.3.16"
   resolved "https://registry.yarnpkg.com/@changesets/parse/-/parse-0.3.16.tgz#f8337b70aeb476dc81745ab3294022909bc4a84a"
   integrity sha512-127JKNd167ayAuBjUggZBkmDS5fIKsthnr9jr6bdnuUljroiERW7FBTDNnNVyJ4l69PzR57pk6mXQdtJyBCJKg==

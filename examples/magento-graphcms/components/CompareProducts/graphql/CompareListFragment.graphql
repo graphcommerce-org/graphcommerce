@@ -1,0 +1,21 @@
+fragment CompareListFragment on CompareList {
+  uid
+  attributes {
+    code
+    label
+  }
+  item_count
+
+  items {
+    uid
+    attributes {
+      code
+      value
+    }
+    product {
+      id
+      uid
+      name
+    }
+  }
+}

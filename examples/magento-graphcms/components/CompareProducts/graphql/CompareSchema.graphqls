@@ -1,0 +1,7 @@
+extend type Query {
+  currentCompareUid: CurrentCompareUid
+}
+
+type CurrentCompareUid {
+  id: String
+}

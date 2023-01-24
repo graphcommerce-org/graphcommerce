@@ -48,6 +48,8 @@ import {
   RowRenderer,
   Usps,
 } from '../../components'
+import { CompareProductButton } from '../../components/CompareProducts/CompareProductButton'
+import { AddProductsToCompare } from '../../components/CompareProducts/components/AddProductsToCompare'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
 import { ProductPage2Document, ProductPage2Query } from '../../graphql/ProductPage2.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
@@ -180,6 +182,9 @@ function ProductPage(props: Props) {
           >
             <AddProductsToCartButton fullWidth product={product} />
             <ProductWishlistChipDetail {...product} />
+            <AddProductsToCompare>
+              <CompareProductButton id={product.id} />
+            </AddProductsToCompare>
           </Box>
 
           <Usps usps={sidebarUsps} size='small' />
