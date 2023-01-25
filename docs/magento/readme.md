@@ -53,6 +53,7 @@ For Adobe Commerce:
 ## Optional packages
 
 - [Store Pickup / MSI](https://github.com/graphcommerce-org/graphcommerce/tree/main/packages/magento-cart-pickup)
+- [Address fields nl](https://github.com/graphcommerce-org/graphcommerce/tree/main/packages/address-fields-nl)
 
 ## Payment gateways
 
