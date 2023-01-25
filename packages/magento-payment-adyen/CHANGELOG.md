@@ -1,5 +1,7 @@
 # @graphcommerce/magento-payment-adyen
 
+## 5.2.0-canary.7
+
 ## 5.2.0-canary.6
 
 ## 5.2.0-canary.5
