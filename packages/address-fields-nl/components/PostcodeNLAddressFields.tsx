@@ -1,12 +1,13 @@
-import { TextFieldElement, SelectElement } from '@graphcommerce/ecommerce-ui'
-import { useQuery } from '@graphcommerce/graphql'
 import {
-  AddressFieldsProps,
-  AddressFieldValues,
-} from '@graphcommerce/magento-customer'
+  TextFieldElement,
+  SelectElement,
+  assertFormGqlOperation,
+  houseNumberPattern,
+} from '@graphcommerce/ecommerce-ui'
+import { useQuery } from '@graphcommerce/graphql'
+import { AddressFieldsProps, AddressFieldValues } from '@graphcommerce/magento-customer'
 import { CountryRegionsDocument } from '@graphcommerce/magento-store'
 import { FormRow, InputCheckmark, filterNonNullableKeys } from '@graphcommerce/next-ui'
-import { assertFormGqlOperation, houseNumberPattern } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { useMemo } from 'react'
