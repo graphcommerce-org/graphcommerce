@@ -1,5 +1,11 @@
 # @graphcommerce/magento-wishlist
 
+## 5.2.0-canary.8
+
+### Patch Changes
+
+- [#1783](https://github.com/graphcommerce-org/graphcommerce/pull/1783) [`d6e7dc3e6`](https://github.com/graphcommerce-org/graphcommerce/commit/d6e7dc3e612029bf02cdc5ac48544a52c43869db) - Closing wishlist snackbar ([@StefanAngenent](https://github.com/StefanAngenent))
+
 ## 5.2.0-canary.7
 
 ## 5.2.0-canary.6

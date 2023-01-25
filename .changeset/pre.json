@@ -67,11 +67,13 @@
     "@graphcommerce/graphql-codegen-relay-optimizer-plugin": "5.1.1",
     "@graphcommerce/next-config": "5.1.1",
     "@graphcommerce/prettier-config-pwa": "5.1.1",
-    "@graphcommerce/typescript-config-pwa": "5.1.1"
+    "@graphcommerce/typescript-config-pwa": "5.1.1",
+    "@graphcommerce/address-fields-nl": "5.1.1"
   },
   "changesets": [
     "big-boats-unite",
     "big-laws-invite",
+    "breezy-planes-cheer",
     "funny-ligers-laugh",
     "giant-yaks-brake",
     "healthy-bottles-tease",
@@ -81,8 +83,10 @@
     "lovely-countries-deliver",
     "lovely-months-eat",
     "neat-birds-sin",
+    "plenty-hairs-laugh",
     "rude-mangos-bow",
     "six-readers-film",
+    "slow-dots-remember",
     "slow-parents-stare",
     "sour-zebras-reply"
   ]
