@@ -39,10 +39,8 @@ export function ProductFilterEqualChip(props: FilterProps) {
         ...option,
         title: (
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-            <Typography sx={{ marginRight: 1 }}>{option.label}</Typography>
-            <Typography variant='caption' color='text.disabled'>
-              ({option.count})
-            </Typography>
+            <div>{option.label}</div>
+            <Box sx={{ typography: 'caption', color: 'text.disabled' }}>({option.count})</Box>
           </Box>
         ),
         image: attrCode?.toLowerCase().includes('color') && (
