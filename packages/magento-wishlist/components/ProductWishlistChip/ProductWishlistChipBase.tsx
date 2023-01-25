@@ -115,6 +115,11 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
     e.stopPropagation()
   }
 
+  const preventLinkOnClose: React.MouseEventHandler<HTMLDivElement> = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+  }
+
   const handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault()
 
@@ -207,6 +212,9 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
       <MessageSnackbar
         open={showFeedbackMessage && displayMessageBar}
         onClose={() => setDisplayMessageBar(false)}
+        onClick={preventLinkOnClose}
+        onMouseDown={preventLinkOnClose}
+        autoHide
         variant='pill'
         action={
           <Button
