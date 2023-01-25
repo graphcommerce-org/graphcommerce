@@ -1,23 +1,24 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
-  extractUrlQuery,
-  FilterTypes,
-  getFilterTypes,
-  parseParams,
-  ProductFiltersDocument,
   ProductFiltersPro,
   ProductFiltersProFilterChips,
   ProductFiltersProSortChip,
-  ProductFiltersQuery,
   ProductListCount,
-  ProductListDocument,
   ProductListFilters,
   ProductListFiltersContainer,
   ProductListPagination,
-  ProductListParams,
   ProductListParamsProvider,
-  ProductListQuery,
   ProductListSort,
+  ProductListDocument,
+  extractUrlQuery,
+  parseParams,
+  FilterTypes,
+  ProductListParams,
+  getFilterTypes,
+  ProductFiltersDocument,
+  ProductListQuery,
+  ProductFiltersQuery,
+  ProductFiltersProAllFiltersChip,
 } from '@graphcommerce/magento-product'
 import {
   CategorySearchDocument,
@@ -29,10 +30,10 @@ import {
 } from '@graphcommerce/magento-search'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
-  GetStaticProps,
-  LayoutHeader,
-  LayoutTitle,
   StickyBelowHeader,
+  GetStaticProps,
+  LayoutTitle,
+  LayoutHeader,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
@@ -112,6 +113,7 @@ function SearchResultPage(props: SearchResultProps) {
                 <ProductListFiltersContainer>
                   <ProductFiltersProFilterChips {...filters} filterTypes={filterTypes} />
                   <ProductFiltersProSortChip {...products} />
+                  <ProductFiltersProAllFiltersChip {...filters} filterTypes={filterTypes} />
                 </ProductListFiltersContainer>
               </ProductFiltersPro>
             ) : (

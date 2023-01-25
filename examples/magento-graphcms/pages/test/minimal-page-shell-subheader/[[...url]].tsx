@@ -6,6 +6,7 @@ import {
   parseParams,
   ProductFiltersDocument,
   ProductFiltersPro,
+  ProductFiltersProAllFiltersChip,
   ProductFiltersProFilterChips,
   ProductFiltersProSortChip,
   ProductFiltersQuery,
@@ -18,13 +19,13 @@ import {
   ProductListSort,
 } from '@graphcommerce/magento-product'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { LayoutHeader, LayoutTitle, LinkOrButton, StickyBelowHeader } from '@graphcommerce/next-ui'
+import { StickyBelowHeader, LayoutTitle, LayoutHeader, LinkOrButton } from '@graphcommerce/next-ui'
 import { GetStaticProps } from '@graphcommerce/next-ui/Page/types'
 import { Box, Container, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import { LayoutMinimal, LayoutMinimalProps } from '../../../components'
 import { DefaultPageDocument, DefaultPageQuery } from '../../../graphql/DefaultPage.gql'
-import { graphqlSharedClient, graphqlSsrClient } from '../../../lib/graphql/graphqlSsrClient'
+import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
 type Props = DefaultPageQuery &
   ProductListQuery &
@@ -68,6 +69,7 @@ function MinimalLayoutSubheader(props: Props) {
               <ProductListFiltersContainer>
                 <ProductFiltersProFilterChips {...filters} filterTypes={filterTypes} />
                 <ProductFiltersProSortChip {...products} />
+                <ProductFiltersProAllFiltersChip {...filters} filterTypes={filterTypes} />
               </ProductListFiltersContainer>
             </ProductFiltersPro>
           ) : (

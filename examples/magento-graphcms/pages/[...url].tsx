@@ -30,13 +30,13 @@ import {
   ProductListQuery,
   ProductListSort,
 } from '@graphcommerce/magento-product'
-import { redirectOrNotFound, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { StoreConfigDocument, redirectOrNotFound } from '@graphcommerce/magento-store'
 import {
-  GetStaticProps,
-  LayoutHeader,
-  LayoutTitle,
-  MetaRobots,
   StickyBelowHeader,
+  LayoutTitle,
+  LayoutHeader,
+  GetStaticProps,
+  MetaRobots,
 } from '@graphcommerce/next-ui'
 import { Container } from '@mui/material'
 import { GetStaticPaths } from 'next'
@@ -49,7 +49,7 @@ import {
 } from '../components'
 import { LayoutDocument } from '../components/Layout/Layout.gql'
 import { CategoryPageDocument, CategoryPageQuery } from '../graphql/CategoryPage.gql'
-import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
+import { graphqlSsrClient, graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
 
 export type CategoryProps = CategoryPageQuery &
   ProductListQuery &
@@ -114,22 +114,22 @@ function CategoryPage(props: CategoryProps) {
           <CategoryDescription description={category.description} />
           <CategoryChildren params={params}>{category.children}</CategoryChildren>
           <StickyBelowHeader>
-            {/* {process.env.NEXT_PUBLIC_ADVANCED_FILTERS ? ( */}
-            <ProductFiltersPro params={params}>
-              <ProductListFiltersContainer>
-                <ProductFiltersProFilterChips {...filters} filterTypes={filterTypes} />
-                <ProductFiltersProSortChip {...products} />
-                <ProductFiltersProAllFiltersChip {...filters} filterTypes={filterTypes} />
-              </ProductListFiltersContainer>
-            </ProductFiltersPro>
-            {/* ) : (
+            {process.env.NEXT_PUBLIC_ADVANCED_FILTERS ? (
+              <ProductFiltersPro params={params}>
+                <ProductListFiltersContainer>
+                  <ProductFiltersProFilterChips {...filters} filterTypes={filterTypes} />
+                  <ProductFiltersProSortChip {...products} />
+                  <ProductFiltersProAllFiltersChip {...filters} filterTypes={filterTypes} />
+                </ProductListFiltersContainer>
+              </ProductFiltersPro>
+            ) : (
               <ProductListParamsProvider value={params}>
                 <ProductListFiltersContainer>
                   <ProductListSort {...products} />
                   <ProductListFilters {...filters} filterTypes={filterTypes} />
                 </ProductListFiltersContainer>
               </ProductListParamsProvider>
-            )} */}
+            )}
           </StickyBelowHeader>
           <Container maxWidth={false}>
             <ProductListCount total_count={products?.total_count} />
