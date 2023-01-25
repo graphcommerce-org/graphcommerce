@@ -33,8 +33,8 @@ type PartialNextRouter = Pick<
   NextRouter,
   'pathname' | 'locale' | 'locales' | 'isLocaleDomain' | 'domainLocales' | 'defaultLocale'
 >
-export function canonicalize(router: PartialNextRouter, incomming?: Canonical) {
-  let canonical = incomming
+export function canonicalize(router: PartialNextRouter, incoming?: Canonical) {
+  let canonical = incoming
 
   if (!canonical) return canonical
 
@@ -85,9 +85,9 @@ export function canonicalize(router: PartialNextRouter, incomming?: Canonical) {
   return canonical
 }
 
-export function useCanonical(incomming?: Canonical) {
+export function useCanonical(incoming?: Canonical) {
   const router = useRouter()
-  return canonicalize(router, incomming)
+  return canonicalize(router, incoming)
 }
 
 export function PageMeta(props: PageMetaProps) {

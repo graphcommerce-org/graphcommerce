@@ -1,15 +1,19 @@
 import { Pagination } from '@graphcommerce/next-ui'
 import { PaginationProps } from '@mui/material'
-import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
+import { ProductListParams } from '../ProductListItems/filterTypes'
 import { ProductListLink } from '../ProductListLink/ProductListLink'
 import { ProductListPaginationFragment } from './ProductListPagination.gql'
 
 export type ProductPaginationProps = ProductListPaginationFragment &
-  Omit<PaginationProps, 'count' | 'defaultPage' | 'page' | 'renderItem'>
+  Omit<PaginationProps, 'count' | 'defaultPage' | 'page' | 'renderItem'> & {
+    params: ProductListParams
+  }
 
-export function ProductListPagination({ page_info, ...paginationProps }: ProductPaginationProps) {
-  const { params } = useProductListParamsContext()
-
+export function ProductListPagination({
+  page_info,
+  params,
+  ...paginationProps
+}: ProductPaginationProps) {
   if (!page_info || !page_info.total_pages || !page_info.current_page) return null
 
   return (

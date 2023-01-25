@@ -2,7 +2,7 @@ import { Scroller, useScrollerContext, useScrollTo } from '@graphcommerce/framer
 import { dvh, dvw, useIsomorphicLayoutEffect } from '@graphcommerce/framer-utils'
 import { Box, styled, SxProps, Theme, useTheme, useThemeProps } from '@mui/material'
 import { m, MotionProps, useDomEvent, useMotionValue, useTransform } from 'framer-motion'
-import React, { useCallback, useEffect, useRef } from 'react'
+import React, { useCallback, useContext, useEffect, useMemo, useRef } from 'react'
 import { LayoutProvider } from '../../Layout/components/LayoutProvider'
 import { ExtendableComponent, extendableComponent } from '../../Styles'
 import { useOverlayPosition } from '../hooks/useOverlayPosition'
@@ -26,14 +26,14 @@ type OverridableProps = {
 }
 
 export type LayoutOverlayBaseProps = {
-  children?: React.ReactNode
+  children?: React.ReactNode | (() => React.ReactNode)
   className?: string
   sx?: SxProps<Theme>
   sxBackdrop?: SxProps<Theme>
   active: boolean
-  direction: 1 | -1
+  direction?: 1 | -1
   onClosed: () => void
-  offsetPageY: number
+  offsetPageY?: number
   isPresent: boolean
   safeToRemove?: (() => void) | null | undefined
   overlayPaneProps?: MotionProps
@@ -69,8 +69,8 @@ const clearScrollLock = () => {
   document.body.style.overflow = ''
 }
 
-export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
-  const props = useThemeProps({ name, props: incommingProps })
+export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
+  const props = useThemeProps({ name, props: incomingProps })
 
   const {
     children,
@@ -85,8 +85,8 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
     sxBackdrop = [],
     active,
     onClosed,
-    direction,
-    offsetPageY,
+    direction = 1,
+    offsetPageY = 0,
     isPresent,
     safeToRemove,
     overlayPaneProps,
@@ -214,9 +214,9 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
   }, [offsetY])
 
   // Create the exact position for the LayoutProvider which offsets the top of the overlay
-  const scrollWithoffset = useTransform(
-    [scroll.y, positions.open.y, offsetY],
-    ([y, openY, offsetYv]: number[]) => Math.max(0, y - openY - offsetYv + offsetPageY),
+  const scrollYOffset = useTransform(
+    [scroll.y, positions.open.y],
+    ([y, openY]: number[]) => y - openY + offsetPageY,
   )
 
   const onClickAway = useCallback(
@@ -447,13 +447,19 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
                   maxWidth: dvw(100),
                 },
 
+                '&.variantMdBottom.sizeMdFloating': {
+                  width: widthMd,
+                },
+
                 '&.sizeMdFloating': {
                   borderRadius: `${theme.shape.borderRadius * 4}px`,
                 },
               },
             })}
           >
-            <LayoutProvider scroll={scrollWithoffset}>{children}</LayoutProvider>
+            <LayoutProvider scroll={scrollYOffset}>
+              {active && (typeof children === 'function' ? children() : children)}
+            </LayoutProvider>
           </MotionDiv>
         </Box>
       </Scroller>

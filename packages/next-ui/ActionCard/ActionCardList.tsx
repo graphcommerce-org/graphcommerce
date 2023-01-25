@@ -8,13 +8,13 @@ import { ActionCardLayout } from './ActionCardLayout'
 type MultiSelect = {
   multiple: true
   collapse?: false
-  value: (string | number)[]
+  value: (string | number | null)[]
 
   onChange?: (event: React.MouseEvent<HTMLElement>, value: MultiSelect['value']) => void
 }
 type Select = {
-  multiple?: false
-  value: string | number
+  multiple?: boolean
+  value: string | number | null
   collapse?: boolean
 
   /** Value is null when deselected when not required */
@@ -47,11 +47,10 @@ type HoistedActionCardProps = Pick<ActionCardProps, 'color' | 'variant' | 'size'
 
 const parts = ['root'] as const
 const name = 'ActionCardList'
-const { withState, selectors } = extendableComponent<
-  HoistedActionCardProps,
-  typeof name,
-  typeof parts
->(name, parts)
+const { withState } = extendableComponent<HoistedActionCardProps, typeof name, typeof parts>(
+  name,
+  parts,
+)
 
 export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListProps>(
   (props, ref) => {
@@ -73,8 +72,7 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
           const { onChange, value } = props
           const index = Boolean(value) && value?.indexOf(v)
           let newValue: typeof value
-
-          if (value.length && index && index >= 0) {
+          if (value?.length && index !== false && index >= 0) {
             newValue = value.slice()
             newValue.splice(index, 1)
           } else {
@@ -84,7 +82,6 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
         }
       : (event, v) => {
           const { onChange, value } = props
-
           if (value !== v) {
             if (required) onChange?.(event, v)
             else onChange?.(event, value === v ? null : v)
@@ -100,7 +97,7 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
       const hasValue = (el as ActionCardLike).props.value
 
       if (process.env.NODE_ENV !== 'production') {
-        if (!hasValue) console.error(el, `must be an instance of ActionCard`)
+        if (hasValue === undefined) console.error(el, `must be an instance of ActionCard`)
       }
       return (el as ActionCardLike).props.value !== undefined
     }
@@ -132,7 +129,7 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
     const classes = withState({ size, color, variant, layout })
 
     return (
-      <div>
+      <div ref={ref}>
         <ActionCardLayout sx={sx} className={classes.root} layout={layout}>
           {childReactNodes.map((child) => {
             if (collapse && Boolean(value) && !isValueSelected(child.props.value, value))

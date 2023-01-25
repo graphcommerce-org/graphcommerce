@@ -5,6 +5,10 @@ import {
   getFilterTypes,
   parseParams,
   ProductFiltersDocument,
+  ProductFiltersPro,
+  ProductFiltersProAllFiltersChip,
+  ProductFiltersProFilterChips,
+  ProductFiltersProSortChip,
   ProductFiltersQuery,
   ProductListDocument,
   ProductListFilters,
@@ -60,10 +64,26 @@ function MinimalLayoutSubheader(props: Props) {
         </LayoutTitle>
 
         <StickyBelowHeader>
-          <ProductListFiltersContainer>
-            <ProductListSort sort_fields={products?.sort_fields} />
-            <ProductListFilters aggregations={filters?.aggregations} filterTypes={filterTypes} />
-          </ProductListFiltersContainer>
+          {process.env.NEXT_PUBLIC_ADVANCED_FILTERS ? (
+            <ProductFiltersPro params={params}>
+              <ProductListFiltersContainer>
+                <ProductFiltersProFilterChips {...filters} filterTypes={filterTypes} />
+                <ProductFiltersProSortChip {...products} />
+                <ProductFiltersProAllFiltersChip
+                  {...filters}
+                  {...products}
+                  filterTypes={filterTypes}
+                />
+              </ProductListFiltersContainer>
+            </ProductFiltersPro>
+          ) : (
+            <ProductListParamsProvider value={params}>
+              <ProductListFiltersContainer>
+                <ProductListSort {...products} />
+                <ProductListFilters {...filters} filterTypes={filterTypes} />
+              </ProductListFiltersContainer>
+            </ProductListParamsProvider>
+          )}
         </StickyBelowHeader>
       </Container>
     </ProductListParamsProvider>

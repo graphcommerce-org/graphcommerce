@@ -7,7 +7,7 @@ import type { LiteralUnion } from 'type-fest'
 import { IconSvg, useIconSvgSize } from '../../IconSvg'
 import { LayoutHeaderContent } from '../../Layout/components/LayoutHeaderContent'
 import { LayoutTitle } from '../../Layout/components/LayoutTitle'
-import { Overlay } from '../../Overlay/components/Overlay'
+import { OverlaySsr } from '../../Overlay/components/OverlaySsr'
 import { extendableComponent } from '../../Styles/extendableComponent'
 import { useFabSize } from '../../Theme'
 import { useMatchMedia } from '../../hooks'
@@ -90,7 +90,7 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
   if (selectedLevel === -1 && serverRenderDepth <= 0) return null
 
   return (
-    <Overlay
+    <OverlaySsr
       className={classes.root}
       active={activeAndNotClosing}
       safeToRemove={afterClose}
@@ -275,7 +275,7 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
           </Box>
         </Box>
       </MotionDiv>
-    </Overlay>
+    </OverlaySsr>
   )
 })
 

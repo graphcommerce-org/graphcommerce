@@ -19,9 +19,6 @@ msgstr "<0>{name}</0> a été ajouté à votre panier d'achat!"
 msgid "<0>{name}</0> has been added to your wishlist!"
 msgstr "<0>{name}</0> a été ajouté à votre liste d'envies!"
 
-msgid "Above <0/>"
-msgstr "Au-dessus de <0/>"
-
 msgid "Account"
 msgstr "Compte"
 
@@ -75,9 +72,6 @@ msgstr "Soyez le premier à savoir tout ce qui se passe dans le monde!"
 
 msgid "Be the first to write a review!"
 msgstr "Soyez le premier à écrire une évaluation!"
-
-msgid "Below <0/>"
-msgstr "En dessous de <0/>"
 
 msgid "Billing address"
 msgstr "Adresse de facturation"
@@ -438,6 +432,9 @@ msgstr "Supprimer le produit"
 
 msgid "Remove from wishlist"
 msgstr "Supprimer de la liste de souhaits"
+
+msgid "Reset"
+msgstr "Réinitialiser"
 
 msgid "Reset Cart and Return to home"
 msgstr "Réinitialiser le panier et retourner à l'accueil"

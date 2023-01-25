@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { Controller, ControllerProps } from '@graphcommerce/react-hook-form'
+import { Controller, ControllerProps, FieldValues } from '@graphcommerce/react-hook-form'
 import React, { MouseEventHandler } from 'react'
 import { ActionCardProps } from './ActionCard'
 import { ActionCardList, ActionCardListProps } from './ActionCardList'
@@ -10,21 +10,38 @@ export type ActionCardItemRenderProps<T> = ActionCardProps & {
   onReset: MouseEventHandler<HTMLAnchorElement> & MouseEventHandler<HTMLSpanElement>
 } & T
 
-export type ActionCardListFormProps<T extends ActionCardItemBase> = Omit<
+export type ActionCardListFormProps<A, F extends FieldValues = FieldValues> = Omit<
   ActionCardListProps,
-  'value' | 'error' | 'onChange' | 'children' | 'multiple'
+  'value' | 'error' | 'onChange' | 'children'
 > &
-  Omit<ControllerProps<any>, 'render' | 'shouldUnregister'> & {
-    items: T[]
-    render: React.FC<ActionCardItemRenderProps<T>>
+  Omit<ControllerProps<F>, 'render'> & {
+    items: A[]
+    render: React.FC<ActionCardItemRenderProps<A>>
   }
 
-export function ActionCardListForm<T extends ActionCardItemBase>(
-  props: ActionCardListFormProps<T>,
-) {
-  const { required, rules, items, render, control, name, errorMessage, defaultValue, ...other } =
-    props
+export function ActionCardListForm<
+  T extends ActionCardItemBase,
+  F extends FieldValues = FieldValues,
+>(props: ActionCardListFormProps<T, F>) {
+  const {
+    required,
+    rules,
+    items,
+    render,
+    control,
+    name,
+    errorMessage,
+    defaultValue,
+    multiple,
+    ...other
+  } = props
   const RenderItem = render as React.FC<ActionCardItemRenderProps<ActionCardItemBase>>
+
+  function onSelect(itemValue: unknown, selectValues: unknown) {
+    return multiple
+      ? Array.isArray(selectValues) && selectValues.some((selectValue) => selectValue === itemValue)
+      : selectValues === itemValue
+  }
 
   return (
     <Controller
@@ -36,6 +53,7 @@ export function ActionCardListForm<T extends ActionCardItemBase>(
       render={({ field: { onChange, value, ref }, fieldState, formState }) => (
         <ActionCardList
           {...other}
+          multiple={multiple}
           required={required}
           value={value}
           ref={ref}
@@ -46,9 +64,9 @@ export function ActionCardListForm<T extends ActionCardItemBase>(
           {items.map((item) => (
             <RenderItem
               {...item}
-              key={item.value}
+              key={item.value ?? 'tralala'}
               value={item.value}
-              selected={value === item.value}
+              selected={onSelect(item.value, value)}
               onReset={(e) => {
                 e.preventDefault()
                 onChange(null)

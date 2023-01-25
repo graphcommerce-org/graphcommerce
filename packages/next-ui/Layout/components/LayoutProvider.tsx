@@ -1,14 +1,13 @@
-import { MotionValue } from 'framer-motion'
 import { useMemo } from 'react'
 import { layoutContext } from '../context/layoutContext'
+import { LayoutContext } from '../types'
 
 export type LayoutProviderProps = {
   children: React.ReactNode
-  scroll: MotionValue<number>
-}
+} & LayoutContext
 
 export function LayoutProvider(props: LayoutProviderProps) {
-  const { children, scroll } = props
+  const { children, scroll: scroll } = props
 
   return (
     <layoutContext.Provider value={useMemo(() => ({ scroll }), [scroll])}>

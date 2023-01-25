@@ -15,6 +15,10 @@ import {
   getFilterTypes,
   parseParams,
   ProductFiltersDocument,
+  ProductFiltersPro,
+  ProductFiltersProAllFiltersChip,
+  ProductFiltersProFilterChips,
+  ProductFiltersProSortChip,
   ProductFiltersQuery,
   ProductListCount,
   ProductListDocument,
@@ -51,6 +55,7 @@ export type CategoryProps = CategoryPageQuery &
   ProductListQuery &
   ProductFiltersQuery & { filterTypes?: FilterTypes; params?: ProductListParams }
 export type CategoryRoute = { url: string[] }
+
 type GetPageStaticPaths = GetStaticPaths<CategoryRoute>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, CategoryProps, CategoryRoute>
 
@@ -105,20 +110,31 @@ function CategoryPage(props: CategoryProps) {
       )}
 
       {isCategory && !isLanding && (
-        <ProductListParamsProvider value={params}>
+        <>
           <CategoryDescription description={category.description} />
           <CategoryChildren params={params}>{category.children}</CategoryChildren>
-
           <StickyBelowHeader>
-            <ProductListFiltersContainer>
-              <ProductListFilters aggregations={filters?.aggregations} filterTypes={filterTypes} />
-              <ProductListSort
-                sort_fields={products?.sort_fields}
-                total_count={products?.total_count}
-              />
-            </ProductListFiltersContainer>
+            {process.env.NEXT_PUBLIC_ADVANCED_FILTERS ? (
+              <ProductFiltersPro params={params}>
+                <ProductListFiltersContainer>
+                  <ProductFiltersProFilterChips {...filters} filterTypes={filterTypes} />
+                  <ProductFiltersProSortChip {...products} />
+                  <ProductFiltersProAllFiltersChip
+                    {...filters}
+                    {...products}
+                    filterTypes={filterTypes}
+                  />
+                </ProductListFiltersContainer>
+              </ProductFiltersPro>
+            ) : (
+              <ProductListParamsProvider value={params}>
+                <ProductListFiltersContainer>
+                  <ProductListSort {...products} />
+                  <ProductListFilters {...filters} filterTypes={filterTypes} />
+                </ProductListFiltersContainer>
+              </ProductListParamsProvider>
+            )}
           </StickyBelowHeader>
-
           <Container maxWidth={false}>
             <ProductListCount total_count={products?.total_count} />
             <ProductListItems
@@ -126,9 +142,9 @@ function CategoryPage(props: CategoryProps) {
               items={products?.items}
               loadingEager={1}
             />
-            <ProductListPagination page_info={products?.page_info} />
+            <ProductListPagination page_info={products?.page_info} params={params} />
           </Container>
-        </ProductListParamsProvider>
+        </>
       )}
 
       {page && (

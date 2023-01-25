@@ -19,9 +19,6 @@ msgstr "<0>{name}</0> has been added to your shopping cart!"
 msgid "<0>{name}</0> has been added to your wishlist!"
 msgstr "<0>{name}</0> has been added to your wishlist!"
 
-msgid "Above <0/>"
-msgstr "Above <0/>"
-
 msgid "Account"
 msgstr "Account"
 
@@ -75,9 +72,6 @@ msgstr "Be the first to know about everything new!"
 
 msgid "Be the first to write a review!"
 msgstr "Be the first to write a review!"
-
-msgid "Below <0/>"
-msgstr "Below <0/>"
 
 msgid "Billing address"
 msgstr "Billing address"
@@ -438,6 +432,9 @@ msgstr "Remove Product"
 
 msgid "Remove from wishlist"
 msgstr "Remove from wishlist"
+
+msgid "Reset"
+msgstr "Reset"
 
 msgid "Reset Cart and Return to home"
 msgstr "Reset Cart and Return to home"

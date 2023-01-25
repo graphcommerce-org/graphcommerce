@@ -49,8 +49,8 @@ export async function redirectOrNotFound(
 
     const candidates = new Set([urlKey])
 
-    // If the incomming URL contains a suffix, we check if the URL without the suffix exists
-    // if the incomming URL does not contain a suffix, we check if the URL with the suffix exists
+    // If the incoming URL contains a suffix, we check if the URL without the suffix exists
+    // if the incoming URL does not contain a suffix, we check if the URL with the suffix exists
     const suffixes = [prodSuffix, catSuffix].filter(nonNullable)
     suffixes.forEach((suffix) => {
       candidates.add(

@@ -72,7 +72,9 @@ export function PaymentMethodActionCardListForm(props: PaymentMethodActionCardLi
     usePaymentMethodContext()
 
   const [lockState] = useCartLock()
-  const form = useForm<{ code: string | null; paymentMethod?: string }>({
+
+  type FormFields = { code: string | null; paymentMethod?: string }
+  const form = useForm<FormFields>({
     defaultValues: { code: lockState.method },
   })
 
@@ -106,7 +108,7 @@ export function PaymentMethodActionCardListForm(props: PaymentMethodActionCardLi
   if (!methods || methods.length < 1) return null
 
   return (
-    <ActionCardListForm<PaymentOptionsProps & ActionCardProps>
+    <ActionCardListForm<PaymentOptionsProps & ActionCardProps, FormFields>
       control={control}
       name='paymentMethod'
       errorMessage={i18n._(/* i18n */ 'Please select a payment method')}

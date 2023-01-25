@@ -19,6 +19,18 @@ export const MuiSlider: SliderVariants = [
         background: theme.palette.background.default,
         boxShadow: theme.shadows[6],
       },
+      '& .MuiSlider-valueLabel': {
+        top: 0,
+        backgroundColor: 'unset',
+        color: theme.palette.text.primary,
+        '&:before': {
+          display: 'none',
+        },
+        '& *': {
+          background: 'transparent',
+          color: theme.palette.text.primary,
+        },
+      },
     }),
   },
   {

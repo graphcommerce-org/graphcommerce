@@ -66,6 +66,7 @@ export function FilterRangeType(props: FilterRangeTypeProps) {
     delete linkParams.filters[attribute_code]
 
     setValue([min, max])
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     replaceRoute(linkParams)
   }
 
@@ -138,6 +139,7 @@ export function FilterRangeType(props: FilterRangeTypeProps) {
           }}
           onChangeCommitted={(e, newValue) => {
             if (newValue[0] > min || newValue[1] < max) {
+              // eslint-disable-next-line @typescript-eslint/no-floating-promises
               replaceRoute({ ...priceFilterUrl })
             } else {
               resetFilter()

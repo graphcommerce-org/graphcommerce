@@ -5,10 +5,10 @@ export function useUrlQuery<T extends Record<string, string | null>>() {
   const { query, replace } = useRouter()
 
   const setRouterQuery = useCallback(
-    (incomming: T) => {
+    (incoming: T) => {
       const current = Object.fromEntries(new URLSearchParams(window.location.search).entries())
       const newQuery = Object.fromEntries(
-        Object.entries({ ...current, ...incomming }).filter(([, value]) => value !== null),
+        Object.entries({ ...current, ...incoming }).filter(([, value]) => value !== null),
       )
 
       if (JSON.stringify(current) === JSON.stringify(newQuery)) return undefined

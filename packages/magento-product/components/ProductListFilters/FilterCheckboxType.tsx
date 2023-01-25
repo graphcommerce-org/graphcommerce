@@ -43,6 +43,7 @@ export function FilterCheckboxType(props: FilterCheckboxTypeProps) {
                 delete linkParams.currentPage
                 delete linkParams.filters[attribute_code]
 
+                // eslint-disable-next-line @typescript-eslint/no-floating-promises
                 replaceRoute(linkParams)
               }
             : undefined

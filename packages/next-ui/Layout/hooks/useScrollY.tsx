@@ -2,5 +2,10 @@ import { useContext } from 'react'
 import { layoutContext } from '../context/layoutContext'
 
 export function useScrollY() {
-  return useContext(layoutContext).scroll
+  const context = useContext(layoutContext)
+
+  if (!context) {
+    throw new Error('useScrollY must be used within a LayoutProvider')
+  }
+  return context.scroll
 }

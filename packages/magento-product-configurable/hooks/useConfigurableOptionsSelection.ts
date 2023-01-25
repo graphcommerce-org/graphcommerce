@@ -1,6 +1,7 @@
 import { useQuery } from '@graphcommerce/graphql'
 import { useFormAddProductsToCart } from '@graphcommerce/magento-product'
 import { findByTypename, nonNullable } from '@graphcommerce/next-ui'
+import { useWatch } from '@graphcommerce/react-hook-form'
 import { GetConfigurableOptionsSelectionDocument } from '../graphql/GetConfigurableOptionsSelection.gql'
 
 export function useConfigurableOptionsSelection({
@@ -10,9 +11,8 @@ export function useConfigurableOptionsSelection({
   url_key?: string | null
   index: number
 }) {
-  const { watch } = useFormAddProductsToCart()
-
-  const selectedOptions = (watch(`cartItems.${index}.selected_options`) ?? [])
+  const { control } = useFormAddProductsToCart()
+  const selectedOptions = (useWatch({ control, name: `cartItems.${index}.selected_options` }) ?? [])
     .filter(nonNullable)
     .filter(Boolean)
 

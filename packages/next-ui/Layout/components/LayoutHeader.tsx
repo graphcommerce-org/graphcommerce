@@ -34,6 +34,7 @@ type ComponentStyleProps = {
   children: boolean
   floatingSm: boolean
   floatingMd: boolean
+  size: 'small' | 'responsive'
 }
 
 const { selectors, withState } = extendableComponent<ComponentStyleProps, 'LayoutHeader'>(
@@ -42,7 +43,16 @@ const { selectors, withState } = extendableComponent<ComponentStyleProps, 'Layou
 )
 
 export function LayoutHeader(props: LayoutHeaderProps) {
-  const { children, divider, primary, secondary, noAlign = false, switchPoint, sx = [] } = props
+  const {
+    children,
+    divider,
+    primary,
+    secondary,
+    noAlign = false,
+    switchPoint,
+    size = 'responsive',
+    sx = [],
+  } = props
   const showBack = useShowBack()
   const showClose = useShowClose()
 
@@ -73,6 +83,7 @@ export function LayoutHeader(props: LayoutHeaderProps) {
     noAlign,
     children: !!children,
     divider: !!divider,
+    size,
   })
 
   return (
@@ -118,6 +129,9 @@ export function LayoutHeader(props: LayoutHeaderProps) {
               marginTop: 0,
               height: theme.appShell.appBarHeightMd,
               marginBottom: `calc(${theme.appShell.appBarHeightMd} * -1)`,
+              '&.sizeSmall': {
+                height: theme.appShell.headerHeightSm,
+              },
             },
             '&.divider': {
               marginBottom: 0,
@@ -128,6 +142,7 @@ export function LayoutHeader(props: LayoutHeaderProps) {
       ]}
     >
       <LayoutHeaderContent
+        size={size}
         left={left}
         right={right}
         divider={divider}

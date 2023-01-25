@@ -1,3 +1,4 @@
+import { useFormState } from '@graphcommerce/ecommerce-ui'
 import { useEventCallback } from '@mui/material'
 import { UseAddProductsToCartActionFragment } from './UseAddProductsToCartAction.gql'
 import { useFormAddProductsToCart } from './useFormAddProductsToCart'
@@ -21,12 +22,13 @@ export type UseAddProductsToCartActionReturn = {
 export function useAddProductsToCartAction(
   props: UseAddProductsToCartActionProps,
 ): UseAddProductsToCartActionReturn {
-  const { formState, setValue, getValues } = useFormAddProductsToCart()
+  const { setValue, getValues, control } = useFormAddProductsToCart()
+  const formState = useFormState({ control })
   const {
     sku = props.product?.sku,
     product,
     index = 0,
-    onClick: onClickIncomming,
+    onClick: onClickIncoming,
     disabled,
     loading,
   } = props
@@ -43,7 +45,7 @@ export function useAddProductsToCartAction(
         if (!sku) console.warn(`You must provide a 'sku' to useAddProductsToCartAction`)
       }
       setValue(`cartItems.${index}.sku`, sku ?? '')
-      onClickIncomming?.(e)
+      onClickIncoming?.(e)
     }),
     onMouseDown: useEventCallback((e) => e.stopPropagation()),
   }

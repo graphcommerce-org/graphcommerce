@@ -6,10 +6,9 @@ import {
 } from '../components/ProductListItems/filterTypes'
 
 export function createProductListLink(props: ProductListParams): string {
-  const { url, sort, currentPage, filters: incomming } = props
-
-  const filters = { ...incomming, category_uid: undefined }
-  const uid = incomming.category_uid?.eq || incomming.category_uid?.in?.[0]
+  const { url, sort, currentPage, filters: incoming } = props
+  const filters = { ...incoming, category_uid: undefined }
+  const uid = incoming?.category_uid?.eq || incoming?.category_uid?.in?.[0]
 
   // base url path generation
   let paginateSort = ``

@@ -1,3 +1,4 @@
+import { useFormState } from '@graphcommerce/ecommerce-ui'
 import { ApolloCartErrorSnackbar } from '@graphcommerce/magento-cart'
 import {
   Button,
@@ -20,7 +21,8 @@ export type AddProductsToCartSnackbarProps = {
 
 export function AddProductsToCartSnackbar(props: AddProductsToCartSnackbarProps) {
   const { errorSnackbar, successSnackbar } = props
-  const { formState, error, data, redirect } = useFormAddProductsToCart()
+  const { error, data, redirect, control } = useFormAddProductsToCart()
+  const formState = useFormState({ control })
 
   const userErrors = toUserErrors(data)
 

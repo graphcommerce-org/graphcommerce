@@ -1,4 +1,7 @@
-import { useFormAddProductsToCart } from '@graphcommerce/magento-product'
+import {
+  AddProductsToCartMutationVariables,
+  useFormAddProductsToCart,
+} from '@graphcommerce/magento-product'
 import { SectionHeader, filterNonNullableKeys, ActionCardListProps } from '@graphcommerce/next-ui'
 import {
   ActionCardItemBase,
@@ -81,7 +84,10 @@ export function ConfigurableProductOptions(props: ConfigurableProductOptionsProp
               sx={{ mt: 0 }}
             />
 
-            <ActionCardListForm<ActionCardItemBase & ConfigurableOptionValueFragment>
+            <ActionCardListForm<
+              ActionCardItemBase & ConfigurableOptionValueFragment,
+              AddProductsToCartMutationVariables
+            >
               layout='grid'
               {...other}
               name={fieldName}
