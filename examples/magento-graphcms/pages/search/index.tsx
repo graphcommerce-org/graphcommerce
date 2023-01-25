@@ -113,7 +113,11 @@ function SearchResultPage(props: SearchResultProps) {
                 <ProductListFiltersContainer>
                   <ProductFiltersProFilterChips {...filters} filterTypes={filterTypes} />
                   <ProductFiltersProSortChip {...products} />
-                  <ProductFiltersProAllFiltersChip {...filters} filterTypes={filterTypes} />
+                  <ProductFiltersProAllFiltersChip
+                    {...filters}
+                    {...products}
+                    filterTypes={filterTypes}
+                  />
                 </ProductListFiltersContainer>
               </ProductFiltersPro>
             ) : (

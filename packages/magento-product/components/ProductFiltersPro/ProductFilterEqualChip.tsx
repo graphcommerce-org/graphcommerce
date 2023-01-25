@@ -58,6 +58,7 @@ export function ProductFilterEqualChip(props: FilterProps) {
     <ChipOverlayOrPopper
       label={label}
       chipProps={{ variant: 'outlined' }}
+      overlayProps={{ sizeSm: 'minimal', sizeMd: 'minimal' }}
       onApply={submit}
       onReset={
         canReset

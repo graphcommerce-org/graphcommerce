@@ -12,17 +12,22 @@ import {
   ProductFiltersProAggregations,
   ProductFiltersProAggregationsProps,
 } from './ProductFiltersProAggregations'
+import {
+  ProductFiltersProSortSection,
+  ProductFiltersProSortSectionProps,
+} from './ProductFiltersProSortSection'
 
 type AllFiltersChip = ProductFiltersProAggregationsProps &
+  ProductFiltersProSortSectionProps &
   Omit<
     ChipOverlayOrPopperProps,
     'label' | 'selected' | 'selectedLabel' | 'onApply' | 'onReset' | 'onClose' | 'children'
   >
 
 export function ProductFiltersProAllFiltersChip(props: AllFiltersChip) {
-  const { filterTypes, aggregations, renderer, ...rest } = props
+  const { filterTypes, aggregations, renderer, sort_fields, total_count, ...rest } = props
 
-  const { form, submit, params } = useProductFiltersPro()
+  const { submit, params } = useProductFiltersPro()
   const { filters } = params
 
   const activeFilters = filterNonNullableKeys(aggregations)
@@ -56,6 +61,7 @@ export function ProductFiltersProAllFiltersChip(props: AllFiltersChip) {
     >
       {() => (
         <Box sx={(theme) => ({ display: 'grid', rowGap: theme.spacings.sm })}>
+          <ProductFiltersProSortSection sort_fields={sort_fields} />
           <ProductFiltersProAggregations
             filterTypes={filterTypes}
             aggregations={aggregations}

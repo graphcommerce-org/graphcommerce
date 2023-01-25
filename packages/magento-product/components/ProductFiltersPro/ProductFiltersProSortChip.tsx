@@ -6,11 +6,9 @@ import {
   ActionCardListForm,
   ChipOverlayOrPopper,
   ChipOverlayOrPopperProps,
-  extendableComponent,
   filterNonNullableKeys,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box } from '@mui/material'
 import { useMemo } from 'react'
 import { ProductListSortFragment } from '../ProductListSort/ProductListSort.gql'
 import { useProductFiltersPro } from './ProductFiltersPro'

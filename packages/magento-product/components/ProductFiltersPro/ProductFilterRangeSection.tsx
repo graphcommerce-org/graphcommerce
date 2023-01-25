@@ -11,7 +11,7 @@ import { FilterProps } from './ProductFiltersProAggregations'
 export function ProductFilterRangeSection(props: FilterProps) {
   const { attribute_code, label, options } = props
 
-  const { form, submit, params } = useProductFiltersPro()
+  const { form, params } = useProductFiltersPro()
   const { control } = form
   const attrCode = attribute_code as keyof ProductAttributeFilterInput
   const name = `filters.${attrCode}` as const

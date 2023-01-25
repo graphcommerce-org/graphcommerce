@@ -36,6 +36,7 @@ export function ProductFilterRangeChip(props: FilterProps) {
           <ChipOverlayOrPopper
             label={label}
             chipProps={{ variant: 'outlined', className: classes.root }}
+            overlayProps={{ sizeSm: 'minimal', sizeMd: 'minimal' }}
             onReset={
               from !== min || to !== max
                 ? () => {
