@@ -2,7 +2,7 @@
   "name": "@graphcommerce/address-fields-nl",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "5.1.1",
+  "version": "5.2.0-canary.8",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -12,16 +12,16 @@
     }
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "5.1.1",
-    "@graphcommerce/prettier-config-pwa": "5.1.1",
-    "@graphcommerce/typescript-config-pwa": "5.1.1"
+    "@graphcommerce/eslint-config-pwa": "5.2.0-canary.8",
+    "@graphcommerce/prettier-config-pwa": "5.2.0-canary.8",
+    "@graphcommerce/typescript-config-pwa": "5.2.0-canary.8"
   },
   "dependencies": {
-    "@graphcommerce/ecommerce-ui": "5.1.1",
-    "@graphcommerce/graphql": "5.1.1",
-    "@graphcommerce/magento-customer": "5.1.1",
-    "@graphcommerce/magento-store": "5.1.1",
-    "@graphcommerce/next-ui": "5.1.1"
+    "@graphcommerce/ecommerce-ui": "5.2.0-canary.8",
+    "@graphcommerce/graphql": "5.2.0-canary.8",
+    "@graphcommerce/magento-customer": "5.2.0-canary.8",
+    "@graphcommerce/magento-store": "5.2.0-canary.8",
+    "@graphcommerce/next-ui": "5.2.0-canary.8"
   },
   "peerDependencies": {
     "@lingui/react": "^3.13.2",
