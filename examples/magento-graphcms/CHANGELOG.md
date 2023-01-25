@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.1.2
+
+### Patch Changes
+
+- [#1782](https://github.com/graphcommerce-org/graphcommerce/pull/1782) [`fd75a8b80`](https://github.com/graphcommerce-org/graphcommerce/commit/fd75a8b80934337285ffde031474466b8d88686b) - Update .env example with work-around for self-signed TLS/SSL certs when developing ([@hnsr](https://github.com/hnsr))
+
 ## 5.1.1
 
 ## 5.1.1-canary.1

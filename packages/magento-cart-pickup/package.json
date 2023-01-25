@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-cart-pickup",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "5.1.1",
+  "version": "5.1.2",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -12,17 +12,17 @@
     }
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "5.1.1",
-    "@graphcommerce/prettier-config-pwa": "5.1.1",
-    "@graphcommerce/typescript-config-pwa": "5.1.1"
+    "@graphcommerce/eslint-config-pwa": "5.1.2",
+    "@graphcommerce/prettier-config-pwa": "5.1.2",
+    "@graphcommerce/typescript-config-pwa": "5.1.2"
   },
   "dependencies": {
-    "@graphcommerce/graphql": "5.1.1",
-    "@graphcommerce/image": "5.1.1",
-    "@graphcommerce/magento-cart-shipping-method": "5.1.1",
-    "@graphcommerce/magento-store": "5.1.1",
-    "@graphcommerce/next-ui": "5.1.1",
-    "@graphcommerce/react-hook-form": "5.1.1"
+    "@graphcommerce/graphql": "5.1.2",
+    "@graphcommerce/image": "5.1.2",
+    "@graphcommerce/magento-cart-shipping-method": "5.1.2",
+    "@graphcommerce/magento-store": "5.1.2",
+    "@graphcommerce/next-ui": "5.1.2",
+    "@graphcommerce/react-hook-form": "5.1.2"
   },
   "peerDependencies": {
     "@lingui/core": "^3.13.2",
