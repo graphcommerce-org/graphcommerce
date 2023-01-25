@@ -1,7 +1,7 @@
 # Address fields nl
 
-Implmentation of the Dutch address fields, add an autocomplete field for the
-street name and city.
+Implementation of the Dutch address fields, add an autocomplete field for the
+street name and city based of the customers postcode + street number + addition.
 
 When a dutch country is selected it will automatically switch the address fields
 to give a postcode + housenumber + addition field first and street + city
