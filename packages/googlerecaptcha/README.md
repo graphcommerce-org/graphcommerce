@@ -1,8 +1,9 @@
 # @graphcommerce/googlerecaptcha
 
-This package makes it easy to add Google Recaptcha v3 to GraphCommerce. It
-allows you to load the Recatcha script conditionally on the page so it isn't
-initialized on all pages.
+This package makes it easy to add
+[Google Recaptcha v3](https://developers.google.com/recaptcha/docs/v3) to
+GraphCommerce. It allows you to load the Recatcha script conditionally on the
+page so it isn't initialized on all pages.
 
 ### Installation
 
