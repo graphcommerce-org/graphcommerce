@@ -6,11 +6,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.withGraphCommerce = void 0;
 const next_transpile_modules_1 = __importDefault(require("next-transpile-modules"));
 const webpack_1 = require("webpack");
+const buildFlags_1 = require("./buildFlags");
 const InterceptorPlugin_1 = require("./interceptors/InterceptorPlugin");
+const loadConfig_1 = require("./loadConfig");
 const resolveDependenciesSync_1 = require("./utils/resolveDependenciesSync");
-function extendConfig(nextConfig, modules) {
+function extendConfig(nextConfig, modules, conf) {
     return {
         ...nextConfig,
+        env: {
+            ...nextConfig.env,
+            ...(0, buildFlags_1.buildFlags)(conf.buildFlags),
+        },
         webpack: (config, options) => {
             // Allow importing yml/yaml files for graphql-mesh
             config.module?.rules?.push({ test: /\.ya?ml$/, use: 'js-yaml-loader' });
@@ -48,10 +54,22 @@ function extendConfig(nextConfig, modules) {
         },
     };
 }
-function withGraphCommerce(conf = {}) {
+/**
+ * GraphCommerce configuration accepts packages and buildFlags:
+ *
+ * ```ts
+ * const withGraphCommerce = configure({
+ *   buildFlags: {
+ *     myBuildFlag: true,
+ *   },
+ * })
+ * ```
+ */
+function withGraphCommerce(config) {
+    const conf = (0, loadConfig_1.loadConfig)();
     const { packages = [] } = conf;
     const dependencies = [...(0, resolveDependenciesSync_1.resolveDependenciesSync)().keys()].slice(1);
     const modules = [...dependencies, ...packages];
-    return (config) => extendConfig((0, next_transpile_modules_1.default)(modules)(config), modules);
+    return extendConfig((0, next_transpile_modules_1.default)(modules)(config), modules, conf);
 }
 exports.withGraphCommerce = withGraphCommerce;

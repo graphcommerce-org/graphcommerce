@@ -3,7 +3,7 @@ import { ProductLinkFragment } from './ProductLink.gql'
 export type ProductLinkProps = Omit<ProductLinkFragment, 'uid'>
 
 export function productLink(link: ProductLinkProps) {
-  if (process.env.NEXT_PUBLIC_SINGLE_PRODUCT_PAGE !== '1') {
+  if (process.env.BUILD_FLAG_SINGLE_PRODUCT_ROUTE !== '1') {
     const { __typename, url_key } = link
 
     const productRoute = __typename

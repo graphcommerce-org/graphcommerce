@@ -14,16 +14,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.withYarn1Scopes = exports.withYarn1Workspaces = void 0;
-const withGraphCommerce_1 = require("./withGraphCommerce");
 __exportStar(require("./utils/isMonorepo"), exports);
 __exportStar(require("./utils/resolveDependenciesSync"), exports);
-__exportStar(require("./withGraphCommerce"), exports);
-function withYarn1Workspaces(packages = []) {
-    return (0, withGraphCommerce_1.withGraphCommerce)({ packages });
-}
-exports.withYarn1Workspaces = withYarn1Workspaces;
-function withYarn1Scopes(packages) {
-    return (0, withGraphCommerce_1.withGraphCommerce)({ packages });
-}
-exports.withYarn1Scopes = withYarn1Scopes;
+__exportStar(require("./configure"), exports);
+__exportStar(require("./configuration"), exports);

@@ -64,7 +64,7 @@ function MinimalLayoutSubheader(props: Props) {
         </LayoutTitle>
 
         <StickyBelowHeader>
-          {process.env.NEXT_PUBLIC_ADVANCED_FILTERS ? (
+          {process.env.BUILD_FLAG_ADVANCED_FILTERS ? (
             <ProductFiltersPro params={params}>
               <ProductListFiltersContainer>
                 <ProductFiltersProFilterChips {...filters} filterTypes={filterTypes} />

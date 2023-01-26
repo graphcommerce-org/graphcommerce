@@ -108,7 +108,7 @@ function SearchResultPage(props: SearchResultProps) {
       {products && products.items && products?.items?.length > 0 && (
         <>
           <StickyBelowHeader>
-            {process.env.NEXT_PUBLIC_ADVANCED_FILTERS ? (
+            {process.env.BUILD_FLAG_ADVANCED_FILTERS ? (
               <ProductFiltersPro params={params}>
                 <ProductListFiltersContainer>
                   <ProductFiltersProFilterChips {...filters} filterTypes={filterTypes} />

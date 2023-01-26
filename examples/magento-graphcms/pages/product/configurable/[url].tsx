@@ -145,7 +145,7 @@ ProductConfigurable.pageOptions = {
 export default ProductConfigurable
 
 export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
-  if (process.env.NEXT_PUBLIC_SINGLE_PRODUCT_PAGE === '1') return { paths: [], fallback: false }
+  if (process.env.BUILD_FLAG_SINGLE_PRODUCT_ROUTE) return { paths: [], fallback: false }
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
 
   const path = (locale: string) =>
@@ -156,7 +156,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 }
 
 export const getStaticProps: GetPageStaticProps = async ({ params, locale, defaultLocale }) => {
-  if (process.env.NEXT_PUBLIC_SINGLE_PRODUCT_PAGE === '1') {
+  if (process.env.BUILD_FLAG_SINGLE_PRODUCT_ROUTE) {
     const destination = `${locale === defaultLocale ? '' : `/${locale}`}/p/${params?.url}`
     return { redirect: { destination, permanent: true } }
   }
