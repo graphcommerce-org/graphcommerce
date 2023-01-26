@@ -38,8 +38,11 @@ export function buildFlags(incoming?: BuildFlags) {
       const buildFlagValue = stringValue === '1'
       const buildFlag = envToConf(envVar)
 
-      if (typeof flags[buildFlag] !== 'undefined' && flags[buildFlag] !== buildFlagValue)
+      if (typeof flags[buildFlag] !== 'undefined' && flags[buildFlag] !== buildFlagValue) {
         console.warn(`${envVar}=${stringValue} overrides buildFlag ${buildFlag}`)
+      } else {
+        console.info(`${envVar}=${stringValue} sets buildFlag ${buildFlag}`)
+      }
 
       flags[buildFlag] = buildFlagValue
     })
