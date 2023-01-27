@@ -15,7 +15,7 @@ fragment CompareListFragment on CompareList {
     product {
       id
       uid
-      name
+      ...ProductListItem
     }
   }
 }

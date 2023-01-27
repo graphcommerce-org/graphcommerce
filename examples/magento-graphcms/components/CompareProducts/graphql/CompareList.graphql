@@ -1,5 +1,5 @@
-query CompareList($compareId: ID!) {
-  compareList(uid: $compareId) {
+query CompareList($uid: ID!) {
+  compareList(uid: $uid) {
     ...CompareListFragment
   }
 }

@@ -26,6 +26,7 @@ import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Divider, Fab } from '@mui/material'
 import { useRouter } from 'next/router'
+import { CompareFab } from '../CompareProducts/components/CompareFab'
 import { Footer } from './Footer'
 import { LayoutQuery } from './Layout.gql'
 import { Logo } from './Logo'
@@ -150,6 +151,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
           </>
         }
         footer={<Footer footer={footer} />}
+        compareFab={<CompareFab/>}
         cartFab={<CartFab />}
         menuFab={<NavigationFab onClick={() => selection.set([])} />}
       >

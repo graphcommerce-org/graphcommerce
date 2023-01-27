@@ -13,6 +13,7 @@ export type LayoutDefaultProps = {
   footer: React.ReactNode
   menuFab?: React.ReactNode
   cartFab?: React.ReactNode
+  compareFab?: React.ReactNode
   children?: React.ReactNode
   noSticky?: boolean
   sx?: SxProps<Theme>
@@ -35,6 +36,7 @@ export function LayoutDefault(props: LayoutDefaultProps) {
     footer,
     menuFab,
     cartFab,
+    compareFab,
     noSticky,
     className,
     sx = [],
@@ -100,7 +102,7 @@ export function LayoutDefault(props: LayoutDefaultProps) {
         >
           {header}
         </Box>
-        {menuFab || cartFab ? (
+        {menuFab || cartFab || compareFab ? (
           <Box
             className={classes.fabs}
             sx={(theme) => ({
@@ -127,7 +129,12 @@ export function LayoutDefault(props: LayoutDefaultProps) {
             })}
           >
             {menuFab}
+            <Box>
             {cartFab}
+            {/* Nettere manier vinden voor whitespace */}
+            <p />
+            {compareFab}
+            </Box>            
           </Box>
         ) : (
           <div />
