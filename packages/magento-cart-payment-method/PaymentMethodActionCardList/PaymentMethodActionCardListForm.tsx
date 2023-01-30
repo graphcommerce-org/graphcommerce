@@ -41,7 +41,7 @@ function PaymentMethodActionCard(
         {
           '& .ActionCard-title': { typography: 'h6' },
           '& .ActionCard-details': { lineHeight: 1.5 },
-          '& .ActionCard-image svg': { fontSize: '34px' },
+          '& .ActionCard-image svg': { fontSize: '30px' },
         },
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}

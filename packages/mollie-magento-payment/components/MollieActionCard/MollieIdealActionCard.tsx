@@ -6,7 +6,7 @@ type MollieActionCardProps = PaymentMethodActionCardProps & { icon: any }
 
 export function MollieActionCard(props: MollieActionCardProps) {
   const { mollie_meta, icon } = props
-  const iconSize = '34px'
+  const iconSize = '30px'
 
   return (
     <ActionCard
