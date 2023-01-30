@@ -39,8 +39,9 @@ function PaymentMethodActionCard(
     <Card
       sx={[
         {
-          '& .ActionCard-title': { typography: 'h6', lineHeight: 0 },
+          '& .ActionCard-title': { typography: 'h6' },
           '& .ActionCard-details': { lineHeight: 1.5 },
+          '& .ActionCard-image svg': { fontSize: '34px' },
         },
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}

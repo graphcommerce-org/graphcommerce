@@ -2,7 +2,7 @@ import { PaymentMethodOptionsNoop, PaymentModule } from '@graphcommerce/magento-
 import { MollieActionCard } from '../components/MollieActionCard/MollieIdealActionCard'
 import { MolliePaymentHandler } from '../components/MolliePaymentHandler/MolliePaymentHandler'
 import { MolliePlaceOrder } from '../components/MolliePlaceOrder/MolliePlaceOrder'
-import paypalIcon from '../icons/paypal.jpg'
+import paypalIcon from '../icons/paypal.svg'
 
 export const mollie_methods_paypal: PaymentModule = {
   PaymentOptions: PaymentMethodOptionsNoop,

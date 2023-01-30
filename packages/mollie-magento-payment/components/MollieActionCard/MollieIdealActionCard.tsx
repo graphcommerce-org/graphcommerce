@@ -1,12 +1,12 @@
 import { Image } from '@graphcommerce/image'
 import { PaymentMethodActionCardProps } from '@graphcommerce/magento-cart-payment-method'
-import { ActionCard, useIconSvgSize } from '@graphcommerce/next-ui'
+import { ActionCard } from '@graphcommerce/next-ui'
 
 type MollieActionCardProps = PaymentMethodActionCardProps & { icon: any }
 
 export function MollieActionCard(props: MollieActionCardProps) {
   const { mollie_meta, icon } = props
-  const iconSize = useIconSvgSize('large')
+  const iconSize = '34px'
 
   return (
     <ActionCard
