@@ -1,0 +1,8 @@
+extend input GraphCommerceI18nConfig {
+  googleAnalyticsEnabled: Boolean
+  googleAnalyticsKey: String
+}
+
+extend input GraphCommerceConfig {
+  googleAnalyticsKey: String
+}

@@ -1,0 +1,13 @@
+directive @oneOf on INPUT_OBJECT
+
+scalar Domain @specifiedBy(url: "https://tools.ietf.org/html/rfc3986")
+
+input GraphCommerceI18nConfig {
+  defaultLocale: Boolean
+  domain: Domain
+  locale: String!
+}
+
+input GraphCommerceConfig {
+  i18n: [GraphCommerceI18nConfig!]!
+}

@@ -1,0 +1,5 @@
+extend input GraphCommerceConfig {
+  singleProductRoute: Boolean!
+  advancedFilters: Boolean!
+  # enummer: MyEnum!
+}

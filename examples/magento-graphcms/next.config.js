@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-var-requires */
-
 require('dotenv').config({ path: `${__dirname}/.env` })
 
 const { withGraphCommerce } = require('@graphcommerce/next-config')
@@ -50,5 +49,4 @@ const nextConfig = {
   },
 }
 
-/** @type {import('next').NextConfig} */
-module.exports = withPWA(withGraphCommerce(nextConfig))
+module.exports = withGraphCommerce(withPWA(nextConfig), __dirname)

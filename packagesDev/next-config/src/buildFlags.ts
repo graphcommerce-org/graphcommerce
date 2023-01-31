@@ -1,14 +1,3 @@
-import type { Simplify, CamelCase } from 'type-fest'
-
-// Get the defined env variables and filter out the ones that are not build flags
-export type BuildFlags = Simplify<{
-  [K in keyof NodeJS.ProcessEnv as K extends `BUILD_FLAG_${string}`
-    ? K extends `BUILD_FLAG_${infer Rest}`
-      ? CamelCase<Rest>
-      : never
-    : never]: boolean
-}>
-
 const envToConf = (str: string) =>
   str
     .replace('BUILD_FLAG_', '')
@@ -24,7 +13,7 @@ const confToEnv = (str: string): keyof NodeJS.ProcessEnv => {
   return `BUILD_FLAG_${envVar}`
 }
 
-export function buildFlags(incoming?: BuildFlags) {
+export function buildFlags(incoming: any) {
   const flags: Record<string, boolean> = incoming ?? {}
 
   // Find all process.env build flag

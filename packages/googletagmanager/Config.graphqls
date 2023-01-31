@@ -1,0 +1,7 @@
+extend input GraphCommerceConfig {
+  googleTagmanagerKey: String
+}
+
+extend input GraphCommerceI18nConfig {
+  googleTagmanagerKey: String
+}

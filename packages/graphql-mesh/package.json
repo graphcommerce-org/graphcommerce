@@ -14,6 +14,7 @@
     "@graphql-mesh/plugin-http-details-extensions": "^0.1.3",
     "@graphql-mesh/runtime": "^0.46.2",
     "@graphql-mesh/transform-filter-schema": "0.15.4",
+    "@graphql-mesh/transform-prune": "^0.1.6",
     "@graphql-mesh/types": "0.89.2",
     "@graphql-mesh/utils": "0.43.3",
     "@whatwg-node/fetch": "^0.5.3",

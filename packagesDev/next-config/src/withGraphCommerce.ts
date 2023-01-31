@@ -1,22 +1,31 @@
 import type { NextConfig } from 'next'
-import withTranspileModules from 'next-transpile-modules'
 import { DefinePlugin, Configuration } from 'webpack'
-import { buildFlags } from './buildFlags'
-import { GraphCommerceConfig } from './configuration'
+import { loadConfig } from './config/loadConfig'
 import { InterceptorPlugin } from './interceptors/InterceptorPlugin'
-import { loadConfig } from './loadConfig'
 import { resolveDependenciesSync } from './utils/resolveDependenciesSync'
 
-function extendConfig(
-  nextConfig: NextConfig,
-  modules: string[],
-  conf: GraphCommerceConfig,
-): NextConfig {
+/**
+ * GraphCommerce configuration: .
+ *
+ * ```ts
+ * const { withGraphCommerce } = require('@graphcommerce/next-config')
+ *
+ * module.exports = withGraphCommerce(nextConfig)
+ * ```
+ */
+export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConfig {
+  const graphCommerceConfig = loadConfig(cwd)
+
+  const transpilePackages = [
+    ...[...resolveDependenciesSync().keys()].slice(1),
+    ...(nextConfig.transpilePackages ?? []),
+  ]
+
   return {
     ...nextConfig,
+    transpilePackages,
     env: {
       ...nextConfig.env,
-      ...buildFlags(conf.buildFlags),
     },
     webpack: (config: Configuration, options) => {
       // Allow importing yml/yaml files for graphql-mesh
@@ -24,7 +33,12 @@ function extendConfig(
 
       // To properly properly treeshake @apollo/client we need to define the __DEV__ property
       if (!options.isServer) {
-        config.plugins = [new DefinePlugin({ __DEV__: options.dev }), ...(config.plugins ?? [])]
+        config.plugins = [
+          new DefinePlugin({
+            __DEV__: options.dev,
+          }),
+          ...(config.plugins ?? []),
+        ]
       }
 
       // @lingui .po file support
@@ -37,13 +51,9 @@ function extendConfig(
 
       config.snapshot = {
         ...(config.snapshot ?? {}),
-        managedPaths: [new RegExp(`^(.+?[\\/]node_modules[\\/])(?!${modules.join('|')})`)],
-      }
-
-      // `config.watchOptions.ignored = ['**/.git/**', '**/node_modules/**', '**/.next/**']
-      config.watchOptions = {
-        ...(config.watchOptions ?? {}),
-        ignored: ['**/.git/**', `**/node_modules/!(${modules.join('|')})**`, '**/.next/**'],
+        managedPaths: [
+          new RegExp(`^(.+?[\\/]node_modules[\\/])(?!${transpilePackages.join('|')})`),
+        ],
       }
 
       if (!config.resolve) config.resolve = {}
@@ -61,24 +71,4 @@ function extendConfig(
       return typeof nextConfig.webpack === 'function' ? nextConfig.webpack(config, options) : config
     },
   }
-}
-
-/**
- * GraphCommerce configuration accepts packages and buildFlags:
- *
- * ```ts
- * const withGraphCommerce = configure({
- *   buildFlags: {
- *     myBuildFlag: true,
- *   },
- * })
- * ```
- */
-export function withGraphCommerce(config: NextConfig): NextConfig {
-  const conf = loadConfig()
-  const { packages = [] } = conf
-  const dependencies = [...resolveDependenciesSync().keys()].slice(1)
-
-  const modules = [...dependencies, ...packages]
-  return extendConfig(withTranspileModules(modules)(config), modules, conf)
 }

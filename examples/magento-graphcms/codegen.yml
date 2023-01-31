@@ -4,11 +4,19 @@ generates:
     schema:
       - .mesh/schema.graphql
     plugins:
+      - typescript-validation-schema
       - typescript-apollo-client-helpers
       - add
     config:
       enumsAsTypes: true
       content: '/* eslint-disable */'
+      schema: zod
+      notAllowEmptyString: true
+      importFrom: '@graphcommerce/graphql-mesh'
+      scalarSchemas:
+        Domain: z.string()
+        DateTime: z.date()
+        RichTextAST: z.object.json()
   # Generate a fragments.json
   node_modules/@graphcommerce/graphql/generated/fragments.json:
     schema:

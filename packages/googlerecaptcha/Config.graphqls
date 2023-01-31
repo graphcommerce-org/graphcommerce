@@ -1,0 +1,7 @@
+extend input GraphCommerceConfig {
+  googleRecaptchaKey: String
+}
+
+extend input GraphCommerceI18nConfig {
+  googleRecaptchaKey: String
+}

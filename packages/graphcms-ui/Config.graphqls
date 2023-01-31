@@ -1,0 +1,3 @@
+extend input GraphCommerceI18nConfig {
+  hygraphLocales: [String!]!
+}
