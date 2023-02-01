@@ -80,6 +80,7 @@ function ProductSimple(props: Props) {
           variables={{ sku: product.sku ?? '', quantity: 1 }}
           name={product.name ?? ''}
           price={product.price_range.minimum_price.final_price}
+          priceTiers={product.price_tiers}
           additionalButtons={<ProductWishlistChipDetail {...product} />}
         >
           <ProductSidebarDelivery />

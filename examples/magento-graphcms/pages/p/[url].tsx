@@ -24,6 +24,9 @@ import {
   defaultConfigurableOptionsSelection,
 } from '@graphcommerce/magento-product-configurable'
 import { DownloadableProductOptions } from '@graphcommerce/magento-product-downloadable'
+import {
+  ProductPagePriceTiers
+} from '@graphcommerce/magento-product/components/ProductPagePrice/ProductPagePriceTiers';
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
 import { redirectOrNotFound, Money, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
@@ -158,6 +161,10 @@ function ProductPage(props: Props) {
               </Typography>
             </AddProductsToCartError>
           </Box>
+
+          {!!product.price_tiers?.length &&
+            <ProductPagePriceTiers priceTiers={product.price_tiers} />
+          }
 
           <ProductSidebarDelivery product={product} />
 
