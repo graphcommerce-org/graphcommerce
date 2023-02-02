@@ -193,7 +193,7 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
           })}
         >
           <MotionDiv
-            sx={() => ({ minWidth: 0 /* required for ellipsis to work */ })}
+            sx={{ minWidth: 0 }}
             layout={layout}
           >
             {children}
