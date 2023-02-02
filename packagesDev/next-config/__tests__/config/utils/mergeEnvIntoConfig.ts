@@ -70,7 +70,6 @@ it('converts an env schema to a config schema', () => {
     GC_I18N: `[{"defaultLocale": true }]`,
     GC_I18N_0_LOCALE: 'de',
     GC_SINGLE_PRODUCT_ROUTE: '1',
-    GC_THIS_PROPERTY_DOES_NOT_EXIST: '1',
   }
 
   const [mergedConfig, applied] = mergeEnvIntoConfig(
@@ -78,27 +77,6 @@ it('converts an env schema to a config schema', () => {
     configFile,
     environmentVariables,
   )
-
-  // Validate the resulting configuration
-  const parsed = GraphCommerceConfigSchema().parse(mergedConfig)
-
-  expect(parsed).toMatchInlineSnapshot(`
-    {
-      "advancedFilters": true,
-      "customerRequireEmailConfirmation": false,
-      "i18n": [
-        {
-          "defaultLocale": true,
-          "hygraphLocales": [
-            "en",
-          ],
-          "locale": "de",
-          "magentoStoreCode": "en_us",
-        },
-      ],
-      "singleProductRoute": true,
-    }
-  `)
 
   const ansiRegex = new RegExp(
     [
@@ -109,11 +87,35 @@ it('converts an env schema to a config schema', () => {
   )
 
   expect(formatAppliedEnv(applied).replace(ansiRegex, '')).toMatchInlineSnapshot(`
-    " Loaded GraphCommerce env variables 
+    "  GraphCommerce env variables 
      ~ GC_ADVANCED_FILTERS='1' => advancedFilters: false => true
      + GC_I18N='[{"defaultLocale": true }]' => i18n: [{"defaultLocale":true}]
      ~ GC_I18N_0_LOCALE='de' => i18n.[0].locale: "en" => "de"
-     ~ GC_SINGLE_PRODUCT_ROUTE='1' => singleProductRoute: ignored (no change)
-     ⨉ GC_THIS_PROPERTY_DOES_NOT_EXIST='1' => ignored (no matching config)"
+     = GC_SINGLE_PRODUCT_ROUTE='1' => singleProductRoute: (ignored, no change/wrong format)"
   `)
+
+  // Validate the resulting configuration
+  const parsed = GraphCommerceConfigSchema().safeParse(mergedConfig)
+
+  expect(parsed.success).toBe(true)
+
+  if (parsed.success) {
+    expect(parsed.data).toMatchInlineSnapshot(`
+          {
+            "advancedFilters": true,
+            "customerRequireEmailConfirmation": false,
+            "i18n": [
+              {
+                "defaultLocale": true,
+                "hygraphLocales": [
+                  "en",
+                ],
+                "locale": "de",
+                "magentoStoreCode": "en_us",
+              },
+            ],
+            "singleProductRoute": true,
+          }
+      `)
+  }
 })

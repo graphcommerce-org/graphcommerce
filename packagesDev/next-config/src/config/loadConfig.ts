@@ -1,6 +1,6 @@
-import type { GraphCommerceConfig } from '@graphcommerce/graphql-mesh'
 import { cosmiconfigSync } from 'cosmiconfig'
 import { TypeScriptLoader } from 'cosmiconfig-typescript-loader'
+import type { GraphCommerceConfig } from '../generated/config'
 import { GraphCommerceConfigSchema } from '../generated/config'
 import { mergeEnvIntoConfig, formatAppliedEnv } from './utils/mergeEnvIntoConfig'
 

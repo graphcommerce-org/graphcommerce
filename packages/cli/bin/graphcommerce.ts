@@ -10,7 +10,9 @@ const args = process.argv.slice(2)
 const command = args[0] as keyof typeof commands
 
 if (!commands[command]) {
-  console.log(`Unknown command: ${args.join(' ')}`)
+  console.log(
+    `Unknown command: ${args.join(' ')}, possible commands: ${Object.keys(commands).join(', ')}`,
+  )
   process.exit(1)
 }
 

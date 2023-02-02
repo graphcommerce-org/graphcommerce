@@ -100,7 +100,7 @@ function mergeEnvIntoConfig(schema, config, env) {
     const filterEnv = Object.fromEntries(Object.entries(env).filter(([key]) => key.startsWith('GC_')));
     const newConfig = (0, utilities_1.cloneDeep)(config);
     const [envSchema, envToDot] = configToEnvSchema(schema);
-    const result = envSchema.safeParse(filterEnv);
+    const result = envSchema.strict().safeParse(filterEnv);
     const applyResult = [];
     if (!result.success) {
         Object.entries(result.error.flatten().fieldErrors).forEach(([envVariable, error]) => {
@@ -152,7 +152,7 @@ function formatAppliedEnv(applyResult) {
         if (!dotVariable)
             return chalk_1.default.red(`${envVariableFmt} => ignored (no matching config)`);
         if (from === undefined && to === undefined)
-            return `= ${baseLog}: (ignored, no change/wrong format)`;
+            return ` = ${baseLog}: (ignored, no change/wrong format)`;
         if (from === undefined && to !== undefined)
             return ` ${chalk_1.default.green('+')} ${baseLog}: ${toFmt}`;
         if (from !== undefined && to === undefined)

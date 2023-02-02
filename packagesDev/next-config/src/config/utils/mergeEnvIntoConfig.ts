@@ -140,7 +140,7 @@ export function mergeEnvIntoConfig(
 
   const newConfig = cloneDeep(config)
   const [envSchema, envToDot] = configToEnvSchema(schema)
-  const result = envSchema.safeParse(filterEnv)
+  const result = envSchema.strict().safeParse(filterEnv)
 
   const applyResult: ApplyResult = []
 
@@ -202,7 +202,7 @@ export function formatAppliedEnv(applyResult: ApplyResult) {
     if (!dotVariable) return chalk.red(`${envVariableFmt} => ignored (no matching config)`)
 
     if (from === undefined && to === undefined)
-      return `= ${baseLog}: (ignored, no change/wrong format)`
+      return ` = ${baseLog}: (ignored, no change/wrong format)`
     if (from === undefined && to !== undefined) return ` ${chalk.green('+')} ${baseLog}: ${toFmt}`
     if (from !== undefined && to === undefined) return ` ${chalk.red('-')} ${baseLog}: ${fromFmt}`
     return ` ${chalk.yellowBright('~')} ${baseLog}: ${fromFmt} => ${toFmt}`
