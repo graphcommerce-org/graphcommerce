@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.2.0-canary.9
+
+### Patch Changes
+
+- [`b0b8348b0`](https://github.com/graphcommerce-org/graphcommerce/commit/b0b8348b0d294f98140c2605691d47011add5b01) - Fix ellipsis for long titles on mobile ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 5.2.0-canary.8
 
 ## 5.2.0-canary.7
