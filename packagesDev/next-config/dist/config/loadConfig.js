@@ -20,18 +20,17 @@ function loadConfig(cwd) {
         if (!result)
             throw Error("Couldn't find a graphcommerce.config.ts in the project.");
         const schema = (0, config_1.GraphCommerceConfigSchema)();
-        const config = schema.parse(result.config);
+        const config = schema.optional().parse(result.config);
         if (!config)
             throw Error("Couldn't find a graphcommerce.config.ts in the project.");
-        const [mergedConfig, applied] = (0, mergeEnvIntoConfig_1.mergeEnvIntoConfig)((0, config_1.GraphCommerceConfigSchema)(), config, process.env);
-        if (applied.length > 0) {
-            console.log((0, mergeEnvIntoConfig_1.formatAppliedEnv)(applied));
-        }
+        const [mergedConfig, applyResult] = (0, mergeEnvIntoConfig_1.mergeEnvIntoConfig)((0, config_1.GraphCommerceConfigSchema)(), config, process.env);
+        if (applyResult.length > 0)
+            console.log((0, mergeEnvIntoConfig_1.formatAppliedEnv)(applyResult));
         return schema.parse(mergedConfig);
     }
     catch (error) {
         if (error instanceof Error) {
-            console.log(error.message);
+            // console.log(error.message)
             process.exit(1);
         }
         throw error;

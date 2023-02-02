@@ -11,9 +11,10 @@ type ApplyResultItem = {
     dotVariable?: string | undefined;
     from?: unknown;
     to?: unknown;
+    error?: string[];
 };
 type ApplyResult = ApplyResultItem[];
-export declare function mergeEnvIntoConfig(schema: ASTNode, config: Record<string, unknown>, env: Record<string, string | undefined>): readonly [Record<string, unknown>, ApplyResult];
+export declare function mergeEnvIntoConfig(schema: ASTNode, config: Record<string, unknown>, env: Record<string, string | undefined>): readonly [undefined, ApplyResult] | readonly [Record<string, unknown>, ApplyResult];
 /**
  * Prints the applied env variables to the console
  *
@@ -24,5 +25,5 @@ export declare function mergeEnvIntoConfig(schema: ASTNode, config: Record<strin
  * - If the to is empty, a value is removed: `-` (red)
  * - If both from and to is not empty, a value is changed: `~` (yellow)
  */
-export declare function formatAppliedEnv(applied: ApplyResult): string;
+export declare function formatAppliedEnv(applyResult: ApplyResult): string;
 export {};

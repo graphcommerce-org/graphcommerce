@@ -21,24 +21,21 @@ export function loadConfig(cwd: string): GraphCommerceConfig {
     if (!result) throw Error("Couldn't find a graphcommerce.config.ts in the project.")
 
     const schema = GraphCommerceConfigSchema()
-    const config = schema.parse(result.config)
+    const config = schema.optional().parse(result.config)
 
     if (!config) throw Error("Couldn't find a graphcommerce.config.ts in the project.")
 
-    const [mergedConfig, applied] = mergeEnvIntoConfig(
+    const [mergedConfig, applyResult] = mergeEnvIntoConfig(
       GraphCommerceConfigSchema(),
       config,
       process.env,
     )
-
-    if (applied.length > 0) {
-      console.log(formatAppliedEnv(applied))
-    }
+    if (applyResult.length > 0) console.log(formatAppliedEnv(applyResult))
 
     return schema.parse(mergedConfig)
   } catch (error) {
     if (error instanceof Error) {
-      console.log(error.message)
+      // console.log(error.message)
       process.exit(1)
     }
     throw error

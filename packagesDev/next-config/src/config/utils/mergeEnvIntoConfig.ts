@@ -127,6 +127,7 @@ type ApplyResultItem = {
   dotVariable?: string | undefined
   from?: unknown
   to?: unknown
+  error?: string[]
 }
 type ApplyResult = ApplyResultItem[]
 
@@ -139,29 +140,38 @@ export function mergeEnvIntoConfig(
 
   const newConfig = cloneDeep(config)
   const [envSchema, envToDot] = configToEnvSchema(schema)
-  const res = envSchema.passthrough().parse(filterEnv)
+  const result = envSchema.safeParse(filterEnv)
 
-  const applyResuylt: ApplyResult = []
+  const applyResult: ApplyResult = []
 
-  Object.entries(res).forEach(([envVariable, value]) => {
+  if (!result.success) {
+    Object.entries(result.error.flatten().fieldErrors).forEach(([envVariable, error]) => {
+      const dotVariable = envToDot[envVariable]
+      const envValue = filterEnv[envVariable]
+      applyResult.push({ envVariable, envValue, dotVariable, error })
+    })
+    return [undefined, applyResult] as const
+  }
+
+  Object.entries(result.data).forEach(([envVariable, value]) => {
     const dotVariable = envToDot[envVariable]
     const envValue = filterEnv[envVariable]
 
     if (!dotVariable) {
-      applyResuylt.push({ envVariable, envValue })
+      applyResult.push({ envVariable, envValue })
       return
     }
 
-    const dotValue = get(newConfig, dotVariable, value)
+    const dotValue = get(newConfig, dotVariable)
     const merged = mergeDeep(dotValue, value)
     const from = diff(merged, dotValue)
     const to = diff(dotValue, merged)
 
-    applyResuylt.push({ envVariable, envValue, dotVariable, from, to })
+    applyResult.push({ envVariable, envValue, dotVariable, from, to })
     set(newConfig, dotVariable, merged)
   })
 
-  return [newConfig, applyResuylt] as const
+  return [newConfig, applyResult] as const
 }
 
 /**
@@ -174,8 +184,9 @@ export function mergeEnvIntoConfig(
  * - If the to is empty, a value is removed: `-` (red)
  * - If both from and to is not empty, a value is changed: `~` (yellow)
  */
-export function formatAppliedEnv(applied: ApplyResult) {
-  const lines = applied.map(({ from, to, envValue, envVariable, dotVariable }) => {
+export function formatAppliedEnv(applyResult: ApplyResult) {
+  let hasError = false
+  const lines = applyResult.map(({ from, to, envValue, envVariable, dotVariable, error }) => {
     const fromFmt = chalk.red(JSON.stringify(from))
     const toFmt = chalk.green(JSON.stringify(to))
     const envVariableFmt = `${envVariable}='${envValue}'`
@@ -183,15 +194,23 @@ export function formatAppliedEnv(applied: ApplyResult) {
 
     const baseLog = `${envVariableFmt} => ${dotVariableFmt}`
 
-    if (!dotVariable) return ` ${chalk.red(`⨉ ${envVariableFmt} => ignored (no matching config)`)}`
+    if (error) {
+      hasError = true
+      return chalk.red(`${envVariableFmt} => ${error.join(', ')}`)
+    }
+
+    if (!dotVariable) return chalk.red(`${envVariableFmt} => ignored (no matching config)`)
+
     if (from === undefined && to === undefined)
-      return ` ${chalk.gray(`~ ${baseLog}: ignored (no change)`)}`
+      return `= ${baseLog}: (ignored, no change/wrong format)`
     if (from === undefined && to !== undefined) return ` ${chalk.green('+')} ${baseLog}: ${toFmt}`
     if (from !== undefined && to === undefined) return ` ${chalk.red('-')} ${baseLog}: ${fromFmt}`
     return ` ${chalk.yellowBright('~')} ${baseLog}: ${fromFmt} => ${toFmt}`
   })
 
-  return [chalk.bgGreenBright.whiteBright(` Loaded GraphCommerce env variables `), ...lines].join(
-    '\n',
-  )
+  const header = hasError
+    ? chalk.bgRedBright.whiteBright(` Failed to load GraphCommerce env variables `)
+    : chalk.bgGreenBright.whiteBright(`  GraphCommerce env variables `)
+
+  return [header, ...lines].join('\n')
 }

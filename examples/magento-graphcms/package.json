@@ -10,7 +10,7 @@
   },
   "scripts": {
     "dev": "concurrently -k -n codegen,next 'graphql-codegen -w' 'next dev'",
-    "codegen": "yarn graphcommerce generateConfig && mesh build && graphql-codegen",
+    "codegen": "yarn graphcommerce codegen-config && mesh build && graphql-codegen",
     "build": "mesh build && graphql-codegen && next build && next-sitemap",
     "start": "next start",
     "tsc:lint": "tsc --noEmit -p .",

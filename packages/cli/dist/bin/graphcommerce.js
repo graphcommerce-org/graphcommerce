@@ -1,11 +1,17 @@
 #!/usr/bin/env node
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const generateConfig_1 = require("./commands/generateConfig");
+const next_config_1 = require("@graphcommerce/next-config");
+const commands = {
+    'codegen-config': next_config_1.generateConfig,
+};
 const args = process.argv.slice(2);
-if (args[0] === 'generateConfig') {
-    (0, generateConfig_1.generateConfig)().catch((e) => {
-        console.error(e);
-        process.exit(1);
-    });
+const command = args[0];
+if (!commands[command]) {
+    console.log(`Unknown command: ${args.join(' ')}`);
+    process.exit(1);
 }
+commands[command]().catch((e) => {
+    console.error(e);
+    process.exit(1);
+});

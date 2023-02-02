@@ -100,23 +100,31 @@ function mergeEnvIntoConfig(schema, config, env) {
     const filterEnv = Object.fromEntries(Object.entries(env).filter(([key]) => key.startsWith('GC_')));
     const newConfig = (0, utilities_1.cloneDeep)(config);
     const [envSchema, envToDot] = configToEnvSchema(schema);
-    const res = envSchema.passthrough().parse(filterEnv);
-    const applyResuylt = [];
-    Object.entries(res).forEach(([envVariable, value]) => {
+    const result = envSchema.safeParse(filterEnv);
+    const applyResult = [];
+    if (!result.success) {
+        Object.entries(result.error.flatten().fieldErrors).forEach(([envVariable, error]) => {
+            const dotVariable = envToDot[envVariable];
+            const envValue = filterEnv[envVariable];
+            applyResult.push({ envVariable, envValue, dotVariable, error });
+        });
+        return [undefined, applyResult];
+    }
+    Object.entries(result.data).forEach(([envVariable, value]) => {
         const dotVariable = envToDot[envVariable];
         const envValue = filterEnv[envVariable];
         if (!dotVariable) {
-            applyResuylt.push({ envVariable, envValue });
+            applyResult.push({ envVariable, envValue });
             return;
         }
-        const dotValue = (0, lodash_1.get)(newConfig, dotVariable, value);
+        const dotValue = (0, lodash_1.get)(newConfig, dotVariable);
         const merged = (0, utilities_1.mergeDeep)(dotValue, value);
         const from = (0, diff_1.default)(merged, dotValue);
         const to = (0, diff_1.default)(dotValue, merged);
-        applyResuylt.push({ envVariable, envValue, dotVariable, from, to });
+        applyResult.push({ envVariable, envValue, dotVariable, from, to });
         (0, lodash_1.set)(newConfig, dotVariable, merged);
     });
-    return [newConfig, applyResuylt];
+    return [newConfig, applyResult];
 }
 exports.mergeEnvIntoConfig = mergeEnvIntoConfig;
 /**
@@ -129,23 +137,31 @@ exports.mergeEnvIntoConfig = mergeEnvIntoConfig;
  * - If the to is empty, a value is removed: `-` (red)
  * - If both from and to is not empty, a value is changed: `~` (yellow)
  */
-function formatAppliedEnv(applied) {
-    const lines = applied.map(({ from, to, envValue, envVariable, dotVariable }) => {
+function formatAppliedEnv(applyResult) {
+    let hasError = false;
+    const lines = applyResult.map(({ from, to, envValue, envVariable, dotVariable, error }) => {
         const fromFmt = chalk_1.default.red(JSON.stringify(from));
         const toFmt = chalk_1.default.green(JSON.stringify(to));
         const envVariableFmt = `${envVariable}='${envValue}'`;
         const dotVariableFmt = chalk_1.default.bold.underline(dotVariable);
         const baseLog = `${envVariableFmt} => ${dotVariableFmt}`;
+        if (error) {
+            hasError = true;
+            return chalk_1.default.red(`${envVariableFmt} => ${error.join(', ')}`);
+        }
         if (!dotVariable)
-            return ` ${chalk_1.default.red(`⨉ ${envVariableFmt} => ignored (no matching config)`)}`;
+            return chalk_1.default.red(`${envVariableFmt} => ignored (no matching config)`);
         if (from === undefined && to === undefined)
-            return ` ${chalk_1.default.gray(`~ ${baseLog}: ignored (no change)`)}`;
+            return `= ${baseLog}: (ignored, no change/wrong format)`;
         if (from === undefined && to !== undefined)
             return ` ${chalk_1.default.green('+')} ${baseLog}: ${toFmt}`;
         if (from !== undefined && to === undefined)
             return ` ${chalk_1.default.red('-')} ${baseLog}: ${fromFmt}`;
         return ` ${chalk_1.default.yellowBright('~')} ${baseLog}: ${fromFmt} => ${toFmt}`;
     });
-    return [chalk_1.default.bgGreenBright.whiteBright(` Loaded GraphCommerce env variables `), ...lines].join('\n');
+    const header = hasError
+        ? chalk_1.default.bgRedBright.whiteBright(` Failed to load GraphCommerce env variables `)
+        : chalk_1.default.bgGreenBright.whiteBright(`  GraphCommerce env variables `);
+    return [header, ...lines].join('\n');
 }
 exports.formatAppliedEnv = formatAppliedEnv;

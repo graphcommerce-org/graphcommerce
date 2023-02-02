@@ -1,11 +1,20 @@
 #!/usr/bin/env node
 
-import { generateConfig } from './commands/generateConfig'
+import { generateConfig } from '@graphcommerce/next-config'
+
+const commands = {
+  'codegen-config': generateConfig,
+}
 
 const args = process.argv.slice(2)
-if (args[0] === 'generateConfig') {
-  generateConfig().catch((e) => {
-    console.error(e)
-    process.exit(1)
-  })
+const command = args[0] as keyof typeof commands
+
+if (!commands[command]) {
+  console.log(`Unknown command: ${args.join(' ')}`)
+  process.exit(1)
 }
+
+commands[command]().catch((e) => {
+  console.error(e)
+  process.exit(1)
+})

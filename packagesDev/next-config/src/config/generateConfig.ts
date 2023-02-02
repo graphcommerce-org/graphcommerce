@@ -1,8 +1,8 @@
-import { resolveDependenciesSync } from '@graphcommerce/next-config/dist/utils/resolveDependenciesSync'
-import { resolveDependency } from '@graphcommerce/next-config/dist/utils/resolveDependency'
 import { generate } from '@graphql-codegen/cli'
 import { writeFileSync } from 'fs'
 import { transformFileSync } from '@swc/core'
+import { resolveDependenciesSync } from '../utils/resolveDependenciesSync'
+import { resolveDependency } from '../utils/resolveDependency'
 
 const packages = [...resolveDependenciesSync().values()].filter((p) => p !== '.')
 
