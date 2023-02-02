@@ -111,7 +111,7 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
             gridTemplateAreas: `"left center right"`,
             gridTemplateColumns: '1fr auto 1fr',
             alignItems: 'center',
-            // columnGap: theme.spacings.xs,
+            gap: theme.page.horizontal,
 
             height: theme.appShell.headerHeightSm,
             px: theme.page.horizontal,
@@ -192,7 +192,12 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
             },
           })}
         >
-          <MotionDiv layout={layout}>{children}</MotionDiv>
+          <MotionDiv
+            sx={{ minWidth: 0 }}
+            layout={layout}
+          >
+            {children}
+          </MotionDiv>
         </Box>
         <Box
           className={classes.right}
