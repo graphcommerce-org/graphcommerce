@@ -288,6 +288,17 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
                 borderTopRightRadius: theme.shape.borderRadius * 3,
                 gridTemplate: `"beforeOverlay" "overlay"`,
                 height: `calc(${dvh(100)} - 1px)`,
+
+                '&::after': {
+                  content: `""`,
+                  display: 'block',
+                  position: 'absolute',
+                  width: '100%',
+                  height: '1px',
+                  top: 'calc(100% - 1px)',
+                  left: '0',
+                  background: theme.palette.background.paper,
+                },
               },
             },
             [theme.breakpoints.up('md')]: {
