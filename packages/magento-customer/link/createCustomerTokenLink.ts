@@ -1,10 +1,5 @@
-import {
-  ApolloCache,
-  ApolloLink,
-  ClientContext,
-  NormalizedCacheObject,
-  setContext,
-} from '@graphcommerce/graphql'
+import { ClientContext, NormalizedCacheObject } from '@graphcommerce/graphql'
+import { ApolloLink, ApolloCache, setContext } from '@graphcommerce/graphql/apollo'
 import { CustomerTokenDocument } from '../hooks'
 import { onAuthorizationError } from './onAuthenticationError'
 

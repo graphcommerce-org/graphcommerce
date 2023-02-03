@@ -1,4 +1,5 @@
-import { InMemoryCache, onError } from '@graphcommerce/graphql'
+import { InMemoryCache } from '@graphcommerce/graphql'
+import { onError } from '@graphcommerce/graphql/apollo'
 import { CustomerTokenDocument } from '../hooks/CustomerToken.gql'
 
 function invalidateToken(cache: InMemoryCache) {
