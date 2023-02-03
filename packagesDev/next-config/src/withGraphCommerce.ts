@@ -14,31 +14,23 @@ import { resolveDependenciesSync } from './utils/resolveDependenciesSync'
  * ```
  */
 export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConfig {
-  const graphCommerceConfig = loadConfig(cwd)
-
-  const transpilePackages = [
-    ...[...resolveDependenciesSync().keys()].slice(1),
-    ...(nextConfig.transpilePackages ?? []),
-  ]
-
   return {
     ...nextConfig,
-    transpilePackages,
-    env: {
-      ...nextConfig.env,
-    },
+    transpilePackages: [
+      ...[...resolveDependenciesSync().keys()].slice(1),
+      ...(nextConfig.transpilePackages ?? []),
+    ],
     webpack: (config: Configuration, options) => {
+      // const graphCommerceConfig = loadConfig(cwd)
+
       // Allow importing yml/yaml files for graphql-mesh
       config.module?.rules?.push({ test: /\.ya?ml$/, use: 'js-yaml-loader' })
 
+      if (!config.plugins) config.plugins = []
+
       // To properly properly treeshake @apollo/client we need to define the __DEV__ property
       if (!options.isServer) {
-        config.plugins = [
-          new DefinePlugin({
-            __DEV__: options.dev,
-          }),
-          ...(config.plugins ?? []),
-        ]
+        config.plugins.push(new DefinePlugin({ __DEV__: options.dev }), ...(config.plugins ?? []))
       }
 
       // @lingui .po file support
@@ -49,12 +41,12 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
         topLevelAwait: true,
       }
 
-      config.snapshot = {
-        ...(config.snapshot ?? {}),
-        managedPaths: [
-          new RegExp(`^(.+?[\\/]node_modules[\\/])(?!${transpilePackages.join('|')})`),
-        ],
-      }
+      // config.snapshot = {
+      //   ...(config.snapshot ?? {}),
+      //   managedPaths: [
+      //     new RegExp(`^(.+?[\\/]node_modules[\\/])(?!${transpilePackages.join('|')})`),
+      //   ],
+      // }
 
       if (!config.resolve) config.resolve = {}
       config.resolve.alias = {
@@ -66,7 +58,7 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
         '@mui/system': '@mui/system/modern',
       }
 
-      config.plugins = [...(config.plugins ?? []), new InterceptorPlugin()]
+      config.plugins.push(new InterceptorPlugin())
 
       return typeof nextConfig.webpack === 'function' ? nextConfig.webpack(config, options) : config
     },

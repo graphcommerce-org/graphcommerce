@@ -87,7 +87,7 @@ it('converts an env schema to a config schema', () => {
   )
 
   expect(formatAppliedEnv(applied).replace(ansiRegex, '')).toMatchInlineSnapshot(`
-    "  GraphCommerce env variables 
+    " GraphCommerce env variables 
      ~ GC_ADVANCED_FILTERS='1' => advancedFilters: false => true
      + GC_I18N='[{"defaultLocale": true }]' => i18n: [{"defaultLocale":true}]
      ~ GC_I18N_0_LOCALE='de' => i18n.[0].locale: "en" => "de"

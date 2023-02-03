@@ -1,5 +1,11 @@
 import type { GraphCommerceConfig } from '@graphcommerce/next-config/src/generated/config'
 
+declare global {
+  interface ImportMeta {
+    graphCommerce: GraphCommerceConfig
+  }
+}
+
 const config: GraphCommerceConfig = {
   advancedFilters: false,
   singleProductRoute: true,

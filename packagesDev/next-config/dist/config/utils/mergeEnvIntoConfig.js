@@ -160,8 +160,8 @@ function formatAppliedEnv(applyResult) {
         return ` ${chalk_1.default.yellowBright('~')} ${baseLog}: ${fromFmt} => ${toFmt}`;
     });
     const header = hasError
-        ? chalk_1.default.bgRedBright.whiteBright(` Failed to load GraphCommerce env variables `)
-        : chalk_1.default.bgGreenBright.whiteBright(`  GraphCommerce env variables `);
+        ? `${chalk_1.default.redBright(`info`)}  - Failed to load GraphCommerce env variables`
+        : `${chalk_1.default.blueBright(`info`)}  - GraphCommerce env variables `;
     return [header, ...lines].join('\n');
 }
 exports.formatAppliedEnv = formatAppliedEnv;

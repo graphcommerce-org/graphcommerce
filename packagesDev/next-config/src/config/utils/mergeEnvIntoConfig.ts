@@ -209,8 +209,8 @@ export function formatAppliedEnv(applyResult: ApplyResult) {
   })
 
   const header = hasError
-    ? chalk.bgRedBright.whiteBright(` Failed to load GraphCommerce env variables `)
-    : chalk.bgGreenBright.whiteBright(`  GraphCommerce env variables `)
+    ? `${chalk.redBright(`info`)}  - Failed to load GraphCommerce env variables`
+    : `${chalk.blueBright(`info`)}  - GraphCommerce env variables `
 
   return [header, ...lines].join('\n')
 }
