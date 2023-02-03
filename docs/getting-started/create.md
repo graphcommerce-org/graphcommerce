@@ -47,9 +47,8 @@ If you want to test a GraphCommerce storefront using a pre-configured Magento
 demo store and a pre-configured GraphCMS project with demo content, then you
 need to only install the dependencies. This is the quickest approach.
 
-- Install and use node 14/16/18: `nvm install 16` or `nvm use 16`
-- Install yarn: `corepack enable` (for node 16/18) or
-  `npm install --global yarn` (for node 14)
+- Install and use node 16/18: `nvm install 16` or `nvm use 16`
+- Install yarn: `corepack enable`
 
 ## Step 1: Create a new GraphCommerce app
 

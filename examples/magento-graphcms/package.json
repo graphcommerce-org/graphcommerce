@@ -6,7 +6,7 @@
   "private": true,
   "sideEffects": false,
   "engines": {
-    "node": ">=14.18.3"
+    "node": "16.x.x||18.x.x"
   },
   "scripts": {
     "dev": "concurrently -k -n codegen,next 'graphql-codegen -w' 'next dev'",
@@ -15,7 +15,8 @@
     "start": "next start",
     "tsc:lint": "tsc --noEmit -p .",
     "lingui": "cross-env NODE_ENV=development lingui extract --clean",
-    "postinstall__disabled": "is-monorepo '[pkgrun] postinstall' '[pkgrun] patch-package'"
+    "postinstall": "is-monorepo '[pkgrun] postinstall' '[pkgrun] patch-package'",
+    "create-patch": "patch-package --exclude 'package.json$|gql.ts$|interceptor.tsx$'"
   },
   "dependencies": {
     "@graphcommerce/cli": "5.2.0-canary.18",
