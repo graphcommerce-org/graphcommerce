@@ -1,0 +1,13 @@
+diff --git a/node_modules/@lingui/babel-plugin-extract-messages/build/index.js b/node_modules/@lingui/babel-plugin-extract-messages/build/index.js
+index 2029c3e..0ce8b29 100644
+--- a/node_modules/@lingui/babel-plugin-extract-messages/build/index.js
++++ b/node_modules/@lingui/babel-plugin-extract-messages/build/index.js
+@@ -389,7 +389,7 @@ function _default({
+       const messages = file.get(MESSAGES);
+       const catalog = {};
+ 
+-      const baseName = _path.default.basename(filename);
++      const baseName = Math.random().toString(36).slice(2);
+ 
+       const catalogFilename = _path.default.join(targetDir, `${baseName}.json`);
+ 
