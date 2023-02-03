@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
-import { alpha, Box, ListItemButton, styled, useEventCallback, useTheme } from '@mui/material'
+import { alpha, Box, ListItemButton, styled, useEventCallback } from '@mui/material'
 import React from 'react'
 import { IconSvg } from '../../IconSvg'
 import { extendableComponent } from '../../Styles/extendableComponent'
+import { NextLink } from '../../Theme'
 import { useMatchMedia } from '../../hooks'
 import { iconChevronRight } from '../../icons'
 import {
@@ -14,8 +15,6 @@ import {
   useNavigation,
 } from '../hooks/useNavigation'
 import type { NavigationList } from './NavigationList'
-import { NextLink } from '../../Theme'
-import { useRouter } from 'next/router'
 
 type OwnerState = {
   first?: boolean
@@ -49,8 +48,6 @@ const NavigationLI = styled('li')({ display: 'contents' })
 export const NavigationItem = React.memo<NavigationItemProps>((props) => {
   const { id, parentPath, idx, first, last, NavigationList, mouseEvent } = props
   const { selection, hideRootOnNavigate, closing, animating, serverRenderDepth } = useNavigation()
-  const router = useRouter()
-  const { locale } = router
 
   const row = idx + 1
 
@@ -83,14 +80,13 @@ export const NavigationItem = React.memo<NavigationItemProps>((props) => {
 
   if (isNavigationButton(props)) {
     const { childItems, name, href } = props
-    const prefix = locale === router.defaultLocale ? '' : `/${locale}`
     const skipChildren = itemPath.length + 1 > serverRenderDepth && !isSelected && !!href
 
     return (
       <NavigationLI className={classes.li}>
         <ListItemButton
-          component={href ? 'a' : 'div'}
-          href={href ? prefix + href : undefined}
+          component={NextLink}
+          href={href}
           className={classes.item}
           role='button'
           sx={[
