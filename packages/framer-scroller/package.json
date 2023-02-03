@@ -26,8 +26,8 @@
   },
   "peerDependencies": {
     "@mui/material": "^5.10.16",
-    "@lingui/react": "^3.13.2",
-    "@lingui/core": "^3.13.2",
+    "@lingui/react": "3.16.1",
+    "@lingui/core": "3.16.1",
     "framer-motion": "^7.0.0",
     "next": "^13.1.1",
     "react": "^18.2.0",

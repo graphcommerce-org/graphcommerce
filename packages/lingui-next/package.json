@@ -15,8 +15,8 @@
     }
   },
   "dependencies": {
-    "make-plural": "6.2.2",
-    "@graphcommerce/next-config": "5.2.0-canary.18"
+    "@graphcommerce/next-config": "5.2.0-canary.18",
+    "make-plural": "6.2.2"
   },
   "devDependencies": {
     "@graphcommerce/eslint-config-pwa": "5.2.0-canary.18",
@@ -25,8 +25,8 @@
     "@lingui/conf": "^3.14.0"
   },
   "peerDependencies": {
-    "@lingui/core": "^3.13.2",
     "@lingui/react": "^3.13.2",
+    "@lingui/core": "^3.13.2",
     "next": "^13.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
