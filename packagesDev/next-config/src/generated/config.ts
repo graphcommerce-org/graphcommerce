@@ -31,6 +31,14 @@ export type GraphCommerceConfig = {
   googleTagmanagerKey?: InputMaybe<Scalars['String']>;
   i18n: Array<GraphCommerceI18nConfig>;
   singleProductRoute: Scalars['Boolean'];
+  /**
+   * When updating packages it can happen that the same package is included with different versions in the same project.
+   *
+   * Issues that this can cause are:
+   * - The same package is included multiple times in the bundle, increasing the bundle size.
+   * - The Typescript types of the package are not compatible with each other, causing Typescript errors.
+   */
+  webpackDuplicatesPlugin?: InputMaybe<Scalars['Boolean']>;
 };
 
 export type GraphCommerceI18nConfig = {
@@ -65,7 +73,8 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     googleRecaptchaKey: z.string().nullish(),
     googleTagmanagerKey: z.string().nullish(),
     i18n: z.array(GraphCommerceI18nConfigSchema()),
-    singleProductRoute: z.boolean()
+    singleProductRoute: z.boolean(),
+    webpackDuplicatesPlugin: z.boolean().nullish()
   })
 }
 

@@ -1,8 +1,12 @@
+import { DuplicatesPlugin } from 'inspectpack/plugin'
 import type { NextConfig } from 'next'
 import { DefinePlugin, Configuration } from 'webpack'
 import { loadConfig } from './config/loadConfig'
+import { GraphCommerceConfig } from './generated/config'
 import { InterceptorPlugin } from './interceptors/InterceptorPlugin'
 import { resolveDependenciesSync } from './utils/resolveDependenciesSync'
+
+let graphcommerceConfig: GraphCommerceConfig
 
 /**
  * GraphCommerce configuration: .
@@ -14,6 +18,8 @@ import { resolveDependenciesSync } from './utils/resolveDependenciesSync'
  * ```
  */
 export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConfig {
+  graphcommerceConfig ??= loadConfig(cwd)
+
   return {
     ...nextConfig,
     transpilePackages: [
@@ -21,8 +27,6 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
       ...(nextConfig.transpilePackages ?? []),
     ],
     webpack: (config: Configuration, options) => {
-      // const graphCommerceConfig = loadConfig(cwd)
-
       // Allow importing yml/yaml files for graphql-mesh
       config.module?.rules?.push({ test: /\.ya?ml$/, use: 'js-yaml-loader' })
 
@@ -31,6 +35,21 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
       // To properly properly treeshake @apollo/client we need to define the __DEV__ property
       if (!options.isServer) {
         config.plugins.push(new DefinePlugin({ __DEV__: options.dev }), ...(config.plugins ?? []))
+      }
+      if (!options.isServer && graphcommerceConfig.webpackDuplicatesPlugin) {
+        config.plugins.push(
+          new DuplicatesPlugin({
+            ignoredPackages: [
+              // very small
+              'react-is',
+              // build issue
+              'tslib',
+              // server
+              'isarray',
+              'readable-stream',
+            ],
+          }),
+        )
       }
 
       // @lingui .po file support
