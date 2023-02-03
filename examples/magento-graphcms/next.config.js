@@ -30,6 +30,10 @@ if (!process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT) {
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  onDemandEntries: {
+    maxInactiveAge: 1000 * 60 * 10,
+    pagesBufferLength: 10,
+  },
   experimental: {
     scrollRestoration: true,
   },
