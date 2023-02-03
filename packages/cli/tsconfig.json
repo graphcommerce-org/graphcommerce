@@ -1,17 +1,20 @@
 {
-  "exclude": ["**/node_modules", "**/.*/"],
+  "exclude": ["**/node_modules", "example", "dist", "**/.*/", "__tests__", "__mocks__"],
   "include": ["**/*.ts", "**/*.tsx"],
   "files": [
-    "bin/codegen.ts",
-    "bin/mesh.ts",
-    "bin/graphcommerce.ts",
-    "bin/is-monorepo.ts",
-    "index.ts"
+    "src/bin/codegen.ts",
+    "src/bin/mesh.ts",
+    "src/bin/graphcommerce.ts",
+    "src/bin/is-monorepo.ts",
+    "src/index.ts"
   ],
   "extends": "@graphcommerce/typescript-config-pwa/node.json",
   "compilerOptions": {
+    "rootDir": "src",
     "noEmit": false,
     "outDir": "dist",
-    "sourceMap": false
+    "sourceMap": false,
+    "noLib": false,
+    "strict": true
   }
 }

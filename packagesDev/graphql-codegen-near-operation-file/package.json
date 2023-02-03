@@ -4,16 +4,19 @@
   "repository": "github:graphcommerce-org/graphcommerce",
   "version": "5.2.0-canary.18",
   "sideEffects": false,
+  "type": "commonjs",
   "main": "dist/index.js",
+  "types": "src/index.ts",
+  "scripts": {
+    "test": "jest",
+    "dev": "tsc -W --preserveWatchOutput",
+    "build": "tsc",
+    "prepack": "tsc"
+  },
   "files": [
     "dist",
     "src"
   ],
-  "scripts": {
-    "dev": "tsc --preserveWatchOutput --watch --sourceMap --outDir dist",
-    "build": "tsc --target es5 --outDir dist",
-    "prepack": "yarn build"
-  },
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
     "extends": "@graphcommerce/eslint-config-pwa",

@@ -6,11 +6,13 @@
   "author": "",
   "license": "MIT",
   "scripts": {
-    "dev": "tsc --preserveWatchOutput --watch --outDir dist",
-    "build": "tsc --outDir dist",
-    "prepack": "yarn build"
+    "dev": "tsc --preserveWatchOutput --watch",
+    "build": "tsc",
+    "prepack": "tsc"
   },
+  "type": "commonjs",
   "main": "dist/index.js",
+  "types": "src/index.ts",
   "bin": {
     "mesh": "dist/bin/mesh.js",
     "gql-mesh": "dist/bin/mesh.js",

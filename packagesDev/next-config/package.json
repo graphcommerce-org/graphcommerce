@@ -5,12 +5,11 @@
   "version": "5.2.0-canary.18",
   "type": "commonjs",
   "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
+  "types": "src/index.ts",
   "scripts": {
     "dev": "tsc -W --preserveWatchOutput",
-    "generate": "node dist/generate.js",
     "build": "tsc",
-    "prepack": "yarn build"
+    "prepack": "tsc"
   },
   "dependencies": {
     "@lingui/loader": "3.16.1",
