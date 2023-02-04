@@ -12,4 +12,14 @@ fragment ConfiguredVariant on SimpleProduct @injectable {
       }
     }
   }
+  price_tiers {
+    discount {
+      amount_off
+      percent_off
+    }
+    final_price {
+      ...Money
+    }
+    quantity
+  }
 }

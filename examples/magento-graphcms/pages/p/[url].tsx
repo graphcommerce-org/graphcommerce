@@ -169,6 +169,10 @@ function ProductPage(props: Props) {
             <ProductPagePriceTiers price_tiers={product.price_tiers} price_range={product.price_range} />
           }
 
+          {isTypename(product, ['ConfigurableProduct']) && (
+            <ConfigurablePriceTiers product={product} />
+          )}
+
           <ProductSidebarDelivery product={product} />
 
           <Box
