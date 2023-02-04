@@ -50,6 +50,9 @@ import {
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
 import { ProductPage2Document, ProductPage2Query } from '../../graphql/ProductPage2.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
+import {
+  ConfigurablePriceTiers
+} from '@graphcommerce/magento-product-configurable/components/ConfigurablePrice/ConfigurablePriceTiers';
 
 type Props = ProductPage2Query & Pick<AddProductsToCartFormProps, 'defaultValues'>
 
@@ -163,7 +166,7 @@ function ProductPage(props: Props) {
           </Box>
 
           {!!product.price_tiers?.length &&
-            <ProductPagePriceTiers priceTiers={product.price_tiers} />
+            <ProductPagePriceTiers price_tiers={product.price_tiers} price_range={product.price_range} />
           }
 
           <ProductSidebarDelivery product={product} />

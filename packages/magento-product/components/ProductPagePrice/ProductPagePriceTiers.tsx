@@ -1,22 +1,26 @@
 import { Money } from '@graphcommerce/magento-store';
 import { Trans } from '@lingui/react';
-import { Box } from '@mui/material';
+import { Box, SxProps, Theme } from '@mui/material';
 import { ProductPagePriceFragment } from './ProductPagePrice.gql';
 
-export function ProductPagePriceTiers(props: {
-  priceTiers: ProductPagePriceFragment['price_tiers']
-}) {
-  const { priceTiers } = props;
+type ProductPagePriceTiersProps = {
+  sx?: SxProps<Theme>
+} & ProductPagePriceFragment
+
+export function ProductPagePriceTiers(props: ProductPagePriceTiersProps) {
+  const { price_tiers, sx = [] } = props;
 
   return (
-    <Box>
-      {priceTiers?.map(priceTier => (
+    <Box sx={[
+      ...(Array.isArray(sx) ? sx : [sx]),
+    ]}>
+      {price_tiers?.map(priceTier => (
         <div key={ priceTier?.quantity }>
           <Trans
-            id='Buy {quantity} for {price} and save {percent}%'
+            id='Buy {quantity} for <Money/> and save {percent}%'
+            components={{ Money: <Money {...priceTier?.final_price} /> }}
             values={{
               quantity: priceTier?.quantity,
-              price: <Money {...priceTier?.final_price} />,
               percent: priceTier?.discount?.percent_off,
             }}
           />
