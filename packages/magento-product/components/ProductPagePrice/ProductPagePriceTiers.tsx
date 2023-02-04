@@ -17,8 +17,8 @@ export function ProductPagePriceTiers(props: ProductPagePriceTiersProps) {
       {price_tiers?.map(priceTier => (
         <div key={ priceTier?.quantity }>
           <Trans
-            id='Buy {quantity} for <Money/> and save {percent}%'
-            components={{ Money: <Money {...priceTier?.final_price} /> }}
+            id='Buy {quantity} for <0/> and save {percent}%'
+            components={{ 0: <Money {...priceTier?.final_price} /> }}
             values={{
               quantity: priceTier?.quantity,
               percent: priceTier?.discount?.percent_off,
