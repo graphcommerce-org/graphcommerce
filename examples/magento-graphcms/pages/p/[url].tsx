@@ -12,6 +12,7 @@ import {
   productPageCategory,
   ProductPageDescription,
   ProductPageMeta,
+  ProductPagePriceTiers,
   ProductShortDescription,
   ProductSidebarDelivery,
 } from '@graphcommerce/magento-product'
@@ -19,14 +20,12 @@ import { BundleProductOptions } from '@graphcommerce/magento-product-bundle'
 import {
   ConfigurableName,
   ConfigurablePrice,
+  ConfigurablePriceTiers,
   ConfigurableProductOptions,
   ConfigurableProductPageGallery,
   defaultConfigurableOptionsSelection,
 } from '@graphcommerce/magento-product-configurable'
 import { DownloadableProductOptions } from '@graphcommerce/magento-product-downloadable'
-import {
-  ProductPagePriceTiers
-} from '@graphcommerce/magento-product/components/ProductPagePrice/ProductPagePriceTiers';
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
 import { redirectOrNotFound, Money, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
@@ -50,9 +49,6 @@ import {
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
 import { ProductPage2Document, ProductPage2Query } from '../../graphql/ProductPage2.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
-import {
-  ConfigurablePriceTiers
-} from '@graphcommerce/magento-product-configurable/components/ConfigurablePrice/ConfigurablePriceTiers';
 
 type Props = ProductPage2Query & Pick<AddProductsToCartFormProps, 'defaultValues'>
 

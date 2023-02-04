@@ -12,8 +12,6 @@ import {
 import { Trans } from '@lingui/react'
 import { Divider, Typography, ButtonProps, Box, Alert } from '@mui/material'
 import React from 'react'
-import { ProductPagePriceFragment } from '../ProductPagePrice';
-import { ProductPagePriceTiers } from '../ProductPagePrice/ProductPagePriceTiers';
 import { ProductAddToCartDocument, ProductAddToCartMutationVariables } from './ProductAddToCart.gql'
 
 const { classes, selectors } = extendableComponent('ProductAddToCart', [
@@ -31,12 +29,11 @@ export function ProductAddToCart(
     variables: Omit<ProductAddToCartMutationVariables, 'cartId'>
     name: string
     price: MoneyProps
-    priceTiers?: ProductPagePriceFragment['price_tiers']
     additionalButtons?: React.ReactNode
     children?: React.ReactNode
   } & Omit<ButtonProps, 'type' | 'name'>,
 ) {
-  const { name, children, variables, price, priceTiers, sx, additionalButtons, ...buttonProps } = props
+  const { name, children, variables, price, sx, additionalButtons, ...buttonProps } = props
 
   const form = useFormGqlMutationCart(ProductAddToCartDocument, {
     defaultValues: { ...variables },
@@ -59,10 +56,6 @@ export function ProductAddToCart(
       >
         <Money {...price} />
       </Typography>
-
-      {!!priceTiers?.length &&
-          <ProductPagePriceTiers priceTiers={priceTiers} />
-      }
 
       <TextInputNumber
         variant='outlined'
