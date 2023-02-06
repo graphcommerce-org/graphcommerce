@@ -38,9 +38,7 @@ function ServicePage({ pages }: Props) {
       <Container maxWidth='md'>
         <LayoutTitle>{title}</LayoutTitle>
       </Container>
-      <Container maxWidth='md'>
-        <RowRenderer {...pages[0]} />
-      </Container>
+      <RowRenderer {...pages[0]} />
     </>
   )
 }
