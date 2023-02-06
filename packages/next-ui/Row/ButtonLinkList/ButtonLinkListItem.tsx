@@ -10,11 +10,17 @@ export type ButtonLinkListItemProps = {
 } & Omit<ListItemButtonProps<typeof NextLink>, 'href'>
 
 export function ButtonLinkListItem(props: ButtonLinkListItemProps) {
-  const { children, endIcon = <IconSvg src={iconChevronRight} />, ...listItemButtonProps } = props
+  const {
+    children,
+    url,
+    endIcon = <IconSvg src={iconChevronRight} />,
+    ...listItemButtonProps
+  } = props
 
   return (
     <ListItemButton
       component={NextLink}
+      href={url}
       sx={(theme) => ({
         padding: `${theme.spacings.xxs} 0`,
         borderBottom: `1px solid ${theme.palette.divider}`,
