@@ -1,5 +1,5 @@
-import { generate } from '@graphql-codegen/cli'
 import { writeFileSync } from 'fs'
+import { generate } from '@graphql-codegen/cli'
 import { transformFileSync } from '@swc/core'
 import { resolveDependenciesSync } from '../utils/resolveDependenciesSync'
 import { resolveDependency } from '../utils/resolveDependency'
@@ -24,6 +24,7 @@ export async function generateConfig() {
           content: '/* eslint-disable */',
           schema: 'zod',
           notAllowEmptyString: true,
+          enumsAsTypes: true,
           scalarSchemas: {
             Domain: 'z.string()',
             DateTime: 'z.date()',

@@ -125,7 +125,7 @@ ProductGrouped.pageOptions = {
 export default ProductGrouped
 
 export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
-  if (process.env.BUILD_FLAG_SINGLE_PRODUCT_ROUTE) return { paths: [], fallback: false }
+  if (import.meta.graphCommerce.singleProductRoute) return { paths: [], fallback: false }
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
 
   const path = (locale: string) =>
@@ -136,7 +136,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 }
 
 export const getStaticProps: GetPageStaticProps = async ({ params, locale, defaultLocale }) => {
-  if (process.env.BUILD_FLAG_SINGLE_PRODUCT_ROUTE) {
+  if (import.meta.graphCommerce.singleProductRoute) {
     const destination = `${locale === defaultLocale ? '' : `/${locale}`}/p/${params?.url}`
     return { redirect: { destination, permanent: true } }
   }

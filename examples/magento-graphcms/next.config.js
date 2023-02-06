@@ -20,12 +20,7 @@ const nextConfig = {
   optimizeFonts: false,
   swcMinify: true,
   images: {
-    domains: (process.env.IMAGE_DOMAINS ?? '').split(',').map((s) => s.trim()),
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-  },
-  i18n: {
-    locales: Object.keys(JSON.parse(process.env.NEXT_PUBLIC_LOCALE_STORES)),
-    defaultLocale: Object.keys(JSON.parse(process.env.NEXT_PUBLIC_LOCALE_STORES))[0],
   },
   productionBrowserSourceMaps: true,
   eslint: {

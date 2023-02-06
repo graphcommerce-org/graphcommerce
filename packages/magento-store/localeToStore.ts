@@ -1,20 +1,14 @@
-if (!process.env.NEXT_PUBLIC_LOCALE_STORES) {
-  throw Error('Please provide NEXT_PUBLIC_LOCALE_STORES in your .env')
-}
+import { i18nAll, i18nConfig, i18nConfigDefault } from '@graphcommerce/next-ui'
 
-const localeStores = JSON.parse(process.env.NEXT_PUBLIC_LOCALE_STORES) as {
-  [index: string]: string
+export function defaultLocale(): string {
+  return i18nConfigDefault().locale
 }
 
 export function localeToStore(locale?: string | null | undefined) {
-  if (!locale) return Object.values(localeStores)?.[0]
-  return localeStores?.[locale]
-}
-
-export function defaultLocale(): string {
-  return Object.keys(localeStores)?.[0]
+  if (!locale) return i18nConfigDefault().locale
+  return i18nConfig(locale)?.locale
 }
 
 export function storeToLocale(store?: string | null | undefined) {
-  return Object.entries(localeStores).find(([, s]) => s === store)?.[0]
+  return i18nAll.find((l) => l.magentoStoreCode === store)?.locale
 }

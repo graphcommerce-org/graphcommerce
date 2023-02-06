@@ -44,14 +44,31 @@ function rewriteLegacyEnv(schema, config, env) {
                 envVar,
                 envValue,
             });
-            clonedEnv.GC_I18N = JSON.stringify(Object.entries(parsed).map(([locale, magentoStoreCode]) => ({
-                locale,
-                magentoStoreCode,
-            })));
+            clonedEnv.GC_I18N = JSON.stringify(Object.entries(parsed).map(([locale, magentoStoreCode], index) => {
+                config.i18n[index] = { ...config.i18n[index], locale, magentoStoreCode };
+                return { locale, magentoStoreCode };
+            }));
         },
         NEXT_PUBLIC_SITE_URL: renamedTo('GC_CANONICAL_BASE_URL'),
         NEXT_PUBLIC_GTM_ID: renamedTo('GC_GOOGLE_TAGMANAGER_ID'),
-        NEXT_PUBLIC_GOOGLE_ANALYTICS: renamedTo('GC_GOOGLE_ANALYTICS_ID'),
+        NEXT_PUBLIC_GOOGLE_ANALYTICS: (envVar, envValue) => {
+            if (envValue.startsWith('{')) {
+                const parsed = JSON.parse(envValue);
+                clonedEnv.GC_GOOGLE_ANALYTICS_ID = 'enabled';
+                config.i18n.forEach((i18n, index) => {
+                    if (parsed[i18n.locale]) {
+                        clonedEnv[`GC_I18N_${index}_GOOGLE_ANALYTICS_ID`] = parsed[i18n.locale];
+                    }
+                });
+                applied.push({
+                    warning: ['should be rewritten to GC_I18N_*_GOOGLE_ANALYTICS_ID'],
+                    envVar,
+                    envValue,
+                });
+                return;
+            }
+            renamedTo('GC_GOOGLE_ANALYTICS_ID');
+        },
         NEXT_PUBLIC_GOOGLE_RECAPTCHA_V3_SITE_KEY: renamedTo('GC_GOOGLE_RECAPTCHA_KEY'),
         NEXT_PUBLIC_DISPLAY_INCL_TAX: (envVar, envValue) => {
             const inclTax = envValue.split(',').map((i) => i.trim());

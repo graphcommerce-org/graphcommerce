@@ -14,6 +14,7 @@ import {
   ZodOptional,
   ZodEffects,
   ZodRawShape,
+  ZodEnum,
 } from 'zod'
 import diff from './diff'
 
@@ -95,7 +96,7 @@ export function configToEnvSchema(schema: ZodNode) {
       return
     }
 
-    if (node instanceof ZodString || node instanceof ZodNumber) {
+    if (node instanceof ZodString || node instanceof ZodNumber || node instanceof ZodEnum) {
       envSchema[pathStr(path)] = node.optional()
       envToDot[pathStr(path)] = dotNotation(path)
       return
@@ -193,7 +194,7 @@ export function formatAppliedEnv(applyResult: ApplyResult) {
     const fromFmt = chalk.red(JSON.stringify(from))
     const toFmt = chalk.green(JSON.stringify(to))
     const envVariableFmt = `${envVar}='${envValue}'`
-    const dotVariableFmt = chalk.bold.underline(`import.meta.graphCommerce.${dotVar}`)
+    const dotVariableFmt = chalk.bold.underline(`${dotVar}`)
 
     const baseLog = `${envVariableFmt} => ${dotVariableFmt}`
 

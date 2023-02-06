@@ -71,7 +71,7 @@ function configToEnvSchema(schema) {
             });
             return;
         }
-        if (node instanceof zod_1.ZodString || node instanceof zod_1.ZodNumber) {
+        if (node instanceof zod_1.ZodString || node instanceof zod_1.ZodNumber || node instanceof zod_1.ZodEnum) {
             envSchema[pathStr(path)] = node.optional();
             envToDot[pathStr(path)] = dotNotation(path);
             return;
@@ -144,7 +144,7 @@ function formatAppliedEnv(applyResult) {
         const fromFmt = chalk_1.default.red(JSON.stringify(from));
         const toFmt = chalk_1.default.green(JSON.stringify(to));
         const envVariableFmt = `${envVar}='${envValue}'`;
-        const dotVariableFmt = chalk_1.default.bold.underline(`import.meta.graphCommerce.${dotVar}`);
+        const dotVariableFmt = chalk_1.default.bold.underline(`${dotVar}`);
         const baseLog = `${envVariableFmt} => ${dotVariableFmt}`;
         if (error) {
             hasError = true;

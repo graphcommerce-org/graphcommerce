@@ -85,10 +85,10 @@ it('converts an env schema to a config schema', () => {
 
   expect(removeColor(formatAppliedEnv(applied))).toMatchInlineSnapshot(`
     "info   - Loaded GraphCommerce env variables
-     ~ GC_ADVANCED_FILTERS='1' => import.meta.graphCommerce.advancedFilters: false => true
-     + GC_I18N='[{"defaultLocale": true }]' => import.meta.graphCommerce.i18n: [{"defaultLocale":true}]
-     ~ GC_I18N_0_LOCALE='de' => import.meta.graphCommerce.i18n.[0].locale: "en" => "de"
-     = GC_SINGLE_PRODUCT_ROUTE='1' => import.meta.graphCommerce.singleProductRoute: (ignored, no change/wrong format)"
+     ~ GC_ADVANCED_FILTERS='1' => advancedFilters: false => true
+     + GC_I18N='[{"defaultLocale": true }]' => i18n: [{"defaultLocale":true}]
+     ~ GC_I18N_0_LOCALE='de' => i18n.[0].locale: "en" => "de"
+     = GC_SINGLE_PRODUCT_ROUTE='1' => singleProductRoute: (ignored, no change/wrong format)"
   `)
 
   // Validate the resulting configuration

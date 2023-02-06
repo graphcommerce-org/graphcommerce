@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generateConfig = void 0;
-const cli_1 = require("@graphql-codegen/cli");
 const fs_1 = require("fs");
+const cli_1 = require("@graphql-codegen/cli");
 const core_1 = require("@swc/core");
 const resolveDependenciesSync_1 = require("../utils/resolveDependenciesSync");
 const resolveDependency_1 = require("../utils/resolveDependency");
@@ -23,6 +23,7 @@ async function generateConfig() {
                     content: '/* eslint-disable */',
                     schema: 'zod',
                     notAllowEmptyString: true,
+                    enumsAsTypes: true,
                     scalarSchemas: {
                         Domain: 'z.string()',
                         DateTime: 'z.date()',
