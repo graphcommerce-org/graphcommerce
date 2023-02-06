@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.2.0-canary.10
+
+### Minor Changes
+
+- [#1793](https://github.com/graphcommerce-org/graphcommerce/pull/1793) [`5562fa69b`](https://github.com/graphcommerce-org/graphcommerce/commit/5562fa69b1bc260f68555dcfaf30153eda489bed) - Add newsletter subscribe form ([@ErwinOtten](https://github.com/ErwinOtten))
+
 ## 5.2.0-canary.9
 
 ### Patch Changes

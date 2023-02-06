@@ -1,5 +1,7 @@
 # @graphcommerce/magento-pagebuilder
 
+## 5.2.0-canary.10
+
 ## 5.2.0-canary.9
 
 ## 5.2.0-canary.8
