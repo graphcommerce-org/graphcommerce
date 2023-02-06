@@ -1,3 +1,0 @@
-extend input GraphCommerceI18nConfig {
-  magentoStoreCode: String!
-}

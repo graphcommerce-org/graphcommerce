@@ -5,6 +5,7 @@ import { loadConfig } from './config/loadConfig'
 import { GraphCommerceConfig } from './generated/config'
 import { InterceptorPlugin } from './interceptors/InterceptorPlugin'
 import { resolveDependenciesSync } from './utils/resolveDependenciesSync'
+import { configToImportMeta } from './config/utils/configToImportMeta'
 
 let graphcommerceConfig: GraphCommerceConfig
 
@@ -18,8 +19,6 @@ let graphcommerceConfig: GraphCommerceConfig
  * ```
  */
 export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConfig {
-  graphcommerceConfig ??= loadConfig(cwd)
-
   return {
     ...nextConfig,
     transpilePackages: [
@@ -27,14 +26,20 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
       ...(nextConfig.transpilePackages ?? []),
     ],
     webpack: (config: Configuration, options) => {
+      graphcommerceConfig ??= loadConfig(cwd)
+      const importMetaPaths = configToImportMeta(graphcommerceConfig)
+
       // Allow importing yml/yaml files for graphql-mesh
       config.module?.rules?.push({ test: /\.ya?ml$/, use: 'js-yaml-loader' })
 
       if (!config.plugins) config.plugins = []
 
+      // Make import.meta.graphCommerce available for usage.
+      config.plugins.push(new DefinePlugin(importMetaPaths))
+
       // To properly properly treeshake @apollo/client we need to define the __DEV__ property
       if (!options.isServer) {
-        config.plugins.push(new DefinePlugin({ __DEV__: options.dev }), ...(config.plugins ?? []))
+        config.plugins.push(new DefinePlugin({ __DEV__: options.dev }))
       }
       if (!options.isServer && graphcommerceConfig.webpackDuplicatesPlugin) {
         config.plugins.push(

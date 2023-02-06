@@ -2,7 +2,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import fs from 'node:fs/promises'
 import path from 'node:path'
-import { resolveDependenciesSync } from '@graphcommerce/next-config'
+import { resolveDependenciesSync, loadConfig, configToImportMeta } from '@graphcommerce/next-config'
 import { runCli, cliError, loadCodegenConfig } from '@graphql-codegen/cli'
 import { Types } from '@graphql-codegen/plugin-helpers'
 import dotenv from 'dotenv'

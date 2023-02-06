@@ -7,23 +7,20 @@ declare global {
 }
 
 const config: GraphCommerceConfig = {
+  hygraphEndpoint: 'https://api-eu-central-1.hygraph.com/v2/ckhx7xadya6xs01yxdujt8i80/master',
+  magentoEndpoint: 'https://backend.reachdigital.dev/graphql',
+  i18n: [],
+
   advancedFilters: false,
   singleProductRoute: true,
   customerRequireEmailConfirmation: false,
   demoMode: true,
-  googleAnalyticsKey: 'UA-XXXXX-X',
-  // googleRecaptchaKey: 'afsdasdf',
-  // googleTagmanagerKey: 'GTM-XXXXX',
 
-  i18n: [
-    {
-      defaultLocale: true,
-      locale: 'en',
-      hygraphLocales: ['en'],
-      magentoStoreCode: 'en_us',
-      googleAnalyticsKey: 'UA-XXXXX-X',
-    },
-  ],
+  canonicalBaseUrl: 'https://graphcommerce.vercel.app/',
+  previewSecret: 'dya6xs01y',
+  googleAnalyticsId: 'G-XXXXX',
+  googleRecaptchaKey: 'afsdasdf',
+  googleTagmanagerId: 'GTM-XXXXX',
 }
 
 export default config

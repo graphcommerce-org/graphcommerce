@@ -1,4 +1,7 @@
 extend input GraphCommerceConfig {
+  """
+  Google reCAPTCHA key
+  """
   googleRecaptchaKey: String
 }
 

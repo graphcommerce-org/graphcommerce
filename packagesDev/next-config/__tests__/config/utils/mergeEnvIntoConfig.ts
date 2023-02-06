@@ -4,6 +4,7 @@ import {
   mergeEnvIntoConfig,
 } from '../../../src/config/utils/mergeEnvIntoConfig'
 import { GraphCommerceConfig, GraphCommerceConfigSchema } from '../../../src/generated/config'
+import { removeColor } from './rewriteLegancyEnv'
 
 const env = {
   GC_ADVANCED_FILTERS: '0',
@@ -63,6 +64,10 @@ it('converts an env schema to a config schema', () => {
     customerRequireEmailConfirmation: false,
     singleProductRoute: true,
     advancedFilters: false,
+    canonicalBaseUrl: 'https://example.com',
+    hygraphEndpoint: 'https://example.com',
+    magentoEndpoint: 'https://example.com',
+    previewSecret: 'secret',
   }
 
   const environmentVariables = {
@@ -78,20 +83,12 @@ it('converts an env schema to a config schema', () => {
     environmentVariables,
   )
 
-  const ansiRegex = new RegExp(
-    [
-      '[\\u001B\\u009B][[\\]()#;?]*(?:(?:(?:(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]+)*|[a-zA-Z\\d]+(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]*)*)?\\u0007)',
-      '(?:(?:\\d{1,4}(?:;\\d{0,4})*)?[\\dA-PR-TZcf-nq-uy=><~]))',
-    ].join('|'),
-    'g',
-  )
-
-  expect(formatAppliedEnv(applied).replace(ansiRegex, '')).toMatchInlineSnapshot(`
-    " GraphCommerce env variables 
-     ~ GC_ADVANCED_FILTERS='1' => advancedFilters: false => true
-     + GC_I18N='[{"defaultLocale": true }]' => i18n: [{"defaultLocale":true}]
-     ~ GC_I18N_0_LOCALE='de' => i18n.[0].locale: "en" => "de"
-     = GC_SINGLE_PRODUCT_ROUTE='1' => singleProductRoute: (ignored, no change/wrong format)"
+  expect(removeColor(formatAppliedEnv(applied))).toMatchInlineSnapshot(`
+    "info   - Loaded GraphCommerce env variables
+     ~ GC_ADVANCED_FILTERS='1' => import.meta.graphCommerce.advancedFilters: false => true
+     + GC_I18N='[{"defaultLocale": true }]' => import.meta.graphCommerce.i18n: [{"defaultLocale":true}]
+     ~ GC_I18N_0_LOCALE='de' => import.meta.graphCommerce.i18n.[0].locale: "en" => "de"
+     = GC_SINGLE_PRODUCT_ROUTE='1' => import.meta.graphCommerce.singleProductRoute: (ignored, no change/wrong format)"
   `)
 
   // Validate the resulting configuration
@@ -100,22 +97,9 @@ it('converts an env schema to a config schema', () => {
   expect(parsed.success).toBe(true)
 
   if (parsed.success) {
-    expect(parsed.data).toMatchInlineSnapshot(`
-          {
-            "advancedFilters": true,
-            "customerRequireEmailConfirmation": false,
-            "i18n": [
-              {
-                "defaultLocale": true,
-                "hygraphLocales": [
-                  "en",
-                ],
-                "locale": "de",
-                "magentoStoreCode": "en_us",
-              },
-            ],
-            "singleProductRoute": true,
-          }
-      `)
+    expect(parsed.data.advancedFilters).toBe(true)
+    expect(parsed.data.i18n[0].defaultLocale).toBe(true)
+    expect(parsed.data.i18n[0].locale).toBe('de')
+    expect(parsed.data.singleProductRoute).toBe(true)
   }
 })

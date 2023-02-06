@@ -2,12 +2,9 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
 const linguiNextConfig = require('@graphcommerce/lingui-next/config')
-
+const { loadConfig } = require('@graphcommerce/next-config')
 require('dotenv').config()
 
-if (!process.env.NEXT_PUBLIC_LOCALE_STORES)
-  throw Error('Please specify NEXT_PUBLIC_LOCALE_STORES in your .env')
-
-const locales = Object.keys(JSON.parse(process.env.NEXT_PUBLIC_LOCALE_STORES))
+const locales = loadConfig(process.cwd()).i18n.map(({ locale }) => locale)
 
 module.exports = linguiNextConfig({ locales })

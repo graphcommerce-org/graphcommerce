@@ -1,0 +1,40 @@
+extend input GraphCommerceI18nConfig {
+  """
+  Allow the site to be indexed by search engines.
+  If false, the robots.txt file will be set to disallow all.
+  """
+  robotsAllow: Boolean
+
+  """
+  The canonical base URL is used for SEO purposes.
+
+  Examples:
+  - https://example.com
+  - https://example.com/en
+  - https://example.com/en-US
+  """
+  canonicalBaseUrl: String
+}
+
+extend input GraphCommerceConfig {
+  """
+  Allow the site to be indexed by search engines.
+  If false, the robots.txt file will be set to disallow all.
+  """
+  robotsAllow: Boolean
+
+  """
+  The canonical base URL is used for SEO purposes.
+
+  Examples:
+  - https://example.com
+  - https://example.com/en
+  - https://example.com/en-US
+  """
+  canonicalBaseUrl: String!
+
+  """
+  To enable next.js' preview mode, configre the secret you'd like to use.
+  """
+  previewSecret: String!
+}

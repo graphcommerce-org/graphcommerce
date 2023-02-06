@@ -37,7 +37,7 @@ function isJSON(str: string | undefined): boolean {
   return true
 }
 
-type ASTNode =
+export type ZodNode =
   | ZodNullable<any>
   | ZodOptional<any>
   | ZodEffects<any>
@@ -47,11 +47,11 @@ type ASTNode =
   | ZodNumber
   | ZodBoolean
 
-export function configToEnvSchema(schema: ASTNode) {
+export function configToEnvSchema(schema: ZodNode) {
   const envSchema: ZodRawShape = {}
   const envToDot: Record<string, string> = {}
 
-  function walk(incomming: ASTNode, path: string[] = []) {
+  function walk(incomming: ZodNode, path: string[] = []) {
     let node = incomming
 
     if (node instanceof ZodNullable) node = node.unwrap()
@@ -78,7 +78,7 @@ export function configToEnvSchema(schema: ASTNode) {
     }
 
     if (node instanceof ZodArray) {
-      const arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+      const arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
       if (path.length > 0) {
         envSchema[pathStr(path)] = z
           .string()
@@ -89,7 +89,7 @@ export function configToEnvSchema(schema: ASTNode) {
       }
 
       arr.forEach((key) => {
-        walk((node as unknown as ZodArray<ASTNode>).element, [...path, String(key)])
+        walk((node as unknown as ZodArray<ZodNode>).element, [...path, String(key)])
       })
 
       return
@@ -121,18 +121,19 @@ export function configToEnvSchema(schema: ASTNode) {
   return [z.object(envSchema), envToDot] as const
 }
 
-type ApplyResultItem = {
-  envVariable: string
+export type ApplyResultItem = {
+  envVar: string
   envValue: unknown
-  dotVariable?: string | undefined
+  dotVar?: string | undefined
   from?: unknown
   to?: unknown
   error?: string[]
+  warning?: string[]
 }
-type ApplyResult = ApplyResultItem[]
+export type ApplyResult = ApplyResultItem[]
 
 export function mergeEnvIntoConfig(
-  schema: ASTNode,
+  schema: ZodNode,
   config: Record<string, unknown>,
   env: Record<string, string | undefined>,
 ) {
@@ -140,35 +141,36 @@ export function mergeEnvIntoConfig(
 
   const newConfig = cloneDeep(config)
   const [envSchema, envToDot] = configToEnvSchema(schema)
-  const result = envSchema.strict().safeParse(filterEnv)
+  const result = envSchema.safeParse(filterEnv)
 
   const applyResult: ApplyResult = []
 
   if (!result.success) {
-    Object.entries(result.error.flatten().fieldErrors).forEach(([envVariable, error]) => {
-      const dotVariable = envToDot[envVariable]
-      const envValue = filterEnv[envVariable]
-      applyResult.push({ envVariable, envValue, dotVariable, error })
+    Object.entries(result.error.flatten().fieldErrors).forEach(([envVar, error]) => {
+      const dotVar = envToDot[envVar]
+      const envValue = filterEnv[envVar]
+      applyResult.push({ envVar, envValue, dotVar, error })
     })
     return [undefined, applyResult] as const
   }
 
-  Object.entries(result.data).forEach(([envVariable, value]) => {
-    const dotVariable = envToDot[envVariable]
-    const envValue = filterEnv[envVariable]
+  Object.entries(result.data).forEach(([envVar, value]) => {
+    const dotVar = envToDot[envVar]
+    const envValue = filterEnv[envVar]
 
-    if (!dotVariable) {
-      applyResult.push({ envVariable, envValue })
+    if (!dotVar) {
+      applyResult.push({ envVar, envValue })
       return
     }
 
-    const dotValue = get(newConfig, dotVariable)
+    const dotValue = get(newConfig, dotVar)
     const merged = mergeDeep(dotValue, value)
+
     const from = diff(merged, dotValue)
     const to = diff(dotValue, merged)
 
-    applyResult.push({ envVariable, envValue, dotVariable, from, to })
-    set(newConfig, dotVariable, merged)
+    applyResult.push({ envVar, envValue, dotVar, from, to })
+    set(newConfig, dotVar, merged)
   })
 
   return [newConfig, applyResult] as const
@@ -186,20 +188,25 @@ export function mergeEnvIntoConfig(
  */
 export function formatAppliedEnv(applyResult: ApplyResult) {
   let hasError = false
-  const lines = applyResult.map(({ from, to, envValue, envVariable, dotVariable, error }) => {
+  let hasWarning = false
+  const lines = applyResult.map(({ from, to, envValue, envVar, dotVar, error, warning }) => {
     const fromFmt = chalk.red(JSON.stringify(from))
     const toFmt = chalk.green(JSON.stringify(to))
-    const envVariableFmt = `${envVariable}='${envValue}'`
-    const dotVariableFmt = chalk.bold.underline(dotVariable)
+    const envVariableFmt = `${envVar}='${envValue}'`
+    const dotVariableFmt = chalk.bold.underline(`import.meta.graphCommerce.${dotVar}`)
 
     const baseLog = `${envVariableFmt} => ${dotVariableFmt}`
 
     if (error) {
       hasError = true
-      return chalk.red(`${envVariableFmt} => ${error.join(', ')}`)
+      return `${chalk.red(` ⨉ ${envVariableFmt}`)} => ${error.join(', ')}`
+    }
+    if (warning) {
+      hasWarning = true
+      return `${chalk.yellowBright(` ‼ ${envVariableFmt}`)} => ${warning.join(', ')}`
     }
 
-    if (!dotVariable) return chalk.red(`${envVariableFmt} => ignored (no matching config)`)
+    if (!dotVar) return chalk.red(`${envVariableFmt} => ignored (no matching config)`)
 
     if (from === undefined && to === undefined)
       return ` = ${baseLog}: (ignored, no change/wrong format)`
@@ -208,9 +215,11 @@ export function formatAppliedEnv(applyResult: ApplyResult) {
     return ` ${chalk.yellowBright('~')} ${baseLog}: ${fromFmt} => ${toFmt}`
   })
 
-  const header = hasError
-    ? `${chalk.redBright(`info`)}  - Failed to load GraphCommerce env variables`
-    : `${chalk.blueBright(`info`)}  - GraphCommerce env variables `
+  let header = chalk.blueBright(`info`)
+  if (hasWarning) header = chalk.yellowBright(`warning`)
+  if (hasError) header = chalk.yellowBright(`error`)
+
+  header += `   - Loaded GraphCommerce env variables`
 
   return [header, ...lines].join('\n')
 }

@@ -57,7 +57,7 @@ function configToEnvSchema(schema) {
             return;
         }
         if (node instanceof zod_1.ZodArray) {
-            const arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+            const arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
             if (path.length > 0) {
                 envSchema[pathStr(path)] = zod_1.z
                     .string()
@@ -100,29 +100,29 @@ function mergeEnvIntoConfig(schema, config, env) {
     const filterEnv = Object.fromEntries(Object.entries(env).filter(([key]) => key.startsWith('GC_')));
     const newConfig = (0, utilities_1.cloneDeep)(config);
     const [envSchema, envToDot] = configToEnvSchema(schema);
-    const result = envSchema.strict().safeParse(filterEnv);
+    const result = envSchema.safeParse(filterEnv);
     const applyResult = [];
     if (!result.success) {
-        Object.entries(result.error.flatten().fieldErrors).forEach(([envVariable, error]) => {
-            const dotVariable = envToDot[envVariable];
-            const envValue = filterEnv[envVariable];
-            applyResult.push({ envVariable, envValue, dotVariable, error });
+        Object.entries(result.error.flatten().fieldErrors).forEach(([envVar, error]) => {
+            const dotVar = envToDot[envVar];
+            const envValue = filterEnv[envVar];
+            applyResult.push({ envVar, envValue, dotVar, error });
         });
         return [undefined, applyResult];
     }
-    Object.entries(result.data).forEach(([envVariable, value]) => {
-        const dotVariable = envToDot[envVariable];
-        const envValue = filterEnv[envVariable];
-        if (!dotVariable) {
-            applyResult.push({ envVariable, envValue });
+    Object.entries(result.data).forEach(([envVar, value]) => {
+        const dotVar = envToDot[envVar];
+        const envValue = filterEnv[envVar];
+        if (!dotVar) {
+            applyResult.push({ envVar, envValue });
             return;
         }
-        const dotValue = (0, lodash_1.get)(newConfig, dotVariable);
+        const dotValue = (0, lodash_1.get)(newConfig, dotVar);
         const merged = (0, utilities_1.mergeDeep)(dotValue, value);
         const from = (0, diff_1.default)(merged, dotValue);
         const to = (0, diff_1.default)(dotValue, merged);
-        applyResult.push({ envVariable, envValue, dotVariable, from, to });
-        (0, lodash_1.set)(newConfig, dotVariable, merged);
+        applyResult.push({ envVar, envValue, dotVar, from, to });
+        (0, lodash_1.set)(newConfig, dotVar, merged);
     });
     return [newConfig, applyResult];
 }
@@ -139,17 +139,22 @@ exports.mergeEnvIntoConfig = mergeEnvIntoConfig;
  */
 function formatAppliedEnv(applyResult) {
     let hasError = false;
-    const lines = applyResult.map(({ from, to, envValue, envVariable, dotVariable, error }) => {
+    let hasWarning = false;
+    const lines = applyResult.map(({ from, to, envValue, envVar, dotVar, error, warning }) => {
         const fromFmt = chalk_1.default.red(JSON.stringify(from));
         const toFmt = chalk_1.default.green(JSON.stringify(to));
-        const envVariableFmt = `${envVariable}='${envValue}'`;
-        const dotVariableFmt = chalk_1.default.bold.underline(dotVariable);
+        const envVariableFmt = `${envVar}='${envValue}'`;
+        const dotVariableFmt = chalk_1.default.bold.underline(`import.meta.graphCommerce.${dotVar}`);
         const baseLog = `${envVariableFmt} => ${dotVariableFmt}`;
         if (error) {
             hasError = true;
-            return chalk_1.default.red(`${envVariableFmt} => ${error.join(', ')}`);
+            return `${chalk_1.default.red(` ⨉ ${envVariableFmt}`)} => ${error.join(', ')}`;
         }
-        if (!dotVariable)
+        if (warning) {
+            hasWarning = true;
+            return `${chalk_1.default.yellowBright(` ‼ ${envVariableFmt}`)} => ${warning.join(', ')}`;
+        }
+        if (!dotVar)
             return chalk_1.default.red(`${envVariableFmt} => ignored (no matching config)`);
         if (from === undefined && to === undefined)
             return ` = ${baseLog}: (ignored, no change/wrong format)`;
@@ -159,9 +164,12 @@ function formatAppliedEnv(applyResult) {
             return ` ${chalk_1.default.red('-')} ${baseLog}: ${fromFmt}`;
         return ` ${chalk_1.default.yellowBright('~')} ${baseLog}: ${fromFmt} => ${toFmt}`;
     });
-    const header = hasError
-        ? `${chalk_1.default.redBright(`info`)}  - Failed to load GraphCommerce env variables`
-        : `${chalk_1.default.blueBright(`info`)}  - GraphCommerce env variables `;
+    let header = chalk_1.default.blueBright(`info`);
+    if (hasWarning)
+        header = chalk_1.default.yellowBright(`warning`);
+    if (hasError)
+        header = chalk_1.default.yellowBright(`error`);
+    header += `   - Loaded GraphCommerce env variables`;
     return [header, ...lines].join('\n');
 }
 exports.formatAppliedEnv = formatAppliedEnv;

@@ -110,7 +110,7 @@ function CategoryPage(props: CategoryProps) {
           <CategoryDescription description={category.description} />
           <CategoryChildren params={params}>{category.children}</CategoryChildren>
           <StickyBelowHeader>
-            {import.meta.config.buildFlags?.advancedFilters ? (
+            {import.meta.graphCommerce.advancedFilters ? (
               <ProductFiltersPro params={params}>
                 <ProductListFiltersContainer>
                   <ProductFiltersProFilterChips {...filters} filterTypes={filterTypes} />

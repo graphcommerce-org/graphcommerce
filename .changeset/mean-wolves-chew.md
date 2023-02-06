@@ -4,4 +4,4 @@
 '@graphcommerce/next-config': minor
 ---
 
-Added a new graphcommerce.config.ts with buildFlags to reduce bundle size and improve feature flags
+Added a new graphcommerce.config.ts which can be accessed with import.mete.graphCommerce.myConfig
