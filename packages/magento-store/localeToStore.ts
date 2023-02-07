@@ -5,8 +5,8 @@ export function defaultLocale(): string {
 }
 
 export function localeToStore(locale?: string | null | undefined) {
-  if (!locale) return i18nConfigDefault().locale
-  return i18nConfig(locale)?.locale
+  if (!locale) return i18nConfigDefault().magentoStoreCode
+  return i18nConfig(locale)?.magentoStoreCode
 }
 
 export function storeToLocale(store?: string | null | undefined) {

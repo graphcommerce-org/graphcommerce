@@ -1,6 +1,7 @@
 import { DuplicatesPlugin } from 'inspectpack/plugin'
 import type { NextConfig } from 'next'
 import { DomainLocale } from 'next/dist/server/config'
+import { RemotePattern } from 'next/dist/shared/lib/image-config'
 import { DefinePlugin, Configuration } from 'webpack'
 import { loadConfig } from './config/loadConfig'
 import { configToImportMeta } from './config/utils/configToImportMeta'
@@ -9,6 +10,32 @@ import { InterceptorPlugin } from './interceptors/InterceptorPlugin'
 import { resolveDependenciesSync } from './utils/resolveDependenciesSync'
 
 let graphcommerceConfig: GraphCommerceConfig
+
+function domains(config: GraphCommerceConfig): DomainLocale[] {
+  return Object.values(
+    config.i18n.reduce((acc, loc) => {
+      if (!loc.domain) return acc
+
+      acc[loc.domain] = {
+        defaultLocale: loc.defaultLocale ? loc.locale : acc[loc.domain]?.defaultLocale,
+        locales: [...(acc[loc.domain]?.locales ?? []), loc.locale],
+        domain: loc.domain,
+        http: true,
+      } as DomainLocale
+
+      return acc
+    }, {} as Record<string, DomainLocale>),
+  )
+}
+
+function remotePatterns(url: string): RemotePattern {
+  const urlObj = new URL(url)
+  return {
+    hostname: urlObj.hostname,
+    protocol: urlObj.protocol as RemotePattern['protocol'],
+    port: urlObj.port,
+  }
+}
 
 /**
  * GraphCommerce configuration: .
@@ -25,27 +52,21 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
 
   const { i18n } = graphcommerceConfig
 
-  const domains = Object.values(
-    i18n.reduce((acc, loc) => {
-      if (!loc.domain) return acc
-
-      acc[loc.domain] = {
-        defaultLocale: loc.defaultLocale ? loc.locale : acc[loc.domain]?.defaultLocale,
-        locales: [...(acc[loc.domain]?.locales ?? []), loc.locale],
-        domain: loc.domain,
-        http: true,
-      } as DomainLocale
-
-      return acc
-    }, {} as Record<string, DomainLocale>),
-  )
+  const { hostname, port } = new URL(graphcommerceConfig.magentoEndpoint)
 
   return {
     ...nextConfig,
     i18n: {
       defaultLocale: i18n.find((locale) => locale.defaultLocale)?.locale ?? i18n[0].locale,
       locales: i18n.map((locale) => locale.locale),
-      domains,
+      domains: [...domains(graphcommerceConfig), ...(nextConfig.i18n?.domains ?? [])],
+    },
+    images: {
+      remotePatterns: [
+        { hostname, port },
+        { hostname: 'media.graphassets.com', protocol: 'https' },
+        ...(nextConfig.images?.remotePatterns ?? []),
+      ],
     },
     transpilePackages: [
       ...[...resolveDependenciesSync().keys()].slice(1),
