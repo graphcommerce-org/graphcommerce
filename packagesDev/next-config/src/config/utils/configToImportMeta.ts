@@ -1,12 +1,11 @@
 function flattenKeys(value: unknown, initialPathPrefix: string): Record<string, unknown> {
   // Is a scalar:
-  if (
-    value === null ||
-    value === undefined ||
-    typeof value === 'string' ||
-    typeof value === 'number'
-  ) {
+  if (value === null || value === undefined || typeof value === 'number') {
     return { [initialPathPrefix]: value }
+  }
+
+  if (typeof value === 'string') {
+    return { [initialPathPrefix]: JSON.stringify(value) }
   }
 
   if (!value || typeof value !== 'object' || Array.isArray(value)) {

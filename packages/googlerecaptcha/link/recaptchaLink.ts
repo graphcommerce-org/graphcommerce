@@ -1,4 +1,4 @@
-import { ClientContext, GraphQLRequest, setContext } from '@graphcommerce/graphql'
+import { GraphQLRequest, setContext } from '@graphcommerce/graphql'
 
 const isMutation = (operation: GraphQLRequest) =>
   operation.query.definitions.some(
@@ -7,8 +7,8 @@ const isMutation = (operation: GraphQLRequest) =>
   )
 
 /** Apollo link that adds the Google reCAPTCHA token to the request context. */
-export const recaptchaLink = setContext(async (operation, context: ClientContext) => {
-  const recaptchaKey = process.env.NEXT_PUBLIC_GOOGLE_RECAPTCHA_V3_SITE_KEY
+export const recaptchaLink = setContext(async (operation, context) => {
+  const recaptchaKey = import.meta.graphCommerce.googleRecaptchaKey
   if (!recaptchaKey || !globalThis.grecaptcha || !isMutation(operation)) return context
 
   await new Promise<void>((resolve) => {

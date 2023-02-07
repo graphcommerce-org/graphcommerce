@@ -1,9 +1,9 @@
-import { ClientContext, NormalizedCacheObject } from '@graphcommerce/graphql'
+import { NormalizedCacheObject } from '@graphcommerce/graphql'
 import { ApolloLink, ApolloCache, setContext } from '@graphcommerce/graphql/apollo'
 import { CustomerTokenDocument } from '../hooks'
 import { onAuthorizationError } from './onAuthenticationError'
 
-export const addTokenHeader = setContext((_, context: ClientContext) => {
+export const addTokenHeader = setContext((_, context) => {
   if (!context.headers) context.headers = {}
   try {
     const query = context.cache.readQuery({ query: CustomerTokenDocument })

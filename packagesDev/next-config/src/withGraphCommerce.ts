@@ -45,7 +45,7 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
     i18n: {
       defaultLocale: i18n.find((locale) => locale.defaultLocale)?.locale ?? i18n[0].locale,
       locales: i18n.map((locale) => locale.locale),
-      // domains,
+      domains,
     },
     transpilePackages: [
       ...[...resolveDependenciesSync().keys()].slice(1),

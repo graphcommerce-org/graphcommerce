@@ -38,6 +38,9 @@ export type GraphCommerceConfig = {
   /**
    * Due to a limitation in the GraphQL API of Magento 2, we need to know if the
    * customer requires email confirmation.
+   *
+   * This value should match Magento 2's configuration value for
+   * `customer/create_account/confirm` and should be removed once we can query
    * @deprecated Should be replaced with a Magento configuration instead.
    */
   customerRequireEmailConfirmation?: InputMaybe<Scalars['Boolean']>;
