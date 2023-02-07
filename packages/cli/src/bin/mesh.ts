@@ -46,8 +46,6 @@ async function cleanup() {
 const main = async () => {
   const conf = (await findConfig({})) as YamlConfig.Config
 
-  const replacers = configToImportMeta(loadConfig(root))
-
   // We're configuring a custom fetch function
   conf.customFetch = '@graphcommerce/graphql-mesh/customFetch'
   conf.serve = { ...conf.serve, endpoint: '/api/graphql' }
@@ -94,9 +92,10 @@ const main = async () => {
     },
   ]
 
+  const replacers = configToImportMeta(loadConfig(root))
   let yamlString = yaml.stringify(conf)
   Object.entries(replacers).forEach(([from, to]) => {
-    yamlString = yamlString.replace(new RegExp(`{${from}}`, 'g'), to)
+    yamlString = yamlString.replace(new RegExp(`"{${from}}"`, 'g'), to)
   })
 
   await fs.writeFile(tmpMeshLocation, yamlString)
