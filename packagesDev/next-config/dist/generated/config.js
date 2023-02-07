@@ -24,9 +24,10 @@ function GraphCommerceConfigSchema() {
         previewSecret: zod_1.z.string().nullish(),
         robotsAllow: zod_1.z.boolean().nullish(),
         singleProductRoute: zod_1.z.boolean(),
+        webpackCircularDependencyPlugin: zod_1.z.boolean().nullish(),
         webpackDuplicatesPlugin: zod_1.z.boolean().nullish(),
         wishlistHideForGuests: zod_1.z.boolean().nullish(),
-        wishlistIgnoreProductWishlistStatus: zod_1.z.boolean().nullish(),
+        wishlistIgnoreProductWishlistStatus: zod_1.z.boolean().nullish()
     });
 }
 exports.GraphCommerceConfigSchema = GraphCommerceConfigSchema;
@@ -42,7 +43,7 @@ function GraphCommerceI18nConfigSchema() {
         hygraphLocales: zod_1.z.array(zod_1.z.string().min(1)).nullish(),
         locale: zod_1.z.string().min(1),
         magentoStoreCode: zod_1.z.string().min(1),
-        robotsAllow: zod_1.z.boolean().nullish(),
+        robotsAllow: zod_1.z.boolean().nullish()
     });
 }
 exports.GraphCommerceI18nConfigSchema = GraphCommerceI18nConfigSchema;

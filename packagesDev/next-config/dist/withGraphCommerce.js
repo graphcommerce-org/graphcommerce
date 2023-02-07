@@ -1,6 +1,10 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.withGraphCommerce = void 0;
+const circular_dependency_plugin_1 = __importDefault(require("circular-dependency-plugin"));
 const plugin_1 = require("inspectpack/plugin");
 const webpack_1 = require("webpack");
 const loadConfig_1 = require("./config/loadConfig");
@@ -42,7 +46,6 @@ function withGraphCommerce(nextConfig, cwd) {
     graphcommerceConfig ??= (0, loadConfig_1.loadConfig)(cwd);
     const importMetaPaths = (0, configToImportMeta_1.configToImportMeta)(graphcommerceConfig);
     const { i18n } = graphcommerceConfig;
-    const { hostname, port } = new URL(graphcommerceConfig.magentoEndpoint);
     return {
         ...nextConfig,
         i18n: {
@@ -51,10 +54,10 @@ function withGraphCommerce(nextConfig, cwd) {
             domains: [...domains(graphcommerceConfig), ...(nextConfig.i18n?.domains ?? [])],
         },
         images: {
-            remotePatterns: [
-                { hostname, port },
-                { hostname: 'media.graphassets.com', protocol: 'https' },
-                ...(nextConfig.images?.remotePatterns ?? []),
+            domains: [
+                new URL(graphcommerceConfig.magentoEndpoint).hostname,
+                'media.graphassets.com',
+                ...(nextConfig.images?.domains ?? []),
             ],
         },
         transpilePackages: [
@@ -71,19 +74,24 @@ function withGraphCommerce(nextConfig, cwd) {
             // To properly properly treeshake @apollo/client we need to define the __DEV__ property
             if (!options.isServer) {
                 config.plugins.push(new webpack_1.DefinePlugin({ __DEV__: options.dev }));
-            }
-            if (!options.isServer && graphcommerceConfig.webpackDuplicatesPlugin) {
-                config.plugins.push(new plugin_1.DuplicatesPlugin({
-                    ignoredPackages: [
-                        // very small
-                        'react-is',
-                        // build issue
-                        'tslib',
-                        // server
-                        'isarray',
-                        'readable-stream',
-                    ],
-                }));
+                if (graphcommerceConfig.webpackCircularDependencyPlugin) {
+                    config.plugins.push(new circular_dependency_plugin_1.default({
+                        exclude: /readable-stream|duplexer2|node_modules\/next/,
+                    }));
+                }
+                if (graphcommerceConfig.webpackDuplicatesPlugin) {
+                    config.plugins.push(new plugin_1.DuplicatesPlugin({
+                        ignoredPackages: [
+                            // very small
+                            'react-is',
+                            // build issue
+                            'tslib',
+                            // server
+                            'isarray',
+                            'readable-stream',
+                        ],
+                    }));
+                }
             }
             // @lingui .po file support
             config.module?.rules?.push({ test: /\.po/, use: '@lingui/loader' });

@@ -17,30 +17,21 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.loadConfig = void 0;
 // eslint-disable-next-line import/no-extraneous-dependencies
 const cosmiconfig_1 = require("cosmiconfig");
-// eslint-disable-next-line import/no-extraneous-dependencies
-const cosmiconfig_typescript_loader_1 = require("cosmiconfig-typescript-loader");
 const config_1 = require("../generated/config");
 const mergeEnvIntoConfig_1 = require("./utils/mergeEnvIntoConfig");
 const rewriteLegacyEnv_1 = require("./utils/rewriteLegacyEnv");
 __exportStar(require("./utils/configToImportMeta"), exports);
+const moduleName = 'graphcommerce';
+const loader = (0, cosmiconfig_1.cosmiconfigSync)(moduleName);
 function loadConfig(cwd) {
-    const moduleName = 'graphcommerce';
     try {
-        const result = (0, cosmiconfig_1.cosmiconfigSync)('config', {
-            loaders: { '.ts': (0, cosmiconfig_typescript_loader_1.TypeScriptLoader)({ transpileOnly: true }) },
-            searchPlaces: [
-                'package.json',
-                `${moduleName}.config.js`,
-                `${moduleName}.config.ts`,
-                `${moduleName}.config.cjs`,
-            ],
-        }).search(cwd);
+        const result = loader.search(cwd);
         if (!result)
-            throw Error("Couldn't find a graphcommerce.config.ts in the project.");
+            throw Error("Couldn't find a graphcommerce.config.(m)js in the project.");
         const schema = (0, config_1.GraphCommerceConfigSchema)();
-        const config = schema.optional().parse(result.config);
+        const config = schema.parse(result.config);
         if (!config)
-            throw Error("Couldn't find a graphcommerce.config.ts in the project.");
+            throw Error("Couldn't find a graphcommerce.config.(m)js in the project.");
         const [mergedConfig, applyResult] = (0, rewriteLegacyEnv_1.rewriteLegacyEnv)((0, config_1.GraphCommerceConfigSchema)(), config, process.env);
         if (applyResult.length > 0)
             console.log((0, mergeEnvIntoConfig_1.formatAppliedEnv)(applyResult));

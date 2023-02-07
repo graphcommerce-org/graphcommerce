@@ -1,8 +1,9 @@
+import CircularDependencyPlugin from 'circular-dependency-plugin'
 import { DuplicatesPlugin } from 'inspectpack/plugin'
 import type { NextConfig } from 'next'
 import { DomainLocale } from 'next/dist/server/config'
 import { RemotePattern } from 'next/dist/shared/lib/image-config'
-import { DefinePlugin, Configuration } from 'webpack'
+import { DefinePlugin, Configuration, WebpackPluginInstance } from 'webpack'
 import { loadConfig } from './config/loadConfig'
 import { configToImportMeta } from './config/utils/configToImportMeta'
 import { GraphCommerceConfig } from './generated/config'
@@ -52,8 +53,6 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
 
   const { i18n } = graphcommerceConfig
 
-  const { hostname, port } = new URL(graphcommerceConfig.magentoEndpoint)
-
   return {
     ...nextConfig,
     i18n: {
@@ -62,10 +61,10 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
       domains: [...domains(graphcommerceConfig), ...(nextConfig.i18n?.domains ?? [])],
     },
     images: {
-      remotePatterns: [
-        { hostname, port },
-        { hostname: 'media.graphassets.com', protocol: 'https' },
-        ...(nextConfig.images?.remotePatterns ?? []),
+      domains: [
+        new URL(graphcommerceConfig.magentoEndpoint).hostname,
+        'media.graphassets.com',
+        ...(nextConfig.images?.domains ?? []),
       ],
     },
     transpilePackages: [
@@ -84,21 +83,28 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
       // To properly properly treeshake @apollo/client we need to define the __DEV__ property
       if (!options.isServer) {
         config.plugins.push(new DefinePlugin({ __DEV__: options.dev }))
-      }
-      if (!options.isServer && graphcommerceConfig.webpackDuplicatesPlugin) {
-        config.plugins.push(
-          new DuplicatesPlugin({
-            ignoredPackages: [
-              // very small
-              'react-is',
-              // build issue
-              'tslib',
-              // server
-              'isarray',
-              'readable-stream',
-            ],
-          }),
-        )
+        if (graphcommerceConfig.webpackCircularDependencyPlugin) {
+          config.plugins.push(
+            new CircularDependencyPlugin({
+              exclude: /readable-stream|duplexer2|node_modules\/next/,
+            }) as WebpackPluginInstance,
+          )
+        }
+        if (graphcommerceConfig.webpackDuplicatesPlugin) {
+          config.plugins.push(
+            new DuplicatesPlugin({
+              ignoredPackages: [
+                // very small
+                'react-is',
+                // build issue
+                'tslib',
+                // server
+                'isarray',
+                'readable-stream',
+              ],
+            }),
+          )
+        }
       }
 
       // @lingui .po file support

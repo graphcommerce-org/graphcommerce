@@ -1,4 +1,9 @@
 extend input GraphCommerceConfig {
+  """
+  On older versions of GraphCommerce products would use a product type specific route.
+
+  This should only be set to false if you use the /product/[url] or /product/configurable/[url] routes.
+  """
   singleProductRoute: Boolean!
   advancedFilters: Boolean!
 }

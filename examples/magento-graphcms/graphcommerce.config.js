@@ -1,12 +1,12 @@
-import { GraphCommerceConfig } from '@graphcommerce/next-config/src/generated/config'
-
 /**
  * GraphCommerce Config
  *
  * - Hover over keys to see the description.
  * - Configuration values can be overwritten by environment variables.
+ *
+ * @type {import('@graphcommerce/next-config/src/generated/config').GraphCommerceConfig}
  */
-const config: GraphCommerceConfig = {
+const config = {
   deployEnvironment: 'development',
   hygraphEndpoint: 'https://api-eu-central-1.hygraph.com/v2/ckhx7xadya6xs01yxdujt8i80/master',
   magentoEndpoint: 'https://backend.reachdigital.dev/graphql',
@@ -28,4 +28,4 @@ const config: GraphCommerceConfig = {
   // googleTagmanagerId: 'GTM-XXXXX',
 }
 
-export default config
+module.exports = config

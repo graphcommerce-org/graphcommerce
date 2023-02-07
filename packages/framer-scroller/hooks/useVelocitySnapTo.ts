@@ -1,4 +1,4 @@
-import { useMatchMedia } from '@graphcommerce/next-ui'
+import { useMatchMedia } from '@graphcommerce/next-ui/hooks/useMatchMedia'
 import { PanInfo } from 'framer-motion'
 import { inertia, InertiaOptions } from 'popmotion'
 import { ScrollerContext } from '../types'

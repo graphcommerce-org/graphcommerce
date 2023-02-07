@@ -1,7 +1,5 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { cosmiconfigSync } from 'cosmiconfig'
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { TypeScriptLoader } from 'cosmiconfig-typescript-loader'
 import type { GraphCommerceConfig } from '../generated/config'
 import { GraphCommerceConfigSchema } from '../generated/config'
 import { formatAppliedEnv } from './utils/mergeEnvIntoConfig'
@@ -9,26 +7,19 @@ import { rewriteLegacyEnv } from './utils/rewriteLegacyEnv'
 
 export * from './utils/configToImportMeta'
 
+const moduleName = 'graphcommerce'
+const loader = cosmiconfigSync(moduleName)
+
 export function loadConfig(cwd: string): GraphCommerceConfig {
-  const moduleName = 'graphcommerce'
-
   try {
-    const result = cosmiconfigSync('config', {
-      loaders: { '.ts': TypeScriptLoader({ transpileOnly: true }) },
-      searchPlaces: [
-        'package.json',
-        `${moduleName}.config.js`,
-        `${moduleName}.config.ts`,
-        `${moduleName}.config.cjs`,
-      ],
-    }).search(cwd)
+    const result = loader.search(cwd)
 
-    if (!result) throw Error("Couldn't find a graphcommerce.config.ts in the project.")
+    if (!result) throw Error("Couldn't find a graphcommerce.config.(m)js in the project.")
 
     const schema = GraphCommerceConfigSchema()
-    const config = schema.optional().parse(result.config)
+    const config = schema.parse(result.config)
 
-    if (!config) throw Error("Couldn't find a graphcommerce.config.ts in the project.")
+    if (!config) throw Error("Couldn't find a graphcommerce.config.(m)js in the project.")
 
     const [mergedConfig, applyResult] = rewriteLegacyEnv(
       GraphCommerceConfigSchema(),

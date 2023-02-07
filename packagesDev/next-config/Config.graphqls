@@ -17,6 +17,7 @@ input GraphCommerceI18nConfig {
   Must be a locale string https://www.unicode.org/reports/tr35/tr35-59/tr35.html#Identifiers
   """
   locale: String!
+
   """
   Allow the site to be indexed by search engines.
   If false, the robots.txt file will be set to disallow all.
@@ -44,6 +45,7 @@ enum DeployEnvironment {
   The staging environment
   """
   preview
+
   """
   The development environment
   """
@@ -55,14 +57,6 @@ input GraphCommerceConfig {
   All i18n configuration for the project
   """
   i18n: [GraphCommerceI18nConfig!]!
-  """
-  When updating packages it can happen that the same package is included with different versions in the same project.
-
-  Issues that this can cause are:
-  - The same package is included multiple times in the bundle, increasing the bundle size.
-  - The Typescript types of the package are not compatible with each other, causing Typescript errors.
-  """
-  webpackDuplicatesPlugin: Boolean
 
   """
   Environment GraphCommerce is deployed to.
@@ -92,4 +86,21 @@ input GraphCommerceConfig {
   To enable next.js' preview mode, configure the secret you'd like to use.
   """
   previewSecret: String
+
+  """
+  When updating packages it can happen that the same package is included with different versions in the same project.
+
+  Issues that this can cause are:
+  - The same package is included multiple times in the bundle, increasing the bundle size.
+  - The Typescript types of the package are not compatible with each other, causing Typescript errors.
+  """
+  webpackDuplicatesPlugin: Boolean
+
+  """
+  Cyclic dependencies can cause memory issues and other strange bugs.
+  This plugin will warn you when it detects a cyclic dependency.
+
+  When running into memory issues, it can be useful to enable this plugin.
+  """
+  webpackCircularDependencyPlugin: Boolean
 }

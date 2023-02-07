@@ -18,13 +18,15 @@ const configFile = {
 it('flattens a config object', () => {
   expect(configToImportMeta(configFile)).toMatchInlineSnapshot(`
     {
-      "import.meta.graphCommerce": "undefined",
+      "import.meta.graphCommerce": "{}",
       "import.meta.graphCommerce.advancedFilters": "false",
       "import.meta.graphCommerce.customerRequireEmailConfirmation": "false",
+      "import.meta.graphCommerce.deeper": "{}",
       "import.meta.graphCommerce.deeper.arrayvalue": "["test"]",
-      "import.meta.graphCommerce.deeper.nested.value": "test",
+      "import.meta.graphCommerce.deeper.nested": "{}",
+      "import.meta.graphCommerce.deeper.nested.value": ""test"",
       "import.meta.graphCommerce.demoMode": "true",
-      "import.meta.graphCommerce.googleTagmanagerKey": "GTM-XXXXXXX",
+      "import.meta.graphCommerce.googleTagmanagerKey": ""GTM-XXXXXXX"",
       "import.meta.graphCommerce.i18n": "[{"locale":"en","hygraphLocales":["en"],"magentoStoreCode":"en_us"}]",
       "import.meta.graphCommerce.singleProductRoute": "true",
     }
