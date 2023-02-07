@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generateConfig = void 0;
 const fs_1 = require("fs");
+// eslint-disable-next-line import/no-extraneous-dependencies
 const cli_1 = require("@graphql-codegen/cli");
 const core_1 = require("@swc/core");
 const resolveDependenciesSync_1 = require("../utils/resolveDependenciesSync");

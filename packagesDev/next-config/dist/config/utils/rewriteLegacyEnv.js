@@ -67,7 +67,7 @@ function rewriteLegacyEnv(schema, config, env) {
                 });
                 return;
             }
-            renamedTo('GC_GOOGLE_ANALYTICS_ID');
+            return renamedTo('GC_GOOGLE_ANALYTICS_ID');
         },
         NEXT_PUBLIC_GOOGLE_RECAPTCHA_V3_SITE_KEY: renamedTo('GC_GOOGLE_RECAPTCHA_KEY'),
         NEXT_PUBLIC_DISPLAY_INCL_TAX: (envVar, envValue) => {

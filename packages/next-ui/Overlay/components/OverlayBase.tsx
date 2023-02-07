@@ -2,7 +2,7 @@ import { Scroller, useScrollerContext, useScrollTo } from '@graphcommerce/framer
 import { dvh, dvw, useIsomorphicLayoutEffect } from '@graphcommerce/framer-utils'
 import { Box, styled, SxProps, Theme, useTheme, useThemeProps } from '@mui/material'
 import { m, MotionProps, useDomEvent, useMotionValue, useTransform } from 'framer-motion'
-import React, { useCallback, useContext, useEffect, useMemo, useRef } from 'react'
+import React, { useCallback, useEffect, useRef } from 'react'
 import { LayoutProvider } from '../../Layout/components/LayoutProvider'
 import { ExtendableComponent, extendableComponent } from '../../Styles'
 import { useOverlayPosition } from '../hooks/useOverlayPosition'

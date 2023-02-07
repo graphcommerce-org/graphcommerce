@@ -11,17 +11,8 @@ sources:
       - filterSchema:
           mode: 'bare'
           filters:
-            # - '*.!{documentInStages*,createdAt*,updatedAt*,publishedAt*,history,scheduledIn*,AND,OR,NOT}'
-            - '*.!{localizations,scheduledIn,documentInStages,createdAt,updatedAt,publishedAt,createdBy,updatedBy,publishedBy,history}'
             - 'Query.*.!{locales}'
-            # - 'Query.!{node,*Multiple*,*Version,asset*,scheduled*,user*}'
-            # - 'Query.!{row*,pageLink*,footers*,banner*}'
-            # - 'Asset.{id,alt,url,width,height,mimeType,size}'
-            # - 'Asset.url.!transformation'
             - 'Mutation.!*'
-            # - '*.!row*'
-            # - '*.*.!{after,before,last,forceParentLocale,locales}'
-            # - '*.!{_search,id,id_*,identity,identity_*,uspsMultiple_*,pages,pages_*,author*,date*,metaDescription*,metaTitle*}'
       - prune:
           skipPruning: []
   - name: m2

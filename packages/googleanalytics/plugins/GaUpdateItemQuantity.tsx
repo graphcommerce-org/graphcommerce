@@ -1,4 +1,4 @@
-import { UpdateItemQuantityProps } from '@graphcommerce/magento-cart-items'
+import type { UpdateItemQuantityProps } from '@graphcommerce/magento-cart-items'
 import { PluginProps } from '@graphcommerce/next-config'
 
 export const component = 'UpdateItemQuantity'

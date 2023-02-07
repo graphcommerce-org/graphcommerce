@@ -1,4 +1,5 @@
 import { writeFileSync } from 'fs'
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { generate } from '@graphql-codegen/cli'
 import { transformFileSync } from '@swc/core'
 import { resolveDependenciesSync } from '../utils/resolveDependenciesSync'

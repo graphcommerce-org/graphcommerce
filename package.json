@@ -16,8 +16,8 @@
     "node": "16.x.x||18.x.x"
   },
   "scripts": {
-    "eslint:lint": "eslint --ignore-path .gitignore '**/{*.js,*.ts,*.tsx}'",
-    "eslint:fix": "eslint --fix --ignore-path .gitignore '**/{*.js,*.ts,*.tsx}'",
+    "eslint:lint": "eslint --ignore-path .gitignore '**/{*.ts,*.tsx}'",
+    "eslint:fix": "eslint --fix --ignore-path .gitignore '**/{*.ts,*.tsx}'",
     "prettier:fix": "prettier --ignore-path .gitignore --write '**/*.{ts,tsx,css,html,json}'",
     "tsc:lint": "tsc --noEmit -p .",
     "playwright": "npx playwright test --headed --project=chrome",

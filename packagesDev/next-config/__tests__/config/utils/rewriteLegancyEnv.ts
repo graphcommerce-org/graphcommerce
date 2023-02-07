@@ -44,11 +44,7 @@ it('rewrites legacy env', () => {
     SOME_KEY: 'bla',
   }
 
-  const [envVariables, appliedRewrite] = rewriteLegacyEnv(
-    GraphCommerceConfigSchema(),
-    configFile,
-    legacyEnv,
-  )
+  const [, appliedRewrite] = rewriteLegacyEnv(GraphCommerceConfigSchema(), configFile, legacyEnv)
 
   expect(removeColor(formatAppliedEnv(appliedRewrite))).toMatchInlineSnapshot(`
     "warning   - Loaded GraphCommerce env variables

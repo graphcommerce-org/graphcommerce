@@ -1,4 +1,5 @@
 import { parseFileSync } from '@swc/core'
+// eslint-disable-next-line import/no-extraneous-dependencies
 import glob from 'glob'
 import { resolveDependenciesSync } from '../utils/resolveDependenciesSync'
 import type { PluginConfig } from './generateInterceptors'

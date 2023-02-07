@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { equal } from '@wry/equality'
 import { DependencyList, useMemo, useRef } from 'react'
 

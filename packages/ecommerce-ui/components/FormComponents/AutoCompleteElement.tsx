@@ -1,10 +1,4 @@
-import {
-  Control,
-  Controller,
-  ControllerProps,
-  Path,
-  FieldValues,
-} from '@graphcommerce/react-hook-form'
+import { Controller, ControllerProps, FieldValues } from '@graphcommerce/react-hook-form'
 import {
   Autocomplete,
   AutocompleteProps,

@@ -4,7 +4,6 @@ import { IconSvg } from '../IconSvg'
 import { responsiveVal } from '../Styles'
 import { iconChevronDown, iconChevronUp } from '../icons'
 import { OverlayOrPopperPanel, OverlayOrPopperPanelProps } from './OverlayOrPopperPanel'
-import { PanelProps } from './types'
 
 function isMulti(
   selectedLabel: React.ReactNode | React.ReactNode[],

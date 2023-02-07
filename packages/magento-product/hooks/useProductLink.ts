@@ -1,4 +1,5 @@
 import { ProductLinkFragment } from './ProductLink.gql'
+
 export type ProductLinkProps = Omit<ProductLinkFragment, 'uid'>
 
 export function productLink(link: ProductLinkProps) {

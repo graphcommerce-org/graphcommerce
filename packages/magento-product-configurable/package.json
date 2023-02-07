@@ -17,6 +17,7 @@
     "@graphcommerce/typescript-config-pwa": "5.2.0-canary.18"
   },
   "dependencies": {
+    "@graphcommerce/ecommerce-ui": "5.2.0-canary.18",
     "@graphcommerce/graphql": "5.2.0-canary.18",
     "@graphcommerce/graphql-mesh": "5.2.0-canary.18",
     "@graphcommerce/image": "5.2.0-canary.18",

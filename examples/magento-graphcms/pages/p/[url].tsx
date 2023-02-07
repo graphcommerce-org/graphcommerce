@@ -33,7 +33,6 @@ import {
   LayoutHeader,
   LayoutTitle,
   isTypename,
-  NextLink,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box, Divider, Link, Typography } from '@mui/material'

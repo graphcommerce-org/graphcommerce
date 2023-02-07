@@ -1,9 +1,12 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { cosmiconfigSync } from 'cosmiconfig'
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { TypeScriptLoader } from 'cosmiconfig-typescript-loader'
 import type { GraphCommerceConfig } from '../generated/config'
 import { GraphCommerceConfigSchema } from '../generated/config'
-import { mergeEnvIntoConfig, formatAppliedEnv } from './utils/mergeEnvIntoConfig'
+import { formatAppliedEnv } from './utils/mergeEnvIntoConfig'
 import { rewriteLegacyEnv } from './utils/rewriteLegacyEnv'
+
 export * from './utils/configToImportMeta'
 
 export function loadConfig(cwd: string): GraphCommerceConfig {

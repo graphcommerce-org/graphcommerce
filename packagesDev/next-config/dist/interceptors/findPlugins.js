@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.findPlugins = void 0;
 const core_1 = require("@swc/core");
+// eslint-disable-next-line import/no-extraneous-dependencies
 const glob_1 = __importDefault(require("glob"));
 const resolveDependenciesSync_1 = require("../utils/resolveDependenciesSync");
 function parseStructure(file) {

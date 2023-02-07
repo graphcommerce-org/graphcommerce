@@ -15,7 +15,9 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.loadConfig = void 0;
+// eslint-disable-next-line import/no-extraneous-dependencies
 const cosmiconfig_1 = require("cosmiconfig");
+// eslint-disable-next-line import/no-extraneous-dependencies
 const cosmiconfig_typescript_loader_1 = require("cosmiconfig-typescript-loader");
 const config_1 = require("../generated/config");
 const mergeEnvIntoConfig_1 = require("./utils/mergeEnvIntoConfig");
