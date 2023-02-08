@@ -1,4 +1,5 @@
-import { Box, styled } from '@mui/material'
+import { Box } from '@mui/material'
+import { styled } from '@mui/material/styles'
 import { extractBorderProps, extractMarginProps, extractPaddingProps } from '../../utils'
 import { VideoContentType } from './types'
 
@@ -17,7 +18,8 @@ const vimeoRegExp = new RegExp(
 /**
  * Page Builder Video component.
  *
- * This component is part of the Page Builder / PWA integration. It can be consumed without Page Builder.
+ * This component is part of the Page Builder / PWA integration. It can be consumed without Page
+ * Builder.
  */
 export const Video: VideoContentType['component'] = (props) => {
   const [margin, additional] = extractMarginProps(props)

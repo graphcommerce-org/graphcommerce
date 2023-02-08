@@ -8,7 +8,7 @@
  */
 const config = {
   deployEnvironment: 'development',
-  hygraphEndpoint: 'https://api-eu-central-1.hygraph.com/v2/ckhx7xadya6xs01yxdujt8i80/master',
+  hygraphEndpoint: 'https://eu-central-1.cdn.hygraph.com/content/ckhx7xadya6xs01yxdujt8i80/master',
   magentoEndpoint: 'https://backend.reachdigital.dev/graphql',
   i18n: [
     { locale: 'en-us', magentoStoreCode: 'en_US', defaultLocale: true },
@@ -21,6 +21,7 @@ const config = {
   advancedFilters: false,
   singleProductRoute: true,
   canonicalBaseUrl: 'https://graphcommerce.vercel.app/',
+
   // customerRequireEmailConfirmation: false,
   // previewSecret: 'dya6xs01y',
   // googleAnalyticsId: 'G-XXXXX',

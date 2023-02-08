@@ -64,7 +64,7 @@ function MinimalLayoutSubheader(props: Props) {
         </LayoutTitle>
 
         <StickyBelowHeader>
-          {process.env.BUILD_FLAG_ADVANCED_FILTERS ? (
+          {import.meta.graphCommerce.advancedFilters ? (
             <ProductFiltersPro params={params}>
               <ProductListFiltersContainer>
                 <ProductFiltersProFilterChips {...filters} filterTypes={filterTypes} />

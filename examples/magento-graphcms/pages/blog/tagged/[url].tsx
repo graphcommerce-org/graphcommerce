@@ -59,7 +59,8 @@ BlogPage.pageOptions = {
 export default BlogPage
 
 export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
-  if (process.env.VERCEL_ENV !== 'production') return { paths: [], fallback: 'blocking' }
+  if (import.meta.graphCommerce.deployEnvironment !== 'production')
+    return { paths: [], fallback: 'blocking' }
 
   const responses = locales.map(async (locale) => {
     const staticClient = graphqlSsrClient(locale)
@@ -74,7 +75,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   })
   const paths = (await Promise.all(responses)).flat(1)
   return {
-    paths: process.env.VERCEL_ENV !== 'production' ? paths.slice(0, 1) : paths,
+    paths: import.meta.graphCommerce.deployEnvironment !== 'production' ? paths.slice(0, 1) : paths,
     fallback: 'blocking',
   }
 }

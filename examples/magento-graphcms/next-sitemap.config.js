@@ -5,6 +5,7 @@ const { loadConfig } = require('@graphcommerce/next-config')
 require('dotenv').config()
 
 const config = loadConfig(process.cwd())
+const allowRobots = config.robotsAllow && config.deployEnvironment === 'production'
 
 /** @link https://github.com/iamvishnusankar/next-sitemap */
 /** @type {import('next-sitemap').IConfig} */
@@ -33,7 +34,7 @@ module.exports = {
   ],
   robotsTxtOptions: {
     policies: [
-      ...(!config.robotsAllow && [
+      ...(allowRobots && [
         { userAgent: '*', disallow: '/' },
         { userAgent: 'Googlebot-Image', disallow: '/' },
       ]),
