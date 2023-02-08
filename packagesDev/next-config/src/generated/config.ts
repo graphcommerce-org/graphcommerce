@@ -70,6 +70,11 @@ export type GraphCommerceConfig = {
   /** Google reCAPTCHA key */
   googleRecaptchaKey?: InputMaybe<Scalars['String']>;
   googleTagmanagerId?: InputMaybe<Scalars['String']>;
+  /**
+   * The HyGraph endpoint.
+   *
+   * Project settings -> API Access -> High Performance Read-only Content API
+   */
   hygraphEndpoint: Scalars['String'];
   /** All i18n configuration for the project */
   i18n: Array<GraphCommerceI18nConfig>;

@@ -12,7 +12,12 @@ const config = {
   magentoEndpoint: 'https://backend.reachdigital.dev/graphql',
   i18n: [
     { locale: 'en-us', magentoStoreCode: 'en_US', defaultLocale: true },
-    { locale: 'nl-nl', magentoStoreCode: 'nl_NL', cartDisplayPricesInclTax: true },
+    {
+      locale: 'nl-nl',
+      magentoStoreCode: 'nl_NL',
+      cartDisplayPricesInclTax: true,
+      hygraphLocales: ['nl', 'en_us'],
+    },
     { locale: 'fr-be', magentoStoreCode: 'fr_BE', cartDisplayPricesInclTax: true },
     { locale: 'nl-be', magentoStoreCode: 'nl_BE', cartDisplayPricesInclTax: true },
     { locale: 'en-gb', magentoStoreCode: 'en_GB', cartDisplayPricesInclTax: true },

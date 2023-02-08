@@ -3,5 +3,10 @@ extend input GraphCommerceI18nConfig {
 }
 
 extend input GraphCommerceConfig {
+  """
+  The HyGraph endpoint.
+
+  Project settings -> API Access -> High Performance Read-only Content API
+  """
   hygraphEndpoint: String!
 }
