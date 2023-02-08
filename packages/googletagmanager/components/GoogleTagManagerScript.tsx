@@ -1,9 +1,10 @@
 import { useRouter } from 'next/router'
 import Script from 'next/script'
 import { useEffect } from 'react'
+import { useGoogleTagmanagerId } from '../hooks/useGoogleTagmanagerId'
 
 export function GoogleTagManagerScript() {
-  const id = process.env.NEXT_PUBLIC_GTM_ID
+  const id = useGoogleTagmanagerId()
 
   const router = useRouter()
 

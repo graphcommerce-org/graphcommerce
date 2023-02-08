@@ -30,8 +30,12 @@ const config = {
   // customerRequireEmailConfirmation: false,
   // previewSecret: 'dya6xs01y',
   // googleAnalyticsId: 'G-XXXXX',
-  // googleRecaptchaKey: '6LcXXXXX',
+  googleRecaptchaKey: '6LcXXXXX',
   // googleTagmanagerId: 'GTM-XXXXX',
+
+  debug: {
+    pluginStatus: false,
+  },
 }
 
 module.exports = config

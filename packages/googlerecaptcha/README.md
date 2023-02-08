@@ -7,9 +7,30 @@ page so it isn't initialized on all pages.
 
 ### Installation
 
-1. Add `NEXT_PUBLIC_GOOGLE_RECAPTCHA_V3_SITE_KEY` to your .env file.
-   [example](../../examples/magento-graphcms/.env.example)
-2. Add `X-Recaptcha` header to your `.meshrc.yml`.
+1. Configure the googleTagmanagerId in the graphcommerce.config.js file.
+
+   ```js
+   const config = {
+     googleTagmanagerId: 'GTM-XXXXXXX',
+   }
+   ```
+
+   Or by locale:
+
+   ```js
+   const config = {
+     googleTagmanagerId: 'ENABLED',
+     // Or by locale
+     i18n: [
+       {
+         locale: 'en',
+         googleTagmanagerId: 'GTM-XXXXXXX',
+       },
+     ],
+   }
+   ```
+
+2. Add `X-Recaptcha` header to your `.meshrc.yml` if it isn't there.
    [example](../../examples/magento-graphcms/.meshrc.yml)
 
 ### Usage

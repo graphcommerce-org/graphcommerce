@@ -1,10 +1,10 @@
 import type { ProductListItemProps } from '@graphcommerce/magento-product'
-import type { PluginProps } from '@graphcommerce/next-config'
+import type { IfConfig, PluginProps } from '@graphcommerce/next-config'
 import { Typography } from '@mui/material'
 
 export const component = 'ProductListItem'
 export const exported = '@graphcommerce/magento-product'
-export const ifEnv = 'DEMO_MAGENTO_GRAPHCOMMERCE'
+export const ifConfig: IfConfig = 'demoMode'
 
 function DemoProductListItem(props: PluginProps<ProductListItemProps>) {
   const { Prev, ...rest } = props

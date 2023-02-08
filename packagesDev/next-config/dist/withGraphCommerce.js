@@ -74,12 +74,12 @@ function withGraphCommerce(nextConfig, cwd) {
             // To properly properly treeshake @apollo/client we need to define the __DEV__ property
             if (!options.isServer) {
                 config.plugins.push(new webpack_1.DefinePlugin({ __DEV__: options.dev }));
-                if (graphcommerceConfig.webpackCircularDependencyPlugin) {
+                if (graphcommerceConfig.debug?.webpackCircularDependencyPlugin) {
                     config.plugins.push(new circular_dependency_plugin_1.default({
                         exclude: /readable-stream|duplexer2|node_modules\/next/,
                     }));
                 }
-                if (graphcommerceConfig.webpackDuplicatesPlugin) {
+                if (graphcommerceConfig.debug?.webpackDuplicatesPlugin) {
                     config.plugins.push(new plugin_1.DuplicatesPlugin({
                         ignoredPackages: [
                             // very small
@@ -115,7 +115,7 @@ function withGraphCommerce(nextConfig, cwd) {
                 '@mui/styled-engine': '@mui/styled-engine/modern',
                 '@mui/system': '@mui/system/modern',
             };
-            config.plugins.push(new InterceptorPlugin_1.InterceptorPlugin());
+            config.plugins.push(new InterceptorPlugin_1.InterceptorPlugin(graphcommerceConfig));
             return typeof nextConfig.webpack === 'function' ? nextConfig.webpack(config, options) : config;
         },
     };

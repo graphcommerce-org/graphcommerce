@@ -44,6 +44,7 @@ export type GraphCommerceConfig = {
    * @deprecated Should be replaced with a Magento configuration instead.
    */
   customerRequireEmailConfirmation?: InputMaybe<Scalars['Boolean']>;
+  debug?: InputMaybe<GraphCommerceDebugConfig>;
   /**
    * Enables some demo specific code that is probably not useful for a project:
    *
@@ -98,6 +99,15 @@ export type GraphCommerceConfig = {
    * This should only be set to false if you use the /product/[url] or /product/configurable/[url] routes.
    */
   singleProductRoute: Scalars['Boolean'];
+  /** Hide the wishlist functionality for guests. */
+  wishlistHideForGuests?: InputMaybe<Scalars['Boolean']>;
+  /** Ignores wether a product is already in the wishlist, makes the toggle an add only. */
+  wishlistIgnoreProductWishlistStatus?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type GraphCommerceDebugConfig = {
+  /** Reports which plugins are enabled or disabled. */
+  pluginStatus?: InputMaybe<Scalars['Boolean']>;
   /**
    * Cyclic dependencies can cause memory issues and other strange bugs.
    * This plugin will warn you when it detects a cyclic dependency.
@@ -113,10 +123,6 @@ export type GraphCommerceConfig = {
    * - The Typescript types of the package are not compatible with each other, causing Typescript errors.
    */
   webpackDuplicatesPlugin?: InputMaybe<Scalars['Boolean']>;
-  /** Hide the wishlist functionality for guests. */
-  wishlistHideForGuests?: InputMaybe<Scalars['Boolean']>;
-  /** Ignores wether a product is already in the wishlist, makes the toggle an add only. */
-  wishlistIgnoreProductWishlistStatus?: InputMaybe<Scalars['Boolean']>;
 };
 
 export type GraphCommerceI18nConfig = {
@@ -187,6 +193,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     canonicalBaseUrl: z.string().min(1),
     cartDisplayPricesInclTax: z.boolean().nullish(),
     customerRequireEmailConfirmation: z.boolean().nullish(),
+    debug: GraphCommerceDebugConfigSchema().nullish(),
     demoMode: z.boolean().nullish(),
     deployEnvironment: DeployEnvironmentSchema.nullish(),
     googleAnalyticsId: z.string().nullish(),
@@ -198,10 +205,16 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     previewSecret: z.string().nullish(),
     robotsAllow: z.boolean().nullish(),
     singleProductRoute: z.boolean(),
-    webpackCircularDependencyPlugin: z.boolean().nullish(),
-    webpackDuplicatesPlugin: z.boolean().nullish(),
     wishlistHideForGuests: z.boolean().nullish(),
     wishlistIgnoreProductWishlistStatus: z.boolean().nullish()
+  })
+}
+
+export function GraphCommerceDebugConfigSchema(): z.ZodObject<Properties<GraphCommerceDebugConfig>> {
+  return z.object<Properties<GraphCommerceDebugConfig>>({
+    pluginStatus: z.boolean().nullish(),
+    webpackCircularDependencyPlugin: z.boolean().nullish(),
+    webpackDuplicatesPlugin: z.boolean().nullish()
   })
 }
 

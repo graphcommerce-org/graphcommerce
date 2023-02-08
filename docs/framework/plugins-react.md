@@ -171,11 +171,11 @@ work for other things such as:
 
 ### Conditionally include a plugin
 
-Provide an ifEnv export in the plugin that will only include the plugin if the
-environment variable is set.
+Provide an ifConfig export in the plugin that will only include the plugin if a
+configuration value is truety.
 
 ```tsx
-export const ifEnv = 'MY_ENV_VARIABLE'
+export const ifConfig = 'googleAnalytics'
 ```
 
 ### When to use a plugin?

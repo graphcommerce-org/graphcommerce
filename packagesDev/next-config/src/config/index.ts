@@ -1,3 +1,4 @@
+import type { Path } from 'react-hook-form'
 import { GraphCommerceConfig } from '../generated/config'
 
 export * from './generateConfig'
@@ -8,3 +9,5 @@ declare global {
     graphCommerce: GraphCommerceConfig
   }
 }
+
+export type IfConfig = Path<GraphCommerceConfig>

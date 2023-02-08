@@ -52,6 +52,30 @@ enum DeployEnvironment {
   development
 }
 
+input GraphCommerceDebugConfig {
+  """
+  When updating packages it can happen that the same package is included with different versions in the same project.
+
+  Issues that this can cause are:
+  - The same package is included multiple times in the bundle, increasing the bundle size.
+  - The Typescript types of the package are not compatible with each other, causing Typescript errors.
+  """
+  webpackDuplicatesPlugin: Boolean
+
+  """
+  Cyclic dependencies can cause memory issues and other strange bugs.
+  This plugin will warn you when it detects a cyclic dependency.
+
+  When running into memory issues, it can be useful to enable this plugin.
+  """
+  webpackCircularDependencyPlugin: Boolean
+
+  """
+  Reports which plugins are enabled or disabled.
+  """
+  pluginStatus: Boolean
+}
+
 input GraphCommerceConfig {
   """
   All i18n configuration for the project
@@ -87,20 +111,5 @@ input GraphCommerceConfig {
   """
   previewSecret: String
 
-  """
-  When updating packages it can happen that the same package is included with different versions in the same project.
-
-  Issues that this can cause are:
-  - The same package is included multiple times in the bundle, increasing the bundle size.
-  - The Typescript types of the package are not compatible with each other, causing Typescript errors.
-  """
-  webpackDuplicatesPlugin: Boolean
-
-  """
-  Cyclic dependencies can cause memory issues and other strange bugs.
-  This plugin will warn you when it detects a cyclic dependency.
-
-  When running into memory issues, it can be useful to enable this plugin.
-  """
-  webpackCircularDependencyPlugin: Boolean
+  debug: GraphCommerceDebugConfig
 }

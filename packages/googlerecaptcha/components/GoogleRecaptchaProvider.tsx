@@ -1,9 +1,15 @@
+import { useI18nConfig } from '@graphcommerce/next-ui';
+import { useRouter } from 'next/router';
 import React, { useMemo, useState } from 'react'
 import { RecaptchaContext, recaptchaContext } from '../context/recaptchaContext'
 import { GoogleRecaptchaV3Script } from './GoogleRecaptchaV3Script'
 
-export function GoogleRecaptchaProvider(props: { children: React.ReactNode; siteKey?: string }) {
-  const { children, siteKey = process.env.NEXT_PUBLIC_GOOGLE_RECAPTCHA_V3_SITE_KEY } = props
+export function GoogleRecaptchaProvider(props: { children: React.ReactNode; }) {
+  const { children,  } = props
+  const locale = useRouter().locale;
+
+  const googleRecaptchaKey = useI18nConfig().googleRecaptchaKey || import.meta.graphCommerce.googleRecaptchaKey;
+
   const [enabled, setEnabled] = useState(false)
 
   const context: RecaptchaContext = useMemo(

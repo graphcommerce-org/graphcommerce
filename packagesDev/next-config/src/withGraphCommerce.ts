@@ -83,14 +83,14 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
       // To properly properly treeshake @apollo/client we need to define the __DEV__ property
       if (!options.isServer) {
         config.plugins.push(new DefinePlugin({ __DEV__: options.dev }))
-        if (graphcommerceConfig.webpackCircularDependencyPlugin) {
+        if (graphcommerceConfig.debug?.webpackCircularDependencyPlugin) {
           config.plugins.push(
             new CircularDependencyPlugin({
               exclude: /readable-stream|duplexer2|node_modules\/next/,
             }) as WebpackPluginInstance,
           )
         }
-        if (graphcommerceConfig.webpackDuplicatesPlugin) {
+        if (graphcommerceConfig.debug?.webpackDuplicatesPlugin) {
           config.plugins.push(
             new DuplicatesPlugin({
               ignoredPackages: [
@@ -132,7 +132,7 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
         '@mui/system': '@mui/system/modern',
       }
 
-      config.plugins.push(new InterceptorPlugin())
+      config.plugins.push(new InterceptorPlugin(graphcommerceConfig))
 
       return typeof nextConfig.webpack === 'function' ? nextConfig.webpack(config, options) : config
     },
