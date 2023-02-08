@@ -13,7 +13,7 @@ export function RowHeroBanner(props: RowHeroBannerFragment) {
           {title}
         </Button>
       ))}
-      videoSrc={heroAsset.url}
+      videoSrc={heroAsset?.url ?? ''}
     >
       <RichText
         {...copy}
