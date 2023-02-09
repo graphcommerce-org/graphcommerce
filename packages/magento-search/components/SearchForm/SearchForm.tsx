@@ -1,4 +1,4 @@
-import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
+import { TextFieldElement, TextFieldElementProps } from '@graphcommerce/ecommerce-ui'
 import {
   FormRow,
   iconClose,
@@ -9,7 +9,7 @@ import {
 import { useForm, useFormAutoSubmit } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Box, IconButton, SxProps, TextFieldProps, Theme } from '@mui/material'
+import { Box, IconButton, SxProps, Theme } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useEffect, useRef } from 'react'
 
@@ -18,7 +18,7 @@ export type SearchFormProps = {
   search?: string
   urlHandle?: string
   autoFocus?: boolean
-  textFieldProps?: TextFieldProps
+  textFieldProps?: Omit<TextFieldElementProps, 'control' | 'name'>
   sx?: SxProps<Theme>
 }
 
