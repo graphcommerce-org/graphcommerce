@@ -24,7 +24,7 @@ const config = {
     { locale: 'en-gb', magentoStoreCode: 'en_GB', cartDisplayPricesInclTax: true },
     { locale: 'en-ca', magentoStoreCode: 'en_CA' },
   ],
-  productFiltersPro: false,
+  productFiltersPro: true,
   singleProductRoute: true,
   canonicalBaseUrl: 'https://graphcommerce.vercel.app/',
   // customerRequireEmailConfirmation: false,
