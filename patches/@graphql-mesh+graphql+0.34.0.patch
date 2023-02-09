@@ -28,9 +28,15 @@ index 7f49012..b939986 100644
          }
          return this.nonExecutableSchema.getWithSet(() => {
 diff --git a/node_modules/@graphql-mesh/graphql/esm/index.js b/node_modules/@graphql-mesh/graphql/esm/index.js
-index bcb0758..2d3fb2a 100644
+index bcb0758..15f5a1b 100644
 --- a/node_modules/@graphql-mesh/graphql/esm/index.js
 +++ b/node_modules/@graphql-mesh/graphql/esm/index.js
+@@ -1,4 +1,4 @@
+-import { buildASTSchema, buildClientSchema, buildSchema, GraphQLSchema, Kind, print, } from 'graphql';
++import { buildASTSchema, buildClientSchema, buildSchema, GraphQLSchema, Kind, print, stripIgnoredCharacters, getIntrospectionQuery } from 'graphql';
+ import lodashGet from 'lodash.get';
+ import { process, util } from '@graphql-mesh/cross-helpers';
+ import { PredefinedProxyOptions } from '@graphql-mesh/store';
 @@ -70,6 +70,14 @@ export default class GraphQLHandler {
              this.interpolationStringSet.add(headerName.toString());
          });
