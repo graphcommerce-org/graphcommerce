@@ -15,7 +15,7 @@
     "start": "next start",
     "tsc:lint": "tsc --noEmit -p .",
     "lingui": "cross-env NODE_ENV=development lingui extract --clean",
-    "postinstall": "patch-package",
+    "postinstall": "is-monorepo '[pkgrun] postinstall' '[pkgrun] patch-package'",
     "create-patch": "patch-package --exclude 'package.json$|gql.ts$|interceptor.tsx$'"
   },
   "dependencies": {
