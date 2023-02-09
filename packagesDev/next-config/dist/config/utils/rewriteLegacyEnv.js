@@ -91,6 +91,9 @@ function rewriteLegacyEnv(schema, config, env) {
         PREVIEW_SECRET: renamedTo('GC_PREVIEW_SECRET'),
         DEMO_MAGENTO_GRAPHCOMMERCE: renamedTo('GC_DEMO_MODE'),
     };
+    if (env.SKIP_MIGRATION === '1' || env.SKIP_MIGRATION === 'true') {
+        return (0, mergeEnvIntoConfig_1.mergeEnvIntoConfig)(schema, config, clonedEnv);
+    }
     Object.entries(env).forEach(([key, value]) => {
         if (value === undefined)
             return;

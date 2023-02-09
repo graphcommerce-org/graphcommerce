@@ -103,6 +103,10 @@ export function rewriteLegacyEnv(
     DEMO_MAGENTO_GRAPHCOMMERCE: renamedTo('GC_DEMO_MODE'),
   }
 
+  if (env.SKIP_MIGRATION === '1' || env.SKIP_MIGRATION === 'true') {
+    return mergeEnvIntoConfig(schema, config, clonedEnv)
+  }
+
   Object.entries(env).forEach(([key, value]) => {
     if (value === undefined) return
     try {
