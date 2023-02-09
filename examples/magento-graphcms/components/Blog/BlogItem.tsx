@@ -17,7 +17,12 @@ export function BlogItem(props: BlogItemProps) {
         asset ? (
           <Asset
             asset={asset}
-            sizes={{ 0: '48vw', 711: '30vw', [theme.breakpoints.values.lg]: '330px' }}
+            sizes={{
+              0: '48vw',
+              [theme.breakpoints.values.md]: '30vw',
+              [theme.breakpoints.values.lg]: '25vw',
+              [theme.breakpoints.values.xl]: '330px',
+            }}
           />
         ) : (
           <Typography variant='body2'>

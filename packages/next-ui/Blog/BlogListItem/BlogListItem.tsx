@@ -42,6 +42,8 @@ export function BlogListItem(props: BlogListItemProps) {
           className={classes.asset}
           sx={(theme) => ({
             '& img': {
+              aspectRatio: '3/2',
+              objectFit: 'cover',
               ...breakpointVal(
                 'borderRadius',
                 theme.shape.borderRadius * 2,
