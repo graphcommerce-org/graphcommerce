@@ -19,7 +19,7 @@ it('rewrites legacy env', () => {
     i18n: [{ locale: 'en', hygraphLocales: ['en'], magentoStoreCode: 'en_us' }],
     customerRequireEmailConfirmation: false,
     singleProductRoute: true,
-    advancedFilters: false,
+    productFiltersPro: false,
     canonicalBaseUrl: 'https://example.com',
     hygraphEndpoint: 'https://example.com',
     magentoEndpoint: 'https://example.com',

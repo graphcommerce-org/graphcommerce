@@ -6,7 +6,7 @@ const configFile = {
   demoMode: true,
   googleTagmanagerKey: 'GTM-XXXXXXX',
   singleProductRoute: true,
-  advancedFilters: false,
+  productFiltersPro: false,
   deeper: {
     arrayvalue: ['test'],
     nested: {
@@ -19,7 +19,7 @@ it('flattens a config object', () => {
   expect(configToImportMeta(configFile)).toMatchInlineSnapshot(`
     {
       "import.meta.graphCommerce": "{}",
-      "import.meta.graphCommerce.advancedFilters": "false",
+      "import.meta.graphCommerce.productFiltersPro": "false",
       "import.meta.graphCommerce.customerRequireEmailConfirmation": "false",
       "import.meta.graphCommerce.deeper": "{}",
       "import.meta.graphCommerce.deeper.arrayvalue": "["test"]",

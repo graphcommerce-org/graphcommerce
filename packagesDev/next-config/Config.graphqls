@@ -18,11 +18,11 @@ input GraphCommerceI18nConfig {
   """
   locale: String!
 
-  """
-  Allow the site to be indexed by search engines.
-  If false, the robots.txt file will be set to disallow all.
-  """
-  robotsAllow: Boolean
+  # """
+  # Allow the site to be indexed by search engines.
+  # If false, the robots.txt file will be set to disallow all.
+  # """
+  # robotsAllow: Boolean
 
   """
   The canonical base URL is used for SEO purposes.
@@ -94,7 +94,7 @@ input GraphCommerceConfig {
   Allow the site to be indexed by search engines.
   If false, the robots.txt file will be set to disallow all.
   """
-  robotsAllow: Boolean
+  robotsAllow: Boolean!
 
   """
   The canonical base URL is used for SEO purposes.

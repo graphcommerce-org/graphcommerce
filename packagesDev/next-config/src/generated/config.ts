@@ -23,7 +23,6 @@ export type DeployEnvironment =
   | 'production';
 
 export type GraphCommerceConfig = {
-  advancedFilters: Scalars['Boolean'];
   /**
    * The canonical base URL is used for SEO purposes.
    *
@@ -89,10 +88,15 @@ export type GraphCommerceConfig = {
   /** To enable next.js' preview mode, configure the secret you'd like to use. */
   previewSecret?: InputMaybe<Scalars['String']>;
   /**
+   * Experimental feature
+   * @deprecated Experimental
+   */
+  productFiltersPro: Scalars['Boolean'];
+  /**
    * Allow the site to be indexed by search engines.
    * If false, the robots.txt file will be set to disallow all.
    */
-  robotsAllow?: InputMaybe<Scalars['Boolean']>;
+  robotsAllow: Scalars['Boolean'];
   /**
    * On older versions of GraphCommerce products would use a product type specific route.
    *
@@ -167,11 +171,6 @@ export type GraphCommerceI18nConfig = {
    * - b2b-us
    */
   magentoStoreCode: Scalars['String'];
-  /**
-   * Allow the site to be indexed by search engines.
-   * If false, the robots.txt file will be set to disallow all.
-   */
-  robotsAllow?: InputMaybe<Scalars['Boolean']>;
 };
 
 
@@ -189,7 +188,6 @@ export const DeployEnvironmentSchema = z.enum(['development', 'preview', 'produc
 
 export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerceConfig>> {
   return z.object<Properties<GraphCommerceConfig>>({
-    advancedFilters: z.boolean(),
     canonicalBaseUrl: z.string().min(1),
     cartDisplayPricesInclTax: z.boolean().nullish(),
     customerRequireEmailConfirmation: z.boolean().nullish(),
@@ -203,7 +201,8 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     i18n: z.array(GraphCommerceI18nConfigSchema()),
     magentoEndpoint: z.string().min(1),
     previewSecret: z.string().nullish(),
-    robotsAllow: z.boolean().nullish(),
+    productFiltersPro: z.boolean(),
+    robotsAllow: z.boolean(),
     singleProductRoute: z.boolean(),
     wishlistHideForGuests: z.boolean().nullish(),
     wishlistIgnoreProductWishlistStatus: z.boolean().nullish()
@@ -229,7 +228,6 @@ export function GraphCommerceI18nConfigSchema(): z.ZodObject<Properties<GraphCom
     googleTagmanagerId: z.string().nullish(),
     hygraphLocales: z.array(z.string().min(1)).nullish(),
     locale: z.string().min(1),
-    magentoStoreCode: z.string().min(1),
-    robotsAllow: z.boolean().nullish()
+    magentoStoreCode: z.string().min(1)
   })
 }

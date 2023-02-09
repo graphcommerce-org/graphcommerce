@@ -8,6 +8,7 @@
  */
 const config = {
   deployEnvironment: 'development',
+  robotsAllow: false,
   hygraphEndpoint: 'https://eu-central-1.cdn.hygraph.com/content/ckhx7xadya6xs01yxdujt8i80/master',
   magentoEndpoint: 'https://backend.reachdigital.dev/graphql',
   i18n: [
@@ -23,10 +24,9 @@ const config = {
     { locale: 'en-gb', magentoStoreCode: 'en_GB', cartDisplayPricesInclTax: true },
     { locale: 'en-ca', magentoStoreCode: 'en_CA' },
   ],
-  advancedFilters: false,
+  productFiltersPro: false,
   singleProductRoute: true,
   canonicalBaseUrl: 'https://graphcommerce.vercel.app/',
-
   // customerRequireEmailConfirmation: false,
   // previewSecret: 'dya6xs01y',
   // googleAnalyticsId: 'G-XXXXX',

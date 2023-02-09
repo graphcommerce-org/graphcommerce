@@ -108,7 +108,7 @@ function SearchResultPage(props: SearchResultProps) {
       {products && products.items && products?.items?.length > 0 && (
         <>
           <StickyBelowHeader>
-            {import.meta.graphCommerce.advancedFilters ? (
+            {import.meta.graphCommerce.productFiltersPro ? (
               <ProductFiltersPro params={params}>
                 <ProductListFiltersContainer>
                   <ProductFiltersProFilterChips {...filters} filterTypes={filterTypes} />
