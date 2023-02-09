@@ -96,6 +96,7 @@ export function SearchForm(props: SearchFormProps) {
           type='text'
           name='search'
           control={control}
+          defaultValue={search}
           error={formState.isSubmitted && !!formState.errors.search}
           helperText={formState.isSubmitted && formState.errors.search?.message}
           InputProps={{ endAdornment }}
