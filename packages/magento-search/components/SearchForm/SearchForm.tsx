@@ -26,6 +26,11 @@ const parts = ['root', 'totalProducts'] as const
 const { classes } = extendableComponent(name, parts)
 
 export function SearchForm(props: SearchFormProps) {
+  const searchInputElement = useRef<HTMLInputElement>(null)
+
+  useEffect(() => {
+    searchInputElement.current?.focus()
+  }, [])
   const { totalResults = 0, search = '', urlHandle = 'search', textFieldProps, sx = [] } = props
   const router = useRouter()
 
@@ -96,6 +101,7 @@ export function SearchForm(props: SearchFormProps) {
           helperText={formState.isSubmitted && formState.errors.search?.message}
           {...muiRegister('search', { required: true, minLength: 2 })}
           InputProps={{ endAdornment }}
+          inputRef={searchInputElement}
           {...textFieldProps}
         />
       </FormRow>
