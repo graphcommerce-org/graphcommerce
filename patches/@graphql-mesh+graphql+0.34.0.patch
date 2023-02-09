@@ -1,8 +1,8 @@
 diff --git a/node_modules/@graphql-mesh/graphql/cjs/index.js b/node_modules/@graphql-mesh/graphql/cjs/index.js
-index 5913393..9500b20 100644
+index 7f49012..b939986 100644
 --- a/node_modules/@graphql-mesh/graphql/cjs/index.js
 +++ b/node_modules/@graphql-mesh/graphql/cjs/index.js
-@@ -70,6 +70,14 @@ class GraphQLHandler {
+@@ -72,6 +72,14 @@ class GraphQLHandler {
          Object.keys(httpSourceConfig.schemaHeaders || {}).forEach(headerName => {
              this.interpolationStringSet.add(headerName.toString());
          });
@@ -17,17 +17,9 @@ index 5913393..9500b20 100644
          const schemaHeadersFactory = (0, string_interpolation_1.getInterpolatedHeadersFactory)(httpSourceConfig.schemaHeaders || {});
          if (httpSourceConfig.source) {
              const headers = schemaHeadersFactory({
-@@ -83,6 +91,7 @@ class GraphQLHandler {
-                 logger: this.logger,
-                 headers,
-             });
-+
-             if (typeof sdlOrIntrospection === 'string') {
-                 return (0, graphql_1.buildSchema)(sdlOrIntrospection);
-             }
-@@ -92,6 +101,9 @@ class GraphQLHandler {
-             else if (sdlOrIntrospection.__schema) {
-                 return (0, graphql_1.buildClientSchema)(sdlOrIntrospection);
+@@ -102,6 +110,9 @@ class GraphQLHandler {
+                     assumeValid: true,
+                 });
              }
 +            else if (sdlOrIntrospection.data.__schema) {
 +                return (0, graphql_1.buildClientSchema)(sdlOrIntrospection.data);
@@ -36,20 +28,13 @@ index 5913393..9500b20 100644
          }
          return this.nonExecutableSchema.getWithSet(() => {
 diff --git a/node_modules/@graphql-mesh/graphql/esm/index.js b/node_modules/@graphql-mesh/graphql/esm/index.js
-index 751e25a..c7fb862 100644
+index bcb0758..2d3fb2a 100644
 --- a/node_modules/@graphql-mesh/graphql/esm/index.js
 +++ b/node_modules/@graphql-mesh/graphql/esm/index.js
-@@ -1,5 +1,5 @@
- import { UrlLoader } from '@graphql-tools/url-loader';
--import { GraphQLSchema, buildSchema, Kind, buildASTSchema, buildClientSchema, } from 'graphql';
-+import { GraphQLSchema, buildSchema, Kind, buildASTSchema, buildClientSchema, getIntrospectionQuery, stripIgnoredCharacters } from 'graphql';
- import { introspectSchema } from '@graphql-tools/wrap';
- import { loadFromModuleExportExpression, readFileOrUrl } from '@graphql-mesh/utils';
- import { isDocumentNode, memoize1, getOperationASTFromRequest, parseSelectionSet, isAsyncIterable, } from '@graphql-tools/utils';
-@@ -67,6 +67,14 @@ export default class GraphQLHandler {
-         Object.keys(httpSourceConfig.schemaHeaders || {}).forEach(headerName => {
+@@ -70,6 +70,14 @@ export default class GraphQLHandler {
              this.interpolationStringSet.add(headerName.toString());
          });
+         const schemaHeadersFactory = getInterpolatedHeadersFactory(httpSourceConfig.schemaHeaders || {});
 +
 +        if(!httpSourceConfig.source && httpSourceConfig.useGETForQueries) {
 +            const introspectionGET = new URL(httpSourceConfig.endpoint)
@@ -58,15 +43,17 @@ index 751e25a..c7fb862 100644
 +            httpSourceConfig.source = introspectionGET.toString();
 +        }
 +
-         const schemaHeadersFactory = getInterpolatedHeadersFactory(httpSourceConfig.schemaHeaders || {});
          if (httpSourceConfig.source) {
              const headers = schemaHeadersFactory({
-@@ -89,6 +97,9 @@ export default class GraphQLHandler {
-             else if (sdlOrIntrospection.__schema) {
-                 return buildClientSchema(sdlOrIntrospection);
+                 env: process.env,
+@@ -99,6 +107,11 @@ export default class GraphQLHandler {
+                     assumeValid: true,
+                 });
              }
 +            else if (sdlOrIntrospection.data.__schema) {
-+                return buildClientSchema(sdlOrIntrospection.data);
++                return buildClientSchema(sdlOrIntrospection.data, {
++                    assumeValid: true,
++                });
 +            }
              throw new Error(`Invalid introspection data: ${util.inspect(sdlOrIntrospection)}`);
          }
