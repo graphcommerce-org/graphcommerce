@@ -1,3 +1,5 @@
+import { Console } from 'console'
+import { Transform } from 'stream'
 import { parseFileSync } from '@swc/core'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import glob from 'glob'
@@ -7,8 +9,6 @@ import diff from '../config/utils/diff'
 import { GraphCommerceConfig } from '../generated/config'
 import { resolveDependenciesSync } from '../utils/resolveDependenciesSync'
 import type { PluginConfig } from './generateInterceptors'
-import { Console } from 'console'
-import { Transform } from 'stream'
 
 function table(input: any) {
   // @see https://stackoverflow.com/a/67859384
@@ -108,7 +108,8 @@ export function findPlugins(config: GraphCommerceConfig, cwd: string = process.c
     } else if (res) {
       table(res)
     }
+    console.timeEnd('findPlugins')
   }
-  console.timeEnd('findPlugins')
+
   return plugins
 }
