@@ -1,7 +1,25 @@
-import { styled } from '@mui/material'
+import { Box, SxProps, Theme } from '@mui/material'
 
-export const BlogContent = styled('div')(({ theme }) => ({
-  maxWidth: 800,
-  margin: '0 auto',
-  marginBottom: theme.spacings.sm,
-}))
+type BlogContentProps = {
+  children: React.ReactNode
+  sx?: SxProps<Theme>
+}
+
+export function BlogContent(props: BlogContentProps) {
+  const { children, sx = [] } = props
+
+  return (
+    <Box
+      maxWidth='md'
+      sx={[
+        (theme) => ({
+          margin: '0 auto',
+          marginBottom: theme.spacings.sm,
+        }),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    >
+      {children}
+    </Box>
+  )
+}

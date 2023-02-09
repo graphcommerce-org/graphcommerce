@@ -18,12 +18,13 @@ export function BlogHeader(props: BlogHeaderProps) {
   return (
     <Box
       className={classes.header}
+      maxWidth='md'
       sx={[
         (theme) => ({
-          maxWidth: 800,
           margin: `0 auto`,
           marginBottom: theme.spacings.md,
           '& img': {
+            objectFit: 'cover',
             ...breakpointVal(
               'borderRadius',
               theme.shape.borderRadius * 2,
