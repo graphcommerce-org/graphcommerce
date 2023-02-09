@@ -61,13 +61,6 @@
     "react-dom": "^18.2.0",
     "webpack": "5.75.0"
   },
-  "resolutions": {
-    "@lingui/cli": "3.16.1",
-    "@lingui/core": "3.16.1",
-    "@lingui/react": "3.16.1",
-    "@lingui/conf": "3.16.1",
-    "@lingui/babel-plugin-extract-messages": "3.16.1"
-  },
   "devDependencies": {
     "@playwright/test": "1.28.1",
     "@types/node": "16.11.7",

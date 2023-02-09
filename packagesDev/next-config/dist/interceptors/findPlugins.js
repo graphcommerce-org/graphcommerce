@@ -4,14 +4,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.findPlugins = void 0;
+const console_1 = require("console");
+const stream_1 = require("stream");
 const core_1 = require("@swc/core");
 // eslint-disable-next-line import/no-extraneous-dependencies
 const glob_1 = __importDefault(require("glob"));
 const get_1 = __importDefault(require("lodash/get"));
 const diff_1 = __importDefault(require("../config/utils/diff"));
 const resolveDependenciesSync_1 = require("../utils/resolveDependenciesSync");
-const console_1 = require("console");
-const stream_1 = require("stream");
 function table(input) {
     // @see https://stackoverflow.com/a/67859384
     const ts = new stream_1.Transform({
@@ -94,8 +94,8 @@ function findPlugins(config, cwd = process.cwd()) {
         else if (res) {
             table(res);
         }
+        console.timeEnd('findPlugins');
     }
-    console.timeEnd('findPlugins');
     return plugins;
 }
 exports.findPlugins = findPlugins;

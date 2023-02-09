@@ -35,12 +35,12 @@ function configToEnvSchema(schema) {
     const envToDot = {};
     function walk(incomming, path = []) {
         let node = incomming;
-        if (node instanceof zod_1.ZodNullable)
-            node = node.unwrap();
-        if (node instanceof zod_1.ZodOptional)
-            node = node.unwrap();
         if (node instanceof zod_1.ZodEffects)
             node = node.innerType();
+        if (node instanceof zod_1.ZodOptional)
+            node = node.unwrap();
+        if (node instanceof zod_1.ZodNullable)
+            node = node.unwrap();
         if (node instanceof zod_1.ZodObject) {
             if (path.length > 0) {
                 envSchema[pathStr(path)] = zod_1.z
@@ -90,7 +90,7 @@ function configToEnvSchema(schema) {
             envToDot[pathStr(path)] = dotNotation(path);
             return;
         }
-        throw Error(`Unknown type in schema ${node.constructor.name}`);
+        throw Error(`[@graphcommerce/next-config] Unknown type in schema ${node.constructor.name}. This is probably a bug please create an issue.`);
     }
     walk(schema);
     return [zod_1.z.object(envSchema), envToDot];

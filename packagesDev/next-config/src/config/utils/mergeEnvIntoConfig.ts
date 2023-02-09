@@ -55,9 +55,9 @@ export function configToEnvSchema(schema: ZodNode) {
   function walk(incomming: ZodNode, path: string[] = []) {
     let node = incomming
 
-    if (node instanceof ZodNullable) node = node.unwrap()
-    if (node instanceof ZodOptional) node = node.unwrap()
     if (node instanceof ZodEffects) node = node.innerType()
+    if (node instanceof ZodOptional) node = node.unwrap()
+    if (node instanceof ZodNullable) node = node.unwrap()
 
     if (node instanceof ZodObject) {
       if (path.length > 0) {
@@ -115,7 +115,9 @@ export function configToEnvSchema(schema: ZodNode) {
       return
     }
 
-    throw Error(`Unknown type in schema ${node.constructor.name}`)
+    throw Error(
+      `[@graphcommerce/next-config] Unknown type in schema ${node.constructor.name}. This is probably a bug please create an issue.`,
+    )
   }
   walk(schema)
 

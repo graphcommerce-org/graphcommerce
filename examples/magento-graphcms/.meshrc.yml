@@ -4,12 +4,10 @@ sources:
       graphql:
         useGETForQueries: true
         endpoint: '{import.meta.graphCommerce.hygraphEndpoint}'
-        retry: 3
         operationHeaders:
           gcms-locales: "{context.headers['gcms-locales']}"
     transforms:
       - filterSchema:
-          mode: 'bare'
           filters:
             # Remove mutations: `mutation { * }`
             - 'Mutation.!*'
