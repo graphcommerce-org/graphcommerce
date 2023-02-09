@@ -24,6 +24,7 @@ it('rewrites legacy env', () => {
     hygraphEndpoint: 'https://example.com',
     magentoEndpoint: 'https://example.com',
     previewSecret: 'secret',
+    robotsAllow: true,
   }
 
   const legacyEnv = {

@@ -4,6 +4,7 @@ sources:
       graphql:
         useGETForQueries: true
         endpoint: '{import.meta.graphCommerce.hygraphEndpoint}'
+        batch: false
         operationHeaders:
           gcms-locales: "{context.headers['gcms-locales']}"
     transforms:
