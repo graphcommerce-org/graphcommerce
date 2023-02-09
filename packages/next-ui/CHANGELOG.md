@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.2.0-canary.11
+
+### Patch Changes
+
+- [#1794](https://github.com/graphcommerce-org/graphcommerce/pull/1794) [`29e15cf63`](https://github.com/graphcommerce-org/graphcommerce/commit/29e15cf63251cf98cf42325322fcf09fb7a6c0b7) - Fix scroll issue with bottom overlay on Android ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 5.2.0-canary.10
 
 ### Minor Changes
