@@ -159,7 +159,7 @@ export type GraphCommerceI18nConfig = {
   googleRecaptchaKey?: InputMaybe<Scalars['String']>;
   googleTagmanagerId?: InputMaybe<Scalars['String']>;
   hygraphLocales?: InputMaybe<Array<Scalars['String']>>;
-  /** By default the locale will be used, but you can override it here. */
+  /** Specify a custom locale for to load translations. */
   linguiLocale?: InputMaybe<Scalars['String']>;
   /** Must be a locale string https://www.unicode.org/reports/tr35/tr35-59/tr35.html#Identifiers */
   locale: Scalars['String'];

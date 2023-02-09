@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@ardatan/relay-compiler": "12.0.0",
-    "@graphql-codegen/plugin-helpers": "3.1.1",
+    "@graphql-codegen/plugin-helpers": "4.0.0",
     "graphql": "16.6.0"
   },
   "devDependencies": {
