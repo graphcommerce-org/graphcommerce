@@ -1,3 +1,4 @@
+import cloneDeep from 'lodash/cloneDeep'
 import { GraphCommerceConfig } from '../../generated/config'
 import { ApplyResult, mergeEnvIntoConfig, ZodNode } from './mergeEnvIntoConfig'
 
@@ -6,7 +7,7 @@ export function rewriteLegacyEnv(
   config: GraphCommerceConfig,
   env: Record<string, string | undefined>,
 ) {
-  const clonedEnv: Record<string, string> = {}
+  const clonedEnv: Record<string, string | undefined> = cloneDeep(env)
   const applied: ApplyResult = []
 
   function renamedTo(to: string) {
@@ -80,7 +81,7 @@ export function rewriteLegacyEnv(
 
         return
       }
-      return renamedTo('GC_GOOGLE_ANALYTICS_ID')
+      renamedTo('GC_GOOGLE_ANALYTICS_ID')
     },
     NEXT_PUBLIC_GOOGLE_RECAPTCHA_V3_SITE_KEY: renamedTo('GC_GOOGLE_RECAPTCHA_KEY'),
     NEXT_PUBLIC_DISPLAY_INCL_TAX: (envVar: string, envValue: string) => {

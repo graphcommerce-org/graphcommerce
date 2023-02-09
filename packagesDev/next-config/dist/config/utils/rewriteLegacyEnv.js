@@ -1,9 +1,13 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.rewriteLegacyEnv = void 0;
+const cloneDeep_1 = __importDefault(require("lodash/cloneDeep"));
 const mergeEnvIntoConfig_1 = require("./mergeEnvIntoConfig");
 function rewriteLegacyEnv(schema, config, env) {
-    const clonedEnv = {};
+    const clonedEnv = (0, cloneDeep_1.default)(env);
     const applied = [];
     function renamedTo(to) {
         return (envVar, envValue) => {
@@ -67,7 +71,7 @@ function rewriteLegacyEnv(schema, config, env) {
                 });
                 return;
             }
-            return renamedTo('GC_GOOGLE_ANALYTICS_ID');
+            renamedTo('GC_GOOGLE_ANALYTICS_ID');
         },
         NEXT_PUBLIC_GOOGLE_RECAPTCHA_V3_SITE_KEY: renamedTo('GC_GOOGLE_RECAPTCHA_KEY'),
         NEXT_PUBLIC_DISPLAY_INCL_TAX: (envVar, envValue) => {
