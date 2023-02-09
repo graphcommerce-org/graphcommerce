@@ -88,8 +88,9 @@ export type GraphCommerceConfig = {
   /** To enable next.js' preview mode, configure the secret you'd like to use. */
   previewSecret?: InputMaybe<Scalars['String']>;
   /**
-   * Experimental feature
-   * @deprecated Experimental
+   * Product filters with better UI for mobile and desktop.
+   *
+   * @experimental This is an experimental feature and may change in the future.
    */
   productFiltersPro: Scalars['Boolean'];
   /**
@@ -158,6 +159,8 @@ export type GraphCommerceI18nConfig = {
   googleRecaptchaKey?: InputMaybe<Scalars['String']>;
   googleTagmanagerId?: InputMaybe<Scalars['String']>;
   hygraphLocales?: InputMaybe<Array<Scalars['String']>>;
+  /** By default the locale will be used, but you can override it here. */
+  linguiLocale?: InputMaybe<Scalars['String']>;
   /** Must be a locale string https://www.unicode.org/reports/tr35/tr35-59/tr35.html#Identifiers */
   locale: Scalars['String'];
   /**
@@ -227,6 +230,7 @@ export function GraphCommerceI18nConfigSchema(): z.ZodObject<Properties<GraphCom
     googleRecaptchaKey: z.string().nullish(),
     googleTagmanagerId: z.string().nullish(),
     hygraphLocales: z.array(z.string().min(1)).nullish(),
+    linguiLocale: z.string().nullish(),
     locale: z.string().min(1),
     magentoStoreCode: z.string().min(1)
   })

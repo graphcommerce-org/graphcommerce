@@ -45,8 +45,8 @@
   "dependencies": {
     "@babel/core": "^7.20.5",
     "@changesets/cli": "2.25.2",
-    "@lingui/core": "3.16.1",
-    "@lingui/react": "3.16.1",
+    "@lingui/core": "3.17.1",
+    "@lingui/react": "3.17.1",
     "@mui/lab": "5.0.0-alpha.112",
     "@mui/material": "5.11.0",
     "@testing-library/jest-dom": "^5.16.5",
