@@ -1,3 +1,4 @@
+import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import {
   FormRow,
   iconClose,
@@ -5,10 +6,10 @@ import {
   IconSvg,
   extendableComponent,
 } from '@graphcommerce/next-ui'
-import { useForm, useFormAutoSubmit, useFormMuiRegister } from '@graphcommerce/react-hook-form'
+import { useForm, useFormAutoSubmit } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Box, IconButton, SxProps, TextField, TextFieldProps, Theme } from '@mui/material'
+import { Box, IconButton, SxProps, TextFieldProps, Theme } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useEffect, useRef } from 'react'
 
@@ -35,9 +36,7 @@ export function SearchForm(props: SearchFormProps) {
   const router = useRouter()
 
   const form = useForm({ mode: 'onChange', defaultValues: { search } })
-  const { handleSubmit, formState, reset, watch, getValues } = form
-
-  const muiRegister = useFormMuiRegister(form)
+  const { handleSubmit, formState, reset, watch, getValues, control } = form
 
   const submit = handleSubmit((formData) => {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
@@ -92,14 +91,13 @@ export function SearchForm(props: SearchFormProps) {
       sx={sx}
     >
       <FormRow>
-        <TextField
+        <TextFieldElement
           variant='outlined'
           type='text'
-          placeholder={i18n._(/* i18n */ 'Search')}
-          defaultValue={search}
+          name='search'
+          control={control}
           error={formState.isSubmitted && !!formState.errors.search}
           helperText={formState.isSubmitted && formState.errors.search?.message}
-          {...muiRegister('search', { required: true, minLength: 2 })}
           InputProps={{ endAdornment }}
           inputRef={searchInputElement}
           {...textFieldProps}
