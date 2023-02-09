@@ -34,7 +34,6 @@
     "graphql": "16.6.0",
     "graphql-codegen-typescript-validation-schema": "^0.7.1",
     "graphql-tag": "^2.12.6",
-    "ink": "^3.2.0",
     "rimraf": "^3.0.2",
     "ts-node": "^10.9.1"
   },
