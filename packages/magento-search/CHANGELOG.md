@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.2.0-canary.12
+
+### Patch Changes
+
+- [#1797](https://github.com/graphcommerce-org/graphcommerce/pull/1797) [`b3962828a`](https://github.com/graphcommerce-org/graphcommerce/commit/b3962828a2918e29391d16c9e2f457ea4669c3f6) - replace 'Textfield' for 'TextFieldElement' and remove muiRegister to make the search work again. ([@carlocarels90](https://github.com/carlocarels90))
+
 ## 5.2.0-canary.11
 
 ## 5.2.0-canary.10
