@@ -28,8 +28,8 @@ export const ScrollerButton = m(
       useTransform<number, number>([xProgress, yProgress, xMax, yMax], ([x, y, xM, yM]) => {
         if (xM === 0 && yM === 0) return 0
 
-        if (direction === 'left') return x < 0.1 ? 0 : 1
-        if (direction === 'right') return x > 0.9 ? 0 : 1
+        if (direction === 'left') return x < 0.01 ? 0 : 1
+        if (direction === 'right') return x > 0.99 ? 0 : 1
         if (direction === 'up') return y < 0.1 ? 0 : 1
         if (direction === 'down') return y > 0.9 ? 0 : 1
 
