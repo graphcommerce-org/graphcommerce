@@ -15,7 +15,11 @@ export function ProductListFilters(props: ProductFiltersProps) {
   return (
     <>
       {aggregations?.map((aggregation) => {
-        if (!aggregation?.attribute_code || aggregation?.attribute_code === 'category_id')
+        if (
+          !aggregation?.attribute_code ||
+          aggregation?.attribute_code === 'category_id' ||
+          aggregation?.attribute_code === 'category_uid'
+        )
           return null
 
         switch (filterTypes[aggregation.attribute_code]) {
