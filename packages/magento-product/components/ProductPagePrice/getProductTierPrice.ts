@@ -2,7 +2,7 @@ import { MoneyFragment } from '@graphcommerce/magento-store';
 import { ProductPagePriceFragment } from './ProductPagePrice.gql';
 
 export function getProductTierPrice(
-  price: ProductPagePriceFragment,
+  price: Pick<ProductPagePriceFragment, 'price_tiers'>,
   quantity: number,
 ): MoneyFragment | undefined {
   const { price_tiers } = price;

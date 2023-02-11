@@ -12,7 +12,7 @@ export function ProductPagePrice(props: ProductPagePriceProps) {
   const index = 0;
   const { control } = useFormAddProductsToCart();
   const quantity = useWatch({ control, name: `cartItems.${index}.quantity` });
-  const price = getProductTierPrice({ price_tiers, price_range }, quantity) ?? price_range.minimum_price.final_price;
+  const price = getProductTierPrice({ price_tiers }, quantity) ?? price_range.minimum_price.final_price;
 
   return (
     <Money { ...price } />
