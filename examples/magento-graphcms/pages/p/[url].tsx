@@ -162,12 +162,10 @@ function ProductPage(props: Props) {
             </AddProductsToCartError>
           </Box>
 
-          {!!product.price_tiers?.length &&
-            <ProductPagePriceTiers price_tiers={product.price_tiers} price_range={product.price_range} />
-          }
-
-          {isTypename(product, ['ConfigurableProduct']) && (
+          {isTypename(product, ['ConfigurableProduct']) ? (
             <ConfigurablePriceTiers product={product} />
+          ) : (
+            <ProductPagePriceTiers price_tiers={product.price_tiers} price_range={product.price_range} />
           )}
 
           <ProductSidebarDelivery product={product} />

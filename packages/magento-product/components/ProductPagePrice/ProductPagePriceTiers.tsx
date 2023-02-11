@@ -10,6 +10,8 @@ type ProductPagePriceTiersProps = {
 export function ProductPagePriceTiers(props: ProductPagePriceTiersProps) {
   const { price_tiers, sx = [] } = props;
 
+  if (!price_tiers?.length) return null;
+
   return (
     <Box sx={[
       ...(Array.isArray(sx) ? sx : [sx]),
