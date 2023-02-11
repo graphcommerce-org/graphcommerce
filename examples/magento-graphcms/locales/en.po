@@ -85,6 +85,9 @@ msgstr "Billing address"
 msgid "Blog"
 msgstr "Blog"
 
+msgid "Buy {quantity} for <0/> and save {percent}%"
+msgstr "Buy {quantity} for <0/> and save {percent}%"
+
 msgid "Cancel"
 msgstr "Cancel"
 
