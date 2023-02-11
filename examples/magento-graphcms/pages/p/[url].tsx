@@ -12,6 +12,7 @@ import {
   productPageCategory,
   ProductPageDescription,
   ProductPageMeta,
+  ProductPagePrice,
   ProductPagePriceTiers,
   ProductShortDescription,
   ProductSidebarDelivery,
@@ -155,7 +156,7 @@ function ProductPage(props: Props) {
                 {isTypename(product, ['ConfigurableProduct']) ? (
                   <ConfigurablePrice product={product} />
                 ) : (
-                  <Money {...product.price_range.minimum_price.final_price} />
+                  <ProductPagePrice price_tiers={product.price_tiers} price_range={product.price_range} />
                 )}
               </Typography>
             </AddProductsToCartError>
