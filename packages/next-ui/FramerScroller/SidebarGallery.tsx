@@ -4,10 +4,10 @@ import {
   MotionImageAspectProps,
   Scroller,
   ScrollerButton,
-  ScrollerButtonProps,
-  ScrollerDots,
   ScrollerProvider,
   unstable_usePreventScroll as usePreventScroll,
+  ScrollerButtonProps,
+  ScrollerDots,
 } from '@graphcommerce/framer-scroller'
 import { dvh } from '@graphcommerce/framer-utils'
 import {
