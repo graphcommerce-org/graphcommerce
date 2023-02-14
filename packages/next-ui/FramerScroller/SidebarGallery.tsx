@@ -4,7 +4,7 @@ import {
   MotionImageAspectProps,
   Scroller,
   ScrollerButton,
-  ScrollerDots,
+  ScrollerThumbnails,
   ScrollerProvider,
 } from '@graphcommerce/framer-scroller'
 import { dvh } from '@graphcommerce/framer-utils'
@@ -301,7 +301,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                 },
               }}
             >
-              <ScrollerDots layout='position' layoutDependency={zoomed} />
+              <ScrollerThumbnails layout='position' layoutDependency={zoomed} images={images} />
             </Box>
           </MotionBox>
 
