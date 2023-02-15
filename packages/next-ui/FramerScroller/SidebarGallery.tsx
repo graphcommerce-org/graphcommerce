@@ -55,6 +55,7 @@ const { withState, selectors } = extendableComponent<OwnerState, typeof name, ty
 export type SidebarGalleryProps = {
   sidebar: React.ReactNode
   images: MotionImageAspectProps[]
+  galleryNavigation: React.ReactElement
   aspectRatio?: [number, number]
   routeHash?: string
   sx?: SxProps<Theme>
@@ -65,6 +66,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
   const {
     sidebar,
     images,
+    galleryNavigation,
     aspectRatio: [width, height] = [1, 1],
     sx,
     routeHash = 'gallery',
@@ -109,6 +111,10 @@ export function SidebarGallery(props: SidebarGalleryProps) {
   const handleEscapeKey = (e: KeyboardEvent | Event) => {
     if (zoomed && (e as KeyboardEvent)?.key === 'Escape') toggle()
   }
+
+  const navigation = React.cloneElement(galleryNavigation, {
+    layoutDependency: zoomed,
+  })
 
   const dragStart = useMotionValue<number>(0)
   const onMouseDownScroller: React.MouseEventHandler<HTMLDivElement> = (e) => {
