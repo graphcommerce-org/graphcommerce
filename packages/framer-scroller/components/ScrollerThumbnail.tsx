@@ -1,5 +1,5 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
-import { Image } from '@graphcommerce/image'
+import { Image, ImageProps } from '@graphcommerce/image'
 import { extendableComponent } from '@graphcommerce/next-ui/Styles'
 import { i18n } from '@lingui/core'
 import { Fab, ButtonProps, styled, Button } from '@mui/material'
@@ -15,7 +15,7 @@ type OwnerProps = { active: boolean }
 const { withState } = extendableComponent<OwnerProps, typeof name, typeof parts>(name, parts)
 
 type ScrollerThumbnailProps = Omit<ButtonProps, 'onClick' | 'className'> &
-  ItemState & { idx: number; image: any }
+  ItemState & { idx: number; image: Pick<ImageProps, 'src' | 'height' | 'width'> }
 
 const MotionBox = styled(m.div)({})
 
