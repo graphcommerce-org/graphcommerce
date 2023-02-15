@@ -1,5 +1,5 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
-import { Scroller, ScrollerButton, ScrollerProvider } from '@graphcommerce/framer-scroller'
+import { ImageProps } from '@graphcommerce/image'
 import { extendableComponent } from '@graphcommerce/next-ui/Styles'
 import { Box, ButtonProps, styled, SxProps, Theme } from '@mui/material'
 import { m } from 'framer-motion'
@@ -9,17 +9,17 @@ import { ScrollerThumbnail } from './ScrollerThumbnail'
 
 const MotionBox = styled(m.div)({})
 
-export type DotsProps = {
+export type ThumbnailsProps = {
   buttonProps?: Omit<ButtonProps, 'onClick' | 'children'>
-  images: any
   sx?: SxProps<Theme>
+  images: Pick<ImageProps, 'src' | 'height' | 'width'>[]
 }
 
 const componentName = 'ScrollerThumbnails'
-const { classes } = extendableComponent(componentName, ['root', 'dot', 'circle'] as const)
+const { classes } = extendableComponent(componentName, ['root'] as const)
 
 export const ScrollerThumbnails = m(
-  React.forwardRef<HTMLDivElement, DotsProps>((props, ref) => {
+  React.forwardRef<HTMLDivElement, ThumbnailsProps>((props, ref) => {
     const { buttonProps, images, sx = [], ...containerProps } = props
 
     const { items } = useScrollerContext()
