@@ -288,8 +288,8 @@ export function SidebarGallery(props: SidebarGalleryProps) {
             <Box
               className={classes.bottomCenter}
               sx={{
-                display: 'grid',
-                gridAutoFlow: 'column',
+                display: 'flex',
+                px: theme.page.horizontal,
                 gap: theme.spacings.xxs,
                 position: 'absolute',
                 bottom: theme.spacings.xxs,

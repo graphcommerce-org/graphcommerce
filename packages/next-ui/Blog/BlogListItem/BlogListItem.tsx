@@ -28,7 +28,7 @@ export function BlogListItem(props: BlogListItemProps) {
       sx={[
         (theme) => ({
           display: 'grid',
-          gridTemplateRows: `${responsiveVal(140, 220)} auto auto`,
+          gridTemplateRows: `auto auto auto`,
           alignContent: 'start',
           color: theme.palette.text.primary,
           gap: theme.spacings.xxs,
@@ -41,26 +41,16 @@ export function BlogListItem(props: BlogListItemProps) {
         <Box
           className={classes.asset}
           sx={(theme) => ({
-            display: 'grid',
-            alignContent: 'center',
-            overflow: 'hidden',
-            height: '100%',
-            width: '100%',
-            ...breakpointVal(
-              'borderRadius',
-              theme.shape.borderRadius * 2,
-              theme.shape.borderRadius * 3,
-              theme.breakpoints.values,
-            ),
             '& img': {
-              height: '100% !important',
+              aspectRatio: '3/2',
               objectFit: 'cover',
+              ...breakpointVal(
+                'borderRadius',
+                theme.shape.borderRadius * 2,
+                theme.shape.borderRadius * 3,
+                theme.breakpoints.values,
+              ),
             },
-            '& p': {
-              alignSelf: 'center',
-              justifySelf: 'center',
-            },
-            background: theme.palette.background.paper,
           })}
         >
           {asset}
