@@ -1,5 +1,11 @@
 # @graphcommerce/demo-magento-graphcommerce
 
+## 5.2.0-canary.13
+
+### Minor Changes
+
+- [#1795](https://github.com/graphcommerce-org/graphcommerce/pull/1795) [`236d698b2`](https://github.com/graphcommerce-org/graphcommerce/commit/236d698b2aac55598fc45a6a58574a538f23e160) - Navigation link fix, homepage and category style fixes ([@ErwinOtten](https://github.com/ErwinOtten))
+
 ## 5.2.0-canary.12
 
 ## 5.2.0-canary.11

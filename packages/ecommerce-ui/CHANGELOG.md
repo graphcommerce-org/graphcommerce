@@ -1,5 +1,7 @@
 # @graphcommerce/ecommerce-ui
 
+## 5.2.0-canary.13
+
 ## 5.2.0-canary.12
 
 ## 5.2.0-canary.11
