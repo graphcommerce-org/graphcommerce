@@ -1,3 +1,4 @@
+import { ScrollerDots } from '@graphcommerce/framer-scroller'
 import {
   nonNullable,
   SidebarGallery,
@@ -21,24 +22,26 @@ export function ProductPageGallery(props: ProductPageGalleryProps) {
     ...sidebarProps
   } = props
 
+  const images =
+    media_gallery
+      ?.filter(nonNullable)
+      .sort((a, b) => (a.position ?? 0) - (b.position ?? 0))
+      .map((item) => {
+        if (item.__typename === 'ProductImage')
+          return { src: item.url ?? '', alt: item.label || undefined, width, height }
+        return {
+          src: '',
+          alt: `{${item.__typename} not yet supported}`,
+        }
+      }) ?? []
+
   return (
     <SidebarGallery
       {...sidebarProps}
       sidebar={children}
       aspectRatio={[width, height]}
-      images={
-        media_gallery
-          ?.filter(nonNullable)
-          .sort((a, b) => (a.position ?? 0) - (b.position ?? 0))
-          .map((item) => {
-            if (item.__typename === 'ProductImage')
-              return { src: item.url ?? '', alt: item.label || undefined, width, height }
-            return {
-              src: '',
-              alt: `{${item.__typename} not yet supported}`,
-            }
-          }) ?? []
-      }
+      images={images}
+      galleryNavigation={<ScrollerDots />}
     />
   )
 }
