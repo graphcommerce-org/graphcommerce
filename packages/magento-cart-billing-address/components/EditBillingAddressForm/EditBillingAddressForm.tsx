@@ -43,6 +43,7 @@ export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
       telephone: address?.telephone,
       houseNumber: address?.street?.[1] ?? undefined,
       addition: address?.street?.[2] ?? undefined,
+      saveInAddressBook: true,
     },
     onBeforeSubmit: (variables) => {
       const regionId = countries
