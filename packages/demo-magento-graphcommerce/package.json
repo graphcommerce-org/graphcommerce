@@ -26,6 +26,8 @@
     "react-dom": "^18.2.0"
   },
   "dependencies": {
+    "@graphcommerce/next-ui": "5.2.0-canary.13",
+    "@graphcommerce/framer-scroller": "5.2.0-canary.13",
     "@graphcommerce/magento-product": "5.2.0-canary.13",
     "@graphcommerce/magento-product-configurable": "5.2.0-canary.13"
   }

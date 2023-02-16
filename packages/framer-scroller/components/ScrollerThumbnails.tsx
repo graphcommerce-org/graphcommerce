@@ -5,6 +5,7 @@ import { Box, ButtonProps, styled, SxProps, Theme } from '@mui/material'
 import { m } from 'framer-motion'
 import React from 'react'
 import { useScrollerContext } from '../hooks/useScrollerContext'
+import { Scroller } from './Scroller'
 import { ScrollerThumbnail } from './ScrollerThumbnail'
 
 const MotionBox = styled(m.div)({})
@@ -38,7 +39,7 @@ export const ScrollerThumbnails = m(
             maxWidth: '100%',
             py: 0,
             display: 'flex',
-            gap: { xs: '5px', sm: '10px', md: '15px' },
+            gap: { xs: '10px', sm: '15px', md: '20px' },
           },
           ...(Array.isArray(sx) ? sx : [sx]),
         ]}

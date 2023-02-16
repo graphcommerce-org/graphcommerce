@@ -3,6 +3,7 @@ import {
   MotionImageAspect,
   MotionImageAspectProps,
   Scroller,
+  ScrollerDots,
   ScrollerButton,
   ScrollerProvider,
 } from '@graphcommerce/framer-scroller'
@@ -44,7 +45,7 @@ const { withState, selectors } = extendableComponent<OwnerState, typeof name, ty
 export type SidebarGalleryProps = {
   sidebar: React.ReactNode
   images: MotionImageAspectProps[]
-  galleryNavigation: React.ReactElement
+  GalleryNavigation: () => React.ReactElement
   aspectRatio?: [number, number]
   routeHash?: string
   sx?: SxProps<Theme>
@@ -54,7 +55,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
   const {
     sidebar,
     images,
-    galleryNavigation,
+    GalleryNavigation = ScrollerDots,
     aspectRatio: [width, height] = [1, 1],
     sx,
     routeHash = 'gallery',
@@ -94,10 +95,6 @@ export function SidebarGallery(props: SidebarGalleryProps) {
   const handleEscapeKey = (e: KeyboardEvent | Event) => {
     if (zoomed && (e as KeyboardEvent)?.key === 'Escape') toggle()
   }
-
-  const navigation = React.cloneElement(galleryNavigation, {
-    layoutDependency: zoomed,
-  })
 
   const dragStart = useMotionValue<number>(0)
   const onMouseDownScroller: React.MouseEventHandler<HTMLDivElement> = (e) => {
@@ -306,7 +303,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                 },
               }}
             >
-              {navigation}
+              <GalleryNavigation />
             </Box>
           </MotionBox>
 
