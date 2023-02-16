@@ -41,7 +41,6 @@ export function ProductPageGallery(props: ProductPageGalleryProps) {
       sidebar={children}
       aspectRatio={[width, height]}
       images={images}
-      galleryNavigation={<ScrollerDots />}
     />
   )
 }

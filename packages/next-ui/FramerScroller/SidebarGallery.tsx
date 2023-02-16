@@ -45,7 +45,7 @@ const { withState, selectors } = extendableComponent<OwnerState, typeof name, ty
 export type SidebarGalleryProps = {
   sidebar: React.ReactNode
   images: MotionImageAspectProps[]
-  GalleryNavigation: () => React.ReactElement
+  GalleryNavigation?: () => React.ReactElement
   aspectRatio?: [number, number]
   routeHash?: string
   sx?: SxProps<Theme>
