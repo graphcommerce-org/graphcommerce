@@ -56,7 +56,9 @@ export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
         regionId,
       }
     },
-    onComplete: goToCheckout,
+    onComplete: ({ errors }) => {
+      if (!errors) goToCheckout()
+    },
   })
 
   const { handleSubmit, formState, required, error, muiRegister, valid } = form
