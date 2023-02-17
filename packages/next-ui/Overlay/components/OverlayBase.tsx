@@ -469,7 +469,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
             })}
           >
             <LayoutProvider scroll={scrollYOffset}>
-              {active && (typeof children === 'function' ? children() : children)}
+              {typeof children === 'function' ? children() : children}
             </LayoutProvider>
           </MotionDiv>
         </Box>
