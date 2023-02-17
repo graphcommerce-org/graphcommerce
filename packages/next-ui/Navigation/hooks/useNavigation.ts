@@ -20,6 +20,7 @@ export type NavigationContextType = {
   animating: MotionValue<boolean>
   closing: MotionValue<boolean>
   serverRenderDepth: number
+  animationDuration: number
 }
 
 type NavigationNodeBase = {

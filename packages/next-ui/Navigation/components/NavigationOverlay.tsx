@@ -57,7 +57,8 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
     mouseEvent,
     itemPadding = 'md',
   } = props
-  const { selection, items, animating, closing, serverRenderDepth } = useNavigation()
+  const { selection, items, animating, closing, serverRenderDepth, animationDuration } =
+    useNavigation()
 
   const fabMarginY = `calc((${useFabSize('responsive')} - ${useIconSvgSize('large')}) * -0.5)`
   const itemPad = useTheme().spacings[itemPadding] ?? itemPadding
@@ -81,7 +82,9 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
 
   const afterClose = useEventCallback(() => {
     if (!closing.get()) return
-    closing.set(false)
+    setTimeout(() => {
+      closing.set(false)
+    }, animationDuration * 1000)
     selection.set(false)
   })
 
