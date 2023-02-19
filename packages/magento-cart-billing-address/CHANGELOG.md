@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.2.0-canary.14
+
+### Patch Changes
+
+- [#1805](https://github.com/graphcommerce-org/graphcommerce/pull/1805) [`07e9e1ade`](https://github.com/graphcommerce-org/graphcommerce/commit/07e9e1ade8d1970d86f45ae756b25792b29b9a99) - add missing default value ‘saveInAddressBook’ ([@carlocarels90](https://github.com/carlocarels90))
+
 ## 5.2.0-canary.13
 
 ## 5.2.0-canary.12
