@@ -182,7 +182,7 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
               [theme.breakpoints.down('md')]: {
                 width:
                   sizeSm !== 'floating'
-                    ? `calc(${itemWidthSm} + ${selectedLevel}px)`
+                    ? itemWidthSm
                     : `calc(${itemWidthSm} - (${theme.page.horizontal} * 2))`,
                 minWidth: 200,
                 overflow: 'hidden',
@@ -190,19 +190,14 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
                 '& .NavigationItem-item': {
                   width:
                     sizeSm !== 'floating'
-                      ? `calc(${itemWidthSm} - (${itemPad} * 2) + ${selectedLevel}px)`
+                      ? `calc(${itemWidthSm} - (${itemPad} * 2))`
                       : `calc(${itemWidthSm} - (${itemPad} * 2) - (${theme.page.horizontal} * 2))`,
                   minWidth: `calc(200px - (${itemPad} * 2))`,
                 },
               },
               [theme.breakpoints.up('md')]: {
                 '& .NavigationItem-item': {
-                  // eslint-disable-next-line no-nested-ternary
-                  width: itemWidthMd
-                    ? selectedLevel >= 1
-                      ? `calc(${itemWidthMd} + 1px)`
-                      : itemWidthMd
-                    : 'stretch',
+                  width: itemWidthMd || 'stretch',
                 },
               },
             }),
