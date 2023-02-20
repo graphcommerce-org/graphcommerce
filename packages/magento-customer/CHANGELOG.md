@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.2.0-canary.17
+
+### Patch Changes
+
+- [#1801](https://github.com/graphcommerce-org/graphcommerce/pull/1801) [`12263d608`](https://github.com/graphcommerce-org/graphcommerce/commit/12263d6080c1e550985a42f140ffa9d95d0b0335) - Add sign up form translations ([@StefanAngenent](https://github.com/StefanAngenent))
+
 ## 5.2.0-canary.16
 
 ## 5.2.0-canary.15
