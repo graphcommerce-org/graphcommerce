@@ -85,7 +85,7 @@ export function SignUpFormInline({
             validate: (value) => value === watchPassword,
           })}
           helperText={
-            !!formState.errors.confirmPassword && i18n._(/* i18n */ 'Passwords should match')
+            !!formState.errors.confirmPassword && <Trans id="Passwords should match" />
           }
           disabled={formState.isSubmitting}
         />
