@@ -1,4 +1,4 @@
-# Custom field added to the Asset field added to GraphCMS and rendered as the alt tag of the image.
+# Custom field added to the Asset field added to Hygraph and rendered as the alt tag of the image.
 fragment AssetWithAlt on Asset @inject(into: ["Asset"]) {
   alt
 }

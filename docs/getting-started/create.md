@@ -38,14 +38,14 @@ After you've finished this tutorial, you'll have accomplished the following:
 You've familiarized yourself with
 [React ↗](https://reactjs.org/docs/getting-started.html),
 [Next.js ↗](https://nextjs.org/docs/getting-started), and
-[Mui ↗](https://mui.com/getting-started/installation/). GraphCommerce is a
-front-end React framework that uses Next.js for server-side rendering.
+[Mui ↗](https://mui.com/material-ui/getting-started/overview/). GraphCommerce is
+a front-end React framework that uses Next.js for server-side rendering.
 
 ### Install dependencies
 
 If you want to test a GraphCommerce storefront using a pre-configured Magento
-demo store and a pre-configured GraphCMS project with demo content, then you
-need to only install the dependencies. This is the quickest approach.
+demo store and a pre-configured Hygraph project with demo content, then you need
+to only install the dependencies. This is the quickest approach.
 
 - Install and use node 16/18: `nvm install 16` or `nvm use 16`
 - Install yarn: `corepack enable`
@@ -74,27 +74,27 @@ https://user-images.githubusercontent.com/1251986/158647122-dc57002f-a9c2-4661-a
 5. `cp -R .env.example .env` — create .env file
 6. `rm CHANGELOG.md` — remove changelog
 
-## Step 2: Magento and GraphCMS API keys
+## Step 2: Magento and Hygraph API keys
 
 > By default, the .env file is configured with API keys from a demo Magento
-> store and a demo GraphCMS project. If you want to test your GraphCommerce app
+> store and a demo Hygraph project. If you want to test your GraphCommerce app
 > using the demo store, then you can start the development environment. Only
 > proceed with the following steps if you want to develop a GraphCommerce
-> storefront using your own Magento store and/or GraphCMS project.
+> storefront using your own Magento store and/or Hygraph project.
 
 ### Requirements
 
 To order to be able to connect your GraphCommerce app to your Magento backend
-and/or GraphCMS project, you'll need:
+and/or Hygraph project, you'll need:
 
 - Magento 2.4.3 - Clean install, a production or a development environment
-- GraphCMS - A GraphCMS project with the required schema.
-  [Clone the demo GraphCMS project ↗](https://app.graphcms.com/clone/caddaa93cfa9436a9e76ae9c0F34d257)
+- Hygraph - A Hygraph project with the required schema.
+  [Clone the demo Hygraph project ↗](https://app.graphcms.com/clone/caddaa93cfa9436a9e76ae9c0F34d257)
   as your starting point.
 
 ### Configuration
 
-To connect your GraphCommerce app to your Magento backend and/or GraphCMS
+To connect your GraphCommerce app to your Magento backend and/or Hygraph
 project, you need to update variables in the /.env file. The .env file contains
 useful information about your storefront.
 
@@ -105,7 +105,7 @@ Magento 2 API URL, located at `http://<magento2-server>/graphql`.
 Comma-separated list of image domains. Add media.graphcms.com as default.
 
 `GRAPHCMS_URL=""`  
-GraphCMS API URL. Once logged in, copy it from Project Settings > Api Access >
+Hygraph API URL. Once logged in, copy it from Project Settings > Api Access >
 Content API
 
 `NEXT_PUBLIC_LOCALE_STORES='{"en-us": "default", "en-ca": "canada"}'`  
