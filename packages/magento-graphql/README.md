@@ -1,4 +1,4 @@
-# @graphcommerce/next-config
+# @graphcommerce/magento-graphql
 
 ## Configuration
 

@@ -4,6 +4,7 @@ import { generate } from '@graphql-codegen/cli'
 import { transformFileSync } from '@swc/core'
 import { resolveDependenciesSync } from '../utils/resolveDependenciesSync'
 import { resolveDependency } from '../utils/resolveDependency'
+import { isMonorepo } from '../utils/isMonorepo'
 
 const packages = [...resolveDependenciesSync().values()].filter((p) => p !== '.')
 
@@ -14,6 +15,7 @@ const schemaLocations = packages.map((p) => `${p}/**/Config.graphqls`)
 export async function generateConfig() {
   const targetTs = `${resolve('@graphcommerce/next-config').root}/src/generated/config.ts`
   const targetJs = `${resolve('@graphcommerce/next-config').root}/dist/generated/config.js`
+
   await generate({
     silent: true,
     schema: ['graphql/**/Config.graphqls', ...schemaLocations],
@@ -33,6 +35,11 @@ export async function generateConfig() {
           },
         },
       },
+      ...(isMonorepo() && {
+        '../../docs/framework/config.md': {
+          plugins: ['@graphcommerce/graphql-codegen-markdown-docs'],
+        },
+      }),
     },
   })
 

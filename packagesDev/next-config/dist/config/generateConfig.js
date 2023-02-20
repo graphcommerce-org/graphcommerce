@@ -7,6 +7,7 @@ const cli_1 = require("@graphql-codegen/cli");
 const core_1 = require("@swc/core");
 const resolveDependenciesSync_1 = require("../utils/resolveDependenciesSync");
 const resolveDependency_1 = require("../utils/resolveDependency");
+const isMonorepo_1 = require("../utils/isMonorepo");
 const packages = [...(0, resolveDependenciesSync_1.resolveDependenciesSync)().values()].filter((p) => p !== '.');
 const resolve = (0, resolveDependency_1.resolveDependency)();
 const schemaLocations = packages.map((p) => `${p}/**/Config.graphqls`);
@@ -32,6 +33,11 @@ async function generateConfig() {
                     },
                 },
             },
+            ...((0, isMonorepo_1.isMonorepo)() && {
+                '../../docs/framework/config.md': {
+                    plugins: ['@graphcommerce/graphql-codegen-markdown-docs'],
+                },
+            }),
         },
     });
     const result = (0, core_1.transformFileSync)(targetTs, {

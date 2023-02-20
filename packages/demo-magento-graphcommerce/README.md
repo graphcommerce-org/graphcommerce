@@ -14,6 +14,7 @@ https://graphcommerce.vercel.app:
 5. `yarn codegen`
 6. `yarn dev`
 
-## Demo usage
+## Configuration
 
-DEMO_MAGENTO_GRAPHCOMMERCE="1"
+Configure the following ([configuration values](./Config.graphqls)) in your
+graphcommerce.config.js

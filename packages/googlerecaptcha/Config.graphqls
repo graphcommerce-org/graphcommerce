@@ -1,10 +1,15 @@
 extend input GraphCommerceConfig {
   """
-  Google reCAPTCHA key
+  Google reCAPTCHA key, get from https://developers.google.com/recaptcha/docs/v3
+
+  This value is required even if you are configuring different values for each locale.
   """
   googleRecaptchaKey: String
 }
 
 extend input GraphCommerceI18nConfig {
+  """
+  Locale specific google reCAPTCHA key.
+  """
   googleRecaptchaKey: String
 }

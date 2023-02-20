@@ -5,30 +5,10 @@ This package makes it easy to add
 GraphCommerce. It allows you to load the Recatcha script conditionally on the
 page so it isn't initialized on all pages.
 
-### Installation
+## Configuration
 
-1. Configure the googleTagmanagerId in the graphcommerce.config.js file.
-
-   ```js
-   const config = {
-     googleTagmanagerId: 'GTM-XXXXXXX',
-   }
-   ```
-
-   Or by locale:
-
-   ```js
-   const config = {
-     googleTagmanagerId: 'ENABLED',
-     // Or by locale
-     i18n: [
-       {
-         locale: 'en',
-         googleTagmanagerId: 'GTM-XXXXXXX',
-       },
-     ],
-   }
-   ```
+1. Configure the following ([configuration values](./Config.graphqls)) in your
+   graphcommerce.config.js
 
 2. Add `X-Recaptcha` header to your `.meshrc.yml` if it isn't there.
    [example](../../examples/magento-graphcms/.meshrc.yml)

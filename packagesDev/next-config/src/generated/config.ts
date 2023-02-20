@@ -22,6 +22,7 @@ export type DeployEnvironment =
   /** The production environment */
   | 'production';
 
+/** Global GraphCommerce configuration can be configured in your `graphcommerce.config.js` file in the root of your project. */
 export type GraphCommerceConfig = {
   /**
    * The canonical base URL is used for SEO purposes.
@@ -32,7 +33,11 @@ export type GraphCommerceConfig = {
    * - https://example.com/en-US
    */
   canonicalBaseUrl: Scalars['String'];
-  /** Due to a limitation of the GraphQL API it is not possible to determine if a cart should be displayed including or excluding tax. */
+  /**
+   * Due to a limitation of the GraphQL API it is not possible to determine if a cart should be displayed including or excluding tax.
+   *
+   * When Magento's StoreConfig adds this value, this can be replaced.
+   */
   cartDisplayPricesInclTax?: InputMaybe<Scalars['Boolean']>;
   /**
    * Due to a limitation in the GraphQL API of Magento 2, we need to know if the
@@ -40,9 +45,9 @@ export type GraphCommerceConfig = {
    *
    * This value should match Magento 2's configuration value for
    * `customer/create_account/confirm` and should be removed once we can query
-   * @deprecated Should be replaced with a Magento configuration instead.
    */
   customerRequireEmailConfirmation?: InputMaybe<Scalars['Boolean']>;
+  /** Debug configuration for GraphCommerce */
   debug?: InputMaybe<GraphCommerceDebugConfig>;
   /**
    * Enables some demo specific code that is probably not useful for a project:
@@ -54,7 +59,6 @@ export type GraphCommerceConfig = {
   demoMode?: InputMaybe<Scalars['Boolean']>;
   /**
    * Environment GraphCommerce is deployed to.
-   * Default: 'development'
    *
    * Not to be confused with NODE_ENV: which will always be 'production' when running `next build`.
    */
@@ -67,8 +71,17 @@ export type GraphCommerceConfig = {
    * To enable only for a specific locale, override the value in the i18n config.
    */
   googleAnalyticsId?: InputMaybe<Scalars['String']>;
-  /** Google reCAPTCHA key */
+  /**
+   * Google reCAPTCHA key, get from https://developers.google.com/recaptcha/docs/v3
+   *
+   * This value is required even if you are configuring different values for each locale.
+   */
   googleRecaptchaKey?: InputMaybe<Scalars['String']>;
+  /**
+   * The Google Tagmanager ID to be used on the site.
+   *
+   * This value is required even if you are configuring different values for each locale.
+   */
   googleTagmanagerId?: InputMaybe<Scalars['String']>;
   /**
    * The HyGraph endpoint.
@@ -110,6 +123,7 @@ export type GraphCommerceConfig = {
   wishlistIgnoreProductWishlistStatus?: InputMaybe<Scalars['Boolean']>;
 };
 
+/** Debug configuration for GraphCommerce */
 export type GraphCommerceDebugConfig = {
   /** Reports which plugins are enabled or disabled. */
   pluginStatus?: InputMaybe<Scalars['Boolean']>;
@@ -130,6 +144,7 @@ export type GraphCommerceDebugConfig = {
   webpackDuplicatesPlugin?: InputMaybe<Scalars['Boolean']>;
 };
 
+/** All i18n configuration for the project */
 export type GraphCommerceI18nConfig = {
   /**
    * The canonical base URL is used for SEO purposes.
@@ -156,8 +171,11 @@ export type GraphCommerceI18nConfig = {
    * To disable for a specific locale, set the value to null.
    */
   googleAnalyticsId?: InputMaybe<Scalars['String']>;
+  /** Locale specific google reCAPTCHA key. */
   googleRecaptchaKey?: InputMaybe<Scalars['String']>;
+  /** The Google Tagmanager ID to be used per locale. */
   googleTagmanagerId?: InputMaybe<Scalars['String']>;
+  /** Add a gcms-locales header to make sure queries return in a certain language, can be an array to define fallbacks. */
   hygraphLocales?: InputMaybe<Array<Scalars['String']>>;
   /** Specify a custom locale for to load translations. */
   linguiLocale?: InputMaybe<Scalars['String']>;

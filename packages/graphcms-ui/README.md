@@ -1,5 +1,3 @@
-# @graphcommerce/next-config
-
 ## Configuration
 
 Configure the following ([configuration values](./Config.graphqls)) in your

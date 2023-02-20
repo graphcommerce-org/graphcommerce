@@ -1,5 +1,6 @@
-directive @oneOf on INPUT_OBJECT
-
+"""
+All i18n configuration for the project
+"""
 input GraphCommerceI18nConfig {
   """
   There can only be one entry with defaultLocale set to true.
@@ -52,6 +53,9 @@ enum DeployEnvironment {
   development
 }
 
+"""
+Debug configuration for GraphCommerce
+"""
 input GraphCommerceDebugConfig {
   """
   When updating packages it can happen that the same package is included with different versions in the same project.
@@ -76,6 +80,9 @@ input GraphCommerceDebugConfig {
   pluginStatus: Boolean
 }
 
+"""
+Global GraphCommerce configuration can be configured in your `graphcommerce.config.js` file in the root of your project.
+"""
 input GraphCommerceConfig {
   """
   All i18n configuration for the project
@@ -84,7 +91,6 @@ input GraphCommerceConfig {
 
   """
   Environment GraphCommerce is deployed to.
-  Default: 'development'
 
   Not to be confused with NODE_ENV: which will always be 'production' when running `next build`.
   """
@@ -111,5 +117,8 @@ input GraphCommerceConfig {
   """
   previewSecret: String
 
+  """
+  Debug configuration for GraphCommerce
+  """
   debug: GraphCommerceDebugConfig
 }

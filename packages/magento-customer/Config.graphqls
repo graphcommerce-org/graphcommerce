@@ -7,5 +7,5 @@ extend input GraphCommerceConfig {
   `customer/create_account/confirm` and should be removed once we can query
   """
   customerRequireEmailConfirmation: Boolean
-    @deprecated(reason: "Should be replaced with a Magento configuration instead.")
+  # @deprecated(reason: "Should be replaced with a Magento configuration instead.")
 }
