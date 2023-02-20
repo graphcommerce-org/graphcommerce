@@ -113,9 +113,7 @@ export const NavigationItem = React.memo<NavigationItemProps>((props) => {
           tabIndex={tabIndex}
           onClick={(e) => {
             e.preventDefault()
-            if (!isSelected && !(matchMedia.up('md') && animating.get())) {
-              selection.set(itemPath)
-            }
+            selection.set(itemPath)
           }}
           onMouseMove={
             (itemPath.length > 1 || !hideRootOnNavigate) && mouseEvent === 'hover'
