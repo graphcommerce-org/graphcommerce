@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-product-configurable",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "5.2.0-canary.14",
+  "version": "5.2.0-canary.15",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -12,23 +12,23 @@
     }
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "5.2.0-canary.14",
-    "@graphcommerce/prettier-config-pwa": "5.2.0-canary.14",
-    "@graphcommerce/typescript-config-pwa": "5.2.0-canary.14"
+    "@graphcommerce/eslint-config-pwa": "5.2.0-canary.15",
+    "@graphcommerce/prettier-config-pwa": "5.2.0-canary.15",
+    "@graphcommerce/typescript-config-pwa": "5.2.0-canary.15"
   },
   "dependencies": {
-    "@graphcommerce/graphql": "5.2.0-canary.14",
-    "@graphcommerce/graphql-mesh": "5.2.0-canary.14",
-    "@graphcommerce/image": "5.2.0-canary.14",
-    "@graphcommerce/magento-cart": "5.2.0-canary.14",
-    "@graphcommerce/magento-cart-items": "5.2.0-canary.14",
-    "@graphcommerce/magento-category": "5.2.0-canary.14",
-    "@graphcommerce/magento-customer": "5.2.0-canary.14",
-    "@graphcommerce/magento-product": "5.2.0-canary.14",
-    "@graphcommerce/magento-product-simple": "5.2.0-canary.14",
-    "@graphcommerce/magento-store": "5.2.0-canary.14",
-    "@graphcommerce/next-ui": "5.2.0-canary.14",
-    "@graphcommerce/react-hook-form": "5.2.0-canary.14"
+    "@graphcommerce/graphql": "5.2.0-canary.15",
+    "@graphcommerce/graphql-mesh": "5.2.0-canary.15",
+    "@graphcommerce/image": "5.2.0-canary.15",
+    "@graphcommerce/magento-cart": "5.2.0-canary.15",
+    "@graphcommerce/magento-cart-items": "5.2.0-canary.15",
+    "@graphcommerce/magento-category": "5.2.0-canary.15",
+    "@graphcommerce/magento-customer": "5.2.0-canary.15",
+    "@graphcommerce/magento-product": "5.2.0-canary.15",
+    "@graphcommerce/magento-product-simple": "5.2.0-canary.15",
+    "@graphcommerce/magento-store": "5.2.0-canary.15",
+    "@graphcommerce/next-ui": "5.2.0-canary.15",
+    "@graphcommerce/react-hook-form": "5.2.0-canary.15"
   },
   "peerDependencies": {
     "@lingui/react": "^3.13.2",
