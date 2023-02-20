@@ -58,7 +58,11 @@ export function useOverlayPosition(
     ro.observe(scrollerRef.current)
     ;[...scrollerRef.current.children].forEach((child) => ro.observe(child))
 
-    return () => ro.disconnect()
+    window.addEventListener('resize', measure)
+    return () => {
+      window.removeEventListener('resize', measure)
+      ro.disconnect()
+    }
   }, [getScrollSnapPositions, scrollerRef, state, variant])
 
   // sets a float between 0 and 1 for the visibility of the overlay
