@@ -1,8 +1,0 @@
-type PostcodeNLResult {
-  street: String!
-  city: String!
-}
-
-extend type Query {
-  postcodeNL(postcode: String!, housenumber: String!): PostcodeNLResult
-}
