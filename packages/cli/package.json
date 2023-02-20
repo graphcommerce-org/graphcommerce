@@ -2,7 +2,7 @@
   "name": "@graphcommerce/cli",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "5.2.0-canary.15",
+  "version": "5.2.0-canary.16",
   "author": "",
   "license": "MIT",
   "scripts": {
@@ -22,7 +22,7 @@
     "graphcommerce": "dist/bin/graphcommerce.js"
   },
   "dependencies": {
-    "@graphcommerce/next-config": "5.2.0-canary.15",
+    "@graphcommerce/next-config": "5.2.0-canary.16",
     "@graphql-codegen/cli": "2.16.1",
     "@graphql-mesh/cli": "0.82.6",
     "@graphql-mesh/types": "0.89.2",
@@ -35,9 +35,9 @@
     "ts-node": "^10.9.1"
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "5.2.0-canary.15",
-    "@graphcommerce/prettier-config-pwa": "5.2.0-canary.15",
-    "@graphcommerce/typescript-config-pwa": "5.2.0-canary.15",
+    "@graphcommerce/eslint-config-pwa": "5.2.0-canary.16",
+    "@graphcommerce/prettier-config-pwa": "5.2.0-canary.16",
+    "@graphcommerce/typescript-config-pwa": "5.2.0-canary.16",
     "@types/rimraf": "^3.0.2",
     "typescript": "4.9.4"
   },

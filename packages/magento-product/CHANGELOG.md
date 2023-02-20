@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.2.0-canary.16
+
+### Patch Changes
+
+- [#1799](https://github.com/graphcommerce-org/graphcommerce/pull/1799) [`cdf7eafc4`](https://github.com/graphcommerce-org/graphcommerce/commit/cdf7eafc4f16e2b02daae1b2403f6f69b3154bdc) - prevent that ProductListFilters will render ‘category_uid’ as filter ([@carlocarels90](https://github.com/carlocarels90))
+
 ## 5.2.0-canary.15
 
 ## 5.2.0-canary.14
