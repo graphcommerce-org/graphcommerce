@@ -52,3 +52,13 @@ export function isTypename<T extends TypeObject, Typenames extends T['__typename
 ): type is FilterTypeByTypename<T, Typenames[number]> {
   return typename.includes(type.__typename)
 }
+
+export function filterByTypename<T extends TypeObject, Typename extends T['__typename']>(
+  type: (T | undefined | null)[] | undefined | null,
+  typename: Typename,
+): FilterTypeByTypename<T, Typename>[] | undefined {
+  return type?.filter((item) => item?.__typename === typename) as FilterTypeByTypename<
+    T,
+    Typename
+  >[]
+}
