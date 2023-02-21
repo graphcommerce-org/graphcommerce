@@ -20,7 +20,7 @@ msgid "<0>{name}</0> has been added to your wishlist!"
 msgstr "<0>{name}</0> a été ajouté à votre liste d'envies!"
 
 msgid "Above <0/>"
-msgstr ""
+msgstr "Au-dessus de <0/>"
 
 msgid "Account"
 msgstr "Compte"
@@ -77,7 +77,7 @@ msgid "Be the first to write a review!"
 msgstr "Soyez le premier à écrire une évaluation!"
 
 msgid "Below <0/>"
-msgstr ""
+msgstr "Dessous <0/>"
 
 msgid "Billing address"
 msgstr "Adresse de facturation"
@@ -107,7 +107,7 @@ msgid "City"
 msgstr "Ville"
 
 msgid "Clear"
-msgstr ""
+msgstr "Effacer le filtre"
 
 msgid "Close"
 msgstr "Fermer"
@@ -200,7 +200,7 @@ msgid "Email"
 msgstr "Email"
 
 msgid "Email address"
-msgstr ""
+msgstr "Adresse e-mail"
 
 msgid "Emails don't match"
 msgstr "Les emails ne correspondent pas"
@@ -272,13 +272,13 @@ msgid "Light Mode"
 msgstr "Mode clair"
 
 msgid "Loading"
-msgstr ""
+msgstr "Chargement"
 
 msgid "Loading wishlist"
 msgstr "Chargement de la liste de souhaits"
 
 msgid "Loading your account"
-msgstr ""
+msgstr "Chargement de votre compte"
 
 msgid "Loading your data"
 msgstr "Chargement de vos données"
@@ -383,7 +383,7 @@ msgid "Passwords don't match"
 msgstr "Les mots de passe ne correspondent pas"
 
 msgid "Passwords should match"
-msgstr ""
+msgstr "Les mots de passe doivent correspondre"
 
 msgid "Pay"
 msgstr "Payer"
@@ -434,7 +434,7 @@ msgid "Prefix"
 msgstr "Préfixe"
 
 msgid "Processing your payment"
-msgstr ""
+msgstr "Traitement de votre paiement"
 
 msgid "Product could not be found"
 msgstr "Le produit n'a pas pu être trouvé"
@@ -497,7 +497,7 @@ msgid "Set your new password"
 msgstr "Choisissez votre nouveau mot de passe"
 
 msgid "Several errors occured"
-msgstr ""
+msgstr "Plusieurs erreurs se sont produites"
 
 msgid "Shipping"
 msgstr "Expédition"
@@ -542,7 +542,7 @@ msgid "Submit review"
 msgstr "Soumettre une évaluation"
 
 msgid "Subscribe"
-msgstr ""
+msgstr "S'abonner"
 
 msgid "Subscribe to newsletter"
 msgstr "S'inscrire à la newsletter"
@@ -551,7 +551,7 @@ msgid "Subscribe to our newsletter to stay informed about our new products!"
 msgstr "Abonnez-vous à notre newsletter pour rester informé de nos nouveaux produits !"
 
 msgid "Subscribed"
-msgstr ""
+msgstr "Abonné"
 
 msgid "Successfully changed password"
 msgstr "Mot de passe changé avec succès"
@@ -668,7 +668,7 @@ msgid "You can track your order status and much more!"
 msgstr "Vous pouvez suivre l'état de votre commande et beaucoup plus!"
 
 msgid "You have been successfully subscribed to our newsletter."
-msgstr ""
+msgstr "Vous avez été inscrit avec succès à notre newsletter."
 
 msgid "You have no addresses saved yet"
 msgstr "Vous n'avez pas encore enregistré d'adresse"

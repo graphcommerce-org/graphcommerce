@@ -20,7 +20,7 @@ msgid "<0>{name}</0> has been added to your wishlist!"
 msgstr "<0>{name}</0> wurde zu Ihrer Wunschliste hinzugefügt!"
 
 msgid "Above <0/>"
-msgstr ""
+msgstr "Über <0/>"
 
 msgid "Account"
 msgstr "Konto"
@@ -77,7 +77,7 @@ msgid "Be the first to write a review!"
 msgstr "Schreiben Sie die erste Bewertung!"
 
 msgid "Below <0/>"
-msgstr ""
+msgstr "Unter <0/>"
 
 msgid "Billing address"
 msgstr "Rechnungsadresse"
@@ -107,7 +107,7 @@ msgid "City"
 msgstr "Stadt"
 
 msgid "Clear"
-msgstr ""
+msgstr "Filter löschen"
 
 msgid "Close"
 msgstr "Schließen"
@@ -272,13 +272,13 @@ msgid "Light Mode"
 msgstr "Heller Modus"
 
 msgid "Loading"
-msgstr ""
+msgstr "Laden"
 
 msgid "Loading wishlist"
 msgstr "Wunschliste wird geladen"
 
 msgid "Loading your account"
-msgstr ""
+msgstr "Ihr Konto wird geladen"
 
 msgid "Loading your data"
 msgstr "Ihre Daten werden geladen"
@@ -383,7 +383,7 @@ msgid "Passwords don't match"
 msgstr "Passwörter stimmen nicht überein"
 
 msgid "Passwords should match"
-msgstr ""
+msgstr "Passwörter sollten übereinstimmen"
 
 msgid "Pay"
 msgstr "Bezahlen"
@@ -434,7 +434,7 @@ msgid "Prefix"
 msgstr "Präfix"
 
 msgid "Processing your payment"
-msgstr ""
+msgstr "Verarbeitung Ihrer Zahlung"
 
 msgid "Product could not be found"
 msgstr "Produkt konnte nicht gefunden werden"
@@ -497,7 +497,7 @@ msgid "Set your new password"
 msgstr "Legen Sie Ihr neues Passwort fest"
 
 msgid "Several errors occured"
-msgstr ""
+msgstr "Es sind mehrere Fehler aufgetreten"
 
 msgid "Shipping"
 msgstr "Versand"
@@ -542,7 +542,7 @@ msgid "Submit review"
 msgstr "Bewertung abschicken"
 
 msgid "Subscribe"
-msgstr ""
+msgstr "Abonnieren"
 
 msgid "Subscribe to newsletter"
 msgstr "Newsletter abonnieren"
@@ -551,7 +551,7 @@ msgid "Subscribe to our newsletter to stay informed about our new products!"
 msgstr "Abonnieren Sie unseren Newsletter, um über unsere neuen Produkte informiert zu bleiben!"
 
 msgid "Subscribed"
-msgstr ""
+msgstr "Gezeichnet"
 
 msgid "Successfully changed password"
 msgstr "Passwort erfolgreich geändert"
@@ -668,7 +668,7 @@ msgid "You can track your order status and much more!"
 msgstr "Sie können Ihren Bestellstatus und vieles mehr verfolgen!"
 
 msgid "You have been successfully subscribed to our newsletter."
-msgstr ""
+msgstr "Sie haben sich erfolgreich für unseren Newsletter angemeldet."
 
 msgid "You have no addresses saved yet"
 msgstr "Sie haben noch keine Adressen gespeichert"

@@ -20,7 +20,7 @@ msgid "<0>{name}</0> has been added to your wishlist!"
 msgstr "<0>{name}</0> is toegevoegd aan je verlanglijst!"
 
 msgid "Above <0/>"
-msgstr ""
+msgstr "Boven <0/>"
 
 msgid "Account"
 msgstr "Account"
@@ -77,7 +77,7 @@ msgid "Be the first to write a review!"
 msgstr "Wees de eerste die een review schrijft!"
 
 msgid "Below <0/>"
-msgstr ""
+msgstr "Onder <0/>"
 
 msgid "Billing address"
 msgstr "Factuuradres"
