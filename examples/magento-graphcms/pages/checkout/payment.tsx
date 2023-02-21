@@ -33,7 +33,6 @@ import {
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { CircularProgress, Container, Dialog, Typography } from '@mui/material'
-import { useRouter } from 'next/router'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
 import { DefaultPageDocument } from '../../graphql/DefaultPage.gql'
@@ -44,9 +43,7 @@ type GetPageStaticProps = GetStaticProps<LayoutMinimalProps>
 function PaymentPage() {
   const billingPage = useCartQuery(BillingPageDocument, { fetchPolicy: 'cache-and-network' })
 
-  const router = useRouter()
-  const [cartLock] = useCartLock()
-  const locked = cartLock.locked || !router.isReady || router.query.PayerID
+  const [{ locked }] = useCartLock()
 
   const cartExists =
     typeof billingPage.data?.cart !== 'undefined' && (billingPage.data.cart?.items?.length ?? 0) > 0
