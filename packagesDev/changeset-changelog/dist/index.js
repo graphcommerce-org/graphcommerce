@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+// eslint-disable-next-line import/no-extraneous-dependencies
 const get_github_info_1 = require("@changesets/get-github-info");
 const changelogFunctions = {
     getDependencyReleaseLine: () => Promise.resolve(''),

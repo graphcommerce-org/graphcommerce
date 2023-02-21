@@ -1,4 +1,4 @@
-import { LinguiConfig } from '@lingui/conf'
+import type { LinguiConfig } from '@lingui/conf'
 /**
  * Augmenting the locale config to be compatible with GraphCommerce.
  *

@@ -1,4 +1,4 @@
-import { Path, useWatch, FieldValues } from '@graphcommerce/react-hook-form'
+import { useWatch, FieldValues } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { PasswordElement, PasswordElementProps } from './PasswordElement'
 

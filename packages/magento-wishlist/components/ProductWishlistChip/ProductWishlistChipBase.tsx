@@ -26,9 +26,8 @@ import { RemoveProductFromWishlistDocument } from '../../queries/RemoveProductFr
 import { WishlistSummaryFragment } from '../../queries/WishlistSummaryFragment.gql'
 import { ProductWishlistChipFragment } from './ProductWishlistChip.gql'
 
-const hideForGuest = process.env.NEXT_PUBLIC_WISHLIST_HIDE_FOR_GUEST === '1'
-const ignoreProductWishlistStatus =
-  process.env.NEXT_PUBLIC_WISHLIST_IGNORE_PRODUCT_WISHLIST_STATUS === '1'
+const hideForGuest = import.meta.graphCommerce.wishlistHideForGuests
+const ignoreProductWishlistStatus = import.meta.graphCommerce.wishlistIgnoreProductWishlistStatus
 
 export type ProductWishlistChipProps = ProductWishlistChipFragment & { sx?: SxProps<Theme> } & {
   showFeedbackMessage?: boolean

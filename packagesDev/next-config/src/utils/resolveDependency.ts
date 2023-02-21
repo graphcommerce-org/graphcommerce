@@ -27,7 +27,11 @@ export const resolveDependency = (cwd: string = process.cwd()) => {
         const relative = dependency.replace(depCandidate, '')
 
         const rootCandidate = dependency.replace(depCandidate, root)
-        const fromRoot = [`${rootCandidate}`, `${rootCandidate}/index`].find((location) =>
+        const fromRoot = [
+          `${rootCandidate}`,
+          `${rootCandidate}/index`,
+          `${rootCandidate}/src/index`,
+        ].find((location) =>
           ['ts', 'tsx'].find((extension) => fs.existsSync(`${location}.${extension}`)),
         )
         if (!fromRoot) throw Error("Can't find plugin target")

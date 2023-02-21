@@ -1,14 +1,14 @@
 ---
-menu: 5. Build a GraphCMS component
-metaTitle: Build a GraphCMS component
+menu: 5. Build a Hygraph component
+metaTitle: Build a Hygraph component
 ---
 
-# Build a GraphCMS component
+# Build a Hygraph component
 
 Previously, you created a GraphCommerce app and started building a custom
-header. You're now ready to build a GraphCMS component.
+header. You're now ready to build a Hygraph component.
 
-GraphCMS is the integrated Content Management System that is part of the
+Hygraph is the integrated Content Management System that is part of the
 [magento-graphcms example](../getting-started/readme.md).
 
 In this tutorial, you'll accomplish a series of tasks to add some specific
@@ -17,7 +17,7 @@ you'll learn where to find resources to build more complex features on your own.
 
 ### After you've finished this tutorial, you'll have accomplished the following:
 
-- Create a Model in GraphCMS, called Banner
+- Create a Model in Hygraph, called Banner
 - Configure the Model's copy and image field
 - Define the relationship between the Banner Model and Page Content field
 - Write a GraphQL query fragment and add it to the page query
@@ -33,9 +33,9 @@ frontend React framework that uses Next.js for server-side rendering.
 
 ---
 
-### Create the GraphCMS model
+### Create the Hygraph model
 
-- Login to GraphCMS, navigate to the Schema and add a new Model called "Banner"
+- Login to Hygraph, navigate to the Schema and add a new Model called "Banner"
 - Add a single line text field called "Identity" and configure the following:
 
 <figure>
@@ -240,9 +240,9 @@ const defaultRenderer: Partial<ContentTypeRenderer> = {
 
 <figure>
 
-![An instance of the banner component rendering with content from GraphCMS](https://user-images.githubusercontent.com/1251986/157832263-ee06b20e-acac-4f68-89f2-4377199b7fa4.png)
+![An instance of the banner component rendering with content from Hygraph](https://user-images.githubusercontent.com/1251986/157832263-ee06b20e-acac-4f68-89f2-4377199b7fa4.png)
 
-   <figcaption>An instance of the banner component rendering with content from GraphCMS</figcaption>
+   <figcaption>An instance of the banner component rendering with content from Hygraph</figcaption>
 </figure>
 
 <figure>

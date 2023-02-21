@@ -1,5 +1,4 @@
 import { ClickAwayListener, Popper, PopperProps } from '@mui/material'
-import { m } from 'framer-motion'
 import { useRef } from 'react'
 import { PopperPanelActions } from './PopperPanelActions'
 import { PanelProps } from './types'

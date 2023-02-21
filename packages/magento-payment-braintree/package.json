@@ -31,8 +31,8 @@
     "braintree-web": "^3.88.6"
   },
   "peerDependencies": {
-    "@lingui/core": "^3.13.2",
     "@lingui/react": "^3.13.2",
+    "@lingui/core": "^3.13.2",
     "@mui/material": "^5.10.16",
     "framer-motion": "^7.0.0",
     "next": "^13.1.1",

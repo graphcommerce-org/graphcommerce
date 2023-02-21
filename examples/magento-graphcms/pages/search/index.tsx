@@ -108,7 +108,7 @@ function SearchResultPage(props: SearchResultProps) {
       {products && products.items && products?.items?.length > 0 && (
         <>
           <StickyBelowHeader>
-            {process.env.NEXT_PUBLIC_ADVANCED_FILTERS ? (
+            {import.meta.graphCommerce.productFiltersPro ? (
               <ProductFiltersPro params={params}>
                 <ProductListFiltersContainer>
                   <ProductFiltersProFilterChips {...filters} filterTypes={filterTypes} />

@@ -1,0 +1,19 @@
+extend input GraphCommerceI18nConfig {
+  """
+  Configure different Google Analytics IDs for different locales.
+
+  To disable for a specific locale, set the value to null.
+  """
+  googleAnalyticsId: String
+}
+
+extend input GraphCommerceConfig {
+  """
+  See https://support.google.com/analytics/answer/9539598?hl=en
+
+  Provide a value to enable Google Analytics for your store.
+
+  To enable only for a specific locale, override the value in the i18n config.
+  """
+  googleAnalyticsId: String
+}

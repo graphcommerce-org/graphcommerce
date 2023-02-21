@@ -16,15 +16,15 @@ high-end e-commerce progressive web apps (PWA).
 | [Static generation](../framework/static-generation.md)         | [Theming](../framework/theming.md)       | [Translations](../framework/translations.md)       |
 | [Environment Variables](../framework/environment-variables.md) | [Typography](../framework/typography.md) | [Troubleshooting](../framework/troubleshooting.md) |
 | [Deployment](../framework/deployment.md)                       | [Favicon](../framework/favicon.md)       | [SEO](../framework/seo.md)                         |
-| [GraphCMS](../framework/graphcms.md)                           | [Icons](../framework//icons.md)          |                                                    |
+| [Hygraph](../framework/graphcms.md)                            | [Icons](../framework//icons.md)          |                                                    |
 
 ## GraphCommerce project structure
 
 When you create a GraphCommerce app, the GraphCommerce
 [magento-graphcms example](../getting-started/readme.md) comes with a basic file
-structure of a GraphCommerce project that's integrated with Magento and
-GraphCMS. Most of the files that you'll work within your GraphCommerce project
-are located in the /components or /pages directories.
+structure of a GraphCommerce project that's integrated with Magento and Hygraph.
+Most of the files that you'll work within your GraphCommerce project are located
+in the /components or /pages directories.
 
 - A minimal set of components you would most likely modify for your project
 - The main layout component, which renders header, navigation, and footer
@@ -40,7 +40,7 @@ File structure of the graphcommerce-magento example
     └── Layout
         └── Footer.tsx
         └── LayoutFull.tsx
-    └── GraphCMS
+    └── Hygraph
         └── Asset
         └── RowHeroBanner
         └── RowQuote

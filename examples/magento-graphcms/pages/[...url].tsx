@@ -110,7 +110,7 @@ function CategoryPage(props: CategoryProps) {
           <CategoryDescription description={category.description} />
           <CategoryChildren params={params}>{category.children}</CategoryChildren>
           <StickyBelowHeader>
-            {process.env.NEXT_PUBLIC_ADVANCED_FILTERS ? (
+            {import.meta.graphCommerce.productFiltersPro ? (
               <ProductFiltersPro params={params}>
                 <ProductListFiltersContainer>
                   <ProductFiltersProFilterChips {...filters} filterTypes={filterTypes} />

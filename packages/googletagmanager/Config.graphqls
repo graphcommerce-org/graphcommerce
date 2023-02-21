@@ -1,0 +1,15 @@
+extend input GraphCommerceConfig {
+  """
+  The Google Tagmanager ID to be used on the site.
+
+  This value is required even if you are configuring different values for each locale.
+  """
+  googleTagmanagerId: String
+}
+
+extend input GraphCommerceI18nConfig {
+  """
+  The Google Tagmanager ID to be used per locale.
+  """
+  googleTagmanagerId: String
+}

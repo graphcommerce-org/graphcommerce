@@ -1,5 +1,6 @@
 import path from 'path'
 import { Compiler } from 'webpack'
+import { GraphCommerceConfig } from '../generated/config'
 import { ResolveDependency, resolveDependency } from '../utils/resolveDependency'
 import { findPlugins } from './findPlugins'
 import { generateInterceptors, GenerateInterceptorsReturn } from './generateInterceptors'
@@ -12,10 +13,10 @@ export class InterceptorPlugin {
 
   private resolveDependency: ResolveDependency
 
-  constructor() {
+  constructor(private config: GraphCommerceConfig) {
     this.resolveDependency = resolveDependency()
 
-    this.interceptors = generateInterceptors(findPlugins(), this.resolveDependency)
+    this.interceptors = generateInterceptors(findPlugins(this.config), this.resolveDependency)
     this.interceptorByDepependency = Object.fromEntries(
       Object.values(this.interceptors).map((i) => [i.dependency, i]),
     )
@@ -28,7 +29,7 @@ export class InterceptorPlugin {
 
     // After the compilation has succeeded we watch all possible plugin locations.
     compiler.hooks.afterCompile.tap('InterceptorPlugin', (compilation) => {
-      const plugins = findPlugins()
+      const plugins = findPlugins(this.config)
 
       plugins.forEach((p) => {
         const absoluteFilePath = `${path.join(

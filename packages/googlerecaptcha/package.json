@@ -18,7 +18,8 @@
     "@types/grecaptcha": "^3.0.4"
   },
   "dependencies": {
-    "@graphcommerce/graphql": "5.2.0-canary.19"
+    "@graphcommerce/graphql": "5.2.0-canary.19",
+    "@graphcommerce/next-ui": "5.2.0-canary.19"
   },
   "peerDependencies": {
     "next": "^13.1.1",

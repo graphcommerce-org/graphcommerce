@@ -7,21 +7,14 @@ import {
   measurePerformanceLink,
   InMemoryCache,
   fragments,
-  HttpLink,
 } from '@graphcommerce/graphql'
-import { MeshApolloLink } from '@graphcommerce/graphql-mesh'
+import { MeshApolloLink, getBuiltMesh } from '@graphcommerce/graphql-mesh'
 import { magentoTypePolicies } from '@graphcommerce/magento-graphql'
 import { createStoreLink, defaultLocale } from '@graphcommerce/magento-store'
 
-const loopback = process.env.VERCEL === '1' && process.env.CI !== '1'
-
-// Do not import the mesh when we're running in loopback mode.
-const mesh = loopback
-  ? undefined
-  : await import('@graphcommerce/graphql-mesh').then(({ getBuiltMesh }) => getBuiltMesh())
+const mesh = await getBuiltMesh()
 
 function client(locale: string) {
-  if (!mesh) throw Error('Mesh is not available')
   return new ApolloClient({
     link: ApolloLink.from([
       measurePerformanceLink,
@@ -53,29 +46,6 @@ export function graphqlClient(
   locale: string | undefined = defaultLocale(),
   shared = true,
 ): ApolloClient<NormalizedCacheObject> {
-  if (loopback) {
-    return new ApolloClient({
-      link: ApolloLink.from([
-        measurePerformanceLink,
-        errorLink,
-        // Add the correct store header for the Magento user.
-        createStoreLink(locale),
-        // Add the correct locale header for Hygraph localized content.
-        createHygraphLink(locale),
-        new HttpLink({
-          uri: process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT,
-          credentials: 'same-origin',
-        }),
-      ]),
-      cache: new InMemoryCache({
-        possibleTypes: fragments.possibleTypes,
-        typePolicies: magentoTypePolicies,
-      }),
-      name: 'fastDev',
-      ssrMode: true,
-    })
-  }
-
   // If the client isn't shared we create a new client.
   if (!shared) return client(locale)
 

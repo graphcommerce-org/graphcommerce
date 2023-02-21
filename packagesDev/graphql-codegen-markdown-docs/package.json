@@ -1,0 +1,41 @@
+{
+  "name": "@graphcommerce/graphql-codegen-markdown-docs",
+  "homepage": "https://www.graphcommerce.org/",
+  "repository": "github:graphcommerce-org/graphcommerce",
+  "version": "5.2.0-canary.12",
+  "sideEffects": false,
+  "type": "commonjs",
+  "main": "dist/index.js",
+  "types": "src/index.ts",
+  "scripts": {
+    "test": "jest",
+    "dev": "tsc -W --preserveWatchOutput",
+    "build": "tsc",
+    "prepack": "tsc"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "prettier": "@graphcommerce/prettier-config-pwa",
+  "eslintConfig": {
+    "extends": "@graphcommerce/eslint-config-pwa",
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    }
+  },
+  "devDependencies": {
+    "@graphcommerce/eslint-config-pwa": "5.2.0-canary.12",
+    "@graphcommerce/prettier-config-pwa": "5.2.0-canary.12",
+    "@graphcommerce/typescript-config-pwa": "5.2.0-canary.12"
+  },
+  "dependencies": {
+    "@graphql-codegen/add": "4.0.0",
+    "@graphql-codegen/plugin-helpers": "4.0.0",
+    "@graphql-codegen/visitor-plugin-common": "3.0.0",
+    "@graphql-tools/utils": "^9.2.1",
+    "@types/parse-filepath": "^1.0.0",
+    "graphql": "16.6.0",
+    "parse-filepath": "^1.0.2"
+  }
+}

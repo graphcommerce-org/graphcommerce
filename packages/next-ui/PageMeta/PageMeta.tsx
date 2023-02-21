@@ -5,6 +5,7 @@ import { getDomainLocale } from 'next/dist/client/get-domain-locale'
 import { NextRouter, resolveHref } from 'next/dist/shared/lib/router/router'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
+import type {} from '@graphcommerce/next-config'
 
 // https://developers.google.com/search/docs/advanced/robots/robots_meta_tag#directives
 export type MetaRobots =
@@ -48,12 +49,6 @@ export function canonicalize(router: PartialNextRouter, incoming?: Canonical) {
   }
 
   if (canonical.startsWith('/')) {
-    if (!process.env.NEXT_PUBLIC_SITE_URL) {
-      if (process.env.NODE_ENV !== 'production') {
-        throw Error('NEXT_PUBLIC_SITE_URL is not defined in .env')
-      }
-    }
-
     let [href, as = href] = resolveHref(router as NextRouter, canonical, true)
 
     const curLocale = router.locale
@@ -65,10 +60,8 @@ export function canonicalize(router: PartialNextRouter, incoming?: Canonical) {
 
     href = localeDomain || addBasePath(addLocale(as, curLocale, router.defaultLocale))
 
-    let siteUrl = process.env.NEXT_PUBLIC_SITE_URL
-    if (siteUrl && siteUrl.endsWith('/')) {
-      siteUrl = siteUrl.slice(0, -1)
-    }
+    let siteUrl = import.meta.graphCommerce.canonicalBaseUrl
+    if (siteUrl.endsWith('/')) siteUrl = siteUrl.slice(0, -1)
 
     canonical = `${siteUrl}${href}`
   }

@@ -8,7 +8,6 @@
     "noLib": false,
     "noEmit": false,
     "sourceMap": false,
-    "declaration": true,
     "strict": true
   }
 }

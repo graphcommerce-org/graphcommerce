@@ -25,7 +25,6 @@ jobs:
           working-directory: new
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - run: cp ./new/examples/magento-graphcms/.env.example ./new/examples/magento-graphcms/.env
       - run: yarn --cwd ./new/examples/magento-graphcms build > new.txt
       - run: cat new.txt
       - uses: bahmutov/npm-install@v1

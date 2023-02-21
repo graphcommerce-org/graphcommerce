@@ -13,7 +13,7 @@ import { SignUpConfirmDocument } from './SignUpConfirm.gql'
 
 type SignUpFormProps = { email: string }
 
-const requireEmailValidation = process.env.CUSTOMER_REQUIRE_EMAIL_CONFIRMATION === '1'
+const requireEmailValidation = process.env.BUILD_FLAG_CUSTOMER_REQUIRE_EMAIL_CONFIRMATION === '1'
 
 export function SignUpForm(props: SignUpFormProps) {
   const { email } = props

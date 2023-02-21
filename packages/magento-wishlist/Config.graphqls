@@ -1,0 +1,11 @@
+extend type GraphCommerceConfig {
+  """
+  Hide the wishlist functionality for guests.
+  """
+  wishlistHideForGuests: Boolean
+
+  """
+  Ignores wether a product is already in the wishlist, makes the toggle an add only.
+  """
+  wishlistIgnoreProductWishlistStatus: Boolean
+}

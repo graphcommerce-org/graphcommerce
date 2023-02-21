@@ -1,0 +1,15 @@
+extend input GraphCommerceConfig {
+  """
+  The HyGraph endpoint.
+
+  Project settings -> API Access -> High Performance Read-only Content API
+  """
+  hygraphEndpoint: String!
+}
+
+extend input GraphCommerceI18nConfig {
+  """
+  Add a gcms-locales header to make sure queries return in a certain language, can be an array to define fallbacks.
+  """
+  hygraphLocales: [String!]
+}

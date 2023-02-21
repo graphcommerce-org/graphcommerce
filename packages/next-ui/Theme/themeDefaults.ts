@@ -1,4 +1,3 @@
-import { SxProps, Theme } from '@mui/material'
 import { Shadows } from '@mui/material/styles/shadows'
 import { spreadVal } from '../Styles/spreadVal'
 import { breakpoints } from './breakpoints'

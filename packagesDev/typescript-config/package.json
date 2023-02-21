@@ -6,6 +6,6 @@
   "license": "MIT",
   "sideEffects": false,
   "devDependencies": {
-    "@tsconfig/node14": "^1.0.3"
+    "@tsconfig/node16": "^1.0.3"
   }
 }

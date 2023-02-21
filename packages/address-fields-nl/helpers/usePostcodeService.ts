@@ -1,11 +1,10 @@
-import { useLazyQuery } from "@graphcommerce/graphql"
-import { AddressFieldValues } from "@graphcommerce/magento-customer"
-import { UseFormReturn } from "@graphcommerce/react-hook-form"
-import { useEffect } from "react"
-import { postcodeNLDocument } from "../graphql/PostcodeNL.gql"
+import { UseFormReturn } from '@graphcommerce/ecommerce-ui'
+import { useLazyQuery } from '@graphcommerce/graphql'
+import { AddressFieldValues } from '@graphcommerce/magento-customer'
+import { useEffect } from 'react'
+import { postcodeNLDocument } from '../graphql/PostcodeNL.gql'
 
 const postCodeRegex = /^[1-9][0-9]{3}[a-z]{2}$/i
-
 
 const defaultPostcodeFieldnames = {
   postcode: 'postcode',
@@ -17,7 +16,7 @@ const defaultPostcodeFieldnames = {
 
 export function usePostcodeService(
   form: UseFormReturn<any>,
-  fieldNames: AddressFieldValues = defaultPostcodeFieldnames
+  fieldNames: AddressFieldValues = defaultPostcodeFieldnames,
 ) {
   const { watch, setValue, resetField } = form
 
@@ -27,9 +26,16 @@ export function usePostcodeService(
   const [execute, result] = useLazyQuery(postcodeNLDocument)
 
   useEffect(() => {
-    if (!houseNumber || !postcode || !postCodeRegex.test(postcode.trim().replace(/ /g, ''))) return () => {}
+    if (!houseNumber || !postcode || !postCodeRegex.test(postcode.trim().replace(/ /g, '')))
+      return () => {}
 
-    const handler = () => execute({ variables: { postcode: postcode.trim().replace(/ /g, ''), housenumber: addition ? houseNumber + addition : houseNumber } })
+    const handler = () =>
+      execute({
+        variables: {
+          postcode: postcode.trim().replace(/ /g, ''),
+          housenumber: addition ? houseNumber + addition : houseNumber,
+        },
+      })
     const clear = setTimeout(handler, 300)
 
     return () => clearInterval(clear)
@@ -48,7 +54,7 @@ export function usePostcodeService(
       setValue(fieldNames.city ?? '', city, { shouldValidate: true })
     } else {
       resetField(fieldNames.street ?? '')
-      resetField(fieldNames.city?? '')
+      resetField(fieldNames.city ?? '')
     }
   }, [result.data?.postcodeNL, setValue, resetField, fieldNames.street, fieldNames.city])
   return [result.data?.postcodeNL, result.loading] as const

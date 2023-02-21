@@ -103,12 +103,16 @@ const ToggleButtonGroup = React.forwardRef<HTMLDivElement, ToggleButtonGroupProp
         }
 
         return React.cloneElement(child, {
+          // @ts-expect-error TODO: fix TS error
           className: `${classes.button} ${child.props.className ?? ''}`,
           onChange: exclusive ? handleExclusiveChange : handleChange,
           selected:
+            // @ts-expect-error TODO: fix TS error
             child.props.selected === undefined
-              ? isValueSelected(child.props.value as string, value as string | string[])
-              : child.props.selected,
+              ? // @ts-expect-error TODO: fix TS error
+                isValueSelected(child.props.value as string, value as string | string[])
+              : // @ts-expect-error TODO: fix TS error
+                child.props.selected,
         })
       })}
     </Box>

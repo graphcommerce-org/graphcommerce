@@ -1,9 +1,5 @@
 import { useScrollerContext } from '@graphcommerce/framer-scroller'
-import {
-  useConstant,
-  useElementScroll,
-  useIsomorphicLayoutEffect,
-} from '@graphcommerce/framer-utils'
+import { useConstant, useIsomorphicLayoutEffect } from '@graphcommerce/framer-utils'
 import { motionValue } from 'framer-motion'
 import { useCallback, useEffect } from 'react'
 import { useMatchMedia } from '../../hooks'

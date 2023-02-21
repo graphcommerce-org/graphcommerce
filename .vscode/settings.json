@@ -13,6 +13,7 @@
     "**/bower_components": true,
     "**/*.code-search": true,
     "**/.next": true,
+    "**/dist": true,
     ".yarn": true,
     "yarn.lock": true,
     "**/*.tsbuildinfo": true

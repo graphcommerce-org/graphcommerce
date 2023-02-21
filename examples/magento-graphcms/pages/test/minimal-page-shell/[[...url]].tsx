@@ -6,7 +6,7 @@ import {
   LayoutTitle,
   LinkOrButton,
 } from '@graphcommerce/next-ui'
-import { Container, Divider, List, ListItem, ListItemButton } from '@mui/material'
+import { Container, Divider, List, ListItemButton } from '@mui/material'
 import { m } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'

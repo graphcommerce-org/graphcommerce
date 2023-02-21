@@ -22,7 +22,7 @@ const name = 'WishlistFab'
 const parts = ['root'] as const
 const { classes } = extendableComponent(name, parts)
 
-const hideForGuest = process.env.NEXT_PUBLIC_WISHLIST_HIDE_FOR_GUEST === '1'
+const hideForGuest = import.meta.graphCommerce.wishlistHideForGuests
 
 function WishlistFabContent(props: WishlistFabContentProps) {
   const { icon, FabProps, sx, activeWishlist } = props

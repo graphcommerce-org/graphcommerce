@@ -4,16 +4,19 @@
   "repository": "github:graphcommerce-org/graphcommerce",
   "version": "5.2.0-canary.19",
   "sideEffects": false,
+  "type": "commonjs",
   "main": "dist/index.js",
+  "types": "src/index.ts",
+  "scripts": {
+    "test": "jest",
+    "dev": "tsc -W --preserveWatchOutput",
+    "build": "tsc",
+    "prepack": "tsc"
+  },
   "files": [
     "dist",
     "src"
   ],
-  "scripts": {
-    "dev": "tsc --preserveWatchOutput --watch --sourceMap --outDir dist",
-    "build": "tsc --target es5 --outDir dist",
-    "prepack": "yarn build"
-  },
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
     "extends": "@graphcommerce/eslint-config-pwa",
@@ -27,10 +30,10 @@
     "@graphcommerce/typescript-config-pwa": "5.2.0-canary.19"
   },
   "dependencies": {
-    "@graphql-codegen/add": "3.2.3",
-    "@graphql-codegen/plugin-helpers": "3.1.1",
-    "@graphql-codegen/visitor-plugin-common": "2.13.5",
-    "@graphql-tools/utils": "^9.1.3",
+    "@graphql-codegen/add": "4.0.0",
+    "@graphql-codegen/plugin-helpers": "4.0.0",
+    "@graphql-codegen/visitor-plugin-common": "3.0.0",
+    "@graphql-tools/utils": "^9.2.1",
     "@types/parse-filepath": "^1.0.0",
     "graphql": "16.6.0",
     "parse-filepath": "^1.0.2"

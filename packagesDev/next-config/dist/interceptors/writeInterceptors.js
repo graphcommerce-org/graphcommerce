@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.writeInterceptors = void 0;
 const node_fs_1 = __importDefault(require("node:fs"));
 const path_1 = __importDefault(require("path"));
+// eslint-disable-next-line import/no-extraneous-dependencies
 const glob_1 = __importDefault(require("glob"));
 const resolveDependenciesSync_1 = require("../utils/resolveDependenciesSync");
 function writeInterceptors(interceptors, cwd = process.cwd()) {

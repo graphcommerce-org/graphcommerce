@@ -1,0 +1,13 @@
+extend input GraphCommerceI18nConfig {
+  """
+  Specify a custom locale for to load translations.
+  """
+  linguiLocale: String
+}
+
+# extend input GraphCommerceConfog {
+#   """
+#   By default the locale only will be used: locale: "en-us" => "en", but you can use the full locale: locale: "en-us" => "en-us"
+#   """
+#   linguiFullLocale: String
+# }

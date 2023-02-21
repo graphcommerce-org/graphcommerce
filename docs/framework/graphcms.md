@@ -1,28 +1,28 @@
 ---
-menu: GraphCMS
+menu: Hygraph
 ---
 
-# GraphCMS
+# Hygraph
 
-GraphCMS is integrated as a Content Management System. It is used to store all
+Hygraph is integrated as a Content Management System. It is used to store all
 static content and provides a user-friendly interface for managing it.
 
 The [magento-graphcms example](./../getting-started/readme.md) offers a number
 of components to render this content in different ways, for example in the form
 of a page-wide hero banner, a list of USPs or grid of text columns.
 
-This guide covers how to configure GraphCMS and how to build rich content pages
-by adding GraphCMS content to pages.
+This guide covers how to configure Hygraph and how to build rich content pages
+by adding Hygraph content to pages.
 
 ## Configuration
 
-To connect your GraphCommerce app to your GraphCMS project, you'll need a
-GraphCMS project with the required schema.
-[Clone the demo GraphCMS project ↗](https://app.graphcms.com/clone/caddaa93cfa9436a9e76ae9c0F34d257)
+To connect your GraphCommerce app to your Hygraph project, you'll need a Hygraph
+project with the required schema.
+[Clone the demo Hygraph project ↗](https://app.graphcms.com/clone/caddaa93cfa9436a9e76ae9c0F34d257)
 as your starting point. Update the variable in the /.env file:
 
 `GRAPHCMS_URL=""`  
-GraphCMS API URL. Once logged in, copy it from Project Settings > Api Access >
+Hygraph API URL. Once logged in, copy it from Project Settings > Api Access >
 Content API
 
 ## Adding content to pages
@@ -33,15 +33,15 @@ the concept of pages. When a file is added to the /pages directory, it's
 automatically available as a route. Magento category routes are handled by the
 `/pages/[...url].tsx` page.
 
-To add GraphCMS content to, for example, a category page, create a Page entry in
-GraphCMS and match the value of the URL field with the route of the page you
-wish to add content to.
+To add Hygraph content to, for example, a category page, create a Page entry in
+Hygraph and match the value of the URL field with the route of the page you wish
+to add content to.
 
-For example, the content of the 'men' Page entry in GraphCMS:
+For example, the content of the 'men' Page entry in Hygraph:
 
 <figure>
 
-![Page entry in GraphCMS](https://user-images.githubusercontent.com/1251986/157831167-706b54e8-ab25-4e67-882d-dd9595e87d5a.png)
+![Page entry in Hygraph](https://user-images.githubusercontent.com/1251986/157831167-706b54e8-ab25-4e67-882d-dd9595e87d5a.png)
 
 </figure>
 
@@ -64,4 +64,4 @@ Is used to add a`RowProduct (variant:Grid)` and a
 ## Next steps
 
 - Learn how to
-  [build a custom GraphCMS component](../getting-started/graphcms-component.md)
+  [build a custom Hygraph component](../getting-started/graphcms-component.md)

@@ -1,9 +1,9 @@
-import { UpdateItemQuantityProps } from '@graphcommerce/magento-cart-items'
-import { PluginProps } from '@graphcommerce/next-config'
+import type { UpdateItemQuantityProps } from '@graphcommerce/magento-cart-items'
+import { IfConfig, PluginProps } from '@graphcommerce/next-config'
 
 export const component = 'UpdateItemQuantity'
 export const exported = '@graphcommerce/magento-cart-items/UpdateItemQuantity/UpdateItemQuantity'
-export const ifEnv = 'NEXT_PUBLIC_GOOGLE_ANALYTICS' // @frank: chekcen of dit werr
+export const ifConfig: IfConfig = 'googleAnalyticsId'
 
 /**
  * When a product is added to the Cart, by using the + button on cart page, send a Google Analytics
