@@ -6,6 +6,8 @@ export type CartLockState = {
   cart_id: string | null
   locked: string | null
   method: string | null
+  // Only added for PayPal
+  PayerID: string | null
 }
 
 let justLocked = false
@@ -50,7 +52,7 @@ export function useCartLock<E extends CartLockState>() {
 
   const resulting: Omit<E, 'locked'> & { locked: boolean; justLocked: boolean } = {
     ...queryState,
-    locked: queryState.locked === '1',
+    locked: queryState.locked === '1' || Boolean(queryState.PayerID),
     justLocked,
   }
 
