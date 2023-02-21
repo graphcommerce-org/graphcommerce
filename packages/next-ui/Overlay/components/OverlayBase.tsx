@@ -343,7 +343,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
 
             [theme.breakpoints.down('md')]: {
               '&.variantSmLeft, &.variantSmRight': {
-                width: dvh(100),
+                width: dvw(100),
               },
               '&.variantSmBottom': {
                 height: dvh(100),
