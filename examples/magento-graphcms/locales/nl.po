@@ -19,6 +19,9 @@ msgstr "<0>{name}</0> is toegevoegd aan uw winkelwagen!"
 msgid "<0>{name}</0> has been added to your wishlist!"
 msgstr "<0>{name}</0> is toegevoegd aan je verlanglijst!"
 
+msgid "Above <0/>"
+msgstr ""
+
 msgid "Account"
 msgstr "Account"
 
@@ -73,6 +76,9 @@ msgstr "Wees de eerste die op de hoogte is van alles wat er nieuw is!"
 msgid "Be the first to write a review!"
 msgstr "Wees de eerste die een review schrijft!"
 
+msgid "Below <0/>"
+msgstr ""
+
 msgid "Billing address"
 msgstr "Factuuradres"
 
@@ -99,6 +105,9 @@ msgstr "Kies uw bank en plaats uw bestelling."
 
 msgid "City"
 msgstr "Plaats"
+
+msgid "Clear"
+msgstr "Filter wissen"
 
 msgid "Close"
 msgstr "Sluiten"
@@ -190,6 +199,9 @@ msgstr "Wijzig factuuradres"
 msgid "Email"
 msgstr "E-mail"
 
+msgid "Email address"
+msgstr "E-mailadres"
+
 msgid "Emails don't match"
 msgstr "E-mailadressen komen niet overeen"
 
@@ -259,11 +271,17 @@ msgstr "Laatste bestellingen"
 msgid "Light Mode"
 msgstr "Lichte modus"
 
+msgid "Loading"
+msgstr "Laden"
+
 msgid "Loading wishlist"
 msgstr "Ophalen verlanglijst"
 
+msgid "Loading your account"
+msgstr "Uw account laden"
+
 msgid "Loading your data"
-msgstr "Ophalen uw gegevens"
+msgstr "Uw gegevens laden"
 
 msgid "Log in"
 msgstr "Log in"
@@ -364,6 +382,9 @@ msgstr "Wachtwoord moet minimaal 8 tekens bevatten"
 msgid "Passwords don't match"
 msgstr "Wachtwoorden komen niet overeen"
 
+msgid "Passwords should match"
+msgstr "Wachtwoorden moeten overeenkomen"
+
 msgid "Pay"
 msgstr "Betaal"
 
@@ -411,6 +432,9 @@ msgstr "Postcode"
 
 msgid "Prefix"
 msgstr "Voorvoegsel"
+
+msgid "Processing your payment"
+msgstr "Uw betaling aan het verwerken"
 
 msgid "Product could not be found"
 msgstr "Product kan niet worden gevonden"
@@ -472,6 +496,9 @@ msgstr "Stuur een wachtwoord reset e-email"
 msgid "Set your new password"
 msgstr "Stel uw nieuwe wachtwoord in"
 
+msgid "Several errors occured"
+msgstr "Er zijn verschillende fouten opgetreden"
+
 msgid "Shipping"
 msgstr "Verzending"
 
@@ -514,11 +541,17 @@ msgstr "Straat"
 msgid "Submit review"
 msgstr "Verstuur review"
 
+msgid "Subscribe"
+msgstr "Abonneren"
+
 msgid "Subscribe to newsletter"
 msgstr "Abonneer op de nieuwsbrief"
 
 msgid "Subscribe to our newsletter to stay informed about our new products!"
 msgstr "Schrijf u in voor onze nieuwsbrief om op de hoogte te blijven van onze nieuwe producten! "
+
+msgid "Subscribed"
+msgstr "Geabonneerd"
 
 msgid "Successfully changed password"
 msgstr "Wachtwoord aangepast"
@@ -633,6 +666,9 @@ msgstr "U kunt nu <0>opnieuw inloggen</0>"
 
 msgid "You can track your order status and much more!"
 msgstr "U kunt uw bestelstatus bijhouden en veel meer!"
+
+msgid "You have been successfully subscribed to our newsletter."
+msgstr "U bent succesvol aangemeld voor onze nieuwsbrief."
 
 msgid "You have no addresses saved yet"
 msgstr "U heeft nog geen adressen opgeslagen"
