@@ -1,5 +1,7 @@
 # @graphcommerce/magento-payment-paypal
 
+## 5.2.0-canary.19
+
 ## 5.2.0-canary.18
 
 ### Patch Changes

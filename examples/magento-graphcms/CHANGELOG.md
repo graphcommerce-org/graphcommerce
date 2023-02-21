@@ -1,5 +1,7 @@
 # Change Log
 
+## 5.2.0-canary.19
+
 ## 5.2.0-canary.18
 
 ### Minor Changes
