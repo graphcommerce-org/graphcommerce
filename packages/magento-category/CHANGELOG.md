@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.0-canary.20
+
+### Minor Changes
+
+- [#1786](https://github.com/graphcommerce-org/graphcommerce/pull/1786) [`63cfbd4ea`](https://github.com/graphcommerce-org/graphcommerce/commit/63cfbd4ea33978ccfe45c156ef07ece72add70ce) - option to not require meta tags for categories ([@paales](https://github.com/paales))
+
 ## 5.2.0-canary.19
 
 ## 5.2.0-canary.18

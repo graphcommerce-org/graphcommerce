@@ -68,7 +68,8 @@
     "@graphcommerce/next-config": "5.1.1",
     "@graphcommerce/prettier-config-pwa": "5.1.1",
     "@graphcommerce/typescript-config-pwa": "5.1.1",
-    "@graphcommerce/address-fields-nl": "5.1.1"
+    "@graphcommerce/address-fields-nl": "5.1.1",
+    "@graphcommerce/graphql-codegen-markdown-docs": "5.2.0-canary.12"
   },
   "changesets": [
     "big-boats-unite",
@@ -76,10 +77,13 @@
     "breezy-planes-cheer",
     "bright-rivers-wash",
     "chilled-moles-unite",
+    "fast-pens-sing",
+    "fresh-files-hope",
     "funny-ligers-laugh",
     "giant-yaks-brake",
     "gold-seas-build",
     "healthy-bottles-tease",
+    "honest-hounds-heal",
     "hot-knives-fry",
     "lazy-bikes-nail",
     "lemon-readers-taste",
@@ -87,8 +91,10 @@
     "lovely-countries-deliver",
     "lovely-months-eat",
     "lucky-rats-begin",
+    "mean-wolves-chew",
     "neat-birds-sin",
     "plenty-hairs-laugh",
+    "popular-swans-return",
     "pretty-bags-joke",
     "rude-horses-appear",
     "rude-mangos-bow",
@@ -96,12 +102,14 @@
     "slimy-kangaroos-report",
     "slow-dots-remember",
     "slow-parents-stare",
+    "sour-falcons-travel",
     "sour-zebras-reply",
     "tricky-wombats-chew",
     "twelve-numbers-fry",
     "twenty-zebras-dress",
     "unlucky-keys-remember",
     "unlucky-steaks-collect",
-    "weak-timers-greet"
+    "weak-timers-greet",
+    "wild-onions-sleep"
   ]
 }

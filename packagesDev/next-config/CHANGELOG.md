@@ -1,5 +1,15 @@
 # Change Log
 
+## 6.0.0-canary.20
+
+### Minor Changes
+
+- [#1786](https://github.com/graphcommerce-org/graphcommerce/pull/1786) [`b76679204`](https://github.com/graphcommerce-org/graphcommerce/commit/b766792049e1e6ebe45671c0b36e78746ef159e2) - Added a new graphcommerce.config.ts which can be accessed with import.mete.graphCommerce.myConfig ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#1786](https://github.com/graphcommerce-org/graphcommerce/pull/1786) [`fff2420c6`](https://github.com/graphcommerce-org/graphcommerce/commit/fff2420c62472edfd2c3d6eba1012dbf48efa3db) - Added configuration for webpackDuplicatesPlugin ([@paales](https://github.com/paales))
+
 ## 5.2.0-canary.19
 
 ## 5.2.0-canary.18

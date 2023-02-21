@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.0-canary.20
+
+### Major Changes
+
+- [#1786](https://github.com/graphcommerce-org/graphcommerce/pull/1786) [`26239ef73`](https://github.com/graphcommerce-org/graphcommerce/commit/26239ef73e49731224b227f1eb850dde56d40584) - Bumped minimum version to node16 ([@paales](https://github.com/paales))
+
 ## 5.2.0-canary.19
 
 ## 5.2.0-canary.18

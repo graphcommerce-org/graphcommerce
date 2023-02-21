@@ -1,5 +1,23 @@
 # Change Log
 
+## 6.0.0-canary.20
+
+### Major Changes
+
+- [#1786](https://github.com/graphcommerce-org/graphcommerce/pull/1786) [`26239ef73`](https://github.com/graphcommerce-org/graphcommerce/commit/26239ef73e49731224b227f1eb850dde56d40584) - Bumped minimum version to node16 ([@paales](https://github.com/paales))
+
+### Minor Changes
+
+- [#1786](https://github.com/graphcommerce-org/graphcommerce/pull/1786) [`b76679204`](https://github.com/graphcommerce-org/graphcommerce/commit/b766792049e1e6ebe45671c0b36e78746ef159e2) - Added a new graphcommerce.config.ts which can be accessed with import.mete.graphCommerce.myConfig ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#1786](https://github.com/graphcommerce-org/graphcommerce/pull/1786) [`090102051`](https://github.com/graphcommerce-org/graphcommerce/commit/09010205174d7c8b48ed94b44226b4c03fd6e680) - Filter the Hygraph schema to be smaller ([@paales](https://github.com/paales))
+
+- [#1786](https://github.com/graphcommerce-org/graphcommerce/pull/1786) [`b8c951678`](https://github.com/graphcommerce-org/graphcommerce/commit/b8c95167839b03d8bf2299a230d36fd3144cea0b) - Enabled [onDemandEntries](https://nextjs.org/docs/api-reference/next.config.js/configuring-onDemandEntries) for faster development flow. ([@paales](https://github.com/paales))
+
+- [#1786](https://github.com/graphcommerce-org/graphcommerce/pull/1786) [`71624a87f`](https://github.com/graphcommerce-org/graphcommerce/commit/71624a87f4b6add01eb9e1d1e2f927a995aa3b8b) - patch @graphql-mesh/graphql that will prevent generating the complete schema in code. ([@paales](https://github.com/paales))
+
 ## 5.2.0-canary.19
 
 ## 5.2.0-canary.18
