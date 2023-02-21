@@ -1,5 +1,15 @@
 # Change Log
 
+## 5.2.0-canary.18
+
+### Minor Changes
+
+- [#1790](https://github.com/graphcommerce-org/graphcommerce/pull/1790) [`1fbd1e2b2`](https://github.com/graphcommerce-org/graphcommerce/commit/1fbd1e2b20cd875c481e10a81343da961c8baf8f) - - PayPal: PayPal didn’t show the ‘processing payment’ message giving the impression it wasn’t doing anything. ([@LaurensFranken](https://github.com/LaurensFranken))
+
+### Patch Changes
+
+- [#1790](https://github.com/graphcommerce-org/graphcommerce/pull/1790) [`875a595da`](https://github.com/graphcommerce-org/graphcommerce/commit/875a595da5f52b77bc2535cf4a660267b0046a1e) - ApolloClient cache would balloon with all redirects and make sure redirects work ([@LaurensFranken](https://github.com/LaurensFranken))
+
 ## 5.2.0-canary.17
 
 ## 5.2.0-canary.16

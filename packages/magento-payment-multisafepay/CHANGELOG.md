@@ -1,5 +1,12 @@
 # @graphcommerce/magento-payment-multisafepay
 
+## 5.2.0-canary.18
+
+### Minor Changes
+
+- [#1790](https://github.com/graphcommerce-org/graphcommerce/pull/1790) [`1fbd1e2b2`](https://github.com/graphcommerce-org/graphcommerce/commit/1fbd1e2b20cd875c481e10a81343da961c8baf8f) - - MultiSafePay: Added error message Snackbar, restore cart, and refetch the cart.
+  - MultiSafePay: Solve issue where the cart couldn’t be found when restoring the cart. ([@LaurensFranken](https://github.com/LaurensFranken))
+
 ## 5.2.0-canary.17
 
 ## 5.2.0-canary.16
