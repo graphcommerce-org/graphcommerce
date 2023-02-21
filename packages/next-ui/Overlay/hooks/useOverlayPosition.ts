@@ -3,6 +3,7 @@ import { useConstant, useIsomorphicLayoutEffect } from '@graphcommerce/framer-ut
 import { motionValue } from 'framer-motion'
 import { useCallback, useEffect } from 'react'
 import { useMatchMedia } from '../../hooks'
+import framesync from 'framesync'
 
 const clampRound = (value: number) => Math.round(Math.max(0, Math.min(1, value)) * 100) / 100
 
@@ -34,27 +35,34 @@ export function useOverlayPosition(
 
     const measure = () => {
       const positions = getScrollSnapPositions()
+      const x = positions.x[positions.x.length - 1]
+      const y = positions.y[positions.y.length - 1]
 
       if (variant() === 'left') {
+        state.closed.x.set(x)
         state.open.x.set(0)
-        state.closed.x.set(positions.x[positions.x.length - 1] ?? 0)
       }
       if (variant() === 'right') {
-        state.open.x.set(positions.x[positions.x.length - 1] ?? 0)
+        state.open.x.set(x)
         state.closed.x.set(0)
       }
       if (variant() === 'bottom') {
-        state.open.y.set(positions.y[positions.y.length - 1] ?? 0)
+        state.open.y.set(y)
         state.closed.y.set(0)
       }
     }
+    const measureTimed = () => framesync.read(measure)
     measure()
 
-    const ro = new ResizeObserver(measure)
+    const ro = new ResizeObserver(measureTimed)
     ro.observe(scrollerRef.current)
     ;[...scrollerRef.current.children].forEach((child) => ro.observe(child))
 
-    return () => ro.disconnect()
+    window.addEventListener('resize', measureTimed)
+    return () => {
+      window.removeEventListener('resize', measureTimed)
+      ro.disconnect()
+    }
   }, [getScrollSnapPositions, scrollerRef, state, variant])
 
   // sets a float between 0 and 1 for the visibility of the overlay
@@ -82,9 +90,11 @@ export function useOverlayPosition(
 
     const cancelY = scroll.y.onChange(calc)
     const cancelX = scroll.x.onChange(calc)
+
+    const calcTimed = () => framesync.read(calc)
     calc()
 
-    const ro = new ResizeObserver(calc)
+    const ro = new ResizeObserver(calcTimed)
     ro.observe(scrollerRef.current)
     ;[...scrollerRef.current.children].forEach((child) => ro.observe(child))
 

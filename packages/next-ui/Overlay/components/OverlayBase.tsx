@@ -6,6 +6,7 @@ import React, { useCallback, useEffect, useRef } from 'react'
 import { LayoutProvider } from '../../Layout/components/LayoutProvider'
 import { ExtendableComponent, extendableComponent } from '../../Styles'
 import { useOverlayPosition } from '../hooks/useOverlayPosition'
+import framesync from 'framesync'
 
 export type LayoutOverlayVariant = 'left' | 'bottom' | 'right'
 export type LayoutOverlaySize = 'floating' | 'minimal' | 'full'
@@ -158,9 +159,10 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
         scroller.scrollTop = positions.open.y.get()
       }
     }
+    const resizeTimed = () => framesync.read(resize)
 
-    window.addEventListener('resize', resize)
-    return () => window.removeEventListener('resize', resize)
+    window.addEventListener('resize', resizeTimed)
+    return () => window.removeEventListener('resize', resizeTimed)
   }, [position, positions, scrollerRef])
 
   // When the overlay is closed by navigating away, we're closing the overlay.
@@ -341,7 +343,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
 
             [theme.breakpoints.down('md')]: {
               '&.variantSmLeft, &.variantSmRight': {
-                width: dvh(100),
+                width: dvw(100),
               },
               '&.variantSmBottom': {
                 height: dvh(100),
@@ -469,7 +471,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
             })}
           >
             <LayoutProvider scroll={scrollYOffset}>
-              {active && (typeof children === 'function' ? children() : children)}
+              {typeof children === 'function' ? active && children() : children}
             </LayoutProvider>
           </MotionDiv>
         </Box>
