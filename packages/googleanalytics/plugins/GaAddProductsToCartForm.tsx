@@ -1,6 +1,9 @@
 import { AddProductsToCartFormProps } from '@graphcommerce/magento-product'
-import { IfConfig, PluginProps } from '@graphcommerce/next-config'
+import { PluginProps } from '@graphcommerce/next-config'
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 import { gtagAddToCart } from '../events/gtagAddToCart/gtagAddToCart'
+import { gtagViewItem } from '../events/gtagViewItem/gtagViewItem'
 
 export const component = 'AddProductsToCartForm'
 export const exported = '@graphcommerce/magento-product'

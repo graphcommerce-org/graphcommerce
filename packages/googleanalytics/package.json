@@ -14,6 +14,7 @@
   "dependencies": {
     "@graphcommerce/graphql-mesh": "6.0.0-canary.39",
     "@graphcommerce/magento-cart": "6.0.0-canary.39",
+    "@graphcommerce/magento-cart-items": "6.0.0-canary.39",
     "@graphcommerce/magento-cart-payment-method": "6.0.0-canary.39",
     "@graphcommerce/magento-cart-shipping-method": "6.0.0-canary.39",
     "@graphcommerce/magento-product": "6.0.0-canary.39",

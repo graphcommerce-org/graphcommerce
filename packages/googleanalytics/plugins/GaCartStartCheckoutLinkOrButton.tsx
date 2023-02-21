@@ -1,5 +1,5 @@
 import { CartStartCheckoutLinkOrButtonProps } from '@graphcommerce/magento-cart'
-import { IfConfig, PluginProps } from '@graphcommerce/next-config'
+import { PluginProps } from '@graphcommerce/next-config'
 import { gtagBeginCheckout } from '../events/gtagBeginCheckout/gtagBeginCheckout'
 
 export const component = 'CartStartCheckoutLinkOrButton'
@@ -10,6 +10,16 @@ export function GaCartStartCheckoutLinkOrButton(
   props: PluginProps<CartStartCheckoutLinkOrButtonProps>,
 ) {
   const { Prev, onStart, ...rest } = props
+
+  useEffect(
+    () =>
+      gtagViewCart({
+        items: rest.items,
+        prices: rest.prices,
+      }),
+    [],
+  )
+
   return (
     <Prev
       {...rest}
