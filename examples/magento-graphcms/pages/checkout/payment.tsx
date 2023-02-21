@@ -42,7 +42,6 @@ type GetPageStaticProps = GetStaticProps<LayoutMinimalProps>
 
 function PaymentPage() {
   const billingPage = useCartQuery(BillingPageDocument, { fetchPolicy: 'cache-and-network' })
-
   const [{ locked }] = useCartLock()
 
   const cartExists =
