@@ -34,7 +34,7 @@ function CheckoutCustomerAddressesEdit() {
 
   if (loading || !called)
     return (
-      <FullPageMessage icon={<CircularProgress />} title='Loading your account'>
+      <FullPageMessage icon={<CircularProgress />} title={<Trans id='Loading your account' />}>
         <Trans id='This may take a second' />
       </FullPageMessage>
     )
