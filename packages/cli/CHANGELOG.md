@@ -1,5 +1,7 @@
 # @graphcommerce/cli
 
+## 6.0.0-canary.21
+
 ## 6.0.0-canary.20
 
 ## 5.2.0-canary.19

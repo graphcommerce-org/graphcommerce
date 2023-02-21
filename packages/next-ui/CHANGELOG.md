@@ -1,5 +1,13 @@
 # Change Log
 
+## 6.0.0-canary.21
+
+### Minor Changes
+
+- [#1806](https://github.com/graphcommerce-org/graphcommerce/pull/1806) [`597396766`](https://github.com/graphcommerce-org/graphcommerce/commit/597396766940de8c4ab5d8c84a0c6637ed72dba2) - - Put navigation HTML permanently in the DOM
+  - Fix issue where Navigation can't be reopened after closing, dragging or navigating
+  - Fix overlay visibility when browser is resized, or exactly 864px width ([@ErwinOtten](https://github.com/ErwinOtten))
+
 ## 6.0.0-canary.20
 
 ## 5.2.0-canary.19
