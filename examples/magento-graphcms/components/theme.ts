@@ -38,7 +38,7 @@ const lightPalette: PaletteOptions = {
     main: '#01d26a',
   },
   action: {
-    hoverOpacity: 0.16,
+    hoverOpacity: 0.12,
   },
   text: {
     primary: '#0F0F10',
