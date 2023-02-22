@@ -29,7 +29,7 @@ const lightPalette: PaletteOptions = {
     contrastText: '#ffffff',
   },
   background: {
-    default: '#f9f9f9',
+    default: '#F9F9FA',
     paper: '#ffffff',
     image: '#ffffff',
   },
@@ -41,9 +41,9 @@ const lightPalette: PaletteOptions = {
     hoverOpacity: 0.16,
   },
   text: {
-    primary: '#000000',
-    secondary: '#00000050',
-    disabled: '#00000030',
+    primary: '#0F0F10',
+    secondary: '#03031755',
+    disabled: '#03031735',
   },
 }
 
