@@ -134,18 +134,22 @@ export function ActionCard(props: ActionCardProps) {
           },
 
           '&.variantDefault': {
-            borderRadius: 0,
-            px: 0,
-            borderBottom: `1px solid ${theme.palette.divider}`,
+            py: { xs: 0.6, sm: 0.8, md: 1 },
+            my: { xs: 0.6, sm: 0.8, md: 1 },
+            '&::after': {
+              content: '""',
+              display: 'block',
+              position: 'absolute',
+              width: '100%',
+              left: 0,
+              bottom: 0,
+              mb: { xs: -0.6, sm: -0.8, md: -1 },
+              borderBottom: `1px solid ${theme.palette.divider}`,
+            },
             '&.selected': {
-              borderBottom: `2px solid ${theme.palette[color].main}`,
-              marginBottom: '-1px',
-              backgroundColor: `${theme.palette[color].main}10`,
+              backgroundColor: `${theme.palette[color].main}20`,
             },
             '&.error': {
-              borderBottom: `2px solid ${theme.palette.error.main}`,
-              marginBottom: '-1px',
-              backgroundColor: `${theme.palette.error.main}10`,
             },
           },
 
