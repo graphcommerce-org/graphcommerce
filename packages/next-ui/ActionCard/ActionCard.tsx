@@ -110,26 +110,26 @@ export function ActionCard(props: ActionCardProps) {
         (theme) => ({
           ...breakpointVal(
             'borderRadius',
-            theme.shape.borderRadius * 3,
+            theme.shape.borderRadius * 2.5,
             theme.shape.borderRadius * 4,
             theme.breakpoints.values,
           ),
 
           '&.sizeSmall': {
-            px: responsiveVal(8, 12),
-            py: responsiveVal(6, 8),
+            px: { xs: 1, sm: 1.1, md: 1.2 },
+            py: { xs: 0.6, sm: 0.8, md: 1 },
             display: 'flex',
             typography: 'body2',
           },
           '&.sizeMedium': {
-            px: responsiveVal(10, 16),
-            py: responsiveVal(8, 14),
+            px: { xs: 1.1, sm: 1.5, md: 1.8 },
+            py: { xs: 0.8, sm: 1.2, md: 1.4 },
             typography: 'body2',
             display: 'block',
           },
           '&.sizeLarge': {
-            px: theme.spacings.xs,
-            py: theme.spacings.xxs,
+            px: { xs: 1.3, sm: 1.8, md: 2.2 },
+            py: { xs: 1, sm: 1.4, md: 1.8 },
             display: 'block',
           },
 
