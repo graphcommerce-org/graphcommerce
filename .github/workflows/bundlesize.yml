@@ -33,7 +33,6 @@ jobs:
           working-directory: old
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - run: cp ./old/examples/magento-graphcms/.env.example ./old/examples/magento-graphcms/.env
       - run: yarn --cwd ./old/examples/magento-graphcms build > old.txt
       - run: cat old.txt
       - uses: ho-nl/next-bundlesize-action@master
