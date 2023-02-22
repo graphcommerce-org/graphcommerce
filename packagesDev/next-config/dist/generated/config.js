@@ -1,12 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GraphCommerceI18nConfigSchema = exports.GraphCommerceDebugConfigSchema = exports.GraphCommerceConfigSchema = exports.DeployEnvironmentSchema = exports.definedNonNullAnySchema = exports.isDefinedNonNullAny = void 0;
+exports.GraphCommerceI18nConfigSchema = exports.GraphCommerceDebugConfigSchema = exports.GraphCommerceConfigSchema = exports.definedNonNullAnySchema = exports.isDefinedNonNullAny = void 0;
 /* eslint-disable */
 const zod_1 = require("zod");
 const isDefinedNonNullAny = (v) => v !== undefined && v !== null;
 exports.isDefinedNonNullAny = isDefinedNonNullAny;
 exports.definedNonNullAnySchema = zod_1.z.any().refine((v) => (0, exports.isDefinedNonNullAny)(v));
-exports.DeployEnvironmentSchema = zod_1.z.enum(['development', 'preview', 'production']);
 function GraphCommerceConfigSchema() {
     return zod_1.z.object({
         canonicalBaseUrl: zod_1.z.string().min(1),
@@ -14,12 +13,12 @@ function GraphCommerceConfigSchema() {
         customerRequireEmailConfirmation: zod_1.z.boolean().nullish(),
         debug: GraphCommerceDebugConfigSchema().nullish(),
         demoMode: zod_1.z.boolean().nullish(),
-        deployEnvironment: exports.DeployEnvironmentSchema.nullish(),
         googleAnalyticsId: zod_1.z.string().nullish(),
         googleRecaptchaKey: zod_1.z.string().nullish(),
         googleTagmanagerId: zod_1.z.string().nullish(),
         hygraphEndpoint: zod_1.z.string().min(1),
         i18n: zod_1.z.array(GraphCommerceI18nConfigSchema()),
+        limitSsg: zod_1.z.boolean().nullish(),
         magentoEndpoint: zod_1.z.string().min(1),
         previewSecret: zod_1.z.string().nullish(),
         productFiltersPro: zod_1.z.boolean(),

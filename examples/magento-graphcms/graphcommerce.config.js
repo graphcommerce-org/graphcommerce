@@ -7,7 +7,6 @@
  * @type {import('@graphcommerce/next-config/src/generated/config').GraphCommerceConfig}
  */
 const config = {
-  deployEnvironment: 'development',
   robotsAllow: false,
   hygraphEndpoint: 'https://eu-central-1.cdn.hygraph.com/content/ckhx7xadya6xs01yxdujt8i80/master',
   magentoEndpoint: 'https://backend.reachdigital.dev/graphql',

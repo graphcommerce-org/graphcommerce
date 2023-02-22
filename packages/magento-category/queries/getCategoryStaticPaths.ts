@@ -24,7 +24,7 @@ const getCategoryStaticPaths = async (
   }
   data.categories?.items?.forEach(add)
 
-  return import.meta.graphCommerce.deployEnvironment !== 'production' ? paths.slice(0, 1) : paths
+  return import.meta.graphCommerce.limitSsg ? paths.slice(0, 1) : paths
 }
 
 export { getCategoryStaticPaths }

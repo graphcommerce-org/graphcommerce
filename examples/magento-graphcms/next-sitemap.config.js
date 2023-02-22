@@ -5,7 +5,7 @@ const { loadConfig } = require('@graphcommerce/next-config')
 require('dotenv').config()
 
 const config = loadConfig(process.cwd())
-const allowRobots = config.robotsAllow && config.deployEnvironment === 'production'
+const allowRobots = config.robotsAllow
 
 /** @link https://github.com/iamvishnusankar/next-sitemap */
 /** @type {import('next-sitemap').IConfig} */
