@@ -19,6 +19,9 @@ msgstr "<0>{name}</0> has been added to your shopping cart!"
 msgid "<0>{name}</0> has been added to your wishlist!"
 msgstr "<0>{name}</0> has been added to your wishlist!"
 
+msgid "Above <0/>"
+msgstr "Above <0/>"
+
 msgid "Account"
 msgstr "Account"
 
@@ -73,6 +76,9 @@ msgstr "Be the first to know about everything new!"
 msgid "Be the first to write a review!"
 msgstr "Be the first to write a review!"
 
+msgid "Below <0/>"
+msgstr "Below <0/>"
+
 msgid "Billing address"
 msgstr "Billing address"
 
@@ -99,6 +105,9 @@ msgstr "Choose your bank, and place your order."
 
 msgid "City"
 msgstr "City"
+
+msgid "Clear"
+msgstr "Clear"
 
 msgid "Close"
 msgstr "Close"
@@ -190,6 +199,9 @@ msgstr "Edit billing address"
 msgid "Email"
 msgstr "Email"
 
+msgid "Email address"
+msgstr "Email address"
+
 msgid "Emails don't match"
 msgstr "Emails don't match"
 
@@ -259,8 +271,14 @@ msgstr "Latest orders"
 msgid "Light Mode"
 msgstr "Light Mode"
 
+msgid "Loading"
+msgstr "Loading"
+
 msgid "Loading wishlist"
 msgstr "Loading wishlist"
+
+msgid "Loading your account"
+msgstr "Loading your account"
 
 msgid "Loading your data"
 msgstr "Loading your data"
@@ -364,6 +382,9 @@ msgstr "Password must have at least 8 characters"
 msgid "Passwords don't match"
 msgstr "Passwords don't match"
 
+msgid "Passwords should match"
+msgstr "Passwords should match"
+
 msgid "Pay"
 msgstr "Pay"
 
@@ -411,6 +432,9 @@ msgstr "Postcode"
 
 msgid "Prefix"
 msgstr "Prefix"
+
+msgid "Processing your payment"
+msgstr "Processing your payment"
 
 msgid "Product could not be found"
 msgstr "Product could not be found"
@@ -472,6 +496,9 @@ msgstr "Send password reset email"
 msgid "Set your new password"
 msgstr "Set your new password"
 
+msgid "Several errors occured"
+msgstr "Several errors occured"
+
 msgid "Shipping"
 msgstr "Shipping"
 
@@ -514,11 +541,17 @@ msgstr "Street"
 msgid "Submit review"
 msgstr "Submit review"
 
+msgid "Subscribe"
+msgstr "Subscribe"
+
 msgid "Subscribe to newsletter"
 msgstr "Subscribe to newsletter"
 
 msgid "Subscribe to our newsletter to stay informed about our new products!"
 msgstr "Subscribe to our newsletter to stay informed about our new products!"
+
+msgid "Subscribed"
+msgstr "Subscribed"
 
 msgid "Successfully changed password"
 msgstr "Successfully changed password"
@@ -633,6 +666,9 @@ msgstr "You can now <0>sign in again</0>."
 
 msgid "You can track your order status and much more!"
 msgstr "You can track your order status and much more!"
+
+msgid "You have been successfully subscribed to our newsletter."
+msgstr "You have been successfully subscribed to our newsletter."
 
 msgid "You have no addresses saved yet"
 msgstr "You have no addresses saved yet"

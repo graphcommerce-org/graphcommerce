@@ -54,7 +54,7 @@ function PaymentPage() {
       <WaitForQueries
         waitFor={[billingPage]}
         fallback={
-          <FullPageMessage icon={<CircularProgress />} title='Loading'>
+          <FullPageMessage icon={<CircularProgress />} title={<Trans id='Loading' />}>
             <Trans id='This may take a second' />
           </FullPageMessage>
         }
@@ -95,7 +95,7 @@ function PaymentPage() {
                 <FullPageMessage
                   disableMargin
                   icon={<CircularProgress />}
-                  title='Processing your payment'
+                  title={<Trans id='Processing your payment' />}
                 >
                   <Trans id='We’re processing your payment, this will take a few seconds.' />
                 </FullPageMessage>
