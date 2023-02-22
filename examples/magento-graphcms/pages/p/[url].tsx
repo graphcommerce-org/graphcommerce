@@ -156,7 +156,7 @@ function ProductPage(props: Props) {
                 {isTypename(product, ['ConfigurableProduct']) ? (
                   <ConfigurablePrice product={product} />
                 ) : (
-                  <ProductPagePrice price_tiers={product.price_tiers} price_range={product.price_range} />
+                  <ProductPagePrice product={product} />
                 )}
               </Typography>
             </AddProductsToCartError>
@@ -165,7 +165,7 @@ function ProductPage(props: Props) {
           {isTypename(product, ['ConfigurableProduct']) ? (
             <ConfigurablePriceTiers product={product} />
           ) : (
-            <ProductPagePriceTiers price_tiers={product.price_tiers} price_range={product.price_range} />
+            <ProductPagePriceTiers product={product} />
           )}
 
           <ProductSidebarDelivery product={product} />
