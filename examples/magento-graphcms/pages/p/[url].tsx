@@ -12,6 +12,8 @@ import {
   productPageCategory,
   ProductPageDescription,
   ProductPageMeta,
+  ProductPagePrice,
+  ProductPagePriceTiers,
   ProductShortDescription,
   ProductSidebarDelivery,
 } from '@graphcommerce/magento-product'
@@ -19,6 +21,7 @@ import { BundleProductOptions } from '@graphcommerce/magento-product-bundle'
 import {
   ConfigurableName,
   ConfigurablePrice,
+  ConfigurablePriceTiers,
   ConfigurableProductOptions,
   ConfigurableProductPageGallery,
   defaultConfigurableOptionsSelection,
@@ -153,11 +156,17 @@ function ProductPage(props: Props) {
                 {isTypename(product, ['ConfigurableProduct']) ? (
                   <ConfigurablePrice product={product} />
                 ) : (
-                  <Money {...product.price_range.minimum_price.final_price} />
+                  <ProductPagePrice product={product} />
                 )}
               </Typography>
             </AddProductsToCartError>
           </Box>
+
+          {isTypename(product, ['ConfigurableProduct']) ? (
+            <ConfigurablePriceTiers product={product} />
+          ) : (
+            <ProductPagePriceTiers product={product} />
+          )}
 
           <ProductSidebarDelivery product={product} />
 
