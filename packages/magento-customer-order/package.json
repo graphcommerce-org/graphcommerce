@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-customer-order",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "6.0.0-canary.22",
+  "version": "6.0.0-canary.23",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -12,18 +12,18 @@
     }
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "6.0.0-canary.22",
-    "@graphcommerce/prettier-config-pwa": "6.0.0-canary.22",
-    "@graphcommerce/typescript-config-pwa": "6.0.0-canary.22"
+    "@graphcommerce/eslint-config-pwa": "6.0.0-canary.23",
+    "@graphcommerce/prettier-config-pwa": "6.0.0-canary.23",
+    "@graphcommerce/typescript-config-pwa": "6.0.0-canary.23"
   },
   "dependencies": {
-    "@graphcommerce/graphql": "6.0.0-canary.22",
-    "@graphcommerce/graphql-mesh": "6.0.0-canary.22",
-    "@graphcommerce/image": "6.0.0-canary.22",
-    "@graphcommerce/magento-customer": "6.0.0-canary.22",
-    "@graphcommerce/magento-graphql": "6.0.0-canary.22",
-    "@graphcommerce/magento-store": "6.0.0-canary.22",
-    "@graphcommerce/next-ui": "6.0.0-canary.22"
+    "@graphcommerce/graphql": "6.0.0-canary.23",
+    "@graphcommerce/graphql-mesh": "6.0.0-canary.23",
+    "@graphcommerce/image": "6.0.0-canary.23",
+    "@graphcommerce/magento-customer": "6.0.0-canary.23",
+    "@graphcommerce/magento-graphql": "6.0.0-canary.23",
+    "@graphcommerce/magento-store": "6.0.0-canary.23",
+    "@graphcommerce/next-ui": "6.0.0-canary.23"
   },
   "peerDependencies": {
     "@lingui/react": "^3.13.2",
