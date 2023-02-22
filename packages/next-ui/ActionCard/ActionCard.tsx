@@ -2,7 +2,6 @@ import { alpha, Box, BoxProps, ButtonBase, ButtonProps, SxProps, Theme } from '@
 import React from 'react'
 import { extendableComponent } from '../Styles'
 import { breakpointVal } from '../Styles/breakpointVal'
-import { responsiveVal } from '../Styles/responsiveVal'
 
 type Variants = 'outlined' | 'default'
 type Size = 'large' | 'medium' | 'small'
@@ -134,8 +133,6 @@ export function ActionCard(props: ActionCardProps) {
           },
 
           '&.variantDefault': {
-            py: { xs: 0.6, sm: 0.8, md: 1 },
-            my: { xs: 0.8, sm: 1, md: 1.2 },
             '&::after': {
               content: '""',
               display: 'block',
@@ -143,14 +140,38 @@ export function ActionCard(props: ActionCardProps) {
               width: '100%',
               left: 0,
               bottom: 0,
-              mb: { xs: -0.8, sm: -1, md: -1.2 },
               borderBottom: `1px solid ${theme.palette.divider}`,
             },
             '&.selected': {
-              backgroundColor: `${theme.palette[color].main}20`,
+              backgroundColor: `${alpha(
+                theme.palette[color].main,
+                theme.palette.action.hoverOpacity,
+              )}`,
             },
             '&.error': {
-              backgroundColor: `${theme.palette.error.main}20`,
+              backgroundColor: `${alpha(
+                theme.palette.error.main,
+                theme.palette.action.hoverOpacity,
+              )}`,
+            },
+
+            '&.variantDefault.sizeSmall': {
+              my: { xs: 0.4, sm: 0.5, md: 0.6 },
+              '&::after': {
+                mb: { xs: -0.4, sm: -0.5, md: -0.6 },
+              },
+            },
+            '&.variantDefault.sizeMedium': {
+              my: { xs: 0.6, sm: 0.7, md: 0.8 },
+              '&::after': {
+                mb: { xs: -0.6, sm: -0.7, md: -0.8 },
+              },
+            },
+            '&.variantDefault.sizeLarge': {
+              my: { xs: 0.8, sm: 0.9, md: 1 },
+              '&::after': {
+                mb: { xs: -0.8, sm: -0.9, md: -1 },
+              },
             },
           },
 
