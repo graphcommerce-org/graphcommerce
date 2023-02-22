@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.0-canary.24
+
+### Minor Changes
+
+- [#1791](https://github.com/graphcommerce-org/graphcommerce/pull/1791) [`38461cbc1`](https://github.com/graphcommerce-org/graphcommerce/commit/38461cbc1ba7f9478be3405abe10c7aee2a30363) - Add price tiers feature ([@haelbichalex](https://github.com/haelbichalex))
+
 ## 6.0.0-canary.23
 
 ## 6.0.0-canary.22
