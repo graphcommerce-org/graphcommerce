@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.0-canary.22
+
+### Patch Changes
+
+- [#1808](https://github.com/graphcommerce-org/graphcommerce/pull/1808) [`847ee17e5`](https://github.com/graphcommerce-org/graphcommerce/commit/847ee17e512fcfd5367c5f6b3840d19b6bc9299f) - make FullPageMessage titles translatable and update translations. ([@carlocarels90](https://github.com/carlocarels90))
+
 ## 6.0.0-canary.21
 
 ## 6.0.0-canary.20
