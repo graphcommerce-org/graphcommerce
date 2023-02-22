@@ -1,5 +1,7 @@
-import { Breakpoint, Theme, useMediaQuery } from '@mui/material'
+import { Breakpoint } from '@mui/material'
 import dynamic from 'next/dynamic'
+import { startTransition, useEffect, useState } from 'react'
+import { useMatchMedia } from '../hooks'
 import { OverlayPanelProps } from './OverlayPanel'
 import { PopperPanelProps } from './PopperPanel'
 
@@ -15,7 +17,15 @@ export type OverlayOrPopperPanelProps = {
 export function OverlayOrPopperPanel(panel: OverlayOrPopperPanelProps) {
   const { breakpoint = 'md', ...panelProps } = panel
 
-  const isDesktop = useMediaQuery((theme: Theme) => theme.breakpoints.up(breakpoint || 'md'))
+  const matchMedia = useMatchMedia()
+  const [isDesktop, setIsDesktop] = useState<boolean | undefined>(undefined)
+  useEffect(
+    () => startTransition(() => setIsDesktop(matchMedia.up(breakpoint || 'md'))),
+    [breakpoint, matchMedia],
+  )
+
+  if (isDesktop === undefined) return null
+
   const isPopper = isDesktop && breakpoint
   return <>{isPopper ? <PopperPanel {...panelProps} /> : <OverlayPanel {...panelProps} />}</>
 }
