@@ -1,5 +1,4 @@
 import { Shadows } from '@mui/material/styles/shadows'
-import { spreadVal } from '../Styles/spreadVal'
 import { breakpoints } from './breakpoints'
 
 // https://material.io/design/environment/elevation.html#default-elevations
@@ -34,6 +33,5 @@ const shadows: Shadows = [
 
 export const themeBaseDefaults = {
   breakpoints,
-  spreadVal,
   shadows,
 }

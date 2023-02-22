@@ -1,5 +1,4 @@
 import type { Breakpoints } from '@mui/material'
-import { breakpoints } from '../Theme/breakpoints'
 
 type Interpolation = (from: number, to: number, t: number) => number
 
@@ -19,7 +18,7 @@ function spread(
   to: number,
   until: 'sm' | 'md' | 'lg' | 'xl',
   lerp: Interpolation,
-  bpValues: Breakpoints['values'] = breakpoints.values,
+  bpValues: Breakpoints['values'],
 ): SpreadValReturn {
   const xs = 320
   const { sm, md, lg, xl } = bpValues
@@ -36,14 +35,7 @@ function spread(
   return values as SpreadValReturn
 }
 
-export const spreadLinear: SpreadVal = (
-  from: number,
-  to: number,
-  until: 'sm' | 'md' | 'lg' | 'xl' = 'md',
-) => spread(from, to, until, linear)
-
-export const spreadVal: SpreadVal = (
-  from: number,
-  to: number,
-  until: 'sm' | 'md' | 'lg' | 'xl' = 'md',
-) => spread(from, to, until, easeIn)
+export const createSpreadVal =
+  (bpValues: Breakpoints['values']): SpreadVal =>
+  (from: number, to: number, until: 'sm' | 'md' | 'lg' | 'xl' = 'md') =>
+    spread(from, to, until, easeIn, bpValues)

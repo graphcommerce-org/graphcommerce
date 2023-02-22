@@ -12,8 +12,9 @@ import {
   MuiChip,
   MuiButtonInline,
   NextLink,
+  createTheme,
 } from '@graphcommerce/next-ui'
-import { createTheme, Theme, alpha, LinkProps } from '@mui/material'
+import { Theme, alpha, LinkProps } from '@mui/material'
 import { Components, PaletteOptions } from '@mui/material/styles'
 
 const lightPalette: PaletteOptions = {
@@ -85,7 +86,6 @@ const fontSize = (from: number, to: number) =>
 const createThemeWithPalette = (palette: PaletteOptions) =>
   createTheme({
     palette,
-    ...themeBaseDefaults,
     shape: { borderRadius: 3 },
     typography: {
       fontFamily:
@@ -218,6 +218,9 @@ const createOverrides = (theme: Theme): Components => ({
             paddingLeft: theme.page.horizontal,
             paddingRight: theme.page.horizontal,
           },
+
+          // Containers should never be nested, but when they are, remove padding.
+          '& .MuiContainer-root': { paddingLeft: 0, paddingRight: 0 },
         },
       },
     ],

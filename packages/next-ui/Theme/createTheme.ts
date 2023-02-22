@@ -1,4 +1,6 @@
-export {}
+import { createTheme as createMuiTheme, ThemeOptions } from '@mui/material'
+import { createSpreadVal, SpreadVal } from '../Styles/spreadVal'
+import { breakpoints } from './breakpoints'
 
 declare module '@mui/material/styles/createPalette' {
   interface TypeBackground {
@@ -27,6 +29,7 @@ declare module '@mui/material/styles/createTheme' {
       appBarHeightMd: string
       appBarInnerHeightMd: string
     }
+    spreadVal: SpreadVal
 
     // todo: should be cleaned up to be compatible with the default mui-styles
     shape: { borderRadius: number }
@@ -51,8 +54,18 @@ declare module '@mui/material/styles/createTheme' {
       appBarHeightMd: string
       appBarInnerHeightMd: string
     }
+    spreadVal: SpreadVal
 
     // todo: should be cleaned up to be compatible with the default mui-styles
     shape: { borderRadius: number }
   }
 }
+
+type ThemeOptionsWithDefaults = Omit<ThemeOptions, 'spreadVal' | 'breakpointVal'>
+
+export const createTheme = (options: ThemeOptionsWithDefaults) =>
+  createMuiTheme({
+    ...options,
+    breakpoints: { ...breakpoints, ...options.breakpoints },
+    spreadVal: createSpreadVal(options.breakpoints?.values ?? breakpoints.values),
+  })
