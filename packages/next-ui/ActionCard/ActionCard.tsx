@@ -135,7 +135,7 @@ export function ActionCard(props: ActionCardProps) {
 
           '&.variantDefault': {
             py: { xs: 0.6, sm: 0.8, md: 1 },
-            my: { xs: 0.6, sm: 0.8, md: 1 },
+            my: { xs: 0.8, sm: 1, md: 1.2 },
             '&::after': {
               content: '""',
               display: 'block',
@@ -143,13 +143,14 @@ export function ActionCard(props: ActionCardProps) {
               width: '100%',
               left: 0,
               bottom: 0,
-              mb: { xs: -0.6, sm: -0.8, md: -1 },
+              mb: { xs: -0.8, sm: -1, md: -1.2 },
               borderBottom: `1px solid ${theme.palette.divider}`,
             },
             '&.selected': {
               backgroundColor: `${theme.palette[color].main}20`,
             },
             '&.error': {
+              backgroundColor: `${theme.palette.error.main}20`,
             },
           },
 
