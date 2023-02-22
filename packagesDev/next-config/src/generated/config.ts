@@ -14,14 +14,6 @@ export type Scalars = {
   Float: number;
 };
 
-export type DeployEnvironment =
-  /** The development environment */
-  | 'development'
-  /** The staging environment */
-  | 'preview'
-  /** The production environment */
-  | 'production';
-
 /** Global GraphCommerce configuration can be configured in your `graphcommerce.config.js` file in the root of your project. */
 export type GraphCommerceConfig = {
   /**
@@ -58,12 +50,6 @@ export type GraphCommerceConfig = {
    */
   demoMode?: InputMaybe<Scalars['Boolean']>;
   /**
-   * Environment GraphCommerce is deployed to.
-   *
-   * Not to be confused with NODE_ENV: which will always be 'production' when running `next build`.
-   */
-  deployEnvironment?: InputMaybe<DeployEnvironment>;
-  /**
    * See https://support.google.com/analytics/answer/9539598?hl=en
    *
    * Provide a value to enable Google Analytics for your store.
@@ -91,6 +77,8 @@ export type GraphCommerceConfig = {
   hygraphEndpoint: Scalars['String'];
   /** All i18n configuration for the project */
   i18n: Array<GraphCommerceI18nConfig>;
+  /** Limit the static generation of SSG when building */
+  limitSsg?: InputMaybe<Scalars['Boolean']>;
   /**
    * GraphQL Magento endpoint.
    *
@@ -205,8 +193,6 @@ export const isDefinedNonNullAny = (v: any): v is definedNonNullAny => v !== und
 
 export const definedNonNullAnySchema = z.any().refine((v) => isDefinedNonNullAny(v));
 
-export const DeployEnvironmentSchema = z.enum(['development', 'preview', 'production']);
-
 export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerceConfig>> {
   return z.object<Properties<GraphCommerceConfig>>({
     canonicalBaseUrl: z.string().min(1),
@@ -214,12 +200,12 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     customerRequireEmailConfirmation: z.boolean().nullish(),
     debug: GraphCommerceDebugConfigSchema().nullish(),
     demoMode: z.boolean().nullish(),
-    deployEnvironment: DeployEnvironmentSchema.nullish(),
     googleAnalyticsId: z.string().nullish(),
     googleRecaptchaKey: z.string().nullish(),
     googleTagmanagerId: z.string().nullish(),
     hygraphEndpoint: z.string().min(1),
     i18n: z.array(GraphCommerceI18nConfigSchema()),
+    limitSsg: z.boolean().nullish(),
     magentoEndpoint: z.string().min(1),
     previewSecret: z.string().nullish(),
     productFiltersPro: z.boolean(),

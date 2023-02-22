@@ -72,12 +72,6 @@ Enables some demo specific code that is probably not useful for a project:
 - Adds "dominant_color" attribute swatches to the product list items.
 - Creates a big list items in the product list.
 
-### `deployEnvironment: DeployEnvironment`
-
-Environment GraphCommerce is deployed to.
-
-Not to be confused with NODE_ENV: which will always be 'production' when running `next build`.
-
 ### `googleAnalyticsId: String`
 
 See https://support.google.com/analytics/answer/9539598?hl=en
@@ -97,6 +91,10 @@ This value is required even if you are configuring different values for each loc
 The Google Tagmanager ID to be used on the site.
 
 This value is required even if you are configuring different values for each locale.
+
+### `limitSsg: Boolean`
+
+Limit the static generation of SSG when building
 
 ### `previewSecret: String`
 

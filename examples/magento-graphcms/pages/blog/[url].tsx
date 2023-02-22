@@ -64,8 +64,7 @@ BlogPage.pageOptions = {
 export default BlogPage
 
 export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
-  if (import.meta.graphCommerce.deployEnvironment !== 'production')
-    return { paths: [], fallback: 'blocking' }
+  if (import.meta.graphCommerce.limitSsg) return { paths: [], fallback: 'blocking' }
 
   const responses = locales.map(async (locale) => {
     const staticClient = graphqlSsrClient(locale)
@@ -76,10 +75,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
     )
   })
   const paths = (await Promise.all(responses)).flat(1)
-  return {
-    paths,
-    fallback: 'blocking',
-  }
+  return { paths, fallback: 'blocking' }
 }
 
 export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => {

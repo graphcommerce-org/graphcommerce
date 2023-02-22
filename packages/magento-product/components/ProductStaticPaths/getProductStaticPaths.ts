@@ -28,5 +28,5 @@ export async function getProductStaticPaths(
     .filter((item) => (typename ? item?.__typename === typename : true))
     .map((p) => ({ params: { url: `${p?.url_key}` }, locale }))
 
-  return import.meta.graphCommerce.deployEnvironment ? paths.slice(0, 1) : paths
+  return import.meta.graphCommerce.limitSsg ? paths.slice(0, 1) : paths
 }

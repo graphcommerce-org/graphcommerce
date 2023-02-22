@@ -36,23 +36,6 @@ input GraphCommerceI18nConfig {
   canonicalBaseUrl: String
 }
 
-enum DeployEnvironment {
-  """
-  The production environment
-  """
-  production
-
-  """
-  The staging environment
-  """
-  preview
-
-  """
-  The development environment
-  """
-  development
-}
-
 """
 Debug configuration for GraphCommerce
 """
@@ -90,11 +73,9 @@ input GraphCommerceConfig {
   i18n: [GraphCommerceI18nConfig!]!
 
   """
-  Environment GraphCommerce is deployed to.
-
-  Not to be confused with NODE_ENV: which will always be 'production' when running `next build`.
+  Limit the static generation of SSG when building
   """
-  deployEnvironment: DeployEnvironment
+  limitSsg: Boolean
 
   """
   Allow the site to be indexed by search engines.
