@@ -2,7 +2,6 @@ import { Chip, ChipProps, Menu, MenuProps, menuClasses, SxProps, Theme } from '@
 import React, { useState } from 'react'
 import { IconSvg } from '../IconSvg'
 import { SectionHeader } from '../SectionHeader/SectionHeader'
-import { responsiveVal } from '../Styles/responsiveVal'
 import { iconChevronDown, iconChevronUp, iconCancelAlt } from '../icons'
 
 export type ChipMenuProps = Omit<ChipProps<'button'>, 'children' | 'component'> & {
@@ -74,7 +73,7 @@ export function ChipMenu(props: ChipMenuProps) {
               '&:focus': { outline: 'none' },
             },
             [`& .${menuClasses.paper}`]: {
-              minWidth: responsiveVal(200, 560),
+              minWidth: theme.responsiveTemplate`${[200, 560]}px`,
               maxWidth: 560,
               py: theme.spacings.xs,
               pl: 0,

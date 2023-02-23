@@ -1,6 +1,6 @@
 import { cloneDeep } from '@graphcommerce/graphql'
 import type { FilterEqualTypeInput } from '@graphcommerce/graphql-mesh'
-import { responsiveVal, extendableComponent, ChipMenu, ChipMenuProps } from '@graphcommerce/next-ui'
+import { extendableComponent, ChipMenu, ChipMenuProps } from '@graphcommerce/next-ui'
 import {
   Box,
   Checkbox,
@@ -82,12 +82,12 @@ export function FilterEqualType(props: FilterEqualTypeProps) {
     >
       <Box
         className={classes.linkContainer}
-        sx={{
+        sx={(theme) => ({
           display: 'grid',
           gridTemplateColumns: { xs: 'repeat(2, minmax(0, 1fr))', md: 'repeat(2, 1fr)' },
-          columnGap: responsiveVal(2, 16),
+          columnGap: theme.responsiveTemplate`${[2, 16]}px`,
           minWidth: 0,
-        }}
+        })}
       >
         {options?.map((option) => {
           if (!option?.value) return null
@@ -134,7 +134,7 @@ export function FilterEqualType(props: FilterEqualTypeProps) {
                   className={cls.listItemInnerContainer}
                   sx={(theme) => ({
                     width: '100%',
-                    paddingTop: responsiveVal(0, 3),
+                    paddingTop: theme.responsiveTemplate`${[0, 3]}px`,
                     paddingBottom: theme.spacings.xxs,
                     '& > div': {
                       display: 'inline-block',

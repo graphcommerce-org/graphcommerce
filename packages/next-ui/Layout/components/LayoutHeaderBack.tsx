@@ -4,7 +4,6 @@ import { Box, SxProps, Theme } from '@mui/material'
 import { useRouter } from 'next/router'
 import { LinkOrButton, LinkOrButtonProps } from '../../Button/LinkOrButton'
 import { IconSvg } from '../../IconSvg'
-import { responsiveVal } from '../../Styles'
 import { iconChevronLeft } from '../../icons'
 
 export type BackProps = Omit<LinkOrButtonProps, 'onClick' | 'children'>
@@ -26,11 +25,9 @@ const buttonSx: SxProps<Theme> = (theme) => ({
   '&:not(.Mui-disabled)': { boxShadow: 6 },
   [theme.breakpoints.down('md')]: {
     minWidth: 'auto',
-    paddingLeft: responsiveVal(8, 11),
-    paddingRight: responsiveVal(8, 11),
+    px: theme.responsiveTemplate`${[8, 11]}px`,
     '& .MuiButton-startIcon': {
-      marginRight: 0,
-      marginLeft: 0,
+      mx: 0,
     },
   },
 })

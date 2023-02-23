@@ -1,5 +1,4 @@
 import { ComponentsVariants, darken } from '@mui/material'
-import { responsiveVal } from '../Styles'
 
 declare module '@mui/material/Chip/Chip' {
   interface ChipPropsSizeOverrides {
@@ -29,9 +28,9 @@ export const MuiChip: ChipVariants = [
     props: { size: 'medium' },
     style: ({ theme }) =>
       theme.unstable_sx({
-        height: responsiveVal(26, 30),
-        paddingLeft: responsiveVal(3, 6),
-        paddingRight: responsiveVal(3, 6),
+        height: theme.responsiveTemplate`${[26, 30]}px`,
+        paddingLeft: theme.responsiveTemplate`${[3, 6]}px`,
+        paddingRight: theme.responsiveTemplate`${[3, 6]}px`,
         typography: 'caption',
       }),
   },
@@ -39,14 +38,14 @@ export const MuiChip: ChipVariants = [
     props: { size: 'responsive' },
     style: ({ theme }) =>
       theme.unstable_sx({
-        height: responsiveVal(32, 40),
-        paddingLeft: responsiveVal(4, 8),
-        paddingRight: responsiveVal(4, 8),
+        height: theme.responsiveTemplate`${[32, 40]}px`,
+        paddingLeft: theme.responsiveTemplate`${[4, 8]}px`,
+        paddingRight: theme.responsiveTemplate`${[4, 8]}px`,
         borderRadius: '99em',
         typography: 'body2',
         '& .MuiChip-label': {
-          paddingLeft: responsiveVal(6, 10),
-          paddingRight: responsiveVal(6, 10),
+          paddingLeft: theme.responsiveTemplate`${[6, 10]}px`,
+          paddingRight: theme.responsiveTemplate`${[6, 10]}px`,
         },
       }),
   },

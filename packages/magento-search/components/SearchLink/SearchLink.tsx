@@ -1,10 +1,4 @@
-import {
-  iconSearch,
-  responsiveVal,
-  IconSvg,
-  extendableComponent,
-  useFabSize,
-} from '@graphcommerce/next-ui'
+import { iconSearch, IconSvg, extendableComponent, useFabSize } from '@graphcommerce/next-ui'
 import { Link, LinkProps } from '@mui/material'
 import { useRouter } from 'next/router'
 import type { SetRequired } from 'type-fest'
@@ -42,7 +36,7 @@ export function SearchLink(props: SearchLinkProps) {
           justifySelf: 'center',
           // @todo make abstract, this is the size of a responsive Fab minus the icon size, divided by 2.
           marginRight: `calc(${fabSize} / 4)`,
-          width: responsiveVal(64, 172),
+          width: theme.responsiveTemplate`${[64, 172]}px`,
           borderRadius: 2,
           typography: 'body2',
           display: 'flex',

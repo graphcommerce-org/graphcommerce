@@ -10,7 +10,6 @@ import { ReactNode } from 'react'
 import { IconSvg } from '../IconSvg'
 import { Row } from '../Row/Row'
 import { extendableComponent } from '../Styles/extendableComponent'
-import { responsiveVal } from '../Styles/responsiveVal'
 import { iconChevronLeft, iconChevronRight } from '../icons'
 
 const { classes, selectors } = extendableComponent('SidebarSlider', [
@@ -67,7 +66,7 @@ export function SidebarSlider(props: SidebarSliderProps) {
                 gridColumnGap: theme.spacings.md,
                 gridRowGap: theme.spacings.lg,
                 paddingRight: theme.page.horizontal,
-                gridAutoColumns: responsiveVal(200, 400),
+                gridAutoColumns: theme.responsiveTemplate`${[200, 400]}px`,
               })}
             >
               {children}

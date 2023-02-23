@@ -11,7 +11,6 @@ import {
 import { ChangeEvent, Ref, useCallback, useEffect, useRef, useState } from 'react'
 import { IconSvg } from '../IconSvg'
 import { extendableComponent } from '../Styles'
-import { responsiveVal } from '../Styles/responsiveVal'
 import { iconMin, iconPlus } from '../icons'
 
 export type IconButtonPropsOmit = Omit<
@@ -94,9 +93,9 @@ export function TextInputNumber(props: TextInputNumberProps) {
       inputRef={forkRef}
       className={`${textFieldProps.className ?? ''} ${classes.quantity}`}
       sx={[
-        {
-          width: responsiveVal(80, 120),
-        },
+        (theme) => ({
+          width: theme.responsiveTemplate`${[200, 900]}px`,
+        }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
       autoComplete='off'

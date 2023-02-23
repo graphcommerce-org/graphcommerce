@@ -17,7 +17,6 @@ import React, { useEffect } from 'react'
 import { IconSvg } from '../IconSvg'
 import { useScrollY } from '../Layout/hooks/useScrollY'
 import { extendableComponent } from '../Styles/extendableComponent'
-import { responsiveVal } from '../Styles/responsiveVal'
 import { useFabSize } from '../Theme'
 import { iconMenu, iconClose } from '../icons'
 import { useFabAnimation } from './useFabAnimation'
@@ -141,7 +140,7 @@ export function MenuFab(props: MenuFabProps) {
               backgroundColor: theme.palette.background.paper,
               backgroundImage: 'unset',
               color: theme.palette.text.primary,
-              minWidth: responsiveVal(200, 280),
+              minWidth: theme.responsiveTemplate`${[200, 280]}px`,
               marginTop: '12px',
               [theme.breakpoints.down('md')]: {
                 marginTop: `calc((${fabIconSize} + 12px) * -1)`,

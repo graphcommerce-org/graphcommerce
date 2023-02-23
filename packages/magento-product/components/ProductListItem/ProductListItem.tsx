@@ -1,10 +1,5 @@
 import { Image, ImageProps } from '@graphcommerce/image'
-import {
-  responsiveVal,
-  extendableComponent,
-  useNumberFormat,
-  breakpointVal,
-} from '@graphcommerce/next-ui'
+import { extendableComponent, useNumberFormat, breakpointVal } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import {
   ButtonBase,
@@ -121,10 +116,10 @@ export function ProductListItem(props: ProductListItemProps) {
             theme.breakpoints.values,
           ),
           overflow: 'hidden',
-          padding: responsiveVal(8, 12),
+          p: theme.responsiveTemplate`${[8, 23]}px`,
           '& > picture': {
             gridArea: `1 / 1 / 3 / 3`,
-            margin: `calc(${responsiveVal(8, 12)} * -1)`,
+            m: theme.responsiveTemplate`calc(${[8, 12]}px * -1)`,
           },
         })}
         className={classes.imageContainer}

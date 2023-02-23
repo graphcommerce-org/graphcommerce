@@ -1,7 +1,6 @@
 import { Box, ContainerProps, Typography } from '@mui/material'
 import { extendableComponent } from '../../Styles'
 import { breakpointVal } from '../../Styles/breakpointVal'
-import { responsiveVal } from '../../Styles/responsiveVal'
 import { Row } from '../Row'
 
 export type SpecialBannerProps = ContainerProps & {
@@ -49,11 +48,11 @@ export function SpecialBanner(props: SpecialBannerProps) {
         <Box
           className={classes.asset}
           sx={(theme) => ({
-            width: responsiveVal(200, 900),
+            width: theme.responsiveTemplate`${[200, 900]}px`,
             height: 'auto',
             marginBottom: theme.spacings.md,
             '& img': {
-              width: responsiveVal(200, 900),
+              width: theme.responsiveTemplate`${[200, 900]}px`,
               height: 'auto',
               objectFit: 'cover',
               ...breakpointVal(
@@ -64,10 +63,10 @@ export function SpecialBanner(props: SpecialBannerProps) {
               ),
             },
             [theme.breakpoints.up('lg')]: {
-              width: responsiveVal(250, 900),
+              width: theme.responsiveTemplate`${[250, 900]}px`,
               height: 'auto',
               '& img': {
-                width: responsiveVal(250, 900),
+                width: theme.responsiveTemplate`${[250, 900]}px`,
                 height: 'auto',
                 objectFit: 'cover',
               },

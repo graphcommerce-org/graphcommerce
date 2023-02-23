@@ -1,4 +1,4 @@
-import { iconSearch, responsiveVal, IconSvg, extendableComponent } from '@graphcommerce/next-ui'
+import { iconSearch, IconSvg, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { TextField, TextFieldProps } from '@mui/material'
 
@@ -35,7 +35,7 @@ export function SearchButton(props: SearchButtonProps) {
       sx={[
         (theme) => ({
           marginRight: theme.spacings.xxs,
-          width: responsiveVal(64, 172),
+          width: theme.responsiveTemplate`${[64, 172]}px`,
           '& fieldset': {
             border: `1px solid ${theme.palette.divider}`,
           },

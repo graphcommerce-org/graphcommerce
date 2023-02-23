@@ -2,7 +2,6 @@ import { Box, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { extendableComponent } from '../../Styles'
 import { breakpointVal } from '../../Styles/breakpointVal'
-import { responsiveVal } from '../../Styles/responsiveVal'
 import { Row } from '../Row'
 
 export type ImageTextBoxedProps = {
@@ -68,7 +67,7 @@ export function ImageTextBoxed(props: ImageTextBoxedProps) {
             width: '100%',
             [theme.breakpoints.up('md')]: {
               height: '100%',
-              width: responsiveVal(100, 600),
+              width: theme.responsiveTemplate`${[100, 600]}px`,
             },
             '& img': {
               height: '100% !important',

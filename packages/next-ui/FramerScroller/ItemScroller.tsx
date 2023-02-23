@@ -6,7 +6,7 @@ import {
 } from '@graphcommerce/framer-scroller'
 import { Box, SxProps, Theme } from '@mui/material'
 import { IconSvg } from '../IconSvg'
-import { extendableComponent, responsiveVal } from '../Styles'
+import { extendableComponent } from '../Styles'
 import { useFabSize } from '../Theme'
 import { iconChevronLeft, iconChevronRight } from '../icons'
 
@@ -46,7 +46,7 @@ export function ItemScroller(props: SliderProps) {
               px: theme.page.horizontal,
               scrollPaddingLeft: theme.page.horizontal,
               scrollPaddingRight: theme.page.horizontal,
-              gridAutoColumns: responsiveVal(200, 300),
+              gridAutoColumns: theme.responsiveTemplate`${[200, 300]}px`,
             })}
           >
             {children}
