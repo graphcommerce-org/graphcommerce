@@ -1,4 +1,3 @@
-import { SxProps } from '@mui/material'
 import { themeBaseDefaults } from '../../Theme'
 import { createResponsiveTemplate, FromTo } from '../spreadVal'
 
