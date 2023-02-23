@@ -1,4 +1,4 @@
-import { responsiveVal, extendableComponent } from '@graphcommerce/next-ui'
+import { extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box, Divider, SxProps, Theme, Typography } from '@mui/material'
 import { ProductListCountFragment } from './ProductListCount.gql'
@@ -22,8 +22,8 @@ export function ProductListCount(props: ProductCountProps) {
           gridAutoFlow: 'column',
           gridTemplateColumns: '1fr max-content 1fr',
           columnGap: theme.spacings.xs,
-          maxWidth: '100%',
-          width: responsiveVal(280, 650),
+          width: '100%',
+          maxWidth: theme.breakpoints.values.sm,
           margin: '0 auto',
           alignItems: 'center',
           marginTop: theme.spacings.md,
