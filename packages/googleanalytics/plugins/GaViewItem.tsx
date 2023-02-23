@@ -10,7 +10,12 @@ export const exported = '@graphcommerce/magento-product'
 function GaViewItem(props: PluginProps<ProductPageMetaFragment>) {
   const { Prev, url_key, ...rest } = props
 
-  useEffect(() => gtagViewItem(rest), [rest])
+  useEffect(
+    () => gtagViewItem(rest),
+    // We're disabling eslint rule to prevent this event from being triggerd on every rerender
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  )
 
   return <Prev {...props} />
 }
