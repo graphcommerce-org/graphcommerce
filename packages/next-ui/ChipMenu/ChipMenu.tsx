@@ -76,7 +76,9 @@ export function ChipMenu(props: ChipMenuProps) {
             [`& .${menuClasses.paper}`]: {
               minWidth: responsiveVal(200, 560),
               maxWidth: 560,
-              padding: `0 ${theme.spacings.xs} ${theme.spacings.xs}`,
+              py: theme.spacings.xs,
+              pl: 0,
+              pr: theme.spacings.xs,
               margin: 0,
               [theme.breakpoints.down('sm')]: {
                 minWidth: 0,

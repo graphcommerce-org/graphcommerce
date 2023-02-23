@@ -11,7 +11,8 @@ const styles = ({ theme, contained = false, background }: { theme: Theme } & For
     {
       display: 'grid',
       alignItems: 'center',
-      padding: `${theme.spacings.xxs} 0`,
+      py: theme.spacings.xxs,
+      px: 0,
     },
     background === 'default' && {
       background:
@@ -23,7 +24,8 @@ const styles = ({ theme, contained = false, background }: { theme: Theme } & For
       background: theme.palette.secondary.light,
     },
     contained && {
-      padding: `${theme.spacings.xxs} ${theme.spacings.sm}`,
+      py: theme.spacings.xxs,
+      px: theme.spacings.sm,
       // paddingTop: theme.spacings.md,
       overflow: 'hidden',
       ...breakpointVal(

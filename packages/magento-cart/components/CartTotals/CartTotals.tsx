@@ -60,8 +60,8 @@ export function CartTotals(props: CartTotalsProps) {
             theme.palette.mode === 'light'
               ? theme.palette.background.default
               : lighten(theme.palette.background.default, 0.15),
-          padding: `${theme.spacings.xs} ${theme.spacings.sm}`,
-
+          py: theme.spacings.xs,
+          px: theme.spacings.sm,
           '&.containerMargin': {
             marginTop: theme.spacings.md,
           },

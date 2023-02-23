@@ -47,8 +47,9 @@ export function HeroBanner(props: HeroBannerProps) {
             display: 'grid',
             justifyItems: 'center',
             alignContent: 'center',
-            padding: `${theme.spacings.lg} ${theme.spacings.md}`,
             paddingTop: `calc(${theme.spacings.lg} - ${theme.spacings.md})`,
+            py: theme.spacings.lg,
+            px: theme.spacings.md,
             minHeight: `calc(100vh - ${theme.appShell.headerHeightSm})`,
             '& > *': {
               zIndex: 1,
@@ -59,7 +60,7 @@ export function HeroBanner(props: HeroBannerProps) {
               minHeight: `calc(100vh - ${theme.appShell.headerHeightMd})`,
             },
             [theme.breakpoints.up('lg')]: {
-              padding: `${theme.spacings.lg} ${theme.spacings.lg}`,
+              padding: theme.spacings.lg,
               paddingTop: `calc(${theme.spacings.lg} - ${theme.spacings.md})`,
               width: '50%',
             },

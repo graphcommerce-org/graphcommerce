@@ -33,7 +33,8 @@ export function PickupLocationActionCard(props: ActionCardItemRenderProps<Locati
 
                   '& td': {
                     width: 'auto!important',
-                    padding: `0 ${theme.spacings.xl}`,
+                    py: 0,
+                    px: theme.spacings.xl,
 
                     '&:first-of-type': {
                       paddingLeft: 0,

@@ -51,8 +51,7 @@ export function CategoryChildren(props: CategoryChildrenProps) {
                 sx={(theme) => ({
                   whiteSpace: 'nowrap',
                   display: 'block',
-                  marginRight: `${theme.spacings.xxs}`,
-                  marginLeft: `${theme.spacings.xxs}`,
+                  mx: theme.spacings.xxs,
                   typography: 'h6',
                   position: 'relative',
                   paddingBottom: '8px',

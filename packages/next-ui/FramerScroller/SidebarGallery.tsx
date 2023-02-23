@@ -339,7 +339,8 @@ export function SidebarGallery(props: SidebarGalleryProps) {
               sx={{
                 boxSizing: 'border-box',
                 width: '100%',
-                padding: `${theme.spacings.lg} ${theme.page.horizontal}`,
+                py: theme.spacings.lg,
+                px: theme.page.horizontal,
                 [theme.breakpoints.up('md')]: {
                   paddingLeft: theme.spacings.lg,
                 },

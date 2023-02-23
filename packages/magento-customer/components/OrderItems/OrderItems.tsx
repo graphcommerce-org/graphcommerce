@@ -112,7 +112,9 @@ export function OrderItems(props: OrderItemsProps) {
         <Box
           className={classes.viewAllButton}
           sx={(theme) => ({
-            margin: `${theme.spacings.xs} auto 0 auto`,
+            mx: 'auto',
+            mt: theme.spacings.xs,
+            mb: 0,
             textAlign: 'center',
             '& a': { padding: '8px' },
           })}

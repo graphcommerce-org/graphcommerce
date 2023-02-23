@@ -116,7 +116,8 @@ export function ProductReviews(props: ProductReviewsProps) {
             display: 'grid',
             gap: theme.spacings.sm,
             borderBottom: `1px solid ${theme.palette.divider}`,
-            padding: `${theme.spacings.md} 0`,
+            py: theme.spacings.md,
+            px: 0,
             typography: 'body1',
           })}
         >
@@ -157,7 +158,8 @@ export function ProductReviews(props: ProductReviewsProps) {
               display: 'grid',
               gap: theme.spacings.sm,
               borderBottom: `1px solid ${theme.palette.divider}`,
-              padding: `${theme.spacings.md} 0`,
+              py: theme.spacings.md,
+              px: 0,
               typography: 'body1',
             })}
           >

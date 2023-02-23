@@ -26,12 +26,12 @@ export function ImageTextBoxed(props: ImageTextBoxedProps) {
           display: 'grid',
           border: `1px solid ${theme.palette.divider}`,
           justifyItems: 'center',
-          columnGap: `${theme.spacings.lg}`,
+          columnGap: theme.spacings.lg,
           padding: 0,
           [theme.breakpoints.up('md')]: {
             background: 'none',
             gridTemplateColumns: '1fr auto',
-            columnGap: `${theme.spacings.lg}`,
+            columnGap: theme.spacings.lg,
           },
           ...breakpointVal(
             'borderRadius',
@@ -45,7 +45,8 @@ export function ImageTextBoxed(props: ImageTextBoxedProps) {
         <Box
           className={classes.copy}
           sx={(theme) => ({
-            padding: `${theme.spacings.lg} 0`,
+            py: theme.spacings.lg,
+            px: 0,
             color: theme.palette.text.primary,
             maxWidth: '80%',
             display: 'grid',

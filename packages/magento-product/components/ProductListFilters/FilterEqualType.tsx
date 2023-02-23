@@ -122,7 +122,8 @@ export function FilterEqualType(props: FilterEqualTypeProps) {
                 dense
                 className={cls.listItem}
                 sx={(theme) => ({
-                  padding: `0 ${theme.spacings.xxs} 0`,
+                  py: 0,
+                  px: theme.spacings.xxs,
                   display: 'block',
                   '&:not(:nth-last-of-type(-n+2)) > div': {
                     borderBottom: `1px solid ${theme.palette.divider}`,

@@ -84,7 +84,8 @@ export const ToggleButton = React.forwardRef<any, ToggleButtonProps>((props, ref
               theme.shape.borderRadius * 3,
               theme.breakpoints.values,
             ),
-            padding: `${theme.spacings.xxs} ${theme.spacings.xs}`,
+            py: theme.spacings.xxs,
+            px: theme.spacings.xs,
           },
           '&.sizeSmall': {
             ...breakpointVal(

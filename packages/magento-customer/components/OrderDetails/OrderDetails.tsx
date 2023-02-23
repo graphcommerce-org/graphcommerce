@@ -46,7 +46,8 @@ const OrderDetailsInnerContainer = styled('span', { target: classes.orderDetails
       display: 'grid',
       gridColumnGap: theme.spacings.sm,
       gridRowGap: theme.spacings.lg,
-      padding: `${theme.spacings.md} 0`,
+      py: theme.spacings.md,
+      px: 0,
       borderBottom: `1px solid ${theme.palette.divider}`,
       [theme.breakpoints.up('sm')]: {
         gridColumnGap: theme.spacings.xxl,
@@ -58,7 +59,8 @@ const OrderDetailsInnerContainer = styled('span', { target: classes.orderDetails
 
 const TotalsContainer = styled('span', { target: classes.totalsContainer })(({ theme }) =>
   theme.unstable_sx({
-    padding: `${theme.spacings.xxs} 0`,
+    py: theme.spacings.xxs,
+    px: 0,
   }),
 )
 
@@ -75,14 +77,16 @@ const TotalsDivider = styled('span', { target: classes.totalsDivider })(({ theme
     height: 1,
     width: '100%',
     background: theme.palette.divider,
-    margin: `${theme.spacings.xxs} 0`,
+    my: theme.spacings.xxs,
+    mx: 0,
   }),
 )
 
 const TotalsVat = styled(TotalsRow, { target: classes.totalsVat })(({ theme }) =>
   theme.unstable_sx({
     fontWeight: 'bold',
-    padding: `${theme.spacings.xxs} 0`,
+    py: theme.spacings.xxs,
+    px: 0,
   }),
 )
 const IconContainer = styled(TotalsRow, { target: classes.iconContainer })(({ theme }) =>

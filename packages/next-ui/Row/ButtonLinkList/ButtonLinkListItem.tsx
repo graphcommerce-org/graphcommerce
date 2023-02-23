@@ -22,7 +22,8 @@ export function ButtonLinkListItem(props: ButtonLinkListItemProps) {
       component={NextLink}
       href={url}
       sx={(theme) => ({
-        padding: `${theme.spacings.xxs} 0`,
+        py: theme.spacings.xxs,
+        px: 0,
         borderBottom: `1px solid ${theme.palette.divider}`,
         justifyContent: 'space-between',
       })}

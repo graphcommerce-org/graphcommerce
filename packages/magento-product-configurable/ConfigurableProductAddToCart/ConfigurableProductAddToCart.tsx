@@ -77,7 +77,7 @@ export function ConfigurableProductAddToCart(props: ConfigurableProductAddToCart
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
-      <Divider className={classes.divider} sx={(theme) => ({ margin: `${theme.spacings.sm} 0` })} />
+      <Divider className={classes.divider} sx={(theme) => ({ my: theme.spacings.sm, mx: 0 })} />
       <ConfigurableOptionsInput
         name='selectedOptions'
         sku={variables.sku}
@@ -100,7 +100,7 @@ export function ConfigurableProductAddToCart(props: ConfigurableProductAddToCart
         className={classes.quantity}
         sx={(theme) => ({ marginTop: theme.spacings.sm })}
       />
-      <Divider className={classes.divider} sx={(theme) => ({ margin: `${theme.spacings.sm} 0` })} />
+      <Divider className={classes.divider} sx={(theme) => ({ my: theme.spacings.sm, mx: 0 })} />
       <Typography
         component='div'
         variant='h3'

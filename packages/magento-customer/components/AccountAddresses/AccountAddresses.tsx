@@ -42,7 +42,8 @@ export function AccountAddresses(props: AccountAddressesProps) {
           sx={(theme) => ({
             display: 'block',
             maxWidth: 'max-content',
-            margin: `${theme.spacings.md} auto`,
+            mx: 'auto',
+            my: theme.spacings.md,
           })}
         >
           <Trans id='Add new address' />
@@ -85,7 +86,8 @@ export function AccountAddresses(props: AccountAddressesProps) {
             sx={(theme) => ({
               display: 'block',
               maxWidth: 'max-content',
-              margin: `${theme.spacings.md} auto`,
+              mx: 'auto',
+              my: theme.spacings.md,
             })}
           >
             <Trans id='Add new address' />

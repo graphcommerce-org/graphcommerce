@@ -28,9 +28,8 @@ export function SpecialBanner(props: SpecialBannerProps) {
           display: 'grid',
           background: theme.palette.background.paper,
           justifyItems: 'center',
-          columnGap: `${theme.spacings.lg}`,
-          paddingTop: theme.spacings.lg,
-          paddingBottom: theme.spacings.lg,
+          columnGap: theme.spacings.lg,
+          py: theme.spacings.lg,
           justifySelf: 'start',
           ...breakpointVal(
             'borderRadius',
@@ -39,11 +38,11 @@ export function SpecialBanner(props: SpecialBannerProps) {
             theme.breakpoints.values,
           ),
           [theme.breakpoints.up('md')]: {
-            padding: 0,
+            p: 0,
             background: 'none',
             justifySelf: 'center',
             gridTemplateColumns: '1fr 1fr',
-            columnGap: `${theme.spacings.lg}`,
+            columnGap: theme.spacings.lg,
           },
         })}
       >

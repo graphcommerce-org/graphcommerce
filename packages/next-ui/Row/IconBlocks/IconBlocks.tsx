@@ -23,10 +23,10 @@ export function IconBlocks(props: IconBlocksProps) {
       className={classes.container}
       sx={[{ maxWidth: 820 }, ...(Array.isArray(sx) ? sx : [sx])]}
     >
-      <Box className={classes.wrapper} sx={(theme) => ({ paddingTop: `${theme.spacings.lg}` })}>
+      <Box className={classes.wrapper} sx={(theme) => ({ pt: theme.spacings.lg })}>
         <Box
           className={classes.title}
-          sx={(theme) => ({ typography: 'h5', marginBottom: `${theme.spacings.md}` })}
+          sx={(theme) => ({ typography: 'h5', mb: theme.spacings.md })}
         >
           {title}
         </Box>
@@ -35,7 +35,7 @@ export function IconBlocks(props: IconBlocksProps) {
           sx={(theme) => ({
             display: 'grid',
             gridTemplateColumns: `repeat(auto-fill, minmax(${responsiveVal(150, 280)}, 1fr))`,
-            gap: `${theme.spacings.sm}`,
+            gap: theme.spacings.sm,
           })}
         >
           {children}

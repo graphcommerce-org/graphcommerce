@@ -377,7 +377,8 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
                 paddingTop: smSpacingTop,
               },
               '&.sizeSmFloating': {
-                padding: `${theme.page.vertical} ${theme.page.horizontal}`,
+                py: theme.page.vertical,
+                px: theme.page.horizontal,
               },
             },
             [theme.breakpoints.up('md')]: {
@@ -390,7 +391,8 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
                 display: 'grid',
               },
               '&.sizeMdFloating': {
-                padding: `${theme.page.vertical} ${theme.page.horizontal}`,
+                py: theme.page.vertical,
+                px: theme.page.horizontal,
               },
               '&.sizeMdFloating.variantMdBottom': {
                 marginTop: `calc(${theme.page.vertical} * -1)`,

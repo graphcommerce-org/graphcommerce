@@ -46,7 +46,7 @@ export function CartItemSummary(props: OrderSummaryProps) {
       className={classes.root}
       sx={[
         (theme) => ({
-          padding: `${theme.spacings.sm} ${theme.spacings.sm}`,
+          p: theme.spacings.sm,
           border: `1px ${theme.palette.divider} solid`,
           ...breakpointVal(
             'borderRadius',
@@ -130,7 +130,8 @@ export function CartItemSummary(props: OrderSummaryProps) {
         <Divider
           classes={{ root: classes.divider }}
           sx={(theme) => ({
-            margin: `${theme.spacings.xs} 0 ${theme.spacings.xs} 0`,
+            my: theme.spacings.xs,
+            mx: 0,
           })}
         />
         <CartTotals sx={{ background: 'none', padding: 0 }} />

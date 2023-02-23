@@ -26,13 +26,13 @@ export const IconBlock = React.forwardRef<HTMLAnchorElement, IconBlockProps>((pr
       {...buttonProps}
       sx={[
         (theme) => ({
-          padding: `${theme.spacings.sm}`,
+          p: theme.spacings.sm,
           textAlign: 'center',
           '& > *': {
             display: 'grid',
             gridAutoFlow: 'row',
             justifyItems: 'center',
-            gap: `${theme.spacings.xxs}`,
+            gap: theme.spacings.xxs,
           },
         }),
         ...(Array.isArray(sx) ? sx : [sx]),

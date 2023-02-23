@@ -22,7 +22,7 @@ export function ContentLinks(props: ContentLinksProps) {
       maxWidth={false}
       sx={[
         (theme) => ({
-          marginBottom: `${theme.spacings.md}`,
+          mb: theme.spacings.md,
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
@@ -33,7 +33,7 @@ export function ContentLinks(props: ContentLinksProps) {
           hideScrollbar
           sx={(theme) => ({
             justifyContent: 'start',
-            gap: `${theme.spacings.md}`,
+            gap: theme.spacings.md,
             gridAutoColumns: `max-content`,
           })}
         >

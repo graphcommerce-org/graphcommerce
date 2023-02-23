@@ -35,7 +35,8 @@ export function Footer(props: FooterProps) {
           borderTop: `1px solid ${theme.palette.divider}`,
           display: 'grid',
           alignItems: 'center',
-          padding: `${theme.spacings.lg} ${theme.page.horizontal} ${theme.page.vertical}`,
+          py: theme.page.vertical,
+          px: theme.page.horizontal,
           justifyItems: 'center',
           gridTemplateAreas: `
             'switcher switcher'
@@ -43,17 +44,15 @@ export function Footer(props: FooterProps) {
             'social social'
             'links links'
           `,
-          gap: theme.spacings.md,
+          gap: theme.spacings.sm,
           '& > *': { maxWidth: 'max-content' },
 
           [theme.breakpoints.up('sm')]: {
-            gap: theme.spacings.sm,
             gridTemplateAreas: `
               'social switcher'
               'links support'
             `,
             justifyItems: 'start',
-            padding: `${theme.page.vertical} ${theme.page.horizontal}`,
             gridTemplateColumns: 'auto auto',
             gridTemplateRows: 'auto',
             justifyContent: 'space-between',
@@ -71,7 +70,7 @@ export function Footer(props: FooterProps) {
           justifyContent: 'start',
           gridAutoFlow: 'column',
           gridArea: 'social',
-          gap: { xs: `0 ${theme.spacings.xs}`, md: `0 ${theme.spacings.xs}` },
+          gap: theme.spacings.xs,
           '& > *': {
             minWidth: 'min-content',
           },

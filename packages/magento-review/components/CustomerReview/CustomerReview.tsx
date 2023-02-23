@@ -36,7 +36,8 @@ export function CustomerReview(props: CustomerReviewProps) {
       className={classes.container}
       sx={[
         (theme) => ({
-          padding: `${theme.spacings.md} 0 ${theme.spacings.md} 0`,
+          py: theme.spacings.md,
+          px: 0,
           display: 'grid',
           gridTemplateAreas: `
             "image stars"

@@ -23,12 +23,14 @@ export function ColumnTwoWithTop(props: ColumnTwoWithTopProps) {
       sx={[
         (theme) => ({
           display: 'grid',
-          gap: `${theme.spacings.lg} 0`,
+          rowGap: theme.spacings.lg,
+          columnGap: 0,
           gridTemplateAreas: `"top" "left" "right"`,
           [theme.breakpoints.up('md')]: {
             gridTemplateAreas: `"top  ." "left right"`,
             gridTemplateColumns: '1fr auto',
-            gap: `${theme.spacings.sm} ${theme.spacings.xxl}`,
+            rowGap: theme.spacings.sm,
+            columnGap: theme.spacings.xxl,
           },
         }),
         ...(Array.isArray(sx) ? sx : [sx]),

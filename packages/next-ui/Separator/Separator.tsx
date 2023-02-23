@@ -19,7 +19,8 @@ export function Separator(props: DividedLinksProps) {
       sx={[
         (theme) => ({
           display: 'inline',
-          padding: `0 ${theme.spacings.xxs} 0 ${theme.spacings.xxs}`,
+          py: 0,
+          px: theme.spacings.xxs,
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}

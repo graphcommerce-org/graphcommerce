@@ -44,14 +44,15 @@ export function ProductAddToCart(
 
   return (
     <Box component='form' onSubmit={submitHandler} noValidate className={classes.root} sx={sx}>
-      <Divider className={classes.divider} sx={(theme) => ({ margin: `${theme.spacings.xs} 0` })} />
+      <Divider className={classes.divider} sx={(theme) => ({ my: theme.spacings.xs, mx: 0 })} />
 
       <Typography
         variant='h4'
         className={classes.price}
         sx={(theme) => ({
           fontWeight: theme.typography.fontWeightBold,
-          margin: `${theme.spacings.sm} 0`,
+          my: theme.spacings.sm,
+          mx: 0,
         })}
       >
         <Money {...price} />

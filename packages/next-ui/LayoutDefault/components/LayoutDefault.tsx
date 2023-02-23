@@ -84,7 +84,8 @@ export function LayoutDefault(props: LayoutDefaultProps) {
             },
             [theme.breakpoints.up('md')]: {
               height: theme.appShell.headerHeightMd,
-              padding: `0 ${theme.page.horizontal} 0`,
+              py: 0,
+              px: theme.page.horizontal,
               top: 0,
               display: 'flex',
               justifyContent: 'left',
@@ -110,7 +111,8 @@ export function LayoutDefault(props: LayoutDefaultProps) {
               height: 0,
               zIndex: 'speedDial',
               [theme.breakpoints.up('sm')]: {
-                padding: `0 ${theme.page.horizontal}`,
+                py: 0,
+                px: theme.page.horizontal,
                 position: 'sticky',
                 marginTop: `calc(${theme.appShell.headerHeightMd} * -1 - calc(${fabIconSize} / 2))`,
                 top: `calc(${theme.appShell.headerHeightMd} / 2 - (${fabIconSize} / 2))`,

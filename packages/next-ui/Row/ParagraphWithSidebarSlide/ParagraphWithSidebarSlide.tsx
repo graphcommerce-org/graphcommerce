@@ -24,7 +24,7 @@ export function ParagraphWithSidebarSlide(props: ParagraphWithSidebarSlideProps)
           overflow: 'hidden',
           display: 'grid',
           gridTemplateColumns: '1fr 1fr',
-          gap: `${theme.spacings.md}`,
+          gap: theme.spacings.md,
           [theme.breakpoints.up('md')]: {
             gridTemplateColumns: '8fr 3fr',
           },
@@ -64,7 +64,7 @@ export function ParagraphWithSidebarSlide(props: ParagraphWithSidebarSlideProps)
               justifyItems: 'start',
               alignContent: 'end',
               position: 'relative',
-              padding: `${theme.spacings.md}`,
+              padding: theme.spacings.md,
               '& > *': {
                 zIndex: 1,
                 maxWidth: 'max-content',
@@ -75,7 +75,7 @@ export function ParagraphWithSidebarSlide(props: ParagraphWithSidebarSlideProps)
                 minHeight: '130vh',
               },
               [theme.breakpoints.up('lg')]: {
-                padding: `${theme.spacings.lg} ${theme.spacings.lg}`,
+                p: theme.spacings.lg,
                 width: '50%',
               },
             })}

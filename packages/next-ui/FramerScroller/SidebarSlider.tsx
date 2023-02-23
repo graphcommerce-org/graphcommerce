@@ -50,7 +50,9 @@ export function SidebarSlider(props: SidebarSliderProps) {
             sx={(theme) => ({
               display: 'grid',
               alignContent: 'space-between',
-              padding: `0 ${theme.spacings.lg} 0 ${theme.page.horizontal}`,
+              py: 0,
+              pr: theme.spacings.lg,
+              pl: theme.page.horizontal,
             })}
           >
             <Box>{sidebar}</Box>

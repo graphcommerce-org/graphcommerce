@@ -35,7 +35,8 @@ export function CartSummary(props: CartSummaryProps) {
       className={classes.root}
       sx={[
         (theme) => ({
-          margin: `${theme.spacings.sm} 0`,
+          my: theme.spacings.sm,
+          mx: 0,
           '& > div:last-of-type': {
             borderRadius: '0',
             ...breakpointVal(

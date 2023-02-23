@@ -45,8 +45,9 @@ export const defaultSxRenderer: SxRenderer = {
     height: 'auto',
   },
   'block-quote': (theme) => ({
-    paddingLeft: theme.spacings.sm,
-    margin: `${theme.spacings.md} 0`,
+    pl: theme.spacings.sm,
+    my: theme.spacings.md,
+    mx: 0,
   }),
   'bulleted-list': {
     marginBottom: '1em',

@@ -26,7 +26,9 @@ export function CategorySearchResult(props: CategorySearchResultProps) {
       sx={[
         (theme) => ({
           background: theme.palette.background.default,
-          padding: `${theme.spacings.xs} 18px ${theme.spacings.xs} 14px`,
+          py: theme.spacings.xs,
+          pr: '18px',
+          pl: '14px',
           display: 'flex',
           justifyContent: 'space-between',
           minWidth: '100%',
