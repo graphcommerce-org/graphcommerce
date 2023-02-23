@@ -1,7 +1,6 @@
 /// <reference types="@graphcommerce/next-ui/types" />
 
 import {
-  responsiveVal,
   breakpointVal,
   MuiButtonPill,
   MuiButtonResponsive,
@@ -13,6 +12,7 @@ import {
   MuiButtonInline,
   NextLink,
   createTheme,
+  createResponsiveTemplate,
 } from '@graphcommerce/next-ui'
 import { Theme, alpha, LinkProps } from '@mui/material'
 import { Components, PaletteOptions } from '@mui/material/styles'
@@ -81,6 +81,8 @@ const darkPalette: PaletteOptions = {
 
 const fontSize = (from: number, to: number) =>
   breakpointVal('fontSize', from, to, themeBaseDefaults.breakpoints.values)
+
+const responsiveTemplate = createResponsiveTemplate(themeBaseDefaults.breakpoints.values)
 
 // Create a theme instance.
 const createThemeWithPalette = (palette: PaletteOptions) =>
@@ -163,17 +165,17 @@ const createThemeWithPalette = (palette: PaletteOptions) =>
       },
     },
     spacings: {
-      xxs: responsiveVal(10, 16),
-      xs: responsiveVal(12, 20),
-      sm: responsiveVal(14, 30),
-      md: responsiveVal(16, 50),
-      lg: responsiveVal(24, 80),
-      xl: responsiveVal(40, 100),
-      xxl: responsiveVal(80, 160),
+      xxs: responsiveTemplate`${[10, 16]}px`,
+      xs: responsiveTemplate`${[12, 20]}px`,
+      sm: responsiveTemplate`${[12, 20]}px`,
+      md: responsiveTemplate`${[16, 50]}px`,
+      lg: responsiveTemplate`${[24, 80]}px`,
+      xl: responsiveTemplate`${[40, 100]}px`,
+      xxl: responsiveTemplate`${[80, 160]}px`,
     },
     page: {
-      horizontal: responsiveVal(10, 30),
-      vertical: responsiveVal(10, 30),
+      horizontal: responsiveTemplate`${[10, 30]}px`,
+      vertical: responsiveTemplate`${[10, 30]}px`,
     },
     appShell: {
       headerHeightSm: '46px',
@@ -211,7 +213,7 @@ const createOverrides = (theme: Theme): Components => ({
     variants: [
       {
         props: { disableGutters: false },
-        style: {
+        style: theme.unstable_sx({
           paddingLeft: theme.page.horizontal,
           paddingRight: theme.page.horizontal,
           [theme.breakpoints.up('sm')]: {
@@ -221,7 +223,7 @@ const createOverrides = (theme: Theme): Components => ({
 
           // Containers should never be nested, but when they are, remove padding.
           '& .MuiContainer-root': { paddingLeft: 0, paddingRight: 0 },
-        },
+        }),
       },
     ],
   },

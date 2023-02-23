@@ -31,14 +31,16 @@ const parts = [
 ] as const
 const { classes } = extendableComponent(componentName, parts)
 
-const OrderDetailTitle = styled('span', { target: classes.orderDetailTitle })(({ theme }) => ({
-  borderBottom: `1px solid ${theme.palette.divider}`,
-  fontWeight: 'bold',
-  display: 'block',
-  width: '100%',
-  paddingBottom: responsiveVal(2, 8),
-  marginBottom: theme.spacings.xs,
-}))
+const OrderDetailTitle = styled('span', { target: classes.orderDetailTitle })(({ theme }) =>
+  theme.unstable_sx({
+    borderBottom: `1px solid ${theme.palette.divider}`,
+    fontWeight: 'bold',
+    display: 'block',
+    width: '100%',
+    paddingBottom: responsiveVal(2, 8),
+    marginBottom: theme.spacings.xs,
+  }),
+)
 
 const OrderDetailsInnerContainer = styled('span', { target: classes.orderDetailsInnerContainer })(
   ({ theme }) =>
