@@ -12,8 +12,10 @@ export function DeleteCustomerAddressForm(props: DeleteCustomerAddressFormProps)
   const { addressId } = props
   const { handleSubmit, error } = useFormGqlMutation(
     DeleteCustomerAddressFormDocument,
-    { defaultValues: { id: addressId } },
-    { errorPolicy: 'all' },
+    {
+      defaultValues: { id: addressId },
+    },
+    { errorPolicy: 'all', refetchQueries: ['AccountDashboardAddresses'] },
   )
   const submitHandler = handleSubmit(() => {})
 

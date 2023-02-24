@@ -655,6 +655,9 @@ msgstr "Vous n'avez pas encore écrit d'évaluation"
 msgid "You must sign in to continue"
 msgstr "Vous devez vous connecter pour continuer"
 
+msgid "Your address has been added"
+msgstr "Votre adresse a été ajoutée"
+
 msgid "Your cart is empty"
 msgstr "Votre panier est vide"
 

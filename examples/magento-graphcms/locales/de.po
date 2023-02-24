@@ -655,6 +655,9 @@ msgstr "Sie haben noch keine Bewertungen abgegeben"
 msgid "You must sign in to continue"
 msgstr "Sie müssen sich anmelden, um fortzufahren"
 
+msgid "Your address has been added"
+msgstr "Ihre Adresse wurde hinzugefügt"
+
 msgid "Your cart is empty"
 msgstr "Ihr Warenkorb ist leer"
 
