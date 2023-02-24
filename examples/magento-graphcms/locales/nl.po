@@ -694,6 +694,9 @@ msgstr "Je hebt nog geen reviews geplaatst"
 msgid "You must sign in to continue"
 msgstr "U moet inloggen om verder te gaan"
 
+msgid "Your address has been added"
+msgstr "Uw adres is toegevoegd"
+
 msgid "Your cart is empty"
 msgstr "Je winkelwagen is leeg"
 
