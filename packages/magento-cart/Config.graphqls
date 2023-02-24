@@ -1,0 +1,15 @@
+extend input GraphCommerceI18nConfig {
+  """
+  Due to a limitation of the GraphQL API it is not possible to determine if a cart should be displayed including or excluding tax.
+  """
+  cartDisplayPricesInclTax: Boolean
+}
+
+extend input GraphCommerceConfig {
+  """
+  Due to a limitation of the GraphQL API it is not possible to determine if a cart should be displayed including or excluding tax.
+
+  When Magento's StoreConfig adds this value, this can be replaced.
+  """
+  cartDisplayPricesInclTax: Boolean
+}

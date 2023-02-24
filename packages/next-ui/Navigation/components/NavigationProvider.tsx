@@ -54,8 +54,17 @@ export const NavigationProvider = React.memo<NavigationProviderProps>((props) =>
         )
         .filter(nonNullable),
       serverRenderDepth,
+      animationDuration,
     }),
-    [hideRootOnNavigate, selection, animating, closing, items, serverRenderDepth],
+    [
+      hideRootOnNavigate,
+      selection,
+      animating,
+      closing,
+      items,
+      serverRenderDepth,
+      animationDuration,
+    ],
   )
 
   return (

@@ -1,5 +1,59 @@
 # Change Log
 
+## 6.0.0-canary.24
+
+## 6.0.0-canary.23
+
+## 6.0.0-canary.22
+
+## 6.0.0-canary.21
+
+## 6.0.0-canary.20
+
+## 5.2.0-canary.19
+
+## 5.2.0-canary.18
+
+## 5.2.0-canary.17
+
+## 5.2.0-canary.16
+
+## 5.2.0-canary.15
+
+## 5.2.0-canary.14
+
+## 5.2.0-canary.13
+
+## 5.2.0-canary.12
+
+## 5.2.0-canary.11
+
+## 5.2.0-canary.10
+
+## 5.2.0-canary.9
+
+## 5.2.0-canary.8
+
+## 5.2.0-canary.7
+
+### Minor Changes
+
+- [#1749](https://github.com/graphcommerce-org/graphcommerce/pull/1749) [`0cc472915`](https://github.com/graphcommerce-org/graphcommerce/commit/0cc4729154d316227a41712b5f0adf514768e91f) - Added new filter UI and behaviour. Filters will appear as a popper on the md and up breakpoints and as an overlay on sm and below breakpoints. Filters now have an Apply button instead of applying directly. ([@paales](https://github.com/paales))
+
+## 5.2.0-canary.6
+
+## 5.2.0-canary.5
+
+## 5.2.0-canary.4
+
+## 5.2.0-canary.3
+
+## 5.2.0-canary.2
+
+## 5.2.0-canary.1
+
+## 5.2.0-canary.0
+
 ## 5.1.1
 
 ## 5.1.1-canary.1

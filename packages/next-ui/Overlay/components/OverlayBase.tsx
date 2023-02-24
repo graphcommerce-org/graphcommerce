@@ -6,6 +6,7 @@ import React, { useCallback, useEffect, useRef } from 'react'
 import { LayoutProvider } from '../../Layout/components/LayoutProvider'
 import { ExtendableComponent, extendableComponent } from '../../Styles'
 import { useOverlayPosition } from '../hooks/useOverlayPosition'
+import framesync from 'framesync'
 
 export type LayoutOverlayVariant = 'left' | 'bottom' | 'right'
 export type LayoutOverlaySize = 'floating' | 'minimal' | 'full'
@@ -26,14 +27,14 @@ type OverridableProps = {
 }
 
 export type LayoutOverlayBaseProps = {
-  children?: React.ReactNode
+  children?: React.ReactNode | (() => React.ReactNode)
   className?: string
   sx?: SxProps<Theme>
   sxBackdrop?: SxProps<Theme>
   active: boolean
-  direction: 1 | -1
+  direction?: 1 | -1
   onClosed: () => void
-  offsetPageY: number
+  offsetPageY?: number
   isPresent: boolean
   safeToRemove?: (() => void) | null | undefined
   overlayPaneProps?: MotionProps
@@ -69,8 +70,8 @@ const clearScrollLock = () => {
   document.body.style.overflow = ''
 }
 
-export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
-  const props = useThemeProps({ name, props: incommingProps })
+export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
+  const props = useThemeProps({ name, props: incomingProps })
 
   const {
     children,
@@ -85,8 +86,8 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
     sxBackdrop = [],
     active,
     onClosed,
-    direction,
-    offsetPageY,
+    direction = 1,
+    offsetPageY = 0,
     isPresent,
     safeToRemove,
     overlayPaneProps,
@@ -150,19 +151,19 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
     if (!scroller) return () => {}
 
     const resize = () => {
-      if (positions.open.visible.get() === 1) {
+      if (position.get() !== OverlayPosition.OPENED) {
+        scroller.scrollLeft = positions.closed.x.get()
+        scroller.scrollTop = positions.closed.y.get()
+      } else {
         scroller.scrollLeft = positions.open.x.get()
         scroller.scrollTop = positions.open.y.get()
       }
-      if (positions.open.visible.get() === 0) {
-        scroller.scrollLeft = positions.closed.x.get()
-        scroller.scrollTop = positions.closed.y.get()
-      }
     }
+    const resizeTimed = () => framesync.read(resize)
 
-    window.addEventListener('resize', resize)
-    return () => window.removeEventListener('resize', resize)
-  }, [positions, scrollerRef])
+    window.addEventListener('resize', resizeTimed)
+    return () => window.removeEventListener('resize', resizeTimed)
+  }, [position, positions, scrollerRef])
 
   // When the overlay is closed by navigating away, we're closing the overlay.
   useEffect(() => {
@@ -215,9 +216,9 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
   }, [offsetY])
 
   // Create the exact position for the LayoutProvider which offsets the top of the overlay
-  const scrollWithoffset = useTransform(
-    [scroll.y, positions.open.y, offsetY],
-    ([y, openY, offsetYv]: number[]) => Math.max(0, y - openY - offsetYv + offsetPageY),
+  const scrollYOffset = useTransform(
+    [scroll.y, positions.open.y],
+    ([y, openY]: number[]) => y - openY + offsetPageY,
   )
 
   const onClickAway = useCallback(
@@ -288,7 +289,18 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
                 borderTopLeftRadius: theme.shape.borderRadius * 3,
                 borderTopRightRadius: theme.shape.borderRadius * 3,
                 gridTemplate: `"beforeOverlay" "overlay"`,
-                height: dvh(100),
+                height: `calc(${dvh(100)} - 1px)`,
+
+                '&::after': {
+                  content: `""`,
+                  display: 'block',
+                  position: 'absolute',
+                  width: '100%',
+                  height: '1px',
+                  top: 'calc(100% - 1px)',
+                  left: '0',
+                  background: theme.palette.background.paper,
+                },
               },
             },
             [theme.breakpoints.up('md')]: {
@@ -331,7 +343,7 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
 
             [theme.breakpoints.down('md')]: {
               '&.variantSmLeft, &.variantSmRight': {
-                width: dvh(100),
+                width: dvw(100),
               },
               '&.variantSmBottom': {
                 height: dvh(100),
@@ -448,13 +460,19 @@ export function OverlayBase(incommingProps: LayoutOverlayBaseProps) {
                   maxWidth: dvw(100),
                 },
 
+                '&.variantMdBottom.sizeMdFloating': {
+                  width: widthMd,
+                },
+
                 '&.sizeMdFloating': {
                   borderRadius: `${theme.shape.borderRadius * 4}px`,
                 },
               },
             })}
           >
-            <LayoutProvider scroll={scrollWithoffset}>{children}</LayoutProvider>
+            <LayoutProvider scroll={scrollYOffset}>
+              {typeof children === 'function' ? active && children() : children}
+            </LayoutProvider>
           </MotionDiv>
         </Box>
       </Scroller>

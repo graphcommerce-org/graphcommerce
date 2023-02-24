@@ -20,7 +20,7 @@ export function MolliePaymentHandler({ code }: PaymentHandlerProps) {
   const router = useRouter()
   const { selectedMethod, onSuccess } = usePaymentMethodContext()
   const [lockState] = useCartLockWithToken()
-  
+
   const clear = useClearCurrentCartId()
 
   const isActive = selectedMethod?.code === code || lockState.method === code

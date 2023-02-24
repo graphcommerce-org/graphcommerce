@@ -1,5 +1,5 @@
 /* eslint-disable spaced-comment */
-import { extendableComponent, FlagAvatar } from '@graphcommerce/next-ui'
+import { extendableComponent, FlagAvatar, NextLink } from '@graphcommerce/next-ui'
 import {
   List,
   ListItem,
@@ -8,8 +8,8 @@ import {
   ListItemAvatar,
   SxProps,
   Theme,
+  ListItemButton,
 } from '@mui/material'
-import PageLink from 'next/link'
 import React from 'react'
 import { localeToStore, storeToLocale } from '../../localeToStore'
 import { StoreSwitcherListQuery } from './StoreSwitcherList.gql'
@@ -46,76 +46,67 @@ export function StoreSwitcherList(props: StoreSwitcherListProps) {
     <List className={classes.list} sx={sx}>
       {groupedStores.map(([code, group]) => (
         <React.Fragment key={code}>
-          <PageLink
+          <ListItemButton
+            disabled={!storeToLocale(group.stores[0].store_code)}
+            component={NextLink}
             key={group.stores[0].locale}
             href='/switch-stores'
             locale={storeToLocale(group.stores[0].store_code)}
             replace
-            passHref
+            selected={
+              group.stores.length <= 1 && localeToStore(locale) === group.stores[0].store_code
+            }
+            color='inherit'
+            className={classes.listItem}
+            sx={(theme) => ({
+              borderTop: `1px solid ${theme.palette.divider}`,
+              cursor: 'pointer',
+            })}
           >
-            <ListItem
-              disabled={!storeToLocale(group.stores[0].store_code)}
-              button
-              component='a'
-              selected={
-                group.stores.length <= 1 && localeToStore(locale) === group.stores[0].store_code
-              }
-              color='inherit'
-              className={classes.listItem}
-              sx={(theme) => ({
-                borderTop: `1px solid ${theme.palette.divider}`,
-                cursor: 'pointer',
-              })}
-            >
-              <ListItemAvatar>
-                <FlagAvatar
-                  country={code}
-                  className={classes.avatar}
-                  sx={{ width: 30, height: 30 }}
-                />
-              </ListItemAvatar>
-              <ListItemText>
-                {group.name}
-                {group.stores.length <= 1 && ` — ${group.stores[0].store_name}`}
+            <ListItemAvatar>
+              <FlagAvatar
+                country={code}
+                className={classes.avatar}
+                sx={{ width: 30, height: 30 }}
+              />
+            </ListItemAvatar>
+            <ListItemText>
+              {group.name}
+              {group.stores.length <= 1 && ` — ${group.stores[0].store_name}`}
 
-                {process.env.NODE_ENV !== 'production' &&
-                  !storeToLocale(group.stores[0].store_code) && (
-                    <> 🚨 Could not find configuration in .env</>
-                  )}
-              </ListItemText>
-            </ListItem>
-          </PageLink>
+              {process.env.NODE_ENV !== 'production' &&
+                !storeToLocale(group.stores[0].store_code) && (
+                  <> 🚨 Could not find configuration in .env</>
+                )}
+            </ListItemText>
+          </ListItemButton>
+
           {group.stores.length > 1 && (
             <Collapse in timeout='auto'>
               {group.stores.map((store) => (
-                <PageLink
+                <ListItemButton
                   key={store.locale}
                   href='/switch-stores'
                   locale={storeToLocale(store.store_code)}
                   replace
-                  passHref
+                  disabled={!localeToStore(locale)}
+                  component={NextLink}
+                  selected={localeToStore(locale) === store.store_code}
+                  color='inherit'
+                  className={classes.listItemIndented}
+                  sx={{
+                    paddingLeft: '30px',
+                    cursor: 'pointer',
+                  }}
                 >
-                  <ListItem
-                    disabled={!localeToStore(locale)}
-                    button
-                    component='a'
-                    selected={localeToStore(locale) === store.store_code}
-                    color='inherit'
-                    className={classes.listItemIndented}
-                    sx={{
-                      paddingLeft: '30px',
-                      cursor: 'pointer',
-                    }}
-                  >
-                    <ListItemText inset>
-                      {store.store_name}
+                  <ListItemText inset>
+                    {store.store_name}
 
-                      {process.env.NODE_ENV !== 'production' && !localeToStore(locale) && (
-                        <> 🚨 Could not find configuration in .env</>
-                      )}
-                    </ListItemText>
-                  </ListItem>
-                </PageLink>
+                    {process.env.NODE_ENV !== 'production' && !localeToStore(locale) && (
+                      <> 🚨 Could not find configuration in .env</>
+                    )}
+                  </ListItemText>
+                </ListItemButton>
               ))}
             </Collapse>
           )}

@@ -7,10 +7,9 @@ import {
   LayoutOverlayProps,
   LayoutOverlayVariant,
 } from '@graphcommerce/next-ui'
-import { Container } from '@mui/material'
+import Link, { Container } from '@mui/material'
 import { m } from 'framer-motion'
 import { GetStaticPathsResult, GetStaticProps } from 'next'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import { Grid } from '../../components/Grid'
@@ -34,15 +33,8 @@ function SingleStack() {
         <LayoutTitle>
           Overlay {variant} {page}
         </LayoutTitle>
-        {page > 0 && (
-          <Link href={`/single-stack/${variant}/${page - 1}`}>
-            <a>{page - 1}</a>
-          </Link>
-        )}{' '}
-        {page}{' '}
-        <Link href={`/single-stack/${variant}/${page + 1}`}>
-          <a>{page + 1}</a>
-        </Link>
+        {page > 0 && <Link href={`/single-stack/${variant}/${page - 1}`}>{page - 1}</Link>} {page}{' '}
+        <Link href={`/single-stack/${variant}/${page + 1}`}>{page + 1}</Link>
         <button type='button' onClick={() => setExpanded(!expanded)}>
           {expanded ? 'collapse' : 'expand'}
         </button>

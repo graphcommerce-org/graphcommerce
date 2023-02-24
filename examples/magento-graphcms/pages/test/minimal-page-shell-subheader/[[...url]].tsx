@@ -5,6 +5,10 @@ import {
   getFilterTypes,
   parseParams,
   ProductFiltersDocument,
+  ProductFiltersPro,
+  ProductFiltersProAllFiltersChip,
+  ProductFiltersProFilterChips,
+  ProductFiltersProSortChip,
   ProductFiltersQuery,
   ProductListDocument,
   ProductListFilters,
@@ -19,7 +23,6 @@ import { StickyBelowHeader, LayoutTitle, LayoutHeader, LinkOrButton } from '@gra
 import { GetStaticProps } from '@graphcommerce/next-ui/Page/types'
 import { Box, Container, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
-import PageLink from 'next/link'
 import { LayoutMinimal, LayoutMinimalProps } from '../../../components'
 import { DefaultPageDocument, DefaultPageQuery } from '../../../graphql/DefaultPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
@@ -38,11 +41,13 @@ function MinimalLayoutSubheader(props: Props) {
     <ProductListParamsProvider value={params}>
       <LayoutHeader
         primary={
-          <PageLink href='/test/minimal-page-shell' passHref>
-            <LinkOrButton color='secondary' button={{ variant: 'pill' }}>
-              Navigate
-            </LinkOrButton>
-          </PageLink>
+          <LinkOrButton
+            href='/test/minimal-page-shell'
+            color='secondary'
+            button={{ variant: 'pill' }}
+          >
+            Navigate
+          </LinkOrButton>
         }
       >
         <Typography variant='h5' component='span'>
@@ -59,10 +64,26 @@ function MinimalLayoutSubheader(props: Props) {
         </LayoutTitle>
 
         <StickyBelowHeader>
-          <ProductListFiltersContainer>
-            <ProductListSort sort_fields={products?.sort_fields} />
-            <ProductListFilters aggregations={filters?.aggregations} filterTypes={filterTypes} />
-          </ProductListFiltersContainer>
+          {import.meta.graphCommerce.productFiltersPro ? (
+            <ProductFiltersPro params={params}>
+              <ProductListFiltersContainer>
+                <ProductFiltersProFilterChips {...filters} filterTypes={filterTypes} />
+                <ProductFiltersProSortChip {...products} />
+                <ProductFiltersProAllFiltersChip
+                  {...filters}
+                  {...products}
+                  filterTypes={filterTypes}
+                />
+              </ProductListFiltersContainer>
+            </ProductFiltersPro>
+          ) : (
+            <ProductListParamsProvider value={params}>
+              <ProductListFiltersContainer>
+                <ProductListSort {...products} />
+                <ProductListFilters {...filters} filterTypes={filterTypes} />
+              </ProductListFiltersContainer>
+            </ProductListParamsProvider>
+          )}
         </StickyBelowHeader>
       </Container>
     </ProductListParamsProvider>

@@ -17,7 +17,6 @@ import {
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { SxProps, Theme, IconButton, Box, IconButtonProps } from '@mui/material'
-import PageLink from 'next/link'
 import { useState, useEffect } from 'react'
 import { useWishlistEnabled } from '../../hooks'
 import { AddProductToWishlistDocument } from '../../queries/AddProductToWishlist.gql'
@@ -27,9 +26,8 @@ import { RemoveProductFromWishlistDocument } from '../../queries/RemoveProductFr
 import { WishlistSummaryFragment } from '../../queries/WishlistSummaryFragment.gql'
 import { ProductWishlistChipFragment } from './ProductWishlistChip.gql'
 
-const hideForGuest = process.env.NEXT_PUBLIC_WISHLIST_HIDE_FOR_GUEST === '1'
-const ignoreProductWishlistStatus =
-  process.env.NEXT_PUBLIC_WISHLIST_IGNORE_PRODUCT_WISHLIST_STATUS === '1'
+const hideForGuest = import.meta.graphCommerce.wishlistHideForGuests
+const ignoreProductWishlistStatus = import.meta.graphCommerce.wishlistIgnoreProductWishlistStatus
 
 export type ProductWishlistChipProps = ProductWishlistChipFragment & { sx?: SxProps<Theme> } & {
   showFeedbackMessage?: boolean
@@ -112,6 +110,11 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
   }, [loggedIn, url_key, loading, GetCustomerWishlistData, guestWishlistData, sku])
 
   const preventAnimationBubble: React.MouseEventHandler<HTMLButtonElement> = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+  }
+
+  const preventLinkOnClose: React.MouseEventHandler<HTMLDivElement> = (e) => {
     e.preventDefault()
     e.stopPropagation()
   }
@@ -208,19 +211,21 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
       <MessageSnackbar
         open={showFeedbackMessage && displayMessageBar}
         onClose={() => setDisplayMessageBar(false)}
+        onClick={preventLinkOnClose}
+        onMouseDown={preventLinkOnClose}
+        autoHide
         variant='pill'
         action={
-          <PageLink href='/wishlist' passHref>
-            <Button
-              id='view-wishlist-button'
-              size='medium'
-              variant='pill'
-              color='secondary'
-              endIcon={<IconSvg src={iconChevronRight} />}
-            >
-              <Trans id='View wishlist' />
-            </Button>
-          </PageLink>
+          <Button
+            href='/wishlist'
+            id='view-wishlist-button'
+            size='medium'
+            variant='pill'
+            color='secondary'
+            endIcon={<IconSvg src={iconChevronRight} />}
+          >
+            <Trans id='View wishlist' />
+          </Button>
         }
       >
         <Trans

@@ -65,7 +65,7 @@ export default function MessageSnackbarImpl(props: MessageSnackbarProps) {
     setShowSnackbar(!!open)
   }, [open])
 
-  const hideSnackbar = (e) => {
+  const hideSnackbar = () => {
     setShowSnackbar(false)
     onClose?.()
   }

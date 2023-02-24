@@ -1,0 +1,23 @@
+extend input GraphCommerceConfig {
+  """
+  GraphQL Magento endpoint.
+
+  Examples:
+  - https://magento2.test/graphql
+  """
+  magentoEndpoint: String!
+}
+
+extend input GraphCommerceI18nConfig {
+  """
+  Magento store code.
+
+  Stores => All Stores => [Store View] => Store View Code
+
+  Examples:
+  - default
+  - en-us
+  - b2b-us
+  """
+  magentoStoreCode: String!
+}

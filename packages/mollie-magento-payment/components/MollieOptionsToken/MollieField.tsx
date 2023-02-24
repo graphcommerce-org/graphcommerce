@@ -98,7 +98,7 @@ type MollieFieldProps = {
   isSubmitted?: boolean
 } & TextFieldProps
 
-export  function MollieField(props: MollieFieldProps) {
+export function MollieField(props: MollieFieldProps) {
   const { isSubmitted = false, label, ...fieldProps } = props
 
   const [state, setState] = useState<ComponentFieldState>({

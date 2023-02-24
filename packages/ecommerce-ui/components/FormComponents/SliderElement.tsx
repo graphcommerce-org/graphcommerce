@@ -1,9 +1,7 @@
 import {
-  Control,
   Controller,
   ControllerProps,
   FieldError,
-  Path,
   FieldValues,
 } from '@graphcommerce/react-hook-form'
 import {
@@ -16,14 +14,11 @@ import {
 } from '@mui/material'
 
 export type SliderElementProps<T extends FieldValues> = Omit<SliderProps, 'control'> & {
-  name: Path<T>
-  control?: Control<T>
   label?: string
-  rules?: ControllerProps['rules']
   parseError?: (error: FieldError) => string
   required?: boolean
   formControlProps?: FormControlProps
-}
+} & Omit<ControllerProps<T>, 'render'>
 
 export function SliderElement<TFieldValues extends FieldValues>({
   name,

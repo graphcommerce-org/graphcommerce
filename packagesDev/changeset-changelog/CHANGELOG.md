@@ -1,5 +1,65 @@
 # @graphcommerce/changeset-changelog
 
+## 6.0.0-canary.24
+
+## 6.0.0-canary.23
+
+## 6.0.0-canary.22
+
+## 6.0.0-canary.21
+
+## 6.0.0-canary.20
+
+## 5.2.0-canary.19
+
+## 5.2.0-canary.18
+
+## 5.2.0-canary.17
+
+## 5.2.0-canary.16
+
+## 5.2.0-canary.15
+
+## 5.2.0-canary.14
+
+## 5.2.0-canary.13
+
+## 5.2.0-canary.12
+
+## 5.2.0-canary.11
+
+## 5.2.0-canary.10
+
+## 5.2.0-canary.9
+
+## 5.2.0-canary.8
+
+## 5.2.0-canary.7
+
+## 5.2.0-canary.6
+
+## 5.2.0-canary.5
+
+## 5.2.0-canary.4
+
+## 5.2.0-canary.3
+
+### Minor Changes
+
+- [#1766](https://github.com/graphcommerce-org/graphcommerce/pull/1766) [`e34169ee2`](https://github.com/graphcommerce-org/graphcommerce/commit/e34169ee2e0fdc052ff589ceca0bc67557584c1f) - Upgraded to Next.js 13
+
+  - NextLink integrates the next/link functionality with @mui/material's Link and ButtonBase (and all it's derivatives) components.
+  - NextLink automatically adds `target="_blank"` when the href is external.
+  - NextLink makes all relative href absolute. `href="my-page"` will be rendered as `href="/my-page"`.
+
+  Upgrade instructions: https://www.graphcommerce.org/docs/framework/links#upgrading-from-nextjs-12 ([@paales](https://github.com/paales))
+
+## 5.2.0-canary.2
+
+## 5.2.0-canary.1
+
+## 5.2.0-canary.0
+
 ## 5.1.1
 
 ## 5.1.1-canary.1

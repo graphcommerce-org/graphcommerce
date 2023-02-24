@@ -1,5 +1,6 @@
 import fs from 'node:fs'
 import path from 'path'
+// eslint-disable-next-line import/no-extraneous-dependencies
 import glob from 'glob'
 import { resolveDependenciesSync } from '../utils/resolveDependenciesSync'
 import { GenerateInterceptorsReturn } from './generateInterceptors'

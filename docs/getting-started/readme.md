@@ -100,6 +100,8 @@ also applies if you want to modify a component's or
 
 | Packages (/node_modules directory/)          |                                                            |
 | -------------------------------------------- | ---------------------------------------------------------- |
+| @graphcommerce/address-fields-nl             | [Source](../../../packages/address-fields-nl/)             |
+| @graphcommerce/cli                           | [Source](../../../packages/cli/)                           |
 | @graphcommerce/framer-next-pages             | [Source](../../../packages/framer-next-pages/)             |
 | @graphcommerce/googleanalytics               | [Source](../../../packages/googleanalytics/)               |
 | @graphcommerce/googlerecaptcha               | [Source](../../../packages/googlerecaptcha/)               |
@@ -144,9 +146,9 @@ also applies if you want to modify a component's or
 | @graphcommerce/react-hook-form               |                                                            |
 | @graphcommerce/typescript-config-pwa         |                                                            |
 
-## GraphCMS
+## Hygraph
 
-GraphCMS is integrated as a Content Management System. It is used to store all
+Hygraph is integrated as a Content Management System. It is used to store all
 static content and provides a user-friendly interface for managing it.
 
 The magento-graphcms example offers a number of components to render this
@@ -154,7 +156,7 @@ content in different ways, for example in the form of a page-wide hero banner, a
 list of USPs or grid of text columns.
 
 To [get started](../getting-started/create.md) with the magento-graphcms
-example, cloning the demo GraphCMS project GraphQL schema and its content is
+example, cloning the demo Hygraph project GraphQL schema and its content is
 recommended.
 
 ## Pages
@@ -200,10 +202,10 @@ Page structure of the graphcommerce-magento example
 GraphCommerce is built and optimized to use data coming from Magento's GraphQL
 API. GraphCommerce uses GraphQL Mesh, which adds the ability to add extra
 (micro)services as data sources. In the magento-graphcms example, a headless CMS
-called [GraphCMS](../getting-started/../framework/graphcms.md) is integrated.
+called [Hygraph](../getting-started/../framework/graphcms.md) is integrated.
 
 By default, the GraphQL Mesh endpoint runs on route /api/graphql. You can query
-both the Magento GraphQL schema and the GraphCMS GraphQL schema. Try out the
+both the Magento GraphQL schema and the Hygraph GraphQL schema. Try out the
 GraphCommerce demo
 [GraphQL Explorer ↗](https://graphcommerce.vercel.app/api/graphql) with the
 following example query:
@@ -244,12 +246,12 @@ GraphQL queries in the graphcommerce-magento example
 
 ├── GraphQL
     └── CategoryPage.graphql
+    └── DefaultPage.graphql
     └── PageLink.graphql
     └── DefaultPage.graphql
     └── PagesStaticPaths.graphql
-    └── FooterQueryFragment.graphql
-    └── PageContentQueryFragment.graphql
     └── ProductPage.graphql
+    └── ProductPage2.graphql
 ```
 
 ## FAQ

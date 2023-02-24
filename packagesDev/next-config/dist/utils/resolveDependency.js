@@ -20,7 +20,11 @@ const resolveDependency = (cwd = process.cwd()) => {
             if (dependency === depCandidate || dependency.startsWith(`${depCandidate}/`)) {
                 const relative = dependency.replace(depCandidate, '');
                 const rootCandidate = dependency.replace(depCandidate, root);
-                const fromRoot = [`${rootCandidate}`, `${rootCandidate}/index`].find((location) => ['ts', 'tsx'].find((extension) => node_fs_1.default.existsSync(`${location}.${extension}`)));
+                const fromRoot = [
+                    `${rootCandidate}`,
+                    `${rootCandidate}/index`,
+                    `${rootCandidate}/src/index`,
+                ].find((location) => ['ts', 'tsx'].find((extension) => node_fs_1.default.existsSync(`${location}.${extension}`)));
                 if (!fromRoot)
                     throw Error("Can't find plugin target");
                 const denormalized = fromRoot.replace(root, depCandidate);

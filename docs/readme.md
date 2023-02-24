@@ -44,7 +44,7 @@ https://user-images.githubusercontent.com/1251986/154977573-4015e77c-43e7-481e-a
 GraphCommerce offers a [magento-graphcms](./getting-started/readme.md) example
 that provides a full-featured storefront. The example integrates with your
 Magento backend and provides a full purchase journey out-of-the-box. It uses
-GraphCMS to enrich pages with multiple content components, like the homepage.
+Hygraph to enrich pages with multiple content components, like the homepage.
 
 The magento-graphcms example is styled using the Mui component library. You can
 start styling by making changes to the [theme](./framework/theming.md).

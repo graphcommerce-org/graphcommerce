@@ -67,7 +67,7 @@ function CartPage() {
       <WaitForQueries
         waitFor={cart}
         fallback={
-          <FullPageMessage icon={<CircularProgress />} title='Loading'>
+          <FullPageMessage icon={<CircularProgress />} title={<Trans id='Loading' />}>
             <Trans id='This may take a second' />
           </FullPageMessage>
         }

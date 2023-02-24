@@ -2,15 +2,17 @@
   "name": "@graphcommerce/cli",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "5.1.1",
+  "version": "6.0.0-canary.24",
   "author": "",
   "license": "MIT",
   "scripts": {
-    "dev": "tsc --preserveWatchOutput --watch --outDir dist",
-    "build": "tsc --outDir dist",
-    "prepack": "yarn build"
+    "dev": "tsc --preserveWatchOutput --watch",
+    "build": "tsc",
+    "prepack": "tsc"
   },
+  "type": "commonjs",
   "main": "dist/index.js",
+  "types": "src/index.ts",
   "bin": {
     "mesh": "dist/bin/mesh.js",
     "gql-mesh": "dist/bin/mesh.js",
@@ -22,23 +24,25 @@
     "graphcommerce": "dist/bin/graphcommerce.js"
   },
   "dependencies": {
-    "@graphcommerce/next-config": "5.1.1",
-    "@graphql-codegen/cli": "2.16.1",
-    "@graphql-mesh/cli": "0.82.6",
-    "@graphql-mesh/types": "0.89.2",
-    "@graphql-mesh/utils": "0.43.3",
+    "@graphcommerce/next-config": "6.0.0-canary.24",
+    "@graphql-codegen/cli": "3.0.0",
+    "@graphql-mesh/cli": "0.82.14",
+    "@graphql-mesh/types": "0.90.0",
+    "@graphql-mesh/utils": "0.43.7",
     "cosmiconfig": "^8.0.0",
     "detect-package-manager": "^2.0.1",
     "graphql": "16.6.0",
+    "graphql-codegen-typescript-validation-schema": "^0.7.1",
     "graphql-tag": "^2.12.6",
     "rimraf": "^3.0.2",
     "ts-node": "^10.9.1"
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "5.1.1",
-    "@graphcommerce/prettier-config-pwa": "5.1.1",
-    "@graphcommerce/typescript-config-pwa": "5.1.1",
+    "@graphcommerce/eslint-config-pwa": "6.0.0-canary.24",
+    "@graphcommerce/prettier-config-pwa": "6.0.0-canary.24",
+    "@graphcommerce/typescript-config-pwa": "6.0.0-canary.24",
     "@types/rimraf": "^3.0.2",
+    "react": "^18.2.0",
     "typescript": "4.9.4"
   },
   "sideEffects": false,

@@ -41,14 +41,17 @@ export function ScrollerDot(props: ScrollerDotProps) {
       sx={{
         boxShadow: 'none',
         background: 'transparent',
+        aspectRatio: '1/1',
+        height: 'auto',
+        minHeight: 'auto',
       }}
     >
       <MotionBox
         className={classes.circle}
         sx={(theme) => ({
           borderRadius: '99em',
-          width: 10,
-          height: 10,
+          width: { xs: 6, sm: 8, md: 10 },
+          height: { xs: 6, sm: 8, md: 10 },
           background: theme.palette.text.primary,
         })}
         style={{ opacity }}

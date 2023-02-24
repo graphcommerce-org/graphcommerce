@@ -92,7 +92,7 @@ export function CategoryHeroNav({ children, title, asset, sx = [] }: CategoryHer
               underline='none'
               color='textPrimary'
               url={category.url_path}
-              filters={{}}
+              filters={{ category_uid: { eq: category.uid } }}
               sort={{}}
               key={category.uid}
             >

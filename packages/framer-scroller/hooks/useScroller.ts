@@ -85,6 +85,13 @@ export function useScroller<
     if (event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA') return
     if (event.target.closest('.Scroller-root') !== scrollerRef.current) return
 
+    if (
+      event.target !== scrollerRef.current &&
+      event.target.querySelector(':scope > input, :scope > textarea')
+    ) {
+      return
+    }
+
     scrollStart.x.set(scroll.x.get())
     scrollStart.y.set(scroll.y.get())
     disableSnap()

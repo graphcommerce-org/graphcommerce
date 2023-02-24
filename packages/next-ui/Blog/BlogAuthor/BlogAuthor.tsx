@@ -15,11 +15,11 @@ export function BlogAuthor(props: BlogAuthorProps) {
 
   return (
     <Box
+      maxWidth='md'
       sx={[
         {
           display: 'flex',
           justifyContent: 'left',
-          maxWidth: 800,
           margin: `0 auto`,
           marginBottom: (theme) => theme.spacings.md,
         },

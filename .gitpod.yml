@@ -1,5 +1,5 @@
 tasks:
-  - before: nvm install 14
+  - before: nvm install 16
     init: |
       cd examples/magento-graphcms
       cp -R .env.example .env

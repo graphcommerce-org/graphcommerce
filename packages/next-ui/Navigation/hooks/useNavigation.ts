@@ -1,5 +1,5 @@
 import { MotionValue, useMotionValue } from 'framer-motion'
-import React, { createContext, MutableRefObject, useContext } from 'react'
+import React, { createContext, useContext } from 'react'
 
 export type NavigationId = string | number
 export type NavigationPath = NavigationId[]
@@ -20,6 +20,7 @@ export type NavigationContextType = {
   animating: MotionValue<boolean>
   closing: MotionValue<boolean>
   serverRenderDepth: number
+  animationDuration: number
 }
 
 type NavigationNodeBase = {

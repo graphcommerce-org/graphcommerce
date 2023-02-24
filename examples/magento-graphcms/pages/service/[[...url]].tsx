@@ -61,7 +61,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
     const { data } = await client.query({
       query: PagesStaticPathsDocument,
       variables: {
-        first: process.env.VERCEL_ENV !== 'production' ? 1 : 1000,
+        first: import.meta.graphCommerce.limitSsg ? 1 : 1000,
         urlStartsWith: 'service',
       },
     })

@@ -1,8 +1,8 @@
-# @graphcommerce/googlerecaptcha
+# @graphcommerce/lingui-next
 
-This package makes it easy to add Google Recaptcha v3 to GraphCommerce
+This package adds lingui to GraphCommerce
 
-### Usage
+## Installation
 
 1. Create a lingui.config.js with the lingui config.
    [example](../../examples/magento-graphcms/lingui.config.js)
@@ -14,7 +14,11 @@ This package makes it easy to add Google Recaptcha v3 to GraphCommerce
 4. Run `NODE_ENV=development yarn lingui extract` to extact messages for your
    locale.
 
-### Additing a new language
+## Configuration
 
-1. Add you new language to `lingui.config.js`
-2. Run `NODE_ENV=development yarn lingui extract`
+Configure the following ([configuration values](./Config.graphqls)) in your
+graphcommerce.config.js
+
+## Extracting messages
+
+Run `NODE_ENV=development yarn lingui extract`

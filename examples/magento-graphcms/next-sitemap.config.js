@@ -1,17 +1,16 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
-const isProduction = process.env.VERCEL_ENV === 'production'
-const DEV_SITE_URL = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : 'http://localhost:3000'
-const PUBLIC_SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || DEV_SITE_URL
+/* eslint-disable @typescript-eslint/no-var-requires */
 
-const locales = Object.keys(JSON.parse(process.env.NEXT_PUBLIC_LOCALE_STORES))
-const defaultLocale = locales[0]
+const { loadConfig } = require('@graphcommerce/next-config')
+require('dotenv').config()
+
+const config = loadConfig(process.cwd())
+const allowRobots = config.robotsAllow
 
 /** @link https://github.com/iamvishnusankar/next-sitemap */
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: isProduction ? PUBLIC_SITE_URL : DEV_SITE_URL,
+  siteUrl: config.canonicalBaseUrl,
   generateRobotsTxt: true,
   exclude: [
     '/products-sitemap.xml',
@@ -35,12 +34,7 @@ module.exports = {
   ],
   robotsTxtOptions: {
     policies: [
-      ...(isProduction && !process.env.VERCEL_URL?.includes('vercel')
-        ? []
-        : [
-            { userAgent: '*', disallow: '/' },
-            { userAgent: 'Googlebot-Image', disallow: '/' },
-          ]),
+      ...(allowRobots ? [{ userAgent: '*', disallow: '/' }] : []),
       {
         userAgent: '*',
         disallow: ['/switch-stores', '/search', '/account', '/cart', '/checkout', '/wishlist'],
@@ -49,9 +43,12 @@ module.exports = {
       { userAgent: 'AhrefsBot', allow: '/' },
       { userAgent: 'SiteAuditBot', allow: '/' },
     ],
-    additionalSitemaps: locales.map((locale) => {
-      const prefix = locale === defaultLocale ? '' : `/${locale}`
-      return `${isProduction ? PUBLIC_SITE_URL : DEV_SITE_URL}${prefix}/products-sitemap.xml`
+    additionalSitemaps: config.i18n.map((i18n) => {
+      if (!i18n.canonicalBaseUrl) {
+        const prefix = i18n.defaultLocale ? '' : `/${i18n.locale}`
+        return `${config.canonicalBaseUrl}${prefix}/products-sitemap.xml`
+      }
+      return `${i18n.canonicalBaseUrl}/products-sitemap.xml`
     }),
   },
 }

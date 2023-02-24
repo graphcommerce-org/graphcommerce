@@ -1,5 +1,59 @@
 # @graphcommerce/magento-payment-paypal
 
+## 6.0.0-canary.24
+
+## 6.0.0-canary.23
+
+## 6.0.0-canary.22
+
+## 6.0.0-canary.21
+
+## 6.0.0-canary.20
+
+## 5.2.0-canary.19
+
+## 5.2.0-canary.18
+
+### Patch Changes
+
+- [#1790](https://github.com/graphcommerce-org/graphcommerce/pull/1790) [`ab4d6d8e1`](https://github.com/graphcommerce-org/graphcommerce/commit/ab4d6d8e18485b4ca4ca98f534e4f64f6849d952) - Make sure the payment method is set before we’re crearting a paypal express token, so possible surcharges get applied ([@LaurensFranken](https://github.com/LaurensFranken))
+
+## 5.2.0-canary.17
+
+## 5.2.0-canary.16
+
+## 5.2.0-canary.15
+
+## 5.2.0-canary.14
+
+## 5.2.0-canary.13
+
+## 5.2.0-canary.12
+
+## 5.2.0-canary.11
+
+## 5.2.0-canary.10
+
+## 5.2.0-canary.9
+
+## 5.2.0-canary.8
+
+## 5.2.0-canary.7
+
+## 5.2.0-canary.6
+
+## 5.2.0-canary.5
+
+## 5.2.0-canary.4
+
+## 5.2.0-canary.3
+
+## 5.2.0-canary.2
+
+## 5.2.0-canary.1
+
+## 5.2.0-canary.0
+
 ## 5.1.1
 
 ## 5.1.1-canary.1

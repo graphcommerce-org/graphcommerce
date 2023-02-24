@@ -4,8 +4,8 @@ import {
   CustomerDocument,
   useCustomerQuery,
   WaitForCustomer,
+  AccountDashboardAddressesQuery,
 } from '@graphcommerce/magento-customer'
-import { AccountDashboardAddressesQuery } from '@graphcommerce/magento-customer-account'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   GetStaticProps,

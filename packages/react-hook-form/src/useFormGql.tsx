@@ -6,7 +6,7 @@ import {
   LazyQueryResultTuple,
 } from '@apollo/client'
 import { useEffect, useRef } from 'react'
-import { FieldValues, UseFormProps, UseFormReturn } from 'react-hook-form'
+import { DefaultValues, FieldValues, UseFormProps, UseFormReturn } from 'react-hook-form'
 import diff from './diff'
 import { useGqlDocumentHandler, UseGqlDocumentHandler } from './useGqlDocumentHandler'
 
@@ -58,7 +58,8 @@ export function useFormGql<Q, V extends FieldValues>(
       initital.current = false
       return
     }
-    form.reset(defaultValues, { keepDirtyValues: true })
+    if (defaultValues instanceof Promise) return
+    form.reset(defaultValues as DefaultValues<V>, { keepDirtyValues: true })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [valuesString, form])
 

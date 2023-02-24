@@ -1,5 +1,8 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
+  ProductFiltersPro,
+  ProductFiltersProFilterChips,
+  ProductFiltersProSortChip,
   ProductListCount,
   ProductListFilters,
   ProductListFiltersContainer,
@@ -15,6 +18,7 @@ import {
   ProductFiltersDocument,
   ProductListQuery,
   ProductFiltersQuery,
+  ProductFiltersProAllFiltersChip,
 } from '@graphcommerce/magento-product'
 import {
   CategorySearchDocument,
@@ -37,7 +41,7 @@ import { Container, Hidden } from '@mui/material'
 import { LayoutNavigation, LayoutNavigationProps, ProductListItems } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
 import { DefaultPageDocument, DefaultPageQuery } from '../../graphql/DefaultPage.gql'
-import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
 type SearchResultProps = DefaultPageQuery &
   ProductListQuery &
@@ -102,19 +106,35 @@ function SearchResultPage(props: SearchResultProps) {
 
       {noSearchResults && <NoSearchResults search={search} />}
       {products && products.items && products?.items?.length > 0 && (
-        <ProductListParamsProvider value={params}>
+        <>
           <StickyBelowHeader>
-            <ProductListFiltersContainer>
-              <ProductListSort sort_fields={products?.sort_fields} />
-              <ProductListFilters aggregations={filters?.aggregations} filterTypes={filterTypes} />
-            </ProductListFiltersContainer>
+            {import.meta.graphCommerce.productFiltersPro ? (
+              <ProductFiltersPro params={params}>
+                <ProductListFiltersContainer>
+                  <ProductFiltersProFilterChips {...filters} filterTypes={filterTypes} />
+                  <ProductFiltersProSortChip {...products} />
+                  <ProductFiltersProAllFiltersChip
+                    {...filters}
+                    {...products}
+                    filterTypes={filterTypes}
+                  />
+                </ProductListFiltersContainer>
+              </ProductFiltersPro>
+            ) : (
+              <ProductListParamsProvider value={params}>
+                <ProductListFiltersContainer>
+                  <ProductListSort {...products} />
+                  <ProductListFilters {...filters} filterTypes={filterTypes} />
+                </ProductListFiltersContainer>
+              </ProductListParamsProvider>
+            )}
           </StickyBelowHeader>
           <Container maxWidth={false}>
             <ProductListCount total_count={products?.total_count} />
             <ProductListItems title={`Search ${search}`} items={products?.items} loadingEager={1} />
-            <ProductListPagination page_info={products?.page_info} />
+            <ProductListPagination page_info={products?.page_info} params={params} />
           </Container>
-        </ProductListParamsProvider>
+        </>
       )}
     </>
   )

@@ -74,8 +74,8 @@ exports.generateInterceptor = generateInterceptor;
 function generateInterceptors(plugins, resolve) {
     // todo: Do not use reduce as we're passing the accumulator to the next iteration
     const byExportedComponent = plugins.reduce((acc, plug) => {
-        const { exported, component } = plug;
-        if (!exported || !component)
+        const { exported, component, enabled } = plug;
+        if (!exported || !component || !enabled)
             return acc;
         const resolved = resolve(exported);
         if (!acc[resolved.fromRoot])

@@ -3,8 +3,8 @@ import {
   AccountAddresses,
   useCustomerQuery,
   WaitForCustomer,
+  AccountDashboardAddressesDocument,
 } from '@graphcommerce/magento-customer'
-import { AccountDashboardAddressesDocument } from '@graphcommerce/magento-customer-account'
 import { CountryRegionsDocument, PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   GetStaticProps,

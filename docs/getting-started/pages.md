@@ -17,7 +17,7 @@ learn where to find resources to build more complex features on your own.
 
 - Create a new route
 - Add the page GraphQL queries required to render the layout (header, footer)
-- Use getStaticProps to fetch GraphCMS data
+- Use getStaticProps to fetch Hygraph data
 - Use getStaticPaths to provide a list of all URLs to pre-render
 
 ### Requirements
@@ -126,16 +126,16 @@ fetch information about the Magento storeview. Then, the query
 footer and page content.
 
 In this example, the URL variable is empty. As a result, the
-`...PageContentQueryFragment` will have no result when trying to fetch a
-GraphCMS page with URL `''`.
+`...PageContentQueryFragment` will have no result when trying to fetch a Hygraph
+page with URL `''`.
 
 The function `getStaticProps` is used to fetch data, meaning content is rendered
 on the server. Review the page's source code and search for `About Us` to
 validate that this string (currently hard-coded) is part of the source code.
 
-### Add GraphCMS content to the page
+### Add Hygraph content to the page
 
-- Login to GraphCMS, navigate to Content and add a new Page entry with URL:
+- Login to Hygraph, navigate to Content and add a new Page entry with URL:
   about/about-us
 - In /about/about-us.tsx, make the following change to `getStaticProps`:
 
@@ -161,16 +161,16 @@ function AboutUs({ pages }: Props) {
 
 <figure>
 
-![Fetch page content from GraphCMS](https://user-images.githubusercontent.com/1251986/157832923-a2b47e92-ae7c-4557-bc54-a0b04e0d6d7e.png)
+![Fetch page content from Hygraph](https://user-images.githubusercontent.com/1251986/157832923-a2b47e92-ae7c-4557-bc54-a0b04e0d6d7e.png)
 
-  <figcaption>Fetch page content from GraphCMS</figcaption>
+  <figcaption>Fetch page content from Hygraph</figcaption>
 </figure>
 
 <figure>
 
-![GraphCMS entry](https://user-images.githubusercontent.com/1251986/157832975-dc56d48c-a1ef-41d9-9f7c-67d2f19250e4.png)
+![Hygraph entry](https://user-images.githubusercontent.com/1251986/157832975-dc56d48c-a1ef-41d9-9f7c-67d2f19250e4.png)
 
-  <figcaption>GraphCMS entry</figcaption>
+  <figcaption>Hygraph entry</figcaption>
 </figure>
 
 ### Add pre-rendering with getStaticPaths
@@ -225,7 +225,7 @@ built-time will not result in a 404:
 > for the HTML to be generated, identical to SSR (hence why blocking), and then
 > be cached for future requests so it only happens once per path.
 
-### Pre-render all /about/ pages from GraphCMS
+### Pre-render all /about/ pages from Hygraph
 
 - In /about/[url].tsx, replace the getStaticPaths function with the following:
 
@@ -254,7 +254,7 @@ export const getStaticPaths: GetPageStaticPaths = async (context) => {
 }
 ```
 
-The PagesStaticPathsDocument query is used to fetch all pages from GraphCMS that
+The PagesStaticPathsDocument query is used to fetch all pages from Hygraph that
 have a URL starting with 'about'. The locale options from the context object are
 used to create an array:
 
@@ -288,4 +288,4 @@ You can test the static build process by running it locally:
 ## Next steps
 
 - Learn how to
-  [build a custom GraphCMS component](../getting-started/graphcms-component.md)
+  [build a custom Hygraph component](../getting-started/graphcms-component.md)

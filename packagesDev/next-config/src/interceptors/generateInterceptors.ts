@@ -4,7 +4,8 @@ export type PluginConfig = {
   component?: string
   exported?: string
   plugin: string
-  ifEnv?: string
+  ifConfig?: string
+  enabled: boolean
 }
 
 type Plugin = ResolveDependencyReturn & {
@@ -109,8 +110,8 @@ export function generateInterceptors(
 ): GenerateInterceptorsReturn {
   // todo: Do not use reduce as we're passing the accumulator to the next iteration
   const byExportedComponent = plugins.reduce((acc, plug) => {
-    const { exported, component } = plug
-    if (!exported || !component) return acc
+    const { exported, component, enabled } = plug
+    if (!exported || !component || !enabled) return acc
 
     const resolved = resolve(exported)
 

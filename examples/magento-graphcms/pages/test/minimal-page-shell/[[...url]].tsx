@@ -6,9 +6,8 @@ import {
   LayoutTitle,
   LinkOrButton,
 } from '@graphcommerce/next-ui'
-import { Container, Divider, List, ListItem } from '@mui/material'
+import { Container, Divider, List, ListItemButton } from '@mui/material'
 import { m } from 'framer-motion'
-import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import { LayoutMinimal, LayoutMinimalProps } from '../../../components'
@@ -46,20 +45,24 @@ export function LayoutDemo(props: LayoutDemoProps) {
 
   if (withPrimary)
     primaryAction = (
-      <PageLink href={`${baseUrl}/with-primary-navigated`} passHref>
-        <LinkOrButton color='secondary' button={{ variant: 'pill' }}>
-          Navigate
-        </LinkOrButton>
-      </PageLink>
+      <LinkOrButton
+        href={`${baseUrl}/with-primary-navigated`}
+        color='secondary'
+        button={{ variant: 'pill' }}
+      >
+        Navigate
+      </LinkOrButton>
     )
 
   if (withStepper && step < 3) {
     primaryAction = (
-      <PageLink href={`${baseUrl}/with-stepper-${step + 1}`} passHref>
-        <LinkOrButton color='secondary' button={{ variant: 'pill' }}>
-          Navigate
-        </LinkOrButton>
-      </PageLink>
+      <LinkOrButton
+        href={`${baseUrl}/with-stepper-${step + 1}`}
+        color='secondary'
+        button={{ variant: 'pill' }}
+      >
+        Navigate
+      </LinkOrButton>
     )
   }
 
@@ -98,162 +101,130 @@ export function LayoutDemo(props: LayoutDemoProps) {
         {/* <LayoutTitle icon={withIcon ? iconPerson : undefined}>{title}</LayoutTitle> */}
 
         {/* {isSheet && !primaryAction && (
-          <Typography variant='body1' gutterBottom>
-            When opening a sheet a close icon is shown at the top right.
-          </Typography>
-        )}
+        <Typography variant='body1' gutterBottom>
+          When opening a sheet a close icon is shown at the top right.
+        </Typography>
+      )}
 
-        {primaryAction && backSteps === 0 && (
-          <Typography variant='body1' gutterBottom>
-            When a primary action is present, the close button moves to the left.
-          </Typography>
-        )}
+      {primaryAction && backSteps === 0 && (
+        <Typography variant='body1' gutterBottom>
+          When a primary action is present, the close button moves to the left.
+        </Typography>
+      )}
 
-        {backSteps > 0 && (
-          <Typography variant='body1' gutterBottom>
-            When navigated inside the overlay, a backbutton is shown on in the top left.
-          </Typography>
-        )}
+      {backSteps > 0 && (
+        <Typography variant='body1' gutterBottom>
+          When navigated inside the overlay, a backbutton is shown on in the top left.
+        </Typography>
+      )}
 
-        {primaryAction && backSteps > 0 && (
-          <Typography variant='body1' gutterBottom>
-            With a primary action and back button, there is no room for the close button. The close
-            button gets ommited
-          </Typography>
-        )} */}
+      {primaryAction && backSteps > 0 && (
+        <Typography variant='body1' gutterBottom>
+          With a primary action and back button, there is no room for the close button. The close
+          button gets ommited
+        </Typography>
+      )} */}
 
         <Divider />
 
         <List>
           {primaryAction || backSteps === 0 ? (
-            <PageLink href={`${baseUrl}/navigated`} passHref>
-              <ListItem button component='a' style={{ paddingLeft: 0, paddingRight: 0 }}>
-                Navigate
-              </ListItem>
-            </PageLink>
+            <ListItemButton
+              href={`${baseUrl}/navigated`}
+              style={{ paddingLeft: 0, paddingRight: 0 }}
+            >
+              Navigate
+            </ListItemButton>
           ) : null}
 
-          <PageLink href={`${baseUrl}/with-primary`} passHref>
-            <ListItem
-              button
-              component='a'
-              disabled={!!primaryAction}
-              style={{ paddingLeft: 0, paddingRight: 0 }}
-            >
-              With primary action
-            </ListItem>
-          </PageLink>
+          <ListItemButton
+            href={`${baseUrl}/with-primary`}
+            disabled={!!primaryAction}
+            style={{ paddingLeft: 0, paddingRight: 0 }}
+          >
+            With primary action
+          </ListItemButton>
 
-          <PageLink href={`${baseUrl}/with-stepper-1`} passHref>
-            <ListItem
-              button
-              component='a'
-              disabled={withStepper}
-              style={{ paddingLeft: 0, paddingRight: 0 }}
-            >
-              With stepper
-            </ListItem>
-          </PageLink>
+          <ListItemButton
+            href={`${baseUrl}/with-stepper-1`}
+            disabled={withStepper}
+            style={{ paddingLeft: 0, paddingRight: 0 }}
+          >
+            With stepper
+          </ListItemButton>
 
-          <PageLink href={`${baseUrl}/with-icon`} passHref>
-            <ListItem
-              button
-              component='a'
-              disabled={withIcon}
-              style={{ paddingLeft: 0, paddingRight: 0 }}
-            >
-              With icon
-            </ListItem>
-          </PageLink>
-          <PageLink
+          <ListItemButton
+            href={`${baseUrl}/with-icon`}
+            disabled={withIcon}
+            style={{ paddingLeft: 0, paddingRight: 0 }}
+          >
+            With icon
+          </ListItemButton>
+
+          <ListItemButton
             href='/test/sheet?sizeMd=full&sizeSm=full&justifyMd=stretch&justifySm=stretch&variantMd=bottom&variantSm=bottom'
-            passHref
+            disabled={isSheet && !isSidebarDrawer}
+            style={{ paddingLeft: 0, paddingRight: 0 }}
           >
-            <ListItem
-              button
-              component='a'
-              disabled={isSheet && !isSidebarDrawer}
-              style={{ paddingLeft: 0, paddingRight: 0 }}
-            >
-              Bottom sheet
-            </ListItem>
-          </PageLink>
-          <PageLink
+            Bottom sheet
+          </ListItemButton>
+
+          <ListItemButton
             href='/test/sheet?sizeMd=full&sizeSm=full&justifyMd=start&justifySm=start&variantMd=left&variantSm=left'
-            passHref
+            disabled={isLeftSidebarDrawer}
+            style={{ paddingLeft: 0, paddingRight: 0 }}
           >
-            <ListItem
-              button
-              component='a'
-              disabled={isLeftSidebarDrawer}
-              style={{ paddingLeft: 0, paddingRight: 0 }}
-            >
-              Left side sheet
-            </ListItem>
-          </PageLink>
-          <PageLink
+            Left side sheet
+          </ListItemButton>
+
+          <ListItemButton
             href='/test/sheet?sizeMd=full&sizeSm=full&justifyMd=start&justifySm=start&variantMd=right&variantSm=right'
-            passHref
+            component='a'
+            disabled={isSidebarDrawer && !isLeftSidebarDrawer}
+            style={{ paddingLeft: 0, paddingRight: 0 }}
           >
-            <ListItem
-              button
-              component='a'
-              disabled={isSidebarDrawer && !isLeftSidebarDrawer}
-              style={{ paddingLeft: 0, paddingRight: 0 }}
-            >
-              Right side sheet
-            </ListItem>
-          </PageLink>
-          <PageLink href='/test/minimal-page-shell' passHref>
-            <ListItem
-              button
-              component='a'
-              disabled={isMinimal}
-              style={{ paddingLeft: 0, paddingRight: 0 }}
-            >
-              Minimal Page Shell
-            </ListItem>
-          </PageLink>
-          <PageLink href='/test' passHref>
-            <ListItem
-              button
-              component='a'
-              disabled={isFullPage}
-              style={{ paddingLeft: 0, paddingRight: 0 }}
-            >
-              Full Page Shell
-            </ListItem>
-          </PageLink>
-          <PageLink href='/test/with-title' passHref>
-            <ListItem
-              button
-              component='a'
-              disabled={withTitle}
-              style={{ paddingLeft: 0, paddingRight: 0 }}
-            >
-              Full Page Shell + Title
-            </ListItem>
-          </PageLink>
+            Right side sheet
+          </ListItemButton>
 
-          <PageLink href='/test/minimal-page-shell-subheader' passHref>
-            <ListItem
-              button
-              component='a'
-              disabled={isMinimalPageShellSubheader}
-              style={{ paddingLeft: 0, paddingRight: 0 }}
-            >
-              Minimal Page Shell + Subheader
-            </ListItem>
-          </PageLink>
+          <ListItemButton
+            href='/test/minimal-page-shell'
+            disabled={isMinimal}
+            style={{ paddingLeft: 0, paddingRight: 0 }}
+          >
+            Minimal Page Shell
+          </ListItemButton>
 
-          <ListItem
-            button
+          <ListItemButton
+            href='/test'
+            disabled={isFullPage}
+            style={{ paddingLeft: 0, paddingRight: 0 }}
+          >
+            Full Page Shell
+          </ListItemButton>
+
+          <ListItemButton
+            href='/test/with-title'
+            disabled={withTitle}
+            style={{ paddingLeft: 0, paddingRight: 0 }}
+          >
+            Full Page Shell + Title
+          </ListItemButton>
+
+          <ListItemButton
+            href='/test/minimal-page-shell-subheader'
+            disabled={isMinimalPageShellSubheader}
+            style={{ paddingLeft: 0, paddingRight: 0 }}
+          >
+            Minimal Page Shell + Subheader
+          </ListItemButton>
+
+          <ListItemButton
             onClick={() => setScroll(!scroll)}
             color='secondary'
             style={{ paddingLeft: 0, paddingRight: 0 }}
           >
             {scroll ? 'Make unscrollable' : 'Make scrollable'}
-          </ListItem>
+          </ListItemButton>
         </List>
 
         <div>

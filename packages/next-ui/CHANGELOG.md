@@ -1,5 +1,99 @@
 # Change Log
 
+## 6.0.0-canary.24
+
+## 6.0.0-canary.23
+
+## 6.0.0-canary.22
+
+## 6.0.0-canary.21
+
+### Minor Changes
+
+- [#1806](https://github.com/graphcommerce-org/graphcommerce/pull/1806) [`597396766`](https://github.com/graphcommerce-org/graphcommerce/commit/597396766940de8c4ab5d8c84a0c6637ed72dba2) - - Put navigation HTML permanently in the DOM
+  - Fix issue where Navigation can't be reopened after closing, dragging or navigating
+  - Fix overlay visibility when browser is resized, or exactly 864px width ([@ErwinOtten](https://github.com/ErwinOtten))
+
+## 6.0.0-canary.20
+
+## 5.2.0-canary.19
+
+## 5.2.0-canary.18
+
+## 5.2.0-canary.17
+
+## 5.2.0-canary.16
+
+## 5.2.0-canary.15
+
+### Minor Changes
+
+- [#1798](https://github.com/graphcommerce-org/graphcommerce/pull/1798) [`3cee17a51`](https://github.com/graphcommerce-org/graphcommerce/commit/3cee17a51ff961f4363d95c9decb8c7d1f9ca319) - Added filterByTypename function to filter types based on \_\_typename ([@mikekeehnen](https://github.com/mikekeehnen))
+
+## 5.2.0-canary.14
+
+## 5.2.0-canary.13
+
+### Minor Changes
+
+- [#1795](https://github.com/graphcommerce-org/graphcommerce/pull/1795) [`236d698b2`](https://github.com/graphcommerce-org/graphcommerce/commit/236d698b2aac55598fc45a6a58574a538f23e160) - Navigation link fix, homepage and category style fixes ([@ErwinOtten](https://github.com/ErwinOtten))
+
+## 5.2.0-canary.12
+
+## 5.2.0-canary.11
+
+### Patch Changes
+
+- [#1794](https://github.com/graphcommerce-org/graphcommerce/pull/1794) [`29e15cf63`](https://github.com/graphcommerce-org/graphcommerce/commit/29e15cf63251cf98cf42325322fcf09fb7a6c0b7) - Fix scroll issue with bottom overlay on Android ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 5.2.0-canary.10
+
+### Minor Changes
+
+- [#1793](https://github.com/graphcommerce-org/graphcommerce/pull/1793) [`5562fa69b`](https://github.com/graphcommerce-org/graphcommerce/commit/5562fa69b1bc260f68555dcfaf30153eda489bed) - Add newsletter subscribe form ([@ErwinOtten](https://github.com/ErwinOtten))
+
+## 5.2.0-canary.9
+
+### Patch Changes
+
+- [`b0b8348b0`](https://github.com/graphcommerce-org/graphcommerce/commit/b0b8348b0d294f98140c2605691d47011add5b01) - Fix ellipsis for long titles on mobile ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 5.2.0-canary.8
+
+## 5.2.0-canary.7
+
+### Minor Changes
+
+- [#1749](https://github.com/graphcommerce-org/graphcommerce/pull/1749) [`0cc472915`](https://github.com/graphcommerce-org/graphcommerce/commit/0cc4729154d316227a41712b5f0adf514768e91f) - Added new filter UI and behaviour. Filters will appear as a popper on the md and up breakpoints and as an overlay on sm and below breakpoints. Filters now have an Apply button instead of applying directly. ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#1749](https://github.com/graphcommerce-org/graphcommerce/pull/1749) [`16e91da42`](https://github.com/graphcommerce-org/graphcommerce/commit/16e91da42dcb454ea4761d1780b9338c88ef1463) - Fix spelling error incomming to incoming ([@paales](https://github.com/paales))
+
+## 5.2.0-canary.6
+
+## 5.2.0-canary.5
+
+### Patch Changes
+
+- [#1776](https://github.com/graphcommerce-org/graphcommerce/pull/1776) [`09f7312ae`](https://github.com/graphcommerce-org/graphcommerce/commit/09f7312ae44fae531947f9ce64711b7ac5983fc1) - add media query guard to category menu behaviour. ([@FrankHarland](https://github.com/FrankHarland))
+
+## 5.2.0-canary.4
+
+## 5.2.0-canary.3
+
+## 5.2.0-canary.2
+
+### Patch Changes
+
+- [#1771](https://github.com/graphcommerce-org/graphcommerce/pull/1771) [`aec07f567`](https://github.com/graphcommerce-org/graphcommerce/commit/aec07f5679472281b8eb71cf6967a1ff775d2a7f) - Navigation shouldn't become visible when resizing the viewport ([@paales](https://github.com/paales))
+
+- [#1771](https://github.com/graphcommerce-org/graphcommerce/pull/1771) [`55d267ba0`](https://github.com/graphcommerce-org/graphcommerce/commit/55d267ba039f64af2b0248c68a1e1478970c9b31) - Solve issue where overlays would close durting opening when they got rerendered. ([@paales](https://github.com/paales))
+
+## 5.2.0-canary.1
+
+## 5.2.0-canary.0
+
 ## 5.1.1
 
 ## 5.1.1-canary.1

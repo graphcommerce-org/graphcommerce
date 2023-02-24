@@ -9,7 +9,6 @@ import { Badge, Box, Link, SxProps, Theme, Typography } from '@mui/material'
 import IconButton from '@mui/material/IconButton'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
-import PageLink from 'next/link'
 import { useState } from 'react'
 import { GetIsInWishlistsDocument } from '../../queries/GetIsInWishlists.gql'
 import { RemoveProductFromWishlistDocument } from '../../queries/RemoveProductFromWishlist.gql'
@@ -176,56 +175,54 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
           alignSelf: 'flex-start',
         })}
       >
-        <PageLink href={productLink} passHref>
-          <Box
-            component='a'
-            className={classes.productLink}
-            sx={{ display: 'block', width: '100%', overflow: 'hidden' }}
-          >
-            {small_image?.url && (
-              <Image
-                src={small_image.url ?? ''}
-                layout='fill'
-                alt={small_image.label ?? name ?? ''}
-                sizes={responsiveVal(70, 125)}
-                className={classes.image}
-                sx={(theme) => ({
-                  gridColumn: 1,
-                  backgroundColor: theme.palette.background.image,
-                  objectFit: 'cover',
-                  display: 'block',
-                  width: '110% !important',
-                  height: '110% !important',
-                  marginLeft: '-5%',
-                  marginTop: '-5%',
-                })}
-              />
-            )}
-          </Box>
-        </PageLink>
+        <Box
+          href={productLink}
+          component='a'
+          className={classes.productLink}
+          sx={{ display: 'block', width: '100%', overflow: 'hidden' }}
+        >
+          {small_image?.url && (
+            <Image
+              src={small_image.url ?? ''}
+              layout='fill'
+              alt={small_image.label ?? name ?? ''}
+              sizes={responsiveVal(70, 125)}
+              className={classes.image}
+              sx={(theme) => ({
+                gridColumn: 1,
+                backgroundColor: theme.palette.background.image,
+                objectFit: 'cover',
+                display: 'block',
+                width: '110% !important',
+                height: '110% !important',
+                marginLeft: '-5%',
+                marginTop: '-5%',
+              })}
+            />
+          )}
+        </Box>
       </Badge>
 
-      <PageLink href={productLink} passHref>
-        <Link
-          variant='body1'
-          className={classes.itemName}
-          underline='hover'
-          sx={(theme) => ({
-            typgrapht: 'subtitle1',
-            fontWeight: theme.typography.fontWeightBold,
-            gridArea: 'itemName',
-            color: theme.palette.text.primary,
-            textDecoration: 'none',
-            flexWrap: 'nowrap',
-            maxWidth: 'max-content',
-            '&:not(.withOptions)': {
-              alignSelf: 'flex-start',
-            },
-          })}
-        >
-          {name}
-        </Link>
-      </PageLink>
+      <Link
+        href={productLink}
+        variant='body1'
+        className={classes.itemName}
+        underline='hover'
+        sx={(theme) => ({
+          typgrapht: 'subtitle1',
+          fontWeight: theme.typography.fontWeightBold,
+          gridArea: 'itemName',
+          color: theme.palette.text.primary,
+          textDecoration: 'none',
+          flexWrap: 'nowrap',
+          maxWidth: 'max-content',
+          '&:not(.withOptions)': {
+            alignSelf: 'flex-start',
+          },
+        })}
+      >
+        {name}
+      </Link>
 
       <Typography
         component='div'

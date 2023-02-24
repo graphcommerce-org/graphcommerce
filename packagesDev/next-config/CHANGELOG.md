@@ -1,5 +1,77 @@
 # Change Log
 
+## 6.0.0-canary.24
+
+## 6.0.0-canary.23
+
+### Minor Changes
+
+- [#1810](https://github.com/graphcommerce-org/graphcommerce/pull/1810) [`543c5d5b2`](https://github.com/graphcommerce-org/graphcommerce/commit/543c5d5b2b6f29c1f6a0a405524d4cc86f399596) - Added `limitSsg: Boolean` configuration option to limit the getStaticPaths generation during build. This is useful to make quick deployments on preview environments. ([@paales](https://github.com/paales))
+
+## 6.0.0-canary.22
+
+## 6.0.0-canary.21
+
+## 6.0.0-canary.20
+
+### Minor Changes
+
+- [#1786](https://github.com/graphcommerce-org/graphcommerce/pull/1786) [`b76679204`](https://github.com/graphcommerce-org/graphcommerce/commit/b766792049e1e6ebe45671c0b36e78746ef159e2) - Added a new graphcommerce.config.ts which can be accessed with import.mete.graphCommerce.myConfig ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#1786](https://github.com/graphcommerce-org/graphcommerce/pull/1786) [`fff2420c6`](https://github.com/graphcommerce-org/graphcommerce/commit/fff2420c62472edfd2c3d6eba1012dbf48efa3db) - Added configuration for webpackDuplicatesPlugin ([@paales](https://github.com/paales))
+
+## 5.2.0-canary.19
+
+## 5.2.0-canary.18
+
+## 5.2.0-canary.17
+
+## 5.2.0-canary.16
+
+## 5.2.0-canary.15
+
+## 5.2.0-canary.14
+
+## 5.2.0-canary.13
+
+## 5.2.0-canary.12
+
+## 5.2.0-canary.11
+
+## 5.2.0-canary.10
+
+## 5.2.0-canary.9
+
+## 5.2.0-canary.8
+
+## 5.2.0-canary.7
+
+## 5.2.0-canary.6
+
+## 5.2.0-canary.5
+
+## 5.2.0-canary.4
+
+## 5.2.0-canary.3
+
+### Minor Changes
+
+- [#1766](https://github.com/graphcommerce-org/graphcommerce/pull/1766) [`e34169ee2`](https://github.com/graphcommerce-org/graphcommerce/commit/e34169ee2e0fdc052ff589ceca0bc67557584c1f) - Upgraded to Next.js 13
+
+  - NextLink integrates the next/link functionality with @mui/material's Link and ButtonBase (and all it's derivatives) components.
+  - NextLink automatically adds `target="_blank"` when the href is external.
+  - NextLink makes all relative href absolute. `href="my-page"` will be rendered as `href="/my-page"`.
+
+  Upgrade instructions: https://www.graphcommerce.org/docs/framework/links#upgrading-from-nextjs-12 ([@paales](https://github.com/paales))
+
+## 5.2.0-canary.2
+
+## 5.2.0-canary.1
+
+## 5.2.0-canary.0
+
 ## 5.1.1
 
 ## 5.1.1-canary.1

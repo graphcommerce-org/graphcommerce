@@ -1,12 +1,9 @@
-import { Control, Controller, Path, FieldValues } from '@graphcommerce/react-hook-form'
+import { Controller, FieldValues, ControllerProps } from '@graphcommerce/react-hook-form'
 import { FormControlLabel, FormControlLabelProps, Switch } from '@mui/material'
 
 type IProps = Omit<FormControlLabelProps, 'control'>
 
-export type SwitchElementProps<T extends FieldValues> = IProps & {
-  name: Path<T>
-  control?: Control<T>
-}
+export type SwitchElementProps<T extends FieldValues> = IProps & Omit<ControllerProps<T>, 'render'>
 
 export function SwitchElement<TFieldValues extends FieldValues>({
   name,

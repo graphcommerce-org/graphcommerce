@@ -1,5 +1,63 @@
 # Change Log
 
+## 6.0.0-canary.24
+
+## 6.0.0-canary.23
+
+## 6.0.0-canary.22
+
+## 6.0.0-canary.21
+
+## 6.0.0-canary.20
+
+### Minor Changes
+
+- [#1786](https://github.com/graphcommerce-org/graphcommerce/pull/1786) [`63cfbd4ea`](https://github.com/graphcommerce-org/graphcommerce/commit/63cfbd4ea33978ccfe45c156ef07ece72add70ce) - option to not require meta tags for categories ([@paales](https://github.com/paales))
+
+## 5.2.0-canary.19
+
+## 5.2.0-canary.18
+
+## 5.2.0-canary.17
+
+## 5.2.0-canary.16
+
+## 5.2.0-canary.15
+
+## 5.2.0-canary.14
+
+## 5.2.0-canary.13
+
+## 5.2.0-canary.12
+
+## 5.2.0-canary.11
+
+## 5.2.0-canary.10
+
+## 5.2.0-canary.9
+
+## 5.2.0-canary.8
+
+### Patch Changes
+
+- [#1780](https://github.com/graphcommerce-org/graphcommerce/pull/1780) [`667f58856`](https://github.com/graphcommerce-org/graphcommerce/commit/667f58856107c25f6c44561e12083239637e6a09) - Option to not require meta tags for categories ([@StefanAngenent](https://github.com/StefanAngenent))
+
+## 5.2.0-canary.7
+
+## 5.2.0-canary.6
+
+## 5.2.0-canary.5
+
+## 5.2.0-canary.4
+
+## 5.2.0-canary.3
+
+## 5.2.0-canary.2
+
+## 5.2.0-canary.1
+
+## 5.2.0-canary.0
+
 ## 5.1.1
 
 ## 5.1.1-canary.1

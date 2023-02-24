@@ -1,5 +1,63 @@
 # Change Log
 
+## 6.0.0-canary.24
+
+## 6.0.0-canary.23
+
+## 6.0.0-canary.22
+
+## 6.0.0-canary.21
+
+## 6.0.0-canary.20
+
+## 5.2.0-canary.19
+
+## 5.2.0-canary.18
+
+### Patch Changes
+
+- [#1790](https://github.com/graphcommerce-org/graphcommerce/pull/1790) [`875a595da`](https://github.com/graphcommerce-org/graphcommerce/commit/875a595da5f52b77bc2535cf4a660267b0046a1e) - ApolloClient cache would balloon with all redirects and make sure redirects work ([@LaurensFranken](https://github.com/LaurensFranken))
+
+## 5.2.0-canary.17
+
+## 5.2.0-canary.16
+
+## 5.2.0-canary.15
+
+## 5.2.0-canary.14
+
+## 5.2.0-canary.13
+
+## 5.2.0-canary.12
+
+## 5.2.0-canary.11
+
+## 5.2.0-canary.10
+
+## 5.2.0-canary.9
+
+## 5.2.0-canary.8
+
+## 5.2.0-canary.7
+
+### Patch Changes
+
+- [#1749](https://github.com/graphcommerce-org/graphcommerce/pull/1749) [`16e91da42`](https://github.com/graphcommerce-org/graphcommerce/commit/16e91da42dcb454ea4761d1780b9338c88ef1463) - Fix spelling error incomming to incoming ([@paales](https://github.com/paales))
+
+## 5.2.0-canary.6
+
+## 5.2.0-canary.5
+
+## 5.2.0-canary.4
+
+## 5.2.0-canary.3
+
+## 5.2.0-canary.2
+
+## 5.2.0-canary.1
+
+## 5.2.0-canary.0
+
 ## 5.1.1
 
 ### Patch Changes

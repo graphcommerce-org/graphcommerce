@@ -7,7 +7,7 @@ import type { LiteralUnion } from 'type-fest'
 import { IconSvg, useIconSvgSize } from '../../IconSvg'
 import { LayoutHeaderContent } from '../../Layout/components/LayoutHeaderContent'
 import { LayoutTitle } from '../../Layout/components/LayoutTitle'
-import { Overlay } from '../../Overlay/components/Overlay'
+import { OverlaySsr } from '../../Overlay/components/OverlaySsr'
 import { extendableComponent } from '../../Styles/extendableComponent'
 import { useFabSize } from '../../Theme'
 import { useMatchMedia } from '../../hooks'
@@ -57,7 +57,8 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
     mouseEvent,
     itemPadding = 'md',
   } = props
-  const { selection, items, animating, closing, serverRenderDepth } = useNavigation()
+  const { selection, items, animating, closing, serverRenderDepth, animationDuration } =
+    useNavigation()
 
   const fabMarginY = `calc((${useFabSize('responsive')} - ${useIconSvgSize('large')}) * -0.5)`
   const itemPad = useTheme().spacings[itemPadding] ?? itemPadding
@@ -81,7 +82,9 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
 
   const afterClose = useEventCallback(() => {
     if (!closing.get()) return
-    closing.set(false)
+    setTimeout(() => {
+      closing.set(false)
+    }, animationDuration * 1000)
     selection.set(false)
   })
 
@@ -90,7 +93,7 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
   if (selectedLevel === -1 && serverRenderDepth <= 0) return null
 
   return (
-    <Overlay
+    <OverlaySsr
       className={classes.root}
       active={activeAndNotClosing}
       safeToRemove={afterClose}
@@ -179,7 +182,7 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
               [theme.breakpoints.down('md')]: {
                 width:
                   sizeSm !== 'floating'
-                    ? `calc(${itemWidthSm} + ${selectedLevel}px)`
+                    ? itemWidthSm
                     : `calc(${itemWidthSm} - (${theme.page.horizontal} * 2))`,
                 minWidth: 200,
                 overflow: 'hidden',
@@ -187,19 +190,14 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
                 '& .NavigationItem-item': {
                   width:
                     sizeSm !== 'floating'
-                      ? `calc(${itemWidthSm} - (${itemPad} * 2) + ${selectedLevel}px)`
+                      ? `calc(${itemWidthSm} - (${itemPad} * 2))`
                       : `calc(${itemWidthSm} - (${itemPad} * 2) - (${theme.page.horizontal} * 2))`,
                   minWidth: `calc(200px - (${itemPad} * 2))`,
                 },
               },
               [theme.breakpoints.up('md')]: {
                 '& .NavigationItem-item': {
-                  // eslint-disable-next-line no-nested-ternary
-                  width: itemWidthMd
-                    ? selectedLevel >= 1
-                      ? `calc(${itemWidthMd} + 1px)`
-                      : itemWidthMd
-                    : 'stretch',
+                  width: itemWidthMd || 'stretch',
                 },
               },
             }),
@@ -275,7 +273,7 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
           </Box>
         </Box>
       </MotionDiv>
-    </Overlay>
+    </OverlaySsr>
   )
 })
 

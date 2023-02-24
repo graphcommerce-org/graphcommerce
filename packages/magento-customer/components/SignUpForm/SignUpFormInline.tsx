@@ -77,14 +77,16 @@ export function SignUpFormInline({
           variant='outlined'
           type='password'
           error={!!formState.errors.confirmPassword || !!error?.message}
-          label='Confirm password'
+          label={<Trans id='Confirm password' />}
           autoComplete='new-password'
           required
           {...muiRegister('confirmPassword', {
             required: true,
             validate: (value) => value === watchPassword,
           })}
-          helperText={!!formState.errors.confirmPassword && 'Passwords should match'}
+          helperText={
+            !!formState.errors.confirmPassword && <Trans id="Passwords should match" />
+          }
           disabled={formState.isSubmitting}
         />
       </FormRow>
@@ -108,7 +110,7 @@ export function SignUpFormInline({
               color='secondary'
               variant='pill'
             >
-              Create Account
+              <Trans id='Create Account' />
             </Button>
           </Box>
         </FormRow>

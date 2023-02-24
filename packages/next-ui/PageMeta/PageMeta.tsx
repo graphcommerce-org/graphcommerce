@@ -5,6 +5,7 @@ import { getDomainLocale } from 'next/dist/client/get-domain-locale'
 import { NextRouter, resolveHref } from 'next/dist/shared/lib/router/router'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
+import type {} from '@graphcommerce/next-config'
 
 // https://developers.google.com/search/docs/advanced/robots/robots_meta_tag#directives
 export type MetaRobots =
@@ -33,8 +34,8 @@ type PartialNextRouter = Pick<
   NextRouter,
   'pathname' | 'locale' | 'locales' | 'isLocaleDomain' | 'domainLocales' | 'defaultLocale'
 >
-export function canonicalize(router: PartialNextRouter, incomming?: Canonical) {
-  let canonical = incomming
+export function canonicalize(router: PartialNextRouter, incoming?: Canonical) {
+  let canonical = incoming
 
   if (!canonical) return canonical
 
@@ -48,13 +49,7 @@ export function canonicalize(router: PartialNextRouter, incomming?: Canonical) {
   }
 
   if (canonical.startsWith('/')) {
-    if (!process.env.NEXT_PUBLIC_SITE_URL) {
-      if (process.env.NODE_ENV !== 'production') {
-        throw Error('NEXT_PUBLIC_SITE_URL is not defined in .env')
-      }
-    }
-
-    let [href, as] = resolveHref(router as NextRouter, canonical, true)
+    let [href, as = href] = resolveHref(router as NextRouter, canonical, true)
 
     const curLocale = router.locale
 
@@ -65,10 +60,8 @@ export function canonicalize(router: PartialNextRouter, incomming?: Canonical) {
 
     href = localeDomain || addBasePath(addLocale(as, curLocale, router.defaultLocale))
 
-    let siteUrl = process.env.NEXT_PUBLIC_SITE_URL
-    if (siteUrl && siteUrl.endsWith('/')) {
-      siteUrl = siteUrl.slice(0, -1)
-    }
+    let siteUrl = import.meta.graphCommerce.canonicalBaseUrl
+    if (siteUrl.endsWith('/')) siteUrl = siteUrl.slice(0, -1)
 
     canonical = `${siteUrl}${href}`
   }
@@ -85,9 +78,9 @@ export function canonicalize(router: PartialNextRouter, incomming?: Canonical) {
   return canonical
 }
 
-export function useCanonical(incomming?: Canonical) {
+export function useCanonical(incoming?: Canonical) {
   const router = useRouter()
-  return canonicalize(router, incomming)
+  return canonicalize(router, incoming)
 }
 
 export function PageMeta(props: PageMetaProps) {
