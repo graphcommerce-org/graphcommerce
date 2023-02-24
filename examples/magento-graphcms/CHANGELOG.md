@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.0-canary.25
+
+### Patch Changes
+
+- [#1816](https://github.com/graphcommerce-org/graphcommerce/pull/1816) [`f61e2e572`](https://github.com/graphcommerce-org/graphcommerce/commit/f61e2e5721806c258b771a7ed5165da8dc7b815b) - feat(GCOM-1015): add feedback on add address form, update addresslist… ([@FrankHarland](https://github.com/FrankHarland))
+
 ## 6.0.0-canary.24
 
 ## 6.0.0-canary.23
