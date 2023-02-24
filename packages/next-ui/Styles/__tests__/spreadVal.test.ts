@@ -93,11 +93,11 @@ it('generates the right spreadVal', () => {
   const itemWidthSm = '70vw'
   expect(responsiveTemplate`calc(${itemWidthSm} - (16px * 2))`).toMatchInlineSnapshot(`
     [
-      "calc(70vw - (16px * 2))undefined",
-      "calc(70vw - (16px * 2))undefined",
-      "calc(70vw - (16px * 2))undefined",
-      "calc(70vw - (16px * 2))undefined",
-      "calc(70vw - (16px * 2))undefined",
+      "calc(70vw - (16px * 2))",
+      "calc(70vw - (16px * 2))",
+      "calc(70vw - (16px * 2))",
+      "calc(70vw - (16px * 2))",
+      "calc(70vw - (16px * 2))",
     ]
   `)
 })

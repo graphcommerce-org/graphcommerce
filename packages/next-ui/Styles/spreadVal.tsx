@@ -50,7 +50,7 @@ export function createResponsiveTemplate(bpValues: Breakpoints['values']): Respo
 
     return breakpoints.map((_, breakpoint) =>
       template.reduce((prev, curr, i) => {
-        let val = values[i]
+        let val = values[i] ?? ''
         if (Array.isArray(val)) val = Array.isArray(val) ? val[breakpoint] ?? '' : values[i]
         return `${prev}${curr}${val}`
       }, ''),
