@@ -3,29 +3,36 @@
 import '../demo.css'
 import { PageComponent, FramerNextPages } from '@graphcommerce/framer-next-pages'
 import { LinguiProvider } from '@graphcommerce/lingui-next'
-import { responsiveVal } from '@graphcommerce/next-ui'
-import { createTheme, CssBaseline, ThemeProvider } from '@mui/material'
+import {
+  responsiveVal,
+  createTheme,
+  createResponsiveTemplate,
+  themeBaseDefaults,
+} from '@graphcommerce/next-ui'
+import { CssBaseline, ThemeProvider } from '@mui/material'
 import { LazyMotion } from 'framer-motion'
 import { AppPropsType } from 'next/dist/shared/lib/utils'
 import { Router } from 'next/router'
 import React from 'react'
+
+const responsiveTemplate = createResponsiveTemplate(themeBaseDefaults.breakpoints.values)
 
 const theme = createTheme({
   shape: {
     borderRadius: 4,
   },
   spacings: {
-    xxs: responsiveVal(10, 16),
-    xs: responsiveVal(12, 20),
-    sm: responsiveVal(14, 30),
-    md: responsiveVal(16, 50),
-    lg: responsiveVal(24, 80),
-    xl: responsiveVal(40, 100),
-    xxl: responsiveVal(80, 160),
+    xxs: responsiveTemplate`${[10, 16]}px`,
+    xs: responsiveTemplate`${[12, 20]}px`,
+    sm: responsiveTemplate`${[12, 20]}px`,
+    md: responsiveTemplate`${[16, 50]}px`,
+    lg: responsiveTemplate`${[24, 80]}px`,
+    xl: responsiveTemplate`${[40, 100]}px`,
+    xxl: responsiveTemplate`${[80, 160]}px`,
   },
   page: {
-    horizontal: responsiveVal(10, 30),
-    vertical: responsiveVal(10, 30),
+    horizontal: responsiveTemplate`${[10, 30]}px`,
+    vertical: responsiveTemplate`${[10, 30]}px`,
   },
   appShell: {
     headerHeightSm: '46px',
