@@ -38,7 +38,7 @@ function AccountAddressesPage() {
       <Container maxWidth='md'>
         <PageMeta title={i18n._(/* i18n */ 'Addresses')} metaRobots={['noindex']} />
         <WaitForCustomer waitFor={addresses}>
-          {((customer?.addresses && customer.addresses.length > 1) || !customer?.addresses) && (
+          {((customer?.addresses && customer.addresses.length >= 1) || !customer?.addresses) && (
             <LayoutTitle icon={iconAddresses}>
               <Trans id='Addresses' />
             </LayoutTitle>
