@@ -1,13 +1,10 @@
-import { SxProps, Theme } from '@mui/material'
+import { ContainerProps } from '@mui/material'
 import { Row } from '../../Row/Row'
 
-type BlogItemGridProps = {
-  children: React.ReactNode
-  sx?: SxProps<Theme>
-}
+type BlogItemGridProps = ContainerProps
 
 export function BlogItemGrid(props: BlogItemGridProps) {
-  const { children, sx = [] } = props
+  const { sx = [], ...containerProps } = props
 
   return (
     <Row
@@ -19,8 +16,7 @@ export function BlogItemGrid(props: BlogItemGridProps) {
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
-    >
-      {children}
-    </Row>
+      {...containerProps}
+    />
   )
 }
