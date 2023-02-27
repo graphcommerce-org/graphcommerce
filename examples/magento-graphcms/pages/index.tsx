@@ -7,9 +7,9 @@ import { LayoutDocument } from '../components/Layout/Layout.gql'
 import { DefaultPageDocument, DefaultPageQuery } from '../graphql/DefaultPage.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
 
-type Props = DefaultPageQuery & { latestList: ProductListQuery } & {
+type Props = DefaultPageQuery & {
+  latestList: ProductListQuery
   favoritesList: ProductListQuery
-} & {
   swipableList: ProductListQuery
 }
 type RouteProps = { url: string }
@@ -19,9 +19,9 @@ function CmsPage(props: Props) {
   const { pages, latestList, favoritesList, swipableList } = props
   const page = pages?.[0]
 
-  const latest = favoritesList?.products?.items?.[0]
+  const latest = latestList?.products?.items?.[0]
   const favorite = favoritesList?.products?.items?.[0]
-  const swipable = favoritesList?.products?.items?.[0]
+  const swipable = swipableList?.products?.items?.[0]
 
   return (
     <>
