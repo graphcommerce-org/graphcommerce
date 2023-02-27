@@ -31,9 +31,5 @@
   "peerDependencies": {
     "next": "^13.1.1",
     "webpack": "^5.0.0"
-  },
-  "files": [
-    "dist",
-    "src"
-  ]
+  }
 }

@@ -13,10 +13,6 @@
     "build": "tsc",
     "prepack": "tsc"
   },
-  "files": [
-    "dist",
-    "src"
-  ],
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
     "extends": "@graphcommerce/eslint-config-pwa",

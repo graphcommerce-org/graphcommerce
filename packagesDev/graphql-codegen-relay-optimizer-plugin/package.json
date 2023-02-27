@@ -37,11 +37,5 @@
     "parserOptions": {
       "project": "./tsconfig.json"
     }
-  },
-  "files": [
-    "dist/**/*",
-    "src",
-    "LICENSE",
-    "README.md"
-  ]
+  }
 }
