@@ -48,7 +48,11 @@ export function toProductListParams(params: ProductFilterParams): ProductListPar
   return { sort: sort ? { [sort]: dir } : {}, ...rest }
 }
 
-export type AnyFilterType = ProductAttributeFilterInput[keyof ProductAttributeFilterInput]
+export type AnyFilterType =
+  | ProductAttributeFilterInput[keyof ProductAttributeFilterInput]
+  | FilterEqualTypeInput
+  | FilterMatchTypeInput
+  | FilterRangeTypeInput
 
 export function isFilterTypeEqual(filter?: unknown): filter is FilterEqualTypeInput {
   return Boolean(
