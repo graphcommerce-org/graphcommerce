@@ -5,7 +5,16 @@ import {
 } from '@graphcommerce/next-ui'
 import { StoreConfigDocument } from './StoreConfig.gql'
 
-type PageMetaProps = Pick<NextPageMetaProps, 'title' | 'metaDescription' | 'metaRobots'> & {
+export type ProductPageMetaOgTags = {
+  sku?: string | null
+  name?: string | null
+  image?: string | null
+  price?: number | null
+  salePrice?: number | null
+  categories?: string[] | null
+}
+
+type PageMetaProps = Pick<NextPageMetaProps, 'title' | 'metaDescription' | 'metaRobots'> & ProductPageMetaOgTags & {
   canonical?: string
 }
 
