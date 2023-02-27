@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.0-canary.26
+
+### Patch Changes
+
+- [#1817](https://github.com/graphcommerce-org/graphcommerce/pull/1817) [`51ac99eb5`](https://github.com/graphcommerce-org/graphcommerce/commit/51ac99eb501538fb6e339557ae055b115d01c928) - feat(GCOM-1015): fix bug where page heading would dissapear after rem… ([@FrankHarland](https://github.com/FrankHarland))
+
 ## 6.0.0-canary.25
 
 ### Patch Changes
