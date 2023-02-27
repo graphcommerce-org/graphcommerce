@@ -1,8 +1,8 @@
 diff --git a/node_modules/next/dist/server/dev/next-dev-server.js b/node_modules/next/dist/server/dev/next-dev-server.js
-index 2cc777e..c082944 100644
+index 8062217..844ac76 100644
 --- a/node_modules/next/dist/server/dev/next-dev-server.js
 +++ b/node_modules/next/dist/server/dev/next-dev-server.js
-@@ -978,6 +978,7 @@ class DevServer extends _nextServer.default {
+@@ -1071,6 +1071,7 @@ class DevServer extends _nextServer.default {
          const __getStaticPaths = async ()=>{
              const { configFileName , publicRuntimeConfig , serverRuntimeConfig , httpAgentOptions , experimental: { enableUndici  } ,  } = this.nextConfig;
              const { locales , defaultLocale  } = this.nextConfig.i18n || {};

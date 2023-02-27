@@ -29,7 +29,7 @@ function rewriteLegacyEnv(schema, config, env) {
         };
     }
     const parsers = {
-        MAGENTO_ENDPPOINT: renamedTo('GC_MAGENTO_ENDPOINT'),
+        MAGENTO_ENDPOINT: renamedTo('GC_MAGENTO_ENDPOINT'),
         GRAPHCMS_URL: renamedTo('GC_HYGRAPH_ENDPOINT'),
         NEXT_PUBLIC_GRAPHQL_ENDPOINT: notUsed(),
         IMAGE_DOMAINS: (envVar, envValue) => {
