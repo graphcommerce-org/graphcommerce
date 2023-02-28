@@ -9,6 +9,7 @@ fragment ProductPageMeta on ProductInterface {
     maximum_price {
       final_price {
         value
+        currency
       }
       regular_price {
         value
@@ -19,6 +20,7 @@ fragment ProductPageMeta on ProductInterface {
     url
   }
   categories {
+    uid
     name
   }
 }

@@ -1,5 +1,4 @@
 import { usePageContext } from '@graphcommerce/framer-next-pages'
-import { ProductPageMetaOgTags } from '@graphcommerce/magento-store/PageMeta'
 import { addBasePath } from 'next/dist/client/add-base-path'
 import { addLocale } from 'next/dist/client/add-locale'
 import { getDomainLocale } from 'next/dist/client/get-domain-locale'
@@ -26,11 +25,12 @@ type MetaRobotsAll = ['all' | 'none']
 
 type Canonical = `http://${string}` | `https://${string}` | `/${string}` | string
 
-export type PageMetaProps = ProductPageMetaOgTags & {
+export type PageMetaProps = {
   title: string
   canonical?: Canonical
   metaDescription?: string
   metaRobots?: MetaRobotsAll | MetaRobots[]
+  children?: React.ReactNode
 }
 
 type PartialNextRouter = Pick<
@@ -89,18 +89,7 @@ export function useCanonical(incoming?: Canonical) {
 
 export function PageMeta(props: PageMetaProps) {
   const { active } = usePageContext()
-  const {
-    title,
-    canonical: canonicalBare,
-    metaDescription,
-    metaRobots = ['all'],
-    sku,
-    name,
-    image,
-    price,
-    salePrice,
-    categories,
-  } = props
+  const { children, title, canonical: canonicalBare, metaDescription, metaRobots = ['all'] } = props
 
   const canonical = useCanonical(canonicalBare)
 
@@ -111,33 +100,9 @@ export function PageMeta(props: PageMetaProps) {
       {metaDescription && (
         <meta name='description' content={metaDescription.trim()} key='meta-description' />
       )}
-      {sku && (
-        <>
-          <meta property='type' content='product' key='og-type' />
-          <meta property='product:retailer_part_no' content={sku} key='og-sku' />
-        </>
-      )}
-      {name && <meta property='og:title' content={name} key='og-title' />}
-      {image && <meta property='og:image' content={image} key='og-image' />}
-      {price && <meta property='product:price:amount' content={price.toString()} key='og-price' />}
-      {salePrice && (
-        <meta
-          property='product:sale_price:amount'
-          content={salePrice.toString()}
-          key='og-sale-price'
-        />
-      )}
-      {categories &&
-        categories.map((category, index) => (
-          <meta property='product:category' content={category} key={`og-category-${index}`} />
-        ))}
       <meta name='robots' content={metaRobots.join(',')} key='meta-robots' />
-      {canonical && (
-        <>
-          <link rel='canonical' href={canonical} key='canonical' />
-          <meta property='og:url' content={canonical} key='og-url' />
-        </>
-      )}
+      {canonical && <link rel='canonical' href={canonical} key='canonical' />}
+      {children}
     </Head>
   )
 }
