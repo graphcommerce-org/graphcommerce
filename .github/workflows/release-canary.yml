@@ -3,6 +3,8 @@ on:
   push:
     branches:
       - 'canary'
+concurrency:
+  group: release-canary
 jobs:
   publish:
     runs-on: ubuntu-latest
