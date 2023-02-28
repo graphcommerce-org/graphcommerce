@@ -86,12 +86,7 @@ export function CartTotals(props: CartTotalsProps) {
       )}
 
       {prices?.discounts?.map((discount) => {
-        const value = inclTax
-          ? (discount?.amount.value ?? 0) * -1
-          : (discount?.amount.value ?? 0) *
-            ((prices.subtotal_excluding_tax?.value ?? 1) /
-              (prices.subtotal_including_tax?.value ?? 1)) *
-            -1
+        const value = (discount?.amount.value ?? 0) * -1
 
         return (
           <Box
