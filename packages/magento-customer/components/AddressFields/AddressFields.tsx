@@ -46,7 +46,7 @@ export function AddressFields(props: AddressFieldsProps) {
     const availableRegions = Object.values(
       countryList.find((c) => c?.two_letter_abbreviation === country)?.available_regions ?? {},
     )
-    type Region = typeof availableRegions[0]
+    type Region = (typeof availableRegions)[0]
 
     const compare: (a: Region, b: Region) => number = (a, b) =>
       (a?.name ?? '')?.localeCompare(b?.name ?? '')

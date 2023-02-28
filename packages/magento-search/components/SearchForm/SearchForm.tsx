@@ -18,7 +18,7 @@ export type SearchFormProps = {
   search?: string
   urlHandle?: string
   autoFocus?: boolean
-  textFieldProps?: Omit<TextFieldElementProps, 'control' | 'name'>
+  textFieldProps?: Omit<TextFieldElementProps<{ search: string }>, 'control' | 'name'>
   sx?: SxProps<Theme>
 }
 
