@@ -29,7 +29,7 @@
     "@lingui/react": "3.17.1",
     "@lingui/core": "3.17.1",
     "framer-motion": "^7.0.0",
-    "next": "^13.1.1",
+    "next": "^13.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }
