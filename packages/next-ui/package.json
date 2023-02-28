@@ -15,9 +15,9 @@
   },
   "dependencies": {
     "@emotion/cache": "^11.10.5",
-    "@emotion/react": "^11.10.5",
+    "@emotion/react": "^11.10.6",
     "@emotion/server": "^11.4.0",
-    "@emotion/styled": "^11.10.5",
+    "@emotion/styled": "^11.10.6",
     "@graphcommerce/framer-next-pages": "6.0.0-canary.26",
     "@graphcommerce/framer-scroller": "6.0.0-canary.26",
     "@graphcommerce/framer-utils": "6.0.0-canary.26",
@@ -32,15 +32,15 @@
     "@graphcommerce/typescript-config-pwa": "6.0.0-canary.26",
     "@types/cookie": "^0.5.1",
     "@types/react-is": "^17.0.3",
-    "typescript": "4.9.4"
+    "typescript": "4.9.5"
   },
   "peerDependencies": {
-    "@lingui/react": "^3.13.2",
     "@lingui/core": "^3.13.2",
+    "@lingui/react": "^3.13.2",
     "@mui/lab": "^5.0.0-alpha.68",
     "@mui/material": "^5.10.16",
     "framer-motion": "^7.0.0",
-    "next": "^13.1.1",
+    "next": "^13.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }

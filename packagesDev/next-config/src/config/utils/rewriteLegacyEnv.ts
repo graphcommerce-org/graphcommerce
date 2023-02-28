@@ -32,7 +32,7 @@ export function rewriteLegacyEnv(
   }
 
   const parsers: Record<string, (key: string, value: string) => void> = {
-    MAGENTO_ENDPPOINT: renamedTo('GC_MAGENTO_ENDPOINT'),
+    MAGENTO_ENDPOINT: renamedTo('GC_MAGENTO_ENDPOINT'),
     GRAPHCMS_URL: renamedTo('GC_HYGRAPH_ENDPOINT'),
     NEXT_PUBLIC_GRAPHQL_ENDPOINT: notUsed(),
     IMAGE_DOMAINS: (envVar: string, envValue: string) => {

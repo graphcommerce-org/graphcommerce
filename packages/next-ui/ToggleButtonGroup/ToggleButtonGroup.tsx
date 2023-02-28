@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Box, ToggleButtonGroupProps as ToggleButtonGroupPropsBase } from '@mui/material'
 import React from 'react'
 import { isFragment } from 'react-is'
@@ -103,15 +104,15 @@ const ToggleButtonGroup = React.forwardRef<HTMLDivElement, ToggleButtonGroupProp
         }
 
         return React.cloneElement(child, {
-          // @ts-expect-error TODO: fix TS error
+          // @ts-ignore
           className: `${classes.button} ${child.props.className ?? ''}`,
           onChange: exclusive ? handleExclusiveChange : handleChange,
           selected:
-            // @ts-expect-error TODO: fix TS error
+            // @ts-ignore
             child.props.selected === undefined
-              ? // @ts-expect-error TODO: fix TS error
+              ? // @ts-ignore
                 isValueSelected(child.props.value as string, value as string | string[])
-              : // @ts-expect-error TODO: fix TS error
+              : // @ts-ignore
                 child.props.selected,
         })
       })}

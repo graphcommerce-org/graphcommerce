@@ -5,7 +5,7 @@ export type SelectElementProps<T extends FieldValues> = Omit<
   TextFieldProps,
   'name' | 'type' | 'onChange' | 'defaultValue'
 > & {
-  validation?: ControllerProps['rules']
+  validation?: ControllerProps<T>['rules']
   options?: { id: string | number; label: string | number }[] | any[]
   valueKey?: string
   labelKey?: string

@@ -52,7 +52,7 @@ export function AutocompleteElement<TFieldValues extends FieldValues>({
   boolean | undefined,
   boolean | undefined
 >) {
-  const validationRules: ControllerProps['rules'] = {
+  const validationRules: ControllerProps<TFieldValues>['rules'] = {
     ...rules,
     ...(required && {
       required: rules?.required || 'This field is required',
@@ -64,7 +64,7 @@ export function AutocompleteElement<TFieldValues extends FieldValues>({
       control={control}
       rules={validationRules}
       render={({ field: { onChange, onBlur, value, ...fieldRest }, fieldState: { error } }) => {
-        const values = Array.isArray(value) ? (value as typeof value[]) : [value]
+        const values = Array.isArray(value) ? (value as (typeof value)[]) : [value]
         let currentValue = multiple ? value || [] : value || null
         if (matchId) {
           currentValue = multiple

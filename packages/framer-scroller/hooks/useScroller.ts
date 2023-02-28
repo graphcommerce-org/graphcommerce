@@ -16,9 +16,13 @@ import { scrollSnapTypeDirection, SnapTypeDirection } from '../utils/scrollSnapT
 import { useScrollerContext } from './useScrollerContext'
 import { useVelocitySnapTo } from './useVelocitySnapTo'
 
-export type ScrollableProps<TagName extends keyof ReactHTML = 'div'> = HTMLMotionProps<TagName> & {
+export type ScrollableProps<TagName extends keyof ReactHTML = 'div'> = Omit<
+  HTMLMotionProps<TagName>,
+  'children'
+> & {
   hideScrollbar?: boolean
   grid?: boolean
+  children: React.ReactNode
 }
 
 type OwnerProps = {

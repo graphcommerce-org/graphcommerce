@@ -5,11 +5,17 @@ import { i18n } from '@lingui/core'
 import { CategoryMetaFragment } from './CategoryMeta.gql'
 
 export type CategoryMetaProps = CategoryMetaFragment &
-  Partial<PageMetaProps> & { params?: ProductListParams }
+  Omit<PageMetaProps, 'title' | 'description'> & {
+    params?: ProductListParams
+    title?: string | null
+    metaDescription?: string | null
+  }
 
 export function CategoryMeta(props: CategoryMetaProps) {
   const { meta_title, meta_description, name, params } = props
-  let { title = '', metaDescription = '', metaRobots, canonical } = props
+  let { title, metaDescription, metaRobots, canonical } = props
+  if (!title) title = ''
+  if (!metaDescription) metaDescription = ''
 
   if (!title && meta_title) title = meta_title
   if (!title && name) title = name
