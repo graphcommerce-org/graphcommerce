@@ -1,5 +1,15 @@
 # Change Log
 
+## 6.0.0-canary.27
+
+### Patch Changes
+
+- [#1821](https://github.com/graphcommerce-org/graphcommerce/pull/1821) [`1abc50a21`](https://github.com/graphcommerce-org/graphcommerce/commit/1abc50a21103270fad04e4a9ea892ee1e75233e9) - Fix regression bugs and upgrade packages to latest versions ([@paales](https://github.com/paales))
+
+- [#1820](https://github.com/graphcommerce-org/graphcommerce/pull/1820) [`6f8f5c1fe`](https://github.com/graphcommerce-org/graphcommerce/commit/6f8f5c1feb551539a58aa8bdaed30f3890576e80) - Fix/default config ([@paales](https://github.com/paales))
+
+- [#1818](https://github.com/graphcommerce-org/graphcommerce/pull/1818) [`ab816a603`](https://github.com/graphcommerce-org/graphcommerce/commit/ab816a6036c64765fcb5219ab07d44433d5b0bba) - activate i18n with correct locale for ssr ([@FrankHarland](https://github.com/FrankHarland))
+
 ## 6.0.0-canary.26
 
 ### Patch Changes
