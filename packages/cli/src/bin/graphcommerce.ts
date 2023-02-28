@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 
-import { generateConfig } from '@graphcommerce/next-config'
+import { generateConfig, exportConfig } from '@graphcommerce/next-config'
 
 const commands = {
   'codegen-config': generateConfig,
+  'export-config': exportConfig,
 }
 
 const args = process.argv.slice(2)

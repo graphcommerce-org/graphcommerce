@@ -62,7 +62,7 @@ it('converts an env schema to a config schema', () => {
   const configFile: GraphCommerceConfig = {
     i18n: [{ locale: 'en', hygraphLocales: ['en'], magentoStoreCode: 'en_us' }],
     customerRequireEmailConfirmation: false,
-    singleProductRoute: true,
+    legacyProductRoute: false,
     productFiltersPro: false,
     canonicalBaseUrl: 'https://example.com',
     hygraphEndpoint: 'https://example.com',
@@ -71,10 +71,10 @@ it('converts an env schema to a config schema', () => {
   }
 
   const environmentVariables = {
-    GC_ADVANCED_FILTERS: '1',
+    GC_PRODUCT_FILTERS_PRO: '1',
     GC_I18N: `[{"defaultLocale": true }]`,
     GC_I18N_0_LOCALE: 'de',
-    GC_SINGLE_PRODUCT_ROUTE: '1',
+    GC_LEGACY_PRODUCT_ROUTE: '1',
   }
 
   const [mergedConfig, applied] = mergeEnvIntoConfig(
@@ -85,10 +85,10 @@ it('converts an env schema to a config schema', () => {
 
   expect(removeColor(formatAppliedEnv(applied))).toMatchInlineSnapshot(`
     "info   - Loaded GraphCommerce env variables
-     ~ GC_ADVANCED_FILTERS='1' => productFiltersPro: false => true
      + GC_I18N='[{"defaultLocale": true }]' => i18n: [{"defaultLocale":true}]
      ~ GC_I18N_0_LOCALE='de' => i18n.[0].locale: "en" => "de"
-     = GC_SINGLE_PRODUCT_ROUTE='1' => singleProductRoute: (ignored, no change/wrong format)"
+     ~ GC_LEGACY_PRODUCT_ROUTE='1' => legacyProductRoute: false => true
+     ~ GC_PRODUCT_FILTERS_PRO='1' => productFiltersPro: false => true"
   `)
 
   // Validate the resulting configuration
@@ -100,6 +100,6 @@ it('converts an env schema to a config schema', () => {
     expect(parsed.data.productFiltersPro).toBe(true)
     expect(parsed.data.i18n[0].defaultLocale).toBe(true)
     expect(parsed.data.i18n[0].locale).toBe('de')
-    expect(parsed.data.singleProductRoute).toBe(true)
+    expect(parsed.data.legacyProductRoute).toBe(true)
   }
 })

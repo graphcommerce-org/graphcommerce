@@ -26,11 +26,13 @@ it('it generates an interceptor', () => {
     [
       {
         component: 'PaymentMethodContextProvider',
+        enabled: true,
         exported: '@graphcommerce/magento-cart-payment-method/index',
         plugin: '@graphcommerce/mollie-magento-payment/plugins/AddMollieMethods',
       },
       {
         component: 'PaymentMethodContextProvider',
+        enabled: true,
         exported: '@graphcommerce/magento-cart-payment-method/index',
         plugin: '@graphcommerce/magento-payment-braintree/plugins/AddBraintreeMethods',
       },
@@ -74,6 +76,7 @@ it('resolves a root plugin to be relative to the interceptor', () => {
     [
       {
         component: 'PaymentMethodContextProvider',
+        enabled: true,
         exported: '@graphcommerce/magento-cart-payment-method',
         plugin: '@graphcommerce/magento-graphcms/plugins/AddPaymentMethodEnhancer',
       },
@@ -108,12 +111,14 @@ it('it can apply multiple plugins to a single export', () => {
   const plugins = [
     {
       component: 'PaymentMethodContextProvider',
+      enabled: true,
       exported:
         '@graphcommerce/magento-cart-payment-method/PaymentMethodContext/PaymentMethodContext',
       plugin: '@graphcommerce/mollie-magento-payment/plugins/AddMollieMethods',
     },
     {
       component: 'OneMoreComponent',
+      enabled: true,
       exported:
         '@graphcommerce/magento-cart-payment-method/PaymentMethodContext/PaymentMethodContext',
       plugin: '@graphcommerce/magento-payment-braintree/plugins/AddOneMore',
@@ -168,12 +173,14 @@ it('it handles on duplicates gracefully', () => {
   const plugins = [
     {
       component: 'PaymentMethodContextProvider',
+      enabled: true,
       exported:
         '@graphcommerce/magento-cart-payment-method/PaymentMethodContext/PaymentMethodContext',
       plugin: '@graphcommerce/magento-payment-braintree/plugins/AddBraintreeMethods',
     },
     {
       component: 'PaymentMethodContextProvider',
+      enabled: true,
       exported:
         '@graphcommerce/magento-cart-payment-method/PaymentMethodContext/PaymentMethodContext',
       plugin: '@graphcommerce/magento-payment-braintree/plugins/AddBraintreeMethods',
@@ -213,6 +220,7 @@ it('it handles root plugins', () => {
   const plugins = [
     {
       component: 'PaymentMethodContextProvider',
+      enabled: true,
       exported:
         '@graphcommerce/magento-cart-payment-method/PaymentMethodContext/PaymentMethodContext',
       plugin: '@graphcommerce/magento-graphcms/plugins/AddMyMethods',

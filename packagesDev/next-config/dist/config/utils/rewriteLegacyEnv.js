@@ -49,6 +49,8 @@ function rewriteLegacyEnv(schema, config, env) {
                 envValue,
             });
             clonedEnv.GC_I18N = JSON.stringify(Object.entries(parsed).map(([locale, magentoStoreCode], index) => {
+                if (!config.i18n)
+                    config.i18n = [];
                 config.i18n[index] = { ...config.i18n[index], locale, magentoStoreCode };
                 return { locale, magentoStoreCode };
             }));
@@ -59,6 +61,8 @@ function rewriteLegacyEnv(schema, config, env) {
             if (envValue.startsWith('{')) {
                 const parsed = JSON.parse(envValue);
                 clonedEnv.GC_GOOGLE_ANALYTICS_ID = 'enabled';
+                if (!config.i18n)
+                    config.i18n = [];
                 config.i18n.forEach((i18n, index) => {
                     if (parsed[i18n.locale]) {
                         clonedEnv[`GC_I18N_${index}_GOOGLE_ANALYTICS_ID`] = parsed[i18n.locale];
@@ -76,6 +80,8 @@ function rewriteLegacyEnv(schema, config, env) {
         NEXT_PUBLIC_GOOGLE_RECAPTCHA_V3_SITE_KEY: renamedTo('GC_GOOGLE_RECAPTCHA_KEY'),
         NEXT_PUBLIC_DISPLAY_INCL_TAX: (envVar, envValue) => {
             const inclTax = envValue.split(',').map((i) => i.trim());
+            if (!config.i18n)
+                config.i18n = [];
             config.i18n.forEach((i18n, index) => {
                 if (!inclTax.includes(i18n.locale))
                     return null;

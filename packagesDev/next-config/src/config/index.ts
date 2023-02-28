@@ -1,7 +1,9 @@
 import type { Path } from 'react-hook-form'
 import { GraphCommerceConfig } from '../generated/config'
 
-export * from './generateConfig'
+export * from './commands/generateConfig'
+export * from './commands/exportConfig'
+
 export * from './loadConfig'
 
 declare global {
