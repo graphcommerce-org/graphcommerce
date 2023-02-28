@@ -11,12 +11,12 @@ const config = {
   hygraphEndpoint: 'https://eu-central-1.cdn.hygraph.com/content/ckhx7xadya6xs01yxdujt8i80/master',
   magentoEndpoint: 'https://backend.reachdigital.dev/graphql',
   i18n: [
-    { locale: 'en-us', magentoStoreCode: 'en_US', defaultLocale: true },
+    { locale: 'en', magentoStoreCode: 'en_US', defaultLocale: true },
     {
-      locale: 'nl-nl',
+      locale: 'nl',
       magentoStoreCode: 'nl_NL',
       cartDisplayPricesInclTax: true,
-      hygraphLocales: ['nl', 'en_us'],
+      hygraphLocales: ['nl', 'en'],
     },
     { locale: 'fr-be', magentoStoreCode: 'fr_BE', cartDisplayPricesInclTax: true },
     { locale: 'nl-be', magentoStoreCode: 'nl_BE', cartDisplayPricesInclTax: true },
