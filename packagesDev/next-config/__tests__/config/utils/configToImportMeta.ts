@@ -28,7 +28,7 @@ it('flattens a config object', () => {
       "import.meta.graphCommerce.demoMode": "true",
       "import.meta.graphCommerce.googleTagmanagerKey": ""GTM-XXXXXXX"",
       "import.meta.graphCommerce.i18n": "[{"locale":"en","hygraphLocales":["en"],"magentoStoreCode":"en_us"}]",
-      "import.meta.graphCommerce.singleProductRoute": "true",
+      "!import.meta.graphCommerce.legacyProductRoute": "true",
     }
   `)
 })

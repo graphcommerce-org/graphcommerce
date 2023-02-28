@@ -40,12 +40,6 @@ Product filters with better UI for mobile and desktop.
 Allow the site to be indexed by search engines.
 If false, the robots.txt file will be set to disallow all.
 
-### `singleProductRoute: Boolean!`
-
-On older versions of GraphCommerce products would use a product type specific route.
-
-This should only be set to false if you use the /product/[url] or /product/configurable/[url] routes.
-
 ### `cartDisplayPricesInclTax: Boolean`
 
 Due to a limitation of the GraphQL API it is not possible to determine if a cart should be displayed including or excluding tax.
@@ -91,6 +85,12 @@ This value is required even if you are configuring different values for each loc
 The Google Tagmanager ID to be used on the site.
 
 This value is required even if you are configuring different values for each locale.
+
+### `legacyProductRoute: Boolean`
+
+On older versions of GraphCommerce products would use a product type specific route.
+
+This should only be set to true if you use the /product/[url] AND /product/configurable/[url] routes.
 
 ### `limitSsg: Boolean`
 

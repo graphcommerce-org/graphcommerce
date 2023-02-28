@@ -18,12 +18,12 @@ function GraphCommerceConfigSchema() {
         googleTagmanagerId: zod_1.z.string().nullish(),
         hygraphEndpoint: zod_1.z.string().min(1),
         i18n: zod_1.z.array(GraphCommerceI18nConfigSchema()),
+        legacyProductRoute: zod_1.z.boolean().nullish(),
         limitSsg: zod_1.z.boolean().nullish(),
         magentoEndpoint: zod_1.z.string().min(1),
         previewSecret: zod_1.z.string().nullish(),
         productFiltersPro: zod_1.z.boolean(),
         robotsAllow: zod_1.z.boolean(),
-        singleProductRoute: zod_1.z.boolean(),
         wishlistHideForGuests: zod_1.z.boolean().nullish(),
         wishlistIgnoreProductWishlistStatus: zod_1.z.boolean().nullish()
     });

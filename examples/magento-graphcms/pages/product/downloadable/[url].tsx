@@ -122,7 +122,7 @@ ProductDownloadable.pageOptions = {
 export default ProductDownloadable
 
 export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
-  if (import.meta.graphCommerce.singleProductRoute) return { paths: [], fallback: false }
+  if (!import.meta.graphCommerce.legacyProductRoute) return { paths: [], fallback: false }
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
 
   const path = (locale: string) =>
@@ -133,7 +133,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 }
 
 export const getStaticProps: GetPageStaticProps = async ({ params, locale, defaultLocale }) => {
-  if (import.meta.graphCommerce.singleProductRoute) {
+  if (!import.meta.graphCommerce.legacyProductRoute) {
     const destination = `${locale === defaultLocale ? '' : `/${locale}`}/p/${params?.url}`
     return { redirect: { destination, permanent: true } }
   }

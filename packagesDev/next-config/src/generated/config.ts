@@ -77,6 +77,12 @@ export type GraphCommerceConfig = {
   hygraphEndpoint: Scalars['String'];
   /** All i18n configuration for the project */
   i18n: Array<GraphCommerceI18nConfig>;
+  /**
+   * On older versions of GraphCommerce products would use a product type specific route.
+   *
+   * This should only be set to true if you use the /product/[url] AND /product/configurable/[url] routes.
+   */
+  legacyProductRoute?: InputMaybe<Scalars['Boolean']>;
   /** Limit the static generation of SSG when building */
   limitSsg?: InputMaybe<Scalars['Boolean']>;
   /**
@@ -99,12 +105,6 @@ export type GraphCommerceConfig = {
    * If false, the robots.txt file will be set to disallow all.
    */
   robotsAllow: Scalars['Boolean'];
-  /**
-   * On older versions of GraphCommerce products would use a product type specific route.
-   *
-   * This should only be set to false if you use the /product/[url] or /product/configurable/[url] routes.
-   */
-  singleProductRoute: Scalars['Boolean'];
   /** Hide the wishlist functionality for guests. */
   wishlistHideForGuests?: InputMaybe<Scalars['Boolean']>;
   /** Ignores wether a product is already in the wishlist, makes the toggle an add only. */
@@ -205,12 +205,12 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     googleTagmanagerId: z.string().nullish(),
     hygraphEndpoint: z.string().min(1),
     i18n: z.array(GraphCommerceI18nConfigSchema()),
+    legacyProductRoute: z.boolean().nullish(),
     limitSsg: z.boolean().nullish(),
     magentoEndpoint: z.string().min(1),
     previewSecret: z.string().nullish(),
     productFiltersPro: z.boolean(),
     robotsAllow: z.boolean(),
-    singleProductRoute: z.boolean(),
     wishlistHideForGuests: z.boolean().nullish(),
     wishlistIgnoreProductWishlistStatus: z.boolean().nullish()
   })

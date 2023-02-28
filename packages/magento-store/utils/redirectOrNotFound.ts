@@ -98,7 +98,7 @@ export async function redirectOrNotFound(
     ])
 
     if (isProduct) {
-      if (!import.meta.graphCommerce.singleProductRoute)
+      if (import.meta.graphCommerce.legacyProductRoute)
         return notFound(from, 'Redirects are only supported for single product pages.')
 
       if (redirectUrl) return redirect(from, `/p/${redirectUrl}`, permanent, locale)
