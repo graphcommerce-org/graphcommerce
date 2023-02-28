@@ -10,8 +10,8 @@
   },
   "scripts": {
     "dev": "concurrently -k -n codegen,next 'graphql-codegen -w' 'next dev'",
-    "codegen": "yarn graphcommerce codegen-config && mesh build && graphql-codegen",
-    "build": "mesh build && graphql-codegen && next build && next-sitemap",
+    "codegen": "graphcommerce codegen-config && mesh build && graphql-codegen",
+    "build": "graphcommerce codegen-config && mesh build && graphql-codegen && next build && next-sitemap",
     "start": "next start",
     "tsc:lint": "tsc --noEmit -p .",
     "lingui": "cross-env NODE_ENV=development lingui extract --clean",
