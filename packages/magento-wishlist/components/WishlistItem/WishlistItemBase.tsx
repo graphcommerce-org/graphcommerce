@@ -3,7 +3,13 @@ import { Image } from '@graphcommerce/image'
 import { useCustomerQuery, useCustomerSession } from '@graphcommerce/magento-customer'
 import { useProductLink } from '@graphcommerce/magento-product'
 import { Money } from '@graphcommerce/magento-store'
-import { responsiveVal, extendableComponent, iconEllypsis, IconSvg } from '@graphcommerce/next-ui'
+import {
+  responsiveVal,
+  extendableComponent,
+  iconEllypsis,
+  IconSvg,
+  NextLink,
+} from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Badge, Box, Link, SxProps, Theme, Typography } from '@mui/material'
 import IconButton from '@mui/material/IconButton'
@@ -177,7 +183,7 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
       >
         <Box
           href={productLink}
-          component='a'
+          component={NextLink}
           className={classes.productLink}
           sx={{ display: 'block', width: '100%', overflow: 'hidden' }}
         >

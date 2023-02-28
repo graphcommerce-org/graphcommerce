@@ -23,7 +23,6 @@ export function MenuFabSecondaryItem(props: FabMenuSecondaryItemProps) {
       href={href}
       className={classes.root}
       sx={[{}, ...(Array.isArray(sx) ? sx : [sx])]}
-      component='a'
       dense
       selected={router.asPath.startsWith(href)}
     >

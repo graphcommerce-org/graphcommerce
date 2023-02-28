@@ -179,7 +179,6 @@ export function LayoutDemo(props: LayoutDemoProps) {
 
           <ListItemButton
             href='/test/sheet?sizeMd=full&sizeSm=full&justifyMd=start&justifySm=start&variantMd=right&variantSm=right'
-            component='a'
             disabled={isSidebarDrawer && !isLeftSidebarDrawer}
             style={{ paddingLeft: 0, paddingRight: 0 }}
           >
