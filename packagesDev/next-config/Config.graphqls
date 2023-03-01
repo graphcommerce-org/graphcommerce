@@ -8,11 +8,9 @@ in the root of your project and are automatically validated on startup.
 
 The configuration file is a javascript file that exports a `GraphCommerceConfig` object. See graphcommerce.config.js.example for an example.
 
-
 ## Using configuration
 
 Configuration can be accessed in your project with the `import.meta.graphCommerce` object.
-
 
 ```tsx
 import { i18nAll, i18nConfig, i18nConfigDefault, useI18nConfig } from '@graphcommerce/next-ui'
@@ -35,7 +33,6 @@ function MyComponent() {
 }
 ```
 
-
 ## Environment variables to override configuration
 
 Configuration values can be overwriten by environment variables, with the following rules:
@@ -49,10 +46,28 @@ Examples:
 - `i18n[0].locale` -> `GC_I18N_0_LOCALE="en"`
 - `debug.pluginStatus` -> `GC_DEBUG_PLUGIN_STATUS="1"`
 
+You can export
+
 
 ## Extending the configuration in your  project
 
-Create a graphql/Config.graphqls file in your project and extend the GraphCommerceConfig, GraphCommerceI18nConfig and GraphCommerceDebugConfig types to add configuration.
+Create a graphql/Config.graphqls file in your project and extend the GraphCommerceConfig, GraphCommerceI18nConfig inputs to add configuration.
+
+```graphql
+extend input GraphCommerceConfig {
+  myOptionalBoolean: Boolean
+  myRequiredBoolean: Boolean!
+  myOptionalString: String
+  myRequiredString: String!
+  myOptionalInt: Int
+  myRequiredInt: Int!
+  myOptionalFloat: Float
+  myRequiredFloat: Float!
+}
+extend input GraphCommerceI18nConfig {
+  myField: Boolean
+}
+```
 
 ## All configuration values
 

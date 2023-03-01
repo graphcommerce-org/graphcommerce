@@ -43,8 +43,7 @@ export const plugin: PluginFunction<MarkdownDocsPluginConfig, Types.ComplexPlugi
       leave: (node) => `\`${node.name}: ${node.type}\`${descriptionText(node)}`,
     },
     InputObjectTypeDefinition: {
-      enter: (node) => {
-        console.log(node.name.value)
+      enter: function (node) {
         return {
           ...node,
           // Move required fields to the top.

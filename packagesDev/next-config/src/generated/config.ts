@@ -24,16 +24,14 @@ export type Scalars = {
  *
  * The configuration file is a javascript file that exports a `GraphCommerceConfig` object. See graphcommerce.config.js.example for an example.
  *
- *
  * ## Using configuration
  *
  * Configuration can be accessed in your project with the `import.meta.graphCommerce` object.
  *
- *
  * ```tsx
  * import { i18nAll, i18nConfig, i18nConfigDefault, useI18nConfig } from '@graphcommerce/next-ui'
  *
- * // Access single value
+ * // Accessing a global value
  * const globalConf = import.meta.graphCommerce.cartDisplayPricesInclTax
  *
  * function MyComponent() {
@@ -49,9 +47,7 @@ export type Scalars = {
  *
  *   return <div>{googleRecaptchaKey}</div>
  * }
- *
  * ```
- *
  *
  * ## Environment variables to override configuration
  *
@@ -69,7 +65,23 @@ export type Scalars = {
  *
  * ## Extending the configuration in your  project
  *
- * Create a graphql/Config.graphqls file in your project and extend the GraphCommerceConfig, GraphCommerceI18nConfig and GraphCommerceDebugConfig types to add configuration.
+ * Create a graphql/Config.graphqls file in your project and extend the GraphCommerceConfig, GraphCommerceI18nConfig inputs to add configuration.
+ *
+ * ```graphql
+ * extend input GraphCommerceConfig {
+ *   myOptionalBoolean: Boolean
+ *   myRequiredBoolean: Boolean!
+ *   myOptionalString: String
+ *   myRequiredString: String!
+ *   myOptionalInt: Int
+ *   myRequiredInt: Int!
+ *   myOptionalFloat: Float
+ *   myRequiredFloat: Float!
+ * }
+ * extend input GraphCommerceI18nConfig {
+ *   myField: Boolean
+ * }
+ * ```
  *
  * ## All configuration values
  *
