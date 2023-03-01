@@ -45,7 +45,7 @@ export function createResponsiveTemplate(bpValues: Breakpoints['values']): Respo
     const breakpoints = Object.keys(bpValues)
 
     const values = expressions.map((value: Expression) =>
-      isFromToValue(value) ? spread(bpValues, easeIn, ...value, 'xl') : value,
+      isFromToValue(value) ? spread(bpValues, linear, ...value, 'xl') : value,
     )
 
     return breakpoints.map((_, breakpoint) =>
