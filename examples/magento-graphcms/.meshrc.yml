@@ -13,7 +13,7 @@ sources:
             # Remove mutations: `mutation { * }`
             - 'Mutation.!*'
             # Remove queries: `query { node, row*, asset*, scheduled*, *Version, user* }`
-            - 'Query.!{node,row*,asset*,scheduled*,*Version,user*}'
+            - 'Query.!{node,asset*,scheduled*,*Version,user*}'
             # Remove field arguments: `query { anyfield(after,before,last,forceParentLocale,locales) { ... } }`
             - '*.*.!{after,before,last,forceParentLocale,locales}'
             # Remove type any input or type fields: `input MyInput {}` or `type MyType { anyfield }`
