@@ -43,15 +43,13 @@ export const plugin: PluginFunction<MarkdownDocsPluginConfig, Types.ComplexPlugi
       leave: (node) => `\`${node.name}: ${node.type}\`${descriptionText(node)}`,
     },
     InputObjectTypeDefinition: {
-      enter: function (node) {
-        return {
-          ...node,
-          // Move required fields to the top.
-          fields: [...(node.fields ?? [])].sort((a, b) =>
-            a.type.kind === 'NonNullType' && b.type.kind !== 'NonNullType' ? -1 : 1,
-          ),
-        }
-      },
+      enter: (node) => ({
+        ...node,
+        // Move required fields to the top.
+        fields: [...(node.fields ?? [])].sort((a, b) =>
+          a.type.kind === 'NonNullType' && b.type.kind !== 'NonNullType' ? -1 : 1,
+        ),
+      }),
       leave: (node) => {
         const title = descriptionText(node).trimStart().startsWith('#')
           ? `${descriptionText(node).trimStart()}\n\n### ${node.name}`
