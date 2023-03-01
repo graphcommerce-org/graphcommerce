@@ -37,6 +37,7 @@ export function Footer(props: FooterProps) {
           alignItems: 'center',
           py: theme.page.vertical,
           px: theme.page.horizontal,
+          pt: theme.spacings.lg,
           justifyItems: 'center',
           gridTemplateAreas: `
             'switcher switcher'
@@ -44,7 +45,7 @@ export function Footer(props: FooterProps) {
             'social social'
             'links links'
           `,
-          gap: theme.spacings.sm,
+          gap: theme.spacings.md,
           '& > *': { maxWidth: 'max-content' },
 
           [theme.breakpoints.up('sm')]: {
