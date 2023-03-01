@@ -37,7 +37,7 @@ export function Footer(props: FooterProps) {
           alignItems: 'center',
           py: theme.page.vertical,
           px: theme.page.horizontal,
-          pt: theme.spacings.lg,
+          pt: theme.spacings.lg.slice(0, 1),
           justifyItems: 'center',
           gridTemplateAreas: `
             'switcher switcher'
@@ -45,15 +45,16 @@ export function Footer(props: FooterProps) {
             'social social'
             'links links'
           `,
-          gap: theme.spacings.md,
+          gap: theme.spacings.md.slice(0, 2),
           '& > *': { maxWidth: 'max-content' },
-
           [theme.breakpoints.up('sm')]: {
+            gap: theme.spacings.xs.slice(2),
             gridTemplateAreas: `
               'social switcher'
               'links support'
             `,
             justifyItems: 'start',
+            pt: theme.page.vertical,
             gridTemplateColumns: 'auto auto',
             gridTemplateRows: 'auto',
             justifyContent: 'space-between',
