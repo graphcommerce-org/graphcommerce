@@ -22,8 +22,8 @@ function GraphCommerceConfigSchema() {
         limitSsg: zod_1.z.boolean().nullish(),
         magentoEndpoint: zod_1.z.string().min(1),
         previewSecret: zod_1.z.string().nullish(),
-        productFiltersPro: zod_1.z.boolean(),
-        robotsAllow: zod_1.z.boolean(),
+        productFiltersPro: zod_1.z.boolean().nullish(),
+        robotsAllow: zod_1.z.boolean().nullish(),
         wishlistHideForGuests: zod_1.z.boolean().nullish(),
         wishlistIgnoreProductWishlistStatus: zod_1.z.boolean().nullish()
     });

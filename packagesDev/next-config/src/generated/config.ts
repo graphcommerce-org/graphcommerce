@@ -14,7 +14,67 @@ export type Scalars = {
   Float: number;
 };
 
-/** Global GraphCommerce configuration can be configured in your `graphcommerce.config.js` file in the root of your project. */
+/**
+ * # GraphCommerce configuration system
+ *
+ * Global GraphCommerce configuration can be configured in your `graphcommerce.config.js` file
+ * in the root of your project and are automatically validated on startup.
+ *
+ * ## Configuring with the configuration file.
+ *
+ * The configuration file is a javascript file that exports a `GraphCommerceConfig` object. See graphcommerce.config.js.example for an example.
+ *
+ *
+ * ## Using configuration
+ *
+ * Configuration can be accessed in your project with the `import.meta.graphCommerce` object.
+ *
+ *
+ * ```tsx
+ * import { i18nAll, i18nConfig, i18nConfigDefault, useI18nConfig } from '@graphcommerce/next-ui'
+ *
+ * // Access single value
+ * const globalConf = import.meta.graphCommerce.cartDisplayPricesInclTax
+ *
+ * function MyComponent() {
+ *   // Configuration configured per i18n locale.
+ *   const scopedConfig = useI18nConfig().cartDisplayPricesInclTax
+ *
+ *   // Creating a fallback system
+ *   const scopedConfigWithFallback = scopedConfig ?? globalConf
+ *
+ *   // Or as single line
+ *   const scopedConfigWithFallback2 =
+ *     useI18nConfig().cartDisplayPricesInclTax ?? import.meta.graphCommerce.cartDisplayPricesInclTax
+ *
+ *   return <div>{googleRecaptchaKey}</div>
+ * }
+ *
+ * ```
+ *
+ *
+ * ## Environment variables to override configuration
+ *
+ * Configuration values can be overwriten by environment variables, with the following rules:
+ * - Convert from camelCase to `SCREAMING_SNAKE_CASE`
+ * - Prefix with `GC_`
+ * - Arrays can be indexed with _0, _1, _2, etc.
+ * - Objects can be accessed with _<key>.
+ *
+ * Examples:
+ * - `limitSsg` -> `GC_LIMIT_SSG="1"`
+ * - `i18n[0].locale` -> `GC_I18N_0_LOCALE="en"`
+ * - `debug.pluginStatus` -> `GC_DEBUG_PLUGIN_STATUS="1"`
+ *
+ *
+ * ## Extending the configuration in your  project
+ *
+ * Create a graphql/Config.graphqls file in your project and extend the GraphCommerceConfig, GraphCommerceI18nConfig and GraphCommerceDebugConfig types to add configuration.
+ *
+ * ## All configuration values
+ *
+ * Below is a list of all possible configurations that can be set by GraphCommerce.
+ */
 export type GraphCommerceConfig = {
   /**
    * The canonical base URL is used for SEO purposes.
@@ -99,12 +159,12 @@ export type GraphCommerceConfig = {
    *
    * @experimental This is an experimental feature and may change in the future.
    */
-  productFiltersPro: Scalars['Boolean'];
+  productFiltersPro?: InputMaybe<Scalars['Boolean']>;
   /**
    * Allow the site to be indexed by search engines.
    * If false, the robots.txt file will be set to disallow all.
    */
-  robotsAllow: Scalars['Boolean'];
+  robotsAllow?: InputMaybe<Scalars['Boolean']>;
   /** Hide the wishlist functionality for guests. */
   wishlistHideForGuests?: InputMaybe<Scalars['Boolean']>;
   /** Ignores wether a product is already in the wishlist, makes the toggle an add only. */
@@ -209,8 +269,8 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     limitSsg: z.boolean().nullish(),
     magentoEndpoint: z.string().min(1),
     previewSecret: z.string().nullish(),
-    productFiltersPro: z.boolean(),
-    robotsAllow: z.boolean(),
+    productFiltersPro: z.boolean().nullish(),
+    robotsAllow: z.boolean().nullish(),
     wishlistHideForGuests: z.boolean().nullish(),
     wishlistIgnoreProductWishlistStatus: z.boolean().nullish()
   })

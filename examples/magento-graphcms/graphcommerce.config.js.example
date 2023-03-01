@@ -4,9 +4,9 @@
  * @type {import('@graphcommerce/next-config/src/generated/config').GraphCommerceConfig}
  */
 const config = {
-  canonicalBaseUrl: 'https://graphcommerce.vercel.app',
   hygraphEndpoint: 'https://eu-central-1.cdn.hygraph.com/content/ckhx7xadya6xs01yxdujt8i80/master',
   magentoEndpoint: 'https://backend.reachdigital.dev/graphql',
+  canonicalBaseUrl: 'https://graphcommerce.vercel.app',
   i18n: [{ locale: 'en', magentoStoreCode: 'default' }],
 }
 

@@ -100,7 +100,11 @@ you commit, make sure to delete all the .rej files:
 find . -type f -name '*.rej' -delete
 ```
 
-After resolving the diff issues, run and validate your local environment:
+After resolving the diff issues, manually process upgrade instructions:
+
+- [Upgrading to GraphCommerce 5 to 6](./graphcommerce-5-to-6.md)
+
+Run and validate your local environment:
 
 - `yarn codegen` should run without errors
 - `yarn tsc:lint` should run without errors
