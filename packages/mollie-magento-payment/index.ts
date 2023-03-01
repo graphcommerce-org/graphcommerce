@@ -1,1 +1,1 @@
-export * as mollie_methods from './methods'
+export * from './methods'

@@ -15,6 +15,7 @@ function isButtonProps(props: ButtonProps<'div'> | BoxProps<'div'>): props is Bu
 
 const ButtonOrBox = (props: ButtonProps<'div'> | BoxProps<'div'>) =>
   isButtonProps(props) ? <ButtonBase component='div' {...props} /> : <Box {...props} />
+const iconSize = responsiveVal(24, 38)
 
 export type ActionCardProps = {
   variant?: Variants
@@ -229,7 +230,7 @@ export function ActionCard(props: ActionCardProps) {
           width: '100%',
           justifyContent: 'space-between',
           alignContent: 'stretch',
-          alignItems: 'flex-start',
+          alignItems: 'center',
         }}
       >
         <Box
@@ -243,7 +244,12 @@ export function ActionCard(props: ActionCardProps) {
           {image && (
             <Box
               className={classes.image}
-              sx={{ display: 'flex', paddingRight: '15px', alignSelf: 'center' }}
+              sx={{
+                display: 'flex',
+                pr: '15px',
+                alignSelf: 'center',
+                '& svg, img': { width: iconSize, height: iconSize },
+              }}
             >
               {image}
             </Box>
