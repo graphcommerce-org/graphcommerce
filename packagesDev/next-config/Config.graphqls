@@ -46,8 +46,10 @@ Examples:
 - `i18n[0].locale` -> `GC_I18N_0_LOCALE="en"`
 - `debug.pluginStatus` -> `GC_DEBUG_PLUGIN_STATUS="1"`
 
-You can export
 
+## Exporting current configuration to environment variables
+
+You can export configuration by running `yarn graphcommerce export-config`
 
 ## Extending the configuration in your  project
 
