@@ -133,7 +133,10 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
           sx={(theme) => ({
             top: 0,
             position: 'sticky',
-            height: { xs: theme.appShell.headerHeightSm, md: theme.appShell.appBarHeightMd },
+            height: theme.appShell.headerHeightSm,
+            [theme.breakpoints.up('md')]: {
+              height: theme.appShell.appBarHeightMd,
+            },
             zIndex: 1,
           })}
         >
@@ -183,16 +186,16 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
                 width:
                   sizeSm !== 'floating'
                     ? itemWidthSm
-                    : `calc(${itemWidthSm} - (${theme.page.horizontal} * 2))`,
+                    : theme.responsiveTemplate`calc(${itemWidthSm} - (${theme.page.horizontal} * 2))`,
                 minWidth: 200,
                 overflow: 'hidden',
                 scrollSnapType: 'x mandatory',
                 '& .NavigationItem-item': {
                   width:
                     sizeSm !== 'floating'
-                      ? `calc(${itemWidthSm} - (${itemPad} * 2))`
-                      : `calc(${itemWidthSm} - (${itemPad} * 2) - (${theme.page.horizontal} * 2))`,
-                  minWidth: `calc(200px - (${itemPad} * 2))`,
+                      ? theme.responsiveTemplate`calc(${itemWidthSm} - (${itemPad} * 2))`
+                      : theme.responsiveTemplate`calc(${itemWidthSm} - (${itemPad} * 2) - (${theme.page.horizontal} * 2))`,
+                  minWidth: theme.responsiveTemplate`calc(200px - (${itemPad} * 2))`,
                 },
               },
               [theme.breakpoints.up('md')]: {

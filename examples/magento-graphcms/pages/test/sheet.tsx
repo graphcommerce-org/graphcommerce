@@ -1,6 +1,6 @@
 import { useForm, useFormAutoSubmit } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { LayoutOverlayHeader, LayoutTitle, responsiveVal } from '@graphcommerce/next-ui'
+import { LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import {
   LayoutOverlayDemo,
   LayoutOverlayState,
@@ -34,7 +34,10 @@ function SheetDemo() {
           </Hidden>
         </LayoutTitle>
       </LayoutOverlayHeader>
-      <Container maxWidth={false} sx={{ minWidth: responsiveVal(250, 500) }}>
+      <Container
+        maxWidth={false}
+        sx={(theme) => ({ minWidth: theme.responsiveTemplate`${[250, 500]}px` })}
+      >
         <form style={{ paddingTop: '100px' }} onSubmit={submit}>
           {sizes.map((size) => (
             <div key={size}>

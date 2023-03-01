@@ -1,5 +1,4 @@
 import { Avatar, Box, Chip, SxProps, Theme } from '@mui/material'
-import { responsiveVal } from '../../Styles/responsiveVal'
 import { useDateTimeFormat } from '../../hooks'
 
 export type BlogAuthorProps = {
@@ -27,18 +26,18 @@ export function BlogAuthor(props: BlogAuthorProps) {
       ]}
     >
       <Chip
-        sx={{
+        sx={(theme) => ({
           borderRadius: '99em',
-          height: responsiveVal(44, 66),
+          height: theme.responsiveTemplate`${[44, 66]}px`,
           '& .MuiChip-label': {
-            paddingLeft: responsiveVal(10, 14),
-            paddingRight: responsiveVal(14, 18),
+            pl: theme.responsiveTemplate`${[10, 14]}px`,
+            pr: theme.responsiveTemplate`${[14, 18]}px`,
           },
           '& .MuiAvatar-root': {
-            width: responsiveVal(28, 44),
-            height: responsiveVal(28, 44),
+            width: theme.responsiveTemplate`${[28, 44]}px`,
+            height: theme.responsiveTemplate`${[28, 44]}px`,
           },
-        }}
+        })}
         variant='outlined'
         size='medium'
         avatar={<Avatar>{author.charAt(0).toUpperCase()}</Avatar>}

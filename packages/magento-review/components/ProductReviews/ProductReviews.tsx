@@ -1,7 +1,6 @@
 import { useQuery } from '@graphcommerce/graphql'
 import {
   Pagination,
-  responsiveVal,
   StarRatingField,
   extendableComponent,
   useDateTimeFormat,
@@ -106,7 +105,7 @@ export function ProductReviews(props: ProductReviewsProps) {
       <Box
         className={classes.container}
         sx={[
-          (theme) => ({ marginTop: `calc(${theme.spacings.xxs} * -1)` }),
+          (theme) => ({ mt: theme.responsiveTemplate`calc(${theme.spacings.xxs} * -1)` }),
           ...(Array.isArray(sx) ? sx : [sx]),
         ]}
       >
@@ -145,7 +144,7 @@ export function ProductReviews(props: ProductReviewsProps) {
     <Box
       className={classes.container}
       sx={[
-        (theme) => ({ marginTop: `calc(${theme.spacings.xxs} * -1)` }),
+        (theme) => ({ mt: theme.responsiveTemplate`calc(${theme.spacings.xxs} * -1)` }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
@@ -201,7 +200,7 @@ export function ProductReviews(props: ProductReviewsProps) {
                       gridTemplateColumns: '0.4fr 0.6fr',
                       justifyContent: 'space-between',
                       marginRight: theme.spacings.xxs,
-                      rowGap: responsiveVal(8, 16),
+                      rowGap: theme.responsiveTemplate`${[8, 16]}px`,
                       gap: 8,
                       alignItems: 'center',
                     })}

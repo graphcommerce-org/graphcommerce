@@ -1,10 +1,5 @@
 import { Image } from '@graphcommerce/image'
-import {
-  responsiveVal,
-  extendableComponent,
-  useDateTimeFormat,
-  IconSvg,
-} from '@graphcommerce/next-ui'
+import { extendableComponent, useDateTimeFormat, IconSvg } from '@graphcommerce/next-ui'
 import { Box, SxProps, Theme } from '@mui/material'
 import { CustomerReviewFragment } from './CustomerReview.gql'
 import filledStar from './review_star_filled.svg'
@@ -44,7 +39,7 @@ export function CustomerReview(props: CustomerReviewProps) {
             "image title"
             "image text"
             "image date"`,
-          gridTemplateColumns: `${responsiveVal(96, 196)} 1fr`,
+          gridTemplateColumns: theme.responsiveTemplate`${[96, 196]} 1fr`,
           gridColumnGap: theme.spacings.md,
           gridRowGap: theme.spacings.sm,
           alignItems: 'start',

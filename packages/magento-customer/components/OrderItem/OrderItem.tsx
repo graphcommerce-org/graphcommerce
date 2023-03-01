@@ -1,13 +1,11 @@
 import { Image } from '@graphcommerce/image'
 import { Money } from '@graphcommerce/magento-store'
-import { responsiveVal, extendableComponent, NextLink } from '@graphcommerce/next-ui'
-import { Box } from '@mui/material'
+import { extendableComponent, NextLink } from '@graphcommerce/next-ui'
+import { Box, useTheme } from '@mui/material'
 import { OrderCardItemImageFragment } from '../../hooks/OrderCardItemImage.gql'
 import { OrderItemFragment } from './OrderItem.gql'
 
 type OrderItemProps = OrderItemFragment & Omit<OrderCardItemImageFragment, 'uid'>
-
-const rowImageSize = responsiveVal(70, 110)
 
 type OwnerState = { hasOptions: boolean }
 const componentName = 'OrderItem' as const
@@ -41,6 +39,10 @@ export function OrderItem(props: OrderItemProps) {
     thumbnail,
   } = props
   const productLink = `/product/${product_url_key}`
+
+  const t = useTheme()
+
+  const rowImageSize = t.responsiveTemplate`${[70, 110]}px`
 
   const hasOptions = Boolean(selected_options && selected_options.length >= 1)
 
@@ -89,14 +91,14 @@ export function OrderItem(props: OrderItemProps) {
     >
       <Box
         className={classes.picture}
-        sx={{
+        sx={(theme) => ({
           gridArea: 'picture',
           width: rowImageSize,
           height: rowImageSize,
-          padding: responsiveVal(3, 6),
+          padding: theme.responsiveTemplate`${[3, 6]}px`,
           border: `1px solid rgba(0,0,0,0.15)`,
           borderRadius: '50%',
-        }}
+        })}
       >
         <Box
           href={productLink}

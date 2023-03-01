@@ -123,7 +123,7 @@ export function FilterRangeType(props: FilterRangeTypeProps) {
     >
       <Box
         sx={(theme) => ({
-          padding: `${theme.spacings.xxs} ${theme.spacings.xxs} !important`,
+          p: theme.responsiveTemplate`${theme.spacings.xxs} !important`,
           width: '100%',
         })}
         className={classes.container}

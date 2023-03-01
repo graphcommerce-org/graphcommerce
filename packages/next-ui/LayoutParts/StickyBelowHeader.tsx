@@ -11,7 +11,10 @@ export function StickyBelowHeader(props: StickyBelowHeaderProps) {
     <Container
       sx={(theme) => ({
         position: 'sticky',
-        top: { xs: theme.appShell.headerHeightSm, md: `${theme.page.vertical} !important` },
+        top: theme.appShell.headerHeightSm,
+        [theme.breakpoints.up('md')]: {
+          top: theme.responsiveTemplate`${theme.page.vertical} !important`,
+        },
         zIndex: 96,
         pointerEvents: 'none',
         '& > *': {

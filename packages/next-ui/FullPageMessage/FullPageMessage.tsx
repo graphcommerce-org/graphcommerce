@@ -1,7 +1,6 @@
 import { Box, Container, SxProps, Theme, Typography } from '@mui/material'
 import React from 'react'
 import { extendableComponent } from '../Styles'
-import { responsiveVal } from '../Styles/responsiveVal'
 
 export type FullPageMessageProps = {
   icon: React.ReactNode
@@ -34,9 +33,10 @@ export function FullPageMessage(props: FullPageMessageProps) {
           marginTop: theme.spacings.md,
           marginBottom: theme.spacings.md,
         }),
-        !disableMargin && {
-          marginTop: responsiveVal(50, 250),
-        },
+        !disableMargin &&
+          ((theme) => ({
+            mt: theme.responsiveTemplate`${[50, 250]}px`,
+          })),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >

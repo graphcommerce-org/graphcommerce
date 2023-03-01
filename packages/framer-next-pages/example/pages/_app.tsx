@@ -3,12 +3,7 @@
 import '../demo.css'
 import { PageComponent, FramerNextPages } from '@graphcommerce/framer-next-pages'
 import { LinguiProvider } from '@graphcommerce/lingui-next'
-import {
-  responsiveVal,
-  createTheme,
-  createResponsiveTemplate,
-  themeBaseDefaults,
-} from '@graphcommerce/next-ui'
+import { createTheme, createResponsiveTemplate, themeBaseDefaults } from '@graphcommerce/next-ui'
 import { CssBaseline, ThemeProvider } from '@mui/material'
 import { LazyMotion } from 'framer-motion'
 import { AppPropsType } from 'next/dist/shared/lib/utils'

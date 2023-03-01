@@ -20,11 +20,11 @@ export function Swipeable(props: SwipeableProps) {
     <AddProductsToCartForm>
       <SidebarSlider
         sx={[
-          {
+          (theme) => ({
             [SidebarSlider.selectors.scroller]: {
-              gridAutoColumns: `minmax(${responsiveVal(180, 800)}, 60vh)`,
+              gridAutoColumns: theme.responsiveTemplate`minmax(${[180, 800]}px, 60vh)`,
             },
-          },
+          }),
           ...(Array.isArray(sx) ? sx : [sx]),
         ]}
         sidebar={

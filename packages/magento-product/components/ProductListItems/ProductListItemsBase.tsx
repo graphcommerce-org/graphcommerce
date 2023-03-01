@@ -1,4 +1,4 @@
-import { RenderType, responsiveVal } from '@graphcommerce/next-ui'
+import { RenderType } from '@graphcommerce/next-ui'
 import { Box, BoxProps } from '@mui/material'
 import { ProductListItemFragment } from '../../Api/ProductListItem.gql'
 import { ProductListItemProps } from '../ProductListItem/ProductListItem'
@@ -35,12 +35,26 @@ export function ProductListItemsBase(props: ProductItemsGridProps) {
           gridColumnGap: theme.spacings.md,
           gridRowGap: theme.spacings.md,
         }),
-        size === 'small' && {
-          gridTemplateColumns: `repeat(auto-fill, minmax(${responsiveVal(150, 280)}, 1fr))`,
-        },
-        size === 'normal' && {
-          gridTemplateColumns: { xs: `repeat(2, 1fr)`, md: `repeat(3, 1fr)`, lg: `repeat(4, 1fr)` },
-        },
+        size === 'small' &&
+          ((theme) => ({
+            gridTemplateColumns: theme.responsiveTemplate`repeat(${[
+              '2',
+              '3',
+              '3',
+              '4',
+              '4',
+            ]}, 1fr)`,
+          })),
+        size === 'normal' &&
+          ((theme) => ({
+            gridTemplateColumns: theme.responsiveTemplate`repeat(${[
+              '2',
+              '3',
+              '4',
+              '4',
+              '4',
+            ]}, 1fr)`,
+          })),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >

@@ -11,7 +11,7 @@ import {
   NextLink,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Badge, Box, Link, SxProps, Theme, Typography } from '@mui/material'
+import { Badge, Box, Link, SxProps, Theme, Typography, useTheme } from '@mui/material'
 import IconButton from '@mui/material/IconButton'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
@@ -19,8 +19,6 @@ import { useState } from 'react'
 import { GetIsInWishlistsDocument } from '../../queries/GetIsInWishlists.gql'
 import { RemoveProductFromWishlistDocument } from '../../queries/RemoveProductFromWishlist.gql'
 import { WishlistItemProductFragment } from './WishlistItemProduct.gql'
-
-const rowImageSize = responsiveVal(70, 125)
 
 type OptionalProductWishlistParent = {
   wishlistItemId?: string
@@ -59,6 +57,10 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
     sx = [],
     wishlistItemId,
   } = props
+
+  const t2 = useTheme()
+
+  const rowImageSize = t2.responsiveTemplate`${[70, 125]}px`
 
   const productLink = useProductLink({ url_key, __typename: productType })
   const { cache } = useApolloClient()
@@ -126,7 +128,7 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
               "picture itemOptions itemOptions"
               "picture itemQuantity itemQuantity itemPrice"
               "itemCartButton itemCartButton itemCartButton itemCartButton"`,
-          gridTemplateColumns: `${rowImageSize} 1fr minmax(120px, 1fr) 1fr`,
+          gridTemplateColumns: theme.responsiveTemplate`${rowImageSize} 1fr minmax(120px, 1fr) 1fr`,
           columnGap: theme.spacings.sm,
           alignItems: 'baseline',
           typography: 'body1',
@@ -138,7 +140,7 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
                 "picture itemName itemName itemName iconMenu"
                 "picture itemQuantity itemOptions itemPrice itemPrice"
                 "itemCartButton itemCartButton itemCartButton itemCartButton itemCartButton"`,
-            gridTemplateColumns: `${rowImageSize} 4fr 1fr minmax(120px, 1fr) minmax(120px, 1fr)`,
+            gridTemplateColumns: theme.responsiveTemplate`${rowImageSize} 4fr 1fr minmax(120px, 1fr) minmax(120px, 1fr)`,
           },
           borderBottom: `1px solid ${theme.palette.divider}`,
 
@@ -150,7 +152,7 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
               "itemCartButton itemCartButton itemCartButton itemCartButton"`,
             alignItems: 'center',
             paddingBottom: theme.spacings.xl,
-            gridTemplateColumns: `${rowImageSize} 1fr minmax(120px, 1fr) 1fr`,
+            gridTemplateColumns: theme.responsiveTemplate`${rowImageSize} 1fr minmax(120px, 1fr) 1fr`,
             [theme.breakpoints.up('sm')]: {
               paddingBottom: theme.spacings.md,
               gridTemplate: `
@@ -158,7 +160,7 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
                 "picture itemQuantity itemQuantity itemQuantity itemPrice"
                 "itemCartButton itemCartButton itemCartButton itemCartButton itemCartButton"
               `,
-              gridTemplateColumns: `${rowImageSize} 4fr 1fr minmax(120px, 1fr) minmax(120px, 1fr)`,
+              gridTemplateColumns: theme.responsiveTemplate`${rowImageSize} 4fr 1fr minmax(120px, 1fr) minmax(120px, 1fr)`,
             },
           },
         }),
@@ -173,11 +175,11 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
           vertical: 'top',
           horizontal: 'left',
         }}
-        sx={() => ({
+        sx={(theme) => ({
           gridArea: 'picture',
           width: rowImageSize,
           height: rowImageSize,
-          padding: responsiveVal(5, 10),
+          padding: theme.responsiveTemplate`${[5, 10]}px`,
           alignSelf: 'flex-start',
         })}
       >

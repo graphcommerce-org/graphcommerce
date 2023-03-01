@@ -1,4 +1,4 @@
-import { responsiveVal, Row, SectionContainer, extendableComponent } from '@graphcommerce/next-ui'
+import { Row, SectionContainer, extendableComponent } from '@graphcommerce/next-ui'
 import { Box, SxProps, Theme } from '@mui/material'
 import { ProductSpecsFragment } from './ProductSpecs.gql'
 
@@ -37,7 +37,7 @@ export function ProductSpecs(props: ProductSpecsProps) {
             gap: theme.spacings.xs,
             '& > *': {
               display: 'grid',
-              gridTemplateColumns: `minmax(${responsiveVal(150, 200)}, 1fr) 1fr`,
+              gridTemplateColumns: theme.responsiveTemplate`minmax(${[150, 200]}px, 1fr) 1fr`,
               gap: theme.spacings.xs,
             },
           })}

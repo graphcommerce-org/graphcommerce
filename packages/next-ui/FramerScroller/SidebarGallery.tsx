@@ -15,7 +15,6 @@ import React, { useEffect, useRef } from 'react'
 import { IconSvg } from '../IconSvg'
 import { Row } from '../Row/Row'
 import { extendableComponent } from '../Styles'
-import { responsiveVal } from '../Styles/responsiveVal'
 import { iconChevronLeft, iconChevronRight, iconFullscreen, iconFullscreenExit } from '../icons'
 
 const MotionBox = styled(m.div)({})
@@ -106,11 +105,11 @@ export function SidebarGallery(props: SidebarGalleryProps) {
 
   useDomEvent(windowRef, 'keyup', handleEscapeKey, { passive: true })
 
-  const headerHeight = `${theme.appShell.headerHeightSm} - ${theme.spacings.sm} * 2`
+  const headerHeight = theme.responsiveTemplate`${theme.appShell.headerHeightSm} - ${theme.spacings.sm} * 2`
   const galleryMargin = theme.spacings.lg
 
-  const maxHeight = `calc(100vh - ${headerHeight} - ${galleryMargin})`
-  const ratio = `calc(${height} / ${width} * 100%)`
+  const maxHeight = theme.responsiveTemplate`calc(100vh - ${headerHeight} - ${galleryMargin})`
+  const ratio = theme.responsiveTemplate`calc(${height} / ${width} * 100%)`
 
   const hasImages = images.length > 0
 
@@ -137,9 +136,9 @@ export function SidebarGallery(props: SidebarGalleryProps) {
             zoomed && {
               position: 'relative',
               zIndex: theme.zIndex.modal,
-              marginTop: `calc(${theme.appShell.headerHeightSm} * -1)`,
+              mt: `calc(${theme.appShell.headerHeightSm} * -1)`,
               [theme.breakpoints.up('md')]: {
-                marginTop: `calc(${theme.appShell.headerHeightMd} * -1  - ${theme.spacings.lg})`,
+                mt: theme.responsiveTemplate`calc(${theme.appShell.headerHeightMd} * -1  - ${theme.spacings.lg})`,
               },
               paddingRight: 0,
             },
@@ -155,7 +154,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                 height: 0, // https://stackoverflow.com/questions/44770074/css-grid-row-height-safari-bug
                 backgroundColor: theme.palette.background.image,
                 position: 'relative',
-                paddingTop: `min(${ratio}, ${maxHeight})`,
+                pt: theme.responsiveTemplate`min(${ratio}, ${maxHeight})`,
                 [theme.breakpoints.down('md')]: {
                   width: '100vw',
                 },
@@ -315,17 +314,17 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                 alignContent: 'center',
                 position: 'relative',
                 [theme.breakpoints.up('md')]: {
-                  width: `calc(${responsiveVal(300, 500, theme.breakpoints.values.lg)} + ${
+                  width: theme.responsiveTemplate`calc(${[300, 600]} + ${
                     theme.page.horizontal
                   } * 2)`,
                 },
               },
               zoomed && {
                 [theme.breakpoints.up('md')]: {
-                  marginLeft: `calc((${responsiveVal(300, 500, theme.breakpoints.values.lg)} + ${
+                  ml: theme.responsiveTemplate`calc((${[300, 500]} + ${
                     theme.page.horizontal
                   } * 2) * -1)`,
-                  left: `calc(${responsiveVal(300, 500, theme.breakpoints.values.lg)} + ${
+                  left: theme.responsiveTemplate`calc(${[300, 500]} + ${
                     theme.page.horizontal
                   } * 2)`,
                 },
@@ -342,7 +341,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                 py: theme.spacings.lg,
                 px: theme.page.horizontal,
                 [theme.breakpoints.up('md')]: {
-                  paddingLeft: theme.spacings.lg,
+                  pl: theme.spacings.lg,
                 },
               }}
             >

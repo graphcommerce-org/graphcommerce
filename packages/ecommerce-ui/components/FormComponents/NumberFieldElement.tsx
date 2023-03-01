@@ -80,7 +80,10 @@ export function NumberFieldElement<T extends FieldValues>(props: NumberFieldElem
             size={size}
             type='number'
             className={`${textFieldProps.className ?? ''} ${classes.quantity}`}
-            sx={[{ width: responsiveVal(80, 120) }, ...(Array.isArray(sx) ? sx : [sx])]}
+            sx={[
+              (theme) => ({ width: theme.responsiveTemplate`${[80, 120]}px` }),
+              ...(Array.isArray(sx) ? sx : [sx]),
+            ]}
             autoComplete='off'
             InputProps={{
               ...textFieldProps.InputProps,

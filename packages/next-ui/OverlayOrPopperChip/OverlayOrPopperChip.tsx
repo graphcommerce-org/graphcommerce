@@ -1,7 +1,6 @@
 import { alpha, Chip, ChipProps, Typography, useEventCallback } from '@mui/material'
 import React, { useState } from 'react'
 import { IconSvg } from '../IconSvg'
-import { responsiveVal } from '../Styles'
 import { iconChevronDown, iconChevronUp } from '../icons'
 import { OverlayOrPopperPanel, OverlayOrPopperPanelProps } from './OverlayOrPopperPanel'
 
@@ -29,11 +28,11 @@ export function ChipOverlayOrPopper(props: ChipOverlayOrPopperProps) {
     <Typography
       variant='caption'
       color='primary.main'
-      sx={{
+      sx={(theme) => ({
         display: 'flex',
         alignItems: 'center',
-        ml: responsiveVal(3, 8),
-      }}
+        ml: theme.responsiveTemplate`${[3, 8]}px`,
+      })}
     >
       +{selectedLabel.length - 1}
     </Typography>
@@ -41,7 +40,7 @@ export function ChipOverlayOrPopper(props: ChipOverlayOrPopperProps) {
     <IconSvg
       src={activeEl ? iconChevronUp : iconChevronDown}
       size='medium'
-      sx={{ ml: responsiveVal(3, 8), mr: '-5px' }}
+      sx={(theme) => ({ ml: theme.responsiveTemplate`${[3, 8]}px`, mr: '-5px' })}
     />
   )
 

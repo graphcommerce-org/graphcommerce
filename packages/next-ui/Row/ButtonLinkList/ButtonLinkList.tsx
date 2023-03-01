@@ -1,7 +1,6 @@
 import { Box, SxProps, Theme, Typography } from '@mui/material'
 import React from 'react'
 import { extendableComponent } from '../../Styles'
-import { responsiveVal } from '../../Styles/responsiveVal'
 import { Row } from '../Row'
 
 export type ButtonLinkListProps = {
@@ -58,7 +57,9 @@ export function ButtonLinkList(props: ButtonLinkListProps) {
           display: 'grid',
           columnGap: theme.spacings.sm,
           '&:not(.containsBigLinks)': {
-            gridTemplateColumns: `repeat(auto-fill, minmax(${responsiveVal(210, 350)}, 1fr))`,
+            gridTemplateColumns: theme.responsiveTemplate`repeat(auto-fill, minmax(${[
+              210, 350,
+            ]}, 1fr))`,
           },
         })}
       >

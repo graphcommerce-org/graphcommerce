@@ -395,7 +395,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
                 px: theme.page.horizontal,
               },
               '&.sizeMdFloating.variantMdBottom': {
-                marginTop: `calc(${theme.page.vertical} * -1)`,
+                mt: theme.responsiveTemplate`calc(${theme.page.vertical} * -1)`,
               },
             },
           })}

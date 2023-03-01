@@ -82,7 +82,7 @@ export function ChipMenu(props: ChipMenuProps) {
               [theme.breakpoints.down('sm')]: {
                 minWidth: 0,
                 width: '100%',
-                maxWidth: `calc(100% - (${theme.page.horizontal} * 2))`,
+                maxWidth: theme.responsiveTemplate`calc(100% - (${theme.page.horizontal}* 2))`,
                 margin: '0 auto',
               },
             },

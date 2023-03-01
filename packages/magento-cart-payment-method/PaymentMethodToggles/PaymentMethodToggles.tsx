@@ -4,7 +4,6 @@ import {
   FormRow,
   iconChevronLeft,
   iconChevronRight,
-  responsiveVal,
   IconSvg,
   ToggleButton,
   extendableComponent,
@@ -106,7 +105,7 @@ export function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
                 background: theme.palette.background.paper,
                 borderRadius: 0,
                 width: 30,
-                height: responsiveVal(60, 85),
+                height: theme.responsiveTemplate`${[60, 85]}px`,
                 boxShadow: 'none',
                 border: `1px solid ${theme.palette.divider}`,
                 '&:focus': {
@@ -131,13 +130,13 @@ export function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
                   className={classes.scrollerRoot}
                   hideScrollbar
                   tabIndex={0}
-                  sx={{
+                  sx={(theme) => ({
                     gridAutoColumns: `max-content`,
                     gridTemplateRows: `100%`,
-                    gap: responsiveVal(4, 8),
-                    height: responsiveVal(60, 85),
+                    gap: theme.responsiveTemplate`${[4, 8]}px`,
+                    height: theme.responsiveTemplate`${[60, 85]}px`,
                     borderRadius: '5px',
-                  }}
+                  })}
                 >
                   {methods?.map((pm) => {
                     const buttonValue = pm.child ? `${pm.code}___${pm.child}` : pm.code
@@ -201,7 +200,7 @@ export function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
                 background: theme.palette.background.paper,
                 borderRadius: 0,
                 width: 30,
-                height: responsiveVal(60, 85),
+                height: theme.responsiveTemplate`${[60, 85]}px`,
                 boxShadow: 'none',
                 border: `1px solid ${theme.palette.divider}`,
                 '&:focus': {

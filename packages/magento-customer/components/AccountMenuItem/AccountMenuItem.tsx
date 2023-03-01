@@ -1,6 +1,5 @@
 import { ImageProps } from '@graphcommerce/image'
 import {
-  responsiveVal,
   iconChevronRight,
   IconSvg,
   Button,
@@ -46,7 +45,7 @@ export function AccountMenuItem(props: AccountMenuItemProps) {
       sx={[
         (theme) => ({
           width: '100%',
-          height: responsiveVal(88, 104),
+          height: theme.responsiveTemplate`${[88, 104]}px`,
           padding: 0,
           borderRadius: 0,
           background: theme.palette.background.paper,

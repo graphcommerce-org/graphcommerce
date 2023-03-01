@@ -27,19 +27,24 @@ const parts = [
 const { classes } = extendableComponent(componentName, parts)
 
 const OrderContainer = styled(Box, { name: componentName, target: classes.orderContainer })(
-  ({ theme }) => ({
-    padding: theme.spacings.sm,
-    display: 'grid',
-    justifyContent: 'center',
-    width: '100%',
-  }),
+  ({ theme }) =>
+    theme.unstable_sx({
+      padding: theme.spacings.sm,
+      display: 'grid',
+      justifyContent: 'center',
+      width: '100%',
+    }),
 )
 
-const OrderRow = styled(Box, { name: componentName, target: classes.orderRow })(({ theme }) => ({
-  margin: `0 auto calc(${theme.spacings.xxs} * .5) auto`,
-  display: 'flex',
-  gap: theme.spacings.xxs,
-}))
+const OrderRow = styled(Box, { name: componentName, target: classes.orderRow })(({ theme }) =>
+  theme.unstable_sx({
+    mx: 'auto',
+    mt: 0,
+    mb: theme.responsiveTemplate`calc(${theme.spacings.xxs} * .5)`,
+    display: 'flex',
+    gap: theme.spacings.xxs,
+  }),
+)
 
 export function OrderCard(props: OrderCardProps) {
   const { number, shipments, total, items, order_date, images, loading, sx = [] } = props

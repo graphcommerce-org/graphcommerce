@@ -48,7 +48,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
             <SearchLink
               href='/search'
               sx={(theme) => ({
-                width: `calc(100% - ${theme.spacing(4)})`,
+                width: theme.responsiveTemplate`calc(100% - ${theme.spacing(4)})`,
                 m: 2,
                 mb: theme.spacings.xs,
               })}

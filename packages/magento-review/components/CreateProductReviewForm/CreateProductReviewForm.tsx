@@ -3,7 +3,6 @@ import { ProductReviewRatingInput } from '@graphcommerce/graphql-mesh'
 import { ApolloCustomerErrorAlert } from '@graphcommerce/magento-customer'
 import {
   Form,
-  responsiveVal,
   FormActions,
   FormRow,
   StarRatingField,
@@ -115,11 +114,11 @@ export function CreateProductReviewForm(props: CreateProductReviewFormProps) {
           <FormRow
             key={item?.id}
             className={classes.rating}
-            sx={{
+            sx={(theme) => ({
               paddingBottom: 'unset',
-              gridTemplateColumns: `minmax(${responsiveVal(60, 80)}, 0.1fr) max-content`,
+              gridTemplateColumns: theme.responsiveTemplate`minmax(${[60, 80]}, 0.1fr) max-content`,
               alignItems: 'center',
-            }}
+            })}
           >
             <Typography
               variant='subtitle1'

@@ -1,7 +1,6 @@
 import { Box, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { extendableComponent } from '../../Styles'
-import { responsiveVal } from '../../Styles/responsiveVal'
 import { Row } from '../Row'
 
 export type IconBlocksProps = {
@@ -34,7 +33,9 @@ export function IconBlocks(props: IconBlocksProps) {
           className={classes.optionsWrapper}
           sx={(theme) => ({
             display: 'grid',
-            gridTemplateColumns: `repeat(auto-fill, minmax(${responsiveVal(150, 280)}, 1fr))`,
+            gridTemplateColumns: theme.responsiveTemplate`repeat(auto-fill, minmax(${[
+              150, 280,
+            ]}px, 1fr))`,
             gap: theme.spacings.sm,
           })}
         >

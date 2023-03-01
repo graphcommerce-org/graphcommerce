@@ -8,12 +8,10 @@ import {
   filterNonNullableKeys,
   NextLink,
 } from '@graphcommerce/next-ui'
-import { Badge, Box, Link, SxProps, Theme } from '@mui/material'
+import { Badge, Box, Link, SxProps, Theme, useTheme } from '@mui/material'
 import { CartItemFragment } from '../Api/CartItem.gql'
 import { RemoveItemFromCartFab } from '../RemoveItemFromCart/RemoveItemFromCartFab'
 import { UpdateItemQuantity } from '../UpdateItemQuantity/UpdateItemQuantity'
-
-const rowImageSize = responsiveVal(70, 125)
 
 export type CartItemProps = CartItemFragment & {
   sx?: SxProps<Theme>
@@ -43,6 +41,10 @@ export function CartItem(props: CartItemProps) {
   const { name } = product
   const productLink = useProductLink(product)
   const inclTaxes = useDisplayInclTax()
+
+  const t = useTheme()
+
+  const rowImageSize = t.responsiveTemplate`${[70, 125]}px`
 
   const classes = withState({ withOptions })
 
@@ -120,7 +122,7 @@ export function CartItem(props: CartItemProps) {
           gridArea: 'picture',
           width: rowImageSize,
           height: rowImageSize,
-          padding: responsiveVal(5, 10),
+          padding: theme.responsiveTemplate`${[5, 10]}px`,
           border: `1px solid ${theme.palette.divider}`,
           borderRadius: '50%',
           alignSelf: 'center',

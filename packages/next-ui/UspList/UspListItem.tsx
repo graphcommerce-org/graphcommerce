@@ -1,6 +1,5 @@
 import { Box, SxProps, Theme } from '@mui/material'
 import { extendableComponent } from '../Styles'
-import { responsiveVal } from '../Styles/responsiveVal'
 
 export type UspListItemProps = {
   text: React.ReactNode
@@ -26,13 +25,13 @@ export function UspListItem(props: UspListItemProps) {
           display: 'grid',
           gridAutoFlow: 'column',
           alignItems: 'center',
-          gridTemplateColumns: `${responsiveVal(32, 38)} auto`,
+          gridTemplateColumns: theme.responsiveTemplate`${[32, 38]} auto`,
           gap: theme.spacings.xs,
           '& > p': {
             typography: 'body2',
           },
           '&.sizeSmall': {
-            gridTemplateColumns: `${responsiveVal(10, 14)} auto`,
+            gridTemplateColumns: theme.responsiveTemplate`${[10, 14]} auto`,
             gap: theme.spacings.xxs,
           },
         }),

@@ -2,7 +2,6 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   LayoutTitle,
-  responsiveVal,
   IconSvg,
   iconChevronRight,
   iconBox,
@@ -31,16 +30,18 @@ const propVariants: Record<string, ButtonProps> = {
   },
 }
 
-const Grid = styled('div')(({ theme }) => ({
-  marginTop: `${5 * 8}px`,
-  marginBottom: `${5 * 8}px`,
-  display: 'grid',
-  gridAutoFlow: 'columns',
-  [theme.breakpoints.up('md')]: {
-    gridTemplateColumns: `repeat(3, minmax(180px, 1fr))`,
-  },
-  gap: responsiveVal(20, 40),
-}))
+const Grid = styled('div')(({ theme }) =>
+  theme.unstable_sx({
+    marginTop: `${5 * 8}px`,
+    marginBottom: `${5 * 8}px`,
+    display: 'grid',
+    gridAutoFlow: 'columns',
+    [theme.breakpoints.up('md')]: {
+      gridTemplateColumns: `repeat(3, minmax(180px, 1fr))`,
+    },
+    gap: theme.responsiveTemplate`${[20, 40]}px`,
+  }),
+)
 
 function ButtonWithDemoState(props: ButtonProps) {
   const [loading, setLoading] = useState(false)

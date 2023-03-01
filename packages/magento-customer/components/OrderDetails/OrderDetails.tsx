@@ -1,7 +1,6 @@
 import { Money, useFindCountry, useFindRegion } from '@graphcommerce/magento-store'
 import {
   SectionContainer,
-  responsiveVal,
   iconInvoice,
   IconSvg,
   extendableComponent,
@@ -37,8 +36,8 @@ const OrderDetailTitle = styled('span', { target: classes.orderDetailTitle })(({
     fontWeight: 'bold',
     display: 'block',
     width: '100%',
-    paddingBottom: responsiveVal(2, 8),
-    marginBottom: theme.spacings.xs,
+    pb: theme.responsiveTemplate`${[2, 8]}px`,
+    mb: theme.spacings.xs,
   }),
 )
 

@@ -1,5 +1,5 @@
 import { useFormGqlMutationCart, ApolloCartErrorAlert } from '@graphcommerce/magento-cart'
-import { responsiveVal, Button, extendableComponent } from '@graphcommerce/next-ui'
+import { Button, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box, FormControl, SxProps, TextField, Theme } from '@mui/material'
 import { ApplyCouponFormDocument } from './ApplyCouponForm.gql'
@@ -26,7 +26,7 @@ export function ApplyCouponForm(props: ApplyCouponFormProps) {
         (theme) => ({
           display: 'grid',
           alignItems: 'center',
-          gridTemplateColumns: `1fr minmax(min-content, ${responsiveVal(70, 140)})`,
+          gridTemplateColumns: theme.responsiveTemplate`1fr minmax(min-content, ${[70, 140]}px)`,
           gridColumnGap: theme.spacings.sm,
         }),
         ...(Array.isArray(sx) ? sx : [sx]),

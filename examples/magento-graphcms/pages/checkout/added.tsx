@@ -99,24 +99,24 @@ function CheckoutAdded() {
             width={50}
             height={50}
             layout='fill'
-            sx={{
-              width: responsiveVal(50, 80),
-              height: responsiveVal(50, 80),
+            sx={(theme) => ({
+              width: theme.responsiveTemplate`${[50, 80]}px`,
+              height: theme.responsiveTemplate`${[50, 80]}px`,
               display: 'block',
               borderRadius: 1,
               objectFit: 'contain',
-            }}
+            })}
             pictureProps={{ sx: { gridArea: 'icon', alignSelf: 'stretch' } }}
             sizes='100px'
           />
         ) : (
           <Box
-            sx={{
+            sx={(theme) => ({
               gridArea: 'icon',
               alignSelf: 'stretch',
-              width: responsiveVal(50, 80),
-              height: responsiveVal(50, 80),
-            }}
+              width: theme.responsiveTemplate`${[50, 80]}px`,
+              height: theme.responsiveTemplate`${[50, 80]}px`,
+            })}
           />
         )}
 
@@ -152,8 +152,10 @@ function CheckoutAdded() {
 
       <Box
         sx={(theme) => ({
-          height: { md: theme.page.vertical },
-          marginBottom: { md: `calc(${theme.page.vertical} * -1)` },
+          height: theme.page.vertical,
+          [theme.breakpoints.up('md')]: {
+            mb: theme.responsiveTemplate`calc(${theme.page.vertical} * -1)`,
+          },
           scrollSnapAlign: 'end',
         })}
       />
