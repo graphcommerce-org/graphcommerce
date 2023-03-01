@@ -116,10 +116,10 @@ export function ProductListItem(props: ProductListItemProps) {
             theme.breakpoints.values,
           ),
           overflow: 'hidden',
-          p: theme.responsiveTemplate`${[8, 23]}px`,
+          p: theme.rv`${[8, 23]}px`,
           '& > picture': {
             gridArea: `1 / 1 / 3 / 3`,
-            m: theme.responsiveTemplate`calc(${[8, 12]}px * -1)`,
+            m: theme.rv`calc(${[8, 12]}px * -1)`,
           },
         })}
         className={classes.imageContainer}

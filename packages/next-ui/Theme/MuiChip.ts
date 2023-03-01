@@ -28,9 +28,9 @@ export const MuiChip: ChipVariants = [
     props: { size: 'medium' },
     style: ({ theme }) =>
       theme.unstable_sx({
-        height: theme.responsiveTemplate`${[26, 30]}px`,
-        paddingLeft: theme.responsiveTemplate`${[3, 6]}px`,
-        paddingRight: theme.responsiveTemplate`${[3, 6]}px`,
+        height: theme.rv`${[26, 30]}px`,
+        paddingLeft: theme.rv`${[3, 6]}px`,
+        paddingRight: theme.rv`${[3, 6]}px`,
         typography: 'caption',
       }),
   },
@@ -38,14 +38,14 @@ export const MuiChip: ChipVariants = [
     props: { size: 'responsive' },
     style: ({ theme }) =>
       theme.unstable_sx({
-        height: theme.responsiveTemplate`${[32, 40]}px`,
-        paddingLeft: theme.responsiveTemplate`${[4, 8]}px`,
-        paddingRight: theme.responsiveTemplate`${[4, 8]}px`,
+        height: theme.rv`${[32, 40]}px`,
+        paddingLeft: theme.rv`${[4, 8]}px`,
+        paddingRight: theme.rv`${[4, 8]}px`,
         borderRadius: '99em',
         typography: 'body2',
         '& .MuiChip-label': {
-          paddingLeft: theme.responsiveTemplate`${[6, 10]}px`,
-          paddingRight: theme.responsiveTemplate`${[6, 10]}px`,
+          paddingLeft: theme.rv`${[6, 10]}px`,
+          paddingRight: theme.rv`${[6, 10]}px`,
         },
       }),
   },

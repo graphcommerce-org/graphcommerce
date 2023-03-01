@@ -21,27 +21,27 @@ export const MuiButtonResponsive: ButtonVariants = [
     props: { size: 'small' },
     style: ({ theme }) => ({
       ...theme.typography.body2,
-      py: theme.responsiveTemplate`${[3, 5]}px`,
-      px: theme.responsiveTemplate`${[8, 15]}px`,
+      py: theme.rv`${[3, 5]}px`,
+      px: theme.rv`${[8, 15]}px`,
       '&.MuiLoadingButton-loading:hover': {
         backgroundColor: theme.palette.action.disabledBackground,
       },
-      '& .MuiLoadingButton-loadingIndicatorEnd': { right: theme.responsiveTemplate`${[9, 15]}px` },
-      '& .MuiLoadingButton-loadingIndicatorStart': { left: theme.responsiveTemplate`${[9, 15]}px` },
+      '& .MuiLoadingButton-loadingIndicatorEnd': { right: theme.rv`${[9, 15]}px` },
+      '& .MuiLoadingButton-loadingIndicatorStart': { left: theme.rv`${[9, 15]}px` },
     }),
   },
   {
     props: { size: 'medium' },
     style: ({ theme }) => ({
       ...theme.typography.body1,
-      py: theme.responsiveTemplate`${[7, 9]}px`,
-      px: theme.responsiveTemplate`${[15, 22]}px`,
+      py: theme.rv`${[7, 9]}px`,
+      px: theme.rv`${[15, 22]}px`,
       '&.MuiLoadingButton-loading:hover': {
         backgroundColor: theme.palette.action.disabledBackground,
       },
-      '& .MuiLoadingButton-loadingIndicatorEnd': { right: theme.responsiveTemplate`${[16, 24]}px` },
+      '& .MuiLoadingButton-loadingIndicatorEnd': { right: theme.rv`${[16, 24]}px` },
       '& .MuiLoadingButton-loadingIndicatorStart': {
-        left: theme.responsiveTemplate`${[16, 24]}px`,
+        left: theme.rv`${[16, 24]}px`,
       },
     }),
   },
@@ -50,14 +50,14 @@ export const MuiButtonResponsive: ButtonVariants = [
     style: ({ theme }) => ({
       ...theme.typography.subtitle1,
       fontWeight: theme.typography.fontWeightBold,
-      py: theme.responsiveTemplate`${[10, 15]}px`,
-      px: theme.responsiveTemplate`${[28, 58]}px`,
+      py: theme.rv`${[10, 15]}px`,
+      px: theme.rv`${[28, 58]}px`,
       '&.MuiLoadingButton-loading:hover': {
         backgroundColor: theme.palette.action.disabledBackground,
       },
-      '& .MuiLoadingButton-loadingIndicatorEnd': { right: theme.responsiveTemplate`${[30, 60]}px` },
+      '& .MuiLoadingButton-loadingIndicatorEnd': { right: theme.rv`${[30, 60]}px` },
       '& .MuiLoadingButton-loadingIndicatorStart': {
-        left: theme.responsiveTemplate`${[30, 60]}px`,
+        left: theme.rv`${[30, 60]}px`,
       },
     }),
   },
@@ -72,20 +72,20 @@ export const MuiButtonResponsive: ButtonVariants = [
   {
     props: { variant: 'text', size: 'medium' },
     style: ({ theme }) => ({
-      py: theme.responsiveTemplate`${[3, 5]}px`,
-      px: theme.responsiveTemplate`${[9, 15]}px`,
-      '& .MuiLoadingButton-loadingIndicatorEnd': { right: theme.responsiveTemplate`${[9, 15]}px` },
-      '& .MuiLoadingButton-loadingIndicatorStart': { left: theme.responsiveTemplate`${[9, 15]}px` },
+      py: theme.rv`${[3, 5]}px`,
+      px: theme.rv`${[9, 15]}px`,
+      '& .MuiLoadingButton-loadingIndicatorEnd': { right: theme.rv`${[9, 15]}px` },
+      '& .MuiLoadingButton-loadingIndicatorStart': { left: theme.rv`${[9, 15]}px` },
     }),
   },
   {
     props: { variant: 'text', size: 'large' },
     style: ({ theme }) => ({
-      py: theme.responsiveTemplate`${[8, 10]}px`,
-      px: theme.responsiveTemplate`${[12, 22]}px`,
-      '& .MuiLoadingButton-loadingIndicatorEnd': { right: theme.responsiveTemplate`${[16, 24]}px` },
+      py: theme.rv`${[8, 10]}px`,
+      px: theme.rv`${[12, 22]}px`,
+      '& .MuiLoadingButton-loadingIndicatorEnd': { right: theme.rv`${[16, 24]}px` },
       '& .MuiLoadingButton-loadingIndicatorStart': {
-        left: theme.responsiveTemplate`${[16, 24]}px`,
+        left: theme.rv`${[16, 24]}px`,
       },
     }),
   },
@@ -171,7 +171,7 @@ export const MuiButtonInline: ButtonVariants = [
   {
     props: { variant: 'inline', size: 'small' },
     style: ({ theme }) => ({
-      m: theme.responsiveTemplate`calc(${theme.spacings.xxs} / 2 * -1 )`,
+      m: theme.rv`calc(${theme.spacings.xxs} / 2 * -1 )`,
       p: '3px 9px',
 
       '& .MuiLoadingButton-loadingIndicatorEnd': { right: 3 },
@@ -181,24 +181,24 @@ export const MuiButtonInline: ButtonVariants = [
   {
     props: { variant: 'inline', size: 'medium' },
     style: ({ theme }) => ({
-      m: theme.responsiveTemplate`calc(${theme.spacings.xxs} * -1 )`,
-      py: theme.responsiveTemplate`${[3, 5]}px`,
-      px: theme.responsiveTemplate`${[9, 15]}px`,
+      m: theme.rv`calc(${theme.spacings.xxs} * -1 )`,
+      py: theme.rv`${[3, 5]}px`,
+      px: theme.rv`${[9, 15]}px`,
 
-      '& .MuiLoadingButton-loadingIndicatorEnd': { right: theme.responsiveTemplate`${[9, 15]}px` },
-      '& .MuiLoadingButton-loadingIndicatorStart': { left: theme.responsiveTemplate`${[9, 15]}px` },
+      '& .MuiLoadingButton-loadingIndicatorEnd': { right: theme.rv`${[9, 15]}px` },
+      '& .MuiLoadingButton-loadingIndicatorStart': { left: theme.rv`${[9, 15]}px` },
     }),
   },
   {
     props: { variant: 'inline', size: 'large' },
     style: ({ theme }) => ({
-      m: theme.responsiveTemplate`calc(${theme.spacings.xs} * -1)`,
-      py: theme.responsiveTemplate`${[8, 10]}px`,
-      px: theme.responsiveTemplate`${[12, 22]}px`,
+      m: theme.rv`calc(${theme.spacings.xs} * -1)`,
+      py: theme.rv`${[8, 10]}px`,
+      px: theme.rv`${[12, 22]}px`,
 
-      '& .MuiLoadingButton-loadingIndicatorEnd': { right: theme.responsiveTemplate`${[16, 24]}px` },
+      '& .MuiLoadingButton-loadingIndicatorEnd': { right: theme.rv`${[16, 24]}px` },
       '& .MuiLoadingButton-loadingIndicatorStart': {
-        left: theme.responsiveTemplate`${[16, 24]}px`,
+        left: theme.rv`${[16, 24]}px`,
       },
     }),
   },

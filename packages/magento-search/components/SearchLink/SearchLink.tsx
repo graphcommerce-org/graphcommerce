@@ -36,7 +36,7 @@ export function SearchLink(props: SearchLinkProps) {
           justifySelf: 'center',
           // @todo make abstract, this is the size of a responsive Fab minus the icon size, divided by 2.
           marginRight: `calc(${fabSize} / 4)`,
-          width: theme.responsiveTemplate`${[64, 172]}px`,
+          width: theme.rv`${[64, 172]}px`,
           borderRadius: 2,
           typography: 'body2',
           display: 'flex',

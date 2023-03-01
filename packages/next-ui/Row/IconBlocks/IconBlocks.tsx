@@ -33,9 +33,7 @@ export function IconBlocks(props: IconBlocksProps) {
           className={classes.optionsWrapper}
           sx={(theme) => ({
             display: 'grid',
-            gridTemplateColumns: theme.responsiveTemplate`repeat(auto-fill, minmax(${[
-              150, 280,
-            ]}px, 1fr))`,
+            gridTemplateColumns: theme.rv`repeat(auto-fill, minmax(${[150, 280]}px, 1fr))`,
             gap: theme.spacings.sm,
           })}
         >

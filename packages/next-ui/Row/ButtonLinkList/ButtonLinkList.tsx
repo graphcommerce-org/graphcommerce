@@ -57,9 +57,7 @@ export function ButtonLinkList(props: ButtonLinkListProps) {
           display: 'grid',
           columnGap: theme.spacings.sm,
           '&:not(.containsBigLinks)': {
-            gridTemplateColumns: theme.responsiveTemplate`repeat(auto-fill, minmax(${[
-              210, 350,
-            ]}, 1fr))`,
+            gridTemplateColumns: theme.rv`repeat(auto-fill, minmax(${[210, 350]}, 1fr))`,
           },
         })}
       >

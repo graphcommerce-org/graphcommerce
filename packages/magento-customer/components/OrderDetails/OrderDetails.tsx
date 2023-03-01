@@ -36,7 +36,7 @@ const OrderDetailTitle = styled('span', { target: classes.orderDetailTitle })(({
     fontWeight: 'bold',
     display: 'block',
     width: '100%',
-    pb: theme.responsiveTemplate`${[2, 8]}px`,
+    pb: theme.rv`${[2, 8]}px`,
     mb: theme.spacings.xs,
   }),
 )

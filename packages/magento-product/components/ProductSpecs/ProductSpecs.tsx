@@ -37,7 +37,7 @@ export function ProductSpecs(props: ProductSpecsProps) {
             gap: theme.spacings.xs,
             '& > *': {
               display: 'grid',
-              gridTemplateColumns: theme.responsiveTemplate`minmax(${[150, 200]}px, 1fr) 1fr`,
+              gridTemplateColumns: theme.rv`minmax(${[150, 200]}px, 1fr) 1fr`,
               gap: theme.spacings.xs,
             },
           })}

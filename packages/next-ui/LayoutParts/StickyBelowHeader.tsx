@@ -13,7 +13,7 @@ export function StickyBelowHeader(props: StickyBelowHeaderProps) {
         position: 'sticky',
         top: theme.appShell.headerHeightSm,
         [theme.breakpoints.up('md')]: {
-          top: theme.responsiveTemplate`${theme.page.vertical} !important`,
+          top: theme.rv`${theme.page.vertical} !important`,
         },
         zIndex: 96,
         pointerEvents: 'none',

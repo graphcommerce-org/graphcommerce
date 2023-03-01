@@ -40,7 +40,7 @@ const OrderRow = styled(Box, { name: componentName, target: classes.orderRow })(
   theme.unstable_sx({
     mx: 'auto',
     mt: 0,
-    mb: theme.responsiveTemplate`calc(${theme.spacings.xxs} * .5)`,
+    mb: theme.rv`calc(${theme.spacings.xxs} * .5)`,
     display: 'flex',
     gap: theme.spacings.xxs,
   }),

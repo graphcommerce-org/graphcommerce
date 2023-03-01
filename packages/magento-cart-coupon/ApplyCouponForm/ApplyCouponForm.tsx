@@ -26,7 +26,7 @@ export function ApplyCouponForm(props: ApplyCouponFormProps) {
         (theme) => ({
           display: 'grid',
           alignItems: 'center',
-          gridTemplateColumns: theme.responsiveTemplate`1fr minmax(min-content, ${[70, 140]}px)`,
+          gridTemplateColumns: theme.rv`1fr minmax(min-content, ${[70, 140]}px)`,
           gridColumnGap: theme.spacings.sm,
         }),
         ...(Array.isArray(sx) ? sx : [sx]),

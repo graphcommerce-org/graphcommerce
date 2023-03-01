@@ -48,11 +48,11 @@ export function SpecialBanner(props: SpecialBannerProps) {
         <Box
           className={classes.asset}
           sx={(theme) => ({
-            width: theme.responsiveTemplate`${[200, 900]}px`,
+            width: theme.rv`${[200, 900]}px`,
             height: 'auto',
             marginBottom: theme.spacings.md,
             '& img': {
-              width: theme.responsiveTemplate`${[200, 900]}px`,
+              width: theme.rv`${[200, 900]}px`,
               height: 'auto',
               objectFit: 'cover',
               ...breakpointVal(
@@ -63,10 +63,10 @@ export function SpecialBanner(props: SpecialBannerProps) {
               ),
             },
             [theme.breakpoints.up('lg')]: {
-              width: theme.responsiveTemplate`${[250, 900]}px`,
+              width: theme.rv`${[250, 900]}px`,
               height: 'auto',
               '& img': {
-                width: theme.responsiveTemplate`${[250, 900]}px`,
+                width: theme.rv`${[250, 900]}px`,
                 height: 'auto',
                 objectFit: 'cover',
               },

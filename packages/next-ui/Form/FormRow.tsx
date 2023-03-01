@@ -6,6 +6,6 @@ export const FormRow = styled('div', { name: 'FormRow' })(({ theme }) =>
     paddingBottom: theme.spacings.xxs,
     display: 'grid',
     gridTemplateColumns: `repeat(auto-fit, minmax(200px, 1fr))`,
-    gap: theme.responsiveTemplate`calc(${theme.spacings.xxs} * 2)`,
+    gap: theme.rv`calc(${theme.spacings.xxs} * 2)`,
   }),
 )

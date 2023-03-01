@@ -6,7 +6,7 @@ const Wrapper = styled('div')(({ theme }) =>
     marginBottom: theme.spacings.lg,
     marginTop: theme.spacings.lg,
     textAlign: 'center',
-    maxWidth: theme.responsiveTemplate`calc(1050px + calc(${theme.spacings.md} * 2))`,
+    maxWidth: theme.rv`calc(1050px + calc(${theme.spacings.md} * 2))`,
     margin: `0 auto`,
     position: 'relative',
   }),

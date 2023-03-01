@@ -24,13 +24,13 @@ export function ColorSwatchData(props: ColorSwatchDataProps) {
         style={{ backgroundColor: value ?? undefined }}
         sx={(theme) => ({
           margin: '0 auto',
-          height: theme.responsiveTemplate`${[22, 30]}px`,
-          width: theme.responsiveTemplate`${[22, 30]}px`,
+          height: theme.rv`${[22, 30]}px`,
+          width: theme.rv`${[22, 30]}px`,
           borderRadius: '50%',
           '&.sizeSmall': {
-            height: theme.responsiveTemplate`${[8, 12]}px`,
-            width: theme.responsiveTemplate`${[8, 12]}px`,
-            marginTop: theme.responsiveTemplate`${[2, 4]}px`,
+            height: theme.rv`${[8, 12]}px`,
+            width: theme.rv`${[8, 12]}px`,
+            marginTop: theme.rv`${[2, 4]}px`,
           },
         })}
       />

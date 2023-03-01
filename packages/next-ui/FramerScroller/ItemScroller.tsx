@@ -46,7 +46,7 @@ export function ItemScroller(props: SliderProps) {
               px: theme.page.horizontal,
               scrollPaddingLeft: theme.page.horizontal,
               scrollPaddingRight: theme.page.horizontal,
-              gridAutoColumns: theme.responsiveTemplate`${[200, 300]}px`,
+              gridAutoColumns: theme.rv`${[200, 300]}px`,
             })}
           >
             {children}

@@ -22,7 +22,7 @@ export function Swipeable(props: SwipeableProps) {
         sx={[
           (theme) => ({
             [SidebarSlider.selectors.scroller]: {
-              gridAutoColumns: theme.responsiveTemplate`minmax(${[180, 800]}px, 60vh)`,
+              gridAutoColumns: theme.rv`minmax(${[180, 800]}px, 60vh)`,
             },
           }),
           ...(Array.isArray(sx) ? sx : [sx]),

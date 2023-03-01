@@ -34,10 +34,7 @@ function SheetDemo() {
           </Hidden>
         </LayoutTitle>
       </LayoutOverlayHeader>
-      <Container
-        maxWidth={false}
-        sx={(theme) => ({ minWidth: theme.responsiveTemplate`${[250, 500]}px` })}
-      >
+      <Container maxWidth={false} sx={(theme) => ({ minWidth: theme.rv`${[250, 500]}px` })}>
         <form style={{ paddingTop: '100px' }} onSubmit={submit}>
           {sizes.map((size) => (
             <div key={size}>

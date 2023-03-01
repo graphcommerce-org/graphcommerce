@@ -39,7 +39,7 @@ const Grid = styled('div')(({ theme }) =>
     [theme.breakpoints.up('md')]: {
       gridTemplateColumns: `repeat(3, minmax(180px, 1fr))`,
     },
-    gap: theme.responsiveTemplate`${[20, 40]}px`,
+    gap: theme.rv`${[20, 40]}px`,
   }),
 )
 

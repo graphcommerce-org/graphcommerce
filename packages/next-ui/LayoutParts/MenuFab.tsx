@@ -140,7 +140,7 @@ export function MenuFab(props: MenuFabProps) {
               backgroundColor: theme.palette.background.paper,
               backgroundImage: 'unset',
               color: theme.palette.text.primary,
-              minWidth: theme.responsiveTemplate`${[200, 280]}px`,
+              minWidth: theme.rv`${[200, 280]}px`,
               marginTop: '12px',
               [theme.breakpoints.down('md')]: {
                 marginTop: `calc((${fabIconSize} + 12px) * -1)`,

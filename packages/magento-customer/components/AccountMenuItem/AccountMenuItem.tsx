@@ -45,7 +45,7 @@ export function AccountMenuItem(props: AccountMenuItemProps) {
       sx={[
         (theme) => ({
           width: '100%',
-          height: theme.responsiveTemplate`${[88, 104]}px`,
+          height: theme.rv`${[88, 104]}px`,
           padding: 0,
           borderRadius: 0,
           background: theme.palette.background.paper,

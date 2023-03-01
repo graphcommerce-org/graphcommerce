@@ -94,7 +94,7 @@ export function TextInputNumber(props: TextInputNumberProps) {
       className={`${textFieldProps.className ?? ''} ${classes.quantity}`}
       sx={[
         (theme) => ({
-          width: theme.responsiveTemplate`${[200, 900]}px`,
+          width: theme.rv`${[200, 900]}px`,
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}

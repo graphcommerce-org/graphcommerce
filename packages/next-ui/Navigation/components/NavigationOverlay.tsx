@@ -186,16 +186,16 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
                 width:
                   sizeSm !== 'floating'
                     ? itemWidthSm
-                    : theme.responsiveTemplate`calc(${itemWidthSm} - (${theme.page.horizontal} * 2))`,
+                    : theme.rv`calc(${itemWidthSm} - (${theme.page.horizontal} * 2))`,
                 minWidth: 200,
                 overflow: 'hidden',
                 scrollSnapType: 'x mandatory',
                 '& .NavigationItem-item': {
                   width:
                     sizeSm !== 'floating'
-                      ? theme.responsiveTemplate`calc(${itemWidthSm} - (${itemPad} * 2))`
-                      : theme.responsiveTemplate`calc(${itemWidthSm} - (${itemPad} * 2) - (${theme.page.horizontal} * 2))`,
-                  minWidth: theme.responsiveTemplate`calc(200px - (${itemPad} * 2))`,
+                      ? theme.rv`calc(${itemWidthSm} - (${itemPad} * 2))`
+                      : theme.rv`calc(${itemWidthSm} - (${itemPad} * 2) - (${theme.page.horizontal} * 2))`,
+                  minWidth: theme.rv`calc(200px - (${itemPad} * 2))`,
                 },
               },
               [theme.breakpoints.up('md')]: {

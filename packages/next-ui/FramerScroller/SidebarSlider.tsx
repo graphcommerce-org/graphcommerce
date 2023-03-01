@@ -66,7 +66,7 @@ export function SidebarSlider(props: SidebarSliderProps) {
                 gridColumnGap: theme.spacings.md,
                 gridRowGap: theme.spacings.lg,
                 paddingRight: theme.page.horizontal,
-                gridAutoColumns: theme.responsiveTemplate`${[200, 400]}px`,
+                gridAutoColumns: theme.rv`${[200, 400]}px`,
               })}
             >
               {children}

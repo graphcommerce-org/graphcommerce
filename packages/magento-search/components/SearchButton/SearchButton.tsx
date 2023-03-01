@@ -35,7 +35,7 @@ export function SearchButton(props: SearchButtonProps) {
       sx={[
         (theme) => ({
           marginRight: theme.spacings.xxs,
-          width: theme.responsiveTemplate`${[64, 172]}px`,
+          width: theme.rv`${[64, 172]}px`,
           '& fieldset': {
             border: `1px solid ${theme.palette.divider}`,
           },

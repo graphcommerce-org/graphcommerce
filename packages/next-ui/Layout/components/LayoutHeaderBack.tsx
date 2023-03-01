@@ -25,7 +25,7 @@ const buttonSx: SxProps<Theme> = (theme) => ({
   '&:not(.Mui-disabled)': { boxShadow: 6 },
   [theme.breakpoints.down('md')]: {
     minWidth: 'auto',
-    px: theme.responsiveTemplate`${[8, 11]}px`,
+    px: theme.rv`${[8, 11]}px`,
     '& .MuiButton-startIcon': {
       mx: 0,
     },

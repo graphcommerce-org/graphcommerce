@@ -99,9 +99,9 @@ export function CartItemSummary(props: OrderSummaryProps) {
                           borderRadius: '50%',
                           marginRight: theme.spacings.xs,
                           border: `1px solid ${theme.palette.divider}`,
-                          padding: theme.responsiveTemplate`${[5, 10]}px`,
-                          width: theme.responsiveTemplate`${[48, 96]}px !important`,
-                          height: theme.responsiveTemplate`${[48, 96]}px !important`,
+                          padding: theme.rv`${[5, 10]}px`,
+                          width: theme.rv`${[48, 96]}px !important`,
+                          height: theme.rv`${[48, 96]}px !important`,
                           display: 'block',
                         })}
                       />

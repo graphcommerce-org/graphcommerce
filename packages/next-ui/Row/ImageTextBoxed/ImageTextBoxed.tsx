@@ -67,7 +67,7 @@ export function ImageTextBoxed(props: ImageTextBoxedProps) {
             width: '100%',
             [theme.breakpoints.up('md')]: {
               height: '100%',
-              width: theme.responsiveTemplate`${[100, 600]}px`,
+              width: theme.rv`${[100, 600]}px`,
             },
             '& img': {
               height: '100% !important',

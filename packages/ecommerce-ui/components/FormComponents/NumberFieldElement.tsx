@@ -81,7 +81,7 @@ export function NumberFieldElement<T extends FieldValues>(props: NumberFieldElem
             type='number'
             className={`${textFieldProps.className ?? ''} ${classes.quantity}`}
             sx={[
-              (theme) => ({ width: theme.responsiveTemplate`${[80, 120]}px` }),
+              (theme) => ({ width: theme.rv`${[80, 120]}px` }),
               ...(Array.isArray(sx) ? sx : [sx]),
             ]}
             autoComplete='off'

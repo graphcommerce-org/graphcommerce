@@ -25,13 +25,13 @@ export function UspListItem(props: UspListItemProps) {
           display: 'grid',
           gridAutoFlow: 'column',
           alignItems: 'center',
-          gridTemplateColumns: theme.responsiveTemplate`${[32, 38]} auto`,
+          gridTemplateColumns: theme.rv`${[32, 38]} auto`,
           gap: theme.spacings.xs,
           '& > p': {
             typography: 'body2',
           },
           '&.sizeSmall': {
-            gridTemplateColumns: theme.responsiveTemplate`${[10, 14]} auto`,
+            gridTemplateColumns: theme.rv`${[10, 14]} auto`,
             gap: theme.spacings.xxs,
           },
         }),

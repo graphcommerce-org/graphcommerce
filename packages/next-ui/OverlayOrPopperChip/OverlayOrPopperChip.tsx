@@ -31,7 +31,7 @@ export function ChipOverlayOrPopper(props: ChipOverlayOrPopperProps) {
       sx={(theme) => ({
         display: 'flex',
         alignItems: 'center',
-        ml: theme.responsiveTemplate`${[3, 8]}px`,
+        ml: theme.rv`${[3, 8]}px`,
       })}
     >
       +{selectedLabel.length - 1}
@@ -40,7 +40,7 @@ export function ChipOverlayOrPopper(props: ChipOverlayOrPopperProps) {
     <IconSvg
       src={activeEl ? iconChevronUp : iconChevronDown}
       size='medium'
-      sx={(theme) => ({ ml: theme.responsiveTemplate`${[3, 8]}px`, mr: '-5px' })}
+      sx={(theme) => ({ ml: theme.rv`${[3, 8]}px`, mr: '-5px' })}
     />
   )
 

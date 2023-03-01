@@ -100,8 +100,8 @@ function CheckoutAdded() {
             height={50}
             layout='fill'
             sx={(theme) => ({
-              width: theme.responsiveTemplate`${[50, 80]}px`,
-              height: theme.responsiveTemplate`${[50, 80]}px`,
+              width: theme.rv`${[50, 80]}px`,
+              height: theme.rv`${[50, 80]}px`,
               display: 'block',
               borderRadius: 1,
               objectFit: 'contain',
@@ -114,8 +114,8 @@ function CheckoutAdded() {
             sx={(theme) => ({
               gridArea: 'icon',
               alignSelf: 'stretch',
-              width: theme.responsiveTemplate`${[50, 80]}px`,
-              height: theme.responsiveTemplate`${[50, 80]}px`,
+              width: theme.rv`${[50, 80]}px`,
+              height: theme.rv`${[50, 80]}px`,
             })}
           />
         )}
@@ -154,7 +154,7 @@ function CheckoutAdded() {
         sx={(theme) => ({
           height: theme.page.vertical,
           [theme.breakpoints.up('md')]: {
-            mb: theme.responsiveTemplate`calc(${theme.page.vertical} * -1)`,
+            mb: theme.rv`calc(${theme.page.vertical} * -1)`,
           },
           scrollSnapAlign: 'end',
         })}

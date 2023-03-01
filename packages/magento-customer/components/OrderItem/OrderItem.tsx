@@ -42,7 +42,7 @@ export function OrderItem(props: OrderItemProps) {
 
   const t = useTheme()
 
-  const rowImageSize = t.responsiveTemplate`${[70, 110]}px`
+  const rowImageSize = t.rv`${[70, 110]}px`
 
   const hasOptions = Boolean(selected_options && selected_options.length >= 1)
 
@@ -95,7 +95,7 @@ export function OrderItem(props: OrderItemProps) {
           gridArea: 'picture',
           width: rowImageSize,
           height: rowImageSize,
-          padding: theme.responsiveTemplate`${[3, 6]}px`,
+          padding: theme.rv`${[3, 6]}px`,
           border: `1px solid rgba(0,0,0,0.15)`,
           borderRadius: '50%',
         })}

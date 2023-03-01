@@ -10,24 +10,24 @@ import { AppPropsType } from 'next/dist/shared/lib/utils'
 import { Router } from 'next/router'
 import React from 'react'
 
-const responsiveTemplate = createResponsiveTemplate(themeBaseDefaults.breakpoints.values)
+const rv = createResponsiveTemplate(themeBaseDefaults.breakpoints.values)
 
 const theme = createTheme({
   shape: {
     borderRadius: 4,
   },
   spacings: {
-    xxs: responsiveTemplate`${[10, 16]}px`,
-    xs: responsiveTemplate`${[12, 20]}px`,
-    sm: responsiveTemplate`${[12, 20]}px`,
-    md: responsiveTemplate`${[16, 50]}px`,
-    lg: responsiveTemplate`${[24, 80]}px`,
-    xl: responsiveTemplate`${[40, 100]}px`,
-    xxl: responsiveTemplate`${[80, 160]}px`,
+    xxs: rv`${[10, 16]}px`,
+    xs: rv`${[12, 20]}px`,
+    sm: rv`${[12, 20]}px`,
+    md: rv`${[16, 50]}px`,
+    lg: rv`${[24, 80]}px`,
+    xl: rv`${[40, 100]}px`,
+    xxl: rv`${[80, 160]}px`,
   },
   page: {
-    horizontal: responsiveTemplate`${[10, 30]}px`,
-    vertical: responsiveTemplate`${[10, 30]}px`,
+    horizontal: rv`${[10, 30]}px`,
+    vertical: rv`${[10, 30]}px`,
   },
   appShell: {
     headerHeightSm: '46px',

@@ -105,7 +105,7 @@ export function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
                 background: theme.palette.background.paper,
                 borderRadius: 0,
                 width: 30,
-                height: theme.responsiveTemplate`${[60, 85]}px`,
+                height: theme.rv`${[60, 85]}px`,
                 boxShadow: 'none',
                 border: `1px solid ${theme.palette.divider}`,
                 '&:focus': {
@@ -133,8 +133,8 @@ export function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
                   sx={(theme) => ({
                     gridAutoColumns: `max-content`,
                     gridTemplateRows: `100%`,
-                    gap: theme.responsiveTemplate`${[4, 8]}px`,
-                    height: theme.responsiveTemplate`${[60, 85]}px`,
+                    gap: theme.rv`${[4, 8]}px`,
+                    height: theme.rv`${[60, 85]}px`,
                     borderRadius: '5px',
                   })}
                 >
@@ -200,7 +200,7 @@ export function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
                 background: theme.palette.background.paper,
                 borderRadius: 0,
                 width: 30,
-                height: theme.responsiveTemplate`${[60, 85]}px`,
+                height: theme.rv`${[60, 85]}px`,
                 boxShadow: 'none',
                 border: `1px solid ${theme.palette.divider}`,
                 '&:focus': {

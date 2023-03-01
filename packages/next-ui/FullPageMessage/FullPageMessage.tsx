@@ -35,7 +35,7 @@ export function FullPageMessage(props: FullPageMessageProps) {
         }),
         !disableMargin &&
           ((theme) => ({
-            mt: theme.responsiveTemplate`${[50, 250]}px`,
+            mt: theme.rv`${[50, 250]}px`,
           })),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}

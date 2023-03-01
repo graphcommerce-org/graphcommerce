@@ -85,7 +85,7 @@ export function FilterEqualType(props: FilterEqualTypeProps) {
         sx={(theme) => ({
           display: 'grid',
           gridTemplateColumns: { xs: 'repeat(2, minmax(0, 1fr))', md: 'repeat(2, 1fr)' },
-          columnGap: theme.responsiveTemplate`${[2, 16]}px`,
+          columnGap: theme.rv`${[2, 16]}px`,
           minWidth: 0,
         })}
       >
@@ -134,7 +134,7 @@ export function FilterEqualType(props: FilterEqualTypeProps) {
                   className={cls.listItemInnerContainer}
                   sx={(theme) => ({
                     width: '100%',
-                    paddingTop: theme.responsiveTemplate`${[0, 3]}px`,
+                    paddingTop: theme.rv`${[0, 3]}px`,
                     paddingBottom: theme.spacings.xxs,
                     '& > div': {
                       display: 'inline-block',

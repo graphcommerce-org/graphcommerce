@@ -73,7 +73,7 @@ export function ChipMenu(props: ChipMenuProps) {
               '&:focus': { outline: 'none' },
             },
             [`& .${menuClasses.paper}`]: {
-              minWidth: theme.responsiveTemplate`${[200, 560]}px`,
+              minWidth: theme.rv`${[200, 560]}px`,
               maxWidth: 560,
               py: theme.spacings.xs,
               pl: 0,
@@ -82,7 +82,7 @@ export function ChipMenu(props: ChipMenuProps) {
               [theme.breakpoints.down('sm')]: {
                 minWidth: 0,
                 width: '100%',
-                maxWidth: theme.responsiveTemplate`calc(100% - (${theme.page.horizontal}* 2))`,
+                maxWidth: theme.rv`calc(100% - (${theme.page.horizontal}* 2))`,
                 margin: '0 auto',
               },
             },

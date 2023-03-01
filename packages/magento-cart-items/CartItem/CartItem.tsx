@@ -44,7 +44,7 @@ export function CartItem(props: CartItemProps) {
 
   const t = useTheme()
 
-  const rowImageSize = t.responsiveTemplate`${[70, 125]}px`
+  const rowImageSize = t.rv`${[70, 125]}px`
 
   const classes = withState({ withOptions })
 
@@ -122,7 +122,7 @@ export function CartItem(props: CartItemProps) {
           gridArea: 'picture',
           width: rowImageSize,
           height: rowImageSize,
-          padding: theme.responsiveTemplate`${[5, 10]}px`,
+          padding: theme.rv`${[5, 10]}px`,
           border: `1px solid ${theme.palette.divider}`,
           borderRadius: '50%',
           alignSelf: 'center',

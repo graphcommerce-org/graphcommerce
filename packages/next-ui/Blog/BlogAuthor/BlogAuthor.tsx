@@ -28,14 +28,14 @@ export function BlogAuthor(props: BlogAuthorProps) {
       <Chip
         sx={(theme) => ({
           borderRadius: '99em',
-          height: theme.responsiveTemplate`${[44, 66]}px`,
+          height: theme.rv`${[44, 66]}px`,
           '& .MuiChip-label': {
-            pl: theme.responsiveTemplate`${[10, 14]}px`,
-            pr: theme.responsiveTemplate`${[14, 18]}px`,
+            pl: theme.rv`${[10, 14]}px`,
+            pr: theme.rv`${[14, 18]}px`,
           },
           '& .MuiAvatar-root': {
-            width: theme.responsiveTemplate`${[28, 44]}px`,
-            height: theme.responsiveTemplate`${[28, 44]}px`,
+            width: theme.rv`${[28, 44]}px`,
+            height: theme.rv`${[28, 44]}px`,
           },
         })}
         variant='outlined'

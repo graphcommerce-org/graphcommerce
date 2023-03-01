@@ -21,8 +21,8 @@ export function ImageSwatchData(props: ImageSwatchDataProps) {
       sx={[
         (theme) => ({
           '& .image': {
-            height: theme.responsiveTemplate`${[40, 80]}px`,
-            width: theme.responsiveTemplate`${[40, 80]}px`,
+            height: theme.rv`${[40, 80]}px`,
+            width: theme.rv`${[40, 80]}px`,
             border: `3px solid ${theme.palette.divider}`,
             boxSizing: 'border-box',
             borderRadius: '50%',

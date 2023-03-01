@@ -2,9 +2,9 @@ import { themeBaseDefaults } from '../../Theme'
 import { createResponsiveTemplate, FromTo } from '../spreadVal'
 
 it('generates the right spreadVal', () => {
-  const responsiveTemplate = createResponsiveTemplate(themeBaseDefaults.breakpoints.values)
+  const rv = createResponsiveTemplate(themeBaseDefaults.breakpoints.values)
 
-  expect(responsiveTemplate`${[15, 18]}px`).toMatchInlineSnapshot(`
+  expect(rv`${[15, 18]}px`).toMatchInlineSnapshot(`
     [
       "15px",
       "15.09px",
@@ -14,7 +14,7 @@ it('generates the right spreadVal', () => {
     ]
   `)
 
-  expect(responsiveTemplate`${[10, 20]}px`).toMatchInlineSnapshot(`
+  expect(rv`${[10, 20]}px`).toMatchInlineSnapshot(`
     [
       "10px",
       "10.31px",
@@ -26,7 +26,7 @@ it('generates the right spreadVal', () => {
 
   const xxs: FromTo = [10, 16]
   const md: FromTo = [16, 50]
-  expect(responsiveTemplate`calc(100% - 96px - ${md}px * 2)`).toMatchInlineSnapshot(`
+  expect(rv`calc(100% - 96px - ${md}px * 2)`).toMatchInlineSnapshot(`
     [
       "calc(100% - 96px - 16px * 2)",
       "calc(100% - 96px - 17.04px * 2)",
@@ -37,7 +37,7 @@ it('generates the right spreadVal', () => {
   `)
 
   // `${theme.spacings.xxs} ${theme.spacings.xxs} !important`,
-  expect(responsiveTemplate`${xxs}px ${xxs}px !important`).toMatchInlineSnapshot(`
+  expect(rv`${xxs}px ${xxs}px !important`).toMatchInlineSnapshot(`
     [
       "10px 10px !important",
       "10.18px 10.18px !important",
@@ -49,7 +49,7 @@ it('generates the right spreadVal', () => {
 
   const someValue = 100
 
-  expect(responsiveTemplate`calc(${100}px - ${xxs}px) !important`).toMatchInlineSnapshot(`
+  expect(rv`calc(${100}px - ${xxs}px) !important`).toMatchInlineSnapshot(`
     [
       "calc(100px - 10px) !important",
       "calc(100px - 10.18px) !important",
@@ -59,7 +59,7 @@ it('generates the right spreadVal', () => {
     ]
   `)
 
-  expect(responsiveTemplate`calc(${someValue}px - ${xxs}px) !important`).toMatchInlineSnapshot(`
+  expect(rv`calc(${someValue}px - ${xxs}px) !important`).toMatchInlineSnapshot(`
     [
       "calc(100px - 10px) !important",
       "calc(100px - 10.18px) !important",
@@ -69,7 +69,7 @@ it('generates the right spreadVal', () => {
     ]
   `)
 
-  expect(responsiveTemplate`calc(${[10, 20]}px - ${[20, 40]}px) !important`).toMatchInlineSnapshot(`
+  expect(rv`calc(${[10, 20]}px - ${[20, 40]}px) !important`).toMatchInlineSnapshot(`
     [
       "calc(10px - 20px) !important",
       "calc(10.31px - 20.61px) !important",
@@ -79,8 +79,8 @@ it('generates the right spreadVal', () => {
     ]
   `)
 
-  const themeSpacingsXxs = responsiveTemplate`${[10, 20]}px`
-  expect(responsiveTemplate`calc(${themeSpacingsXxs} * -1)`).toMatchInlineSnapshot(`
+  const themeSpacingsXxs = rv`${[10, 20]}px`
+  expect(rv`calc(${themeSpacingsXxs} * -1)`).toMatchInlineSnapshot(`
     [
       "calc(10px * -1)",
       "calc(10.31px * -1)",
@@ -91,7 +91,7 @@ it('generates the right spreadVal', () => {
   `)
 
   const itemWidthSm = '70vw'
-  expect(responsiveTemplate`calc(${itemWidthSm} - (16px * 2))`).toMatchInlineSnapshot(`
+  expect(rv`calc(${itemWidthSm} - (16px * 2))`).toMatchInlineSnapshot(`
     [
       "calc(70vw - (16px * 2))",
       "calc(70vw - (16px * 2))",

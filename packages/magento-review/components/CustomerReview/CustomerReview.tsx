@@ -39,7 +39,7 @@ export function CustomerReview(props: CustomerReviewProps) {
             "image title"
             "image text"
             "image date"`,
-          gridTemplateColumns: theme.responsiveTemplate`${[96, 196]} 1fr`,
+          gridTemplateColumns: theme.rv`${[96, 196]} 1fr`,
           gridColumnGap: theme.spacings.md,
           gridRowGap: theme.spacings.sm,
           alignItems: 'start',

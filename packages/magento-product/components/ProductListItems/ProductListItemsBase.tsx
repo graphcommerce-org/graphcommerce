@@ -37,23 +37,11 @@ export function ProductListItemsBase(props: ProductItemsGridProps) {
         }),
         size === 'small' &&
           ((theme) => ({
-            gridTemplateColumns: theme.responsiveTemplate`repeat(${[
-              '2',
-              '3',
-              '3',
-              '4',
-              '4',
-            ]}, 1fr)`,
+            gridTemplateColumns: theme.rv`repeat(${['2', '3', '3', '4', '4']}, 1fr)`,
           })),
         size === 'normal' &&
           ((theme) => ({
-            gridTemplateColumns: theme.responsiveTemplate`repeat(${[
-              '2',
-              '3',
-              '4',
-              '4',
-              '4',
-            ]}, 1fr)`,
+            gridTemplateColumns: theme.rv`repeat(${['2', '3', '4', '4', '4']}, 1fr)`,
           })),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}

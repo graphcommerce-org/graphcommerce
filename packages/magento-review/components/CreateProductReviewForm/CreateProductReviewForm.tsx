@@ -116,7 +116,7 @@ export function CreateProductReviewForm(props: CreateProductReviewFormProps) {
             className={classes.rating}
             sx={(theme) => ({
               paddingBottom: 'unset',
-              gridTemplateColumns: theme.responsiveTemplate`minmax(${[60, 80]}, 0.1fr) max-content`,
+              gridTemplateColumns: theme.rv`minmax(${[60, 80]}, 0.1fr) max-content`,
               alignItems: 'center',
             })}
           >

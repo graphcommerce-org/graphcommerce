@@ -48,8 +48,8 @@ export const LayoutTitle = React.forwardRef<HTMLDivElement, TitleProps>((props, 
             flexFlow: 'unset',
             overflow: 'hidden',
             '& svg': {
-              width: theme.responsiveTemplate`${[24, 28]}px`,
-              height: theme.responsiveTemplate`${[24, 28]}px`,
+              width: theme.rv`${[24, 28]}px`,
+              height: theme.rv`${[24, 28]}px`,
               strokeWidth: 1.4,
             },
             '& > *': {

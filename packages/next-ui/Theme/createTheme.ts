@@ -30,7 +30,7 @@ declare module '@mui/material/styles/createTheme' {
       appBarHeightMd: ResponsiveValue | string
       appBarInnerHeightMd: ResponsiveValue | string
     }
-    responsiveTemplate: ResponsiveTemplate
+    rv: ResponsiveTemplate
 
     // todo: should be cleaned up to be compatible with the default mui-styles
     shape: { borderRadius: number }
@@ -55,14 +55,14 @@ declare module '@mui/material/styles/createTheme' {
       appBarHeightMd: ResponsiveValue | string
       appBarInnerHeightMd: ResponsiveValue | string
     }
-    responsiveTemplate: ResponsiveTemplate
+    rv: ResponsiveTemplate
 
     // todo: should be cleaned up to be compatible with the default mui-styles
     shape: { borderRadius: number }
   }
 }
 
-type ThemeOptionsWithDefaults = Omit<ThemeOptions, 'responsiveTemplate'>
+type ThemeOptionsWithDefaults = Omit<ThemeOptions, 'rv'>
 
 export const baseTheme = createMuiTheme()
 
@@ -71,5 +71,5 @@ export const createTheme = (options: ThemeOptionsWithDefaults) =>
     ...options,
     ...themeBaseDefaults,
     breakpoints: { ...breakpoints, ...options.breakpoints },
-    responsiveTemplate: createResponsiveTemplate(options.breakpoints?.values ?? breakpoints.values),
+    rv: createResponsiveTemplate(options.breakpoints?.values ?? breakpoints.values),
   })

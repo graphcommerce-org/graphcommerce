@@ -60,7 +60,7 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
 
   const t2 = useTheme()
 
-  const rowImageSize = t2.responsiveTemplate`${[70, 125]}px`
+  const rowImageSize = t2.rv`${[70, 125]}px`
 
   const productLink = useProductLink({ url_key, __typename: productType })
   const { cache } = useApolloClient()
@@ -128,7 +128,7 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
               "picture itemOptions itemOptions"
               "picture itemQuantity itemQuantity itemPrice"
               "itemCartButton itemCartButton itemCartButton itemCartButton"`,
-          gridTemplateColumns: theme.responsiveTemplate`${rowImageSize} 1fr minmax(120px, 1fr) 1fr`,
+          gridTemplateColumns: theme.rv`${rowImageSize} 1fr minmax(120px, 1fr) 1fr`,
           columnGap: theme.spacings.sm,
           alignItems: 'baseline',
           typography: 'body1',
@@ -140,7 +140,7 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
                 "picture itemName itemName itemName iconMenu"
                 "picture itemQuantity itemOptions itemPrice itemPrice"
                 "itemCartButton itemCartButton itemCartButton itemCartButton itemCartButton"`,
-            gridTemplateColumns: theme.responsiveTemplate`${rowImageSize} 4fr 1fr minmax(120px, 1fr) minmax(120px, 1fr)`,
+            gridTemplateColumns: theme.rv`${rowImageSize} 4fr 1fr minmax(120px, 1fr) minmax(120px, 1fr)`,
           },
           borderBottom: `1px solid ${theme.palette.divider}`,
 
@@ -152,7 +152,7 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
               "itemCartButton itemCartButton itemCartButton itemCartButton"`,
             alignItems: 'center',
             paddingBottom: theme.spacings.xl,
-            gridTemplateColumns: theme.responsiveTemplate`${rowImageSize} 1fr minmax(120px, 1fr) 1fr`,
+            gridTemplateColumns: theme.rv`${rowImageSize} 1fr minmax(120px, 1fr) 1fr`,
             [theme.breakpoints.up('sm')]: {
               paddingBottom: theme.spacings.md,
               gridTemplate: `
@@ -160,7 +160,7 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
                 "picture itemQuantity itemQuantity itemQuantity itemPrice"
                 "itemCartButton itemCartButton itemCartButton itemCartButton itemCartButton"
               `,
-              gridTemplateColumns: theme.responsiveTemplate`${rowImageSize} 4fr 1fr minmax(120px, 1fr) minmax(120px, 1fr)`,
+              gridTemplateColumns: theme.rv`${rowImageSize} 4fr 1fr minmax(120px, 1fr) minmax(120px, 1fr)`,
             },
           },
         }),
@@ -179,7 +179,7 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
           gridArea: 'picture',
           width: rowImageSize,
           height: rowImageSize,
-          padding: theme.responsiveTemplate`${[5, 10]}px`,
+          padding: theme.rv`${[5, 10]}px`,
           alignSelf: 'flex-start',
         })}
       >

@@ -105,11 +105,11 @@ export function SidebarGallery(props: SidebarGalleryProps) {
 
   useDomEvent(windowRef, 'keyup', handleEscapeKey, { passive: true })
 
-  const headerHeight = theme.responsiveTemplate`${theme.appShell.headerHeightSm} - ${theme.spacings.sm} * 2`
+  const headerHeight = theme.rv`${theme.appShell.headerHeightSm} - ${theme.spacings.sm} * 2`
   const galleryMargin = theme.spacings.lg
 
-  const maxHeight = theme.responsiveTemplate`calc(100vh - ${headerHeight} - ${galleryMargin})`
-  const ratio = theme.responsiveTemplate`calc(${height} / ${width} * 100%)`
+  const maxHeight = theme.rv`calc(100vh - ${headerHeight} - ${galleryMargin})`
+  const ratio = theme.rv`calc(${height} / ${width} * 100%)`
 
   const hasImages = images.length > 0
 
@@ -138,7 +138,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
               zIndex: theme.zIndex.modal,
               mt: `calc(${theme.appShell.headerHeightSm} * -1)`,
               [theme.breakpoints.up('md')]: {
-                mt: theme.responsiveTemplate`calc(${theme.appShell.headerHeightMd} * -1  - ${theme.spacings.lg})`,
+                mt: theme.rv`calc(${theme.appShell.headerHeightMd} * -1  - ${theme.spacings.lg})`,
               },
               paddingRight: 0,
             },
@@ -154,7 +154,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                 height: 0, // https://stackoverflow.com/questions/44770074/css-grid-row-height-safari-bug
                 backgroundColor: theme.palette.background.image,
                 position: 'relative',
-                pt: theme.responsiveTemplate`min(${ratio}, ${maxHeight})`,
+                pt: theme.rv`min(${ratio}, ${maxHeight})`,
                 [theme.breakpoints.down('md')]: {
                   width: '100vw',
                 },
@@ -314,19 +314,13 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                 alignContent: 'center',
                 position: 'relative',
                 [theme.breakpoints.up('md')]: {
-                  width: theme.responsiveTemplate`calc(${[300, 600]} + ${
-                    theme.page.horizontal
-                  } * 2)`,
+                  width: theme.rv`calc(${[300, 600]} + ${theme.page.horizontal} * 2)`,
                 },
               },
               zoomed && {
                 [theme.breakpoints.up('md')]: {
-                  ml: theme.responsiveTemplate`calc((${[300, 500]} + ${
-                    theme.page.horizontal
-                  } * 2) * -1)`,
-                  left: theme.responsiveTemplate`calc(${[300, 500]} + ${
-                    theme.page.horizontal
-                  } * 2)`,
+                  ml: theme.rv`calc((${[300, 500]} + ${theme.page.horizontal} * 2) * -1)`,
+                  left: theme.rv`calc(${[300, 500]} + ${theme.page.horizontal} * 2)`,
                 },
               },
             ]}
