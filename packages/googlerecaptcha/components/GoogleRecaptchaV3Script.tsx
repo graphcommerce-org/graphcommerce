@@ -2,16 +2,13 @@ import { GlobalStyles } from '@mui/material'
 import Script from 'next/script'
 import { useContext } from 'react'
 import { recaptchaContext } from '../context/recaptchaContext'
+import { useGoogleRecaptchaSiteKey } from '../hooks/useGoogleRecaptchaSiteKey'
 
 export function GoogleRecaptchaV3Script() {
-  const { siteKey, enabled } = useContext(recaptchaContext)
+  const { enabled } = useContext(recaptchaContext)
 
-  if (process.env.NODE_ENV !== 'production' && !siteKey && enabled)
-    console.warn(
-      '[@graphcommerce/googletagmanager]: NEXT_PUBLIC_GOOGLE_RECAPTCHA_V3_SITE_KEY not found',
-    )
-
-  if (!siteKey || !enabled) return null
+  const siteKey = useGoogleRecaptchaSiteKey()
+  if (!enabled) return null
 
   return (
     <>
