@@ -3,7 +3,7 @@ import { ProductLinkFragment } from './ProductLink.gql'
 export type ProductLinkProps = Omit<ProductLinkFragment, 'uid'>
 
 export function productLink(link: ProductLinkProps) {
-  if (!import.meta.graphCommerce.singleProductRoute) {
+  if (import.meta.graphCommerce.legacyProductRoute) {
     const { __typename, url_key } = link
 
     const productRoute = __typename

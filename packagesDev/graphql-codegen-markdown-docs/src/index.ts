@@ -20,20 +20,27 @@ export const plugin: PluginFunction<MarkdownDocsPluginConfig, Types.ComplexPlugi
     return node.description ? `\n\n${node.description}` : ''
   }
 
-  const res = visit<string>(astNode, {
+  const possibleScalars = ['Boolean', 'String', 'Int', 'Float', 'ID']
+
+  const content = visit<string>(astNode, {
     Document: {
-      leave: (node) => `<!-- auto generated -->${node.definitions.filter(Boolean).join('\n')}`,
+      leave: (node) =>
+        `<!-- Automatically generated from Config.graphqls -->${node.definitions
+          .filter(Boolean)
+          .join('\n')}`,
     },
     Name: { leave: (node) => node.value },
-    NamedType: { leave: (node) => node.name }, // String, Boolean, GraphCommerceDebugConfig, etc.
+    NamedType: {
+      leave: (node) =>
+        possibleScalars.includes(node.name) ? node.name : `[${node.name}](#${node.name})`,
+    }, // String, Boolean, GraphCommerceDebugConfig, etc.
     StringValue: { leave: (node) => node.value },
     ListType: { leave: (node) => `[${node.type}]` },
-    NonNullType: { leave: (node) => `${node.type}!` },
+    NonNullType: {
+      leave: (node) => `${node.type}!`,
+    },
     InputValueDefinition: {
-      leave: (node) => {
-        const { type } = node
-        return `\`${node.name}: ${type}\`${descriptionText(node)}`
-      },
+      leave: (node) => `\`${node.name}: ${node.type}\`${descriptionText(node)}`,
     },
     InputObjectTypeDefinition: {
       enter: (node) => ({
@@ -43,8 +50,13 @@ export const plugin: PluginFunction<MarkdownDocsPluginConfig, Types.ComplexPlugi
           a.type.kind === 'NonNullType' && b.type.kind !== 'NonNullType' ? -1 : 1,
         ),
       }),
-      leave: (node) => `\n## ${node.name}${descriptionText(node)}
-${node.fields?.map((f) => `\n### ${f}`).join('\n')}`,
+      leave: (node) => {
+        const title = descriptionText(node).trimStart().startsWith('#')
+          ? `${descriptionText(node).trimStart()}\n\n### ${node.name}`
+          : `### ${node.name}${descriptionText(node)}`
+
+        return `\n${title}\n${node.fields?.map((f) => `\n#### ${f}`).join('\n')}`
+      },
     },
     EnumValueDefinition: {
       leave: (node) => `${node.name} # ${node.description}`,
@@ -57,8 +69,5 @@ ${node.fields?.map((f) => `\n### ${f}`).join('\n')}`,
     },
   })
 
-  return {
-    // prepend: buildImports(),
-    content: [res].join('\n'),
-  }
+  return { content }
 }

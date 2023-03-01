@@ -114,12 +114,6 @@ it('finds plugins', () => {
         "plugin": "@graphcommerce/googlerecaptcha/plugins/GrecaptchaGraphQLProvider",
       },
       {
-        "component": "FramerNextPages",
-        "enabled": true,
-        "exported": "@graphcommerce/framer-next-pages",
-        "plugin": "@graphcommerce/googletagmanager/plugins/GtagFramerNextPages",
-      },
-      {
         "component": "GraphQLProvider",
         "enabled": true,
         "exported": "@graphcommerce/graphql",
@@ -192,6 +186,13 @@ it('finds plugins', () => {
         "exported": "@graphcommerce/magento-product",
         "ifConfig": "demoMode",
         "plugin": "@graphcommerce/demo-magento-graphcommerce/plugins/demo/DemoProductListItemsBase",
+      },
+      {
+        "component": "FramerNextPages",
+        "enabled": false,
+        "exported": "@graphcommerce/framer-next-pages",
+        "ifConfig": "googleTagmanagerId",
+        "plugin": "@graphcommerce/googletagmanager/plugins/GtagFramerNextPages",
       },
     ]
   `)

@@ -4,7 +4,7 @@ import { ApplyResult, mergeEnvIntoConfig, ZodNode } from './mergeEnvIntoConfig'
 
 export function rewriteLegacyEnv(
   schema: ZodNode,
-  config: GraphCommerceConfig,
+  config: Partial<GraphCommerceConfig>,
   env: Record<string, string | undefined>,
 ) {
   const clonedEnv: Record<string, string | undefined> = cloneDeep(env)
@@ -55,6 +55,7 @@ export function rewriteLegacyEnv(
 
       clonedEnv.GC_I18N = JSON.stringify(
         Object.entries(parsed).map(([locale, magentoStoreCode], index) => {
+          if (!config.i18n) config.i18n = []
           config.i18n[index] = { ...config.i18n[index], locale, magentoStoreCode }
           return { locale, magentoStoreCode }
         }),
@@ -67,6 +68,7 @@ export function rewriteLegacyEnv(
         const parsed = JSON.parse(envValue) as Record<string, string>
 
         clonedEnv.GC_GOOGLE_ANALYTICS_ID = 'enabled'
+        if (!config.i18n) config.i18n = []
         config.i18n.forEach((i18n, index) => {
           if (parsed[i18n.locale]) {
             clonedEnv[`GC_I18N_${index}_GOOGLE_ANALYTICS_ID`] = parsed[i18n.locale]
@@ -87,6 +89,7 @@ export function rewriteLegacyEnv(
     NEXT_PUBLIC_DISPLAY_INCL_TAX: (envVar: string, envValue: string) => {
       const inclTax = envValue.split(',').map((i) => i.trim())
 
+      if (!config.i18n) config.i18n = []
       config.i18n.forEach((i18n, index) => {
         if (!inclTax.includes(i18n.locale)) return null
         clonedEnv[`GC_I18N_${index}_CART_DISPLAY_PRICES_INCL_TAX`] = '1'

@@ -213,7 +213,7 @@ ProductPage.pageOptions = {
 export default ProductPage
 
 export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
-  if (!import.meta.graphCommerce.singleProductRoute) return { paths: [], fallback: false }
+  if (import.meta.graphCommerce.legacyProductRoute) return { paths: [], fallback: false }
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
 
   const path = (locale: string) => getProductStaticPaths(graphqlSsrClient(locale), locale)
@@ -223,7 +223,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 }
 
 export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
-  if (!import.meta.graphCommerce.singleProductRoute) return { notFound: true }
+  if (import.meta.graphCommerce.legacyProductRoute) return { notFound: true }
 
   const client = graphqlSharedClient(locale)
   const staticClient = graphqlSsrClient(locale)

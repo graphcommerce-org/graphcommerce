@@ -2,7 +2,8 @@
 import { cosmiconfigSync } from 'cosmiconfig'
 import type { GraphCommerceConfig } from '../generated/config'
 import { GraphCommerceConfigSchema } from '../generated/config'
-import { formatAppliedEnv } from './utils/mergeEnvIntoConfig'
+import { demoConfig } from './demoConfig'
+import { filterEnv, formatAppliedEnv } from './utils/mergeEnvIntoConfig'
 import { rewriteLegacyEnv } from './utils/rewriteLegacyEnv'
 
 export * from './utils/configToImportMeta'
@@ -11,29 +12,45 @@ const moduleName = 'graphcommerce'
 const loader = cosmiconfigSync(moduleName)
 
 export function loadConfig(cwd: string): GraphCommerceConfig {
+  const isMainProcess = !process.send
+
   try {
     const result = loader.search(cwd)
 
-    if (!result) throw Error("Couldn't find a graphcommerce.config.(m)js in the project.")
+    let confFile = result?.config
+    const hasEnv = Object.keys(filterEnv(process.env)).length > 0
+    if (!confFile && !hasEnv) {
+      if (isMainProcess)
+        console.warn(
+          'No graphcommerce.config.js or environment variables found in the project, using demo config',
+        )
+      confFile = demoConfig
+    }
+    confFile ||= {}
 
     const schema = GraphCommerceConfigSchema()
-    const config = schema.parse(result.config)
-
-    if (!config) throw Error("Couldn't find a graphcommerce.config.(m)js in the project.")
+    const parsed = schema.safeParse(confFile)
 
     const [mergedConfig, applyResult] = rewriteLegacyEnv(
       GraphCommerceConfigSchema(),
-      config,
+      parsed.success ? parsed.data : {},
       process.env,
     )
 
-    if (applyResult.length > 0) console.log(formatAppliedEnv(applyResult))
+    if (applyResult.length > 0 && isMainProcess) console.log(formatAppliedEnv(applyResult))
 
-    return schema.parse(mergedConfig)
+    const finalParse = schema.parse(mergedConfig)
+    if (process.env.DEBUG && isMainProcess) {
+      console.log('Parsed configuration')
+      console.log(finalParse)
+    }
+    return finalParse
   } catch (error) {
     if (error instanceof Error) {
-      console.log(error.message)
-      process.exit(1)
+      if (isMainProcess) {
+        console.log(error.message)
+        process.exit(1)
+      }
     }
     throw error
   }

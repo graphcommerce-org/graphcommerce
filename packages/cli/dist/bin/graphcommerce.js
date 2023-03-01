@@ -4,6 +4,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const next_config_1 = require("@graphcommerce/next-config");
 const commands = {
     'codegen-config': next_config_1.generateConfig,
+    'export-config': next_config_1.exportConfig,
 };
 const args = process.argv.slice(2);
 const command = args[0];

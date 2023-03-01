@@ -5,9 +5,9 @@ const fs_1 = require("fs");
 // eslint-disable-next-line import/no-extraneous-dependencies
 const cli_1 = require("@graphql-codegen/cli");
 const core_1 = require("@swc/core");
-const resolveDependenciesSync_1 = require("../utils/resolveDependenciesSync");
-const resolveDependency_1 = require("../utils/resolveDependency");
-const isMonorepo_1 = require("../utils/isMonorepo");
+const isMonorepo_1 = require("../../utils/isMonorepo");
+const resolveDependenciesSync_1 = require("../../utils/resolveDependenciesSync");
+const resolveDependency_1 = require("../../utils/resolveDependency");
 const packages = [...(0, resolveDependenciesSync_1.resolveDependenciesSync)().values()].filter((p) => p !== '.');
 const resolve = (0, resolveDependency_1.resolveDependency)();
 const schemaLocations = packages.map((p) => `${p}/**/Config.graphqls`);

@@ -18,7 +18,7 @@ it('rewrites legacy env', () => {
   const configFile: GraphCommerceConfig = {
     i18n: [{ locale: 'en', hygraphLocales: ['en'], magentoStoreCode: 'en_us' }],
     customerRequireEmailConfirmation: false,
-    singleProductRoute: true,
+    legacyProductRoute: true,
     productFiltersPro: false,
     canonicalBaseUrl: 'https://example.com',
     hygraphEndpoint: 'https://example.com',
@@ -50,6 +50,7 @@ it('rewrites legacy env', () => {
   expect(removeColor(formatAppliedEnv(appliedRewrite))).toMatchInlineSnapshot(`
     "warning   - Loaded GraphCommerce env variables
      ‼ GRAPHCMS_URL='https://api-eu-central-1.graphcms.com/v2/ckhx7xadya6xs01yxdujt8i80/master' => should be renamed to GC_HYGRAPH_ENDPOINT='https://api-eu-central-1.graphcms.com/v2/ckhx7xadya6xs01yxdujt8i80/master'
+     ‼ MAGENTO_ENDPOINT='https://backend.reachdigital.dev/graphql' => should be renamed to GC_MAGENTO_ENDPOINT='https://backend.reachdigital.dev/graphql'
      ‼ NEXT_PUBLIC_GRAPHQL_ENDPOINT='http://localhost:3000/api/graphql' => should be removed
      ‼ IMAGE_DOMAINS='backend.reachdigital.dev,media.graphcms.com,media.graphassets.com' => should be removed: will automatically add the Magento/Hygraph URL. For more advanced configurations, see: https://nextjs.org/docs/api-reference/next/image#configuration-options
      ‼ NEXT_PUBLIC_LOCALE_STORES='{"en-us": "en_US", "nl-nl": "nl_NL", "fr-be": "fr_BE", "nl-be": "nl_BE", "en-gb": "en_GB", "en-ca": "en_CA"}' => env variable is is modified, rewritten to GC_I18N.
@@ -76,6 +77,7 @@ it('rewrites legacy env', () => {
      + GC_I18N_4_CART_DISPLAY_PRICES_INCL_TAX='1' => i18n.[4].cartDisplayPricesInclTax: true
      + GC_I18N_4_GOOGLE_ANALYTICS_ID='G-555' => i18n.[4].googleAnalyticsId: "G-555"
      + GC_I18N_5_GOOGLE_ANALYTICS_ID='G-666' => i18n.[5].googleAnalyticsId: "G-666"
+     ~ GC_MAGENTO_ENDPOINT='https://backend.reachdigital.dev/graphql' => magentoEndpoint: "https://example.com" => "https://backend.reachdigital.dev/graphql"
      ~ GC_PREVIEW_SECRET='dya6xs01y' => previewSecret: "secret" => "dya6xs01y""
   `)
 })

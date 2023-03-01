@@ -19,8 +19,8 @@ import {
 import diff from './diff'
 
 const fmt = (s: string) => s.split(/(\d+)/).map(snakeCase).join('')
-const pathStr = (path: string[]) => ['GC', ...path].map(fmt).join('_').toUpperCase()
-const dotNotation = (pathParts: string[]) =>
+export const toEnvStr = (path: string[]) => ['GC', ...path].map(fmt).join('_').toUpperCase()
+export const dotNotation = (pathParts: string[]) =>
   pathParts
     .map((v) => {
       const idx = Number(v)
@@ -61,12 +61,12 @@ export function configToEnvSchema(schema: ZodNode) {
 
     if (node instanceof ZodObject) {
       if (path.length > 0) {
-        envSchema[pathStr(path)] = z
+        envSchema[toEnvStr(path)] = z
           .string()
           .optional()
           .refine(isJSON, { message: `Invalid JSON` })
           .transform((val) => (val ? JSON.parse(val) : val))
-        envToDot[pathStr(path)] = dotNotation(path)
+        envToDot[toEnvStr(path)] = dotNotation(path)
       }
 
       const typeNode = node as unknown as ZodObject<ZodRawShape>
@@ -81,12 +81,12 @@ export function configToEnvSchema(schema: ZodNode) {
     if (node instanceof ZodArray) {
       const arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
       if (path.length > 0) {
-        envSchema[pathStr(path)] = z
+        envSchema[toEnvStr(path)] = z
           .string()
           .optional()
           .refine(isJSON, { message: `Invalid JSON` })
           .transform((val) => (val ? JSON.parse(val) : val))
-        envToDot[pathStr(path)] = dotNotation(path)
+        envToDot[toEnvStr(path)] = dotNotation(path)
       }
 
       arr.forEach((key) => {
@@ -97,13 +97,13 @@ export function configToEnvSchema(schema: ZodNode) {
     }
 
     if (node instanceof ZodString || node instanceof ZodNumber || node instanceof ZodEnum) {
-      envSchema[pathStr(path)] = node.optional()
-      envToDot[pathStr(path)] = dotNotation(path)
+      envSchema[toEnvStr(path)] = node.optional()
+      envToDot[toEnvStr(path)] = dotNotation(path)
       return
     }
 
     if (node instanceof ZodBoolean) {
-      envSchema[pathStr(path)] = z
+      envSchema[toEnvStr(path)] = z
         .enum(['true', '1', 'false', '0'])
         .optional()
         .transform((v) => {
@@ -111,7 +111,7 @@ export function configToEnvSchema(schema: ZodNode) {
           if (v === 'false' || v === '0') return false
           return v
         })
-      envToDot[pathStr(path)] = dotNotation(path)
+      envToDot[toEnvStr(path)] = dotNotation(path)
       return
     }
 
@@ -135,23 +135,26 @@ export type ApplyResultItem = {
 }
 export type ApplyResult = ApplyResultItem[]
 
+export const filterEnv = (env: Record<string, string | undefined>) =>
+  Object.fromEntries(Object.entries(env).filter(([key]) => key.startsWith('GC_')))
+
 export function mergeEnvIntoConfig(
   schema: ZodNode,
   config: Record<string, unknown>,
   env: Record<string, string | undefined>,
 ) {
-  const filterEnv = Object.fromEntries(Object.entries(env).filter(([key]) => key.startsWith('GC_')))
+  const filteredEnv = filterEnv(env)
 
   const newConfig = cloneDeep(config)
   const [envSchema, envToDot] = configToEnvSchema(schema)
-  const result = envSchema.safeParse(filterEnv)
+  const result = envSchema.safeParse(filteredEnv)
 
   const applyResult: ApplyResult = []
 
   if (!result.success) {
     Object.entries(result.error.flatten().fieldErrors).forEach(([envVar, error]) => {
       const dotVar = envToDot[envVar]
-      const envValue = filterEnv[envVar]
+      const envValue = filteredEnv[envVar]
       applyResult.push({ envVar, envValue, dotVar, error })
     })
     return [undefined, applyResult] as const
@@ -159,7 +162,7 @@ export function mergeEnvIntoConfig(
 
   Object.entries(result.data).forEach(([envVar, value]) => {
     const dotVar = envToDot[envVar]
-    const envValue = filterEnv[envVar]
+    const envValue = filteredEnv[envVar]
 
     if (!dotVar) {
       applyResult.push({ envVar, envValue })

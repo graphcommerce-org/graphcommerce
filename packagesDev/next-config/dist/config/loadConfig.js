@@ -18,29 +18,42 @@ exports.loadConfig = void 0;
 // eslint-disable-next-line import/no-extraneous-dependencies
 const cosmiconfig_1 = require("cosmiconfig");
 const config_1 = require("../generated/config");
+const demoConfig_1 = require("./demoConfig");
 const mergeEnvIntoConfig_1 = require("./utils/mergeEnvIntoConfig");
 const rewriteLegacyEnv_1 = require("./utils/rewriteLegacyEnv");
 __exportStar(require("./utils/configToImportMeta"), exports);
 const moduleName = 'graphcommerce';
 const loader = (0, cosmiconfig_1.cosmiconfigSync)(moduleName);
 function loadConfig(cwd) {
+    const isMainProcess = !process.send;
     try {
         const result = loader.search(cwd);
-        if (!result)
-            throw Error("Couldn't find a graphcommerce.config.(m)js in the project.");
+        let confFile = result?.config;
+        const hasEnv = Object.keys((0, mergeEnvIntoConfig_1.filterEnv)(process.env)).length > 0;
+        if (!confFile && !hasEnv) {
+            if (isMainProcess)
+                console.warn('No graphcommerce.config.js or environment variables found in the project, using demo config');
+            confFile = demoConfig_1.demoConfig;
+        }
+        confFile ||= {};
         const schema = (0, config_1.GraphCommerceConfigSchema)();
-        const config = schema.parse(result.config);
-        if (!config)
-            throw Error("Couldn't find a graphcommerce.config.(m)js in the project.");
-        const [mergedConfig, applyResult] = (0, rewriteLegacyEnv_1.rewriteLegacyEnv)((0, config_1.GraphCommerceConfigSchema)(), config, process.env);
-        if (applyResult.length > 0)
+        const parsed = schema.safeParse(confFile);
+        const [mergedConfig, applyResult] = (0, rewriteLegacyEnv_1.rewriteLegacyEnv)((0, config_1.GraphCommerceConfigSchema)(), parsed.success ? parsed.data : {}, process.env);
+        if (applyResult.length > 0 && isMainProcess)
             console.log((0, mergeEnvIntoConfig_1.formatAppliedEnv)(applyResult));
-        return schema.parse(mergedConfig);
+        const finalParse = schema.parse(mergedConfig);
+        if (process.env.DEBUG && isMainProcess) {
+            console.log('Parsed configuration');
+            console.log(finalParse);
+        }
+        return finalParse;
     }
     catch (error) {
         if (error instanceof Error) {
-            console.log(error.message);
-            process.exit(1);
+            if (isMainProcess) {
+                console.log(error.message);
+                process.exit(1);
+            }
         }
         throw error;
     }

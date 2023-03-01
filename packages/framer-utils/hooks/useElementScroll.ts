@@ -3,7 +3,7 @@ import sync from 'framesync'
 import { RefObject, useMemo } from 'react'
 import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect'
 
-type ScrollMotionValue = { x: number; y: number; xMax: number; yMax: number }
+type ScrollMotionValue = { animating: boolean; x: number; y: number; xMax: number; yMax: number }
 
 export interface ScrollMotionValues {
   x: MotionValue<number>
@@ -20,7 +20,7 @@ const refScrollMap = new Map<
   MotionValue<ScrollMotionValue>
 >()
 
-const initval = () => motionValue({ x: 0, y: 0, xMax: 0, yMax: 0 })
+const initval = () => motionValue({ animating: false, x: 0, y: 0, xMax: 0, yMax: 0 })
 
 const getScrollMotion = (ref?: RefObject<HTMLElement | undefined>, sharedKey?: string) => {
   if (!ref) return initval()
@@ -50,7 +50,7 @@ export function useElementScroll(ref?: RefObject<HTMLElement | undefined>): Scro
     if (!element) return () => {}
 
     const updater = () => {
-      if (scroll.isAnimating()) return
+      if (scroll.get().animating) return
 
       sync.read(() => {
         const scrollnew = {
@@ -62,6 +62,7 @@ export function useElementScroll(ref?: RefObject<HTMLElement | undefined>): Scro
 
         if (JSON.stringify(scrollnew) !== JSON.stringify(scroll.get())) {
           scroll.set({
+            animating: false,
             x: element.scrollLeft,
             y: element.scrollTop,
             xMax: Math.max(0, element.scrollWidth - element.offsetWidth),

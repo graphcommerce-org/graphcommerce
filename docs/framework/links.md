@@ -36,8 +36,8 @@ If you want to use props of next/link and satisfy typescript you need to provide
 `component={NextLink}`.
 
 ```tsx
-import { Link } from '@mui/material'
 import { NextLink } from '@graphcommerce/next-ui'
+import { Link } from '@mui/material'
 
 function MyComponent() {
   return (
@@ -51,69 +51,11 @@ function MyComponent() {
 ### Using next/link with a custom component
 
 ```tsx
-import { Chip } from '@mui/material'
 import { NextLink } from '@graphcommerce/next-ui'
+import { Chip } from '@mui/material'
 
 function MyComponent() {
   return <Chip component={NextLink} href={`/${url}`} label={'my label'} />
-}
-```
-
-## Upgrading from Next.js 12
-
-Before Next.js 13, the next/link component needed to wrap a Material-UI Link
-component;
-
-```tsx
-import PageLink from 'next/link'
-import { Link } from '@mui/material'
-
-function MyComponent() {
-  return (
-    <PageLink href='/about' passHref>
-      <Link>About</Link>
-    </PageLink>
-  )
-}
-```
-
-To upgrade this component to Next.js 13, you can remove the PageLink component.
-
-```tsx
-import { Link } from '@mui/material'
-
-function MyComponent() {
-  return <Link href='/about'>About</Link>
-}
-```
-
-### Upgrading a Link that uses next/link props
-
-```tsx
-import PageLink from 'next/link'
-import { Link } from '@mui/material'
-
-function MyComponent() {
-  return (
-    <PageLink href='/about' passHref prefetch={false}>
-      <Link>Link without prefetch</Link>
-    </PageLink>
-  )
-}
-```
-
-```tsx
-import { Link } from '@mui/material'
-import { NextLink } from '@graphcommerce/next-ui'
-
-function MyComponent() {
-  return (
-    <>
-      <Link href='/about' component={NextLink} prefetch={false}>
-        Link without prefetch
-      </Link>
-    </>
-  )
 }
 ```
 

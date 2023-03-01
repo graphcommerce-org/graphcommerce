@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: disallow if not from canary
-        if: ${{ github.base_ref != 'canary' && github.head_ref !== 'changeset-release/from-canary' }}
+        if: ${{ github.base_ref != 'canary' && github.head_ref != 'changeset-release/from-canary' }}
         run: |
           echo "Please target the canary branch, only releases are supposed to be merged into main (base_ref: ${{ github.base_ref }},  head_ref: ${{ github.head_ref }})"
           exit 1

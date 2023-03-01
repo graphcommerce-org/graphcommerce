@@ -14,9 +14,7 @@ export function useScrollTo() {
       const ref = scrollerRef.current
       if (!ref) return
 
-      // @ts-expect-error private api, but we're updating the animation value here manually instead of relying on the event listener.
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      scroll.scroll.start(() => () => {})
+      scroll.scroll.set({ ...scroll.scroll.get(), animating: true })
 
       const xDone = new Promise<void>((onComplete) => {
         if (ref.scrollLeft !== to.x) {
@@ -62,7 +60,8 @@ export function useScrollTo() {
 
       await xDone
       await yDone
-      scroll.scroll.stop()
+
+      scroll.scroll.set({ ...scroll.scroll.get(), animating: false })
       enableSnap()
     },
     [disableSnap, enableSnap, register, scroll, scrollerRef, duration],
