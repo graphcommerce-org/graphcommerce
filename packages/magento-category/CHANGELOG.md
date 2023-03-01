@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.0-canary.28
+
+### Patch Changes
+
+- [#1823](https://github.com/graphcommerce-org/graphcommerce/pull/1823) [`605d74434`](https://github.com/graphcommerce-org/graphcommerce/commit/605d74434b78baa83f3574b6a4249eae0431d570) - Fix/upgrade instructions ([@paales](https://github.com/paales))
+
 ## 6.0.0-canary.27
 
 ## 6.0.0-canary.26
