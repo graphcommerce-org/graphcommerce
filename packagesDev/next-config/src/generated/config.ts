@@ -63,6 +63,10 @@ export type Scalars = {
  * - `debug.pluginStatus` -> `GC_DEBUG_PLUGIN_STATUS="1"`
  *
  *
+ * ## Exporting current configuration to environment variables
+ *
+ * You can export configuration by running `yarn graphcommerce export-config`
+ *
  * ## Extending the configuration in your  project
  *
  * Create a graphql/Config.graphqls file in your project and extend the GraphCommerceConfig, GraphCommerceI18nConfig inputs to add configuration.
@@ -153,6 +157,8 @@ export type GraphCommerceConfig = {
    * On older versions of GraphCommerce products would use a product type specific route.
    *
    * This should only be set to true if you use the /product/[url] AND /product/configurable/[url] routes.
+   *
+   * @deprecated Will be removed in a future version. [migration](../upgrading/graphcommerce-5-to-6.md#product-routing-changes)
    */
   legacyProductRoute?: InputMaybe<Scalars['Boolean']>;
   /** Limit the static generation of SSG when building */
@@ -172,6 +178,13 @@ export type GraphCommerceConfig = {
    * @experimental This is an experimental feature and may change in the future.
    */
   productFiltersPro?: InputMaybe<Scalars['Boolean']>;
+  /**
+   * By default we route products to /p/[url] but you can change this to /product/[url] if you wish.
+   *
+   * Default: '/p/'
+   * Example: '/product/'
+   */
+  productRoute?: InputMaybe<Scalars['String']>;
   /**
    * Allow the site to be indexed by search engines.
    * If false, the robots.txt file will be set to disallow all.
@@ -282,6 +295,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     magentoEndpoint: z.string().min(1),
     previewSecret: z.string().nullish(),
     productFiltersPro: z.boolean().nullish(),
+    productRoute: z.string().nullish(),
     robotsAllow: z.boolean().nullish(),
     wishlistHideForGuests: z.boolean().nullish(),
     wishlistIgnoreProductWishlistStatus: z.boolean().nullish()

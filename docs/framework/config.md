@@ -47,6 +47,10 @@ Examples:
 - `debug.pluginStatus` -> `GC_DEBUG_PLUGIN_STATUS="1"`
 
 
+## Exporting current configuration to environment variables
+
+You can export configuration by running `yarn graphcommerce export-config`
+
 ## Extending the configuration in your  project
 
 Create a graphql/Config.graphqls file in your project and extend the GraphCommerceConfig, GraphCommerceI18nConfig inputs to add configuration.
@@ -151,6 +155,8 @@ On older versions of GraphCommerce products would use a product type specific ro
 
 This should only be set to true if you use the /product/[url] AND /product/configurable/[url] routes.
 
+@deprecated Will be removed in a future version. [migration](../upgrading/graphcommerce-5-to-6.md#product-routing-changes)
+
 #### `limitSsg: Boolean`
 
 Limit the static generation of SSG when building
@@ -164,6 +170,13 @@ To enable next.js' preview mode, configure the secret you'd like to use.
 Product filters with better UI for mobile and desktop.
 
 @experimental This is an experimental feature and may change in the future.
+
+#### `productRoute: String`
+
+By default we route products to /p/[url] but you can change this to /product/[url] if you wish.
+
+Default: '/p/'
+Example: '/product/'
 
 #### `robotsAllow: Boolean`
 

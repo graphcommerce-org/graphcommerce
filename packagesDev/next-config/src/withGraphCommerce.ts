@@ -1,6 +1,7 @@
 import CircularDependencyPlugin from 'circular-dependency-plugin'
 import { DuplicatesPlugin } from 'inspectpack/plugin'
 import type { NextConfig } from 'next'
+import { Redirect, Rewrite } from 'next/dist/lib/load-custom-routes'
 import { DomainLocale } from 'next/dist/server/config'
 import { RemotePattern } from 'next/dist/shared/lib/image-config'
 import { DefinePlugin, Configuration, WebpackPluginInstance } from 'webpack'
@@ -66,6 +67,44 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
         'media.graphassets.com',
         ...(nextConfig.images?.domains ?? []),
       ],
+    },
+    redirects: async () => {
+      const redirects = (await nextConfig.redirects?.()) ?? []
+
+      if (!graphcommerceConfig.legacyProductRoute) {
+        const destination = `${graphcommerceConfig.productRoute ?? '/p/'}:url*`
+
+        redirects.push(
+          ...[
+            { source: '/product/bundle/:url*', destination, permanent: true },
+            { source: '/product/configurable/:url*', destination, permanent: true },
+            { source: '/product/downloadable/:url*', destination, permanent: true },
+            { source: '/product/grouped/:url*', destination, permanent: true },
+            { source: '/product/virtual/:url*', destination, permanent: true },
+          ],
+        )
+
+        if (destination !== '/product/:url*')
+          redirects.push({ source: '/product/:url*', destination, permanent: true })
+      }
+
+      return redirects
+    },
+    rewrites: async () => {
+      let rewrites = (await nextConfig.rewrites?.()) ?? []
+
+      if (Array.isArray(rewrites)) {
+        rewrites = { beforeFiles: rewrites, afterFiles: [], fallback: [] }
+      }
+
+      if (graphcommerceConfig.productRoute && graphcommerceConfig.productRoute !== '/p/') {
+        rewrites.beforeFiles.push({
+          source: `${graphcommerceConfig.productRoute ?? '/p/'}:path*`,
+          destination: '/p/:path*',
+        })
+      }
+
+      return rewrites
     },
     transpilePackages: [
       ...[...resolveDependenciesSync().keys()].slice(1),
