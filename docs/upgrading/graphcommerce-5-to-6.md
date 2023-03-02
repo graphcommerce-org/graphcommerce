@@ -32,6 +32,19 @@ function MyComponent() {
 }
 ```
 
+### Product routing changes
+
+The route for the product has changed from `/product/[url]`,
+`/product/configurable/[url]`, etc. to `/p/[url]` by default. This is a
+singlular product page for all product types.
+
+You can opt in to use the
+[legacyProductRoute](../framework/config.md#legacyproductroute-boolean) to keep
+the old behavior. This legacy routing will be removed in a future version.
+
+You can also change the product route from `/p/[url]` to something else by
+configuring [productRoute](../framework/config.md#productroute-string)
+
 ### Upgrading a Link that uses next/link props
 
 ```tsx

@@ -136,11 +136,6 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 }
 
 export const getStaticProps: GetPageStaticProps = async ({ params, locale, defaultLocale }) => {
-  if (!import.meta.graphCommerce.legacyProductRoute) {
-    const destination = `${locale === defaultLocale ? '' : `/${locale}`}/p/${params?.url}`
-    return { redirect: { destination, permanent: true } }
-  }
-
   const client = graphqlSharedClient(locale)
   const staticClient = graphqlSsrClient(locale)
 

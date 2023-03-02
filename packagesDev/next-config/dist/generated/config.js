@@ -23,6 +23,7 @@ function GraphCommerceConfigSchema() {
         magentoEndpoint: zod_1.z.string().min(1),
         previewSecret: zod_1.z.string().nullish(),
         productFiltersPro: zod_1.z.boolean().nullish(),
+        productRoute: zod_1.z.string().nullish(),
         robotsAllow: zod_1.z.boolean().nullish(),
         wishlistHideForGuests: zod_1.z.boolean().nullish(),
         wishlistIgnoreProductWishlistStatus: zod_1.z.boolean().nullish()

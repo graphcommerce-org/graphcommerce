@@ -3,6 +3,8 @@ extend input GraphCommerceConfig {
   On older versions of GraphCommerce products would use a product type specific route.
 
   This should only be set to true if you use the /product/[url] AND /product/configurable/[url] routes.
+
+  @deprecated Will be removed in a future version. [migration](../upgrading/graphcommerce-5-to-6.md#product-routing-changes)
   """
   legacyProductRoute: Boolean
   """
@@ -11,4 +13,12 @@ extend input GraphCommerceConfig {
   @experimental This is an experimental feature and may change in the future.
   """
   productFiltersPro: Boolean
+
+  """
+  By default we route products to /p/[url] but you can change this to /product/[url] if you wish.
+
+  Default: '/p/'
+  Example: '/product/'
+  """
+  productRoute: String
 }
