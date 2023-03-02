@@ -88,22 +88,24 @@ export async function redirectOrNotFound(
     // There is a URL, so we need to check if it can be found in the database.
     const permanent = routeData.route?.redirect_code === 301
 
-    const isProduct = isTypename(routeData.route, [
-      'ConfigurableProduct',
-      'BundleProduct',
-      'SimpleProduct',
-      'VirtualProduct',
-      'DownloadableProduct',
-      'GroupedProduct',
-    ])
-
-    if (isProduct) {
+    if (
+      isTypename(routeData.route, [
+        'ConfigurableProduct',
+        'BundleProduct',
+        'SimpleProduct',
+        'VirtualProduct',
+        'DownloadableProduct',
+        'GroupedProduct',
+      ])
+    ) {
       if (import.meta.graphCommerce.legacyProductRoute)
         return notFound(from, 'Redirects are only supported for single product pages.')
 
-      if (redirectUrl) return redirect(from, `/p/${redirectUrl}`, permanent, locale)
 
-      if (!routeData.products?.items?.find((i) => i?.url_key === routeData.route?.url_key))
+      if (redirectUrl) return redirect(from, `${productRoute}${redirectUrl}`, permanent, locale)
+
+      const url_key = routeData.route?.url_key
+      if (!routeData.products?.items?.find((i) => i?.url_key === url_key))
         return notFound(from, `Route found, but product isn't returned from products query`)
 
       return redirect(from, `/p/${routeData.route?.url_key}`, true, locale)
