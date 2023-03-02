@@ -69,8 +69,8 @@ export function useOverlayPosition(
   useEffect(() => {
     if (!scrollerRef.current) return () => {}
     const calc = () => {
-      const x = scrollerRef.current?.scrollLeft ?? scroll.x.get()
-      const y = scrollerRef.current?.scrollTop ?? scroll.y.get()
+      const x = scrollerRef.current?.scrollLeft || scroll.x.get()
+      const y = scrollerRef.current?.scrollTop || scroll.y.get()
 
       const positions = getScrollSnapPositions()
 
