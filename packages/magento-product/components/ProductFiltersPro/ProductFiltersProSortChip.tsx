@@ -63,7 +63,7 @@ export function ProductFiltersProSortChip(props: ProductListActionSortProps) {
           name='sort'
           layout='list'
           variant='default'
-          size='medium'
+          size='small'
           render={ActionCard}
           items={options}
         />

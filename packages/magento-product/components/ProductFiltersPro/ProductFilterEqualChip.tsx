@@ -80,7 +80,7 @@ export function ProductFilterEqualChip(props: FilterProps) {
           multiple
           layout='list'
           variant='default'
-          size='medium'
+          size='small'
           items={items}
         />
       )}
