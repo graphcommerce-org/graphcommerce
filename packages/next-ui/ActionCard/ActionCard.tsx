@@ -1,6 +1,6 @@
 import { alpha, Box, BoxProps, ButtonBase, ButtonProps, SxProps, Theme } from '@mui/material'
 import React from 'react'
-import { extendableComponent } from '../Styles'
+import { extendableComponent, responsiveVal } from '../Styles'
 import { breakpointVal } from '../Styles/breakpointVal'
 
 type Variants = 'outlined' | 'default'
@@ -115,20 +115,20 @@ export function ActionCard(props: ActionCardProps) {
           ),
 
           '&.sizeSmall': {
-            px: { xs: 1, sm: 1.1, md: 1.2 },
-            py: { xs: 0.6, sm: 0.8, md: 1 },
+            px: responsiveVal(6, 10),
+            py: responsiveVal(4, 6),
             display: 'flex',
             typography: 'body2',
           },
           '&.sizeMedium': {
-            px: { xs: 1.1, sm: 1.5, md: 1.8 },
-            py: { xs: 0.6, sm: 1, md: 1.2 },
+            px: responsiveVal(8, 12),
+            py: responsiveVal(6, 8),
             typography: 'body2',
             display: 'block',
           },
           '&.sizeLarge': {
-            px: { xs: 1.3, sm: 1.8, md: 2.2 },
-            py: { xs: 1, sm: 1.4, md: 1.8 },
+            px: responsiveVal(10, 14),
+            py: responsiveVal(8, 10),
             display: 'block',
           },
 
@@ -156,21 +156,24 @@ export function ActionCard(props: ActionCardProps) {
             },
 
             '&.variantDefault.sizeSmall': {
-              my: { xs: 0.4, sm: 0.5, md: 0.6 },
+              mt: `${responsiveVal(4, 6)}`,
+              mb: `${responsiveVal(4, 6)}`,
               '&::after': {
-                mb: { xs: -0.4, sm: -0.5, md: -0.6 },
+                mb: `calc(${responsiveVal(4, 6)} * -1)`,
               },
             },
             '&.variantDefault.sizeMedium': {
-              my: { xs: 0.6, sm: 0.7, md: 0.8 },
+              mt: `${responsiveVal(5, 7)}`,
+              mb: `${responsiveVal(5, 7)}`,
               '&::after': {
-                mb: { xs: -0.6, sm: -0.7, md: -0.8 },
+                mb: `calc(${responsiveVal(5, 7)} * -1)`,
               },
             },
             '&.variantDefault.sizeLarge': {
-              my: { xs: 0.8, sm: 0.9, md: 1 },
+              mt: `${responsiveVal(6, 9)}`,
+              mb: `${responsiveVal(6, 9)}`,
               '&::after': {
-                mb: { xs: -0.8, sm: -0.9, md: -1 },
+                mb: `calc(${responsiveVal(6, 9)} * -1)`,
               },
             },
           },
