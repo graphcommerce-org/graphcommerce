@@ -66,7 +66,7 @@ export function ChipOverlayOrPopper(props: ChipOverlayOrPopperProps) {
         size='responsive'
         component='button'
         variant='outlined'
-        color={selected && !activeEl ? 'default' : 'default'}
+        color='default'
         {...chipProps}
         clickable
         label={
@@ -85,11 +85,14 @@ export function ChipOverlayOrPopper(props: ChipOverlayOrPopperProps) {
             },
             ...(selected
               ? {
-                  background: `${alpha(
+                  backgroundImage: `linear-gradient(${alpha(
                     theme.palette.primary.main,
                     theme.palette.action.hoverOpacity,
-                  )}`,
+                  )},${alpha(theme.palette.primary.main, theme.palette.action.hoverOpacity)})`,
                   border: `1px solid transparent`,
+                  '&.MuiChip-clickable:hover': {
+                    background: theme.palette.primary.main,
+                  },
                 }
               : {}),
           }),
