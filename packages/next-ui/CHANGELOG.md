@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.0-canary.31
+
+### Patch Changes
+
+- [#1825](https://github.com/graphcommerce-org/graphcommerce/pull/1825) [`27302739e`](https://github.com/graphcommerce-org/graphcommerce/commit/27302739e5dcd8791e7a3df06855f6450b0a6d10) - Show mobile footer on tablet to prevent cart fab overlapping footer content ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 6.0.0-canary.30
 
 ### Patch Changes
