@@ -46,7 +46,7 @@ export function Footer(props: FooterProps) {
           gap: theme.spacings.md,
           '& > *': { maxWidth: 'max-content' },
 
-          [theme.breakpoints.up('sm')]: {
+          [theme.breakpoints.up('md')]: {
             gap: theme.spacings.sm,
             gridTemplateAreas: `
               'social switcher'
@@ -84,7 +84,7 @@ export function Footer(props: FooterProps) {
         sx={(theme) => ({
           gridArea: 'switcher',
           justifySelf: 'end',
-          [theme.breakpoints.down('sm')]: {
+          [theme.breakpoints.down('md')]: {
             justifySelf: 'center',
           },
         })}
@@ -96,7 +96,7 @@ export function Footer(props: FooterProps) {
         sx={(theme) => ({
           gridArea: 'support',
           justifySelf: 'flex-end',
-          [theme.breakpoints.down('sm')]: {
+          [theme.breakpoints.down('md')]: {
             justifySelf: 'center',
           },
         })}
@@ -112,7 +112,7 @@ export function Footer(props: FooterProps) {
           alignContent: 'center',
           gridArea: 'links',
           gap: theme.spacings.sm,
-          [theme.breakpoints.down('sm')]: {
+          [theme.breakpoints.down('md')]: {
             gridAutoFlow: 'row',
             textAlign: 'center',
             gap: `8px`,
