@@ -30,9 +30,9 @@ function loadConfig(cwd) {
         const result = loader.search(cwd);
         let confFile = result?.config;
         const hasEnv = Object.keys((0, mergeEnvIntoConfig_1.filterEnv)(process.env)).length > 0;
-        if (!confFile && !hasEnv) {
+        if (!confFile) {
             if (isMainProcess)
-                console.warn('No graphcommerce.config.js or environment variables found in the project, using demo config');
+                console.warn('No graphcommerce.config.js found in the project, using demo config');
             confFile = demoConfig_1.demoConfig;
         }
         confFile ||= {};

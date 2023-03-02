@@ -15,4 +15,5 @@ exports.demoConfig = {
     ],
     productFiltersPro: true,
     robotsAllow: false,
+    demoMode: true,
 };
