@@ -115,31 +115,34 @@ export function ActionCard(props: ActionCardProps) {
           ),
 
           '&.sizeSmall': {
-            px: responsiveVal(6, 10),
+            px: responsiveVal(8, 12),
             py: responsiveVal(4, 6),
             display: 'flex',
             typography: 'body2',
           },
           '&.sizeMedium': {
-            px: responsiveVal(8, 12),
-            py: responsiveVal(6, 8),
+            px: responsiveVal(10, 14),
+            py: responsiveVal(10, 12),
             typography: 'body2',
             display: 'block',
           },
           '&.sizeLarge': {
-            px: responsiveVal(10, 14),
-            py: responsiveVal(8, 10),
+            px: responsiveVal(12, 16),
+            py: responsiveVal(12, 14),
             display: 'block',
           },
 
           '&.variantDefault': {
+            '&:first-of-type': {
+              marginTop: '1px !important',
+            },
             '&::after': {
               content: '""',
               display: 'block',
               position: 'absolute',
               width: '100%',
               left: 0,
-              bottom: 0,
+              bottom: '-1px',
               borderBottom: `1px solid ${theme.palette.divider}`,
             },
             '&.selected': {
@@ -156,24 +159,24 @@ export function ActionCard(props: ActionCardProps) {
             },
 
             '&.variantDefault.sizeSmall': {
-              mt: `${responsiveVal(4, 6)}`,
-              mb: `${responsiveVal(4, 6)}`,
+              mt: { xs: '2px', sm: '3px', md: '5px' },
+              mb: { xs: '3px', sm: '4px', md: '6px' },
               '&::after': {
-                mb: `calc(${responsiveVal(4, 6)} * -1)`,
+                mb: { xs: '-2px', sm: '-3px', md: '-5px' },
               },
             },
             '&.variantDefault.sizeMedium': {
-              mt: `${responsiveVal(5, 7)}`,
-              mb: `${responsiveVal(5, 7)}`,
+              mt: { xs: '4px', sm: '5px', md: '6px' },
+              mb: { xs: '5px', sm: '6px', md: '7px' },
               '&::after': {
-                mb: `calc(${responsiveVal(5, 7)} * -1)`,
+                mb: { xs: '-4px', sm: '-5px', md: '-6px' },
               },
             },
             '&.variantDefault.sizeLarge': {
-              mt: `${responsiveVal(6, 9)}`,
-              mb: `${responsiveVal(6, 9)}`,
+              mt: { xs: '5px', sm: '7px', md: '8px' },
+              mb: { xs: '6px', sm: '8px', md: '9px' },
               '&::after': {
-                mb: `calc(${responsiveVal(6, 9)} * -1)`,
+                mb: { xs: '-5px', sm: '-7px', md: '-8px' },
               },
             },
           },
