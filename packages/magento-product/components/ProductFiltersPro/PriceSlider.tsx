@@ -37,7 +37,7 @@ export function PriceSlider(props: PriceSliderProps) {
   return (
     <Box
       sx={[
-        (theme) => ({ pt: theme.spacings.xs, pb: theme.spacings.xs }),
+        (theme) => ({ pt: theme.spacings.md, pb: theme.spacings.xs }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
       className={classes.container}
