@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.0-canary.29
+
+### Minor Changes
+
+- [#1828](https://github.com/graphcommerce-org/graphcommerce/pull/1828) [`3df85faf1`](https://github.com/graphcommerce-org/graphcommerce/commit/3df85faf189b95e2c7d9c3fc756474fcafb1c8b4) - Added new `productRoute` configuration to create freedom in the actual product route used (default: /p/). Simplified redirects from legacy product routes to new routes by creating redirects. ([@paales](https://github.com/paales))
+
 ## 6.0.0-canary.28
 
 ### Patch Changes
