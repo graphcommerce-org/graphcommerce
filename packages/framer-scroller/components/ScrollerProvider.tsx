@@ -68,6 +68,7 @@ function useObserveItems(scrollerRef: ReactHtmlRefObject, items: MotionValue<Ite
 export function ScrollerProvider(props: ScrollerProviderProps) {
   const scrollerRef = useRef<HTMLDivElement>()
   const cancels = useRef<PlaybackControls[]>([])
+  const scroll = useElementScroll(scrollerRef)
 
   const {
     scrollSnapAlign = 'center center',
@@ -102,24 +103,16 @@ export function ScrollerProvider(props: ScrollerProviderProps) {
   const disableSnap = useCallback(() => {
     if (snap.get() === false) return
     stop()
+    scroll.scroll.set({ ...scroll.scroll.get(), animating: true })
     snap.set(false)
-  }, [snap, stop])
+  }, [snap, stop, scroll])
 
   const enableSnap = useCallback(() => {
-    if (!scrollerRef.current || snap.get() === true) return
-
+    if (snap.get() === true) return
     stop()
-
-    // We're setting the current scrollLeft to prevent resetting the scroll position on Safari 14.
-    const l = scrollerRef.current.scrollLeft
-    const t = scrollerRef.current.scrollTop
     snap.set(true)
-    requestAnimationFrame(() => {
-      if (!scrollerRef.current) return
-      scrollerRef.current.scrollLeft = l
-      scrollerRef.current.scrollTop = t
-    })
-  }, [snap, stop])
+    scroll.scroll.set({ ...scroll.scroll.get(), animating: false })
+  }, [snap, stop, scroll])
 
   useObserveItems(scrollerRef, items)
 
@@ -332,8 +325,6 @@ export function ScrollerProvider(props: ScrollerProviderProps) {
 
     return { x: 0, y: 0, [axis]: position }
   }
-
-  const scroll = useElementScroll(scrollerRef)
 
   const value = useConstant<ScrollerContext>(() => ({
     scrollerRef,

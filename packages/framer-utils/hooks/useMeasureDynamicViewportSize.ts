@@ -2,6 +2,7 @@ import { motionValue, MotionValue } from 'framer-motion'
 import { useEffect } from 'react'
 import { clientSize } from '../utils/clientSize'
 import { useConstant } from './useConstant'
+import sync from 'framesync'
 import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect'
 
 export type UseClientSizeReturn = { x: MotionValue<string>; y: MotionValue<string> }
@@ -9,17 +10,17 @@ export type UseClientSizeOptions = { x?: string; y?: string }
 
 /** @deprecated Please use dvh() or dvw() instead */
 export const clientSizeCssVar = {
-  y: `var(--client-size-y, 100vh)`,
-  x: `var(--client-size-x, 100vw)`,
+  y: `var(--client-size-y)`,
+  x: `var(--client-size-x)`,
 }
 
 export const dvh = (p = 100) => {
-  if (p === 100) return 'var(--client-size-y, 100vh)'
-  return `calc(var(--client-size-y, 100vh) * ${p / 100})`
+  if (p === 100) return 'var(--client-size-y)'
+  return `calc(var(--client-size-y) * ${p / 100})`
 }
 export const dvw = (p = 100) => {
-  if (p === 100) return 'var(--client-size-x, 100vw)'
-  return `calc(var(--client-size-x, 100vw) * ${p / 100})`
+  if (p === 100) return 'var(--client-size-x)'
+  return `calc(var(--client-size-x) * ${p / 100})`
 }
 
 let watching = false
@@ -32,19 +33,24 @@ export function useMeasureDynamicViewportSize() {
   useIsomorphicLayoutEffect(() => {
     if (watching === true) return () => {}
 
+    const hasSupport = globalThis.CSS?.supports?.('height: 100dvh') ?? false
+
+    if (hasSupport) return () => {}
+
     const recalc = () => {
       document.body.style.setProperty('--client-size-x', `${global.window?.innerWidth ?? 0}px`)
       document.body.style.setProperty('--client-size-y', `${global.window?.innerHeight ?? 0}px`)
     }
+    const recalcSynced = () => sync.read(recalc)
 
-    window.addEventListener('resize', recalc)
+    window.addEventListener('resize', recalcSynced)
 
-    recalc()
+    recalcSynced()
     watching = true
 
     return () => {
       watching = false
-      window.removeEventListener('resize', recalc)
+      window.removeEventListener('resize', recalcSynced)
     }
   }, [])
 }

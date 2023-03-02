@@ -1,3 +1,4 @@
+import { GlobalStyles } from '@mui/material'
 import { LazyMotion } from 'framer-motion'
 
 export type GraphCommerceProviderProps = {
@@ -15,6 +16,18 @@ export function CssAndFramerMotionProvider({ children }: GraphCommerceProviderPr
   return (
     <LazyMotion features={async () => (await import('./framerFeatures')).default} strict>
       {children}
+      <GlobalStyles
+        styles={{
+          ':root': {
+            '--client-size-y': '100vh',
+            '--client-size-x': '100vw',
+            '@supports(height: 100dvh)': {
+              '--client-size-y': '100dvh',
+              '--client-size-x': '100dvw',
+            },
+          },
+        }}
+      />
     </LazyMotion>
   )
 }
