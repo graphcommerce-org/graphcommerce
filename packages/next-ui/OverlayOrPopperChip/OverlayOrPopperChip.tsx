@@ -1,5 +1,6 @@
 import {
   alpha,
+  lighten,
   Badge,
   Chip,
   ChipProps,
@@ -85,13 +86,17 @@ export function ChipOverlayOrPopper(props: ChipOverlayOrPopperProps) {
             },
             ...(selected
               ? {
-                  backgroundImage: `linear-gradient(${alpha(
+                  background: lighten(
                     theme.palette.primary.main,
-                    theme.palette.action.hoverOpacity,
-                  )},${alpha(theme.palette.primary.main, theme.palette.action.hoverOpacity)})`,
+                    1 - theme.palette.action.hoverOpacity,
+                  ),
                   border: `1px solid transparent`,
                   '&.MuiChip-clickable:hover': {
-                    background: theme.palette.primary.main,
+                    background: lighten(
+                      theme.palette.primary.main,
+                      1 - theme.palette.action.hoverOpacity * 2,
+                    ),
+                    border: `1px solid transparent`,
                   },
                 }
               : {}),
