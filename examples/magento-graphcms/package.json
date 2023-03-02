@@ -20,7 +20,6 @@
   },
   "dependencies": {
     "@babel/core": "^7.21.0",
-    "@changesets/cli": "2.26.0",
     "@graphcommerce/cli": "6.0.0-canary.28",
     "@graphcommerce/demo-magento-graphcommerce": "6.0.0-canary.28",
     "@graphcommerce/ecommerce-ui": "6.0.0-canary.28",
