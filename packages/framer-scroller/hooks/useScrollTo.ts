@@ -14,8 +14,6 @@ export function useScrollTo() {
       const ref = scrollerRef.current
       if (!ref) return
 
-      scroll.scroll.set({ ...scroll.scroll.get(), animating: true })
-
       const xDone = new Promise<void>((onComplete) => {
         if (ref.scrollLeft !== to.x) {
           disableSnap()
@@ -61,7 +59,6 @@ export function useScrollTo() {
       await xDone
       await yDone
 
-      scroll.scroll.set({ ...scroll.scroll.get(), animating: false })
       enableSnap()
     },
     [disableSnap, enableSnap, register, scroll, scrollerRef, duration],
