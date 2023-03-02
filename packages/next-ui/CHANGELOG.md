@@ -1,5 +1,13 @@
 # Change Log
 
+## 6.0.0-canary.30
+
+### Patch Changes
+
+- [#1829](https://github.com/graphcommerce-org/graphcommerce/pull/1829) [`5f5f0dd1e`](https://github.com/graphcommerce-org/graphcommerce/commit/5f5f0dd1e0960b4cad694c5aaddffc7ccfc2bb1a) - Fix overlay right variant closing automatically in Firefox ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#1829](https://github.com/graphcommerce-org/graphcommerce/pull/1829) [`52ecfc2ad`](https://github.com/graphcommerce-org/graphcommerce/commit/52ecfc2ad25fc6ef92465862fb94c1829bdd7c52) - Dynamic viewport height when supported ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 6.0.0-canary.29
 
 ## 6.0.0-canary.28
