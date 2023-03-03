@@ -64,7 +64,7 @@ export function PopperPanelActions(props: PanelActionsProps) {
           type='button'
           onClick={onApply}
           variant='pill'
-          size='large'
+          size='medium'
           color='primary'
           fullWidth
         >
