@@ -37,6 +37,7 @@ export const ActionCardLayout = React.forwardRef<HTMLDivElement, ActionCardLayou
             '&.layoutList': {
               display: 'grid',
               height: 'min-content',
+              pt: '1px',
             },
             '&.layoutGrid': {
               display: 'grid',

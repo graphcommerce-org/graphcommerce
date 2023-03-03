@@ -109,8 +109,8 @@ export function ActionCard(props: ActionCardProps) {
         (theme) => ({
           ...breakpointVal(
             'borderRadius',
-            theme.shape.borderRadius * 2.5,
-            theme.shape.borderRadius * 4,
+            theme.shape.borderRadius * 1.5,
+            theme.shape.borderRadius * 3,
             theme.breakpoints.values,
           ),
 
@@ -133,9 +133,6 @@ export function ActionCard(props: ActionCardProps) {
           },
 
           '&.variantDefault': {
-            '&:first-of-type': {
-              marginTop: '1px !important',
-            },
             '&::after': {
               content: '""',
               display: 'block',
@@ -294,7 +291,6 @@ export function ActionCard(props: ActionCardProps) {
                 className={classes.title}
                 sx={{
                   typography: 'subtitle2',
-                  '&.sizeMedium': { typographty: 'subtitle1' },
                   '&.sizeLarge': { typography: 'h6' },
                 }}
               >
