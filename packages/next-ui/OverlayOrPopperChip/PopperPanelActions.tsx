@@ -44,7 +44,7 @@ export function PopperPanelActions(props: PanelActionsProps) {
         }
       >
         <Typography
-          variant='h6'
+          variant='subtitle1'
           component='span'
           sx={{
             display: 'block',
