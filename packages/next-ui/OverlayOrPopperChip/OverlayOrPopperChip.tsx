@@ -44,7 +44,7 @@ export function ChipOverlayOrPopper(props: ChipOverlayOrPopperProps) {
         '.MuiBadge-badge': {
           position: 'relative',
           transform: 'none',
-          ml: { xs: 0.4, md: 0.6 },
+          ml: { xs: '2px', md: '6px' },
           typography: 'caption',
           fontWeight: 'bold',
         },
