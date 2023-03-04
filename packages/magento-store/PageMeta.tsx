@@ -5,9 +5,8 @@ import {
 } from '@graphcommerce/next-ui'
 import { StoreConfigDocument } from './StoreConfig.gql'
 
-type PageMetaProps = Pick<NextPageMetaProps, 'title' | 'metaDescription' | 'metaRobots'> & {
+type PageMetaProps = Pick<NextPageMetaProps, 'title' | 'metaDescription' | 'metaRobots' | 'children'> & {
   canonical?: string
-  children?: React.ReactNode
 }
 
 export function PageMeta(props: PageMetaProps) {

@@ -20,9 +20,9 @@ export function ProductPageMeta(props: ProductPageMetaFragment) {
       </>}
       {name && <meta property='og:title' content={name} key='og-title' />}
       {media_gallery?.[0]?.url && <meta property='og:image' content={media_gallery[0].url} key='og-image' />}
-      {price_range?.maximum_price?.regular_price?.value && <meta property='product:price:amount' content={price_range.maximum_price.regular_price.value.toString()} key='og-price' />}
-      {price_range?.maximum_price?.final_price?.value && <meta property='product:sale_price:amount' content={price_range.maximum_price.final_price.value.toString()} key='og-sale-price' />}
-      {price_range?.maximum_price?.final_price?.currency && <meta property='product:price:currency' content={price_range.maximum_price.final_price.currency} key='og-currency' />}
+      {price_range?.minimum_price?.regular_price?.value && <meta property='product:price:amount' content={price_range.minimum_price.regular_price.value.toString()} key='og-price' />}
+      {price_range?.minimum_price?.final_price?.value && <meta property='product:sale_price:amount' content={price_range.minimum_price.final_price.value.toString()} key='og-sale-price' />}
+      {price_range?.minimum_price?.final_price?.currency && <meta property='product:price:currency' content={price_range.minimum_price.final_price.currency} key='og-currency' />}
       {categories && categories.map((category) => category?.name ? <meta property='product:category' content={category.name} key={category.uid} /> : null)}
       {canonical && <meta property='og:url' content={canonical} key='og-url' />}
     </PageMeta>

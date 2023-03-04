@@ -75,9 +75,7 @@ function CategoryPage(props: CategoryProps) {
         metaDescription={page?.metaDescription}
         metaRobots={page?.metaRobots.toLowerCase().split('_') as MetaRobots[]}
         canonical={page?.url ? `/${page.url}` : undefined}
-        name={category?.name}
-        meta_title={category?.meta_title}
-        meta_description={category?.meta_description}
+        {...category}
       />
       <LayoutHeader floatingMd>
         <LayoutTitle size='small' component='span'>

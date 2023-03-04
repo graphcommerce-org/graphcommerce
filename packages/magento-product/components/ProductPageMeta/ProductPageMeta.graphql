@@ -6,7 +6,7 @@ fragment ProductPageMeta on ProductInterface {
   meta_title
   meta_description
   price_range {
-    maximum_price {
+    minimum_price {
       final_price {
         value
         currency
