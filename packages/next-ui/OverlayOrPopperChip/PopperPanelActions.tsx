@@ -43,7 +43,16 @@ export function PopperPanelActions(props: PanelActionsProps) {
           </Fab>
         }
       >
-        <Typography variant='h6' component='span'>
+        <Typography
+          variant='subtitle1'
+          component='span'
+          sx={{
+            display: 'block',
+            textOverflow: 'ellipsis',
+            overflow: 'hidden',
+            whiteSpace: 'nowrap',
+          }}
+        >
           {title}
         </Typography>
       </LayoutHeader>
@@ -55,7 +64,7 @@ export function PopperPanelActions(props: PanelActionsProps) {
           type='button'
           onClick={onApply}
           variant='pill'
-          size='large'
+          size='medium'
           color='primary'
           fullWidth
         >

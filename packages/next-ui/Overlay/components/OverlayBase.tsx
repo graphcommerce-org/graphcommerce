@@ -249,7 +249,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
             bottom: 0,
             top: 0,
             left: 0,
-            backgroundColor: 'rgba(0, 0, 0, 0.3)',
+            backgroundColor: 'rgba(0, 0, 0, 0.2)',
             WebkitTapHighlightColor: 'transparent',
             willChange: 'opacity',
           },

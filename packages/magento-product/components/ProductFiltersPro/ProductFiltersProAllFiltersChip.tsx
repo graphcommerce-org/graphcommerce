@@ -57,6 +57,7 @@ export function ProductFiltersProAllFiltersChip(props: AllFiltersChip) {
       selected={hasFilters}
       breakpoint={false}
       overlayProps={{ variantMd: 'right', widthMd: '500px' }}
+      sx={{ '& .MuiBadge-root': { display: 'none' } }}
       {...rest}
     >
       {() => (

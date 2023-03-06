@@ -33,7 +33,7 @@ export function PopperPanel(props: PopperPanelProps) {
           bgcolor: 'background.paper',
           display: 'grid',
           gridTemplateRows: 'min-content auto min-content',
-          minWidth: 300,
+          minWidth: 350,
           overflowY: 'auto',
           maxHeight: '500px',
         }}

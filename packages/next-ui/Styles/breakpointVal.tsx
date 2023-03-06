@@ -6,7 +6,7 @@ export function breakpointVal(
 ) {
   const minSize = 320
   const breakpoints = Object.values(breakpointsObject)
-  const spread = breakpoints[breakpoints.length - 1]
+  const spread = breakpoints[breakpoints.length - 1] - minSize
 
   const entries = {}
 

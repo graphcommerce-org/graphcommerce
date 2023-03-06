@@ -1,4 +1,14 @@
-import { alpha, Chip, ChipProps, Typography, useEventCallback } from '@mui/material'
+import {
+  alpha,
+  lighten,
+  Badge,
+  Chip,
+  ChipProps,
+  SxProps,
+  Typography,
+  useEventCallback,
+  Theme,
+} from '@mui/material'
 import React, { useState } from 'react'
 import { IconSvg } from '../IconSvg'
 import { responsiveVal } from '../Styles'
@@ -8,7 +18,7 @@ import { OverlayOrPopperPanel, OverlayOrPopperPanelProps } from './OverlayOrPopp
 function isMulti(
   selectedLabel: React.ReactNode | React.ReactNode[],
 ): selectedLabel is React.ReactNode[] {
-  return Array.isArray(selectedLabel) && selectedLabel.length > 1
+  return Array.isArray(selectedLabel) && selectedLabel.length >= 1
 }
 
 export type ChipOverlayOrPopperProps = {
@@ -16,27 +26,30 @@ export type ChipOverlayOrPopperProps = {
   selected: boolean
   selectedLabel: React.ReactNode | React.ReactNode[]
   children: OverlayOrPopperPanelProps['children']
-
+  sx?: SxProps<Theme>
   chipProps?: Omit<ChipProps<'button'>, 'clickable' | 'label'>
 } & Omit<OverlayOrPopperPanelProps, 'activeEl' | 'children' | 'title'>
 
 export function ChipOverlayOrPopper(props: ChipOverlayOrPopperProps) {
-  let { label, selected, selectedLabel, children, chipProps, ...panelProps } = props
+  let { label, selected, selectedLabel, children, chipProps, sx = [], ...panelProps } = props
   const { onApply, onClose, onReset } = panelProps
   const [activeEl, setActiveEl] = useState<HTMLElement | null>(null)
 
   const chevronIcon = isMulti(selectedLabel) ? (
-    <Typography
-      variant='caption'
-      color='primary.main'
+    <Badge
+      color='primary'
+      badgeContent={selectedLabel.length}
       sx={{
-        display: 'flex',
         alignItems: 'center',
-        ml: responsiveVal(3, 8),
+        '.MuiBadge-badge': {
+          position: 'relative',
+          transform: 'none',
+          ml: { xs: '2px', md: '6px' },
+          typography: 'caption',
+          fontWeight: 'bold',
+        },
       }}
-    >
-      +{selectedLabel.length - 1}
-    </Typography>
+    />
   ) : (
     <IconSvg
       src={activeEl ? iconChevronUp : iconChevronDown}
@@ -54,12 +67,12 @@ export function ChipOverlayOrPopper(props: ChipOverlayOrPopperProps) {
         size='responsive'
         component='button'
         variant='outlined'
-        color={selected && !activeEl ? 'primary' : 'default'}
+        color='default'
         {...chipProps}
         clickable
         label={
           <Typography variant='body2' sx={{ display: 'flex', flexDirection: 'row' }}>
-            {selected ? selectedLabel : label}
+            {label}
             {chevronIcon}
           </Typography>
         }
@@ -73,17 +86,23 @@ export function ChipOverlayOrPopper(props: ChipOverlayOrPopperProps) {
             },
             ...(selected
               ? {
-                  border: `1px solid ${theme.palette.primary.main ?? theme.palette.primary.main}`,
-                  boxShadow: `inset 0 0 0 1px ${
-                    theme.palette.primary.main ?? theme.palette.primary.main
-                  },0 0 0 4px ${alpha(
+                  background: lighten(
                     theme.palette.primary.main,
-                    theme.palette.action.hoverOpacity,
-                  )} !important`,
+                    1 - theme.palette.action.hoverOpacity,
+                  ),
+                  border: `1px solid transparent`,
+                  '&.MuiChip-clickable:hover': {
+                    background: lighten(
+                      theme.palette.primary.main,
+                      1 - theme.palette.action.hoverOpacity * 2,
+                    ),
+                    border: `1px solid transparent`,
+                  },
                 }
               : {}),
           }),
           ...(Array.isArray(chipSx) ? chipSx : [chipSx]),
+          ...(Array.isArray(sx) ? sx : [sx]),
         ]}
       />
       <OverlayOrPopperPanel
