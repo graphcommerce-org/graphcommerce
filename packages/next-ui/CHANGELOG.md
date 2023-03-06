@@ -1,5 +1,13 @@
 # Change Log
 
+## 6.0.0-canary.32
+
+### Minor Changes
+
+- [#1814](https://github.com/graphcommerce-org/graphcommerce/pull/1814) [`15aa59049`](https://github.com/graphcommerce-org/graphcommerce/commit/15aa590493bf7639231f3bb3dd623c234ebad7cf) - - Show filter label, instead of value
+  - Actioncard default styling
+  - Active filter styling ([@ErwinOtten](https://github.com/ErwinOtten))
+
 ## 6.0.0-canary.31
 
 ### Patch Changes
