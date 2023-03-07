@@ -67,7 +67,7 @@ function useObserveItems(scrollerRef: ReactHtmlRefObject, items: MotionValue<Ite
 
 export function ScrollerProvider(props: ScrollerProviderProps) {
   const scrollerRef = useRef<HTMLDivElement>()
-  const cancels = useRef<PlaybackControls[]>([])
+  const running = useRef<PlaybackControls>()
   const scroll = useElementScroll(scrollerRef)
 
   const {
@@ -91,28 +91,26 @@ export function ScrollerProvider(props: ScrollerProviderProps) {
 
   // Cancel any running animations to prevent onComplete to be ran
   const stop = useCallback(() => {
-    cancels.current.forEach((c) => c?.stop())
-    cancels.current = []
+    running.current?.stop()
   }, [])
 
   // Register any running animations so they become cancelable
   const register = useCallback((controls: PlaybackControls) => {
-    cancels.current.push(controls)
+    running.current?.stop()
+    running.current = controls
   }, [])
 
   const disableSnap = useCallback(() => {
     if (snap.get() === false) return
-    stop()
     scroll.scroll.set({ ...scroll.scroll.get(), animating: true })
     snap.set(false)
-  }, [snap, stop, scroll])
+  }, [snap, scroll])
 
   const enableSnap = useCallback(() => {
     if (snap.get() === true) return
-    stop()
     snap.set(true)
     scroll.scroll.set({ ...scroll.scroll.get(), animating: false })
-  }, [snap, stop, scroll])
+  }, [snap, scroll])
 
   useObserveItems(scrollerRef, items)
 
