@@ -1,4 +1,4 @@
-import { NextLink, VariantInline } from '@graphcommerce/next-ui'
+import { NextLink, RowLink, VariantInline } from '@graphcommerce/next-ui'
 import { Link } from '@mui/material'
 
 import { RowLinksFragment } from '../RowLinks.gql'
@@ -9,15 +9,15 @@ export function Inline(props: RowLinksFragment) {
   return (
     <VariantInline title={title}>
       {pageLinks.map((pageLink) => (
-        <Link
-          component={NextLink}
-          href={pageLink.url}
+        <RowLink
+          url={pageLink.url}
           key={pageLink.id}
           color='inherit'
-          underline='hover'
+          disableRipple
+          sx={{ '&:hover': { textDecoration: 'underline' } }}
         >
           {pageLink.title}
-        </Link>
+        </RowLink>
       ))}
     </VariantInline>
   )

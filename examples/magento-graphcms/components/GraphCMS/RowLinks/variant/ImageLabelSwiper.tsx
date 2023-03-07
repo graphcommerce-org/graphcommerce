@@ -1,6 +1,6 @@
 import { Asset, RichText } from '@graphcommerce/graphcms-ui'
-import { NextLink, responsiveVal, VariantImageLabelSwiper } from '@graphcommerce/next-ui'
-import { Box, ButtonBase, Typography } from '@mui/material'
+import { responsiveVal, RowLink, VariantImageLabelSwiper } from '@graphcommerce/next-ui'
+import { Box, Typography } from '@mui/material'
 import { RowLinksFragment } from '../RowLinks.gql'
 
 export function ImageLabelSwiper(props: RowLinksFragment) {
@@ -9,10 +9,9 @@ export function ImageLabelSwiper(props: RowLinksFragment) {
   return (
     <VariantImageLabelSwiper title={title}>
       {pageLinks.map((pageLink) => (
-        <ButtonBase
-          component={NextLink}
+        <RowLink
+          url={pageLink.url}
           key={pageLink.id}
-          href={pageLink.url}
           sx={(theme) => ({
             display: 'flex',
             flexDirection: 'column',
@@ -45,7 +44,7 @@ export function ImageLabelSwiper(props: RowLinksFragment) {
               />
             )}
           </Box>
-        </ButtonBase>
+        </RowLink>
       ))}
     </VariantImageLabelSwiper>
   )
