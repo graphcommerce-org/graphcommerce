@@ -175,25 +175,16 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
         // When we're not switching variants, we update the vibility of the overlay.
         if (variant() === 'left') {
           const closedX = snapPositions.x[1] ?? 0
-          if (!scroller.className.includes('Navigation')) {
-            console.log('closedX', scrollX, closedX, (scrollX - closedX) / -closedX)
-          }
           positions.open.visible.set(closedX === 0 ? 0 : clampRound((scrollX - closedX) / -closedX))
         }
-
         if (variant() === 'right') {
           const openedX = snapPositions.x[1] ?? 0
           positions.open.visible.set(openedX === 0 ? 0 : clampRound(scrollX / openedX))
         }
-
         if (variant() === 'bottom') {
           const openedY = snapPositions.y[1] ?? 0
           positions.open.visible.set(openedY === 0 ? 0 : clampRound(scrolly / openedY))
         }
-      }
-
-      if (!scroller.className.includes('Navigation')) {
-        console.log(variant(), positions.open.visible.get())
       }
     }
 

@@ -1,4 +1,5 @@
 import { motionValue, MotionValue, useTransform } from 'framer-motion'
+import { equal } from '@wry/equality'
 import sync from 'framesync'
 import { RefObject, useMemo } from 'react'
 import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect'
@@ -52,33 +53,27 @@ export function useElementScroll(ref?: RefObject<HTMLElement | undefined>): Scro
     const updater = () => {
       if (scroll.get().animating) return
 
-      sync.read(() => {
-        const scrollnew = {
-          x: element.scrollLeft,
-          y: element.scrollTop,
-          xMax: Math.max(0, element.scrollWidth - element.offsetWidth),
-          yMax: Math.max(0, element.scrollHeight - element.offsetHeight),
-        }
+      const scrollValue: ScrollMotionValue = {
+        animating: false,
+        x: element.scrollLeft,
+        y: element.scrollTop,
+        xMax: Math.max(0, element.scrollWidth - element.offsetWidth),
+        yMax: Math.max(0, element.scrollHeight - element.offsetHeight),
+      }
 
-        if (JSON.stringify(scrollnew) !== JSON.stringify(scroll.get())) {
-          scroll.set({
-            animating: false,
-            x: element.scrollLeft,
-            y: element.scrollTop,
-            xMax: Math.max(0, element.scrollWidth - element.offsetWidth),
-            yMax: Math.max(0, element.scrollHeight - element.offsetHeight),
-          })
-        }
-      })
+      // console.log(element.scrollLeft, element.scrollTop)
+
+      if (!equal(scrollValue, scroll.get())) scroll.set(scrollValue)
     }
+    updater()
 
-    element.addEventListener('scroll', updater, { passive: true })
-
-    const ro = new ResizeObserver(updater)
+    const updaterTimed = () => sync.read(updater)
+    element.addEventListener('scroll', updaterTimed, { passive: true })
+    const ro = new ResizeObserver(updaterTimed)
     ro.observe(element)
 
     return () => {
-      element.removeEventListener('scroll', updater)
+      element.removeEventListener('scroll', updaterTimed)
       ro.disconnect()
     }
   }, [ref, scroll])
