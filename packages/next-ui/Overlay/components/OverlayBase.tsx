@@ -1,12 +1,19 @@
 import { Scroller, useScrollerContext, useScrollTo } from '@graphcommerce/framer-scroller'
-import { dvh, dvw, useIsomorphicLayoutEffect } from '@graphcommerce/framer-utils'
+import { dvh, dvw, useConstant, useIsomorphicLayoutEffect } from '@graphcommerce/framer-utils'
 import { Box, styled, SxProps, Theme, useTheme, useThemeProps } from '@mui/material'
-import { m, MotionProps, useDomEvent, useMotionValue, useTransform } from 'framer-motion'
+import {
+  m,
+  MotionProps,
+  motionValue,
+  useDomEvent,
+  useMotionValue,
+  useTransform,
+} from 'framer-motion'
+import framesync from 'framesync'
 import React, { useCallback, useEffect, useRef } from 'react'
 import { LayoutProvider } from '../../Layout/components/LayoutProvider'
 import { ExtendableComponent, extendableComponent } from '../../Styles'
-import { useOverlayPosition } from '../hooks/useOverlayPosition'
-import framesync from 'framesync'
+import { useMatchMedia } from '../../hooks/useMatchMedia'
 
 export type LayoutOverlayVariant = 'left' | 'bottom' | 'right'
 export type LayoutOverlaySize = 'floating' | 'minimal' | 'full'
@@ -103,8 +110,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
     props.smSpacingTop ?? ((theme) => `calc(${theme.appShell.headerHeightSm} * 0.5)`)
   )(th)
 
-  const { scrollerRef, snap, scroll } = useScrollerContext()
-  const positions = useOverlayPosition(variantSm, variantMd)
+  const { scrollerRef, snap, scroll, getScrollSnapPositions } = useScrollerContext()
   const scrollTo = useScrollTo()
   const beforeRef = useRef<HTMLDivElement>(null)
 
@@ -113,6 +119,102 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
   const classes = withState({ variantSm, variantMd, sizeSm, sizeMd, justifySm, justifyMd })
 
   const overlayRef = useRef<HTMLDivElement>(null)
+
+  const match = useMatchMedia()
+  const positions = useConstant(() => ({
+    open: { x: motionValue(0), y: motionValue(0), visible: motionValue(0) },
+    closed: { x: motionValue(0), y: motionValue(0) },
+  }))
+
+  const variant = useCallback(
+    () => (match.up('md') ? variantMd : variantSm),
+    [match, variantMd, variantSm],
+  )
+  const prevVariant = useRef<LayoutOverlayVariant>()
+
+  useIsomorphicLayoutEffect(() => {
+    const scroller = scrollerRef.current
+    if (!scroller) return () => {}
+
+    const handleSizing = () => {
+      const snapPositions = getScrollSnapPositions()
+      const x = snapPositions.x[snapPositions.x.length - 1]
+      const y = snapPositions.y[snapPositions.y.length - 1]
+
+      const clampRound = (value: number) => Math.round(Math.max(0, Math.min(1, value)) * 100) / 100
+
+      const scrollX = scroller.scrollLeft || scroll.x.get()
+      const scrolly = scroller.scrollTop || scroll.y.get()
+
+      if (variant() === 'left') {
+        positions.closed.x.set(x)
+        positions.open.x.set(0)
+      }
+      if (variant() === 'right') {
+        positions.open.x.set(x)
+        positions.closed.x.set(0)
+      }
+      if (variant() === 'bottom') {
+        positions.open.y.set(y)
+        positions.closed.y.set(0)
+      }
+
+      // if (!prevVariant.current) prevVariant.current = variant()
+      if (prevVariant.current !== variant()) {
+        // Set the initial position of the overlay.
+        // Make sure the overlay stays open when the variant changes.
+        if (position.get() !== OverlayPosition.OPENED) {
+          scroller.scrollLeft = positions.closed.x.get()
+          scroller.scrollTop = positions.closed.y.get()
+        } else {
+          scroller.scrollLeft = positions.open.x.get()
+          scroller.scrollTop = positions.open.y.get()
+        }
+        prevVariant.current = variant()
+      } else {
+        // When we're not switching variants, we update the vibility of the overlay.
+        if (variant() === 'left') {
+          const closedX = snapPositions.x[1] ?? 0
+          if (!scroller.className.includes('Navigation')) {
+            console.log('closedX', scrollX, closedX, (scrollX - closedX) / -closedX)
+          }
+          positions.open.visible.set(closedX === 0 ? 0 : clampRound((scrollX - closedX) / -closedX))
+        }
+
+        if (variant() === 'right') {
+          const openedX = snapPositions.x[1] ?? 0
+          positions.open.visible.set(openedX === 0 ? 0 : clampRound(scrollX / openedX))
+        }
+
+        if (variant() === 'bottom') {
+          const openedY = snapPositions.y[1] ?? 0
+          positions.open.visible.set(openedY === 0 ? 0 : clampRound(scrolly / openedY))
+        }
+      }
+
+      if (!scroller.className.includes('Navigation')) {
+        console.log(variant(), positions.open.visible.get())
+      }
+    }
+
+    const measureTimed = () => framesync.read(handleSizing)
+    handleSizing()
+
+    const cancelX = scroll.x.onChange(measureTimed)
+    const cancelY = scroll.y.onChange(measureTimed)
+
+    const ro = new ResizeObserver(measureTimed)
+    ro.observe(scrollerRef.current)
+    ;[...scrollerRef.current.children].forEach((child) => ro.observe(child))
+
+    window.addEventListener('resize', measureTimed)
+    return () => {
+      window.removeEventListener('resize', measureTimed)
+      ro.disconnect()
+      cancelX()
+      cancelY()
+    }
+  }, [getScrollSnapPositions, position, positions, scroll, scrollerRef, variant])
 
   // When the component is mounted, we need to set the initial position of the overlay.
   useIsomorphicLayoutEffect(() => {
@@ -144,26 +246,6 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
 
     return clearScrollLock
   }, [direction, isPresent, position, positions, scrollTo, scrollerRef, snap])
-
-  // Make sure the overlay stays open when resizing the window.
-  useEffect(() => {
-    const scroller = scrollerRef.current
-    if (!scroller) return () => {}
-
-    const resize = () => {
-      if (position.get() !== OverlayPosition.OPENED) {
-        scroller.scrollLeft = positions.closed.x.get()
-        scroller.scrollTop = positions.closed.y.get()
-      } else {
-        scroller.scrollLeft = positions.open.x.get()
-        scroller.scrollTop = positions.open.y.get()
-      }
-    }
-    const resizeTimed = () => framesync.read(resize)
-
-    window.addEventListener('resize', resizeTimed)
-    return () => window.removeEventListener('resize', resizeTimed)
-  }, [position, positions, scrollerRef])
 
   // When the overlay is closed by navigating away, we're closing the overlay.
   useEffect(() => {
