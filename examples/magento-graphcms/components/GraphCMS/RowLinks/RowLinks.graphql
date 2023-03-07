@@ -1,0 +1,8 @@
+fragment RowLinks on RowLinks {
+  title
+  linksVariant
+  pageLinks {
+    id
+    ...PageLink
+  }
+}

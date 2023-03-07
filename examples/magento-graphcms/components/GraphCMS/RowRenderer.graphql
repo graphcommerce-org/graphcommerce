@@ -15,5 +15,6 @@ fragment RowRenderer on Page {
     ...RowServiceOptions
     ...RowContentLinks
     ...RowProduct
+    ...RowLinks
   }
 }
