@@ -7,7 +7,7 @@ export function ImageLabelSwiper(props: RowLinksFragment) {
   const { title, pageLinks } = props
 
   return (
-    <VariantImageLabelSwiper title={title}>
+    <VariantImageLabelSwiper title={title} sx={{ '& .Scroller-root': { alignItems: 'start' } }}>
       {pageLinks.map((pageLink) => (
         <RowLink
           url={pageLink.url}
