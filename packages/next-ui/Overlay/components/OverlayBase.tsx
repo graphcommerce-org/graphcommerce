@@ -73,10 +73,6 @@ declare module '@mui/material/styles/components' {
 
 const MotionDiv = styled(m.div)({})
 
-const clearScrollLock = () => {
-  document.body.style.overflow = ''
-}
-
 export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
   const props = useThemeProps({ name, props: incomingProps })
 
@@ -191,8 +187,8 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
     const measureTimed = () => framesync.read(handleSizing)
     handleSizing()
 
-    const cancelX = scroll.x.onChange(measureTimed)
-    const cancelY = scroll.y.onChange(measureTimed)
+    const cancelX = scroll.x.on('change', measureTimed)
+    const cancelY = scroll.y.on('change', measureTimed)
 
     const ro = new ResizeObserver(measureTimed)
     ro.observe(scrollerRef.current)
@@ -234,8 +230,6 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
         snap.set(true)
       }
     }
-
-    return clearScrollLock
   }, [direction, isPresent, position, positions, scrollTo, scrollerRef, snap])
 
   // When the overlay is closed by navigating away, we're closing the overlay.
@@ -245,16 +239,19 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
 
     if (position.get() === OverlayPosition.UNOPENED) {
       position.set(OverlayPosition.CLOSED)
-      clearScrollLock()
       scroller.scrollLeft = positions.closed.x.get()
       scroller.scrollTop = positions.closed.y.get()
       safeToRemove?.()
+      document.body.style.overflow = ''
     } else {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       scrollTo({
         x: positions.closed.x.get(),
         y: positions.closed.y.get(),
-      }).then(() => safeToRemove?.())
+      }).then(() => {
+        safeToRemove?.()
+        document.body.style.overflow = ''
+      })
     }
   }, [isPresent, position, positions, safeToRemove, scrollTo, scrollerRef])
 
@@ -262,7 +259,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
   const closeOverlay = useCallback(() => {
     if (position.get() !== OverlayPosition.OPENED) return
     position.set(OverlayPosition.CLOSED)
-    clearScrollLock()
+    // document.body.style.overflow = ''
     onClosed()
   }, [onClosed, position])
 
@@ -342,7 +339,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
               cursor: 'default',
             },
             '&.mdSnapDirInline': {
-              overflow: 'auto',
+              overflow: active ? 'auto' : 'hidden',
             },
 
             height: dvh(100),
