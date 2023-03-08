@@ -1,5 +1,11 @@
 import { Scroller, useScrollerContext, useScrollTo } from '@graphcommerce/framer-scroller'
-import { dvh, dvw, useConstant, useIsomorphicLayoutEffect } from '@graphcommerce/framer-utils'
+import {
+  dvh,
+  dvw,
+  useConstant,
+  useElementScroll,
+  useIsomorphicLayoutEffect,
+} from '@graphcommerce/framer-utils'
 import { Box, styled, SxProps, Theme, useTheme, useThemeProps } from '@mui/material'
 import {
   m,
@@ -109,12 +115,13 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
   const { scrollerRef, snap, scroll, getScrollSnapPositions } = useScrollerContext()
   const scrollTo = useScrollTo()
   const beforeRef = useRef<HTMLDivElement>(null)
+  const overlayRef = useRef<HTMLDivElement>(null)
+  const overlayPaneRef = useRef<HTMLDivElement>(null)
 
   const position = useMotionValue<OverlayPosition>(OverlayPosition.UNOPENED)
+  const overlayPaneScroll = useElementScroll(overlayPaneRef)
 
   const classes = withState({ variantSm, variantMd, sizeSm, sizeMd, justifySm, justifyMd })
-
-  const overlayRef = useRef<HTMLDivElement>(null)
 
   const match = useMatchMedia()
   const positions = useConstant(() => ({
@@ -287,8 +294,12 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
 
   // Create the exact position for the LayoutProvider which offsets the top of the overlay
   const scrollYOffset = useTransform(
-    [scroll.y, positions.open.y],
-    ([y, openY]: number[]) => y - openY + offsetPageY,
+    [scroll.y, positions.open.y, overlayPaneScroll.y],
+    ([y, openY, paneY]: number[]) => {
+      if (typeof window === 'undefined') return 0
+      if (variant() === 'bottom') return y - openY + offsetPageY
+      return paneY + offsetPageY
+    },
   )
 
   const onClickAway = useCallback(
@@ -331,6 +342,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
         className={`${classes.scroller} ${className ?? ''}`}
         grid={false}
         onClick={onClickAway}
+        hideScrollbar
         sx={[
           (theme) => ({
             overscrollBehavior: 'contain',
@@ -378,15 +390,11 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
                 gridTemplate: `"overlay beforeOverlay"`,
                 borderTopRightRadius: theme.shape.borderRadius * 4,
                 borderBottomRightRadius: theme.shape.borderRadius * 4,
-
-                '&::-webkit-scrollbar': { display: 'none' },
               },
               '&.variantMdRight': {
                 gridTemplate: `"beforeOverlay overlay"`,
                 borderTopLeftRadius: theme.shape.borderRadius * 4,
                 borderBottomLeftRadius: theme.shape.borderRadius * 4,
-
-                '&::-webkit-scrollbar': { display: 'none' },
               },
               '&.variantMdBottom': {
                 borderTopLeftRadius: theme.shape.borderRadius * 4,
@@ -471,6 +479,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
           <MotionDiv
             {...overlayPaneProps}
             className={classes.overlayPane}
+            ref={overlayPaneRef}
             sx={(theme) => ({
               pointerEvents: 'all',
               backgroundColor: theme.palette.background.paper,
@@ -493,17 +502,15 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
                 '&.sizeSmFloating': {
                   borderRadius: `${theme.shape.borderRadius * 3}px`,
                 },
-                '&.variantSmLeft.sizeSmFull': {
-                  paddingBottom: '1px',
-                  minHeight: dvh(100),
-                },
-                '&.variantSmRight.sizeSmFull': {
-                  paddingBottom: '1px',
-                  minHeight: dvh(100),
-                },
                 '&.variantSmLeft, &.variantSmRight': {
                   width: widthSm || undefined,
                   maxWidth: dvw(100),
+                },
+                '&.variantSmLeft.sizeSmFull, &.variantSmRight.sizeSmFull': {
+                  paddingBottom: '1px',
+                  minHeight: dvh(100),
+                  overflowY: 'auto',
+                  maxHeight: dvh(100),
                 },
               },
               [theme.breakpoints.up('md')]: {
@@ -512,22 +519,21 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
                 '&.sizeMdFull.variantMdBottom': {
                   minHeight: `calc(${dvh(100)} - ${mdSpacingTop})`,
                 },
-                '&.sizeMdFull.variantMdLeft': {
-                  paddingBottom: '1px',
-                  minHeight: dvh(100),
+
+                '&.variantMdLeft, &.variantMdRight': {
+                  width: widthMd || 'max-content',
+                  maxWidth: dvw(100),
                 },
-                '&.sizeMdFull.variantMdRight': {
+                '&.variantMdLeft.sizeMdFull, &.variantMdRight.sizeMdFull': {
                   paddingBottom: '1px',
                   minHeight: dvh(100),
+                  overflowY: 'auto',
+                  maxHeight: dvh(100),
                 },
 
                 '&.variantMdBottom': {
                   borderTopLeftRadius: `${theme.shape.borderRadius * 4}px`,
                   borderTopRightRadius: `${theme.shape.borderRadius * 4}px`,
-                },
-                '&.variantMdLeft, &.variantMdRight': {
-                  width: widthMd || 'max-content',
-                  maxWidth: dvw(100),
                 },
 
                 '&.variantMdBottom.sizeMdFloating': {
