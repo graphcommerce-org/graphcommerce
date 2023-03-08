@@ -1,6 +1,22 @@
-import { LinguiProvider, LinguiProviderProps } from '@graphcommerce/lingui-next'
+import {
+  LinguiProvider,
+  LinguiProviderProps,
+  localeConfig,
+  SyncMessageLoader,
+} from '@graphcommerce/lingui-next'
+import { i18n } from '@lingui/core'
 
 type I18nProviderProps = Pick<LinguiProviderProps, 'locale' | 'children'>
+
+const ssrLoader: SyncMessageLoader = (l: string) =>
+  // eslint-disable-next-line global-require, import/no-dynamic-require, @typescript-eslint/no-var-requires
+  typeof window === 'undefined' ? require(`../../locales/${l}.po`) : { messages: [] }
+
+export function i18nSsrLoader(locale?: string) {
+  const linguiLocale = localeConfig(locale)
+  i18n.load(linguiLocale, ssrLoader(linguiLocale).messages)
+  i18n.activate(linguiLocale)
+}
 
 /**
  * Reason for it to exist: We're loading the translations from a relative path, this a good thing.
@@ -21,10 +37,7 @@ export function I18nProvider({ locale, children }: I18nProviderProps) {
       key={locale}
       locale={locale}
       loader={(l) => import(`../../locales/${l}.po`)}
-      ssrLoader={(l) =>
-        // eslint-disable-next-line global-require, import/no-dynamic-require
-        typeof window === 'undefined' ? require(`../../locales/${l}.po`) : { messages: {} }
-      }
+      ssrLoader={ssrLoader}
     >
       {children}
     </LinguiProvider>

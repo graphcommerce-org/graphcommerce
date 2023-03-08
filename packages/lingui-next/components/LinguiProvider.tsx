@@ -1,4 +1,4 @@
-import { i18nConfig } from '@graphcommerce/next-ui'
+import { i18nConfig, i18nConfigDefault } from '@graphcommerce/next-ui'
 import { i18n, Messages } from '@lingui/core'
 import { I18nProvider, I18nProviderProps } from '@lingui/react'
 import { nl, en, fr } from 'make-plural/plurals'
@@ -19,10 +19,13 @@ i18n.loadLocaleData({
   en: { plurals: en },
 })
 
+export const localeConfig = (locale: string = i18nConfigDefault().locale) =>
+  i18nConfig(locale)?.linguiLocale ?? locale?.split('-')[0]
+
 export function LinguiProvider(props: LinguiProviderProps) {
   const { loader, ssrLoader, locale, ...i18nProviderProps } = props
 
-  const localeOnly = (locale && i18nConfig(locale)?.linguiLocale) ?? locale?.split('-')[0]
+  const localeOnly = localeConfig(locale)
 
   useMemo(() => {
     const data = globalThis.document?.getElementById('lingui')
