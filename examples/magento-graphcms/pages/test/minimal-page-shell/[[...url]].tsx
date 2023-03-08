@@ -5,6 +5,7 @@ import {
   Stepper,
   LayoutTitle,
   LinkOrButton,
+  NextLink,
 } from '@graphcommerce/next-ui'
 import { Container, Divider, List, ListItemButton } from '@mui/material'
 import { m } from 'framer-motion'
@@ -131,6 +132,7 @@ export function LayoutDemo(props: LayoutDemoProps) {
           {primaryAction || backSteps === 0 ? (
             <ListItemButton
               href={`${baseUrl}/navigated`}
+              component={NextLink}
               style={{ paddingLeft: 0, paddingRight: 0 }}
             >
               Navigate
@@ -139,6 +141,7 @@ export function LayoutDemo(props: LayoutDemoProps) {
 
           <ListItemButton
             href={`${baseUrl}/with-primary`}
+            component={NextLink}
             disabled={!!primaryAction}
             style={{ paddingLeft: 0, paddingRight: 0 }}
           >
@@ -147,6 +150,7 @@ export function LayoutDemo(props: LayoutDemoProps) {
 
           <ListItemButton
             href={`${baseUrl}/with-stepper-1`}
+            component={NextLink}
             disabled={withStepper}
             style={{ paddingLeft: 0, paddingRight: 0 }}
           >
@@ -155,6 +159,7 @@ export function LayoutDemo(props: LayoutDemoProps) {
 
           <ListItemButton
             href={`${baseUrl}/with-icon`}
+            component={NextLink}
             disabled={withIcon}
             style={{ paddingLeft: 0, paddingRight: 0 }}
           >
@@ -163,6 +168,7 @@ export function LayoutDemo(props: LayoutDemoProps) {
 
           <ListItemButton
             href='/test/sheet?sizeMd=full&sizeSm=full&justifyMd=stretch&justifySm=stretch&variantMd=bottom&variantSm=bottom'
+            component={NextLink}
             disabled={isSheet && !isSidebarDrawer}
             style={{ paddingLeft: 0, paddingRight: 0 }}
           >
@@ -171,6 +177,7 @@ export function LayoutDemo(props: LayoutDemoProps) {
 
           <ListItemButton
             href='/test/sheet?sizeMd=full&sizeSm=full&justifyMd=start&justifySm=start&variantMd=left&variantSm=left'
+            component={NextLink}
             disabled={isLeftSidebarDrawer}
             style={{ paddingLeft: 0, paddingRight: 0 }}
           >
@@ -179,6 +186,7 @@ export function LayoutDemo(props: LayoutDemoProps) {
 
           <ListItemButton
             href='/test/sheet?sizeMd=full&sizeSm=full&justifyMd=start&justifySm=start&variantMd=right&variantSm=right'
+            component={NextLink}
             disabled={isSidebarDrawer && !isLeftSidebarDrawer}
             style={{ paddingLeft: 0, paddingRight: 0 }}
           >
@@ -187,6 +195,7 @@ export function LayoutDemo(props: LayoutDemoProps) {
 
           <ListItemButton
             href='/test/minimal-page-shell'
+            component={NextLink}
             disabled={isMinimal}
             style={{ paddingLeft: 0, paddingRight: 0 }}
           >
@@ -195,6 +204,7 @@ export function LayoutDemo(props: LayoutDemoProps) {
 
           <ListItemButton
             href='/test'
+            component={NextLink}
             disabled={isFullPage}
             style={{ paddingLeft: 0, paddingRight: 0 }}
           >
@@ -203,6 +213,7 @@ export function LayoutDemo(props: LayoutDemoProps) {
 
           <ListItemButton
             href='/test/with-title'
+            component={NextLink}
             disabled={withTitle}
             style={{ paddingLeft: 0, paddingRight: 0 }}
           >
@@ -211,6 +222,7 @@ export function LayoutDemo(props: LayoutDemoProps) {
 
           <ListItemButton
             href='/test/minimal-page-shell-subheader'
+            component={NextLink}
             disabled={isMinimalPageShellSubheader}
             style={{ paddingLeft: 0, paddingRight: 0 }}
           >
