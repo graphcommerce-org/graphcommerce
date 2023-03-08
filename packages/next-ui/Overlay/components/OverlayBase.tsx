@@ -214,11 +214,11 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
   useIsomorphicLayoutEffect(() => {
     const scroller = scrollerRef.current
 
-    if (!scroller || !isPresent) return undefined
+    if (!scroller || !isPresent) return
 
     const open = { x: positions.open.x.get(), y: positions.open.y.get() }
 
-    document.body.style.overflow = 'hidden'
+    if (variant() === 'right') document.body.style.overflow = 'hidden'
 
     if (position.get() !== OverlayPosition.OPENED) {
       if (direction === 1) {
@@ -237,7 +237,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
         snap.set(true)
       }
     }
-  }, [direction, isPresent, position, positions, scrollTo, scrollerRef, snap])
+  }, [direction, isPresent, position, positions, scrollTo, scrollerRef, snap, variant])
 
   // When the overlay is closed by navigating away, we're closing the overlay.
   useEffect(() => {
