@@ -61,8 +61,6 @@ export function useElementScroll(ref?: RefObject<HTMLElement | undefined>): Scro
         yMax: Math.max(0, element.scrollHeight - element.offsetHeight),
       }
 
-      // console.log(element.scrollLeft, element.scrollTop)
-
       if (!equal(scrollValue, scroll.get())) scroll.set(scrollValue)
     }
     updater()

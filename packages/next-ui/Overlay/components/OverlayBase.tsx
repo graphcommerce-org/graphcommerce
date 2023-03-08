@@ -323,13 +323,10 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
 
   const onClickAway = useCallback(
     (event: React.MouseEvent<HTMLDivElement>) => {
-      const isTarget =
-        event.target === scrollerRef.current ||
-        event.target === beforeRef.current ||
-        event.target === overlayRef.current
+      const isTarget = event.target === beforeRef.current
       if (isTarget && snap.get()) closeOverlay()
     },
-    [closeOverlay, scrollerRef, snap],
+    [closeOverlay, snap],
   )
 
   return (
@@ -429,7 +426,6 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
         ]}
       >
         <Box
-          onClick={onClickAway}
           className={classes.beforeOverlay}
           ref={beforeRef}
           sx={(theme) => ({
@@ -459,12 +455,12 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
         <Box
           className={classes.overlay}
           ref={overlayRef}
-          onClick={onClickAway}
           sx={(theme) => ({
             display: 'grid',
             gridArea: 'overlay',
             scrollSnapAlign: 'start',
             scrollSnapStop: 'always',
+            pointerEvents: 'none',
             [theme.breakpoints.down('md')]: {
               justifyContent: justifySm,
               alignItems: justifySm,
@@ -500,7 +496,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
             className={classes.overlayPane}
             ref={overlayPaneRef}
             sx={(theme) => ({
-              pointerEvents: 'all',
+              pointerEvents: 'auto',
               backgroundColor: theme.palette.background.paper,
               boxShadow: theme.shadows[24],
 
