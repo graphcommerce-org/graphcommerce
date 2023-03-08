@@ -111,8 +111,8 @@ export function useScroller<
 
     const newScroll = {
       ...scroll.scroll.get(),
-      x: scrollStart.x.get() - info.offset.x,
-      y: scrollStart.y.get() - info.offset.y,
+      x: Math.min(Math.max(0, scrollStart.x.get() - info.offset.x), scroll.scroll.get().xMax),
+      y: Math.min(Math.max(0, scrollStart.y.get() - info.offset.y), scroll.scroll.get().yMax),
     }
     scroll.scroll.set(newScroll)
     scrollerRef.current.scrollLeft = newScroll.x
