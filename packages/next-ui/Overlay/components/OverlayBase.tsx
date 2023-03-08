@@ -312,14 +312,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
   }, [offsetY])
 
   // Create the exact position for the LayoutProvider which offsets the top of the overlay
-  const scrollYOffset = useTransform(
-    [scroll.y, positions.open.y, overlayPaneScroll.y],
-    ([y, openY, paneY]: number[]) => {
-      if (typeof window === 'undefined') return 0
-      if (variant() === 'bottom') return y - openY + offsetPageY
-      return paneY + offsetPageY
-    },
-  )
+  const scrollYOffset = useTransform(overlayPaneScroll.y, (paneY) => paneY + offsetPageY)
 
   const onClickAway = useCallback(
     (event: React.MouseEvent<HTMLDivElement>) => {
@@ -502,57 +495,77 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
 
               [theme.breakpoints.down('md')]: {
                 minWidth: '80vw',
+                overflowY: 'auto',
                 '&:not(.sizeSmFull)': {
                   width: 'auto',
                 },
 
-                '&.variantSmBottom.sizeSmFull': {
-                  minHeight: `calc(${dvh(100)} - ${smSpacingTop})`,
-                },
-
                 '&.variantSmBottom': {
+                  maxHeight: `calc(${dvh(100)} - ${smSpacingTop})`,
+                  '&.sizeSmFloating': {
+                    maxHeight: `calc(${dvh(100)} - (${theme.page.vertical} * 2))`,
+                  },
+                  '&.sizeSmFull': {
+                    height: `calc(${dvh(100)} - ${smSpacingTop})`,
+                  },
+
                   borderTopLeftRadius: `${theme.shape.borderRadius * 3}px`,
                   borderTopRightRadius: `${theme.shape.borderRadius * 3}px`,
                 },
-                '&.sizeSmFloating': {
-                  borderRadius: `${theme.shape.borderRadius * 3}px`,
-                },
                 '&.variantSmLeft, &.variantSmRight': {
-                  width: widthSm || undefined,
+                  width: widthSm || 'max-content',
                   maxWidth: dvw(100),
+                  maxHeight: dvh(100),
+                  '&.sizeSmFull': {
+                    height: dvh(100),
+                  },
+                  '&.sizeSmFloating': {
+                    maxHeight: `calc(${dvh(100)} - (${theme.page.vertical} * 2))`,
+                  },
                 },
+
                 '&.variantSmLeft.sizeSmFull, &.variantSmRight.sizeSmFull': {
                   paddingBottom: '1px',
-                  minHeight: dvh(100),
-                  overflowY: 'auto',
-                  maxHeight: dvh(100),
+                },
+
+                '&.sizeSmFloating': {
+                  borderRadius: `${theme.shape.borderRadius * 3}px`,
                 },
               },
               [theme.breakpoints.up('md')]: {
                 minWidth: '1px',
-
-                '&.sizeMdFull.variantMdBottom': {
-                  minHeight: `calc(${dvh(100)} - ${mdSpacingTop})`,
-                },
-
-                '&.variantMdLeft, &.variantMdRight': {
-                  width: widthMd || 'max-content',
-                  maxWidth: dvw(100),
-                },
-                '&.variantMdLeft.sizeMdFull, &.variantMdRight.sizeMdFull': {
-                  paddingBottom: '1px',
-                  minHeight: dvh(100),
-                  overflowY: 'auto',
-                  maxHeight: dvh(100),
+                overflowY: 'auto',
+                overscrollBehavior: 'contain',
+                '&.variantMdBottom.sizeMdFloating:not(.justifyMdStretch)': {
+                  width: widthMd,
                 },
 
                 '&.variantMdBottom': {
+                  maxHeight: `calc(${dvh(100)} - ${mdSpacingTop})`,
+                  '&.sizeMdFloating': {
+                    maxHeight: `calc(${dvh(100)} - (${theme.page.vertical} * 2))`,
+                  },
+                  '&.sizeMdFull': {
+                    height: `calc(${dvh(100)} - ${mdSpacingTop})`,
+                  },
+
                   borderTopLeftRadius: `${theme.shape.borderRadius * 4}px`,
                   borderTopRightRadius: `${theme.shape.borderRadius * 4}px`,
                 },
+                '&.variantMdLeft, &.variantMdRight': {
+                  width: widthMd || 'max-content',
+                  maxWidth: dvw(100),
+                  maxHeight: dvh(100),
+                  '&.sizeMdFull': {
+                    height: dvh(100),
+                  },
+                  '&.sizeMdFloating': {
+                    maxHeight: `calc(${dvh(100)} - (${theme.page.vertical} * 2))`,
+                  },
+                },
 
-                '&.variantMdBottom.sizeMdFloating': {
-                  width: widthMd,
+                '&.variantMdLeft.sizeMdFull, &.variantMdRight.sizeMdFull': {
+                  paddingBottom: '1px',
                 },
 
                 '&.sizeMdFloating': {

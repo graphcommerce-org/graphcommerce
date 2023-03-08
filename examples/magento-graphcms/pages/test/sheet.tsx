@@ -6,7 +6,9 @@ import {
   LayoutOverlayState,
   useLayoutState,
 } from '@graphcommerce/next-ui/LayoutOverlay/test/LayoutOverlayDemo'
-import { capitalize, Container, Hidden, Typography } from '@mui/material'
+import { capitalize, Container, Hidden, ListItemButton, Typography } from '@mui/material'
+import { m } from 'framer-motion'
+import { useState } from 'react'
 
 type Size = 'Sm' | 'Md'
 
@@ -17,6 +19,8 @@ function SheetDemo() {
 
   const form = useForm<LayoutOverlayState>({ defaultValues: layout, mode: 'onChange' })
   const { register } = form
+  const [scroll, setScroll] = useState<boolean>(false)
+
   const { variantMd, variantSm, justifyMd, justifySm, sizeMd, sizeSm } = layout
 
   const submit = form.handleSubmit(setLayout)
@@ -24,7 +28,7 @@ function SheetDemo() {
 
   return (
     <>
-      <LayoutOverlayHeader switchPoint={0}>
+      <LayoutOverlayHeader>
         <LayoutTitle size='small'>
           <Hidden mdDown>
             Overlay Md {variantMd} {justifyMd} {sizeMd}
@@ -34,13 +38,22 @@ function SheetDemo() {
           </Hidden>
         </LayoutTitle>
       </LayoutOverlayHeader>
+
+      <LayoutTitle>
+        <Hidden mdDown>
+          Overlay Md {variantMd} {justifyMd} {sizeMd}
+        </Hidden>
+        <Hidden smUp>
+          Overlay Sm {variantSm} {justifySm} {sizeSm}
+        </Hidden>
+      </LayoutTitle>
       <Container maxWidth={false} sx={{ minWidth: responsiveVal(250, 500) }}>
         <form style={{ paddingTop: '100px' }} onSubmit={submit}>
           {sizes.map((size) => (
             <div key={size}>
               <Typography variant='subtitle1'>{size}</Typography>
 
-              <input type='text' value='should be selectable' />
+              <input type='text' value='should be selectable' readOnly />
 
               <div>
                 Variant:
@@ -86,6 +99,22 @@ function SheetDemo() {
             </div>
           ))}
         </form>
+
+        <ListItemButton
+          onClick={() => setScroll(!scroll)}
+          color='secondary'
+          style={{ paddingLeft: 0, paddingRight: 0 }}
+        >
+          {scroll ? 'Make unscrollable' : 'Make scrollable'}
+        </ListItemButton>
+        <div>
+          <m.div
+            animate={{ height: scroll ? 2000 : 1 }}
+            initial={false}
+            transition={{ type: 'tween' }}
+            style={{ width: '20px', background: '#dedede' }}
+          />
+        </div>
       </Container>
     </>
   )
