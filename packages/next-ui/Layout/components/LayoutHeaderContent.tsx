@@ -18,7 +18,7 @@ export type LayoutHeaderContentProps = FloatingProps & {
   sxBg?: SxProps<Theme>
   layout?: LayoutProps['layout']
   size?: 'small' | 'responsive'
-}
+} & Pick<LayoutProps, 'layout' | 'layoutDependency'>
 
 type OwnerState = {
   floatingSm: boolean
@@ -45,6 +45,7 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
     sx = [],
     sxBg = [],
     layout,
+    layoutDependency,
     size = 'responsive',
   } = props
 
@@ -156,7 +157,7 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
               justifyContent: 'start',
             })}
           >
-            <MotionDiv layout={layout} sx={{ display: 'grid' }}>
+            <MotionDiv layout={layout} layoutDependency={layoutDependency} sx={{ display: 'grid' }}>
               {left}
             </MotionDiv>
           </Box>
@@ -192,10 +193,7 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
             },
           })}
         >
-          <MotionDiv
-            sx={{ minWidth: 0 }}
-            layout={layout}
-          >
+          <MotionDiv sx={{ minWidth: 0 }} layout={layout} layoutDependency={layoutDependency}>
             {children}
           </MotionDiv>
         </Box>
@@ -213,7 +211,9 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
             justifyContent: 'end',
           })}
         >
-          <MotionDiv layout={layout}>{right}</MotionDiv>
+          <MotionDiv layout={layout} layoutDependency={layoutDependency}>
+            {right}
+          </MotionDiv>
         </Box>
         {divider && (
           <Box
