@@ -9,10 +9,10 @@ import { CurrentCompareUidDocument } from './graphql/CurrentCompareUid.gql'
 import { RemoveProductsFromCompareListDocument } from './graphql/RemoveProductsFromCompareList.gql'
 import { useCompareListIdCreate } from './hooks/useCompareListIdCreate'
 
-type CompareProps = { id: string }
+type CompareProps = { id: string; name: string | null | undefined }
 
 export function CompareProductButton(props: CompareProps) {
-  const { id } = props
+  const { id, name } = props
 
   const currentCompareId = useCompareListIdCreate()
 
@@ -89,6 +89,7 @@ export function CompareProductButton(props: CompareProps) {
         <Trans
           id='<0>{name}</0> has been added to your comparelist!'
           components={{ 0: <strong /> }}
+          values={{ name }}
         />
       </MessageSnackbar>
     </Box>

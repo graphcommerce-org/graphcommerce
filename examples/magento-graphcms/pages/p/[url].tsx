@@ -181,7 +181,7 @@ function ProductPage(props: Props) {
           >
             <AddProductsToCartButton fullWidth product={product} />
             <ProductWishlistChipDetail {...product} />
-            <CompareProductButton id={String(product.id)} />
+            <CompareProductButton name={product.name} id={String(product.id)} />
           </Box>
 
           <Usps usps={sidebarUsps} size='small' />
