@@ -72,6 +72,7 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
   })
 
   const selectedLevel = useMotionValueValue(selection, (s) => (s === false ? -1 : s.length))
+  const selectionValue = useMotionValueValue(selection, (s) => s)
   const activeAndNotClosing = useMotionSelector([selection, closing], ([s, c]) =>
     c ? false : s !== false,
   )
@@ -108,6 +109,7 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
       widthSm={false}
       overlayPaneProps={{
         layout: true,
+        layoutDependency: selectionValue,
         initial: false,
         onLayoutAnimationStart: () => {
           animating.set(true)
