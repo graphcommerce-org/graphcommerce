@@ -139,15 +139,10 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
     const scroller = scrollerRef.current
     if (!scroller) return () => {}
 
-    const handleSizing = () => {
+    const calcPositions = () => {
       const snapPositions = getScrollSnapPositions()
       const x = snapPositions.x[snapPositions.x.length - 1]
       const y = snapPositions.y[snapPositions.y.length - 1]
-
-      const clampRound = (value: number) => Math.round(Math.max(0, Math.min(1, value)) * 100) / 100
-
-      const scrollX = scroller.scrollLeft || scroll.x.get()
-      const scrolly = scroller.scrollTop || scroll.y.get()
 
       if (variant() === 'left') {
         positions.closed.x.set(x)
@@ -161,49 +156,73 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
         positions.open.y.set(y)
         positions.closed.y.set(0)
       }
+    }
 
-      // if (!prevVariant.current) prevVariant.current = variant()
-      if (prevVariant.current !== variant()) {
-        // Set the initial position of the overlay.
-        // Make sure the overlay stays open when the variant changes.
-        if (position.get() !== OverlayPosition.OPENED) {
-          scroller.scrollLeft = positions.closed.x.get()
-          scroller.scrollTop = positions.closed.y.get()
-        } else {
-          scroller.scrollLeft = positions.open.x.get()
-          scroller.scrollTop = positions.open.y.get()
-        }
-        prevVariant.current = variant()
+    const forceScrollPosition = () => {
+      // Set the initial position of the overlay.
+      // Make sure the overlay stays open when the variant changes.
+      if (position.get() !== OverlayPosition.OPENED) {
+        scroller.scrollLeft = positions.closed.x.get()
+        scroller.scrollTop = positions.closed.y.get()
       } else {
-        // When we're not switching variants, we update the vibility of the overlay.
-        if (variant() === 'left') {
-          const closedX = snapPositions.x[1] ?? 0
-          positions.open.visible.set(closedX === 0 ? 0 : clampRound((scrollX - closedX) / -closedX))
-        }
-        if (variant() === 'right') {
-          const openedX = snapPositions.x[1] ?? 0
-          positions.open.visible.set(openedX === 0 ? 0 : clampRound(scrollX / openedX))
-        }
-        if (variant() === 'bottom') {
-          const openedY = snapPositions.y[1] ?? 0
-          positions.open.visible.set(openedY === 0 ? 0 : clampRound(scrolly / openedY))
-        }
+        scroller.scrollLeft = positions.open.x.get()
+        scroller.scrollTop = positions.open.y.get()
       }
     }
 
-    const measureTimed = () => framesync.read(handleSizing)
-    handleSizing()
+    const calcVisible = () => {
+      const snapPositions = getScrollSnapPositions()
+      const clampRound = (value: number) => Math.round(Math.max(0, Math.min(1, value)) * 100) / 100
 
-    const cancelX = scroll.x.on('change', measureTimed)
-    const cancelY = scroll.y.on('change', measureTimed)
+      const scrollX = scroller.scrollLeft || scroll.x.get()
+      const scrolly = scroller.scrollTop || scroll.y.get()
 
-    const ro = new ResizeObserver(measureTimed)
+      if (variant() === 'left') {
+        const closedX = snapPositions.x[1] ?? 0
+        positions.open.visible.set(closedX === 0 ? 0 : clampRound((scrollX - closedX) / -closedX))
+      }
+      if (variant() === 'right') {
+        const openedX = snapPositions.x[1] ?? 0
+        positions.open.visible.set(openedX === 0 ? 0 : clampRound(scrollX / openedX))
+      }
+      if (variant() === 'bottom') {
+        const openedY = snapPositions.y[1] ?? 0
+        positions.open.visible.set(openedY === 0 ? 0 : clampRound(scrolly / openedY))
+      }
+    }
+
+    const handleScroll = () => {
+      calcPositions()
+
+      // if (!prevVariant.current) prevVariant.current = variant()
+      if (prevVariant.current !== variant()) {
+        forceScrollPosition()
+        prevVariant.current = variant()
+      } else {
+        // When we're not switching variants, we update the vibility of the overlay.
+        calcVisible()
+      }
+    }
+
+    const handleResize = () => {
+      calcPositions()
+      forceScrollPosition()
+    }
+
+    const measureScroll = () => framesync.read(handleScroll)
+    const measureResize = () => framesync.read(handleResize)
+    handleScroll()
+
+    const cancelX = scroll.x.on('change', measureScroll)
+    const cancelY = scroll.y.on('change', measureScroll)
+
+    const ro = new ResizeObserver(measureResize)
     ro.observe(scrollerRef.current)
     ;[...scrollerRef.current.children].forEach((child) => ro.observe(child))
 
-    window.addEventListener('resize', measureTimed)
+    window.addEventListener('resize', measureResize)
     return () => {
-      window.removeEventListener('resize', measureTimed)
+      window.removeEventListener('resize', measureResize)
       ro.disconnect()
       cancelX()
       cancelY()
