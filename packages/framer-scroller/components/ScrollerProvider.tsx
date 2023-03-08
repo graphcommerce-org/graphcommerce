@@ -92,19 +92,23 @@ export function ScrollerProvider(props: ScrollerProviderProps) {
   // Cancel any running animations to prevent onComplete to be ran
   const stop = useCallback(() => {
     running.current?.stop()
+    running.current = undefined
   }, [])
 
   // Register any running animations so they become cancelable
-  const register = useCallback((controls: PlaybackControls) => {
-    running.current?.stop()
-    running.current = controls
-  }, [])
+  const register = useCallback(
+    (controls: PlaybackControls) => {
+      stop()
+      running.current = controls
+    },
+    [stop],
+  )
 
   const disableSnap = useCallback(() => {
-    if (snap.get() === false) return
+    if (snap.get() === false) stop()
     scroll.scroll.set({ ...scroll.scroll.get(), animating: true })
     snap.set(false)
-  }, [snap, scroll])
+  }, [snap, stop, scroll.scroll])
 
   const enableSnap = useCallback(() => {
     if (snap.get() === true) return
