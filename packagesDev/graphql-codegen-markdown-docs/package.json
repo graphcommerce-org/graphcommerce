@@ -2,7 +2,7 @@
   "name": "@graphcommerce/graphql-codegen-markdown-docs",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "6.0.0-canary.35",
+  "version": "6.0.0-canary.36",
   "sideEffects": false,
   "type": "commonjs",
   "main": "dist/index.js",
@@ -21,9 +21,9 @@
     }
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "6.0.0-canary.35",
-    "@graphcommerce/prettier-config-pwa": "6.0.0-canary.35",
-    "@graphcommerce/typescript-config-pwa": "6.0.0-canary.35"
+    "@graphcommerce/eslint-config-pwa": "6.0.0-canary.36",
+    "@graphcommerce/prettier-config-pwa": "6.0.0-canary.36",
+    "@graphcommerce/typescript-config-pwa": "6.0.0-canary.36"
   },
   "dependencies": {
     "@graphql-codegen/add": "4.0.1",

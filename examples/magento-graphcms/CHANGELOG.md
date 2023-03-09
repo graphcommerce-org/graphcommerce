@@ -1,5 +1,15 @@
 # Change Log
 
+## 6.0.0-canary.36
+
+### Minor Changes
+
+- [#1833](https://github.com/graphcommerce-org/graphcommerce/pull/1833) [`7dc3e036c`](https://github.com/graphcommerce-org/graphcommerce/commit/7dc3e036c776224aa184e03cc957dcb8d3faa55c) - Added ability to have local plugins and added example plugin in the plugins directory ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#1833](https://github.com/graphcommerce-org/graphcommerce/pull/1833) [`0abfe5852`](https://github.com/graphcommerce-org/graphcommerce/commit/0abfe5852ba5d0181a5caf9fd4cff633b03a5be1) - Skip empty query when loading crosssells ([@paales](https://github.com/paales))
+
 ## 6.0.0-canary.35
 
 ## 6.0.0-canary.34

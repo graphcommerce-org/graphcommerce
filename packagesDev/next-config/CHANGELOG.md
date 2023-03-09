@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.0-canary.36
+
+### Minor Changes
+
+- [#1833](https://github.com/graphcommerce-org/graphcommerce/pull/1833) [`7dc3e036c`](https://github.com/graphcommerce-org/graphcommerce/commit/7dc3e036c776224aa184e03cc957dcb8d3faa55c) - Added ability to have local plugins and added example plugin in the plugins directory ([@paales](https://github.com/paales))
+
 ## 6.0.0-canary.35
 
 ## 6.0.0-canary.34
