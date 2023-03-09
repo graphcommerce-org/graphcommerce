@@ -121,6 +121,11 @@ module.exports = {
             name: '@mui/system',
             message: "Please use `@mui/material'` instead.",
           },
+          {
+            name: '@emotion/react',
+            importNames: ['Theme', 'GlobalProps', 'ThemeContext'],
+            message: 'Import from @mui/material instead of @emotion/react.',
+          },
         ],
       },
     ],

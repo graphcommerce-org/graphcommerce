@@ -1,5 +1,4 @@
-import { Theme } from '@emotion/react'
-import { SxProps } from '@mui/material'
+import { Theme, SxProps } from '@mui/material'
 import React from 'react'
 
 export type PanelActionsProps = {

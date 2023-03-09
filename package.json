@@ -20,6 +20,7 @@
     "eslint:fix": "eslint --fix --ignore-path .gitignore '**/{*.ts,*.tsx}'",
     "prettier:fix": "prettier --ignore-path .gitignore --write '**/*.{ts,tsx,css,html,json}'",
     "tsc:lint": "tsc --noEmit -p .",
+    "tsc:perf": "NODE_OPTIONS=--max_old_space_size=10000 tsc --noEmit -p examples/magento-graphcms --generateTrace tsctrace --incremental false",
     "playwright": "npx playwright test --headed --project=chrome",
     "postinstall": "patch-package",
     "release": "yarn changeset publish && git push --follow-tags",

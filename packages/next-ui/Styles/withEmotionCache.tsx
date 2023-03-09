@@ -1,4 +1,4 @@
-import { EmotionJSX } from '@emotion/react/types/jsx-namespace'
+import type { EmotionJSX } from '@emotion/react/types/jsx-namespace'
 import createEmotionServer from '@emotion/server/create-instance'
 // eslint-disable-next-line @next/next/no-document-import-in-page
 import type NextDocument from 'next/document'
