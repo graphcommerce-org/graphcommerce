@@ -1,10 +1,5 @@
 import { Asset, RichText } from '@graphcommerce/graphcms-ui'
-import {
-  extendableComponent,
-  responsiveVal,
-  RowLink,
-  VariantImageLabelSwiper,
-} from '@graphcommerce/next-ui'
+import { responsiveVal, RowLink, VariantImageLabelSwiper } from '@graphcommerce/next-ui'
 import { Box, Typography } from '@mui/material'
 import { RowLinksFragment } from '../RowLinks.gql'
 
