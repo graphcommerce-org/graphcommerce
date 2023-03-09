@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.0-canary.33
+
+### Minor Changes
+
+- [#1831](https://github.com/graphcommerce-org/graphcommerce/pull/1831) [`f4008bae3`](https://github.com/graphcommerce-org/graphcommerce/commit/f4008bae3e3ac8288c731b1dd87e6c6aef8e81fc) - Added a linting rule that disallows `import { Theme } from '@emotion/react'` because that causes huge performance issues. Added tsc:trace to the root project to debug typescript performance issues. ([@paales](https://github.com/paales))
+
 ## 6.0.0-canary.32
 
 ## 6.0.0-canary.31

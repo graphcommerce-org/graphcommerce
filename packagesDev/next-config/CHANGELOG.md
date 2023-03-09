@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.0-canary.33
+
+### Patch Changes
+
+- [#1831](https://github.com/graphcommerce-org/graphcommerce/pull/1831) [`4d4a3464c`](https://github.com/graphcommerce-org/graphcommerce/commit/4d4a3464c807e34a36952d01e63a5c556176b0b6) - Make sure packages are transpiled in node_modules with nextjs’ transpilePackages option ([@paales](https://github.com/paales))
+
 ## 6.0.0-canary.32
 
 ## 6.0.0-canary.31

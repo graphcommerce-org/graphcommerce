@@ -1,5 +1,7 @@
 # Change Log
 
+## 6.0.0-canary.33
+
 ## 6.0.0-canary.32
 
 ### Minor Changes
