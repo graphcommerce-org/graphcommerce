@@ -37,6 +37,7 @@ function CheckoutAdded() {
 
   const crosssels = useQuery(CrosssellsDocument, {
     variables: { pageSize: 1, filters: { sku: { eq: lastItem?.product.sku } } },
+    skip: !lastItem?.product.sku,
     ssr: false,
   })
   const crossSellItems = useMemo(
