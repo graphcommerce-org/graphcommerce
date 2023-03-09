@@ -69,6 +69,7 @@ export function useElementScroll(ref?: RefObject<HTMLElement | undefined>): Scro
     element.addEventListener('scroll', updaterTimed, { passive: true })
     const ro = new ResizeObserver(updaterTimed)
     ro.observe(element)
+    ;[...element.children].forEach((child) => ro.observe(child))
 
     return () => {
       element.removeEventListener('scroll', updaterTimed)
