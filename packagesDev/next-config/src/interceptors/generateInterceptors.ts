@@ -1,3 +1,4 @@
+import path from 'node:path'
 import { ResolveDependency, ResolveDependencyReturn } from '../utils/resolveDependency'
 
 export type PluginConfig = {
@@ -110,10 +111,16 @@ export function generateInterceptors(
 ): GenerateInterceptorsReturn {
   // todo: Do not use reduce as we're passing the accumulator to the next iteration
   const byExportedComponent = plugins.reduce((acc, plug) => {
-    const { exported, component, enabled } = plug
+    const { exported, component, enabled, plugin } = plug
     if (!exported || !component || !enabled) return acc
 
     const resolved = resolve(exported)
+
+    let pluginPathFromResolved = plugin
+    if (plugin.startsWith('.')) {
+      const resolvedPlugin = resolve(plugin)
+      pluginPathFromResolved = path.relative(resolved.root, resolvedPlugin.fromRoot)
+    }
 
     if (!acc[resolved.fromRoot])
       acc[resolved.fromRoot] = {
@@ -125,7 +132,11 @@ export function generateInterceptors(
     if (!acc[resolved.fromRoot].components[component])
       acc[resolved.fromRoot].components[component] = []
 
-    acc[resolved.fromRoot].components[component].push(plug)
+    acc[resolved.fromRoot].components[component].push({
+      ...plug,
+      plugin: pluginPathFromResolved,
+    })
+
     return acc
   }, {} as Record<string, Plugin>)
 

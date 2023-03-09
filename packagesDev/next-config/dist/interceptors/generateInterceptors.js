@@ -1,6 +1,10 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generateInterceptors = exports.generateInterceptor = void 0;
+const node_path_1 = __importDefault(require("node:path"));
 function generateInterceptor(plugin) {
     const { fromModule, dependency, components } = plugin;
     const pluginImports = Object.entries(components)
@@ -74,10 +78,15 @@ exports.generateInterceptor = generateInterceptor;
 function generateInterceptors(plugins, resolve) {
     // todo: Do not use reduce as we're passing the accumulator to the next iteration
     const byExportedComponent = plugins.reduce((acc, plug) => {
-        const { exported, component, enabled } = plug;
+        const { exported, component, enabled, plugin } = plug;
         if (!exported || !component || !enabled)
             return acc;
         const resolved = resolve(exported);
+        let pluginPathFromResolved = plugin;
+        if (plugin.startsWith('.')) {
+            const resolvedPlugin = resolve(plugin);
+            pluginPathFromResolved = node_path_1.default.relative(resolved.root, resolvedPlugin.fromRoot);
+        }
         if (!acc[resolved.fromRoot])
             acc[resolved.fromRoot] = {
                 ...resolved,
@@ -86,7 +95,10 @@ function generateInterceptors(plugins, resolve) {
             };
         if (!acc[resolved.fromRoot].components[component])
             acc[resolved.fromRoot].components[component] = [];
-        acc[resolved.fromRoot].components[component].push(plug);
+        acc[resolved.fromRoot].components[component].push({
+            ...plug,
+            plugin: pluginPathFromResolved,
+        });
         return acc;
     }, {});
     return Object.fromEntries(Object.entries(byExportedComponent).map(([target, plg]) => [target, generateInterceptor(plg)]));

@@ -7,7 +7,7 @@ it('resolves dependences', () => {
 
   expect(dependencies).toMatchInlineSnapshot(`
     Map {
-      "@graphcommerce/magento-graphcms" => "examples/magento-graphcms",
+      "." => "examples/magento-graphcms",
       "@graphcommerce/cli" => "packages/cli",
       "@graphcommerce/demo-magento-graphcommerce" => "packages/demo-magento-graphcommerce",
       "@graphcommerce/googleanalytics" => "packages/googleanalytics",
@@ -22,8 +22,6 @@ it('resolves dependences', () => {
       "@graphcommerce/magento-cart-coupon" => "packages/magento-cart-coupon",
       "@graphcommerce/magento-cart-email" => "packages/magento-cart-email",
       "@graphcommerce/magento-cms" => "packages/magento-cms",
-      "@graphcommerce/magento-customer-account" => "packages/magento-customer-account",
-      "@graphcommerce/magento-customer-order" => "packages/magento-customer-order",
       "@graphcommerce/magento-newsletter" => "packages/magento-newsletter",
       "@graphcommerce/magento-payment-included" => "packages/magento-payment-included",
       "@graphcommerce/magento-cart-payment-method" => "packages/magento-cart-payment-method",
