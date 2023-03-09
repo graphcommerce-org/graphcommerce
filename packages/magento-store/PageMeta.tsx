@@ -5,7 +5,10 @@ import {
 } from '@graphcommerce/next-ui'
 import { StoreConfigDocument } from './StoreConfig.gql'
 
-type PageMetaProps = Pick<NextPageMetaProps, 'title' | 'metaDescription' | 'metaRobots' | 'children'> & {
+type PageMetaProps = Pick<
+  NextPageMetaProps,
+  'title' | 'metaDescription' | 'metaRobots' | 'children'
+> & {
   canonical?: string
 }
 
@@ -23,5 +26,9 @@ export function PageMeta(props: PageMetaProps) {
   if (separator && suffix) pageTitle += ` ${separator}`
   if (suffix) pageTitle += ` ${suffix}`
 
-  return <NextPageMeta title={pageTitle ?? ''} {...pageMetaProps}>{children}</NextPageMeta>
+  return (
+    <NextPageMeta title={pageTitle ?? ''} {...pageMetaProps}>
+      {children}
+    </NextPageMeta>
+  )
 }
