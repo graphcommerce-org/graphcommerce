@@ -5,7 +5,7 @@ import { i18n } from '@lingui/core'
 import { CategoryMetaFragment } from './CategoryMeta.gql'
 
 export type CategoryMetaProps = CategoryMetaFragment &
-  Omit<PageMetaProps, 'title' | 'metaDescription'> & {
+  Omit<PageMetaProps, 'title' | 'metaDescription' | 'children'> & {
     params?: ProductListParams
     title?: string | null
     metaDescription?: string | null

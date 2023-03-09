@@ -30,6 +30,7 @@ export type PageMetaProps = {
   canonical?: Canonical
   metaDescription?: string
   metaRobots?: MetaRobotsAll | MetaRobots[]
+  children?: React.ReactNode
 }
 
 type PartialNextRouter = Pick<
@@ -88,7 +89,7 @@ export function useCanonical(incoming?: Canonical) {
 
 export function PageMeta(props: PageMetaProps) {
   const { active } = usePageContext()
-  const { title, canonical: canonicalBare, metaDescription, metaRobots = ['all'] } = props
+  const { children, title, canonical: canonicalBare, metaDescription, metaRobots = ['all'] } = props
 
   const canonical = useCanonical(canonicalBare)
 
@@ -101,6 +102,7 @@ export function PageMeta(props: PageMetaProps) {
       )}
       <meta name='robots' content={metaRobots.join(',')} key='meta-robots' />
       {canonical && <link rel='canonical' href={canonical} key='canonical' />}
+      {children}
     </Head>
   )
 }
