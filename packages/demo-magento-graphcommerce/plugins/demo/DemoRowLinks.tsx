@@ -31,8 +31,8 @@ function DemoRowLinks(props: PluginProps<RowLinksProps>) {
             rowGap: 3,
             '& > .MuiBox-root': {
               color: '#fff',
-              width: responsiveVal(200, 400),
-              maxWidth: responsiveVal(200, 400),
+              width: responsiveVal(260, 400),
+              maxWidth: responsiveVal(260, 400),
               px: theme.spacings.md,
               gridArea: '1 / 1',
               zIndex: 2,
@@ -43,7 +43,8 @@ function DemoRowLinks(props: PluginProps<RowLinksProps>) {
             },
             '& h3': {
               mt: theme.spacings.md,
-              typography: 'body2',
+              typography: 'body1',
+              mb: 1,
             },
             '& p': {
               typography: 'h4',
@@ -52,8 +53,8 @@ function DemoRowLinks(props: PluginProps<RowLinksProps>) {
             overflow: 'hidden',
             '& img': {
               filter: 'none',
-              width: responsiveVal(200, 400),
-              maxWidth: responsiveVal(200, 400),
+              width: responsiveVal(260, 400),
+              maxWidth: responsiveVal(260, 400),
             },
           },
         }),
