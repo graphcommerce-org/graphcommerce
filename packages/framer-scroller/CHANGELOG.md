@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.0-canary.34
+
+### Patch Changes
+
+- [#1830](https://github.com/graphcommerce-org/graphcommerce/pull/1830) [`203b6298e`](https://github.com/graphcommerce-org/graphcommerce/commit/203b6298ee06569bb662bb728282366d08b8f6af) - Scroller: whem immediately dragging after letting go the current animation should be cancelled ([@paales](https://github.com/paales))
+
 ## 6.0.0-canary.33
 
 ## 6.0.0-canary.32

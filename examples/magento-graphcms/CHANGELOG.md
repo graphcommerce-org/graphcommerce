@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.0-canary.34
+
+### Patch Changes
+
+- [#1830](https://github.com/graphcommerce-org/graphcommerce/pull/1830) [`b2fa21490`](https://github.com/graphcommerce-org/graphcommerce/commit/b2fa2149001cc304d9640bb35f485827ddf9f34a) - Load translations when running getStaticProps ([@paales](https://github.com/paales))
+
 ## 6.0.0-canary.33
 
 ## 6.0.0-canary.32

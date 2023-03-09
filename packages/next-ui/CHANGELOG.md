@@ -1,5 +1,25 @@
 # Change Log
 
+## 6.0.0-canary.34
+
+### Patch Changes
+
+- [#1830](https://github.com/graphcommerce-org/graphcommerce/pull/1830) [`dbc2ae0d3`](https://github.com/graphcommerce-org/graphcommerce/commit/dbc2ae0d360f645c3eab2a8f38b3d1431eab7d80) - Hide body scrollbar only for right overlays ([@paales](https://github.com/paales))
+
+- [#1830](https://github.com/graphcommerce-org/graphcommerce/pull/1830) [`fafa76ba9`](https://github.com/graphcommerce-org/graphcommerce/commit/fafa76ba9e655739171abc553d309795c9d8e5c2) - Overlays now use an additional scroll container to handle vertical scroll, fixing:
+
+  - Scrolling on desktop will not close the overlay when there is content to be scrolled
+  - Scrolling will not snap to bottom / top when the content is barely scrollable
+  - Dragging will only open or close the drawer, not something inbetween
+  - Swiping up on mobile will not close the overlay, first you need to scroll to the top of the overlay.
+  - Floating overlays will now scroll inside the floating overlay. ([@paales](https://github.com/paales))
+
+- [#1830](https://github.com/graphcommerce-org/graphcommerce/pull/1830) [`0bac3bdd8`](https://github.com/graphcommerce-org/graphcommerce/commit/0bac3bdd8505ccad8036d13e19559f2b3523fd92) - Navigation layout animation should only trigger when the active menu item changes ([@paales](https://github.com/paales))
+
+- [#1830](https://github.com/graphcommerce-org/graphcommerce/pull/1830) [`6bffd680b`](https://github.com/graphcommerce-org/graphcommerce/commit/6bffd680b9d6a370048d06842cd3ce73130471dd) - Overlay shouldn't be closed when dragging beyond the pane ([@paales](https://github.com/paales))
+
+- [#1830](https://github.com/graphcommerce-org/graphcommerce/pull/1830) [`ff0c70e31`](https://github.com/graphcommerce-org/graphcommerce/commit/ff0c70e3165c64ea4f236a15a5820428dbf36e6a) - Allow scrollbar to left and right full overlay variants. ([@paales](https://github.com/paales))
+
 ## 6.0.0-canary.33
 
 ### Patch Changes
