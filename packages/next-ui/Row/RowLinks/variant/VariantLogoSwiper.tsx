@@ -22,9 +22,10 @@ export function VariantLogoSwiper(props: Props) {
             display: 'none',
           },
           '& .Scroller-root': {
-            justifyContent: 'center',
+            margin: '0 auto',
+            width: 'auto',
+            maxWidth: 'fit-content',
             gap: theme.spacings.xxl,
-            px: { xs: theme.spacings.xl },
           },
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
