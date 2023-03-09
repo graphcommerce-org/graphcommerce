@@ -15,4 +15,5 @@ export const demoConfig: GraphCommerceConfig = {
   productFiltersPro: true,
   robotsAllow: false,
   demoMode: true,
+  limitSsg: true,
 }
