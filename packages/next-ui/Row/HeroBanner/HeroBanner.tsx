@@ -1,10 +1,9 @@
-import { ContainerProps, useTheme, useMediaQuery, Box, styled } from '@mui/material'
+import { ContainerProps, Box, styled } from '@mui/material'
 import { m, useTransform } from 'framer-motion'
 import React from 'react'
 import { useScrollY } from '../../Layout/hooks/useScrollY'
 import { extendableComponent } from '../../Styles'
 import { breakpointVal } from '../../Styles/breakpointVal'
-import { responsiveVal } from '../../Styles/responsiveVal'
 import { Row } from '../Row'
 
 export type HeroBannerProps = ContainerProps & {
@@ -21,19 +20,9 @@ const MotionDiv = styled(m.div)({})
 
 export function HeroBanner(props: HeroBannerProps) {
   const { pageLinks, videoSrc, children, ...containerProps } = props
-  const t = useTheme()
   const scrollY = useScrollY()
-  const width = useTransform(
-    scrollY,
-    [10, 150],
-    [`calc(100% - ${responsiveVal(20, 60)}))`, `calc(100% - ${responsiveVal(0, 0)})`],
-  )
-  const matches = useMediaQuery(t.breakpoints.down('md'))
-  const borderRadius = useTransform(
-    scrollY,
-    [10, 150],
-    [`${responsiveVal(8, 12)}`, `${responsiveVal(0, 0)}`],
-  )
+  const viewportHeight = global.window && window.innerWidth * 0.7
+  const scale = useTransform(scrollY, [0, viewportHeight], [1, 1.7])
 
   return (
     <Row maxWidth={false} {...containerProps} disableGutters className={classes.root}>
@@ -45,7 +34,7 @@ export function HeroBanner(props: HeroBannerProps) {
             color: theme.palette.secondary.contrastText,
             position: 'relative',
             display: 'grid',
-            justifyItems: 'start',
+            justifyItems: 'center',
             alignContent: 'center',
             padding: `${theme.spacings.lg} ${theme.spacings.md}`,
             paddingTop: `calc(${theme.spacings.lg} - ${theme.spacings.md})`,
@@ -74,43 +63,34 @@ export function HeroBanner(props: HeroBannerProps) {
             position: 'absolute',
             top: '0',
             zIndex: 0,
-            width: '100%',
+            width: `calc(100% - ${theme.page.horizontal} - ${theme.page.horizontal})`,
+            mx: theme.page.horizontal,
             height: '100%',
             display: 'grid',
             justifyItems: 'center',
             overflow: 'hidden',
-            paddingBottom: theme.page.horizontal,
             '& video': {
               objectFit: 'cover',
               width: '100%',
               height: '100%',
-              [theme.breakpoints.down('md')]: {
-                ...breakpointVal(
-                  'borderRadius',
-                  theme.shape.borderRadius * 2,
-                  theme.shape.borderRadius * 3,
-                  theme.breakpoints.values,
-                ),
-              },
             },
-            [theme.breakpoints.up('md')]: {
-              height: '100%',
-            },
+            ...breakpointVal(
+              'borderRadius',
+              theme.shape.borderRadius * 2,
+              theme.shape.borderRadius * 3,
+              theme.breakpoints.values,
+            ),
           })}
         >
           <MotionDiv
-            style={{ width: !matches ? width : 0, borderRadius }}
+            style={{ scale }}
             className={classes.animated}
-            sx={(theme) => ({
-              ...breakpointVal(
-                'borderRadius',
-                theme.shape.borderRadius * 2,
-                theme.shape.borderRadius * 3,
-                theme.breakpoints.values,
-              ),
+            sx={{
+              width: '100%',
+              height: '100%',
               overflow: 'hidden',
-              transform: 'translateZ(0)',
-            })}
+              transition: 'transform 0.5s cubic-bezier(0.33, 1, 0.68, 1)',
+            }}
           >
             <video
               src={videoSrc}
