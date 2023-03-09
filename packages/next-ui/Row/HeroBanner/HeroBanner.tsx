@@ -1,4 +1,4 @@
-import { ContainerProps, Box, styled } from '@mui/material'
+import { ContainerProps, Box, styled, Theme, SxProps } from '@mui/material'
 import { m, useTransform } from 'framer-motion'
 import React from 'react'
 import { useScrollY } from '../../Layout/hooks/useScrollY'
@@ -9,6 +9,7 @@ export type HeroBannerProps = ContainerProps & {
   pageLinks: React.ReactNode
   videoSrc: string
   children: React.ReactNode
+  sx?: SxProps<Theme>
 }
 
 const compName = 'HeroBanner' as const
@@ -18,19 +19,25 @@ const { classes } = extendableComponent(compName, parts)
 const MotionVideo = styled(m.video)({})
 
 export function HeroBanner(props: HeroBannerProps) {
-  const { pageLinks, videoSrc, children, ...containerProps } = props
+  const { pageLinks, videoSrc, children, sx = [], ...containerProps } = props
   const scrollY = useScrollY()
   const viewportHeight = global.window && window.innerWidth * 0.7
   const scale = useTransform(scrollY, [0, viewportHeight], [1, 1.7])
 
   return (
-    <Row maxWidth={false} {...containerProps} className={classes.root}>
+    <Row
+      maxWidth={false}
+      {...containerProps}
+      className={classes.root}
+      sx={[{}, ...(Array.isArray(sx) ? sx : [sx])]}
+    >
       <Box
         className={classes.wrapper}
         sx={(theme) => ({
           display: 'grid',
           overflow: 'hidden',
           borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
+          isolation: 'isolate',
         })}
       >
         <Box
