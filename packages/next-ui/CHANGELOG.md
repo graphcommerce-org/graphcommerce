@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.0-canary.35
+
+### Minor Changes
+
+- [#1822](https://github.com/graphcommerce-org/graphcommerce/pull/1822) [`cc02c46e3`](https://github.com/graphcommerce-org/graphcommerce/commit/cc02c46e32c9a44a90789591f43d91ae234dac84) - Added basic meta og:tags to the product page. ([@KMalkowski](https://github.com/KMalkowski))
+
 ## 6.0.0-canary.34
 
 ### Patch Changes
