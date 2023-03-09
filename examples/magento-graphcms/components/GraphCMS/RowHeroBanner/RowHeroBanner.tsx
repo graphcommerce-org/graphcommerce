@@ -24,7 +24,6 @@ export function RowHeroBanner(props: RowHeroBannerFragment) {
             textAlign: 'center' as const,
             margin: 0,
             marginBottom: theme.spacings.md,
-            ...breakpointVal('fontSize', 36, 82, theme.breakpoints.values),
             [theme.breakpoints.up('md')]: {
               textAlign: 'left',
               maxWidth: '100%',

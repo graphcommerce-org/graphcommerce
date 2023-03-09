@@ -45,18 +45,18 @@ export function HeroBanner(props: HeroBannerProps) {
             color: theme.palette.secondary.contrastText,
             position: 'relative',
             display: 'grid',
-            justifyItems: 'center',
+            justifyItems: 'start',
             alignContent: 'center',
             padding: `${theme.spacings.lg} ${theme.spacings.md}`,
             paddingTop: `calc(${theme.spacings.lg} - ${theme.spacings.md})`,
-            minHeight: `calc(100vh - ${theme.appShell.headerHeightSm})`,
+            minHeight: `calc(70vh - ${theme.appShell.headerHeightSm})`,
             '& > *': {
               zIndex: 1,
               maxWidth: 'max-content',
             },
             [theme.breakpoints.up('md')]: {
               width: '70%',
-              minHeight: `calc(100vh - ${theme.appShell.headerHeightMd})`,
+              minHeight: `calc(70vh - ${theme.appShell.headerHeightMd})`,
             },
             [theme.breakpoints.up('lg')]: {
               padding: `${theme.spacings.lg} ${theme.spacings.lg}`,
