@@ -38,8 +38,16 @@ function DemoRowLinks(props: PluginProps<RowLinksProps>) {
               zIndex: 2,
               mixBlendMode: 'difference',
             },
-            '& picture': {
+            '&:has(video) .MuiBox-root': {
+              mixBlendMode: 'unset',
+            },
+            '& picture, & video': {
               gridArea: '1 / 1',
+            },
+            '& video': {
+              height: '100%',
+              objectFit: 'cover',
+              aspectRatio: '4 / 6',
             },
             '& h3': {
               mt: theme.spacings.md,
@@ -51,8 +59,9 @@ function DemoRowLinks(props: PluginProps<RowLinksProps>) {
             },
             borderRadius: responsiveVal(theme.shape.borderRadius * 3, theme.shape.borderRadius * 4),
             overflow: 'hidden',
-            '& img': {
+            '& img, & video': {
               filter: 'none',
+              willChange: 'unset',
               width: responsiveVal(260, 400),
               maxWidth: responsiveVal(260, 400),
             },
