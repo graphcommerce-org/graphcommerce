@@ -49,12 +49,12 @@ export function RowLinks(props: RowLinksProps) {
             gap: `${theme.spacings.md}`,
             gridAutoColumns: `max-content`,
             alignItems: 'center',
-            // '&.smGridDirInline > *': {
-            //   scrollSnapAlign: {
-            //     xs: 'center',
-            //     md: 'end',
-            //   },
-            // },
+            '&.smGridDirInline > *': {
+              scrollSnapAlign: {
+                xs: 'center',
+                md: 'end',
+              },
+            },
           })}
         >
           {inlineTitle && (

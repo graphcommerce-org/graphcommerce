@@ -26,7 +26,7 @@ export function ImageLabelSwiper(props: RowLinksFragment) {
                 width: responsiveVal(120, 200),
                 maxWidth: responsiveVal(120, 200),
               }}
-              sizes={responsiveVal(120, 200)}
+              sizes={responsiveVal(260, 400)}
             />
           )}
           <Box sx={{ maxWidth: responsiveVal(120, 200) }}>
