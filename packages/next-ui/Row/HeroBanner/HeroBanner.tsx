@@ -2,8 +2,7 @@ import { ContainerProps, Box, styled } from '@mui/material'
 import { m, useTransform } from 'framer-motion'
 import React from 'react'
 import { useScrollY } from '../../Layout/hooks/useScrollY'
-import { extendableComponent } from '../../Styles'
-import { breakpointVal } from '../../Styles/breakpointVal'
+import { extendableComponent, responsiveVal } from '../../Styles'
 import { Row } from '../Row'
 
 export type HeroBannerProps = ContainerProps & {
@@ -16,7 +15,7 @@ const compName = 'HeroBanner' as const
 const parts = ['root', 'wrapper', 'copy', 'asset', 'animated', 'video'] as const
 const { classes } = extendableComponent(compName, parts)
 
-const MotionDiv = styled(m.div)({})
+const MotionVideo = styled(m.video)({})
 
 export function HeroBanner(props: HeroBannerProps) {
   const { pageLinks, videoSrc, children, ...containerProps } = props
@@ -25,33 +24,27 @@ export function HeroBanner(props: HeroBannerProps) {
   const scale = useTransform(scrollY, [0, viewportHeight], [1, 1.7])
 
   return (
-    <Row maxWidth={false} {...containerProps} disableGutters className={classes.root}>
-      <Box className={classes.wrapper} sx={{ position: 'relative' }}>
+    <Row maxWidth={false} {...containerProps} className={classes.root}>
+      <Box
+        className={classes.wrapper}
+        sx={(theme) => ({
+          display: 'grid',
+          overflow: 'hidden',
+          borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
+        })}
+      >
         <Box
           className={classes.copy}
           sx={(theme) => ({
+            gridArea: '1 / 1',
             zIndex: 1,
-            color: theme.palette.secondary.contrastText,
-            position: 'relative',
+            minHeight: '70vh',
             display: 'grid',
             justifyItems: 'center',
             alignContent: 'center',
-            padding: `${theme.spacings.lg} ${theme.spacings.md}`,
-            paddingTop: `calc(${theme.spacings.lg} - ${theme.spacings.md})`,
-            minHeight: `calc(70vh - ${theme.appShell.headerHeightSm})`,
-            '& > *': {
-              zIndex: 1,
-              maxWidth: 'max-content',
-            },
-            [theme.breakpoints.up('md')]: {
-              width: '70%',
-              minHeight: `calc(70vh - ${theme.appShell.headerHeightMd})`,
-            },
-            [theme.breakpoints.up('lg')]: {
-              padding: `${theme.spacings.lg} ${theme.spacings.lg}`,
-              paddingTop: `calc(${theme.spacings.lg} - ${theme.spacings.md})`,
-              width: '50%',
-            },
+            textAlign: 'center',
+            p: theme.spacings.md,
+            color: theme.palette.secondary.contrastText,
           })}
         >
           {children}
@@ -59,49 +52,28 @@ export function HeroBanner(props: HeroBannerProps) {
         </Box>
         <Box
           className={classes.asset}
-          sx={(theme) => ({
-            position: 'absolute',
-            top: '0',
-            zIndex: 0,
-            width: `calc(100% - ${theme.page.horizontal} - ${theme.page.horizontal})`,
-            mx: theme.page.horizontal,
-            height: '100%',
-            display: 'grid',
-            justifyItems: 'center',
-            overflow: 'hidden',
-            '& video': {
+          sx={{
+            gridArea: '1 / 1',
+            position: 'relative',
+          }}
+        >
+          <MotionVideo
+            src={videoSrc}
+            autoPlay
+            muted
+            loop
+            playsInline
+            disableRemotePlayback
+            className={classes.video}
+            style={{ scale }}
+            sx={{
+              position: 'absolute',
+              transition: 'transform 0.5s cubic-bezier(0.33, 1, 0.68, 1)',
               objectFit: 'cover',
               width: '100%',
               height: '100%',
-            },
-            ...breakpointVal(
-              'borderRadius',
-              theme.shape.borderRadius * 2,
-              theme.shape.borderRadius * 3,
-              theme.breakpoints.values,
-            ),
-          })}
-        >
-          <MotionDiv
-            style={{ scale }}
-            className={classes.animated}
-            sx={{
-              width: '100%',
-              height: '100%',
-              overflow: 'hidden',
-              transition: 'transform 0.5s cubic-bezier(0.33, 1, 0.68, 1)',
             }}
-          >
-            <video
-              src={videoSrc}
-              autoPlay
-              muted
-              loop
-              playsInline
-              disableRemotePlayback
-              className={classes.video}
-            />
-          </MotionDiv>
+          />
         </Box>
       </Box>
     </Row>
