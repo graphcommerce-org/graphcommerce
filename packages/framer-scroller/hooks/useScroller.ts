@@ -109,8 +109,14 @@ export function useScroller<
     if (!isHTMLMousePointerEvent(event)) return
     if (!isPanning) return
 
-    scrollerRef.current.scrollLeft = scrollStart.x.get() - info.offset.x
-    scrollerRef.current.scrollTop = scrollStart.y.get() - info.offset.y
+    const newScroll = {
+      ...scroll.scroll.get(),
+      x: Math.min(Math.max(0, scrollStart.x.get() - info.offset.x), scroll.scroll.get().xMax),
+      y: Math.min(Math.max(0, scrollStart.y.get() - info.offset.y), scroll.scroll.get().yMax),
+    }
+    scroll.scroll.set(newScroll)
+    scrollerRef.current.scrollLeft = newScroll.x
+    scrollerRef.current.scrollTop = newScroll.y
   }
 
   const onPanEnd: PanHandlers['onPanEnd'] = (event, info) => {

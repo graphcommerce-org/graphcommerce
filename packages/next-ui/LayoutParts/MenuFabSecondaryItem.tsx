@@ -2,6 +2,7 @@ import { ListItemButton, ListItemIcon, ListItemText, SxProps, Theme } from '@mui
 import { useRouter } from 'next/router'
 import React from 'react'
 import { extendableComponent } from '../Styles'
+import { NextLink } from '../Theme'
 
 export type FabMenuSecondaryItemProps = {
   href: string
@@ -21,6 +22,7 @@ export function MenuFabSecondaryItem(props: FabMenuSecondaryItemProps) {
   return (
     <ListItemButton
       href={href}
+      component={NextLink}
       className={classes.root}
       sx={[{}, ...(Array.isArray(sx) ? sx : [sx])]}
       dense

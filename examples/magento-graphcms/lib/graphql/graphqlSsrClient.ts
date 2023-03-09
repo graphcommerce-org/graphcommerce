@@ -11,7 +11,7 @@ import {
 import { MeshApolloLink, getBuiltMesh } from '@graphcommerce/graphql-mesh'
 import { magentoTypePolicies } from '@graphcommerce/magento-graphql'
 import { createStoreLink, defaultLocale } from '@graphcommerce/magento-store'
-import { i18n } from '@lingui/core'
+import { i18nSsrLoader } from '../i18n/I18nProvider'
 
 const mesh = await getBuiltMesh()
 
@@ -57,7 +57,7 @@ export function graphqlClient(
 }
 
 export function graphqlSsrClient(locale?: string | undefined) {
-  if (typeof window === 'undefined' && locale) i18n.activate(locale.split('-')[0])
+  i18nSsrLoader(locale)
   return graphqlClient(locale, false)
 }
 

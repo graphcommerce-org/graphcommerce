@@ -72,6 +72,7 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
   })
 
   const selectedLevel = useMotionValueValue(selection, (s) => (s === false ? -1 : s.length))
+  const selectionValue = useMotionValueValue(selection, (s) => (s ? s.join('') : s))
   const activeAndNotClosing = useMotionSelector([selection, closing], ([s, c]) =>
     c ? false : s !== false,
   )
@@ -108,6 +109,7 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
       widthSm={false}
       overlayPaneProps={{
         layout: true,
+        layoutDependency: selectionValue,
         initial: false,
         onLayoutAnimationStart: () => {
           animating.set(true)
@@ -127,7 +129,7 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
         },
       }}
     >
-      <MotionDiv layout sx={{ display: 'grid' }}>
+      <MotionDiv layout layoutDependency={selectionValue} sx={{ display: 'grid' }}>
         <Box
           className={classes.header}
           sx={(theme) => ({
@@ -142,6 +144,7 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
             floatingSm={false}
             switchPoint={0}
             layout='position'
+            layoutDependency={selectionValue}
             left={
               selectedLevel > 0 && (
                 <Fab
@@ -173,7 +176,7 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
           </LayoutHeaderContent>
         </Box>
       </MotionDiv>
-      <MotionDiv layout='position' sx={{ display: 'grid' }}>
+      <MotionDiv layout='position' layoutDependency={selectionValue} sx={{ display: 'grid' }}>
         <Box
           sx={[
             (theme) => ({

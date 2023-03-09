@@ -1,12 +1,25 @@
 import { Scroller, useScrollerContext, useScrollTo } from '@graphcommerce/framer-scroller'
-import { dvh, dvw, useIsomorphicLayoutEffect } from '@graphcommerce/framer-utils'
+import {
+  dvh,
+  dvw,
+  useConstant,
+  useElementScroll,
+  useIsomorphicLayoutEffect,
+} from '@graphcommerce/framer-utils'
 import { Box, styled, SxProps, Theme, useTheme, useThemeProps } from '@mui/material'
-import { m, MotionProps, useDomEvent, useMotionValue, useTransform } from 'framer-motion'
+import {
+  m,
+  MotionProps,
+  motionValue,
+  useDomEvent,
+  useMotionValue,
+  useTransform,
+} from 'framer-motion'
+import framesync from 'framesync'
 import React, { useCallback, useEffect, useRef } from 'react'
 import { LayoutProvider } from '../../Layout/components/LayoutProvider'
 import { ExtendableComponent, extendableComponent } from '../../Styles'
-import { useOverlayPosition } from '../hooks/useOverlayPosition'
-import framesync from 'framesync'
+import { useMatchMedia } from '../../hooks/useMatchMedia'
 
 export type LayoutOverlayVariant = 'left' | 'bottom' | 'right'
 export type LayoutOverlaySize = 'floating' | 'minimal' | 'full'
@@ -66,10 +79,6 @@ declare module '@mui/material/styles/components' {
 
 const MotionDiv = styled(m.div)({})
 
-const clearScrollLock = () => {
-  document.body.style.overflow = ''
-}
-
 export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
   const props = useThemeProps({ name, props: incomingProps })
 
@@ -103,26 +112,132 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
     props.smSpacingTop ?? ((theme) => `calc(${theme.appShell.headerHeightSm} * 0.5)`)
   )(th)
 
-  const { scrollerRef, snap, scroll } = useScrollerContext()
-  const positions = useOverlayPosition(variantSm, variantMd)
+  const { scrollerRef, snap, scroll, getScrollSnapPositions } = useScrollerContext()
   const scrollTo = useScrollTo()
   const beforeRef = useRef<HTMLDivElement>(null)
+  const overlayRef = useRef<HTMLDivElement>(null)
+  const overlayPaneRef = useRef<HTMLDivElement>(null)
 
   const position = useMotionValue<OverlayPosition>(OverlayPosition.UNOPENED)
+  const overlayPaneScroll = useElementScroll(overlayPaneRef)
 
   const classes = withState({ variantSm, variantMd, sizeSm, sizeMd, justifySm, justifyMd })
 
-  const overlayRef = useRef<HTMLDivElement>(null)
+  const match = useMatchMedia()
+  const positions = useConstant(() => ({
+    open: { x: motionValue(0), y: motionValue(0), visible: motionValue(0) },
+    closed: { x: motionValue(0), y: motionValue(0) },
+  }))
+
+  const variant = useCallback(
+    () => (match.up('md') ? variantMd : variantSm),
+    [match, variantMd, variantSm],
+  )
+  const prevVariant = useRef<LayoutOverlayVariant>()
+
+  useIsomorphicLayoutEffect(() => {
+    const scroller = scrollerRef.current
+    if (!scroller) return () => {}
+
+    const calcPositions = () => {
+      const snapPositions = getScrollSnapPositions()
+      const x = snapPositions.x[snapPositions.x.length - 1]
+      const y = snapPositions.y[snapPositions.y.length - 1]
+
+      if (variant() === 'left') {
+        positions.closed.x.set(x)
+        positions.open.x.set(0)
+      }
+      if (variant() === 'right') {
+        positions.open.x.set(x)
+        positions.closed.x.set(0)
+      }
+      if (variant() === 'bottom') {
+        positions.open.y.set(y)
+        positions.closed.y.set(0)
+      }
+    }
+
+    const forceScrollPosition = () => {
+      // Set the initial position of the overlay.
+      // Make sure the overlay stays open when the variant changes.
+      if (position.get() !== OverlayPosition.OPENED) {
+        scroller.scrollLeft = positions.closed.x.get()
+        scroller.scrollTop = positions.closed.y.get()
+      } else {
+        scroller.scrollLeft = positions.open.x.get()
+        scroller.scrollTop = positions.open.y.get()
+      }
+    }
+
+    const calcVisible = () => {
+      const snapPositions = getScrollSnapPositions()
+      const clampRound = (value: number) => Math.round(Math.max(0, Math.min(1, value)) * 100) / 100
+
+      const scrollX = scroller.scrollLeft || scroll.x.get()
+      const scrolly = scroller.scrollTop || scroll.y.get()
+
+      if (variant() === 'left') {
+        const closedX = snapPositions.x[1] ?? 0
+        positions.open.visible.set(closedX === 0 ? 0 : clampRound((scrollX - closedX) / -closedX))
+      }
+      if (variant() === 'right') {
+        const openedX = snapPositions.x[1] ?? 0
+        positions.open.visible.set(openedX === 0 ? 0 : clampRound(scrollX / openedX))
+      }
+      if (variant() === 'bottom') {
+        const openedY = snapPositions.y[1] ?? 0
+        positions.open.visible.set(openedY === 0 ? 0 : clampRound(scrolly / openedY))
+      }
+    }
+
+    const handleScroll = () => {
+      calcPositions()
+
+      // if (!prevVariant.current) prevVariant.current = variant()
+      if (prevVariant.current !== variant()) {
+        forceScrollPosition()
+        prevVariant.current = variant()
+      } else {
+        // When we're not switching variants, we update the vibility of the overlay.
+        calcVisible()
+      }
+    }
+
+    const handleResize = () => {
+      calcPositions()
+      forceScrollPosition()
+    }
+
+    const measureScroll = () => framesync.read(handleScroll)
+    const measureResize = () => framesync.read(handleResize)
+    handleScroll()
+
+    const cancelX = scroll.x.on('change', measureScroll)
+    const cancelY = scroll.y.on('change', measureScroll)
+
+    const ro = new ResizeObserver(measureResize)
+    ro.observe(scrollerRef.current)
+    ;[...scrollerRef.current.children].forEach((child) => ro.observe(child))
+
+    window.addEventListener('resize', measureResize)
+    return () => {
+      window.removeEventListener('resize', measureResize)
+      ro.disconnect()
+      cancelX()
+      cancelY()
+    }
+  }, [getScrollSnapPositions, position, positions, scroll, scrollerRef, variant])
 
   // When the component is mounted, we need to set the initial position of the overlay.
   useIsomorphicLayoutEffect(() => {
     const scroller = scrollerRef.current
 
-    if (!scroller || !isPresent) return undefined
+    if (!scroller || !isPresent) return
 
     const open = { x: positions.open.x.get(), y: positions.open.y.get() }
 
-    document.body.style.overflow = 'hidden'
+    if (variant() === 'right') document.body.style.overflow = 'hidden'
 
     if (position.get() !== OverlayPosition.OPENED) {
       if (direction === 1) {
@@ -141,29 +256,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
         snap.set(true)
       }
     }
-
-    return clearScrollLock
-  }, [direction, isPresent, position, positions, scrollTo, scrollerRef, snap])
-
-  // Make sure the overlay stays open when resizing the window.
-  useEffect(() => {
-    const scroller = scrollerRef.current
-    if (!scroller) return () => {}
-
-    const resize = () => {
-      if (position.get() !== OverlayPosition.OPENED) {
-        scroller.scrollLeft = positions.closed.x.get()
-        scroller.scrollTop = positions.closed.y.get()
-      } else {
-        scroller.scrollLeft = positions.open.x.get()
-        scroller.scrollTop = positions.open.y.get()
-      }
-    }
-    const resizeTimed = () => framesync.read(resize)
-
-    window.addEventListener('resize', resizeTimed)
-    return () => window.removeEventListener('resize', resizeTimed)
-  }, [position, positions, scrollerRef])
+  }, [direction, isPresent, position, positions, scrollTo, scrollerRef, snap, variant])
 
   // When the overlay is closed by navigating away, we're closing the overlay.
   useEffect(() => {
@@ -172,16 +265,19 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
 
     if (position.get() === OverlayPosition.UNOPENED) {
       position.set(OverlayPosition.CLOSED)
-      clearScrollLock()
       scroller.scrollLeft = positions.closed.x.get()
       scroller.scrollTop = positions.closed.y.get()
       safeToRemove?.()
+      document.body.style.overflow = ''
     } else {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       scrollTo({
         x: positions.closed.x.get(),
         y: positions.closed.y.get(),
-      }).then(() => safeToRemove?.())
+      }).then(() => {
+        safeToRemove?.()
+        document.body.style.overflow = ''
+      })
     }
   }, [isPresent, position, positions, safeToRemove, scrollTo, scrollerRef])
 
@@ -189,7 +285,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
   const closeOverlay = useCallback(() => {
     if (position.get() !== OverlayPosition.OPENED) return
     position.set(OverlayPosition.CLOSED)
-    clearScrollLock()
+    // document.body.style.overflow = ''
     onClosed()
   }, [onClosed, position])
 
@@ -216,20 +312,14 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
   }, [offsetY])
 
   // Create the exact position for the LayoutProvider which offsets the top of the overlay
-  const scrollYOffset = useTransform(
-    [scroll.y, positions.open.y],
-    ([y, openY]: number[]) => y - openY + offsetPageY,
-  )
+  const scrollYOffset = useTransform(overlayPaneScroll.y, (paneY) => paneY + offsetPageY)
 
   const onClickAway = useCallback(
     (event: React.MouseEvent<HTMLDivElement>) => {
-      const isTarget =
-        event.target === scrollerRef.current ||
-        event.target === beforeRef.current ||
-        event.target === overlayRef.current
+      const isTarget = event.target === beforeRef.current
       if (isTarget && snap.get()) closeOverlay()
     },
-    [closeOverlay, scrollerRef, snap],
+    [closeOverlay, snap],
   )
 
   return (
@@ -261,6 +351,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
         className={`${classes.scroller} ${className ?? ''}`}
         grid={false}
         onClick={onClickAway}
+        hideScrollbar
         sx={[
           (theme) => ({
             overscrollBehavior: 'contain',
@@ -269,7 +360,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
               cursor: 'default',
             },
             '&.mdSnapDirInline': {
-              overflow: 'auto',
+              overflow: active ? 'auto' : 'hidden',
             },
 
             height: dvh(100),
@@ -308,15 +399,11 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
                 gridTemplate: `"overlay beforeOverlay"`,
                 borderTopRightRadius: theme.shape.borderRadius * 4,
                 borderBottomRightRadius: theme.shape.borderRadius * 4,
-
-                '&::-webkit-scrollbar': { display: 'none' },
               },
               '&.variantMdRight': {
                 gridTemplate: `"beforeOverlay overlay"`,
                 borderTopLeftRadius: theme.shape.borderRadius * 4,
                 borderBottomLeftRadius: theme.shape.borderRadius * 4,
-
-                '&::-webkit-scrollbar': { display: 'none' },
               },
               '&.variantMdBottom': {
                 borderTopLeftRadius: theme.shape.borderRadius * 4,
@@ -332,7 +419,6 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
         ]}
       >
         <Box
-          onClick={onClickAway}
           className={classes.beforeOverlay}
           ref={beforeRef}
           sx={(theme) => ({
@@ -362,12 +448,12 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
         <Box
           className={classes.overlay}
           ref={overlayRef}
-          onClick={onClickAway}
           sx={(theme) => ({
             display: 'grid',
             gridArea: 'overlay',
             scrollSnapAlign: 'start',
             scrollSnapStop: 'always',
+            pointerEvents: 'none',
             [theme.breakpoints.down('md')]: {
               justifyContent: justifySm,
               alignItems: justifySm,
@@ -401,67 +487,85 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
           <MotionDiv
             {...overlayPaneProps}
             className={classes.overlayPane}
+            ref={overlayPaneRef}
             sx={(theme) => ({
-              pointerEvents: 'all',
+              pointerEvents: 'auto',
               backgroundColor: theme.palette.background.paper,
               boxShadow: theme.shadows[24],
 
               [theme.breakpoints.down('md')]: {
                 minWidth: '80vw',
+                overflowY: 'auto',
                 '&:not(.sizeSmFull)': {
                   width: 'auto',
                 },
 
-                '&.variantSmBottom.sizeSmFull': {
-                  minHeight: `calc(${dvh(100)} - ${smSpacingTop})`,
-                },
-
                 '&.variantSmBottom': {
+                  maxHeight: `calc(${dvh(100)} - ${smSpacingTop})`,
+                  '&.sizeSmFloating': {
+                    maxHeight: `calc(${dvh(100)} - (${theme.page.vertical} * 2))`,
+                  },
+                  '&.sizeSmFull': {
+                    height: `calc(${dvh(100)} - ${smSpacingTop})`,
+                  },
+
                   borderTopLeftRadius: `${theme.shape.borderRadius * 3}px`,
                   borderTopRightRadius: `${theme.shape.borderRadius * 3}px`,
                 },
+                '&.variantSmLeft, &.variantSmRight': {
+                  width: widthSm || 'max-content',
+                  maxWidth: dvw(100),
+                  maxHeight: dvh(100),
+                  '&.sizeSmFull': {
+                    height: dvh(100),
+                  },
+                  '&.sizeSmFloating': {
+                    maxHeight: `calc(${dvh(100)} - (${theme.page.vertical} * 2))`,
+                  },
+                },
+
+                '&.variantSmLeft.sizeSmFull, &.variantSmRight.sizeSmFull': {
+                  paddingBottom: '1px',
+                },
+
                 '&.sizeSmFloating': {
                   borderRadius: `${theme.shape.borderRadius * 3}px`,
-                },
-                '&.variantSmLeft.sizeSmFull': {
-                  paddingBottom: '1px',
-                  minHeight: dvh(100),
-                },
-                '&.variantSmRight.sizeSmFull': {
-                  paddingBottom: '1px',
-                  minHeight: dvh(100),
-                },
-                '&.variantSmLeft, &.variantSmRight': {
-                  width: widthSm || undefined,
-                  maxWidth: dvw(100),
                 },
               },
               [theme.breakpoints.up('md')]: {
                 minWidth: '1px',
-
-                '&.sizeMdFull.variantMdBottom': {
-                  minHeight: `calc(${dvh(100)} - ${mdSpacingTop})`,
-                },
-                '&.sizeMdFull.variantMdLeft': {
-                  paddingBottom: '1px',
-                  minHeight: dvh(100),
-                },
-                '&.sizeMdFull.variantMdRight': {
-                  paddingBottom: '1px',
-                  minHeight: dvh(100),
+                overflowY: 'auto',
+                overscrollBehavior: 'contain',
+                '&.variantMdBottom.sizeMdFloating:not(.justifyMdStretch)': {
+                  width: widthMd,
                 },
 
                 '&.variantMdBottom': {
+                  maxHeight: `calc(${dvh(100)} - ${mdSpacingTop})`,
+                  '&.sizeMdFloating': {
+                    maxHeight: `calc(${dvh(100)} - (${theme.page.vertical} * 2))`,
+                  },
+                  '&.sizeMdFull': {
+                    height: `calc(${dvh(100)} - ${mdSpacingTop})`,
+                  },
+
                   borderTopLeftRadius: `${theme.shape.borderRadius * 4}px`,
                   borderTopRightRadius: `${theme.shape.borderRadius * 4}px`,
                 },
                 '&.variantMdLeft, &.variantMdRight': {
                   width: widthMd || 'max-content',
                   maxWidth: dvw(100),
+                  maxHeight: dvh(100),
+                  '&.sizeMdFull': {
+                    height: dvh(100),
+                  },
+                  '&.sizeMdFloating': {
+                    maxHeight: `calc(${dvh(100)} - (${theme.page.vertical} * 2))`,
+                  },
                 },
 
-                '&.variantMdBottom.sizeMdFloating': {
-                  width: widthMd,
+                '&.variantMdLeft.sizeMdFull, &.variantMdRight.sizeMdFull': {
+                  paddingBottom: '1px',
                 },
 
                 '&.sizeMdFloating': {

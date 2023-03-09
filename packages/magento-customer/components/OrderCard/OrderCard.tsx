@@ -1,5 +1,5 @@
 import { Money } from '@graphcommerce/magento-store'
-import { extendableComponent, useDateTimeFormat } from '@graphcommerce/next-ui'
+import { extendableComponent, NextLink, useDateTimeFormat } from '@graphcommerce/next-ui'
 import { Box, styled, SxProps, Theme, Skeleton, ListItemButton } from '@mui/material'
 import { UseOrderCardItemImages } from '../../hooks/useOrderCardItemImages'
 import { OrderCardItemImage } from '../OrderCardItemImage/OrderCardItemImage'
@@ -76,6 +76,7 @@ export function OrderCard(props: OrderCardProps) {
   return (
     <ListItemButton
       href={`/account/orders/view?orderId=${number}`}
+      component={NextLink}
       className={classes.buttonRoot}
       sx={[
         (theme) => ({
