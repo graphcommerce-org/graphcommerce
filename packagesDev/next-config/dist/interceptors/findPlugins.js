@@ -81,19 +81,17 @@ function findPlugins(config, cwd = process.cwd()) {
         });
     });
     if (debug) {
-        const res = (0, diff_1.default)(prevlog, plugins);
-        if (!prevlog) {
-            prevlog = res;
-            table(plugins.map(({ plugin, component, ifConfig, enabled, exported }) => ({
-                '💉': enabled ? '✅' : '❌',
-                Reason: `${ifConfig ? `${ifConfig}` : ''}`,
-                Plugin: plugin,
-                Target: `${exported}#${component}`,
-            })));
+        const formatted = plugins.map(({ plugin, component, ifConfig, enabled, exported }) => ({
+            '💉': enabled ? '✅' : '❌',
+            Reason: `${ifConfig ? `${ifConfig}` : ''}`,
+            Plugin: plugin,
+            Target: `${exported}#${component}`,
+        }));
+        const res = (0, diff_1.default)(prevlog, formatted);
+        if (res) {
+            table(formatted);
         }
-        else if (res) {
-            table(res);
-        }
+        prevlog = formatted;
         console.timeEnd('findPlugins');
     }
     return plugins;

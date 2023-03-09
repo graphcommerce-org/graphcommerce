@@ -19,6 +19,12 @@ it('finds plugins', () => {
         "component": "AddProductsToCartForm",
         "enabled": true,
         "exported": "@graphcommerce/magento-product",
+        "plugin": "./plugins/MyPlugin",
+      },
+      {
+        "component": "AddProductsToCartForm",
+        "enabled": true,
+        "exported": "@graphcommerce/magento-product",
         "ifConfig": "googleAnalyticsId",
         "plugin": "@graphcommerce/googleanalytics/plugins/GaAddProductsToCartForm",
       },

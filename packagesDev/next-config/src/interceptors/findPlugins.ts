@@ -93,21 +93,20 @@ export function findPlugins(config: GraphCommerceConfig, cwd: string = process.c
   })
 
   if (debug) {
-    const res = diff(prevlog, plugins)
-    if (!prevlog) {
-      prevlog = res
+    const formatted = plugins.map(({ plugin, component, ifConfig, enabled, exported }) => ({
+      '💉': enabled ? '✅' : '❌',
+      Reason: `${ifConfig ? `${ifConfig}` : ''}`,
+      Plugin: plugin,
+      Target: `${exported}#${component}`,
+    }))
 
-      table(
-        plugins.map(({ plugin, component, ifConfig, enabled, exported }) => ({
-          '💉': enabled ? '✅' : '❌',
-          Reason: `${ifConfig ? `${ifConfig}` : ''}`,
-          Plugin: plugin,
-          Target: `${exported}#${component}`,
-        })),
-      )
-    } else if (res) {
-      table(res)
+    const res = diff(prevlog, formatted)
+
+    if (res) {
+      table(formatted)
     }
+    prevlog = formatted
+
     console.timeEnd('findPlugins')
   }
 

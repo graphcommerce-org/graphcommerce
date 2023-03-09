@@ -37,13 +37,13 @@ export const resolveDependency = (cwd: string = process.cwd()) => {
         if (!fromRoot) throw Error("Can't find plugin target")
         const denormalized = fromRoot.replace(root, depCandidate)
 
-        dependencyPaths = {
-          root,
-          dependency,
-          denormalized,
-          fromRoot,
-          fromModule: !relative ? '.' : `./${relative.split('/')[relative.split('/').length - 1]}`,
-        }
+        let fromModule = !relative
+          ? '.'
+          : `./${relative.split('/')[relative.split('/').length - 1]}`
+
+        if (dependency.startsWith('./')) fromModule = `.${relative}`
+
+        dependencyPaths = { root, dependency, denormalized, fromRoot, fromModule }
       }
     })
     return dependencyPaths
