@@ -46,6 +46,10 @@ function withGraphCommerce(nextConfig, cwd) {
     graphcommerceConfig ??= (0, loadConfig_1.loadConfig)(cwd);
     const importMetaPaths = (0, configToImportMeta_1.configToImportMeta)(graphcommerceConfig);
     const { i18n } = graphcommerceConfig;
+    const transpilePackages = [
+        ...[...(0, resolveDependenciesSync_1.resolveDependenciesSync)().keys()].slice(1),
+        ...(nextConfig.transpilePackages ?? []),
+    ];
     return {
         ...nextConfig,
         i18n: {
@@ -89,10 +93,7 @@ function withGraphCommerce(nextConfig, cwd) {
             }
             return rewrites;
         },
-        transpilePackages: [
-            ...[...(0, resolveDependenciesSync_1.resolveDependenciesSync)().keys()].slice(1),
-            ...(nextConfig.transpilePackages ?? []),
-        ],
+        transpilePackages,
         webpack: (config, options) => {
             // Allow importing yml/yaml files for graphql-mesh
             config.module?.rules?.push({ test: /\.ya?ml$/, use: 'js-yaml-loader' });
@@ -128,12 +129,12 @@ function withGraphCommerce(nextConfig, cwd) {
                 layers: true,
                 topLevelAwait: true,
             };
-            // config.snapshot = {
-            //   ...(config.snapshot ?? {}),
-            //   managedPaths: [
-            //     new RegExp(`^(.+?[\\/]node_modules[\\/])(?!${transpilePackages.join('|')})`),
-            //   ],
-            // }
+            config.snapshot = {
+                ...(config.snapshot ?? {}),
+                managedPaths: [
+                    new RegExp(`^(.+?[\\/]node_modules[\\/])(?!${transpilePackages.join('|')})`),
+                ],
+            };
             if (!config.resolve)
                 config.resolve = {};
             config.resolve.alias = {

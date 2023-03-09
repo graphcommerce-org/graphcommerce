@@ -54,6 +54,11 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
 
   const { i18n } = graphcommerceConfig
 
+  const transpilePackages = [
+    ...[...resolveDependenciesSync().keys()].slice(1),
+    ...(nextConfig.transpilePackages ?? []),
+  ]
+
   return {
     ...nextConfig,
     i18n: {
@@ -106,10 +111,7 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
 
       return rewrites
     },
-    transpilePackages: [
-      ...[...resolveDependenciesSync().keys()].slice(1),
-      ...(nextConfig.transpilePackages ?? []),
-    ],
+    transpilePackages,
     webpack: (config: Configuration, options) => {
       // Allow importing yml/yaml files for graphql-mesh
       config.module?.rules?.push({ test: /\.ya?ml$/, use: 'js-yaml-loader' })
@@ -154,12 +156,12 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
         topLevelAwait: true,
       }
 
-      // config.snapshot = {
-      //   ...(config.snapshot ?? {}),
-      //   managedPaths: [
-      //     new RegExp(`^(.+?[\\/]node_modules[\\/])(?!${transpilePackages.join('|')})`),
-      //   ],
-      // }
+      config.snapshot = {
+        ...(config.snapshot ?? {}),
+        managedPaths: [
+          new RegExp(`^(.+?[\\/]node_modules[\\/])(?!${transpilePackages.join('|')})`),
+        ],
+      }
 
       if (!config.resolve) config.resolve = {}
       config.resolve.alias = {
