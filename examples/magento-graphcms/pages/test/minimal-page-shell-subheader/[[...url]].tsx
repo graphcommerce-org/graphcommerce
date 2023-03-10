@@ -79,7 +79,10 @@ function MinimalLayoutSubheader(props: Props) {
           ) : (
             <ProductListParamsProvider value={params}>
               <ProductListFiltersContainer>
-                <ProductListSort {...products} />
+                <ProductListSort
+                  sort_fields={products?.sort_fields}
+                  total_count={products?.total_count}
+                />
                 <ProductListFilters {...filters} filterTypes={filterTypes} />
               </ProductListFiltersContainer>
             </ProductListParamsProvider>
