@@ -32,7 +32,7 @@ export function LogoSwiper(props: RowLinksFragment) {
                   const width = imageRatio ** scaleFactor * widthBase
                   return { xs: width * 0.65, sm: width * 0.8, md: width * 0.9, lg: width }
                 },
-                filter: 'none',
+                filter: (theme) => (theme.palette.mode === 'dark' ? 'invert(100%)' : 'none'),
               }}
               sizes={{ 0: '120px', 960: '240px' }}
             />
