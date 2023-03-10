@@ -10,14 +10,14 @@ export function LayoutOverlayHeader(props: LayoutHeaderProps) {
         (theme) => ({
           [theme.breakpoints.down('md')]: {
             '&.noAlign': {
-              '.variantSmBottom.sizeSmFull &': {
+              '.variantSmBottom.sizeSmFull &, .variantSmBottom.sizeSmMinimal &': {
                 top: `calc(${theme.appShell.headerHeightSm} * 0.5 * -1)`,
               },
             },
           },
           [theme.breakpoints.up('md')]: {
             '&.noAlign': {
-              '.variantMdBottom.sizeMdFull &': {
+              '.variantMdBottom.sizeMdFull &, .variantMdBottom.sizeMdMinimal &': {
                 top: `calc(${theme.appShell.headerHeightMd} * 0.5 * -1)`,
               },
             },

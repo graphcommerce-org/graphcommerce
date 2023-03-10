@@ -504,7 +504,8 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
                     maxHeight: `calc(${dvh(100)} - (${theme.page.vertical} * 2))`,
                   },
                   '&.sizeSmMinimal': {
-                    paddingTop: 0,
+                    maxHeight: dvh(100),
+                    borderRadius: 0,
                   },
                   '&.sizeSmFull': {
                     height: dvh(100),
@@ -551,7 +552,8 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
                     maxHeight: `calc(${dvh(100)} - (${theme.page.vertical} * 2))`,
                   },
                   '&.sizeMdMinimal': {
-                    paddingTop: 0,
+                    maxHeight: dvh(100),
+                    borderRadius: 0,
                   },
                   '&.sizeMdFull': {
                     height: dvh(100),
