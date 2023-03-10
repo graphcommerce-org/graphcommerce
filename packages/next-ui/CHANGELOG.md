@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.0-canary.39
+
+### Patch Changes
+
+- [`bcaf428a3`](https://github.com/graphcommerce-org/graphcommerce/commit/bcaf428a31f2b480d442d347d09c0131a8569155) - Overlay timing issue where the resizeObserver was later than the scroll event ([@paales](https://github.com/paales))
+
 ## 6.0.0-canary.38
 
 ## 6.0.0-canary.37
