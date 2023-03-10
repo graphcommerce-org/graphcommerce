@@ -319,7 +319,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
 
   const onClickAway = useCallback(
     (event: React.MouseEvent<HTMLDivElement>) => {
-      const isTarget = event.target === beforeRef.current
+      const isTarget = event.target === beforeRef.current || event.target === overlayPaneRef.current
       if (isTarget && snap.get()) closeOverlay()
     },
     [closeOverlay, snap],
