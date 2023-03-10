@@ -16,7 +16,7 @@ export function RowHeroBanner(props: RowHeroBannerFragment) {
       videoSrc={heroAsset.url}
       sx={(theme) => ({
         '& .HeroBanner-copy': {
-          minHeight: 'min(70vh,720px)',
+          minHeight: { xs: 'min(70vh,720px)', md: 'min(70vh,1080px)' },
           [theme.breakpoints.up('sm')]: {
             padding: theme.spacings.xl,
             justifyItems: 'start',
