@@ -525,11 +525,6 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
                     maxHeight: `calc(${dvh(100)} - (${theme.page.vertical} * 2))`,
                   },
                 },
-
-                '&.variantSmLeft.sizeSmFull, &.variantSmRight.sizeSmFull': {
-                  paddingBottom: '1px',
-                },
-
                 '&.sizeSmFloating': {
                   borderRadius: `${theme.shape.borderRadius * 3}px`,
                 },
@@ -577,11 +572,6 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
                     maxHeight: `calc(${dvh(100)} - (${theme.page.vertical} * 2))`,
                   },
                 },
-
-                '&.variantMdLeft.sizeMdFull, &.variantMdRight.sizeMdFull': {
-                  paddingBottom: '1px',
-                },
-
                 '&.sizeMdFloating': {
                   borderRadius: `${theme.shape.borderRadius * 4}px`,
                 },
