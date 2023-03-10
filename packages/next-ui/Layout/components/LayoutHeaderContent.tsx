@@ -73,8 +73,8 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
             '&.sizeSmall': {
               height: theme.appShell.headerHeightSm,
             },
-            borderTopLeftRadius: switchPoint === 0 ? theme.shape.borderRadius * 3 : 0,
-            borderTopRightRadius: switchPoint === 0 ? theme.shape.borderRadius * 3 : 0,
+            borderTopLeftRadius: switchPoint <= 0 ? theme.shape.borderRadius * 3 : 0,
+            borderTopRightRadius: switchPoint <= 0 ? theme.shape.borderRadius * 3 : 0,
 
             '&.floatingSm': {
               [theme.breakpoints.down('md')]: {
