@@ -190,6 +190,9 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
     }
 
     const handleScroll = () => {
+      calcPositions()
+
+      // if (!prevVariant.current) prevVariant.current = variant()
       if (prevVariant.current !== variant()) {
         forceScrollPosition()
         prevVariant.current = variant()
@@ -199,20 +202,27 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
       }
     }
 
-    calcPositions()
-    handleScroll()
-
-    const cancelX = scroll.x.on('change', () => framesync.read(handleScroll))
-    const cancelY = scroll.y.on('change', () => framesync.read(handleScroll))
-
-    const ro = new ResizeObserver(() => {
+    const handleResize = () => {
       calcPositions()
       forceScrollPosition()
-    })
-    ro.observe(scrollerRef.current)
-    ro.observe(overlayPaneRef.current)
+    }
 
+    const measureScroll = () => framesync.read(handleScroll)
+    const measureResize = () => framesync.read(handleResize)
+    handleScroll()
+
+    const cancelX = scroll.x.on('change', measureScroll)
+    const cancelY = scroll.y.on('change', measureScroll)
+
+    const ro = new ResizeObserver(measureResize)
+    ro.observe(scrollerRef.current)
+    ro.observe(beforeRef.current)
+    ro.observe(overlayPaneRef.current)
+    ro.observe(overlayRef.current)
+
+    window.addEventListener('resize', measureResize)
     return () => {
+      window.removeEventListener('resize', measureResize)
       ro.disconnect()
       cancelX()
       cancelY()
