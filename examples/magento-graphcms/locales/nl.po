@@ -46,6 +46,9 @@ msgstr "Adres niet gevonden"
 msgid "Addresses"
 msgstr "Adressen"
 
+msgid "All filters"
+msgstr "Alle filters"
+
 msgid "All products"
 msgstr "Alle producten"
 
