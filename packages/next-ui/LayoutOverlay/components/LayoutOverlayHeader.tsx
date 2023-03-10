@@ -1,6 +1,7 @@
 import { LayoutHeaderProps, LayoutHeader } from '../../Layout'
 
 export function LayoutOverlayHeader(props: LayoutHeaderProps) {
+  const { sx } = props
   return (
     <LayoutHeader
       {...props}
@@ -22,6 +23,7 @@ export function LayoutOverlayHeader(props: LayoutHeaderProps) {
             },
           },
         }),
+        ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     />
   )
