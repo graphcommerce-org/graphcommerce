@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.0-canary.38
+
+### Patch Changes
+
+- [#1835](https://github.com/graphcommerce-org/graphcommerce/pull/1835) [`393d62cf1`](https://github.com/graphcommerce-org/graphcommerce/commit/393d62cf1833a61eb98777b7eab91ea891668e57) - Analytics do not rely on env variable but use googleAnalyticsId config ([@paales](https://github.com/paales))
+
 ## 6.0.0-canary.37
 
 ## 6.0.0-canary.36

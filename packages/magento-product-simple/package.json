@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-product-simple",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "6.0.0-canary.37",
+  "version": "6.0.0-canary.38",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -12,14 +12,14 @@
     }
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "6.0.0-canary.37",
-    "@graphcommerce/prettier-config-pwa": "6.0.0-canary.37",
-    "@graphcommerce/typescript-config-pwa": "6.0.0-canary.37"
+    "@graphcommerce/eslint-config-pwa": "6.0.0-canary.38",
+    "@graphcommerce/prettier-config-pwa": "6.0.0-canary.38",
+    "@graphcommerce/typescript-config-pwa": "6.0.0-canary.38"
   },
   "dependencies": {
-    "@graphcommerce/graphql": "6.0.0-canary.37",
-    "@graphcommerce/magento-cart": "6.0.0-canary.37",
-    "@graphcommerce/magento-product": "6.0.0-canary.37"
+    "@graphcommerce/graphql": "6.0.0-canary.38",
+    "@graphcommerce/magento-cart": "6.0.0-canary.38",
+    "@graphcommerce/magento-product": "6.0.0-canary.38"
   },
   "peerDependencies": {
     "@lingui/react": "^3.13.2",

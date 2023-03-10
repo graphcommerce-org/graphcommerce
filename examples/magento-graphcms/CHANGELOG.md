@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.0-canary.38
+
+### Patch Changes
+
+- [#1835](https://github.com/graphcommerce-org/graphcommerce/pull/1835) [`060e30f36`](https://github.com/graphcommerce-org/graphcommerce/commit/060e30f361a9646b16ed2d0dd96b01627124866c) - Updated to next.js 13.2.4, no more performance patch needed ([@paales](https://github.com/paales))
+
 ## 6.0.0-canary.37
 
 ## 6.0.0-canary.36
