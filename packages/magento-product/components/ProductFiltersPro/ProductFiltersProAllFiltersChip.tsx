@@ -4,6 +4,7 @@ import {
   ChipOverlayOrPopperProps,
   filterNonNullableKeys,
 } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/react'
 import { Box } from '@mui/material'
 import { ProductFilterEqualSection } from './ProductFilterEqualSection'
 import { ProductFilterRangeSection } from './ProductFilterRangeSection'
@@ -41,7 +42,7 @@ export function ProductFiltersProAllFiltersChip(props: AllFiltersChip) {
 
   return (
     <ChipOverlayOrPopper
-      label='All filters'
+      label={<Trans id='All filters' />}
       chipProps={{ variant: 'outlined' }}
       onApply={submit}
       // onReset={
@@ -53,11 +54,11 @@ export function ProductFiltersProAllFiltersChip(props: AllFiltersChip) {
       //     : undefined
       // }
       onClose={submit}
-      selectedLabel={['All filters', ...activeFilters]}
+      selectedLabel={[<Trans id='All filters' />, ...activeFilters]}
       selected={hasFilters}
       breakpoint={false}
       overlayProps={{ variantMd: 'right', widthMd: '500px' }}
-      sx={{ '& .MuiBadge-root': { display: 'none' } }}
+      // sx={{ '& .MuiBadge-root': { display: 'none' } }}
       {...rest}
     >
       {() => (
