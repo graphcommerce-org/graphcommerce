@@ -1,12 +1,11 @@
+import { useI18nConfig } from '@graphcommerce/next-ui'
 import { useRouter } from 'next/router'
 import Script from 'next/script'
 import { useEffect } from 'react'
-import { useGoogleTagmanagerId } from '../hooks/useGoogleTagmanagerId'
 
 export function GoogleTagManagerScript() {
-  const id = useGoogleTagmanagerId()
-
-  const router = useRouter()
+  const { events } = useRouter()
+  const id = useI18nConfig().googleTagmanagerId ?? import.meta.graphCommerce.googleTagmanagerId
 
   useEffect(() => {
     const onRouteChangeComplete = (url: string) => {
@@ -14,12 +13,9 @@ export function GoogleTagManagerScript() {
       dataLayer?.push({ event: 'pageview', page: url })
     }
 
-    router.events.on('routeChangeComplete', onRouteChangeComplete)
-
-    return () => {
-      router.events.off('routeChangeComplete', onRouteChangeComplete)
-    }
-  }, [router.events])
+    events.on('routeChangeComplete', onRouteChangeComplete)
+    return () => events.off('routeChangeComplete', onRouteChangeComplete)
+  }, [events])
 
   return (
     <>

@@ -11,12 +11,12 @@ high-end e-commerce progressive web apps (PWA).
 
 ### Framework concepts and components
 
-| Concepts                                                       | Customizing                              | Other                                              |
-| -------------------------------------------------------------- | ---------------------------------------- | -------------------------------------------------- |
-| [Static generation](../framework/static-generation.md)         | [Theming](../framework/theming.md)       | [Translations](../framework/translations.md)       |
-| [Environment Variables](../framework/environment-variables.md) | [Typography](../framework/typography.md) | [Troubleshooting](../framework/troubleshooting.md) |
-| [Deployment](../framework/deployment.md)                       | [Favicon](../framework/favicon.md)       | [SEO](../framework/seo.md)                         |
-| [Hygraph](../framework/graphcms.md)                            | [Icons](../framework//icons.md)          |                                                    |
+| Concepts                                               | Customizing                              | Other                                              |
+| ------------------------------------------------------ | ---------------------------------------- | -------------------------------------------------- |
+| [Static generation](../framework/static-generation.md) | [Theming](../framework/theming.md)       | [Translations](../framework/translations.md)       |
+| [Confg](../framework/config.md)                        | [Typography](../framework/typography.md) | [Troubleshooting](../framework/troubleshooting.md) |
+| [Deployment](../framework/deployment.md)               | [Favicon](../framework/favicon.md)       | [SEO](../framework/seo.md)                         |
+| [Hygraph](../framework/graphcms.md)                    | [Icons](../framework//icons.md)          |                                                    |
 
 ## GraphCommerce project structure
 

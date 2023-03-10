@@ -95,20 +95,19 @@ and/or Hygraph project, you'll need:
 ### Configuration
 
 To connect your GraphCommerce app to your Magento backend and/or Hygraph
-project, you need to update variables in the /.env file. The .env file contains
-useful information about your storefront.
+project, you need to update variables in the graphcommerce.config.js file. The
+graphcommerce.config.js file contains useful information about your storefront.
 
-`MAGENTO_ENDPOINT=""`  
-Magento 2 API URL, located at `http://<magento2-server>/graphql`.
+Create a copy: `cp graphcommerce.config.js.example graphcommerce.config.js` and
+configure the following fields:
 
-`IMAGE_DOMAINS=",media.graphcms.com"`  
-Comma-separated list of image domains. Add media.graphcms.com as default.
+- [magentoEndpoint](../framework/config.md#magentoendpoint-string),
+- [hygraphEndpoint](../framework/config.md#hygraphendpoint-string).
 
-`GRAPHCMS_URL=""`  
-Hygraph API URL. Once logged in, copy it from Project Settings > Api Access >
-Content API
+Store code configuration:
 
-`NEXT_PUBLIC_LOCALE_STORES='{"en-us": "default", "en-ca": "canada"}'`  
+- [magentoStoreCode](../framework/config.md#magentostorecode-string),
+
 List of routes and store_codes:
 
 - When the user switches to the Canadian storeview, the suffix /en-ca is added
