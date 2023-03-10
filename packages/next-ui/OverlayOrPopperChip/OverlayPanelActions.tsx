@@ -2,7 +2,7 @@ import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, Button, Fab, Typography } from '@mui/material'
 import { IconSvg, useIconSvgSize } from '../IconSvg'
-import { LayoutHeader } from '../Layout'
+import { LayoutOverlayHeader } from '../LayoutOverlay'
 import { OverlayStickyBottom } from '../Overlay/components/OverlayStickyBottom'
 import { extendableComponent } from '../Styles'
 import { useFabSize } from '../Theme'
@@ -22,7 +22,7 @@ export const OverlayPanelActions = (props: PanelActionsProps) => {
 
   return (
     <>
-      <LayoutHeader
+      <LayoutOverlayHeader
         noAlign
         sx={{ '&.noAlign': { mb: 0 } }}
         switchPoint={-10000}
@@ -52,7 +52,7 @@ export const OverlayPanelActions = (props: PanelActionsProps) => {
         <Typography variant='h6' component='span'>
           {title}
         </Typography>
-      </LayoutHeader>
+      </LayoutOverlayHeader>
 
       <Box sx={{ flex: 1, px: 2 }} className={classes.content}>
         {children}
