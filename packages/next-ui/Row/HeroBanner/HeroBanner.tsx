@@ -45,7 +45,6 @@ export function HeroBanner(props: HeroBannerProps) {
           sx={(theme) => ({
             gridArea: '1 / 1',
             zIndex: 1,
-            minHeight: '70vh',
             display: 'grid',
             justifyItems: 'center',
             alignContent: 'center',
