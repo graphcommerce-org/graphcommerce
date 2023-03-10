@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.0-canary.37
+
+### Patch Changes
+
+- [#1834](https://github.com/graphcommerce-org/graphcommerce/pull/1834) [`58f7a63a4`](https://github.com/graphcommerce-org/graphcommerce/commit/58f7a63a4a4ef3bfcaeea75e393902b97138ba54) - Allow overlays to be larger than 100% height/width of the viewport ([@paales](https://github.com/paales))
+
 ## 6.0.0-canary.36
 
 ## 6.0.0-canary.35
