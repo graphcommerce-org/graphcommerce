@@ -199,24 +199,18 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
       }
     }
 
-    const handleResize = () => {
-      calcPositions()
-      forceScrollPosition()
-    }
-
-    const measureScroll = () => framesync.read(handleScroll)
-    const measureResize = () => framesync.read(handleResize)
     calcPositions()
     handleScroll()
 
-    const cancelX = scroll.x.on('change', measureScroll)
-    const cancelY = scroll.y.on('change', measureScroll)
+    const cancelX = scroll.x.on('change', () => framesync.read(handleScroll))
+    const cancelY = scroll.y.on('change', () => framesync.read(handleScroll))
 
-    const ro = new ResizeObserver(measureResize)
+    const ro = new ResizeObserver(() => {
+      calcPositions()
+      forceScrollPosition()
+    })
     ro.observe(scrollerRef.current)
-    ro.observe(beforeRef.current)
     ro.observe(overlayPaneRef.current)
-    ro.observe(overlayRef.current)
 
     return () => {
       ro.disconnect()
