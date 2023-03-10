@@ -46,7 +46,8 @@ Generating the sitemap.xml file is part of the static build process. Use
 `yarn build` to initiate the build process and to generate a new sitemap.xml
 file.
 
-Sitemap generation uses the `NEXT_PUBLIC_SITE_URL` variable in your .env fil.
+Sitemap generation uses the
+[`canonicalBaseUrl` configuration](./config.md#canonicalbaseurl-string).
 
 ## Modify /robots.txt
 

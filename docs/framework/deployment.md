@@ -1,3 +1,5 @@
+# Deploy GraphCommerce
+
 # Deploy a Graphcommerce app with Vercel
 
 Congratulations, you are ready to deploy your GraphCommerce storefront to
@@ -18,14 +20,10 @@ Production Branch of your GitHub project:
 
 </figure>
 
-- Set the Environment Variables from your .env file:
+- Optionally set the Environment Variables to override [config](./config.md)
 
   ```bash
-  GRAPHCMS_URL=""
-  MAGENTO_ENDPOINT=""
-  IMAGE_DOMAINS=""
-  NEXT_PUBLIC_LOCALE_STORES=""
-  NEXT_PUBLIC_DISPLAY_INCL_TAX=""
+  GC_LIMIT_SSG=0
   ```
 
 - Vercel will auto assign a domain to your project. In this example, the Github
@@ -34,8 +32,7 @@ Production Branch of your GitHub project:
   Public site URL Environment Variables:
 
   ```bash
-  NEXT_PUBLIC_GRAPHQL_ENDPOINT="https://graphcommerce-example.vercel.app/api/graphql"
-  NEXT_PUBLIC_SITE_URL="https://graphcommerce-example.vercel.app/"
+  GC_CANONICAL_BASE_URL="https://graphcommerce-example.vercel.app/"
   ```
 
 <figure>
@@ -45,9 +42,9 @@ Production Branch of your GitHub project:
 </figure>
 
 - Hit the "Deploy" button
+
 - A custom domain can be configured in the Vercel Project Settings. Update the
-  `NEXT_PUBLIC_GRAPHQL_ENDPOINT` and `NEXT_PUBLIC_SITE_URL` variables
-  afterwards.
+  and `GC_CANONICAL_BASE_URL` variable afterwards.
 
 ## Next steps
 
