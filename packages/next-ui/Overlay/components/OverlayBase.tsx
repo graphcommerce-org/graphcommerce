@@ -137,23 +137,22 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
 
   useIsomorphicLayoutEffect(() => {
     const scroller = scrollerRef.current
-    if (!scroller) return () => {}
+    if (!scroller || !beforeRef.current || !overlayRef.current || !overlayPaneRef.current)
+      return () => {}
 
     const calcPositions = () => {
-      const snapPositions = getScrollSnapPositions()
-      const x = snapPositions.x[snapPositions.x.length - 1]
-      const y = snapPositions.y[snapPositions.y.length - 1]
+      const { x, y } = getScrollSnapPositions()
 
       if (variant() === 'left') {
-        positions.closed.x.set(x)
-        positions.open.x.set(0)
+        positions.closed.x.set(x[x.length - 1])
+        positions.open.x.set(x[x.length - 2])
       }
       if (variant() === 'right') {
-        positions.open.x.set(x)
+        positions.open.x.set(x[x.length - 1])
         positions.closed.x.set(0)
       }
       if (variant() === 'bottom') {
-        positions.open.y.set(y)
+        positions.open.y.set(y[y.length - 1])
         positions.closed.y.set(0)
       }
     }
@@ -171,23 +170,22 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
     }
 
     const calcVisible = () => {
-      const snapPositions = getScrollSnapPositions()
       const clampRound = (value: number) => Math.round(Math.max(0, Math.min(1, value)) * 100) / 100
 
-      const scrollX = scroller.scrollLeft || scroll.x.get()
-      const scrolly = scroller.scrollTop || scroll.y.get()
+      const scrollX = scroll.x.get()
+      const scrollY = scroll.y.get()
 
       if (variant() === 'left') {
-        const closedX = snapPositions.x[1] ?? 0
+        const closedX = positions.closed.x.get()
         positions.open.visible.set(closedX === 0 ? 0 : clampRound((scrollX - closedX) / -closedX))
       }
       if (variant() === 'right') {
-        const openedX = snapPositions.x[1] ?? 0
+        const openedX = positions.open.x.get()
         positions.open.visible.set(openedX === 0 ? 0 : clampRound(scrollX / openedX))
       }
       if (variant() === 'bottom') {
-        const openedY = snapPositions.y[1] ?? 0
-        positions.open.visible.set(openedY === 0 ? 0 : clampRound(scrolly / openedY))
+        const openedY = positions.open.y.get()
+        positions.open.visible.set(openedY === 0 ? 0 : clampRound(scrollY / openedY))
       }
     }
 
@@ -218,7 +216,9 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
 
     const ro = new ResizeObserver(measureResize)
     ro.observe(scrollerRef.current)
-    ;[...scrollerRef.current.children].forEach((child) => ro.observe(child))
+    ro.observe(beforeRef.current)
+    ro.observe(overlayPaneRef.current)
+    ro.observe(overlayRef.current)
 
     window.addEventListener('resize', measureResize)
     return () => {
@@ -514,7 +514,6 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
                 },
                 '&.variantSmLeft, &.variantSmRight': {
                   width: widthSm || 'max-content',
-                  maxWidth: dvw(100),
                   maxHeight: dvh(100),
                   '&.sizeSmFull': {
                     height: dvh(100),
@@ -554,7 +553,6 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
                 },
                 '&.variantMdLeft, &.variantMdRight': {
                   width: widthMd || 'max-content',
-                  maxWidth: dvw(100),
                   maxHeight: dvh(100),
                   '&.sizeMdFull': {
                     height: dvh(100),
