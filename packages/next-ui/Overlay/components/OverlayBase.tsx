@@ -606,6 +606,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
                     borderTopRightRadius: theme.shape.borderRadius * 4,
                   },
                   '&.sizeMdFull': {
+                    minHeight: dvh(100),
                     '&.variantMdBottom': {
                       minHeight: '100%',
                     },
