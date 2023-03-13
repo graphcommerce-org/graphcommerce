@@ -1,5 +1,11 @@
 # @graphcommerce/cli
 
+## 6.0.0-canary.40
+
+### Patch Changes
+
+- [#1838](https://github.com/graphcommerce-org/graphcommerce/pull/1838) [`b8d41d4fb`](https://github.com/graphcommerce-org/graphcommerce/commit/b8d41d4fb8634e44843cf645e683a21fdbb36b5f) - Improved global regular expression replace on the Graphcommerce configuration mesh replace function, so it searches for variables in complete variable paths. ([@mikekeehnen](https://github.com/mikekeehnen))
+
 ## 6.0.0-canary.39
 
 ## 6.0.0-canary.38

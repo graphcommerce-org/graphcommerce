@@ -3,7 +3,7 @@
 import { promises as fs } from 'node:fs'
 import path from 'node:path'
 import { exit } from 'node:process'
-import { configToImportMeta, isMonorepo, loadConfig } from '@graphcommerce/next-config'
+import { isMonorepo, loadConfig, replaceConfigInString } from '@graphcommerce/next-config'
 import { graphqlMesh, DEFAULT_CLI_PARAMS, GraphQLMeshCLIParams } from '@graphql-mesh/cli'
 import { Logger, YamlConfig } from '@graphql-mesh/types'
 import { DefaultLogger } from '@graphql-mesh/utils'
@@ -93,12 +93,7 @@ const main = async () => {
     },
   ]
 
-  const replacers = configToImportMeta(loadConfig(root))
-  let yamlString = yaml.stringify(conf)
-  Object.entries(replacers).forEach(([from, to]) => {
-    yamlString = yamlString.replace(new RegExp(`"{${from}}"`, 'g'), to)
-  })
-
+  const yamlString = replaceConfigInString(yaml.stringify(conf), loadConfig(root))
   await fs.writeFile(tmpMeshLocation, yamlString)
 
   // Reexport the mesh to is can be used by packages
