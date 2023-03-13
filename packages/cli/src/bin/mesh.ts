@@ -36,6 +36,7 @@ async function cleanup() {
   try {
     await fs.stat(tmpMeshLocation).then((r) => {
       if (r.isFile()) return fs.unlink(tmpMeshLocation)
+      return undefined
     })
   } catch (e) {
     // ignore

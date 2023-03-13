@@ -16,6 +16,7 @@ function GaViewItem(props: PluginProps<ProductPageMetaFragment>) {
     value: price_range.minimum_price.final_price.value,
     items: [productToGtagItem(props)],
   })
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
   useEffect(() => globalThis.gtag?.('event', 'view_item', viewItem), [viewItem])
 
   return <Prev {...props} />
