@@ -1,3 +1,4 @@
+import { clientSize } from '@graphcommerce/framer-utils'
 import { ContainerProps, Box, styled, Theme, SxProps } from '@mui/material'
 import { m, useTransform } from 'framer-motion'
 import React from 'react'
@@ -21,8 +22,9 @@ const MotionVideo = styled(m.video)({})
 export function HeroBanner(props: HeroBannerProps) {
   const { pageLinks, videoSrc, children, sx = [], ...containerProps } = props
   const scrollY = useScrollY()
-  const viewportHeight = global.window && window.innerWidth * 0.7
-  const scale = useTransform(scrollY, [0, viewportHeight], [1, 1.7])
+  const scale = useTransform([scrollY, clientSize.y], ([scrollYCurr, clientSizeYCurr]: number[]) =>
+    clientSizeYCurr ? (scrollYCurr / clientSizeYCurr) * 1.7 + 1 : 1,
+  )
 
   return (
     <Row
