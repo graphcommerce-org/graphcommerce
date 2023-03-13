@@ -1,5 +1,13 @@
 # Change Log
 
+## 6.0.0-canary.41
+
+### Patch Changes
+
+- [#1839](https://github.com/graphcommerce-org/graphcommerce/pull/1839) [`e4a3f5e98`](https://github.com/graphcommerce-org/graphcommerce/commit/e4a3f5e986287b78c3e048d8a33611c61070b79e) - Make sure the configuration is validated before executing ([@paales](https://github.com/paales))
+
+- [#1839](https://github.com/graphcommerce-org/graphcommerce/pull/1839) [`8eb310409`](https://github.com/graphcommerce-org/graphcommerce/commit/8eb3104098749a6b08d2affb6cdc8a7e6698866f) - Use graphCommerce._ instead of import.meta.graphCommerce._ in .meshrc.yml ([@paales](https://github.com/paales))
+
 ## 6.0.0-canary.40
 
 ## 6.0.0-canary.39
