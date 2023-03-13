@@ -22,6 +22,7 @@ const demoConfig_1 = require("./demoConfig");
 const mergeEnvIntoConfig_1 = require("./utils/mergeEnvIntoConfig");
 const rewriteLegacyEnv_1 = require("./utils/rewriteLegacyEnv");
 __exportStar(require("./utils/configToImportMeta"), exports);
+__exportStar(require("./utils/replaceConfigInString"), exports);
 const moduleName = 'graphcommerce';
 const loader = (0, cosmiconfig_1.cosmiconfigSync)(moduleName);
 function loadConfig(cwd) {

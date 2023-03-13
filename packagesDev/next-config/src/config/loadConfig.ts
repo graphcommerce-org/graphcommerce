@@ -7,6 +7,7 @@ import { filterEnv, formatAppliedEnv } from './utils/mergeEnvIntoConfig'
 import { rewriteLegacyEnv } from './utils/rewriteLegacyEnv'
 
 export * from './utils/configToImportMeta'
+export * from './utils/replaceConfigInString'
 
 const moduleName = 'graphcommerce'
 const loader = cosmiconfigSync(moduleName)
