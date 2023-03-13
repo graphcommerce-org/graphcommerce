@@ -1,6 +1,10 @@
-function flattenKeys(value: unknown, initialPathPrefix: string): Record<string, unknown> {
+function flattenKeys(
+  value: unknown,
+  initialPathPrefix: string,
+  stringify: boolean,
+): Record<string, unknown> {
   // Is a scalar:
-  if (value === null || value === undefined || typeof value === 'number') {
+  if (value === null || value === undefined || typeof value === 'number' || !stringify) {
     return { [initialPathPrefix]: value }
   }
 
@@ -21,7 +25,7 @@ function flattenKeys(value: unknown, initialPathPrefix: string): Record<string, 
       ...Object.keys(value)
         .map((key) => {
           const deep = (value as Record<string, unknown>)[key]
-          return flattenKeys(deep, `${initialPathPrefix}.${key}`)
+          return flattenKeys(deep, `${initialPathPrefix}.${key}`, false)
         })
         .reduce((acc, path) => ({ ...acc, ...path })),
     }
@@ -32,5 +36,5 @@ function flattenKeys(value: unknown, initialPathPrefix: string): Record<string, 
 
 /** The result of this function is passed to the webpack DefinePlugin as import.meta.graphCommerce.* */
 export function configToImportMeta(config: unknown) {
-  return flattenKeys(config, 'import.meta.graphCommerce') as Record<string, string>
+  return flattenKeys(config, 'import.meta.graphCommerce', true) as Record<string, string>
 }

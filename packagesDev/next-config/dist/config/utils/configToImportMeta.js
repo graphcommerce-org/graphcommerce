@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.configToImportMeta = void 0;
-function flattenKeys(value, initialPathPrefix) {
+function flattenKeys(value, initialPathPrefix, stringify) {
     // Is a scalar:
-    if (value === null || value === undefined || typeof value === 'number') {
+    if (value === null || value === undefined || typeof value === 'number' || !stringify) {
         return { [initialPathPrefix]: value };
     }
     if (typeof value === 'string') {
@@ -20,7 +20,7 @@ function flattenKeys(value, initialPathPrefix) {
             ...Object.keys(value)
                 .map((key) => {
                 const deep = value[key];
-                return flattenKeys(deep, `${initialPathPrefix}.${key}`);
+                return flattenKeys(deep, `${initialPathPrefix}.${key}`, false);
             })
                 .reduce((acc, path) => ({ ...acc, ...path })),
         };
@@ -29,6 +29,6 @@ function flattenKeys(value, initialPathPrefix) {
 }
 /** The result of this function is passed to the webpack DefinePlugin as import.meta.graphCommerce.* */
 function configToImportMeta(config) {
-    return flattenKeys(config, 'import.meta.graphCommerce');
+    return flattenKeys(config, 'import.meta.graphCommerce', true);
 }
 exports.configToImportMeta = configToImportMeta;

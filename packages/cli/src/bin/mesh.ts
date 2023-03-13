@@ -95,7 +95,7 @@ const main = async () => {
   const replacers = configToImportMeta(loadConfig(root))
   let yamlString = yaml.stringify(conf)
   Object.entries(replacers).forEach(([from, to]) => {
-    yamlString = yamlString.replace(new RegExp(`"{${from}}"`, 'g'), to)
+    yamlString = yamlString.replace(new RegExp(`{${from}}`, 'g'), to)
   })
 
   await fs.writeFile(tmpMeshLocation, yamlString)

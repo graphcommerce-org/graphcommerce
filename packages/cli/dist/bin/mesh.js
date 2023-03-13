@@ -91,7 +91,7 @@ const main = async () => {
     const replacers = (0, next_config_1.configToImportMeta)((0, next_config_1.loadConfig)(root));
     let yamlString = yaml_1.default.stringify(conf);
     Object.entries(replacers).forEach(([from, to]) => {
-        yamlString = yamlString.replace(new RegExp(`"{${from}}"`, 'g'), to);
+        yamlString = yamlString.replace(new RegExp(`{${from}}`, 'g'), to);
     });
     await node_fs_1.promises.writeFile(tmpMeshLocation, yamlString);
     // Reexport the mesh to is can be used by packages
