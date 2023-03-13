@@ -7,13 +7,13 @@ export const exported = '@graphcommerce/magento-cart-items'
 export const ifConfig: IfConfig = 'googleAnalyticsId'
 
 export function GaRemoveItemFromCart(props: PluginProps<RemoveItemFromCartProps>) {
-  const { Prev, uid, quantity, prices, product } = props
+  const { Prev, uid, quantity, prices, product, onClick } = props
 
   return (
     <Prev
       {...props}
       product={product}
-      onClick={() =>
+      onClick={(e) => {
         gtagRemoveFromCart({
           __typename: 'Cart',
           items: [
@@ -26,7 +26,8 @@ export function GaRemoveItemFromCart(props: PluginProps<RemoveItemFromCartProps>
             },
           ],
         })
-      }
+        onClick?.(e)
+      }}
     />
   )
 }
