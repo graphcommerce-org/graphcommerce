@@ -61,7 +61,7 @@ function useObserveItems(scrollerRef: ReactHtmlRefObject, items: MotionValue<Ite
 
   useEffect(() => {
     observe(items.get())
-    return items.onChange(observe)
+    return items.on('change', observe)
   }, [items, observe])
 }
 

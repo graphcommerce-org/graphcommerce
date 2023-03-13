@@ -79,7 +79,7 @@ export function ProductListFiltersContainer(props: ProductListFiltersContainerPr
       }
     }
     onCheckStickyChange(scrollY.get())
-    return scrollY.onChange(onCheckStickyChange)
+    return scrollY.on('change', onCheckStickyChange)
   }, [isSticky, scrollHalfway, scrollY])
 
   const opacity = useTransform(scrollY, [startPosition, startPosition + spacing], [0, 1])
