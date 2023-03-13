@@ -19,7 +19,6 @@ export function loadConfig(cwd: string): GraphCommerceConfig {
     const result = loader.search(cwd)
 
     let confFile = result?.config
-    const hasEnv = Object.keys(filterEnv(process.env)).length > 0
     if (!confFile) {
       if (isMainProcess)
         console.warn('No graphcommerce.config.js found in the project, using demo config')
@@ -28,17 +27,17 @@ export function loadConfig(cwd: string): GraphCommerceConfig {
     confFile ||= {}
 
     const schema = GraphCommerceConfigSchema()
-    const parsed = schema.safeParse(confFile)
-
     const [mergedConfig, applyResult] = rewriteLegacyEnv(
-      GraphCommerceConfigSchema(),
-      parsed.success ? parsed.data : {},
+      schema,
       process.env,
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+      confFile,
     )
 
     if (applyResult.length > 0 && isMainProcess) console.log(formatAppliedEnv(applyResult))
 
     const finalParse = schema.parse(mergedConfig)
+
     if (process.env.DEBUG && isMainProcess) {
       console.log('Parsed configuration')
       console.log(finalParse)
@@ -47,7 +46,7 @@ export function loadConfig(cwd: string): GraphCommerceConfig {
   } catch (error) {
     if (error instanceof Error) {
       if (isMainProcess) {
-        console.log(error.message)
+        console.log('Error while parsing graphcommerce.config.js', error.message)
         process.exit(1)
       }
     }
