@@ -1,4 +1,4 @@
-import { nonNullable, useMemoDeep } from '@graphcommerce/next-ui'
+import { nonNullable, useMemoDeep, useStableObject } from '@graphcommerce/next-ui'
 import { useEventCallback } from '@mui/material'
 import React, { useContext, useEffect, useMemo } from 'react'
 import { ProductToGtagItemFragment } from '../events/productToGtagItem/ProductToGtagItem.gql'
@@ -39,15 +39,11 @@ export function GoogleAnalyticsItemList<
 >(props: UseGtagViewItemListProps<P> & { children: React.ReactNode }) {
   const { title, items, listId, children } = props
 
-  const eventData: ViewItemList = useMemoDeep(
-    () => ({
-      item_list_id: listId ?? title?.toLowerCase().replace(/\s/g, '_'),
-      item_list_name: title,
-      items:
-        items?.map((item) => (item ? productToGtagItem(item) : null)).filter(nonNullable) ?? [],
-    }),
-    [listId, items, title],
-  )
+  const eventData: ViewItemList = useStableObject({
+    item_list_id: listId ?? title?.toLowerCase().replace(/\s/g, '_'),
+    item_list_name: title,
+    items: items?.map((item) => (item ? productToGtagItem(item) : null)).filter(nonNullable) ?? [],
+  })
 
   useEffect(() => globalThis.gtag?.('event', 'view_item_list', eventData), [eventData])
 
