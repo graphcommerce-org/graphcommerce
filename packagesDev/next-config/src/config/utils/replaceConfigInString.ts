@@ -3,7 +3,7 @@ import { configToImportMeta } from './configToImportMeta'
 
 export function replaceConfigInString(str: string, config: Partial<GraphCommerceConfig>) {
   let result = str
-  const replacers = configToImportMeta(config, false)
+  const replacers = configToImportMeta(config, 'graphCommerce', false)
 
   Object.entries(replacers).forEach(([from, to]) => {
     result = result.replace(new RegExp(`{${from}}`, 'g'), to)

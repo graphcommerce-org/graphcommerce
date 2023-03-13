@@ -36,49 +36,17 @@ it('flattens a config object', () => {
 it('creates keys but does not stringify values', () => {
   expect(configToImportMeta(configFile, false)).toMatchInlineSnapshot(`
     {
-      "import.meta.graphCommerce": {
-        "customerRequireEmailConfirmation": false,
-        "deeper": {
-          "arrayvalue": [
-            "test",
-          ],
-          "nested": {
-            "value": "test",
-          },
-        },
-        "demoMode": true,
-        "googleTagmanagerKey": "GTM-XXXXXXX",
-        "i18n": [
-          {
-            "hygraphLocales": [
-              "en",
-            ],
-            "locale": "en",
-            "magentoStoreCode": "en_us",
-          },
-        ],
-        "legacyProductRoute": true,
-        "productFiltersPro": false,
-      },
-      "import.meta.graphCommerce.customerRequireEmailConfirmation": false,
-      "import.meta.graphCommerce.deeper": {
-        "arrayvalue": [
-          "test",
-        ],
-        "nested": {
-          "value": "test",
-        },
-      },
-      "import.meta.graphCommerce.deeper.arrayvalue": "["test"]",
-      "import.meta.graphCommerce.deeper.nested": {
-        "value": "test",
-      },
-      "import.meta.graphCommerce.deeper.nested.value": "test",
-      "import.meta.graphCommerce.demoMode": true,
-      "import.meta.graphCommerce.googleTagmanagerKey": "GTM-XXXXXXX",
-      "import.meta.graphCommerce.i18n": "[{"locale":"en","hygraphLocales":["en"],"magentoStoreCode":"en_us"}]",
-      "import.meta.graphCommerce.legacyProductRoute": true,
-      "import.meta.graphCommerce.productFiltersPro": false,
+      "false": "{ __debug: "'false' can not be destructured, please access deeper properties directly" }",
+      "false.customerRequireEmailConfirmation": "false",
+      "false.deeper": "{ __debug: "'false.deeper' can not be destructured, please access deeper properties directly" }",
+      "false.deeper.arrayvalue": "["test"]",
+      "false.deeper.nested": "{ __debug: "'false.deeper.nested' can not be destructured, please access deeper properties directly" }",
+      "false.deeper.nested.value": ""test"",
+      "false.demoMode": "true",
+      "false.googleTagmanagerKey": ""GTM-XXXXXXX"",
+      "false.i18n": "[{"locale":"en","hygraphLocales":["en"],"magentoStoreCode":"en_us"}]",
+      "false.legacyProductRoute": "true",
+      "false.productFiltersPro": "false",
     }
   `)
 })

@@ -33,6 +33,13 @@ function MyComponent() {
 }
 ```
 
+You can also use the configuration in your `.meshrc.yml` by accessing
+`{graphCommerce.myField}`
+
+```yml
+endpoint: '{graphCommerce.magentoEndpoint}'
+```
+
 ## Environment variables to override configuration
 
 Configuration values can be overwriten by environment variables, with the following rules:

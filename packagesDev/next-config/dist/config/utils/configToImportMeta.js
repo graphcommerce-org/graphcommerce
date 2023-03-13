@@ -30,7 +30,7 @@ function flattenKeys(value, initialPathPrefix, stringify) {
     throw Error(`Unexpected value: ${value}`);
 }
 /** The result of this function is passed to the webpack DefinePlugin as import.meta.graphCommerce.* */
-function configToImportMeta(config, stringify = true) {
-    return flattenKeys(config, 'import.meta.graphCommerce', stringify);
+function configToImportMeta(config, path = 'import.meta.graphCommerce', stringify = true) {
+    return flattenKeys(config, path, stringify);
 }
 exports.configToImportMeta = configToImportMeta;
