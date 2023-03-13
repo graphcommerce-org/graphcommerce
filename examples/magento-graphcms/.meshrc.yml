@@ -3,7 +3,7 @@ sources:
     handler:
       graphql:
         useGETForQueries: true
-        endpoint: '{import.meta.graphCommerce.hygraphEndpoint}'
+        endpoint: '{graphCommerce.hygraphEndpoint}'
         batch: false
         operationHeaders:
           gcms-locales: "{context.headers['gcms-locales']}"
@@ -23,7 +23,7 @@ sources:
   - name: m2
     handler:
       graphql:
-        endpoint: '{import.meta.graphCommerce.magentoEndpoint}'
+        endpoint: '{graphCommerce.magentoEndpoint}'
         useGETForQueries: true
         schemaHeaders:
           Store: '{context.headers.store}'

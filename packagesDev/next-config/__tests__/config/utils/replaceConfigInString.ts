@@ -6,19 +6,17 @@ import { replaceConfigInString } from '../../../src/config/utils/replaceConfigIn
 it('replaces config in string', () => {
   const config = { ...demoConfig, replaceMe: '1234', do: { replaceMe: 'CHECK' } }
 
-  const meshrc = `
-
-  sources:
+  const meshrc = `sources:
   - name: hygraph
     handler:
       graphql:
         useGETForQueries: true
-        endpoint: '{import.meta.graphCommerce.hygraphEndpoint}'
+        endpoint: '{graphCommerce.hygraphEndpoint}'
         batch: false
-        i18nConfig: {import.meta.graphCommerce.i18n}
+        i18nConfig: {graphCommerce.i18n}
         operationHeaders:
           gcms-locales: "{context.headers['gcms-locales']}"
-          path: /nl/v3/json/getAddress/index.php?postcode={args.postcode}&huisnummer={args.housenumber}&secure_code={import.meta.graphCommerce.replaceMe}&public_key={import.meta.graphCommerce.do.replaceMe}
+          path: /nl/v3/json/getAddress/index.php?postcode={args.postcode}&huisnummer={args.housenumber}&secure_code={graphCommerce.replaceMe}&public_key={graphCommerce.do.replaceMe}
     transforms:
       - filterSchema:
           filters:

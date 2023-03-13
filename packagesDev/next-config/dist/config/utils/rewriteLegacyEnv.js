@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.rewriteLegacyEnv = void 0;
 const cloneDeep_1 = __importDefault(require("lodash/cloneDeep"));
 const mergeEnvIntoConfig_1 = require("./mergeEnvIntoConfig");
-function rewriteLegacyEnv(schema, config, env) {
+function rewriteLegacyEnv(schema, env, config = {}) {
     const clonedEnv = (0, cloneDeep_1.default)(env);
     const applied = [];
     function renamedTo(to) {

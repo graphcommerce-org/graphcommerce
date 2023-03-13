@@ -737,6 +737,7 @@ exports[`traverses a schema and returns a list of env variables that match 1`] =
   "GC_MAGENTO_ENDPOINT",
   "GC_PREVIEW_SECRET",
   "GC_PRODUCT_FILTERS_PRO",
+  "GC_PRODUCT_ROUTE",
   "GC_ROBOTS_ALLOW",
   "GC_WISHLIST_HIDE_FOR_GUESTS",
   "GC_WISHLIST_IGNORE_PRODUCT_WISHLIST_STATUS",

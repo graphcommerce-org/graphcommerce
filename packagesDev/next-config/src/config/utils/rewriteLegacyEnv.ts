@@ -4,8 +4,8 @@ import { ApplyResult, mergeEnvIntoConfig, ZodNode } from './mergeEnvIntoConfig'
 
 export function rewriteLegacyEnv(
   schema: ZodNode,
-  config: Partial<GraphCommerceConfig>,
   env: Record<string, string | undefined>,
+  config: Partial<GraphCommerceConfig> = {},
 ) {
   const clonedEnv: Record<string, string | undefined> = cloneDeep(env)
   const applied: ApplyResult = []

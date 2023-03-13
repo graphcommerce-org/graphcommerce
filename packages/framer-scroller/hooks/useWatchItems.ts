@@ -10,11 +10,11 @@ export function useWatchItems(callback: (item: ItemState, items: ItemState[]) =>
 
     const handleItemChange = (itemArr: ItemState[]) => {
       itemArr.forEach((item) => {
-        watched.push(item.visibility.onChange(() => callback(item, items.get())))
+        watched.push(item.visibility.on('change', () => callback(item, items.get())))
       })
     }
 
-    watched.push(items.onChange(handleItemChange))
+    watched.push(items.on('change', handleItemChange))
     handleItemChange(items.get())
 
     return () => watched.forEach((w) => w())

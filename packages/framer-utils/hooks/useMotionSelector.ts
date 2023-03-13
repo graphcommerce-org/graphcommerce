@@ -18,7 +18,7 @@ export function useMotionSelector<T extends [...any[]], R>(
     const set = () => startTransition(() => setResult(calcEffect))
     setResult(calcEffect)
 
-    const unsubscribers = motionValues.map((motionValue) => motionValue.onChange(set))
+    const unsubscribers = motionValues.map((motionValue) => motionValue.on('change', set))
     return () => unsubscribers.forEach((unsubscribe) => unsubscribe())
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [motionValues])

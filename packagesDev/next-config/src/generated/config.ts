@@ -49,6 +49,13 @@ export type Scalars = {
  * }
  * ```
  *
+ * You can also use the configuration in your `.meshrc.yml` by accessing
+ * `{graphCommerce.myField}`
+ *
+ * ```yml
+ * endpoint: '{graphCommerce.magentoEndpoint}'
+ * ```
+ *
  * ## Environment variables to override configuration
  *
  * Configuration values can be overwriten by environment variables, with the following rules:
@@ -130,7 +137,7 @@ export type GraphCommerceConfig = {
    *
    * Provide a value to enable Google Analytics for your store.
    *
-   * To enable only for a specific locale, override the value in the i18n config.
+   * To override the value for a specific locale, configure in i18n config.
    */
   googleAnalyticsId?: InputMaybe<Scalars['String']>;
   /**
