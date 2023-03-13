@@ -2,18 +2,19 @@ import { ApolloCartErrorSnackbar, useFormGqlMutationCart } from '@graphcommerce/
 import { iconClose, IconSvg } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Fab, SxProps, Theme, styled } from '@mui/material'
-import {
-  RemoveItemFromCartDocument,
-  RemoveItemFromCartMutationVariables,
-} from './RemoveItemFromCart.gql'
+import { CartItemFragment } from '../Api/CartItem.gql'
+import { RemoveItemFromCartDocument } from './RemoveItemFromCart.gql'
 
-export type RemoveItemFromCartProps = Omit<RemoveItemFromCartMutationVariables, 'cartId'> &
+export type RemoveItemFromCartProps = CartItemFragment &
   Omit<JSX.IntrinsicElements['form'], 'onSubmit' | 'noValidate'> & { sx?: SxProps<Theme> }
 
 const Form = styled('form')({})
 
 export function RemoveItemFromCartFab(props: RemoveItemFromCartProps) {
-  const { uid, ...formProps } = props
+  const {
+    product: { uid },
+    ...formProps
+  } = props
   const form = useFormGqlMutationCart(RemoveItemFromCartDocument, { defaultValues: { uid } })
   const { handleSubmit, formState, error } = form
   const submitHandler = handleSubmit(() => {})
