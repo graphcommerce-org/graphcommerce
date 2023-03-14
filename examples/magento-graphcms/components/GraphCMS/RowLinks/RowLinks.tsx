@@ -1,6 +1,6 @@
 import {} from '@graphcommerce/graphcms-ui'
 import { RowLinksFragment } from './RowLinks.gql'
-import { LogoSwiper, ImageLabelSwiper, Inline } from './variant'
+import { LogoSwiper, ImageLabelSwiper, Inline, Usps } from './variant'
 
 type VariantRenderer = Record<
   NonNullable<RowLinksFragment['linksVariant']>,
@@ -15,6 +15,7 @@ const defaultRenderer: Partial<VariantRenderer> = {
   LogoSwiper,
   ImageLabelSwiper,
   Inline,
+  Usps,
 }
 
 export function RowLinks(props: RowLinksProps) {
