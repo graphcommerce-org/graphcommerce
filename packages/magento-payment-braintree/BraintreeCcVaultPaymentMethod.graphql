@@ -13,9 +13,7 @@ mutation BraintreeCcVaultPaymentMethod(
     }
   ) {
     cart {
-      selected_payment_method {
-        ...SelectedPaymentMethod
-      }
+      ...PaymentMethodUpdated
     }
   }
 }

@@ -13,9 +13,7 @@ mutation AdyenPaymentOptionsAndPlaceOrder(
     }
   ) {
     cart {
-      selected_payment_method {
-        ...SelectedPaymentMethod
-      }
+      ...PaymentMethodUpdated
     }
   }
   placeOrder(input: { cart_id: $cartId }) {
