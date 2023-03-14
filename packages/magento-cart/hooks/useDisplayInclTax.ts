@@ -1,6 +1,6 @@
-import { useI18nConfig } from '@graphcommerce/next-ui'
+import { useStorefrontConfig } from '@graphcommerce/next-ui'
 
 export const useDisplayInclTax = () =>
-  useI18nConfig().cartDisplayPricesInclTax ??
+  useStorefrontConfig().cartDisplayPricesInclTax ??
   import.meta.graphCommerce.cartDisplayPricesInclTax ??
   true

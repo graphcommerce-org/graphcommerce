@@ -7,7 +7,7 @@ import { resolveHref } from 'next/dist/shared/lib/router/utils/resolve-href'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import type {} from '@graphcommerce/next-config'
-import { i18nConfig } from '../hooks'
+import { storefrontConfig } from '../hooks'
 
 // https://developers.google.com/search/docs/advanced/robots/robots_meta_tag#directives
 export type MetaRobots =
@@ -64,7 +64,8 @@ export function canonicalize(router: PartialNextRouter, incoming?: Canonical) {
     href = localeDomain || addBasePath(addLocale(as, curLocale, router.defaultLocale))
 
     let siteUrl =
-      i18nConfig(router.locale)?.canonicalBaseUrl || import.meta.graphCommerce.canonicalBaseUrl
+      storefrontConfig(router.locale)?.canonicalBaseUrl ||
+      import.meta.graphCommerce.canonicalBaseUrl
     if (siteUrl.endsWith('/')) siteUrl = siteUrl.slice(0, -1)
 
     canonical = `${siteUrl}${href}`

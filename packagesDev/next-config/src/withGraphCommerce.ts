@@ -15,7 +15,7 @@ let graphcommerceConfig: GraphCommerceConfig
 
 function domains(config: GraphCommerceConfig): DomainLocale[] {
   return Object.values(
-    config.i18n.reduce((acc, loc) => {
+    config.storefront.reduce((acc, loc) => {
       if (!loc.domain) return acc
 
       acc[loc.domain] = {
@@ -52,7 +52,7 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
   graphcommerceConfig ??= loadConfig(cwd)
   const importMetaPaths = configToImportMeta(graphcommerceConfig)
 
-  const { i18n } = graphcommerceConfig
+  const { storefront } = graphcommerceConfig
 
   const transpilePackages = [
     ...[...resolveDependenciesSync().keys()].slice(1),
@@ -62,8 +62,9 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
   return {
     ...nextConfig,
     i18n: {
-      defaultLocale: i18n.find((locale) => locale.defaultLocale)?.locale ?? i18n[0].locale,
-      locales: i18n.map((locale) => locale.locale),
+      defaultLocale:
+        storefront.find((locale) => locale.defaultLocale)?.locale ?? storefront[0].locale,
+      locales: storefront.map((locale) => locale.locale),
       domains: [...domains(graphcommerceConfig), ...(nextConfig.i18n?.domains ?? [])],
     },
     images: {

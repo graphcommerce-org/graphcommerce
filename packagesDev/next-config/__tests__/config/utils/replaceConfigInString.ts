@@ -13,7 +13,7 @@ it('replaces config in string', () => {
         useGETForQueries: true
         endpoint: '{graphCommerce.hygraphEndpoint}'
         batch: false
-        i18nConfig: {graphCommerce.i18n}
+        i18nConfig: {graphCommerce.storefront}
         operationHeaders:
           gcms-locales: "{context.headers['gcms-locales']}"
           path: /nl/v3/json/getAddress/index.php?postcode={args.postcode}&huisnummer={args.housenumber}&secure_code={graphCommerce.replaceMe}&public_key={graphCommerce.do.replaceMe}

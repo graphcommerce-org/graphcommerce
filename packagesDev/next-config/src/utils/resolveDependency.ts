@@ -34,7 +34,10 @@ export const resolveDependency = (cwd: string = process.cwd()) => {
         ].find((location) =>
           ['ts', 'tsx'].find((extension) => fs.existsSync(`${location}.${extension}`)),
         )
-        if (!fromRoot) throw Error("Can't find plugin target")
+        if (!fromRoot) {
+          throw Error(`Can't find plugin target for ${dependency}`)
+        }
+
         const denormalized = fromRoot.replace(root, depCandidate)
 
         let fromModule = !relative

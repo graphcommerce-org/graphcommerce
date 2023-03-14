@@ -19,11 +19,15 @@ function flattenKeys(
   }
 
   if (typeof value === 'object') {
-    return {
-      [initialPathPrefix]:
+    let outputValue: object | string = value
+    if (stringify)
+      outputValue =
         process.env.NODE_ENV !== 'production'
           ? `{ __debug: "'${initialPathPrefix}' can not be destructured, please access deeper properties directly" }`
-          : '{}',
+          : '{}'
+
+    return {
+      [initialPathPrefix]: outputValue,
 
       ...Object.keys(value)
         .map((key) => {

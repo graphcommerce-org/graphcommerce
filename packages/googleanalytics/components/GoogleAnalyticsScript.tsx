@@ -1,8 +1,8 @@
-import { useI18nConfig } from '@graphcommerce/next-ui'
+import { useStorefrontConfig } from '@graphcommerce/next-ui'
 import Script from 'next/script'
 
 export function GoogleAnalyticsScript() {
-  const id = useI18nConfig().googleAnalyticsId ?? import.meta.graphCommerce.googleAnalyticsId
+  const id = useStorefrontConfig().googleAnalyticsId ?? import.meta.graphCommerce.googleAnalyticsId
 
   return (
     <>

@@ -13,7 +13,7 @@ _export(exports, {
     definedNonNullAnySchema: ()=>definedNonNullAnySchema,
     GraphCommerceConfigSchema: ()=>GraphCommerceConfigSchema,
     GraphCommerceDebugConfigSchema: ()=>GraphCommerceDebugConfigSchema,
-    GraphCommerceI18nConfigSchema: ()=>GraphCommerceI18nConfigSchema
+    GraphCommerceStorefrontConfigSchema: ()=>GraphCommerceStorefrontConfigSchema
 });
 const _zod = require("zod");
 const isDefinedNonNullAny = (v)=>v !== undefined && v !== null;
@@ -29,7 +29,6 @@ function GraphCommerceConfigSchema() {
         googleRecaptchaKey: _zod.z.string().nullish(),
         googleTagmanagerId: _zod.z.string().nullish(),
         hygraphEndpoint: _zod.z.string().min(1),
-        i18n: _zod.z.array(GraphCommerceI18nConfigSchema()),
         legacyProductRoute: _zod.z.boolean().nullish(),
         limitSsg: _zod.z.boolean().nullish(),
         magentoEndpoint: _zod.z.string().min(1),
@@ -37,6 +36,7 @@ function GraphCommerceConfigSchema() {
         productFiltersPro: _zod.z.boolean().nullish(),
         productRoute: _zod.z.string().nullish(),
         robotsAllow: _zod.z.boolean().nullish(),
+        storefront: _zod.z.array(GraphCommerceStorefrontConfigSchema()),
         wishlistHideForGuests: _zod.z.boolean().nullish(),
         wishlistIgnoreProductWishlistStatus: _zod.z.boolean().nullish()
     });
@@ -48,7 +48,7 @@ function GraphCommerceDebugConfigSchema() {
         webpackDuplicatesPlugin: _zod.z.boolean().nullish()
     });
 }
-function GraphCommerceI18nConfigSchema() {
+function GraphCommerceStorefrontConfigSchema() {
     return _zod.z.object({
         canonicalBaseUrl: _zod.z.string().nullish(),
         cartDisplayPricesInclTax: _zod.z.boolean().nullish(),

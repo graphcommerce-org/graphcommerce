@@ -7,7 +7,7 @@ extend input GraphCommerceConfig {
   googleTagmanagerId: String
 }
 
-extend input GraphCommerceI18nConfig {
+extend input GraphCommerceStorefrontConfig {
   """
   The Google Tagmanager ID to be used per locale.
   """

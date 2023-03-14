@@ -1,4 +1,4 @@
-extend input GraphCommerceI18nConfig {
+extend input GraphCommerceStorefrontConfig {
   """
   Configure different Google Analytics IDs for different locales.
 
