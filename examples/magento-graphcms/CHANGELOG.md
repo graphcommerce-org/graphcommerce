@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.0-canary.42
+
+### Patch Changes
+
+- [#1840](https://github.com/graphcommerce-org/graphcommerce/pull/1840) [`c244f4408`](https://github.com/graphcommerce-org/graphcommerce/commit/c244f4408ad56efed3342ac83c2cdcb70409f4c1) - After changing a file inside node_modules, nextjs would refresh the whole page ([@paales](https://github.com/paales))
+
 ## 6.0.0-canary.41
 
 ## 6.0.0-canary.40
