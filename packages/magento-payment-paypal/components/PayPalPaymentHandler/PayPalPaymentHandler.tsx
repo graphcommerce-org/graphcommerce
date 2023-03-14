@@ -34,7 +34,7 @@ export const PayPalPaymentHandler = (props: PaymentHandlerProps) => {
 
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    if (locked && !justLocked && method === code && !PayerID) unlock({ token: null })
+    if (locked && !justLocked && method === code && !PayerID) unlock({ token: null, PayerID: null })
   }, [PayerID, code, justLocked, locked, method, unlock])
 
   // If successfull we clear it's cart and redirect to the success page.
