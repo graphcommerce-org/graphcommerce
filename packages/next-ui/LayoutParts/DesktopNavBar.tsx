@@ -1,5 +1,5 @@
 import { Scroller, ScrollerButton, ScrollerProvider } from '@graphcommerce/framer-scroller'
-import { Box, BoxProps } from '@mui/material'
+import Box, { BoxProps } from '@mui/material/Box'
 import React from 'react'
 import { IconSvg, IconSvgProps } from '../IconSvg'
 import { extendableComponent } from '../Styles/extendableComponent'

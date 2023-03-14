@@ -1,5 +1,5 @@
 import { SectionContainer, extendableComponent } from '@graphcommerce/next-ui'
-import { Box } from '@mui/material'
+import Box from '@mui/material/Box'
 import { CustomerReview } from '../CustomerReview/CustomerReview'
 import { AccountReviewsFragment } from './AccountReviews.gql'
 

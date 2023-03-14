@@ -1,4 +1,4 @@
-import { ComponentsVariants } from '@mui/material'
+import { ComponentsVariants } from '@mui/material/styles'
 
 declare module '@mui/material/Slider/Slider' {
   interface SliderPropsSizeOverrides {

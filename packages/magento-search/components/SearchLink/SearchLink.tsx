@@ -5,7 +5,7 @@ import {
   extendableComponent,
   useFabSize,
 } from '@graphcommerce/next-ui'
-import { Link, LinkProps } from '@mui/material'
+import Link, { LinkProps } from '@mui/material/Link'
 import { useRouter } from 'next/router'
 import type { SetRequired } from 'type-fest'
 

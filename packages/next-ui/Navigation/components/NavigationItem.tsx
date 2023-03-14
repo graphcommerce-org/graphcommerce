@@ -1,6 +1,9 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
-import { alpha, Box, ListItemButton, styled, useEventCallback } from '@mui/material'
+import Box from '@mui/material/Box'
+import ListItemButton from '@mui/material/ListItemButton'
+import { styled, alpha } from '@mui/material/styles'
+import { useEventCallback } from '@mui/material/utils'
 import React from 'react'
 import { IconSvg } from '../../IconSvg'
 import { extendableComponent } from '../../Styles/extendableComponent'

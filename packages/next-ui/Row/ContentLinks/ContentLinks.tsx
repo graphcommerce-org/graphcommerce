@@ -1,5 +1,7 @@
 import { Scroller, ScrollerProvider } from '@graphcommerce/framer-scroller'
-import { Container, SxProps, Theme, Typography } from '@mui/material'
+import Container from '@mui/material/Container'
+import Typography from '@mui/material/Typography'
+import { SxProps, Theme } from '@mui/material/styles'
 import React from 'react'
 import { extendableComponent } from '../../Styles'
 

@@ -1,4 +1,4 @@
-import { Box } from '@mui/material'
+import Box from '@mui/material/Box'
 import { SectionHeader, SectionHeaderProps } from '../SectionHeader/SectionHeader'
 import { extendableComponent } from '../Styles'
 

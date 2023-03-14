@@ -1,14 +1,11 @@
 import { cloneDeep } from '@graphcommerce/graphql'
 import type { FilterEqualTypeInput } from '@graphcommerce/graphql-mesh'
 import { responsiveVal, extendableComponent, ChipMenu, ChipMenuProps } from '@graphcommerce/next-ui'
-import {
-  Box,
-  Checkbox,
-  ListItem,
-  ListItemSecondaryAction,
-  ListItemText,
-  listItemTextClasses,
-} from '@mui/material'
+import Box from '@mui/material/Box'
+import Checkbox from '@mui/material/Checkbox'
+import ListItem from '@mui/material/ListItem'
+import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction'
+import ListItemText, { listItemTextClasses } from '@mui/material/ListItemText'
 import type { SetRequired } from 'type-fest'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'

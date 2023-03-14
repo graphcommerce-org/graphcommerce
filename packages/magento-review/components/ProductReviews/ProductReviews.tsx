@@ -7,7 +7,11 @@ import {
   useDateTimeFormat,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Typography, Button, Box, SxProps, Theme, Link } from '@mui/material'
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import Link from '@mui/material/Link'
+import Typography from '@mui/material/Typography'
+import { SxProps, Theme } from '@mui/material/styles'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import { ProductReviewChip } from '../ProductReviewChip/ProductReviewChip'

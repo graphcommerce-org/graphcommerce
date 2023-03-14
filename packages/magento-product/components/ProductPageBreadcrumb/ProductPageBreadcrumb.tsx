@@ -1,7 +1,9 @@
 import { usePrevPageRouter } from '@graphcommerce/framer-next-pages'
 import { filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Breadcrumbs, BreadcrumbsProps, Container, Link, Typography } from '@mui/material'
+import Breadcrumbs, { BreadcrumbsProps } from '@mui/material/Breadcrumbs'
+import Link from '@mui/material/Link'
+import Typography from '@mui/material/Typography'
 import { productPageCategory } from '../ProductPageCategory/productPageCategory'
 import { ProductPageBreadcrumbFragment } from './ProductPageBreadcrumb.gql'
 

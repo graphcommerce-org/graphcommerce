@@ -1,6 +1,7 @@
 import { useUp, usePrevUp, usePageContext } from '@graphcommerce/framer-next-pages'
 import { i18n } from '@lingui/core'
-import { Box, SxProps, Theme } from '@mui/material'
+import Box from '@mui/material/Box'
+import { SxProps, Theme } from '@mui/material/styles'
 import { useRouter } from 'next/router'
 import { LinkOrButton, LinkOrButtonProps } from '../../Button/LinkOrButton'
 import { IconSvg } from '../../IconSvg'

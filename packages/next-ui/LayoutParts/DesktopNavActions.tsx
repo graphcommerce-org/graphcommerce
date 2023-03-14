@@ -1,4 +1,4 @@
-import { styled } from '@mui/material'
+import { styled } from '@mui/material/styles'
 
 export const DesktopNavActions = styled('div', { name: 'DesktopNavActions' })(({ theme }) => ({
   display: 'none',

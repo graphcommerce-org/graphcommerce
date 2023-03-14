@@ -1,13 +1,12 @@
 /* eslint-disable no-nested-ternary */
 import {
   Controller,
-  ControllerProps,
   FieldError,
   FieldValues,
   UseControllerProps,
 } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
-import { TextField, TextFieldProps } from '@mui/material'
+import TextField, { TextFieldProps } from '@mui/material/TextField'
 
 export type TextFieldElementProps<T extends FieldValues = FieldValues> = Omit<
   TextFieldProps,

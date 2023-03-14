@@ -7,7 +7,10 @@ import {
   ButtonProps,
   extendableComponent,
 } from '@graphcommerce/next-ui'
-import { ListItem, ListItemIcon, ListItemText, SxProps, Theme } from '@mui/material'
+import ListItem from '@mui/material/ListItem'
+import ListItemIcon from '@mui/material/ListItemIcon'
+import ListItemText from '@mui/material/ListItemText'
+import { SxProps, Theme } from '@mui/material/styles'
 import React from 'react'
 
 export type AccountMenuItemProps = {

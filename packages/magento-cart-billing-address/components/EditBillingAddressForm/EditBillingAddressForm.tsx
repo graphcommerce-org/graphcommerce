@@ -19,7 +19,8 @@ import {
 import { phonePattern } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { SxProps, TextField, Theme } from '@mui/material'
+import TextField from '@mui/material/TextField'
+import { SxProps, Theme } from '@mui/material/styles'
 import { GetBillingAddressDocument } from './GetBillingAddress.gql'
 
 export type EditBillingAddressFormProps = { sx?: SxProps<Theme> }

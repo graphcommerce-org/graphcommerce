@@ -1,6 +1,6 @@
 import { useApolloClient } from '@graphcommerce/graphql'
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
-import { Button } from '@mui/material'
+import Button from '@mui/material/Button'
 
 export function SessionDebugger() {
   const client = useApolloClient()

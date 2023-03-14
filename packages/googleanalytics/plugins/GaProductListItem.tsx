@@ -1,6 +1,6 @@
 import { ProductListItemProps } from '@graphcommerce/magento-product'
 import { IfConfig, PluginProps } from '@graphcommerce/next-config'
-import { useEventCallback } from '@mui/material'
+import { useEventCallback } from '@mui/material/utils'
 import { useGoogleAnalyticsListItemHandler } from '../components/GoogleAnalyticsItemList'
 
 export const component = 'ProductListItem'

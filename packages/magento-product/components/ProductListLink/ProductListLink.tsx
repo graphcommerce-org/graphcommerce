@@ -1,4 +1,4 @@
-import { Link, LinkProps } from '@mui/material'
+import Link, { LinkProps } from '@mui/material/Link'
 import PageLink, { LinkProps as PageLinkProps } from 'next/link'
 import React from 'react'
 import { useProductListLink } from '../../hooks/useProductListLink'

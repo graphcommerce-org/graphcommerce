@@ -1,5 +1,5 @@
 import { extendableComponent } from '@graphcommerce/next-ui/Styles'
-import { styled, SxProps, Theme, useTheme } from '@mui/material'
+import { useTheme, SxProps, Theme, styled } from '@mui/material/styles'
 import { m, transform, useTransform } from 'framer-motion'
 import { useRef } from 'react'
 import { useScrollerContext } from '../hooks/useScrollerContext'

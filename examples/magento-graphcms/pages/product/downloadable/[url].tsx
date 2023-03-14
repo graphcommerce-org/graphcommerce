@@ -25,7 +25,7 @@ import {
   LayoutTitle,
   findByTypename,
 } from '@graphcommerce/next-ui'
-import { Typography } from '@mui/material'
+import Typography from '@mui/material/Typography'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import {

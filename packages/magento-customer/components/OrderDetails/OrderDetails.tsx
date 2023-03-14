@@ -8,7 +8,8 @@ import {
   useDateTimeFormat,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Skeleton, styled, SxProps, Theme } from '@mui/material'
+import Skeleton from '@mui/material/Skeleton'
+import { styled, SxProps, Theme } from '@mui/material/styles'
 import { TrackingLink } from '../TrackingLink/TrackingLink'
 import { OrderDetailsFragment } from './OrderDetails.gql'
 

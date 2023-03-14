@@ -1,4 +1,4 @@
-import { styled } from '@mui/material'
+import { styled } from '@mui/material/styles'
 import React from 'react'
 import { extendableComponent } from '../../Styles/extendableComponent'
 import { NavigationNode } from '../hooks/useNavigation'

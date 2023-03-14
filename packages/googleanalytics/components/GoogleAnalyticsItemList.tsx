@@ -1,5 +1,5 @@
 import { nonNullable, useMemoDeep } from '@graphcommerce/next-ui'
-import { useEventCallback } from '@mui/material'
+import { useEventCallback } from '@mui/material/utils'
 import React, { useContext, useEffect, useMemo } from 'react'
 import { ProductToGtagItemFragment } from '../events/productToGtagItem/ProductToGtagItem.gql'
 import { GtagItem, productToGtagItem } from '../events/productToGtagItem/productToGtagItem'

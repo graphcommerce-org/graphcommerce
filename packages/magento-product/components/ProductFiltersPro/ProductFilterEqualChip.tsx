@@ -8,7 +8,7 @@ import {
   IconSvg,
   iconCirle,
 } from '@graphcommerce/next-ui'
-import { Box } from '@mui/material'
+import Box from '@mui/material/Box'
 import { useMemo } from 'react'
 import { isFilterTypeEqual } from '../ProductListItems/filterTypes'
 import { useProductFiltersPro } from './ProductFiltersPro'

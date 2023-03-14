@@ -1,13 +1,14 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
-  PageMeta,
   GetStaticProps,
-  Pagination,
-  LayoutTitle,
   LayoutHeader,
+  LayoutTitle,
+  PageMeta,
+  Pagination,
 } from '@graphcommerce/next-ui'
-import { Container, Link } from '@mui/material'
+import Container from '@mui/material/Container'
+import Link from '@mui/material/Link'
 import { GetStaticPaths } from 'next'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -22,7 +23,7 @@ import {
 } from '../../../components'
 import { LayoutDocument } from '../../../components/Layout/Layout.gql'
 import { DefaultPageDocument, DefaultPageQuery } from '../../../graphql/DefaultPage.gql'
-import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
+import { graphqlSharedClient, graphqlSsrClient } from '../../../lib/graphql/graphqlSsrClient'
 
 type Props = DefaultPageQuery & BlogListQuery & BlogPathsQuery
 type RouteProps = { page: string }

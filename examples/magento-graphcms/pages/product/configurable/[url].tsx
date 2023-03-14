@@ -27,7 +27,8 @@ import {
   LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Link, Typography } from '@mui/material'
+import Link from '@mui/material/Link'
+import Typography from '@mui/material/Typography'
 import { GetStaticPaths } from 'next'
 import { useRouter } from 'next/router'
 import {

@@ -1,6 +1,6 @@
 import type { ProductItemsGridProps } from '@graphcommerce/magento-product'
 import type { IfConfig, PluginProps } from '@graphcommerce/next-config'
-import { Theme } from '@mui/material'
+import { Theme } from '@mui/material/styles'
 
 export const component = 'ProductListItemsBase'
 export const exported = '@graphcommerce/magento-product'

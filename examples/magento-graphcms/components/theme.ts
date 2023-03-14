@@ -13,8 +13,8 @@ import {
   MuiButtonInline,
   NextLink,
 } from '@graphcommerce/next-ui'
-import { createTheme, Theme, alpha, LinkProps } from '@mui/material'
-import { Components, PaletteOptions } from '@mui/material/styles'
+import { LinkProps } from '@mui/material/Link'
+import { alpha, createTheme, Components, PaletteOptions, Theme } from '@mui/material/styles'
 
 const lightPalette: PaletteOptions = {
   mode: 'light',

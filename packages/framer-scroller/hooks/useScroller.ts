@@ -1,6 +1,6 @@
 import { useConstant, useMotionValueValue } from '@graphcommerce/framer-utils'
 import { extendableComponent } from '@graphcommerce/next-ui/Styles'
-import { SxProps, Theme } from '@mui/material'
+import { SxProps, Theme } from '@mui/material/styles'
 import {
   HTMLMotionProps,
   motionValue,

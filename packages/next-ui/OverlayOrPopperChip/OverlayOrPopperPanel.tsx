@@ -1,4 +1,4 @@
-import { Breakpoint } from '@mui/material'
+import { Breakpoint } from '@mui/material/styles'
 import dynamic from 'next/dynamic'
 import { startTransition, useEffect, useState } from 'react'
 import { useMatchMedia } from '../hooks'

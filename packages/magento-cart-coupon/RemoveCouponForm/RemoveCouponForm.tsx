@@ -1,6 +1,8 @@
 import { useFormGqlMutationCart, ApolloCartErrorAlert } from '@graphcommerce/magento-cart'
 import { extendableComponent } from '@graphcommerce/next-ui'
-import { Box, SxProps, Theme, Chip } from '@mui/material'
+import Box from '@mui/material/Box'
+import Chip from '@mui/material/Chip'
+import { SxProps, Theme } from '@mui/material/styles'
 import { CouponFragment } from '../Api/Coupon.gql'
 import { RemoveCouponFormDocument } from './RemoveCouponForm.gql'
 

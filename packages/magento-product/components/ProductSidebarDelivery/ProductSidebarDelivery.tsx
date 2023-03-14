@@ -1,5 +1,6 @@
 import { breakpointVal, iconOrderBefore, IconSvg } from '@graphcommerce/next-ui'
-import { Box, darken, lighten } from '@mui/material'
+import Box from '@mui/material/Box'
+import { darken, lighten } from '@mui/material/styles'
 import { UseAddProductsToCartActionFragment } from '../AddProductsToCart/UseAddProductsToCartAction.gql'
 
 type ProductSidebarDeliveryProps = {

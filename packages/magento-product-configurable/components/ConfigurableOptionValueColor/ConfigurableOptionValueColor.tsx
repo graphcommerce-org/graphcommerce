@@ -1,5 +1,5 @@
 import { ActionCard, ActionCardItemRenderProps } from '@graphcommerce/next-ui'
-import { Box } from '@mui/material'
+import Box from '@mui/material/Box'
 import { swatchSizes } from '../ConfigurableOptionValueImage'
 import { ConfigurableOptionValueColorFragment } from './ConfigurableOptionValueColor.gql'
 

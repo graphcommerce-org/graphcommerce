@@ -8,7 +8,9 @@ import {
   ScrollerProvider,
 } from '@graphcommerce/framer-scroller'
 import { dvh } from '@graphcommerce/framer-utils'
-import { Fab, useTheme, Box, styled, SxProps, Theme } from '@mui/material'
+import Box from '@mui/material/Box'
+import Fab from '@mui/material/Fab'
+import { useTheme, styled, SxProps, Theme } from '@mui/material/styles'
 import { m, useDomEvent, useMotionValue } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { useEffect, useRef } from 'react'

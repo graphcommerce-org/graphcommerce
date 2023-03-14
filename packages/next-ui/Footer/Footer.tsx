@@ -1,4 +1,5 @@
-import { ContainerProps, Container, Box } from '@mui/material'
+import Box from '@mui/material/Box'
+import Container, { ContainerProps } from '@mui/material/Container'
 import React from 'react'
 import { extendableComponent } from '../Styles'
 

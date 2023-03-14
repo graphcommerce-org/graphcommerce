@@ -10,7 +10,11 @@ import {
   Button,
   ButtonProps,
 } from '@graphcommerce/next-ui'
-import { Box, Container, Typography, Divider, styled } from '@mui/material'
+import Box from '@mui/material/Box'
+import Container from '@mui/material/Container'
+import Divider from '@mui/material/Divider'
+import Typography from '@mui/material/Typography'
+import { styled } from '@mui/material/styles'
 import React, { useState } from 'react'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
 import { graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'

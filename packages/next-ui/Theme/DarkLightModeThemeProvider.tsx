@@ -1,15 +1,10 @@
 import { Trans } from '@lingui/react'
-import {
-  Theme,
-  ThemeProvider,
-  useMediaQuery,
-  Fab,
-  FabProps,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  ListItemButtonProps,
-} from '@mui/material'
+import Fab, { FabProps } from '@mui/material/Fab'
+import ListItemButton, { ListItemButtonProps } from '@mui/material/ListItemButton'
+import ListItemIcon from '@mui/material/ListItemIcon'
+import ListItemText from '@mui/material/ListItemText'
+import { Theme, ThemeProvider } from '@mui/material/styles'
+import useMediaQuery from '@mui/material/useMediaQuery'
 import { useRouter } from 'next/router'
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 import { IconSvg } from '../IconSvg'
@@ -38,12 +33,13 @@ type ThemeProviderProps = {
 }
 
 /**
- * Wrapper around `import { ThemeProvider } from '@mui/material'`
+ * Wrapper around `import { ThemeProvider } from '@mui/material/styles'`
  *
  * The multi DarkLightModeThemeProvider allows switching between light and dark mode based on URL
  * and on user input.
  *
- * If you _just_ wan't a single theme, use the import { ThemeProvider } from '@mui/material' instead.
+ * If you _just_ wan't a single theme, use the import { ThemeProvider } from '@mui/material/styles'
+ * instead.
  */
 export function DarkLightModeThemeProvider(props: ThemeProviderProps) {
   const { children, light, dark } = props

@@ -43,8 +43,8 @@ You've completed the
 </Typography>
 ```
 
-- Add `import { Typography } from '@mui/material'` to the list of imports at the
-  top of the file
+- Add `import Typography from '@mui/material/Typography'` to the list of imports
+  at the top of the file
 - Save the file to see your changes updated in real-time
 
 <figure>

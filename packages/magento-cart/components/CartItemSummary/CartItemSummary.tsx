@@ -10,7 +10,9 @@ import {
   breakpointVal,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box, Divider, SxProps, Theme } from '@mui/material'
+import Box from '@mui/material/Box'
+import Divider from '@mui/material/Divider'
+import { SxProps, Theme } from '@mui/material/styles'
 import React from 'react'
 import { useCartQuery } from '../../hooks'
 import { CartTotals } from '../CartTotals/CartTotals'

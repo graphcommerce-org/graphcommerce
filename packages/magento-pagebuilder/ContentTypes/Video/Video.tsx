@@ -1,4 +1,4 @@
-import { Box } from '@mui/material'
+import Box from '@mui/material/Box'
 import { styled } from '@mui/material/styles'
 import { extractBorderProps, extractMarginProps, extractPaddingProps } from '../../utils'
 import { VideoContentType } from './types'

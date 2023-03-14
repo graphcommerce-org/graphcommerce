@@ -12,7 +12,7 @@ import {
 import { phonePattern, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { TextField } from '@mui/material'
+import TextField from '@mui/material/TextField'
 import { useRouter } from 'next/router'
 import { AddressFields } from '../AddressFields/AddressFields'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'

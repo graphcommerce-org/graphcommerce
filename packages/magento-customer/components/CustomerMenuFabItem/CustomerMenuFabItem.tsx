@@ -1,5 +1,7 @@
 import { MenuFabSecondaryItem, iconPerson, IconSvg } from '@graphcommerce/next-ui'
-import { Badge, NoSsr, SxProps, Theme } from '@mui/material'
+import Badge from '@mui/material/Badge'
+import NoSsr from '@mui/material/NoSsr'
+import { SxProps, Theme } from '@mui/material/styles'
 import React from 'react'
 import { useCustomerSession, UseCustomerSessionReturn } from '../../hooks/useCustomerSession'
 

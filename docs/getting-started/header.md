@@ -48,8 +48,8 @@ frontend React framework that uses Next.js for server-side rendering.
 </Box>
 ```
 
-- Add the import of 'Box' to the list of the `'@mui/material'` imports at the
-  top of the file
+- Add `import Box from '@mui/material/Box'` at the top of the file near the
+  other @mui/material imports.
 - Save the file to see your changes updated in real-time
 
 <figure>
@@ -130,7 +130,14 @@ import {
   iconMenu,
   IconSvg,
 } from '@graphcommerce/next-ui'
-import { styled, Box, Fab, Menu, ListItem, Divider, alpha } from '@mui/material'
+import Box from '@mui/material/Box'
+import Fab from '@mui/material/Fab'
+import Menu from '@mui/material/Menu'
+import ListItem from '@mui/material/ListItem'
+import Divider from '@mui/material/Divider'
+import { alpha } from '@mui/material/styles'
+
+import { styled, alpha } from '@mui/material/styles'
 import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
 ```

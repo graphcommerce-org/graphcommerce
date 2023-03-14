@@ -8,7 +8,10 @@ import {
   svgIconStrokeWidth,
   iconPhone,
 } from '@graphcommerce/next-ui'
-import { Container, Typography, Slider, Box } from '@mui/material'
+import Box from '@mui/material/Box'
+import Container from '@mui/material/Container'
+import Slider from '@mui/material/Slider'
+import Typography from '@mui/material/Typography'
 import React, { useEffect, useRef, useState } from 'react'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
 import { graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'

@@ -1,5 +1,6 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
-import { Box, styled, SxProps, Theme } from '@mui/material'
+import Box from '@mui/material/Box'
+import { styled, SxProps, Theme } from '@mui/material/styles'
 import { LayoutProps, m } from 'framer-motion'
 import React, { useRef } from 'react'
 import { extendableComponent } from '../../Styles'

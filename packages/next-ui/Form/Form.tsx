@@ -1,4 +1,5 @@
-import { darken, lighten, styled, Theme } from '@mui/material'
+import { darken, lighten, styled, Theme } from '@mui/material/styles'
+
 import { breakpointVal } from '../Styles/breakpointVal'
 
 type FormStyleProps = {

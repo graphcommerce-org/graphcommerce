@@ -1,4 +1,4 @@
-import { Box } from '@mui/material'
+import Box from '@mui/material/Box'
 import { PagebuilderRender } from '../../components/Pagebuilder/PagebuilderRender'
 import { extractAdvancedProps } from '../../utils'
 import { BlockContentType } from './types'
@@ -6,7 +6,8 @@ import { BlockContentType } from './types'
 /**
  * Page Builder Block component.
  *
- * This component is part of the Page Builder / PWA integration. It can be consumed without Page Builder.
+ * This component is part of the Page Builder / PWA integration. It can be consumed without Page
+ * Builder.
  */
 export const Block: BlockContentType['component'] = (props) => {
   const [cssProps, cssClasses, additional] = extractAdvancedProps(props)

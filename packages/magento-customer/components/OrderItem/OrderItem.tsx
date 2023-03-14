@@ -1,7 +1,7 @@
 import { Image } from '@graphcommerce/image'
 import { Money } from '@graphcommerce/magento-store'
 import { responsiveVal, extendableComponent, NextLink } from '@graphcommerce/next-ui'
-import { Box } from '@mui/material'
+import Box from '@mui/material/Box'
 import { OrderCardItemImageFragment } from '../../hooks/OrderCardItemImage.gql'
 import { OrderItemFragment } from './OrderItem.gql'
 

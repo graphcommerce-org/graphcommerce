@@ -1,4 +1,4 @@
-import { ComponentsVariants } from '@mui/material'
+import { ComponentsVariants } from '@mui/material/styles'
 import { responsiveVal } from '../Styles/responsiveVal'
 
 declare module '@mui/material/Button/Button' {

@@ -6,7 +6,7 @@ import { useMergeGuestWishlistWithCustomer } from '@graphcommerce/magento-wishli
 import { GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Container } from '@mui/material'
+import Container from '@mui/material/Container'
 import { LayoutOverlay, LayoutOverlayProps } from '../../components'
 import { graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 

@@ -1,4 +1,4 @@
-import { styled, SxProps, Theme } from '@mui/material'
+import { styled, SxProps, Theme } from '@mui/material/styles'
 import { m } from 'framer-motion'
 import { forwardRef } from 'react'
 import { ScrollableProps, useScroller } from '../hooks/useScroller'

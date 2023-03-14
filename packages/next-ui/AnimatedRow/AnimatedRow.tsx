@@ -1,4 +1,4 @@
-import { styled, SxProps, Theme } from '@mui/material'
+import { styled, SxProps, Theme } from '@mui/material/styles'
 import { HTMLMotionProps, m } from 'framer-motion'
 import { ReactHTML } from 'react'
 

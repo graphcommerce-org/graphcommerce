@@ -1,6 +1,7 @@
 import { Image } from '@graphcommerce/image'
 import { extendableComponent } from '@graphcommerce/next-ui'
-import { Box, SxProps, Theme } from '@mui/material'
+import Box from '@mui/material/Box'
+import { SxProps, Theme } from '@mui/material/styles'
 import { OrderCardItemImageFragment } from '../../hooks/OrderCardItemImage.gql'
 
 export type OrderCardItemImageProps = Omit<OrderCardItemImageFragment, 'uid'> & {

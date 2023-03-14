@@ -1,4 +1,4 @@
-import { Fab, FabProps } from '@mui/material'
+import Fab, { FabProps } from '@mui/material/Fab'
 
 export function PlaceholderFab(props: Omit<FabProps, 'children'>) {
   const { sx = [] } = props

@@ -8,7 +8,9 @@ import {
   useFabSize,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
-import { alpha, Fab, FabProps, styled, useTheme, Box, SxProps, Theme } from '@mui/material'
+import Box from '@mui/material/Box'
+import Fab, { FabProps } from '@mui/material/Fab'
+import { alpha, useTheme, styled, SxProps, Theme } from '@mui/material/styles'
 import { m, useTransform } from 'framer-motion'
 import React from 'react'
 import { useCartQuery } from '../../hooks/useCartQuery'

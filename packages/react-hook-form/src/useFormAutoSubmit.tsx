@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { debounce } from '@mui/material'
+import { debounce } from '@mui/material/utils'
 import { useCallback, useEffect, useState } from 'react'
 import { FieldPath, FieldValues, UseFormReturn } from 'react-hook-form'
 

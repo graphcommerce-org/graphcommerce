@@ -1,5 +1,6 @@
 import { Controller, FieldValues, ControllerProps } from '@graphcommerce/react-hook-form'
-import { FormControlLabel, FormControlLabelProps, Switch } from '@mui/material'
+import FormControlLabel, { FormControlLabelProps } from '@mui/material/FormControlLabel'
+import Switch from '@mui/material/Switch'
 
 type IProps = Omit<FormControlLabelProps, 'control'>
 

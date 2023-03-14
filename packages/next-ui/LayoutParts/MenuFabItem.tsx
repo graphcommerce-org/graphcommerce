@@ -1,4 +1,5 @@
-import { ListItemButton, ListItemButtonProps, ListItemText } from '@mui/material'
+import ListItemButton, { ListItemButtonProps } from '@mui/material/ListItemButton'
+import ListItemText from '@mui/material/ListItemText'
 import { useRouter } from 'next/router'
 import { NextLink } from '../Theme'
 

@@ -2,7 +2,7 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { PageMeta, GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
-import { Container } from '@mui/material'
+import Container from '@mui/material/Container'
 import { GetStaticPaths } from 'next'
 import {
   LayoutOverlay,

@@ -8,16 +8,13 @@ import {
   useFormPersist,
 } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
-import {
-  Box,
-  Checkbox,
-  FormControl,
-  FormControlLabel,
-  FormHelperText,
-  Link,
-  SxProps,
-  Theme,
-} from '@mui/material'
+import Box from '@mui/material/Box'
+import Checkbox from '@mui/material/Checkbox'
+import FormControl from '@mui/material/FormControl'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import FormHelperText from '@mui/material/FormHelperText'
+import Link from '@mui/material/Link'
+import { SxProps, Theme } from '@mui/material/styles'
 import React from 'react'
 import { CartAgreementsDocument } from './CartAgreements.gql'
 

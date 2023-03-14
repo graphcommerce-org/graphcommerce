@@ -1,4 +1,6 @@
-import { ListItemButtonProps, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
+import ListItemButton, { ListItemButtonProps } from '@mui/material/ListItemButton'
+import ListItemIcon from '@mui/material/ListItemIcon'
+import ListItemText from '@mui/material/ListItemText'
 import React from 'react'
 import { IconSvg } from '../../IconSvg'
 import { NextLink } from '../../Theme'

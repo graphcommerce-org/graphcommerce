@@ -8,7 +8,10 @@ import {
   filterNonNullableKeys,
   NextLink,
 } from '@graphcommerce/next-ui'
-import { Badge, Box, Link, SxProps, Theme } from '@mui/material'
+import Badge from '@mui/material/Badge'
+import Box from '@mui/material/Box'
+import Link from '@mui/material/Link'
+import { SxProps, Theme } from '@mui/material/styles'
 import { CartItemFragment } from '../Api/CartItem.gql'
 import { RemoveItemFromCartFab } from '../RemoveItemFromCart/RemoveItemFromCartFab'
 import { UpdateItemQuantity } from '../UpdateItemQuantity/UpdateItemQuantity'

@@ -10,7 +10,7 @@ import {
   SectionHeader,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box } from '@mui/material'
+import Box from '@mui/material/Box'
 import { useMemo } from 'react'
 import { ProductListSortFragment } from '../ProductListSort/ProductListSort.gql'
 import { useProductFiltersPro } from './ProductFiltersPro'

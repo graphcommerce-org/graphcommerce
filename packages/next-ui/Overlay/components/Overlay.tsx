@@ -1,5 +1,5 @@
 import { ScrollerProvider } from '@graphcommerce/framer-scroller'
-import { Portal } from '@mui/material'
+import Portal from '@mui/material/Portal'
 import { AnimatePresence, usePresence } from 'framer-motion'
 import type { SetOptional } from 'type-fest'
 import { variantsToScrollSnapType } from '../utils/variantsToScrollSnapType'

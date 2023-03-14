@@ -2,15 +2,11 @@ import { useCartQuery } from '@graphcommerce/magento-cart'
 import { ApolloCustomerErrorAlert } from '@graphcommerce/magento-customer'
 import { Form } from '@graphcommerce/next-ui'
 import { Controller, useFormAutoSubmit, useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import {
-  FormControl,
-  FormControlLabel,
-  FormHelperText,
-  Switch,
-  SwitchProps,
-  SxProps,
-  Theme,
-} from '@mui/material'
+import FormControl from '@mui/material/FormControl'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import FormHelperText from '@mui/material/FormHelperText'
+import Switch, { SwitchProps } from '@mui/material/Switch'
+import { Theme, SxProps } from '@mui/material/styles'
 import React from 'react'
 import { GetCartEmailDocument } from '../SignupNewsletter/GetCartEmail.gql'
 import {

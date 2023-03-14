@@ -1,5 +1,5 @@
 import { RenderType, TypeRenderer } from '@graphcommerce/next-ui'
-import { Box } from '@mui/material'
+import Box from '@mui/material/Box'
 import { useWishlistItems } from '../../hooks'
 import { WishlistItemsFragment } from './WishlistItems.gql'
 

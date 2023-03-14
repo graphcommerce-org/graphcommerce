@@ -1,5 +1,5 @@
-import { motionValue, MotionValue, useTransform } from 'framer-motion'
 import { equal } from '@wry/equality'
+import { motionValue, MotionValue, useTransform } from 'framer-motion'
 import sync from 'framesync'
 import { RefObject, useMemo } from 'react'
 import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect'

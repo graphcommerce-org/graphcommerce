@@ -1,5 +1,5 @@
 import { LayoutTitle } from '@graphcommerce/next-ui'
-import { SxProps, Theme } from '@mui/material'
+import { SxProps, Theme } from '@mui/material/styles'
 import React from 'react'
 
 type CategoryHeroNavTitleProps = {

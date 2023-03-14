@@ -1,4 +1,7 @@
-import { Avatar, Box, Chip, SxProps, Theme } from '@mui/material'
+import Avatar from '@mui/material/Avatar'
+import Box from '@mui/material/Box'
+import Chip from '@mui/material/Chip'
+import { SxProps, Theme } from '@mui/material/styles'
 import { responsiveVal } from '../../Styles/responsiveVal'
 import { useDateTimeFormat } from '../../hooks'
 

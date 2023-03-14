@@ -1,6 +1,8 @@
 import { ApolloError } from '@graphcommerce/graphql'
 import { extendableComponent } from '@graphcommerce/next-ui/Styles/extendableComponent'
-import { AlertProps, Alert, Box, SxProps, Theme } from '@mui/material'
+import Alert, { AlertProps } from '@mui/material/Alert'
+import Box from '@mui/material/Box'
+import { SxProps, Theme } from '@mui/material/styles'
 
 const { classes, selectors } = extendableComponent('ApolloErrorAlert', ['root', 'alert'] as const)
 

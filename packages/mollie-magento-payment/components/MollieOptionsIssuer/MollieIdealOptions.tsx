@@ -1,6 +1,6 @@
 import { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
 import { Trans } from '@lingui/react'
-import { Box } from '@mui/material'
+import Box from '@mui/material/Box'
 import { MollieIssuerOptions } from './MollieIssuerOptions'
 
 export function MollieIdealOptions(props: PaymentOptionsProps) {

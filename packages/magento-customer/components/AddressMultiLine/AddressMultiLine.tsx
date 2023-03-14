@@ -1,6 +1,7 @@
 import { useFindCountry } from '@graphcommerce/magento-store'
 import { extendableComponent } from '@graphcommerce/next-ui'
-import { SxProps, Theme, Typography } from '@mui/material'
+import Typography from '@mui/material/Typography'
+import { SxProps, Theme } from '@mui/material/styles'
 import { CustomerAddressFragment } from '../CreateCustomerAddressForm/CustomerAddress.gql'
 
 // exports.getEuMembers = function()

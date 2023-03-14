@@ -50,7 +50,7 @@ export default function AboutUs() {
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps } from '@graphcommerce/next-ui'
-import { Container } from '@mui/material'
+import Container from '@mui/material/Container'
 import { GetStaticPaths } from 'next'
 import { LayoutFull, LayoutFullProps } from '../../components'
 import {

@@ -5,7 +5,9 @@ import {
   ScrollerProvider,
   ScrollerButton,
 } from '@graphcommerce/framer-scroller'
-import { Box, styled, Typography } from '@mui/material'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+import { styled } from '@mui/material/styles'
 import { m } from 'framer-motion'
 import React, { useState } from 'react'
 

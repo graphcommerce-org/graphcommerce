@@ -1,4 +1,4 @@
-import { Avatar, AvatarProps } from '@mui/material'
+import Avatar, { AvatarProps } from '@mui/material/Avatar'
 
 export type FlagAvatarProps = { country: string } & Omit<AvatarProps, 'src'>
 

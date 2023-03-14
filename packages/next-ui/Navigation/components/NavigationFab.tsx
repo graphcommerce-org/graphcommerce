@@ -1,5 +1,7 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
-import { Fab, styled, Box, SxProps, Theme, FabProps } from '@mui/material'
+import Box from '@mui/material/Box'
+import Fab, { FabProps } from '@mui/material/Fab'
+import { styled, SxProps, Theme } from '@mui/material/styles'
 import { m } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'

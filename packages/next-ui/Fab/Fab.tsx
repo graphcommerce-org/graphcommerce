@@ -1,10 +1,6 @@
-import {
-  Box,
-  CircularProgress,
-  CircularProgressProps,
-  Fab as FabBase,
-  FabProps as FabPropsBase,
-} from '@mui/material'
+import Box from '@mui/material/Box'
+import CircularProgress, { CircularProgressProps } from '@mui/material/CircularProgress'
+import FabBase, { FabProps as FabPropsBase } from '@mui/material/Fab'
 import { IconSvg, IconSvgProps } from '../IconSvg'
 import { useFabSize } from '../Theme/MuiFab'
 

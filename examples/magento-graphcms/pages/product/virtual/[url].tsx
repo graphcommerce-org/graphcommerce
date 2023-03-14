@@ -21,7 +21,7 @@ import {
   LayoutTitle,
   LayoutHeader,
 } from '@graphcommerce/next-ui'
-import { Typography } from '@mui/material'
+import Typography from '@mui/material/Typography'
 import { GetStaticPaths } from 'next'
 import {
   LayoutNavigation,

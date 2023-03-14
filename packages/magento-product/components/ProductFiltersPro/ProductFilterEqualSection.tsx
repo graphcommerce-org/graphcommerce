@@ -10,7 +10,8 @@ import {
   Button,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box, Typography } from '@mui/material'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
 import { useMemo } from 'react'
 import { isFilterTypeEqual } from '../ProductListItems/filterTypes'
 import { useProductFiltersPro } from './ProductFiltersPro'

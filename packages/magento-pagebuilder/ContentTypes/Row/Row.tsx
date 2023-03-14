@@ -1,11 +1,14 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { Image } from '@graphcommerce/image'
-import { Box, Container, SxProps, Theme, useMediaQuery } from '@mui/material'
+import Box from '@mui/material/Box'
+import Container from '@mui/material/Container'
+import { SxProps, Theme } from '@mui/material/styles'
+import useMediaQuery from '@mui/material/useMediaQuery'
 import React, { useEffect, useRef, useState, CSSProperties } from 'react'
-import { extractAdvancedProps, verticalAlignmentToFlex } from '../../utils'
 import { MediaBackground } from '../../components/MediaBackground/MediaBackground'
 import { extractImageBackgroundProps } from '../../components/MediaBackground/extractImageBackgroundProps'
 import { extractVideoBackgroundProps } from '../../components/MediaBackground/extractVideoBackgroundProps'
+import { extractAdvancedProps, verticalAlignmentToFlex } from '../../utils'
 import defaultClasses from './row.module.css'
 import { RowContentType } from './types'
 
@@ -16,7 +19,8 @@ const classes = {}
 /**
  * Page Builder Row component.
  *
- * This component is part of the Page Builder / PWA integration. It can be consumed without Page Builder.
+ * This component is part of the Page Builder / PWA integration. It can be consumed without Page
+ * Builder.
  */
 export const Row: RowContentType['component'] = (props) => {
   const backgroundElement = useRef(null)

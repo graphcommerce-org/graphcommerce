@@ -6,7 +6,9 @@ import {
   ToggleButtonGroup,
   extendableComponent,
 } from '@graphcommerce/next-ui'
-import { BaseTextFieldProps, FormHelperText, SxProps } from '@mui/material'
+import FormHelperText from '@mui/material/FormHelperText'
+import { BaseTextFieldProps } from '@mui/material/TextField'
+import { SxProps } from '@mui/material/styles'
 import React from 'react'
 import { Selected, useConfigurableContext } from '../ConfigurableContext/ConfigurableContext'
 import { ColorSwatchData } from '../Swatches/ColorSwatchData'

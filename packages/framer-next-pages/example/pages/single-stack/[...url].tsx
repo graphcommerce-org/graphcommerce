@@ -7,7 +7,8 @@ import {
   LayoutOverlayProps,
   LayoutOverlayVariant,
 } from '@graphcommerce/next-ui'
-import Link, { Container } from '@mui/material'
+import Container from '@mui/material/Container'
+import Link from '@mui/material/Link'
 import { m } from 'framer-motion'
 import { GetStaticPathsResult, GetStaticProps } from 'next'
 import { useRouter } from 'next/router'

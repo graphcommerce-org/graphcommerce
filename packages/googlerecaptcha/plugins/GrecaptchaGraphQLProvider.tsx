@@ -1,6 +1,6 @@
 import { GraphQLProviderProps } from '@graphcommerce/graphql'
 import type { PluginProps } from '@graphcommerce/next-config'
-import { GlobalStyles } from '@mui/material'
+import GlobalStyles from '@mui/material/GlobalStyles'
 import Script from 'next/script'
 import { useState, useMemo } from 'react'
 import { recaptchaContext, RecaptchaContext } from '../context/recaptchaContext'

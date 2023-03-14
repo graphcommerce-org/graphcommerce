@@ -1,13 +1,8 @@
 import { i18n } from '@lingui/core'
-import {
-  IconButton,
-  IconButtonProps,
-  SxProps,
-  TextField,
-  TextFieldProps,
-  useForkRef,
-  Theme,
-} from '@mui/material'
+import IconButton, { IconButtonProps } from '@mui/material/IconButton'
+import TextField, { TextFieldProps } from '@mui/material/TextField'
+import { Theme, SxProps } from '@mui/material/styles'
+import { useForkRef } from '@mui/material/utils'
 import { ChangeEvent, Ref, useCallback, useEffect, useRef, useState } from 'react'
 import { IconSvg } from '../IconSvg'
 import { extendableComponent } from '../Styles'

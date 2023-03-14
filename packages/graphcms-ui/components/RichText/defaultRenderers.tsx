@@ -1,4 +1,6 @@
-import { Box, Typography, Link } from '@mui/material'
+import Box from '@mui/material/Box'
+import Link from '@mui/material/Link'
+import Typography from '@mui/material/Typography'
 import { Asset } from '../Asset/Asset'
 import { Renderers } from './types'
 

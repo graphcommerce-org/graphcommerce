@@ -1,5 +1,5 @@
 import { Pagination } from '@graphcommerce/next-ui'
-import { PaginationProps } from '@mui/material'
+import { PaginationProps } from '@mui/material/Pagination'
 import { ProductListParams } from '../ProductListItems/filterTypes'
 import { ProductListLink } from '../ProductListLink/ProductListLink'
 import { ProductListPaginationFragment } from './ProductListPagination.gql'

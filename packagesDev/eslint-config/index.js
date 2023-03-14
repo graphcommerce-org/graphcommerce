@@ -126,6 +126,16 @@ module.exports = {
             importNames: ['Theme', 'GlobalProps', 'ThemeContext'],
             message: 'Import from @mui/material instead of @emotion/react.',
           },
+          {
+            name: '@mui/material',
+            message:
+              "GraphCommerce only supports second-level imports for '@mui/material' (first level imports will cause major slowdowns).",
+          },
+          {
+            patterns: ['@mui/*/*/*'],
+            message:
+              'Material UI only support second-level imports. Anything deeper is considered private and can cause issues, such as module duplication in your bundle.',
+          },
         ],
       },
     ],

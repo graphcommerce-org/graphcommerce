@@ -1,7 +1,8 @@
 import { UseFormGraphQlOptions } from '@graphcommerce/ecommerce-ui'
 import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { ExtendableComponent } from '@graphcommerce/next-ui'
-import { Box, SxProps, Theme, useThemeProps } from '@mui/material'
+import Box from '@mui/material/Box'
+import { SxProps, Theme, useThemeProps } from '@mui/material/styles'
 import { useRouter } from 'next/router'
 import { useMemo } from 'react'
 import {

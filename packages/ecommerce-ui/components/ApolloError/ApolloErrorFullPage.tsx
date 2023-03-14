@@ -1,7 +1,7 @@
 import { ApolloError } from '@graphcommerce/graphql'
 import { FullPageMessage, FullPageMessageProps } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { AlertProps } from '@mui/material'
+import { AlertProps } from '@mui/material/Alert'
 import { ApolloErrorAlert } from './ApolloErrorAlert'
 
 export type ApolloErrorFullPageProps = {

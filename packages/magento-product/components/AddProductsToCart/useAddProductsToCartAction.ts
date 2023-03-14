@@ -1,5 +1,5 @@
 import { useFormState } from '@graphcommerce/ecommerce-ui'
-import { useEventCallback } from '@mui/material'
+import { useEventCallback } from '@mui/material/utils'
 import { UseAddProductsToCartActionFragment } from './UseAddProductsToCartAction.gql'
 import { useFormAddProductsToCart } from './useFormAddProductsToCart'
 

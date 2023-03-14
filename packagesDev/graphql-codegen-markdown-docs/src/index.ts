@@ -1,5 +1,8 @@
-import { PluginFunction, Types } from '@graphql-codegen/plugin-helpers'
-import { getCachedDocumentNodeFromSchema } from '@graphql-codegen/plugin-helpers'
+import {
+  PluginFunction,
+  Types,
+  getCachedDocumentNodeFromSchema,
+} from '@graphql-codegen/plugin-helpers'
 import { GraphQLSchema, visit } from 'graphql'
 import { MarkdownDocsPluginConfig } from './config'
 

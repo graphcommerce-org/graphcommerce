@@ -4,15 +4,11 @@ import {
   FieldError,
   FieldValues,
 } from '@graphcommerce/react-hook-form'
-import {
-  Checkbox,
-  CheckboxProps,
-  FormControl,
-  FormControlLabel,
-  FormControlLabelProps,
-  FormGroup,
-  FormHelperText,
-} from '@mui/material'
+import Checkbox, { CheckboxProps } from '@mui/material/Checkbox'
+import FormControl from '@mui/material/FormControl'
+import FormControlLabel, { FormControlLabelProps } from '@mui/material/FormControlLabel'
+import FormGroup from '@mui/material/FormGroup'
+import FormHelperText from '@mui/material/FormHelperText'
 
 export type CheckboxElementProps<T extends FieldValues> = Omit<CheckboxProps, 'name'> & {
   parseError?: (error: FieldError) => string

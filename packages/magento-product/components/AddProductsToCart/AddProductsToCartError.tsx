@@ -1,5 +1,5 @@
 import { useFormState } from '@graphcommerce/ecommerce-ui'
-import { FormHelperText } from '@mui/material'
+import FormHelperText from '@mui/material/FormHelperText'
 import { useFormAddProductsToCart } from './useFormAddProductsToCart'
 
 type AddProductsToCartErrorProps = {

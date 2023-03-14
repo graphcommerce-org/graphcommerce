@@ -4,16 +4,11 @@ import {
   FieldError,
   FieldValues,
 } from '@graphcommerce/react-hook-form'
-import {
-  FormControl,
-  FormHelperText,
-  FormLabel,
-  FormLabelProps,
-  ToggleButton,
-  ToggleButtonGroup,
-  ToggleButtonGroupProps,
-  ToggleButtonProps,
-} from '@mui/material'
+import FormControl from '@mui/material/FormControl'
+import FormHelperText from '@mui/material/FormHelperText'
+import FormLabel, { FormLabelProps } from '@mui/material/FormLabel'
+import ToggleButton, { ToggleButtonProps } from '@mui/material/ToggleButton'
+import ToggleButtonGroup, { ToggleButtonGroupProps } from '@mui/material/ToggleButtonGroup'
 import { ReactNode } from 'react'
 
 type SingleToggleButtonProps = Omit<ToggleButtonProps, 'value' | 'children'> & {

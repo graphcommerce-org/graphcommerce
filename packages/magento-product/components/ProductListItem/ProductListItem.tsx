@@ -6,15 +6,11 @@ import {
   breakpointVal,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import {
-  ButtonBase,
-  Typography,
-  Box,
-  styled,
-  SxProps,
-  Theme,
-  useEventCallback,
-} from '@mui/material'
+import Box from '@mui/material/Box'
+import ButtonBase from '@mui/material/ButtonBase'
+import Typography from '@mui/material/Typography'
+import { styled, SxProps, Theme } from '@mui/material/styles'
+import { useEventCallback } from '@mui/material/utils'
 import React from 'react'
 import { ProductListItemFragment } from '../../Api/ProductListItem.gql'
 import { useProductLink } from '../../hooks/useProductLink'

@@ -1,6 +1,6 @@
 import type { ProductListItemProps } from '@graphcommerce/magento-product'
 import type { IfConfig, PluginProps } from '@graphcommerce/next-config'
-import { Typography } from '@mui/material'
+import Typography from '@mui/material/Typography'
 
 export const component = 'ProductListItem'
 export const exported = '@graphcommerce/magento-product'

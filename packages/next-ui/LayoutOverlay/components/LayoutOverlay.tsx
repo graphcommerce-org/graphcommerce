@@ -1,7 +1,7 @@
 import { usePageContext, useGo, useScrollOffset } from '@graphcommerce/framer-next-pages'
 import { ScrollerProvider } from '@graphcommerce/framer-scroller'
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
-import { useEventCallback } from '@mui/material'
+import { useEventCallback } from '@mui/material/utils'
 import { usePresence } from 'framer-motion'
 import type { SetOptional } from 'type-fest'
 import { OverlayBase, LayoutOverlayBaseProps } from '../../Overlay/components/OverlayBase'

@@ -1,4 +1,6 @@
-import { Box, Tab, Tabs as MuiTabs } from '@mui/material'
+import Box from '@mui/material/Box'
+import Tab from '@mui/material/Tab'
+import MuiTabs from '@mui/material/Tabs'
 import React from 'react'
 import { extractAdvancedProps } from '../../utils'
 import { TabsContentType } from './types'
@@ -6,7 +8,8 @@ import { TabsContentType } from './types'
 /**
  * Page Builder Tabs component.
  *
- * This component is part of the Page Builder / PWA integration. It can be consumed without Page Builder.
+ * This component is part of the Page Builder / PWA integration. It can be consumed without Page
+ * Builder.
  */
 export const Tabs: TabsContentType['component'] = (props) => {
   const [cssProps, cssClasses, additional] = extractAdvancedProps(props)

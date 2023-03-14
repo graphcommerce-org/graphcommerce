@@ -1,7 +1,10 @@
 import { FilterRangeTypeInput } from '@graphcommerce/graphql-mesh'
 import { Money } from '@graphcommerce/magento-store'
 import { extendableComponent, filterNonNullableKeys } from '@graphcommerce/next-ui'
-import { Box, Slider, SxProps, Theme, useEventCallback } from '@mui/material'
+import Box from '@mui/material/Box'
+import Slider from '@mui/material/Slider'
+import { SxProps, Theme } from '@mui/material/styles'
+import { useEventCallback } from '@mui/material/utils'
 import { useCallback } from 'react'
 import { FilterProps } from './ProductFiltersProAggregations'
 

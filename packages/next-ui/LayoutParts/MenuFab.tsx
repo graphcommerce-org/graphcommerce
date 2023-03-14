@@ -1,16 +1,10 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
-import {
-  Divider,
-  Fab,
-  ListItem,
-  Menu,
-  styled,
-  Box,
-  SxProps,
-  Theme,
-  FabProps,
-  MenuProps as MenuPropsType,
-} from '@mui/material'
+import Box from '@mui/material/Box'
+import Divider from '@mui/material/Divider'
+import Fab, { FabProps } from '@mui/material/Fab'
+import ListItem from '@mui/material/ListItem'
+import Menu, { MenuProps as MenuPropsType } from '@mui/material/Menu'
+import { styled, SxProps, Theme } from '@mui/material/styles'
 import { m } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'

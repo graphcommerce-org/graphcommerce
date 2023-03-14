@@ -1,6 +1,6 @@
 import { iconChevronRight, IconSvg, LinkOrButton, LinkOrButtonProps } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { SxProps, Theme } from '@mui/material'
+import { SxProps, Theme } from '@mui/material/styles'
 import React from 'react'
 import { CartStartCheckoutFragment } from './CartStartCheckout.gql'
 

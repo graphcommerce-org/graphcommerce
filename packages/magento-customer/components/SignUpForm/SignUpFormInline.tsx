@@ -4,7 +4,8 @@ import { Button, extendableComponent, Form, FormRow } from '@graphcommerce/next-
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Box, TextField } from '@mui/material'
+import Box from '@mui/material/Box'
+import TextField from '@mui/material/TextField'
 import React from 'react'
 import { SignUpMutationVariables, SignUpMutation, SignUpDocument } from './SignUp.gql'
 
@@ -84,9 +85,7 @@ export function SignUpFormInline({
             required: true,
             validate: (value) => value === watchPassword,
           })}
-          helperText={
-            !!formState.errors.confirmPassword && <Trans id="Passwords should match" />
-          }
+          helperText={!!formState.errors.confirmPassword && <Trans id='Passwords should match' />}
           disabled={formState.isSubmitting}
         />
       </FormRow>

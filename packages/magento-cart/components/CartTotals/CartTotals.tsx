@@ -1,7 +1,9 @@
 import { Money } from '@graphcommerce/magento-store'
 import { extendableComponent, breakpointVal } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box, Divider, lighten, SxProps, Theme } from '@mui/material'
+import Box from '@mui/material/Box'
+import Divider from '@mui/material/Divider'
+import { SxProps, Theme, lighten } from '@mui/material/styles'
 import { useCartQuery, useDisplayInclTax } from '../../hooks'
 import { GetCartTotalsDocument } from './GetCartTotals.gql'
 

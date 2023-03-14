@@ -1,14 +1,8 @@
-import {
-  alpha,
-  lighten,
-  Badge,
-  Chip,
-  ChipProps,
-  SxProps,
-  Typography,
-  useEventCallback,
-  Theme,
-} from '@mui/material'
+import Badge from '@mui/material/Badge'
+import Chip, { ChipProps } from '@mui/material/Chip'
+import Typography from '@mui/material/Typography'
+import { lighten, SxProps, Theme } from '@mui/material/styles'
+import { useEventCallback } from '@mui/material/utils'
 import React, { useState } from 'react'
 import { IconSvg } from '../IconSvg'
 import { responsiveVal } from '../Styles'

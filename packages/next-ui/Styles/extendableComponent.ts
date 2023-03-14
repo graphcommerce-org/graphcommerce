@@ -1,4 +1,5 @@
-import { capitalize, Interpolation, Theme } from '@mui/material'
+import { Interpolation, Theme } from '@mui/material/styles'
+import { capitalize } from '@mui/material/utils'
 
 export type ExtendableComponent<StyleProps extends Record<string, unknown>> = {
   /**

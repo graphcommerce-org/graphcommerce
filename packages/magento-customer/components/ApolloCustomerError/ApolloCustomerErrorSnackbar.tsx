@@ -1,6 +1,6 @@
 import { ApolloErrorSnackbar, ApolloErrorSnackbarProps } from '@graphcommerce/ecommerce-ui'
 import { Trans } from '@lingui/react'
-import { Button } from '@mui/material'
+import Button from '@mui/material/Button'
 import { useCustomerSession } from '../../hooks/useCustomerSession'
 import { useAuthorizationErrorMasked } from './useAuthorizationErrorMasked'
 

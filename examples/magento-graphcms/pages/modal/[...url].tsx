@@ -7,7 +7,8 @@ import {
   LayoutTitle,
   PageMeta,
 } from '@graphcommerce/next-ui'
-import { Box, Typography } from '@mui/material'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
 import { GetStaticPaths } from 'next'
 import { LayoutOverlay, LayoutOverlayProps, RowRenderer } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'

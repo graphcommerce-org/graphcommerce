@@ -10,7 +10,8 @@ import {
   LayoutTitle,
   LinkOrButton,
 } from '@graphcommerce/next-ui'
-import { Container, Link } from '@mui/material'
+import Container from '@mui/material/Container'
+import Link from '@mui/material/Link'
 import { m } from 'framer-motion'
 import { GetStaticPathsResult, GetStaticProps } from 'next'
 import { useRouter } from 'next/router'

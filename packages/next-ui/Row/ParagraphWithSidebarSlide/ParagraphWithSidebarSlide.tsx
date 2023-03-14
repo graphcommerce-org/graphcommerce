@@ -1,4 +1,5 @@
-import { Box, ContainerProps } from '@mui/material'
+import Box from '@mui/material/Box'
+import { ContainerProps } from '@mui/material/Container'
 import { extendableComponent } from '../../Styles'
 import { breakpointVal } from '../../Styles/breakpointVal'
 import { Row } from '../Row'

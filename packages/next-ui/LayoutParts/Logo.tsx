@@ -1,11 +1,7 @@
 import { Image, ImageProps } from '@graphcommerce/image'
-import {
-  generateUtilityClass,
-  styled,
-  SxProps,
-  Theme,
-  unstable_composeClasses as composeClasses,
-} from '@mui/material'
+import composeClasses from '@mui/base/composeClasses'
+import generateUtilityClass from '@mui/material/generateUtilityClass'
+import { styled, SxProps, Theme } from '@mui/material/styles'
 import { useRouter } from 'next/router'
 import { forwardRef } from 'react'
 import { NextLink } from '../Theme'

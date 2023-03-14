@@ -1,4 +1,4 @@
-import { TypographyProps } from '@mui/material'
+import { TypographyProps } from '@mui/material/Typography'
 import { getAdvanced } from '../../utils'
 import { HeadingContentType } from './types'
 

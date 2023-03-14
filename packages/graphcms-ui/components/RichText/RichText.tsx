@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
-import { SxProps, Theme } from '@mui/material'
+import { SxProps, Theme } from '@mui/material/styles'
 import { defaultRenderers } from './defaultRenderers'
 import { defaultSxRenderer } from './defaultSxRenderer'
 import {

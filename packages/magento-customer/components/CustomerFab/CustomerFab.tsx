@@ -5,7 +5,9 @@ import {
   extendableComponent,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
-import { Fab, FabProps as FabPropsType, NoSsr, SxProps, Theme } from '@mui/material'
+import Fab, { FabProps as FabPropsType } from '@mui/material/Fab'
+import NoSsr from '@mui/material/NoSsr'
+import { Theme, SxProps } from '@mui/material/styles'
 import React from 'react'
 import { useCustomerSession, UseCustomerSessionReturn } from '../../hooks'
 

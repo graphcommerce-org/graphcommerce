@@ -6,7 +6,8 @@ import {
   useElementScroll,
   useIsomorphicLayoutEffect,
 } from '@graphcommerce/framer-utils'
-import { Box, styled, SxProps, Theme, useTheme, useThemeProps } from '@mui/material'
+import Box from '@mui/material/Box'
+import { useTheme, useThemeProps, styled, SxProps, Theme } from '@mui/material/styles'
 import {
   m,
   MotionProps,

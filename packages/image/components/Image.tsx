@@ -3,7 +3,8 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable jsx-a11y/alt-text */
-import { useForkRef, styled, SxProps, Theme } from '@mui/material'
+import { styled, SxProps, Theme } from '@mui/material/styles'
+import { useForkRef } from '@mui/material/utils'
 import {
   LoaderValue,
   VALID_LOADERS,
@@ -37,7 +38,7 @@ type ImageConfig = ImageConfigComplete & { allSizes: number[] }
 const DEFAULT_SIZES: SizesRecord = { 0: '100vw', 1200: '50vw' }
 
 const VALID_LOADING_VALUES = ['lazy', 'eager', undefined] as const
-type LoadingValue = typeof VALID_LOADING_VALUES[number]
+type LoadingValue = (typeof VALID_LOADING_VALUES)[number]
 
 const loaders = new Map<LoaderValue, (props: DefaultImageLoaderProps) => string>([
   ['imgix', imgixLoader],

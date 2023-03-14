@@ -1,5 +1,5 @@
 import { Fab, FabProps, iconShoppingBag } from '@graphcommerce/next-ui'
-import { SxProps, Theme } from '@mui/material'
+import { SxProps, Theme } from '@mui/material/styles'
 import {
   useAddProductsToCartAction,
   UseAddProductsToCartActionProps,

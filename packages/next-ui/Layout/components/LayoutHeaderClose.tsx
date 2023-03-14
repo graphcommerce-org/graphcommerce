@@ -1,6 +1,6 @@
 import { useGo, usePageContext } from '@graphcommerce/framer-next-pages'
 import { i18n } from '@lingui/core'
-import { Fab } from '@mui/material'
+import Fab from '@mui/material/Fab'
 import { useState } from 'react'
 import { IconSvg, useIconSvgSize } from '../../IconSvg'
 import { useFabSize } from '../../Theme'

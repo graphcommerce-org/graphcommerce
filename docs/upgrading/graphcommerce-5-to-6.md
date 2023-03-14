@@ -11,7 +11,7 @@ wrap a Material-UI Link component; With GraphCommerce 6 we've integrated Next.js
 
 ```tsx
 import PageLink from 'next/link'
-import { Link } from '@mui/material'
+import Link from '@mui/material/Link'
 
 function MyComponent() {
   return (
@@ -25,7 +25,7 @@ function MyComponent() {
 To upgrade this component to Next.js 13, you can remove the PageLink component.
 
 ```tsx
-import { Link } from '@mui/material'
+import Link from '@mui/material/Link'
 
 function MyComponent() {
   return <Link href='/about'>About</Link>
@@ -49,7 +49,7 @@ configuring [productRoute](../framework/config.md#productroute-string)
 
 ```tsx
 import PageLink from 'next/link'
-import { Link } from '@mui/material'
+import Link from '@mui/material/Link'
 
 function MyComponent() {
   return (
@@ -62,7 +62,7 @@ function MyComponent() {
 
 ```tsx
 import { NextLink } from '@graphcommerce/next-ui'
-import { Link } from '@mui/material'
+import Link from '@mui/material/Link'
 
 function MyComponent() {
   return (
@@ -77,7 +77,7 @@ function MyComponent() {
 
 ```tsx
 import PageLink from 'next/link'
-import { Link } from '@mui/material'
+import Link from '@mui/material/Link'
 
 function MyComponent() {
   return (
@@ -89,7 +89,7 @@ function MyComponent() {
 ```
 
 ```tsx
-import { Link } from '@mui/material'
+import Link from '@mui/material/Link'
 
 function MyComponent() {
   return (
@@ -106,7 +106,7 @@ codebase will show you where this is used.
 
 ```tsx
 import { NextLink } from '@graphcommerce/next-ui'
-import { Link } from '@mui/material'
+import Link from '@mui/material/Link'
 
 function MyComponent() {
   return (
@@ -121,7 +121,7 @@ function MyComponent() {
 
 ```tsx
 import PageLink from 'next/link'
-import { Link } from '@mui/material'
+import Link from '@mui/material/Link'
 
 function MyComponent() {
   return (
@@ -134,7 +134,7 @@ function MyComponent() {
 
 ```tsx
 import { NextLink } from '@graphcommerce/next-ui'
-import { Link } from '@mui/material'
+import Link from '@mui/material/Link'
 
 function MyComponent() {
   return (

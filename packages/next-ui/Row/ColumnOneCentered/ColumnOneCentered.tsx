@@ -1,4 +1,5 @@
-import { ContainerProps, styled } from '@mui/material'
+import { ContainerProps } from '@mui/material/Container'
+import { styled } from '@mui/material/styles'
 import { ColumnOne } from '../ColumnOne/ColumnOne'
 
 const Wrapper = styled('div')(({ theme }) => ({

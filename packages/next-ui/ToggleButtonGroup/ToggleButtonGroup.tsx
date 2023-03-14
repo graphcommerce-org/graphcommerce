@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { Box, ToggleButtonGroupProps as ToggleButtonGroupPropsBase } from '@mui/material'
+import Box from '@mui/material/Box'
+import { ToggleButtonGroupProps as ToggleButtonGroupPropsBase } from '@mui/material/ToggleButtonGroup'
 import React from 'react'
 import { isFragment } from 'react-is'
 import { extendableComponent } from '../Styles'

@@ -6,7 +6,8 @@ import {
   useScrollY,
   extendableComponent,
 } from '@graphcommerce/next-ui'
-import { Box, styled, SxProps, Theme } from '@mui/material'
+import Box from '@mui/material/Box'
+import { useTheme, styled, SxProps, Theme } from '@mui/material/styles'
 import { m, useTransform } from 'framer-motion'
 import React, { useEffect, useRef, useState } from 'react'
 

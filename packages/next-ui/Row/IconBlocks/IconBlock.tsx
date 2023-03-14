@@ -1,4 +1,7 @@
-import { Typography, Button, SxProps, Theme, Box, ButtonProps } from '@mui/material'
+import Box from '@mui/material/Box'
+import Button, { ButtonProps } from '@mui/material/Button'
+import Typography from '@mui/material/Typography'
+import { SxProps, Theme } from '@mui/material/styles'
 import React from 'react'
 import { extendableComponent } from '../../Styles'
 

@@ -17,7 +17,10 @@ import {
   useFormPersist,
 } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
-import { Box, FormControl, FormHelperText, SxProps, Theme } from '@mui/material'
+import Box from '@mui/material/Box'
+import FormControl from '@mui/material/FormControl'
+import FormHelperText from '@mui/material/FormHelperText'
+import { SxProps, Theme } from '@mui/material/styles'
 import { useEffect } from 'react'
 import { usePaymentMethodContext } from '../PaymentMethodContext/PaymentMethodContext'
 import { useCartLock } from '../hooks/useCartLock'

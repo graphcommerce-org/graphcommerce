@@ -1,5 +1,6 @@
 import { Controller, ControllerProps, FieldValues } from '@graphcommerce/react-hook-form'
-import { MenuItem, TextField, TextFieldProps } from '@mui/material'
+import MenuItem from '@mui/material/MenuItem'
+import TextField, { TextFieldProps } from '@mui/material/TextField'
 
 export type SelectElementProps<T extends FieldValues> = Omit<
   TextFieldProps,

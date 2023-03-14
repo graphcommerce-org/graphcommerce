@@ -2,7 +2,7 @@ import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
 import { FormRow, InputCheckmark } from '@graphcommerce/next-ui'
 import { useFormCompose, useFormValidFields } from '@graphcommerce/react-hook-form'
-import { TextField } from '@mui/material'
+import TextField from '@mui/material/TextField'
 import { PurchaseOrderOptionsDocument } from './PurchaseOrderOptions.gql'
 
 export function PurchaseOrderOptions(props: PaymentOptionsProps) {

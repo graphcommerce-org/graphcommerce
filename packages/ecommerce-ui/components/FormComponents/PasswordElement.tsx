@@ -1,6 +1,7 @@
 import { iconEye, iconEyeCrossed, IconSvg } from '@graphcommerce/next-ui'
 import { FieldValues } from '@graphcommerce/react-hook-form'
-import { IconButton, IconButtonProps, InputAdornment } from '@mui/material'
+import IconButton, { IconButtonProps } from '@mui/material/IconButton'
+import InputAdornment from '@mui/material/InputAdornment'
 import { MouseEvent, useState } from 'react'
 import { TextFieldElement, TextFieldElementProps } from './TextFieldElement'
 

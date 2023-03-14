@@ -1,4 +1,4 @@
-import { useTheme } from '@mui/material'
+import { useTheme } from '@mui/material/styles'
 import Head from 'next/head'
 
 export type GlobalHeadProps = { name: string }

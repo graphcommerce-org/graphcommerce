@@ -1,4 +1,4 @@
-import { TypographyProps } from '@mui/material'
+import { TypographyProps } from '@mui/material/Typography'
 import { ContentType, ContentTypeConfig } from '../../types'
 import { AdvancedProps } from '../../utils'
 

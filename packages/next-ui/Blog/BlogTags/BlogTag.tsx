@@ -1,4 +1,5 @@
-import { Chip, SxProps, Theme } from '@mui/material'
+import Chip from '@mui/material/Chip'
+import { SxProps, Theme } from '@mui/material/styles'
 import { NextLink } from '../../Theme'
 
 type BlogTagsProps = {

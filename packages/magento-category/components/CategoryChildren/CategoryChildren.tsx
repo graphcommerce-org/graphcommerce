@@ -1,7 +1,8 @@
 import { Scroller, ScrollerProvider } from '@graphcommerce/framer-scroller'
 import { ProductListLink, ProductListParams } from '@graphcommerce/magento-product'
 import { extendableComponent } from '@graphcommerce/next-ui'
-import { Box, SxProps, Theme } from '@mui/material'
+import Box from '@mui/material/Box'
+import { SxProps, Theme } from '@mui/material/styles'
 import { CategoryChildrenFragment } from './CategoryChildren.gql'
 
 type CategoryChildrenProps = Omit<CategoryChildrenFragment, 'uid'> & {

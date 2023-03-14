@@ -1,6 +1,6 @@
 import { iconSearch, responsiveVal, IconSvg, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { TextField, TextFieldProps } from '@mui/material'
+import TextField, { TextFieldProps } from '@mui/material/TextField'
 
 export type SearchButtonProps = TextFieldProps
 

@@ -1,5 +1,6 @@
 import { extendableComponent } from '@graphcommerce/next-ui'
-import { List, SxProps, Theme } from '@mui/material'
+import List from '@mui/material/List'
+import { SxProps, Theme } from '@mui/material/styles'
 import React from 'react'
 
 export type AccountMenuProps = { children: React.ReactNode; sx?: SxProps<Theme> }

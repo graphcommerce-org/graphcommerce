@@ -1,10 +1,11 @@
-import { Box } from '@mui/material'
+import Box from '@mui/material/Box'
 import { ColumnGroupContentType } from './types'
 
 /**
  * Page Builder ColumnGroup component.
  *
- * This component is part of the Page Builder / PWA integration. It can be consumed without Page Builder.
+ * This component is part of the Page Builder / PWA integration. It can be consumed without Page
+ * Builder.
  */
 export const ColumnGroup: ColumnGroupContentType['component'] = (props) => {
   const { display, children } = props

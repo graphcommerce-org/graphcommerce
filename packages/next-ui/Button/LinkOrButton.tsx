@@ -1,4 +1,6 @@
-import { Breakpoint, Link, LinkProps, useForkRef } from '@mui/material'
+import Link, { LinkProps } from '@mui/material/Link'
+import { Breakpoint } from '@mui/material/styles'
+import { useForkRef } from '@mui/material/utils'
 import React, { useRef } from 'react'
 import type { ConditionalExcept } from 'type-fest'
 import { Button, ButtonProps } from './Button'

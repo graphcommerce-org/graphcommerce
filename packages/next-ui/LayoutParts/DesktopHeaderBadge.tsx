@@ -1,4 +1,4 @@
-import { Badge, BadgeProps } from '@mui/material'
+import Badge, { BadgeProps } from '@mui/material/Badge'
 
 /** Note: This should _only_ be used on the Desktop, use a standard Badge for other usecases. */
 export function DesktopHeaderBadge(props: BadgeProps) {

@@ -1,5 +1,5 @@
 import { ContentLinks } from '@graphcommerce/next-ui'
-import { Link } from '@mui/material'
+import Link from '@mui/material/Link'
 import { RowContentLinksFragment } from './RowContentLinks.gql'
 
 export function RowContentLinks(props: RowContentLinksFragment) {

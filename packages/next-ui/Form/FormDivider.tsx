@@ -1,4 +1,4 @@
-import { styled } from '@mui/material'
+import { styled } from '@mui/material/styles'
 
 export const FormDivider = styled('div', { name: 'FormDivider' })(({ theme }) => ({
   background: theme.palette.divider,

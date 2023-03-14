@@ -23,7 +23,7 @@ import { CountryRegionsDocument, StoreConfigDocument } from '@graphcommerce/mage
 import { Form, FormRow, InputCheckmark } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { SxProps, Theme } from '@mui/material'
+import { SxProps, Theme } from '@mui/material/styles'
 import React from 'react'
 import { isSameAddress } from '../../utils/isSameAddress'
 import { GetAddressesDocument } from './GetAddresses.gql'

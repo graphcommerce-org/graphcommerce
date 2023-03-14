@@ -1,11 +1,12 @@
-import { Box } from '@mui/material'
+import Box from '@mui/material/Box'
 import { extractAdvancedProps, extractBorderProps } from '../../utils'
 import { ImageContentType } from './types'
 
 /**
  * Page Builder Image component.
  *
- * This component is part of the Page Builder / PWA integration. It can be consumed without Page Builder.
+ * This component is part of the Page Builder / PWA integration. It can be consumed without Page
+ * Builder.
  */
 export const Image: ImageContentType['component'] = (props) => {
   const [border, remaining] = extractBorderProps(props)

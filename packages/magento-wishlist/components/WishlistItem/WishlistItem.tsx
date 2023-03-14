@@ -1,5 +1,5 @@
 import { InputMaybe } from '@graphcommerce/graphql-mesh'
-import { SxProps, Theme } from '@mui/material'
+import { SxProps, Theme } from '@mui/material/styles'
 import { ProductAddToCart } from './ProductAddToCart'
 import { WishlistItemBase } from './WishlistItemBase'
 import { WishlistItemProductFragment } from './WishlistItemProduct.gql'

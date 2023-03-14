@@ -3,8 +3,8 @@ import { FormRow, InputCheckmark } from '@graphcommerce/next-ui'
 import { assertFormGqlOperation, Controller, UseFormReturn } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { MenuItem, TextField } from '@mui/material'
-import React from 'react'
+import MenuItem from '@mui/material/MenuItem'
+import TextField from '@mui/material/TextField'
 
 type NameFieldValues = {
   firstname?: string

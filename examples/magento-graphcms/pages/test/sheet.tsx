@@ -6,7 +6,11 @@ import {
   LayoutOverlayState,
   useLayoutState,
 } from '@graphcommerce/next-ui/LayoutOverlay/test/LayoutOverlayDemo'
-import { capitalize, Container, Hidden, ListItemButton, Typography } from '@mui/material'
+import Container from '@mui/material/Container'
+import Hidden from '@mui/material/Hidden'
+import ListItemButton from '@mui/material/ListItemButton'
+import Typography from '@mui/material/Typography'
+import { capitalize } from '@mui/material/utils'
 import { m } from 'framer-motion'
 import { useState } from 'react'
 

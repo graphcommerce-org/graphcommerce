@@ -1,19 +1,14 @@
 import { i18n } from '@lingui/core'
-import {
-  Fab,
-  Snackbar,
-  SnackbarContent,
-  SnackbarProps,
-  lighten,
-  Box,
-  SxProps,
-  Theme,
-  Portal,
-} from '@mui/material'
+import Box from '@mui/material/Box'
+import Fab from '@mui/material/Fab'
+import Portal from '@mui/material/Portal'
+import Snackbar, { SnackbarProps } from '@mui/material/Snackbar'
+import SnackbarContent from '@mui/material/SnackbarContent'
+import { lighten, SxProps, Theme } from '@mui/material/styles'
 import React, { useEffect, useState } from 'react'
 import { IconSvg } from '../IconSvg'
-import { extendableComponent, breakpointVal } from '../Styles'
-import { iconClose, iconCheckmark, iconSadFace } from '../icons'
+import { breakpointVal, extendableComponent } from '../Styles'
+import { iconCheckmark, iconClose, iconSadFace } from '../icons'
 
 type Size = 'normal' | 'wide'
 type Variant = 'contained' | 'pill'

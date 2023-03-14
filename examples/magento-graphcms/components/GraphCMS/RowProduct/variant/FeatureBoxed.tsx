@@ -1,7 +1,8 @@
 import { RichText } from '@graphcommerce/graphcms-ui'
 import { Image } from '@graphcommerce/image'
 import { ImageTextBoxed, responsiveVal } from '@graphcommerce/next-ui'
-import { Typography, useTheme } from '@mui/material'
+import Typography from '@mui/material/Typography'
+import { useTheme } from '@mui/material/styles'
 import { RowProductFragment } from '../RowProduct.gql'
 import { ProductFeatureMediaBoxedFragment } from './ProductFeatureMediaBoxed.gql'
 

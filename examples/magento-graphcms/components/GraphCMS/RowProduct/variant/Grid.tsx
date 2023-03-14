@@ -1,5 +1,5 @@
 import { ContainerWithHeader } from '@graphcommerce/next-ui'
-import { Link } from '@mui/material'
+import Link from '@mui/material/Link'
 import { ProductListItems, ProductListItemsProps } from '../../../ProductListItems/ProductListItems'
 import { RowProductFragment } from '../RowProduct.gql'
 

@@ -1,4 +1,4 @@
-import { GlobalStyles } from '@mui/material'
+import GlobalStyles from '@mui/material/GlobalStyles'
 import Script from 'next/script'
 import { useContext } from 'react'
 import { recaptchaContext } from '../context/recaptchaContext'

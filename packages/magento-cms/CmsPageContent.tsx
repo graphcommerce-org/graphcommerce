@@ -1,4 +1,5 @@
-import { Typography, Container } from '@mui/material'
+import Container from '@mui/material/Container'
+import Typography from '@mui/material/Typography'
 import { CmsPageContentFragment } from './CmsPageContent.gql'
 
 export type CmsPageContentProps = CmsPageContentFragment

@@ -6,7 +6,7 @@ import {
 import { Button, Form, FormActions, FormRow } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
-import { TextField } from '@mui/material'
+import TextField from '@mui/material/TextField'
 import { useRouter } from 'next/router'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import {

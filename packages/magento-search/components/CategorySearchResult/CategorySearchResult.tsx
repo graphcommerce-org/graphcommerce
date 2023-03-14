@@ -1,5 +1,6 @@
 import { Highlight, iconChevronRight, IconSvg, extendableComponent } from '@graphcommerce/next-ui'
-import { Button, SxProps, Theme } from '@mui/material'
+import Button from '@mui/material/Button'
+import { SxProps, Theme } from '@mui/material/styles'
 import React from 'react'
 import { CategorySearchResultFragment } from './CategorySearchResult.gql'
 

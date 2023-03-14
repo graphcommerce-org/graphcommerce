@@ -1,6 +1,6 @@
 import { useQuery } from '@graphcommerce/graphql'
 import { ExtendableComponent, useNumberFormat } from '@graphcommerce/next-ui'
-import { useThemeProps } from '@mui/material'
+import { useThemeProps } from '@mui/material/styles'
 import { useMemo } from 'react'
 import { MoneyFragment } from './Money.gql'
 import { StoreConfigDocument } from './StoreConfig.gql'

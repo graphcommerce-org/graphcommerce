@@ -1,4 +1,4 @@
-import { RatingProps, Rating } from '@mui/material'
+import Rating, { RatingProps } from '@mui/material/Rating'
 import { IconSvg } from '../IconSvg'
 import { extendableComponent } from '../Styles'
 import { iconStar } from '../icons'

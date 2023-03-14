@@ -1,4 +1,4 @@
-import { GlobalStyles } from '@mui/material'
+import GlobalStyles from '@mui/material/GlobalStyles'
 import { LazyMotion } from 'framer-motion'
 
 export type GraphCommerceProviderProps = {

@@ -1,5 +1,5 @@
 import { IconSvg, iconStar } from '@graphcommerce/next-ui'
-import { Chip, ChipProps } from '@mui/material'
+import Chip, { ChipProps } from '@mui/material/Chip'
 import React from 'react'
 
 export type ProductReviewChipProps = {

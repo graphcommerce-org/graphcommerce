@@ -4,14 +4,10 @@ import {
   FieldError,
   FieldValues,
 } from '@graphcommerce/react-hook-form'
-import {
-  FormControl,
-  FormControlProps,
-  FormHelperText,
-  FormLabel,
-  Slider,
-  SliderProps,
-} from '@mui/material'
+import FormControl, { FormControlProps } from '@mui/material/FormControl'
+import FormHelperText from '@mui/material/FormHelperText'
+import FormLabel from '@mui/material/FormLabel'
+import Slider, { SliderProps } from '@mui/material/Slider'
 
 export type SliderElementProps<T extends FieldValues> = Omit<SliderProps, 'control'> & {
   label?: string

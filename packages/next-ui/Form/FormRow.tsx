@@ -1,4 +1,4 @@
-import { styled } from '@mui/material'
+import { styled } from '@mui/material/styles'
 
 export const FormRow = styled('div', { name: 'FormRow' })(({ theme }) => ({
   paddingTop: theme.spacings.xxs,

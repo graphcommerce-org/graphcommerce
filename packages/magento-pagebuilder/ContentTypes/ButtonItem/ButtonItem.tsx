@@ -2,7 +2,7 @@
 import { useApolloClient, useQuery } from '@graphcommerce/graphql'
 import { productLink, ProductLinkProps } from '@graphcommerce/magento-product'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { Button, ButtonProps } from '@mui/material'
+import Button, { ButtonProps } from '@mui/material/Button'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { RouteDocument } from '../../Route.gql'

@@ -1,4 +1,7 @@
-import { ListItemButton, ListItemIcon, ListItemText, SxProps, Theme } from '@mui/material'
+import ListItemButton from '@mui/material/ListItemButton'
+import ListItemIcon from '@mui/material/ListItemIcon'
+import ListItemText from '@mui/material/ListItemText'
+import { SxProps, Theme } from '@mui/material/styles'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { extendableComponent } from '../Styles'

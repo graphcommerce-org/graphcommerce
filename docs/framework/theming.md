@@ -103,7 +103,7 @@ A more advanced way is to use the
 components:
 
 ```tsx
-import { styled } from '@mui/material'
+import { styled } from '@mui/material/styles'
 
 const AnimatedButton = styled(Button, { name: 'animatedButton' })(
   ({ theme }) => ({

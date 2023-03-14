@@ -1,4 +1,5 @@
-import { Box, Link, LinkProps } from '@mui/material'
+import Box from '@mui/material/Box'
+import Link, { LinkProps } from '@mui/material/Link'
 import { useRouter } from 'next/router'
 import { extendableComponent } from '../Styles/extendableComponent'
 

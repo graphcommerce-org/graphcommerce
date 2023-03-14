@@ -6,7 +6,10 @@ import {
   extendableComponent,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Skeleton, Button, Box, Theme, SxProps } from '@mui/material'
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import Skeleton from '@mui/material/Skeleton'
+import { Theme, SxProps } from '@mui/material/styles'
 import { AccountAddress } from '../AccountAddress/AccountAddress'
 import { AccountAddressesFragment } from './AccountAddresses.gql'
 

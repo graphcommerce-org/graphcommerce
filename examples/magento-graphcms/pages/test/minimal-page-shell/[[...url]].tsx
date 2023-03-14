@@ -7,7 +7,10 @@ import {
   LinkOrButton,
   NextLink,
 } from '@graphcommerce/next-ui'
-import { Container, Divider, List, ListItemButton } from '@mui/material'
+import Container from '@mui/material/Container'
+import Divider from '@mui/material/Divider'
+import List from '@mui/material/List'
+import ListItemButton from '@mui/material/ListItemButton'
 import { m } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'

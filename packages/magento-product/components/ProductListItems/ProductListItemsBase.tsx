@@ -1,5 +1,5 @@
 import { RenderType, responsiveVal } from '@graphcommerce/next-ui'
-import { Box, BoxProps } from '@mui/material'
+import Box, { BoxProps } from '@mui/material/Box'
 import { ProductListItemFragment } from '../../Api/ProductListItem.gql'
 import { ProductListItemProps } from '../ProductListItem/ProductListItem'
 import { ProductListItemRenderer } from './renderer'

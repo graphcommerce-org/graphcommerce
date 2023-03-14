@@ -1,5 +1,5 @@
 import { ImageProps, srcToString, StaticImport } from '@graphcommerce/image'
-import { styled, SxProps, Theme, useTheme, useThemeProps } from '@mui/material'
+import { useTheme, useThemeProps, styled, SxProps, Theme } from '@mui/material/styles'
 import { ComponentProps, forwardRef } from 'react'
 import { extendableComponent, ExtendableComponent } from '../Styles/extendableComponent'
 import { responsiveVal as rv } from '../Styles/responsiveVal'

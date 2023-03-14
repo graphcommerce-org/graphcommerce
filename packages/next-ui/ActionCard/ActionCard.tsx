@@ -1,4 +1,7 @@
-import { alpha, Box, BoxProps, ButtonBase, ButtonProps, SxProps, Theme } from '@mui/material'
+import Box, { BoxProps } from '@mui/material/Box'
+import { ButtonProps } from '@mui/material/Button'
+import ButtonBase from '@mui/material/ButtonBase'
+import { SxProps, Theme, alpha } from '@mui/material/styles'
 import React from 'react'
 import { extendableComponent, responsiveVal } from '../Styles'
 import { breakpointVal } from '../Styles/breakpointVal'

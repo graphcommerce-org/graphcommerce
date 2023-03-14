@@ -1,6 +1,6 @@
 import { RichText, Asset } from '@graphcommerce/graphcms-ui'
 import { breakpointVal, SpecialBanner } from '@graphcommerce/next-ui'
-import { Link } from '@mui/material'
+import Link from '@mui/material/Link'
 import { RowSpecialBannerFragment } from './RowSpecialBanner.gql'
 
 type RowSpecialBannerProps = RowSpecialBannerFragment

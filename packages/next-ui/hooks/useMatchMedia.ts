@@ -1,4 +1,4 @@
-import { Breakpoint, useTheme } from '@mui/material'
+import { Breakpoint, useTheme } from '@mui/material/styles'
 import { useMemo } from 'react'
 
 export function useMatchMedia() {

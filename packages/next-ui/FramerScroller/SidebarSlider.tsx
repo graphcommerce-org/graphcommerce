@@ -5,7 +5,8 @@ import {
   ScrollerPageCounter,
   ScrollerProvider,
 } from '@graphcommerce/framer-scroller'
-import { Box, SxProps, Theme } from '@mui/material'
+import Box from '@mui/material/Box'
+import { SxProps, Theme } from '@mui/material/styles'
 import { ReactNode } from 'react'
 import { IconSvg } from '../IconSvg'
 import { Row } from '../Row/Row'

@@ -1,4 +1,7 @@
-import { ContainerProps, useTheme, useMediaQuery, Box, styled } from '@mui/material'
+import Box from '@mui/material/Box'
+import { ContainerProps } from '@mui/material/Container'
+import { useTheme, styled } from '@mui/material/styles'
+import useMediaQuery from '@mui/material/useMediaQuery'
 import { m, useTransform } from 'framer-motion'
 import React from 'react'
 import { useScrollY } from '../../Layout/hooks/useScrollY'

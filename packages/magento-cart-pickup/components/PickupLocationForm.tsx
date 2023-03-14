@@ -10,7 +10,7 @@ import { useShippingMethod } from '@graphcommerce/magento-cart-shipping-method'
 import { GetShippingMethodsDocument } from '@graphcommerce/magento-cart-shipping-method/components/ShippingMethodForm/GetShippingMethods.gql'
 import { ActionCardItemBase, ActionCardListForm, FormRow } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { TextField } from '@mui/material'
+import TextField from '@mui/material/TextField'
 import { useMemo, useDeferredValue } from 'react'
 import { GetPickupLocationsForProductsDocument } from '../graphql/GetPickupLocationsForProducts.gql'
 import {

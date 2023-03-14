@@ -1,4 +1,4 @@
-import { SxProps, Theme } from '@mui/material'
+import { SxProps, Theme } from '@mui/material/styles'
 import { ImageBackground } from './ImageBackground'
 import { VideoBackground } from './VideoBackground'
 import { MediaBackgroundProps } from './getMediaBackgroundProps'

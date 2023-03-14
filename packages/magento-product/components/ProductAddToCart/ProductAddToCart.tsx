@@ -10,7 +10,11 @@ import {
   extendableComponent,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Divider, Typography, ButtonProps, Box, Alert } from '@mui/material'
+import Alert from '@mui/material/Alert'
+import Box from '@mui/material/Box'
+import { ButtonProps } from '@mui/material/Button'
+import Divider from '@mui/material/Divider'
+import Typography from '@mui/material/Typography'
 import React from 'react'
 import { ProductAddToCartDocument, ProductAddToCartMutationVariables } from './ProductAddToCart.gql'
 

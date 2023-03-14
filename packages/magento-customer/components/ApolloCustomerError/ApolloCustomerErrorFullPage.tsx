@@ -1,7 +1,7 @@
 import { ApolloErrorFullPage, ApolloErrorFullPageProps } from '@graphcommerce/ecommerce-ui'
 import { iconPerson, IconSvg } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Button } from '@mui/material'
+import Button from '@mui/material/Button'
 import type { SetOptional } from 'type-fest'
 import { useCustomerSession } from '../../hooks/useCustomerSession'
 import { useAuthorizationErrorMasked } from './useAuthorizationErrorMasked'

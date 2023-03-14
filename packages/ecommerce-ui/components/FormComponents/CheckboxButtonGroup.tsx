@@ -4,16 +4,13 @@ import {
   FieldValues,
   UseControllerProps,
 } from '@graphcommerce/react-hook-form'
-import {
-  Checkbox,
-  CheckboxProps,
-  FormControl,
-  FormControlLabel,
-  FormGroup,
-  FormHelperText,
-  FormLabel,
-  useTheme,
-} from '@mui/material'
+import Checkbox, { CheckboxProps } from '@mui/material/Checkbox'
+import FormControl from '@mui/material/FormControl'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import FormGroup from '@mui/material/FormGroup'
+import FormHelperText from '@mui/material/FormHelperText'
+import FormLabel from '@mui/material/FormLabel'
+import { useTheme } from '@mui/material/styles'
 
 export type CheckboxButtonGroupProps<T extends FieldValues> = {
   options: { id: string | number; label: string }[] | any[]

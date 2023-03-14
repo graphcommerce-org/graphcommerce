@@ -2,8 +2,8 @@
 import { waitForGraphQlResponse } from '@graphcommerce/graphql/test/apolloClient.fixture'
 import { PaymentMethodPlaceOrderNoopDocument } from '@graphcommerce/magento-cart-payment-method/PaymentMethodPlaceOrderNoop/PaymentMethodPlaceOrderNoop.gql'
 import { fillShippingAddressForm } from '@graphcommerce/magento-cart-shipping-address/test/fillShippingAddressForm'
-import { addConfigurableProductToCart } from '@graphcommerce/magento-product-configurable/test/addConfigurableProductToCart'
 import { test } from '@graphcommerce/magento-product/test/productURL.fixture'
+import { addConfigurableProductToCart } from '@graphcommerce/magento-product-configurable/test/addConfigurableProductToCart'
 import { expect } from '@playwright/test'
 
 test('place order', async ({ page, productURL }) => {

@@ -2,7 +2,8 @@ import { useQuery } from '@graphcommerce/graphql'
 import { ProductReviews, ProductReviewsProps } from '@graphcommerce/magento-review'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Row } from '@graphcommerce/next-ui'
-import { Box, Typography } from '@mui/material'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
 import { RowProductFragment } from '../RowProduct.gql'
 
 type ReviewsProps = RowProductFragment & Partial<ProductReviewsProps>

@@ -1,6 +1,6 @@
 import { SelectedCustomizableOptions } from '@graphcommerce/magento-cart-items'
 import { Money } from '@graphcommerce/magento-store'
-import { Typography } from '@mui/material'
+import Typography from '@mui/material/Typography'
 import { BundleCartItemFragment } from './BundleCartItem.gql'
 
 export function BundleCartItem(props: BundleCartItemFragment) {

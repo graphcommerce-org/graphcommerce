@@ -1,6 +1,7 @@
 import { IconHeader, iconBox, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box, SxProps, Theme } from '@mui/material'
+import Box from '@mui/material/Box'
+import { SxProps, Theme } from '@mui/material/styles'
 
 const parts = ['root'] as const
 const { classes } = extendableComponent('NoOrdersFound', parts)

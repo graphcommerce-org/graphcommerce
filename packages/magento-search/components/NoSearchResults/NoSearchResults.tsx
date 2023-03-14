@@ -1,6 +1,8 @@
 import { extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box, SxProps, Theme, Typography } from '@mui/material'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+import { SxProps, Theme } from '@mui/material/styles'
 
 export type NoSearchResultsProps = { search: string; sx?: SxProps<Theme> }
 

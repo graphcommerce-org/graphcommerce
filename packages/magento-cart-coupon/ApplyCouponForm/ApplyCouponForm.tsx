@@ -1,7 +1,10 @@
 import { useFormGqlMutationCart, ApolloCartErrorAlert } from '@graphcommerce/magento-cart'
 import { responsiveVal, Button, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box, FormControl, SxProps, TextField, Theme } from '@mui/material'
+import Box from '@mui/material/Box'
+import FormControl from '@mui/material/FormControl'
+import TextField from '@mui/material/TextField'
+import { SxProps, Theme } from '@mui/material/styles'
 import { ApplyCouponFormDocument } from './ApplyCouponForm.gql'
 
 export type ApplyCouponFormProps = { sx?: SxProps<Theme> }

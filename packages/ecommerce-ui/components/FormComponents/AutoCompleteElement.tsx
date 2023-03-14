@@ -1,12 +1,8 @@
 import { Controller, ControllerProps, FieldValues } from '@graphcommerce/react-hook-form'
-import {
-  Autocomplete,
-  AutocompleteProps,
-  Checkbox,
-  TextField,
-  TextFieldProps,
-  CircularProgress,
-} from '@mui/material'
+import Autocomplete, { AutocompleteProps } from '@mui/material/Autocomplete'
+import Checkbox from '@mui/material/Checkbox'
+import CircularProgress from '@mui/material/CircularProgress'
+import TextField, { TextFieldProps } from '@mui/material/TextField'
 
 export type AutocompleteElementProps<
   F extends FieldValues,

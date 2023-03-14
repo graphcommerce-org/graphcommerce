@@ -9,7 +9,11 @@ import {
   TextInputNumber,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Divider, Typography, Alert, Box, SxProps, Theme } from '@mui/material'
+import Alert from '@mui/material/Alert'
+import Box from '@mui/material/Box'
+import Divider from '@mui/material/Divider'
+import Typography from '@mui/material/Typography'
+import { SxProps, Theme } from '@mui/material/styles'
 import React from 'react'
 import { Selected, useConfigurableContext } from '../ConfigurableContext/ConfigurableContext'
 import cheapestVariant from '../ConfigurableContext/cheapestVariant'

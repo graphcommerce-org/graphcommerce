@@ -1,7 +1,7 @@
 import { ApolloCartErrorSnackbar, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { TextInputNumber } from '@graphcommerce/next-ui'
 import { useFormAutoSubmit, UseFormGraphQlOptions } from '@graphcommerce/react-hook-form'
-import { SxProps, Theme } from '@mui/material'
+import { SxProps, Theme } from '@mui/material/styles'
 import React from 'react'
 import {
   UpdateItemQuantityDocument,

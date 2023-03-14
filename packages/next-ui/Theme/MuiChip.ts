@@ -1,4 +1,4 @@
-import { ComponentsVariants, darken } from '@mui/material'
+import { ComponentsVariants, darken } from '@mui/material/styles'
 import { responsiveVal } from '../Styles'
 
 declare module '@mui/material/Chip/Chip' {

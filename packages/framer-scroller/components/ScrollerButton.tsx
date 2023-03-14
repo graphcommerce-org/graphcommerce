@@ -1,5 +1,6 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
-import { Fab, FabProps, styled, SxProps, Theme } from '@mui/material'
+import Fab, { FabProps } from '@mui/material/Fab'
+import { styled, SxProps, Theme } from '@mui/material/styles'
 import { m, useTransform } from 'framer-motion'
 import React from 'react'
 import { useScrollTo } from '../hooks/useScrollTo'

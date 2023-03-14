@@ -5,7 +5,8 @@ import {
   useDateTimeFormat,
   IconSvg,
 } from '@graphcommerce/next-ui'
-import { Box, SxProps, Theme } from '@mui/material'
+import Box from '@mui/material/Box'
+import { SxProps, Theme } from '@mui/material/styles'
 import { CustomerReviewFragment } from './CustomerReview.gql'
 import filledStar from './review_star_filled.svg'
 import outlinedStar from './review_star_outlined.svg'

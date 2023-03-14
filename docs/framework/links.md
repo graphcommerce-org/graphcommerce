@@ -17,7 +17,9 @@ Using NextLink is as simple as using the Link/Button component from
 ### Basic usage
 
 ```tsx
-import { Link, Fab, Button } from '@mui/material'
+import Link from '@mui/material/Link'
+import Fab from '@mui/material/Fab'
+import Button from '@mui/material/Button'
 
 function MyComponent() {
   return (
@@ -37,7 +39,7 @@ If you want to use props of next/link and satisfy typescript you need to provide
 
 ```tsx
 import { NextLink } from '@graphcommerce/next-ui'
-import { Link } from '@mui/material'
+import Link from '@mui/material/Link'
 
 function MyComponent() {
   return (
@@ -52,7 +54,7 @@ function MyComponent() {
 
 ```tsx
 import { NextLink } from '@graphcommerce/next-ui'
-import { Chip } from '@mui/material'
+import Chip from '@mui/material/Chip'
 
 function MyComponent() {
   return <Chip component={NextLink} href={`/${url}`} label={'my label'} />

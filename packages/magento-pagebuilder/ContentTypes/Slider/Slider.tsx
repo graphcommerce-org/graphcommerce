@@ -1,5 +1,5 @@
 import { ScrollerProvider, Scroller, ScrollerDots } from '@graphcommerce/framer-scroller'
-import { Box } from '@mui/material'
+import Box from '@mui/material/Box'
 import { useState } from 'react'
 import { extractAdvancedProps } from '../../utils'
 import { AutoScroll } from './AutoScroll'
@@ -8,7 +8,8 @@ import { SliderContentType } from './types'
 /**
  * Page Builder Slider component.
  *
- * This component is part of the Page Builder / PWA integration. It can be consumed without Page Builder.
+ * This component is part of the Page Builder / PWA integration. It can be consumed without Page
+ * Builder.
  */
 export const Slider: SliderContentType['component'] = (props) => {
   const [cssProps, cssClasses, additional] = extractAdvancedProps(props)

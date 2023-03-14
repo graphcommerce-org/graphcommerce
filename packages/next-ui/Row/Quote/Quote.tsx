@@ -1,4 +1,4 @@
-import { ContainerProps } from '@mui/material'
+import { ContainerProps } from '@mui/material/Container'
 import React from 'react'
 import { Row } from '../Row'
 

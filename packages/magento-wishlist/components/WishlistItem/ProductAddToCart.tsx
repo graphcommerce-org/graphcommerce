@@ -14,7 +14,9 @@ import {
   extendableComponent,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { ButtonProps, Box, Alert } from '@mui/material'
+import Alert from '@mui/material/Alert'
+import Box from '@mui/material/Box'
+import { ButtonProps } from '@mui/material/Button'
 import React from 'react'
 
 const { classes, selectors } = extendableComponent('ProductAddToCart', [

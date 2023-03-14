@@ -7,14 +7,9 @@ import {
 } from '@graphcommerce/next-ui'
 import { Controller, ControllerProps, FieldValues } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
-import {
-  IconButton,
-  IconButtonProps,
-  SxProps,
-  Theme,
-  TextField,
-  TextFieldProps,
-} from '@mui/material'
+import IconButton, { IconButtonProps } from '@mui/material/IconButton'
+import TextField, { TextFieldProps } from '@mui/material/TextField'
+import { SxProps, Theme } from '@mui/material/styles'
 
 export type NumberFieldElementProps<T extends FieldValues = FieldValues> = Omit<
   TextFieldProps,

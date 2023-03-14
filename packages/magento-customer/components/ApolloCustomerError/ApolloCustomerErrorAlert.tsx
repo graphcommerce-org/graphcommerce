@@ -1,6 +1,6 @@
 import { ApolloErrorAlert, ApolloErrorAlertProps } from '@graphcommerce/ecommerce-ui'
 import { Trans } from '@lingui/react'
-import { Link } from '@mui/material'
+import Link from '@mui/material/Link'
 import { useCustomerSession } from '../../hooks/useCustomerSession'
 import { useAuthorizationErrorMasked } from './useAuthorizationErrorMasked'
 

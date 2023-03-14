@@ -1,4 +1,4 @@
-import { styled } from '@mui/material'
+import { styled } from '@mui/material/styles'
 
 export const FormActions = styled('div', { name: 'FormActions' })(({ theme }) => ({
   paddingTop: theme.spacings.md,

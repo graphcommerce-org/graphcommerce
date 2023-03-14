@@ -1,5 +1,5 @@
 import { Image, ImageProps } from '@graphcommerce/image'
-import { Box } from '@mui/material'
+import Box from '@mui/material/Box'
 import { m } from 'framer-motion'
 import { forwardRef } from 'react'
 

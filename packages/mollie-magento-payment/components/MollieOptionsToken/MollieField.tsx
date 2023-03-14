@@ -1,4 +1,5 @@
-import { InputBaseComponentProps, TextField, TextFieldProps } from '@mui/material'
+import { InputBaseComponentProps } from '@mui/material/InputBase'
+import TextField, { TextFieldProps } from '@mui/material/TextField'
 import React, {
   Dispatch,
   SetStateAction,

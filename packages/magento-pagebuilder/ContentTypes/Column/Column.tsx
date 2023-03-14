@@ -1,4 +1,5 @@
-import { Box, SxProps, Theme } from '@mui/material'
+import Box from '@mui/material/Box'
+import { SxProps, Theme } from '@mui/material/styles'
 import React, { useRef } from 'react'
 import { extractImageBackgroundProps } from '../../components/MediaBackground/extractImageBackgroundProps'
 import { extractAdvancedProps } from '../../utils'

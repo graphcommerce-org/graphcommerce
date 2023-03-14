@@ -1,4 +1,4 @@
-import { Box } from '@mui/material'
+import Box from '@mui/material/Box'
 import React from 'react'
 import { extractAdvancedProps } from '../../utils'
 import { ButtonsContentType } from './types'
@@ -6,7 +6,8 @@ import { ButtonsContentType } from './types'
 /**
  * Page Builder Buttons component.
  *
- * This component is part of the Page Builder / PWA integration. It can be consumed without Page Builder.
+ * This component is part of the Page Builder / PWA integration. It can be consumed without Page
+ * Builder.
  */
 export const Buttons: ButtonsContentType['component'] = (props) => {
   const [cssProps, cssClasses, additional] = extractAdvancedProps(props)

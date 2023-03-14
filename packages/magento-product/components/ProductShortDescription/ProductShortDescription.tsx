@@ -1,5 +1,6 @@
 import { extendableComponent } from '@graphcommerce/next-ui'
-import { SxProps, Theme, Typography } from '@mui/material'
+import Typography from '@mui/material/Typography'
+import { SxProps, Theme } from '@mui/material/styles'
 import { ProductShortDescriptionFragment } from './ProductShortDescription.gql'
 
 type ProductShortDescriptionProps = ProductShortDescriptionFragment & { sx?: SxProps<Theme> }

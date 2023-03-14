@@ -9,7 +9,9 @@ import {
 import { useForm, useFormAutoSubmit } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Box, IconButton, SxProps, Theme } from '@mui/material'
+import Box from '@mui/material/Box'
+import IconButton from '@mui/material/IconButton'
+import { SxProps, Theme } from '@mui/material/styles'
 import { useRouter } from 'next/router'
 import { useEffect, useRef } from 'react'
 

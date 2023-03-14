@@ -1,4 +1,6 @@
-import { Chip, ChipProps, Menu, MenuProps, menuClasses, SxProps, Theme } from '@mui/material'
+import Chip, { ChipProps } from '@mui/material/Chip'
+import Menu, { MenuProps, menuClasses } from '@mui/material/Menu'
+import { SxProps, Theme } from '@mui/material/styles'
 import React, { useState } from 'react'
 import { IconSvg } from '../IconSvg'
 import { SectionHeader } from '../SectionHeader/SectionHeader'

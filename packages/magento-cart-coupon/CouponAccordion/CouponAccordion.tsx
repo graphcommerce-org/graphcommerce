@@ -6,7 +6,10 @@ import {
   breakpointVal,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { SxProps, Theme, Accordion, AccordionSummary, AccordionDetails } from '@mui/material'
+import Accordion from '@mui/material/Accordion'
+import AccordionDetails from '@mui/material/AccordionDetails'
+import AccordionSummary from '@mui/material/AccordionSummary'
+import { SxProps, Theme } from '@mui/material/styles'
 import { useState } from 'react'
 import { ApplyCouponForm } from '../ApplyCouponForm/ApplyCouponForm'
 import { RemoveCouponForm } from '../RemoveCouponForm/RemoveCouponForm'

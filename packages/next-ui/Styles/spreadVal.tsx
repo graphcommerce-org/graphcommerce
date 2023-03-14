@@ -1,4 +1,4 @@
-import type { Breakpoints } from '@mui/material'
+import { Breakpoints } from '@mui/material/styles'
 import { breakpoints } from '../Theme/breakpoints'
 
 type Interpolation = (from: number, to: number, t: number) => number

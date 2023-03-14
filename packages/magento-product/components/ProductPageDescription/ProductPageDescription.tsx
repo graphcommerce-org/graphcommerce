@@ -4,7 +4,9 @@ import {
   extendableComponent,
   breakpointVal,
 } from '@graphcommerce/next-ui'
-import { Box, SxProps, Theme, Typography } from '@mui/material'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+import { SxProps, Theme } from '@mui/material/styles'
 import { Variant } from '@mui/material/styles/createTypography'
 import { ProductPageDescriptionFragment } from './ProductPageDescription.gql'
 

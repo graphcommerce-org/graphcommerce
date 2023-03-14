@@ -1,4 +1,4 @@
-import { SxProps, Theme, ThemeProvider } from '@mui/material'
+import { SxProps, Theme, ThemeProvider } from '@mui/material/styles'
 import React from 'react'
 
 type WithSx = { sx?: SxProps<Theme> }

@@ -1,5 +1,5 @@
 import { PageOptions, useHistoryLink } from '@graphcommerce/framer-next-pages'
-import { Link } from '@mui/material'
+import Link from '@mui/material/Link'
 import { LayoutMinimal, LayoutMinimalProps } from '../../../components'
 
 function BackLinkDemo() {

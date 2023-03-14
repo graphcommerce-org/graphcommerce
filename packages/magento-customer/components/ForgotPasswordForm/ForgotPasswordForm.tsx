@@ -2,7 +2,9 @@ import { Button, Form, FormActions, FormRow } from '@graphcommerce/next-ui'
 import { emailPattern, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { TextField, Alert, SxProps, Theme } from '@mui/material'
+import Alert from '@mui/material/Alert'
+import TextField from '@mui/material/TextField'
+import { SxProps, Theme } from '@mui/material/styles'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import {
   ForgotPasswordDocument,
