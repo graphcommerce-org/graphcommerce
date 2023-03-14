@@ -12,7 +12,7 @@ export type RowLinksProps = {
   children: React.ReactNode
   sx?: SxProps<Theme>
   inlineTitle?: boolean
-  showButtons?: boolean
+  showButtons?: 'auto' | 'desktopAuto' | 'always' | 'desktopAlways'
 } & Pick<ContainerProps, 'maxWidth'>
 
 const compName = 'RowLinks' as const
@@ -20,7 +20,29 @@ const parts = ['root', 'scroller', 'title', 'swipperButton', 'centerRight', 'cen
 const { classes } = extendableComponent(compName, parts)
 
 export function RowLinks(props: RowLinksProps) {
-  const { title, children, sx = [], inlineTitle, showButtons, maxWidth } = props
+  const { title, children, sx = [], inlineTitle, showButtons = 'desktopAuto', maxWidth } = props
+
+  const mode = {
+    ...(showButtons === 'auto' && {
+      '&.MuiFab-root': {
+        display: 'inline-flex',
+      },
+    }),
+    ...(showButtons === 'always' && {
+      opacity: 1,
+      transform: 'scale(1)',
+      '&.MuiFab-root': {
+        display: 'inline-flex',
+      },
+    }),
+    ...(showButtons === 'desktopAlways' && {
+      opacity: { md: 1 },
+      transform: { md: 'scale(1)' },
+      '&.MuiFab-root': {
+        display: { md: 'inline-flex' },
+      },
+    }),
+  }
 
   const fabSize = useFabSize('responsive')
 
@@ -81,13 +103,7 @@ export function RowLinks(props: RowLinksProps) {
             sx={{
               display: 'flex',
               zIndex: 'inherit',
-              ...(showButtons && {
-                opacity: 1,
-                transform: 'scale(1)',
-                '&.MuiFab-root': {
-                  display: 'inline-flex',
-                },
-              }),
+              ...mode,
             }}
             size='responsive'
           >
@@ -109,13 +125,7 @@ export function RowLinks(props: RowLinksProps) {
             className={classes.swipperButton}
             sx={{
               display: 'flex',
-              ...(showButtons && {
-                opacity: 1,
-                transform: 'scale(1)',
-                '&.MuiFab-root': {
-                  display: 'inline-flex',
-                },
-              }),
+              ...mode,
             }}
             size='responsive'
           >
