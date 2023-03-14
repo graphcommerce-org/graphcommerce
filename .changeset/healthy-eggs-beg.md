@@ -3,4 +3,4 @@
 '@graphcommerce/lingui-next': patch
 ---
 
-After changing inside node_modules, nextjs would refresh the whole page
+After changing a file inside node_modules, nextjs would refresh the whole page
