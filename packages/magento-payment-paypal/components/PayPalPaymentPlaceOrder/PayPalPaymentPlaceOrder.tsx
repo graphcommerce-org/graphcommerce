@@ -1,17 +1,16 @@
 import { useFormCompose } from '@graphcommerce/ecommerce-ui'
 import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
-import { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
+import { PaymentPlaceOrderProps } from '@graphcommerce/magento-cart-payment-method'
 import { useRouter } from 'next/router'
 import { usePayPalCartLock } from '../../hooks/usePayPalCartLock'
-import { PayPalPaymentOptionsDocument } from './PayPalPaymentOptions.gql'
+import { PayPalPaymentPlaceOrderDocument } from './PayPalPaymentPlaceOrder.gql'
 
-/** It sets the selected payment method on the cart. */
-export function PayPalPaymentOptions(props: PaymentOptionsProps) {
+export function PayPalPaymentPlaceOrder(props: PaymentPlaceOrderProps) {
   const { code, step } = props
   const [, lock] = usePayPalCartLock()
   const { push } = useRouter()
 
-  const form = useFormGqlMutationCart(PayPalPaymentOptionsDocument, {
+  const form = useFormGqlMutationCart(PayPalPaymentPlaceOrderDocument, {
     onBeforeSubmit: (variables) => ({
       ...variables,
       code,
@@ -28,7 +27,7 @@ export function PayPalPaymentOptions(props: PaymentOptionsProps) {
           'Error while starting the PayPal payment, please try again with a different payment method',
         )
 
-      await lock({ token, method: code })
+      await lock({ token, method: code, PayerID: null })
       // We are going to redirect, but we're not waiting, because we need to complete the submission to release the buttons
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       push(start)

@@ -3,4 +3,5 @@ fragment PaymentMethodUpdated on Cart @injectable {
   selected_payment_method {
     ...SelectedPaymentMethod
   }
+  ...CartTotals
 }
