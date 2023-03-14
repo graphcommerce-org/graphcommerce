@@ -14,17 +14,17 @@ export function Usps(props: RowLinksFragment) {
       sx={(theme) => ({
         '& .Scroller-root > *': {
           [theme.breakpoints.only('xs')]: {
-            '&:nth-last-child(-n+3)': {
+            '&:nth-last-of-type(-n+3)': {
               display: 'none',
             },
           },
           [theme.breakpoints.only('sm')]: {
-            '&:nth-last-child(-n+2)': {
+            '&:nth-last-of-type(-n+2)': {
               display: 'none',
             },
           },
           [theme.breakpoints.only('md')]: {
-            '&:nth-last-child(-n+1)': {
+            '&:nth-last-of-type(-n+1)': {
               display: 'none',
             },
           },
