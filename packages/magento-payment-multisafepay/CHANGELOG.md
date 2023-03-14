@@ -1,5 +1,11 @@
 # @graphcommerce/magento-payment-multisafepay
 
+## 6.0.0-canary.43
+
+### Minor Changes
+
+- [#1841](https://github.com/graphcommerce-org/graphcommerce/pull/1841) [`beb75b7a5`](https://github.com/graphcommerce-org/graphcommerce/commit/beb75b7a5c8f32f0b74b62bb0931baf887b17adf) - Split MSPPaymentOptionsAndPlaceOrder in two separate components to allow for surcharges ([@paales](https://github.com/paales))
+
 ## 6.0.0-canary.42
 
 ## 6.0.0-canary.41

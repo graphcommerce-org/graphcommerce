@@ -1,5 +1,11 @@
 # @graphcommerce/magento-payment-adyen
 
+## 6.0.0-canary.43
+
+### Patch Changes
+
+- [#1841](https://github.com/graphcommerce-org/graphcommerce/pull/1841) [`1ff022c4b`](https://github.com/graphcommerce-org/graphcommerce/commit/1ff022c4bd8ad1d9fa8c1760076f003af06ce421) - Make sure we're using the the PaymentMethodUpdated fragment to allow for injection ([@paales](https://github.com/paales))
+
 ## 6.0.0-canary.42
 
 ## 6.0.0-canary.41
