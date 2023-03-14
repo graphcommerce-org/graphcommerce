@@ -7,7 +7,7 @@ const config = {
   hygraphEndpoint: 'https://eu-central-1.cdn.hygraph.com/content/ckhx7xadya6xs01yxdujt8i80/master',
   magentoEndpoint: 'https://backend.reachdigital.dev/graphql',
   canonicalBaseUrl: 'https://graphcommerce.vercel.app',
-  i18n: [{ locale: 'en', magentoStoreCode: 'default' }],
+  storefront: [{ locale: 'en', magentoStoreCode: 'default' }],
 }
 
 module.exports = config

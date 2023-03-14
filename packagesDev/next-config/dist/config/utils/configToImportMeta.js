@@ -15,10 +15,14 @@ function flattenKeys(value, initialPathPrefix, stringify) {
         };
     }
     if (typeof value === 'object') {
+        let outputValue = value;
+        if (stringify)
+            outputValue =
+                process.env.NODE_ENV !== 'production'
+                    ? `{ __debug: "'${initialPathPrefix}' can not be destructured, please access deeper properties directly" }`
+                    : '{}';
         return {
-            [initialPathPrefix]: process.env.NODE_ENV !== 'production'
-                ? `{ __debug: "'${initialPathPrefix}' can not be destructured, please access deeper properties directly" }`
-                : '{}',
+            [initialPathPrefix]: outputValue,
             ...Object.keys(value)
                 .map((key) => {
                 const deep = value[key];

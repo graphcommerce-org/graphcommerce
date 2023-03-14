@@ -1,14 +1,14 @@
-import { i18nAll, i18nConfig, i18nConfigDefault } from '@graphcommerce/next-ui'
+import { storefrontAll, storefrontConfig, storefrontConfigDefault } from '@graphcommerce/next-ui'
 
 export function defaultLocale(): string {
-  return i18nConfigDefault().locale
+  return storefrontConfigDefault().locale
 }
 
 export function localeToStore(locale?: string | null | undefined) {
-  if (!locale) return i18nConfigDefault().magentoStoreCode
-  return i18nConfig(locale)?.magentoStoreCode
+  if (!locale) return storefrontConfigDefault().magentoStoreCode
+  return storefrontConfig(locale)?.magentoStoreCode
 }
 
 export function storeToLocale(store?: string | null | undefined) {
-  return i18nAll.find((l) => l.magentoStoreCode === store)?.locale
+  return storefrontAll.find((l) => l.magentoStoreCode === store)?.locale
 }

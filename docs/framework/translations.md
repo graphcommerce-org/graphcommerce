@@ -139,9 +139,10 @@ msgstr "Cart ({0})"
    `Admin > Store > Configuration > General > General > Locale`. Choose one of
    the options from the Magento Locale codes (below).
 2. In your graphcommerce.config.js file, add the desired `locale` and
-   `magentoStoreCode` to the [i18n config](./config.md#graphcommercei18nconfig)
-   environment variable. The route will be visible to the user (added to the
-   url) when the user switches storeview.
+   `magentoStoreCode` to the
+   [i18n config](./config.md#GraphCommerceStorefrontConfig) environment
+   variable. The route will be visible to the user (added to the url) when the
+   user switches storeview.
 
    It's considered best practice to match the route with the store code,
    replacing an underscore for a dash. For example, to add Swedish (Finland),

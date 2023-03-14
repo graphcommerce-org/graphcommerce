@@ -1,11 +1,12 @@
-import { useI18nConfig } from '@graphcommerce/next-ui'
+import { useStorefrontConfig } from '@graphcommerce/next-ui'
 import { useRouter } from 'next/router'
 import Script from 'next/script'
 import { useEffect } from 'react'
 
 export function GoogleTagManagerScript() {
   const { events } = useRouter()
-  const id = useI18nConfig().googleTagmanagerId ?? import.meta.graphCommerce.googleTagmanagerId
+  const id =
+    useStorefrontConfig().googleTagmanagerId ?? import.meta.graphCommerce.googleTagmanagerId
 
   useEffect(() => {
     const onRouteChangeComplete = (url: string) => {

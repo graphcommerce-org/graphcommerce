@@ -8,7 +8,7 @@ extend input GraphCommerceConfig {
   magentoEndpoint: String!
 }
 
-extend input GraphCommerceI18nConfig {
+extend input GraphCommerceStorefrontConfig {
   """
   Magento store code.
 

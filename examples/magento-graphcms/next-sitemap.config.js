@@ -43,12 +43,12 @@ module.exports = {
       { userAgent: 'AhrefsBot', allow: '/' },
       { userAgent: 'SiteAuditBot', allow: '/' },
     ],
-    additionalSitemaps: config.i18n.map((i18n) => {
-      if (!i18n.canonicalBaseUrl) {
-        const prefix = i18n.defaultLocale ? '' : `/${i18n.locale}`
+    additionalSitemaps: config.storefront.map((storefront) => {
+      if (!storefront.canonicalBaseUrl) {
+        const prefix = storefront.defaultLocale ? '' : `/${storefront.locale}`
         return `${config.canonicalBaseUrl}${prefix}/products-sitemap.xml`
       }
-      return `${i18n.canonicalBaseUrl}/products-sitemap.xml`
+      return `${storefront.canonicalBaseUrl}/products-sitemap.xml`
     }),
   },
 }
