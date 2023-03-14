@@ -1,14 +1,6 @@
-import { Box, Container, ContainerProps, SxProps, Theme } from '@mui/material'
-import { RowLinks } from '../RowLinks'
+import { RowLinks, RowLinksProps } from '../RowLinks'
 
-type Props = {
-  title: string
-  children: React.ReactNode
-  sx?: SxProps<Theme>
-  showButtons?: boolean
-} & Pick<ContainerProps, 'maxWidth'>
-
-export function VariantLogoSwiper(props: Props) {
+export function VariantLogoSwiper(props: RowLinksProps) {
   const { title, children, sx = [], maxWidth, showButtons } = props
 
   return (
