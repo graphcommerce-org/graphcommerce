@@ -1,5 +1,13 @@
 # Change Log
 
+## 6.0.0-canary.44
+
+### Patch Changes
+
+- [#1842](https://github.com/graphcommerce-org/graphcommerce/pull/1842) [`8e4cb5b92`](https://github.com/graphcommerce-org/graphcommerce/commit/8e4cb5b927d1e370f2eba18ad81550f8c1330f2d) - Add extensibility fields for CartTotals ([@paales](https://github.com/paales))
+
+- [#1842](https://github.com/graphcommerce-org/graphcommerce/pull/1842) [`7b67d84bd`](https://github.com/graphcommerce-org/graphcommerce/commit/7b67d84bd269c3fc91afbd69f6683c5d12808d36) - Renamed i18n to storefront in configuration ([@paales](https://github.com/paales))
+
 ## 6.0.0-canary.43
 
 ## 6.0.0-canary.42
