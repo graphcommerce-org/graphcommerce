@@ -1,5 +1,6 @@
 import { Asset } from '@graphcommerce/graphcms-ui'
-import { RowLink, VariantLogoSwiper } from '@graphcommerce/next-ui'
+import { VariantLogoSwiper } from '@graphcommerce/next-ui'
+import { Link } from '@mui/material'
 import { RowLinksFragment } from '../RowLinks.gql'
 
 export function LogoSwiper(props: RowLinksFragment) {
@@ -12,12 +13,14 @@ export function LogoSwiper(props: RowLinksFragment) {
       sx={(theme) => ({ my: `calc(${theme.spacings.xxl} +  ${theme.spacings.md})` })}
     >
       {pageLinks.map((pageLink) => (
-        <RowLink
-          url={pageLink.url}
+        <Link
+          href={pageLink.url}
           key={pageLink.id}
           color='inherit'
-          disableRipple
-          sx={{ '&:hover': { textDecoration: 'underline' } }}
+          sx={{
+            '& img': { display: 'block' },
+            '&:hover': { textDecoration: 'underline' },
+          }}
         >
           {pageLink?.asset && (
             <Asset
@@ -37,7 +40,7 @@ export function LogoSwiper(props: RowLinksFragment) {
               sizes={{ 0: '120px', 960: '240px' }}
             />
           )}
-        </RowLink>
+        </Link>
       ))}
     </VariantLogoSwiper>
   )

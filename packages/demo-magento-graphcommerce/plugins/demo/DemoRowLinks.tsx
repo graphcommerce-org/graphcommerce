@@ -22,7 +22,7 @@ function DemoRowLinks(props: PluginProps<RowLinksProps>) {
       sx={[
         (theme) => ({
           mt: `calc(${theme.spacings.xl} * -1)`,
-          '& .RowLink-root': {
+          '& .Scroller-root > *': {
             display: 'grid',
             gridAutoFlow: 'column',
             textAlign: 'left',
