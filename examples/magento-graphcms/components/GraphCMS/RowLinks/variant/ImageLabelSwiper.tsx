@@ -4,10 +4,14 @@ import { Box, ButtonBase, Typography } from '@mui/material'
 import { RowLinksFragment } from '../RowLinks.gql'
 
 export function ImageLabelSwiper(props: RowLinksFragment) {
-  const { title, pageLinks } = props
+  const { title, rowLinksCopy, pageLinks } = props
 
   return (
-    <VariantImageLabelSwiper title={title} sx={{ '& .Scroller-root': { alignItems: 'start' } }}>
+    <VariantImageLabelSwiper
+      title={title}
+      copy={rowLinksCopy && <RichText {...rowLinksCopy} />}
+      sx={{ '& .Scroller-root': { alignItems: 'start' } }}
+    >
       {pageLinks.map((pageLink) => (
         <ButtonBase
           href={pageLink.url}

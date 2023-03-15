@@ -1,13 +1,14 @@
 import { RowLinks, RowLinksProps } from '../RowLinks'
 
 export function VariantImageLabelSwiper(props: RowLinksProps) {
-  const { title, children, sx = [], maxWidth, showButtons } = props
+  const { title, copy, children, sx = [], maxWidth, showButtons } = props
 
   return (
     <RowLinks
       maxWidth={maxWidth}
       showButtons={showButtons}
       title={title}
+      copy={copy}
       sx={[
         {
           '& .RowLinks-title': {

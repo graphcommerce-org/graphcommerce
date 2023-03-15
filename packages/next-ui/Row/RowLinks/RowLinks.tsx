@@ -9,6 +9,7 @@ import { Row } from '../Row'
 
 export type RowLinksProps = {
   title: string
+  copy?: React.ReactNode
   children: React.ReactNode
   sx?: SxProps<Theme>
   inlineTitle?: boolean
@@ -16,11 +17,27 @@ export type RowLinksProps = {
 } & Pick<ContainerProps, 'maxWidth'>
 
 const compName = 'RowLinks' as const
-const parts = ['root', 'scroller', 'title', 'swipperButton', 'centerRight', 'centerLeft'] as const
+const parts = [
+  'root',
+  'scroller',
+  'title',
+  'copy',
+  'swipperButton',
+  'centerRight',
+  'centerLeft',
+] as const
 const { classes } = extendableComponent(compName, parts)
 
 export function RowLinks(props: RowLinksProps) {
-  const { title, children, sx = [], inlineTitle, showButtons = 'desktopAuto', maxWidth } = props
+  const {
+    title,
+    copy,
+    children,
+    sx = [],
+    inlineTitle,
+    showButtons = 'desktopAuto',
+    maxWidth,
+  } = props
 
   const mode = {
     ...(showButtons === 'auto' && {
@@ -61,6 +78,11 @@ export function RowLinks(props: RowLinksProps) {
         >
           {title}
         </Typography>
+      )}
+      {copy && (
+        <Box className={classes.copy} sx={(theme) => ({ my: theme.spacings.md })}>
+          {copy}
+        </Box>
       )}
       <ScrollerProvider scrollSnapAlign='end'>
         <Scroller
