@@ -67,7 +67,14 @@ enum OverlayPosition {
 }
 
 const name = 'LayoutOverlayBase' as const
-const parts = ['scroller', 'backdrop', 'overlay', 'overlayPane', 'beforeOverlay'] as const
+const parts = [
+  'scroller',
+  'backdrop',
+  'overlay',
+  'overlayPane',
+  'beforeOverlay',
+  'background',
+] as const
 const { withState } = extendableComponent<StyleProps, typeof name, typeof parts>(name, parts)
 
 /** Expose the component to be exendable in your theme.components */
@@ -316,7 +323,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
 
   const onClickAway = useCallback(
     (event: React.MouseEvent<HTMLDivElement>) => {
-      const isTarget = event.target === beforeRef.current
+      const isTarget = event.target === beforeRef.current || event.target === overlayPaneRef.current
       if (isTarget && snap.get()) closeOverlay()
     },
     [closeOverlay, snap],
@@ -377,8 +384,6 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
                 borderBottomLeftRadius: theme.shape.borderRadius * 3,
               },
               '&.variantSmBottom': {
-                borderTopLeftRadius: theme.shape.borderRadius * 3,
-                borderTopRightRadius: theme.shape.borderRadius * 3,
                 gridTemplate: `"beforeOverlay" "overlay"`,
                 height: `calc(${dvh(100)} - 1px)`,
 
@@ -406,8 +411,6 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
                 borderBottomLeftRadius: theme.shape.borderRadius * 4,
               },
               '&.variantMdBottom': {
-                borderTopLeftRadius: theme.shape.borderRadius * 4,
-                borderTopRightRadius: theme.shape.borderRadius * 4,
                 [theme.breakpoints.up('md')]: {
                   gridTemplate: `"beforeOverlay" "overlay"`,
                   height: dvh(100),
@@ -457,11 +460,6 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
             [theme.breakpoints.down('md')]: {
               justifyContent: justifySm,
               alignItems: justifySm,
-
-              '&.variantSmBottom': {
-                marginTop: `calc(${smSpacingTop} * -1)`,
-                paddingTop: smSpacingTop,
-              },
               '&.sizeSmFloating': {
                 padding: `${theme.page.vertical} ${theme.page.horizontal}`,
               },
@@ -471,8 +469,6 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
               alignItems: justifyMd,
 
               '&.variantMdBottom': {
-                paddingTop: mdSpacingTop,
-                marginTop: `calc(${mdSpacingTop} * -1)`,
                 display: 'grid',
               },
               '&.sizeMdFloating': {
@@ -490,8 +486,6 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
             ref={overlayPaneRef}
             sx={(theme) => ({
               pointerEvents: 'auto',
-              backgroundColor: theme.palette.background.paper,
-              boxShadow: theme.shadows[24],
 
               [theme.breakpoints.down('md')]: {
                 minWidth: '80vw',
@@ -501,12 +495,26 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
                 },
 
                 '&.variantSmBottom': {
+                  scrollbarWidth: 'none',
+                  '&::-webkit-scrollbar': {
+                    display: 'none',
+                  },
+
                   maxHeight: `calc(${dvh(100)} - ${smSpacingTop})`,
+                  paddingTop: smSpacingTop,
+                  boxSizing: 'border-box',
                   '&.sizeSmFloating': {
+                    paddingTop: 0,
                     maxHeight: `calc(${dvh(100)} - (${theme.page.vertical} * 2))`,
                   },
+                  '&.sizeSmMinimal': {
+                    maxHeight: dvh(100),
+                    borderRadius: 0,
+                  },
                   '&.sizeSmFull': {
-                    height: `calc(${dvh(100)} - ${smSpacingTop})`,
+                    height: dvh(100),
+                    maxHeight: 'none',
+                    borderRadius: 0,
                   },
 
                   borderTopLeftRadius: `${theme.shape.borderRadius * 3}px`,
@@ -522,11 +530,6 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
                     maxHeight: `calc(${dvh(100)} - (${theme.page.vertical} * 2))`,
                   },
                 },
-
-                '&.variantSmLeft.sizeSmFull, &.variantSmRight.sizeSmFull': {
-                  paddingBottom: '1px',
-                },
-
                 '&.sizeSmFloating': {
                   borderRadius: `${theme.shape.borderRadius * 3}px`,
                 },
@@ -541,11 +544,25 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
 
                 '&.variantMdBottom': {
                   maxHeight: `calc(${dvh(100)} - ${mdSpacingTop})`,
+                  paddingTop: mdSpacingTop,
+                  boxSizing: 'border-box',
+
+                  scrollbarWidth: 'none',
+                  '&::-webkit-scrollbar': {
+                    display: 'none',
+                  },
                   '&.sizeMdFloating': {
+                    paddingTop: 0,
                     maxHeight: `calc(${dvh(100)} - (${theme.page.vertical} * 2))`,
                   },
+                  '&.sizeMdMinimal': {
+                    maxHeight: dvh(100),
+                    borderRadius: 0,
+                  },
                   '&.sizeMdFull': {
-                    height: `calc(${dvh(100)} - ${mdSpacingTop})`,
+                    height: dvh(100),
+                    maxHeight: 'none',
+                    borderRadius: 0,
                   },
 
                   borderTopLeftRadius: `${theme.shape.borderRadius * 4}px`,
@@ -561,20 +578,50 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
                     maxHeight: `calc(${dvh(100)} - (${theme.page.vertical} * 2))`,
                   },
                 },
-
-                '&.variantMdLeft.sizeMdFull, &.variantMdRight.sizeMdFull': {
-                  paddingBottom: '1px',
-                },
-
                 '&.sizeMdFloating': {
                   borderRadius: `${theme.shape.borderRadius * 4}px`,
                 },
               },
             })}
           >
-            <LayoutProvider scroll={scrollYOffset}>
-              {typeof children === 'function' ? active && children() : children}
-            </LayoutProvider>
+            <Box
+              className={classes.background}
+              sx={(theme) => ({
+                backgroundColor: theme.palette.background.paper,
+                boxShadow: theme.shadows[24],
+                paddingBottom: '0.1px',
+                [theme.breakpoints.down('md')]: {
+                  minHeight: '100%',
+                  '&.variantSmBottom': {
+                    borderTopLeftRadius: theme.shape.borderRadius * 3,
+                    borderTopRightRadius: theme.shape.borderRadius * 3,
+                  },
+                  '&.sizeSmFull': {
+                    minHeight: dvh(100),
+                    '&.variantMdBottom': {
+                      minHeight: '100%',
+                    },
+                  },
+                },
+                [theme.breakpoints.up('md')]: {
+                  minHeight: '100%',
+                  '&.variantMdBottom': {
+                    borderTopLeftRadius: theme.shape.borderRadius * 4,
+                    borderTopRightRadius: theme.shape.borderRadius * 4,
+                  },
+                  '&.sizeMdFull': {
+                    minHeight: dvh(100),
+                    '&.variantMdBottom': {
+                      minHeight: '100%',
+                    },
+                  },
+                },
+              })}
+            >
+              <LayoutProvider scroll={scrollYOffset}>
+                {typeof children === 'function' ? active && children() : children}
+              </LayoutProvider>
+            </Box>
           </MotionDiv>
         </Box>
       </Scroller>
