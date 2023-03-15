@@ -72,6 +72,7 @@
     "@graphcommerce/graphql-codegen-markdown-docs": "5.2.0-canary.12"
   },
   "changesets": [
+    "afraid-trains-sing",
     "beige-geckos-float",
     "beige-mirrors-hang",
     "big-boats-unite",
@@ -140,6 +141,7 @@
     "sour-falcons-travel",
     "sour-zebras-reply",
     "spicy-cooks-draw",
+    "stupid-socks-destroy",
     "sweet-experts-sparkle",
     "tame-fireants-repeat",
     "thin-guests-fetch",

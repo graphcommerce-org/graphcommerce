@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.0-canary.46
+
+### Patch Changes
+
+- [#1844](https://github.com/graphcommerce-org/graphcommerce/pull/1844) [`929cffafb`](https://github.com/graphcommerce-org/graphcommerce/commit/929cffafbc8b2e57433b6448c95234fb057880b1) - Plugins were incorrectly sorted and local plugins didn't get preference ([@paales](https://github.com/paales))
+
 ## 6.0.0-canary.45
 
 ## 6.0.0-canary.44

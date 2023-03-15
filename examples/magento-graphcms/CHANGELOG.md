@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.0-canary.46
+
+### Patch Changes
+
+- [#1844](https://github.com/graphcommerce-org/graphcommerce/pull/1844) [`4e3ec6aaf`](https://github.com/graphcommerce-org/graphcommerce/commit/4e3ec6aafdff036a19479b09031e6ae018c4ee21) - Crosssels had a vertical scrollbar when opening ([@paales](https://github.com/paales))
+
 ## 6.0.0-canary.45
 
 ## 6.0.0-canary.44
