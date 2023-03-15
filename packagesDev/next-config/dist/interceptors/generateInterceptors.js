@@ -5,22 +5,29 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generateInterceptors = exports.generateInterceptor = void 0;
 const node_path_1 = __importDefault(require("node:path"));
-function generateInterceptor(plugin) {
-    const { fromModule, dependency, components } = plugin;
-    const pluginImports = Object.entries(components)
-        .map(([, plugins]) => {
-        const duplicateImports = new Set();
-        return plugins
-            .sort((a, b) => a.plugin.localeCompare(b.plugin))
-            .map((p) => `import { Plugin as ${p.plugin.split('/')[p.plugin.split('/').length - 1]} } from '${p.plugin}'`)
-            .filter((importStr) => {
-            if (duplicateImports.has(importStr)) {
-                return false;
-            }
-            duplicateImports.add(importStr);
-            return true;
-        })
-            .join('\n');
+function moveRelativeDown(plugins) {
+    return [...plugins].sort((a, b) => {
+        if (a.plugin.startsWith('.') && !b.plugin.startsWith('.'))
+            return 1;
+        if (!a.plugin.startsWith('.') && b.plugin.startsWith('.'))
+            return -1;
+        return 0;
+    });
+}
+function generateInterceptor(interceptor) {
+    const { fromModule, dependency, components } = interceptor;
+    const flattended = Object.entries(components)
+        .map(([, plugins]) => plugins)
+        .flat();
+    const duplicateImports = new Set();
+    const pluginImports = moveRelativeDown([...flattended].sort((a, b) => a.plugin.localeCompare(b.plugin)))
+        .map((p) => p.plugin)
+        .map((p) => `import { Plugin as ${p.split('/')[p.split('/').length - 1]} } from '${p}'`)
+        .filter((str) => {
+        if (duplicateImports.has(str))
+            return false;
+        duplicateImports.add(str);
+        return true;
     })
         .join('\n');
     const imports = Object.entries(components).map(([component]) => `${component} as ${component}Base`);
@@ -31,16 +38,16 @@ function generateInterceptor(plugin) {
         : `import { ${imports[0]} } from '${fromModule}'`;
     const pluginExports = Object.entries(components)
         .map(([component, plugins]) => {
-        const duplicateImports = new Set();
+        const duplicateInterceptors = new Set();
         let carry = `${component}Base`;
         const pluginStr = plugins
             .reverse()
             .map((p) => p.plugin.split('/')[p.plugin.split('/').length - 1])
             .filter((importStr) => {
-            if (duplicateImports.has(importStr)) {
+            if (duplicateInterceptors.has(importStr)) {
                 return false;
             }
-            duplicateImports.add(importStr);
+            duplicateInterceptors.add(importStr);
             return true;
         })
             .map((name) => {
@@ -72,12 +79,12 @@ import { ComponentProps } from 'react'
 ${importInjectables}
 ${pluginExports}
 `;
-    return { ...plugin, template };
+    return { ...interceptor, template };
 }
 exports.generateInterceptor = generateInterceptor;
 function generateInterceptors(plugins, resolve) {
     // todo: Do not use reduce as we're passing the accumulator to the next iteration
-    const byExportedComponent = plugins.reduce((acc, plug) => {
+    const byExportedComponent = moveRelativeDown(plugins).reduce((acc, plug) => {
         const { exported, component, enabled, plugin } = plug;
         if (!exported || !component || !enabled)
             return acc;
@@ -101,6 +108,9 @@ function generateInterceptors(plugins, resolve) {
         });
         return acc;
     }, {});
-    return Object.fromEntries(Object.entries(byExportedComponent).map(([target, plg]) => [target, generateInterceptor(plg)]));
+    return Object.fromEntries(Object.entries(byExportedComponent).map(([target, interceptor]) => [
+        target,
+        generateInterceptor(interceptor),
+    ]));
 }
 exports.generateInterceptors = generateInterceptors;
