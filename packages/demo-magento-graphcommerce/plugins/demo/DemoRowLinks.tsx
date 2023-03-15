@@ -33,7 +33,7 @@ function DemoRowLinks(props: PluginProps<RowLinksProps>) {
             order: 3,
           },
           mt: `calc(${theme.spacings.xl} * -1)`,
-          '& .Scroller-root > *': {
+          '& .Scroller-root > .MuiButtonBase-root': {
             display: 'grid',
             gridAutoFlow: 'column',
             textAlign: 'left',
