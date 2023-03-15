@@ -1,4 +1,5 @@
 import { Image, ImageProps } from '@graphcommerce/image'
+import { styled, SxProps, Theme } from '@mui/material'
 import { AssetFragment } from './Asset.gql'
 
 export type { AssetFragment } from './Asset.gql'
@@ -14,10 +15,11 @@ function isImage(asset: AssetFragment): asset is ImageAsset {
 
 type AssetProps = {
   asset: AssetFragment
-} & Omit<ImageProps, 'src' | 'width' | 'height' | 'alt'>
+  sx?: SxProps<Theme>
+} & Omit<ImageProps, 'src' | 'width' | 'height' | 'alt' | 'sx'>
 
 export function Asset(props: AssetProps) {
-  const { asset, ...imgProps } = props
+  const { asset, sx = [], ...imgProps } = props
 
   if (isImage(asset)) {
     const { url, height, mimeType, size, width, alt, ...assetProps } = asset
@@ -30,12 +32,25 @@ export function Asset(props: AssetProps) {
         {...imgProps}
         {...assetProps}
         unoptimized={mimeType === 'image/svg+xml'}
+        sx={[...(Array.isArray(sx) ? sx : [sx])]}
       />
     )
   }
 
   if (asset.mimeType === 'video/mp4') {
-    return <video src={asset.url} autoPlay muted loop playsInline disableRemotePlayback />
+    const Video = styled('video')()
+
+    return (
+      <Video
+        src={asset.url}
+        autoPlay
+        muted
+        loop
+        playsInline
+        disableRemotePlayback
+        sx={[...(Array.isArray(sx) ? sx : [sx])]}
+      />
+    )
   }
 
   if (process.env.NODE_ENV !== 'production') return <div>{asset.mimeType} not supported</div>

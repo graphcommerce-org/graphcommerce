@@ -7,6 +7,7 @@ import { RowColumnThree } from './RowColumnThree/RowColumnThree'
 import { RowColumnTwo } from './RowColumnTwo/RowColumnTwo'
 import { RowContentLinks } from './RowContentLinks/RowContentLinks'
 import { RowHeroBanner } from './RowHeroBanner/RowHeroBanner'
+import { RowLinks } from './RowLinks/RowLinks'
 import { RowProduct } from './RowProduct/RowProduct'
 import { RowQuote } from './RowQuote/RowQuote'
 import { RowRendererFragment } from './RowRenderer.gql'
@@ -27,6 +28,7 @@ const defaultRenderer: Partial<ContentTypeRenderer> = {
   RowServiceOptions,
   RowContentLinks,
   RowProduct,
+  RowLinks,
 }
 
 export type PageProps = RowRendererFragment & {
