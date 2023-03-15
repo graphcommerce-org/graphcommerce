@@ -1,0 +1,29 @@
+fragment CartTotalsPrices on Cart @injectable {
+  prices {
+    __typename
+    applied_taxes {
+      amount {
+        ...Money
+      }
+      label
+    }
+    discounts {
+      amount {
+        ...Money
+      }
+      label
+    }
+    grand_total {
+      ...Money
+    }
+    subtotal_excluding_tax {
+      ...Money
+    }
+    subtotal_including_tax {
+      ...Money
+    }
+    subtotal_with_discount_excluding_tax {
+      ...Money
+    }
+  }
+}
