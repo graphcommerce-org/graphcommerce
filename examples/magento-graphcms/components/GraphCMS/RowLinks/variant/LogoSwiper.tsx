@@ -17,9 +17,9 @@ export function LogoSwiper(props: RowLinksFragment) {
           href={pageLink.url}
           key={pageLink.id}
           color='inherit'
+          underline='hover'
           sx={{
             '& img': { display: 'block' },
-            '&:hover': { textDecoration: 'underline' },
           }}
         >
           {pageLink?.asset && (
