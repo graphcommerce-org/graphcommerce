@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.0-canary.45
+
+### Patch Changes
+
+- [#1836](https://github.com/graphcommerce-org/graphcommerce/pull/1836) [`2857229c4`](https://github.com/graphcommerce-org/graphcommerce/commit/2857229c4d1c776540218f5e4cab3be524161502) - Allow scrolling bottom overlay to top instead of keeping spacing above overlay ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 6.0.0-canary.44
 
 ### Patch Changes

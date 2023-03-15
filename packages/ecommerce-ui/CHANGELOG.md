@@ -1,5 +1,7 @@
 # @graphcommerce/ecommerce-ui
 
+## 6.0.0-canary.45
+
 ## 6.0.0-canary.44
 
 ## 6.0.0-canary.43
