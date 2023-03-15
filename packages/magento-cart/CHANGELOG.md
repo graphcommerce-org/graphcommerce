@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.0-canary.48
+
+### Patch Changes
+
+- [#1845](https://github.com/graphcommerce-org/graphcommerce/pull/1845) [`4690eecb4`](https://github.com/graphcommerce-org/graphcommerce/commit/4690eecb461369d84dd5b5128617a9d9e5337f8f) - make a separate fragment for CartTotalsPrices and make it injectable ([@FrankHarland](https://github.com/FrankHarland))
+
 ## 6.0.0-canary.47
 
 ## 6.0.0-canary.46

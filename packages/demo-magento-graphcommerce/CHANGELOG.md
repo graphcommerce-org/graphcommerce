@@ -1,5 +1,7 @@
 # @graphcommerce/demo-magento-graphcommerce
 
+## 6.0.0-canary.48
+
 ## 6.0.0-canary.47
 
 ### Minor Changes
