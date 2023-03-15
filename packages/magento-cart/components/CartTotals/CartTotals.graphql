@@ -1,4 +1,6 @@
-fragment CartTotals on Cart @inject(into: ["CartItemCountChanged"]) {
+fragment CartTotals on Cart
+@injectable
+@inject(into: ["CartItemCountChanged", "PaymentMethodUpdated"]) {
   shipping_addresses {
     selected_shipping_method {
       carrier_code
@@ -21,5 +23,31 @@ fragment CartTotals on Cart @inject(into: ["CartItemCountChanged"]) {
       }
     }
   }
-  ...CartTotalsPrices
+  prices {
+    __typename
+    applied_taxes {
+      amount {
+        ...Money
+      }
+      label
+    }
+    discounts {
+      amount {
+        ...Money
+      }
+      label
+    }
+    grand_total {
+      ...Money
+    }
+    subtotal_excluding_tax {
+      ...Money
+    }
+    subtotal_including_tax {
+      ...Money
+    }
+    subtotal_with_discount_excluding_tax {
+      ...Money
+    }
+  }
 }
