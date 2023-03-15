@@ -21,6 +21,17 @@ function DemoRowLinks(props: PluginProps<RowLinksProps>) {
       title={title}
       sx={[
         (theme) => ({
+          display: 'flex',
+          flexDirection: 'column',
+          '& .RowLinks-title': {
+            order: 1,
+          },
+          '& .Scroller-root': {
+            order: 2,
+          },
+          '& .RowLinks-copy': {
+            order: 3,
+          },
           mt: `calc(${theme.spacings.xl} * -1)`,
           '& .Scroller-root > *': {
             display: 'grid',
