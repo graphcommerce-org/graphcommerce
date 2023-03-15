@@ -68,6 +68,7 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
       domains: [...domains(graphcommerceConfig), ...(nextConfig.i18n?.domains ?? [])],
     },
     images: {
+      ...nextConfig.images,
       domains: [
         new URL(graphcommerceConfig.magentoEndpoint).hostname,
         'media.graphassets.com',
