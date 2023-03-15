@@ -11,6 +11,9 @@ export function VariantImageLabelSwiper(props: RowLinksProps) {
       copy={copy}
       sx={[
         {
+          '& .Scroller-root': {
+            alignItems: 'start',
+          },
           '& .RowLinks-title': {
             typography: 'h5',
             textTransform: 'uppercase',
