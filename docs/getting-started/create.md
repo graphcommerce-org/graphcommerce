@@ -71,8 +71,7 @@ https://user-images.githubusercontent.com/1251986/158647122-dc57002f-a9c2-4661-a
 3. `cp -R graphcommerce/examples/magento-graphcms/. my-project && rm -rf graphcommerce`
    — copy example, delete repo
 4. `cd my-project` — change directory to project folder
-5. `cp -R .env.example .env` — create .env file
-6. `rm CHANGELOG.md` — remove changelog
+5. `rm CHANGELOG.md` — remove changelog
 
 ## Step 2: Magento and Hygraph API keys
 

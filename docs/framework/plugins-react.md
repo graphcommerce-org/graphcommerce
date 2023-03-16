@@ -102,7 +102,7 @@ component with a `Prev` prop. The `Prev` prop is the original component.
 
 When opening the React debugger you can see the plugin wrapped.
 
-<img width="263" alt="Scherm­afbeelding 2023-03-15 om 12 16 59" src="https://user-images.githubusercontent.com/1244416/225293707-1ce1cd87-108b-4f28-b9ee-0c5d68d9a886.png">
+<img width="263" alt="Scherm­afbeelding 2023-03-15 om 12 16 59" src="https://user-images.githubusercontent.com/1244416/225293707-1ce1cd87-108b-4f28-b9ee-0c5d68d9a886.png" />
 
 ### How are plugins loaded?
 
