@@ -12,6 +12,9 @@ Besides the GA4 integration it also tracks the following events:
 - begin_checkout
 - select_item
 - view_item_list
+- view_item
+- view_cart
+- remove_from_cart
 
 ## Configuration
 

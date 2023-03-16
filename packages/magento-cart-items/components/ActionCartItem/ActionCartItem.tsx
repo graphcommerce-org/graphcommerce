@@ -17,16 +17,7 @@ export const productImageSizes = {
 }
 
 export function ActionCartItem(props: CartItemFragment & ActionCartItemProps) {
-  const {
-    uid,
-    quantity,
-    prices,
-    product: { name, thumbnail },
-    sx = [],
-    details,
-    size = 'medium',
-    ...cardProps
-  } = props
+  const { uid, quantity, prices, product, sx = [], details, size = 'medium', ...cardProps } = props
 
   return (
     <ActionCard
@@ -35,9 +26,9 @@ export function ActionCartItem(props: CartItemFragment & ActionCartItemProps) {
       size={size}
       sx={[{}, ...(Array.isArray(sx) ? sx : [sx])]}
       image={
-        thumbnail?.url && (
+        product.thumbnail?.url && (
           <Image
-            src={thumbnail?.url}
+            src={product.thumbnail?.url}
             width={50}
             height={50}
             sx={{
@@ -51,14 +42,16 @@ export function ActionCartItem(props: CartItemFragment & ActionCartItemProps) {
         )
       }
       price={<Money {...prices?.row_total_including_tax} />}
-      title={name}
+      title={product.name}
       details={
         <>
           {details}
           <UpdateItemQuantity uid={uid} quantity={quantity} />
         </>
       }
-      action={<RemoveItemFromCartFab uid={uid} />}
+      action={
+        <RemoveItemFromCartFab uid={uid} quantity={quantity} prices={prices} product={product} />
+      }
     />
   )
 }
