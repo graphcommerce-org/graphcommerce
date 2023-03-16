@@ -2,4 +2,4 @@
 '@graphcommerce/magento-search': patch
 ---
 
-replace 'Textfield' for 'TextFieldElement' and remove muiRegister to make the search work again.
+Search now uses `TextFieldElement` instead of `Textfield` which fixes the search.

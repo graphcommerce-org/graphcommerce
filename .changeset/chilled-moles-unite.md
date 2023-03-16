@@ -2,4 +2,4 @@
 '@graphcommerce/magento-product': patch
 ---
 
-prevent that ProductListFilters will render ‘category_uid’ as filter
+ProductListFilters and ProductListFiltersPro would render `category_id` or `category_uid` as a filter on category pages.

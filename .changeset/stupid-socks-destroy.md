@@ -2,4 +2,4 @@
 '@graphcommerce/next-config': patch
 ---
 
-Plugins were incorrectly sorted and local plugins didn't get preference
+Plugins now are correctly sorted and local plugins will always be closest to the original component.

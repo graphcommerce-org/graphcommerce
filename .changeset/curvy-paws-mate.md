@@ -2,4 +2,4 @@
 '@graphcommerce/framer-scroller': patch
 ---
 
-Scroller: whem immediately dragging after letting go the current animation should be cancelled
+Scroller areas like galleries would snap to a certain position when immediately dragging after letting go, now it is much more smooth.

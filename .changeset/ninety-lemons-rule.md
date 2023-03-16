@@ -5,4 +5,4 @@
 '@graphcommerce/magento-payment-adyen': patch
 ---
 
-Make sure we're using the the PaymentMethodUpdated fragment to allow for injection
+PaymentMethodUpdated is now @injectable to allow for easier customisation.

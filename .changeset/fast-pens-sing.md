@@ -1,5 +1,5 @@
 ---
-'@graphcommerce/magento-category': minor
+'@graphcommerce/magento-category': patch
 ---
 
-option to not require meta tags for categories
+Loosen typescript requirement for CategoryMeta

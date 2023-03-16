@@ -4,6 +4,4 @@
 '@graphcommerce/next-ui': minor
 ---
 
-- Show filter label, instead of value
-- Actioncard default styling
-- Active filter styling
+ActionCard default styling introduced for a more inline and changed the look of selected filters.

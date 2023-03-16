@@ -1,5 +1,5 @@
 ---
-'@graphcommerce/next-ui': patch
+'@graphcommerce/next-ui': minor
 ---
 
 Overlays now use an additional scroll container to handle vertical scroll, fixing:

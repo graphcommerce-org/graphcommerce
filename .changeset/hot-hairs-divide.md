@@ -1,5 +1,5 @@
 ---
-'@graphcommerce/magento-payment-multisafepay': minor
+'@graphcommerce/magento-payment-multisafepay': patch
 ---
 
-Split MSPPaymentOptionsAndPlaceOrder in two separate components to allow for surcharges
+Muiltisafepay: `MSPPaymentOptionsAndPlaceOrder` is now split into two separate components to allow for surcharges when selecting a payment method.

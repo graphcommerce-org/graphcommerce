@@ -3,4 +3,4 @@
 '@graphcommerce/next-ui': patch
 ---
 
-Added useMemoObject and implement in GaViewItem, GoogleAnalyticsItemList and GaCartStartCheckoutLinkOrButton
+Google Analytics now supports view_item, view_cart and remove_from_cart

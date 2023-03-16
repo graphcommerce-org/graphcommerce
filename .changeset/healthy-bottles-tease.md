@@ -7,4 +7,4 @@
 '@graphcommerce/next-ui': patch
 ---
 
-Fix spelling error incomming to incoming
+Corrected spelling mistake: incomming to incoming

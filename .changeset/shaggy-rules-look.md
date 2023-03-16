@@ -3,4 +3,4 @@
 '@graphcommerce/magento-product-configurable': minor
 ---
 
-Add price tiers feature
+Products will now render tier prices when they are released

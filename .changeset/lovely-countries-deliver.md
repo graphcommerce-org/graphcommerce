@@ -2,4 +2,4 @@
 '@graphcommerce/magento-customer': patch
 ---
 
-Redirect to address overview page after creating an address instead of redirecting to the edit page for the address that was just created
+After editing an address in the my account section it, the user will now be redirected to the over page, instead of redirecting to the edit page.

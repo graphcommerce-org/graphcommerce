@@ -2,4 +2,4 @@
 '@graphcommerce/next-ui': patch
 ---
 
-Fix scroll issue with bottom overlay on Android
+Overlays variant=bottom will now work without jank on Android

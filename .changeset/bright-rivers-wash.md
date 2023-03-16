@@ -2,4 +2,4 @@
 '@graphcommerce/next-ui': patch
 ---
 
-Fix ellipsis for long titles on mobile
+Overlay headers with long titles now render correctly

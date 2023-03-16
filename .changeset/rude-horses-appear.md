@@ -2,4 +2,4 @@
 '@graphcommerce/magento-customer': patch
 ---
 
-Add sign up form translations
+Added translations for the sign-up form.

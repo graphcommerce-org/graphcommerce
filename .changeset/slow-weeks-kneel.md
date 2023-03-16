@@ -2,4 +2,4 @@
 '@graphcommerce/graphql': patch
 ---
 
-More compact measure perf link
+Performance logging in the console is now more compact and will not wrap multiple lines.

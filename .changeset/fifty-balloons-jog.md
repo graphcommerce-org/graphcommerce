@@ -2,4 +2,4 @@
 '@graphcommerce/magento-cart': patch
 ---
 
-Add extensibility fields for CartTotals
+CartTotals component now acceps additional props to augment the totals

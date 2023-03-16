@@ -2,4 +2,4 @@
 '@graphcommerce/magento-wishlist': patch
 ---
 
-Closing wishlist snackbar
+Wishlist message snackbar now automatically closes after a few seconds

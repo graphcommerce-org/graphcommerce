@@ -2,4 +2,4 @@
 '@graphcommerce/magento-cart-billing-address': patch
 ---
 
-add missing default value ‘saveInAddressBook’
+When checking out the customer address will now be saved in their account when they dont have an address yet.

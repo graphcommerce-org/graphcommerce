@@ -1,9 +1,7 @@
 ---
-'@graphcommerce/demo-magento-graphcommerce': minor
-'@graphcommerce/magento-graphcms': minor
-'@graphcommerce/next-ui': minor
+'@graphcommerce/demo-magento-graphcommerce': major
+'@graphcommerce/magento-graphcms': major
+'@graphcommerce/next-ui': major
 ---
 
-- Introduce RowLink component with variants (inline, logoswiper etc.)
-- Add new ImageLabelSwiper component to homepage
-- Multiple darkmode fixes (layered navition, logo invert filter)
+Added a new RowLink component with variants: Inline, ImageLabelSwiper, LogoSwiper and Usps. Updated the demo to show off these new components.

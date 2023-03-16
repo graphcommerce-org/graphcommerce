@@ -2,4 +2,4 @@
 '@graphcommerce/magento-graphcms': patch
 ---
 
-Skip empty query when loading crosssells
+Crosssells wont do an additional query before the product is known.

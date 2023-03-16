@@ -2,4 +2,4 @@
 '@graphcommerce/next-ui': patch
 ---
 
-Hide body scrollbar only for right overlays
+Overlays will only hide the body scrollbar for right overlays so the page doesnt jump when opening.

@@ -2,4 +2,4 @@
 '@graphcommerce/magento-graphcms': patch
 ---
 
-Filter the Hygraph schema to be smaller
+Hygraph schema gets filtered in the .meshrc.yml file by default, reducing the size of the generated schema and type definitions.

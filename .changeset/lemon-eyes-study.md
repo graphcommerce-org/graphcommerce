@@ -2,4 +2,4 @@
 '@graphcommerce/next-ui': patch
 ---
 
-Navigation layout animation should only trigger when the active menu item changes
+Navigation layout-animations will now only trigger when the active menu item changes

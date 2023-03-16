@@ -2,4 +2,4 @@
 '@graphcommerce/magento-cart-payment-method': minor
 ---
 
-Always fetch the CartTotals when changing the payment method and automatically submit the currently selected payment method.
+Cart totals will now always be retrieved when changing the payment method.

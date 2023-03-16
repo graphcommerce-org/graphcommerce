@@ -2,4 +2,4 @@
 '@graphcommerce/next-ui': patch
 ---
 
-Overlay timing issue where the resizeObserver was later than the scroll event
+Overlay timing issues resolved which would cause overlays to close or flicker.

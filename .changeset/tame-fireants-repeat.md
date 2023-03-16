@@ -1,7 +1,5 @@
 ---
-'@graphcommerce/next-ui': minor
+'@graphcommerce/next-ui': patch
 ---
 
-- Put navigation HTML permanently in the DOM
-- Fix issue where Navigation can't be reopened after closing, dragging or navigating
-- Fix overlay visibility when browser is resized, or exactly 864px width
+Navigation visibility fixes when browser is resized, or exactly 864px width, and when Navigation is reopened after closing, dragging or navigating. Navigation HTML is now permanently in the DOM.

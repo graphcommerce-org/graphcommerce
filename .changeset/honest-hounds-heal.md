@@ -4,4 +4,4 @@
 '@graphcommerce/typescript-config-pwa': major
 ---
 
-Bumped minimum version to node16
+Updated the supported NodeJS versions to 16 and 18, removed support for NodeJS 14.

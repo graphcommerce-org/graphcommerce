@@ -2,4 +2,4 @@
 '@graphcommerce/mollie-magento-payment': patch
 ---
 
-Mollie: In some cases the returnUrl didn't contain a cartId
+Mollie order success would hang on the payment page because there wasn't a cart_id in the URL present.

@@ -3,4 +3,4 @@
 '@graphcommerce/magento-store': patch
 ---
 
-ApolloClient cache would balloon with all redirects and make sure redirects work
+ApolloClient cache size would balloon with all redirects and make sure redirects work

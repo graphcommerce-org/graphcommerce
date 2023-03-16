@@ -1,6 +1,6 @@
 ---
-"@graphcommerce/magento-customer": patch
-"@graphcommerce/magento-graphcms": patch
+'@graphcommerce/magento-customer': minor
+'@graphcommerce/magento-graphcms': minor
 ---
 
-feat(GCOM-1015): add feedback on add address form, update addresslist…
+Add feedback messages on 'add address form'

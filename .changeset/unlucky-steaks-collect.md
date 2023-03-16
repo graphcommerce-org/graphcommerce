@@ -2,5 +2,4 @@
 '@graphcommerce/magento-payment-multisafepay': minor
 ---
 
-- MultiSafePay: Added error message Snackbar, restore cart, and refetch the cart.
-- MultiSafePay: Solve issue where the cart couldn’t be found when restoring the cart.
+MultiSafePay now shows an error snackbar, added the ability to restore/refetch the cart, and a fix for the cart not being found when restoring the cart.
