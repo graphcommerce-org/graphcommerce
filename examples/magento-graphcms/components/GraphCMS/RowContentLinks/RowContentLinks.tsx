@@ -2,6 +2,7 @@ import { ContentLinks } from '@graphcommerce/next-ui'
 import { Link } from '@mui/material'
 import { RowContentLinksFragment } from './RowContentLinks.gql'
 
+/** @deprecated Replace with RowLinks */
 export function RowContentLinks(props: RowContentLinksFragment) {
   const { title: mainTitle, contentLinks } = props
 
