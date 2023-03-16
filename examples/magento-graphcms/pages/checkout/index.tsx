@@ -19,11 +19,7 @@ import {
   CustomerAddressForm,
 } from '@graphcommerce/magento-cart-shipping-address'
 import { ShippingMethodForm } from '@graphcommerce/magento-cart-shipping-method'
-import {
-  CustomerDocument,
-  useCustomerQuery,
-  useCustomerSession,
-} from '@graphcommerce/magento-customer'
+import { CustomerDocument, useCustomerQuery } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   FormActions,
@@ -51,7 +47,6 @@ function ShippingPage() {
   const router = useRouter()
   const shippingPage = useCartQuery(ShippingPageDocument, { fetchPolicy: 'cache-and-network' })
   const customerAddresses = useCustomerQuery(CustomerDocument, { fetchPolicy: 'cache-and-network' })
-  const { loggedIn, valid } = useCustomerSession()
 
   const cartExists =
     typeof shippingPage.data?.cart !== 'undefined' &&
@@ -115,7 +110,7 @@ function ShippingPage() {
                     >
                       <Trans id='Personal details' />
                     </Typography>
-                    {(!loggedIn || !valid) && <EmailForm step={1} />}
+                    <EmailForm step={1} />
                     <ShippingAddressForm step={3} />
                   </>
                 )}
