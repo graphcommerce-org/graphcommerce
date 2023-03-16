@@ -3,4 +3,4 @@
 '@graphcommerce/next-ui': patch
 ---
 
-Added useStableObject and implement in GaViewItem
+Added useMemoObject and implement in GaViewItem, GoogleAnalyticsItemList and GaCartStartCheckoutLinkOrButton
