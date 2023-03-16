@@ -267,7 +267,7 @@ export function ActionCard(props: ActionCardProps) {
           width: '100%',
           justifyContent: 'space-between',
           alignContent: 'stretch',
-          alignItems: 'flex-start',
+          alignItems: 'center',
         }}
       >
         <Box
@@ -281,7 +281,7 @@ export function ActionCard(props: ActionCardProps) {
           {image && (
             <Box
               className={classes.image}
-              sx={{ display: 'flex', paddingRight: '15px', alignSelf: 'center' }}
+              sx={{ display: 'flex', pr: '15px', alignSelf: 'center' }}
             >
               {image}
             </Box>

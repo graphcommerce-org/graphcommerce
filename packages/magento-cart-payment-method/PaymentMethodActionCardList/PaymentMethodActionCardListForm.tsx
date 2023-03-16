@@ -5,6 +5,7 @@ import {
   ActionCardItemRenderProps,
   ActionCardListForm,
   ActionCardProps,
+  responsiveVal,
 } from '@graphcommerce/next-ui'
 import {
   useForm,
@@ -39,8 +40,9 @@ function PaymentMethodActionCard(
     <Card
       sx={[
         {
-          '& .ActionCard-title': { typography: 'h6', lineHeight: 0 },
+          '& .ActionCard-title': { typography: 'h6' },
           '& .ActionCard-details': { lineHeight: 1.5 },
+          '& .ActionCard-image svg, .ActionCard-image img': { width: '32px', height: '32px' },
         },
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
