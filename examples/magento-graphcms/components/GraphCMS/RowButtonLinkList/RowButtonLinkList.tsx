@@ -3,6 +3,7 @@ import { RowButtonLinkListFragment } from './RowButtonLinkList.gql'
 
 export type RowButtonLinkListProps = RowButtonLinkListFragment
 
+/** @deprecated Replace with RowLinks */
 export function RowButtonLinkList(props: RowButtonLinkListProps) {
   const { title, links } = props
 

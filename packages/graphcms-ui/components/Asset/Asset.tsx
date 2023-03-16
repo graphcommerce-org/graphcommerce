@@ -38,7 +38,7 @@ export function Asset(props: AssetProps) {
   }
 
   if (asset.mimeType === 'video/mp4') {
-    const Video = styled('video')()
+    const Video = styled('video')({})
 
     return (
       <Video
