@@ -1,3 +1,7 @@
+---
+menu: Upgrading step by step
+---
+
 # Upgrading
 
 This guide describes how to upgrade your GraphCommerce project files and its
