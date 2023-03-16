@@ -5,8 +5,8 @@ regular [upgrade steps first](./readme.md).
 
 1. [Migrating to graphcommerce.config.js](#migrating-to-graphcommerceconfigjs)
 2. [Product routing changes](#product-routing-changes)
-3. [Replace next/link with GraphCommerce's new Link behavior](#replace-nextlink-with-graphcommerces-new-link-behavior)
-4. [Hygraph schema changes](#hygraph-schema-changes)
+3. [Hygraph schema changes](#hygraph-schema-changes)
+4. [Replace next/link with GraphCommerce's new Link behavior](#replace-nextlink-with-graphcommerces-new-link-behavior)
 
 ## Migrating to graphcommerce.config.js
 
@@ -27,6 +27,21 @@ This legacy routing will be removed in a future version.
 
 You can also change the product route from `/p/[url]` to something else by
 configuring [productRoute](../framework/config.md#productroute-string)
+
+## Hygraph schema changes
+
+Create an enumeration in Hygraph `RowLinksVariants`:
+
+<img width="712" alt="Scherm­afbeelding 2023-03-16 om 13 15 24" src="https://user-images.githubusercontent.com/1244416/225615372-1226a6a8-11c8-4939-9ea5-bb66f16c3bb3.png" />
+
+Create a RowLinks model:
+<img width="748" alt="Scherm­afbeelding 2023-03-16 om 13 15 34" src="https://user-images.githubusercontent.com/1244416/225615400-fc64c203-dce4-4971-8d21-c8777d085abe.png" />
+
+Add RowLinks to be included in the `content` of the `Page` Model:
+
+<img width="805" alt="Scherm­afbeelding 2023-03-16 om 13 21 13" src="https://user-images.githubusercontent.com/1244416/225615681-81035be8-a994-416e-bd7a-814493c132d7.png" />
+
+After this step you should be able to run `yarn codegen`.
 
 ## Replace next/link with GraphCommerce's new Link behavior
 
@@ -154,19 +169,6 @@ function MyComponent() {
   )
 }
 ```
-
-## Hygraph schema changes
-
-// Convert the above to manual isntructions
-
-1. Create an enumeration in Hygraph `RowLinksVariants`:
-   <img width="712" alt="Scherm­afbeelding 2023-03-16 om 13 15 24" src="https://user-images.githubusercontent.com/1244416/225615372-1226a6a8-11c8-4939-9ea5-bb66f16c3bb3.png" />
-
-2. Create a RowLinks model
-   <img width="748" alt="Scherm­afbeelding 2023-03-16 om 13 15 34" src="https://user-images.githubusercontent.com/1244416/225615400-fc64c203-dce4-4971-8d21-c8777d085abe.png" />
-
-3. Add RowLinks to be included in the `content` of the `Page` Model
-   <img width="805" alt="Scherm­afbeelding 2023-03-16 om 13 21 13" src="https://user-images.githubusercontent.com/1244416/225615681-81035be8-a994-416e-bd7a-814493c132d7.png" />
 
 ## Further reading
 
