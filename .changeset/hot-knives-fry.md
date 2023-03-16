@@ -2,4 +2,4 @@
 '@graphcommerce/next-ui': minor
 ---
 
-Added filterByTypename function to filter types based on \_\_typename
+Added utility function `filterByTypename` function to filter types based on `__typename`

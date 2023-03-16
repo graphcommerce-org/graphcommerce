@@ -1,5 +1,5 @@
 ---
-'@graphcommerce/magento-payment-paypal': minor
+'@graphcommerce/magento-payment-paypal': patch
 ---
 
-Split PayPalPaymentOptionsAndPlaceOrder in PaymentOptionsNoop and PayPalPaymentPlaceOrder components to allow for surcharges when selecting a payment method.
+Split `PayPalPaymentOptionsAndPlaceOrder` in `PaymentOptionsNoop` and `PayPalPaymentPlaceOrder` components to allow for surcharges when selecting a payment method.

@@ -2,4 +2,4 @@
 '@graphcommerce/magento-graphcms': patch
 ---
 
-make FullPageMessage titles translatable and update translations.
+Added ability to translate various strings: 'Several errors occured', 'Processing your payment', 'Loading', 'Loading your account' and updated all translations.

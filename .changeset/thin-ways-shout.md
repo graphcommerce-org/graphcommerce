@@ -2,4 +2,4 @@
 '@graphcommerce/next-ui': patch
 ---
 
-Allow scrollbar to left and right full overlay variants.
+Overlays now have vertical visible scrollbars when the content is higher than the viewport.

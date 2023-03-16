@@ -1,6 +1,6 @@
 ---
-"@graphcommerce/magento-payment-multisafepay": patch
-"@graphcommerce/magento-graphcms": patch
+'@graphcommerce/magento-payment-multisafepay': patch
+'@graphcommerce/magento-graphcms': patch
 ---
 
-add translated label for ideal/msp
+Added proper translations for iDeal Multi Safe Pay

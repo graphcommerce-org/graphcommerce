@@ -2,4 +2,4 @@
 '@graphcommerce/magento-graphcms': patch
 ---
 
-- Fix render condition of CustomerAddressForm so it only renders when a customer has at least one address.
+The checkout customer address selector will only render when there is at least one customer address.s

@@ -3,4 +3,4 @@
 '@graphcommerce/lingui-next': patch
 ---
 
-Load translations when running getStaticProps
+When using `i18n` in getStaticProps it could return an incorrect language.

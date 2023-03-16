@@ -5,4 +5,4 @@
 '@graphcommerce/magento-customer-order': patch
 ---
 
-Move magento-customer-account & magento-customer-order into magento-customer package (magento-customer-account & magento-customer-order are now deprecated)
+Deprecated @graphcommerce/magento-customer-account & @graphcommerce/magento-customer-order packages and moved all functionality to @graphcomemrce/magento-customer

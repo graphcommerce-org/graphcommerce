@@ -2,4 +2,4 @@
 '@graphcommerce/mollie-magento-payment': minor
 ---
 
-Add some Mollie payment icons
+Mollie methods now all have an icon

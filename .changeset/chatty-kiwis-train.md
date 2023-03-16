@@ -2,4 +2,4 @@
 '@graphcommerce/next-ui': patch
 ---
 
-Fix overlay right variant closing automatically in Firefox
+Overlay right variant doesn't close automatically in firefox anymore

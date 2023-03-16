@@ -1,5 +1,5 @@
 ---
-"@graphcommerce/demo-magento-graphcommerce": patch
+'@graphcommerce/demo-magento-graphcommerce': patch
 ---
 
-Add deprecation warnings to RowButtonLinkList and RowContentLinks
+Two Hygraph row components are now deprecated: RowButtonLinkList and RowContentLinks, you should use RowLinks instead.

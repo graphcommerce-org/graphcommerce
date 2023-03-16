@@ -2,4 +2,4 @@
 '@graphcommerce/magento-customer': patch
 ---
 
-Update account address list after deleting an address
+Customer accoutn address list now updates after deleting an address.

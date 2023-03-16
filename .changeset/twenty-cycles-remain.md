@@ -2,4 +2,4 @@
 '@graphcommerce/next-config': patch
 ---
 
-Make sure packages are transpiled in node_modules with nextjs’ transpilePackages option
+Removed of next-transpile-modules and use transpilePackages option of nextjs.

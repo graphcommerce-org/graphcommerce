@@ -4,4 +4,4 @@
 '@graphcommerce/next-ui': patch
 ---
 
-Dynamic viewport height when supported
+CSS dvh property is now used when supported by browsers, causing less rerenders with overlays.
