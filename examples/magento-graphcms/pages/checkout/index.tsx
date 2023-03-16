@@ -101,7 +101,8 @@ function ShippingPage() {
             </LayoutHeader>
             <Container maxWidth='md'>
               <>
-                {customerAddresses.data?.customer?.addresses ? (
+                {customerAddresses.data?.customer?.addresses &&
+                customerAddresses.data.customer.addresses.length > 0 ? (
                   <CustomerAddressForm step={2} sx={(theme) => ({ mt: theme.spacings.lg })}>
                     <ShippingAddressForm ignoreCache step={3} />
                   </CustomerAddressForm>
