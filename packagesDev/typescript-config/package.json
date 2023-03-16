@@ -2,7 +2,7 @@
   "name": "@graphcommerce/typescript-config-pwa",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "6.0.0-canary.48",
+  "version": "6.0.0-canary.49",
   "license": "MIT",
   "sideEffects": false,
   "devDependencies": {
