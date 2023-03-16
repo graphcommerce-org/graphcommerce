@@ -7,7 +7,7 @@ export type CartLockState = {
   locked: string | null
   method: string | null
   // Only added for PayPal
-  PayerID: string | null
+  PayerID?: string | null
 }
 
 let justLocked = false

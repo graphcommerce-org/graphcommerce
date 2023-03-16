@@ -13,14 +13,14 @@ export function MolliePlaceOrder(props: PaymentPlaceOrderProps) {
   const { step, code } = props
   const { push } = useRouter()
   const { currentCartId } = useCurrentCartId()
-  const [, lock] = useCartLockWithToken()
+  const [lockState, lock] = useCartLockWithToken()
   const { selectedMethod } = usePaymentMethodContext()
 
   const form = useFormGqlMutationCart(MolliePlaceOrderDocument, {
     onBeforeSubmit(variables) {
       const current = new URL(window.location.href.replace(window.location.hash, ''))
       // current.searchParams.append('locked', '1')
-      current.searchParams.set('cart_id', currentCartId ?? '')
+      current.searchParams.set('cart_id', currentCartId ?? lockState.cart_id ?? '')
       current.searchParams.set('mollie_payment_token', 'PAYMENT_TOKEN')
       current.searchParams.set('order_number', 'ORDER_NUMBER')
       current.searchParams.set('method', selectedMethod?.code ?? '')
