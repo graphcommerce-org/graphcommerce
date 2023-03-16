@@ -46,7 +46,7 @@ const renderLine = (line: {
     dashrepeat >= 1 ? `${waitDotsRound > 1 ? '┼' : ''}${'─'.repeat(dashrepeat - 1)}` : ''
   const result = `${startSpacing}├${waitDots}${dashes}┤`
 
-  return ['', ...line.additional, result]
+  return [...line.additional, result]
 }
 
 export const flushMeasurePerf = () => {
@@ -69,7 +69,7 @@ export const flushMeasurePerf = () => {
   })
   end -= start
 
-  const colDivider = Math.max(Math.floor(end / 150), 20)
+  const colDivider = end > 1000 ? end / 50 : 1000 / 50
 
   const lines = entries.map(([_, value]) => {
     const requestStart = value.start.getTime() - start
@@ -86,7 +86,7 @@ export const flushMeasurePerf = () => {
       requestEnd,
       additional: [
         value.operationName,
-        `${duration - (duration - serverStart)}ms`,
+        // `${duration - (duration - serverStart)}ms`,
         `${duration - serverStart}ms`,
       ],
       colDivider,
@@ -94,14 +94,13 @@ export const flushMeasurePerf = () => {
   })
 
   const items = [
-    ['', 'GraphQL requests', 'Bootup', 'Mesh', 'Waterfall'],
-    ['', '', '', '', ''],
+    ['Operation', 'Mesh', 'Timeline'],
     ...lines,
     renderLine({
       serverStart: 0,
       requestStart: 0,
       requestEnd: end,
-      additional: [`Total time`, '', `${end}ms`],
+      additional: [`Total time`, `${end}ms`],
       colDivider,
     }),
   ]
@@ -118,7 +117,7 @@ export const flushMeasurePerf = () => {
   items.forEach((item) => {
     item.forEach((_, index) => {
       item[index] = `${item[index].padEnd(colWidths[index], ' ')}${
-        index !== item.length - 1 ? ` │ ` : ''
+        index !== item.length - 1 ? `` : ''
       }`
     })
   })
