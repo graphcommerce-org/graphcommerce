@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.0-canary.50
+
+### Patch Changes
+
+- [#1851](https://github.com/graphcommerce-org/graphcommerce/pull/1851) [`550fd9f4f`](https://github.com/graphcommerce-org/graphcommerce/commit/550fd9f4ff8ce1a78254d7f1d711236f0d9ddef7) - More compact measure perf link ([@paales](https://github.com/paales))
+
 ## 6.0.0-canary.49
 
 ## 6.0.0-canary.48

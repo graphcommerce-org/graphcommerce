@@ -1,5 +1,13 @@
 # Change Log
 
+## 6.0.0-canary.50
+
+### Patch Changes
+
+- [#1851](https://github.com/graphcommerce-org/graphcommerce/pull/1851) [`98fba5968`](https://github.com/graphcommerce-org/graphcommerce/commit/98fba5968c579e240dbe3236838b41a6d390acb9) - When the paymentStatus is open, do not show it as an error ([@paales](https://github.com/paales))
+
+- [#1851](https://github.com/graphcommerce-org/graphcommerce/pull/1851) [`887110287`](https://github.com/graphcommerce-org/graphcommerce/commit/8871102875e5f023c5d962b1a7d246492d1909c6) - Mollie: In some cases the returnUrl didn't contain a cartId ([@paales](https://github.com/paales))
+
 ## 6.0.0-canary.49
 
 ## 6.0.0-canary.48
