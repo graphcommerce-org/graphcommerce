@@ -75,13 +75,13 @@ export function useClientSize(options?: UseClientSizeOptions): UseClientSizeRetu
 
   useEffect(() => {
     setTimeout(() => ret.x.set(`${clientSize.x.get()}px`), 1000)
-    const cX = clientSize.x.onChange((xv) => ret.x.set(`${xv}px`))
+    const cX = clientSize.x.on('change', (xv) => ret.x.set(`${xv}px`))
     return () => cX()
   }, [ret.x])
 
   useEffect(() => {
     setTimeout(() => ret.y.set(`${clientSize.y.get()}px`), 1000)
-    const cY = clientSize.y.onChange((yv) => ret.y.set(`${yv}px`))
+    const cY = clientSize.y.on('change', (yv) => ret.y.set(`${yv}px`))
     return () => cY()
   }, [ret.y])
 

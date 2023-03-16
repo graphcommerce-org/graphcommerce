@@ -1,5 +1,37 @@
 # Change Log
 
+## 6.0.0-canary.49
+
+## 6.0.0-canary.48
+
+## 6.0.0-canary.47
+
+## 6.0.0-canary.46
+
+### Patch Changes
+
+- [#1844](https://github.com/graphcommerce-org/graphcommerce/pull/1844) [`929cffafb`](https://github.com/graphcommerce-org/graphcommerce/commit/929cffafbc8b2e57433b6448c95234fb057880b1) - Plugins were incorrectly sorted and local plugins didn't get preference ([@paales](https://github.com/paales))
+
+## 6.0.0-canary.45
+
+## 6.0.0-canary.44
+
+### Patch Changes
+
+- [#1842](https://github.com/graphcommerce-org/graphcommerce/pull/1842) [`7b67d84bd`](https://github.com/graphcommerce-org/graphcommerce/commit/7b67d84bd269c3fc91afbd69f6683c5d12808d36) - Renamed i18n to storefront in configuration ([@paales](https://github.com/paales))
+
+## 6.0.0-canary.43
+
+## 6.0.0-canary.42
+
+## 6.0.0-canary.41
+
+### Patch Changes
+
+- [#1839](https://github.com/graphcommerce-org/graphcommerce/pull/1839) [`e4a3f5e98`](https://github.com/graphcommerce-org/graphcommerce/commit/e4a3f5e986287b78c3e048d8a33611c61070b79e) - Make sure the configuration is validated before executing ([@paales](https://github.com/paales))
+
+- [#1839](https://github.com/graphcommerce-org/graphcommerce/pull/1839) [`8eb310409`](https://github.com/graphcommerce-org/graphcommerce/commit/8eb3104098749a6b08d2affb6cdc8a7e6698866f) - Use graphCommerce._ instead of import.meta.graphCommerce._ in .meshrc.yml ([@paales](https://github.com/paales))
+
 ## 6.0.0-canary.40
 
 ## 6.0.0-canary.39

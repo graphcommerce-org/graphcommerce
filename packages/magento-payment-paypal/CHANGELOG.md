@@ -1,5 +1,31 @@
 # @graphcommerce/magento-payment-paypal
 
+## 6.0.0-canary.49
+
+## 6.0.0-canary.48
+
+## 6.0.0-canary.47
+
+## 6.0.0-canary.46
+
+## 6.0.0-canary.45
+
+## 6.0.0-canary.44
+
+## 6.0.0-canary.43
+
+### Minor Changes
+
+- [#1841](https://github.com/graphcommerce-org/graphcommerce/pull/1841) [`03c104d7f`](https://github.com/graphcommerce-org/graphcommerce/commit/03c104d7f5d4ffd71eb9e26fe4fd4b77fd4c23c8) - Split PayPalPaymentOptionsAndPlaceOrder in PaymentOptionsNoop and PayPalPaymentPlaceOrder components to allow for surcharges when selecting a payment method. ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#1841](https://github.com/graphcommerce-org/graphcommerce/pull/1841) [`1ff022c4b`](https://github.com/graphcommerce-org/graphcommerce/commit/1ff022c4bd8ad1d9fa8c1760076f003af06ce421) - Make sure we're using the the PaymentMethodUpdated fragment to allow for injection ([@paales](https://github.com/paales))
+
+## 6.0.0-canary.42
+
+## 6.0.0-canary.41
+
 ## 6.0.0-canary.40
 
 ## 6.0.0-canary.39

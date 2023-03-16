@@ -1,0 +1,11 @@
+mutation MSPPaymentPlaceOrder($cartId: String!) {
+  placeOrder(input: { cart_id: $cartId }) {
+    order {
+      order_number
+      multisafepay_payment_url {
+        error
+        payment_url
+      }
+    }
+  }
+}

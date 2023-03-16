@@ -39,7 +39,7 @@ const variables = {
 ```
 
 ```graphql
-mutation MyGatewayPaymentOptionsAndPlaceOrder(
+mutation MyGatewayPaymentOptions(
   $cartId: String!
   $paymentMethod: PaymentMethodInput!
 ) {
@@ -47,11 +47,14 @@ mutation MyGatewayPaymentOptionsAndPlaceOrder(
     input: { cart_id: $cartId, payment_method: $paymentMethod }
   ) {
     cart {
-      selected_payment_method {
-        ...SelectedPaymentMethod
-      }
+      ...PaymentMethodUpdated
     }
   }
+}
+```
+
+```graphql
+mutation MyGatewayPaymentOptionsAndPlaceOrder($cartId: String!) {
   placeOrder(input: { cart_id: $cartId }) {
     order {
       order_number

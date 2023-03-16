@@ -151,14 +151,6 @@ function CheckoutAdded() {
         <LayoutHeaderClose />
       </Container>
 
-      <Box
-        sx={(theme) => ({
-          height: { md: theme.page.vertical },
-          marginBottom: { md: `calc(${theme.page.vertical} * -1)` },
-          scrollSnapAlign: 'end',
-        })}
-      />
-
       {showCrossSell && (
         <>
           <Container maxWidth={false}>

@@ -13,24 +13,31 @@ The configuration file is a javascript file that exports a `GraphCommerceConfig`
 Configuration can be accessed in your project with the `import.meta.graphCommerce` object.
 
 ```tsx
-import { i18nAll, i18nConfig, i18nConfigDefault, useI18nConfig } from '@graphcommerce/next-ui'
+import { storefrontAll, storefrontConfig, storefrontConfigDefault, useStorefrontConfig } from '@graphcommerce/next-ui'
 
 // Accessing a global value
 const globalConf = import.meta.graphCommerce.cartDisplayPricesInclTax
 
 function MyComponent() {
-  // Configuration configured per i18n locale.
-  const scopedConfig = useI18nConfig().cartDisplayPricesInclTax
+  // Configuration configured per storefront locale.
+  const scopedConfig = useStorefrontConfig().cartDisplayPricesInclTax
 
   // Creating a fallback system
   const scopedConfigWithFallback = scopedConfig ?? globalConf
 
   // Or as single line
   const scopedConfigWithFallback2 =
-    useI18nConfig().cartDisplayPricesInclTax ?? import.meta.graphCommerce.cartDisplayPricesInclTax
+    useStorefrontConfig().cartDisplayPricesInclTax ?? import.meta.graphCommerce.cartDisplayPricesInclTax
 
   return <div>{googleRecaptchaKey}</div>
 }
+```
+
+You can also use the configuration in your `.meshrc.yml` by accessing
+`{graphCommerce.myField}`
+
+```yml
+endpoint: '{graphCommerce.magentoEndpoint}'
 ```
 
 ## Environment variables to override configuration
@@ -43,7 +50,7 @@ Configuration values can be overwriten by environment variables, with the follow
 
 Examples:
 - `limitSsg` -> `GC_LIMIT_SSG="1"`
-- `i18n[0].locale` -> `GC_I18N_0_LOCALE="en"`
+- `storefront[0].locale` -> `GC_STOREFRONT_0_LOCALE="en"`
 - `debug.pluginStatus` -> `GC_DEBUG_PLUGIN_STATUS="1"`
 
 
@@ -53,7 +60,7 @@ You can export configuration by running `yarn graphcommerce export-config`
 
 ## Extending the configuration in your  project
 
-Create a graphql/Config.graphqls file in your project and extend the GraphCommerceConfig, GraphCommerceI18nConfig inputs to add configuration.
+Create a graphql/Config.graphqls file in your project and extend the GraphCommerceConfig, GraphCommerceStorefrontConfig inputs to add configuration.
 
 ```graphql
 extend input GraphCommerceConfig {
@@ -66,7 +73,7 @@ extend input GraphCommerceConfig {
   myOptionalFloat: Float
   myRequiredFloat: Float!
 }
-extend input GraphCommerceI18nConfig {
+extend input GraphCommerceStorefrontConfig {
   myField: Boolean
 }
 ```
@@ -92,16 +99,16 @@ The HyGraph endpoint.
 
 Project settings -> API Access -> High Performance Read-only Content API
 
-#### `i18n: [[GraphCommerceI18nConfig](#GraphCommerceI18nConfig)!]!`
-
-All i18n configuration for the project
-
 #### `magentoEndpoint: String!`
 
 GraphQL Magento endpoint.
 
 Examples:
 - https://magento2.test/graphql
+
+#### `storefront: [[GraphCommerceStorefrontConfig](#GraphCommerceStorefrontConfig)!]!`
+
+All storefront configuration for the project
 
 #### `cartDisplayPricesInclTax: Boolean`
 
@@ -135,7 +142,7 @@ See https://support.google.com/analytics/answer/9539598?hl=en
 
 Provide a value to enable Google Analytics for your store.
 
-To enable only for a specific locale, override the value in the i18n config.
+To override the value for a specific locale, configure in i18n config.
 
 #### `googleRecaptchaKey: String`
 
@@ -214,9 +221,9 @@ Issues that this can cause are:
 - The same package is included multiple times in the bundle, increasing the bundle size.
 - The Typescript types of the package are not compatible with each other, causing Typescript errors.
 
-### GraphCommerceI18nConfig
+### GraphCommerceStorefrontConfig
 
-All i18n configuration for the project
+All storefront configuration for the project
 
 #### `locale: String!`
 

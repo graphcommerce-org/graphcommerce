@@ -19,12 +19,6 @@ it('finds plugins', () => {
         "component": "AddProductsToCartForm",
         "enabled": true,
         "exported": "@graphcommerce/magento-product",
-        "plugin": "./plugins/MyPlugin",
-      },
-      {
-        "component": "AddProductsToCartForm",
-        "enabled": true,
-        "exported": "@graphcommerce/magento-product",
         "ifConfig": "googleAnalyticsId",
         "plugin": "@graphcommerce/googleanalytics/plugins/GaAddProductsToCartForm",
       },
@@ -170,7 +164,7 @@ it('finds plugins', () => {
         "enabled": false,
         "exported": "@graphcommerce/magento-product",
         "ifConfig": "demoMode",
-        "plugin": "@graphcommerce/demo-magento-graphcommerce/plugins/demo/DemoAddProductsToCartForm",
+        "plugin": "./plugins/EnableCrosssellsPlugin",
       },
       {
         "component": "ProductListItem",

@@ -13,24 +13,31 @@ The configuration file is a javascript file that exports a `GraphCommerceConfig`
 Configuration can be accessed in your project with the `import.meta.graphCommerce` object.
 
 ```tsx
-import { i18nAll, i18nConfig, i18nConfigDefault, useI18nConfig } from '@graphcommerce/next-ui'
+import { storefrontAll, storefrontConfig, storefrontConfigDefault, useStorefrontConfig } from '@graphcommerce/next-ui'
 
 // Accessing a global value
 const globalConf = import.meta.graphCommerce.cartDisplayPricesInclTax
 
 function MyComponent() {
-  // Configuration configured per i18n locale.
-  const scopedConfig = useI18nConfig().cartDisplayPricesInclTax
+  // Configuration configured per storefront locale.
+  const scopedConfig = useStorefrontConfig().cartDisplayPricesInclTax
 
   // Creating a fallback system
   const scopedConfigWithFallback = scopedConfig ?? globalConf
 
   // Or as single line
   const scopedConfigWithFallback2 =
-    useI18nConfig().cartDisplayPricesInclTax ?? import.meta.graphCommerce.cartDisplayPricesInclTax
+    useStorefrontConfig().cartDisplayPricesInclTax ?? import.meta.graphCommerce.cartDisplayPricesInclTax
 
   return <div>{googleRecaptchaKey}</div>
 }
+```
+
+You can also use the configuration in your `.meshrc.yml` by accessing
+`{graphCommerce.myField}`
+
+```yml
+endpoint: '{graphCommerce.magentoEndpoint}'
 ```
 
 ## Environment variables to override configuration
@@ -43,7 +50,7 @@ Configuration values can be overwriten by environment variables, with the follow
 
 Examples:
 - `limitSsg` -> `GC_LIMIT_SSG="1"`
-- `i18n[0].locale` -> `GC_I18N_0_LOCALE="en"`
+- `storefront[0].locale` -> `GC_STOREFRONT_0_LOCALE="en"`
 - `debug.pluginStatus` -> `GC_DEBUG_PLUGIN_STATUS="1"`
 
 
@@ -53,7 +60,7 @@ You can export configuration by running `yarn graphcommerce export-config`
 
 ## Extending the configuration in your  project
 
-Create a graphql/Config.graphqls file in your project and extend the GraphCommerceConfig, GraphCommerceI18nConfig inputs to add configuration.
+Create a graphql/Config.graphqls file in your project and extend the GraphCommerceConfig, GraphCommerceStorefrontConfig inputs to add configuration.
 
 ```graphql
 extend input GraphCommerceConfig {
@@ -66,7 +73,7 @@ extend input GraphCommerceConfig {
   myOptionalFloat: Float
   myRequiredFloat: Float!
 }
-extend input GraphCommerceI18nConfig {
+extend input GraphCommerceStorefrontConfig {
   myField: Boolean
 }
 ```
@@ -77,9 +84,9 @@ Below is a list of all possible configurations that can be set by GraphCommerce.
 """
 input GraphCommerceConfig {
   """
-  All i18n configuration for the project
+  All storefront configuration for the project
   """
-  i18n: [GraphCommerceI18nConfig!]!
+  storefront: [GraphCommerceStorefrontConfig!]!
 
   """
   Limit the static generation of SSG when building
@@ -114,9 +121,9 @@ input GraphCommerceConfig {
 }
 
 """
-All i18n configuration for the project
+All storefront configuration for the project
 """
-input GraphCommerceI18nConfig {
+input GraphCommerceStorefrontConfig {
   """
   There can only be one entry with defaultLocale set to true.
   - If there are more, the first one is used.

@@ -5,7 +5,11 @@ import { Box, Divider, lighten, SxProps, Theme } from '@mui/material'
 import { useCartQuery, useDisplayInclTax } from '../../hooks'
 import { GetCartTotalsDocument } from './GetCartTotals.gql'
 
-export type CartTotalsProps = OwnerProps & { sx?: SxProps<Theme> }
+export type CartTotalsProps = OwnerProps & {
+  sx?: SxProps<Theme>
+  additionalSubtotals?: React.ReactNode
+  additionalTotals?: React.ReactNode
+}
 
 type OwnerProps = { containerMargin?: boolean }
 const name = 'CartTotals' as const
@@ -28,7 +32,7 @@ const { withState } = extendableComponent<OwnerProps, typeof name, typeof parts>
  */
 export function CartTotals(props: CartTotalsProps) {
   const { data } = useCartQuery(GetCartTotalsDocument, { allowUrl: true })
-  const { containerMargin, sx = [] } = props
+  const { containerMargin, additionalSubtotals, additionalTotals, sx = [] } = props
 
   const classes = withState({ containerMargin })
   const inclTax = useDisplayInclTax()
@@ -145,6 +149,8 @@ export function CartTotals(props: CartTotalsProps) {
           </Box>
         ))}
 
+      {additionalSubtotals}
+
       <Box key='divider'>
         <Divider className={classes.costsDivider} sx={{ margin: `1em 0` }} />
       </Box>
@@ -188,6 +194,8 @@ export function CartTotals(props: CartTotalsProps) {
             </Box>
           </Box>
         ))}
+
+      {additionalTotals}
     </Box>
   )
 }

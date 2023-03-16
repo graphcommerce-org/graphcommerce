@@ -15,10 +15,14 @@ function flattenKeys(value, initialPathPrefix, stringify) {
         };
     }
     if (typeof value === 'object') {
+        let outputValue = value;
+        if (stringify)
+            outputValue =
+                process.env.NODE_ENV !== 'production'
+                    ? `{ __debug: "'${initialPathPrefix}' can not be destructured, please access deeper properties directly" }`
+                    : '{}';
         return {
-            [initialPathPrefix]: process.env.NODE_ENV !== 'production'
-                ? `{ __debug: "'${initialPathPrefix}' can not be destructured, please access deeper properties directly" }`
-                : '{}',
+            [initialPathPrefix]: outputValue,
             ...Object.keys(value)
                 .map((key) => {
                 const deep = value[key];
@@ -30,7 +34,7 @@ function flattenKeys(value, initialPathPrefix, stringify) {
     throw Error(`Unexpected value: ${value}`);
 }
 /** The result of this function is passed to the webpack DefinePlugin as import.meta.graphCommerce.* */
-function configToImportMeta(config, stringify = true) {
-    return flattenKeys(config, 'import.meta.graphCommerce', stringify);
+function configToImportMeta(config, path = 'import.meta.graphCommerce', stringify = true) {
+    return flattenKeys(config, path, stringify);
 }
 exports.configToImportMeta = configToImportMeta;

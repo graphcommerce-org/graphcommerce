@@ -13,7 +13,7 @@ const InterceptorPlugin_1 = require("./interceptors/InterceptorPlugin");
 const resolveDependenciesSync_1 = require("./utils/resolveDependenciesSync");
 let graphcommerceConfig;
 function domains(config) {
-    return Object.values(config.i18n.reduce((acc, loc) => {
+    return Object.values(config.storefront.reduce((acc, loc) => {
         if (!loc.domain)
             return acc;
         acc[loc.domain] = {
@@ -45,7 +45,7 @@ function remotePatterns(url) {
 function withGraphCommerce(nextConfig, cwd) {
     graphcommerceConfig ??= (0, loadConfig_1.loadConfig)(cwd);
     const importMetaPaths = (0, configToImportMeta_1.configToImportMeta)(graphcommerceConfig);
-    const { i18n } = graphcommerceConfig;
+    const { storefront } = graphcommerceConfig;
     const transpilePackages = [
         ...[...(0, resolveDependenciesSync_1.resolveDependenciesSync)().keys()].slice(1),
         ...(nextConfig.transpilePackages ?? []),
@@ -53,11 +53,12 @@ function withGraphCommerce(nextConfig, cwd) {
     return {
         ...nextConfig,
         i18n: {
-            defaultLocale: i18n.find((locale) => locale.defaultLocale)?.locale ?? i18n[0].locale,
-            locales: i18n.map((locale) => locale.locale),
+            defaultLocale: storefront.find((locale) => locale.defaultLocale)?.locale ?? storefront[0].locale,
+            locales: storefront.map((locale) => locale.locale),
             domains: [...domains(graphcommerceConfig), ...(nextConfig.i18n?.domains ?? [])],
         },
         images: {
+            ...nextConfig.images,
             domains: [
                 new URL(graphcommerceConfig.magentoEndpoint).hostname,
                 'media.graphassets.com',

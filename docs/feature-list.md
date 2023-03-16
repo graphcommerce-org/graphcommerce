@@ -39,7 +39,7 @@ Features taken from the Magento Commerce 2 Feature List
       store data. — [Commerce]
 - [x] Offer free shipping and percent, fixed amount, and buy X get Y free
       discounts. — [Commerce]
-- [ ] Set multi-tier pricing for quantity discounts. — [Todo]
+- [x] Set multi-tier pricing for quantity discounts.
 - [ ] Get minimum advertised price (MAP) support. — [Todo]
 
 ### Search engine optimization

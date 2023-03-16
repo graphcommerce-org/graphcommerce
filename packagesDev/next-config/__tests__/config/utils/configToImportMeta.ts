@@ -1,7 +1,7 @@
 import { configToImportMeta } from '../../../src/config/utils/configToImportMeta'
 
 const configFile = {
-  i18n: [{ locale: 'en', hygraphLocales: ['en'], magentoStoreCode: 'en_us' }],
+  storefront: [{ locale: 'en', hygraphLocales: ['en'], magentoStoreCode: 'en_us' }],
   customerRequireEmailConfirmation: false,
   demoMode: true,
   googleTagmanagerKey: 'GTM-XXXXXXX',
@@ -26,17 +26,17 @@ it('flattens a config object', () => {
       "import.meta.graphCommerce.deeper.nested.value": ""test"",
       "import.meta.graphCommerce.demoMode": "true",
       "import.meta.graphCommerce.googleTagmanagerKey": ""GTM-XXXXXXX"",
-      "import.meta.graphCommerce.i18n": "[{"locale":"en","hygraphLocales":["en"],"magentoStoreCode":"en_us"}]",
       "import.meta.graphCommerce.legacyProductRoute": "true",
       "import.meta.graphCommerce.productFiltersPro": "false",
+      "import.meta.graphCommerce.storefront": "[{"locale":"en","hygraphLocales":["en"],"magentoStoreCode":"en_us"}]",
     }
   `)
 })
 
 it('creates keys but does not stringify values', () => {
-  expect(configToImportMeta(configFile, false)).toMatchInlineSnapshot(`
+  expect(configToImportMeta(configFile, 'graphCommerce', false)).toMatchInlineSnapshot(`
     {
-      "import.meta.graphCommerce": {
+      "graphCommerce": {
         "customerRequireEmailConfirmation": false,
         "deeper": {
           "arrayvalue": [
@@ -48,7 +48,9 @@ it('creates keys but does not stringify values', () => {
         },
         "demoMode": true,
         "googleTagmanagerKey": "GTM-XXXXXXX",
-        "i18n": [
+        "legacyProductRoute": true,
+        "productFiltersPro": false,
+        "storefront": [
           {
             "hygraphLocales": [
               "en",
@@ -57,11 +59,9 @@ it('creates keys but does not stringify values', () => {
             "magentoStoreCode": "en_us",
           },
         ],
-        "legacyProductRoute": true,
-        "productFiltersPro": false,
       },
-      "import.meta.graphCommerce.customerRequireEmailConfirmation": false,
-      "import.meta.graphCommerce.deeper": {
+      "graphCommerce.customerRequireEmailConfirmation": false,
+      "graphCommerce.deeper": {
         "arrayvalue": [
           "test",
         ],
@@ -69,16 +69,16 @@ it('creates keys but does not stringify values', () => {
           "value": "test",
         },
       },
-      "import.meta.graphCommerce.deeper.arrayvalue": "["test"]",
-      "import.meta.graphCommerce.deeper.nested": {
+      "graphCommerce.deeper.arrayvalue": "["test"]",
+      "graphCommerce.deeper.nested": {
         "value": "test",
       },
-      "import.meta.graphCommerce.deeper.nested.value": "test",
-      "import.meta.graphCommerce.demoMode": true,
-      "import.meta.graphCommerce.googleTagmanagerKey": "GTM-XXXXXXX",
-      "import.meta.graphCommerce.i18n": "[{"locale":"en","hygraphLocales":["en"],"magentoStoreCode":"en_us"}]",
-      "import.meta.graphCommerce.legacyProductRoute": true,
-      "import.meta.graphCommerce.productFiltersPro": false,
+      "graphCommerce.deeper.nested.value": "test",
+      "graphCommerce.demoMode": true,
+      "graphCommerce.googleTagmanagerKey": "GTM-XXXXXXX",
+      "graphCommerce.legacyProductRoute": true,
+      "graphCommerce.productFiltersPro": false,
+      "graphCommerce.storefront": "[{"locale":"en","hygraphLocales":["en"],"magentoStoreCode":"en_us"}]",
     }
   `)
 })

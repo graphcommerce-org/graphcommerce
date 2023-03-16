@@ -1,4 +1,13 @@
-import { alpha, Box, BoxProps, ButtonBase, ButtonProps, SxProps, Theme } from '@mui/material'
+import {
+  alpha,
+  Box,
+  BoxProps,
+  ButtonBase,
+  ButtonProps,
+  lighten,
+  SxProps,
+  Theme,
+} from '@mui/material'
 import React from 'react'
 import { extendableComponent, responsiveVal } from '../Styles'
 import { breakpointVal } from '../Styles/breakpointVal'
@@ -143,10 +152,10 @@ export function ActionCard(props: ActionCardProps) {
               borderBottom: `1px solid ${theme.palette.divider}`,
             },
             '&.selected': {
-              backgroundColor: `${alpha(
-                theme.palette[color].main,
-                theme.palette.action.hoverOpacity,
-              )}`,
+              backgroundColor:
+                theme.palette.mode === 'light'
+                  ? alpha(theme.palette[color].main, theme.palette.action.hoverOpacity)
+                  : lighten(theme.palette.background.default, theme.palette.action.hoverOpacity),
             },
             '&.error': {
               backgroundColor: `${alpha(

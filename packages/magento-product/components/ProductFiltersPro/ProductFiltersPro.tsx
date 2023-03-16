@@ -1,5 +1,5 @@
 import { useForm, UseFormProps, UseFormReturn } from '@graphcommerce/ecommerce-ui'
-import React, { BaseSyntheticEvent, createContext, useContext, useMemo } from 'react'
+import React, { BaseSyntheticEvent, createContext, useContext, useEffect, useMemo } from 'react'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import {
   ProductFilterParams,
@@ -36,13 +36,11 @@ export type FilterFormProviderProps = Omit<
 export function ProductFiltersPro(props: FilterFormProviderProps) {
   const { children, params, ...formProps } = props
 
-  const form = useForm<ProductFilterParams>({ defaultValues: toFilterParams(params), ...formProps })
+  const form = useForm<ProductFilterParams>({ values: toFilterParams(params), ...formProps })
   const { handleSubmit } = form
 
   const push = useProductListLinkReplace({ scroll: false })
-  const submit = handleSubmit(async (formValues) =>
-    push({ ...params, ...toProductListParams(formValues) }),
-  )
+  const submit = handleSubmit(async (formValues) => push(toProductListParams(formValues)))
 
   return (
     <FilterFormContext.Provider

@@ -1,5 +1,27 @@
 # Change Log
 
+## 6.0.0-canary.49
+
+## 6.0.0-canary.48
+
+## 6.0.0-canary.47
+
+## 6.0.0-canary.46
+
+## 6.0.0-canary.45
+
+## 6.0.0-canary.44
+
+## 6.0.0-canary.43
+
+### Minor Changes
+
+- [#1841](https://github.com/graphcommerce-org/graphcommerce/pull/1841) [`45befd304`](https://github.com/graphcommerce-org/graphcommerce/commit/45befd3040eb45f7f7204312cd532432ae84dc4d) - Always fetch the CartTotals when changing the payment method and automatically submit the currently selected payment method. ([@paales](https://github.com/paales))
+
+## 6.0.0-canary.42
+
+## 6.0.0-canary.41
+
 ## 6.0.0-canary.40
 
 ## 6.0.0-canary.39

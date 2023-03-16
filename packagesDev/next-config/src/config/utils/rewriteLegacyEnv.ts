@@ -4,8 +4,8 @@ import { ApplyResult, mergeEnvIntoConfig, ZodNode } from './mergeEnvIntoConfig'
 
 export function rewriteLegacyEnv(
   schema: ZodNode,
-  config: Partial<GraphCommerceConfig>,
   env: Record<string, string | undefined>,
+  config: Partial<GraphCommerceConfig> = {},
 ) {
   const clonedEnv: Record<string, string | undefined> = cloneDeep(env)
   const applied: ApplyResult = []
@@ -48,15 +48,15 @@ export function rewriteLegacyEnv(
       const parsed = JSON.parse(envValue) as Record<string, string>
 
       applied.push({
-        warning: ['env variable is is modified, rewritten to GC_I18N.'],
+        warning: ['env variable is is modified, rewritten to GC_STOREFRONT.'],
         envVar,
         envValue,
       })
 
-      clonedEnv.GC_I18N = JSON.stringify(
+      clonedEnv.GC_STOREFRONT = JSON.stringify(
         Object.entries(parsed).map(([locale, magentoStoreCode], index) => {
-          if (!config.i18n) config.i18n = []
-          config.i18n[index] = { ...config.i18n[index], locale, magentoStoreCode }
+          if (!config.storefront) config.storefront = []
+          config.storefront[index] = { ...config.storefront[index], locale, magentoStoreCode }
           return { locale, magentoStoreCode }
         }),
       )
@@ -68,15 +68,15 @@ export function rewriteLegacyEnv(
         const parsed = JSON.parse(envValue) as Record<string, string>
 
         clonedEnv.GC_GOOGLE_ANALYTICS_ID = 'enabled'
-        if (!config.i18n) config.i18n = []
-        config.i18n.forEach((i18n, index) => {
-          if (parsed[i18n.locale]) {
-            clonedEnv[`GC_I18N_${index}_GOOGLE_ANALYTICS_ID`] = parsed[i18n.locale]
+        if (!config.storefront) config.storefront = []
+        config.storefront.forEach((storefront, index) => {
+          if (parsed[storefront.locale]) {
+            clonedEnv[`GC_STOREFRONT_${index}_GOOGLE_ANALYTICS_ID`] = parsed[storefront.locale]
           }
         })
 
         applied.push({
-          warning: ['should be rewritten to GC_I18N_*_GOOGLE_ANALYTICS_ID'],
+          warning: ['should be rewritten to GC_STOREFRONT_*_GOOGLE_ANALYTICS_ID'],
           envVar,
           envValue,
         })
@@ -89,10 +89,10 @@ export function rewriteLegacyEnv(
     NEXT_PUBLIC_DISPLAY_INCL_TAX: (envVar: string, envValue: string) => {
       const inclTax = envValue.split(',').map((i) => i.trim())
 
-      if (!config.i18n) config.i18n = []
-      config.i18n.forEach((i18n, index) => {
-        if (!inclTax.includes(i18n.locale)) return null
-        clonedEnv[`GC_I18N_${index}_CART_DISPLAY_PRICES_INCL_TAX`] = '1'
+      if (!config.storefront) config.storefront = []
+      config.storefront.forEach((storefront, index) => {
+        if (!inclTax.includes(storefront.locale)) return null
+        clonedEnv[`GC_STOREFRONT_${index}_CART_DISPLAY_PRICES_INCL_TAX`] = '1'
       })
 
       applied.push({

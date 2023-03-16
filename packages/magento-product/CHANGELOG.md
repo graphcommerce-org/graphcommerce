@@ -1,5 +1,27 @@
 # Change Log
 
+## 6.0.0-canary.49
+
+### Patch Changes
+
+- [#1847](https://github.com/graphcommerce-org/graphcommerce/pull/1847) [`e0d43194a`](https://github.com/graphcommerce-org/graphcommerce/commit/e0d43194a4a2d2852cac27ab3c1efbc172d0d229) - ProductFiltersPro should not route to an old page because the form wasn't reset to be in sync with the URL. ([@paales](https://github.com/paales))
+
+## 6.0.0-canary.48
+
+## 6.0.0-canary.47
+
+## 6.0.0-canary.46
+
+## 6.0.0-canary.45
+
+## 6.0.0-canary.44
+
+## 6.0.0-canary.43
+
+## 6.0.0-canary.42
+
+## 6.0.0-canary.41
+
 ## 6.0.0-canary.40
 
 ## 6.0.0-canary.39

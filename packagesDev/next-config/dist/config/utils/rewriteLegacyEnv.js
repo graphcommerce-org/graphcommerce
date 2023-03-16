@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.rewriteLegacyEnv = void 0;
 const cloneDeep_1 = __importDefault(require("lodash/cloneDeep"));
 const mergeEnvIntoConfig_1 = require("./mergeEnvIntoConfig");
-function rewriteLegacyEnv(schema, config, env) {
+function rewriteLegacyEnv(schema, env, config = {}) {
     const clonedEnv = (0, cloneDeep_1.default)(env);
     const applied = [];
     function renamedTo(to) {
@@ -44,14 +44,14 @@ function rewriteLegacyEnv(schema, config, env) {
         NEXT_PUBLIC_LOCALE_STORES: (envVar, envValue) => {
             const parsed = JSON.parse(envValue);
             applied.push({
-                warning: ['env variable is is modified, rewritten to GC_I18N.'],
+                warning: ['env variable is is modified, rewritten to GC_STOREFRONT.'],
                 envVar,
                 envValue,
             });
-            clonedEnv.GC_I18N = JSON.stringify(Object.entries(parsed).map(([locale, magentoStoreCode], index) => {
-                if (!config.i18n)
-                    config.i18n = [];
-                config.i18n[index] = { ...config.i18n[index], locale, magentoStoreCode };
+            clonedEnv.GC_STOREFRONT = JSON.stringify(Object.entries(parsed).map(([locale, magentoStoreCode], index) => {
+                if (!config.storefront)
+                    config.storefront = [];
+                config.storefront[index] = { ...config.storefront[index], locale, magentoStoreCode };
                 return { locale, magentoStoreCode };
             }));
         },
@@ -61,15 +61,15 @@ function rewriteLegacyEnv(schema, config, env) {
             if (envValue.startsWith('{')) {
                 const parsed = JSON.parse(envValue);
                 clonedEnv.GC_GOOGLE_ANALYTICS_ID = 'enabled';
-                if (!config.i18n)
-                    config.i18n = [];
-                config.i18n.forEach((i18n, index) => {
-                    if (parsed[i18n.locale]) {
-                        clonedEnv[`GC_I18N_${index}_GOOGLE_ANALYTICS_ID`] = parsed[i18n.locale];
+                if (!config.storefront)
+                    config.storefront = [];
+                config.storefront.forEach((storefront, index) => {
+                    if (parsed[storefront.locale]) {
+                        clonedEnv[`GC_STOREFRONT_${index}_GOOGLE_ANALYTICS_ID`] = parsed[storefront.locale];
                     }
                 });
                 applied.push({
-                    warning: ['should be rewritten to GC_I18N_*_GOOGLE_ANALYTICS_ID'],
+                    warning: ['should be rewritten to GC_STOREFRONT_*_GOOGLE_ANALYTICS_ID'],
                     envVar,
                     envValue,
                 });
@@ -80,12 +80,12 @@ function rewriteLegacyEnv(schema, config, env) {
         NEXT_PUBLIC_GOOGLE_RECAPTCHA_V3_SITE_KEY: renamedTo('GC_GOOGLE_RECAPTCHA_KEY'),
         NEXT_PUBLIC_DISPLAY_INCL_TAX: (envVar, envValue) => {
             const inclTax = envValue.split(',').map((i) => i.trim());
-            if (!config.i18n)
-                config.i18n = [];
-            config.i18n.forEach((i18n, index) => {
-                if (!inclTax.includes(i18n.locale))
+            if (!config.storefront)
+                config.storefront = [];
+            config.storefront.forEach((storefront, index) => {
+                if (!inclTax.includes(storefront.locale))
                     return null;
-                clonedEnv[`GC_I18N_${index}_CART_DISPLAY_PRICES_INCL_TAX`] = '1';
+                clonedEnv[`GC_STOREFRONT_${index}_CART_DISPLAY_PRICES_INCL_TAX`] = '1';
             });
             applied.push({
                 warning: ['env variable is renamed, move to configuration: cartDisplayPricesInclTax'],

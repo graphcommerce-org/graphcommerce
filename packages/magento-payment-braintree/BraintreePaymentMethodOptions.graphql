@@ -19,9 +19,7 @@ mutation BraintreePaymentMethodOptions(
     }
   ) {
     cart {
-      selected_payment_method {
-        ...SelectedPaymentMethod
-      }
+      ...PaymentMethodUpdated
     }
   }
 }

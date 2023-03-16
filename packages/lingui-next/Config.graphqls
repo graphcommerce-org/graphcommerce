@@ -1,4 +1,4 @@
-extend input GraphCommerceI18nConfig {
+extend input GraphCommerceStorefrontConfig {
   """
   Specify a custom locale for to load translations.
   """

@@ -19,11 +19,15 @@ function flattenKeys(
   }
 
   if (typeof value === 'object') {
-    return {
-      [initialPathPrefix]:
+    let outputValue: object | string = value
+    if (stringify)
+      outputValue =
         process.env.NODE_ENV !== 'production'
           ? `{ __debug: "'${initialPathPrefix}' can not be destructured, please access deeper properties directly" }`
-          : '{}',
+          : '{}'
+
+    return {
+      [initialPathPrefix]: outputValue,
 
       ...Object.keys(value)
         .map((key) => {
@@ -38,6 +42,10 @@ function flattenKeys(
 }
 
 /** The result of this function is passed to the webpack DefinePlugin as import.meta.graphCommerce.* */
-export function configToImportMeta(config: unknown, stringify = true) {
-  return flattenKeys(config, 'import.meta.graphCommerce', stringify) as Record<string, string>
+export function configToImportMeta(
+  config: unknown,
+  path = 'import.meta.graphCommerce',
+  stringify = true,
+) {
+  return flattenKeys(config, path, stringify) as Record<string, string>
 }
