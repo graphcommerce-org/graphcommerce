@@ -522,6 +522,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
                 },
                 '&.variantSmLeft, &.variantSmRight': {
                   width: widthSm || 'max-content',
+                  boxShadow: theme.shadows[24],
                   maxHeight: dvh(100),
                   '&.sizeSmFull': {
                     height: dvh(100),
@@ -570,6 +571,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
                 },
                 '&.variantMdLeft, &.variantMdRight': {
                   width: widthMd || 'max-content',
+                  boxShadow: theme.shadows[24],
                   maxHeight: dvh(100),
                   '&.sizeMdFull': {
                     height: dvh(100),
