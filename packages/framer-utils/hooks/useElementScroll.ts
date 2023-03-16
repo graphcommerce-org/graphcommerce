@@ -51,14 +51,15 @@ export function useElementScroll(ref?: RefObject<HTMLElement | undefined>): Scro
     if (!element) return () => {}
 
     const updater = () => {
-      if (scroll.get().animating) return
-
       const scrollValue: ScrollMotionValue = {
-        animating: false,
-        x: element.scrollLeft,
-        y: element.scrollTop,
+        ...scroll.get(),
         xMax: Math.max(0, element.scrollWidth - element.offsetWidth),
         yMax: Math.max(0, element.scrollHeight - element.offsetHeight),
+      }
+
+      if (!scroll.get().animating) {
+        scrollValue.x = element.scrollLeft
+        scrollValue.y = element.scrollTop
       }
 
       if (!equal(scrollValue, scroll.get())) scroll.set(scrollValue)
