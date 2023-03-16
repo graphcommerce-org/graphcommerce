@@ -1,5 +1,11 @@
 # @graphcommerce/demo-magento-graphcommerce
 
+## 6.0.0-canary.51
+
+### Patch Changes
+
+- [#1846](https://github.com/graphcommerce-org/graphcommerce/pull/1846) [`83e79f160`](https://github.com/graphcommerce-org/graphcommerce/commit/83e79f1600983c76b959ca1b2ceefd56aac80a7a) - Add deprecation warnings to RowButtonLinkList and RowContentLinks ([@ErwinOtten](https://github.com/ErwinOtten))
+
 ## 6.0.0-canary.50
 
 ## 6.0.0-canary.49
