@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.0-canary.54
+
+### Minor Changes
+
+- [#1789](https://github.com/graphcommerce-org/graphcommerce/pull/1789) [`145fdef9f`](https://github.com/graphcommerce-org/graphcommerce/commit/145fdef9f882e9517bdc00070108cdc28f30e078) - Add some Mollie payment icons ([@StefanAngenent](https://github.com/StefanAngenent))
+
 ## 6.0.0-canary.53
 
 ## 6.0.0-canary.52
