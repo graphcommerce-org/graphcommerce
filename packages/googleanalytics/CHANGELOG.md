@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.0-canary.52
+
+### Patch Changes
+
+- [#1809](https://github.com/graphcommerce-org/graphcommerce/pull/1809) [`2da3c9214`](https://github.com/graphcommerce-org/graphcommerce/commit/2da3c92148aef08813b95e404a25796acf0eefd2) - Added useMemoObject and implement in GaViewItem, GoogleAnalyticsItemList and GaCartStartCheckoutLinkOrButton ([@mikekeehnen](https://github.com/mikekeehnen))
+
 ## 6.0.0-canary.51
 
 ## 6.0.0-canary.50
