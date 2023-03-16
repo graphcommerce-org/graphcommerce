@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.0-canary.53
+
+### Patch Changes
+
+- [#1850](https://github.com/graphcommerce-org/graphcommerce/pull/1850) [`f9c703e1e`](https://github.com/graphcommerce-org/graphcommerce/commit/f9c703e1e37d529aa65b30ac5b3d72417869ecef) - - Fix rendering EmailForm component so that it does not render the email field if a user is logged. ([@LaurensFranken](https://github.com/LaurensFranken))
+
 ## 6.0.0-canary.52
 
 ## 6.0.0-canary.51

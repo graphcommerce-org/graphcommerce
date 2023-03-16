@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.0-canary.53
+
+### Patch Changes
+
+- [#1850](https://github.com/graphcommerce-org/graphcommerce/pull/1850) [`e75b47e31`](https://github.com/graphcommerce-org/graphcommerce/commit/e75b47e31a01533e9c47412a91b77e25bed24a1a) - - Fix render condition of CustomerAddressForm so it only renders when a customer has at least one address. ([@LaurensFranken](https://github.com/LaurensFranken))
+
 ## 6.0.0-canary.52
 
 ## 6.0.0-canary.51
