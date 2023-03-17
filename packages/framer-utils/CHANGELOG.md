@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.0
+
+### Patch Changes
+
+- [#1829](https://github.com/graphcommerce-org/graphcommerce/pull/1829) [`52ecfc2ad`](https://github.com/graphcommerce-org/graphcommerce/commit/52ecfc2ad25fc6ef92465862fb94c1829bdd7c52) - CSS dvh property is now used when supported by browsers, causing less rerenders with overlays. ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 6.0.0-canary.54
 
 ## 6.0.0-canary.53

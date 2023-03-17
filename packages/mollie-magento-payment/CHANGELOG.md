@@ -1,5 +1,17 @@
 # Change Log
 
+## 6.0.0
+
+### Minor Changes
+
+- [#1789](https://github.com/graphcommerce-org/graphcommerce/pull/1789) [`145fdef9f`](https://github.com/graphcommerce-org/graphcommerce/commit/145fdef9f882e9517bdc00070108cdc28f30e078) - Mollie methods now all have an icon ([@StefanAngenent](https://github.com/StefanAngenent))
+
+### Patch Changes
+
+- [#1851](https://github.com/graphcommerce-org/graphcommerce/pull/1851) [`98fba5968`](https://github.com/graphcommerce-org/graphcommerce/commit/98fba5968c579e240dbe3236838b41a6d390acb9) - Mollie would show an error when the paymentStatus would be OPEN. ([@paales](https://github.com/paales))
+
+- [#1851](https://github.com/graphcommerce-org/graphcommerce/pull/1851) [`887110287`](https://github.com/graphcommerce-org/graphcommerce/commit/8871102875e5f023c5d962b1a7d246492d1909c6) - Mollie order success would hang on the payment page because there wasn't a cart_id in the URL present. ([@paales](https://github.com/paales))
+
 ## 6.0.0-canary.54
 
 ### Minor Changes

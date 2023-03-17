@@ -1,5 +1,11 @@
 # @graphcommerce/magento-pagebuilder
 
+## 6.0.0
+
+### Patch Changes
+
+- [#1749](https://github.com/graphcommerce-org/graphcommerce/pull/1749) [`16e91da42`](https://github.com/graphcommerce-org/graphcommerce/commit/16e91da42dcb454ea4761d1780b9338c88ef1463) - Corrected spelling mistake: incomming to incoming ([@paales](https://github.com/paales))
+
 ## 6.0.0-canary.54
 
 ## 6.0.0-canary.53

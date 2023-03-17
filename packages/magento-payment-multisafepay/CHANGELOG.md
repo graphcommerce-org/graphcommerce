@@ -1,5 +1,17 @@
 # @graphcommerce/magento-payment-multisafepay
 
+## 6.0.0
+
+### Minor Changes
+
+- [#1790](https://github.com/graphcommerce-org/graphcommerce/pull/1790) [`1fbd1e2b2`](https://github.com/graphcommerce-org/graphcommerce/commit/1fbd1e2b20cd875c481e10a81343da961c8baf8f) - MultiSafePay now shows an error snackbar, added the ability to restore/refetch the cart, and a fix for the cart not being found when restoring the cart. ([@LaurensFranken](https://github.com/LaurensFranken))
+
+### Patch Changes
+
+- [#1841](https://github.com/graphcommerce-org/graphcommerce/pull/1841) [`beb75b7a5`](https://github.com/graphcommerce-org/graphcommerce/commit/beb75b7a5c8f32f0b74b62bb0931baf887b17adf) - Muiltisafepay: `MSPPaymentOptionsAndPlaceOrder` is now split into two separate components to allow for surcharges when selecting a payment method. ([@paales](https://github.com/paales))
+
+- [#1778](https://github.com/graphcommerce-org/graphcommerce/pull/1778) [`bac564119`](https://github.com/graphcommerce-org/graphcommerce/commit/bac5641198b8c91df0e27a730cd663fd177afc70) - Added proper translations for iDeal Multi Safe Pay ([@FrankHarland](https://github.com/FrankHarland))
+
 ## 6.0.0-canary.54
 
 ## 6.0.0-canary.53

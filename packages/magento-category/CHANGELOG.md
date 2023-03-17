@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.0
+
+### Patch Changes
+
+- [#1786](https://github.com/graphcommerce-org/graphcommerce/pull/1786) [`63cfbd4ea`](https://github.com/graphcommerce-org/graphcommerce/commit/63cfbd4ea33978ccfe45c156ef07ece72add70ce) - Loosen typescript requirement for CategoryMeta ([@paales](https://github.com/paales))
+
 ## 6.0.0-canary.54
 
 ## 6.0.0-canary.53

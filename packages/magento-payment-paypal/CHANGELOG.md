@@ -1,5 +1,17 @@
 # @graphcommerce/magento-payment-paypal
 
+## 6.0.0
+
+### Patch Changes
+
+- [#1841](https://github.com/graphcommerce-org/graphcommerce/pull/1841) [`03c104d7f`](https://github.com/graphcommerce-org/graphcommerce/commit/03c104d7f5d4ffd71eb9e26fe4fd4b77fd4c23c8) - Split `PayPalPaymentOptionsAndPlaceOrder` in `PaymentOptionsNoop` and `PayPalPaymentPlaceOrder` components to allow for surcharges when selecting a payment method. ([@paales](https://github.com/paales))
+
+- [#1841](https://github.com/graphcommerce-org/graphcommerce/pull/1841) [`1ff022c4b`](https://github.com/graphcommerce-org/graphcommerce/commit/1ff022c4bd8ad1d9fa8c1760076f003af06ce421) - PaymentMethodUpdated is now @injectable to allow for easier customisation. ([@paales](https://github.com/paales))
+
+- [#1851](https://github.com/graphcommerce-org/graphcommerce/pull/1851) [`5adadf4ba`](https://github.com/graphcommerce-org/graphcommerce/commit/5adadf4ba023e861409a3925b5cda1e20dbb256c) - Make sure the PayerID isn’t required for non-paypal method ([@paales](https://github.com/paales))
+
+- [#1790](https://github.com/graphcommerce-org/graphcommerce/pull/1790) [`ab4d6d8e1`](https://github.com/graphcommerce-org/graphcommerce/commit/ab4d6d8e18485b4ca4ca98f534e4f64f6849d952) - Make sure the payment method is set before we’re creating a paypal express token, so possible surcharges get applied ([@LaurensFranken](https://github.com/LaurensFranken))
+
 ## 6.0.0-canary.54
 
 ## 6.0.0-canary.53

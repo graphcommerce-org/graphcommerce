@@ -1,5 +1,13 @@
 # Change Log
 
+## 6.0.0
+
+### Patch Changes
+
+- [#1821](https://github.com/graphcommerce-org/graphcommerce/pull/1821) [`1abc50a21`](https://github.com/graphcommerce-org/graphcommerce/commit/1abc50a21103270fad04e4a9ea892ee1e75233e9) - Upgrade packages to latest version ([@paales](https://github.com/paales))
+
+- [#1830](https://github.com/graphcommerce-org/graphcommerce/pull/1830) [`b2fa21490`](https://github.com/graphcommerce-org/graphcommerce/commit/b2fa2149001cc304d9640bb35f485827ddf9f34a) - When using `i18n` in getStaticProps it could return an incorrect language. ([@paales](https://github.com/paales))
+
 ## 6.0.0-canary.54
 
 ## 6.0.0-canary.53

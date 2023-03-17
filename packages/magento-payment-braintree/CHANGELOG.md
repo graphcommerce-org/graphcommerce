@@ -1,5 +1,19 @@
 # Change Log
 
+## 6.0.0
+
+### Major Changes
+
+- [#1766](https://github.com/graphcommerce-org/graphcommerce/pull/1766) [`e34169ee2`](https://github.com/graphcommerce-org/graphcommerce/commit/e34169ee2e0fdc052ff589ceca0bc67557584c1f) - Upgraded to Next.js 13
+
+  - NextLink integrates the next/link functionality with @mui/material's Link and ButtonBase (and all it's derivatives) components.
+  - NextLink automatically adds `target="_blank"` when the href is external.
+  - NextLink makes all relative href absolute. `href="my-page"` will be rendered as `href="/my-page"`. ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#1841](https://github.com/graphcommerce-org/graphcommerce/pull/1841) [`1ff022c4b`](https://github.com/graphcommerce-org/graphcommerce/commit/1ff022c4bd8ad1d9fa8c1760076f003af06ce421) - PaymentMethodUpdated is now @injectable to allow for easier customisation. ([@paales](https://github.com/paales))
+
 ## 6.0.0-canary.54
 
 ## 6.0.0-canary.53

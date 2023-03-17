@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.0
+
+### Patch Changes
+
+- [#1797](https://github.com/graphcommerce-org/graphcommerce/pull/1797) [`b3962828a`](https://github.com/graphcommerce-org/graphcommerce/commit/b3962828a2918e29391d16c9e2f457ea4669c3f6) - Search now uses `TextFieldElement` instead of `Textfield` which fixes the search. ([@carlocarels90](https://github.com/carlocarels90))
+
 ## 6.0.0-canary.54
 
 ## 6.0.0-canary.53

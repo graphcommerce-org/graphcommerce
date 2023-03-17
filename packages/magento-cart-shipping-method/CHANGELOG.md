@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.0
+
+### Patch Changes
+
+- [#1773](https://github.com/graphcommerce-org/graphcommerce/pull/1773) [`cf501ba04`](https://github.com/graphcommerce-org/graphcommerce/commit/cf501ba045d337f4693c9f90f6f756dc39fec478) - Shipping method prices would show the wrong tax value. ([@paales](https://github.com/paales))
+
 ## 6.0.0-canary.54
 
 ## 6.0.0-canary.53

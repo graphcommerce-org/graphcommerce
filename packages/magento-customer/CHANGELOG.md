@@ -1,5 +1,25 @@
 # Change Log
 
+## 6.0.0
+
+### Minor Changes
+
+- [#1816](https://github.com/graphcommerce-org/graphcommerce/pull/1816) [`f61e2e572`](https://github.com/graphcommerce-org/graphcommerce/commit/f61e2e5721806c258b771a7ed5165da8dc7b815b) - Add feedback messages on 'add address form' ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#1779](https://github.com/graphcommerce-org/graphcommerce/pull/1779) [`6c6d7e4d7`](https://github.com/graphcommerce-org/graphcommerce/commit/6c6d7e4d7cf5d68a39acc82b91e1f3acce366517) - Added postcode check for Dutch address fields. Ddds an autocomplete field for the street name and city based of the customers postcode + street number + addition. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+### Patch Changes
+
+- [#1768](https://github.com/graphcommerce-org/graphcommerce/pull/1768) [`23e9a4728`](https://github.com/graphcommerce-org/graphcommerce/commit/23e9a472899dfc0b56b989f5d0e8ffb802c8cc5f) - Deprecated @graphcommerce/magento-customer-account & @graphcommerce/magento-customer-order packages and moved all functionality to @graphcomemrce/magento-customer ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#1768](https://github.com/graphcommerce-org/graphcommerce/pull/1768) [`7e8dcf447`](https://github.com/graphcommerce-org/graphcommerce/commit/7e8dcf44777aca527c07aaee397d272dd2f6ae44) - Customer accoutn address list now updates after deleting an address. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#1768](https://github.com/graphcommerce-org/graphcommerce/pull/1768) [`9f0e9ab2d`](https://github.com/graphcommerce-org/graphcommerce/commit/9f0e9ab2dec3f9261ae00e9fd44d06a65ddb1d0d) - After editing an address in the my account section it, the user will now be redirected to the over page, instead of redirecting to the edit page. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#1801](https://github.com/graphcommerce-org/graphcommerce/pull/1801) [`12263d608`](https://github.com/graphcommerce-org/graphcommerce/commit/12263d6080c1e550985a42f140ffa9d95d0b0335) - Added translations for the sign-up form. ([@StefanAngenent](https://github.com/StefanAngenent))
+
+- [#1769](https://github.com/graphcommerce-org/graphcommerce/pull/1769) [`2693a616a`](https://github.com/graphcommerce-org/graphcommerce/commit/2693a616af2f9793012a5fb2eeacc084e695b83e) - WaitForCustomer now accepts overridable components for the fallback and unauthenticated state. ([@mikekeehnen](https://github.com/mikekeehnen))
+
 ## 6.0.0-canary.54
 
 ## 6.0.0-canary.53

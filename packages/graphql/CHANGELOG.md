@@ -1,5 +1,15 @@
 # Change Log
 
+## 6.0.0
+
+### Patch Changes
+
+- [#1821](https://github.com/graphcommerce-org/graphcommerce/pull/1821) [`1abc50a21`](https://github.com/graphcommerce-org/graphcommerce/commit/1abc50a21103270fad04e4a9ea892ee1e75233e9) - Upgrade packages to latest version ([@paales](https://github.com/paales))
+
+- [#1749](https://github.com/graphcommerce-org/graphcommerce/pull/1749) [`16e91da42`](https://github.com/graphcommerce-org/graphcommerce/commit/16e91da42dcb454ea4761d1780b9338c88ef1463) - Corrected spelling mistake: incomming to incoming ([@paales](https://github.com/paales))
+
+- [#1851](https://github.com/graphcommerce-org/graphcommerce/pull/1851) [`550fd9f4f`](https://github.com/graphcommerce-org/graphcommerce/commit/550fd9f4ff8ce1a78254d7f1d711236f0d9ddef7) - Performance logging in the console is now more compact and will not wrap multiple lines. ([@paales](https://github.com/paales))
+
 ## 6.0.0-canary.54
 
 ## 6.0.0-canary.53

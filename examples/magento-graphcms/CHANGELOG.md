@@ -1,5 +1,67 @@
 # Change Log
 
+## 6.0.0
+
+### Major Changes
+
+- [#1786](https://github.com/graphcommerce-org/graphcommerce/pull/1786) [`26239ef73`](https://github.com/graphcommerce-org/graphcommerce/commit/26239ef73e49731224b227f1eb850dde56d40584) - Updated the supported NodeJS versions to 16 and 18, removed support for NodeJS 14. ([@paales](https://github.com/paales))
+
+- [#1832](https://github.com/graphcommerce-org/graphcommerce/pull/1832) [`26d4243d5`](https://github.com/graphcommerce-org/graphcommerce/commit/26d4243d5b63d604e5a36386d9b01914db5f2918) - Added a new RowLink component with variants: Inline, ImageLabelSwiper, LogoSwiper and Usps. Updated the demo to show off these new components. ([@ErwinOtten](https://github.com/ErwinOtten))
+
+- [#1749](https://github.com/graphcommerce-org/graphcommerce/pull/1749) [`0cc472915`](https://github.com/graphcommerce-org/graphcommerce/commit/0cc4729154d316227a41712b5f0adf514768e91f) - Introducing the new ProductFiltersPro component set with completely new filter and UI behavior. Filters will appear as a popper on the md and up breakpoints and as an overlay on sm and below breakpoints. Filters now have an Apply button instead of applying directly. ([@paales](https://github.com/paales))
+
+- [#1766](https://github.com/graphcommerce-org/graphcommerce/pull/1766) [`e34169ee2`](https://github.com/graphcommerce-org/graphcommerce/commit/e34169ee2e0fdc052ff589ceca0bc67557584c1f) - Upgraded to Next.js 13
+
+  - NextLink integrates the next/link functionality with @mui/material's Link and ButtonBase (and all it's derivatives) components.
+  - NextLink automatically adds `target="_blank"` when the href is external.
+  - NextLink makes all relative href absolute. `href="my-page"` will be rendered as `href="/my-page"`. ([@paales](https://github.com/paales))
+
+- [#1786](https://github.com/graphcommerce-org/graphcommerce/pull/1786) [`b76679204`](https://github.com/graphcommerce-org/graphcommerce/commit/b766792049e1e6ebe45671c0b36e78746ef159e2) - Created a completely new [GraphCommerce config system](https://www.graphcommerce.org/docs/framework/config) to allow for greater confiugration options and rely less on a .env file to configuration.
+
+  - GraphCommerce can be configured in the graphcommerce.config.js
+  - The configuration is automatically validated on startup.
+  - All configuration values can be overwritten by environment variables. ([@paales](https://github.com/paales))
+
+### Minor Changes
+
+- [#1814](https://github.com/graphcommerce-org/graphcommerce/pull/1814) [`15aa59049`](https://github.com/graphcommerce-org/graphcommerce/commit/15aa590493bf7639231f3bb3dd623c234ebad7cf) - ActionCard default styling introduced for a more inline and changed the look of selected filters. ([@ErwinOtten](https://github.com/ErwinOtten))
+
+- [#1828](https://github.com/graphcommerce-org/graphcommerce/pull/1828) [`3df85faf1`](https://github.com/graphcommerce-org/graphcommerce/commit/3df85faf189b95e2c7d9c3fc756474fcafb1c8b4) - Added a new `productRoute` configuration to create freedom in the actual product route used (default: /p/). Simplified redirects from legacy product routes to new routes by creating redirects. ([@paales](https://github.com/paales))
+
+- [#1790](https://github.com/graphcommerce-org/graphcommerce/pull/1790) [`1fbd1e2b2`](https://github.com/graphcommerce-org/graphcommerce/commit/1fbd1e2b20cd875c481e10a81343da961c8baf8f) - PayPal now shows the ‘processing payment’ message giving the impression it wasn’t doing anything. This adds the check for the PayerID in the useCartLock hook. ([@LaurensFranken](https://github.com/LaurensFranken))
+
+- [#1810](https://github.com/graphcommerce-org/graphcommerce/pull/1810) [`543c5d5b2`](https://github.com/graphcommerce-org/graphcommerce/commit/543c5d5b2b6f29c1f6a0a405524d4cc86f399596) - Added `limitSsg: Boolean` configuration option to limit the getStaticPaths generation during build. This is useful to make quick deployments on preview environments. ([@paales](https://github.com/paales))
+
+- [#1816](https://github.com/graphcommerce-org/graphcommerce/pull/1816) [`f61e2e572`](https://github.com/graphcommerce-org/graphcommerce/commit/f61e2e5721806c258b771a7ed5165da8dc7b815b) - Add feedback messages on 'add address form' ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#1793](https://github.com/graphcommerce-org/graphcommerce/pull/1793) [`5562fa69b`](https://github.com/graphcommerce-org/graphcommerce/commit/5562fa69b1bc260f68555dcfaf30153eda489bed) - Add newsletter subscribe form ([@ErwinOtten](https://github.com/ErwinOtten))
+
+- [#1833](https://github.com/graphcommerce-org/graphcommerce/pull/1833) [`7dc3e036c`](https://github.com/graphcommerce-org/graphcommerce/commit/7dc3e036c776224aa184e03cc957dcb8d3faa55c) - Added ability to have local plugins and added example plugin in the plugins directory ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#1821](https://github.com/graphcommerce-org/graphcommerce/pull/1821) [`1abc50a21`](https://github.com/graphcommerce-org/graphcommerce/commit/1abc50a21103270fad04e4a9ea892ee1e75233e9) - Upgrade packages to latest version ([@paales](https://github.com/paales))
+
+- [#1830](https://github.com/graphcommerce-org/graphcommerce/pull/1830) [`b2fa21490`](https://github.com/graphcommerce-org/graphcommerce/commit/b2fa2149001cc304d9640bb35f485827ddf9f34a) - When using `i18n` in getStaticProps it could return an incorrect language. ([@paales](https://github.com/paales))
+
+- [#1786](https://github.com/graphcommerce-org/graphcommerce/pull/1786) [`090102051`](https://github.com/graphcommerce-org/graphcommerce/commit/09010205174d7c8b48ed94b44226b4c03fd6e680) - Hygraph schema gets filtered in the .meshrc.yml file by default, reducing the size of the generated schema and type definitions. ([@paales](https://github.com/paales))
+
+- [#1768](https://github.com/graphcommerce-org/graphcommerce/pull/1768) [`23e9a4728`](https://github.com/graphcommerce-org/graphcommerce/commit/23e9a472899dfc0b56b989f5d0e8ffb802c8cc5f) - Deprecated @graphcommerce/magento-customer-account & @graphcommerce/magento-customer-order packages and moved all functionality to @graphcomemrce/magento-customer ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#1778](https://github.com/graphcommerce-org/graphcommerce/pull/1778) [`bac564119`](https://github.com/graphcommerce-org/graphcommerce/commit/bac5641198b8c91df0e27a730cd663fd177afc70) - Added proper translations for iDeal Multi Safe Pay ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#1850](https://github.com/graphcommerce-org/graphcommerce/pull/1850) [`e75b47e31`](https://github.com/graphcommerce-org/graphcommerce/commit/e75b47e31a01533e9c47412a91b77e25bed24a1a) - The checkout customer address selector will only render when there is at least one customer address.s ([@LaurensFranken](https://github.com/LaurensFranken))
+
+- [#1808](https://github.com/graphcommerce-org/graphcommerce/pull/1808) [`847ee17e5`](https://github.com/graphcommerce-org/graphcommerce/commit/847ee17e512fcfd5367c5f6b3840d19b6bc9299f) - Added ability to translate various strings: 'Several errors occured', 'Processing your payment', 'Loading', 'Loading your account' and updated all translations. ([@carlocarels90](https://github.com/carlocarels90))
+
+- [#1833](https://github.com/graphcommerce-org/graphcommerce/pull/1833) [`0abfe5852`](https://github.com/graphcommerce-org/graphcommerce/commit/0abfe5852ba5d0181a5caf9fd4cff633b03a5be1) - Crosssells wont do an additional query before the product is known. ([@paales](https://github.com/paales))
+
+- [#1835](https://github.com/graphcommerce-org/graphcommerce/pull/1835) [`060e30f36`](https://github.com/graphcommerce-org/graphcommerce/commit/060e30f361a9646b16ed2d0dd96b01627124866c) - Updated to next.js 13.2.4 ([@paales](https://github.com/paales))
+
+- [#1786](https://github.com/graphcommerce-org/graphcommerce/pull/1786) [`b8c951678`](https://github.com/graphcommerce-org/graphcommerce/commit/b8c95167839b03d8bf2299a230d36fd3144cea0b) - Enabled [onDemandEntries](https://nextjs.org/docs/api-reference/next.config.js/configuring-onDemandEntries) for faster development flow. ([@paales](https://github.com/paales))
+
+- [#1790](https://github.com/graphcommerce-org/graphcommerce/pull/1790) [`875a595da`](https://github.com/graphcommerce-org/graphcommerce/commit/875a595da5f52b77bc2535cf4a660267b0046a1e) - ApolloClient cache size would balloon with all redirects and make sure redirects work ([@LaurensFranken](https://github.com/LaurensFranken))
+
 ## 6.0.0-canary.54
 
 ## 6.0.0-canary.53

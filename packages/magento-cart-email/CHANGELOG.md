@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.0
+
+### Patch Changes
+
+- [#1850](https://github.com/graphcommerce-org/graphcommerce/pull/1850) [`f9c703e1e`](https://github.com/graphcommerce-org/graphcommerce/commit/f9c703e1e37d529aa65b30ac5b3d72417869ecef) - Checkout EmailForm component would render on the checkout page, if a user is logged in. ([@LaurensFranken](https://github.com/LaurensFranken))
+
 ## 6.0.0-canary.54
 
 ## 6.0.0-canary.53

@@ -1,5 +1,19 @@
 # Change Log
 
+## 6.0.0
+
+### Major Changes
+
+- [#1766](https://github.com/graphcommerce-org/graphcommerce/pull/1766) [`e34169ee2`](https://github.com/graphcommerce-org/graphcommerce/commit/e34169ee2e0fdc052ff589ceca0bc67557584c1f) - Upgraded to Next.js 13
+
+  - NextLink integrates the next/link functionality with @mui/material's Link and ButtonBase (and all it's derivatives) components.
+  - NextLink automatically adds `target="_blank"` when the href is external.
+  - NextLink makes all relative href absolute. `href="my-page"` will be rendered as `href="/my-page"`. ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#1831](https://github.com/graphcommerce-org/graphcommerce/pull/1831) [`f4008bae3`](https://github.com/graphcommerce-org/graphcommerce/commit/f4008bae3e3ac8288c731b1dd87e6c6aef8e81fc) - Added a linting rule that disallows `import { Theme } from '@emotion/react'` because that causes huge performance issues. Also added `tsc:trace` to the root project to debug typescript performance issues. ([@paales](https://github.com/paales))
+
 ## 6.0.0-canary.54
 
 ## 6.0.0-canary.53

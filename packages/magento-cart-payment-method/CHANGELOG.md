@@ -1,5 +1,15 @@
 # Change Log
 
+## 6.0.0
+
+### Minor Changes
+
+- [#1841](https://github.com/graphcommerce-org/graphcommerce/pull/1841) [`45befd304`](https://github.com/graphcommerce-org/graphcommerce/commit/45befd3040eb45f7f7204312cd532432ae84dc4d) - Cart totals will now always be retrieved when changing the payment method. ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#1851](https://github.com/graphcommerce-org/graphcommerce/pull/1851) [`5adadf4ba`](https://github.com/graphcommerce-org/graphcommerce/commit/5adadf4ba023e861409a3925b5cda1e20dbb256c) - Make sure the PayerID isn’t required for non-paypal method ([@paales](https://github.com/paales))
+
 ## 6.0.0-canary.54
 
 ## 6.0.0-canary.53

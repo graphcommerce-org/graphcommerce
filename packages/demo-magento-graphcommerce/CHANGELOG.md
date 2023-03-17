@@ -1,5 +1,21 @@
 # @graphcommerce/demo-magento-graphcommerce
 
+## 6.0.0
+
+### Major Changes
+
+- [#1832](https://github.com/graphcommerce-org/graphcommerce/pull/1832) [`26d4243d5`](https://github.com/graphcommerce-org/graphcommerce/commit/26d4243d5b63d604e5a36386d9b01914db5f2918) - Added a new RowLink component with variants: Inline, ImageLabelSwiper, LogoSwiper and Usps. Updated the demo to show off these new components. ([@ErwinOtten](https://github.com/ErwinOtten))
+
+### Minor Changes
+
+- [#1833](https://github.com/graphcommerce-org/graphcommerce/pull/1833) [`7dc3e036c`](https://github.com/graphcommerce-org/graphcommerce/commit/7dc3e036c776224aa184e03cc957dcb8d3faa55c) - Added ability to have local plugins and added example plugin in the plugins directory ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#1821](https://github.com/graphcommerce-org/graphcommerce/pull/1821) [`1abc50a21`](https://github.com/graphcommerce-org/graphcommerce/commit/1abc50a21103270fad04e4a9ea892ee1e75233e9) - Upgrade packages to latest version ([@paales](https://github.com/paales))
+
+- [#1846](https://github.com/graphcommerce-org/graphcommerce/pull/1846) [`83e79f160`](https://github.com/graphcommerce-org/graphcommerce/commit/83e79f1600983c76b959ca1b2ceefd56aac80a7a) - Two Hygraph row components are now deprecated: RowButtonLinkList and RowContentLinks, you should use RowLinks instead. ([@ErwinOtten](https://github.com/ErwinOtten))
+
 ## 6.0.0-canary.54
 
 ## 6.0.0-canary.53

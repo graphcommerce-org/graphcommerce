@@ -1,5 +1,25 @@
 # Change Log
 
+## 6.0.0
+
+### Major Changes
+
+- [#1786](https://github.com/graphcommerce-org/graphcommerce/pull/1786) [`26239ef73`](https://github.com/graphcommerce-org/graphcommerce/commit/26239ef73e49731224b227f1eb850dde56d40584) - Updated the supported NodeJS versions to 16 and 18, removed support for NodeJS 14. ([@paales](https://github.com/paales))
+
+- [#1766](https://github.com/graphcommerce-org/graphcommerce/pull/1766) [`e34169ee2`](https://github.com/graphcommerce-org/graphcommerce/commit/e34169ee2e0fdc052ff589ceca0bc67557584c1f) - Upgraded to Next.js 13
+
+  - NextLink integrates the next/link functionality with @mui/material's Link and ButtonBase (and all it's derivatives) components.
+  - NextLink automatically adds `target="_blank"` when the href is external.
+  - NextLink makes all relative href absolute. `href="my-page"` will be rendered as `href="/my-page"`. ([@paales](https://github.com/paales))
+
+### Minor Changes
+
+- [#1828](https://github.com/graphcommerce-org/graphcommerce/pull/1828) [`3df85faf1`](https://github.com/graphcommerce-org/graphcommerce/commit/3df85faf189b95e2c7d9c3fc756474fcafb1c8b4) - Added a new `productRoute` configuration to create freedom in the actual product route used (default: /p/). Simplified redirects from legacy product routes to new routes by creating redirects. ([@paales](https://github.com/paales))
+
+- [#1810](https://github.com/graphcommerce-org/graphcommerce/pull/1810) [`543c5d5b2`](https://github.com/graphcommerce-org/graphcommerce/commit/543c5d5b2b6f29c1f6a0a405524d4cc86f399596) - Added `limitSsg: Boolean` configuration option to limit the getStaticPaths generation during build. This is useful to make quick deployments on preview environments. ([@paales](https://github.com/paales))
+
+- [#1779](https://github.com/graphcommerce-org/graphcommerce/pull/1779) [`6c6d7e4d7`](https://github.com/graphcommerce-org/graphcommerce/commit/6c6d7e4d7cf5d68a39acc82b91e1f3acce366517) - Added postcode check for Dutch address fields. Ddds an autocomplete field for the street name and city based of the customers postcode + street number + addition. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
 ## 6.0.0-canary.54
 
 ## 6.0.0-canary.53

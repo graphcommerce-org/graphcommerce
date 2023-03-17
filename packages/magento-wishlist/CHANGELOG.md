@@ -1,5 +1,13 @@
 # @graphcommerce/magento-wishlist
 
+## 6.0.0
+
+### Patch Changes
+
+- [#1783](https://github.com/graphcommerce-org/graphcommerce/pull/1783) [`d6e7dc3e6`](https://github.com/graphcommerce-org/graphcommerce/commit/d6e7dc3e612029bf02cdc5ac48544a52c43869db) - Wishlist message snackbar now automatically closes after a few seconds ([@StefanAngenent](https://github.com/StefanAngenent))
+
+- [#1800](https://github.com/graphcommerce-org/graphcommerce/pull/1800) [`2d90523e8`](https://github.com/graphcommerce-org/graphcommerce/commit/2d90523e8f52919215587f3a989faa31122c1e7a) - If the user is not logged in + the "Hide for Guests” variable is enabled, the WishlistFabContent should would be displayed. ([@carlocarels90](https://github.com/carlocarels90))
+
 ## 6.0.0-canary.54
 
 ## 6.0.0-canary.53

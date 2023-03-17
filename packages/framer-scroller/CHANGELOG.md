@@ -1,5 +1,19 @@
 # Change Log
 
+## 6.0.0
+
+### Major Changes
+
+- [#1749](https://github.com/graphcommerce-org/graphcommerce/pull/1749) [`0cc472915`](https://github.com/graphcommerce-org/graphcommerce/commit/0cc4729154d316227a41712b5f0adf514768e91f) - Introducing the new ProductFiltersPro component set with completely new filter and UI behavior. Filters will appear as a popper on the md and up breakpoints and as an overlay on sm and below breakpoints. Filters now have an Apply button instead of applying directly. ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#1830](https://github.com/graphcommerce-org/graphcommerce/pull/1830) [`203b6298e`](https://github.com/graphcommerce-org/graphcommerce/commit/203b6298ee06569bb662bb728282366d08b8f6af) - Scroller areas like galleries would snap to a certain position when immediately dragging after letting go, now it is much more smooth. ([@paales](https://github.com/paales))
+
+- [#1821](https://github.com/graphcommerce-org/graphcommerce/pull/1821) [`1abc50a21`](https://github.com/graphcommerce-org/graphcommerce/commit/1abc50a21103270fad04e4a9ea892ee1e75233e9) - Upgrade packages to latest version ([@paales](https://github.com/paales))
+
+- [#1829](https://github.com/graphcommerce-org/graphcommerce/pull/1829) [`52ecfc2ad`](https://github.com/graphcommerce-org/graphcommerce/commit/52ecfc2ad25fc6ef92465862fb94c1829bdd7c52) - CSS dvh property is now used when supported by browsers, causing less rerenders with overlays. ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 6.0.0-canary.54
 
 ## 6.0.0-canary.53

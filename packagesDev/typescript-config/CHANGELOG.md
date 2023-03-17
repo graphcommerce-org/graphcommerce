@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.0
+
+### Major Changes
+
+- [#1786](https://github.com/graphcommerce-org/graphcommerce/pull/1786) [`26239ef73`](https://github.com/graphcommerce-org/graphcommerce/commit/26239ef73e49731224b227f1eb850dde56d40584) - Updated the supported NodeJS versions to 16 and 18, removed support for NodeJS 14. ([@paales](https://github.com/paales))
+
 ## 6.0.0-canary.54
 
 ## 6.0.0-canary.53

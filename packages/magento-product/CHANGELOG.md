@@ -1,5 +1,47 @@
 # Change Log
 
+## 6.0.0
+
+### Major Changes
+
+- [#1749](https://github.com/graphcommerce-org/graphcommerce/pull/1749) [`0cc472915`](https://github.com/graphcommerce-org/graphcommerce/commit/0cc4729154d316227a41712b5f0adf514768e91f) - Introducing the new ProductFiltersPro component set with completely new filter and UI behavior. Filters will appear as a popper on the md and up breakpoints and as an overlay on sm and below breakpoints. Filters now have an Apply button instead of applying directly. ([@paales](https://github.com/paales))
+
+- [#1786](https://github.com/graphcommerce-org/graphcommerce/pull/1786) [`b76679204`](https://github.com/graphcommerce-org/graphcommerce/commit/b766792049e1e6ebe45671c0b36e78746ef159e2) - Created a completely new [GraphCommerce config system](https://www.graphcommerce.org/docs/framework/config) to allow for greater confiugration options and rely less on a .env file to configuration.
+
+  - GraphCommerce can be configured in the graphcommerce.config.js
+  - The configuration is automatically validated on startup.
+  - All configuration values can be overwritten by environment variables. ([@paales](https://github.com/paales))
+
+### Minor Changes
+
+- [#1822](https://github.com/graphcommerce-org/graphcommerce/pull/1822) [`cc02c46e3`](https://github.com/graphcommerce-org/graphcommerce/commit/cc02c46e32c9a44a90789591f43d91ae234dac84) - Added Facebook Open Graph tags to product pages:
+
+  - og:title
+  - og:image
+  - og:url
+  - type
+  - product:retailer_part_no
+  - product:price:amount
+  - product:sale_price:amount
+  - product:price:currency
+  - product:category ([@KMalkowski](https://github.com/KMalkowski))
+
+- [#1814](https://github.com/graphcommerce-org/graphcommerce/pull/1814) [`15aa59049`](https://github.com/graphcommerce-org/graphcommerce/commit/15aa590493bf7639231f3bb3dd623c234ebad7cf) - ActionCard default styling introduced for a more inline and changed the look of selected filters. ([@ErwinOtten](https://github.com/ErwinOtten))
+
+- [#1828](https://github.com/graphcommerce-org/graphcommerce/pull/1828) [`3df85faf1`](https://github.com/graphcommerce-org/graphcommerce/commit/3df85faf189b95e2c7d9c3fc756474fcafb1c8b4) - Added a new `productRoute` configuration to create freedom in the actual product route used (default: /p/). Simplified redirects from legacy product routes to new routes by creating redirects. ([@paales](https://github.com/paales))
+
+- [#1791](https://github.com/graphcommerce-org/graphcommerce/pull/1791) [`38461cbc1`](https://github.com/graphcommerce-org/graphcommerce/commit/38461cbc1ba7f9478be3405abe10c7aee2a30363) - Products will now render tier prices when they are released ([@haelbichalex](https://github.com/haelbichalex))
+
+### Patch Changes
+
+- [#1799](https://github.com/graphcommerce-org/graphcommerce/pull/1799) [`cdf7eafc4`](https://github.com/graphcommerce-org/graphcommerce/commit/cdf7eafc4f16e2b02daae1b2403f6f69b3154bdc) - ProductListFilters and ProductListFiltersPro would render `category_id` or `category_uid` as a filter on category pages. ([@carlocarels90](https://github.com/carlocarels90))
+
+- [#1847](https://github.com/graphcommerce-org/graphcommerce/pull/1847) [`e0d43194a`](https://github.com/graphcommerce-org/graphcommerce/commit/e0d43194a4a2d2852cac27ab3c1efbc172d0d229) - ProductFiltersPro would route to an old page because the form wasn't reset to be in sync with the URL. ([@paales](https://github.com/paales))
+
+- [#1749](https://github.com/graphcommerce-org/graphcommerce/pull/1749) [`16e91da42`](https://github.com/graphcommerce-org/graphcommerce/commit/16e91da42dcb454ea4761d1780b9338c88ef1463) - Corrected spelling mistake: incomming to incoming ([@paales](https://github.com/paales))
+
+- [#1749](https://github.com/graphcommerce-org/graphcommerce/pull/1749) [`b132583d5`](https://github.com/graphcommerce-org/graphcommerce/commit/b132583d5145bb7cfe62b81695ea5a6f6bcaf083) - Generalize ProductCustomizable renderer to automatically fail the build if there are OptionTypeRenderers missing ([@paales](https://github.com/paales))
+
 ## 6.0.0-canary.54
 
 ## 6.0.0-canary.53
