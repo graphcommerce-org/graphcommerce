@@ -106,7 +106,7 @@ find . -type f -name '*.rej' -delete
 
 After resolving the diff issues, manually process upgrade instructions:
 
-- [Upgrading to GraphCommerce 5 to 6](./graphcommerce-5-to-6.md)
+- [Upgrading to GraphCommerce 5 to 6](../upgrading/graphcommerce-5-to-6.md)
 
 Run and validate your local environment:
 
@@ -116,4 +116,4 @@ Run and validate your local environment:
 
 ## Next steps
 
-- Learn how to [contribute to GraphCommerce](./contributing.md)
+- Learn how to [contribute to GraphCommerce](../contributing.md)
