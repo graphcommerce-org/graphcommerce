@@ -4,7 +4,7 @@ import React from 'react'
 import { useFormAddProductsToCart } from '../AddProductsToCart'
 import { ProductCustomizableFragment } from './ProductCustomizable.gql'
 
-type OptionTypeRenderer = TypeRenderer<
+export type OptionTypeRenderer = TypeRenderer<
   NonNullable<NonNullable<ProductCustomizableFragment['options']>[number]> & {
     optionIndex: number
     index: number
@@ -69,7 +69,7 @@ const CustomizableDropDownOption = React.memo<
   )
 })
 
-const renderer: OptionTypeRenderer = {
+const defaultRenderer = {
   CustomizableAreaOption,
   CustomizableCheckboxOption: () => <div>checkbox not implemented</div>,
   CustomizableDateOption: () => <div>date not implemented</div>,
@@ -80,17 +80,33 @@ const renderer: OptionTypeRenderer = {
   CustomizableRadioOption: () => <div>radios not implemented</div>,
 }
 
-type ProductCustomizableProps = { product: ProductCustomizableFragment; index?: number }
+type Simplify<T> = { [KeyType in keyof T]: T[KeyType] }
+
+type MissingOptionTypeRenderer = Omit<OptionTypeRenderer, keyof typeof defaultRenderer>
+type DefinedOptionTypeRenderer = Partial<Pick<OptionTypeRenderer, keyof typeof defaultRenderer>>
+
+type OptionTypeRendererProp = Simplify<
+  keyof MissingOptionTypeRenderer extends never
+    ? (MissingOptionTypeRenderer & DefinedOptionTypeRenderer) | undefined
+    : MissingOptionTypeRenderer & DefinedOptionTypeRenderer
+>
+
+type ProductCustomizableProps = {
+  product: ProductCustomizableFragment
+  index?: number
+} & (keyof MissingOptionTypeRenderer extends never
+  ? { renderer?: OptionTypeRendererProp }
+  : { renderer: OptionTypeRendererProp })
 
 export function ProductCustomizable(props: ProductCustomizableProps) {
-  const { product, index = 0 } = props
+  const { product, renderer, index = 0 } = props
 
   return (
     <>
       {filterNonNullableKeys(product.options, ['sort_order']).map((option) => (
         <RenderType
           key={option.uid}
-          renderer={renderer}
+          renderer={{ ...defaultRenderer, ...renderer }}
           {...option}
           optionIndex={option.sort_order + 100}
           index={index}

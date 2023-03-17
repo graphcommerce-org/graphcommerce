@@ -6,7 +6,6 @@ import {
 import { iconHeart, DesktopHeaderBadge, IconSvg, extendableComponent } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Fab, FabProps as FabPropsType, NoSsr, SxProps, Theme } from '@mui/material'
-import PageLink from 'next/link'
 import React from 'react'
 import { useWishlistEnabled } from '../../hooks'
 import { GetIsInWishlistsDocument } from '../../queries/GetIsInWishlists.gql'
@@ -23,7 +22,7 @@ const name = 'WishlistFab'
 const parts = ['root'] as const
 const { classes } = extendableComponent(name, parts)
 
-const hideForGuest = process.env.NEXT_PUBLIC_WISHLIST_HIDE_FOR_GUEST === '1'
+const hideForGuest = import.meta.graphCommerce.wishlistHideForGuests
 
 function WishlistFabContent(props: WishlistFabContentProps) {
   const { icon, FabProps, sx, activeWishlist } = props
@@ -31,27 +30,26 @@ function WishlistFabContent(props: WishlistFabContentProps) {
   const wishlistIcon = icon ?? <IconSvg src={iconHeart} size='large' />
 
   return (
-    <PageLink href='/wishlist' passHref>
-      <Fab
-        color='inherit'
-        data-test-id='wishlist-fab'
-        aria-label={i18n._(/* i18n */ 'Wishlist')}
-        size='large'
-        className={classes.root}
-        {...FabProps}
-        sx={sx}
-      >
-        <NoSsr fallback={wishlistIcon}>
-          {activeWishlist ? (
-            <DesktopHeaderBadge color='primary' variant='dot' overlap='circular'>
-              {wishlistIcon}
-            </DesktopHeaderBadge>
-          ) : (
-            wishlistIcon
-          )}
-        </NoSsr>
-      </Fab>
-    </PageLink>
+    <Fab
+      href='/wishlist'
+      color='inherit'
+      data-test-id='wishlist-fab'
+      aria-label={i18n._(/* i18n */ 'Wishlist')}
+      size='large'
+      className={classes.root}
+      {...FabProps}
+      sx={sx}
+    >
+      <NoSsr fallback={wishlistIcon}>
+        {activeWishlist ? (
+          <DesktopHeaderBadge color='primary' variant='dot' overlap='circular'>
+            {wishlistIcon}
+          </DesktopHeaderBadge>
+        ) : (
+          wishlistIcon
+        )}
+      </NoSsr>
+    </Fab>
   )
 }
 
@@ -74,15 +72,7 @@ export function WishlistFab(props: WishlistFabProps) {
     activeWishlist = wishlist.length > 0
   }
 
-  if (!isWishlistEnabled) return null
-
-  if (hideForGuest) {
-    return (
-      <NoSsr fallback={null}>
-        <WishlistFabContent {...props} activeWishlist={activeWishlist} />
-      </NoSsr>
-    )
-  }
+  if (!isWishlistEnabled || (hideForGuest && !loggedIn)) return null
 
   return (
     <NoSsr fallback={<WishlistFabContent {...props} activeWishlist={false} />}>

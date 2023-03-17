@@ -1,5 +1,6 @@
-import { withLingui, LinguiDocumentProps } from '@graphcommerce/lingui-next'
-import { EmotionCacheProps } from '@graphcommerce/next-ui'
+import { withLingui } from '@graphcommerce/lingui-next/document/withLingui'
+import type { LinguiDocumentProps } from '@graphcommerce/lingui-next/document/withLingui'
+import type { EmotionCacheProps } from '@graphcommerce/next-ui'
 import NextDocument, { Html, Head, Main, NextScript } from 'next/document'
 
 class Document extends NextDocument<EmotionCacheProps & LinguiDocumentProps> {

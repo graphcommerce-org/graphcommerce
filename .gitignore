@@ -9,11 +9,14 @@ node_modules
 # next.js
 .next/
 out/
+tsctrace
 
 # misc
 .DS_Store
 .env*
 !.env.example
+graphcommerce.config.js
+!graphcommerce.config.js.example
 
 # debug
 npm-debug.log*
@@ -26,6 +29,8 @@ yarn-error.log*
 *.interceptor.tsx
 
 .vercel
+
+.idea
 
 # build
 dist

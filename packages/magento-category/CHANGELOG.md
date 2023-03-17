@@ -1,5 +1,133 @@
 # Change Log
 
+## 6.0.0
+
+### Patch Changes
+
+- [#1786](https://github.com/graphcommerce-org/graphcommerce/pull/1786) [`63cfbd4ea`](https://github.com/graphcommerce-org/graphcommerce/commit/63cfbd4ea33978ccfe45c156ef07ece72add70ce) - Loosen typescript requirement for CategoryMeta ([@paales](https://github.com/paales))
+
+## 6.0.0-canary.54
+
+## 6.0.0-canary.53
+
+## 6.0.0-canary.52
+
+## 6.0.0-canary.51
+
+## 6.0.0-canary.50
+
+## 6.0.0-canary.49
+
+## 6.0.0-canary.48
+
+## 6.0.0-canary.47
+
+## 6.0.0-canary.46
+
+## 6.0.0-canary.45
+
+## 6.0.0-canary.44
+
+## 6.0.0-canary.43
+
+## 6.0.0-canary.42
+
+## 6.0.0-canary.41
+
+## 6.0.0-canary.40
+
+## 6.0.0-canary.39
+
+## 6.0.0-canary.38
+
+## 6.0.0-canary.37
+
+## 6.0.0-canary.36
+
+## 6.0.0-canary.35
+
+## 6.0.0-canary.34
+
+## 6.0.0-canary.33
+
+## 6.0.0-canary.32
+
+## 6.0.0-canary.31
+
+## 6.0.0-canary.30
+
+## 6.0.0-canary.29
+
+## 6.0.0-canary.28
+
+### Patch Changes
+
+- [#1823](https://github.com/graphcommerce-org/graphcommerce/pull/1823) [`605d74434`](https://github.com/graphcommerce-org/graphcommerce/commit/605d74434b78baa83f3574b6a4249eae0431d570) - Fix/upgrade instructions ([@paales](https://github.com/paales))
+
+## 6.0.0-canary.27
+
+## 6.0.0-canary.26
+
+## 6.0.0-canary.25
+
+## 6.0.0-canary.24
+
+## 6.0.0-canary.23
+
+## 6.0.0-canary.22
+
+## 6.0.0-canary.21
+
+## 6.0.0-canary.20
+
+### Minor Changes
+
+- [#1786](https://github.com/graphcommerce-org/graphcommerce/pull/1786) [`63cfbd4ea`](https://github.com/graphcommerce-org/graphcommerce/commit/63cfbd4ea33978ccfe45c156ef07ece72add70ce) - option to not require meta tags for categories ([@paales](https://github.com/paales))
+
+## 5.2.0-canary.19
+
+## 5.2.0-canary.18
+
+## 5.2.0-canary.17
+
+## 5.2.0-canary.16
+
+## 5.2.0-canary.15
+
+## 5.2.0-canary.14
+
+## 5.2.0-canary.13
+
+## 5.2.0-canary.12
+
+## 5.2.0-canary.11
+
+## 5.2.0-canary.10
+
+## 5.2.0-canary.9
+
+## 5.2.0-canary.8
+
+### Patch Changes
+
+- [#1780](https://github.com/graphcommerce-org/graphcommerce/pull/1780) [`667f58856`](https://github.com/graphcommerce-org/graphcommerce/commit/667f58856107c25f6c44561e12083239637e6a09) - Option to not require meta tags for categories ([@StefanAngenent](https://github.com/StefanAngenent))
+
+## 5.2.0-canary.7
+
+## 5.2.0-canary.6
+
+## 5.2.0-canary.5
+
+## 5.2.0-canary.4
+
+## 5.2.0-canary.3
+
+## 5.2.0-canary.2
+
+## 5.2.0-canary.1
+
+## 5.2.0-canary.0
+
 ## 5.1.1
 
 ## 5.1.1-canary.1

@@ -2,7 +2,7 @@
   "name": "@graphcommerce/framer-utils",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "5.1.1",
+  "version": "6.0.0",
   "sideEffects": false,
   "scripts": {
     "dev": "tsc -W"
@@ -15,12 +15,12 @@
     }
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "5.1.1",
-    "@graphcommerce/prettier-config-pwa": "5.1.1",
-    "@graphcommerce/typescript-config-pwa": "5.1.1"
+    "@graphcommerce/eslint-config-pwa": "6.0.0",
+    "@graphcommerce/prettier-config-pwa": "6.0.0",
+    "@graphcommerce/typescript-config-pwa": "6.0.0"
   },
   "peerDependencies": {
-    "framer-motion": "^7.0.0",
+    "framer-motion": "^10.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

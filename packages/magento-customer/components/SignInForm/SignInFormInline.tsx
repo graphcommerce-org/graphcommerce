@@ -2,7 +2,6 @@ import { Button, extendableComponent } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
 import { Box, SxProps, TextField, Theme } from '@mui/material'
-import PageLink from 'next/link'
 import { SignInDocument, SignInMutationVariables } from './SignIn.gql'
 
 type InlineSignInFormProps = Omit<SignInMutationVariables, 'password'> & {
@@ -56,16 +55,15 @@ export function SignInFormInline(props: InlineSignInFormProps) {
         disabled={formState.isSubmitting}
         InputProps={{
           endAdornment: (
-            <PageLink href='/account/forgot-password' key='forgot-password' passHref>
-              <Button
-                color='secondary'
-                variant='text'
-                className={classes.button}
-                sx={{ minWidth: 'max-content' }}
-              >
-                <Trans id='Forgot password?' />
-              </Button>
-            </PageLink>
+            <Button
+              href='/account/forgot-password'
+              color='secondary'
+              variant='text'
+              className={classes.button}
+              sx={{ minWidth: 'max-content' }}
+            >
+              <Trans id='Forgot password?' />
+            </Button>
           ),
         }}
       />

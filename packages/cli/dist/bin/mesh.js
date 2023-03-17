@@ -88,7 +88,8 @@ const main = async () => {
             },
         },
     ];
-    await node_fs_1.promises.writeFile(tmpMeshLocation, yaml_1.default.stringify(conf));
+    const yamlString = (0, next_config_1.replaceConfigInString)(yaml_1.default.stringify(conf), (0, next_config_1.loadConfig)(root));
+    await node_fs_1.promises.writeFile(tmpMeshLocation, yamlString);
     // Reexport the mesh to is can be used by packages
     await node_fs_1.promises.writeFile(`${meshDir}/.mesh.ts`, `export * from '${relativePath.split(node_path_1.default.sep).join('/')}.mesh'`, { encoding: 'utf8' });
     await (0, cli_1.graphqlMesh)({ ...cliParams, configName: tmpMesh });

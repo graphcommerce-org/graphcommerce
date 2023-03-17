@@ -5,7 +5,7 @@ import {
   useCartQuery,
   useFormGqlMutationCart,
 } from '@graphcommerce/magento-cart'
-import { IsEmailAvailableDocument } from '@graphcommerce/magento-customer'
+import { IsEmailAvailableDocument, useCustomerSession } from '@graphcommerce/magento-customer'
 import { extendableComponent, FormRow } from '@graphcommerce/next-ui'
 import {
   emailPattern,
@@ -14,8 +14,7 @@ import {
   UseFormComposeOptions,
 } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
-import { TextField, Typography, Button, NoSsr, SxProps, Box, Theme } from '@mui/material'
-import PageLink from 'next/link'
+import { TextField, Button, SxProps, Box, Theme } from '@mui/material'
 import React from 'react'
 import { CartEmailDocument } from './CartEmail.gql'
 import { SetGuestEmailOnCartDocument } from './SetGuestEmailOnCart.gql'
@@ -29,7 +28,7 @@ const name = 'EmailForm' as const
 const parts = ['root', 'formRow'] as const
 const { classes } = extendableComponent(name, parts)
 
-export const EmailForm = React.memo<EmailFormProps>((props) => {
+const EmailFormBase = React.memo<EmailFormProps>((props) => {
   const { step, sx } = props
 
   const cartEmail = useCartQuery(CartEmailDocument, { hydration: true })
@@ -72,11 +71,9 @@ export const EmailForm = React.memo<EmailFormProps>((props) => {
             endAdornment: (
               <WaitForQueries waitFor={isEmailAvailable}>
                 {isEmailAvailable.data?.isEmailAvailable && (
-                  <PageLink href='/account/signin' passHref>
-                    <Button color='secondary' style={{ whiteSpace: 'nowrap' }}>
-                      <Trans id='Sign in' />
-                    </Button>
-                  </PageLink>
+                  <Button href='/account/signin' color='secondary' style={{ whiteSpace: 'nowrap' }}>
+                    <Trans id='Sign in' />
+                  </Button>
                 )}
               </WaitForQueries>
             ),
@@ -87,3 +84,9 @@ export const EmailForm = React.memo<EmailFormProps>((props) => {
     </Box>
   )
 })
+
+export function EmailForm(props: EmailFormProps) {
+  const { loggedIn } = useCustomerSession()
+  if (loggedIn) return null
+  return <EmailFormBase {...props} />
+}

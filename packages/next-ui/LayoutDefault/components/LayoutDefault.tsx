@@ -40,8 +40,9 @@ export function LayoutDefault(props: LayoutDefaultProps) {
     sx = [],
   } = props
 
-  const scrollWithOffset = useTransform(
-    [useScroll().scrollY, useScrollOffset()],
+  const { scrollY } = useScroll()
+  const scrollYOffset = useTransform(
+    [scrollY, useScrollOffset()],
     ([y, offset]: number[]) => y + offset,
   )
 
@@ -66,7 +67,7 @@ export function LayoutDefault(props: LayoutDefaultProps) {
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
-      <LayoutProvider scroll={scrollWithOffset}>
+      <LayoutProvider scroll={scrollYOffset}>
         {beforeHeader}
         <Box
           component='header'

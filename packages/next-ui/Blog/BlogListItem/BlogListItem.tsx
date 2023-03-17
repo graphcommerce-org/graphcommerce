@@ -1,5 +1,4 @@
 import { Box, Link, SxProps, Theme, Typography } from '@mui/material'
-import PageLink from 'next/link'
 import React from 'react'
 import { extendableComponent } from '../../Styles'
 import { breakpointVal } from '../../Styles/breakpointVal'
@@ -29,7 +28,7 @@ export function BlogListItem(props: BlogListItemProps) {
       sx={[
         (theme) => ({
           display: 'grid',
-          gridTemplateRows: `${responsiveVal(140, 220)} auto auto`,
+          gridTemplateRows: `auto auto auto`,
           alignContent: 'start',
           color: theme.palette.text.primary,
           gap: theme.spacings.xxs,
@@ -38,37 +37,25 @@ export function BlogListItem(props: BlogListItemProps) {
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
-      <PageLink href={`/${url}`} passHref>
-        <Link color='inherit' underline='hover'>
-          <Box
-            className={classes.asset}
-            sx={(theme) => ({
-              display: 'grid',
-              alignContent: 'center',
-              overflow: 'hidden',
-              height: '100%',
-              width: '100%',
+      <Link href={`/${url}`} color='inherit' underline='hover'>
+        <Box
+          className={classes.asset}
+          sx={(theme) => ({
+            '& img': {
+              aspectRatio: '3/2',
+              objectFit: 'cover',
               ...breakpointVal(
                 'borderRadius',
                 theme.shape.borderRadius * 2,
                 theme.shape.borderRadius * 3,
                 theme.breakpoints.values,
               ),
-              '& img': {
-                height: '100% !important',
-                objectFit: 'cover',
-              },
-              '& p': {
-                alignSelf: 'center',
-                justifySelf: 'center',
-              },
-              background: theme.palette.background.paper,
-            })}
-          >
-            {asset}
-          </Box>
-        </Link>
-      </PageLink>
+            },
+          })}
+        >
+          {asset}
+        </Box>
+      </Link>
 
       <Box
         component='time'
@@ -83,13 +70,11 @@ export function BlogListItem(props: BlogListItemProps) {
         {formatter.format(new Date(date))}
       </Box>
 
-      <PageLink href={`/${url}`} passHref>
-        <Link href={`/${url}`} className={classes.title} color='inherit' underline='hover'>
-          <Typography component='h2' variant='h4'>
-            {title}
-          </Typography>
-        </Link>
-      </PageLink>
+      <Link href={`/${url}`} className={classes.title} color='inherit' underline='hover'>
+        <Typography component='h2' variant='h4'>
+          {title}
+        </Typography>
+      </Link>
     </Box>
   )
 }

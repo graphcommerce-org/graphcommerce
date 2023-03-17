@@ -1,0 +1,10 @@
+extend input GraphCommerceConfig {
+  """
+  Enables some demo specific code that is probably not useful for a project:
+
+  - Adds the "BY GC" to the product list items.
+  - Adds "dominant_color" attribute swatches to the product list items.
+  - Creates a big list items in the product list.
+  """
+  demoMode: Boolean
+}

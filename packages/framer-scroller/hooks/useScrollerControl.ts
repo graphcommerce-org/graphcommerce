@@ -25,10 +25,6 @@ export function useScrollerControl(): ScrollerControl {
       control.controlling = true
       control.x = scroll.x.get()
       control.y = scroll.y.get()
-
-      // @ts-expect-error private api, but we're updating the animation value here manually instead of relying on the event listener.
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      scroll.scroll.start(() => () => {})
       disableSnap()
     },
     update: ({ x, y }: Point) => {
@@ -58,7 +54,6 @@ export function useScrollerControl(): ScrollerControl {
     release: async (info?: PanInfo) => {
       if (!control.controlling) throw Error('not controlling')
 
-      scroll.scroll.stop()
       await snapToVelocity(info ?? { velocity: { x: 0, y: 0 }, offset: { x: 0, y: 0 } })
       control.x = 0
       control.y = 0

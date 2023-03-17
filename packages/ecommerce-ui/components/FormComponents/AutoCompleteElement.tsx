@@ -1,10 +1,4 @@
-import {
-  Control,
-  Controller,
-  ControllerProps,
-  Path,
-  FieldValues,
-} from '@graphcommerce/react-hook-form'
+import { Controller, ControllerProps, FieldValues } from '@graphcommerce/react-hook-form'
 import {
   Autocomplete,
   AutocompleteProps,
@@ -20,13 +14,10 @@ export type AutocompleteElementProps<
   M extends boolean | undefined,
   D extends boolean | undefined,
 > = {
-  name: Path<F>
-  control?: Control<F>
   options: T[]
   loading?: boolean
   multiple?: M
   matchId?: boolean
-  rules?: ControllerProps['rules']
   required?: boolean
   label?: TextFieldProps['label']
   showCheckbox?: boolean
@@ -35,7 +26,7 @@ export type AutocompleteElementProps<
     'name' | 'options' | 'loading' | 'renderInput'
   >
   textFieldProps?: Omit<TextFieldProps, 'name' | 'required' | 'label'>
-}
+} & ControllerProps<F>
 
 type AutoDefault = {
   id: string | number // must keep id in case of keepObject
@@ -61,7 +52,7 @@ export function AutocompleteElement<TFieldValues extends FieldValues>({
   boolean | undefined,
   boolean | undefined
 >) {
-  const validationRules: ControllerProps['rules'] = {
+  const validationRules: ControllerProps<TFieldValues>['rules'] = {
     ...rules,
     ...(required && {
       required: rules?.required || 'This field is required',
@@ -73,7 +64,7 @@ export function AutocompleteElement<TFieldValues extends FieldValues>({
       control={control}
       rules={validationRules}
       render={({ field: { onChange, onBlur, value, ...fieldRest }, fieldState: { error } }) => {
-        const values = Array.isArray(value) ? (value as typeof value[]) : [value]
+        const values = Array.isArray(value) ? (value as (typeof value)[]) : [value]
         let currentValue = multiple ? value || [] : value || null
         if (matchId) {
           currentValue = multiple

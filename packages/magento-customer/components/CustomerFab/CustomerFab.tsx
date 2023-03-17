@@ -6,7 +6,6 @@ import {
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Fab, FabProps as FabPropsType, NoSsr, SxProps, Theme } from '@mui/material'
-import PageLink from 'next/link'
 import React from 'react'
 import { useCustomerSession, UseCustomerSessionReturn } from '../../hooks'
 
@@ -27,26 +26,25 @@ function CustomerFabContent(props: CustomerFabContentProps) {
   const { session, icon, guestHref, authHref, FabProps, sx } = props
 
   return (
-    <PageLink href={session?.requireAuth ? guestHref : authHref} passHref>
-      <Fab
-        color='inherit'
-        id='account'
-        aria-label={i18n._(/* i18n */ 'Account')}
-        size='large'
-        className={classes.root}
-        {...FabProps}
-        sx={sx}
+    <Fab
+      href={session?.requireAuth ? guestHref : authHref}
+      color='inherit'
+      id='account'
+      aria-label={i18n._(/* i18n */ 'Account')}
+      size='large'
+      className={classes.root}
+      {...FabProps}
+      sx={sx}
+    >
+      <DesktopHeaderBadge
+        badgeContent={session?.token ? 1 : 0}
+        color={session?.valid ? 'primary' : 'error'}
+        variant='dot'
+        overlap='circular'
       >
-        <DesktopHeaderBadge
-          badgeContent={session?.token ? 1 : 0}
-          color={session?.valid ? 'primary' : 'error'}
-          variant='dot'
-          overlap='circular'
-        >
-          {icon ?? <IconSvg src={iconPerson} size='large' />}
-        </DesktopHeaderBadge>
-      </Fab>
-    </PageLink>
+        {icon ?? <IconSvg src={iconPerson} size='large' />}
+      </DesktopHeaderBadge>
+    </Fab>
   )
 }
 

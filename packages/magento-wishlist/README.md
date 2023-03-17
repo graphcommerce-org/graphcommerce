@@ -16,25 +16,7 @@ account.
 
 ## Additional settings
 
-- Enable wishlist for logged in users only (for instance for B2B)
-
-Add the following configuration to your env file
-
-```
-NEXT_PUBLIC_WISHLIST_HIDE_FOR_GUEST="1"
-```
-
-- Force add products to wishlist (only availble for logged in users)
-
-In B2B cases you might want to add multiple configured variants of the same
-product to the wishlist, like a quick order list.
-
-Use this setting to force adding products to the wishlist, even when there
-already is a product with the same SKU in the wishlist.
-
-```
-NEXT_PUBLIC_WISHLIST_IGNORE_PRODUCT_WISHLIST_STATUS="1"
-```
+See [Config](./Config.graphqls)
 
 - Display a MessageSnackbar message as feedback upon adding a product to the
   wishlist

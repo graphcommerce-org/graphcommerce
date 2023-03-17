@@ -1,7 +1,26 @@
 fragment ProductPageMeta on ProductInterface {
   ...ProductLink
+  sku
   name
   url_key
   meta_title
   meta_description
+  price_range {
+    minimum_price {
+      final_price {
+        value
+        currency
+      }
+      regular_price {
+        value
+      }
+    }
+  }
+  media_gallery {
+    url
+  }
+  categories {
+    uid
+    name
+  }
 }

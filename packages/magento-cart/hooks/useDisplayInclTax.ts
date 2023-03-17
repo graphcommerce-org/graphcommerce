@@ -1,7 +1,6 @@
-import { useRouter } from 'next/router'
+import { useStorefrontConfig } from '@graphcommerce/next-ui'
 
-export function useDisplayInclTax(): boolean {
-  const { locale } = useRouter()
-  const locales = (process.env.NEXT_PUBLIC_DISPLAY_INCL_TAX ?? '').split(',').map((i) => i.trim())
-  return locale ? locales.includes(locale) : false
-}
+export const useDisplayInclTax = () =>
+  useStorefrontConfig().cartDisplayPricesInclTax ??
+  import.meta.graphCommerce.cartDisplayPricesInclTax ??
+  true

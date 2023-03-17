@@ -1,34 +1,20 @@
 import type { PagesProps } from '@graphcommerce/framer-next-pages'
-import type { PluginProps } from '@graphcommerce/next-config'
+import type { IfConfig, PluginProps } from '@graphcommerce/next-config'
 import { GoogleAnalyticsScript } from '../components/GoogleAnalyticsScript'
 
 export const component = 'FramerNextPages'
 export const exported = '@graphcommerce/framer-next-pages'
-
-let warned = false
+export const ifConfig: IfConfig = 'googleAnalyticsId'
 
 function GaFramerNextPages(props: PluginProps<PagesProps>) {
   const { Prev, ...rest } = props
 
-  if (process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS) {
-    return (
-      <>
-        <GoogleAnalyticsScript />
-        <Prev {...rest} />
-      </>
-    )
-  }
-
-  if (process.env.NODE_ENV !== 'production') {
-    if (!warned) {
-      console.info(
-        '[@graphcommerce/googleanalytics]: process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS not found',
-      )
-      warned = true
-    }
-  }
-
-  return <Prev {...rest} />
+  return (
+    <>
+      <GoogleAnalyticsScript />
+      <Prev {...rest} />
+    </>
+  )
 }
 
 export const Plugin = GaFramerNextPages

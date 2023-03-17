@@ -8,9 +8,10 @@ import {
 
 export type RedirectType = LiteralUnion<'added' | undefined, `/${string}`>
 
-export type AddProductsToCartContextType = { redirect: RedirectType } & UseFormGqlMutationReturn<
-  AddProductsToCartMutation,
-  AddProductsToCartMutationVariables
+/** https://react-hook-form.com/api/useform/watch/ */
+export type AddProductsToCartContextType = { redirect: RedirectType } & Omit<
+  UseFormGqlMutationReturn<AddProductsToCartMutation, AddProductsToCartMutationVariables>,
+  'formState' | 'watch'
 >
 
 export const AddProductsToCartContext = createContext(

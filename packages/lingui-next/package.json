@@ -2,7 +2,7 @@
   "name": "@graphcommerce/lingui-next",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "5.1.1",
+  "version": "6.0.0",
   "sideEffects": false,
   "scripts": {
     "dev": "tsc -W"
@@ -15,19 +15,19 @@
     }
   },
   "dependencies": {
-    "make-plural": "6.2.2",
-    "@graphcommerce/next-config": "5.1.1"
+    "@graphcommerce/next-config": "6.0.0",
+    "make-plural": "6.2.2"
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "5.1.1",
-    "@graphcommerce/prettier-config-pwa": "5.1.1",
-    "@graphcommerce/typescript-config-pwa": "5.1.1",
+    "@graphcommerce/eslint-config-pwa": "6.0.0",
+    "@graphcommerce/prettier-config-pwa": "6.0.0",
+    "@graphcommerce/typescript-config-pwa": "6.0.0",
     "@lingui/conf": "^3.14.0"
   },
   "peerDependencies": {
-    "@lingui/core": "^3.13.2",
     "@lingui/react": "^3.13.2",
-    "next": "^12.1.2",
+    "@lingui/core": "^3.13.2",
+    "next": "^13.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }

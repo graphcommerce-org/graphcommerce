@@ -125,7 +125,7 @@ ProductGrouped.pageOptions = {
 export default ProductGrouped
 
 export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
-  if (process.env.NEXT_PUBLIC_SINGLE_PRODUCT_PAGE === '1') return { paths: [], fallback: false }
+  if (!import.meta.graphCommerce.legacyProductRoute) return { paths: [], fallback: false }
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
 
   const path = (locale: string) =>
@@ -136,11 +136,6 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 }
 
 export const getStaticProps: GetPageStaticProps = async ({ params, locale, defaultLocale }) => {
-  if (process.env.NEXT_PUBLIC_SINGLE_PRODUCT_PAGE === '1') {
-    const destination = `${locale === defaultLocale ? '' : `/${locale}`}/p/${params?.url}`
-    return { redirect: { destination, permanent: true } }
-  }
-
   const client = graphqlSharedClient(locale)
   const staticClient = graphqlSsrClient(locale)
 

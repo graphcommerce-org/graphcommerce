@@ -11,7 +11,7 @@ import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import React, { useMemo } from 'react'
 
-type AddressFieldValues = {
+export type AddressFieldValues = {
   street?: string
   houseNumber?: string
   addition?: string
@@ -22,7 +22,7 @@ type AddressFieldValues = {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-type AddressFieldsProps = { form: UseFormReturn<any>; readOnly?: boolean }
+export type AddressFieldsProps = { form: UseFormReturn<any>; readOnly?: boolean }
 
 export function AddressFields(props: AddressFieldsProps) {
   const { form, readOnly } = props
@@ -46,7 +46,7 @@ export function AddressFields(props: AddressFieldsProps) {
     const availableRegions = Object.values(
       countryList.find((c) => c?.two_letter_abbreviation === country)?.available_regions ?? {},
     )
-    type Region = typeof availableRegions[0]
+    type Region = (typeof availableRegions)[0]
 
     const compare: (a: Region, b: Region) => number = (a, b) =>
       (a?.name ?? '')?.localeCompare(b?.name ?? '')

@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
-import { alpha, Box, ListItemButton, styled, useEventCallback, useTheme } from '@mui/material'
-import PageLink from 'next/link'
+import { alpha, Box, ListItemButton, styled, useEventCallback } from '@mui/material'
 import React from 'react'
 import { IconSvg } from '../../IconSvg'
 import { extendableComponent } from '../../Styles/extendableComponent'
+import { NextLink } from '../../Theme'
 import { useMatchMedia } from '../../hooks'
 import { iconChevronRight } from '../../icons'
 import {
@@ -80,14 +80,13 @@ export const NavigationItem = React.memo<NavigationItemProps>((props) => {
 
   if (isNavigationButton(props)) {
     const { childItems, name, href } = props
-
     const skipChildren = itemPath.length + 1 > serverRenderDepth && !isSelected && !!href
 
     return (
       <NavigationLI className={classes.li}>
         <ListItemButton
-          component={href ? 'a' : 'div'}
-          href={href || undefined}
+          component={NextLink}
+          href={href}
           className={classes.item}
           role='button'
           sx={[
@@ -114,7 +113,7 @@ export const NavigationItem = React.memo<NavigationItemProps>((props) => {
           tabIndex={tabIndex}
           onClick={(e) => {
             e.preventDefault()
-            if (!isSelected && !animating.get()) {
+            if (!isSelected) {
               selection.set(itemPath)
             }
           }}
@@ -160,30 +159,30 @@ export const NavigationItem = React.memo<NavigationItemProps>((props) => {
 
     return (
       <NavigationLI sx={[hideItem && { display: 'none' }]} className={classes.li}>
-        <PageLink href={href} passHref prefetch={false}>
-          <ListItemButton
-            className={classes.item}
-            component='a'
-            sx={(theme) => ({
-              gridRowStart: row,
-              gridColumnStart: column,
-              gap: theme.spacings.xxs,
-            })}
-            tabIndex={tabIndex}
-            onClick={onCloseHandler}
+        <ListItemButton
+          component={NextLink}
+          prefetch={false}
+          href={href}
+          className={classes.item}
+          sx={(theme) => ({
+            gridRowStart: row,
+            gridColumnStart: column,
+            gap: theme.spacings.xxs,
+          })}
+          tabIndex={tabIndex}
+          onClick={onCloseHandler}
+        >
+          <Box
+            component='span'
+            sx={{
+              whiteSpace: 'nowrap',
+              overflowX: 'hidden',
+              textOverflow: 'ellipsis',
+            }}
           >
-            <Box
-              component='span'
-              sx={{
-                whiteSpace: 'nowrap',
-                overflowX: 'hidden',
-                textOverflow: 'ellipsis',
-              }}
-            >
-              {name}
-            </Box>
-          </ListItemButton>
-        </PageLink>
+            {name}
+          </Box>
+        </ListItemButton>
       </NavigationLI>
     )
   }

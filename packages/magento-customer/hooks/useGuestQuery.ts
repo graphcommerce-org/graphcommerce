@@ -1,8 +1,13 @@
-import { useQuery, TypedDocumentNode, QueryHookOptions } from '@graphcommerce/graphql'
+import {
+  useQuery,
+  TypedDocumentNode,
+  QueryHookOptions,
+  OperationVariables,
+} from '@graphcommerce/graphql'
 import { useCustomerSession } from './useCustomerSession'
 
 /** Will only execute when the customer is not signed in. */
-export function useGuestQuery<Q, V>(
+export function useGuestQuery<Q, V extends OperationVariables>(
   document: TypedDocumentNode<Q, V>,
   queryOptions: QueryHookOptions<Q, V> & { hydration?: boolean } = {},
 ) {

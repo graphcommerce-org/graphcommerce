@@ -17,7 +17,7 @@ type WishlistMenuFabItemContentProps = {
   activeWishlist: boolean
 }
 
-const hideForGuest = process.env.NEXT_PUBLIC_WISHLIST_HIDE_FOR_GUEST === '1'
+const hideForGuest = import.meta.graphCommerce.wishlistHideForGuests
 
 function WishlistMenuFabItemContent(props: WishlistMenuFabItemContentProps) {
   const { icon, children, sx = [], activeWishlist } = props

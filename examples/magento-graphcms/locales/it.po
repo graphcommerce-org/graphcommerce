@@ -46,6 +46,9 @@ msgstr "Indirizzo non trovato"
 msgid "Addresses"
 msgstr "Indirizzi"
 
+msgid "All filters"
+msgstr "Tutti i filtri"
+
 msgid "All products"
 msgstr "Tutti i prodotti"
 
@@ -85,6 +88,9 @@ msgstr "Indirizzo di fatturazione"
 msgid "Blog"
 msgstr "Blog"
 
+msgid "Buy {quantity} for <0/> and save {percent}%"
+msgstr "Compra {quantity} per <0/> e risparmia {percent}%"
+
 msgid "Cancel"
 msgstr "Annulla"
 
@@ -105,6 +111,9 @@ msgstr "Scegli il tuo banco e effettua l'ordine."
 
 msgid "City"
 msgstr "Città"
+
+msgid "Clear"
+msgstr "Filtro pulito"
 
 msgid "Close"
 msgstr "Chiudi"
@@ -196,6 +205,9 @@ msgstr "Modifica indirizzo di fatturazione"
 msgid "Email"
 msgstr "Email"
 
+msgid "Email address"
+msgstr "Indirizzo e-mail"
+
 msgid "Emails don't match"
 msgstr "Email non corrispondenti"
 
@@ -265,8 +277,14 @@ msgstr "Ultimi ordini"
 msgid "Light Mode"
 msgstr "Modalità chiara"
 
+msgid "Loading"
+msgstr "Caricamento"
+
 msgid "Loading wishlist"
 msgstr "Caricamento lista desideri"
+
+msgid "Loading your account"
+msgstr "Caricamento del tuo account"
 
 msgid "Loading your data"
 msgstr "Caricamento dati"
@@ -370,6 +388,9 @@ msgstr "La password deve avere almeno 8 caratteri"
 msgid "Passwords don't match"
 msgstr "Le password non corrispondono"
 
+msgid "Passwords should match"
+msgstr "Le password devono essere identiche"
+
 msgid "Pay"
 msgstr "Paga"
 
@@ -418,6 +439,9 @@ msgstr "CAP"
 msgid "Prefix"
 msgstr "Prefisso"
 
+msgid "Processing your payment"
+msgstr "Processo di pagamento"
+
 msgid "Product could not be found"
 msgstr "Prodotto non trovato"
 
@@ -438,6 +462,9 @@ msgstr "Rimuovi prodotto"
 
 msgid "Remove from wishlist"
 msgstr "Rimuovi dalla lista desideri"
+
+msgid "Reset"
+msgstr "Ripristina"
 
 msgid "Reset Cart and Return to home"
 msgstr "Reset carrello e torna alla home"
@@ -466,11 +493,17 @@ msgstr "Cerca..."
 msgid "Select"
 msgstr "Seleziona"
 
+msgid "Select your bank"
+msgstr "Seleziona la tua banca"
+
 msgid "Send password reset email"
 msgstr "Invia email per reimpostare la password"
 
 msgid "Set your new password"
 msgstr "Imposta la tua nuova password"
+
+msgid "Several errors occured"
+msgstr "Si sono verificati diversi errori"
 
 msgid "Shipping"
 msgstr "Spedizione"
@@ -514,11 +547,17 @@ msgstr "Via"
 msgid "Submit review"
 msgstr "Invia recensione"
 
+msgid "Subscribe"
+msgstr "Sottoscrivi"
+
 msgid "Subscribe to newsletter"
 msgstr "Iscriviti alla newsletter"
 
 msgid "Subscribe to our newsletter to stay informed about our new products!"
 msgstr "Iscriviti alla nostra newsletter per rimanere informato sui nostri nuovi prodotti!"
+
+msgid "Subscribed"
+msgstr "Sottoscritto"
 
 msgid "Successfully changed password"
 msgstr "Password cambiata con successo"
@@ -634,6 +673,9 @@ msgstr "Ora puoi <0>accedere nuovamente</0>."
 msgid "You can track your order status and much more!"
 msgstr "Puoi controllare lo stato dell'ordine e molto altro!"
 
+msgid "You have been successfully subscribed to our newsletter."
+msgstr "Sei stato iscritto con successo alla nostra newsletter."
+
 msgid "You have no addresses saved yet"
 msgstr "Non hai ancora salvato alcun indirizzo"
 
@@ -654,6 +696,9 @@ msgstr "Non hai ancora scritto nessuna recensione"
 
 msgid "You must sign in to continue"
 msgstr "Devi accedere per continuare"
+
+msgid "Your address has been added"
+msgstr "Il tuo indirizzo è stato aggiunto"
 
 msgid "Your cart is empty"
 msgstr "Il tuo carrello è vuoto"

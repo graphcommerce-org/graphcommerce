@@ -3,7 +3,6 @@ import { useApolloClient, useQuery } from '@graphcommerce/graphql'
 import { productLink, ProductLinkProps } from '@graphcommerce/magento-product'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Button, ButtonProps, SxProps, Theme } from '@mui/material'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { RouteDocument } from '../../Route.gql'
@@ -57,10 +56,8 @@ export function ButtonLink(props: ButtonLinkComponentProps) {
   }
 
   return (
-    <Link href={link ?? ''} passHref>
-      <Button component='a' sx={sx} {...buttonProps} onClick={handleClick}>
-        {buttonText}
-      </Button>
-    </Link>
+    <Button href={link ?? ''} sx={sx} {...buttonProps} onClick={handleClick}>
+      {buttonText}
+    </Button>
   )
 }

@@ -4,7 +4,6 @@ import { Button, FormRow, FormActions } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
 import { Box, FormControl, Link, SxProps, TextField, Theme } from '@mui/material'
-import PageLink from 'next/link'
 import { CustomerDocument } from '../../hooks'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import { SignInDocument } from './SignIn.gql'
@@ -53,11 +52,9 @@ export function SignInForm(props: SignInFormProps) {
           {...muiRegister('password', { required: required.password })}
           InputProps={{
             endAdornment: (
-              <PageLink href='/account/forgot-password' key='forgot-password' passHref>
-                <Link underline='hover' sx={{ whiteSpace: 'nowrap' }}>
-                  <Trans id='Forgot password?' />
-                </Link>
-              </PageLink>
+              <Link href='/account/forgot-password' underline='hover' sx={{ whiteSpace: 'nowrap' }}>
+                <Trans id='Forgot password?' />
+              </Link>
             ),
           }}
           helperText={formState.errors.password?.message || authError?.message}

@@ -247,7 +247,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
   (
     {
       src,
-      sizes: sizesIncomming,
+      sizes: sizesincoming,
       unoptimized = false,
       loading,
       layout = 'responsive',
@@ -277,9 +277,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
     }, [configContext])
 
     const sizesOrig =
-      layout === 'fixed' && width && !sizesIncomming
-        ? (`${width}px` as SizesString)
-        : sizesIncomming
+      layout === 'fixed' && width && !sizesincoming ? (`${width}px` as SizesString) : sizesincoming
 
     const sizes = generateSizesString(sizesOrig) || generateSizesString(DEFAULT_SIZES)
 

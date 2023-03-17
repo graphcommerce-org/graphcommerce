@@ -1,5 +1,149 @@
 # Change Log
 
+## 6.0.0
+
+### Major Changes
+
+- [#1749](https://github.com/graphcommerce-org/graphcommerce/pull/1749) [`0cc472915`](https://github.com/graphcommerce-org/graphcommerce/commit/0cc4729154d316227a41712b5f0adf514768e91f) - Introducing the new ProductFiltersPro component set with completely new filter and UI behavior. Filters will appear as a popper on the md and up breakpoints and as an overlay on sm and below breakpoints. Filters now have an Apply button instead of applying directly. ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#1830](https://github.com/graphcommerce-org/graphcommerce/pull/1830) [`203b6298e`](https://github.com/graphcommerce-org/graphcommerce/commit/203b6298ee06569bb662bb728282366d08b8f6af) - Scroller areas like galleries would snap to a certain position when immediately dragging after letting go, now it is much more smooth. ([@paales](https://github.com/paales))
+
+- [#1821](https://github.com/graphcommerce-org/graphcommerce/pull/1821) [`1abc50a21`](https://github.com/graphcommerce-org/graphcommerce/commit/1abc50a21103270fad04e4a9ea892ee1e75233e9) - Upgrade packages to latest version ([@paales](https://github.com/paales))
+
+- [#1829](https://github.com/graphcommerce-org/graphcommerce/pull/1829) [`52ecfc2ad`](https://github.com/graphcommerce-org/graphcommerce/commit/52ecfc2ad25fc6ef92465862fb94c1829bdd7c52) - CSS dvh property is now used when supported by browsers, causing less rerenders with overlays. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 6.0.0-canary.54
+
+## 6.0.0-canary.53
+
+## 6.0.0-canary.52
+
+## 6.0.0-canary.51
+
+## 6.0.0-canary.50
+
+## 6.0.0-canary.49
+
+## 6.0.0-canary.48
+
+## 6.0.0-canary.47
+
+## 6.0.0-canary.46
+
+## 6.0.0-canary.45
+
+## 6.0.0-canary.44
+
+## 6.0.0-canary.43
+
+## 6.0.0-canary.42
+
+## 6.0.0-canary.41
+
+## 6.0.0-canary.40
+
+## 6.0.0-canary.39
+
+## 6.0.0-canary.38
+
+## 6.0.0-canary.37
+
+## 6.0.0-canary.36
+
+## 6.0.0-canary.35
+
+## 6.0.0-canary.34
+
+### Patch Changes
+
+- [#1830](https://github.com/graphcommerce-org/graphcommerce/pull/1830) [`203b6298e`](https://github.com/graphcommerce-org/graphcommerce/commit/203b6298ee06569bb662bb728282366d08b8f6af) - Scroller: whem immediately dragging after letting go the current animation should be cancelled ([@paales](https://github.com/paales))
+
+## 6.0.0-canary.33
+
+## 6.0.0-canary.32
+
+## 6.0.0-canary.31
+
+## 6.0.0-canary.30
+
+### Patch Changes
+
+- [#1829](https://github.com/graphcommerce-org/graphcommerce/pull/1829) [`52ecfc2ad`](https://github.com/graphcommerce-org/graphcommerce/commit/52ecfc2ad25fc6ef92465862fb94c1829bdd7c52) - Dynamic viewport height when supported ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 6.0.0-canary.29
+
+## 6.0.0-canary.28
+
+### Patch Changes
+
+- [#1823](https://github.com/graphcommerce-org/graphcommerce/pull/1823) [`605d74434`](https://github.com/graphcommerce-org/graphcommerce/commit/605d74434b78baa83f3574b6a4249eae0431d570) - Fix/upgrade instructions ([@paales](https://github.com/paales))
+
+## 6.0.0-canary.27
+
+### Patch Changes
+
+- [#1821](https://github.com/graphcommerce-org/graphcommerce/pull/1821) [`1abc50a21`](https://github.com/graphcommerce-org/graphcommerce/commit/1abc50a21103270fad04e4a9ea892ee1e75233e9) - Fix regression bugs and upgrade packages to latest versions ([@paales](https://github.com/paales))
+
+## 6.0.0-canary.26
+
+## 6.0.0-canary.25
+
+## 6.0.0-canary.24
+
+## 6.0.0-canary.23
+
+## 6.0.0-canary.22
+
+## 6.0.0-canary.21
+
+## 6.0.0-canary.20
+
+## 5.2.0-canary.19
+
+## 5.2.0-canary.18
+
+## 5.2.0-canary.17
+
+## 5.2.0-canary.16
+
+## 5.2.0-canary.15
+
+## 5.2.0-canary.14
+
+## 5.2.0-canary.13
+
+## 5.2.0-canary.12
+
+## 5.2.0-canary.11
+
+## 5.2.0-canary.10
+
+## 5.2.0-canary.9
+
+## 5.2.0-canary.8
+
+## 5.2.0-canary.7
+
+### Minor Changes
+
+- [#1749](https://github.com/graphcommerce-org/graphcommerce/pull/1749) [`0cc472915`](https://github.com/graphcommerce-org/graphcommerce/commit/0cc4729154d316227a41712b5f0adf514768e91f) - Added new filter UI and behaviour. Filters will appear as a popper on the md and up breakpoints and as an overlay on sm and below breakpoints. Filters now have an Apply button instead of applying directly. ([@paales](https://github.com/paales))
+
+## 5.2.0-canary.6
+
+## 5.2.0-canary.5
+
+## 5.2.0-canary.4
+
+## 5.2.0-canary.3
+
+## 5.2.0-canary.2
+
+## 5.2.0-canary.1
+
+## 5.2.0-canary.0
+
 ## 5.1.1
 
 ## 5.1.1-canary.1

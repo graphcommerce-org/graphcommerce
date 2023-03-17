@@ -12,6 +12,8 @@ import {
   productPageCategory,
   ProductPageDescription,
   ProductPageMeta,
+  ProductPagePrice,
+  ProductPagePriceTiers,
   ProductShortDescription,
   ProductSidebarDelivery,
 } from '@graphcommerce/magento-product'
@@ -19,6 +21,7 @@ import { BundleProductOptions } from '@graphcommerce/magento-product-bundle'
 import {
   ConfigurableName,
   ConfigurablePrice,
+  ConfigurablePriceTiers,
   ConfigurableProductOptions,
   ConfigurableProductPageGallery,
   defaultConfigurableOptionsSelection,
@@ -37,7 +40,6 @@ import {
 import { Trans } from '@lingui/react'
 import { Box, Divider, Link, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
-import PageLink from 'next/link'
 import {
   LayoutNavigation,
   LayoutNavigationProps,
@@ -118,17 +120,14 @@ function ProductPage(props: Props) {
               product={product}
               optionEndLabels={{
                 size: (
-                  <PageLink href='/modal/product/global/size'>
-                    <Link
-                      rel='nofollow'
-                      component='button'
-                      type='button'
-                      color='primary'
-                      underline='hover'
-                    >
-                      <Trans id='Which size is right?' />
-                    </Link>
-                  </PageLink>
+                  <Link
+                    href='/modal/product/global/size'
+                    rel='nofollow'
+                    color='primary'
+                    underline='hover'
+                  >
+                    <Trans id='Which size is right?' />
+                  </Link>
                 ),
               }}
             />
@@ -157,11 +156,17 @@ function ProductPage(props: Props) {
                 {isTypename(product, ['ConfigurableProduct']) ? (
                   <ConfigurablePrice product={product} />
                 ) : (
-                  <Money {...product.price_range.minimum_price.final_price} />
+                  <ProductPagePrice product={product} />
                 )}
               </Typography>
             </AddProductsToCartError>
           </Box>
+
+          {isTypename(product, ['ConfigurableProduct']) ? (
+            <ConfigurablePriceTiers product={product} />
+          ) : (
+            <ProductPagePriceTiers product={product} />
+          )}
 
           <ProductSidebarDelivery product={product} />
 
@@ -208,7 +213,7 @@ ProductPage.pageOptions = {
 export default ProductPage
 
 export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
-  if (process.env.NEXT_PUBLIC_SINGLE_PRODUCT_PAGE !== '1') return { paths: [], fallback: false }
+  if (import.meta.graphCommerce.legacyProductRoute) return { paths: [], fallback: false }
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
 
   const path = (locale: string) => getProductStaticPaths(graphqlSsrClient(locale), locale)
@@ -218,7 +223,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 }
 
 export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
-  if (process.env.NEXT_PUBLIC_SINGLE_PRODUCT_PAGE !== '1') return { notFound: true }
+  if (import.meta.graphCommerce.legacyProductRoute) return { notFound: true }
 
   const client = graphqlSharedClient(locale)
   const staticClient = graphqlSsrClient(locale)
@@ -233,7 +238,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const layout = staticClient.query({ query: LayoutDocument })
 
   const product = (await productPage).data.products?.items?.find((p) => p?.url_key === urlKey)
-  if (!product) return redirectOrNotFound(client, params, locale)
+  if (!product) return redirectOrNotFound(staticClient, params, locale)
 
   const category = productPageCategory(product)
   const up =

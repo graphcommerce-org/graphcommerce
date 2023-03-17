@@ -1,5 +1,4 @@
 import { Box, Typography, Link } from '@mui/material'
-import PageLink from 'next/link'
 import { Asset } from '../Asset/Asset'
 import { Renderers } from './types'
 
@@ -43,9 +42,7 @@ export const defaultRenderers: Renderers = {
     </Box>
   ),
   link: ({ href, openInNewTab, ...props }) => (
-    <PageLink href={href} passHref>
-      <Link underline='hover' {...props} target={openInNewTab ? '_blank' : undefined} />
-    </PageLink>
+    <Link href={href} underline='hover' {...props} target={openInNewTab ? '_blank' : undefined} />
   ),
   table: (props) => <Box component='table' {...props} />,
   table_head: (props) => <Box component='thead' {...props} />,

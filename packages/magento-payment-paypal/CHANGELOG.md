@@ -1,5 +1,143 @@
 # @graphcommerce/magento-payment-paypal
 
+## 6.0.0
+
+### Patch Changes
+
+- [#1841](https://github.com/graphcommerce-org/graphcommerce/pull/1841) [`03c104d7f`](https://github.com/graphcommerce-org/graphcommerce/commit/03c104d7f5d4ffd71eb9e26fe4fd4b77fd4c23c8) - Split `PayPalPaymentOptionsAndPlaceOrder` in `PaymentOptionsNoop` and `PayPalPaymentPlaceOrder` components to allow for surcharges when selecting a payment method. ([@paales](https://github.com/paales))
+
+- [#1841](https://github.com/graphcommerce-org/graphcommerce/pull/1841) [`1ff022c4b`](https://github.com/graphcommerce-org/graphcommerce/commit/1ff022c4bd8ad1d9fa8c1760076f003af06ce421) - PaymentMethodUpdated is now @injectable to allow for easier customisation. ([@paales](https://github.com/paales))
+
+- [#1851](https://github.com/graphcommerce-org/graphcommerce/pull/1851) [`5adadf4ba`](https://github.com/graphcommerce-org/graphcommerce/commit/5adadf4ba023e861409a3925b5cda1e20dbb256c) - Make sure the PayerID isn’t required for non-paypal method ([@paales](https://github.com/paales))
+
+- [#1790](https://github.com/graphcommerce-org/graphcommerce/pull/1790) [`ab4d6d8e1`](https://github.com/graphcommerce-org/graphcommerce/commit/ab4d6d8e18485b4ca4ca98f534e4f64f6849d952) - Make sure the payment method is set before we’re creating a paypal express token, so possible surcharges get applied ([@LaurensFranken](https://github.com/LaurensFranken))
+
+## 6.0.0-canary.54
+
+## 6.0.0-canary.53
+
+## 6.0.0-canary.52
+
+## 6.0.0-canary.51
+
+## 6.0.0-canary.50
+
+### Patch Changes
+
+- [#1851](https://github.com/graphcommerce-org/graphcommerce/pull/1851) [`5adadf4ba`](https://github.com/graphcommerce-org/graphcommerce/commit/5adadf4ba023e861409a3925b5cda1e20dbb256c) - Make sure the PayerID isn’t required for non-paypal method ([@paales](https://github.com/paales))
+
+## 6.0.0-canary.49
+
+## 6.0.0-canary.48
+
+## 6.0.0-canary.47
+
+## 6.0.0-canary.46
+
+## 6.0.0-canary.45
+
+## 6.0.0-canary.44
+
+## 6.0.0-canary.43
+
+### Minor Changes
+
+- [#1841](https://github.com/graphcommerce-org/graphcommerce/pull/1841) [`03c104d7f`](https://github.com/graphcommerce-org/graphcommerce/commit/03c104d7f5d4ffd71eb9e26fe4fd4b77fd4c23c8) - Split PayPalPaymentOptionsAndPlaceOrder in PaymentOptionsNoop and PayPalPaymentPlaceOrder components to allow for surcharges when selecting a payment method. ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#1841](https://github.com/graphcommerce-org/graphcommerce/pull/1841) [`1ff022c4b`](https://github.com/graphcommerce-org/graphcommerce/commit/1ff022c4bd8ad1d9fa8c1760076f003af06ce421) - Make sure we're using the the PaymentMethodUpdated fragment to allow for injection ([@paales](https://github.com/paales))
+
+## 6.0.0-canary.42
+
+## 6.0.0-canary.41
+
+## 6.0.0-canary.40
+
+## 6.0.0-canary.39
+
+## 6.0.0-canary.38
+
+## 6.0.0-canary.37
+
+## 6.0.0-canary.36
+
+## 6.0.0-canary.35
+
+## 6.0.0-canary.34
+
+## 6.0.0-canary.33
+
+## 6.0.0-canary.32
+
+## 6.0.0-canary.31
+
+## 6.0.0-canary.30
+
+## 6.0.0-canary.29
+
+## 6.0.0-canary.28
+
+## 6.0.0-canary.27
+
+## 6.0.0-canary.26
+
+## 6.0.0-canary.25
+
+## 6.0.0-canary.24
+
+## 6.0.0-canary.23
+
+## 6.0.0-canary.22
+
+## 6.0.0-canary.21
+
+## 6.0.0-canary.20
+
+## 5.2.0-canary.19
+
+## 5.2.0-canary.18
+
+### Patch Changes
+
+- [#1790](https://github.com/graphcommerce-org/graphcommerce/pull/1790) [`ab4d6d8e1`](https://github.com/graphcommerce-org/graphcommerce/commit/ab4d6d8e18485b4ca4ca98f534e4f64f6849d952) - Make sure the payment method is set before we’re crearting a paypal express token, so possible surcharges get applied ([@LaurensFranken](https://github.com/LaurensFranken))
+
+## 5.2.0-canary.17
+
+## 5.2.0-canary.16
+
+## 5.2.0-canary.15
+
+## 5.2.0-canary.14
+
+## 5.2.0-canary.13
+
+## 5.2.0-canary.12
+
+## 5.2.0-canary.11
+
+## 5.2.0-canary.10
+
+## 5.2.0-canary.9
+
+## 5.2.0-canary.8
+
+## 5.2.0-canary.7
+
+## 5.2.0-canary.6
+
+## 5.2.0-canary.5
+
+## 5.2.0-canary.4
+
+## 5.2.0-canary.3
+
+## 5.2.0-canary.2
+
+## 5.2.0-canary.1
+
+## 5.2.0-canary.0
+
 ## 5.1.1
 
 ## 5.1.1-canary.1

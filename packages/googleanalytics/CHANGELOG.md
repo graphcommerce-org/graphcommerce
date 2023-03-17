@@ -1,5 +1,141 @@
 # Change Log
 
+## 6.0.0
+
+### Patch Changes
+
+- [#1809](https://github.com/graphcommerce-org/graphcommerce/pull/1809) [`2da3c9214`](https://github.com/graphcommerce-org/graphcommerce/commit/2da3c92148aef08813b95e404a25796acf0eefd2) - Google Analytics now supports view_item, view_cart and remove_from_cart ([@mikekeehnen](https://github.com/mikekeehnen))
+
+- [#1821](https://github.com/graphcommerce-org/graphcommerce/pull/1821) [`1abc50a21`](https://github.com/graphcommerce-org/graphcommerce/commit/1abc50a21103270fad04e4a9ea892ee1e75233e9) - Upgrade packages to latest version ([@paales](https://github.com/paales))
+
+- [#1835](https://github.com/graphcommerce-org/graphcommerce/pull/1835) [`393d62cf1`](https://github.com/graphcommerce-org/graphcommerce/commit/393d62cf1833a61eb98777b7eab91ea891668e57) - Google analytics uses the new configuration system and will use googleAnalyticsId ([@paales](https://github.com/paales))
+
+## 6.0.0-canary.54
+
+## 6.0.0-canary.53
+
+## 6.0.0-canary.52
+
+### Patch Changes
+
+- [#1809](https://github.com/graphcommerce-org/graphcommerce/pull/1809) [`2da3c9214`](https://github.com/graphcommerce-org/graphcommerce/commit/2da3c92148aef08813b95e404a25796acf0eefd2) - Added useMemoObject and implement in GaViewItem, GoogleAnalyticsItemList and GaCartStartCheckoutLinkOrButton ([@mikekeehnen](https://github.com/mikekeehnen))
+
+## 6.0.0-canary.51
+
+## 6.0.0-canary.50
+
+## 6.0.0-canary.49
+
+## 6.0.0-canary.48
+
+## 6.0.0-canary.47
+
+## 6.0.0-canary.46
+
+## 6.0.0-canary.45
+
+## 6.0.0-canary.44
+
+### Patch Changes
+
+- [#1842](https://github.com/graphcommerce-org/graphcommerce/pull/1842) [`7b67d84bd`](https://github.com/graphcommerce-org/graphcommerce/commit/7b67d84bd269c3fc91afbd69f6683c5d12808d36) - Renamed i18n to storefront in configuration ([@paales](https://github.com/paales))
+
+## 6.0.0-canary.43
+
+## 6.0.0-canary.42
+
+## 6.0.0-canary.41
+
+## 6.0.0-canary.40
+
+## 6.0.0-canary.39
+
+## 6.0.0-canary.38
+
+### Patch Changes
+
+- [#1835](https://github.com/graphcommerce-org/graphcommerce/pull/1835) [`393d62cf1`](https://github.com/graphcommerce-org/graphcommerce/commit/393d62cf1833a61eb98777b7eab91ea891668e57) - Analytics do not rely on env variable but use googleAnalyticsId config ([@paales](https://github.com/paales))
+
+## 6.0.0-canary.37
+
+## 6.0.0-canary.36
+
+## 6.0.0-canary.35
+
+## 6.0.0-canary.34
+
+## 6.0.0-canary.33
+
+## 6.0.0-canary.32
+
+## 6.0.0-canary.31
+
+## 6.0.0-canary.30
+
+## 6.0.0-canary.29
+
+## 6.0.0-canary.28
+
+## 6.0.0-canary.27
+
+### Patch Changes
+
+- [#1821](https://github.com/graphcommerce-org/graphcommerce/pull/1821) [`1abc50a21`](https://github.com/graphcommerce-org/graphcommerce/commit/1abc50a21103270fad04e4a9ea892ee1e75233e9) - Fix regression bugs and upgrade packages to latest versions ([@paales](https://github.com/paales))
+
+## 6.0.0-canary.26
+
+## 6.0.0-canary.25
+
+## 6.0.0-canary.24
+
+## 6.0.0-canary.23
+
+## 6.0.0-canary.22
+
+## 6.0.0-canary.21
+
+## 6.0.0-canary.20
+
+## 5.2.0-canary.19
+
+## 5.2.0-canary.18
+
+## 5.2.0-canary.17
+
+## 5.2.0-canary.16
+
+## 5.2.0-canary.15
+
+## 5.2.0-canary.14
+
+## 5.2.0-canary.13
+
+## 5.2.0-canary.12
+
+## 5.2.0-canary.11
+
+## 5.2.0-canary.10
+
+## 5.2.0-canary.9
+
+## 5.2.0-canary.8
+
+## 5.2.0-canary.7
+
+## 5.2.0-canary.6
+
+## 5.2.0-canary.5
+
+## 5.2.0-canary.4
+
+## 5.2.0-canary.3
+
+## 5.2.0-canary.2
+
+## 5.2.0-canary.1
+
+## 5.2.0-canary.0
+
 ## 5.1.1
 
 ## 5.1.1-canary.1

@@ -15,6 +15,10 @@ import {
   getFilterTypes,
   parseParams,
   ProductFiltersDocument,
+  ProductFiltersPro,
+  ProductFiltersProAllFiltersChip,
+  ProductFiltersProFilterChips,
+  ProductFiltersProSortChip,
   ProductFiltersQuery,
   ProductListCount,
   ProductListDocument,
@@ -51,6 +55,7 @@ export type CategoryProps = CategoryPageQuery &
   ProductListQuery &
   ProductFiltersQuery & { filterTypes?: FilterTypes; params?: ProductListParams }
 export type CategoryRoute = { url: string[] }
+
 type GetPageStaticPaths = GetStaticPaths<CategoryRoute>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, CategoryProps, CategoryRoute>
 
@@ -66,19 +71,17 @@ function CategoryPage(props: CategoryProps) {
     <>
       <CategoryMeta
         params={params}
-        title={page?.metaTitle ?? page?.title}
+        title={page?.metaTitle}
         metaDescription={page?.metaDescription}
         metaRobots={page?.metaRobots.toLowerCase().split('_') as MetaRobots[]}
         canonical={page?.url ? `/${page.url}` : undefined}
         {...category}
       />
-
       <LayoutHeader floatingMd>
         <LayoutTitle size='small' component='span'>
           {category?.name ?? page.title}
         </LayoutTitle>
       </LayoutHeader>
-
       {!isLanding && (
         <Container maxWidth={false}>
           <LayoutTitle
@@ -95,7 +98,6 @@ function CategoryPage(props: CategoryProps) {
           </LayoutTitle>
         </Container>
       )}
-
       {isCategory && isLanding && (
         <CategoryHeroNav
           {...category}
@@ -103,22 +105,35 @@ function CategoryPage(props: CategoryProps) {
           title={<CategoryHeroNavTitle>{category?.name}</CategoryHeroNavTitle>}
         />
       )}
-
       {isCategory && !isLanding && (
-        <ProductListParamsProvider value={params}>
+        <>
           <CategoryDescription description={category.description} />
           <CategoryChildren params={params}>{category.children}</CategoryChildren>
-
           <StickyBelowHeader>
-            <ProductListFiltersContainer>
-              <ProductListFilters aggregations={filters?.aggregations} filterTypes={filterTypes} />
-              <ProductListSort
-                sort_fields={products?.sort_fields}
-                total_count={products?.total_count}
-              />
-            </ProductListFiltersContainer>
+            {import.meta.graphCommerce.productFiltersPro ? (
+              <ProductFiltersPro params={params}>
+                <ProductListFiltersContainer>
+                  <ProductFiltersProFilterChips {...filters} filterTypes={filterTypes} />
+                  <ProductFiltersProSortChip {...products} />
+                  <ProductFiltersProAllFiltersChip
+                    {...filters}
+                    {...products}
+                    filterTypes={filterTypes}
+                  />
+                </ProductListFiltersContainer>
+              </ProductFiltersPro>
+            ) : (
+              <ProductListParamsProvider value={params}>
+                <ProductListFiltersContainer>
+                  <ProductListSort
+                    sort_fields={products?.sort_fields}
+                    total_count={products?.total_count}
+                  />
+                  <ProductListFilters {...filters} filterTypes={filterTypes} />
+                </ProductListFiltersContainer>
+              </ProductListParamsProvider>
+            )}
           </StickyBelowHeader>
-
           <Container maxWidth={false}>
             <ProductListCount total_count={products?.total_count} />
             <ProductListItems
@@ -126,11 +141,10 @@ function CategoryPage(props: CategoryProps) {
               items={products?.items}
               loadingEager={1}
             />
-            <ProductListPagination page_info={products?.page_info} />
+            <ProductListPagination page_info={products?.page_info} params={params} />
           </Container>
-        </ProductListParamsProvider>
+        </>
       )}
-
       {page && (
         <RowRenderer
           content={page.content}
@@ -195,7 +209,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const hasCategory = Boolean(productListParams && categoryUid)
 
   if (!productListParams || !(hasPage || hasCategory))
-    return redirectOrNotFound(client, params, locale)
+    return redirectOrNotFound(staticClient, params, locale)
 
   if (!hasCategory) {
     return {

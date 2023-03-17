@@ -57,7 +57,8 @@ export type NearOperationFileConfig = {
   importAllFragmentsFrom?: string | FragmentImportFromFn
   /**
    * Optional, sets the extension for the generated files. Use this to override the extension if you
-   * are using plugins that requires a different type of extensions (such as `typescript-react-apollo`)
+   * are using plugins that requires a different type of extensions (such as
+   * `typescript-react-apollo`)
    *
    * @default .generates.ts
    * @exampleMarkdown ```yml generates:
@@ -89,7 +90,8 @@ export type NearOperationFileConfig = {
    */
   cwd?: string
   /**
-   * Optional, defines a folder, (Relative to the source files) where the generated files will be created.
+   * Optional, defines a folder, (Relative to the source files) where the generated files will be
+   * created.
    *
    * @default ''
    * @exampleMarkdown ```yml generates:
@@ -104,7 +106,8 @@ export type NearOperationFileConfig = {
    */
   folder?: string
   /**
-   * Optional, override the name of the import namespace used to import from the `baseTypesPath` file.
+   * Optional, override the name of the import namespace used to import from the `baseTypesPath`
+   * file.
    *
    * @default Types
    * @exampleMarkdown ```yml generates:

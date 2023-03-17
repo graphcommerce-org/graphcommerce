@@ -1,5 +1,6 @@
 import { ApolloError } from '@graphcommerce/graphql'
 import { FullPageMessage, FullPageMessageProps } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/react'
 import { AlertProps } from '@mui/material'
 import { ApolloErrorAlert } from './ApolloErrorAlert'
 
@@ -34,7 +35,7 @@ export function ApolloErrorFullPage(props: ApolloErrorFullPageProps) {
   }
 
   return (
-    <FullPageMessage title='Several errors occured' {...fullPageMessageProps}>
+    <FullPageMessage title={<Trans id='Several errors occured' />} {...fullPageMessageProps}>
       <ApolloErrorAlert error={error} />
     </FullPageMessage>
   )

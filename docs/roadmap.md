@@ -29,7 +29,7 @@ The following overview contains the status of items on the GraphCommerce roadmap
 - [x] Configurable product image swatches
       [example ↗](https://graphcommerce.vercel.app/nl/p/gc-puncturing-sock)
 - [x] Virtual product, downloadable products
-- [x] Multilingual Hygraph (GraphCMS) setup support
+- [x] Multilingual Hygraph (Hygraph) setup support
 - [x] Multisafepay payment service
 - [x] Multilingual product sitemap generation
 - [x] Multi level Navigation (Mega Menu)
@@ -49,7 +49,7 @@ The following overview contains the status of items on the GraphCommerce roadmap
 
 ## Future
 
-- [ ] `magento` example without GraphCMS
+- [ ] `magento` example without Hygraph
 - [ ] PageBuilder support
 
 ## Next steps

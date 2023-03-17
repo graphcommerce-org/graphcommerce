@@ -1,9 +1,7 @@
 import {
-  Control,
   Controller,
   ControllerProps,
   FieldError,
-  Path,
   FieldValues,
 } from '@graphcommerce/react-hook-form'
 import {
@@ -26,20 +24,17 @@ type SingleToggleButtonProps = Omit<ToggleButtonProps, 'value' | 'children'> & {
 export type ToggleButtonGroupElementProps<T extends FieldValues> = ToggleButtonGroupProps & {
   required?: boolean
   label?: string
-  validation?: ControllerProps['rules']
-  name: Path<T>
   parseError?: (error: FieldError) => string
-  control?: Control<T>
   options: SingleToggleButtonProps[]
   formLabelProps?: FormLabelProps
   helperText?: string
-}
+} & Omit<ControllerProps<T>, 'render'>
 
 export function ToggleButtonGroupElement<TFieldValues extends FieldValues = FieldValues>({
   name,
   control,
   label,
-  validation = {},
+  rules = {},
   required,
   options = [],
   parseError,
@@ -47,16 +42,16 @@ export function ToggleButtonGroupElement<TFieldValues extends FieldValues = Fiel
   formLabelProps,
   ...toggleButtonGroupProps
 }: ToggleButtonGroupElementProps<TFieldValues>) {
-  if (required && !validation.required) {
-    validation.required = 'This field is required'
+  if (required && !rules.required) {
+    rules.required = 'This field is required'
   }
 
-  const isRequired = required || !!validation?.required
+  const isRequired = required || !!rules?.required
   return (
     <Controller
       name={name}
       control={control}
-      rules={validation}
+      rules={rules}
       render={({ field: { value, onChange, onBlur }, fieldState: { invalid, error } }) => {
         const renderHelperText = error
           ? typeof parseError === 'function'

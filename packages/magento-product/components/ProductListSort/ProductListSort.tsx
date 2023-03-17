@@ -33,6 +33,7 @@ export function ProductListSort(props: ProductListSortProps) {
   const removeFilter = () => {
     const linkParams = cloneDeep(params)
     linkParams.sort = {}
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     replaceRoute(linkParams)
   }
 
@@ -63,6 +64,7 @@ export function ProductListSort(props: ProductListSortProps) {
             dense
             selected={option?.value === currentSort}
             component={React.memo(
+              // eslint-disable-next-line react/no-unstable-nested-components
               React.forwardRef<HTMLAnchorElement>((chipProps, ref) => (
                 <ProductListLink
                   {...chipProps}

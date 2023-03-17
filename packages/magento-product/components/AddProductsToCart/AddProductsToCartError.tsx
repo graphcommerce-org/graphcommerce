@@ -1,3 +1,4 @@
+import { useFormState } from '@graphcommerce/ecommerce-ui'
 import { FormHelperText } from '@mui/material'
 import { useFormAddProductsToCart } from './useFormAddProductsToCart'
 
@@ -8,7 +9,8 @@ type AddProductsToCartErrorProps = {
 
 export function AddProductsToCartError(props: AddProductsToCartErrorProps) {
   const { children, index = 0 } = props
-  const { formState } = useFormAddProductsToCart()
+  const { control } = useFormAddProductsToCart()
+  const formState = useFormState({ control })
   const errorMsg = formState.errors.cartItems?.[index]?.sku?.message
 
   if (errorMsg)

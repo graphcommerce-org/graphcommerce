@@ -10,10 +10,9 @@ import {
   LayoutTitle,
   LinkOrButton,
 } from '@graphcommerce/next-ui'
-import { Container } from '@mui/material'
+import { Container, Link } from '@mui/material'
 import { m } from 'framer-motion'
 import { GetStaticPathsResult, GetStaticProps } from 'next'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import { Grid } from '../../components/Grid'
@@ -31,15 +30,14 @@ function MultiStack() {
       <LayoutHeader
         noAlign
         primary={
-          <Link href={`/multi-stack/${variant}/${page + 1}`} passHref>
-            <LinkOrButton
-              color='secondary'
-              button={{ variant: 'pill' }}
-              endIcon={<IconSvg src={iconChevronRight} />}
-            >
-              {page + 1}
-            </LinkOrButton>
-          </Link>
+          <LinkOrButton
+            href={`/multi-stack/${variant}/${page + 1}`}
+            color='secondary'
+            button={{ variant: 'pill' }}
+            endIcon={<IconSvg src={iconChevronRight} />}
+          >
+            {page + 1}
+          </LinkOrButton>
         }
       >
         <LayoutTitle size='small' component='span'>
@@ -50,15 +48,8 @@ function MultiStack() {
         <LayoutTitle>
           Overlay {variant} {page}
         </LayoutTitle>
-        {page > 0 && (
-          <Link href={`/multi-stack/${variant}/${page - 1}`}>
-            <a>{page - 1}</a>
-          </Link>
-        )}{' '}
-        {page}{' '}
-        <Link href={`/multi-stack/${variant}/${page + 1}`}>
-          <a>{page + 1}</a>
-        </Link>
+        {page > 0 && <Link href={`/multi-stack/${variant}/${page - 1}`}>{page - 1}</Link>} {page}{' '}
+        <Link href={`/multi-stack/${variant}/${page + 1}`}>{page + 1}</Link>
         <button type='button' onClick={() => setExpanded(!expanded)}>
           {expanded ? 'collapse' : 'expand'}
         </button>

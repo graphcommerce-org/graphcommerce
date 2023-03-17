@@ -1,5 +1,173 @@
 # Change Log
 
+## 6.0.0
+
+### Major Changes
+
+- [#1786](https://github.com/graphcommerce-org/graphcommerce/pull/1786) [`26239ef73`](https://github.com/graphcommerce-org/graphcommerce/commit/26239ef73e49731224b227f1eb850dde56d40584) - Updated the supported NodeJS versions to 16 and 18, removed support for NodeJS 14. ([@paales](https://github.com/paales))
+
+- [#1766](https://github.com/graphcommerce-org/graphcommerce/pull/1766) [`e34169ee2`](https://github.com/graphcommerce-org/graphcommerce/commit/e34169ee2e0fdc052ff589ceca0bc67557584c1f) - Upgraded to Next.js 13
+
+  - NextLink integrates the next/link functionality with @mui/material's Link and ButtonBase (and all it's derivatives) components.
+  - NextLink automatically adds `target="_blank"` when the href is external.
+  - NextLink makes all relative href absolute. `href="my-page"` will be rendered as `href="/my-page"`. ([@paales](https://github.com/paales))
+
+### Minor Changes
+
+- [#1828](https://github.com/graphcommerce-org/graphcommerce/pull/1828) [`3df85faf1`](https://github.com/graphcommerce-org/graphcommerce/commit/3df85faf189b95e2c7d9c3fc756474fcafb1c8b4) - Added a new `productRoute` configuration to create freedom in the actual product route used (default: /p/). Simplified redirects from legacy product routes to new routes by creating redirects. ([@paales](https://github.com/paales))
+
+- [#1810](https://github.com/graphcommerce-org/graphcommerce/pull/1810) [`543c5d5b2`](https://github.com/graphcommerce-org/graphcommerce/commit/543c5d5b2b6f29c1f6a0a405524d4cc86f399596) - Added `limitSsg: Boolean` configuration option to limit the getStaticPaths generation during build. This is useful to make quick deployments on preview environments. ([@paales](https://github.com/paales))
+
+- [#1779](https://github.com/graphcommerce-org/graphcommerce/pull/1779) [`6c6d7e4d7`](https://github.com/graphcommerce-org/graphcommerce/commit/6c6d7e4d7cf5d68a39acc82b91e1f3acce366517) - Added postcode check for Dutch address fields. Ddds an autocomplete field for the street name and city based of the customers postcode + street number + addition. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 6.0.0-canary.54
+
+## 6.0.0-canary.53
+
+## 6.0.0-canary.52
+
+## 6.0.0-canary.51
+
+## 6.0.0-canary.50
+
+## 6.0.0-canary.49
+
+## 6.0.0-canary.48
+
+## 6.0.0-canary.47
+
+## 6.0.0-canary.46
+
+## 6.0.0-canary.45
+
+## 6.0.0-canary.44
+
+### Patch Changes
+
+- [#1842](https://github.com/graphcommerce-org/graphcommerce/pull/1842) [`7b67d84bd`](https://github.com/graphcommerce-org/graphcommerce/commit/7b67d84bd269c3fc91afbd69f6683c5d12808d36) - Renamed i18n to storefront in configuration ([@paales](https://github.com/paales))
+
+## 6.0.0-canary.43
+
+## 6.0.0-canary.42
+
+## 6.0.0-canary.41
+
+## 6.0.0-canary.40
+
+## 6.0.0-canary.39
+
+## 6.0.0-canary.38
+
+## 6.0.0-canary.37
+
+## 6.0.0-canary.36
+
+## 6.0.0-canary.35
+
+## 6.0.0-canary.34
+
+## 6.0.0-canary.33
+
+## 6.0.0-canary.32
+
+## 6.0.0-canary.31
+
+## 6.0.0-canary.30
+
+## 6.0.0-canary.29
+
+### Minor Changes
+
+- [#1828](https://github.com/graphcommerce-org/graphcommerce/pull/1828) [`3df85faf1`](https://github.com/graphcommerce-org/graphcommerce/commit/3df85faf189b95e2c7d9c3fc756474fcafb1c8b4) - Added new `productRoute` configuration to create freedom in the actual product route used (default: /p/). Simplified redirects from legacy product routes to new routes by creating redirects. ([@paales](https://github.com/paales))
+
+## 6.0.0-canary.28
+
+### Patch Changes
+
+- [#1823](https://github.com/graphcommerce-org/graphcommerce/pull/1823) [`605d74434`](https://github.com/graphcommerce-org/graphcommerce/commit/605d74434b78baa83f3574b6a4249eae0431d570) - Fix/upgrade instructions ([@paales](https://github.com/paales))
+
+## 6.0.0-canary.27
+
+## 6.0.0-canary.26
+
+## 6.0.0-canary.25
+
+## 6.0.0-canary.24
+
+## 6.0.0-canary.23
+
+### Minor Changes
+
+- [#1810](https://github.com/graphcommerce-org/graphcommerce/pull/1810) [`543c5d5b2`](https://github.com/graphcommerce-org/graphcommerce/commit/543c5d5b2b6f29c1f6a0a405524d4cc86f399596) - Added `limitSsg: Boolean` configuration option to limit the getStaticPaths generation during build. This is useful to make quick deployments on preview environments. ([@paales](https://github.com/paales))
+
+## 6.0.0-canary.22
+
+## 6.0.0-canary.21
+
+## 6.0.0-canary.20
+
+### Major Changes
+
+- [#1786](https://github.com/graphcommerce-org/graphcommerce/pull/1786) [`26239ef73`](https://github.com/graphcommerce-org/graphcommerce/commit/26239ef73e49731224b227f1eb850dde56d40584) - Bumped minimum version to node16 ([@paales](https://github.com/paales))
+
+## 5.2.0-canary.19
+
+## 5.2.0-canary.18
+
+## 5.2.0-canary.17
+
+## 5.2.0-canary.16
+
+## 5.2.0-canary.15
+
+## 5.2.0-canary.14
+
+## 5.2.0-canary.13
+
+## 5.2.0-canary.12
+
+## 5.2.0-canary.11
+
+## 5.2.0-canary.10
+
+## 5.2.0-canary.9
+
+## 5.2.0-canary.8
+
+### Minor Changes
+
+- [#1779](https://github.com/graphcommerce-org/graphcommerce/pull/1779) [`6c6d7e4d7`](https://github.com/graphcommerce-org/graphcommerce/commit/6c6d7e4d7cf5d68a39acc82b91e1f3acce366517) - Implementation of the Dutch address fields, add an autocomplete field for the street name and city based of the customers postcode + street number + addition. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 5.2.0-canary.7
+
+## 5.2.0-canary.6
+
+## 5.2.0-canary.5
+
+## 5.2.0-canary.4
+
+## 5.2.0-canary.3
+
+### Minor Changes
+
+- [#1766](https://github.com/graphcommerce-org/graphcommerce/pull/1766) [`e34169ee2`](https://github.com/graphcommerce-org/graphcommerce/commit/e34169ee2e0fdc052ff589ceca0bc67557584c1f) - Upgraded to Next.js 13
+
+  - NextLink integrates the next/link functionality with @mui/material's Link and ButtonBase (and all it's derivatives) components.
+  - NextLink automatically adds `target="_blank"` when the href is external.
+  - NextLink makes all relative href absolute. `href="my-page"` will be rendered as `href="/my-page"`.
+
+  Upgrade instructions: https://www.graphcommerce.org/docs/framework/links#upgrading-from-nextjs-12 ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#1766](https://github.com/graphcommerce-org/graphcommerce/pull/1766) [`c408c0a88`](https://github.com/graphcommerce-org/graphcommerce/commit/c408c0a8836c3ef1f54527b503d1d62855f08d3c) - Added Magento configuration section to the docs ([@paales](https://github.com/paales))
+
+## 5.2.0-canary.2
+
+## 5.2.0-canary.1
+
+## 5.2.0-canary.0
+
 ## 5.1.1
 
 ### Patch Changes

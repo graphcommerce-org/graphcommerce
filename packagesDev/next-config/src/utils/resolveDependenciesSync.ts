@@ -9,16 +9,21 @@ type DependencyStructure = Record<string, { dirName: string; dependencies: strin
 const resolveCache: Map<string, PackageNames> = new Map<string, PackageNames>()
 
 function resolveRecursivePackageJson(
-  packageJsonFilename: string,
+  dependencyPath: string,
   dependencyStructure: DependencyStructure,
-  force = false,
+  root: string,
 ) {
-  const packageJsonFile = fs.readFileSync(packageJsonFilename, 'utf-8').toString()
+  const isRoot = dependencyPath === root
+  const fileName = require.resolve(path.join(dependencyPath, 'package.json'))
+  const packageJsonFile = fs.readFileSync(fileName, 'utf-8').toString()
   const packageJson = JSON.parse(packageJsonFile) as PackageJson
 
-  if (!packageJson.name) throw Error('Package does not have a name')
+  if (!packageJson.name) throw Error(`Package ${packageJsonFile} does not have a name field`)
 
+  // Previously processed
   if (dependencyStructure[packageJson.name]) return dependencyStructure
+
+  if (!isRoot && !packageJson.name.includes('graphcommerce')) return dependencyStructure
 
   const dependencies = [
     ...new Set(
@@ -30,18 +35,14 @@ function resolveRecursivePackageJson(
     ),
   ]
 
-  if (!force && !packageJson.name.includes('graphcommerce')) return dependencyStructure
-
-  dependencyStructure[packageJson.name] = {
-    dirName: path.dirname(path.relative(process.cwd(), packageJsonFilename)),
+  const name = isRoot ? '.' : packageJson.name
+  dependencyStructure[name] = {
+    dirName: path.dirname(path.relative(process.cwd(), fileName)),
     dependencies,
   }
 
-  dependencies.forEach((dependency) => {
-    resolveRecursivePackageJson(
-      require.resolve(path.join(dependency, 'package.json')),
-      dependencyStructure,
-    )
+  dependencies.forEach((dep) => {
+    resolveRecursivePackageJson(dep, dependencyStructure, root)
   })
 
   return dependencyStructure
@@ -76,7 +77,7 @@ export function sortDependencies(dependencyStructure: DependencyStructure): Pack
 export function resolveDependenciesSync(root = process.cwd()) {
   const cached = resolveCache.get(root)
   if (cached) return cached
-  const dependencyStructure = resolveRecursivePackageJson(path.join(root, 'package.json'), {}, true)
+  const dependencyStructure = resolveRecursivePackageJson(root, {}, root)
 
   const sorted = sortDependencies(dependencyStructure)
   resolveCache.set(root, sorted)

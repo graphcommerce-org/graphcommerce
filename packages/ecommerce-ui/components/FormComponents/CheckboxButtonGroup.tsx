@@ -1,9 +1,8 @@
 import {
-  Control,
   FieldError,
-  Path,
   useController,
   FieldValues,
+  UseControllerProps,
 } from '@graphcommerce/react-hook-form'
 import {
   Checkbox,
@@ -19,7 +18,6 @@ import {
 export type CheckboxButtonGroupProps<T extends FieldValues> = {
   options: { id: string | number; label: string }[] | any[]
   helperText?: string
-  name: Path<T>
   required?: boolean
   parseError?: (error: FieldError) => string
   label?: string
@@ -29,9 +27,8 @@ export type CheckboxButtonGroupProps<T extends FieldValues> = {
   returnObject?: boolean
   disabled?: boolean
   row?: boolean
-  control?: Control<T>
   checkboxColor?: CheckboxProps['color']
-}
+} & UseControllerProps<T>
 
 export function CheckboxButtonGroup<TFieldValues extends FieldValues>({
   helperText,

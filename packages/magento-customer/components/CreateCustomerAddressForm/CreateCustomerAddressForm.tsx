@@ -7,6 +7,7 @@ import {
   FormRow,
   InputCheckmark,
   Button,
+  MessageSnackbar,
 } from '@graphcommerce/next-ui'
 import { phonePattern, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
@@ -44,13 +45,13 @@ export function CreateCustomerAddressForm() {
       },
       onComplete: (e) => {
         // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        router.push(`/account/addresses/edit?addressId=${e.data?.createCustomerAddress?.id}`)
+        router.push(`/account/addresses`)
       },
     },
     { errorPolicy: 'all' },
   )
 
-  const { handleSubmit, formState, required, error, muiRegister, valid } = form
+  const { handleSubmit, formState, required, error, muiRegister, valid, data } = form
   const submitHandler = handleSubmit((_, e) => {
     if (!formState.errors) e?.target.reset()
   })
@@ -92,6 +93,10 @@ export function CreateCustomerAddressForm() {
           </Button>
         </FormActions>
       </Form>
+
+      <MessageSnackbar open={Boolean(data) && !error} variant='pill'>
+        <Trans id='Your address has been added' components={{ 0: <strong /> }} />
+      </MessageSnackbar>
 
       <ApolloCustomerErrorAlert error={error} />
     </>

@@ -1,11 +1,6 @@
-# next-config
+# @graphcommerce/next-config
 
-Will transpile any @graphcommerce packages that are installed in your yarn
-folder.
+## Configuration
 
-## Usage
-
-```
-const withScopes = require("@graphcommerce/next-config").withYarn1Scopes();
-module.exports = withScopes({});
-```
+Configure the following ([configuration values](./Config.graphqls)) in your
+graphcommerce.config.js

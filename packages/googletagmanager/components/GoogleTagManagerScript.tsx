@@ -1,11 +1,12 @@
+import { useStorefrontConfig } from '@graphcommerce/next-ui'
 import { useRouter } from 'next/router'
 import Script from 'next/script'
 import { useEffect } from 'react'
 
 export function GoogleTagManagerScript() {
-  const id = process.env.NEXT_PUBLIC_GTM_ID
-
-  const router = useRouter()
+  const { events } = useRouter()
+  const id =
+    useStorefrontConfig().googleTagmanagerId ?? import.meta.graphCommerce.googleTagmanagerId
 
   useEffect(() => {
     const onRouteChangeComplete = (url: string) => {
@@ -13,14 +14,9 @@ export function GoogleTagManagerScript() {
       dataLayer?.push({ event: 'pageview', page: url })
     }
 
-    router.events.on('routeChangeComplete', onRouteChangeComplete)
-
-    return () => {
-      router.events.off('routeChangeComplete', onRouteChangeComplete)
-    }
-  }, [router.events])
-
-  if (!id) return null
+    events.on('routeChangeComplete', onRouteChangeComplete)
+    return () => events.off('routeChangeComplete', onRouteChangeComplete)
+  }, [events])
 
   return (
     <>
@@ -34,7 +30,7 @@ export function GoogleTagManagerScript() {
       <noscript>
         {/* eslint-disable-next-line jsx-a11y/iframe-has-title */}
         <iframe
-          src={`https://www.googletagmanager.com/ns.html?id=${process.env.NEXT_PUBLIC_GTM_ID}`}
+          src={`https://www.googletagmanager.com/ns.html?id=${id}`}
           height='0'
           width='0'
           style={{ display: 'none', visibility: 'hidden' }}

@@ -24,8 +24,8 @@ export type GtagItem = {
 
 export function productToGtagItem<P extends ProductToGtagItemFragment>(item: P): GtagItem {
   return {
-    item_name: item.name ?? '',
     item_id: item.sku ?? '',
+    item_name: item.name ?? '',
     price: item.price_range?.minimum_price.final_price.value ?? undefined,
     currency: item.price_range?.minimum_price.final_price.currency ?? undefined,
     discount: item.price_range?.minimum_price.discount?.amount_off ?? undefined,

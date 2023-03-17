@@ -1,6 +1,6 @@
 import { cloneDeep } from '@graphcommerce/graphql'
 import type { FilterEqualTypeInput } from '@graphcommerce/graphql-mesh'
-import { ChipMenu, ChipMenuProps, responsiveVal, extendableComponent } from '@graphcommerce/next-ui'
+import { responsiveVal, extendableComponent, ChipMenu, ChipMenuProps } from '@graphcommerce/next-ui'
 import {
   Box,
   Checkbox,
@@ -66,6 +66,7 @@ export function FilterEqualType(props: FilterEqualTypeProps) {
     delete linkParams.filters[attribute_code]
     delete linkParams.currentPage
 
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     replaceRoute(linkParams)
   }
 

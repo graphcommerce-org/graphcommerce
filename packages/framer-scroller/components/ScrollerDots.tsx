@@ -1,6 +1,6 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import { extendableComponent } from '@graphcommerce/next-ui/Styles'
-import { FabProps, styled, SxProps, Theme } from '@mui/material'
+import { Box, FabProps, styled, SxProps, Theme } from '@mui/material'
 import { m } from 'framer-motion'
 import React from 'react'
 import { useScrollerContext } from '../hooks/useScrollerContext'
@@ -26,17 +26,20 @@ export const ScrollerDots = m(
     if (itemsArr.length <= 1) return null
 
     return (
-      <MotionBox
+      <Box
         {...containerProps}
         className={classes.root}
         ref={ref}
         sx={[
           {
             width: 'fit-content',
-            display: 'grid',
-            gridAutoFlow: 'column',
-            padding: `0 6px`,
-            borderRadius: '99em',
+            maxWidth: '100%',
+            mx: 4,
+            py: 0,
+            px: 1,
+            borderRadius: 8,
+            background: 'transparent',
+            display: 'flex',
           },
           ...(Array.isArray(sx) ? sx : [sx]),
         ]}
@@ -45,7 +48,7 @@ export const ScrollerDots = m(
           // eslint-disable-next-line react/no-array-index-key
           <ScrollerDot key={idx} {...item} idx={idx} />
         ))}
-      </MotionBox>
+      </Box>
     )
   }),
 )

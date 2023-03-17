@@ -1,4 +1,4 @@
-# @graphcommerce/googleanalytics
+# @graphcommerce/googleanalytics ([Config](./Config.graphqls))
 
 This package makes it easy to add Google Analytics GA4 to your GraphCommerce
 webshop.
@@ -12,20 +12,11 @@ Besides the GA4 integration it also tracks the following events:
 - begin_checkout
 - select_item
 - view_item_list
+- view_item
+- view_cart
+- remove_from_cart
 
-### Configuration
+## Configuration
 
-Fill `NEXT_PUBLIC_GOOGLE_ANALYTICS` in your .env file. The value of
-`NEXT_PUBLIC_GOOGLE_ANALYTICS` can be string or JSON stringified object:
-
-```
-# your .env file
-
-# Google Analytics v4 ID
-NEXT_PUBLIC_GOOGLE_ANALYTICS="G-XXXXXXXX"
-
-# or
-
-# Google Analytics v4 ID per locale
-NEXT_PUBLIC_GOOGLE_ANALYTICS='{"en-us": "G-XXXXXXXX", "nl-nl": "G-XXXXXXXX"}'
-```
+Configure the following ([configuration values](./Config.graphqls)) in your
+graphcommerce.config.js

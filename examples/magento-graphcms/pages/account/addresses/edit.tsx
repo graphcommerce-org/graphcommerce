@@ -1,6 +1,10 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { EditAddressForm, useCustomerQuery, WaitForCustomer } from '@graphcommerce/magento-customer'
-import { AccountDashboardAddressesDocument } from '@graphcommerce/magento-customer-account'
+import {
+  EditAddressForm,
+  useCustomerQuery,
+  WaitForCustomer,
+  AccountDashboardAddressesDocument,
+} from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   GetStaticProps,

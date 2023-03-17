@@ -13,6 +13,7 @@ const ESCAPE_REGEX = new RegExp(`[${Object.keys(ESCAPE_ENTITIES).join('')}]`, 'g
 const ESCAPE_REPLACER = (t: string): string => ESCAPE_ENTITIES[t as keyof typeof ESCAPE_ENTITIES]
 
 // Utility: Assert never
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function isNever(_: never): void {}
 
 /**

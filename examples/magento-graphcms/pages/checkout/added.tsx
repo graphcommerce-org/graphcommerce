@@ -20,7 +20,6 @@ import { LayoutHeaderClose } from '@graphcommerce/next-ui/Layout/components/Layo
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, Container, Divider, Typography } from '@mui/material'
-import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useMemo, useRef } from 'react'
 import { LayoutOverlay, LayoutOverlayProps, productListRenderer } from '../../components'
@@ -38,6 +37,7 @@ function CheckoutAdded() {
 
   const crosssels = useQuery(CrosssellsDocument, {
     variables: { pageSize: 1, filters: { sku: { eq: lastItem?.product.sku } } },
+    skip: !lastItem?.product.sku,
     ssr: false,
   })
   const crossSellItems = useMemo(
@@ -81,7 +81,7 @@ function CheckoutAdded() {
           gap: theme.spacings.xxs,
           gridTemplate: {
             xs: `"icon children close"
-                 "action action   action"`,
+               "action action   action"`,
             md: '"icon children action close"',
           },
           gridTemplateColumns: {
@@ -136,29 +136,20 @@ function CheckoutAdded() {
           )}
         </Box>
         <Box gridArea='action'>
-          <PageLink href='/cart' passHref>
-            <Button
-              id='view-shopping-cart-button'
-              size='large'
-              variant='pill'
-              color='secondary'
-              endIcon={<IconSvg src={iconChevronRight} />}
-              sx={{ display: 'flex' }}
-            >
-              <Trans id='View shopping cart' />
-            </Button>
-          </PageLink>
+          <Button
+            href='/cart'
+            id='view-shopping-cart-button'
+            size='large'
+            variant='pill'
+            color='secondary'
+            endIcon={<IconSvg src={iconChevronRight} />}
+            sx={{ display: 'flex' }}
+          >
+            <Trans id='View shopping cart' />
+          </Button>
         </Box>
         <LayoutHeaderClose />
       </Container>
-
-      <Box
-        sx={(theme) => ({
-          height: { md: theme.page.vertical },
-          marginBottom: { md: `calc(${theme.page.vertical} * -1)` },
-          scrollSnapAlign: 'end',
-        })}
-      />
 
       {showCrossSell && (
         <>

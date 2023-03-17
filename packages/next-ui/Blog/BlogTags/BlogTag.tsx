@@ -1,5 +1,5 @@
 import { Chip, SxProps, Theme } from '@mui/material'
-import PageLink from 'next/link'
+import { NextLink } from '../../Theme'
 
 type BlogTagsProps = {
   url: string
@@ -10,17 +10,11 @@ type BlogTagsProps = {
 export function BlogTag(props: BlogTagsProps) {
   const { url, title, sx = [] } = props
   return (
-    <PageLink href={`/${url}`} passHref>
-      <Chip
-        label={title}
-        sx={[
-          {
-            marginRight: 3,
-            borderRadius: 2,
-          },
-          ...(Array.isArray(sx) ? sx : [sx]),
-        ]}
-      />
-    </PageLink>
+    <Chip
+      href={`/${url}`}
+      component={NextLink}
+      label={title}
+      sx={[{ marginRight: 3, borderRadius: 2 }, ...(Array.isArray(sx) ? sx : [sx])]}
+    />
   )
 }

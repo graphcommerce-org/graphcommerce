@@ -3,6 +3,8 @@ on:
   push:
     branches:
       - 'main'
+concurrency:
+  group: release-main
 jobs:
   publish:
     runs-on: ubuntu-latest

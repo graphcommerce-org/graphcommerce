@@ -1,160 +1,121 @@
 # Plugins React
 
-GraphCommerce's React plugin system allows you to extend GraphCommerce in a
-plug-and-play manner. Install a new package and the code will be added at the
-right places.
+GraphCommerce's React plugin system allows you to extend GraphCommerce's build
+in components with your own logic.
 
-- Plug-and-play: It is be possible to install packages after which they
-  immediately work.
 - No runtime overhead: The plugin system is fully implemented in webpack and
 - Easy plugin creation: Configuration should happen in the plugin file, not a
   separate configuration file.
+- Should be validated with TypeScript
 
-## What problem are we solving?
-
-Without plugins the only way to add new functionality is by modifying the code
-of your project at multiple places. We often pass props to components to
-customize them, but sometimes we also place hooks at multiple places.
-
-For example, to add a new payment method it was necessary to modify the props of
-`<PaymentMethodContextProvider methods={[...braintree]}>`
-
-This causes problems:
-
-- Upgrades: If GraphCommerce changes something somewhere in the code where you
-  have already modified the code, you get an upgrade conflict which you have to
-  manually resolve. By using plugins you can avoid this.
-- New packages: When you install a complex new package, it can happen that you
-  have to modify the code of your project at multiple places. This is not
-  necessary with plugins.
-
-## What is a plugin?
+## What is a plugin
 
 A plugin is a way to modify React Components by wrapping them, without having to
-modify the code in `examples/magento-graphcms` or `your-project`.
+modify the code directly.
 
 For the M2 people: Think of around plugins, but without configuration files and
 no performance penalty.
 
-In the [PR](https://github.com/graphcommerce-org/graphcommerce/pull/1718) I have
-made the
-[`<PaymentMethodContextProvider />`](https://github.com/graphcommerce-org/graphcommerce/pull/1718/files#diff-d5b4da6c34d4b40dc8ac5d1c5967bc6f5aaa70d0d5ac79552f3a980b17a88ea9R115)
-work with plugins.
+## How do I write a plugin?
 
-The actual plugins are:
+In this example we're going to add a 'BY GC' text to list items, as can seen on
+the demo on
+[category pages](https://graphcommerce.vercel.app/nl/women/business).
 
-- [AddBraintreeMethods](https://github.com/graphcommerce-org/graphcommerce/pull/1718/files#diff-14391e8c8f598e720b3e99ece1248987d68eb6133d354a3a55ef82331905be5b)
-- [AddIncludedMethods](https://github.com/graphcommerce-org/graphcommerce/pull/1718/files#diff-c3d57b802463ed40925b558049a56992202be975f3c86982e6a753e2830bdb9f)
-- [AddPaypalMethods](https://github.com/graphcommerce-org/graphcommerce/pull/1718/files#diff-934d7a9d597b01b6da875f61ca1cdfd57e0e0817e7126ce6216fd82dc4b6f899)
-- [AddMollieMethods](https://github.com/graphcommerce-org/graphcommerce/pull/1718/files#diff-76e6fc63dee67f55cbad4f13dc7b1b764da6235b88ed8d987c7044b7ef7fc942)
+1. Create a new file in `/plugins/ProductListItemByGC.tsx` with the following
+   contents:
 
-The result of this is that:
+   ```tsx
+   import type { ProductListItemProps } from '@graphcommerce/magento-product'
+   import type { PluginProps } from '@graphcommerce/next-config'
+   import { Typography } from '@mui/material'
 
-- The payment methods are added to the `<PaymentMethodContextProvider />` via
-  plugins.
-- These plugins are only applied if the relevant package is installed.
+   export const component = 'ProductListItem' // Component to extend, required
+   export const exported = '@graphcommerce/magento-product' // Location where the component is exported, required
 
-### How do I make a plugin?
+   function AwesomeProductListItem(props: PluginProps<ProductListItemProps>) {
+     // Prev in this case is ProductListItem, you should be able to see this if you log it.
+     const { Prev, ...rest } = props
+     return (
+       <Prev
+         {...rest}
+         subTitle={
+           <Typography component='span' variant='caption'>
+             Plugin!
+           </Typography>
+         }
+       />
+     )
+   }
+   export const Plugin = AwesomeProductListItem // An export with the name Plugin, required
+   ```
 
-In the root of my project, i've created a plugin
-`examples/magento-graphcms/plugins/AddPaymentMethodEnhancer.tsx` that adds
-purchaseorder to `<PaymentMethodContextProvider/>`
+2. Trigger the 'interceptor generation' so GraphCommerce knows of the existence
+   of your plugin. To enable: Modify the page that you expect the plugin to
+   occur on. In this case modify `pages/[...url].tsx` by adding a few linebreaks
+   and save the file
 
-```tsx
-import type { PaymentMethodContextProviderProps } from '@graphcommerce/magento-cart-payment-method'
-import type { PluginProps } from '@graphcommerce/next-config'
-import { purchaseorder } from '../PurchaseOrder'
+   If everything went as expected you should see `Plugin!` below the product
+   name.
 
-// Component to extend, required
-export const component = 'PaymentMethodContextProvider'
+3. Happy programming!
 
-// Exported location of the component that you are extending, required
-export const exported = '@graphcommerce/magento-cart-payment-method'
+## How does it work?
 
-function AddPaymentMethodEnhancer(
-  props: PluginProps<PaymentMethodContextProviderProps>,
-) {
-  const { Prev, modules, ...rest } = props
-  return <Prev {...rest} modules={{ ...modules, purchaseorder }} />
-}
-
-/** The export must be named `Plugin` and must accept a Prev component to render */
-export const Plugin = AddIncludedMethods
-```
-
-### How does it work?
-
-1. It generates a list of all packages with `graphcommerce` in the package
-   `name` (All `@graphcommerce/*` packages and
-   `@my-company/graphcommerce-plugin-name`).
-2. It does a glob search for plugins in the plugins folders for each package:
-   `${packageLocation}/plugins/**/*.tsx`.
-3. Statically Analyse the plugins, check if the `component` and `exported`
-   exports exist and generate the plugin configuration.
-4. Generate `PaymentMethodContext.interceptor.tsx` and place it next to the
-   existing component
-
-Example of generated interceptor with additional comments:
+After the creation of the plugin file GraphCommerce will create an interceptor
+file to load you plugin. To see what has happened, open the
+`node_modules/@graphcommerce/magento-product/index.interceptor.tsx` and you
+should see something like:
 
 ```tsx
-/* This file is automatically generated for @graphcommerce/magento-cart-payment-method */
-
 export * from '.'
-import { Plugin as GaPaymentMethodButton } from '@graphcommerce/googleanalytics/plugins/GaPaymentMethodButton'
-import { Plugin as GaPaymentMethodContextProvider } from '@graphcommerce/googleanalytics/plugins/GaPaymentMethodContextProvider'
-import { Plugin as AddIncludedMethods } from '@graphcommerce/magento-payment-included/plugins/AddIncludedMethods'
+import { Plugin as AwesomeProductListItem } from '../../examples/magento-graphcms/plugins/AwesomeProductListItem'
 import { ComponentProps } from 'react'
-import {
-  PaymentMethodButton as PaymentMethodButtonBase,
-  PaymentMethodContextProvider as PaymentMethodContextProviderBase,
-} from '.'
+import { ProductListItem as ProductListItemBase } from '.'
 
 /**
- * Interceptor for `<PaymentMethodButton/>` with these plugins:
+ * Interceptor for `<ProductListItem/>` with these plugins:
  *
- * - `@graphcommerce/googleanalytics/plugins/GaPaymentMethodButton`
+ * - `../../examples/magento-graphcms/plugins/AwesomeProductListItem`
  */
-type PaymentMethodButtonProps = ComponentProps<typeof PaymentMethodButtonBase>
+type ProductListItemProps = ComponentProps<typeof ProductListItemBase>
 
-function GaPaymentMethodButtonInterceptor(props: PaymentMethodButtonProps) {
-  return <GaPaymentMethodButton {...props} Prev={PaymentMethodButtonBase} />
+function AwesomeProductListItemInterceptor(props: ProductListItemProps) {
+  return <AwesomeProductListItem {...props} Prev={ProductListItemBase} />
 }
-export const PaymentMethodButton = GaPaymentMethodButtonInterceptor
-
-/**
- * Interceptor for `<PaymentMethodContextProvider/>` with these plugins:
- *
- * - `@graphcommerce/magento-payment-included/plugins/AddIncludedMethods`
- * - `@graphcommerce/googleanalytics/plugins/GaPaymentMethodContextProvider`
- */
-type PaymentMethodContextProviderProps = ComponentProps<
-  typeof PaymentMethodContextProviderBase
->
-
-function AddIncludedMethodsInterceptor(
-  props: PaymentMethodContextProviderProps,
-) {
-  return (
-    <AddIncludedMethods {...props} Prev={PaymentMethodContextProviderBase} />
-  )
-}
-function GaPaymentMethodContextProviderInterceptor(
-  props: PaymentMethodContextProviderProps,
-) {
-  return (
-    <GaPaymentMethodContextProvider
-      {...props}
-      Prev={AddIncludedMethodsInterceptor}
-    />
-  )
-}
-export const PaymentMethodContextProvider =
-  GaPaymentMethodContextProviderInterceptor
+export const ProductListItem = AwesomeProductListItemInterceptor
 ```
 
-React profile will show that all components are nested:
+If you read the interceptor file from the bottom up, you see:
 
-![](https://user-images.githubusercontent.com/1244416/197813853-e8aa329e-41bc-4f56-8aac-2464cc37032f.png)
+- The original `ProductListItem` is replaced with
+  `AwesomeProductListItemInterceptor`
+- `AwesomeProductListItemInterceptor` is a react component which renders
+  `AwesomeProductListItem` with a `Prev` prop.
+- `AwesomeProductListItem` is the plugin you just created.
+- `Prev` is the original `ProductListItem` (renamed to `ProductListItemBase`)
+- `ProductListItemProps` are the props of the original `ProductListItem` and
+  thus your plugin is automatically validated by TypeScript.
+
+So in conclusion, a plugin is a react component that renders the original
+component with a `Prev` prop. The `Prev` prop is the original component.
+
+When opening the React debugger you can see the plugin wrapped.
+
+<img width="263" alt="Scherm­afbeelding 2023-03-15 om 12 16 59" src="https://user-images.githubusercontent.com/1244416/225293707-1ce1cd87-108b-4f28-b9ee-0c5d68d9a886.png" />
+
+### How are plugins loaded?
+
+GraphCommerce uses a custom Webpack plugin to load the plugins. The plugin does
+a glob search for plugin folders in each GraphCommerce related pacakge:
+`${packageLocation}/plugins/**/*.tsx`
+
+Package locations are the root and all packages with `graphcommerce` in the name
+(This means all `@graphcommerce/*` packages and
+`@your-company/graphcommerce-plugin-name`)
+
+The Webpack plugin statically analyses the plugin file to find `component`,
+`exported` and `ifConfig` and extracts that information.
 
 ### Possible use cases
 
@@ -171,17 +132,13 @@ work for other things such as:
 
 ### Conditionally include a plugin
 
-Provide an ifEnv export in the plugin that will only include the plugin if the
-environment variable is set.
+Provide an ifConfig export in the plugin that will only include the plugin if a
+[configuration](./config.md) value is truety.
 
 ```tsx
-export const ifEnv = 'MY_ENV_VARIABLE'
+import type { IfConfig } from '@graphcommerce/next-config'
+export const ifConfig: IfConfig = 'googleAnalytics'
 ```
-
-### When to use a plugin?
-
-A plugin should be used when a new package is created that influences the
-behavior of other packages.
 
 ### Plugin loading order
 

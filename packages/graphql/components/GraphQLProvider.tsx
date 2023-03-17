@@ -51,10 +51,7 @@ export function GraphQLProvider(props: GraphQLProviderProps) {
       ...(typeof window === 'undefined' ? [errorLink, measurePerformanceLink] : []),
       ...links,
       // The actual Http connection to the Mesh backend.
-      new HttpLink({
-        uri: process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT,
-        credentials: 'same-origin',
-      }),
+      new HttpLink({ uri: '/api/graphql', credentials: 'same-origin' }),
     ])
 
     const createCache = () =>

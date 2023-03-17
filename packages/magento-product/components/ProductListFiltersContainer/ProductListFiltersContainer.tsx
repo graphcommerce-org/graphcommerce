@@ -51,8 +51,14 @@ export function ProductListFiltersContainer(props: ProductListFiltersContainerPr
       const offset = wrapperRef.current?.getBoundingClientRect()?.top ?? 0
       const elemHeigh = entry.contentRect.height
       const nextOffset =
+        // If we use the FilterFormProvider in the pages/[...url].tsx file, to provide the our
+        // ProductListActionFilters with the correct parameters, the parentElement(FilterFormProvider) has no nextElementSibling
+        // resulting in an null value. If this is the case we check if the higher level parent does have a nextElementSibling,
+        // so we are able to calculate the spacing between the ProductListFiltersContainer and the next element in the DOM
         (
-          wrapperRef.current?.parentElement?.nextElementSibling as HTMLElement | null
+          (wrapperRef.current?.parentElement?.nextElementSibling ??
+            wrapperRef.current?.parentElement?.parentElement
+              ?.nextElementSibling) as HTMLElement | null
         )?.getBoundingClientRect()?.top ?? 0
       const modifier = 5
 
@@ -73,7 +79,7 @@ export function ProductListFiltersContainer(props: ProductListFiltersContainerPr
       }
     }
     onCheckStickyChange(scrollY.get())
-    return scrollY.onChange(onCheckStickyChange)
+    return scrollY.on('change', onCheckStickyChange)
   }, [isSticky, scrollHalfway, scrollY])
 
   const opacity = useTransform(scrollY, [startPosition, startPosition + spacing], [0, 1])
@@ -115,7 +121,7 @@ export function ProductListFiltersContainer(props: ProductListFiltersContainerPr
           sx={(theme) => ({
             position: 'relative',
             maxWidth: '100%',
-            padding: '6px',
+            padding: '2px',
             paddingLeft: 0,
             paddingRight: 0,
             [theme.breakpoints.up('md')]: {
@@ -135,9 +141,11 @@ export function ProductListFiltersContainer(props: ProductListFiltersContainerPr
               paddingBottom: '1px',
               [theme.breakpoints.up('md')]: {
                 borderRadius: '99em',
-                paddingLeft: '6px',
-                paddingRight: '6px',
+                paddingLeft: '8px',
+                paddingRight: '8px',
               },
+              py: '5px',
+
               columnGap: '6px',
               gridAutoColumns: 'min-content',
             })}

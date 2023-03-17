@@ -1,7 +1,6 @@
 import { RichText } from '@graphcommerce/graphcms-ui'
 import { breakpointVal, HeroBanner } from '@graphcommerce/next-ui'
 import { Button } from '@mui/material'
-import PageLink from 'next/link'
 import { RowHeroBannerFragment } from './RowHeroBanner.gql'
 
 export function RowHeroBanner(props: RowHeroBannerFragment) {
@@ -9,29 +8,36 @@ export function RowHeroBanner(props: RowHeroBannerFragment) {
 
   return (
     <HeroBanner
-      pageLinks={pageLinks.map((pageLink) => (
-        <PageLink key={pageLink.url} href={pageLink.url} passHref>
-          <Button variant='outlined' size='large' color='inherit'>
-            {pageLink.title}
-          </Button>
-        </PageLink>
+      pageLinks={pageLinks.map(({ url, title }) => (
+        <Button key={url} href={url} variant='outlined' size='large' color='inherit'>
+          {title}
+        </Button>
       ))}
       videoSrc={heroAsset.url}
+      sx={(theme) => ({
+        '& .HeroBanner-copy': {
+          minHeight: { xs: 'min(70vh,600px)', md: 'min(70vh,1080px)' },
+          [theme.breakpoints.up('sm')]: {
+            padding: theme.spacings.xl,
+            justifyItems: 'start',
+            alignContent: 'center',
+            textAlign: 'left',
+            width: '50%',
+          },
+        },
+      })}
     >
       <RichText
         {...copy}
         sxRenderer={{
+          paragraph: {
+            typography: 'overline',
+          },
           'heading-one': (theme) => ({
-            textTransform: 'uppercase' as const,
-            maxWidth: '70%',
-            textAlign: 'center' as const,
-            margin: 0,
-            marginBottom: theme.spacings.md,
+            textTransform: 'uppercase',
+            mt: 1,
+            mb: theme.spacings.sm,
             ...breakpointVal('fontSize', 36, 82, theme.breakpoints.values),
-            [theme.breakpoints.up('md')]: {
-              textAlign: 'left',
-              maxWidth: '100%',
-            },
             '& strong': {
               WebkitTextFillColor: 'transparent',
               WebkitTextStroke: `1.2px #fff`,

@@ -3,7 +3,7 @@ import { LoadingButton as Button, LoadingButtonProps, LoadingButtonTypeMap } fro
 
 export type ButtonProps<
   D extends React.ElementType = LoadingButtonTypeMap['defaultComponent'],
-  P = {},
+  P = object,
 > = LoadingButtonProps<D, P>
 
 export { Button }

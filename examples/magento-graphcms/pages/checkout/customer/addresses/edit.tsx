@@ -3,8 +3,8 @@ import {
   ApolloCustomerErrorFullPage,
   EditAddressForm,
   useCustomerQuery,
+  AccountDashboardAddressesDocument,
 } from '@graphcommerce/magento-customer'
-import { AccountDashboardAddressesDocument } from '@graphcommerce/magento-customer-account'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   GetStaticProps,
@@ -34,7 +34,7 @@ function CheckoutCustomerAddressesEdit() {
 
   if (loading || !called)
     return (
-      <FullPageMessage icon={<CircularProgress />} title='Loading your account'>
+      <FullPageMessage icon={<CircularProgress />} title={<Trans id='Loading your account' />}>
         <Trans id='This may take a second' />
       </FullPageMessage>
     )

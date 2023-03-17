@@ -1,23 +1,25 @@
 import type { ProductItemsGridProps } from '@graphcommerce/magento-product'
-import type { PluginProps } from '@graphcommerce/next-config'
+import type { IfConfig, PluginProps } from '@graphcommerce/next-config'
 import { Theme } from '@mui/material'
 
 export const component = 'ProductListItemsBase'
 export const exported = '@graphcommerce/magento-product'
-export const ifEnv = 'DEMO_MAGENTO_GRAPHCOMMERCE'
+export const ifConfig: IfConfig = 'demoMode'
 
 export const sxLargeItem = (theme: Theme) => ({
   [theme.breakpoints.up('xl')]: {
-    '& > :nth-of-type(7n + 3)': {
-      gridColumn: 'span 2',
-      gridRow: 'span 2',
-      display: 'grid',
-      gridAutoFlow: 'row',
-      gridTemplateColumns: '100%',
-      gridTemplateRows: '1fr auto',
-      '& > div:first-of-type': {
-        position: 'relative',
-        height: '100%',
+    ':not(.ContainerWithHeader-root &)': {
+      '& > :nth-of-type(7n + 3)': {
+        gridColumn: 'span 2',
+        gridRow: 'span 2',
+        display: 'grid',
+        gridAutoFlow: 'row',
+        gridTemplateColumns: '100%',
+        gridTemplateRows: '1fr auto',
+        '& > div:first-of-type': {
+          position: 'relative',
+          height: '100%',
+        },
       },
     },
   },

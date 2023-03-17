@@ -1,19 +1,8 @@
-import { useRouter } from 'next/router'
+import { useStorefrontConfig } from '@graphcommerce/next-ui'
 import Script from 'next/script'
 
 export function GoogleAnalyticsScript() {
-  const gaEnv = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS
-  const { locale } = useRouter()
-  let id = ''
-
-  if (!gaEnv) return null
-
-  if (gaEnv.startsWith('{') && locale) {
-    const GAConfig = JSON.parse(gaEnv)
-    id = GAConfig[locale]
-  } else {
-    id = gaEnv
-  }
+  const id = useStorefrontConfig().googleAnalyticsId ?? import.meta.graphCommerce.googleAnalyticsId
 
   return (
     <>

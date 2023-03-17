@@ -20,7 +20,7 @@ export function MolliePaymentHandler({ code }: PaymentHandlerProps) {
   const router = useRouter()
   const { selectedMethod, onSuccess } = usePaymentMethodContext()
   const [lockState] = useCartLockWithToken()
-  
+
   const clear = useClearCurrentCartId()
 
   const isActive = selectedMethod?.code === code || lockState.method === code
@@ -64,7 +64,7 @@ export function MolliePaymentHandler({ code }: PaymentHandlerProps) {
   }, [called, error, handle, isActive, lockState, onSuccess, recoverCart, router])
 
   const paymentStatus = data?.mollieProcessTransaction?.paymentStatus
-  if (paymentStatus) {
+  if (paymentStatus && paymentStatus !== 'OPEN') {
     return (
       <ErrorSnackbar open>
         <Trans id='Payment failed with status: {paymentStatus}' values={{ paymentStatus }} />

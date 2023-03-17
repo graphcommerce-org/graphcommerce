@@ -1,5 +1,301 @@
 # Change Log
 
+## 6.0.0
+
+### Major Changes
+
+- [#1832](https://github.com/graphcommerce-org/graphcommerce/pull/1832) [`26d4243d5`](https://github.com/graphcommerce-org/graphcommerce/commit/26d4243d5b63d604e5a36386d9b01914db5f2918) - Added a new RowLink component with variants: Inline, ImageLabelSwiper, LogoSwiper and Usps. Updated the demo to show off these new components. ([@ErwinOtten](https://github.com/ErwinOtten))
+
+- [#1749](https://github.com/graphcommerce-org/graphcommerce/pull/1749) [`0cc472915`](https://github.com/graphcommerce-org/graphcommerce/commit/0cc4729154d316227a41712b5f0adf514768e91f) - Introducing the new ProductFiltersPro component set with completely new filter and UI behavior. Filters will appear as a popper on the md and up breakpoints and as an overlay on sm and below breakpoints. Filters now have an Apply button instead of applying directly. ([@paales](https://github.com/paales))
+
+### Minor Changes
+
+- [#1822](https://github.com/graphcommerce-org/graphcommerce/pull/1822) [`cc02c46e3`](https://github.com/graphcommerce-org/graphcommerce/commit/cc02c46e32c9a44a90789591f43d91ae234dac84) - Added Facebook Open Graph tags to product pages:
+
+  - og:title
+  - og:image
+  - og:url
+  - type
+  - product:retailer_part_no
+  - product:price:amount
+  - product:sale_price:amount
+  - product:price:currency
+  - product:category ([@KMalkowski](https://github.com/KMalkowski))
+
+- [#1830](https://github.com/graphcommerce-org/graphcommerce/pull/1830) [`fafa76ba9`](https://github.com/graphcommerce-org/graphcommerce/commit/fafa76ba9e655739171abc553d309795c9d8e5c2) - Overlays now use an additional scroll container to handle vertical scroll, fixing:
+
+  - Scrolling on desktop will not close the overlay when there is content to be scrolled
+  - Scrolling will not snap to bottom / top when the content is barely scrollable
+  - Dragging will only open or close the drawer, not something inbetween
+  - Swiping up on mobile will not close the overlay, first you need to scroll to the top of the overlay.
+  - Floating overlays will now scroll inside the floating overlay. ([@paales](https://github.com/paales))
+
+- [#1798](https://github.com/graphcommerce-org/graphcommerce/pull/1798) [`3cee17a51`](https://github.com/graphcommerce-org/graphcommerce/commit/3cee17a51ff961f4363d95c9decb8c7d1f9ca319) - Added utility function `filterByTypename` function to filter types based on `__typename` ([@mikekeehnen](https://github.com/mikekeehnen))
+
+- [#1814](https://github.com/graphcommerce-org/graphcommerce/pull/1814) [`15aa59049`](https://github.com/graphcommerce-org/graphcommerce/commit/15aa590493bf7639231f3bb3dd623c234ebad7cf) - ActionCard default styling introduced for a more inline and changed the look of selected filters. ([@ErwinOtten](https://github.com/ErwinOtten))
+
+- [#1793](https://github.com/graphcommerce-org/graphcommerce/pull/1793) [`5562fa69b`](https://github.com/graphcommerce-org/graphcommerce/commit/5562fa69b1bc260f68555dcfaf30153eda489bed) - Add newsletter subscribe form ([@ErwinOtten](https://github.com/ErwinOtten))
+
+### Patch Changes
+
+- [#1830](https://github.com/graphcommerce-org/graphcommerce/pull/1830) [`dbc2ae0d3`](https://github.com/graphcommerce-org/graphcommerce/commit/dbc2ae0d360f645c3eab2a8f38b3d1431eab7d80) - Overlays will only hide the body scrollbar for right overlays so the page doesnt jump when opening. ([@paales](https://github.com/paales))
+
+- [#1836](https://github.com/graphcommerce-org/graphcommerce/pull/1836) [`2857229c4`](https://github.com/graphcommerce-org/graphcommerce/commit/2857229c4d1c776540218f5e4cab3be524161502) - Overlays can not be closed as easily by swiping up, it will now always stop at the top over the overlay. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#1771](https://github.com/graphcommerce-org/graphcommerce/pull/1771) [`aec07f567`](https://github.com/graphcommerce-org/graphcommerce/commit/aec07f5679472281b8eb71cf6967a1ff775d2a7f) - Navigation became visible when resizing the viewport. ([@paales](https://github.com/paales))
+
+- [#1809](https://github.com/graphcommerce-org/graphcommerce/pull/1809) [`2da3c9214`](https://github.com/graphcommerce-org/graphcommerce/commit/2da3c92148aef08813b95e404a25796acf0eefd2) - Google Analytics now supports view_item, view_cart and remove_from_cart ([@mikekeehnen](https://github.com/mikekeehnen))
+
+- [#1792](https://github.com/graphcommerce-org/graphcommerce/pull/1792) [`b0b8348b0`](https://github.com/graphcommerce-org/graphcommerce/commit/b0b8348b0d294f98140c2605691d47011add5b01) - Overlay headers with long titles now render correctly ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#1829](https://github.com/graphcommerce-org/graphcommerce/pull/1829) [`5f5f0dd1e`](https://github.com/graphcommerce-org/graphcommerce/commit/5f5f0dd1e0960b4cad694c5aaddffc7ccfc2bb1a) - Overlay right variant doesn't close automatically in firefox anymore ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#1749](https://github.com/graphcommerce-org/graphcommerce/pull/1749) [`16e91da42`](https://github.com/graphcommerce-org/graphcommerce/commit/16e91da42dcb454ea4761d1780b9338c88ef1463) - Corrected spelling mistake: incomming to incoming ([@paales](https://github.com/paales))
+
+- [#1830](https://github.com/graphcommerce-org/graphcommerce/pull/1830) [`0bac3bdd8`](https://github.com/graphcommerce-org/graphcommerce/commit/0bac3bdd8505ccad8036d13e19559f2b3523fd92) - Navigation layout-animations will now only trigger when the active menu item changes ([@paales](https://github.com/paales))
+
+- [#1830](https://github.com/graphcommerce-org/graphcommerce/pull/1830) [`6bffd680b`](https://github.com/graphcommerce-org/graphcommerce/commit/6bffd680b9d6a370048d06842cd3ce73130471dd) - Overlays now can't be closed when dragging beyong the pane (and actually opening them). ([@paales](https://github.com/paales))
+
+- [#1834](https://github.com/graphcommerce-org/graphcommerce/pull/1834) [`58f7a63a4`](https://github.com/graphcommerce-org/graphcommerce/commit/58f7a63a4a4ef3bfcaeea75e393902b97138ba54) - Overlays may now be larger than 100% of the viewport without breaking. ([@paales](https://github.com/paales))
+
+- [#1831](https://github.com/graphcommerce-org/graphcommerce/pull/1831) [`f4008bae3`](https://github.com/graphcommerce-org/graphcommerce/commit/f4008bae3e3ac8288c731b1dd87e6c6aef8e81fc) - Added a linting rule that disallows `import { Theme } from '@emotion/react'` because that causes huge performance issues. Also added `tsc:trace` to the root project to debug typescript performance issues. ([@paales](https://github.com/paales))
+
+- [`bcaf428a3`](https://github.com/graphcommerce-org/graphcommerce/commit/bcaf428a31f2b480d442d347d09c0131a8569155) - Overlay timing issues resolved which would cause overlays to close or flicker. ([@paales](https://github.com/paales))
+
+- [#1794](https://github.com/graphcommerce-org/graphcommerce/pull/1794) [`29e15cf63`](https://github.com/graphcommerce-org/graphcommerce/commit/29e15cf63251cf98cf42325322fcf09fb7a6c0b7) - Overlays variant=bottom will now work without jank on Android ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#1771](https://github.com/graphcommerce-org/graphcommerce/pull/1771) [`55d267ba0`](https://github.com/graphcommerce-org/graphcommerce/commit/55d267ba039f64af2b0248c68a1e1478970c9b31) - Solve issue where overlays would close diring opening when a rerender occured. ([@paales](https://github.com/paales))
+
+- [#1829](https://github.com/graphcommerce-org/graphcommerce/pull/1829) [`52ecfc2ad`](https://github.com/graphcommerce-org/graphcommerce/commit/52ecfc2ad25fc6ef92465862fb94c1829bdd7c52) - CSS dvh property is now used when supported by browsers, causing less rerenders with overlays. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#1806](https://github.com/graphcommerce-org/graphcommerce/pull/1806) [`597396766`](https://github.com/graphcommerce-org/graphcommerce/commit/597396766940de8c4ab5d8c84a0c6637ed72dba2) - Navigation visibility fixes when browser is resized, or exactly 864px width, and when Navigation is reopened after closing, dragging or navigating. Navigation HTML is now permanently in the DOM. ([@ErwinOtten](https://github.com/ErwinOtten))
+
+- [#1825](https://github.com/graphcommerce-org/graphcommerce/pull/1825) [`27302739e`](https://github.com/graphcommerce-org/graphcommerce/commit/27302739e5dcd8791e7a3df06855f6450b0a6d10) - Show mobile footer on tablet to prevent cart fab overlapping footer content ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#1830](https://github.com/graphcommerce-org/graphcommerce/pull/1830) [`ff0c70e31`](https://github.com/graphcommerce-org/graphcommerce/commit/ff0c70e3165c64ea4f236a15a5820428dbf36e6a) - Overlays now have vertical visible scrollbars when the content is higher than the viewport. ([@paales](https://github.com/paales))
+
+## 6.0.0-canary.54
+
+## 6.0.0-canary.53
+
+## 6.0.0-canary.52
+
+### Patch Changes
+
+- [#1809](https://github.com/graphcommerce-org/graphcommerce/pull/1809) [`2da3c9214`](https://github.com/graphcommerce-org/graphcommerce/commit/2da3c92148aef08813b95e404a25796acf0eefd2) - Added useMemoObject and implement in GaViewItem, GoogleAnalyticsItemList and GaCartStartCheckoutLinkOrButton ([@mikekeehnen](https://github.com/mikekeehnen))
+
+## 6.0.0-canary.51
+
+## 6.0.0-canary.50
+
+## 6.0.0-canary.49
+
+## 6.0.0-canary.48
+
+## 6.0.0-canary.47
+
+### Minor Changes
+
+- [#1832](https://github.com/graphcommerce-org/graphcommerce/pull/1832) [`26d4243d5`](https://github.com/graphcommerce-org/graphcommerce/commit/26d4243d5b63d604e5a36386d9b01914db5f2918) - - Introduce RowLink component with variants (inline, logoswiper etc.)
+  - Add new ImageLabelSwiper component to homepage
+  - Multiple darkmode fixes (layered navition, logo invert filter) ([@ErwinOtten](https://github.com/ErwinOtten))
+
+## 6.0.0-canary.46
+
+## 6.0.0-canary.45
+
+### Patch Changes
+
+- [#1836](https://github.com/graphcommerce-org/graphcommerce/pull/1836) [`2857229c4`](https://github.com/graphcommerce-org/graphcommerce/commit/2857229c4d1c776540218f5e4cab3be524161502) - Allow scrolling bottom overlay to top instead of keeping spacing above overlay ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 6.0.0-canary.44
+
+### Patch Changes
+
+- [#1842](https://github.com/graphcommerce-org/graphcommerce/pull/1842) [`7b67d84bd`](https://github.com/graphcommerce-org/graphcommerce/commit/7b67d84bd269c3fc91afbd69f6683c5d12808d36) - Renamed i18n to storefront in configuration ([@paales](https://github.com/paales))
+
+## 6.0.0-canary.43
+
+## 6.0.0-canary.42
+
+## 6.0.0-canary.41
+
+## 6.0.0-canary.40
+
+## 6.0.0-canary.39
+
+### Patch Changes
+
+- [`bcaf428a3`](https://github.com/graphcommerce-org/graphcommerce/commit/bcaf428a31f2b480d442d347d09c0131a8569155) - Overlay timing issue where the resizeObserver was later than the scroll event ([@paales](https://github.com/paales))
+
+## 6.0.0-canary.38
+
+## 6.0.0-canary.37
+
+### Patch Changes
+
+- [#1834](https://github.com/graphcommerce-org/graphcommerce/pull/1834) [`58f7a63a4`](https://github.com/graphcommerce-org/graphcommerce/commit/58f7a63a4a4ef3bfcaeea75e393902b97138ba54) - Allow overlays to be larger than 100% height/width of the viewport ([@paales](https://github.com/paales))
+
+## 6.0.0-canary.36
+
+## 6.0.0-canary.35
+
+### Minor Changes
+
+- [#1822](https://github.com/graphcommerce-org/graphcommerce/pull/1822) [`cc02c46e3`](https://github.com/graphcommerce-org/graphcommerce/commit/cc02c46e32c9a44a90789591f43d91ae234dac84) - Added basic meta og:tags to the product page. ([@KMalkowski](https://github.com/KMalkowski))
+
+## 6.0.0-canary.34
+
+### Patch Changes
+
+- [#1830](https://github.com/graphcommerce-org/graphcommerce/pull/1830) [`dbc2ae0d3`](https://github.com/graphcommerce-org/graphcommerce/commit/dbc2ae0d360f645c3eab2a8f38b3d1431eab7d80) - Hide body scrollbar only for right overlays ([@paales](https://github.com/paales))
+
+- [#1830](https://github.com/graphcommerce-org/graphcommerce/pull/1830) [`fafa76ba9`](https://github.com/graphcommerce-org/graphcommerce/commit/fafa76ba9e655739171abc553d309795c9d8e5c2) - Overlays now use an additional scroll container to handle vertical scroll, fixing:
+
+  - Scrolling on desktop will not close the overlay when there is content to be scrolled
+  - Scrolling will not snap to bottom / top when the content is barely scrollable
+  - Dragging will only open or close the drawer, not something inbetween
+  - Swiping up on mobile will not close the overlay, first you need to scroll to the top of the overlay.
+  - Floating overlays will now scroll inside the floating overlay. ([@paales](https://github.com/paales))
+
+- [#1830](https://github.com/graphcommerce-org/graphcommerce/pull/1830) [`0bac3bdd8`](https://github.com/graphcommerce-org/graphcommerce/commit/0bac3bdd8505ccad8036d13e19559f2b3523fd92) - Navigation layout animation should only trigger when the active menu item changes ([@paales](https://github.com/paales))
+
+- [#1830](https://github.com/graphcommerce-org/graphcommerce/pull/1830) [`6bffd680b`](https://github.com/graphcommerce-org/graphcommerce/commit/6bffd680b9d6a370048d06842cd3ce73130471dd) - Overlay shouldn't be closed when dragging beyond the pane ([@paales](https://github.com/paales))
+
+- [#1830](https://github.com/graphcommerce-org/graphcommerce/pull/1830) [`ff0c70e31`](https://github.com/graphcommerce-org/graphcommerce/commit/ff0c70e3165c64ea4f236a15a5820428dbf36e6a) - Allow scrollbar to left and right full overlay variants. ([@paales](https://github.com/paales))
+
+## 6.0.0-canary.33
+
+### Patch Changes
+
+- [#1831](https://github.com/graphcommerce-org/graphcommerce/pull/1831) [`f4008bae3`](https://github.com/graphcommerce-org/graphcommerce/commit/f4008bae3e3ac8288c731b1dd87e6c6aef8e81fc) - Added a linting rule that disallows `import { Theme } from '@emotion/react'` because that causes huge performance issues. Added tsc:trace to the root project to debug typescript performance issues. ([@paales](https://github.com/paales))
+
+## 6.0.0-canary.32
+
+### Minor Changes
+
+- [#1814](https://github.com/graphcommerce-org/graphcommerce/pull/1814) [`15aa59049`](https://github.com/graphcommerce-org/graphcommerce/commit/15aa590493bf7639231f3bb3dd623c234ebad7cf) - - Show filter label, instead of value
+  - Actioncard default styling
+  - Active filter styling ([@ErwinOtten](https://github.com/ErwinOtten))
+
+## 6.0.0-canary.31
+
+### Patch Changes
+
+- [#1825](https://github.com/graphcommerce-org/graphcommerce/pull/1825) [`27302739e`](https://github.com/graphcommerce-org/graphcommerce/commit/27302739e5dcd8791e7a3df06855f6450b0a6d10) - Show mobile footer on tablet to prevent cart fab overlapping footer content ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 6.0.0-canary.30
+
+### Patch Changes
+
+- [#1829](https://github.com/graphcommerce-org/graphcommerce/pull/1829) [`5f5f0dd1e`](https://github.com/graphcommerce-org/graphcommerce/commit/5f5f0dd1e0960b4cad694c5aaddffc7ccfc2bb1a) - Fix overlay right variant closing automatically in Firefox ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#1829](https://github.com/graphcommerce-org/graphcommerce/pull/1829) [`52ecfc2ad`](https://github.com/graphcommerce-org/graphcommerce/commit/52ecfc2ad25fc6ef92465862fb94c1829bdd7c52) - Dynamic viewport height when supported ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 6.0.0-canary.29
+
+## 6.0.0-canary.28
+
+## 6.0.0-canary.27
+
+## 6.0.0-canary.26
+
+## 6.0.0-canary.25
+
+## 6.0.0-canary.24
+
+## 6.0.0-canary.23
+
+## 6.0.0-canary.22
+
+## 6.0.0-canary.21
+
+### Minor Changes
+
+- [#1806](https://github.com/graphcommerce-org/graphcommerce/pull/1806) [`597396766`](https://github.com/graphcommerce-org/graphcommerce/commit/597396766940de8c4ab5d8c84a0c6637ed72dba2) - - Put navigation HTML permanently in the DOM
+  - Fix issue where Navigation can't be reopened after closing, dragging or navigating
+  - Fix overlay visibility when browser is resized, or exactly 864px width ([@ErwinOtten](https://github.com/ErwinOtten))
+
+## 6.0.0-canary.20
+
+## 5.2.0-canary.19
+
+## 5.2.0-canary.18
+
+## 5.2.0-canary.17
+
+## 5.2.0-canary.16
+
+## 5.2.0-canary.15
+
+### Minor Changes
+
+- [#1798](https://github.com/graphcommerce-org/graphcommerce/pull/1798) [`3cee17a51`](https://github.com/graphcommerce-org/graphcommerce/commit/3cee17a51ff961f4363d95c9decb8c7d1f9ca319) - Added filterByTypename function to filter types based on \_\_typename ([@mikekeehnen](https://github.com/mikekeehnen))
+
+## 5.2.0-canary.14
+
+## 5.2.0-canary.13
+
+### Minor Changes
+
+- [#1795](https://github.com/graphcommerce-org/graphcommerce/pull/1795) [`236d698b2`](https://github.com/graphcommerce-org/graphcommerce/commit/236d698b2aac55598fc45a6a58574a538f23e160) - Navigation link fix, homepage and category style fixes ([@ErwinOtten](https://github.com/ErwinOtten))
+
+## 5.2.0-canary.12
+
+## 5.2.0-canary.11
+
+### Patch Changes
+
+- [#1794](https://github.com/graphcommerce-org/graphcommerce/pull/1794) [`29e15cf63`](https://github.com/graphcommerce-org/graphcommerce/commit/29e15cf63251cf98cf42325322fcf09fb7a6c0b7) - Fix scroll issue with bottom overlay on Android ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 5.2.0-canary.10
+
+### Minor Changes
+
+- [#1793](https://github.com/graphcommerce-org/graphcommerce/pull/1793) [`5562fa69b`](https://github.com/graphcommerce-org/graphcommerce/commit/5562fa69b1bc260f68555dcfaf30153eda489bed) - Add newsletter subscribe form ([@ErwinOtten](https://github.com/ErwinOtten))
+
+## 5.2.0-canary.9
+
+### Patch Changes
+
+- [`b0b8348b0`](https://github.com/graphcommerce-org/graphcommerce/commit/b0b8348b0d294f98140c2605691d47011add5b01) - Fix ellipsis for long titles on mobile ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 5.2.0-canary.8
+
+## 5.2.0-canary.7
+
+### Minor Changes
+
+- [#1749](https://github.com/graphcommerce-org/graphcommerce/pull/1749) [`0cc472915`](https://github.com/graphcommerce-org/graphcommerce/commit/0cc4729154d316227a41712b5f0adf514768e91f) - Added new filter UI and behaviour. Filters will appear as a popper on the md and up breakpoints and as an overlay on sm and below breakpoints. Filters now have an Apply button instead of applying directly. ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#1749](https://github.com/graphcommerce-org/graphcommerce/pull/1749) [`16e91da42`](https://github.com/graphcommerce-org/graphcommerce/commit/16e91da42dcb454ea4761d1780b9338c88ef1463) - Fix spelling error incomming to incoming ([@paales](https://github.com/paales))
+
+## 5.2.0-canary.6
+
+## 5.2.0-canary.5
+
+### Patch Changes
+
+- [#1776](https://github.com/graphcommerce-org/graphcommerce/pull/1776) [`09f7312ae`](https://github.com/graphcommerce-org/graphcommerce/commit/09f7312ae44fae531947f9ce64711b7ac5983fc1) - add media query guard to category menu behaviour. ([@FrankHarland](https://github.com/FrankHarland))
+
+## 5.2.0-canary.4
+
+## 5.2.0-canary.3
+
+## 5.2.0-canary.2
+
+### Patch Changes
+
+- [#1771](https://github.com/graphcommerce-org/graphcommerce/pull/1771) [`aec07f567`](https://github.com/graphcommerce-org/graphcommerce/commit/aec07f5679472281b8eb71cf6967a1ff775d2a7f) - Navigation shouldn't become visible when resizing the viewport ([@paales](https://github.com/paales))
+
+- [#1771](https://github.com/graphcommerce-org/graphcommerce/pull/1771) [`55d267ba0`](https://github.com/graphcommerce-org/graphcommerce/commit/55d267ba039f64af2b0248c68a1e1478970c9b31) - Solve issue where overlays would close durting opening when they got rerendered. ([@paales](https://github.com/paales))
+
+## 5.2.0-canary.1
+
+## 5.2.0-canary.0
+
 ## 5.1.1
 
 ## 5.1.1-canary.1

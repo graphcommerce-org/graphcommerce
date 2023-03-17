@@ -1,22 +1,13 @@
-import { ClientContext, setContext } from '@graphcommerce/graphql'
-import { defaultLocale } from '@graphcommerce/magento-store'
+import { setContext } from '@graphcommerce/graphql'
+import { storefrontConfig } from '@graphcommerce/next-ui'
 
-/**
- * Add a gcms-locales header to make sure queries return in a certain language with a fallback to
- * defaultLocale().
- *
- * This will create a fallback list like: `nl_nl,nl,en_us,en`
- */
+/** Add a gcms-locales header to make sure queries return in a certain language. */
 export const createHygraphLink = (locale?: string) =>
-  setContext((_, context: ClientContext) => {
+  setContext((_, context) => {
     if (!context.headers) context.headers = {}
 
-    const gcmsLocales = [
-      locale?.replace('-', '_'),
-      locale?.split('-')[0],
-      defaultLocale().replace('-', '_'),
-      defaultLocale().split('-')[0],
-    ]
-    context.headers['gcms-locales'] = gcmsLocales.filter(Boolean).join(',')
+    const locales = storefrontConfig(locale)?.hygraphLocales
+    if (locales) context.headers['gcms-locales'] = locales.join(',')
+
     return context
   })

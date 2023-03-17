@@ -2,7 +2,7 @@
   "name": "@graphcommerce/react-hook-form",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "5.1.1",
+  "version": "6.0.0",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -12,15 +12,15 @@
     }
   },
   "dependencies": {
-    "@apollo/client": "^3.7.2",
+    "@apollo/client": "^3.7.10",
     "graphql": "16.6.0",
-    "react-hook-form": "7.40.0"
+    "react-hook-form": "7.43.5"
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "5.1.1",
-    "@graphcommerce/prettier-config-pwa": "5.1.1",
-    "@graphcommerce/typescript-config-pwa": "5.1.1",
-    "@testing-library/react": "^13.4.0"
+    "@graphcommerce/eslint-config-pwa": "6.0.0",
+    "@graphcommerce/prettier-config-pwa": "6.0.0",
+    "@graphcommerce/typescript-config-pwa": "6.0.0",
+    "@testing-library/react": "^14.0.0"
   },
   "peerDependencies": {
     "react": "^18.2.0",

@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-cart-shipping-method",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "5.1.1",
+  "version": "6.0.0",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -12,26 +12,26 @@
     }
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "5.1.1",
-    "@graphcommerce/prettier-config-pwa": "5.1.1",
-    "@graphcommerce/typescript-config-pwa": "5.1.1"
+    "@graphcommerce/eslint-config-pwa": "6.0.0",
+    "@graphcommerce/prettier-config-pwa": "6.0.0",
+    "@graphcommerce/typescript-config-pwa": "6.0.0"
   },
   "dependencies": {
-    "@graphcommerce/framer-scroller": "5.1.1",
-    "@graphcommerce/graphql": "5.1.1",
-    "@graphcommerce/image": "5.1.1",
-    "@graphcommerce/magento-cart": "5.1.1",
-    "@graphcommerce/magento-cart-shipping-address": "5.1.1",
-    "@graphcommerce/magento-store": "5.1.1",
-    "@graphcommerce/next-ui": "5.1.1",
-    "@graphcommerce/react-hook-form": "5.1.1"
+    "@graphcommerce/framer-scroller": "6.0.0",
+    "@graphcommerce/graphql": "6.0.0",
+    "@graphcommerce/image": "6.0.0",
+    "@graphcommerce/magento-cart": "6.0.0",
+    "@graphcommerce/magento-cart-shipping-address": "6.0.0",
+    "@graphcommerce/magento-store": "6.0.0",
+    "@graphcommerce/next-ui": "6.0.0",
+    "@graphcommerce/react-hook-form": "6.0.0"
   },
   "peerDependencies": {
     "@lingui/react": "^3.13.2",
     "@lingui/core": "^3.13.2",
     "@mui/material": "^5.10.16",
-    "framer-motion": "^7.0.0",
-    "next": "^12.1.2",
+    "framer-motion": "^10.0.0",
+    "next": "^13.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }

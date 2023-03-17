@@ -1,5 +1,131 @@
 # @graphcommerce/magento-wishlist
 
+## 6.0.0
+
+### Patch Changes
+
+- [#1783](https://github.com/graphcommerce-org/graphcommerce/pull/1783) [`d6e7dc3e6`](https://github.com/graphcommerce-org/graphcommerce/commit/d6e7dc3e612029bf02cdc5ac48544a52c43869db) - Wishlist message snackbar now automatically closes after a few seconds ([@StefanAngenent](https://github.com/StefanAngenent))
+
+- [#1800](https://github.com/graphcommerce-org/graphcommerce/pull/1800) [`2d90523e8`](https://github.com/graphcommerce-org/graphcommerce/commit/2d90523e8f52919215587f3a989faa31122c1e7a) - If the user is not logged in + the "Hide for Guests” variable is enabled, the WishlistFabContent should would be displayed. ([@carlocarels90](https://github.com/carlocarels90))
+
+## 6.0.0-canary.54
+
+## 6.0.0-canary.53
+
+## 6.0.0-canary.52
+
+## 6.0.0-canary.51
+
+## 6.0.0-canary.50
+
+## 6.0.0-canary.49
+
+## 6.0.0-canary.48
+
+## 6.0.0-canary.47
+
+## 6.0.0-canary.46
+
+## 6.0.0-canary.45
+
+## 6.0.0-canary.44
+
+## 6.0.0-canary.43
+
+## 6.0.0-canary.42
+
+## 6.0.0-canary.41
+
+## 6.0.0-canary.40
+
+## 6.0.0-canary.39
+
+## 6.0.0-canary.38
+
+## 6.0.0-canary.37
+
+## 6.0.0-canary.36
+
+## 6.0.0-canary.35
+
+## 6.0.0-canary.34
+
+## 6.0.0-canary.33
+
+## 6.0.0-canary.32
+
+## 6.0.0-canary.31
+
+## 6.0.0-canary.30
+
+## 6.0.0-canary.29
+
+## 6.0.0-canary.28
+
+## 6.0.0-canary.27
+
+## 6.0.0-canary.26
+
+## 6.0.0-canary.25
+
+## 6.0.0-canary.24
+
+## 6.0.0-canary.23
+
+## 6.0.0-canary.22
+
+## 6.0.0-canary.21
+
+## 6.0.0-canary.20
+
+## 5.2.0-canary.19
+
+### Patch Changes
+
+- [#1800](https://github.com/graphcommerce-org/graphcommerce/pull/1800) [`2d90523e8`](https://github.com/graphcommerce-org/graphcommerce/commit/2d90523e8f52919215587f3a989faa31122c1e7a) - If the user is not logged in + the "Hide for Guests” variable is enabled, the WishlistFabContent should not be displayed. ([@carlocarels90](https://github.com/carlocarels90))
+
+## 5.2.0-canary.18
+
+## 5.2.0-canary.17
+
+## 5.2.0-canary.16
+
+## 5.2.0-canary.15
+
+## 5.2.0-canary.14
+
+## 5.2.0-canary.13
+
+## 5.2.0-canary.12
+
+## 5.2.0-canary.11
+
+## 5.2.0-canary.10
+
+## 5.2.0-canary.9
+
+## 5.2.0-canary.8
+
+### Patch Changes
+
+- [#1783](https://github.com/graphcommerce-org/graphcommerce/pull/1783) [`d6e7dc3e6`](https://github.com/graphcommerce-org/graphcommerce/commit/d6e7dc3e612029bf02cdc5ac48544a52c43869db) - Closing wishlist snackbar ([@StefanAngenent](https://github.com/StefanAngenent))
+
+## 5.2.0-canary.7
+
+## 5.2.0-canary.6
+
+## 5.2.0-canary.5
+
+## 5.2.0-canary.4
+
+## 5.2.0-canary.3
+
+## 5.2.0-canary.2
+
+## 5.2.0-canary.1
+
+## 5.2.0-canary.0
+
 ## 5.1.1
 
 ## 5.1.1-canary.1

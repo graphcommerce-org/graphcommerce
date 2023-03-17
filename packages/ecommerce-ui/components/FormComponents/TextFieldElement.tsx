@@ -1,8 +1,10 @@
+/* eslint-disable no-nested-ternary */
 import {
   Controller,
   ControllerProps,
   FieldError,
   FieldValues,
+  UseControllerProps,
 } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { TextField, TextFieldProps } from '@mui/material'
@@ -11,12 +13,11 @@ export type TextFieldElementProps<T extends FieldValues = FieldValues> = Omit<
   TextFieldProps,
   'name' | 'defaultValue'
 > & {
-  validation?: ControllerProps['rules']
+  validation?: UseControllerProps<T>['rules']
   parseError?: (error: FieldError) => string
-} & Pick<ControllerProps<T>, 'control' | 'defaultValue' | 'name'>
+} & UseControllerProps<T>
 
-/** This is a copy of the default one, but allowing defaultValue */
-export function TextFieldElement<TFieldValues extends FieldValues = FieldValues>({
+export function TextFieldElement<TFieldValues extends FieldValues>({
   validation = {},
   parseError,
   type,
@@ -45,21 +46,21 @@ export function TextFieldElement<TFieldValues extends FieldValues = FieldValues>
       control={control}
       rules={validation}
       defaultValue={defaultValue}
-      render={({ field: { value, onChange, onBlur }, fieldState: { invalid, error } }) => (
+      render={({ field: { value, onChange, onBlur, ref }, fieldState: { error } }) => (
         <TextField
           {...rest}
           name={name}
           value={value ?? ''}
           onChange={(ev) => {
-            onChange(ev)
-            if (typeof rest.onChange === 'function') {
-              rest?.onChange(ev)
-            }
+            onChange(
+              type === 'number' && ev.target.value ? Number(ev.target.value) : ev.target.value,
+            )
+            rest.onChange?.(ev)
           }}
           onBlur={onBlur}
           required={required}
           type={type}
-          error={invalid}
+          error={!!error}
           helperText={
             error
               ? typeof parseError === 'function'
@@ -67,6 +68,7 @@ export function TextFieldElement<TFieldValues extends FieldValues = FieldValues>
                 : error.message
               : rest.helperText
           }
+          inputRef={ref}
         />
       )}
     />

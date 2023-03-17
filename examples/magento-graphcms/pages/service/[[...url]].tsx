@@ -1,6 +1,7 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { PageMeta, GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
+import { i18n } from '@lingui/core'
 import { Container } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import {
@@ -61,7 +62,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
     const { data } = await client.query({
       query: PagesStaticPathsDocument,
       variables: {
-        first: process.env.VERCEL_ENV !== 'production' ? 1 : 1000,
+        first: import.meta.graphCommerce.limitSsg ? 1 : 1000,
         urlStartsWith: 'service',
       },
     })
@@ -88,7 +89,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
     props: {
       ...(await page).data,
       ...(await layout).data,
-      up: isRoot ? null : { href: '/service', title: 'Customer Service' },
+      up: isRoot ? null : { href: '/service', title: i18n._(/* i18n */ 'Customer Service') },
       apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,

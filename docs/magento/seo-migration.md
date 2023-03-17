@@ -10,7 +10,8 @@ better performance.
 ## How are routes handled?
 
 - Products have a different URL structure: `/p/[url]`. e.g.
-  `/p/my-product-url-key`.
+  `/p/my-product-url-key` (different route can be configured with
+  [productRoute config](../framework/config.md#productroute-string))
 - Categories use same URL structure: `/[...url]`. e.g. `/my/category/path`.
 - GraphCommerce does not use any URL suffixes. e.g. `.html`.
 

@@ -7,14 +7,21 @@ import { LayoutDocument } from '../components/Layout/Layout.gql'
 import { DefaultPageDocument, DefaultPageQuery } from '../graphql/DefaultPage.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
 
-type Props = DefaultPageQuery & ProductListQuery
+type Props = DefaultPageQuery & {
+  latestList: ProductListQuery
+  favoritesList: ProductListQuery
+  swipableList: ProductListQuery
+}
 type RouteProps = { url: string }
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
 function CmsPage(props: Props) {
-  const { pages, products } = props
+  const { pages, latestList, favoritesList, swipableList } = props
   const page = pages?.[0]
-  const product = products?.items?.[0]
+
+  const latest = latestList?.products?.items?.[0]
+  const favorite = favoritesList?.products?.items?.[0]
+  const swipable = swipableList?.products?.items?.[0]
 
   return (
     <>
@@ -31,9 +38,23 @@ function CmsPage(props: Props) {
         <RowRenderer
           content={page.content}
           renderer={{
-            RowProduct: (rowProps) => (
-              <RowProduct {...rowProps} {...product} items={products?.items} />
-            ),
+            RowProduct: (rowProps) => {
+              const { identity } = rowProps
+
+              if (identity === 'home-favorites')
+                return (
+                  <RowProduct {...rowProps} {...favorite} items={favoritesList.products?.items} />
+                )
+              if (identity === 'home-latest')
+                return <RowProduct {...rowProps} {...latest} items={latestList.products?.items} />
+              if (identity === 'home-swipable')
+                return (
+                  <RowProduct {...rowProps} {...swipable} items={swipableList.products?.items} />
+                )
+              return (
+                <RowProduct {...rowProps} {...favorite} items={favoritesList.products?.items} />
+              )
+            },
           }}
         />
       )}
@@ -56,9 +77,19 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const layout = staticClient.query({ query: LayoutDocument })
 
   // todo(paales): Remove when https://github.com/Urigo/graphql-mesh/issues/1257 is resolved
-  const productList = staticClient.query({
+  const favoritesList = staticClient.query({
+    query: ProductListDocument,
+    variables: { pageSize: 8, filters: { category_uid: { eq: 'MTIx' } } },
+  })
+
+  const latestList = staticClient.query({
     query: ProductListDocument,
     variables: { pageSize: 8, filters: { category_uid: { eq: 'MTAy' } } },
+  })
+
+  const swipableList = staticClient.query({
+    query: ProductListDocument,
+    variables: { pageSize: 8, filters: { category_uid: { eq: 'MTIy' } } },
   })
 
   if (!(await page).data.pages?.[0]) return { notFound: true }
@@ -67,7 +98,9 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
     props: {
       ...(await page).data,
       ...(await layout).data,
-      ...(await productList).data,
+      latestList: (await latestList).data,
+      favoritesList: (await favoritesList).data,
+      swipableList: (await swipableList).data,
       apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,

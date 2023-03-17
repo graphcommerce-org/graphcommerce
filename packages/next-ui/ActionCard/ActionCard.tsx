@@ -1,8 +1,16 @@
-import { alpha, Box, BoxProps, ButtonBase, ButtonProps, SxProps, Theme } from '@mui/material'
+import {
+  alpha,
+  Box,
+  BoxProps,
+  ButtonBase,
+  ButtonProps,
+  lighten,
+  SxProps,
+  Theme,
+} from '@mui/material'
 import React from 'react'
-import { extendableComponent } from '../Styles'
+import { extendableComponent, responsiveVal } from '../Styles'
 import { breakpointVal } from '../Styles/breakpointVal'
-import { responsiveVal } from '../Styles/responsiveVal'
 
 type Variants = 'outlined' | 'default'
 type Size = 'large' | 'medium' | 'small'
@@ -29,9 +37,9 @@ export type ActionCardProps = {
   price?: React.ReactNode
   after?: React.ReactNode
   secondaryAction?: React.ReactNode
-  onClick?: (event: React.MouseEvent<HTMLElement>, value: string | number) => void
+  onClick?: (event: React.MouseEvent<HTMLElement>, value: string | number | null) => void
   selected?: boolean
-  value: string | number
+  value: string | number | null
   reset?: React.ReactNode
   disabled?: boolean
   error?: boolean
@@ -110,42 +118,72 @@ export function ActionCard(props: ActionCardProps) {
         (theme) => ({
           ...breakpointVal(
             'borderRadius',
+            theme.shape.borderRadius * 1.5,
             theme.shape.borderRadius * 3,
-            theme.shape.borderRadius * 4,
             theme.breakpoints.values,
           ),
 
           '&.sizeSmall': {
             px: responsiveVal(8, 12),
-            py: responsiveVal(6, 8),
+            py: responsiveVal(4, 6),
             display: 'flex',
             typography: 'body2',
           },
           '&.sizeMedium': {
-            px: responsiveVal(10, 16),
-            py: responsiveVal(8, 14),
+            px: responsiveVal(10, 14),
+            py: responsiveVal(10, 12),
             typography: 'body2',
             display: 'block',
           },
           '&.sizeLarge': {
-            px: theme.spacings.xs,
-            py: theme.spacings.xxs,
+            px: responsiveVal(12, 16),
+            py: responsiveVal(12, 14),
             display: 'block',
           },
 
           '&.variantDefault': {
-            borderRadius: 0,
-            px: 0,
-            borderBottom: `1px solid ${theme.palette.divider}`,
+            '&::after': {
+              content: '""',
+              display: 'block',
+              position: 'absolute',
+              width: '100%',
+              left: 0,
+              bottom: '-1px',
+              borderBottom: `1px solid ${theme.palette.divider}`,
+            },
             '&.selected': {
-              borderBottom: `2px solid ${theme.palette[color].main}`,
-              marginBottom: '-1px',
-              backgroundColor: `${theme.palette[color].main}10`,
+              backgroundColor:
+                theme.palette.mode === 'light'
+                  ? alpha(theme.palette[color].main, theme.palette.action.hoverOpacity)
+                  : lighten(theme.palette.background.default, theme.palette.action.hoverOpacity),
             },
             '&.error': {
-              borderBottom: `2px solid ${theme.palette.error.main}`,
-              marginBottom: '-1px',
-              backgroundColor: `${theme.palette.error.main}10`,
+              backgroundColor: `${alpha(
+                theme.palette.error.main,
+                theme.palette.action.hoverOpacity,
+              )}`,
+            },
+
+            '&.variantDefault.sizeSmall': {
+              mt: { xs: '2px', sm: '3px', md: '5px' },
+              mb: { xs: '3px', sm: '4px', md: '6px' },
+              '&::after': {
+                mb: { xs: '-2px', sm: '-3px', md: '-5px' },
+              },
+            },
+            '&.variantDefault.sizeMedium': {
+              mt: { xs: '4px', sm: '5px', md: '6px' },
+              mb: { xs: '5px', sm: '6px', md: '7px' },
+              '&::after': {
+                mb: { xs: '-4px', sm: '-5px', md: '-6px' },
+              },
+            },
+            '&.variantDefault.sizeLarge': {
+              mt: { xs: '5px', sm: '7px', md: '8px' },
+              mb: { xs: '6px', sm: '8px', md: '9px' },
+              '&::after': {
+                mb: { xs: '-5px', sm: '-7px', md: '-8px' },
+              },
             },
           },
 
@@ -229,7 +267,7 @@ export function ActionCard(props: ActionCardProps) {
           width: '100%',
           justifyContent: 'space-between',
           alignContent: 'stretch',
-          alignItems: 'flex-start',
+          alignItems: 'center',
         }}
       >
         <Box
@@ -243,7 +281,7 @@ export function ActionCard(props: ActionCardProps) {
           {image && (
             <Box
               className={classes.image}
-              sx={{ display: 'flex', paddingRight: '15px', alignSelf: 'center' }}
+              sx={{ display: 'flex', pr: '15px', alignSelf: 'center' }}
             >
               {image}
             </Box>
@@ -262,7 +300,6 @@ export function ActionCard(props: ActionCardProps) {
                 className={classes.title}
                 sx={{
                   typography: 'subtitle2',
-                  '&.sizeMedium': { typographty: 'subtitle1' },
                   '&.sizeLarge': { typography: 'h6' },
                 }}
               >

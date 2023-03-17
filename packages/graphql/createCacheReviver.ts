@@ -15,9 +15,9 @@ export async function createCacheReviver(
   createCache: () => ApolloCache<NormalizedCacheObject>,
   policies: StrictTypedTypePolicies[],
   migrations: MigrateCache[],
-  incommingState: NormalizedCacheObject = {},
+  incomingState: NormalizedCacheObject = {},
 ) {
-  let state = incommingState
+  let state = incomingState
   const typePoliciesVersion = getTypePoliciesVersion(policies)
 
   if (typeof window !== 'undefined') {
@@ -34,12 +34,12 @@ export async function createCacheReviver(
       })
 
       client.onClearStore(async () => {
-        client.cache.restore(incommingState)
+        client.cache.restore(incomingState)
         await persistor?.persist()
       })
 
       client.onResetStore(async () => {
-        client.cache.restore(incommingState)
+        client.cache.restore(incomingState)
         await persistor?.persist()
       })
 
@@ -47,7 +47,7 @@ export async function createCacheReviver(
       const currentVersion = window.localStorage[APOLLO_CACHE_VERSION] as string | undefined
 
       if (currentVersion === typePoliciesVersion && storedState) {
-        state = mergeDeep(JSON.parse(storedState), incommingState)
+        state = mergeDeep(JSON.parse(storedState), incomingState)
       } else if (storedState) {
         console.info(
           '[@graphcommerce/graphql] migrating apollo cache, detected a typePolicy change',
@@ -59,13 +59,13 @@ export async function createCacheReviver(
           // Run the migration
           migrateCacheHandler(oldCache, cache, migrations)
 
-          state = mergeDeep(cache.extract(), incommingState)
+          state = mergeDeep(cache.extract(), incomingState)
           console.info('migration complete')
         } catch (e) {
           console.info('migration error (starting with a clean state):', e)
 
           // couldn't be upgraded
-          state = incommingState
+          state = incomingState
         }
       }
       window.localStorage[APOLLO_CACHE_VERSION] = typePoliciesVersion

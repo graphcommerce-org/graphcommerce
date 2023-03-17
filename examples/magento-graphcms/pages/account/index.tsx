@@ -1,17 +1,15 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { useQuery } from '@graphcommerce/graphql'
 import {
+  AccountDashboardDocument,
+  AccountMenu,
+  AccountMenuItem,
   AddressSingleLine,
+  OrderStateLabelInline,
   SignOutForm,
   useCustomerQuery,
   WaitForCustomer,
 } from '@graphcommerce/magento-customer'
-import {
-  AccountDashboardDocument,
-  AccountMenu,
-  AccountMenuItem,
-} from '@graphcommerce/magento-customer-account'
-import { OrderStateLabelInline } from '@graphcommerce/magento-customer-order'
 import { CustomerNewsletterToggle } from '@graphcommerce/magento-newsletter'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {

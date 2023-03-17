@@ -1,4 +1,4 @@
-import { Link, LinkProps, useForkRef } from '@mui/material'
+import { Breakpoint, Link, LinkProps, useForkRef } from '@mui/material'
 import React, { useRef } from 'react'
 import type { ConditionalExcept } from 'type-fest'
 import { Button, ButtonProps } from './Button'
@@ -13,7 +13,7 @@ type SharedProperties<A, B> = OmitNever<
 export type LinkOrButtonProps = {
   button?: ButtonProps
   link?: LinkProps
-  breakpoint?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+  breakpoint?: Breakpoint
   disabled?: boolean
 } & SharedProperties<
   Omit<ButtonProps, 'sx'>,

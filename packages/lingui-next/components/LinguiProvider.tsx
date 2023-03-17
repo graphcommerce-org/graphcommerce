@@ -1,3 +1,4 @@
+import { storefrontConfig, storefrontConfigDefault } from '@graphcommerce/next-ui'
 import { i18n, Messages } from '@lingui/core'
 import { I18nProvider, I18nProviderProps } from '@lingui/react'
 import { nl, en, fr } from 'make-plural/plurals'
@@ -18,18 +19,22 @@ i18n.loadLocaleData({
   en: { plurals: en },
 })
 
+export const localeConfig = (locale: string = storefrontConfigDefault().locale) =>
+  storefrontConfig(locale)?.linguiLocale ?? locale?.split('-')[0]
+
 export function LinguiProvider(props: LinguiProviderProps) {
-  const { loader, ssrLoader, locale, ...i18nProviderPRops } = props
+  const { loader, ssrLoader, locale, ...i18nProviderProps } = props
+
+  const localeOnly = localeConfig(locale)
 
   useMemo(() => {
-    const localeOnly = locale?.split('-')[0]
     const data = globalThis.document?.getElementById('lingui')
 
     if (data?.lang === localeOnly && data.textContent) {
       // @todo: We're not loading the plurals dynamically, but we can't because it will load the complete module.
       i18n.load(localeOnly, JSON.parse(data.textContent) as Messages)
       i18n.activate(localeOnly)
-    } else if (i18n.locale !== locale) {
+    } else if (i18n.locale !== localeOnly) {
       if (typeof window === 'undefined') {
         const { messages } = ssrLoader(localeOnly)
         i18n.load(localeOnly, messages)
@@ -55,7 +60,7 @@ export function LinguiProvider(props: LinguiProviderProps) {
     }
     // We dont want to call this when the loader/ssrLoader changes, because it will cause a re-render.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [locale])
+  }, [localeOnly])
 
-  return <I18nProvider i18n={i18n} {...i18nProviderPRops} />
+  return <I18nProvider i18n={i18n} {...i18nProviderProps} />
 }

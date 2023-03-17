@@ -1,6 +1,11 @@
 /* eslint-disable no-nested-ternary */
 import { IconSvg, iconClose } from '@graphcommerce/next-ui'
-import { Control, Controller, FieldError, Path, FieldValues } from '@graphcommerce/react-hook-form'
+import {
+  Controller,
+  FieldError,
+  FieldValues,
+  ControllerProps,
+} from '@graphcommerce/react-hook-form'
 import {
   Checkbox,
   Chip,
@@ -21,18 +26,15 @@ export type MultiSelectElementProps<T extends FieldValues> = Omit<SelectProps, '
   itemValue?: string
   itemLabel?: string
   required?: boolean
-  validation?: any
-  name: Path<T>
   parseError?: (error: FieldError) => string
   minWidth?: number
   menuMaxHeight?: number
   menuMaxWidth?: number
   helperText?: string
   showChips?: boolean
-  control?: Control<T>
   showCheckbox?: boolean
   formControlProps?: Omit<FormControlProps, 'fullWidth' | 'variant'>
-}
+} & Omit<ControllerProps<T>, 'render'>
 
 const ITEM_HEIGHT = 48
 const ITEM_PADDING_TOP = 8
@@ -47,7 +49,7 @@ export function MultiSelectElement<TFieldValues extends FieldValues>(
     itemValue = '',
     itemLabel = 'label',
     required = false,
-    validation = {},
+    rules = {},
     parseError,
     name,
     menuMaxHeight = ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
@@ -60,14 +62,14 @@ export function MultiSelectElement<TFieldValues extends FieldValues>(
     formControlProps,
     ...rest
   } = props
-  if (required && !validation.required) {
-    validation.required = 'This field is required'
+  if (required && !rules.required) {
+    rules.required = 'This field is required'
   }
 
   return (
     <Controller
       name={name}
-      rules={validation}
+      rules={rules}
       control={control}
       render={({ field: { value, onChange, onBlur }, fieldState: { invalid, error } }) => {
         helperText = error

@@ -1,0 +1,23 @@
+mutation PayPalPaymentPlaceOrder(
+  $cartId: String!
+  $code: String!
+  $expressButton: Boolean = false
+  $usePayPalCredit: Boolean = false
+  $urls: PaypalExpressUrlsInput!
+) {
+  createPaypalExpressToken(
+    input: {
+      cart_id: $cartId
+      code: $code
+      urls: $urls
+      express_button: $expressButton
+      use_paypal_credit: $usePayPalCredit
+    }
+  ) {
+    paypal_urls {
+      edit
+      start
+    }
+    token
+  }
+}

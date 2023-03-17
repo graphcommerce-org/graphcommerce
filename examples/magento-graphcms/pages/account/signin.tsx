@@ -1,6 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { useMergeCustomerCart } from '@graphcommerce/magento-cart'
-import { AccountSignInUpForm } from '@graphcommerce/magento-customer-account'
+import { AccountSignInUpForm } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { useMergeGuestWishlistWithCustomer } from '@graphcommerce/magento-wishlist'
 import { GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'

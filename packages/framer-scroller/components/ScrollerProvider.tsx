@@ -61,13 +61,14 @@ function useObserveItems(scrollerRef: ReactHtmlRefObject, items: MotionValue<Ite
 
   useEffect(() => {
     observe(items.get())
-    return items.onChange(observe)
+    return items.on('change', observe)
   }, [items, observe])
 }
 
 export function ScrollerProvider(props: ScrollerProviderProps) {
   const scrollerRef = useRef<HTMLDivElement>()
-  const cancels = useRef<PlaybackControls[]>([])
+  const running = useRef<PlaybackControls>()
+  const scroll = useElementScroll(scrollerRef)
 
   const {
     scrollSnapAlign = 'center center',
@@ -90,36 +91,30 @@ export function ScrollerProvider(props: ScrollerProviderProps) {
 
   // Cancel any running animations to prevent onComplete to be ran
   const stop = useCallback(() => {
-    cancels.current.forEach((c) => c?.stop())
-    cancels.current = []
+    running.current?.stop()
+    running.current = undefined
   }, [])
 
   // Register any running animations so they become cancelable
-  const register = useCallback((controls: PlaybackControls) => {
-    cancels.current.push(controls)
-  }, [])
+  const register = useCallback(
+    (controls: PlaybackControls) => {
+      stop()
+      running.current = controls
+    },
+    [stop],
+  )
 
   const disableSnap = useCallback(() => {
-    if (snap.get() === false) return
-    stop()
+    if (snap.get() === false) stop()
+    scroll.scroll.set({ ...scroll.scroll.get(), animating: true })
     snap.set(false)
-  }, [snap, stop])
+  }, [snap, stop, scroll.scroll])
 
   const enableSnap = useCallback(() => {
-    if (!scrollerRef.current || snap.get() === true) return
-
-    stop()
-
-    // We're setting the current scrollLeft to prevent resetting the scroll position on Safari 14.
-    const l = scrollerRef.current.scrollLeft
-    const t = scrollerRef.current.scrollTop
+    if (snap.get() === true) return
     snap.set(true)
-    requestAnimationFrame(() => {
-      if (!scrollerRef.current) return
-      scrollerRef.current.scrollLeft = l
-      scrollerRef.current.scrollTop = t
-    })
-  }, [snap, stop])
+    scroll.scroll.set({ ...scroll.scroll.get(), animating: false })
+  }, [snap, scroll])
 
   useObserveItems(scrollerRef, items)
 
@@ -332,8 +327,6 @@ export function ScrollerProvider(props: ScrollerProviderProps) {
 
     return { x: 0, y: 0, [axis]: position }
   }
-
-  const scroll = useElementScroll(scrollerRef)
 
   const value = useConstant<ScrollerContext>(() => ({
     scrollerRef,

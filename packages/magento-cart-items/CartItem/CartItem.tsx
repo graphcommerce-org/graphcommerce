@@ -2,9 +2,13 @@ import { Image } from '@graphcommerce/image'
 import { useDisplayInclTax } from '@graphcommerce/magento-cart'
 import { useProductLink } from '@graphcommerce/magento-product'
 import { Money } from '@graphcommerce/magento-store'
-import { responsiveVal, extendableComponent, filterNonNullableKeys } from '@graphcommerce/next-ui'
-import { Alert, Badge, Box, Link, SxProps, Theme } from '@mui/material'
-import PageLink from 'next/link'
+import {
+  responsiveVal,
+  extendableComponent,
+  filterNonNullableKeys,
+  NextLink,
+} from '@graphcommerce/next-ui'
+import { Badge, Box, Link, SxProps, Theme } from '@mui/material'
 import { CartItemFragment } from '../Api/CartItem.gql'
 import { RemoveItemFromCartFab } from '../RemoveItemFromCart/RemoveItemFromCartFab'
 import { UpdateItemQuantity } from '../UpdateItemQuantity/UpdateItemQuantity'
@@ -89,6 +93,9 @@ export function CartItem(props: CartItemProps) {
         badgeContent={
           <RemoveItemFromCartFab
             uid={uid}
+            quantity={quantity}
+            prices={prices}
+            product={product}
             className={classes.badge}
             sx={(theme) => ({
               '& > button': {
@@ -122,56 +129,55 @@ export function CartItem(props: CartItemProps) {
           alignSelf: 'center',
         })}
       >
-        <PageLink href={productLink} passHref>
-          <Box
-            component='a'
-            className={classes.productLink}
-            sx={{ display: 'block', width: '100%', borderRadius: '50%', overflow: 'hidden' }}
-          >
-            {product?.thumbnail?.url && (
-              <Image
-                src={product.thumbnail.url ?? ''}
-                layout='fill'
-                alt={product.thumbnail.label ?? product.name ?? ''}
-                sizes={responsiveVal(70, 125)}
-                className={classes.image}
-                sx={(theme) => ({
-                  gridColumn: 1,
-                  backgroundColor: theme.palette.background.image,
-                  objectFit: 'cover',
-                  display: 'block',
-                  width: '110% !important',
-                  height: '110% !important',
-                  marginLeft: '-5%',
-                  marginTop: '-5%',
-                })}
-              />
-            )}
-          </Box>
-        </PageLink>
+        <Box
+          href={productLink}
+          component={NextLink}
+          className={classes.productLink}
+          sx={{ display: 'block', width: '100%', borderRadius: '50%', overflow: 'hidden' }}
+        >
+          {product?.thumbnail?.url && (
+            <Image
+              src={product.thumbnail.url ?? ''}
+              layout='fill'
+              alt={product.thumbnail.label ?? product.name ?? ''}
+              sizes={responsiveVal(70, 125)}
+              className={classes.image}
+              sx={(theme) => ({
+                gridColumn: 1,
+                backgroundColor: theme.palette.background.image,
+                objectFit: 'cover',
+                display: 'block',
+                width: '110% !important',
+                height: '110% !important',
+                marginLeft: '-5%',
+                marginTop: '-5%',
+              })}
+            />
+          )}
+        </Box>
       </Badge>
 
       <Box sx={{ gridArea: 'itemName' }}>
-        <PageLink href={productLink} passHref>
-          <Link
-            variant='body1'
-            className={classes.itemName}
-            underline='hover'
-            sx={(theme) => ({
-              typgrapht: 'subtitle1',
-              fontWeight: theme.typography.fontWeightBold,
-              color: theme.palette.text.primary,
-              textDecoration: 'none',
-              flexWrap: 'nowrap',
-              maxWidth: 'max-content',
-              '&:not(.withOptions)': {
-                alignSelf: 'flex-end',
-              },
-            })}
-          >
-            {name}
-          </Link>
-        </PageLink>
+        <Link
+          href={productLink}
+          variant='body1'
+          className={classes.itemName}
+          underline='hover'
+          sx={(theme) => ({
+            typgrapht: 'subtitle1',
+            fontWeight: theme.typography.fontWeightBold,
+            color: theme.palette.text.primary,
+            textDecoration: 'none',
+            flexWrap: 'nowrap',
+            maxWidth: 'max-content',
+            '&:not(.withOptions)': {
+              alignSelf: 'flex-end',
+            },
+          })}
+        >
+          {name}
+        </Link>
+
         {filterNonNullableKeys(errors).map((error) => (
           <Box sx={{ color: 'error.main', typography: 'caption' }} key={error.message}>
             {error.message}

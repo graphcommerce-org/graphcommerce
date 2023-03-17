@@ -5,6 +5,7 @@ import {
   ActionCardItemRenderProps,
   ActionCardListForm,
   ActionCardProps,
+  responsiveVal,
 } from '@graphcommerce/next-ui'
 import {
   useForm,
@@ -39,8 +40,9 @@ function PaymentMethodActionCard(
     <Card
       sx={[
         {
-          '& .ActionCard-title': { typography: 'h6', lineHeight: 0 },
+          '& .ActionCard-title': { typography: 'h6' },
           '& .ActionCard-details': { lineHeight: 1.5 },
+          '& .ActionCard-image svg, .ActionCard-image img': { width: '32px', height: '32px' },
         },
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
@@ -72,7 +74,9 @@ export function PaymentMethodActionCardListForm(props: PaymentMethodActionCardLi
     usePaymentMethodContext()
 
   const [lockState] = useCartLock()
-  const form = useForm<{ code: string | null; paymentMethod?: string }>({
+
+  type FormFields = { code: string | null; paymentMethod?: string }
+  const form = useForm<FormFields>({
     defaultValues: { code: lockState.method },
   })
 
@@ -106,7 +110,7 @@ export function PaymentMethodActionCardListForm(props: PaymentMethodActionCardLi
   if (!methods || methods.length < 1) return null
 
   return (
-    <ActionCardListForm<PaymentOptionsProps & ActionCardProps>
+    <ActionCardListForm<PaymentOptionsProps & ActionCardProps, FormFields>
       control={control}
       name='paymentMethod'
       errorMessage={i18n._(/* i18n */ 'Please select a payment method')}

@@ -1,5 +1,5 @@
 import { useMutation } from '@graphcommerce/graphql'
-import { useAssignCurrentCartId, useClearCurrentCartId } from '@graphcommerce/magento-cart'
+import { useAssignCurrentCartId } from '@graphcommerce/magento-cart'
 import {
   PaymentHandlerProps,
   usePaymentMethodContext,

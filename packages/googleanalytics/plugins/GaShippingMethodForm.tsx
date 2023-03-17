@@ -1,9 +1,10 @@
 import { ShippingMethodFormProps } from '@graphcommerce/magento-cart-shipping-method'
-import { PluginProps } from '@graphcommerce/next-config'
+import { IfConfig, PluginProps } from '@graphcommerce/next-config'
 import { gtagAddShippingInfo } from '../events/gtagAddShippingInfo/gtagAddShippingInfo'
 
 export const component = 'ShippingMethodForm'
 export const exported = '@graphcommerce/magento-cart-shipping-method'
+export const ifConfig: IfConfig = 'googleAnalyticsId'
 
 /** When the ShippingMethod is submitted the result is sent to Google Analytics */
 export function GaShippingMethodForm(props: PluginProps<ShippingMethodFormProps>) {

@@ -1,14 +1,16 @@
 # @graphcommerce/googlerecaptcha
 
-This package makes it easy to add Google Recaptcha v3 to GraphCommerce. It
-allows you to load the Recatcha script conditionally on the page so it isn't
-initialized on all pages.
+This package makes it easy to add
+[Google Recaptcha v3](https://developers.google.com/recaptcha/docs/v3) to
+GraphCommerce. It allows you to load the Recatcha script conditionally on the
+page so it isn't initialized on all pages.
 
-### Installation
+## Configuration
 
-1. Add `NEXT_PUBLIC_GOOGLE_RECAPTCHA_V3_SITE_KEY` to your .env file.
-   [example](../../examples/magento-graphcms/.env.example)
-2. Add `X-Recaptcha` header to your `.meshrc.yml`.
+1. Configure the following ([configuration values](./Config.graphqls)) in your
+   graphcommerce.config.js
+
+2. Add `X-Recaptcha` header to your `.meshrc.yml` if it isn't there.
    [example](../../examples/magento-graphcms/.meshrc.yml)
 
 ### Usage

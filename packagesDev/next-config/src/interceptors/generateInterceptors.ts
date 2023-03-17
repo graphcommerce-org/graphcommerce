@@ -1,42 +1,47 @@
+import path from 'node:path'
 import { ResolveDependency, ResolveDependencyReturn } from '../utils/resolveDependency'
 
 export type PluginConfig = {
   component?: string
   exported?: string
   plugin: string
-  ifEnv?: string
+  ifConfig?: string
+  enabled: boolean
 }
 
-type Plugin = ResolveDependencyReturn & {
+type Interceptor = ResolveDependencyReturn & {
   components: Record<string, PluginConfig[]>
   target: string
   template?: string
 }
 
-export type MaterializedPlugin = Plugin & { template: string }
+export type MaterializedPlugin = Interceptor & { template: string }
 
-export function generateInterceptor(plugin: Plugin): MaterializedPlugin {
-  const { fromModule, dependency, components } = plugin
+function moveRelativeDown(plugins: PluginConfig[]) {
+  return [...plugins].sort((a, b) => {
+    if (a.plugin.startsWith('.') && !b.plugin.startsWith('.')) return 1
+    if (!a.plugin.startsWith('.') && b.plugin.startsWith('.')) return -1
+    return 0
+  })
+}
 
-  const pluginImports = Object.entries(components)
-    .map(([, plugins]) => {
-      const duplicateImports = new Set()
-      return plugins
-        .sort((a, b) => a.plugin.localeCompare(b.plugin))
-        .map(
-          (p) =>
-            `import { Plugin as ${p.plugin.split('/')[p.plugin.split('/').length - 1]} } from '${
-              p.plugin
-            }'`,
-        )
-        .filter((importStr) => {
-          if (duplicateImports.has(importStr)) {
-            return false
-          }
-          duplicateImports.add(importStr)
-          return true
-        })
-        .join('\n')
+export function generateInterceptor(interceptor: Interceptor): MaterializedPlugin {
+  const { fromModule, dependency, components } = interceptor
+
+  const flattended = Object.entries(components)
+    .map(([, plugins]) => plugins)
+    .flat()
+  const duplicateImports = new Set()
+
+  const pluginImports = moveRelativeDown(
+    [...flattended].sort((a, b) => a.plugin.localeCompare(b.plugin)),
+  )
+    .map((p) => p.plugin)
+    .map((p) => `import { Plugin as ${p.split('/')[p.split('/').length - 1]} } from '${p}'`)
+    .filter((str) => {
+      if (duplicateImports.has(str)) return false
+      duplicateImports.add(str)
+      return true
     })
     .join('\n')
 
@@ -52,17 +57,17 @@ export function generateInterceptor(plugin: Plugin): MaterializedPlugin {
 
   const pluginExports = Object.entries(components)
     .map(([component, plugins]) => {
-      const duplicateImports = new Set()
+      const duplicateInterceptors = new Set()
 
       let carry = `${component}Base`
       const pluginStr = plugins
         .reverse()
         .map((p) => p.plugin.split('/')[p.plugin.split('/').length - 1])
         .filter((importStr) => {
-          if (duplicateImports.has(importStr)) {
+          if (duplicateInterceptors.has(importStr)) {
             return false
           }
-          duplicateImports.add(importStr)
+          duplicateInterceptors.add(importStr)
           return true
         })
         .map((name) => {
@@ -98,7 +103,7 @@ ${importInjectables}
 ${pluginExports}
 `
 
-  return { ...plugin, template }
+  return { ...interceptor, template }
 }
 
 export type GenerateInterceptorsReturn = Record<string, MaterializedPlugin>
@@ -108,27 +113,40 @@ export function generateInterceptors(
   resolve: ResolveDependency,
 ): GenerateInterceptorsReturn {
   // todo: Do not use reduce as we're passing the accumulator to the next iteration
-  const byExportedComponent = plugins.reduce((acc, plug) => {
-    const { exported, component } = plug
-    if (!exported || !component) return acc
+  const byExportedComponent = moveRelativeDown(plugins).reduce((acc, plug) => {
+    const { exported, component, enabled, plugin } = plug
+    if (!exported || !component || !enabled) return acc
 
     const resolved = resolve(exported)
+
+    let pluginPathFromResolved = plugin
+    if (plugin.startsWith('.')) {
+      const resolvedPlugin = resolve(plugin)
+      pluginPathFromResolved = path.relative(resolved.root, resolvedPlugin.fromRoot)
+    }
 
     if (!acc[resolved.fromRoot])
       acc[resolved.fromRoot] = {
         ...resolved,
         target: `${resolved.fromRoot}.interceptor`,
         components: {},
-      } as Plugin
+      } as Interceptor
 
     if (!acc[resolved.fromRoot].components[component])
       acc[resolved.fromRoot].components[component] = []
 
-    acc[resolved.fromRoot].components[component].push(plug)
+    acc[resolved.fromRoot].components[component].push({
+      ...plug,
+      plugin: pluginPathFromResolved,
+    })
+
     return acc
-  }, {} as Record<string, Plugin>)
+  }, {} as Record<string, Interceptor>)
 
   return Object.fromEntries(
-    Object.entries(byExportedComponent).map(([target, plg]) => [target, generateInterceptor(plg)]),
+    Object.entries(byExportedComponent).map(([target, interceptor]) => [
+      target,
+      generateInterceptor(interceptor),
+    ]),
   )
 }

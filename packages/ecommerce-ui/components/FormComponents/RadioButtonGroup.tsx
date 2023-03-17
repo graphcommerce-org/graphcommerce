@@ -1,9 +1,8 @@
 import {
-  Control,
   FieldError,
-  Path,
   useController,
   FieldValues,
+  UseControllerProps,
 } from '@graphcommerce/react-hook-form'
 import {
   FormControl,
@@ -19,7 +18,6 @@ import { ChangeEvent } from 'react'
 export type RadioButtonGroupProps<T extends FieldValues> = {
   options: { label: string; id: string | number }[] | any[]
   helperText?: string
-  name: Path<T>
   required?: boolean
   parseError?: (error: FieldError) => string
   label?: string
@@ -30,8 +28,7 @@ export type RadioButtonGroupProps<T extends FieldValues> = {
   onChange?: (value: any) => void
   returnObject?: boolean
   row?: boolean
-  control?: Control<T>
-}
+} & UseControllerProps<T>
 
 export function RadioButtonGroup<TFieldValues extends FieldValues>({
   helperText,

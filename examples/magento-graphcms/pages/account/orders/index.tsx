@@ -1,9 +1,10 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { useCustomerQuery, WaitForCustomer } from '@graphcommerce/magento-customer'
 import {
+  useCustomerQuery,
+  WaitForCustomer,
   AccountDashboardOrdersDocument,
   AccountOrders,
-} from '@graphcommerce/magento-customer-account'
+} from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   FullPageMessage,

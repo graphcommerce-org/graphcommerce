@@ -8,12 +8,17 @@ const node_fs_1 = __importDefault(require("node:fs"));
 const node_path_1 = __importDefault(require("node:path"));
 const PackagesSort_1 = require("./PackagesSort");
 const resolveCache = new Map();
-function resolveRecursivePackageJson(packageJsonFilename, dependencyStructure, force = false) {
-    const packageJsonFile = node_fs_1.default.readFileSync(packageJsonFilename, 'utf-8').toString();
+function resolveRecursivePackageJson(dependencyPath, dependencyStructure, root) {
+    const isRoot = dependencyPath === root;
+    const fileName = require.resolve(node_path_1.default.join(dependencyPath, 'package.json'));
+    const packageJsonFile = node_fs_1.default.readFileSync(fileName, 'utf-8').toString();
     const packageJson = JSON.parse(packageJsonFile);
     if (!packageJson.name)
-        throw Error('Package does not have a name');
+        throw Error(`Package ${packageJsonFile} does not have a name field`);
+    // Previously processed
     if (dependencyStructure[packageJson.name])
+        return dependencyStructure;
+    if (!isRoot && !packageJson.name.includes('graphcommerce'))
         return dependencyStructure;
     const dependencies = [
         ...new Set([
@@ -22,14 +27,13 @@ function resolveRecursivePackageJson(packageJsonFilename, dependencyStructure, f
             // ...Object.keys(packageJson.peerDependencies ?? {}),
         ].filter((name) => name.includes('graphcommerce'))),
     ];
-    if (!force && !packageJson.name.includes('graphcommerce'))
-        return dependencyStructure;
-    dependencyStructure[packageJson.name] = {
-        dirName: node_path_1.default.dirname(node_path_1.default.relative(process.cwd(), packageJsonFilename)),
+    const name = isRoot ? '.' : packageJson.name;
+    dependencyStructure[name] = {
+        dirName: node_path_1.default.dirname(node_path_1.default.relative(process.cwd(), fileName)),
         dependencies,
     };
-    dependencies.forEach((dependency) => {
-        resolveRecursivePackageJson(require.resolve(node_path_1.default.join(dependency, 'package.json')), dependencyStructure);
+    dependencies.forEach((dep) => {
+        resolveRecursivePackageJson(dep, dependencyStructure, root);
     });
     return dependencyStructure;
 }
@@ -59,7 +63,7 @@ function resolveDependenciesSync(root = process.cwd()) {
     const cached = resolveCache.get(root);
     if (cached)
         return cached;
-    const dependencyStructure = resolveRecursivePackageJson(node_path_1.default.join(root, 'package.json'), {}, true);
+    const dependencyStructure = resolveRecursivePackageJson(root, {}, root);
     const sorted = sortDependencies(dependencyStructure);
     resolveCache.set(root, sorted);
     return sorted;
