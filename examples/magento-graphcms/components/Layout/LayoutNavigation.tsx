@@ -21,10 +21,11 @@ import {
   NavigationOverlay,
   useNavigationSelection,
   useMemoDeep,
+  iconSearch,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Divider, Fab } from '@mui/material'
+import { Divider, Fab, Theme, useMediaQuery } from '@mui/material'
 import { useRouter } from 'next/router'
 import { Footer } from './Footer'
 import { LayoutQuery } from './Layout.gql'
@@ -38,6 +39,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
 
   const selection = useNavigationSelection()
   const router = useRouter()
+  const lgDown = useMediaQuery((t: Theme) => t.breakpoints.down('lg'))
 
   return (
     <>
@@ -128,7 +130,20 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
 
             <DesktopNavActions>
               {!router.pathname.startsWith('/search') && (
-                <SearchLink href='/search' aria-label={i18n._(/* i18n */ 'Search...')} />
+                <>
+                  {lgDown ? (
+                    <Fab href='/search' size='large' color='inherit'>
+                      <IconSvg
+                        aria-label={i18n._(/* i18n */ 'Search...')}
+                        src={iconSearch}
+                        size='large'
+                        sx={{ color: 'text.primary' }}
+                      />
+                    </Fab>
+                  ) : (
+                    <SearchLink href='/search' aria-label={i18n._(/* i18n */ 'Search...')} />
+                  )}
+                </>
               )}
               <Fab
                 href='/service'
