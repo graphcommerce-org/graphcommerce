@@ -52,22 +52,6 @@ function CheckoutAdded() {
     [crosssels.data?.products?.items, crosssels.previousData?.products?.items, items],
   )
 
-  const { direction } = usePageContext()
-  const readyOnce = useRef(direction !== 1)
-  const ready = useMotionValueValue(useScrollerContext().snap, (snapV) => {
-    if (snapV) readyOnce.current = true
-    return readyOnce.current
-  })
-
-  const { getSnapPosition } = useScrollerContext()
-  const scrollTo = useScrollTo()
-
-  const showCrossSell = crossSellItems.length > 0 && ready
-
-  useEffect(() => {
-    if (showCrossSell) setTimeout(() => scrollTo(getSnapPosition('down')), 10)
-  }, [getSnapPosition, scrollTo, showCrossSell])
-
   return (
     <>
       <PageMeta title={i18n._(/* i18n */ 'Cart')} metaRobots={['noindex']} />
@@ -129,7 +113,7 @@ function CheckoutAdded() {
               values={{ name: lastItem?.product.name }}
             />
           </Box>
-          {showCrossSell && (
+          {crossSellItems.length > 0 && (
             <Box sx={{ typography: 'body1', display: { xs: 'none', md: 'block' } }}>
               <Trans id='Complete your purchase' />
             </Box>
@@ -151,7 +135,7 @@ function CheckoutAdded() {
         <LayoutHeaderClose />
       </Container>
 
-      {showCrossSell && (
+      {crossSellItems.length > 0 && (
         <>
           <Container maxWidth={false}>
             <Divider />
