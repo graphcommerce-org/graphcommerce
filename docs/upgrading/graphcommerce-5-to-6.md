@@ -35,6 +35,13 @@ Create an enumeration in Hygraph `RowLinksVariants`:
 <img width="712" alt="Scherm­afbeelding 2023-03-16 om 13 15 24" src="https://user-images.githubusercontent.com/1244416/225615372-1226a6a8-11c8-4939-9ea5-bb66f16c3bb3.png" />
 
 Create a RowLinks model:
+
+Display name: `Row Links`
+
+API ID: `RowLinks`
+
+Plural API ID: `RowLinksMultiple`
+
 <img width="748" alt="Scherm­afbeelding 2023-03-16 om 13 15 34" src="https://user-images.githubusercontent.com/1244416/225615400-fc64c203-dce4-4971-8d21-c8777d085abe.png" />
 
 Add RowLinks to be included in the `content` of the `Page` Model:
