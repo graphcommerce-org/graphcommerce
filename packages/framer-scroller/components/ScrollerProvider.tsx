@@ -106,14 +106,15 @@ export function ScrollerProvider(props: ScrollerProviderProps) {
 
   const disableSnap = useCallback(() => {
     if (snap.get() === false) stop()
-    scroll.scroll.set({ ...scroll.scroll.get(), animating: true })
+
+    scroll.animating.set(true)
     snap.set(false)
-  }, [snap, stop, scroll.scroll])
+  }, [snap, stop, scroll.animating])
 
   const enableSnap = useCallback(() => {
     if (snap.get() === true) return
     snap.set(true)
-    scroll.scroll.set({ ...scroll.scroll.get(), animating: false })
+    scroll.animating.set(false)
   }, [snap, scroll])
 
   useObserveItems(scrollerRef, items)

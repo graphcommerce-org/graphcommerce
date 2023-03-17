@@ -24,7 +24,7 @@ export function useScrollTo() {
               velocity: scroll.x.getVelocity(),
               onUpdate: (v) => {
                 ref.scrollLeft = v
-                scroll.scroll.set({ ...scroll.scroll.get(), x: v })
+                scroll.x.set(v)
               },
               onComplete,
               onStop: onComplete,
@@ -44,7 +44,7 @@ export function useScrollTo() {
               velocity: scroll.y.getVelocity(),
               onUpdate: (v: number) => {
                 ref.scrollTop = v
-                scroll.scroll.set({ ...scroll.scroll.get(), y: v })
+                scroll.y.set(v)
               },
               onComplete,
               onStop: onComplete,
