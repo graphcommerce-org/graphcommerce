@@ -544,6 +544,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
               [theme.breakpoints.up('md')]: {
                 minWidth: '1px',
                 overflowY: 'auto',
+                overflowX: 'hidden',
                 overscrollBehavior: 'contain',
                 '&.variantMdBottom.sizeMdFloating:not(.justifyMdStretch)': {
                   width: widthMd,
