@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.1-canary.0
+
+### Patch Changes
+
+- [#1854](https://github.com/graphcommerce-org/graphcommerce/pull/1854) [`9cdce5786`](https://github.com/graphcommerce-org/graphcommerce/commit/9cdce578693782733d7bb3f4b7bf364e1cf26124) - Simplify useElementScroll component to a better standard to debug stuff ([@paales](https://github.com/paales))
+
 ## 6.0.0
 
 ### Major Changes

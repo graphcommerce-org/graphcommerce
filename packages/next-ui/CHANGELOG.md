@@ -1,5 +1,13 @@
 # Change Log
 
+## 6.0.1-canary.0
+
+### Patch Changes
+
+- [#1854](https://github.com/graphcommerce-org/graphcommerce/pull/1854) [`f4df162c5`](https://github.com/graphcommerce-org/graphcommerce/commit/f4df162c59d90298f305f51d409974592ab8e680) - Overlay desktop bottom didn't have a box-shadow ([@paales](https://github.com/paales))
+
+- [#1854](https://github.com/graphcommerce-org/graphcommerce/pull/1854) [`ba92b3ebe`](https://github.com/graphcommerce-org/graphcommerce/commit/ba92b3ebe9dae16f156f6c0d62bdf25a7df1a2a7) - Allow bottom overlays to resize and animate in position ([@paales](https://github.com/paales))
+
 ## 6.0.0
 
 ### Major Changes
