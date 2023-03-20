@@ -28,8 +28,8 @@ type AllFiltersChip = ProductFiltersProAggregationsProps &
 export function ProductFiltersProAllFiltersChip(props: AllFiltersChip) {
   const { filterTypes, aggregations, renderer, sort_fields, total_count, ...rest } = props
 
-  const { submit, params } = useProductFiltersPro()
-  const { filters } = params
+  const { form, submit, params } = useProductFiltersPro()
+  const { filters, sort } = params
 
   const activeFilters = filterNonNullableKeys(aggregations)
     .filter(({ attribute_code }) => attribute_code !== 'category_id')
@@ -38,27 +38,31 @@ export function ProductFiltersProAllFiltersChip(props: AllFiltersChip) {
         filters[attribute_code]?.from || filters[attribute_code]?.to || filters[attribute_code]?.in,
     )
     .map(({ label }) => label)
-  const hasFilters = activeFilters.length > 0
+
+  const allFilters = [...activeFilters, sort].filter(Boolean)
+  const hasFilters = allFilters.length > 0
 
   return (
     <ChipOverlayOrPopper
       label={<Trans id='All filters' />}
       chipProps={{ variant: 'outlined' }}
       onApply={submit}
-      // onReset={
-      //   hasFilters
-      //     ? () => {
-      //         form.reset({ filters: {}, currentPage: 1 })
-      //         return submit()
-      //       }
-      //     : undefined
-      // }
+      onReset={
+        hasFilters
+          ? () => {
+              form.setValue('filters', { category_uid: filters.category_uid })
+              form.setValue('currentPage', 1)
+              form.setValue('sort', null)
+              form.setValue('dir', null)
+              return submit()
+            }
+          : undefined
+      }
       onClose={submit}
-      selectedLabel={[<Trans id='All filters' />, ...activeFilters]}
+      selectedLabel={allFilters}
       selected={hasFilters}
       breakpoint={false}
       overlayProps={{ variantMd: 'right', widthMd: '500px' }}
-      // sx={{ '& .MuiBadge-root': { display: 'none' } }}
       {...rest}
     >
       {() => (
