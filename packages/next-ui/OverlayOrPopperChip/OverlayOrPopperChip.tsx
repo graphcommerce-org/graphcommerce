@@ -1,5 +1,4 @@
 import {
-  alpha,
   lighten,
   Badge,
   Chip,
@@ -35,22 +34,7 @@ export function ChipOverlayOrPopper(props: ChipOverlayOrPopperProps) {
   const { onApply, onClose, onReset } = panelProps
   const [activeEl, setActiveEl] = useState<HTMLElement | null>(null)
 
-  const chevronIcon = isMulti(selectedLabel) ? (
-    <Badge
-      color='primary'
-      badgeContent={selectedLabel.length}
-      sx={{
-        alignItems: 'center',
-        '.MuiBadge-badge': {
-          position: 'relative',
-          transform: 'none',
-          ml: { xs: '2px', md: '6px' },
-          typography: 'caption',
-          fontWeight: 'bold',
-        },
-      }}
-    />
-  ) : (
+  let chevronIcon = (
     <IconSvg
       src={activeEl ? iconChevronUp : iconChevronDown}
       size='medium'
@@ -58,7 +42,26 @@ export function ChipOverlayOrPopper(props: ChipOverlayOrPopperProps) {
     />
   )
 
-  selectedLabel = Array.isArray(selectedLabel) ? selectedLabel[0] : selectedLabel
+  if (selected) {
+    chevronIcon = (
+      <Badge
+        color='primary'
+        badgeContent={isMulti(selectedLabel) ? selectedLabel.length : 1}
+        sx={{
+          alignItems: 'center',
+          '.MuiBadge-badge': {
+            position: 'relative',
+            transform: 'none',
+            ml: { xs: '2px', md: '6px' },
+            typography: 'caption',
+            fontWeight: 'bold',
+          },
+        }}
+      />
+    )
+  }
+
+  selectedLabel = Array.isArray(selectedLabel) ? selectedLabel[0] : selectedLabel ?? '·'
 
   const chipSx = chipProps?.sx ?? []
   return (
