@@ -1,68 +1,48 @@
-import { motionValue, MotionValue, useTransform } from 'framer-motion'
-import { equal } from '@wry/equality'
+import { MotionValue, useMotionValue, useTransform } from 'framer-motion'
 import sync from 'framesync'
-import { RefObject, useMemo } from 'react'
+import { RefObject } from 'react'
+import { useConstant } from './useConstant'
 import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect'
 
-type ScrollMotionValue = { animating: boolean; x: number; y: number; xMax: number; yMax: number }
-
 export interface ScrollMotionValues {
+  animating: MotionValue<boolean>
   x: MotionValue<number>
   y: MotionValue<number>
   xProgress: MotionValue<number>
   yProgress: MotionValue<number>
   xMax: MotionValue<number>
   yMax: MotionValue<number>
-  scroll: MotionValue<ScrollMotionValue>
-}
-
-const refScrollMap = new Map<
-  RefObject<HTMLElement | undefined> | string,
-  MotionValue<ScrollMotionValue>
->()
-
-const initval = () => motionValue({ animating: false, x: 0, y: 0, xMax: 0, yMax: 0 })
-
-const getScrollMotion = (ref?: RefObject<HTMLElement | undefined>, sharedKey?: string) => {
-  if (!ref) return initval()
-
-  const key = sharedKey || ref
-
-  if (!refScrollMap.has(key)) {
-    const scroll = initval()
-    refScrollMap.set(key, scroll)
-  }
-
-  return refScrollMap.get(key) as MotionValue<ScrollMotionValue>
 }
 
 export function useElementScroll(ref?: RefObject<HTMLElement | undefined>): ScrollMotionValues {
-  const scroll = getScrollMotion(ref)
+  const animating = useMotionValue(false)
+  const x = useMotionValue(0)
+  const y = useMotionValue(0)
+  const xMax = useMotionValue(0)
+  const yMax = useMotionValue(0)
+  const xProgress = useTransform([x, xMax], (v: number[]) => (!v[0] && !v[1] ? 0 : v[0] / v[1]))
+  const yProgress = useTransform([y, yMax], (v: number[]) => (!v[0] && !v[1] ? 0 : v[0] / v[1]))
 
-  const x = useTransform(scroll, (v) => v.x)
-  const y = useTransform(scroll, (v) => v.y)
-  const xProgress = useTransform(scroll, (v) => (!v.x && !v.xMax ? 0 : v.x / v.xMax))
-  const yProgress = useTransform(scroll, (v) => (!v.y && !v.yMax ? 0 : v.y / v.yMax))
-  const xMax = useTransform(scroll, (v) => v.xMax)
-  const yMax = useTransform(scroll, (v) => v.yMax)
+  const scroll = useConstant<ScrollMotionValues>(() => ({
+    animating,
+    x,
+    y,
+    xProgress,
+    yProgress,
+    xMax,
+    yMax,
+  }))
 
   useIsomorphicLayoutEffect(() => {
     const element = ref?.current
     if (!element) return () => {}
 
     const updater = () => {
-      const scrollValue: ScrollMotionValue = {
-        ...scroll.get(),
-        xMax: Math.max(0, element.scrollWidth - element.offsetWidth),
-        yMax: Math.max(0, element.scrollHeight - element.offsetHeight),
-      }
+      xMax.set(Math.max(0, element.scrollWidth - element.offsetWidth))
+      yMax.set(Math.max(0, element.scrollHeight - element.offsetHeight))
 
-      if (!scroll.get().animating) {
-        scrollValue.x = element.scrollLeft
-        scrollValue.y = element.scrollTop
-      }
-
-      if (!equal(scrollValue, scroll.get())) scroll.set(scrollValue)
+      if (!animating.get()) y.set(element.scrollTop)
+      if (!animating.get()) x.set(element.scrollLeft)
     }
     updater()
 
@@ -76,10 +56,7 @@ export function useElementScroll(ref?: RefObject<HTMLElement | undefined>): Scro
       element.removeEventListener('scroll', updaterTimed)
       ro.disconnect()
     }
-  }, [ref, scroll])
+  }, [animating, ref, x, xMax, y, yMax])
 
-  return useMemo(
-    () => ({ x, y, xProgress, yProgress, xMax, yMax, scroll }),
-    [x, xMax, xProgress, y, yMax, yProgress, scroll],
-  )
+  return scroll
 }

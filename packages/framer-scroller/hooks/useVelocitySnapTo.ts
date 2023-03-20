@@ -63,7 +63,7 @@ export const useVelocitySnapTo = (
             onUpdate: (v: number) => {
               const x = Math.round(v + scrollLeft)
               el.scrollLeft = x
-              scroll.scroll.set({ ...scroll.scroll.get(), x })
+              scroll.x.set(x)
             },
             onComplete,
           }),
@@ -89,7 +89,7 @@ export const useVelocitySnapTo = (
             onUpdate: (v: number) => {
               const y = Math.round(v + scrollTop)
               el.scrollTop = y
-              scroll.scroll.set({ ...scroll.scroll.get(), y })
+              scroll.y.set(y)
             },
             onComplete,
           }),
