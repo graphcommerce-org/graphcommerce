@@ -187,8 +187,8 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
         scroller.scrollLeft = positions.closed.x.get()
         scroller.scrollTop = positions.closed.y.get()
       } else {
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        scrollTo(openClosePositions().open)
+        scroller.scrollLeft = positions.open.x.get()
+        scroller.scrollTop = positions.open.y.get()
       }
     }
 
@@ -283,29 +283,17 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
     const scroller = scrollerRef.current
     if (isPresent || !scroller) return
 
-    if (position.get() === OverlayPosition.UNOPENED) {
-      position.set(OverlayPosition.CLOSED)
-      scroller.scrollLeft = positions.closed.x.get()
-      scroller.scrollTop = positions.closed.y.get()
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    scrollTo(openClosePositions().closed).then(() => {
       safeToRemove?.()
       document.body.style.overflow = ''
-    } else {
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      scrollTo({
-        x: positions.closed.x.get(),
-        y: positions.closed.y.get(),
-      }).then(() => {
-        safeToRemove?.()
-        document.body.style.overflow = ''
-      })
-    }
-  }, [isPresent, position, positions, safeToRemove, scrollTo, scrollerRef])
+    })
+  }, [isPresent, openClosePositions, position, positions, safeToRemove, scrollTo, scrollerRef])
 
   // Only go back to a previous page if the overlay isn't closed.
   const closeOverlay = useCallback(() => {
     if (position.get() !== OverlayPosition.OPENED) return
     position.set(OverlayPosition.CLOSED)
-    // document.body.style.overflow = ''
     onClosed()
   }, [onClosed, position])
 
