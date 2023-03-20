@@ -5,14 +5,24 @@ import { distanceAnimationDuration } from '../utils/distanceAnimationDuration'
 import { useScrollerContext } from './useScrollerContext'
 
 export function useScrollTo() {
-  const { scrollerRef, register, disableSnap, enableSnap, scroll } = useScrollerContext()
+  const { scrollerRef, register, disableSnap, enableSnap, scroll, getScrollSnapPositions } =
+    useScrollerContext()
 
   const duration = (useContext(MotionConfigContext).transition as Tween | undefined)?.duration ?? 0
 
   const scrollTo = useCallback(
-    async (to: Point) => {
+    async (incoming: Point | [number, number]) => {
       const ref = scrollerRef.current
       if (!ref) return
+
+      let to: Point
+      if (Array.isArray(incoming)) {
+        const currentPositions = getScrollSnapPositions()
+        // eslint-disable-next-line no-param-reassign
+        to = { x: currentPositions.x[incoming[0]] ?? 0, y: currentPositions.y[incoming[1]] ?? 0 }
+      } else {
+        to = incoming
+      }
 
       const xDone = new Promise<void>((onComplete) => {
         if (ref.scrollLeft !== to.x) {
@@ -44,6 +54,7 @@ export function useScrollTo() {
               velocity: scroll.y.getVelocity(),
               onUpdate: (v: number) => {
                 ref.scrollTop = v
+                // console.log(v)
                 scroll.y.set(v)
               },
               onComplete,
@@ -59,9 +70,14 @@ export function useScrollTo() {
       await xDone
       await yDone
 
+      if (Array.isArray(incoming)) {
+        const checkPositions = getScrollSnapPositions()
+        if (checkPositions.x[incoming[0]] !== to.x || checkPositions.y[incoming[1]] !== to.y)
+          await scrollTo(incoming)
+      }
       enableSnap()
     },
-    [disableSnap, enableSnap, register, scroll, scrollerRef, duration],
+    [scrollerRef, enableSnap, getScrollSnapPositions, disableSnap, register, scroll, duration],
   )
 
   return scrollTo

@@ -121,6 +121,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
 
   const { scrollerRef, snap, scroll, getScrollSnapPositions } = useScrollerContext()
   const scrollTo = useScrollTo()
+
   const beforeRef = useRef<HTMLDivElement>(null)
   const overlayRef = useRef<HTMLDivElement>(null)
   const overlayPaneRef = useRef<HTMLDivElement>(null)
@@ -141,6 +142,21 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
     [match, variantMd, variantSm],
   )
   const prevVariant = useRef<LayoutOverlayVariant>()
+
+  const openClosePositions = useCallback((): {
+    open: [number, number]
+    closed: [number, number]
+  } => {
+    const { x, y } = getScrollSnapPositions()
+
+    if (variant() === 'left') {
+      return { open: [x.length - 2, 0], closed: [x.length - 1, 0] }
+    }
+    if (variant() === 'right') {
+      return { open: [x.length - 1, 0], closed: [0, 0] }
+    }
+    return { open: [0, y.length - 1], closed: [0, 0] }
+  }, [getScrollSnapPositions, variant])
 
   useIsomorphicLayoutEffect(() => {
     const scroller = scrollerRef.current
@@ -171,29 +187,32 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
         scroller.scrollLeft = positions.closed.x.get()
         scroller.scrollTop = positions.closed.y.get()
       } else {
-        scroller.scrollLeft = positions.open.x.get()
-        scroller.scrollTop = positions.open.y.get()
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        scrollTo(openClosePositions().open)
       }
     }
 
     const calcVisible = () => {
       const clampRound = (value: number) => Math.round(Math.max(0, Math.min(1, value)) * 100) / 100
 
-      const scrollX = scroll.x.get()
-      const scrollY = scroll.y.get()
-
+      let vis = 0
       if (variant() === 'left') {
         const closedX = positions.closed.x.get()
-        positions.open.visible.set(closedX === 0 ? 0 : clampRound((scrollX - closedX) / -closedX))
+        vis = closedX === 0 ? 0 : clampRound((scroll.x.get() - closedX) / -closedX)
       }
       if (variant() === 'right') {
         const openedX = positions.open.x.get()
-        positions.open.visible.set(openedX === 0 ? 0 : clampRound(scrollX / openedX))
+        vis = openedX === 0 ? 0 : clampRound(scroll.x.get() / openedX)
       }
       if (variant() === 'bottom') {
         const openedY = positions.open.y.get()
-        positions.open.visible.set(openedY === 0 ? 0 : clampRound(scrollY / openedY))
+        vis = openedY === 0 ? 0 : clampRound(scroll.y.get() / openedY)
       }
+
+      // If we're opening, make sure the visbility doesn't got below the current visibility
+      if (position.get() === OverlayPosition.UNOPENED && positions.open.visible.get() >= vis) return
+
+      positions.open.visible.set(vis)
     }
 
     const handleScroll = () => {
@@ -234,7 +253,16 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
       cancelX()
       cancelY()
     }
-  }, [getScrollSnapPositions, position, positions, scroll, scrollerRef, variant])
+  }, [
+    getScrollSnapPositions,
+    openClosePositions,
+    position,
+    positions,
+    scroll,
+    scrollTo,
+    scrollerRef,
+    variant,
+  ])
 
   // When the component is mounted, we need to set the initial position of the overlay.
   useIsomorphicLayoutEffect(() => {
@@ -242,28 +270,13 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
 
     if (!scroller || !isPresent) return
 
-    const open = { x: positions.open.x.get(), y: positions.open.y.get() }
-
     if (variant() === 'right') document.body.style.overflow = 'hidden'
 
     if (position.get() !== OverlayPosition.OPENED) {
-      if (direction === 1) {
-        scroller.scrollLeft = positions.closed.x.get()
-        scroller.scrollTop = positions.closed.y.get()
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        scrollTo(open).then(() => {
-          scroller.scrollLeft = positions.open.x.get()
-          scroller.scrollTop = positions.open.y.get()
-          position.set(OverlayPosition.OPENED)
-        })
-      } else {
-        scroller.scrollLeft = open.x
-        scroller.scrollTop = open.y
-        position.set(OverlayPosition.OPENED)
-        snap.set(true)
-      }
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      scrollTo(openClosePositions().open).then(() => position.set(OverlayPosition.OPENED))
     }
-  }, [direction, isPresent, position, positions, scrollTo, scrollerRef, snap, variant])
+  }, [isPresent, openClosePositions, position, scrollTo, scrollerRef, variant])
 
   // When the overlay is closed by navigating away, we're closing the overlay.
   useEffect(() => {
