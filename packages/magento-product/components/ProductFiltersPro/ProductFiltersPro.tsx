@@ -1,4 +1,5 @@
 import { useForm, UseFormProps, UseFormReturn } from '@graphcommerce/ecommerce-ui'
+import { useMemoObject } from '@graphcommerce/next-ui'
 import React, { BaseSyntheticEvent, createContext, useContext, useEffect, useMemo } from 'react'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import {
@@ -36,7 +37,11 @@ export type FilterFormProviderProps = Omit<
 export function ProductFiltersPro(props: FilterFormProviderProps) {
   const { children, params, ...formProps } = props
 
-  const form = useForm<ProductFilterParams>({ values: toFilterParams(params), ...formProps })
+  const fitlerParams = useMemoObject(toFilterParams(params))
+  const form = useForm<ProductFilterParams>({
+    values: fitlerParams,
+    ...formProps,
+  })
   const { handleSubmit } = form
 
   const push = useProductListLinkReplace({ scroll: false })
@@ -44,10 +49,7 @@ export function ProductFiltersPro(props: FilterFormProviderProps) {
 
   return (
     <FilterFormContext.Provider
-      value={useMemo(
-        () => ({ form, params: toFilterParams(params), submit }),
-        [form, params, submit],
-      )}
+      value={useMemo(() => ({ form, params: fitlerParams, submit }), [form, fitlerParams, submit])}
     >
       <form noValidate onSubmit={submit}>
         {children}
