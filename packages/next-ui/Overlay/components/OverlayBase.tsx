@@ -119,7 +119,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
     props.smSpacingTop ?? ((theme) => `calc(${theme.appShell.headerHeightSm} * 0.5)`)
   )(th)
 
-  const { scrollerRef, snap, scroll, getScrollSnapPositions } = useScrollerContext()
+  const { scrollerRef, snap, scroll, getScrollSnapPositions, disableSnap } = useScrollerContext()
   const scrollTo = useScrollTo()
 
   const beforeRef = useRef<HTMLDivElement>(null)
@@ -181,14 +181,20 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
     }
 
     const forceScrollPosition = () => {
+      if (scroll.animating.get()) return
       // Set the initial position of the overlay.
       // Make sure the overlay stays open when the variant changes.
       if (position.get() !== OverlayPosition.OPENED) {
         scroller.scrollLeft = positions.closed.x.get()
         scroller.scrollTop = positions.closed.y.get()
+        scroll.x.set(positions.closed.x.get())
+        scroll.y.set(positions.closed.y.get())
       } else {
-        scroller.scrollLeft = positions.open.x.get()
-        scroller.scrollTop = positions.open.y.get()
+        disableSnap()
+        scroller.scrollLeft = scroll.x.getPrevious()
+        scroller.scrollTop = scroll.y.getPrevious()
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        scrollTo(openClosePositions().open)
       }
     }
 
@@ -233,27 +239,26 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
       forceScrollPosition()
     }
 
-    const measureScroll = () => framesync.read(handleScroll)
-    const measureResize = () => framesync.read(handleResize)
     handleScroll()
 
-    const cancelX = scroll.x.on('change', measureScroll)
-    const cancelY = scroll.y.on('change', measureScroll)
+    const cancelX = scroll.x.on('change', handleScroll)
+    const cancelY = scroll.y.on('change', handleScroll)
 
-    const ro = new ResizeObserver(measureResize)
+    const ro = new ResizeObserver(handleResize)
     ro.observe(scrollerRef.current)
     ro.observe(beforeRef.current)
     ro.observe(overlayPaneRef.current)
     ro.observe(overlayRef.current)
 
-    window.addEventListener('resize', measureResize)
+    window.addEventListener('resize', handleResize)
     return () => {
-      window.removeEventListener('resize', measureResize)
+      window.removeEventListener('resize', handleResize)
       ro.disconnect()
       cancelX()
       cancelY()
     }
   }, [
+    disableSnap,
     getScrollSnapPositions,
     openClosePositions,
     position,
