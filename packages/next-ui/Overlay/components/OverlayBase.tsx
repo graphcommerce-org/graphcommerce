@@ -553,6 +553,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
                   maxHeight: `calc(${dvh(100)} - ${mdSpacingTop})`,
                   paddingTop: mdSpacingTop,
                   boxSizing: 'border-box',
+                  boxShadow: theme.shadows[24],
 
                   scrollbarWidth: 'none',
                   '&::-webkit-scrollbar': {
