@@ -1,5 +1,17 @@
 # Change Log
 
+## 6.0.1-canary.1
+
+### Patch Changes
+
+- [#1857](https://github.com/graphcommerce-org/graphcommerce/pull/1857) [`fc71d9382`](https://github.com/graphcommerce-org/graphcommerce/commit/fc71d9382b6aa2f92ac56c426ba9484da8219259) - Solve an issue where the sorting option didn’t get a highlighted badge: Always show a (1) when an OverlayOrPopperChip is selected ([@paales](https://github.com/paales))
+
+- [#1857](https://github.com/graphcommerce-org/graphcommerce/pull/1857) [`429a43c66`](https://github.com/graphcommerce-org/graphcommerce/commit/429a43c662c811f541eb1bbe7e7eeea8267593a9) - Reset all filters at once was missing from All Filters panenl ([@paales](https://github.com/paales))
+
+- [#1857](https://github.com/graphcommerce-org/graphcommerce/pull/1857) [`dd4d043f8`](https://github.com/graphcommerce-org/graphcommerce/commit/dd4d043f83b3720a8c207bb0d18f58a98a440871) - All Filters chip would always show a filter count even if there was nothing filtered ([@paales](https://github.com/paales))
+
+- [#1857](https://github.com/graphcommerce-org/graphcommerce/pull/1857) [`76aee3918`](https://github.com/graphcommerce-org/graphcommerce/commit/76aee391859e6cef0bc783cd12a450c3c6473fb2) - All Filters sort is unable to be reset ([@paales](https://github.com/paales))
+
 ## 6.0.1-canary.0
 
 ## 6.0.0
