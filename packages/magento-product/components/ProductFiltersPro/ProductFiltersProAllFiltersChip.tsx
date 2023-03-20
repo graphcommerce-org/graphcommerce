@@ -54,7 +54,7 @@ export function ProductFiltersProAllFiltersChip(props: AllFiltersChip) {
       //     : undefined
       // }
       onClose={submit}
-      selectedLabel={[<Trans id='All filters' />, ...activeFilters]}
+      selectedLabel={activeFilters}
       selected={hasFilters}
       breakpoint={false}
       overlayProps={{ variantMd: 'right', widthMd: '500px' }}
