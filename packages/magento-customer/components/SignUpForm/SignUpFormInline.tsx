@@ -23,7 +23,7 @@ const { classes } = extendableComponent('SignUpFormInline', [
   'buttonContainer',
 ] as const)
 
-const requireEmailValidation = process.env.BUILD_FLAG_CUSTOMER_REQUIRE_EMAIL_CONFIRMATION === '1'
+const requireEmailValidation = import.meta.graphCommerce.customerRequireEmailConfirmation ?? false
 
 export function SignUpFormInline({
   email,
