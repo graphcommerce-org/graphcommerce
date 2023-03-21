@@ -21,11 +21,10 @@ import {
   NavigationOverlay,
   useNavigationSelection,
   useMemoDeep,
-  iconSearch,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Divider, Fab, Theme, useMediaQuery } from '@mui/material'
+import { Divider, Fab } from '@mui/material'
 import { useRouter } from 'next/router'
 import { Footer } from './Footer'
 import { LayoutQuery } from './Layout.gql'
