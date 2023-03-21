@@ -1,0 +1,33 @@
+extend input GraphCommerceStorefrontConfig {
+  """
+  Configure your Algolia application ID.
+  """
+  algoliaApplicationId: String
+
+  """
+  Configure your Algolia Search Only API Key
+  """
+  algoliaSearchOnlyApiKey: String
+
+  """
+  Configure your Algolia Search index
+  """
+  algoliaSearchIndex: String
+}
+
+extend input GraphCommerceConfig {
+  """
+  Configure your Algolia application ID.
+  """
+  algoliaApplicationId: String
+
+  """
+  Configure your Algolia Search Only API Key
+  """
+  algoliaSearchOnlyApiKey: String
+
+  """
+  Configure your Algolia Search index
+  """
+  algoliaSearchIndex: String
+}

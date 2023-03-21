@@ -92,6 +92,12 @@ export type Scalars = {
  * Below is a list of all possible configurations that can be set by GraphCommerce.
  */
 export type GraphCommerceConfig = {
+  /** Configure your Algolia application ID. */
+  algoliaApplicationId?: InputMaybe<Scalars['String']>;
+  /** Configure your Algolia Search index */
+  algoliaSearchIndex?: InputMaybe<Scalars['String']>;
+  /** Configure your Algolia Search Only API Key */
+  algoliaSearchOnlyApiKey?: InputMaybe<Scalars['String']>;
   /**
    * The canonical base URL is used for SEO purposes.
    *
@@ -221,6 +227,12 @@ export type GraphCommerceDebugConfig = {
 
 /** All storefront configuration for the project */
 export type GraphCommerceStorefrontConfig = {
+  /** Configure your Algolia application ID. */
+  algoliaApplicationId?: InputMaybe<Scalars['String']>;
+  /** Configure your Algolia Search index */
+  algoliaSearchIndex?: InputMaybe<Scalars['String']>;
+  /** Configure your Algolia Search Only API Key */
+  algoliaSearchOnlyApiKey?: InputMaybe<Scalars['String']>;
   /**
    * The canonical base URL is used for SEO purposes.
    *
@@ -282,6 +294,9 @@ export const definedNonNullAnySchema = z.any().refine((v) => isDefinedNonNullAny
 
 export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerceConfig>> {
   return z.object<Properties<GraphCommerceConfig>>({
+    algoliaApplicationId: z.string().nullish(),
+    algoliaSearchIndex: z.string().nullish(),
+    algoliaSearchOnlyApiKey: z.string().nullish(),
     canonicalBaseUrl: z.string().min(1),
     cartDisplayPricesInclTax: z.boolean().nullish(),
     customerRequireEmailConfirmation: z.boolean().nullish(),
@@ -315,6 +330,9 @@ export function GraphCommerceDebugConfigSchema(): z.ZodObject<Properties<GraphCo
 
 export function GraphCommerceStorefrontConfigSchema(): z.ZodObject<Properties<GraphCommerceStorefrontConfig>> {
   return z.object<Properties<GraphCommerceStorefrontConfig>>({
+    algoliaApplicationId: z.string().nullish(),
+    algoliaSearchIndex: z.string().nullish(),
+    algoliaSearchOnlyApiKey: z.string().nullish(),
     canonicalBaseUrl: z.string().nullish(),
     cartDisplayPricesInclTax: z.boolean().nullish(),
     defaultLocale: z.boolean().nullish(),

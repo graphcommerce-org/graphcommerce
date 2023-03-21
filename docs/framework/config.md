@@ -103,6 +103,18 @@ Examples:
 
 All storefront configuration for the project
 
+#### `algoliaApplicationId: String`
+
+Configure your Algolia application ID.
+
+#### `algoliaSearchIndex: String`
+
+Configure your Algolia Search index
+
+#### `algoliaSearchOnlyApiKey: String`
+
+Configure your Algolia Search Only API Key
+
 #### `cartDisplayPricesInclTax: Boolean`
 
 Due to a limitation of the GraphQL API it is not possible to determine if a cart should be displayed including or excluding tax.
@@ -236,6 +248,18 @@ Examples:
 - default
 - en-us
 - b2b-us
+
+#### `algoliaApplicationId: String`
+
+Configure your Algolia application ID.
+
+#### `algoliaSearchIndex: String`
+
+Configure your Algolia Search index
+
+#### `algoliaSearchOnlyApiKey: String`
+
+Configure your Algolia Search Only API Key
 
 #### `canonicalBaseUrl: String`
 

@@ -1,0 +1,38 @@
+{
+  "name": "@graphcommerce/algolia-search",
+  "homepage": "https://www.graphcommerce.org/",
+  "repository": "github:graphcommerce-org/graphcommerce",
+  "version": "6.0.0",
+  "sideEffects": false,
+  "prettier": "@graphcommerce/prettier-config-pwa",
+  "eslintConfig": {
+    "extends": "@graphcommerce/eslint-config-pwa",
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    }
+  },
+  "devDependencies": {
+    "@graphcommerce/eslint-config-pwa": "6.0.0",
+    "@graphcommerce/next-config": "^6.0.0",
+    "@graphcommerce/prettier-config-pwa": "6.0.0",
+    "@graphcommerce/typescript-config-pwa": "6.0.0",
+    "@types/react-instantsearch-dom": "^6.12.3"
+  },
+  "dependencies": {
+    "@graphcommerce/ecommerce-ui": "6.0.0",
+    "@graphcommerce/magento-search": "6.0.0",
+    "@graphcommerce/next-config": "^6.0.0",
+    "@graphcommerce/next-ui": "6.0.0",
+    "algoliasearch": "^4.15.0",
+    "react-instantsearch-dom": "^6.39.0",
+    "react-instantsearch-hooks-web": "^6.41.0"
+  },
+  "peerDependencies": {
+    "@lingui/core": "^3.13.2",
+    "@lingui/react": "^3.13.2",
+    "@mui/material": "^5.10.16",
+    "next": "^13.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}

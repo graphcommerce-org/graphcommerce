@@ -26,6 +26,7 @@ import {
   CategorySearchQuery,
   CategorySearchResult,
   NoSearchResults,
+  SearchContext,
   SearchDivider,
   SearchForm,
 } from '@graphcommerce/magento-search'
@@ -62,7 +63,7 @@ function SearchResultPage(props: SearchResultProps) {
   const noSearchResults = search && (!products || (products.items && products?.items?.length <= 0))
 
   return (
-    <>
+    <SearchContext>
       <PageMeta
         title={
           search
@@ -146,7 +147,7 @@ function SearchResultPage(props: SearchResultProps) {
           </Container>
         </>
       )}
-    </>
+    </SearchContext>
   )
 }
 
