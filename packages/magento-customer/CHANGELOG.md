@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.1-canary.3
+
+### Patch Changes
+
+- [#1855](https://github.com/graphcommerce-org/graphcommerce/pull/1855) [`0f789d3be`](https://github.com/graphcommerce-org/graphcommerce/commit/0f789d3be1aa6d724bd98bceee092e1da6701915) - Added registration email validation to inline registration form. ([@mikekeehnen](https://github.com/mikekeehnen))
+
 ## 6.0.1-canary.2
 
 ## 6.0.1-canary.1
