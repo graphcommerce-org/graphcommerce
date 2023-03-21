@@ -39,7 +39,6 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
 
   const selection = useNavigationSelection()
   const router = useRouter()
-  const lgDown = useMediaQuery((t: Theme) => t.breakpoints.down('lg'))
 
   return (
     <>
@@ -130,20 +129,11 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
 
             <DesktopNavActions>
               {!router.pathname.startsWith('/search') && (
-                <>
-                  {lgDown ? (
-                    <Fab href='/search' size='large' color='inherit'>
-                      <IconSvg
-                        aria-label={i18n._(/* i18n */ 'Search...')}
-                        src={iconSearch}
-                        size='large'
-                        sx={{ color: 'text.primary' }}
-                      />
-                    </Fab>
-                  ) : (
-                    <SearchLink href='/search' aria-label={i18n._(/* i18n */ 'Search...')} />
-                  )}
-                </>
+                <SearchLink
+                  href='/search'
+                  aria-label={i18n._(/* i18n */ 'Search...')}
+                  breakpoint='lg'
+                />
               )}
               <Fab
                 href='/service'
