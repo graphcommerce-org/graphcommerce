@@ -1,5 +1,5 @@
 import { ApolloError } from '@apollo/client'
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 import { isFormGqlOperation } from '../useFormGqlMutation'
 import { composedFormContext } from './context'
 import { ComposedSubmitRenderComponentProps } from './types'
@@ -22,11 +22,12 @@ export function ComposedSubmit(props: ComposedSubmitProps) {
   const { render: Render, onSubmitSuccessful } = props
   const [formContext, dispatch] = useContext(composedFormContext)
   const { formState, buttonState, isCompleting, forms } = formContext
+  const thisComponent = useRef(false)
 
   const formEntries = Object.entries(forms).sort((a, b) => a[1].step - b[1].step)
 
   useEffect(() => {
-    if (isCompleting && !formState.isSubmitting) {
+    if (isCompleting && !formState.isSubmitting && thisComponent.current) {
       /**
        * If we have forms that are invalid, we don't need to submit anything yet. We can trigger the
        * submission of the invalid forms and highlight those forms.
@@ -37,6 +38,7 @@ export function ComposedSubmit(props: ComposedSubmitProps) {
 
       dispatch({ type: 'SUBMITTED', isSubmitSuccessful })
       if (isSubmitSuccessful) onSubmitSuccessful?.()
+      thisComponent.current = false
     }
   }, [isCompleting, dispatch, formEntries, formState.isSubmitting, onSubmitSuccessful])
 
@@ -105,11 +107,12 @@ export function ComposedSubmit(props: ComposedSubmitProps) {
         }
       }
 
-      dispatch(
-        invalidKeys.length === 0
-          ? { type: 'SUBMITTING' }
-          : { type: 'SUBMITTED', isSubmitSuccessful: false },
-      )
+      if (invalidKeys.length === 0) {
+        thisComponent.current = true
+        dispatch({ type: 'SUBMITTING' })
+      } else {
+        dispatch({ type: 'SUBMITTED', isSubmitSuccessful: false })
+      }
     } catch (error) {
       dispatch({ type: 'SUBMITTED', isSubmitSuccessful: false })
     }
