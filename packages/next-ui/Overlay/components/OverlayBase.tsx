@@ -597,7 +597,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
                   },
                   '&.sizeSmFull': {
                     minHeight: dvh(100),
-                    '&.variantMdBottom': {
+                    '&.variantSmBottom': {
                       minHeight: '100%',
                     },
                   },
