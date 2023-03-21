@@ -12,7 +12,7 @@ import type { SetRequired } from 'type-fest'
 
 export type SearchLinkProps = {
   breakpoint?: Breakpoint
-  fab: FabProps
+  fab?: FabProps
 } & SetRequired<Pick<LinkProps, 'href' | 'sx' | 'children'>, 'href'>
 
 const name = 'SearchLink' as const
