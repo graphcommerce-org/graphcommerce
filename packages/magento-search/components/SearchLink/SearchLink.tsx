@@ -6,12 +6,13 @@ import {
   useFabSize,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
-import { Breakpoint, Fab, Link, LinkProps } from '@mui/material'
+import { Breakpoint, Fab, FabProps, Link, LinkProps } from '@mui/material'
 import { useRouter } from 'next/router'
 import type { SetRequired } from 'type-fest'
 
 export type SearchLinkProps = {
   breakpoint?: Breakpoint
+  fab: FabProps
 } & SetRequired<Pick<LinkProps, 'href' | 'sx' | 'children'>, 'href'>
 
 const name = 'SearchLink' as const
@@ -26,10 +27,10 @@ const { classes } = extendableComponent(name, parts)
  * ```
  */
 export function SearchLink(props: SearchLinkProps) {
-  const { href, sx = [], children, breakpoint = 0, ...linkProps } = props
+  const { href, sx = [], children, breakpoint = 0, fab, ...linkProps } = props
   const router = useRouter()
-
   const fabSize = useFabSize('responsive')
+  const fabSx = fab.sx ?? []
 
   return (
     <>
@@ -80,12 +81,15 @@ export function SearchLink(props: SearchLinkProps) {
         href='/search'
         size='large'
         color='inherit'
-        sx={(theme) => ({
-          display: 'none',
-          [theme.breakpoints.down(breakpoint)]: {
-            display: 'inline-flex',
-          },
-        })}
+        sx={[
+          (theme) => ({
+            display: 'none',
+            [theme.breakpoints.down(breakpoint)]: {
+              display: 'inline-flex',
+            },
+          }),
+          ...(Array.isArray(fabSx) ? fabSx : [fabSx]),
+        ]}
       >
         <IconSvg
           aria-label={i18n._(/* i18n */ 'Search...')}
