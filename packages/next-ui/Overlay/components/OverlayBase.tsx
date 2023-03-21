@@ -552,6 +552,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
                   '&.sizeMdFloating': {
                     paddingTop: 0,
                     maxHeight: `calc(${dvh(100)} - (${theme.page.vertical} * 2))`,
+                    boxShadow: theme.shadows[24],
                   },
                   '&.sizeMdMinimal': {
                     maxHeight: dvh(100),
@@ -587,7 +588,6 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
               className={classes.background}
               sx={(theme) => ({
                 backgroundColor: theme.palette.background.paper,
-                boxShadow: theme.shadows[24],
                 paddingBottom: '0.1px',
                 [theme.breakpoints.down('md')]: {
                   minHeight: '100%',
