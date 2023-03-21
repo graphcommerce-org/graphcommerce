@@ -3,20 +3,21 @@ on:
   pull_request:
     types: [opened, synchronize, reopened, ready_for_review]
 jobs:
-  bundlesize:
+  windows-build:
     runs-on: windows-2022
     if: github.event.pull_request.draft == false
     steps:
+      - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
         with:
           node-version: 16
           registry-url: 'https://registry.npmjs.org'
           scope: '@graphcommerce'
-      - uses: actions/checkout@v2
       - uses: bahmutov/npm-install@v1
         with:
           useRollingCache: true
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - run: rm yarn.lock
       - run: yarn --cwd ./examples/magento-graphcms build > windows.txt
       - run: windows new.txt
