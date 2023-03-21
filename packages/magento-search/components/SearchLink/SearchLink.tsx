@@ -30,7 +30,7 @@ export function SearchLink(props: SearchLinkProps) {
   const { href, sx = [], children, breakpoint = 0, fab, ...linkProps } = props
   const router = useRouter()
   const fabSize = useFabSize('responsive')
-  const fabSx = fab.sx ?? []
+  const fabSx = fab?.sx ?? []
 
   return (
     <>
