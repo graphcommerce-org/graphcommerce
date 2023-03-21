@@ -61,8 +61,8 @@ export type Scalars = {
  * Configuration values can be overwriten by environment variables, with the following rules:
  * - Convert from camelCase to `SCREAMING_SNAKE_CASE`
  * - Prefix with `GC_`
- * - Arrays can be indexed with _0, _1, _2, etc.
- * - Objects can be accessed with _<key>.
+ * - Arrays can be indexed with `_0`, `_1`, `_2`, etc.
+ * - Objects can be accessed with `_<key>`.
  *
  * Examples:
  * - `limitSsg` -> `GC_LIMIT_SSG="1"`
@@ -80,14 +80,7 @@ export type Scalars = {
  *
  * ```graphql
  * extend input GraphCommerceConfig {
- *   myOptionalBoolean: Boolean
- *   myRequiredBoolean: Boolean!
- *   myOptionalString: String
- *   myRequiredString: String!
- *   myOptionalInt: Int
- *   myRequiredInt: Int!
- *   myOptionalFloat: Float
- *   myRequiredFloat: Float!
+ *   myConfig: String # or Boolean, or Int, or Float, make required with `!`
  * }
  * extend input GraphCommerceStorefrontConfig {
  *   myField: Boolean
