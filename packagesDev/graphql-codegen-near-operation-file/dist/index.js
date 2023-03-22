@@ -100,7 +100,7 @@ exports.preset = {
                 config,
                 schema: options.schema,
                 schemaAst: schemaObject,
-                skipDocumentsValidation: true,
+                // skipDocumentsValidation: true,
             };
         });
     },
