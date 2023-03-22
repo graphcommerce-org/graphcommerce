@@ -1,5 +1,13 @@
 # Change Log
 
+## 6.0.1
+
+### Patch Changes
+
+- [#1854](https://github.com/graphcommerce-org/graphcommerce/pull/1854) [`8f330e704`](https://github.com/graphcommerce-org/graphcommerce/commit/8f330e704eabc8466cb20bc7fc110aef6f52e3a5) - Crossell items doesn't wait to animate, caused the overlay to auto-close. ([@paales](https://github.com/paales))
+
+- [#1858](https://github.com/graphcommerce-org/graphcommerce/pull/1858) [`68ea507ba`](https://github.com/graphcommerce-org/graphcommerce/commit/68ea507baf4023f5d5a13ed50b5b53930e9fc405) - show search fab instead of SearchLink below lg breakpoint ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 6.0.1-canary.7
 
 ## 6.0.1-canary.6

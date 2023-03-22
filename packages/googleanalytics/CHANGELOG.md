@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.1
+
+### Patch Changes
+
+- [#1861](https://github.com/graphcommerce-org/graphcommerce/pull/1861) [`9ff829e49`](https://github.com/graphcommerce-org/graphcommerce/commit/9ff829e497477d67cdd83a0e90bb8cc8c9ff41b8) - fix exported path to RemoveItemFromCartFab ([@FrankHarland](https://github.com/FrankHarland))
+
 ## 6.0.1-canary.7
 
 ## 6.0.1-canary.6

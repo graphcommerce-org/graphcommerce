@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.1
+
+### Patch Changes
+
+- [#1854](https://github.com/graphcommerce-org/graphcommerce/pull/1854) [`679ff5adf`](https://github.com/graphcommerce-org/graphcommerce/commit/679ff5adf5662666efdf3942845bd4c7fde578a2) - Cart item couldn't be deleted as it tried to delete the product instead of the item from the cart ([@paales](https://github.com/paales))
+
 ## 6.0.1-canary.7
 
 ## 6.0.1-canary.6

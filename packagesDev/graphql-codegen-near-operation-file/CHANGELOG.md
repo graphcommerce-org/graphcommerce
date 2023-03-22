@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.1
+
+### Patch Changes
+
+- [#1854](https://github.com/graphcommerce-org/graphcommerce/pull/1854) [`30e51025b`](https://github.com/graphcommerce-org/graphcommerce/commit/30e51025b64b8ace49b54979c18c6fa5b6ff0a10) - GraphQL Codegen would throw a very unhelpful error message because of skipDocumentsValidation, will now throw a more helpful error message. ([@paales](https://github.com/paales))
+
 ## 6.0.1-canary.7
 
 ## 6.0.1-canary.6

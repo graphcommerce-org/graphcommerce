@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.1
+
+### Patch Changes
+
+- [#1858](https://github.com/graphcommerce-org/graphcommerce/pull/1858) [`68ea507ba`](https://github.com/graphcommerce-org/graphcommerce/commit/68ea507baf4023f5d5a13ed50b5b53930e9fc405) - show search fab instead of SearchLink below lg breakpoint ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 6.0.1-canary.7
 
 ## 6.0.1-canary.6
