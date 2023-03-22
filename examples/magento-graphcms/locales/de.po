@@ -586,11 +586,23 @@ msgstr "Vielen Dank für Ihre Bestellung!"
 msgid "Thank you! Your review was successfully submitted for approval"
 msgstr "Vielen Dank! Ihre Bewertung wurde erfolgreich zur Freischaltung eingereicht"
 
+msgid "The payment has been canceled."
+msgstr "Die Zahlung wurde storniert."
+
+msgid "The payment has been completed, but the transaction did not yet occure."
+msgstr "Die Zahlung wurde abgeschlossen, aber die Transaktion ist noch nicht erfolgt."
+
+msgid "The payment has expired."
+msgstr "Die Zahlung ist abgelaufen."
+
 msgid "The payment hasn't completed, please try again or select a different payment method."
 msgstr "Die Zahlung wurde nicht abgeschlossen, bitte versuchen Sie es erneut oder wählen Sie eine andere Zahlungsmethode aus."
 
 msgid "The payment is refused, please try again or select a different payment method."
 msgstr "Die Zahlung wurde abgelehnt, bitte versuchen Sie es erneut oder wählen Sie eine andere Zahlungsmethode aus."
+
+msgid "The payment process has been started, but it's not complete yet."
+msgstr "Der Bezahlvorgang wurde gestartet, ist aber noch nicht abgeschlossen."
 
 msgid "This field is required"
 msgstr "Dieses Feld ist erforderlich"
@@ -687,6 +699,9 @@ msgstr "Sie haben noch keine Bestellung aufgegeben"
 
 msgid "You have now successfully reset your password"
 msgstr "Sie haben Ihr Passwort erfolgreich zurückgesetzt"
+
+msgid "You have refunded your purchase."
+msgstr "Sie haben Ihren Kauf erstattet."
 
 msgid "You have to agree in order to proceed"
 msgstr "Sie müssen zustimmen, um fortzufahren"

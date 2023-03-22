@@ -1,5 +1,4 @@
 import { useMutation } from '@graphcommerce/graphql'
-import { PaymentStatusEnum } from '@graphcommerce/graphql-mesh'
 import { ApolloCartErrorFullPage, useClearCurrentCartId } from '@graphcommerce/magento-cart'
 import {
   PaymentHandlerProps,
@@ -11,10 +10,9 @@ import { Button, Dialog } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { useCartLockWithToken } from '../../hooks/useCartLockWithToken'
+import { PaymentStatus, successStatusses } from '../MolliePaymentStatus/MolliePaymentStatus'
 import { MolliePaymentHandlerDocument } from './MolliePaymentHandler.gql'
 import { MollieRecoverCartDocument } from './MollieRecoverCart.gql'
-
-const successStatusses: PaymentStatusEnum[] = ['AUTHORIZED', 'COMPLETED', 'PAID', 'SHIPPING']
 
 export function MolliePaymentHandler({ code }: PaymentHandlerProps) {
   const router = useRouter()
@@ -64,10 +62,10 @@ export function MolliePaymentHandler({ code }: PaymentHandlerProps) {
   }, [called, error, handle, isActive, lockState, onSuccess, recoverCart, router])
 
   const paymentStatus = data?.mollieProcessTransaction?.paymentStatus
-  if (paymentStatus && paymentStatus !== 'OPEN') {
+  if (paymentStatus && paymentStatus !== 'PAID') {
     return (
       <ErrorSnackbar open>
-        <Trans id='Payment failed with status: {paymentStatus}' values={{ paymentStatus }} />
+        <PaymentStatus paymentStatus={paymentStatus} />
       </ErrorSnackbar>
     )
   }

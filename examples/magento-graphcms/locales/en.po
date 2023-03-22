@@ -586,11 +586,23 @@ msgstr "Thank you for your order!"
 msgid "Thank you! Your review was successfully submitted for approval"
 msgstr "Thank you! Your review was successfully submitted for approval"
 
+msgid "The payment has been canceled."
+msgstr "The payment has been canceled."
+
+msgid "The payment has been completed, but the transaction did not yet occure."
+msgstr "The payment has been completed, but the transaction did not yet occure."
+
+msgid "The payment has expired."
+msgstr "The payment has expired."
+
 msgid "The payment hasn't completed, please try again or select a different payment method."
 msgstr "The payment hasn't completed, please try again or select a different payment method."
 
 msgid "The payment is refused, please try again or select a different payment method."
 msgstr "The payment is refused, please try again or select a different payment method."
+
+msgid "The payment process has been started, but it's not complete yet."
+msgstr "The payment process has been started, but it's not complete yet."
 
 msgid "This field is required"
 msgstr "This field is required"
@@ -687,6 +699,9 @@ msgstr "You have not placed an order"
 
 msgid "You have now successfully reset your password"
 msgstr "You have now successfully reset your password"
+
+msgid "You have refunded your purchase."
+msgstr "You have refunded your purchase."
 
 msgid "You have to agree in order to proceed"
 msgstr "You have to agree in order to proceed"
