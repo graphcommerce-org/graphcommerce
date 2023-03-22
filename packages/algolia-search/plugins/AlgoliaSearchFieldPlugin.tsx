@@ -1,5 +1,6 @@
-import { SearchContextProps, SearchFormProps } from '@graphcommerce/magento-search'
+import { SearchFormProps } from '@graphcommerce/magento-search'
 import { IfConfig, PluginProps } from '@graphcommerce/next-config'
+import { useSearchBox } from 'react-instantsearch-hooks-web'
 import { SearchBox } from '../components/SearchBox/SearchBox'
 
 export const component = 'SearchForm'
@@ -15,9 +16,11 @@ export const ifConfig: IfConfig = 'demoMode'
  * - Create your own plugins https://www.graphcommerce.org/docs/framework/plugins-react
  */
 function AlgoliaSearchFieldPlugin(props: PluginProps<SearchFormProps>) {
-  const { Prev, search } = props
+  const { search } = props
 
-  return <SearchBox defaultValue={search} />
+  const { refine } = useSearchBox()
+
+  return <SearchBox defaultValue={search} refine={refine} />
 }
 
 export const Plugin = AlgoliaSearchFieldPlugin

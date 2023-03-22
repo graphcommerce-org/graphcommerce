@@ -1,7 +1,7 @@
 import { SearchContextProps } from '@graphcommerce/magento-search'
 import { IfConfig, PluginProps } from '@graphcommerce/next-config'
 import algoliasearch from 'algoliasearch/lite'
-import { InstantSearch } from 'react-instantsearch-dom'
+import { InstantSearch } from 'react-instantsearch-hooks-web'
 import { applicationId, searchOnlyApiKey } from '../lib/configuration'
 
 export const component = 'SearchContext'
@@ -20,10 +20,10 @@ const searchIndex = import.meta.graphCommerce.algoliaSearchIndex ?? ''
  * - Create your own plugins https://www.graphcommerce.org/docs/framework/plugins-react
  */
 function AlgoliaSearchContextPlugin(props: PluginProps<SearchContextProps>) {
-  const { Prev, ...rest } = props
+  const { Prev, children } = props
   return (
     <InstantSearch indexName={searchIndex} searchClient={searchClient}>
-      <Prev {...rest} />
+      <Prev>{children}</Prev>
     </InstantSearch>
   )
 }

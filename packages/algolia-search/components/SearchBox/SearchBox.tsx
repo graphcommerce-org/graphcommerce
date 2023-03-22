@@ -10,16 +10,16 @@ const parts = ['root', 'totalProducts'] as const
 const { classes } = extendableComponent(name, parts)
 
 type SearchBoxProps = {
+  refine: (value: string) => void
   defaultValue?: string
 } & UseSearchBoxProps
 
 export function SearchBox(props: SearchBoxProps) {
-  const { defaultValue: dvalue } = props
+  const { defaultValue: dvalue, refine } = props
 
   const form = useForm({ mode: 'onChange', defaultValues: { defaultValue: dvalue } })
-  const { defaultValue } = useWatch({ ...form })
 
-  const { refine } = useSearchBox()
+  const { defaultValue } = useWatch({ ...form })
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault()
