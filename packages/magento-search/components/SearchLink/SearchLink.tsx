@@ -26,7 +26,7 @@ const { classes } = extendableComponent(name, parts)
  * ```
  */
 export function SearchLink(props: SearchLinkProps) {
-  const { href, sx = [], children, breakpoint = 0, fab, ...linkProps } = props
+  const { href, sx = [], children, breakpoint, fab, ...linkProps } = props
   const router = useRouter()
   const fabSize = useFabSize('responsive')
   const { sx: fabSx = [], size, color, ...fabProps } = fab ?? {}
@@ -49,7 +49,7 @@ export function SearchLink(props: SearchLinkProps) {
             width: responsiveVal(64, 172),
             borderRadius: 2,
             typography: 'body2',
-            display: 'flex',
+            display: breakpoint ? { xs: 'none', [breakpoint]: 'flex' } : 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
             gap: theme.spacings.xs,
@@ -60,9 +60,6 @@ export function SearchLink(props: SearchLinkProps) {
             px: 1.5,
             '&:hover': {
               borderColor: 'text.secondary',
-            },
-            [theme.breakpoints.down(breakpoint)]: {
-              display: 'none',
             },
           }),
           ...(Array.isArray(sx) ? sx : [sx]),
@@ -76,23 +73,20 @@ export function SearchLink(props: SearchLinkProps) {
           sx={{ color: 'text.primary', fontSize: '1.4em' }}
         />
       </Link>
-      <Fab
-        href={href}
-        size={size ?? 'large'}
-        color={color ?? 'inherit'}
-        sx={[
-          (theme) => ({
-            display: 'none',
-            [theme.breakpoints.down(breakpoint)]: {
-              display: 'inline-flex',
-            },
-          }),
-          ...(Array.isArray(fabSx) ? fabSx : [fabSx]),
-        ]}
-        {...fabProps}
-      >
-        <IconSvg src={iconSearch} size='large' sx={{ color: 'text.primary' }} />
-      </Fab>
+      {breakpoint && (
+        <Fab
+          href={href}
+          size={size ?? 'large'}
+          color={color ?? 'inherit'}
+          sx={[
+            { display: { xs: 'inline-flex', [breakpoint]: 'none' } },
+            ...(Array.isArray(fabSx) ? fabSx : [fabSx]),
+          ]}
+          {...fabProps}
+        >
+          <IconSvg src={iconSearch} size='large' sx={{ color: 'text.primary' }} />
+        </Fab>
+      )}
     </>
   )
 }
