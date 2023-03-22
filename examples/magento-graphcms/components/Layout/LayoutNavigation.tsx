@@ -128,7 +128,11 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
 
             <DesktopNavActions>
               {!router.pathname.startsWith('/search') && (
-                <SearchLink href='/search' aria-label={i18n._(/* i18n */ 'Search...')} />
+                <SearchLink
+                  href='/search'
+                  aria-label={i18n._(/* i18n */ 'Search...')}
+                  breakpoint='lg'
+                />
               )}
               <Fab
                 href='/service'
