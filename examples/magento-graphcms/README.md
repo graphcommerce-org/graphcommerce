@@ -29,6 +29,10 @@ App (PWA).
 Explore the [GraphCommerce demo](https://graphcommerce.vercel.app/) or start
 building your custom GraphCommerce ecommerce frontend.
 
+https://user-images.githubusercontent.com/1251986/226889542-ec403549-5e4f-4ff6-8fc5-ba879798353f.mp4
+
+The GraphCommerce homepage, showcasing content from both Magento and Hypgraph through a variety of included UX components.
+
 ---
 
 # Getting started with GraphCommerce
