@@ -123,7 +123,7 @@ Features taken from the Magento Commerce 2 Feature List
 
 - [x] Create simple, configurable (e.g., choose size, color, etc.), bundled, and
       grouped products.
-- [x] Offer virtual products like memberships, services and warranties. — [Todo]
+- [x] Offer virtual products like memberships, services and warranties.
 - [x] Include downloadable/digital products with samples.
 - [ ] Allow customer-personalized products (e.g., upload images and text for
       monogramming). — [Todo]
@@ -204,7 +204,7 @@ Features taken from the Magento Commerce 2 Feature List
 - [x] Indicate stock availability.
 - [x] Set related products, up-sell, and cross-sell recommendations to increase
       average order value.
-- [ ] Show pricing tiers. — [Todo]
+- [x] Show pricing tiers.
 - [x] Present product ratings and reviews.
 - [x] Provide an option to add products to a wish list.
 - [ ] Add Facebook, Twitter, and email links to share products. — [Todo]
