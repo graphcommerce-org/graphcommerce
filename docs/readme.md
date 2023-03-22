@@ -10,10 +10,10 @@ metaDescription:
 
 # GraphCommerce
 
-GraphCommerce is a front-end framework for building headless Magento (2)
-ecommerce storefronts in React and Next.js. It provides a best-in-class example,
-including components and utilities, for building high-quality and performant
-commerce PWA's (Progressive Web App).
+GraphCommerce is a framework for building headless ecommerce storefronts in
+React and Next.js. It provides a best-in-class example, including components and
+utilities, to deliver a high-performance, high-quality ecommerce Progressive Web
+App (PWA).
 
 [Get started](./getting-started/create.md) with GraphCommerce in minutes
 
@@ -30,54 +30,135 @@ https://user-images.githubusercontent.com/1251986/154977573-4015e77c-43e7-481e-a
 
 ---
 
-### Stack
+### Build your custom storefront
 
-- Typescript
-- React
-- Nextjs
-- GraphQL
-- Mui
-- Apollo Client
-- GraphQL Code Generator
-- Framer Motion
+<span>
+<details open>
+<summary>🎉 Getting Started</summary>
 
-## Getting Started
+[Get up and running with a new GraphCommerce storefront.](getting-started/create.md)
 
-GraphCommerce offers a [magento-graphcms](./getting-started/readme.md) example
-that provides a full-featured storefront. The example integrates with your
-Magento backend and provides a full purchase journey out-of-the-box. It uses
-Hygraph to enrich pages with multiple content components, like the homepage.
+</details>
 
-The magento-graphcms example is styled using the Mui component library. You can
-start styling by making changes to the [theme](./framework/theming.md).
+<details open>
+<summary>⚙️ Configuration</summary>
+
+[Connect your magento backend and discover all configuration options available.](framework/config.md)
+
+</details>
+
+<details open>
+<summary>🌎 Internationalization</summary>
+
+[Configure your GraphCommerce storefront for multiple countries and languages.](framework/translations.md)
+
+</details>
+
+<details open>
+<summary>✅ Customization</summary>
+
+[Follow the GraphCommerce tutorial series to go from "Hello World" to a fully built out custom storefront.](getting-started/start-building.md)
+
+</details>
+
+<details open>
+<summary>⭐️ SEO</summary>
+
+[Optimize your GraphCommerce storefront for search engines and social networks.](framework/seo.md)
+
+</details>
+
+<details open>
+<summary>🧡 Magento extentions</summary>
+
+[Learn how to imlement any GraphQL compatible Magento extention.](framework/magento-extensions.md)
+
+</details>
+
+<details open>
+<summary>🔌 GraphCommerce Plugins</summary>
+
+[Extend Graphcommerce with simple to highly complex functionality, while ensuring compatibility with future upgrades.](framework/plugins-react.md)
+
+</details>
+
+<details open>
+<summary>🔮 Hygraph component</summary>
+
+[Build a custom Hypgraph component to showcase content according to your specific preferences.](getting-started/graphcms-component.md)
+
+</details>
+
+</span>
+
+### Testing and going live
+
+<span>
+<details open>
+<summary>☁️ Deployment to Vercel</summary>
+
+[Vercel is GraphCommerce's recommended deployment platform for GraphCommerce storefronts.](framework/deployment.md)
+
+</details>
+
+<details open>
+<summary>⚡️ Self Hosting</summary>
+
+[Deploy a GraphCommerce storefront to other hosting providers.](framework/deployment.md)
+
+</details>
+</span>
+
+### Support
+
+<span>
+<details open>
+<summary>🚦 Troubleshooting</summary>
+
+[No success? Refer to the troubleshooting page for common errors.](framework/troubleshooting.md)
+
+</details>
+
+<details open>
+<summary>📖 Upgrading</summary>
+
+[Follow step-by-step instructions to upgrade to the latest version.](upgrading.md)
+
+</details>
+
+<details open>
+<summary>🫶 Slack Community</summary>
+
+[Ask your question in the public Slack community channel.](https://join.slack.com/t/graphcommerce/shared_invite/zt-11rmgq1ad-F~0daNtKcSvtcC4eQRzjeQ)
+
+</details>
+</span>
+
+---
 
 ## Features
 
-GraphCommerce features include:
+GraphCommerce provides all [features](./feature-list.md) needed to deliver a
+high-quality ecommerce experience.
 
-- App-like e-commerce UI
-- Magento e-commerce component library including cart, search, layered
-  navigation components and category, product, account, checkout pages
-- Optimized front-end performance, including bundling, image optimization, CDN
-  caching
-- Predictive URL prefetching and caching
-- Hybrid Static Site Generation (SSG)
-- SEO optimized, including accessibility, sitemap.xml, canonicals, metadata
-- Data fetching from multiple sources with the included GraphQL Mesh (composable
-  commerce)
-- Passing Google Core Web Vitals audits
-- PWA out-of-the-box
-- Magento multi-language support, a store switcher component, and framework
-  translations EN, ES, FR, DE, NL, IT
-- Deployments to Vercel
+In addition, it offers a solution for all larger, technically complex challenges
+that come with headless e-commerce:
 
-## Build high-end Magento storefronts faster
+👉 Static generation (SSG) and optimized performance through its utilization  
+👉 Continuity: built with industry-standard technology, libraries, and
+packages  
+👉 A fully-featured, component-based, Magento-compatible front-end  
+👉 Easy to extend, modify, and theme  
+👉 Ready for Magento modules that extend the GraphQL API  
+👉 A-Z optimized front-end performance  
+👉 Multilingual Magento multi-store support  
+👉 Fully SEO-optimized  
+👉 70-90/100/100/100+PWA PageSpeed Metrics  
+👉 Includes multilingual headless CMS implementation  
+👉 Fully runs on Magento's GraphQL API (0 modifications, plug-and-play)
 
-GraphCommerce accelerates the Magento front-end development process by using a
-carefully chosen, industry standard, tech stack. It includes Magento-specific
-React components, pages, and utilities for e-commerce. They're accessible,
-performant, and ready for use. They also help to reduce the initial complexity
-and boilerplate needed for building a custom storefront.
+> Note: Currently, GraphCommerce can only be used to build headless Magento 2
+> storefronts.
 
 ## FAQ
 
@@ -114,8 +195,3 @@ development.
 
 </details>
 </div>
-
-## Next steps
-
-- [Get started](./getting-started/create.md) with GraphCommerce and begin
-  building a custom storefront.
