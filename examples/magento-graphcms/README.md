@@ -17,7 +17,8 @@
 
 📚 [Docs](https://graphcommerce.org/docs) | 🗣
 [Slack](https://join.slack.com/t/graphcommerce/shared_invite/zt-11rmgq1ad-F~0daNtKcSvtcC4eQRzjeQ)
-| 📝 [Release notes](https://github.com/graphcommerce-org/graphcommerce/releases)
+| 📝
+[Release notes](https://github.com/graphcommerce-org/graphcommerce/releases)
 
 </div>
 
@@ -31,7 +32,8 @@ building your custom GraphCommerce ecommerce frontend.
 
 https://user-images.githubusercontent.com/1251986/226889542-ec403549-5e4f-4ff6-8fc5-ba879798353f.mp4
 
-The GraphCommerce homepage, showcasing content from both Magento and Hypgraph through a variety of included UX components.
+The GraphCommerce homepage, showcasing content from both Magento and Hygraph
+through a variety of included UX components.
 
 ---
 
@@ -64,7 +66,8 @@ cp -R graphcommerce/examples/magento-graphcms/. my-project && rm -rf graphcommer
 
 ## Step 2: Configure API keys
 
-(Optional, [continue reading](https://www.graphcommerce.org/docs/getting-started/create))
+(Optional,
+[continue reading](https://www.graphcommerce.org/docs/getting-started/create))
 
 ## Step 3: Start the app
 
@@ -97,6 +100,7 @@ yarn dev
 
 ## Next steps
 
-- Proceed to the [GraphCommerce Documentation](https://www.graphcommerce.org/docs) and
+- Proceed to the
+  [GraphCommerce Documentation](https://www.graphcommerce.org/docs) and
   familiarize yourself with GraphCommerce customization, internationalization,
   Magento extensions, plugins, and more.
