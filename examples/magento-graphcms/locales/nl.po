@@ -586,23 +586,20 @@ msgstr "Bedankt voor je bestelling!"
 msgid "Thank you! Your review was successfully submitted for approval"
 msgstr "Bedankt! Uw review is succesvol verstuurd voor goedkeuring"
 
-msgid "The payment has been canceled."
-msgstr "De betaling is geannuleerd."
+msgid "The payment has been canceled, please try again."
+msgstr "De betaling is geannuleerd, probeer het opnieuw."
 
-msgid "The payment has been completed, but the transaction did not yet occure."
-msgstr "De betaling is voltooid, maar we hebben de transactie nog niet ontvangen."
+msgid "The payment has expired, please try again."
+msgstr "De betaling is verlopen, probeer het opnieuw."
 
-msgid "The payment has expired."
-msgstr "De betaling is verlopen."
+msgid "The payment hasn't been completed yet, please try again."
+msgstr "De betaling is nog niet voltooid, probeer het opnieuw."
 
 msgid "The payment hasn't completed, please try again or select a different payment method."
 msgstr "De betaling is niet voltooid, probeer het opnieuw of selecteer een andere betaalmethode."
 
 msgid "The payment is refused, please try again or select a different payment method."
 msgstr "De betaling is geweigerd, probeer het opnieuw of selecteer een andere betaalmethode."
-
-msgid "The payment process has been started, but it's not complete yet."
-msgstr "De betaalprocedure is gestart, maar is nog niet voltooid."
 
 msgid "This field is required"
 msgstr "Dit veld is verplicht"
@@ -699,9 +696,6 @@ msgstr "Je hebt nog geen bestelling geplaatst"
 
 msgid "You have now successfully reset your password"
 msgstr "Je hebt je wachtwoord gereset"
-
-msgid "You have refunded your purchase."
-msgstr "Je hebt een terugbetaling aangevraagd."
 
 msgid "You have to agree in order to proceed"
 msgstr "U moet akkoord gaan met de voorwaarden om verder te gaan"

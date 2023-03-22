@@ -62,7 +62,7 @@ export function MolliePaymentHandler({ code }: PaymentHandlerProps) {
   }, [called, error, handle, isActive, lockState, onSuccess, recoverCart, router])
 
   const paymentStatus = data?.mollieProcessTransaction?.paymentStatus
-  if (paymentStatus && paymentStatus !== 'PAID') {
+  if (paymentStatus && successStatusses.includes(paymentStatus)) {
     return (
       <ErrorSnackbar open>
         <PaymentStatus paymentStatus={paymentStatus} />

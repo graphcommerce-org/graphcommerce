@@ -5,16 +5,12 @@ export const successStatusses: PaymentStatusEnum[] = ['AUTHORIZED', 'COMPLETED',
 
 export function PaymentStatus({ paymentStatus }: { paymentStatus: PaymentStatusEnum }) {
   switch (paymentStatus) {
-    case 'AUTHORIZED':
-      return <Trans id='The payment has been completed, but the transaction did not yet occure.' />
     case 'CANCELED':
-      return <Trans id='The payment has been canceled.' />
+      return <Trans id='The payment has been canceled, please try again.' />
     case 'EXPIRED':
-      return <Trans id='The payment has expired.' />
-    case 'PENDING':
-      return <Trans id="The payment process has been started, but it's not complete yet." />
-    case 'REFUNDED':
-      return <Trans id='You have refunded your purchase.' />
+      return <Trans id='The payment has expired, please try again.' />
+    case 'OPEN':
+      return <Trans id={"The payment hasn't been completed yet, please try again."} />
     default:
       return <Trans id='Payment failed with status: {paymentStatus}' values={{ paymentStatus }} />
   }
