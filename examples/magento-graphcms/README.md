@@ -17,50 +17,82 @@
 
 📚 [Docs](https://graphcommerce.org/docs) | 🗣
 [Slack](https://join.slack.com/t/graphcommerce/shared_invite/zt-11rmgq1ad-F~0daNtKcSvtcC4eQRzjeQ)
-| 📝 [Changelog](./CHANGELOG.md)
+| 📝 [Release notes](https://github.com/graphcommerce-org/graphcommerce/releases)
 
 </div>
 
-GraphCommerce is an open source front-end framework for building headless
-Magento e-commerce storefronts in React.
+GraphCommerce is a framework for building headless ecommerce storefronts in
+React and Next.js. It provides a best-in-class example, including components and
+utilities, to deliver a high-performance, high-quality ecommerce Progressive Web
+App (PWA).
 
-Take a look at the GraphCommerce [demo store](https://graphcommerce.vercel.app/)
-or set up your local development environment with the instructions below.
+Explore the [GraphCommerce demo](https://graphcommerce.vercel.app/) or start
+building your custom GraphCommerce ecommerce frontend.
 
-https://user-images.githubusercontent.com/1251986/158570386-ea831ae4-f6b8-4776-81b3-d7b121afee9f.mp4
+---
+
+# Getting started with GraphCommerce
+
+In this guide, you will set up a GraphCommerce app locally allowing you to start
+building.
+
+### Requirements
+
+- Install and use node 16/18: `nvm install 16` or `nvm use 16`
+- Install yarn: `corepack enable`
+
+## Step 1: Create a GraphCommerce app
+
+```bash
+git clone -b main --depth 1 https://github.com/graphcommerce-org/graphcommerce.git
+# Clone repository
+```
+
+```bash
+mkdir my-project
+# Create project folder
+```
+
+```bash
+cp -R graphcommerce/examples/magento-graphcms/. my-project && rm -rf graphcommerce && cd my-project
+# Copy example, delete repo, navigate to project folder
+```
+
+## Step 2: Configure API keys
+
+(Optional, [continue reading](https://www.graphcommerce.org/docs/getting-started/create))
+
+## Step 3: Start the app
+
+```bash
+yarn
+# Install the dependencies
+```
+
+```bash
+yarn codegen
+# Converts all .graphql files to typescript files
+```
+
+```bash
+yarn dev
+# Run the app
+```
 
 ---
 
-# Getting Started
+🎉 Explore your GraphCommerce app running at http://localhost:3000
 
-### Download the example
+(Explore the GraphQL Playground running at http://localhost:3000/api/graphql)
 
-1. `git clone -b main --depth 1 https://github.com/graphcommerce-org/graphcommerce.git`
-2. `mkdir my-project`
-3. `cp -R graphcommerce/examples/magento-graphcms/. my-project`
-4. `cd my-project`
-5. `rm CHANGELOG.md`
-6. `rm -r node_modules && rm -r .next`
-
-## Start the development environment
-
-- `yarn` Install the dependencies
-- `yarn codegen` Converts all .graphql files to typescript files
-- `yarn dev` Run the app
-
-Visit the development environment running at http://localhost:3000  
-Visit the GraphQL Playground running at http://localhost:3000/api/graphql
-
-## Contributing to GraphCommerce
-
-Learn how to
-[contribute to GraphCommerce](https://github.com/graphcommerce-org/graphcommerce/blob/main/docs/contributing.md)
-
----
+> No success? Consult the
+> [troubleshooting guide](../framework/troubleshooting.md) or ask your question
+> in the
+> [Slack community ↗](https://join.slack.com/t/graphcommerce/shared_invite/zt-11rmgq1ad-F~0daNtKcSvtcC4eQRzjeQ)
+> chat
 
 ## Next steps
 
-- Learn about the general concepts and file structure of the
-  [magento-graphcms example](https://github.com/graphcommerce-org/graphcommerce/blob/main/docs/getting-started/readme.md)
-- Learn more about
-  [getting started with GraphCommerce](https://github.com/graphcommerce-org/graphcommerce/blob/main/docs/getting-started/create.md)
+- Proceed to the [GraphCommerce Documentation](https://www.graphcommerce.org/docs) and
+  familiarize yourself with GraphCommerce customization, internationalization,
+  Magento extensions, plugins, and more.
