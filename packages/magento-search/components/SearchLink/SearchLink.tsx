@@ -5,7 +5,6 @@ import {
   extendableComponent,
   useFabSize,
 } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
 import { Breakpoint, Fab, FabProps, Link, LinkProps } from '@mui/material'
 import { useRouter } from 'next/router'
 import type { SetRequired } from 'type-fest'
@@ -30,7 +29,7 @@ export function SearchLink(props: SearchLinkProps) {
   const { href, sx = [], children, breakpoint = 0, fab, ...linkProps } = props
   const router = useRouter()
   const fabSize = useFabSize('responsive')
-  const fabSx = fab?.sx ?? []
+  const { sx: fabSx = [], size, color, ...fabProps } = fab ?? {}
 
   return (
     <>
@@ -78,9 +77,9 @@ export function SearchLink(props: SearchLinkProps) {
         />
       </Link>
       <Fab
-        href='/search'
-        size='large'
-        color='inherit'
+        href={href}
+        size={size ?? 'large'}
+        color={color ?? 'inherit'}
         sx={[
           (theme) => ({
             display: 'none',
@@ -90,13 +89,9 @@ export function SearchLink(props: SearchLinkProps) {
           }),
           ...(Array.isArray(fabSx) ? fabSx : [fabSx]),
         ]}
+        {...fabProps}
       >
-        <IconSvg
-          aria-label={i18n._(/* i18n */ 'Search...')}
-          src={iconSearch}
-          size='large'
-          sx={{ color: 'text.primary' }}
-        />
+        <IconSvg src={iconSearch} size='large' sx={{ color: 'text.primary' }} />
       </Fab>
     </>
   )
