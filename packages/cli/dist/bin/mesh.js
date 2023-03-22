@@ -38,6 +38,7 @@ async function cleanup() {
         await node_fs_1.promises.stat(tmpMeshLocation).then((r) => {
             if (r.isFile())
                 return node_fs_1.promises.unlink(tmpMeshLocation);
+            return undefined;
         });
     }
     catch (e) {
