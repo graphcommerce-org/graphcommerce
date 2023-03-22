@@ -39,8 +39,8 @@ through a variety of included UX components.
 
 # Getting started with GraphCommerce
 
-In this guide, you will set up a GraphCommerce app locally allowing you to start
-building.
+In this guide, you will set up a GraphCommerce app locally, allowing you to
+start building.
 
 ### Requirements
 
