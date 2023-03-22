@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.1-canary.7
+
+### Patch Changes
+
+- [#1865](https://github.com/graphcommerce-org/graphcommerce/pull/1865) [`4ce16c5dd`](https://github.com/graphcommerce-org/graphcommerce/commit/4ce16c5dd548aa9f11dead5cc428a51cb476046a) - Fixed Mollie payment method lock state ([@mikekeehnen](https://github.com/mikekeehnen))
+
 ## 6.0.1-canary.6
 
 ## 6.0.1-canary.5
