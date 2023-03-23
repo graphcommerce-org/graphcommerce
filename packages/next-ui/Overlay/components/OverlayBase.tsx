@@ -525,6 +525,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
                   borderTopRightRadius: `${theme.shape.borderRadius * 3}px`,
                 },
                 '&.variantSmLeft, &.variantSmRight': {
+                  overscrollBehaviorY: 'none',
                   width: widthSm || 'max-content',
                   boxShadow: theme.shadows[24],
                   maxHeight: dvh(100),
