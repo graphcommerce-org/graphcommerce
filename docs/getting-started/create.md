@@ -1,12 +1,12 @@
 ---
-menu: 1. Getting started
+menu: 1. Install
 metaTitle: Getting started with GraphCommerce
 ---
 
 # Getting started with GraphCommerce
 
-In this guide, you will set up a GraphCommerce app locally allowing you to start
-building.
+In this guide, you will set up a GraphCommerce app locally, allowing you to
+start building.
 
 ### Requirements
 
@@ -56,15 +56,15 @@ configure the following:
 
 - Magento version 2.4.3 or higher - Clean install, a production or a development
   environment
-- Hygraph - A Hygraph project with the required schema.
-  [Clone the demo Hygraph project ↗](https://app.graphcms.com/clone/caddaa93cfa9436a9e76ae9c0F34d257)
-  as your starting point.
+- Hygraph - A project with the required schema.
+  [Clone ↗](https://app.hygraph.com/clone/caddaa93cfa9436a9e76ae9c0f34d257?name=GraphCommerce%20Demo)
+  the schema as your starting point.
 
 ## Step 3: Start the app
 
 ```bash
 yarn
-# Install the dependencies
+# Install dependencies (may take a while)
 ```
 
 ```bash
@@ -91,8 +91,7 @@ yarn dev
 
 ## Next steps
 
-- Learn how to [Set up Visual Studio Code](../getting-started/vscode.md) and
-  install usefull extensions for an optimal development experience
-- [Start building a GraphCommerce custom storefront](../getting-started/start-building.md)
-  by customizing text and component styles, fetching data from server
-  components, and making changes to GraphQL queries.
+- The [Quick start](../getting-started/readme.md) guide covers about 80% of the
+  concepts you'll use, so it's a great place to start.
+- [Start customizing](../getting-started/start-building.md) to go from "Hello
+  World" to a fully built GraphCommerce custom storefront.
