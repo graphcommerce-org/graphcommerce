@@ -71,9 +71,9 @@ https://user-images.githubusercontent.com/1251986/226889542-ec403549-5e4f-4ff6-8
 </details>
 
 <details open>
-<summary>🧡 Magento extentions</summary>
+<summary>🧡 Magento extentions (soon)</summary>
 
-[Learn how to imlement any GraphQL compatible Magento extention.](framework/magento-extensions.md)
+[Learn how to imlement any GraphQL compatible Magento extention.](#)
 
 </details>
 
@@ -104,9 +104,9 @@ https://user-images.githubusercontent.com/1251986/226889542-ec403549-5e4f-4ff6-8
 </details>
 
 <details open>
-<summary>⚡️ Self Hosting</summary>
+<summary>⚡️ Self Hosting (soon)</summary>
 
-[Deploy a GraphCommerce storefront to other hosting providers.](framework/deployment.md)
+[Deploy a GraphCommerce storefront to other hosting providers.](#)
 
 </details>
 </span>
