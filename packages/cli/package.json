@@ -14,14 +14,14 @@
   "main": "dist/index.js",
   "types": "src/index.ts",
   "bin": {
-    "mesh": "dist/bin/mesh.js",
-    "gql-mesh": "dist/bin/mesh.js",
-    "graphql-mesh": "dist/bin/mesh.js",
-    "gql-gen": "dist/bin/codegen.js",
-    "graphql-codegen": "dist/bin/codegen.js",
-    "graphql-code-generator": "dist/bin/codegen.js",
-    "is-monorepo": "dist/bin/is-monorepo.js",
-    "graphcommerce": "dist/bin/graphcommerce.js"
+    "mesh": "./dist/bin/mesh.js",
+    "gql-mesh": "./dist/bin/mesh.js",
+    "graphql-mesh": "./dist/bin/mesh.js",
+    "gql-gen": "./dist/bin/codegen.js",
+    "graphql-codegen": "./dist/bin/codegen.js",
+    "graphql-code-generator": "./dist/bin/codegen.js",
+    "is-monorepo": "./dist/bin/is-monorepo.js",
+    "graphcommerce": "./dist/bin/graphcommerce.js"
   },
   "dependencies": {
     "@graphcommerce/next-config": "6.0.1",
