@@ -5,7 +5,6 @@ import {
   ActionCard,
   ActionCardListForm,
   Button,
-  ChipOverlayOrPopperProps,
   filterNonNullableKeys,
   SectionHeader,
 } from '@graphcommerce/next-ui'

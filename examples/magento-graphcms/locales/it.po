@@ -586,6 +586,15 @@ msgstr "Grazie per aver effettuato l'ordine!"
 msgid "Thank you! Your review was successfully submitted for approval"
 msgstr "Grazie! La tua recensione è stata inviata con successo per l'approvazione"
 
+msgid "The payment has been canceled, please try again."
+msgstr "Il pagamento è stato annullato, si prega di riprovare."
+
+msgid "The payment has expired, please try again."
+msgstr "Il pagamento è scaduto, si prega di riprovare."
+
+msgid "The payment hasn't been completed yet, please try again."
+msgstr "Il pagamento non è ancora stato completato, si prega di riprovare."
+
 msgid "The payment hasn't completed, please try again or select a different payment method."
 msgstr "Il pagamento non è stato completato, riprova o seleziona un metodo di pagamento differente."
 

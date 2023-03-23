@@ -586,6 +586,15 @@ msgstr "Bedankt voor je bestelling!"
 msgid "Thank you! Your review was successfully submitted for approval"
 msgstr "Bedankt! Uw review is succesvol verstuurd voor goedkeuring"
 
+msgid "The payment has been canceled, please try again."
+msgstr "De betaling is geannuleerd, probeer het opnieuw."
+
+msgid "The payment has expired, please try again."
+msgstr "De betaling is verlopen, probeer het opnieuw."
+
+msgid "The payment hasn't been completed yet, please try again."
+msgstr "De betaling is nog niet voltooid, probeer het opnieuw."
+
 msgid "The payment hasn't completed, please try again or select a different payment method."
 msgstr "De betaling is niet voltooid, probeer het opnieuw of selecteer een andere betaalmethode."
 

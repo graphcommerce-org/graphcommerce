@@ -1,5 +1,31 @@
 # Change Log
 
+## 6.0.1
+
+### Patch Changes
+
+- [#1859](https://github.com/graphcommerce-org/graphcommerce/pull/1859) [`08ea612a1`](https://github.com/graphcommerce-org/graphcommerce/commit/08ea612a1d26166b8e55f20525c1004642cc85aa) - Resolved multiple onSubmitSuccessful callbacks in ComposedForm, when we have multiple ComposedForm Components on a page ([@mikekeehnen](https://github.com/mikekeehnen))
+
+## 6.0.1-canary.7
+
+## 6.0.1-canary.6
+
+## 6.0.1-canary.5
+
+## 6.0.1-canary.4
+
+## 6.0.1-canary.3
+
+## 6.0.1-canary.2
+
+### Patch Changes
+
+- [#1859](https://github.com/graphcommerce-org/graphcommerce/pull/1859) [`08ea612a1`](https://github.com/graphcommerce-org/graphcommerce/commit/08ea612a1d26166b8e55f20525c1004642cc85aa) - Resolved multiple onSubmitSuccessful callbacks in ComposedForm, when we have multiple ComposedForm Components on a page ([@mikekeehnen](https://github.com/mikekeehnen))
+
+## 6.0.1-canary.1
+
+## 6.0.1-canary.0
+
 ## 6.0.0
 
 ## 6.0.0-canary.54

@@ -1,5 +1,31 @@
 # Change Log
 
+## 6.0.1
+
+### Patch Changes
+
+- [#1863](https://github.com/graphcommerce-org/graphcommerce/pull/1863) [`ce6c990b2`](https://github.com/graphcommerce-org/graphcommerce/commit/ce6c990b25286bed393470a818f8daab2bb51457) - Solve issue where intercepters coudn’t be properly deleted because it was already deleted, fixe ([@paales](https://github.com/paales))
+
+## 6.0.1-canary.7
+
+## 6.0.1-canary.6
+
+## 6.0.1-canary.5
+
+### Patch Changes
+
+- [#1863](https://github.com/graphcommerce-org/graphcommerce/pull/1863) [`ce6c990b2`](https://github.com/graphcommerce-org/graphcommerce/commit/ce6c990b25286bed393470a818f8daab2bb51457) - Solve issue where intercepters coudn’t be properly deleted because it was already deleted, fixe ([@paales](https://github.com/paales))
+
+## 6.0.1-canary.4
+
+## 6.0.1-canary.3
+
+## 6.0.1-canary.2
+
+## 6.0.1-canary.1
+
+## 6.0.1-canary.0
+
 ## 6.0.0
 
 ### Major Changes

@@ -36,5 +36,5 @@ export function writeInterceptors(
   })
 
   // Cleanup unused interceptors
-  existing.forEach((file) => fs.unlinkSync(file))
+  existing.forEach((file) => fs.existsSync(file) && fs.unlinkSync(file))
 }

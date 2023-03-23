@@ -1,5 +1,23 @@
 # @graphcommerce/cli
 
+## 6.0.1
+
+## 6.0.1-canary.7
+
+## 6.0.1-canary.6
+
+## 6.0.1-canary.5
+
+## 6.0.1-canary.4
+
+## 6.0.1-canary.3
+
+## 6.0.1-canary.2
+
+## 6.0.1-canary.1
+
+## 6.0.1-canary.0
+
 ## 6.0.0
 
 ### Patch Changes

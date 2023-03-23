@@ -12,7 +12,10 @@ const Form = styled('form')({})
 
 export function RemoveItemFromCartFab(props: RemoveItemFromCartProps) {
   const {
-    product: { uid },
+    product: {},
+    uid,
+    quantity,
+    prices,
     ...formProps
   } = props
   const form = useFormGqlMutationCart(RemoveItemFromCartDocument, { defaultValues: { uid } })

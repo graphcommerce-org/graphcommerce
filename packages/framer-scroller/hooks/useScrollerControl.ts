@@ -31,12 +31,8 @@ export function useScrollerControl(): ScrollerControl {
       if (!control.controlling) throw Error('not controlling')
       if (!scrollerRef.current) return
 
-      const current = scroll.scroll.get()
-      scroll.scroll.set({
-        ...current,
-        x: x ?? current.x,
-        y: y ?? current.y,
-      })
+      if (x) scroll.x.set(x)
+      if (y) scroll.y.set(x)
       scrollerRef.current.scrollLeft = x
       scrollerRef.current.scrollTop = y
     },
@@ -45,9 +41,8 @@ export function useScrollerControl(): ScrollerControl {
       const scrollRef = scrollerRef.current
       if (!scrollRef) return
 
-      const current = scroll.scroll.get()
-      const xValue = (x ?? current.x) * (scrollRef.scrollWidth - scrollRef.clientWidth)
-      const yValue = (y ?? current.y) * (scrollRef.scrollHeight - scrollRef.clientHeight)
+      const xValue = (x ?? scroll.x.get()) * (scrollRef.scrollWidth - scrollRef.clientWidth)
+      const yValue = (y ?? scroll.y.get()) * (scrollRef.scrollHeight - scrollRef.clientHeight)
 
       control.update({ x: xValue, y: yValue })
     },

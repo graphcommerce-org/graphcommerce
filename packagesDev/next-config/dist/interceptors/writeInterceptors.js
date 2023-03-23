@@ -31,6 +31,6 @@ function writeInterceptors(interceptors, cwd = process.cwd()) {
             node_fs_1.default.writeFileSync(fileToWrite, plugin.template);
     });
     // Cleanup unused interceptors
-    existing.forEach((file) => node_fs_1.default.unlinkSync(file));
+    existing.forEach((file) => node_fs_1.default.existsSync(file) && node_fs_1.default.unlinkSync(file));
 }
 exports.writeInterceptors = writeInterceptors;
