@@ -18,6 +18,5 @@ jobs:
           useRollingCache: true
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - run: rm yarn.lock
       - run: yarn --cwd ./examples/magento-graphcms build > windows.txt
       - run: windows new.txt
