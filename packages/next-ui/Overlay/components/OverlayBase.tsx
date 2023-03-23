@@ -393,6 +393,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
                 borderBottomLeftRadius: theme.shape.borderRadius * 3,
               },
               '&.variantSmBottom': {
+                overscrollBehaviorY: 'none',
                 gridTemplate: `"beforeOverlay" "overlay"`,
                 height: `calc(${dvh(100)} - 1px)`,
 
