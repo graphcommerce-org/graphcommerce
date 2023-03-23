@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-product-virtual",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "6.0.1",
+  "version": "6.0.2-canary.0",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -12,14 +12,14 @@
     }
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "6.0.1",
-    "@graphcommerce/prettier-config-pwa": "6.0.1",
-    "@graphcommerce/typescript-config-pwa": "6.0.1"
+    "@graphcommerce/eslint-config-pwa": "6.0.2-canary.0",
+    "@graphcommerce/prettier-config-pwa": "6.0.2-canary.0",
+    "@graphcommerce/typescript-config-pwa": "6.0.2-canary.0"
   },
   "dependencies": {
-    "@graphcommerce/graphql": "6.0.1",
-    "@graphcommerce/magento-cart": "6.0.1",
-    "@graphcommerce/magento-product": "6.0.1"
+    "@graphcommerce/graphql": "6.0.2-canary.0",
+    "@graphcommerce/magento-cart": "6.0.2-canary.0",
+    "@graphcommerce/magento-product": "6.0.2-canary.0"
   },
   "peerDependencies": {
     "@lingui/react": "^3.13.2",

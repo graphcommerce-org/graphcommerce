@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.2-canary.0
+
+### Patch Changes
+
+- [#1866](https://github.com/graphcommerce-org/graphcommerce/pull/1866) [`eafe3a17d`](https://github.com/graphcommerce-org/graphcommerce/commit/eafe3a17d6c6b4a9ca524361498ffa382d44c63f) - don't execute useOrderCardItemImages if urlKeys is empty ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 6.0.1
 
 ### Patch Changes

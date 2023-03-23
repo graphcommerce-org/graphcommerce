@@ -1,5 +1,11 @@
 # @graphcommerce/magento-wishlist
 
+## 6.0.2-canary.0
+
+### Patch Changes
+
+- [#1866](https://github.com/graphcommerce-org/graphcommerce/pull/1866) [`28e058995`](https://github.com/graphcommerce-org/graphcommerce/commit/28e058995638227c22dd0008895acd1cc46b28b4) - skip mergeGuestWishlist if there is no guest wishlist ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 6.0.1
 
 ## 6.0.1-canary.7
