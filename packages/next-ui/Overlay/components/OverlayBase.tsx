@@ -379,6 +379,9 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
             height: dvh(100),
 
             [theme.breakpoints.down('md')]: {
+              '&.variantSmLeft, &.variantSmRight': {
+                overscrollBehaviorX: 'none',
+              },
               '&.variantSmLeft': {
                 gridTemplate: `"overlay beforeOverlay"`,
                 borderTopRightRadius: theme.shape.borderRadius * 3,
