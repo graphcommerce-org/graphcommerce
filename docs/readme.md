@@ -1,6 +1,8 @@
 ---
-menu: Overview
-order: getting-started,framework, upgrading, feature-list, contributing, roadmap
+menu: Home
+order:
+  getting-started,framework, upgrading, magento, feature-list, contributing,
+  roadmap
 metaTitle: Start React, Next.js Magento PWA development here - GraphCommerce
 metaDescription:
   'GraphCommerce is the open-source PWA Studio Magento 2 alternative.
@@ -19,13 +21,13 @@ App (PWA).
 
 <figure>
 
-https://user-images.githubusercontent.com/1251986/154977573-4015e77c-43e7-481e-ab97-60c365c6b746.mp4
+https://user-images.githubusercontent.com/1251986/226889542-ec403549-5e4f-4ff6-8fc5-ba879798353f.mp4
 
 <video width="100%" controls autoPlay loop muted playsInline>
-<source src="https://user-images.githubusercontent.com/1251986/154977573-4015e77c-43e7-481e-ab97-60c365c6b746.mp4" type="video/mp4"/>
+<source src="https://user-images.githubusercontent.com/1251986/226889542-ec403549-5e4f-4ff6-8fc5-ba879798353f.mp4" type="video/mp4"/>
 </video>
 
-  <figcaption>GraphCommerce magento-graphcms example demo</figcaption>
+  <figcaption>The GraphCommerce homepage, showcasing content from both Magento and Hypgraph through a variety of included UX components.</figcaption>
 </figure>
 
 ---
@@ -157,7 +159,7 @@ packages
 👉 Includes multilingual headless CMS implementation  
 👉 Fully runs on Magento's GraphQL API (0 modifications, plug-and-play)
 
-> Note: Currently, GraphCommerce can only be used to build headless Magento 2
+> Currently, GraphCommerce can only be used to build headless Magento 2
 > storefronts.
 
 ## FAQ
