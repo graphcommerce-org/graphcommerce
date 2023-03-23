@@ -1,34 +1,27 @@
 ---
-menu: 2. Customize a storefront
+menu: 2. Start customizing
 metaTitle: Customize a storefront
 ---
 
 # Start building a GraphCommerce custom storefront
 
-Previously, you [created a new GraphCommerce app](../getting-started/create.md).
-You're now ready to start working on your GraphCommerce custom storefront.
+Previously, you created a new GraphCommerce app on your local machine. In this
+tutorial, you'll complete a series of tasks to add some specific functionality
+to your GraphCommerce storefront. Your final modification will be simple, but
+you’ll learn where to find resources to build more complex features on your own.
 
-In this tutorial, you'll complete a series of tasks to add some specific
-functionality to your GraphCommerce app. Your final modification will be simple,
-but you’ll learn where to find resources to build more complex features on your
-own.
+### Customization strategy
 
-### What you'll learn
+You can fully customize GraphCommerce according to your needs. For smooth future
+updates, adhere to this sequence when making your adjustments:
 
-After you've finished this tutorial, you'll have accomplished the following:
-
-- Customized text and component styles
-- Fetched data from server components
-- Made changes to GraphQL queries
-
-### Requirements
-
-You're using the most recent version of GraphCommerce. We recommend using the
-latest release to get the benefits of performance, new components, and other
-best practices.
-
-You've completed the
-[Create a GraphCommerce app tutorial](../getting-started/create.md).
+1.  Modify local files: Every file in your project directory is meant for
+    customization. E.g., you can directly modify files in the /pages and /folder
+    directories, as wel as your components/theme.ts file.
+2.  Plugins: To modify the behavior of core features (packages), implement the
+    changes through a [plugin](../framework/plugins-react.md).
+3.  Patches: If a plugin is not sufficient, create a
+    [patch](../framework/patch-package.md) for your changes.
 
 ## Step 1: Make customizations
 
