@@ -1,14 +1,11 @@
-import { ProductInterface } from '@graphcommerce/graphql-mesh'
 import { ProductListItemFragment, ProductListItemProps } from '@graphcommerce/magento-product'
 import { useStorefrontConfig } from '@graphcommerce/next-ui'
-import type { Hit } from 'react-instantsearch-core'
-import { useHits } from 'react-instantsearch-hooks-web'
+import { useHits } from 'react-instantsearch-hooks'
 import { AlgoliaHit } from '../lib/types'
 
-function hitToProduct(items: Hit<AlgoliaHit>[], locale: string) {
-  const currency = locale.toUpperCase()
+function hitToProduct(items: AlgoliaHit[], locale: string) {
   const mapHits = items.map((item) => {
-    const price = item.price['EUR']
+    const price = item.price.EUR
     return {
       __typename: 'VirtualProduct',
       uid: '',

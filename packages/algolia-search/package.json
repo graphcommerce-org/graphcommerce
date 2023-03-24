@@ -15,8 +15,7 @@
     "@graphcommerce/eslint-config-pwa": "6.0.0",
     "@graphcommerce/next-config": "^6.0.0",
     "@graphcommerce/prettier-config-pwa": "6.0.0",
-    "@graphcommerce/typescript-config-pwa": "6.0.0",
-    "@types/react-instantsearch-dom": "^6.12.3"
+    "@graphcommerce/typescript-config-pwa": "6.0.0"
   },
   "dependencies": {
     "@graphcommerce/ecommerce-ui": "6.0.0",
@@ -26,8 +25,7 @@
     "@graphcommerce/magento-product": "6.0.0",
     "@graphcommerce/graphql-mesh": "6.0.0",
     "algoliasearch": "^4.15.0",
-    "react-instantsearch-dom": "^6.39.0",
-    "react-instantsearch-hooks-web": "^6.41.0"
+    "react-instantsearch-hooks": "^6.41.0"
   },
   "peerDependencies": {
     "@lingui/core": "^3.13.2",

@@ -1,10 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { ProductItemsGridProps } from '@graphcommerce/magento-product'
 import { IfConfig, PluginProps } from '@graphcommerce/next-config'
-import { Box } from '@mui/material'
-import { useHits } from 'react-instantsearch-hooks-web'
 import { useAlgoliaResults } from '../hooks/useAlgoliaResults'
-import { AlgoliaHit } from '../lib/types'
 
 export const component = 'ProductListItemsBase'
 export const exported = '@graphcommerce/magento-product'
@@ -19,9 +16,8 @@ export const ifConfig: IfConfig = 'demoMode'
  * - Create your own plugins https://www.graphcommerce.org/docs/framework/plugins-react
  */
 function AlgoliaSearchPluginPlugin(props: PluginProps<ProductItemsGridProps>) {
-  const { Prev, items } = props
+  const { Prev } = props
   const { products } = useAlgoliaResults()
-  console.log(products)
   return <Prev {...props} items={products} />
 }
 

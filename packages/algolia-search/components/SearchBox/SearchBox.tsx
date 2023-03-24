@@ -2,8 +2,8 @@ import { TextFieldElement, useForm, useWatch } from '@graphcommerce/ecommerce-ui
 import { FormRow, extendableComponent } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Box } from '@mui/material'
-import { FormEventHandler } from 'react'
-import { useSearchBox, UseSearchBoxProps } from 'react-instantsearch-hooks-web'
+import { FormEventHandler, useEffect } from 'react'
+import { UseSearchBoxProps } from 'react-instantsearch-hooks'
 
 const name = 'SearchBox' as const
 const parts = ['root', 'totalProducts'] as const
@@ -17,13 +17,11 @@ type SearchBoxProps = {
 export function SearchBox(props: SearchBoxProps) {
   const { defaultValue: dvalue, refine } = props
 
-  const form = useForm({ mode: 'onChange', defaultValues: { defaultValue: dvalue } })
+  const form = useForm({ defaultValues: { defaultValue: dvalue } })
 
   const { defaultValue } = useWatch({ ...form })
 
-  const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
-    event.preventDefault()
-  }
+  useEffect(() => {})
 
   return (
     <Box
@@ -33,7 +31,6 @@ export function SearchBox(props: SearchBoxProps) {
       onChange={() => {
         if (defaultValue) refine(defaultValue)
       }}
-      onSubmit={handleSubmit}
     >
       <FormRow>
         <TextFieldElement
@@ -44,7 +41,6 @@ export function SearchBox(props: SearchBoxProps) {
           placeholder={i18n._(/* i18n */ 'Search')}
           defaultValue={defaultValue}
           validation={{ minLength: 2 }}
-          required
         />
       </FormRow>
     </Box>

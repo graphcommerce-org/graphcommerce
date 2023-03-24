@@ -1,6 +1,6 @@
 import { SearchFormProps } from '@graphcommerce/magento-search'
 import { IfConfig, PluginProps } from '@graphcommerce/next-config'
-import { useSearchBox } from 'react-instantsearch-hooks-web'
+import { useSearchBox } from 'react-instantsearch-hooks'
 import { SearchBox } from '../components/SearchBox/SearchBox'
 
 export const component = 'SearchForm'

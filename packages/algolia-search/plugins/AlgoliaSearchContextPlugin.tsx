@@ -1,7 +1,7 @@
 import { SearchContextProps } from '@graphcommerce/magento-search'
 import { IfConfig, PluginProps } from '@graphcommerce/next-config'
 import algoliasearch from 'algoliasearch/lite'
-import { InstantSearch } from 'react-instantsearch-hooks-web'
+import { InstantSearch } from 'react-instantsearch-hooks'
 import { applicationId, searchOnlyApiKey } from '../lib/configuration'
 
 export const component = 'SearchContext'
