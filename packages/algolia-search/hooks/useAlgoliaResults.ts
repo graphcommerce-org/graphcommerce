@@ -1,11 +1,12 @@
 import { ProductListItemFragment, ProductListItemProps } from '@graphcommerce/magento-product'
-import { useStorefrontConfig } from '@graphcommerce/next-ui'
 import { useHits } from 'react-instantsearch-hooks'
 import { AlgoliaHit } from '../lib/types'
 
-function hitToProduct(items: AlgoliaHit[], locale: string) {
+function hitToProduct(items: AlgoliaHit[]) {
   const mapHits = items.map((item) => {
-    const price = item.price.EUR
+    const currency = Object.keys(item.price)[0]
+    const price = item.price[currency]
+
     return {
       __typename: 'VirtualProduct',
       uid: '',
@@ -17,21 +18,21 @@ function hitToProduct(items: AlgoliaHit[], locale: string) {
         minimum_price: {
           final_price: {
             value: price.default,
-            currency: 'EUR',
+            currency,
           },
           regular_price: {
             value: price.default,
-            currency: 'EUR',
+            currency,
           },
         },
         maximum_price: {
           final_price: {
             value: price.default,
-            currency: 'EUR',
+            currency,
           },
           regular_price: {
             value: price.default,
-            currency: 'EUR',
+            currency,
           },
         },
       },
@@ -50,8 +51,7 @@ function hitToProduct(items: AlgoliaHit[], locale: string) {
 
 export function useAlgoliaResults() {
   const { hits } = useHits<AlgoliaHit>()
-  const { locale } = useStorefrontConfig()
-  const products = hitToProduct(hits, locale)
+  const products = hitToProduct(hits)
 
   return { products }
 }

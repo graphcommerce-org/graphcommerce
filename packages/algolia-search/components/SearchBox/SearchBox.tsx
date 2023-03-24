@@ -1,8 +1,7 @@
-import { TextFieldElement, useForm, useWatch } from '@graphcommerce/ecommerce-ui'
-import { FormRow, extendableComponent } from '@graphcommerce/next-ui'
+import { extendableComponent } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
-import { Box } from '@mui/material'
-import { FormEventHandler, useEffect } from 'react'
+import { debounce, TextField } from '@mui/material'
+import { ChangeEvent, useCallback, useMemo } from 'react'
 import { UseSearchBoxProps } from 'react-instantsearch-hooks'
 
 const name = 'SearchBox' as const
@@ -15,34 +14,26 @@ type SearchBoxProps = {
 } & UseSearchBoxProps
 
 export function SearchBox(props: SearchBoxProps) {
-  const { defaultValue: dvalue, refine } = props
+  const { defaultValue, refine } = props
 
-  const form = useForm({ defaultValues: { defaultValue: dvalue } })
-
-  const { defaultValue } = useWatch({ ...form })
-
-  useEffect(() => {})
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const debounceSearch = useCallback(
+    debounce(
+      (e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => refine(e.target.value),
+      300,
+    ),
+    [refine],
+  )
 
   return (
-    <Box
-      className={classes.root}
-      component='form'
-      noValidate
-      onChange={() => {
-        if (defaultValue) refine(defaultValue)
-      }}
-    >
-      <FormRow>
-        <TextFieldElement
-          name='defaultValue'
-          control={form.control}
-          variant='outlined'
-          type='text'
-          placeholder={i18n._(/* i18n */ 'Search')}
-          defaultValue={defaultValue}
-          validation={{ minLength: 2 }}
-        />
-      </FormRow>
-    </Box>
+    <TextField
+      name='defaultValue'
+      variant='outlined'
+      type='text'
+      placeholder={i18n._(/* i18n */ 'Search')}
+      defaultValue={defaultValue}
+      onChange={debounceSearch}
+      fullWidth
+    />
   )
 }

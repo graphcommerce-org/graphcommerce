@@ -1,5 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { SearchForm } from '@graphcommerce/magento-search'
+import { SearchContext, SearchForm } from '@graphcommerce/magento-search'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, Separator, icon404, IconSvg } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
@@ -24,7 +24,7 @@ function RouteNotFoundPage() {
   ]
 
   return (
-    <>
+    <SearchContext>
       <PageMeta title='Page not found' metaRobots={['noindex']} />
       <Container maxWidth='sm'>
         <Box textAlign='center' mt={16} mb={16}>
@@ -50,7 +50,7 @@ function RouteNotFoundPage() {
           </Box>
         </Box>
       </Container>
-    </>
+    </SearchContext>
   )
 }
 
