@@ -84,10 +84,7 @@ yarn dev
 (Explore the GraphQL Playground running at http://localhost:3000/api/graphql)
 
 > No success? Consult the
-> [troubleshooting guide](../framework/troubleshooting.md) or ask your question
-> in the
-> [Slack community ↗](https://join.slack.com/t/graphcommerce/shared_invite/zt-11rmgq1ad-F~0daNtKcSvtcC4eQRzjeQ)
-> chat
+> [troubleshooting guide](../framework/troubleshooting.md)
 
 ## Next steps
 

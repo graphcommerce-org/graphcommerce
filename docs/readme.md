@@ -136,8 +136,6 @@ https://user-images.githubusercontent.com/1251986/226889542-ec403549-5e4f-4ff6-8
 </details>
 </span>
 
----
-
 ## Features
 
 GraphCommerce provides all [features](./feature-list.md) needed to deliver a
