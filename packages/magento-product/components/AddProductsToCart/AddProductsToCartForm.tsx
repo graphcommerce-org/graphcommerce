@@ -1,5 +1,6 @@
 import { UseFormGraphQlOptions } from '@graphcommerce/ecommerce-ui'
-import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
+import { useApolloClient } from '@graphcommerce/graphql'
+import { useFormGqlMutationCart, CrosssellsDocument } from '@graphcommerce/magento-cart'
 import { ExtendableComponent } from '@graphcommerce/next-ui'
 import { Box, SxProps, Theme, useThemeProps } from '@mui/material'
 import { useRouter } from 'next/router'
@@ -54,6 +55,7 @@ export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
   let { children, redirect, onComplete, sx, errorSnackbar, successSnackbar, ...formProps } =
     useThemeProps({ name, props })
   const router = useRouter()
+  const client = useApolloClient()
 
   if (typeof redirect !== 'undefined' && redirect !== 'added' && router.pathname === redirect)
     redirect = undefined
@@ -69,7 +71,7 @@ export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
       if (variables2 === false) return false
 
       const { cartId, cartItems } = variables2
-      return {
+      const requestData = {
         cartId,
         cartItems: cartItems
           .filter((cartItem) => cartItem.sku)
@@ -80,6 +82,19 @@ export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
             entered_options: cartItem.entered_options?.filter((option) => option?.value),
           })),
       }
+
+      const lastItem = requestData.cartItems[requestData.cartItems.length - 1]
+      const { sku } = lastItem
+
+      if (sku) {
+        // Preload crosssells
+        await client.query({
+          query: CrosssellsDocument,
+          variables: { pageSize: 1, filters: { sku: { eq: sku } } },
+        })
+      }
+
+      return requestData
     },
     onComplete: async (result, variables) => {
       await onComplete?.(result, variables)
