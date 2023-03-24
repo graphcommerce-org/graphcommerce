@@ -12,12 +12,16 @@ import {
   FormControlLabelProps,
   FormGroup,
   FormHelperText,
+  SxProps,
+  Theme,
 } from '@mui/material'
 
 export type CheckboxElementProps<T extends FieldValues> = Omit<CheckboxProps, 'name'> & {
   parseError?: (error: FieldError) => string
   label?: FormControlLabelProps['label']
   helperText?: string
+  sx?: SxProps<Theme>
+  sxFormControl?: SxProps<Theme>
 } & Omit<ControllerProps<T>, 'render'>
 
 export function CheckboxElement<TFieldValues extends FieldValues>({
@@ -28,6 +32,8 @@ export function CheckboxElement<TFieldValues extends FieldValues>({
   label,
   control,
   helperText,
+  sx,
+  sxFormControl,
   ...rest
 }: CheckboxElementProps<TFieldValues>): JSX.Element {
   if (required && !rules.required) {
@@ -46,7 +52,7 @@ export function CheckboxElement<TFieldValues extends FieldValues>({
             : error.message
           : helperText
         return (
-          <FormControl required={required} error={invalid}>
+          <FormControl required={required} error={invalid} sx={{ ...sxFormControl }}>
             <FormGroup row>
               <FormControlLabel
                 label={label || ''}
@@ -55,7 +61,7 @@ export function CheckboxElement<TFieldValues extends FieldValues>({
                     {...rest}
                     color={rest.color || 'primary'}
                     sx={{
-                      ...rest.sx,
+                      ...sx,
                       color: invalid ? 'error.main' : undefined,
                     }}
                     value={value}
