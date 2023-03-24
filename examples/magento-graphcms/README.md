@@ -93,14 +93,11 @@ yarn dev
 (Explore the GraphQL Playground running at http://localhost:3000/api/graphql)
 
 > No success? Consult the
-> [troubleshooting guide](../framework/troubleshooting.md) or ask your question
-> in the
-> [Slack community ↗](https://join.slack.com/t/graphcommerce/shared_invite/zt-11rmgq1ad-F~0daNtKcSvtcC4eQRzjeQ)
-> chat
+> [troubleshooting guide](../framework/troubleshooting.md)
 
 ## Next steps
 
-- Proceed to the
-  [GraphCommerce Documentation](https://www.graphcommerce.org/docs) and
-  familiarize yourself with GraphCommerce customization, internationalization,
-  Magento extensions, plugins, and more.
+- The [Quick start](../getting-started/readme.md) guide covers about 80% of the
+  concepts you'll use, so it's a great place to start.
+- [Start customizing](../getting-started/start-building.md) to go from "Hello
+  World" to a fully built GraphCommerce custom storefront.
