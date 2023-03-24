@@ -1,5 +1,5 @@
 ---
-"@graphcommerce/docs": patch
+'@graphcommerce/docs': patch
 ---
 
-Docs
+Rewritten docs

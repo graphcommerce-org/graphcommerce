@@ -2,4 +2,4 @@
 '@graphcommerce/magento-customer': patch
 ---
 
-don't execute useOrderCardItemImages if urlKeys is empty
+Additional useOrderCardItemImages query was triggered when there were no urlKeys present.

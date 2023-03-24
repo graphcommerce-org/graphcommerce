@@ -2,4 +2,4 @@
 '@graphcommerce/next-ui': patch
 ---
 
-Fix incorrect box-shadow on bottom overlays
+Overlay: Fix incorrect box-shadow for variant bottom
