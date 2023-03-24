@@ -1,5 +1,17 @@
 # Change Log
 
+## 6.0.2-canary.2
+
+### Patch Changes
+
+- [#1867](https://github.com/graphcommerce-org/graphcommerce/pull/1867) [`8e4bf4ca7`](https://github.com/graphcommerce-org/graphcommerce/commit/8e4bf4ca7d0c32525df50df4a350ab19a2fbf620) - Fix incorrect box-shadow on bottom overlays ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#1867](https://github.com/graphcommerce-org/graphcommerce/pull/1867) [`5cf7c8c9e`](https://github.com/graphcommerce-org/graphcommerce/commit/5cf7c8c9ee95d28be0a7f476ea3f06f482c4fd5d) - Fix MdBottom class affecting Sm overlay ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#1867](https://github.com/graphcommerce-org/graphcommerce/pull/1867) [`9b7e4414c`](https://github.com/graphcommerce-org/graphcommerce/commit/9b7e4414c537e775c1f2d5de65ffde6fc39b7f3b) - Disallow overscrolling on overlays on mobile ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#1867](https://github.com/graphcommerce-org/graphcommerce/pull/1867) [`197b71711`](https://github.com/graphcommerce-org/graphcommerce/commit/197b717119da2a1876d36931c0063ad6d32a675c) - Overlay fixess ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 6.0.2-canary.1
 
 ## 6.0.2-canary.0
