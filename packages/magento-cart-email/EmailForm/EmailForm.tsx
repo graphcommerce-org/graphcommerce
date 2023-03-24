@@ -31,7 +31,7 @@ const { classes } = extendableComponent(name, parts)
 const EmailFormBase = React.memo<EmailFormProps>((props) => {
   const { step, sx } = props
 
-  const cartEmail = useCartQuery(CartEmailDocument, { hydration: true })
+  const cartEmail = useCartQuery(CartEmailDocument)
 
   const email = cartEmail.data?.cart?.email ?? ''
 

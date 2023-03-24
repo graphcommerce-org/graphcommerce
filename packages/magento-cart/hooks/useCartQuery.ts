@@ -15,13 +15,12 @@ import { useCurrentCartId } from './useCurrentCartId'
 export function useCartQuery<Q, V extends { cartId: string; [index: string]: unknown }>(
   document: TypedDocumentNode<Q, V>,
   options: QueryHookOptions<Q, Omit<V, 'cartId'>> & {
-    allowUrl?: boolean
-    hydration?: boolean
+    allowUrl?: BooleanConstructor
   } = {},
 ) {
-  const { allowUrl = true, hydration, ...queryOptions } = options
+  const { allowUrl = true, ...queryOptions } = options
   const router = useRouter()
-  const { currentCartId } = useCurrentCartId({ hydration })
+  const { currentCartId } = useCurrentCartId()
 
   const urlCartId = router.query.cart_id
   const usingUrl = allowUrl && typeof urlCartId === 'string'
@@ -34,7 +33,6 @@ export function useCartQuery<Q, V extends { cartId: string; [index: string]: unk
 
   queryOptions.variables = { cartId, ...options?.variables } as V
   queryOptions.skip = queryOptions?.skip || !cartId
-  queryOptions.ssr = !!hydration
 
   const result = useQuery(document, queryOptions)
 
