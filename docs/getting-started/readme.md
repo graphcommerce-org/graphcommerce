@@ -111,7 +111,7 @@ sx={(theme)=>({ margin: theme.spacings.lg, color: theme.palette.text.secondary }
 There are several ways to customize your storefront to a greater extent. The
 optimal method varies based on the desired modification.
 
-👉 Local modifications: Every file in your project directory is meant for
+👉 Local modifications - Every file in your project directory is meant for
 customization. E.g., you can directly modify files in the `📁 /pages` and
 `📁 /folder` directories, as wel as your `📄 /components/theme.ts` file.
 

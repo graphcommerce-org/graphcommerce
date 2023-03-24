@@ -1,5 +1,5 @@
 ---
-menu: 1. Install
+menu: 1. Installation
 metaTitle: Getting started with GraphCommerce
 ---
 
@@ -30,7 +30,7 @@ cp -R graphcommerce/examples/magento-graphcms/. my-project && rm -rf graphcommer
 # Copy example, delete repo, navigate to project folder
 ```
 
-## Step 2: Configure API keys
+## Step 2: Configure API keys (optional)
 
 Duplicate and rename the configuration example file to:
 `graphcommerce.config.js` and configure the following:
