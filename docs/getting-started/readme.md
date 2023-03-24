@@ -34,9 +34,9 @@ standard to modify these files for every project.
 
 ## Hygraph
 
-GraphCommerce relies on Hygraph, the default integrated CMS. Hygraph enables the
-development of high-quality content components, which cannot be achieved through
-Magento's CMS. It's not possible to run GraphCommerce without Hygraph.
+GraphCommerce relies on Hygraph, the default integrated CMS. Hygraph is used for
+all static content (video, pages, images), allowing for high-quality components
+beyond Magento's CMS capabilities.
 
 - To start building,
   [clone ↗](https://app.hygraph.com/clone/caddaa93cfa9436a9e76ae9c0f34d257?name=GraphCommerce%20Demo)
@@ -81,7 +81,7 @@ https://user-images.githubusercontent.com/1251986/227176018-4a6a83a6-c61b-4344-8
   <figcaption>Modify the layoutProps in `📄 /newsletter/index.tsx` to change the newsletter page layout</figcaption>
 </figure>
 
-### Styling
+## Styling
 
 GraphCommerce is build using [MUI core↗](https://mui.com/core/) components.
 
@@ -105,6 +105,28 @@ Pass the theme object to use global values
 ```tsx
 sx={(theme)=>({ margin: theme.spacings.lg, color: theme.palette.text.secondary })}
 ```
+
+## Customization
+
+There are several ways to customize your storefront to a greater extent. The
+optimal method varies based on the desired modification.
+
+👉 Local modifications: Every file in your project directory is meant for
+customization. E.g., you can directly modify files in the `📁 /pages` and
+`📁 /folder` directories, as wel as your `📄 /components/theme.ts` file.
+
+👉 Plugin - Creating a [plugin](../framework/plugins-react.md) is
+straightforward and surprisingly uncomplicated. Plugins are recommended for
+retaining maximum upgradability.
+
+👉 Patch - Directly edit a component in `📁 /node_modules` and generate a patch
+using [patch-package](../framework/patch-package.md). Patches, stored in the
+`📁 /patches` directory, auto-reapply during development or production
+environment builds.
+
+❗️ Local copy - Duplicate the component from `📁 /node_modules` to e.g.,
+`📁 /components/`, update all references to it, and edit locally. Using local
+copies marginally complicates upgrading.
 
 ## FAQ
 
@@ -141,7 +163,8 @@ than to start from scratch.
 
 ## Next steps
 
+- 🎉 By now, you know the basics to begin building your storefront.
 - [Set up VS Code](../getting-started/vscode.md) and install usefull extensions
-  for an optimal development experience
+  for an optimal development experience.
 - [Start customizing](../getting-started/start-building.md) to go from "Hello
   World" to a fully built GraphCommerce custom storefront.
