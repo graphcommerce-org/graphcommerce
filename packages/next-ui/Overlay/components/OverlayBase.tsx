@@ -501,11 +501,6 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
                 },
 
                 '&.variantSmBottom': {
-                  scrollbarWidth: 'none',
-                  '&::-webkit-scrollbar': {
-                    display: 'none',
-                  },
-
                   maxHeight: `calc(${dvh(100)} - ${smSpacingTop})`,
                   paddingTop: smSpacingTop,
                   boxSizing: 'border-box',
@@ -554,12 +549,6 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
                   maxHeight: `calc(${dvh(100)} - ${mdSpacingTop})`,
                   paddingTop: mdSpacingTop,
                   boxSizing: 'border-box',
-                  boxShadow: theme.shadows[24],
-
-                  scrollbarWidth: 'none',
-                  '&::-webkit-scrollbar': {
-                    display: 'none',
-                  },
                   '&.sizeMdFloating': {
                     paddingTop: 0,
                     maxHeight: `calc(${dvh(100)} - (${theme.page.vertical} * 2))`,
