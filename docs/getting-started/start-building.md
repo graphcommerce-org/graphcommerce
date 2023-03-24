@@ -10,19 +10,6 @@ tutorial, you'll complete a series of tasks to add some specific functionality
 to your GraphCommerce storefront. Your final modification will be simple, but
 you’ll learn where to find resources to build more complex features on your own.
 
-### Customization strategy
-
-You can fully customize GraphCommerce according to your needs. For smooth future
-updates, adhere to this sequence when making your adjustments:
-
-1.  Modify local files: Every file in your project directory is meant for
-    customization. E.g., you can directly modify files in the /pages and /folder
-    directories, as wel as your components/theme.ts file.
-2.  Plugins: To modify the behavior of core features (packages), implement the
-    changes through a [plugin](../framework/plugins-react.md).
-3.  Patches: If a plugin is not sufficient, create a
-    [patch](../framework/patch-package.md) for your changes.
-
 ## Step 1: Make customizations
 
 ### Add text
