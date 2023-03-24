@@ -2,73 +2,40 @@
 menu: Overview
 ---
 
-# GraphCommerce framework overview
+# GraphCommerce
 
-GraphCommerce is a front-end framework used for building headless Magento
-e-commerce storefronts in React. It includes the structure, components, and
-tooling you need to get started so you can spend your time styling and designing
-high-end e-commerce progressive web apps (PWA).
+## Technology
 
-### Framework concepts and components
+Besides React and Next.js, Graphcommerce uses the following
+technologies/libraries worth exploring.
 
-| Concepts                                               | Customizing                              | Other                                              |
-| ------------------------------------------------------ | ---------------------------------------- | -------------------------------------------------- |
-| [Static generation](../framework/static-generation.md) | [Theming](../framework/theming.md)       | [Translations](../framework/translations.md)       |
-| [Confg](../framework/config.md)                        | [Typography](../framework/typography.md) | [Troubleshooting](../framework/troubleshooting.md) |
-| [Deployment](../framework/deployment.md)               | [Favicon](../framework/favicon.md)       | [SEO](../framework/seo.md)                         |
-| [Hygraph](../framework/graphcms.md)                    | [Icons](../framework//icons.md)          |                                                    |
+<span>![mui](https://user-images.githubusercontent.com/1251986/227551619-3f737bd2-90ac-4653-b49c-a1f1b4849938.svg)</span>
+<span>![ts](https://user-images.githubusercontent.com/1251986/227548900-70ca92ff-e4f0-426c-9042-540827ff49fa.svg)</span>
+<span>![graphql](https://user-images.githubusercontent.com/1251986/227549037-87a5a00a-38cf-4050-840d-1a7387c25483.svg)</span>
+<span>![graphql-generator](https://user-images.githubusercontent.com/1251986/227549515-91f8b8f8-3a74-4d92-a703-f3073aab93ab.svg)</span>
+<span>![apollo](https://user-images.githubusercontent.com/1251986/227547294-c5b8386d-96d9-42bf-b743-b63778f1e737.svg)</span>
+<span>![framer](https://user-images.githubusercontent.com/1251986/227549722-aae583f4-4c6c-461b-88c4-0f673d9c7c55.svg)</span>
 
-## GraphCommerce project structure
+**Mui Core**  
+Google's pre-built component library is utilized to build high-quality, robust
+GraphCommerce components.
 
-When you create a GraphCommerce app, the GraphCommerce
-[magento-graphcms example](../getting-started/readme.md) comes with a basic file
-structure of a GraphCommerce project that's integrated with Magento and Hygraph.
-Most of the files that you'll work within your GraphCommerce project are located
-in the /components or /pages directories.
+**Typescript**  
+Is used to guard code quality, maintainability, and productivity by catching
+errors during development. With Typescript, setting up
+[VSCode](../framework/vscode.md) correctly enables autocomplete, simplifying the
+exploration of GraphCommerce's codebase.
 
-- A minimal set of components you would most likely modify for your project
-- The main layout component, which renders header, navigation, and footer
-- A set of boilerplate pages, which handle URL routing
-- Basic global styles in theme.ts provided by
-  [Mui ↗](https://mui.com/customization/default-theme/)
-- Interface translation files
+**GraphQL**  
+A query language for APIs, utilized for fetching and modifying data in Magento.
 
-```txt
-File structure of the graphcommerce-magento example
+**GraphQL Code Generator**  
+Simplifies GraphQL query usage in components by auto-generating types from the
+schema.
 
-├── components
-    └── Layout
-        └── Footer.tsx
-        └── LayoutFull.tsx
-    └── Hygraph
-        └── Asset
-        └── RowHeroBanner
-        └── RowQuote
-    └── theme.ts
-    └── ...
-├── GraphQL
-    └── CategoryPage.graphql
-    └── PageLink.graphql
-    └── ...
-├── pages
-    └── product
-        └── [url].jsx
-        └── ...
-    └── page
-        └── [...url].jsx
-    └── [...url].tsx
-    └── [cart].tsx
-    └── _app.tsx
-    └── _document.tsx
-    └── ...
-├── locales
-    └── en.po
-    └── nl.po
-    └── ...
-```
+**Apollo Client**  
+Used for managing data fetching, caching, and state management.
 
-## Next steps
-
-- Learn about [theming](../framework/theming.md) a GraphCommerce storefront
-- Learn about [Static Generation (SSG)](../framework/static-generation.md) in
-  GraphCommerce
+**Framer Motion**  
+For creating fluid, interactive animations, accounting for browser limitations
+and performance.
