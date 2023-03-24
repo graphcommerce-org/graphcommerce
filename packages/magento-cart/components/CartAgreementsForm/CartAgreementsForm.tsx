@@ -1,3 +1,4 @@
+import { CheckboxElement } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import { extendableComponent, FormDiv } from '@graphcommerce/next-ui'
 import {
@@ -68,43 +69,21 @@ export function CartAgreementsForm(props: CartAgreementsFormProps) {
               return (
                 <React.Fragment key={agreement.agreement_id}>
                   {agreement.mode === 'MANUAL' ? (
-                    <Controller
-                      defaultValue=''
-                      name={`agreement[${agreement.agreement_id}]`}
+                    <CheckboxElement
                       control={control}
+                      color='secondary'
+                      sxFormControl={{
+                        display: 'block',
+                      }}
+                      name={`agreement${agreement.agreement_id}`}
                       rules={{
                         required: i18n._(/* i18n */ 'You have to agree in order to proceed'),
                       }}
-                      render={({
-                        field: { onChange, value, name, ref, onBlur },
-                        fieldState: { error },
-                      }) => (
-                        <FormControl
-                          error={!!formState.errors[String(agreement.agreement_id)]}
-                          className={classes.formControlRoot}
-                          sx={{ display: 'block' }}
-                        >
-                          <FormControlLabel
-                            control={
-                              <Checkbox
-                                color='secondary'
-                                required
-                                checked={!!value}
-                                name={name}
-                                inputRef={ref}
-                                onBlur={onBlur}
-                                onChange={(e) => onChange(e)}
-                              />
-                            }
-                            label={
-                              <Link href={href} color='secondary' underline='hover'>
-                                {agreement.checkbox_text}
-                              </Link>
-                            }
-                          />
-                          {error?.message && <FormHelperText error>{error.message}</FormHelperText>}
-                        </FormControl>
-                      )}
+                      label={
+                        <Link href={href} color='secondary' underline='hover'>
+                          {agreement.checkbox_text}
+                        </Link>
+                      }
                     />
                   ) : (
                     <Box className={classes.manualCheck} sx={{ padding: `9px 0` }}>
