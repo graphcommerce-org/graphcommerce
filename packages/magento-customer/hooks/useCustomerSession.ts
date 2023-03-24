@@ -28,7 +28,7 @@ export function useCustomerSession(options: UseCustomerSessionOptions = {}) {
    * component while other components are rendering for the second time.
    */
   const { hydration = false } = options
-  const [hydrating, setHydrating] = useState(!hydration)
+  const [hydrating, setHydrating] = useState(false)
 
   /**
    * After the initital render we are definitely sure we're not hydrating anymore so we can flip the

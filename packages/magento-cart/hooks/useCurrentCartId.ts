@@ -13,7 +13,7 @@ export function useCurrentCartId<Q, V extends OperationVariables>(
   options: UseCurrentCartIdOptions<Q, V> = {},
 ) {
   const { hydration = false, ...queryOptions } = options
-  const [hydrating, setHydrating] = useState(!hydration)
+  const [hydrating, setHydrating] = useState(false)
 
   useIsomorphicLayoutEffect(() => {
     if (!hydrating) return
