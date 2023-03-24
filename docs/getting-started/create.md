@@ -32,8 +32,8 @@ cp -R graphcommerce/examples/magento-graphcms/. my-project && rm -rf graphcommer
 
 ## Step 2: Configure API keys
 
-Rename the configuration example file to: `graphcommerce.config.js` and
-configure the following:
+Duplicate and rename the configuration example file to:
+`graphcommerce.config.js` and configure the following:
 
 - `magentoEndpoint` [?](../framework/config.md#magentoendpoint-string)
 - `hygraphEndpoint` [?](../framework/config.md#hygraphendpoint-string)
