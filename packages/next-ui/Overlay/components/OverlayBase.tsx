@@ -379,6 +379,9 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
             height: dvh(100),
 
             [theme.breakpoints.down('md')]: {
+              '&.variantSmLeft, &.variantSmRight': {
+                overscrollBehaviorX: 'none',
+              },
               '&.variantSmLeft': {
                 gridTemplate: `"overlay beforeOverlay"`,
                 borderTopRightRadius: theme.shape.borderRadius * 3,
@@ -390,6 +393,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
                 borderBottomLeftRadius: theme.shape.borderRadius * 3,
               },
               '&.variantSmBottom': {
+                overscrollBehaviorY: 'none',
                 gridTemplate: `"beforeOverlay" "overlay"`,
                 height: `calc(${dvh(100)} - 1px)`,
 
@@ -501,11 +505,6 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
                 },
 
                 '&.variantSmBottom': {
-                  scrollbarWidth: 'none',
-                  '&::-webkit-scrollbar': {
-                    display: 'none',
-                  },
-
                   maxHeight: `calc(${dvh(100)} - ${smSpacingTop})`,
                   paddingTop: smSpacingTop,
                   boxSizing: 'border-box',
@@ -527,6 +526,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
                   borderTopRightRadius: `${theme.shape.borderRadius * 3}px`,
                 },
                 '&.variantSmLeft, &.variantSmRight': {
+                  overscrollBehaviorY: 'none',
                   width: widthSm || 'max-content',
                   boxShadow: theme.shadows[24],
                   maxHeight: dvh(100),
@@ -544,6 +544,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
               [theme.breakpoints.up('md')]: {
                 minWidth: '1px',
                 overflowY: 'auto',
+                overflowX: 'hidden',
                 overscrollBehavior: 'contain',
                 '&.variantMdBottom.sizeMdFloating:not(.justifyMdStretch)': {
                   width: widthMd,
@@ -553,15 +554,10 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
                   maxHeight: `calc(${dvh(100)} - ${mdSpacingTop})`,
                   paddingTop: mdSpacingTop,
                   boxSizing: 'border-box',
-                  boxShadow: theme.shadows[24],
-
-                  scrollbarWidth: 'none',
-                  '&::-webkit-scrollbar': {
-                    display: 'none',
-                  },
                   '&.sizeMdFloating': {
                     paddingTop: 0,
                     maxHeight: `calc(${dvh(100)} - (${theme.page.vertical} * 2))`,
+                    boxShadow: theme.shadows[24],
                   },
                   '&.sizeMdMinimal': {
                     maxHeight: dvh(100),
@@ -597,7 +593,6 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
               className={classes.background}
               sx={(theme) => ({
                 backgroundColor: theme.palette.background.paper,
-                boxShadow: theme.shadows[24],
                 paddingBottom: '0.1px',
                 [theme.breakpoints.down('md')]: {
                   minHeight: '100%',
@@ -607,7 +602,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
                   },
                   '&.sizeSmFull': {
                     minHeight: dvh(100),
-                    '&.variantMdBottom': {
+                    '&.variantSmBottom': {
                       minHeight: '100%',
                     },
                   },
