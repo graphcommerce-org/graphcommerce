@@ -66,6 +66,8 @@ export function CartAgreementsForm(props: CartAgreementsFormProps) {
             sortedAgreements?.map((agreement) => {
               if (!agreement) return null
               const href = `/checkout/terms/${agreement.name?.toLowerCase().replace(/\s+/g, '-')}`
+              const agreementTextParts = agreement.checkbox_text.split(agreement.name)
+
               return (
                 <React.Fragment key={agreement.agreement_id}>
                   {agreement.mode === 'MANUAL' ? (
@@ -80,9 +82,19 @@ export function CartAgreementsForm(props: CartAgreementsFormProps) {
                         required: i18n._(/* i18n */ 'You have to agree in order to proceed'),
                       }}
                       label={
-                        <Link href={href} color='secondary' underline='hover'>
-                          {agreement.checkbox_text}
-                        </Link>
+                        agreement.checkbox_text.includes(agreement.name) ? (
+                          <>
+                            {agreementTextParts[0]}
+                            <Link href={href} color='secondary' underline='hover'>
+                              {agreement.name}
+                            </Link>
+                            {agreementTextParts[1]}
+                          </>
+                        ) : (
+                          <Link href={href} color='secondary' underline='hover'>
+                            {agreement.checkbox_text}
+                          </Link>
+                        )
                       }
                     />
                   ) : (
