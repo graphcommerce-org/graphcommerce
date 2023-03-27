@@ -26,6 +26,7 @@ import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Divider, Fab } from '@mui/material'
 import { useRouter } from 'next/router'
+import { StoreMessage } from '../GraphCMS/StoreMessage/StoreMessage'
 import { Footer } from './Footer'
 import { LayoutQuery } from './Layout.gql'
 import { Logo } from './Logo'
@@ -34,7 +35,7 @@ export type LayoutNavigationProps = LayoutQuery &
   Omit<LayoutDefaultProps, 'footer' | 'header' | 'cartFab' | 'menuFab'>
 
 export function LayoutNavigation(props: LayoutNavigationProps) {
-  const { footer, menu, children, ...uiProps } = props
+  const { footer, menu, children, storeMessage, ...uiProps } = props
 
   const selection = useNavigationSelection()
   const router = useRouter()
@@ -106,6 +107,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
       <LayoutDefault
         {...uiProps}
         noSticky={router.asPath.split('?')[0] === '/'}
+        beforeHeader={storeMessage && <StoreMessage content={storeMessage} />}
         header={
           <>
             <Logo />

@@ -1,0 +1,7 @@
+fragment StoreMessage on Query {
+  storeMessage: rowColumnOne(where: { identity: "store-message" }) {
+    colOne {
+      raw
+    }
+  }
+}
