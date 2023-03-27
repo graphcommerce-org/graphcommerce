@@ -1,10 +1,11 @@
+import { CurrencyEnum } from '@graphcommerce/graphql-mesh'
 import { ProductListItemFragment, ProductListItemProps } from '@graphcommerce/magento-product'
 import { useHits } from 'react-instantsearch-hooks'
 import { AlgoliaHit } from '../lib/types'
 
 function hitToProduct(items: AlgoliaHit[]) {
   const mapHits = items.map((item) => {
-    const currency = Object.keys(item.price)[0]
+    const currency = Object.keys(item.price)[0] as CurrencyEnum
     const price = item.price[currency]
 
     return {
@@ -36,12 +37,12 @@ function hitToProduct(items: AlgoliaHit[]) {
           },
         },
       },
-      rating_summary: item.rating_summary,
-      url_key: item.url,
+      rating_summary: item.rating_summary ?? 0,
+      // url_key: item.url,
       name: item.name,
       review_count: 0,
     }
-  }) as
+  }) satisfies
     | Array<(ProductListItemFragment & ProductListItemProps) | null | undefined>
     | null
     | undefined
