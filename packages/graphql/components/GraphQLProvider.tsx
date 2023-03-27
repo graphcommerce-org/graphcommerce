@@ -46,6 +46,8 @@ export function GraphQLProvider(props: GraphQLProviderProps) {
   const { children, policies = [], migrations = [], links = [], pageProps } = props
   const state = (pageProps as { apolloState?: NormalizedCacheObject }).apolloState
 
+  const stateRef = useRef(state)
+
   const linksRef = useRef(links)
   const policiesRef = useRef(policies)
 
@@ -66,14 +68,11 @@ export function GraphQLProvider(props: GraphQLProviderProps) {
       new HttpLink({ uri: '/api/graphql', credentials: 'same-origin' }),
     ])
 
-    const apolloClient = new ApolloClient({
-      link,
-      cache: createCache(),
-      name: 'web',
-      ssrMode: typeof window === 'undefined',
-    })
+    const cache = createCache()
+    if (stateRef.current) cache.restore(stateRef.current)
 
-    return apolloClient
+    const ssrMode = typeof window === 'undefined'
+    return new ApolloClient({ link, cache, name: 'web', ssrMode })
   }, [createCache])
 
   useEffect(() => {
