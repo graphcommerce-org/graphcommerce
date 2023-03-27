@@ -119,6 +119,7 @@ export function LayoutDefault(props: LayoutDefaultProps) {
                 position: 'fixed',
                 bottom: `calc(20px + ${fabIconSize})`,
                 padding: `0 20px`,
+                // Hide fabs when keyboard is open on mobile
                 '@media (max-height: 530px) and (orientation: portrait)': {
                   display: 'none',
                 },
