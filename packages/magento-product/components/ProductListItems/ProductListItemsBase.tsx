@@ -27,8 +27,6 @@ export function ProductListItemsBase(props: ProductItemsGridProps) {
     onClick,
   } = props
 
-  console.log(sx)
-
   return (
     <Box
       sx={[
