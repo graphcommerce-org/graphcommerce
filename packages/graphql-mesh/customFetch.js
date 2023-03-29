@@ -1,8 +1,28 @@
-const { fetch } = require('@whatwg-node/fetch')
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable @typescript-eslint/no-var-requires */
 const fetchRetry = require('fetch-retry')
 
-module.exports = fetchRetry(fetch, {
-  retries: 6,
-  retryDelay: (attempt) => 2 ** attempt * 200, // 200, 400, 800, 1600, 3200, 6400
-  retryOn: [429],
-})
+/** @type {fetchRetry.default} */
+const fetcher = fetchRetry(
+  process.env.__NEXT_PROCESSED_ENV ? fetch : require('@whatwg-node/fetch').fetch,
+)
+
+/**
+ * @param {RequestInfo | URL} url
+ * @param {import('fetch-retry').RequestInitWithRetry | undefined} options
+ * @returns {Promise<Response>}
+ */
+module.exports = (url, options) => {
+  /** @type {RequestInit['headers']} */
+  const headers = Object.fromEntries(
+    Object.entries(options?.headers ?? {}).filter(([_, value]) => value !== ''),
+  )
+
+  return fetcher(url, {
+    ...options,
+    headers,
+    retries: 6,
+    retryDelay: (attempt) => 2 ** attempt * 200, // 200, 400, 800, 1600, 3200, 6400
+    retryOn: [429],
+  })
+}
