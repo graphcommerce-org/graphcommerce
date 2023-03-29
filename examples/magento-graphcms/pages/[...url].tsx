@@ -209,7 +209,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const hasCategory = Boolean(productListParams && categoryUid)
 
   if (!productListParams || !(hasPage || hasCategory))
-    return redirectOrNotFound(staticClient, params, locale)
+    return redirectOrNotFound(staticClient, (await conf).data, params, locale)
 
   if (!hasCategory) {
     return {
