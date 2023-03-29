@@ -18,10 +18,7 @@ import { iconClose, iconCheckmark, iconSadFace } from '../icons'
 type Size = 'normal' | 'wide'
 type Variant = 'contained' | 'pill'
 
-export type MessageSnackbarProps = Omit<
-  SnackbarProps,
-  'autoHideDuration' | 'anchorOrigin' | 'color'
-> & {
+export type MessageSnackbarProps = Omit<SnackbarProps, 'autoHideDuration' | 'color'> & {
   autoHide?: boolean
   action?: React.ReactNode
   children?: React.ReactNode
@@ -51,6 +48,8 @@ export default function MessageSnackbarImpl(props: MessageSnackbarProps) {
     action,
     open,
     message,
+    anchorOrigin,
+    // icon,
     sticky,
     children,
     onClose,
@@ -83,7 +82,7 @@ export default function MessageSnackbarImpl(props: MessageSnackbarProps) {
       <Snackbar
         {...snackbarProps}
         message={message}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+        anchorOrigin={anchorOrigin ?? { vertical: 'bottom', horizontal: 'center' }}
         open={showSnackbar}
         autoHideDuration={autoHide ? 5000 : null}
         className={classes.root}

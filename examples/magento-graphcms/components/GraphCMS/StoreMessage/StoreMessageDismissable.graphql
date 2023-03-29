@@ -1,0 +1,8 @@
+fragment StoreMessageDismissable on Query {
+  storeMessageDismissable: rowColumnOne(where: { identity: "store-message-dismissable" }) {
+    id
+    colOne {
+      raw
+    }
+  }
+}

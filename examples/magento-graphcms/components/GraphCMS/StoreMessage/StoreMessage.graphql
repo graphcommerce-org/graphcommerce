@@ -1,5 +1,6 @@
 fragment StoreMessage on Query {
   storeMessage: rowColumnOne(where: { identity: "store-message" }) {
+    id
     colOne {
       raw
     }
