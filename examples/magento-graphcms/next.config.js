@@ -4,7 +4,6 @@ require('dotenv').config({ path: `${__dirname}/.env` })
 
 const { withGraphCommerce, runtimeCaching, headers } = require('@graphcommerce/next-config')
 
-// eslint-disable-next-line import/order
 const withPWA = require('next-pwa')({
   dest: 'public',
   disable: process.env.NODE_ENV === 'development',
