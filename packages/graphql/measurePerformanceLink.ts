@@ -1,8 +1,9 @@
 /* eslint-disable no-console */
 import { ApolloLink } from '@apollo/client'
 import type { MeshFetchHTTPInformation } from '@graphql-mesh/plugin-http-details-extensions'
+import { print } from 'graphql'
 import { terminalLink } from './lib/hyperlinker'
-import { print, stripIgnoredCharacters } from 'graphql'
+
 const running = new Map<
   string,
   {

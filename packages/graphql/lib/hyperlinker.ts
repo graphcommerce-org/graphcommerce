@@ -42,6 +42,7 @@ function supportsHyperlink(): boolean {
     TERM_PROGRAM,
     TERM_PROGRAM_VERSION,
     VTE_VERSION,
+    VERCEL,
   } = process.env
 
   if (FORCE_HYPERLINK) {
@@ -52,6 +53,7 @@ function supportsHyperlink(): boolean {
   if (process.stdout.isTTY || process.stderr.isTTY) return false
   if (process.platform === 'win32') return false
   if (CI) return false
+  if (VERCEL) return false
   if (TEAMCITY_VERSION) return false
 
   if (TERM_PROGRAM) {
