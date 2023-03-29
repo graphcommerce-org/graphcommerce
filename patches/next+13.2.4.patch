@@ -1,0 +1,20 @@
+diff --git a/node_modules/next/dist/server/send-payload/revalidate-headers.js b/node_modules/next/dist/server/send-payload/revalidate-headers.js
+index 2ccd911..74ea11e 100644
+--- a/node_modules/next/dist/server/send-payload/revalidate-headers.js
++++ b/node_modules/next/dist/server/send-payload/revalidate-headers.js
+@@ -12,9 +12,13 @@ function setRevalidateHeaders(res, options) {
+         if (options.revalidate < 1) {
+             throw new Error(`invariant: invalid Cache-Control duration provided: ${options.revalidate} < 1`);
+         }
+-        res.setHeader("Cache-Control", `s-maxage=${options.revalidate}, stale-while-revalidate`);
++        if (!res.getHeader('Cache-Control')) {
++            res.setHeader("Cache-Control", `s-maxage=${options.revalidate}, stale-while-revalidate`);
++        }
+     } else if (options.revalidate === false) {
+-        res.setHeader("Cache-Control", `s-maxage=31536000, stale-while-revalidate`);
++        if (!res.getHeader('Cache-Control')) {
++            res.setHeader("Cache-Control", `s-maxage=31536000, stale-while-revalidate`);
++        }
+     }
+ }
+ 
