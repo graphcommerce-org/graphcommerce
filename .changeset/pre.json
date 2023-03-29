@@ -72,11 +72,13 @@
     "@graphcommerce/typescript-config-pwa": "6.0.1"
   },
   "changesets": [
+    "angry-kiwis-speak",
     "big-camels-allow",
     "friendly-dancers-dress",
     "silver-eggs-notice",
     "soft-beans-happen",
     "strange-beds-knock",
-    "thirty-trains-smell"
+    "thirty-trains-smell",
+    "two-seals-thank"
   ]
 }
