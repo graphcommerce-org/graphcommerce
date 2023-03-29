@@ -61,6 +61,10 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
 
   return {
     ...nextConfig,
+    experimental: {
+      enableUndici: true,
+      ...nextConfig.experimental,
+    },
     i18n: {
       defaultLocale:
         storefront.find((locale) => locale.defaultLocale)?.locale ?? storefront[0].locale,
