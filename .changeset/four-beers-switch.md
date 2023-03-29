@@ -3,4 +3,4 @@
 '@graphcommerce/next-config': patch
 ---
 
-add custom service worker runtimeCaching config
+add custom service worker runtimeCaching and headers config

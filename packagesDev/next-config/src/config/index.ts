@@ -4,6 +4,7 @@ import { GraphCommerceConfig } from '../generated/config'
 export * from './commands/generateConfig'
 export * from './commands/exportConfig'
 export * from './runtimeCaching'
+export * from './headers'
 
 export * from './loadConfig'
 

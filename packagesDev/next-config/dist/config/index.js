@@ -16,4 +16,6 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./commands/generateConfig"), exports);
 __exportStar(require("./commands/exportConfig"), exports);
+__exportStar(require("./runtimeCaching"), exports);
+__exportStar(require("./headers"), exports);
 __exportStar(require("./loadConfig"), exports);

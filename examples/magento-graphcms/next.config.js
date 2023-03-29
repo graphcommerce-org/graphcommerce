@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 require('dotenv').config({ path: `${__dirname}/.env` })
 
-const { withGraphCommerce, runtimeCaching } = require('@graphcommerce/next-config')
+const { withGraphCommerce, runtimeCaching, headers } = require('@graphcommerce/next-config')
 
 // eslint-disable-next-line import/order
 const withPWA = require('next-pwa')({
@@ -29,37 +29,7 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   // eslint-disable-next-line @typescript-eslint/require-await
-  headers: async () => [
-    {
-      headers: [
-        {
-          key: 'Cache-Control',
-          value: 'public, max-age=0, must-revalidate',
-        },
-        {
-          key: 'CDN-Cache-Control',
-          value: 'public, max-age=31536000, stale-while-revalidate',
-        },
-      ],
-
-      source: '/:path*',
-    },
-    {
-      headers: [
-        {
-          key: 'Cache-Control',
-          value: 'public, max-age=31536000, immutable',
-        },
-        {
-          key: 'CDN-Cache-Control',
-          value: 'public, max-age=31536000, stale-while-revalidate',
-        },
-      ],
-
-      source:
-        '/:path(.+\\.(?:ico|png|svg|jpg|jpeg|gif|webp|json|js|css|mp3|mp4|ttf|ttc|otf|woff|woff2)$)',
-    },
-  ],
+  headers: async () => [...headers],
 }
 
 module.exports = withGraphCommerce(withPWA(nextConfig), __dirname)
