@@ -8,6 +8,4 @@ fragment ProductPageItem on ProductInterface @injectable {
   ...ProductPageGallery
   ...ProductPageMeta
   ...ProductPagePrice
-  ...UpsellProducts
-  ...RelatedProducts
 }

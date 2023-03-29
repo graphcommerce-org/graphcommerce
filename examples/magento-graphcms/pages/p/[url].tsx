@@ -1,4 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { mergeDeep } from '@graphcommerce/graphql'
 import {
   AddProductsToCartButton,
   AddProductsToCartError,
@@ -14,6 +15,8 @@ import {
   ProductPageMeta,
   ProductPagePrice,
   ProductPagePriceTiers,
+  ProductPageRelatedUpsellsDocument,
+  ProductPageRelatedUpsellsQuery,
   ProductShortDescription,
   ProductSidebarDelivery,
 } from '@graphcommerce/magento-product'
@@ -51,16 +54,18 @@ import { LayoutDocument } from '../../components/Layout/Layout.gql'
 import { ProductPage2Document, ProductPage2Query } from '../../graphql/ProductPage2.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
-type Props = ProductPage2Query & Pick<AddProductsToCartFormProps, 'defaultValues'>
+type Props = ProductPage2Query &
+  ProductPageRelatedUpsellsQuery &
+  Pick<AddProductsToCartFormProps, 'defaultValues'>
 
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
 function ProductPage(props: Props) {
-  const { products, usps, sidebarUsps, pages, defaultValues } = props
+  const { products, relatedUpsells, usps, sidebarUsps, pages, defaultValues } = props
 
-  const product = products?.items?.[0]
+  const product = mergeDeep(products, relatedUpsells)?.items?.[0]
 
   if (!product?.sku || !product.url_key) return null
 
@@ -235,6 +240,11 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     query: ProductPage2Document,
     variables: { url: 'product/global', urlKey },
   })
+
+  const relatedUpsells = staticClient.query({
+    query: ProductPageRelatedUpsellsDocument,
+    variables: { urlKey },
+  })
   const layout = staticClient.query({ query: LayoutDocument })
 
   const product = (await productPage).data.products?.items?.find((p) => p?.url_key === urlKey)
@@ -249,6 +259,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   return {
     props: {
       ...defaultConfigurableOptionsSelection(urlKey, client, (await productPage).data),
+      ...(await relatedUpsells).data,
       ...(await layout).data,
       apolloState: await conf.then(() => client.cache.extract()),
       up,

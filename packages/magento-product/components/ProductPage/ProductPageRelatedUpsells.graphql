@@ -1,0 +1,9 @@
+query ProductPageRelatedUpsells($urlKey: String!) {
+  relatedUpsells: products(filter: { url_key: { eq: $urlKey } }) {
+    items {
+      uid
+      ...UpsellProducts
+      ...RelatedProducts
+    }
+  }
+}

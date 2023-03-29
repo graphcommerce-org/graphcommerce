@@ -5,9 +5,9 @@ query ProductPage2(
   $reviewPage: Int = 1
 ) {
   ...UspsQueryFragment
-  ...ProductPageQueryFragment
   ...PageContentQueryFragment
   products(filter: { url_key: { eq: $urlKey } }) {
+    ...ProductSpecs
     items {
       __typename
       uid
