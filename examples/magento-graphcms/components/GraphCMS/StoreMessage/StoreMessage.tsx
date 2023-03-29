@@ -16,13 +16,19 @@ export function StoreMessage(props: Props) {
     <Box
       sx={[
         (theme) => ({
-          backgroundColor: `${theme.palette.primary.dark}`,
+          backgroundColor: theme.palette.primary.dark,
+          color: theme.palette.primary.contrastText,
+          textAlign: 'center',
+          padding: '2px 0 3px',
+          '& a': {
+            color: theme.palette.primary.contrastText,
+            textDecoration: 'underline',
+            '&:hover': {
+              textDecoration: 'none',
+            },
+          },
           '& .MuiContainer-root': {
             marginBottom: 0,
-            color: `${theme.palette.primary.contrastText}`,
-            textAlign: 'center',
-            paddingTop: `calc(${theme.spacings.xs} * 0.5)`,
-            paddingBottom: `calc(${theme.spacings.xs} * 0.5)`,
           },
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
