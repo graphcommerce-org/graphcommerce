@@ -122,6 +122,20 @@ module.exports = {
             message: "Please use `@mui/material'` instead.",
           },
           {
+            name: '@mui/material',
+            importNames: [
+              'Autocomplete',
+              'Checkbox',
+              'Radio',
+              'Select',
+              'Slider',
+              'Switch',
+              'TextField',
+              'ToggleButtonGroup',
+            ],
+            message: `Please use \`import { SelectElement, TextFieldElement, etc } from '@graphcommerce/ecommerce-ui'\` for usage in forms. https://github.com/graphcommerce-org/graphcommerce/tree/main/packages/ecommerce-ui/components/FormComponents`,
+          },
+          {
             name: '@emotion/react',
             importNames: ['Theme', 'GlobalProps', 'ThemeContext'],
             message: 'Import from @mui/material instead of @emotion/react.',
