@@ -72,6 +72,13 @@ it('finds plugins', () => {
         "plugin": "@graphcommerce/googleanalytics/plugins/GaProductListItemsBase",
       },
       {
+        "component": "RemoveItemFromCartFab",
+        "enabled": true,
+        "exported": "@graphcommerce/magento-cart-items/RemoveItemFromCart/RemoveItemFromCartFab",
+        "ifConfig": "googleAnalyticsId",
+        "plugin": "@graphcommerce/googleanalytics/plugins/GaRemoveItemFromCart",
+      },
+      {
         "component": "ShippingMethodForm",
         "enabled": true,
         "exported": "@graphcommerce/magento-cart-shipping-method",
@@ -84,6 +91,12 @@ it('finds plugins', () => {
         "exported": "@graphcommerce/magento-cart-items/UpdateItemQuantity/UpdateItemQuantity",
         "ifConfig": "googleAnalyticsId",
         "plugin": "@graphcommerce/googleanalytics/plugins/GaUpdateItemQuantity",
+      },
+      {
+        "component": "ProductPageMeta",
+        "enabled": true,
+        "exported": "@graphcommerce/magento-product",
+        "plugin": "@graphcommerce/googleanalytics/plugins/GaViewItem",
       },
       {
         "component": "ApolloErrorAlert",
@@ -186,6 +199,13 @@ it('finds plugins', () => {
         "exported": "@graphcommerce/magento-product",
         "ifConfig": "demoMode",
         "plugin": "@graphcommerce/demo-magento-graphcommerce/plugins/demo/DemoProductListItemsBase",
+      },
+      {
+        "component": "RowLinks",
+        "enabled": false,
+        "exported": "@graphcommerce/next-ui/Row/RowLinks/RowLinks",
+        "ifConfig": "demoMode",
+        "plugin": "@graphcommerce/demo-magento-graphcommerce/plugins/demo/DemoRowLinks",
       },
       {
         "component": "FramerNextPages",
