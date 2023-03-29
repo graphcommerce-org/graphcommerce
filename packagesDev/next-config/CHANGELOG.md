@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.2-canary.3
+
+### Patch Changes
+
+- [#1872](https://github.com/graphcommerce-org/graphcommerce/pull/1872) [`05522796f`](https://github.com/graphcommerce-org/graphcommerce/commit/05522796f3f132db50e7b4c26089740a12a9153a) - Fix issue where a deeper plugin from the root of the project doesn't have a correct relative path ([@paales](https://github.com/paales))
+
 ## 6.0.2-canary.2
 
 ## 6.0.2-canary.1
