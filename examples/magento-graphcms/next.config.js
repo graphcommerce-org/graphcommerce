@@ -2,27 +2,13 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 require('dotenv').config({ path: `${__dirname}/.env` })
 
-const { withGraphCommerce } = require('@graphcommerce/next-config')
-const cache = require('next-pwa/cache')
+const { withGraphCommerce, runtimeCaching } = require('@graphcommerce/next-config')
 
 // eslint-disable-next-line import/order
 const withPWA = require('next-pwa')({
   dest: 'public',
   disable: process.env.NODE_ENV === 'development',
-  runtimeCaching: [
-    {
-      urlPattern: /\/_next\/data\/.+\/.+\.json$/i,
-      handler: 'NetworkFirst',
-      options: {
-        cacheName: 'next-data',
-        expiration: {
-          maxEntries: 32,
-          maxAgeSeconds: 24 * 60 * 60, // 24 hours
-        },
-      },
-    },
-    ...cache,
-  ],
+  runtimeCaching,
 })
 
 /** @type {import('next').NextConfig} */
@@ -48,7 +34,7 @@ const nextConfig = {
       headers: [
         {
           key: 'Cache-Control',
-          value: 'public, no-cache, no-store, max-age=0, must-revalidate',
+          value: 'public, max-age=0, must-revalidate',
         },
         {
           key: 'CDN-Cache-Control',
@@ -72,26 +58,6 @@ const nextConfig = {
 
       source:
         '/:path(.+\\.(?:ico|png|svg|jpg|jpeg|gif|webp|json|js|css|mp3|mp4|ttf|ttc|otf|woff|woff2)$)',
-    },
-    {
-      headers: [
-        {
-          key: 'Cache-Control',
-          value: 'private, no-cache, no-store, max-age=0, must-revalidate',
-        },
-      ],
-
-      source: '/_next/data/:path*',
-    },
-    {
-      headers: [
-        {
-          key: 'Cache-Control',
-          value: 'private, no-cache, no-store, max-age=0, must-revalidate',
-        },
-      ],
-
-      source: '/_next/:path(.+\\.(?:json)$)',
     },
   ],
 }

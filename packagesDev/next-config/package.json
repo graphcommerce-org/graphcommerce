@@ -19,6 +19,7 @@
     "inspectpack": "^4.7.1",
     "js-yaml-loader": "^1.2.2",
     "lodash": "^4.17.21",
+    "workbox-build": "^6.5.4",
     "znv": "^0.3.2",
     "zod": "^3.21.4"
   },
