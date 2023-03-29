@@ -1,4 +1,5 @@
 import { ProductSpecsFragment } from '@graphcommerce/magento-product/components/ProductSpecs/ProductSpecs.gql'
+import { lazyHydrate } from '../../lazyHydrate'
 import { RowProductFragment } from './RowProduct.gql'
 import {
   Backstory,
@@ -22,15 +23,15 @@ type RowProductProps = RowProductFragment & {
 } & ProductSpecsFragment & { items?: unknown }
 
 const defaultRenderer: Partial<VariantRenderer> = {
-  Specs,
-  Backstory,
-  Feature,
-  FeatureBoxed,
-  Grid,
-  Related,
-  Reviews,
-  Upsells,
-  Swipeable,
+  Specs: lazyHydrate(Specs),
+  Backstory: lazyHydrate(Backstory),
+  Feature: lazyHydrate(Feature),
+  FeatureBoxed: lazyHydrate(FeatureBoxed),
+  Grid: lazyHydrate(Grid),
+  Related: lazyHydrate(Related),
+  Reviews: lazyHydrate(Reviews),
+  Upsells: lazyHydrate(Upsells),
+  Swipeable: lazyHydrate(Swipeable),
 }
 
 export function RowProduct(props: RowProductProps) {

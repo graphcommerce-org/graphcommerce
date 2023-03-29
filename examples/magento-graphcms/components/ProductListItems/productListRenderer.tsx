@@ -1,4 +1,8 @@
-import { AddProductsToCartFab, ProductListItemRenderer } from '@graphcommerce/magento-product'
+import {
+  AddProductsToCartFab,
+  ProductListItem,
+  ProductListItemRenderer,
+} from '@graphcommerce/magento-product'
 import { ProductListItemBundle } from '@graphcommerce/magento-product-bundle'
 import { ProductListItemConfigurable } from '@graphcommerce/magento-product-configurable'
 import { ProductListItemDownloadable } from '@graphcommerce/magento-product-downloadable'
@@ -7,12 +11,16 @@ import { ProductListItemSimple } from '@graphcommerce/magento-product-simple'
 import { ProductListItemVirtual } from '@graphcommerce/magento-product-virtual'
 import { ProductReviewSummary } from '@graphcommerce/magento-review'
 import { ProductWishlistChip } from '@graphcommerce/magento-wishlist'
+import { lazyHydrate } from '../lazyHydrate'
+
+const Simple = lazyHydrate(ProductListItemSimple)
+const Configurable = lazyHydrate(ProductListItemConfigurable)
 
 export const productListRenderer: ProductListItemRenderer = {
   SimpleProduct: (props) => {
     const { sku } = props
     return (
-      <ProductListItemSimple
+      <Simple
         {...props}
         aspectRatio={[1, 1]}
         bottomLeft={<ProductReviewSummary {...props} />}
@@ -22,7 +30,7 @@ export const productListRenderer: ProductListItemRenderer = {
     )
   },
   ConfigurableProduct: (props) => (
-    <ProductListItemConfigurable
+    <Configurable
       {...props}
       aspectRatio={[1, 1]}
       swatchLocations={{
@@ -73,7 +81,5 @@ export const productListRenderer: ProductListItemRenderer = {
   ),
   // // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // // @ts-ignore GiftCardProduct is only available in Commerce
-  // GiftCardProduct: (props) => (
-  //   <ProductListItem {...props} aspectRatio={[1, 1]} />
-  // ),
+  GiftCardProduct: (props) => <ProductListItem {...props} aspectRatio={[1, 1]} />,
 }

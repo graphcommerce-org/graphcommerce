@@ -139,7 +139,7 @@ function CategoryPage(props: CategoryProps) {
             <ProductListItems
               title={category.name ?? ''}
               items={products?.items}
-              loadingEager={1}
+              loadingEager={4}
             />
             <ProductListPagination page_info={products?.page_info} params={params} />
           </Container>
