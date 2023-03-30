@@ -2,7 +2,7 @@
 import { ApolloLink } from '@apollo/client'
 import type { MeshFetchHTTPInformation } from '@graphql-mesh/plugin-http-details-extensions'
 import { print } from 'graphql'
-import { terminalLink } from './lib/hyperlinker'
+import { cliHyperlink } from './lib/hyperlinker'
 
 const running = new Map<
   string,
@@ -163,7 +163,7 @@ export const measurePerformanceLink = new ApolloLink((operation, forward) => {
           const title = `${d.sourceName} ${d.responseTime}ms`
           additional = [
             `${additional[0]} ${title}`,
-            `${additional[1]} ${terminalLink(title, requestUrl.toString().replace(/\+/g, '%20'))}`,
+            `${additional[1]} ${cliHyperlink(title, requestUrl.toString().replace(/\+/g, '%20'))}`,
           ]
         })
       }
@@ -183,7 +183,7 @@ export const measurePerformanceLink = new ApolloLink((operation, forward) => {
         end: new Date(),
         operationName: [
           operation.operationName,
-          terminalLink(operation.operationName, bla.toString()),
+          cliHyperlink(operation.operationName, bla.toString()),
         ],
         additional,
       })

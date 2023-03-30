@@ -80,5 +80,5 @@ function supportsHyperlink(): boolean {
   return false
 }
 
-export const terminalLink = (text: string, uri: string) =>
-  supportsHyperlink() ? hyperlinker(text, uri) : uri
+export const cliHyperlink = (text: string, uri: string) =>
+  supportsHyperlink() ? hyperlinker(text, uri) : text
