@@ -175,15 +175,15 @@ export const measurePerformanceLink = new ApolloLink((operation, forward) => {
         print(operation.query),
       ].join('\n')
 
-      const bla = new URL(`${import.meta.graphCommerce.canonicalBaseUrl}/api/graphql`)
-      bla.searchParams.set('query', query)
+      const meshUrl = new URL(`${import.meta.graphCommerce.canonicalBaseUrl}/api/graphql`)
+      meshUrl.searchParams.set('query', query)
 
       running.set(operationString, {
         start: operation.getContext().measurePerformanceLinkStart as Date,
         end: new Date(),
         operationName: [
           operation.operationName,
-          cliHyperlink(operation.operationName, bla.toString()),
+          cliHyperlink(operation.operationName, meshUrl.toString()),
         ],
         additional,
       })
