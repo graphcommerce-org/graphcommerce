@@ -18,8 +18,8 @@ no performance penalty.
 
 ## How do I write a plugin?
 
-In this example we're going to add a 'BY GC' text to list items, as can seen on
-the demo on
+In this example we're going to add some text to list items, just like the text
+‘BY GC’ that can seen in the demo on
 [category pages](https://graphcommerce.vercel.app/nl/women/business).
 
 1. Create a new file in `/plugins/ProductListItemByGC.tsx` with the following
@@ -119,7 +119,7 @@ The Webpack plugin statically analyses the plugin file to find `component`,
 
 ### Possible use cases
 
-In the examples above we've extended the payment methods, but it should also
+In the examples above we've extended the product list items, but it should also
 work for other things such as:
 
 - Googletagmanager

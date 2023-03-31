@@ -80,7 +80,7 @@ packages:
 
 ### Resolving diff issues
 
-When you run `git apply ...` (step 4), git will try and apply all the diffs from
+When you run `git apply ...` (step 5), git will try and apply all the diffs from
 the patch file to your project files. When applying a diff fails, a
 [reject ↗](https://git-scm.com/docs/git-apply#Documentation/git-apply.txt---reject)
 `.rej` file will be created for _each_ file that could not be upgraded.
