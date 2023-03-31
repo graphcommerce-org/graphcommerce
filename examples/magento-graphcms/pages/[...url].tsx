@@ -235,8 +235,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     },
   })
 
-  // assertAllowedParams(await params, (await products).data)
-  if (!(await products).data) return redirectOrNotFound(client, params, locale)
+  if ((await products).errors) return { notFound: true }
 
   const { category_name, category_url_path } =
     (await categoryPage).data.categories?.items?.[0]?.breadcrumbs?.[0] ?? {}

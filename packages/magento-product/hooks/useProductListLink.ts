@@ -7,7 +7,8 @@ import {
 
 export function createProductListLink(props: ProductListParams): string {
   const { url, sort, currentPage, filters: incoming } = props
-  const filters = { ...incoming, category_uid: undefined }
+  const isSearch = url.startsWith('search')
+  const filters = isSearch ? incoming : { ...incoming, category_uid: undefined }
   const uid = incoming?.category_uid?.eq || incoming?.category_uid?.in?.[0]
 
   // base url path generation
@@ -33,13 +34,11 @@ export function createProductListLink(props: ProductListParams): string {
       if (isFilterTypeRange(value)) query += `/${param}/${value.from ?? '*'}-${value.to ?? '*'}`
     })
 
-  const result = query
-    ? `/${url.startsWith('search') ? url : `c/${url}`}${paginateSort}/q${
-        uid ? `/category_uid/${uid}` : ''
-      }${query}`
-    : `/${url}${paginateSort}`
+  // it's a category with filters, use the /c/ route.
+  if (query && !isSearch)
+    return `/c/${url}${paginateSort}/q${uid ? `/category_uid/${uid}` : ''}${query}`
 
-  return result
+  return query ? `/${url}${paginateSort}/q${query}` : `/${url}${paginateSort}`
 }
 
 export function useProductListLink(props: ProductListParams): string {

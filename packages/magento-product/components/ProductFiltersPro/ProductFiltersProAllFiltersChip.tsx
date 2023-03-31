@@ -32,7 +32,10 @@ export function ProductFiltersProAllFiltersChip(props: AllFiltersChip) {
   const { filters, sort } = params
 
   const activeFilters = filterNonNullableKeys(aggregations)
-    .filter(({ attribute_code }) => attribute_code !== 'category_id')
+    .filter(({ attribute_code }) => {
+      if (params.search !== null) return true
+      return attribute_code !== 'category_id' && attribute_code !== 'category_uid'
+    })
     .filter(
       ({ attribute_code }) =>
         filters[attribute_code]?.from || filters[attribute_code]?.to || filters[attribute_code]?.in,
