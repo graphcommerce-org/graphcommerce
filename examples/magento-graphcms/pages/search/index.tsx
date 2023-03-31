@@ -168,6 +168,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     search ? `search/${search}` : 'search',
     query,
     await filterTypes,
+    search,
   )
 
   if (!productListParams) return { notFound: true, revalidate: 60 * 20 }

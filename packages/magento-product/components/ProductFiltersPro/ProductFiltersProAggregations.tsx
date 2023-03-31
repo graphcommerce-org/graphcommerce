@@ -20,12 +20,9 @@ export function ProductFiltersProAggregations(props: ProductFiltersProAggregatio
   return (
     <>
       {filterNonNullableKeys(aggregations)
-        .filter((aggregation) => {
-          if (params.search) return true
-          return (
-            aggregation.attribute_code !== 'category_id' &&
-            aggregation.attribute_code !== 'category_uid'
-          )
+        .filter(({ attribute_code }) => {
+          if (params.search !== null) return true
+          return attribute_code !== 'category_id' && attribute_code !== 'category_uid'
         })
         .map((aggregation) => {
           const filterType = filterTypes[aggregation.attribute_code]
