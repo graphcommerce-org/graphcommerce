@@ -19,4 +19,12 @@ query ProductPage2(
       ...BundleProductOptions
     }
   }
+  # Workaround for https://github.com/magento/magento2/issues/32427
+  relatedUpsells: products(filter: { url_key: { eq: $urlKey } }) {
+    items {
+      uid
+      ...UpsellProducts
+      ...RelatedProducts
+    }
+  }
 }
