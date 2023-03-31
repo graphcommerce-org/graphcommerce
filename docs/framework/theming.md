@@ -34,7 +34,7 @@ and text colors. Save the file to see your changes updated in real-time:
   },
 ```
 
-You can search through your codebase to discover which component will be
+You can search through your codebase to discover which components will be
 affected by your changes. For example, search for occurrences of
 `theme.palette.primary.main`.
 
@@ -145,7 +145,7 @@ To overwrite a component's hover state, add the sx prop:
 <Button
   color='primary'
   variant='contained'
-  sx={{ '&&:hover': { background: 'green' } }}
+  sx={{ '&:hover': { background: 'green' } }}
 >
   <Trans>Contact Us</Trans>
 </Button>

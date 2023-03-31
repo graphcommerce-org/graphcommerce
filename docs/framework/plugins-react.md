@@ -1,7 +1,7 @@
 # Plugins React
 
-GraphCommerce's React plugin system allows you to extend GraphCommerce's build
-in components with your own logic.
+GraphCommerce's React plugin system allows you to extend GraphCommerce's
+built-in components with your own logic.
 
 - No runtime overhead: The plugin system is fully implemented in webpack and
 - Easy plugin creation: Configuration should happen in the plugin file, not a
@@ -133,7 +133,7 @@ work for other things such as:
 ### Conditionally include a plugin
 
 Provide an ifConfig export in the plugin that will only include the plugin if a
-[configuration](./config.md) value is truety.
+[configuration](./config.md) value is truthy.
 
 ```tsx
 import type { IfConfig } from '@graphcommerce/next-config'
