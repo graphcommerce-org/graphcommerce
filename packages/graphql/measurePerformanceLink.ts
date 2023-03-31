@@ -181,11 +181,16 @@ export const measurePerformanceLink = new ApolloLink((operation, forward) => {
       running.set(operationString, {
         start: operation.getContext().measurePerformanceLinkStart as Date,
         end: new Date(),
-        operationName: [
-          operation.operationName,
-          cliHyperlink(operation.operationName, meshUrl.toString()),
-        ],
+        operationName: [operation.operationName, operation.operationName],
         additional,
+        // [
+        //   operation.operationName,
+        //   cliHyperlink(operation.operationName, meshUrl.toString()),
+        // ],
+        // additional: [
+        //   `🔗 ${additional[0]}`,
+        //   `${cliHyperlink('🔗', meshUrl.toString())} ${additional[1]}`,
+        // ],
       })
 
       markTimeout()
