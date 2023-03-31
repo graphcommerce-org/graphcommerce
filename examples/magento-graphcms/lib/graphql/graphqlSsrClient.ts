@@ -31,6 +31,7 @@ function client(locale: string) {
     }),
     ssrMode: true,
     name: 'ssr',
+    defaultOptions: { query: { errorPolicy: 'all' } },
   })
 }
 
