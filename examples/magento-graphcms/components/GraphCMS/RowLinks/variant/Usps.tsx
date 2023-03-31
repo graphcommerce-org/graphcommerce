@@ -40,6 +40,7 @@ export function Usps(props: RowLinksFragment) {
             gap: 1,
             alignItems: 'center',
           }}
+          key={pageLink.id}
         >
           <IconSvg src={iconCheckmark} sx={{ color: 'primary.main' }} />
           <Box>

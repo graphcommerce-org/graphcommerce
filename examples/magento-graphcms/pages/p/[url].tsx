@@ -39,7 +39,7 @@ import {
   isTypename,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box, Divider, Link, Typography } from '@mui/material'
+import { Box, NoSsr, Divider, Link, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import {
   LayoutNavigation,
@@ -48,7 +48,8 @@ import {
   RowRenderer,
   Usps,
 } from '../../components'
-import { CompareProductButton } from '../../components/CompareProducts/CompareProductButton'
+import { CompareProductButton } from '../../components/CompareProducts/components/CompareProductButton'
+import { FallbackCompareButton } from '../../components/CompareProducts/components/FallbackCompareButton'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
 import { ProductPage2Document, ProductPage2Query } from '../../graphql/ProductPage2.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
@@ -181,7 +182,9 @@ function ProductPage(props: Props) {
           >
             <AddProductsToCartButton fullWidth product={product} />
             <ProductWishlistChipDetail {...product} />
-            <CompareProductButton name={product.name} id={String(product.id)} />
+            <NoSsr fallback={<FallbackCompareButton />}>
+              <CompareProductButton name={product.name} id={product.id} />
+            </NoSsr>
           </Box>
 
           <Usps usps={sidebarUsps} size='small' />

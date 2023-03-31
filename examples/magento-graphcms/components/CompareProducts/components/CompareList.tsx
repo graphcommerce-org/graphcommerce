@@ -1,33 +1,22 @@
 import { SelectElement, useForm, useFormPersist, WaitForQueries } from '@graphcommerce/ecommerce-ui'
-import { useQuery } from '@graphcommerce/graphql'
-import { FullPageMessage, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
 import {
-  Box,
-  Button,
-  CircularProgress,
-  Container,
-  FormControl,
-  MenuItem,
-  Select,
-  SelectChangeEvent,
-} from '@mui/material'
-import { useEffect, useRef, useState } from 'react'
+  compareArrows,
+  FullPageMessage,
+  LayoutOverlayHeader,
+  LayoutTitle,
+} from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/react'
+import { Box, CircularProgress, Container, FormControl } from '@mui/material'
+import { useEffect, useRef } from 'react'
 import { ProductListItems } from '../../ProductListItems/ProductListItems'
-import { CompareListDocument } from '../graphql/CompareList.gql'
-import { CurrentCompareUidDocument } from '../graphql/CurrentCompareUid.gql'
+import { useCompareListStyles } from '../hooks/useCompareGridStyles'
+import { useCompareList } from '../hooks/useCompareList'
 import { CompareRow } from './CompareRow'
-import { CompareSelect } from './CompareSelect'
 import { EmptyCompareListButton } from './EmptyCompareListButton'
 import { MoreInformationRow } from './MoreInformationRow'
 
 export function CompareList() {
-  const { data: curCompareId } = useQuery(CurrentCompareUidDocument)
-
-  const compareList = useQuery(CompareListDocument, {
-    variables: { uid: curCompareId?.currentCompareUid?.id ?? '' },
-    fetchPolicy: 'network-only',
-  })
+  const compareList = useCompareList()
   const compareListData = compareList.data
 
   const form = useForm<{ selected: number[] }>({ defaultValues: { selected: [0, 1, 2] } })
@@ -44,6 +33,8 @@ export function CompareList() {
   const compareAbleItems = compareListData?.compareList?.items
   const compareListAttributes = compareListData?.compareList?.attributes
 
+  const compareListStyles = useCompareListStyles(gridColumns)
+
   if (!compareAbleItems) return null
 
   const currentCompareItems = selectedState.map((i) => compareAbleItems[i])
@@ -53,9 +44,13 @@ export function CompareList() {
     <>
       <LayoutOverlayHeader
         switchPoint={0}
-        primary={<EmptyCompareListButton compareId={curCompareId} />}
+        primary={
+          compareList.data?.compareList?.uid && (
+            <EmptyCompareListButton compareListUid={compareList.data.compareList.uid} />
+          )
+        }
       >
-        <LayoutTitle size='small' component='span'>
+        <LayoutTitle size='small' component='span' icon={compareArrows}>
           <Trans id='Compare' /> ({compareListCount})
         </LayoutTitle>
       </LayoutOverlayHeader>
@@ -71,20 +66,12 @@ export function CompareList() {
         <Container maxWidth='xl'>
           <Box
             sx={(theme) => ({
-              display: 'grid',
-              gridColumnGap: theme.spacings.md,
-              gridRowGap: theme.spacings.md,
-              gridTemplateColumns: {
-                xs: `repeat(2, 1fr)`,
-                md: `repeat(3, 1fr)`,
-                lg: `repeat(3, 1fr)`,
-              },
+              ...compareListStyles,
               padding: theme.spacings.lg,
-              pt: `calc(${theme.spacings.lg} * 2)`,
             })}
           >
             {[0, 1, 2].map((compareSelectIndex) => (
-              <FormControl key={compareSelectIndex}>
+              <FormControl key={compareSelectIndex} sx={(theme) => ({ mt: theme.spacings.md })}>
                 <SelectElement
                   control={form.control}
                   name={`selected.${compareSelectIndex}`}
@@ -107,18 +94,17 @@ export function CompareList() {
             items={currentCompareProducts}
             size='small'
             sx={(theme) => ({
-              gridTemplateColumns: {
-                xs: `repeat(2, 1fr)`,
-                md: `repeat(3, 1fr)`,
-                lg: `repeat(3, 1fr)`,
-              },
+              ...compareListStyles,
               padding: theme.spacings.lg,
+              pt: 0,
             })}
           />
           <Box
             sx={(theme) => ({
               backgroundColor: theme.palette.background.default,
-              padding: theme.spacings.lg,
+              py: theme.spacings.md,
+              px: theme.spacings.lg,
+              borderRadius: theme.shape.borderRadius * 1.5,
             })}
           >
             {compareListAttributes?.map((attribute) => (

@@ -3,5 +3,5 @@ extend type Query {
 }
 
 type CurrentCompareUid {
-  id: String
+  uid: String
 }

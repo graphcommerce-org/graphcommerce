@@ -1,5 +1,3 @@
-import { WaitForQueries } from '@graphcommerce/ecommerce-ui'
-import { useQuery } from '@graphcommerce/graphql'
 import {
   extendableComponent,
   DesktopHeaderBadge,
@@ -9,19 +7,17 @@ import {
   useScrollY,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
-import { alpha, Fab, FabProps, styled, useTheme, Box, SxProps, Theme } from '@mui/material'
+import { alpha, Fab, FabProps, styled, useTheme, Box, SxProps, Theme, NoSsr } from '@mui/material'
 import { m, useTransform } from 'framer-motion'
 import React from 'react'
-import { CompareListDocument } from '../graphql/CompareList.gql'
-import { CurrentCompareUidDocument } from '../graphql/CurrentCompareUid.gql'
-
+import { useCompareList } from '../hooks/useCompareList'
 
 export type CompareFabProps = {
   icon?: React.ReactNode
   sx?: SxProps<Theme>
 } & Pick<FabProps, 'color' | 'size' | 'variant'>
 
-type CompareFabContentProps = CompareFabProps & {total_quantity: number}
+type CompareFabContentProps = CompareFabProps & { total_quantity: number }
 
 const MotionDiv = styled(m.div)({})
 
@@ -101,15 +97,13 @@ function CompareFabContent(props: CompareFabContentProps) {
 }
 
 export function CompareFab(props: CompareFabProps) {
-  const { data: curCompareId } = useQuery(CurrentCompareUidDocument)
-  const compareList = useQuery(CompareListDocument, {
-    variables: { uid: curCompareId?.currentCompareUid?.id ?? '' },
-    fetchPolicy: 'cache-and-network',
-  })
-
+  const compareList = useCompareList()
   return (
-    <WaitForQueries waitFor={compareList} fallback={<Box>joe</Box>}>
-      <CompareFabContent total_quantity={compareList.data?.compareList?.item_count ?? 0} {...props} />
-    </WaitForQueries>
+    <NoSsr fallback={<CompareFabContent total_quantity={0} {...props} />}>
+      <CompareFabContent
+        total_quantity={compareList.data?.compareList?.item_count ?? 0}
+        {...props}
+      />
+    </NoSsr>
   )
 }

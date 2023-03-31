@@ -3,6 +3,7 @@ import { Button, iconChevronRight, IconSvg, SectionContainer } from '@graphcomme
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box } from '@mui/material'
+import { useCompareListStyles } from '../hooks/useCompareGridStyles'
 import { ComparelistItems } from './CompareRow'
 
 type MoreInformationRowProps = {
@@ -11,27 +12,30 @@ type MoreInformationRowProps = {
 
 export function MoreInformationRow(props: MoreInformationRowProps) {
   const { compareAbleItems } = props
+  let columnCount: number
+
+  if (compareAbleItems) {
+    columnCount = compareAbleItems.length <= 3 ? compareAbleItems.length : 3
+  } else {
+    columnCount = 0
+  }
+
+  const compareListStyles = useCompareListStyles(columnCount)
 
   return (
     <Box sx={{ gridColumn: { xs: `span 2`, md: `span 3`, lg: `span 3` } }}>
       <SectionContainer labelLeft={<Trans id='More information' />}>
         <Box
           sx={(theme) => ({
-            display: 'grid',
-            gridTemplateColumns: {
-              xs: `repeat(2, 1fr)`,
-              md: `repeat(3, 1fr)`,
-              lg: `repeat(3, 1fr)`,
-            },
-            gridColumnGap: theme.spacings.md,
+            ...compareListStyles,
             mb: theme.spacings.lg,
           })}
         >
-          {compareAbleItems?.map((item, idx) => {
+          {compareAbleItems?.map((item) => {
             if (!item?.product) return null
             return (
               <Button
-                key={idx}
+                key={item.uid}
                 variant='text'
                 href={productLink(item?.product)}
                 endIcon={<IconSvg key='icon' src={iconChevronRight} size='inherit' />}

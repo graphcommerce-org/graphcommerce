@@ -1,0 +1,9 @@
+<svg role="img" xmlns="http://www.w3.org/2000/svg" width="48px" height="48px" aria-labelledby="compareIconTitle" stroke="#2329D6" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter" fill="none" color="#2329D6"> 
+<title id="compareIconTitle">Compare</title> 
+<symbol id="icon" viewBox="0 0 24 24">
+<path d="M12 9L22 9" />
+<path d="M16.5 4.5L12 9L16.5 13.5"/>
+<path d="M12 15L2 15"  />
+<path d="M7.5 19.5L12 15L7.5 10.5" />
+</symbol>
+</svg>
