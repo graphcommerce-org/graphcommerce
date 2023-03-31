@@ -1,8 +1,13 @@
 import { ParsedUrlQuery } from 'querystring'
-import { ApolloClient, flushMeasurePerf, NormalizedCacheObject } from '@graphcommerce/graphql'
+import {
+  ApolloClient,
+  ApolloQueryResult,
+  flushMeasurePerf,
+  NormalizedCacheObject,
+} from '@graphcommerce/graphql'
 import { nonNullable, isTypename } from '@graphcommerce/next-ui'
 import { Redirect } from 'next'
-import { StoreConfigDocument } from '../StoreConfig.gql'
+import { StoreConfigQuery } from '../StoreConfig.gql'
 import { defaultLocale } from '../localeToStore'
 import { HandleRedirectDocument } from './HandleRedirect.gql'
 
@@ -39,6 +44,7 @@ const redirect = (from: string, to: string, permanent: boolean, locale?: string)
 
 export async function redirectOrNotFound(
   client: ApolloClient<NormalizedCacheObject>,
+  config: Promise<ApolloQueryResult<StoreConfigQuery>> | ApolloQueryResult<StoreConfigQuery>,
   params?: ParsedUrlQuery,
   locale?: string,
 ): RedirectOr404Return {
@@ -49,14 +55,13 @@ export async function redirectOrNotFound(
 
   try {
     // Get the configured suffixes from the store config
-    const { product_url_suffix: prodSuffix, category_url_suffix: catSuffix } =
-      (await client.query({ query: StoreConfigDocument })).data.storeConfig ?? {}
+    const { product_url_suffix, category_url_suffix } = (await config).data.storeConfig ?? {}
 
     const candidates = new Set([from])
 
     // If the incomming URL contains a suffix, we check if the URL without the suffix exists
     // if the incomming URL does not contain a suffix, we check if the URL with the suffix exists
-    const suffixes = [prodSuffix, catSuffix].filter(nonNullable)
+    const suffixes = [product_url_suffix, category_url_suffix].filter(nonNullable)
     suffixes.forEach((suffix) => {
       candidates.add(from.endsWith(suffix) ? from.slice(0, -suffix.length) : `${from}${suffix}`)
     })

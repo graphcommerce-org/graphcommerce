@@ -239,7 +239,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const layout = staticClient.query({ query: LayoutDocument })
 
   const product = (await productPage).data.products?.items?.find((p) => p?.url_key === urlKey)
-  if (!product) return redirectOrNotFound(staticClient, params, locale)
+  if (!product) return redirectOrNotFound(staticClient, conf, params, locale)
 
   const category = productPageCategory(product)
   const up =
