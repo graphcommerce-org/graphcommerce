@@ -48,6 +48,42 @@ export function PostcodeNLAddressFields(props: AddressFieldsProps) {
   return (
     <>
       <FormRow>
+        <SelectElement
+          control={control}
+          name='countryCode'
+          SelectProps={{ autoWidth: true }}
+          variant='outlined'
+          label={<Trans id='Country' />}
+          required={required.countryCode}
+          InputProps={{
+            readOnly,
+            endAdornment: <InputCheckmark show={valid.countryCode} select />,
+          }}
+          options={filterNonNullableKeys(countryList, [
+            'two_letter_abbreviation',
+            'full_name_locale',
+          ]).map(({ two_letter_abbreviation: id, full_name_locale: label }) => ({ id, label }))}
+        />
+
+        {regionList.length > 0 && (
+          <SelectElement
+            control={control}
+            name='regionId'
+            // SelectProps={{ native: true, displayEmpty: true }}
+            variant='outlined'
+            label={<Trans id='Region' />}
+            required
+            InputProps={{
+              readOnly,
+              endAdornment: <InputCheckmark show={valid.regionId} select />,
+            }}
+            options={filterNonNullableKeys(regionList, ['id', 'name']).map(
+              ({ id, name: label }) => ({ id, label }),
+            )}
+          />
+        )}
+      </FormRow>
+      <FormRow>
         <TextFieldElement
           control={control}
           name='postcode'
@@ -119,42 +155,6 @@ export function PostcodeNLAddressFields(props: AddressFieldsProps) {
             endAdornment: <InputCheckmark show={valid.city} />,
           }}
         />
-      </FormRow>
-      <FormRow>
-        <SelectElement
-          control={control}
-          name='countryCode'
-          SelectProps={{ autoWidth: true }}
-          variant='outlined'
-          label={<Trans id='Country' />}
-          required={required.countryCode}
-          InputProps={{
-            readOnly,
-            endAdornment: <InputCheckmark show={valid.countryCode} select />,
-          }}
-          options={filterNonNullableKeys(countryList, [
-            'two_letter_abbreviation',
-            'full_name_locale',
-          ]).map(({ two_letter_abbreviation: id, full_name_locale: label }) => ({ id, label }))}
-        />
-
-        {regionList.length > 0 && (
-          <SelectElement
-            control={control}
-            name='regionId'
-            // SelectProps={{ native: true, displayEmpty: true }}
-            variant='outlined'
-            label={<Trans id='Region' />}
-            required
-            InputProps={{
-              readOnly,
-              endAdornment: <InputCheckmark show={valid.regionId} select />,
-            }}
-            options={filterNonNullableKeys(regionList, ['id', 'name']).map(
-              ({ id, name: label }) => ({ id, label }),
-            )}
-          />
-        )}
       </FormRow>
     </>
   )
