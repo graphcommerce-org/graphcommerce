@@ -6,7 +6,7 @@ import {
   LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box, CircularProgress, Container, FormControl } from '@mui/material'
+import { Box, CircularProgress, Container, FormControl, NoSsr } from '@mui/material'
 import { useEffect, useRef } from 'react'
 import { ProductListItems } from '../../ProductListItems/ProductListItems'
 import { useCompareListStyles } from '../hooks/useCompareGridStyles'
@@ -18,8 +18,12 @@ import { MoreInformationRow } from './MoreInformationRow'
 export function CompareList() {
   const compareList = useCompareList()
   const compareListData = compareList.data
+  const compareListCount = compareListData?.compareList?.item_count ?? 0
+  const gridColumns = compareListCount <= 3 ? compareListCount : 3
 
-  const form = useForm<{ selected: number[] }>({ defaultValues: { selected: [0, 1, 2] } })
+  const form = useForm<{ selected: number[] }>({
+    defaultValues: { selected: [...Array(gridColumns).keys()] },
+  })
 
   useFormPersist({ form, name: 'CompareList', storage: 'localStorage' })
   const selectedState = form.watch('selected')
@@ -28,11 +32,8 @@ export function CompareList() {
     selectedPrevious.current = selectedState
   }, [selectedState])
 
-  const compareListCount = compareListData?.compareList?.item_count ?? 0
-  const gridColumns = compareListCount <= 3 ? compareListCount : 3
   const compareAbleItems = compareListData?.compareList?.items
   const compareListAttributes = compareListData?.compareList?.attributes
-
   const compareListStyles = useCompareListStyles(gridColumns)
 
   if (!compareAbleItems) return null
@@ -41,7 +42,7 @@ export function CompareList() {
   const currentCompareProducts = currentCompareItems.map((item) => item?.product)
 
   return (
-    <>
+    <NoSsr>
       <LayoutOverlayHeader
         switchPoint={0}
         primary={
@@ -54,7 +55,6 @@ export function CompareList() {
           <Trans id='Compare' /> ({compareListCount})
         </LayoutTitle>
       </LayoutOverlayHeader>
-
       <WaitForQueries
         waitFor={compareList}
         fallback={
@@ -63,14 +63,14 @@ export function CompareList() {
           </FullPageMessage>
         }
       >
-        <Container maxWidth='xl'>
+        <Container maxWidth={gridColumns === 3 ? 'xl' : 'lg'}>
           <Box
             sx={(theme) => ({
               ...compareListStyles,
               padding: theme.spacings.lg,
             })}
           >
-            {[0, 1, 2].map((compareSelectIndex) => (
+            {[...Array(gridColumns).keys()].map((compareSelectIndex) => (
               <FormControl key={compareSelectIndex} sx={(theme) => ({ mt: theme.spacings.md })}>
                 <SelectElement
                   control={form.control}
@@ -119,6 +119,6 @@ export function CompareList() {
           </Box>
         </Container>
       </WaitForQueries>
-    </>
+    </NoSsr>
   )
 }

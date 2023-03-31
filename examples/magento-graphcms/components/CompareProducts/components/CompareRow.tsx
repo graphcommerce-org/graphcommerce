@@ -37,9 +37,9 @@ export function CompareRow(props: CompareRowProps) {
             mb: theme.spacings.lg,
           })}
         >
-          {compareAbleItems?.map((item) => (
+          {compareAbleItems?.map((item, idx) => (
             <Box
-              key={item?.uid}
+              key={idx}
               dangerouslySetInnerHTML={{
                 __html:
                   item?.attributes.find((itemAttribute) => itemAttribute?.code === attribute?.code)
