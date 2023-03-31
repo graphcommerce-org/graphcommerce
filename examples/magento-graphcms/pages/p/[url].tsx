@@ -1,4 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { mergeDeep } from '@graphcommerce/graphql'
 import {
   AddProductsToCartButton,
   AddProductsToCartError,
@@ -58,9 +59,9 @@ type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
 function ProductPage(props: Props) {
-  const { products, usps, sidebarUsps, pages, defaultValues } = props
+  const { products, relatedUpsells, usps, sidebarUsps, pages, defaultValues } = props
 
-  const product = products?.items?.[0]
+  const product = mergeDeep(products, relatedUpsells)?.items?.[0]
 
   if (!product?.sku || !product.url_key) return null
 

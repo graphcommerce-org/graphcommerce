@@ -5,9 +5,9 @@ query ProductPage2(
   $reviewPage: Int = 1
 ) {
   ...UspsQueryFragment
-  ...ProductPageQueryFragment
   ...PageContentQueryFragment
   products(filter: { url_key: { eq: $urlKey } }) {
+    ...ProductSpecs
     items {
       __typename
       uid
@@ -17,6 +17,14 @@ query ProductPage2(
       ...ConfigurableOptions
       ...DownloadableProductOptions
       ...BundleProductOptions
+    }
+  }
+  # Workaround for https://github.com/magento/magento2/issues/32427
+  relatedUpsells: products(filter: { url_key: { eq: $urlKey } }) {
+    items {
+      uid
+      ...UpsellProducts
+      ...RelatedProducts
     }
   }
 }
