@@ -38,7 +38,6 @@ jobs:
           git config user.name "github-actions[bot]"
           git commit -m "chore(release): update prerelease versions"
           git push
-        continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: set version variables
