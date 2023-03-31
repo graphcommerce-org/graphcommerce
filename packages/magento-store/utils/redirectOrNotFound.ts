@@ -2,7 +2,7 @@ import { ParsedUrlQuery } from 'querystring'
 import { ApolloClient, flushMeasurePerf, NormalizedCacheObject } from '@graphcommerce/graphql'
 import { nonNullable, isTypename } from '@graphcommerce/next-ui'
 import { Redirect } from 'next'
-import { StoreConfigDocument, StoreConfigQuery } from '../StoreConfig.gql'
+import { StoreConfigQuery } from '../StoreConfig.gql'
 import { defaultLocale } from '../localeToStore'
 import { HandleRedirectDocument } from './HandleRedirect.gql'
 
