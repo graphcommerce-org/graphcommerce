@@ -10,4 +10,4 @@ sources:
             method: GET
             responseSample: 'lib/nationaalgeoregister/responseSample.json'
 additionalResolvers:
-  - 'lib/nationaalgeoregister/nationaalgeoregister.ts'
+  - lib/nationaalgeoregister/resolver
