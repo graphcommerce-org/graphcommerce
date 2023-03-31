@@ -12,6 +12,7 @@ query ProductList(
     sort: $sort
     search: $search
   ) {
+    ...ProductListFilters
     ...ProductListCount
     ...ProductListPagination
     ...ProductListSort

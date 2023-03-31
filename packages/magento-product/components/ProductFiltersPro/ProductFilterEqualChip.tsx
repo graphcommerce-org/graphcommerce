@@ -35,12 +35,14 @@ export function ProductFilterEqualChip(props: FilterProps) {
 
   const items = useMemo(
     () =>
-      filterNonNullableKeys(options, ['count', 'label']).map((option) => ({
+      filterNonNullableKeys(options, ['label']).map((option) => ({
         ...option,
         title: (
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
             <div>{option.label}</div>
-            <Box sx={{ typography: 'caption', color: 'text.disabled' }}>({option.count})</Box>
+            {option.count !== null && (
+              <Box sx={{ typography: 'caption', color: 'text.disabled' }}>({option.count})</Box>
+            )}
           </Box>
         ),
         image: attrCode?.toLowerCase().includes('color') && (

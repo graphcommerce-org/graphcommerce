@@ -1,6 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { Asset } from '@graphcommerce/graphcms-ui'
-import { flushMeasurePerf } from '@graphcommerce/graphql'
+import { cloneDeep, flushMeasurePerf } from '@graphcommerce/graphql'
 import {
   CategoryChildren,
   CategoryDescription,
@@ -37,6 +37,7 @@ import {
   LayoutHeader,
   GetStaticProps,
   MetaRobots,
+  filterNonNullableKeys,
 } from '@graphcommerce/next-ui'
 import { Container } from '@mui/material'
 import { GetStaticPaths } from 'next'
@@ -116,8 +117,8 @@ function CategoryPage(props: CategoryProps) {
                   <ProductFiltersProFilterChips {...filters} filterTypes={filterTypes} />
                   <ProductFiltersProSortChip {...products} />
                   <ProductFiltersProAllFiltersChip
-                    {...filters}
                     {...products}
+                    {...filters}
                     filterTypes={filterTypes}
                   />
                 </ProductListFiltersContainer>
@@ -249,7 +250,8 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     props: {
       ...(await categoryPage).data,
       ...(await products).data,
-      ...(await filters).data,
+      // eslint-disable-next-line @typescript-eslint/no-use-before-define
+      ...applyAggregationCount((await filters).data, (await products).data, productListParams),
       ...(await layout).data,
       filterTypes: await filterTypes,
       params: productListParams,
@@ -260,4 +262,39 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   }
   flushMeasurePerf()
   return result
+}
+
+function applyAggregationCount(
+  filterQuery: ProductFiltersQuery,
+  productListQuery: ProductListQuery,
+  params: ProductListParams,
+) {
+  const filtersApplied = Object.keys(params.filters)
+
+  const newFilters: ProductFiltersQuery = {
+    ...filterQuery,
+    filters: {
+      ...filterQuery.filters,
+      aggregations: filterNonNullableKeys(filterQuery.filters?.aggregations).map((filterAgg) => {
+        const filter = productListQuery.products?.aggregations?.find(
+          (a) => a?.attribute_code === filterAgg?.attribute_code,
+        )
+
+        return {
+          ...filterAgg,
+          count: filter?.count ?? 0,
+          options: filterNonNullableKeys(filterAgg?.options)?.map((option) => {
+            const isFilterApplied = Boolean(params.filters[filterAgg.attribute_code])
+            if (isFilterApplied && filtersApplied.length === 2) return option
+            if (isFilterApplied && filtersApplied.length > 2) return { ...option, count: null }
+            return {
+              ...option,
+              count: filter?.options?.find((o) => o?.value === option?.value)?.count ?? 0,
+            }
+          }),
+        }
+      }),
+    },
+  }
+  return newFilters
 }
