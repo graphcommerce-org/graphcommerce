@@ -1,5 +1,11 @@
 # @graphcommerce/address-fields-nl
 
+## 6.0.2-canary.6
+
+### Patch Changes
+
+- [#1885](https://github.com/graphcommerce-org/graphcommerce/pull/1885) [`dc72861f0`](https://github.com/graphcommerce-org/graphcommerce/commit/dc72861f053955011a6d649ff0aa46022442d15e) - use correct path for additionalResolvers in meshrc.yml ([@carlocarels90](https://github.com/carlocarels90))
+
 ## 6.0.2-canary.5
 
 ## 6.0.2-canary.4
