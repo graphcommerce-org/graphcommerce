@@ -18,13 +18,6 @@ account.
 
 See [Config](./Config.graphqls)
 
-- Display a MessageSnackbar message as feedback upon adding a product to the
-  wishlist
-
-```
-<ProductWishlistChip showFeedbackMessage {...props} />
-```
-
 ## Customizing wishlist styling
 
 - The ProductWishlistChip accepts SX props (see ProductWishlistChip and

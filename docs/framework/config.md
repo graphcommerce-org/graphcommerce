@@ -191,6 +191,10 @@ Hide the wishlist functionality for guests.
 
 Ignores wether a product is already in the wishlist, makes the toggle an add only.
 
+#### `wishlistShowFeedbackMessage: Boolean`
+
+Show a message when the product is added to the wishlist.
+
 ### GraphCommerceDebugConfig
 
 Debug configuration for GraphCommerce
