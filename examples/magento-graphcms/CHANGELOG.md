@@ -1,5 +1,15 @@
 # Change Log
 
+## 6.0.2-canary.8
+
+### Patch Changes
+
+- [#1888](https://github.com/graphcommerce-org/graphcommerce/pull/1888) [`d6bfa9d15`](https://github.com/graphcommerce-org/graphcommerce/commit/d6bfa9d15d239db8781cca7f12ac80bea14a0fbb) - RowLinks Usps variant would throw an undefined key error ([@paales](https://github.com/paales))
+
+- [#1877](https://github.com/graphcommerce-org/graphcommerce/pull/1877) [`27cd09247`](https://github.com/graphcommerce-org/graphcommerce/commit/27cd0924751a1ed2d1043e09600c039df76bad45) - Fetching core product page and and related+upsells in parallel so Magento doesn't choke on the query complexity limit. ([@paales](https://github.com/paales))
+
+- [#1888](https://github.com/graphcommerce-org/graphcommerce/pull/1888) [`c193caf5a`](https://github.com/graphcommerce-org/graphcommerce/commit/c193caf5aaff7ad5e33901e97096f8b1755654f3) - When accessing a page beyond the current max pages, it would throw a 500 error ([@paales](https://github.com/paales))
+
 ## 6.0.2-canary.7
 
 ## 6.0.2-canary.6

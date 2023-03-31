@@ -1,5 +1,17 @@
 # Change Log
 
+## 6.0.2-canary.8
+
+### Patch Changes
+
+- [#1888](https://github.com/graphcommerce-org/graphcommerce/pull/1888) [`5460925a7`](https://github.com/graphcommerce-org/graphcommerce/commit/5460925a7f8bd0b8a871ed77098bec3a490fa8f2) - Filtering on category_uid wouldn't work on search results page ([@paales](https://github.com/paales))
+
+- [#1888](https://github.com/graphcommerce-org/graphcommerce/pull/1888) [`47429b293`](https://github.com/graphcommerce-org/graphcommerce/commit/47429b293f37b3977a862a36cff4da6956c44a4f) - When filtering on a paginated page it would not reset the currentPage to 1 ([@paales](https://github.com/paales))
+
+- [#1888](https://github.com/graphcommerce-org/graphcommerce/pull/1888) [`504d74916`](https://github.com/graphcommerce-org/graphcommerce/commit/504d749161959759b78cc5e9dcc7ca61349a0f12) - When the category_uid is filterable it would always show an active filter on all filters ([@paales](https://github.com/paales))
+
+- [#1877](https://github.com/graphcommerce-org/graphcommerce/pull/1877) [`27cd09247`](https://github.com/graphcommerce-org/graphcommerce/commit/27cd0924751a1ed2d1043e09600c039df76bad45) - Fetching core product page and and related+upsells in parallel so Magento doesn't choke on the query complexity limit. ([@paales](https://github.com/paales))
+
 ## 6.0.2-canary.7
 
 ## 6.0.2-canary.6
