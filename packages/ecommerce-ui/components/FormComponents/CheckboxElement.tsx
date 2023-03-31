@@ -10,6 +10,7 @@ import {
   FormControl,
   FormControlLabel,
   FormControlLabelProps,
+  FormControlProps,
   FormGroup,
   FormHelperText,
   SxProps,
@@ -21,7 +22,7 @@ export type CheckboxElementProps<T extends FieldValues> = Omit<CheckboxProps, 'n
   label?: FormControlLabelProps['label']
   helperText?: string
   sx?: SxProps<Theme>
-  sxFormControl?: SxProps<Theme>
+  formControl?: Omit<FormControlProps<'div'>, 'required' | 'error'>
 } & Omit<ControllerProps<T>, 'render'>
 
 export function CheckboxElement<TFieldValues extends FieldValues>({
@@ -33,7 +34,7 @@ export function CheckboxElement<TFieldValues extends FieldValues>({
   control,
   helperText,
   sx,
-  sxFormControl,
+  formControl,
   ...rest
 }: CheckboxElementProps<TFieldValues>): JSX.Element {
   if (required && !rules.required) {
@@ -52,7 +53,7 @@ export function CheckboxElement<TFieldValues extends FieldValues>({
             : error.message
           : helperText
         return (
-          <FormControl required={required} error={invalid} sx={{ ...sxFormControl }}>
+          <FormControl required={required} error={invalid} {...formControl}>
             <FormGroup row>
               <FormControlLabel
                 label={label || ''}

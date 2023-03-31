@@ -74,8 +74,10 @@ export function CartAgreementsForm(props: CartAgreementsFormProps) {
                     <CheckboxElement
                       control={control}
                       color='secondary'
-                      sxFormControl={{
-                        display: 'block',
+                      formControl={{
+                        sx: {
+                          display: 'block',
+                        },
                       }}
                       name={`agreement${agreement.agreement_id}`}
                       rules={{
