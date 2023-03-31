@@ -4,7 +4,6 @@ sources:
       graphql:
         useGETForQueries: true
         endpoint: '{graphCommerce.hygraphEndpoint}'
-        batch: false
         operationHeaders:
           gcms-locales: "{context.headers['gcms-locales']}"
     transforms:
@@ -25,9 +24,7 @@ sources:
       graphql:
         endpoint: '{graphCommerce.magentoEndpoint}'
         useGETForQueries: true
-        schemaHeaders:
-          Store: '{context.headers.store}'
-          Authorization: '{context.headers.authorization}'
+        batch: false
         operationHeaders:
           Store: '{context.headers.store}'
           Authorization: '{context.headers.authorization}'
