@@ -1,5 +1,15 @@
 # Change Log
 
+## 6.0.2-canary.5
+
+### Patch Changes
+
+- [#1884](https://github.com/graphcommerce-org/graphcommerce/pull/1884) [`4ee1e5478`](https://github.com/graphcommerce-org/graphcommerce/commit/4ee1e54786b95bf309ce0eb5e7f707a8f60967fd) - Disable batching for Magento to get better cache hitrates ([@paales](https://github.com/paales))
+
+- [#1884](https://github.com/graphcommerce-org/graphcommerce/pull/1884) [`4ee1e5478`](https://github.com/graphcommerce-org/graphcommerce/commit/4ee1e54786b95bf309ce0eb5e7f707a8f60967fd) - Enable batching for Hygraph, since billing happens per query ([@paales](https://github.com/paales))
+
+- [#1884](https://github.com/graphcommerce-org/graphcommerce/pull/1884) [`f437ad36a`](https://github.com/graphcommerce-org/graphcommerce/commit/f437ad36a5bb1d8273966cf276c3de0c629f8489) - The category should respect the default page size set by Magento ([@paales](https://github.com/paales))
+
 ## 6.0.2-canary.4
 
 ## 6.0.2-canary.3
