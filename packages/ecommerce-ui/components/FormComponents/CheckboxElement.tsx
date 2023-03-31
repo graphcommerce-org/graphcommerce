@@ -62,7 +62,7 @@ export function CheckboxElement<TFieldValues extends FieldValues>({
                     {...rest}
                     color={rest.color || 'primary'}
                     sx={{
-                      ...sx,
+                      ...(Array.isArray(sx) ? sx : [sx]),
                       color: invalid ? 'error.main' : undefined,
                     }}
                     value={value}
