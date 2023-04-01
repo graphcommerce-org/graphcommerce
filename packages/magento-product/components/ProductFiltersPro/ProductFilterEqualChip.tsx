@@ -15,7 +15,9 @@ import { useProductFiltersPro } from './ProductFiltersPro'
 import { FilterProps } from './ProductFiltersProAggregations'
 
 export function ProductFilterEqualChip(props: FilterProps) {
-  const { attribute_code, label, options } = props
+  const { aggregation } = props
+  const { attribute_code, label, options } = aggregation
+
   const { form, submit, params } = useProductFiltersPro()
   const { control } = form
   const attrCode = attribute_code as keyof ProductAttributeFilterInput

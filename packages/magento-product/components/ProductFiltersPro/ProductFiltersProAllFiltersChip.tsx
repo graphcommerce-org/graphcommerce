@@ -6,6 +6,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box } from '@mui/material'
+import { ProductListQuery } from '../ProductList/ProductList.gql'
 import { ProductFilterEqualSection } from './ProductFilterEqualSection'
 import { ProductFilterRangeSection } from './ProductFilterRangeSection'
 import { useProductFiltersPro } from './ProductFiltersPro'
@@ -13,23 +14,25 @@ import {
   ProductFiltersProAggregations,
   ProductFiltersProAggregationsProps,
 } from './ProductFiltersProAggregations'
-import {
-  ProductFiltersProSortSection,
-  ProductFiltersProSortSectionProps,
-} from './ProductFiltersProSortSection'
+import { ProductFiltersProSortSection } from './ProductFiltersProSortSection'
 
 type AllFiltersChip = ProductFiltersProAggregationsProps &
-  ProductFiltersProSortSectionProps &
   Omit<
     ChipOverlayOrPopperProps,
     'label' | 'selected' | 'selectedLabel' | 'onApply' | 'onReset' | 'onClose' | 'children'
   >
 
 export function ProductFiltersProAllFiltersChip(props: AllFiltersChip) {
-  const { filterTypes, aggregations, renderer, sort_fields, total_count, ...rest } = props
+  const {
+    filterTypes,
+    aggregations,
+    aggregationsCount: aggregationsCount,
+    renderer,
+    ...rest
+  } = props
 
   const { form, submit, params } = useProductFiltersPro()
-  const { filters, sort } = params
+  const { sort } = params
 
   const activeFilters = filterNonNullableKeys(aggregations)
     .filter(({ attribute_code }) => {
@@ -38,7 +41,9 @@ export function ProductFiltersProAllFiltersChip(props: AllFiltersChip) {
     })
     .filter(
       ({ attribute_code }) =>
-        filters[attribute_code]?.from || filters[attribute_code]?.to || filters[attribute_code]?.in,
+        params.filters[attribute_code]?.from ||
+        params.filters[attribute_code]?.to ||
+        params.filters[attribute_code]?.in,
     )
     .map(({ label }) => label)
 
@@ -53,7 +58,7 @@ export function ProductFiltersProAllFiltersChip(props: AllFiltersChip) {
       onReset={
         hasFilters
           ? () => {
-              form.setValue('filters', { category_uid: filters.category_uid })
+              form.setValue('filters', { category_uid: params.filters.category_uid })
               form.setValue('currentPage', 1)
               form.setValue('sort', null)
               form.setValue('dir', null)
@@ -70,10 +75,10 @@ export function ProductFiltersProAllFiltersChip(props: AllFiltersChip) {
     >
       {() => (
         <Box sx={(theme) => ({ display: 'grid', rowGap: theme.spacings.sm })}>
-          <ProductFiltersProSortSection sort_fields={sort_fields} />
+          <ProductFiltersProSortSection sort_fields={aggregationsCount?.sort_fields} />
           <ProductFiltersProAggregations
             filterTypes={filterTypes}
-            aggregations={aggregations}
+            filters={filters}
             renderer={{
               FilterRangeTypeInput: ProductFilterRangeSection,
               FilterEqualTypeInput: ProductFilterEqualSection,
