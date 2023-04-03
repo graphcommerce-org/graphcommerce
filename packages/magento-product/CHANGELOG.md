@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.2-canary.15
+
+### Patch Changes
+
+- [#1870](https://github.com/graphcommerce-org/graphcommerce/pull/1870) [`fc567a9bd`](https://github.com/graphcommerce-org/graphcommerce/commit/fc567a9bd1b0ef4e8a8996752f279f7b5fd1fe84) - Crosssells will now be preloaded during the addProductsToCart mutation so they are already available in the 'added' overlay, preventing a second scroll. ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 6.0.2-canary.14
 
 ### Patch Changes
