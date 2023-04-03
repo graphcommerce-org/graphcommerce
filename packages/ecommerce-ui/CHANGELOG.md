@@ -1,5 +1,11 @@
 # @graphcommerce/ecommerce-ui
 
+## 6.0.2-canary.12
+
+### Patch Changes
+
+- [#1871](https://github.com/graphcommerce-org/graphcommerce/pull/1871) [`1e2d2e5c6`](https://github.com/graphcommerce-org/graphcommerce/commit/1e2d2e5c615f072a2d0b60074d9aa5a467876f2f) - Allow styling FormControl in CheckboxElement ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 6.0.2-canary.11
 
 ## 6.0.2-canary.10

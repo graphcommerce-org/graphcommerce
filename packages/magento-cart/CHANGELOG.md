@@ -1,5 +1,13 @@
 # Change Log
 
+## 6.0.2-canary.12
+
+### Patch Changes
+
+- [#1871](https://github.com/graphcommerce-org/graphcommerce/pull/1871) [`bc4181e74`](https://github.com/graphcommerce-org/graphcommerce/commit/bc4181e74392b899f62612de764fdb41f5716dd7) - Make checkout newsletter and agreements checkboxes persistent ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#1871](https://github.com/graphcommerce-org/graphcommerce/pull/1871) [`601a0d3a7`](https://github.com/graphcommerce-org/graphcommerce/commit/601a0d3a7de702d4cee277549595f8d0d7e968f3) - Checkout: Only use agreement name as link when agreement text contains the name, so the rest of the text can be used as checkbox label ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 6.0.2-canary.11
 
 ## 6.0.2-canary.10
