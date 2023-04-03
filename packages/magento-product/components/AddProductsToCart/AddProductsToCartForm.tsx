@@ -1,10 +1,14 @@
 import { UseFormGraphQlOptions } from '@graphcommerce/ecommerce-ui'
-import { useApolloClient } from '@graphcommerce/graphql'
-import { useFormGqlMutationCart, CrosssellsDocument } from '@graphcommerce/magento-cart'
+import { ApolloQueryResult, useApolloClient } from '@graphcommerce/graphql'
+import {
+  useFormGqlMutationCart,
+  CrosssellsDocument,
+  CrosssellsQuery,
+} from '@graphcommerce/magento-cart'
 import { ExtendableComponent } from '@graphcommerce/next-ui'
 import { Box, SxProps, Theme, useThemeProps } from '@mui/material'
 import { useRouter } from 'next/router'
-import { useMemo } from 'react'
+import { useMemo, useRef } from 'react'
 import {
   AddProductsToCartDocument,
   AddProductsToCartMutation,
@@ -56,6 +60,7 @@ export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
     useThemeProps({ name, props })
   const router = useRouter()
   const client = useApolloClient()
+  const crosssellsQuery = useRef<Promise<ApolloQueryResult<CrosssellsQuery>>>()
 
   if (typeof redirect !== 'undefined' && redirect !== 'added' && router.pathname === redirect)
     redirect = undefined
@@ -88,7 +93,7 @@ export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
 
       if (sku) {
         // Preload crosssells
-        await client.query({
+        crosssellsQuery.current = client.query({
           query: CrosssellsDocument,
           variables: { pageSize: 1, filters: { sku: { eq: sku } } },
         })
@@ -107,6 +112,7 @@ export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
       if (toUserErrors(result.data).length || result.errors?.length || !redirect) return
 
       if (redirect === 'added') {
+        await crosssellsQuery.current
         const method = router.pathname.startsWith('/checkout/added') ? router.replace : router.push
         await method({
           pathname: '/checkout/added',
