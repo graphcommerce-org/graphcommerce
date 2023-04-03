@@ -8,7 +8,7 @@ import {
   HttpLink,
 } from '@apollo/client'
 import type { AppProps } from 'next/app'
-import { useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef } from 'react'
 import { createCacheReviver } from '../createCacheReviver'
 import { errorLink } from '../errorLink'
 import fragments from '../generated/fragments.json'
@@ -46,30 +46,40 @@ export function GraphQLProvider(props: GraphQLProviderProps) {
   const { children, policies = [], migrations = [], links = [], pageProps } = props
   const state = (pageProps as { apolloState?: NormalizedCacheObject }).apolloState
 
-  const [client] = useState(() => {
+  const stateRef = useRef(state)
+
+  const linksRef = useRef(links)
+  const policiesRef = useRef(policies)
+
+  const createCache = useCallback(
+    () =>
+      new InMemoryCache({
+        possibleTypes: fragments.possibleTypes,
+        typePolicies: mergeTypePolicies(policiesRef.current),
+      }),
+    [],
+  )
+
+  const client = useMemo(() => {
     const link = ApolloLink.from([
       ...(typeof window === 'undefined' ? [errorLink, measurePerformanceLink] : []),
-      ...links,
+      ...linksRef.current,
       // The actual Http connection to the Mesh backend.
       new HttpLink({ uri: '/api/graphql', credentials: 'same-origin' }),
     ])
 
-    const createCache = () =>
-      new InMemoryCache({
-        possibleTypes: fragments.possibleTypes,
-        typePolicies: mergeTypePolicies(policies),
-      })
+    const cache = createCache()
+    if (stateRef.current) cache.restore(stateRef.current)
 
-    const apolloClient = new ApolloClient({
-      link,
-      cache: createCache(),
-      name: 'web',
-      ssrMode: typeof window === 'undefined',
-    })
+    const ssrMode = typeof window === 'undefined'
+    return new ApolloClient({ link, cache, name: 'web', ssrMode })
+  }, [createCache])
+
+  useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    createCacheReviver(apolloClient, createCache, policies, migrations, state)
-    return apolloClient
-  })
+    createCacheReviver(client, createCache, policies, migrations, state)
+  }, [client, createCache, migrations, policies, state])
+
   globalApolloClient.current = client
 
   return <ApolloProvider client={globalApolloClient.current}>{children}</ApolloProvider>
