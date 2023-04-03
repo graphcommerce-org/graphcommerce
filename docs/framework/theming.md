@@ -34,7 +34,7 @@ and text colors. Save the file to see your changes updated in real-time:
   },
 ```
 
-You can search through your codebase to discover which component will be
+You can search through your codebase to discover which components will be
 affected by your changes. For example, search for occurrences of
 `theme.palette.primary.main`.
 
@@ -62,7 +62,7 @@ Most components have props that define their look and feel. Most common are the
   [MUI Button documentation ↗](https://mui.com/components/buttons/)
 - To learn which options are accepted by a prop, refer to the component's API:
   [MUI Button API ↗](https://mui.com/api/button/). You can also use your IDE's
-  suggestions functionality. For [VS Code's](../getting-started/vscode.md)
+  suggestions functionality. For [VS Code's](../framework/vscode.md)
   IntelliSense feature, type Ctrl+Space.
 - It can be helpful to learn how a component is styled, for example, to explore
   how palette variables are used. Refer to the
@@ -145,7 +145,7 @@ To overwrite a component's hover state, add the sx prop:
 <Button
   color='primary'
   variant='contained'
-  sx={{ '&&:hover': { background: 'green' } }}
+  sx={{ '&:hover': { background: 'green' } }}
 >
   <Trans>Contact Us</Trans>
 </Button>

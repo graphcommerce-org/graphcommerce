@@ -189,7 +189,7 @@ Hide the wishlist functionality for guests.
 
 #### `wishlistIgnoreProductWishlistStatus: Boolean`
 
-Ignores wether a product is already in the wishlist, makes the toggle an add only.
+Ignores whether a product is already in the wishlist, makes the toggle an add only.
 
 #### `wishlistShowFeedbackMessage: Boolean`
 
