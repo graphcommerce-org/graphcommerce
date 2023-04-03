@@ -113,11 +113,15 @@ function CategoryPage(props: CategoryProps) {
             {import.meta.graphCommerce.productFiltersPro ? (
               <ProductFiltersPro params={params}>
                 <ProductListFiltersContainer>
-                  <ProductFiltersProFilterChips {...filters} filterTypes={filterTypes} />
+                  <ProductFiltersProFilterChips
+                    {...filters}
+                    appliedAggregations={products.aggregations}
+                    filterTypes={filterTypes}
+                  />
                   <ProductFiltersProSortChip {...products} />
                   <ProductFiltersProAllFiltersChip
                     {...filters}
-                    {...products}
+                    appliedAggregations={products.aggregations}
                     filterTypes={filterTypes}
                   />
                 </ProductListFiltersContainer>

@@ -16,7 +16,10 @@ export function filterNonNullableKeys<
   if (!items) return []
 
   const result = items.filter(
-    (item) => item !== null && typeof item !== 'undefined' && values.every((v) => item?.[v]),
+    (item) =>
+      item !== null &&
+      typeof item !== 'undefined' &&
+      values.every((v) => item?.[v] !== null && typeof item?.[v] !== 'undefined'),
   )
 
   return result as RequiredKeys<T, Keys>[]

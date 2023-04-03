@@ -12,7 +12,7 @@ export type FilterCheckboxTypeProps = Filter &
   Omit<ChipProps<'button'>, 'selected' | 'onDelete' | 'component'> & { sx?: SxProps<Theme> }
 
 export function FilterCheckboxType(props: FilterCheckboxTypeProps) {
-  const { attribute_code, count, label, options, ...chipProps } = props
+  const { attribute_code, label, options, ...chipProps } = props
   const { params } = useProductListParamsContext()
   const currentFilter = params.filters[attribute_code]
   const replaceRoute = useProductListLinkReplace({ scroll: false })

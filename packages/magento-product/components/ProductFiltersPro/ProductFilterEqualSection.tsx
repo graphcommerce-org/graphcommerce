@@ -17,7 +17,8 @@ import { useProductFiltersPro } from './ProductFiltersPro'
 import { FilterProps } from './ProductFiltersProAggregations'
 
 export function ProductFilterEqualSection(props: FilterProps) {
-  const { attribute_code, label, options } = props
+  const { aggregation } = props
+  const { attribute_code, label, options } = aggregation
   const { form, submit, params } = useProductFiltersPro()
   const { control } = form
   const attrCode = attribute_code as keyof ProductAttributeFilterInput
@@ -31,14 +32,16 @@ export function ProductFilterEqualSection(props: FilterProps) {
 
   const items = useMemo(
     () =>
-      filterNonNullableKeys(options, ['count', 'label']).map((option) => ({
+      filterNonNullableKeys(options, ['label']).map((option) => ({
         ...option,
         title: (
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
             <Typography sx={{ marginRight: 1 }}>{option.label}</Typography>
-            <Typography variant='caption' color='text.disabled'>
-              ({option.count})
-            </Typography>
+            {option.count !== null && (
+              <Typography variant='caption' color='text.disabled'>
+                ({option.count})
+              </Typography>
+            )}
           </Box>
         ),
         image: attrCode?.toLowerCase().includes('color') && (
