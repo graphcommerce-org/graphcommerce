@@ -116,13 +116,13 @@ function CategoryPage(props: CategoryProps) {
                 <ProductListFiltersContainer>
                   <ProductFiltersProFilterChips
                     {...filters}
-                    aggregationsCount={products.aggregations}
+                    appliedAggregations={products.aggregations}
                     filterTypes={filterTypes}
                   />
                   <ProductFiltersProSortChip {...products} />
                   <ProductFiltersProAllFiltersChip
                     {...filters}
-                    aggregationsCount={products.aggregations}
+                    appliedAggregations={products.aggregations}
                     filterTypes={filterTypes}
                   />
                 </ProductListFiltersContainer>
