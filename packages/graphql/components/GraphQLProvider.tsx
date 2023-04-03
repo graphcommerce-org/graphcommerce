@@ -47,7 +47,7 @@ export function GraphQLProvider(props: GraphQLProviderProps) {
   const state = (pageProps as { apolloState?: NormalizedCacheObject }).apolloState
 
   const stateRef = useRef(state)
-  const restored = useRef(false)
+
   const linksRef = useRef(links)
   const policiesRef = useRef(policies)
 
