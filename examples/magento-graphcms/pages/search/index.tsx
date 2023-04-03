@@ -149,7 +149,6 @@ function SearchResultPage(props: SearchResultProps) {
 
 const pageOptions: PageOptions<LayoutNavigationProps> = {
   Layout: LayoutNavigation,
-  sharedKey: () => 'search',
 }
 
 SearchResultPage.pageOptions = pageOptions

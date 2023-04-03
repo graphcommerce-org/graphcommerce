@@ -150,7 +150,6 @@ function PaymentPage() {
 
 const pageOptions: PageOptions<LayoutMinimalProps> = {
   Layout: LayoutMinimal,
-  sharedKey: () => 'checkout',
 }
 PaymentPage.pageOptions = pageOptions
 

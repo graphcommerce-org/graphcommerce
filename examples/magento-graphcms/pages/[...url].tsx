@@ -169,7 +169,6 @@ function CategoryPage(props: CategoryProps) {
 
 const pageOptions: PageOptions<LayoutNavigationProps> = {
   Layout: LayoutNavigation,
-  sharedKey: () => 'category',
 }
 CategoryPage.pageOptions = pageOptions
 

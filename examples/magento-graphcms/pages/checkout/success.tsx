@@ -76,7 +76,6 @@ function OrderSuccessPage() {
 
 const pageOptions: PageOptions<LayoutMinimalProps> = {
   Layout: LayoutMinimal,
-  sharedKey: () => 'checkout',
 }
 OrderSuccessPage.pageOptions = pageOptions
 

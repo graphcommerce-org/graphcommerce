@@ -84,7 +84,10 @@ export function FramerNextPages(props: PagesProps) {
       PageComponent: Component,
       layoutProps: { ...Component.pageOptions?.layoutProps, ...incomingProps },
       pageProps: incomingProps,
-      sharedKey: Component.pageOptions?.sharedKey?.(pageInfo) ?? pageInfo.pathname,
+      sharedKey:
+        Component.pageOptions?.sharedKey?.(pageInfo) ??
+        Component.pageOptions?.overlayGroup ??
+        'shared',
       overlayGroup: Component.pageOptions?.overlayGroup,
       historyIdx: idx,
       routerKey: key,
@@ -138,7 +141,10 @@ export function FramerNextPages(props: PagesProps) {
           PageComponent: Fallback,
           layoutProps: { ...Fallback.pageOptions?.layoutProps, ...info.props?.pageProps },
           pageProps: info.props?.pageProps,
-          sharedKey: Fallback.pageOptions?.sharedKey?.(pageInfo) ?? pageInfo.pathname,
+          sharedKey:
+            Fallback.pageOptions?.sharedKey?.(pageInfo) ??
+            Fallback.pageOptions?.overlayGroup ??
+            'shared',
           overlayGroup: Fallback.pageOptions?.overlayGroup,
           historyIdx: -1,
           routerKey: 'fallback',
