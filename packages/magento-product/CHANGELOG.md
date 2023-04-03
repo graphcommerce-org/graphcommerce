@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.2-canary.11
+
+### Patch Changes
+
+- [#1890](https://github.com/graphcommerce-org/graphcommerce/pull/1890) [`f88727915`](https://github.com/graphcommerce-org/graphcommerce/commit/f88727915998690b34d35c7eb5b2af3ca154da3d) - Aggregation options (filters) now show a relevant count when applying filters and hide the count when it doesn't make sense. ([@paales](https://github.com/paales))
+
 ## 6.0.2-canary.10
 
 ## 6.0.2-canary.9
