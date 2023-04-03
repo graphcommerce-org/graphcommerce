@@ -1,6 +1,5 @@
-import { productLink, useProductLink } from '@graphcommerce/magento-product'
+import { productLink } from '@graphcommerce/magento-product'
 import { Button, iconChevronRight, IconSvg, SectionContainer } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box } from '@mui/material'
 import { useCompareListStyles } from '../hooks/useCompareGridStyles'
@@ -28,7 +27,6 @@ export function MoreInformationRow(props: MoreInformationRowProps) {
         <Box
           sx={(theme) => ({
             ...compareListStyles,
-            mb: theme.spacings.lg,
           })}
         >
           {compareAbleItems?.map((item) => {

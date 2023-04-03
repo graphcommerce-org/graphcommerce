@@ -1,5 +1,5 @@
 import { useMutation } from '@graphcommerce/graphql'
-import { iconChevronRight, IconSvg, MessageSnackbar } from '@graphcommerce/next-ui'
+import { iconChevronRight, iconCompare, IconSvg, MessageSnackbar } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Badge, Box, Button } from '@mui/material'
 import { useState } from 'react'
@@ -58,6 +58,7 @@ export function CompareProductButton(props: CompareProps) {
               size='medium'
               variant='pill'
               color='secondary'
+              startIcon={<IconSvg src={iconCompare} />}
               endIcon={<IconSvg src={iconChevronRight} />}
             >
               <Trans id='View comparison' />

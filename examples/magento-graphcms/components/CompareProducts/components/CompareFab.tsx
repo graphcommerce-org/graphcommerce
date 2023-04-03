@@ -3,11 +3,22 @@ import {
   DesktopHeaderBadge,
   IconSvg,
   useFabSize,
-  iconBox,
+  iconCompare,
   useScrollY,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
-import { alpha, Fab, FabProps, styled, useTheme, Box, SxProps, Theme, NoSsr } from '@mui/material'
+import {
+  alpha,
+  Fab,
+  FabProps,
+  styled,
+  useTheme,
+  Box,
+  SxProps,
+  Theme,
+  NoSsr,
+  Badge,
+} from '@mui/material'
 import { m, useTransform } from 'framer-motion'
 import React from 'react'
 import { useCompareList } from '../hooks/useCompareList'
@@ -24,7 +35,7 @@ const MotionDiv = styled(m.div)({})
 const MotionFab = m(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   React.forwardRef<any, Omit<FabProps, 'style' | 'onDrag'>>((props, ref) => (
-    <Fab {...props} ref={ref} />
+    <Fab variant='extended' {...props} ref={ref} />
   )),
 )
 
@@ -32,25 +43,16 @@ const { classes } = extendableComponent('CompareFab', ['root', 'compare', 'shado
 
 function CompareFabContent(props: CompareFabContentProps) {
   const { total_quantity, icon, sx = [], ...fabProps } = props
-
-  const theme2 = useTheme()
   const scrollY = useScrollY()
   const opacity = useTransform(scrollY, [50, 60], [0, 1])
 
-  const paper0 = alpha(theme2.palette.background.paper, 0)
-  const paper1 = alpha(theme2.palette.background.paper, 1)
-  const backgroundColor = useTransform(scrollY, [0, 10], [paper0, paper1])
-
-  const compareIcon = icon ?? <IconSvg src={iconBox} size='large' />
+  const compareIcon = icon ?? <IconSvg src={iconCompare} size='large' />
   const fabIconSize = useFabSize('responsive')
 
   return (
     <Box
       className={classes.root}
-      sx={[
-        { position: 'relative', width: fabIconSize, height: fabIconSize },
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+      sx={[{ position: 'relative', height: fabIconSize }, ...(Array.isArray(sx) ? sx : [sx])]}
     >
       <MotionFab
         href='/compare'
@@ -58,22 +60,29 @@ function CompareFabContent(props: CompareFabContentProps) {
         aria-label={i18n._(/* i18n */ 'Compare')}
         color='inherit'
         size='responsive'
-        style={{ backgroundColor }}
+        variant='extended'
         sx={(theme) => ({
-          [theme.breakpoints.down('md')]: {
-            backgroundColor: `${theme.palette.background.paper} !important`,
-          },
+          width: 'unset',
+          backgroundColor: `${theme.palette.background.paper} !important`,
+          [theme.breakpoints.down('md')]: {},
         })}
         {...fabProps}
       >
-        <DesktopHeaderBadge
+        <Badge
           color='primary'
           variant='standard'
           overlap='circular'
           badgeContent={total_quantity}
+          sx={{
+            paddingRight: 2,
+            '& .MuiBadge-badge': {
+              right: 5,
+              top: 5,
+            },
+          }}
         >
-          {compareIcon}
-        </DesktopHeaderBadge>
+          {compareIcon} Compare
+        </Badge>
       </MotionFab>
 
       <MotionDiv

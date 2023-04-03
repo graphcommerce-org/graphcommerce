@@ -129,12 +129,21 @@ export function LayoutDefault(props: LayoutDefaultProps) {
             })}
           >
             {menuFab}
-            <Box>
-            {cartFab}
-            {/* Nettere manier vinden voor whitespace */}
-            <p />
-            {compareFab}
-            </Box>            
+            <Box
+              sx={(theme) => ({
+                display: 'flex',
+                flexDirection: 'row-reverse',
+                gap: 2,
+                [theme.breakpoints.up('md')]: {
+                  flexDirection: 'column',
+                  alignItems: 'flex-end',
+                },
+              })}
+            >
+              {cartFab}
+
+              {compareFab}
+            </Box>
           </Box>
         ) : (
           <div />
