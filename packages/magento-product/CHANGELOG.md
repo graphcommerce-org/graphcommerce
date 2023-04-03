@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.2-canary.14
+
+### Patch Changes
+
+- [#1894](https://github.com/graphcommerce-org/graphcommerce/pull/1894) [`e08879934`](https://github.com/graphcommerce-org/graphcommerce/commit/e08879934095cee9c8371a4013543864b58c4706) - ProductSpecs would throw an hydration error if there were multiple categories with the same label ([@paales](https://github.com/paales))
+
 ## 6.0.2-canary.13
 
 ## 6.0.2-canary.12
