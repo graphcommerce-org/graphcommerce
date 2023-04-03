@@ -91,7 +91,7 @@ export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
       const lastItem = requestData.cartItems[requestData.cartItems.length - 1]
       const { sku } = lastItem
 
-      if (sku) {
+      if (sku && redirect === 'added') {
         // Preload crosssells
         crosssellsQuery.current = client.query({
           query: CrosssellsDocument,
