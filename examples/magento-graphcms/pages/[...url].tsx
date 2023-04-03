@@ -37,7 +37,6 @@ import {
   LayoutHeader,
   GetStaticProps,
   MetaRobots,
-  filterNonNullableKeys,
 } from '@graphcommerce/next-ui'
 import { Container } from '@mui/material'
 import { GetStaticPaths } from 'next'
@@ -254,7 +253,6 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     props: {
       ...(await categoryPage).data,
       ...(await products).data,
-      // eslint-disable-next-line @typescript-eslint/no-use-before-define
       ...(await filters).data,
       ...(await layout).data,
       filterTypes: await filterTypes,

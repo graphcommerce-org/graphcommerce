@@ -9,7 +9,7 @@ export type PriceSliderProps = {
   value: FilterRangeTypeInput | null | undefined
   onChange: (...event: any[]) => void
   sx?: SxProps<Theme>
-  options: FilterProps['options']
+  options: FilterProps['aggregation']['options']
 }
 
 const { classes } = extendableComponent('PriceSlider', ['container', 'slider'] as const)
