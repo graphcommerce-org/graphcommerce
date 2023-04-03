@@ -4,4 +4,4 @@
 '@graphcommerce/docs': patch
 ---
 
-Added an configuration to the wishlist: `wishlistShowFeedbackMessage` to show a feedback message when a product is added to the wishlist.
+Added an configuration `wishlistShowFeedbackMessage` to show a feedback message when a product is added to the wishlist.

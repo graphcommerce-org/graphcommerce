@@ -2,4 +2,4 @@
 '@graphcommerce/magento-customer': patch
 ---
 
-Additional useOrderCardItemImages query was triggered when there were no urlKeys present.
+useOrderCardItemImages was triggered when there were no urlKeys present, causing unnessary requests to be made to the backend.

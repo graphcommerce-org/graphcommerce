@@ -1,5 +1,5 @@
 ---
-'@graphcommerce/magento-graphcms': patch
+'@graphcommerce/magento-graphcms': minor
 ---
 
-Enable batching for Hygraph, since billing happens per query
+Enable GraphQL Mesh batching for Hygraph, since billing happens per query

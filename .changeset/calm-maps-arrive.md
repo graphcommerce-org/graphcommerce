@@ -1,5 +1,5 @@
 ---
-'@graphcommerce/magento-graphcms': patch
+'@graphcommerce/magento-graphcms': minor
 ---
 
-Disable batching for Magento to get better cache hitrates
+Disable GraphQL Mesh batching for Magento to get better cache hitrates

@@ -2,4 +2,4 @@
 '@graphcommerce/magento-wishlist': patch
 ---
 
-skip mergeGuestWishlist if there is no guest wishlist
+mergeGuestWishlist would be called if there weren't any products in the guest wishlist

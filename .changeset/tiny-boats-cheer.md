@@ -2,4 +2,4 @@
 '@graphcommerce/graphql': patch
 ---
 
-Added clickable links to measurePerformanceLink
+When running in dev mode, the CLI will now have clickable references to the backend queries made by the Mesh.
