@@ -1,6 +1,7 @@
 import { filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { ProductListQuery } from '../ProductList/ProductList.gql'
 import { ProductListFiltersFragment } from '../ProductListFilters/ProductListFilters.gql'
+import { applyAggregationCount } from './applyAggregationCount'
 import { useProductFiltersPro } from './ProductFiltersPro'
 
 export type FilterProps = {
@@ -12,7 +13,7 @@ export type FilterRenderer = Record<string, React.FC<FilterProps>>
 export type ProductFiltersProAggregationsProps = ProductListFiltersFragment & {
   filterTypes: Record<string, string | undefined>
   renderer?: FilterRenderer
-  aggregationsCount?: NonNullable<ProductListQuery['products']>['aggregations']
+  aggregationsCount?: NonNullable<ProductListQuery['products']>['aggregations'] | null | undefined
 }
 
 export function ProductFiltersProAggregations(props: ProductFiltersProAggregationsProps) {
@@ -21,7 +22,7 @@ export function ProductFiltersProAggregations(props: ProductFiltersProAggregatio
 
   return (
     <>
-      {filterNonNullableKeys(aggregations)
+      {filterNonNullableKeys(applyAggregationCount(aggregations, aggregationsCount, params))
         .filter(({ attribute_code }) => {
           if (params.search !== null) return true
           return attribute_code !== 'category_id' && attribute_code !== 'category_uid'
