@@ -183,7 +183,7 @@ function ProductPage(props: Props) {
             <AddProductsToCartButton fullWidth product={product} />
             <ProductWishlistChipDetail {...product} />
             <NoSsr fallback={<FallbackCompareButton />}>
-              <CompareProductButton name={product.name} id={product.id} />
+              <CompareProductButton name={product.name} id_internal={product.id_internal} />
             </NoSsr>
           </Box>
 

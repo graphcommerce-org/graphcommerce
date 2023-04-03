@@ -13,7 +13,6 @@ fragment CompareListFragment on CompareList {
       value
     }
     product {
-      id
       uid
       ...ProductListItem
     }

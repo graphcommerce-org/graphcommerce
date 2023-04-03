@@ -8,21 +8,16 @@ import { RemoveProductsFromCompareListDocument } from '../graphql/RemoveProducts
 import { useCompareList } from '../hooks/useCompareList'
 import { useCompareListUidCreate } from '../hooks/useCompareListUidCreate'
 
-type CompareProps = { id: number | null | undefined; name: string | null | undefined }
+type CompareProps = { id_internal: number | null | undefined; name: string | null | undefined }
 
 export function CompareProductButton(props: CompareProps) {
-  const { id, name } = props
-
-  const idString = String(id)
-
+  const { id_internal, name } = props
+  const idString = String(id_internal)
   const create = useCompareListUidCreate()
   const compareList = useCompareList()
-
   const inCompareList = compareList.data?.compareList?.items?.some((i) => i?.uid === idString)
-
   const [add] = useMutation(AddProductsToCompareListDocument)
   const [remove] = useMutation(RemoveProductsFromCompareListDocument)
-
   const [displayMessageBar, setDisplayMessageBar] = useState(false)
 
   const handleClick: React.MouseEventHandler<HTMLButtonElement> = async (e) => {
@@ -52,17 +47,20 @@ export function CompareProductButton(props: CompareProps) {
           onClose={() => setDisplayMessageBar(false)}
           variant='pill'
           action={
-            <Button
-              href='/compare'
-              id='view-wishlist-button'
-              size='medium'
-              variant='pill'
-              color='secondary'
-              startIcon={<IconSvg src={iconCompare} />}
-              endIcon={<IconSvg src={iconChevronRight} />}
-            >
-              <Trans id='View comparison' />
-            </Button>
+            compareList.data?.compareList?.item_count &&
+            compareList.data?.compareList?.item_count > 1 ? (
+              <Button
+                href='/compare'
+                id='view-wishlist-button'
+                size='medium'
+                variant='pill'
+                color='secondary'
+                startIcon={<IconSvg src={iconCompare} />}
+                endIcon={<IconSvg src={iconChevronRight} />}
+              >
+                <Trans id='View comparison' />
+              </Button>
+            ) : null
           }
         >
           <Trans

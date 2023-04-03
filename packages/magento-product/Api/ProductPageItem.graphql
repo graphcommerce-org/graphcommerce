@@ -1,7 +1,6 @@
 fragment ProductPageItem on ProductInterface @injectable {
   __typename
   uid
-  id
   ...UseAddProductsToCartAction
   ...ProductPageCategory
   ...ProductPageBreadcrumb

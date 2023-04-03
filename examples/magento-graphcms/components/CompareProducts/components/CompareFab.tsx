@@ -1,24 +1,12 @@
 import {
   extendableComponent,
-  DesktopHeaderBadge,
   IconSvg,
   useFabSize,
   iconCompare,
   useScrollY,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
-import {
-  alpha,
-  Fab,
-  FabProps,
-  styled,
-  useTheme,
-  Box,
-  SxProps,
-  Theme,
-  NoSsr,
-  Badge,
-} from '@mui/material'
+import { Fab, FabProps, styled, Box, SxProps, Theme, NoSsr, Badge } from '@mui/material'
 import { m, useTransform } from 'framer-motion'
 import React from 'react'
 import { useCompareList } from '../hooks/useCompareList'
@@ -54,36 +42,30 @@ function CompareFabContent(props: CompareFabContentProps) {
       className={classes.root}
       sx={[{ position: 'relative', height: fabIconSize }, ...(Array.isArray(sx) ? sx : [sx])]}
     >
-      <MotionFab
-        href='/compare'
-        className={classes.compare}
-        aria-label={i18n._(/* i18n */ 'Compare')}
-        color='inherit'
-        size='responsive'
-        variant='extended'
-        sx={(theme) => ({
-          width: 'unset',
-          backgroundColor: `${theme.palette.background.paper} !important`,
-          [theme.breakpoints.down('md')]: {},
-        })}
-        {...fabProps}
+      <Badge
+        color='primary'
+        variant='standard'
+        overlap='circular'
+        badgeContent={total_quantity}
+        sx={{ '& .MuiBadge-badge': { zIndex: 2000 } }}
       >
-        <Badge
-          color='primary'
-          variant='standard'
-          overlap='circular'
-          badgeContent={total_quantity}
-          sx={{
-            paddingRight: 2,
-            '& .MuiBadge-badge': {
-              right: 5,
-              top: 5,
-            },
-          }}
+        <MotionFab
+          href='/compare'
+          className={classes.compare}
+          aria-label={i18n._(/* i18n */ 'Compare')}
+          color='inherit'
+          size='responsive'
+          variant='extended'
+          sx={(theme) => ({
+            width: 'unset',
+            backgroundColor: `${theme.palette.background.paper} !important`,
+            [theme.breakpoints.down('md')]: {},
+          })}
+          {...fabProps}
         >
           {compareIcon} Compare
-        </Badge>
-      </MotionFab>
+        </MotionFab>
+      </Badge>
 
       <MotionDiv
         className={classes.shadow}
