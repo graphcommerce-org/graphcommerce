@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.2-canary.13
+
+### Patch Changes
+
+- [#1869](https://github.com/graphcommerce-org/graphcommerce/pull/1869) [`82111fa35`](https://github.com/graphcommerce-org/graphcommerce/commit/82111fa351b68a76ff053ebb7e0261ee507a826d) - Revert to classical useEffect strategy for Apollo cache persist restore and remove custom hydration strategies from the cart. ([@paales](https://github.com/paales))
+
 ## 6.0.2-canary.12
 
 ## 6.0.2-canary.11
