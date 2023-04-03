@@ -8,7 +8,7 @@ import {
   HttpLink,
 } from '@apollo/client'
 import type { AppProps } from 'next/app'
-import { useCallback, useEffect, useMemo, useRef } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { createCacheReviver } from '../createCacheReviver'
 import { errorLink } from '../errorLink'
 import fragments from '../generated/fragments.json'
@@ -47,7 +47,7 @@ export function GraphQLProvider(props: GraphQLProviderProps) {
   const state = (pageProps as { apolloState?: NormalizedCacheObject }).apolloState
 
   const stateRef = useRef(state)
-
+  const restored = useRef(false)
   const linksRef = useRef(links)
   const policiesRef = useRef(policies)
 
@@ -60,7 +60,7 @@ export function GraphQLProvider(props: GraphQLProviderProps) {
     [],
   )
 
-  const client = useMemo(() => {
+  const [client] = useState(() => {
     const link = ApolloLink.from([
       ...(typeof window === 'undefined' ? [errorLink, measurePerformanceLink] : []),
       ...linksRef.current,
@@ -73,7 +73,7 @@ export function GraphQLProvider(props: GraphQLProviderProps) {
 
     const ssrMode = typeof window === 'undefined'
     return new ApolloClient({ link, cache, name: 'web', ssrMode })
-  }, [createCache])
+  })
 
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
