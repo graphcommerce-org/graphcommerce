@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.2
+
+### Patch Changes
+
+- [#1866](https://github.com/graphcommerce-org/graphcommerce/pull/1866) [`eafe3a17d`](https://github.com/graphcommerce-org/graphcommerce/commit/eafe3a17d6c6b4a9ca524361498ffa382d44c63f) - Additional useOrderCardItemImages query was triggered when there were no urlKeys present. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 6.0.2-canary.12
 
 ## 6.0.2-canary.11

@@ -1,5 +1,13 @@
 # Change Log
 
+## 6.0.2
+
+### Patch Changes
+
+- [#1867](https://github.com/graphcommerce-org/graphcommerce/pull/1867) [`8e4bf4ca7`](https://github.com/graphcommerce-org/graphcommerce/commit/8e4bf4ca7d0c32525df50df4a350ab19a2fbf620) - Overlay: Fix incorrect box-shadow for variant bottom ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#1867](https://github.com/graphcommerce-org/graphcommerce/pull/1867) [`9b7e4414c`](https://github.com/graphcommerce-org/graphcommerce/commit/9b7e4414c537e775c1f2d5de65ffde6fc39b7f3b) - Disallow overscrolling on overlays on mobile ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 6.0.2-canary.12
 
 ## 6.0.2-canary.11

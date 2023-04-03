@@ -1,5 +1,13 @@
 # @graphcommerce/magento-wishlist
 
+## 6.0.2
+
+### Patch Changes
+
+- [#1876](https://github.com/graphcommerce-org/graphcommerce/pull/1876) [`8dffc59c0`](https://github.com/graphcommerce-org/graphcommerce/commit/8dffc59c04bf6f2a6000b73db13592e10afd936c) - Added an configuration to the wishlist: `wishlistShowFeedbackMessage` to show a feedback message when a product is added to the wishlist. ([@paales](https://github.com/paales))
+
+- [#1866](https://github.com/graphcommerce-org/graphcommerce/pull/1866) [`28e058995`](https://github.com/graphcommerce-org/graphcommerce/commit/28e058995638227c22dd0008895acd1cc46b28b4) - skip mergeGuestWishlist if there is no guest wishlist ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 6.0.2-canary.12
 
 ## 6.0.2-canary.11

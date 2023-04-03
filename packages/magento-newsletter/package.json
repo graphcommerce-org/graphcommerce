@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-newsletter",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "6.0.2-canary.12",
+  "version": "6.0.2",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -12,16 +12,16 @@
     }
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "6.0.2-canary.12",
-    "@graphcommerce/prettier-config-pwa": "6.0.2-canary.12",
-    "@graphcommerce/typescript-config-pwa": "6.0.2-canary.12"
+    "@graphcommerce/eslint-config-pwa": "6.0.2",
+    "@graphcommerce/prettier-config-pwa": "6.0.2",
+    "@graphcommerce/typescript-config-pwa": "6.0.2"
   },
   "dependencies": {
-    "@graphcommerce/graphql": "6.0.2-canary.12",
-    "@graphcommerce/magento-cart": "6.0.2-canary.12",
-    "@graphcommerce/magento-customer": "6.0.2-canary.12",
-    "@graphcommerce/next-ui": "6.0.2-canary.12",
-    "@graphcommerce/react-hook-form": "6.0.2-canary.12"
+    "@graphcommerce/graphql": "6.0.2",
+    "@graphcommerce/magento-cart": "6.0.2",
+    "@graphcommerce/magento-customer": "6.0.2",
+    "@graphcommerce/next-ui": "6.0.2",
+    "@graphcommerce/react-hook-form": "6.0.2"
   },
   "peerDependencies": {
     "@lingui/react": "^3.13.2",

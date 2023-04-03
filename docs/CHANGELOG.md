@@ -1,5 +1,13 @@
 # Change Log
 
+## 6.0.2
+
+### Patch Changes
+
+- [#1876](https://github.com/graphcommerce-org/graphcommerce/pull/1876) [`8dffc59c0`](https://github.com/graphcommerce-org/graphcommerce/commit/8dffc59c04bf6f2a6000b73db13592e10afd936c) - Added an configuration to the wishlist: `wishlistShowFeedbackMessage` to show a feedback message when a product is added to the wishlist. ([@paales](https://github.com/paales))
+
+- [#1862](https://github.com/graphcommerce-org/graphcommerce/pull/1862) [`d590ecedd`](https://github.com/graphcommerce-org/graphcommerce/commit/d590eceddb8cdaab59bfe775247526f7c7eb00b3) - Rewritten docs ([@ErwinOtten](https://github.com/ErwinOtten))
+
 ## 6.0.2-canary.12
 
 ## 6.0.2-canary.11

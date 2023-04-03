@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.2
+
+### Patch Changes
+
+- [#1871](https://github.com/graphcommerce-org/graphcommerce/pull/1871) [`bc4181e74`](https://github.com/graphcommerce-org/graphcommerce/commit/bc4181e74392b899f62612de764fdb41f5716dd7) - Make checkout newsletter and agreements checkboxes persistent ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 6.0.2-canary.12
 
 ### Patch Changes

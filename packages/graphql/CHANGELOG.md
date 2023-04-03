@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.2
+
+### Patch Changes
+
+- [#1883](https://github.com/graphcommerce-org/graphcommerce/pull/1883) [`ede93ae7f`](https://github.com/graphcommerce-org/graphcommerce/commit/ede93ae7f1d9239d1e827cce574085a1c264890b) - Added clickable links to measurePerformanceLink ([@paales](https://github.com/paales))
+
 ## 6.0.2-canary.12
 
 ## 6.0.2-canary.11

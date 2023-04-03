@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.2
+
+### Patch Changes
+
+- [#1875](https://github.com/graphcommerce-org/graphcommerce/pull/1875) [`4325f6556`](https://github.com/graphcommerce-org/graphcommerce/commit/4325f6556308fe96e262e03935f37dc252f72c2e) - When trying to redirect it would do another call to fetch the config while that was already done previously ([@paales](https://github.com/paales))
+
 ## 6.0.2-canary.12
 
 ## 6.0.2-canary.11

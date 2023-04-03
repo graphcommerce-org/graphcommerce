@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.2
+
+### Patch Changes
+
+- [#1879](https://github.com/graphcommerce-org/graphcommerce/pull/1879) [`322a12098`](https://github.com/graphcommerce-org/graphcommerce/commit/322a12098b2931dd389a5f53baedd834c69b5edc) - When using @mui/material form fields, show a warning to the developer so they learn about the ecommerce-ui form components. ([@paales](https://github.com/paales))
+
 ## 6.0.2-canary.12
 
 ## 6.0.2-canary.11

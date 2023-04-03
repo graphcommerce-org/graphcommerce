@@ -1,5 +1,25 @@
 # Change Log
 
+## 6.0.2
+
+### Patch Changes
+
+- [#1884](https://github.com/graphcommerce-org/graphcommerce/pull/1884) [`4ee1e5478`](https://github.com/graphcommerce-org/graphcommerce/commit/4ee1e54786b95bf309ce0eb5e7f707a8f60967fd) - Disable batching for Magento to get better cache hitrates ([@paales](https://github.com/paales))
+
+- [#1884](https://github.com/graphcommerce-org/graphcommerce/pull/1884) [`4ee1e5478`](https://github.com/graphcommerce-org/graphcommerce/commit/4ee1e54786b95bf309ce0eb5e7f707a8f60967fd) - Enable batching for Hygraph, since billing happens per query ([@paales](https://github.com/paales))
+
+- [#1890](https://github.com/graphcommerce-org/graphcommerce/pull/1890) [`f88727915`](https://github.com/graphcommerce-org/graphcommerce/commit/f88727915998690b34d35c7eb5b2af3ca154da3d) - Aggregation options (filters) now show a relevant count when applying filters and hide the count when it doesn't make sense. ([@paales](https://github.com/paales))
+
+- [#1875](https://github.com/graphcommerce-org/graphcommerce/pull/1875) [`4325f6556`](https://github.com/graphcommerce-org/graphcommerce/commit/4325f6556308fe96e262e03935f37dc252f72c2e) - When trying to redirect it would do another call to fetch the config while that was already done previously ([@paales](https://github.com/paales))
+
+- [#1888](https://github.com/graphcommerce-org/graphcommerce/pull/1888) [`d6bfa9d15`](https://github.com/graphcommerce-org/graphcommerce/commit/d6bfa9d15d239db8781cca7f12ac80bea14a0fbb) - RowLinks Usps variant would throw an undefined key error ([@paales](https://github.com/paales))
+
+- [#1877](https://github.com/graphcommerce-org/graphcommerce/pull/1877) [`27cd09247`](https://github.com/graphcommerce-org/graphcommerce/commit/27cd0924751a1ed2d1043e09600c039df76bad45) - Fetching core product page and and related+upsells in parallel so Magento doesn't choke on the query complexity limit. ([@paales](https://github.com/paales))
+
+- [#1884](https://github.com/graphcommerce-org/graphcommerce/pull/1884) [`f437ad36a`](https://github.com/graphcommerce-org/graphcommerce/commit/f437ad36a5bb1d8273966cf276c3de0c629f8489) - The category should respect the default page size set by Magento ([@paales](https://github.com/paales))
+
+- [#1888](https://github.com/graphcommerce-org/graphcommerce/pull/1888) [`c193caf5a`](https://github.com/graphcommerce-org/graphcommerce/commit/c193caf5aaff7ad5e33901e97096f8b1755654f3) - When accessing a page beyond the current max pages, it would throw a 500 error ([@paales](https://github.com/paales))
+
 ## 6.0.2-canary.12
 
 ## 6.0.2-canary.11
