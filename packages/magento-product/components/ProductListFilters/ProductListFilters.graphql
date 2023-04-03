@@ -3,6 +3,7 @@ fragment ProductListFilters on Products {
     __typename
     label
     attribute_code
+    count
     options {
       __typename
       label
