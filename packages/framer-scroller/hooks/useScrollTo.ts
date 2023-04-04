@@ -25,20 +25,21 @@ export function useScrollTo() {
       }
 
       if (process.env.NODE_ENV === 'development' && scroll.animating.get() && retrigger === 0) {
-        throw Error(
-          `scrollTo triggered while another animation is in progress. Maybe wrap in 'if(!scroll.animating.get())'?`,
+        console.warn(
+          `scrollTo triggered while another animation is in progress. This cancels the current animation and creates a new one.`,
         )
       }
 
       if (process.env.NODE_ENV === 'development' && retrigger > 5) {
-        throw Error(
+        console.error(
           `scrollTo triggered more than 5 times, is the element resizing constantly? Bailing out.`,
         )
+        return
       }
 
       if (process.env.NODE_ENV === 'development' && retrigger > 0) {
         console.warn(
-          `scrollTo detect a resize while animating, this can cause the animation to be inaccurate.`,
+          `scrollTo re-animating to because the final location changed during animation.`,
         )
       }
 
