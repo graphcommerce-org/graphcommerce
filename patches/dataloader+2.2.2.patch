@@ -1,8 +1,8 @@
 diff --git a/node_modules/dataloader/index.js b/node_modules/dataloader/index.js
-index f9a1c07..37682f0 100644
+index c760330..90bac7f 100644
 --- a/node_modules/dataloader/index.js
 +++ b/node_modules/dataloader/index.js
-@@ -222,15 +222,7 @@ function () {
+@@ -229,15 +229,7 @@ function () {
  // setImmediate or setTimeout) at a potential performance penalty.
  
  
