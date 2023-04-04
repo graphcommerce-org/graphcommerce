@@ -103,32 +103,6 @@ export function AddressFields(props: AddressFieldsProps) {
       {countryFirst && countryFields}
       <FormRow>
         <TextFieldElement
-          control={control}
-          name='postcode'
-          variant='outlined'
-          type='text'
-          required={required.postcode}
-          label={<Trans id='Postcode' />}
-          InputProps={{
-            readOnly,
-            endAdornment: <InputCheckmark show={valid.postcode} />,
-          }}
-        />
-        <TextFieldElement
-          control={control}
-          name='city'
-          variant='outlined'
-          type='text'
-          required={required.city}
-          label={<Trans id='City' />}
-          InputProps={{
-            readOnly,
-            endAdornment: <InputCheckmark show={valid.city} />,
-          }}
-        />
-      </FormRow>
-      <FormRow>
-        <TextFieldElement
           variant='outlined'
           control={control}
           required={required.street}
@@ -171,6 +145,32 @@ export function AddressFields(props: AddressFieldsProps) {
           InputProps={{
             readOnly,
             endAdornment: <InputCheckmark show={valid.addition} />,
+          }}
+        />
+      </FormRow>
+      <FormRow>
+        <TextFieldElement
+          control={control}
+          name='postcode'
+          variant='outlined'
+          type='text'
+          required={required.postcode}
+          label={<Trans id='Postcode' />}
+          InputProps={{
+            readOnly,
+            endAdornment: <InputCheckmark show={valid.postcode} />,
+          }}
+        />
+        <TextFieldElement
+          control={control}
+          name='city'
+          variant='outlined'
+          type='text'
+          required={required.city}
+          label={<Trans id='City' />}
+          InputProps={{
+            readOnly,
+            endAdornment: <InputCheckmark show={valid.city} />,
           }}
         />
       </FormRow>
