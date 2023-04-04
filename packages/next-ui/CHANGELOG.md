@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.2-canary.17
+
+### Patch Changes
+
+- [#1895](https://github.com/graphcommerce-org/graphcommerce/pull/1895) [`49d34bda4`](https://github.com/graphcommerce-org/graphcommerce/commit/49d34bda4b4426ad97272ce0a28e17f52e9f4e06) - When opening the overlay while darkmode was enabled, it would close immediately ([@paales](https://github.com/paales))
+
 ## 6.0.2-canary.16
 
 ## 6.0.2-canary.15

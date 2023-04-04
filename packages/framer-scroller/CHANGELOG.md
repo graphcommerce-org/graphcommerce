@@ -1,5 +1,15 @@
 # Change Log
 
+## 6.0.2-canary.17
+
+### Patch Changes
+
+- [#1895](https://github.com/graphcommerce-org/graphcommerce/pull/1895) [`e6dbddc01`](https://github.com/graphcommerce-org/graphcommerce/commit/e6dbddc019358f13886288ae065da2def0c1b335) - `useScrollTo` improvements for easier debugging:
+
+  - When a `scrollTo` animation is requesed while an animation is is progress it will throw an error
+  - When a `scrollTo` animation is retriggered more than 5 times, it will throw an error
+  - When a `scrollTo` detects the overlay is resized after the animation it will show a warning. ([@paales](https://github.com/paales))
+
 ## 6.0.2-canary.16
 
 ## 6.0.2-canary.15

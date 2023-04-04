@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.2-canary.17
+
+### Patch Changes
+
+- [#1895](https://github.com/graphcommerce-org/graphcommerce/pull/1895) [`cad2d24b4`](https://github.com/graphcommerce-org/graphcommerce/commit/cad2d24b4d16f0f8e8599ed7c45d6ca8fa5e0132) - Checkout added and cart would share the same overlay ([@paales](https://github.com/paales))
+
 ## 6.0.2-canary.16
 
 ## 6.0.2-canary.15
