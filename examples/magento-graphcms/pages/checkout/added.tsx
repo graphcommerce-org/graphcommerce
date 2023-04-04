@@ -1,6 +1,4 @@
-import { PageOptions, usePageContext } from '@graphcommerce/framer-next-pages'
-import { useScrollerContext, useScrollTo } from '@graphcommerce/framer-scroller'
-import { useMotionValueValue } from '@graphcommerce/framer-utils'
+import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { useQuery } from '@graphcommerce/graphql'
 import { Image } from '@graphcommerce/image'
 import { CartAddedDocument, CrosssellsDocument, useCartQuery } from '@graphcommerce/magento-cart'
@@ -21,7 +19,7 @@ import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, Container, Divider, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
-import { useEffect, useMemo, useRef } from 'react'
+import { useMemo } from 'react'
 import { LayoutOverlay, LayoutOverlayProps, productListRenderer } from '../../components'
 import { graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
@@ -175,7 +173,7 @@ function CheckoutAdded() {
 }
 
 const pageOptions: PageOptions<LayoutOverlayProps> = {
-  overlayGroup: 'checkout',
+  overlayGroup: 'added',
   Layout: LayoutOverlay,
   layoutProps: {
     variantMd: 'bottom',

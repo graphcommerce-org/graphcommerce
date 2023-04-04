@@ -277,11 +277,11 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
 
     if (variant() === 'right') document.body.style.overflow = 'hidden'
 
-    if (position.get() !== OverlayPosition.OPENED) {
+    if (position.get() !== OverlayPosition.OPENED && !scroll.animating.get()) {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       scrollTo(openClosePositions().open).then(() => position.set(OverlayPosition.OPENED))
     }
-  }, [isPresent, openClosePositions, position, scrollTo, scrollerRef, variant])
+  }, [isPresent, openClosePositions, position, scroll.animating, scrollTo, scrollerRef, variant])
 
   // When the overlay is closed by navigating away, we're closing the overlay.
   useEffect(() => {

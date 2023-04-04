@@ -109,7 +109,7 @@ function CartPage() {
 }
 
 const pageOptions: PageOptions<LayoutOverlayProps> = {
-  overlayGroup: 'checkout',
+  overlayGroup: 'cart',
   Layout: LayoutOverlay,
   layoutProps: { variantMd: 'bottom', variantSm: 'bottom' },
 }
