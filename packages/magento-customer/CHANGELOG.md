@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.2-canary.16
+
+### Patch Changes
+
+- [#1896](https://github.com/graphcommerce-org/graphcommerce/pull/1896) [`4f846293f`](https://github.com/graphcommerce-org/graphcommerce/commit/4f846293f3b020dc7bae885fe4ccd1cbd0cb10d7) - When a customer would log in the current guest information would be lost ([@paales](https://github.com/paales))
+
 ## 6.0.2-canary.15
 
 ## 6.0.2-canary.14
