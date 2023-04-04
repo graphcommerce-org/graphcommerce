@@ -6,6 +6,7 @@ import { OrderCardItemImage } from '../OrderCardItemImage/OrderCardItemImage'
 import { OrderStateLabel } from '../OrderStateLabel/OrderStateLabel'
 import { TrackingLink } from '../TrackingLink/TrackingLink'
 import { OrderCardFragment } from './OrderCard.gql'
+import { Trans } from '@lingui/react'
 
 type OrderCardProps = Partial<OrderCardFragment> & {
   loading?: boolean
@@ -101,13 +102,13 @@ export function OrderCard(props: OrderCardProps) {
           <OrderStateLabel
             items={items}
             renderer={{
-              Ordered: () => <span>Your order is being processed</span>,
-              Invoiced: () => <span>Your order has been invoiced</span>,
-              Shipped: () => <span>Your order is on its way!</span>,
-              Refunded: () => <span>Your order has been refunded</span>,
-              Canceled: () => <span>Your order has been canceled</span>,
-              Returned: () => <span>Your order has been returned</span>,
-              Partial: () => <span>Your order has been partially processed</span>,
+              Ordered: () => <Trans id='Your order is being processed' />,
+              Invoiced: () => <Trans id='Your order has been invoiced' />,
+              Shipped: () => <Trans id='Your order is on its way!' />,
+              Refunded: () => <Trans id='Your order has been refunded' />,
+              Canceled: () => <Trans id='Your order has been canceled' />,
+              Returned: () => <Trans id='Your order has been returned' />,
+              Partial: () => <Trans id='Your order has been partially processed' />,
             }}
           />
         </OrderRow>
