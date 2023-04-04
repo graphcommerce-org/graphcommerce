@@ -1,6 +1,6 @@
 import { GraphQLProviderProps } from '@graphcommerce/graphql'
 import type { PluginProps } from '@graphcommerce/next-config'
-import { compareTypePolicies } from '../components/CompareProducts/typePolicies'
+import { compareTypePolicies } from '../typePolicies'
 
 export const component = 'GraphQLProvider'
 export const exported = '@graphcommerce/graphql'

@@ -19,7 +19,15 @@ export function CompareMessageSnackbar(props: {
   return (
     <MessageSnackbar
       open={displayMessageBar}
-      onClose={() => setDisplayMessageBar(false)}
+      onMouseDown={(e) => {
+        e.stopPropagation()
+      }}
+      onClick={(e) => {
+        e.stopPropagation()
+      }}
+      onClose={() => {
+        setDisplayMessageBar(false)
+      }}
       variant='pill'
       action={
         count && count > 1 ? (

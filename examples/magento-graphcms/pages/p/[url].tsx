@@ -1,5 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { mergeDeep } from '@graphcommerce/graphql'
+import { CompareProductButton, FallbackCompareButton } from '@graphcommerce/magento-compare'
 import {
   AddProductsToCartButton,
   AddProductsToCartError,
@@ -48,8 +49,6 @@ import {
   RowRenderer,
   Usps,
 } from '../../components'
-import { CompareProductButton } from '../../components/CompareProducts/components/CompareProductButton'
-import { FallbackCompareButton } from '../../components/CompareProducts/components/FallbackCompareButton'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
 import { ProductPage2Document, ProductPage2Query } from '../../graphql/ProductPage2.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'

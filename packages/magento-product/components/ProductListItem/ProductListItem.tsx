@@ -1,5 +1,5 @@
 import { Image, ImageProps } from '@graphcommerce/image'
-import { CompareProductToggle } from '@graphcommerce/magento-graphcms/components/CompareProducts/components/CompareProductToggle'
+import { CompareProductToggle } from '@graphcommerce/magento-compare'
 import {
   responsiveVal,
   extendableComponent,
