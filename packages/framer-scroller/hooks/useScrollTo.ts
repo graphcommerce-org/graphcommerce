@@ -43,10 +43,13 @@ export function useScrollTo() {
         )
       }
 
+      const stop: { stop: () => void }[] = []
+
       const xDone = new Promise<void>((onComplete) => {
         if (ref.scrollLeft !== to.x) {
           disableSnap()
-          register(
+
+          stop.push(
             animate({
               from: ref.scrollLeft,
               to: to.x,
@@ -66,7 +69,7 @@ export function useScrollTo() {
       const yDone = new Promise<void>((onComplete) => {
         if (ref.scrollTop !== to.y) {
           disableSnap()
-          register(
+          stop.push(
             animate({
               from: ref.scrollTop,
               to: to.y,
@@ -86,13 +89,13 @@ export function useScrollTo() {
         }
       })
 
-      await xDone
-      await yDone
+      register({ stop: () => stop.forEach((s) => s.stop()) })
+      await Promise.all([xDone, yDone])
 
       if (Array.isArray(incoming)) {
         const checkPositions = getScrollSnapPositions()
         if (checkPositions.x[incoming[0]] !== to.x || checkPositions.y[incoming[1]] !== to.y)
-          await scrollTo(incoming, retrigger++)
+          await scrollTo(incoming, retrigger + 1)
       }
       enableSnap()
     },

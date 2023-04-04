@@ -180,7 +180,8 @@ const pageOptions: PageOptions<LayoutOverlayProps> = {
     variantSm: 'bottom',
     sizeMd: 'floating',
     sizeSm: 'minimal',
-    justifyMd: 'stretch',
+    widthMd: 'auto',
+    justifyMd: 'center',
     justifySm: 'stretch',
   },
 }
