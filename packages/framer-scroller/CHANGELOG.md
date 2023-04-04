@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.2-canary.19
+
+### Patch Changes
+
+- [`b8bd4abcd`](https://github.com/graphcommerce-org/graphcommerce/commit/b8bd4abcdfb9fc96ec5a724b449df713b99af23b) - Do not change the behavior of the useScrollTo, only warn about possible problems. ([@paales](https://github.com/paales))
+
 ## 6.0.2-canary.18
 
 ## 6.0.2-canary.17
