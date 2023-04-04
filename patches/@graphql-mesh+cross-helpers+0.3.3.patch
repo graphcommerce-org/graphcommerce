@@ -26,3 +26,65 @@ index 26234f7..f9c16c6 100644
          },
        };
  
+diff --git a/node_modules/@graphql-mesh/cross-helpers/node.js b/node_modules/@graphql-mesh/cross-helpers/node.js
+index 5e42cf6..f9c16c6 100644
+--- a/node_modules/@graphql-mesh/cross-helpers/node.js
++++ b/node_modules/@graphql-mesh/cross-helpers/node.js
+@@ -1,5 +1,52 @@
+-/* eslint-disable import/no-nodejs-modules */
+-module.exports.fs = require('fs');
+-module.exports.path = require('path');
+-module.exports.process = require('process');
+-module.exports.util = require('util');
++import path from 'path-browserify';
++import { inspect } from '@graphql-tools/utils';
++
++export const fs = {
++  promises: {},
++};
++
++export { path };
++
++const processObj =
++  typeof process !== 'undefined'
++    ? process
++    : {
++        platform: 'linux',
++        get env() {
++          // try {
++          //   // eslint-disable-next-line no-new-func
++          //   return new Function('return import.meta.env')();
++          // } catch {
++            return new Proxy(
++              {},
++              {
++                get(_, key) {
++                  if (key === 'NODE_ENV') {
++                    return 'development';
++                  }
++                  return globalThis[key];
++                },
++              },
++            );
++          // }
++        },
++      };
++
++export { processObj as process };
++
++export const util = {
++  promisify(oldSchoolFn) {
++    return function promisifiedFn(...args) {
++      return new Promise(function executor(resolve, reject) {
++        oldSchoolFn(...args, function cb(err, result) {
++          if (err) {
++            reject(err);
++          } else {
++            resolve(result);
++          }
++        });
++      });
++    };
++  },
++  inspect,
++};
