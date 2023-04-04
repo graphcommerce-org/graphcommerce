@@ -1,0 +1,21 @@
+diff --git a/node_modules/@whatwg-node/router/index.js b/node_modules/@whatwg-node/router/index.js
+index 9610744..be91744 100644
+--- a/node_modules/@whatwg-node/router/index.js
++++ b/node_modules/@whatwg-node/router/index.js
+@@ -4,6 +4,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
+ 
+ const DefaultFetchAPI = require('@whatwg-node/fetch');
+ const server = require('@whatwg-node/server');
++const urlPatternModule = require('urlpattern-polyfill');
+ 
+ const HTTP_METHODS = [
+     'GET',
+@@ -38,7 +39,7 @@ function createRouterBase({ fetchAPI: givenFetchAPI, base: basePath = '/', } = {
+         else {
+             fullPath = `${basePath}${path}`;
+         }
+-        const pattern = new fetchAPI.URLPattern({ pathname: fullPath });
++        const pattern = new urlPatternModule.URLPattern({ pathname: fullPath });
+         methodPatternMaps.set(pattern, handlers);
+     }
+     async function handleRequest(request, context) {
