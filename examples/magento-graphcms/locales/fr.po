@@ -712,6 +712,27 @@ msgstr "Votre adresse a été ajoutée"
 msgid "Your cart is empty"
 msgstr "Votre panier est vide"
 
+msgid "Your order has been canceled"
+msgstr "Votre commande a été annulée"
+
+msgid "Your order has been invoiced"
+msgstr "Votre commande a été facturée"
+
+msgid "Your order has been partially processed"
+msgstr "Votre commande a été partiellement traitée"
+
+msgid "Your order has been refunded"
+msgstr "Votre commande a été remboursée"
+
+msgid "Your order has been returned"
+msgstr "Votre commande a été retournée"
+
+msgid "Your order is being processed"
+msgstr "Votre commande est en traitement"
+
+msgid "Your order is on its way!"
+msgstr "Votre commande est sur son chemin!"
+
 msgid "Your session is expired"
 msgstr "Votre session a expiré"
 

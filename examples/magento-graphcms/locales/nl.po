@@ -712,6 +712,27 @@ msgstr "Uw adres is toegevoegd"
 msgid "Your cart is empty"
 msgstr "Je winkelwagen is leeg"
 
+msgid "Your order has been canceled"
+msgstr "Uw bestelling is geannuleerd"
+
+msgid "Your order has been invoiced"
+msgstr "Uw bestelling is gefactureerd"
+
+msgid "Your order has been partially processed"
+msgstr "Uw bestelling is gedeeltelijk verwerkt"
+
+msgid "Your order has been refunded"
+msgstr "Uw bestelling is terugbetaald"
+
+msgid "Your order has been returned"
+msgstr "Uw bestelling is geretourneerd"
+
+msgid "Your order is being processed"
+msgstr "Uw bestelling wordt verwerkt"
+
+msgid "Your order is on its way!"
+msgstr "Uw bestelling is onderweg!"
+
 msgid "Your session is expired"
 msgstr "Uw sessie is verlopen"
 
