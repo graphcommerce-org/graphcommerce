@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.2-canary.21
+
+### Patch Changes
+
+- [#1899](https://github.com/graphcommerce-org/graphcommerce/pull/1899) [`3de184ee2`](https://github.com/graphcommerce-org/graphcommerce/commit/3de184ee28d48d8f1c1c092f264ac6b86fdf3ec6) - Make order states translatable ([@carlocarels90](https://github.com/carlocarels90))
+
 ## 6.0.2-canary.20
 
 ## 6.0.2-canary.19
