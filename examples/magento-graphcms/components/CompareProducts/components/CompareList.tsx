@@ -101,6 +101,24 @@ export function CompareList() {
                 ...compareListStyles,
                 padding: theme.spacings.lg,
                 pt: 0,
+                ':not(.ContainerWithHeader-root &)': {
+                  /* @todo: find a way to not have to do this (IfConfig demoMode) */
+                  '& > :nth-of-type(7n + 3)': {
+                    gridColumn: 'unset',
+                    gridRow: 'unset',
+                    display: 'unset',
+                    gridAutoFlow: 'unset',
+                    gridTemplateColumns: 'unset',
+                    gridTemplateRows: 'unset',
+                    '& > div:first-of-type': {
+                      position: 'unset',
+                      height: 'unset',
+                    },
+                    '& *': {
+                      background: 'unset',
+                    },
+                  },
+                },
               })}
             />
             <Box
