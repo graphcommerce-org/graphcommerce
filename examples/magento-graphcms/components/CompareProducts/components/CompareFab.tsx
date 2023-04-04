@@ -91,10 +91,12 @@ export function CompareFab(props: CompareFabProps) {
   const compareList = useCompareList()
   return (
     <NoSsr fallback={<CompareFabContent total_quantity={0} {...props} />}>
-      <CompareFabContent
-        total_quantity={compareList.data?.compareList?.item_count ?? 0}
-        {...props}
-      />
+      {compareList.data?.compareList?.item_count && (
+        <CompareFabContent
+          total_quantity={compareList.data?.compareList?.item_count ?? 0}
+          {...props}
+        />
+      )}
     </NoSsr>
   )
 }

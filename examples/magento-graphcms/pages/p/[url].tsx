@@ -173,6 +173,10 @@ function ProductPage(props: Props) {
 
           <ProductSidebarDelivery product={product} />
 
+          <NoSsr fallback={<FallbackCompareButton />}>
+            <CompareProductButton name={product.name} id_internal={product.id_internal} />
+          </NoSsr>
+
           <Box
             sx={(theme) => ({
               display: 'flex',
@@ -182,9 +186,6 @@ function ProductPage(props: Props) {
           >
             <AddProductsToCartButton fullWidth product={product} />
             <ProductWishlistChipDetail {...product} />
-            <NoSsr fallback={<FallbackCompareButton />}>
-              <CompareProductButton name={product.name} id_internal={product.id_internal} />
-            </NoSsr>
           </Box>
 
           <Usps usps={sidebarUsps} size='small' />

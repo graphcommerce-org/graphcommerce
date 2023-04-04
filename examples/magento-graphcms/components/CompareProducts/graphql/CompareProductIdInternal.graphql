@@ -1,4 +1,5 @@
-fragment CompareProductIdInternal on ProductInterface @inject(into: ["ProductPageItem"]) {
+fragment CompareProductIdInternal on ProductInterface
+@inject(into: ["ProductPageItem", "ProductListItem"]) {
   __typename
   id_internal: id
 }
