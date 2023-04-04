@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.2-canary.20
+
+### Patch Changes
+
+- [#1901](https://github.com/graphcommerce-org/graphcommerce/pull/1901) [`54aadf39f`](https://github.com/graphcommerce-org/graphcommerce/commit/54aadf39fa9cf2d84c7feab8bc07703e3d02741d) - Make sure the stop function is stopping both x and y animations to prevent rare occasions where a direction isn’t cancelled ([@paales](https://github.com/paales))
+
 ## 6.0.2-canary.19
 
 ### Patch Changes

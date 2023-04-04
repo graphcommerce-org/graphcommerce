@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.2-canary.20
+
+### Patch Changes
+
+- [#1901](https://github.com/graphcommerce-org/graphcommerce/pull/1901) [`2fe5743ed`](https://github.com/graphcommerce-org/graphcommerce/commit/2fe5743edb8db1fd8a8ae1b483ab202efaab656f) - Do not make the crosssells overlay the maximum width, but make it adhere to the content. ([@paales](https://github.com/paales))
+
 ## 6.0.2-canary.19
 
 ## 6.0.2-canary.18
