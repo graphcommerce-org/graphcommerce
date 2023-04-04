@@ -19,10 +19,13 @@ export function SignInForm(props: SignInFormProps) {
     {
       defaultValues: { email },
       onBeforeSubmit: async (values) => {
-        const oldEmail = client.cache.readQuery({ query: CustomerDocument })
-        if (oldEmail?.customer?.email !== email) {
-          await client.resetStore()
-        }
+        const oldEmail = client.cache.readQuery({ query: CustomerDocument })?.customer?.email
+
+        /**
+         * We are logging in because the session expired, but we're logging in with a different
+         * email address, we need to reset the store.
+         */
+        if (oldEmail && oldEmail !== email) await client.resetStore()
         return { ...values, email }
       },
     },
