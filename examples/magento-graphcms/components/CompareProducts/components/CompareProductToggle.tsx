@@ -14,7 +14,8 @@ export function CompareProductToggle(props: CompareProps) {
   const idString = String(id_internal)
   const create = useCompareListUidCreate()
   const compareList = useCompareList()
-  const inCompareList = compareList.data?.compareList?.items?.some((i) => i?.uid === idString)
+  const inCompareList =
+    compareList.data?.compareList?.items?.some((i) => i?.uid === idString) ?? false
   const [add] = useMutation(AddProductsToCompareListDocument)
   const [remove] = useMutation(RemoveProductsFromCompareListDocument)
   const [displayMessageBar, setDisplayMessageBar] = useState(false)

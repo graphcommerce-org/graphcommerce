@@ -1,12 +1,16 @@
 import { Trans } from '@lingui/react'
-import { Badge, Button } from '@mui/material'
+import { Box, Button, Checkbox } from '@mui/material'
 
 export function FallbackCompareButton() {
   return (
-    <Badge color='primary'>
-      <Button sx={{ color: 'red' }}>
+    <Box>
+      <Button
+        variant='contained'
+        onMouseDown={(e) => e.stopPropagation()}
+        startIcon={<Checkbox checked={false} />}
+      >
         <Trans id='Compare' />
       </Button>
-    </Badge>
+    </Box>
   )
 }
