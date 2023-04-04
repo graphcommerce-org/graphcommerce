@@ -13,6 +13,9 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+msgid "<0>{name}</0> has been added to your comparison!"
+msgstr ""
+
 msgid "<0>{name}</0> has been added to your shopping cart!"
 msgstr "<0>{name}</0> is toegevoegd aan uw winkelwagen!"
 
@@ -121,6 +124,12 @@ msgstr "Wissen"
 msgid "Close"
 msgstr "Sluiten"
 
+msgid "Compare"
+msgstr ""
+
+msgid "Compare products"
+msgstr ""
+
 msgid "Complete the payment on your bank’s website."
 msgstr "Voltooi de betaling op uw bank's website."
 
@@ -144,6 +153,9 @@ msgstr "Doorgaan"
 
 msgid "Continue shopping"
 msgstr "Verder winkelen"
+
+msgid "Could not create a new compare list"
+msgstr ""
 
 msgid "Could not create an empty cart"
 msgstr "Kon geen lege winkelwagen aanmaken"
@@ -214,6 +226,9 @@ msgstr "E-mailadres"
 msgid "Emails don't match"
 msgstr "E-mailadressen komen niet overeen"
 
+msgid "Empty comparelist"
+msgstr ""
+
 msgid "Fill in your e-mail to login or create an account"
 msgstr "Vul uw e-mailadres in om in te loggen of maak een account aan"
 
@@ -259,6 +274,9 @@ msgstr "Huisnummer"
 msgid "If you’ve successfully paid your order, the order <0>will</0> come through, but there is a communication error with the website."
 msgstr "Als u uw bestelling succesvol heeft betaald, dan zal de bestelling <0>doorkomen</0>, maar er is een communicatiefout met de website."
 
+msgid "In comparelist"
+msgstr ""
+
 msgid "Including {0}"
 msgstr "Inclusief {0}"
 
@@ -300,6 +318,9 @@ msgstr "Log in om verder te winkelen"
 
 msgid "Menu"
 msgstr "Menu"
+
+msgid "More information"
+msgstr ""
 
 msgid "Mr"
 msgstr "Dhr"
@@ -646,8 +667,14 @@ msgstr "Probeer een ander product"
 msgid "Try a different search"
 msgstr "Probeer een andere zoekopdracht"
 
+msgid "View Product"
+msgstr ""
+
 msgid "View all items"
 msgstr "Bekijk alle items"
+
+msgid "View comparison"
+msgstr ""
 
 msgid "View less items"
 msgstr "Bekijk minder items"

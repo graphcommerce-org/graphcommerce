@@ -13,6 +13,9 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+msgid "<0>{name}</0> has been added to your comparison!"
+msgstr ""
+
 msgid "<0>{name}</0> has been added to your shopping cart!"
 msgstr "<0>{name}</0> è stato aggiunto al tuo carrello!"
 
@@ -121,6 +124,12 @@ msgstr "Filtro pulito"
 msgid "Close"
 msgstr "Chiudi"
 
+msgid "Compare"
+msgstr ""
+
+msgid "Compare products"
+msgstr ""
+
 msgid "Complete the payment on your bank’s website."
 msgstr "Completa il pagamento sul sito del tuo banco."
 
@@ -144,6 +153,9 @@ msgstr "Continua"
 
 msgid "Continue shopping"
 msgstr "Continua gli acquisti"
+
+msgid "Could not create a new compare list"
+msgstr ""
 
 msgid "Could not create an empty cart"
 msgstr "Impossibile creare un carrello vuoto"
@@ -214,6 +226,9 @@ msgstr "Indirizzo e-mail"
 msgid "Emails don't match"
 msgstr "Email non corrispondenti"
 
+msgid "Empty comparelist"
+msgstr ""
+
 msgid "Fill in your e-mail to login or create an account"
 msgstr "Compila il tuo indirizzo email per accedere o creare un account"
 
@@ -259,6 +274,9 @@ msgstr "Numero civico"
 msgid "If you’ve successfully paid your order, the order <0>will</0> come through, but there is a communication error with the website."
 msgstr "Se hai pagato con successo l'ordine, l'ordine <0>verrà</0> inviato, ma c'è un errore di comunicazione con il sito."
 
+msgid "In comparelist"
+msgstr ""
+
 msgid "Including {0}"
 msgstr "Incluso {0}"
 
@@ -300,6 +318,9 @@ msgstr "Accedi per continuare gli acquisti"
 
 msgid "Menu"
 msgstr "Menu"
+
+msgid "More information"
+msgstr ""
 
 msgid "Mr"
 msgstr "Sig."
@@ -646,8 +667,14 @@ msgstr "Prova un altro prodotto"
 msgid "Try a different search"
 msgstr "Prova una ricerca differente"
 
+msgid "View Product"
+msgstr ""
+
 msgid "View all items"
 msgstr "Visualizza tutti gli articoli"
+
+msgid "View comparison"
+msgstr ""
 
 msgid "View less items"
 msgstr "Visualizza meno articoli"
