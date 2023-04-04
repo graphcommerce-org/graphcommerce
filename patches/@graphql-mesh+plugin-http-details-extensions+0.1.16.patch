@@ -1,0 +1,14 @@
+diff --git a/node_modules/@graphql-mesh/plugin-http-details-extensions/esm/index.js b/node_modules/@graphql-mesh/plugin-http-details-extensions/esm/index.js
+index a9c7b3e..b888d0e 100644
+--- a/node_modules/@graphql-mesh/plugin-http-details-extensions/esm/index.js
++++ b/node_modules/@graphql-mesh/plugin-http-details-extensions/esm/index.js
+@@ -9,8 +9,7 @@ export default function useIncludeHttpDetailsInExtensions(opts) {
+     let ifFn = () => true;
+     if (typeof opts.if === 'string') {
+         ifFn = ({ url, context, info, options, env }) => {
+-            // eslint-disable-next-line no-new-func
+-            return new Function('url', 'context', 'info', 'options', 'env', 'return ' + opts.if)(url, context, info, options, env);
++            return true;
+         };
+     }
+     const httpDetailsByContext = new WeakMap();

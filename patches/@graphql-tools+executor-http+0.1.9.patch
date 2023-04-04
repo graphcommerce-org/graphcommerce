@@ -1,0 +1,48 @@
+diff --git a/node_modules/@graphql-tools/executor-http/esm/handleMultipartMixedResponse.js b/node_modules/@graphql-tools/executor-http/esm/handleMultipartMixedResponse.js
+index 5bb1730..daa63cf 100644
+--- a/node_modules/@graphql-tools/executor-http/esm/handleMultipartMixedResponse.js
++++ b/node_modules/@graphql-tools/executor-http/esm/handleMultipartMixedResponse.js
+@@ -1,4 +1,4 @@
+-import { meros as merosIncomingMessage } from 'meros/node';
++// import { meros as merosIncomingMessage } from 'meros/node';
+ import { meros as merosReadableStream } from 'meros/browser';
+ import { mapAsyncIterator } from '@graphql-tools/utils';
+ import { dset } from 'dset/merge';
+@@ -10,24 +10,24 @@ export async function handleMultipartMixedResponse(response, controller) {
+     const body = response.body;
+     const contentType = response.headers.get('content-type') || '';
+     let asyncIterator;
+-    if (isIncomingMessage(body)) {
+-        // Meros/node expects headers as an object map with the content-type prop
+-        body.headers = {
+-            'content-type': contentType,
+-        };
+-        // And it expects `IncomingMessage` and `node-fetch` returns `body` as `Promise<PassThrough>`
+-        const result = await merosIncomingMessage(body);
+-        if ('next' in result) {
+-            asyncIterator = result;
+-        }
+-    }
+-    else {
++    // if (isIncomingMessage(body)) {
++    //     // Meros/node expects headers as an object map with the content-type prop
++    //     body.headers = {
++    //         'content-type': contentType,
++    //     };
++    //     // And it expects `IncomingMessage` and `node-fetch` returns `body` as `Promise<PassThrough>`
++    //     const result = await merosIncomingMessage(body);
++    //     if ('next' in result) {
++    //         asyncIterator = result;
++    //     }
++    // }
++    // else {
+         // Nothing is needed for regular `Response`.
+         const result = await merosReadableStream(response);
+         if ('next' in result) {
+             asyncIterator = result;
+         }
+-    }
++    // }
+     const executionResult = {};
+     function handleResult(result) {
+         if (result.path) {
