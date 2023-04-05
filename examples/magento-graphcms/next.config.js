@@ -16,6 +16,7 @@ const nextConfig = {
   },
   experimental: {
     scrollRestoration: true,
+    runtime: 'edge',
   },
   optimizeFonts: false,
   images: {
