@@ -6,6 +6,7 @@ import {
   CompareRow,
   EmptyCompareListButton,
   MoreInformationRow,
+  EmptyCompareList,
 } from '@graphcommerce/magento-compare'
 import { ProductListItems } from '@graphcommerce/magento-product' // todo move to prop @paul (wat/hoe?)
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
@@ -50,9 +51,6 @@ export function ComparePage() {
   const compareListStyles = useCompareListStyles(gridColumns)
 
   useEffect(() => {
-    if (!compareAbleItems || compareAbleItems.length === 0) {
-      router.back()
-    }
     if (compareAbleItems?.length) {
       selectedPrevious.current = selectedState
 
@@ -82,11 +80,12 @@ export function ComparePage() {
   }, [selectedState, compareAbleItems, router, form, compareListCount, gridColumns])
 
   if (!compareAbleItems || compareAbleItems.length === 0) {
-    return null
+    return <EmptyCompareList />
   }
 
   const currentCompareItems = selectedState.map((i) => compareAbleItems[i])
   const currentCompareProducts = currentCompareItems.map((item) => item?.product)
+
   return (
     <NoSsr>
       <PageMeta title={i18n._(/* i18n */ 'Compare products')} metaRobots={['noindex']} />
