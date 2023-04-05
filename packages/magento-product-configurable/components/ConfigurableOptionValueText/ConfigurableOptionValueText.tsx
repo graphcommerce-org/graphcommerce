@@ -7,15 +7,11 @@ export type ConfigurableOptionValueTextProps =
 export function ConfigurableOptionValueText(props: ConfigurableOptionValueTextProps) {
   const { swatch_data, store_label, uid, use_default_value, size, ...actionCardProps } = props
 
-  if (swatch_data?.__typename !== 'TextSwatchData')
+  if (swatch_data && swatch_data?.__typename !== 'TextSwatchData')
     throw Error(`ConfigurableOptionValueText can not render a ${swatch_data?.__typename}`)
 
-  return (
-    <ActionCard
-      {...actionCardProps}
-      size={size}
-      title={swatch_data?.value ?? store_label}
-      details={size !== 'small' && store_label}
-    />
-  )
+  const title = swatch_data?.value ?? store_label
+  const details = size !== 'small' && swatch_data?.value ? store_label : undefined
+
+  return <ActionCard {...actionCardProps} size={size} title={title} details={details} />
 }
