@@ -1,5 +1,19 @@
 # Change Log
 
+## 6.1.0
+
+### Patch Changes
+
+- [`b8bd4abcd`](https://github.com/graphcommerce-org/graphcommerce/commit/b8bd4abcdfb9fc96ec5a724b449df713b99af23b) - Do not change the behavior of the useScrollTo, only warn about possible problems. ([@paales](https://github.com/paales))
+
+- [#1895](https://github.com/graphcommerce-org/graphcommerce/pull/1895) [`e6dbddc01`](https://github.com/graphcommerce-org/graphcommerce/commit/e6dbddc019358f13886288ae065da2def0c1b335) - `useScrollTo` improvements for easier debugging:
+
+  - When a `scrollTo` animation is requesed while an animation is is progress it will throw an error
+  - When a `scrollTo` animation is retriggered more than 5 times, it will throw an error
+  - When a `scrollTo` detects the overlay is resized after the animation it will show a warning. ([@paales](https://github.com/paales))
+
+- [#1901](https://github.com/graphcommerce-org/graphcommerce/pull/1901) [`54aadf39f`](https://github.com/graphcommerce-org/graphcommerce/commit/54aadf39fa9cf2d84c7feab8bc07703e3d02741d) - Make sure the stop function is stopping both x and y animations to prevent rare occasions where a direction isn’t cancelled ([@paales](https://github.com/paales))
+
 ## 6.0.2-canary.22
 
 ## 6.0.2-canary.21

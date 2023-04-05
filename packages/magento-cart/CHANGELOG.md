@@ -1,5 +1,19 @@
 # Change Log
 
+## 6.1.0
+
+### Minor Changes
+
+- [#1869](https://github.com/graphcommerce-org/graphcommerce/pull/1869) [`82111fa35`](https://github.com/graphcommerce-org/graphcommerce/commit/82111fa351b68a76ff053ebb7e0261ee507a826d) - Faster page rendering on all pages that use Apollo Client: Revert to classical useEffect strategy for Apollo cache persist restore and remove custom hydration strategies from the cart/customer.
+
+  This comes with a caviat: When using `<Suspense>` to defer rendering you might run into hydration errors. In the case where the Suspense boundaries are used to improve performance, you are required to remove those. We have a follow-up [PR](https://github.com/graphcommerce-org/graphcommerce/pull/1878) in the works that allows getting the hydration performance improvement, but not have the hydration errors. ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#1871](https://github.com/graphcommerce-org/graphcommerce/pull/1871) [`bc4181e74`](https://github.com/graphcommerce-org/graphcommerce/commit/bc4181e74392b899f62612de764fdb41f5716dd7) - Make checkout newsletter and agreements checkboxes persistent ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#1871](https://github.com/graphcommerce-org/graphcommerce/pull/1871) [`601a0d3a7`](https://github.com/graphcommerce-org/graphcommerce/commit/601a0d3a7de702d4cee277549595f8d0d7e968f3) - Only use agreement name as link when agreement text contains the name, so the rest of the text can be used as checkbox label ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 6.0.2-canary.22
 
 ## 6.0.2-canary.21

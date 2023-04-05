@@ -1,5 +1,17 @@
 # Change Log
 
+## 6.1.0
+
+### Minor Changes
+
+- [#1874](https://github.com/graphcommerce-org/graphcommerce/pull/1874) [`2a60491c2`](https://github.com/graphcommerce-org/graphcommerce/commit/2a60491c23a9cd0bfd79296d29f6c9ee31faada5) - Big Magento performance improvements; Magento couldn't respond with any cached Varnish responses because there was an empty authorization header sent with each request. ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#1876](https://github.com/graphcommerce-org/graphcommerce/pull/1876) [`8dffc59c0`](https://github.com/graphcommerce-org/graphcommerce/commit/8dffc59c04bf6f2a6000b73db13592e10afd936c) - Added an configuration `wishlistShowFeedbackMessage` to show a feedback message when a product is added to the wishlist. ([@paales](https://github.com/paales))
+
+- [#1872](https://github.com/graphcommerce-org/graphcommerce/pull/1872) [`05522796f`](https://github.com/graphcommerce-org/graphcommerce/commit/05522796f3f132db50e7b4c26089740a12a9153a) - Fix issue where a deeper plugin from the root of the project doesn't have a correct relative path ([@paales](https://github.com/paales))
+
 ## 6.0.2-canary.22
 
 ## 6.0.2-canary.21

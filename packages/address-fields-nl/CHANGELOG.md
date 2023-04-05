@@ -1,5 +1,11 @@
 # @graphcommerce/address-fields-nl
 
+## 6.1.0
+
+### Patch Changes
+
+- [#1889](https://github.com/graphcommerce-org/graphcommerce/pull/1889) [`38bf4b6bc`](https://github.com/graphcommerce-org/graphcommerce/commit/38bf4b6bc6e705d9d124d50b775ba3f440599482) - put the country field first, so the address fields will not be changed afterwards when postcode service is active. ([@carlocarels90](https://github.com/carlocarels90))
+
 ## 6.0.2-canary.22
 
 ## 6.0.2-canary.21
