@@ -16,6 +16,8 @@ export function CompareMessageSnackbar(props: {
 }) {
   const { count, name, displayMessageBar, setDisplayMessageBar } = props
 
+  if (count && count > 2) return null
+
   return (
     <MessageSnackbar
       open={displayMessageBar}
@@ -45,11 +47,19 @@ export function CompareMessageSnackbar(props: {
         ) : null
       }
     >
-      <Trans
-        id='<0>{name}</0> has been added to your comparison!'
-        components={{ 0: <strong /> }}
-        values={{ name }}
-      />
+      <>
+        <Trans
+          id='<0>{name}</0> has been added to your comparison!'
+          components={{ 0: <strong /> }}
+          values={{ name }}
+        />
+        {count === 1 ? (
+          <>
+            {' '}
+            <Trans id='Add another product to start comparing.' />
+          </>
+        ) : null}
+      </>
     </MessageSnackbar>
   )
 }
