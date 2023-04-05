@@ -22,13 +22,21 @@ export function MoreInformationRow(props: MoreInformationRowProps) {
   const compareListStyles = useCompareListStyles(columnCount)
 
   return (
-    <Box sx={{ gridColumn: { xs: `span 2`, md: `span 3`, lg: `span 3` } }}>
-      <SectionContainer labelLeft={<Trans id='More information' />}>
-        <Box
-          sx={(theme) => ({
-            ...compareListStyles,
-          })}
-        >
+    <Box>
+      <SectionContainer
+        labelLeft={<Trans id='More information' />}
+        sx={(theme) => ({
+          '& .SectionHeader-root': {
+            justifyContent: 'center',
+            '& > .MuiTypography-root': {
+              width: `calc(calc(calc(100% / 3) * ${columnCount}) + ${
+                columnCount > 1 ? theme.spacings.md : '0px'
+              })`,
+            },
+          },
+        })}
+      >
+        <Box sx={{ ...compareListStyles }}>
           {compareAbleItems?.map((item) => {
             if (!item?.product) return null
             return (
@@ -37,7 +45,7 @@ export function MoreInformationRow(props: MoreInformationRowProps) {
                 variant='text'
                 href={productLink(item?.product)}
                 endIcon={<IconSvg key='icon' src={iconChevronRight} size='inherit' />}
-                sx={{ justifySelf: 'baseline' }}
+                sx={{ justifyContent: 'flex-start' }}
               >
                 <Trans id='View Product' />
               </Button>

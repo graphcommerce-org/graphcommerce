@@ -22,7 +22,9 @@ import {
 
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Box, CircularProgress, Container, FormControl } from '@mui/material'
+import { Box, CircularProgress, Container, FormControl, NoSsr } from '@mui/material'
+import { useRouter } from 'next/router'
+
 import { useEffect, useRef } from 'react'
 import { graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
@@ -34,6 +36,7 @@ export function ComparePage() {
   const compareListData = compareList.data
   const compareListCount = compareListData?.compareList?.item_count ?? 0
   const gridColumns = compareListCount <= 3 ? compareListCount : 3
+  const router = useRouter()
 
   const form = useForm<{ selected: number[] }>({
     defaultValues: { selected: [...Array(gridColumns).keys()] },
@@ -42,21 +45,50 @@ export function ComparePage() {
   useFormPersist({ form, name: 'CompareList', storage: 'localStorage' })
   const selectedState = form.watch('selected')
   const selectedPrevious = useRef<number[]>(selectedState)
-  useEffect(() => {
-    selectedPrevious.current = selectedState
-  }, [selectedState])
-
   const compareAbleItems = compareListData?.compareList?.items
   const compareListAttributes = compareListData?.compareList?.attributes
   const compareListStyles = useCompareListStyles(gridColumns)
 
-  if (!compareAbleItems) return null
+  useEffect(() => {
+    if (!compareAbleItems || compareAbleItems.length === 0) {
+      router.back()
+    }
+    if (compareAbleItems?.length) {
+      selectedPrevious.current = selectedState
+
+      /*
+       * It's possible that the user has 5 items in his comparelist, so [0,1,2,3,4] are all selectable indexes
+       * If the user has a selected state of indexes [0,3,4] but then removes the 4th item, the currentCompareProducts[4] would be undefined and the UI would be corrupt
+       * So we need to get the first index that isnt already in the selectedState array (as we cant have duplicates)
+       */
+      selectedState.forEach((selectedIndex, index) => {
+        if (selectedIndex >= compareAbleItems.length) {
+          const allIndexes = [...Array(compareAbleItems.length).keys()]
+          const allowedIndexes = allIndexes.filter((el) => !selectedState.includes(el))
+          form.setValue(`selected.${index}`, allowedIndexes[0])
+        }
+      })
+
+      // if there are less items in the compare list than in our selectedState
+      if (compareListCount < selectedState.length) {
+        form.setValue(`selected`, [...Array(compareListCount).keys()])
+      }
+
+      // if there are less items in our selectedState than we have columns
+      if (selectedState.length < gridColumns) {
+        form.setValue(`selected`, [...Array(gridColumns).keys()])
+      }
+    }
+  }, [selectedState, compareAbleItems, router, form, compareListCount, gridColumns])
+
+  if (!compareAbleItems || compareAbleItems.length === 0) {
+    return null
+  }
 
   const currentCompareItems = selectedState.map((i) => compareAbleItems[i])
   const currentCompareProducts = currentCompareItems.map((item) => item?.product)
-
   return (
-    <>
+    <NoSsr>
       <PageMeta title={i18n._(/* i18n */ 'Compare products')} metaRobots={['noindex']} />
       <LayoutOverlayHeader
         switchPoint={0}
@@ -92,7 +124,7 @@ export function ComparePage() {
                   name={`selected.${compareSelectIndex}`}
                   options={compareAbleItems.map((i, id) => ({
                     id,
-                    label: i?.product?.name ?? 'todo',
+                    label: i?.product?.name ?? '',
                   }))}
                   onChange={(to) => {
                     const from = selectedPrevious.current?.[compareSelectIndex]
@@ -112,24 +144,6 @@ export function ComparePage() {
               ...compareListStyles,
               padding: theme.spacings.lg,
               pt: 0,
-              ':not(.ContainerWithHeader-root &)': {
-                /* @todo: find a way to not have to do this (IfConfig demoMode), fix selector in demostuff */
-                '& > :nth-of-type(7n + 3)': {
-                  gridColumn: 'unset',
-                  gridRow: 'unset',
-                  display: 'unset',
-                  gridAutoFlow: 'unset',
-                  gridTemplateColumns: 'unset',
-                  gridTemplateRows: 'unset',
-                  '& > div:first-of-type': {
-                    position: 'unset',
-                    height: 'unset',
-                  },
-                  '& *': {
-                    background: 'unset',
-                  },
-                },
-              },
             })}
           />
           <Box
@@ -155,7 +169,7 @@ export function ComparePage() {
           </Box>
         </Container>
       </WaitForQueries>
-    </>
+    </NoSsr>
   )
 }
 

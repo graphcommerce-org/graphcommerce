@@ -22,7 +22,7 @@ export function CompareProductToggle(props: CompareProps) {
 
   const handleClick: React.MouseEventHandler<HTMLButtonElement> = async (e) => {
     e.preventDefault()
-    e.stopPropagation()
+
     if (inCompareList) {
       await remove({ variables: { products: [idString], uid: await create() } })
     } else {

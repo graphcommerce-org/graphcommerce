@@ -89,6 +89,7 @@ function CompareFabContent(props: CompareFabContentProps) {
 
 export function CompareFab(props: CompareFabProps) {
   const compareList = useCompareList()
+  if (compareList.data?.compareList?.item_count === 0) return null
   return (
     <NoSsr fallback={<CompareFabContent total_quantity={0} {...props} />}>
       {compareList.data?.compareList?.item_count && (

@@ -25,12 +25,20 @@ export function CompareRow(props: CompareRowProps) {
   const compareListStyles = useCompareListStyles(columnCount)
 
   return (
-    <Box
-      sx={{
-        gridColumn: { xs: `span 2`, md: `span 3`, lg: `span 3` },
-      }}
-    >
-      <SectionContainer labelLeft={attribute?.label}>
+    <Box>
+      <SectionContainer
+        labelLeft={attribute?.label}
+        sx={(theme) => ({
+          '& .SectionHeader-root': {
+            justifyContent: 'center',
+            '& > .MuiTypography-root': {
+              width: `calc(calc(calc(100% / 3) * ${columnCount}) + ${
+                columnCount > 1 ? theme.spacings.md : '0px'
+              })`,
+            },
+          },
+        })}
+      >
         <Box
           sx={(theme) => ({
             ...compareListStyles,
