@@ -1,5 +1,11 @@
 # @graphcommerce/ecommerce-ui
 
+## 6.0.2-canary.22
+
+### Patch Changes
+
+- [#1900](https://github.com/graphcommerce-org/graphcommerce/pull/1900) [`92e1f1742`](https://github.com/graphcommerce-org/graphcommerce/commit/92e1f1742b03cfc0aed7e1d103b8295509a2ca45) - make the SelectElement validation message translatable ([@carlocarels90](https://github.com/carlocarels90))
+
 ## 6.0.2-canary.21
 
 ## 6.0.2-canary.20
