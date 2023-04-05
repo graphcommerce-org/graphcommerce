@@ -111,7 +111,6 @@ function TypographyOverview() {
 
 TypographyOverview.pageOptions = {
   Layout: LayoutMinimal,
-  sharedKey: () => 'page',
 } as PageOptions
 
 export default TypographyOverview

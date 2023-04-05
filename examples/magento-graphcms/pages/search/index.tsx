@@ -111,11 +111,15 @@ function SearchResultPage(props: SearchResultProps) {
             {import.meta.graphCommerce.productFiltersPro ? (
               <ProductFiltersPro params={params}>
                 <ProductListFiltersContainer>
-                  <ProductFiltersProFilterChips {...filters} filterTypes={filterTypes} />
+                  <ProductFiltersProFilterChips
+                    {...filters}
+                    appliedAggregations={products.aggregations}
+                    filterTypes={filterTypes}
+                  />
                   <ProductFiltersProSortChip {...products} />
                   <ProductFiltersProAllFiltersChip
                     {...filters}
-                    {...products}
+                    appliedAggregations={products.aggregations}
                     filterTypes={filterTypes}
                   />
                 </ProductListFiltersContainer>
@@ -145,7 +149,6 @@ function SearchResultPage(props: SearchResultProps) {
 
 const pageOptions: PageOptions<LayoutNavigationProps> = {
   Layout: LayoutNavigation,
-  sharedKey: () => 'search',
 }
 
 SearchResultPage.pageOptions = pageOptions
@@ -168,6 +171,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     search ? `search/${search}` : 'search',
     query,
     await filterTypes,
+    search,
   )
 
   if (!productListParams) return { notFound: true, revalidate: 60 * 20 }

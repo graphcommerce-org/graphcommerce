@@ -1,5 +1,67 @@
 # @graphcommerce/ecommerce-ui
 
+## 6.1.0
+
+### Patch Changes
+
+- [#1900](https://github.com/graphcommerce-org/graphcommerce/pull/1900) [`92e1f1742`](https://github.com/graphcommerce-org/graphcommerce/commit/92e1f1742b03cfc0aed7e1d103b8295509a2ca45) - make the SelectElement validation message translatable ([@carlocarels90](https://github.com/carlocarels90))
+
+- [#1871](https://github.com/graphcommerce-org/graphcommerce/pull/1871) [`1e2d2e5c6`](https://github.com/graphcommerce-org/graphcommerce/commit/1e2d2e5c615f072a2d0b60074d9aa5a467876f2f) - Allow styling FormControl in CheckboxElement ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 6.0.2-canary.22
+
+### Patch Changes
+
+- [#1900](https://github.com/graphcommerce-org/graphcommerce/pull/1900) [`92e1f1742`](https://github.com/graphcommerce-org/graphcommerce/commit/92e1f1742b03cfc0aed7e1d103b8295509a2ca45) - make the SelectElement validation message translatable ([@carlocarels90](https://github.com/carlocarels90))
+
+## 6.0.2-canary.21
+
+## 6.0.2-canary.20
+
+## 6.0.2-canary.19
+
+## 6.0.2-canary.18
+
+## 6.0.2-canary.17
+
+## 6.0.2-canary.16
+
+## 6.0.2-canary.15
+
+## 6.0.2-canary.14
+
+## 6.0.2-canary.13
+
+## 6.0.2-canary.12
+
+### Patch Changes
+
+- [#1871](https://github.com/graphcommerce-org/graphcommerce/pull/1871) [`1e2d2e5c6`](https://github.com/graphcommerce-org/graphcommerce/commit/1e2d2e5c615f072a2d0b60074d9aa5a467876f2f) - Allow styling FormControl in CheckboxElement ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 6.0.2-canary.11
+
+## 6.0.2-canary.10
+
+## 6.0.2-canary.9
+
+## 6.0.2-canary.8
+
+## 6.0.2-canary.7
+
+## 6.0.2-canary.6
+
+## 6.0.2-canary.5
+
+## 6.0.2-canary.4
+
+## 6.0.2-canary.3
+
+## 6.0.2-canary.2
+
+## 6.0.2-canary.1
+
+## 6.0.2-canary.0
+
 ## 6.0.1
 
 ## 6.0.1-canary.7

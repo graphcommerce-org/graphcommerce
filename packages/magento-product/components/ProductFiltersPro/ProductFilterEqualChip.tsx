@@ -15,7 +15,9 @@ import { useProductFiltersPro } from './ProductFiltersPro'
 import { FilterProps } from './ProductFiltersProAggregations'
 
 export function ProductFilterEqualChip(props: FilterProps) {
-  const { attribute_code, label, options } = props
+  const { aggregation } = props
+  const { attribute_code, label, options } = aggregation
+
   const { form, submit, params } = useProductFiltersPro()
   const { control } = form
   const attrCode = attribute_code as keyof ProductAttributeFilterInput
@@ -35,12 +37,14 @@ export function ProductFilterEqualChip(props: FilterProps) {
 
   const items = useMemo(
     () =>
-      filterNonNullableKeys(options, ['count', 'label']).map((option) => ({
+      filterNonNullableKeys(options, ['label']).map((option) => ({
         ...option,
         title: (
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
             <div>{option.label}</div>
-            <Box sx={{ typography: 'caption', color: 'text.disabled' }}>({option.count})</Box>
+            {option.count !== null && (
+              <Box sx={{ typography: 'caption', color: 'text.disabled' }}>({option.count})</Box>
+            )}
           </Box>
         ),
         image: attrCode?.toLowerCase().includes('color') && (

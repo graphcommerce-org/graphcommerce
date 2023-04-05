@@ -1,5 +1,89 @@
 # Change Log
 
+## 6.1.0
+
+### Minor Changes
+
+- [#1869](https://github.com/graphcommerce-org/graphcommerce/pull/1869) [`82111fa35`](https://github.com/graphcommerce-org/graphcommerce/commit/82111fa351b68a76ff053ebb7e0261ee507a826d) - Faster page rendering on all pages that use Apollo Client: Revert to classical useEffect strategy for Apollo cache persist restore and remove custom hydration strategies from the cart/customer.
+
+  This comes with a caviat: When using `<Suspense>` to defer rendering you might run into hydration errors. In the case where the Suspense boundaries are used to improve performance, you are required to remove those. We have a follow-up [PR](https://github.com/graphcommerce-org/graphcommerce/pull/1878) in the works that allows getting the hydration performance improvement, but not have the hydration errors. ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#1866](https://github.com/graphcommerce-org/graphcommerce/pull/1866) [`eafe3a17d`](https://github.com/graphcommerce-org/graphcommerce/commit/eafe3a17d6c6b4a9ca524361498ffa382d44c63f) - useOrderCardItemImages was triggered when there were no urlKeys present, causing unnessary requests to be made to the backend. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#1889](https://github.com/graphcommerce-org/graphcommerce/pull/1889) [`38bf4b6bc`](https://github.com/graphcommerce-org/graphcommerce/commit/38bf4b6bc6e705d9d124d50b775ba3f440599482) - put the country field first, so the address fields will not be changed afterwards when postcode service is active. ([@carlocarels90](https://github.com/carlocarels90))
+
+- [#1899](https://github.com/graphcommerce-org/graphcommerce/pull/1899) [`3de184ee2`](https://github.com/graphcommerce-org/graphcommerce/commit/3de184ee28d48d8f1c1c092f264ac6b86fdf3ec6) - Make order states translatable ([@carlocarels90](https://github.com/carlocarels90))
+
+- [#1896](https://github.com/graphcommerce-org/graphcommerce/pull/1896) [`4f846293f`](https://github.com/graphcommerce-org/graphcommerce/commit/4f846293f3b020dc7bae885fe4ccd1cbd0cb10d7) - When a customer would log in the current guest information would be lost ([@paales](https://github.com/paales))
+
+## 6.0.2-canary.22
+
+## 6.0.2-canary.21
+
+### Patch Changes
+
+- [#1899](https://github.com/graphcommerce-org/graphcommerce/pull/1899) [`3de184ee2`](https://github.com/graphcommerce-org/graphcommerce/commit/3de184ee28d48d8f1c1c092f264ac6b86fdf3ec6) - Make order states translatable ([@carlocarels90](https://github.com/carlocarels90))
+
+## 6.0.2-canary.20
+
+## 6.0.2-canary.19
+
+## 6.0.2-canary.18
+
+### Patch Changes
+
+- [#1889](https://github.com/graphcommerce-org/graphcommerce/pull/1889) [`38bf4b6bc`](https://github.com/graphcommerce-org/graphcommerce/commit/38bf4b6bc6e705d9d124d50b775ba3f440599482) - put the country field first, so the address fields will not be changed afterwards when postcode service is active. ([@carlocarels90](https://github.com/carlocarels90))
+
+## 6.0.2-canary.17
+
+## 6.0.2-canary.16
+
+### Patch Changes
+
+- [#1896](https://github.com/graphcommerce-org/graphcommerce/pull/1896) [`4f846293f`](https://github.com/graphcommerce-org/graphcommerce/commit/4f846293f3b020dc7bae885fe4ccd1cbd0cb10d7) - When a customer would log in the current guest information would be lost ([@paales](https://github.com/paales))
+
+## 6.0.2-canary.15
+
+## 6.0.2-canary.14
+
+## 6.0.2-canary.13
+
+### Patch Changes
+
+- [#1869](https://github.com/graphcommerce-org/graphcommerce/pull/1869) [`82111fa35`](https://github.com/graphcommerce-org/graphcommerce/commit/82111fa351b68a76ff053ebb7e0261ee507a826d) - Revert to classical useEffect strategy for Apollo cache persist restore and remove custom hydration strategies from the cart. ([@paales](https://github.com/paales))
+
+## 6.0.2-canary.12
+
+## 6.0.2-canary.11
+
+## 6.0.2-canary.10
+
+## 6.0.2-canary.9
+
+## 6.0.2-canary.8
+
+## 6.0.2-canary.7
+
+## 6.0.2-canary.6
+
+## 6.0.2-canary.5
+
+## 6.0.2-canary.4
+
+## 6.0.2-canary.3
+
+## 6.0.2-canary.2
+
+## 6.0.2-canary.1
+
+## 6.0.2-canary.0
+
+### Patch Changes
+
+- [#1866](https://github.com/graphcommerce-org/graphcommerce/pull/1866) [`eafe3a17d`](https://github.com/graphcommerce-org/graphcommerce/commit/eafe3a17d6c6b4a9ca524361498ffa382d44c63f) - don't execute useOrderCardItemImages if urlKeys is empty ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 6.0.1
 
 ### Patch Changes

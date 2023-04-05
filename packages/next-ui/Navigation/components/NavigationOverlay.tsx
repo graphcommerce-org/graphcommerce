@@ -122,8 +122,6 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
         zIndex: 'drawer',
         '& .LayoutOverlayBase-overlayPane': {
           minWidth: itemWidthMd,
-          display: 'grid',
-          gridTemplateRows: 'auto 1fr',
         },
       }}
     >

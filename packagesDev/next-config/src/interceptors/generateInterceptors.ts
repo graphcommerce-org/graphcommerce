@@ -122,7 +122,10 @@ export function generateInterceptors(
     let pluginPathFromResolved = plugin
     if (plugin.startsWith('.')) {
       const resolvedPlugin = resolve(plugin)
-      pluginPathFromResolved = path.relative(resolved.root, resolvedPlugin.fromRoot)
+      pluginPathFromResolved = path.relative(
+        resolved.fromRoot.split('/').slice(0, -1).join('/'),
+        resolvedPlugin.fromRoot,
+      )
     }
 
     if (!acc[resolved.fromRoot])

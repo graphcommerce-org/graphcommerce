@@ -26,7 +26,8 @@ function GraphCommerceConfigSchema() {
         robotsAllow: zod_1.z.boolean().nullish(),
         storefront: zod_1.z.array(GraphCommerceStorefrontConfigSchema()),
         wishlistHideForGuests: zod_1.z.boolean().nullish(),
-        wishlistIgnoreProductWishlistStatus: zod_1.z.boolean().nullish()
+        wishlistIgnoreProductWishlistStatus: zod_1.z.boolean().nullish(),
+        wishlistShowFeedbackMessage: zod_1.z.boolean().nullish()
     });
 }
 exports.GraphCommerceConfigSchema = GraphCommerceConfigSchema;

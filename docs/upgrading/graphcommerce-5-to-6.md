@@ -11,7 +11,7 @@ regular [upgrade steps first](./readme.md).
 ## Migrating to graphcommerce.config.js
 
 GraphCommerce 6 uses a new [configuration file](../framework/config.md) called
-`graphcommerce.config.js` this replaces the current configuration. When staring
+`graphcommerce.config.js` this replaces the current configuration. When starting
 a dev server, GraphCommerce will notify you how to migrate your env variables to
 graphcommerce.config.js.
 

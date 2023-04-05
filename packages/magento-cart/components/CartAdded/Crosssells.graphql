@@ -1,5 +1,5 @@
 query Crosssells(
-  $pageSize: Int = 8
+  $pageSize: Int = 1
   $currentPage: Int = 1
   $filters: ProductAttributeFilterInput = {}
 ) {

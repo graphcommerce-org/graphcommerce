@@ -741,5 +741,6 @@ exports[`traverses a schema and returns a list of env variables that match 1`] =
   "GC_STOREFRONT_20_MAGENTO_STORE_CODE",
   "GC_WISHLIST_HIDE_FOR_GUESTS",
   "GC_WISHLIST_IGNORE_PRODUCT_WISHLIST_STATUS",
+  "GC_WISHLIST_SHOW_FEEDBACK_MESSAGE",
 ]
 `;

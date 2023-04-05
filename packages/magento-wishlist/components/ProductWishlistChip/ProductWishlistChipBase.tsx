@@ -1,5 +1,4 @@
 import { useMutation, useApolloClient } from '@graphcommerce/graphql'
-import { WishlistItem } from '@graphcommerce/graphql-mesh'
 import {
   useCustomerQuery,
   useCustomerSession,
@@ -29,9 +28,11 @@ import { ProductWishlistChipFragment } from './ProductWishlistChip.gql'
 const hideForGuest = import.meta.graphCommerce.wishlistHideForGuests
 const ignoreProductWishlistStatus = import.meta.graphCommerce.wishlistIgnoreProductWishlistStatus
 
-export type ProductWishlistChipProps = ProductWishlistChipFragment & { sx?: SxProps<Theme> } & {
-  showFeedbackMessage?: boolean
+export type ProductWishlistChipProps = ProductWishlistChipFragment & {
+  sx?: SxProps<Theme>
   buttonProps?: IconButtonProps
+  /** @deprecated */
+  showFeedbackMessage?: boolean
 }
 
 export type WishListItemType = NonNullable<
@@ -44,6 +45,14 @@ const { classes } = extendableComponent(compName, parts)
 
 export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
   const { name, sku, url_key, showFeedbackMessage, buttonProps, sx = [] } = props
+
+  if (process.env.NODE_ENV === 'development') {
+    if (typeof showFeedbackMessage !== 'undefined') {
+      console.warn(
+        'The `showFeedbackMessage` prop is deprecated and will be removed in a future release. Please use wishlistShowFeedbackMessage config instead.',
+      )
+    }
+  }
 
   const addToCartForm = useFormAddProductsToCart(true)
 
@@ -179,7 +188,9 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
     }
   }
 
-  const output = (
+  if (!isWishlistEnabled || (hideForGuest && !loggedIn)) return null
+
+  return (
     <Box>
       <IconButton
         key={url_key}
@@ -208,38 +219,34 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
         {inWishlist ? activeHeart : heart}
       </IconButton>
 
-      <MessageSnackbar
-        open={showFeedbackMessage && displayMessageBar}
-        onClose={() => setDisplayMessageBar(false)}
-        onClick={preventLinkOnClose}
-        onMouseDown={preventLinkOnClose}
-        autoHide
-        variant='pill'
-        action={
-          <Button
-            href='/wishlist'
-            id='view-wishlist-button'
-            size='medium'
-            variant='pill'
-            color='secondary'
-            endIcon={<IconSvg src={iconChevronRight} />}
-          >
-            <Trans id='View wishlist' />
-          </Button>
-        }
-      >
-        <Trans
-          id='<0>{name}</0> has been added to your wishlist!'
-          components={{ 0: <strong /> }}
-          values={{ name }}
-        />
-      </MessageSnackbar>
+      {import.meta.graphCommerce.wishlistShowFeedbackMessage && (
+        <MessageSnackbar
+          open={displayMessageBar}
+          onClose={() => setDisplayMessageBar(false)}
+          onClick={preventLinkOnClose}
+          onMouseDown={preventLinkOnClose}
+          autoHide
+          variant='pill'
+          action={
+            <Button
+              href='/wishlist'
+              id='view-wishlist-button'
+              size='medium'
+              variant='pill'
+              color='secondary'
+              endIcon={<IconSvg src={iconChevronRight} />}
+            >
+              <Trans id='View wishlist' />
+            </Button>
+          }
+        >
+          <Trans
+            id='<0>{name}</0> has been added to your wishlist!'
+            components={{ 0: <strong /> }}
+            values={{ name }}
+          />
+        </MessageSnackbar>
+      )}
     </Box>
   )
-
-  return !hideForGuest || loggedIn ? output : null
-}
-
-ProductWishlistChipBase.defaultProps = {
-  showFeedbackMessage: false,
 }

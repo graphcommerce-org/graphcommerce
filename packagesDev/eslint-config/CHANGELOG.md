@@ -1,5 +1,61 @@
 # Change Log
 
+## 6.1.0
+
+### Patch Changes
+
+- [#1879](https://github.com/graphcommerce-org/graphcommerce/pull/1879) [`322a12098`](https://github.com/graphcommerce-org/graphcommerce/commit/322a12098b2931dd389a5f53baedd834c69b5edc) - When using @mui/material Form fields, show a warning to the developer so they learn about the @graphcommerce/ecommerce-ui form components. ([@paales](https://github.com/paales))
+
+## 6.0.2-canary.22
+
+## 6.0.2-canary.21
+
+## 6.0.2-canary.20
+
+## 6.0.2-canary.19
+
+## 6.0.2-canary.18
+
+## 6.0.2-canary.17
+
+## 6.0.2-canary.16
+
+## 6.0.2-canary.15
+
+## 6.0.2-canary.14
+
+## 6.0.2-canary.13
+
+## 6.0.2-canary.12
+
+## 6.0.2-canary.11
+
+## 6.0.2-canary.10
+
+## 6.0.2-canary.9
+
+## 6.0.2-canary.8
+
+## 6.0.2-canary.7
+
+## 6.0.2-canary.6
+
+## 6.0.2-canary.5
+
+### Patch Changes
+
+- [#1879](https://github.com/graphcommerce-org/graphcommerce/pull/1879) [`322a12098`](https://github.com/graphcommerce-org/graphcommerce/commit/322a12098b2931dd389a5f53baedd834c69b5edc) - When using @mui/material form fields, show a warning to the developer so they learn about the ecommerce-ui form components. ([@paales](https://github.com/paales))
+
+## 6.0.2-canary.4
+
+## 6.0.2-canary.3
+
+## 6.0.2-canary.2
+
+## 6.0.2-canary.1
+
+## 6.0.2-canary.0
+
 ## 6.0.1
 
 ## 6.0.1-canary.7

@@ -712,6 +712,27 @@ msgstr "Ihre Adresse wurde hinzugefügt"
 msgid "Your cart is empty"
 msgstr "Ihr Warenkorb ist leer"
 
+msgid "Your order has been canceled"
+msgstr "Ihre Bestellung wurde storniert"
+
+msgid "Your order has been invoiced"
+msgstr "Ihre Bestellung wurde in Rechnung gestellt"
+
+msgid "Your order has been partially processed"
+msgstr "Ihre Bestellung wurde teilweise bearbeitet"
+
+msgid "Your order has been refunded"
+msgstr "Ihre Bestellung wurde zurückerstattet"
+
+msgid "Your order has been returned"
+msgstr "Ihre Bestellung wurde zurückgesendet"
+
+msgid "Your order is being processed"
+msgstr "Ihre Bestellung wird bearbeitet"
+
+msgid "Your order is on its way!"
+msgstr "Deine Bestellung ist unterwegs!"
+
 msgid "Your session is expired"
 msgstr "Ihre Sitzung ist abgelaufen"
 

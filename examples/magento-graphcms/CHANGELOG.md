@@ -1,5 +1,115 @@
 # Change Log
 
+## 6.1.0
+
+### Minor Changes
+
+- [#1884](https://github.com/graphcommerce-org/graphcommerce/pull/1884) [`4ee1e5478`](https://github.com/graphcommerce-org/graphcommerce/commit/4ee1e54786b95bf309ce0eb5e7f707a8f60967fd) - Disable GraphQL Mesh batching for Magento to get better cache hitrates ([@paales](https://github.com/paales))
+
+- [#1884](https://github.com/graphcommerce-org/graphcommerce/pull/1884) [`4ee1e5478`](https://github.com/graphcommerce-org/graphcommerce/commit/4ee1e54786b95bf309ce0eb5e7f707a8f60967fd) - Enable GraphQL Mesh batching for Hygraph, since billing happens per query ([@paales](https://github.com/paales))
+
+- [#1890](https://github.com/graphcommerce-org/graphcommerce/pull/1890) [`f88727915`](https://github.com/graphcommerce-org/graphcommerce/commit/f88727915998690b34d35c7eb5b2af3ca154da3d) - Aggregation options (filters) now show a relevant count when applying filters and hide the count when it doesn't make sense. ([@paales](https://github.com/paales))
+
+- [#1877](https://github.com/graphcommerce-org/graphcommerce/pull/1877) [`27cd09247`](https://github.com/graphcommerce-org/graphcommerce/commit/27cd0924751a1ed2d1043e09600c039df76bad45) - Fetching core product page and and related+upsells in parallel so Magento doesn't choke on the query complexity limit. ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#1901](https://github.com/graphcommerce-org/graphcommerce/pull/1901) [`2fe5743ed`](https://github.com/graphcommerce-org/graphcommerce/commit/2fe5743edb8db1fd8a8ae1b483ab202efaab656f) - Do not make the crosssells overlay the maximum width, but make it adhere to the content. ([@paales](https://github.com/paales))
+
+- [#1895](https://github.com/graphcommerce-org/graphcommerce/pull/1895) [`cad2d24b4`](https://github.com/graphcommerce-org/graphcommerce/commit/cad2d24b4d16f0f8e8599ed7c45d6ca8fa5e0132) - Checkout added and cart would share the same overlay ([@paales](https://github.com/paales))
+
+- [#1875](https://github.com/graphcommerce-org/graphcommerce/pull/1875) [`4325f6556`](https://github.com/graphcommerce-org/graphcommerce/commit/4325f6556308fe96e262e03935f37dc252f72c2e) - When trying to redirect it would do another call to fetch the config while that was already done previously ([@paales](https://github.com/paales))
+
+- [#1888](https://github.com/graphcommerce-org/graphcommerce/pull/1888) [`d6bfa9d15`](https://github.com/graphcommerce-org/graphcommerce/commit/d6bfa9d15d239db8781cca7f12ac80bea14a0fbb) - RowLinks Usps variant would throw an undefined key error ([@paales](https://github.com/paales))
+
+- [#1894](https://github.com/graphcommerce-org/graphcommerce/pull/1894) [`053d632ab`](https://github.com/graphcommerce-org/graphcommerce/commit/053d632abc7a7b63b96307a423e212de903cb8ba) - Switching from a heavy page would rerender the old page causing the new page to be slow. We now assume that there does't need to be any transition (as with overlays). This effectively disables any possible page transitions in regular pages, but we never used that anyways. ([@paales](https://github.com/paales))
+
+- [#1884](https://github.com/graphcommerce-org/graphcommerce/pull/1884) [`f437ad36a`](https://github.com/graphcommerce-org/graphcommerce/commit/f437ad36a5bb1d8273966cf276c3de0c629f8489) - Category use the default page size set by Magento ([@paales](https://github.com/paales))
+
+- [#1888](https://github.com/graphcommerce-org/graphcommerce/pull/1888) [`c193caf5a`](https://github.com/graphcommerce-org/graphcommerce/commit/c193caf5aaff7ad5e33901e97096f8b1755654f3) - When accessing a page beyond the current max pages, it would throw a 500 error ([@paales](https://github.com/paales))
+
+## 6.0.2-canary.22
+
+## 6.0.2-canary.21
+
+## 6.0.2-canary.20
+
+### Patch Changes
+
+- [#1901](https://github.com/graphcommerce-org/graphcommerce/pull/1901) [`2fe5743ed`](https://github.com/graphcommerce-org/graphcommerce/commit/2fe5743edb8db1fd8a8ae1b483ab202efaab656f) - Do not make the crosssells overlay the maximum width, but make it adhere to the content. ([@paales](https://github.com/paales))
+
+## 6.0.2-canary.19
+
+## 6.0.2-canary.18
+
+## 6.0.2-canary.17
+
+### Patch Changes
+
+- [#1895](https://github.com/graphcommerce-org/graphcommerce/pull/1895) [`cad2d24b4`](https://github.com/graphcommerce-org/graphcommerce/commit/cad2d24b4d16f0f8e8599ed7c45d6ca8fa5e0132) - Checkout added and cart would share the same overlay ([@paales](https://github.com/paales))
+
+## 6.0.2-canary.16
+
+## 6.0.2-canary.15
+
+## 6.0.2-canary.14
+
+### Patch Changes
+
+- [#1894](https://github.com/graphcommerce-org/graphcommerce/pull/1894) [`053d632ab`](https://github.com/graphcommerce-org/graphcommerce/commit/053d632abc7a7b63b96307a423e212de903cb8ba) - Switching from a heavy page would rerender the old page causing the new page to be slow. We now assume that there does't need to be any transition (as with overlays). This effectively disables any possible page transitions in regular pages, but we never used that anyways. ([@paales](https://github.com/paales))
+
+## 6.0.2-canary.13
+
+## 6.0.2-canary.12
+
+## 6.0.2-canary.11
+
+### Patch Changes
+
+- [#1890](https://github.com/graphcommerce-org/graphcommerce/pull/1890) [`f88727915`](https://github.com/graphcommerce-org/graphcommerce/commit/f88727915998690b34d35c7eb5b2af3ca154da3d) - Aggregation options (filters) now show a relevant count when applying filters and hide the count when it doesn't make sense. ([@paales](https://github.com/paales))
+
+## 6.0.2-canary.10
+
+## 6.0.2-canary.9
+
+### Patch Changes
+
+- [#1875](https://github.com/graphcommerce-org/graphcommerce/pull/1875) [`4325f6556`](https://github.com/graphcommerce-org/graphcommerce/commit/4325f6556308fe96e262e03935f37dc252f72c2e) - When trying to redirect it would do another call to fetch the config while that was already done previously ([@paales](https://github.com/paales))
+
+## 6.0.2-canary.8
+
+### Patch Changes
+
+- [#1888](https://github.com/graphcommerce-org/graphcommerce/pull/1888) [`d6bfa9d15`](https://github.com/graphcommerce-org/graphcommerce/commit/d6bfa9d15d239db8781cca7f12ac80bea14a0fbb) - RowLinks Usps variant would throw an undefined key error ([@paales](https://github.com/paales))
+
+- [#1877](https://github.com/graphcommerce-org/graphcommerce/pull/1877) [`27cd09247`](https://github.com/graphcommerce-org/graphcommerce/commit/27cd0924751a1ed2d1043e09600c039df76bad45) - Fetching core product page and and related+upsells in parallel so Magento doesn't choke on the query complexity limit. ([@paales](https://github.com/paales))
+
+- [#1888](https://github.com/graphcommerce-org/graphcommerce/pull/1888) [`c193caf5a`](https://github.com/graphcommerce-org/graphcommerce/commit/c193caf5aaff7ad5e33901e97096f8b1755654f3) - When accessing a page beyond the current max pages, it would throw a 500 error ([@paales](https://github.com/paales))
+
+## 6.0.2-canary.7
+
+## 6.0.2-canary.6
+
+## 6.0.2-canary.5
+
+### Patch Changes
+
+- [#1884](https://github.com/graphcommerce-org/graphcommerce/pull/1884) [`4ee1e5478`](https://github.com/graphcommerce-org/graphcommerce/commit/4ee1e54786b95bf309ce0eb5e7f707a8f60967fd) - Disable batching for Magento to get better cache hitrates ([@paales](https://github.com/paales))
+
+- [#1884](https://github.com/graphcommerce-org/graphcommerce/pull/1884) [`4ee1e5478`](https://github.com/graphcommerce-org/graphcommerce/commit/4ee1e54786b95bf309ce0eb5e7f707a8f60967fd) - Enable batching for Hygraph, since billing happens per query ([@paales](https://github.com/paales))
+
+- [#1884](https://github.com/graphcommerce-org/graphcommerce/pull/1884) [`f437ad36a`](https://github.com/graphcommerce-org/graphcommerce/commit/f437ad36a5bb1d8273966cf276c3de0c629f8489) - The category should respect the default page size set by Magento ([@paales](https://github.com/paales))
+
+## 6.0.2-canary.4
+
+## 6.0.2-canary.3
+
+## 6.0.2-canary.2
+
+## 6.0.2-canary.1
+
+## 6.0.2-canary.0
+
 ## 6.0.1
 
 ### Patch Changes

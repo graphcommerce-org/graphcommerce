@@ -47,7 +47,7 @@ export function ProductSpecs(props: ProductSpecsProps) {
               <div>{aggregation?.label}</div>
               <Box className={classes.options} sx={{ display: 'grid', gridAutoFlow: 'row' }}>
                 {aggregation?.options?.map((option) => (
-                  <span key={option?.label}>{option?.label === '1' ? 'Yes' : option?.label}</span>
+                  <span key={option?.value}>{option?.label === '1' ? 'Yes' : option?.label}</span>
                 ))}
               </Box>
             </li>

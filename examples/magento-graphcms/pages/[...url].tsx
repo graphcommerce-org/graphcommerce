@@ -113,11 +113,15 @@ function CategoryPage(props: CategoryProps) {
             {import.meta.graphCommerce.productFiltersPro ? (
               <ProductFiltersPro params={params}>
                 <ProductListFiltersContainer>
-                  <ProductFiltersProFilterChips {...filters} filterTypes={filterTypes} />
+                  <ProductFiltersProFilterChips
+                    {...filters}
+                    appliedAggregations={products.aggregations}
+                    filterTypes={filterTypes}
+                  />
                   <ProductFiltersProSortChip {...products} />
                   <ProductFiltersProAllFiltersChip
                     {...filters}
-                    {...products}
+                    appliedAggregations={products.aggregations}
                     filterTypes={filterTypes}
                   />
                 </ProductListFiltersContainer>
@@ -165,7 +169,6 @@ function CategoryPage(props: CategoryProps) {
 
 const pageOptions: PageOptions<LayoutNavigationProps> = {
   Layout: LayoutNavigation,
-  sharedKey: () => 'category',
 }
 CategoryPage.pageOptions = pageOptions
 
@@ -209,7 +212,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const hasCategory = Boolean(productListParams && categoryUid)
 
   if (!productListParams || !(hasPage || hasCategory))
-    return redirectOrNotFound(staticClient, params, locale)
+    return redirectOrNotFound(staticClient, conf, params, locale)
 
   if (!hasCategory) {
     return {
@@ -229,13 +232,13 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const products = staticClient.query({
     query: ProductListDocument,
     variables: {
+      pageSize: (await conf).data.storeConfig?.grid_per_page ?? 24,
       ...productListParams,
       filters: { ...productListParams.filters, category_uid: { eq: categoryUid } },
     },
   })
 
-  // assertAllowedParams(await params, (await products).data)
-  if (!(await products).data) return redirectOrNotFound(client, params, locale)
+  if ((await products).errors) return { notFound: true }
 
   const { category_name, category_url_path } =
     (await categoryPage).data.categories?.items?.[0]?.breadcrumbs?.[0] ?? {}

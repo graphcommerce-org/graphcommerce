@@ -144,7 +144,6 @@ function ShippingPage() {
 
 const pageOptions: PageOptions<LayoutMinimalProps> = {
   Layout: LayoutMinimal,
-  sharedKey: () => 'checkout',
 }
 ShippingPage.pageOptions = pageOptions
 

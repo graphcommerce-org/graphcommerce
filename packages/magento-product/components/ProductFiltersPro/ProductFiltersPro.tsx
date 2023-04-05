@@ -45,7 +45,9 @@ export function ProductFiltersPro(props: FilterFormProviderProps) {
   const { handleSubmit } = form
 
   const push = useProductListLinkReplace({ scroll: false })
-  const submit = handleSubmit(async (formValues) => push(toProductListParams(formValues)))
+  const submit = handleSubmit(async (formValues) =>
+    push({ ...toProductListParams(formValues), currentPage: 1 }),
+  )
 
   return (
     <FilterFormContext.Provider

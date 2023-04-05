@@ -1,5 +1,65 @@
 # Change Log
 
+## 6.1.0
+
+### Patch Changes
+
+- [#1876](https://github.com/graphcommerce-org/graphcommerce/pull/1876) [`8dffc59c0`](https://github.com/graphcommerce-org/graphcommerce/commit/8dffc59c04bf6f2a6000b73db13592e10afd936c) - Added an configuration `wishlistShowFeedbackMessage` to show a feedback message when a product is added to the wishlist. ([@paales](https://github.com/paales))
+
+## 6.0.2-canary.22
+
+## 6.0.2-canary.21
+
+## 6.0.2-canary.20
+
+## 6.0.2-canary.19
+
+## 6.0.2-canary.18
+
+## 6.0.2-canary.17
+
+## 6.0.2-canary.16
+
+## 6.0.2-canary.15
+
+## 6.0.2-canary.14
+
+## 6.0.2-canary.13
+
+## 6.0.2-canary.12
+
+## 6.0.2-canary.11
+
+## 6.0.2-canary.10
+
+## 6.0.2-canary.9
+
+## 6.0.2-canary.8
+
+## 6.0.2-canary.7
+
+### Patch Changes
+
+- [#1876](https://github.com/graphcommerce-org/graphcommerce/pull/1876) [`8dffc59c0`](https://github.com/graphcommerce-org/graphcommerce/commit/8dffc59c04bf6f2a6000b73db13592e10afd936c) - Added an configuration to the wishlist: `wishlistShowFeedbackMessage` to show a feedback message when a product is added to the wishlist. ([@paales](https://github.com/paales))
+
+## 6.0.2-canary.6
+
+## 6.0.2-canary.5
+
+## 6.0.2-canary.4
+
+## 6.0.2-canary.3
+
+## 6.0.2-canary.2
+
+## 6.0.2-canary.1
+
+### Patch Changes
+
+- [#1862](https://github.com/graphcommerce-org/graphcommerce/pull/1862) [`d590ecedd`](https://github.com/graphcommerce-org/graphcommerce/commit/d590eceddb8cdaab59bfe775247526f7c7eb00b3) - Docs ([@ErwinOtten](https://github.com/ErwinOtten))
+
+## 6.0.2-canary.0
+
 ## 6.0.1
 
 ## 6.0.1-canary.7

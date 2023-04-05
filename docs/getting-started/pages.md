@@ -32,7 +32,7 @@ frontend React framework that uses Next.js for server-side rendering.
 
 ### Create the route
 
-- Create a new file, /about/about-us.tsx:
+- Create a new file, /pages/about/about-us.tsx:
 
 ```tsx
 export default function AboutUs() {

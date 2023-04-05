@@ -1,6 +1,6 @@
 # Troubleshouting
 
-## Common build errors
+## Common errors
 
 If any errors are detected during the build phase, the console and browser will
 display an error message. Common causes for errors are:

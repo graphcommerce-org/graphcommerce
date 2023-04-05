@@ -194,6 +194,8 @@ export type GraphCommerceConfig = {
   wishlistHideForGuests?: InputMaybe<Scalars['Boolean']>;
   /** Ignores wether a product is already in the wishlist, makes the toggle an add only. */
   wishlistIgnoreProductWishlistStatus?: InputMaybe<Scalars['Boolean']>;
+  /** Show a message when the product is added to the wishlist. */
+  wishlistShowFeedbackMessage?: InputMaybe<Scalars['Boolean']>;
 };
 
 /** Debug configuration for GraphCommerce */
@@ -298,7 +300,8 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     robotsAllow: z.boolean().nullish(),
     storefront: z.array(GraphCommerceStorefrontConfigSchema()),
     wishlistHideForGuests: z.boolean().nullish(),
-    wishlistIgnoreProductWishlistStatus: z.boolean().nullish()
+    wishlistIgnoreProductWishlistStatus: z.boolean().nullish(),
+    wishlistShowFeedbackMessage: z.boolean().nullish()
   })
 }
 

@@ -1,5 +1,75 @@
 # Change Log
 
+## 6.1.0
+
+### Patch Changes
+
+- [#1867](https://github.com/graphcommerce-org/graphcommerce/pull/1867) [`8e4bf4ca7`](https://github.com/graphcommerce-org/graphcommerce/commit/8e4bf4ca7d0c32525df50df4a350ab19a2fbf620) - Overlay would show an incorrect box-shadow for the variant=bottom ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#1895](https://github.com/graphcommerce-org/graphcommerce/pull/1895) [`49d34bda4`](https://github.com/graphcommerce-org/graphcommerce/commit/49d34bda4b4426ad97272ce0a28e17f52e9f4e06) - When opening the overlay while darkmode was enabled, it would close immediately ([@paales](https://github.com/paales))
+
+- [#1867](https://github.com/graphcommerce-org/graphcommerce/pull/1867) [`9b7e4414c`](https://github.com/graphcommerce-org/graphcommerce/commit/9b7e4414c537e775c1f2d5de65ffde6fc39b7f3b) - Disallow overscrolling on overlays on mobile ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 6.0.2-canary.22
+
+## 6.0.2-canary.21
+
+## 6.0.2-canary.20
+
+## 6.0.2-canary.19
+
+## 6.0.2-canary.18
+
+## 6.0.2-canary.17
+
+### Patch Changes
+
+- [#1895](https://github.com/graphcommerce-org/graphcommerce/pull/1895) [`49d34bda4`](https://github.com/graphcommerce-org/graphcommerce/commit/49d34bda4b4426ad97272ce0a28e17f52e9f4e06) - When opening the overlay while darkmode was enabled, it would close immediately ([@paales](https://github.com/paales))
+
+## 6.0.2-canary.16
+
+## 6.0.2-canary.15
+
+## 6.0.2-canary.14
+
+## 6.0.2-canary.13
+
+## 6.0.2-canary.12
+
+## 6.0.2-canary.11
+
+## 6.0.2-canary.10
+
+## 6.0.2-canary.9
+
+## 6.0.2-canary.8
+
+## 6.0.2-canary.7
+
+## 6.0.2-canary.6
+
+## 6.0.2-canary.5
+
+## 6.0.2-canary.4
+
+## 6.0.2-canary.3
+
+## 6.0.2-canary.2
+
+### Patch Changes
+
+- [#1867](https://github.com/graphcommerce-org/graphcommerce/pull/1867) [`8e4bf4ca7`](https://github.com/graphcommerce-org/graphcommerce/commit/8e4bf4ca7d0c32525df50df4a350ab19a2fbf620) - Fix incorrect box-shadow on bottom overlays ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#1867](https://github.com/graphcommerce-org/graphcommerce/pull/1867) [`5cf7c8c9e`](https://github.com/graphcommerce-org/graphcommerce/commit/5cf7c8c9ee95d28be0a7f476ea3f06f482c4fd5d) - Fix MdBottom class affecting Sm overlay ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#1867](https://github.com/graphcommerce-org/graphcommerce/pull/1867) [`9b7e4414c`](https://github.com/graphcommerce-org/graphcommerce/commit/9b7e4414c537e775c1f2d5de65ffde6fc39b7f3b) - Disallow overscrolling on overlays on mobile ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#1867](https://github.com/graphcommerce-org/graphcommerce/pull/1867) [`197b71711`](https://github.com/graphcommerce-org/graphcommerce/commit/197b717119da2a1876d36931c0063ad6d32a675c) - Overlay fixess ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 6.0.2-canary.1
+
+## 6.0.2-canary.0
+
 ## 6.0.1
 
 ### Patch Changes

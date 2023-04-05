@@ -1,8 +1,10 @@
 # Handling links in GraphCommerce
 
-GraphCommerce integrates the next/link functionality with @mui/material's Link
-and ButtonBase (and all it's derivatives) components with NextLink. There is no
-need to wrap a Link component with next/link anymore.
+GraphCommerce
+[integrates](https://github.com/graphcommerce-org/graphcommerce/blob/62ba3db38508776afff4cacd3d16dc220cb059d1/examples/magento-graphcms/components/theme.ts#L205-L208)
+the next/link functionality with @mui/material's Link and ButtonBase (and all
+it's derivatives) components with NextLink. There is no need to wrap a Link
+component with next/link anymore.
 
 NextLink automatically adds `target="_blank"` when the href is external.
 

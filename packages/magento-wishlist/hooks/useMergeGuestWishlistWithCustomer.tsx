@@ -15,7 +15,7 @@ export function useMergeGuestWishlistWithCustomer() {
   const guestProducts = useQuery(GetGuestWishlistProductsDocument, {
     ssr: false,
     variables: { filters: { url_key: { in: guestItems?.map((item) => item?.url_key) } } },
-    skip: guestItems && guestItems?.length === 0,
+    skip: !guestItems || guestItems.length === 0,
   }).data?.products?.items
 
   const [addWishlistItem] = useMutation(AddProductToWishlistDocument)

@@ -14,7 +14,10 @@ export default function useOrderCardItemImages(
     .map((order) => order?.items?.map((oi) => oi?.product_url_key ?? '') ?? [])
     .flat(1)
 
-  const { data } = useQuery(OrderCardItemImagesDocument, { variables: { urlKeys } })
+  const { data } = useQuery(OrderCardItemImagesDocument, {
+    variables: { urlKeys },
+    skip: urlKeys.length === 0,
+  })
 
   return Object.fromEntries(
     (data?.products?.items ?? []).map((item) => [item?.url_key ?? '', item]),

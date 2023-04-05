@@ -1,5 +1,65 @@
 # Change Log
 
+## 6.1.0
+
+### Minor Changes
+
+- [#1874](https://github.com/graphcommerce-org/graphcommerce/pull/1874) [`2a60491c2`](https://github.com/graphcommerce-org/graphcommerce/commit/2a60491c23a9cd0bfd79296d29f6c9ee31faada5) - Fetch request improvements in the mesh (30-100ms): The mesh wouldn't keep ssl handshakes alive causing an additional delay for each request. Performance improvements depend on the ssl handshake performance of the server. ([@paales](https://github.com/paales))
+
+- [#1874](https://github.com/graphcommerce-org/graphcommerce/pull/1874) [`2a60491c2`](https://github.com/graphcommerce-org/graphcommerce/commit/2a60491c23a9cd0bfd79296d29f6c9ee31faada5) - Big Magento performance improvements; Magento couldn't respond with any cached Varnish responses because there was an empty authorization header sent with each request. ([@paales](https://github.com/paales))
+
+## 6.0.2-canary.22
+
+## 6.0.2-canary.21
+
+## 6.0.2-canary.20
+
+## 6.0.2-canary.19
+
+## 6.0.2-canary.18
+
+## 6.0.2-canary.17
+
+## 6.0.2-canary.16
+
+## 6.0.2-canary.15
+
+## 6.0.2-canary.14
+
+## 6.0.2-canary.13
+
+## 6.0.2-canary.12
+
+## 6.0.2-canary.11
+
+## 6.0.2-canary.10
+
+## 6.0.2-canary.9
+
+## 6.0.2-canary.8
+
+## 6.0.2-canary.7
+
+## 6.0.2-canary.6
+
+## 6.0.2-canary.5
+
+## 6.0.2-canary.4
+
+### Patch Changes
+
+- [#1874](https://github.com/graphcommerce-org/graphcommerce/pull/1874) [`2a60491c2`](https://github.com/graphcommerce-org/graphcommerce/commit/2a60491c23a9cd0bfd79296d29f6c9ee31faada5) - The mesh wouldn't keep ssl handshakes alive causing an additional delay for each request. Solving this will improve every fetch request 30-100ms, depending on the ssl handshake performance of the server. ([@paales](https://github.com/paales))
+
+- [#1874](https://github.com/graphcommerce-org/graphcommerce/pull/1874) [`2a60491c2`](https://github.com/graphcommerce-org/graphcommerce/commit/2a60491c23a9cd0bfd79296d29f6c9ee31faada5) - Magento couldn't respond with any cached Varnish responses because there was an empty authorization header sent with each request. ([@paales](https://github.com/paales))
+
+## 6.0.2-canary.3
+
+## 6.0.2-canary.2
+
+## 6.0.2-canary.1
+
+## 6.0.2-canary.0
+
 ## 6.0.1
 
 ## 6.0.1-canary.7

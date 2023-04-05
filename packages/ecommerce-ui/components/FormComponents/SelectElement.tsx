@@ -1,4 +1,5 @@
 import { Controller, ControllerProps, FieldValues } from '@graphcommerce/react-hook-form'
+import { i18n } from '@lingui/core'
 import { MenuItem, TextField, TextFieldProps } from '@mui/material'
 
 export type SelectElementProps<T extends FieldValues> = Omit<
@@ -31,7 +32,7 @@ export function SelectElement<TFieldValues extends FieldValues>({
   const ChildComponent = isNativeSelect ? 'option' : MenuItem
 
   if (required && !validation.required) {
-    validation.required = 'This field is required'
+    validation.required = i18n._(/* i18n */ 'This field is required')
   }
 
   return (

@@ -712,6 +712,27 @@ msgstr "Your address has been added"
 msgid "Your cart is empty"
 msgstr "Your cart is empty"
 
+msgid "Your order has been canceled"
+msgstr "Your order has been canceled"
+
+msgid "Your order has been invoiced"
+msgstr "Your order has been invoiced"
+
+msgid "Your order has been partially processed"
+msgstr "Your order has been partially processed"
+
+msgid "Your order has been refunded"
+msgstr "Your order has been refunded"
+
+msgid "Your order has been returned"
+msgstr "Your order has been returned"
+
+msgid "Your order is being processed"
+msgstr "Your order is being processed"
+
+msgid "Your order is on its way!"
+msgstr "Your order is on its way!"
+
 msgid "Your session is expired"
 msgstr "Your session is expired"
 

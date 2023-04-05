@@ -10,8 +10,9 @@ export function parseParams(
   url: string,
   query: string[],
   filterTypes: FilterTypes,
+  search: string | null = null,
 ): ProductListParams | false {
-  const categoryVariables: ProductListParams = { url, filters: {}, sort: {} }
+  const categoryVariables: ProductListParams = { url, filters: {}, sort: {}, search }
 
   const typeMap = filterTypes
 

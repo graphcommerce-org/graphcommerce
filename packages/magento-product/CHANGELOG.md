@@ -1,5 +1,93 @@
 # Change Log
 
+## 6.1.0
+
+### Minor Changes
+
+- [#1890](https://github.com/graphcommerce-org/graphcommerce/pull/1890) [`f88727915`](https://github.com/graphcommerce-org/graphcommerce/commit/f88727915998690b34d35c7eb5b2af3ca154da3d) - Aggregation options (filters) now show a relevant count when applying filters and hide the count when it doesn't make sense. ([@paales](https://github.com/paales))
+
+- [#1877](https://github.com/graphcommerce-org/graphcommerce/pull/1877) [`27cd09247`](https://github.com/graphcommerce-org/graphcommerce/commit/27cd0924751a1ed2d1043e09600c039df76bad45) - Fetching core product page and and related+upsells in parallel so Magento doesn't choke on the query complexity limit. ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#1888](https://github.com/graphcommerce-org/graphcommerce/pull/1888) [`5460925a7`](https://github.com/graphcommerce-org/graphcommerce/commit/5460925a7f8bd0b8a871ed77098bec3a490fa8f2) - Filtering on category_uid wouldn't work on search results page ([@paales](https://github.com/paales))
+
+- [#1888](https://github.com/graphcommerce-org/graphcommerce/pull/1888) [`47429b293`](https://github.com/graphcommerce-org/graphcommerce/commit/47429b293f37b3977a862a36cff4da6956c44a4f) - When filtering on a paginated page it would not reset the currentPage to 1 ([@paales](https://github.com/paales))
+
+- [#1888](https://github.com/graphcommerce-org/graphcommerce/pull/1888) [`504d74916`](https://github.com/graphcommerce-org/graphcommerce/commit/504d749161959759b78cc5e9dcc7ca61349a0f12) - When the category_uid is filterable it would always show an active filter on all filters ([@paales](https://github.com/paales))
+
+- [#1870](https://github.com/graphcommerce-org/graphcommerce/pull/1870) [`fc567a9bd`](https://github.com/graphcommerce-org/graphcommerce/commit/fc567a9bd1b0ef4e8a8996752f279f7b5fd1fe84) - Crosssells will now be preloaded during the addProductsToCart mutation so they are already available in the 'added' overlay, preventing a second scroll. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#1894](https://github.com/graphcommerce-org/graphcommerce/pull/1894) [`e08879934`](https://github.com/graphcommerce-org/graphcommerce/commit/e08879934095cee9c8371a4013543864b58c4706) - ProductSpecs would throw an hydration error if there were multiple categories with the same label ([@paales](https://github.com/paales))
+
+## 6.0.2-canary.22
+
+## 6.0.2-canary.21
+
+## 6.0.2-canary.20
+
+## 6.0.2-canary.19
+
+## 6.0.2-canary.18
+
+## 6.0.2-canary.17
+
+## 6.0.2-canary.16
+
+## 6.0.2-canary.15
+
+### Patch Changes
+
+- [#1870](https://github.com/graphcommerce-org/graphcommerce/pull/1870) [`fc567a9bd`](https://github.com/graphcommerce-org/graphcommerce/commit/fc567a9bd1b0ef4e8a8996752f279f7b5fd1fe84) - Crosssells will now be preloaded during the addProductsToCart mutation so they are already available in the 'added' overlay, preventing a second scroll. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 6.0.2-canary.14
+
+### Patch Changes
+
+- [#1894](https://github.com/graphcommerce-org/graphcommerce/pull/1894) [`e08879934`](https://github.com/graphcommerce-org/graphcommerce/commit/e08879934095cee9c8371a4013543864b58c4706) - ProductSpecs would throw an hydration error if there were multiple categories with the same label ([@paales](https://github.com/paales))
+
+## 6.0.2-canary.13
+
+## 6.0.2-canary.12
+
+## 6.0.2-canary.11
+
+### Patch Changes
+
+- [#1890](https://github.com/graphcommerce-org/graphcommerce/pull/1890) [`f88727915`](https://github.com/graphcommerce-org/graphcommerce/commit/f88727915998690b34d35c7eb5b2af3ca154da3d) - Aggregation options (filters) now show a relevant count when applying filters and hide the count when it doesn't make sense. ([@paales](https://github.com/paales))
+
+## 6.0.2-canary.10
+
+## 6.0.2-canary.9
+
+## 6.0.2-canary.8
+
+### Patch Changes
+
+- [#1888](https://github.com/graphcommerce-org/graphcommerce/pull/1888) [`5460925a7`](https://github.com/graphcommerce-org/graphcommerce/commit/5460925a7f8bd0b8a871ed77098bec3a490fa8f2) - Filtering on category_uid wouldn't work on search results page ([@paales](https://github.com/paales))
+
+- [#1888](https://github.com/graphcommerce-org/graphcommerce/pull/1888) [`47429b293`](https://github.com/graphcommerce-org/graphcommerce/commit/47429b293f37b3977a862a36cff4da6956c44a4f) - When filtering on a paginated page it would not reset the currentPage to 1 ([@paales](https://github.com/paales))
+
+- [#1888](https://github.com/graphcommerce-org/graphcommerce/pull/1888) [`504d74916`](https://github.com/graphcommerce-org/graphcommerce/commit/504d749161959759b78cc5e9dcc7ca61349a0f12) - When the category_uid is filterable it would always show an active filter on all filters ([@paales](https://github.com/paales))
+
+- [#1877](https://github.com/graphcommerce-org/graphcommerce/pull/1877) [`27cd09247`](https://github.com/graphcommerce-org/graphcommerce/commit/27cd0924751a1ed2d1043e09600c039df76bad45) - Fetching core product page and and related+upsells in parallel so Magento doesn't choke on the query complexity limit. ([@paales](https://github.com/paales))
+
+## 6.0.2-canary.7
+
+## 6.0.2-canary.6
+
+## 6.0.2-canary.5
+
+## 6.0.2-canary.4
+
+## 6.0.2-canary.3
+
+## 6.0.2-canary.2
+
+## 6.0.2-canary.1
+
+## 6.0.2-canary.0
+
 ## 6.0.1
 
 ### Patch Changes

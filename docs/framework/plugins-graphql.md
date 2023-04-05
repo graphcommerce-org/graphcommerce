@@ -1,7 +1,7 @@
 # Plugins GraphQL
 
 GraphCommerce's GraphQL plugin system allows you to extend GraphCommerce in a
-plug-and-play manner. Install a new package and the queries will be exdtended at
+plug-and-play manner. Install a new package and the queries will be extended at
 the right places.
 
 ## What problem are we solving?

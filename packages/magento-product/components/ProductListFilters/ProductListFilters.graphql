@@ -2,8 +2,8 @@ fragment ProductListFilters on Products {
   aggregations {
     __typename
     label
-    count
     attribute_code
+    count
     options {
       __typename
       label

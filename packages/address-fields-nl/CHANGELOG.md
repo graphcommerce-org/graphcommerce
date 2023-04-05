@@ -1,5 +1,65 @@
 # @graphcommerce/address-fields-nl
 
+## 6.1.0
+
+### Patch Changes
+
+- [#1889](https://github.com/graphcommerce-org/graphcommerce/pull/1889) [`38bf4b6bc`](https://github.com/graphcommerce-org/graphcommerce/commit/38bf4b6bc6e705d9d124d50b775ba3f440599482) - put the country field first, so the address fields will not be changed afterwards when postcode service is active. ([@carlocarels90](https://github.com/carlocarels90))
+
+## 6.0.2-canary.22
+
+## 6.0.2-canary.21
+
+## 6.0.2-canary.20
+
+## 6.0.2-canary.19
+
+## 6.0.2-canary.18
+
+### Patch Changes
+
+- [#1889](https://github.com/graphcommerce-org/graphcommerce/pull/1889) [`38bf4b6bc`](https://github.com/graphcommerce-org/graphcommerce/commit/38bf4b6bc6e705d9d124d50b775ba3f440599482) - put the country field first, so the address fields will not be changed afterwards when postcode service is active. ([@carlocarels90](https://github.com/carlocarels90))
+
+## 6.0.2-canary.17
+
+## 6.0.2-canary.16
+
+## 6.0.2-canary.15
+
+## 6.0.2-canary.14
+
+## 6.0.2-canary.13
+
+## 6.0.2-canary.12
+
+## 6.0.2-canary.11
+
+## 6.0.2-canary.10
+
+## 6.0.2-canary.9
+
+## 6.0.2-canary.8
+
+## 6.0.2-canary.7
+
+## 6.0.2-canary.6
+
+### Patch Changes
+
+- [#1885](https://github.com/graphcommerce-org/graphcommerce/pull/1885) [`dc72861f0`](https://github.com/graphcommerce-org/graphcommerce/commit/dc72861f053955011a6d649ff0aa46022442d15e) - use correct path for additionalResolvers in meshrc.yml ([@carlocarels90](https://github.com/carlocarels90))
+
+## 6.0.2-canary.5
+
+## 6.0.2-canary.4
+
+## 6.0.2-canary.3
+
+## 6.0.2-canary.2
+
+## 6.0.2-canary.1
+
+## 6.0.2-canary.0
+
 ## 6.0.1
 
 ## 6.0.1-canary.7

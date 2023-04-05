@@ -30,6 +30,7 @@ export function LayoutHeaderClose() {
         boxShadow: 'none',
         marginLeft: `calc((${fabSize} - ${svgSize}) * -0.5)`,
         marginRight: `calc((${fabSize} - ${svgSize}) * -0.5)`,
+        background: 'none',
       }}
       size='responsive'
       disabled={disabled}

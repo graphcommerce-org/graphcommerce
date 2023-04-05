@@ -250,3 +250,20 @@ it('it handles root plugins', () => {
     "
   `)
 })
+
+it('it handles root plugins deeper nested', () => {
+  const plugins = [
+    {
+      component: 'OverlaySsr',
+      enabled: true,
+      exported: '@graphcommerce/next-ui/Overlay/components/OverlaySsr',
+      plugin: './plugins/EnableCrosssellsPlugin',
+    },
+  ]
+  const resolve = resolveDependency(projectRoot)
+  const interceptors = generateInterceptors(plugins, resolve)
+
+  expect(
+    interceptors['packages/next-ui/Overlay/components/OverlaySsr'].components.OverlaySsr[0].plugin,
+  ).toMatchInlineSnapshot(`"../../../../examples/magento-graphcms/plugins/EnableCrosssellsPlugin"`)
+})

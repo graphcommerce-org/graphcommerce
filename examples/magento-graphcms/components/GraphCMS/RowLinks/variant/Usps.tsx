@@ -33,6 +33,7 @@ export function Usps(props: RowLinksFragment) {
     >
       {pageLinks.map((pageLink) => (
         <Box
+          key={pageLink.id}
           sx={{
             display: 'inline-flex',
             flexWrap: 'nowrap',

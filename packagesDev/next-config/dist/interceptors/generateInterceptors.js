@@ -92,7 +92,7 @@ function generateInterceptors(plugins, resolve) {
         let pluginPathFromResolved = plugin;
         if (plugin.startsWith('.')) {
             const resolvedPlugin = resolve(plugin);
-            pluginPathFromResolved = node_path_1.default.relative(resolved.root, resolvedPlugin.fromRoot);
+            pluginPathFromResolved = node_path_1.default.relative(resolved.fromRoot.split('/').slice(0, -1).join('/'), resolvedPlugin.fromRoot);
         }
         if (!acc[resolved.fromRoot])
             acc[resolved.fromRoot] = {
