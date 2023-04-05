@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.1.1-canary.0
+
+### Patch Changes
+
+- [#1898](https://github.com/graphcommerce-org/graphcommerce/pull/1898) [`e28af9ea6`](https://github.com/graphcommerce-org/graphcommerce/commit/e28af9ea6c0bf9b904df880b5c2a13a2f580727b) - ConfigurableProduct super attributes that were regular dropdowns would throw an error. ([@paales](https://github.com/paales))
+
 ## 6.1.0
 
 ## 6.0.2-canary.22

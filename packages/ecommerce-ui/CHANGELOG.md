@@ -1,5 +1,7 @@
 # @graphcommerce/ecommerce-ui
 
+## 6.1.1-canary.0
+
 ## 6.1.0
 
 ### Patch Changes
