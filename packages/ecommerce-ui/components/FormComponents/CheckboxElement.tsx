@@ -4,6 +4,7 @@ import {
   FieldError,
   FieldValues,
 } from '@graphcommerce/react-hook-form'
+import { i18n } from '@lingui/core'
 import {
   Checkbox,
   CheckboxProps,
@@ -38,7 +39,7 @@ export function CheckboxElement<TFieldValues extends FieldValues>({
   ...rest
 }: CheckboxElementProps<TFieldValues>): JSX.Element {
   if (required && !rules.required) {
-    rules.required = 'This field is required'
+    rules.required = i18n._(/* i18n */ 'This field is required')
   }
 
   return (

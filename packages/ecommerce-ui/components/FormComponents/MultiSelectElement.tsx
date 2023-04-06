@@ -6,6 +6,7 @@ import {
   FieldValues,
   ControllerProps,
 } from '@graphcommerce/react-hook-form'
+import { i18n } from '@lingui/core'
 import {
   Checkbox,
   Chip,
@@ -63,7 +64,7 @@ export function MultiSelectElement<TFieldValues extends FieldValues>(
     ...rest
   } = props
   if (required && !rules.required) {
-    rules.required = 'This field is required'
+    rules.required = i18n._(/* i18n */ 'This field is required')
   }
 
   return (

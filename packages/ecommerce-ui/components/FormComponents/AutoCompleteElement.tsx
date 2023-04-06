@@ -1,4 +1,5 @@
 import { Controller, ControllerProps, FieldValues } from '@graphcommerce/react-hook-form'
+import { i18n } from '@lingui/core'
 import {
   Autocomplete,
   AutocompleteProps,
@@ -55,7 +56,7 @@ export function AutocompleteElement<TFieldValues extends FieldValues>({
   const validationRules: ControllerProps<TFieldValues>['rules'] = {
     ...rules,
     ...(required && {
-      required: rules?.required || 'This field is required',
+      required: rules?.required || i18n._(/* i18n */ 'This field is required'),
     }),
   }
   return (
