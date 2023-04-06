@@ -18,7 +18,8 @@ type FilterChipProps = UseRefinementListProps &
 
 export function FilterChip(props: FilterChipProps) {
   const { title, sx, attribute } = props
-  const { items } = useRefinementList({
+  // eslint-disable-next-line @typescript-eslint/unbound-method
+  const { items, refine } = useRefinementList({
     attribute,
     sortBy: ['name:asc'],
   })
