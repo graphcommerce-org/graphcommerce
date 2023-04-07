@@ -1,11 +1,15 @@
+import { SelectElement } from '@graphcommerce/ecommerce-ui'
 import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
-import { FormRow, InputCheckmark } from '@graphcommerce/next-ui'
+import { FormRow, InputCheckmark, filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { useFormCompose, useFormPersist, useFormValidFields } from '@graphcommerce/react-hook-form'
-import { TextField } from '@mui/material'
+import { Trans } from '@lingui/react'
 import { SetMolliePaymentMethodIssuerOnCartDocument } from './SetMolliePaymentMethodIssuerOnCart.gql'
 
-type MollieIssuerOptionsProps = PaymentOptionsProps & { label: string; children?: React.ReactNode }
+type MollieIssuerOptionsProps = PaymentOptionsProps & {
+  label: string
+  children?: React.ReactNode
+}
 
 export function MollieIssuerOptions(props: MollieIssuerOptionsProps) {
   const { mollie_available_issuers = [], children } = props
@@ -15,7 +19,7 @@ export function MollieIssuerOptions(props: MollieIssuerOptionsProps) {
     defaultValues: { code },
   })
 
-  const { handleSubmit, muiRegister, formState, required } = form
+  const { handleSubmit, formState, required, control } = form
   const submit = handleSubmit(() => {})
   const valid = useFormValidFields(form, required)
 
@@ -32,34 +36,24 @@ export function MollieIssuerOptions(props: MollieIssuerOptionsProps) {
     <>
       <form onSubmit={submit} noValidate>
         <FormRow>
-          <TextField
-            defaultValue=''
-            variant='outlined'
-            select
+          <SelectElement
+            control={control}
+            name='issuer'
             SelectProps={{ native: true, displayEmpty: true }}
-            error={formState.isSubmitted && !!formState.errors.issuer}
+            variant='outlined'
             helperText={formState.isSubmitted && formState.errors.issuer?.message}
             label={label}
             required={required.issuer}
-            {...muiRegister('issuer', {
-              required: { value: required.issuer, message: 'Please provide an issuer' },
-            })}
             InputProps={{
               endAdornment: <InputCheckmark show={valid.issuer} select />,
             }}
-          >
-            {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
-            <option value='' />
-            {mollie_available_issuers?.map((issuer) => {
-              if (!issuer?.code || !issuer.name) return null
-
-              return (
-                <option key={issuer.code} value={issuer.code}>
-                  {issuer.name}
-                </option>
-              )
-            })}
-          </TextField>
+            options={filterNonNullableKeys(mollie_available_issuers, ['code', 'name']).map(
+              (option) => ({
+                id: option.code,
+                label: option.name,
+              }),
+            )}
+          />
         </FormRow>
       </form>
       {children}
