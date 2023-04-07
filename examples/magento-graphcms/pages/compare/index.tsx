@@ -80,7 +80,11 @@ export function ComparePage() {
   }, [selectedState, compareAbleItems, router, form, compareListCount, gridColumns])
 
   if (!compareAbleItems || compareAbleItems.length === 0) {
-    return <EmptyCompareList />
+    return (
+      <NoSsr>
+        <EmptyCompareList />
+      </NoSsr>
+    )
   }
 
   const currentCompareItems = selectedState.map((i) => compareAbleItems[i])
@@ -96,84 +100,108 @@ export function ComparePage() {
             <EmptyCompareListButton compareListUid={compareList.data.compareList.uid} />
           )
         }
+        divider={<Box />}
       >
         <LayoutTitle size='small' component='span' icon={iconCompare}>
           <Trans id='Compare' /> ({compareListCount})
         </LayoutTitle>
       </LayoutOverlayHeader>
-      <WaitForQueries
-        waitFor={compareList}
-        fallback={
-          <FullPageMessage icon={<CircularProgress />} title={<Trans id='Loading' />}>
-            <Trans id='This may take a second' />
-          </FullPageMessage>
-        }
-      >
-        <Container maxWidth={gridColumns === 3 ? 'xl' : 'lg'} disableGutters>
-          <Box
-            sx={(theme) => ({
-              ...compareListStyles,
-              padding: theme.spacings.lg,
-            })}
-          >
-            {[...Array(gridColumns).keys()].map((compareSelectIndex) => (
-              <FormControl key={compareSelectIndex} sx={(theme) => ({ mt: theme.spacings.md })}>
-                <SelectElement
-                  control={form.control}
-                  name={`selected.${compareSelectIndex}`}
-                  options={compareAbleItems.map((i, id) => ({
-                    id,
-                    label: i?.product?.name ?? '',
-                  }))}
-                  onChange={(to) => {
-                    const from = selectedPrevious.current?.[compareSelectIndex]
-                    const found = selectedPrevious.current?.indexOf(Number(to))
-                    if (found > -1) form.setValue(`selected.${found}`, from)
-                  }}
+
+      <Box>
+        <WaitForQueries
+          waitFor={compareList}
+          fallback={
+            <FullPageMessage icon={<CircularProgress />} title={<Trans id='Loading' />}>
+              <Trans id='This may take a second' />
+            </FullPageMessage>
+          }
+        >
+          <Container maxWidth={gridColumns === 3 ? 'xl' : 'lg'} disableGutters>
+            <Box
+              sx={(theme) => ({
+                ...compareListStyles,
+                px: { xs: theme.spacings.xs, md: theme.spacings.md, lg: theme.spacings.lg },
+                py: theme.spacings.xxs,
+                [theme.breakpoints.down('md')]: {
+                  boxShadow: 2,
+                },
+                background: theme.palette.background.paper,
+                position: 'sticky',
+                zIndex: 10,
+                top: {
+                  xs: `calc(${theme.appShell.headerHeightSm} / 2)`,
+                  lg: `calc(${theme.page.vertical} / 2)`,
+                },
+              })}
+            >
+              {[...Array(gridColumns).keys()].map((compareSelectIndex) => (
+                <FormControl key={compareSelectIndex}>
+                  <SelectElement
+                    control={form.control}
+                    name={`selected.${compareSelectIndex}`}
+                    options={compareAbleItems.map((i, id) => ({
+                      id,
+                      label: i?.product?.name ?? '',
+                    }))}
+                    size='small'
+                    onChange={(to) => {
+                      const from = selectedPrevious.current?.[compareSelectIndex]
+                      const found = selectedPrevious.current?.indexOf(Number(to))
+                      if (found > -1) form.setValue(`selected.${found}`, from)
+                    }}
+                  />
+                </FormControl>
+              ))}
+            </Box>
+
+            <ProductListItems
+              title='Compare items'
+              items={currentCompareProducts}
+              size='small'
+              sx={(theme) => ({
+                ...compareListStyles,
+                padding: {
+                  xs: theme.spacings.xs,
+                  md: theme.spacings.md,
+                  lg: theme.spacings.lg,
+                },
+                pt: 0,
+              })}
+            />
+            <Box
+              sx={(theme) => ({
+                backgroundColor: theme.palette.background.default,
+                py: theme.spacings.md,
+                px: {
+                  xs: theme.spacings.xs,
+                  md: theme.spacings.md,
+                  lg: theme.spacings.lg,
+                },
+                [theme.breakpoints.up('md')]: {
+                  mb: theme.spacings.md,
+                  borderRadius: theme.shape.borderRadius * 1.5,
+                },
+              })}
+            >
+              {compareListAttributes?.map((attribute) => (
+                <CompareRow
+                  compareAbleItems={currentCompareItems}
+                  attribute={attribute}
+                  key={attribute?.code}
                 />
-              </FormControl>
-            ))}
-          </Box>
+              ))}
 
-          <ProductListItems
-            title='Compare items'
-            items={currentCompareProducts}
-            size='small'
-            sx={(theme) => ({
-              ...compareListStyles,
-              padding: theme.spacings.lg,
-              pt: 0,
-            })}
-          />
-          <Box
-            sx={(theme) => ({
-              backgroundColor: theme.palette.background.default,
-              py: theme.spacings.md,
-              px: theme.spacings.lg,
-              [theme.breakpoints.up('md')]: {
-                mb: theme.spacings.md,
-                borderRadius: theme.shape.borderRadius * 1.5,
-              },
-            })}
-          >
-            {compareListAttributes?.map((attribute) => (
-              <CompareRow
-                compareAbleItems={currentCompareItems}
-                attribute={attribute}
-                key={attribute?.code}
-              />
-            ))}
-
-            <MoreInformationRow compareAbleItems={currentCompareItems} />
-          </Box>
-        </Container>
-      </WaitForQueries>
+              <MoreInformationRow compareAbleItems={currentCompareItems} />
+            </Box>
+          </Container>
+        </WaitForQueries>
+      </Box>
     </NoSsr>
   )
 }
 
 const pageOptions: PageOptions<LayoutOverlayProps> = {
-  overlayGroup: 'bottom',
+  overlayGroup: 'compare',
   Layout: LayoutOverlay,
   layoutProps: { variantMd: 'bottom', variantSm: 'bottom' },
 }
