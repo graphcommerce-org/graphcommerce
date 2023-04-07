@@ -106,6 +106,9 @@ msgstr "Verander"
 msgid "Checkout summary"
 msgstr "Samenvatting"
 
+msgid "Choose your bank"
+msgstr "Kies uw bank"
+
 msgid "Choose your bank, and place your order."
 msgstr "Kies uw bank en plaats uw bestelling."
 

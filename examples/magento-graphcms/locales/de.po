@@ -106,6 +106,9 @@ msgstr "Ändern"
 msgid "Checkout summary"
 msgstr "Kassensummary"
 
+msgid "Choose your bank"
+msgstr "Wählen Sie Ihre Bank"
+
 msgid "Choose your bank, and place your order."
 msgstr "Wählen Sie Ihre Bank und führen Sie Ihre Bestellung aus."
 
