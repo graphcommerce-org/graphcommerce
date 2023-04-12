@@ -1,6 +1,7 @@
 import { Money } from '@graphcommerce/magento-store'
 import { ChipMenu, extendableComponent } from '@graphcommerce/next-ui'
-import { Box, Slider } from '@mui/material'
+import Box from '@mui/material/Box'
+import Slider from '@mui/material/Slider'
 import { useEffect, useState } from 'react'
 import { useRange, UseRangeProps } from 'react-instantsearch-hooks'
 
