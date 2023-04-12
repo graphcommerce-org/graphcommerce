@@ -2,7 +2,14 @@
 Type for conversion of Magento 2 aggregations to Algolia filterable attributes
 """
 input AlgoliaFilterAttribute {
+  """
+  Stores the default aggregation uid
+  """
   aggregation: String!
+
+  """
+  Stores the algolia attribute that should be connected to the magento aggregation
+  """
   toAlgoliaAttribute: String!
 }
 

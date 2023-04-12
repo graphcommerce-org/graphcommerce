@@ -7,15 +7,6 @@ export const component = 'ProductListCount'
 export const exported = '@graphcommerce/magento-product'
 export const ifConfig: IfConfig = 'demoMode'
 
-/**
- * Example plugin to enable algolia search if the `demoMode` config is set to true
- *
- * You might want to:
- *
- * - Remove the `ifConfig` to always enable this.
- * - Create your own plugins https://www.graphcommerce.org/docs/framework/plugins-react
- */
-
 function ProductListCount(props: PluginProps<ProductCountProps>) {
   const { Prev, ...rest } = props
   const { nbHits } = usePagination()

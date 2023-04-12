@@ -11,14 +11,6 @@ export const ifConfig: IfConfig = 'demoMode'
 const searchClient = algoliasearch(applicationId, searchOnlyApiKey)
 const searchIndex = import.meta.graphCommerce.algoliaSearchIndex ?? ''
 
-/**
- * Example plugin to enable algolia search if the `demoMode` config is set to true
- *
- * You might want to:
- *
- * - Remove the `ifConfig` to always enable this.
- * - Create your own plugins https://www.graphcommerce.org/docs/framework/plugins-react
- */
 function AlgoliaSearchContextPlugin(props: PluginProps<SearchContextProps>) {
   const { Prev, children } = props
   return (

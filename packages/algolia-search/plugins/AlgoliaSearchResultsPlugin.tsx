@@ -14,14 +14,6 @@ function AlgoliaResults(props: PluginProps<ProductItemsGridProps>) {
   return <Prev {...props} items={products} />
 }
 
-/**
- * Example plugin to enable algolia search if the `demoMode` config is set to true
- *
- * You might want to:
- *
- * - Remove the `ifConfig` to always enable this.
- * - Create your own plugins https://www.graphcommerce.org/docs/framework/plugins-react
- */
 function AlgoliaSearchPlugin(props: PluginProps<ProductItemsGridProps>) {
   const { Prev } = props
   const search = useSearchRoute()

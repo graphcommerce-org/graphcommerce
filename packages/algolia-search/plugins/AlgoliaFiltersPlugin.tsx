@@ -59,17 +59,6 @@ function AlgoliaFilters(props: ProductFiltersProps) {
 
   if (!aggregations || !filters) return null
 
-  // <RefinementFilterChip
-  //         // eslint-disable-next-line react/no-array-index-key
-  // key={v.aggregation}
-  // attribute={v.toAlgoliaAttribute}
-  // title={
-  //   aggregations.find((a) => a?.attribute_code === v.aggregation)?.label ??
-  //   v.aggregation.charAt(0).toUpperCase() + v.aggregation.slice(1)
-  // }
-  //       />
-  //     )
-
   return (
     <>
       {filters.map((v) => (
@@ -87,14 +76,6 @@ function AlgoliaFilters(props: ProductFiltersProps) {
   )
 }
 
-/**
- * Example plugin to enable algolia search if the `demoMode` config is set to true
- *
- * You might want to:
- *
- * - Remove the `ifConfig` to always enable this.
- * - Create your own plugins https://www.graphcommerce.org/docs/framework/plugins-react
- */
 function AlgoliaFiltersPlugin(props: PluginProps<ProductFiltersProps>) {
   const { Prev, ...rest } = props
   const search = useSearchRoute()

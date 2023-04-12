@@ -5,7 +5,11 @@ Type for conversion of Magento 2 aggregations to Algolia filterable attributes
 
 #### `aggregation: String!`
 
+Stores the default aggregation uid
+
 #### `toAlgoliaAttribute: String!`
+
+Stores the algolia attribute that should be connected to the magento aggregation
 
 # GraphCommerce configuration system
 

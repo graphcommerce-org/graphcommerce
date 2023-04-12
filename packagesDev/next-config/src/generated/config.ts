@@ -16,7 +16,9 @@ export type Scalars = {
 
 /** Type for conversion of Magento 2 aggregations to Algolia filterable attributes */
 export type AlgoliaFilterAttribute = {
+  /** Stores the default aggregation uid */
   aggregation: Scalars['String'];
+  /** Stores the algolia attribute that should be connected to the magento aggregation */
   toAlgoliaAttribute: Scalars['String'];
 };
 

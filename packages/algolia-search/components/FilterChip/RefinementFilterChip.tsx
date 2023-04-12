@@ -1,5 +1,9 @@
 import { ChipMenu, extendableComponent, responsiveVal } from '@graphcommerce/next-ui'
-import { Box, ListItem, ListItemText, Checkbox, SxProps, Theme } from '@mui/material'
+import { SxProps, Theme } from '@mui/material'
+import Box from '@mui/material/Box'
+import Checkbox from '@mui/material/Checkbox'
+import ListItem from '@mui/material/ListItem'
+import ListItemText from '@mui/material/ListItemText'
 import {
   useClearRefinements,
   UseClearRefinementsProps,
