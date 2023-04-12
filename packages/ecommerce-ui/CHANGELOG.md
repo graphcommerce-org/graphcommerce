@@ -1,5 +1,11 @@
 # @graphcommerce/ecommerce-ui
 
+## 6.1.1-canary.1
+
+### Patch Changes
+
+- [#1905](https://github.com/graphcommerce-org/graphcommerce/pull/1905) [`b6adbe1c3`](https://github.com/graphcommerce-org/graphcommerce/commit/b6adbe1c304c83c67c9e63f9a95d55ff64718725) - make the FormComponent elements validation message translatable. ([@carlocarels90](https://github.com/carlocarels90))
+
 ## 6.1.1-canary.0
 
 ## 6.1.0
