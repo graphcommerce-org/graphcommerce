@@ -4,6 +4,7 @@ import {
   FieldValues,
   UseControllerProps,
 } from '@graphcommerce/react-hook-form'
+import { i18n } from '@lingui/core'
 import {
   FormControl,
   FormControlLabel,
@@ -51,7 +52,7 @@ export function RadioButtonGroup<TFieldValues extends FieldValues>({
     fieldState: { invalid, error },
   } = useController({
     name,
-    rules: required ? { required: 'This field is required' } : undefined,
+    rules: required ? { required: i18n._(/* i18n */ 'This field is required') } : undefined,
     control,
   })
 

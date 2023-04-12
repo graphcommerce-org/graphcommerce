@@ -4,6 +4,7 @@ import {
   FieldError,
   FieldValues,
 } from '@graphcommerce/react-hook-form'
+import { i18n } from '@lingui/core'
 import {
   FormControl,
   FormHelperText,
@@ -43,7 +44,7 @@ export function ToggleButtonGroupElement<TFieldValues extends FieldValues = Fiel
   ...toggleButtonGroupProps
 }: ToggleButtonGroupElementProps<TFieldValues>) {
   if (required && !rules.required) {
-    rules.required = 'This field is required'
+    rules.required = i18n._(/* i18n */ 'This field is required')
   }
 
   const isRequired = required || !!rules?.required
