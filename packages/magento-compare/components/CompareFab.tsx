@@ -87,7 +87,7 @@ function CompareFabContent(props: CompareFabContentProps) {
           position: 'absolute',
           height: '100%',
           width: '100%',
-          boxShadow: 6,
+          boxShadow: 5,
           top: 0,
           [theme.breakpoints.down('md')]: {
             opacity: '1 !important',

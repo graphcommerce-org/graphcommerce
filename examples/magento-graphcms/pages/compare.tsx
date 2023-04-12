@@ -26,12 +26,15 @@ import { Box, CircularProgress, Container, FormControl, NoSsr } from '@mui/mater
 import { useRouter } from 'next/router'
 
 import { useEffect, useRef } from 'react'
-import { ProductListItems } from '../../components/ProductListItems'
-import { graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import { ProductListItems } from '../components/ProductListItems'
+import { graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
 
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
 
+// todo:
+// - Move all form handling to magento-compare package
+// - Move Select element logic?
 export function ComparePage() {
   const compareList = useCompareList()
   const compareListData = compareList.data
@@ -80,18 +83,14 @@ export function ComparePage() {
   }, [selectedState, compareAbleItems, router, form, compareListCount, gridColumns])
 
   if (!compareAbleItems || compareAbleItems.length === 0) {
-    return (
-      <NoSsr>
-        <EmptyCompareList />
-      </NoSsr>
-    )
+    return <EmptyCompareList />
   }
 
   const currentCompareItems = selectedState.map((i) => compareAbleItems[i])
   const currentCompareProducts = currentCompareItems.map((item) => item?.product)
 
   return (
-    <NoSsr>
+    <>
       <PageMeta title={i18n._(/* i18n */ 'Compare products')} metaRobots={['noindex']} />
       <LayoutOverlayHeader
         switchPoint={0}
@@ -197,7 +196,7 @@ export function ComparePage() {
           </Container>
         </WaitForQueries>
       </Box>
-    </NoSsr>
+    </>
   )
 }
 
@@ -213,6 +212,8 @@ export default ComparePage
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const client = graphqlSharedClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
+
+  if (!import.meta.graphCommerce.compare) return { notFound: true }
 
   return {
     props: {

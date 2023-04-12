@@ -1,7 +1,8 @@
 import { useMutation } from '@graphcommerce/graphql'
-import { iconCompare, useStorefrontConfig, Button, Fab } from '@graphcommerce/next-ui'
+import { iconCompare, Button, Fab, FabProps } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
+// eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { Box, Checkbox, NoSsr, SxProps, Theme } from '@mui/material'
 import { useState } from 'react'
 import { CompareProductIdInternalFragment } from '../graphql'
@@ -9,14 +10,18 @@ import { AddProductsToCompareListDocument } from '../graphql/AddProductsToCompar
 import { RemoveProductsFromCompareListDocument } from '../graphql/RemoveProductsFromCompareList.gql'
 import { useCompareList } from '../hooks/useCompareList'
 import { useCompareListUidCreate } from '../hooks/useCompareListUidCreate'
+import { useCompareVariant } from '../hooks/useCompareVariant'
 import { CompareMessageSnackbar } from './CompareMessageSnackbar'
 
-type CompareProductToggleProps = CompareProductIdInternalFragment & { sx?: SxProps<Theme> }
+type CompareProductToggleProps = {
+  sx?: SxProps<Theme>
+  product: CompareProductIdInternalFragment
+} & Pick<FabProps, 'color'>
 
 function CompareProductToggleBase(
   props: CompareProductToggleProps & { inCompareList: boolean; id: string },
 ) {
-  const { id, name, sx, inCompareList } = props
+  const { id, sx, inCompareList, product, color = 'inherit' } = props
   const create = useCompareListUidCreate()
   const compareList = useCompareList()
 
@@ -45,12 +50,11 @@ function CompareProductToggleBase(
     e.stopPropagation()
   }
 
-  const explicitCompare =
-    useStorefrontConfig().compareCheckbox ?? import.meta.graphCommerce.compareCheckbox
+  const compareVariant = useCompareVariant()
 
   return (
-    <Box>
-      {explicitCompare ? (
+    <>
+      {compareVariant === 'checkbox' ? (
         <Button
           variant='text'
           size='small'
@@ -74,8 +78,19 @@ function CompareProductToggleBase(
           onClick={handleClick}
           onMouseDown={preventAnimationBubble}
           size='responsive'
-          color='inherit'
-          sx={[{}, ...(Array.isArray(sx) ? sx : [sx])]}
+          color={color}
+          sx={[
+            (theme) => ({
+              flex: `0 0 auto`,
+              '& svg': {
+                stroke: inCompareList ? theme.palette.primary.main : theme.palette.text.secondary,
+              },
+              '&:hover': {
+                backgroundColor: `rgba(0,0,0,${theme.palette.action.hoverOpacity})`,
+              },
+            }),
+            ...(Array.isArray(sx) ? sx : [sx]),
+          ]}
           title={label}
           aria-label={label}
           icon={iconCompare}
@@ -88,17 +103,17 @@ function CompareProductToggleBase(
           displayMessageBar={displayMessageBar}
           setDisplayMessageBar={setDisplayMessageBar}
           count={compareList.data?.compareList?.item_count}
-          name={name}
+          name={product.name}
         />
       )}
-    </Box>
+    </>
   )
 }
 
 export function CompareProductToggle(props: CompareProductToggleProps) {
-  const { compare_product_id } = props
+  const { product } = props
   const compareList = useCompareList()
-  const idString = String(compare_product_id)
+  const idString = String(product.compare_product_id)
   const inCompareList =
     compareList.data?.compareList?.items?.some((i) => i?.uid === idString) ?? false
 

@@ -2,6 +2,7 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { mergeDeep } from '@graphcommerce/graphql'
 import { CompareProductButton, FallbackCompareButton } from '@graphcommerce/magento-compare'
 import {
+  AddProductsToCartActions,
   AddProductsToCartButton,
   AddProductsToCartError,
   AddProductsToCartForm,
@@ -11,6 +12,8 @@ import {
   jsonLdProduct,
   jsonLdProductOffer,
   ProductCustomizable,
+  ProductPageAddToCartActionsRow,
+  ProductPageAddToCartQuantityRow,
   productPageCategory,
   ProductPageDescription,
   ProductPageMeta,
@@ -144,13 +147,7 @@ function ProductPage(props: Props) {
 
           <Divider />
 
-          <Box
-            sx={(theme) => ({
-              display: 'flex',
-              alignItems: 'center',
-              columnGap: theme.spacings.md,
-            })}
-          >
+          <ProductPageAddToCartQuantityRow product={product}>
             <AddProductsToCartQuantity sx={{ flexShrink: '0' }} />
 
             <AddProductsToCartError>
@@ -162,7 +159,7 @@ function ProductPage(props: Props) {
                 )}
               </Typography>
             </AddProductsToCartError>
-          </Box>
+          </ProductPageAddToCartQuantityRow>
 
           {isTypename(product, ['ConfigurableProduct']) ? (
             <ConfigurablePriceTiers product={product} />
@@ -172,23 +169,10 @@ function ProductPage(props: Props) {
 
           <ProductSidebarDelivery product={product} />
 
-          <NoSsr fallback={<FallbackCompareButton />}>
-            <CompareProductButton
-              name={product.name}
-              compare_product_id={product.compare_product_id}
-            />
-          </NoSsr>
-
-          <Box
-            sx={(theme) => ({
-              display: 'flex',
-              alignItems: 'start',
-              columnGap: theme.spacings.xs,
-            })}
-          >
+          <ProductPageAddToCartActionsRow product={product}>
             <AddProductsToCartButton fullWidth product={product} />
             <ProductWishlistChipDetail {...product} />
-          </Box>
+          </ProductPageAddToCartActionsRow>
 
           <Usps usps={sidebarUsps} size='small' />
         </ConfigurableProductPageGallery>
