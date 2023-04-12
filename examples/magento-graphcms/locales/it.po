@@ -106,6 +106,9 @@ msgstr "Cambia"
 msgid "Checkout summary"
 msgstr "Riepilogo checkout"
 
+msgid "Choose your bank"
+msgstr "Scegli la tua banca"
+
 msgid "Choose your bank, and place your order."
 msgstr "Scegli il tuo banco e effettua l'ordine."
 

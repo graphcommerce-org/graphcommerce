@@ -2,10 +2,11 @@ import { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
 import { Trans } from '@lingui/react'
 import { Box } from '@mui/material'
 import { MollieIssuerOptions } from './MollieIssuerOptions'
+import { i18n } from '@lingui/core'
 
 export function MollieIdealOptions(props: PaymentOptionsProps) {
   return (
-    <MollieIssuerOptions label='Choose your bank' {...props}>
+    <MollieIssuerOptions label={i18n._(/* i18n */ 'Choose your bank')} {...props}>
       <Box
         component='ul'
         sx={(theme) => ({ typography: 'body2', paddingLeft: theme.spacings.xs, margin: 0 })}
