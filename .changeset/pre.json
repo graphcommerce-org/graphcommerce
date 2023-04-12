@@ -72,6 +72,7 @@
     "@graphcommerce/typescript-config-pwa": "6.1.0"
   },
   "changesets": [
+    "good-seals-rest",
     "honest-clocks-jump",
     "lemon-houses-sit"
   ]
