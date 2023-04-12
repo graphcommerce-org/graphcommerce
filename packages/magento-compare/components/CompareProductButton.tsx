@@ -1,21 +1,19 @@
 import { useMutation } from '@graphcommerce/graphql'
 import { Trans } from '@lingui/react'
-import { Badge, Box, Button, Checkbox } from '@mui/material'
+import { Badge, Box, Button, Checkbox, SxProps, Theme } from '@mui/material'
 import { useState } from 'react'
+import { CompareProductIdInternalFragment } from '../graphql'
 import { AddProductsToCompareListDocument } from '../graphql/AddProductsToCompareList.gql'
 import { RemoveProductsFromCompareListDocument } from '../graphql/RemoveProductsFromCompareList.gql'
 import { useCompareList } from '../hooks/useCompareList'
 import { useCompareListUidCreate } from '../hooks/useCompareListUidCreate'
 import { CompareMessageSnackbar } from './CompareMessageSnackbar'
 
-export type CompareProps = {
-  id_internal: number | null | undefined
-  name: string | null | undefined
-}
+type CompareProductButtonProps = CompareProductIdInternalFragment & { sx?: SxProps<Theme> }
 
-export function CompareProductButton(props: CompareProps) {
-  const { id_internal, name } = props
-  const idString = String(id_internal)
+export function CompareProductButton(props: CompareProductButtonProps) {
+  const { compare_product_id, name, sx } = props
+  const idString = String(compare_product_id)
   const create = useCompareListUidCreate()
   const compareList = useCompareList()
   const inCompareList =
@@ -34,7 +32,7 @@ export function CompareProductButton(props: CompareProps) {
   }
 
   return (
-    <Box>
+    <Box sx={[...(Array.isArray(sx) ? sx : [sx])]}>
       <Badge badgeContent={compareList.data?.compareList?.item_count} color='primary'>
         <Button
           variant='contained'

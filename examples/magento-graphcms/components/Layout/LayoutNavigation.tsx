@@ -151,7 +151,6 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
           </>
         }
         footer={<Footer footer={footer} />}
-        compareFab={<CompareFab />}
         cartFab={<CartFab />}
         menuFab={<NavigationFab onClick={() => selection.set([])} />}
       >

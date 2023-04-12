@@ -133,7 +133,7 @@ export function LayoutDefault(props: LayoutDefaultProps) {
               sx={(theme) => ({
                 display: 'flex',
                 flexDirection: 'row-reverse',
-                gap: 2,
+                gap: theme.spacings.sm,
                 [theme.breakpoints.up('md')]: {
                   flexDirection: 'column',
                   alignItems: 'flex-end',

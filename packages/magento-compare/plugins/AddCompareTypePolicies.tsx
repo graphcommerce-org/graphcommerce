@@ -1,9 +1,10 @@
 import { GraphQLProviderProps } from '@graphcommerce/graphql'
-import type { PluginProps } from '@graphcommerce/next-config'
+import type { IfConfig, PluginProps } from '@graphcommerce/next-config'
 import { compareTypePolicies } from '../typePolicies'
 
 export const component = 'GraphQLProvider'
 export const exported = '@graphcommerce/graphql'
+export const ifConfig: IfConfig = 'compare'
 
 function MagentoCompareListGraphqlProvider(props: PluginProps<GraphQLProviderProps>) {
   const {

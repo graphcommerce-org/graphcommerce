@@ -8,7 +8,6 @@ import {
   MoreInformationRow,
   EmptyCompareList,
 } from '@graphcommerce/magento-compare'
-import { ProductListItems } from '@graphcommerce/magento-product' // todo move to prop @paul (wat/hoe?)
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   GetStaticProps,
@@ -27,6 +26,7 @@ import { Box, CircularProgress, Container, FormControl, NoSsr } from '@mui/mater
 import { useRouter } from 'next/router'
 
 import { useEffect, useRef } from 'react'
+import { ProductListItems } from '../../components/ProductListItems'
 import { graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
 type Props = Record<string, unknown>
@@ -119,7 +119,6 @@ export function ComparePage() {
           <Container maxWidth={gridColumns === 3 ? 'xl' : 'lg'} disableGutters>
             <Box
               sx={(theme) => ({
-                ...compareListStyles,
                 px: { xs: theme.spacings.xs, md: theme.spacings.md, lg: theme.spacings.lg },
                 py: theme.spacings.xxs,
                 [theme.breakpoints.down('md')]: {
@@ -132,6 +131,7 @@ export function ComparePage() {
                   xs: `calc(${theme.appShell.headerHeightSm} / 2)`,
                   lg: `calc(${theme.page.vertical} / 2)`,
                 },
+                ...compareListStyles,
               })}
             >
               {[...Array(gridColumns).keys()].map((compareSelectIndex) => (
@@ -159,15 +159,16 @@ export function ComparePage() {
               items={currentCompareProducts}
               size='small'
               sx={(theme) => ({
-                ...compareListStyles,
                 padding: {
                   xs: theme.spacings.xs,
                   md: theme.spacings.md,
                   lg: theme.spacings.lg,
                 },
                 pt: 0,
+                ...compareListStyles,
               })}
             />
+
             <Box
               sx={(theme) => ({
                 backgroundColor: theme.palette.background.default,

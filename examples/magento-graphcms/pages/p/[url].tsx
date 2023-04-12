@@ -173,7 +173,10 @@ function ProductPage(props: Props) {
           <ProductSidebarDelivery product={product} />
 
           <NoSsr fallback={<FallbackCompareButton />}>
-            <CompareProductButton name={product.name} id_internal={product.id_internal} />
+            <CompareProductButton
+              name={product.name}
+              compare_product_id={product.compare_product_id}
+            />
           </NoSsr>
 
           <Box

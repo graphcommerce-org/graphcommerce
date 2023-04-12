@@ -1,5 +1,4 @@
 import { Image, ImageProps } from '@graphcommerce/image'
-import { CompareProductToggle } from '@graphcommerce/magento-compare'
 import {
   responsiveVal,
   extendableComponent,
@@ -15,7 +14,6 @@ import {
   SxProps,
   Theme,
   useEventCallback,
-  NoSsr,
 } from '@mui/material'
 import React from 'react'
 import { ProductListItemFragment } from '../../Api/ProductListItem.gql'
@@ -75,7 +73,6 @@ export function ProductListItem(props: ProductListItemProps) {
     children,
     imageOnly = false,
     loading,
-    id_internal,
     sizes,
     dontReportWronglySizedImages,
     aspectRatio = [4, 3],
@@ -239,8 +236,8 @@ export function ProductListItem(props: ProductListItemProps) {
               marginTop: theme.spacings.xs,
               columnGap: 1,
               gridTemplateAreas: {
-                xs: `"title title" "subtitle price" "compare compare"`,
-                md: `"title subtitle price" "compare compare compare"`,
+                xs: `"title title" "subtitle price"`,
+                md: `"title subtitle price"`,
               },
               gridTemplateColumns: { xs: 'unset', md: 'auto auto 1fr' },
               justifyContent: 'space-between',
@@ -274,11 +271,6 @@ export function ProductListItem(props: ProductListItemProps) {
                 justifySelf: { sm: 'flex-end' },
               }}
             />
-            <Box sx={{ gridArea: 'compare', display: 'flex', justifyContent: 'flex-end' }}>
-              <NoSsr>
-                <CompareProductToggle name={name} id_internal={id_internal} />
-              </NoSsr>
-            </Box>
           </Box>
           {children}
         </>

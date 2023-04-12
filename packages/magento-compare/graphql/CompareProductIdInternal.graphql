@@ -1,5 +1,6 @@
 fragment CompareProductIdInternal on ProductInterface
 @inject(into: ["ProductPageItem", "ProductListItem"]) {
   __typename
-  id_internal: id
+  compare_product_id: id
+  name
 }

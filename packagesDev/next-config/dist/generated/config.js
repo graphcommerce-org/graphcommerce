@@ -22,6 +22,8 @@ function GraphCommerceConfigSchema() {
     return _zod.z.object({
         canonicalBaseUrl: _zod.z.string().min(1),
         cartDisplayPricesInclTax: _zod.z.boolean().nullish(),
+        compare: _zod.z.boolean().nullish(),
+        compareCheckbox: _zod.z.boolean().nullish(),
         customerRequireEmailConfirmation: _zod.z.boolean().nullish(),
         debug: GraphCommerceDebugConfigSchema().nullish(),
         demoMode: _zod.z.boolean().nullish(),
@@ -53,6 +55,7 @@ function GraphCommerceStorefrontConfigSchema() {
     return _zod.z.object({
         canonicalBaseUrl: _zod.z.string().nullish(),
         cartDisplayPricesInclTax: _zod.z.boolean().nullish(),
+        compareCheckbox: _zod.z.boolean().nullish(),
         defaultLocale: _zod.z.boolean().nullish(),
         domain: _zod.z.string().nullish(),
         googleAnalyticsId: _zod.z.string().nullish(),

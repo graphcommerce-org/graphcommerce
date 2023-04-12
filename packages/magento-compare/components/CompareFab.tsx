@@ -48,6 +48,8 @@ function CompareFabContent(props: CompareFabContentProps) {
   const compareIcon = icon ?? <IconSvg src={iconCompare} size='large' />
   const fabIconSize = useFabSize('responsive')
 
+  if (total_quantity === 0) return null
+
   return (
     <Box
       className={classes.root}
@@ -99,15 +101,11 @@ function CompareFabContent(props: CompareFabContentProps) {
 
 export function CompareFab(props: CompareFabProps) {
   const compareList = useCompareList()
-  if (compareList.data?.compareList?.item_count === 0) return null
+  const totalQuantity = compareList.data?.compareList?.item_count ?? 0
+
   return (
     <NoSsr fallback={<CompareFabContent total_quantity={0} {...props} />}>
-      {compareList.data?.compareList?.item_count && (
-        <CompareFabContent
-          total_quantity={compareList.data?.compareList?.item_count ?? 0}
-          {...props}
-        />
-      )}
+      {totalQuantity > 0 && <CompareFabContent total_quantity={totalQuantity} {...props} />}
     </NoSsr>
   )
 }
