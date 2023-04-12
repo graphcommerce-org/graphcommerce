@@ -1,3 +1,11 @@
+"""
+Type for conversion of Magento 2 aggregations to Algolia filterable attributes
+"""
+input AlgoliaFilterAttribute {
+  aggregation: String!
+  toAlgoliaAttribute: String!
+}
+
 extend input GraphCommerceStorefrontConfig {
   """
   Configure your Algolia application ID.
@@ -13,6 +21,11 @@ extend input GraphCommerceStorefrontConfig {
   Configure your Algolia Search index
   """
   algoliaSearchIndex: String
+
+  """
+  Configures Algolia filterable attributes
+  """
+  algoliaFilterAttributes: [AlgoliaFilterAttribute]
 }
 
 extend input GraphCommerceConfig {
@@ -30,4 +43,9 @@ extend input GraphCommerceConfig {
   Configure your Algolia Search index
   """
   algoliaSearchIndex: String
+
+  """
+  Configures Algolia filterable attributes
+  """
+  algoliaFilterAttributes: [AlgoliaFilterAttribute]
 }

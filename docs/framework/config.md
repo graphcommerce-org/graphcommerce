@@ -1,4 +1,12 @@
 <!-- Automatically generated from Config.graphqls -->
+### AlgoliaFilterAttribute
+
+Type for conversion of Magento 2 aggregations to Algolia filterable attributes
+
+#### `aggregation: String!`
+
+#### `toAlgoliaAttribute: String!`
+
 # GraphCommerce configuration system
 
 Global GraphCommerce configuration can be configured in your `graphcommerce.config.js` file
@@ -106,6 +114,10 @@ All storefront configuration for the project
 #### `algoliaApplicationId: String`
 
 Configure your Algolia application ID.
+
+#### `algoliaFilterAttributes: [[AlgoliaFilterAttribute](#AlgoliaFilterAttribute)]`
+
+Configures Algolia filterable attributes
 
 #### `algoliaSearchIndex: String`
 
@@ -252,6 +264,10 @@ Examples:
 #### `algoliaApplicationId: String`
 
 Configure your Algolia application ID.
+
+#### `algoliaFilterAttributes: [[AlgoliaFilterAttribute](#AlgoliaFilterAttribute)]`
+
+Configures Algolia filterable attributes
 
 #### `algoliaSearchIndex: String`
 

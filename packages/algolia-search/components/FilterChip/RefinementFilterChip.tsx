@@ -7,24 +7,27 @@ import {
   UseRefinementListProps,
 } from 'react-instantsearch-hooks'
 
-const name = 'ProductListSort' as const
-const parts = ['menu', 'item', 'link'] as const
+const name = 'RefinementFilterChip' as const
+const parts = ['menu', 'item'] as const
 const { classes } = extendableComponent(name, parts)
 
-type FilterChipProps = UseRefinementListProps &
-  UseClearRefinementsProps & {
-    title: string
-  } & { sx?: SxProps<Theme> }
+export interface RefinementFilterChipProps
+  extends Omit<UseRefinementListProps, 'transformItems'>,
+    Omit<UseClearRefinementsProps, 'transformItems'> {
+  transformItems?: UseClearRefinementsProps['transformItems']
+  title: string
+  sx?: SxProps<Theme>
+}
 
-export function FilterChip(props: FilterChipProps) {
-  const { title, sx, attribute } = props
+export function RefinementFilterChip(props: RefinementFilterChipProps) {
+  const { title, sx, attribute, transformItems } = props
   // eslint-disable-next-line @typescript-eslint/unbound-method
   const { items, refine } = useRefinementList({
     attribute,
-    sortBy: ['name:asc'],
   })
   const clearRefinementApi = useClearRefinements({
     includedAttributes: [attribute],
+    transformItems,
   })
   const selectedOptions = items.filter((option) => option.isRefined).map((option) => option.label)
 
@@ -47,7 +50,7 @@ export function FilterChip(props: FilterChipProps) {
         }}
       >
         {items.map((option) => (
-          <ListItem className={classes.item} button key={option?.value ?? ''} dense>
+          <ListItem className={classes.item} key={option?.value ?? ''} dense>
             <ListItemText
               onClick={() => {
                 refine(option?.value)

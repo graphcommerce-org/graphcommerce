@@ -1,16 +1,21 @@
+import { useQuery } from '@graphcommerce/graphql'
 import { CurrencyEnum } from '@graphcommerce/graphql-mesh'
 import { ProductListItemFragment, ProductListItemProps } from '@graphcommerce/magento-product'
+import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { useHits } from 'react-instantsearch-hooks'
 import { AlgoliaHit } from '../lib/types'
 
-function hitToProduct(items: AlgoliaHit[]) {
+function hitsToProduct(items: AlgoliaHit[], currency?: string | null) {
   const mapHits = items.map((item) => {
-    const currency = Object.keys(item.price)[0] as CurrencyEnum
-    const price = item.price[currency]
+    const currentCurrency = (currency ?? Object.keys(item.price)[0]) as CurrencyEnum
+    const price = item.price[currentCurrency]
+    const productUrlSplit = item.url.split('/')
+    const productUrl = productUrlSplit[productUrlSplit.length - 1]
+    const url_key = productUrl.substring(0, productUrl.length - 5)
 
     return {
-      __typename: 'VirtualProduct',
-      uid: '',
+      __typename: 'SimpleProduct',
+      uid: item.objectID,
       small_image: {
         url: item.image_url,
       },
@@ -19,28 +24,17 @@ function hitToProduct(items: AlgoliaHit[]) {
         minimum_price: {
           final_price: {
             value: price.default,
-            currency,
+            currency: currentCurrency,
           },
           regular_price: {
             value: price.default,
-            currency,
-          },
-        },
-        maximum_price: {
-          final_price: {
-            value: price.default,
-            currency,
-          },
-          regular_price: {
-            value: price.default,
-            currency,
+            currency: currentCurrency,
           },
         },
       },
       rating_summary: item.rating_summary ?? 0,
-      // url_key: item.url,
+      url_key,
       name: item.name,
-      review_count: 0,
     }
   }) satisfies
     | Array<(ProductListItemFragment & ProductListItemProps) | null | undefined>
@@ -52,7 +46,8 @@ function hitToProduct(items: AlgoliaHit[]) {
 
 export function useAlgoliaResults() {
   const { hits } = useHits<AlgoliaHit>()
-  const products = hitToProduct(hits)
+  const { data } = useQuery(StoreConfigDocument)
+  const products = hitsToProduct(hits, data?.storeConfig?.base_currency_code)
 
   return { products }
 }

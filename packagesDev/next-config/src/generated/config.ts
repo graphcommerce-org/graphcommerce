@@ -14,6 +14,12 @@ export type Scalars = {
   Float: number;
 };
 
+/** Type for conversion of Magento 2 aggregations to Algolia filterable attributes */
+export type AlgoliaFilterAttribute = {
+  aggregation: Scalars['String'];
+  toAlgoliaAttribute: Scalars['String'];
+};
+
 /**
  * # GraphCommerce configuration system
  *
@@ -94,6 +100,8 @@ export type Scalars = {
 export type GraphCommerceConfig = {
   /** Configure your Algolia application ID. */
   algoliaApplicationId?: InputMaybe<Scalars['String']>;
+  /** Configures Algolia filterable attributes */
+  algoliaFilterAttributes?: InputMaybe<Array<InputMaybe<AlgoliaFilterAttribute>>>;
   /** Configure your Algolia Search index */
   algoliaSearchIndex?: InputMaybe<Scalars['String']>;
   /** Configure your Algolia Search Only API Key */
@@ -229,6 +237,8 @@ export type GraphCommerceDebugConfig = {
 export type GraphCommerceStorefrontConfig = {
   /** Configure your Algolia application ID. */
   algoliaApplicationId?: InputMaybe<Scalars['String']>;
+  /** Configures Algolia filterable attributes */
+  algoliaFilterAttributes?: InputMaybe<Array<InputMaybe<AlgoliaFilterAttribute>>>;
   /** Configure your Algolia Search index */
   algoliaSearchIndex?: InputMaybe<Scalars['String']>;
   /** Configure your Algolia Search Only API Key */
@@ -292,9 +302,17 @@ export const isDefinedNonNullAny = (v: any): v is definedNonNullAny => v !== und
 
 export const definedNonNullAnySchema = z.any().refine((v) => isDefinedNonNullAny(v));
 
+export function AlgoliaFilterAttributeSchema(): z.ZodObject<Properties<AlgoliaFilterAttribute>> {
+  return z.object<Properties<AlgoliaFilterAttribute>>({
+    aggregation: z.string().min(1),
+    toAlgoliaAttribute: z.string().min(1)
+  })
+}
+
 export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerceConfig>> {
   return z.object<Properties<GraphCommerceConfig>>({
     algoliaApplicationId: z.string().nullish(),
+    algoliaFilterAttributes: z.array(AlgoliaFilterAttributeSchema().nullable()).nullish(),
     algoliaSearchIndex: z.string().nullish(),
     algoliaSearchOnlyApiKey: z.string().nullish(),
     canonicalBaseUrl: z.string().min(1),
@@ -331,6 +349,7 @@ export function GraphCommerceDebugConfigSchema(): z.ZodObject<Properties<GraphCo
 export function GraphCommerceStorefrontConfigSchema(): z.ZodObject<Properties<GraphCommerceStorefrontConfig>> {
   return z.object<Properties<GraphCommerceStorefrontConfig>>({
     algoliaApplicationId: z.string().nullish(),
+    algoliaFilterAttributes: z.array(AlgoliaFilterAttributeSchema().nullable()).nullish(),
     algoliaSearchIndex: z.string().nullish(),
     algoliaSearchOnlyApiKey: z.string().nullish(),
     canonicalBaseUrl: z.string().nullish(),
