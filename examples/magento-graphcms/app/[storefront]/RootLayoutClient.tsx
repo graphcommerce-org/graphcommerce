@@ -1,7 +1,7 @@
 'use client'
 
 import { useMeasureDynamicViewportSize } from '@graphcommerce/framer-utils'
-import { GraphQLProvider } from '@graphcommerce/graphql'
+import { GraphQLProvider, GraphQLProviderProps } from '@graphcommerce/graphql'
 import { DarkLightModeThemeProvider } from '@graphcommerce/next-ui'
 import { i18n, Messages } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
@@ -22,9 +22,10 @@ const Body = styled('body')({
   },
 })
 
-export function RootLayoutClient(props: { children: ReactNode; messages: Messages }) {
-  const { children, messages } = props
-  const locale = useLocale()
+type RootLayoutClientProps = { children: ReactNode; messages: Messages } & GraphQLProviderProps
+
+export function RootLayoutClient(props: RootLayoutClientProps) {
+  const { children, messages, locale } = props
 
   const i = useMemo(() => {
     i18n.loadLocaleData({ nl: { plurals: nl } })
@@ -47,7 +48,7 @@ export function RootLayoutClient(props: { children: ReactNode; messages: Message
           <I18nProvider i18n={i}>
             <DarkLightModeThemeProvider light={lightTheme} dark={darkTheme}>
               <CssBaseline enableColorScheme />
-              <GraphQLProvider locale={locale}>{children}</GraphQLProvider>
+              <GraphQLProvider {...props}>{children}</GraphQLProvider>
             </DarkLightModeThemeProvider>
           </I18nProvider>
         </LazyMotion>

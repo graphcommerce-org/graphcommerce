@@ -1,3 +1,4 @@
+import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { i18n, Messages } from '@lingui/core'
 import { nl } from 'make-plural/plurals'
 import { StrictMode } from 'react'
@@ -24,14 +25,20 @@ export default async function RootLayout(props: LayoutProps) {
   i18n.activate(linguiLocale)
 
   const client = apolloClient(config.locale)
-  // const conf = client.query({ query: StoreConfigDocument })
-  // const apolloState = await conf.then(() => client.cache.extract())
+  const conf = client.query({ query: StoreConfigDocument })
+  const apolloState = await conf.then(() => client.cache.extract())
 
   return (
     <StrictMode>
       <html lang={params.storefront}>
         <head />
-        <RootLayoutClient messages={messages}>{children}</RootLayoutClient>
+        <RootLayoutClient
+          messages={messages}
+          locale={config.locale}
+          apolloState={JSON.parse(JSON.stringify(apolloState))}
+        >
+          {children}
+        </RootLayoutClient>
       </html>
     </StrictMode>
   )
