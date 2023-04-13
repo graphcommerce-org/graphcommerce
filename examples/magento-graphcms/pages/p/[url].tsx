@@ -237,16 +237,21 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const urlKey = params?.url ?? '??'
 
   const conf = client.query({ query: StoreConfigDocument })
-  const productPage = staticClient.query({ query: ProductPage2Document, variables: { urlKey } })
+  const productPage = staticClient.query({
+    query: ProductPage2Document,
+    variables: { url: 'product/global', urlKey },
+  })
   const page = pageContent(
     staticClient,
-    ['product/global', 'blabla', 'zyxel-security-vulnerability'],
+    ['product/global', 'blabla', 'zyxel-security-vulnerability'].concat(),
     true,
+    'product/global',
   )
   const layout = staticClient.query({ query: LayoutDocument })
   const foo = await page
   // console.log('foo', foo)
-  const product = (await productPage).data.products?.items?.[0]
+
+  const product = (await productPage).data.products?.items?.find((p) => p?.url_key === urlKey)
 
   // ! code of Paul
   const aggregations = filterNonNullableKeys((await productPage).data.products?.aggregations, [
@@ -261,9 +266,8 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     ...aggregations.map((a) => a.options.map((o) => `${a.attribute_code}:${o?.value}`)).flat(),
   ]
 
+  console.log('TAGS: ', tags)
   // ! end code of paul
-
-  if (!product) return redirectOrNotFound(staticClient, conf, params, locale)
 
   const category = productPageCategory(product)
   const up =
@@ -271,6 +275,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
       ? { href: `/${category.url_path}`, title: category.name }
       : { href: `/`, title: 'Home' }
 
+  if (!product) return redirectOrNotFound(staticClient, conf, params, locale)
   return {
     props: {
       ...defaultConfigurableOptionsSelection(urlKey, client, (await productPage).data),

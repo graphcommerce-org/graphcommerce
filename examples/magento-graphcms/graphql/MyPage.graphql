@@ -1,0 +1,41 @@
+query MyPage {
+  pages(
+    where: {
+      OR: [
+        { url: "product/global" }
+        {
+          tags_contains_some: [
+            "123"
+            "242"
+            "p/lace-cuff-gc-144-sock"
+            "/p/lace-cuff-gc-144-sock"
+            "p"
+            "p/subtle-sympathy-gc-1087-sock"
+          ]
+        }
+      ]
+    }
+  ) {
+    title
+    url
+    tags
+    content {
+      ... on Node {
+        id
+      }
+      __typename
+      ...RowColumnOne
+      ...RowColumnTwo
+      ...RowColumnThree
+      ...RowBlogContent
+      ...RowHeroBanner
+      ...RowSpecialBanner
+      ...RowQuote
+      ...RowButtonLinkList
+      ...RowServiceOptions
+      ...RowContentLinks
+      ...RowProduct
+      ...RowLinks
+    }
+  }
+}
