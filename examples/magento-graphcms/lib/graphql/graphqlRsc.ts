@@ -18,7 +18,7 @@ export function apolloClient(locale: string) {
       // createHygraphLink(locale),
       // Add the correct store header for the Magento user.
       // createStoreLink(locale),
-      new HttpLink({ uri: 'http://localhost:3000/api/graphql' }),
+      new HttpLink({ uri: 'https://graphcommerce.vercel.app/api/graphql' }),
     ]),
     cache: new InMemoryCache({
       possibleTypes: fragments.possibleTypes,
