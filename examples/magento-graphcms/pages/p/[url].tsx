@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { mergeDeep } from '@graphcommerce/graphql'
 import {
@@ -49,9 +50,11 @@ import {
   RowRenderer,
   Usps,
 } from '../../components'
+import { pageContent } from '../../components/GraphCMS/pageContent'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
 import { ProductPage2Document, ProductPage2Query } from '../../graphql/ProductPage2.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
+import { useEffect } from 'react'
 
 type Props = ProductPage2Query & Pick<AddProductsToCartFormProps, 'defaultValues'>
 
@@ -60,8 +63,9 @@ type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
 function ProductPage(props: Props) {
-  const { products, relatedUpsells, usps, sidebarUsps, pages, defaultValues } = props
+  const { products, relatedUpsells, usps, sidebarUsps, pages, defaultValues, page, foo } = props
 
+  console.log('Hygraph content:', foo)
   const product = mergeDeep(products, relatedUpsells)?.items?.[0]
 
   if (!product?.sku || !product.url_key) return null
@@ -233,14 +237,18 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const urlKey = params?.url ?? '??'
 
   const conf = client.query({ query: StoreConfigDocument })
-  const productPage = staticClient.query({
-    query: ProductPage2Document,
-    variables: { url: 'product/global', urlKey },
-  })
+  const productPage = staticClient.query({ query: ProductPage2Document, variables: { urlKey } })
+  const page = pageContent(
+    staticClient,
+    ['product/global', 'blabla', 'zyxel-security-vulnerability'],
+    true,
+  )
   const layout = staticClient.query({ query: LayoutDocument })
-
+  const foo = await page
+  // console.log('foo', foo)
   const product = (await productPage).data.products?.items?.[0]
 
+  // ! code of Paul
   const aggregations = filterNonNullableKeys((await productPage).data.products?.aggregations, [
     'options',
   ]).filter((a) => a.attribute_code !== 'price' && a.attribute_code !== 'category_uid')
@@ -252,6 +260,8 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     `stock_status:${product?.stock_status}`,
     ...aggregations.map((a) => a.options.map((o) => `${a.attribute_code}:${o?.value}`)).flat(),
   ]
+
+  // ! end code of paul
 
   if (!product) return redirectOrNotFound(staticClient, conf, params, locale)
 
@@ -267,6 +277,8 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
       ...(await layout).data,
       apolloState: await conf.then(() => client.cache.extract()),
       up,
+      ...(await page),
+      foo,
     },
     revalidate: 60 * 20,
   }

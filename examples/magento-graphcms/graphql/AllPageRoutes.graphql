@@ -1,0 +1,6 @@
+query AllPageRoutes {
+  pages(first: 1000) {
+    id
+    url
+  }
+}
