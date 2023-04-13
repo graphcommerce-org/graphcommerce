@@ -19,13 +19,12 @@ export async function pageContent(
     if (!matchedPage) return null
     return matchedPage
   })
-  // returns something like this
-  // [ { url: 'product/global', title: 'Product Global' }, null ]
 
-  if (!found) return { data: { pages: [] } }
-  console.log('FOUND: ', found)
+  if (found.every((item) => item === null)) {
+    return { data: { pages: [] } }
+  }
+
   // Returning all query results of found urls
-  const data: any = []
   const promises: Promise<any>[] = []
 
   for (const foundUrl of found) {
@@ -43,11 +42,8 @@ export async function pageContent(
   // an array of all the found pages with their defaultpage data
   const results = await Promise.all(promises)
 
-  console.log('RESULTS: ', results)
-  console.log('DATA: ', data)
-
   let globalPage
-  let newGlobalPage
+  let newGlobalPage: any = {}
 
   // globalpage content is inextendible, so we need to create a new array
   const newContent: any = []
@@ -56,11 +52,11 @@ export async function pageContent(
     if (result.data.pages[0].url === 'product/global') {
       // eslint-disable-next-line prefer-destructuring
       globalPage = result.data.pages[0]
+      // create new extendable product/global page
       newGlobalPage = { ...globalPage }
       globalPage.content.forEach((item) => {
         newContent.push(item)
       })
-      console.log('GLOBALPAGE: ', globalPage)
     }
     // if the loop index is not one, merge result.data.pages[0].content into product/global.content
     else {
@@ -73,6 +69,9 @@ export async function pageContent(
 
   newGlobalPage.content = newContent
 
+  console.log('FOUND: ', found)
+  console.log('RESULTS: ', results)
+  console.log('GLOBALPAGE: ', globalPage)
   console.log('NEWCONTENT: ', newContent)
   console.log('NEWGLOBALPAGE: ', newGlobalPage)
 
