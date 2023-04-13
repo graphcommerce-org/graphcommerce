@@ -1,18 +1,23 @@
 import { SearchFormProps } from '@graphcommerce/magento-search'
 import { IfConfig, PluginProps } from '@graphcommerce/next-config'
-import { useSearchBox } from 'react-instantsearch-hooks'
-import { SearchBox } from '../components/SearchBox/SearchBox'
+import dynamic from 'next/dynamic'
+import { useSearchRoute } from '../hooks/useSearchRoute'
 
 export const component = 'SearchForm'
 export const exported = '@graphcommerce/magento-search'
 export const ifConfig: IfConfig = 'demoMode'
 
 function AlgoliaSearchFieldPlugin(props: PluginProps<SearchFormProps>) {
-  const { search } = props
+  const { Prev, search } = props
+  const onSearch = useSearchRoute()
 
-  const { refine } = useSearchBox()
+  if (!onSearch) return <Prev {...props} />
 
-  return <SearchBox defaultValue={search} refine={refine} />
+  const SearchBox = dynamic(
+    async () => (await import('../components/SearchBox/SearchBox')).SearchBox,
+  )
+
+  return <SearchBox defaultValue={search} />
 }
 
 export const Plugin = AlgoliaSearchFieldPlugin

@@ -1,20 +1,16 @@
-import { extendableComponent } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
-import { debounce, TextField } from '@mui/material'
-import { ChangeEvent, useCallback, useMemo } from 'react'
-import { UseSearchBoxProps } from 'react-instantsearch-hooks'
-
-const name = 'SearchBox' as const
-const parts = ['root', 'totalProducts'] as const
-const { classes } = extendableComponent(name, parts)
+import { debounce } from '@mui/material'
+import TextField from '@mui/material/TextField'
+import { ChangeEvent, useCallback, useEffect } from 'react'
+import { useSearchBox, UseSearchBoxProps } from 'react-instantsearch-hooks'
 
 type SearchBoxProps = {
-  refine: (value: string) => void
   defaultValue?: string
 } & UseSearchBoxProps
 
 export function SearchBox(props: SearchBoxProps) {
-  const { defaultValue, refine } = props
+  const { defaultValue } = props
+  const { refine } = useSearchBox()
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const debounceSearch = useCallback(
@@ -24,6 +20,10 @@ export function SearchBox(props: SearchBoxProps) {
     ),
     [refine],
   )
+
+  useEffect(() => {
+    if (defaultValue) refine(defaultValue)
+  }, [defaultValue, refine])
 
   return (
     <TextField
