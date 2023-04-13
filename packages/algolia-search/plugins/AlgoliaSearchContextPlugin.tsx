@@ -12,10 +12,10 @@ const searchClient = algoliasearch(applicationId, searchOnlyApiKey)
 const searchIndex = import.meta.graphCommerce.algoliaSearchIndex ?? ''
 
 function AlgoliaSearchContextPlugin(props: PluginProps<SearchContextProps>) {
-  const { Prev, children } = props
+  const { Prev, ...rest } = props
   return (
     <InstantSearch indexName={searchIndex} searchClient={searchClient}>
-      <Prev>{children}</Prev>
+      <Prev {...rest} />
     </InstantSearch>
   )
 }

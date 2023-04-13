@@ -3,12 +3,8 @@ import {
   ProductFiltersPro,
   ProductFiltersProFilterChips,
   ProductFiltersProSortChip,
-  ProductListCount,
-  ProductListFilters,
   ProductListFiltersContainer,
-  ProductListPagination,
   ProductListParamsProvider,
-  ProductListSort,
   ProductListDocument,
   extractUrlQuery,
   parseParams,
@@ -26,6 +22,11 @@ import {
   CategorySearchQuery,
   CategorySearchResult,
   NoSearchResults,
+  ProductListCountSearch,
+  ProductListFiltersSearch,
+  ProductListItemsSearch,
+  ProductListPaginationSearch,
+  ProductListSortSearch,
   SearchContext,
   SearchDivider,
   SearchForm,
@@ -40,7 +41,12 @@ import {
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Container, Hidden } from '@mui/material'
-import { LayoutNavigation, LayoutNavigationProps, ProductListItems } from '../../components'
+import {
+  LayoutNavigation,
+  LayoutNavigationProps,
+  ProductListItems,
+  productListRenderer,
+} from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
 import { DefaultPageDocument, DefaultPageQuery } from '../../graphql/DefaultPage.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
@@ -131,19 +137,26 @@ function SearchResultPage(props: SearchResultProps) {
             ) : (
               <ProductListParamsProvider value={params}>
                 <ProductListFiltersContainer>
-                  <ProductListSort
+                  <ProductListSortSearch
                     sort_fields={products?.sort_fields}
                     total_count={products?.total_count}
                   />
-                  <ProductListFilters {...filters} filterTypes={filterTypes} />
+                  <ProductListFiltersSearch {...filters} filterTypes={filterTypes} />
                 </ProductListFiltersContainer>
               </ProductListParamsProvider>
             )}
           </StickyBelowHeader>
           <Container maxWidth={false}>
-            <ProductListCount total_count={products?.total_count} />
-            <ProductListItems title={`Search ${search}`} items={products?.items} loadingEager={1} />
-            <ProductListPagination page_info={products?.page_info} params={params} />
+            <ProductListCountSearch total_count={products?.total_count} />
+            <AddProductsToCartForm>
+              <ProductListItemsSearch
+                renderers={productListRenderer}
+                title={`Search ${search}`}
+                items={products?.items}
+                loadingEager={1}
+              />
+            </AddProductsToCartForm>
+            <ProductListPaginationSearch page_info={products?.page_info} params={params} />
           </Container>
         </>
       )}
