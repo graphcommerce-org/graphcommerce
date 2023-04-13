@@ -13,21 +13,21 @@ export async function pageContent(
 ) {
   const allRoutes = await client.query({ query: AllPageRoutesDocument, fetchPolicy: 'cache-first' })
 
-  const found = urls.map((url) => {
+  // Returns an array of matched urls, if url is no match it will return null in the array
+  const foundUrls = urls.map((url) => {
     const matchedPage = allRoutes.data.pages.find((page) => page.url === url)
 
     if (!matchedPage) return null
     return matchedPage
   })
 
-  if (found.every((item) => item === null)) {
+  if (foundUrls.every((item) => item === null)) {
     return { data: { pages: [] } }
   }
 
-  // Returning all query results of found urls
+  // Returning all query data of foundUrls
   const promises: Promise<any>[] = []
-
-  for (const foundUrl of found) {
+  for (const foundUrl of foundUrls) {
     if (foundUrl) {
       const { url } = foundUrl
       const promise = client.query({
@@ -38,28 +38,24 @@ export async function pageContent(
       promises.push(promise)
     }
   }
-
-  // an array of all the found pages with their defaultpage data
   const results = await Promise.all(promises)
 
-  let globalPage
-  let newGlobalPage: any = {}
+  let page
 
-  // globalpage content is inextendible, so we need to create a new array
+  // page content is inextendible, so we need to create these new arrays
+  let newPage: any = {}
   const newContent: any = []
 
   for (const result of results) {
     if (result.data.pages[0].url === 'product/global') {
       // eslint-disable-next-line prefer-destructuring
-      globalPage = result.data.pages[0]
+      page = result.data.pages[0]
       // create new extendable product/global page
-      newGlobalPage = { ...globalPage }
-      globalPage.content.forEach((item) => {
+      newPage = { ...page }
+      page.content.forEach((item) => {
         newContent.push(item)
       })
-    }
-    // if the loop index is not one, merge result.data.pages[0].content into product/global.content
-    else {
+    } else {
       const { content } = result.data.pages[0]
       content.forEach((item) => {
         newContent.push(item)
@@ -67,14 +63,13 @@ export async function pageContent(
     }
   }
 
-  newGlobalPage.content = newContent
+  newPage.content = newContent
 
-  console.log('FOUND: ', found)
+  console.log('FOUND: ', foundUrls)
   console.log('RESULTS: ', results)
-  console.log('GLOBALPAGE: ', globalPage)
+  console.log('GLOBALPAGE: ', page)
   console.log('NEWCONTENT: ', newContent)
-  console.log('NEWGLOBALPAGE: ', newGlobalPage)
+  console.log('NEWGLOBALPAGE: ', newPage)
 
-  // we actually want to merge the content data from the aliasses into the content from the product global. And then return the whole product global defaultpage
-  return newGlobalPage
+  return newPage
 }
