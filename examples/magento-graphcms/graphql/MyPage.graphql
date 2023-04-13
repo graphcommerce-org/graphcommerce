@@ -1,21 +1,5 @@
-query MyPage {
-  pages(
-    where: {
-      OR: [
-        { url: "product/global" }
-        {
-          tags_contains_some: [
-            "123"
-            "242"
-            "p/lace-cuff-gc-144-sock"
-            "/p/lace-cuff-gc-144-sock"
-            "p"
-            "p/subtle-sympathy-gc-1087-sock"
-          ]
-        }
-      ]
-    }
-  ) {
+query MyPage($tags: [String!]!) {
+  pages(where: { OR: [{ url: "product/global" }, { tags_contains_some: $tags }] }) {
     title
     url
     tags

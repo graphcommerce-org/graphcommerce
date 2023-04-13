@@ -9,7 +9,7 @@ import { MyPageDocument } from '../../graphql/MyPage.gql'
  */
 export async function pageContent(
   client: ApolloClient<NormalizedCacheObject>,
-  urls: string[],
+  tags: string[],
   cached = false,
   url: string,
 ) {
@@ -23,8 +23,8 @@ export async function pageContent(
 
   const page = await client.query({
     query: MyPageDocument,
-    // variables: { url },
-    fetchPolicy: 'cache-first',
+    variables: { tags },
+    fetchPolicy: 'network-only',
   })
 
   const mutablePage = { ...page.data.pages[0] }

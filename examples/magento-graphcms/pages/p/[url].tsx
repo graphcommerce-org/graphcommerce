@@ -241,15 +241,6 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     query: ProductPage2Document,
     variables: { url: 'product/global', urlKey },
   })
-  const page = pageContent(
-    staticClient,
-    ['product/global', 'blabla', 'zyxel-security-vulnerability'].concat(),
-    true,
-    'product/global',
-  )
-  const layout = staticClient.query({ query: LayoutDocument })
-  const foo = await page
-  // console.log('foo', foo)
 
   const product = (await productPage).data.products?.items?.find((p) => p?.url_key === urlKey)
 
@@ -259,7 +250,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   ]).filter((a) => a.attribute_code !== 'price' && a.attribute_code !== 'category_uid')
 
   const tags = [
-    `/p/${product?.url_key}`,
+    `p/${product?.url_key}`,
     `sku:${product?.sku}`,
     ...filterNonNullableKeys(product?.categories).map((c) => `category:${c.url_path}`),
     `stock_status:${product?.stock_status}`,
@@ -268,6 +259,11 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
 
   console.log('TAGS: ', tags)
   // ! end code of paul
+
+  const page = pageContent(staticClient, tags, true, 'product/global')
+  const layout = staticClient.query({ query: LayoutDocument })
+  const foo = await page
+  // console.log('foo', foo)
 
   const category = productPageCategory(product)
   const up =
