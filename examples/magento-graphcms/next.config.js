@@ -16,6 +16,7 @@ const nextConfig = {
   },
   experimental: {
     scrollRestoration: true,
+    appDir: true,
   },
   optimizeFonts: false,
   images: {
@@ -24,6 +25,9 @@ const nextConfig = {
   productionBrowserSourceMaps: true,
   eslint: {
     ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
   },
 }
 

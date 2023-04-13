@@ -1,5 +1,5 @@
-import { RenderType, TypeRenderer } from '@graphcommerce/next-ui'
-import { RowBlogContent } from '../Blog'
+import { RenderType, TypeRenderer } from '@graphcommerce/next-ui/RenderType'
+import { RowBlogContent } from '../Blog/RowBlogContent'
 import { PageContentQueryFragment } from './PageContentQueryFragment.gql'
 import { RowButtonLinkList } from './RowButtonLinkList/RowButtonLinkList'
 import { RowColumnOne } from './RowColumnOne/RowColumnOne'

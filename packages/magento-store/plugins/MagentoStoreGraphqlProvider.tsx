@@ -8,7 +8,7 @@ export const exported = '@graphcommerce/graphql'
 
 function MagentoStoreGraphqlProvider(props: PluginProps<GraphQLProviderProps>) {
   const { Prev, links = [], ...rest } = props
-  const storeLink = useMemo(() => createStoreLink(rest.router.locale), [rest.router.locale])
+  const storeLink = useMemo(() => createStoreLink(rest.locale), [rest.locale])
   return <Prev {...rest} links={[...links, storeLink]} />
 }
 

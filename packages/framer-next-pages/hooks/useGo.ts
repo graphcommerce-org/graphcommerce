@@ -1,4 +1,4 @@
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/compat/router'
 
 export function useGo(delta: number) {
   const { push } = useRouter()

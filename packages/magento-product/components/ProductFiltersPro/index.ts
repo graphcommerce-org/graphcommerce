@@ -1,3 +1,5 @@
+'use client'
+
 export * from './ProductFiltersPro'
 export * from './ProductFiltersProAllFiltersChip'
 export * from './ProductFiltersProChips'

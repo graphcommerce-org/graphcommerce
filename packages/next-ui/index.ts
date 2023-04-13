@@ -1,3 +1,5 @@
+'use client'
+
 export * from './ActionCard'
 export * from './AnimatedRow/AnimatedRow'
 export * from './Blog/BlogAuthor/BlogAuthor'

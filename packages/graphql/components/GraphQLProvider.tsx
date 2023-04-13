@@ -1,3 +1,6 @@
+'use client'
+
+import { useCallback, useEffect, useRef, useState } from 'react'
 import {
   ApolloClient,
   NormalizedCacheObject,
@@ -6,21 +9,24 @@ import {
   TypePolicies,
   ApolloProvider,
   HttpLink,
-} from '@apollo/client'
-import type { AppProps } from 'next/app'
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+} from '../apollo'
 import { createCacheReviver } from '../createCacheReviver'
 import { errorLink } from '../errorLink'
 import fragments from '../generated/fragments.json'
 import { measurePerformanceLink } from '../measurePerformanceLink'
 import { MigrateCache } from '../migrateCache'
 import { mergeTypePolicies } from '../typePolicies'
+import { StrictTypedTypePolicies } from '../index.interceptor'
 
 export const globalApolloClient: { current: ApolloClient<NormalizedCacheObject> | null } = {
   current: null,
 }
 
-export type GraphQLProviderProps = AppProps & {
+export type GraphQLProviderProps = {
+  apolloState?: NormalizedCacheObject
+
+  locale?: string
+
   children: React.ReactNode
   /** Additional ApolloLink to add to the chain. */
   links?: ApolloLink[]
@@ -28,7 +34,7 @@ export type GraphQLProviderProps = AppProps & {
    * This is a list of type policies which are used to influence how cache is handled.
    * https://www.apollographql.com/docs/react/caching/cache-field-behavior/
    */
-  policies?: TypePolicies[]
+  policies?: StrictTypedTypePolicies[]
   /**
    * To upgrade the local storage to a new version when the app is updated, but the client isn't
    * yet, we run these migrations.
@@ -43,8 +49,8 @@ export type GraphQLProviderProps = AppProps & {
  * Take a look at the props to see possible customization options.
  */
 export function GraphQLProvider(props: GraphQLProviderProps) {
-  const { children, policies = [], migrations = [], links = [], pageProps } = props
-  const state = (pageProps as { apolloState?: NormalizedCacheObject }).apolloState
+  const { children, policies = [], migrations = [], links = [], apolloState } = props
+  const state = apolloState
 
   const stateRef = useRef(state)
 

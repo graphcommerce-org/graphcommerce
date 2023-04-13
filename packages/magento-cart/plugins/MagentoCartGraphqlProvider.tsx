@@ -1,3 +1,5 @@
+'use client'
+
 import { GraphQLProviderProps } from '@graphcommerce/graphql'
 import type { PluginProps } from '@graphcommerce/next-config'
 import { cartErrorLink } from '../link/createCartErrorLink'

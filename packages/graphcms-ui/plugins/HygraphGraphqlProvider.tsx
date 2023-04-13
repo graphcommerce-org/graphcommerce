@@ -9,7 +9,7 @@ export const exported = '@graphcommerce/graphql'
 function HygraphGraphqlProvider(props: PluginProps<GraphQLProviderProps>) {
   const { Prev, links = [], ...rest } = props
 
-  const hygraphLink = useMemo(() => createHygraphLink(rest.router.locale), [rest.router.locale])
+  const hygraphLink = useMemo(() => createHygraphLink(rest.locale), [rest.locale])
   return <Prev {...rest} links={[...links, hygraphLink]} />
 }
 

@@ -1,7 +1,7 @@
 import { useQuery } from '@graphcommerce/graphql'
 import { FlagAvatar, extendableComponent } from '@graphcommerce/next-ui'
 import { Button, SxProps, Theme } from '@mui/material'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/compat/router'
 import { StoreConfigDocument } from '../../StoreConfig.gql'
 
 export type StoreSwitcherButtonProps = { sx?: SxProps<Theme> }

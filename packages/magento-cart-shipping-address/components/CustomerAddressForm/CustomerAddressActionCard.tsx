@@ -3,7 +3,7 @@ import { useFindCountry } from '@graphcommerce/magento-store'
 import { ActionCard, IconSvg, iconHome, ActionCardItemRenderProps } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Button } from '@mui/material'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/compat/router'
 
 type CustomerAddressActionCardProps = ActionCardItemRenderProps<
   CustomerAddressFragment | null | undefined

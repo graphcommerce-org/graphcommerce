@@ -7,8 +7,7 @@ import { useFabSize } from '../../Theme'
 import { iconClose } from '../../icons'
 
 export function useShowClose() {
-  const { overlayGroup } = usePageContext()
-  return !!overlayGroup
+  return !!usePageContext()?.overlayGroup
 }
 
 export function LayoutHeaderClose() {

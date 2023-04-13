@@ -6,7 +6,7 @@ import {
   Theme,
   unstable_composeClasses as composeClasses,
 } from '@mui/material'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/compat/router'
 import { forwardRef } from 'react'
 import { NextLink } from '../Theme'
 
@@ -63,7 +63,7 @@ export const Logo = forwardRef<HTMLAnchorElement, LogoProps>((props, ref) => {
     />
   )
 
-  return router.asPath.split('?')[0] === '/' ? (
+  return router?.asPath.split('?')[0] === '/' ? (
     <LogoContainer ref={ref} sx={sx} className={classes.parent}>
       {img}
     </LogoContainer>

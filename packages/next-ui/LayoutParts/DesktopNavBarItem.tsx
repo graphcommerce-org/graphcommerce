@@ -1,5 +1,5 @@
 import { Box, Link, LinkProps } from '@mui/material'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/compat/router'
 import { extendableComponent } from '../Styles/extendableComponent'
 
 const { classes, selectors } = extendableComponent('DesktopNavItem', ['root', 'line'] as const)
@@ -42,7 +42,7 @@ export function DesktopNavItem(props: DesktopNavItemLinkProps | DesktopNavItemBu
 
   const { href, children, sx = [], ...linkProps } = props
 
-  const active = router.asPath.startsWith((href ?? '').toString())
+  const active = router?.asPath.startsWith((href ?? '').toString())
 
   return (
     <Link

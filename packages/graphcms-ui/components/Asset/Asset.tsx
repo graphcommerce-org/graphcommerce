@@ -1,3 +1,5 @@
+'use client'
+
 import { Image, ImageProps } from '@graphcommerce/image'
 import { styled, SxProps, Theme } from '@mui/material'
 import { AssetFragment } from './Asset.gql'

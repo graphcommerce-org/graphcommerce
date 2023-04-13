@@ -32,7 +32,7 @@
     "@graphcommerce/typescript-config-pwa": "6.1.1-canary.2",
     "@types/cookie": "^0.5.1",
     "@types/react-is": "^17.0.3",
-    "typescript": "4.9.5"
+    "typescript": "5.0.4"
   },
   "peerDependencies": {
     "@lingui/core": "^3.13.2",

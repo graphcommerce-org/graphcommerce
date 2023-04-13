@@ -10,7 +10,7 @@ import {
 import { dvh } from '@graphcommerce/framer-utils'
 import { Fab, useTheme, Box, styled, SxProps, Theme } from '@mui/material'
 import { m, useDomEvent, useMotionValue } from 'framer-motion'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/compat/router'
 import React, { useEffect, useRef } from 'react'
 import { IconSvg } from '../IconSvg'
 import { Row } from '../Row/Row'

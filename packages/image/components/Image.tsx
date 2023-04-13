@@ -37,7 +37,7 @@ type ImageConfig = ImageConfigComplete & { allSizes: number[] }
 const DEFAULT_SIZES: SizesRecord = { 0: '100vw', 1200: '50vw' }
 
 const VALID_LOADING_VALUES = ['lazy', 'eager', undefined] as const
-type LoadingValue = typeof VALID_LOADING_VALUES[number]
+type LoadingValue = (typeof VALID_LOADING_VALUES)[number]
 
 const loaders = new Map<LoaderValue, (props: DefaultImageLoaderProps) => string>([
   ['imgix', imgixLoader],

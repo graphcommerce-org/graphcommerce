@@ -1,3 +1,5 @@
+'use client'
+
 import { VariantInline } from '@graphcommerce/next-ui'
 import { Link } from '@mui/material'
 

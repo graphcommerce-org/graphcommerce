@@ -1,3 +1,5 @@
+'use client'
+
 import { ProductSpecsFragment } from '@graphcommerce/magento-product/components/ProductSpecs/ProductSpecs.gql'
 import { RowProductFragment } from './RowProduct.gql'
 import {

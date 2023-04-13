@@ -13,7 +13,7 @@ import {
 import { Container, Link } from '@mui/material'
 import { m } from 'framer-motion'
 import { GetStaticPathsResult, GetStaticProps } from 'next'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/compat/router'
 import React, { useState } from 'react'
 import { Grid } from '../../components/Grid'
 import { StackDebug } from '../../components/StackedDebugger'

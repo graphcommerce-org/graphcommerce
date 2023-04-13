@@ -6,7 +6,7 @@
   "main": "index.js",
   "dependencies": {
     "@graphcommerce/typescript-config-pwa": "6.1.1-canary.2",
-    "@next/eslint-plugin-next": "13.2.4",
+    "@next/eslint-plugin-next": "13.3.0",
     "@typescript-eslint/eslint-plugin": "^5.54.1",
     "@typescript-eslint/parser": "^5.54.1",
     "eslint-config-airbnb": "19.0.4",

@@ -1,5 +1,5 @@
 import { Link } from '@mui/material'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/compat/router'
 import styles from './styles.module.css'
 
 export const data = [1, 2, 3, 4, 5, 6, 7, 8, 9]

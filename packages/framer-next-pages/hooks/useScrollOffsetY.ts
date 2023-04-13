@@ -8,7 +8,9 @@ import { usePageContext } from './usePageContext'
  * scroll based elements.
  */
 export function useScrollOffset() {
-  const { active, routerKey } = usePageContext()
+  const pageContext = usePageContext()
+
+  const { active, routerKey = '' } = pageContext ?? {}
 
   const scrolloffset = useMotionValue(0)
 

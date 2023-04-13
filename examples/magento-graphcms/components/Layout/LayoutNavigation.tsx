@@ -25,7 +25,7 @@ import {
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Divider, Fab } from '@mui/material'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/compat/router'
 import { Footer } from './Footer'
 import { LayoutQuery } from './Layout.gql'
 import { Logo } from './Logo'
@@ -105,7 +105,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
 
       <LayoutDefault
         {...uiProps}
-        noSticky={router.asPath.split('?')[0] === '/'}
+        noSticky={router?.asPath.split('?')[0] === '/'}
         header={
           <>
             <Logo />
@@ -127,7 +127,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
             </DesktopNavBar>
 
             <DesktopNavActions>
-              {!router.pathname.startsWith('/search') && (
+              {!router?.pathname.startsWith('/search') && (
                 <SearchLink
                   href='/search'
                   aria-label={i18n._(/* i18n */ 'Search...')}

@@ -1,4 +1,4 @@
-import { createHygraphLink } from '@graphcommerce/graphcms-ui'
+import { createHygraphLink } from '@graphcommerce/graphcms-ui/links/createHygraphLink'
 import {
   NormalizedCacheObject,
   ApolloClient,
@@ -10,7 +10,7 @@ import {
 } from '@graphcommerce/graphql'
 import { MeshApolloLink, getBuiltMesh } from '@graphcommerce/graphql-mesh'
 import { magentoTypePolicies } from '@graphcommerce/magento-graphql'
-import { createStoreLink, defaultLocale } from '@graphcommerce/magento-store'
+import { createStoreLink } from '@graphcommerce/magento-store/link/createStoreLink'
 import { i18nSsrLoader } from '../i18n/I18nProvider'
 
 const mesh = await getBuiltMesh()
@@ -44,10 +44,7 @@ const sharedClient: {
  *
  * We're instantiating in a few different modes to have the best performance/usage possible:
  */
-export function graphqlClient(
-  locale: string | undefined = defaultLocale(),
-  shared = true,
-): ApolloClient<NormalizedCacheObject> {
+export function graphqlClient(locale: string, shared = true): ApolloClient<NormalizedCacheObject> {
   // If the client isn't shared we create a new client.
   if (!shared) return client(locale)
 
@@ -59,6 +56,7 @@ export function graphqlClient(
 
 export function graphqlSsrClient(locale?: string | undefined) {
   i18nSsrLoader(locale)
+  if (!locale) throw Error('Locale is required')
   return graphqlClient(locale, false)
 }
 
@@ -67,5 +65,6 @@ export function graphqlSsrClient(locale?: string | undefined) {
  * browser's cache.
  */
 export function graphqlSharedClient(locale?: string | undefined) {
+  if (!locale) throw Error('Locale is required')
   return graphqlClient(locale, true)
 }

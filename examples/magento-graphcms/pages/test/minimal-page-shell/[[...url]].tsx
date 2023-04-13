@@ -20,7 +20,7 @@ type LayoutDemoProps = {
 export function LayoutDemo(props: LayoutDemoProps) {
   const { baseUrl } = props
 
-  const queryParams = useRouter().asPath.split('/')
+  const queryParams = useRouter()?.asPath.split('/')
   const urlParts = queryParams.pop()?.split('-') ?? []
 
   const title = urlParts.map((s = '') => `${s.charAt(0).toUpperCase() + s.slice(1)}`).join(' ')

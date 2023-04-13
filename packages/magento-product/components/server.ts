@@ -1,0 +1,6 @@
+export * from './ProductList/ProductList.gql'
+export * from './ProductListItems/ProductListItems.gql'
+export * from './ProductRelated/RelatedProducts.gql'
+export * from './ProductShortDescription/ProductShortDescription.gql'
+export * from './ProductUpsells/UpsellProducts.gql'
+export * from './ProductListFilters/ProductListFilters.gql'

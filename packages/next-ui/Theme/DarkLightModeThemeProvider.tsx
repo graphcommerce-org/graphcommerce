@@ -10,8 +10,7 @@ import {
   ListItemText,
   ListItemButtonProps,
 } from '@mui/material'
-import { useRouter } from 'next/router'
-import { createContext, useContext, useEffect, useMemo, useState } from 'react'
+import { createContext, useContext, useMemo, useState } from 'react'
 import { IconSvg } from '../IconSvg'
 import { iconMoon, iconSun } from '../icons'
 
@@ -43,7 +42,8 @@ type ThemeProviderProps = {
  * The multi DarkLightModeThemeProvider allows switching between light and dark mode based on URL
  * and on user input.
  *
- * If you _just_ wan't a single theme, use the import { ThemeProvider } from '@mui/material' instead.
+ * If you _just_ wan't a single theme, use the import { ThemeProvider } from '@mui/material'
+ * instead.
  */
 export function DarkLightModeThemeProvider(props: ThemeProviderProps) {
   const { children, light, dark } = props
@@ -55,12 +55,6 @@ export function DarkLightModeThemeProvider(props: ThemeProviderProps) {
   // If the user has set a mode, use that. Otherwise, use the browser mode.
   const currentMode = userMode === 'auto' ? browserMode : userMode
   const theme = currentMode === 'light' ? light : dark
-
-  // If a URL parameter is present, switch from auto to light or dark mode
-  const { asPath } = useRouter()
-  useEffect(() => {
-    if (asPath.includes('darkmode')) setUserMode('dark')
-  }, [asPath])
 
   // Create the context
   const colorContext: ColorModeContext = useMemo(
