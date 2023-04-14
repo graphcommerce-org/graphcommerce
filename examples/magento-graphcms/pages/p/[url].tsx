@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { mergeDeep } from '@graphcommerce/graphql'
 import {
@@ -239,6 +238,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
 
   const conf = client.query({ query: StoreConfigDocument })
   const productPage = staticClient.query({ query: ProductPage2Document, variables: { urlKey } })
+  const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
 
   const product = (await productPage).data.products?.items?.find((p) => p?.url_key === urlKey)
   if (!product) return redirectOrNotFound(staticClient, conf, params, locale)
@@ -260,7 +260,6 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   // ! end code of paul
 
   const page = pageContent(staticClient, 'product/global', tags, true)
-  const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
 
   const category = productPageCategory(product)
   const up =
