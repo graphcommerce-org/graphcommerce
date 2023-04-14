@@ -1,4 +1,5 @@
 import { breakpointVal, iconOrderBefore, IconSvg } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/react'
 import { Box, darken, lighten } from '@mui/material'
 import { UseAddProductsToCartActionFragment } from '../AddProductsToCart/UseAddProductsToCartAction.gql'
 
@@ -49,9 +50,11 @@ export function ProductSidebarDelivery(props: ProductSidebarDeliveryProps) {
       })}
     >
       <IconSvg src={iconOrderBefore} size='small' sx={{ gridArea: 'image' }} />
-      <Box sx={{ typography: 'body2', gridArea: 'title', fontWeight: 600 }}>{title}</Box>
+      <Box sx={{ typography: 'body2', gridArea: 'title', fontWeight: 600 }}>
+        <Trans id={title} />
+      </Box>
       <Box sx={{ typography: 'body2', gridArea: 'subtitle', color: 'text.primary' }}>
-        {subtitle}
+        <Trans id={subtitle} />
       </Box>
     </Box>
   )
