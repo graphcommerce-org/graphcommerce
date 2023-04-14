@@ -33,11 +33,10 @@ type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
 function BlogPage(props: Props) {
-  const { blogPosts, page } = props
+  const { blogPosts, pages } = props
 
-  const title = page.title ?? ''
-
-  console.log(page)
+  const page = pages[0]
+  const title = page?.title ?? ''
 
   return (
     <>
@@ -94,22 +93,22 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   const layout = staticClient.query({ query: LayoutDocument })
 
   const tags = [url]
-  const page = await pageContent(staticClient, url, tags, true) // remove await
+  const page = pageContent(staticClient, url, tags)
 
   console.log('URLKEY: ', urlKey)
-  console.log('PAGEY: ', page)
+  console.log('PAGE: ', await page)
 
   const blogPosts = staticClient.query({
     query: BlogListDocument,
     variables: { currentUrl: [`blog/${urlKey}`], first: limit },
   })
-  if (!page) return { notFound: true }
+  if (!(await page).data.pages?.[0]) return { notFound: true }
 
   return {
     props: {
       ...(await blogPosts).data,
       ...(await layout).data,
-      page,
+      ...(await page).data,
       up: { href: '/', title: 'Home' },
       apolloState: await conf.then(() => client.cache.extract()),
     },

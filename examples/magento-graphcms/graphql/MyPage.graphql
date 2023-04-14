@@ -1,3 +1,0 @@
-query MyPage($url: String!, $tags: [String!]!) {
-  ...PageContentQueryFragment2
-}

@@ -1,7 +1,6 @@
-import { ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
+import { ApolloClient, ApolloQueryResult, NormalizedCacheObject } from '@graphcommerce/graphql'
 import { AllPageRoutesDocument } from '../../graphql/AllPageRoutes.gql'
-import { DefaultPageDocument } from '../../graphql/DefaultPage.gql'
-import { MyPageDocument } from '../../graphql/MyPage.gql'
+import { DefaultPageDocument, DefaultPageQuery } from '../../graphql/DefaultPage.gql'
 
 /**
  * Fast path to fetch pageContent, it uses a cached allRoutes to check if a page exists, if not it
@@ -12,35 +11,31 @@ export async function pageContent(
   url: string,
   tags: string[] = [],
   cached = false,
-) {
-  const allRoutes = await client.query({
-    query: AllPageRoutesDocument,
-    fetchPolicy: cached ? 'cache-first' : 'network-only',
-  })
+): Promise<Pick<ApolloQueryResult<DefaultPageQuery>, 'data'>> {
+  const allRoutes = await client.query({ query: AllPageRoutesDocument, fetchPolicy: 'cache-first' })
 
   const found = allRoutes.data.pages.find((page) => page.url === url)
 
-  if (!found) {
-    return 0
-  }
+  if (!found) return { data: { pages: [] } }
 
-  const page = await client.query({
-    query: MyPageDocument,
+  const pageQuery = await client.query({
+    query: DefaultPageDocument,
     variables: { url, tags },
-    fetchPolicy: 'network-only', // change to cache-first
+    fetchPolicy: cached ? 'cache-first' : undefined,
   })
 
-  const mutablePage = { ...page.data.pages[0] }
-  const mutableContent: any = []
-  page.data.pages.forEach((p) => {
+  return pageQuery
+
+  const [firstPage, ...otherPages] = pageQuery.data.pages
+  const content = [...firstPage.content]
+
+  otherPages.forEach((p) => {
     p.content.forEach((i) => {
-      mutableContent.push(i)
+      content.push(i)
     })
   })
 
-  mutablePage.content = mutableContent
-
-  return mutablePage
+  return { ...pageQuery, data: { pages: [{ ...firstPage, content }] } }
 
   // Returns an array of matched urls, if url is no match it will return null in the array
   // const foundUrls = urls.map((url) => {

@@ -7,15 +7,15 @@ import {
   measurePerformanceLink,
   InMemoryCache,
   fragments,
+  FetchPolicy,
 } from '@graphcommerce/graphql'
 import { MeshApolloLink, getBuiltMesh } from '@graphcommerce/graphql-mesh'
 import { magentoTypePolicies } from '@graphcommerce/magento-graphql'
 import { createStoreLink, defaultLocale } from '@graphcommerce/magento-store'
-import { i18nSsrLoader } from '../i18n/I18nProvider'
 
 const mesh = await getBuiltMesh()
 
-function client(locale: string) {
+function client(locale: string, fetchPolicy: FetchPolicy) {
   return new ApolloClient({
     link: ApolloLink.from([
       measurePerformanceLink,
@@ -31,7 +31,7 @@ function client(locale: string) {
     }),
     ssrMode: true,
     name: 'ssr',
-    defaultOptions: { query: { errorPolicy: 'all' } },
+    defaultOptions: { query: { errorPolicy: 'all', fetchPolicy }, watchQuery: { fetchPolicy } },
   })
 }
 
@@ -40,32 +40,22 @@ const sharedClient: {
 } = {}
 
 /**
- * Gives back an instance of `ApolloClient` to query the GraphQL Mesh api.
- *
- * We're instantiating in a few different modes to have the best performance/usage possible:
- */
-export function graphqlClient(
-  locale: string | undefined = defaultLocale(),
-  shared = true,
-): ApolloClient<NormalizedCacheObject> {
-  // If the client isn't shared we create a new client.
-  if (!shared) return client(locale)
-
-  // Create a client if it doesn't exist for the locale.
-  if (!sharedClient[locale]) sharedClient[locale] = client(locale)
-
-  return sharedClient[locale]
-}
-
-export function graphqlSsrClient(locale?: string | undefined) {
-  i18nSsrLoader(locale)
-  return graphqlClient(locale, false)
-}
-
-/**
  * Any queries made with the graphqlSharedClient will be send to the browser and injected in the
  * browser's cache.
  */
-export function graphqlSharedClient(locale?: string | undefined) {
-  return graphqlClient(locale, true)
+export function graphqlSharedClient(locale: string | undefined = defaultLocale()) {
+  // Create a client if it doesn't exist for the locale.
+  if (!sharedClient[locale]) sharedClient[locale] = client(locale, 'cache-first')
+  return sharedClient[locale]
+}
+
+const ssrClient: {
+  [locale: string]: ApolloClient<NormalizedCacheObject>
+} = {}
+
+export function graphqlSsrClient(locale: string | undefined = defaultLocale()) {
+  // Create a client if it doesn't exist for the locale.
+  if (!ssrClient[locale]) ssrClient[locale] = client(locale, 'no-cache')
+
+  return ssrClient[locale]
 }

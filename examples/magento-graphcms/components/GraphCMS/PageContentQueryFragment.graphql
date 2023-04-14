@@ -1,5 +1,5 @@
 fragment PageContentQueryFragment on Query {
-  pages(where: { url: $url }) {
+  pages(where: { OR: [{ url: $url }, { tags_contains_some: $tags }] }) {
     title
     metaTitle
     metaDescription

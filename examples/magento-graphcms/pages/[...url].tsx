@@ -51,8 +51,10 @@ import { pageContent } from '../components/GraphCMS/pageContent'
 import { LayoutDocument } from '../components/Layout/Layout.gql'
 import { CategoryPageDocument, CategoryPageQuery } from '../graphql/CategoryPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
+import { DefaultPageQuery } from '../graphql/DefaultPage.gql'
 
 export type CategoryProps = CategoryPageQuery &
+  DefaultPageQuery &
   ProductListQuery &
   ProductFiltersQuery & { filterTypes?: FilterTypes; params?: ProductListParams }
 export type CategoryRoute = { url: string[] }
@@ -61,14 +63,13 @@ type GetPageStaticPaths = GetStaticPaths<CategoryRoute>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, CategoryProps, CategoryRoute>
 
 function CategoryPage(props: CategoryProps) {
-  const { categories, products, filters, params, filterTypes, page } = props
+  const { categories, products, filters, params, filterTypes, pages } = props
 
   const category = categories?.items?.[0]
   const isLanding = category?.display_mode === 'PAGE'
 
+  const page = pages?.[0]
   const isCategory = params && category && products?.items && filterTypes
-
-  console.log('PAGE: ', page)
 
   return (
     <>
@@ -199,16 +200,13 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
 
   const tags = [url]
 
-  const page = await pageContent(staticClient, url, tags, true) // remove await
+  const pages = pageContent(staticClient, url, tags)
 
-  const categoryPage = staticClient.query({
-    query: CategoryPageDocument,
-    variables: { url },
-  })
+  const categoryPage = staticClient.query({ query: CategoryPageDocument, variables: { url } })
 
   console.log('URL: ', url)
   console.log('TAGS: ', tags)
-  console.log('PAGEY: ', page)
+  console.log('PAGEY: ', await pages)
 
   const layout = staticClient.query({ query: LayoutDocument })
 
@@ -221,7 +219,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     if (productListParams) productListParams.filters.category_uid = { in: [categoryUid] }
   }
 
-  const hasPage = filteredCategoryUid ? false : page
+  const hasPage = filteredCategoryUid ? false : (await pages).data.pages.length > 0
   const hasCategory = Boolean(productListParams && categoryUid)
 
   if (!productListParams || !(hasPage || hasCategory))
@@ -231,7 +229,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     return {
       props: {
         ...(await categoryPage).data,
-        page,
+        ...(await pages).data,
         ...(await layout).data,
         apolloState: await conf.then(() => client.cache.extract()),
       },
@@ -265,7 +263,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const result = {
     props: {
       ...(await categoryPage).data,
-      page,
+      ...(await pages).data,
       ...(await products).data,
       ...(await filters).data,
       ...(await layout).data,

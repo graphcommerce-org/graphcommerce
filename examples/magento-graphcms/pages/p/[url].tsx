@@ -54,17 +54,18 @@ import { pageContent } from '../../components/GraphCMS/pageContent'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
 import { ProductPage2Document, ProductPage2Query } from '../../graphql/ProductPage2.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
+import { DefaultPageQuery } from '../../graphql/DefaultPage.gql'
 
-type Props = ProductPage2Query & Pick<AddProductsToCartFormProps, 'defaultValues'>
+type Props = DefaultPageQuery &
+  ProductPage2Query &
+  Pick<AddProductsToCartFormProps, 'defaultValues'>
 
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
 function ProductPage(props: Props) {
-  const { products, relatedUpsells, usps, sidebarUsps, defaultValues, page } = props
-
-  console.log('PAGE: ', page)
+  const { products, relatedUpsells, usps, sidebarUsps, pages, defaultValues } = props
 
   const product = mergeDeep(products, relatedUpsells)?.items?.[0]
 
@@ -193,9 +194,9 @@ function ProductPage(props: Props) {
 
       <ProductPageDescription {...product} right={<Usps usps={usps} />} fontSize='responsive' />
 
-      {page && (
+      {pages?.[0] && (
         <RowRenderer
-          content={page.content}
+          content={pages?.[0].content}
           renderer={{
             RowProduct: (rowProps) => (
               <RowProduct
@@ -237,10 +238,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const urlKey = params?.url ?? '??'
 
   const conf = client.query({ query: StoreConfigDocument })
-  const productPage = staticClient.query({
-    query: ProductPage2Document,
-    variables: { url: 'product/global', urlKey },
-  })
+  const productPage = staticClient.query({ query: ProductPage2Document, variables: { urlKey } })
 
   const product = (await productPage).data.products?.items?.find((p) => p?.url_key === urlKey)
 
@@ -260,8 +258,8 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   console.log('TAGS: ', tags)
   // ! end code of paul
 
-  const page = await pageContent(staticClient, 'product/global', tags, true)
-  const layout = staticClient.query({ query: LayoutDocument })
+  const page = pageContent(staticClient, 'product/global', tags, true)
+  const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
 
   const category = productPageCategory(product)
   const up =
@@ -274,9 +272,9 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     props: {
       ...defaultConfigurableOptionsSelection(urlKey, client, (await productPage).data),
       ...(await layout).data,
+      ...(await page).data,
       apolloState: await conf.then(() => client.cache.extract()),
       up,
-      page,
     },
     revalidate: 60 * 20,
   }

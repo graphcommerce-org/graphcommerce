@@ -35,7 +35,7 @@ type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProp
 const pageSize = 16
 
 function BlogPage(props: Props) {
-  const { pages, blogPosts, pagesConnection, pagey } = props
+  const { pages, blogPosts, pagesConnection } = props
   const router = useRouter()
   const page = pages[0]
   const title = page.title ?? ''
@@ -65,7 +65,7 @@ function BlogPage(props: Props) {
         )}
       />
 
-      <RowRenderer content={pagey.content} />
+      <RowRenderer content={page.content} />
     </>
   )
 }
@@ -105,7 +105,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
 
   const tags = [url]
 
-  const pagey = await pageContent(staticClient, url, tags, true)
+  const pagey = await pageContent(staticClient, url, tags)
 
   console.log('PAGEY: ', pagey)
   console.log('URL: ', url)
