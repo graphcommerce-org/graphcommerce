@@ -1,25 +1,3 @@
-query MyPage($tags: [String!]!) {
-  pages(where: { OR: [{ url: "product/global" }, { tags_contains_some: $tags }] }) {
-    title
-    url
-    tags
-    content {
-      ... on Node {
-        id
-      }
-      __typename
-      ...RowColumnOne
-      ...RowColumnTwo
-      ...RowColumnThree
-      ...RowBlogContent
-      ...RowHeroBanner
-      ...RowSpecialBanner
-      ...RowQuote
-      ...RowButtonLinkList
-      ...RowServiceOptions
-      ...RowContentLinks
-      ...RowProduct
-      ...RowLinks
-    }
-  }
+query MyPage($url: String!, $tags: [String!]!) {
+  ...PageContentQueryFragment2
 }

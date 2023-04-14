@@ -54,7 +54,6 @@ import { pageContent } from '../../components/GraphCMS/pageContent'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
 import { ProductPage2Document, ProductPage2Query } from '../../graphql/ProductPage2.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
-import { useEffect } from 'react'
 
 type Props = ProductPage2Query & Pick<AddProductsToCartFormProps, 'defaultValues'>
 
@@ -63,9 +62,10 @@ type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
 function ProductPage(props: Props) {
-  const { products, relatedUpsells, usps, sidebarUsps, pages, defaultValues, page, foo } = props
+  const { products, relatedUpsells, usps, sidebarUsps, defaultValues, page } = props
 
-  console.log('Hygraph content:', foo)
+  console.log('PAGE: ', page)
+
   const product = mergeDeep(products, relatedUpsells)?.items?.[0]
 
   if (!product?.sku || !product.url_key) return null
@@ -193,9 +193,9 @@ function ProductPage(props: Props) {
 
       <ProductPageDescription {...product} right={<Usps usps={usps} />} fontSize='responsive' />
 
-      {pages?.[0] && (
+      {page && (
         <RowRenderer
-          content={pages?.[0].content}
+          content={page.content}
           renderer={{
             RowProduct: (rowProps) => (
               <RowProduct
@@ -260,10 +260,8 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   console.log('TAGS: ', tags)
   // ! end code of paul
 
-  const page = pageContent(staticClient, tags, true, 'product/global')
+  const page = await pageContent(staticClient, 'product/global', tags, true)
   const layout = staticClient.query({ query: LayoutDocument })
-  const foo = await page
-  // console.log('foo', foo)
 
   const category = productPageCategory(product)
   const up =
@@ -278,8 +276,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
       ...(await layout).data,
       apolloState: await conf.then(() => client.cache.extract()),
       up,
-      ...(await page),
-      foo,
+      page,
     },
     revalidate: 60 * 20,
   }

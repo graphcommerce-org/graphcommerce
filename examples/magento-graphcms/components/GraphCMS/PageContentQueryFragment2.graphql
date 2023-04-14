@@ -1,0 +1,20 @@
+fragment PageContentQueryFragment2 on Query {
+  pages(where: { OR: [{ url: $url }, { tags_contains_some: $tags }] }) {
+    title
+    metaTitle
+    metaDescription
+    metaRobots
+    url
+    author
+    date
+    relatedPages {
+      title
+      url
+    }
+    asset {
+      ...Asset
+    }
+    tags
+    ...RowRenderer
+  }
+}

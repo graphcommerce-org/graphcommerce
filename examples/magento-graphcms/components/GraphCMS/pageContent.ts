@@ -9,22 +9,25 @@ import { MyPageDocument } from '../../graphql/MyPage.gql'
  */
 export async function pageContent(
   client: ApolloClient<NormalizedCacheObject>,
-  tags: string[],
-  cached = false,
   url: string,
+  tags: string[] = [],
+  cached = false,
 ) {
-  const allRoutes = await client.query({ query: AllPageRoutesDocument, fetchPolicy: 'cache-first' })
+  const allRoutes = await client.query({
+    query: AllPageRoutesDocument,
+    fetchPolicy: cached ? 'cache-first' : 'network-only',
+  })
 
   const found = allRoutes.data.pages.find((page) => page.url === url)
 
   if (!found) {
-    return { data: { pages: [] } }
+    return 0
   }
 
   const page = await client.query({
     query: MyPageDocument,
-    variables: { tags },
-    fetchPolicy: 'network-only',
+    variables: { url, tags },
+    fetchPolicy: 'network-only', // change to cache-first
   })
 
   const mutablePage = { ...page.data.pages[0] }
