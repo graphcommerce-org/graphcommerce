@@ -32,6 +32,7 @@ type StyleProps = {
   sizeMd?: LayoutOverlaySize
   justifySm?: LayoutOverlayAlign
   justifyMd?: LayoutOverlayAlign
+  bgColor?: 'paper' | 'default'
 }
 
 type OverridableProps = {
@@ -102,6 +103,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
     sxBackdrop = [],
     active,
     onClosed,
+    bgColor = 'paper',
     direction = 1,
     offsetPageY = 0,
     isPresent,
@@ -405,7 +407,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
                   height: '1px',
                   top: 'calc(100% - 1px)',
                   left: '0',
-                  background: theme.palette.background.paper,
+                  background: theme.palette.background[bgColor],
                 },
               },
             },
@@ -592,7 +594,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
             <Box
               className={classes.background}
               sx={(theme) => ({
-                backgroundColor: theme.palette.background.paper,
+                backgroundColor: theme.palette.background[bgColor],
                 paddingBottom: '0.1px',
                 [theme.breakpoints.down('md')]: {
                   minHeight: '100%',

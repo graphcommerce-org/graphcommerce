@@ -52,6 +52,7 @@ export function LayoutHeader(props: LayoutHeaderProps) {
     switchPoint,
     size = 'responsive',
     sx = [],
+    bgColor,
   } = props
   const showBack = useShowBack()
   const showClose = useShowClose()
@@ -149,6 +150,7 @@ export function LayoutHeader(props: LayoutHeaderProps) {
         floatingMd={floatingMd}
         floatingSm={floatingSm}
         switchPoint={switchPoint}
+        bgColor={bgColor}
       >
         {children}
       </LayoutHeaderContent>

@@ -18,6 +18,7 @@ export type LayoutHeaderContentProps = FloatingProps & {
   sxBg?: SxProps<Theme>
   layout?: LayoutProps['layout']
   size?: 'small' | 'responsive'
+  bgColor?: 'paper' | 'default'
 } & Pick<LayoutProps, 'layout' | 'layoutDependency'>
 
 type OwnerState = {
@@ -26,7 +27,9 @@ type OwnerState = {
   scrolled: boolean
   divider: boolean
   size: 'small' | 'responsive'
+  bgColor?: 'paper' | 'default'
 }
+
 const name = 'LayoutHeaderContent' as const
 const parts = ['bg', 'content', 'left', 'center', 'right', 'divider'] as const
 const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
@@ -47,12 +50,13 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
     layout,
     layoutDependency,
     size = 'responsive',
+    bgColor = 'paper',
   } = props
 
   const scroll = useScrollY()
   const scrolled = useMotionValueValue(scroll, (y) => y >= switchPoint)
 
-  const classes = withState({ floatingSm, floatingMd, scrolled, divider: !!divider, size })
+  const classes = withState({ floatingSm, floatingMd, scrolled, divider: !!divider, size, bgColor })
 
   return (
     <>
@@ -63,7 +67,7 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
             position: 'absolute',
             left: 0,
             width: '100%',
-            backgroundColor: theme.palette.background.paper,
+            backgroundColor: theme.palette.background[bgColor],
             boxShadow: theme.shadows[1],
 
             height: theme.appShell.headerHeightSm,
