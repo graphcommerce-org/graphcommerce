@@ -2,12 +2,10 @@ import { productLink } from '@graphcommerce/magento-product'
 import { Button, iconChevronRight, IconSvg, SectionContainer } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box } from '@mui/material'
-import { useCompareListStyles } from '../hooks/useCompareGridStyles'
-import { ComparelistItems } from './CompareRow'
+import { useCompareListStyles } from '../hooks/useCompareListStyles'
+import { CompareRowProps } from './CompareRow'
 
-type MoreInformationRowProps = {
-  compareAbleItems: ComparelistItems
-}
+type MoreInformationRowProps = Pick<CompareRowProps, 'compareAbleItems'>
 
 export function MoreInformationRow(props: MoreInformationRowProps) {
   const { compareAbleItems } = props
@@ -36,7 +34,7 @@ export function MoreInformationRow(props: MoreInformationRowProps) {
           },
         })}
       >
-        <Box sx={{ ...compareListStyles }}>
+        <Box sx={compareListStyles}>
           {compareAbleItems?.map((item) => {
             if (!item?.product) return null
             return (

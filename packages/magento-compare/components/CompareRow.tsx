@@ -1,12 +1,10 @@
 import { SectionContainer } from '@graphcommerce/next-ui'
 import { Box } from '@mui/material'
-import { CompareListQuery } from '../graphql/CompareList.gql'
-import { useCompareListStyles } from '../hooks/useCompareGridStyles'
+import { ComparableItemFragment } from '../graphql/ComparableItem.gql'
+import { useCompareListStyles } from '../hooks/useCompareListStyles'
 
-export type ComparelistItems = NonNullable<CompareListQuery['compareList']>['items']
-
-type CompareRowProps = {
-  compareAbleItems: ComparelistItems
+export type CompareRowProps = {
+  compareAbleItems: ComparableItemFragment[]
   attribute: {
     code: string
     label: string
@@ -39,14 +37,10 @@ export function CompareRow(props: CompareRowProps) {
           },
         })}
       >
-        <Box
-          sx={(theme) => ({
-            ...compareListStyles,
-            mb: theme.spacings.lg,
-          })}
-        >
+        <Box sx={[compareListStyles, (theme) => ({ mb: theme.spacings.lg })]}>
           {compareAbleItems?.map((item, idx) => (
             <Box
+              // eslint-disable-next-line react/no-array-index-key
               key={idx}
               dangerouslySetInnerHTML={{
                 __html:

@@ -1,0 +1,11 @@
+fragment ComparableItem on ComparableItem {
+  uid
+  attributes {
+    code
+    value
+  }
+  product {
+    uid
+    ...ProductListItem
+  }
+}

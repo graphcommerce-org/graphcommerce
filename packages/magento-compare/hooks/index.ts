@@ -1,5 +1,5 @@
 export * from './useAssignCurrentCompareListUid'
 export * from './useClearCurrentCompareListUid'
-export * from './useCompareGridStyles'
+export * from './useCompareListStyles'
 export * from './useCompareList'
 export * from './useCompareListUidCreate'

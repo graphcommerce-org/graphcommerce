@@ -7,14 +7,6 @@ fragment CompareListFragment on CompareList {
   item_count
 
   items {
-    uid
-    attributes {
-      code
-      value
-    }
-    product {
-      uid
-      ...ProductListItem
-    }
+    ...ComparableItem
   }
 }
