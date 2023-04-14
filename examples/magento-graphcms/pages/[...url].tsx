@@ -104,7 +104,7 @@ function CategoryPage(props: CategoryProps) {
       {isCategory && isLanding && (
         <CategoryHeroNav
           {...category}
-          asset={pages?.[0]?.asset && <Asset asset={pages[0].asset} loading='eager' />}
+          asset={page?.asset && <Asset asset={page.asset} loading='eager' />}
           title={<CategoryHeroNavTitle>{category?.name}</CategoryHeroNavTitle>}
         />
       )}
