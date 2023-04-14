@@ -24,77 +24,18 @@ export async function pageContent(
     fetchPolicy: cached ? 'cache-first' : undefined,
   })
 
-  return pageQuery
+  const mainPage = pageQuery.data.pages.find((page) => page.url === url) ?? pageQuery.data.pages[0]
+  const content = [...mainPage.content]
 
-  const [firstPage, ...otherPages] = pageQuery.data.pages
-  const content = [...firstPage.content]
-
-  otherPages.forEach((p) => {
+  pageQuery.data.pages.forEach((p) => {
+    if (p.url === url) return
     p.content.forEach((i) => {
+      // todo: Decide if we want to push or unshift the content.
       content.push(i)
     })
   })
 
-  return { ...pageQuery, data: { pages: [{ ...firstPage, content }] } }
+  // todo: Implement sorting function for the content
 
-  // Returns an array of matched urls, if url is no match it will return null in the array
-  // const foundUrls = urls.map((url) => {
-  //   const matchedPage = allRoutes.data.pages.find((page) => page.url === url)
-
-  //   if (!matchedPage) return null
-  //   return matchedPage
-  // })
-
-  // if (foundUrls.every((item) => item === null)) {
-  //   return { data: { pages: [] } }
-  // }
-
-  // Returning all query data of foundUrls
-  // const promises: Promise<any>[] = []
-  // for (const foundUrl of foundUrls) {
-  //   if (foundUrl) {
-  //     const { url } = foundUrl
-  //     const promise = client.query({
-  //       query: DefaultPageDocument,
-  //       variables: { url }, // loop through urls if found
-  //       fetchPolicy: cached ? 'network-only' : 'network-only', // Dit returned hetzelfde, undefined => cache-first (default)
-  //     })
-  //     promises.push(promise)
-  //   }
-  // }
-
-  // const results = await Promise.all(promises)
-
-  // let page
-
-  // // page content is inextendible, so we need to create these new arrays
-  // let newPage: any = {}
-  // const newContent: any = []
-
-  // for (const result of results) {
-  //   if (result.data.pages[0].url === 'product/global') {
-  //     // eslint-disable-next-line prefer-destructuring
-  //     page = result.data.pages[0]
-  //     // create new extendable product/global page
-  //     newPage = { ...page }
-  //     page.content.forEach((item) => {
-  //       newContent.push(item)
-  //     })
-  //   } else {
-  //     const { content } = result.data.pages[0]
-  //     content.forEach((item) => {
-  //       newContent.push(item)
-  //     })
-  //   }
-  // }
-
-  // newPage.content = newContent
-
-  // console.log('FOUND: ', foundUrls)
-  // console.log('RESULTS: ', results)
-  // console.log('GLOBALPAGE: ', page)
-  // console.log('NEWCONTENT: ', newContent)
-  // console.log('NEWGLOBALPAGE: ', newPage)
-
-  // return newPage
+  return { ...pageQuery, data: { pages: [{ ...mainPage, content }] } }
 }

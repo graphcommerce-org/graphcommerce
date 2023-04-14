@@ -52,9 +52,9 @@ import {
 } from '../../components'
 import { pageContent } from '../../components/GraphCMS/pageContent'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
+import { DefaultPageQuery } from '../../graphql/DefaultPage.gql'
 import { ProductPage2Document, ProductPage2Query } from '../../graphql/ProductPage2.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
-import { DefaultPageQuery } from '../../graphql/DefaultPage.gql'
 
 type Props = DefaultPageQuery &
   ProductPage2Query &
@@ -241,6 +241,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const productPage = staticClient.query({ query: ProductPage2Document, variables: { urlKey } })
 
   const product = (await productPage).data.products?.items?.find((p) => p?.url_key === urlKey)
+  if (!product) return redirectOrNotFound(staticClient, conf, params, locale)
 
   // ! code of Paul
   const aggregations = filterNonNullableKeys((await productPage).data.products?.aggregations, [
@@ -267,7 +268,6 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
       ? { href: `/${category.url_path}`, title: category.name }
       : { href: `/`, title: 'Home' }
 
-  if (!product) return redirectOrNotFound(staticClient, conf, params, locale)
   return {
     props: {
       ...defaultConfigurableOptionsSelection(urlKey, client, (await productPage).data),
