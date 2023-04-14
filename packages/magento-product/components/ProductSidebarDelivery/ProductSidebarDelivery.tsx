@@ -11,18 +11,23 @@ export function ProductSidebarDelivery(props: ProductSidebarDeliveryProps) {
   const { product } = props
   const { stock_status, only_x_left_in_stock } = product ?? {}
 
-  let title = 'Order before 22:00'
-  let subtitle = 'Next day delivery - Shipping free'
+  let title = <Trans id='Order before 22:00' />
+  let subtitle = <Trans id='Next day delivery - Shipping free' />
 
   if (stock_status === 'OUT_OF_STOCK') {
-    title = 'Out of stock'
-    subtitle = 'We are sorry, this product is currently out of stock.'
+    title = <Trans id='Out of stock' />
+    subtitle = <Trans id='We are sorry, this product is currently out of stock.' />
   } else if (stock_status === 'IN_STOCK' && only_x_left_in_stock) {
-    title = 'Only a few left'
-    subtitle = `Only ${only_x_left_in_stock} left in stock.`
+    title = <Trans id='Only a few left' />
+    subtitle = (
+      <Trans
+        id='Only {amount_left_in_stock} left in stock.'
+        values={{ amount_left_in_stock: only_x_left_in_stock }}
+      />
+    )
   }
   if (only_x_left_in_stock === 1) {
-    subtitle = 'Only 1 left in stock.'
+    subtitle = <Trans id='Only 1 left in stock.' />
   }
 
   return (
@@ -50,11 +55,9 @@ export function ProductSidebarDelivery(props: ProductSidebarDeliveryProps) {
       })}
     >
       <IconSvg src={iconOrderBefore} size='small' sx={{ gridArea: 'image' }} />
-      <Box sx={{ typography: 'body2', gridArea: 'title', fontWeight: 600 }}>
-        <Trans id={title} />
-      </Box>
+      <Box sx={{ typography: 'body2', gridArea: 'title', fontWeight: 600 }}>{title}</Box>
       <Box sx={{ typography: 'body2', gridArea: 'subtitle', color: 'text.primary' }}>
-        <Trans id={subtitle} />
+        {subtitle}
       </Box>
     </Box>
   )
