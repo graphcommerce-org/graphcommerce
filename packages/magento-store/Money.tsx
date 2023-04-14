@@ -1,3 +1,5 @@
+'use client'
+
 import { useQuery } from '@graphcommerce/graphql'
 import { ExtendableComponent, useNumberFormat } from '@graphcommerce/next-ui'
 import { useThemeProps } from '@mui/material'

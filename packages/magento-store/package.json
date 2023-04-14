@@ -4,6 +4,7 @@
   "repository": "github:graphcommerce-org/graphcommerce",
   "version": "6.1.1-canary.2",
   "sideEffects": false,
+  "type": "module",
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
     "extends": "@graphcommerce/eslint-config-pwa",

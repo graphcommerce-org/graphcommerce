@@ -7,10 +7,9 @@ import { i18n, Messages } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
 import { CssBaseline, styled } from '@mui/material'
 import { LazyMotion } from 'framer-motion'
-import { nl } from 'make-plural/plurals'
+import { nl, en } from 'make-plural/plurals'
 import { ReactNode, useMemo } from 'react'
 import { darkTheme, lightTheme } from '../../components/theme'
-import { useLocale } from '../locale'
 import { StylesCacheProvider } from './StyleCacheProvider'
 
 const Body = styled('body')({
@@ -22,17 +21,21 @@ const Body = styled('body')({
   },
 })
 
-type RootLayoutClientProps = { children: ReactNode; messages: Messages } & GraphQLProviderProps
+type RootLayoutClientProps = {
+  children: ReactNode
+  messages: Messages
+  linguiLocale: string
+} & GraphQLProviderProps
 
 export function RootLayoutClient(props: RootLayoutClientProps) {
-  const { children, messages, locale } = props
+  const { children, messages, locale, linguiLocale } = props
 
   const i = useMemo(() => {
-    i18n.loadLocaleData({ nl: { plurals: nl } })
-    i18n.load(locale, messages)
-    i18n.activate(locale)
+    i18n.loadLocaleData({ nl: { plurals: nl }, en: { plurals: en } })
+    i18n.load(linguiLocale, messages)
+    i18n.activate(linguiLocale)
     return i18n
-  }, [locale, messages])
+  }, [linguiLocale, messages])
 
   useMeasureDynamicViewportSize()
 
