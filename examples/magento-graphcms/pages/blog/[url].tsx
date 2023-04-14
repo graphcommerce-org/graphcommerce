@@ -33,9 +33,11 @@ type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
 function BlogPage(props: Props) {
-  const { pages, blogPosts } = props
-  const page = pages[0]
+  const { blogPosts, page } = props
+
   const title = page.title ?? ''
+
+  console.log(page)
 
   return (
     <>
@@ -88,29 +90,26 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   const staticClient = graphqlSsrClient(locale)
   const limit = 4
   const conf = client.query({ query: StoreConfigDocument })
-  const page = staticClient.query({
-    query: DefaultPageDocument,
-    variables: { url: `blog/${urlKey}` },
-  })
+
   const layout = staticClient.query({ query: LayoutDocument })
 
   const tags = [url]
-  const pagey = await pageContent(staticClient, url, tags, true) // remove await
+  const page = await pageContent(staticClient, url, tags, true) // remove await
 
   console.log('URLKEY: ', urlKey)
-  console.log('PAGEY: ', pagey)
+  console.log('PAGEY: ', page)
 
   const blogPosts = staticClient.query({
     query: BlogListDocument,
     variables: { currentUrl: [`blog/${urlKey}`], first: limit },
   })
-  if (!(await page).data.pages?.[0]) return { notFound: true }
+  if (!page) return { notFound: true }
 
   return {
     props: {
-      ...(await page).data,
       ...(await blogPosts).data,
       ...(await layout).data,
+      page,
       up: { href: '/', title: 'Home' },
       apolloState: await conf.then(() => client.cache.extract()),
     },

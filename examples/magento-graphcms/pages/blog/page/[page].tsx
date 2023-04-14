@@ -19,10 +19,13 @@ import {
   BlogPathsQuery,
   LayoutNavigation,
   LayoutNavigationProps,
+  RowRenderer,
 } from '../../../components'
 import { LayoutDocument } from '../../../components/Layout/Layout.gql'
 import { DefaultPageDocument, DefaultPageQuery } from '../../../graphql/DefaultPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
+import path from 'path'
+import { pageContent } from '../../../components/GraphCMS/pageContent'
 
 type Props = DefaultPageQuery & BlogListQuery & BlogPathsQuery
 type RouteProps = { page: string }
@@ -32,7 +35,7 @@ type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProp
 const pageSize = 16
 
 function BlogPage(props: Props) {
-  const { pages, blogPosts, pagesConnection } = props
+  const { pages, blogPosts, pagesConnection, pagey } = props
   const router = useRouter()
   const page = pages[0]
   const title = page.title ?? ''
@@ -61,6 +64,8 @@ function BlogPage(props: Props) {
           </Link>
         )}
       />
+
+      <RowRenderer content={pagey.content} />
     </>
   )
 }
@@ -90,12 +95,20 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 }
 
 export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => {
+  const url = 'blog'
   const skip = Math.abs((Number(params?.page ?? '1') - 1) * pageSize)
   const client = graphqlSharedClient(locale)
   const staticClient = graphqlSsrClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
   const defaultPage = staticClient.query({ query: DefaultPageDocument, variables: { url: 'blog' } })
   const layout = staticClient.query({ query: LayoutDocument })
+
+  const tags = [url]
+
+  const pagey = await pageContent(staticClient, url, tags, true)
+
+  console.log('PAGEY: ', pagey)
+  console.log('URL: ', url)
 
   const blogPosts = staticClient.query({
     query: BlogListDocument,
@@ -113,6 +126,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
       ...(await blogPosts).data,
       ...(await blogPaths).data,
       ...(await layout).data,
+      pagey,
       urlEntity: { relative_url: `blog` },
       up: { href: '/blog', title: 'Blog' },
       apolloState: await conf.then(() => client.cache.extract()),
