@@ -24,6 +24,8 @@ import {
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
 import { DefaultPageDocument, DefaultPageQuery } from '../../graphql/DefaultPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import { pageContent } from '../../components/GraphCMS/pageContent'
+import path from 'path'
 
 type Props = DefaultPageQuery & BlogListQuery
 type RouteProps = { url: string }
@@ -80,6 +82,8 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 
 export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => {
   const urlKey = params?.url ?? '??'
+  const parentFolderName = path.basename(path.dirname(__filename))
+  const url = `${parentFolderName}/${urlKey}`
   const client = graphqlSharedClient(locale)
   const staticClient = graphqlSsrClient(locale)
   const limit = 4
@@ -89,6 +93,12 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
     variables: { url: `blog/${urlKey}` },
   })
   const layout = staticClient.query({ query: LayoutDocument })
+
+  const tags = [url]
+  const pagey = await pageContent(staticClient, url, tags, true) // remove await
+
+  console.log('URLKEY: ', urlKey)
+  console.log('PAGEY: ', pagey)
 
   const blogPosts = staticClient.query({
     query: BlogListDocument,
