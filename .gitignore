@@ -8,6 +8,7 @@ node_modules
 
 # next.js
 .next/
+.vercel
 out/
 tsctrace
 
