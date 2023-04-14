@@ -22,5 +22,4 @@ export const demoConfig: Partial<GraphCommerceConfig> & Record<string, unknown> 
   demoMode: true,
   limitSsg: true,
   compare: true,
-  compareCheckbox: true,
 }

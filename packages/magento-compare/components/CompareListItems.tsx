@@ -3,20 +3,15 @@ import {
   ProductItemsGridProps,
   ProductListItemsBase,
 } from '@graphcommerce/magento-product'
-import { useCompareList } from '../hooks/useCompareList'
 import { useCompareListStyles } from '../hooks/useCompareListStyles'
-import { useCompareVisibleItems } from './CompareForm'
+import { useCompareVisibleItems } from './CompareListForm'
 
 export type CompareListItemsProps = Pick<ProductItemsGridProps, 'renderers' | 'sx'>
 
 export function CompareListItems(props: CompareListItemsProps) {
   const { renderers, sx } = props
 
-  const compareList = useCompareList().data?.compareList
-  const compareListCount = compareList?.item_count ?? 0
-  const gridColumns = compareListCount <= 3 ? compareListCount : 3
-
-  const compareListStyles = useCompareListStyles(gridColumns)
+  const compareListStyles = useCompareListStyles()
 
   const items = useCompareVisibleItems().map((i) => i.product)
 

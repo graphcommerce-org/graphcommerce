@@ -2,7 +2,6 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { mergeDeep } from '@graphcommerce/graphql'
 import { CompareProductButton, FallbackCompareButton } from '@graphcommerce/magento-compare'
 import {
-  AddProductsToCartActions,
   AddProductsToCartButton,
   AddProductsToCartError,
   AddProductsToCartForm,

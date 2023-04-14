@@ -1,5 +1,5 @@
 export * from './CompareFab'
-export * from './CompareForm'
+export * from './CompareListForm'
 export * from './CompareListItems'
 export * from './CompareListSelect'
 export * from './CompareMessageSnackbar'

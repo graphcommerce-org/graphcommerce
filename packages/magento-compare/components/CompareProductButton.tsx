@@ -1,5 +1,6 @@
 import { useMutation } from '@graphcommerce/graphql'
 import { Trans } from '@lingui/react'
+// eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { Badge, Box, Button, Checkbox, SxProps, Theme } from '@mui/material'
 import { useState } from 'react'
 import { CompareProductIdInternalFragment } from '../graphql'

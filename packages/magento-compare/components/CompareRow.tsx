@@ -13,14 +13,9 @@ export type CompareRowProps = {
 
 export function CompareRow(props: CompareRowProps) {
   const { attribute, compareAbleItems } = props
-  let columnCount: number
+  const columnCount = compareAbleItems.length <= 3 ? compareAbleItems.length : 3
 
-  if (compareAbleItems) {
-    columnCount = compareAbleItems.length <= 3 ? compareAbleItems.length : 3
-  } else {
-    columnCount = 0
-  }
-  const compareListStyles = useCompareListStyles(columnCount)
+  const compareListStyles = useCompareListStyles()
 
   return (
     <Box>
@@ -29,10 +24,17 @@ export function CompareRow(props: CompareRowProps) {
         sx={(theme) => ({
           '& .SectionHeader-root': {
             justifyContent: 'center',
+            borderBottom: 'none',
+            pb: 0,
             '& > .MuiTypography-root': {
+              pb: theme.spacings.xxs,
+              borderBottom: `1px solid ${theme.palette.divider}`,
               width: `calc(calc(calc(100% / 3) * ${columnCount}) + ${
                 columnCount > 1 ? theme.spacings.md : '0px'
               })`,
+              [theme.breakpoints.down('md')]: {
+                width: '100%',
+              },
             },
           },
         })}
@@ -42,6 +44,10 @@ export function CompareRow(props: CompareRowProps) {
             <Box
               // eslint-disable-next-line react/no-array-index-key
               key={idx}
+              sx={{
+                '& > p:first-of-type': { marginTop: 0 },
+                '& > p:last-of-type': { marginBottom: 0 },
+              }}
               dangerouslySetInnerHTML={{
                 __html:
                   item?.attributes.find((itemAttribute) => itemAttribute?.code === attribute?.code)

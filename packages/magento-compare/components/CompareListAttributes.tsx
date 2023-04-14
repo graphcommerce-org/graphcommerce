@@ -1,7 +1,7 @@
 import { filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { Box, SxProps, Theme } from '@mui/material'
 import { useCompareList } from '../hooks/useCompareList'
-import { useCompareVisibleItems } from './CompareForm'
+import { useCompareVisibleItems } from './CompareListForm'
 import { CompareRow } from './CompareRow'
 import { MoreInformationRow } from './MoreInformationRow'
 
@@ -14,20 +14,22 @@ export function CompareListAttributes(props: CompareListAttributesProps) {
   const compareList = useCompareList()
   const compareListAttributes = filterNonNullableKeys(compareList.data?.compareList?.attributes)
   const items = useCompareVisibleItems()
+
   return (
     <Box
       sx={[
         (theme) => ({
-          backgroundColor: theme.palette.background.default,
-          py: theme.spacings.md,
-          px: {
-            xs: theme.spacings.xs,
-            md: theme.spacings.md,
-            lg: theme.spacings.lg,
+          bgcolor: theme.palette.background.default,
+          '& :first-of-type > div': {
+            mt: 0,
           },
-          [theme.breakpoints.up('md')]: {
-            mb: theme.spacings.md,
+          mx: `calc(${theme.page.horizontal} * -1)`,
+          py: theme.spacings.md,
+          px: theme.page.horizontal,
+          [theme.breakpoints.up('lg')]: {
             borderRadius: theme.shape.borderRadius * 1.5,
+            mx: `calc(${theme.spacings.lg} * -1)`,
+            p: theme.spacings.lg,
           },
         }),
         ...(Array.isArray(sx) ? sx : [sx]),

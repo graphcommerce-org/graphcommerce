@@ -1,13 +1,9 @@
 import { useForm, useFormPersist, UseFormReturn, useWatch } from '@graphcommerce/ecommerce-ui'
-import { useConstant } from '@graphcommerce/framer-utils'
 import { filterNonNullableKeys, nonNullable } from '@graphcommerce/next-ui'
-import React, { createContext, useContext, useEffect, useRef } from 'react'
-import { ComparableItemFragment } from '../graphql/ComparableItem.gql'
+import React, { createContext, useContext, useEffect, useMemo, useRef } from 'react'
 import { useCompareList } from '../hooks'
 
-type CompareFormProps = {
-  children?: React.ReactNode
-}
+type CompareListFormProps = { children?: React.ReactNode }
 
 type FormFields = { selected: number[] }
 
@@ -17,7 +13,7 @@ type CompareFormContextType = Omit<UseFormReturn<FormFields>, 'formState' | 'wat
 
 const CompareFormContext = createContext<CompareFormContextType | undefined>(undefined)
 
-export function CompareForm(props: CompareFormProps) {
+export function CompareListForm(props: CompareListFormProps) {
   const { children } = props
 
   const compareList = useCompareList()
@@ -63,7 +59,10 @@ export function CompareForm(props: CompareFormProps) {
     }
   }, [compareAbleItems?.length, compareListCount, form, gridColumns, selectedState])
 
-  const value = useConstant(() => ({ ...form, selectedPrevious } satisfies CompareFormContextType))
+  const value = useMemo(
+    () => ({ ...form, selectedPrevious } satisfies CompareFormContextType),
+    [form],
+  )
   return <CompareFormContext.Provider value={value}>{children}</CompareFormContext.Provider>
 }
 
@@ -81,14 +80,4 @@ export function useCompareVisibleItems() {
 
   const compareList = filterNonNullableKeys(useCompareList().data?.compareList?.items)
   return selectedState.map((i) => compareList[i]).filter(nonNullable)
-}
-
-export function useSelectedState(): number[] {
-  const { control } = useCompareForm()
-  const selected = useWatch<FormFields>({ control, name: 'selected' })
-  return Array.isArray(selected) ? selected : [selected]
-}
-
-export function useCurrentCompareItems(): ComparableItemFragment[] {
-  return []
 }

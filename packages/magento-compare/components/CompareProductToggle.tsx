@@ -3,7 +3,7 @@ import { iconCompare, Button, Fab, FabProps } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
-import { Box, Checkbox, NoSsr, SxProps, Theme } from '@mui/material'
+import { alpha, Checkbox, NoSsr, SxProps, Theme } from '@mui/material'
 import { useState } from 'react'
 import { CompareProductIdInternalFragment } from '../graphql'
 import { AddProductsToCompareListDocument } from '../graphql/AddProductsToCompareList.gql'
@@ -86,7 +86,10 @@ function CompareProductToggleBase(
                 stroke: inCompareList ? theme.palette.primary.main : theme.palette.text.secondary,
               },
               '&:hover': {
-                backgroundColor: `rgba(0,0,0,${theme.palette.action.hoverOpacity})`,
+                backgroundColor: alpha(
+                  theme.palette.text.primary,
+                  theme.palette.action.hoverOpacity,
+                ),
               },
             }),
             ...(Array.isArray(sx) ? sx : [sx]),

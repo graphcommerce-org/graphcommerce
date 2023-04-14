@@ -1,6 +1,6 @@
 import { useTheme } from '@mui/material'
 
-export function useCompareListStyles(columnCount: number) {
+export function useCompareListStyles() {
   const theme = useTheme()
   return {
     display: 'flex ',

@@ -16,8 +16,6 @@ export function CompareMessageSnackbar(props: {
 }) {
   const { count, name, displayMessageBar, setDisplayMessageBar } = props
 
-  if (count && count > 2) return null
-
   return (
     <MessageSnackbar
       open={displayMessageBar}
