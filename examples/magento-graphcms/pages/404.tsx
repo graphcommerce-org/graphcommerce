@@ -5,7 +5,6 @@ import { GetStaticProps, Separator, icon404, IconSvg, MetaRobots } from '@graphc
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, Container, Typography, Link } from '@mui/material'
-import PageLink from 'next/link'
 import router from 'next/router'
 import React from 'react'
 import { LayoutNavigation, LayoutNavigationProps } from '../components'
@@ -23,21 +22,15 @@ function RouteNotFoundPage() {
     <Link onClick={() => router.back()} href='#' underline='hover'>
       <Trans id='Back' />
     </Link>,
-    <PageLink key={0} passHref href='/'>
-      <Link color='primary' underline='hover'>
-        <Trans id='Store home' />
-      </Link>
-    </PageLink>,
-    <PageLink key={1} passHref href='/account'>
-      <Link color='primary' underline='hover'>
-        <Trans id='Account' />
-      </Link>
-    </PageLink>,
-    <PageLink key={2} passHref href='/service'>
-      <Link color='primary' underline='hover'>
-        <Trans id='FAQ' />
-      </Link>
-    </PageLink>,
+    <Link href='/' key={0} color='primary' underline='hover'>
+      <Trans id='Store home' />
+    </Link>,
+    <Link href='/account' key={1} color='primary' underline='hover'>
+      <Trans id='Account' />
+    </Link>,
+    <Link href='/service' key={2} color='primary' underline='hover'>
+      <Trans id='FAQ' />
+    </Link>,
   ]
 
   return (

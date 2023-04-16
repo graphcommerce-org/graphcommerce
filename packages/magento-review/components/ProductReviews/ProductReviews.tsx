@@ -178,7 +178,7 @@ export function ProductReviews(props: ProductReviewsProps) {
             </Box>
             <Typography variant='body1'>{review?.text}</Typography>
 
-            {(review?.ratings_breakdown ?? 0) > 1 && (
+            {(review?.ratings_breakdown.length ?? 0) > 1 && (
               <Box
                 className={classes.ratingRow}
                 sx={(theme) => ({
