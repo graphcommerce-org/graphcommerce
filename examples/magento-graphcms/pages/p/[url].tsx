@@ -68,6 +68,8 @@ function ProductPage(props: Props) {
 
   const product = mergeDeep(products, relatedUpsells)?.items?.[0]
 
+  const page = pages[0]
+
   if (!product?.sku || !product.url_key) return null
 
   return (
@@ -193,9 +195,9 @@ function ProductPage(props: Props) {
 
       <ProductPageDescription {...product} right={<Usps usps={usps} />} fontSize='responsive' />
 
-      {pages?.[0] && (
+      {page && (
         <RowRenderer
-          content={pages?.[0].content}
+          content={page.content}
           renderer={{
             RowProduct: (rowProps) => (
               <RowProduct
@@ -256,10 +258,9 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     ...aggregations.map((a) => a.options.map((o) => `${a.attribute_code}:${o?.value}`)).flat(),
   ]
 
-  console.log('TAGS: ', tags)
   // ! end code of paul
 
-  const page = pageContent(staticClient, 'product/global', tags, true)
+  const pages = pageContent(staticClient, 'product/global', tags, true)
 
   const category = productPageCategory(product)
   const up =
@@ -271,7 +272,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     props: {
       ...defaultConfigurableOptionsSelection(urlKey, client, (await productPage).data),
       ...(await layout).data,
-      ...(await page).data,
+      ...(await pages).data,
       apolloState: await conf.then(() => client.cache.extract()),
       up,
     },
