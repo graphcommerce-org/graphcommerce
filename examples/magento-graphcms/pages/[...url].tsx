@@ -198,15 +198,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
 
   const staticClient = graphqlSsrClient(locale)
 
-  const tags = [url]
-
-  const pages = pageContent(staticClient, url, tags)
-
   const categoryPage = staticClient.query({ query: CategoryPageDocument, variables: { url } })
-
-  console.log('URL: ', url)
-  console.log('TAGS: ', tags)
-  console.log('PAGEY: ', await pages)
 
   const layout = staticClient.query({ query: LayoutDocument })
 
@@ -218,6 +210,12 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     categoryUid = (await categoryPage).data.categories?.items?.[0]?.uid ?? ''
     if (productListParams) productListParams.filters.category_uid = { in: [categoryUid] }
   }
+
+  const tags = [url]
+  const pages = pageContent(staticClient, url, tags)
+  console.log('URL: ', url)
+  console.log('TAGS: ', tags)
+  console.log('PAGEY: ', await pages)
 
   const hasPage = filteredCategoryUid ? false : (await pages).data.pages.length > 0
   const hasCategory = Boolean(productListParams && categoryUid)
