@@ -245,7 +245,6 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const product = (await productPage).data.products?.items?.find((p) => p?.url_key === urlKey)
   if (!product) return redirectOrNotFound(staticClient, conf, params, locale)
 
-  // ! code of Paul
   const aggregations = filterNonNullableKeys((await productPage).data.products?.aggregations, [
     'options',
   ]).filter((a) => a.attribute_code !== 'price' && a.attribute_code !== 'category_uid')
@@ -257,8 +256,6 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     `stock_status:${product?.stock_status}`,
     ...aggregations.map((a) => a.options.map((o) => `${a.attribute_code}:${o?.value}`)).flat(),
   ]
-
-  // ! end code of paul
 
   const pages = pageContent(staticClient, 'product/global', tags, true)
 
