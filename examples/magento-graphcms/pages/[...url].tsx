@@ -1,6 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { Asset } from '@graphcommerce/graphcms-ui'
-import { ApolloClient, NormalizedCacheObject, flushMeasurePerf } from '@graphcommerce/graphql'
+import { flushMeasurePerf } from '@graphcommerce/graphql'
 import {
   CategoryChildren,
   CategoryDescription,
@@ -10,10 +10,7 @@ import {
   getCategoryStaticPaths,
 } from '@graphcommerce/magento-category'
 import {
-  extractUrlQuery,
   FilterTypes,
-  getFilterTypes,
-  parseParams,
   ProductFiltersDocument,
   ProductFiltersPro,
   ProductFiltersProAllFiltersChip,
@@ -29,14 +26,17 @@ import {
   ProductListParamsProvider,
   ProductListQuery,
   ProductListSort,
+  extractUrlQuery,
+  getFilterTypes,
+  parseParams,
 } from '@graphcommerce/magento-product'
 import { StoreConfigDocument, redirectOrNotFound } from '@graphcommerce/magento-store'
 import {
-  StickyBelowHeader,
-  LayoutTitle,
-  LayoutHeader,
   GetStaticProps,
+  LayoutHeader,
+  LayoutTitle,
   MetaRobots,
+  StickyBelowHeader,
 } from '@graphcommerce/next-ui'
 import { Container } from '@mui/material'
 import { GetStaticPaths } from 'next'
@@ -50,8 +50,8 @@ import {
 import { pageContent } from '../components/GraphCMS/pageContent'
 import { LayoutDocument } from '../components/Layout/Layout.gql'
 import { CategoryPageDocument, CategoryPageQuery } from '../graphql/CategoryPage.gql'
-import { graphqlSsrClient, graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
 import { DefaultPageQuery } from '../graphql/DefaultPage.gql'
+import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
 
 export type CategoryProps = CategoryPageQuery &
   DefaultPageQuery &
@@ -67,9 +67,8 @@ function CategoryPage(props: CategoryProps) {
 
   const category = categories?.items?.[0]
   const isLanding = category?.display_mode === 'PAGE'
-
-  const page = pages?.[0]
   const isCategory = params && category && products?.items && filterTypes
+  const page = pages?.[0]
 
   return (
     <>
@@ -213,9 +212,6 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
 
   const tags = [url]
   const pages = pageContent(staticClient, url, tags)
-  console.log('URL: ', url)
-  console.log('TAGS: ', tags)
-  console.log('PAGEY: ', await pages)
 
   const hasPage = filteredCategoryUid ? false : (await pages).data.pages.length > 0
   const hasCategory = Boolean(productListParams && categoryUid)
@@ -261,8 +257,8 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const result = {
     props: {
       ...(await categoryPage).data,
-      ...(await pages).data,
       ...(await products).data,
+      ...(await pages).data,
       ...(await filters).data,
       ...(await layout).data,
       filterTypes: await filterTypes,
