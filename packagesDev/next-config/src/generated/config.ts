@@ -192,7 +192,7 @@ export type GraphCommerceConfig = {
   storefront: Array<GraphCommerceStorefrontConfig>;
   /** Hide the wishlist functionality for guests. */
   wishlistHideForGuests?: InputMaybe<Scalars['Boolean']>;
-  /** Ignores wether a product is already in the wishlist, makes the toggle an add only. */
+  /** Ignores whether a product is already in the wishlist, makes the toggle an add only. */
   wishlistIgnoreProductWishlistStatus?: InputMaybe<Scalars['Boolean']>;
   /** Show a message when the product is added to the wishlist. */
   wishlistShowFeedbackMessage?: InputMaybe<Scalars['Boolean']>;

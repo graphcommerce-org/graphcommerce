@@ -5,7 +5,7 @@ extend input GraphCommerceConfig {
   wishlistHideForGuests: Boolean
 
   """
-  Ignores wether a product is already in the wishlist, makes the toggle an add only.
+  Ignores whether a product is already in the wishlist, makes the toggle an add only.
   """
   wishlistIgnoreProductWishlistStatus: Boolean
 
