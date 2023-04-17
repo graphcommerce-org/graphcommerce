@@ -328,6 +328,9 @@ msgstr "Newsletter"
 msgid "Next"
 msgstr "Avanti"
 
+msgid "Next day delivery - Shipping free"
+msgstr "Consegna il giorno successivo - Spedizione gratuita"
+
 msgid "No Image"
 msgstr "Nessuna immagine"
 
@@ -352,11 +355,23 @@ msgstr "Ok"
 msgid "Older"
 msgstr "Precedenti"
 
+msgid "Only 1 left in stock."
+msgstr "Solo 1 pezzo disponibile."
+
+msgid "Only a few left"
+msgstr "Solo pochi pezzi disponibili"
+
+msgid "Only {amount_left_in_stock} left in stock."
+msgstr ""
+
 msgid "Or follow these links to get you back on track!"
 msgstr "O seguire questi link per riprendere il tuo percorso!"
 
 msgid "Order #{orderId}"
 msgstr "Ordine #{orderId}"
+
+msgid "Order before 22:00"
+msgstr "Ordina prima delle 22:00"
 
 msgid "Order not found"
 msgstr "Ordine non trovato"
@@ -378,6 +393,9 @@ msgstr "Ordini"
 
 msgid "Other"
 msgstr "Altro"
+
+msgid "Out of stock"
+msgstr ""
 
 msgid "Page {page} of {count}"
 msgstr "Pagina {page} di {count}"
@@ -420,6 +438,9 @@ msgstr "Effettua l'ordine"
 
 msgid "Please check your inbox to validate your email ({email})"
 msgstr "Controlla la tua casella di posta per validare la tua email ({email})"
+
+msgid "Please enter a valid email address"
+msgstr "Inserisci un indirizzo email valido"
 
 msgid "Please provide a valid house number"
 msgstr "Inserisci un numero civico valido"
@@ -636,6 +657,9 @@ msgstr "Visualizza il tuo account"
 
 msgid "We are fetching your favorite products, one moment please!"
 msgstr "Stiamo scaricando i tuoi prodotti preferiti, un momento per favore!"
+
+msgid "We are sorry, this product is currently out of stock."
+msgstr "Ci dispiace, questo prodotto è momentaneamente esaurito."
 
 msgid "We can not process your payment, we received an unsupported status \"<0>{resultCode}</0>\". Please try again or select a different payment method."
 msgstr "Non possiamo elaborare il tuo pagamento, abbiamo ricevuto uno stato non supportato \"<0>{resultCode}</0>\". Riprova o seleziona un metodo di pagamento differente."

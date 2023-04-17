@@ -328,6 +328,9 @@ msgstr "Newsletter"
 msgid "Next"
 msgstr "Weiter"
 
+msgid "Next day delivery - Shipping free"
+msgstr "Nächster Tag Lieferung - Versand kostenlos"
+
 msgid "No Image"
 msgstr "Kein Bild"
 
@@ -352,11 +355,23 @@ msgstr "Ok"
 msgid "Older"
 msgstr "Älter"
 
+msgid "Only 1 left in stock."
+msgstr "Nur noch 1 auf Lager."
+
+msgid "Only a few left"
+msgstr "Nur noch wenige auf Lager"
+
+msgid "Only {amount_left_in_stock} left in stock."
+msgstr "Nur noch {amount_left_in_stock} auf Lager."
+
 msgid "Or follow these links to get you back on track!"
 msgstr "Oder folgen Sie diesen Links, um Sie wieder auf den Weg zu bringen!"
 
 msgid "Order #{orderId}"
 msgstr "Bestellung #{orderId}"
+
+msgid "Order before 22:00"
+msgstr "Bestellen Sie vor 22:00 Uhr"
 
 msgid "Order not found"
 msgstr "Bestellung nicht gefunden"
@@ -378,6 +393,9 @@ msgstr "Bestellungen"
 
 msgid "Other"
 msgstr "Andere"
+
+msgid "Out of stock"
+msgstr "Nicht auf Lager"
 
 msgid "Page {page} of {count}"
 msgstr "Seite {page} von {count}"
@@ -420,6 +438,9 @@ msgstr "Bestellen"
 
 msgid "Please check your inbox to validate your email ({email})"
 msgstr "Bitte überprüfen Sie Ihr Postfach, um Ihre E-Mail-Adresse zu bestätigen ({email})"
+
+msgid "Please enter a valid email address"
+msgstr "Bitte geben Sie eine gültige E-Mail-Adresse ein"
 
 msgid "Please provide a valid house number"
 msgstr "Bitte geben Sie eine gültige Hausnummer an"
@@ -636,6 +657,9 @@ msgstr "Ihr Konto anzeigen"
 
 msgid "We are fetching your favorite products, one moment please!"
 msgstr "Wir laden Ihre Favoritenprodukte herunter, einen Moment bitte!"
+
+msgid "We are sorry, this product is currently out of stock."
+msgstr "Wir sind sorry, dieses Produkt ist derzeit nicht auf Lager."
 
 msgid "We can not process your payment, we received an unsupported status \"<0>{resultCode}</0>\". Please try again or select a different payment method."
 msgstr "Wir können Ihre Zahlung nicht verarbeiten, wir haben einen nicht unterstützten Status \"<0>{resultCode}</0>\" erhalten. Bitte versuchen Sie es erneut oder wählen Sie eine andere Zahlungsmethode aus."
