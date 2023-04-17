@@ -147,6 +147,7 @@ export function RowLinks(props: RowLinksProps) {
             className={classes.swipperButton}
             sx={{
               display: 'flex',
+              zIndex: 'inherit',
               ...mode,
             }}
             size='responsive'
