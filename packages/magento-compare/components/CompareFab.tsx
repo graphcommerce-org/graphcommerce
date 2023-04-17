@@ -6,18 +6,8 @@ import {
   useScrollY,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
-import {
-  Fab,
-  FabProps,
-  styled,
-  Box,
-  SxProps,
-  Theme,
-  NoSsr,
-  Badge,
-  Button,
-  ButtonProps,
-} from '@mui/material'
+import { Trans } from '@lingui/react'
+import { styled, Box, SxProps, Theme, NoSsr, Badge, Button, ButtonProps } from '@mui/material'
 import { m, useTransform } from 'framer-motion'
 import React from 'react'
 import { useCompareList } from '../hooks/useCompareList'
@@ -75,7 +65,7 @@ function CompareFabContent(props: CompareFabContentProps) {
           })}
           {...rest}
         >
-          {compareIcon} Compare
+          {compareIcon} <Trans id='Compare' />
         </MotionFab>
       </Badge>
 
