@@ -31,11 +31,17 @@ msgstr "Account"
 msgid "Add address"
 msgstr "Add address"
 
+msgid "Add another product to start comparing."
+msgstr "Add another product to start comparing."
+
 msgid "Add new address"
 msgstr "Add new address"
 
 msgid "Add to Cart"
 msgstr "Add to Cart"
+
+msgid "Add to comparison"
+msgstr "Add to comparison"
 
 msgid "Add to wishlist"
 msgstr "Add to wishlist"
@@ -127,6 +133,9 @@ msgstr "Close"
 msgid "Compare"
 msgstr "Compare"
 
+msgid "Compare ({0})"
+msgstr "Compare ({0})"
+
 msgid "Compare products"
 msgstr "Compare products"
 
@@ -198,6 +207,9 @@ msgstr "Discount code"
 
 msgid "Discover our collection and add items to your cart!"
 msgstr "Discover our collection and add items to your cart!"
+
+msgid "Discover our collection and add items to your comparelist!"
+msgstr "Discover our collection and add items to your comparelist!"
 
 msgid "Discover our collection and add items to your wishlist!"
 msgstr "Discover our collection and add items to your wishlist!"
@@ -508,6 +520,9 @@ msgstr "Remove"
 msgid "Remove Product"
 msgstr "Remove Product"
 
+msgid "Remove from comparison"
+msgstr "Remove from comparison"
+
 msgid "Remove from wishlist"
 msgstr "Remove from wishlist"
 
@@ -771,6 +786,9 @@ msgstr "Your address has been added"
 
 msgid "Your cart is empty"
 msgstr "Your cart is empty"
+
+msgid "Your comparelist is empty"
+msgstr "Your comparelist is empty"
 
 msgid "Your order has been canceled"
 msgstr "Your order has been canceled"

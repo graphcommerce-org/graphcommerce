@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 msgid "<0>{name}</0> has been added to your comparison!"
-msgstr ""
+msgstr "<0>{name}</0> a été ajouté à votre comparatif !"
 
 msgid "<0>{name}</0> has been added to your shopping cart!"
 msgstr "<0>{name}</0> a été ajouté à votre panier d'achat!"
@@ -31,11 +31,17 @@ msgstr "Compte"
 msgid "Add address"
 msgstr "Ajouter une adresse"
 
+msgid "Add another product to start comparing."
+msgstr "Ajoutez un autre produit pour commencer à comparer."
+
 msgid "Add new address"
 msgstr "Ajouter une nouvelle adresse"
 
 msgid "Add to Cart"
 msgstr "Ajouter au panier"
+
+msgid "Add to comparison"
+msgstr "Ajouter à la comparaison"
 
 msgid "Add to wishlist"
 msgstr "Ajouter à la liste de souhaits"
@@ -125,10 +131,13 @@ msgid "Close"
 msgstr "Fermer"
 
 msgid "Compare"
-msgstr ""
+msgstr "Comparez"
+
+msgid "Compare ({0})"
+msgstr "Comparez ({0})"
 
 msgid "Compare products"
-msgstr ""
+msgstr "Comparez les produits"
 
 msgid "Complete the payment on your bank’s website."
 msgstr "Complétez le paiement sur le site de votre banque."
@@ -155,7 +164,7 @@ msgid "Continue shopping"
 msgstr "Continuer les achats"
 
 msgid "Could not create a new compare list"
-msgstr ""
+msgstr "Impossible de créer une nouvelle liste de comparaison"
 
 msgid "Could not create an empty cart"
 msgstr "Impossible de créer un panier vide"
@@ -199,6 +208,9 @@ msgstr "Code de réduction"
 msgid "Discover our collection and add items to your cart!"
 msgstr "Découvrez notre collection et ajoutez des articles à votre panier!"
 
+msgid "Discover our collection and add items to your comparelist!"
+msgstr "Découvrez notre collection et ajoutez des articles à votre liste de comparaison !"
+
 msgid "Discover our collection and add items to your wishlist!"
 msgstr "Découvrez notre collection et ajoutez des articles à votre liste de souhaits!"
 
@@ -227,7 +239,7 @@ msgid "Emails don't match"
 msgstr "Les emails ne correspondent pas"
 
 msgid "Empty comparelist"
-msgstr ""
+msgstr "Équation vide"
 
 msgid "Fill in your e-mail to login or create an account"
 msgstr "Remplissez votre email pour vous connecter ou créer un compte"
@@ -275,7 +287,7 @@ msgid "If you’ve successfully paid your order, the order <0>will</0> come thro
 msgstr "Si vous avez réalisé votre paiement, la commande <0>va</0> arriver, mais il y a un problème de communication avec le site."
 
 msgid "In comparelist"
-msgstr ""
+msgstr "Dans la liste de comparaison"
 
 msgid "Including {0}"
 msgstr "Incluant {0}"
@@ -320,7 +332,7 @@ msgid "Menu"
 msgstr "Menu"
 
 msgid "More information"
-msgstr ""
+msgstr "Plus d'informations"
 
 msgid "Mr"
 msgstr "M."
@@ -508,6 +520,9 @@ msgstr "Supprimer"
 msgid "Remove Product"
 msgstr "Supprimer le produit"
 
+msgid "Remove from comparison"
+msgstr "Supprimer de la comparaison"
+
 msgid "Remove from wishlist"
 msgstr "Supprimer de la liste de souhaits"
 
@@ -668,13 +683,13 @@ msgid "Try a different search"
 msgstr "Essayez une autre recherche"
 
 msgid "View Product"
-msgstr ""
+msgstr "Voir le produit"
 
 msgid "View all items"
 msgstr "Voir tous les articles"
 
 msgid "View comparison"
-msgstr ""
+msgstr "Voir la comparaison"
 
 msgid "View less items"
 msgstr "Voir moins d'articles"
@@ -771,6 +786,9 @@ msgstr "Votre adresse a été ajoutée"
 
 msgid "Your cart is empty"
 msgstr "Votre panier est vide"
+
+msgid "Your comparelist is empty"
+msgstr "Votre comparateur est vide"
 
 msgid "Your order has been canceled"
 msgstr "Votre commande a été annulée"

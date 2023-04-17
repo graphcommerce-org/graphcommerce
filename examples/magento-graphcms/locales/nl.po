@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 msgid "<0>{name}</0> has been added to your comparison!"
-msgstr ""
+msgstr "<0>{name}</0> is toegevoegd aan je vergelijking!"
 
 msgid "<0>{name}</0> has been added to your shopping cart!"
 msgstr "<0>{name}</0> is toegevoegd aan uw winkelwagen!"
@@ -31,11 +31,17 @@ msgstr "Account"
 msgid "Add address"
 msgstr "Adres toevoegen"
 
+msgid "Add another product to start comparing."
+msgstr "Voeg nog een product toe om te vergelijken"
+
 msgid "Add new address"
 msgstr "Voeg nieuw adres toe"
 
 msgid "Add to Cart"
 msgstr "In winkelwagen"
+
+msgid "Add to comparison"
+msgstr "Toevoegen aan vergelijking"
 
 msgid "Add to wishlist"
 msgstr "In verlanglijst"
@@ -125,10 +131,13 @@ msgid "Close"
 msgstr "Sluiten"
 
 msgid "Compare"
-msgstr ""
+msgstr "Vergelijk"
+
+msgid "Compare ({0})"
+msgstr "Vergelijk ({0})"
 
 msgid "Compare products"
-msgstr ""
+msgstr "Vergelijk producten"
 
 msgid "Complete the payment on your bank’s website."
 msgstr "Voltooi de betaling op uw bank's website."
@@ -155,7 +164,7 @@ msgid "Continue shopping"
 msgstr "Verder winkelen"
 
 msgid "Could not create a new compare list"
-msgstr ""
+msgstr "Kon geen nieuwe vergelijkingslijst maken"
 
 msgid "Could not create an empty cart"
 msgstr "Kon geen lege winkelwagen aanmaken"
@@ -199,6 +208,9 @@ msgstr "Kortingscode"
 msgid "Discover our collection and add items to your cart!"
 msgstr "Ontdek onze collectie en voeg producten toe aan uw winkelwagen!"
 
+msgid "Discover our collection and add items to your comparelist!"
+msgstr "Ontdek onze collectie en voeg producten toe aan je vergelijklijst!"
+
 msgid "Discover our collection and add items to your wishlist!"
 msgstr "Ontdek onze collectie en voeg producten toe aan uw verlanglijst!"
 
@@ -227,7 +239,7 @@ msgid "Emails don't match"
 msgstr "E-mailadressen komen niet overeen"
 
 msgid "Empty comparelist"
-msgstr ""
+msgstr "Wis vergelijking"
 
 msgid "Fill in your e-mail to login or create an account"
 msgstr "Vul uw e-mailadres in om in te loggen of maak een account aan"
@@ -275,7 +287,7 @@ msgid "If you’ve successfully paid your order, the order <0>will</0> come thro
 msgstr "Als u uw bestelling succesvol heeft betaald, dan zal de bestelling <0>doorkomen</0>, maar er is een communicatiefout met de website."
 
 msgid "In comparelist"
-msgstr ""
+msgstr "In vergelijking"
 
 msgid "Including {0}"
 msgstr "Inclusief {0}"
@@ -320,7 +332,7 @@ msgid "Menu"
 msgstr "Menu"
 
 msgid "More information"
-msgstr ""
+msgstr "Meer informatie"
 
 msgid "Mr"
 msgstr "Dhr"
@@ -508,6 +520,9 @@ msgstr "Verwijder"
 msgid "Remove Product"
 msgstr "Verwijder product"
 
+msgid "Remove from comparison"
+msgstr "Uit vergelijking verwijderen"
+
 msgid "Remove from wishlist"
 msgstr "Verwijder van verlanglijst"
 
@@ -668,13 +683,13 @@ msgid "Try a different search"
 msgstr "Probeer een andere zoekopdracht"
 
 msgid "View Product"
-msgstr ""
+msgstr "Bekijk product"
 
 msgid "View all items"
 msgstr "Bekijk alle items"
 
 msgid "View comparison"
-msgstr ""
+msgstr "Bekijk vergelijking"
 
 msgid "View less items"
 msgstr "Bekijk minder items"
@@ -771,6 +786,9 @@ msgstr "Uw adres is toegevoegd"
 
 msgid "Your cart is empty"
 msgstr "Je winkelwagen is leeg"
+
+msgid "Your comparelist is empty"
+msgstr "Jouw vergelijking is leeg"
 
 msgid "Your order has been canceled"
 msgstr "Uw bestelling is geannuleerd"
