@@ -61,6 +61,21 @@ Is used to add a`RowProduct (variant:Grid)` and a
 
 </figure>
 
+## Adding a global store message
+
+GraphCommerce features a "store message" which can be added to display important
+messages to customers, such as expected delivery delays or product recalls due
+to safety concerns. The store message can be enabled by adding an entry in the
+"Row Column One" model in Hygraph. Add an entry with an Identity of
+`store-message` and add the content you wish to display. To remove the message
+either remove or unpublish the entry.
+
+<figure>
+
+![Store message example](https://user-images.githubusercontent.com/7457340/232444606-a9811fe6-f4fa-4595-b667-5e59d777f4c7.jpg)
+
+</figure>
+
 ## Next steps
 
 - Learn how to
