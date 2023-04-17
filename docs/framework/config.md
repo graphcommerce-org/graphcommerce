@@ -11,6 +11,18 @@ Stores the default aggregation uid
 
 Stores the algolia attribute that should be connected to the magento aggregation
 
+### AlgoliaSearchIndexConfig
+
+Type for search index config
+
+#### `searchIndex: String!`
+
+Configure your Algolia Search index for Magento products
+
+#### `filterAttributes: [[AlgoliaFilterAttribute](#AlgoliaFilterAttribute)!]`
+
+Configures Algolia filterable attributes
+
 # GraphCommerce configuration system
 
 Global GraphCommerce configuration can be configured in your `graphcommerce.config.js` file
@@ -89,6 +101,14 @@ Below is a list of all possible configurations that can be set by GraphCommerce.
 
 ### GraphCommerceConfig
 
+#### `algoliaApplicationId: String!`
+
+Configure your Algolia application ID.
+
+#### `algoliaSearchOnlyApiKey: String!`
+
+Configure your Algolia Search Only API Key
+
 #### `canonicalBaseUrl: String!`
 
 The canonical base URL is used for SEO purposes.
@@ -115,21 +135,9 @@ Examples:
 
 All storefront configuration for the project
 
-#### `algoliaApplicationId: String`
+#### `algoliaSearchDebounceTime: Int`
 
-Configure your Algolia application ID.
-
-#### `algoliaFilterAttributes: [[AlgoliaFilterAttribute](#AlgoliaFilterAttribute)]`
-
-Configures Algolia filterable attributes
-
-#### `algoliaSearchIndex: String`
-
-Configure your Algolia Search index
-
-#### `algoliaSearchOnlyApiKey: String`
-
-Configure your Algolia Search Only API Key
+Configures algolia search debounce time. This will slow down the search response.
 
 #### `cartDisplayPricesInclTax: Boolean`
 
@@ -250,6 +258,10 @@ Issues that this can cause are:
 
 All storefront configuration for the project
 
+#### `algoliaSearchIndexConfig: [[AlgoliaSearchIndexConfig](#AlgoliaSearchIndexConfig)!]!`
+
+Configure your Algolia index configurations
+
 #### `locale: String!`
 
 Must be a locale string https://www.unicode.org/reports/tr35/tr35-59/tr35.html#Identifiers
@@ -264,22 +276,6 @@ Examples:
 - default
 - en-us
 - b2b-us
-
-#### `algoliaApplicationId: String`
-
-Configure your Algolia application ID.
-
-#### `algoliaFilterAttributes: [[AlgoliaFilterAttribute](#AlgoliaFilterAttribute)]`
-
-Configures Algolia filterable attributes
-
-#### `algoliaSearchIndex: String`
-
-Configure your Algolia Search index
-
-#### `algoliaSearchOnlyApiKey: String`
-
-Configure your Algolia Search Only API Key
 
 #### `canonicalBaseUrl: String`
 

@@ -1,3 +1,4 @@
+import { useStorefrontConfig } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { debounce } from '@mui/material'
 import TextField from '@mui/material/TextField'
@@ -11,13 +12,13 @@ type SearchBoxProps = {
 export function SearchBox(props: SearchBoxProps) {
   const { defaultValue } = props
   const { refine } = useSearchBox()
+  const debounceTime =
+    useStorefrontConfig().algoliaFilterAttributes ??
+    import.meta.graphCommerce.algoliaFilterAttributes
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const debounceSearch = useCallback(
-    debounce(
-      (e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => refine(e.target.value),
-      300,
-    ),
+    debounce((e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => refine(e.target.value), 0),
     [refine],
   )
 

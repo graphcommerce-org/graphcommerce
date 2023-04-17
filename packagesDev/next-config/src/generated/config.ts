@@ -22,6 +22,14 @@ export type AlgoliaFilterAttribute = {
   toAlgoliaAttribute: Scalars['String'];
 };
 
+/** Type for search index config */
+export type AlgoliaSearchIndexConfig = {
+  /** Configures Algolia filterable attributes */
+  filterAttributes?: InputMaybe<Array<AlgoliaFilterAttribute>>;
+  /** Configure your Algolia Search index for Magento products */
+  searchIndex: Scalars['String'];
+};
+
 /**
  * # GraphCommerce configuration system
  *
@@ -101,13 +109,11 @@ export type AlgoliaFilterAttribute = {
  */
 export type GraphCommerceConfig = {
   /** Configure your Algolia application ID. */
-  algoliaApplicationId?: InputMaybe<Scalars['String']>;
-  /** Configures Algolia filterable attributes */
-  algoliaFilterAttributes?: InputMaybe<Array<InputMaybe<AlgoliaFilterAttribute>>>;
-  /** Configure your Algolia Search index */
-  algoliaSearchIndex?: InputMaybe<Scalars['String']>;
+  algoliaApplicationId: Scalars['String'];
+  /** Configures algolia search debounce time. This will slow down the search response. */
+  algoliaSearchDebounceTime?: InputMaybe<Scalars['Int']>;
   /** Configure your Algolia Search Only API Key */
-  algoliaSearchOnlyApiKey?: InputMaybe<Scalars['String']>;
+  algoliaSearchOnlyApiKey: Scalars['String'];
   /**
    * The canonical base URL is used for SEO purposes.
    *
@@ -237,14 +243,8 @@ export type GraphCommerceDebugConfig = {
 
 /** All storefront configuration for the project */
 export type GraphCommerceStorefrontConfig = {
-  /** Configure your Algolia application ID. */
-  algoliaApplicationId?: InputMaybe<Scalars['String']>;
-  /** Configures Algolia filterable attributes */
-  algoliaFilterAttributes?: InputMaybe<Array<InputMaybe<AlgoliaFilterAttribute>>>;
-  /** Configure your Algolia Search index */
-  algoliaSearchIndex?: InputMaybe<Scalars['String']>;
-  /** Configure your Algolia Search Only API Key */
-  algoliaSearchOnlyApiKey?: InputMaybe<Scalars['String']>;
+  /** Configure your Algolia index configurations */
+  algoliaSearchIndexConfig: Array<AlgoliaSearchIndexConfig>;
   /**
    * The canonical base URL is used for SEO purposes.
    *
@@ -311,12 +311,18 @@ export function AlgoliaFilterAttributeSchema(): z.ZodObject<Properties<AlgoliaFi
   })
 }
 
+export function AlgoliaSearchIndexConfigSchema(): z.ZodObject<Properties<AlgoliaSearchIndexConfig>> {
+  return z.object<Properties<AlgoliaSearchIndexConfig>>({
+    filterAttributes: z.array(AlgoliaFilterAttributeSchema()).nullish(),
+    searchIndex: z.string().min(1)
+  })
+}
+
 export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerceConfig>> {
   return z.object<Properties<GraphCommerceConfig>>({
-    algoliaApplicationId: z.string().nullish(),
-    algoliaFilterAttributes: z.array(AlgoliaFilterAttributeSchema().nullable()).nullish(),
-    algoliaSearchIndex: z.string().nullish(),
-    algoliaSearchOnlyApiKey: z.string().nullish(),
+    algoliaApplicationId: z.string().min(1),
+    algoliaSearchDebounceTime: z.number().nullish(),
+    algoliaSearchOnlyApiKey: z.string().min(1),
     canonicalBaseUrl: z.string().min(1),
     cartDisplayPricesInclTax: z.boolean().nullish(),
     customerRequireEmailConfirmation: z.boolean().nullish(),
@@ -350,10 +356,7 @@ export function GraphCommerceDebugConfigSchema(): z.ZodObject<Properties<GraphCo
 
 export function GraphCommerceStorefrontConfigSchema(): z.ZodObject<Properties<GraphCommerceStorefrontConfig>> {
   return z.object<Properties<GraphCommerceStorefrontConfig>>({
-    algoliaApplicationId: z.string().nullish(),
-    algoliaFilterAttributes: z.array(AlgoliaFilterAttributeSchema().nullable()).nullish(),
-    algoliaSearchIndex: z.string().nullish(),
-    algoliaSearchOnlyApiKey: z.string().nullish(),
+    algoliaSearchIndexConfig: z.array(AlgoliaSearchIndexConfigSchema()),
     canonicalBaseUrl: z.string().nullish(),
     cartDisplayPricesInclTax: z.boolean().nullish(),
     defaultLocale: z.boolean().nullish(),

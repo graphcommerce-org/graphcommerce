@@ -13,46 +13,41 @@ input AlgoliaFilterAttribute {
   toAlgoliaAttribute: String!
 }
 
-extend input GraphCommerceStorefrontConfig {
+"""
+Type for search index config
+"""
+input AlgoliaSearchIndexConfig {
   """
-  Configure your Algolia application ID.
+  Configure your Algolia Search index for Magento products
   """
-  algoliaApplicationId: String
-
-  """
-  Configure your Algolia Search Only API Key
-  """
-  algoliaSearchOnlyApiKey: String
-
-  """
-  Configure your Algolia Search index
-  """
-  algoliaSearchIndex: String
+  searchIndex: String!
 
   """
   Configures Algolia filterable attributes
   """
-  algoliaFilterAttributes: [AlgoliaFilterAttribute]
+  filterAttributes: [AlgoliaFilterAttribute!]
+}
+
+extend input GraphCommerceStorefrontConfig {
+  """
+  Configure your Algolia index configurations
+  """
+  algoliaSearchIndexConfig: [AlgoliaSearchIndexConfig!]!
 }
 
 extend input GraphCommerceConfig {
   """
   Configure your Algolia application ID.
   """
-  algoliaApplicationId: String
+  algoliaApplicationId: String!
 
   """
   Configure your Algolia Search Only API Key
   """
-  algoliaSearchOnlyApiKey: String
+  algoliaSearchOnlyApiKey: String!
 
   """
-  Configure your Algolia Search index
+  Configures algolia search debounce time. This will slow down the search response.
   """
-  algoliaSearchIndex: String
-
-  """
-  Configures Algolia filterable attributes
-  """
-  algoliaFilterAttributes: [AlgoliaFilterAttribute]
+  algoliaSearchDebounceTime: Int
 }
