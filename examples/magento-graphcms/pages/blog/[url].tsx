@@ -1,14 +1,15 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
-  PageMeta,
   BlogTitle,
   GetStaticProps,
-  Row,
-  LayoutTitle,
   LayoutHeader,
+  LayoutTitle,
+  PageMeta,
+  Row,
 } from '@graphcommerce/next-ui'
 import { GetStaticPaths } from 'next'
+import path from 'path'
 import {
   BlogAuthor,
   BlogHeader,
@@ -21,11 +22,10 @@ import {
   LayoutNavigationProps,
   RowRenderer,
 } from '../../components'
-import { LayoutDocument } from '../../components/Layout/Layout.gql'
-import { DefaultPageDocument, DefaultPageQuery } from '../../graphql/DefaultPage.gql'
-import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 import { pageContent } from '../../components/GraphCMS/pageContent'
-import path from 'path'
+import { LayoutDocument } from '../../components/Layout/Layout.gql'
+import { DefaultPageQuery } from '../../graphql/DefaultPage.gql'
+import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
 type Props = DefaultPageQuery & BlogListQuery
 type RouteProps = { url: string }
@@ -89,26 +89,21 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   const staticClient = graphqlSsrClient(locale)
   const limit = 4
   const conf = client.query({ query: StoreConfigDocument })
-
-  const layout = staticClient.query({ query: LayoutDocument })
-
   const tags = [url]
-  const page = pageContent(staticClient, url, tags)
-
-  console.log('URLKEY: ', urlKey)
-  console.log('PAGE: ', await page)
+  const pages = pageContent(staticClient, url, tags)
+  const layout = staticClient.query({ query: LayoutDocument })
 
   const blogPosts = staticClient.query({
     query: BlogListDocument,
     variables: { currentUrl: [`blog/${urlKey}`], first: limit },
   })
-  if (!(await page).data.pages?.[0]) return { notFound: true }
+  if (!(await pages).data.pages?.[0]) return { notFound: true }
 
   return {
     props: {
       ...(await blogPosts).data,
       ...(await layout).data,
-      ...(await page).data,
+      ...(await pages).data,
       up: { href: '/', title: 'Home' },
       apolloState: await conf.then(() => client.cache.extract()),
     },
