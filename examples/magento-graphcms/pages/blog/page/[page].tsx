@@ -99,9 +99,8 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   const client = graphqlSharedClient(locale)
   const staticClient = graphqlSsrClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
-  const tags = [url]
 
-  const defaultPage = pageContent(staticClient, url, tags)
+  const defaultPage = pageContent(staticClient, url, [])
   const layout = staticClient.query({ query: LayoutDocument })
 
   const blogPosts = staticClient.query({

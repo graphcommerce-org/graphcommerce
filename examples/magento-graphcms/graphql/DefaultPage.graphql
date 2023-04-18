@@ -1,4 +1,4 @@
-query DefaultPage($url: String!, $tags: [String!]! = []) {
+query DefaultPage($url: String!) {
   ...UspsQueryFragment
   ...PageContentQueryFragment
 }

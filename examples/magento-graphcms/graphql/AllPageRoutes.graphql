@@ -1,6 +1,9 @@
 query AllPageRoutes {
   pages(first: 1000) {
     url
-    tags
+  }
+  dynamicBlocks(first: 1000) {
+    id
+    matchers
   }
 }

@@ -1,0 +1,19 @@
+query DynamicBlock($matchers: [ID!]!) {
+  dynamicBlocks(where: { id_in: $matchers }) {
+    id
+    location
+    locationSelector
+    matchers
+    content {
+      __typename
+      ... on Node {
+        id
+      }
+      ...RowColumnOne
+      ...RowColumnTwo
+      ...RowColumnThree
+      ...RowQuote
+      ...RowLinks
+    }
+  }
+}

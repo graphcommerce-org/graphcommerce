@@ -210,8 +210,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     if (productListParams) productListParams.filters.category_uid = { in: [categoryUid] }
   }
 
-  const tags = [url]
-  const pages = pageContent(staticClient, url, tags)
+  const pages = pageContent(staticClient, url, [])
 
   const hasPage = filteredCategoryUid ? false : (await pages).data.pages.length > 0
   const hasCategory = Boolean(productListParams && categoryUid)

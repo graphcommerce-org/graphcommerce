@@ -89,8 +89,8 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   const staticClient = graphqlSsrClient(locale)
   const limit = 4
   const conf = client.query({ query: StoreConfigDocument })
-  const tags = [url]
-  const pages = pageContent(staticClient, url, tags)
+
+  const pages = pageContent(staticClient, url, [])
   const layout = staticClient.query({ query: LayoutDocument })
 
   const blogPosts = staticClient.query({

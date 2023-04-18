@@ -1,10 +1,4 @@
-query ProductPage(
-  $url: String!
-  $urlKey: String!
-  $reviewPageSize: Int = 3
-  $reviewPage: Int = 1
-  $tags: [String!]! = []
-) {
+query ProductPage($url: String!, $urlKey: String!, $reviewPageSize: Int = 3, $reviewPage: Int = 1) {
   ...UspsQueryFragment
   ...ProductPageQueryFragment
   ...PageContentQueryFragment

@@ -68,7 +68,9 @@ function ProductPage(props: Props) {
 
   const product = mergeDeep(products, relatedUpsells)?.items?.[0]
 
-  const page = pages[0]
+  // const page = pages.data.pages[0]
+
+  console.log(10, pages)
 
   if (!product?.sku || !product.url_key) return null
 
@@ -195,7 +197,7 @@ function ProductPage(props: Props) {
 
       <ProductPageDescription {...product} right={<Usps usps={usps} />} fontSize='responsive' />
 
-      {page && (
+      {/* {pages && (
         <RowRenderer
           content={page.content}
           renderer={{
@@ -209,7 +211,7 @@ function ProductPage(props: Props) {
             ),
           }}
         />
-      )}
+      )} */}
     </>
   )
 }
@@ -249,15 +251,15 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     'options',
   ]).filter((a) => a.attribute_code !== 'price' && a.attribute_code !== 'category_uid')
 
-  const tags = [
-    `p/${product?.url_key}`,
-    `sku:${product?.sku}`,
-    ...filterNonNullableKeys(product?.categories).map((c) => `category:${c.url_path}`),
-    `stock_status:${product?.stock_status}`,
+  const matchers = [
+    `sku:${product.sku}`,
+    ...filterNonNullableKeys(product.categories).map((c) => `category:${c.url_path}`),
+    `stock_status:${product.stock_status}`,
     ...aggregations.map((a) => a.options.map((o) => `${a.attribute_code}:${o?.value}`)).flat(),
+    `p/${urlKey}`,
+    'product/global',
   ]
-
-  const pages = pageContent(staticClient, 'product/global', tags, true)
+  const pages = pageContent(staticClient, 'product/global', matchers, true)
 
   const category = productPageCategory(product)
   const up =
