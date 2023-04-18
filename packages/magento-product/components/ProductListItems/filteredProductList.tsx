@@ -26,7 +26,7 @@ export function parseParams(
       return undefined
     }
     if (param === 'limit') {
-      categoryVariables.pageSize = Number(param)
+      categoryVariables.pageSize = Number(value)
       return undefined
     }
     if (param === 'sort') {
@@ -66,7 +66,7 @@ export function extractUrlQuery(params?: { url: string[] }) {
   if (!params?.url) return [undefined, undefined] as const
 
   const queryIndex = params.url.findIndex(
-    (slug) => slug === 'q' || slug === 'page' || slug === 'dir',
+    (slug) => slug === 'q' || slug === 'page' || slug === 'limit' || slug === 'dir',
   )
   const qIndex = queryIndex < 0 ? params.url.length : queryIndex
   const url = params.url.slice(0, qIndex).join('/')
