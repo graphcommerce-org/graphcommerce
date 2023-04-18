@@ -1,5 +1,5 @@
-query DynamicBlock($matchers: [ID!]!) {
-  dynamicBlocks(where: { id_in: $matchers }) {
+query DynamicRow($matchers: [ID!]!) {
+  dynamicRows(where: { id_in: $matchers }) {
     id
     location
     locationSelector

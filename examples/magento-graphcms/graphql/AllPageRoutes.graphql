@@ -2,7 +2,7 @@ query AllPageRoutes {
   pages(first: 1000) {
     url
   }
-  dynamicBlocks(first: 1000) {
+  dynamicRows(first: 1000) {
     id
     matchers
   }

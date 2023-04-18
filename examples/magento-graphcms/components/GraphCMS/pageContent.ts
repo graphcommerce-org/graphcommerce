@@ -1,7 +1,7 @@
 import { ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
 import { AllPageRoutesDocument } from '../../graphql/AllPageRoutes.gql'
 import { DefaultPageDocument, DefaultPageQuery } from '../../graphql/DefaultPage.gql'
-import { DynamicBlockDocument, DynamicBlockQuery } from './DynamicBlock.gql'
+import { DynamicRowDocument, DynamicRowQuery } from './DynamicRow.gql'
 
 export async function pageContent(
   client: ApolloClient<NormalizedCacheObject>,
@@ -11,11 +11,11 @@ export async function pageContent(
 ): Promise<{ data: DefaultPageQuery }> {
   const allRoutes = await client.query({ query: AllPageRoutesDocument, fetchPolicy: 'cache-first' })
   const found = allRoutes.data.pages.some((page) => page.url === url)
-  const blockIds = allRoutes.data.dynamicBlocks
-    .filter((block) => block.matchers.some((m) => matchers.includes(m)))
-    .map((block) => block.id)
+  const rowIds = allRoutes.data.dynamicRows
+    .filter((row) => row.matchers.some((m) => matchers.includes(m)))
+    .map((row) => row.id)
 
-  if (!found && blockIds.length === 0) return { data: { pages: [] } }
+  if (!found && rowIds.length === 0) return { data: { pages: [] } }
 
   const pageQuery: { data: Pick<DefaultPageQuery, 'pages'> } = found
     ? await client.query({
@@ -29,16 +29,16 @@ export async function pageContent(
     ? Array.from(pageQuery.data.pages[0].content)
     : []
 
-  const dynamicBlocks: { data: Pick<DynamicBlockQuery, 'dynamicBlocks'> } =
-    blockIds.length !== 0
+  const dynamicRows: { data: Pick<DynamicRowQuery, 'dynamicRows'> } =
+    rowIds.length !== 0
       ? await client.query({
-          query: DynamicBlockDocument,
-          variables: { matchers: blockIds },
+          query: DynamicRowDocument,
+          variables: { matchers: rowIds },
         })
-      : { data: { dynamicBlocks: [] } }
+      : { data: { dynamicRows: [] } }
 
-  if (dynamicBlocks.data.dynamicBlocks.length !== 0) {
-    dynamicBlocks.data.dynamicBlocks.forEach((b) => {
+  if (dynamicRows.data.dynamicRows.length !== 0) {
+    dynamicRows.data.dynamicRows.forEach((b) => {
       if (b.content !== undefined && b.content !== null) {
         content.push(b.content)
       }
@@ -52,7 +52,7 @@ export async function pageContent(
   return { data: { pages: [updatedPage] } }
 }
 
-// console.log('BLOCK IDS: ', blockIds)
+// console.log('BLOCK IDS: ', rowIds)
 // console.log('BLOCKS: ', blocks.data.dynamicBlocks)
 
 /**
