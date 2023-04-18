@@ -91,18 +91,19 @@ need to sign the CLA once.
   <figcaption>Select 'patch' or 'minor' when running `yarn changeset`</figcaption>
 </figure>
 
-### Determining mergability of your pull request
+### Merge checklist for your pull request
 
 - Code must pass the CI checks.
-- Code must be formatted with prettier.
-- Eslint must not report any errors in the changed files.
-- Eslint should not give any warnings in the changed files.
+- Code must be formatted with prettier
+- Changeset is available
+- Eslint must not report any errors in the changed files
+- Eslint should not give any warnings in the changed files
 - Lingui translations must be
   [generated](https://www.graphcommerce.org/docs/framework/translations#generating-translation-files-with-all-translations)
-  and translated.
+  and translated
 - Changes made to `examples/magento-graphcms` should be kept to a minimum,
   because every change made here must be applied by every developer upgrading a
-  GraphCommerce project.
+  GraphCommerce project
   - Extract code changes made and move them into packages where possible.
   - Stylistic only changes usually aren't prefered, less changes often is
     better.
