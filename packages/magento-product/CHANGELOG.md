@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.1.1-canary.3
+
+### Patch Changes
+
+- [#1911](https://github.com/graphcommerce-org/graphcommerce/pull/1911) [`c10d6d5be`](https://github.com/graphcommerce-org/graphcommerce/commit/c10d6d5beb0d1560d33e3e301d88fa9201515133) - Added missing translations for the ProductSidebarDelivery ([@rustmaestro](https://github.com/rustmaestro))
+
 ## 6.1.1-canary.2
 
 ## 6.1.1-canary.1
