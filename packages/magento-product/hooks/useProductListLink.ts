@@ -6,7 +6,7 @@ import {
 } from '../components/ProductListItems/filterTypes'
 
 export function createProductListLink(props: ProductListParams): string {
-  const { url, sort, currentPage, filters: incoming } = props
+  const { url, sort, currentPage, pageSize, filters: incoming } = props
   const isSearch = url.startsWith('search')
   const filters = isSearch ? incoming : { ...incoming, category_uid: undefined }
   const uid = incoming?.category_uid?.eq || incoming?.category_uid?.in?.[0]
@@ -22,6 +22,7 @@ export function createProductListLink(props: ProductListParams): string {
   const [sortBy] = Object.keys(sort)
   if (sort && sortBy) query += `/sort/${sortBy}`
   if (sort && sortBy && sort[sortBy] && sort[sortBy] === 'DESC') query += `/dir/desc`
+  if (pageSize) query += `/page-size/${pageSize}`
 
   // Apply filters
   if (filters)

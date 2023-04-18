@@ -14,6 +14,7 @@ import {
   ProductFiltersProAggregations,
   ProductFiltersProAggregationsProps,
 } from './ProductFiltersProAggregations'
+import { ProductFiltersProLimitSection } from './ProductFiltersProLimitSection'
 import {
   ProductFiltersProSortSection,
   ProductFiltersProSortSectionProps,
@@ -74,6 +75,7 @@ export function ProductFiltersProAllFiltersChip(props: AllFiltersChip) {
       {() => (
         <Box sx={(theme) => ({ display: 'grid', rowGap: theme.spacings.sm })}>
           <ProductFiltersProSortSection sort_fields={sort_fields} total_count={total_count} />
+          <ProductFiltersProLimitSection />
           <ProductFiltersProAggregations
             filterTypes={filterTypes}
             aggregations={aggregations}

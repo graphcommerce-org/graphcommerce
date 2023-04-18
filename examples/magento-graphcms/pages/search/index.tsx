@@ -19,6 +19,7 @@ import {
   ProductListQuery,
   ProductFiltersQuery,
   ProductFiltersProAllFiltersChip,
+  ProductFiltersProLimitChip,
 } from '@graphcommerce/magento-product'
 import {
   CategorySearchDocument,
@@ -117,6 +118,7 @@ function SearchResultPage(props: SearchResultProps) {
                     filterTypes={filterTypes}
                   />
                   <ProductFiltersProSortChip {...products} />
+                  <ProductFiltersProLimitChip />
                   <ProductFiltersProAllFiltersChip
                     {...filters}
                     appliedAggregations={products.aggregations}

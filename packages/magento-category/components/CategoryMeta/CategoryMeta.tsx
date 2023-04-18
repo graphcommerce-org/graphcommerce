@@ -25,6 +25,11 @@ export function CategoryMeta(props: CategoryMetaProps) {
 
   const anyFilterActive =
     Object.keys(params?.filters ?? {}).filter((k) => k !== 'category_uid').length > 0
+
+  const sortActive = params?.sort && Object.keys(params?.sort).length !== 0
+  const limitAcitve = !!params?.pageSize
+  const noIndex = anyFilterActive || sortActive || limitAcitve
+
   const currentPage = params?.currentPage ?? 1
   const isPaginated = currentPage > 1 && !anyFilterActive
 
@@ -45,7 +50,7 @@ export function CategoryMeta(props: CategoryMetaProps) {
     <PageMeta
       title={titleTrans}
       metaDescription={metaDescriptionTrans}
-      metaRobots={anyFilterActive ? ['noindex'] : metaRobots}
+      metaRobots={noIndex ? ['noindex'] : metaRobots}
       canonical={isPaginated ? `${canonical}/q/page/${currentPage}` : canonical}
     />
   )

@@ -21,7 +21,7 @@ export type ProductListParams = {
 }
 
 export type ProductFilterParams = {
-  // pageSize?: Maybe<Scalars['Int']>
+  pageSize?: Maybe<Scalars['Int']>
   currentPage: number
   filters: ProductAttributeFilterInput
   sort: keyof ProductAttributeSortInput | null
@@ -36,6 +36,7 @@ export function toFilterParams(params: ProductListParams): ProductFilterParams {
 
   return {
     ...params,
+    pageSize: params.pageSize ?? null,
     sort: sortKey ?? null,
     dir: dir ?? null,
     currentPage: params.currentPage ?? 1,

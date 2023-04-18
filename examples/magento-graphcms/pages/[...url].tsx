@@ -18,6 +18,7 @@ import {
   ProductFiltersPro,
   ProductFiltersProAllFiltersChip,
   ProductFiltersProFilterChips,
+  ProductFiltersProLimitChip,
   ProductFiltersProSortChip,
   ProductFiltersQuery,
   ProductListCount,
@@ -119,6 +120,7 @@ function CategoryPage(props: CategoryProps) {
                     filterTypes={filterTypes}
                   />
                   <ProductFiltersProSortChip {...products} />
+                  <ProductFiltersProLimitChip />
                   <ProductFiltersProAllFiltersChip
                     {...filters}
                     appliedAggregations={products.aggregations}
