@@ -122,6 +122,7 @@ function CategoryPage(props: CategoryProps) {
                   <ProductFiltersProSortChip {...products} />
                   <ProductFiltersProLimitChip />
                   <ProductFiltersProAllFiltersChip
+                    {...products}
                     {...filters}
                     appliedAggregations={products.aggregations}
                     filterTypes={filterTypes}

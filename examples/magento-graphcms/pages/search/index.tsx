@@ -120,6 +120,7 @@ function SearchResultPage(props: SearchResultProps) {
                   <ProductFiltersProSortChip {...products} />
                   <ProductFiltersProLimitChip />
                   <ProductFiltersProAllFiltersChip
+                    {...products}
                     {...filters}
                     appliedAggregations={products.aggregations}
                     filterTypes={filterTypes}

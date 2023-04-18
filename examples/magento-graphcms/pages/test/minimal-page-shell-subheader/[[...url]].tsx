@@ -76,6 +76,7 @@ function MinimalLayoutSubheader(props: Props) {
                 <ProductFiltersProSortChip {...products} />
                 <ProductFiltersProLimitChip />
                 <ProductFiltersProAllFiltersChip
+                  {...products}
                   {...filters}
                   appliedAggregations={products?.aggregations}
                   filterTypes={filterTypes}
