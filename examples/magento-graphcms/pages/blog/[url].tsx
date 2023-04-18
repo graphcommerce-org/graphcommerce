@@ -22,7 +22,7 @@ import {
   LayoutNavigationProps,
   RowRenderer,
 } from '../../components'
-import { pageContent } from '../../components/GraphCMS/pageContent'
+import { hygraphPageContent } from '../../components/GraphCMS/pageContent'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
 import { DefaultPageQuery } from '../../graphql/DefaultPage.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
@@ -90,7 +90,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   const limit = 4
   const conf = client.query({ query: StoreConfigDocument })
 
-  const pages = pageContent(staticClient, url, [])
+  const pages = hygraphPageContent(staticClient, url, [])
   const layout = staticClient.query({ query: LayoutDocument })
 
   const blogPosts = staticClient.query({

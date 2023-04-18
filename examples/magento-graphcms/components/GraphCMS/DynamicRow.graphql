@@ -1,10 +1,9 @@
-query DynamicRow($matchers: [ID!]!) {
-  dynamicRows(where: { id_in: $matchers }) {
-    id
+query DynamicRow($rowIds: [ID!]!) {
+  dynamicRows(where: { id_in: $rowIds }) {
     location
     locationSelector
     matchers
-    content {
+    row {
       __typename
       ... on Node {
         id

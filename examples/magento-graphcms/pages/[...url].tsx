@@ -47,7 +47,7 @@ import {
   RowProduct,
   RowRenderer,
 } from '../components'
-import { pageContent } from '../components/GraphCMS/pageContent'
+import { hygraphPageContent } from '../components/GraphCMS/pageContent'
 import { LayoutDocument } from '../components/Layout/Layout.gql'
 import { CategoryPageDocument, CategoryPageQuery } from '../graphql/CategoryPage.gql'
 import { DefaultPageQuery } from '../graphql/DefaultPage.gql'
@@ -210,7 +210,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     if (productListParams) productListParams.filters.category_uid = { in: [categoryUid] }
   }
 
-  const pages = pageContent(staticClient, url, [])
+  const pages = hygraphPageContent(staticClient, url, [])
 
   const hasPage = filteredCategoryUid ? false : (await pages).data.pages.length > 0
   const hasCategory = Boolean(productListParams && categoryUid)

@@ -1,4 +1,5 @@
 fragment RowQuote on RowQuote {
+  identity
   quote {
     raw
   }

@@ -1,4 +1,5 @@
 fragment RowContentLinks on RowContentLinks {
+  identity
   title
   contentLinks {
     id

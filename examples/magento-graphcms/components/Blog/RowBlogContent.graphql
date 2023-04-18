@@ -1,4 +1,5 @@
 fragment RowBlogContent on RowBlogContent {
+  identity
   content {
     raw
   }

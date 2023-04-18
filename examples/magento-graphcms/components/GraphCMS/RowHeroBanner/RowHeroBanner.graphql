@@ -1,4 +1,5 @@
 fragment RowHeroBanner on RowHeroBanner {
+  identity
   heroAsset: asset {
     ...Asset
   }

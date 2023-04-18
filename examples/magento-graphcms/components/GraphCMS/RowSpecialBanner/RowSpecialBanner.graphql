@@ -1,4 +1,5 @@
 fragment RowSpecialBanner on RowSpecialBanner {
+  identity
   asset {
     ...Asset
   }

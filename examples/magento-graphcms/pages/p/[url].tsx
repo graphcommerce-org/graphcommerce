@@ -12,6 +12,7 @@ import {
   ProductCustomizable,
   productPageCategory,
   ProductPageDescription,
+  productPageMatchers,
   ProductPageMeta,
   ProductPagePrice,
   ProductPagePriceTiers,
@@ -49,7 +50,7 @@ import {
   RowRenderer,
   Usps,
 } from '../../components'
-import { pageContent } from '../../components/GraphCMS/pageContent'
+import { hygraphPageContent } from '../../components/GraphCMS/pageContent'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
 import { DefaultPageQuery } from '../../graphql/DefaultPage.gql'
 import { ProductPage2Document, ProductPage2Query } from '../../graphql/ProductPage2.gql'
@@ -69,8 +70,6 @@ function ProductPage(props: Props) {
   const product = mergeDeep(products, relatedUpsells)?.items?.[0]
 
   // const page = pages.data.pages[0]
-
-  console.log(10, pages)
 
   if (!product?.sku || !product.url_key) return null
 
@@ -197,9 +196,9 @@ function ProductPage(props: Props) {
 
       <ProductPageDescription {...product} right={<Usps usps={usps} />} fontSize='responsive' />
 
-      {/* {pages && (
+      {pages[0] && (
         <RowRenderer
-          content={page.content}
+          content={pages[0].content}
           renderer={{
             RowProduct: (rowProps) => (
               <RowProduct
@@ -211,7 +210,7 @@ function ProductPage(props: Props) {
             ),
           }}
         />
-      )} */}
+      )}
     </>
   )
 }
@@ -251,15 +250,12 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     'options',
   ]).filter((a) => a.attribute_code !== 'price' && a.attribute_code !== 'category_uid')
 
-  const matchers = [
-    `sku:${product.sku}`,
-    ...filterNonNullableKeys(product.categories).map((c) => `category:${c.url_path}`),
-    `stock_status:${product.stock_status}`,
-    ...aggregations.map((a) => a.options.map((o) => `${a.attribute_code}:${o?.value}`)).flat(),
-    `p/${urlKey}`,
+  const pages = hygraphPageContent(
+    staticClient,
     'product/global',
-  ]
-  const pages = pageContent(staticClient, 'product/global', matchers, true)
+    productPageMatchers(product),
+    true,
+  )
 
   const category = productPageCategory(product)
   const up =
