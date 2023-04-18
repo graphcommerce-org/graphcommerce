@@ -362,7 +362,7 @@ msgid "Only a few left"
 msgstr "Solo pochi pezzi disponibili"
 
 msgid "Only {amount_left_in_stock} left in stock."
-msgstr ""
+msgstr "Solo {amount_left_in_stock} pezzi disponibili."
 
 msgid "Or follow these links to get you back on track!"
 msgstr "O seguire questi link per riprendere il tuo percorso!"
@@ -395,7 +395,7 @@ msgid "Other"
 msgstr "Altro"
 
 msgid "Out of stock"
-msgstr ""
+msgstr "Esaurito"
 
 msgid "Page {page} of {count}"
 msgstr "Pagina {page} di {count}"
@@ -429,6 +429,9 @@ msgstr "Il pagamento non è stato completato con successo, riprova."
 
 msgid "Payment method"
 msgstr "Metodo di pagamento"
+
+msgid "Per page"
+msgstr "Per pagina"
 
 msgid "Personal details"
 msgstr "Dati personali"
@@ -795,6 +798,9 @@ msgstr "restituito"
 
 msgid "shipped"
 msgstr "spedito"
+
+msgid "{count} Per page"
+msgstr "{count} Per pagina"
 
 msgid "{metaDescription} - Page {currentPage}"
 msgstr "{metaDescription} - Pagina {currentPage}"

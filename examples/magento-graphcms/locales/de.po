@@ -430,6 +430,9 @@ msgstr "Zahlung wurde nicht erfolgreich abgeschlossen, bitte versuchen Sie es er
 msgid "Payment method"
 msgstr "Zahlungsmethode"
 
+msgid "Per page"
+msgstr "Pro Seite"
+
 msgid "Personal details"
 msgstr "Persönliche Daten"
 
@@ -795,6 +798,9 @@ msgstr "zurückgesandt"
 
 msgid "shipped"
 msgstr "versandt"
+
+msgid "{count} Per page"
+msgstr "{count} pro Seite"
 
 msgid "{metaDescription} - Page {currentPage}"
 msgstr "{metaDescription} - Seite {currentPage}"

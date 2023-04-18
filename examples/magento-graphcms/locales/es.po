@@ -430,6 +430,9 @@ msgstr "El pago no se ha completado correctamente, inténtelo de nuevo."
 msgid "Payment method"
 msgstr "Método de pago"
 
+msgid "Per page"
+msgstr "Por página"
+
 msgid "Personal details"
 msgstr "Detalles personales"
 
@@ -795,6 +798,9 @@ msgstr "devuelto"
 
 msgid "shipped"
 msgstr "enviado"
+
+msgid "{count} Per page"
+msgstr "{count} Por página"
 
 msgid "{metaDescription} - Page {currentPage}"
 msgstr "{metaDescription} - Página {currentPage}"

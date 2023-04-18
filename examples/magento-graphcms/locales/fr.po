@@ -430,6 +430,9 @@ msgstr "Le paiement n'a pas été effectué avec succès, veuillez réessayer."
 msgid "Payment method"
 msgstr "Méthode de paiement"
 
+msgid "Per page"
+msgstr "Par page"
+
 msgid "Personal details"
 msgstr "Informations personnelles"
 
@@ -795,6 +798,9 @@ msgstr "retournée"
 
 msgid "shipped"
 msgstr "expédiée"
+
+msgid "{count} Per page"
+msgstr "{count} Par page"
 
 msgid "{metaDescription} - Page {currentPage}"
 msgstr "{metaDescription} - Page {currentPage}"

@@ -395,7 +395,7 @@ msgid "Other"
 msgstr "Overige"
 
 msgid "Out of stock"
-msgstr ""
+msgstr "Niet op voorraad"
 
 msgid "Page {page} of {count}"
 msgstr "Pagina {page} van {count}"
@@ -429,6 +429,9 @@ msgstr "Betaling is niet succesvol afgerond, probeer het opnieuw."
 
 msgid "Payment method"
 msgstr "Betaalmethode"
+
+msgid "Per page"
+msgstr "Per pagina"
 
 msgid "Personal details"
 msgstr "Persoonlijke details"
@@ -795,6 +798,9 @@ msgstr "terug gestuurd"
 
 msgid "shipped"
 msgstr "verzonden"
+
+msgid "{count} Per page"
+msgstr "{count} Per pagina"
 
 msgid "{metaDescription} - Page {currentPage}"
 msgstr "{metaDescription} - Pagina {currentPage}"
