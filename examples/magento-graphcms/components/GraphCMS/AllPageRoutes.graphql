@@ -1,0 +1,21 @@
+query AllPageRoutes {
+  pages(first: 1000) {
+    url
+  }
+  dynamicRows(first: 1000) {
+    id
+    conditions {
+      __typename
+      ... on DynamicRowConditionNumeric {
+        property
+        operator
+        numberValue: value
+      }
+
+      ... on DynamicRowConditionString {
+        property
+        stringValue: value
+      }
+    }
+  }
+}

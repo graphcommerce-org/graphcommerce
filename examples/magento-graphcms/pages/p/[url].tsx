@@ -37,7 +37,6 @@ import {
   JsonLd,
   LayoutHeader,
   LayoutTitle,
-  filterNonNullableKeys,
   isTypename,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
@@ -68,8 +67,6 @@ function ProductPage(props: Props) {
   const { products, relatedUpsells, usps, sidebarUsps, pages, defaultValues } = props
 
   const product = mergeDeep(products, relatedUpsells)?.items?.[0]
-
-  // const page = pages.data.pages[0]
 
   if (!product?.sku || !product.url_key) return null
 
@@ -243,12 +240,9 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const productPage = staticClient.query({ query: ProductPage2Document, variables: { urlKey } })
   const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
 
-  const product = (await productPage).data.products?.items?.find((p) => p?.url_key === urlKey)
-  if (!product) return redirectOrNotFound(staticClient, conf, params, locale)
-
-  const aggregations = filterNonNullableKeys((await productPage).data.products?.aggregations, [
-    'options',
-  ]).filter((a) => a.attribute_code !== 'price' && a.attribute_code !== 'category_uid')
+  const product = productPage.then((pp) =>
+    pp.data.products?.items?.find((p) => p?.url_key === urlKey),
+  )
 
   const pages = hygraphPageContent(
     staticClient,
@@ -257,7 +251,9 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     true,
   )
 
-  const category = productPageCategory(product)
+  if (!(await product)) return redirectOrNotFound(staticClient, conf, params, locale)
+
+  const category = productPageCategory(await product)
   const up =
     category?.url_path && category?.name
       ? { href: `/${category.url_path}`, title: category.name }

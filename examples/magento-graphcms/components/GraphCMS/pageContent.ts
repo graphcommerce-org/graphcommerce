@@ -1,7 +1,14 @@
 import { ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
-import { AllPageRoutesDocument } from '../../graphql/AllPageRoutes.gql'
 import { DefaultPageDocument, DefaultPageQuery } from '../../graphql/DefaultPage.gql'
+import { AllPageRoutesDocument } from './AllPageRoutes.gql'
 import { DynamicRowDocument } from './DynamicRow.gql'
+
+export type ConditionsInput = {
+  numeric: DynamicRowConditionNumericWhereInput[]
+  string: DynamicRowConditionStringWhereInput[]
+}
+
+type Conditions = { property: string; value: string | number | bigint }[]
 
 /**
  * Fetch the page content for the given urls.
@@ -12,7 +19,7 @@ import { DynamicRowDocument } from './DynamicRow.gql'
 export async function hygraphPageContent(
   client: ApolloClient<NormalizedCacheObject>,
   url: string,
-  matchers: string[],
+  conditions: Promise<Conditions>,
   cached = false,
 ): Promise<{ data: DefaultPageQuery }> {
   /**
@@ -28,7 +35,10 @@ export async function hygraphPageContent(
    * Todo: Implement next.js 13 fetch revalidation:
    * https://beta.nextjs.org/docs/data-fetching/fetching#revalidating-data
    */
-  const allRoutes = await client.query({ query: AllPageRoutesDocument, fetchPolicy: 'cache-first' })
+  const allRoutes = await client.query({
+    query: AllPageRoutesDocument,
+    fetchPolicy: process.env.NODE_ENV !== 'development' ? 'cache-first' : undefined,
+  })
 
   /**
    * Some routes are very generic and wil be requested very often, like 'product/global'. To reduce
@@ -49,9 +59,25 @@ export async function hygraphPageContent(
     ? client.query({ query: DefaultPageDocument, variables: { url }, fetchPolicy })
     : Promise.resolve({ data: { pages: [] } })
 
-  // Only do the query when there are dynamic rows found in the allRoutes
+  // Get the required rowIds from the conditions
+  const requestedConditions = await conditions
   const rowIds = allRoutes.data.dynamicRows
-    .filter((row) => row.matchers.some((m) => matchers.includes(m)))
+    .filter((availableDynamicRow) =>
+      availableDynamicRow.conditions.some((row) => {
+        const value = requestedConditions.find((c) => c.property === row.property)?.value
+
+        if (typeof value === 'number' && row.__typename === 'DynamicRowConditionNumeric') {
+          if (row.operator === 'EQUAL') return value === row.numberValue
+          if (row.operator === 'LTE') return value <= row.numberValue
+          if (row.operator === 'GTE') return value >= row.numberValue
+        }
+
+        if (typeof value === 'string' && row.__typename === 'DynamicRowConditionString') {
+          return value === row.stringValue
+        }
+        return false
+      }),
+    )
     .map((row) => row.id)
 
   const dynamicRows =
@@ -65,20 +91,26 @@ export async function hygraphPageContent(
   const content = [...(pageResult.data.pages[0]?.content ?? [])]
 
   dynamicResult?.data.dynamicRows.forEach((dynamicRow) => {
-    const { location, locationSelector, row } = dynamicRow
+    const { placement, target, row } = dynamicRow
     if (!row) return
-    if (!locationSelector) {
-      if (location === 'BEFORE') content.unshift(row)
+    if (!target) {
+      if (placement === 'BEFORE') content.unshift(row)
       else content.push(row)
       return
     }
 
-    const targetIdx = content.findIndex((c) => c.identity === locationSelector)
-    if (location === 'BEFORE') content.splice(targetIdx, 0, row)
-    if (location === 'AFTER') content.splice(targetIdx + 1, 0, row)
-    if (location === 'REPLACE') content.splice(targetIdx, 1, row)
+    const targetIdx = content.findIndex((c) => c.identity === target)
+    if (placement === 'BEFORE') content.splice(targetIdx, 0, row)
+    if (placement === 'AFTER') content.splice(targetIdx + 1, 0, row)
+    if (placement === 'REPLACE') content.splice(targetIdx, 1, row)
   })
 
   // Return the merged page result.
   return { data: { ...pageResult.data, pages: [{ ...pageResult.data.pages[0], content }] } }
 }
+
+/**
+ * - Aantal queries minimaliseren?
+ * - Boven de product description zetten?
+ * - Hoe gaan we dit optioneel maken?
+ */
