@@ -1,20 +1,82 @@
-import { ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
+import { ApolloClient, NormalizedCacheObject, split } from '@graphcommerce/graphql'
 import { DefaultPageDocument, DefaultPageQuery } from '../../graphql/DefaultPage.gql'
 import { AllPageRoutesDocument } from './AllPageRoutes.gql'
-import { DynamicRowDocument } from './DynamicRow.gql'
 import {
   ConditionAndFragment,
   ConditionNumberFragment,
   ConditionOrFragment,
   ConditionTextFragment,
 } from './Conditions.gql'
+import { DynamicRowDocument } from './DynamicRow.gql'
 
-export type ConditionsInput = {
-  numeric: DynamicRowConditionNumericWhereInput[]
-  string: DynamicRowConditionStringWhereInput[]
+/**
+ * This generally works the same way as lodash get, however, when encountering an array it will
+ * return all values.
+ */
+function getByPath(
+  value: unknown,
+  query: string | Array<string | number>,
+): (undefined | string | number | bigint)[] {
+  const splitQuery = Array.isArray(query)
+    ? query
+    : query
+        .replace(/(\[(\d)\])/g, '.$2')
+        .replace(/^\./, '')
+        .split('.')
+
+  if (!splitQuery.length || splitQuery[0] === undefined) return [value as T]
+
+  const key = splitQuery[0]
+
+  if (Array.isArray(value)) {
+    return value.map((item) => getByPath(item, splitQuery)).flat(1000)
+  }
+
+  if (
+    typeof value !== 'object' ||
+    value === null ||
+    !(key in value) ||
+    (value as Record<string | number, T>)[key] === undefined
+  ) {
+    return [undefined]
+  }
+
+  const res = getByPath<T>((value as Record<string | number, T>)[key], splitQuery.slice(1))
+  return Array.isArray(res) ? res : [res]
 }
 
-type Conditions = { property: string; value: string | number | bigint }[]
+/** A recursive match function that is able to match a condition against the requested conditions. */
+function matchCondition(
+  condition:
+    | ConditionTextFragment
+    | ConditionNumberFragment
+    | ConditionOrFragment
+    | ConditionAndFragment,
+  obj: object,
+) {
+  if (condition.__typename === 'ConditionOr')
+    return condition.conditions.some((c) => matchCondition(c, obj))
+
+  if (condition.__typename === 'ConditionAnd')
+    return condition.conditions.every((c) => matchCondition(c, obj))
+
+  if (condition.__typename === 'ConditionNumber') {
+    return getByPath(obj, condition.property).some((v) => {
+      const value = Number(v)
+      if (!value || Number.isNaN(value)) return false
+
+      if (condition.operator === 'EQUAL') return value === condition.numberValue
+      if (condition.operator === 'LTE') return value <= condition.numberValue
+      if (condition.operator === 'GTE') return value >= condition.numberValue
+      return false
+    })
+  }
+  if (condition.__typename === 'ConditionText') {
+    return getByPath(obj, condition.property).some((value) => value === condition.stringValue)
+  }
+
+  return false
+}
 
 /**
  * Fetch the page content for the given urls.
@@ -25,7 +87,7 @@ type Conditions = { property: string; value: string | number | bigint }[]
 export async function hygraphPageContent(
   client: ApolloClient<NormalizedCacheObject>,
   url: string,
-  properties: Promise<Conditions>,
+  properties: Promise<object>,
   cached = false,
 ): Promise<{ data: DefaultPageQuery }> {
   /**
@@ -67,45 +129,9 @@ export async function hygraphPageContent(
 
   // Get the required rowIds from the conditions
   const propertiesAwaited = await properties
-
-  /** A recursive match function that is able to match a condition against the requested conditions. */
-  function matchCondition(
-    condition:
-      | ConditionTextFragment
-      | ConditionNumberFragment
-      | ConditionOrFragment
-      | ConditionAndFragment,
-  ) {
-    if (condition.__typename === 'ConditionOr')
-      return condition.conditions.some((c) => matchCondition(c))
-
-    if (condition.__typename === 'ConditionAnd')
-      return condition.conditions.every((c) => matchCondition(c))
-
-    if (condition.__typename === 'ConditionNumber') {
-      const value = Number(propertiesAwaited.find((c) => c.property === condition.property)?.value)
-
-      if (!value || Number.isNaN(value)) return false
-
-      if (condition.operator === 'EQUAL') return value === condition.numberValue
-      if (condition.operator === 'LTE') return value <= condition.numberValue
-      if (condition.operator === 'GTE') return value >= condition.numberValue
-    }
-    if (condition.__typename === 'ConditionText') {
-      const value = propertiesAwaited.find((c) => c.property === condition.property)?.value
-      return value === condition.stringValue
-    }
-
-    return false
-  }
-
-  // console.dir(
-  //   allRoutes.data.dynamicRows.map((r) => r.conditions),
-  //   { depth: 10 },
-  // )
   const rowIds = allRoutes.data.dynamicRows
     .filter((availableDynamicRow) =>
-      availableDynamicRow.conditions.some((row) => matchCondition(row)),
+      availableDynamicRow.conditions.some((row) => matchCondition(row, propertiesAwaited)),
     )
     .map((row) => row.id)
 
