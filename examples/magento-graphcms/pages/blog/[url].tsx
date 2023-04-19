@@ -1,15 +1,14 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
+  PageMeta,
   BlogTitle,
   GetStaticProps,
-  LayoutHeader,
-  LayoutTitle,
-  PageMeta,
   Row,
+  LayoutTitle,
+  LayoutHeader,
 } from '@graphcommerce/next-ui'
 import { GetStaticPaths } from 'next'
-import path from 'path'
 import {
   BlogAuthor,
   BlogHeader,
@@ -83,27 +82,27 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 
 export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => {
   const urlKey = params?.url ?? '??'
-  const parentFolderName = path.basename(path.dirname(__filename))
-  const url = `${parentFolderName}/${urlKey}`
+
   const client = graphqlSharedClient(locale)
   const staticClient = graphqlSsrClient(locale)
   const limit = 4
   const conf = client.query({ query: StoreConfigDocument })
 
-  const pages = hygraphPageContent(staticClient, url, [])
+  const page = hygraphPageContent(staticClient, `blog/${urlKey}`, {})
   const layout = staticClient.query({ query: LayoutDocument })
 
   const blogPosts = staticClient.query({
     query: BlogListDocument,
     variables: { currentUrl: [`blog/${urlKey}`], first: limit },
   })
-  if (!(await pages).data.pages?.[0]) return { notFound: true }
+  if (!(await page).data.pages?.[0]) return { notFound: true }
 
   return {
     props: {
+      ...(await page).data,
       ...(await blogPosts).data,
       ...(await layout).data,
-      ...(await pages).data,
+
       up: { href: '/', title: 'Home' },
       apolloState: await conf.then(() => client.cache.extract()),
     },

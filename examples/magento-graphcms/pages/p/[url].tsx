@@ -12,7 +12,6 @@ import {
   ProductCustomizable,
   productPageCategory,
   ProductPageDescription,
-  productPageMatchers,
   ProductPageMeta,
   ProductPagePrice,
   ProductPagePriceTiers,
@@ -193,9 +192,9 @@ function ProductPage(props: Props) {
 
       <ProductPageDescription {...product} right={<Usps usps={usps} />} fontSize='responsive' />
 
-      {pages[0] && (
+      {pages?.[0] && (
         <RowRenderer
-          content={pages[0].content}
+          content={pages?.[0].content}
           renderer={{
             RowProduct: (rowProps) => (
               <RowProduct

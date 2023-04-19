@@ -87,7 +87,7 @@ function matchCondition(
 export async function hygraphPageContent(
   client: ApolloClient<NormalizedCacheObject>,
   url: string,
-  properties: Promise<object>,
+  properties: Promise<object> | object,
   cached = false,
 ): Promise<{ data: DefaultPageQuery }> {
   /**

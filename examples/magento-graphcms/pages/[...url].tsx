@@ -10,7 +10,10 @@ import {
   getCategoryStaticPaths,
 } from '@graphcommerce/magento-category'
 import {
+  extractUrlQuery,
   FilterTypes,
+  getFilterTypes,
+  parseParams,
   ProductFiltersDocument,
   ProductFiltersPro,
   ProductFiltersProAllFiltersChip,
@@ -26,17 +29,14 @@ import {
   ProductListParamsProvider,
   ProductListQuery,
   ProductListSort,
-  extractUrlQuery,
-  getFilterTypes,
-  parseParams,
 } from '@graphcommerce/magento-product'
 import { StoreConfigDocument, redirectOrNotFound } from '@graphcommerce/magento-store'
 import {
-  GetStaticProps,
-  LayoutHeader,
-  LayoutTitle,
-  MetaRobots,
   StickyBelowHeader,
+  LayoutTitle,
+  LayoutHeader,
+  GetStaticProps,
+  MetaRobots,
 } from '@graphcommerce/next-ui'
 import { Container } from '@mui/material'
 import { GetStaticPaths } from 'next'
@@ -51,7 +51,7 @@ import { hygraphPageContent } from '../components/GraphCMS/pageContent'
 import { LayoutDocument } from '../components/Layout/Layout.gql'
 import { CategoryPageDocument, CategoryPageQuery } from '../graphql/CategoryPage.gql'
 import { DefaultPageQuery } from '../graphql/DefaultPage.gql'
-import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
+import { graphqlSsrClient, graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
 
 export type CategoryProps = CategoryPageQuery &
   DefaultPageQuery &
@@ -67,8 +67,8 @@ function CategoryPage(props: CategoryProps) {
 
   const category = categories?.items?.[0]
   const isLanding = category?.display_mode === 'PAGE'
-  const isCategory = params && category && products?.items && filterTypes
   const page = pages?.[0]
+  const isCategory = params && category && products?.items && filterTypes
 
   return (
     <>
@@ -104,7 +104,7 @@ function CategoryPage(props: CategoryProps) {
       {isCategory && isLanding && (
         <CategoryHeroNav
           {...category}
-          asset={page?.asset && <Asset asset={page.asset} loading='eager' />}
+          asset={pages?.[0]?.asset && <Asset asset={pages[0].asset} loading='eager' />}
           title={<CategoryHeroNavTitle>{category?.name}</CategoryHeroNavTitle>}
         />
       )}
@@ -188,7 +188,6 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 
 export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
   const [url, query] = extractUrlQuery(params)
-
   if (!url || !query) return { notFound: true }
 
   const client = graphqlSharedClient(locale)
@@ -197,7 +196,10 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
 
   const staticClient = graphqlSsrClient(locale)
 
-  const categoryPage = staticClient.query({ query: CategoryPageDocument, variables: { url } })
+  const categoryPage = staticClient.query({
+    query: CategoryPageDocument,
+    variables: { url },
+  })
 
   const layout = staticClient.query({ query: LayoutDocument })
 
@@ -210,7 +212,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     if (productListParams) productListParams.filters.category_uid = { in: [categoryUid] }
   }
 
-  const pages = hygraphPageContent(staticClient, url, [])
+  const pages = hygraphPageContent(staticClient, url, {})
 
   const hasPage = filteredCategoryUid ? false : (await pages).data.pages.length > 0
   const hasCategory = Boolean(productListParams && categoryUid)

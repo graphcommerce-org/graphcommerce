@@ -1,11 +1,9 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { SearchForm } from '@graphcommerce/magento-search'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { GetStaticProps, Separator, icon404, IconSvg, MetaRobots } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
+import { GetStaticProps, Separator, icon404, IconSvg } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box, Container, Typography, Link } from '@mui/material'
-import router from 'next/router'
 import React from 'react'
 import { LayoutNavigation, LayoutNavigationProps } from '../components'
 import { LayoutDocument } from '../components/Layout/Layout.gql'
@@ -15,30 +13,19 @@ type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props>
 
 function RouteNotFoundPage() {
-  const isB2B = process.env.NEXT_PUBLIC_SITE_URL?.includes('b2b')
-  const metaRobots = ['noindex'] as MetaRobots[]
-
   const links = [
-    <Link onClick={() => router.back()} href='#' underline='hover'>
-      <Trans id='Back' />
-    </Link>,
-    <Link href='/' key={0} color='primary' underline='hover'>
+    <Link key={0} href='/' color='primary' underline='hover'>
       <Trans id='Store home' />
     </Link>,
-    <Link href='/account' key={1} color='primary' underline='hover'>
+    <Link key={1} href='/account' color='primary' underline='hover'>
       <Trans id='Account' />
-    </Link>,
-    <Link href='/service' key={2} color='primary' underline='hover'>
-      <Trans id='FAQ' />
     </Link>,
   ]
 
   return (
     <>
-      <PageMeta
-        title={i18n._('Page not found')}
-        metaRobots={isB2B ? ['noindex', 'nofollow'] : metaRobots}
-      />
+      <PageMeta title='Page not found' metaRobots={['noindex']} />
+
       <Container maxWidth='sm'>
         <Box textAlign='center' mt={16} mb={16}>
           <IconSvg src={icon404} size='xxl' />
