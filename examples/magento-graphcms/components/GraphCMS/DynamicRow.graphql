@@ -1,7 +1,11 @@
 query DynamicRow($rowIds: [ID!]!) {
   dynamicRows(where: { id_in: $rowIds }) {
     placement
-    target
+    target {
+      ... on Node {
+        id
+      }
+    }
     row {
       __typename
       ... on Node {

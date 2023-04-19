@@ -1,5 +1,4 @@
 fragment RowButtonLinkList on RowButtonLinkList {
-  identity
   title
   links {
     title

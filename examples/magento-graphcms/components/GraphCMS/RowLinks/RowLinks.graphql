@@ -1,5 +1,4 @@
 fragment RowLinks on RowLinks {
-  identity
   title
   rowLinksCopy {
     raw

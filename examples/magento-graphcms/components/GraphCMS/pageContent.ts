@@ -128,7 +128,7 @@ export async function hygraphPageContent(
       return
     }
 
-    const targetIdx = content.findIndex((c) => c.identity === target)
+    const targetIdx = content.findIndex((c) => c.id === target.id)
     if (placement === 'BEFORE') content.splice(targetIdx, 0, row)
     if (placement === 'AFTER') content.splice(targetIdx + 1, 0, row)
     if (placement === 'REPLACE') content.splice(targetIdx, 1, row)

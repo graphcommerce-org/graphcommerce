@@ -1,5 +1,4 @@
 fragment RowColumnTwo on RowColumnTwo {
-  identity
   colOne {
     raw
   }
