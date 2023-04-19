@@ -1,0 +1,29 @@
+fragment ConditionNumber on ConditionNumber {
+  __typename
+  property
+  operator
+  numberValue: value
+}
+
+fragment ConditionText on ConditionText {
+  __typename
+  property
+  stringValue: value
+}
+
+fragment ConditionOr on ConditionOr {
+  __typename
+  conditions {
+    ...ConditionNumber
+    ...ConditionText
+  }
+}
+
+fragment ConditionAnd on ConditionAnd {
+  __typename
+  conditions {
+    ...ConditionNumber
+    ...ConditionText
+    ...ConditionOr
+  }
+}

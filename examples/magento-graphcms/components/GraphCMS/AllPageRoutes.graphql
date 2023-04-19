@@ -6,16 +6,9 @@ query AllPageRoutes {
     id
     conditions {
       __typename
-      ... on DynamicRowConditionNumeric {
-        property
-        operator
-        numberValue: value
-      }
-
-      ... on DynamicRowConditionString {
-        property
-        stringValue: value
-      }
+      ...ConditionNumber
+      ...ConditionText
+      ...ConditionAnd
     }
   }
 }

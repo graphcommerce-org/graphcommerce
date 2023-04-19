@@ -2,6 +2,12 @@ import { ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
 import { DefaultPageDocument, DefaultPageQuery } from '../../graphql/DefaultPage.gql'
 import { AllPageRoutesDocument } from './AllPageRoutes.gql'
 import { DynamicRowDocument } from './DynamicRow.gql'
+import {
+  ConditionAndFragment,
+  ConditionNumberFragment,
+  ConditionOrFragment,
+  ConditionTextFragment,
+} from './Conditions.gql'
 
 export type ConditionsInput = {
   numeric: DynamicRowConditionNumericWhereInput[]
@@ -19,7 +25,7 @@ type Conditions = { property: string; value: string | number | bigint }[]
 export async function hygraphPageContent(
   client: ApolloClient<NormalizedCacheObject>,
   url: string,
-  conditions: Promise<Conditions>,
+  properties: Promise<Conditions>,
   cached = false,
 ): Promise<{ data: DefaultPageQuery }> {
   /**
@@ -60,23 +66,46 @@ export async function hygraphPageContent(
     : Promise.resolve({ data: { pages: [] } })
 
   // Get the required rowIds from the conditions
-  const requestedConditions = await conditions
+  const propertiesAwaited = await properties
+
+  /** A recursive match function that is able to match a condition against the requested conditions. */
+  function matchCondition(
+    condition:
+      | ConditionTextFragment
+      | ConditionNumberFragment
+      | ConditionOrFragment
+      | ConditionAndFragment,
+  ) {
+    if (condition.__typename === 'ConditionOr')
+      return condition.conditions.some((c) => matchCondition(c))
+
+    if (condition.__typename === 'ConditionAnd')
+      return condition.conditions.every((c) => matchCondition(c))
+
+    if (condition.__typename === 'ConditionNumber') {
+      const value = Number(propertiesAwaited.find((c) => c.property === condition.property)?.value)
+
+      if (!value || Number.isNaN(value)) return false
+
+      if (condition.operator === 'EQUAL') return value === condition.numberValue
+      if (condition.operator === 'LTE') return value <= condition.numberValue
+      if (condition.operator === 'GTE') return value >= condition.numberValue
+    }
+    if (condition.__typename === 'ConditionText') {
+      const value = propertiesAwaited.find((c) => c.property === condition.property)?.value
+      return value === condition.stringValue
+    }
+
+    return false
+  }
+
+  // console.dir(
+  //   allRoutes.data.dynamicRows.map((r) => r.conditions),
+  //   { depth: 10 },
+  // )
   const rowIds = allRoutes.data.dynamicRows
     .filter((availableDynamicRow) =>
-      availableDynamicRow.conditions.some((row) => {
-        const value = requestedConditions.find((c) => c.property === row.property)?.value
-
-        if (typeof value === 'number' && row.__typename === 'DynamicRowConditionNumeric') {
-          if (row.operator === 'EQUAL') return value === row.numberValue
-          if (row.operator === 'LTE') return value <= row.numberValue
-          if (row.operator === 'GTE') return value >= row.numberValue
-        }
-
-        if (typeof value === 'string' && row.__typename === 'DynamicRowConditionString') {
-          return value === row.stringValue
-        }
-        return false
-      }),
+      availableDynamicRow.conditions.some((row) => matchCondition(row)),
     )
     .map((row) => row.id)
 
@@ -113,4 +142,5 @@ export async function hygraphPageContent(
  * - Aantal queries minimaliseren?
  * - Boven de product description zetten?
  * - Hoe gaan we dit optioneel maken?
+ * - Hoe gaan we dit upgradebaar maken?
  */
