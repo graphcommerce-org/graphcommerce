@@ -628,6 +628,9 @@ msgstr "Il pagamento non è stato completato, riprova o seleziona un metodo di p
 msgid "The payment is refused, please try again or select a different payment method."
 msgstr "Il pagamento è stato rifiutato, riprova o seleziona un metodo di pagamento differente."
 
+msgid "This cart is assigned to {email}. Please sign in to continue shopping."
+msgstr "Questo carrello è assegnato a {email}. Accedi per continuare gli acquisti."
+
 msgid "This field is required"
 msgstr "Questo campo è obbligatorio"
 
