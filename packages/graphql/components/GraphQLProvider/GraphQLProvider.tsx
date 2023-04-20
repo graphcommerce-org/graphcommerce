@@ -8,13 +8,13 @@ import {
   HttpLink,
 } from '@apollo/client'
 import type { AppProps } from 'next/app'
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { createCacheReviver } from '../createCacheReviver'
-import { errorLink } from '../errorLink'
-import fragments from '../generated/fragments.json'
-import { measurePerformanceLink } from '../measurePerformanceLink'
-import { MigrateCache } from '../migrateCache'
-import { mergeTypePolicies } from '../typePolicies'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { errorLink } from './errorLink'
+import fragments from '../../generated/fragments.json'
+import { measurePerformanceLink } from './measurePerformanceLink'
+import { MigrateCache } from './migrateCache'
+import { mergeTypePolicies } from './typePolicies'
+import { createCacheReviver } from './createCacheReviver'
 
 export const globalApolloClient: { current: ApolloClient<NormalizedCacheObject> | null } = {
   current: null,
