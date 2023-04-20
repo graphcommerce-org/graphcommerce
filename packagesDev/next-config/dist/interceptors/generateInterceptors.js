@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.generateInterceptors = exports.generateInterceptor = exports.isValidPlugin = exports.isMethodPluginConfig = exports.isReactPluginConfig = exports.isPluginBaseConfig = void 0;
+exports.generateInterceptors = exports.generateInterceptor = exports.isPluginConfig = exports.isMethodPluginConfig = exports.isReactPluginConfig = exports.isPluginBaseConfig = void 0;
 const node_path_1 = __importDefault(require("node:path"));
 function isPluginBaseConfig(plugin) {
     return (typeof plugin.exported === 'string' &&
@@ -23,10 +23,10 @@ function isMethodPluginConfig(plugin) {
     return plugin.method !== undefined;
 }
 exports.isMethodPluginConfig = isMethodPluginConfig;
-function isValidPlugin(plugin) {
+function isPluginConfig(plugin) {
     return isReactPluginConfig(plugin) || isMethodPluginConfig(plugin);
 }
-exports.isValidPlugin = isValidPlugin;
+exports.isPluginConfig = isPluginConfig;
 function moveRelativeDown(plugins) {
     return [...plugins].sort((a, b) => {
         if (a.plugin.startsWith('.') && !b.plugin.startsWith('.'))
@@ -36,15 +36,22 @@ function moveRelativeDown(plugins) {
         return 0;
     });
 }
+function capitalize(base) {
+    return base[0].toUpperCase() + base.slice(1);
+}
 function generateInterceptor(interceptor) {
-    const { fromModule, dependency, components } = interceptor;
-    const flattended = Object.entries(components)
+    const { fromModule, dependency, components, methods } = interceptor;
+    const pluginConfigs = [...Object.entries(components), ...Object.entries(methods)]
         .map(([, plugins]) => plugins)
         .flat();
     const duplicateImports = new Set();
-    const pluginImports = moveRelativeDown([...flattended].sort((a, b) => a.plugin.localeCompare(b.plugin)))
-        .map((p) => p.plugin)
-        .map((p) => `import { Plugin as ${p.split('/')[p.split('/').length - 1]} } from '${p}'`)
+    const pluginImports = moveRelativeDown([...pluginConfigs].sort((a, b) => a.plugin.localeCompare(b.plugin)))
+        .map((plugin) => {
+        const { plugin: p } = plugin;
+        if (isReactPluginConfig(plugin))
+            return `import { Plugin as ${p.split('/')[p.split('/').length - 1]} } from '${p}'`;
+        return `import { plugin as ${p.split('/')[p.split('/').length - 1]} } from '${p}'`;
+    })
         .filter((str) => {
         if (duplicateImports.has(str))
             return false;
@@ -52,44 +59,64 @@ function generateInterceptor(interceptor) {
         return true;
     })
         .join('\n');
-    const imports = Object.entries(components).map(([component]) => `${component} as ${component}Base`);
+    const imports = [
+        ...Object.entries(components).map(([component]) => `${component} as ${component}Base`),
+        ...Object.entries(methods).map(([method]) => `${method} as ${method}Base`),
+    ];
     const importInjectables = imports.length > 1
         ? `import { 
   ${imports.join(',\n  ')},
 } from '${fromModule}'`
         : `import { ${imports[0]} } from '${fromModule}'`;
-    const pluginExports = Object.entries(components)
-        .map(([component, plugins]) => {
+    const entries = [
+        ...Object.entries(components),
+        ...Object.entries(methods),
+    ];
+    const pluginExports = entries
+        .map(([base, plugins]) => {
         const duplicateInterceptors = new Set();
-        let carry = `${component}Base`;
+        const name = (p) => p.plugin.split('/')[p.plugin.split('/').length - 1];
+        const filterNoDuplicate = (p) => {
+            if (duplicateInterceptors.has(name(p)))
+                return false;
+            duplicateInterceptors.add(name(p));
+            return true;
+        };
+        let carry = `${base}Base`;
         const pluginStr = plugins
             .reverse()
-            .map((p) => p.plugin.split('/')[p.plugin.split('/').length - 1])
-            .filter((importStr) => {
-            if (duplicateInterceptors.has(importStr)) {
-                return false;
-            }
-            duplicateInterceptors.add(importStr);
-            return true;
-        })
-            .map((name) => {
-            const result = `function ${name}Interceptor(props: ${component}Props) {
-  return <${name} {...props} Prev={${carry}} />
+            .filter(filterNoDuplicate)
+            .map((p) => {
+            let result;
+            if (isReactPluginConfig(p)) {
+                result = `function ${name(p)}Interceptor(props: ${base}Props) {
+  return <${name(p)} {...props} Prev={${carry}} />
 }`;
-            carry = `${name}Interceptor`;
+            }
+            else {
+                result = `const ${name(p)}Interceptor: typeof ${base}Base = (...args) =>
+  ${name(p)}(${carry}, ...args)`;
+            }
+            carry = `${name(p)}Interceptor`;
             return result;
         })
             .join('\n');
+        const isComponent = plugins.every((p) => isReactPluginConfig(p));
+        if (isComponent && plugins.some((p) => isMethodPluginConfig(p))) {
+            throw new Error(`Cannot mix React and Method plugins for ${base} in ${dependency}.`);
+        }
         return `
 /**
- * Interceptor for \`<${component}/>\` with these plugins:
+ * Interceptor for \`${isComponent ? `<${base}/>` : `${base}()`}\` with these plugins:
  * 
 ${plugins.map((p) => ` * - \`${p.plugin}\``).join('\n')}
  */
-type ${component}Props = ComponentProps<typeof ${component}Base>
+${isComponent
+            ? `type ${base}Props = ComponentProps<typeof ${base}Base>
 
-${pluginStr}
-export const ${component} = ${carry}`;
+`
+            : ``}${pluginStr}
+export const ${base} = ${carry}`;
     })
         .join('\n');
     const componentExports = `export * from '${fromModule}'`;
@@ -107,8 +134,8 @@ exports.generateInterceptor = generateInterceptor;
 function generateInterceptors(plugins, resolve) {
     // todo: Do not use reduce as we're passing the accumulator to the next iteration
     const byExportedComponent = moveRelativeDown(plugins).reduce((acc, plug) => {
-        const { exported, component, enabled, plugin } = plug;
-        if (!exported || !component || !enabled)
+        const { exported, plugin } = plug;
+        if (!isPluginConfig(plug) || !plug.enabled)
             return acc;
         const resolved = resolve(exported);
         let pluginPathFromResolved = plugin;
@@ -121,13 +148,26 @@ function generateInterceptors(plugins, resolve) {
                 ...resolved,
                 target: `${resolved.fromRoot}.interceptor`,
                 components: {},
+                methods: {},
             };
-        if (!acc[resolved.fromRoot].components[component])
-            acc[resolved.fromRoot].components[component] = [];
-        acc[resolved.fromRoot].components[component].push({
-            ...plug,
-            plugin: pluginPathFromResolved,
-        });
+        if (isReactPluginConfig(plug)) {
+            const { component } = plug;
+            if (!acc[resolved.fromRoot].components[component])
+                acc[resolved.fromRoot].components[component] = [];
+            acc[resolved.fromRoot].components[component].push({
+                ...plug,
+                plugin: pluginPathFromResolved,
+            });
+        }
+        if (isMethodPluginConfig(plug)) {
+            const { method } = plug;
+            if (!acc[resolved.fromRoot].methods[method])
+                acc[resolved.fromRoot].methods[method] = [];
+            acc[resolved.fromRoot].methods[method].push({
+                ...plug,
+                plugin: pluginPathFromResolved,
+            });
+        }
         return acc;
     }, {});
     return Object.fromEntries(Object.entries(byExportedComponent).map(([target, interceptor]) => [

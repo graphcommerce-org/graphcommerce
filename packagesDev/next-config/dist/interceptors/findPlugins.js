@@ -76,7 +76,7 @@ function findPlugins(config, cwd = process.cwd()) {
                     ...result,
                     enabled: !result.ifConfig || Boolean((0, get_1.default)(config, result.ifConfig)),
                 };
-                if (!(0, generateInterceptors_1.isValidPlugin)(pluginConfig)) {
+                if (!(0, generateInterceptors_1.isPluginConfig)(pluginConfig)) {
                     if (!(0, generateInterceptors_1.isPluginBaseConfig)(pluginConfig))
                         errors.push(`Plugin ${file} is not a valid plugin, make it has "export const exported = '@graphcommerce/my-package"`);
                     else if (file.endsWith('.ts')) {

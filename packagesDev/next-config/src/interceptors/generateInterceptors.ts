@@ -33,12 +33,13 @@ export function isMethodPluginConfig(
 }
 
 export type PluginConfig = ReactPluginConfig | MethodPluginConfig
-export function isValidPlugin(plugin: Partial<PluginConfig>): plugin is PluginConfig {
+export function isPluginConfig(plugin: Partial<PluginConfig>): plugin is PluginConfig {
   return isReactPluginConfig(plugin) || isMethodPluginConfig(plugin)
 }
 
 type Interceptor = ResolveDependencyReturn & {
-  components: Record<string, PluginConfig[]>
+  components: Record<string, ReactPluginConfig[]>
+  methods: Record<string, MethodPluginConfig[]>
   target: string
   template?: string
 }
@@ -53,19 +54,28 @@ function moveRelativeDown(plugins: PluginConfig[]) {
   })
 }
 
-export function generateInterceptor(interceptor: Interceptor): MaterializedPlugin {
-  const { fromModule, dependency, components } = interceptor
+function capitalize(base: string) {
+  return base[0].toUpperCase() + base.slice(1)
+}
 
-  const flattended = Object.entries(components)
+export function generateInterceptor(interceptor: Interceptor): MaterializedPlugin {
+  const { fromModule, dependency, components, methods } = interceptor
+
+  const pluginConfigs = [...Object.entries(components), ...Object.entries(methods)]
     .map(([, plugins]) => plugins)
     .flat()
+
   const duplicateImports = new Set()
 
   const pluginImports = moveRelativeDown(
-    [...flattended].sort((a, b) => a.plugin.localeCompare(b.plugin)),
+    [...pluginConfigs].sort((a, b) => a.plugin.localeCompare(b.plugin)),
   )
-    .map((p) => p.plugin)
-    .map((p) => `import { Plugin as ${p.split('/')[p.split('/').length - 1]} } from '${p}'`)
+    .map((plugin) => {
+      const { plugin: p } = plugin
+      if (isReactPluginConfig(plugin))
+        return `import { Plugin as ${p.split('/')[p.split('/').length - 1]} } from '${p}'`
+      return `import { plugin as ${p.split('/')[p.split('/').length - 1]} } from '${p}'`
+    })
     .filter((str) => {
       if (duplicateImports.has(str)) return false
       duplicateImports.add(str)
@@ -73,9 +83,11 @@ export function generateInterceptor(interceptor: Interceptor): MaterializedPlugi
     })
     .join('\n')
 
-  const imports = Object.entries(components).map(
-    ([component]) => `${component} as ${component}Base`,
-  )
+  const imports = [
+    ...Object.entries(components).map(([component]) => `${component} as ${component}Base`),
+    ...Object.entries(methods).map(([method]) => `${method} as ${method}Base`),
+  ]
+
   const importInjectables =
     imports.length > 1
       ? `import { 
@@ -83,40 +95,59 @@ export function generateInterceptor(interceptor: Interceptor): MaterializedPlugi
 } from '${fromModule}'`
       : `import { ${imports[0]} } from '${fromModule}'`
 
-  const pluginExports = Object.entries(components)
-    .map(([component, plugins]) => {
+  const entries: [string, PluginConfig[]][] = [
+    ...Object.entries(components),
+    ...Object.entries(methods),
+  ]
+  const pluginExports = entries
+    .map(([base, plugins]) => {
       const duplicateInterceptors = new Set()
+      const name = (p: PluginConfig) => p.plugin.split('/')[p.plugin.split('/').length - 1]
 
-      let carry = `${component}Base`
+      const filterNoDuplicate = (p: PluginConfig) => {
+        if (duplicateInterceptors.has(name(p))) return false
+        duplicateInterceptors.add(name(p))
+        return true
+      }
+
+      let carry = `${base}Base`
       const pluginStr = plugins
         .reverse()
-        .map((p) => p.plugin.split('/')[p.plugin.split('/').length - 1])
-        .filter((importStr) => {
-          if (duplicateInterceptors.has(importStr)) {
-            return false
-          }
-          duplicateInterceptors.add(importStr)
-          return true
-        })
-        .map((name) => {
-          const result = `function ${name}Interceptor(props: ${component}Props) {
-  return <${name} {...props} Prev={${carry}} />
+        .filter(filterNoDuplicate)
+        .map((p) => {
+          let result
+          if (isReactPluginConfig(p)) {
+            result = `function ${name(p)}Interceptor(props: ${base}Props) {
+  return <${name(p)} {...props} Prev={${carry}} />
 }`
-          carry = `${name}Interceptor`
+          } else {
+            result = `const ${name(p)}Interceptor: typeof ${base}Base = (...args) =>
+  ${name(p)}(${carry}, ...args)`
+          }
+          carry = `${name(p)}Interceptor`
           return result
         })
         .join('\n')
 
+      const isComponent = plugins.every((p) => isReactPluginConfig(p))
+      if (isComponent && plugins.some((p) => isMethodPluginConfig(p))) {
+        throw new Error(`Cannot mix React and Method plugins for ${base} in ${dependency}.`)
+      }
+
       return `
 /**
- * Interceptor for \`<${component}/>\` with these plugins:
+ * Interceptor for \`${isComponent ? `<${base}/>` : `${base}()`}\` with these plugins:
  * 
 ${plugins.map((p) => ` * - \`${p.plugin}\``).join('\n')}
  */
-type ${component}Props = ComponentProps<typeof ${component}Base>
+${
+  isComponent
+    ? `type ${base}Props = ComponentProps<typeof ${base}Base>
 
-${pluginStr}
-export const ${component} = ${carry}`
+`
+    : ``
+}${pluginStr}
+export const ${base} = ${carry}`
     })
     .join('\n')
 
@@ -142,8 +173,8 @@ export function generateInterceptors(
 ): GenerateInterceptorsReturn {
   // todo: Do not use reduce as we're passing the accumulator to the next iteration
   const byExportedComponent = moveRelativeDown(plugins).reduce((acc, plug) => {
-    const { exported, component, enabled, plugin } = plug
-    if (!exported || !component || !enabled) return acc
+    const { exported, plugin } = plug
+    if (!isPluginConfig(plug) || !plug.enabled) return acc
 
     const resolved = resolve(exported)
 
@@ -161,15 +192,28 @@ export function generateInterceptors(
         ...resolved,
         target: `${resolved.fromRoot}.interceptor`,
         components: {},
+        methods: {},
       } as Interceptor
 
-    if (!acc[resolved.fromRoot].components[component])
-      acc[resolved.fromRoot].components[component] = []
+    if (isReactPluginConfig(plug)) {
+      const { component } = plug
+      if (!acc[resolved.fromRoot].components[component])
+        acc[resolved.fromRoot].components[component] = []
 
-    acc[resolved.fromRoot].components[component].push({
-      ...plug,
-      plugin: pluginPathFromResolved,
-    })
+      acc[resolved.fromRoot].components[component].push({
+        ...plug,
+        plugin: pluginPathFromResolved,
+      })
+    }
+    if (isMethodPluginConfig(plug)) {
+      const { method } = plug
+      if (!acc[resolved.fromRoot].methods[method]) acc[resolved.fromRoot].methods[method] = []
+
+      acc[resolved.fromRoot].methods[method].push({
+        ...plug,
+        plugin: pluginPathFromResolved,
+      })
+    }
 
     return acc
   }, {} as Record<string, Interceptor>)

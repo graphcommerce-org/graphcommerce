@@ -8,7 +8,7 @@ import type { Path } from 'react-hook-form'
 import diff from '../config/utils/diff'
 import { GraphCommerceConfig } from '../generated/config'
 import { resolveDependenciesSync } from '../utils/resolveDependenciesSync'
-import { isPluginBaseConfig, isValidPlugin, PluginConfig } from './generateInterceptors'
+import { isPluginBaseConfig, isPluginConfig, PluginConfig } from './generateInterceptors'
 
 function table(input: any) {
   // @see https://stackoverflow.com/a/67859384
@@ -88,7 +88,7 @@ export function findPlugins(config: GraphCommerceConfig, cwd: string = process.c
           enabled: !result.ifConfig || Boolean(get(config, result.ifConfig)),
         }
 
-        if (!isValidPlugin(pluginConfig)) {
+        if (!isPluginConfig(pluginConfig)) {
           if (!isPluginBaseConfig(pluginConfig))
             errors.push(
               `Plugin ${file} is not a valid plugin, make it has "export const exported = '@graphcommerce/my-package"`,
