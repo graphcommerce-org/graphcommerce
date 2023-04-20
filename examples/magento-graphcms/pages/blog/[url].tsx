@@ -88,7 +88,8 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   const limit = 4
   const conf = client.query({ query: StoreConfigDocument })
 
-  const page = hygraphPageContent(staticClient, `blog/${urlKey}`, {})
+  const withoutDynamic = hygraphPageContent(staticClient, `blog/${urlKey}`)
+  const page = addDynamicRows(staticClient, withoutDynamic, {})
   const layout = staticClient.query({ query: LayoutDocument })
 
   const blogPosts = staticClient.query({
