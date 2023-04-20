@@ -8,7 +8,7 @@ import type { Path } from 'react-hook-form'
 import diff from '../config/utils/diff'
 import { GraphCommerceConfig } from '../generated/config'
 import { resolveDependenciesSync } from '../utils/resolveDependenciesSync'
-import type { PluginConfig } from './generateInterceptors'
+import { isPluginBaseConfig, isValidPlugin, PluginConfig } from './generateInterceptors'
 
 function table(input: any) {
   // @see https://stackoverflow.com/a/67859384
@@ -73,19 +73,38 @@ export function findPlugins(config: GraphCommerceConfig, cwd: string = process.c
 
   if (debug) console.time('findPlugins')
 
+  const errors: string[] = []
   const plugins: PluginConfig[] = []
   dependencies.forEach((dependency, path) => {
-    const files = glob.sync(`${dependency}/plugins/**/*.tsx`)
+    const files = glob.sync(`${dependency}/plugins/**/*.{ts,tsx}`)
     files.forEach((file) => {
       try {
         const result = parseStructure(file)
         if (!result) return
 
-        plugins.push({
-          plugin: file.replace(dependency, path).replace('.tsx', ''),
+        const pluginConfig = {
+          plugin: file.replace(dependency, path).replace('.tsx', '').replace('.ts', ''),
           ...result,
           enabled: !result.ifConfig || Boolean(get(config, result.ifConfig)),
-        })
+        }
+
+        if (!isValidPlugin(pluginConfig)) {
+          if (!isPluginBaseConfig(pluginConfig))
+            errors.push(
+              `Plugin ${file} is not a valid plugin, make it has "export const exported = '@graphcommerce/my-package"`,
+            )
+          else if (file.endsWith('.ts')) {
+            errors.push(
+              `Plugin ${file} is not a valid plugin, please define the method to create a plugin for "export const method = 'someMethod'"`,
+            )
+          } else if (file.endsWith('.tsx')) {
+            errors.push(
+              `Plugin ${file} is not a valid plugin, please define the compoennt to create a plugin for "export const component = 'SomeComponent'"`,
+            )
+          }
+        } else {
+          plugins.push(pluginConfig)
+        }
       } catch (e) {
         console.error(`Error parsing ${file}`, e)
       }
@@ -110,5 +129,5 @@ export function findPlugins(config: GraphCommerceConfig, cwd: string = process.c
     console.timeEnd('findPlugins')
   }
 
-  return plugins
+  return [plugins, errors] as const
 }

@@ -9,9 +9,11 @@ it('finds plugins', () => {
     googleAnalyticsId: '123',
   } as GraphCommerceConfig
 
-  const plugins = findPlugins(fakeconfig, projectRoot)
+  const [plugins, errors] = findPlugins(fakeconfig, projectRoot)
   const disabled = plugins.filter((p) => !p.enabled)
   const enabled = plugins.filter((p) => p.enabled)
+
+  expect(errors).toMatchInlineSnapshot(`[]`)
 
   expect(enabled).toMatchInlineSnapshot(`
     [

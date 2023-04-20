@@ -1,12 +1,40 @@
 import path from 'node:path'
 import { ResolveDependency, ResolveDependencyReturn } from '../utils/resolveDependency'
 
-export type PluginConfig = {
-  component?: string
-  exported?: string
+type PluginBaseConfig = {
+  exported: string
   plugin: string
-  ifConfig?: string
   enabled: boolean
+  ifConfig?: string
+}
+export function isPluginBaseConfig(plugin: Partial<PluginBaseConfig>): plugin is PluginBaseConfig {
+  return (
+    typeof plugin.exported === 'string' &&
+    typeof plugin.plugin === 'string' &&
+    typeof plugin.enabled === 'boolean'
+  )
+}
+
+type ReactPluginConfig = PluginBaseConfig & { component: string }
+type MethodPluginConfig = PluginBaseConfig & { method: string }
+
+export function isReactPluginConfig(
+  plugin: Partial<PluginBaseConfig>,
+): plugin is ReactPluginConfig {
+  if (!isPluginBaseConfig(plugin)) return false
+  return (plugin as ReactPluginConfig).component !== undefined
+}
+
+export function isMethodPluginConfig(
+  plugin: Partial<PluginBaseConfig>,
+): plugin is MethodPluginConfig {
+  if (!isPluginBaseConfig(plugin)) return false
+  return (plugin as MethodPluginConfig).method !== undefined
+}
+
+export type PluginConfig = ReactPluginConfig | MethodPluginConfig
+export function isValidPlugin(plugin: Partial<PluginConfig>): plugin is PluginConfig {
+  return isReactPluginConfig(plugin) || isMethodPluginConfig(plugin)
 }
 
 type Interceptor = ResolveDependencyReturn & {

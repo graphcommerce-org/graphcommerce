@@ -12,6 +12,7 @@ const glob_1 = __importDefault(require("glob"));
 const get_1 = __importDefault(require("lodash/get"));
 const diff_1 = __importDefault(require("../config/utils/diff"));
 const resolveDependenciesSync_1 = require("../utils/resolveDependenciesSync");
+const generateInterceptors_1 = require("./generateInterceptors");
 function table(input) {
     // @see https://stackoverflow.com/a/67859384
     const ts = new stream_1.Transform({
@@ -61,19 +62,33 @@ function findPlugins(config, cwd = process.cwd()) {
     const debug = Boolean(config.debug?.pluginStatus);
     if (debug)
         console.time('findPlugins');
+    const errors = [];
     const plugins = [];
     dependencies.forEach((dependency, path) => {
-        const files = glob_1.default.sync(`${dependency}/plugins/**/*.tsx`);
+        const files = glob_1.default.sync(`${dependency}/plugins/**/*.{ts,tsx}`);
         files.forEach((file) => {
             try {
                 const result = parseStructure(file);
                 if (!result)
                     return;
-                plugins.push({
-                    plugin: file.replace(dependency, path).replace('.tsx', ''),
+                const pluginConfig = {
+                    plugin: file.replace(dependency, path).replace('.tsx', '').replace('.ts', ''),
                     ...result,
                     enabled: !result.ifConfig || Boolean((0, get_1.default)(config, result.ifConfig)),
-                });
+                };
+                if (!(0, generateInterceptors_1.isValidPlugin)(pluginConfig)) {
+                    if (!(0, generateInterceptors_1.isPluginBaseConfig)(pluginConfig))
+                        errors.push(`Plugin ${file} is not a valid plugin, make it has "export const exported = '@graphcommerce/my-package"`);
+                    else if (file.endsWith('.ts')) {
+                        errors.push(`Plugin ${file} is not a valid plugin, please define the method to create a plugin for "export const method = 'someMethod'"`);
+                    }
+                    else if (file.endsWith('.tsx')) {
+                        errors.push(`Plugin ${file} is not a valid plugin, please define the compoennt to create a plugin for "export const component = 'SomeComponent'"`);
+                    }
+                }
+                else {
+                    plugins.push(pluginConfig);
+                }
             }
             catch (e) {
                 console.error(`Error parsing ${file}`, e);
@@ -94,6 +109,6 @@ function findPlugins(config, cwd = process.cwd()) {
         prevlog = formatted;
         console.timeEnd('findPlugins');
     }
-    return plugins;
+    return [plugins, errors];
 }
 exports.findPlugins = findPlugins;

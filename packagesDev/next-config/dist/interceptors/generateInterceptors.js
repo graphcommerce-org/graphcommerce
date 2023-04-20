@@ -3,8 +3,30 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.generateInterceptors = exports.generateInterceptor = void 0;
+exports.generateInterceptors = exports.generateInterceptor = exports.isValidPlugin = exports.isMethodPluginConfig = exports.isReactPluginConfig = exports.isPluginBaseConfig = void 0;
 const node_path_1 = __importDefault(require("node:path"));
+function isPluginBaseConfig(plugin) {
+    return (typeof plugin.exported === 'string' &&
+        typeof plugin.plugin === 'string' &&
+        typeof plugin.enabled === 'boolean');
+}
+exports.isPluginBaseConfig = isPluginBaseConfig;
+function isReactPluginConfig(plugin) {
+    if (!isPluginBaseConfig(plugin))
+        return false;
+    return plugin.component !== undefined;
+}
+exports.isReactPluginConfig = isReactPluginConfig;
+function isMethodPluginConfig(plugin) {
+    if (!isPluginBaseConfig(plugin))
+        return false;
+    return plugin.method !== undefined;
+}
+exports.isMethodPluginConfig = isMethodPluginConfig;
+function isValidPlugin(plugin) {
+    return isReactPluginConfig(plugin) || isMethodPluginConfig(plugin);
+}
+exports.isValidPlugin = isValidPlugin;
 function moveRelativeDown(plugins) {
     return [...plugins].sort((a, b) => {
         if (a.plugin.startsWith('.') && !b.plugin.startsWith('.'))

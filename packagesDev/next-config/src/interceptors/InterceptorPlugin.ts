@@ -16,7 +16,8 @@ export class InterceptorPlugin {
   constructor(private config: GraphCommerceConfig) {
     this.resolveDependency = resolveDependency()
 
-    this.interceptors = generateInterceptors(findPlugins(this.config), this.resolveDependency)
+    const [plugins, errors] = findPlugins(this.config)
+    this.interceptors = generateInterceptors(plugins, this.resolveDependency)
     this.interceptorByDepependency = Object.fromEntries(
       Object.values(this.interceptors).map((i) => [i.dependency, i]),
     )
@@ -29,7 +30,7 @@ export class InterceptorPlugin {
 
     // After the compilation has succeeded we watch all possible plugin locations.
     compiler.hooks.afterCompile.tap('InterceptorPlugin', (compilation) => {
-      const plugins = findPlugins(this.config)
+      const [plugins, errors] = findPlugins(this.config)
 
       plugins.forEach((p) => {
         const absoluteFilePath = `${path.join(
