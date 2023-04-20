@@ -9,6 +9,7 @@ export type CartStartCheckoutProps = CartStartCheckoutFragment & {
   children?: React.ReactNode
   sx?: SxProps<Theme>
   buttonProps?: ButtonProps<'button'>
+  disabled?: boolean
   onStart?: (e: React.MouseEvent<HTMLButtonElement>, cart: CartStartCheckoutFragment) => void
 }
 
@@ -26,6 +27,7 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
     children,
     onStart,
     buttonProps: { onClick, ...buttonProps } = {},
+    disabled,
     sx = [],
     ...cart
   } = props
@@ -54,7 +56,7 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
           onStart?.(e, cart)
           return onClick?.(e)
         }}
-        disabled={!hasTotals || hasErrors}
+        disabled={disabled || !hasTotals || hasErrors}
         {...buttonProps}
       >
         <Box

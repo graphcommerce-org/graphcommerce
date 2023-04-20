@@ -35,7 +35,8 @@ function CartPage() {
     errorPolicy: 'all',
     fetchPolicy: 'cache-and-network',
   })
-  const { error, data = cart.previousData } = cart
+  const { error, data } = cart
+  const hasError = Boolean(error)
   const hasItems =
     (data?.cart?.total_quantity ?? 0) > 0 &&
     typeof data?.cart?.prices?.grand_total?.value !== 'undefined'
@@ -48,7 +49,7 @@ function CartPage() {
       />
       <LayoutOverlayHeader
         switchPoint={0}
-        primary={<CartStartCheckoutLinkOrButton {...data?.cart} />}
+        primary={<CartStartCheckoutLinkOrButton {...data?.cart} disabled={hasError} />}
         divider={
           <Container maxWidth='md'>
             <Stepper currentStep={hasItems ? 1 : 0} steps={3} />
@@ -98,7 +99,7 @@ function CartPage() {
                 <CartTotals containerMargin sx={{ typography: 'body1' }} />
                 <ApolloCartErrorAlert error={error} />
                 <Box key='checkout-button'>
-                  <CartStartCheckout {...data?.cart} />
+                  <CartStartCheckout {...data?.cart} disabled={hasError} />
                 </Box>
               </Box>
             ) : (
