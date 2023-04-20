@@ -31,8 +31,11 @@ type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
 
 function CartPage() {
-  const cart = useCartQuery(CartPageDocument, { returnPartialData: true, errorPolicy: 'all' })
-  const { data, error } = cart
+  const cart = useCartQuery(CartPageDocument, {
+    errorPolicy: 'all',
+    fetchPolicy: 'cache-and-network',
+  })
+  const { error, data = cart.previousData } = cart
   const hasItems =
     (data?.cart?.total_quantity ?? 0) > 0 &&
     typeof data?.cart?.prices?.grand_total?.value !== 'undefined'
