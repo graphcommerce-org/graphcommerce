@@ -48,7 +48,7 @@ import {
   RowRenderer,
   Usps,
 } from '../../components'
-import { addDynamicRows, hygraphPageContent } from '../../components/GraphCMS/pageContent'
+import { hygraphDynamicContent, hygraphPageContent } from '../../components/GraphCMS/pageContent'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
 import { DefaultPageQuery } from '../../graphql/DefaultPage.gql'
 import { ProductPage2Document, ProductPage2Query } from '../../graphql/ProductPage2.gql'
@@ -244,7 +244,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   )
 
   const withoutDynamic = hygraphPageContent(staticClient, 'product/global', true)
-  const pages = addDynamicRows(staticClient, withoutDynamic, product, true)
+  const pages = hygraphDynamicContent(staticClient, withoutDynamic, product, true)
   if (!(await product)) return redirectOrNotFound(staticClient, conf, params, locale)
 
   const category = productPageCategory(await product)

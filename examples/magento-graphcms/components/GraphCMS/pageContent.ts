@@ -116,9 +116,9 @@ export async function hygraphPageContent(
 }
 
 /**
- * - Boven de product description zetten?
+ * - Boven de product description zetten? in rowrenderer zetten
  * - Hoe gaan we dit optioneel maken?
- * - Hoe gaan we dit upgradebaar maken?
+ * - Hoe gaan we dit upgradebaar maken? management sdk
  */
 
 /**
@@ -127,10 +127,10 @@ export async function hygraphPageContent(
  * - Uses an early bailout to check to reduce hygraph calls.
  * - Implements an alias sytem to merge the content of multiple pages.
  */
-export async function addDynamicRows(
+export async function hygraphDynamicContent(
   client: ApolloClient<NormalizedCacheObject>,
   pageQuery: Promise<{ data: DefaultPageQuery }>,
-  properties: Promise<object> | object,
+  propertiesPromise: Promise<object> | object,
   cached = false,
 ): Promise<{ data: DefaultPageQuery }> {
   const alwaysCache = process.env.NODE_ENV !== 'development' ? 'cache-first' : undefined
@@ -139,10 +139,10 @@ export async function addDynamicRows(
   const allRoutes = await client.query({ query: AllPageRoutesDocument, fetchPolicy: alwaysCache })
 
   // Get the required rowIds from the conditions
-  const propertiesAwaited = await properties
+  const properties = await propertiesPromise
   const rowIds = allRoutes.data.dynamicRows
     .filter((availableDynamicRow) =>
-      availableDynamicRow.conditions.some((row) => matchCondition(row, propertiesAwaited)),
+      availableDynamicRow.conditions.some((condition) => matchCondition(condition, properties)),
     )
     .map((row) => row.id)
 

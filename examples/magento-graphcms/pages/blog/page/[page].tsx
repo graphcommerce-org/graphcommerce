@@ -21,7 +21,7 @@ import {
   LayoutNavigationProps,
   RowRenderer,
 } from '../../../components'
-import { addDynamicRows, hygraphPageContent } from '../../../components/GraphCMS/pageContent'
+import { hygraphDynamicContent, hygraphPageContent } from '../../../components/GraphCMS/pageContent'
 import { LayoutDocument } from '../../../components/Layout/Layout.gql'
 import { DefaultPageQuery } from '../../../graphql/DefaultPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
@@ -99,7 +99,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   const staticClient = graphqlSsrClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
   const withoutDynamic = hygraphPageContent(staticClient, 'blog')
-  const defaultPage = addDynamicRows(staticClient, withoutDynamic, {})
+  const defaultPage = hygraphDynamicContent(staticClient, withoutDynamic, {})
   const layout = staticClient.query({ query: LayoutDocument })
 
   const blogPosts = staticClient.query({
