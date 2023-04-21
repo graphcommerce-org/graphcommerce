@@ -165,6 +165,12 @@ it('finds plugins', () => {
         "plugin": "@graphcommerce/magento-store/plugins/MagentoStoreGraphqlProvider",
       },
       {
+        "enabled": true,
+        "exported": "@graphcommerce/graphql",
+        "method": "inMemoryCache",
+        "plugin": "@graphcommerce/magento-graphql/plugins/initMemoryCache",
+      },
+      {
         "component": "GraphQLProvider",
         "enabled": true,
         "exported": "@graphcommerce/graphql",

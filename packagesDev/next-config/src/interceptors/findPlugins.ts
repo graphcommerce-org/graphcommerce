@@ -1,36 +1,19 @@
-import { Console } from 'console'
-import { Transform } from 'stream'
 import { parseFileSync } from '@swc/core'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import chalk from 'chalk'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import glob from 'glob'
 import get from 'lodash/get'
 import type { Path } from 'react-hook-form'
-import diff from '../config/utils/diff'
 import { GraphCommerceConfig } from '../generated/config'
 import { resolveDependenciesSync } from '../utils/resolveDependenciesSync'
-import { isPluginBaseConfig, isPluginConfig, PluginConfig } from './generateInterceptors'
-
-function table(input: any) {
-  // @see https://stackoverflow.com/a/67859384
-  const ts = new Transform({
-    transform(chunk, enc, cb) {
-      cb(null, chunk)
-    },
-  })
-  const logger = new Console({ stdout: ts })
-  logger.table(input)
-  const t = (ts.read() || '').toString()
-  let result = ''
-  for (const row of t.split(/[\r\n]+/)) {
-    let r = row.replace(/[^┬]*┬/, '┌')
-    r = r.replace(/^├─*┼/, '├')
-    r = r.replace(/│[^│]*/, '')
-    r = r.replace(/^└─*┴/, '└')
-    r = r.replace(/'/g, ' ')
-    result += `${r}\n`
-  }
-  console.log(result)
-}
+import {
+  isMethodPluginConfig,
+  isPluginBaseConfig,
+  isPluginConfig,
+  isReactPluginConfig,
+  PluginConfig,
+} from './generateInterceptors'
 
 type ParseResult = {
   component?: string
@@ -64,14 +47,12 @@ function parseStructure(file: string): ParseResult {
   return exports as ParseResult
 }
 
-let prevlog: any
+const pluginLogs: Record<string, string> = {}
 
 export function findPlugins(config: GraphCommerceConfig, cwd: string = process.cwd()) {
   const dependencies = resolveDependenciesSync(cwd)
 
   const debug = Boolean(config.debug?.pluginStatus)
-
-  if (debug) console.time('findPlugins')
 
   const errors: string[] = []
   const plugins: PluginConfig[] = []
@@ -111,22 +92,37 @@ export function findPlugins(config: GraphCommerceConfig, cwd: string = process.c
     })
   })
 
-  if (debug) {
-    const formatted = plugins.map(({ plugin, component, ifConfig, enabled, exported }) => ({
-      '💉': enabled ? '✅' : '❌',
-      Reason: `${ifConfig ? `${ifConfig}` : ''}`,
-      Plugin: plugin,
-      Target: `${exported}#${component}`,
-    }))
+  if (process.env.NODE_ENV === 'development' && debug) {
+    const byExported = plugins.reduce((acc, plugin) => {
+      const componentStr = isReactPluginConfig(plugin) ? plugin.component : ''
+      const methodStr = isMethodPluginConfig(plugin) ? plugin.method : ''
+      const key = `🔌 ${chalk.greenBright(
+        `Plugins loaded for ${plugin.exported}#${componentStr}${methodStr}`,
+      )}`
+      if (!acc[key]) acc[key] = []
+      acc[key].push(plugin)
+      return acc
+    }, {} as Record<string, Pick<PluginConfig, 'plugin' | 'ifConfig' | 'enabled'>[]>)
 
-    const res = diff(prevlog, formatted)
+    const toLog: string[] = []
+    Object.entries(byExported).forEach(([key, p]) => {
+      const logStr = p
+        .filter((c) => debug || c.enabled)
+        .map(
+          (c) =>
+            `${c.enabled ? `🟢` : `⚪️`} ${c.plugin} ${
+              c.ifConfig ? `(${c.ifConfig}: ${c.enabled ? 'true' : 'false'})` : ''
+            }`,
+        )
+        .join('\n')
 
-    if (res) {
-      table(formatted)
-    }
-    prevlog = formatted
+      if (logStr && pluginLogs[key] !== logStr) {
+        toLog.push(`${key}\n${logStr}`)
+        pluginLogs[key] = logStr
+      }
+    })
 
-    console.timeEnd('findPlugins')
+    console.log(toLog.join('\n\n'))
   }
 
   return [plugins, errors] as const
