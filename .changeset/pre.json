@@ -72,9 +72,18 @@
     "@graphcommerce/typescript-config-pwa": "6.1.0"
   },
   "changesets": [
+    "curvy-cats-invent",
     "cyan-months-yell",
+    "dirty-rivers-beg",
+    "good-forks-remember",
     "good-seals-rest",
     "honest-clocks-jump",
-    "lemon-houses-sit"
+    "lemon-houses-sit",
+    "neat-mice-sneeze",
+    "nice-tips-fix",
+    "popular-mice-laugh",
+    "tender-shrimps-cheat",
+    "thin-news-juggle",
+    "twenty-planes-laugh"
   ]
 }

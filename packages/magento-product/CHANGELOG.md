@@ -1,5 +1,13 @@
 # Change Log
 
+## 6.1.1-canary.4
+
+### Patch Changes
+
+- [#1914](https://github.com/graphcommerce-org/graphcommerce/pull/1914) [`c237f2f2c`](https://github.com/graphcommerce-org/graphcommerce/commit/c237f2f2c87d9e3c8aefc536a13b5b9203556f27) - Category pages now have the ability to select the displayed pageSize of a page and a non-default pageSize and a non-default sort option will now receive noindex meta tags when viewed. ([@paales](https://github.com/paales))
+
+- [#1914](https://github.com/graphcommerce-org/graphcommerce/pull/1914) [`b1abccb67`](https://github.com/graphcommerce-org/graphcommerce/commit/b1abccb677b83b090882ed1e0cf5336c52b175a4) - Category limit url param wasn't parsed correctly, causing a 404. ([@paales](https://github.com/paales))
+
 ## 6.1.1-canary.3
 
 ### Patch Changes

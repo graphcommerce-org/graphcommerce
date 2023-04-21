@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.1.1-canary.4
+
+### Patch Changes
+
+- [#1914](https://github.com/graphcommerce-org/graphcommerce/pull/1914) [`38d6c4888`](https://github.com/graphcommerce-org/graphcommerce/commit/38d6c488850013b36cae9f388996039219c1327e) - Errors in the cart didn't allow for recovery from the faulty state ([@paales](https://github.com/paales))
+
 ## 6.1.1-canary.3
 
 ## 6.1.1-canary.2

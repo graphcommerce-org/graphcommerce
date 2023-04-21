@@ -1,5 +1,15 @@
 # Change Log
 
+## 6.1.1-canary.4
+
+### Patch Changes
+
+- [#1914](https://github.com/graphcommerce-org/graphcommerce/pull/1914) [`000556331`](https://github.com/graphcommerce-org/graphcommerce/commit/000556331f5379c71d7edca541fd0b145b7dc435) - When there is an error in the cart, disable the checkout buttons ([@paales](https://github.com/paales))
+
+- [#1914](https://github.com/graphcommerce-org/graphcommerce/pull/1914) [`38d6c4888`](https://github.com/graphcommerce-org/graphcommerce/commit/38d6c488850013b36cae9f388996039219c1327e) - Errors in the cart didn't allow for recovery from the faulty state ([@paales](https://github.com/paales))
+
+- [#1914](https://github.com/graphcommerce-org/graphcommerce/pull/1914) [`5d115a11a`](https://github.com/graphcommerce-org/graphcommerce/commit/5d115a11a417f35c3315879c785d24ae32e64663) - When a customer tries to add a product to a customer cart, discard the cart and create a new cart ([@paales](https://github.com/paales))
+
 ## 6.1.1-canary.3
 
 ## 6.1.1-canary.2
