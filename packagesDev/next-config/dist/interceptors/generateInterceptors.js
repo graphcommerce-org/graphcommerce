@@ -20,7 +20,7 @@ exports.isReactPluginConfig = isReactPluginConfig;
 function isMethodPluginConfig(plugin) {
     if (!isPluginBaseConfig(plugin))
         return false;
-    return plugin.method !== undefined;
+    return plugin.func !== undefined;
 }
 exports.isMethodPluginConfig = isMethodPluginConfig;
 function isPluginConfig(plugin) {
@@ -40,8 +40,8 @@ function capitalize(base) {
     return base[0].toUpperCase() + base.slice(1);
 }
 function generateInterceptor(interceptor) {
-    const { fromModule, dependency, components, methods } = interceptor;
-    const pluginConfigs = [...Object.entries(components), ...Object.entries(methods)]
+    const { fromModule, dependency, components, funcs } = interceptor;
+    const pluginConfigs = [...Object.entries(components), ...Object.entries(funcs)]
         .map(([, plugins]) => plugins)
         .flat();
     const duplicateImports = new Set();
@@ -61,7 +61,7 @@ function generateInterceptor(interceptor) {
         .join('\n');
     const imports = [
         ...Object.entries(components).map(([component]) => `${component} as ${component}Base`),
-        ...Object.entries(methods).map(([method]) => `${method} as ${method}Base`),
+        ...Object.entries(funcs).map(([func]) => `${func} as ${func}Base`),
     ];
     const importInjectables = imports.length > 1
         ? `import { 
@@ -70,7 +70,7 @@ function generateInterceptor(interceptor) {
         : `import { ${imports[0]} } from '${fromModule}'`;
     const entries = [
         ...Object.entries(components),
-        ...Object.entries(methods),
+        ...Object.entries(funcs),
     ];
     const pluginExports = entries
         .map(([base, plugins]) => {
@@ -148,7 +148,7 @@ function generateInterceptors(plugins, resolve) {
                 ...resolved,
                 target: `${resolved.fromRoot}.interceptor`,
                 components: {},
-                methods: {},
+                funcs: {},
             };
         if (isReactPluginConfig(plug)) {
             const { component } = plug;
@@ -160,10 +160,10 @@ function generateInterceptors(plugins, resolve) {
             });
         }
         if (isMethodPluginConfig(plug)) {
-            const { method } = plug;
-            if (!acc[resolved.fromRoot].methods[method])
-                acc[resolved.fromRoot].methods[method] = [];
-            acc[resolved.fromRoot].methods[method].push({
+            const { func } = plug;
+            if (!acc[resolved.fromRoot].funcs[func])
+                acc[resolved.fromRoot].funcs[func] = [];
+            acc[resolved.fromRoot].funcs[func].push({
                 ...plug,
                 plugin: pluginPathFromResolved,
             });

@@ -279,13 +279,13 @@ it('generates method interceptors alognside component interceptors', () => {
     {
       enabled: true,
       exported: '@graphcommerce/graphql',
-      method: 'inMemoryCache',
+      func: 'inMemoryCache',
       plugin: '@graphcommerce/magento-graphql/plugins/magentoInitMemoryCache',
     },
     {
       enabled: true,
       exported: '@graphcommerce/graphql',
-      method: 'inMemoryCache',
+      func: 'inMemoryCache',
       plugin: '@graphcommerce/magento-hygraph/plugins/hygraphInitMemoryCache',
     },
   ]

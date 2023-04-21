@@ -16,7 +16,7 @@ export function isPluginBaseConfig(plugin: Partial<PluginBaseConfig>): plugin is
 }
 
 type ReactPluginConfig = PluginBaseConfig & { component: string }
-type MethodPluginConfig = PluginBaseConfig & { method: string }
+type MethodPluginConfig = PluginBaseConfig & { func: string }
 
 export function isReactPluginConfig(
   plugin: Partial<PluginBaseConfig>,
@@ -29,7 +29,7 @@ export function isMethodPluginConfig(
   plugin: Partial<PluginBaseConfig>,
 ): plugin is MethodPluginConfig {
   if (!isPluginBaseConfig(plugin)) return false
-  return (plugin as MethodPluginConfig).method !== undefined
+  return (plugin as MethodPluginConfig).func !== undefined
 }
 
 export type PluginConfig = ReactPluginConfig | MethodPluginConfig
@@ -39,7 +39,7 @@ export function isPluginConfig(plugin: Partial<PluginConfig>): plugin is PluginC
 
 type Interceptor = ResolveDependencyReturn & {
   components: Record<string, ReactPluginConfig[]>
-  methods: Record<string, MethodPluginConfig[]>
+  funcs: Record<string, MethodPluginConfig[]>
   target: string
   template?: string
 }
@@ -59,9 +59,9 @@ function capitalize(base: string) {
 }
 
 export function generateInterceptor(interceptor: Interceptor): MaterializedPlugin {
-  const { fromModule, dependency, components, methods } = interceptor
+  const { fromModule, dependency, components, funcs } = interceptor
 
-  const pluginConfigs = [...Object.entries(components), ...Object.entries(methods)]
+  const pluginConfigs = [...Object.entries(components), ...Object.entries(funcs)]
     .map(([, plugins]) => plugins)
     .flat()
 
@@ -85,7 +85,7 @@ export function generateInterceptor(interceptor: Interceptor): MaterializedPlugi
 
   const imports = [
     ...Object.entries(components).map(([component]) => `${component} as ${component}Base`),
-    ...Object.entries(methods).map(([method]) => `${method} as ${method}Base`),
+    ...Object.entries(funcs).map(([func]) => `${func} as ${func}Base`),
   ]
 
   const importInjectables =
@@ -97,7 +97,7 @@ export function generateInterceptor(interceptor: Interceptor): MaterializedPlugi
 
   const entries: [string, PluginConfig[]][] = [
     ...Object.entries(components),
-    ...Object.entries(methods),
+    ...Object.entries(funcs),
   ]
   const pluginExports = entries
     .map(([base, plugins]) => {
@@ -192,7 +192,7 @@ export function generateInterceptors(
         ...resolved,
         target: `${resolved.fromRoot}.interceptor`,
         components: {},
-        methods: {},
+        funcs: {},
       } as Interceptor
 
     if (isReactPluginConfig(plug)) {
@@ -206,10 +206,10 @@ export function generateInterceptors(
       })
     }
     if (isMethodPluginConfig(plug)) {
-      const { method } = plug
-      if (!acc[resolved.fromRoot].methods[method]) acc[resolved.fromRoot].methods[method] = []
+      const { func } = plug
+      if (!acc[resolved.fromRoot].funcs[func]) acc[resolved.fromRoot].funcs[func] = []
 
-      acc[resolved.fromRoot].methods[method].push({
+      acc[resolved.fromRoot].funcs[func].push({
         ...plug,
         plugin: pluginPathFromResolved,
       })

@@ -74,8 +74,8 @@ function findPlugins(config, cwd = process.cwd()) {
     if (process.env.NODE_ENV === 'development' && debug) {
         const byExported = plugins.reduce((acc, plugin) => {
             const componentStr = (0, generateInterceptors_1.isReactPluginConfig)(plugin) ? plugin.component : '';
-            const methodStr = (0, generateInterceptors_1.isMethodPluginConfig)(plugin) ? plugin.method : '';
-            const key = `🔌 ${chalk_1.default.greenBright(`Plugins loaded for ${plugin.exported}#${componentStr}${methodStr}`)}`;
+            const funcStr = (0, generateInterceptors_1.isMethodPluginConfig)(plugin) ? plugin.func : '';
+            const key = `🔌 ${chalk_1.default.greenBright(`Plugins loaded for ${plugin.exported}#${componentStr}${funcStr}`)}`;
             if (!acc[key])
                 acc[key] = [];
             acc[key].push(plugin);

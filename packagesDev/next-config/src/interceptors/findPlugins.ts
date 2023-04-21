@@ -95,9 +95,9 @@ export function findPlugins(config: GraphCommerceConfig, cwd: string = process.c
   if (process.env.NODE_ENV === 'development' && debug) {
     const byExported = plugins.reduce((acc, plugin) => {
       const componentStr = isReactPluginConfig(plugin) ? plugin.component : ''
-      const methodStr = isMethodPluginConfig(plugin) ? plugin.method : ''
+      const funcStr = isMethodPluginConfig(plugin) ? plugin.func : ''
       const key = `🔌 ${chalk.greenBright(
-        `Plugins loaded for ${plugin.exported}#${componentStr}${methodStr}`,
+        `Plugins loaded for ${plugin.exported}#${componentStr}${funcStr}`,
       )}`
       if (!acc[key]) acc[key] = []
       acc[key].push(plugin)
