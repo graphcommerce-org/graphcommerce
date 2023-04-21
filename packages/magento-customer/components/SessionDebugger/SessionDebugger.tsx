@@ -16,8 +16,7 @@ export function SessionDebugger() {
           if (!currentToken?.customerToken?.token) {
             console.log('No customerToken available, nothing to break')
           } else {
-            console.log(`Changing current token to a random one)`)
-
+            console.log(`Invalidating session`)
             client.writeQuery({
               query: CustomerTokenDocument,
               data: {
@@ -31,7 +30,33 @@ export function SessionDebugger() {
           }
         }}
       >
-        break magento token
+        Invalidate session
+      </Button>
+      <Button
+        type='button'
+        variant='text'
+        size='small'
+        onClick={() => {
+          const currentToken = client.readQuery({ query: CustomerTokenDocument })
+          if (!currentToken?.customerToken?.token) {
+            console.log('No customerToken available, nothing to break')
+          } else {
+            console.log(`Changing current token to a random one`)
+
+            client.writeQuery({
+              query: CustomerTokenDocument,
+              data: {
+                customerToken: {
+                  ...currentToken?.customerToken,
+                  token: 'hihaho',
+                },
+              },
+              broadcast: true,
+            })
+          }
+        }}
+      >
+        Invalidate token
       </Button>
     </div>
   )

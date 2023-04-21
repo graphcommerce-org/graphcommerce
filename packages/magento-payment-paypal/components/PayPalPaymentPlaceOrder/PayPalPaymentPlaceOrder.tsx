@@ -35,7 +35,7 @@ export function PayPalPaymentPlaceOrder(props: PaymentPlaceOrderProps) {
   })
 
   const submit = form.handleSubmit(() => {})
-  useFormCompose({ form, step, submit, key: `PaymentMethodOptions_${code}` })
+  useFormCompose({ form, step, submit, key: `PayPalPaymentPlaceOrder_${code}` })
 
   return (
     <form onSubmit={submit} noValidate>

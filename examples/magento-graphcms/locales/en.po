@@ -430,6 +430,9 @@ msgstr "Payment has not completed succesfully, please try again."
 msgid "Payment method"
 msgstr "Payment method"
 
+msgid "Per page"
+msgstr "Per page"
+
 msgid "Personal details"
 msgstr "Personal details"
 
@@ -625,6 +628,9 @@ msgstr "The payment hasn't completed, please try again or select a different pay
 msgid "The payment is refused, please try again or select a different payment method."
 msgstr "The payment is refused, please try again or select a different payment method."
 
+msgid "This cart is assigned to {email}. Please sign in to continue shopping."
+msgstr "This cart is assigned to {email}. Please sign in to continue shopping."
+
 msgid "This field is required"
 msgstr "This field is required"
 
@@ -795,6 +801,9 @@ msgstr "returned"
 
 msgid "shipped"
 msgstr "shipped"
+
+msgid "{count} Per page"
+msgstr "{count} Per page"
 
 msgid "{metaDescription} - Page {currentPage}"
 msgstr "{metaDescription} - Page {currentPage}"

@@ -116,7 +116,7 @@ msgid "City"
 msgstr "Plaats"
 
 msgid "Clear"
-msgstr "Filter wissen"
+msgstr "Wissen"
 
 msgid "Close"
 msgstr "Sluiten"
@@ -395,7 +395,7 @@ msgid "Other"
 msgstr "Overige"
 
 msgid "Out of stock"
-msgstr ""
+msgstr "Niet op voorraad"
 
 msgid "Page {page} of {count}"
 msgstr "Pagina {page} van {count}"
@@ -430,6 +430,9 @@ msgstr "Betaling is niet succesvol afgerond, probeer het opnieuw."
 msgid "Payment method"
 msgstr "Betaalmethode"
 
+msgid "Per page"
+msgstr "Per pagina"
+
 msgid "Personal details"
 msgstr "Persoonlijke details"
 
@@ -446,7 +449,7 @@ msgid "Please provide a valid house number"
 msgstr "Vul een geldig huisnummer in"
 
 msgid "Please reauthenticate and try again"
-msgstr "Verifieer opnieuw en probeer het opnieuw"
+msgstr "U bent niet meer ingelogd, log in om verder te gaan"
 
 msgid "Please select a payment method"
 msgstr "Selecteer een betaalmethode a.u.b."
@@ -625,6 +628,9 @@ msgstr "De betaling is niet voltooid, probeer het opnieuw of selecteer een ander
 msgid "The payment is refused, please try again or select a different payment method."
 msgstr "De betaling is geweigerd, probeer het opnieuw of selecteer een andere betaalmethode."
 
+msgid "This cart is assigned to {email}. Please sign in to continue shopping."
+msgstr "Deze winkelwagen is toegewezen aan {email}. Log in om verder te winkelen."
+
 msgid "This field is required"
 msgstr "Dit veld is verplicht"
 
@@ -795,6 +801,9 @@ msgstr "terug gestuurd"
 
 msgid "shipped"
 msgstr "verzonden"
+
+msgid "{count} Per page"
+msgstr "{count} Per pagina"
 
 msgid "{metaDescription} - Page {currentPage}"
 msgstr "{metaDescription} - Pagina {currentPage}"

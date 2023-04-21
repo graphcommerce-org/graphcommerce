@@ -46,7 +46,10 @@ export function graphqlErrorByCategory(
   })
 
   const graphqlError = error.graphQLErrors.find((err) => err?.extensions?.category === category)
-  if (mask && graphqlError) graphqlError.message = mask
+  if (mask && graphqlError) {
+    if (graphqlError.extensions?.category) graphqlError.extensions.category = 'masked'
+    graphqlError.message = mask
+  }
 
   return newError.graphQLErrors.length === 0 && !newError.networkError
     ? [undefined, graphqlError]

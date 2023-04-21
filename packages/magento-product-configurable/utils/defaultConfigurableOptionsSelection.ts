@@ -92,10 +92,8 @@ export function defaultConfigurableOptionsSelection<Q extends BaseQuery = BaseQu
               __typename: 'ConfigurableProductOptionsSelection',
               media_gallery: variant.media_gallery,
               variant: {
+                ...variant,
                 __typename: 'SimpleProduct',
-                price_range: variant.price_range,
-                uid: variant.uid,
-                name: variant.name,
               },
               options_available_for_selection: options.map(({ attribute_code }) => ({
                 __typename: 'ConfigurableOptionAvailableForSelection' as const,
