@@ -1,5 +1,13 @@
 # Change Log
 
+## 6.1.1-canary.5
+
+### Patch Changes
+
+- [#1913](https://github.com/graphcommerce-org/graphcommerce/pull/1913) [`17eac116d`](https://github.com/graphcommerce-org/graphcommerce/commit/17eac116dbf2b811a67bfefd735d5a5a3e2b20dc) - Fixed zIndex issue with CartFab and ScrollerButton ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#1913](https://github.com/graphcommerce-org/graphcommerce/pull/1913) [`61b1987eb`](https://github.com/graphcommerce-org/graphcommerce/commit/61b1987eb8d37566cb4675f0ae962925aef2fc6d) - Fixed RowLinks ScrollerButton alignment when content is shown beside the Scroller ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 6.1.1-canary.4
 
 ## 6.1.1-canary.3
