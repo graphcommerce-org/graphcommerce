@@ -29,6 +29,7 @@
     "@graphql-mesh/cli": "0.82.25",
     "@graphql-mesh/types": "0.91.7",
     "@graphql-mesh/utils": "0.43.15",
+    "@hygraph/management-sdk": "^1.1.2-alpha.1",
     "cosmiconfig": "^8.0.0",
     "detect-package-manager": "^2.0.1",
     "graphql": "16.6.0",

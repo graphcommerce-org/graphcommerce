@@ -1,10 +1,12 @@
 #!/usr/bin/env node
 
 import { generateConfig, exportConfig } from '@graphcommerce/next-config'
+import { migrateHygraph } from '../hygraph/migrateHygraph'
 
 const commands = {
   'codegen-config': generateConfig,
   'export-config': exportConfig,
+  'hygraph-migrate': migrateHygraph,
 }
 
 const args = process.argv.slice(2)

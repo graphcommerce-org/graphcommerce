@@ -2,9 +2,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const next_config_1 = require("@graphcommerce/next-config");
+const migrateHygraph_1 = require("../hygraph/migrateHygraph");
 const commands = {
     'codegen-config': next_config_1.generateConfig,
     'export-config': next_config_1.exportConfig,
+    'hygraph-migrate': migrateHygraph_1.migrateHygraph,
 };
 const args = process.argv.slice(2);
 const command = args[0];
