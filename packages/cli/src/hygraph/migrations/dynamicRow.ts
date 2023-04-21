@@ -7,10 +7,8 @@ import {
 
 export const dynamicRow = async (name: string | undefined) => {
   const client = new Client({
-    authToken:
-      'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImdjbXMtbWFpbi1wcm9kdWN0aW9uIn0.eyJ2ZXJzaW9uIjozLCJpYXQiOjE2ODIwNjQwNDcsImF1ZCI6WyJodHRwczovL2FwaS1ldS1jZW50cmFsLTEtc2hhcmVkLWV1YzEtMDIuaHlncmFwaC5jb20vdjIvY2xncTlpMHR3MTFvZzAxdWg3YTZ3OGMyOS9tYXN0ZXIiLCJtYW5hZ2VtZW50LW5leHQuZ3JhcGhjbXMuY29tIl0sImlzcyI6Imh0dHBzOi8vbWFuYWdlbWVudC5ncmFwaGNtcy5jb20vIiwic3ViIjoiZjU5MTczZGQtZTExOC00ODdiLWJjMDctMDcyNjZkZDU4Y2RlIiwianRpIjoiY2xnb3p3YzV0NzBiMzAxdWcwNzk5MGJ3dSJ9.qWKMOugu0UG28toPzS7rAuWCAZuFnvBhYPIadYTYBCTeE0S463st2UAMQ3LqoppHRElf3rFOkXQD4__OJBQj0a1nSxEQet0k8xkj47B2HJnIFrI348GYuSkKDOtJtmAr2LwV26Mz5wY6UbnOgK6SQCLEoImtw7I_2bVZQdQWX6pILDz4kAfjiZKYu1YJafk08oA-43x_mEwzqgZ8Mdcpx84EIrGRP68ZuN5XDIu5RtwrN21VrrJvxRxBw_AWODfTJDVdefjoHbre_1-IM8eUs7Th9--EXVapYv1fyXrpE4_cZlny8erHxJ4ULz3Df2TVPCL_h4v_gnYSLaGvOMbWJchPyoyViTnrhE5DUfhf07z4Uh6fjFpRz4DSkSNvHeiPuIzDj7H4zyUKAtENJR_NTQYiBi-kBIAM3ZgF9cNpF7krO8Ov9iLP3m785-d2TuzC3cVoHvLMz8MHkZYPq7d2wSs1dTCHRJyP1k4nh0uRWu4_lEmGfaXTSCEJqdOF0Isa5cZwHdQdXBpMJ6NUy1r_3ZEKExvpfPrTZIF7ONub4mkDpX5McdTAq5PCLCuEDIICzSM0iTbdB-GT6DSH-ib5piVN897YzyHvRSDBd7-wie0Ldtqxpk88Cgrk-T3pFB6HKYxHcMOLXpLCYbsdQ5liG5fSmR9FgJSY69KCBMYAraU',
-    endpoint:
-      'https://api-eu-central-1-shared-euc1-02.hygraph.com/v2/clgq9i0tw11og01uh7a6w8c29/master',
+    authToken: '',
+    endpoint: '',
     name,
   })
 
