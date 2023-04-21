@@ -15,6 +15,6 @@ export type ReactPlugin<T extends React.FC<any>> = (
 ) => ReturnType<T>
 
 export type MethodPlugin<T extends (...args: any[]) => any> = (
-  subject: T,
+  prev: T,
   ...args: Parameters<T>
 ) => ReturnType<T>
