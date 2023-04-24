@@ -17,7 +17,7 @@ export class InterceptorPlugin {
     this.resolveDependency = resolveDependency()
 
     const [plugins, errors] = findPlugins(this.config)
-    this.interceptors = generateInterceptors(plugins, this.resolveDependency)
+    this.interceptors = generateInterceptors(plugins, this.resolveDependency, this.config.debug)
     this.interceptorByDepependency = Object.fromEntries(
       Object.values(this.interceptors).map((i) => [i.dependency, i]),
     )
@@ -40,7 +40,7 @@ export class InterceptorPlugin {
         compilation.fileDependencies.add(absoluteFilePath)
       })
 
-      this.interceptors = generateInterceptors(plugins, this.resolveDependency)
+      this.interceptors = generateInterceptors(plugins, this.resolveDependency, this.config.debug)
       this.interceptorByDepependency = Object.fromEntries(
         Object.values(this.interceptors).map((i) => [i.dependency, i]),
       )

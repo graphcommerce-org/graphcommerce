@@ -14,7 +14,7 @@ class InterceptorPlugin {
         this.config = config;
         this.resolveDependency = (0, resolveDependency_1.resolveDependency)();
         const [plugins, errors] = (0, findPlugins_1.findPlugins)(this.config);
-        this.interceptors = (0, generateInterceptors_1.generateInterceptors)(plugins, this.resolveDependency);
+        this.interceptors = (0, generateInterceptors_1.generateInterceptors)(plugins, this.resolveDependency, this.config.debug);
         this.interceptorByDepependency = Object.fromEntries(Object.values(this.interceptors).map((i) => [i.dependency, i]));
         (0, writeInterceptors_1.writeInterceptors)(this.interceptors);
     }
@@ -27,7 +27,7 @@ class InterceptorPlugin {
                 const absoluteFilePath = `${path_1.default.join(process.cwd(), this.resolveDependency(p.plugin).fromRoot)}.tsx`;
                 compilation.fileDependencies.add(absoluteFilePath);
             });
-            this.interceptors = (0, generateInterceptors_1.generateInterceptors)(plugins, this.resolveDependency);
+            this.interceptors = (0, generateInterceptors_1.generateInterceptors)(plugins, this.resolveDependency, this.config.debug);
             this.interceptorByDepependency = Object.fromEntries(Object.values(this.interceptors).map((i) => [i.dependency, i]));
             (0, writeInterceptors_1.writeInterceptors)(this.interceptors);
         });

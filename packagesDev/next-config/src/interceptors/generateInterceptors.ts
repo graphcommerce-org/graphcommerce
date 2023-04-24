@@ -1,4 +1,5 @@
 import path from 'node:path'
+import { GraphCommerceConfig, GraphCommerceDebugConfig } from '../generated/config'
 import { ResolveDependency, ResolveDependencyReturn } from '../utils/resolveDependency'
 
 type PluginBaseConfig = {
@@ -54,11 +55,10 @@ function moveRelativeDown(plugins: PluginConfig[]) {
   })
 }
 
-function capitalize(base: string) {
-  return base[0].toUpperCase() + base.slice(1)
-}
-
-export function generateInterceptor(interceptor: Interceptor): MaterializedPlugin {
+export function generateInterceptor(
+  interceptor: Interceptor,
+  config: GraphCommerceDebugConfig,
+): MaterializedPlugin {
   const { fromModule, dependency, components, funcs } = interceptor
 
   const pluginConfigs = [...Object.entries(components), ...Object.entries(funcs)]
@@ -111,18 +111,40 @@ export function generateInterceptor(interceptor: Interceptor): MaterializedPlugi
       }
 
       let carry = `${base}Base`
+
       const pluginStr = plugins
         .reverse()
         .filter(filterNoDuplicate)
         .map((p) => {
           let result
+
           if (isReactPluginConfig(p)) {
-            result = `function ${name(p)}Interceptor(props: ${base}Props) {
+            const wrapChain = plugins
+              .reverse()
+              .map((pl) => `<${name(pl)}/>`)
+              .join(' wrapping ')
+            const debugLog =
+              carry === `${base}Base` && config.pluginStatus
+                ? `\n  logInterceptor(\`🔌 Rendering ${base} with plugin(s): ${wrapChain} wrapping <${base}/>\`)`
+                : ''
+
+            result = `function ${name(p)}Interceptor(props: ${base}Props) {${debugLog}
   return <${name(p)} {...props} Prev={${carry}} />
 }`
           } else {
-            result = `const ${name(p)}Interceptor: typeof ${base}Base = (...args) =>
-  ${name(p)}(${carry}, ...args)`
+            const wrapChain = plugins
+              .reverse()
+              .map((pl) => `${name(pl)}()`)
+              .join(' wrapping ')
+
+            const debugLog =
+              carry === `${base}Base` && config.pluginStatus
+                ? `\n  logInterceptor(\`🔌 Calling ${base} with plugin(s): ${wrapChain} wrapping ${base}()\`)`
+                : ''
+
+            result = `const ${name(p)}Interceptor: typeof ${base}Base = (...args) => {${debugLog}
+  return ${name(p)}(${carry}, ...args)
+}`
           }
           carry = `${name(p)}Interceptor`
           return result
@@ -140,16 +162,21 @@ export function generateInterceptor(interceptor: Interceptor): MaterializedPlugi
  * 
 ${plugins.map((p) => ` * - \`${p.plugin}\``).join('\n')}
  */
-${
-  isComponent
-    ? `type ${base}Props = ComponentProps<typeof ${base}Base>
-
-`
-    : ``
-}${pluginStr}
+${isComponent ? `type ${base}Props = ComponentProps<typeof ${base}Base>\n\n` : ``}${pluginStr}
 export const ${base} = ${carry}`
     })
     .join('\n')
+
+  const logOnce = config.pluginStatus
+    ? `
+const logged: Set<string> = new Set();
+const logInterceptor = (log: string, ...additional: unknown[]) => {
+  if (logged.has(log)) return
+  logged.add(log)
+  console.log(log, ...additional)
+}
+`
+    : ''
 
   const componentExports = `export * from '${fromModule}'`
 
@@ -159,7 +186,7 @@ ${componentExports}
 ${pluginImports}
 import { ComponentProps } from 'react'
 ${importInjectables}
-${pluginExports}
+${logOnce}${pluginExports}
 `
 
   return { ...interceptor, template }
@@ -170,6 +197,7 @@ export type GenerateInterceptorsReturn = Record<string, MaterializedPlugin>
 export function generateInterceptors(
   plugins: PluginConfig[],
   resolve: ResolveDependency,
+  config?: GraphCommerceDebugConfig | null | undefined,
 ): GenerateInterceptorsReturn {
   // todo: Do not use reduce as we're passing the accumulator to the next iteration
   const byExportedComponent = moveRelativeDown(plugins).reduce((acc, plug) => {
@@ -221,7 +249,7 @@ export function generateInterceptors(
   return Object.fromEntries(
     Object.entries(byExportedComponent).map(([target, interceptor]) => [
       target,
-      generateInterceptor(interceptor),
+      generateInterceptor(interceptor, config ?? {}),
     ]),
   )
 }
