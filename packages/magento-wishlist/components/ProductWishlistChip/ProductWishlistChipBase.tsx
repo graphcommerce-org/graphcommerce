@@ -118,9 +118,13 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
     }
   }, [loggedIn, url_key, loading, GetCustomerWishlistData, guestWishlistData, sku])
 
-  const preventAnimationBubble: React.MouseEventHandler<HTMLButtonElement> = (e) => {
-    e.preventDefault()
+  const preventAnimationBubble = (
+    e: React.TouchEvent<HTMLButtonElement> | React.MouseEvent<HTMLButtonElement>,
+  ) => {
     e.stopPropagation()
+    if (e.type === 'mousedown') {
+      e.preventDefault()
+    }
   }
 
   const preventLinkOnClose: React.MouseEventHandler<HTMLDivElement> = (e) => {
@@ -196,6 +200,7 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
         key={url_key}
         onClick={handleClick}
         onMouseDown={preventAnimationBubble}
+        onTouchStart={preventAnimationBubble}
         size='small'
         className={classes.wishlistButton}
         {...buttonProps}

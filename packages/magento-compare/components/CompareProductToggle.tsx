@@ -45,9 +45,13 @@ function CompareProductToggleBase(
     }
   }
 
-  const preventAnimationBubble: React.MouseEventHandler<HTMLButtonElement> = (e) => {
-    e.preventDefault()
+  const preventAnimationBubble = (
+    e: React.TouchEvent<HTMLButtonElement> | React.MouseEvent<HTMLButtonElement>,
+  ) => {
     e.stopPropagation()
+    if (e.type === 'mousedown') {
+      e.preventDefault()
+    }
   }
 
   const compareVariant = useCompareVariant()
@@ -59,6 +63,7 @@ function CompareProductToggleBase(
           variant='text'
           size='small'
           onMouseDown={preventAnimationBubble}
+          onTouchStart={preventAnimationBubble}
           onClick={handleClick}
           sx={{
             padding: 0,
@@ -77,6 +82,7 @@ function CompareProductToggleBase(
         <Fab
           onClick={handleClick}
           onMouseDown={preventAnimationBubble}
+          onTouchStart={preventAnimationBubble}
           size='responsive'
           color={color}
           sx={[
