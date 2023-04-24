@@ -239,7 +239,7 @@ msgid "Emails don't match"
 msgstr "E-mailadressen komen niet overeen"
 
 msgid "Empty comparelist"
-msgstr "Wis vergelijking"
+msgstr "Wissen"
 
 msgid "Fill in your e-mail to login or create an account"
 msgstr "Vul uw e-mailadres in om in te loggen of maak een account aan"
