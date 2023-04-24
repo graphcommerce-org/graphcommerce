@@ -1,5 +1,6 @@
 import { SearchContextProps } from '@graphcommerce/magento-search'
 import { IfConfig, PluginProps } from '@graphcommerce/next-config'
+import { useStorefrontConfig } from '@graphcommerce/next-ui'
 import algoliasearch from 'algoliasearch/lite'
 import { InstantSearch, InstantSearchSSRProviderProps } from 'react-instantsearch-hooks'
 import { applicationId, searchOnlyApiKey } from '../lib/configuration'
@@ -9,14 +10,15 @@ export const exported = '@graphcommerce/magento-search'
 export const ifConfig: IfConfig = 'demoMode'
 
 const searchClient = algoliasearch(applicationId, searchOnlyApiKey)
-const searchIndex = import.meta.graphCommerce.algoliaSearchIndex ?? ''
 
 function AlgoliaSearchContextPlugin(
   props: PluginProps<SearchContextProps & InstantSearchSSRProviderProps>,
 ) {
   const { Prev, initialResults, ...rest } = props
+  const { searchIndex } = useStorefrontConfig().algoliaSearchIndexConfig[0]
+
   return (
-    <InstantSearch indexName={searchIndex} searchClient={searchClient}>
+    <InstantSearch searchClient={searchClient} indexName={searchIndex}>
       <Prev {...rest} />
     </InstantSearch>
   )

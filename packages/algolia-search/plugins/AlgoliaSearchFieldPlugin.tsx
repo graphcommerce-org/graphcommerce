@@ -7,7 +7,7 @@ export const exported = '@graphcommerce/magento-search'
 export const ifConfig: IfConfig = 'demoMode'
 
 function AlgoliaSearchFieldPlugin(props: PluginProps<SearchFormProps>) {
-  const { Prev, search } = props
+  const { search } = props
   return <SearchBox defaultValue={search} />
 }
 

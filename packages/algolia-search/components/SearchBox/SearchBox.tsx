@@ -1,9 +1,8 @@
-import { useStorefrontConfig } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
-import { debounce } from '@mui/material'
+import { Trans } from '@lingui/react'
+import { Box, debounce } from '@mui/material'
 import TextField from '@mui/material/TextField'
-import { ChangeEvent, useCallback, useEffect } from 'react'
-import { useSearchBox, UseSearchBoxProps } from 'react-instantsearch-hooks'
+import { ChangeEvent, useCallback, useEffect, useRef } from 'react'
+import { useHits, useSearchBox, UseSearchBoxProps } from 'react-instantsearch-hooks'
 
 type SearchBoxProps = {
   defaultValue?: string
@@ -11,10 +10,10 @@ type SearchBoxProps = {
 
 export function SearchBox(props: SearchBoxProps) {
   const { defaultValue } = props
+  const searchInputElement = useRef<HTMLInputElement>(null)
+
   const { refine } = useSearchBox()
-  const debounceTime =
-    useStorefrontConfig().algoliaFilterAttributes ??
-    import.meta.graphCommerce.algoliaFilterAttributes
+  const { results } = useHits()
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const debounceSearch = useCallback(
@@ -26,15 +25,31 @@ export function SearchBox(props: SearchBoxProps) {
     if (defaultValue) refine(defaultValue)
   }, [defaultValue, refine])
 
+  const totalResults = results?.nbHits ?? 0
+
+  const endAdornment = (
+    <Box
+      sx={(theme) => ({
+        minWidth: 'max-content',
+        color: theme.palette.text.disabled,
+        paddingRight: '7px',
+      })}
+    >
+      {totalResults === 1 && <Trans id='{totalResults} result' values={{ totalResults }} />}
+      {totalResults > 1 && <Trans id='{totalResults} results' values={{ totalResults }} />}
+    </Box>
+  )
+
   return (
     <TextField
-      name='defaultValue'
       variant='outlined'
       type='text'
-      placeholder={i18n._(/* i18n */ 'Search')}
-      defaultValue={defaultValue}
+      name='search'
+      InputProps={{ endAdornment }}
+      inputRef={searchInputElement}
       onChange={debounceSearch}
       fullWidth
+      sx={{ mt: 1 }}
     />
   )
 }

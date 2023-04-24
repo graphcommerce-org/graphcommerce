@@ -3,10 +3,11 @@ import { CurrencyEnum } from '@graphcommerce/graphql-mesh'
 import { ProductListItemFragment, ProductListItemProps } from '@graphcommerce/magento-product'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { useHits } from 'react-instantsearch-hooks'
-import { AlgoliaHit } from '../lib/types'
+import { AlgoliaProductHit } from '../lib/types'
 
-function hitsToProduct(items: AlgoliaHit[], currency?: string | null) {
+function hitsToProduct(items: AlgoliaProductHit[], currency?: string | null) {
   const mapHits = items.map((item) => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     const currentCurrency = (currency ?? Object.keys(item.price)[0]) as CurrencyEnum
     const price = item.price[currentCurrency]
     const productUrlSplit = item.url.split('/')
@@ -36,16 +37,13 @@ function hitsToProduct(items: AlgoliaHit[], currency?: string | null) {
       url_key,
       name: item.name,
     }
-  }) satisfies
-    | Array<(ProductListItemFragment & ProductListItemProps) | null | undefined>
-    | null
-    | undefined
+  }) satisfies Array<ProductListItemFragment & ProductListItemProps>
 
   return mapHits
 }
 
-export function useAlgoliaResults() {
-  const { hits } = useHits<AlgoliaHit>()
+export function useAlgoliaProductResults() {
+  const { hits } = useHits<AlgoliaProductHit>()
   const { data } = useQuery(StoreConfigDocument)
   const products = hitsToProduct(hits, data?.storeConfig?.base_currency_code)
 
