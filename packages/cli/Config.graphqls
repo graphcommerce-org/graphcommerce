@@ -1,0 +1,6 @@
+extend input GraphCommerceConfig {
+  """
+  Hygraph Management SDK Authorization Token
+  """
+  hygraphAuthToken: String
+}
