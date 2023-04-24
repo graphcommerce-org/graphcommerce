@@ -98,6 +98,7 @@ it('finds plugins', () => {
         "component": "ProductPageMeta",
         "enabled": true,
         "exported": "@graphcommerce/magento-product",
+        "ifConfig": "googleAnalyticsId",
         "plugin": "@graphcommerce/googleanalytics/plugins/GaViewItem",
       },
       {
