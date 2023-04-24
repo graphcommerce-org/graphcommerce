@@ -45,6 +45,8 @@ export async function migrateHygraph() {
     })
   })
 
+  // TODO: Choose migration
+  // TODO: GC-Version based migration
   const possibleMigrations: [string, (name: string | undefined) => Promise<MigrationInfo>][] = [
     ['add_dynamic_rows', dynamicRow],
   ]
