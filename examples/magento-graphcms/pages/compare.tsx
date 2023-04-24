@@ -37,7 +37,11 @@ export function ComparePage() {
     <CompareListForm>
       <PageMeta title={i18n._(/* i18n */ 'Compare products')} metaRobots={['noindex']} />
 
-      <LayoutOverlayHeader switchPoint={0} primary={<EmptyCompareListButton />} divider={<Box />}>
+      <LayoutOverlayHeader
+        switchPoint={-1000}
+        primary={<EmptyCompareListButton />}
+        divider={<Box />}
+      >
         <LayoutTitle size='small' component='span' icon={iconCompare}>
           <Trans id='Compare ({0})' values={{ 0: compareListCount }} />
         </LayoutTitle>
@@ -54,16 +58,18 @@ export function ComparePage() {
         {!compareListCount ? (
           <EmptyCompareList />
         ) : (
-          <Container>
+          <>
             <CompareListSelect />
-            <CompareListItems
-              renderers={productListRenderer}
-              sx={(theme) => ({ mb: theme.spacings.lg })}
-            />
-            <CompareListAttributes
-              sx={(theme) => ({ [theme.breakpoints.up('lg')]: { mb: theme.spacings.lg } })}
-            />
-          </Container>
+            <Container>
+              <CompareListItems
+                renderers={productListRenderer}
+                sx={(theme) => ({ mb: theme.spacings.lg })}
+              />
+              <CompareListAttributes
+                sx={(theme) => ({ [theme.breakpoints.up('lg')]: { mb: theme.spacings.lg } })}
+              />
+            </Container>
+          </>
         )}
       </WaitForQueries>
     </CompareListForm>

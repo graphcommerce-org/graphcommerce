@@ -50,7 +50,7 @@ function CompareFabContent(props: CompareFabContentProps) {
         variant='standard'
         overlap='circular'
         badgeContent={total_quantity}
-        sx={{ '& .MuiBadge-badge': { zIndex: 2000 } }}
+        sx={{ height: '100%', '& .MuiBadge-badge': { zIndex: 2000 } }}
       >
         <MotionFab
           href='/compare'
