@@ -103,31 +103,28 @@ export function LayoutDefault(props: LayoutDefaultProps) {
         {menuFab || cartFab ? (
           <Box
             className={classes.fabs}
-            sx={(theme) => {
-              const topOffset = '23px'
-              return {
-                display: 'flex',
-                justifyContent: 'space-between',
-                width: '100%',
-                height: 0,
-                zIndex: 'speedDial',
-                [theme.breakpoints.up('md')]: {
-                  padding: `0 ${theme.page.horizontal}`,
-                  position: 'sticky',
-                  marginTop: `calc((${theme.appShell.headerHeightMd} - ${topOffset}) * -1)`,
-                  top: topOffset,
+            sx={(theme) => ({
+              display: 'flex',
+              justifyContent: 'space-between',
+              width: '100%',
+              height: 0,
+              zIndex: 'speedDial',
+              [theme.breakpoints.up('md')]: {
+                padding: `0 ${theme.page.horizontal}`,
+                position: 'sticky',
+                marginTop: `calc((${theme.appShell.headerHeightMd} * -1) + ((${theme.appShell.headerHeightMd}  - ${fabIconSize}) / 2))`,
+                top: `calc(${fabIconSize} / 2)`,
+              },
+              [theme.breakpoints.down('md')]: {
+                position: 'fixed',
+                bottom: `calc(20px + ${fabIconSize})`,
+                padding: `0 20px`,
+                // Hide fabs when keyboard is open on mobile
+                '@media (max-height: 530px) and (orientation: portrait)': {
+                  display: 'none',
                 },
-                [theme.breakpoints.down('md')]: {
-                  position: 'fixed',
-                  bottom: `calc(20px + ${fabIconSize})`,
-                  padding: `0 20px`,
-                  // Hide fabs when keyboard is open on mobile
-                  '@media (max-height: 530px) and (orientation: portrait)': {
-                    display: 'none',
-                  },
-                },
-              }
-            }}
+              },
+            })}
           >
             {menuFab}
             {cartFab}
