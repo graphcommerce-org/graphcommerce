@@ -16,8 +16,7 @@
     "tsc:lint": "tsc --noEmit -p .",
     "lingui": "cross-env NODE_ENV=development lingui extract --clean",
     "postinstall": "is-monorepo '[pkgrun] postinstall' '[pkgrun] patch-package'",
-    "create-patch": "patch-package --exclude 'package.json$|gql.ts$|interceptor.tsx$'",
-    "migrate": "curl http://localhost:3000/api/migrations/migration"
+    "create-patch": "patch-package --exclude 'package.json$|gql.ts$|interceptor.tsx$'"
   },
   "dependencies": {
     "@babel/core": "^7.21.0",
