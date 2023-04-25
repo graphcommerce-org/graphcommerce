@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.7
+
+### Patch Changes
+
+- [#1916](https://github.com/graphcommerce-org/graphcommerce/pull/1916) [`ee2f814f4`](https://github.com/graphcommerce-org/graphcommerce/commit/ee2f814f4d91898f106036e92be4e560d638509d) - When the customer is logging in and the merge cart functionality throws an error, it would not set the current customer's cart as active, but keep the faulty cart active. ([@paales](https://github.com/paales))
+
 ## 6.2.0-canary.6
 
 ## 6.1.1-canary.5

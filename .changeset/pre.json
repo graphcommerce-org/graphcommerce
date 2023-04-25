@@ -72,11 +72,13 @@
     "@graphcommerce/typescript-config-pwa": "6.1.0"
   },
   "changesets": [
+    "brown-brooms-battle",
     "curvy-cats-invent",
     "cyan-months-yell",
     "dirty-rivers-beg",
     "good-forks-remember",
     "good-seals-rest",
+    "gorgeous-games-pump",
     "honest-clocks-jump",
     "hungry-pants-learn",
     "late-hats-refuse",
