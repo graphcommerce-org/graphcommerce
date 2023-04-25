@@ -130,10 +130,10 @@ it('finds plugins', () => {
         "plugin": "@graphcommerce/googlerecaptcha/plugins/GrecaptchaGraphQLProvider",
       },
       {
-        "component": "GraphQLProvider",
         "enabled": true,
-        "exported": "@graphcommerce/graphql",
-        "plugin": "@graphcommerce/graphcms-ui/plugins/HygraphGraphqlProvider",
+        "exported": "@graphcommerce/graphql/config",
+        "func": "graphqlConfig",
+        "plugin": "@graphcommerce/graphcms-ui/plugins/hygraphGraphqlConfig",
       },
       {
         "component": "PaymentMethodContextProvider",
@@ -160,22 +160,10 @@ it('finds plugins', () => {
         "plugin": "@graphcommerce/magento-customer/plugins/MagentoCustomerGraphqlProvider",
       },
       {
-        "component": "GraphQLProvider",
         "enabled": true,
-        "exported": "@graphcommerce/graphql",
-        "plugin": "@graphcommerce/magento-store/plugins/MagentoStoreGraphqlProvider",
-      },
-      {
-        "enabled": true,
-        "exported": "@graphcommerce/graphql",
-        "method": "inMemoryCache",
-        "plugin": "@graphcommerce/magento-graphql/plugins/initMemoryCache",
-      },
-      {
-        "component": "GraphQLProvider",
-        "enabled": true,
-        "exported": "@graphcommerce/graphql",
-        "plugin": "@graphcommerce/magento-graphql/plugins/MagentoGraphqlGraphqlProvider",
+        "exported": "@graphcommerce/graphql/config",
+        "func": "graphqlConfig",
+        "plugin": "@graphcommerce/magento-store/plugins/magentoStoreGraphqlConfig",
       },
     ]
   `)

@@ -48,6 +48,10 @@ it('replaces config in string', () => {
                 },
                 {
                   "cartDisplayPricesInclTax": true,
+                  "hygraphLocales": [
+                    "nl",
+                    "en_us",
+                  ],
                   "locale": "nl",
                   "magentoStoreCode": "nl_NL",
                 },
