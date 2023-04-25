@@ -98,6 +98,7 @@ need to sign the CLA once.
 - Changeset is available
 - Eslint must not report any errors in the changed files
 - Eslint should not give any warnings in the changed files
+- Bundle size should not increase significantly
 - Lingui translations must be
   [generated](https://www.graphcommerce.org/docs/framework/translations#generating-translation-files-with-all-translations)
   and translated
