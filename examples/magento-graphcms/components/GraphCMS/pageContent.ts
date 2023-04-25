@@ -1,4 +1,4 @@
-import { ApolloClient, NormalizedCacheObject, split } from '@graphcommerce/graphql'
+import { ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
 import { DefaultPageDocument, DefaultPageQuery } from '../../graphql/DefaultPage.gql'
 import { AllPageRoutesDocument } from './AllPageRoutes.gql'
 import {
@@ -24,7 +24,8 @@ function getByPath(
         .replace(/^\./, '')
         .split('.')
 
-  if (!splitQuery.length || splitQuery[0] === undefined) return [value as T]
+  if (!splitQuery.length || splitQuery[0] === undefined)
+    return [value as undefined | string | number | bigint]
 
   const key = splitQuery[0]
 
@@ -36,12 +37,12 @@ function getByPath(
     typeof value !== 'object' ||
     value === null ||
     !(key in value) ||
-    (value as Record<string | number, T>)[key] === undefined
+    (value as Record<string | number, unknown>)[key] === undefined
   ) {
     return [undefined]
   }
 
-  const res = getByPath<T>((value as Record<string | number, T>)[key], splitQuery.slice(1))
+  const res = getByPath<T>((value as Record<string | number, unknown>)[key], splitQuery.slice(1))
   return Array.isArray(res) ? res : [res]
 }
 
@@ -130,7 +131,8 @@ export async function hygraphPageContent(
 export async function hygraphDynamicContent(
   client: ApolloClient<NormalizedCacheObject>,
   pageQuery: Promise<{ data: DefaultPageQuery }>,
-  propertiesPromise: Promise<object> | object,
+  url: string,
+  additionalProperties?: Promise<object>,
   cached = false,
 ): Promise<{ data: DefaultPageQuery }> {
   const alwaysCache = process.env.NODE_ENV !== 'development' ? 'cache-first' : undefined
@@ -139,7 +141,8 @@ export async function hygraphDynamicContent(
   const allRoutes = await client.query({ query: AllPageRoutesDocument, fetchPolicy: alwaysCache })
 
   // Get the required rowIds from the conditions
-  const properties = await propertiesPromise
+  const properties = { ...(await additionalProperties), url }
+
   const rowIds = allRoutes.data.dynamicRows
     .filter((availableDynamicRow) =>
       availableDynamicRow.conditions.some((condition) => matchCondition(condition, properties)),
@@ -170,6 +173,8 @@ export async function hygraphDynamicContent(
     if (placement === 'AFTER') content.splice(targetIdx + 1, 0, row)
     if (placement === 'REPLACE') content.splice(targetIdx, 1, row)
   })
+
+  if (!content.length) return pageResult
 
   // Return the merged page result.
   return { data: { ...pageResult.data, pages: [{ ...pageResult.data.pages[0], content }] } }

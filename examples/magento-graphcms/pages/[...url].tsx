@@ -213,8 +213,8 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     if (productListParams) productListParams.filters.category_uid = { in: [categoryUid] }
   }
 
-  const withoutDynamic = hygraphPageContent(staticClient, url)
-  const pages = hygraphDynamicContent(client, withoutDynamic, category)
+  const withoutDynamic = hygraphPageContent(staticClient, url, false)
+  const pages = hygraphDynamicContent(staticClient, withoutDynamic, url, category, false)
 
   const hasPage = filteredCategoryUid ? false : (await pages).data.pages.length > 0
   const hasCategory = Boolean(productListParams && categoryUid)
