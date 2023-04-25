@@ -1,5 +1,5 @@
 import type { StrictTypedTypePolicies } from '@graphcommerce/graphql'
-import { mergeDeep } from './apollo'
+import { mergeDeep } from '../../apollo'
 
 export const mergeTypePolicies = (policies: StrictTypedTypePolicies[]): StrictTypedTypePolicies =>
   mergeDeep(...policies)

@@ -1,11 +1,12 @@
 import { ProductPageMetaFragment } from '@graphcommerce/magento-product/components/ProductPageMeta/ProductPageMeta.gql'
-import { PluginProps } from '@graphcommerce/next-config'
+import { IfConfig, PluginProps } from '@graphcommerce/next-config'
 import { useMemoObject } from '@graphcommerce/next-ui'
 import { useEffect } from 'react'
 import { productToGtagItem } from '../events/productToGtagItem/productToGtagItem'
 
 export const component = 'ProductPageMeta'
 export const exported = '@graphcommerce/magento-product'
+export const ifConfig: IfConfig = 'googleAnalyticsId'
 
 /** When a product is added to the Cart, send a Google Analytics event */
 function GaViewItem(props: PluginProps<ProductPageMetaFragment>) {

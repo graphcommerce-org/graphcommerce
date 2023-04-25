@@ -3,38 +3,25 @@ import {
   NormalizedCacheObject,
   ApolloLink,
   InMemoryCache,
-  TypePolicies,
   ApolloProvider,
   HttpLink,
 } from '@apollo/client'
+import { useStorefrontConfig } from '@graphcommerce/next-ui'
 import type { AppProps } from 'next/app'
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { createCacheReviver } from '../createCacheReviver'
-import { errorLink } from '../errorLink'
-import fragments from '../generated/fragments.json'
-import { measurePerformanceLink } from '../measurePerformanceLink'
-import { MigrateCache } from '../migrateCache'
-import { mergeTypePolicies } from '../typePolicies'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { ApolloClientConfig, graphqlConfig, ApolloClientConfigInput } from '../../config'
+import fragments from '../../generated/fragments.json'
+import { createCacheReviver } from './createCacheReviver'
+import { errorLink } from './errorLink'
+import { measurePerformanceLink } from './measurePerformanceLink'
+import { mergeTypePolicies } from './typePolicies'
 
 export const globalApolloClient: { current: ApolloClient<NormalizedCacheObject> | null } = {
   current: null,
 }
 
-export type GraphQLProviderProps = AppProps & {
-  children: React.ReactNode
-  /** Additional ApolloLink to add to the chain. */
-  links?: ApolloLink[]
-  /**
-   * This is a list of type policies which are used to influence how cache is handled.
-   * https://www.apollographql.com/docs/react/caching/cache-field-behavior/
-   */
-  policies?: TypePolicies[]
-  /**
-   * To upgrade the local storage to a new version when the app is updated, but the client isn't
-   * yet, we run these migrations.
-   */
-  migrations?: MigrateCache[]
-}
+export type GraphQLProviderProps = AppProps &
+  Omit<ApolloClientConfigInput, 'storefront'> & { children: React.ReactNode }
 
 /**
  * The GraphQLProvider allows us to configure the ApolloClient and provide it to the rest of the
@@ -43,19 +30,21 @@ export type GraphQLProviderProps = AppProps & {
  * Take a look at the props to see possible customization options.
  */
 export function GraphQLProvider(props: GraphQLProviderProps) {
-  const { children, policies = [], migrations = [], links = [], pageProps } = props
+  const { children, links, migrations, policies, pageProps } = props
   const state = (pageProps as { apolloState?: NormalizedCacheObject }).apolloState
 
   const stateRef = useRef(state)
 
-  const linksRef = useRef(links)
-  const policiesRef = useRef(policies)
+  const storefront = useStorefrontConfig()
+  const conf = graphqlConfig({ links, migrations, policies, storefront })
+  const config = useRef<ApolloClientConfig>(conf)
+  config.current = conf
 
   const createCache = useCallback(
     () =>
       new InMemoryCache({
         possibleTypes: fragments.possibleTypes,
-        typePolicies: mergeTypePolicies(policiesRef.current),
+        typePolicies: mergeTypePolicies(config.current.policies),
       }),
     [],
   )
@@ -63,7 +52,7 @@ export function GraphQLProvider(props: GraphQLProviderProps) {
   const [client] = useState(() => {
     const link = ApolloLink.from([
       ...(typeof window === 'undefined' ? [errorLink, measurePerformanceLink] : []),
-      ...linksRef.current,
+      ...config.current.links,
       // The actual Http connection to the Mesh backend.
       new HttpLink({ uri: '/api/graphql', credentials: 'same-origin' }),
     ])
@@ -77,8 +66,8 @@ export function GraphQLProvider(props: GraphQLProviderProps) {
 
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    createCacheReviver(client, createCache, policies, migrations, state)
-  }, [client, createCache, migrations, policies, state])
+    createCacheReviver(client, createCache, config.current, state)
+  }, [client, createCache, state])
 
   globalApolloClient.current = client
 

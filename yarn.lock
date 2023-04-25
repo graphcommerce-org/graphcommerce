@@ -1633,6 +1633,18 @@
     lodash "~4.17.0"
     tslib "~2.4.0"
 
+"@graphql-codegen/plugin-helpers@^4.2.0":
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/@graphql-codegen/plugin-helpers/-/plugin-helpers-4.2.0.tgz#8324914d0f99162a223cfa01796cdd6be972d2ae"
+  integrity sha512-THFTCfg+46PXlXobYJ/OoCX6pzjI+9woQqCjdyKtgoI0tn3Xq2HUUCiidndxUpEYVrXb5pRiRXb7b/ZbMQqD0A==
+  dependencies:
+    "@graphql-tools/utils" "^9.0.0"
+    change-case-all "1.0.15"
+    common-tags "1.8.2"
+    import-from "4.0.0"
+    lodash "~4.17.0"
+    tslib "~2.5.0"
+
 "@graphql-codegen/schema-ast@2.6.1":
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/@graphql-codegen/schema-ast/-/schema-ast-2.6.1.tgz#8ba1b38827c034b51ecd3ce88622c2ae6cd3fe1a"
@@ -1649,6 +1661,18 @@
   dependencies:
     "@graphql-codegen/plugin-helpers" "^4.1.0"
     "@graphql-tools/utils" "^9.0.0"
+    tslib "~2.5.0"
+
+"@graphql-codegen/testing@2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@graphql-codegen/testing/-/testing-2.0.2.tgz#b1b01a5d07946511a5926c9dcab1df54a60823e3"
+  integrity sha512-MVcEVxTe7CzJjNaSRE8zdwT2crz7jUqm1ZctVj84y3yu5hhGxRKWjh9YwyDEQFIQkm6yRNGg9ACIHy8YnPPZEQ==
+  dependencies:
+    "@graphql-codegen/plugin-helpers" "^4.2.0"
+    common-tags "^1.8.0"
+    graphql-helix "1.13.0"
+    lz-string "^1.4.4"
+    nock "13.3.0"
     tslib "~2.5.0"
 
 "@graphql-codegen/typed-document-node@3.0.1":
@@ -6578,6 +6602,11 @@ graphql-config@^4.5.0:
     string-env-interpolation "1.0.1"
     tslib "^2.4.0"
 
+graphql-helix@1.13.0:
+  version "1.13.0"
+  resolved "https://registry.yarnpkg.com/graphql-helix/-/graphql-helix-1.13.0.tgz#e64dad5ef5f622ef38c97fa033f56f3d953c0104"
+  integrity sha512-cqDKMoRywKjnL0ZWCTB0GOiBgsH6d3nU4JGDF6RuzAyd35tmalzKpSxkx3NNp4H5RvnKWnrukWzR51wUq277ng==
+
 graphql-import-node@0.0.5:
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/graphql-import-node/-/graphql-import-node-0.0.5.tgz#caf76a6cece10858b14f27cce935655398fc1bf0"
@@ -7937,6 +7966,11 @@ json-stable-stringify@^1.0.1:
   dependencies:
     jsonify "^0.0.1"
 
+json-stringify-safe@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/json-stringify-safe/-/json-stringify-safe-5.0.1.tgz#1296a2d58fd45f19a0f6ce01d65701e2c735b6eb"
+  integrity sha512-ZClg6AaYvamvYEE82d3Iyd3vSSIjQ+odgjaTzRuO3s7toCdFKczob2i0zCh7JE8kWn17yvAWhUVxvqGwUalsRA==
+
 json-to-pretty-yaml@^1.2.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/json-to-pretty-yaml/-/json-to-pretty-yaml-1.2.2.tgz#f4cd0bd0a5e8fe1df25aaf5ba118b099fd992d5b"
@@ -8245,7 +8279,7 @@ lru-cache@^7.14.1:
   resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-7.18.3.tgz#f793896e0fd0e954a59dfdd82f0773808df6aa89"
   integrity sha512-jumlc0BIUrS3qJGgIkWZsyfAM7NCWiBcCDhnd+3NNM5KbBmLTgHVfWBcg6W+rLUsIpzpERPsvwUP7CckAQSOoA==
 
-lz-string@^1.5.0:
+lz-string@^1.4.4, lz-string@^1.5.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/lz-string/-/lz-string-1.5.0.tgz#c1ab50f77887b712621201ba9fd4e3a6ed099941"
   integrity sha512-h5bgJWpxJNswbU7qCrV0tIKQCaS3blPDrqKWx+QxzuzL1zGUzij9XCWLrSLsJPu5t+eWA/ycetzYAO5IOMcWAQ==
@@ -8773,6 +8807,16 @@ no-case@^3.0.4:
   dependencies:
     lower-case "^2.0.2"
     tslib "^2.0.3"
+
+nock@13.3.0:
+  version "13.3.0"
+  resolved "https://registry.yarnpkg.com/nock/-/nock-13.3.0.tgz#b13069c1a03f1ad63120f994b04bfd2556925768"
+  integrity sha512-HHqYQ6mBeiMc+N038w8LkMpDCRquCHWeNmN3v6645P3NhN2+qXOBqvPqo7Rt1VyCMzKhJ733wZqw5B7cQVFNPg==
+  dependencies:
+    debug "^4.1.0"
+    json-stringify-safe "^5.0.1"
+    lodash "^4.17.21"
+    propagate "^2.0.0"
 
 node-abi@^3.3.0:
   version "3.33.0"
@@ -9441,6 +9485,11 @@ prop-types@^15.6.2, prop-types@^15.7.2, prop-types@^15.8.1:
     loose-envify "^1.4.0"
     object-assign "^4.1.1"
     react-is "^16.13.1"
+
+propagate@^2.0.0:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/propagate/-/propagate-2.0.1.tgz#40cdedab18085c792334e64f0ac17256d38f9a45"
+  integrity sha512-vGrhOavPSTz4QVNuBNdcNXePNdNMaO1xj9yBeH1ScQPjk/rhg9sSlCXPhMkFuaNNW/syTvYqsnbIJxMBfRbbag==
 
 pseudolocale@^1.1.0:
   version "1.2.0"

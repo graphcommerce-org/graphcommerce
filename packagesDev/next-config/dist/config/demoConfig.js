@@ -7,7 +7,12 @@ exports.demoConfig = {
     magentoEndpoint: 'https://backend.reachdigital.dev/graphql',
     storefront: [
         { locale: 'en', magentoStoreCode: 'en_US', defaultLocale: true },
-        { locale: 'nl', magentoStoreCode: 'nl_NL', cartDisplayPricesInclTax: true },
+        {
+            locale: 'nl',
+            magentoStoreCode: 'nl_NL',
+            hygraphLocales: ['nl', 'en_us'],
+            cartDisplayPricesInclTax: true,
+        },
         { locale: 'fr-be', magentoStoreCode: 'fr_BE', cartDisplayPricesInclTax: true },
         { locale: 'nl-be', magentoStoreCode: 'nl_BE', cartDisplayPricesInclTax: true },
         { locale: 'en-gb', magentoStoreCode: 'en_GB', cartDisplayPricesInclTax: true },
