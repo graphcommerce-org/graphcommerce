@@ -22,18 +22,9 @@ export const dynamicRow = async (name: string | undefined) => {
     displayName: 'Dynamic Row Condition Number Operator',
     apiId: 'DynamicRowConditionNumberOperator',
     values: [
-      {
-        displayName: 'Greater than or equal to',
-        apiId: 'GTE',
-      },
-      {
-        displayName: 'Less than or equal to',
-        apiId: 'LTE',
-      },
-      {
-        displayName: 'Equal to',
-        apiId: 'EQUAL',
-      },
+      { displayName: 'Greater than or equal to', apiId: 'GTE' },
+      { displayName: 'Less than or equal to', apiId: 'LTE' },
+      { displayName: 'Equal to', apiId: 'EQUAL' },
     ],
   })
 
@@ -41,18 +32,9 @@ export const dynamicRow = async (name: string | undefined) => {
     displayName: 'Dynamic Row Placement',
     apiId: 'DynamicRowPlacement',
     values: [
-      {
-        displayName: 'Before',
-        apiId: 'BEFORE',
-      },
-      {
-        displayName: 'After',
-        apiId: 'AFTER',
-      },
-      {
-        displayName: 'Replace',
-        apiId: 'REPLACE',
-      },
+      { displayName: 'Before', apiId: 'BEFORE' },
+      { displayName: 'After', apiId: 'AFTER' },
+      { displayName: 'Replace', apiId: 'REPLACE' },
     ],
   })
 
@@ -183,7 +165,7 @@ export const dynamicRow = async (name: string | undefined) => {
     displayName: 'Row',
     apiId: 'row',
     reverseField: {
-      modelApiIds: ['RowQuote', 'RowLinks', 'RowColumnOne', 'RowColumnTwo', 'RowColumnThree'],
+      modelApiIds: ['RowQuote', 'RowLinks', 'RowColumnOne'],
       apiId: 'dynamicRow',
       displayName: 'DynamicRows',
       visibility: VisibilityTypes.Hidden,
