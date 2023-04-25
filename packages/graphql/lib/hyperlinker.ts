@@ -1,5 +1,3 @@
-'use strict'
-
 /*
 A hyperlink is opened upon encountering an OSC 8 escape sequence with the target URI. The syntax is
 OSC 8 ; params ; URI BEL|ST
