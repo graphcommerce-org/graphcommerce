@@ -6,16 +6,6 @@ query DynamicRow($rowIds: [ID!]!) {
         id
       }
     }
-    row {
-      __typename
-      ... on Node {
-        id
-      }
-      ...RowColumnOne
-      ...RowColumnTwo
-      ...RowColumnThree
-      ...RowQuote
-      ...RowLinks
-    }
+    ...DynamicRowFragment
   }
 }

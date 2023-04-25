@@ -1,0 +1,10 @@
+fragment DynamicRowFragment on DynamicRow @injectable {
+  row {
+    __typename
+    ... on Node {
+      id
+    }
+    ...RowColumnOne
+    ...RowLinks
+  }
+}

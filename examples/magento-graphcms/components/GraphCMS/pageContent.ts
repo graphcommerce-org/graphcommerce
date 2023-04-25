@@ -1,13 +1,16 @@
-import { ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
-import { DefaultPageDocument, DefaultPageQuery } from '../../graphql/DefaultPage.gql'
-import { AllPageRoutesDocument } from './AllPageRoutes.gql'
 import {
+  AllPageRoutesDocument,
+  DynamicRowDocument,
   ConditionAndFragment,
   ConditionNumberFragment,
   ConditionOrFragment,
   ConditionTextFragment,
-} from './Conditions.gql'
-import { DynamicRowDocument } from './DynamicRow.gql'
+} from '@graphcommerce/graphcms-ui'
+import { ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
+import { DefaultPageDocument, DefaultPageQuery } from '../../graphql/DefaultPage.gql'
+
+// TODO: Optimize bundle size
+// TODO: Progress feedback
 
 /**
  * This generally works the same way as lodash get, however, when encountering an array it will
@@ -42,7 +45,7 @@ function getByPath(
     return [undefined]
   }
 
-  const res = getByPath<T>((value as Record<string | number, unknown>)[key], splitQuery.slice(1))
+  const res = getByPath((value as Record<string | number, unknown>)[key], splitQuery.slice(1))
   return Array.isArray(res) ? res : [res]
 }
 
@@ -132,7 +135,7 @@ export async function hygraphDynamicContent(
   client: ApolloClient<NormalizedCacheObject>,
   pageQuery: Promise<{ data: DefaultPageQuery }>,
   url: string,
-  additionalProperties?: Promise<object>,
+  additionalProperties?: Promise<object> | object,
   cached = false,
 ): Promise<{ data: DefaultPageQuery }> {
   const alwaysCache = process.env.NODE_ENV !== 'development' ? 'cache-first' : undefined
@@ -162,6 +165,7 @@ export async function hygraphDynamicContent(
   dynamicResult?.data.dynamicRows.forEach((dynamicRow) => {
     const { placement, target, row } = dynamicRow
     if (!row) return
+
     if (!target) {
       if (placement === 'BEFORE') content.unshift(row)
       else content.push(row)
