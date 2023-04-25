@@ -21,7 +21,7 @@ import {
   LayoutNavigationProps,
   RowRenderer,
 } from '../../components'
-import { hygraphDynamicContent, hygraphPageContent } from '../../components/GraphCMS/pageContent'
+import { hygraphDynamicContent, hygraphPageContent } from '@graphcommerce/graphcms-ui'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
 import { DefaultPageQuery } from '../../graphql/DefaultPage.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
@@ -104,7 +104,6 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
       ...(await page).data,
       ...(await blogPosts).data,
       ...(await layout).data,
-
       up: { href: '/', title: 'Home' },
       apolloState: await conf.then(() => client.cache.extract()),
     },

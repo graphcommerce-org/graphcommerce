@@ -47,7 +47,7 @@ import {
   RowProduct,
   RowRenderer,
 } from '../components'
-import { hygraphDynamicContent, hygraphPageContent } from '../components/GraphCMS/pageContent'
+import { hygraphDynamicContent, hygraphPageContent } from '@graphcommerce/graphcms-ui'
 import { LayoutDocument } from '../components/Layout/Layout.gql'
 import { CategoryPageDocument, CategoryPageQuery } from '../graphql/CategoryPage.gql'
 import { DefaultPageQuery } from '../graphql/DefaultPage.gql'

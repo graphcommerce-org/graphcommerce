@@ -7,7 +7,7 @@ import {
   ConditionTextFragment,
 } from '@graphcommerce/graphcms-ui'
 import { ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
-import { DefaultPageDocument, DefaultPageQuery } from '../../graphql/DefaultPage.gql'
+import { DefaultPageDocument, DefaultPageQuery } from '@graphcommerce/graphcms-ui'
 
 // TODO: Optimize bundle size
 // TODO: Progress feedback
