@@ -66,7 +66,6 @@ function ProductPage(props: Props) {
   const { products, relatedUpsells, usps, sidebarUsps, pages, defaultValues } = props
 
   const product = mergeDeep(products, relatedUpsells)?.items?.[0]
-
   if (!product?.sku || !product.url_key) return null
 
   return (
@@ -243,8 +242,9 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     pp.data.products?.items?.find((p) => p?.url_key === urlKey),
   )
 
-  const withoutDynamic = hygraphPageContent(staticClient, 'product/global', true)
-  const pages = hygraphDynamicContent(staticClient, withoutDynamic, product, true)
+  const url = 'product/global'
+  const withoutDynamic = hygraphPageContent(staticClient, url, true)
+  const pages = hygraphDynamicContent(staticClient, withoutDynamic, url, product, true)
   if (!(await product)) return redirectOrNotFound(staticClient, conf, params, locale)
 
   const category = productPageCategory(await product)
