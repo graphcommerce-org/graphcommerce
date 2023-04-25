@@ -41,7 +41,7 @@ import {
   isTypename,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box, NoSsr, Divider, Link, Typography } from '@mui/material'
+import { Divider, Link, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import {
   LayoutNavigation,
