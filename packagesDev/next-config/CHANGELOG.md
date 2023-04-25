@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.6
+
+### Minor Changes
+
+- [#1915](https://github.com/graphcommerce-org/graphcommerce/pull/1915) [`f4a8c3881`](https://github.com/graphcommerce-org/graphcommerce/commit/f4a8c388183e17c52e7f66536c5448749f494d7f) - Added the ability to create functional plugins for usage in non-component areas and hooks ([@paales](https://github.com/paales))
+
 ## 6.1.1-canary.5
 
 ## 6.1.1-canary.4
