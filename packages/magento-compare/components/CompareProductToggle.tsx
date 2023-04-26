@@ -57,14 +57,24 @@ function CompareProductToggleBase(
   const compareVariant = useCompareVariant()
   const theme2 = useTheme()
 
-  let strokeColor
+  let strokeColorPlp
   if (!inCompareList) {
-    strokeColor =
+    strokeColorPlp =
       theme2.palette.mode === 'light'
         ? theme2.palette.text.secondary
         : theme2.palette.background.paper
   } else {
-    strokeColor = theme2.palette.primary.main
+    strokeColorPlp = theme2.palette.primary.main
+  }
+
+  let strokeColorPdp
+  if (!inCompareList) {
+    strokeColorPdp =
+      theme2.palette.mode === 'light'
+        ? theme2.palette.text.secondary
+        : theme2.palette.primary.contrastText
+  } else {
+    strokeColorPdp = theme2.palette.primary.main
   }
 
   return (
@@ -100,13 +110,16 @@ function CompareProductToggleBase(
             (theme) => ({
               flex: `0 0 auto`,
               '& svg': {
-                stroke: strokeColor,
+                stroke: strokeColorPlp,
               },
               '&:hover': {
                 backgroundColor: alpha(
                   theme.palette.text.primary,
                   theme.palette.action.hoverOpacity,
                 ),
+              },
+              '.SidebarGallery-root & svg': {
+                stroke: strokeColorPdp,
               },
             }),
             ...(Array.isArray(sx) ? sx : [sx]),

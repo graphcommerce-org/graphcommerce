@@ -28,6 +28,9 @@ export function MoreInformationRow(props: MoreInformationRowProps) {
               width: `calc(calc(calc(100% / 3) * ${columnCount}) + ${
                 columnCount > 1 ? theme.spacings.md : '0px'
               })`,
+              [theme.breakpoints.down('md')]: {
+                width: '100%',
+              },
             },
           },
         })}
