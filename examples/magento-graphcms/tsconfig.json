@@ -1,9 +1,9 @@
 {
-  "exclude": ["**/node_modules"],
+  "exclude": ["../../packages/examples/magento-graphcms/**/node_modules"],
   "include": [
-    "**/*.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
+    "../../packages/examples/magento-graphcms/**/*.d.ts",
+    "../../packages/examples/magento-graphcms/**/*.ts",
+    "../../packages/examples/magento-graphcms/**/*.tsx",
     "../../packages/hygraph-ui/components/PageContent/PageLink.gql.ts",
     "../../packages/hygraph-ui/graphql/PagesStaticPaths.gql.ts"
   ],

@@ -2,13 +2,4 @@ query AllPageRoutes {
   pages(first: 1000) {
     url
   }
-  dynamicRows(first: 1000) {
-    id
-    conditions {
-      __typename
-      ...ConditionNumber
-      ...ConditionText
-      ...ConditionAnd
-    }
-  }
 }

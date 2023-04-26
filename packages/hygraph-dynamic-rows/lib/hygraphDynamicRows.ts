@@ -1,14 +1,19 @@
+/**
+ * - Boven de product description zetten? in rowrenderer zetten
+ * - Hoe gaan we dit optioneel maken?
+ * - Hoe gaan we dit upgradebaar maken? management sdk
+ */
+
+import { PagesContentQuery } from '@graphcommerce/graphcms-ui'
 import { ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
 import {
+  AllDynamicRowsDocument,
   ConditionTextFragment,
   ConditionNumberFragment,
   ConditionOrFragment,
   ConditionAndFragment,
-  AllPageRoutesDocument,
-  PagesContentQuery,
-  PagesContentDocument,
   DynamicRowsDocument,
-} from '../../graphql'
+} from '../graphql'
 
 /**
  * This generally works the same way as lodash get, however, when encountering an array it will
@@ -86,50 +91,7 @@ function matchCondition(
  * - Uses an early bailout to check to reduce hygraph calls.
  * - Implements an alias sytem to merge the content of multiple pages.
  */
-async function pageContent(
-  client: ApolloClient<NormalizedCacheObject>,
-  url: string,
-  cached: boolean,
-): Promise<{ data: PagesContentQuery }> {
-  /**
-   * Some routes are very generic and wil be requested very often, like 'product/global'. To reduce
-   * the amount of requests to Hygraph we can cache the result of the query if requested.
-   *
-   * This only works in a persistent nodejs environment and doesn't work in a serverless
-   * environment, because those instances get discarded.
-   *
-   * This comes with a downside, if the page is updated the cache will not be invalidated, resulting
-   * in stale data.
-   *
-   * Todo: Implement next.js 13 fetch revalidation:
-   * https://beta.nextjs.org/docs/data-fetching/fetching#revalidating-data
-   */
-  const alwaysCache = process.env.NODE_ENV !== 'development' ? 'cache-first' : undefined
-  const fetchPolicy = cached ? alwaysCache : undefined
-
-  const allRoutes = await client.query({ query: AllPageRoutesDocument, fetchPolicy: alwaysCache })
-
-  // Only do the query when there the page is found in the allRoutes
-  const found = allRoutes.data.pages.some((page) => page.url === url)
-
-  return found
-    ? client.query({ query: PagesContentDocument, variables: { url }, fetchPolicy })
-    : Promise.resolve({ data: { pages: [] } })
-}
-
-/**
- * - Boven de product description zetten? in rowrenderer zetten
- * - Hoe gaan we dit optioneel maken?
- * - Hoe gaan we dit upgradebaar maken? management sdk
- */
-
-/**
- * Fetch the page content for the given urls.
- *
- * - Uses an early bailout to check to reduce hygraph calls.
- * - Implements an alias sytem to merge the content of multiple pages.
- */
-async function hygraphDynamicContent(
+export async function hygraphDynamicRows(
   client: ApolloClient<NormalizedCacheObject>,
   pageQuery: Promise<{ data: PagesContentQuery }>,
   url: string,
@@ -139,7 +101,7 @@ async function hygraphDynamicContent(
   const alwaysCache = process.env.NODE_ENV !== 'development' ? 'cache-first' : undefined
   const fetchPolicy = cached ? alwaysCache : undefined
 
-  const allRoutes = await client.query({ query: AllPageRoutesDocument, fetchPolicy: alwaysCache })
+  const allRoutes = await client.query({ query: AllDynamicRowsDocument, fetchPolicy: alwaysCache })
 
   // Get the required rowIds from the conditions
   const properties = { ...(await additionalProperties), url }
@@ -180,19 +142,4 @@ async function hygraphDynamicContent(
 
   // Return the merged page result.
   return { data: { ...pageResult.data, pages: [{ ...pageResult.data.pages[0], content }] } }
-}
-
-export async function hygraphPageContent(
-  client: ApolloClient<NormalizedCacheObject>,
-  url: string,
-  additionalProperties?: Promise<object> | object,
-  cached = false,
-): Promise<{ data: PagesContentQuery }> {
-  return hygraphDynamicContent(
-    client,
-    pageContent(client, url, cached),
-    url,
-    cached,
-    additionalProperties,
-  )
 }
