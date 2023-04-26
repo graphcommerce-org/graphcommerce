@@ -99,9 +99,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   const staticClient = graphqlSsrClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
 
-  const url = 'blog'
-  const withoutDynamic = hygraphPageContent(staticClient, url)
-  const defaultPage = hygraphDynamicContent(staticClient, withoutDynamic, url)
+  const defaultPage = hygraphPageContent(staticClient, 'blog')
   const layout = staticClient.query({ query: LayoutDocument })
 
   const blogPosts = staticClient.query({

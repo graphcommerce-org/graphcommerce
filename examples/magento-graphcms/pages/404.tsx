@@ -25,7 +25,6 @@ function RouteNotFoundPage() {
   return (
     <>
       <PageMeta title='Page not found' metaRobots={['noindex']} />
-
       <Container maxWidth='sm'>
         <Box textAlign='center' mt={16} mb={16}>
           <IconSvg src={icon404} size='xxl' />
