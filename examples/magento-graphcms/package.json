@@ -30,7 +30,6 @@
     "@graphcommerce/googlerecaptcha": "6.2.0-canary.7",
     "@graphcommerce/googletagmanager": "6.2.0-canary.7",
     "@graphcommerce/graphcms-ui": "6.2.0-canary.7",
-    "@graphcommerce/hygraph-dynamic-rows": "6.2.0-canary.7",
     "@graphcommerce/graphql": "6.2.0-canary.7",
     "@graphcommerce/graphql-mesh": "6.2.0-canary.7",
     "@graphcommerce/image": "6.2.0-canary.7",
