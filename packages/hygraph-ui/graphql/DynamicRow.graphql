@@ -11,7 +11,5 @@ fragment DynamicRow on DynamicRow @injectable {
     ... on Node {
       id
     }
-    ...RowColumnOne
-    ...RowLinks
   }
 }

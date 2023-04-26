@@ -13,5 +13,4 @@ fragment Page on Page @injectable {
   asset {
     ...Asset
   }
-  ...RowRenderer
 }

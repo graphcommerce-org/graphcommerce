@@ -1,5 +1,0 @@
-fragment DynamicRowQuote on DynamicRow @inject(into: ["DynamicRow"]) {
-  row {
-    ...RowQuote
-  }
-}
