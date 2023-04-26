@@ -1,6 +1,6 @@
+import { PageContentQueryFragment } from '@graphcommerce/graphcms-ui'
 import { RenderType, TypeRenderer } from '@graphcommerce/next-ui'
 import { RowBlogContent } from '../Blog'
-import { PageContentQueryFragment } from './PageContentQueryFragment.gql'
 import { RowButtonLinkList } from './RowButtonLinkList/RowButtonLinkList'
 import { RowColumnOne } from './RowColumnOne/RowColumnOne'
 import { RowColumnThree } from './RowColumnThree/RowColumnThree'
