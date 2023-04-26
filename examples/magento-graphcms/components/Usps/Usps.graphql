@@ -1,3 +1,14 @@
 query Usps {
-  ...UspsQueryFragment
+  sidebarUsps: usps(where: { identity: "sidebarusps" }) {
+    uspsMultiple {
+      id
+      ...PageLink
+    }
+  }
+  usps(where: { identity: "contentusps" }) {
+    uspsMultiple {
+      id
+      ...PageLink
+    }
+  }
 }

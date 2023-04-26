@@ -1,5 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { hygraphDynamicContent, hygraphPageContent } from '@graphcommerce/graphcms-ui'
+import { hygraphPageContent, PagesContentQuery } from '@graphcommerce/graphcms-ui'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   PageMeta,
@@ -23,10 +23,9 @@ import {
   RowRenderer,
 } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
-import { DefaultPageQuery } from '../../graphql/DefaultPage.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
-type Props = DefaultPageQuery & BlogListQuery
+type Props = PagesContentQuery & BlogListQuery
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>

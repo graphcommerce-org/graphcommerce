@@ -1,13 +1,13 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { hygraphPageContent, PagesContentQuery } from '@graphcommerce/graphcms-ui'
 import { ProductListDocument, ProductListQuery } from '@graphcommerce/magento-product'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, LayoutHeader, MetaRobots, PageMeta } from '@graphcommerce/next-ui'
 import { LayoutNavigation, LayoutNavigationProps, RowProduct, RowRenderer } from '../components'
 import { LayoutDocument } from '../components/Layout/Layout.gql'
-import { DefaultPageDocument, DefaultPageQuery } from '../graphql/DefaultPage.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
 
-type Props = DefaultPageQuery & {
+type Props = PagesContentQuery & {
   latestList: ProductListQuery
   favoritesList: ProductListQuery
   swipableList: ProductListQuery
@@ -73,7 +73,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const staticClient = graphqlSsrClient(locale)
 
   const conf = client.query({ query: StoreConfigDocument })
-  const page = staticClient.query({ query: DefaultPageDocument, variables: { url: `page/home` } })
+  const page = hygraphPageContent(staticClient, 'page/home')
   const layout = staticClient.query({ query: LayoutDocument })
 
   // todo(paales): Remove when https://github.com/Urigo/graphql-mesh/issues/1257 is resolved

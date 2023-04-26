@@ -1,5 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { Asset, hygraphDynamicContent, hygraphPageContent } from '@graphcommerce/graphcms-ui'
+import { Asset, hygraphPageContent, PagesContentQuery } from '@graphcommerce/graphcms-ui'
 import { flushMeasurePerf } from '@graphcommerce/graphql'
 import {
   CategoryChildren,
@@ -49,11 +49,10 @@ import {
 } from '../components'
 import { LayoutDocument } from '../components/Layout/Layout.gql'
 import { CategoryPageDocument, CategoryPageQuery } from '../graphql/CategoryPage.gql'
-import { DefaultPageQuery } from '../graphql/DefaultPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
 
 export type CategoryProps = CategoryPageQuery &
-  DefaultPageQuery &
+  PagesContentQuery &
   ProductListQuery &
   ProductFiltersQuery & { filterTypes?: FilterTypes; params?: ProductListParams }
 export type CategoryRoute = { url: string[] }
@@ -199,8 +198,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     query: CategoryPageDocument,
     variables: { url },
   })
-
-  const layout = staticClient.query({ query: LayoutDocument })
+  const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
 
   const productListParams = parseParams(url, query, await filterTypes)
   const filteredCategoryUid = productListParams && productListParams.filters.category_uid?.in?.[0]
@@ -213,7 +211,6 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   }
 
   const pages = hygraphPageContent(staticClient, url, category)
-
   const hasPage = filteredCategoryUid ? false : (await pages).data.pages.length > 0
   const hasCategory = Boolean(productListParams && categoryUid)
 

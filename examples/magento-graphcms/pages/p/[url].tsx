@@ -1,5 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { hygraphDynamicContent, hygraphPageContent } from '@graphcommerce/graphcms-ui'
+import { hygraphPageContent, PagesContentQuery } from '@graphcommerce/graphcms-ui'
 import { mergeDeep } from '@graphcommerce/graphql'
 import {
   AddProductsToCartButton,
@@ -50,12 +50,12 @@ import {
   Usps,
 } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
-import { UspsDocument } from '../../components/Usps/Usps.gql'
-import { DefaultPageQuery } from '../../graphql/DefaultPage.gql'
+import { UspsDocument, UspsQuery } from '../../components/Usps/Usps.gql'
 import { ProductPage2Document, ProductPage2Query } from '../../graphql/ProductPage2.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
-type Props = DefaultPageQuery &
+type Props = PagesContentQuery &
+  UspsQuery &
   ProductPage2Query &
   Pick<AddProductsToCartFormProps, 'defaultValues'>
 

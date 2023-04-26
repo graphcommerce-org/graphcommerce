@@ -86,7 +86,7 @@ function matchCondition(
  * - Uses an early bailout to check to reduce hygraph calls.
  * - Implements an alias sytem to merge the content of multiple pages.
  */
-export async function pageContent(
+async function pageContent(
   client: ApolloClient<NormalizedCacheObject>,
   url: string,
   cached: boolean,
@@ -129,7 +129,7 @@ export async function pageContent(
  * - Uses an early bailout to check to reduce hygraph calls.
  * - Implements an alias sytem to merge the content of multiple pages.
  */
-export async function hygraphDynamicContent(
+async function hygraphDynamicContent(
   client: ApolloClient<NormalizedCacheObject>,
   pageQuery: Promise<{ data: PagesContentQuery }>,
   url: string,
@@ -187,7 +187,7 @@ export async function hygraphPageContent(
   url: string,
   additionalProperties?: Promise<object> | object,
   cached = false,
-) {
+): Promise<{ data: PagesContentQuery }> {
   return hygraphDynamicContent(
     client,
     pageContent(client, url, cached),
