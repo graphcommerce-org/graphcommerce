@@ -1,6 +1,1 @@
-export * from './AllPageRoutes.gql'
-export * from './Conditions.gql'
-export * from './DynamicRow.gql'
-export * from './DefaultPage.gql'
-export * from './PageContentQueryFragment.gql'
 export * from './pageContent'

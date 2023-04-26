@@ -1,4 +1,0 @@
-query DefaultPage($url: String!) {
-  ...UspsQueryFragment
-  ...PageContentQueryFragment
-}

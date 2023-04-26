@@ -12,7 +12,7 @@ import {
 } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
 import { DefaultPageDocument, DefaultPageQuery } from '../../graphql/DefaultPage.gql'
-import { PagesStaticPathsDocument } from '../../graphql/PagesStaticPaths.gql'
+import { PagesStaticPathsDocument } from '@graphcommerce/graphcms-ui/graphql/PagesStaticPaths.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
 type Props = DefaultPageQuery

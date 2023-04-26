@@ -1,0 +1,7 @@
+query PagesContent($url: String!) {
+  pages(where: { url: $url }) {
+    id
+    __typename
+    ...Page
+  }
+}

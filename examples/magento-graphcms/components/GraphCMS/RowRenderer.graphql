@@ -1,4 +1,4 @@
-fragment RowRenderer on Page {
+fragment RowRenderer on Page @inject(into: ["Page"]) {
   content {
     __typename
     ... on Node {

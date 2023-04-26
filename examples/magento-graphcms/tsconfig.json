@@ -1,5 +1,11 @@
 {
   "exclude": ["**/node_modules"],
-  "include": ["**/*.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "**/*.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "../../packages/hygraph-ui/components/PageContent/PageLink.gql.ts",
+    "../../packages/hygraph-ui/graphql/PagesStaticPaths.gql.ts"
+  ],
   "extends": "@graphcommerce/typescript-config-pwa/nextjs.json"
 }

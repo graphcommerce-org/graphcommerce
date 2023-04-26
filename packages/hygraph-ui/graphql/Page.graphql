@@ -1,0 +1,17 @@
+fragment Page on Page @injectable {
+  title
+  metaTitle
+  metaDescription
+  metaRobots
+  url
+  author
+  date
+  relatedPages {
+    title
+    url
+  }
+  asset {
+    ...Asset
+  }
+  ...RowRenderer
+}

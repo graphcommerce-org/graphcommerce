@@ -1,16 +1,14 @@
+import { ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
 import {
-  AllPageRoutesDocument,
-  DynamicRowDocument,
-  ConditionAndFragment,
+  ConditionTextFragment,
   ConditionNumberFragment,
   ConditionOrFragment,
-  ConditionTextFragment,
-} from '@graphcommerce/graphcms-ui'
-import { ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
-import { DefaultPageDocument, DefaultPageQuery } from '@graphcommerce/graphcms-ui'
-
-// TODO: Optimize bundle size
-// TODO: Progress feedback
+  ConditionAndFragment,
+  AllPageRoutesDocument,
+  PagesContentQuery,
+  PagesContentDocument,
+  DynamicRowsDocument,
+} from '../../graphql'
 
 /**
  * This generally works the same way as lodash get, however, when encountering an array it will
@@ -92,7 +90,7 @@ export async function hygraphPageContent(
   client: ApolloClient<NormalizedCacheObject>,
   url: string,
   cached = false,
-): Promise<{ data: DefaultPageQuery }> {
+): Promise<{ data: PagesContentQuery }> {
   /**
    * Some routes are very generic and wil be requested very often, like 'product/global'. To reduce
    * the amount of requests to Hygraph we can cache the result of the query if requested.
@@ -115,7 +113,7 @@ export async function hygraphPageContent(
   const found = allRoutes.data.pages.some((page) => page.url === url)
 
   return found
-    ? client.query({ query: DefaultPageDocument, variables: { url }, fetchPolicy })
+    ? client.query({ query: PagesContentDocument, variables: { url }, fetchPolicy })
     : Promise.resolve({ data: { pages: [] } })
 }
 
@@ -133,11 +131,11 @@ export async function hygraphPageContent(
  */
 export async function hygraphDynamicContent(
   client: ApolloClient<NormalizedCacheObject>,
-  pageQuery: Promise<{ data: DefaultPageQuery }>,
+  pageQuery: Promise<{ data: PagesContentQuery }>,
   url: string,
   additionalProperties?: Promise<object> | object,
   cached = false,
-): Promise<{ data: DefaultPageQuery }> {
+): Promise<{ data: PagesContentQuery }> {
   const alwaysCache = process.env.NODE_ENV !== 'development' ? 'cache-first' : undefined
   const fetchPolicy = cached ? alwaysCache : undefined
 
@@ -154,7 +152,7 @@ export async function hygraphDynamicContent(
 
   const dynamicRows =
     rowIds.length !== 0
-      ? client.query({ query: DynamicRowDocument, variables: { rowIds }, fetchPolicy })
+      ? client.query({ query: DynamicRowsDocument, variables: { rowIds }, fetchPolicy })
       : undefined
 
   const [pageResult, dynamicResult] = await Promise.all([pageQuery, dynamicRows])

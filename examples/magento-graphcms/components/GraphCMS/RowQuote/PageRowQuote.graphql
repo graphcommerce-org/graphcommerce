@@ -1,0 +1,5 @@
+fragment PageRowQuote on Page @inject(into: ["Page"]) {
+  content {
+    ...RowQuote
+  }
+}
