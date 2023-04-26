@@ -1,4 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { hygraphDynamicContent, hygraphPageContent } from '@graphcommerce/graphcms-ui'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   PageMeta,
@@ -21,7 +22,6 @@ import {
   LayoutNavigationProps,
   RowRenderer,
 } from '../../components'
-import { hygraphDynamicContent, hygraphPageContent } from '@graphcommerce/graphcms-ui'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
 import { DefaultPageQuery } from '../../graphql/DefaultPage.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'

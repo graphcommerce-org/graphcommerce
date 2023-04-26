@@ -1,5 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { Asset } from '@graphcommerce/graphcms-ui'
+import { Asset, hygraphDynamicContent, hygraphPageContent } from '@graphcommerce/graphcms-ui'
 import { flushMeasurePerf } from '@graphcommerce/graphql'
 import {
   CategoryChildren,
@@ -47,7 +47,6 @@ import {
   RowProduct,
   RowRenderer,
 } from '../components'
-import { hygraphDynamicContent, hygraphPageContent } from '@graphcommerce/graphcms-ui'
 import { LayoutDocument } from '../components/Layout/Layout.gql'
 import { CategoryPageDocument, CategoryPageQuery } from '../graphql/CategoryPage.gql'
 import { DefaultPageQuery } from '../graphql/DefaultPage.gql'

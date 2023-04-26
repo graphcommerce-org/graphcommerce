@@ -1,4 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { hygraphDynamicContent, hygraphPageContent } from '@graphcommerce/graphcms-ui'
 import { mergeDeep } from '@graphcommerce/graphql'
 import {
   AddProductsToCartButton,
@@ -48,7 +49,6 @@ import {
   RowRenderer,
   Usps,
 } from '../../components'
-import { hygraphDynamicContent, hygraphPageContent } from '@graphcommerce/graphcms-ui'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
 import { DefaultPageQuery } from '../../graphql/DefaultPage.gql'
 import { ProductPage2Document, ProductPage2Query } from '../../graphql/ProductPage2.gql'
