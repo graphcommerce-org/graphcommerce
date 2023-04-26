@@ -80,7 +80,7 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
         color:
           theme.palette.mode === 'light'
             ? theme.palette.text.secondary
-            : theme.palette.primary.main,
+            : theme.palette.background.paper,
       })}
     />
   )
