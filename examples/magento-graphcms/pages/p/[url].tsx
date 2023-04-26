@@ -50,6 +50,7 @@ import {
   Usps,
 } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
+import { UspsDocument } from '../../components/Usps/Usps.gql'
 import { DefaultPageQuery } from '../../graphql/DefaultPage.gql'
 import { ProductPage2Document, ProductPage2Query } from '../../graphql/ProductPage2.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
@@ -253,12 +254,14 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     category?.url_path && category?.name
       ? { href: `/${category.url_path}`, title: category.name }
       : { href: `/`, title: 'Home' }
+  const usps = staticClient.query({ query: UspsDocument, fetchPolicy: 'cache-first' })
 
   return {
     props: {
       ...defaultConfigurableOptionsSelection(urlKey, client, (await productPage).data),
       ...(await layout).data,
       ...(await pages).data,
+      ...(await usps).data,
       apolloState: await conf.then(() => client.cache.extract()),
       up,
     },
