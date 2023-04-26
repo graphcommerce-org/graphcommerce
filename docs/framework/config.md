@@ -149,6 +149,14 @@ The Google Tagmanager ID to be used on the site.
 
 This value is required even if you are configuring different values for each locale.
 
+#### `hygraphWriteAccessToken: String`
+
+Hygraph Management SDK Authorization Token. Only used for migrations.
+
+```
+GC_HYGRAPH_WRITE_ACCESS_TOKEN="AccessTokenFromHygraph" yarn graphcommerce hygraph-migrate
+```
+
 #### `legacyProductRoute: Boolean`
 
 On older versions of GraphCommerce products would use a product type specific route.
@@ -189,7 +197,7 @@ Hide the wishlist functionality for guests.
 
 #### `wishlistIgnoreProductWishlistStatus: Boolean`
 
-Ignores whether a product is already in the wishlist, makes the toggle an add only.
+Ignores wether a product is already in the wishlist, makes the toggle an add only.
 
 #### `wishlistShowFeedbackMessage: Boolean`
 

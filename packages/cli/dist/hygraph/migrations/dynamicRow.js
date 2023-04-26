@@ -1,124 +1,173 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.dynamicRow = void 0;
+const next_config_1 = require("@graphcommerce/next-config");
 const management_sdk_1 = require("@hygraph/management-sdk");
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
 const dynamicRow = async (name) => {
+    const config = (0, next_config_1.loadConfig)(process.cwd());
+    if (!config.hygraphEndpoint) {
+        throw new Error('Migration unsuccesful: hygraphEndpoint not found in config');
+    }
+    if (!config.hygraphWriteAccessToken) {
+        throw new Error('Migration unsuccesful: hygraphWriteAccessToken not found in config');
+    }
     const client = new management_sdk_1.Client({
-        authToken: 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImdjbXMtbWFpbi1wcm9kdWN0aW9uIn0.eyJ2ZXJzaW9uIjozLCJpYXQiOjE2ODIwNjQwNDcsImF1ZCI6WyJodHRwczovL2FwaS1ldS1jZW50cmFsLTEtc2hhcmVkLWV1YzEtMDIuaHlncmFwaC5jb20vdjIvY2xncTlpMHR3MTFvZzAxdWg3YTZ3OGMyOS9tYXN0ZXIiLCJtYW5hZ2VtZW50LW5leHQuZ3JhcGhjbXMuY29tIl0sImlzcyI6Imh0dHBzOi8vbWFuYWdlbWVudC5ncmFwaGNtcy5jb20vIiwic3ViIjoiZjU5MTczZGQtZTExOC00ODdiLWJjMDctMDcyNjZkZDU4Y2RlIiwianRpIjoiY2xnb3p3YzV0NzBiMzAxdWcwNzk5MGJ3dSJ9.qWKMOugu0UG28toPzS7rAuWCAZuFnvBhYPIadYTYBCTeE0S463st2UAMQ3LqoppHRElf3rFOkXQD4__OJBQj0a1nSxEQet0k8xkj47B2HJnIFrI348GYuSkKDOtJtmAr2LwV26Mz5wY6UbnOgK6SQCLEoImtw7I_2bVZQdQWX6pILDz4kAfjiZKYu1YJafk08oA-43x_mEwzqgZ8Mdcpx84EIrGRP68ZuN5XDIu5RtwrN21VrrJvxRxBw_AWODfTJDVdefjoHbre_1-IM8eUs7Th9--EXVapYv1fyXrpE4_cZlny8erHxJ4ULz3Df2TVPCL_h4v_gnYSLaGvOMbWJchPyoyViTnrhE5DUfhf07z4Uh6fjFpRz4DSkSNvHeiPuIzDj7H4zyUKAtENJR_NTQYiBi-kBIAM3ZgF9cNpF7krO8Ov9iLP3m785-d2TuzC3cVoHvLMz8MHkZYPq7d2wSs1dTCHRJyP1k4nh0uRWu4_lEmGfaXTSCEJqdOF0Isa5cZwHdQdXBpMJ6NUy1r_3ZEKExvpfPrTZIF7ONub4mkDpX5McdTAq5PCLCuEDIICzSM0iTbdB-GT6DSH-ib5piVN897YzyHvRSDBd7-wie0Ldtqxpk88Cgrk-T3pFB6HKYxHcMOLXpLCYbsdQ5liG5fSmR9FgJSY69KCBMYAraU',
-        endpoint: 'https://api-eu-central-1-shared-euc1-02.hygraph.com/v2/clgq9i0tw11og01uh7a6w8c29/master',
+        authToken: config.hygraphWriteAccessToken,
+        endpoint: config.hygraphEndpoint,
         name,
     });
-    // ? DEV purposes cleanup
-    client.deleteModel({
-        apiId: 'TestDynamicRow',
+    // ? ENUMERATIONS
+    client.createEnumeration({
+        displayName: 'Dynamic Row Condition Number Operator',
+        apiId: 'DynamicRowConditionNumberOperator',
+        values: [
+            { displayName: 'Greater than or equal to', apiId: 'GTE' },
+            { displayName: 'Less than or equal to', apiId: 'LTE' },
+            { displayName: 'Equal to', apiId: 'EQUAL' },
+        ],
     });
-    client.deleteField({
+    client.createEnumeration({
+        displayName: 'Dynamic Row Placement',
+        apiId: 'DynamicRowPlacement',
+        values: [
+            { displayName: 'Before', apiId: 'BEFORE' },
+            { displayName: 'After', apiId: 'AFTER' },
+            { displayName: 'Replace', apiId: 'REPLACE' },
+        ],
+    });
+    // ? COMPONENTS
+    client.createComponent({
+        displayName: 'Text',
+        apiId: 'ConditionText',
+        apiIdPlural: 'ConditionTexts',
+    });
+    client.createComponent({
+        displayName: 'Number',
+        apiId: 'ConditionNumber',
+        apiIdPlural: 'ConditionNumbers',
+    });
+    client.createComponent({
+        displayName: 'AND',
+        apiId: 'ConditionAnd',
+        apiIdPlural: 'ConditionAnds',
+        description: 'All of these conditions must match',
+    });
+    client.createComponent({
+        displayName: 'OR',
+        apiId: 'ConditionOr',
+        apiIdPlural: 'ConditionOrs',
+        description: 'One of these conditions must match',
+    });
+    client.createComponentUnionField({
+        displayName: 'Conditions',
         apiId: 'conditions',
-        parentApiId: 'TestConditionAnd',
+        parentApiId: 'ConditionAnd',
+        componentApiIds: ['ConditionOr', 'ConditionText', 'ConditionNumber'],
+        isList: true,
     });
-    client.deleteField({
+    client.createComponentUnionField({
+        displayName: 'Conditions',
         apiId: 'conditions',
-        parentApiId: 'TestConditionOr',
+        parentApiId: 'ConditionOr',
+        componentApiIds: ['ConditionText', 'ConditionNumber'],
+        isList: true,
     });
-    client.deleteComponent({
-        apiId: 'TestConditionText',
+    client.createSimpleField({
+        displayName: 'Property',
+        apiId: 'property',
+        type: management_sdk_1.SimpleFieldType.String,
+        parentApiId: 'ConditionText',
+        description: 'Path to the value of the object being evaluated.\n\nFor products: url_key, category, sku',
+        isRequired: true,
+        validations: {
+            String: {
+                matches: {
+                    flags: ['i', 's'],
+                    regex: '^[a-z0-9-_.]+$',
+                    errorMessage: 'Only letters, numbers, dashes (-), underscores (_) or dots allowed (.)',
+                },
+            },
+        },
     });
-    client.deleteComponent({
-        apiId: 'TestConditionAnd',
+    client.createSimpleField({
+        displayName: 'Value',
+        apiId: 'value',
+        type: management_sdk_1.SimpleFieldType.String,
+        parentApiId: 'ConditionText',
+        isRequired: true,
     });
-    client.deleteComponent({
-        apiId: 'TestConditionOr',
+    client.createSimpleField({
+        displayName: 'Property',
+        apiId: 'property',
+        type: management_sdk_1.SimpleFieldType.String,
+        parentApiId: 'ConditionNumber',
+        isRequired: true,
+        validations: {
+            String: {
+                matches: {
+                    flags: ['i', 's'],
+                    regex: '^[a-z0-9-_.]+$',
+                    errorMessage: 'Only letters, numbers, dashes (-), underscores (_) or dots allowed (.)',
+                },
+            },
+        },
     });
-    client.deleteComponent({
-        apiId: 'TestConditionNumber',
+    client.createEnumerableField({
+        displayName: 'Operator',
+        apiId: 'operator',
+        parentApiId: 'ConditionNumber',
+        enumerationApiId: 'DynamicRowConditionNumberOperator',
+        isRequired: true,
     });
-    client.deleteEnumeration({
-        apiId: 'TestDynamicRowConditionNumberOperator',
-    });
-    client.deleteEnumeration({
-        apiId: 'TestDynamicRowPlacementTarget',
+    client.createSimpleField({
+        displayName: 'Value',
+        apiId: 'value',
+        type: management_sdk_1.SimpleFieldType.Float,
+        parentApiId: 'ConditionNumber',
+        isRequired: true,
     });
     // ? MODEL
-    // * CORRECT (5)
     client.createModel({
-        apiId: 'TestDynamicRow',
-        apiIdPlural: 'TestDynamicRows',
-        displayName: 'Test Dynamic Row',
+        apiId: 'DynamicRow',
+        apiIdPlural: 'DynamicRows',
+        displayName: 'Dynamic Row',
         description: 'Dynamic rows allow you to add specific Row models to pages based on the properties of the page',
     });
-    // ? ENMERATIONS
-    client.createEnumeration({
-        displayName: 'Test Dynamic Row Condition Number Operator',
-        apiId: 'TestDynamicRowConditionNumberOperator',
-        values: [
-            {
-                displayName: 'Greater than or equal to',
-                apiId: 'GTE',
-            },
-            {
-                displayName: 'Less than or equal to',
-                apiId: 'LTE',
-            },
-            {
-                displayName: 'Equal to',
-                apiId: 'EQUAL',
-            },
-        ],
-    });
-    client.createEnumeration({
-        displayName: 'Test Dynamic Row Placement Target',
-        apiId: 'TestDynamicRowPlacementTarget',
-        values: [
-            {
-                displayName: 'Before',
-                apiId: 'BEFORE',
-            },
-            {
-                displayName: 'After',
-                apiId: 'AFTER',
-            },
-            {
-                displayName: 'Replace',
-                apiId: 'REPLACE',
-            },
-        ],
-    });
-    // ? MODEL FIELDS
-    // * CORRECT 1/5
     client.createSimpleField({
         displayName: 'Internal name',
         apiId: 'internalName',
         description: 'Only used for internal reference',
         type: management_sdk_1.SimpleFieldType.String,
-        // parentApiId: 'TestDynamicRow',
         isTitle: true,
         isRequired: true,
         isUnique: true,
-        modelApiId: 'TestDynamicRow',
+        modelApiId: 'DynamicRow',
     });
-    // * CORRECT 2/5
     client.createUnionField({
         displayName: 'Row',
         apiId: 'row',
         reverseField: {
-            modelApiIds: ['RowQuote', 'RowLinks', 'RowColumnOne', 'RowColumnTwo', 'RowColumnThree'],
-            apiId: 'testDynamicRows',
-            displayName: 'testDynamicRows',
+            modelApiIds: ['RowQuote', 'RowLinks', 'RowColumnOne'],
+            apiId: 'dynamicRow',
+            displayName: 'DynamicRows',
             visibility: management_sdk_1.VisibilityTypes.Hidden,
             isList: true,
         },
-        parentApiId: 'TestDynamicRow',
+        parentApiId: 'DynamicRow',
     });
-    // * CORRECT 3/5
     client.createEnumerableField({
         displayName: 'Placement',
         apiId: 'placement',
-        parentApiId: 'TestDynamicRow',
-        enumerationApiId: 'TestDynamicRowPlacementTarget',
+        parentApiId: 'DynamicRow',
+        enumerationApiId: 'DynamicRowPlacement',
         description: 'Where will the row be placed relative to the target',
         isRequired: true,
     });
-    // * CORRECT 4/5
     client.createUnionField({
         displayName: 'Placement target',
         apiId: 'target',
@@ -138,119 +187,21 @@ const dynamicRow = async (name) => {
                 'RowHeroBanner',
                 'RowBlogContent',
             ],
-            apiId: 'testDynamicRowsTarget',
-            displayName: 'testDynamicRowsTarget',
+            apiId: 'dynamicRowsTarget',
+            displayName: 'DynamicRowsTarget',
             visibility: management_sdk_1.VisibilityTypes.Hidden,
             isList: true,
         },
-        parentApiId: 'TestDynamicRow',
-    });
-    // ? INCOMPLETE 5/5
-    // ? COMPONENTS
-    // * TEXT (2)
-    client.createComponent({
-        displayName: 'TestText',
-        apiId: 'TestConditionText',
-        apiIdPlural: 'TestConditionTexts',
-    });
-    // * INCORRECT NUMBER (?) ( ADD ENUMARATION AND VALUE )
-    client.createComponent({
-        displayName: 'TestNumber',
-        apiId: 'TestConditionNumber',
-        apiIdPlural: 'TestConditionNumbers',
-    });
-    // * CORRECT AND (?)
-    client.createComponent({
-        displayName: 'TestAND',
-        apiId: 'TestConditionAnd',
-        apiIdPlural: 'TestConditionAnds',
-        description: 'All of these conditions must match',
-    });
-    //* CORRECT OR (?)
-    client.createComponent({
-        displayName: 'TestOR',
-        apiId: 'TestConditionOr',
-        apiIdPlural: 'TestConditionOrs',
-        description: 'One of these conditions must match',
-    });
-    client.createComponentUnionField({
-        displayName: 'Conditions',
-        apiId: 'conditions',
-        parentApiId: 'TestConditionAnd',
-        componentApiIds: ['TestConditionOr', 'TestConditionText', 'TestConditionNumber'],
-        isList: true,
-    });
-    client.createComponentUnionField({
-        displayName: 'Conditions',
-        apiId: 'conditions',
-        parentApiId: 'TestConditionOr',
-        componentApiIds: ['TestConditionText', 'TestConditionNumber'],
-        isList: true,
-    });
-    client.createSimpleField({
-        displayName: 'Property',
-        apiId: 'property',
-        type: management_sdk_1.SimpleFieldType.String,
-        parentApiId: 'TestConditionText',
-        description: 'Path to the value of the object being evaluated.\n\nFor products: url_key, category, sku',
-        isRequired: true,
-        validations: {
-            String: {
-                matches: {
-                    flags: ['i', 's'],
-                    regex: '^[a-z0-9-_.]+$',
-                    errorMessage: 'Only letters, numbers, dashes (-), underscores (_) or dots allowed (.)',
-                },
-            },
-        },
-    });
-    client.createSimpleField({
-        displayName: 'Value',
-        apiId: 'value',
-        type: management_sdk_1.SimpleFieldType.String,
-        parentApiId: 'TestConditionText',
-        isRequired: true,
-    });
-    client.createSimpleField({
-        displayName: 'Property',
-        apiId: 'property',
-        type: management_sdk_1.SimpleFieldType.String,
-        parentApiId: 'TestConditionNumber',
-        isRequired: true,
-        validations: {
-            String: {
-                matches: {
-                    flags: ['i', 's'],
-                    regex: '^[a-z0-9-_.]+$',
-                    errorMessage: 'Only letters, numbers, dashes (-), underscores (_) or dots allowed (.)',
-                },
-            },
-        },
-    });
-    client.createEnumerableField({
-        displayName: 'TestOperator',
-        apiId: 'testOperator',
-        parentApiId: 'TestConditionNumber',
-        enumerationApiId: 'TestDynamicRowConditionNumberOperator',
-        isRequired: true,
-    });
-    client.createSimpleField({
-        displayName: 'Value',
-        apiId: 'value',
-        type: management_sdk_1.SimpleFieldType.Float,
-        parentApiId: 'TestConditionNumber',
-        isRequired: true,
+        parentApiId: 'DynamicRow',
     });
     client.createComponentUnionField({
         displayName: 'Conditions (OR)',
         apiId: 'conditions',
-        parentApiId: 'TestDynamicRow',
+        parentApiId: 'DynamicRow',
         description: 'One of these conditions must match',
-        componentApiIds: ['TestConditionAnd', 'TestConditionText', 'TestConditionNumber'],
+        componentApiIds: ['ConditionAnd', 'ConditionText', 'ConditionNumber'],
         isList: true,
     });
-    const changes = client.dryRun();
-    console.log(changes);
     return client.run(true);
 };
 exports.dynamicRow = dynamicRow;

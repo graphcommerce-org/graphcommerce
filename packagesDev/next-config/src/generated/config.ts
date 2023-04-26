@@ -152,6 +152,14 @@ export type GraphCommerceConfig = {
    */
   hygraphEndpoint: Scalars['String'];
   /**
+   * Hygraph Management SDK Authorization Token. Only used for migrations.
+   *
+   * ```
+   * GC_HYGRAPH_WRITE_ACCESS_TOKEN="AccessTokenFromHygraph" yarn graphcommerce hygraph-migrate
+   * ```
+   */
+  hygraphWriteAccessToken?: InputMaybe<Scalars['String']>;
+  /**
    * On older versions of GraphCommerce products would use a product type specific route.
    *
    * This should only be set to true if you use the /product/[url] AND /product/configurable/[url] routes.
@@ -291,6 +299,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     googleRecaptchaKey: z.string().nullish(),
     googleTagmanagerId: z.string().nullish(),
     hygraphEndpoint: z.string().min(1),
+    hygraphWriteAccessToken: z.string().nullish(),
     legacyProductRoute: z.boolean().nullish(),
     limitSsg: z.boolean().nullish(),
     magentoEndpoint: z.string().min(1),

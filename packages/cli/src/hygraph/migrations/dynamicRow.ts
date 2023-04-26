@@ -1,5 +1,8 @@
 import { loadConfig } from '@graphcommerce/next-config'
 import { Client, SimpleFieldType, VisibilityTypes } from '@hygraph/management-sdk'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 export const dynamicRow = async (name: string | undefined) => {
   const config = loadConfig(process.cwd())
@@ -7,12 +10,12 @@ export const dynamicRow = async (name: string | undefined) => {
   if (!config.hygraphEndpoint) {
     throw new Error('Migration unsuccesful: hygraphEndpoint not found in config')
   }
-  if (!config.hygraphAuthToken) {
-    throw new Error('Migration unsuccesful: hygraphAuthToken not found in config')
+  if (!config.hygraphWriteAccessToken) {
+    throw new Error('Migration unsuccesful: hygraphWriteAccessToken not found in config')
   }
 
   const client = new Client({
-    authToken: config.hygraphAuthToken,
+    authToken: config.hygraphWriteAccessToken,
     endpoint: config.hygraphEndpoint,
     name,
   })
