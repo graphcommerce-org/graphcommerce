@@ -1,8 +1,8 @@
 import { CategorySearchResult, SearchFormProps } from '@graphcommerce/magento-search'
 import { PluginProps } from '@graphcommerce/next-config'
-import { Index } from 'react-instantsearch-hooks'
+import { Index } from 'react-instantsearch-hooks-web'
 import { useAlgoliaPageResults } from '../hooks/useAlgoliaPageResults'
-import { useAlgoliaSearchIndex } from '../hooks/useAlgoliaSearchIndex'
+import { useAlgoliaSearchIndexConfig } from '../hooks/useAlgoliaSearchIndexConfig'
 
 export const component = 'SearchForm'
 export const exported = '@graphcommerce/magento-search'
@@ -34,7 +34,7 @@ function PageHits() {
 
 function AlgoliaPageSearchPlugin(props: PluginProps<SearchFormProps>) {
   const { Prev, ...rest } = props
-  const searchIndex = useAlgoliaSearchIndex('_pages')
+  const searchIndex = useAlgoliaSearchIndexConfig('_pages')?.searchIndex
 
   if (!searchIndex) return <Prev {...rest} />
 

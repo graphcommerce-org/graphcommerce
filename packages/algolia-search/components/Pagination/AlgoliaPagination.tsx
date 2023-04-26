@@ -1,7 +1,7 @@
 import { ProductPaginationProps } from '@graphcommerce/magento-product'
 import { Pagination } from '@graphcommerce/next-ui'
 import { Box } from '@mui/material'
-import { usePagination } from 'react-instantsearch-hooks'
+import { usePagination } from 'react-instantsearch-hooks-web'
 
 export function AlgoliaPagination({
   page_info,

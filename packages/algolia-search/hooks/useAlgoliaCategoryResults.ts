@@ -1,4 +1,4 @@
-import { useHits } from 'react-instantsearch-hooks'
+import { useHits } from 'react-instantsearch-hooks-web'
 import { AlgoliaCategoryHit } from '../lib/types'
 
 function hitToCategory(hits: AlgoliaCategoryHit[]) {

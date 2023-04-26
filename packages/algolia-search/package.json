@@ -27,7 +27,7 @@
     "@graphcommerce/graphql-mesh": "6.1.1-canary.2",
     "@graphcommerce/magento-store": "6.1.1-canary.2",
     "algoliasearch": "^4.15.0",
-    "react-instantsearch-hooks": "^6.41.0"
+    "react-instantsearch-hooks-web": "^6.41.0"
   },
   "peerDependencies": {
     "@lingui/core": "^3.13.2",

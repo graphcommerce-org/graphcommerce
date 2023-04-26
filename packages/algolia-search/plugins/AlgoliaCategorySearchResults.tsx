@@ -1,8 +1,8 @@
 import { CategorySearchResult, SearchFormProps } from '@graphcommerce/magento-search'
 import { PluginProps } from '@graphcommerce/next-config'
-import { Index } from 'react-instantsearch-hooks'
+import { Index } from 'react-instantsearch-hooks-web'
 import { useAlgoliaCategoryResults } from '../hooks/useAlgoliaCategoryResults'
-import { useAlgoliaSearchIndex } from '../hooks/useAlgoliaSearchIndex'
+import { useAlgoliaSearchIndexConfig } from '../hooks/useAlgoliaSearchIndexConfig'
 
 export const component = 'SearchForm'
 export const exported = '@graphcommerce/magento-search'
@@ -27,7 +27,7 @@ function CategoryHits() {
 
 function AlgoliaCategorySearchPlugin(props: PluginProps<SearchFormProps>) {
   const { Prev, ...rest } = props
-  const searchIndex = useAlgoliaSearchIndex('_categories')
+  const searchIndex = useAlgoliaSearchIndexConfig('_categories')?.searchIndex
 
   if (!searchIndex) return <Prev {...rest} />
 

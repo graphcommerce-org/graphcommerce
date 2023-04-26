@@ -1,8 +1,8 @@
 import { SearchContextProps } from '@graphcommerce/magento-search'
 import { IfConfig, PluginProps } from '@graphcommerce/next-config'
-import { useStorefrontConfig } from '@graphcommerce/next-ui'
 import algoliasearch from 'algoliasearch/lite'
-import { InstantSearch, InstantSearchSSRProviderProps } from 'react-instantsearch-hooks'
+import { InstantSearch, InstantSearchSSRProvider } from 'react-instantsearch-hooks-web'
+import { useAlgoliaSearchIndexConfig } from '../hooks/useAlgoliaSearchIndexConfig'
 import { applicationId, searchOnlyApiKey } from '../lib/configuration'
 
 export const component = 'SearchContext'
@@ -11,16 +11,21 @@ export const ifConfig: IfConfig = 'demoMode'
 
 const searchClient = algoliasearch(applicationId, searchOnlyApiKey)
 
-function AlgoliaSearchContextPlugin(
-  props: PluginProps<SearchContextProps & InstantSearchSSRProviderProps>,
-) {
-  const { Prev, initialResults, ...rest } = props
-  const { searchIndex } = useStorefrontConfig().algoliaSearchIndexConfig[0]
+function AlgoliaSearchContextPlugin(props: PluginProps<SearchContextProps>) {
+  const { Prev, serverProps, ...rest } = props
+  const searchIndex = useAlgoliaSearchIndexConfig('_products')?.searchIndex
+
+  if (!searchIndex)
+    throw Error(
+      '(@graphcommerce/algolia-plugin): No search index with "_products" suffix provided. Please add the search index to the Graphcommerce config',
+    )
 
   return (
-    <InstantSearch searchClient={searchClient} indexName={searchIndex}>
-      <Prev {...rest} />
-    </InstantSearch>
+    <InstantSearchSSRProvider {...(typeof serverProps === 'object' ? serverProps : {})}>
+      <InstantSearch searchClient={searchClient} indexName={searchIndex}>
+        <Prev {...rest} />
+      </InstantSearch>
+    </InstantSearchSSRProvider>
   )
 }
 

@@ -2,7 +2,7 @@ import { Trans } from '@lingui/react'
 import { Box, debounce } from '@mui/material'
 import TextField from '@mui/material/TextField'
 import { ChangeEvent, useCallback, useEffect, useRef } from 'react'
-import { useHits, useSearchBox, UseSearchBoxProps } from 'react-instantsearch-hooks'
+import { useHits, useSearchBox, UseSearchBoxProps } from 'react-instantsearch-hooks-web'
 
 type SearchBoxProps = {
   defaultValue?: string
@@ -17,7 +17,10 @@ export function SearchBox(props: SearchBoxProps) {
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const debounceSearch = useCallback(
-    debounce((e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => refine(e.target.value), 0),
+    debounce(
+      (e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => refine(e.target.value),
+      import.meta.graphCommerce.algoliaSearchDebounceTime ?? 0,
+    ),
     [refine],
   )
 

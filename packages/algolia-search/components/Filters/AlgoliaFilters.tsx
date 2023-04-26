@@ -1,7 +1,7 @@
 import { AlgoliaFilterAttribute } from '@graphcommerce/graphql-mesh'
 import { FilterTypes, ProductFiltersProps } from '@graphcommerce/magento-product'
-import { useStorefrontConfig } from '@graphcommerce/next-ui'
 import { useMemo } from 'react'
+import { useAlgoliaSearchIndexConfig } from '../../hooks/useAlgoliaSearchIndexConfig'
 import { RenderChip } from '../FilterChip/RenderChip'
 
 const systemFilters = [
@@ -15,9 +15,8 @@ interface FilterWithTypes extends AlgoliaFilterAttribute {
 
 export function AlgoliaFilters(props: ProductFiltersProps) {
   const { filterTypes, aggregations } = props
-  const filtersFromConfig =
-    useStorefrontConfig().algoliaFilterAttributes ??
-    import.meta.graphCommerce.algoliaFilterAttributes
+
+  const filtersFromConfig = useAlgoliaSearchIndexConfig('_products')?.filterAttributes
 
   const filters = useMemo(() => {
     const allValues: FilterWithTypes[] = []

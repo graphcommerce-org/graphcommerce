@@ -9,7 +9,7 @@ import {
   UseClearRefinementsProps,
   useRefinementList,
   UseRefinementListProps,
-} from 'react-instantsearch-hooks'
+} from 'react-instantsearch-hooks-web'
 
 const name = 'RefinementFilterChip' as const
 const parts = ['menu', 'item'] as const
