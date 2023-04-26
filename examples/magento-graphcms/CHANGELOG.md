@@ -1,5 +1,29 @@
 # Change Log
 
+## 6.2.0-canary.7
+
+## 6.2.0-canary.6
+
+## 6.1.1-canary.5
+
+## 6.1.1-canary.4
+
+### Patch Changes
+
+- [#1914](https://github.com/graphcommerce-org/graphcommerce/pull/1914) [`c237f2f2c`](https://github.com/graphcommerce-org/graphcommerce/commit/c237f2f2c87d9e3c8aefc536a13b5b9203556f27) - Category pages now have the ability to select the displayed pageSize of a page and a non-default pageSize and a non-default sort option will now receive noindex meta tags when viewed. ([@paales](https://github.com/paales))
+
+- [#1914](https://github.com/graphcommerce-org/graphcommerce/pull/1914) [`000556331`](https://github.com/graphcommerce-org/graphcommerce/commit/000556331f5379c71d7edca541fd0b145b7dc435) - When there is an error in the cart, disable the checkout buttons ([@paales](https://github.com/paales))
+
+- [#1914](https://github.com/graphcommerce-org/graphcommerce/pull/1914) [`d11edae41`](https://github.com/graphcommerce-org/graphcommerce/commit/d11edae41089d37d0806ec11b65e66c03a3d7cfa) - Sort option weren't visible in the ProductFiltersProAllFilters sidebar ([@paales](https://github.com/paales))
+
+- [#1914](https://github.com/graphcommerce-org/graphcommerce/pull/1914) [`38d6c4888`](https://github.com/graphcommerce-org/graphcommerce/commit/38d6c488850013b36cae9f388996039219c1327e) - Errors in the cart didn't allow for recovery from the faulty state ([@paales](https://github.com/paales))
+
+## 6.1.1-canary.3
+
+### Patch Changes
+
+- [#1911](https://github.com/graphcommerce-org/graphcommerce/pull/1911) [`c10d6d5be`](https://github.com/graphcommerce-org/graphcommerce/commit/c10d6d5beb0d1560d33e3e301d88fa9201515133) - Added missing translations for the ProductSidebarDelivery ([@rustmaestro](https://github.com/rustmaestro))
+
 ## 6.1.1-canary.2
 
 ## 6.1.1-canary.1

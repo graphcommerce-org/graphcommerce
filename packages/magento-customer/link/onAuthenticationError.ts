@@ -28,7 +28,8 @@ export const onAuthorizationError = onError(({ graphQLErrors, operation }) => {
   const { cache } = operation.getContext()
   if (graphQLErrors) {
     for (const err of graphQLErrors) {
-      if (err.extensions?.category === 'graphql-authorization') {
+      const isCustomerError = err.path?.join('.').toLowerCase().includes('customer')
+      if (err.extensions?.category === 'graphql-authorization' && isCustomerError) {
         // Modify the operation context with a new token
         invalidateToken(cache as InMemoryCache)
         break

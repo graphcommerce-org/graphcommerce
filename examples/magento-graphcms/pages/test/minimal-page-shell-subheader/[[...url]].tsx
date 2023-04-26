@@ -8,6 +8,7 @@ import {
   ProductFiltersPro,
   ProductFiltersProAllFiltersChip,
   ProductFiltersProFilterChips,
+  ProductFiltersProLimitChip,
   ProductFiltersProSortChip,
   ProductFiltersQuery,
   ProductListDocument,
@@ -71,7 +72,9 @@ function MinimalLayoutSubheader(props: Props) {
                   filterTypes={filterTypes}
                 />
                 <ProductFiltersProSortChip {...products} />
+                <ProductFiltersProLimitChip />
                 <ProductFiltersProAllFiltersChip
+                  {...products}
                   {...filters}
                   appliedAggregations={products?.aggregations}
                   filterTypes={filterTypes}

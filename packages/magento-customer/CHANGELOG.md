@@ -1,5 +1,23 @@
 # Change Log
 
+## 6.2.0-canary.7
+
+### Patch Changes
+
+- [#1916](https://github.com/graphcommerce-org/graphcommerce/pull/1916) [`97ebc19af`](https://github.com/graphcommerce-org/graphcommerce/commit/97ebc19aff093bf57d24d009e96661ad43926fd6) - The customer's token would be invalidated if any authorization error occured. Now only scoped to customer queries and mutations, potentially reducing the amount of random logouts. ([@paales](https://github.com/paales))
+
+## 6.2.0-canary.6
+
+## 6.1.1-canary.5
+
+## 6.1.1-canary.4
+
+### Patch Changes
+
+- [#1914](https://github.com/graphcommerce-org/graphcommerce/pull/1914) [`38d6c4888`](https://github.com/graphcommerce-org/graphcommerce/commit/38d6c488850013b36cae9f388996039219c1327e) - Errors in the cart didn't allow for recovery from the faulty state ([@paales](https://github.com/paales))
+
+## 6.1.1-canary.3
+
 ## 6.1.1-canary.2
 
 ## 6.1.1-canary.1

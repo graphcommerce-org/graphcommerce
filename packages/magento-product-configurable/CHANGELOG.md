@@ -1,5 +1,19 @@
 # Change Log
 
+## 6.2.0-canary.7
+
+## 6.2.0-canary.6
+
+## 6.1.1-canary.5
+
+## 6.1.1-canary.4
+
+### Patch Changes
+
+- [#1914](https://github.com/graphcommerce-org/graphcommerce/pull/1914) [`742520b03`](https://github.com/graphcommerce-org/graphcommerce/commit/742520b038b367026ac7e3e364a0147415f17301) - ConfigurableOptionsSelection causes a cache error ([@paales](https://github.com/paales))
+
+## 6.1.1-canary.3
+
 ## 6.1.1-canary.2
 
 ## 6.1.1-canary.1

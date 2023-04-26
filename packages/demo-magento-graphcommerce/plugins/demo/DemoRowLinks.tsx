@@ -8,7 +8,7 @@ export const ifConfig: IfConfig = 'demoMode'
 
 function DemoRowLinks(props: PluginProps<RowLinksProps>) {
   const { Prev, children, title, maxWidth, sx, ...rest } = props
-  if (title !== 'Hot & New')
+  if (title !== 'Hot & New' && title !== 'Heet & Nieuw')
     return (
       <Prev {...rest} title={title} maxWidth={maxWidth} sx={sx}>
         {children}

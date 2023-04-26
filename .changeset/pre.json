@@ -72,8 +72,25 @@
     "@graphcommerce/typescript-config-pwa": "6.1.0"
   },
   "changesets": [
+    "brown-brooms-battle",
+    "curvy-cats-invent",
+    "cyan-months-yell",
+    "dirty-rivers-beg",
+    "good-forks-remember",
     "good-seals-rest",
+    "gorgeous-games-pump",
     "honest-clocks-jump",
-    "lemon-houses-sit"
+    "hungry-pants-learn",
+    "late-hats-refuse",
+    "lemon-houses-sit",
+    "metal-dots-repair",
+    "neat-mice-sneeze",
+    "nice-tips-fix",
+    "pink-stingrays-wave",
+    "popular-mice-laugh",
+    "strange-beans-sip",
+    "tender-shrimps-cheat",
+    "thin-news-juggle",
+    "twenty-planes-laugh"
   ]
 }

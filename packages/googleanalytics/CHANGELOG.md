@@ -1,5 +1,19 @@
 # Change Log
 
+## 6.2.0-canary.7
+
+## 6.2.0-canary.6
+
+### Patch Changes
+
+- [#1915](https://github.com/graphcommerce-org/graphcommerce/pull/1915) [`4c8d6fc73`](https://github.com/graphcommerce-org/graphcommerce/commit/4c8d6fc734a83b9ffa078abf10b26c65e49f4940) - GaViewItem would still be enabled even when googleAnalyticsId was enabled ([@paales](https://github.com/paales))
+
+## 6.1.1-canary.5
+
+## 6.1.1-canary.4
+
+## 6.1.1-canary.3
+
 ## 6.1.1-canary.2
 
 ## 6.1.1-canary.1

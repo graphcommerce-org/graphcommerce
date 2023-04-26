@@ -328,6 +328,9 @@ msgstr "Newsletter"
 msgid "Next"
 msgstr "Avanti"
 
+msgid "Next day delivery - Shipping free"
+msgstr "Consegna il giorno successivo - Spedizione gratuita"
+
 msgid "No Image"
 msgstr "Nessuna immagine"
 
@@ -352,11 +355,23 @@ msgstr "Ok"
 msgid "Older"
 msgstr "Precedenti"
 
+msgid "Only 1 left in stock."
+msgstr "Solo 1 pezzo disponibile."
+
+msgid "Only a few left"
+msgstr "Solo pochi pezzi disponibili"
+
+msgid "Only {amount_left_in_stock} left in stock."
+msgstr "Solo {amount_left_in_stock} pezzi disponibili."
+
 msgid "Or follow these links to get you back on track!"
 msgstr "O seguire questi link per riprendere il tuo percorso!"
 
 msgid "Order #{orderId}"
 msgstr "Ordine #{orderId}"
+
+msgid "Order before 22:00"
+msgstr "Ordina prima delle 22:00"
 
 msgid "Order not found"
 msgstr "Ordine non trovato"
@@ -378,6 +393,9 @@ msgstr "Ordini"
 
 msgid "Other"
 msgstr "Altro"
+
+msgid "Out of stock"
+msgstr "Esaurito"
 
 msgid "Page {page} of {count}"
 msgstr "Pagina {page} di {count}"
@@ -412,6 +430,9 @@ msgstr "Il pagamento non è stato completato con successo, riprova."
 msgid "Payment method"
 msgstr "Metodo di pagamento"
 
+msgid "Per page"
+msgstr "Per pagina"
+
 msgid "Personal details"
 msgstr "Dati personali"
 
@@ -420,6 +441,9 @@ msgstr "Effettua l'ordine"
 
 msgid "Please check your inbox to validate your email ({email})"
 msgstr "Controlla la tua casella di posta per validare la tua email ({email})"
+
+msgid "Please enter a valid email address"
+msgstr "Inserisci un indirizzo email valido"
 
 msgid "Please provide a valid house number"
 msgstr "Inserisci un numero civico valido"
@@ -604,6 +628,9 @@ msgstr "Il pagamento non è stato completato, riprova o seleziona un metodo di p
 msgid "The payment is refused, please try again or select a different payment method."
 msgstr "Il pagamento è stato rifiutato, riprova o seleziona un metodo di pagamento differente."
 
+msgid "This cart is assigned to {email}. Please sign in to continue shopping."
+msgstr "Questo carrello è assegnato a {email}. Accedi per continuare gli acquisti."
+
 msgid "This field is required"
 msgstr "Questo campo è obbligatorio"
 
@@ -636,6 +663,9 @@ msgstr "Visualizza il tuo account"
 
 msgid "We are fetching your favorite products, one moment please!"
 msgstr "Stiamo scaricando i tuoi prodotti preferiti, un momento per favore!"
+
+msgid "We are sorry, this product is currently out of stock."
+msgstr "Ci dispiace, questo prodotto è momentaneamente esaurito."
 
 msgid "We can not process your payment, we received an unsupported status \"<0>{resultCode}</0>\". Please try again or select a different payment method."
 msgstr "Non possiamo elaborare il tuo pagamento, abbiamo ricevuto uno stato non supportato \"<0>{resultCode}</0>\". Riprova o seleziona un metodo di pagamento differente."
@@ -771,6 +801,9 @@ msgstr "restituito"
 
 msgid "shipped"
 msgstr "spedito"
+
+msgid "{count} Per page"
+msgstr "{count} Per pagina"
 
 msgid "{metaDescription} - Page {currentPage}"
 msgstr "{metaDescription} - Pagina {currentPage}"

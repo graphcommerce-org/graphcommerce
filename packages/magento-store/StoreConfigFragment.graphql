@@ -28,5 +28,6 @@ fragment StoreConfigFragment on StoreConfig @injectable {
   allow_guests_to_write_product_reviews
 
   grid_per_page
+  grid_per_page_values
   list_per_page
 }

@@ -1,5 +1,19 @@
 # @graphcommerce/magento-payment-paypal
 
+## 6.2.0-canary.7
+
+## 6.2.0-canary.6
+
+## 6.1.1-canary.5
+
+## 6.1.1-canary.4
+
+### Patch Changes
+
+- [#1914](https://github.com/graphcommerce-org/graphcommerce/pull/1914) [`72fb254a0`](https://github.com/graphcommerce-org/graphcommerce/commit/72fb254a0046001ce4288501b0de6871fada819b) - User wouldn't be redirect to the paypal website, not allowing users to checkout ([@paales](https://github.com/paales))
+
+## 6.1.1-canary.3
+
 ## 6.1.1-canary.2
 
 ## 6.1.1-canary.1

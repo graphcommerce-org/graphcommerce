@@ -1,5 +1,25 @@
 # Change Log
 
+## 6.2.0-canary.7
+
+## 6.2.0-canary.6
+
+## 6.1.1-canary.5
+
+## 6.1.1-canary.4
+
+### Patch Changes
+
+- [#1914](https://github.com/graphcommerce-org/graphcommerce/pull/1914) [`c237f2f2c`](https://github.com/graphcommerce-org/graphcommerce/commit/c237f2f2c87d9e3c8aefc536a13b5b9203556f27) - Category pages now have the ability to select the displayed pageSize of a page and a non-default pageSize and a non-default sort option will now receive noindex meta tags when viewed. ([@paales](https://github.com/paales))
+
+- [#1914](https://github.com/graphcommerce-org/graphcommerce/pull/1914) [`b1abccb67`](https://github.com/graphcommerce-org/graphcommerce/commit/b1abccb677b83b090882ed1e0cf5336c52b175a4) - Category limit url param wasn't parsed correctly, causing a 404. ([@paales](https://github.com/paales))
+
+## 6.1.1-canary.3
+
+### Patch Changes
+
+- [#1911](https://github.com/graphcommerce-org/graphcommerce/pull/1911) [`c10d6d5be`](https://github.com/graphcommerce-org/graphcommerce/commit/c10d6d5beb0d1560d33e3e301d88fa9201515133) - Added missing translations for the ProductSidebarDelivery ([@rustmaestro](https://github.com/rustmaestro))
+
 ## 6.1.1-canary.2
 
 ## 6.1.1-canary.1

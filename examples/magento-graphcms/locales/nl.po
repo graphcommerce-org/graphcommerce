@@ -116,7 +116,7 @@ msgid "City"
 msgstr "Plaats"
 
 msgid "Clear"
-msgstr "Filter wissen"
+msgstr "Wissen"
 
 msgid "Close"
 msgstr "Sluiten"
@@ -328,6 +328,9 @@ msgstr "Nieuwsbrief"
 msgid "Next"
 msgstr "Volgende"
 
+msgid "Next day delivery - Shipping free"
+msgstr "Volgende dag levering - Verzending gratis"
+
 msgid "No Image"
 msgstr "Geen afbeelding"
 
@@ -352,11 +355,23 @@ msgstr "Ok"
 msgid "Older"
 msgstr "Ouder"
 
+msgid "Only 1 left in stock."
+msgstr "Nog maar 1 op voorraad."
+
+msgid "Only a few left"
+msgstr "Nog maar een paar op voorraad."
+
+msgid "Only {amount_left_in_stock} left in stock."
+msgstr "Nog maar {amount_left_in_stock} op voorraad."
+
 msgid "Or follow these links to get you back on track!"
 msgstr "Of klik op één van deze links om weer op het pad te komen!"
 
 msgid "Order #{orderId}"
 msgstr "Bestelling #{orderId}"
+
+msgid "Order before 22:00"
+msgstr "Bestel voor 22:00"
 
 msgid "Order not found"
 msgstr "Bestelling niet gevonden"
@@ -378,6 +393,9 @@ msgstr "Bestellingen"
 
 msgid "Other"
 msgstr "Overige"
+
+msgid "Out of stock"
+msgstr "Niet op voorraad"
 
 msgid "Page {page} of {count}"
 msgstr "Pagina {page} van {count}"
@@ -412,6 +430,9 @@ msgstr "Betaling is niet succesvol afgerond, probeer het opnieuw."
 msgid "Payment method"
 msgstr "Betaalmethode"
 
+msgid "Per page"
+msgstr "Per pagina"
+
 msgid "Personal details"
 msgstr "Persoonlijke details"
 
@@ -421,11 +442,14 @@ msgstr "Plaats bestelling"
 msgid "Please check your inbox to validate your email ({email})"
 msgstr "Controleer uw inbox om uw e-mailadres te valideren ({email})"
 
+msgid "Please enter a valid email address"
+msgstr "Vul een geldig e-mailadres in"
+
 msgid "Please provide a valid house number"
 msgstr "Vul een geldig huisnummer in"
 
 msgid "Please reauthenticate and try again"
-msgstr "Verifieer opnieuw en probeer het opnieuw"
+msgstr "U bent niet meer ingelogd, log in om verder te gaan"
 
 msgid "Please select a payment method"
 msgstr "Selecteer een betaalmethode a.u.b."
@@ -604,6 +628,9 @@ msgstr "De betaling is niet voltooid, probeer het opnieuw of selecteer een ander
 msgid "The payment is refused, please try again or select a different payment method."
 msgstr "De betaling is geweigerd, probeer het opnieuw of selecteer een andere betaalmethode."
 
+msgid "This cart is assigned to {email}. Please sign in to continue shopping."
+msgstr "Deze winkelwagen is toegewezen aan {email}. Log in om verder te winkelen."
+
 msgid "This field is required"
 msgstr "Dit veld is verplicht"
 
@@ -636,6 +663,9 @@ msgstr "Bekijk uw account"
 
 msgid "We are fetching your favorite products, one moment please!"
 msgstr "Je favoriete artikelen worden momenteel ingeladen!"
+
+msgid "We are sorry, this product is currently out of stock."
+msgstr "We zijn sorry, dit product is momenteel niet op voorraad."
 
 msgid "We can not process your payment, we received an unsupported status \"<0>{resultCode}</0>\". Please try again or select a different payment method."
 msgstr "We kunnen uw betaling niet verwerken, we hebben een niet-ondersteunde status ontvangen \"<0>{resultCode}</0>\". Probeer het opnieuw of selecteer een andere betaalmethode."
@@ -771,6 +801,9 @@ msgstr "terug gestuurd"
 
 msgid "shipped"
 msgstr "verzonden"
+
+msgid "{count} Per page"
+msgstr "{count} Per pagina"
 
 msgid "{metaDescription} - Page {currentPage}"
 msgstr "{metaDescription} - Pagina {currentPage}"

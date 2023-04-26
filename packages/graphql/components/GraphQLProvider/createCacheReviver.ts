@@ -1,7 +1,7 @@
 import { LocalStorageWrapper, CachePersistor } from 'apollo3-cache-persist'
-import { mergeDeep, ApolloCache, ApolloClient, NormalizedCacheObject } from './apollo'
-import type { StrictTypedTypePolicies } from './generated/types'
-import { MigrateCache, migrateCacheHandler } from './migrateCache'
+import { mergeDeep, ApolloCache, ApolloClient, NormalizedCacheObject } from '../../apollo'
+import { ApolloClientConfig } from '../../config'
+import { migrateCacheHandler } from './migrateCache'
 import { getTypePoliciesVersion } from './typePolicies'
 
 const APOLLO_CACHE_PERSIST = 'apollo-cache-persist'
@@ -13,12 +13,11 @@ let persistor: CachePersistor<NormalizedCacheObject> | null = null
 export async function createCacheReviver(
   client: ApolloClient<NormalizedCacheObject>,
   createCache: () => ApolloCache<NormalizedCacheObject>,
-  policies: StrictTypedTypePolicies[],
-  migrations: MigrateCache[],
+  config: ApolloClientConfig,
   incomingState: NormalizedCacheObject = {},
 ) {
   let state = incomingState
-  const typePoliciesVersion = getTypePoliciesVersion(policies)
+  const typePoliciesVersion = getTypePoliciesVersion(config.policies)
 
   if (typeof window !== 'undefined') {
     try {
@@ -57,7 +56,7 @@ export async function createCacheReviver(
           oldCache.restore(JSON.parse(storedState) as NormalizedCacheObject)
 
           // Run the migration
-          migrateCacheHandler(oldCache, cache, migrations)
+          migrateCacheHandler(oldCache, cache, config.migrations)
 
           state = mergeDeep(cache.extract(), incomingState)
           console.info('migration complete')

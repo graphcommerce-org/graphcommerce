@@ -7,6 +7,7 @@ import { CartStartCheckoutFragment } from './CartStartCheckout.gql'
 export type CartStartCheckoutLinkOrButtonProps = CartStartCheckoutFragment & {
   children?: React.ReactNode
   sx?: SxProps<Theme>
+  disabled?: boolean
   onStart?: (
     e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>,
     cart: CartStartCheckoutFragment,
@@ -18,6 +19,7 @@ export function CartStartCheckoutLinkOrButton(props: CartStartCheckoutLinkOrButt
   const {
     children,
     onStart,
+    disabled,
     linkOrButtonProps: { onClick, button, ...linkOrButtonProps } = {},
     ...cart
   } = props
@@ -33,7 +35,7 @@ export function CartStartCheckoutLinkOrButton(props: CartStartCheckoutLinkOrButt
         onStart?.(e, cart)
       }}
       button={{ variant: 'pill', ...button }}
-      disabled={!hasTotals || hasErrors}
+      disabled={disabled || !hasTotals || hasErrors}
       color='secondary'
       endIcon={<IconSvg src={iconChevronRight} />}
       {...linkOrButtonProps}

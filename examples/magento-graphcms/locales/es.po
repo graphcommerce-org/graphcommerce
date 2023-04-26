@@ -328,6 +328,9 @@ msgstr "Boletín"
 msgid "Next"
 msgstr "Siguiente"
 
+msgid "Next day delivery - Shipping free"
+msgstr "Entrega al día siguiente - Envío gratis"
+
 msgid "No Image"
 msgstr "Sin imagen"
 
@@ -352,11 +355,23 @@ msgstr "Ok"
 msgid "Older"
 msgstr "Anteriores"
 
+msgid "Only 1 left in stock."
+msgstr "Solo queda 1 en stock."
+
+msgid "Only a few left"
+msgstr "Solo quedan unos pocos"
+
+msgid "Only {amount_left_in_stock} left in stock."
+msgstr "Solo quedan {amount_left_in_stock} en stock."
+
 msgid "Or follow these links to get you back on track!"
 msgstr "O siga estos enlaces para volver a la pista!"
 
 msgid "Order #{orderId}"
 msgstr "Pedido #{orderId}"
+
+msgid "Order before 22:00"
+msgstr "Pedido antes de las 22:00"
 
 msgid "Order not found"
 msgstr "Pedido no encontrado"
@@ -378,6 +393,9 @@ msgstr "Pedidos"
 
 msgid "Other"
 msgstr "Otro"
+
+msgid "Out of stock"
+msgstr "Agotado"
 
 msgid "Page {page} of {count}"
 msgstr "Página {page} de {count}"
@@ -412,6 +430,9 @@ msgstr "El pago no se ha completado correctamente, inténtelo de nuevo."
 msgid "Payment method"
 msgstr "Método de pago"
 
+msgid "Per page"
+msgstr "Por página"
+
 msgid "Personal details"
 msgstr "Detalles personales"
 
@@ -420,6 +441,9 @@ msgstr "Realizar pedido"
 
 msgid "Please check your inbox to validate your email ({email})"
 msgstr "Por favor, compruebe su bandeja de entrada para validar su correo electrónico ({email})"
+
+msgid "Please enter a valid email address"
+msgstr "Por favor, introduzca una dirección de correo electrónico válida"
 
 msgid "Please provide a valid house number"
 msgstr "Por favor, proporcione un número de casa válido"
@@ -604,6 +628,9 @@ msgstr "El pago no se ha completado, inténtelo de nuevo o seleccione un método
 msgid "The payment is refused, please try again or select a different payment method."
 msgstr "El pago se ha rechazado, inténtelo de nuevo o seleccione un método de pago diferente."
 
+msgid "This cart is assigned to {email}. Please sign in to continue shopping."
+msgstr "Este carrito está asignado a {email}. Inicie sesión para continuar comprando."
+
 msgid "This field is required"
 msgstr "Este campo es obligatorio"
 
@@ -636,6 +663,9 @@ msgstr "Ver su cuenta"
 
 msgid "We are fetching your favorite products, one moment please!"
 msgstr "Estamos obteniendo sus productos favoritos, un momento por favor!"
+
+msgid "We are sorry, this product is currently out of stock."
+msgstr "Lo sentimos, este producto está agotado actualmente."
 
 msgid "We can not process your payment, we received an unsupported status \"<0>{resultCode}</0>\". Please try again or select a different payment method."
 msgstr "No podemos procesar su pago, recibimos un estado no compatible \"<0>{resultCode}</0>\". Inténtelo de nuevo o seleccione un método de pago diferente."
@@ -771,6 +801,9 @@ msgstr "devuelto"
 
 msgid "shipped"
 msgstr "enviado"
+
+msgid "{count} Per page"
+msgstr "{count} Por página"
 
 msgid "{metaDescription} - Page {currentPage}"
 msgstr "{metaDescription} - Página {currentPage}"

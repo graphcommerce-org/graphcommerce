@@ -328,6 +328,9 @@ msgstr "Newsletter"
 msgid "Next"
 msgstr "Next"
 
+msgid "Next day delivery - Shipping free"
+msgstr "Next day delivery - Shipping free"
+
 msgid "No Image"
 msgstr "No Image"
 
@@ -352,11 +355,23 @@ msgstr "Ok"
 msgid "Older"
 msgstr "Older"
 
+msgid "Only 1 left in stock."
+msgstr "Only 1 left in stock."
+
+msgid "Only a few left"
+msgstr "Only a few left"
+
+msgid "Only {amount_left_in_stock} left in stock."
+msgstr "Only {amount_left_in_stock} left in stock."
+
 msgid "Or follow these links to get you back on track!"
 msgstr "Or follow these links to get you back on track!"
 
 msgid "Order #{orderId}"
 msgstr "Order #{orderId}"
+
+msgid "Order before 22:00"
+msgstr "Order before 22:00"
 
 msgid "Order not found"
 msgstr "Order not found"
@@ -378,6 +393,9 @@ msgstr "Orders"
 
 msgid "Other"
 msgstr "Other"
+
+msgid "Out of stock"
+msgstr "Out of stock"
 
 msgid "Page {page} of {count}"
 msgstr "Page {page} of {count}"
@@ -412,6 +430,9 @@ msgstr "Payment has not completed succesfully, please try again."
 msgid "Payment method"
 msgstr "Payment method"
 
+msgid "Per page"
+msgstr "Per page"
+
 msgid "Personal details"
 msgstr "Personal details"
 
@@ -420,6 +441,9 @@ msgstr "Place order"
 
 msgid "Please check your inbox to validate your email ({email})"
 msgstr "Please check your inbox to validate your email ({email})"
+
+msgid "Please enter a valid email address"
+msgstr "Please enter a valid email address"
 
 msgid "Please provide a valid house number"
 msgstr "Please provide a valid house number"
@@ -604,6 +628,9 @@ msgstr "The payment hasn't completed, please try again or select a different pay
 msgid "The payment is refused, please try again or select a different payment method."
 msgstr "The payment is refused, please try again or select a different payment method."
 
+msgid "This cart is assigned to {email}. Please sign in to continue shopping."
+msgstr "This cart is assigned to {email}. Please sign in to continue shopping."
+
 msgid "This field is required"
 msgstr "This field is required"
 
@@ -636,6 +663,9 @@ msgstr "View your account"
 
 msgid "We are fetching your favorite products, one moment please!"
 msgstr "We are fetching your favorite products, one moment please!"
+
+msgid "We are sorry, this product is currently out of stock."
+msgstr "We are sorry, this product is currently out of stock."
 
 msgid "We can not process your payment, we received an unsupported status \"<0>{resultCode}</0>\". Please try again or select a different payment method."
 msgstr "We can not process your payment, we received an unsupported status \"<0>{resultCode}</0>\". Please try again or select a different payment method."
@@ -771,6 +801,9 @@ msgstr "returned"
 
 msgid "shipped"
 msgstr "shipped"
+
+msgid "{count} Per page"
+msgstr "{count} Per page"
 
 msgid "{metaDescription} - Page {currentPage}"
 msgstr "{metaDescription} - Page {currentPage}"

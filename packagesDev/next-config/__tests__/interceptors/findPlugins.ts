@@ -9,9 +9,11 @@ it('finds plugins', () => {
     googleAnalyticsId: '123',
   } as GraphCommerceConfig
 
-  const plugins = findPlugins(fakeconfig, projectRoot)
+  const [plugins, errors] = findPlugins(fakeconfig, projectRoot)
   const disabled = plugins.filter((p) => !p.enabled)
   const enabled = plugins.filter((p) => p.enabled)
+
+  expect(errors).toMatchInlineSnapshot(`[]`)
 
   expect(enabled).toMatchInlineSnapshot(`
     [
@@ -96,6 +98,7 @@ it('finds plugins', () => {
         "component": "ProductPageMeta",
         "enabled": true,
         "exported": "@graphcommerce/magento-product",
+        "ifConfig": "googleAnalyticsId",
         "plugin": "@graphcommerce/googleanalytics/plugins/GaViewItem",
       },
       {
@@ -127,10 +130,10 @@ it('finds plugins', () => {
         "plugin": "@graphcommerce/googlerecaptcha/plugins/GrecaptchaGraphQLProvider",
       },
       {
-        "component": "GraphQLProvider",
         "enabled": true,
-        "exported": "@graphcommerce/graphql",
-        "plugin": "@graphcommerce/graphcms-ui/plugins/HygraphGraphqlProvider",
+        "exported": "@graphcommerce/graphql/config",
+        "func": "graphqlConfig",
+        "plugin": "@graphcommerce/graphcms-ui/plugins/hygraphGraphqlConfig",
       },
       {
         "component": "PaymentMethodContextProvider",
@@ -157,16 +160,10 @@ it('finds plugins', () => {
         "plugin": "@graphcommerce/magento-customer/plugins/MagentoCustomerGraphqlProvider",
       },
       {
-        "component": "GraphQLProvider",
         "enabled": true,
-        "exported": "@graphcommerce/graphql",
-        "plugin": "@graphcommerce/magento-store/plugins/MagentoStoreGraphqlProvider",
-      },
-      {
-        "component": "GraphQLProvider",
-        "enabled": true,
-        "exported": "@graphcommerce/graphql",
-        "plugin": "@graphcommerce/magento-graphql/plugins/MagentoGraphqlGraphqlProvider",
+        "exported": "@graphcommerce/graphql/config",
+        "func": "graphqlConfig",
+        "plugin": "@graphcommerce/magento-store/plugins/magentoStoreGraphqlConfig",
       },
     ]
   `)
