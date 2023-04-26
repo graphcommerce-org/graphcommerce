@@ -10,15 +10,15 @@ const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 const dynamicRow = async (name) => {
     const config = (0, next_config_1.loadConfig)(process.cwd());
-    if (!config.hygraphEndpoint) {
-        throw new Error('Migration unsuccesful: hygraphEndpoint not found in config');
+    if (!config.hygraphWriteAccessEndpoint) {
+        throw new Error('Please provide hygraphWriteAccessEndpoint in your config or GC_HYGRAPH_WRITE_ACCESS_ENDPOINT in your env');
     }
     if (!config.hygraphWriteAccessToken) {
-        throw new Error('Migration unsuccesful: hygraphWriteAccessToken not found in config');
+        throw new Error('Please provide GC_HYGRAPH_WRITE_ACCESS_TOKEN in your env');
     }
     const client = new management_sdk_1.Client({
         authToken: config.hygraphWriteAccessToken,
-        endpoint: config.hygraphEndpoint,
+        endpoint: config.hygraphWriteAccessEndpoint,
         name,
     });
     // ? ENUMERATIONS

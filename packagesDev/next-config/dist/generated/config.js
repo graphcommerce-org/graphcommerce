@@ -17,6 +17,7 @@ function GraphCommerceConfigSchema() {
         googleRecaptchaKey: zod_1.z.string().nullish(),
         googleTagmanagerId: zod_1.z.string().nullish(),
         hygraphEndpoint: zod_1.z.string().min(1),
+        hygraphWriteAccessEndpoint: zod_1.z.string().nullish(),
         hygraphWriteAccessToken: zod_1.z.string().nullish(),
         legacyProductRoute: zod_1.z.boolean().nullish(),
         limitSsg: zod_1.z.boolean().nullish(),
