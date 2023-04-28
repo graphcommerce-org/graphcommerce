@@ -13,6 +13,7 @@ _export(exports, {
     definedNonNullAnySchema: ()=>definedNonNullAnySchema,
     AlgoliaFilterAttributeSchema: ()=>AlgoliaFilterAttributeSchema,
     AlgoliaSearchIndexConfigSchema: ()=>AlgoliaSearchIndexConfigSchema,
+    AlgoliaSortableOptionSchema: ()=>AlgoliaSortableOptionSchema,
     GraphCommerceConfigSchema: ()=>GraphCommerceConfigSchema,
     GraphCommerceDebugConfigSchema: ()=>GraphCommerceDebugConfigSchema,
     GraphCommerceStorefrontConfigSchema: ()=>GraphCommerceStorefrontConfigSchema
@@ -30,6 +31,12 @@ function AlgoliaSearchIndexConfigSchema() {
     return _zod.z.object({
         filterAttributes: _zod.z.array(AlgoliaFilterAttributeSchema()).nullish(),
         searchIndex: _zod.z.string().min(1)
+    });
+}
+function AlgoliaSortableOptionSchema() {
+    return _zod.z.object({
+        label: _zod.z.string().min(1),
+        value: _zod.z.string().min(1)
     });
 }
 function GraphCommerceConfigSchema() {
@@ -79,6 +86,7 @@ function GraphCommerceStorefrontConfigSchema() {
         hygraphLocales: _zod.z.array(_zod.z.string().min(1)).nullish(),
         linguiLocale: _zod.z.string().nullish(),
         locale: _zod.z.string().min(1),
-        magentoStoreCode: _zod.z.string().min(1)
+        magentoStoreCode: _zod.z.string().min(1),
+        sortOptions: _zod.z.array(AlgoliaSortableOptionSchema()).nullish()
     });
 }

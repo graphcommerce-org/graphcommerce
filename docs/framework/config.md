@@ -23,6 +23,18 @@ Configure your Algolia Search index for Magento products
 
 Configures Algolia filterable attributes
 
+### AlgoliaSortableOption
+
+Type for sortable algolia options
+
+#### `label: String!`
+
+The label of the index to display
+
+#### `value: String!`
+
+The name of the index to target.
+
 # GraphCommerce configuration system
 
 Global GraphCommerce configuration can be configured in your `graphcommerce.config.js` file
@@ -321,3 +333,7 @@ Add a gcms-locales header to make sure queries return in a certain language, can
 #### `linguiLocale: String`
 
 Specify a custom locale for to load translations.
+
+#### `sortOptions: [[AlgoliaSortableOption](#AlgoliaSortableOption)!]`
+
+Configure the sortable attributes

@@ -7,7 +7,7 @@ import { applicationId, searchOnlyApiKey } from '../lib/configuration'
 
 export const component = 'SearchContext'
 export const exported = '@graphcommerce/magento-search'
-export const ifConfig: IfConfig = 'demoMode'
+export const ifConfig: IfConfig = 'algoliaApplicationId'
 
 const searchClient = algoliasearch(applicationId, searchOnlyApiKey)
 

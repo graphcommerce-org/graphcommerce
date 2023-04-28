@@ -5,7 +5,7 @@ import { AlgoliaPagination } from '../components/Pagination/AlgoliaPagination'
 
 export const component = 'ProductListPaginationSearch'
 export const exported = '@graphcommerce/magento-search'
-export const ifConfig: IfConfig = 'demoMode'
+export const ifConfig: IfConfig = 'algoliaApplicationId'
 
 function AlgoliaPaginationPlugin(props: PluginProps<ProductPaginationProps>) {
   const { Prev, ...rest } = props

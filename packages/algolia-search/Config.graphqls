@@ -1,4 +1,18 @@
 """
+Type for sortable algolia options
+"""
+input AlgoliaSortableOption {
+  """
+  The label of the index to display
+  """
+  label: String!
+  """
+  The name of the index to target.
+  """
+  value: String!
+}
+
+"""
 Type for conversion of Magento 2 aggregations to Algolia filterable attributes
 """
 input AlgoliaFilterAttribute {
@@ -33,6 +47,11 @@ extend input GraphCommerceStorefrontConfig {
   Configure your Algolia index configurations
   """
   algoliaSearchIndexConfig: [AlgoliaSearchIndexConfig!]!
+
+  """
+  Configure the sortable attributes
+  """
+  sortOptions: [AlgoliaSortableOption!]
 }
 
 extend input GraphCommerceConfig {

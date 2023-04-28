@@ -4,7 +4,7 @@ import { AlgoliaFilters } from '../components/Filters/AlgoliaFilters'
 
 export const component = 'ProductListFiltersSearch'
 export const exported = '@graphcommerce/magento-search'
-export const ifConfig: IfConfig = 'demoMode'
+export const ifConfig: IfConfig = 'algoliaApplicationId'
 
 function AlgoliaFiltersPlugin(props: PluginProps<ProductFiltersProps>) {
   const { Prev, ...rest } = props

@@ -30,6 +30,14 @@ export type AlgoliaSearchIndexConfig = {
   searchIndex: Scalars['String'];
 };
 
+/** Type for sortable algolia options */
+export type AlgoliaSortableOption = {
+  /** The label of the index to display */
+  label: Scalars['String'];
+  /** The name of the index to target. */
+  value: Scalars['String'];
+};
+
 /**
  * # GraphCommerce configuration system
  *
@@ -291,6 +299,8 @@ export type GraphCommerceStorefrontConfig = {
    * - b2b-us
    */
   magentoStoreCode: Scalars['String'];
+  /** Configure the sortable attributes */
+  sortOptions?: InputMaybe<Array<AlgoliaSortableOption>>;
 };
 
 
@@ -315,6 +325,13 @@ export function AlgoliaSearchIndexConfigSchema(): z.ZodObject<Properties<Algolia
   return z.object<Properties<AlgoliaSearchIndexConfig>>({
     filterAttributes: z.array(AlgoliaFilterAttributeSchema()).nullish(),
     searchIndex: z.string().min(1)
+  })
+}
+
+export function AlgoliaSortableOptionSchema(): z.ZodObject<Properties<AlgoliaSortableOption>> {
+  return z.object<Properties<AlgoliaSortableOption>>({
+    label: z.string().min(1),
+    value: z.string().min(1)
   })
 }
 
@@ -367,6 +384,7 @@ export function GraphCommerceStorefrontConfigSchema(): z.ZodObject<Properties<Gr
     hygraphLocales: z.array(z.string().min(1)).nullish(),
     linguiLocale: z.string().nullish(),
     locale: z.string().min(1),
-    magentoStoreCode: z.string().min(1)
+    magentoStoreCode: z.string().min(1),
+    sortOptions: z.array(AlgoliaSortableOptionSchema()).nullish()
   })
 }

@@ -2,7 +2,7 @@ import { AlgoliaFilterAttribute } from '@graphcommerce/graphql-mesh'
 import { FilterTypes, ProductFiltersProps } from '@graphcommerce/magento-product'
 import { useMemo } from 'react'
 import { useAlgoliaSearchIndexConfig } from '../../hooks/useAlgoliaSearchIndexConfig'
-import { RenderChip } from '../FilterChip/RenderChip'
+import { RenderChip } from '../Chip/RenderChip'
 
 const systemFilters = [
   { key: 'category_uid', algoliaKey: 'categories.level0' },

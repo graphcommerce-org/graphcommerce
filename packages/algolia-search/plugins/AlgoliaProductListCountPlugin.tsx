@@ -5,7 +5,7 @@ import { useAlgoliaSearchIndexConfig } from '../hooks/useAlgoliaSearchIndexConfi
 
 export const component = 'ProductListCountSearch'
 export const exported = '@graphcommerce/magento-search'
-export const ifConfig: IfConfig = 'demoMode'
+export const ifConfig: IfConfig = 'algoliaApplicationId'
 
 function AlgoliaProductListCountPlugin(props: PluginProps<ProductCountProps>) {
   const { Prev, ...rest } = props

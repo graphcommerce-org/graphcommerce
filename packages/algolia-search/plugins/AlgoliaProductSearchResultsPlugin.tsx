@@ -7,7 +7,7 @@ import { useAlgoliaSearchIndexConfig } from '../hooks/useAlgoliaSearchIndexConfi
 
 export const component = 'ProductListItemsSearch'
 export const exported = '@graphcommerce/magento-search'
-export const ifConfig: IfConfig = 'demoMode'
+export const ifConfig: IfConfig = 'algoliaApplicationId'
 
 function AlgoliaProductSearchPlugin(props: PluginProps<ProductItemsGridProps>) {
   const { Prev, ...rest } = props

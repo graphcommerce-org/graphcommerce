@@ -1,11 +1,12 @@
 import { CategorySearchResult, SearchFormProps } from '@graphcommerce/magento-search'
-import { PluginProps } from '@graphcommerce/next-config'
+import { IfConfig, PluginProps } from '@graphcommerce/next-config'
 import { Index } from 'react-instantsearch-hooks-web'
 import { useAlgoliaPageResults } from '../hooks/useAlgoliaPageResults'
 import { useAlgoliaSearchIndexConfig } from '../hooks/useAlgoliaSearchIndexConfig'
 
 export const component = 'SearchForm'
 export const exported = '@graphcommerce/magento-search'
+export const ifConfig: IfConfig = 'algoliaApplicationId'
 
 function PageHits() {
   const { pages, search } = useAlgoliaPageResults()

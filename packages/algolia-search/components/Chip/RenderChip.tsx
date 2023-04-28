@@ -1,9 +1,13 @@
 import { RenderType, TypeRenderer } from '@graphcommerce/next-ui'
 import React from 'react'
-import { RefinementFilterChip, RefinementFilterChipProps } from './RefinementFilterChip'
-import { RefinementRangeChip, RefinementRangeChipProps } from './RefinementRangeChip'
+import { RefinementFilterChip, RefinementFilterChipProps } from './FilterChip/RefinementFilterChip'
+import { RefinementRangeChip, RefinementRangeChipProps } from './FilterChip/RefinementRangeChip'
+import { SortChip, SortChipProps } from './SortChip/SortChip'
 
-interface RenderChipProps extends RefinementFilterChipProps, RefinementRangeChipProps {
+interface RenderChipProps
+  extends RefinementFilterChipProps,
+    RefinementRangeChipProps,
+    SortChipProps {
   __typename: string
 }
 
@@ -11,6 +15,7 @@ const renderer: TypeRenderer<{ __typename: string }, Omit<RenderChipProps, '__ty
   FilterEqualTypeInput: RefinementFilterChip,
   FilterRangeTypeInput: RefinementRangeChip,
   FilterMatchTypeInput: () => <div>Not implemented</div>,
+  Sort: SortChip,
 }
 
 export function RenderChip(props: RenderChipProps) {
