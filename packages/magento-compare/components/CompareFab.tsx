@@ -56,7 +56,6 @@ function CompareFabContent(props: CompareFabContentProps) {
           href='/compare'
           className={classes.compare}
           aria-label={i18n._(/* i18n */ 'Compare')}
-          disabled={total_quantity < 2}
           color='inherit'
           sx={(theme) => ({
             width: 'unset',

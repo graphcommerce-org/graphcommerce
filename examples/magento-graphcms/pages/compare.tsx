@@ -8,6 +8,7 @@ import {
   CompareListSelect,
   CompareListItems,
   CompareListAttributes,
+  CompareListIntroText,
 } from '@graphcommerce/magento-compare'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
@@ -22,7 +23,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Box, CircularProgress, Container } from '@mui/material'
+import { Box, CircularProgress, Container, Typography } from '@mui/material'
 import { productListRenderer } from '../components/ProductListItems'
 import { graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
 
@@ -59,6 +60,13 @@ export function ComparePage() {
           <EmptyCompareList />
         ) : (
           <>
+            {compareListCount === 1 && (
+              <CompareListIntroText>
+                <Typography variant='body1'>
+                  <Trans id='Add another product to start comparing.' />
+                </Typography>
+              </CompareListIntroText>
+            )}
             <CompareListSelect />
             <Container>
               <CompareListItems
