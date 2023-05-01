@@ -1,5 +1,5 @@
 mutation CreateCompareList($products: [ID!]!) {
   createCompareList(input: { products: $products }) {
-    ...CompareListFragment
+    ...CompareSummaryFragment
   }
 }
