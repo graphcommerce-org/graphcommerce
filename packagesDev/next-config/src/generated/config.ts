@@ -14,6 +14,10 @@ export type Scalars = {
   Float: number;
 };
 
+export type CompareVariant =
+  | 'CHECKBOX'
+  | 'ICON';
+
 /**
  * # GraphCommerce configuration system
  *
@@ -113,7 +117,7 @@ export type GraphCommerceConfig = {
    * By default the compare feature is denoted with a 'compare icon' (2 arrows facing one another).
    * This may be fine for experienced users, but for more clarity it's also possible to present the compare feature as a checkbox accompanied by the 'Compare' label
    */
-  compareCheckbox?: InputMaybe<Scalars['Boolean']>;
+  compareVariant?: InputMaybe<CompareVariant>;
   /**
    * Due to a limitation in the GraphQL API of Magento 2, we need to know if the
    * customer requires email confirmation.
@@ -276,11 +280,6 @@ export type GraphCommerceStorefrontConfig = {
   /** Due to a limitation of the GraphQL API it is not possible to determine if a cart should be displayed including or excluding tax. */
   cartDisplayPricesInclTax?: InputMaybe<Scalars['Boolean']>;
   /**
-   * By default the compare feature is denoted with a 'compare icon' (2 arrows facing one another).
-   * This may be fine for experienced users, but for more clarity it's also possible to present the compare feature as a checkbox accompanied by the 'Compare' label
-   */
-  compareCheckbox?: InputMaybe<Scalars['Boolean']>;
-  /**
    * There can only be one entry with defaultLocale set to true.
    * - If there are more, the first one is used.
    * - If there is none, the first entry is used.
@@ -328,12 +327,14 @@ export const isDefinedNonNullAny = (v: any): v is definedNonNullAny => v !== und
 
 export const definedNonNullAnySchema = z.any().refine((v) => isDefinedNonNullAny(v));
 
+export const CompareVariantSchema = z.enum(['CHECKBOX', 'ICON']);
+
 export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerceConfig>> {
   return z.object<Properties<GraphCommerceConfig>>({
     canonicalBaseUrl: z.string().min(1),
     cartDisplayPricesInclTax: z.boolean().nullish(),
     compare: z.boolean().nullish(),
-    compareCheckbox: z.boolean().nullish(),
+    compareVariant: CompareVariantSchema.nullish(),
     customerRequireEmailConfirmation: z.boolean().nullish(),
     debug: GraphCommerceDebugConfigSchema().nullish(),
     demoMode: z.boolean().nullish(),
@@ -369,7 +370,6 @@ export function GraphCommerceStorefrontConfigSchema(): z.ZodObject<Properties<Gr
   return z.object<Properties<GraphCommerceStorefrontConfig>>({
     canonicalBaseUrl: z.string().nullish(),
     cartDisplayPricesInclTax: z.boolean().nullish(),
-    compareCheckbox: z.boolean().nullish(),
     defaultLocale: z.boolean().nullish(),
     domain: z.string().nullish(),
     googleAnalyticsId: z.string().nullish(),

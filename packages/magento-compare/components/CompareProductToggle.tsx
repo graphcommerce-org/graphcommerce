@@ -9,7 +9,6 @@ import { AddProductsToCompareListDocument } from '../graphql/AddProductsToCompar
 import { RemoveProductsFromCompareListDocument } from '../graphql/RemoveProductsFromCompareList.gql'
 import { useCompareSummary } from '../hooks'
 import { useCompareListUidCreate } from '../hooks/useCompareListUidCreate'
-import { useCompareVariant } from '../hooks/useCompareVariant'
 import { CompareMessageSnackbar } from './CompareMessageSnackbar'
 
 type CompareProductToggleProps = {
@@ -53,10 +52,9 @@ function CompareProductToggleBase(
     }
   }
 
-  const compareVariant = useCompareVariant()
   const theme2 = useTheme()
 
-  let strokeColorPlp
+  let strokeColorPlp: string
   if (!inCompareList) {
     strokeColorPlp =
       theme2.palette.mode === 'light'
@@ -66,7 +64,7 @@ function CompareProductToggleBase(
     strokeColorPlp = theme2.palette.primary.main
   }
 
-  let strokeColorPdp
+  let strokeColorPdp: string
   if (!inCompareList) {
     strokeColorPdp =
       theme2.palette.mode === 'light'
@@ -78,7 +76,7 @@ function CompareProductToggleBase(
 
   return (
     <>
-      {compareVariant === 'checkbox' ? (
+      {import.meta.graphCommerce.compareVariant === 'CHECKBOX' ? (
         <Button
           variant='text'
           size='small'

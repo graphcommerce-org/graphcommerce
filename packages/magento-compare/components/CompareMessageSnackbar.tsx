@@ -2,12 +2,14 @@ import { Button, iconChevronRight, IconSvg, MessageSnackbar } from '@graphcommer
 import { Trans } from '@lingui/react'
 import { SetStateAction } from 'react'
 
-export function CompareMessageSnackbar(props: {
+type CompareMessageSnackbarProps = {
   count: number | undefined
   name: string | null | undefined
   displayMessageBar: boolean
   setDisplayMessageBar: (value: SetStateAction<boolean>) => void
-}) {
+}
+
+export function CompareMessageSnackbar(props: CompareMessageSnackbarProps) {
   const { count, name, displayMessageBar, setDisplayMessageBar } = props
 
   return (
