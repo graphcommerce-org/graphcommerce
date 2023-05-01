@@ -11,7 +11,7 @@ export type CompareRowProps = {
   } | null
 }
 
-export function CompareRow(props: CompareRowProps) {
+export function CompareListRow(props: CompareRowProps) {
   const { attribute, compareAbleItems } = props
   const columnCount = compareAbleItems.length <= 3 ? compareAbleItems.length : 3
 

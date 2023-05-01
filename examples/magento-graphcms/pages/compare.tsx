@@ -35,7 +35,7 @@ export function ComparePage() {
   const compareListCount = compareList.data?.compareList?.item_count ?? 0
 
   return (
-    <CompareListForm>
+    <CompareListForm key={compareList.data?.compareList?.uid}>
       <PageMeta title={i18n._(/* i18n */ 'Compare products')} metaRobots={['noindex']} />
 
       <LayoutOverlayHeader

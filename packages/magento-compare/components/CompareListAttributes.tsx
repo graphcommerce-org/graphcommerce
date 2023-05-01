@@ -2,7 +2,7 @@ import { filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { Box, SxProps, Theme } from '@mui/material'
 import { useCompareList } from '../hooks/useCompareList'
 import { useCompareVisibleItems } from './CompareListForm'
-import { CompareRow } from './CompareRow'
+import { CompareListRow } from './CompareListRow'
 import { MoreInformationRow } from './MoreInformationRow'
 
 type CompareListAttributesProps = {
@@ -36,7 +36,7 @@ export function CompareListAttributes(props: CompareListAttributesProps) {
       ]}
     >
       {compareListAttributes.map((attribute) => (
-        <CompareRow compareAbleItems={items} attribute={attribute} key={attribute?.code} />
+        <CompareListRow compareAbleItems={items} attribute={attribute} key={attribute?.code} />
       ))}
 
       <MoreInformationRow compareAbleItems={items} />

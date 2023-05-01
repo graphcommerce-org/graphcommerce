@@ -1,5 +1,5 @@
 mutation RemoveProductsFromCompareList($uid: ID!, $products: [ID!]!) {
   compareList: removeProductsFromCompareList(input: { uid: $uid, products: $products }) {
-    ...CompareListFragment
+    ...CompareSummaryFragment
   }
 }

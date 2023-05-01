@@ -1,5 +1,5 @@
 mutation AssignCompareListToCustomer($uid: ID!) {
-  assignCompareListToCustomer(uid: $uid){
+  assignCompareListToCustomer(uid: $uid) {
     result
   }
 }

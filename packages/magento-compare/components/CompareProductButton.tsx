@@ -6,7 +6,7 @@ import { useState } from 'react'
 import { CompareProductIdInternalFragment } from '../graphql'
 import { AddProductsToCompareListDocument } from '../graphql/AddProductsToCompareList.gql'
 import { RemoveProductsFromCompareListDocument } from '../graphql/RemoveProductsFromCompareList.gql'
-import { useCompareList } from '../hooks/useCompareList'
+import { useCompareSummary } from '../hooks'
 import { useCompareListUidCreate } from '../hooks/useCompareListUidCreate'
 import { CompareMessageSnackbar } from './CompareMessageSnackbar'
 
@@ -16,7 +16,7 @@ export function CompareProductButton(props: CompareProductButtonProps) {
   const { compare_product_id, name, sx } = props
   const idString = String(compare_product_id)
   const create = useCompareListUidCreate()
-  const compareList = useCompareList()
+  const compareList = useCompareSummary()
   const inCompareList =
     compareList.data?.compareList?.items?.some((i) => i?.uid === idString) ?? false
   const [add] = useMutation(AddProductsToCompareListDocument)

@@ -10,7 +10,7 @@ import { Trans } from '@lingui/react'
 import { styled, Box, SxProps, Theme, NoSsr, Badge, Button, ButtonProps } from '@mui/material'
 import { m, useTransform } from 'framer-motion'
 import React from 'react'
-import { useCompareList } from '../hooks/useCompareList'
+import { useCompareSummary } from '../hooks'
 
 export type CompareFabProps = {
   icon?: React.ReactNode
@@ -89,7 +89,7 @@ function CompareFabContent(props: CompareFabContentProps) {
 }
 
 export function CompareFab(props: CompareFabProps) {
-  const compareList = useCompareList()
+  const compareList = useCompareSummary()
   const totalQuantity = compareList.data?.compareList?.item_count ?? 0
 
   return (

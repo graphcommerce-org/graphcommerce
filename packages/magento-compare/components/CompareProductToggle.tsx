@@ -8,6 +8,7 @@ import { useState } from 'react'
 import { CompareProductIdInternalFragment } from '../graphql'
 import { AddProductsToCompareListDocument } from '../graphql/AddProductsToCompareList.gql'
 import { RemoveProductsFromCompareListDocument } from '../graphql/RemoveProductsFromCompareList.gql'
+import { useCompareSummary } from '../hooks'
 import { useCompareList } from '../hooks/useCompareList'
 import { useCompareListUidCreate } from '../hooks/useCompareListUidCreate'
 import { useCompareVariant } from '../hooks/useCompareVariant'
@@ -23,7 +24,7 @@ function CompareProductToggleBase(
 ) {
   const { id, sx, inCompareList, product, color = 'inherit' } = props
   const create = useCompareListUidCreate()
-  const compareList = useCompareList()
+  const compareList = useCompareSummary()
 
   const [add, addResult] = useMutation(AddProductsToCompareListDocument)
   const [remove, removeResult] = useMutation(RemoveProductsFromCompareListDocument)
@@ -145,7 +146,7 @@ function CompareProductToggleBase(
 
 export function CompareProductToggle(props: CompareProductToggleProps) {
   const { product } = props
-  const compareList = useCompareList()
+  const compareList = useCompareSummary()
   const idString = String(product.compare_product_id)
   const inCompareList =
     compareList.data?.compareList?.items?.some((i) => i?.uid === idString) ?? false
