@@ -1,4 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   PageMeta,
@@ -22,18 +23,18 @@ import {
   RowRenderer,
 } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
-import { DefaultPageDocument, DefaultPageQuery } from '../../graphql/DefaultPage.gql'
-import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
-type Props = DefaultPageQuery & BlogListQuery
+type Props = HygraphPagesQuery & BlogListQuery
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
 function BlogPage(props: Props) {
-  const { pages, blogPosts } = props
+  const { blogPosts, pages } = props
+
   const page = pages[0]
-  const title = page.title ?? ''
+  const title = page?.title ?? ''
 
   return (
     <>
@@ -80,14 +81,13 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 
 export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => {
   const urlKey = params?.url ?? '??'
+
   const client = graphqlSharedClient(locale)
   const staticClient = graphqlSsrClient(locale)
   const limit = 4
   const conf = client.query({ query: StoreConfigDocument })
-  const page = staticClient.query({
-    query: DefaultPageDocument,
-    variables: { url: `blog/${urlKey}` },
-  })
+
+  const page = hygraphPageContent(staticClient, `blog/${urlKey}`)
   const layout = staticClient.query({ query: LayoutDocument })
 
   const blogPosts = staticClient.query({

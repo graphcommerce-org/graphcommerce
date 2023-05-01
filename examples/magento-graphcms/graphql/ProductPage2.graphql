@@ -1,11 +1,4 @@
-query ProductPage2(
-  $url: String!
-  $urlKey: String!
-  $reviewPageSize: Int = 3
-  $reviewPage: Int = 1
-) {
-  ...UspsQueryFragment
-  ...PageContentQueryFragment
+query ProductPage2($urlKey: String!, $reviewPageSize: Int = 3, $reviewPage: Int = 1) {
   products(filter: { url_key: { eq: $urlKey } }) {
     ...ProductSpecs
     items {

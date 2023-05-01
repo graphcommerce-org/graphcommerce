@@ -2556,6 +2556,14 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
+"@hygraph/management-sdk@^1.1.2-alpha.1":
+  version "1.1.2-alpha.1"
+  resolved "https://registry.yarnpkg.com/@hygraph/management-sdk/-/management-sdk-1.1.2-alpha.1.tgz#0c5b0f9a62fa368d21265a63f78f18347253b452"
+  integrity sha512-Y6MkNTITVqjsL8sTogE6ageuBi4gVYfgPrqCQ0CkQZh6mbib90UnLpLqtByRz8TuTEfE31QkOFz+IFA1PwGcKQ==
+  dependencies:
+    graphql "^16.5.0"
+    graphql-request "^4.3.0"
+
 "@istanbuljs/load-nyc-config@^1.0.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@istanbuljs/load-nyc-config/-/load-nyc-config-1.1.0.tgz#fd3db1d59ecf7cf121e80650bb86712f9b55eced"
@@ -6612,6 +6620,15 @@ graphql-import-node@0.0.5:
   resolved "https://registry.yarnpkg.com/graphql-import-node/-/graphql-import-node-0.0.5.tgz#caf76a6cece10858b14f27cce935655398fc1bf0"
   integrity sha512-OXbou9fqh9/Lm7vwXT0XoRN9J5+WCYKnbiTalgFDvkQERITRmcfncZs6aVABedd5B85yQU5EULS4a5pnbpuI0Q==
 
+graphql-request@^4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/graphql-request/-/graphql-request-4.3.0.tgz#b934e08fcae764aa2cdc697d3c821f046cb5dbf2"
+  integrity sha512-2v6hQViJvSsifK606AliqiNiijb1uwWp6Re7o0RTyH+uRTv/u7Uqm2g4Fjq/LgZIzARB38RZEvVBFOQOVdlBow==
+  dependencies:
+    cross-fetch "^3.1.5"
+    extract-files "^9.0.0"
+    form-data "^3.0.0"
+
 graphql-request@^5.0.0:
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/graphql-request/-/graphql-request-5.2.0.tgz#a05fb54a517d91bb2d7aefa17ade4523dc5ebdca"
@@ -6656,7 +6673,7 @@ graphql-yoga@3.7.0:
     lru-cache "^7.14.1"
     tslib "^2.3.1"
 
-graphql@16.6.0:
+graphql@16.6.0, graphql@^16.5.0:
   version "16.6.0"
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-16.6.0.tgz#c2dcffa4649db149f6282af726c8c83f1c7c5fdb"
   integrity sha512-KPIBPDlW7NxrbT/eh4qPXz5FiFdL5UbaA0XUNz2Rp3Z3hqBSkbj0GVjwFDztsWVauZUWsbKHgMg++sk8UX0bkw==

@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "@graphcommerce/next-config": "6.2.0-canary.7",
+    "@graphcommerce/hygraph-cli": "6.2.0-canary.7",
     "@graphql-codegen/cli": "3.2.2",
     "@graphql-mesh/cli": "0.82.25",
     "@graphql-mesh/types": "0.91.7",

@@ -1,4 +1,9 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import {
+  PagesStaticPathsDocument,
+  hygraphPageContent,
+  HygraphPagesQuery,
+} from '@graphcommerce/graphcms-ui'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { PageMeta, GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
@@ -11,11 +16,9 @@ import {
   RowRenderer,
 } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
-import { DefaultPageDocument, DefaultPageQuery } from '../../graphql/DefaultPage.gql'
-import { PagesStaticPathsDocument } from '../../graphql/PagesStaticPaths.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
-type Props = DefaultPageQuery
+type Props = HygraphPagesQuery
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
@@ -78,7 +81,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   const client = graphqlSharedClient(locale)
   const staticClient = graphqlSsrClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
-  const page = staticClient.query({ query: DefaultPageDocument, variables: { url } })
+  const page = hygraphPageContent(staticClient, url)
   const layout = staticClient.query({ query: LayoutDocument })
 
   if (!(await page).data.pages?.[0]) return { notFound: true }

@@ -41,11 +41,9 @@ import { Trans } from '@lingui/react'
 import { Container, Hidden } from '@mui/material'
 import { LayoutNavigation, LayoutNavigationProps, ProductListItems } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
-import { DefaultPageDocument, DefaultPageQuery } from '../../graphql/DefaultPage.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
-type SearchResultProps = DefaultPageQuery &
-  ProductListQuery &
+type SearchResultProps = ProductListQuery &
   ProductFiltersQuery &
   CategorySearchQuery & { filterTypes: FilterTypes; params: ProductListParams }
 type RouteProps = { url: string[] }
@@ -167,7 +165,6 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const filterTypes = getFilterTypes(client)
 
   const staticClient = graphqlSsrClient(locale)
-  const page = staticClient.query({ query: DefaultPageDocument, variables: { url: 'search' } })
   const layout = staticClient.query({ query: LayoutDocument })
 
   const productListParams = parseParams(
@@ -192,7 +189,6 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
 
   return {
     props: {
-      ...(await page).data,
       ...(await products).data,
       ...(await filters).data,
       ...(await categories)?.data,

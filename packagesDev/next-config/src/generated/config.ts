@@ -148,9 +148,45 @@ export type GraphCommerceConfig = {
   /**
    * The HyGraph endpoint.
    *
+   * > Read-only endpoint that allows low latency and high read-throughput content delivery.
+   *
    * Project settings -> API Access -> High Performance Read-only Content API
    */
   hygraphEndpoint: Scalars['String'];
+  /**
+   * Content API. **Only used for migrations.**
+   *
+   * > Regular read & write endpoint that allows querying and mutating data in your project.
+   *
+   * Project settings -> API Access -> Content API
+   */
+  hygraphWriteAccessEndpoint?: InputMaybe<Scalars['String']>;
+  /**
+   * Hygraph Management SDK Authorization Token. **Only used for migrations.**
+   *
+   * Project settings -> API Access -> Permanent Auth Tokens
+   *
+   * 1. Click  'Add token' and give it a name, something like 'GraphCommerce Write Access Token' and keep stage on 'Published'.
+   * 2. Under 'Management API', click 'Yes, Initialize defaults'
+   * 3. Click 'Edit Permissions' and enable: 'Update' and 'Delete' permissions for 'models', 'enumerations', 'fields', 'components' and 'sources'
+   *   - Update existing models
+   *   - Delete existing models
+   *   - Update existing fields
+   *   - Delete existing fields
+   *   - Update existing enumerations
+   *   - Delete existing enumerations
+   *   - Update existing components
+   *   - Delete existing components
+   *   - Update remote sources
+   *   - Delete remote sources
+   *
+   * ```
+   * GC_HYGRAPH_WRITE_ACCESS_ENDPOINT="https://...hygraph.com/v2/..."
+   * GC_HYGRAPH_WRITE_ACCESS_TOKEN="AccessTokenFromHygraph"
+   * yarn graphcommerce hygraph-migrate
+   * ```
+   */
+  hygraphWriteAccessToken?: InputMaybe<Scalars['String']>;
   /**
    * On older versions of GraphCommerce products would use a product type specific route.
    *
@@ -291,6 +327,8 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     googleRecaptchaKey: z.string().nullish(),
     googleTagmanagerId: z.string().nullish(),
     hygraphEndpoint: z.string().min(1),
+    hygraphWriteAccessEndpoint: z.string().nullish(),
+    hygraphWriteAccessToken: z.string().nullish(),
     legacyProductRoute: z.boolean().nullish(),
     limitSsg: z.boolean().nullish(),
     magentoEndpoint: z.string().min(1),
