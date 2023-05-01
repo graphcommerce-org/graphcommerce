@@ -3,9 +3,9 @@ import { Box, SxProps, Theme } from '@mui/material'
 import { useCompareList } from '../hooks/useCompareList'
 import { useCompareVisibleItems } from './CompareListForm'
 import { CompareListRow } from './CompareListRow'
-import { MoreInformationRow } from './MoreInformationRow'
+import { CompareListRowMoreInformation } from './CompareListRowMoreInformation'
 
-type CompareListAttributesProps = {
+export type CompareListAttributesProps = {
   sx?: SxProps<Theme>
 }
 
@@ -39,7 +39,7 @@ export function CompareListAttributes(props: CompareListAttributesProps) {
         <CompareListRow compareAbleItems={items} attribute={attribute} key={attribute?.code} />
       ))}
 
-      <MoreInformationRow compareAbleItems={items} />
+      <CompareListRowMoreInformation compareAbleItems={items} />
     </Box>
   )
 }

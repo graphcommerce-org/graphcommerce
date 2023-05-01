@@ -1,6 +1,5 @@
 import { useQuery } from '@graphcommerce/graphql'
-import { CompareListDocument } from '../graphql/CompareList.gql'
-import { CurrentCompareUidDocument } from '../graphql/CurrentCompareUid.gql'
+import { CompareListDocument, CurrentCompareUidDocument } from '../graphql'
 
 export function useCompareList() {
   const currentCompareUid = useQuery(CurrentCompareUidDocument)

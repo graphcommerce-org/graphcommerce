@@ -1,7 +1,6 @@
 import { useApolloClient } from '@graphcommerce/graphql'
 import { i18n } from '@lingui/core'
-import { CreateCompareListDocument } from '../graphql/CreateCompareList.gql'
-import { CurrentCompareUidDocument } from '../graphql/CurrentCompareUid.gql'
+import { CreateCompareListDocument, CurrentCompareUidDocument } from '../graphql'
 import { useAssignCurrentCompareListUid } from './useAssignCurrentCompareListUid'
 
 export function useCompareListUidCreate() {

@@ -1,6 +1,6 @@
 import { ApolloCache, useApolloClient } from '@graphcommerce/graphql'
 import { useCallback } from 'react'
-import { CurrentCompareUidDocument } from '../graphql/CurrentCompareUid.gql'
+import { CurrentCompareUidDocument } from '../graphql'
 
 function writeCompareUid(cache: ApolloCache<object>, uid: string | null = null) {
   cache.writeQuery({

@@ -1,5 +1,5 @@
 import { useApolloClient } from '@graphcommerce/graphql'
-import { CurrentCompareUidDocument } from '../graphql/CurrentCompareUid.gql'
+import { CurrentCompareUidDocument } from '../graphql'
 
 export function useClearCurrentCompareListUid() {
   const { cache } = useApolloClient()

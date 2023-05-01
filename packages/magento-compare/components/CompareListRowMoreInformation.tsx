@@ -5,9 +5,9 @@ import { Box } from '@mui/material'
 import { useCompareListStyles } from '../hooks/useCompareListStyles'
 import { CompareRowProps } from './CompareListRow'
 
-type MoreInformationRowProps = Pick<CompareRowProps, 'compareAbleItems'>
+export type CompareListRowMoreInformationProps = Pick<CompareRowProps, 'compareAbleItems'>
 
-export function MoreInformationRow(props: MoreInformationRowProps) {
+export function CompareListRowMoreInformation(props: CompareListRowMoreInformationProps) {
   const { compareAbleItems } = props
   const columnCount = compareAbleItems.length <= 3 ? compareAbleItems.length : 3
 
