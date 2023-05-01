@@ -71,13 +71,15 @@
     "@graphcommerce/prettier-config-pwa": "6.1.0",
     "@graphcommerce/typescript-config-pwa": "6.1.0",
     "@graphcommerce/hygraph-cli": "6.2.0-canary.8",
-    "@graphcommerce/hygraph-dynamic-rows": "6.2.0-canary.8"
+    "@graphcommerce/hygraph-dynamic-rows": "6.2.0-canary.8",
+    "@graphcommerce/magento-compare": "6.2.0-canary.8"
   },
   "changesets": [
     "brown-brooms-battle",
     "curvy-cats-invent",
     "cyan-months-yell",
     "dirty-rivers-beg",
+    "fifty-donkeys-chew",
     "good-forks-remember",
     "good-seals-rest",
     "gorgeous-games-pump",
@@ -91,6 +93,8 @@
     "nice-tips-fix",
     "pink-stingrays-wave",
     "popular-mice-laugh",
+    "popular-turtles-brush",
+    "sixty-pumas-rhyme",
     "strange-beans-sip",
     "tender-shrimps-cheat",
     "thin-news-juggle",
