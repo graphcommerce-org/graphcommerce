@@ -69,7 +69,9 @@
     "@graphcommerce/graphql-codegen-relay-optimizer-plugin": "6.1.0",
     "@graphcommerce/next-config": "6.1.0",
     "@graphcommerce/prettier-config-pwa": "6.1.0",
-    "@graphcommerce/typescript-config-pwa": "6.1.0"
+    "@graphcommerce/typescript-config-pwa": "6.1.0",
+    "@graphcommerce/hygraph-cli": "6.2.0-canary.7",
+    "@graphcommerce/hygraph-dynamic-rows": "6.2.0-canary.7"
   },
   "changesets": [
     "brown-brooms-battle",
@@ -85,6 +87,7 @@
     "lemon-houses-sit",
     "metal-dots-repair",
     "neat-mice-sneeze",
+    "nervous-buttons-greet",
     "nice-tips-fix",
     "pink-stingrays-wave",
     "popular-mice-laugh",
