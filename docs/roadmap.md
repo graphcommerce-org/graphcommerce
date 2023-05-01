@@ -15,14 +15,25 @@ The following overview contains the status of items on the GraphCommerce roadmap
 
 ## In progress
 
-- [ ] Redesigned layered navigation for mobile and desktop
-- [ ] GA4 datalayer implementation
-- [ ] Paypal Express payment service (Multisafepay, Braintree, Mollie already
-      implemented)
-- [ ] Adyen payment service
+- [ ] Algolia implementation
+- [ ] Dynamic Row based content
+- [ ] Product compare functionality
+- [ ] Edge runtime for GraphQL Mesh and Streaming SSR rendering
+- [ ] Global store messages
 
 ## Just released
 
+[See all releases](https://github.com/graphcommerce-org/graphcommerce/releases?q=prerelease%3Afalse+&expanded=true)
+
+- [x] Google Tagmanager 4 datalayer implementation
+      [docs ↗](https://github.com/graphcommerce-org/graphcommerce/tree/main/packages/googleanalytics)
+- [x] Paypal Express payment service
+      [docs ↗](https://github.com/graphcommerce-org/graphcommerce/tree/main/packages/magento-payment-paypal)
+- [x] Adyen payment service
+      [docs ↗](https://github.com/graphcommerce-org/graphcommerce/tree/main/packages/magento-payment-adyen)
+- [x] Postcode check integration
+      [docs ↗](https://github.com/graphcommerce-org/graphcommerce/tree/main/packages/address-fields-nl)
+- [x] Redesigned layered navigation for mobile and desktop
 - [x] Crosssells overlay after adding a product to cart
 - [x] Bundle product
       [example ↗](https://graphcommerce.vercel.app/nl/p/giftcard-bundle-gc-570)
@@ -40,15 +51,16 @@ The following overview contains the status of items on the GraphCommerce roadmap
 
 ## Planned
 
-- [ ] Store locator
-- [ ] Adyen payment service
-- [ ] Buckaroo payment service
-- [ ] Fetch Magento image sizes (probe-image-size)
-- [ ] Postcode check integration
-- [ ] Windows support
+- [ ] Redesigned cart
+- [ ] Product thumbnail carousel
+- [ ] React Server Components integration
 
 ## Future
 
+- [ ] Fetch Magento image sizes (probe-image-size)
+- [ ] Windows support
+- [ ] Store locator
+- [ ] Buckaroo payment service
 - [ ] `magento` example without Hygraph
 - [ ] PageBuilder support
 
