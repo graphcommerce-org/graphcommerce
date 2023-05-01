@@ -1,4 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { mergeDeep } from '@graphcommerce/graphql'
 import {
   AddProductsToCartButton,
@@ -10,6 +11,8 @@ import {
   jsonLdProduct,
   jsonLdProductOffer,
   ProductCustomizable,
+  ProductPageAddToCartActionsRow,
+  ProductPageAddToCartQuantityRow,
   productPageCategory,
   ProductPageDescription,
   ProductPageMeta,
@@ -39,7 +42,7 @@ import {
   isTypename,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box, Divider, Link, Typography } from '@mui/material'
+import { Divider, Link, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import {
   LayoutNavigation,
@@ -49,10 +52,14 @@ import {
   Usps,
 } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
+import { UspsDocument, UspsQuery } from '../../components/Usps/Usps.gql'
 import { ProductPage2Document, ProductPage2Query } from '../../graphql/ProductPage2.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
-type Props = ProductPage2Query & Pick<AddProductsToCartFormProps, 'defaultValues'>
+type Props = HygraphPagesQuery &
+  UspsQuery &
+  ProductPage2Query &
+  Pick<AddProductsToCartFormProps, 'defaultValues'>
 
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
@@ -62,7 +69,6 @@ function ProductPage(props: Props) {
   const { products, relatedUpsells, usps, sidebarUsps, pages, defaultValues } = props
 
   const product = mergeDeep(products, relatedUpsells)?.items?.[0]
-
   if (!product?.sku || !product.url_key) return null
 
   return (
@@ -143,13 +149,7 @@ function ProductPage(props: Props) {
 
           <Divider />
 
-          <Box
-            sx={(theme) => ({
-              display: 'flex',
-              alignItems: 'center',
-              columnGap: theme.spacings.md,
-            })}
-          >
+          <ProductPageAddToCartQuantityRow product={product}>
             <AddProductsToCartQuantity sx={{ flexShrink: '0' }} />
 
             <AddProductsToCartError>
@@ -161,7 +161,7 @@ function ProductPage(props: Props) {
                 )}
               </Typography>
             </AddProductsToCartError>
-          </Box>
+          </ProductPageAddToCartQuantityRow>
 
           {isTypename(product, ['ConfigurableProduct']) ? (
             <ConfigurablePriceTiers product={product} />
@@ -171,16 +171,10 @@ function ProductPage(props: Props) {
 
           <ProductSidebarDelivery product={product} />
 
-          <Box
-            sx={(theme) => ({
-              display: 'flex',
-              alignItems: 'start',
-              columnGap: theme.spacings.xs,
-            })}
-          >
+          <ProductPageAddToCartActionsRow product={product}>
             <AddProductsToCartButton fullWidth product={product} />
             <ProductWishlistChipDetail {...product} />
-          </Box>
+          </ProductPageAddToCartActionsRow>
 
           <Usps usps={sidebarUsps} size='small' />
         </ConfigurableProductPageGallery>
@@ -232,25 +226,29 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const urlKey = params?.url ?? '??'
 
   const conf = client.query({ query: StoreConfigDocument })
-  const productPage = staticClient.query({
-    query: ProductPage2Document,
-    variables: { url: 'product/global', urlKey },
-  })
-  const layout = staticClient.query({ query: LayoutDocument })
+  const productPage = staticClient.query({ query: ProductPage2Document, variables: { urlKey } })
+  const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
 
-  const product = (await productPage).data.products?.items?.find((p) => p?.url_key === urlKey)
-  if (!product) return redirectOrNotFound(staticClient, conf, params, locale)
+  const product = productPage.then((pp) =>
+    pp.data.products?.items?.find((p) => p?.url_key === urlKey),
+  )
 
-  const category = productPageCategory(product)
+  const pages = hygraphPageContent(staticClient, 'product/global', product, true)
+  if (!(await product)) return redirectOrNotFound(staticClient, conf, params, locale)
+
+  const category = productPageCategory(await product)
   const up =
     category?.url_path && category?.name
       ? { href: `/${category.url_path}`, title: category.name }
       : { href: `/`, title: 'Home' }
+  const usps = staticClient.query({ query: UspsDocument, fetchPolicy: 'cache-first' })
 
   return {
     props: {
       ...defaultConfigurableOptionsSelection(urlKey, client, (await productPage).data),
       ...(await layout).data,
+      ...(await pages).data,
+      ...(await usps).data,
       apolloState: await conf.then(() => client.cache.extract()),
       up,
     },

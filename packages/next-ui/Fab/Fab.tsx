@@ -23,6 +23,7 @@ export function Fab(props: FabProps) {
     sx = [],
     icon,
     circularProgress,
+    color = 'default',
     ...fabProps
   } = props
 
@@ -33,7 +34,7 @@ export function Fab(props: FabProps) {
   return (
     <FabBase
       type='submit'
-      color='primary'
+      color={color}
       size={size}
       {...fabProps}
       disabled={disabled}
@@ -45,6 +46,7 @@ export function Fab(props: FabProps) {
       {loading && (
         <CircularProgress
           size={fabSize}
+          color={color !== 'primary' ? 'primary' : 'inherit'}
           {...circularProgress}
           sx={[
             { display: 'flex', placeContent: 'center', gridArea: '1/1' },

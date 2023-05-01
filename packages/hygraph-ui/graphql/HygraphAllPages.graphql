@@ -1,0 +1,5 @@
+query HygraphAllPages($first: Int = 1000) {
+  pages(first: $first) {
+    url
+  }
+}

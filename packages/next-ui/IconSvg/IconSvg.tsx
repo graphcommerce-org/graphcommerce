@@ -88,7 +88,7 @@ const Svg = styled('svg', { name, target: name })(() => [
 /**
  * IconSvg component is supposed to be used in combination with `icons`
  *
- * @see https://graphcommerce-docs.vercel.app/framework/icons
+ * @see https://www.graphcommerce.org/docs/framework/icons
  */
 export const IconSvg = forwardRef<SVGSVGElement, IconSvgProps>((props, ref) => {
   const { src, size, fillIcon, className, ...svgProps } = useThemeProps({ props, name })

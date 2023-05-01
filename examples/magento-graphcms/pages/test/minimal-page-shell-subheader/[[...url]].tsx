@@ -25,11 +25,9 @@ import { GetStaticProps } from '@graphcommerce/next-ui/Page/types'
 import { Box, Container, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import { LayoutMinimal, LayoutMinimalProps } from '../../../components'
-import { DefaultPageDocument, DefaultPageQuery } from '../../../graphql/DefaultPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
-type Props = DefaultPageQuery &
-  ProductListQuery &
+type Props = ProductListQuery &
   ProductFiltersQuery & { filterTypes: FilterTypes; params: ProductListParams }
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
@@ -122,10 +120,6 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const filterTypes = getFilterTypes(client)
 
   const staticClient = graphqlSsrClient(locale)
-  const page = staticClient.query({
-    query: DefaultPageDocument,
-    variables: { url: 'minimal-page-shell-subheader' },
-  })
 
   const products = staticClient.query({ query: ProductListDocument })
   const filters = staticClient.query({ query: ProductFiltersDocument })
@@ -137,7 +131,6 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
 
   return {
     props: {
-      ...(await page).data,
       ...(await products).data,
       ...(await filters).data,
       filterTypes: await filterTypes,

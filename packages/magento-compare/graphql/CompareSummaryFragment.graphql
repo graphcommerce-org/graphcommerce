@@ -1,0 +1,7 @@
+fragment CompareSummaryFragment on CompareList {
+  uid
+  item_count
+  items {
+    uid
+  }
+}

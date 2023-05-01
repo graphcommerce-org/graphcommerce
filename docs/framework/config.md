@@ -134,6 +134,8 @@ Examples:
 
 The HyGraph endpoint.
 
+> Read-only endpoint that allows low latency and high read-throughput content delivery.
+
 Project settings -> API Access -> High Performance Read-only Content API
 
 #### `magentoEndpoint: String!`
@@ -156,6 +158,15 @@ Configures algolia search debounce time. This will slow down the search response
 Due to a limitation of the GraphQL API it is not possible to determine if a cart should be displayed including or excluding tax.
 
 When Magento's StoreConfig adds this value, this can be replaced.
+
+#### `compare: Boolean`
+
+Use compare functionality
+
+#### `compareVariant: [CompareVariant](#CompareVariant)`
+
+By default the compare feature is denoted with a 'compare icon' (2 arrows facing one another).
+This may be fine for experienced users, but for more clarity it's also possible to present the compare feature as a checkbox accompanied by the 'Compare' label
 
 #### `customerRequireEmailConfirmation: Boolean`
 
@@ -196,6 +207,40 @@ This value is required even if you are configuring different values for each loc
 The Google Tagmanager ID to be used on the site.
 
 This value is required even if you are configuring different values for each locale.
+
+#### `hygraphWriteAccessEndpoint: String`
+
+Content API. **Only used for migrations.**
+
+> Regular read & write endpoint that allows querying and mutating data in your project.
+
+Project settings -> API Access -> Content API
+
+#### `hygraphWriteAccessToken: String`
+
+Hygraph Management SDK Authorization Token. **Only used for migrations.**
+
+Project settings -> API Access -> Permanent Auth Tokens
+
+1. Click  'Add token' and give it a name, something like 'GraphCommerce Write Access Token' and keep stage on 'Published'.
+2. Under 'Management API', click 'Yes, Initialize defaults'
+3. Click 'Edit Permissions' and enable: 'Update' and 'Delete' permissions for 'models', 'enumerations', 'fields', 'components' and 'sources'
+  - Update existing models
+  - Delete existing models
+  - Update existing fields
+  - Delete existing fields
+  - Update existing enumerations
+  - Delete existing enumerations
+  - Update existing components
+  - Delete existing components
+  - Update remote sources
+  - Delete remote sources
+
+```
+GC_HYGRAPH_WRITE_ACCESS_ENDPOINT="https://...hygraph.com/v2/..."
+GC_HYGRAPH_WRITE_ACCESS_TOKEN="AccessTokenFromHygraph"
+yarn graphcommerce hygraph-migrate
+```
 
 #### `legacyProductRoute: Boolean`
 

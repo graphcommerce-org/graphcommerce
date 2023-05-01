@@ -1619,6 +1619,35 @@
   resolved "https://registry.npmjs.org/@eslint/js/-/js-8.35.0.tgz"
   integrity sha512-JXdzbRiWclLVoD8sNUjR443VVlYqiYmDVT6rGUEIEHU5YJW0gaVZwV2xgM7D4arkvASqD0IlLUVjHiFuxaftRw==
 
+"@graphcommerce/eslint-config-pwa@6.0.1":
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/@graphcommerce/eslint-config-pwa/-/eslint-config-pwa-6.0.1.tgz#66bcd97ce74f999df6dfd5e336264570cdfdd2eb"
+  integrity sha512-2lFTRr4O++xkmfUKQrBhfeOq6bC+Bm/+CB9bOfy+Jppx0KTRyEZxQF/TAYRdSI+qFcKst+yERdZeZxKzZ7cioQ==
+  dependencies:
+    "@graphcommerce/typescript-config-pwa" "6.0.1"
+    "@next/eslint-plugin-next" "13.2.4"
+    "@typescript-eslint/eslint-plugin" "^5.54.1"
+    "@typescript-eslint/parser" "^5.54.1"
+    eslint-config-airbnb "19.0.4"
+    eslint-config-airbnb-typescript "17.0.0"
+    eslint-config-prettier "8.7.0"
+    eslint-plugin-import "2.27.5"
+    eslint-plugin-jsx-a11y "6.7.1"
+    eslint-plugin-react "^7.31.11"
+    eslint-plugin-react-hooks "4.6.0"
+
+"@graphcommerce/prettier-config-pwa@6.0.1":
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/@graphcommerce/prettier-config-pwa/-/prettier-config-pwa-6.0.1.tgz#a79c553d8d2b42269733d07fe7b4d5d4cbfb4ea1"
+  integrity sha512-Zpwrqxg1WStrQ1b9w1zYfo8IaaoGpVmrQUITjagULMJ8eDZe8mfrMYtqQWyHlX4fp1PWg9uvR30BMv5SlmuUjA==
+  dependencies:
+    prettier-plugin-jsdoc "^0.4.2"
+
+"@graphcommerce/typescript-config-pwa@6.0.1":
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/@graphcommerce/typescript-config-pwa/-/typescript-config-pwa-6.0.1.tgz#46bf3c5bf1c44e3d09e056db4823e4a3e3abf0ee"
+  integrity sha512-Kabv60GL1VZrE28CcsSxa3LQmGFy7+IActD3BwO1ysgxFKrvGbtcHA1sxSito9OuzNCC26n7iaQDLESqLwdW3g==
+
 "@graphql-codegen/add@4.0.1":
   version "4.0.1"
   resolved "https://registry.npmjs.org/@graphql-codegen/add/-/add-4.0.1.tgz"
@@ -2677,6 +2706,14 @@
   version "1.2.1"
   resolved "https://registry.npmjs.org/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
+
+"@hygraph/management-sdk@^1.1.2-alpha.1":
+  version "1.1.2-alpha.1"
+  resolved "https://registry.yarnpkg.com/@hygraph/management-sdk/-/management-sdk-1.1.2-alpha.1.tgz#0c5b0f9a62fa368d21265a63f78f18347253b452"
+  integrity sha512-Y6MkNTITVqjsL8sTogE6ageuBi4gVYfgPrqCQ0CkQZh6mbib90UnLpLqtByRz8TuTEfE31QkOFz+IFA1PwGcKQ==
+  dependencies:
+    graphql "^16.5.0"
+    graphql-request "^4.3.0"
 
 "@istanbuljs/load-nyc-config@^1.0.0":
   version "1.1.0"
@@ -6781,6 +6818,15 @@ graphql-import-node@0.0.5:
   resolved "https://registry.npmjs.org/graphql-import-node/-/graphql-import-node-0.0.5.tgz"
   integrity sha512-OXbou9fqh9/Lm7vwXT0XoRN9J5+WCYKnbiTalgFDvkQERITRmcfncZs6aVABedd5B85yQU5EULS4a5pnbpuI0Q==
 
+graphql-request@^4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/graphql-request/-/graphql-request-4.3.0.tgz#b934e08fcae764aa2cdc697d3c821f046cb5dbf2"
+  integrity sha512-2v6hQViJvSsifK606AliqiNiijb1uwWp6Re7o0RTyH+uRTv/u7Uqm2g4Fjq/LgZIzARB38RZEvVBFOQOVdlBow==
+  dependencies:
+    cross-fetch "^3.1.5"
+    extract-files "^9.0.0"
+    form-data "^3.0.0"
+
 graphql-request@^5.0.0:
   version "5.2.0"
   resolved "https://registry.npmjs.org/graphql-request/-/graphql-request-5.2.0.tgz"
@@ -6825,7 +6871,7 @@ graphql-yoga@3.7.0:
     lru-cache "^7.14.1"
     tslib "^2.3.1"
 
-graphql@16.6.0:
+graphql@16.6.0, graphql@^16.5.0:
   version "16.6.0"
   resolved "https://registry.npmjs.org/graphql/-/graphql-16.6.0.tgz"
   integrity sha512-KPIBPDlW7NxrbT/eh4qPXz5FiFdL5UbaA0XUNz2Rp3Z3hqBSkbj0GVjwFDztsWVauZUWsbKHgMg++sk8UX0bkw==

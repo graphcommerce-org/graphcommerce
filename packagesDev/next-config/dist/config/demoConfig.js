@@ -22,4 +22,5 @@ exports.demoConfig = {
     robotsAllow: false,
     demoMode: true,
     limitSsg: true,
+    compare: true,
 };

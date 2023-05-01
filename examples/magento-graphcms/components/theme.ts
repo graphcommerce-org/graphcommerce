@@ -282,11 +282,13 @@ const createOverrides = (theme: Theme): Components => ({
   MuiFab: {
     styleOverrides: {
       root: {
-        backgroundColor: theme.palette.background.paper,
-        '&:hover': {
+        '&.MuiFab-default': {
           backgroundColor: theme.palette.background.paper,
+          '&:hover': {
+            backgroundColor: theme.palette.background.paper,
+          },
+          color: theme.palette.text.primary,
         },
-        color: theme.palette.text.primary,
       },
       colorInherit: {
         backgroundColor: 'inherit',
@@ -294,12 +296,6 @@ const createOverrides = (theme: Theme): Components => ({
           backgroundColor: 'inherit',
         },
         boxShadow: 'none',
-      },
-      primary: {
-        color: theme.palette.text.primary,
-      },
-      secondary: {
-        color: theme.palette.text.primary,
       },
       extended: {
         fontWeight: 400,

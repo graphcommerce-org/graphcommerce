@@ -1,0 +1,5 @@
+query DynamicRows($rowIds: [ID!]!) {
+  dynamicRows(where: { id_in: $rowIds }) {
+    ...DynamicRow
+  }
+}

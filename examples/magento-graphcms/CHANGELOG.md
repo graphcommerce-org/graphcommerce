@@ -1,5 +1,19 @@
 # Change Log
 
+## 6.2.0-canary.9
+
+### Patch Changes
+
+- [#1897](https://github.com/graphcommerce-org/graphcommerce/pull/1897) [`4936a38fb`](https://github.com/graphcommerce-org/graphcommerce/commit/4936a38fbd99fa366eae1a5955fa61d6387a2bb8) - MuiFab couldn't be given a primary or secondary color ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#1897](https://github.com/graphcommerce-org/graphcommerce/pull/1897) [`b78dd132c`](https://github.com/graphcommerce-org/graphcommerce/commit/b78dd132c435da847139d2f415c9ab8067d3941f) - Feature/product comparer ([@FrankHarland](https://github.com/FrankHarland))
+
+## 6.2.0-canary.8
+
+### Minor Changes
+
+- [#1912](https://github.com/graphcommerce-org/graphcommerce/pull/1912) [`a43d389e9`](https://github.com/graphcommerce-org/graphcommerce/commit/a43d389e956fe69b73238b12c98c781b7044e4bb) - Added dynamic rows feature and better performance for Hygraph ([@JoshuaS98](https://github.com/JoshuaS98))
+
 ## 6.2.0-canary.7
 
 ## 6.2.0-canary.6

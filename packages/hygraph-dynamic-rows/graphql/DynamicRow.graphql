@@ -1,0 +1,19 @@
+fragment DynamicRow on DynamicRow @injectable {
+  placement
+  target {
+    ... on Node {
+      id
+    }
+  }
+
+  row {
+    __typename
+    ... on Node {
+      id
+    }
+
+    ...RowColumnOne
+    ...RowQuote
+    ...RowLinks
+  }
+}

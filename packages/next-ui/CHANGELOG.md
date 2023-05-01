@@ -1,5 +1,13 @@
 # Change Log
 
+## 6.2.0-canary.9
+
+### Patch Changes
+
+- [#1897](https://github.com/graphcommerce-org/graphcommerce/pull/1897) [`f44d7cec6`](https://github.com/graphcommerce-org/graphcommerce/commit/f44d7cec61766f4768c30d29b211a12f2846e9f6) - Overlays can now be configured to get a bgColor ([@FrankHarland](https://github.com/FrankHarland))
+
+## 6.2.0-canary.8
+
 ## 6.2.0-canary.7
 
 ## 6.2.0-canary.6

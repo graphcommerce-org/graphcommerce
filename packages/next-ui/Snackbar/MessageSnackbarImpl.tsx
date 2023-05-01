@@ -70,9 +70,13 @@ export default function MessageSnackbarImpl(props: MessageSnackbarProps) {
     onClose?.()
   }
 
-  const preventAnimationBubble: React.MouseEventHandler<HTMLButtonElement> = (e) => {
-    e.preventDefault()
+  const preventAnimationBubble = (
+    e: React.TouchEvent<HTMLButtonElement> | React.MouseEvent<HTMLButtonElement>,
+  ) => {
     e.stopPropagation()
+    if (e.type === 'mousedown') {
+      e.preventDefault()
+    }
   }
 
   let icon = iconCheckmark
@@ -144,6 +148,7 @@ export default function MessageSnackbarImpl(props: MessageSnackbarProps) {
                 size='small'
                 onClick={hideSnackbar}
                 onMouseDown={preventAnimationBubble}
+                onTouchStart={preventAnimationBubble}
                 sx={(theme) => ({
                   backgroundColor: lighten(theme.palette.background.paper, 0.1),
                 })}

@@ -14,29 +14,9 @@ export type Scalars = {
   Float: number;
 };
 
-/** Type for conversion of Magento 2 aggregations to Algolia filterable attributes */
-export type AlgoliaFilterAttribute = {
-  /** Stores the default aggregation uid */
-  aggregation: Scalars['String'];
-  /** Stores the algolia attribute that should be connected to the magento aggregation */
-  toAlgoliaAttribute: Scalars['String'];
-};
-
-/** Type for search index config */
-export type AlgoliaSearchIndexConfig = {
-  /** Configures Algolia filterable attributes */
-  filterAttributes?: InputMaybe<Array<AlgoliaFilterAttribute>>;
-  /** Configure your Algolia Search index for Magento products */
-  searchIndex: Scalars['String'];
-};
-
-/** Type for sortable algolia options */
-export type AlgoliaSortableOption = {
-  /** The label of the index to display */
-  label: Scalars['String'];
-  /** The name of the index to target. */
-  value: Scalars['String'];
-};
+export type CompareVariant =
+  | 'CHECKBOX'
+  | 'ICON';
 
 /**
  * # GraphCommerce configuration system
@@ -116,12 +96,6 @@ export type AlgoliaSortableOption = {
  * Below is a list of all possible configurations that can be set by GraphCommerce.
  */
 export type GraphCommerceConfig = {
-  /** Configure your Algolia application ID. */
-  algoliaApplicationId: Scalars['String'];
-  /** Configures algolia search debounce time. This will slow down the search response. */
-  algoliaSearchDebounceTime?: InputMaybe<Scalars['Int']>;
-  /** Configure your Algolia Search Only API Key */
-  algoliaSearchOnlyApiKey: Scalars['String'];
   /**
    * The canonical base URL is used for SEO purposes.
    *
@@ -137,6 +111,13 @@ export type GraphCommerceConfig = {
    * When Magento's StoreConfig adds this value, this can be replaced.
    */
   cartDisplayPricesInclTax?: InputMaybe<Scalars['Boolean']>;
+  /** Use compare functionality */
+  compare?: InputMaybe<Scalars['Boolean']>;
+  /**
+   * By default the compare feature is denoted with a 'compare ICON' (2 arrows facing one another).
+   * This may be fine for experienced users, but for more clarity it's also possible to present the compare feature as a CHECKBOX accompanied by the 'Compare' label
+   */
+  compareVariant?: InputMaybe<CompareVariant>;
   /**
    * Due to a limitation in the GraphQL API of Magento 2, we need to know if the
    * customer requires email confirmation.
@@ -178,9 +159,45 @@ export type GraphCommerceConfig = {
   /**
    * The HyGraph endpoint.
    *
+   * > Read-only endpoint that allows low latency and high read-throughput content delivery.
+   *
    * Project settings -> API Access -> High Performance Read-only Content API
    */
   hygraphEndpoint: Scalars['String'];
+  /**
+   * Content API. **Only used for migrations.**
+   *
+   * > Regular read & write endpoint that allows querying and mutating data in your project.
+   *
+   * Project settings -> API Access -> Content API
+   */
+  hygraphWriteAccessEndpoint?: InputMaybe<Scalars['String']>;
+  /**
+   * Hygraph Management SDK Authorization Token. **Only used for migrations.**
+   *
+   * Project settings -> API Access -> Permanent Auth Tokens
+   *
+   * 1. Click  'Add token' and give it a name, something like 'GraphCommerce Write Access Token' and keep stage on 'Published'.
+   * 2. Under 'Management API', click 'Yes, Initialize defaults'
+   * 3. Click 'Edit Permissions' and enable: 'Update' and 'Delete' permissions for 'models', 'enumerations', 'fields', 'components' and 'sources'
+   *   - Update existing models
+   *   - Delete existing models
+   *   - Update existing fields
+   *   - Delete existing fields
+   *   - Update existing enumerations
+   *   - Delete existing enumerations
+   *   - Update existing components
+   *   - Delete existing components
+   *   - Update remote sources
+   *   - Delete remote sources
+   *
+   * ```
+   * GC_HYGRAPH_WRITE_ACCESS_ENDPOINT="https://...hygraph.com/v2/..."
+   * GC_HYGRAPH_WRITE_ACCESS_TOKEN="AccessTokenFromHygraph"
+   * yarn graphcommerce hygraph-migrate
+   * ```
+   */
+  hygraphWriteAccessToken?: InputMaybe<Scalars['String']>;
   /**
    * On older versions of GraphCommerce products would use a product type specific route.
    *
@@ -251,8 +268,6 @@ export type GraphCommerceDebugConfig = {
 
 /** All storefront configuration for the project */
 export type GraphCommerceStorefrontConfig = {
-  /** Configure your Algolia index configurations */
-  algoliaSearchIndexConfig: Array<AlgoliaSearchIndexConfig>;
   /**
    * The canonical base URL is used for SEO purposes.
    *
@@ -299,8 +314,6 @@ export type GraphCommerceStorefrontConfig = {
    * - b2b-us
    */
   magentoStoreCode: Scalars['String'];
-  /** Configure the sortable attributes */
-  sortOptions?: InputMaybe<Array<AlgoliaSortableOption>>;
 };
 
 
@@ -314,34 +327,14 @@ export const isDefinedNonNullAny = (v: any): v is definedNonNullAny => v !== und
 
 export const definedNonNullAnySchema = z.any().refine((v) => isDefinedNonNullAny(v));
 
-export function AlgoliaFilterAttributeSchema(): z.ZodObject<Properties<AlgoliaFilterAttribute>> {
-  return z.object<Properties<AlgoliaFilterAttribute>>({
-    aggregation: z.string().min(1),
-    toAlgoliaAttribute: z.string().min(1)
-  })
-}
-
-export function AlgoliaSearchIndexConfigSchema(): z.ZodObject<Properties<AlgoliaSearchIndexConfig>> {
-  return z.object<Properties<AlgoliaSearchIndexConfig>>({
-    filterAttributes: z.array(AlgoliaFilterAttributeSchema()).nullish(),
-    searchIndex: z.string().min(1)
-  })
-}
-
-export function AlgoliaSortableOptionSchema(): z.ZodObject<Properties<AlgoliaSortableOption>> {
-  return z.object<Properties<AlgoliaSortableOption>>({
-    label: z.string().min(1),
-    value: z.string().min(1)
-  })
-}
+export const CompareVariantSchema = z.enum(['CHECKBOX', 'ICON']);
 
 export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerceConfig>> {
   return z.object<Properties<GraphCommerceConfig>>({
-    algoliaApplicationId: z.string().min(1),
-    algoliaSearchDebounceTime: z.number().nullish(),
-    algoliaSearchOnlyApiKey: z.string().min(1),
     canonicalBaseUrl: z.string().min(1),
     cartDisplayPricesInclTax: z.boolean().nullish(),
+    compare: z.boolean().nullish(),
+    compareVariant: CompareVariantSchema.nullish(),
     customerRequireEmailConfirmation: z.boolean().nullish(),
     debug: GraphCommerceDebugConfigSchema().nullish(),
     demoMode: z.boolean().nullish(),
@@ -349,6 +342,8 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     googleRecaptchaKey: z.string().nullish(),
     googleTagmanagerId: z.string().nullish(),
     hygraphEndpoint: z.string().min(1),
+    hygraphWriteAccessEndpoint: z.string().nullish(),
+    hygraphWriteAccessToken: z.string().nullish(),
     legacyProductRoute: z.boolean().nullish(),
     limitSsg: z.boolean().nullish(),
     magentoEndpoint: z.string().min(1),
@@ -373,7 +368,6 @@ export function GraphCommerceDebugConfigSchema(): z.ZodObject<Properties<GraphCo
 
 export function GraphCommerceStorefrontConfigSchema(): z.ZodObject<Properties<GraphCommerceStorefrontConfig>> {
   return z.object<Properties<GraphCommerceStorefrontConfig>>({
-    algoliaSearchIndexConfig: z.array(AlgoliaSearchIndexConfigSchema()),
     canonicalBaseUrl: z.string().nullish(),
     cartDisplayPricesInclTax: z.boolean().nullish(),
     defaultLocale: z.boolean().nullish(),
@@ -384,7 +378,6 @@ export function GraphCommerceStorefrontConfigSchema(): z.ZodObject<Properties<Gr
     hygraphLocales: z.array(z.string().min(1)).nullish(),
     linguiLocale: z.string().nullish(),
     locale: z.string().min(1),
-    magentoStoreCode: z.string().min(1),
-    sortOptions: z.array(AlgoliaSortableOptionSchema()).nullish()
+    magentoStoreCode: z.string().min(1)
   })
 }

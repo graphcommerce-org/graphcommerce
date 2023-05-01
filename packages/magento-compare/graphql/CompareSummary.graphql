@@ -1,0 +1,5 @@
+query CompareSummary($uid: ID!) {
+  compareList(uid: $uid) {
+    ...CompareSummaryFragment
+  }
+}
