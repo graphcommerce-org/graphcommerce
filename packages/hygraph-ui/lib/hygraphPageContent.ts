@@ -1,5 +1,5 @@
 import { ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
-import { AllPageRoutesDocument, PagesContentQuery, PagesContentDocument } from '../graphql'
+import { HygraphAllPagesDocument, HygraphPagesQuery, HygraphPagesDocument } from '../graphql'
 
 /**
  * Fetch the page content for the given urls.
@@ -11,7 +11,7 @@ async function pageContent(
   client: ApolloClient<NormalizedCacheObject>,
   url: string,
   cached: boolean,
-): Promise<{ data: PagesContentQuery }> {
+): Promise<{ data: HygraphPagesQuery }> {
   /**
    * Some routes are very generic and wil be requested very often, like 'product/global'. To reduce
    * the amount of requests to Hygraph we can cache the result of the query if requested.
@@ -28,13 +28,13 @@ async function pageContent(
   const alwaysCache = process.env.NODE_ENV !== 'development' ? 'cache-first' : undefined
   const fetchPolicy = cached ? alwaysCache : undefined
 
-  const allRoutes = await client.query({ query: AllPageRoutesDocument, fetchPolicy: alwaysCache })
+  const allRoutes = await client.query({ query: HygraphAllPagesDocument, fetchPolicy: alwaysCache })
 
   // Only do the query when there the page is found in the allRoutes
   const found = allRoutes.data.pages.some((page) => page.url === url)
 
   return found
-    ? client.query({ query: PagesContentDocument, variables: { url }, fetchPolicy })
+    ? client.query({ query: HygraphPagesDocument, variables: { url }, fetchPolicy })
     : Promise.resolve({ data: { pages: [] } })
 }
 
@@ -43,6 +43,6 @@ export async function hygraphPageContent(
   url: string,
   additionalProperties?: Promise<object> | object,
   cached = false,
-): Promise<{ data: PagesContentQuery }> {
+): Promise<{ data: HygraphPagesQuery }> {
   return pageContent(client, url, cached)
 }

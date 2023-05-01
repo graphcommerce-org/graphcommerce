@@ -1,4 +1,4 @@
-fragment RowRenderer on Page @inject(into: ["Page"]) {
+fragment RowRenderer on Page @inject(into: ["HygraphPage"]) {
   content {
     __typename
     ... on Node {

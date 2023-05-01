@@ -1,5 +1,0 @@
-query AllPageRoutes {
-  pages(first: 1000) {
-    url
-  }
-}

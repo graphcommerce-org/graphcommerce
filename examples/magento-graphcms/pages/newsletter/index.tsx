@@ -1,5 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { hygraphPageContent, PagesContentQuery } from '@graphcommerce/graphcms-ui'
+import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { PageMeta, GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { Container } from '@mui/material'
@@ -13,7 +13,7 @@ import { LayoutDocument } from '../../components/Layout/Layout.gql'
 import { GuestNewsletter } from '../../components/Newsletter/GuestNewsletter'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
-type Props = PagesContentQuery
+type Props = HygraphPagesQuery
 type RouteProps = { url: string[] }
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 

@@ -4,7 +4,7 @@
  * - Hoe gaan we dit upgradebaar maken? management sdk
  */
 
-import { PagesContentQuery } from '@graphcommerce/graphcms-ui'
+import { HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
 import {
   AllDynamicRowsDocument,
@@ -93,11 +93,11 @@ function matchCondition(
  */
 export async function hygraphDynamicRows(
   client: ApolloClient<NormalizedCacheObject>,
-  pageQuery: Promise<{ data: PagesContentQuery }>,
+  pageQuery: Promise<{ data: HygraphPagesQuery }>,
   url: string,
   cached: boolean,
   additionalProperties?: Promise<object> | object,
-): Promise<{ data: PagesContentQuery }> {
+): Promise<{ data: HygraphPagesQuery }> {
   const alwaysCache = process.env.NODE_ENV !== 'development' ? 'cache-first' : undefined
   const fetchPolicy = cached ? alwaysCache : undefined
 
