@@ -115,11 +115,13 @@ function SearchResultPage(props: SearchResultProps) {
                 <ProductFiltersPro params={params}>
                   <ProductListFiltersContainer>
                     <ProductFiltersProFilterChips
+                      {...products}
                       {...filters}
                       appliedAggregations={products.aggregations}
                       filterTypes={filterTypes}
                     />
                     <ProductFiltersProSortChip {...products} />
+                    <ProductFiltersProLimitChip />
                     <ProductFiltersProAllFiltersChip
                       {...filters}
                       appliedAggregations={products.aggregations}
