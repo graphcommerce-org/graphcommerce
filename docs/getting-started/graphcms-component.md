@@ -155,7 +155,7 @@ fragment Banner on Banner {
 - In /components/GraphCMS/RowRenderer.graphql, add the fragment:
 
 ```graphql
-fragment RowRenderer on Page {
+fragment RowRenderer on Page @inject(into: ["HygraphPage"]) {
   content {
     __typename
     ... on Node {

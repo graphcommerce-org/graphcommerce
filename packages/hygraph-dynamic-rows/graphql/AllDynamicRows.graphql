@@ -1,0 +1,11 @@
+query AllDynamicRows {
+  dynamicRows(first: 1000) {
+    id
+    conditions {
+      __typename
+      ...ConditionNumber
+      ...ConditionText
+      ...ConditionAnd
+    }
+  }
+}

@@ -131,6 +131,12 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
+        "exported": "@graphcommerce/graphcms-ui",
+        "func": "hygraphPageContent",
+        "plugin": "@graphcommerce/hygraph-dynamic-rows/plugins/hygraphDynamicRowsPageContent",
+      },
+      {
+        "enabled": true,
         "exported": "@graphcommerce/graphql/config",
         "func": "graphqlConfig",
         "plugin": "@graphcommerce/graphcms-ui/plugins/hygraphGraphqlConfig",
@@ -164,6 +170,12 @@ it('finds plugins', () => {
         "exported": "@graphcommerce/graphql/config",
         "func": "graphqlConfig",
         "plugin": "@graphcommerce/magento-store/plugins/magentoStoreGraphqlConfig",
+      },
+      {
+        "enabled": true,
+        "exported": "@graphcommerce/graphql/config",
+        "func": "graphqlConfig",
+        "plugin": "@graphcommerce/magento-graphql/plugins/magentoGraphqlConfig",
       },
     ]
   `)

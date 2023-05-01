@@ -2,6 +2,8 @@ extend input GraphCommerceConfig {
   """
   The HyGraph endpoint.
 
+  > Read-only endpoint that allows low latency and high read-throughput content delivery.
+
   Project settings -> API Access -> High Performance Read-only Content API
   """
   hygraphEndpoint: String!

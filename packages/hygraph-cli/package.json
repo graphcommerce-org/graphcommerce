@@ -1,0 +1,43 @@
+{
+  "name": "@graphcommerce/hygraph-cli",
+  "homepage": "https://www.graphcommerce.org/",
+  "repository": "github:graphcommerce-org/graphcommerce",
+  "version": "6.2.0-canary.8",
+  "author": "",
+  "license": "MIT",
+  "scripts": {
+    "dev": "tsc --preserveWatchOutput --watch",
+    "build": "tsc",
+    "prepack": "tsc"
+  },
+  "type": "commonjs",
+  "main": "dist/index.js",
+  "types": "src/index.ts",
+  "dependencies": {
+    "@graphcommerce/next-config": "6.2.0-canary.8",
+    "@graphql-codegen/cli": "3.2.2",
+    "@graphql-mesh/cli": "0.82.25",
+    "@graphql-mesh/types": "0.91.7",
+    "@graphql-mesh/utils": "0.43.15",
+    "@hygraph/management-sdk": "^1.1.2-alpha.1",
+    "graphql": "16.6.0",
+    "graphql-tag": "^2.12.6"
+  },
+  "devDependencies": {
+    "@graphcommerce/eslint-config-pwa": "6.2.0-canary.8",
+    "@graphcommerce/prettier-config-pwa": "6.2.0-canary.8",
+    "@graphcommerce/typescript-config-pwa": "6.2.0-canary.8",
+    "typescript": "4.9.5"
+  },
+  "sideEffects": false,
+  "prettier": "@graphcommerce/prettier-config-pwa",
+  "eslint": {
+    "extends": "@graphcommerce/eslint-config-pwa"
+  },
+  "eslintConfig": {
+    "extends": "@graphcommerce/eslint-config-pwa",
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    }
+  }
+}

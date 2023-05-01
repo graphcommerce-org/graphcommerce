@@ -1,29 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`parses an env config object 1`] = `
-{
-  "GC_CUSTOMER_REQUIRE_EMAIL_CONFIRMATION": false,
-  "GC_DEMO_MODE": true,
-  "GC_STOREFRONT": [
-    {
-      "defaultLocale": true,
-      "hygraphLocales": [
-        "en",
-      ],
-      "locale": "en",
-      "magentoStoreCode": "en_us",
-    },
-  ],
-  "GC_STOREFRONT_0_DEFAULT_LOCALE": true,
-  "GC_STOREFRONT_0_HYGRAPH_LOCALES_0": "en",
-  "GC_STOREFRONT_0_LOCALE": "en",
-  "GC_STOREFRONT_0_MAGENTO_STORE_CODE": "en_us",
-  "GC_STOREFRONT_1_HYGRAPH_LOCALES_0": "de",
-  "GC_STOREFRONT_1_LOCALE": "de",
-  "GC_STOREFRONT_1_MAGENTO_STORE_CODE": "de_de",
-}
-`;
-
 exports[`traverses a schema and returns a list of env variables that match 1`] = `
 [
   "GC_CANONICAL_BASE_URL",
@@ -38,6 +14,8 @@ exports[`traverses a schema and returns a list of env variables that match 1`] =
   "GC_GOOGLE_RECAPTCHA_KEY",
   "GC_GOOGLE_TAGMANAGER_ID",
   "GC_HYGRAPH_ENDPOINT",
+  "GC_HYGRAPH_WRITE_ACCESS_ENDPOINT",
+  "GC_HYGRAPH_WRITE_ACCESS_TOKEN",
   "GC_LEGACY_PRODUCT_ROUTE",
   "GC_LIMIT_SSG",
   "GC_MAGENTO_ENDPOINT",

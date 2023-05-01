@@ -1,5 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { Asset } from '@graphcommerce/graphcms-ui'
+import { Asset, hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { flushMeasurePerf } from '@graphcommerce/graphql'
 import {
   CategoryChildren,
@@ -53,6 +53,7 @@ import { CategoryPageDocument, CategoryPageQuery } from '../graphql/CategoryPage
 import { graphqlSsrClient, graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
 
 export type CategoryProps = CategoryPageQuery &
+  HygraphPagesQuery &
   ProductListQuery &
   ProductFiltersQuery & { filterTypes?: FilterTypes; params?: ProductListParams }
 export type CategoryRoute = { url: string[] }
@@ -200,18 +201,20 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     query: CategoryPageDocument,
     variables: { url },
   })
-  const layout = staticClient.query({ query: LayoutDocument })
+  const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
 
   const productListParams = parseParams(url, query, await filterTypes)
   const filteredCategoryUid = productListParams && productListParams.filters.category_uid?.in?.[0]
 
+  const category = categoryPage.then((res) => res.data.categories?.items?.[0])
   let categoryUid = filteredCategoryUid
   if (!categoryUid) {
-    categoryUid = (await categoryPage).data.categories?.items?.[0]?.uid ?? ''
+    categoryUid = (await category)?.uid ?? ''
     if (productListParams) productListParams.filters.category_uid = { in: [categoryUid] }
   }
 
-  const hasPage = filteredCategoryUid ? false : (await categoryPage).data.pages.length > 0
+  const pages = hygraphPageContent(staticClient, url, category)
+  const hasPage = filteredCategoryUid ? false : (await pages).data.pages.length > 0
   const hasCategory = Boolean(productListParams && categoryUid)
 
   if (!productListParams || !(hasPage || hasCategory))
@@ -221,6 +224,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     return {
       props: {
         ...(await categoryPage).data,
+        ...(await pages).data,
         ...(await layout).data,
         apolloState: await conf.then(() => client.cache.extract()),
       },
@@ -255,6 +259,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     props: {
       ...(await categoryPage).data,
       ...(await products).data,
+      ...(await pages).data,
       ...(await filters).data,
       ...(await layout).data,
       filterTypes: await filterTypes,
