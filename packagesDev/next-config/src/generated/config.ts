@@ -14,6 +14,10 @@ export type Scalars = {
   Float: number;
 };
 
+export type CompareVariant =
+  | 'CHECKBOX'
+  | 'ICON';
+
 /**
  * # GraphCommerce configuration system
  *
@@ -107,6 +111,13 @@ export type GraphCommerceConfig = {
    * When Magento's StoreConfig adds this value, this can be replaced.
    */
   cartDisplayPricesInclTax?: InputMaybe<Scalars['Boolean']>;
+  /** Use compare functionality */
+  compare?: InputMaybe<Scalars['Boolean']>;
+  /**
+   * By default the compare feature is denoted with a 'compare icon' (2 arrows facing one another).
+   * This may be fine for experienced users, but for more clarity it's also possible to present the compare feature as a checkbox accompanied by the 'Compare' label
+   */
+  compareVariant?: InputMaybe<CompareVariant>;
   /**
    * Due to a limitation in the GraphQL API of Magento 2, we need to know if the
    * customer requires email confirmation.
@@ -316,10 +327,14 @@ export const isDefinedNonNullAny = (v: any): v is definedNonNullAny => v !== und
 
 export const definedNonNullAnySchema = z.any().refine((v) => isDefinedNonNullAny(v));
 
+export const CompareVariantSchema = z.enum(['CHECKBOX', 'ICON']);
+
 export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerceConfig>> {
   return z.object<Properties<GraphCommerceConfig>>({
     canonicalBaseUrl: z.string().min(1),
     cartDisplayPricesInclTax: z.boolean().nullish(),
+    compare: z.boolean().nullish(),
+    compareVariant: CompareVariantSchema.nullish(),
     customerRequireEmailConfirmation: z.boolean().nullish(),
     debug: GraphCommerceDebugConfigSchema().nullish(),
     demoMode: z.boolean().nullish(),

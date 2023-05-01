@@ -11,6 +11,7 @@ function _export(target, all) {
 _export(exports, {
     isDefinedNonNullAny: ()=>isDefinedNonNullAny,
     definedNonNullAnySchema: ()=>definedNonNullAnySchema,
+    CompareVariantSchema: ()=>CompareVariantSchema,
     GraphCommerceConfigSchema: ()=>GraphCommerceConfigSchema,
     GraphCommerceDebugConfigSchema: ()=>GraphCommerceDebugConfigSchema,
     GraphCommerceStorefrontConfigSchema: ()=>GraphCommerceStorefrontConfigSchema
@@ -18,10 +19,16 @@ _export(exports, {
 const _zod = require("zod");
 const isDefinedNonNullAny = (v)=>v !== undefined && v !== null;
 const definedNonNullAnySchema = _zod.z.any().refine((v)=>isDefinedNonNullAny(v));
+const CompareVariantSchema = _zod.z.enum([
+    "CHECKBOX",
+    "ICON"
+]);
 function GraphCommerceConfigSchema() {
     return _zod.z.object({
         canonicalBaseUrl: _zod.z.string().min(1),
         cartDisplayPricesInclTax: _zod.z.boolean().nullish(),
+        compare: _zod.z.boolean().nullish(),
+        compareVariant: CompareVariantSchema.nullish(),
         customerRequireEmailConfirmation: _zod.z.boolean().nullish(),
         debug: GraphCommerceDebugConfigSchema().nullish(),
         demoMode: _zod.z.boolean().nullish(),

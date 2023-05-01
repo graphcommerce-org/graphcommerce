@@ -45,6 +45,7 @@
     "@graphcommerce/magento-cart-shipping-method": "6.2.0-canary.8",
     "@graphcommerce/magento-category": "6.2.0-canary.8",
     "@graphcommerce/magento-cms": "6.2.0-canary.8",
+    "@graphcommerce/magento-compare": "6.2.0-canary.8",
     "@graphcommerce/magento-customer": "6.2.0-canary.8",
     "@graphcommerce/magento-graphql": "6.2.0-canary.8",
     "@graphcommerce/magento-newsletter": "6.2.0-canary.8",

@@ -11,6 +11,8 @@ import {
   jsonLdProduct,
   jsonLdProductOffer,
   ProductCustomizable,
+  ProductPageAddToCartActionsRow,
+  ProductPageAddToCartQuantityRow,
   productPageCategory,
   ProductPageDescription,
   ProductPageMeta,
@@ -40,7 +42,7 @@ import {
   isTypename,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box, Divider, Link, Typography } from '@mui/material'
+import { Divider, Link, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import {
   LayoutNavigation,
@@ -147,13 +149,7 @@ function ProductPage(props: Props) {
 
           <Divider />
 
-          <Box
-            sx={(theme) => ({
-              display: 'flex',
-              alignItems: 'center',
-              columnGap: theme.spacings.md,
-            })}
-          >
+          <ProductPageAddToCartQuantityRow product={product}>
             <AddProductsToCartQuantity sx={{ flexShrink: '0' }} />
 
             <AddProductsToCartError>
@@ -165,7 +161,7 @@ function ProductPage(props: Props) {
                 )}
               </Typography>
             </AddProductsToCartError>
-          </Box>
+          </ProductPageAddToCartQuantityRow>
 
           {isTypename(product, ['ConfigurableProduct']) ? (
             <ConfigurablePriceTiers product={product} />
@@ -175,16 +171,10 @@ function ProductPage(props: Props) {
 
           <ProductSidebarDelivery product={product} />
 
-          <Box
-            sx={(theme) => ({
-              display: 'flex',
-              alignItems: 'start',
-              columnGap: theme.spacings.xs,
-            })}
-          >
+          <ProductPageAddToCartActionsRow product={product}>
             <AddProductsToCartButton fullWidth product={product} />
             <ProductWishlistChipDetail {...product} />
-          </Box>
+          </ProductPageAddToCartActionsRow>
 
           <Usps usps={sidebarUsps} size='small' />
         </ConfigurableProductPageGallery>

@@ -1,0 +1,12 @@
+fragment CompareListFragment on CompareList {
+  uid
+  attributes {
+    code
+    label
+  }
+  item_count
+
+  items {
+    ...ComparableItem
+  }
+}

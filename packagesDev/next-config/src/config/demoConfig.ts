@@ -21,4 +21,5 @@ export const demoConfig: Partial<GraphCommerceConfig> & Record<string, unknown> 
   robotsAllow: false,
   demoMode: true,
   limitSsg: true,
+  compare: true,
 }

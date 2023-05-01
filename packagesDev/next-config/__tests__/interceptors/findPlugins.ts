@@ -131,12 +131,6 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
-        "exported": "@graphcommerce/graphcms-ui",
-        "func": "hygraphPageContent",
-        "plugin": "@graphcommerce/hygraph-dynamic-rows/plugins/hygraphDynamicRowsPageContent",
-      },
-      {
-        "enabled": true,
         "exported": "@graphcommerce/graphql/config",
         "func": "graphqlConfig",
         "plugin": "@graphcommerce/graphcms-ui/plugins/hygraphGraphqlConfig",
@@ -222,6 +216,34 @@ it('finds plugins', () => {
         "exported": "@graphcommerce/framer-next-pages",
         "ifConfig": "googleTagmanagerId",
         "plugin": "@graphcommerce/googletagmanager/plugins/GtagFramerNextPages",
+      },
+      {
+        "component": "CartFab",
+        "enabled": false,
+        "exported": "@graphcommerce/magento-cart",
+        "ifConfig": "compare",
+        "plugin": "@graphcommerce/magento-compare/plugins/AddCompareFabNextToCart",
+      },
+      {
+        "component": "ProductPageAddToCartActionsRow",
+        "enabled": false,
+        "exported": "@graphcommerce/magento-product",
+        "ifConfig": "compare",
+        "plugin": "@graphcommerce/magento-compare/plugins/AddCompareToProductPage",
+      },
+      {
+        "component": "GraphQLProvider",
+        "enabled": false,
+        "exported": "@graphcommerce/graphql",
+        "ifConfig": "compare",
+        "plugin": "@graphcommerce/magento-compare/plugins/AddCompareTypePolicies",
+      },
+      {
+        "component": "ProductListItem",
+        "enabled": false,
+        "exported": "@graphcommerce/magento-product",
+        "ifConfig": "compare",
+        "plugin": "@graphcommerce/magento-compare/plugins/CompareAbleProductListItem",
       },
     ]
   `)

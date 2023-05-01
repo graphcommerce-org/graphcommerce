@@ -1,0 +1,6 @@
+query CurrentCompareUid {
+  currentCompareUid @client {
+    __typename
+    uid
+  }
+}

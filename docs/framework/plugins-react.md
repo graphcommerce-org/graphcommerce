@@ -152,7 +152,7 @@ work for other things such as:
 - Googletagmanager
 - Googleanalytics
 - Google recaptcha
-- Compare functionality?
+- Compare functionality
 - Wishlist functionality?
 - Abstraction between GraphCommerce and Backends? (Magento, BigCommerce,
   CommerceTools, etc.)

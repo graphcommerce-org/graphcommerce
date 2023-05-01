@@ -2,32 +2,28 @@ import { Controller, ControllerProps, FieldValues } from '@graphcommerce/react-h
 import { i18n } from '@lingui/core'
 import { MenuItem, TextField, TextFieldProps } from '@mui/material'
 
-export type SelectElementProps<T extends FieldValues> = Omit<
+type OptionBase = { id: string | number; label: string | number }
+
+export type SelectElementProps<T extends FieldValues, O extends OptionBase> = Omit<
   TextFieldProps,
   'name' | 'type' | 'onChange' | 'defaultValue'
 > & {
   validation?: ControllerProps<T>['rules']
-  options?: { id: string | number; label: string | number }[] | any[]
-  valueKey?: string
-  labelKey?: string
+  options?: O[]
   type?: 'string' | 'number'
-  objectOnChange?: boolean
-  onChange?: (value: any) => void
+  onChange?: (value: string | number) => void
 } & Omit<ControllerProps<T>, 'render'>
 
-export function SelectElement<TFieldValues extends FieldValues>({
+export function SelectElement<TFieldValues extends FieldValues, O extends OptionBase>({
   name,
   required,
-  valueKey = 'id',
-  labelKey = 'label',
   options = [],
   type,
-  objectOnChange,
   validation = {},
   control,
   defaultValue,
   ...rest
-}: SelectElementProps<TFieldValues>): JSX.Element {
+}: SelectElementProps<TFieldValues, O>): JSX.Element {
   const isNativeSelect = !!rest.SelectProps?.native
   const ChildComponent = isNativeSelect ? 'option' : MenuItem
 
@@ -55,17 +51,10 @@ export function SelectElement<TFieldValues extends FieldValues>({
             value={value ?? ''}
             onBlur={onBlur}
             onChange={(event) => {
-              let item: number | string = event.target.value
-              if (type === 'number') {
-                item = Number(item)
-              }
+              let item: number | string | O | undefined = event.target.value
+              if (type === 'number') item = Number(item)
+              rest.onChange?.(item)
               onChange(item)
-              if (typeof rest.onChange === 'function') {
-                if (objectOnChange) {
-                  item = options.find((i) => i[valueKey] === item)
-                }
-                rest.onChange(item)
-              }
             }}
             select
             required={required}
@@ -73,9 +62,9 @@ export function SelectElement<TFieldValues extends FieldValues>({
             helperText={error ? error.message : rest.helperText}
           >
             {isNativeSelect && <option />}
-            {options.map((item: any) => (
-              <ChildComponent key={item[valueKey]} value={item[valueKey]}>
-                {item[labelKey]}
+            {options.map((item) => (
+              <ChildComponent key={item.id} value={item.id}>
+                {item.label}
               </ChildComponent>
             ))}
           </TextField>
