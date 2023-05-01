@@ -1,40 +1,4 @@
 <!-- Automatically generated from Config.graphqls -->
-### AlgoliaFilterAttribute
-
-Type for conversion of Magento 2 aggregations to Algolia filterable attributes
-
-#### `aggregation: String!`
-
-Stores the default aggregation uid
-
-#### `toAlgoliaAttribute: String!`
-
-Stores the algolia attribute that should be connected to the magento aggregation
-
-### AlgoliaSearchIndexConfig
-
-Type for search index config
-
-#### `searchIndex: String!`
-
-Configure your Algolia Search index for Magento products
-
-#### `filterAttributes: [[AlgoliaFilterAttribute](#AlgoliaFilterAttribute)!]`
-
-Configures Algolia filterable attributes
-
-### AlgoliaSortableOption
-
-Type for sortable algolia options
-
-#### `label: String!`
-
-The label of the index to display
-
-#### `value: String!`
-
-The name of the index to target.
-
 # GraphCommerce configuration system
 
 Global GraphCommerce configuration can be configured in your `graphcommerce.config.js` file
@@ -113,14 +77,6 @@ Below is a list of all possible configurations that can be set by GraphCommerce.
 
 ### GraphCommerceConfig
 
-#### `algoliaApplicationId: String!`
-
-Configure your Algolia application ID.
-
-#### `algoliaSearchOnlyApiKey: String!`
-
-Configure your Algolia Search Only API Key
-
 #### `canonicalBaseUrl: String!`
 
 The canonical base URL is used for SEO purposes.
@@ -149,10 +105,6 @@ Examples:
 
 All storefront configuration for the project
 
-#### `algoliaSearchDebounceTime: Int`
-
-Configures algolia search debounce time. This will slow down the search response.
-
 #### `cartDisplayPricesInclTax: Boolean`
 
 Due to a limitation of the GraphQL API it is not possible to determine if a cart should be displayed including or excluding tax.
@@ -165,8 +117,8 @@ Use compare functionality
 
 #### `compareVariant: [CompareVariant](#CompareVariant)`
 
-By default the compare feature is denoted with a 'compare icon' (2 arrows facing one another).
-This may be fine for experienced users, but for more clarity it's also possible to present the compare feature as a checkbox accompanied by the 'Compare' label
+By default the compare feature is denoted with a 'compare ICON' (2 arrows facing one another).
+This may be fine for experienced users, but for more clarity it's also possible to present the compare feature as a CHECKBOX accompanied by the 'Compare' label
 
 #### `customerRequireEmailConfirmation: Boolean`
 
@@ -315,10 +267,6 @@ Issues that this can cause are:
 
 All storefront configuration for the project
 
-#### `algoliaSearchIndexConfig: [[AlgoliaSearchIndexConfig](#AlgoliaSearchIndexConfig)!]!`
-
-Configure your Algolia index configurations
-
 #### `locale: String!`
 
 Must be a locale string https://www.unicode.org/reports/tr35/tr35-59/tr35.html#Identifiers
@@ -378,7 +326,3 @@ Add a gcms-locales header to make sure queries return in a certain language, can
 #### `linguiLocale: String`
 
 Specify a custom locale for to load translations.
-
-#### `sortOptions: [[AlgoliaSortableOption](#AlgoliaSortableOption)!]`
-
-Configure the sortable attributes
