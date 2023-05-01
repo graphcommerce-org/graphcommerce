@@ -1249,7 +1249,7 @@
   dependencies:
     chalk "^2.1.0"
 
-"@changesets/parse@^0.3.15", "@changesets/parse@^0.3.16":
+"@changesets/parse@^0.3.16":
   version "0.3.16"
   resolved "https://registry.yarnpkg.com/@changesets/parse/-/parse-0.3.16.tgz#f8337b70aeb476dc81745ab3294022909bc4a84a"
   integrity sha512-127JKNd167ayAuBjUggZBkmDS5fIKsthnr9jr6bdnuUljroiERW7FBTDNnNVyJ4l69PzR57pk6mXQdtJyBCJKg==
@@ -1496,6 +1496,35 @@
   version "8.35.0"
   resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.35.0.tgz#b7569632b0b788a0ca0e438235154e45d42813a7"
   integrity sha512-JXdzbRiWclLVoD8sNUjR443VVlYqiYmDVT6rGUEIEHU5YJW0gaVZwV2xgM7D4arkvASqD0IlLUVjHiFuxaftRw==
+
+"@graphcommerce/eslint-config-pwa@6.0.1":
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/@graphcommerce/eslint-config-pwa/-/eslint-config-pwa-6.0.1.tgz#66bcd97ce74f999df6dfd5e336264570cdfdd2eb"
+  integrity sha512-2lFTRr4O++xkmfUKQrBhfeOq6bC+Bm/+CB9bOfy+Jppx0KTRyEZxQF/TAYRdSI+qFcKst+yERdZeZxKzZ7cioQ==
+  dependencies:
+    "@graphcommerce/typescript-config-pwa" "6.0.1"
+    "@next/eslint-plugin-next" "13.2.4"
+    "@typescript-eslint/eslint-plugin" "^5.54.1"
+    "@typescript-eslint/parser" "^5.54.1"
+    eslint-config-airbnb "19.0.4"
+    eslint-config-airbnb-typescript "17.0.0"
+    eslint-config-prettier "8.7.0"
+    eslint-plugin-import "2.27.5"
+    eslint-plugin-jsx-a11y "6.7.1"
+    eslint-plugin-react "^7.31.11"
+    eslint-plugin-react-hooks "4.6.0"
+
+"@graphcommerce/prettier-config-pwa@6.0.1":
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/@graphcommerce/prettier-config-pwa/-/prettier-config-pwa-6.0.1.tgz#a79c553d8d2b42269733d07fe7b4d5d4cbfb4ea1"
+  integrity sha512-Zpwrqxg1WStrQ1b9w1zYfo8IaaoGpVmrQUITjagULMJ8eDZe8mfrMYtqQWyHlX4fp1PWg9uvR30BMv5SlmuUjA==
+  dependencies:
+    prettier-plugin-jsdoc "^0.4.2"
+
+"@graphcommerce/typescript-config-pwa@6.0.1":
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/@graphcommerce/typescript-config-pwa/-/typescript-config-pwa-6.0.1.tgz#46bf3c5bf1c44e3d09e056db4823e4a3e3abf0ee"
+  integrity sha512-Kabv60GL1VZrE28CcsSxa3LQmGFy7+IActD3BwO1ysgxFKrvGbtcHA1sxSito9OuzNCC26n7iaQDLESqLwdW3g==
 
 "@graphql-codegen/add@4.0.1":
   version "4.0.1"
