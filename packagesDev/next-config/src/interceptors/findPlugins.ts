@@ -122,7 +122,7 @@ export function findPlugins(config: GraphCommerceConfig, cwd: string = process.c
       }
     })
 
-    console.log(toLog.join('\n\n'))
+    if (toLog.length) console.log(toLog.join('\n\n'))
   }
 
   return [plugins, errors] as const
