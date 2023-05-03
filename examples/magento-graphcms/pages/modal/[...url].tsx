@@ -1,5 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
+import { HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
+import { hygraphPageContent } from '@graphcommerce/graphcms-ui/server'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   GetStaticProps,
@@ -8,6 +9,7 @@ import {
   LayoutTitle,
   PageMeta,
 } from '@graphcommerce/next-ui'
+import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { Box, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import { LayoutOverlay, LayoutOverlayProps, RowRenderer } from '../../components'
@@ -69,13 +71,10 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   return { paths, fallback: 'blocking' }
 }
 
-export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => {
+export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async ({ params }) => {
   const urlKey = params?.url.join('/') ?? '??'
-  const client = graphqlSharedClient(locale)
-  const staticClient = graphqlSsrClient(locale)
-
-  const conf = client.query({ query: StoreConfigDocument })
-  const page = hygraphPageContent(staticClient, `modal/${urlKey}`)
+  const staticClient = graphqlSsrClient()
+  const page = hygraphPageContent(`modal/${urlKey}`)
 
   const layout = staticClient.query({ query: LayoutDocument })
 
@@ -85,10 +84,9 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
     props: {
       ...(await page).data,
       ...(await layout).data,
-      apolloState: await conf.then(() => client.cache.extract()),
       variantMd: 'bottom',
       size: 'max',
     },
     revalidate: 60 * 20,
   }
-}
+})

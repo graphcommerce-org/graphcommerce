@@ -22,6 +22,7 @@
     "@graphcommerce/framer-scroller": "6.2.0-canary.10",
     "@graphcommerce/framer-utils": "6.2.0-canary.10",
     "@graphcommerce/image": "6.2.0-canary.10",
+    "@mui/lab": "^5.0.0-alpha.128",
     "cookie": "^0.5.0",
     "react-is": "^18.2.0",
     "schema-dts": "^1.1.0"

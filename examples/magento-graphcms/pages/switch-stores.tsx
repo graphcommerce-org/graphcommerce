@@ -12,6 +12,7 @@ import {
   LayoutOverlayHeader,
   LayoutTitle,
 } from '@graphcommerce/next-ui'
+import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
@@ -53,7 +54,7 @@ StoresIndexPage.pageOptions = pageOptions
 
 export default StoresIndexPage
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
+export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async ({ locale }) => {
   const client = graphqlSharedClient(locale)
   const staticClient = graphqlSsrClient(locale)
 
@@ -63,7 +64,6 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   return {
     props: {
       ...(await stores).data,
-      apolloState: await conf.then(() => client.cache.extract()),
     },
   }
-}
+})

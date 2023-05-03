@@ -29,13 +29,9 @@ import {
   SearchDivider,
   SearchForm,
 } from '@graphcommerce/magento-search'
-import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import {
-  StickyBelowHeader,
-  GetStaticProps,
-  LayoutTitle,
-  LayoutHeader,
-} from '@graphcommerce/next-ui'
+import { PageMeta } from '@graphcommerce/magento-store'
+import { StickyBelowHeader, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
+import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Container, Hidden } from '@mui/material'
@@ -43,15 +39,10 @@ import { LayoutNavigation, LayoutNavigationProps, ProductListItems } from '../..
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
-type SearchResultProps = ProductListQuery &
+export type SearchResultProps = ProductListQuery &
   ProductFiltersQuery &
   CategorySearchQuery & { filterTypes: FilterTypes; params: ProductListParams }
-type RouteProps = { url: string[] }
-export type GetPageStaticProps = GetStaticProps<
-  LayoutNavigationProps,
-  SearchResultProps,
-  RouteProps
->
+export type RouteProps = { url: string[] }
 
 function SearchResultPage(props: SearchResultProps) {
   const { products, categories, params, filters, filterTypes } = props
@@ -156,15 +147,18 @@ SearchResultPage.pageOptions = pageOptions
 
 export default SearchResultPage
 
-export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
+export const getStaticProps = enhanceStaticProps<
+  LayoutNavigationProps,
+  SearchResultProps,
+  RouteProps
+>(async ({ params }) => {
   const [searchShort = '', query = []] = extractUrlQuery(params)
   const search = searchShort.length >= 3 ? searchShort : ''
 
-  const client = graphqlSharedClient(locale)
-  const conf = client.query({ query: StoreConfigDocument })
+  const client = graphqlSharedClient()
   const filterTypes = getFilterTypes(client)
 
-  const staticClient = graphqlSsrClient(locale)
+  const staticClient = graphqlSsrClient()
   const layout = staticClient.query({ query: LayoutDocument })
 
   const productListParams = parseParams(
@@ -196,8 +190,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
       filterTypes: await filterTypes,
       params: productListParams,
       up: { href: '/', title: 'Home' },
-      apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,
   }
-}
+})

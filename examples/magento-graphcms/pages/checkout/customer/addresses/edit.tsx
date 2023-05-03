@@ -15,6 +15,7 @@ import {
   LayoutTitle,
   FullPageMessage,
 } from '@graphcommerce/next-ui'
+import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, CircularProgress, Container, Skeleton } from '@mui/material'
@@ -89,16 +90,10 @@ CheckoutCustomerAddressesEdit.pageOptions = pageOptions
 
 export default CheckoutCustomerAddressesEdit
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
-  const conf = client.query({ query: StoreConfigDocument })
-
-  return {
-    props: {
-      apolloState: await conf.then(() => client.cache.extract()),
-      variantMd: 'bottom',
-      size: 'max',
-      up: { href: '/checkout', title: 'Checkout' },
-    },
-  }
-}
+export const getStaticProps: GetPageStaticProps = enhanceStaticProps(() => ({
+  props: {
+    variantMd: 'bottom',
+    size: 'max',
+    up: { href: '/checkout', title: 'Checkout' },
+  },
+}))

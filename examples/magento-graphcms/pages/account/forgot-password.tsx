@@ -1,12 +1,12 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { ForgotPasswordForm } from '@graphcommerce/magento-customer'
-import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { PageMeta } from '@graphcommerce/magento-store'
 import { GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
+import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Container, Typography } from '@mui/material'
 import { LayoutOverlay, LayoutOverlayProps } from '../../components'
-import { graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
@@ -41,16 +41,10 @@ AccountForgotPasswordPage.pageOptions = pageOptions
 
 export default AccountForgotPasswordPage
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
-  const conf = client.query({ query: StoreConfigDocument })
-
-  return {
-    props: {
-      apolloState: await conf.then(() => client.cache.extract()),
-      variantMd: 'bottom',
-      size: 'max',
-      up: { href: '/account/signin', title: i18n._(/* i18n */ 'Sign in') },
-    },
-  }
-}
+export const getStaticProps: GetPageStaticProps = enhanceStaticProps(() => ({
+  props: {
+    variantMd: 'bottom',
+    size: 'max',
+    up: { href: '/account/signin', title: i18n._(/* i18n */ 'Sign in') },
+  },
+}))

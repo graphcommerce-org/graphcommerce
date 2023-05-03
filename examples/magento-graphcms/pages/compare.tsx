@@ -10,7 +10,6 @@ import {
   CompareListAttributes,
   CompareListIntroText,
 } from '@graphcommerce/magento-compare'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   GetStaticProps,
   LayoutOverlay,
@@ -21,11 +20,11 @@ import {
   LayoutTitle,
   PageMeta,
 } from '@graphcommerce/next-ui'
+import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, CircularProgress, Container, Typography } from '@mui/material'
 import { productListRenderer } from '../components/ProductListItems'
-import { graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
 
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
@@ -93,15 +92,7 @@ ComparePage.pageOptions = pageOptions
 
 export default ComparePage
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
-  const conf = client.query({ query: StoreConfigDocument })
-
+export const getStaticProps: GetPageStaticProps = enhanceStaticProps(() => {
   if (!import.meta.graphCommerce.compare) return { notFound: true }
-
-  return {
-    props: {
-      apolloState: await conf.then(() => client.cache.extract()),
-    },
-  }
-}
+  return { props: {} }
+})

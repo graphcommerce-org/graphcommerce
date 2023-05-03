@@ -15,11 +15,11 @@ export type ApolloStateProps = { apolloState: NormalizedCacheObject; up?: UpPage
 export type GetStaticProps<
   PL extends AnyObj,
   P extends AnyObj = AnyObj,
-  Q extends ParsedUrlQuery = ParsedUrlQuery,
-> = GetStaticPropsNext<P & Omit<PL, 'children'> & ApolloStateProps, Q>
+  Q extends ParsedUrlQuery = ParsedUrlQuery & { locale: string },
+> = GetStaticPropsNext<P & Omit<PL, 'children'>, Q>
 
 export type GetServerSideProps<
   PL extends AnyObj,
   P extends AnyObj = AnyObj,
-  Q extends ParsedUrlQuery = ParsedUrlQuery,
-> = GetServerSidePropsNext<P & Omit<PL, 'children'> & ApolloStateProps, Q>
+  Q extends ParsedUrlQuery = ParsedUrlQuery & { locale: string },
+> = GetServerSidePropsNext<P & Omit<PL, 'children'>, Q>

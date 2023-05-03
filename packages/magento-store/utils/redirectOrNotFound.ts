@@ -1,10 +1,5 @@
 import { ParsedUrlQuery } from 'querystring'
-import {
-  ApolloClient,
-  ApolloQueryResult,
-  flushMeasurePerf,
-  NormalizedCacheObject,
-} from '@graphcommerce/graphql'
+import { ApolloClient, ApolloQueryResult, NormalizedCacheObject } from '@graphcommerce/graphql'
 import { nonNullable, isTypename } from '@graphcommerce/next-ui'
 import { Redirect } from 'next'
 import { StoreConfigQuery } from '../StoreConfig.gql'
@@ -17,7 +12,6 @@ export type RedirectOr404Return = Promise<
 >
 
 const notFound = (from: string, reason: string) => {
-  flushMeasurePerf()
   console.log(`[redirectOrNotFound: /${from}] ${reason}`)
   return { notFound: true, revalidate: 60 * 20 } as const
 }
@@ -25,8 +19,6 @@ const notFound = (from: string, reason: string) => {
 const redirect = (from: string, to: string, permanent: boolean, locale?: string) => {
   const prefix = locale === defaultLocale() ? '' : `/${locale}`
   const destination = `${prefix}${to}`
-
-  flushMeasurePerf()
 
   // eslint-disable-next-line no-console
   console.log(

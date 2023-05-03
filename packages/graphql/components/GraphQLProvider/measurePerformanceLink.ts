@@ -15,6 +15,16 @@ const running = new Map<
   }
 >()
 
+export const requestContext = new AsyncLocalStorage<string>()
+
+const requestId = () => {
+  const id = requestContext.getStore()
+  if (!id) throw new Error('No request id found')
+  return id
+}
+
+const requests: Map<string, typeof running> = new Map()
+
 const renderLine = (line: {
   serverStart: number
   requestStart: number
@@ -42,7 +52,9 @@ const renderLine = (line: {
 }
 
 export const flushMeasurePerf = () => {
-  const entries = Array.from(running.entries())
+  const run = requests.get(requestId())
+  if (!run) return
+  const entries = Array.from(run.entries())
   if (entries.length === 0 || !entries.every(([k, v]) => v.end)) return
 
   /**
@@ -128,75 +140,69 @@ export const flushMeasurePerf = () => {
   running.clear()
 }
 
-let timeout: NodeJS.Timeout | undefined
-const markTimeout = () => {
-  if (timeout) clearTimeout(timeout)
-  timeout = setTimeout(flushMeasurePerf, 1000)
-}
-
 /**
  * This doesn't work with the current implementation of the Apollo client. We're using SchemaLink
  * which doesn't support additional links.
  */
 export const measurePerformanceLink = new ApolloLink((operation, forward) => {
-  if (typeof window === 'undefined') {
-    // Called before operation is sent to server
-    operation.setContext({ measurePerformanceLinkStart: new Date() })
-    const vars =
-      Object.keys(operation.variables).length > 0 ? `(${JSON.stringify(operation.variables)})` : ''
-    const operationString = `${operation.operationName}${vars}`
+  // Called before operation is sent to server
+  operation.setContext({ measurePerformanceLinkStart: new Date() })
+  const vars =
+    Object.keys(operation.variables).length > 0 ? `(${JSON.stringify(operation.variables)})` : ''
+  const operationString = `${operation.operationName}${vars}`
 
-    running.set(operationString, {
-      start: new Date(),
-      operationName: [operation.operationName, operation.operationName],
-    })
-    markTimeout()
-
-    return forward(operation).map((data) => {
-      const httpDetails: MeshFetchHTTPInformation[] | undefined = data.extensions?.httpDetails
-
-      let additional = [``, ``] as [string, string]
-      if (httpDetails) {
-        httpDetails.forEach((d) => {
-          const requestUrl = new URL(d.request.url)
-          requestUrl.searchParams.delete('extensions')
-          const title = `${d.sourceName} ${d.responseTime}ms`
-          additional = [
-            `${additional[0]} ${title}`,
-            `${additional[1]} ${cliHyperlink(title, requestUrl.toString().replace(/\+/g, '%20'))}`,
-          ]
-        })
-      }
-
-      // Called after server responds
-      const query = [
-        `# Variables: ${JSON.stringify(operation.variables)}`,
-        `# Headers: ${JSON.stringify(operation.getContext().headers)}`,
-        print(operation.query),
-      ].join('\n')
-
-      const meshUrl = new URL(`${import.meta.graphCommerce.canonicalBaseUrl}/api/graphql`)
-      meshUrl.searchParams.set('query', query)
-
-      running.set(operationString, {
-        start: operation.getContext().measurePerformanceLinkStart as Date,
-        end: new Date(),
-        operationName: [operation.operationName, operation.operationName],
-        additional,
-        // [
-        //   operation.operationName,
-        //   cliHyperlink(operation.operationName, meshUrl.toString()),
-        // ],
-        // additional: [
-        //   `🔗 ${additional[0]}`,
-        //   `${cliHyperlink('🔗', meshUrl.toString())} ${additional[1]}`,
-        // ],
-      })
-
-      markTimeout()
-
-      return data
-    })
+  let request = requests.get(requestId())
+  if (!request) {
+    request = new Map()
+    requests.set(requestId(), request)
   }
-  return forward(operation)
+
+  running.set(operationString, {
+    start: new Date(),
+    operationName: [operation.operationName, operation.operationName],
+  })
+
+  return forward(operation).map((data) => {
+    const httpDetails: MeshFetchHTTPInformation[] | undefined = data.extensions?.httpDetails
+
+    let additional = [``, ``] as [string, string]
+    if (httpDetails) {
+      httpDetails.forEach((d) => {
+        const requestUrl = new URL(d.request.url)
+        requestUrl.searchParams.delete('extensions')
+        const title = `${d.sourceName} ${d.responseTime}ms`
+        additional = [
+          `${additional[0]} ${title}`,
+          `${additional[1]} ${cliHyperlink(title, requestUrl.toString().replace(/\+/g, '%20'))}`,
+        ]
+      })
+    }
+
+    // Called after server responds
+    const query = [
+      `# Variables: ${JSON.stringify(operation.variables)}`,
+      `# Headers: ${JSON.stringify(operation.getContext().headers)}`,
+      print(operation.query),
+    ].join('\n')
+
+    const meshUrl = new URL(`${import.meta.graphCommerce.canonicalBaseUrl}/api/graphql`)
+    meshUrl.searchParams.set('query', query)
+
+    request!.set(operationString, {
+      start: operation.getContext().measurePerformanceLinkStart as Date,
+      end: new Date(),
+      operationName: [operation.operationName, operation.operationName],
+      additional,
+      // [
+      //   operation.operationName,
+      //   cliHyperlink(operation.operationName, meshUrl.toString()),
+      // ],
+      // additional: [
+      //   `🔗 ${additional[0]}`,
+      //   `${cliHyperlink('🔗', meshUrl.toString())} ${additional[1]}`,
+      // ],
+    })
+
+    return data
+  })
 })

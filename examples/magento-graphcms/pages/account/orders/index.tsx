@@ -5,7 +5,7 @@ import {
   AccountDashboardOrdersDocument,
   AccountOrders,
 } from '@graphcommerce/magento-customer'
-import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { PageMeta } from '@graphcommerce/magento-store'
 import {
   FullPageMessage,
   GetStaticProps,
@@ -14,12 +14,12 @@ import {
   IconSvg,
   LayoutTitle,
 } from '@graphcommerce/next-ui'
+import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
 import { useRouter } from 'next/router'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
-import { graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
@@ -76,16 +76,10 @@ AccountOrdersPage.pageOptions = pageOptions
 
 export default AccountOrdersPage
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
-  const conf = client.query({ query: StoreConfigDocument })
-
-  return {
-    props: {
-      apolloState: await conf.then(() => client.cache.extract()),
-      variantMd: 'bottom',
-      size: 'max',
-      up: { href: '/account', title: 'Account' },
-    },
-  }
-}
+export const getStaticProps: GetPageStaticProps = enhanceStaticProps(() => ({
+  props: {
+    variantMd: 'bottom',
+    size: 'max',
+    up: { href: '/account', title: 'Account' },
+  },
+}))

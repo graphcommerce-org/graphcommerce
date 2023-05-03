@@ -8,6 +8,7 @@ import {
   svgIconStrokeWidth,
   iconPhone,
 } from '@graphcommerce/next-ui'
+import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { Container, Typography, Slider, Box } from '@mui/material'
 import React, { useEffect, useRef, useState } from 'react'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
@@ -103,13 +104,4 @@ IconsPage.pageOptions = pageOptions
 
 type GetPageStaticProps = GetStaticProps<LayoutMinimalProps>
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
-  const conf = client.query({ query: StoreConfigDocument })
-
-  return {
-    props: {
-      apolloState: await conf.then(() => client.cache.extract()),
-    },
-  }
-}
+export const getStaticProps: GetPageStaticProps = enhanceStaticProps(() => ({ props: {} }))

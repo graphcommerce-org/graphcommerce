@@ -2,6 +2,7 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { LayoutHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { GetStaticProps } from '@graphcommerce/next-ui/Page/types'
+import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { Typography, Container } from '@mui/material'
 import { useEffect, useRef, useState } from 'react'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
@@ -114,18 +115,14 @@ TypographyOverview.pageOptions = {
 
 export default TypographyOverview
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
-  const staticClient = graphqlSsrClient(locale)
-
-  const conf = client.query({ query: StoreConfigDocument })
+export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async () => {
+  const staticClient = graphqlSsrClient()
   const layout = staticClient.query({ query: LayoutDocument })
 
   return {
     props: {
       ...(await layout).data,
       up: { href: '/', title: 'Home' },
-      apolloState: await conf.then(() => client.cache.extract()),
     },
   }
-}
+})

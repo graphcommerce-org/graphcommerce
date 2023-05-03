@@ -5,18 +5,19 @@ import {
   WaitForCustomer,
   AccountDashboardAddressesDocument,
 } from '@graphcommerce/magento-customer'
-import { CountryRegionsDocument, PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { CountryRegionsDocument, PageMeta } from '@graphcommerce/magento-store'
 import {
   GetStaticProps,
   iconAddresses,
   LayoutOverlayHeader,
   LayoutTitle,
 } from '@graphcommerce/next-ui'
+import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
-import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
+import { graphqlSsrClient } from '../../../lib/graphql/graphqlSsrClient'
 
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
@@ -59,10 +60,8 @@ AccountAddressesPage.pageOptions = pageOptions
 
 export default AccountAddressesPage
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
+export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async ({ locale }) => {
   const staticClient = graphqlSsrClient(locale)
-  const conf = client.query({ query: StoreConfigDocument })
 
   const countryRegions = staticClient.query({
     query: CountryRegionsDocument,
@@ -71,9 +70,8 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   return {
     props: {
       ...(await countryRegions).data,
-      apolloState: await conf.then(() => client.cache.extract()),
       variantMd: 'bottom',
       up: { href: '/account', title: 'Account' },
     },
   }
-}
+})

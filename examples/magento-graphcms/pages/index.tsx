@@ -1,11 +1,12 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
+import { HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
+import { hygraphPageContent } from '@graphcommerce/graphcms-ui/server'
 import { ProductListDocument, ProductListQuery } from '@graphcommerce/magento-product'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, LayoutHeader, MetaRobots, PageMeta } from '@graphcommerce/next-ui'
+import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { LayoutNavigation, LayoutNavigationProps, RowProduct, RowRenderer } from '../components'
 import { LayoutDocument } from '../components/Layout/Layout.gql'
-import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
+import { graphqlQuery, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
 
 type Props = HygraphPagesQuery & {
   latestList: ProductListQuery
@@ -68,41 +69,35 @@ CmsPage.pageOptions = {
 
 export default CmsPage
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
-  const staticClient = graphqlSsrClient(locale)
+export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async () => {
+  const staticClient = graphqlSsrClient()
 
-  const conf = client.query({ query: StoreConfigDocument })
-  const page = hygraphPageContent(staticClient, 'page/home')
+  const pages = hygraphPageContent('page/home')
+
   const layout = staticClient.query({ query: LayoutDocument })
 
-  // todo(paales): Remove when https://github.com/Urigo/graphql-mesh/issues/1257 is resolved
-  const favoritesList = staticClient.query({
-    query: ProductListDocument,
+  const favoritesList = graphqlQuery(ProductListDocument, {
     variables: { pageSize: 8, filters: { category_uid: { eq: 'MTIx' } } },
   })
 
-  const latestList = staticClient.query({
-    query: ProductListDocument,
+  const latestList = graphqlQuery(ProductListDocument, {
     variables: { pageSize: 8, filters: { category_uid: { eq: 'MTAy' } } },
   })
 
-  const swipableList = staticClient.query({
-    query: ProductListDocument,
+  const swipableList = graphqlQuery(ProductListDocument, {
     variables: { pageSize: 8, filters: { category_uid: { eq: 'MTIy' } } },
   })
 
-  if (!(await page).data.pages?.[0]) return { notFound: true }
+  if (!(await pages).data.pages?.[0]) return { notFound: true }
 
   return {
     props: {
-      ...(await page).data,
+      ...(await pages).data,
       ...(await layout).data,
       latestList: (await latestList).data,
       favoritesList: (await favoritesList).data,
       swipableList: (await swipableList).data,
-      apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,
   }
-}
+})

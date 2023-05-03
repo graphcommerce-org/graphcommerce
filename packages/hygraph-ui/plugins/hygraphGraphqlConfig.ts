@@ -6,7 +6,6 @@ export const exported = '@graphcommerce/graphql/config'
 
 const hygraphGraphqlConfig: MethodPlugin<typeof graphqlConfig> = (prev, config) => {
   const locales = config.storefront.hygraphLocales
-
   if (!locales) return prev(config)
 
   const hygraphLink = setContext((_, context) => {

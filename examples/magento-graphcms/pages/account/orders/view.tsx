@@ -15,6 +15,7 @@ import {
   LayoutOverlayHeader,
   LayoutTitle,
 } from '@graphcommerce/next-ui'
+import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
@@ -81,22 +82,16 @@ OrderDetailPage.pageOptions = pageOptions
 
 export default OrderDetailPage
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
+export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async ({ locale }) => {
   const staticClient = graphqlSsrClient(locale)
-  const config = client.query({ query: StoreConfigDocument })
-
-  const countryRegions = staticClient.query({
-    query: CountryRegionsDocument,
-  })
+  const countryRegions = staticClient.query({ query: CountryRegionsDocument })
 
   return {
     props: {
       ...(await countryRegions).data,
-      apolloState: await config.then(() => client.cache.extract()),
       variantMd: 'bottom',
       size: 'max',
       up: { href: '/account/orders', title: 'Orders' },
     },
   }
-}
+})

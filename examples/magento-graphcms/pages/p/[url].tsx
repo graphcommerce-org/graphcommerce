@@ -1,5 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
+import { HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
+import { hygraphPageContent } from '@graphcommerce/graphcms-ui/server'
 import { mergeDeep } from '@graphcommerce/graphql'
 import {
   AddProductsToCartButton,
@@ -41,6 +42,7 @@ import {
   LayoutTitle,
   isTypename,
 } from '@graphcommerce/next-ui'
+import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { Trans } from '@lingui/react'
 import { Divider, Link, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
@@ -217,7 +219,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   return { paths, fallback: 'blocking' }
 }
 
-export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
+export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async ({ params, locale }) => {
   if (import.meta.graphCommerce.legacyProductRoute) return { notFound: true }
 
   const client = graphqlSharedClient(locale)
@@ -233,7 +235,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     pp.data.products?.items?.find((p) => p?.url_key === urlKey),
   )
 
-  const pages = hygraphPageContent(staticClient, 'product/global', product, true)
+  const pages = hygraphPageContent('product/global', product, true)
   if (!(await product)) return redirectOrNotFound(staticClient, conf, params, locale)
 
   const category = productPageCategory(await product)
@@ -249,9 +251,8 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
       ...(await layout).data,
       ...(await pages).data,
       ...(await usps).data,
-      apolloState: await conf.then(() => client.cache.extract()),
       up,
     },
     revalidate: 60 * 20,
   }
-}
+})

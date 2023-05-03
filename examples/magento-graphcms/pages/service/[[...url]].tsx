@@ -1,11 +1,9 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import {
-  PagesStaticPathsDocument,
-  hygraphPageContent,
-  HygraphPagesQuery,
-} from '@graphcommerce/graphcms-ui'
+import { PagesStaticPathsDocument, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
+import { hygraphPageContent } from '@graphcommerce/graphcms-ui/server'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { PageMeta, GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
+import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Container } from '@mui/material'
 import { GetStaticPaths } from 'next'
@@ -76,12 +74,10 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   return { paths, fallback: 'blocking' }
 }
 
-export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => {
+export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async ({ params }) => {
   const url = params?.url ? `service/${params?.url.join('/')}` : `service`
-  const client = graphqlSharedClient(locale)
-  const staticClient = graphqlSsrClient(locale)
-  const conf = client.query({ query: StoreConfigDocument })
-  const page = hygraphPageContent(staticClient, url)
+  const staticClient = graphqlSsrClient()
+  const page = hygraphPageContent(url)
   const layout = staticClient.query({ query: LayoutDocument })
 
   if (!(await page).data.pages?.[0]) return { notFound: true }
@@ -93,8 +89,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
       ...(await page).data,
       ...(await layout).data,
       up: isRoot ? null : { href: '/service', title: i18n._(/* i18n */ 'Customer Service') },
-      apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,
   }
-}
+})

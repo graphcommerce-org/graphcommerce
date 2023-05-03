@@ -1,7 +1,7 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { CartAgreementsDocument, CartAgreementsQuery } from '@graphcommerce/magento-cart'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, PageMeta, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
+import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { Container, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
@@ -67,10 +67,8 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   return { paths, fallback: 'blocking' }
 }
 
-export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => {
-  const client = graphqlSharedClient(locale)
-  const staticClient = graphqlSsrClient(locale)
-  const conf = client.query({ query: StoreConfigDocument })
+export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async ({ params }) => {
+  const staticClient = graphqlSsrClient()
 
   const agreements = await staticClient.query({ query: CartAgreementsDocument })
 
@@ -81,11 +79,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   if (!agreement) return { notFound: true }
 
   return {
-    props: {
-      variantMd: 'left',
-      agreement,
-      apolloState: await conf.then(() => client.cache.extract()),
-    },
+    props: { variantMd: 'left', agreement },
     revalidate: 60 * 20,
   }
-}
+})

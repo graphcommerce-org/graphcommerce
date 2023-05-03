@@ -1,6 +1,7 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps } from '@graphcommerce/next-ui'
+import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { GetStaticPaths } from 'next'
 import { LayoutNavigation, LayoutNavigationProps } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
@@ -35,13 +36,9 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   return { paths, fallback: 'blocking' }
 }
 
-export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
+export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async ({ params }) => {
   const url = (params?.url ?? ['index']).join('/') ?? ''
-
-  const client = graphqlSharedClient(locale)
-  const staticClient = graphqlSsrClient(locale)
-
-  const conf = client.query({ query: StoreConfigDocument })
+  const staticClient = graphqlSsrClient()
   const layout = staticClient.query({ query: LayoutDocument })
 
   return {
@@ -49,7 +46,6 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
       url,
       up: url !== 'index' ? { href: '/', title: 'Home' } : null,
       ...(await layout).data,
-      apolloState: await conf.then(() => client.cache.extract()),
     },
   }
-}
+})

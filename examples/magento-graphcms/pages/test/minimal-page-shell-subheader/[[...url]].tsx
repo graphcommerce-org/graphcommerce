@@ -22,6 +22,7 @@ import {
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { StickyBelowHeader, LayoutTitle, LayoutHeader, LinkOrButton } from '@graphcommerce/next-ui'
 import { GetStaticProps } from '@graphcommerce/next-ui/Page/types'
+import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { Box, Container, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import { LayoutMinimal, LayoutMinimalProps } from '../../../components'
@@ -114,9 +115,8 @@ export const getStaticPaths: GetPageStaticPaths = async () => {
   })
 }
 
-export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
+export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async ({ params, locale }) => {
   const client = graphqlSharedClient(locale)
-  const conf = client.query({ query: StoreConfigDocument })
   const filterTypes = getFilterTypes(client)
 
   const staticClient = graphqlSsrClient(locale)
@@ -136,8 +136,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
       filterTypes: await filterTypes,
       params: productListParams,
       up: { href: '/', title: 'Home' },
-      apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 1,
   }
-}
+})

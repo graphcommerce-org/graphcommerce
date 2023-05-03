@@ -1,5 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
+import { HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
+import { hygraphPageContent } from '@graphcommerce/graphcms-ui/server'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   PageMeta,
@@ -9,6 +10,7 @@ import {
   LayoutTitle,
   LayoutHeader,
 } from '@graphcommerce/next-ui'
+import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { GetStaticPaths } from 'next'
 import {
   BlogAuthor,
@@ -79,15 +81,13 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   return { paths, fallback: 'blocking' }
 }
 
-export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => {
+export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async ({ locale, params }) => {
   const urlKey = params?.url ?? '??'
 
-  const client = graphqlSharedClient(locale)
   const staticClient = graphqlSsrClient(locale)
   const limit = 4
-  const conf = client.query({ query: StoreConfigDocument })
 
-  const page = hygraphPageContent(staticClient, `blog/${urlKey}`)
+  const page = hygraphPageContent(`blog/${urlKey}`)
   const layout = staticClient.query({ query: LayoutDocument })
 
   const blogPosts = staticClient.query({
@@ -102,8 +102,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
       ...(await blogPosts).data,
       ...(await layout).data,
       up: { href: '/', title: 'Home' },
-      apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,
   }
-}
+})

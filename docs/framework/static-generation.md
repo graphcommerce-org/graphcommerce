@@ -42,7 +42,7 @@ the data needed to render the layout (header, footer, menu etc.)
 ```tsx
 // Example from /pages/account/index.tsx
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
+export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async ({ locale }) => {
  ...
 
   const page = staticClient.query({
@@ -57,11 +57,10 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
     props: {
       ...(await page).data,
       up: { href: '/', title: 'Home' },
-      apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,
   }
-}
+})
 ```
 
 ## getStaticPaths
@@ -159,7 +158,6 @@ return {
   props: {
     ...(await productPage).data,
     ...(await typeProductPage).data,
-    apolloState: await conf.then(() => client.cache.extract()),
     up,
   },
   revalidate: 60 * 20,

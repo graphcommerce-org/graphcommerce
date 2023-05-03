@@ -31,6 +31,7 @@ import {
   FullPageMessage,
   iconAddresses,
 } from '@graphcommerce/next-ui'
+import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { CircularProgress, Container, Typography } from '@mui/material'
@@ -148,18 +149,14 @@ ShippingPage.pageOptions = pageOptions
 
 export default ShippingPage
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
-  const conf = client.query({ query: StoreConfigDocument })
+export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async ({ locale }) => {
   const staticClient = graphqlSsrClient(locale)
-
   const layout = staticClient.query({ query: LayoutDocument })
 
   return {
     props: {
       ...(await layout).data,
       up: { href: '/cart', title: 'Cart' },
-      apolloState: await conf.then(() => client.cache.extract()),
     },
   }
-}
+})

@@ -13,7 +13,6 @@ import { ApolloClientConfig, graphqlConfig, ApolloClientConfigInput } from '../.
 import fragments from '../../generated/fragments.json'
 import { createCacheReviver } from './createCacheReviver'
 import { errorLink } from './errorLink'
-import { measurePerformanceLink } from './measurePerformanceLink'
 import { mergeTypePolicies } from './typePolicies'
 
 export const globalApolloClient: { current: ApolloClient<NormalizedCacheObject> | null } = {
@@ -51,7 +50,6 @@ export function GraphQLProvider(props: GraphQLProviderProps) {
 
   const [client] = useState(() => {
     const link = ApolloLink.from([
-      ...(typeof window === 'undefined' ? [errorLink, measurePerformanceLink] : []),
       ...config.current.links,
       // The actual Http connection to the Mesh backend.
       new HttpLink({ uri: '/api/graphql', credentials: 'same-origin' }),

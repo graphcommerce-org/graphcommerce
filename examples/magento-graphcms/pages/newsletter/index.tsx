@@ -1,7 +1,9 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
+import { HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
+import { hygraphPageContent } from '@graphcommerce/graphcms-ui/server'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { PageMeta, GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
+import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { Container } from '@mui/material'
 import {
   LayoutOverlay,
@@ -68,12 +70,10 @@ NewsletterSubscribe.pageOptions = pageOptions
 
 export default NewsletterSubscribe
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
+export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async () => {
   const url = `newsletter`
-  const client = graphqlSharedClient(locale)
-  const staticClient = graphqlSsrClient(locale)
-  const conf = client.query({ query: StoreConfigDocument })
-  const page = hygraphPageContent(staticClient, url)
+  const staticClient = graphqlSsrClient()
+  const page = hygraphPageContent(url)
   const layout = staticClient.query({ query: LayoutDocument })
 
   if (!(await page).data.pages?.[0]) return { notFound: true }
@@ -82,8 +82,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
     props: {
       ...(await page).data,
       ...(await layout).data,
-      apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,
   }
-}
+})

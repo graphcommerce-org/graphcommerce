@@ -78,27 +78,28 @@ AboutUs.pageOptions = {
 
 export default AboutUs
 
-export const getStaticProps: GetPageStaticProps = async (context) => {
-  const { locale } = context
-  const client = graphqlSharedClient(locale)
-  const staticClient = graphqlSsrClient(locale)
+export const getStaticProps: GetPageStaticProps = enhanceStaticProps(
+  async (context) => {
+    const { locale } = context
+    const client = graphqlSharedClient(locale)
+    const staticClient = graphqlSsrClient(locale)
 
-  const conf = client.query({ query: StoreConfigDocument })
-  const page = staticClient.query({
-    query: DefaultPageDocument,
-    variables: {
-      url: '',
-      rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
-    },
-  })
-  // if (!(await page).data.pages?.[0]) return { notFound: true }
-  return {
-    props: {
-      ...(await page).data,
-      apolloState: await conf.then(() => client.cache.extract()),
-    },
-  }
-}
+    const conf = client.query({ query: StoreConfigDocument })
+    const page = staticClient.query({
+      query: DefaultPageDocument,
+      variables: {
+        url: '',
+        rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
+      },
+    })
+    // if (!(await page).data.pages?.[0]) return { notFound: true }
+    return {
+      props: {
+        ...(await page).data,
+      },
+    }
+  },
+)
 ```
 
 - Visiting http://localhost:3000/about/about-us will output:
@@ -184,27 +185,28 @@ export const getStaticPaths: GetPageStaticPaths = (context) => ({
   fallback: 'blocking',
 })
 
-export const getStaticProps: GetPageStaticProps = async (context) => {
-  const { locale, params } = context
-  const client = graphqlSharedClient(locale)
-  const staticClient = graphqlSsrClient(locale)
+export const getStaticProps: GetPageStaticProps = enhanceStaticProps(
+  async (context) => {
+    const { locale, params } = context
+    const client = graphqlSharedClient(locale)
+    const staticClient = graphqlSsrClient(locale)
 
-  const conf = client.query({ query: StoreConfigDocument })
-  const page = staticClient.query({
-    query: DefaultPageDocument,
-    variables: {
-      url: `about/${params?.url}`,
-      rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
-    },
-  })
-  // if (!(await page).data.pages?.[0]) return { notFound: true }
-  return {
-    props: {
-      ...(await page).data,
-      apolloState: await conf.then(() => client.cache.extract()),
-    },
-  }
-}
+    const conf = client.query({ query: StoreConfigDocument })
+    const page = staticClient.query({
+      query: DefaultPageDocument,
+      variables: {
+        url: `about/${params?.url}`,
+        rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
+      },
+    })
+    // if (!(await page).data.pages?.[0]) return { notFound: true }
+    return {
+      props: {
+        ...(await page).data,
+      },
+    }
+  },
+)
 ```
 
 By renaming the file to `/about/[url].tsx`, all routes starting with /about/

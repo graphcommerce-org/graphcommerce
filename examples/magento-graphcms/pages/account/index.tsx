@@ -32,7 +32,8 @@ import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
-import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import { graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
+import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 
 type GetPageStaticProps = GetStaticProps<LayoutMinimalProps>
 
@@ -170,18 +171,12 @@ AccountIndexPage.pageOptions = pageOptions
 
 export default AccountIndexPage
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const staticClient = graphqlSsrClient(locale)
-  const client = graphqlSharedClient(locale)
-  const conf = client.query({ query: StoreConfigDocument })
+export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async () => {
+  const staticClient = graphqlSsrClient()
   const layout = staticClient.query({ query: LayoutDocument })
 
   return {
-    props: {
-      ...(await layout).data,
-      up: { href: '/', title: 'Home' },
-      apolloState: await conf.then(() => client.cache.extract()),
-    },
+    props: { ...(await layout).data, up: { href: '/', title: 'Home' } },
     revalidate: 60 * 20,
   }
-}
+})

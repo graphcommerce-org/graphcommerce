@@ -25,6 +25,7 @@ import {
   LayoutHeader,
   findByTypename,
 } from '@graphcommerce/next-ui'
+import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import React from 'react'
@@ -135,13 +136,10 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   return { paths, fallback: 'blocking' }
 }
 
-export const getStaticProps: GetPageStaticProps = async ({ params, locale, defaultLocale }) => {
-  const client = graphqlSharedClient(locale)
-  const staticClient = graphqlSsrClient(locale)
-
+export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async ({ params }) => {
+  const staticClient = graphqlSsrClient()
   const urlKey = params?.url ?? '??'
 
-  const conf = client.query({ query: StoreConfigDocument })
   const productPage = staticClient.query({
     query: ProductPageDocument,
     variables: { url: 'product/global', urlKey },
@@ -170,9 +168,8 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale, defau
       ...(await productPage).data,
       ...(await typeProductPage).data,
       ...(await layout).data,
-      apolloState: await conf.then(() => client.cache.extract()),
       up,
     },
     revalidate: 60 * 20,
   }
-}
+})

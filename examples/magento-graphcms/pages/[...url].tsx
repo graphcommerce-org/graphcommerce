@@ -1,6 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { Asset, hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
-import { flushMeasurePerf } from '@graphcommerce/graphql'
+import { Asset, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
+import { hygraphPageContent } from '@graphcommerce/graphcms-ui/server'
 import {
   CategoryChildren,
   CategoryDescription,
@@ -14,7 +14,6 @@ import {
   FilterTypes,
   getFilterTypes,
   parseParams,
-  ProductFiltersDocument,
   ProductFiltersPro,
   ProductFiltersProAllFiltersChip,
   ProductFiltersProFilterChips,
@@ -22,7 +21,6 @@ import {
   ProductFiltersProSortChip,
   ProductFiltersQuery,
   ProductListCount,
-  ProductListDocument,
   ProductListFilters,
   ProductListFiltersContainer,
   ProductListPagination,
@@ -31,6 +29,7 @@ import {
   ProductListQuery,
   ProductListSort,
 } from '@graphcommerce/magento-product'
+import { productFilters, productList } from '@graphcommerce/magento-product/server'
 import { StoreConfigDocument, redirectOrNotFound } from '@graphcommerce/magento-store'
 import {
   StickyBelowHeader,
@@ -39,6 +38,7 @@ import {
   GetStaticProps,
   MetaRobots,
 } from '@graphcommerce/next-ui'
+import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { Container } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import {
@@ -50,7 +50,11 @@ import {
 } from '../components'
 import { LayoutDocument } from '../components/Layout/Layout.gql'
 import { CategoryPageDocument, CategoryPageQuery } from '../graphql/CategoryPage.gql'
-import { graphqlSsrClient, graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
+import {
+  graphqlSsrClient,
+  graphqlSharedClient,
+  graphqlQuery,
+} from '../lib/graphql/graphqlSsrClient'
 
 export type CategoryProps = CategoryPageQuery &
   HygraphPagesQuery &
@@ -187,25 +191,24 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   return { paths, fallback: 'blocking' }
 }
 
-export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
+export const getStaticProps = enhanceStaticProps<
+  LayoutNavigationProps,
+  CategoryProps,
+  CategoryRoute
+>(async ({ params, locale }) => {
   const [url, query] = extractUrlQuery(params)
-  if (!url || !query) return { notFound: true }
+  if (!url || !query || !locale) return { notFound: true }
 
-  const client = graphqlSharedClient(locale)
+  const client = graphqlSharedClient()
   const conf = client.query({ query: StoreConfigDocument })
   const filterTypes = getFilterTypes(client)
+  const staticClient = graphqlSsrClient()
 
-  const staticClient = graphqlSsrClient(locale)
-
-  const categoryPage = staticClient.query({
-    query: CategoryPageDocument,
-    variables: { url },
-  })
-  const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
+  const categoryPage = graphqlQuery(CategoryPageDocument, { variables: { url } })
+  const layout = graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })
 
   const productListParams = parseParams(url, query, await filterTypes)
   const filteredCategoryUid = productListParams && productListParams.filters.category_uid?.in?.[0]
-
   const category = categoryPage.then((res) => res.data.categories?.items?.[0])
   let categoryUid = filteredCategoryUid
   if (!categoryUid) {
@@ -213,9 +216,15 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     if (productListParams) productListParams.filters.category_uid = { in: [categoryUid] }
   }
 
-  const pages = hygraphPageContent(staticClient, url, category)
+  const pages = hygraphPageContent(url, category)
   const hasPage = filteredCategoryUid ? false : (await pages).data.pages.length > 0
   const hasCategory = Boolean(productListParams && categoryUid)
+
+  const filters = productFilters(locale, { filters: { category_uid: { eq: categoryUid } } })
+  const products = productList(locale, {
+    ...productListParams,
+    filters: { ...productListParams.filters, category_uid: { eq: categoryUid } },
+  })
 
   if (!productListParams || !(hasPage || hasCategory))
     return redirectOrNotFound(staticClient, conf, params, locale)
@@ -226,24 +235,10 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
         ...(await categoryPage).data,
         ...(await pages).data,
         ...(await layout).data,
-        apolloState: await conf.then(() => client.cache.extract()),
       },
       revalidate: 60 * 20,
     }
   }
-
-  const filters = staticClient.query({
-    query: ProductFiltersDocument,
-    variables: { filters: { category_uid: { eq: categoryUid } } },
-  })
-  const products = staticClient.query({
-    query: ProductListDocument,
-    variables: {
-      pageSize: (await conf).data.storeConfig?.grid_per_page ?? 24,
-      ...productListParams,
-      filters: { ...productListParams.filters, category_uid: { eq: categoryUid } },
-    },
-  })
 
   if ((await products).errors) return { notFound: true }
 
@@ -264,11 +259,9 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
       ...(await layout).data,
       filterTypes: await filterTypes,
       params: productListParams,
-      apolloState: await conf.then(() => client.cache.extract()),
       up,
     },
     revalidate: 60 * 20,
   }
-  flushMeasurePerf()
   return result
-}
+})
