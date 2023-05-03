@@ -196,7 +196,7 @@ export function ProductListItem(props: ProductListItemProps) {
                 gridArea: `1 / 2 / 2 / 3`,
                 zIndex: 1,
               }}
-              className={classes.topLeft}
+              className={classes.topRight}
             >
               {topRight}
             </Box>
