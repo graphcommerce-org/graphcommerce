@@ -1,5 +1,7 @@
 # @graphcommerce/address-fields-nl
 
+## 6.2.0-canary.11
+
 ## 6.2.0-canary.10
 
 ## 6.2.0-canary.9

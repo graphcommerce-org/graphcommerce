@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-payment-braintree",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "6.2.0-canary.10",
+  "version": "6.2.0-canary.11",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -12,22 +12,22 @@
     }
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "6.2.0-canary.10",
-    "@graphcommerce/magento-cart-shipping-address": "6.2.0-canary.10",
-    "@graphcommerce/magento-product": "6.2.0-canary.10",
-    "@graphcommerce/magento-product-configurable": "6.2.0-canary.10",
-    "@graphcommerce/prettier-config-pwa": "6.2.0-canary.10",
-    "@graphcommerce/typescript-config-pwa": "6.2.0-canary.10",
+    "@graphcommerce/eslint-config-pwa": "6.2.0-canary.11",
+    "@graphcommerce/magento-cart-shipping-address": "6.2.0-canary.11",
+    "@graphcommerce/magento-product": "6.2.0-canary.11",
+    "@graphcommerce/magento-product-configurable": "6.2.0-canary.11",
+    "@graphcommerce/prettier-config-pwa": "6.2.0-canary.11",
+    "@graphcommerce/typescript-config-pwa": "6.2.0-canary.11",
     "@types/braintree-web": "^3.75.20"
   },
   "dependencies": {
-    "@graphcommerce/graphql": "6.2.0-canary.10",
-    "@graphcommerce/image": "6.2.0-canary.10",
-    "@graphcommerce/magento-cart": "6.2.0-canary.10",
-    "@graphcommerce/magento-cart-payment-method": "6.2.0-canary.10",
-    "@graphcommerce/magento-store": "6.2.0-canary.10",
-    "@graphcommerce/next-ui": "6.2.0-canary.10",
-    "@graphcommerce/react-hook-form": "6.2.0-canary.10",
+    "@graphcommerce/graphql": "6.2.0-canary.11",
+    "@graphcommerce/image": "6.2.0-canary.11",
+    "@graphcommerce/magento-cart": "6.2.0-canary.11",
+    "@graphcommerce/magento-cart-payment-method": "6.2.0-canary.11",
+    "@graphcommerce/magento-store": "6.2.0-canary.11",
+    "@graphcommerce/next-ui": "6.2.0-canary.11",
+    "@graphcommerce/react-hook-form": "6.2.0-canary.11",
     "braintree-web": "^3.92.0"
   },
   "peerDependencies": {
