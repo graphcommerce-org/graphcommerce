@@ -47,8 +47,8 @@ EditBillingAddress.pageOptions = pageOptions
 
 export default EditBillingAddress
 
-export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async ({ locale }) => {
-  const staticClient = graphqlSsrClient(locale)
+export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async () => {
+  const staticClient = graphqlSsrClient()
 
   const layout = staticClient.query({ query: LayoutDocument })
 

@@ -94,9 +94,9 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   return { paths, fallback: 'blocking' }
 }
 
-export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async ({ locale, params }) => {
+export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async ({ params }) => {
   const skip = Math.abs((Number(params?.page ?? '1') - 1) * pageSize)
-  const staticClient = graphqlSsrClient(locale)
+  const staticClient = graphqlSsrClient()
 
   const defaultPage = hygraphPageContent('blog')
   const layout = staticClient.query({ query: LayoutDocument })

@@ -81,22 +81,20 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
     redirects: async () => {
       const redirects = (await nextConfig.redirects?.()) ?? []
 
-      if (!graphcommerceConfig.legacyProductRoute) {
-        const destination = `${graphcommerceConfig.productRoute ?? '/p/'}:url*`
+      const destination = `${graphcommerceConfig.productRoute ?? '/p/'}:url*`
 
-        redirects.push(
-          ...[
-            { source: '/product/bundle/:url*', destination, permanent: true },
-            { source: '/product/configurable/:url*', destination, permanent: true },
-            { source: '/product/downloadable/:url*', destination, permanent: true },
-            { source: '/product/grouped/:url*', destination, permanent: true },
-            { source: '/product/virtual/:url*', destination, permanent: true },
-          ],
-        )
+      redirects.push(
+        ...[
+          { source: '/product/bundle/:url*', destination, permanent: true },
+          { source: '/product/configurable/:url*', destination, permanent: true },
+          { source: '/product/downloadable/:url*', destination, permanent: true },
+          { source: '/product/grouped/:url*', destination, permanent: true },
+          { source: '/product/virtual/:url*', destination, permanent: true },
+        ],
+      )
 
-        if (destination !== '/product/:url*')
-          redirects.push({ source: '/product/:url*', destination, permanent: true })
-      }
+      if (destination !== '/product/:url*')
+        redirects.push({ source: '/product/:url*', destination, permanent: true })
 
       return redirects
     },

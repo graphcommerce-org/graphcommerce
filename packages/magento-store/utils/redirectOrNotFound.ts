@@ -1,10 +1,11 @@
 import { ParsedUrlQuery } from 'querystring'
-import { ApolloClient, ApolloQueryResult, NormalizedCacheObject } from '@graphcommerce/graphql'
+import { ApolloQueryResult } from '@graphcommerce/graphql'
 import { nonNullable, isTypename } from '@graphcommerce/next-ui'
 import { Redirect } from 'next'
 import { StoreConfigQuery } from '../StoreConfig.gql'
 import { defaultLocale } from '../localeToStore'
 import { HandleRedirectDocument } from './HandleRedirect.gql'
+import { graphqlSsrClient } from '@graphcommerce/graphql-mesh'
 
 export type RedirectOr404Return = Promise<
   | { redirect: Redirect; revalidate?: number | boolean }
@@ -35,7 +36,6 @@ const redirect = (from: string, to: string, permanent: boolean, locale?: string)
 }
 
 export async function redirectOrNotFound(
-  client: ApolloClient<NormalizedCacheObject>,
   config: Promise<ApolloQueryResult<StoreConfigQuery>> | ApolloQueryResult<StoreConfigQuery>,
   params?: ParsedUrlQuery,
   locale?: string,
@@ -44,6 +44,8 @@ export async function redirectOrNotFound(
   const from = Object.values(params ?? {})
     .map((v) => (Array.isArray(v) ? v.join('/') : v))
     .join('/')
+
+  const client = graphqlSsrClient()
 
   try {
     // Get the configured suffixes from the store config
@@ -95,9 +97,6 @@ export async function redirectOrNotFound(
         'GroupedProduct',
       ])
     ) {
-      if (import.meta.graphCommerce.legacyProductRoute)
-        return notFound(from, 'Redirects are only supported for single product pages.')
-
       const productRoute = import.meta.graphCommerce.productRoute ?? '/p/'
 
       if (redirectUrl) return redirect(from, `${productRoute}${redirectUrl}`, permanent, locale)

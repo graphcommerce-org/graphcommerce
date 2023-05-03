@@ -54,11 +54,8 @@ StoresIndexPage.pageOptions = pageOptions
 
 export default StoresIndexPage
 
-export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
-  const staticClient = graphqlSsrClient(locale)
-
-  const conf = client.query({ query: StoreConfigDocument })
+export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async () => {
+  const staticClient = graphqlSsrClient()
   const stores = staticClient.query({ query: StoreSwitcherListDocument })
 
   return {

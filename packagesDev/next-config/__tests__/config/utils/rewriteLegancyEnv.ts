@@ -18,7 +18,6 @@ it('rewrites legacy env', () => {
   const configFile: GraphCommerceConfig = {
     storefront: [{ locale: 'en', hygraphLocales: ['en'], magentoStoreCode: 'en_us' }],
     customerRequireEmailConfirmation: false,
-    legacyProductRoute: true,
     productFiltersPro: false,
     canonicalBaseUrl: 'https://example.com',
     hygraphEndpoint: 'https://example.com',

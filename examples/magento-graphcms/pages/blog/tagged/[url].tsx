@@ -77,9 +77,9 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   return { paths, fallback: 'blocking' }
 }
 
-export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async ({ locale, params }) => {
+export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async ({ params }) => {
   const urlKey = params?.url ?? '??'
-  const staticClient = graphqlSsrClient(locale)
+  const staticClient = graphqlSsrClient()
   const limit = 99
   const page = hygraphPageContent(`blog/tagged/${urlKey}`)
   const layout = staticClient.query({ query: LayoutDocument })

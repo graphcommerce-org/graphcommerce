@@ -82,8 +82,8 @@ OrderDetailPage.pageOptions = pageOptions
 
 export default OrderDetailPage
 
-export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async ({ locale }) => {
-  const staticClient = graphqlSsrClient(locale)
+export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async () => {
+  const staticClient = graphqlSsrClient()
   const countryRegions = staticClient.query({ query: CountryRegionsDocument })
 
   return {

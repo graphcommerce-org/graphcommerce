@@ -79,10 +79,9 @@ AboutUs.pageOptions = {
 export default AboutUs
 
 export const getStaticProps: GetPageStaticProps = enhanceStaticProps(
-  async (context) => {
-    const { locale } = context
-    const client = graphqlSharedClient(locale)
-    const staticClient = graphqlSsrClient(locale)
+  async () => {
+    const client = graphqlSharedClient()
+    const staticClient = graphqlSsrClient()
 
     const conf = client.query({ query: StoreConfigDocument })
     const page = staticClient.query({
@@ -186,10 +185,9 @@ export const getStaticPaths: GetPageStaticPaths = (context) => ({
 })
 
 export const getStaticProps: GetPageStaticProps = enhanceStaticProps(
-  async (context) => {
-    const { locale, params } = context
-    const client = graphqlSharedClient(locale)
-    const staticClient = graphqlSsrClient(locale)
+  async ({ params }) => {
+    const client = graphqlSharedClient()
+    const staticClient = graphqlSsrClient()
 
     const conf = client.query({ query: StoreConfigDocument })
     const page = staticClient.query({

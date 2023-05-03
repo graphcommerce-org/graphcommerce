@@ -1,13 +1,5 @@
 extend input GraphCommerceConfig {
   """
-  On older versions of GraphCommerce products would use a product type specific route.
-
-  This should only be set to true if you use the /product/[url] AND /product/configurable/[url] routes.
-
-  @deprecated Will be removed in a future version. [migration](../upgrading/graphcommerce-5-to-6.md#product-routing-changes)
-  """
-  legacyProductRoute: Boolean
-  """
   Product filters with better UI for mobile and desktop.
 
   @experimental This is an experimental feature and may change in the future.

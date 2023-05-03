@@ -30,7 +30,8 @@ import {
   ProductListSort,
 } from '@graphcommerce/magento-product'
 import { productFilters, productList } from '@graphcommerce/magento-product/server'
-import { StoreConfigDocument, redirectOrNotFound } from '@graphcommerce/magento-store'
+import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { redirectOrNotFound } from '@graphcommerce/magento-store/server'
 import {
   StickyBelowHeader,
   LayoutTitle,
@@ -202,7 +203,6 @@ export const getStaticProps = enhanceStaticProps<
   const client = graphqlSharedClient()
   const conf = client.query({ query: StoreConfigDocument })
   const filterTypes = getFilterTypes(client)
-  const staticClient = graphqlSsrClient()
 
   const categoryPage = graphqlQuery(CategoryPageDocument, { variables: { url } })
   const layout = graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })
@@ -220,14 +220,14 @@ export const getStaticProps = enhanceStaticProps<
   const hasPage = filteredCategoryUid ? false : (await pages).data.pages.length > 0
   const hasCategory = Boolean(productListParams && categoryUid)
 
-  const filters = productFilters(locale, { filters: { category_uid: { eq: categoryUid } } })
-  const products = productList(locale, {
+  const filters = productFilters({ filters: { category_uid: { eq: categoryUid } } })
+  const products = productList({
     ...productListParams,
     filters: { ...productListParams.filters, category_uid: { eq: categoryUid } },
   })
 
   if (!productListParams || !(hasPage || hasCategory))
-    return redirectOrNotFound(staticClient, conf, params, locale)
+    return redirectOrNotFound(conf, params, locale)
 
   if (!hasCategory) {
     return {
