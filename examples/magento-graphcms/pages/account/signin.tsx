@@ -1,7 +1,7 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { useMergeCustomerCart } from '@graphcommerce/magento-cart'
 import { AccountSignInUpForm } from '@graphcommerce/magento-customer'
-import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { PageMeta } from '@graphcommerce/magento-store'
 import { useMergeGuestWishlistWithCustomer } from '@graphcommerce/magento-wishlist'
 import { GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
@@ -9,7 +9,6 @@ import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
 import { LayoutOverlay, LayoutOverlayProps } from '../../components'
-import { graphqlSharedClient } from '@graphcommerce/graphql-mesh'
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 

@@ -1,6 +1,7 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { hygraphPageContent } from '@graphcommerce/graphcms-ui/server'
+import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 import { PageMeta, GetStaticProps, Row, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
 import { enhanceStaticPaths, enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { Trans } from '@lingui/react'
@@ -19,8 +20,6 @@ import {
   RowRenderer,
 } from '../../../components'
 import { LayoutDocument } from '../../../components/Layout/Layout.gql'
-
-import { graphqlQuery, graphqlSsrClient } from '@graphcommerce/graphql-mesh'
 
 type Props = HygraphPagesQuery & BlogListTaggedQuery
 type RouteProps = { url: string }

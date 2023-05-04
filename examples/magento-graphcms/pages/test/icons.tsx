@@ -1,5 +1,4 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   LayoutTitle,
   IconSvg,
@@ -12,7 +11,6 @@ import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { Container, Typography, Slider, Box } from '@mui/material'
 import React, { useEffect, useRef, useState } from 'react'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
-import { graphqlSharedClient } from '@graphcommerce/graphql-mesh'
 
 const propVariants: Record<string, IconSvgProps> = {
   Default: {

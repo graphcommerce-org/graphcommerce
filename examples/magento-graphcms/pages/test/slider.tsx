@@ -1,10 +1,9 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { ProductListDocument, ProductListQuery } from '@graphcommerce/magento-product'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, LayoutTitle, LayoutHeader, SidebarGallery } from '@graphcommerce/next-ui'
 import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { LayoutNavigation, LayoutNavigationProps } from '../../components'
-import { graphqlSsrClient, graphqlSharedClient, graphqlQuery } from '@graphcommerce/graphql-mesh'
+import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 
 type Props = ProductListQuery
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props>

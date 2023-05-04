@@ -3,7 +3,7 @@ import { useQuery } from '@graphcommerce/graphql'
 import { Image } from '@graphcommerce/image'
 import { CartAddedDocument, CrosssellsDocument, useCartQuery } from '@graphcommerce/magento-cart'
 import { AddProductsToCartForm } from '@graphcommerce/magento-product'
-import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { PageMeta } from '@graphcommerce/magento-store'
 import {
   Button,
   filterNonNullableKeys,
@@ -22,7 +22,6 @@ import { Box, Container, Divider, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useMemo } from 'react'
 import { LayoutOverlay, LayoutOverlayProps, productListRenderer } from '../../components'
-import { graphqlSharedClient } from '@graphcommerce/graphql-mesh'
 
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>

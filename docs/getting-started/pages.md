@@ -54,10 +54,7 @@ import { Container } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import { LayoutFull, LayoutFullProps, LayoutDocument } from '../../components'
 import { PagesStaticPathsDocument } from '../../graphql/PagesStaticPaths.gql'
-import {
-  graphqlSsrClient,
-  graphqlSharedClient,
-} from '@graphcommerce/graphql-mesh'
+import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 
 type Props = unknown
 type RouteProps = { url: string }

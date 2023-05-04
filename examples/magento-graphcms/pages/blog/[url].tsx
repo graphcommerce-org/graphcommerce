@@ -25,8 +25,7 @@ import {
   RowRenderer,
 } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
-
-import { graphqlQuery, graphqlSharedClient, graphqlSsrClient } from '@graphcommerce/graphql-mesh'
+import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 
 type Props = HygraphPagesQuery & BlogListQuery
 type RouteProps = { url: string }

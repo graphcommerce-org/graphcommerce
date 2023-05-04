@@ -54,10 +54,9 @@ import {
   Usps,
 } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
-
 import { UspsDocument, UspsQuery } from '../../components/Usps/Usps.gql'
 import { ProductPage2Document, ProductPage2Query } from '../../graphql/ProductPage2.gql'
-import { graphqlQuery, graphqlSharedClient, graphqlSsrClient } from '@graphcommerce/graphql-mesh'
+import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 
 type Props = HygraphPagesQuery &
   UspsQuery &

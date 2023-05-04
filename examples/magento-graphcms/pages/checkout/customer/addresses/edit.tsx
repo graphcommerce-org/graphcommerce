@@ -5,7 +5,7 @@ import {
   useCustomerQuery,
   AccountDashboardAddressesDocument,
 } from '@graphcommerce/magento-customer'
-import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { PageMeta } from '@graphcommerce/magento-store'
 import {
   GetStaticProps,
   iconAddresses,
@@ -21,7 +21,6 @@ import { Trans } from '@lingui/react'
 import { Box, CircularProgress, Container, Skeleton } from '@mui/material'
 import { useRouter } from 'next/router'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../../components'
-import { graphqlSharedClient } from '../@graphcommerce/graphql-mesh'
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 

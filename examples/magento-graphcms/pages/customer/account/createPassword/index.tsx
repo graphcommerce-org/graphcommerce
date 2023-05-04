@@ -1,6 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { ResetPasswordForm } from '@graphcommerce/magento-customer'
-import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { PageMeta } from '@graphcommerce/magento-store'
 import { GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
@@ -8,7 +8,6 @@ import { Trans } from '@lingui/react'
 import { Box, Container, Link, Button } from '@mui/material'
 import router, { useRouter } from 'next/router'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../../components'
-import { graphqlSharedClient } from '../@graphcommerce/graphql-mesh'
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 

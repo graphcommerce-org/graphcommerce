@@ -16,14 +16,13 @@ import {
   ProductListQuery,
   ProductListSort,
 } from '@graphcommerce/magento-product'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { StickyBelowHeader, LayoutTitle, LayoutHeader, LinkOrButton } from '@graphcommerce/next-ui'
 import { GetStaticProps } from '@graphcommerce/next-ui/Page/types'
 import { enhanceStaticPaths, enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { Box, Container, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import { LayoutMinimal, LayoutMinimalProps } from '../../../components'
-import { graphqlSsrClient, graphqlSharedClient, graphqlQuery } from '@graphcommerce/graphql-mesh'
+import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 import { getFilterTypes, extractUrlQuery, parseParams } from '@graphcommerce/magento-product/server'
 
 type Props = ProductListQuery &

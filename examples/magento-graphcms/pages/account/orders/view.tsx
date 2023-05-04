@@ -21,7 +21,7 @@ import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
 import { useRouter } from 'next/router'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
-import { graphqlSsrClient, graphqlSharedClient, graphqlQuery } from '@graphcommerce/graphql-mesh'
+import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 

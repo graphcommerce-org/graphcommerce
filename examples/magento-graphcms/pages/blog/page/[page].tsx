@@ -25,12 +25,10 @@ import {
   RowRenderer,
 } from '../../../components'
 import { LayoutDocument } from '../../../components/Layout/Layout.gql'
-
-import { graphqlQuery, graphqlSsrClient } from '@graphcommerce/graphql-mesh'
+import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 
 type Props = HygraphPagesQuery & BlogListQuery & BlogPathsQuery
 type RouteProps = { page: string }
-type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
 const pageSize = 16
@@ -88,19 +86,19 @@ export const getStaticPaths = enhanceStaticPaths('blocking', async ({ locale }) 
 
 export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async ({ params }) => {
   const skip = Math.abs((Number(params?.page ?? '1') - 1) * pageSize)
-  const defaultPage = hygraphPageContent('blog')
+  const pages = hygraphPageContent('blog')
   const blogPosts = graphqlQuery(BlogListDocument, {
     variables: { currentUrl: ['blog'], first: pageSize, skip },
   })
   const blogPaths = graphqlQuery(BlogPathsDocument)
 
-  if (!(await defaultPage).data.pages?.[0]) return { notFound: true }
+  if (!(await pages).data.pages?.[0]) return { notFound: true }
   if (!(await blogPosts).data.blogPosts.length) return { notFound: true }
   if (Number(params?.page) <= 0) return { notFound: true }
 
   return {
     props: {
-      ...(await defaultPage).data,
+      ...(await pages).data,
       ...(await blogPosts).data,
       ...(await blogPaths).data,
       ...(await graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })).data,

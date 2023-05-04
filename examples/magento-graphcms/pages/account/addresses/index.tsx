@@ -17,7 +17,7 @@ import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
-import { graphqlQuery, graphqlSsrClient } from '@graphcommerce/graphql-mesh'
+import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>

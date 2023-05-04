@@ -13,8 +13,7 @@ import {
   RowRenderer,
 } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
-
-import { graphqlSsrClient, graphqlQuery } from '@graphcommerce/graphql-mesh'
+import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 
 type Props = HygraphPagesQuery
 type RouteProps = { url: string[] }

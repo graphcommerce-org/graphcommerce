@@ -27,13 +27,13 @@ import {
   LayoutTitle,
   LayoutHeader,
 } from '@graphcommerce/next-ui'
+import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
-import { graphqlQuery, graphqlSsrClient } from '@graphcommerce/graphql-mesh'
-import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
+import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 
 type GetPageStaticProps = GetStaticProps<LayoutMinimalProps>
 

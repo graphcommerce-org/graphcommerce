@@ -5,7 +5,7 @@ import { enhanceStaticPaths, enhanceStaticProps } from '@graphcommerce/next-ui/s
 import { Container, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
-import { graphqlSsrClient, graphqlQuery } from '@graphcommerce/graphql-mesh'
+import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 
 type Props = { agreement: NonNullable<NonNullable<CartAgreementsQuery['checkoutAgreements']>[0]> }
 type RouteProps = { url: string }

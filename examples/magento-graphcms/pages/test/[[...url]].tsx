@@ -5,8 +5,7 @@ import { enhanceStaticPaths, enhanceStaticProps } from '@graphcommerce/next-ui/s
 import { GetStaticPaths } from 'next'
 import { LayoutNavigation, LayoutNavigationProps } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
-
-import { graphqlSsrClient, graphqlSharedClient, graphqlQuery } from '@graphcommerce/graphql-mesh'
+import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 import { LayoutDemo } from './minimal-page-shell/[[...url]]'
 
 type Props = { url: string }

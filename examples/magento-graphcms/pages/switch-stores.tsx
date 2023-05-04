@@ -1,7 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   PageMeta,
-  StoreConfigDocument,
   StoreSwitcherList,
   StoreSwitcherListDocument,
   StoreSwitcherListQuery,
@@ -18,8 +17,7 @@ import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
 import { useRouter } from 'next/router'
 import { LayoutOverlay, LayoutOverlayProps } from '../components'
-import { graphqlSsrClient, graphqlSharedClient, graphqlQuery } from '@graphcommerce/graphql-mesh'
-import { hygraphPageContent } from '@graphcommerce/graphcms-ui/server'
+import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 
 type RouteProps = { country?: string[] }
 type Props = StoreSwitcherListQuery
