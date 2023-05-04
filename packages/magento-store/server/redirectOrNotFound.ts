@@ -1,11 +1,12 @@
 import { ParsedUrlQuery } from 'querystring'
 import { ApolloQueryResult } from '@graphcommerce/graphql'
+import { graphqlSsrClient } from '@graphcommerce/graphql-mesh'
 import { nonNullable, isTypename } from '@graphcommerce/next-ui'
 import { Redirect } from 'next'
 import { StoreConfigQuery } from '../StoreConfig.gql'
 import { defaultLocale } from '../localeToStore'
 import { HandleRedirectDocument } from './HandleRedirect.gql'
-import { graphqlSsrClient } from '@graphcommerce/graphql-mesh'
+import { storeConfig } from './storeConfig'
 
 export type RedirectOr404Return = Promise<
   | { redirect: Redirect; revalidate?: number | boolean }
@@ -36,7 +37,6 @@ const redirect = (from: string, to: string, permanent: boolean, locale?: string)
 }
 
 export async function redirectOrNotFound(
-  config: Promise<ApolloQueryResult<StoreConfigQuery>> | ApolloQueryResult<StoreConfigQuery>,
   params?: ParsedUrlQuery,
   locale?: string,
 ): RedirectOr404Return {
@@ -49,7 +49,7 @@ export async function redirectOrNotFound(
 
   try {
     // Get the configured suffixes from the store config
-    const { product_url_suffix, category_url_suffix } = (await config).data.storeConfig ?? {}
+    const { product_url_suffix, category_url_suffix } = await storeConfig()
 
     const candidates = new Set([from])
 

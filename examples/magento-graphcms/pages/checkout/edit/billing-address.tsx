@@ -1,14 +1,11 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { EditBillingAddressForm } from '@graphcommerce/magento-cart-billing-address'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, PageMeta, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
-import { LayoutDocument } from '../../../components/Layout/Layout.gql'
-import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
@@ -47,15 +44,9 @@ EditBillingAddress.pageOptions = pageOptions
 
 export default EditBillingAddress
 
-export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async () => {
-  const staticClient = graphqlSsrClient()
-
-  const layout = staticClient.query({ query: LayoutDocument })
-
-  return {
-    props: {
-      ...(await layout).data,
-      variantMd: 'left',
-    },
-  }
-})
+export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async () => ({
+  props: {
+    ...(await graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })).data,
+    variantMd: 'left',
+  },
+}))

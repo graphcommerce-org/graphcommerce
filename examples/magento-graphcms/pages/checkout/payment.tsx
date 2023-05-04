@@ -18,7 +18,7 @@ import {
   PaymentMethodContextProvider,
 } from '@graphcommerce/magento-cart-payment-method'
 import { SubscribeToNewsletter } from '@graphcommerce/magento-newsletter'
-import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { PageMeta } from '@graphcommerce/magento-store'
 import {
   FormActions,
   FullPageMessage,
@@ -35,8 +35,6 @@ import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { CircularProgress, Container, Dialog, Typography } from '@mui/material'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
-import { LayoutDocument } from '../../components/Layout/Layout.gql'
-import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
 type GetPageStaticProps = GetStaticProps<LayoutMinimalProps>
 
@@ -155,14 +153,9 @@ PaymentPage.pageOptions = pageOptions
 
 export default PaymentPage
 
-export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async () => {
-  const staticClient = graphqlSsrClient()
-  const layout = staticClient.query({ query: LayoutDocument })
-
-  return {
-    props: {
-      ...(await layout).data,
-      up: { href: '/checkout', title: 'Shipping' },
-    },
-  }
-})
+export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async () => ({
+  props: {
+    ...(await graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })).data,
+    up: { href: '/checkout', title: 'Shipping' },
+  },
+}))

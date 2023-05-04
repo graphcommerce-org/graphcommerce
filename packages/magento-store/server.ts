@@ -1,4 +1,5 @@
-import 'server-only'
+// import 'server-only'
 
-export * from './utils/HandleRedirect.gql'
-export * from './utils/redirectOrNotFound'
+export * from './server/HandleRedirect.gql'
+export * from './server/redirectOrNotFound'
+export * from './server/storeConfig'

@@ -19,6 +19,7 @@ import {
   RowRenderer,
 } from '../../../components'
 import { LayoutDocument } from '../../../components/Layout/Layout.gql'
+
 import { graphqlSsrClient } from '../../../lib/graphql/graphqlSsrClient'
 
 type Props = HygraphPagesQuery & BlogListTaggedQuery
@@ -82,7 +83,6 @@ export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async ({ pa
   const staticClient = graphqlSsrClient()
   const limit = 99
   const page = hygraphPageContent(`blog/tagged/${urlKey}`)
-  const layout = staticClient.query({ query: LayoutDocument })
 
   const blogPosts = staticClient.query({
     query: BlogListTaggedDocument,
@@ -94,7 +94,7 @@ export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async ({ pa
     props: {
       ...(await page).data,
       ...(await blogPosts).data,
-      ...(await layout).data,
+      ...(await graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })).data,
       up: { href: '/blog', title: 'Blog' },
     },
     revalidate: 60 * 20,

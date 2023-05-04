@@ -6,6 +6,7 @@ import { GetStaticProps, LayoutHeader, MetaRobots, PageMeta } from '@graphcommer
 import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { LayoutNavigation, LayoutNavigationProps, RowProduct, RowRenderer } from '../components'
 import { LayoutDocument } from '../components/Layout/Layout.gql'
+
 import { graphqlQuery, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
 
 type Props = HygraphPagesQuery & {
@@ -70,11 +71,7 @@ CmsPage.pageOptions = {
 export default CmsPage
 
 export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async () => {
-  const staticClient = graphqlSsrClient()
-
   const pages = hygraphPageContent('page/home')
-
-  const layout = staticClient.query({ query: LayoutDocument })
 
   const favoritesList = graphqlQuery(ProductListDocument, {
     variables: { pageSize: 8, filters: { category_uid: { eq: 'MTIx' } } },
@@ -93,7 +90,7 @@ export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async () =>
   return {
     props: {
       ...(await pages).data,
-      ...(await layout).data,
+      ...(await graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })).data,
       latestList: (await latestList).data,
       favoritesList: (await favoritesList).data,
       swipableList: (await swipableList).data,

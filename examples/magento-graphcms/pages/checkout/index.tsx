@@ -38,6 +38,7 @@ import { CircularProgress, Container, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
+
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
 type Props = Record<string, unknown>
@@ -149,14 +150,9 @@ ShippingPage.pageOptions = pageOptions
 
 export default ShippingPage
 
-export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async () => {
-  const staticClient = graphqlSsrClient()
-  const layout = staticClient.query({ query: LayoutDocument })
-
-  return {
-    props: {
-      ...(await layout).data,
-      up: { href: '/cart', title: 'Cart' },
-    },
-  }
-})
+export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async () => ({
+  props: {
+    ...(await graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })).data,
+    up: { href: '/cart', title: 'Cart' },
+  },
+}))

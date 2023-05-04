@@ -7,6 +7,7 @@ import { Typography, Container } from '@mui/material'
 import { useEffect, useRef, useState } from 'react'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
+
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
 type Props = Record<string, unknown>
@@ -115,14 +116,9 @@ TypographyOverview.pageOptions = {
 
 export default TypographyOverview
 
-export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async () => {
-  const staticClient = graphqlSsrClient()
-  const layout = staticClient.query({ query: LayoutDocument })
-
-  return {
-    props: {
-      ...(await layout).data,
-      up: { href: '/', title: 'Home' },
-    },
-  }
-})
+export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async () => ({
+  props: {
+    ...(await graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })).data,
+    up: { href: '/', title: 'Home' },
+  },
+}))

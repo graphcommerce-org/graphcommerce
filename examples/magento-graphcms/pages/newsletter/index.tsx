@@ -1,8 +1,7 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { hygraphPageContent } from '@graphcommerce/graphcms-ui/server'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { PageMeta, GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
+import { PageMeta, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { Container } from '@mui/material'
 import {
@@ -11,13 +10,11 @@ import {
   LayoutNavigationProps,
   RowRenderer,
 } from '../../components'
-import { LayoutDocument } from '../../components/Layout/Layout.gql'
+
 import { GuestNewsletter } from '../../components/Newsletter/GuestNewsletter'
-import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
 type Props = HygraphPagesQuery
 type RouteProps = { url: string[] }
-type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
 function NewsletterSubscribe({ pages }: Props) {
   const page = pages?.[0]
@@ -70,19 +67,19 @@ NewsletterSubscribe.pageOptions = pageOptions
 
 export default NewsletterSubscribe
 
-export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async () => {
-  const url = `newsletter`
-  const staticClient = graphqlSsrClient()
-  const page = hygraphPageContent(url)
-  const layout = staticClient.query({ query: LayoutDocument })
+export const getStaticProps = enhanceStaticProps<LayoutNavigationProps, Props, RouteProps>(
+  async () => {
+    const url = `newsletter`
+    const page = hygraphPageContent(url)
 
-  if (!(await page).data.pages?.[0]) return { notFound: true }
+    if (!(await page).data.pages?.[0]) return { notFound: true }
 
-  return {
-    props: {
-      ...(await page).data,
-      ...(await layout).data,
-    },
-    revalidate: 60 * 20,
-  }
-})
+    return {
+      props: {
+        ...(await page).data,
+        ...(await graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })).data,
+      },
+      revalidate: 60 * 20,
+    }
+  },
+)

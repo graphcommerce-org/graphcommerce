@@ -1,7 +1,16 @@
 import type { ParsedUrlQuery } from 'querystring'
 import type { GraphCommerceStorefrontConfig } from '@graphcommerce/next-config'
-import type { GetServerSidePropsContext, GetStaticPropsContext } from 'next'
+import type {
+  GetServerSidePropsContext,
+  GetServerSidePropsResult,
+  GetStaticPaths,
+  GetStaticPathsContext,
+  GetStaticPathsResult,
+  GetStaticPropsContext,
+  GetStaticPropsResult,
+} from 'next'
 import type { GetStaticProps, GetServerSideProps } from '../Page/types'
+import { storefrontConfigDefault } from '../config/storefrontConfig'
 
 export const storefrontAll = import.meta.graphCommerce.storefront
 
@@ -17,9 +26,6 @@ export const storefrontConfig = () => {
     )
   return conf
 }
-
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface EnhanceStaticProps {}
 
 /**
  * Wraps the getStaticProps function to provide the correct storefrontConfig().
@@ -37,12 +43,10 @@ export function enhanceStaticProps<
   return (context: GetStaticPropsContext<Params>) => {
     const config = storefrontAll.find((l) => l.locale === context.locale)
     if (!config) throw Error(`No storefront config found for locale ${context.locale}`)
-    return storefrontContext.run(config, cb, context)
+    const result = storefrontContext.run(config, cb, context)
+    return result
   }
 }
-
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface EnhanceServerSideProps {}
 
 /**
  * Wraps the getServerSideProps function to provide the correct storefrontConfig(). This method will
@@ -58,4 +62,46 @@ export function enhanceServerSideProps<
     if (!config) throw Error(`No storefront config found for locale ${context.locale}`)
     return storefrontContext.run(config, cb, context)
   }
+}
+
+export function enhanceStaticPaths<Params extends ParsedUrlQuery = ParsedUrlQuery>(
+  fallback: boolean | 'blocking',
+  cb: (context: {
+    locale: string
+    defaultLocale: string
+  }) => Promise<GetStaticPathsResult<Params>['paths']> | GetStaticPathsResult<Params>['paths'],
+) {
+  return async (): Promise<GetStaticPathsResult<Params>> => {
+    if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
+
+    const defaultLocale = storefrontAll.find((l) => l.defaultLocale) ?? storefrontAll[0]
+    const allPaths = await Promise.all(
+      storefrontAll.map((storefront) =>
+        storefrontContext.run(storefront, cb, {
+          locale: storefront.locale,
+          defaultLocale: defaultLocale.locale,
+        }),
+      ),
+    )
+    return {
+      fallback,
+      paths: allPaths
+        .map((p) => (import.meta.graphCommerce.limitSsg ? p.paths.slice(0, 1) : p.paths))
+        .flat(1),
+    }
+  }
+}
+
+export type GetPropsResult<P> = GetStaticPropsResult<P> | GetServerSidePropsResult<P>
+
+export function hasProps<R extends GetPropsResult<P>, P extends Record<string, unknown>>(
+  result: R,
+): result is R & { props: P } {
+  return typeof result === 'object' && 'props' in result
+}
+
+export function hasRedirect<R extends GetPropsResult<P>, P extends Record<string, unknown>>(
+  result: R,
+): result is R & { redirect: { destination: string; permanent?: boolean } } {
+  return typeof result === 'object' && 'redirect' in result
 }

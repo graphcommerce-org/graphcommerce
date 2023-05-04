@@ -9,35 +9,29 @@ import {
   CategoryMeta,
   getCategoryStaticPaths,
 } from '@graphcommerce/magento-category'
+import { categoryPageProps, CategoryPageProps } from '@graphcommerce/magento-category/server'
 import {
   extractUrlQuery,
-  FilterTypes,
-  getFilterTypes,
-  parseParams,
   ProductFiltersPro,
   ProductFiltersProAllFiltersChip,
   ProductFiltersProFilterChips,
   ProductFiltersProLimitChip,
   ProductFiltersProSortChip,
-  ProductFiltersQuery,
   ProductListCount,
   ProductListFilters,
   ProductListFiltersContainer,
   ProductListPagination,
-  ProductListParams,
   ProductListParamsProvider,
-  ProductListQuery,
   ProductListSort,
 } from '@graphcommerce/magento-product'
-import { productFilters, productList } from '@graphcommerce/magento-product/server'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { redirectOrNotFound } from '@graphcommerce/magento-store/server'
+import { redirectOrNotFound, storeConfig } from '@graphcommerce/magento-store/server'
 import {
   StickyBelowHeader,
   LayoutTitle,
   LayoutHeader,
-  GetStaticProps,
   MetaRobots,
+  PageMeta,
 } from '@graphcommerce/next-ui'
 import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { Container } from '@mui/material'
@@ -57,14 +51,10 @@ import {
   graphqlQuery,
 } from '../lib/graphql/graphqlSsrClient'
 
-export type CategoryProps = CategoryPageQuery &
-  HygraphPagesQuery &
-  ProductListQuery &
-  ProductFiltersQuery & { filterTypes?: FilterTypes; params?: ProductListParams }
+export type CategoryProps = CategoryPageProps<CategoryPageQuery> & HygraphPagesQuery
 export type CategoryRoute = { url: string[] }
 
 type GetPageStaticPaths = GetStaticPaths<CategoryRoute>
-type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, CategoryProps, CategoryRoute>
 
 function CategoryPage(props: CategoryProps) {
   const { categories, products, filters, params, filterTypes, pages } = props
@@ -196,72 +186,26 @@ export const getStaticProps = enhanceStaticProps<
   LayoutNavigationProps,
   CategoryProps,
   CategoryRoute
->(async ({ params, locale }) => {
+>(async (context) => {
+  const { params, locale } = context
   const [url, query] = extractUrlQuery(params)
   if (!url || !query || !locale) return { notFound: true }
 
-  const client = graphqlSharedClient()
-  const conf = client.query({ query: StoreConfigDocument })
-  const filterTypes = getFilterTypes(client)
-
-  const categoryPage = graphqlQuery(CategoryPageDocument, { variables: { url } })
   const layout = graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })
 
-  const productListParams = parseParams(url, query, await filterTypes)
-  const filteredCategoryUid = productListParams && productListParams.filters.category_uid?.in?.[0]
-  const category = categoryPage.then((res) => res.data.categories?.items?.[0])
-  let categoryUid = filteredCategoryUid
-  if (!categoryUid) {
-    categoryUid = (await category)?.uid ?? ''
-    if (productListParams) productListParams.filters.category_uid = { in: [categoryUid] }
-  }
+  const categoryPageData = categoryPageProps(CategoryPageDocument, context)
+  const pages = hygraphPageContent(url, categoryPageData.category)
+  const hasPage = (await pages).data.pages.length > 0
 
-  const pages = hygraphPageContent(url, category)
-  const hasPage = filteredCategoryUid ? false : (await pages).data.pages.length > 0
-  const hasCategory = Boolean(productListParams && categoryUid)
+  const awaited = await categoryPageData.props
+  if (!awaited && !hasPage) return redirectOrNotFound(params, locale)
 
-  const filters = productFilters({ filters: { category_uid: { eq: categoryUid } } })
-  const products = productList({
-    ...productListParams,
-    filters: { ...productListParams.filters, category_uid: { eq: categoryUid } },
-  })
-
-  if (!productListParams || !(hasPage || hasCategory))
-    return redirectOrNotFound(conf, params, locale)
-
-  if (!hasCategory) {
-    return {
-      props: {
-        ...(await categoryPage).data,
-        ...(await pages).data,
-        ...(await layout).data,
-      },
-      revalidate: 60 * 20,
-    }
-  }
-
-  if ((await products).errors) return { notFound: true }
-
-  const { category_name, category_url_path } =
-    (await categoryPage).data.categories?.items?.[0]?.breadcrumbs?.[0] ?? {}
-
-  const up =
-    category_url_path && category_name
-      ? { href: `/${category_url_path}`, title: category_name }
-      : { href: `/`, title: 'Home' }
-
-  const result = {
+  return {
     props: {
-      ...(await categoryPage).data,
-      ...(await products).data,
+      ...awaited,
       ...(await pages).data,
-      ...(await filters).data,
       ...(await layout).data,
-      filterTypes: await filterTypes,
-      params: productListParams,
-      up,
     },
     revalidate: 60 * 20,
   }
-  return result
 })

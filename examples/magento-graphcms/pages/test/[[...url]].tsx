@@ -5,6 +5,7 @@ import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { GetStaticPaths } from 'next'
 import { LayoutNavigation, LayoutNavigationProps } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
+
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 import { LayoutDemo } from './minimal-page-shell/[[...url]]'
 
@@ -38,14 +39,12 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 
 export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async ({ params }) => {
   const url = (params?.url ?? ['index']).join('/') ?? ''
-  const staticClient = graphqlSsrClient()
-  const layout = staticClient.query({ query: LayoutDocument })
 
   return {
     props: {
+      ...(await graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })).data,
       url,
       up: url !== 'index' ? { href: '/', title: 'Home' } : null,
-      ...(await layout).data,
     },
   }
 })

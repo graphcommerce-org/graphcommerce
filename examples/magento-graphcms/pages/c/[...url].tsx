@@ -1,9 +1,9 @@
 import { GetServerSideProps } from '@graphcommerce/next-ui'
 import { enhanceServerSideProps } from '@graphcommerce/next-ui/server'
 import { LayoutNavigationProps } from '../../components'
-import CategoryPage, { getStaticProps, CategoryProps, CategoryRoute } from '../[...url]'
+import CategoryPageData, { getStaticProps, CategoryProps, CategoryRoute } from '../[...url]'
 
-export default CategoryPage
+export default CategoryPageData
 
 type GetSSP = GetServerSideProps<LayoutNavigationProps, CategoryProps, CategoryRoute>
 

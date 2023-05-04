@@ -37,6 +37,7 @@ import { Trans } from '@lingui/react'
 import { Container, Hidden } from '@mui/material'
 import { LayoutNavigation, LayoutNavigationProps, ProductListItems } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
+
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
 export type SearchResultProps = ProductListQuery &
@@ -159,7 +160,6 @@ export const getStaticProps = enhanceStaticProps<
   const filterTypes = getFilterTypes(client)
 
   const staticClient = graphqlSsrClient()
-  const layout = staticClient.query({ query: LayoutDocument })
 
   const productListParams = parseParams(
     search ? `search/${search}` : 'search',
@@ -183,10 +183,10 @@ export const getStaticProps = enhanceStaticProps<
 
   return {
     props: {
+      ...(await graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })).data,
       ...(await products).data,
       ...(await filters).data,
       ...(await categories)?.data,
-      ...(await layout)?.data,
       filterTypes: await filterTypes,
       params: productListParams,
       up: { href: '/', title: 'Home' },

@@ -8,7 +8,8 @@ import { Box, Container, Typography, Link } from '@mui/material'
 import React from 'react'
 import { LayoutNavigation, LayoutNavigationProps } from '../components'
 import { LayoutDocument } from '../components/Layout/Layout.gql'
-import { graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
+
+import { graphqlQuery, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
 
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props>
@@ -60,12 +61,10 @@ RouteNotFoundPage.pageOptions = {
 
 export default RouteNotFoundPage
 
-export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async () => {
-  const staticClient = graphqlSsrClient()
-  const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
-
-  return {
-    props: { ...(await layout).data, up: { href: '/', title: 'Home' } },
-    revalidate: 60 * 20,
-  }
-})
+export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async () => ({
+  props: {
+    ...(await graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })).data,
+    up: { href: '/', title: 'Home' },
+  },
+  revalidate: 60 * 20,
+}))

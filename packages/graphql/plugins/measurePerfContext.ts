@@ -3,8 +3,7 @@ import { randomUUID } from 'crypto'
 import { graphqlSharedClient } from '@graphcommerce/graphql-mesh'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import type { MethodPlugin } from '@graphcommerce/next-config'
-import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
-import { GetStaticPropsResult } from 'next'
+import { enhanceStaticProps, hasProps } from '@graphcommerce/next-ui/server'
 import {
   flushMeasurePerf,
   requestContext,
@@ -12,12 +11,6 @@ import {
 
 export const func = 'enhanceStaticProps'
 export const exported = '@graphcommerce/next-ui/server'
-
-function isPropsResponse<Props extends Record<string, unknown>>(
-  result: GetStaticPropsResult<Props>,
-): result is { props: Props; revalidate?: number | boolean } {
-  return typeof result === 'object' && 'props' in result
-}
 
 const applloStateEnhanceStaticProps: MethodPlugin<typeof enhanceStaticProps> = (prev, cb) =>
   prev((context) =>
@@ -28,7 +21,7 @@ const applloStateEnhanceStaticProps: MethodPlugin<typeof enhanceStaticProps> = (
       try {
         const result = await cb(context)
 
-        if (isPropsResponse(result)) {
+        if (hasProps(result)) {
           if (result.props.apolloState) {
             console.warn('You can safely remove the apolloState prop from your page props')
           }

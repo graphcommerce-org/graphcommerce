@@ -54,6 +54,11 @@ const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'account',
   Layout: LayoutOverlay,
   sharedKey: () => 'account/addresses',
+  layoutProps: {
+    variantMd: 'bottom',
+    sizeMd: 'full',
+    sizeSm: 'full',
+  },
 }
 AddNewAddressPage.pageOptions = pageOptions
 
@@ -61,8 +66,6 @@ export default AddNewAddressPage
 
 export const getStaticProps: GetPageStaticProps = enhanceStaticProps(() => ({
   props: {
-    variantMd: 'bottom',
-    size: 'max',
     up: { href: '/account', title: 'Account' },
   },
 }))

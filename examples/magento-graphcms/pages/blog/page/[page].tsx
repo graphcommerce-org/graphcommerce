@@ -25,7 +25,8 @@ import {
   RowRenderer,
 } from '../../../components'
 import { LayoutDocument } from '../../../components/Layout/Layout.gql'
-import { graphqlSsrClient } from '../../../lib/graphql/graphqlSsrClient'
+
+import { graphqlQuery, graphqlSsrClient } from '../../../lib/graphql/graphqlSsrClient'
 
 type Props = HygraphPagesQuery & BlogListQuery & BlogPathsQuery
 type RouteProps = { page: string }
@@ -99,7 +100,6 @@ export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async ({ pa
   const staticClient = graphqlSsrClient()
 
   const defaultPage = hygraphPageContent('blog')
-  const layout = staticClient.query({ query: LayoutDocument })
 
   const blogPosts = staticClient.query({
     query: BlogListDocument,
@@ -116,7 +116,7 @@ export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async ({ pa
       ...(await defaultPage).data,
       ...(await blogPosts).data,
       ...(await blogPaths).data,
-      ...(await layout).data,
+      ...(await graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })).data,
       urlEntity: { relative_url: `blog` },
       up: { href: '/blog', title: 'Blog' },
     },

@@ -36,7 +36,7 @@ async function pageContent(url: string, cached: boolean): Promise<{ data: Hygrap
 
 export async function hygraphPageContent(
   url: string,
-  additionalProperties?: Promise<object> | object,
+  additionalProperties?: Promise<object | undefined | null> | object | null,
   cached = false,
 ): Promise<{ data: HygraphPagesQuery }> {
   return pageContent(url, cached)

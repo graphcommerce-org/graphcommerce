@@ -1,7 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { hygraphPageContent } from '@graphcommerce/graphcms-ui/server'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   GetStaticProps,
   MetaRobots,
@@ -13,8 +12,6 @@ import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { Box, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import { LayoutOverlay, LayoutOverlayProps, RowRenderer } from '../../components'
-import { LayoutDocument } from '../../components/Layout/Layout.gql'
-import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
 type Props = HygraphPagesQuery
 type RouteProps = { url: string[] }
@@ -73,17 +70,14 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 
 export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async ({ params }) => {
   const urlKey = params?.url.join('/') ?? '??'
-  const staticClient = graphqlSsrClient()
   const page = hygraphPageContent(`modal/${urlKey}`)
-
-  const layout = staticClient.query({ query: LayoutDocument })
 
   if (!(await page).data.pages?.[0]) return { notFound: true }
 
   return {
     props: {
       ...(await page).data,
-      ...(await layout).data,
+      ...(await graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })).data,
       variantMd: 'bottom',
       size: 'max',
     },

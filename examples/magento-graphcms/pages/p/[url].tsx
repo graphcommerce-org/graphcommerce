@@ -8,7 +8,6 @@ import {
   AddProductsToCartForm,
   AddProductsToCartFormProps,
   AddProductsToCartQuantity,
-  getProductStaticPaths,
   jsonLdProduct,
   jsonLdProductOffer,
   ProductCustomizable,
@@ -32,6 +31,7 @@ import {
   defaultConfigurableOptionsSelection,
 } from '@graphcommerce/magento-product-configurable'
 import { DownloadableProductOptions } from '@graphcommerce/magento-product-downloadable'
+import { getProductStaticPaths } from '@graphcommerce/magento-product/server'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
 import { redirectOrNotFound, Money, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
@@ -42,7 +42,7 @@ import {
   LayoutTitle,
   isTypename,
 } from '@graphcommerce/next-ui'
-import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
+import { enhanceStaticPaths, enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { Trans } from '@lingui/react'
 import { Divider, Link, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
@@ -54,9 +54,14 @@ import {
   Usps,
 } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
+
 import { UspsDocument, UspsQuery } from '../../components/Usps/Usps.gql'
 import { ProductPage2Document, ProductPage2Query } from '../../graphql/ProductPage2.gql'
-import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
+import {
+  graphqlQuery,
+  graphqlSharedClient,
+  graphqlSsrClient,
+} from '../../lib/graphql/graphqlSsrClient'
 
 type Props = HygraphPagesQuery &
   UspsQuery &
@@ -209,31 +214,19 @@ ProductPage.pageOptions = {
 
 export default ProductPage
 
-export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
-  if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
-
-  const path = (locale: string) => getProductStaticPaths(graphqlSsrClient(locale), locale)
-  const paths = (await Promise.all(locales.map(path))).flat(1)
-
-  return { paths, fallback: 'blocking' }
-}
+export const getStaticPaths = enhanceStaticPaths<RouteProps>('blocking', getProductStaticPaths)
 
 export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async ({ params, locale }) => {
-  const client = graphqlSharedClient()
   const staticClient = graphqlSsrClient()
-
   const urlKey = params?.url ?? '??'
-
-  const conf = client.query({ query: StoreConfigDocument })
   const productPage = staticClient.query({ query: ProductPage2Document, variables: { urlKey } })
-  const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
 
   const product = productPage.then((pp) =>
     pp.data.products?.items?.find((p) => p?.url_key === urlKey),
   )
 
   const pages = hygraphPageContent('product/global', product, true)
-  if (!(await product)) return redirectOrNotFound(conf, params, locale)
+  if (!(await product)) return redirectOrNotFound(params, locale)
 
   const category = productPageCategory(await product)
   const up =
@@ -244,8 +237,8 @@ export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async ({ pa
 
   return {
     props: {
-      ...defaultConfigurableOptionsSelection(urlKey, client, (await productPage).data),
-      ...(await layout).data,
+      ...defaultConfigurableOptionsSelection(urlKey, (await productPage).data),
+      ...(await graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })).data,
       ...(await pages).data,
       ...(await usps).data,
       up,

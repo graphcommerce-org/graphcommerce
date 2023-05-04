@@ -25,7 +25,12 @@ import {
   RowRenderer,
 } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
-import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
+
+import {
+  graphqlQuery,
+  graphqlSharedClient,
+  graphqlSsrClient,
+} from '../../lib/graphql/graphqlSsrClient'
 
 type Props = HygraphPagesQuery & BlogListQuery
 type RouteProps = { url: string }
@@ -87,7 +92,6 @@ export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async ({ pa
   const limit = 4
 
   const page = hygraphPageContent(`blog/${urlKey}`)
-  const layout = staticClient.query({ query: LayoutDocument })
 
   const blogPosts = staticClient.query({
     query: BlogListDocument,
@@ -99,7 +103,7 @@ export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async ({ pa
     props: {
       ...(await page).data,
       ...(await blogPosts).data,
-      ...(await layout).data,
+      ...(await graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })).data,
       up: { href: '/', title: 'Home' },
     },
     revalidate: 60 * 20,

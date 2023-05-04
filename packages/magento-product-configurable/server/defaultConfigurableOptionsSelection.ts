@@ -1,4 +1,4 @@
-import { ApolloClient } from '@graphcommerce/graphql'
+import { graphqlSharedClient } from '@graphcommerce/graphql-mesh'
 import { AddProductsToCartFormProps } from '@graphcommerce/magento-product'
 import { findByTypename, filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { GetConfigurableOptionsSelectionDocument } from '../graphql'
@@ -16,7 +16,6 @@ let warned = false
  */
 export function defaultConfigurableOptionsSelection<Q extends BaseQuery = BaseQuery>(
   urlKey: string,
-  client: ApolloClient<object>,
   query: Q,
 ): Q & Pick<AddProductsToCartFormProps, 'defaultValues'> {
   const requested = query?.products?.items?.find((p) => p?.url_key === urlKey)
@@ -78,7 +77,7 @@ export function defaultConfigurableOptionsSelection<Q extends BaseQuery = BaseQu
    * })
    * ```
    */
-  client.cache.writeQuery({
+  graphqlSharedClient().cache.writeQuery({
     query: GetConfigurableOptionsSelectionDocument,
     variables: { urlKey: configurable.url_key, selectedOptions },
     data: {

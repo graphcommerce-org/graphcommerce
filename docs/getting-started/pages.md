@@ -53,17 +53,13 @@ import { GetStaticProps } from '@graphcommerce/next-ui'
 import { Container } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import { LayoutFull, LayoutFullProps } from '../../components'
-import {
-  DefaultPageDocument,
-  DefaultPageQuery,
-} from '../../graphql/DefaultPage.gql'
 import { PagesStaticPathsDocument } from '../../graphql/PagesStaticPaths.gql'
 import {
   graphqlSsrClient,
   graphqlSharedClient,
 } from '../../lib/graphql/graphqlSsrClient'
 
-type Props = DefaultPageQuery
+type Props = unknown
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
@@ -83,14 +79,13 @@ export const getStaticProps: GetPageStaticProps = enhanceStaticProps(
     const client = graphqlSharedClient()
     const staticClient = graphqlSsrClient()
 
-    const conf = client.query({ query: StoreConfigDocument })
     const page = staticClient.query({
       query: DefaultPageDocument,
       variables: {
         url: '',
-        rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
       },
     })
+
     // if (!(await page).data.pages?.[0]) return { notFound: true }
     return {
       props: {
@@ -189,7 +184,7 @@ export const getStaticProps: GetPageStaticProps = enhanceStaticProps(
     const client = graphqlSharedClient()
     const staticClient = graphqlSsrClient()
 
-    const conf = client.query({ query: StoreConfigDocument })
+    const conf = storeConfig()
     const page = staticClient.query({
       query: DefaultPageDocument,
       variables: {

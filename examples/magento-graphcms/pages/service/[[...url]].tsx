@@ -14,6 +14,7 @@ import {
   RowRenderer,
 } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
+
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
 type Props = HygraphPagesQuery
@@ -78,7 +79,6 @@ export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async ({ pa
   const url = params?.url ? `service/${params?.url.join('/')}` : `service`
   const staticClient = graphqlSsrClient()
   const page = hygraphPageContent(url)
-  const layout = staticClient.query({ query: LayoutDocument })
 
   if (!(await page).data.pages?.[0]) return { notFound: true }
 
@@ -87,7 +87,7 @@ export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async ({ pa
   return {
     props: {
       ...(await page).data,
-      ...(await layout).data,
+      ...(await graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })).data,
       up: isRoot ? null : { href: '/service', title: i18n._(/* i18n */ 'Customer Service') },
     },
     revalidate: 60 * 20,

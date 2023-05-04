@@ -1,6 +1,6 @@
 import { ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
 import { canonicalize, nonNullable } from '@graphcommerce/next-ui'
-import { productLink } from '../../hooks/useProductLink'
+import { productLink } from '../hooks/useProductLink'
 import { ProductStaticPathsDocument } from './ProductStaticPaths.gql'
 
 export async function getSitemapPaths(
