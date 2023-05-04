@@ -32,6 +32,7 @@ import {
   LayoutHeader,
   MetaRobots,
   PageMeta,
+  GetStaticProps,
 } from '@graphcommerce/next-ui'
 import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { Container } from '@mui/material'
@@ -43,18 +44,15 @@ import {
   RowProduct,
   RowRenderer,
 } from '../components'
-import { LayoutDocument } from '../components/Layout/Layout.gql'
+import { LayoutDocument, LayoutQuery } from '../components/Layout/Layout.gql'
 import { CategoryPageDocument, CategoryPageQuery } from '../graphql/CategoryPage.gql'
-import {
-  graphqlSsrClient,
-  graphqlSharedClient,
-  graphqlQuery,
-} from '../lib/graphql/graphqlSsrClient'
+import { graphqlSsrClient, graphqlQuery } from '../lib/graphql/graphqlSsrClient'
 
 export type CategoryProps = CategoryPageProps<CategoryPageQuery> & HygraphPagesQuery
 export type CategoryRoute = { url: string[] }
 
 type GetPageStaticPaths = GetStaticPaths<CategoryRoute>
+type GetPageStaticProps = GetStaticProps<LayoutQuery, CategoryProps, CategoryRoute>
 
 function CategoryPage(props: CategoryProps) {
   const { categories, products, filters, params, filterTypes, pages } = props
@@ -182,11 +180,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   return { paths, fallback: 'blocking' }
 }
 
-export const getStaticProps = enhanceStaticProps<
-  LayoutNavigationProps,
-  CategoryProps,
-  CategoryRoute
->(async (context) => {
+export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async (context) => {
   const { params, locale } = context
   const [url, query] = extractUrlQuery(params)
   if (!url || !query || !locale) return { notFound: true }
