@@ -1,12 +1,12 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps } from '@graphcommerce/next-ui'
-import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
+import { enhanceStaticPaths, enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { GetStaticPaths } from 'next'
 import { LayoutNavigation, LayoutNavigationProps } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
 
-import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import { graphqlSsrClient, graphqlSharedClient, graphqlQuery } from '@graphcommerce/graphql-mesh'
 import { LayoutDemo } from './minimal-page-shell/[[...url]]'
 
 type Props = { url: string }
@@ -24,18 +24,9 @@ TestOverview.pageOptions = {
 
 export default TestOverview
 
-// eslint-disable-next-line @typescript-eslint/require-await
-export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
-  if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
-
-  const urls = ['index', 'other']
-
-  const paths = locales
-    .map((locale) => urls.map((url) => ({ params: { url: [url] }, locale })))
-    .flat(1)
-
-  return { paths, fallback: 'blocking' }
-}
+export const getStaticPaths: GetPageStaticPaths = enhanceStaticPaths('blocking', ({ locale }) =>
+  [['index', 'other']].map((url) => ({ params: { url }, locale })),
+)
 
 export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async ({ params }) => {
   const url = (params?.url ?? ['index']).join('/') ?? ''

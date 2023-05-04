@@ -1,9 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
-  extractUrlQuery,
   FilterTypes,
-  getFilterTypes,
-  parseParams,
   ProductFiltersDocument,
   ProductFiltersPro,
   ProductFiltersProAllFiltersChip,
@@ -22,11 +19,12 @@ import {
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { StickyBelowHeader, LayoutTitle, LayoutHeader, LinkOrButton } from '@graphcommerce/next-ui'
 import { GetStaticProps } from '@graphcommerce/next-ui/Page/types'
-import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
+import { enhanceStaticPaths, enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { Box, Container, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import { LayoutMinimal, LayoutMinimalProps } from '../../../components'
-import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
+import { graphqlSsrClient, graphqlSharedClient, graphqlQuery } from '@graphcommerce/graphql-mesh'
+import { getFilterTypes, extractUrlQuery, parseParams } from '@graphcommerce/magento-product/server'
 
 type Props = ProductListQuery &
   ProductFiltersQuery & { filterTypes: FilterTypes; params: ProductListParams }
@@ -105,24 +103,15 @@ MinimalLayoutSubheader.pageOptions = {
 
 export default MinimalLayoutSubheader
 
-export const getStaticPaths: GetPageStaticPaths = async () => {
-  // Disable getStaticPaths while in development mode
-  if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
-
-  return Promise.resolve({
-    paths: [{ params: { url: [] } }],
-    fallback: 'blocking',
-  })
-}
+export const getStaticPaths: GetPageStaticPaths = enhanceStaticPaths('blocking', ({ locale }) =>
+  [[]].map((url) => ({ params: { url }, locale })),
+)
 
 export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async ({ params, locale }) => {
-  const client = graphqlSharedClient(locale)
-  const filterTypes = getFilterTypes(client)
+  const filterTypes = getFilterTypes()
 
-  const staticClient = graphqlSsrClient(locale)
-
-  const products = staticClient.query({ query: ProductListDocument })
-  const filters = staticClient.query({ query: ProductFiltersDocument })
+  const products = graphqlQuery(ProductListDocument)
+  const filters = graphqlQuery(ProductFiltersDocument)
 
   const [url, query] = extractUrlQuery(params)
   if (!url || !query) return { notFound: true }

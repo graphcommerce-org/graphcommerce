@@ -1,16 +1,19 @@
 import type { UpPage } from '@graphcommerce/framer-next-pages/types'
 import { TypedDocumentNode } from '@graphcommerce/graphql'
-import { graphqlQuery, graphqlSharedClient } from '@graphcommerce/graphql-mesh'
+import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 import {
-  extractUrlQuery,
   FilterTypes,
-  getFilterTypes,
-  parseParams,
   ProductFiltersQuery,
   ProductListParams,
   ProductListQuery,
 } from '@graphcommerce/magento-product'
-import { productFilters, productList } from '@graphcommerce/magento-product/server'
+import {
+  extractUrlQuery,
+  getFilterTypes,
+  parseParams,
+  productFilters,
+  productList,
+} from '@graphcommerce/magento-product/server'
 import { GetStaticPropsContext } from 'next'
 import { CategoryQueryFragment } from '../queries/CategoryQueryFragment.gql'
 
@@ -59,7 +62,7 @@ export function categoryPageProps<Q extends CategoryQueryFragment>(
   return {
     category,
     props: (async () => {
-      const filterTypes = getFilterTypes(graphqlSharedClient())
+      const filterTypes = getFilterTypes()
       const productListParams = parseParams(url, query, await filterTypes)
 
       const filteredCategoryUid =

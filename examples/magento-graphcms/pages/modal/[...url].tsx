@@ -8,7 +8,7 @@ import {
   LayoutTitle,
   PageMeta,
 } from '@graphcommerce/next-ui'
-import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
+import { enhanceStaticPaths, enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { Box, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import { LayoutOverlay, LayoutOverlayProps, RowRenderer } from '../../components'
@@ -57,16 +57,9 @@ ModalPage.pageOptions = {
 
 export default ModalPage
 
-// eslint-disable-next-line @typescript-eslint/require-await
-export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
-  if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
-
-  const urls = [['modal']]
-
-  const paths = locales.map((locale) => urls.map((url) => ({ params: { url }, locale }))).flat(1)
-
-  return { paths, fallback: 'blocking' }
-}
+export const getStaticPaths: GetPageStaticPaths = enhanceStaticPaths('blocking', ({ locale }) =>
+  [['modal']].map((url) => ({ params: { url }, locale })),
+)
 
 export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async ({ params }) => {
   const urlKey = params?.url.join('/') ?? '??'

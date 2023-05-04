@@ -21,7 +21,7 @@ import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
 import { useRouter } from 'next/router'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
-import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
+import { graphqlSsrClient, graphqlSharedClient, graphqlQuery } from '@graphcommerce/graphql-mesh'
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
@@ -83,8 +83,7 @@ OrderDetailPage.pageOptions = pageOptions
 export default OrderDetailPage
 
 export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async () => {
-  const staticClient = graphqlSsrClient()
-  const countryRegions = staticClient.query({ query: CountryRegionsDocument })
+  const countryRegions = graphqlQuery(CountryRegionsDocument)
 
   return {
     props: {

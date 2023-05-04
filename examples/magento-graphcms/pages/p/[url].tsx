@@ -57,11 +57,7 @@ import { LayoutDocument } from '../../components/Layout/Layout.gql'
 
 import { UspsDocument, UspsQuery } from '../../components/Usps/Usps.gql'
 import { ProductPage2Document, ProductPage2Query } from '../../graphql/ProductPage2.gql'
-import {
-  graphqlQuery,
-  graphqlSharedClient,
-  graphqlSsrClient,
-} from '../../lib/graphql/graphqlSsrClient'
+import { graphqlQuery, graphqlSharedClient, graphqlSsrClient } from '@graphcommerce/graphql-mesh'
 
 type Props = HygraphPagesQuery &
   UspsQuery &
@@ -217,9 +213,8 @@ export default ProductPage
 export const getStaticPaths = enhanceStaticPaths<RouteProps>('blocking', getProductStaticPaths)
 
 export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async ({ params, locale }) => {
-  const staticClient = graphqlSsrClient()
   const urlKey = params?.url ?? '??'
-  const productPage = staticClient.query({ query: ProductPage2Document, variables: { urlKey } })
+  const productPage = graphqlQuery(ProductPage2Document, { variables: { urlKey } })
 
   const product = productPage.then((pp) =>
     pp.data.products?.items?.find((p) => p?.url_key === urlKey),
@@ -233,7 +228,7 @@ export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async ({ pa
     category?.url_path && category?.name
       ? { href: `/${category.url_path}`, title: category.name }
       : { href: `/`, title: 'Home' }
-  const usps = staticClient.query({ query: UspsDocument, fetchPolicy: 'cache-first' })
+  const usps = graphqlQuery(UspsDocument, { fetchPolicy: 'cache-first' })
 
   return {
     props: {

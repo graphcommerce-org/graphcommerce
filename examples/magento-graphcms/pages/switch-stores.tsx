@@ -18,7 +18,8 @@ import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
 import { useRouter } from 'next/router'
 import { LayoutOverlay, LayoutOverlayProps } from '../components'
-import { graphqlSsrClient, graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
+import { graphqlSsrClient, graphqlSharedClient, graphqlQuery } from '@graphcommerce/graphql-mesh'
+import { hygraphPageContent } from '@graphcommerce/graphcms-ui/server'
 
 type RouteProps = { country?: string[] }
 type Props = StoreSwitcherListQuery
@@ -55,8 +56,7 @@ StoresIndexPage.pageOptions = pageOptions
 export default StoresIndexPage
 
 export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async () => {
-  const staticClient = graphqlSsrClient()
-  const stores = staticClient.query({ query: StoreSwitcherListDocument })
+  const stores = graphqlQuery(StoreSwitcherListDocument)
 
   return {
     props: {

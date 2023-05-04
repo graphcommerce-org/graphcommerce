@@ -1,9 +1,8 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { PagesStaticPathsDocument, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { hygraphPageContent } from '@graphcommerce/graphcms-ui/server'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { PageMeta, GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
-import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
+import { enhanceStaticPaths, enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Container } from '@mui/material'
 import { GetStaticPaths } from 'next'
@@ -15,7 +14,7 @@ import {
 } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
 
-import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import { graphqlSsrClient, graphqlQuery } from '@graphcommerce/graphql-mesh'
 
 type Props = HygraphPagesQuery
 type RouteProps = { url: string[] }
@@ -55,29 +54,21 @@ ServicePage.pageOptions = pageOptions
 
 export default ServicePage
 
-// eslint-disable-next-line @typescript-eslint/require-await
-export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
-  if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
-
-  const path = async (locale: string) => {
-    const client = graphqlSharedClient(locale)
-    const { data } = await client.query({
-      query: PagesStaticPathsDocument,
+export const getStaticPaths: GetPageStaticPaths = enhanceStaticPaths(
+  'blocking',
+  async ({ locale }) => {
+    const { data } = await graphqlQuery(PagesStaticPathsDocument, {
       variables: {
         first: import.meta.graphCommerce.limitSsg ? 1 : 1000,
         urlStartsWith: 'service',
       },
     })
     return data.pages.map((page) => ({ params: { url: page.url.split('/').slice(1) }, locale }))
-  }
-  const paths = (await Promise.all(locales.map(path))).flat(1)
-
-  return { paths, fallback: 'blocking' }
-}
+  },
+)
 
 export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async ({ params }) => {
   const url = params?.url ? `service/${params?.url.join('/')}` : `service`
-  const staticClient = graphqlSsrClient()
   const page = hygraphPageContent(url)
 
   if (!(await page).data.pages?.[0]) return { notFound: true }

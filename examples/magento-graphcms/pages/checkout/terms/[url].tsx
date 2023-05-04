@@ -1,11 +1,11 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { CartAgreementsDocument, CartAgreementsQuery } from '@graphcommerce/magento-cart'
 import { GetStaticProps, PageMeta, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
-import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
+import { enhanceStaticPaths, enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { Container, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
-import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
+import { graphqlSsrClient, graphqlQuery } from '@graphcommerce/graphql-mesh'
 
 type Props = { agreement: NonNullable<NonNullable<CartAgreementsQuery['checkoutAgreements']>[0]> }
 type RouteProps = { url: string }
@@ -48,30 +48,19 @@ TermsPage.pageOptions = pageOptions
 
 export default TermsPage
 
-// eslint-disable-next-line @typescript-eslint/require-await
-export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
-  if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
-
-  /** Call apolloClient to fetch locale specific agreements from Magento. */
-  const path = async (locale: string) => {
-    const client = graphqlSharedClient(locale)
-    const { data } = await client.query({ query: CartAgreementsDocument })
-    return (data.checkoutAgreements ?? []).map((agreement) => ({
-      locale,
-      params: { url: agreement?.name.toLowerCase().replace(/\s+/g, '-') ?? '' },
-    }))
-  }
-
-  const paths = (await Promise.all(locales.map(path))).flat(1).filter((v) => !!v)
-
-  return { paths, fallback: 'blocking' }
-}
+export const getStaticPaths: GetPageStaticPaths = enhanceStaticPaths(
+  'blocking',
+  async ({ locale }) =>
+    ((await graphqlQuery(CartAgreementsDocument)).data.checkoutAgreements ?? []).map(
+      (agreement) => ({
+        locale,
+        params: { url: agreement?.name.toLowerCase().replace(/\s+/g, '-') ?? '' },
+      }),
+    ),
+)
 
 export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async ({ params }) => {
-  const staticClient = graphqlSsrClient()
-
-  const agreements = await staticClient.query({ query: CartAgreementsDocument })
-
+  const agreements = await graphqlQuery(CartAgreementsDocument)
   const agreement = agreements.data.checkoutAgreements?.find(
     (ca) => ca?.name?.toLowerCase().replace(/\s+/g, '-') === params?.url,
   )
@@ -79,7 +68,10 @@ export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async ({ pa
   if (!agreement) return { notFound: true }
 
   return {
-    props: { variantMd: 'left', agreement },
+    props: {
+      variantMd: 'left',
+      agreement,
+    },
     revalidate: 60 * 20,
   }
 })

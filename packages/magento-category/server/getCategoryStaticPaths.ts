@@ -1,4 +1,4 @@
-import { ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
+import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 import { GetStaticPathsResult } from 'next'
 import {
   GetCategoryStaticPathsDocument,
@@ -7,14 +7,8 @@ import {
 
 type StaticPathsResult = GetStaticPathsResult<{ url: string[] }>
 
-const getCategoryStaticPaths = async (
-  client: ApolloClient<NormalizedCacheObject>,
-  locale: string,
-) => {
-  const { data } = await client.query({
-    query: GetCategoryStaticPathsDocument,
-  })
-
+const getCategoryStaticPaths = async () => {
+  const { data } = await graphqlQuery(GetCategoryStaticPathsDocument)
   const paths: StaticPathsResult['paths'] = []
 
   type Category = NonNullable<NonNullable<GetCategoryStaticPathsQuery['categories']>['items']>[0]
@@ -24,7 +18,7 @@ const getCategoryStaticPaths = async (
   }
   data.categories?.items?.forEach(add)
 
-  return import.meta.graphCommerce.limitSsg ? paths.slice(0, 1) : paths
+  return paths
 }
 
 export { getCategoryStaticPaths }

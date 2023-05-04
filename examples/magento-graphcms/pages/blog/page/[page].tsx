@@ -9,7 +9,7 @@ import {
   LayoutTitle,
   LayoutHeader,
 } from '@graphcommerce/next-ui'
-import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
+import { enhanceStaticPaths, enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { Container, Link } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import { useRouter } from 'next/router'
@@ -26,7 +26,7 @@ import {
 } from '../../../components'
 import { LayoutDocument } from '../../../components/Layout/Layout.gql'
 
-import { graphqlQuery, graphqlSsrClient } from '../../../lib/graphql/graphqlSsrClient'
+import { graphqlQuery, graphqlSsrClient } from '@graphcommerce/graphql-mesh'
 
 type Props = HygraphPagesQuery & BlogListQuery & BlogPathsQuery
 type RouteProps = { page: string }
@@ -78,34 +78,21 @@ BlogPage.pageOptions = {
 export default BlogPage
 
 // eslint-disable-next-line @typescript-eslint/require-await
-export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
-  if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
-
-  const responses = locales.map(async (locale) => {
-    const staticClient = graphqlSsrClient(locale)
-    const blogPosts = staticClient.query({ query: BlogPathsDocument })
-    const total = Math.ceil((await blogPosts).data.pagesConnection.aggregate.count / pageSize)
-    const pages: string[] = []
-    for (let i = 1; i < total - 1; i++) {
-      pages.push(String(i + 1))
-    }
-    return pages.map((page) => ({ params: { page }, locale }))
-  })
-  const paths = (await Promise.all(responses)).flat(1)
-  return { paths, fallback: 'blocking' }
-}
+export const getStaticPaths = enhanceStaticPaths('blocking', async ({ locale }) => {
+  const totalPosts = (await graphqlQuery(BlogPathsDocument)).data.pagesConnection.aggregate.count
+  const totalPages = Math.ceil(totalPosts / pageSize)
+  const pages: string[] = []
+  for (let i = 1; i < totalPages - 1; i++) pages.push(String(i + 1))
+  return pages.map((page) => ({ params: { page }, locale }))
+})
 
 export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async ({ params }) => {
   const skip = Math.abs((Number(params?.page ?? '1') - 1) * pageSize)
-  const staticClient = graphqlSsrClient()
-
   const defaultPage = hygraphPageContent('blog')
-
-  const blogPosts = staticClient.query({
-    query: BlogListDocument,
+  const blogPosts = graphqlQuery(BlogListDocument, {
     variables: { currentUrl: ['blog'], first: pageSize, skip },
   })
-  const blogPaths = staticClient.query({ query: BlogPathsDocument })
+  const blogPaths = graphqlQuery(BlogPathsDocument)
 
   if (!(await defaultPage).data.pages?.[0]) return { notFound: true }
   if (!(await blogPosts).data.blogPosts.length) return { notFound: true }

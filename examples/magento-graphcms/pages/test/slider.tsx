@@ -4,7 +4,7 @@ import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, LayoutTitle, LayoutHeader, SidebarGallery } from '@graphcommerce/next-ui'
 import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { LayoutNavigation, LayoutNavigationProps } from '../../components'
-import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import { graphqlSsrClient, graphqlSharedClient, graphqlQuery } from '@graphcommerce/graphql-mesh'
 
 type Props = ProductListQuery
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props>
@@ -84,11 +84,8 @@ TestSlider.pageOptions = {
 export default TestSlider
 
 export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async () => {
-  const staticClient = graphqlSsrClient()
-
   // todo(paales): Remove when https://github.com/Urigo/graphql-mesh/issues/1257 is resolved
-  const productList = staticClient.query({
-    query: ProductListDocument,
+  const productList = graphqlQuery(ProductListDocument, {
     variables: { pageSize: 8, filters: { category_uid: { eq: 'MTAy' } } },
   })
 

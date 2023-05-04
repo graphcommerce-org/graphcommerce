@@ -52,12 +52,12 @@ import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps } from '@graphcommerce/next-ui'
 import { Container } from '@mui/material'
 import { GetStaticPaths } from 'next'
-import { LayoutFull, LayoutFullProps } from '../../components'
+import { LayoutFull, LayoutFullProps, LayoutDocument } from '../../components'
 import { PagesStaticPathsDocument } from '../../graphql/PagesStaticPaths.gql'
 import {
   graphqlSsrClient,
   graphqlSharedClient,
-} from '../../lib/graphql/graphqlSsrClient'
+} from '@graphcommerce/graphql-mesh'
 
 type Props = unknown
 type RouteProps = { url: string }
@@ -76,19 +76,13 @@ export default AboutUs
 
 export const getStaticProps: GetPageStaticProps = enhanceStaticProps(
   async () => {
-    const client = graphqlSharedClient()
-    const staticClient = graphqlSsrClient()
-
-    const page = staticClient.query({
-      query: DefaultPageDocument,
-      variables: {
-        url: '',
-      },
-    })
+    const page = hygraphPageContent('account')
+    const layout = graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' }))
 
     // if (!(await page).data.pages?.[0]) return { notFound: true }
     return {
       props: {
+        ...(await layout).data,
         ...(await page).data,
       },
     }
@@ -135,13 +129,7 @@ validate that this string (currently hard-coded) is part of the source code.
 - In /about/about-us.tsx, make the following change to `getStaticProps`:
 
 ```tsx
-const page = staticClient.query({
-  query: DefaultPageDocument,
-  variables: {
-    url: 'about/about-us',
-    rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
-  },
-})
+const page = hygraphPageContent('about/about-us')
 ```
 
 And replace the previous AboutUs function with the following:
@@ -181,17 +169,8 @@ export const getStaticPaths: GetPageStaticPaths = (context) => ({
 
 export const getStaticProps: GetPageStaticProps = enhanceStaticProps(
   async ({ params }) => {
-    const client = graphqlSharedClient()
-    const staticClient = graphqlSsrClient()
+    const page = hygraphPageContent(`about/${params?.url}`)
 
-    const conf = storeConfig()
-    const page = staticClient.query({
-      query: DefaultPageDocument,
-      variables: {
-        url: `about/${params?.url}`,
-        rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
-      },
-    })
     // if (!(await page).data.pages?.[0]) return { notFound: true }
     return {
       props: {
@@ -230,9 +209,7 @@ export const getStaticPaths: GetPageStaticPaths = async (context) => {
   // if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
 
   const path = async (locale: string) => {
-    const client = graphqlSharedClient(locale)
-    const { data } = await client.query({
-      query: PagesStaticPathsDocument,
+    const { data } = await graphqlQuery(PagesStaticPathsDocument, {
       variables: {
         first: 10,
         urlStartsWith: 'about',

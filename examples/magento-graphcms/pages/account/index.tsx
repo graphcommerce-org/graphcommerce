@@ -32,7 +32,7 @@ import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
-import { graphqlQuery, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
+import { graphqlQuery, graphqlSsrClient } from '@graphcommerce/graphql-mesh'
 import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 
 type GetPageStaticProps = GetStaticProps<LayoutMinimalProps>

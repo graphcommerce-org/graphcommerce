@@ -1,3 +1,6 @@
-export * from './server/productListWithFilters'
+export * from './server/filteredProductList'
+export * from './server/getFilterTypes'
 export * from './server/getProductStaticPaths'
 export * from './server/getSitemapPaths'
+export * from './server/productListWithFilters'
+export * from './server/ProductStaticPaths.gql'

@@ -17,7 +17,7 @@ import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
-import { graphqlSsrClient } from '../../../lib/graphql/graphqlSsrClient'
+import { graphqlQuery, graphqlSsrClient } from '@graphcommerce/graphql-mesh'
 
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
@@ -61,8 +61,7 @@ AccountAddressesPage.pageOptions = pageOptions
 export default AccountAddressesPage
 
 export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async () => {
-  const staticClient = graphqlSsrClient()
-  const countryRegions = staticClient.query({ query: CountryRegionsDocument })
+  const countryRegions = graphqlQuery(CountryRegionsDocument)
 
   return {
     props: {

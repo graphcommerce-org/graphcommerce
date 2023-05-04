@@ -7,11 +7,13 @@ import {
   CategoryHeroNav,
   CategoryHeroNavTitle,
   CategoryMeta,
-  getCategoryStaticPaths,
 } from '@graphcommerce/magento-category'
-import { categoryPageProps, CategoryPageProps } from '@graphcommerce/magento-category/server'
 import {
-  extractUrlQuery,
+  categoryPageProps,
+  CategoryPageProps,
+  getCategoryStaticPaths,
+} from '@graphcommerce/magento-category/server'
+import {
   ProductFiltersPro,
   ProductFiltersProAllFiltersChip,
   ProductFiltersProFilterChips,
@@ -24,17 +26,15 @@ import {
   ProductListParamsProvider,
   ProductListSort,
 } from '@graphcommerce/magento-product'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { redirectOrNotFound, storeConfig } from '@graphcommerce/magento-store/server'
+import { redirectOrNotFound } from '@graphcommerce/magento-store/server'
 import {
   StickyBelowHeader,
   LayoutTitle,
   LayoutHeader,
   MetaRobots,
-  PageMeta,
   GetStaticProps,
 } from '@graphcommerce/next-ui'
-import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
+import { enhanceStaticPaths, enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { Container } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import {
@@ -46,7 +46,8 @@ import {
 } from '../components'
 import { LayoutDocument, LayoutQuery } from '../components/Layout/Layout.gql'
 import { CategoryPageDocument, CategoryPageQuery } from '../graphql/CategoryPage.gql'
-import { graphqlSsrClient, graphqlQuery } from '../lib/graphql/graphqlSsrClient'
+import { graphqlQuery } from '@graphcommerce/graphql-mesh'
+import { extractUrlQuery } from '@graphcommerce/magento-product/server'
 
 export type CategoryProps = CategoryPageProps<CategoryPageQuery> & HygraphPagesQuery
 export type CategoryRoute = { url: string[] }
@@ -171,14 +172,10 @@ CategoryPage.pageOptions = pageOptions
 
 export default CategoryPage
 
-export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
-  // Disable getStaticPaths while in development mode
-  if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
-
-  const path = (loc: string) => getCategoryStaticPaths(graphqlSsrClient(loc), loc)
-  const paths = (await Promise.all(locales.map(path))).flat(1)
-  return { paths, fallback: 'blocking' }
-}
+export const getStaticPaths: GetPageStaticPaths = enhanceStaticPaths(
+  'blocking',
+  getCategoryStaticPaths,
+)
 
 export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async (context) => {
   const { params, locale } = context

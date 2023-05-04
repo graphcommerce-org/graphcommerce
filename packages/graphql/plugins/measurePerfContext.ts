@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { randomUUID } from 'crypto'
-import { graphqlSharedClient } from '@graphcommerce/graphql-mesh'
+import { graphqlQueryPassToClient, graphqlSharedClient } from '@graphcommerce/graphql-mesh'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import type { MethodPlugin } from '@graphcommerce/next-config'
 import { enhanceStaticProps, hasProps } from '@graphcommerce/next-ui/server'
@@ -16,7 +16,7 @@ const applloStateEnhanceStaticProps: MethodPlugin<typeof enhanceStaticProps> = (
   prev((context) =>
     requestContext.run(randomUUID(), async () => {
       const client = graphqlSharedClient()
-      const conf = client.query({ query: StoreConfigDocument })
+      const conf = graphqlQueryPassToClient(StoreConfigDocument)
 
       try {
         const result = await cb(context)

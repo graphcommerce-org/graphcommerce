@@ -47,7 +47,7 @@ const sharedClient: {
  * Any queries made with the graphqlSharedClient will be send to the browser and injected in the
  * browser's cache.
  */
-export function graphqlSharedClient(unused?: unknown) {
+export function graphqlSharedClient() {
   const { locale } = storefrontConfig()
   // Create a client if it doesn't exist for the locale.
   if (!sharedClient[locale]) sharedClient[locale] = client('cache-first')
@@ -58,7 +58,7 @@ const ssrClient: {
   [locale: string]: ApolloClient<NormalizedCacheObject>
 } = {}
 
-export function graphqlSsrClient(unused?: unknown) {
+export function graphqlSsrClient() {
   const { locale } = storefrontConfig()
 
   // Create a client if it doesn't exist for the locale.
@@ -71,7 +71,7 @@ export function graphqlQueryPassToClient<
   V extends Record<string, unknown> = Record<string, unknown>,
 >(
   query: TypedDocumentNode<Q, V>,
-  options: Omit<QueryOptions<V, Q>, 'query'>,
+  options?: Omit<QueryOptions<V, Q>, 'query'>,
 ): Promise<ApolloQueryResult<Q>> {
   return graphqlSharedClient().query({ query, ...options })
 }
@@ -81,7 +81,7 @@ export function graphqlQuery<
   V extends Record<string, unknown> = Record<string, unknown>,
 >(
   query: TypedDocumentNode<Q, V>,
-  options: Omit<QueryOptions<V, Q>, 'query'>,
+  options?: Omit<QueryOptions<V, Q>, 'query'>,
 ): Promise<ApolloQueryResult<Q>> {
   return graphqlSsrClient().query({ query, ...options })
 }

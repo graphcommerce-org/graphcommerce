@@ -4,7 +4,7 @@ import type {
   FilterRangeTypeInput,
   SortEnum,
 } from '@graphcommerce/graphql-mesh'
-import { FilterTypes, ProductListParams } from './filterTypes'
+import { FilterTypes, ProductListParams } from '../components/ProductListItems/filterTypes'
 
 export function parseParams(
   url: string,

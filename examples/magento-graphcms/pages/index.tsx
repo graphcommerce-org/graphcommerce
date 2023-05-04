@@ -7,7 +7,7 @@ import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { LayoutNavigation, LayoutNavigationProps, RowProduct, RowRenderer } from '../components'
 import { LayoutDocument } from '../components/Layout/Layout.gql'
 
-import { graphqlQuery, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
+import { graphqlQuery, graphqlSsrClient } from '@graphcommerce/graphql-mesh'
 
 type Props = HygraphPagesQuery & {
   latestList: ProductListQuery

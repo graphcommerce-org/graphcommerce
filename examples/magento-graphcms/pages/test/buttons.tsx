@@ -14,7 +14,7 @@ import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { Box, Container, Typography, Divider, styled } from '@mui/material'
 import React, { useState } from 'react'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
-import { graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import { graphqlSharedClient } from '@graphcommerce/graphql-mesh'
 
 const variants = ['text', 'outlined', 'contained', 'pill', 'inline'] as const
 const sizes = ['small', 'medium', 'large'] as const

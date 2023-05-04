@@ -1,5 +1,5 @@
 import { gql, ApolloClient, NormalizedCacheObject, TypedDocumentNode } from '@graphcommerce/graphql'
-import type { Exact } from '@graphcommerce/graphql-mesh'
+import { Exact, graphqlQueryPassToClient } from '@graphcommerce/graphql-mesh'
 
 type FilterInputTypesQueryVariables = Exact<{ [key: string]: never }>
 
@@ -25,10 +25,8 @@ const FilterInputTypesDocument = gql`
   }
 ` as TypedDocumentNode<FilterInputTypesQuery, FilterInputTypesQueryVariables>
 
-export async function getFilterTypes(
-  client: ApolloClient<NormalizedCacheObject>,
-): Promise<Record<string, string | undefined>> {
-  const filterInputTypes = await client.query({ query: FilterInputTypesDocument })
+export async function getFilterTypes(): Promise<Record<string, string | undefined>> {
+  const filterInputTypes = await graphqlQueryPassToClient(FilterInputTypesDocument)
 
   const typeMap: Record<string, string | undefined> = Object.fromEntries(
     filterInputTypes.data?.__type.inputFields.map(({ name, type }) => [name, type.name]),

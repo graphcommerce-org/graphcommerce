@@ -22,7 +22,7 @@ import { Box, Container, Divider, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useMemo } from 'react'
 import { LayoutOverlay, LayoutOverlayProps, productListRenderer } from '../../components'
-import { graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import { graphqlSharedClient } from '@graphcommerce/graphql-mesh'
 
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>

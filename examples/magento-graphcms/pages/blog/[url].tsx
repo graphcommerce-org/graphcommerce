@@ -10,7 +10,7 @@ import {
   LayoutTitle,
   LayoutHeader,
 } from '@graphcommerce/next-ui'
-import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
+import { enhanceStaticPaths, enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { GetStaticPaths } from 'next'
 import {
   BlogAuthor,
@@ -26,11 +26,7 @@ import {
 } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
 
-import {
-  graphqlQuery,
-  graphqlSharedClient,
-  graphqlSsrClient,
-} from '../../lib/graphql/graphqlSsrClient'
+import { graphqlQuery, graphqlSharedClient, graphqlSsrClient } from '@graphcommerce/graphql-mesh'
 
 type Props = HygraphPagesQuery & BlogListQuery
 type RouteProps = { url: string }
@@ -71,30 +67,22 @@ BlogPage.pageOptions = {
 
 export default BlogPage
 
-export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
-  if (import.meta.graphCommerce.limitSsg) return { paths: [], fallback: 'blocking' }
-
-  const responses = locales.map(async (locale) => {
-    const staticClient = graphqlSsrClient(locale)
-    const BlogPostPaths = staticClient.query({ query: BlogPostPathsDocument })
-    const { pages } = (await BlogPostPaths).data
-    return (
-      pages.map((page) => ({ params: { url: `${page?.url}`.replace('blog/', '') }, locale })) ?? []
-    )
-  })
-  const paths = (await Promise.all(responses)).flat(1)
-  return { paths, fallback: 'blocking' }
-}
+export const getStaticPaths: GetPageStaticPaths = enhanceStaticPaths(
+  'blocking',
+  async ({ locale }) =>
+    (await graphqlQuery(BlogPostPathsDocument)).data.pages.map((page) => ({
+      params: { url: `${page?.url}`.replace('blog/', '') },
+      locale,
+    })),
+)
 
 export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async ({ params }) => {
   const urlKey = params?.url ?? '??'
-  const staticClient = graphqlSsrClient()
   const limit = 4
 
   const page = hygraphPageContent(`blog/${urlKey}`)
 
-  const blogPosts = staticClient.query({
-    query: BlogListDocument,
+  const blogPosts = graphqlQuery(BlogListDocument, {
     variables: { currentUrl: [`blog/${urlKey}`], first: limit },
   })
   if (!(await page).data.pages?.[0]) return { notFound: true }

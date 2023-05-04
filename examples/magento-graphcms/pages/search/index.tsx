@@ -1,4 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 import {
   ProductFiltersPro,
   ProductFiltersProFilterChips,
@@ -10,17 +11,15 @@ import {
   ProductListParamsProvider,
   ProductListSort,
   ProductListDocument,
-  extractUrlQuery,
-  parseParams,
   FilterTypes,
   ProductListParams,
-  getFilterTypes,
   ProductFiltersDocument,
   ProductListQuery,
   ProductFiltersQuery,
   ProductFiltersProAllFiltersChip,
   ProductFiltersProLimitChip,
 } from '@graphcommerce/magento-product'
+import { extractUrlQuery, getFilterTypes, parseParams } from '@graphcommerce/magento-product/server'
 import {
   CategorySearchDocument,
   CategorySearchQuery,
@@ -37,8 +36,6 @@ import { Trans } from '@lingui/react'
 import { Container, Hidden } from '@mui/material'
 import { LayoutNavigation, LayoutNavigationProps, ProductListItems } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
-
-import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
 export type SearchResultProps = ProductListQuery &
   ProductFiltersQuery &
@@ -156,10 +153,7 @@ export const getStaticProps = enhanceStaticProps<
   const [searchShort = '', query = []] = extractUrlQuery(params)
   const search = searchShort.length >= 3 ? searchShort : ''
 
-  const client = graphqlSharedClient()
-  const filterTypes = getFilterTypes(client)
-
-  const staticClient = graphqlSsrClient()
+  const filterTypes = getFilterTypes()
 
   const productListParams = parseParams(
     search ? `search/${search}` : 'search',
@@ -170,15 +164,14 @@ export const getStaticProps = enhanceStaticProps<
 
   if (!productListParams) return { notFound: true, revalidate: 60 * 20 }
 
-  const filters = staticClient.query({ query: ProductFiltersDocument, variables: { search } })
+  const filters = graphqlQuery(ProductFiltersDocument, { variables: { search } })
 
-  const products = staticClient.query({
-    query: ProductListDocument,
+  const products = graphqlQuery(ProductListDocument, {
     variables: { ...productListParams, search, pageSize: 12 },
   })
 
   const categories = search
-    ? staticClient.query({ query: CategorySearchDocument, variables: { search } })
+    ? graphqlQuery(CategorySearchDocument, { variables: { search } })
     : undefined
 
   return {

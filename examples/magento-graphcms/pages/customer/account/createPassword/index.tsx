@@ -8,7 +8,7 @@ import { Trans } from '@lingui/react'
 import { Box, Container, Link, Button } from '@mui/material'
 import router, { useRouter } from 'next/router'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../../components'
-import { graphqlSharedClient } from '../../../../lib/graphql/graphqlSsrClient'
+import { graphqlSharedClient } from '../@graphcommerce/graphql-mesh'
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
