@@ -2,6 +2,7 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { hygraphPageContent } from '@graphcommerce/graphcms-ui/server'
 import { mergeDeep } from '@graphcommerce/graphql'
+import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 import {
   AddProductsToCartButton,
   AddProductsToCartError,
@@ -21,6 +22,7 @@ import {
   ProductShortDescription,
   ProductSidebarDelivery,
 } from '@graphcommerce/magento-product'
+import { getProductStaticPaths } from '@graphcommerce/magento-product/server'
 import { BundleProductOptions } from '@graphcommerce/magento-product-bundle'
 import {
   ConfigurableName,
@@ -28,12 +30,12 @@ import {
   ConfigurablePriceTiers,
   ConfigurableProductOptions,
   ConfigurableProductPageGallery,
-  defaultConfigurableOptionsSelection,
 } from '@graphcommerce/magento-product-configurable'
+import { defaultConfigurableOptionsSelection } from '@graphcommerce/magento-product-configurable/server'
 import { DownloadableProductOptions } from '@graphcommerce/magento-product-downloadable'
-import { getProductStaticPaths } from '@graphcommerce/magento-product/server'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
-import { redirectOrNotFound, Money, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { Money } from '@graphcommerce/magento-store'
+import { redirectOrNotFound } from '@graphcommerce/magento-store/server'
 import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
 import {
   GetStaticProps,
@@ -56,7 +58,6 @@ import {
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
 import { UspsDocument, UspsQuery } from '../../components/Usps/Usps.gql'
 import { ProductPage2Document, ProductPage2Query } from '../../graphql/ProductPage2.gql'
-import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 
 type Props = HygraphPagesQuery &
   UspsQuery &
@@ -209,7 +210,7 @@ ProductPage.pageOptions = {
 
 export default ProductPage
 
-export const getStaticPaths = enhanceStaticPaths<RouteProps>('blocking', getProductStaticPaths)
+export const getStaticPaths = enhanceStaticPaths('blocking', getProductStaticPaths)
 
 export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async ({ params, locale }) => {
   const urlKey = params?.url ?? '??'

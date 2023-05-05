@@ -1,5 +1,4 @@
 import type {
-  Exact,
   Maybe,
   Scalars,
   ProductAttributeFilterInput,

@@ -10,24 +10,16 @@ import {
   ProductListPagination,
   ProductListParamsProvider,
   ProductListSort,
-  ProductListDocument,
-  FilterTypes,
-  ProductListParams,
-  ProductFiltersDocument,
-  ProductListQuery,
-  ProductFiltersQuery,
   ProductFiltersProAllFiltersChip,
   ProductFiltersProLimitChip,
 } from '@graphcommerce/magento-product'
-import { extractUrlQuery, getFilterTypes, parseParams } from '@graphcommerce/magento-product/server'
 import {
-  CategorySearchDocument,
-  CategorySearchQuery,
   CategorySearchResult,
   NoSearchResults,
   SearchDivider,
   SearchForm,
 } from '@graphcommerce/magento-search'
+import { searchContext, searchResults, SearchPageProps } from '@graphcommerce/magento-search/server'
 import { PageMeta } from '@graphcommerce/magento-store'
 import { StickyBelowHeader, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
 import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
@@ -37,16 +29,14 @@ import { Container, Hidden } from '@mui/material'
 import { LayoutNavigation, LayoutNavigationProps, ProductListItems } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
 
-export type SearchResultProps = ProductListQuery &
-  ProductFiltersQuery &
-  CategorySearchQuery & { filterTypes: FilterTypes; params: ProductListParams }
+export type SearchResultProps = SearchPageProps
 export type RouteProps = { url: string[] }
 
 function SearchResultPage(props: SearchResultProps) {
   const { products, categories, params, filters, filterTypes } = props
   const search = params.url.split('/')[1]
   const totalSearchResults = (categories?.items?.length ?? 0) + (products?.total_count ?? 0)
-  const noSearchResults = search && (!products || (products.items && products?.items?.length <= 0))
+  const noSearchResults = search && (products?.items?.length ?? 0) <= 0
 
   return (
     <>
@@ -149,39 +139,18 @@ export const getStaticProps = enhanceStaticProps<
   LayoutNavigationProps,
   SearchResultProps,
   RouteProps
->(async ({ params }) => {
-  const [searchShort = '', query = []] = extractUrlQuery(params)
-  const search = searchShort.length >= 3 ? searchShort : ''
+>(async (context) => {
+  const layout = graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })
 
-  const filterTypes = getFilterTypes()
+  const searchCtx = searchContext(context)
+  const result = await searchResults(searchCtx)
 
-  const productListParams = parseParams(
-    search ? `search/${search}` : 'search',
-    query,
-    await filterTypes,
-    search,
-  )
-
-  if (!productListParams) return { notFound: true, revalidate: 60 * 20 }
-
-  const filters = graphqlQuery(ProductFiltersDocument, { variables: { search } })
-
-  const products = graphqlQuery(ProductListDocument, {
-    variables: { ...productListParams, search, pageSize: 12 },
-  })
-
-  const categories = search
-    ? graphqlQuery(CategorySearchDocument, { variables: { search } })
-    : undefined
+  if (!result) return { notFound: true, revalidate: 60 * 20 }
 
   return {
     props: {
-      ...(await graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })).data,
-      ...(await products).data,
-      ...(await filters).data,
-      ...(await categories)?.data,
-      filterTypes: await filterTypes,
-      params: productListParams,
+      ...(await layout).data,
+      ...result,
       up: { href: '/', title: 'Home' },
     },
     revalidate: 60 * 20,

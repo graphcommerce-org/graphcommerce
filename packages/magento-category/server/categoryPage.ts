@@ -40,7 +40,9 @@ export type CategoryFound<Q extends CategoryQueryFragment> = Q &
     up: UpPage
   }
 
-export type CategoryPageProps<Q extends CategoryQueryFragment> = CategoryNotFound | CategoryFound<Q>
+export type CategoryPageProps<Q extends CategoryQueryFragment> =
+  | CategoryNotFound<Q>
+  | CategoryFound<Q>
 
 type CategoryPagePropsReturn<Q extends CategoryQueryFragment> = {
   category: Promise<SingleCategory<Q> | null | undefined>
@@ -105,3 +107,18 @@ export function categoryPageProps<Q extends CategoryQueryFragment>(
     })(),
   }
 }
+
+// export async function searchContext(
+//   context: GetStaticPropsContext<{ url: string[] }>,
+// ): Promise<ProductListContext> {
+//   const [searchShort = '', query = []] = extractUrlQuery(context.params)
+//   const search = searchShort.length >= 3 ? searchShort : ''
+
+//   const filterTypes = getFilterTypes()
+
+//   return {
+//     search,
+//     filterTypes: await filterTypes,
+//     params: parseParams(search ? `search/${search}` : 'search', query, await filterTypes, search),
+//   }
+// }
