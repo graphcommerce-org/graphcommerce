@@ -11,7 +11,7 @@ export function parseParams(
   query: string[],
   filterTypes: FilterTypes,
   search: string | null = null,
-): ProductListParams | false {
+): ProductListParams {
   const categoryVariables: ProductListParams = { url, filters: {}, sort: {}, search }
 
   const typeMap = filterTypes
@@ -59,7 +59,7 @@ export function parseParams(
     return undefined
   }, undefined)
 
-  return error ? false : categoryVariables
+  return error ? { url, filters: {}, sort: {}, search } : categoryVariables
 }
 
 export function extractUrlQuery(params?: { url: string[] }) {

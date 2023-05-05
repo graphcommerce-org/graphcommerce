@@ -1,5 +1,10 @@
 import { graphqlQuery } from '@graphcommerce/graphql-mesh'
-import { HygraphAllPagesDocument, HygraphPagesQuery, HygraphPagesDocument } from '../graphql'
+import {
+  HygraphAllPagesDocument,
+  HygraphPagesQuery,
+  HygraphPagesDocument,
+  HygraphPageFragment,
+} from '../graphql'
 
 /**
  * Fetch the page content for the given urls.
@@ -40,4 +45,16 @@ export async function hygraphPageContent(
   cached = false,
 ): Promise<{ data: HygraphPagesQuery }> {
   return pageContent(url, cached)
+}
+
+export type HygraphSinglePageReturn = { page: Promise<HygraphPageFragment | null> }
+
+export function hygraphPage(
+  url: string,
+  additionalProperties?: Promise<object | undefined | null> | object | null,
+  cached = false,
+): HygraphSinglePageReturn {
+  return {
+    page: pageContent(url, cached).then((p) => p.data.pages?.[0] ?? null),
+  }
 }

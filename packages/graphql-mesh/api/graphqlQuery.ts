@@ -81,7 +81,7 @@ export function graphqlQuery<
   V extends Record<string, unknown> = Record<string, unknown>,
 >(
   query: TypedDocumentNode<Q, V>,
-  options?: Omit<QueryOptions<V, Q>, 'query'>,
+  options?: Omit<QueryOptions<V, Q>, 'query'> & { skip?: boolean },
 ): Promise<ApolloQueryResult<Q>> {
   return graphqlSsrClient().query({ query, ...options })
 }

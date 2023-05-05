@@ -19,6 +19,7 @@
   "dependencies": {
     "@graphcommerce/framer-scroller": "6.2.0-canary.10",
     "@graphcommerce/graphql": "6.2.0-canary.10",
+    "@graphcommerce/graphql-mesh": "6.2.0-canary.10",
     "@graphcommerce/image": "6.2.0-canary.10",
     "@graphcommerce/magento-product": "6.2.0-canary.10",
     "@graphcommerce/magento-store": "6.2.0-canary.10",

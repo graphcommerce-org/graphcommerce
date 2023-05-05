@@ -1,5 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { graphqlQuery } from '@graphcommerce/graphql-mesh'
+import { deepAwait, DeepAwait, graphqlQuery } from '@graphcommerce/graphql-mesh'
 import {
   ProductFiltersPro,
   ProductFiltersProFilterChips,
@@ -13,28 +13,45 @@ import {
   ProductFiltersProAllFiltersChip,
   ProductFiltersProLimitChip,
 } from '@graphcommerce/magento-product'
+import { getProductList, ProductListingResult } from '@graphcommerce/magento-product/server'
 import {
+  CategorySearchDocument,
+  CategorySearchQuery,
   CategorySearchResult,
   NoSearchResults,
   SearchDivider,
   SearchForm,
 } from '@graphcommerce/magento-search'
-import { searchContext, searchResults, SearchPageProps } from '@graphcommerce/magento-search/server'
+import {
+  getSearchContext,
+  searchResults,
+  SearchPageProps,
+  GetSearchContextReturn,
+} from '@graphcommerce/magento-search/server'
 import { PageMeta } from '@graphcommerce/magento-store'
-import { StickyBelowHeader, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
+import {
+  StickyBelowHeader,
+  LayoutTitle,
+  LayoutHeader,
+  GetStaticProps,
+} from '@graphcommerce/next-ui'
 import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Container, Hidden } from '@mui/material'
 import { LayoutNavigation, LayoutNavigationProps, ProductListItems } from '../../components'
-import { LayoutDocument } from '../../components/Layout/Layout.gql'
+import { LayoutDocument, LayoutQuery } from '../../components/Layout/Layout.gql'
 
-export type SearchResultProps = SearchPageProps
+export type SearchResultProps = DeepAwait<GetSearchContextReturn> &
+  DeepAwait<ProductListingResult> &
+  CategorySearchQuery
 export type RouteProps = { url: string[] }
+type GetPageStaticProps = GetStaticProps<LayoutQuery, SearchResultProps, RouteProps>
 
 function SearchResultPage(props: SearchResultProps) {
-  const { products, categories, params, filters, filterTypes } = props
-  const search = params.url.split('/')[1]
+  const { products, categories, filters, productListContext } = props
+  const { params, filterTypes } = productListContext
+  const search = params.search ?? ''
   const totalSearchResults = (categories?.items?.length ?? 0) + (products?.total_count ?? 0)
   const noSearchResults = search && (products?.items?.length ?? 0) <= 0
 
@@ -135,24 +152,27 @@ SearchResultPage.pageOptions = pageOptions
 
 export default SearchResultPage
 
-export const getStaticProps = enhanceStaticProps<
-  LayoutNavigationProps,
-  SearchResultProps,
-  RouteProps
->(async (context) => {
+export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async (context) => {
   const layout = graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })
+  const searchContext = await getSearchContext(context)
+  const result = getProductList(searchContext.productListContext)
 
-  const searchCtx = searchContext(context)
-  const result = await searchResults(searchCtx)
+  const categories = searchContext.productListContext.params.search
+    ? graphqlQuery(CategorySearchDocument, {
+        variables: { search: searchContext.productListContext.params.search },
+      })
+    : undefined
 
-  if (!result) return { notFound: true, revalidate: 60 * 20 }
+  if (await result.errors) return { notFound: true, revalidate: 60 * 20 }
 
   return {
-    props: {
+    props: await deepAwait({
+      ...searchContext,
+      ...(await categories)?.data,
       ...(await layout).data,
       ...result,
       up: { href: '/', title: 'Home' },
-    },
+    }),
     revalidate: 60 * 20,
   }
 })

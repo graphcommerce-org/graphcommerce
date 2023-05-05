@@ -1,124 +1,52 @@
 import type { UpPage } from '@graphcommerce/framer-next-pages/types'
 import { TypedDocumentNode } from '@graphcommerce/graphql'
 import { graphqlQuery } from '@graphcommerce/graphql-mesh'
-import {
-  FilterTypes,
-  ProductFiltersQuery,
-  ProductListParams,
-  ProductListQuery,
-} from '@graphcommerce/magento-product'
-import {
-  extractUrlQuery,
-  getFilterTypes,
-  parseParams,
-  productFilters,
-  productList,
-} from '@graphcommerce/magento-product/server'
+import { ProductListContext } from '@graphcommerce/magento-product'
+import { extractUrlQuery, getFilterTypes, parseParams } from '@graphcommerce/magento-product/server'
 import { GetStaticPropsContext } from 'next'
+import type { Simplify } from 'type-fest'
 import { CategoryQueryFragment } from '../queries/CategoryQueryFragment.gql'
 
 type SingleCategory<Q extends CategoryQueryFragment> = NonNullable<
   NonNullable<NonNullable<Q['categories']>['items']>[number]
 >
 
-// type Products = SetRequired<ProductListQuery, 'products'>
-// type Filters = SetRequired<ProductFiltersQuery, 'filters'>
+export type GetCategoryPageResult<Q extends CategoryQueryFragment = CategoryQueryFragment> =
+  Simplify<{
+    category: Promise<SingleCategory<Q> | undefined | null>
+    productListContext: ProductListContext
+    up: Promise<UpPage>
+  }>
 
-export type CategoryNotFound<Q extends CategoryQueryFragment> = Q &
-  ProductListQuery &
-  ProductFiltersQuery & {
-    params?: undefined
-    filterTypes?: undefined
-    up?: UpPage
-  }
-
-export type CategoryFound<Q extends CategoryQueryFragment> = Q &
-  ProductListQuery &
-  ProductFiltersQuery & {
-    params: ProductListParams
-    filterTypes: FilterTypes
-    up: UpPage
-  }
-
-export type CategoryPageProps<Q extends CategoryQueryFragment> =
-  | CategoryNotFound<Q>
-  | CategoryFound<Q>
-
-type CategoryPagePropsReturn<Q extends CategoryQueryFragment> = {
-  category: Promise<SingleCategory<Q> | null | undefined>
-  props: Promise<CategoryPageProps<Q>>
-}
-
-/** Fetches all category, filter and product data required for a category page. */
-export function categoryPageProps<Q extends CategoryQueryFragment>(
+export async function getCategoryPage<Q extends CategoryQueryFragment>(
   document: TypedDocumentNode<Q, { url: string }>,
   context: GetStaticPropsContext<{ url: string[] }>,
-): CategoryPagePropsReturn<Q> {
-  const [url, query] = extractUrlQuery(context.params)
-  if (!url) throw Error('No url found in params')
+): Promise<GetCategoryPageResult> {
+  const [url = '', query = []] = extractUrlQuery(context.params)
+  const filterTypes = getFilterTypes()
+  const params = parseParams(url, query, await filterTypes)
 
-  const categoryQuery = graphqlQuery(document, { variables: { url } })
+  const categoryQuery = graphqlQuery(document, { variables: { url: params.url } })
   const category = categoryQuery.then((res) => res.data.categories?.items?.[0])
 
-  // We're immediately returning the category promise, so that other processes can kick off.
+  const filteredCategoryUid = params.filters.category_uid?.in?.[0]
+  let uid = filteredCategoryUid
+
+  if (!uid) {
+    uid = (await category)?.uid ?? ''
+    if (params) params.filters.category_uid = { in: [uid] }
+  }
+
+  const up = category.then((c) => {
+    const { category_name, category_url_path } = c?.breadcrumbs?.[0] ?? {}
+    return category_url_path && category_name
+      ? { href: `/${category_url_path}`, title: category_name }
+      : { href: `/`, title: 'Home' }
+  })
+
   return {
     category,
-    props: (async () => {
-      const filterTypes = getFilterTypes()
-      const productListParams = parseParams(url, query, await filterTypes)
-
-      const filteredCategoryUid =
-        productListParams && productListParams.filters.category_uid?.in?.[0]
-
-      let uid = filteredCategoryUid
-      if (!uid) {
-        uid = (await category)?.uid ?? ''
-        if (productListParams) productListParams.filters.category_uid = { in: [uid] }
-      }
-
-      // Can not find a category
-      if (!productListParams || !uid) return {}
-
-      const filters = productFilters({ filters: { category_uid: { eq: uid } } })
-      const products = productList({
-        ...productListParams,
-        filters: { ...productListParams.filters, category_uid: { eq: uid } },
-      })
-
-      const up = category.then((c) => {
-        const { category_name, category_url_path } = c?.breadcrumbs?.[0] ?? {}
-        return category_url_path && category_name
-          ? { href: `/${category_url_path}`, title: category_name }
-          : { href: `/`, title: 'Home' }
-      })
-
-      // Can not find any products
-      const cat = await category
-      if ((await products).errors || !cat) return {}
-
-      return {
-        ...(await products).data,
-        ...(await categoryQuery).data,
-        ...(await filters).data,
-        filterTypes: await filterTypes,
-        params: productListParams,
-        up: await up,
-      } satisfies CategoryFound<Q>
-    })(),
+    productListContext: { filterTypes: await filterTypes, params },
+    up,
   }
 }
-
-// export async function searchContext(
-//   context: GetStaticPropsContext<{ url: string[] }>,
-// ): Promise<ProductListContext> {
-//   const [searchShort = '', query = []] = extractUrlQuery(context.params)
-//   const search = searchShort.length >= 3 ? searchShort : ''
-
-//   const filterTypes = getFilterTypes()
-
-//   return {
-//     search,
-//     filterTypes: await filterTypes,
-//     params: parseParams(search ? `search/${search}` : 'search', query, await filterTypes, search),
-//   }
-// }

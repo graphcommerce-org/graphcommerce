@@ -1,6 +1,12 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { Asset, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
-import { hygraphPageContent } from '@graphcommerce/graphcms-ui/server'
+import {
+  hygraphPageContent,
+  hygraphPage,
+  HygraphSinglePageReturn,
+} from '@graphcommerce/graphcms-ui/server'
+import { DeepAwait, deepAwait } from '@graphcommerce/graphql-mesh'
+import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 import {
   CategoryChildren,
   CategoryDescription,
@@ -9,8 +15,8 @@ import {
   CategoryMeta,
 } from '@graphcommerce/magento-category'
 import {
-  categoryPageProps,
-  CategoryPageProps,
+  getCategoryPage,
+  GetCategoryPageResult,
   getCategoryStaticPaths,
 } from '@graphcommerce/magento-category/server'
 import {
@@ -26,6 +32,7 @@ import {
   ProductListParamsProvider,
   ProductListSort,
 } from '@graphcommerce/magento-product'
+import { getProductList, ProductListingResult } from '@graphcommerce/magento-product/server'
 import { redirectOrNotFound } from '@graphcommerce/magento-store/server'
 import {
   StickyBelowHeader,
@@ -46,21 +53,19 @@ import {
 } from '../components'
 import { LayoutDocument, LayoutQuery } from '../components/Layout/Layout.gql'
 import { CategoryPageDocument, CategoryPageQuery } from '../graphql/CategoryPage.gql'
-import { graphqlQuery } from '@graphcommerce/graphql-mesh'
-import { extractUrlQuery } from '@graphcommerce/magento-product/server'
 
-export type CategoryProps = CategoryPageProps<CategoryPageQuery> & HygraphPagesQuery
+export type CategoryProps = DeepAwait<GetCategoryPageResult<CategoryPageQuery>> &
+  DeepAwait<ProductListingResult> &
+  DeepAwait<HygraphSinglePageReturn>
+
 export type CategoryRoute = { url: string[] }
-
-type GetPageStaticPaths = GetStaticPaths<CategoryRoute>
 type GetPageStaticProps = GetStaticProps<LayoutQuery, CategoryProps, CategoryRoute>
 
 function CategoryPage(props: CategoryProps) {
-  const { categories, products, filters, params, filterTypes, pages } = props
+  const { category, productListContext, products, filters, page } = props
+  const { filterTypes, params } = productListContext
 
-  const category = categories?.items?.[0]
   const isLanding = category?.display_mode === 'PAGE'
-  const page = pages?.[0]
   const isCategory = params && category && products?.items && filterTypes
 
   return (
@@ -75,7 +80,7 @@ function CategoryPage(props: CategoryProps) {
       />
       <LayoutHeader floatingMd>
         <LayoutTitle size='small' component='span'>
-          {category?.name ?? page.title}
+          {category?.name ?? page?.title}
         </LayoutTitle>
       </LayoutHeader>
       {!isLanding && (
@@ -90,14 +95,14 @@ function CategoryPage(props: CategoryProps) {
               !isCategory || (!category?.description && category?.children?.length === 0)
             }
           >
-            {category?.name ?? page.title}
+            {category?.name ?? page?.title}
           </LayoutTitle>
         </Container>
       )}
       {isCategory && isLanding && (
         <CategoryHeroNav
           {...category}
-          asset={pages?.[0]?.asset && <Asset asset={pages[0].asset} loading='eager' />}
+          asset={page?.asset && <Asset asset={page.asset} loading='eager' />}
           title={<CategoryHeroNavTitle>{category?.name}</CategoryHeroNavTitle>}
         />
       )}
@@ -172,31 +177,27 @@ CategoryPage.pageOptions = pageOptions
 
 export default CategoryPage
 
-export const getStaticPaths: GetPageStaticPaths = enhanceStaticPaths(
-  'blocking',
-  getCategoryStaticPaths,
-)
+export const getStaticPaths = enhanceStaticPaths('blocking', getCategoryStaticPaths)
 
 export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async (context) => {
   const { params, locale } = context
-  const [url, query] = extractUrlQuery(params)
-  if (!url || !query || !locale) return { notFound: true }
 
   const layout = graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })
 
-  const categoryPageData = categoryPageProps(CategoryPageDocument, context)
-  const pages = hygraphPageContent(url, categoryPageData.category)
-  const hasPage = (await pages).data.pages.length > 0
+  const categoryPage = await getCategoryPage(CategoryPageDocument, context)
+  const productListing = getProductList(categoryPage.productListContext)
+  const page = hygraphPage(categoryPage.productListContext.params.url)
 
-  const awaited = await categoryPageData.props
-  if (!awaited && !hasPage) return redirectOrNotFound(params, locale)
+  if ((!(await categoryPage.category) && !page) || (await productListing.errors))
+    return redirectOrNotFound(params, locale)
 
   return {
-    props: {
-      ...awaited,
-      ...(await pages).data,
+    props: await deepAwait({
+      ...categoryPage,
+      ...productListing,
+      ...page,
       ...(await layout).data,
-    },
+    }),
     revalidate: 60 * 20,
   }
 })
