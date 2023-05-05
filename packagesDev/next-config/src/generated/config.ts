@@ -114,8 +114,8 @@ export type GraphCommerceConfig = {
   /** Use compare functionality */
   compare?: InputMaybe<Scalars['Boolean']>;
   /**
-   * By default the compare feature is denoted with a 'compare icon' (2 arrows facing one another).
-   * This may be fine for experienced users, but for more clarity it's also possible to present the compare feature as a checkbox accompanied by the 'Compare' label
+   * By default the compare feature is denoted with a 'compare ICON' (2 arrows facing one another).
+   * This may be fine for experienced users, but for more clarity it's also possible to present the compare feature as a CHECKBOX accompanied by the 'Compare' label
    */
   compareVariant?: InputMaybe<CompareVariant>;
   /**

@@ -3,12 +3,8 @@ import {
   ProductFiltersPro,
   ProductFiltersProFilterChips,
   ProductFiltersProSortChip,
-  ProductListCount,
-  ProductListFilters,
   ProductListFiltersContainer,
-  ProductListPagination,
   ProductListParamsProvider,
-  ProductListSort,
   ProductListDocument,
   extractUrlQuery,
   parseParams,
@@ -20,12 +16,19 @@ import {
   ProductFiltersQuery,
   ProductFiltersProAllFiltersChip,
   ProductFiltersProLimitChip,
+  AddProductsToCartForm,
 } from '@graphcommerce/magento-product'
 import {
   CategorySearchDocument,
   CategorySearchQuery,
   CategorySearchResult,
   NoSearchResults,
+  ProductListCountSearch,
+  ProductListFiltersSearch,
+  ProductListItemsSearch,
+  ProductListPaginationSearch,
+  ProductListSortSearch,
+  SearchContext,
   SearchDivider,
   SearchForm,
 } from '@graphcommerce/magento-search'
@@ -39,7 +42,7 @@ import {
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Container, Hidden } from '@mui/material'
-import { LayoutNavigation, LayoutNavigationProps, ProductListItems } from '../../components'
+import { LayoutNavigation, LayoutNavigationProps, productListRenderer } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
@@ -70,80 +73,89 @@ function SearchResultPage(props: SearchResultProps) {
         metaRobots={['noindex']}
         canonical='/search'
       />
-      <LayoutHeader floatingMd switchPoint={0}>
-        <LayoutTitle size='small'>
-          <SearchForm
-            totalResults={totalSearchResults}
-            search={search}
-            textFieldProps={{ variant: 'standard' }}
-          />
-        </LayoutTitle>
-      </LayoutHeader>
 
-      <Hidden implementation='css' mdDown>
-        <LayoutTitle gutterBottom={false} gutterTop={false}>
-          {search ? (
-            <Trans id='Results for &lsquo;{search}&rsquo;' values={{ search }} />
-          ) : (
-            <Trans id='All products' />
-          )}
-        </LayoutTitle>
-
-        <Container maxWidth='sm'>
-          <SearchForm
-            totalResults={totalSearchResults}
-            search={search}
-            textFieldProps={{ autoFocus: true }}
-          />
-
-          {categories?.items?.map((category) => (
-            <CategorySearchResult key={category?.url_path} search={search} {...category} />
-          ))}
-        </Container>
-        <SearchDivider />
-      </Hidden>
-
-      {noSearchResults && <NoSearchResults search={search} />}
-      {products && products.items && products?.items?.length > 0 && (
-        <>
-          <StickyBelowHeader>
-            {import.meta.graphCommerce.productFiltersPro ? (
-              <ProductFiltersPro params={params}>
-                <ProductListFiltersContainer>
-                  <ProductFiltersProFilterChips
-                    {...filters}
-                    appliedAggregations={products.aggregations}
-                    filterTypes={filterTypes}
-                  />
-                  <ProductFiltersProSortChip {...products} />
-                  <ProductFiltersProLimitChip />
-                  <ProductFiltersProAllFiltersChip
-                    {...products}
-                    {...filters}
-                    appliedAggregations={products.aggregations}
-                    filterTypes={filterTypes}
-                  />
-                </ProductListFiltersContainer>
-              </ProductFiltersPro>
+      <SearchContext>
+        <LayoutHeader floatingMd switchPoint={0}>
+          <LayoutTitle size='small'>
+            <SearchForm
+              totalResults={totalSearchResults}
+              search={search}
+              textFieldProps={{ variant: 'standard' }}
+            />
+          </LayoutTitle>
+        </LayoutHeader>
+        <Hidden implementation='css' mdDown>
+          <LayoutTitle gutterBottom={false} gutterTop={false}>
+            {search ? (
+              <Trans id='Results for &lsquo;{search}&rsquo;' values={{ search }} />
             ) : (
-              <ProductListParamsProvider value={params}>
-                <ProductListFiltersContainer>
-                  <ProductListSort
-                    sort_fields={products?.sort_fields}
-                    total_count={products?.total_count}
-                  />
-                  <ProductListFilters {...filters} filterTypes={filterTypes} />
-                </ProductListFiltersContainer>
-              </ProductListParamsProvider>
+              <Trans id='All products' />
             )}
-          </StickyBelowHeader>
-          <Container maxWidth={false}>
-            <ProductListCount total_count={products?.total_count} />
-            <ProductListItems title={`Search ${search}`} items={products?.items} loadingEager={1} />
-            <ProductListPagination page_info={products?.page_info} params={params} />
+          </LayoutTitle>
+
+          <Container maxWidth='sm'>
+            <SearchForm
+              totalResults={totalSearchResults}
+              search={search}
+              textFieldProps={{ autoFocus: true }}
+            />
+
+            {categories?.items?.map((category) => (
+              <CategorySearchResult key={category?.url_path} search={search} {...category} />
+            ))}
           </Container>
-        </>
-      )}
+          <SearchDivider />
+        </Hidden>
+
+        {noSearchResults && <NoSearchResults search={search} />}
+        {products && products.items && products?.items?.length > 0 && (
+          <>
+            <StickyBelowHeader>
+              {import.meta.graphCommerce.productFiltersPro ? (
+                <ProductFiltersPro params={params}>
+                  <ProductListFiltersContainer>
+                    <ProductFiltersProFilterChips
+                      {...filters}
+                      appliedAggregations={products.aggregations}
+                      filterTypes={filterTypes}
+                    />
+                    <ProductFiltersProSortChip {...products} />
+                    <ProductFiltersProLimitChip />
+                    <ProductFiltersProAllFiltersChip
+                      {...products}
+                      {...filters}
+                      appliedAggregations={products.aggregations}
+                      filterTypes={filterTypes}
+                    />
+                  </ProductListFiltersContainer>
+                </ProductFiltersPro>
+              ) : (
+                <ProductListParamsProvider value={params}>
+                  <ProductListFiltersContainer>
+                    <ProductListSortSearch
+                      sort_fields={products?.sort_fields}
+                      total_count={products?.total_count}
+                    />
+                    <ProductListFiltersSearch {...filters} filterTypes={filterTypes} />
+                  </ProductListFiltersContainer>
+                </ProductListParamsProvider>
+              )}
+            </StickyBelowHeader>
+            <Container maxWidth={false}>
+              <ProductListCountSearch total_count={products?.total_count} />
+              <AddProductsToCartForm>
+                <ProductListItemsSearch
+                  renderers={productListRenderer}
+                  title={`Search ${search}`}
+                  items={products?.items}
+                  loadingEager={1}
+                />
+              </AddProductsToCartForm>
+              <ProductListPaginationSearch page_info={products?.page_info} params={params} />
+            </Container>
+          </>
+        )}
+      </SearchContext>
     </>
   )
 }

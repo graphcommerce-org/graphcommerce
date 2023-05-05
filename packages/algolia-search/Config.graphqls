@@ -1,0 +1,72 @@
+"""
+Type for sortable algolia options
+"""
+input AlgoliaSortableOption {
+  """
+  The label of the index to display
+  """
+  label: String!
+  """
+  The name of the index to target.
+  """
+  value: String!
+}
+
+"""
+Type for conversion of Magento 2 aggregations to Algolia filterable attributes
+"""
+input AlgoliaFilterAttribute {
+  """
+  Stores the default aggregation uid
+  """
+  aggregation: String!
+
+  """
+  Stores the algolia attribute that should be connected to the magento aggregation
+  """
+  toAlgoliaAttribute: String!
+}
+
+"""
+Type for search index config
+"""
+input AlgoliaSearchIndexConfig {
+  """
+  Configure your Algolia Search index for Magento products
+  """
+  searchIndex: String!
+
+  """
+  Configures Algolia filterable attributes
+  """
+  filterAttributes: [AlgoliaFilterAttribute!]
+}
+
+extend input GraphCommerceStorefrontConfig {
+  """
+  Configure your Algolia index configurations
+  """
+  algoliaSearchIndexConfig: [AlgoliaSearchIndexConfig!]!
+
+  """
+  Configure the sortable attributes
+  """
+  sortOptions: [AlgoliaSortableOption!]
+}
+
+extend input GraphCommerceConfig {
+  """
+  Configure your Algolia application ID.
+  """
+  algoliaApplicationId: String!
+
+  """
+  Configure your Algolia Search Only API Key
+  """
+  algoliaSearchOnlyApiKey: String!
+
+  """
+  Configures algolia search debounce time. This will slow down the search response.
+  """
+  algoliaSearchDebounceTime: Int
+}
