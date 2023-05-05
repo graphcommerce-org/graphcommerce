@@ -1,5 +1,5 @@
 ---
-'@graphcommerce/algolia-search': major
+'@graphcommerce/algolia-search': minor
 ---
 
 New Algolia search package!
