@@ -1,12 +1,12 @@
 import { graphqlQuery, mergeFetchResults } from '@graphcommerce/graphql-mesh'
 import { storeConfig } from '@graphcommerce/magento-store/server'
+import type { GraphQLError } from 'graphql'
 import { ProductListContext } from '../components'
 import { ProductListDocument, ProductListQuery } from '../components/ProductList/ProductList.gql'
 import {
   ProductFiltersDocument,
   ProductFiltersQuery,
 } from '../components/ProductListFilters/ProductFilters.gql'
-import type { GraphQLError } from 'graphql'
 
 export async function getProductListItems(
   context: Promise<ProductListContext> | ProductListContext,

@@ -2,7 +2,7 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { Asset, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import {
   hygraphPageContent,
-  hygraphPage,
+  getHygraphPage,
   HygraphSinglePageReturn,
 } from '@graphcommerce/graphcms-ui/server'
 import { DeepAwait, deepAwait } from '@graphcommerce/graphql-mesh'
@@ -32,7 +32,12 @@ import {
   ProductListParamsProvider,
   ProductListSort,
 } from '@graphcommerce/magento-product'
-import { getProductList, ProductListingResult } from '@graphcommerce/magento-product/server'
+import {
+  getProductList,
+  getProductListFilters,
+  getProductListItems,
+  ProductListingResult,
+} from '@graphcommerce/magento-product/server'
 import { redirectOrNotFound } from '@graphcommerce/magento-store/server'
 import {
   StickyBelowHeader,
@@ -185,16 +190,19 @@ export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async (cont
   const layout = graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })
 
   const categoryPage = await getCategoryPage(CategoryPageDocument, context)
-  const productListing = getProductList(categoryPage.productListContext)
-  const page = hygraphPage(categoryPage.productListContext.params.url)
 
-  if ((!(await categoryPage.category) && !page) || (await productListing.errors))
+  const listItems = getProductListItems(categoryPage.productListContext)
+  const filters = getProductListFilters(categoryPage.productListContext)
+  const page = getHygraphPage(categoryPage.productListContext.params.url, categoryPage.category)
+
+  if (!(await categoryPage.category) && !(await page.page) && !(await listItems).error)
     return redirectOrNotFound(params, locale)
 
   return {
     props: await deepAwait({
       ...categoryPage,
-      ...productListing,
+      ...(await listItems).data,
+      ...(await filters).data,
       ...page,
       ...(await layout).data,
     }),

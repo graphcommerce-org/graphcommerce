@@ -13,29 +13,25 @@ type SingleCategory<Q extends CategoryQueryFragment> = NonNullable<
 
 export type GetCategoryPageResult<Q extends CategoryQueryFragment = CategoryQueryFragment> =
   Simplify<{
-    category: Promise<SingleCategory<Q> | undefined | null>
-    productListContext: ProductListContext
+    category: Promise<SingleCategory<Q> | null>
+    productListContext: Promise<ProductListContext>
     up: Promise<UpPage>
   }>
 
-export async function getCategoryPage<Q extends CategoryQueryFragment>(
+export function getCategoryPage<Q extends CategoryQueryFragment>(
   document: TypedDocumentNode<Q, { url: string }>,
   context: GetStaticPropsContext<{ url: string[] }>,
-): Promise<GetCategoryPageResult> {
+): GetCategoryPageResult {
   const [url = '', query = []] = extractUrlQuery(context.params)
-  const filterTypes = getFilterTypes()
-  const params = parseParams(url, query, await filterTypes)
+  const filterTypesPromise = getFilterTypes()
+  const paramsPromise = filterTypesPromise.then((f) => parseParams(url, query, f))
 
-  const categoryQuery = graphqlQuery(document, { variables: { url: params.url } })
-  const category = categoryQuery.then((res) => res.data.categories?.items?.[0])
+  const categoryQuery = graphqlQuery(
+    document,
+    paramsPromise.then((p) => ({ variables: { url: p.url } })),
+  )
 
-  const filteredCategoryUid = params.filters.category_uid?.in?.[0]
-  let uid = filteredCategoryUid
-
-  if (!uid) {
-    uid = (await category)?.uid ?? ''
-    if (params) params.filters.category_uid = { in: [uid] }
-  }
+  const category = categoryQuery.then((res) => res.data.categories?.items?.[0] ?? null)
 
   const up = category.then((c) => {
     const { category_name, category_url_path } = c?.breadcrumbs?.[0] ?? {}
@@ -44,9 +40,18 @@ export async function getCategoryPage<Q extends CategoryQueryFragment>(
       : { href: `/`, title: 'Home' }
   })
 
-  return {
-    category,
-    productListContext: { filterTypes: await filterTypes, params },
-    up,
-  }
+  const productListContext = Promise.all([filterTypesPromise, paramsPromise]).then(
+    async ([filterTypes, params]) => {
+      const filteredCategoryUid = params.filters.category_uid?.in?.[0]
+      let uid = filteredCategoryUid
+
+      if (!uid) {
+        uid = (await category)?.uid ?? ''
+        if (params) params.filters.category_uid = { in: [uid] }
+      }
+      return { filterTypes, params }
+    },
+  )
+
+  return { category, productListContext, up }
 }

@@ -76,12 +76,12 @@ export function graphqlQueryPassToClient<
   return graphqlSharedClient().query({ query, ...options })
 }
 
-export function graphqlQuery<
+export async function graphqlQuery<
   Q = Record<string, unknown>,
   V extends Record<string, unknown> = Record<string, unknown>,
 >(
   query: TypedDocumentNode<Q, V>,
-  options?: Omit<QueryOptions<V, Q>, 'query'> & { skip?: boolean },
+  options?: Omit<QueryOptions<V, Q>, 'query'> | Promise<Omit<QueryOptions<V, Q>, 'query'>>,
 ): Promise<ApolloQueryResult<Q>> {
-  return graphqlSsrClient().query({ query, ...options })
+  return graphqlSsrClient().query({ query, ...(await options) })
 }

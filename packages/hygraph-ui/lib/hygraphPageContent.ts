@@ -49,7 +49,7 @@ export async function hygraphPageContent(
 
 export type HygraphSinglePageReturn = { page: Promise<HygraphPageFragment | null> }
 
-export function hygraphPage(
+export function getHygraphPage(
   url: string,
   additionalProperties?: Promise<object | undefined | null> | object | null,
   cached = false,
