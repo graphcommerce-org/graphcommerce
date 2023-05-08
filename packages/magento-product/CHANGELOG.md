@@ -1,5 +1,15 @@
 # Change Log
 
+## 6.2.0-canary.13
+
+## 6.2.0-canary.12
+
+## 6.2.0-canary.11
+
+### Patch Changes
+
+- [#1919](https://github.com/graphcommerce-org/graphcommerce/pull/1919) [`201e75401`](https://github.com/graphcommerce-org/graphcommerce/commit/201e75401c99b7e7aeee06c7e5db737c19749298) - Fixed incorrect className for topRight ProductListItem location ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 6.2.0-canary.10
 
 ## 6.2.0-canary.9

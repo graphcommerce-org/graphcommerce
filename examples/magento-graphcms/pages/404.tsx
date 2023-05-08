@@ -1,5 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { SearchForm } from '@graphcommerce/magento-search'
+import { SearchLink } from '@graphcommerce/magento-search'
 import { PageMeta } from '@graphcommerce/magento-store'
 import { GetStaticProps, Separator, icon404, IconSvg } from '@graphcommerce/next-ui'
 import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
@@ -37,7 +37,9 @@ function RouteNotFoundPage() {
             <Trans id="We couldn't find the page you were looking for" />
           </Typography>
           <Box mt={4} mb={2}>
-            <SearchForm autoFocus={false} />
+            <SearchLink href='/search' sx={{ width: '100%', py: 2, typography: 'body1' }}>
+              Search...
+            </SearchLink>
           </Box>
           <Trans id='Or follow these links to get you back on track!' />
           <Box mb={8}>
