@@ -19,6 +19,7 @@ import {
   LayoutNavigationProps,
   RowRenderer,
 } from '../../../components'
+import { layoutProps } from '../../../components/Layout/layout'
 import { LayoutDocument } from '../../../components/Layout/Layout.gql'
 
 type Props = HygraphPagesQuery & BlogListTaggedQuery
@@ -66,8 +67,8 @@ export const getStaticPaths = enhanceStaticPaths<RouteProps>(
     })) ?? [],
 )
 
-export const getStaticProps = enhanceStaticProps<LayoutNavigationProps, Props, RouteProps>(
-  async ({ params }) => {
+export const getStaticProps = enhanceStaticProps(
+  layoutProps<Props, RouteProps>(async ({ params }) => {
     const urlKey = params?.url ?? '??'
     const limit = 99
     const page = hygraphPageContent(`blog/tagged/${urlKey}`)
@@ -81,10 +82,9 @@ export const getStaticProps = enhanceStaticProps<LayoutNavigationProps, Props, R
       props: {
         ...(await page).data,
         ...(await blogPosts).data,
-        ...(await graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })).data,
         up: { href: '/blog', title: 'Blog' },
       },
       revalidate: 60 * 20,
     }
-  },
+  }),
 )

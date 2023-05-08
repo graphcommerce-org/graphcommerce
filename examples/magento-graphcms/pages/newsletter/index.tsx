@@ -11,6 +11,7 @@ import {
   LayoutNavigationProps,
   RowRenderer,
 } from '../../components'
+import { layoutProps } from '../../components/Layout/layout'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
 
 import { GuestNewsletter } from '../../components/Newsletter/GuestNewsletter'
@@ -68,8 +69,8 @@ NewsletterSubscribe.pageOptions = pageOptions
 
 export default NewsletterSubscribe
 
-export const getStaticProps = enhanceStaticProps<LayoutNavigationProps, Props, RouteProps>(
-  async () => {
+export const getStaticProps = enhanceStaticProps(
+  layoutProps<Props, RouteProps>(async () => {
     const url = `newsletter`
     const page = hygraphPageContent(url)
 
@@ -78,9 +79,8 @@ export const getStaticProps = enhanceStaticProps<LayoutNavigationProps, Props, R
     return {
       props: {
         ...(await page).data,
-        ...(await graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })).data,
       },
       revalidate: 60 * 20,
     }
-  },
+  }),
 )

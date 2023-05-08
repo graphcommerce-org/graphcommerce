@@ -14,6 +14,7 @@ import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
 import { InferGetStaticPropsType } from 'next'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
+import { layoutProps } from '../../../components/Layout/layout'
 
 function AccountAddressesPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const addresses = useCustomerQuery(AccountDashboardAddressesDocument, {
@@ -54,13 +55,15 @@ AccountAddressesPage.pageOptions = pageOptions
 
 export default AccountAddressesPage
 
-export const getStaticProps = enhanceStaticProps<LayoutOverlayProps>(async () => {
-  const countryRegions = graphqlQuery(CountryRegionsDocument)
+export const getStaticProps = enhanceStaticProps(
+  layoutProps(async () => {
+    const countryRegions = graphqlQuery(CountryRegionsDocument)
 
-  return {
-    props: {
-      ...(await countryRegions).data,
-      up: { href: '/account', title: 'Account' },
-    },
-  }
-})
+    return {
+      props: {
+        ...(await countryRegions).data,
+        up: { href: '/account', title: 'Account' },
+      },
+    }
+  }),
+)

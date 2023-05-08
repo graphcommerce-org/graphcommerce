@@ -33,6 +33,7 @@ import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
 import { InferGetStaticPropsType } from 'next'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
+import { layoutProps } from '../../components/Layout/layout'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
 
 function AccountIndexPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
@@ -169,10 +170,11 @@ AccountIndexPage.pageOptions = pageOptions
 
 export default AccountIndexPage
 
-export const getStaticProps = enhanceStaticProps<LayoutMinimalProps>(async () => ({
-  props: {
-    ...(await graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })).data,
-    up: { href: '/', title: 'Home' },
-  },
-  revalidate: 60 * 20,
-}))
+export const getStaticProps = enhanceStaticProps(
+  layoutProps(async () => ({
+    props: {
+      up: { href: '/', title: 'Home' },
+    },
+    revalidate: 60 * 20,
+  })),
+)

@@ -1,13 +1,14 @@
 import type { ParsedUrlQuery } from 'querystring'
 import type { GraphCommerceStorefrontConfig } from '@graphcommerce/next-config'
 import type {
+  GetServerSideProps,
   GetServerSidePropsContext,
   GetServerSidePropsResult,
   GetStaticPathsResult,
+  GetStaticProps,
   GetStaticPropsContext,
   GetStaticPropsResult,
 } from 'next'
-import type { GetStaticProps, GetServerSideProps } from '../Page/types'
 
 export const storefrontAll = import.meta.graphCommerce.storefront
 
@@ -33,10 +34,9 @@ export const storefrontConfig = () => {
  * To get the current storefront config, use the `storefrontConfig()` function.
  */
 export function enhanceStaticProps<
-  LayoutProps extends Record<string, unknown>,
   Props extends Record<string, unknown> = Record<string, unknown>,
   Params extends ParsedUrlQuery = ParsedUrlQuery,
->(cb: GetStaticProps<LayoutProps, Props, Params>) {
+>(cb: GetStaticProps<Props, Params>) {
   return (context: GetStaticPropsContext<Params>) => {
     const config = storefrontAll.find((l) => l.locale === context.locale)
     if (!config) throw Error(`No storefront config found for locale ${context.locale}`)
@@ -50,10 +50,9 @@ export function enhanceStaticProps<
  * have plugins, see the next-ui/index.interceptor.tsx
  */
 export function enhanceServerSideProps<
-  LayoutProps extends Record<string, unknown>,
   Props extends Record<string, unknown> = Record<string, unknown>,
   Params extends ParsedUrlQuery = ParsedUrlQuery,
->(cb: GetServerSideProps<LayoutProps, Props, Params>) {
+>(cb: GetServerSideProps<Props, Params>) {
   return (context: GetServerSidePropsContext<Params>) => {
     const config = storefrontAll.find((l) => l.locale === context.locale)
     if (!config) throw Error(`No storefront config found for locale ${context.locale}`)
@@ -88,8 +87,7 @@ export function enhanceStaticPaths<Params extends ParsedUrlQuery = ParsedUrlQuer
 }
 
 export function hasProps<
-  R extends GetStaticPropsResult<P> | GetServerSidePropsResult<P>,
-  P extends Record<string, unknown>,
->(result: R): result is R & { props: P } {
+  R extends GetStaticPropsResult<unknown> | GetServerSidePropsResult<unknown>,
+>(result: R): result is Extract<R, { props: unknown }> {
   return typeof result === 'object' && 'props' in result
 }

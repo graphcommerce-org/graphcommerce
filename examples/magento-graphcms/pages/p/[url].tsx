@@ -52,6 +52,7 @@ import {
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
 import { UspsDocument, UspsQuery } from '../../components/Usps/Usps.gql'
 import { ProductPage2Document, ProductPage2Query } from '../../graphql/ProductPage2.gql'
+import { layoutProps } from '../../components/Layout/layout'
 
 type Props = HygraphPagesQuery &
   UspsQuery &
@@ -204,8 +205,8 @@ export default ProductPage
 
 export const getStaticPaths = enhanceStaticPaths('blocking', getProductStaticPaths)
 
-export const getStaticProps = enhanceStaticProps<LayoutNavigationProps, Props, RouteProps>(
-  async ({ params, locale }) => {
+export const getStaticProps = enhanceStaticProps(
+  layoutProps<Props, RouteProps>(async ({ params, locale }) => {
     const urlKey = params?.url ?? '??'
 
     const layout = graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })
@@ -235,5 +236,5 @@ export const getStaticProps = enhanceStaticProps<LayoutNavigationProps, Props, R
       },
       revalidate: 60 * 20,
     }
-  },
+  }),
 )

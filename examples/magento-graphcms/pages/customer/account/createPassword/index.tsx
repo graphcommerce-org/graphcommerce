@@ -9,6 +9,7 @@ import { Box, Container, Link, Button } from '@mui/material'
 import { InferGetStaticPropsType } from 'next'
 import router, { useRouter } from 'next/router'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../../components'
+import { layoutProps } from '../../../../components/Layout/layout'
 
 function CustomerAccountCreatePasswordPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const { token, success } = useRouter().query
@@ -80,8 +81,10 @@ CustomerAccountCreatePasswordPage.pageOptions = pageOptions
 
 export default CustomerAccountCreatePasswordPage
 
-export const getStaticProps = enhanceStaticProps<LayoutOverlayProps>(() => ({
-  props: {
-    up: { href: '/account/signin', title: 'Sign in' },
-  },
-}))
+export const getStaticProps = enhanceStaticProps(
+  layoutProps(() => ({
+    props: {
+      up: { href: '/account/signin', title: 'Sign in' },
+    },
+  })),
+)

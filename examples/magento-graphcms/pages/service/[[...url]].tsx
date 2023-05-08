@@ -14,6 +14,7 @@ import {
 } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
 import { graphqlQuery } from '@graphcommerce/graphql-mesh'
+import { layoutProps } from '../../components/Layout/layout'
 
 type Props = HygraphPagesQuery
 type RouteProps = { url: string[] }
@@ -61,8 +62,8 @@ export const getStaticPaths = enhanceStaticPaths<RouteProps>('blocking', async (
   return data.pages.map((page) => ({ params: { url: page.url.split('/').slice(1) }, locale }))
 })
 
-export const getStaticProps = enhanceStaticProps<LayoutNavigationProps, Props, RouteProps>(
-  async ({ params }) => {
+export const getStaticProps = enhanceStaticProps(
+  layoutProps<Props, RouteProps>(async ({ params }) => {
     const url = params?.url ? `service/${params?.url.join('/')}` : `service`
     const page = hygraphPageContent(url)
 
@@ -73,10 +74,9 @@ export const getStaticProps = enhanceStaticProps<LayoutNavigationProps, Props, R
     return {
       props: {
         ...(await page).data,
-        ...(await graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })).data,
         up: isRoot ? null : { href: '/service', title: i18n._(/* i18n */ 'Customer Service') },
       },
       revalidate: 60 * 20,
     }
-  },
+  }),
 )

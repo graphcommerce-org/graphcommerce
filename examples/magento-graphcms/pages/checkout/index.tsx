@@ -38,6 +38,7 @@ import { CircularProgress, Container, Typography } from '@mui/material'
 import { InferGetStaticPropsType } from 'next'
 import { useRouter } from 'next/router'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
+import { layoutProps } from '../../components/Layout/layout'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
 
 function ShippingPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
@@ -146,9 +147,10 @@ ShippingPage.pageOptions = pageOptions
 
 export default ShippingPage
 
-export const getStaticProps = enhanceStaticProps<LayoutMinimalProps>(async () => ({
-  props: {
-    ...(await graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })).data,
-    up: { href: '/cart', title: 'Cart' },
-  },
-}))
+export const getStaticProps = enhanceStaticProps(
+  layoutProps(async () => ({
+    props: {
+      up: { href: '/cart', title: 'Cart' },
+    },
+  })),
+)

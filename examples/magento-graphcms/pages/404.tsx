@@ -8,6 +8,7 @@ import { Trans } from '@lingui/react'
 import { Box, Container, Typography, Link } from '@mui/material'
 import React from 'react'
 import { LayoutNavigation, LayoutNavigationProps } from '../components'
+import { layoutProps } from '../components/Layout/layout'
 import { LayoutDocument } from '../components/Layout/Layout.gql'
 
 function RouteNotFoundPage() {
@@ -59,10 +60,9 @@ RouteNotFoundPage.pageOptions = {
 
 export default RouteNotFoundPage
 
-export const getStaticProps = enhanceStaticProps<LayoutNavigationProps>(async () => ({
-  props: {
-    ...(await graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })).data,
-    up: { href: '/', title: 'Home' },
-  },
-  revalidate: 60 * 20,
-}))
+export const getStaticProps = enhanceStaticProps(
+  layoutProps(async () => ({
+    props: { up: { href: '/', title: 'Home' } },
+    revalidate: 60 * 20,
+  })),
+)

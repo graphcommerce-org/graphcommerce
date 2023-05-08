@@ -39,7 +39,9 @@ import { Trans } from '@lingui/react'
 import { Box, Container } from '@mui/material'
 import { InferGetStaticPropsType } from 'next'
 import { LayoutNavigation, LayoutNavigationProps, productListRenderer } from '../../components'
-import { LayoutDocument, LayoutQuery } from '../../components/Layout/Layout.gql'
+import { layoutProps } from '../../components/Layout/layout'
+import { LayoutDocument } from '../../components/Layout/Layout.gql'
+import { LayoutFullProps } from '../../components/Layout/LayoutFull'
 
 export type SearchResultProps = ResolvedGetSearchContextReturn &
   CategorySearchQuery &
@@ -161,8 +163,8 @@ SearchResultPage.pageOptions = pageOptions
 
 export default SearchResultPage
 
-export const getStaticProps = enhanceStaticProps<LayoutQuery, SearchResultProps, RouteProps>(
-  async (context) => {
+export const getStaticProps = enhanceStaticProps(
+  layoutProps<SearchResultProps, RouteProps>(async (context) => {
     const layout = graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })
     const searchContext = getSearchContext(context)
     const listItems = getProductListItems(searchContext.params)
@@ -182,5 +184,5 @@ export const getStaticProps = enhanceStaticProps<LayoutQuery, SearchResultProps,
       }),
       revalidate: 60 * 20,
     }
-  },
+  }),
 )

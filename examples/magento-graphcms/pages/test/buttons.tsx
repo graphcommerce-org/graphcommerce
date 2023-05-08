@@ -13,6 +13,7 @@ import { Box, Container, Typography, Divider, styled } from '@mui/material'
 import { InferGetStaticPropsType } from 'next'
 import React, { useState } from 'react'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
+import { layoutProps } from '../../components/Layout/layout'
 
 const variants = ['text', 'outlined', 'contained', 'pill', 'inline'] as const
 const sizes = ['small', 'medium', 'large'] as const
@@ -123,4 +124,4 @@ const pageOptions: PageOptions<LayoutMinimalProps> = {
 }
 ButtonsPage.pageOptions = pageOptions
 
-export const getStaticProps = enhanceStaticProps<LayoutMinimalProps>(() => ({ props: {} }))
+export const getStaticProps = enhanceStaticProps(layoutProps(() => ({ props: {} })))

@@ -13,6 +13,7 @@ import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
 import { InferGetStaticPropsType } from 'next'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
+import { layoutProps } from '../../../components/Layout/layout'
 
 function AccountNamePage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const dashboard = useCustomerQuery(CustomerDocument, {
@@ -60,8 +61,10 @@ AccountNamePage.pageOptions = pageOptions
 
 export default AccountNamePage
 
-export const getStaticProps = enhanceStaticProps<LayoutOverlayProps>(() => ({
-  props: {
-    up: { href: '/account', title: 'Account' },
-  },
-}))
+export const getStaticProps = enhanceStaticProps(
+  layoutProps(() => ({
+    props: {
+      up: { href: '/account', title: 'Account' },
+    },
+  })),
+)

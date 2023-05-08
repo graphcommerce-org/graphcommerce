@@ -42,7 +42,7 @@ the data needed to render the layout (header, footer, menu etc.)
 ```tsx
 // Example from /pages/account/index.tsx
 
-export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async ({ locale }) => {
+export const getStaticProps = enhanceStaticProps(async ({ locale }) => {
  ...
 
   const page = hygraphPageContent('account')

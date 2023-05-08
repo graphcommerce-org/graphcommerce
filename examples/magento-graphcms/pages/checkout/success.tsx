@@ -18,6 +18,7 @@ import { Button, Box, Container } from '@mui/material'
 import { InferGetStaticPropsType } from 'next'
 import { useRouter } from 'next/router'
 import { LayoutMinimal, LayoutNavigationProps, LayoutMinimalProps } from '../../components'
+import { layoutProps } from '../../components/Layout/layout'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
 
 function OrderSuccessPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
@@ -78,9 +79,10 @@ OrderSuccessPage.pageOptions = pageOptions
 
 export default OrderSuccessPage
 
-export const getStaticProps = enhanceStaticProps<LayoutNavigationProps>(async () => ({
-  props: {
-    ...(await graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })).data,
-    up: { href: '/', title: 'Home' },
-  },
-}))
+export const getStaticProps = enhanceStaticProps(
+  layoutProps(async () => ({
+    props: {
+      up: { href: '/', title: 'Home' },
+    },
+  })),
+)

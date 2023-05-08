@@ -21,6 +21,7 @@ import { enhanceStaticPaths, enhanceStaticProps } from '@graphcommerce/next-ui/s
 import { Box, Container, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import { LayoutMinimal, LayoutMinimalProps } from '../../../components'
+import { layoutProps } from '../../../components/Layout/layout'
 import { CategoryPageDocument } from '../../../graphql/CategoryPage.gql'
 
 type Props = CategoryPageResult & ProductListQuery & ProductFiltersQuery & MaybeHygraphSingePage
@@ -101,8 +102,8 @@ export const getStaticPaths = enhanceStaticPaths<RouteProps>('blocking', ({ loca
   [[]].map((url) => ({ params: { url }, locale })),
 )
 
-export const getStaticProps = enhanceStaticProps<LayoutMinimalProps, Props, RouteProps>(
-  async (context) => {
+export const getStaticProps = enhanceStaticProps(
+  layoutProps<Props, RouteProps>(async (context) => {
     const categoryPage = getCategoryPage(CategoryPageDocument, context)
     const listItems = getProductListItems(categoryPage.params)
     const filters = getProductListFilters(categoryPage.params)
@@ -119,5 +120,5 @@ export const getStaticProps = enhanceStaticProps<LayoutMinimalProps, Props, Rout
       }),
       revalidate: 1,
     }
-  },
+  }),
 )

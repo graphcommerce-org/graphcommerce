@@ -8,7 +8,7 @@ import {
   OrderItems,
   OrderDetailPageDocument,
 } from '@graphcommerce/magento-customer'
-import { CountryRegionsDocument, PageMeta } from '@graphcommerce/magento-store'
+import { CountryRegionsDocument, CountryRegionsQuery, PageMeta } from '@graphcommerce/magento-store'
 import { IconHeader, iconBox, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
@@ -17,6 +17,7 @@ import { Container } from '@mui/material'
 import { InferGetStaticPropsType } from 'next'
 import { useRouter } from 'next/router'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
+import { layoutProps } from '../../../components/Layout/layout'
 
 function OrderDetailPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const router = useRouter()
@@ -76,13 +77,15 @@ OrderDetailPage.pageOptions = pageOptions
 
 export default OrderDetailPage
 
-export const getStaticProps = enhanceStaticProps<LayoutOverlayProps>(async () => {
-  const countryRegions = graphqlQuery(CountryRegionsDocument)
+export const getStaticProps = enhanceStaticProps(
+  layoutProps<CountryRegionsQuery>(async () => {
+    const countryRegions = graphqlQuery(CountryRegionsDocument)
 
-  return {
-    props: {
-      ...(await countryRegions).data,
-      up: { href: '/account/orders', title: 'Orders' },
-    },
-  }
-})
+    return {
+      props: {
+        ...(await countryRegions).data,
+        up: { href: '/account/orders', title: 'Orders' },
+      },
+    }
+  }),
+)

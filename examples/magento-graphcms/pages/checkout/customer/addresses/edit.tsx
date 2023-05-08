@@ -21,6 +21,7 @@ import { Box, CircularProgress, Container, Skeleton } from '@mui/material'
 import { InferGetStaticPropsType } from 'next'
 import { useRouter } from 'next/router'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../../components'
+import { layoutProps } from '../../../../components/Layout/layout'
 
 function CheckoutCustomerAddressesEdit(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const router = useRouter()
@@ -88,8 +89,6 @@ CheckoutCustomerAddressesEdit.pageOptions = pageOptions
 
 export default CheckoutCustomerAddressesEdit
 
-export const getStaticProps = enhanceStaticProps<LayoutOverlayProps>(() => ({
-  props: {
-    up: { href: '/checkout', title: 'Checkout' },
-  },
-}))
+export const getStaticProps = enhanceStaticProps(
+  layoutProps(() => ({ props: { up: { href: '/checkout', title: 'Checkout' } } })),
+)

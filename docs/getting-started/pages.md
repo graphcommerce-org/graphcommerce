@@ -70,7 +70,7 @@ AboutUs.pageOptions = {
 
 export default AboutUs
 
-export const getStaticProps: GetPageStaticProps = enhanceStaticProps(
+export const getStaticProps = enhanceStaticProps(
   async () => {
     const page = hygraphPageContent('account')
     const layout = graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' }))
@@ -163,18 +163,16 @@ export const getStaticPaths = (context) => ({
   fallback: 'blocking',
 })
 
-export const getStaticProps: GetPageStaticProps = enhanceStaticProps(
-  async ({ params }) => {
-    const page = hygraphPageContent(`about/${params?.url}`)
+export const getStaticProps = enhanceStaticProps(async ({ params }) => {
+  const page = hygraphPageContent(`about/${params?.url}`)
 
-    // if (!(await page).data.pages?.[0]) return { notFound: true }
-    return {
-      props: {
-        ...(await page).data,
-      },
-    }
-  },
-)
+  // if (!(await page).data.pages?.[0]) return { notFound: true }
+  return {
+    props: {
+      ...(await page).data,
+    },
+  }
+})
 ```
 
 By renaming the file to `/about/[url].tsx`, all routes starting with /about/

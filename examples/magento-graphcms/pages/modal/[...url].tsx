@@ -7,6 +7,7 @@ import { enhanceStaticPaths, enhanceStaticProps } from '@graphcommerce/next-ui/s
 import { Box, Typography } from '@mui/material'
 import { InferGetStaticPropsType } from 'next'
 import { LayoutOverlay, LayoutOverlayProps, RowRenderer } from '../../components'
+import { layoutProps } from '../../components/Layout/layout'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
 
 type Props = HygraphPagesQuery
@@ -56,8 +57,8 @@ export const getStaticPaths = enhanceStaticPaths<RouteProps>('blocking', ({ loca
   [['modal']].map((url) => ({ params: { url }, locale })),
 )
 
-export const getStaticProps = enhanceStaticProps<LayoutOverlayProps, Props, RouteProps>(
-  async ({ params }) => {
+export const getStaticProps = enhanceStaticProps(
+  layoutProps<Props, RouteProps>(async ({ params }) => {
     const urlKey = params?.url.join('/') ?? '??'
     const page = hygraphPageContent(`modal/${urlKey}`)
 
@@ -66,9 +67,8 @@ export const getStaticProps = enhanceStaticProps<LayoutOverlayProps, Props, Rout
     return {
       props: {
         ...(await page).data,
-        ...(await graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })).data,
       },
       revalidate: 60 * 20,
     }
-  },
+  }),
 )

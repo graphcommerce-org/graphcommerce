@@ -36,6 +36,7 @@ import { Trans } from '@lingui/react'
 import { CircularProgress, Container, Dialog, Typography } from '@mui/material'
 import { InferGetStaticPropsType } from 'next'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
+import { layoutProps } from '../../components/Layout/layout'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
 
 function PaymentPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
@@ -153,9 +154,10 @@ PaymentPage.pageOptions = pageOptions
 
 export default PaymentPage
 
-export const getStaticProps = enhanceStaticProps<LayoutMinimalProps>(async () => ({
-  props: {
-    ...(await graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })).data,
-    up: { href: '/checkout', title: 'Shipping' },
-  },
-}))
+export const getStaticProps = enhanceStaticProps(
+  layoutProps(async () => ({
+    props: {
+      up: { href: '/checkout', title: 'Shipping' },
+    },
+  })),
+)

@@ -1,7 +1,7 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { Asset } from '@graphcommerce/graphcms-ui'
 import { getHygraphPage, MaybeHygraphSingePage } from '@graphcommerce/graphcms-ui/server'
-import { deepAwait, graphqlQuery } from '@graphcommerce/graphql-mesh'
+import { deepAwait } from '@graphcommerce/graphql-mesh'
 import {
   CategoryChildren,
   CategoryDescription,
@@ -42,7 +42,7 @@ import {
   RowProduct,
   RowRenderer,
 } from '../components'
-import { LayoutDocument, LayoutQuery } from '../components/Layout/Layout.gql'
+import { layoutProps } from '../components/Layout/layout'
 import { CategoryPageDocument } from '../graphql/CategoryPage.gql'
 
 export type CategoryProps = CategoryPageResult &
@@ -169,11 +169,9 @@ export default CategoryPage
 
 export const getStaticPaths = enhanceStaticPaths('blocking', getCategoryStaticPaths)
 
-export const getStaticProps = enhanceStaticProps<LayoutQuery, CategoryProps, CategoryRoute>(
-  async (context) => {
+export const getStaticProps = enhanceStaticProps(
+  layoutProps<CategoryProps, CategoryRoute>(async (context) => {
     const { params, locale } = context
-
-    const layout = graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })
 
     const categoryPage = getCategoryPage(CategoryPageDocument, context)
 
@@ -186,7 +184,6 @@ export const getStaticProps = enhanceStaticProps<LayoutQuery, CategoryProps, Cat
 
     return {
       props: await deepAwait({
-        ...(await layout).data,
         ...page,
         ...categoryPage,
         ...(await listItems).data,
@@ -194,5 +191,5 @@ export const getStaticProps = enhanceStaticProps<LayoutQuery, CategoryProps, Cat
       }),
       revalidate: 60 * 20,
     }
-  },
+  }),
 )

@@ -11,6 +11,7 @@ import { Container, Typography, Slider, Box } from '@mui/material'
 import { InferGetStaticPropsType } from 'next'
 import React, { useEffect, useRef, useState } from 'react'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
+import { layoutProps } from '../../components/Layout/layout'
 
 const propVariants: Record<string, IconSvgProps> = {
   Default: {
@@ -100,4 +101,4 @@ const pageOptions: PageOptions<LayoutMinimalProps> = {
 }
 IconsPage.pageOptions = pageOptions
 
-export const getStaticProps = enhanceStaticProps<LayoutMinimalProps>(() => ({ props: {} }))
+export const getStaticProps = enhanceStaticProps(layoutProps(() => ({ props: {} })))

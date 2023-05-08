@@ -23,6 +23,7 @@ import {
   LayoutNavigationProps,
   RowRenderer,
 } from '../../components'
+import { layoutProps } from '../../components/Layout/layout'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
 
 type Props = HygraphSingePage & BlogListQuery
@@ -67,8 +68,8 @@ export const getStaticPaths = enhanceStaticPaths<RouteProps>('blocking', async (
   })),
 )
 
-export const getStaticProps = enhanceStaticProps<LayoutNavigationProps, Props, RouteProps>(
-  async ({ params }) => {
+export const getStaticProps = enhanceStaticProps(
+  layoutProps<Props, RouteProps>(async ({ params }) => {
     const urlKey = params?.url ?? '??'
     const limit = 4
 
@@ -83,11 +84,10 @@ export const getStaticProps = enhanceStaticProps<LayoutNavigationProps, Props, R
     return {
       props: {
         ...(await blogPosts).data,
-        ...(await graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })).data,
         page,
         up: { href: '/', title: 'Home' },
       },
       revalidate: 60 * 20,
     }
-  },
+  }),
 )

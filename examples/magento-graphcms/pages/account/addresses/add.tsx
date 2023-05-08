@@ -18,6 +18,7 @@ import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
 import { InferGetStaticPropsType } from 'next'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
+import { layoutProps } from '../../../components/Layout/layout'
 
 function AddNewAddressPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const addresses = useCustomerQuery(CustomerDocument, { fetchPolicy: 'cache-and-network' })
@@ -54,8 +55,10 @@ AddNewAddressPage.pageOptions = pageOptions
 
 export default AddNewAddressPage
 
-export const getStaticProps = enhanceStaticProps<LayoutOverlayProps>(() => ({
-  props: {
-    up: { href: '/account', title: 'Account' },
-  },
-}))
+export const getStaticProps = enhanceStaticProps(
+  layoutProps(() => ({
+    props: {
+      up: { href: '/account', title: 'Account' },
+    },
+  })),
+)

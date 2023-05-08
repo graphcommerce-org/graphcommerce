@@ -21,6 +21,7 @@ import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
 import { InferGetServerSidePropsType } from 'next'
 import { LayoutOverlay, LayoutOverlayProps } from '../../components'
+import { layoutProps } from '../../components/Layout/layout'
 
 function WishlistPage(props: InferGetServerSidePropsType<typeof getStaticProps>) {
   const wishlistItemsData = useWishlistItems()
@@ -98,4 +99,4 @@ WishlistPage.pageOptions = pageOptions
 
 export default WishlistPage
 
-export const getStaticProps = enhanceStaticProps<LayoutOverlayProps>(() => ({ props: {} }))
+export const getStaticProps = enhanceStaticProps(layoutProps(() => ({ props: {} })))

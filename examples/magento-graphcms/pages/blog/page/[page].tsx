@@ -18,6 +18,7 @@ import {
   LayoutNavigationProps,
   RowRenderer,
 } from '../../../components'
+import { layoutProps } from '../../../components/Layout/layout'
 import { LayoutDocument } from '../../../components/Layout/Layout.gql'
 
 type Props = HygraphPagesQuery & BlogListQuery & BlogPathsQuery
@@ -76,8 +77,8 @@ export const getStaticPaths = enhanceStaticPaths('blocking', async ({ locale }) 
   return pages.map((page) => ({ params: { page }, locale }))
 })
 
-export const getStaticProps = enhanceStaticProps<LayoutNavigationProps, Props, RouteProps>(
-  async ({ params }) => {
+export const getStaticProps = enhanceStaticProps(
+  layoutProps<Props, RouteProps>(async ({ params }) => {
     const skip = Math.abs((Number(params?.page ?? '1') - 1) * pageSize)
     const pages = hygraphPageContent('blog')
     const blogPosts = graphqlQuery(BlogListDocument, {
@@ -94,11 +95,10 @@ export const getStaticProps = enhanceStaticProps<LayoutNavigationProps, Props, R
         ...(await pages).data,
         ...(await blogPosts).data,
         ...(await blogPaths).data,
-        ...(await graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })).data,
         urlEntity: { relative_url: `blog` },
         up: { href: '/blog', title: 'Blog' },
       },
       revalidate: 60 * 20,
     }
-  },
+  }),
 )

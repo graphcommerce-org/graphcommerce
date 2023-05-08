@@ -8,6 +8,7 @@ import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
 import { InferGetStaticPropsType } from 'next'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
+import { layoutProps } from '../../../components/Layout/layout'
 import { LayoutDocument } from '../../../components/Layout/Layout.gql'
 
 type Props = Record<string, unknown>
@@ -46,6 +47,4 @@ EditBillingAddress.pageOptions = pageOptions
 
 export default EditBillingAddress
 
-export const getStaticProps = enhanceStaticProps<LayoutOverlayProps>(async () => ({
-  props: { ...(await graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })).data },
-}))
+export const getStaticProps = enhanceStaticProps(layoutProps(async () => ({ props: {} })))

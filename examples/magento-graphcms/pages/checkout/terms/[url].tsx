@@ -5,6 +5,7 @@ import { PageMeta, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-
 import { enhanceStaticPaths, enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { Container, Typography } from '@mui/material'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
+import { layoutProps } from '../../../components/Layout/layout'
 
 type Props = {
   agreement: NonNullable<NonNullable<CartAgreementsQuery['checkoutAgreements']>[0]>
@@ -53,18 +54,20 @@ export const getStaticPaths = enhanceStaticPaths('blocking', async ({ locale }) 
   })),
 )
 
-export const getStaticProps = enhanceStaticProps<LayoutOverlayProps, Props>(async ({ params }) => {
-  const agreements = await graphqlQuery(CartAgreementsDocument)
-  const agreement = agreements.data.checkoutAgreements?.find(
-    (ca) => ca?.name?.toLowerCase().replace(/\s+/g, '-') === params?.url,
-  )
+export const getStaticProps = enhanceStaticProps(
+  layoutProps<Props>(async ({ params }) => {
+    const agreements = await graphqlQuery(CartAgreementsDocument)
+    const agreement = agreements.data.checkoutAgreements?.find(
+      (ca) => ca?.name?.toLowerCase().replace(/\s+/g, '-') === params?.url,
+    )
 
-  if (!agreement) return { notFound: true }
+    if (!agreement) return { notFound: true }
 
-  return {
-    props: {
-      agreement,
-    },
-    revalidate: 60 * 20,
-  }
-})
+    return {
+      props: {
+        agreement,
+      },
+      revalidate: 60 * 20,
+    }
+  }),
+)
