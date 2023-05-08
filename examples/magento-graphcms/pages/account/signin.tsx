@@ -3,16 +3,15 @@ import { useMergeCustomerCart } from '@graphcommerce/magento-cart'
 import { AccountSignInUpForm } from '@graphcommerce/magento-customer'
 import { PageMeta } from '@graphcommerce/magento-store'
 import { useMergeGuestWishlistWithCustomer } from '@graphcommerce/magento-wishlist'
-import { GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
+import { LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
+import { InferGetStaticPropsType } from 'next'
 import { LayoutOverlay, LayoutOverlayProps } from '../../components'
 
-type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
-
-function AccountSignInPage() {
+function AccountSignInPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   useMergeCustomerCart()
   useMergeGuestWishlistWithCustomer()
 
@@ -35,11 +34,12 @@ const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'account-public',
   sharedKey: () => 'account-public',
   Layout: LayoutOverlay,
+  layoutProps: { variantMd: 'bottom' },
 }
 AccountSignInPage.pageOptions = pageOptions
 
 export default AccountSignInPage
 
-export const getStaticProps: GetPageStaticProps = enhanceStaticProps(() => ({
-  props: { variantMd: 'bottom' },
+export const getStaticProps = enhanceStaticProps<LayoutOverlayProps>(() => ({
+  props: {},
 }))

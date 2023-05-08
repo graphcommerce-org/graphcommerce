@@ -11,7 +11,6 @@ import {
   CompareListIntroText,
 } from '@graphcommerce/magento-compare'
 import {
-  GetStaticProps,
   LayoutOverlay,
   LayoutOverlayProps,
   iconCompare,
@@ -24,12 +23,10 @@ import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, CircularProgress, Container, Typography } from '@mui/material'
+import { InferGetStaticPropsType } from 'next'
 import { productListRenderer } from '../components/ProductListItems'
 
-type Props = Record<string, unknown>
-type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
-
-export function ComparePage() {
+export function ComparePage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const compareList = useCompareList()
   const compareListCount = compareList.data?.compareList?.item_count ?? 0
 
@@ -92,7 +89,7 @@ ComparePage.pageOptions = pageOptions
 
 export default ComparePage
 
-export const getStaticProps: GetPageStaticProps = enhanceStaticProps(() => {
+export const getStaticProps = enhanceStaticProps<LayoutOverlayProps>(() => {
   if (!import.meta.graphCommerce.compare) return { notFound: true }
   return { props: {} }
 })

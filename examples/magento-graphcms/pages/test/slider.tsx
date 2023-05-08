@@ -1,14 +1,15 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { ProductListDocument, ProductListQuery } from '@graphcommerce/magento-product'
-import { GetStaticProps, LayoutTitle, LayoutHeader, SidebarGallery } from '@graphcommerce/next-ui'
-import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
-import { LayoutNavigation, LayoutNavigationProps } from '../../components'
 import { graphqlQuery } from '@graphcommerce/graphql-mesh'
+import { ProductListDocument, ProductListQuery } from '@graphcommerce/magento-product'
+import { LayoutTitle, LayoutHeader, SidebarGallery } from '@graphcommerce/next-ui'
+import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
+import { InferGetStaticPropsType } from 'next'
+import { LayoutNavigation, LayoutNavigationProps } from '../../components'
 
 type Props = ProductListQuery
-type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props>
 
-function TestSlider({ products }: Props) {
+function TestSlider(props: InferGetStaticPropsType<typeof getStaticProps>) {
+  const { products } = props
   if (!products?.items?.length) return null
   return (
     <>
@@ -82,7 +83,7 @@ TestSlider.pageOptions = {
 } as PageOptions
 export default TestSlider
 
-export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async () => {
+export const getStaticProps = enhanceStaticProps<LayoutNavigationProps, Props>(async () => {
   // todo(paales): Remove when https://github.com/Urigo/graphql-mesh/issues/1257 is resolved
   const productList = graphqlQuery(ProductListDocument, {
     variables: { pageSize: 8, filters: { category_uid: { eq: 'MTAy' } } },

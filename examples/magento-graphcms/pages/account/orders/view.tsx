@@ -1,4 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 import {
   useCustomerQuery,
   WaitForCustomer,
@@ -7,25 +8,17 @@ import {
   OrderItems,
   OrderDetailPageDocument,
 } from '@graphcommerce/magento-customer'
-import { CountryRegionsDocument, PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import {
-  IconHeader,
-  GetStaticProps,
-  iconBox,
-  LayoutOverlayHeader,
-  LayoutTitle,
-} from '@graphcommerce/next-ui'
+import { CountryRegionsDocument, PageMeta } from '@graphcommerce/magento-store'
+import { IconHeader, iconBox, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
+import { InferGetStaticPropsType } from 'next'
 import { useRouter } from 'next/router'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
-import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 
-type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
-
-function OrderDetailPage() {
+function OrderDetailPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const router = useRouter()
   const { orderId } = router.query
 
@@ -77,19 +70,18 @@ const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'account',
   sharedKey: () => 'account/orders',
   Layout: LayoutOverlay,
+  layoutProps: { variantMd: 'bottom' },
 }
 OrderDetailPage.pageOptions = pageOptions
 
 export default OrderDetailPage
 
-export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async () => {
+export const getStaticProps = enhanceStaticProps<LayoutOverlayProps>(async () => {
   const countryRegions = graphqlQuery(CountryRegionsDocument)
 
   return {
     props: {
       ...(await countryRegions).data,
-      variantMd: 'bottom',
-      size: 'max',
       up: { href: '/account/orders', title: 'Orders' },
     },
   }

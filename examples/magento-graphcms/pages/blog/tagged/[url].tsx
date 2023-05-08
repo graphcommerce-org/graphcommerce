@@ -2,10 +2,10 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { hygraphPageContent } from '@graphcommerce/graphcms-ui/server'
 import { graphqlQuery } from '@graphcommerce/graphql-mesh'
-import { PageMeta, GetStaticProps, Row, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
+import { PageMeta, Row, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
 import { enhanceStaticPaths, enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { Trans } from '@lingui/react'
-import { GetStaticPaths } from 'next'
+import { InferGetStaticPropsType } from 'next'
 import {
   BlogAuthor,
   BlogHeader,
@@ -23,10 +23,8 @@ import { LayoutDocument } from '../../../components/Layout/Layout.gql'
 
 type Props = HygraphPagesQuery & BlogListTaggedQuery
 type RouteProps = { url: string }
-type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
-function BlogPage(props: Props) {
+function BlogPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const { pages, blogPosts } = props
   const page = pages[0]
   const title = page.title ?? ''
@@ -59,7 +57,7 @@ BlogPage.pageOptions = {
 
 export default BlogPage
 
-export const getStaticPaths: GetPageStaticPaths = enhanceStaticPaths(
+export const getStaticPaths = enhanceStaticPaths<RouteProps>(
   'blocking',
   async ({ locale }) =>
     (await graphqlQuery(BlogPostTaggedPathsDocument)).data.pages.map((page) => ({
@@ -68,23 +66,25 @@ export const getStaticPaths: GetPageStaticPaths = enhanceStaticPaths(
     })) ?? [],
 )
 
-export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async ({ params }) => {
-  const urlKey = params?.url ?? '??'
-  const limit = 99
-  const page = hygraphPageContent(`blog/tagged/${urlKey}`)
+export const getStaticProps = enhanceStaticProps<LayoutNavigationProps, Props, RouteProps>(
+  async ({ params }) => {
+    const urlKey = params?.url ?? '??'
+    const limit = 99
+    const page = hygraphPageContent(`blog/tagged/${urlKey}`)
 
-  const blogPosts = graphqlQuery(BlogListTaggedDocument, {
-    variables: { currentUrl: [`blog/tagged/${urlKey}`], first: limit, tagged: params?.url },
-  })
-  if (!(await page).data.pages?.[0]) return { notFound: true }
+    const blogPosts = graphqlQuery(BlogListTaggedDocument, {
+      variables: { currentUrl: [`blog/tagged/${urlKey}`], first: limit, tagged: params?.url },
+    })
+    if (!(await page).data.pages?.[0]) return { notFound: true }
 
-  return {
-    props: {
-      ...(await page).data,
-      ...(await blogPosts).data,
-      ...(await graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })).data,
-      up: { href: '/blog', title: 'Blog' },
-    },
-    revalidate: 60 * 20,
-  }
-})
+    return {
+      props: {
+        ...(await page).data,
+        ...(await blogPosts).data,
+        ...(await graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })).data,
+        up: { href: '/blog', title: 'Blog' },
+      },
+      revalidate: 60 * 20,
+    }
+  },
+)

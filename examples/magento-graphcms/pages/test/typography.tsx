@@ -1,14 +1,12 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 import { LayoutHeader, LayoutTitle } from '@graphcommerce/next-ui'
-import { GetStaticProps } from '@graphcommerce/next-ui/Page/types'
 import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { Typography, Container } from '@mui/material'
+import { InferGetStaticPropsType } from 'next'
 import { useEffect, useRef, useState } from 'react'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
-
-type Props = Record<string, unknown>
-type GetPageStaticProps = GetStaticProps<LayoutMinimalProps, Props>
 
 function useRenderedSize() {
   const [size, setSize] = useState<string>()
@@ -26,7 +24,7 @@ function useRenderedSize() {
   return <span ref={ref}>{size}</span>
 }
 
-function TypographyOverview() {
+function TypographyOverview(props: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
       <LayoutHeader>
@@ -113,7 +111,7 @@ TypographyOverview.pageOptions = {
 
 export default TypographyOverview
 
-export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async () => ({
+export const getStaticProps = enhanceStaticProps<LayoutMinimalProps>(async () => ({
   props: {
     ...(await graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })).data,
     up: { href: '/', title: 'Home' },

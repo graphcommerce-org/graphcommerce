@@ -1,30 +1,36 @@
 import type { UpPage } from '@graphcommerce/framer-next-pages/types'
 import { TypedDocumentNode } from '@graphcommerce/graphql'
 import { graphqlQuery } from '@graphcommerce/graphql-mesh'
-import { ProductListContext } from '@graphcommerce/magento-product'
+import { FilterTypes, ProductListParams } from '@graphcommerce/magento-product'
 import { extractUrlQuery, getFilterTypes, parseParams } from '@graphcommerce/magento-product/server'
 import { GetStaticPropsContext } from 'next'
-import type { Simplify } from 'type-fest'
 import { CategoryQueryFragment } from '../queries/CategoryQueryFragment.gql'
 
 type SingleCategory<Q extends CategoryQueryFragment> = NonNullable<
   NonNullable<NonNullable<Q['categories']>['items']>[number]
 >
 
-export type GetCategoryPageResult<Q extends CategoryQueryFragment = CategoryQueryFragment> =
-  Simplify<{
-    category: Promise<SingleCategory<Q> | null>
-    productListContext: Promise<ProductListContext>
-    up: Promise<UpPage>
-  }>
+export type GetCategoryPageResult<Q extends CategoryQueryFragment = CategoryQueryFragment> = {
+  category: Promise<SingleCategory<Q> | null>
+  params: Promise<ProductListParams>
+  filterTypes: Promise<FilterTypes>
+  up: Promise<UpPage>
+}
+
+export type CategoryPageResult<Q extends CategoryQueryFragment = CategoryQueryFragment> = {
+  category: SingleCategory<Q> | null
+  params: ProductListParams
+  filterTypes: FilterTypes
+  up: UpPage
+}
 
 export function getCategoryPage<Q extends CategoryQueryFragment>(
   document: TypedDocumentNode<Q, { url: string }>,
   context: GetStaticPropsContext<{ url: string[] }>,
 ): GetCategoryPageResult {
   const [url = '', query = []] = extractUrlQuery(context.params)
-  const filterTypesPromise = getFilterTypes()
-  const paramsPromise = filterTypesPromise.then((f) => parseParams(url, query, f))
+  const filterTypes = getFilterTypes()
+  const paramsPromise = filterTypes.then((f) => parseParams(url, query, f))
 
   const categoryQuery = graphqlQuery(
     document,
@@ -40,18 +46,21 @@ export function getCategoryPage<Q extends CategoryQueryFragment>(
       : { href: `/`, title: 'Home' }
   })
 
-  const productListContext = Promise.all([filterTypesPromise, paramsPromise]).then(
-    async ([filterTypes, params]) => {
-      const filteredCategoryUid = params.filters.category_uid?.in?.[0]
-      let uid = filteredCategoryUid
+  const params = paramsPromise.then(async (p) => {
+    const filteredCategoryUid = p.filters.category_uid?.in?.[0]
+    let uid = filteredCategoryUid
 
-      if (!uid) {
-        uid = (await category)?.uid ?? ''
-        if (params) params.filters.category_uid = { in: [uid] }
-      }
-      return { filterTypes, params }
-    },
-  )
+    if (!uid) {
+      uid = (await category)?.uid ?? ''
+      if (p) p.filters.category_uid = { in: [uid] }
+    }
+    return p
+  })
 
-  return { category, productListContext, up }
+  return {
+    category,
+    filterTypes,
+    params,
+    up,
+  }
 }

@@ -25,12 +25,10 @@ import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, CircularProgress, Container } from '@mui/material'
+import { InferGetStaticPropsType } from 'next'
 import { LayoutOverlay, LayoutOverlayProps } from '../components'
 
-type Props = Record<string, unknown>
-type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
-
-function CartPage() {
+function CartPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const cart = useCartQuery(CartPageDocument, {
     errorPolicy: 'all',
     fetchPolicy: 'cache-and-network',
@@ -121,4 +119,4 @@ CartPage.pageOptions = pageOptions
 
 export default CartPage
 
-export const getStaticProps: GetPageStaticProps = enhanceStaticProps(() => ({ props: {} }))
+export const getStaticProps = enhanceStaticProps<LayoutOverlayProps>(() => ({ props: {} }))

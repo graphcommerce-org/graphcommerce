@@ -7,7 +7,6 @@ import { PageMeta } from '@graphcommerce/magento-store'
 import {
   Button,
   filterNonNullableKeys,
-  GetStaticProps,
   iconChevronRight,
   IconSvg,
   ItemScroller,
@@ -19,14 +18,12 @@ import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, Container, Divider, Typography } from '@mui/material'
+import { InferGetStaticPropsType } from 'next'
 import { useRouter } from 'next/router'
 import { useMemo } from 'react'
 import { LayoutOverlay, LayoutOverlayProps, productListRenderer } from '../../components'
 
-type Props = Record<string, unknown>
-type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
-
-function CheckoutAdded() {
+function CheckoutAdded(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const cartAdded = useCartQuery(CartAddedDocument)
   const items = filterNonNullableKeys(cartAdded.data?.cart?.items)
   const router = useRouter()
@@ -189,4 +186,6 @@ CheckoutAdded.pageOptions = pageOptions
 
 export default CheckoutAdded
 
-export const getStaticProps: GetPageStaticProps = enhanceStaticProps(() => ({ props: {} }))
+export const getStaticProps = enhanceStaticProps<LayoutOverlayProps>(() => ({
+  props: {},
+}))

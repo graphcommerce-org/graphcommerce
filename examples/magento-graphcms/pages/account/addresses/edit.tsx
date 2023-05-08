@@ -5,9 +5,8 @@ import {
   WaitForCustomer,
   AccountDashboardAddressesDocument,
 } from '@graphcommerce/magento-customer'
-import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { PageMeta } from '@graphcommerce/magento-store'
 import {
-  GetStaticProps,
   iconAddresses,
   IconHeader,
   SectionContainer,
@@ -18,12 +17,11 @@ import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, Container } from '@mui/material'
+import { InferGetStaticPropsType } from 'next'
 import { useRouter } from 'next/router'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
 
-type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
-
-function EditAddressPage() {
+function EditAddressPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const router = useRouter()
 
   const addresses = useCustomerQuery(AccountDashboardAddressesDocument, {
@@ -69,15 +67,14 @@ const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'account',
   Layout: LayoutOverlay,
   sharedKey: () => 'account/addresses',
+  layoutProps: { variantMd: 'bottom' },
 }
 EditAddressPage.pageOptions = pageOptions
 
 export default EditAddressPage
 
-export const getStaticProps: GetPageStaticProps = enhanceStaticProps(() => ({
+export const getStaticProps = enhanceStaticProps<LayoutOverlayProps>(() => ({
   props: {
-    variantMd: 'bottom',
-    size: 'max',
     up: { href: '/account/addresses', title: 'Addresses' },
   },
 }))

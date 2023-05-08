@@ -1,17 +1,16 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { ResetPasswordForm } from '@graphcommerce/magento-customer'
 import { PageMeta } from '@graphcommerce/magento-store'
-import { GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
+import { LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, Container, Link, Button } from '@mui/material'
+import { InferGetStaticPropsType } from 'next'
 import router, { useRouter } from 'next/router'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../../components'
 
-type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
-
-function CustomerAccountCreatePasswordPage() {
+function CustomerAccountCreatePasswordPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const { token, success } = useRouter().query
 
   if (typeof token !== 'undefined' && success === 'undefined') return null
@@ -75,15 +74,14 @@ const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'account-public',
   sharedKey: () => 'account-public',
   Layout: LayoutOverlay,
+  layoutProps: { variantMd: 'bottom' },
 }
 CustomerAccountCreatePasswordPage.pageOptions = pageOptions
 
 export default CustomerAccountCreatePasswordPage
 
-export const getStaticProps: GetPageStaticProps = enhanceStaticProps(() => ({
+export const getStaticProps = enhanceStaticProps<LayoutOverlayProps>(() => ({
   props: {
-    variantMd: 'bottom',
-    size: 'max',
     up: { href: '/account/signin', title: 'Sign in' },
   },
 }))

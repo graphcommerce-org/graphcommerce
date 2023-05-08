@@ -1,6 +1,7 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { hygraphPageContent } from '@graphcommerce/graphcms-ui/server'
+import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 import { PageMeta, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { Container } from '@mui/material'
@@ -10,6 +11,7 @@ import {
   LayoutNavigationProps,
   RowRenderer,
 } from '../../components'
+import { LayoutDocument } from '../../components/Layout/Layout.gql'
 
 import { GuestNewsletter } from '../../components/Newsletter/GuestNewsletter'
 
@@ -59,7 +61,6 @@ const pageOptions: PageOptions<LayoutOverlayProps> = {
     sizeMd: 'floating',
     justifyMd: 'end',
     widthMd: '500px',
-
     sizeSm: 'floating',
   },
 }

@@ -69,7 +69,7 @@ of all configurable product paths:
 ```tsx
 // Example from /pages/blog/[url].tsx
 
-export const getStaticPaths: GetPageStaticPaths = enhanceStaticPaths(
+export const getStaticPaths = enhanceStaticPaths(
   'blocking',
   async ({ locale }) =>
     (await graphqlQuery(BlogPostPathsDocument)).data.pages.map((page) => ({
@@ -102,7 +102,7 @@ The build proces locally will not pre-render product pages to reduce build time:
 ```tsx
 // Example from /pages/product/configurable/[url].tsx
 
-export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
+export const getStaticPaths = async ({ locales = [] }) => {
 
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
   ...
@@ -118,7 +118,7 @@ the paths array. This will reduce build-time:
 ```tsx
 // Example from /pages/product/configurable/[url].tsx
 
-export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
+export const getStaticPaths = async ({ locales = [] }) => {
   ...
 
   return { paths: paths.slice(0, 10), fallback: 'blocking' }

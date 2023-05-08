@@ -7,7 +7,6 @@ import {
 } from '@graphcommerce/magento-customer'
 import { PageMeta } from '@graphcommerce/magento-store'
 import {
-  GetStaticProps,
   iconAddresses,
   IconHeader,
   SectionContainer,
@@ -19,12 +18,11 @@ import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, CircularProgress, Container, Skeleton } from '@mui/material'
+import { InferGetStaticPropsType } from 'next'
 import { useRouter } from 'next/router'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../../components'
 
-type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
-
-function CheckoutCustomerAddressesEdit() {
+function CheckoutCustomerAddressesEdit(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const router = useRouter()
   const { data, loading, error, called } = useCustomerQuery(AccountDashboardAddressesDocument, {
     fetchPolicy: 'cache-and-network',
@@ -84,15 +82,14 @@ function CheckoutCustomerAddressesEdit() {
 const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'checkout',
   Layout: LayoutOverlay,
+  layoutProps: { variantMd: 'bottom' },
 }
 CheckoutCustomerAddressesEdit.pageOptions = pageOptions
 
 export default CheckoutCustomerAddressesEdit
 
-export const getStaticProps: GetPageStaticProps = enhanceStaticProps(() => ({
+export const getStaticProps = enhanceStaticProps<LayoutOverlayProps>(() => ({
   props: {
-    variantMd: 'bottom',
-    size: 'max',
     up: { href: '/checkout', title: 'Checkout' },
   },
 }))

@@ -7,21 +7,19 @@ import {
 } from '@graphcommerce/magento-customer'
 import { PageMeta } from '@graphcommerce/magento-store'
 import {
-  GetStaticProps,
   iconEmailOutline,
   SectionContainer,
   LayoutOverlayHeader,
   LayoutTitle,
 } from '@graphcommerce/next-ui'
+import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
+import { InferGetStaticPropsType } from 'next'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
-import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 
-type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
-
-function AccountContactPage() {
+function AccountContactPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const dashboard = useCustomerQuery(CustomerDocument, {
     fetchPolicy: 'cache-and-network',
   })
@@ -54,15 +52,14 @@ function AccountContactPage() {
 const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'account',
   Layout: LayoutOverlay,
+  layoutProps: { variantMd: 'bottom' },
 }
 AccountContactPage.pageOptions = pageOptions
 
 export default AccountContactPage
 
-export const getStaticProps: GetPageStaticProps = enhanceStaticProps(() => ({
+export const getStaticProps = enhanceStaticProps<LayoutOverlayProps>(() => ({
   props: {
-    variantMd: 'bottom',
-    size: 'max',
     up: { href: '/account', title: 'Account' },
   },
 }))

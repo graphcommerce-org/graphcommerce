@@ -1,5 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { useQuery } from '@graphcommerce/graphql'
+import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 import {
   AccountDashboardDocument,
   AccountMenu,
@@ -13,7 +14,6 @@ import {
 import { CustomerNewsletterToggle } from '@graphcommerce/magento-newsletter'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
-  GetStaticProps,
   iconBox,
   iconEmailOutline,
   iconHome,
@@ -31,13 +31,11 @@ import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
+import { InferGetStaticPropsType } from 'next'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
-import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 
-type GetPageStaticProps = GetStaticProps<LayoutMinimalProps>
-
-function AccountIndexPage() {
+function AccountIndexPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const dashboard = useCustomerQuery(AccountDashboardDocument, {
     fetchPolicy: 'cache-and-network',
   })
@@ -171,7 +169,7 @@ AccountIndexPage.pageOptions = pageOptions
 
 export default AccountIndexPage
 
-export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async () => ({
+export const getStaticProps = enhanceStaticProps<LayoutMinimalProps>(async () => ({
   props: {
     ...(await graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })).data,
     up: { href: '/', title: 'Home' },

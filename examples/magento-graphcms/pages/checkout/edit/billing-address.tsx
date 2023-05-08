@@ -1,16 +1,18 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 import { EditBillingAddressForm } from '@graphcommerce/magento-cart-billing-address'
 import { GetStaticProps, PageMeta, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
+import { InferGetStaticPropsType } from 'next'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
+import { LayoutDocument } from '../../../components/Layout/Layout.gql'
 
 type Props = Record<string, unknown>
-type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
 
-function EditBillingAddress() {
+function EditBillingAddress(props: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
       <PageMeta
@@ -44,9 +46,6 @@ EditBillingAddress.pageOptions = pageOptions
 
 export default EditBillingAddress
 
-export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async () => ({
-  props: {
-    ...(await graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })).data,
-    variantMd: 'left',
-  },
+export const getStaticProps = enhanceStaticProps<LayoutOverlayProps>(async () => ({
+  props: { ...(await graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })).data },
 }))

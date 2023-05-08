@@ -73,22 +73,3 @@ export function isFilterTypeRange(filter: AnyFilterType): filter is FilterRangeT
 }
 
 export type FilterTypes = Partial<Record<string, string>>
-
-/**
- * Made into an interface to be able to extend it with plugins
- *
- * Example to extend it:
- *
- * ```ts
- * import type { ProductListContext } from '@graphcommerce/magento-product'
- *
- * declare module '@graphcommerce/magento-product' {
- *  interface ProductListContext {
- *   myOwnContext: string
- * }
- * ```
- */
-export interface ProductListContext {
-  params: ProductListParams
-  filterTypes: FilterTypes
-}

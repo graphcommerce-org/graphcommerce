@@ -1,5 +1,6 @@
 import { ComposedForm, WaitForQueries } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 import {
   ApolloCartErrorFullPage,
   CartAgreementsForm,
@@ -22,7 +23,6 @@ import { PageMeta } from '@graphcommerce/magento-store'
 import {
   FormActions,
   FullPageMessage,
-  GetStaticProps,
   iconChevronRight,
   iconId,
   LayoutHeader,
@@ -34,11 +34,11 @@ import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { CircularProgress, Container, Dialog, Typography } from '@mui/material'
+import { InferGetStaticPropsType } from 'next'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
+import { LayoutDocument } from '../../components/Layout/Layout.gql'
 
-type GetPageStaticProps = GetStaticProps<LayoutMinimalProps>
-
-function PaymentPage() {
+function PaymentPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const billingPage = useCartQuery(BillingPageDocument, { fetchPolicy: 'cache-and-network' })
   const [{ locked }] = useCartLock()
 
@@ -153,7 +153,7 @@ PaymentPage.pageOptions = pageOptions
 
 export default PaymentPage
 
-export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async () => ({
+export const getStaticProps = enhanceStaticProps<LayoutMinimalProps>(async () => ({
   props: {
     ...(await graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })).data,
     up: { href: '/checkout', title: 'Shipping' },

@@ -58,7 +58,6 @@ import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 
 type Props = unknown
 type RouteProps = { url: string }
-type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
 
 function AboutUs() {
@@ -159,7 +158,7 @@ function AboutUs({ pages }: Props) {
 - In /about/[url].tsx, replace the getStaticProps function with the following:
 
 ```tsx
-export const getStaticPaths: GetPageStaticPaths = (context) => ({
+export const getStaticPaths = (context) => ({
   paths: [],
   fallback: 'blocking',
 })
@@ -201,7 +200,7 @@ built-time will not result in a 404:
 - In /about/[url].tsx, replace the getStaticPaths function with the following:
 
 ```tsx
-export const getStaticPaths: GetPageStaticPaths = async (context) => {
+export const getStaticPaths = async (context) => {
   const { locales = [] } = context
   // if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
 

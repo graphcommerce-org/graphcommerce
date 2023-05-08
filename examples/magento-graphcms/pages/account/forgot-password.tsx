@@ -1,16 +1,15 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { ForgotPasswordForm } from '@graphcommerce/magento-customer'
 import { PageMeta } from '@graphcommerce/magento-store'
-import { GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
+import { LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Container, Typography } from '@mui/material'
+import { InferGetStaticPropsType } from 'next'
 import { LayoutOverlay, LayoutOverlayProps } from '../../components'
 
-type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
-
-function AccountForgotPasswordPage() {
+function AccountForgotPasswordPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
       <LayoutOverlayHeader>
@@ -36,15 +35,14 @@ const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'account-public',
   sharedKey: () => 'account-signin',
   Layout: LayoutOverlay,
+  layoutProps: { variantMd: 'bottom' },
 }
 AccountForgotPasswordPage.pageOptions = pageOptions
 
 export default AccountForgotPasswordPage
 
-export const getStaticProps: GetPageStaticProps = enhanceStaticProps(() => ({
+export const getStaticProps = enhanceStaticProps<LayoutOverlayProps>(() => ({
   props: {
-    variantMd: 'bottom',
-    size: 'max',
     up: { href: '/account/signin', title: i18n._(/* i18n */ 'Sign in') },
   },
 }))

@@ -1,24 +1,18 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { hygraphPageContent } from '@graphcommerce/graphcms-ui/server'
-import {
-  GetStaticProps,
-  MetaRobots,
-  LayoutOverlayHeader,
-  LayoutTitle,
-  PageMeta,
-} from '@graphcommerce/next-ui'
+import { graphqlQuery } from '@graphcommerce/graphql-mesh'
+import { MetaRobots, LayoutOverlayHeader, LayoutTitle, PageMeta } from '@graphcommerce/next-ui'
 import { enhanceStaticPaths, enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { Box, Typography } from '@mui/material'
-import { GetStaticPaths } from 'next'
+import { InferGetStaticPropsType } from 'next'
 import { LayoutOverlay, LayoutOverlayProps, RowRenderer } from '../../components'
+import { LayoutDocument } from '../../components/Layout/Layout.gql'
 
 type Props = HygraphPagesQuery
 type RouteProps = { url: string[] }
-type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props, RouteProps>
 
-function ModalPage(props: Props) {
+function ModalPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const { pages } = props
   const page = pages?.[0]
 
@@ -53,27 +47,28 @@ function ModalPage(props: Props) {
 ModalPage.pageOptions = {
   Layout: LayoutOverlay,
   overlayGroup: 'modal',
+  layoutProps: { variantMd: 'bottom' },
 } as PageOptions
 
 export default ModalPage
 
-export const getStaticPaths: GetPageStaticPaths = enhanceStaticPaths('blocking', ({ locale }) =>
+export const getStaticPaths = enhanceStaticPaths<RouteProps>('blocking', ({ locale }) =>
   [['modal']].map((url) => ({ params: { url }, locale })),
 )
 
-export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async ({ params }) => {
-  const urlKey = params?.url.join('/') ?? '??'
-  const page = hygraphPageContent(`modal/${urlKey}`)
+export const getStaticProps = enhanceStaticProps<LayoutOverlayProps, Props, RouteProps>(
+  async ({ params }) => {
+    const urlKey = params?.url.join('/') ?? '??'
+    const page = hygraphPageContent(`modal/${urlKey}`)
 
-  if (!(await page).data.pages?.[0]) return { notFound: true }
+    if (!(await page).data.pages?.[0]) return { notFound: true }
 
-  return {
-    props: {
-      ...(await page).data,
-      ...(await graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })).data,
-      variantMd: 'bottom',
-      size: 'max',
-    },
-    revalidate: 60 * 20,
-  }
-})
+    return {
+      props: {
+        ...(await page).data,
+        ...(await graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })).data,
+      },
+      revalidate: 60 * 20,
+    }
+  },
+)

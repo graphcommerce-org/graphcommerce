@@ -82,9 +82,7 @@ export function enhanceStaticPaths<Params extends ParsedUrlQuery = ParsedUrlQuer
     )
     return {
       fallback,
-      paths: allPaths
-        .map((p) => (import.meta.graphCommerce.limitSsg ? p.paths.slice(0, 1) : p.paths))
-        .flat(1),
+      paths: allPaths.map((p) => (import.meta.graphCommerce.limitSsg ? p.slice(0, 1) : p)).flat(1),
     }
   }
 }

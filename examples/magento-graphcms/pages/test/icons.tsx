@@ -2,13 +2,13 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   LayoutTitle,
   IconSvg,
-  GetStaticProps,
   IconSvgProps,
   svgIconStrokeWidth,
   iconPhone,
 } from '@graphcommerce/next-ui'
 import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { Container, Typography, Slider, Box } from '@mui/material'
+import { InferGetStaticPropsType } from 'next'
 import React, { useEffect, useRef, useState } from 'react'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
 
@@ -18,7 +18,7 @@ const propVariants: Record<string, IconSvgProps> = {
   },
 }
 
-export default function IconsPage() {
+export default function IconsPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const [size, setSize] = useState<number>(24)
   const [strokeComputed, setStrokeWidth] = useState<string>()
   const [fontSize, setFontSize] = useState<string>()
@@ -100,6 +100,4 @@ const pageOptions: PageOptions<LayoutMinimalProps> = {
 }
 IconsPage.pageOptions = pageOptions
 
-type GetPageStaticProps = GetStaticProps<LayoutMinimalProps>
-
-export const getStaticProps: GetPageStaticProps = enhanceStaticProps(() => ({ props: {} }))
+export const getStaticProps = enhanceStaticProps<LayoutMinimalProps>(() => ({ props: {} }))

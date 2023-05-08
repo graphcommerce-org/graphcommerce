@@ -1,4 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 import {
   AccountAddresses,
   useCustomerQuery,
@@ -6,23 +7,15 @@ import {
   AccountDashboardAddressesDocument,
 } from '@graphcommerce/magento-customer'
 import { CountryRegionsDocument, PageMeta } from '@graphcommerce/magento-store'
-import {
-  GetStaticProps,
-  iconAddresses,
-  LayoutOverlayHeader,
-  LayoutTitle,
-} from '@graphcommerce/next-ui'
+import { iconAddresses, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
+import { InferGetStaticPropsType } from 'next'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
-import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 
-type Props = Record<string, unknown>
-type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
-
-function AccountAddressesPage() {
+function AccountAddressesPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const addresses = useCustomerQuery(AccountDashboardAddressesDocument, {
     fetchPolicy: 'cache-and-network',
   })
@@ -55,18 +48,18 @@ const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'account',
   Layout: LayoutOverlay,
   sharedKey: () => 'account/addresses',
+  layoutProps: { variantMd: 'bottom' },
 }
 AccountAddressesPage.pageOptions = pageOptions
 
 export default AccountAddressesPage
 
-export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async () => {
+export const getStaticProps = enhanceStaticProps<LayoutOverlayProps>(async () => {
   const countryRegions = graphqlQuery(CountryRegionsDocument)
 
   return {
     props: {
       ...(await countryRegions).data,
-      variantMd: 'bottom',
       up: { href: '/account', title: 'Account' },
     },
   }

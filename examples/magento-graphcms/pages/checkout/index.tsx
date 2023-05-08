@@ -6,6 +6,7 @@ import {
   WaitForQueries,
 } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 import {
   ApolloCartErrorAlert,
   ApolloCartErrorFullPage,
@@ -20,10 +21,9 @@ import {
 } from '@graphcommerce/magento-cart-shipping-address'
 import { ShippingMethodForm } from '@graphcommerce/magento-cart-shipping-method'
 import { CustomerDocument, useCustomerQuery } from '@graphcommerce/magento-customer'
-import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { PageMeta } from '@graphcommerce/magento-store'
 import {
   FormActions,
-  GetStaticProps,
   iconBox,
   LayoutHeader,
   Stepper,
@@ -35,14 +35,12 @@ import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { CircularProgress, Container, Typography } from '@mui/material'
+import { InferGetStaticPropsType } from 'next'
 import { useRouter } from 'next/router'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
 
-type Props = Record<string, unknown>
-type GetPageStaticProps = GetStaticProps<LayoutMinimalProps, Props>
-
-function ShippingPage() {
+function ShippingPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const router = useRouter()
   const shippingPage = useCartQuery(ShippingPageDocument, { fetchPolicy: 'cache-and-network' })
   const customerAddresses = useCustomerQuery(CustomerDocument, { fetchPolicy: 'cache-and-network' })
@@ -148,7 +146,7 @@ ShippingPage.pageOptions = pageOptions
 
 export default ShippingPage
 
-export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async () => ({
+export const getStaticProps = enhanceStaticProps<LayoutMinimalProps>(async () => ({
   props: {
     ...(await graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })).data,
     up: { href: '/cart', title: 'Cart' },

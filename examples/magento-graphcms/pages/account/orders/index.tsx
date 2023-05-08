@@ -8,7 +8,6 @@ import {
 import { PageMeta } from '@graphcommerce/magento-store'
 import {
   FullPageMessage,
-  GetStaticProps,
   iconBox,
   LayoutOverlayHeader,
   IconSvg,
@@ -18,12 +17,11 @@ import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
+import { InferGetStaticPropsType } from 'next'
 import { useRouter } from 'next/router'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
 
-type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
-
-function AccountOrdersPage() {
+function AccountOrdersPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const { query } = useRouter()
 
   const orders = useCustomerQuery(AccountDashboardOrdersDocument, {
@@ -71,15 +69,14 @@ const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'account',
   sharedKey: () => 'account/orders',
   Layout: LayoutOverlay,
+  layoutProps: { variantMd: 'bottom' },
 }
 AccountOrdersPage.pageOptions = pageOptions
 
 export default AccountOrdersPage
 
-export const getStaticProps: GetPageStaticProps = enhanceStaticProps(() => ({
+export const getStaticProps = enhanceStaticProps<LayoutOverlayProps>(() => ({
   props: {
-    variantMd: 'bottom',
-    size: 'max',
     up: { href: '/account', title: 'Account' },
   },
 }))

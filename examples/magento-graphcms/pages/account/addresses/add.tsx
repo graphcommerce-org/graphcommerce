@@ -4,11 +4,9 @@ import {
   CustomerDocument,
   useCustomerQuery,
   WaitForCustomer,
-  AccountDashboardAddressesQuery,
 } from '@graphcommerce/magento-customer'
 import { PageMeta } from '@graphcommerce/magento-store'
 import {
-  GetStaticProps,
   SectionContainer,
   iconAddresses,
   LayoutOverlayHeader,
@@ -18,15 +16,11 @@ import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
+import { InferGetStaticPropsType } from 'next'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
 
-type Props = AccountDashboardAddressesQuery
-type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
-
-function AddNewAddressPage() {
-  const addresses = useCustomerQuery(CustomerDocument, {
-    fetchPolicy: 'cache-and-network',
-  })
+function AddNewAddressPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
+  const addresses = useCustomerQuery(CustomerDocument, { fetchPolicy: 'cache-and-network' })
 
   return (
     <>
@@ -54,17 +48,13 @@ const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'account',
   Layout: LayoutOverlay,
   sharedKey: () => 'account/addresses',
-  layoutProps: {
-    variantMd: 'bottom',
-    sizeMd: 'full',
-    sizeSm: 'full',
-  },
+  layoutProps: { variantMd: 'bottom', sizeMd: 'full', sizeSm: 'full' },
 }
 AddNewAddressPage.pageOptions = pageOptions
 
 export default AddNewAddressPage
 
-export const getStaticProps: GetPageStaticProps = enhanceStaticProps(() => ({
+export const getStaticProps = enhanceStaticProps<LayoutOverlayProps>(() => ({
   props: {
     up: { href: '/account', title: 'Account' },
   },

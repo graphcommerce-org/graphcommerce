@@ -1,1 +1,2 @@
-export * from './server/searchPage'
+export * from './server/getSearchContext'
+export * from './server/getSearchCategories'

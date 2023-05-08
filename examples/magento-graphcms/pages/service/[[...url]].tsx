@@ -5,7 +5,7 @@ import { PageMeta, GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@gra
 import { enhanceStaticPaths, enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Container } from '@mui/material'
-import { GetStaticPaths } from 'next'
+import { GetStaticPaths, InferGetStaticPropsType } from 'next'
 import {
   LayoutOverlay,
   LayoutOverlayProps,
@@ -17,10 +17,8 @@ import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 
 type Props = HygraphPagesQuery
 type RouteProps = { url: string[] }
-type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
-function ServicePage({ pages }: Props) {
+function ServicePage({ pages }: InferGetStaticPropsType<typeof getStaticProps>) {
   const title = pages?.[0].title ?? ''
 
   return (
@@ -53,33 +51,32 @@ ServicePage.pageOptions = pageOptions
 
 export default ServicePage
 
-export const getStaticPaths: GetPageStaticPaths = enhanceStaticPaths(
-  'blocking',
-  async ({ locale }) => {
-    const { data } = await graphqlQuery(PagesStaticPathsDocument, {
-      variables: {
-        first: import.meta.graphCommerce.limitSsg ? 1 : 1000,
-        urlStartsWith: 'service',
+export const getStaticPaths = enhanceStaticPaths<RouteProps>('blocking', async ({ locale }) => {
+  const { data } = await graphqlQuery(PagesStaticPathsDocument, {
+    variables: {
+      first: import.meta.graphCommerce.limitSsg ? 1 : 1000,
+      urlStartsWith: 'service',
+    },
+  })
+  return data.pages.map((page) => ({ params: { url: page.url.split('/').slice(1) }, locale }))
+})
+
+export const getStaticProps = enhanceStaticProps<LayoutNavigationProps, Props, RouteProps>(
+  async ({ params }) => {
+    const url = params?.url ? `service/${params?.url.join('/')}` : `service`
+    const page = hygraphPageContent(url)
+
+    if (!(await page).data.pages?.[0]) return { notFound: true }
+
+    const isRoot = url === 'service'
+
+    return {
+      props: {
+        ...(await page).data,
+        ...(await graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })).data,
+        up: isRoot ? null : { href: '/service', title: i18n._(/* i18n */ 'Customer Service') },
       },
-    })
-    return data.pages.map((page) => ({ params: { url: page.url.split('/').slice(1) }, locale }))
+      revalidate: 60 * 20,
+    }
   },
 )
-
-export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async ({ params }) => {
-  const url = params?.url ? `service/${params?.url.join('/')}` : `service`
-  const page = hygraphPageContent(url)
-
-  if (!(await page).data.pages?.[0]) return { notFound: true }
-
-  const isRoot = url === 'service'
-
-  return {
-    props: {
-      ...(await page).data,
-      ...(await graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })).data,
-      up: isRoot ? null : { href: '/service', title: i18n._(/* i18n */ 'Customer Service') },
-    },
-    revalidate: 60 * 20,
-  }
-})

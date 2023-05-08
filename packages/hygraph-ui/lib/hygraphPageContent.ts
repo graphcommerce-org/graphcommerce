@@ -47,14 +47,18 @@ export async function hygraphPageContent(
   return pageContent(url, cached)
 }
 
-export type HygraphSinglePageReturn = { page: Promise<HygraphPageFragment | null> }
+export type GetHygraphPageReturn = { page: Promise<HygraphPageFragment | null> }
+
+export type HygraphSingePage = { page: HygraphPageFragment }
+export type MaybeHygraphSingePage = { page?: HygraphPageFragment | null }
 
 export function getHygraphPage(
-  url: string,
+  params: { url: string } | Promise<{ url: string }>,
   additionalProperties?: Promise<object | undefined | null> | object | null,
   cached = false,
-): HygraphSinglePageReturn {
+): GetHygraphPageReturn {
   return {
-    page: pageContent(url, cached).then((p) => p.data.pages?.[0] ?? null),
+    page: (async () =>
+      pageContent((await params).url, cached).then((p) => p.data.pages?.[0] ?? null))(),
   }
 }

@@ -5,12 +5,12 @@ import {
   IconSvg,
   iconChevronRight,
   iconBox,
-  GetStaticProps,
   Button,
   ButtonProps,
 } from '@graphcommerce/next-ui'
 import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { Box, Container, Typography, Divider, styled } from '@mui/material'
+import { InferGetStaticPropsType } from 'next'
 import React, { useState } from 'react'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
 
@@ -57,12 +57,12 @@ function ButtonWithDemoState(props: ButtonProps) {
   )
 }
 
-export default function ButtonsPage() {
+export default function ButtonsPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <Container>
       <LayoutTitle variant='h1'>Buttons</LayoutTitle>
 
-      {Object.entries(propVariants).map(([propVariant, props]) => (
+      {Object.entries(propVariants).map(([propVariant, variantProps]) => (
         // eslint-disable-next-line react/no-array-index-key
         <React.Fragment key={propVariant}>
           <Typography variant='h2' sx={{ mt: 8 }}>
@@ -98,7 +98,7 @@ export default function ButtonsPage() {
                           variant={variant}
                           color={color}
                           size={size}
-                          {...props}
+                          {...variantProps}
                           onClick={() => {}}
                         >
                           Button
@@ -123,6 +123,4 @@ const pageOptions: PageOptions<LayoutMinimalProps> = {
 }
 ButtonsPage.pageOptions = pageOptions
 
-type GetPageStaticProps = GetStaticProps<LayoutMinimalProps>
-
-export const getStaticProps: GetPageStaticProps = enhanceStaticProps(() => ({ props: {} }))
+export const getStaticProps = enhanceStaticProps<LayoutMinimalProps>(() => ({ props: {} }))

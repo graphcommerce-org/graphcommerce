@@ -2,7 +2,6 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { ChangePasswordForm, WaitForCustomer } from '@graphcommerce/magento-customer'
 import { PageMeta } from '@graphcommerce/magento-store'
 import {
-  GetStaticProps,
   SectionContainer,
   iconLock,
   LayoutOverlayHeader,
@@ -12,11 +11,10 @@ import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
+import { InferGetStaticPropsType } from 'next'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
 
-type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
-
-function AccountAuthenticationPage() {
+function AccountAuthenticationPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
       <LayoutOverlayHeader>
@@ -42,15 +40,14 @@ function AccountAuthenticationPage() {
 const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'account',
   Layout: LayoutOverlay,
+  layoutProps: { variantMd: 'bottom' },
 }
 AccountAuthenticationPage.pageOptions = pageOptions
 
 export default AccountAuthenticationPage
 
-export const getStaticProps: GetPageStaticProps = enhanceStaticProps(() => ({
+export const getStaticProps = enhanceStaticProps<LayoutOverlayProps>(() => ({
   props: {
-    variantMd: 'bottom',
-    size: 'max',
     up: { href: '/account', title: 'Account' },
   },
 }))

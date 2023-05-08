@@ -37,17 +37,11 @@ import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-r
 import { Money } from '@graphcommerce/magento-store'
 import { redirectOrNotFound } from '@graphcommerce/magento-store/server'
 import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
-import {
-  GetStaticProps,
-  JsonLd,
-  LayoutHeader,
-  LayoutTitle,
-  isTypename,
-} from '@graphcommerce/next-ui'
+import { JsonLd, LayoutHeader, LayoutTitle, isTypename } from '@graphcommerce/next-ui'
 import { enhanceStaticPaths, enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { Trans } from '@lingui/react'
 import { Divider, Link, Typography } from '@mui/material'
-import { GetStaticPaths } from 'next'
+import { InferGetStaticPropsType } from 'next'
 import {
   LayoutNavigation,
   LayoutNavigationProps,
@@ -65,10 +59,8 @@ type Props = HygraphPagesQuery &
   Pick<AddProductsToCartFormProps, 'defaultValues'>
 
 type RouteProps = { url: string }
-type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
-function ProductPage(props: Props) {
+function ProductPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const { products, relatedUpsells, usps, sidebarUsps, pages, defaultValues } = props
 
   const product = mergeDeep(products, relatedUpsells)?.items?.[0]
@@ -212,32 +204,36 @@ export default ProductPage
 
 export const getStaticPaths = enhanceStaticPaths('blocking', getProductStaticPaths)
 
-export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async ({ params, locale }) => {
-  const urlKey = params?.url ?? '??'
-  const productPage = graphqlQuery(ProductPage2Document, { variables: { urlKey } })
+export const getStaticProps = enhanceStaticProps<LayoutNavigationProps, Props, RouteProps>(
+  async ({ params, locale }) => {
+    const urlKey = params?.url ?? '??'
 
-  const product = productPage.then((pp) =>
-    pp.data.products?.items?.find((p) => p?.url_key === urlKey),
-  )
+    const layout = graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })
+    const productPage = graphqlQuery(ProductPage2Document, { variables: { urlKey } })
 
-  const pages = hygraphPageContent('product/global', product, true)
-  if (!(await product)) return redirectOrNotFound(params, locale)
+    const product = productPage.then((pp) =>
+      pp.data.products?.items?.find((p) => p?.url_key === urlKey),
+    )
 
-  const category = productPageCategory(await product)
-  const up =
-    category?.url_path && category?.name
-      ? { href: `/${category.url_path}`, title: category.name }
-      : { href: `/`, title: 'Home' }
-  const usps = graphqlQuery(UspsDocument, { fetchPolicy: 'cache-first' })
+    const pages = hygraphPageContent('product/global', product, true)
+    if (!(await product)) return redirectOrNotFound(params, locale)
 
-  return {
-    props: {
-      ...defaultConfigurableOptionsSelection(urlKey, (await productPage).data),
-      ...(await graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })).data,
-      ...(await pages).data,
-      ...(await usps).data,
-      up,
-    },
-    revalidate: 60 * 20,
-  }
-})
+    const category = productPageCategory(await product)
+    const up =
+      category?.url_path && category?.name
+        ? { href: `/${category.url_path}`, title: category.name }
+        : { href: `/`, title: 'Home' }
+    const usps = graphqlQuery(UspsDocument, { fetchPolicy: 'cache-first' })
+
+    return {
+      props: {
+        ...defaultConfigurableOptionsSelection(urlKey, (await productPage).data),
+        ...(await layout).data,
+        ...(await pages).data,
+        ...(await usps).data,
+        up,
+      },
+      revalidate: 60 * 20,
+    }
+  },
+)

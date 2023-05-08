@@ -1,12 +1,7 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { Asset, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
-import {
-  hygraphPageContent,
-  getHygraphPage,
-  HygraphSinglePageReturn,
-} from '@graphcommerce/graphcms-ui/server'
-import { DeepAwait, deepAwait } from '@graphcommerce/graphql-mesh'
-import { graphqlQuery } from '@graphcommerce/graphql-mesh'
+import { Asset } from '@graphcommerce/graphcms-ui'
+import { getHygraphPage, MaybeHygraphSingePage } from '@graphcommerce/graphcms-ui/server'
+import { deepAwait, graphqlQuery } from '@graphcommerce/graphql-mesh'
 import {
   CategoryChildren,
   CategoryDescription,
@@ -16,8 +11,8 @@ import {
 } from '@graphcommerce/magento-category'
 import {
   getCategoryPage,
-  GetCategoryPageResult,
   getCategoryStaticPaths,
+  CategoryPageResult,
 } from '@graphcommerce/magento-category/server'
 import {
   ProductFiltersPro,
@@ -25,30 +20,21 @@ import {
   ProductFiltersProFilterChips,
   ProductFiltersProLimitChip,
   ProductFiltersProSortChip,
+  ProductFiltersQuery,
   ProductListCount,
   ProductListFilters,
   ProductListFiltersContainer,
   ProductListPagination,
   ProductListParamsProvider,
+  ProductListQuery,
   ProductListSort,
 } from '@graphcommerce/magento-product'
-import {
-  getProductList,
-  getProductListFilters,
-  getProductListItems,
-  ProductListingResult,
-} from '@graphcommerce/magento-product/server'
+import { getProductListFilters, getProductListItems } from '@graphcommerce/magento-product/server'
 import { redirectOrNotFound } from '@graphcommerce/magento-store/server'
-import {
-  StickyBelowHeader,
-  LayoutTitle,
-  LayoutHeader,
-  MetaRobots,
-  GetStaticProps,
-} from '@graphcommerce/next-ui'
+import { StickyBelowHeader, LayoutTitle, LayoutHeader, MetaRobots } from '@graphcommerce/next-ui'
 import { enhanceStaticPaths, enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { Container } from '@mui/material'
-import { GetStaticPaths } from 'next'
+import { InferGetStaticPropsType } from 'next'
 import {
   LayoutNavigation,
   LayoutNavigationProps,
@@ -57,18 +43,17 @@ import {
   RowRenderer,
 } from '../components'
 import { LayoutDocument, LayoutQuery } from '../components/Layout/Layout.gql'
-import { CategoryPageDocument, CategoryPageQuery } from '../graphql/CategoryPage.gql'
+import { CategoryPageDocument } from '../graphql/CategoryPage.gql'
 
-export type CategoryProps = DeepAwait<GetCategoryPageResult<CategoryPageQuery>> &
-  DeepAwait<ProductListingResult> &
-  DeepAwait<HygraphSinglePageReturn>
+export type CategoryProps = CategoryPageResult &
+  ProductListQuery &
+  ProductFiltersQuery &
+  MaybeHygraphSingePage
 
 export type CategoryRoute = { url: string[] }
-type GetPageStaticProps = GetStaticProps<LayoutQuery, CategoryProps, CategoryRoute>
 
-function CategoryPage(props: CategoryProps) {
-  const { category, productListContext, products, filters, page } = props
-  const { filterTypes, params } = productListContext
+function CategoryPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
+  const { category, filterTypes, params, products, filters, page } = props
 
   const isLanding = category?.display_mode === 'PAGE'
   const isCategory = params && category && products?.items && filterTypes
@@ -184,28 +169,30 @@ export default CategoryPage
 
 export const getStaticPaths = enhanceStaticPaths('blocking', getCategoryStaticPaths)
 
-export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async (context) => {
-  const { params, locale } = context
+export const getStaticProps = enhanceStaticProps<LayoutQuery, CategoryProps, CategoryRoute>(
+  async (context) => {
+    const { params, locale } = context
 
-  const layout = graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })
+    const layout = graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })
 
-  const categoryPage = await getCategoryPage(CategoryPageDocument, context)
+    const categoryPage = getCategoryPage(CategoryPageDocument, context)
 
-  const listItems = getProductListItems(categoryPage.productListContext)
-  const filters = getProductListFilters(categoryPage.productListContext)
-  const page = getHygraphPage(categoryPage.productListContext.params.url, categoryPage.category)
+    const listItems = getProductListItems(categoryPage.params)
+    const filters = getProductListFilters(categoryPage.params)
+    const page = getHygraphPage(categoryPage.params, categoryPage.category)
 
-  if (!(await categoryPage.category) && !(await page.page) && !(await listItems).error)
-    return redirectOrNotFound(params, locale)
+    if (!(await categoryPage.category) && !(await page.page) && !(await listItems).error)
+      return redirectOrNotFound(params, locale)
 
-  return {
-    props: await deepAwait({
-      ...categoryPage,
-      ...(await listItems).data,
-      ...(await filters).data,
-      ...page,
-      ...(await layout).data,
-    }),
-    revalidate: 60 * 20,
-  }
-})
+    return {
+      props: await deepAwait({
+        ...(await layout).data,
+        ...page,
+        ...categoryPage,
+        ...(await listItems).data,
+        ...(await filters).data,
+      }),
+      revalidate: 60 * 20,
+    }
+  },
+)

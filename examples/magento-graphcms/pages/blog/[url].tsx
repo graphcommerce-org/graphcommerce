@@ -1,7 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
-import { hygraphPageContent } from '@graphcommerce/graphcms-ui/server'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { getHygraphPage, HygraphSingePage } from '@graphcommerce/graphcms-ui/server'
+import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 import {
   PageMeta,
   BlogTitle,
@@ -11,7 +10,7 @@ import {
   LayoutHeader,
 } from '@graphcommerce/next-ui'
 import { enhanceStaticPaths, enhanceStaticProps } from '@graphcommerce/next-ui/server'
-import { GetStaticPaths } from 'next'
+import { InferGetStaticPropsType } from 'next'
 import {
   BlogAuthor,
   BlogHeader,
@@ -25,18 +24,13 @@ import {
   RowRenderer,
 } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
-import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 
-type Props = HygraphPagesQuery & BlogListQuery
+type Props = HygraphSingePage & BlogListQuery
 type RouteProps = { url: string }
-type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
-function BlogPage(props: Props) {
-  const { blogPosts, pages } = props
-
-  const page = pages[0]
-  const title = page?.title ?? ''
+function BlogPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
+  const { blogPosts, page } = props
+  const title = page.title ?? ''
 
   return (
     <>
@@ -66,33 +60,34 @@ BlogPage.pageOptions = {
 
 export default BlogPage
 
-export const getStaticPaths: GetPageStaticPaths = enhanceStaticPaths(
-  'blocking',
-  async ({ locale }) =>
-    (await graphqlQuery(BlogPostPathsDocument)).data.pages.map((page) => ({
-      params: { url: `${page?.url}`.replace('blog/', '') },
-      locale,
-    })),
+export const getStaticPaths = enhanceStaticPaths<RouteProps>('blocking', async ({ locale }) =>
+  (await graphqlQuery(BlogPostPathsDocument)).data.pages.map((page) => ({
+    params: { url: `${page?.url}`.replace('blog/', '') },
+    locale,
+  })),
 )
 
-export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async ({ params }) => {
-  const urlKey = params?.url ?? '??'
-  const limit = 4
+export const getStaticProps = enhanceStaticProps<LayoutNavigationProps, Props, RouteProps>(
+  async ({ params }) => {
+    const urlKey = params?.url ?? '??'
+    const limit = 4
 
-  const page = hygraphPageContent(`blog/${urlKey}`)
+    const hygraphPage = getHygraphPage({ url: `blog/${urlKey}` })
+    const blogPosts = graphqlQuery(BlogListDocument, {
+      variables: { currentUrl: [`blog/${urlKey}`], first: limit },
+    })
 
-  const blogPosts = graphqlQuery(BlogListDocument, {
-    variables: { currentUrl: [`blog/${urlKey}`], first: limit },
-  })
-  if (!(await page).data.pages?.[0]) return { notFound: true }
+    const page = await hygraphPage.page
+    if (!page) return { notFound: true }
 
-  return {
-    props: {
-      ...(await page).data,
-      ...(await blogPosts).data,
-      ...(await graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })).data,
-      up: { href: '/', title: 'Home' },
-    },
-    revalidate: 60 * 20,
-  }
-})
+    return {
+      props: {
+        ...(await blogPosts).data,
+        ...(await graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })).data,
+        page,
+        up: { href: '/', title: 'Home' },
+      },
+      revalidate: 60 * 20,
+    }
+  },
+)

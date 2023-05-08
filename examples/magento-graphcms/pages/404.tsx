@@ -1,18 +1,14 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 import { SearchLink } from '@graphcommerce/magento-search'
 import { PageMeta } from '@graphcommerce/magento-store'
-import { GetStaticProps, Separator, icon404, IconSvg } from '@graphcommerce/next-ui'
+import { Separator, icon404, IconSvg } from '@graphcommerce/next-ui'
 import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { Trans } from '@lingui/react'
 import { Box, Container, Typography, Link } from '@mui/material'
 import React from 'react'
 import { LayoutNavigation, LayoutNavigationProps } from '../components'
 import { LayoutDocument } from '../components/Layout/Layout.gql'
-
-import { graphqlQuery } from '@graphcommerce/graphql-mesh'
-
-type Props = Record<string, unknown>
-type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props>
 
 function RouteNotFoundPage() {
   const links = [
@@ -63,7 +59,7 @@ RouteNotFoundPage.pageOptions = {
 
 export default RouteNotFoundPage
 
-export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async () => ({
+export const getStaticProps = enhanceStaticProps<LayoutNavigationProps>(async () => ({
   props: {
     ...(await graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })).data,
     up: { href: '/', title: 'Home' },

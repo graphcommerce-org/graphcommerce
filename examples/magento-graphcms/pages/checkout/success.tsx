@@ -1,10 +1,10 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 import { CartItemSummary, CartSummary, InlineAccount } from '@graphcommerce/magento-cart'
 import { SignupNewsletter } from '@graphcommerce/magento-newsletter'
 import { PageMeta } from '@graphcommerce/magento-store'
 import {
   FullPageMessage,
-  GetStaticProps,
   iconParty,
   iconSadFace,
   LayoutHeader,
@@ -15,13 +15,12 @@ import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Button, Box, Container } from '@mui/material'
+import { InferGetStaticPropsType } from 'next'
 import { useRouter } from 'next/router'
 import { LayoutMinimal, LayoutNavigationProps, LayoutMinimalProps } from '../../components'
+import { LayoutDocument } from '../../components/Layout/Layout.gql'
 
-type Props = Record<string, unknown>
-type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props>
-
-function OrderSuccessPage() {
+function OrderSuccessPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const hasCartId = !!useRouter().query.cart_id
 
   return (
@@ -79,7 +78,7 @@ OrderSuccessPage.pageOptions = pageOptions
 
 export default OrderSuccessPage
 
-export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async () => ({
+export const getStaticProps = enhanceStaticProps<LayoutNavigationProps>(async () => ({
   props: {
     ...(await graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })).data,
     up: { href: '/', title: 'Home' },

@@ -8,17 +8,15 @@ import {
   LayoutOverlayHeader,
   LayoutTitle,
   IconSvg,
-  GetStaticProps,
 } from '@graphcommerce/next-ui'
 import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
+import { InferGetStaticPropsType } from 'next'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
 
-type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
-
-function AccountReviewsPage() {
+function AccountReviewsPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const reviewsDashboard = useCustomerQuery(AccountDashboardReviewsDocument, {
     fetchPolicy: 'cache-and-network',
   })
@@ -62,14 +60,12 @@ function AccountReviewsPage() {
 const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'account',
   Layout: LayoutOverlay,
-  layoutProps: {
-    variantMd: 'bottom',
-  },
+  layoutProps: { variantMd: 'bottom' },
 }
 AccountReviewsPage.pageOptions = pageOptions
 
 export default AccountReviewsPage
 
-export const getStaticProps: GetPageStaticProps = enhanceStaticProps(() => ({
+export const getStaticProps = enhanceStaticProps<LayoutOverlayProps>(() => ({
   props: { up: { href: '/account', title: 'Account' } },
 }))

@@ -1,12 +1,13 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { hygraphPageContent } from '@graphcommerce/graphcms-ui/server'
+import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 import { ProductListDocument, ProductListQuery } from '@graphcommerce/magento-product'
-import { GetStaticProps, LayoutHeader, MetaRobots, PageMeta } from '@graphcommerce/next-ui'
+import { LayoutHeader, MetaRobots, PageMeta } from '@graphcommerce/next-ui'
 import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
+import { InferGetStaticPropsType } from 'next'
 import { LayoutNavigation, LayoutNavigationProps, RowProduct, RowRenderer } from '../components'
 import { LayoutDocument } from '../components/Layout/Layout.gql'
-import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 
 type Props = HygraphPagesQuery & {
   latestList: ProductListQuery
@@ -14,9 +15,8 @@ type Props = HygraphPagesQuery & {
   swipableList: ProductListQuery
 }
 type RouteProps = { url: string }
-type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
-function CmsPage(props: Props) {
+function CmsPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const { pages, latestList, favoritesList, swipableList } = props
   const page = pages?.[0]
 
@@ -69,31 +69,33 @@ CmsPage.pageOptions = {
 
 export default CmsPage
 
-export const getStaticProps: GetPageStaticProps = enhanceStaticProps(async () => {
-  const pages = hygraphPageContent('page/home')
+export const getStaticProps = enhanceStaticProps<LayoutNavigationProps, Props, RouteProps>(
+  async () => {
+    const pages = hygraphPageContent('page/home')
 
-  const favoritesList = graphqlQuery(ProductListDocument, {
-    variables: { pageSize: 8, filters: { category_uid: { eq: 'MTIx' } } },
-  })
+    const favoritesList = graphqlQuery(ProductListDocument, {
+      variables: { pageSize: 8, filters: { category_uid: { eq: 'MTIx' } } },
+    })
 
-  const latestList = graphqlQuery(ProductListDocument, {
-    variables: { pageSize: 8, filters: { category_uid: { eq: 'MTAy' } } },
-  })
+    const latestList = graphqlQuery(ProductListDocument, {
+      variables: { pageSize: 8, filters: { category_uid: { eq: 'MTAy' } } },
+    })
 
-  const swipableList = graphqlQuery(ProductListDocument, {
-    variables: { pageSize: 8, filters: { category_uid: { eq: 'MTIy' } } },
-  })
+    const swipableList = graphqlQuery(ProductListDocument, {
+      variables: { pageSize: 8, filters: { category_uid: { eq: 'MTIy' } } },
+    })
 
-  if (!(await pages).data.pages?.[0]) return { notFound: true }
+    if (!(await pages).data.pages?.[0]) return { notFound: true }
 
-  return {
-    props: {
-      ...(await pages).data,
-      ...(await graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })).data,
-      latestList: (await latestList).data,
-      favoritesList: (await favoritesList).data,
-      swipableList: (await swipableList).data,
-    },
-    revalidate: 60 * 20,
-  }
-})
+    return {
+      props: {
+        ...(await pages).data,
+        ...(await graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })).data,
+        latestList: (await latestList).data,
+        favoritesList: (await favoritesList).data,
+        swipableList: (await swipableList).data,
+      },
+      revalidate: 60 * 20,
+    }
+  },
+)
