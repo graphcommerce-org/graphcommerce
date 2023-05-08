@@ -1,17 +1,14 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { graphqlQuery } from '@graphcommerce/graphql-mesh'
-import { CartAgreementsDocument, CartAgreementsQuery } from '@graphcommerce/magento-cart'
+import { CartAgreementsDocument } from '@graphcommerce/magento-cart'
 import { PageMeta, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { enhanceStaticPaths, enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { Container, Typography } from '@mui/material'
+import { InferGetStaticPropsType } from 'next'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
-import { layoutProps } from '../../../components/Layout/layout'
+import { getLayout } from '../../../components/Layout/layout'
 
-type Props = {
-  agreement: NonNullable<NonNullable<CartAgreementsQuery['checkoutAgreements']>[0]>
-}
-
-function TermsPage(props: Props) {
+function TermsPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const { agreement } = props
 
   const title = agreement?.name ?? ''
@@ -54,20 +51,18 @@ export const getStaticPaths = enhanceStaticPaths('blocking', async ({ locale }) 
   })),
 )
 
-export const getStaticProps = enhanceStaticProps(
-  layoutProps<Props>(async ({ params }) => {
-    const agreements = await graphqlQuery(CartAgreementsDocument)
-    const agreement = agreements.data.checkoutAgreements?.find(
-      (ca) => ca?.name?.toLowerCase().replace(/\s+/g, '-') === params?.url,
-    )
+export const getStaticProps = enhanceStaticProps(getLayout, async ({ params }) => {
+  const agreements = await graphqlQuery(CartAgreementsDocument)
+  const agreement = agreements.data.checkoutAgreements?.find(
+    (ca) => ca?.name?.toLowerCase().replace(/\s+/g, '-') === params?.url,
+  )
 
-    if (!agreement) return { notFound: true }
+  if (!agreement) return { notFound: true }
 
-    return {
-      props: {
-        agreement,
-      },
-      revalidate: 60 * 20,
-    }
-  }),
-)
+  return {
+    props: {
+      agreement,
+    },
+    revalidate: 60 * 20,
+  }
+})

@@ -24,7 +24,7 @@ import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, CircularProgress, Container, Typography } from '@mui/material'
 import { InferGetStaticPropsType } from 'next'
-import { layoutProps } from '../components/Layout/layout'
+import { getLayout } from '../components/Layout/layout'
 import { productListRenderer } from '../components/ProductListItems'
 
 export function ComparePage(props: InferGetStaticPropsType<typeof getStaticProps>) {
@@ -90,9 +90,7 @@ ComparePage.pageOptions = pageOptions
 
 export default ComparePage
 
-export const getStaticProps = enhanceStaticProps(
-  layoutProps(() => {
-    if (!import.meta.graphCommerce.compare) return { notFound: true }
-    return { props: {} }
-  }),
-)
+export const getStaticProps = enhanceStaticProps(getLayout, () => {
+  if (!import.meta.graphCommerce.compare) return { notFound: true }
+  return { props: {} }
+})

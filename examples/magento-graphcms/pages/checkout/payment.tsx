@@ -1,6 +1,5 @@
 import { ComposedForm, WaitForQueries } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 import {
   ApolloCartErrorFullPage,
   CartAgreementsForm,
@@ -36,8 +35,7 @@ import { Trans } from '@lingui/react'
 import { CircularProgress, Container, Dialog, Typography } from '@mui/material'
 import { InferGetStaticPropsType } from 'next'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
-import { layoutProps } from '../../components/Layout/layout'
-import { LayoutDocument } from '../../components/Layout/Layout.gql'
+import { getLayout } from '../../components/Layout/layout'
 
 function PaymentPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const billingPage = useCartQuery(BillingPageDocument, { fetchPolicy: 'cache-and-network' })
@@ -154,10 +152,8 @@ PaymentPage.pageOptions = pageOptions
 
 export default PaymentPage
 
-export const getStaticProps = enhanceStaticProps(
-  layoutProps(async () => ({
-    props: {
-      up: { href: '/checkout', title: 'Shipping' },
-    },
-  })),
-)
+export const getStaticProps = enhanceStaticProps(getLayout, async () => ({
+  props: {
+    up: { href: '/checkout', title: 'Shipping' },
+  },
+}))

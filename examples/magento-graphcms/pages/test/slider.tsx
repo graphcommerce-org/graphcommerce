@@ -4,8 +4,8 @@ import { ProductListDocument, ProductListQuery } from '@graphcommerce/magento-pr
 import { LayoutTitle, LayoutHeader, SidebarGallery } from '@graphcommerce/next-ui'
 import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { InferGetStaticPropsType } from 'next'
-import { LayoutNavigation, LayoutNavigationProps } from '../../components'
-import { layoutProps } from '../../components/Layout/layout'
+import { LayoutNavigation } from '../../components'
+import { getLayout } from '../../components/Layout/layout'
 
 type Props = ProductListQuery
 
@@ -84,18 +84,16 @@ TestSlider.pageOptions = {
 } as PageOptions
 export default TestSlider
 
-export const getStaticProps = enhanceStaticProps(
-  layoutProps<Props>(async () => {
-    // todo(paales): Remove when https://github.com/Urigo/graphql-mesh/issues/1257 is resolved
-    const productList = graphqlQuery(ProductListDocument, {
-      variables: { pageSize: 8, filters: { category_uid: { eq: 'MTAy' } } },
-    })
+export const getStaticProps = enhanceStaticProps(getLayout, async () => {
+  // todo(paales): Remove when https://github.com/Urigo/graphql-mesh/issues/1257 is resolved
+  const productList = graphqlQuery(ProductListDocument, {
+    variables: { pageSize: 8, filters: { category_uid: { eq: 'MTAy' } } },
+  })
 
-    return {
-      props: {
-        ...(await productList).data,
-        up: { href: '/', title: 'Home' },
-      },
-    }
-  }),
-)
+  return {
+    props: {
+      ...(await productList).data,
+      up: { href: '/', title: 'Home' },
+    },
+  }
+})

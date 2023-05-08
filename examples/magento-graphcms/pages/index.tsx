@@ -6,9 +6,8 @@ import { ProductListDocument, ProductListQuery } from '@graphcommerce/magento-pr
 import { LayoutHeader, MetaRobots, PageMeta } from '@graphcommerce/next-ui'
 import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { InferGetStaticPropsType } from 'next'
-import { LayoutNavigation, LayoutNavigationProps, RowProduct, RowRenderer } from '../components'
-import { layoutProps } from '../components/Layout/layout'
-import { LayoutDocument } from '../components/Layout/Layout.gql'
+import { LayoutNavigation, RowProduct, RowRenderer } from '../components'
+import { getLayout } from '../components/Layout/layout'
 
 type Props = HygraphPagesQuery & {
   latestList: ProductListQuery
@@ -19,6 +18,7 @@ type RouteProps = { url: string }
 
 function CmsPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const { pages, latestList, favoritesList, swipableList } = props
+
   const page = pages?.[0]
 
   const latest = latestList?.products?.items?.[0]
@@ -70,32 +70,30 @@ CmsPage.pageOptions = {
 
 export default CmsPage
 
-export const getStaticProps = enhanceStaticProps(
-  layoutProps<Props, RouteProps>(async () => {
-    const pages = hygraphPageContent('page/home')
+export const getStaticProps = enhanceStaticProps(getLayout, async () => {
+  const pages = hygraphPageContent('page/home')
 
-    const favoritesList = graphqlQuery(ProductListDocument, {
-      variables: { pageSize: 8, filters: { category_uid: { eq: 'MTIx' } } },
-    })
+  const favoritesList = graphqlQuery(ProductListDocument, {
+    variables: { pageSize: 8, filters: { category_uid: { eq: 'MTIx' } } },
+  })
 
-    const latestList = graphqlQuery(ProductListDocument, {
-      variables: { pageSize: 8, filters: { category_uid: { eq: 'MTAy' } } },
-    })
+  const latestList = graphqlQuery(ProductListDocument, {
+    variables: { pageSize: 8, filters: { category_uid: { eq: 'MTAy' } } },
+  })
 
-    const swipableList = graphqlQuery(ProductListDocument, {
-      variables: { pageSize: 8, filters: { category_uid: { eq: 'MTIy' } } },
-    })
+  const swipableList = graphqlQuery(ProductListDocument, {
+    variables: { pageSize: 8, filters: { category_uid: { eq: 'MTIy' } } },
+  })
 
-    if (!(await pages).data.pages?.[0]) return { notFound: true }
+  if (!(await pages).data.pages?.[0]) return { notFound: true }
 
-    return {
-      props: {
-        ...(await pages).data,
-        latestList: (await latestList).data,
-        favoritesList: (await favoritesList).data,
-        swipableList: (await swipableList).data,
-      },
-      revalidate: 60 * 20,
-    }
-  }),
-)
+  return {
+    props: {
+      ...(await pages).data,
+      latestList: (await latestList).data,
+      favoritesList: (await favoritesList).data,
+      swipableList: (await swipableList).data,
+    },
+    revalidate: 60 * 20,
+  }
+})

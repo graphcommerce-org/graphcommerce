@@ -34,7 +34,7 @@ import { redirectOrNotFound } from '@graphcommerce/magento-store/server'
 import { StickyBelowHeader, LayoutTitle, LayoutHeader, MetaRobots } from '@graphcommerce/next-ui'
 import { enhanceStaticPaths, enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { Container } from '@mui/material'
-import { InferGetStaticPropsType } from 'next'
+import { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
 import {
   LayoutNavigation,
   LayoutNavigationProps,
@@ -42,7 +42,7 @@ import {
   RowProduct,
   RowRenderer,
 } from '../components'
-import { layoutProps } from '../components/Layout/layout'
+import { getLayout } from '../components/Layout/layout'
 import { CategoryPageDocument } from '../graphql/CategoryPage.gql'
 
 export type CategoryProps = CategoryPageResult &
@@ -170,7 +170,8 @@ export default CategoryPage
 export const getStaticPaths = enhanceStaticPaths('blocking', getCategoryStaticPaths)
 
 export const getStaticProps = enhanceStaticProps(
-  layoutProps<CategoryProps, CategoryRoute>(async (context) => {
+  getLayout,
+  async (context: GetStaticPropsContext<CategoryRoute>) => {
     const { params, locale } = context
 
     const categoryPage = getCategoryPage(CategoryPageDocument, context)
@@ -191,5 +192,5 @@ export const getStaticProps = enhanceStaticProps(
       }),
       revalidate: 60 * 20,
     }
-  }),
+  },
 )

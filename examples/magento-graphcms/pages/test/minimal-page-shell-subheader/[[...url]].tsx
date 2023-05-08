@@ -19,9 +19,8 @@ import { getProductListItems, getProductListFilters } from '@graphcommerce/magen
 import { StickyBelowHeader, LayoutTitle, LayoutHeader, LinkOrButton } from '@graphcommerce/next-ui'
 import { enhanceStaticPaths, enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { Box, Container, Typography } from '@mui/material'
-import { GetStaticPaths } from 'next'
-import { LayoutMinimal, LayoutMinimalProps } from '../../../components'
-import { layoutProps } from '../../../components/Layout/layout'
+import { LayoutMinimal } from '../../../components'
+import { getLayout } from '../../../components/Layout/layout'
 import { CategoryPageDocument } from '../../../graphql/CategoryPage.gql'
 
 type Props = CategoryPageResult & ProductListQuery & ProductFiltersQuery & MaybeHygraphSingePage
@@ -102,23 +101,21 @@ export const getStaticPaths = enhanceStaticPaths<RouteProps>('blocking', ({ loca
   [[]].map((url) => ({ params: { url }, locale })),
 )
 
-export const getStaticProps = enhanceStaticProps(
-  layoutProps<Props, RouteProps>(async (context) => {
-    const categoryPage = getCategoryPage(CategoryPageDocument, context)
-    const listItems = getProductListItems(categoryPage.params)
-    const filters = getProductListFilters(categoryPage.params)
-    const page = getHygraphPage(categoryPage.params)
+export const getStaticProps = enhanceStaticProps(getLayout, async (context) => {
+  const categoryPage = getCategoryPage(CategoryPageDocument, context)
+  const listItems = getProductListItems(categoryPage.params)
+  const filters = getProductListFilters(categoryPage.params)
+  const page = getHygraphPage(categoryPage.params, categoryPage.category)
 
-    if (!(await listItems).error) return { notFound: true }
+  if (!(await listItems).error) return { notFound: true }
 
-    return {
-      props: await deepAwait({
-        ...page,
-        ...categoryPage,
-        ...(await listItems).data,
-        ...(await filters).data,
-      }),
-      revalidate: 1,
-    }
-  }),
-)
+  return {
+    props: await deepAwait({
+      ...page,
+      ...categoryPage,
+      ...(await listItems).data,
+      ...(await filters).data,
+    }),
+    revalidate: 1,
+  }
+})

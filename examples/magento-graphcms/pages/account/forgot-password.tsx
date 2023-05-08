@@ -8,7 +8,7 @@ import { Trans } from '@lingui/react'
 import { Container, Typography } from '@mui/material'
 import { InferGetStaticPropsType } from 'next'
 import { LayoutOverlay, LayoutOverlayProps } from '../../components'
-import { layoutProps } from '../../components/Layout/layout'
+import { getLayout } from '../../components/Layout/layout'
 
 function AccountForgotPasswordPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
@@ -42,10 +42,8 @@ AccountForgotPasswordPage.pageOptions = pageOptions
 
 export default AccountForgotPasswordPage
 
-export const getStaticProps = enhanceStaticProps(
-  layoutProps(() => ({
-    props: {
-      up: { href: '/account/signin', title: i18n._(/* i18n */ 'Sign in') },
-    },
-  })),
-)
+export const getStaticProps = enhanceStaticProps(getLayout, () => ({
+  props: {
+    up: { href: '/account/signin', title: i18n._(/* i18n */ 'Sign in') },
+  },
+}))

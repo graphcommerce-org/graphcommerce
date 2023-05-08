@@ -1,5 +1,4 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 import { CartItemSummary, CartSummary, InlineAccount } from '@graphcommerce/magento-cart'
 import { SignupNewsletter } from '@graphcommerce/magento-newsletter'
 import { PageMeta } from '@graphcommerce/magento-store'
@@ -17,9 +16,8 @@ import { Trans } from '@lingui/react'
 import { Button, Box, Container } from '@mui/material'
 import { InferGetStaticPropsType } from 'next'
 import { useRouter } from 'next/router'
-import { LayoutMinimal, LayoutNavigationProps, LayoutMinimalProps } from '../../components'
-import { layoutProps } from '../../components/Layout/layout'
-import { LayoutDocument } from '../../components/Layout/Layout.gql'
+import { LayoutMinimal, LayoutMinimalProps } from '../../components'
+import { getLayout } from '../../components/Layout/layout'
 
 function OrderSuccessPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const hasCartId = !!useRouter().query.cart_id
@@ -79,10 +77,8 @@ OrderSuccessPage.pageOptions = pageOptions
 
 export default OrderSuccessPage
 
-export const getStaticProps = enhanceStaticProps(
-  layoutProps(async () => ({
-    props: {
-      up: { href: '/', title: 'Home' },
-    },
-  })),
-)
+export const getStaticProps = enhanceStaticProps(getLayout, async () => ({
+  props: {
+    up: { href: '/', title: 'Home' },
+  },
+}))

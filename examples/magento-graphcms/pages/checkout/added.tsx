@@ -22,7 +22,7 @@ import { InferGetStaticPropsType } from 'next'
 import { useRouter } from 'next/router'
 import { useMemo } from 'react'
 import { LayoutOverlay, LayoutOverlayProps, productListRenderer } from '../../components'
-import { layoutProps } from '../../components/Layout/layout'
+import { getLayout } from '../../components/Layout/layout'
 
 function CheckoutAdded(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const cartAdded = useCartQuery(CartAddedDocument)
@@ -187,4 +187,4 @@ CheckoutAdded.pageOptions = pageOptions
 
 export default CheckoutAdded
 
-export const getStaticProps = enhanceStaticProps(layoutProps(() => ({ props: {} })))
+export const getStaticProps = enhanceStaticProps(getLayout)

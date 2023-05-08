@@ -1,10 +1,8 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 import { enhanceStaticPaths, enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { InferGetStaticPropsType } from 'next'
-import { LayoutNavigation, LayoutNavigationProps } from '../../components'
-import { layoutProps } from '../../components/Layout/layout'
-import { LayoutDocument } from '../../components/Layout/Layout.gql'
+import { LayoutNavigation } from '../../components'
+import { getLayout } from '../../components/Layout/layout'
 import { LayoutDemo } from './minimal-page-shell/[[...url]]'
 
 type Props = { url: string }
@@ -24,15 +22,13 @@ export const getStaticPaths = enhanceStaticPaths<RouteProps>('blocking', ({ loca
   [['index', 'other']].map((url) => ({ params: { url }, locale })),
 )
 
-export const getStaticProps = enhanceStaticProps(
-  layoutProps<Props, RouteProps>(async ({ params }) => {
-    const url = (params?.url ?? ['index']).join('/') ?? ''
+export const getStaticProps = enhanceStaticProps(getLayout, async ({ params }) => {
+  const url = (params?.url ?? ['index']).join('/') ?? ''
 
-    return {
-      props: {
-        url,
-        up: url !== 'index' ? { href: '/', title: 'Home' } : null,
-      },
-    }
-  }),
-)
+  return {
+    props: {
+      url,
+      up: url !== 'index' ? { href: '/', title: 'Home' } : null,
+    },
+  }
+})

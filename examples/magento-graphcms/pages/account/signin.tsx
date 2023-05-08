@@ -10,7 +10,7 @@ import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
 import { InferGetStaticPropsType } from 'next'
 import { LayoutOverlay, LayoutOverlayProps } from '../../components'
-import { layoutProps } from '../../components/Layout/layout'
+import { getLayout } from '../../components/Layout/layout'
 
 function AccountSignInPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   useMergeCustomerCart()
@@ -41,4 +41,4 @@ AccountSignInPage.pageOptions = pageOptions
 
 export default AccountSignInPage
 
-export const getStaticProps = enhanceStaticProps(layoutProps(() => ({ props: {} })))
+export const getStaticProps = enhanceStaticProps(getLayout)

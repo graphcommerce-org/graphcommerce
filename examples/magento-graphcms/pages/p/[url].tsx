@@ -42,17 +42,11 @@ import { enhanceStaticPaths, enhanceStaticProps } from '@graphcommerce/next-ui/s
 import { Trans } from '@lingui/react'
 import { Divider, Link, Typography } from '@mui/material'
 import { InferGetStaticPropsType } from 'next'
-import {
-  LayoutNavigation,
-  LayoutNavigationProps,
-  RowProduct,
-  RowRenderer,
-  Usps,
-} from '../../components'
+import { LayoutNavigation, RowProduct, RowRenderer, Usps } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
 import { UspsDocument, UspsQuery } from '../../components/Usps/Usps.gql'
 import { ProductPage2Document, ProductPage2Query } from '../../graphql/ProductPage2.gql'
-import { layoutProps } from '../../components/Layout/layout'
+import { getLayout } from '../../components/Layout/layout'
 
 type Props = HygraphPagesQuery &
   UspsQuery &
@@ -205,36 +199,34 @@ export default ProductPage
 
 export const getStaticPaths = enhanceStaticPaths('blocking', getProductStaticPaths)
 
-export const getStaticProps = enhanceStaticProps(
-  layoutProps<Props, RouteProps>(async ({ params, locale }) => {
-    const urlKey = params?.url ?? '??'
+export const getStaticProps = enhanceStaticProps(getLayout, async ({ params, locale }) => {
+  const urlKey = params?.url ?? '??'
 
-    const layout = graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })
-    const productPage = graphqlQuery(ProductPage2Document, { variables: { urlKey } })
+  const layout = graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })
+  const productPage = graphqlQuery(ProductPage2Document, { variables: { urlKey } })
 
-    const product = productPage.then((pp) =>
-      pp.data.products?.items?.find((p) => p?.url_key === urlKey),
-    )
+  const product = productPage.then((pp) =>
+    pp.data.products?.items?.find((p) => p?.url_key === urlKey),
+  )
 
-    const pages = hygraphPageContent('product/global', product, true)
-    if (!(await product)) return redirectOrNotFound(params, locale)
+  const pages = hygraphPageContent('product/global', product, true)
+  if (!(await product)) return redirectOrNotFound(params, locale)
 
-    const category = productPageCategory(await product)
-    const up =
-      category?.url_path && category?.name
-        ? { href: `/${category.url_path}`, title: category.name }
-        : { href: `/`, title: 'Home' }
-    const usps = graphqlQuery(UspsDocument, { fetchPolicy: 'cache-first' })
+  const category = productPageCategory(await product)
+  const up =
+    category?.url_path && category?.name
+      ? { href: `/${category.url_path}`, title: category.name }
+      : { href: `/`, title: 'Home' }
+  const usps = graphqlQuery(UspsDocument, { fetchPolicy: 'cache-first' })
 
-    return {
-      props: {
-        ...defaultConfigurableOptionsSelection(urlKey, (await productPage).data),
-        ...(await layout).data,
-        ...(await pages).data,
-        ...(await usps).data,
-        up,
-      },
-      revalidate: 60 * 20,
-    }
-  }),
-)
+  return {
+    props: {
+      ...defaultConfigurableOptionsSelection(urlKey, (await productPage).data),
+      ...(await layout).data,
+      ...(await pages).data,
+      ...(await usps).data,
+      up,
+    },
+    revalidate: 60 * 20,
+  }
+})

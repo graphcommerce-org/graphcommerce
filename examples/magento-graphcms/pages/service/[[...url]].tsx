@@ -1,22 +1,15 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { PagesStaticPathsDocument, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { hygraphPageContent } from '@graphcommerce/graphcms-ui/server'
-import { PageMeta, GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
+import { PageMeta, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { enhanceStaticPaths, enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Container } from '@mui/material'
-import { GetStaticPaths, InferGetStaticPropsType } from 'next'
-import {
-  LayoutOverlay,
-  LayoutOverlayProps,
-  LayoutNavigationProps,
-  RowRenderer,
-} from '../../components'
-import { LayoutDocument } from '../../components/Layout/Layout.gql'
+import { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
+import { LayoutOverlay, LayoutOverlayProps, RowRenderer } from '../../components'
 import { graphqlQuery } from '@graphcommerce/graphql-mesh'
-import { layoutProps } from '../../components/Layout/layout'
+import { getLayout } from '../../components/Layout/layout'
 
-type Props = HygraphPagesQuery
 type RouteProps = { url: string[] }
 
 function ServicePage({ pages }: InferGetStaticPropsType<typeof getStaticProps>) {
@@ -63,7 +56,8 @@ export const getStaticPaths = enhanceStaticPaths<RouteProps>('blocking', async (
 })
 
 export const getStaticProps = enhanceStaticProps(
-  layoutProps<Props, RouteProps>(async ({ params }) => {
+  getLayout,
+  async ({ params }: GetStaticPropsContext<RouteProps>) => {
     const url = params?.url ? `service/${params?.url.join('/')}` : `service`
     const page = hygraphPageContent(url)
 
@@ -78,5 +72,5 @@ export const getStaticProps = enhanceStaticProps(
       },
       revalidate: 60 * 20,
     }
-  }),
+  },
 )

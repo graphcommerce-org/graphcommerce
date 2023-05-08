@@ -13,7 +13,7 @@ import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
 import { InferGetStaticPropsType } from 'next'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
-import { layoutProps } from '../../../components/Layout/layout'
+import { getLayout } from '../../../components/Layout/layout'
 
 function AccountAuthenticationPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
@@ -47,10 +47,8 @@ AccountAuthenticationPage.pageOptions = pageOptions
 
 export default AccountAuthenticationPage
 
-export const getStaticProps = enhanceStaticProps(
-  layoutProps(() => ({
-    props: {
-      up: { href: '/account', title: 'Account' },
-    },
-  })),
-)
+export const getStaticProps = enhanceStaticProps(getLayout, () => ({
+  props: {
+    up: { href: '/account', title: 'Account' },
+  },
+}))

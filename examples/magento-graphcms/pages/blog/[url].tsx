@@ -1,16 +1,9 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { getHygraphPage, HygraphSingePage } from '@graphcommerce/graphcms-ui/server'
 import { graphqlQuery } from '@graphcommerce/graphql-mesh'
-import {
-  PageMeta,
-  BlogTitle,
-  GetStaticProps,
-  Row,
-  LayoutTitle,
-  LayoutHeader,
-} from '@graphcommerce/next-ui'
+import { PageMeta, BlogTitle, Row, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
 import { enhanceStaticPaths, enhanceStaticProps } from '@graphcommerce/next-ui/server'
-import { InferGetStaticPropsType } from 'next'
+import { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
 import {
   BlogAuthor,
   BlogHeader,
@@ -20,11 +13,9 @@ import {
   BlogPostPathsDocument,
   BlogTags,
   LayoutNavigation,
-  LayoutNavigationProps,
   RowRenderer,
 } from '../../components'
-import { layoutProps } from '../../components/Layout/layout'
-import { LayoutDocument } from '../../components/Layout/Layout.gql'
+import { getLayout } from '../../components/Layout/layout'
 
 type Props = HygraphSingePage & BlogListQuery
 type RouteProps = { url: string }
@@ -69,7 +60,8 @@ export const getStaticPaths = enhanceStaticPaths<RouteProps>('blocking', async (
 )
 
 export const getStaticProps = enhanceStaticProps(
-  layoutProps<Props, RouteProps>(async ({ params }) => {
+  getLayout,
+  async ({ params }: GetStaticPropsContext<RouteProps>) => {
     const urlKey = params?.url ?? '??'
     const limit = 4
 
@@ -89,5 +81,5 @@ export const getStaticProps = enhanceStaticProps(
       },
       revalidate: 60 * 20,
     }
-  }),
+  },
 )

@@ -1,6 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { useQuery } from '@graphcommerce/graphql'
-import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 import {
   AccountDashboardDocument,
   AccountMenu,
@@ -33,8 +32,7 @@ import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
 import { InferGetStaticPropsType } from 'next'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
-import { layoutProps } from '../../components/Layout/layout'
-import { LayoutDocument } from '../../components/Layout/Layout.gql'
+import { getLayout } from '../../components/Layout/layout'
 
 function AccountIndexPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const dashboard = useCustomerQuery(AccountDashboardDocument, {
@@ -170,11 +168,9 @@ AccountIndexPage.pageOptions = pageOptions
 
 export default AccountIndexPage
 
-export const getStaticProps = enhanceStaticProps(
-  layoutProps(async () => ({
-    props: {
-      up: { href: '/', title: 'Home' },
-    },
-    revalidate: 60 * 20,
-  })),
-)
+export const getStaticProps = enhanceStaticProps(getLayout, async () => ({
+  props: {
+    up: { href: '/', title: 'Home' },
+  },
+  revalidate: 60 * 20,
+}))

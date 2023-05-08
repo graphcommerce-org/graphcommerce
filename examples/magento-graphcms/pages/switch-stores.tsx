@@ -13,8 +13,8 @@ import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
 import { InferGetStaticPropsType } from 'next'
 import { useRouter } from 'next/router'
-import { LayoutOverlay, LayoutOverlayProps } from '../components'
-import { layoutProps } from '../components/Layout/layout'
+import { LayoutOverlay } from '../components'
+import { getLayout } from '../components/Layout/layout'
 
 type Props = StoreSwitcherListQuery
 
@@ -49,9 +49,7 @@ StoresIndexPage.pageOptions = pageOptions
 
 export default StoresIndexPage
 
-export const getStaticProps = enhanceStaticProps(
-  layoutProps<Props>(async () => {
-    const stores = graphqlQuery(StoreSwitcherListDocument)
-    return { props: { ...(await stores).data } }
-  }),
-)
+export const getStaticProps = enhanceStaticProps(getLayout, async () => {
+  const stores = graphqlQuery(StoreSwitcherListDocument)
+  return { props: { ...(await stores).data } }
+})

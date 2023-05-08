@@ -8,7 +8,9 @@ import type {
   GetStaticProps,
   GetStaticPropsContext,
   GetStaticPropsResult,
+  PreviewData,
 } from 'next'
+import { mergeDeep, TupleToIntersection } from '@graphcommerce/graphql'
 
 export const storefrontAll = import.meta.graphCommerce.storefront
 
@@ -34,14 +36,24 @@ export const storefrontConfig = () => {
  * To get the current storefront config, use the `storefrontConfig()` function.
  */
 export function enhanceStaticProps<
-  Props extends Record<string, unknown> = Record<string, unknown>,
-  Params extends ParsedUrlQuery = ParsedUrlQuery,
->(cb: GetStaticProps<Props, Params>) {
-  return (context: GetStaticPropsContext<Params>) => {
+  GSPArray extends GetStaticProps<any, any, any>[] = GetStaticProps<any, any, any>[],
+  I extends TupleToIntersection<GSPArray> = TupleToIntersection<GSPArray>,
+>(...getStaticPropsArr: GSPArray): (...args: Parameters<I>) => Promise<ReturnType<I>> {
+  return async (context) => {
     const config = storefrontAll.find((l) => l.locale === context.locale)
     if (!config) throw Error(`No storefront config found for locale ${context.locale}`)
-    const result = storefrontContext.run(config, cb, context)
-    return result
+
+    return storefrontContext.run(config, async () => {
+      // Load all getStaticProps methods in parallel
+      const promises = Promise.all(getStaticPropsArr.map((enhancer) => enhancer(context)))
+
+      // Merge all props together, but bail whenever the
+      return (await promises).reduce((acc, curr) => {
+        if (!curr || !hasProps(curr)) return curr
+        if (!hasProps(acc)) return acc
+        return mergeDeep(acc, curr.props)
+      }) as Awaited<ReturnType<I>>
+    })
   }
 }
 

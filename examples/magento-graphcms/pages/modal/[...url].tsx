@@ -1,14 +1,12 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { hygraphPageContent } from '@graphcommerce/graphcms-ui/server'
-import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 import { MetaRobots, LayoutOverlayHeader, LayoutTitle, PageMeta } from '@graphcommerce/next-ui'
 import { enhanceStaticPaths, enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { Box, Typography } from '@mui/material'
 import { InferGetStaticPropsType } from 'next'
-import { LayoutOverlay, LayoutOverlayProps, RowRenderer } from '../../components'
-import { layoutProps } from '../../components/Layout/layout'
-import { LayoutDocument } from '../../components/Layout/Layout.gql'
+import { LayoutOverlay, RowRenderer } from '../../components'
+import { getLayout } from '../../components/Layout/layout'
 
 type Props = HygraphPagesQuery
 type RouteProps = { url: string[] }
@@ -57,18 +55,16 @@ export const getStaticPaths = enhanceStaticPaths<RouteProps>('blocking', ({ loca
   [['modal']].map((url) => ({ params: { url }, locale })),
 )
 
-export const getStaticProps = enhanceStaticProps(
-  layoutProps<Props, RouteProps>(async ({ params }) => {
-    const urlKey = params?.url.join('/') ?? '??'
-    const page = hygraphPageContent(`modal/${urlKey}`)
+export const getStaticProps = enhanceStaticProps(getLayout, async ({ params }) => {
+  const urlKey = params?.url.join('/') ?? '??'
+  const page = hygraphPageContent(`modal/${urlKey}`)
 
-    if (!(await page).data.pages?.[0]) return { notFound: true }
+  if (!(await page).data.pages?.[0]) return { notFound: true }
 
-    return {
-      props: {
-        ...(await page).data,
-      },
-      revalidate: 60 * 20,
-    }
-  }),
-)
+  return {
+    props: {
+      ...(await page).data,
+    },
+    revalidate: 60 * 20,
+  }
+})

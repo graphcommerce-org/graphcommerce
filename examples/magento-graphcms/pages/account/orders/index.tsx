@@ -20,7 +20,7 @@ import { Container } from '@mui/material'
 import { InferGetStaticPropsType } from 'next'
 import { useRouter } from 'next/router'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
-import { layoutProps } from '../../../components/Layout/layout'
+import { getLayout } from '../../../components/Layout/layout'
 
 function AccountOrdersPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const { query } = useRouter()
@@ -76,10 +76,8 @@ AccountOrdersPage.pageOptions = pageOptions
 
 export default AccountOrdersPage
 
-export const getStaticProps = enhanceStaticProps(
-  layoutProps(() => ({
-    props: {
-      up: { href: '/account', title: 'Account' },
-    },
-  })),
-)
+export const getStaticProps = enhanceStaticProps(getLayout, () => ({
+  props: {
+    up: { href: '/account', title: 'Account' },
+  },
+}))

@@ -6,7 +6,6 @@ import {
   WaitForQueries,
 } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 import {
   ApolloCartErrorAlert,
   ApolloCartErrorFullPage,
@@ -38,8 +37,7 @@ import { CircularProgress, Container, Typography } from '@mui/material'
 import { InferGetStaticPropsType } from 'next'
 import { useRouter } from 'next/router'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
-import { layoutProps } from '../../components/Layout/layout'
-import { LayoutDocument } from '../../components/Layout/Layout.gql'
+import { getLayout } from '../../components/Layout/layout'
 
 function ShippingPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const router = useRouter()
@@ -147,10 +145,8 @@ ShippingPage.pageOptions = pageOptions
 
 export default ShippingPage
 
-export const getStaticProps = enhanceStaticProps(
-  layoutProps(async () => ({
-    props: {
-      up: { href: '/cart', title: 'Cart' },
-    },
-  })),
-)
+export const getStaticProps = enhanceStaticProps(getLayout, async () => ({
+  props: {
+    up: { href: '/cart', title: 'Cart' },
+  },
+}))

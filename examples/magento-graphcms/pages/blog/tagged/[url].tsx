@@ -16,11 +16,9 @@ import {
   BlogTags,
   BlogTitle,
   LayoutNavigation,
-  LayoutNavigationProps,
   RowRenderer,
 } from '../../../components'
-import { layoutProps } from '../../../components/Layout/layout'
-import { LayoutDocument } from '../../../components/Layout/Layout.gql'
+import { getLayout } from '../../../components/Layout/layout'
 
 type Props = HygraphPagesQuery & BlogListTaggedQuery
 type RouteProps = { url: string }
@@ -67,24 +65,22 @@ export const getStaticPaths = enhanceStaticPaths<RouteProps>(
     })) ?? [],
 )
 
-export const getStaticProps = enhanceStaticProps(
-  layoutProps<Props, RouteProps>(async ({ params }) => {
-    const urlKey = params?.url ?? '??'
-    const limit = 99
-    const page = hygraphPageContent(`blog/tagged/${urlKey}`)
+export const getStaticProps = enhanceStaticProps(getLayout, async ({ params }) => {
+  const urlKey = params?.url ?? '??'
+  const limit = 99
+  const page = hygraphPageContent(`blog/tagged/${urlKey}`)
 
-    const blogPosts = graphqlQuery(BlogListTaggedDocument, {
-      variables: { currentUrl: [`blog/tagged/${urlKey}`], first: limit, tagged: params?.url },
-    })
-    if (!(await page).data.pages?.[0]) return { notFound: true }
+  const blogPosts = graphqlQuery(BlogListTaggedDocument, {
+    variables: { currentUrl: [`blog/tagged/${urlKey}`], first: limit, tagged: params?.url },
+  })
+  if (!(await page).data.pages?.[0]) return { notFound: true }
 
-    return {
-      props: {
-        ...(await page).data,
-        ...(await blogPosts).data,
-        up: { href: '/blog', title: 'Blog' },
-      },
-      revalidate: 60 * 20,
-    }
-  }),
-)
+  return {
+    props: {
+      ...(await page).data,
+      ...(await blogPosts).data,
+      up: { href: '/blog', title: 'Blog' },
+    },
+    revalidate: 60 * 20,
+  }
+})

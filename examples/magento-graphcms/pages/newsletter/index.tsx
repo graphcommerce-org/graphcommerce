@@ -1,25 +1,16 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { hygraphPageContent } from '@graphcommerce/graphcms-ui/server'
-import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 import { PageMeta, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { Container } from '@mui/material'
-import {
-  LayoutOverlay,
-  LayoutOverlayProps,
-  LayoutNavigationProps,
-  RowRenderer,
-} from '../../components'
-import { layoutProps } from '../../components/Layout/layout'
-import { LayoutDocument } from '../../components/Layout/Layout.gql'
+import { InferGetStaticPropsType } from 'next'
+import { LayoutOverlay, LayoutOverlayProps, RowRenderer } from '../../components'
+import { getLayout } from '../../components/Layout/layout'
 
 import { GuestNewsletter } from '../../components/Newsletter/GuestNewsletter'
 
-type Props = HygraphPagesQuery
-type RouteProps = { url: string[] }
-
-function NewsletterSubscribe({ pages }: Props) {
+function NewsletterSubscribe(props: InferGetStaticPropsType<typeof getStaticProps>) {
+  const { pages } = props
   const page = pages?.[0]
   const title = page.title ?? ''
 
@@ -69,18 +60,16 @@ NewsletterSubscribe.pageOptions = pageOptions
 
 export default NewsletterSubscribe
 
-export const getStaticProps = enhanceStaticProps(
-  layoutProps<Props, RouteProps>(async () => {
-    const url = `newsletter`
-    const page = hygraphPageContent(url)
+export const getStaticProps = enhanceStaticProps(getLayout, async () => {
+  const url = `newsletter`
+  const page = hygraphPageContent(url)
 
-    if (!(await page).data.pages?.[0]) return { notFound: true }
+  if (!(await page).data.pages?.[0]) return { notFound: true }
 
-    return {
-      props: {
-        ...(await page).data,
-      },
-      revalidate: 60 * 20,
-    }
-  }),
-)
+  return {
+    props: {
+      ...(await page).data,
+    },
+    revalidate: 60 * 20,
+  }
+})

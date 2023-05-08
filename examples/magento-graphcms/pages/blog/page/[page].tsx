@@ -5,7 +5,7 @@ import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 import { PageMeta, Pagination, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
 import { enhanceStaticPaths, enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { Container, Link } from '@mui/material'
-import { InferGetStaticPropsType } from 'next'
+import { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
 import { useRouter } from 'next/router'
 import React from 'react'
 import {
@@ -15,11 +15,9 @@ import {
   BlogPathsDocument,
   BlogPathsQuery,
   LayoutNavigation,
-  LayoutNavigationProps,
   RowRenderer,
 } from '../../../components'
-import { layoutProps } from '../../../components/Layout/layout'
-import { LayoutDocument } from '../../../components/Layout/Layout.gql'
+import { getLayout } from '../../../components/Layout/layout'
 
 type Props = HygraphPagesQuery & BlogListQuery & BlogPathsQuery
 type RouteProps = { page: string }
@@ -78,7 +76,9 @@ export const getStaticPaths = enhanceStaticPaths('blocking', async ({ locale }) 
 })
 
 export const getStaticProps = enhanceStaticProps(
-  layoutProps<Props, RouteProps>(async ({ params }) => {
+  getLayout,
+  async (context: GetStaticPropsContext<RouteProps>) => {
+    const { params } = context
     const skip = Math.abs((Number(params?.page ?? '1') - 1) * pageSize)
     const pages = hygraphPageContent('blog')
     const blogPosts = graphqlQuery(BlogListDocument, {
@@ -100,5 +100,5 @@ export const getStaticProps = enhanceStaticProps(
       },
       revalidate: 60 * 20,
     }
-  }),
+  },
 )
