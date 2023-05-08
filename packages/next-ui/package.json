@@ -32,7 +32,6 @@
     "@graphcommerce/prettier-config-pwa": "6.2.0-canary.13",
     "@graphcommerce/typescript-config-pwa": "6.2.0-canary.13",
     "@types/cookie": "^0.5.1",
-    "@types/react-is": "^17.0.3",
     "typescript": "4.9.5"
   },
   "peerDependencies": {
