@@ -1,15 +1,15 @@
-import { enhanceServerSideProps } from '@graphcommerce/next-ui/server'
-import { LayoutNavigationProps } from '../../components/Layout/LayoutNavigation'
-import SearchResultPage, { getStaticProps, SearchResultProps, RouteProps } from './index'
+import { enhanceServerSideProps, hasProps } from '@graphcommerce/next-ui/server'
+import { GetServerSidePropsContext } from 'next'
+import SearchResultPage, { getStaticProps, RouteProps } from './index'
 
 export default SearchResultPage
 
-export const getServerSideProps = enhanceServerSideProps<
-  LayoutNavigationProps,
-  SearchResultProps,
-  RouteProps
->(async (context) => {
-  const result = await getStaticProps(context)
-  delete result.revalidate
-  return result
-})
+export const getServerSideProps = enhanceServerSideProps(
+  async (context: GetServerSidePropsContext<RouteProps>) => {
+    const result = await getStaticProps(context)
+
+    if (hasProps(result)) return { props: result.props }
+
+    return result
+  },
+)
