@@ -4,29 +4,24 @@ import {
   CustomerDocument,
   useCustomerQuery,
   WaitForCustomer,
-  AccountDashboardAddressesQuery,
 } from '@graphcommerce/magento-customer'
-import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { PageMeta } from '@graphcommerce/magento-store'
 import {
-  GetStaticProps,
   SectionContainer,
   iconAddresses,
   LayoutOverlayHeader,
   LayoutTitle,
 } from '@graphcommerce/next-ui'
+import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
+import { InferGetStaticPropsType } from 'next'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
-import { graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
+import { getLayout } from '../../../components/Layout/layout'
 
-type Props = AccountDashboardAddressesQuery
-type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
-
-function AddNewAddressPage() {
-  const addresses = useCustomerQuery(CustomerDocument, {
-    fetchPolicy: 'cache-and-network',
-  })
+function AddNewAddressPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
+  const addresses = useCustomerQuery(CustomerDocument, { fetchPolicy: 'cache-and-network' })
 
   return (
     <>
@@ -54,21 +49,18 @@ const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'account',
   Layout: LayoutOverlay,
   sharedKey: () => 'account/addresses',
+  layoutProps: {
+    variantMd: 'bottom',
+    sizeMd: 'full',
+    sizeSm: 'full',
+  },
 }
 AddNewAddressPage.pageOptions = pageOptions
 
 export default AddNewAddressPage
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
-  const conf = client.query({ query: StoreConfigDocument })
-
-  return {
-    props: {
-      apolloState: await conf.then(() => client.cache.extract()),
-      variantMd: 'bottom',
-      size: 'max',
-      up: { href: '/account', title: 'Account' },
-    },
-  }
-}
+export const getStaticProps = enhanceStaticProps(getLayout, () => ({
+  props: {
+    up: { href: '/account', title: 'Account' },
+  },
+}))

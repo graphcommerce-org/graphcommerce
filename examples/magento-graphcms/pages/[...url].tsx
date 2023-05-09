@@ -1,46 +1,34 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { Asset, hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
-import { flushMeasurePerf } from '@graphcommerce/graphql'
+import { Asset } from '@graphcommerce/graphcms-ui'
+import { getHygraphPage } from '@graphcommerce/graphcms-ui/server'
+import { deepAwait } from '@graphcommerce/graphql-mesh'
 import {
   CategoryChildren,
   CategoryDescription,
   CategoryHeroNav,
   CategoryHeroNavTitle,
   CategoryMeta,
-  getCategoryStaticPaths,
 } from '@graphcommerce/magento-category'
+import { getCategoryPage, getCategoryStaticPaths } from '@graphcommerce/magento-category/server'
 import {
-  extractUrlQuery,
-  FilterTypes,
-  getFilterTypes,
-  parseParams,
-  ProductFiltersDocument,
   ProductFiltersPro,
   ProductFiltersProAllFiltersChip,
   ProductFiltersProFilterChips,
   ProductFiltersProLimitChip,
   ProductFiltersProSortChip,
-  ProductFiltersQuery,
   ProductListCount,
-  ProductListDocument,
   ProductListFilters,
   ProductListFiltersContainer,
   ProductListPagination,
-  ProductListParams,
   ProductListParamsProvider,
-  ProductListQuery,
   ProductListSort,
 } from '@graphcommerce/magento-product'
-import { StoreConfigDocument, redirectOrNotFound } from '@graphcommerce/magento-store'
-import {
-  StickyBelowHeader,
-  LayoutTitle,
-  LayoutHeader,
-  GetStaticProps,
-  MetaRobots,
-} from '@graphcommerce/next-ui'
+import { getProductListFilters, getProductListItems } from '@graphcommerce/magento-product/server'
+import { redirectOrNotFound } from '@graphcommerce/magento-store/server'
+import { StickyBelowHeader, LayoutTitle, LayoutHeader, MetaRobots } from '@graphcommerce/next-ui'
+import { enhanceStaticPaths, enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { Container } from '@mui/material'
-import { GetStaticPaths } from 'next'
+import { InferGetStaticPropsType } from 'next'
 import {
   LayoutNavigation,
   LayoutNavigationProps,
@@ -48,25 +36,16 @@ import {
   RowProduct,
   RowRenderer,
 } from '../components'
-import { LayoutDocument } from '../components/Layout/Layout.gql'
-import { CategoryPageDocument, CategoryPageQuery } from '../graphql/CategoryPage.gql'
-import { graphqlSsrClient, graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
+import { getLayout } from '../components/Layout/layout'
+import { CategoryPageDocument } from '../graphql/CategoryPage.gql'
 
-export type CategoryProps = CategoryPageQuery &
-  HygraphPagesQuery &
-  ProductListQuery &
-  ProductFiltersQuery & { filterTypes?: FilterTypes; params?: ProductListParams }
 export type CategoryRoute = { url: string[] }
 
-type GetPageStaticPaths = GetStaticPaths<CategoryRoute>
-type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, CategoryProps, CategoryRoute>
+function CategoryPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
+  //                  ^?
+  const { category, filterTypes, params, products, filters, page } = props
 
-function CategoryPage(props: CategoryProps) {
-  const { categories, products, filters, params, filterTypes, pages } = props
-
-  const category = categories?.items?.[0]
   const isLanding = category?.display_mode === 'PAGE'
-  const page = pages?.[0]
   const isCategory = params && category && products?.items && filterTypes
 
   return (
@@ -81,7 +60,7 @@ function CategoryPage(props: CategoryProps) {
       />
       <LayoutHeader floatingMd>
         <LayoutTitle size='small' component='span'>
-          {category?.name ?? page.title}
+          {category?.name ?? page?.title}
         </LayoutTitle>
       </LayoutHeader>
       {!isLanding && (
@@ -96,14 +75,14 @@ function CategoryPage(props: CategoryProps) {
               !isCategory || (!category?.description && category?.children?.length === 0)
             }
           >
-            {category?.name ?? page.title}
+            {category?.name ?? page?.title}
           </LayoutTitle>
         </Container>
       )}
       {isCategory && isLanding && (
         <CategoryHeroNav
           {...category}
-          asset={pages?.[0]?.asset && <Asset asset={pages[0].asset} loading='eager' />}
+          asset={page?.asset && <Asset asset={page.asset} loading='eager' />}
           title={<CategoryHeroNavTitle>{category?.name}</CategoryHeroNavTitle>}
         />
       )}
@@ -178,97 +157,27 @@ CategoryPage.pageOptions = pageOptions
 
 export default CategoryPage
 
-export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
-  // Disable getStaticPaths while in development mode
-  if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
+export const getStaticPaths = enhanceStaticPaths<CategoryRoute>('blocking', getCategoryStaticPaths)
 
-  const path = (loc: string) => getCategoryStaticPaths(graphqlSsrClient(loc), loc)
-  const paths = (await Promise.all(locales.map(path))).flat(1)
-  return { paths, fallback: 'blocking' }
-}
+export const getStaticProps = enhanceStaticProps(getLayout, async (context) => {
+  const { params, locale } = context
 
-export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
-  const [url, query] = extractUrlQuery(params)
-  if (!url || !query) return { notFound: true }
+  const categoryPage = getCategoryPage(CategoryPageDocument, context)
 
-  const client = graphqlSharedClient(locale)
-  const conf = client.query({ query: StoreConfigDocument })
-  const filterTypes = getFilterTypes(client)
+  const listItems = getProductListItems(categoryPage.params)
+  const filters = getProductListFilters(categoryPage.params)
+  const page = getHygraphPage(categoryPage.params, categoryPage.category)
 
-  const staticClient = graphqlSsrClient(locale)
+  if (!(await categoryPage.category) && !(await page.page) && !(await listItems).error)
+    return redirectOrNotFound(params, locale)
 
-  const categoryPage = staticClient.query({
-    query: CategoryPageDocument,
-    variables: { url },
-  })
-  const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
-
-  const productListParams = parseParams(url, query, await filterTypes)
-  const filteredCategoryUid = productListParams && productListParams.filters.category_uid?.in?.[0]
-
-  const category = categoryPage.then((res) => res.data.categories?.items?.[0])
-  let categoryUid = filteredCategoryUid
-  if (!categoryUid) {
-    categoryUid = (await category)?.uid ?? ''
-    if (productListParams) productListParams.filters.category_uid = { in: [categoryUid] }
-  }
-
-  const pages = hygraphPageContent(staticClient, url, category)
-  const hasPage = filteredCategoryUid ? false : (await pages).data.pages.length > 0
-  const hasCategory = Boolean(productListParams && categoryUid)
-
-  if (!productListParams || !(hasPage || hasCategory))
-    return redirectOrNotFound(staticClient, conf, params, locale)
-
-  if (!hasCategory) {
-    return {
-      props: {
-        ...(await categoryPage).data,
-        ...(await pages).data,
-        ...(await layout).data,
-        apolloState: await conf.then(() => client.cache.extract()),
-      },
-      revalidate: 60 * 20,
-    }
-  }
-
-  const filters = staticClient.query({
-    query: ProductFiltersDocument,
-    variables: { filters: { category_uid: { eq: categoryUid } } },
-  })
-  const products = staticClient.query({
-    query: ProductListDocument,
-    variables: {
-      pageSize: (await conf).data.storeConfig?.grid_per_page ?? 24,
-      ...productListParams,
-      filters: { ...productListParams.filters, category_uid: { eq: categoryUid } },
-    },
-  })
-
-  if ((await products).errors) return { notFound: true }
-
-  const { category_name, category_url_path } =
-    (await categoryPage).data.categories?.items?.[0]?.breadcrumbs?.[0] ?? {}
-
-  const up =
-    category_url_path && category_name
-      ? { href: `/${category_url_path}`, title: category_name }
-      : { href: `/`, title: 'Home' }
-
-  const result = {
-    props: {
-      ...(await categoryPage).data,
-      ...(await products).data,
-      ...(await pages).data,
+  return {
+    props: await deepAwait({
+      ...page,
+      ...categoryPage,
+      ...(await listItems).data,
       ...(await filters).data,
-      ...(await layout).data,
-      filterTypes: await filterTypes,
-      params: productListParams,
-      apolloState: await conf.then(() => client.cache.extract()),
-      up,
-    },
+    }),
     revalidate: 60 * 20,
   }
-  flushMeasurePerf()
-  return result
-}
+})

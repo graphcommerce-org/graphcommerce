@@ -1,21 +1,19 @@
-import { flushMeasurePerf } from '@graphcommerce/graphql'
-import { GetServerSideProps } from '@graphcommerce/next-ui'
-import { LayoutNavigationProps } from '../../components'
-import CategoryPage, { getStaticProps, CategoryProps, CategoryRoute } from '../[...url]'
+import { enhanceServerSideProps, hasProps } from '@graphcommerce/next-ui/server'
+import { GetServerSidePropsContext } from 'next'
+import CategoryPageData, { getStaticProps, CategoryRoute } from '../[...url]'
 
-export default CategoryPage
+export default CategoryPageData
 
-type GetSSP = GetServerSideProps<LayoutNavigationProps, CategoryProps, CategoryRoute>
+export const getServerSideProps = enhanceServerSideProps(
+  async (context: GetServerSidePropsContext<CategoryRoute>) => {
+    const result = await getStaticProps(context)
 
-export const getServerSideProps: GetSSP = async (context) => {
-  const result = await getStaticProps(context)
-  delete result.revalidate
+    if (hasProps(result)) return { props: result.props }
 
-  context.res.setHeader(
-    'Cache-Control',
-    `public, s-maxage=${10 * 60}, stale-while-revalidate=${20 * 60}`,
-  )
-
-  flushMeasurePerf()
-  return result
-}
+    context.res.setHeader(
+      'Cache-Control',
+      `public, s-maxage=${10 * 60}, stale-while-revalidate=${20 * 60}`,
+    )
+    return result
+  },
+)

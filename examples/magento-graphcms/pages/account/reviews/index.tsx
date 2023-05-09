@@ -1,24 +1,23 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { useCustomerQuery, WaitForCustomer } from '@graphcommerce/magento-customer'
 import { AccountDashboardReviewsDocument, AccountReviews } from '@graphcommerce/magento-review'
-import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { PageMeta } from '@graphcommerce/magento-store'
 import {
   FullPageMessage,
   iconStar,
   LayoutOverlayHeader,
   LayoutTitle,
   IconSvg,
-  GetStaticProps,
 } from '@graphcommerce/next-ui'
+import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
+import { InferGetStaticPropsType } from 'next'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
-import { graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
+import { getLayout } from '../../../components/Layout/layout'
 
-type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
-
-function AccountReviewsPage() {
+function AccountReviewsPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const reviewsDashboard = useCustomerQuery(AccountDashboardReviewsDocument, {
     fetchPolicy: 'cache-and-network',
   })
@@ -62,22 +61,12 @@ function AccountReviewsPage() {
 const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'account',
   Layout: LayoutOverlay,
-  layoutProps: {
-    variantMd: 'bottom',
-  },
+  layoutProps: { variantMd: 'bottom' },
 }
 AccountReviewsPage.pageOptions = pageOptions
 
 export default AccountReviewsPage
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
-  const conf = client.query({ query: StoreConfigDocument })
-
-  return {
-    props: {
-      apolloState: await conf.then(() => client.cache.extract()),
-      up: { href: '/account', title: 'Account' },
-    },
-  }
-}
+export const getStaticProps = enhanceStaticProps(getLayout, () => ({
+  props: { up: { href: '/account', title: 'Account' } },
+}))

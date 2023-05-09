@@ -5,7 +5,7 @@
  */
 
 import { HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
-import { ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
+import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 import {
   AllDynamicRowsDocument,
   ConditionTextFragment,
@@ -92,7 +92,6 @@ function matchCondition(
  * - Implements an alias sytem to merge the content of multiple pages.
  */
 export async function hygraphDynamicRows(
-  client: ApolloClient<NormalizedCacheObject>,
   pageQuery: Promise<{ data: HygraphPagesQuery }>,
   url: string,
   cached: boolean,
@@ -101,7 +100,7 @@ export async function hygraphDynamicRows(
   const alwaysCache = process.env.NODE_ENV !== 'development' ? 'cache-first' : undefined
   const fetchPolicy = cached ? alwaysCache : undefined
 
-  const allRoutes = await client.query({ query: AllDynamicRowsDocument, fetchPolicy: alwaysCache })
+  const allRoutes = await graphqlQuery(AllDynamicRowsDocument, { fetchPolicy: alwaysCache })
 
   // Get the required rowIds from the conditions
   const properties = { ...(await additionalProperties), url }
@@ -114,7 +113,7 @@ export async function hygraphDynamicRows(
 
   const dynamicRows =
     rowIds.length !== 0
-      ? client.query({ query: DynamicRowsDocument, variables: { rowIds }, fetchPolicy })
+      ? graphqlQuery(DynamicRowsDocument, { variables: { rowIds }, fetchPolicy })
       : undefined
 
   const [pageResult, dynamicResult] = await Promise.all([pageQuery, dynamicRows])

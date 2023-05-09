@@ -1,23 +1,16 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { PageMeta, GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
+import { hygraphPageContent } from '@graphcommerce/graphcms-ui/server'
+import { PageMeta, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
+import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { Container } from '@mui/material'
-import {
-  LayoutOverlay,
-  LayoutOverlayProps,
-  LayoutNavigationProps,
-  RowRenderer,
-} from '../../components'
-import { LayoutDocument } from '../../components/Layout/Layout.gql'
+import { InferGetStaticPropsType } from 'next'
+import { LayoutOverlay, LayoutOverlayProps, RowRenderer } from '../../components'
+import { getLayout } from '../../components/Layout/layout'
+
 import { GuestNewsletter } from '../../components/Newsletter/GuestNewsletter'
-import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
-type Props = HygraphPagesQuery
-type RouteProps = { url: string[] }
-type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
-
-function NewsletterSubscribe({ pages }: Props) {
+function NewsletterSubscribe(props: InferGetStaticPropsType<typeof getStaticProps>) {
+  const { pages } = props
   const page = pages?.[0]
   const title = page.title ?? ''
 
@@ -60,7 +53,6 @@ const pageOptions: PageOptions<LayoutOverlayProps> = {
     sizeMd: 'floating',
     justifyMd: 'end',
     widthMd: '500px',
-
     sizeSm: 'floating',
   },
 }
@@ -68,22 +60,16 @@ NewsletterSubscribe.pageOptions = pageOptions
 
 export default NewsletterSubscribe
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
+export const getStaticProps = enhanceStaticProps(getLayout, async () => {
   const url = `newsletter`
-  const client = graphqlSharedClient(locale)
-  const staticClient = graphqlSsrClient(locale)
-  const conf = client.query({ query: StoreConfigDocument })
-  const page = hygraphPageContent(staticClient, url)
-  const layout = staticClient.query({ query: LayoutDocument })
+  const page = hygraphPageContent(url)
 
   if (!(await page).data.pages?.[0]) return { notFound: true }
 
   return {
     props: {
       ...(await page).data,
-      ...(await layout).data,
-      apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,
   }
-}
+})

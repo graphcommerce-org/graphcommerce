@@ -1,6 +1,6 @@
 import { WaitForQueries } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { PageMeta } from '@graphcommerce/magento-store'
 import {
   WishlistItems,
   useWishlistItems,
@@ -8,7 +8,6 @@ import {
   WishlistItemBase,
 } from '@graphcommerce/magento-wishlist'
 import {
-  GetStaticProps,
   iconHeart,
   FullPageMessage,
   Button,
@@ -16,16 +15,15 @@ import {
   IconSvg,
   LayoutOverlayHeader,
 } from '@graphcommerce/next-ui'
+import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
+import { InferGetServerSidePropsType } from 'next'
 import { LayoutOverlay, LayoutOverlayProps } from '../../components'
-import { graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import { getLayout } from '../../components/Layout/layout'
 
-type Props = Record<string, unknown>
-type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
-
-function WishlistPage() {
+function WishlistPage(props: InferGetServerSidePropsType<typeof getStaticProps>) {
   const wishlistItemsData = useWishlistItems()
 
   return (
@@ -101,13 +99,4 @@ WishlistPage.pageOptions = pageOptions
 
 export default WishlistPage
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
-  const conf = client.query({ query: StoreConfigDocument })
-
-  return {
-    props: {
-      apolloState: await conf.then(() => client.cache.extract()),
-    },
-  }
-}
+export const getStaticProps = enhanceStaticProps(getLayout)

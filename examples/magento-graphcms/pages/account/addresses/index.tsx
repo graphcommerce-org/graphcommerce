@@ -1,27 +1,22 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 import {
   AccountAddresses,
   useCustomerQuery,
   WaitForCustomer,
   AccountDashboardAddressesDocument,
 } from '@graphcommerce/magento-customer'
-import { CountryRegionsDocument, PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import {
-  GetStaticProps,
-  iconAddresses,
-  LayoutOverlayHeader,
-  LayoutTitle,
-} from '@graphcommerce/next-ui'
+import { CountryRegionsDocument, PageMeta } from '@graphcommerce/magento-store'
+import { iconAddresses, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
+import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
+import { InferGetStaticPropsType } from 'next'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
-import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
+import { getLayout } from '../../../components/Layout/layout'
 
-type Props = Record<string, unknown>
-type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
-
-function AccountAddressesPage() {
+function AccountAddressesPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const addresses = useCustomerQuery(AccountDashboardAddressesDocument, {
     fetchPolicy: 'cache-and-network',
   })
@@ -54,26 +49,17 @@ const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'account',
   Layout: LayoutOverlay,
   sharedKey: () => 'account/addresses',
+  layoutProps: { variantMd: 'bottom' },
 }
 AccountAddressesPage.pageOptions = pageOptions
 
 export default AccountAddressesPage
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
-  const staticClient = graphqlSsrClient(locale)
-  const conf = client.query({ query: StoreConfigDocument })
-
-  const countryRegions = staticClient.query({
-    query: CountryRegionsDocument,
-  })
-
+export const getStaticProps = enhanceStaticProps(getLayout, async () => {
   return {
     props: {
-      ...(await countryRegions).data,
-      apolloState: await conf.then(() => client.cache.extract()),
-      variantMd: 'bottom',
+      ...(await graphqlQuery(CountryRegionsDocument)).data,
       up: { href: '/account', title: 'Account' },
     },
   }
-}
+})

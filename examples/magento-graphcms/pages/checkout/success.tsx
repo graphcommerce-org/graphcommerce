@@ -1,28 +1,25 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { CartItemSummary, CartSummary, InlineAccount } from '@graphcommerce/magento-cart'
 import { SignupNewsletter } from '@graphcommerce/magento-newsletter'
-import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { PageMeta } from '@graphcommerce/magento-store'
 import {
   FullPageMessage,
-  GetStaticProps,
   iconParty,
   iconSadFace,
   LayoutHeader,
   IconSvg,
   LayoutTitle,
 } from '@graphcommerce/next-ui'
+import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Button, Box, Container } from '@mui/material'
+import { InferGetStaticPropsType } from 'next'
 import { useRouter } from 'next/router'
-import { LayoutMinimal, LayoutNavigationProps, LayoutMinimalProps } from '../../components'
-import { LayoutDocument } from '../../components/Layout/Layout.gql'
-import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import { LayoutMinimal, LayoutMinimalProps } from '../../components'
+import { getLayout } from '../../components/Layout/layout'
 
-type Props = Record<string, unknown>
-type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props>
-
-function OrderSuccessPage() {
+function OrderSuccessPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const hasCartId = !!useRouter().query.cart_id
 
   return (
@@ -80,17 +77,8 @@ OrderSuccessPage.pageOptions = pageOptions
 
 export default OrderSuccessPage
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
-  const staticClient = graphqlSsrClient(locale)
-  const conf = client.query({ query: StoreConfigDocument })
-  const layout = staticClient.query({ query: LayoutDocument })
-
-  return {
-    props: {
-      ...(await layout).data,
-      up: { href: '/', title: 'Home' },
-      apolloState: await conf.then(() => client.cache.extract()),
-    },
-  }
-}
+export const getStaticProps = enhanceStaticProps(getLayout, async () => ({
+  props: {
+    up: { href: '/', title: 'Home' },
+  },
+}))

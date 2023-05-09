@@ -1,37 +1,30 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { getHygraphPage, MaybeHygraphSingePage } from '@graphcommerce/graphcms-ui/server'
+import { deepAwait } from '@graphcommerce/graphql-mesh'
+import { CategoryPageResult, getCategoryPage } from '@graphcommerce/magento-category/server'
 import {
-  extractUrlQuery,
-  FilterTypes,
-  getFilterTypes,
-  parseParams,
-  ProductFiltersDocument,
   ProductFiltersPro,
   ProductFiltersProAllFiltersChip,
   ProductFiltersProFilterChips,
   ProductFiltersProLimitChip,
   ProductFiltersProSortChip,
   ProductFiltersQuery,
-  ProductListDocument,
   ProductListFilters,
   ProductListFiltersContainer,
-  ProductListParams,
   ProductListParamsProvider,
   ProductListQuery,
   ProductListSort,
 } from '@graphcommerce/magento-product'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { getProductListItems, getProductListFilters } from '@graphcommerce/magento-product/server'
 import { StickyBelowHeader, LayoutTitle, LayoutHeader, LinkOrButton } from '@graphcommerce/next-ui'
-import { GetStaticProps } from '@graphcommerce/next-ui/Page/types'
+import { enhanceStaticPaths, enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { Box, Container, Typography } from '@mui/material'
-import { GetStaticPaths } from 'next'
-import { LayoutMinimal, LayoutMinimalProps } from '../../../components'
-import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
+import { LayoutMinimal } from '../../../components'
+import { getLayout } from '../../../components/Layout/layout'
+import { CategoryPageDocument } from '../../../graphql/CategoryPage.gql'
 
-type Props = ProductListQuery &
-  ProductFiltersQuery & { filterTypes: FilterTypes; params: ProductListParams }
+type Props = CategoryPageResult & ProductListQuery & ProductFiltersQuery & MaybeHygraphSingePage
 type RouteProps = { url: string[] }
-type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<LayoutMinimalProps, Props, RouteProps>
 
 function MinimalLayoutSubheader(props: Props) {
   const { params, products, filters, filterTypes } = props
@@ -104,40 +97,25 @@ MinimalLayoutSubheader.pageOptions = {
 
 export default MinimalLayoutSubheader
 
-export const getStaticPaths: GetPageStaticPaths = async () => {
-  // Disable getStaticPaths while in development mode
-  if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
+export const getStaticPaths = enhanceStaticPaths<RouteProps>('blocking', ({ locale }) =>
+  [[]].map((url) => ({ params: { url }, locale })),
+)
 
-  return Promise.resolve({
-    paths: [{ params: { url: [] } }],
-    fallback: 'blocking',
-  })
-}
+export const getStaticProps = enhanceStaticProps(getLayout, async (context) => {
+  const categoryPage = getCategoryPage(CategoryPageDocument, context)
+  const listItems = getProductListItems(categoryPage.params)
+  const filters = getProductListFilters(categoryPage.params)
+  const page = getHygraphPage(categoryPage.params, categoryPage.category)
 
-export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
-  const client = graphqlSharedClient(locale)
-  const conf = client.query({ query: StoreConfigDocument })
-  const filterTypes = getFilterTypes(client)
-
-  const staticClient = graphqlSsrClient(locale)
-
-  const products = staticClient.query({ query: ProductListDocument })
-  const filters = staticClient.query({ query: ProductFiltersDocument })
-
-  const [url, query] = extractUrlQuery(params)
-  if (!url || !query) return { notFound: true }
-  const productListParams = parseParams(url, query, await filterTypes)
-  if (!productListParams) return { notFound: true }
+  if (!(await listItems).error) return { notFound: true }
 
   return {
-    props: {
-      ...(await products).data,
+    props: await deepAwait({
+      ...page,
+      ...categoryPage,
+      ...(await listItems).data,
       ...(await filters).data,
-      filterTypes: await filterTypes,
-      params: productListParams,
-      up: { href: '/', title: 'Home' },
-      apolloState: await conf.then(() => client.cache.extract()),
-    },
+    }),
     revalidate: 1,
   }
-}
+})

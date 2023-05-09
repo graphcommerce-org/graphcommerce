@@ -1,13 +1,14 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
+import { HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
+import { hygraphPageContent } from '@graphcommerce/graphcms-ui/server'
 import { mergeDeep } from '@graphcommerce/graphql'
+import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 import {
   AddProductsToCartButton,
   AddProductsToCartError,
   AddProductsToCartForm,
   AddProductsToCartFormProps,
   AddProductsToCartQuantity,
-  getProductStaticPaths,
   jsonLdProduct,
   jsonLdProductOffer,
   ProductCustomizable,
@@ -21,6 +22,7 @@ import {
   ProductShortDescription,
   ProductSidebarDelivery,
 } from '@graphcommerce/magento-product'
+import { getProductStaticPaths } from '@graphcommerce/magento-product/server'
 import { BundleProductOptions } from '@graphcommerce/magento-product-bundle'
 import {
   ConfigurableName,
@@ -28,33 +30,23 @@ import {
   ConfigurablePriceTiers,
   ConfigurableProductOptions,
   ConfigurableProductPageGallery,
-  defaultConfigurableOptionsSelection,
 } from '@graphcommerce/magento-product-configurable'
+import { defaultConfigurableOptionsSelection } from '@graphcommerce/magento-product-configurable/server'
 import { DownloadableProductOptions } from '@graphcommerce/magento-product-downloadable'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
-import { redirectOrNotFound, Money, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { Money } from '@graphcommerce/magento-store'
+import { redirectOrNotFound } from '@graphcommerce/magento-store/server'
 import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
-import {
-  GetStaticProps,
-  JsonLd,
-  LayoutHeader,
-  LayoutTitle,
-  isTypename,
-} from '@graphcommerce/next-ui'
+import { JsonLd, LayoutHeader, LayoutTitle, isTypename } from '@graphcommerce/next-ui'
+import { enhanceStaticPaths, enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { Trans } from '@lingui/react'
 import { Divider, Link, Typography } from '@mui/material'
-import { GetStaticPaths } from 'next'
-import {
-  LayoutNavigation,
-  LayoutNavigationProps,
-  RowProduct,
-  RowRenderer,
-  Usps,
-} from '../../components'
+import { InferGetStaticPropsType } from 'next'
+import { LayoutNavigation, RowProduct, RowRenderer, Usps } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
 import { UspsDocument, UspsQuery } from '../../components/Usps/Usps.gql'
 import { ProductPage2Document, ProductPage2Query } from '../../graphql/ProductPage2.gql'
-import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
+import { getLayout } from '../../components/Layout/layout'
 
 type Props = HygraphPagesQuery &
   UspsQuery &
@@ -62,10 +54,8 @@ type Props = HygraphPagesQuery &
   Pick<AddProductsToCartFormProps, 'defaultValues'>
 
 type RouteProps = { url: string }
-type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
-function ProductPage(props: Props) {
+function ProductPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const { products, relatedUpsells, usps, sidebarUsps, pages, defaultValues } = props
 
   const product = mergeDeep(products, relatedUpsells)?.items?.[0]
@@ -207,51 +197,36 @@ ProductPage.pageOptions = {
 
 export default ProductPage
 
-export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
-  if (import.meta.graphCommerce.legacyProductRoute) return { paths: [], fallback: false }
-  if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
+export const getStaticPaths = enhanceStaticPaths('blocking', getProductStaticPaths)
 
-  const path = (locale: string) => getProductStaticPaths(graphqlSsrClient(locale), locale)
-  const paths = (await Promise.all(locales.map(path))).flat(1)
-
-  return { paths, fallback: 'blocking' }
-}
-
-export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
-  if (import.meta.graphCommerce.legacyProductRoute) return { notFound: true }
-
-  const client = graphqlSharedClient(locale)
-  const staticClient = graphqlSsrClient(locale)
-
+export const getStaticProps = enhanceStaticProps(getLayout, async ({ params, locale }) => {
   const urlKey = params?.url ?? '??'
 
-  const conf = client.query({ query: StoreConfigDocument })
-  const productPage = staticClient.query({ query: ProductPage2Document, variables: { urlKey } })
-  const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
+  const layout = graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })
+  const productPage = graphqlQuery(ProductPage2Document, { variables: { urlKey } })
 
   const product = productPage.then((pp) =>
     pp.data.products?.items?.find((p) => p?.url_key === urlKey),
   )
 
-  const pages = hygraphPageContent(staticClient, 'product/global', product, true)
-  if (!(await product)) return redirectOrNotFound(staticClient, conf, params, locale)
+  const pages = hygraphPageContent('product/global', product, true)
+  if (!(await product)) return redirectOrNotFound(params, locale)
 
   const category = productPageCategory(await product)
   const up =
     category?.url_path && category?.name
       ? { href: `/${category.url_path}`, title: category.name }
       : { href: `/`, title: 'Home' }
-  const usps = staticClient.query({ query: UspsDocument, fetchPolicy: 'cache-first' })
+  const usps = graphqlQuery(UspsDocument, { fetchPolicy: 'cache-first' })
 
   return {
     props: {
-      ...defaultConfigurableOptionsSelection(urlKey, client, (await productPage).data),
+      ...defaultConfigurableOptionsSelection(urlKey, (await productPage).data),
       ...(await layout).data,
       ...(await pages).data,
       ...(await usps).data,
-      apolloState: await conf.then(() => client.cache.extract()),
       up,
     },
     revalidate: 60 * 20,
   }
-}
+})

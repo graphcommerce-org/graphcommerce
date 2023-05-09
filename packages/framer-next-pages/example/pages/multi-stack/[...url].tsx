@@ -4,7 +4,6 @@ import {
   LayoutHeader,
   iconChevronRight,
   LayoutOverlay,
-  LayoutOverlayProps,
   LayoutOverlayVariant,
   IconSvg,
   LayoutTitle,
@@ -12,7 +11,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { Container, Link } from '@mui/material'
 import { m } from 'framer-motion'
-import { GetStaticPathsResult, GetStaticProps } from 'next'
+import { GetStaticPathsResult } from 'next'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import { Grid } from '../../components/Grid'
@@ -92,7 +91,7 @@ export async function getStaticPaths(): Promise<GetStaticPathsResult<ParsedUrlQu
   }
 }
 
-export const getStaticProps: GetStaticProps<LayoutOverlayProps, ParsedUrlQuery> = async (ctx) => {
+export const getStaticProps = async (ctx) => {
   const variant: LayoutOverlayVariant = ctx.params?.url?.[0] ?? 'bottom'
 
   return {

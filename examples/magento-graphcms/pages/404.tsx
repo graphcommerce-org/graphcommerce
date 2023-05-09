@@ -1,16 +1,13 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { SearchLink } from '@graphcommerce/magento-search'
-import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { GetStaticProps, Separator, icon404, IconSvg } from '@graphcommerce/next-ui'
+import { PageMeta } from '@graphcommerce/magento-store'
+import { Separator, icon404, IconSvg } from '@graphcommerce/next-ui'
+import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { Trans } from '@lingui/react'
 import { Box, Container, Typography, Link } from '@mui/material'
 import React from 'react'
-import { LayoutNavigation, LayoutNavigationProps } from '../components'
-import { LayoutDocument } from '../components/Layout/Layout.gql'
-import { graphqlSsrClient, graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
-
-type Props = Record<string, unknown>
-type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props>
+import { LayoutNavigation } from '../components'
+import { getLayout } from '../components/Layout/layout'
 
 function RouteNotFoundPage() {
   const links = [
@@ -61,18 +58,7 @@ RouteNotFoundPage.pageOptions = {
 
 export default RouteNotFoundPage
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
-  const staticClient = graphqlSsrClient(locale)
-  const conf = client.query({ query: StoreConfigDocument })
-  const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
-
-  return {
-    props: {
-      ...(await layout).data,
-      up: { href: '/', title: 'Home' },
-      apolloState: await conf.then(() => client.cache.extract()),
-    },
-    revalidate: 60 * 20,
-  }
-}
+export const getStaticProps = enhanceStaticProps(getLayout, async () => ({
+  props: { up: { href: '/', title: 'Home' } },
+  revalidate: 60 * 20,
+}))

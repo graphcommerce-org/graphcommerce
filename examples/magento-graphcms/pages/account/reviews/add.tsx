@@ -12,18 +12,17 @@ import {
   LayoutOverlayHeader,
   LayoutTitle,
   IconSvg,
-  GetStaticProps,
 } from '@graphcommerce/next-ui'
+import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
+import { InferGetStaticPropsType } from 'next'
 import { useRouter } from 'next/router'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
-import { graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
+import { getLayout } from '../../../components/Layout/layout'
 
-type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
-
-function AccountReviewsAddPage() {
+function AccountReviewsAddPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const router = useRouter()
   const { data: customerData, loading: customerLoading, error } = useQuery(CustomerDocument)
   const urlKey = router.query.url_key as string
@@ -95,21 +94,10 @@ function AccountReviewsAddPage() {
 const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'left',
   Layout: LayoutOverlay,
-  layoutProps: {
-    variantMd: 'right',
-  },
+  layoutProps: { variantMd: 'right' },
 }
 AccountReviewsAddPage.pageOptions = pageOptions
 
 export default AccountReviewsAddPage
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
-  const conf = client.query({ query: StoreConfigDocument })
-
-  return {
-    props: {
-      apolloState: await conf.then(() => client.cache.extract()),
-    },
-  }
-}
+export const getStaticProps = enhanceStaticProps(getLayout)

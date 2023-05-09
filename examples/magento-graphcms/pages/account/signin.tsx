@@ -1,18 +1,18 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { useMergeCustomerCart } from '@graphcommerce/magento-cart'
 import { AccountSignInUpForm } from '@graphcommerce/magento-customer'
-import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { PageMeta } from '@graphcommerce/magento-store'
 import { useMergeGuestWishlistWithCustomer } from '@graphcommerce/magento-wishlist'
-import { GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
+import { LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
+import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
+import { InferGetStaticPropsType } from 'next'
 import { LayoutOverlay, LayoutOverlayProps } from '../../components'
-import { graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import { getLayout } from '../../components/Layout/layout'
 
-type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
-
-function AccountSignInPage() {
+function AccountSignInPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   useMergeCustomerCart()
   useMergeGuestWishlistWithCustomer()
 
@@ -35,19 +35,10 @@ const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'account-public',
   sharedKey: () => 'account-public',
   Layout: LayoutOverlay,
+  layoutProps: { variantMd: 'bottom' },
 }
 AccountSignInPage.pageOptions = pageOptions
 
 export default AccountSignInPage
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
-  const conf = client.query({ query: StoreConfigDocument })
-
-  return {
-    props: {
-      apolloState: await conf.then(() => client.cache.extract()),
-      variantMd: 'bottom',
-    },
-  }
-}
+export const getStaticProps = enhanceStaticProps(getLayout)

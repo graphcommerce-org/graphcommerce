@@ -1,9 +1,11 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { PageMeta, GetStaticProps, Row, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
+import { HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
+import { hygraphPageContent } from '@graphcommerce/graphcms-ui/server'
+import { graphqlQuery } from '@graphcommerce/graphql-mesh'
+import { PageMeta, Row, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
+import { enhanceStaticPaths, enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { Trans } from '@lingui/react'
-import { GetStaticPaths } from 'next'
+import { InferGetStaticPropsType } from 'next'
 import {
   BlogAuthor,
   BlogHeader,
@@ -14,18 +16,14 @@ import {
   BlogTags,
   BlogTitle,
   LayoutNavigation,
-  LayoutNavigationProps,
   RowRenderer,
 } from '../../../components'
-import { LayoutDocument } from '../../../components/Layout/Layout.gql'
-import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
+import { getLayout } from '../../../components/Layout/layout'
 
 type Props = HygraphPagesQuery & BlogListTaggedQuery
 type RouteProps = { url: string }
-type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
-function BlogPage(props: Props) {
+function BlogPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const { pages, blogPosts } = props
   const page = pages[0]
   const title = page.title ?? ''
@@ -58,35 +56,21 @@ BlogPage.pageOptions = {
 
 export default BlogPage
 
-export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
-  if (import.meta.graphCommerce.limitSsg) return { paths: [], fallback: 'blocking' }
+export const getStaticPaths = enhanceStaticPaths<RouteProps>(
+  'blocking',
+  async ({ locale }) =>
+    (await graphqlQuery(BlogPostTaggedPathsDocument)).data.pages.map((page) => ({
+      params: { url: `${page?.url}`.replace('blog/tagged/', '') },
+      locale,
+    })) ?? [],
+)
 
-  const responses = locales.map(async (locale) => {
-    const staticClient = graphqlSsrClient(locale)
-    const BlogPostPaths = staticClient.query({ query: BlogPostTaggedPathsDocument })
-    const { pages } = (await BlogPostPaths).data
-    return (
-      pages.map((page) => ({
-        params: { url: `${page?.url}`.replace('blog/tagged/', '') },
-        locale,
-      })) ?? []
-    )
-  })
-  const paths = (await Promise.all(responses)).flat(1)
-  return { paths, fallback: 'blocking' }
-}
-
-export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => {
+export const getStaticProps = enhanceStaticProps(getLayout, async ({ params }) => {
   const urlKey = params?.url ?? '??'
-  const client = graphqlSharedClient(locale)
-  const staticClient = graphqlSsrClient(locale)
   const limit = 99
-  const conf = client.query({ query: StoreConfigDocument })
-  const page = hygraphPageContent(staticClient, `blog/tagged/${urlKey}`)
-  const layout = staticClient.query({ query: LayoutDocument })
+  const page = hygraphPageContent(`blog/tagged/${urlKey}`)
 
-  const blogPosts = staticClient.query({
-    query: BlogListTaggedDocument,
+  const blogPosts = graphqlQuery(BlogListTaggedDocument, {
     variables: { currentUrl: [`blog/tagged/${urlKey}`], first: limit, tagged: params?.url },
   })
   if (!(await page).data.pages?.[0]) return { notFound: true }
@@ -95,10 +79,8 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
     props: {
       ...(await page).data,
       ...(await blogPosts).data,
-      ...(await layout).data,
       up: { href: '/blog', title: 'Blog' },
-      apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,
   }
-}
+})

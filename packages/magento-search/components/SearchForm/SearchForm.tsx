@@ -43,7 +43,7 @@ export function SearchForm(props: SearchFormProps) {
     router.replace(`/${urlHandle}/${formData.search}`)
     reset(getValues())
   })
-  useFormAutoSubmit({ form, submit })
+  useFormAutoSubmit({ form, submit, wait: 0 })
 
   const handleReset = () => {
     reset({ search: '' })

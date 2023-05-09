@@ -1,11 +1,13 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
+import { HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
+import { hygraphPageContent } from '@graphcommerce/graphcms-ui/server'
+import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 import { ProductListDocument, ProductListQuery } from '@graphcommerce/magento-product'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { GetStaticProps, LayoutHeader, MetaRobots, PageMeta } from '@graphcommerce/next-ui'
-import { LayoutNavigation, LayoutNavigationProps, RowProduct, RowRenderer } from '../components'
-import { LayoutDocument } from '../components/Layout/Layout.gql'
-import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
+import { LayoutHeader, MetaRobots, PageMeta } from '@graphcommerce/next-ui'
+import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
+import { InferGetStaticPropsType } from 'next'
+import { LayoutNavigation, RowProduct, RowRenderer } from '../components'
+import { getLayout } from '../components/Layout/layout'
 
 type Props = HygraphPagesQuery & {
   latestList: ProductListQuery
@@ -13,10 +15,10 @@ type Props = HygraphPagesQuery & {
   swipableList: ProductListQuery
 }
 type RouteProps = { url: string }
-type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
-function CmsPage(props: Props) {
+function CmsPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const { pages, latestList, favoritesList, swipableList } = props
+
   const page = pages?.[0]
 
   const latest = latestList?.products?.items?.[0]
@@ -68,41 +70,30 @@ CmsPage.pageOptions = {
 
 export default CmsPage
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
-  const staticClient = graphqlSsrClient(locale)
+export const getStaticProps = enhanceStaticProps(getLayout, async () => {
+  const pages = hygraphPageContent('page/home')
 
-  const conf = client.query({ query: StoreConfigDocument })
-  const page = hygraphPageContent(staticClient, 'page/home')
-  const layout = staticClient.query({ query: LayoutDocument })
-
-  // todo(paales): Remove when https://github.com/Urigo/graphql-mesh/issues/1257 is resolved
-  const favoritesList = staticClient.query({
-    query: ProductListDocument,
+  const favoritesList = graphqlQuery(ProductListDocument, {
     variables: { pageSize: 8, filters: { category_uid: { eq: 'MTIx' } } },
   })
 
-  const latestList = staticClient.query({
-    query: ProductListDocument,
+  const latestList = graphqlQuery(ProductListDocument, {
     variables: { pageSize: 8, filters: { category_uid: { eq: 'MTAy' } } },
   })
 
-  const swipableList = staticClient.query({
-    query: ProductListDocument,
+  const swipableList = graphqlQuery(ProductListDocument, {
     variables: { pageSize: 8, filters: { category_uid: { eq: 'MTIy' } } },
   })
 
-  if (!(await page).data.pages?.[0]) return { notFound: true }
+  if (!(await pages).data.pages?.[0]) return { notFound: true }
 
   return {
     props: {
-      ...(await page).data,
-      ...(await layout).data,
+      ...(await pages).data,
       latestList: (await latestList).data,
       favoritesList: (await favoritesList).data,
       swipableList: (await swipableList).data,
-      apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,
   }
-}
+})

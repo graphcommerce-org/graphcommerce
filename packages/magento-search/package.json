@@ -19,7 +19,9 @@
   "dependencies": {
     "@graphcommerce/ecommerce-ui": "6.2.0-canary.13",
     "@graphcommerce/graphql": "6.2.0-canary.13",
+    "@graphcommerce/graphql-mesh": "6.2.0-canary.13",
     "@graphcommerce/image": "6.2.0-canary.13",
+    "@graphcommerce/magento-product": "6.2.0-canary.13",
     "@graphcommerce/next-ui": "6.2.0-canary.13",
     "@graphcommerce/react-hook-form": "6.2.0-canary.13"
   },

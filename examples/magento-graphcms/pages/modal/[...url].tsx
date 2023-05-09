@@ -1,25 +1,17 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import {
-  GetStaticProps,
-  MetaRobots,
-  LayoutOverlayHeader,
-  LayoutTitle,
-  PageMeta,
-} from '@graphcommerce/next-ui'
+import { HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
+import { hygraphPageContent } from '@graphcommerce/graphcms-ui/server'
+import { MetaRobots, LayoutOverlayHeader, LayoutTitle, PageMeta } from '@graphcommerce/next-ui'
+import { enhanceStaticPaths, enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { Box, Typography } from '@mui/material'
-import { GetStaticPaths } from 'next'
-import { LayoutOverlay, LayoutOverlayProps, RowRenderer } from '../../components'
-import { LayoutDocument } from '../../components/Layout/Layout.gql'
-import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import { InferGetStaticPropsType } from 'next'
+import { LayoutOverlay, RowRenderer } from '../../components'
+import { getLayout } from '../../components/Layout/layout'
 
 type Props = HygraphPagesQuery
 type RouteProps = { url: string[] }
-type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props, RouteProps>
 
-function ModalPage(props: Props) {
+function ModalPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const { pages } = props
   const page = pages?.[0]
 
@@ -54,41 +46,25 @@ function ModalPage(props: Props) {
 ModalPage.pageOptions = {
   Layout: LayoutOverlay,
   overlayGroup: 'modal',
+  layoutProps: { variantMd: 'bottom' },
 } as PageOptions
 
 export default ModalPage
 
-// eslint-disable-next-line @typescript-eslint/require-await
-export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
-  if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
+export const getStaticPaths = enhanceStaticPaths<RouteProps>('blocking', ({ locale }) =>
+  [['modal']].map((url) => ({ params: { url }, locale })),
+)
 
-  const urls = [['modal']]
-
-  const paths = locales.map((locale) => urls.map((url) => ({ params: { url }, locale }))).flat(1)
-
-  return { paths, fallback: 'blocking' }
-}
-
-export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => {
+export const getStaticProps = enhanceStaticProps(getLayout, async ({ params }) => {
   const urlKey = params?.url.join('/') ?? '??'
-  const client = graphqlSharedClient(locale)
-  const staticClient = graphqlSsrClient(locale)
-
-  const conf = client.query({ query: StoreConfigDocument })
-  const page = hygraphPageContent(staticClient, `modal/${urlKey}`)
-
-  const layout = staticClient.query({ query: LayoutDocument })
+  const page = hygraphPageContent(`modal/${urlKey}`)
 
   if (!(await page).data.pages?.[0]) return { notFound: true }
 
   return {
     props: {
       ...(await page).data,
-      ...(await layout).data,
-      apolloState: await conf.then(() => client.cache.extract()),
-      variantMd: 'bottom',
-      size: 'max',
     },
     revalidate: 60 * 20,
   }
-}
+})

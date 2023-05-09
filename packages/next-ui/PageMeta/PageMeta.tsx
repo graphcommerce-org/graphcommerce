@@ -7,7 +7,7 @@ import { resolveHref } from 'next/dist/shared/lib/router/utils/resolve-href'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import type {} from '@graphcommerce/next-config'
-import { storefrontConfig } from '../hooks'
+import { storefrontConfig } from '../config/storefrontConfig'
 
 // https://developers.google.com/search/docs/advanced/robots/robots_meta_tag#directives
 export type MetaRobots =

@@ -13,7 +13,6 @@ import {
 import { CustomerNewsletterToggle } from '@graphcommerce/magento-newsletter'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
-  GetStaticProps,
   iconBox,
   iconEmailOutline,
   iconHome,
@@ -27,16 +26,15 @@ import {
   LayoutTitle,
   LayoutHeader,
 } from '@graphcommerce/next-ui'
+import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
+import { InferGetStaticPropsType } from 'next'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
-import { LayoutDocument } from '../../components/Layout/Layout.gql'
-import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import { getLayout } from '../../components/Layout/layout'
 
-type GetPageStaticProps = GetStaticProps<LayoutMinimalProps>
-
-function AccountIndexPage() {
+function AccountIndexPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const dashboard = useCustomerQuery(AccountDashboardDocument, {
     fetchPolicy: 'cache-and-network',
   })
@@ -170,18 +168,9 @@ AccountIndexPage.pageOptions = pageOptions
 
 export default AccountIndexPage
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const staticClient = graphqlSsrClient(locale)
-  const client = graphqlSharedClient(locale)
-  const conf = client.query({ query: StoreConfigDocument })
-  const layout = staticClient.query({ query: LayoutDocument })
-
-  return {
-    props: {
-      ...(await layout).data,
-      up: { href: '/', title: 'Home' },
-      apolloState: await conf.then(() => client.cache.extract()),
-    },
-    revalidate: 60 * 20,
-  }
-}
+export const getStaticProps = enhanceStaticProps(getLayout, async () => ({
+  props: {
+    up: { href: '/', title: 'Home' },
+  },
+  revalidate: 60 * 20,
+}))

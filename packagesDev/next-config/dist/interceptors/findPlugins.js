@@ -92,7 +92,8 @@ function findPlugins(config, cwd = process.cwd()) {
                 pluginLogs[key] = logStr;
             }
         });
-        console.log(toLog.join('\n\n'));
+        if (toLog.length)
+            console.log(toLog.join('\n\n'));
     }
     return [plugins, errors];
 }

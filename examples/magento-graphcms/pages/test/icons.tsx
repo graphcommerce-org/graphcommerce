@@ -1,17 +1,17 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   LayoutTitle,
   IconSvg,
-  GetStaticProps,
   IconSvgProps,
   svgIconStrokeWidth,
   iconPhone,
 } from '@graphcommerce/next-ui'
+import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { Container, Typography, Slider, Box } from '@mui/material'
+import { InferGetStaticPropsType } from 'next'
 import React, { useEffect, useRef, useState } from 'react'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
-import { graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import { getLayout } from '../../components/Layout/layout'
 
 const propVariants: Record<string, IconSvgProps> = {
   Default: {
@@ -19,7 +19,7 @@ const propVariants: Record<string, IconSvgProps> = {
   },
 }
 
-export default function IconsPage() {
+export default function IconsPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const [size, setSize] = useState<number>(24)
   const [strokeComputed, setStrokeWidth] = useState<string>()
   const [fontSize, setFontSize] = useState<string>()
@@ -101,15 +101,4 @@ const pageOptions: PageOptions<LayoutMinimalProps> = {
 }
 IconsPage.pageOptions = pageOptions
 
-type GetPageStaticProps = GetStaticProps<LayoutMinimalProps>
-
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
-  const conf = client.query({ query: StoreConfigDocument })
-
-  return {
-    props: {
-      apolloState: await conf.then(() => client.cache.extract()),
-    },
-  }
-}
+export const getStaticProps = enhanceStaticProps(getLayout)

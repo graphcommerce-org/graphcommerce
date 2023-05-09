@@ -1,4 +1,4 @@
-export { cloneDeep, mergeDeep } from '@apollo/client/utilities'
+export { cloneDeep, mergeDeep, type TupleToIntersection } from '@apollo/client/utilities'
 
 export * from '@apollo/client'
 export * from '@apollo/client/link/schema'

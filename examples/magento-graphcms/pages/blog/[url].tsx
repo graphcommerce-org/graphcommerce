@@ -1,15 +1,9 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import {
-  PageMeta,
-  BlogTitle,
-  GetStaticProps,
-  Row,
-  LayoutTitle,
-  LayoutHeader,
-} from '@graphcommerce/next-ui'
-import { GetStaticPaths } from 'next'
+import { getHygraphPage, HygraphSingePage } from '@graphcommerce/graphcms-ui/server'
+import { graphqlQuery } from '@graphcommerce/graphql-mesh'
+import { PageMeta, BlogTitle, Row, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
+import { enhanceStaticPaths, enhanceStaticProps } from '@graphcommerce/next-ui/server'
+import { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
 import {
   BlogAuthor,
   BlogHeader,
@@ -19,22 +13,16 @@ import {
   BlogPostPathsDocument,
   BlogTags,
   LayoutNavigation,
-  LayoutNavigationProps,
   RowRenderer,
 } from '../../components'
-import { LayoutDocument } from '../../components/Layout/Layout.gql'
-import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
+import { getLayout } from '../../components/Layout/layout'
 
-type Props = HygraphPagesQuery & BlogListQuery
+type Props = HygraphSingePage & BlogListQuery
 type RouteProps = { url: string }
-type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
-function BlogPage(props: Props) {
-  const { blogPosts, pages } = props
-
-  const page = pages[0]
-  const title = page?.title ?? ''
+function BlogPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
+  const { blogPosts, page } = props
+  const title = page.title ?? ''
 
   return (
     <>
@@ -64,46 +52,34 @@ BlogPage.pageOptions = {
 
 export default BlogPage
 
-export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
-  if (import.meta.graphCommerce.limitSsg) return { paths: [], fallback: 'blocking' }
+export const getStaticPaths = enhanceStaticPaths<RouteProps>('blocking', async ({ locale }) =>
+  (await graphqlQuery(BlogPostPathsDocument)).data.pages.map((page) => ({
+    params: { url: `${page?.url}`.replace('blog/', '') },
+    locale,
+  })),
+)
 
-  const responses = locales.map(async (locale) => {
-    const staticClient = graphqlSsrClient(locale)
-    const BlogPostPaths = staticClient.query({ query: BlogPostPathsDocument })
-    const { pages } = (await BlogPostPaths).data
-    return (
-      pages.map((page) => ({ params: { url: `${page?.url}`.replace('blog/', '') }, locale })) ?? []
-    )
-  })
-  const paths = (await Promise.all(responses)).flat(1)
-  return { paths, fallback: 'blocking' }
-}
+export const getStaticProps = enhanceStaticProps(
+  getLayout,
+  async ({ params }: GetStaticPropsContext<RouteProps>) => {
+    const urlKey = params?.url ?? '??'
+    const limit = 4
 
-export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => {
-  const urlKey = params?.url ?? '??'
+    const hygraphPage = getHygraphPage({ url: `blog/${urlKey}` })
+    const blogPosts = graphqlQuery(BlogListDocument, {
+      variables: { currentUrl: [`blog/${urlKey}`], first: limit },
+    })
 
-  const client = graphqlSharedClient(locale)
-  const staticClient = graphqlSsrClient(locale)
-  const limit = 4
-  const conf = client.query({ query: StoreConfigDocument })
+    const page = await hygraphPage.page
+    if (!page) return { notFound: true }
 
-  const page = hygraphPageContent(staticClient, `blog/${urlKey}`)
-  const layout = staticClient.query({ query: LayoutDocument })
-
-  const blogPosts = staticClient.query({
-    query: BlogListDocument,
-    variables: { currentUrl: [`blog/${urlKey}`], first: limit },
-  })
-  if (!(await page).data.pages?.[0]) return { notFound: true }
-
-  return {
-    props: {
-      ...(await page).data,
-      ...(await blogPosts).data,
-      ...(await layout).data,
-      up: { href: '/', title: 'Home' },
-      apolloState: await conf.then(() => client.cache.extract()),
-    },
-    revalidate: 60 * 20,
-  }
-}
+    return {
+      props: {
+        ...(await blogPosts).data,
+        page,
+        up: { href: '/', title: 'Home' },
+      },
+      revalidate: 60 * 20,
+    }
+  },
+)

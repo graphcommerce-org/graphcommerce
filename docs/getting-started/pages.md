@@ -52,20 +52,12 @@ import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps } from '@graphcommerce/next-ui'
 import { Container } from '@mui/material'
 import { GetStaticPaths } from 'next'
-import { LayoutFull, LayoutFullProps } from '../../components'
-import {
-  DefaultPageDocument,
-  DefaultPageQuery,
-} from '../../graphql/DefaultPage.gql'
+import { LayoutFull, LayoutFullProps, LayoutDocument } from '../../components'
 import { PagesStaticPathsDocument } from '../../graphql/PagesStaticPaths.gql'
-import {
-  graphqlSsrClient,
-  graphqlSharedClient,
-} from '../../lib/graphql/graphqlSsrClient'
+import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 
-type Props = DefaultPageQuery
+type Props = unknown
 type RouteProps = { url: string }
-type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
 
 function AboutUs() {
@@ -78,27 +70,20 @@ AboutUs.pageOptions = {
 
 export default AboutUs
 
-export const getStaticProps: GetPageStaticProps = async (context) => {
-  const { locale } = context
-  const client = graphqlSharedClient(locale)
-  const staticClient = graphqlSsrClient(locale)
+export const getStaticProps = enhanceStaticProps(
+  async () => {
+    const page = hygraphPageContent('account')
+    const layout = graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' }))
 
-  const conf = client.query({ query: StoreConfigDocument })
-  const page = staticClient.query({
-    query: DefaultPageDocument,
-    variables: {
-      url: '',
-      rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
-    },
-  })
-  // if (!(await page).data.pages?.[0]) return { notFound: true }
-  return {
-    props: {
-      ...(await page).data,
-      apolloState: await conf.then(() => client.cache.extract()),
-    },
-  }
-}
+    // if (!(await page).data.pages?.[0]) return { notFound: true }
+    return {
+      props: {
+        ...(await layout).data,
+        ...(await page).data,
+      },
+    }
+  },
+)
 ```
 
 - Visiting http://localhost:3000/about/about-us will output:
@@ -140,13 +125,7 @@ validate that this string (currently hard-coded) is part of the source code.
 - In /about/about-us.tsx, make the following change to `getStaticProps`:
 
 ```tsx
-const page = staticClient.query({
-  query: DefaultPageDocument,
-  variables: {
-    url: 'about/about-us',
-    rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
-  },
-})
+const page = hygraphPageContent('about/about-us')
 ```
 
 And replace the previous AboutUs function with the following:
@@ -179,32 +158,21 @@ function AboutUs({ pages }: Props) {
 - In /about/[url].tsx, replace the getStaticProps function with the following:
 
 ```tsx
-export const getStaticPaths: GetPageStaticPaths = (context) => ({
+export const getStaticPaths = (context) => ({
   paths: [],
   fallback: 'blocking',
 })
 
-export const getStaticProps: GetPageStaticProps = async (context) => {
-  const { locale, params } = context
-  const client = graphqlSharedClient(locale)
-  const staticClient = graphqlSsrClient(locale)
+export const getStaticProps = enhanceStaticProps(async ({ params }) => {
+  const page = hygraphPageContent(`about/${params?.url}`)
 
-  const conf = client.query({ query: StoreConfigDocument })
-  const page = staticClient.query({
-    query: DefaultPageDocument,
-    variables: {
-      url: `about/${params?.url}`,
-      rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
-    },
-  })
   // if (!(await page).data.pages?.[0]) return { notFound: true }
   return {
     props: {
       ...(await page).data,
-      apolloState: await conf.then(() => client.cache.extract()),
     },
   }
-}
+})
 ```
 
 By renaming the file to `/about/[url].tsx`, all routes starting with /about/
@@ -230,14 +198,12 @@ built-time will not result in a 404:
 - In /about/[url].tsx, replace the getStaticPaths function with the following:
 
 ```tsx
-export const getStaticPaths: GetPageStaticPaths = async (context) => {
+export const getStaticPaths = async (context) => {
   const { locales = [] } = context
   // if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
 
   const path = async (locale: string) => {
-    const client = graphqlSharedClient(locale)
-    const { data } = await client.query({
-      query: PagesStaticPathsDocument,
+    const { data } = await graphqlQuery(PagesStaticPathsDocument, {
       variables: {
         first: 10,
         urlStartsWith: 'about',

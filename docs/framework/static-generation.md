@@ -36,32 +36,25 @@ function AccountIndexPage() {
 }
 ```
 
-In the same file, `getStaticProps` runs the DefaultPageDocument query to fetch
+In the same file, `getStaticProps` runs the hygraphPageContent query to fetch
 the data needed to render the layout (header, footer, menu etc.)
 
 ```tsx
 // Example from /pages/account/index.tsx
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
+export const getStaticProps = enhanceStaticProps(async ({ locale }) => {
  ...
 
-  const page = staticClient.query({
-    query: DefaultPageDocument,
-    variables: {
-      url: 'account',
-      rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
-    },
-  })
+  const page = hygraphPageContent('account')
 
   return {
     props: {
       ...(await page).data,
       up: { href: '/', title: 'Home' },
-      apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,
   }
-}
+})
 ```
 
 ## getStaticPaths
@@ -74,37 +67,27 @@ For example, `getStaticPaths` runs the ProductStaticPaths query to fetch a list
 of all configurable product paths:
 
 ```tsx
-// Example from /pages/product/configurable/[url].tsx
+// Example from /pages/blog/[url].tsx
 
-export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
- ...
-  const path = (locale: string) =>
-    getProductStaticPaths(
-      graphqlSsrClient(locale),
+export const getStaticPaths = enhanceStaticPaths(
+  'blocking',
+  async ({ locale }) =>
+    (await graphqlQuery(BlogPostPathsDocument)).data.pages.map((page) => ({
+      params: { url: `${page?.url}`.replace('blog/', '') },
       locale,
-      'ConfigurableProduct',
-    )
-  const paths = (await Promise.all(locales.map(path))).flat(1)
-
-  return { paths, fallback: 'blocking' }
-}
+    })),
+)
 ```
 
 ```tsx
-// Example from /node_modules/@graphcommerce/magento-product/components/ProductStaticPaths/ProductStaticPaths.graphql
+// Example from /examples/magento-graphcms/components/Blog/BlogPaths.graphql
 
-query ProductStaticPaths($currentPage: Int!, $pageSize: Int!) {
-  products(filter: {}, pageSize: $pageSize, currentPage: $currentPage) {
-    page_info {
-      current_page
-      total_pages
-    }
-    total_count
-    items {
-      ...ProductLink
-    }
+query BlogPostPaths {
+  pages(where: { url_not_starts_with: "blog/tagged/", url_starts_with: "blog/" }) {
+    url
   }
 }
+
 ```
 
 ## Build your local environment
@@ -119,7 +102,7 @@ The build proces locally will not pre-render product pages to reduce build time:
 ```tsx
 // Example from /pages/product/configurable/[url].tsx
 
-export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
+export const getStaticPaths = async ({ locales = [] }) => {
 
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
   ...
@@ -135,7 +118,7 @@ the paths array. This will reduce build-time:
 ```tsx
 // Example from /pages/product/configurable/[url].tsx
 
-export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
+export const getStaticPaths = async ({ locales = [] }) => {
   ...
 
   return { paths: paths.slice(0, 10), fallback: 'blocking' }
@@ -159,7 +142,6 @@ return {
   props: {
     ...(await productPage).data,
     ...(await typeProductPage).data,
-    apolloState: await conf.then(() => client.cache.extract()),
     up,
   },
   revalidate: 60 * 20,

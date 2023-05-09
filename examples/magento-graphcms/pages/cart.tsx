@@ -12,7 +12,7 @@ import { CartPageDocument } from '@graphcommerce/magento-cart-checkout'
 import { CouponAccordion } from '@graphcommerce/magento-cart-coupon'
 import { CartItem, CartItems } from '@graphcommerce/magento-cart-items'
 import { ConfigurableCartItem } from '@graphcommerce/magento-product-configurable'
-import { Money, PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { Money, PageMeta } from '@graphcommerce/magento-store'
 import {
   GetStaticProps,
   iconShoppingBag,
@@ -21,16 +21,15 @@ import {
   LayoutOverlayHeader,
   FullPageMessage,
 } from '@graphcommerce/next-ui'
+import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, CircularProgress, Container } from '@mui/material'
+import { InferGetStaticPropsType } from 'next'
 import { LayoutOverlay, LayoutOverlayProps } from '../components'
-import { graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
+import { getLayout } from '../components/Layout/layout'
 
-type Props = Record<string, unknown>
-type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
-
-function CartPage() {
+function CartPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const cart = useCartQuery(CartPageDocument, {
     errorPolicy: 'all',
     fetchPolicy: 'cache-and-network',
@@ -121,13 +120,4 @@ CartPage.pageOptions = pageOptions
 
 export default CartPage
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
-  const conf = client.query({ query: StoreConfigDocument })
-
-  return {
-    props: {
-      apolloState: await conf.then(() => client.cache.extract()),
-    },
-  }
-}
+export const getStaticProps = enhanceStaticProps(getLayout)

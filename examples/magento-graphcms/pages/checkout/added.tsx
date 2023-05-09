@@ -3,11 +3,10 @@ import { useQuery } from '@graphcommerce/graphql'
 import { Image } from '@graphcommerce/image'
 import { CartAddedDocument, CrosssellsDocument, useCartQuery } from '@graphcommerce/magento-cart'
 import { AddProductsToCartForm } from '@graphcommerce/magento-product'
-import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { PageMeta } from '@graphcommerce/magento-store'
 import {
   Button,
   filterNonNullableKeys,
-  GetStaticProps,
   iconChevronRight,
   IconSvg,
   ItemScroller,
@@ -15,18 +14,17 @@ import {
   responsiveVal,
 } from '@graphcommerce/next-ui'
 import { LayoutHeaderClose } from '@graphcommerce/next-ui/Layout/components/LayoutHeaderClose'
+import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, Container, Divider, Typography } from '@mui/material'
+import { InferGetStaticPropsType } from 'next'
 import { useRouter } from 'next/router'
 import { useMemo } from 'react'
 import { LayoutOverlay, LayoutOverlayProps, productListRenderer } from '../../components'
-import { graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import { getLayout } from '../../components/Layout/layout'
 
-type Props = Record<string, unknown>
-type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
-
-function CheckoutAdded() {
+function CheckoutAdded(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const cartAdded = useCartQuery(CartAddedDocument)
   const items = filterNonNullableKeys(cartAdded.data?.cart?.items)
   const router = useRouter()
@@ -189,13 +187,4 @@ CheckoutAdded.pageOptions = pageOptions
 
 export default CheckoutAdded
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
-  const conf = client.query({ query: StoreConfigDocument })
-
-  return {
-    props: {
-      apolloState: await conf.then(() => client.cache.extract()),
-    },
-  }
-}
+export const getStaticProps = enhanceStaticProps(getLayout)

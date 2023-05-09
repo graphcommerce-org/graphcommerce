@@ -18,11 +18,10 @@ import {
   PaymentMethodContextProvider,
 } from '@graphcommerce/magento-cart-payment-method'
 import { SubscribeToNewsletter } from '@graphcommerce/magento-newsletter'
-import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { PageMeta } from '@graphcommerce/magento-store'
 import {
   FormActions,
   FullPageMessage,
-  GetStaticProps,
   iconChevronRight,
   iconId,
   LayoutHeader,
@@ -30,16 +29,15 @@ import {
   IconSvg,
   LayoutTitle,
 } from '@graphcommerce/next-ui'
+import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { CircularProgress, Container, Dialog, Typography } from '@mui/material'
+import { InferGetStaticPropsType } from 'next'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
-import { LayoutDocument } from '../../components/Layout/Layout.gql'
-import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import { getLayout } from '../../components/Layout/layout'
 
-type GetPageStaticProps = GetStaticProps<LayoutMinimalProps>
-
-function PaymentPage() {
+function PaymentPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const billingPage = useCartQuery(BillingPageDocument, { fetchPolicy: 'cache-and-network' })
   const [{ locked }] = useCartLock()
 
@@ -154,18 +152,8 @@ PaymentPage.pageOptions = pageOptions
 
 export default PaymentPage
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
-  const staticClient = graphqlSsrClient(locale)
-
-  const conf = client.query({ query: StoreConfigDocument })
-  const layout = staticClient.query({ query: LayoutDocument })
-
-  return {
-    props: {
-      ...(await layout).data,
-      up: { href: '/checkout', title: 'Shipping' },
-      apolloState: await conf.then(() => client.cache.extract()),
-    },
-  }
-}
+export const getStaticProps = enhanceStaticProps(getLayout, async () => ({
+  props: {
+    up: { href: '/checkout', title: 'Shipping' },
+  },
+}))

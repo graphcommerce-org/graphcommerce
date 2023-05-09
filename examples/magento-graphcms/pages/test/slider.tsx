@@ -1,14 +1,16 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 import { ProductListDocument, ProductListQuery } from '@graphcommerce/magento-product'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { GetStaticProps, LayoutTitle, LayoutHeader, SidebarGallery } from '@graphcommerce/next-ui'
-import { LayoutNavigation, LayoutNavigationProps } from '../../components'
-import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import { LayoutTitle, LayoutHeader, SidebarGallery } from '@graphcommerce/next-ui'
+import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
+import { InferGetStaticPropsType } from 'next'
+import { LayoutNavigation } from '../../components'
+import { getLayout } from '../../components/Layout/layout'
 
 type Props = ProductListQuery
-type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props>
 
-function TestSlider({ products }: Props) {
+function TestSlider(props: InferGetStaticPropsType<typeof getStaticProps>) {
+  const { products } = props
   if (!products?.items?.length) return null
   return (
     <>
@@ -82,15 +84,9 @@ TestSlider.pageOptions = {
 } as PageOptions
 export default TestSlider
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
-  const staticClient = graphqlSsrClient(locale)
-
-  const conf = client.query({ query: StoreConfigDocument })
-
+export const getStaticProps = enhanceStaticProps(getLayout, async () => {
   // todo(paales): Remove when https://github.com/Urigo/graphql-mesh/issues/1257 is resolved
-  const productList = staticClient.query({
-    query: ProductListDocument,
+  const productList = graphqlQuery(ProductListDocument, {
     variables: { pageSize: 8, filters: { category_uid: { eq: 'MTAy' } } },
   })
 
@@ -98,7 +94,6 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
     props: {
       ...(await productList).data,
       up: { href: '/', title: 'Home' },
-      apolloState: await conf.then(() => client.cache.extract()),
     },
   }
-}
+})

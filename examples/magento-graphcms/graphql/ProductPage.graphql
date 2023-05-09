@@ -1,6 +1,0 @@
-# @deprecated Will be removed in GraphCommerce 7
-query ProductPage($url: String!, $urlKey: String!, $reviewPageSize: Int = 3, $reviewPage: Int = 1) {
-  ...UspsQueryFragment
-  ...ProductPageQueryFragment
-  ...PageContentQueryFragment
-}

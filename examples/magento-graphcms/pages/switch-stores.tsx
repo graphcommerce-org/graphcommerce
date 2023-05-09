@@ -1,29 +1,25 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 import {
   PageMeta,
-  StoreConfigDocument,
   StoreSwitcherList,
   StoreSwitcherListDocument,
   StoreSwitcherListQuery,
 } from '@graphcommerce/magento-store'
-import {
-  GetStaticProps,
-  iconLanguage,
-  LayoutOverlayHeader,
-  LayoutTitle,
-} from '@graphcommerce/next-ui'
+import { iconLanguage, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
+import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
+import { InferGetStaticPropsType } from 'next'
 import { useRouter } from 'next/router'
-import { LayoutOverlay, LayoutOverlayProps } from '../components'
-import { graphqlSsrClient, graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
+import { LayoutOverlay } from '../components'
+import { getLayout } from '../components/Layout/layout'
 
-type RouteProps = { country?: string[] }
 type Props = StoreSwitcherListQuery
-type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props, RouteProps>
 
-function StoresIndexPage({ availableStores }: Props) {
+function StoresIndexPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
+  const { availableStores } = props
   const { locale } = useRouter()
 
   return (
@@ -44,7 +40,7 @@ function StoresIndexPage({ availableStores }: Props) {
   )
 }
 
-const pageOptions: PageOptions<LayoutOverlayProps> = {
+const pageOptions: PageOptions = {
   overlayGroup: 'left',
   Layout: LayoutOverlay,
   layoutProps: { variantMd: 'left' },
@@ -53,17 +49,7 @@ StoresIndexPage.pageOptions = pageOptions
 
 export default StoresIndexPage
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
-  const staticClient = graphqlSsrClient(locale)
-
-  const conf = client.query({ query: StoreConfigDocument })
-  const stores = staticClient.query({ query: StoreSwitcherListDocument })
-
-  return {
-    props: {
-      ...(await stores).data,
-      apolloState: await conf.then(() => client.cache.extract()),
-    },
-  }
-}
+export const getStaticProps = enhanceStaticProps(getLayout, async () => {
+  const stores = graphqlQuery(StoreSwitcherListDocument)
+  return { props: { ...(await stores).data } }
+})

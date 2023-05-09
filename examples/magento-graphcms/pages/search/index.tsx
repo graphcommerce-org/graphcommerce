@@ -1,25 +1,19 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { deepAwait, graphqlQuery } from '@graphcommerce/graphql-mesh'
 import {
   ProductFiltersPro,
   ProductFiltersProFilterChips,
   ProductFiltersProSortChip,
   ProductListFiltersContainer,
   ProductListParamsProvider,
-  ProductListDocument,
-  extractUrlQuery,
-  parseParams,
-  FilterTypes,
-  ProductListParams,
-  getFilterTypes,
-  ProductFiltersDocument,
-  ProductListQuery,
-  ProductFiltersQuery,
   ProductFiltersProAllFiltersChip,
   ProductFiltersProLimitChip,
   AddProductsToCartForm,
+  ProductFiltersQuery,
+  ProductListQuery,
 } from '@graphcommerce/magento-product'
+import { getProductListFilters, getProductListItems } from '@graphcommerce/magento-product/server'
 import {
-  CategorySearchDocument,
   CategorySearchQuery,
   CategorySearchResult,
   NoSearchResults,
@@ -32,35 +26,35 @@ import {
   SearchDivider,
   SearchForm,
 } from '@graphcommerce/magento-search'
-import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
-  StickyBelowHeader,
-  GetStaticProps,
-  LayoutTitle,
-  LayoutHeader,
-} from '@graphcommerce/next-ui'
+  getSearchCategories,
+  getSearchContext,
+  ResolvedGetSearchContextReturn,
+} from '@graphcommerce/magento-search/server'
+import { PageMeta } from '@graphcommerce/magento-store'
+import { StickyBelowHeader, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
+import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Container, Hidden } from '@mui/material'
+import { Box, Container } from '@mui/material'
+import { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
 import { LayoutNavigation, LayoutNavigationProps, productListRenderer } from '../../components'
+import { getLayout } from '../../components/Layout/layout'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
-import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
-type SearchResultProps = ProductListQuery &
-  ProductFiltersQuery &
-  CategorySearchQuery & { filterTypes: FilterTypes; params: ProductListParams }
-type RouteProps = { url: string[] }
-export type GetPageStaticProps = GetStaticProps<
-  LayoutNavigationProps,
-  SearchResultProps,
-  RouteProps
->
+export type SearchResultProps = ResolvedGetSearchContextReturn &
+  CategorySearchQuery &
+  ProductListQuery &
+  ProductFiltersQuery
 
-function SearchResultPage(props: SearchResultProps) {
-  const { products, categories, params, filters, filterTypes } = props
-  const search = params.url.split('/')[1]
+export type RouteProps = { url: string[] }
+
+function SearchResultPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
+  const { products, categories, filters, params, filterTypes } = props
+
+  const search = params.search ?? ''
   const totalSearchResults = (categories?.items?.length ?? 0) + (products?.total_count ?? 0)
-  const noSearchResults = search && (!products || (products.items && products?.items?.length <= 0))
+  const noSearchResults = search && (products?.items?.length ?? 0) <= 0
 
   return (
     <>
@@ -84,7 +78,7 @@ function SearchResultPage(props: SearchResultProps) {
             />
           </LayoutTitle>
         </LayoutHeader>
-        <Hidden implementation='css' mdDown>
+        <Box sx={{ display: { xs: 'none', md: 'block' } }}>
           <LayoutTitle gutterBottom={false} gutterTop={false}>
             {search ? (
               <Trans id='Results for &lsquo;{search}&rsquo;' values={{ search }} />
@@ -105,7 +99,7 @@ function SearchResultPage(props: SearchResultProps) {
             ))}
           </Container>
           <SearchDivider />
-        </Hidden>
+        </Box>
 
         {noSearchResults && <NoSearchResults search={search} />}
         {products && products.items && products?.items?.length > 0 && (
@@ -168,48 +162,27 @@ SearchResultPage.pageOptions = pageOptions
 
 export default SearchResultPage
 
-export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
-  const [searchShort = '', query = []] = extractUrlQuery(params)
-  const search = searchShort.length >= 3 ? searchShort : ''
+export const getStaticProps = enhanceStaticProps(
+  getLayout,
+  async (context: GetStaticPropsContext<RouteProps>) => {
+    const layout = graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })
+    const searchContext = getSearchContext(context)
+    const listItems = getProductListItems(searchContext.params)
+    const filters = getProductListFilters(searchContext.params)
+    const searchCategories = getSearchCategories(searchContext.params)
 
-  const client = graphqlSharedClient(locale)
-  const conf = client.query({ query: StoreConfigDocument })
-  const filterTypes = getFilterTypes(client)
+    if ((await listItems).error) return { notFound: true, revalidate: 60 * 20 }
 
-  const staticClient = graphqlSsrClient(locale)
-  const layout = staticClient.query({ query: LayoutDocument })
-
-  const productListParams = parseParams(
-    search ? `search/${search}` : 'search',
-    query,
-    await filterTypes,
-    search,
-  )
-
-  if (!productListParams) return { notFound: true, revalidate: 60 * 20 }
-
-  const filters = staticClient.query({ query: ProductFiltersDocument, variables: { search } })
-
-  const products = staticClient.query({
-    query: ProductListDocument,
-    variables: { ...productListParams, search, pageSize: 12 },
-  })
-
-  const categories = search
-    ? staticClient.query({ query: CategorySearchDocument, variables: { search } })
-    : undefined
-
-  return {
-    props: {
-      ...(await products).data,
-      ...(await filters).data,
-      ...(await categories)?.data,
-      ...(await layout)?.data,
-      filterTypes: await filterTypes,
-      params: productListParams,
-      up: { href: '/', title: 'Home' },
-      apolloState: await conf.then(() => client.cache.extract()),
-    },
-    revalidate: 60 * 20,
-  }
-}
+    return {
+      props: await deepAwait({
+        ...(await layout).data,
+        ...searchContext,
+        ...searchCategories,
+        ...(await listItems).data,
+        ...(await filters).data,
+        up: { href: '/', title: 'Home' },
+      }),
+      revalidate: 60 * 20,
+    }
+  },
+)

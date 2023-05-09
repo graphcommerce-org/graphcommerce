@@ -198,14 +198,6 @@ export type GraphCommerceConfig = {
    * ```
    */
   hygraphWriteAccessToken?: InputMaybe<Scalars['String']>;
-  /**
-   * On older versions of GraphCommerce products would use a product type specific route.
-   *
-   * This should only be set to true if you use the /product/[url] AND /product/configurable/[url] routes.
-   *
-   * @deprecated Will be removed in a future version. [migration](../upgrading/graphcommerce-5-to-6.md#product-routing-changes)
-   */
-  legacyProductRoute?: InputMaybe<Scalars['Boolean']>;
   /** Limit the static generation of SSG when building */
   limitSsg?: InputMaybe<Scalars['Boolean']>;
   /**
@@ -344,7 +336,6 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     hygraphEndpoint: z.string().min(1),
     hygraphWriteAccessEndpoint: z.string().nullish(),
     hygraphWriteAccessToken: z.string().nullish(),
-    legacyProductRoute: z.boolean().nullish(),
     limitSsg: z.boolean().nullish(),
     magentoEndpoint: z.string().min(1),
     previewSecret: z.string().nullish(),

@@ -1,15 +1,11 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { LayoutHeader, LayoutTitle } from '@graphcommerce/next-ui'
-import { GetStaticProps } from '@graphcommerce/next-ui/Page/types'
+import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { Typography, Container } from '@mui/material'
+import { InferGetStaticPropsType } from 'next'
 import { useEffect, useRef, useState } from 'react'
-import { LayoutMinimal, LayoutMinimalProps } from '../../components'
-import { LayoutDocument } from '../../components/Layout/Layout.gql'
-import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
-
-type Props = Record<string, unknown>
-type GetPageStaticProps = GetStaticProps<LayoutMinimalProps, Props>
+import { LayoutMinimal } from '../../components'
+import { getLayout } from '../../components/Layout/layout'
 
 function useRenderedSize() {
   const [size, setSize] = useState<string>()
@@ -27,7 +23,7 @@ function useRenderedSize() {
   return <span ref={ref}>{size}</span>
 }
 
-function TypographyOverview() {
+function TypographyOverview(props: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
       <LayoutHeader>
@@ -114,18 +110,6 @@ TypographyOverview.pageOptions = {
 
 export default TypographyOverview
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
-  const staticClient = graphqlSsrClient(locale)
-
-  const conf = client.query({ query: StoreConfigDocument })
-  const layout = staticClient.query({ query: LayoutDocument })
-
-  return {
-    props: {
-      ...(await layout).data,
-      up: { href: '/', title: 'Home' },
-      apolloState: await conf.then(() => client.cache.extract()),
-    },
-  }
-}
+export const getStaticProps = enhanceStaticProps(getLayout, async () => ({
+  props: { up: { href: '/', title: 'Home' } },
+}))
