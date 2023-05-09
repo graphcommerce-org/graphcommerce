@@ -1,6 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { Asset } from '@graphcommerce/graphcms-ui'
-import { getHygraphPage, MaybeHygraphSingePage } from '@graphcommerce/graphcms-ui/server'
+import { getHygraphPage } from '@graphcommerce/graphcms-ui/server'
 import { deepAwait } from '@graphcommerce/graphql-mesh'
 import {
   CategoryChildren,
@@ -9,24 +9,18 @@ import {
   CategoryHeroNavTitle,
   CategoryMeta,
 } from '@graphcommerce/magento-category'
-import {
-  getCategoryPage,
-  getCategoryStaticPaths,
-  CategoryPageResult,
-} from '@graphcommerce/magento-category/server'
+import { getCategoryPage, getCategoryStaticPaths } from '@graphcommerce/magento-category/server'
 import {
   ProductFiltersPro,
   ProductFiltersProAllFiltersChip,
   ProductFiltersProFilterChips,
   ProductFiltersProLimitChip,
   ProductFiltersProSortChip,
-  ProductFiltersQuery,
   ProductListCount,
   ProductListFilters,
   ProductListFiltersContainer,
   ProductListPagination,
   ProductListParamsProvider,
-  ProductListQuery,
   ProductListSort,
 } from '@graphcommerce/magento-product'
 import { getProductListFilters, getProductListItems } from '@graphcommerce/magento-product/server'
@@ -34,7 +28,7 @@ import { redirectOrNotFound } from '@graphcommerce/magento-store/server'
 import { StickyBelowHeader, LayoutTitle, LayoutHeader, MetaRobots } from '@graphcommerce/next-ui'
 import { enhanceStaticPaths, enhanceStaticProps } from '@graphcommerce/next-ui/server'
 import { Container } from '@mui/material'
-import { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
+import { InferGetStaticPropsType } from 'next'
 import {
   LayoutNavigation,
   LayoutNavigationProps,
@@ -45,14 +39,10 @@ import {
 import { getLayout } from '../components/Layout/layout'
 import { CategoryPageDocument } from '../graphql/CategoryPage.gql'
 
-export type CategoryProps = CategoryPageResult &
-  ProductListQuery &
-  ProductFiltersQuery &
-  MaybeHygraphSingePage
-
 export type CategoryRoute = { url: string[] }
 
 function CategoryPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
+  //                  ^?
   const { category, filterTypes, params, products, filters, page } = props
 
   const isLanding = category?.display_mode === 'PAGE'
@@ -167,30 +157,27 @@ CategoryPage.pageOptions = pageOptions
 
 export default CategoryPage
 
-export const getStaticPaths = enhanceStaticPaths('blocking', getCategoryStaticPaths)
+export const getStaticPaths = enhanceStaticPaths<CategoryRoute>('blocking', getCategoryStaticPaths)
 
-export const getStaticProps = enhanceStaticProps(
-  getLayout,
-  async (context: GetStaticPropsContext<CategoryRoute>) => {
-    const { params, locale } = context
+export const getStaticProps = enhanceStaticProps(getLayout, async (context) => {
+  const { params, locale } = context
 
-    const categoryPage = getCategoryPage(CategoryPageDocument, context)
+  const categoryPage = getCategoryPage(CategoryPageDocument, context)
 
-    const listItems = getProductListItems(categoryPage.params)
-    const filters = getProductListFilters(categoryPage.params)
-    const page = getHygraphPage(categoryPage.params, categoryPage.category)
+  const listItems = getProductListItems(categoryPage.params)
+  const filters = getProductListFilters(categoryPage.params)
+  const page = getHygraphPage(categoryPage.params, categoryPage.category)
 
-    if (!(await categoryPage.category) && !(await page.page) && !(await listItems).error)
-      return redirectOrNotFound(params, locale)
+  if (!(await categoryPage.category) && !(await page.page) && !(await listItems).error)
+    return redirectOrNotFound(params, locale)
 
-    return {
-      props: await deepAwait({
-        ...page,
-        ...categoryPage,
-        ...(await listItems).data,
-        ...(await filters).data,
-      }),
-      revalidate: 60 * 20,
-    }
-  },
-)
+  return {
+    props: await deepAwait({
+      ...page,
+      ...categoryPage,
+      ...(await listItems).data,
+      ...(await filters).data,
+    }),
+    revalidate: 60 * 20,
+  }
+})

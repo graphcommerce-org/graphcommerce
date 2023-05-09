@@ -1,4 +1,5 @@
 import type { ParsedUrlQuery } from 'querystring'
+import { mergeDeep } from '@graphcommerce/graphql'
 import type { GraphCommerceStorefrontConfig } from '@graphcommerce/next-config'
 import type {
   GetServerSideProps,
@@ -6,17 +7,23 @@ import type {
   GetServerSidePropsResult,
   GetStaticPathsResult,
   GetStaticProps,
-  GetStaticPropsContext,
   GetStaticPropsResult,
+  InferGetStaticPropsType,
   PreviewData,
 } from 'next'
-import { mergeDeep, TupleToIntersection } from '@graphcommerce/graphql'
+import type { UnionToIntersection } from 'type-fest'
 
 export const storefrontAll = import.meta.graphCommerce.storefront
 
 const storefrontContext = new AsyncLocalStorage<GraphCommerceStorefrontConfig>()
 
-// /** Get the current storefront config based on the provided locale */
+export function hasProps<
+  R extends GetStaticPropsResult<unknown> | GetServerSidePropsResult<unknown>,
+>(result: R): result is Extract<R, { props: unknown }> {
+  return typeof result === 'object' && 'props' in result
+}
+
+/** Get the current storefront config based on the provided locale */
 export const storefrontConfig = () => {
   const conf = storefrontContext.getStore()
 
@@ -28,17 +35,24 @@ export const storefrontConfig = () => {
 }
 
 /**
- * Wraps the getStaticProps function to provide the correct storefrontConfig().
+ * `enhanceStaticProps` introduces additional functionality to the native getStaticProps function:
  *
- * - This method will have plugins, see the @graphcommerce/next-ui/server.interceptor.tsx file for all
- *   configured plugins.
+ * - Accepts an array of getStaticProps method and merge the result.
+ * - Respects `notFound` or `redirect` values returned.
+ * - Uses the lowest revalidate value.
+ * - It wraps the `getStaticProps` functions with an AsyncLocalStorage to provide an actual
+ *   storefrontConfig().
+ *
+ * This method is heavily extended, see the @graphcommerce/next-ui/server.interceptor.tsx file for
+ * all configured plugins.
  *
  * To get the current storefront config, use the `storefrontConfig()` function.
  */
 export function enhanceStaticProps<
-  GSPArray extends GetStaticProps<any, any, any>[] = GetStaticProps<any, any, any>[],
-  I extends TupleToIntersection<GSPArray> = TupleToIntersection<GSPArray>,
->(...getStaticPropsArr: GSPArray): (...args: Parameters<I>) => Promise<ReturnType<I>> {
+  Params extends ParsedUrlQuery = ParsedUrlQuery,
+  GSPArray extends GetStaticProps<any, Params, any>[] = GetStaticProps<any, Params, any>[],
+  R = UnionToIntersection<Awaited<ReturnType<GSPArray[number]>>>,
+>(...getStaticPropsArr: GSPArray): (...args: Parameters<GSPArray[number]>) => Promise<R> {
   return async (context) => {
     const config = storefrontAll.find((l) => l.locale === context.locale)
     if (!config) throw Error(`No storefront config found for locale ${context.locale}`)
@@ -51,11 +65,28 @@ export function enhanceStaticProps<
       return (await promises).reduce((acc, curr) => {
         if (!curr || !hasProps(curr)) return curr
         if (!hasProps(acc)) return acc
-        return mergeDeep(acc, curr.props)
-      }) as Awaited<ReturnType<I>>
+
+        return {
+          props: mergeDeep(acc.props, curr.props),
+          revalidate: Math.min(
+            typeof acc.revalidate === 'number' ? acc.revalidate : Infinity,
+            typeof curr.revalidate === 'number' ? curr.revalidate : Infinity,
+          ),
+        }
+      }) as R
     })
   }
 }
+
+function func1<Params extends ParsedUrlQuery = ParsedUrlQuery>() {
+  return { props: { some: 'value ' } }
+}
+function func2<Params extends ParsedUrlQuery = ParsedUrlQuery>() {
+  return { props: { someOther: 'value' } }
+}
+
+const getStaticProps = enhanceStaticProps<{ url: string[] }>(func1, func2)
+type Infered = InferGetStaticPropsType<typeof getStaticProps>
 
 /**
  * Wraps the getServerSideProps function to provide the correct storefrontConfig(). This method will
@@ -96,10 +127,4 @@ export function enhanceStaticPaths<Params extends ParsedUrlQuery = ParsedUrlQuer
       paths: allPaths.map((p) => (import.meta.graphCommerce.limitSsg ? p.slice(0, 1) : p)).flat(1),
     }
   }
-}
-
-export function hasProps<
-  R extends GetStaticPropsResult<unknown> | GetServerSidePropsResult<unknown>,
->(result: R): result is Extract<R, { props: unknown }> {
-  return typeof result === 'object' && 'props' in result
 }

@@ -11,6 +11,7 @@ const fetcher = fetchRetry(
  * @param {RequestInfo | URL} url
  * @param {import('fetch-retry').RequestInitWithRetry | undefined} options
  * @returns {Promise<Response>}
+ * @public
  */
 module.exports = (url, options) => {
   /** @type {RequestInit['headers']} */

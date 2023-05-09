@@ -1,0 +1,25 @@
+{
+  "$schema": "https://unpkg.com/knip@2/schema.json",
+  "ignoreWorkspaces": ["packages/magento-pagebuilder"],
+  "ignore": ["**/next-env.d.ts", "packagesDev/**/*"],
+  "workspaces": {
+    ".": {
+      "entry": ["graphql.config.js", "jest.config.js"]
+    },
+    "examples/*": {
+      "entry": ["lingui.config.js", "next-sitemap.config.js", "plugins/**/*.{ts,tsx}"],
+      "ignore": ["**/*.gql.ts"]
+    },
+    "packages/cli": {
+      "entry": ["src/bin/*.ts", "src/index.ts"],
+      "ignore": ["dist/**/*"]
+    },
+    "packages/hygraph-cli": {
+      "ignore": ["dist/**/*"]
+    },
+    "packages/*": {
+      "entry": ["plugins/**/*.{ts,tsx}", "index.ts", "index.interceptor.tsx", "server.ts"],
+      "ignore": ["**/*.gql.ts"]
+    }
+  }
+}
