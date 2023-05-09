@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.14
+
+### Patch Changes
+
+- [#1925](https://github.com/graphcommerce-org/graphcommerce/pull/1925) [`2b595bf13`](https://github.com/graphcommerce-org/graphcommerce/commit/2b595bf13f3725a77661586cce021ce8d4791558) - Fixed bug for type error in `demoConfig.ts`. All storefront config values in the demo config are now optional. ([@mikekeehnen](https://github.com/mikekeehnen))
+
 ## 6.2.0-canary.13
 
 ### Patch Changes
