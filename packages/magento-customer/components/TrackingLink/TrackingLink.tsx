@@ -8,6 +8,8 @@ export type TrackingLinkProps = TrackingLinkFragment & { sx?: SxProps<Theme> }
 export function TrackingLink(props: TrackingLinkProps) {
   const { number, sx = [] } = props
 
+  const validUrl = number?.startsWith('http://') || number?.startsWith('https://')
+
   return (
     <Box
       className='TrackingLink-root'
@@ -20,7 +22,7 @@ export function TrackingLink(props: TrackingLinkProps) {
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
-      {number && (
+      {number && validUrl && (
         <Link onClick={(e) => e.stopPropagation()} href={number} target='_blank' underline='hover'>
           <IconSvg src={iconLocation} size='small' />
           <Trans id='Follow order' />
