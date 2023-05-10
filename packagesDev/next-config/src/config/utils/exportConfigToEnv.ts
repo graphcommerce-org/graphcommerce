@@ -1,7 +1,7 @@
 import { GraphCommerceConfig } from '../../generated/config'
 import { toEnvStr } from './mergeEnvIntoConfig'
 
-const fmt = (value: string | boolean | object | null) => {
+const fmt = (value: string | number | boolean | object | null) => {
   let formattedValue = value
 
   if (typeof formattedValue === 'boolean') {
@@ -9,6 +9,10 @@ const fmt = (value: string | boolean | object | null) => {
   }
   if (typeof formattedValue === 'object') {
     formattedValue = JSON.stringify(formattedValue)
+  }
+
+  if (typeof formattedValue === 'number') {
+    formattedValue = String(formattedValue)
   }
 
   return formattedValue
