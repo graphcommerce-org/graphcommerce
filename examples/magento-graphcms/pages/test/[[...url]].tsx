@@ -23,13 +23,9 @@ export const getStaticPaths = enhanceStaticPaths('blocking', ({ locale }) =>
   [['index', 'other']].map((url) => ({ params: { url }, locale })),
 )
 
-export const getStaticProps = enhanceStaticProps(getLayout, async ({ params }) => {
-  const url = urlFromParams(params)
-
-  return {
-    props: {
-      url,
-      up: { href: '/', title: 'Home' },
-    },
-  }
-})
+export const getStaticProps = enhanceStaticProps(getLayout, ({ params }) => ({
+  props: {
+    url: urlFromParams(params),
+    up: { href: '/', title: 'Home' },
+  },
+}))

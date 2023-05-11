@@ -85,46 +85,29 @@ export function enhanceStaticProps<
     if (!config) throw Error(`No storefront config found for locale ${locale}`)
 
     // Load all getStaticProps methods in parallel with the correct storefront config
-    const promises = Promise.all(
-      getStaticPropsArr.map((getStaticProps) =>
-        storefrontContext.run(
-          config,
-          () =>
-            runInServerContext(locale, getStaticProps, context) as ReturnType<
-              typeof getStaticProps
-            >,
-        ),
+    const results = getStaticPropsArr.map((getStaticProps) =>
+      storefrontContext.run(
+        config,
+        () =>
+          runInServerContext(locale, getStaticProps, context) as ReturnType<typeof getStaticProps>,
       ),
     )
 
     // Merge all props together, but bail whenever the
-    return (await promises).reduce((current, previous) => {
+    return (await Promise.all(results)).reduce((current, previous) => {
       if (!previous || !hasProps(previous)) return previous
       if (!hasProps(current)) return current
 
+      const revalidate = Math.min(
+        typeof current.revalidate === 'number' ? current.revalidate : Infinity,
+        typeof previous.revalidate === 'number' ? previous.revalidate : Infinity,
+      )
+
       return {
         props: mergeDeep(current.props, previous.props),
-        revalidate: Math.min(
-          typeof current.revalidate === 'number' ? current.revalidate : Infinity,
-          typeof previous.revalidate === 'number' ? previous.revalidate : Infinity,
-        ),
+        revalidate: Number.isFinite(revalidate) ? revalidate : false,
       }
     }) as R
-  }
-}
-
-/**
- * Wraps the getServerSideProps function to provide the correct storefrontConfig(). This method will
- * have plugins, see the next-ui/index.interceptor.tsx
- */
-export function enhanceServerSideProps<
-  Props extends Record<string, unknown> = Record<string, unknown>,
-  Params extends ParsedUrlQuery = ParsedUrlQuery,
->(cb: GetServerSideProps<Props, Params>) {
-  return (context: GetServerSidePropsContext<Params>) => {
-    const config = storefrontAll.find((l) => l.locale === context.locale)
-    if (!config) throw Error(`No storefront config found for locale ${context.locale}`)
-    return storefrontContext.run(config, cb, context)
   }
 }
 
@@ -139,17 +122,19 @@ export function enhanceStaticPaths<Params extends ParsedUrlQuery = ParsedUrlQuer
     if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
 
     const defaultLocale = storefrontAll.find((l) => l.defaultLocale) ?? storefrontAll[0]
-    const allPaths = await Promise.all(
-      storefrontAll.map((storefront) =>
-        storefrontContext.run(storefront, cb, {
-          locale: storefront.locale,
-          defaultLocale: defaultLocale.locale,
-        }),
+    const allPaths = storefrontAll.map((storefront) =>
+      storefrontContext.run(
+        storefront,
+        (context) => runInServerContext(context.locale, cb, context) as ReturnType<typeof cb>,
+        { locale: storefront.locale, defaultLocale: defaultLocale.locale },
       ),
     )
+
     return {
       fallback,
-      paths: allPaths.map((p) => (import.meta.graphCommerce.limitSsg ? p.slice(0, 1) : p)).flat(1),
+      paths: (await Promise.all(allPaths))
+        .map((p) => (import.meta.graphCommerce.limitSsg ? p.slice(0, 1) : p))
+        .flat(1),
     }
   }
 }
