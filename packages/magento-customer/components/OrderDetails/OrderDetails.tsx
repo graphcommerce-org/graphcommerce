@@ -26,7 +26,6 @@ const parts = [
   'totalsRow',
   'totalsDivider',
   'totalsVat',
-  'iconContainer',
   'invoice',
 ] as const
 const { classes } = extendableComponent(componentName, parts)
@@ -85,18 +84,11 @@ const TotalsVat = styled(TotalsRow, { target: classes.totalsVat })(({ theme }) =
     padding: `${theme.spacings.xxs} 0`,
   }),
 )
-const IconContainer = styled(TotalsRow, { target: classes.iconContainer })(({ theme }) =>
-  theme.unstable_sx({
-    marginLeft: '-6px',
-    '& > div': {
-      padding: '4px 0',
-    },
-  }),
-)
 
 const Invoice = styled(TotalsRow, { target: classes.invoice })(({ theme }) =>
   theme.unstable_sx({
     display: 'flex',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     color: 'primary.main',
   }),
@@ -248,9 +240,7 @@ export function OrderDetails(props: OrderDetailsProps) {
               <>
                 <div>{shipments?.[0]?.tracking && shipments?.[0]?.tracking?.[0]?.title}</div>
                 {shipments?.[0]?.tracking?.[0] && (
-                  <IconContainer>
-                    <TrackingLink {...shipments?.[0].tracking?.[0]} />
-                  </IconContainer>
+                  <TrackingLink {...shipments?.[0].tracking?.[0]} sx={{ padding: '4px 0' }} />
                 )}
               </>
             )}
@@ -275,12 +265,10 @@ export function OrderDetails(props: OrderDetailsProps) {
                 <div>{payment_methods[0].name}</div>
 
                 {invoices && invoices?.length > 0 && (
-                  <IconContainer>
-                    <Invoice>
-                      <IconSvg src={iconInvoice} size='small' />
-                      {invoices?.[0]?.number}
-                    </Invoice>
-                  </IconContainer>
+                  <Invoice>
+                    <IconSvg src={iconInvoice} size='small' />
+                    {invoices?.[0]?.number}
+                  </Invoice>
                 )}
               </>
             )}
