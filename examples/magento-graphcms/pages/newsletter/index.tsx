@@ -1,7 +1,7 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { hygraphPageContent } from '@graphcommerce/graphcms-ui/server'
 import { PageMeta, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
-import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
+import { enhanceStaticProps, notFound } from '@graphcommerce/next-ui/server'
 import { Container } from '@mui/material'
 import { InferGetStaticPropsType } from 'next'
 import { LayoutOverlay, LayoutOverlayProps, RowRenderer } from '../../components'
@@ -64,7 +64,7 @@ export const getStaticProps = enhanceStaticProps(getLayout, async () => {
   const url = `newsletter`
   const page = hygraphPageContent(url)
 
-  if (!(await page).data.pages?.[0]) return { notFound: true }
+  if (!(await page).data.pages?.[0]) return notFound()
 
   return {
     props: {

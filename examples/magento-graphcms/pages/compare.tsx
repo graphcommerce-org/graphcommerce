@@ -19,7 +19,7 @@ import {
   LayoutTitle,
   PageMeta,
 } from '@graphcommerce/next-ui'
-import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
+import { enhanceStaticProps, notFound } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, CircularProgress, Container, Typography } from '@mui/material'
@@ -91,6 +91,6 @@ ComparePage.pageOptions = pageOptions
 export default ComparePage
 
 export const getStaticProps = enhanceStaticProps(getLayout, () => {
-  if (!import.meta.graphCommerce.compare) return { notFound: true }
+  if (!import.meta.graphCommerce.compare) return notFound()
   return { props: {} }
 })

@@ -5,6 +5,7 @@ import { Redirect } from 'next'
 import { defaultLocale } from '../localeToStore'
 import { HandleRedirectDocument } from './HandleRedirect.gql'
 import { storeConfig } from './storeConfig'
+import { urlFromParams } from '@graphcommerce/next-ui/server'
 
 export type RedirectOr404Return = Promise<
   | { redirect: Redirect; revalidate?: number | boolean }
@@ -39,9 +40,7 @@ export async function redirectOrNotFound(
   locale?: string,
 ): RedirectOr404Return {
   // Create a URL from the params provided.
-  const from = Object.values(params ?? {})
-    .map((v) => (Array.isArray(v) ? v.join('/') : v))
-    .join('/')
+  const from = urlFromParams(params)
 
   try {
     // Get the configured suffixes from the store config

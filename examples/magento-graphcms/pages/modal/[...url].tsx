@@ -2,7 +2,12 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { hygraphPageContent } from '@graphcommerce/graphcms-ui/server'
 import { MetaRobots, LayoutOverlayHeader, LayoutTitle, PageMeta } from '@graphcommerce/next-ui'
-import { enhanceStaticPaths, enhanceStaticProps } from '@graphcommerce/next-ui/server'
+import {
+  enhanceStaticPaths,
+  enhanceStaticProps,
+  notFound,
+  urlFromParams,
+} from '@graphcommerce/next-ui/server'
 import { Box, Typography } from '@mui/material'
 import { InferGetStaticPropsType } from 'next'
 import { LayoutOverlay, RowRenderer } from '../../components'
@@ -56,10 +61,10 @@ export const getStaticPaths = enhanceStaticPaths<RouteProps>('blocking', ({ loca
 )
 
 export const getStaticProps = enhanceStaticProps(getLayout, async ({ params }) => {
-  const urlKey = params?.url.join('/') ?? '??'
+  const urlKey = urlFromParams(params)
   const page = hygraphPageContent(`modal/${urlKey}`)
 
-  if (!(await page).data.pages?.[0]) return { notFound: true }
+  if (!(await page).data.pages?.[0]) return notFound()
 
   return {
     props: {

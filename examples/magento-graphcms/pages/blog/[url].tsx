@@ -1,24 +1,25 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { getHygraphPage, HygraphSingePage } from '@graphcommerce/graphcms-ui/server'
-import { graphqlQuery } from '@graphcommerce/graphql-mesh'
+import { getHygraphPage } from '@graphcommerce/graphcms-ui/server'
+import { deepAwait, graphqlQuery } from '@graphcommerce/graphql-mesh'
 import { PageMeta, BlogTitle, Row, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
-import { enhanceStaticPaths, enhanceStaticProps } from '@graphcommerce/next-ui/server'
-import { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
+import {
+  enhanceStaticPaths,
+  enhanceStaticProps,
+  notFound,
+  urlFromParams,
+} from '@graphcommerce/next-ui/server'
+import { InferGetStaticPropsType } from 'next'
 import {
   BlogAuthor,
   BlogHeader,
   BlogList,
   BlogListDocument,
-  BlogListQuery,
   BlogPostPathsDocument,
   BlogTags,
   LayoutNavigation,
   RowRenderer,
 } from '../../components'
 import { getLayout } from '../../components/Layout/layout'
-
-type Props = HygraphSingePage & BlogListQuery
-type RouteProps = { url: string }
 
 function BlogPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const { blogPosts, page } = props
@@ -52,34 +53,31 @@ BlogPage.pageOptions = {
 
 export default BlogPage
 
-export const getStaticPaths = enhanceStaticPaths<RouteProps>('blocking', async ({ locale }) =>
+export const getStaticPaths = enhanceStaticPaths('blocking', async ({ locale }) =>
   (await graphqlQuery(BlogPostPathsDocument)).data.pages.map((page) => ({
     params: { url: `${page?.url}`.replace('blog/', '') },
     locale,
   })),
 )
 
-export const getStaticProps = enhanceStaticProps(
-  getLayout,
-  async ({ params }: GetStaticPropsContext<RouteProps>) => {
-    const urlKey = params?.url ?? '??'
-    const limit = 4
+export const getStaticProps = enhanceStaticProps(getLayout, async (context) => {
+  const { params } = context
+  const urlKey = urlFromParams(params)
 
-    const hygraphPage = getHygraphPage({ url: `blog/${urlKey}` })
-    const blogPosts = graphqlQuery(BlogListDocument, {
-      variables: { currentUrl: [`blog/${urlKey}`], first: limit },
-    })
+  const hygraphPage = getHygraphPage({ url: `blog/${urlKey}` })
+  const blogPosts = graphqlQuery(BlogListDocument, {
+    variables: { currentUrl: [`blog/${urlKey}`], first: 4 },
+  })
 
-    const page = await hygraphPage.page
-    if (!page) return { notFound: true }
+  const page = await hygraphPage.page
+  if (!page) return notFound()
 
-    return {
-      props: {
-        ...(await blogPosts).data,
-        page,
-        up: { href: '/', title: 'Home' },
-      },
-      revalidate: 60 * 20,
-    }
-  },
-)
+  return {
+    props: await deepAwait({
+      ...(await blogPosts).data,
+      page,
+      up: { href: '/', title: 'Home' },
+    }),
+    revalidate: 60 * 20,
+  }
+})

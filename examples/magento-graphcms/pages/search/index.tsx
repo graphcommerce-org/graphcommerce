@@ -33,7 +33,7 @@ import {
 } from '@graphcommerce/magento-search/server'
 import { PageMeta } from '@graphcommerce/magento-store'
 import { StickyBelowHeader, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
-import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
+import { enhanceStaticProps, notFound } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, Container } from '@mui/material'
@@ -162,27 +162,24 @@ SearchResultPage.pageOptions = pageOptions
 
 export default SearchResultPage
 
-export const getStaticProps = enhanceStaticProps(
-  getLayout,
-  async (context: GetStaticPropsContext<RouteProps>) => {
-    const layout = graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })
-    const searchContext = getSearchContext(context)
-    const listItems = getProductListItems(searchContext.params)
-    const filters = getProductListFilters(searchContext.params)
-    const searchCategories = getSearchCategories(searchContext.params)
+export const getStaticProps = enhanceStaticProps(getLayout, async (context) => {
+  const layout = graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })
+  const searchContext = getSearchContext(context)
+  const listItems = getProductListItems(searchContext.params)
+  const filters = getProductListFilters(searchContext.params)
+  const searchCategories = getSearchCategories(searchContext.params)
 
-    if ((await listItems).error) return { notFound: true, revalidate: 60 * 20 }
+  if ((await listItems).error) return notFound()
 
-    return {
-      props: await deepAwait({
-        ...(await layout).data,
-        ...searchContext,
-        ...searchCategories,
-        ...(await listItems).data,
-        ...(await filters).data,
-        up: { href: '/', title: 'Home' },
-      }),
-      revalidate: 60 * 20,
-    }
-  },
-)
+  return {
+    props: await deepAwait({
+      ...(await layout).data,
+      ...searchContext,
+      ...searchCategories,
+      ...(await listItems).data,
+      ...(await filters).data,
+      up: { href: '/', title: 'Home' },
+    }),
+    revalidate: 60 * 20,
+  }
+})

@@ -13,9 +13,7 @@ export type ResolvedGetSearchContextReturn = {
   filterTypes: FilterTypes
 }
 
-export function getSearchContext(
-  context: GetStaticPropsContext<{ url: string[] }>,
-): GetSearchContextReturn {
+export function getSearchContext(context: GetStaticPropsContext): GetSearchContextReturn {
   const [searchShort = '', query = []] = extractUrlQuery(context.params)
   const search = searchShort.length >= 3 ? searchShort : ''
 

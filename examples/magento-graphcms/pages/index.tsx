@@ -4,7 +4,7 @@ import { hygraphPageContent } from '@graphcommerce/graphcms-ui/server'
 import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 import { ProductListDocument, ProductListQuery } from '@graphcommerce/magento-product'
 import { LayoutHeader, MetaRobots, PageMeta } from '@graphcommerce/next-ui'
-import { enhanceStaticProps } from '@graphcommerce/next-ui/server'
+import { enhanceStaticProps, notFound } from '@graphcommerce/next-ui/server'
 import { InferGetStaticPropsType } from 'next'
 import { LayoutNavigation, RowProduct, RowRenderer } from '../components'
 import { getLayout } from '../components/Layout/layout'
@@ -85,7 +85,7 @@ export const getStaticProps = enhanceStaticProps(getLayout, async () => {
     variables: { pageSize: 8, filters: { category_uid: { eq: 'MTIy' } } },
   })
 
-  if (!(await pages).data.pages?.[0]) return { notFound: true }
+  if (!(await pages).data.pages?.[0]) return notFound()
 
   return {
     props: {

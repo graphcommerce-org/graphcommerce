@@ -17,7 +17,7 @@ import {
 } from '@graphcommerce/magento-product'
 import { getProductListItems, getProductListFilters } from '@graphcommerce/magento-product/server'
 import { StickyBelowHeader, LayoutTitle, LayoutHeader, LinkOrButton } from '@graphcommerce/next-ui'
-import { enhanceStaticPaths, enhanceStaticProps } from '@graphcommerce/next-ui/server'
+import { enhanceStaticPaths, enhanceStaticProps, notFound } from '@graphcommerce/next-ui/server'
 import { Box, Container, Typography } from '@mui/material'
 import { LayoutMinimal } from '../../../components'
 import { getLayout } from '../../../components/Layout/layout'
@@ -107,7 +107,7 @@ export const getStaticProps = enhanceStaticProps(getLayout, async (context) => {
   const filters = getProductListFilters(categoryPage.params)
   const page = getHygraphPage(categoryPage.params, categoryPage.category)
 
-  if (!(await listItems).error) return { notFound: true }
+  if (!(await listItems).error) return notFound()
 
   return {
     props: await deepAwait({

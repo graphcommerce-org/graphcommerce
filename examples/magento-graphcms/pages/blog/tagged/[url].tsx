@@ -3,7 +3,12 @@ import { HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { hygraphPageContent } from '@graphcommerce/graphcms-ui/server'
 import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 import { PageMeta, Row, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
-import { enhanceStaticPaths, enhanceStaticProps } from '@graphcommerce/next-ui/server'
+import {
+  enhanceStaticPaths,
+  enhanceStaticProps,
+  notFound,
+  urlFromParams,
+} from '@graphcommerce/next-ui/server'
 import { Trans } from '@lingui/react'
 import { InferGetStaticPropsType } from 'next'
 import {
@@ -66,14 +71,14 @@ export const getStaticPaths = enhanceStaticPaths<RouteProps>(
 )
 
 export const getStaticProps = enhanceStaticProps(getLayout, async ({ params }) => {
-  const urlKey = params?.url ?? '??'
+  const url = urlFromParams(params)
   const limit = 99
-  const page = hygraphPageContent(`blog/tagged/${urlKey}`)
+  const page = hygraphPageContent(`blog/tagged/${url}`)
 
   const blogPosts = graphqlQuery(BlogListTaggedDocument, {
-    variables: { currentUrl: [`blog/tagged/${urlKey}`], first: limit, tagged: params?.url },
+    variables: { currentUrl: [`blog/tagged/${url}`], first: limit, tagged: url },
   })
-  if (!(await page).data.pages?.[0]) return { notFound: true }
+  if (!(await page).data.pages?.[0]) return notFound()
 
   return {
     props: {

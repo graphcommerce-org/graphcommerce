@@ -26,7 +26,7 @@ export type CategoryPageResult<Q extends CategoryQueryFragment = CategoryQueryFr
 
 export function getCategoryPage<Q extends CategoryQueryFragment>(
   document: TypedDocumentNode<Q, { url: string }>,
-  context: GetStaticPropsContext<{ url: string[] }>,
+  context: GetStaticPropsContext,
 ): GetCategoryPageResult {
   const [url = '', query = []] = extractUrlQuery(context.params)
   const filterTypes = getFilterTypes()

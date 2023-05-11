@@ -2,7 +2,12 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { PagesStaticPathsDocument, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { hygraphPageContent } from '@graphcommerce/graphcms-ui/server'
 import { PageMeta, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
-import { enhanceStaticPaths, enhanceStaticProps } from '@graphcommerce/next-ui/server'
+import {
+  enhanceStaticPaths,
+  enhanceStaticProps,
+  notFound,
+  urlFromParams,
+} from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Container } from '@mui/material'
 import { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
@@ -55,22 +60,22 @@ export const getStaticPaths = enhanceStaticPaths<RouteProps>('blocking', async (
   return data.pages.map((page) => ({ params: { url: page.url.split('/').slice(1) }, locale }))
 })
 
-export const getStaticProps = enhanceStaticProps(
-  getLayout,
-  async ({ params }: GetStaticPropsContext<RouteProps>) => {
-    const url = params?.url ? `service/${params?.url.join('/')}` : `service`
-    const page = hygraphPageContent(url)
+export const getStaticProps = enhanceStaticProps(getLayout, async (context) => {
+  const { params } = context
 
-    if (!(await page).data.pages?.[0]) return { notFound: true }
+  const urll = urlFromParams(params)
+  const url = urll ? `service/${urll}` : `service`
+  const page = hygraphPageContent(url)
 
-    const isRoot = url === 'service'
+  if (!(await page).data.pages?.[0]) return notFound()
 
-    return {
-      props: {
-        ...(await page).data,
-        up: isRoot ? null : { href: '/service', title: i18n._(/* i18n */ 'Customer Service') },
-      },
-      revalidate: 60 * 20,
-    }
-  },
-)
+  const isRoot = url === 'service'
+
+  return {
+    props: {
+      ...(await page).data,
+      up: isRoot ? null : { href: '/service', title: i18n._(/* i18n */ 'Customer Service') },
+    },
+    revalidate: 60 * 20,
+  }
+})

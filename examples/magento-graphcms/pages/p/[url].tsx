@@ -38,7 +38,11 @@ import { Money } from '@graphcommerce/magento-store'
 import { redirectOrNotFound } from '@graphcommerce/magento-store/server'
 import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
 import { JsonLd, LayoutHeader, LayoutTitle, isTypename } from '@graphcommerce/next-ui'
-import { enhanceStaticPaths, enhanceStaticProps } from '@graphcommerce/next-ui/server'
+import {
+  enhanceStaticPaths,
+  enhanceStaticProps,
+  urlFromParams,
+} from '@graphcommerce/next-ui/server'
 import { Trans } from '@lingui/react'
 import { Divider, Link, Typography } from '@mui/material'
 import { InferGetStaticPropsType } from 'next'
@@ -200,7 +204,7 @@ export default ProductPage
 export const getStaticPaths = enhanceStaticPaths('blocking', getProductStaticPaths)
 
 export const getStaticProps = enhanceStaticProps(getLayout, async ({ params, locale }) => {
-  const urlKey = params?.url ?? '??'
+  const urlKey = urlFromParams(params)
 
   const layout = graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })
   const productPage = graphqlQuery(ProductPage2Document, { variables: { urlKey } })

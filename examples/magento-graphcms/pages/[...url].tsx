@@ -42,7 +42,6 @@ import { CategoryPageDocument } from '../graphql/CategoryPage.gql'
 export type CategoryRoute = { url: string[] }
 
 function CategoryPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
-  //                  ^?
   const { category, filterTypes, params, products, filters, page } = props
 
   const isLanding = category?.display_mode === 'PAGE'

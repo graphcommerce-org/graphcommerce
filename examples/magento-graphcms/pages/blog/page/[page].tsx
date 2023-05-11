@@ -3,7 +3,12 @@ import { HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { hygraphPageContent } from '@graphcommerce/graphcms-ui/server'
 import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 import { PageMeta, Pagination, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
-import { enhanceStaticPaths, enhanceStaticProps } from '@graphcommerce/next-ui/server'
+import {
+  enhanceStaticPaths,
+  enhanceStaticProps,
+  notFound,
+  urlFromParams,
+} from '@graphcommerce/next-ui/server'
 import { Container, Link } from '@mui/material'
 import { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
 import { useRouter } from 'next/router'
@@ -75,30 +80,27 @@ export const getStaticPaths = enhanceStaticPaths('blocking', async ({ locale }) 
   return pages.map((page) => ({ params: { page }, locale }))
 })
 
-export const getStaticProps = enhanceStaticProps(
-  getLayout,
-  async (context: GetStaticPropsContext<RouteProps>) => {
-    const { params } = context
-    const skip = Math.abs((Number(params?.page ?? '1') - 1) * pageSize)
-    const pages = hygraphPageContent('blog')
-    const blogPosts = graphqlQuery(BlogListDocument, {
-      variables: { currentUrl: ['blog'], first: pageSize, skip },
-    })
-    const blogPaths = graphqlQuery(BlogPathsDocument)
+export const getStaticProps = enhanceStaticProps(getLayout, async (context) => {
+  const { params } = context
+  const skip = Math.abs((Number(params?.page ?? '1') - 1) * pageSize)
+  const pages = hygraphPageContent('blog')
+  const blogPosts = graphqlQuery(BlogListDocument, {
+    variables: { currentUrl: ['blog'], first: pageSize, skip },
+  })
+  const blogPaths = graphqlQuery(BlogPathsDocument)
 
-    if (!(await pages).data.pages?.[0]) return { notFound: true }
-    if (!(await blogPosts).data.blogPosts.length) return { notFound: true }
-    if (Number(params?.page) <= 0) return { notFound: true }
+  if (!(await pages).data.pages?.[0]) return notFound()
+  if (!(await blogPosts).data.blogPosts.length) return notFound()
+  if (Number(params?.page) <= 0) return notFound()
 
-    return {
-      props: {
-        ...(await pages).data,
-        ...(await blogPosts).data,
-        ...(await blogPaths).data,
-        urlEntity: { relative_url: `blog` },
-        up: { href: '/blog', title: 'Blog' },
-      },
-      revalidate: 60 * 20,
-    }
-  },
-)
+  return {
+    props: {
+      ...(await pages).data,
+      ...(await blogPosts).data,
+      ...(await blogPaths).data,
+      urlEntity: { relative_url: `blog` },
+      up: { href: '/blog', title: 'Blog' },
+    },
+    revalidate: 60 * 20,
+  }
+})

@@ -1,6 +1,7 @@
+/* eslint-disable arrow-body-style */
 import type { ParsedUrlQuery } from 'querystring'
 import { mergeDeep } from '@graphcommerce/graphql'
-import type { GraphCommerceStorefrontConfig } from '@graphcommerce/next-config'
+import type { GraphCommerceStorefrontConfig, MethodPlugin } from '@graphcommerce/next-config'
 import type {
   GetServerSideProps,
   GetServerSidePropsContext,
@@ -8,10 +9,9 @@ import type {
   GetStaticPathsResult,
   GetStaticProps,
   GetStaticPropsResult,
-  InferGetStaticPropsType,
-  PreviewData,
 } from 'next'
 import type { UnionToIntersection } from 'type-fest'
+import { runInServerContext } from './runInServerContext'
 
 export const storefrontAll = import.meta.graphCommerce.storefront
 
@@ -21,6 +21,16 @@ export function hasProps<
   R extends GetStaticPropsResult<unknown> | GetServerSidePropsResult<unknown>,
 >(result: R): result is Extract<R, { props: unknown }> {
   return typeof result === 'object' && 'props' in result
+}
+
+export type Redirect = Extract<GetStaticPropsResult<unknown>, { redirect: unknown }>
+export type NotFound = Extract<GetStaticPropsResult<unknown>, { notFound: boolean }>
+
+export function notFound(revalidate?: NotFound['revalidate']): NotFound {
+  return { notFound: true, revalidate }
+}
+export function redirect(redirect: Redirect['redirect'], revalidate?: Redirect['revalidate']) {
+  return { redirect, revalidate }
 }
 
 /** Get the current storefront config based on the provided locale */
@@ -33,6 +43,20 @@ export const storefrontConfig = () => {
     )
   return conf
 }
+
+const addStorefront: MethodPlugin<typeof runInServerContext> = (
+  prev,
+  storefront,
+  callback,
+  ...args
+) => {
+  const config = storefrontAll.find((l) => l.locale === storefront)
+  if (!config) throw Error(`No storefront config found for locale ${storefront}`)
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+  return storefrontContext.run(config, callback, ...args)
+}
+
+export type AsyncContextInitializer<T> = () => (cb: () => T) => Promise<void>
 
 /**
  * `enhanceStaticProps` introduces additional functionality to the native getStaticProps function:
@@ -52,41 +76,42 @@ export function enhanceStaticProps<
   Params extends ParsedUrlQuery = ParsedUrlQuery,
   GSPArray extends GetStaticProps<any, Params, any>[] = GetStaticProps<any, Params, any>[],
   R = UnionToIntersection<Awaited<ReturnType<GSPArray[number]>>>,
->(...getStaticPropsArr: GSPArray): (...args: Parameters<GSPArray[number]>) => Promise<R> {
+>(...getStaticPropsArr: GSPArray): (context: Parameters<GSPArray[number]>[0]) => Promise<R> {
   return async (context) => {
-    const config = storefrontAll.find((l) => l.locale === context.locale)
-    if (!config) throw Error(`No storefront config found for locale ${context.locale}`)
+    const { locale } = context
+    if (!locale) throw Error('No locale found in context')
 
-    return storefrontContext.run(config, async () => {
-      // Load all getStaticProps methods in parallel
-      const promises = Promise.all(getStaticPropsArr.map((enhancer) => enhancer(context)))
+    const config = storefrontAll.find((l) => l.locale === locale)
+    if (!config) throw Error(`No storefront config found for locale ${locale}`)
 
-      // Merge all props together, but bail whenever the
-      return (await promises).reduce((acc, curr) => {
-        if (!curr || !hasProps(curr)) return curr
-        if (!hasProps(acc)) return acc
+    // Load all getStaticProps methods in parallel with the correct storefront config
+    const promises = Promise.all(
+      getStaticPropsArr.map((getStaticProps) =>
+        storefrontContext.run(
+          config,
+          () =>
+            runInServerContext(locale, getStaticProps, context) as ReturnType<
+              typeof getStaticProps
+            >,
+        ),
+      ),
+    )
 
-        return {
-          props: mergeDeep(acc.props, curr.props),
-          revalidate: Math.min(
-            typeof acc.revalidate === 'number' ? acc.revalidate : Infinity,
-            typeof curr.revalidate === 'number' ? curr.revalidate : Infinity,
-          ),
-        }
-      }) as R
-    })
+    // Merge all props together, but bail whenever the
+    return (await promises).reduce((current, previous) => {
+      if (!previous || !hasProps(previous)) return previous
+      if (!hasProps(current)) return current
+
+      return {
+        props: mergeDeep(current.props, previous.props),
+        revalidate: Math.min(
+          typeof current.revalidate === 'number' ? current.revalidate : Infinity,
+          typeof previous.revalidate === 'number' ? previous.revalidate : Infinity,
+        ),
+      }
+    }) as R
   }
 }
-
-function func1<Params extends ParsedUrlQuery = ParsedUrlQuery>() {
-  return { props: { some: 'value ' } }
-}
-function func2<Params extends ParsedUrlQuery = ParsedUrlQuery>() {
-  return { props: { someOther: 'value' } }
-}
-
-const getStaticProps = enhanceStaticProps<{ url: string[] }>(func1, func2)
-type Infered = InferGetStaticPropsType<typeof getStaticProps>
 
 /**
  * Wraps the getServerSideProps function to provide the correct storefrontConfig(). This method will

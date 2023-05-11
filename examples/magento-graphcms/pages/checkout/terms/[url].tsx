@@ -2,7 +2,7 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 import { CartAgreementsDocument } from '@graphcommerce/magento-cart'
 import { PageMeta, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
-import { enhanceStaticPaths, enhanceStaticProps } from '@graphcommerce/next-ui/server'
+import { enhanceStaticPaths, enhanceStaticProps, notFound } from '@graphcommerce/next-ui/server'
 import { Container, Typography } from '@mui/material'
 import { InferGetStaticPropsType } from 'next'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
@@ -57,7 +57,7 @@ export const getStaticProps = enhanceStaticProps(getLayout, async ({ params }) =
     (ca) => ca?.name?.toLowerCase().replace(/\s+/g, '-') === params?.url,
   )
 
-  if (!agreement) return { notFound: true }
+  if (!agreement) return notFound()
 
   return {
     props: {
