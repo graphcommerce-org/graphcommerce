@@ -47,6 +47,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
           () => [
             <SearchLink
               href='/search'
+              onClick={() => selection.set(false)}
               sx={(theme) => ({
                 width: `calc(100% - ${theme.spacing(4)})`,
                 m: 2,
@@ -85,7 +86,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
             </WishlistMenuFabItem>,
             <DarkLightModeMenuSecondaryItem key='darkmode' />,
           ],
-          [menu],
+          [menu, selection],
         )}
       >
         <NavigationOverlay

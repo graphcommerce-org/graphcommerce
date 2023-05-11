@@ -5,7 +5,7 @@ import {
 } from '@graphcommerce/magento-customer'
 import { MenuFabSecondaryItem, iconHeart, IconSvg } from '@graphcommerce/next-ui'
 import { Badge, NoSsr, SxProps, Theme } from '@mui/material'
-import React from 'react'
+import React, { MouseEventHandler } from 'react'
 import { useWishlistEnabled } from '../../hooks'
 import { GetIsInWishlistsDocument } from '../../queries/GetIsInWishlists.gql'
 import { GuestWishlistDocument } from '../../queries/GuestWishlist.gql'
@@ -15,15 +15,17 @@ type WishlistMenuFabItemContentProps = {
   children: React.ReactNode
   sx?: SxProps<Theme>
   activeWishlist: boolean
+  onClick?: MouseEventHandler<HTMLElement>
 }
 
 const hideForGuest = import.meta.graphCommerce.wishlistHideForGuests
 
 function WishlistMenuFabItemContent(props: WishlistMenuFabItemContentProps) {
-  const { icon, children, sx = [], activeWishlist } = props
+  const { icon, onClick, children, sx = [], activeWishlist } = props
 
   return (
     <MenuFabSecondaryItem
+      onClick={onClick}
       sx={sx}
       icon={
         <Badge

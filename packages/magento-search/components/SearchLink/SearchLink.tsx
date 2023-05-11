@@ -7,12 +7,13 @@ import {
 } from '@graphcommerce/next-ui'
 import { Breakpoint, Fab, FabProps, Link, LinkProps } from '@mui/material'
 import { useRouter } from 'next/router'
+import { MouseEventHandler } from 'react'
 import type { SetRequired } from 'type-fest'
 
 export type SearchLinkProps = {
   breakpoint?: Breakpoint
   fab?: FabProps
-} & SetRequired<Pick<LinkProps, 'href' | 'sx' | 'children'>, 'href'>
+} & SetRequired<Pick<LinkProps<'button'>, 'href' | 'sx' | 'children' | 'onClick'>, 'href'>
 
 const name = 'SearchLink' as const
 const parts = ['root', 'text', 'svg'] as const
@@ -26,10 +27,16 @@ const { classes } = extendableComponent(name, parts)
  * ```
  */
 export function SearchLink(props: SearchLinkProps) {
-  const { href, sx = [], children, breakpoint, fab, ...linkProps } = props
+  const { href, sx = [], children, breakpoint, fab, onClick, ...linkProps } = props
   const router = useRouter()
   const fabSize = useFabSize('responsive')
   const { sx: fabSx = [], size, color, ...fabProps } = fab ?? {}
+
+  const handleClick: MouseEventHandler<HTMLElement> = (e) => {
+    e.preventDefault()
+    onClick?.(e)
+    return router.push(href)
+  }
 
   return (
     <>
@@ -37,10 +44,7 @@ export function SearchLink(props: SearchLinkProps) {
         component='button'
         className={classes.root}
         underline='none'
-        onClick={(e) => {
-          e.preventDefault()
-          return router.push(href)
-        }}
+        onClick={handleClick}
         sx={[
           (theme) => ({
             justifySelf: 'center',
