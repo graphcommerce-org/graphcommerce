@@ -1,5 +1,7 @@
 # Change Log
 
+## 6.2.0-canary.16
+
 ## 6.2.0-canary.15
 
 ## 6.2.0-canary.14
