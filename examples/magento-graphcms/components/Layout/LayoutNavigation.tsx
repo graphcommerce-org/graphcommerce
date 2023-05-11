@@ -47,6 +47,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
           () => [
             <SearchLink
               href='/search'
+              onClick={() => selection.set(false)}
               sx={(theme) => ({
                 width: `calc(100% - ${theme.spacing(4)})`,
                 m: 2,
@@ -70,7 +71,12 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
             ...magentoMenuToNavigation(menu, true),
             { id: 'blog', name: 'Blog', href: '/blog' },
             <Divider sx={(theme) => ({ my: theme.spacings.xs })} />,
-            <CustomerMenuFabItem key='account' guestHref='/account/signin' authHref='/account'>
+            <CustomerMenuFabItem
+              onClick={() => selection.set(false)}
+              key='account'
+              guestHref='/account/signin'
+              authHref='/account'
+            >
               <Trans id='Account' />
             </CustomerMenuFabItem>,
             <MenuFabSecondaryItem
@@ -85,7 +91,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
             </WishlistMenuFabItem>,
             <DarkLightModeMenuSecondaryItem key='darkmode' />,
           ],
-          [menu],
+          [menu, selection],
         )}
       >
         <NavigationOverlay

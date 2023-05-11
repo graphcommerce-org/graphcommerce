@@ -1,6 +1,6 @@
 import { MenuFabSecondaryItem, iconPerson, IconSvg } from '@graphcommerce/next-ui'
 import { Badge, NoSsr, SxProps, Theme } from '@mui/material'
-import React from 'react'
+import React, { MouseEventHandler } from 'react'
 import { useCustomerSession, UseCustomerSessionReturn } from '../../hooks/useCustomerSession'
 
 type CustomerMenuFabItemProps = {
@@ -10,13 +10,15 @@ type CustomerMenuFabItemProps = {
   guestHref: string
   sx?: SxProps<Theme>
   session?: UseCustomerSessionReturn
+  onClick?: MouseEventHandler<HTMLElement>
 }
 
 function CustomerMenuFabItemContent(props: CustomerMenuFabItemProps) {
-  const { session, icon, children, guestHref, authHref, sx = [] } = props
+  const { session, icon, children, onClick, guestHref, authHref, sx = [] } = props
 
   return (
     <MenuFabSecondaryItem
+      onClick={onClick}
       sx={sx}
       icon={
         <Badge

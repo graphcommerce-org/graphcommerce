@@ -1,6 +1,6 @@
 import { ListItemButton, ListItemIcon, ListItemText, SxProps, Theme } from '@mui/material'
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { MouseEventHandler } from 'react'
 import { extendableComponent } from '../Styles'
 import { NextLink } from '../Theme'
 
@@ -9,6 +9,7 @@ export type FabMenuSecondaryItemProps = {
   children: React.ReactNode
   icon: React.ReactNode
   sx?: SxProps<Theme>
+  onClick?: MouseEventHandler<HTMLElement>
 }
 
 const compName = 'MenuFabSecondaryItem' as const
@@ -16,12 +17,18 @@ const parts = ['root', 'icon', 'text'] as const
 const { classes } = extendableComponent(compName, parts)
 
 export function MenuFabSecondaryItem(props: FabMenuSecondaryItemProps) {
-  const { href, children, icon, sx = [] } = props
+  const { href, children, onClick, icon, sx = [] } = props
   const router = useRouter()
+
+  const handleClick: MouseEventHandler<HTMLElement> = (e) => {
+    e.preventDefault()
+    onClick?.(e)
+    return router.push(href)
+  }
 
   return (
     <ListItemButton
-      href={href}
+      onClick={handleClick}
       component={NextLink}
       className={classes.root}
       sx={[{}, ...(Array.isArray(sx) ? sx : [sx])]}
