@@ -8,9 +8,9 @@ import { ProductInfoInput } from '@graphcommerce/graphql-mesh'
 import { useCartQuery, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { useShippingMethod } from '@graphcommerce/magento-cart-shipping-method'
 import { GetShippingMethodsDocument } from '@graphcommerce/magento-cart-shipping-method/components/ShippingMethodForm/GetShippingMethods.gql'
-import { ActionCardItemBase, ActionCardListForm, FormRow } from '@graphcommerce/next-ui'
+import { ActionCardListForm, FormRow } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { TextField } from '@mui/material'
+import TextField from '@mui/material/TextField'
 import { useMemo, useDeferredValue } from 'react'
 import { GetPickupLocationsForProductsDocument } from '../graphql/GetPickupLocationsForProducts.gql'
 import {
@@ -18,7 +18,7 @@ import {
   SetPickupLocationOnCartMutation,
   SetPickupLocationOnCartMutationVariables,
 } from '../graphql/SetPickupLocationOnCart.gql'
-import { PickupLocationActionCard, Location } from './PickupLocationActionCard'
+import { PickupLocationActionCard } from './PickupLocationActionCard'
 
 export type PickupLocationFormProps = Pick<UseFormComposeOptions, 'step'>
 
@@ -104,7 +104,7 @@ export function PickupLocationForm(props: PickupLocationFormProps) {
         </FormRow>
       )}
 
-      <ActionCardListForm<Location & ActionCardItemBase>
+      <ActionCardListForm
         control={control}
         name='pickupLocationCode'
         errorMessage='Please select a pickup location'
