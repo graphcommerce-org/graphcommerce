@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.15
+
+### Minor Changes
+
+- [#1926](https://github.com/graphcommerce-org/graphcommerce/pull/1926) [`ab8877fdb`](https://github.com/graphcommerce-org/graphcommerce/commit/ab8877fdb6147960ce656d28306d719e92f6de68) - Made the follow order link in the order card & order details a working <Link /> if provided from magento backend. ([@JoshuaS98](https://github.com/JoshuaS98))
+
 ## 6.2.0-canary.14
 
 ## 6.2.0-canary.13
