@@ -16,7 +16,6 @@ const nextConfig = {
   },
   experimental: {
     scrollRestoration: true,
-    appDir: true,
   },
   optimizeFonts: false,
   images: {
