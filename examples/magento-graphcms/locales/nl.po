@@ -598,6 +598,9 @@ msgstr "Abonneer u op onze nieuwsbrief en blijf op de hoogte"
 msgid "Some items in your cart contain errors, please update or remove them, then try again."
 msgstr "Sommige items in uw winkelwagen bevatten fouten, pas deze aan of verwijder ze en probeer het opnieuw."
 
+msgid "Sort"
+msgstr "Sorteer"
+
 msgid "Sort By"
 msgstr "Sorteer op"
 

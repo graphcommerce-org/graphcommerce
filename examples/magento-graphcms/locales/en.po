@@ -598,6 +598,9 @@ msgstr "Sign up for our newsletter and stay updated"
 msgid "Some items in your cart contain errors, please update or remove them, then try again."
 msgstr "Some items in your cart contain errors, please update or remove them, then try again."
 
+msgid "Sort"
+msgstr "Sort"
+
 msgid "Sort By"
 msgstr "Sort By"
 
