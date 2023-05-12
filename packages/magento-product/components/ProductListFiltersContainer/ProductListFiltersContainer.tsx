@@ -1,3 +1,5 @@
+'use client'
+
 import { Scroller, ScrollerButton, ScrollerProvider } from '@graphcommerce/framer-scroller'
 import {
   iconChevronLeft,

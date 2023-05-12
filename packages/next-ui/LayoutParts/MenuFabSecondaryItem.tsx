@@ -1,5 +1,5 @@
 import { ListItemButton, ListItemIcon, ListItemText, SxProps, Theme } from '@mui/material'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/compat/router'
 import React from 'react'
 import { extendableComponent } from '../Styles'
 import { NextLink } from '../Theme'
@@ -26,7 +26,7 @@ export function MenuFabSecondaryItem(props: FabMenuSecondaryItemProps) {
       className={classes.root}
       sx={[{}, ...(Array.isArray(sx) ? sx : [sx])]}
       dense
-      selected={router.asPath.startsWith(href)}
+      selected={router?.asPath.startsWith(href)}
     >
       <ListItemIcon className={classes.text} sx={{ paddingRight: '8px', minWidth: 'unset' }}>
         {icon}

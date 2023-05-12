@@ -9,7 +9,7 @@ import {
 } from '@graphcommerce/next-ui/ActionCard/ActionCardListForm'
 import { i18n } from '@lingui/core'
 import { Alert, Box, SxProps, Theme } from '@mui/material'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/compat/router'
 import React, { useEffect, useMemo } from 'react'
 import { ConfigurableOptionsFragment } from '../../graphql/ConfigurableOptions.gql'
 import { useConfigurableOptionsSelection } from '../../hooks'

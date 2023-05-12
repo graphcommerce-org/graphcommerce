@@ -1,3 +1,5 @@
+'use client'
+
 import { responsiveVal, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box, Divider, SxProps, Theme, Typography } from '@mui/material'

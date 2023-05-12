@@ -7,7 +7,7 @@ import {
 import { ErrorSnackbar } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Button, Dialog } from '@mui/material'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/compat/router'
 import { useEffect } from 'react'
 import { useCartLockWithToken } from '../../hooks/useCartLockWithToken'
 import { PaymentStatus, successStatusses } from '../MolliePaymentStatus/MolliePaymentStatus'

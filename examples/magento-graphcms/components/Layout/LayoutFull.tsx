@@ -20,7 +20,7 @@ import {
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Fab } from '@mui/material'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/compat/router'
 import { Footer } from './Footer'
 import { LayoutQuery } from './Layout.gql'
 import { Logo } from './Logo'
@@ -37,7 +37,7 @@ export function LayoutFull(props: LayoutFullProps) {
   return (
     <LayoutDefault
       {...uiProps}
-      noSticky={router.asPath.split('?')[0] === '/'}
+      noSticky={router?.asPath.split('?')[0] === '/'}
       header={
         <>
           <Logo />

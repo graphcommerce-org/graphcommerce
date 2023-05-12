@@ -1,2 +1,3 @@
-export * from './ProductFilters.gql'
+'use client'
+
 export * from './ProductListFilters'

@@ -79,6 +79,7 @@
     "patch-package": "7.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "server-only": "^0.0.1",
     "sharp": "0.31.3",
     "webpack": "5.82.0"
   },
@@ -93,7 +94,7 @@
     "eslint": "8.35.0",
     "prettier": "2.8.4",
     "type-fest": "^3.4.0",
-    "typescript": "4.9.5"
+    "typescript": "5.0.4"
   },
   "browserslist": [
     "> 1% in alt-EU",

@@ -8,7 +8,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Typography, Button, Box, SxProps, Theme, Link } from '@mui/material'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/compat/router'
 import React, { useState } from 'react'
 import { ProductReviewChip } from '../ProductReviewChip/ProductReviewChip'
 import { ProductReviewsFragment } from './ProductReviews.gql'

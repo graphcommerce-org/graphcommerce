@@ -1,3 +1,5 @@
+'use client'
+
 export * from './components'
 export * from './ConfigurableCartItem/ConfigurableCartItem'
 export * from './ConfigurableContext/ConfigurableContext'

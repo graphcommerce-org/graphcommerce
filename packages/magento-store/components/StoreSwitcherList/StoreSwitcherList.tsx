@@ -1,8 +1,9 @@
+'use client'
+
 /* eslint-disable spaced-comment */
 import { extendableComponent, FlagAvatar, NextLink } from '@graphcommerce/next-ui'
 import {
   List,
-  ListItem,
   ListItemText,
   Collapse,
   ListItemAvatar,

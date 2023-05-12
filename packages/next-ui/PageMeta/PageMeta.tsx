@@ -5,7 +5,7 @@ import { getDomainLocale } from 'next/dist/client/get-domain-locale'
 import { NextRouter } from 'next/dist/shared/lib/router/router'
 import { resolveHref } from 'next/dist/shared/lib/router/utils/resolve-href'
 import Head from 'next/head'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/compat/router'
 import type {} from '@graphcommerce/next-config'
 import { storefrontConfig } from '../config/storefrontConfig'
 

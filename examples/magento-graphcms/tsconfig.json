@@ -1,5 +1,5 @@
 {
   "exclude": ["**/node_modules"],
-  "include": ["**/*.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["**/*.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "extends": "@graphcommerce/typescript-config-pwa/nextjs.json"
 }

@@ -7,7 +7,7 @@ import {
 } from '@graphcommerce/magento-cart'
 import { ExtendableComponent } from '@graphcommerce/next-ui'
 import { Box, SxProps, Theme, useThemeProps } from '@mui/material'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/compat/router'
 import { useMemo, useRef } from 'react'
 import {
   AddProductsToCartDocument,

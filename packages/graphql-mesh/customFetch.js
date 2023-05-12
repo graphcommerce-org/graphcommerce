@@ -3,9 +3,7 @@
 const fetchRetry = require('fetch-retry')
 
 /** @type {fetchRetry.default} */
-const fetcher = fetchRetry(
-  process.env.__NEXT_PROCESSED_ENV ? fetch : require('@whatwg-node/fetch').fetch,
-)
+const fetcher = fetchRetry(process.env.NEXT_RUNTIME ? fetch : require('@whatwg-node/fetch').fetch)
 
 /**
  * @param {RequestInfo | URL} url

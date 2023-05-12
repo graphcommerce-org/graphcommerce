@@ -1,5 +1,5 @@
 import { useStorefrontConfig } from '@graphcommerce/next-ui'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/compat/router'
 import Script from 'next/script'
 import { useEffect } from 'react'
 

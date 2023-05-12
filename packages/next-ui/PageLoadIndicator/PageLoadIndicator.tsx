@@ -1,5 +1,5 @@
 import { LinearProgress, Fade } from '@mui/material'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/compat/router'
 import { useEffect, useState } from 'react'
 
 /**

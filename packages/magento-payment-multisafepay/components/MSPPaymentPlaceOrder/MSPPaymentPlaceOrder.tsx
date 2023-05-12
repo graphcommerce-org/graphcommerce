@@ -7,7 +7,7 @@ import {
   usePaymentMethodContext,
 } from '@graphcommerce/magento-cart-payment-method'
 import { ErrorSnackbar } from '@graphcommerce/next-ui'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/compat/router'
 import { useMSPCartLock } from '../../hooks/useMSPCartLock'
 import { MSPPaymentHandlerDocument } from '../MSPPaymentHandler/MSPPaymentHandler.gql'
 import { MSPPaymentPlaceOrderDocument } from './MSPPaymentPlaceOrder.gql'

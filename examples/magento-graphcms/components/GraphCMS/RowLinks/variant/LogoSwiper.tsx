@@ -1,3 +1,5 @@
+'use client'
+
 import { Asset } from '@graphcommerce/graphcms-ui'
 import { VariantLogoSwiper } from '@graphcommerce/next-ui'
 import { Link } from '@mui/material'

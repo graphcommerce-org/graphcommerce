@@ -12,7 +12,7 @@ import {
   MenuProps as MenuPropsType,
 } from '@mui/material'
 import { m } from 'framer-motion'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/compat/router'
 import React, { useEffect } from 'react'
 import { IconSvg } from '../IconSvg'
 import { useScrollY } from '../Layout/hooks/useScrollY'

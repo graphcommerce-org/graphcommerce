@@ -1,3 +1,5 @@
+'use client'
+
 import { Asset, RichText } from '@graphcommerce/graphcms-ui'
 import { responsiveVal, VariantImageLabelSwiper } from '@graphcommerce/next-ui'
 import { Box, ButtonBase, Typography } from '@mui/material'

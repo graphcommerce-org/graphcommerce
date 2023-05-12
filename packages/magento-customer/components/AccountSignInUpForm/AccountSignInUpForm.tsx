@@ -9,7 +9,7 @@ import {
 import { emailPattern } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
 import { Box, CircularProgress, Link, SxProps, TextField, Theme, Typography } from '@mui/material'
-import router from 'next/router'
+import router from 'next/compat/router'
 import { CustomerDocument, useFormIsEmailAvailable } from '../../hooks'
 import { useCustomerQuery } from '../../hooks/useCustomerQuery'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError'
