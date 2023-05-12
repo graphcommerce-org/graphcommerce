@@ -478,6 +478,9 @@ msgstr "Please check your inbox to validate your email ({email})"
 msgid "Please enter a valid email address"
 msgstr "Please enter a valid email address"
 
+msgid "Please fill out an address to be able to select a shipping method"
+msgstr "Please fill out an address to be able to select a shipping method"
+
 msgid "Please provide a valid house number"
 msgstr "Please provide a valid house number"
 

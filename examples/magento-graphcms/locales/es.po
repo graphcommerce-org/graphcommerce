@@ -478,6 +478,9 @@ msgstr "Por favor, compruebe su bandeja de entrada para validar su correo electr
 msgid "Please enter a valid email address"
 msgstr "Por favor, introduzca una dirección de correo electrónico válida"
 
+msgid "Please fill out an address to be able to select a shipping method"
+msgstr "Por favor, complete una dirección para poder seleccionar un método de envío"
+
 msgid "Please provide a valid house number"
 msgstr "Por favor, proporcione un número de casa válido"
 

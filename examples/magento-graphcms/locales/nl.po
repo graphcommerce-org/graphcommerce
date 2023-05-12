@@ -478,6 +478,9 @@ msgstr "Controleer uw inbox om uw e-mailadres te valideren ({email})"
 msgid "Please enter a valid email address"
 msgstr "Vul een geldig e-mailadres in"
 
+msgid "Please fill out an address to be able to select a shipping method"
+msgstr "Vul een adres in om een verzendmethode te kunnen selecteren"
+
 msgid "Please provide a valid house number"
 msgstr "Vul een geldig huisnummer in"
 

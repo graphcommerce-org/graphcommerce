@@ -478,6 +478,9 @@ msgstr "Bitte überprüfen Sie Ihr Postfach, um Ihre E-Mail-Adresse zu bestätig
 msgid "Please enter a valid email address"
 msgstr "Bitte geben Sie eine gültige E-Mail-Adresse ein"
 
+msgid "Please fill out an address to be able to select a shipping method"
+msgstr "Bitte geben Sie eine Adresse ein, um eine Versandart auswählen zu können"
+
 msgid "Please provide a valid house number"
 msgstr "Bitte geben Sie eine gültige Hausnummer an"
 

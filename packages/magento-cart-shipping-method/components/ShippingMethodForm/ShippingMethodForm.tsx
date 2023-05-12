@@ -94,7 +94,22 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
   useFormCompose({ form, step, submit, key: 'ShippingMethodForm' })
   useFormAutoSubmit({ form, submit, fields: ['carrierMethod'] })
 
-  if (loading || items.length === 0) return null
+  if (loading) return null
+
+  if (items.length === 0) {
+    items.push({
+      disabled: true,
+      value: '',
+      available: false,
+      carrier_code: '',
+      carrier_title: i18n._(
+        /* i18n */ 'Please fill out an address to be able to select a shipping method',
+      ),
+      method_title: '',
+      price_incl_tax: {},
+      price_excl_tax: {},
+    })
+  }
 
   return (
     <FormProvider {...form}>
