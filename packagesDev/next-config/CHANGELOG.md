@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.20
+
+### Patch Changes
+
+- [#1928](https://github.com/graphcommerce-org/graphcommerce/pull/1928) [`09d6a7abd`](https://github.com/graphcommerce-org/graphcommerce/commit/09d6a7abdf44c04a37f59432e9fc0c0722e6df76) - Added number to config value formatter, so Graphcommerce config accepts number values. ([@mikekeehnen](https://github.com/mikekeehnen))
+
 ## 6.2.0-canary.19
 
 ## 6.2.0-canary.18
