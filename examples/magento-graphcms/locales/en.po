@@ -478,6 +478,9 @@ msgstr "Please check your inbox to validate your email ({email})"
 msgid "Please enter a valid email address"
 msgstr "Please enter a valid email address"
 
+msgid "Please fill out an address to be able to select a shipping method"
+msgstr "Please fill out an address to be able to select a shipping method"
+
 msgid "Please provide a valid house number"
 msgstr "Please provide a valid house number"
 
@@ -594,6 +597,9 @@ msgstr "Sign up for our newsletter and stay updated"
 
 msgid "Some items in your cart contain errors, please update or remove them, then try again."
 msgstr "Some items in your cart contain errors, please update or remove them, then try again."
+
+msgid "Sort"
+msgstr "Sort"
 
 msgid "Sort By"
 msgstr "Sort By"
