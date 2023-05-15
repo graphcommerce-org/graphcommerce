@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.19
+
+### Patch Changes
+
+- [#1935](https://github.com/graphcommerce-org/graphcommerce/pull/1935) [`f88789698`](https://github.com/graphcommerce-org/graphcommerce/commit/f88789698098c20556a42c6317ccc5ce287002e2) - Added missing translation for "Sort" ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 6.2.0-canary.18
 
 ## 6.2.0-canary.17
