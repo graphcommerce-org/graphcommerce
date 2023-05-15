@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.18
+
+### Patch Changes
+
+- [#1933](https://github.com/graphcommerce-org/graphcommerce/pull/1933) [`e644887a7`](https://github.com/graphcommerce-org/graphcommerce/commit/e644887a75a3801a8b0dcf39558f56110a51d774) - Updated ReCAPTCHA docs ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 6.2.0-canary.17
 
 ## 6.2.0-canary.16
