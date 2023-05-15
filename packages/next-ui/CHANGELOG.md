@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.17
+
+### Patch Changes
+
+- [#1934](https://github.com/graphcommerce-org/graphcommerce/pull/1934) [`96ac0320a`](https://github.com/graphcommerce-org/graphcommerce/commit/96ac0320a30bc55a6db5d46663d28b552fda4db6) - Fixed floating overlays not closing when clicking beside the overlay ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 6.2.0-canary.16
 
 ### Patch Changes
