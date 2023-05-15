@@ -1,3 +1,5 @@
+'use client'
+
 export * from './CompareFab'
 export * from './CompareListAttributes'
 export * from './CompareListForm'

@@ -1,10 +1,8 @@
 /* eslint-disable arrow-body-style */
 import type { ParsedUrlQuery } from 'querystring'
 import { mergeDeep } from '@graphcommerce/graphql'
-import type { GraphCommerceStorefrontConfig, MethodPlugin } from '@graphcommerce/next-config'
+import type { GraphCommerceStorefrontConfig } from '@graphcommerce/next-config'
 import type {
-  GetServerSideProps,
-  GetServerSidePropsContext,
   GetServerSidePropsResult,
   GetStaticPathsResult,
   GetStaticProps,
@@ -12,10 +10,12 @@ import type {
 } from 'next'
 import type { UnionToIntersection } from 'type-fest'
 import { runInServerContext } from './runInServerContext'
+import { serverOnlyContext } from './serverOnlyContext'
 
 export const storefrontAll = import.meta.graphCommerce.storefront
 
 const storefrontContext = new AsyncLocalStorage<GraphCommerceStorefrontConfig>()
+export const storefrontRsc = serverOnlyContext<GraphCommerceStorefrontConfig | undefined>(undefined)
 
 export function hasProps<
   R extends GetStaticPropsResult<unknown> | GetServerSidePropsResult<unknown>,
@@ -35,28 +35,35 @@ export function redirect(redirect: Redirect['redirect'], revalidate?: Redirect['
 
 /** Get the current storefront config based on the provided locale */
 export const storefrontConfig = () => {
-  const conf = storefrontContext.getStore()
+  const conf = storefrontRsc.get() || storefrontContext.getStore()
 
   if (!conf)
     throw new Error(
-      'Please wrap getStaticProps in enhanceStaticProps or serverSidePropsContext in enhanceServerSideProps',
+      `Configuration not initialized, please make sure to call one of the following functions:
+- getStaticProps in enhanceStaticProps
+- getServerSideProps in enhanceServerSideProps
+- getStaticPaths in enhanceStaticPaths
+- setConfigContext(props) for appDir
+`,
     )
   return conf
 }
 
-const addStorefront: MethodPlugin<typeof runInServerContext> = (
-  prev,
-  storefront,
-  callback,
-  ...args
-) => {
-  const config = storefrontAll.find((l) => l.locale === storefront)
-  if (!config) throw Error(`No storefront config found for locale ${storefront}`)
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-  return storefrontContext.run(config, callback, ...args)
+export function configFromLocale(locale?: string | undefined) {
+  if (!locale) throw Error('No locale found in context')
+
+  const config = storefrontAll.find((l) => l.locale === locale)
+  if (!config) throw Error(`No storefront config found for locale ${locale}`)
+  return config
 }
 
-export type AsyncContextInitializer<T> = () => (cb: () => T) => Promise<void>
+export function setConfigContext(props: any) {
+  const storefront = props?.params?.storefront
+  if (typeof storefront !== 'string')
+    throw Error('Please pass the storefront locale to the context')
+  const config = configFromLocale(storefront)
+  storefrontRsc.set(config)
+}
 
 /**
  * `enhanceStaticProps` introduces additional functionality to the native getStaticProps function:
@@ -78,18 +85,16 @@ export function enhanceStaticProps<
   R = UnionToIntersection<Awaited<ReturnType<GSPArray[number]>>>,
 >(...getStaticPropsArr: GSPArray): (context: Parameters<GSPArray[number]>[0]) => Promise<R> {
   return async (context) => {
-    const { locale } = context
-    if (!locale) throw Error('No locale found in context')
-
-    const config = storefrontAll.find((l) => l.locale === locale)
-    if (!config) throw Error(`No storefront config found for locale ${locale}`)
+    const config = configFromLocale(context.locale)
 
     // Load all getStaticProps methods in parallel with the correct storefront config
     const results = getStaticPropsArr.map((getStaticProps) =>
       storefrontContext.run(
         config,
         () =>
-          runInServerContext(locale, getStaticProps, context) as ReturnType<typeof getStaticProps>,
+          runInServerContext(context.locale, getStaticProps, context) as ReturnType<
+            typeof getStaticProps
+          >,
       ),
     )
 

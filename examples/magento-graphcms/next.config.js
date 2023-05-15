@@ -16,6 +16,7 @@ const nextConfig = {
   },
   experimental: {
     scrollRestoration: true,
+    typedRoutes: true,
   },
   optimizeFonts: false,
   images: {

@@ -7,7 +7,7 @@
   "license": "MIT",
   "main": "index.ts",
   "dependencies": {
-    "@apollo/client": "^3.7.14",
+    "@apollo/client": "^3.8.0-alpha.13",
     "@graphql-mesh/apollo-link": "latest",
     "@graphql-mesh/config": "latest",
     "@graphql-mesh/graphql": "latest",

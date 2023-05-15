@@ -1,4 +1,5 @@
 import { RenderType, TypeRenderer } from '@graphcommerce/next-ui/RenderType'
+import { Simplify } from 'type-fest'
 import { RowBlogContent } from '../Blog/RowBlogContent'
 import { PageContentQueryFragment } from './PageContentQueryFragment.gql'
 import { RowButtonLinkList } from './RowButtonLinkList/RowButtonLinkList'
@@ -31,11 +32,13 @@ const defaultRenderer: Partial<ContentTypeRenderer> = {
   RowLinks,
 }
 
-export type PageProps = RowRendererFragment & {
-  renderer?: Partial<ContentTypeRenderer>
-}
+export type RowRendererProps = Simplify<
+  RowRendererFragment & {
+    renderer?: Partial<ContentTypeRenderer>
+  }
+>
 
-export function RowRenderer(props: PageProps) {
+export function RowRenderer(props: RowRendererProps) {
   const { content, renderer } = props
   const mergedRenderer = { ...defaultRenderer, ...renderer } as ContentTypeRenderer
 

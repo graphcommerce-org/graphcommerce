@@ -1,4 +1,5 @@
 import { graphqlQuery } from '@graphcommerce/graphql-mesh'
+import { urlFromParams } from '@graphcommerce/next-ui/server'
 import {
   HygraphAllPagesDocument,
   HygraphPagesQuery,
@@ -53,12 +54,14 @@ export type HygraphSingePage = { page: HygraphPageFragment }
 export type MaybeHygraphSingePage = { page?: HygraphPageFragment | null }
 
 export function getHygraphPage(
-  params: { url: string } | Promise<{ url: string }>,
+  params: { url: string } | Promise<{ url: string }> | string | Promise<string>,
   additionalProperties?: Promise<object | undefined | null> | object | null,
   cached = false,
 ): GetHygraphPageReturn {
   return {
-    page: (async () =>
-      pageContent((await params).url, cached).then((p) => p.data.pages?.[0] ?? null))(),
+    page: (async () => {
+      const url = urlFromParams(await params)
+      return pageContent(url, cached).then((p) => p.data.pages?.[0] ?? null)
+    })(),
   }
 }

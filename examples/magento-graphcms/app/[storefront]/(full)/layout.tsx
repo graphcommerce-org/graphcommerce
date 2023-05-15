@@ -1,9 +1,7 @@
-import { AnimatePresence } from 'framer-motion'
+import { setConfigContext } from '@graphcommerce/next-ui/server'
 import type { LayoutProps } from '../../../.next/types/app/[storefront]/(full)/layout'
 import { LayoutNavigation } from '../../../components/Layout'
-import { LayoutDocument } from '../../../components/Layout/Layout.gql'
-import { apolloClient } from '../../../lib/graphql/graphqlRsc'
-import { configFromProps } from '../../locale'
+import { getLayout } from '../../../components/Layout/layout'
 
 export function generateStaticParams() {
   return import.meta.graphCommerce.storefront.map((storefront) => ({
@@ -11,10 +9,8 @@ export function generateStaticParams() {
   }))
 }
 
-export default async function RootLayout(props: LayoutProps) {
+export default async (props: LayoutProps) => {
+  setConfigContext(props)
   const { children } = props
-
-  const client = apolloClient(configFromProps(props).locale)
-  const result = await client.query({ query: LayoutDocument })
-  return <LayoutNavigation {...result.data}>{children}</LayoutNavigation>
+  return <LayoutNavigation {...(await getLayout()).props}>{children}</LayoutNavigation>
 }

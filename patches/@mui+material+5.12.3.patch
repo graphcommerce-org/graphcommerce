@@ -1,10 +1,9 @@
 diff --git a/node_modules/@mui/material/modern/index.js b/node_modules/@mui/material/modern/index.js
-index e6353b2..a57ba06 100644
+index f5cad51..34c9dcb 100644
 --- a/node_modules/@mui/material/modern/index.js
 +++ b/node_modules/@mui/material/modern/index.js
-@@ -1,3 +1,5 @@
+@@ -1,3 +1,4 @@
 +'use client'
-+
  /**
-  * @mui/material v5.11.12
+  * @mui/material v5.12.3
   *

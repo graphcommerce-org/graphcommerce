@@ -81,7 +81,7 @@
     "react-dom": "^18.2.0",
     "server-only": "^0.0.1",
     "sharp": "0.31.3",
-    "webpack": "5.82.0"
+    "webpack": "5.82.1"
   },
   "devDependencies": {
     "@graphcommerce/eslint-config-pwa": "6.2.0-canary.13",

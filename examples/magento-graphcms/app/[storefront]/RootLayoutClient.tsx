@@ -25,10 +25,10 @@ type RootLayoutClientProps = {
   children: ReactNode
   messages: Messages
   linguiLocale: string
-} & GraphQLProviderProps
+}
 
 export function RootLayoutClient(props: RootLayoutClientProps) {
-  const { children, messages, locale, linguiLocale } = props
+  const { children, messages, linguiLocale } = props
 
   const i = useMemo(() => {
     i18n.loadLocaleData({ nl: { plurals: nl }, en: { plurals: en } })
@@ -51,7 +51,9 @@ export function RootLayoutClient(props: RootLayoutClientProps) {
           <I18nProvider i18n={i}>
             <DarkLightModeThemeProvider light={lightTheme} dark={darkTheme}>
               <CssBaseline enableColorScheme />
-              <GraphQLProvider {...props}>{children}</GraphQLProvider>
+              {/* <GraphQLProvider {...props}> */}
+              {children}
+              {/* </GraphQLProvider> */}
             </DarkLightModeThemeProvider>
           </I18nProvider>
         </LazyMotion>

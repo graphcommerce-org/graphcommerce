@@ -1,5 +1,3 @@
-'use client'
-
 import { useQuery } from '@graphcommerce/graphql'
 import {
   GlobalHead as GlobalHeadBase,

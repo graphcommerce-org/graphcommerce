@@ -61,7 +61,6 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
   return {
     ...nextConfig,
     experimental: {
-      enableUndici: true,
       ...nextConfig.experimental,
     },
     i18n: {

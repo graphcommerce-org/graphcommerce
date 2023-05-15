@@ -1,3 +1,5 @@
+/* eslint-disable import/no-extraneous-dependencies */
+import { registerApolloClient } from '@apollo/experimental-nextjs-app-support/rsc'
 import {
   NormalizedCacheObject,
   ApolloClient,
@@ -19,7 +21,7 @@ import { MeshApolloLink } from './apolloLink'
 
 const mesh = await getBuiltMesh()
 
-function client(fetchPolicy: FetchPolicy = 'no-cache') {
+function createClient(fetchPolicy: FetchPolicy = 'no-cache') {
   const config = graphqlConfig({ storefront: storefrontConfig() })
 
   return new ApolloClient({
@@ -34,8 +36,12 @@ function client(fetchPolicy: FetchPolicy = 'no-cache') {
       typePolicies: mergeTypePolicies(config.policies),
     }),
     ssrMode: true,
-    name: 'ssr',
-    defaultOptions: { query: { errorPolicy: 'all', fetchPolicy } },
+    defaultOptions: {
+      query: {
+        errorPolicy: 'all',
+        fetchPolicy,
+      },
+    },
   })
 }
 
@@ -50,9 +56,11 @@ const sharedClient: {
 export function graphqlSharedClient() {
   const { locale } = storefrontConfig()
   // Create a client if it doesn't exist for the locale.
-  if (!sharedClient[locale]) sharedClient[locale] = client('cache-first')
+  if (!sharedClient[locale]) sharedClient[locale] = createClient('cache-first')
   return sharedClient[locale]
 }
+
+const { getClient } = registerApolloClient(() => createClient('no-cache'))
 
 const ssrClient: {
   [locale: string]: ApolloClient<NormalizedCacheObject>
@@ -62,7 +70,7 @@ export function graphqlSsrClient() {
   const { locale } = storefrontConfig()
 
   // Create a client if it doesn't exist for the locale.
-  if (!ssrClient[locale]) ssrClient[locale] = client('no-cache')
+  if (!ssrClient[locale]) ssrClient[locale] = createClient('no-cache')
   return ssrClient[locale]
 }
 
@@ -73,7 +81,9 @@ export function graphqlQueryPassToClient<
   query: TypedDocumentNode<Q, V>,
   options?: Omit<QueryOptions<V, Q>, 'query'>,
 ): Promise<ApolloQueryResult<Q>> {
-  return graphqlSharedClient().query({ query, ...options })
+  return getClient()
+    .query({ query, ...options })
+    .then((res) => ({ ...res, data: JSON.parse(JSON.stringify(res.data)) }))
 }
 
 export async function graphqlQuery<
@@ -83,5 +93,7 @@ export async function graphqlQuery<
   query: TypedDocumentNode<Q, V>,
   options?: Omit<QueryOptions<V, Q>, 'query'> | Promise<Omit<QueryOptions<V, Q>, 'query'>>,
 ): Promise<ApolloQueryResult<Q>> {
-  return graphqlSsrClient().query({ query, ...(await options) })
+  return getClient()
+    .query({ query, ...(await options) })
+    .then((res) => ({ ...res, data: JSON.parse(JSON.stringify(res.data)) }))
 }

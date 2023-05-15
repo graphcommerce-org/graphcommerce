@@ -1,3 +1,5 @@
+'use client'
+
 export * from './utils/clientSize'
 
 export * from './utils/styled'
