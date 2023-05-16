@@ -1,10 +1,10 @@
+import { GraphqlAppProvider } from '@graphcommerce/graphql'
 import { graphqlSharedClient } from '@graphcommerce/graphql-mesh'
 import { setConfigContext, storefrontConfig } from '@graphcommerce/next-ui/server'
 import { i18n, Messages } from '@lingui/core'
 import * as all from 'make-plural/plurals'
 import { RootLayoutClient } from './RootLayoutClient'
 import { LayoutProps } from './types'
-import { GraphqlAppProvider } from '@graphcommerce/graphql'
 
 // Generate static parameters for the storefront
 export const generateStaticParams = () =>
@@ -36,12 +36,6 @@ async function loadLocaleData(linguiLocale: string) {
   return localisationConfig.messages
 }
 
-// Fetch the Apollo state for the given locale
-function getApolloState(locale: string) {
-  const client = graphqlSharedClient()
-  return client.cache.extract()
-}
-
 // RootLayout component responsible for rendering the page layout
 export default async (props: LayoutProps) => {
   setConfigContext(props)
@@ -58,7 +52,6 @@ export default async (props: LayoutProps) => {
       <GraphqlAppProvider>
         <RootLayoutClient
           // locale={config.locale}
-          // apolloState={JSON.parse(JSON.stringify(apolloState))}
           messages={messages}
           linguiLocale={linguiLocale}
         >

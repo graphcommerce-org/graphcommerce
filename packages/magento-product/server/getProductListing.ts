@@ -6,7 +6,10 @@ import { ProductFiltersDocument } from '../components/ProductListFilters/Product
 
 export async function getProductListItems(params: Promise<ProductListParams> | ProductListParams) {
   return graphqlQuery(ProductListDocument, {
-    variables: { pageSize: (await storeConfig()).grid_per_page ?? 24, ...(await params) },
+    variables: {
+      pageSize: (await storeConfig()).grid_per_page ?? 24,
+      ...(await params),
+    },
   })
 }
 

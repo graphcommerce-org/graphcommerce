@@ -1,3 +1,5 @@
+'use client'
+
 import { Chip, ChipProps, Menu, MenuProps, menuClasses, SxProps, Theme } from '@mui/material'
 import React, { useState } from 'react'
 import { IconSvg } from '../IconSvg'

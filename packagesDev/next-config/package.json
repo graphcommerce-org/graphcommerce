@@ -26,7 +26,7 @@
     "@types/circular-dependency-plugin": "^5.0.5",
     "@types/cli-table": "^0.3.1",
     "@types/lodash": "^4.14.191",
-    "typescript": "5.0.4"
+    "typescript": "^5.1.0-beta"
   },
   "peerDependencies": {
     "next": "^13.2.0",

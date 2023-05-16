@@ -1,3 +1,5 @@
+'use client'
+
 import { extendableComponent } from '@graphcommerce/next-ui'
 import { Box, SxProps, Theme } from '@mui/material'
 import { CategoryDescriptionFragment } from './CategoryDescription.gql'

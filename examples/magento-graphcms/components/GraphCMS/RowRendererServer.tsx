@@ -1,9 +1,10 @@
-import { GetHygraphPageReturn } from '@graphcommerce/graphcms-ui/server'
+import { HygraphPageFragment } from '@graphcommerce/graphcms-ui'
 import { RowRenderer, RowRendererProps } from './RowRenderer'
 
-type RowRendererServerProps = Omit<RowRendererProps, 'content'> & GetHygraphPageReturn
+type RowRendererServerProps = Omit<RowRendererProps, 'content'> & HygraphPageFragment
 
 export async function RowRendererServer(props: RowRendererServerProps) {
   const { page, ...rest } = props
-  return <RowRenderer content={(await page)?.content} {...rest} />
+  const content = (await page)?.content
+  return content && <RowRenderer content={content} {...rest} />
 }

@@ -44,7 +44,7 @@
     "@graphcommerce/typescript-config-pwa": "6.2.0-canary.13",
     "@types/rimraf": "^3.0.2",
     "react": "^18.2.0",
-    "typescript": "5.0.4"
+    "typescript": "^5.1.0-beta"
   },
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",

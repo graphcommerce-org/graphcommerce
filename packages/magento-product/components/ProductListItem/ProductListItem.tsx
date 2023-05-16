@@ -1,3 +1,5 @@
+'use client'
+
 import { Image, ImageProps } from '@graphcommerce/image'
 import {
   responsiveVal,

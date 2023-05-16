@@ -1,7 +1,6 @@
 'use client'
 
 import { useMeasureDynamicViewportSize } from '@graphcommerce/framer-utils'
-import { GraphQLProvider, GraphQLProviderProps } from '@graphcommerce/graphql'
 import { DarkLightModeThemeProvider } from '@graphcommerce/next-ui'
 import { i18n, Messages } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
@@ -51,9 +50,7 @@ export function RootLayoutClient(props: RootLayoutClientProps) {
           <I18nProvider i18n={i}>
             <DarkLightModeThemeProvider light={lightTheme} dark={darkTheme}>
               <CssBaseline enableColorScheme />
-              {/* <GraphQLProvider {...props}> */}
               {children}
-              {/* </GraphQLProvider> */}
             </DarkLightModeThemeProvider>
           </I18nProvider>
         </LazyMotion>

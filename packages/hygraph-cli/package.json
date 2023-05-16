@@ -27,7 +27,7 @@
     "@graphcommerce/eslint-config-pwa": "6.2.0-canary.13",
     "@graphcommerce/prettier-config-pwa": "6.2.0-canary.13",
     "@graphcommerce/typescript-config-pwa": "6.2.0-canary.13",
-    "typescript": "5.0.4"
+    "typescript": "^5.1.0-beta"
   },
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",

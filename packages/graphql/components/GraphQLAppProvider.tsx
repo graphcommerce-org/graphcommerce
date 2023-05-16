@@ -7,9 +7,12 @@ import {
   SSRMultipartLink,
 } from '@apollo/experimental-nextjs-app-support/ssr'
 import { storefrontConfig } from '@graphcommerce/next-ui'
+import { setVerbosity } from 'ts-invariant'
 import { graphqlConfig } from '../config'
 import fragments from '../generated/fragments.json'
 import { mergeTypePolicies } from './GraphQLProvider/typePolicies'
+
+setVerbosity('debug')
 
 // have a function to create a client for you
 function makeClient() {
@@ -19,7 +22,7 @@ function makeClient() {
   const link = ApolloLink.from([
     ...config.links,
     // The actual Http connection to the Mesh backend.
-    new HttpLink({ uri: '/api/graphql', credentials: 'same-origin' }),
+    new HttpLink({ uri: 'http://localhost:3000/api/graphql', credentials: 'same-origin' }),
   ])
 
   return new ApolloClient({

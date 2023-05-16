@@ -1,3 +1,5 @@
+'use client'
+
 import { Breakpoint, Link, LinkProps, useForkRef } from '@mui/material'
 import React, { useRef } from 'react'
 import type { ConditionalExcept } from 'type-fest'

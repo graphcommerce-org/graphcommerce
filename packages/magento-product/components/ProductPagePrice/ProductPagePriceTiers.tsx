@@ -1,3 +1,5 @@
+'use client'
+
 import { Money } from '@graphcommerce/magento-store'
 import { filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'

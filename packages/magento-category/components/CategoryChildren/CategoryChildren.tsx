@@ -1,3 +1,5 @@
+'use client'
+
 import { Scroller, ScrollerProvider } from '@graphcommerce/framer-scroller'
 import { ProductListLink, ProductListParams } from '@graphcommerce/magento-product'
 import { extendableComponent } from '@graphcommerce/next-ui'

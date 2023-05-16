@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 /** To make renderers customizable we need to be able to provide renders for all types */
 type TypeObject = { __typename: string; [index: string]: unknown }
 
@@ -8,7 +8,7 @@ type FilterTypeByTypename<A extends TypeObject, Typename extends string> = A ext
     : never
   : never
 
-type TypeRenderMethod<P> = (props: P) => React.ReactElement | null
+type TypeRenderMethod<P> = (props: P) => ReactNode
 
 type TypeRenderMap<
   T extends TypeObject,

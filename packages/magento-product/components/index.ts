@@ -1,3 +1,5 @@
+'use client'
+
 export * from './AddProductsToCart'
 export * from './JsonLdProduct/jsonLdProduct'
 export * from './ProductAddToCart'

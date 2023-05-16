@@ -160,7 +160,6 @@ export const getStaticPaths = enhanceStaticPaths<CategoryRoute>('blocking', getC
 
 export const getStaticProps = enhanceStaticProps(getLayout, async (context) => {
   const { params, locale } = context
-
   const categoryPage = getCategoryPage(CategoryPageDocument, context)
 
   const listItems = getProductListItems(categoryPage.params)

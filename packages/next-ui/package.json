@@ -32,7 +32,7 @@
     "@graphcommerce/prettier-config-pwa": "6.2.0-canary.13",
     "@graphcommerce/typescript-config-pwa": "6.2.0-canary.13",
     "@types/cookie": "^0.5.1",
-    "typescript": "5.0.4"
+    "typescript": "^5.1.0-beta"
   },
   "peerDependencies": {
     "@lingui/core": "^3.13.2",

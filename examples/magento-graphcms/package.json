@@ -94,7 +94,7 @@
     "eslint": "8.40.0",
     "prettier": "2.8.8",
     "type-fest": "^3.4.0",
-    "typescript": "5.0.4"
+    "typescript": "^5.1.0-beta"
   },
   "browserslist": [
     "> 1% in alt-EU",

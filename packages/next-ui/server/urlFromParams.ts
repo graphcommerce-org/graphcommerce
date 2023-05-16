@@ -4,7 +4,11 @@ import { ParsedUrlQuery } from 'querystring'
 export function urlFromParams(params?: ParsedUrlQuery | string) {
   if (!params) return ''
   if (typeof params === 'string') return params
-  return Object.values(params)
-    .map((v) => (Array.isArray(v) ? v.join('/') : v))
+
+  return Object.entries(params)
+    .filter(([k]) => k !== 'storefront')
+    .map(([k, v]) =>
+      Array.isArray(v) ? v.map(decodeURIComponent).join('/') : decodeURIComponent(v),
+    )
     .join('/')
 }

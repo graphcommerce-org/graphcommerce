@@ -1,3 +1,5 @@
+'use client'
+
 import { breakpointVal, iconOrderBefore, IconSvg } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box, darken, lighten } from '@mui/material'
