@@ -23,6 +23,7 @@ function GraphCommerceConfigSchema() {
         googleRecaptchaKey: zod_1.z.string().nullish(),
         googleTagmanagerId: zod_1.z.string().nullish(),
         hygraphEndpoint: zod_1.z.string().min(1),
+        hygraphProjectId: zod_1.z.string().nullish(),
         hygraphWriteAccessEndpoint: zod_1.z.string().nullish(),
         hygraphWriteAccessToken: zod_1.z.string().nullish(),
         legacyProductRoute: zod_1.z.boolean().nullish(),
@@ -36,7 +37,7 @@ function GraphCommerceConfigSchema() {
         storefront: zod_1.z.array(GraphCommerceStorefrontConfigSchema()),
         wishlistHideForGuests: zod_1.z.boolean().nullish(),
         wishlistIgnoreProductWishlistStatus: zod_1.z.boolean().nullish(),
-        wishlistShowFeedbackMessage: zod_1.z.boolean().nullish()
+        wishlistShowFeedbackMessage: zod_1.z.boolean().nullish(),
     });
 }
 exports.GraphCommerceConfigSchema = GraphCommerceConfigSchema;
@@ -44,7 +45,7 @@ function GraphCommerceDebugConfigSchema() {
     return zod_1.z.object({
         pluginStatus: zod_1.z.boolean().nullish(),
         webpackCircularDependencyPlugin: zod_1.z.boolean().nullish(),
-        webpackDuplicatesPlugin: zod_1.z.boolean().nullish()
+        webpackDuplicatesPlugin: zod_1.z.boolean().nullish(),
     });
 }
 exports.GraphCommerceDebugConfigSchema = GraphCommerceDebugConfigSchema;
@@ -60,7 +61,7 @@ function GraphCommerceStorefrontConfigSchema() {
         hygraphLocales: zod_1.z.array(zod_1.z.string().min(1)).nullish(),
         linguiLocale: zod_1.z.string().nullish(),
         locale: zod_1.z.string().min(1),
-        magentoStoreCode: zod_1.z.string().min(1)
+        magentoStoreCode: zod_1.z.string().min(1),
     });
 }
 exports.GraphCommerceStorefrontConfigSchema = GraphCommerceStorefrontConfigSchema;
