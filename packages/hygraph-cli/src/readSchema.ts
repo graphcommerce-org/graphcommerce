@@ -2,7 +2,9 @@
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client'
 import { GraphCommerceConfig } from '@graphcommerce/next-config'
 
-export const readSchema = async (config: GraphCommerceConfig, projectId: string) => {
+export const readSchema = async (config: GraphCommerceConfig) => {
+  const projectId = config.hygraphProjectId
+
   if (!config.hygraphWriteAccessToken) {
     throw new Error('Please provide GC_HYGRAPH_WRITE_ACCESS_TOKEN in your env file')
   }

@@ -3,7 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.readSchema = void 0;
 /* eslint-disable import/no-extraneous-dependencies */
 const client_1 = require("@apollo/client");
-const readSchema = async (config, projectId) => {
+const readSchema = async (config) => {
+    const projectId = config.hygraphProjectId;
     if (!config.hygraphWriteAccessToken) {
         throw new Error('Please provide GC_HYGRAPH_WRITE_ACCESS_TOKEN in your env file');
     }
