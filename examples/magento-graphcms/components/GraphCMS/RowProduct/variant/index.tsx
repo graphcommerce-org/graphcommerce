@@ -1,3 +1,5 @@
+'use client'
+
 export { Backstory } from './Backstory'
 export { Feature } from './Feature'
 export { FeatureBoxed } from './FeatureBoxed'

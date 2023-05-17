@@ -29,6 +29,13 @@ import { useRouter } from 'next/compat/router'
 import { Footer } from './Footer'
 import { LayoutQuery } from './Layout.gql'
 import { Logo } from './Logo'
+import { usePathname } from 'next/navigation'
+import {
+  useParams,
+  useSelectedLayoutSegment,
+  useSelectedLayoutSegments,
+  useSearchParams,
+} from 'next/navigation'
 
 export type LayoutNavigationProps = LayoutQuery &
   Omit<LayoutDefaultProps, 'footer' | 'header' | 'cartFab' | 'menuFab'>
@@ -38,6 +45,11 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
 
   const selection = useNavigationSelection()
   const router = useRouter()
+  const pathname = usePathname()
+  const params = useParams()
+  const searchParams = useSearchParams()
+
+  console.log(router?.pathname, pathname, params, [...searchParams?.entries()])
 
   return (
     <>

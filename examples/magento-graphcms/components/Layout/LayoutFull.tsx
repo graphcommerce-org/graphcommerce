@@ -21,6 +21,13 @@ import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Fab } from '@mui/material'
 import { useRouter } from 'next/compat/router'
+import {
+  usePathname,
+  useParams,
+  useSelectedLayoutSegments,
+  useSelectedLayoutSegment,
+  useSearchParams,
+} from 'next/navigation'
 import { Footer } from './Footer'
 import { LayoutQuery } from './Layout.gql'
 import { Logo } from './Logo'
@@ -32,6 +39,14 @@ export function LayoutFull(props: LayoutFullProps) {
   const { footer, menu, children, ...uiProps } = props
 
   const router = useRouter()
+  const pathname = usePathname()
+  const params = useParams()
+  const segment = useSelectedLayoutSegment()
+  const segments = useSelectedLayoutSegments()
+  const searchParams = useSearchParams()
+
+  console.log(router?.pathname, pathname, params, segment, segments, searchParams)
+
   const menuItemsIncludeInMenu = menu?.items?.filter((items) => items?.include_in_menu === 1)
 
   return (
@@ -57,7 +72,7 @@ export function LayoutFull(props: LayoutFullProps) {
             </DesktopNavItem>
           </DesktopNavBar>
           <DesktopNavActions>
-            {!router.pathname.startsWith('/search') && (
+            {!router?.pathname.startsWith('/search') && (
               <SearchLink href='/search' aria-label={i18n._(/* i18n */ 'Search...')} />
             )}
             <Fab

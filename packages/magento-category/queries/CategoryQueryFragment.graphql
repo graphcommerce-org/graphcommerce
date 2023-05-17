@@ -2,6 +2,7 @@ fragment CategoryQueryFragment on Query {
   categories(filters: { url_path: { eq: $url } }) {
     items {
       uid
+      product_count
       ...CategoryBreadcrumb
       ...CategoryDescription
       ...CategoryChildren

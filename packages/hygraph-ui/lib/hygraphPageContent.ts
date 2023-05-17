@@ -30,7 +30,10 @@ async function pageContent(url: string, cached: boolean): Promise<{ data: Hygrap
   const alwaysCache = process.env.NODE_ENV !== 'development' ? 'cache-first' : undefined
   const fetchPolicy = cached ? alwaysCache : undefined
 
-  const allRoutes = await graphqlQuery(HygraphAllPagesDocument, { fetchPolicy })
+  const allRoutes = await graphqlQuery(HygraphAllPagesDocument, {
+    fetchPolicy,
+    cache: 'force-cache',
+  })
 
   // Only do the query when there the page is found in the allRoutes
   const found = allRoutes.data.pages.some((page) => page.url === url)

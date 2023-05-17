@@ -86,6 +86,7 @@ export function enhanceStaticProps<
 >(...getStaticPropsArr: GSPArray): (context: Parameters<GSPArray[number]>[0]) => Promise<R> {
   return async (context) => {
     const config = configFromLocale(context.locale)
+    storefrontRsc.set(config)
 
     // Load all getStaticProps methods in parallel with the correct storefront config
     const results = getStaticPropsArr.map((getStaticProps) =>

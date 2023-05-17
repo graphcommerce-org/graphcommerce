@@ -1,4 +1,5 @@
-import { AddProductsToCartForm, RelatedProductsFragment } from '@graphcommerce/magento-product'
+import { AddProductsToCartForm } from '@graphcommerce/magento-product'
+import type { RelatedProductsFragment } from '@graphcommerce/magento-product/server'
 import {
   SidebarSlider,
   RenderType,

@@ -1,5 +1,5 @@
 import { RenderType, TypeRenderer } from '@graphcommerce/next-ui/RenderType'
-import { Simplify } from 'type-fest'
+import type { Simplify } from 'type-fest'
 import { RowBlogContent } from '../Blog/RowBlogContent'
 import { PageContentQueryFragment } from './PageContentQueryFragment.gql'
 import { RowButtonLinkList } from './RowButtonLinkList/RowButtonLinkList'

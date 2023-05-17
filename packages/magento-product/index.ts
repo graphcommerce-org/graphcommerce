@@ -1,5 +1,4 @@
 export * from './components'
-export * from './components/server'
 export * from './Api/ProductListItem.gql'
 export * from './Api/ProductPageItem.gql'
 export * from './hooks/useProductLink'

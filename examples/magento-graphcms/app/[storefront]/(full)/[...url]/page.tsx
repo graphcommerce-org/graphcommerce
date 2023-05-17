@@ -1,3 +1,11 @@
+import { Asset } from '@graphcommerce/graphcms-ui'
+import { getHygraphPage } from '@graphcommerce/graphcms-ui/server'
+import {
+  CategoryChildren,
+  CategoryDescription,
+  CategoryHeroNav,
+  CategoryHeroNavTitle,
+} from '@graphcommerce/magento-category'
 import { getCategoryPage } from '@graphcommerce/magento-category/server'
 import {
   ProductFiltersPro,
@@ -10,81 +18,214 @@ import {
   ProductListSort,
   ProductListFilters,
   ProductListCount,
-  ProductListItems,
   ProductListPagination,
 } from '@graphcommerce/magento-product'
-import { getProductListFilters, getProductListItems } from '@graphcommerce/magento-product/server'
-import { StickyBelowHeader } from '@graphcommerce/next-ui'
+import {
+  getPageSize,
+  getProductListFilters,
+  getProductListItems,
+} from '@graphcommerce/magento-product/server'
+import { LayoutHeader, LayoutTitle, StickyBelowHeader } from '@graphcommerce/next-ui'
 import { setConfigContext } from '@graphcommerce/next-ui/server'
-import { Container } from '@mui/material'
+import { Container, Skeleton } from '@mui/material'
+import { Metadata } from 'next'
+import { Suspense } from 'react'
+import { RowRenderer } from '../../../../components/GraphCMS'
 import { CategoryPageDocument } from '../../../../graphql/CategoryPage.gql'
 import { PageProps } from '../../types'
+import { ProductListItems } from '../../../../components'
+import { getLayout } from '../../../../components/Layout/layout'
+import { notFound } from 'next/navigation'
+
+// export const revalidate = 0
+
+export const generateMetadata = async (props: PageProps) => {
+  setConfigContext(props)
+  const categoryPage = getCategoryPage(CategoryPageDocument, props)
+
+  const category = await categoryPage.category
+
+  return {
+    title: category?.meta_title ?? category?.name,
+    description: category?.meta_description,
+  } satisfies Metadata
+}
 
 export default async (props: PageProps) => {
-  const { params } = props
   setConfigContext(props)
 
   const categoryPage = getCategoryPage(CategoryPageDocument, props)
+
+  const hygraphPage = getHygraphPage(categoryPage.params, categoryPage.category)
   const category = await categoryPage.category
+  const params = await categoryPage.params
+  const filterTypes = await categoryPage.filterTypes
+
   const isLanding = category?.display_mode === 'PAGE'
   const isCategory = params && category && (await categoryPage.filterTypes)
 
-  if (!isCategory || isLanding) return null
+  const page = await hygraphPage.page
+  if (!category && !page) return notFound()
 
-  const listItems = getProductListItems(categoryPage.params)
-  const filters = getProductListFilters(categoryPage.params)
+  const listItems = getProductListItems(params)
+  const listFilters = getProductListFilters(params)
+
+  const pageSize = await getPageSize(params)
+  const ProductListSkeleton = () => (
+    <>
+      <StickyBelowHeader>
+        {import.meta.graphCommerce.productFiltersPro ? (
+          <ProductFiltersPro params={params}>
+            <ProductListFiltersContainer>
+              <ProductFiltersProFilterChips
+                aggregations={Object.entries(filterTypes)
+                  .slice(0, 9)
+                  .map(([attribute_code]) => ({
+                    attribute_code,
+                    label: <Skeleton variant='text' width={attribute_code.length * 7} />,
+                  }))}
+                filterTypes={filterTypes}
+              />
+            </ProductListFiltersContainer>
+          </ProductFiltersPro>
+        ) : (
+          <ProductListParamsProvider value={params}>
+            <ProductListFiltersContainer>
+              <ProductListSort />
+              <ProductListFilters filterTypes={filterTypes} />
+            </ProductListFiltersContainer>
+          </ProductListParamsProvider>
+        )}
+      </StickyBelowHeader>
+      <Container maxWidth={false}>
+        <ProductListCount total_count={category?.product_count} />
+        <ProductListItems
+          title={category?.name ?? ''}
+          items={Array(pageSize)
+            .fill(0)
+            .map((v, index) => ({
+              uid: `${index}`,
+              __typename: 'VirtualProduct',
+              name: '',
+              rating_summary: 0,
+              price_range: { minimum_price: { final_price: {}, regular_price: {} } },
+            }))}
+          loadingEager={1}
+        />
+        <ProductListPagination
+          page_info={{ current_page: params.currentPage, total_pages: 1 }}
+          params={params}
+        />
+      </Container>
+    </>
+  )
+
+  const ProductList = async () => {
+    const { filters } = (await listFilters).data
+    const { products } = (await listItems).data
+
+    return (
+      <>
+        <StickyBelowHeader>
+          {import.meta.graphCommerce.productFiltersPro ? (
+            <ProductFiltersPro params={params}>
+              <ProductListFiltersContainer>
+                <ProductFiltersProFilterChips
+                  {...filters}
+                  appliedAggregations={products?.aggregations}
+                  filterTypes={filterTypes}
+                />
+                <ProductFiltersProSortChip {...products} />
+                <ProductFiltersProLimitChip />
+                <ProductFiltersProAllFiltersChip
+                  {...products}
+                  {...filters}
+                  appliedAggregations={products?.aggregations}
+                  filterTypes={filterTypes}
+                />
+              </ProductListFiltersContainer>
+            </ProductFiltersPro>
+          ) : (
+            <ProductListParamsProvider value={params}>
+              <ProductListFiltersContainer>
+                <ProductListSort
+                  sort_fields={products?.sort_fields}
+                  total_count={products?.total_count}
+                />
+                <ProductListFilters {...filters} filterTypes={filterTypes} />
+              </ProductListFiltersContainer>
+            </ProductListParamsProvider>
+          )}
+        </StickyBelowHeader>
+        <Container maxWidth={false}>
+          <ProductListCount total_count={products?.total_count} />
+          <ProductListItems title={category?.name ?? ''} items={products?.items} loadingEager={1} />
+          <ProductListPagination page_info={products?.page_info} params={params} />
+        </Container>
+      </>
+    )
+  }
 
   return (
     <>
+      <LayoutHeader floatingMd floatingSm />
+
+      <LayoutHeader floatingMd>
+        <LayoutTitle size='small' component='span'>
+          {category?.name ?? page?.title}
+        </LayoutTitle>
+      </LayoutHeader>
+
+      {!isLanding && (
+        <Container maxWidth={false}>
+          <LayoutTitle
+            variant='h1'
+            gutterTop
+            sx={{ marginBottom: category?.description && `var(--spacings-md)` }}
+            gutterBottom={
+              !isCategory || (!category?.description && category?.children?.length === 0)
+            }
+          >
+            {category?.name ?? page?.title}
+          </LayoutTitle>
+        </Container>
+      )}
+
+      {isCategory && isLanding && (
+        <CategoryHeroNav
+          {...category}
+          asset={page?.asset && <Asset asset={page.asset} loading='eager' />}
+          title={<CategoryHeroNavTitle>{category?.name}</CategoryHeroNavTitle>}
+        />
+      )}
+
       {isCategory && !isLanding && (
         <>
-          <StickyBelowHeader>
-            {import.meta.graphCommerce.productFiltersPro ? (
-              <ProductFiltersPro params={await categoryPage.params}>
-                <ProductListFiltersContainer>
-                  <ProductFiltersProFilterChips
-                    {...(await filters).data.filters}
-                    appliedAggregations={(await listItems).data.products?.aggregations}
-                    filterTypes={await categoryPage.filterTypes}
-                  />
-                  <ProductFiltersProSortChip {...(await listItems).data.products} />
-                  <ProductFiltersProLimitChip />
-                  <ProductFiltersProAllFiltersChip
-                    {...(await listItems).data.products}
-                    {...(await filters).data.filters}
-                    appliedAggregations={(await listItems).data.products?.aggregations}
-                    filterTypes={await categoryPage.filterTypes}
-                  />
-                </ProductListFiltersContainer>
-              </ProductFiltersPro>
-            ) : (
-              <ProductListParamsProvider value={await categoryPage.params}>
-                <ProductListFiltersContainer>
-                  <ProductListSort
-                    sort_fields={(await listItems).data.products?.sort_fields}
-                    total_count={(await listItems).data.products?.total_count}
-                  />
-                  <ProductListFilters
-                    {...(await filters).data.filters}
-                    filterTypes={await categoryPage.filterTypes}
-                  />
-                </ProductListFiltersContainer>
-              </ProductListParamsProvider>
-            )}
-          </StickyBelowHeader>
-          <Container maxWidth={false}>
-            <ProductListCount total_count={(await listItems).data.products?.total_count} />
-            <ProductListItems
-              title={category.name ?? ''}
-              items={(await listItems).data.products?.items}
-              loadingEager={1}
-            />
-            <ProductListPagination
-              page_info={(await listItems).data.products?.page_info}
-              params={await categoryPage.params}
-            />
-          </Container>
+          <CategoryDescription description={category.description} />
+          <CategoryChildren params={params}>{category.children}</CategoryChildren>
+
+          <Suspense fallback={<ProductListSkeleton />}>
+            <ProductList />
+          </Suspense>
         </>
+      )}
+
+      {page && (
+        <RowRenderer
+          {...page}
+          // renderer={{
+          //   RowProduct: async (rowProps) => {
+          //     const listItems = getProductListItems(params)
+          //     return (
+          //       <RowProduct
+          //         {...rowProps}
+          //         {...(await listItems).data.products?.items?.[0]}
+          //         items={(await listItems).data.products?.items?.slice(0, 8)}
+          //       />
+          //     )
+          //   },
+          // }}
+        />
       )}
     </>
   )

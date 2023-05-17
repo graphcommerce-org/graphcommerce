@@ -1,4 +1,5 @@
-import { AddProductsToCartForm, UpsellProductsFragment } from '@graphcommerce/magento-product'
+import { AddProductsToCartForm } from '@graphcommerce/magento-product'
+import type { UpsellProductsFragment } from '@graphcommerce/magento-product/server'
 import {
   SidebarSlider,
   RenderType,

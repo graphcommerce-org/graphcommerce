@@ -4,10 +4,10 @@ import { ProductListDocument } from '@graphcommerce/magento-product'
 import { LayoutHeader } from '@graphcommerce/next-ui'
 import { setConfigContext } from '@graphcommerce/next-ui/server'
 import { Metadata } from 'next'
-import { RowProduct } from '../../../components'
+import { notFound } from 'next/navigation'
+import { RowProduct, RowRenderer } from '../../../components'
 import { RowRendererServer } from '../../../components/GraphCMS/RowRendererServer'
 import { PageProps } from '../types'
-import { notFound } from 'next/navigation'
 
 export const generateMetadata = async (props) => {
   setConfigContext(props)
@@ -21,7 +21,7 @@ export const generateMetadata = async (props) => {
 
 export default async (props: PageProps) => {
   setConfigContext(props)
-  const page = getHygraphPage('page/home')
+  const hygraphPage = getHygraphPage('page/home')
 
   const favoritesList = graphqlQuery(ProductListDocument, {
     variables: { pageSize: 8, filters: { category_uid: { eq: 'MTIx' } } },
@@ -37,25 +37,28 @@ export default async (props: PageProps) => {
   const favorite = favoritesList.then((r) => r.data?.products?.items)
   const swipable = swipableList.then((r) => r.data?.products?.items)
 
-  if (!(await page.page)) notFound()
+  const page = await hygraphPage.page
+  if (!page) notFound()
 
   return (
     <>
       <LayoutHeader floatingMd floatingSm />
 
-      <RowRendererServer
-        {...page}
-        renderer={{
-          RowProduct: async (rowProps) => {
-            const { identity } = rowProps
-            if (identity === 'home-latest')
-              return <RowProduct {...rowProps} {...await latest[0]} items={await latest} />
-            if (identity === 'home-swipable')
-              return <RowProduct {...rowProps} {...await swipable[0]} items={await swipable} />
-            return <RowProduct {...rowProps} {...await favorite[0]} items={await favorite} />
-          },
-        }}
-      />
+      {page && (
+        <RowRenderer
+          {...page}
+          // renderer={{
+          //   RowProduct: async (rowProps) => {
+          //     const { identity } = rowProps
+          //     if (identity === 'home-latest')
+          //       return <RowProduct {...rowProps} {...await latest[0]} items={await latest} />
+          //     if (identity === 'home-swipable')
+          //       return <RowProduct {...rowProps} {...await swipable[0]} items={await swipable} />
+          //     return <RowProduct {...rowProps} {...await favorite[0]} items={await favorite} />
+          //   },
+          // }}
+        />
+      )}
     </>
   )
 }

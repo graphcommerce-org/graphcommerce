@@ -1,5 +1,4 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { hygraphPageContent } from '@graphcommerce/graphcms-ui/server'
 import { mergeDeep } from '@graphcommerce/graphql'
 import { graphqlQuery } from '@graphcommerce/graphql-mesh'
@@ -7,7 +6,6 @@ import {
   AddProductsToCartButton,
   AddProductsToCartError,
   AddProductsToCartForm,
-  AddProductsToCartFormProps,
   AddProductsToCartQuantity,
   jsonLdProduct,
   jsonLdProductOffer,
@@ -46,18 +44,11 @@ import {
 import { Trans } from '@lingui/react'
 import { Divider, Link, Typography } from '@mui/material'
 import { InferGetStaticPropsType } from 'next'
+import React from 'react'
 import { LayoutNavigation, RowProduct, RowRenderer, Usps } from '../../components'
-import { LayoutDocument } from '../../components/Layout/Layout.gql'
-import { UspsDocument, UspsQuery } from '../../components/Usps/Usps.gql'
-import { ProductPage2Document, ProductPage2Query } from '../../graphql/ProductPage2.gql'
 import { getLayout } from '../../components/Layout/layout'
-
-type Props = HygraphPagesQuery &
-  UspsQuery &
-  ProductPage2Query &
-  Pick<AddProductsToCartFormProps, 'defaultValues'>
-
-type RouteProps = { url: string }
+import { UspsDocument } from '../../components/Usps/Usps.gql'
+import { ProductPage2Document } from '../../graphql/ProductPage2.gql'
 
 function ProductPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const { products, relatedUpsells, usps, sidebarUsps, pages, defaultValues } = props
@@ -206,8 +197,9 @@ export const getStaticPaths = enhanceStaticPaths('blocking', getProductStaticPat
 export const getStaticProps = enhanceStaticProps(getLayout, async ({ params, locale }) => {
   const urlKey = urlFromParams(params)
 
-  const layout = graphqlQuery(LayoutDocument, { fetchPolicy: 'cache-first' })
-  const productPage = graphqlQuery(ProductPage2Document, { variables: { urlKey } })
+  const productPage = graphqlQuery(ProductPage2Document, {
+    variables: { urlKey },
+  })
 
   const product = productPage.then((pp) =>
     pp.data.products?.items?.find((p) => p?.url_key === urlKey),
@@ -221,12 +213,11 @@ export const getStaticProps = enhanceStaticProps(getLayout, async ({ params, loc
     category?.url_path && category?.name
       ? { href: `/${category.url_path}`, title: category.name }
       : { href: `/`, title: 'Home' }
-  const usps = graphqlQuery(UspsDocument, { fetchPolicy: 'cache-first' })
+  const usps = graphqlQuery(UspsDocument)
 
   return {
     props: {
       ...defaultConfigurableOptionsSelection(urlKey, (await productPage).data),
-      ...(await layout).data,
       ...(await pages).data,
       ...(await usps).data,
       up,

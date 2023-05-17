@@ -44,7 +44,6 @@ export default async (props: LayoutProps) => {
   const config = storefrontConfig()
   const linguiLocale = config.linguiLocale ?? config.locale.split('-')[0]
   const messages = await loadLocaleData(linguiLocale)
-  // const apolloState = getApolloState(config.locale)
 
   return (
     <html lang={props.params.storefront}>

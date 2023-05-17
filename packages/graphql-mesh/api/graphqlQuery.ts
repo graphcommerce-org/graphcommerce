@@ -60,7 +60,7 @@ export function graphqlSharedClient() {
   return sharedClient[locale]
 }
 
-const { getClient } = registerApolloClient(() => createClient('no-cache'))
+const { getClient } = registerApolloClient(() => createClient('cache-first'))
 
 const ssrClient: {
   [locale: string]: ApolloClient<NormalizedCacheObject>
@@ -70,7 +70,7 @@ export function graphqlSsrClient() {
   const { locale } = storefrontConfig()
 
   // Create a client if it doesn't exist for the locale.
-  if (!ssrClient[locale]) ssrClient[locale] = createClient('no-cache')
+  if (!ssrClient[locale]) ssrClient[locale] = createClient('cache-first')
   return ssrClient[locale]
 }
 
@@ -86,14 +86,40 @@ export function graphqlQueryPassToClient<
     .then((res) => ({ ...res, data: JSON.parse(JSON.stringify(res.data)) }))
 }
 
+type CacheAndRevalidate = {
+  cache?: 'force-cache' | 'no-store'
+  revalidate?: NextFetchRequestConfig['revalidate']
+  tags?: NextFetchRequestConfig['tags']
+}
+
 export async function graphqlQuery<
   Q = Record<string, unknown>,
   V extends Record<string, unknown> = Record<string, unknown>,
+  O extends CacheAndRevalidate &
+    Omit<QueryOptions<V, Q>, 'query' | 'fetchPolicy'> = CacheAndRevalidate &
+    Omit<QueryOptions<V, Q>, 'query' | 'fetchPolicy'>,
 >(
   query: TypedDocumentNode<Q, V>,
-  options?: Omit<QueryOptions<V, Q>, 'query'> | Promise<Omit<QueryOptions<V, Q>, 'query'>>,
+  options: O | Promise<O | undefined> | undefined,
 ): Promise<ApolloQueryResult<Q>> {
+  const { revalidate, tags, cache, context, ...rest } = (await options) || {}
+
+  // Automatically add tags to the request headers.
+
   return getClient()
-    .query({ query, ...(await options) })
-    .then((res) => ({ ...res, data: JSON.parse(JSON.stringify(res.data)) }))
+    .query({
+      query,
+      ...rest,
+      context: {
+        ...(context ?? {}),
+        headers: {
+          'x-fetch': `${cache ?? ''} ${revalidate || ''} ${tags?.join(' ') || ''}`,
+          ...(context?.headers ?? {}),
+        },
+      },
+    })
+    .then((res) => ({
+      ...res,
+      data: res?.data ? JSON.parse(JSON.stringify(res.data)) : null,
+    }))
 }

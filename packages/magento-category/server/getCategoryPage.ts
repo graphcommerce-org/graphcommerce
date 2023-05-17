@@ -34,7 +34,7 @@ export function getCategoryPage<Q extends CategoryQueryFragment>(
 
   const categoryQuery = graphqlQuery(
     document,
-    paramsPromise.then((p) => ({ variables: { url: p.url } })),
+    paramsPromise.then((p) => ({ variables: { url: p.url }, cache: 'no-cache' })),
   )
 
   const category = categoryQuery.then((res) => res.data.categories?.items?.[0] ?? null)
