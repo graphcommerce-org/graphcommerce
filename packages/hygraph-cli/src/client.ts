@@ -1,20 +1,14 @@
-import { loadConfig } from '@graphcommerce/next-config'
+import { GraphCommerceConfig } from '@graphcommerce/next-config'
 import { Client } from '@hygraph/management-sdk'
-// eslint-disable-next-line import/no-extraneous-dependencies
-import dotenv from 'dotenv'
 
-dotenv.config()
-
-export const initClient = (name: string | undefined) => {
-  const config = loadConfig(process.cwd())
-
+export const initClient = (config: GraphCommerceConfig, name: string | undefined) => {
   if (!config.hygraphWriteAccessEndpoint) {
     throw new Error(
-      'Please provide hygraphWriteAccessEndpoint in your config or GC_HYGRAPH_WRITE_ACCESS_ENDPOINT in your env',
+      'Please provide hygraphWriteAccessEndpoint in your config or GC_HYGRAPH_WRITE_ACCESS_ENDPOINT in your env file',
     )
   }
   if (!config.hygraphWriteAccessToken) {
-    throw new Error('Please provide GC_HYGRAPH_WRITE_ACCESS_TOKEN in your env')
+    throw new Error('Please provide GC_HYGRAPH_WRITE_ACCESS_TOKEN in your env file')
   }
 
   return new Client({

@@ -1,6 +1,8 @@
 /* eslint-disable no-console */
 /* eslint-disable import/no-extraneous-dependencies */
+import { loadConfig } from '@graphcommerce/next-config'
 import { MigrationInfo } from '@hygraph/management-sdk/dist/ManagementAPIClient'
+import dotenv from 'dotenv'
 import prompts, { PromptObject } from 'prompts'
 import {
   dynamicRow,
@@ -10,9 +12,21 @@ import {
   removeRowColumnTwo,
   removeRowLinks,
 } from './migrations'
+import { readSchema } from './readSchema'
+
+dotenv.config()
 
 export async function migrateHygraph() {
   const forceRun = true
+  const config = loadConfig(process.cwd())
+
+  console.log(config)
+  const schema = await readSchema(config, '5ab6c64a47454852a2dc359d765bd885')
+  const { models, components, enumerations } = schema.viewer.project.environment.contentModel
+
+  console.log(10, models)
+  console.log(20, components)
+  console.log(30, enumerations)
 
   const possibleMigrations: [string, (name: string | undefined) => Promise<MigrationInfo>][] = [
     ['Dynamic Rows', dynamicRow],
@@ -45,7 +59,7 @@ export async function migrateHygraph() {
 
     try {
       // eslint-disable-next-line no-await-in-loop
-      const result = await migration(forceRun ? undefined : name)
+      const result = await migration(config, forceRun ? undefined : name)
       console.log(result)
       if (result.status !== 'SUCCESS') {
         throw new Error(
@@ -75,6 +89,7 @@ export async function migrateHygraph() {
  * 1. Read out the current model => //? This can be done with the Management API viewer prop
  * 2. Read out the current GC version
  * 3. Read out the desired GC version
- * 4. Calculate the necessary migrations
- * 5. Run the migrations, no errors should occur
+ * 4. Design a model per minor version of Graphcommerce e.g. 2.4.x, 2.5.x, 2.6.x
+ * 5. Calculate the necessary migrations
+ * 6. Run the migrations, no errors should occur
  */

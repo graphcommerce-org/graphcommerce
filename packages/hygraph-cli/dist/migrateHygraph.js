@@ -4,10 +4,23 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.migrateHygraph = void 0;
+/* eslint-disable no-console */
+/* eslint-disable import/no-extraneous-dependencies */
+const next_config_1 = require("@graphcommerce/next-config");
+const dotenv_1 = __importDefault(require("dotenv"));
 const prompts_1 = __importDefault(require("prompts"));
 const migrations_1 = require("./migrations");
+const readSchema_1 = require("./readSchema");
+dotenv_1.default.config();
 async function migrateHygraph() {
     const forceRun = true;
+    const config = (0, next_config_1.loadConfig)(process.cwd());
+    console.log(config);
+    const schema = await (0, readSchema_1.readSchema)(config, '5ab6c64a47454852a2dc359d765bd885');
+    const { models, components, enumerations } = schema.viewer.project.environment.contentModel;
+    console.log(10, models);
+    console.log(20, components);
+    console.log(30, enumerations);
     const possibleMigrations = [
         ['Dynamic Rows', migrations_1.dynamicRow],
         ['Upgrade to GraphCommerce 6', migrations_1.GraphCommerce6],
@@ -35,7 +48,7 @@ async function migrateHygraph() {
         console.log(`You have selected the ${response.selectedMigration.name} migration`);
         try {
             // eslint-disable-next-line no-await-in-loop
-            const result = await migration(forceRun ? undefined : name);
+            const result = await migration(config, forceRun ? undefined : name);
             console.log(result);
             if (result.status !== 'SUCCESS') {
                 throw new Error(`[GraphCommerce]: Migration not successful: ${result.status} ${name}:\n${result.errors}`);
@@ -65,6 +78,7 @@ exports.migrateHygraph = migrateHygraph;
  * 1. Read out the current model => //? This can be done with the Management API viewer prop
  * 2. Read out the current GC version
  * 3. Read out the desired GC version
- * 4. Calculate the necessary migrations
- * 5. Run the migrations, no errors should occur
+ * 4. Design a model per minor version of Graphcommerce e.g. 2.4.x, 2.5.x, 2.6.x
+ * 5. Calculate the necessary migrations
+ * 6. Run the migrations, no errors should occur
  */
