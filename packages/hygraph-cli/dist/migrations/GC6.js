@@ -21,187 +21,172 @@ const GraphCommerce6 = async (name) => {
         endpoint: config.hygraphWriteAccessEndpoint,
         name,
     });
-    // ? ENUMERATIONS
-    client.createEnumeration({
-        displayName: 'Dynamic Row Condition Number Operator',
-        apiId: 'DynamicRowConditionNumberOperator',
-        values: [
-            { displayName: 'Greater than or equal to', apiId: 'GTE' },
-            { displayName: 'Less than or equal to', apiId: 'LTE' },
-            { displayName: 'Equal to', apiId: 'EQUAL' },
-        ],
-    });
-    client.createEnumeration({
-        displayName: 'Dynamic Row Placement',
-        apiId: 'DynamicRowPlacement',
-        values: [
-            { displayName: 'Before', apiId: 'BEFORE' },
-            { displayName: 'After', apiId: 'AFTER' },
-            { displayName: 'Replace', apiId: 'REPLACE' },
-        ],
-    });
-    // ? COMPONENTS
-    client.createComponent({
-        displayName: 'Text',
-        apiId: 'ConditionText',
-        apiIdPlural: 'ConditionTexts',
-    });
-    client.createComponent({
-        displayName: 'Number',
-        apiId: 'ConditionNumber',
-        apiIdPlural: 'ConditionNumbers',
-    });
-    client.createComponent({
-        displayName: 'AND',
-        apiId: 'ConditionAnd',
-        apiIdPlural: 'ConditionAnds',
-        description: 'All of these conditions must match',
-    });
-    client.createComponent({
-        displayName: 'OR',
-        apiId: 'ConditionOr',
-        apiIdPlural: 'ConditionOrs',
-        description: 'One of these conditions must match',
-    });
-    client.createComponentUnionField({
-        displayName: 'Conditions',
-        apiId: 'conditions',
-        parentApiId: 'ConditionAnd',
-        componentApiIds: ['ConditionOr', 'ConditionText', 'ConditionNumber'],
-        isList: true,
-    });
-    client.createComponentUnionField({
-        displayName: 'Conditions',
-        apiId: 'conditions',
-        parentApiId: 'ConditionOr',
-        componentApiIds: ['ConditionText', 'ConditionNumber'],
-        isList: true,
-    });
-    client.createSimpleField({
-        displayName: 'Property',
-        apiId: 'property',
-        type: management_sdk_1.SimpleFieldType.String,
-        parentApiId: 'ConditionText',
-        description: 'Path to the value of the object being evaluated.\n\nFor products: url_key, category, sku',
-        isRequired: true,
-        validations: {
-            String: {
-                matches: {
-                    flags: ['i', 's'],
-                    regex: '^[a-z0-9-_.]+$',
-                    errorMessage: 'Only letters, numbers, dashes (-), underscores (_) or dots allowed (.)',
-                },
-            },
-        },
-    });
-    client.createSimpleField({
-        displayName: 'Value',
-        apiId: 'value',
-        type: management_sdk_1.SimpleFieldType.String,
-        parentApiId: 'ConditionText',
-        isRequired: true,
-    });
-    client.createSimpleField({
-        displayName: 'Property',
-        apiId: 'property',
-        type: management_sdk_1.SimpleFieldType.String,
-        parentApiId: 'ConditionNumber',
-        isRequired: true,
-        validations: {
-            String: {
-                matches: {
-                    flags: ['i', 's'],
-                    regex: '^[a-z0-9-_.]+$',
-                    errorMessage: 'Only letters, numbers, dashes (-), underscores (_) or dots allowed (.)',
-                },
-            },
-        },
-    });
-    client.createEnumerableField({
-        displayName: 'Operator',
-        apiId: 'operator',
-        parentApiId: 'ConditionNumber',
-        enumerationApiId: 'DynamicRowConditionNumberOperator',
-        isRequired: true,
-    });
-    client.createSimpleField({
-        displayName: 'Value',
-        apiId: 'value',
-        type: management_sdk_1.SimpleFieldType.Float,
-        parentApiId: 'ConditionNumber',
-        isRequired: true,
-    });
-    // ? MODEL
+    // DEV PURPOSES
+    // client.deleteEnumeration({ apiId: 'RowLinksVariants' })
+    // remove embeds
+    // client.deleteModel({ apiId: 'RowColumnOne' })
     client.createModel({
-        apiId: 'DynamicRow',
-        apiIdPlural: 'DynamicRows',
-        displayName: 'Dynamic Row',
-        description: 'Dynamic rows allow you to add specific Row models to pages based on the properties of the page',
+        apiId: 'RowColumnOne',
+        apiIdPlural: 'RowColumnOnes',
+        displayName: 'Row Column One',
     });
     client.createSimpleField({
-        displayName: 'Internal name',
-        apiId: 'internalName',
+        displayName: 'Identity',
+        apiId: 'identity',
+        parentApiId: 'RowColumnOne',
         description: 'Only used for internal reference',
         type: management_sdk_1.SimpleFieldType.String,
-        isTitle: true,
-        isRequired: true,
         isUnique: true,
-        modelApiId: 'DynamicRow',
-    });
-    client.createUnionField({
-        displayName: 'Row',
-        apiId: 'row',
-        reverseField: {
-            modelApiIds: ['RowQuote', 'RowLinks', 'RowColumnOne'],
-            apiId: 'dynamicRow',
-            displayName: 'DynamicRows',
-            visibility: management_sdk_1.VisibilityTypes.Hidden,
-            isList: true,
-        },
-        parentApiId: 'DynamicRow',
-    });
-    client.createEnumerableField({
-        displayName: 'Placement',
-        apiId: 'placement',
-        parentApiId: 'DynamicRow',
-        enumerationApiId: 'DynamicRowPlacement',
-        description: 'Where will the row be placed relative to the target',
         isRequired: true,
+        isTitle: true,
     });
-    client.createUnionField({
-        displayName: 'Placement target',
-        apiId: 'target',
-        description: 'Optional: When the target is left blank it will place the Dynamic Row on the start or end.',
+    client.createSimpleField({
+        displayName: 'Col One',
+        apiId: 'colOne',
+        parentApiId: 'RowColumnOne',
+        description: 'Column One',
+        type: management_sdk_1.SimpleFieldType.Richtext,
+    });
+    // END DEV PURPOSES
+    // client.updateSimpleField({
+    //   apiId: 'colTwo',
+    //   parentApiId: 'RowColumnTwo',
+    //   embedsEnabled: false,
+    //   embeddableModels: undefined,
+    // })
+    // client.updateSimpleField({
+    //   apiId: 'colThree',
+    //   parentApiId: 'RowColumnThree',
+    //   embedsEnabled: false,
+    //   embeddableModels: undefined,
+    // })
+    // remove rowLinks
+    // client.deleteModel({ apiId: 'RowLinks' })
+    // ? ENUMERATIONS
+    // client.createEnumeration({
+    //   displayName: 'Row Links Variants',
+    //   apiId: 'RowLinksVariants',
+    //   values: [
+    //     { displayName: 'Inline', apiId: 'Inline' },
+    //     { displayName: 'Image Label Swiper', apiId: 'ImageLabelSwiper' },
+    //     { displayName: 'Logo Swiper', apiId: 'LogoSwiper' },
+    //     { displayName: 'USPS', apiId: 'Usps' },
+    //   ],
+    // })
+    // // ? MODEL
+    // client.createModel({
+    //   apiId: 'RowLinks',
+    //   apiIdPlural: 'RowLinksMultiple',
+    //   displayName: 'Row Links',
+    //   description: 'Row Links is a Row of PageLinks with different variants',
+    // })
+    // client.createSimpleField({
+    //   displayName: 'Identity',
+    //   apiId: 'identity',
+    //   description: 'Only used for internal reference',
+    //   type: SimpleFieldType.String,
+    //   isTitle: true,
+    //   isRequired: true,
+    //   isUnique: true,
+    //   modelApiId: 'RowLinks',
+    // })
+    // client.createEnumerableField({
+    //   displayName: 'Variant',
+    //   apiId: 'linksVariant',
+    //   parentApiId: 'RowLinks',
+    //   enumerationApiId: 'RowLinksVariants',
+    //   description: 'Different variants for Row Links',
+    // })
+    // client.createSimpleField({
+    //   displayName: 'Title',
+    //   apiId: 'title',
+    //   description: 'Title of the Row',
+    //   type: SimpleFieldType.String,
+    //   isRequired: true,
+    //   modelApiId: 'RowLinks',
+    //   isLocalized: true,
+    // })
+    // client.createSimpleField({
+    //   displayName: 'Copy',
+    //   apiId: 'rowLinksCopy',
+    //   description: 'Only used for internal reference',
+    //   type: SimpleFieldType.Richtext,
+    //   isLocalized: true,
+    //   modelApiId: 'RowLinks',
+    // })
+    // client.updateUnionField({
+    //   apiId: 'content',
+    //   modelApiId: 'Page',
+    //   reverseField: {
+    //     modelApiIds: [
+    //       'RowLinks',
+    //       'RowServiceOptions',
+    //       'RowSpecialBanner',
+    //       'RowQuote',
+    //       'RowProduct',
+    //       'RowColumnOne',
+    //       'RowColumnTwo',
+    //       'RowColumnThree',
+    //       'RowHeroBanner',
+    //       'RowBlogContent',
+    //       'RowButtonList',
+    //       'RowContentLinks',
+    //     ],
+    //   },
+    // })
+    // PageLinks
+    // DEV PURPOSES
+    client.updateUnionField({
+        apiId: 'content',
+        modelApiId: 'Page',
         reverseField: {
             modelApiIds: [
+                'RowServiceOptions',
+                'RowSpecialBanner',
                 'RowQuote',
-                'RowLinks',
+                'RowProduct',
                 'RowColumnOne',
                 'RowColumnTwo',
                 'RowColumnThree',
-                'RowServiceOptions',
-                'RowContentLinks',
-                'RowButtonLinkList',
-                'RowProduct',
-                'RowSpecialBanner',
                 'RowHeroBanner',
                 'RowBlogContent',
+                'RowButtonList',
+                'RowContentLinks',
+                'RowButtonLinkList',
             ],
-            apiId: 'dynamicRowsTarget',
-            displayName: 'DynamicRowsTarget',
-            visibility: management_sdk_1.VisibilityTypes.Hidden,
-            isList: true,
         },
-        parentApiId: 'DynamicRow',
+        visibility: management_sdk_1.VisibilityTypes.Hidden,
     });
-    client.createComponentUnionField({
-        displayName: 'Conditions (OR)',
-        apiId: 'conditions',
-        parentApiId: 'DynamicRow',
-        description: 'One of these conditions must match',
-        componentApiIds: ['ConditionAnd', 'ConditionText', 'ConditionNumber'],
-        isList: true,
+    client.updateUnionField({
+        apiId: 'row',
+        modelApiId: 'DynamicRow',
+        reverseField: {
+            modelApiIds: ['RowQuote', 'RowColumnOne', 'RowColumnTwo', 'RowColumnThree'],
+        },
+        visibility: management_sdk_1.VisibilityTypes.Hidden,
     });
+    client.updateUnionField({
+        apiId: 'target',
+        modelApiId: 'DynamicRow',
+        reverseField: {
+            modelApiIds: [
+                'RowServiceOptions',
+                'RowSpecialBanner',
+                'RowQuote',
+                'RowProduct',
+                'RowColumnOne',
+                'RowColumnTwo',
+                'RowColumnThree',
+                'RowHeroBanner',
+                'RowBlogContent',
+                'RowButtonList',
+                'RowContentLinks',
+                'RowButtonLinkList',
+            ],
+        },
+        visibility: management_sdk_1.VisibilityTypes.Hidden,
+    });
+    // END DEV PURPOSES
     return client.run(true);
 };
 exports.GraphCommerce6 = GraphCommerce6;

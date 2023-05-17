@@ -1,54 +1,26 @@
 /* eslint-disable no-console */
 /* eslint-disable import/no-extraneous-dependencies */
-import readline from 'readline'
 import { MigrationInfo } from '@hygraph/management-sdk/dist/ManagementAPIClient'
 import prompts, { PromptObject } from 'prompts'
-import { dynamicRow, GraphCommerce6 } from './migrations'
+import {
+  dynamicRow,
+  GraphCommerce6,
+  removeRowColumnOne,
+  removeRowColumnThree,
+  removeRowColumnTwo,
+  removeRowLinks,
+} from './migrations'
 
 export async function migrateHygraph() {
-  let forceRun = false
-
-  // Interface to determine if force run should be enabled
-  readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-  })
-
-  const affirmativeAnswers = ['y', 'yes', 'Y', 'YES']
-
-  const handleKeypress = (key: string) => {
-    if (affirmativeAnswers.includes(key.toLowerCase())) {
-      console.log('\nForce run enabled')
-      forceRun = true
-    } else {
-      console.log('\nForce run disabled')
-      forceRun = false
-    }
-
-    process.stdin.pause()
-  }
-
-  // Listen for keypress events
-  process.stdin.on('keypress', handleKeypress)
-  process.stdin.setRawMode(true)
-  process.stdin.resume()
-
-  console.log('Enable force run? (y/n)')
-
-  // Wait for input
-  await new Promise<void>((resolve) => {
-    process.stdin.once('data', () => {
-      // Stop listening for input
-      process.stdin.removeListener('keypress', handleKeypress)
-      process.stdin.setRawMode(false)
-
-      resolve()
-    })
-  })
+  const forceRun = true
 
   const possibleMigrations: [string, (name: string | undefined) => Promise<MigrationInfo>][] = [
-    ['add_dynamic_rows', dynamicRow],
-    ['GraphCommerce6', GraphCommerce6],
+    ['Dynamic Rows', dynamicRow],
+    ['Upgrade to GraphCommerce 6', GraphCommerce6],
+    ['Remove RowColumnOne', removeRowColumnOne],
+    ['Remove RowColumnTwo', removeRowColumnTwo],
+    ['Remove RowColumnThree', removeRowColumnThree],
+    ['Remove RowLinks', removeRowLinks],
   ]
   console.log('\x1b[1m%s\x1b[0m', '[GraphCommerce]: Available migrations: ')
 
@@ -65,7 +37,6 @@ export async function migrateHygraph() {
     }
   }
 
-  // TODO: GC-Version based migration
   /** Here we choose a migration from a list of possible migrations */
   try {
     const response = await prompts(question)
@@ -93,3 +64,17 @@ export async function migrateHygraph() {
     console.error('\x1b[31m\x1b[1m%s\x1b[0m', '[GraphCommerce]: An error occurred:', error)
   }
 }
+
+/**
+ * TODO: GC-Version based migration
+ *
+ * What we want is to enter a GC version. And based on this version we want to run migrations. So
+ * one gives the old GC version and the desired one, and the CLI calculates which model updates are
+ * necessary.
+ *
+ * 1. Read out the current model => //? This can be done with the Management API viewer prop
+ * 2. Read out the current GC version
+ * 3. Read out the desired GC version
+ * 4. Calculate the necessary migrations
+ * 5. Run the migrations, no errors should occur
+ */

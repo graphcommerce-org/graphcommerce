@@ -1,2 +1,6 @@
 export * from './dynamicRow'
-export * from './GC6'
+export * from './graphcommerce6'
+export * from './removeRowColumnOne'
+export * from './removeRowColumnTwo'
+export * from './removeRowColumnThree'
+export * from './removeRowLinks'
