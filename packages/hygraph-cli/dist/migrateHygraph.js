@@ -44,22 +44,36 @@ async function migrateHygraph() {
     ];
     console.log('\x1b[1m%s\x1b[0m', '[GraphCommerce]: Available migrations: ');
     // Here we setup the list we ask the user to choose from
-    const question = {
+    const selectMigrationInput = {
         type: 'select',
         name: 'selectedMigration',
         message: '[GraphCommerce]: Select migration',
         choices: [],
     };
+    const versionInput = {
+        type: 'text',
+        name: 'selectedVersion',
+        message: '[GraphCommerce]: Select GraphCommerce version (Major.Minor e.g. 6.2)',
+        validate: (value) => {
+            // Validate the version format
+            const versionRegex = /^\d+\.\d+$/;
+            return versionRegex.test(value)
+                ? true
+                : '[GraphCommerce]: Please enter a valid version (Major.Minor e.g. 6.2)';
+        },
+    };
     for (const [name, migration] of possibleMigrations) {
-        if (Array.isArray(question.choices)) {
-            question?.choices?.push({ title: name, value: { name, migration } });
+        if (Array.isArray(selectMigrationInput.choices)) {
+            selectMigrationInput?.choices?.push({ title: name, value: { name, migration } });
         }
     }
     // Here we ask the user to choose a migration from a list of possible migrations
     try {
-        const response = await (0, prompts_1.default)(question);
-        const { migration, name } = response.selectedMigration;
-        console.log(`You have selected the ${response.selectedMigration.name} migration`);
+        const versionOutput = await (0, prompts_1.default)(versionInput);
+        console.log(`You have selected GraphCommerce version ${versionOutput.selectedVersion}`);
+        const selectMigrationOutput = await (0, prompts_1.default)(selectMigrationInput);
+        const { migration, name } = selectMigrationOutput.selectedMigration;
+        console.log(`You have selected the ${selectMigrationOutput.selectedMigration.name} migration`);
         try {
             // Here we try to run the migration
             // eslint-disable-next-line no-await-in-loop
