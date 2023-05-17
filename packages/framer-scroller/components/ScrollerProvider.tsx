@@ -114,9 +114,14 @@ export function ScrollerProvider(props: ScrollerProviderProps) {
 
   const enableSnap = useCallback(() => {
     if (snap.get() === true) return
-    if (scrollerRef.current) scrollerRef.current.style.scrollSnapType = 'mandatory'
+    const scroller = scrollerRef.current
+    if (scroller) scroller.style.scrollSnapType = ''
     snap.set(true)
-    scroll.animating.set(false)
+    const prev = scroll.x.get()
+    requestAnimationFrame(() => {
+      if (Math.round(scroller.scrollLeft) !== prev) scroller.scrollLeft = prev + 10
+      scroll.animating.set(false)
+    })
   }, [snap, scroll])
 
   useObserveItems(scrollerRef, items)
