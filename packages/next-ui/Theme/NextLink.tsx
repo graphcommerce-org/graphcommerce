@@ -1,4 +1,5 @@
 import Link, { LinkProps as NextLinkProps } from 'next/link'
+import { useParams } from 'next/navigation'
 import React, { forwardRef } from 'react'
 
 type LinkProps = Omit<NextLinkProps, 'legacyBehavior' | 'passHref' | 'as'>
@@ -21,13 +22,15 @@ type LinkProppies = AnchorWithoutLinkProps & Partial<LinkProps> & { relative?: b
  * ```
  */
 export const NextLink = forwardRef<HTMLAnchorElement, LinkProppies>((props, ref) => {
+  const storefront: string | undefined = useParams()?.storefront
+
   let { href, target, relative, ...rest } = props
 
   // The href is optional in a MUI link, but required in a Next.js link
   // eslint-disable-next-line jsx-a11y/anchor-has-content
   if (!href) return <a {...rest} ref={ref} />
 
-  const hrefString = href.toString()
+  let hrefString = href.toString()
   const isExternal = hrefString.includes(':') || hrefString.startsWith('//')
   const isHash = hrefString.startsWith('#')
 
@@ -37,5 +40,7 @@ export const NextLink = forwardRef<HTMLAnchorElement, LinkProppies>((props, ref)
   // Relative URL's cause more pain than they're worth
   if (!isExternal && !isHash && !hrefString.startsWith('/') && !relative) href = `/${href}`
 
-  return <Link href={href} {...rest} target={target} ref={ref} />
+  if (!isExternal && !isHash && storefront) hrefString = `/${storefront}${hrefString}`
+
+  return <Link href={hrefString} {...rest} target={target} ref={ref} />
 })
