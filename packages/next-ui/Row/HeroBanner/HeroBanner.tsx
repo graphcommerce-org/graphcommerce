@@ -71,7 +71,7 @@ export function HeroBanner(props: HeroBannerProps) {
             muted
             loop
             playsInline
-            disableRemotePlayback
+            // disableRemotePlayback
             className={classes.video}
             style={{ scale }}
             sx={{

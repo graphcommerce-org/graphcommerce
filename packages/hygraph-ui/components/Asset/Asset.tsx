@@ -49,7 +49,7 @@ export function Asset(props: AssetProps) {
         muted
         loop
         playsInline
-        disableRemotePlayback
+        // disableRemotePlayback
         sx={[...(Array.isArray(sx) ? sx : [sx])]}
       />
     )
