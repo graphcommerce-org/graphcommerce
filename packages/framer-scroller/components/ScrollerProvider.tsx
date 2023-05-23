@@ -114,12 +114,29 @@ export function ScrollerProvider(props: ScrollerProviderProps) {
 
   const enableSnap = useCallback(() => {
     if (snap.get() === true) return
-    const scroller = scrollerRef.current
-    if (scroller) scroller.style.scrollSnapType = ''
+    if (scrollerRef.current) scrollerRef.current.style.scrollSnapType = ''
     snap.set(true)
+
+    /**
+     * There is a bug in Firefox where the actual max scrollLeft isn't the same as the max measured
+     * bounds of the elements. If we do not exactly set the correct scrollLeft the scrollLeft is
+     * reset to 0 on firefox (instead of chrome/safari where it will snap to the nearest valid
+     * position).
+     *
+     * This can be checked by opening a LayoutOverlay.
+     *
+     * So we're setting a 'too big' scroll position by an arbitrary amount.
+     *
+     * To check if it works in a more recent version of FireFox:
+     *
+     * - Move `scroll.animating.set(false)` outside the requestAnimationFrame
+     * - Remove `scrollerRef.current.scrollLeft = prev + 10`
+     */
     const prev = scroll.x.get()
     requestAnimationFrame(() => {
-      if (Math.round(scroller.scrollLeft) !== prev) scroller.scrollLeft = prev + 10
+      if (scrollerRef.current && Math.round(scrollerRef.current.scrollLeft) !== prev)
+        scrollerRef.current.scrollLeft = prev + 10
+
       scroll.animating.set(false)
     })
   }, [snap, scroll])
