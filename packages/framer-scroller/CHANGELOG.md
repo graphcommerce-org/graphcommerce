@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.21
+
+### Minor Changes
+
+- [#1937](https://github.com/graphcommerce-org/graphcommerce/pull/1937) [`a98e23e3a`](https://github.com/graphcommerce-org/graphcommerce/commit/a98e23e3a250157b9d3756b656f1a4c3c52b0ec0) - Assign correct scroll-snap-type type, to prevent error on firefox ([@mikekeehnen](https://github.com/mikekeehnen))
+
 ## 6.2.0-canary.20
 
 ## 6.2.0-canary.19

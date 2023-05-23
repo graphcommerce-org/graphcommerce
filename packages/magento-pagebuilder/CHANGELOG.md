@@ -1,5 +1,7 @@
 # @graphcommerce/magento-pagebuilder
 
+## 6.2.0-canary.21
+
 ## 6.2.0-canary.20
 
 ## 6.2.0-canary.19
