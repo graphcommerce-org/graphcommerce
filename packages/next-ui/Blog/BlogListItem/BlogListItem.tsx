@@ -8,7 +8,7 @@ import { useDateTimeFormat } from '../../hooks'
 export type BlogListItemProps = {
   asset: React.ReactNode
   url: string
-  date: string
+  date: string | undefined
   title: string
   sx?: SxProps<Theme>
 }
@@ -57,18 +57,20 @@ export function BlogListItem(props: BlogListItemProps) {
         </Box>
       </Link>
 
-      <Box
-        component='time'
-        className={classes.date}
-        dateTime={date}
-        sx={(theme) => ({
-          display: 'inline-block',
-          textDecoration: 'none',
-          color: theme.palette.text.secondary,
-        })}
-      >
-        {formatter.format(new Date(date))}
-      </Box>
+      {date && (
+        <Box
+          component='time'
+          className={classes.date}
+          dateTime={date}
+          sx={(theme) => ({
+            display: 'inline-block',
+            textDecoration: 'none',
+            color: theme.palette.text.secondary,
+          })}
+        >
+          {formatter.format(new Date(date))}
+        </Box>
+      )}
 
       <Link href={`/${url}`} className={classes.title} color='inherit' underline='hover'>
         <Typography component='h2' variant='h4'>
