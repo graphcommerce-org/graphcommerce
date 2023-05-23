@@ -1,5 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { PagesStaticPathsDocument, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
+import { PagesStaticPathsDocument } from '@graphcommerce/graphcms-ui'
 import { hygraphPageContent } from '@graphcommerce/graphcms-ui/server'
 import { PageMeta, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import {
@@ -10,7 +10,7 @@ import {
 } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 import { Container } from '@mui/material'
-import { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
+import { InferGetStaticPropsType } from 'next'
 import { LayoutOverlay, LayoutOverlayProps, RowRenderer } from '../../components'
 import { graphqlQuery } from '@graphcommerce/graphql-mesh'
 import { getLayout } from '../../components/Layout/layout'

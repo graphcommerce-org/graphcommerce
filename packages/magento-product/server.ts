@@ -1,3 +1,4 @@
+export * from './components/server'
 export * from './server/filteredProductList'
 export * from './server/getFilterTypes'
 export * from './server/getProductStaticPaths'

@@ -1,6 +1,6 @@
 import { useApolloClient } from '@graphcommerce/graphql'
 import { FormState, useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/compat/router'
 import React from 'react'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import { SignOutFormDocument } from './SignOutForm.gql'

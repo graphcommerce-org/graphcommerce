@@ -1,3 +1,5 @@
+'use client'
+
 import { Image, ImageProps } from '@graphcommerce/image'
 import {
   responsiveVal,
@@ -152,8 +154,9 @@ export function ProductListItem(props: ProductListItemProps) {
               height: '100%',
               justifyContent: 'center',
               alignItems: 'center',
-              color: 'background.default',
+              color: 'text.disabled',
               userSelect: 'none',
+              aspectRatio: `${aspectRatio[0] / aspectRatio[1]}`,
             }}
             className={`${classes.placeholder} ${classes.image}`}
           >

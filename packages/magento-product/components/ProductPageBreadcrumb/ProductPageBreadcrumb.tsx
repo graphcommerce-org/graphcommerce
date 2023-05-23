@@ -1,7 +1,9 @@
+'use client'
+
 import { usePrevPageRouter } from '@graphcommerce/framer-next-pages'
 import { filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Breadcrumbs, BreadcrumbsProps, Container, Link, Typography } from '@mui/material'
+import { Breadcrumbs, BreadcrumbsProps, Link, Typography } from '@mui/material'
 import { productPageCategory } from '../ProductPageCategory/productPageCategory'
 import { ProductPageBreadcrumbFragment } from './ProductPageBreadcrumb.gql'
 

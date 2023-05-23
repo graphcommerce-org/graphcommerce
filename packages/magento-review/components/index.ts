@@ -1,3 +1,5 @@
+'use client'
+
 export * from './AccountReviews/AccountReviews'
 export * from './AccountReviews/AccountReviews.gql'
 export * from './CreateProductReviewForm/CreateProductReview.gql'

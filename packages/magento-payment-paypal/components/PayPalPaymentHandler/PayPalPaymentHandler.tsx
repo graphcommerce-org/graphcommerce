@@ -5,7 +5,7 @@ import {
   PaymentHandlerProps,
   usePaymentMethodContext,
 } from '@graphcommerce/magento-cart-payment-method'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/compat/router'
 import { useEffect } from 'react'
 import { usePayPalCartLock } from '../../hooks/usePayPalCartLock'
 import { PayPalPaymentHandlerDocument } from './PayPalPaymentHandler.gql'

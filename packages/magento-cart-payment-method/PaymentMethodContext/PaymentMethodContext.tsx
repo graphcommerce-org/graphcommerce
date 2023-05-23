@@ -1,7 +1,7 @@
 import { useApolloClient } from '@graphcommerce/graphql'
 import { useCartQuery, useClearCurrentCartId } from '@graphcommerce/magento-cart'
 import { useEventCallback } from '@mui/material'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/compat/router'
 import React, { useContext, useEffect, useMemo, useState } from 'react'
 import {
   ExpandPaymentMethodsContext,

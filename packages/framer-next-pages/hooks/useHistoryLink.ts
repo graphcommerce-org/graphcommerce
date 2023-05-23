@@ -1,4 +1,4 @@
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/compat/router'
 import { usePrevPageRouter } from './usePrevPageRouter'
 
 export type UseHistoryLink = { href: string }

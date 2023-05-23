@@ -1,4 +1,2 @@
-export * from './RowProduct/RowProduct'
-
-// The actual renderer
+export { RowProduct } from './RowProduct/RowProduct'
 export * from './RowRenderer'

@@ -1,3 +1,5 @@
+'use client'
+
 import { ScrollerProvider } from '@graphcommerce/framer-scroller'
 import { Portal } from '@mui/material'
 import { AnimatePresence, usePresence } from 'framer-motion'
@@ -11,7 +13,7 @@ export type OverlayTmpProps = Omit<
   'direction' | 'offsetPageY' | 'isPresent' | 'safeToRemove'
 >
 
-function OverlayUsePresence(props: OverlayTmpProps) {
+export function OverlayUsePresence(props: OverlayTmpProps) {
   const { variantSm = 'bottom', variantMd = 'right', active, ...otherProps } = props
   const [isPresent, safeToRemove] = usePresence()
 

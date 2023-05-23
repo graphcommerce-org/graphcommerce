@@ -1,4 +1,4 @@
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/compat/router'
 import { useMemo } from 'react'
 
 export type DateTimeFormatProps = Intl.DateTimeFormatOptions

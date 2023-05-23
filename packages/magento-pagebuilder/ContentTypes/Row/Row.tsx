@@ -16,7 +16,8 @@ const classes = {}
 /**
  * Page Builder Row component.
  *
- * This component is part of the Page Builder / PWA integration. It can be consumed without Page Builder.
+ * This component is part of the Page Builder / PWA integration. It can be consumed without Page
+ * Builder.
  */
 export const Row: RowContentType['component'] = (props) => {
   const backgroundElement = useRef(null)

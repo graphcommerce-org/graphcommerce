@@ -13,6 +13,7 @@ const { isMonorepo } = require('@graphcommerce/next-config')
 function linguiNextConfig(config) {
   const { locales, ...otherConfig } = config
   return {
+    orderBy: 'messageId',
     locales: isMonorepo()
       ? ['en', 'nl', 'fr', 'de', 'es', 'it']
       : config.locales.map((l) => l?.split('-')[0]),
@@ -29,19 +30,6 @@ function linguiNextConfig(config) {
         exclude: ['**/node_modules/!(@graphcommerce)/**'],
       },
     ],
-    extractBabelOptions: {
-      presets: [
-        [
-          'next/babel',
-          {
-            'preset-react': {
-              runtime: 'automatic',
-              importSource: '@emotion/react',
-            },
-          },
-        ],
-      ],
-    },
     sourceLocale: 'en',
     ...otherConfig,
   }

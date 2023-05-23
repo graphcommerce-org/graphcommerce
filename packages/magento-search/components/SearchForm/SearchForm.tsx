@@ -10,7 +10,7 @@ import { useForm, useFormAutoSubmit } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, IconButton, SxProps, Theme } from '@mui/material'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/compat/router'
 import { useEffect, useRef } from 'react'
 
 export type SearchFormProps = {

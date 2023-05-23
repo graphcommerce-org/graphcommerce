@@ -1,3 +1,5 @@
+'use client'
+
 import { useQuery } from '@graphcommerce/graphql'
 import { ExtendableComponent, useNumberFormat } from '@graphcommerce/next-ui'
 import { useThemeProps } from '@mui/material'
@@ -34,7 +36,7 @@ export function Money(props: MoneyProps) {
   const options: Intl.NumberFormatOptions = useMemo(
     () => ({
       style: 'currency',
-      currency: currency ?? config?.storeConfig?.base_currency_code ?? '',
+      currency: currency ?? config?.storeConfig?.base_currency_code ?? 'EUR',
       ...(round && !digits && { minimumFractionDigits: 0 }),
       ...(round && digits && { minimumFractionDigits: 2 }),
       ...(!round && { minimumFractionDigits: 2 }),

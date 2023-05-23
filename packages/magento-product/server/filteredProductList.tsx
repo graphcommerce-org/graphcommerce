@@ -1,3 +1,4 @@
+import type { ParsedUrlQuery } from 'querystring'
 import type {
   FilterEqualTypeInput,
   FilterMatchTypeInput,
@@ -5,8 +6,7 @@ import type {
   SortEnum,
 } from '@graphcommerce/graphql-mesh'
 import { urlFromParams } from '@graphcommerce/next-ui/server'
-import { ParsedUrlQuery } from 'querystring'
-import { FilterTypes, ProductListParams } from '../components/ProductListItems/filterTypes'
+import type { FilterTypes, ProductListParams } from '../components/ProductListItems/filterTypes'
 
 export function parseParams(
   url: string,
@@ -68,10 +68,10 @@ export function extractUrlQuery(params?: ParsedUrlQuery) {
   const from = urlFromParams(params)
   const reqUrl = from.split('/').filter((v) => v)
 
-  if (!params?.url) return [undefined, undefined] as const
+  if (!reqUrl.length) return [undefined, undefined] as const
 
   const queryIndex = reqUrl.findIndex((slug) => slug === 'q' || slug === 'page')
-  const qIndex = queryIndex < 0 ? params.url.length : queryIndex
+  const qIndex = queryIndex < 0 ? reqUrl.length : queryIndex
   const url = reqUrl.slice(0, qIndex).join('/')
   const query = reqUrl.slice(qIndex)
 

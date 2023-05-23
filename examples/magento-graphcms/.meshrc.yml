@@ -5,6 +5,7 @@ sources:
         useGETForQueries: true
         endpoint: '{graphCommerce.hygraphEndpoint}'
         operationHeaders:
+          X-Fetch: "{context.headers['x-fetch']}"
           gcms-locales: "{context.headers['gcms-locales']}"
     transforms:
       - filterSchema:
@@ -26,6 +27,7 @@ sources:
         useGETForQueries: true
         batch: false
         operationHeaders:
+          X-Fetch: "{context.headers['x-fetch']}"
           Store: '{context.headers.store}'
           Authorization: '{context.headers.authorization}'
           X-ReCaptcha: "{context.headers['x-recaptcha']}"

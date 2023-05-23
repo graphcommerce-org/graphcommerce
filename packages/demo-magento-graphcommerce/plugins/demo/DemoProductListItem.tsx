@@ -1,3 +1,5 @@
+'use client'
+
 import type { ProductListItemProps } from '@graphcommerce/magento-product'
 import type { IfConfig, PluginProps } from '@graphcommerce/next-config'
 import { Typography } from '@mui/material'

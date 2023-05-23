@@ -1,3 +1,5 @@
+'use client'
+
 export * from './ActionCard'
 export * from './AnimatedRow/AnimatedRow'
 export * from './Blog/BlogAuthor/BlogAuthor'
@@ -36,6 +38,7 @@ export * from './Overlay'
 export * from './OverlayOrPopperChip'
 export * from './Page'
 export * from './PageLoadIndicator/PageLoadIndicator'
+export * from './PageLoadIndicator/PageLoadIndicator2'
 export * from './PageMeta/PageMeta'
 export * from './Pagination/Pagination'
 export * from './RenderType'

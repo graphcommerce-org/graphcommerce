@@ -150,7 +150,7 @@ module.exports = {
       rules: { 'import/no-default-export': ['error'] },
     },
     {
-      files: ['**/pages/**/*.tsx'],
+      files: ['**/pages/**/*.tsx', '**/app/**/*.tsx'],
       rules: { 'import/no-default-export': 'off' },
     },
     {

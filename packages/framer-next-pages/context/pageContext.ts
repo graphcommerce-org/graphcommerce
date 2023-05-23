@@ -3,7 +3,10 @@ import { createContext } from 'react'
 export type Direction = 1 | -1
 
 export type PageContext = {
-  /** Number of steps we need to navigate back to go to the last non-overlay page and thus close the overlay */
+  /**
+   * Number of steps we need to navigate back to go to the last non-overlay page and thus close the
+   * overlay
+   */
   closeSteps: number
 
   /** Number of steps we can go back inside the the current overlay */
@@ -42,5 +45,5 @@ export type PageContext = {
   routerKey: string
 }
 
-export const pageContext = createContext(undefined as unknown as PageContext)
+export const pageContext = createContext<undefined | PageContext>(undefined)
 pageContext.displayName = 'PageContext'

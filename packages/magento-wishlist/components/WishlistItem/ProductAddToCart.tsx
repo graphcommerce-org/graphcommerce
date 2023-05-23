@@ -1,3 +1,5 @@
+'use client'
+
 import type { ProductInterface } from '@graphcommerce/graphql-mesh'
 import { ApolloCartErrorAlert, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import {

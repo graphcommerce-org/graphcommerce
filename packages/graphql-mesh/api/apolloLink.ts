@@ -1,18 +1,7 @@
-/* eslint-disable import/no-extraneous-dependencies */
-
-/**
- * This is a direct copy from
- * https://github.com/Urigo/graphql-mesh/blob/master/packages/apollo-link/src/index.ts but because
- * it throws an error we've created a local copy of it.
- *
- * https://github.com/apollographql/apollo-client/issues/9925
- * https://github.com/Urigo/graphql-mesh/issues/4196
- */
-
-import { ApolloLink, FetchResult, Observable, Operation, RequestHandler } from '@apollo/client/core'
+import { getOperationAST } from 'graphql'
+import * as apolloClient from '@apollo/client'
 import { ExecuteMeshFn, SubscribeMeshFn } from '@graphql-mesh/runtime'
 import { isAsyncIterable } from '@graphql-tools/utils'
-import { getOperationAST } from 'graphql'
 
 export interface MeshApolloRequestHandlerOptions {
   execute: ExecuteMeshFn
@@ -20,17 +9,19 @@ export interface MeshApolloRequestHandlerOptions {
 }
 
 const ROOT_VALUE = {}
-function createMeshApolloRequestHandler(options: MeshApolloRequestHandlerOptions): RequestHandler {
-  return function meshApolloRequestHandler(operation: Operation): Observable<FetchResult> {
+function createMeshApolloRequestHandler(
+  options: MeshApolloRequestHandlerOptions,
+): apolloClient.RequestHandler {
+  return function meshApolloRequestHandler(
+    operation: apolloClient.Operation,
+  ): apolloClient.Observable<apolloClient.FetchResult> {
     const operationAst = getOperationAST(operation.query, operation.operationName)
     if (!operationAst) {
       throw new Error('GraphQL operation not found')
     }
     const operationFn =
-      operationAst.operation === 'subscription' && options.subscribe
-        ? options.subscribe
-        : options.execute
-    return new Observable((observer) => {
+      operationAst.operation === 'subscription' ? options.subscribe : options.execute
+    return new apolloClient.Observable((observer) => {
       Promise.resolve()
         .then(async () => {
           const results = await operationFn(
@@ -48,9 +39,11 @@ function createMeshApolloRequestHandler(options: MeshApolloRequestHandlerOptions
               observer.next(result)
             }
             observer.complete()
-          } else if (!observer.closed) {
-            observer.next(results)
-            observer.complete()
+          } else {
+            if (!observer.closed) {
+              observer.next(results)
+              observer.complete()
+            }
           }
         })
         .catch((error) => {
@@ -62,7 +55,7 @@ function createMeshApolloRequestHandler(options: MeshApolloRequestHandlerOptions
   }
 }
 
-export class MeshApolloLink extends ApolloLink {
+export class MeshApolloLink extends apolloClient.ApolloLink {
   constructor(options: MeshApolloRequestHandlerOptions) {
     super(createMeshApolloRequestHandler(options))
   }

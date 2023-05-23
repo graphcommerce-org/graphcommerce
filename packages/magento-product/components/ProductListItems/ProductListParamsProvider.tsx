@@ -1,3 +1,5 @@
+'use client'
+
 import { useState, useEffect, useMemo } from 'react'
 import { productListParamsContext } from '../../context/productListParamsContext'
 import { ProductListParams } from './filterTypes'

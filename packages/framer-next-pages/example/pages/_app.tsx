@@ -7,7 +7,7 @@ import { responsiveVal } from '@graphcommerce/next-ui'
 import { createTheme, CssBaseline, ThemeProvider } from '@mui/material'
 import { LazyMotion } from 'framer-motion'
 import { AppPropsType } from 'next/dist/shared/lib/utils'
-import { Router } from 'next/router'
+import { Router } from 'next/compat/router'
 import React from 'react'
 
 const theme = createTheme({

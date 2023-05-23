@@ -1,3 +1,5 @@
+'use client'
+
 import { Box, SxProps, Theme } from '@mui/material'
 import { UseAddProductsToCartActionFragment } from '../AddProductsToCart/UseAddProductsToCartAction.gql'
 

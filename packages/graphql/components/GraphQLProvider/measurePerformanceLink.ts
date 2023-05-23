@@ -19,8 +19,8 @@ export const requestContext = new AsyncLocalStorage<string>()
 
 const requestId = () => {
   const id = requestContext.getStore()
-  if (!id) throw new Error('No request id found')
-  return id
+  // if (!id) throw new Error('No request id found')
+  return id ?? ''
 }
 
 const requests: Map<string, typeof running> = new Map()

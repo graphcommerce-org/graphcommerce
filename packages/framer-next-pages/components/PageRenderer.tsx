@@ -1,6 +1,6 @@
 import { RouterContext } from 'next/dist/shared/lib/router-context'
 import { AppPropsType } from 'next/dist/shared/lib/utils'
-import { NextRouter, useRouter } from 'next/router'
+import { NextRouter, useRouter } from 'next/compat/router'
 import React, { useMemo } from 'react'
 import { pageRouterContext } from '../context/pageRouterContext'
 import { PageItem } from '../types'

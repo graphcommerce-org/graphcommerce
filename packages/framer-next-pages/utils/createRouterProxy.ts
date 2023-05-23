@@ -1,4 +1,4 @@
-import { NextRouter } from 'next/router'
+import { NextRouter } from 'next/compat/router'
 
 export type OverrideProps = Partial<Pick<NextRouter, 'asPath' | 'pathname' | 'query' | 'locale'>>
 

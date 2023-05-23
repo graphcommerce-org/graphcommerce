@@ -1,3 +1,5 @@
+'use client'
+
 import { RichText } from '@graphcommerce/graphcms-ui'
 import { Quote } from '@graphcommerce/next-ui'
 import React from 'react'

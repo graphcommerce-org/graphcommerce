@@ -1,3 +1,5 @@
+'use client'
+
 import { RichText } from '@graphcommerce/graphcms-ui'
 import { iconCheckmark, IconSvg, VariantUsps } from '@graphcommerce/next-ui'
 import { Box } from '@mui/material'

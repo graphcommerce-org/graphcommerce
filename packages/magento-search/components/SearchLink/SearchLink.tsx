@@ -6,7 +6,7 @@ import {
   useFabSize,
 } from '@graphcommerce/next-ui'
 import { Breakpoint, Fab, FabProps, Link, LinkProps } from '@mui/material'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import type { SetRequired } from 'type-fest'
 
 export type SearchLinkProps = {
@@ -39,7 +39,7 @@ export function SearchLink(props: SearchLinkProps) {
         underline='none'
         onClick={(e) => {
           e.preventDefault()
-          return router.push(href)
+          return router?.push(href)
         }}
         sx={[
           (theme) => ({

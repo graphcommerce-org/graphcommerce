@@ -1,7 +1,7 @@
 import { useUp, usePrevUp, usePageContext } from '@graphcommerce/framer-next-pages'
 import { i18n } from '@lingui/core'
 import { Box, SxProps, Theme } from '@mui/material'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/compat/router'
 import { LinkOrButton, LinkOrButtonProps } from '../../Button/LinkOrButton'
 import { IconSvg } from '../../IconSvg'
 import { responsiveVal } from '../../Styles'
@@ -10,10 +10,10 @@ import { iconChevronLeft } from '../../icons'
 export type BackProps = Omit<LinkOrButtonProps, 'onClick' | 'children'>
 
 export function useShowBack() {
-  const path = useRouter().asPath.split('?')[0]
+  const path = useRouter()?.asPath.split('?')[0]
   const up = useUp()
   const prevUp = usePrevUp()
-  const { backSteps } = usePageContext()
+  const backSteps = usePageContext()?.backSteps
 
   const canClickBack = backSteps > 0 && path !== prevUp?.href
 

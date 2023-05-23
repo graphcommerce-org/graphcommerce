@@ -1,7 +1,7 @@
 import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { PaymentPlaceOrderProps } from '@graphcommerce/magento-cart-payment-method'
 import { useFormCompose } from '@graphcommerce/react-hook-form'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/compat/router'
 import { useCartLockWithToken } from '../../hooks/useCartLockWithToken'
 import { MolliePlaceOrderDocument } from './MolliePlaceOrder.gql'
 

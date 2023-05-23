@@ -1,3 +1,5 @@
+'use client'
+
 import { useQuery, cloneDeep } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { ChipMenu, ChipMenuProps, extendableComponent } from '@graphcommerce/next-ui'

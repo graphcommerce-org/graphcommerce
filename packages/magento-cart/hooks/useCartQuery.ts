@@ -1,5 +1,5 @@
 import { useQuery, TypedDocumentNode, QueryHookOptions } from '@graphcommerce/graphql'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/compat/router'
 import { useCurrentCartId } from './useCurrentCartId'
 
 /**
@@ -22,7 +22,7 @@ export function useCartQuery<Q, V extends { cartId: string; [index: string]: unk
   const router = useRouter()
   const { currentCartId } = useCurrentCartId()
 
-  const urlCartId = router.query.cart_id
+  const urlCartId = router?.query.cart_id
   const usingUrl = allowUrl && typeof urlCartId === 'string'
   const cartId = usingUrl ? urlCartId : currentCartId
 

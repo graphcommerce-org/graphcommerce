@@ -1,3 +1,5 @@
+'use client'
+
 import { ProductListLink } from '@graphcommerce/magento-product'
 import { breakpointVal, Row, extendableComponent } from '@graphcommerce/next-ui'
 import { Box, SxProps, Theme, Typography } from '@mui/material'

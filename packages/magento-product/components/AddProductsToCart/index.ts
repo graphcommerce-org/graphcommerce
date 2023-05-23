@@ -1,3 +1,5 @@
+'use client'
+
 export * from './AddProductsToCart.gql'
 export * from './AddProductsToCartButton'
 export * from './AddProductsToCartError'

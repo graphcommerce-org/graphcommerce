@@ -1,4 +1,4 @@
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/compat/router'
 import React, { useState } from 'react'
 import { PageDepthDebug } from './PageDepthDebug'
 import { useRenderCount } from './useRenderCount'

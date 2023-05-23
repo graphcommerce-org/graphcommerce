@@ -1,4 +1,4 @@
-export * from './LogoSwiper'
-export * from './ImageLabelSwiper'
-export * from './Inline'
-export * from './Usps'
+export { LogoSwiper } from './LogoSwiper'
+export { ImageLabelSwiper } from './ImageLabelSwiper'
+export { Inline } from './Inline'
+export { Usps } from './Usps'

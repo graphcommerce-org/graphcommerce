@@ -3,8 +3,13 @@ import { useProductFiltersPro } from './ProductFiltersPro'
 import { excludeCategory } from './activeAggregations'
 import { applyAggregationCount } from './applyAggregationCount'
 
+export type Aggregation = Omit<
+  NonNullable<NonNullable<ProductListFiltersFragment['aggregations']>[number]>,
+  'label' | '__typename'
+> & { label?: React.ReactNode }
+
 export type FilterProps = {
-  aggregation: NonNullable<NonNullable<ProductListFiltersFragment['aggregations']>[number]>
+  aggregation: Aggregation
 }
 
 export type FilterRenderer = Record<string, React.FC<FilterProps>>
@@ -13,7 +18,8 @@ export type ProductFiltersProAggregationsProps = {
   filterTypes: Record<string, string | undefined>
   renderer?: FilterRenderer
   appliedAggregations?: ProductListFiltersFragment['aggregations']
-} & ProductListFiltersFragment
+  aggregations?: (Aggregation | null)[] | null
+}
 
 export function ProductFiltersProAggregations(props: ProductFiltersProAggregationsProps) {
   const { aggregations, appliedAggregations, filterTypes, renderer } = props

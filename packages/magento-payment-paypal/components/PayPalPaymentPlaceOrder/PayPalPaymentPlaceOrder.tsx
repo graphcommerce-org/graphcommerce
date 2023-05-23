@@ -1,7 +1,7 @@
 import { useFormCompose } from '@graphcommerce/ecommerce-ui'
 import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { PaymentPlaceOrderProps } from '@graphcommerce/magento-cart-payment-method'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/compat/router'
 import { usePayPalCartLock } from '../../hooks/usePayPalCartLock'
 import { PayPalPaymentPlaceOrderDocument } from './PayPalPaymentPlaceOrder.gql'
 

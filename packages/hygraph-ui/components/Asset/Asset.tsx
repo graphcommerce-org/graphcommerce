@@ -1,3 +1,5 @@
+'use client'
+
 import { Image, ImageProps } from '@graphcommerce/image'
 import { styled, SxProps, Theme } from '@mui/material'
 import { AssetFragment } from './Asset.gql'
@@ -47,7 +49,7 @@ export function Asset(props: AssetProps) {
         muted
         loop
         playsInline
-        disableRemotePlayback
+        // disableRemotePlayback
         sx={[...(Array.isArray(sx) ? sx : [sx])]}
       />
     )

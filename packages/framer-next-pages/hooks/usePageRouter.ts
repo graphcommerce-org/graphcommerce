@@ -1,4 +1,4 @@
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/compat/router'
 
 export const usePageRouter = () => {
   console.warn('usePageRouter does nothing, use next/router useRouter instead')

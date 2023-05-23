@@ -1,3 +1,5 @@
+'use client'
+
 export * from './components/Pages'
 export * from './context/pageContext'
 export * from './context/pageRouterContext'

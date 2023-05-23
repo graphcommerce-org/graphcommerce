@@ -1,3 +1,5 @@
+'use client'
+
 import { responsiveVal, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box, Divider, SxProps, Theme, Typography } from '@mui/material'
@@ -38,6 +40,7 @@ export function ProductListCount(props: ProductCountProps) {
         {total_count === 0 && <Trans id='no products' />}
         {total_count === 1 && <Trans id='one product' />}
         {(total_count ?? 0) > 1 && <Trans id='{total_count} products' values={{ total_count }} />}
+        {!total_count && <Trans id='{total_count} products' values={{ total_count: '∞' }} />}
       </Typography>
       <Divider component='div' className={classes.line} />
     </Box>

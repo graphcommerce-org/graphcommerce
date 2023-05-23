@@ -1,3 +1,5 @@
+'use client'
+
 import { RichText, Asset } from '@graphcommerce/graphcms-ui'
 import { breakpointVal, SpecialBanner } from '@graphcommerce/next-ui'
 import { Link } from '@mui/material'

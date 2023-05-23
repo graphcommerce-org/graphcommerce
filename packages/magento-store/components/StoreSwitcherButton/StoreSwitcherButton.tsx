@@ -1,7 +1,7 @@
 import { useQuery } from '@graphcommerce/graphql'
 import { FlagAvatar, extendableComponent } from '@graphcommerce/next-ui'
 import { Button, SxProps, Theme } from '@mui/material'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/compat/router'
 import { StoreConfigDocument } from '../../StoreConfig.gql'
 
 export type StoreSwitcherButtonProps = { sx?: SxProps<Theme> }
@@ -15,6 +15,8 @@ export function StoreSwitcherButton(props: StoreSwitcherButtonProps) {
   const config = useQuery(StoreConfigDocument)
   const country = config.data?.storeConfig?.locale?.split('_')?.[1]?.toLowerCase() ?? ''
   const router = useRouter()
+
+  if (!country) return null
 
   return (
     <Button

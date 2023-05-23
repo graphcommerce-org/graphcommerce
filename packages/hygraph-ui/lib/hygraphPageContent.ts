@@ -1,4 +1,5 @@
 import { graphqlQuery } from '@graphcommerce/graphql-mesh'
+import { urlFromParams } from '@graphcommerce/next-ui/server'
 import {
   HygraphAllPagesDocument,
   HygraphPagesQuery,
@@ -29,7 +30,10 @@ async function pageContent(url: string, cached: boolean): Promise<{ data: Hygrap
   const alwaysCache = process.env.NODE_ENV !== 'development' ? 'cache-first' : undefined
   const fetchPolicy = cached ? alwaysCache : undefined
 
-  const allRoutes = await graphqlQuery(HygraphAllPagesDocument, { fetchPolicy })
+  const allRoutes = await graphqlQuery(HygraphAllPagesDocument, {
+    fetchPolicy,
+    cache: 'force-cache',
+  })
 
   // Only do the query when there the page is found in the allRoutes
   const found = allRoutes.data.pages.some((page) => page.url === url)
@@ -53,12 +57,14 @@ export type HygraphSingePage = { page: HygraphPageFragment }
 export type MaybeHygraphSingePage = { page?: HygraphPageFragment | null }
 
 export function getHygraphPage(
-  params: { url: string } | Promise<{ url: string }>,
+  params: { url: string } | Promise<{ url: string }> | string | Promise<string>,
   additionalProperties?: Promise<object | undefined | null> | object | null,
   cached = false,
 ): GetHygraphPageReturn {
   return {
-    page: (async () =>
-      pageContent((await params).url, cached).then((p) => p.data.pages?.[0] ?? null))(),
+    page: (async () => {
+      const url = urlFromParams(await params)
+      return pageContent(url, cached).then((p) => p.data.pages?.[0] ?? null)
+    })(),
   }
 }

@@ -1,3 +1,5 @@
+/* eslint-disable import/no-extraneous-dependencies */
+import { registerApolloClient } from '@apollo/experimental-nextjs-app-support/rsc'
 import {
   NormalizedCacheObject,
   ApolloClient,
@@ -19,7 +21,7 @@ import { MeshApolloLink } from './apolloLink'
 
 const mesh = await getBuiltMesh()
 
-function client(fetchPolicy: FetchPolicy = 'no-cache') {
+function createClient(fetchPolicy: FetchPolicy = 'no-cache') {
   const config = graphqlConfig({ storefront: storefrontConfig() })
 
   return new ApolloClient({
@@ -34,8 +36,12 @@ function client(fetchPolicy: FetchPolicy = 'no-cache') {
       typePolicies: mergeTypePolicies(config.policies),
     }),
     ssrMode: true,
-    name: 'ssr',
-    defaultOptions: { query: { errorPolicy: 'all', fetchPolicy } },
+    defaultOptions: {
+      query: {
+        errorPolicy: 'all',
+        fetchPolicy,
+      },
+    },
   })
 }
 
@@ -50,9 +56,11 @@ const sharedClient: {
 export function graphqlSharedClient() {
   const { locale } = storefrontConfig()
   // Create a client if it doesn't exist for the locale.
-  if (!sharedClient[locale]) sharedClient[locale] = client('cache-first')
+  if (!sharedClient[locale]) sharedClient[locale] = createClient('cache-first')
   return sharedClient[locale]
 }
+
+const { getClient } = registerApolloClient(() => createClient('cache-first'))
 
 const ssrClient: {
   [locale: string]: ApolloClient<NormalizedCacheObject>
@@ -62,7 +70,7 @@ export function graphqlSsrClient() {
   const { locale } = storefrontConfig()
 
   // Create a client if it doesn't exist for the locale.
-  if (!ssrClient[locale]) ssrClient[locale] = client('no-cache')
+  if (!ssrClient[locale]) ssrClient[locale] = createClient('cache-first')
   return ssrClient[locale]
 }
 
@@ -73,15 +81,46 @@ export function graphqlQueryPassToClient<
   query: TypedDocumentNode<Q, V>,
   options?: Omit<QueryOptions<V, Q>, 'query'>,
 ): Promise<ApolloQueryResult<Q>> {
-  return graphqlSharedClient().query({ query, ...options })
+  return getClient()
+    .query({ query, ...options })
+    .then((res) => ({ ...res, data: JSON.parse(JSON.stringify(res.data)) }))
+}
+
+type CacheAndRevalidate = {
+  cache?: 'force-cache' | 'no-store'
+  revalidate?: NextFetchRequestConfig['revalidate']
+  tags?: NextFetchRequestConfig['tags']
 }
 
 export async function graphqlQuery<
   Q = Record<string, unknown>,
   V extends Record<string, unknown> = Record<string, unknown>,
+  O extends CacheAndRevalidate &
+    Omit<QueryOptions<V, Q>, 'query' | 'fetchPolicy'> = CacheAndRevalidate &
+    Omit<QueryOptions<V, Q>, 'query' | 'fetchPolicy'>,
 >(
   query: TypedDocumentNode<Q, V>,
-  options?: Omit<QueryOptions<V, Q>, 'query'> | Promise<Omit<QueryOptions<V, Q>, 'query'>>,
+  options: O | Promise<O | undefined> | undefined,
 ): Promise<ApolloQueryResult<Q>> {
-  return graphqlSsrClient().query({ query, ...(await options) })
+  const { revalidate, tags, cache, context, ...rest } = (await options) || {}
+
+  // todo: Automatically add tags to the request headers?
+
+  return getClient()
+    .query({
+      query,
+      ...rest,
+      context: {
+        ...(context ?? {}),
+        headers: {
+          'x-fetch': `${cache ?? ''} ${revalidate || ''} ${tags?.join(' ') || ''}`,
+          Authorization: 'jajajaja',
+          ...(context?.headers ?? {}),
+        },
+      },
+    })
+    .then((res) => ({
+      ...res,
+      data: res?.data ? JSON.parse(JSON.stringify(res.data)) : null,
+    }))
 }

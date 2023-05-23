@@ -1,5 +1,5 @@
 import { LinearProgress, Fade } from '@mui/material'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/compat/router'
 import { useEffect, useState } from 'react'
 
 /**
@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react'
  * is about to change until it has changed.
  */
 export function PageLoadIndicator() {
-  const { events } = useRouter()
+  const events = useRouter()?.events
   const [loading, setLoading] = useState<boolean>(false)
 
   useEffect(() => {

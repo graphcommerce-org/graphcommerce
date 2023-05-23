@@ -1,4 +1,4 @@
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/compat/router'
 import { useCallback } from 'react'
 
 export function useUrlQuery<T extends Record<string, string | null>>() {

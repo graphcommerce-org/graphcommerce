@@ -131,7 +131,7 @@ import {
   IconSvg,
 } from '@graphcommerce/next-ui'
 import { styled, Box, Fab, Menu, ListItem, Divider, alpha } from '@mui/material'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/compat/router'
 import React, { useEffect } from 'react'
 ```
 

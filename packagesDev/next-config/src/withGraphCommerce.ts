@@ -61,7 +61,6 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
   return {
     ...nextConfig,
     experimental: {
-      enableUndici: true,
       ...nextConfig.experimental,
     },
     i18n: {
@@ -149,6 +148,15 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
             }),
           )
         }
+      }
+
+      if (options.isServer && Array.isArray(config.externals)) {
+        config.externals.push({
+          bufferutil: 'bufferutil',
+          'utf-8-validate': 'utf-8-validate',
+          '@graphql-tools/url-loader': '@graphql-tools/url-loader',
+          '@graphql-mesh/utils': '@graphql-mesh/utils',
+        })
       }
 
       // @lingui .po file support
