@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.22
+
+### Patch Changes
+
+- [#1939](https://github.com/graphcommerce-org/graphcommerce/pull/1939) [`0cdccf681`](https://github.com/graphcommerce-org/graphcommerce/commit/0cdccf6817d6a769f59cccb68b1b1b8b4405cbd0) - Make blogListItem date prop optional ([@JoshuaS98](https://github.com/JoshuaS98))
+
 ## 6.2.0-canary.21
 
 ## 6.2.0-canary.20

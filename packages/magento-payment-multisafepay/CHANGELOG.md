@@ -1,5 +1,7 @@
 # @graphcommerce/magento-payment-multisafepay
 
+## 6.2.0-canary.22
+
 ## 6.2.0-canary.21
 
 ## 6.2.0-canary.20
