@@ -29,15 +29,12 @@ import { LayoutHeader, LayoutTitle, StickyBelowHeader } from '@graphcommerce/nex
 import { setConfigContext } from '@graphcommerce/next-ui/server'
 import { Container, Skeleton } from '@mui/material'
 import { Metadata } from 'next'
+import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
+import { ProductListItems } from '../../../../components'
 import { RowRenderer } from '../../../../components/GraphCMS'
 import { CategoryPageDocument } from '../../../../graphql/CategoryPage.gql'
 import { PageProps } from '../../types'
-import { ProductListItems } from '../../../../components'
-import { getLayout } from '../../../../components/Layout/layout'
-import { notFound } from 'next/navigation'
-
-// export const revalidate = 0
 
 export const generateMetadata = async (props: PageProps) => {
   setConfigContext(props)

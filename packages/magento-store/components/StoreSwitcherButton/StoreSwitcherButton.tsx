@@ -16,6 +16,8 @@ export function StoreSwitcherButton(props: StoreSwitcherButtonProps) {
   const country = config.data?.storeConfig?.locale?.split('_')?.[1]?.toLowerCase() ?? ''
   const router = useRouter()
 
+  if (!country) return null
+
   return (
     <Button
       variant='text'

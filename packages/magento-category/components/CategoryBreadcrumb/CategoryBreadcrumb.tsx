@@ -1,6 +1,6 @@
 import { filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Breadcrumbs, BreadcrumbsProps, Container, Link, Typography } from '@mui/material'
+import { Breadcrumbs, BreadcrumbsProps, Link, Typography } from '@mui/material'
 import { CategoryBreadcrumbFragment } from './CategoryBreadcrumb.gql'
 
 type CategoryPageBreadcrumbsProps = CategoryBreadcrumbFragment & Omit<BreadcrumbsProps, 'children'>

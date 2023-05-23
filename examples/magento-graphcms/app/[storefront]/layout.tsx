@@ -1,8 +1,6 @@
 import { GraphqlAppProvider } from '@graphcommerce/graphql'
-import { graphqlSharedClient } from '@graphcommerce/graphql-mesh'
 import { setConfigContext, storefrontConfig } from '@graphcommerce/next-ui/server'
 import { i18n, Messages } from '@lingui/core'
-import * as all from 'make-plural/plurals'
 import { RootLayoutClient } from './RootLayoutClient'
 import { LayoutProps } from './types'
 
@@ -10,29 +8,13 @@ import { LayoutProps } from './types'
 export const generateStaticParams = () =>
   import.meta.graphCommerce.storefront.map((storefront) => ({ params: { storefront } }))
 
-// Load pluralization rules for a specific locale
-function loadPluralRulesForLocale(locale: string) {
-  const pluralRules = all[locale]
-
-  if (pluralRules) {
-    i18n.loadLocaleData({
-      [locale]: { plurals: pluralRules },
-    })
-  }
-}
-
 // Load localization data for the given linguiLocale
 async function loadLocaleData(linguiLocale: string) {
   const localisationConfig: { messages: Messages } = await import(
     `../../locales/${linguiLocale}.po`
   )
   i18n.load(linguiLocale, localisationConfig.messages)
-
-  // Load pluralization rules for the current locale
-  loadPluralRulesForLocale(linguiLocale)
-
   i18n.activate(linguiLocale)
-
   return localisationConfig.messages
 }
 
@@ -49,11 +31,7 @@ export default async (props: LayoutProps) => {
     <html lang={props.params.storefront}>
       <head />
       <GraphqlAppProvider>
-        <RootLayoutClient
-          // locale={config.locale}
-          messages={messages}
-          linguiLocale={linguiLocale}
-        >
+        <RootLayoutClient messages={messages} linguiLocale={linguiLocale}>
           {children}
         </RootLayoutClient>
       </GraphqlAppProvider>

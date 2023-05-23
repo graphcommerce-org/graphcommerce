@@ -47,9 +47,9 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
   const router = useRouter()
   const pathname = usePathname()
   const params = useParams()
-  const searchParams = useSearchParams()
+  // const searchParams = useSearchParams()
 
-  console.log(router?.pathname, pathname, params, [...searchParams?.entries()])
+  console.log(router?.pathname, pathname, params)
 
   return (
     <>

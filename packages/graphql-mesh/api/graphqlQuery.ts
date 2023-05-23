@@ -104,7 +104,7 @@ export async function graphqlQuery<
 ): Promise<ApolloQueryResult<Q>> {
   const { revalidate, tags, cache, context, ...rest } = (await options) || {}
 
-  // Automatically add tags to the request headers.
+  // todo: Automatically add tags to the request headers?
 
   return getClient()
     .query({
@@ -114,6 +114,7 @@ export async function graphqlQuery<
         ...(context ?? {}),
         headers: {
           'x-fetch': `${cache ?? ''} ${revalidate || ''} ${tags?.join(' ') || ''}`,
+          Authorization: 'jajajaja',
           ...(context?.headers ?? {}),
         },
       },

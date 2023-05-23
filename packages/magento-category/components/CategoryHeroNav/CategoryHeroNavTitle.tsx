@@ -1,3 +1,5 @@
+'use client'
+
 import { LayoutTitle } from '@graphcommerce/next-ui'
 import { SxProps, Theme } from '@mui/material'
 import React from 'react'

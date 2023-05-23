@@ -1,3 +1,4 @@
+import type { ParsedUrlQuery } from 'querystring'
 import type {
   FilterEqualTypeInput,
   FilterMatchTypeInput,
@@ -5,8 +6,7 @@ import type {
   SortEnum,
 } from '@graphcommerce/graphql-mesh'
 import { urlFromParams } from '@graphcommerce/next-ui/server'
-import { ParsedUrlQuery } from 'querystring'
-import { FilterTypes, ProductListParams } from '../components/ProductListItems/filterTypes'
+import type { FilterTypes, ProductListParams } from '../components/ProductListItems/filterTypes'
 
 export function parseParams(
   url: string,

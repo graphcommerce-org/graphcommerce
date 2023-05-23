@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react'
  * is about to change until it has changed.
  */
 export function PageLoadIndicator() {
-  const { events } = useRouter()
+  const events = useRouter()?.events
   const [loading, setLoading] = useState<boolean>(false)
 
   useEffect(() => {

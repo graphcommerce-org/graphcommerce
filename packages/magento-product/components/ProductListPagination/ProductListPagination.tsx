@@ -14,7 +14,7 @@ export function ProductListPagination({
   params,
   ...paginationProps
 }: ProductPaginationProps) {
-  if (!page_info || !page_info.total_pages || !page_info.current_page) return null
+  // if (!page_info || !page_info.total_pages || !page_info.current_page) return null
 
   return (
     <Pagination

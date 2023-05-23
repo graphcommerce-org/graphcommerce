@@ -177,7 +177,7 @@ and pass it as a param in <FramerNextPages fallbackRoute='/[...url]' /> in your 
     }
 
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    loadFallback()
+    // loadFallback()
 
     return () => {
       if (cancel) cancelIdleCallback(cancel)
