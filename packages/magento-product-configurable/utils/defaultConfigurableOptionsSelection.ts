@@ -26,7 +26,8 @@ export function defaultConfigurableOptionsSelection<Q extends BaseQuery = BaseQu
   const configurable = findByTypename(query?.products?.items, 'ConfigurableProduct')
   const variant = findByTypename(query?.products?.items, 'SimpleProduct')
 
-  if (!configurable?.url_key || !variant) return { ...query, products: { items: [requested] } }
+  if (!configurable?.url_key || !variant)
+    return { ...query, products: { ...query?.products, items: [requested] } }
 
   const selectedOptions: string[] = []
 
@@ -54,7 +55,7 @@ export function defaultConfigurableOptionsSelection<Q extends BaseQuery = BaseQu
   if (warnFor.length) {
     return {
       ...query,
-      products: { items: [requested] },
+      products: { ...query?.products, items: [requested] },
       defaultValues: {},
     }
   }
@@ -83,6 +84,7 @@ export function defaultConfigurableOptionsSelection<Q extends BaseQuery = BaseQu
     variables: { urlKey: configurable.url_key, selectedOptions },
     data: {
       products: {
+        ...query?.products,
         __typename: 'Products',
         items: [
           {
@@ -108,7 +110,7 @@ export function defaultConfigurableOptionsSelection<Q extends BaseQuery = BaseQu
 
   return {
     ...query,
-    products: { items: [configurable] },
+    products: { ...query?.products, items: [configurable] },
     defaultValues: { cartItems: [{ selected_options: selectedOptions }] },
   }
 }
