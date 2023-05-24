@@ -2,4 +2,4 @@
 '@graphcommerce/magento-product-configurable': patch
 ---
 
-Add aggregations to product query result
+Product specifications wouldn't display for simple products
