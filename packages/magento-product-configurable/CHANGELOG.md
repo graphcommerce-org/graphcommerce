@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.23
+
+### Patch Changes
+
+- [#1940](https://github.com/graphcommerce-org/graphcommerce/pull/1940) [`a766c0d8a`](https://github.com/graphcommerce-org/graphcommerce/commit/a766c0d8a2f166cd324482bb80799341f5252fe0) - Product specifications wouldn't display for simple products ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 6.2.0-canary.22
 
 ## 6.2.0-canary.21
