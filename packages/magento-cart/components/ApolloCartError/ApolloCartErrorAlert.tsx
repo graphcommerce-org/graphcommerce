@@ -42,7 +42,7 @@ export function ApolloCartErrorAlert(props: ApolloCartErrorAlertProps) {
             <Button onClick={clear} color='error' size='small'>
               <Trans id='Sign out' />
             </Button>
-            <Button href='/account/login' color='error' size='small'>
+            <Button href='/account/signin' color='error' size='small'>
               <Trans id='Sign in' />
             </Button>
           </>
