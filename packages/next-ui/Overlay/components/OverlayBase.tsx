@@ -469,7 +469,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
           sx={(theme) => ({
             display: 'grid',
             gridArea: 'overlay',
-            scrollSnapAlign: 'start',
+            scrollSnapAlign: 'end',
             scrollSnapStop: 'always',
             pointerEvents: 'none',
             [theme.breakpoints.down('md')]: {
