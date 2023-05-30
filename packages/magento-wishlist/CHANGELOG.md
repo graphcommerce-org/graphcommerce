@@ -1,5 +1,13 @@
 # @graphcommerce/magento-wishlist
 
+## 6.2.0-canary.26
+
+### Patch Changes
+
+- [#1945](https://github.com/graphcommerce-org/graphcommerce/pull/1945) [`3bfa3b9dd`](https://github.com/graphcommerce-org/graphcommerce/commit/3bfa3b9ddf8724b31b8f6dfc2281c58dc3f44cad) - Fixed wishlist not being shown in menu when hideForGuest is enabled (eventhough the user is logged in) ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#1945](https://github.com/graphcommerce-org/graphcommerce/pull/1945) [`0a5f12aeb`](https://github.com/graphcommerce-org/graphcommerce/commit/0a5f12aebc8ea960980cb423445d14d253a0da5a) - Prevent horizontal overflow in wishlist on (small) mobile devices ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 6.2.0-canary.25
 
 ### Patch Changes
