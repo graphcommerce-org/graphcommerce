@@ -205,15 +205,6 @@ export function CreateProductReviewForm(props: CreateProductReviewFormProps) {
         >
           <Trans id='Submit review' />
         </Button>
-        <Button
-          variant='text'
-          color='primary'
-          size='medium'
-          onClick={() => router.back()}
-          className={classes.cancelButton}
-        >
-          <Trans id='Cancel' />
-        </Button>
       </FormActions>
 
       <ApolloCustomerErrorAlert error={error} />
