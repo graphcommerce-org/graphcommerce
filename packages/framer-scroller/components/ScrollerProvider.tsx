@@ -73,8 +73,8 @@ export function ScrollerProvider(props: ScrollerProviderProps) {
   const {
     scrollSnapAlign = 'center center',
     scrollSnapStop = 'normal',
-    scrollSnapTypeSm = 'inline mandatory',
-    scrollSnapTypeMd = 'inline mandatory',
+    scrollSnapTypeSm = 'inline proximity',
+    scrollSnapTypeMd = 'inline proximity',
     _inititalSnap = true,
     ...providerProps
   } = props

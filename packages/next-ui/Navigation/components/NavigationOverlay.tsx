@@ -185,7 +185,7 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
                     : `calc(${itemWidthSm} - (${theme.page.horizontal} * 2))`,
                 minWidth: 200,
                 overflow: 'hidden',
-                scrollSnapType: 'x mandatory',
+                scrollSnapType: 'x proximity',
                 '& .NavigationItem-item': {
                   width:
                     sizeSm !== 'floating'
