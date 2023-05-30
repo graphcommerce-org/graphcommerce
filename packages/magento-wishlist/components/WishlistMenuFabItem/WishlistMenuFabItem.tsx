@@ -62,7 +62,7 @@ export function WishlistMenuFabItem(props: WishlistMenuFabItemProps) {
     activeWishlist = wishlist.length > 0
   }
 
-  if (hideForGuest) return null
+  if (hideForGuest && !loggedIn) return null
   if (!isWishlistEnabled) return null
   return (
     <NoSsr fallback={<WishlistMenuFabItemContent {...props} activeWishlist={false} />}>
