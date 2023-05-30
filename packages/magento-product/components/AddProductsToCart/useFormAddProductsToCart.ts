@@ -6,7 +6,7 @@ import {
   AddProductsToCartMutationVariables,
 } from './AddProductsToCart.gql'
 
-export type RedirectType = LiteralUnion<'added' | undefined, `/${string}`>
+export type RedirectType = LiteralUnion<'added' | undefined | false, `/${string}`>
 
 /** https://react-hook-form.com/api/useform/watch/ */
 export type AddProductsToCartContextType = { redirect: RedirectType } & Omit<
