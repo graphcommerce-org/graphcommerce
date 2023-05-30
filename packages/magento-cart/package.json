@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-cart",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "6.2.0-canary.27",
+  "version": "6.2.0-canary.28",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -12,22 +12,22 @@
     }
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "6.2.0-canary.27",
-    "@graphcommerce/prettier-config-pwa": "6.2.0-canary.27",
-    "@graphcommerce/typescript-config-pwa": "6.2.0-canary.27"
+    "@graphcommerce/eslint-config-pwa": "6.2.0-canary.28",
+    "@graphcommerce/prettier-config-pwa": "6.2.0-canary.28",
+    "@graphcommerce/typescript-config-pwa": "6.2.0-canary.28"
   },
   "dependencies": {
-    "@graphcommerce/ecommerce-ui": "6.2.0-canary.27",
-    "@graphcommerce/framer-utils": "6.2.0-canary.27",
-    "@graphcommerce/framer-next-pages": "6.2.0-canary.27",
-    "@graphcommerce/framer-scroller": "6.2.0-canary.27",
-    "@graphcommerce/graphql": "6.2.0-canary.27",
-    "@graphcommerce/image": "6.2.0-canary.27",
-    "@graphcommerce/magento-customer": "6.2.0-canary.27",
-    "@graphcommerce/magento-graphql": "6.2.0-canary.27",
-    "@graphcommerce/magento-store": "6.2.0-canary.27",
-    "@graphcommerce/next-ui": "6.2.0-canary.27",
-    "@graphcommerce/react-hook-form": "6.2.0-canary.27"
+    "@graphcommerce/ecommerce-ui": "6.2.0-canary.28",
+    "@graphcommerce/framer-utils": "6.2.0-canary.28",
+    "@graphcommerce/framer-next-pages": "6.2.0-canary.28",
+    "@graphcommerce/framer-scroller": "6.2.0-canary.28",
+    "@graphcommerce/graphql": "6.2.0-canary.28",
+    "@graphcommerce/image": "6.2.0-canary.28",
+    "@graphcommerce/magento-customer": "6.2.0-canary.28",
+    "@graphcommerce/magento-graphql": "6.2.0-canary.28",
+    "@graphcommerce/magento-store": "6.2.0-canary.28",
+    "@graphcommerce/next-ui": "6.2.0-canary.28",
+    "@graphcommerce/react-hook-form": "6.2.0-canary.28"
   },
   "peerDependencies": {
     "@lingui/react": "^3.13.2",
