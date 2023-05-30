@@ -10,7 +10,7 @@ export function variantsToScrollSnapType(variants: Variants): Return {
   const inlineMd = variants.variantMd === 'left' || variants.variantMd === 'right'
 
   return {
-    scrollSnapTypeSm: inlineSm ? 'inline mandatory' : 'block mandatory',
-    scrollSnapTypeMd: inlineMd ? 'inline mandatory' : 'block mandatory',
+    scrollSnapTypeSm: inlineSm ? 'inline proximity' : 'block proximity',
+    scrollSnapTypeMd: inlineMd ? 'inline proximity' : 'block proximity',
   }
 }
