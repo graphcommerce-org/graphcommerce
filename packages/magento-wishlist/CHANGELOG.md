@@ -1,5 +1,11 @@
 # @graphcommerce/magento-wishlist
 
+## 6.2.0-canary.25
+
+### Patch Changes
+
+- [#1944](https://github.com/graphcommerce-org/graphcommerce/pull/1944) [`ff138050f`](https://github.com/graphcommerce-org/graphcommerce/commit/ff138050f92aad28f0f27a9f2ecd478dc6acfec1) - Wishlist would be limited to 24 products, but doesn't have pagination ([@paales](https://github.com/paales))
+
 ## 6.2.0-canary.24
 
 ## 6.2.0-canary.23

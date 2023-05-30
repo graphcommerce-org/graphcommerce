@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.25
+
+### Patch Changes
+
+- [#1944](https://github.com/graphcommerce-org/graphcommerce/pull/1944) [`5ce61c3d5`](https://github.com/graphcommerce-org/graphcommerce/commit/5ce61c3d545b67ed2c19668a5a505a91d6ec02c7) - When an image's width isn't known or is 0 it would always load an image ([@paales](https://github.com/paales))
+
 ## 6.2.0-canary.24
 
 ## 6.2.0-canary.23

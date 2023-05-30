@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.25
+
+### Patch Changes
+
+- [#1944](https://github.com/graphcommerce-org/graphcommerce/pull/1944) [`d83c92b76`](https://github.com/graphcommerce-org/graphcommerce/commit/d83c92b767cfab24b33b7530837e601f1b49de38) - When there are no items in the cart, do not send a viewCart event ([@paales](https://github.com/paales))
+
 ## 6.2.0-canary.24
 
 ## 6.2.0-canary.23

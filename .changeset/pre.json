@@ -76,6 +76,7 @@
     "@graphcommerce/algolia-search": "6.2.0-canary.9"
   },
   "changesets": [
+    "afraid-crabs-hide",
     "brown-brooms-battle",
     "clean-goats-fail",
     "curvy-cats-invent",
@@ -83,6 +84,7 @@
     "cyan-months-yell",
     "dirty-rivers-beg",
     "famous-dots-rhyme",
+    "fast-kiwis-smoke",
     "fifty-donkeys-chew",
     "forty-apples-mate",
     "friendly-colts-jam",
@@ -90,6 +92,7 @@
     "good-seals-rest",
     "gorgeous-games-pump",
     "honest-clocks-jump",
+    "hot-coats-unite",
     "hungry-pants-learn",
     "late-hats-refuse",
     "lazy-pumas-doubt",
@@ -113,6 +116,7 @@
     "smart-camels-drive",
     "strange-beans-sip",
     "tender-shrimps-cheat",
+    "tender-terms-bow",
     "thin-news-juggle",
     "thin-tables-sparkle",
     "twenty-planes-laugh"
