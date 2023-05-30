@@ -37,7 +37,7 @@ type ImageConfig = ImageConfigComplete & { allSizes: number[] }
 const DEFAULT_SIZES: SizesRecord = { 0: '100vw', 1200: '50vw' }
 
 const VALID_LOADING_VALUES = ['lazy', 'eager', undefined] as const
-type LoadingValue = typeof VALID_LOADING_VALUES[number]
+type LoadingValue = (typeof VALID_LOADING_VALUES)[number]
 
 const loaders = new Map<LoaderValue, (props: DefaultImageLoaderProps) => string>([
   ['imgix', imgixLoader],
@@ -147,14 +147,14 @@ function generateSrcSet(props: GenImgAttrsData): string {
   const { src, layout, width, quality = 52, sizes, loader, scale, config } = props
   const { widths, kind } = getWidths(config, width, layout, sizes)
 
-  return widths
+  return `${widths
     .map(
       (w, i) =>
         `${loader({ src, quality, width: w })} ${
           kind === 'w' ? Math.round(w * scale) : i + 1
         }${kind}`,
     )
-    .join(', ')
+    .join(', ')}, data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7 1w`
 }
 
 function defaultImageLoader(loaderProps: ImageLoaderProps) {

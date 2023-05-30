@@ -16,7 +16,11 @@ export function GaCartStartCheckoutLinkOrButton(
 
   const cartObject = useMemoObject({ items: rest.items, prices: rest.prices })
 
-  useEffect(() => gtagViewCart(cartObject), [cartObject])
+  useEffect(() => {
+    if (cartObject.items) {
+      gtagViewCart(cartObject)
+    }
+  }, [cartObject])
 
   return (
     <Prev
