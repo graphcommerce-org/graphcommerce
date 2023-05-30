@@ -91,6 +91,7 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
             { source: '/product/downloadable/:url*', destination, permanent: true },
             { source: '/product/grouped/:url*', destination, permanent: true },
             { source: '/product/virtual/:url*', destination, permanent: true },
+            { source: '/customer/account', destination: '/account', permanent: true },
           ],
         )
 

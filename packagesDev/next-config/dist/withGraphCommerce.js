@@ -79,6 +79,7 @@ function withGraphCommerce(nextConfig, cwd) {
                     { source: '/product/downloadable/:url*', destination, permanent: true },
                     { source: '/product/grouped/:url*', destination, permanent: true },
                     { source: '/product/virtual/:url*', destination, permanent: true },
+                    { source: '/customer/account', destination: '/account', permanent: true },
                 ]);
                 if (destination !== '/product/:url*')
                     redirects.push({ source: '/product/:url*', destination, permanent: true });

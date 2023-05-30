@@ -25,10 +25,6 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  // eslint-disable-next-line @typescript-eslint/require-await
-  async redirects() {
-    return [{ source: '/customer/account', destination: '/account', permanent: true }]
-  },
 }
 
 module.exports = withGraphCommerce(withPWA(nextConfig), __dirname)
