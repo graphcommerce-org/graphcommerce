@@ -1,17 +1,24 @@
-import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
+import { useCartQuery, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { useFormAutoSubmit, useFormCompose } from '@graphcommerce/react-hook-form'
 import { PaymentOptionsProps } from '../Api/PaymentMethod'
+import { GetPaymentMethodContextDocument } from '../PaymentMethodContext/GetPaymentMethodContext.gql'
 import { PaymentMethodOptionsNoopDocument } from './PaymentMethodOptionsNoop.gql'
 
 /** It sets the selected payment method on the cart. */
 export function PaymentMethodOptionsNoop(props: PaymentOptionsProps) {
   const { code, step } = props
 
+  const context = useCartQuery(GetPaymentMethodContextDocument)
+
   /**
    * In the this folder you'll also find a PaymentMethodOptionsNoop.graphql document that is
    * imported here and used as the basis for the form below.
    */
   const form = useFormGqlMutationCart(PaymentMethodOptionsNoopDocument, {
+    onBeforeSubmit(variables) {
+      if (variables.code === context.data?.cart?.selected_payment_method?.code) return false
+      return variables
+    },
     mode: 'onChange',
     defaultValues: { code },
   })
