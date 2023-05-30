@@ -1,5 +1,11 @@
 # @graphcommerce/demo-magento-graphcommerce
 
+## 6.2.0-canary.27
+
+### Patch Changes
+
+- [#1947](https://github.com/graphcommerce-org/graphcommerce/pull/1947) [`f105d1401`](https://github.com/graphcommerce-org/graphcommerce/commit/f105d1401c41087af98023e58371c4a5a3cb181b) - Demo content for RowLinks order would be wrong ([@paales](https://github.com/paales))
+
 ## 6.2.0-canary.26
 
 ## 6.2.0-canary.25
