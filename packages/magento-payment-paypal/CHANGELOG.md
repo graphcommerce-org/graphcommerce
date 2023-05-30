@@ -1,5 +1,11 @@
 # @graphcommerce/magento-payment-paypal
 
+## 6.2.0-canary.24
+
+### Patch Changes
+
+- [#1943](https://github.com/graphcommerce-org/graphcommerce/pull/1943) [`138215b45`](https://github.com/graphcommerce-org/graphcommerce/commit/138215b453703f44243c85b3bfab58814d86131c) - When a PayPal buyer would return to the website it would sometimes clear the buyers token ([@paales](https://github.com/paales))
+
 ## 6.2.0-canary.23
 
 ## 6.2.0-canary.22
