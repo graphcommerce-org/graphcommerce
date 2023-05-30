@@ -1,5 +1,6 @@
 import {
   ApolloErrorAlert,
+  TextFieldElement,
   useFormCompose,
   UseFormComposeOptions,
 } from '@graphcommerce/ecommerce-ui'
@@ -8,9 +9,8 @@ import { ProductInfoInput } from '@graphcommerce/graphql-mesh'
 import { useCartQuery, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { useShippingMethod } from '@graphcommerce/magento-cart-shipping-method'
 import { GetShippingMethodsDocument } from '@graphcommerce/magento-cart-shipping-method/components/ShippingMethodForm/GetShippingMethods.gql'
-import { ActionCardListForm, FormRow } from '@graphcommerce/next-ui'
+import { ActionCardItemBase, ActionCardListForm, FormRow } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import TextField from '@mui/material/TextField'
 import { useMemo, useDeferredValue } from 'react'
 import { GetPickupLocationsForProductsDocument } from '../graphql/GetPickupLocationsForProducts.gql'
 import {
@@ -43,6 +43,7 @@ export function PickupLocationForm(props: PickupLocationFormProps) {
   const defaultSearchTerm = shippingAddress?.pickup_location_code
     ? undefined
     : shippingAddress?.postcode ?? undefined
+
   const form = useFormGqlMutationCart<
     SetPickupLocationOnCartMutation,
     SetPickupLocationOnCartMutationVariables & { searchTerm?: string }
@@ -67,7 +68,7 @@ export function PickupLocationForm(props: PickupLocationFormProps) {
     }),
   })
 
-  const { control, handleSubmit, muiRegister } = form
+  const { control, handleSubmit } = form
   const submit = handleSubmit(() => {})
 
   useFormCompose({ form, step, submit, key: 'PickupLocationForm' })
@@ -96,15 +97,17 @@ export function PickupLocationForm(props: PickupLocationFormProps) {
     <form onSubmit={submit} noValidate>
       {!selected && (
         <FormRow>
-          <TextField
+          <TextFieldElement
+            name='searchTerm'
+            control={control}
+            validation={{ required: false, minLength: 4 }}
             label={<Trans id='Zip code or city' />}
             type='text'
-            {...muiRegister('searchTerm', { required: false, minLength: 4 })}
           />
         </FormRow>
       )}
 
-      <ActionCardListForm
+      <ActionCardListForm<Location & ActionCardItemBase, SetPickupLocationOnCartMutationVariables>
         control={control}
         name='pickupLocationCode'
         errorMessage='Please select a pickup location'
