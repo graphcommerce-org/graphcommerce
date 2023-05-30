@@ -126,7 +126,7 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
               "picture itemOptions itemOptions"
               "picture itemQuantity itemQuantity itemPrice"
               "itemCartButton itemCartButton itemCartButton itemCartButton"`,
-          gridTemplateColumns: `${rowImageSize} 1fr minmax(120px, 1fr) 1fr`,
+          gridTemplateColumns: `${rowImageSize} 1fr 1fr 1fr`,
           columnGap: theme.spacings.sm,
           alignItems: 'baseline',
           typography: 'body1',
@@ -150,7 +150,7 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
               "itemCartButton itemCartButton itemCartButton itemCartButton"`,
             alignItems: 'center',
             paddingBottom: theme.spacings.xl,
-            gridTemplateColumns: `${rowImageSize} 1fr minmax(120px, 1fr) 1fr`,
+            gridTemplateColumns: `${rowImageSize} 1fr 1fr 1fr`,
             [theme.breakpoints.up('sm')]: {
               paddingBottom: theme.spacings.md,
               gridTemplate: `
