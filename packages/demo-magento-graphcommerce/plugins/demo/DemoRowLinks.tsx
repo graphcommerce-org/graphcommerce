@@ -26,7 +26,7 @@ function DemoRowLinks(props: PluginProps<RowLinksProps>) {
           '& .RowLinks-title': {
             order: 1,
           },
-          '& .Scroller-root': {
+          '& .RowLinks-scrollerWrapper': {
             order: 2,
           },
           '& .RowLinks-copy': {
