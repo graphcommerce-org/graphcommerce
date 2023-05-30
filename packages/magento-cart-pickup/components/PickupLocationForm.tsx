@@ -18,7 +18,7 @@ import {
   SetPickupLocationOnCartMutation,
   SetPickupLocationOnCartMutationVariables,
 } from '../graphql/SetPickupLocationOnCart.gql'
-import { PickupLocationActionCard } from './PickupLocationActionCard'
+import { PickupLocationActionCard, Location } from './PickupLocationActionCard'
 
 export type PickupLocationFormProps = Pick<UseFormComposeOptions, 'step'>
 
