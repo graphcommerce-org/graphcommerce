@@ -2,4 +2,4 @@
 '@graphcommerce/magento-product': patch
 ---
 
-Allow redirect to be false
+Allow the redirect prop of AddProductsToCartForm to be false, so redirects can be disabled
