@@ -2,6 +2,7 @@ import { LocalStorageWrapper, CachePersistor } from 'apollo3-cache-persist'
 import { mergeDeep, ApolloCache, ApolloClient, NormalizedCacheObject } from '../../apollo'
 import { ApolloClientConfig } from '../../config'
 import { migrateCacheHandler } from './migrateCache'
+import { persistenceMapper } from './persistenceMapper'
 import { getTypePoliciesVersion } from './typePolicies'
 
 const APOLLO_CACHE_PERSIST = 'apollo-cache-persist'
@@ -23,24 +24,26 @@ export async function createCacheReviver(
     try {
       const { cache } = client
 
-      if (persistor) await persistor.persist()
-      // todo https://github.com/apollographql/apollo-cache-persist/tree/master/examples/react-native/src/utils/persistence
+      if (persistor) {
+        await persistor.persist()
+        return
+      }
+
       persistor = new CachePersistor({
         cache,
         storage: new LocalStorageWrapper(window.localStorage),
         maxSize: false,
         key: APOLLO_CACHE_PERSIST,
+        debounce: 10,
+        persistenceMapper,
       })
 
-      client.onClearStore(async () => {
+      const reset = async () => {
         client.cache.restore(incomingState)
         await persistor?.persist()
-      })
-
-      client.onResetStore(async () => {
-        client.cache.restore(incomingState)
-        await persistor?.persist()
-      })
+      }
+      client.onClearStore(reset)
+      client.onResetStore(reset)
 
       const storedState = window.localStorage[APOLLO_CACHE_PERSIST] as string | undefined
       const currentVersion = window.localStorage[APOLLO_CACHE_VERSION] as string | undefined
@@ -68,14 +71,12 @@ export async function createCacheReviver(
         }
       }
       window.localStorage[APOLLO_CACHE_VERSION] = typePoliciesVersion
-      window.localStorage[APOLLO_CACHE_PERSIST] = JSON.stringify(state)
-
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      persistor.restore()
     } catch (e) {
       console.error(e)
     }
   }
 
-  if (state) client.cache.restore(state)
+  if (state) {
+    client.cache.restore(state)
+  }
 }

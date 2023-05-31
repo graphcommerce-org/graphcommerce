@@ -1,7 +1,5 @@
-import { NormalizedCacheObject } from '@graphcommerce/graphql'
-import { ApolloLink, ApolloCache, setContext } from '@graphcommerce/graphql/apollo'
+import { setContext } from '@graphcommerce/graphql/apollo'
 import { CustomerTokenDocument } from '../hooks'
-import { onAuthorizationError } from './onAuthenticationError'
 
 export const addTokenHeader = setContext((_, context) => {
   if (!context.headers) context.headers = {}
@@ -17,7 +15,4 @@ export const addTokenHeader = setContext((_, context) => {
   }
 })
 
-export const customerTokenLink = ApolloLink.from([addTokenHeader, onAuthorizationError])
-
-/** Not really required anymore, you can use customerTokenLink directly */
-export const createCustomerTokenLink = (_: ApolloCache<NormalizedCacheObject>) => customerTokenLink
+export const customerTokenLink = addTokenHeader
