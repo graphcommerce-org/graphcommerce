@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.32
+
+### Patch Changes
+
+- [#1949](https://github.com/graphcommerce-org/graphcommerce/pull/1949) [`3b9ae16cb`](https://github.com/graphcommerce-org/graphcommerce/commit/3b9ae16cb6ec366a3a762363f020bf888bb81ac6) - In some cases the getStaticPaths values were send to the client and stored in the local storage ([@paales](https://github.com/paales))
+
 ## 6.2.0-canary.31
 
 ### Patch Changes
