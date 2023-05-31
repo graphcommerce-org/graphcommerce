@@ -61,7 +61,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
 
   const path = async (locale: string) => {
-    const client = graphqlSharedClient(locale)
+    const client = graphqlSsrClient(locale)
     const { data } = await client.query({
       query: PagesStaticPathsDocument,
       variables: {
