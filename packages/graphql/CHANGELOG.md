@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.30
+
+### Patch Changes
+
+- [#1942](https://github.com/graphcommerce-org/graphcommerce/pull/1942) [`df2b3efb2`](https://github.com/graphcommerce-org/graphcommerce/commit/df2b3efb2f906232a302218678c1524753c5a32c) - Customer related information was stored in the users local storage indefintely causing cache mismatches: 1. It stores a lot less by using the newly created _persistenceMapper_. 2. The 'createCacheReviver' would recreate the ApolloClient-cache on each navigation, it wont do that anymore. 3. The _persistenceMapper_ now has a hard coded blacklist of entries that aren't allowed to be stored in the local storage. In a future PR we'll make this blacklist configurable. ([@paales](https://github.com/paales))
+
 ## 6.2.0-canary.29
 
 ## 6.2.0-canary.28

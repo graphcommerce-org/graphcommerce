@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.30
+
+### Patch Changes
+
+- [#1942](https://github.com/graphcommerce-org/graphcommerce/pull/1942) [`045d0a6cb`](https://github.com/graphcommerce-org/graphcommerce/commit/045d0a6cbbfc6339852c19dd21f349bb51c38fcd) - When the ApolloCartError would throw an authorization error it would link to the wrong page ([@paales](https://github.com/paales))
+
 ## 6.2.0-canary.29
 
 ## 6.2.0-canary.28

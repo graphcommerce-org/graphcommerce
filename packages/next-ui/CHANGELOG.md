@@ -1,5 +1,7 @@
 # Change Log
 
+## 6.2.0-canary.30
+
 ## 6.2.0-canary.29
 
 ### Patch Changes

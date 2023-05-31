@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.30
+
+### Patch Changes
+
+- [#1942](https://github.com/graphcommerce-org/graphcommerce/pull/1942) [`21b0d0c48`](https://github.com/graphcommerce-org/graphcommerce/commit/21b0d0c48603343c09f287978bf051140e9be912) - Customer's session is now revalidated when a previous session is detected on pageload, making sure the customer is still logged in. ([@paales](https://github.com/paales))
+
 ## 6.2.0-canary.29
 
 ## 6.2.0-canary.28
