@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.31
+
+### Patch Changes
+
+- [#1936](https://github.com/graphcommerce-org/graphcommerce/pull/1936) [`2869ac874`](https://github.com/graphcommerce-org/graphcommerce/commit/2869ac87401d5f00f41cfc9d976fd2c2b23ffac3) - Added redirect for /customer/account so links in (transactional) emails function properly ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 6.2.0-canary.30
 
 ## 6.2.0-canary.29
