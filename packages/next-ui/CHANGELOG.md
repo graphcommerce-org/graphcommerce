@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.29
+
+### Patch Changes
+
+- [#1946](https://github.com/graphcommerce-org/graphcommerce/pull/1946) [`87260618b`](https://github.com/graphcommerce-org/graphcommerce/commit/87260618b8abaebd727ff4435abb1aea6ed33730) - Firefox: scroll snap overlays would snap to 0 when the scroll snap targets wouldn’t exactly match the possible targets. ([@paales](https://github.com/paales))
+
 ## 6.2.0-canary.28
 
 ## 6.2.0-canary.27
