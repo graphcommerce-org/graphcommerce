@@ -1,8 +1,8 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import { Image, ImageProps } from '@graphcommerce/image'
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { extendableComponent } from '@graphcommerce/next-ui/Styles'
-import { i18n } from '@lingui/core'
-import { Fab, ButtonProps, styled, Button } from '@mui/material'
+import { ButtonProps, styled } from '@mui/material'
 import { m } from 'framer-motion'
 import { useScrollTo } from '../hooks/useScrollTo'
 import { useScrollerContext } from '../hooks/useScrollerContext'
@@ -19,6 +19,8 @@ type ScrollerThumbnailProps = Omit<ButtonProps, 'onClick' | 'className'> &
 
 const MotionBox = styled(m.div)({})
 
+const imageDimensions = 120
+
 export function ScrollerThumbnail(props: ScrollerThumbnailProps) {
   const { el, visibility, opacity, idx, image, ...buttonProps } = props
   const scrollTo = useScrollTo()
@@ -27,43 +29,47 @@ export function ScrollerThumbnail(props: ScrollerThumbnailProps) {
   const active = useMotionValueValue(visibility, (v) => v > 0.5)
   const classes = withState({ active })
 
+  const imageAnimation = {
+    rest: { width: imageDimensions / 2 },
+    hover: {
+      width: imageDimensions,
+    },
+  }
+
+  const spacingAnimation = {
+    rest: { width: imageDimensions / 2 },
+    hover: {
+      width: imageDimensions + 20,
+    },
+  }
+
   if (!image) return null
   return (
-    <Button
-      // eslint-disable-next-line react/no-array-index-key
-      {...buttonProps}
-      onClick={() => {
-        const positions = getScrollSnapPositions()
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        scrollTo({ x: positions.x[idx] ?? 0, y: positions.y[idx] ?? 0 })
-      }}
-      className={classes.thumbnail}
-      aria-label={i18n._(/* i18n */ 'Navigate to item {0}', { 0: idx + 1 })}
-      sx={{
-        minWidth: 'auto',
-        borderRadius: { xs: 1, md: 2 },
-        p: 0,
-        flexBasis: '0%',
-        flexGrow: '1',
-        flexShrink: '1',
-        background: 'transparent',
-      }}
-    >
-      <MotionBox
-        className={classes.thumbnail}
-        sx={{
-          height: '100%',
-          aspectRatio: '1/1',
-          '& img': {
-            display: 'block',
-            height: '100%',
-            objectFit: 'cover',
-            borderRadius: { xs: 1, md: 2 },
-          },
-        }}
-      >
-        <Image src={image.src} height={image.height} width={image.width} />
+    <MotionBox initial='rest' whileHover='hover'>
+      <MotionBox variants={spacingAnimation} sx={{ display: 'flex', justifyContent: 'center' }}>
+        <MotionBox
+          className={classes.thumbnail}
+          variants={imageAnimation}
+          onClick={() => {
+            const positions = getScrollSnapPositions()
+            // eslint-disable-next-line @typescript-eslint/no-floating-promises
+            scrollTo({ x: positions.x[idx] ?? 0, y: positions.y[idx] ?? 0 })
+          }}
+          sx={{
+            width: imageDimensions,
+            height: imageDimensions,
+            aspectRatio: '1/1',
+            '& img': {
+              display: 'block',
+              height: '100%',
+              objectFit: 'cover',
+              borderRadius: { xs: 1, md: 2 },
+            },
+          }}
+        >
+          <Image src={image.src} height={image.height} width={image.width} />
+        </MotionBox>
       </MotionBox>
-    </Button>
+    </MotionBox>
   )
 }

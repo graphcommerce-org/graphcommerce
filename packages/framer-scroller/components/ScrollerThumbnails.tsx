@@ -6,6 +6,7 @@ import { m } from 'framer-motion'
 import React from 'react'
 import { useScrollerContext } from '../hooks/useScrollerContext'
 import { Scroller } from './Scroller'
+import { ScrollerProvider } from './ScrollerProvider'
 import { ScrollerThumbnail } from './ScrollerThumbnail'
 
 const MotionBox = styled(m.div)({})
@@ -29,21 +30,7 @@ export const ScrollerThumbnails = m(
     if (itemsArr.length <= 1) return null
 
     return (
-      <Box
-        {...containerProps}
-        className={classes.root}
-        ref={ref}
-        sx={[
-          {
-            height: { xs: 60 },
-            maxWidth: '100%',
-            py: 0,
-            display: 'flex',
-            gap: { xs: '10px', sm: '15px', md: '20px' },
-          },
-          ...(Array.isArray(sx) ? sx : [sx]),
-        ]}
-      >
+      <Box sx={{ overflow: 'auto', display: 'flex', flexDirection: 'row' }}>
         {itemsArr.map((item, idx) => (
           // eslint-disable-next-line react/no-array-index-key
           <ScrollerThumbnail key={idx} {...item} idx={idx} image={images[idx]} />
