@@ -10,6 +10,9 @@ const fmt = (value) => {
     if (typeof formattedValue === 'object') {
         formattedValue = JSON.stringify(formattedValue);
     }
+    if (typeof formattedValue === 'number') {
+        formattedValue = String(formattedValue);
+    }
     return formattedValue;
 };
 function exportConfigToEnv(config) {
