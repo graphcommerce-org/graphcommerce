@@ -2,4 +2,4 @@
 '@graphcommerce/magento-cart-pickup': patch
 ---
 
-Remove type ActionCardListForm from PickupLocationForm
+Add explicit types to ActionCardListForm in PickupLocationForm to the `control` type is properly recognized
