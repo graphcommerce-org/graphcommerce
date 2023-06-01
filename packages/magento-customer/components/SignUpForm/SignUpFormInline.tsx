@@ -84,7 +84,7 @@ export function SignUpFormInline({
             },
           })}
           helperText={error?.message}
-          disabled={formState.isSubmitting}
+          disabled={formState.isSubmitting && !error?.message}
         />
         <TextField
           variant='outlined'
@@ -98,7 +98,7 @@ export function SignUpFormInline({
             validate: (value) => value === watchPassword,
           })}
           helperText={!!formState.errors.confirmPassword && <Trans id='Passwords should match' />}
-          disabled={formState.isSubmitting}
+          disabled={formState.isSubmitting && !error?.message}
         />
       </FormRow>
 
@@ -117,7 +117,7 @@ export function SignUpFormInline({
             <Button
               fullWidth
               type='submit'
-              loading={formState.isSubmitting}
+              loading={formState.isSubmitting && !error?.message}
               color='secondary'
               variant='pill'
             >
