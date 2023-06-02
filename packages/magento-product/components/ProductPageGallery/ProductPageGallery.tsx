@@ -4,6 +4,7 @@ import {
   SidebarGalleryProps,
   TypeRenderer,
 } from '@graphcommerce/next-ui'
+import { GridGallery } from './GridGallary'
 import { ProductPageGalleryFragment } from './ProductPageGallery.gql'
 
 export type ProductPageGalleryRenderers = TypeRenderer<
@@ -31,6 +32,12 @@ export function ProductPageGallery(props: ProductPageGalleryProps) {
           alt: `{${item.__typename} not yet supported}`,
         }
       }) ?? []
+
+  const gridGalleryEnabled = true
+
+  if (gridGalleryEnabled) {
+    return <GridGallery {...sidebarProps} sidebar={children} images={images} />
+  }
 
   return (
     <SidebarGallery
