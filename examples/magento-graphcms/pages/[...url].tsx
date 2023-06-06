@@ -17,8 +17,10 @@ import {
   ProductFiltersDocument,
   ProductFiltersPro,
   ProductFiltersProAllFiltersChip,
+  ProductFiltersProAllFiltersSidebar,
   ProductFiltersProFilterChips,
   ProductFiltersProLimitChip,
+  ProductFiltersProLimitSection,
   ProductFiltersProSortChip,
   ProductFiltersQuery,
   ProductListCount,
@@ -39,7 +41,7 @@ import {
   GetStaticProps,
   MetaRobots,
 } from '@graphcommerce/next-ui'
-import { Container } from '@mui/material'
+import { Box, Container } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import {
   LayoutNavigation,
@@ -142,13 +144,33 @@ function CategoryPage(props: CategoryProps) {
               </ProductListParamsProvider>
             )}
           </StickyBelowHeader>
-          <Container maxWidth={false}>
+          <Container maxWidth='lg'>
             <ProductListCount total_count={products?.total_count} />
-            <ProductListItems
-              title={category.name ?? ''}
-              items={products?.items}
-              loadingEager={1}
-            />
+            <Box
+              sx={{
+                display: 'grid',
+                gridTemplateColumns: '3fr 9fr',
+              }}
+            >
+              {/* Here comes the filters */}
+              <Box sx={{ border: '1px solid red' }}>
+                <ProductFiltersPro params={params}>
+                  <ProductFiltersProAllFiltersSidebar
+                    {...products}
+                    {...filters}
+                    appliedAggregations={products.aggregations}
+                    filterTypes={filterTypes}
+                  />
+                </ProductFiltersPro>
+              </Box>
+              <Box sx={{ border: '1px solid green' }}>
+                <ProductListItems
+                  title={category.name ?? ''}
+                  items={products?.items}
+                  loadingEager={1}
+                />
+              </Box>
+            </Box>
             <ProductListPagination page_info={products?.page_info} params={params} />
           </Container>
         </>
