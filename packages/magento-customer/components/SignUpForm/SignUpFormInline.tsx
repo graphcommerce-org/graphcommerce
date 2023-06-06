@@ -66,7 +66,7 @@ export function SignUpFormInline({
 
   return (
     <Form onSubmit={submitHandler} noValidate className={classes.form} sx={{ padding: 0 }}>
-      <FormRow key='inline-signup' className={classes.row} sx={{ padding: 0 }}>
+      <FormRow className={classes.row} sx={{ padding: 0 }}>
         <TextField
           variant='outlined'
           type='password'
@@ -102,7 +102,7 @@ export function SignUpFormInline({
         />
       </FormRow>
 
-      <FormRow key='signup-submit'>
+      <FormRow>
         <FormRow
           className={classes.buttonFormRow}
           sx={(theme) => ({
