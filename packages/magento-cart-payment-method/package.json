@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-cart-payment-method",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "6.2.0-canary.33",
+  "version": "6.2.0-canary.34",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -12,19 +12,19 @@
     }
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "6.2.0-canary.33",
-    "@graphcommerce/prettier-config-pwa": "6.2.0-canary.33",
-    "@graphcommerce/typescript-config-pwa": "6.2.0-canary.33",
-    "@graphcommerce/magento-cart-shipping-address": "6.2.0-canary.33"
+    "@graphcommerce/eslint-config-pwa": "6.2.0-canary.34",
+    "@graphcommerce/prettier-config-pwa": "6.2.0-canary.34",
+    "@graphcommerce/typescript-config-pwa": "6.2.0-canary.34",
+    "@graphcommerce/magento-cart-shipping-address": "6.2.0-canary.34"
   },
   "dependencies": {
-    "@graphcommerce/framer-scroller": "6.2.0-canary.33",
-    "@graphcommerce/graphql": "6.2.0-canary.33",
-    "@graphcommerce/image": "6.2.0-canary.33",
-    "@graphcommerce/magento-cart": "6.2.0-canary.33",
-    "@graphcommerce/magento-store": "6.2.0-canary.33",
-    "@graphcommerce/next-ui": "6.2.0-canary.33",
-    "@graphcommerce/react-hook-form": "6.2.0-canary.33"
+    "@graphcommerce/framer-scroller": "6.2.0-canary.34",
+    "@graphcommerce/graphql": "6.2.0-canary.34",
+    "@graphcommerce/image": "6.2.0-canary.34",
+    "@graphcommerce/magento-cart": "6.2.0-canary.34",
+    "@graphcommerce/magento-store": "6.2.0-canary.34",
+    "@graphcommerce/next-ui": "6.2.0-canary.34",
+    "@graphcommerce/react-hook-form": "6.2.0-canary.34"
   },
   "peerDependencies": {
     "@lingui/react": "^3.13.2",

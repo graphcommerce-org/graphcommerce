@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.34
+
+### Patch Changes
+
+- [#1953](https://github.com/graphcommerce-org/graphcommerce/pull/1953) [`0aab69059`](https://github.com/graphcommerce-org/graphcommerce/commit/0aab69059b7d28a44690b01c03b3fb8dba4dfcbe) - Fix inverted robotsAllow check ([@hnsr](https://github.com/hnsr))
+
 ## 6.2.0-canary.33
 
 ## 6.2.0-canary.32
