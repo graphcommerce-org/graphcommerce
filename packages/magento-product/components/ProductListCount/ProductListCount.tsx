@@ -23,7 +23,7 @@ export function ProductListCount(props: ProductCountProps) {
           gridTemplateColumns: '1fr max-content 1fr',
           columnGap: theme.spacings.xs,
           maxWidth: '100%',
-          width: responsiveVal(280, 650),
+          width: '100%',
           margin: '0 auto',
           alignItems: 'center',
           marginTop: theme.spacings.md,

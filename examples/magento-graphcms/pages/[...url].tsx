@@ -145,7 +145,6 @@ function CategoryPage(props: CategoryProps) {
             )}
           </StickyBelowHeader>
           <Container maxWidth='lg'>
-            <ProductListCount total_count={products?.total_count} />
             <Box
               sx={{
                 display: 'grid',
@@ -164,6 +163,7 @@ function CategoryPage(props: CategoryProps) {
                 </ProductFiltersPro>
               </Box>
               <Box sx={{ border: '1px solid green' }}>
+                <ProductListCount total_count={products?.total_count} />
                 <ProductListItems
                   title={category.name ?? ''}
                   items={products?.items}
