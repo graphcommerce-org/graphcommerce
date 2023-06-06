@@ -34,7 +34,7 @@ module.exports = {
   ],
   robotsTxtOptions: {
     policies: [
-      ...(allowRobots ? [{ userAgent: '*', disallow: '/' }] : []),
+      ...(!allowRobots ? [{ userAgent: '*', disallow: '/' }] : []),
       {
         userAgent: '*',
         disallow: ['/switch-stores', '/search', '/account', '/cart', '/checkout', '/wishlist'],
