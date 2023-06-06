@@ -73,7 +73,13 @@ export function ProductFiltersProAllFiltersSidebar(props: AllFiltersSidebar) {
     //   {...rest}
     // >
     //   {() => (
-    <Box sx={(theme) => ({ display: 'grid', rowGap: theme.spacings.sm })}>
+    <Box
+      sx={(theme) => ({
+        display: 'grid',
+        rowGap: theme.spacings.sm,
+        [theme.breakpoints.down('md')]: { display: 'none' },
+      })}
+    >
       <ProductFiltersProSortSection sort_fields={sort_fields} total_count={total_count} />
       <ProductFiltersProLimitSection />
       <ProductFiltersProAggregations

@@ -146,13 +146,20 @@ function CategoryPage(props: CategoryProps) {
           </StickyBelowHeader>
           <Container maxWidth='lg'>
             <Box
-              sx={{
+              sx={(theme) => ({
                 display: 'grid',
                 gridTemplateColumns: '3fr 9fr',
-              }}
+                columnGap: theme.spacings.md,
+                [theme.breakpoints.down('md')]: { display: 'flex' },
+              })}
             >
               {/* Here comes the filters */}
-              <Box sx={{ border: '1px solid red' }}>
+              <Box
+                sx={(theme) => ({
+                  border: '1px solid red',
+                  [theme.breakpoints.down('md')]: { display: 'none' },
+                })}
+              >
                 <ProductFiltersPro params={params}>
                   <ProductFiltersProAllFiltersSidebar
                     {...products}
