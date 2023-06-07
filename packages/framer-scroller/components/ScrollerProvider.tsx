@@ -114,10 +114,24 @@ export function ScrollerProvider(props: ScrollerProviderProps) {
 
   const enableSnap = useCallback(() => {
     if (snap.get() === true) return
-    if (scrollerRef.current) scrollerRef.current.style.scrollSnapType = ''
+    const scroller = scrollerRef.current
+    if (scroller) scroller.style.scrollSnapType = ''
 
     snap.set(true)
     scroll.animating.set(false)
+    // Fix for iOS Safari 14 where the scrollPosition would be reset to 0.
+    if (scroller) {
+      const { scrollLeft, scrollTop } = scroller
+      requestAnimationFrame(() => {
+        // We're forcing a layout calculation, else Safari 14 will still close.
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const forceLayout = scroller.scrollTop
+        requestAnimationFrame(() => {
+          if (scroller.scrollTop === 0 && scrollTop !== 0) scroller.scrollTop = scrollTop
+          if (scroller.scrollLeft === 0 && scrollLeft !== 0) scroller.scrollLeft = scrollLeft
+        })
+      })
+    }
   }, [snap, scroll])
 
   useObserveItems(scrollerRef, items)
