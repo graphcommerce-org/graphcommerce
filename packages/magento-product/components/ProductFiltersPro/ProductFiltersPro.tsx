@@ -32,10 +32,10 @@ export const useProductFiltersPro = () => {
 export type FilterFormProviderProps = Omit<
   UseFormProps<ProductFilterParams>,
   'values' | 'defaultValues'
-> & { children: React.ReactNode; params: ProductListParams }
+> & { children: React.ReactElement; params: ProductListParams; layout: 'mobile' | 'desktop' }
 
 export function ProductFiltersPro(props: FilterFormProviderProps) {
-  const { children, params, ...formProps } = props
+  const { children, params, ...formProps, layout } = props
 
   const fitlerParams = useMemoObject(toFilterParams(params))
   const form = useForm<ProductFilterParams>({
@@ -54,7 +54,7 @@ export function ProductFiltersPro(props: FilterFormProviderProps) {
       value={useMemo(() => ({ form, params: fitlerParams, submit }), [form, fitlerParams, submit])}
     >
       <form noValidate onSubmit={submit}>
-        {children}
+        {React.Children.map(children, (child) => React.cloneElement(child, { layout }))}
       </form>
     </FilterFormContext.Provider>
   )
