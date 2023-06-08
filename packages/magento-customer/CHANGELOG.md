@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.37
+
+### Patch Changes
+
+- [#1952](https://github.com/graphcommerce-org/graphcommerce/pull/1952) [`f1fe4f598`](https://github.com/graphcommerce-org/graphcommerce/commit/f1fe4f5986cee1f7c8313152e43691ed939c8f21) - enable password fields when there is an error and user input correction is required. ([@carlocarels90](https://github.com/carlocarels90))
+
 ## 6.2.0-canary.36
 
 ## 6.2.0-canary.35

@@ -3,17 +3,17 @@
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
   "private": true,
-  "version": "6.2.0-canary.36",
+  "version": "6.2.0-canary.37",
   "scripts": {
     "dev": "next",
     "build": "next build",
     "start": "next start"
   },
   "dependencies": {
-    "@graphcommerce/framer-scroller": "6.2.0-canary.36",
-    "@graphcommerce/image": "6.2.0-canary.36",
-    "@graphcommerce/next-config": "6.2.0-canary.36",
-    "@graphcommerce/next-ui": "6.2.0-canary.36",
+    "@graphcommerce/framer-scroller": "6.2.0-canary.37",
+    "@graphcommerce/image": "6.2.0-canary.37",
+    "@graphcommerce/next-config": "6.2.0-canary.37",
+    "@graphcommerce/next-ui": "6.2.0-canary.37",
     "@mui/material": "5.11.12",
     "framer-motion": "10.2.4",
     "next": "13.2.4",
