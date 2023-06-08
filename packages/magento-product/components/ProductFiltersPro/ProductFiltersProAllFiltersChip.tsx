@@ -25,7 +25,7 @@ type AllFiltersChip = ProductFiltersProAggregationsProps &
   Omit<
     ChipOverlayOrPopperProps,
     'label' | 'selected' | 'selectedLabel' | 'onApply' | 'onReset' | 'onClose' | 'children'
-  >
+  > & { mode: 'default' | 'sidebar' }
 
 export function ProductFiltersProAllFiltersChip(props: AllFiltersChip) {
   const {
@@ -35,6 +35,7 @@ export function ProductFiltersProAllFiltersChip(props: AllFiltersChip) {
     sort_fields,
     total_count,
     renderer,
+    mode,
     ...rest
   } = props
 
@@ -74,8 +75,12 @@ export function ProductFiltersProAllFiltersChip(props: AllFiltersChip) {
     >
       {() => (
         <Box sx={(theme) => ({ display: 'grid', rowGap: theme.spacings.sm })}>
-          <ProductFiltersProSortSection sort_fields={sort_fields} total_count={total_count} />
-          <ProductFiltersProLimitSection />
+          <ProductFiltersProSortSection
+            sort_fields={sort_fields}
+            total_count={total_count}
+            mode={mode}
+          />
+          <ProductFiltersProLimitSection mode={mode} />
           <ProductFiltersProAggregations
             filterTypes={filterTypes}
             aggregations={aggregations}

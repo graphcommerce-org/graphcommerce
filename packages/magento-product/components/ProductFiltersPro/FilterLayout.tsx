@@ -67,6 +67,7 @@ export function FilterLayout(props: FilterLayoutProps) {
                 {...filters}
                 appliedAggregations={products?.aggregations}
                 filterTypes={filterTypes}
+                mode={mode}
               />
             </ProductFiltersPro>
           </Box>
@@ -102,6 +103,7 @@ export function FilterLayout(props: FilterLayoutProps) {
                 {...filters}
                 appliedAggregations={products?.aggregations}
                 filterTypes={filterTypes}
+                mode={mode}
               />
             </ProductListFiltersContainer>
           </ProductFiltersPro>
