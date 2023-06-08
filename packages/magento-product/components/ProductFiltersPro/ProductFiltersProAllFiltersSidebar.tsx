@@ -37,7 +37,7 @@ export function ProductFiltersProAllFiltersSidebar(props: AllFiltersSidebar) {
     <Box
       sx={(theme) => ({
         display: 'grid',
-        rowGap: theme.spacings.sm,
+
         [theme.breakpoints.down('md')]: { display: 'none' },
       })}
     >

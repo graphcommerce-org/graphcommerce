@@ -36,7 +36,7 @@ export function ProductFiltersProLimitSection(props: ProductFiltersProLimitSecti
   if (options.length <= 1) return null
 
   return (
-    <Box sx={{ my: 2 }}>
+    <Box sx={{ my: 0 }}>
       <SectionHeader
         labelLeft={<Trans id='Per page' />}
         sx={{ mt: 0 }}

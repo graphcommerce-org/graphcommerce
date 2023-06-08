@@ -20,6 +20,7 @@ export function ProductFilterAccordion(props: ProductFilterAccordionProps) {
       variant='outlined'
       sx={{
         backgroundColor: 'transparent ',
+        '&.Mui-expanded': { my: 0 },
         '::before': { display: 'none' },
       }}
     >
