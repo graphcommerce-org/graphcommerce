@@ -49,6 +49,7 @@ export function InlineAccount(props: InlineAccountProps) {
             borderRadius: '4px',
             border: `1px solid ${theme.palette.divider}`,
             padding: theme.spacings.md,
+            marginTop: theme.spacings.sm,
           }),
           ...(Array.isArray(sx) ? sx : [sx]),
         ]}
