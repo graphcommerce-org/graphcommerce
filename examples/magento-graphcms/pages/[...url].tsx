@@ -11,37 +11,21 @@ import {
 } from '@graphcommerce/magento-category'
 import {
   extractUrlQuery,
+  FilterLayout,
   FilterTypes,
   getFilterTypes,
   parseParams,
   ProductFiltersDocument,
-  ProductFiltersPro,
-  ProductFiltersProAllFiltersChip,
-  ProductFiltersProAllFiltersSidebar,
-  ProductFiltersProFilterChips,
-  ProductFiltersProLimitChip,
-  ProductFiltersProLimitSection,
-  ProductFiltersProSortChip,
   ProductFiltersQuery,
   ProductListCount,
   ProductListDocument,
-  ProductListFilters,
-  ProductListFiltersContainer,
   ProductListPagination,
   ProductListParams,
-  ProductListParamsProvider,
   ProductListQuery,
-  ProductListSort,
 } from '@graphcommerce/magento-product'
 import { StoreConfigDocument, redirectOrNotFound } from '@graphcommerce/magento-store'
-import {
-  StickyBelowHeader,
-  LayoutTitle,
-  LayoutHeader,
-  GetStaticProps,
-  MetaRobots,
-} from '@graphcommerce/next-ui'
-import { Box, Container } from '@mui/material'
+import { LayoutTitle, LayoutHeader, GetStaticProps, MetaRobots } from '@graphcommerce/next-ui'
+import { Container, useMediaQuery, useTheme } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import {
   LayoutNavigation,
@@ -70,7 +54,9 @@ function CategoryPage(props: CategoryProps) {
   const isLanding = category?.display_mode === 'PAGE'
   const page = pages?.[0]
   const isCategory = params && category && products?.items && filterTypes
-
+  const theme = useTheme()
+  const matches = useMediaQuery(theme.breakpoints.up('md'))
+  console.log('matches', matches)
   return (
     <>
       <CategoryMeta
@@ -91,9 +77,9 @@ function CategoryPage(props: CategoryProps) {
           <LayoutTitle
             variant='h1'
             gutterTop
-            sx={(theme) => ({
+            sx={{
               marginBottom: category?.description && theme.spacings.md,
-            })}
+            }}
             gutterBottom={
               !isCategory || (!category?.description && category?.children?.length === 0)
             }
@@ -113,73 +99,17 @@ function CategoryPage(props: CategoryProps) {
         <>
           <CategoryDescription description={category.description} />
           <CategoryChildren params={params}>{category.children}</CategoryChildren>
-          <StickyBelowHeader>
-            {import.meta.graphCommerce.productFiltersPro ? (
-              <ProductFiltersPro params={params}>
-                <ProductListFiltersContainer>
-                  <ProductFiltersProFilterChips
-                    {...filters}
-                    appliedAggregations={products.aggregations}
-                    filterTypes={filterTypes}
-                  />
-                  <ProductFiltersProSortChip {...products} />
-                  <ProductFiltersProLimitChip />
-                  <ProductFiltersProAllFiltersChip
-                    {...products}
-                    {...filters}
-                    appliedAggregations={products.aggregations}
-                    filterTypes={filterTypes}
-                  />
-                </ProductListFiltersContainer>
-              </ProductFiltersPro>
-            ) : (
-              <ProductListParamsProvider value={params}>
-                <ProductListFiltersContainer>
-                  <ProductListSort
-                    sort_fields={products?.sort_fields}
-                    total_count={products?.total_count}
-                  />
-                  <ProductListFilters {...filters} filterTypes={filterTypes} />
-                </ProductListFiltersContainer>
-              </ProductListParamsProvider>
-            )}
-          </StickyBelowHeader>
-          <Container maxWidth='lg'>
-            <Box
-              sx={(theme) => ({
-                display: 'grid',
-                gridTemplateColumns: '3fr 9fr',
-                columnGap: theme.spacings.md,
-                [theme.breakpoints.down('md')]: { display: 'flex' },
-              })}
-            >
-              {/* Here comes the filters */}
-              <Box
-                sx={(theme) => ({
-                  border: '1px solid red',
-                  [theme.breakpoints.down('md')]: { display: 'none' },
-                })}
-              >
-                <ProductFiltersPro params={params}>
-                  <ProductFiltersProAllFiltersSidebar
-                    {...products}
-                    {...filters}
-                    appliedAggregations={products.aggregations}
-                    filterTypes={filterTypes}
-                  />
-                </ProductFiltersPro>
-              </Box>
-              <Box sx={{ border: '1px solid green' }}>
-                <ProductListCount total_count={products?.total_count} />
-                <ProductListItems
-                  title={category.name ?? ''}
-                  items={products?.items}
-                  loadingEager={1}
-                />
-              </Box>
-            </Box>
-            <ProductListPagination page_info={products?.page_info} params={params} />
-          </Container>
+          <FilterLayout
+            mode={matches ? 'sidebar' : 'default'}
+            ProductListItems={ProductListItems}
+            ProductListCount={ProductListCount}
+            ProductListPagination={ProductListPagination}
+            products={products}
+            filters={filters}
+            params={params}
+            filterTypes={filterTypes}
+            category={category}
+          />
         </>
       )}
       {page && (

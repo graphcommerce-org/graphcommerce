@@ -1,12 +1,5 @@
-import {
-  ChipOverlayOrPopper,
-  ChipOverlayOrPopperProps,
-  filterNonNullableKeys,
-} from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { ChipOverlayOrPopperProps } from '@graphcommerce/next-ui'
 import { Box } from '@mui/material'
-import { activeAggregations } from './activeAggregations'
-import { applyAggregationCount } from './applyAggregationCount'
 import { ProductFilterEqualSection } from './ProductFilterEqualSection'
 import { ProductFilterRangeSection } from './ProductFilterRangeSection'
 import { useProductFiltersPro } from './ProductFiltersPro'
@@ -19,6 +12,8 @@ import {
   ProductFiltersProSortSection,
   ProductFiltersProSortSectionProps,
 } from './ProductFiltersProSortSection'
+import { activeAggregations } from './activeAggregations'
+import { applyAggregationCount } from './applyAggregationCount'
 
 type AllFiltersSidebar = ProductFiltersProAggregationsProps &
   ProductFiltersProSortSectionProps &
