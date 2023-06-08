@@ -1,5 +1,5 @@
-import { ChipOverlayOrPopperProps } from '@graphcommerce/next-ui'
-import { Box } from '@mui/material'
+import { Button, ChipOverlayOrPopperProps } from '@graphcommerce/next-ui'
+import { Box, alpha, lighten } from '@mui/material'
 import { ProductFilterEqualSection } from './ProductFilterEqualSection'
 import { ProductFilterRangeSection } from './ProductFilterRangeSection'
 import { useProductFiltersPro } from './ProductFiltersPro'
@@ -14,6 +14,7 @@ import {
 } from './ProductFiltersProSortSection'
 import { activeAggregations } from './activeAggregations'
 import { applyAggregationCount } from './applyAggregationCount'
+import { Trans } from '@lingui/react'
 
 type AllFiltersSidebar = ProductFiltersProAggregationsProps &
   ProductFiltersProSortSectionProps &
@@ -33,6 +34,17 @@ export function ProductFiltersProAllFiltersSidebar(props: AllFiltersSidebar) {
     ...rest
   } = props
 
+  const { form, submit, params } = useProductFiltersPro()
+  const { sort } = params
+
+  const activeFilters = activeAggregations(
+    applyAggregationCount(aggregations, aggregationsCount, params),
+    params,
+  ).map(({ label }) => label)
+
+  const allFilters = [...activeFilters, sort].filter(Boolean)
+  const hasFilters = allFilters.length > 0
+
   return (
     <Box
       sx={(theme) => ({
@@ -41,6 +53,39 @@ export function ProductFiltersProAllFiltersSidebar(props: AllFiltersSidebar) {
         [theme.breakpoints.down('md')]: { display: 'none' },
       })}
     >
+      <Button
+        sx={(theme) => ({
+          mb: theme.spacing(3),
+          transition: 'ease-in-out 250ms all',
+          color: theme.palette.text.primary,
+          backgroundColor:
+            theme.palette.mode === 'light'
+              ? alpha(theme.palette.primary.main, theme.palette.action.hoverOpacity)
+              : lighten(theme.palette.background.default, theme.palette.action.hoverOpacity),
+          '&:hover': {
+            color: theme.palette.primary.contrastText,
+          },
+        })}
+        key='1'
+        href='#'
+        variant='pill'
+        size='large'
+        color='primary'
+        onClick={(e) => {
+          // Resets all filters
+          e.preventDefault()
+          if (hasFilters) {
+            form.setValue('filters', { category_uid: params.filters.category_uid })
+            form.setValue('currentPage', 1)
+            form.setValue('sort', null)
+            form.setValue('dir', null)
+            return submit()
+          }
+          return null
+        }}
+      >
+        <Trans id='Clear all filters' />
+      </Button>
       <ProductFiltersProSortSection sort_fields={sort_fields} total_count={total_count} />
       <ProductFiltersProLimitSection />
       <ProductFiltersProAggregations
