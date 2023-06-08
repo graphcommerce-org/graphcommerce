@@ -1,4 +1,9 @@
-import { useForm, UseFormProps, UseFormReturn } from '@graphcommerce/ecommerce-ui'
+import {
+  useForm,
+  useFormAutoSubmit,
+  UseFormProps,
+  UseFormReturn,
+} from '@graphcommerce/ecommerce-ui'
 import { useMemoObject } from '@graphcommerce/next-ui'
 import React, { BaseSyntheticEvent, createContext, useContext, useEffect, useMemo } from 'react'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
@@ -48,6 +53,8 @@ export function ProductFiltersPro(props: FilterFormProviderProps) {
   const submit = handleSubmit(async (formValues) =>
     push({ ...toProductListParams(formValues), currentPage: 1 }),
   )
+
+  useFormAutoSubmit({ form, submit })
 
   return (
     <FilterFormContext.Provider
