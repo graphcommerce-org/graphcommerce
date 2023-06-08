@@ -58,11 +58,10 @@ export function FilterLayout(props: FilterLayoutProps) {
           {/* Here comes the filters */}
           <Box
             sx={(theme) => ({
-              border: '1px solid red',
               [theme.breakpoints.down('md')]: { display: 'none' },
             })}
           >
-            <ProductFiltersPro params={params} layout='desktop'>
+            <ProductFiltersPro params={params}>
               <ProductFiltersProAllFiltersSidebar
                 {...products}
                 {...filters}
@@ -71,7 +70,7 @@ export function FilterLayout(props: FilterLayoutProps) {
               />
             </ProductFiltersPro>
           </Box>
-          <Box sx={{ border: '1px solid green' }}>
+          <Box>
             <ProductListCount total_count={products?.total_count} />
             <ProductListItems
               items={products?.items}
@@ -89,7 +88,7 @@ export function FilterLayout(props: FilterLayoutProps) {
     <Container>
       <StickyBelowHeader>
         {import.meta.graphCommerce.productFiltersPro ? (
-          <ProductFiltersPro params={params} layout='desktop'>
+          <ProductFiltersPro params={params}>
             <ProductListFiltersContainer>
               <ProductFiltersProFilterChips
                 {...filters}
