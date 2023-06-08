@@ -78,7 +78,7 @@ export function SignUpFormInline({
         <TextField
           variant='outlined'
           type='password'
-          error={!!formState.errors.password}
+          error={!!formState.errors.password || !!form.error}
           label={<Trans id='Password' />}
           autoFocus
           autoComplete='new-password'
@@ -96,7 +96,7 @@ export function SignUpFormInline({
         <TextField
           variant='outlined'
           type='password'
-          error={!!formState.errors.confirmPassword}
+          error={!!formState.errors.confirmPassword || !!form.error}
           label={<Trans id='Confirm password' />}
           autoComplete='new-password'
           required
