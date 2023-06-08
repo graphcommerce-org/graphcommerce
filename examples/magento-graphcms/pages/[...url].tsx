@@ -56,7 +56,7 @@ function CategoryPage(props: CategoryProps) {
   const isCategory = params && category && products?.items && filterTypes
   const theme = useTheme()
   const matches = useMediaQuery(theme.breakpoints.up('md'))
-  console.log('matches', matches)
+
   return (
     <>
       <CategoryMeta
