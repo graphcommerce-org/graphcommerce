@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.36
+
+### Patch Changes
+
+- [#1955](https://github.com/graphcommerce-org/graphcommerce/pull/1955) [`1f5f15dd3`](https://github.com/graphcommerce-org/graphcommerce/commit/1f5f15dd38fda5b0dc78095076b951486c635542) - Added onSubmitSuccessful callback to checkout header button, so header "To payment method" action navigates to the payment checkout step ([@mikekeehnen](https://github.com/mikekeehnen))
+
 ## 6.2.0-canary.35
 
 ## 6.2.0-canary.34

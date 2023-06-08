@@ -1,5 +1,7 @@
 # @graphcommerce/magento-payment-paypal
 
+## 6.2.0-canary.36
+
 ## 6.2.0-canary.35
 
 ## 6.2.0-canary.34

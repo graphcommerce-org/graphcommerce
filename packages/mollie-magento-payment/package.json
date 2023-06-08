@@ -2,7 +2,7 @@
   "name": "@graphcommerce/mollie-magento-payment",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "6.2.0-canary.35",
+  "version": "6.2.0-canary.36",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -12,22 +12,22 @@
     }
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "6.2.0-canary.35",
-    "@graphcommerce/magento-cart-shipping-address": "6.2.0-canary.35",
-    "@graphcommerce/magento-product": "6.2.0-canary.35",
-    "@graphcommerce/magento-product-configurable": "6.2.0-canary.35",
-    "@graphcommerce/prettier-config-pwa": "6.2.0-canary.35",
-    "@graphcommerce/typescript-config-pwa": "6.2.0-canary.35"
+    "@graphcommerce/eslint-config-pwa": "6.2.0-canary.36",
+    "@graphcommerce/magento-cart-shipping-address": "6.2.0-canary.36",
+    "@graphcommerce/magento-product": "6.2.0-canary.36",
+    "@graphcommerce/magento-product-configurable": "6.2.0-canary.36",
+    "@graphcommerce/prettier-config-pwa": "6.2.0-canary.36",
+    "@graphcommerce/typescript-config-pwa": "6.2.0-canary.36"
   },
   "dependencies": {
-    "@graphcommerce/graphql": "6.2.0-canary.35",
-    "@graphcommerce/graphql-mesh": "6.2.0-canary.35",
-    "@graphcommerce/image": "6.2.0-canary.35",
-    "@graphcommerce/magento-cart": "6.2.0-canary.35",
-    "@graphcommerce/magento-cart-payment-method": "6.2.0-canary.35",
-    "@graphcommerce/magento-store": "6.2.0-canary.35",
-    "@graphcommerce/next-ui": "6.2.0-canary.35",
-    "@graphcommerce/react-hook-form": "6.2.0-canary.35"
+    "@graphcommerce/graphql": "6.2.0-canary.36",
+    "@graphcommerce/graphql-mesh": "6.2.0-canary.36",
+    "@graphcommerce/image": "6.2.0-canary.36",
+    "@graphcommerce/magento-cart": "6.2.0-canary.36",
+    "@graphcommerce/magento-cart-payment-method": "6.2.0-canary.36",
+    "@graphcommerce/magento-store": "6.2.0-canary.36",
+    "@graphcommerce/next-ui": "6.2.0-canary.36",
+    "@graphcommerce/react-hook-form": "6.2.0-canary.36"
   },
   "peerDependencies": {
     "@lingui/react": "^3.13.2",
