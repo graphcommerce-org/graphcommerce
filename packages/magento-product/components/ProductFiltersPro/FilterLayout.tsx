@@ -19,7 +19,7 @@ import { ProductFiltersProFilterChips } from './ProductFiltersProChips'
 import { ProductFiltersProLimitChip } from './ProductFiltersProLimitChip'
 import { ProductFiltersProSortChip } from './ProductFiltersProSortChip'
 
-interface FilterLayoutProps
+export interface FilterLayoutProps
   extends NonNullable<ProductListQuery>,
     NonNullable<ProductFiltersQuery> {
   mode: 'default' | 'sidebar'
@@ -71,7 +71,7 @@ export function FilterLayout(props: FilterLayoutProps) {
             </ProductFiltersPro>
           </Box>
           <Box>
-            <ProductListCount total_count={products?.total_count} />
+            <ProductListCount total_count={products?.total_count} mode={mode} />
             <ProductListItems
               items={products?.items}
               title={category?.name ?? ''}
@@ -120,6 +120,7 @@ export function FilterLayout(props: FilterLayoutProps) {
       <ProductListCount
         sx={{ width: responsiveVal(280, 650) }}
         total_count={products?.total_count}
+        mode={mode}
       />
       <ProductListItems items={products?.items} title={category?.name ?? ''} loadingEager={1} />
     </Container>

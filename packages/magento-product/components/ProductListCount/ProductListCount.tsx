@@ -1,4 +1,4 @@
-import { responsiveVal, extendableComponent } from '@graphcommerce/next-ui'
+import { extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box, Divider, SxProps, Theme, Typography } from '@mui/material'
 import { ProductListCountFragment } from './ProductListCount.gql'
@@ -9,10 +9,13 @@ const { classes, selectors } = extendableComponent('ProductListCount', [
   'count',
 ] as const)
 
-export type ProductCountProps = ProductListCountFragment & { sx?: SxProps<Theme> }
+export type ProductCountProps = ProductListCountFragment & {
+  sx?: SxProps<Theme>
+  mode: 'default' | 'sidebar'
+}
 
 export function ProductListCount(props: ProductCountProps) {
-  const { total_count, sx = [] } = props
+  const { total_count, sx = [], mode } = props
 
   return (
     <Box
@@ -24,10 +27,10 @@ export function ProductListCount(props: ProductCountProps) {
           columnGap: theme.spacings.xs,
           maxWidth: '100%',
           width: '100%',
-          margin: '0 auto',
           alignItems: 'center',
-          marginTop: theme.spacings.md,
+          marginTop: mode ? 0 : theme.spacings.md,
           marginBottom: theme.spacings.md,
+          marginX: 'auto',
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
