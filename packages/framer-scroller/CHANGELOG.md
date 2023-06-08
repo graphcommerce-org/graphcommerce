@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.35
+
+### Patch Changes
+
+- [#1954](https://github.com/graphcommerce-org/graphcommerce/pull/1954) [`ec82fe49c`](https://github.com/graphcommerce-org/graphcommerce/commit/ec82fe49cd9aa0865b6c21eb405f05d8596748f6) - fix: prevent overlays from aut-closing on iOS 14 ([@FrankHarland](https://github.com/FrankHarland))
+
 ## 6.2.0-canary.34
 
 ## 6.2.0-canary.33
