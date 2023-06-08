@@ -1,3 +1,4 @@
+import { ApolloErrorAlert } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Button, extendableComponent, Form, FormRow } from '@graphcommerce/next-ui'
@@ -37,19 +38,26 @@ export function SignUpFormInline({
   const form = useFormGqlMutation<
     SignUpMutation,
     SignUpMutationVariables & { confirmPassword?: string }
-  >(Mutation, {
-    // todo(paales): This causes dirty data to be send to the backend.
-    defaultValues: {
-      email,
-      prefix: '-',
-      firstname: firstname ?? '-',
-      lastname: lastname ?? '-',
+  >(
+    Mutation,
+    {
+      // todo(paales): This causes dirty data to be send to the backend.
+      defaultValues: {
+        email,
+        prefix: '-',
+        firstname: firstname ?? '-',
+        lastname: lastname ?? '-',
+      },
+      onBeforeSubmit: (values) => ({ ...values, email }),
+      onComplete: (result) => {
+        if (!result.errors) onSubmitted()
+      },
     },
-    onBeforeSubmit: (values) => ({ ...values, email }),
-  })
+    { errorPolicy: 'all' },
+  )
 
-  const { muiRegister, watch, handleSubmit, required, formState, error } = form
-  const submitHandler = handleSubmit(onSubmitted)
+  const { muiRegister, watch, handleSubmit, required, formState } = form
+  const submitHandler = handleSubmit(() => {})
   const watchPassword = watch('password')
 
   const minPasswordLength = Number(
@@ -66,11 +74,11 @@ export function SignUpFormInline({
 
   return (
     <Form onSubmit={submitHandler} noValidate className={classes.form} sx={{ padding: 0 }}>
-      <FormRow key='inline-signup' className={classes.row} sx={{ padding: 0 }}>
+      <FormRow className={classes.row} sx={{ padding: 0 }}>
         <TextField
           variant='outlined'
           type='password'
-          error={!!formState.errors.password || !!error?.message}
+          error={!!formState.errors.password || !!form.error}
           label={<Trans id='Password' />}
           autoFocus
           autoComplete='new-password'
@@ -83,13 +91,12 @@ export function SignUpFormInline({
               message: i18n._(/* i18n */ 'Password must have at least 8 characters'),
             },
           })}
-          helperText={error?.message}
           disabled={formState.isSubmitting}
         />
         <TextField
           variant='outlined'
           type='password'
-          error={!!formState.errors.confirmPassword || !!error?.message}
+          error={!!formState.errors.confirmPassword || !!form.error}
           label={<Trans id='Confirm password' />}
           autoComplete='new-password'
           required
@@ -102,7 +109,7 @@ export function SignUpFormInline({
         />
       </FormRow>
 
-      <FormRow key='signup-submit'>
+      <FormRow>
         <FormRow
           className={classes.buttonFormRow}
           sx={(theme) => ({
@@ -126,6 +133,7 @@ export function SignUpFormInline({
           </Box>
         </FormRow>
       </FormRow>
+      <ApolloErrorAlert error={form.error} />
     </Form>
   )
 }
