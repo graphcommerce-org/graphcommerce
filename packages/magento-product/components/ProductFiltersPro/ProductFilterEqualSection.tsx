@@ -11,14 +11,18 @@ import {
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box, Typography } from '@mui/material'
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { isFilterTypeEqual } from '../ProductListItems/filterTypes'
+import { ProductFilterAccordion } from './ProductFilterAccordion'
 import { useProductFiltersPro } from './ProductFiltersPro'
 import { FilterProps } from './ProductFiltersProAggregations'
 
 export function ProductFilterEqualSection(props: FilterProps) {
   const { aggregation } = props
   const { attribute_code, label, options } = aggregation
+  const [open, setOpen] = useState<boolean>(false)
+  const handleChange = () => setOpen(!open)
+
   const { form, submit, params } = useProductFiltersPro()
   const { control } = form
   const attrCode = attribute_code as keyof ProductAttributeFilterInput
@@ -56,35 +60,42 @@ export function ProductFilterEqualSection(props: FilterProps) {
   )
 
   return (
-    <Box sx={{ my: 2 }}>
-      <SectionHeader
-        labelLeft={label}
-        sx={{ mt: 0 }}
-        labelRight={
-          currentFilter && currentFilter.length > 0 ? (
-            <Button
-              variant='inline'
-              color='primary'
-              onClick={() => {
-                form.resetField(name, { defaultValue: null })
-              }}
-            >
-              <Trans id='Clear' />
-            </Button>
-          ) : undefined
-        }
-      />
-
-      <ActionCardListForm
-        render={ActionCard}
-        name={name}
-        control={control}
-        multiple
-        layout='list'
-        variant='default'
-        size='medium'
-        items={items}
-      />
-    </Box>
+    <ProductFilterAccordion
+      summary={
+        <Box sx={{ my: 2 }}>
+          <SectionHeader
+            labelLeft={label}
+            sx={{ mt: 0 }}
+            labelRight={
+              currentFilter && currentFilter.length > 0 ? (
+                <Button
+                  variant='inline'
+                  color='primary'
+                  onClick={() => {
+                    form.resetField(name, { defaultValue: null })
+                  }}
+                >
+                  <Trans id='Clear' />
+                </Button>
+              ) : undefined
+            }
+          />
+        </Box>
+      }
+      details={
+        <Box sx={{ mb: 2 }}>
+          <ActionCardListForm
+            render={ActionCard}
+            name={name}
+            control={control}
+            multiple
+            layout='list'
+            variant='default'
+            size='medium'
+            items={items}
+          />
+        </Box>
+      }
+    />
   )
 }
