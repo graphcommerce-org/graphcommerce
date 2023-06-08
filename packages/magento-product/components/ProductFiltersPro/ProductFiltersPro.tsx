@@ -5,7 +5,7 @@ import {
   UseFormReturn,
 } from '@graphcommerce/ecommerce-ui'
 import { useMemoObject } from '@graphcommerce/next-ui'
-import React, { BaseSyntheticEvent, createContext, useContext, useEffect, useMemo } from 'react'
+import React, { BaseSyntheticEvent, createContext, useContext, useMemo } from 'react'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import {
   ProductFilterParams,
