@@ -18,11 +18,13 @@ export function ProductFilterAccordion(props: ProductFilterAccordionProps) {
       onChange={handleChange}
       expanded={open}
       variant='outlined'
-      sx={{
+      sx={(theme) => ({
         backgroundColor: 'transparent ',
         '&.Mui-expanded': { my: 0 },
         '::before': { display: 'none' },
-      }}
+        border: 'none',
+        borderBottom: `1px solid ${theme.palette.divider}`,
+      })}
     >
       <AccordionSummary
         onClick={(e) => e.preventDefault()}
