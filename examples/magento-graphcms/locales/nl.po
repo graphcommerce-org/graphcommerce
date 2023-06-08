@@ -870,3 +870,6 @@ msgstr "{totalResults} resultaten"
 
 msgid "{total_count} products"
 msgstr "{total_count} producten"
+
+msgid "Clear all filters"
+msgstr "Alle filters wissen"
