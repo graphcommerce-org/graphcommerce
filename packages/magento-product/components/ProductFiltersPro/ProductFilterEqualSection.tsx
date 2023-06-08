@@ -71,7 +71,8 @@ export function ProductFilterEqualSection(props: FilterProps) {
                 <Button
                   variant='inline'
                   color='primary'
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.stopPropagation()
                     form.resetField(name, { defaultValue: null })
                   }}
                 >
