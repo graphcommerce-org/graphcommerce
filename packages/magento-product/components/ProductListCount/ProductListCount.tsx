@@ -11,11 +11,11 @@ const { classes, selectors } = extendableComponent('ProductListCount', [
 
 export type ProductCountProps = ProductListCountFragment & {
   sx?: SxProps<Theme>
-  mode: 'default' | 'sidebar'
+  mode?: 'default' | 'sidebar'
 }
 
 export function ProductListCount(props: ProductCountProps) {
-  const { total_count, sx = [], mode } = props
+  const { total_count, sx = [], mode = 'default' } = props
 
   return (
     <Box
