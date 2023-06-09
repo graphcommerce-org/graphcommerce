@@ -1,4 +1,4 @@
-import { Alert, Box, SxProps, Theme } from '@mui/material'
+import { Alert, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { isFragment } from 'react-is'
 import { extendableComponent } from '../Styles'
