@@ -15,11 +15,11 @@ import { ProductListSortFragment } from '../ProductListSort/ProductListSort.gql'
 import { useProductFiltersPro } from './ProductFiltersPro'
 
 export type ProductFiltersProSortSectionProps = ProductListSortFragment & {
-  mode: 'default' | 'sidebar'
+  mode?: 'default' | 'sidebar'
 }
 
 export function ProductFiltersProSortSection(props: ProductFiltersProSortSectionProps) {
-  const { sort_fields, mode } = props
+  const { sort_fields, mode = 'default' } = props
   const { form } = useProductFiltersPro()
   const { control } = form
   const activeSort = useWatch({ control, name: 'sort' })

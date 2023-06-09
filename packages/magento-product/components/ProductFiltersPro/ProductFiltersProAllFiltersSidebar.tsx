@@ -21,7 +21,7 @@ type AllFiltersSidebar = ProductFiltersProAggregationsProps &
   Omit<
     ChipOverlayOrPopperProps,
     'label' | 'selected' | 'selectedLabel' | 'onApply' | 'onReset' | 'onClose' | 'children'
-  > & { mode: 'default' | 'sidebar' }
+  > & { mode?: 'default' | 'sidebar' }
 
 export function ProductFiltersProAllFiltersSidebar(props: AllFiltersSidebar) {
   const {
@@ -31,7 +31,7 @@ export function ProductFiltersProAllFiltersSidebar(props: AllFiltersSidebar) {
     sort_fields,
     total_count,
     renderer,
-    mode,
+    mode = 'default',
     ...rest
   } = props
 

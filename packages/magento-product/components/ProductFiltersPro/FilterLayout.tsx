@@ -22,7 +22,7 @@ import { ProductFiltersProSortChip } from './ProductFiltersProSortChip'
 export interface FilterLayoutProps
   extends NonNullable<ProductListQuery>,
     NonNullable<ProductFiltersQuery> {
-  mode: 'default' | 'sidebar'
+  mode?: 'default' | 'sidebar'
   ProductListItems: React.FC<React.ComponentProps<typeof ProductListItemsElement>>
   ProductListCount: React.FC<React.ComponentProps<typeof ProductListCountElement>>
   ProductListPagination: React.FC<React.ComponentProps<typeof ProductListPaginationElement>>
@@ -33,7 +33,7 @@ export interface FilterLayoutProps
 
 export function FilterLayout(props: FilterLayoutProps) {
   const {
-    mode,
+    mode = 'default',
     ProductListItems,
     ProductListCount,
     ProductListPagination,

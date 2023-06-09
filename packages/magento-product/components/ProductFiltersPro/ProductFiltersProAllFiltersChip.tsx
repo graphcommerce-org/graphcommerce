@@ -25,7 +25,7 @@ type AllFiltersChip = ProductFiltersProAggregationsProps &
   Omit<
     ChipOverlayOrPopperProps,
     'label' | 'selected' | 'selectedLabel' | 'onApply' | 'onReset' | 'onClose' | 'children'
-  > & { mode: 'default' | 'sidebar' }
+  > & { mode?: 'default' | 'sidebar' }
 
 export function ProductFiltersProAllFiltersChip(props: AllFiltersChip) {
   const {
@@ -35,7 +35,7 @@ export function ProductFiltersProAllFiltersChip(props: AllFiltersChip) {
     sort_fields,
     total_count,
     renderer,
-    mode,
+    mode = 'default',
     ...rest
   } = props
 
