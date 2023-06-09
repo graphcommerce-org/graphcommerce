@@ -43,6 +43,9 @@ export type ActionCardProps = {
   reset?: React.ReactNode
   disabled?: boolean
   error?: boolean
+  index?: number
+  show?: boolean
+  maxItems?: number
 }
 
 const parts = [
@@ -96,6 +99,9 @@ export function ActionCard(props: ActionCardProps) {
     variant = 'outlined',
     layout = 'list',
     error = false,
+    index = 0,
+    show = true,
+    maxItems = 100,
   } = props
 
   const classes = withState({
@@ -122,7 +128,7 @@ export function ActionCard(props: ActionCardProps) {
             theme.shape.borderRadius * 3,
             theme.breakpoints.values,
           ),
-
+          display: index + 1 > maxItems && !show ? 'none!important' : 'block', // todo: rewrite to state class like done with others
           '&.sizeSmall': {
             px: responsiveVal(8, 12),
             py: responsiveVal(4, 6),
@@ -193,7 +199,6 @@ export function ActionCard(props: ActionCardProps) {
             '&:not(:last-of-type)': {
               marginBottom: '-1px',
             },
-
             '&.layoutList': {
               borderRadius: 0,
               '&:first-of-type': {
