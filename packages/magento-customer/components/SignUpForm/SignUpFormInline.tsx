@@ -56,9 +56,11 @@ export function SignUpFormInline({
     { errorPolicy: 'all' },
   )
 
-  const { watch, handleSubmit, formState, required, control } = form
+  const { watch, handleSubmit, formState, required, control, error } = form
   const submitHandler = handleSubmit(() => {})
   const watchPassword = watch('password')
+
+  console.log(error)
 
   const minPasswordLength = Number(
     useQuery(StoreConfigDocument).data?.storeConfig?.minimum_password_length ?? 8,
@@ -91,7 +93,7 @@ export function SignUpFormInline({
               value: minPasswordLength,
               message: i18n._(/* i18n */ 'Password must have at least 8 characters'),
             },
-            validate: () => !!formState.errors.password || !!form.error,
+            validate: () => !!formState.errors.password || !!error,
           }}
           disabled={formState.isSubmitting}
         />
@@ -137,7 +139,7 @@ export function SignUpFormInline({
           </Box>
         </FormRow>
       </FormRow>
-      <ApolloErrorAlert error={form.error} />
+      <ApolloErrorAlert error={error} />
     </Form>
   )
 }
