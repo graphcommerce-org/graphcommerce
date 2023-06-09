@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { CategoryQueryFragment } from '@graphcommerce/magento-category/queries/CategoryQueryFragment.gql'
 import { StickyBelowHeader, responsiveVal } from '@graphcommerce/next-ui'
-import { Box, Container } from '@mui/material'
+import { Box, Container, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { ProductListQuery } from '../ProductList/ProductList.gql'
 import { ProductListCount as ProductListCountElement } from '../ProductListCount/ProductListCount'
@@ -22,18 +22,18 @@ import { ProductFiltersProSortChip } from './ProductFiltersProSortChip'
 export interface FilterLayoutProps
   extends NonNullable<ProductListQuery>,
     NonNullable<ProductFiltersQuery> {
-  mode?: 'default' | 'sidebar'
   ProductListItems: React.FC<React.ComponentProps<typeof ProductListItemsElement>>
   ProductListCount: React.FC<React.ComponentProps<typeof ProductListCountElement>>
   ProductListPagination: React.FC<React.ComponentProps<typeof ProductListPaginationElement>>
   filterTypes: FilterTypes
   params: ProductListParams
   category: NonNullable<NonNullable<CategoryQueryFragment['categories']>['items']>[number]
+  mode?: 'default' | 'sidebar'
+  sx?: SxProps<Theme>
 }
 
 export function FilterLayout(props: FilterLayoutProps) {
   const {
-    mode = 'default',
     ProductListItems,
     ProductListCount,
     ProductListPagination,
@@ -42,11 +42,13 @@ export function FilterLayout(props: FilterLayoutProps) {
     filters,
     params,
     category,
+    mode = 'default',
+    sx = [],
   } = props
 
   if (mode === 'sidebar' && import.meta.graphCommerce.productFiltersPro) {
     return (
-      <Container maxWidth='lg'>
+      <Container maxWidth='lg' sx={Array.isArray(sx) ? sx : [sx]}>
         <Box
           sx={(theme) => ({
             display: 'grid',
@@ -55,7 +57,6 @@ export function FilterLayout(props: FilterLayoutProps) {
             [theme.breakpoints.down('md')]: { display: 'flex' },
           })}
         >
-          {/* Here comes the filters */}
           <Box
             sx={(theme) => ({
               [theme.breakpoints.down('md')]: { display: 'none' },
@@ -86,7 +87,7 @@ export function FilterLayout(props: FilterLayoutProps) {
   }
 
   return (
-    <Container>
+    <Container sx={Array.isArray(sx) ? sx : [sx]}>
       <StickyBelowHeader>
         {import.meta.graphCommerce.productFiltersPro ? (
           <ProductFiltersPro params={params}>

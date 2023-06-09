@@ -38,7 +38,7 @@ export function ProductFiltersProSortSection(props: ProductFiltersProSortSection
   )
 
   return (
-    <Box sx={{ my: mode ? 0 : 2 }}>
+    <Box sx={{ my: mode === 'sidebar' ? 0 : 2 }}>
       <SectionHeader
         labelLeft={<Trans id='Sort By' />}
         sx={{ mt: 0 }}
