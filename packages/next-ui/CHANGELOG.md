@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.38
+
+### Patch Changes
+
+- [#1958](https://github.com/graphcommerce-org/graphcommerce/pull/1958) [`0a311b6eb`](https://github.com/graphcommerce-org/graphcommerce/commit/0a311b6ebb5a52e2a7f1d2e6a0fe113904fa2d34) - Left overlays wouldn't properly snap when the overlay gets wider than the viewport ([@paales](https://github.com/paales))
+
 ## 6.2.0-canary.37
 
 ## 6.2.0-canary.36
