@@ -8,7 +8,7 @@ type ProductFilterAccordionProps = {
 }
 
 export function ProductFilterAccordion(props: ProductFilterAccordionProps) {
-  const [open, setOpen] = useState<boolean>(true)
+  const [open, setOpen] = useState(true)
   const handleChange = () => setOpen(!open)
   const { summary, details } = props
 
