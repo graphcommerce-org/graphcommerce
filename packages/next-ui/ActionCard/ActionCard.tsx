@@ -128,7 +128,7 @@ export function ActionCard(props: ActionCardProps) {
             theme.shape.borderRadius * 3,
             theme.breakpoints.values,
           ),
-          display: index + 1 > maxItems && !show ? 'none!important' : 'block', // todo: rewrite to state class like done with others
+          display: index + 1 > maxItems && !show ? 'none!important' : 'block',
           '&.sizeSmall': {
             px: responsiveVal(8, 12),
             py: responsiveVal(4, 6),
