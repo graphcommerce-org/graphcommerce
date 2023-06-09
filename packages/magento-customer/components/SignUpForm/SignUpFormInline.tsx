@@ -1,11 +1,11 @@
-import { ApolloErrorAlert } from '@graphcommerce/ecommerce-ui'
+import { ApolloErrorAlert, TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Button, extendableComponent, Form, FormRow } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Alert, Box, TextField } from '@mui/material'
+import { Alert, Box } from '@mui/material'
 import React from 'react'
 import { SignUpMutationVariables, SignUpMutation, SignUpDocument } from './SignUp.gql'
 import { SignUpConfirmDocument } from './SignUpConfirm.gql'
@@ -56,7 +56,7 @@ export function SignUpFormInline({
     { errorPolicy: 'all' },
   )
 
-  const { muiRegister, watch, handleSubmit, required, formState } = form
+  const { watch, handleSubmit, formState, required, control } = form
   const submitHandler = handleSubmit(() => {})
   const watchPassword = watch('password')
 
@@ -75,35 +75,39 @@ export function SignUpFormInline({
   return (
     <Form onSubmit={submitHandler} noValidate className={classes.form} sx={{ padding: 0 }}>
       <FormRow className={classes.row} sx={{ padding: 0 }}>
-        <TextField
+        <TextFieldElement
+          control={control}
+          name='password'
           variant='outlined'
           type='password'
-          error={!!formState.errors.password || !!form.error}
           label={<Trans id='Password' />}
           autoFocus
           autoComplete='new-password'
           id='new-password'
           required={required.password}
-          {...muiRegister('password', {
+          validation={{
             required: required.password,
             minLength: {
               value: minPasswordLength,
               message: i18n._(/* i18n */ 'Password must have at least 8 characters'),
             },
-          })}
+            validate: () => !!formState.errors.password || !!form.error,
+          }}
           disabled={formState.isSubmitting}
         />
-        <TextField
+        <TextFieldElement
+          control={control}
+          name='confirmPassword'
           variant='outlined'
           type='password'
-          error={!!formState.errors.confirmPassword || !!form.error}
           label={<Trans id='Confirm password' />}
           autoComplete='new-password'
           required
-          {...muiRegister('confirmPassword', {
+          validation={{
             required: true,
-            validate: (value) => value === watchPassword,
-          })}
+            validate: (value) =>
+              value === watchPassword || i18n._(/* i18n */ "Passwords don't match"),
+          }}
           helperText={!!formState.errors.confirmPassword && <Trans id='Passwords should match' />}
           disabled={formState.isSubmitting}
         />
