@@ -12,6 +12,7 @@ import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Alert, Box } from '@mui/material'
 import React from 'react'
+import { PasswordRequirements } from './PasswordRequirements'
 import { SignUpMutationVariables, SignUpMutation, SignUpDocument } from './SignUp.gql'
 import { SignUpConfirmDocument } from './SignUpConfirm.gql'
 
@@ -61,19 +62,15 @@ export function SignUpFormInline({
     { errorPolicy: 'all' },
   )
 
-  const { watch, handleSubmit, formState, required, control, error } = form
+  const { handleSubmit, formState, control, error } = form
   const [remainingError, inputError] = graphqlErrorByCategory({ category: 'graphql-input', error })
   const submitHandler = handleSubmit(() => {})
-  const watchPassword = watch('password')
 
   const minPasswordLength = Number(
     useQuery(StoreConfigDocument).data?.storeConfig?.minimum_password_length ?? 8,
   )
 
-  const passwordRequirements = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).+$/
-
-  const RequiredCharacterClassesNumber =
-    useQuery(StoreConfigDocument).data?.storeConfig?.required_character_classes_number
+  const passwordRequirementsPattern = PasswordRequirements()
 
   if (requireEmailValidation && form.formState.isSubmitSuccessful) {
     return (
@@ -100,12 +97,7 @@ export function SignUpFormInline({
               value: minPasswordLength,
               message: i18n._(/* i18n */ 'Password must have at least 8 characters'),
             },
-            pattern: {
-              value: passwordRequirements,
-              message: i18n._(
-                /* i18n */ 'Minimum of different classes of characters in password is 3. Classes of characters: Lower Case, Upper Case, Digits, Special Characters.',
-              ),
-            },
+            pattern: passwordRequirementsPattern,
           }}
           helperText={formState.errors.password?.message || inputError?.message}
         />
@@ -119,10 +111,6 @@ export function SignUpFormInline({
           error={!!formState.errors.confirmPassword || !!inputError}
           required
           disabled={formState.isSubmitting}
-          validation={{
-            validate: (value) =>
-              value === watchPassword || i18n._(/* i18n */ 'Passwords should match'),
-          }}
           helperText={formState.errors.confirmPassword?.message}
         />
       </FormRow>
