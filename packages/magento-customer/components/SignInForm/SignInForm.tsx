@@ -1,9 +1,10 @@
+import { PasswordElement } from '@graphcommerce/ecommerce-ui'
 import { useApolloClient } from '@graphcommerce/graphql'
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
 import { Button, FormRow, FormActions } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
-import { Box, FormControl, Link, SxProps, TextField, Theme } from '@mui/material'
+import { Box, FormControl, Link, SxProps, Theme } from '@mui/material'
 import { CustomerDocument } from '../../hooks'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import { SignInDocument } from './SignIn.gql'
@@ -32,7 +33,7 @@ export function SignInForm(props: SignInFormProps) {
     { errorPolicy: 'all' },
   )
 
-  const { muiRegister, handleSubmit, required, formState, error } = form
+  const { handleSubmit, required, formState, error, control } = form
   const [remainingError, authError] = graphqlErrorByCategory({
     category: 'graphql-authentication',
     error,
@@ -41,28 +42,25 @@ export function SignInForm(props: SignInFormProps) {
 
   return (
     <Box component='form' onSubmit={submitHandler} noValidate sx={sx}>
-      <FormRow>
-        <TextField
-          key='password'
+      <FormRow sx={{ gridTemplateColumns: 'none' }}>
+        <PasswordElement
           variant='outlined'
           type='password'
-          error={!!formState.errors.password || !!authError}
+          error={!!formState.errors.password}
+          control={control}
+          name='password'
           label={<Trans id='Password' />}
           autoFocus
           autoComplete='current-password'
           id='current-password'
           required={required.password}
-          {...muiRegister('password', { required: required.password })}
-          InputProps={{
-            endAdornment: (
-              <Link href='/account/forgot-password' underline='hover' sx={{ whiteSpace: 'nowrap' }}>
-                <Trans id='Forgot password?' />
-              </Link>
-            ),
-          }}
+          validation={{}}
           helperText={formState.errors.password?.message || authError?.message}
           disabled={formState.isSubmitting}
         />
+        <Link href='/account/forgot-password' underline='hover' sx={{ whiteSpace: 'nowrap' }}>
+          <Trans id='Forgot password?' />
+        </Link>
       </FormRow>
 
       <ApolloCustomerErrorAlert error={remainingError} key='error' />

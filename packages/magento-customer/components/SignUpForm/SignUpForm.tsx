@@ -1,11 +1,9 @@
-import { useQuery } from '@graphcommerce/graphql'
+import { PasswordElement, PasswordRepeatElement } from '@graphcommerce/ecommerce-ui'
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Button, FormActions, FormRow } from '@graphcommerce/next-ui'
 import { useFormGqlMutation, useFormPersist } from '@graphcommerce/react-hook-form'
-import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Alert, FormControlLabel, Switch, TextField } from '@mui/material'
+import { Alert, FormControlLabel, Switch } from '@mui/material'
 import { ApolloCustomerErrorSnackbar } from '../ApolloCustomerError/ApolloCustomerErrorSnackbar'
 import { NameFields } from '../NameFields/NameFields'
 import { SignUpDocument, SignUpMutation, SignUpMutationVariables } from './SignUp.gql'
@@ -18,8 +16,6 @@ const requireEmailValidation = import.meta.graphCommerce.customerRequireEmailCon
 export function SignUpForm(props: SignUpFormProps) {
   const { email } = props
 
-  const storeConfig = useQuery(StoreConfigDocument).data?.storeConfig
-
   const Mutation = requireEmailValidation ? SignUpConfirmDocument : SignUpDocument
 
   const form = useFormGqlMutation<
@@ -31,11 +27,10 @@ export function SignUpForm(props: SignUpFormProps) {
     { errorPolicy: 'all' },
   )
 
-  const { muiRegister, handleSubmit, required, watch, formState, error } = form
+  const { muiRegister, handleSubmit, required, formState, error, control } = form
   const [remainingError, inputError] = graphqlErrorByCategory({ category: 'graphql-input', error })
 
   const submitHandler = handleSubmit(() => {})
-  const watchPassword = watch('password')
 
   useFormPersist({ form, name: 'SignUp', exclude: ['password', 'confirmPassword'] })
 
@@ -50,7 +45,9 @@ export function SignUpForm(props: SignUpFormProps) {
   return (
     <form onSubmit={submitHandler} noValidate>
       <FormRow>
-        <TextField
+        <PasswordElement
+          control={control}
+          name='password'
           variant='outlined'
           type='password'
           error={!!formState.errors.password || !!inputError}
@@ -58,28 +55,19 @@ export function SignUpForm(props: SignUpFormProps) {
           autoFocus
           autoComplete='new-password'
           required={required.password}
-          {...muiRegister('password', {
-            required: required.password,
-            minLength: {
-              value: Number(storeConfig?.minimum_password_length ?? 8),
-              message: i18n._(/* i18n */ 'Password must have at least 8 characters'),
-            },
-          })}
           helperText={formState.errors.password?.message || inputError?.message}
           disabled={formState.isSubmitting}
         />
-        <TextField
+        <PasswordRepeatElement
+          control={control}
+          name='confirmPassword'
+          passwordFieldName='password'
           variant='outlined'
           type='password'
-          error={!!formState.errors.confirmPassword}
+          error={!!formState.errors.confirmPassword || !!inputError}
           label={<Trans id='Confirm password' />}
           autoComplete='new-password'
           required
-          {...muiRegister('confirmPassword', {
-            required: true,
-            validate: (value) =>
-              value === watchPassword || i18n._(/* i18n */ "Passwords don't match"),
-          })}
           helperText={formState.errors.confirmPassword?.message}
           disabled={formState.isSubmitting}
         />

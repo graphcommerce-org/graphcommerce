@@ -1,3 +1,4 @@
+import { PasswordElement } from '@graphcommerce/ecommerce-ui'
 import {
   Button,
   Form,
@@ -32,7 +33,7 @@ export function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormProps) {
     }
   >(UpdateCustomerEmailDocument)
 
-  const { handleSubmit, error, required, formState, watch, muiRegister, reset } = form
+  const { handleSubmit, error, required, formState, watch, muiRegister, reset, control } = form
   const submit = handleSubmit(() => {
     reset()
   })
@@ -96,16 +97,15 @@ export function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormProps) {
       </FormRow>
 
       <FormRow>
-        <TextField
+        <PasswordElement
+          control={control}
           variant='outlined'
           type='password'
           error={!!formState.errors.password}
+          name='password'
           label={<Trans id='Password' />}
           autoComplete='password'
           required={required.password}
-          {...muiRegister('password', {
-            required: required.password,
-          })}
           helperText={formState.errors.password?.message}
           disabled={formState.isSubmitting}
         />

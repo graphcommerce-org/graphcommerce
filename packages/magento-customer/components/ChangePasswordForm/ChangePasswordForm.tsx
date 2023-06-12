@@ -1,3 +1,5 @@
+import { PasswordElement, PasswordRepeatElement } from '@graphcommerce/ecommerce-ui'
+import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
 import {
   Form,
   FormActions,
@@ -7,7 +9,6 @@ import {
   Button,
 } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { TextField } from '@mui/material'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'
@@ -22,49 +23,53 @@ export function ChangePasswordForm() {
     ChangePasswordMutation,
     ChangePasswordMutationVariables & { confirmPassword?: string }
   >(ChangePasswordDocument)
-  const { muiRegister, handleSubmit, required, watch, data, formState, error } = form
+  const { handleSubmit, required, data, formState, error, control } = form
+  const [remainingError, inputError] = graphqlErrorByCategory({
+    category: 'graphql-input',
+    error,
+  })
+
   const submitHandler = handleSubmit(() => {})
-  const pass = watch('newPassword')
 
   return (
     <Form onSubmit={submitHandler} noValidate>
       <FormRow>
-        <TextField
+        <PasswordElement
+          control={control}
+          name='currentPassword'
           variant='outlined'
           type='password'
-          error={!!formState.errors.currentPassword}
           label={<Trans id='Current Password' />}
+          error={!!inputError}
           required={required.currentPassword}
-          {...muiRegister('currentPassword', { required: required.currentPassword })}
-          helperText={formState.errors.currentPassword?.message}
           disabled={formState.isSubmitting}
+          helperText={formState.errors.currentPassword?.message || inputError?.message}
         />
       </FormRow>
 
       <FormRow>
-        <TextField
+        <PasswordElement
+          control={control}
+          name='newPassword'
           variant='outlined'
           type='password'
-          error={!!formState.errors.newPassword}
           label={<Trans id='New password' />}
+          error={!!inputError}
           required={required.newPassword}
-          {...muiRegister('newPassword', { required: required.newPassword })}
-          helperText={formState.errors.newPassword?.message}
           disabled={formState.isSubmitting}
+          helperText={formState.errors.newPassword?.message || inputError?.message}
         />
-
-        <TextField
+        <PasswordRepeatElement
+          control={control}
+          name='confirmPassword'
+          passwordFieldName='newPassword'
           variant='outlined'
           type='password'
-          error={!!formState.errors.confirmPassword}
           label={<Trans id='Confirm password' />}
+          error={!!formState.errors.confirmPassword || !!inputError}
           required
-          {...muiRegister('confirmPassword', {
-            required: true,
-            validate: (value) => value === pass || i18n._(/* i18n */ "Passwords don't match"),
-          })}
-          helperText={formState.errors.confirmPassword?.message}
           disabled={formState.isSubmitting}
+          helperText={formState.errors.confirmPassword?.message}
         />
       </FormRow>
 
