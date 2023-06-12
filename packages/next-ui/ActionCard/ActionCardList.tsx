@@ -4,10 +4,6 @@ import { isFragment } from 'react-is'
 import { extendableComponent } from '../Styles'
 import { ActionCardProps } from './ActionCard'
 import { ActionCardLayout } from './ActionCardLayout'
-import { Button } from '../Button'
-import { IconSvg } from '../IconSvg'
-import { iconChevronDown } from '../icons'
-import { Trans } from '@lingui/react'
 
 type MultiSelect = {
   multiple: true
@@ -28,7 +24,6 @@ type Select = {
 export type ActionCardListProps<SelectOrMulti = MultiSelect | Select> = {
   children?: React.ReactNode
   required?: boolean
-  items?: any
   error?: boolean
   errorMessage?: string
   sx?: SxProps<Theme>
@@ -64,7 +59,6 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
       required,
       error = false,
       errorMessage,
-      items = [],
       size = 'medium',
       color = 'primary',
       variant = 'outlined',
@@ -72,8 +66,6 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
       collapse = false,
       sx = [],
     } = props
-    const [show, setShow] = React.useState(false)
-    const showMoreAfter = 4
 
     const handleChange: ActionCardProps['onClick'] = isMulti(props)
       ? (event, v) => {
@@ -97,17 +89,7 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
         }
 
     type ActionCardLike = React.ReactElement<
-      Pick<
-        ActionCardProps,
-        | 'value'
-        | 'selected'
-        | 'disabled'
-        | 'onClick'
-        | 'error'
-        | 'onClick'
-        | 'showMoreAfter'
-        | 'show'
-      > &
+      Pick<ActionCardProps, 'value' | 'selected' | 'disabled' | 'onClick' | 'error' | 'onClick'> &
         HoistedActionCardProps
     >
 
@@ -157,8 +139,6 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
               error,
               color,
               variant,
-              showMoreAfter,
-              show,
               size,
               layout,
               ...child.props,
@@ -169,25 +149,6 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
             })
           })}
         </ActionCardLayout>
-        {items.length > showMoreAfter && (
-          <Button
-            sx={{
-              my: 2,
-            }}
-            color='primary'
-            variant='text'
-            onClick={() => setShow(!show)}
-          >
-            {!show ? <Trans id='More options' /> : <Trans id='Less options' />}{' '}
-            <IconSvg
-              sx={{
-                transform: show ? 'rotate(180deg)' : 'rotate(0deg)',
-                transition: 'transform 0.3s ease-in-out',
-              }}
-              src={iconChevronDown}
-            />
-          </Button>
-        )}
         {error && errorMessage && (
           <Alert
             severity='error'

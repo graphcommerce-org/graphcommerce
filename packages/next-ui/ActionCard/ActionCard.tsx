@@ -45,7 +45,7 @@ export type ActionCardProps = {
   error?: boolean
   index?: number
   show?: boolean
-  showMoreAfter?: number
+  maxItems?: number
 }
 
 const parts = [
@@ -101,7 +101,7 @@ export function ActionCard(props: ActionCardProps) {
     error = false,
     index = 0,
     show = true,
-    showMoreAfter = 100,
+    maxItems = 100,
   } = props
 
   const classes = withState({
@@ -128,7 +128,7 @@ export function ActionCard(props: ActionCardProps) {
             theme.shape.borderRadius * 3,
             theme.breakpoints.values,
           ),
-          display: index + 1 > showMoreAfter && !show ? 'none!important' : 'block',
+          display: index + 1 > maxItems && !show ? 'none!important' : 'block',
           '&.sizeSmall': {
             px: responsiveVal(8, 12),
             py: responsiveVal(4, 6),
