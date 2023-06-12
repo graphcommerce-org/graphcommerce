@@ -48,13 +48,13 @@ export function FilterLayout(props: FilterLayoutProps) {
 
   if (mode === 'sidebar' && import.meta.graphCommerce.productFiltersPro) {
     return (
-      <Container maxWidth='lg' sx={Array.isArray(sx) ? sx : [sx]}>
+      // Todo: Make maxWidth configurable
+      <Container sx={Array.isArray(sx) ? sx : [sx]}>
         <Box
           sx={(theme) => ({
             display: 'grid',
-            gridTemplateColumns: '3fr 9fr',
+            gridTemplateColumns: { xs: '1fr', md: '3fr 9fr' },
             columnGap: theme.spacings.md,
-            [theme.breakpoints.down('md')]: { display: 'flex' },
           })}
         >
           <Box
