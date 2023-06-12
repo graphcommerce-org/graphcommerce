@@ -13,863 +13,1146 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#. js-lingui-explicit-id
 msgid "<0>{name}</0> has been added to your comparison!"
 msgstr "<0>{name}</0> a été ajouté à votre comparatif !"
 
+#. js-lingui-explicit-id
 msgid "<0>{name}</0> has been added to your shopping cart!"
 msgstr "<0>{name}</0> a été ajouté à votre panier d'achat!"
 
+#. js-lingui-explicit-id
 msgid "<0>{name}</0> has been added to your wishlist!"
 msgstr "<0>{name}</0> a été ajouté à votre liste d'envies!"
 
+#. js-lingui-explicit-id
 msgid "Above <0/>"
 msgstr "Au-dessus de <0/>"
 
+#. js-lingui-explicit-id
 msgid "Account"
 msgstr "Compte"
 
+#. js-lingui-explicit-id
 msgid "Add address"
 msgstr "Ajouter une adresse"
 
+#. js-lingui-explicit-id
 msgid "Add another product to start comparing."
 msgstr "Ajoutez un autre produit pour commencer à comparer."
 
+#. js-lingui-explicit-id
 msgid "Add new address"
 msgstr "Ajouter une nouvelle adresse"
 
+#. js-lingui-explicit-id
 msgid "Add to Cart"
 msgstr "Ajouter au panier"
 
+#. js-lingui-explicit-id
 msgid "Add to comparison"
 msgstr "Ajouter à la comparaison"
 
+#. js-lingui-explicit-id
 msgid "Add to wishlist"
 msgstr "Ajouter à la liste de souhaits"
 
+#. js-lingui-explicit-id
 msgid "Addition"
 msgstr "Addition"
 
+#. js-lingui-explicit-id
 msgid "Address not found"
 msgstr "Adresse non trouvée"
 
+#. js-lingui-explicit-id
 msgid "Addresses"
 msgstr "Adresses"
 
+#. js-lingui-explicit-id
 msgid "All filters"
 msgstr "Tous les filtres"
 
+#. js-lingui-explicit-id
 msgid "All products"
 msgstr "Tous les produits"
 
+#. js-lingui-explicit-id
 msgid "All {name}"
 msgstr "Tout {name}"
 
+#. js-lingui-explicit-id
 msgid "Apply"
 msgstr "Appliquer"
 
+#. js-lingui-explicit-id
 msgid "As low as <0/>"
 msgstr "À partir de <0/>"
 
+#. js-lingui-explicit-id
 msgid "As soon as the payment is completed, you will automatically return to the webshop."
 msgstr "Dès que le paiement est effectué, vous serez automatiquement redirigé vers le magasin."
 
+#. js-lingui-explicit-id
 msgid "Authentication"
 msgstr "Authentification"
 
+#. js-lingui-explicit-id
 msgid "Back"
 msgstr "Retour"
 
+#. js-lingui-explicit-id
 msgid "Back to home"
 msgstr "Retour à l'accueil"
 
+#. js-lingui-explicit-id
 msgid "Be the first to know about everything new!"
 msgstr "Soyez le premier à savoir tout ce qui se passe dans le monde!"
 
+#. js-lingui-explicit-id
 msgid "Be the first to write a review!"
 msgstr "Soyez le premier à écrire une évaluation!"
 
+#. js-lingui-explicit-id
 msgid "Below <0/>"
 msgstr "Dessous <0/>"
 
+#. js-lingui-explicit-id
 msgid "Billing address"
 msgstr "Adresse de facturation"
 
+#. js-lingui-explicit-id
 msgid "Blog"
 msgstr "Blog"
 
+#. js-lingui-explicit-id
 msgid "Buy {quantity} for <0/> and save {percent}%"
 msgstr "Achetez {quantity} pour <0/> et économisez {percent}%"
 
-msgid "Cancel"
-msgstr "Annuler"
-
+#. js-lingui-explicit-id
 msgid "Cart"
 msgstr "Panier"
 
+#. js-lingui-explicit-id
 msgid "Cart ({0})"
 msgstr "Panier ({0})"
 
+#. js-lingui-explicit-id
 msgid "Change"
 msgstr "Changer"
 
+#. js-lingui-explicit-id
 msgid "Checkout summary"
 msgstr "Résumé du paiement"
 
+#. js-lingui-explicit-id
 msgid "Choose your bank"
 msgstr "Choisissez votre banque"
 
+#. js-lingui-explicit-id
 msgid "Choose your bank, and place your order."
 msgstr "Choisissez votre banque et placez votre commande."
 
+#. js-lingui-explicit-id
 msgid "City"
 msgstr "Ville"
 
+#. js-lingui-explicit-id
 msgid "Clear"
 msgstr "Effacer le filtre"
 
+#. js-lingui-explicit-id
 msgid "Close"
 msgstr "Fermer"
 
+#. js-lingui-explicit-id
 msgid "Compare"
 msgstr "Comparez"
 
+#. js-lingui-explicit-id
 msgid "Compare ({0})"
 msgstr "Comparez ({0})"
 
+#. js-lingui-explicit-id
 msgid "Compare products"
 msgstr "Comparez les produits"
 
+#. js-lingui-explicit-id
 msgid "Complete the payment on your bank’s website."
 msgstr "Complétez le paiement sur le site de votre banque."
 
+#. js-lingui-explicit-id
 msgid "Complete your purchase"
 msgstr "Complétez votre achat"
 
+#. js-lingui-explicit-id
 msgid "Confirm new email"
 msgstr "Confirmer le nouvel email"
 
+#. js-lingui-explicit-id
 msgid "Confirm password"
 msgstr "Confirmer le mot de passe"
 
+#. js-lingui-explicit-id
 msgid "Confirmation + Track & trace"
 msgstr "Confirmation + Traçage"
 
+#. js-lingui-explicit-id
 msgid "Contact"
 msgstr "Contact"
 
+#. js-lingui-explicit-id
 msgid "Continue"
 msgstr "Continuer"
 
+#. js-lingui-explicit-id
 msgid "Continue shopping"
 msgstr "Continuer les achats"
 
+#. js-lingui-explicit-id
 msgid "Could not create a new compare list"
 msgstr "Impossible de créer une nouvelle liste de comparaison"
 
+#. js-lingui-explicit-id
 msgid "Could not create an empty cart"
 msgstr "Impossible de créer un panier vide"
 
+#. js-lingui-explicit-id
 msgid "Country"
 msgstr "Pays"
 
+#. js-lingui-explicit-id
 msgid "Create Account"
 msgstr "Créer un compte"
 
+#. js-lingui-explicit-id
 msgid "Create a password and tell us your name"
 msgstr "Créer un mot de passe et nous indiquer votre nom"
 
+#. js-lingui-explicit-id
 msgid "Create account!"
 msgstr "Créer un compte!"
 
+#. js-lingui-explicit-id
 msgid "Create an account"
 msgstr "Créer un compte"
 
+#. js-lingui-explicit-id
 msgid "Create new password"
 msgstr "Créer un nouveau mot de passe"
 
+#. js-lingui-explicit-id
 msgid "Current Password"
 msgstr "Mot de passe actuel"
 
+#. js-lingui-explicit-id
 msgid "Customer Service"
 msgstr "Service client"
 
+#. js-lingui-explicit-id
 msgid "Dark Mode"
 msgstr "Mode sombre"
 
+#. js-lingui-explicit-id
 msgid "Decrease"
 msgstr "Diminuer"
 
+#. js-lingui-explicit-id
 msgid "Delete this address"
 msgstr "Supprimer cette adresse"
 
+#. js-lingui-explicit-id
 msgid "Discount code"
 msgstr "Code de réduction"
 
+#. js-lingui-explicit-id
 msgid "Discover our collection and add items to your cart!"
 msgstr "Découvrez notre collection et ajoutez des articles à votre panier!"
 
+#. js-lingui-explicit-id
 msgid "Discover our collection and add items to your comparelist!"
 msgstr "Découvrez notre collection et ajoutez des articles à votre liste de comparaison !"
 
+#. js-lingui-explicit-id
 msgid "Discover our collection and add items to your wishlist!"
 msgstr "Découvrez notre collection et ajoutez des articles à votre liste de souhaits!"
 
+#. js-lingui-explicit-id
 msgid "Discover our collection and place your first order!"
 msgstr "Découvrez notre collection et placez votre première commande!"
 
+#. js-lingui-explicit-id
 msgid "Discover our collection and write your first review!"
 msgstr "Découvrez notre collection et écrivez votre première évaluation!"
 
+#. js-lingui-explicit-id
 msgid "Edit"
 msgstr "Modifier"
 
+#. js-lingui-explicit-id
 msgid "Edit address"
 msgstr "Modifier l'adresse"
 
+#. js-lingui-explicit-id
 msgid "Edit billing address"
 msgstr "Modifier l'adresse de facturation"
 
+#. js-lingui-explicit-id
 msgid "Email"
 msgstr "Email"
 
+#. js-lingui-explicit-id
 msgid "Email address"
 msgstr "Adresse e-mail"
 
+#. js-lingui-explicit-id
 msgid "Emails don't match"
 msgstr "Les emails ne correspondent pas"
 
+#. js-lingui-explicit-id
 msgid "Empty comparelist"
 msgstr "Équation vide"
 
+#. js-lingui-explicit-id
 msgid "Fill in your e-mail to login or create an account"
 msgstr "Remplissez votre email pour vous connecter ou créer un compte"
 
+#. js-lingui-explicit-id
 msgid "Fill in your new password, confirm it and click on the save button."
 msgstr "Remplissez votre nouveau mot de passe, confirmez-le et cliquez sur le bouton de sauvegarde."
 
+#. js-lingui-explicit-id
 msgid "Fill in your password"
 msgstr "Remplissez votre mot de passe"
 
+#. js-lingui-explicit-id
 msgid "First Name"
 msgstr "Prénom"
 
+#. js-lingui-explicit-id
 msgid "Follow order"
 msgstr "Suivre la commande"
 
+#. js-lingui-explicit-id
 msgid "Forgot Password"
 msgstr "Mot de passe oublié"
 
+#. js-lingui-explicit-id
 msgid "Forgot password?"
 msgstr "Mot de passe oublié?"
 
+#. js-lingui-explicit-id
 msgid "Forgot your password?"
 msgstr "Mot de passe oublié?"
 
+#. js-lingui-explicit-id
 msgid "Free"
 msgstr "Gratuit"
 
+#. js-lingui-explicit-id
 msgid "Grand total"
 msgstr "Total"
 
+#. js-lingui-explicit-id
 msgid "Have an account?"
 msgstr "Vous avez déjà un compte?"
 
+#. js-lingui-explicit-id
 msgid "Hi {firstname}! You’re now logged in!"
 msgstr "Bonjour {firstname}! Vous êtes maintenant connecté!"
 
+#. js-lingui-explicit-id
 msgid "Home"
 msgstr "Accueil"
 
+#. js-lingui-explicit-id
 msgid "Housenumber"
 msgstr "Numéro de rue"
 
+#. js-lingui-explicit-id
 msgid "If you’ve successfully paid your order, the order <0>will</0> come through, but there is a communication error with the website."
 msgstr "Si vous avez réalisé votre paiement, la commande <0>va</0> arriver, mais il y a un problème de communication avec le site."
 
+#. js-lingui-explicit-id
 msgid "In comparelist"
 msgstr "Dans la liste de comparaison"
 
+#. js-lingui-explicit-id
 msgid "Including {0}"
 msgstr "Incluant {0}"
 
+#. js-lingui-explicit-id
 msgid "Increase"
 msgstr "Augmenter"
 
+#. js-lingui-explicit-id
 msgid "Invalid email address"
 msgstr "Adresse email invalide"
 
+#. js-lingui-explicit-id
 msgid "Invalid phone number"
 msgstr "Numéro de téléphone invalide"
 
+#. js-lingui-explicit-id
 msgid "Last Name"
 msgstr "Nom"
 
+#. js-lingui-explicit-id
 msgid "Latest orders"
 msgstr "Dernières commandes"
 
+#. js-lingui-explicit-id
 msgid "Light Mode"
 msgstr "Mode clair"
 
+#. js-lingui-explicit-id
 msgid "Loading"
 msgstr "Chargement"
 
+#. js-lingui-explicit-id
 msgid "Loading wishlist"
 msgstr "Chargement de la liste de souhaits"
 
+#. js-lingui-explicit-id
 msgid "Loading your account"
 msgstr "Chargement de votre compte"
 
+#. js-lingui-explicit-id
 msgid "Loading your data"
 msgstr "Chargement de vos données"
 
+#. js-lingui-explicit-id
 msgid "Log in"
 msgstr "Identifiant"
 
+#. js-lingui-explicit-id
 msgid "Log in to continue shopping"
 msgstr "Identifiez-vous pour continuer les achats"
 
+#. js-lingui-explicit-id
 msgid "Menu"
 msgstr "Menu"
 
+#. js-lingui-explicit-id
 msgid "Minimum of different classes of characters in password is {requiredCharacterClassesNumber}. Classes of characters: Lower Case, Upper Case, Digits, Special Characters."
 msgstr "Le nombre minimum de différentes classes de caractères dans le mot de passe est de {requiredCharacterClassesNumber}. Classes de caractères : Minuscules, Majuscules, Chiffres, Caractères spéciaux."
 
+#. js-lingui-explicit-id
 msgid "More information"
 msgstr "Plus d'informations"
 
+#. js-lingui-explicit-id
 msgid "Mr"
 msgstr "M."
 
+#. js-lingui-explicit-id
 msgid "Mrs"
 msgstr "Mme"
 
+#. js-lingui-explicit-id
 msgid "Name"
 msgstr "Nom"
 
+#. js-lingui-explicit-id
 msgid "Navigate to item {0}"
 msgstr "Naviguer vers l'article {0}"
 
+#. js-lingui-explicit-id
 msgid "New address"
 msgstr "Nouvelle adresse"
 
+#. js-lingui-explicit-id
 msgid "New email"
 msgstr "Nouvel email"
 
+#. js-lingui-explicit-id
 msgid "New password"
 msgstr "Nouveau mot de passe"
 
+#. js-lingui-explicit-id
 msgid "Newsletter"
 msgstr "Newsletter"
 
+#. js-lingui-explicit-id
 msgid "Next"
 msgstr "Suivant"
 
+#. js-lingui-explicit-id
 msgid "Next day delivery - Shipping free"
 msgstr "Livraison le lendemain - Livraison gratuite"
 
+#. js-lingui-explicit-id
 msgid "No Image"
 msgstr "Pas d'image"
 
+#. js-lingui-explicit-id
 msgid "No account yet?"
 msgstr "Pas encore de compte?"
 
+#. js-lingui-explicit-id
 msgid "No orders found"
 msgstr "Aucune commande trouvée"
 
+#. js-lingui-explicit-id
 msgid "No payment information"
 msgstr "Pas d'information de paiement"
 
+#. js-lingui-explicit-id
 msgid "No worries! Enter your email address and we will send an email with instructions to reset your password."
 msgstr "Pas de soucis! Entrez votre adresse email et nous vous enverrons un email avec les instructions pour réinitialiser votre mot de passe."
 
+#. js-lingui-explicit-id
 msgid "Number"
 msgstr "Nombre"
 
+#. js-lingui-explicit-id
 msgid "Ok"
 msgstr "Ok"
 
+#. js-lingui-explicit-id
 msgid "Older"
 msgstr "Plus ancien"
 
+#. js-lingui-explicit-id
 msgid "Only 1 left in stock."
 msgstr "Seulement 1 en stock."
 
+#. js-lingui-explicit-id
 msgid "Only a few left"
 msgstr "Il ne reste que quelques exemplaires"
 
+#. js-lingui-explicit-id
 msgid "Only {amount_left_in_stock} left in stock."
 msgstr "Il ne reste que {amount_left_in_stock} en stock."
 
+#. js-lingui-explicit-id
 msgid "Or follow these links to get you back on track!"
 msgstr "Ou suivez ces liens pour vous reprendre sur le chemin!"
 
+#. js-lingui-explicit-id
 msgid "Order #{orderId}"
 msgstr "Commande #{orderId}"
 
+#. js-lingui-explicit-id
 msgid "Order before 22:00"
 msgstr "Commandez avant 22:00"
 
+#. js-lingui-explicit-id
 msgid "Order not found"
 msgstr "Commande non trouvée"
 
+#. js-lingui-explicit-id
 msgid "Order number"
 msgstr "Numéro de commande"
 
+#. js-lingui-explicit-id
 msgid "Order status"
 msgstr "Statut de la commande"
 
+#. js-lingui-explicit-id
 msgid "Order summary"
 msgstr "Résumé de la commande"
 
+#. js-lingui-explicit-id
 msgid "Ordered items"
 msgstr "Articles commandés"
 
+#. js-lingui-explicit-id
 msgid "Orders"
 msgstr "Commandes"
 
+#. js-lingui-explicit-id
 msgid "Other"
 msgstr "Autre"
 
+#. js-lingui-explicit-id
 msgid "Out of stock"
 msgstr "En rupture de stock"
 
+#. js-lingui-explicit-id
 msgid "Page {page} of {count}"
 msgstr "Page {page} de {count}"
 
+#. js-lingui-explicit-id
 msgid "Password"
 msgstr "Mot de passe"
 
+#. js-lingui-explicit-id
 msgid "Password must have at least 8 characters"
 msgstr "Le mot de passe doit avoir au moins 8 caractères"
 
+#. js-lingui-explicit-id
 msgid "Passwords don't match"
 msgstr "Les mots de passe ne correspondent pas"
 
+#. js-lingui-explicit-id
 msgid "Passwords should match"
 msgstr "Les mots de passe doivent correspondre"
 
+#. js-lingui-explicit-id
 msgid "Pay"
 msgstr "Payer"
 
+#. js-lingui-explicit-id
 msgid "Pay with iDEAL"
 msgstr "Payer avec iDEAL"
 
+#. js-lingui-explicit-id
 msgid "Payment"
 msgstr "Paiement"
 
+#. js-lingui-explicit-id
 msgid "Payment failed with status: {paymentStatus}"
 msgstr "Le paiement a échoué avec le statut: {paymentStatus}"
 
+#. js-lingui-explicit-id
 msgid "Payment has not completed succesfully, please try again."
 msgstr "Le paiement n'a pas été effectué avec succès, veuillez réessayer."
 
+#. js-lingui-explicit-id
 msgid "Payment method"
 msgstr "Méthode de paiement"
 
+#. js-lingui-explicit-id
 msgid "Per page"
 msgstr "Par page"
 
+#. js-lingui-explicit-id
 msgid "Personal details"
 msgstr "Informations personnelles"
 
+#. js-lingui-explicit-id
 msgid "Place order"
 msgstr "Placer la commande"
 
+#. js-lingui-explicit-id
 msgid "Please check your inbox to validate your email ({email})"
 msgstr "Veuillez vérifier votre boîte de réception pour valider votre email ({email})"
 
+#. js-lingui-explicit-id
 msgid "Please enter a valid email address"
 msgstr "Veuillez entrer une adresse email valide"
 
+#. js-lingui-explicit-id
 msgid "Please fill out an address to be able to select a shipping method"
 msgstr "Veuillez remplir une adresse pour pouvoir sélectionner une méthode d'expédition"
 
+#. js-lingui-explicit-id
 msgid "Please provide a valid house number"
 msgstr "Veuillez fournir un numéro de rue valide"
 
+#. js-lingui-explicit-id
 msgid "Please reauthenticate and try again"
 msgstr "Veuillez vous authentifier à nouveau et réessayer"
 
+#. js-lingui-explicit-id
 msgid "Please select a payment method"
 msgstr "Veuillez sélectionner une méthode de paiement"
 
+#. js-lingui-explicit-id
 msgid "Please select a shipping method"
 msgstr "Veuillez sélectionner une méthode de livraison"
 
+#. js-lingui-explicit-id
 msgid "Please select a value for ‘{label}’"
 msgstr "Veuillez sélectionner une valeur pour {label}"
 
+#. js-lingui-explicit-id
 msgid "Postcode"
 msgstr "Code postal"
 
+#. js-lingui-explicit-id
 msgid "Prefix"
 msgstr "Préfixe"
 
+#. js-lingui-explicit-id
 msgid "Processing your payment"
 msgstr "Traitement de votre paiement"
 
+#. js-lingui-explicit-id
 msgid "Product could not be found"
 msgstr "Le produit n'a pas pu être trouvé"
 
+#. js-lingui-explicit-id
 msgid "Product not available in {allLabels}"
 msgstr "Produit non disponible dans {allLabels}"
 
+#. js-lingui-explicit-id
 msgid "Products"
 msgstr "Produits"
 
+#. js-lingui-explicit-id
 msgid "Region"
 msgstr "Région"
 
+#. js-lingui-explicit-id
 msgid "Remove"
 msgstr "Supprimer"
 
+#. js-lingui-explicit-id
 msgid "Remove Product"
 msgstr "Supprimer le produit"
 
+#. js-lingui-explicit-id
 msgid "Remove from comparison"
 msgstr "Supprimer de la comparaison"
 
+#. js-lingui-explicit-id
 msgid "Remove from wishlist"
 msgstr "Supprimer de la liste de souhaits"
 
+#. js-lingui-explicit-id
 msgid "Reset"
 msgstr "Réinitialiser"
 
+#. js-lingui-explicit-id
 msgid "Reset Cart and Return to home"
 msgstr "Réinitialiser le panier et retourner à l'accueil"
 
+#. js-lingui-explicit-id
 msgid "Results for ‘{search}’"
 msgstr "Résultats pour ‘{search}’"
 
+#. js-lingui-explicit-id
 msgid "Review"
 msgstr "Review"
 
+#. js-lingui-explicit-id
 msgid "Reviews"
 msgstr "Évaluations"
 
+#. js-lingui-explicit-id
 msgid "Save changes"
 msgstr "Sauvegarder les modifications"
 
+#. js-lingui-explicit-id
 msgid "Save new password"
 msgstr "Sauvegarder le nouveau mot de passe"
 
+#. js-lingui-explicit-id
 msgid "Search"
 msgstr "Rechercher"
 
+#. js-lingui-explicit-id
 msgid "Search..."
 msgstr "Rechercher..."
 
+#. js-lingui-explicit-id
 msgid "Select"
 msgstr "Sélectionner"
 
+#. js-lingui-explicit-id
 msgid "Select your bank"
 msgstr "Sélectionnez votre banque"
 
+#. js-lingui-explicit-id
 msgid "Send password reset email"
 msgstr "Envoyer un email de réinitialisation du mot de passe"
 
+#. js-lingui-explicit-id
 msgid "Set your new password"
 msgstr "Choisissez votre nouveau mot de passe"
 
+#. js-lingui-explicit-id
 msgid "Several errors occured"
 msgstr "Plusieurs erreurs se sont produites"
 
+#. js-lingui-explicit-id
 msgid "Shipping"
 msgstr "Expédition"
 
+#. js-lingui-explicit-id
 msgid "Shipping ({0} {1})"
 msgstr "Expédition ({0} {1})"
 
+#. js-lingui-explicit-id
 msgid "Shipping address"
 msgstr "Adresse d'expédition"
 
+#. js-lingui-explicit-id
 msgid "Shipping method"
 msgstr "Méthode d'expédition"
 
+#. js-lingui-explicit-id
 msgid "Sign in"
 msgstr "Identifiez-vous"
 
+#. js-lingui-explicit-id
 msgid "Sign in or create an account!"
 msgstr "Identifiez-vous ou créez un compte!"
 
+#. js-lingui-explicit-id
 msgid "Sign out"
 msgstr "Déconnexion"
 
+#. js-lingui-explicit-id
 msgid "Sign up for our newsletter and stay updated"
 msgstr "Inscrivez-vous à notre newsletter et restez à jour"
 
+#. js-lingui-explicit-id
 msgid "Some items in your cart contain errors, please update or remove them, then try again."
 msgstr "Certains articles de votre panier contiennent des erreurs, veuillez les mettre à jour ou les supprimer, puis réessayer."
 
+#. js-lingui-explicit-id
 msgid "Sort"
 msgstr "Trier"
 
+#. js-lingui-explicit-id
 msgid "Sort By"
 msgstr "Trier par"
 
+#. js-lingui-explicit-id
 msgid "Start Checkout"
 msgstr "Commencer la commande"
 
+#. js-lingui-explicit-id
 msgid "Store home"
 msgstr "Accueil de la boutique"
 
+#. js-lingui-explicit-id
 msgid "Street"
 msgstr "Rue"
 
+#. js-lingui-explicit-id
 msgid "Submit review"
 msgstr "Soumettre une évaluation"
 
+#. js-lingui-explicit-id
 msgid "Subscribe"
 msgstr "S'abonner"
 
+#. js-lingui-explicit-id
 msgid "Subscribe to newsletter"
 msgstr "S'inscrire à la newsletter"
 
+#. js-lingui-explicit-id
 msgid "Subscribe to our newsletter to stay informed about our new products!"
 msgstr "Abonnez-vous à notre newsletter pour rester informé de nos nouveaux produits !"
 
+#. js-lingui-explicit-id
 msgid "Subscribed"
 msgstr "Abonné"
 
+#. js-lingui-explicit-id
 msgid "Successfully changed password"
 msgstr "Mot de passe changé avec succès"
 
+#. js-lingui-explicit-id
 msgid "Successfully saved changes"
 msgstr "Modifications sauvegardées avec succès"
 
+#. js-lingui-explicit-id
 msgid "Successfully updated email"
 msgstr "Email mis à jour avec succès"
 
+#. js-lingui-explicit-id
 msgid "Summary"
 msgstr "Description"
 
+#. js-lingui-explicit-id
 msgid "Switch stores"
 msgstr "Changer de boutique"
 
+#. js-lingui-explicit-id
 msgid "Tagged in: {title}"
 msgstr "Tag: {title}"
 
+#. js-lingui-explicit-id
 msgid "Telephone"
 msgstr "Téléphone"
 
+#. js-lingui-explicit-id
 msgid "Thank you for your order!"
 msgstr "Merci pour votre commande!"
 
+#. js-lingui-explicit-id
 msgid "Thank you! Your review was successfully submitted for approval"
 msgstr "Merci! Votre évaluation a été soumise avec succès pour approbation"
 
+#. js-lingui-explicit-id
 msgid "The payment has been canceled, please try again."
 msgstr "Le paiement a été annulé, veuillez réessayer."
 
+#. js-lingui-explicit-id
 msgid "The payment has expired, please try again."
 msgstr "Le paiement a expiré, veuillez réessayer."
 
+#. js-lingui-explicit-id
 msgid "The payment hasn't been completed yet, please try again."
 msgstr "Le paiement n'a pas encore été effectué, veuillez réessayer."
 
+#. js-lingui-explicit-id
 msgid "The payment hasn't completed, please try again or select a different payment method."
 msgstr "Le paiement n'a pas été complété, veuillez réessayer ou sélectionner une autre méthode de paiement."
 
+#. js-lingui-explicit-id
 msgid "The payment is refused, please try again or select a different payment method."
 msgstr "Le paiement est refusé, veuillez réessayer ou sélectionner une autre méthode de paiement."
 
+#. js-lingui-explicit-id
 msgid "This cart is assigned to {email}. Please sign in to continue shopping."
 msgstr "Ce panier est assigné à {email}. Veuillez vous connecter pour continuer vos achats."
 
+#. js-lingui-explicit-id
 msgid "This field is required"
 msgstr "Ce champ est requis"
 
+#. js-lingui-explicit-id
 msgid "This may take a second"
 msgstr "Ceci peut prendre un instant"
 
+#. js-lingui-explicit-id
 msgid "Total <0/>"
 msgstr "Total <0/>"
 
+#. js-lingui-explicit-id
 msgid "Try a different product"
 msgstr "Essayez un autre produit"
 
+#. js-lingui-explicit-id
 msgid "Try a different search"
 msgstr "Essayez une autre recherche"
 
+#. js-lingui-explicit-id
 msgid "View Product"
 msgstr "Voir le produit"
 
+#. js-lingui-explicit-id
 msgid "View all items"
 msgstr "Voir tous les articles"
 
+#. js-lingui-explicit-id
 msgid "View comparison"
 msgstr "Voir la comparaison"
 
+#. js-lingui-explicit-id
 msgid "View less items"
 msgstr "Voir moins d'articles"
 
+#. js-lingui-explicit-id
 msgid "View shopping cart"
 msgstr "Voir le panier"
 
+#. js-lingui-explicit-id
 msgid "View wishlist"
 msgstr "Voir la liste de souhaits"
 
+#. js-lingui-explicit-id
 msgid "View your account"
 msgstr "Voir votre compte"
 
+#. js-lingui-explicit-id
 msgid "We are fetching your favorite products, one moment please!"
 msgstr "Nous recherchons vos produits favoris, un moment s'il vous plaît!"
 
+#. js-lingui-explicit-id
 msgid "We are sorry, this product is currently out of stock."
 msgstr "Nous sommes désolés, ce produit est actuellement en rupture de stock."
 
+#. js-lingui-explicit-id
 msgid "We can not process your payment, we received an unsupported status \"<0>{resultCode}</0>\". Please try again or select a different payment method."
 msgstr "Nous ne pouvons pas traiter votre paiement, nous avons reçu un statut non pris en charge \"<0>{resultCode}</0>\". Veuillez réessayer ou sélectionner une autre méthode de paiement."
 
+#. js-lingui-explicit-id
 msgid "We couldn't find any results for {term}"
 msgstr "Nous n'avons trouvé aucun résultat pour {term}"
 
+#. js-lingui-explicit-id
 msgid "We couldn't find the page you were looking for"
 msgstr "Nous n'avons pas pu trouver la page que vous cherchiez"
 
+#. js-lingui-explicit-id
 msgid "Welcome back!"
 msgstr "Bienvenue !"
 
+#. js-lingui-explicit-id
 msgid "We’re processing your payment, this will take a few seconds."
 msgstr "Nous traitons votre paiement, cela prendra quelques secondes."
 
+#. js-lingui-explicit-id
 msgid "We’ve send a password reset link to your email address!"
 msgstr "Nous avons envoyé un lien de réinitialisation du mot de passe à votre adresse email!"
 
+#. js-lingui-explicit-id
 msgid "Which size is right?"
 msgstr "Quelle taille est-il correcte?"
 
+#. js-lingui-explicit-id
 msgid "Whoops our bad..."
 msgstr "Oups, notre mauvais..."
 
+#. js-lingui-explicit-id
 msgid "Wishlist"
 msgstr "Liste de souhaits"
 
+#. js-lingui-explicit-id
 msgid "Write a review"
 msgstr "Écrire une évaluation"
 
+#. js-lingui-explicit-id
 msgid "Written by {nickname}"
 msgstr "Écrit par {nickname}"
 
+#. js-lingui-explicit-id
 msgid "Written {0} reviews"
 msgstr "Évaluations écrites {0}"
 
+#. js-lingui-explicit-id
 msgid "You are reviewing {0}"
 msgstr "Vous évaluez {0}"
 
+#. js-lingui-explicit-id
 msgid "You can find your order history in your account!"
 msgstr "Vous pouvez trouver l'historique de vos commandes dans votre compte!"
 
+#. js-lingui-explicit-id
 msgid "You can now <0>sign in again</0>."
 msgstr "Vous pouvez maintenant<0>vous connecter à nouveau</0>."
 
+#. js-lingui-explicit-id
 msgid "You can track your order status and much more!"
 msgstr "Vous pouvez suivre l'état de votre commande et beaucoup plus!"
 
+#. js-lingui-explicit-id
 msgid "You have been successfully subscribed to our newsletter."
 msgstr "Vous avez été inscrit avec succès à notre newsletter."
 
+#. js-lingui-explicit-id
 msgid "You have no addresses saved yet"
 msgstr "Vous n'avez pas encore enregistré d'adresse"
 
+#. js-lingui-explicit-id
 msgid "You have no orders yet"
 msgstr "Vous n'avez pas encore de commandes"
 
+#. js-lingui-explicit-id
 msgid "You have not placed an order"
 msgstr "Vous n'avez pas encore placé de commande"
 
+#. js-lingui-explicit-id
 msgid "You have now successfully reset your password"
 msgstr "Vous avez réinitialisé votre mot de passe avec succès"
 
+#. js-lingui-explicit-id
 msgid "You have to agree in order to proceed"
 msgstr "Vous devez accepter pour continuer"
 
+#. js-lingui-explicit-id
 msgid "You haven't placed any reviews yet"
 msgstr "Vous n'avez pas encore écrit d'évaluation"
 
+#. js-lingui-explicit-id
 msgid "You must sign in to continue"
 msgstr "Vous devez vous connecter pour continuer"
 
+#. js-lingui-explicit-id
 msgid "Your address has been added"
 msgstr "Votre adresse a été ajoutée"
 
+#. js-lingui-explicit-id
 msgid "Your cart is empty"
 msgstr "Votre panier est vide"
 
+#. js-lingui-explicit-id
 msgid "Your comparelist is empty"
 msgstr "Votre comparateur est vide"
 
+#. js-lingui-explicit-id
 msgid "Your order has been canceled"
 msgstr "Votre commande a été annulée"
 
+#. js-lingui-explicit-id
 msgid "Your order has been invoiced"
 msgstr "Votre commande a été facturée"
 
+#. js-lingui-explicit-id
 msgid "Your order has been partially processed"
 msgstr "Votre commande a été partiellement traitée"
 
+#. js-lingui-explicit-id
 msgid "Your order has been refunded"
 msgstr "Votre commande a été remboursée"
 
+#. js-lingui-explicit-id
 msgid "Your order has been returned"
 msgstr "Votre commande a été retournée"
 
+#. js-lingui-explicit-id
 msgid "Your order is being processed"
 msgstr "Votre commande est en traitement"
 
+#. js-lingui-explicit-id
 msgid "Your order is on its way!"
 msgstr "Votre commande est sur son chemin!"
 
+#. js-lingui-explicit-id
 msgid "Your session is expired"
 msgstr "Votre session a expiré"
 
+#. js-lingui-explicit-id
 msgid "Your wishlist is empty"
 msgstr "Votre liste de souhaits est vide"
 
+#. js-lingui-explicit-id
 msgid "Zip code or city"
 msgstr "Code postal ou ville"
 
+#. js-lingui-explicit-id
 msgid "canceled"
 msgstr "annulée"
 
+#. js-lingui-explicit-id
 msgid "invoiced"
 msgstr "facturée"
 
+#. js-lingui-explicit-id
 msgid "no products"
 msgstr "aucun produit"
 
+#. js-lingui-explicit-id
 msgid "one product"
 msgstr "un produit"
 
+#. js-lingui-explicit-id
 msgid "partially processed"
 msgstr "partiellement traité"
 
+#. js-lingui-explicit-id
 msgid "processed"
 msgstr "traitée"
 
+#. js-lingui-explicit-id
 msgid "refunded"
 msgstr "remboursée"
 
+#. js-lingui-explicit-id
 msgid "returned"
 msgstr "retournée"
 
+#. js-lingui-explicit-id
 msgid "shipped"
 msgstr "expédiée"
 
+#. js-lingui-explicit-id
 msgid "{count} Per page"
 msgstr "{count} Par page"
 
+#. js-lingui-explicit-id
 msgid "{metaDescription} - Page {currentPage}"
 msgstr "{metaDescription} - Page {currentPage}"
 
+#. js-lingui-explicit-id
 msgid "{title} - Page {currentPage}"
 msgstr "{title} - Page {currentPage}"
 
+#. js-lingui-explicit-id
 msgid "{totalResults} result"
 msgstr "{totalResults} résultat"
 
+#. js-lingui-explicit-id
 msgid "{totalResults} results"
 msgstr "{totalResults} résultats"
 
+#. js-lingui-explicit-id
 msgid "{total_count} products"
 msgstr "{total_count} produits"

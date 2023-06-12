@@ -1,7 +1,6 @@
 import { storefrontConfig, storefrontConfigDefault } from '@graphcommerce/next-ui'
 import { i18n, Messages } from '@lingui/core'
 import { I18nProvider, I18nProviderProps } from '@lingui/react'
-import { nl, en, fr } from 'make-plural/plurals'
 import React, { useMemo } from 'react'
 import { MessageLoader, SyncMessageLoader } from '../types'
 
@@ -11,13 +10,6 @@ export type LinguiProviderProps = Omit<I18nProviderProps, 'i18n'> & {
   ssrLoader: SyncMessageLoader
   locale: string
 }
-
-// todo: Load these plurals with a loader, however dynamic imports doesn't support tree shaking so loading them dynamically will load all locales.
-i18n.loadLocaleData({
-  nl: { plurals: nl },
-  fr: { plurals: fr },
-  en: { plurals: en },
-})
 
 export const localeConfig = (locale: string = storefrontConfigDefault().locale) =>
   storefrontConfig(locale)?.linguiLocale ?? locale?.split('-')[0]

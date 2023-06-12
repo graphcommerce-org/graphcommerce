@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-cart",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "6.2.0-canary.37",
+  "version": "6.2.0-canary.42",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -12,26 +12,27 @@
     }
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "6.2.0-canary.37",
-    "@graphcommerce/prettier-config-pwa": "6.2.0-canary.37",
-    "@graphcommerce/typescript-config-pwa": "6.2.0-canary.37"
+    "@graphcommerce/eslint-config-pwa": "6.2.0-canary.42",
+    "@graphcommerce/prettier-config-pwa": "6.2.0-canary.42",
+    "@graphcommerce/typescript-config-pwa": "6.2.0-canary.42"
   },
   "dependencies": {
-    "@graphcommerce/ecommerce-ui": "6.2.0-canary.37",
-    "@graphcommerce/framer-utils": "6.2.0-canary.37",
-    "@graphcommerce/framer-next-pages": "6.2.0-canary.37",
-    "@graphcommerce/framer-scroller": "6.2.0-canary.37",
-    "@graphcommerce/graphql": "6.2.0-canary.37",
-    "@graphcommerce/image": "6.2.0-canary.37",
-    "@graphcommerce/magento-customer": "6.2.0-canary.37",
-    "@graphcommerce/magento-graphql": "6.2.0-canary.37",
-    "@graphcommerce/magento-store": "6.2.0-canary.37",
-    "@graphcommerce/next-ui": "6.2.0-canary.37",
-    "@graphcommerce/react-hook-form": "6.2.0-canary.37"
+    "@graphcommerce/ecommerce-ui": "6.2.0-canary.42",
+    "@graphcommerce/framer-utils": "6.2.0-canary.42",
+    "@graphcommerce/framer-next-pages": "6.2.0-canary.42",
+    "@graphcommerce/framer-scroller": "6.2.0-canary.42",
+    "@graphcommerce/graphql": "6.2.0-canary.42",
+    "@graphcommerce/image": "6.2.0-canary.42",
+    "@graphcommerce/magento-customer": "6.2.0-canary.42",
+    "@graphcommerce/magento-graphql": "6.2.0-canary.42",
+    "@graphcommerce/magento-store": "6.2.0-canary.42",
+    "@graphcommerce/next-ui": "6.2.0-canary.42",
+    "@graphcommerce/react-hook-form": "6.2.0-canary.42"
   },
   "peerDependencies": {
-    "@lingui/react": "^3.13.2",
-    "@lingui/core": "^3.13.2",
+    "@lingui/react": "^4.2.1",
+    "@lingui/core": "^4.2.1",
+    "@lingui/macro": "^4.2.1",
     "@mui/material": "^5.10.16",
     "framer-motion": "^10.0.0",
     "next": "^13.2.0",

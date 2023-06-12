@@ -1,5 +1,23 @@
 # Change Log
 
+## 6.2.0-canary.42
+
+## 6.2.0-canary.41
+
+### Patch Changes
+
+- [#1960](https://github.com/graphcommerce-org/graphcommerce/pull/1960) [`f78caf5a8`](https://github.com/graphcommerce-org/graphcommerce/commit/f78caf5a83683f1ae4b901fb94bd22d50943fa2f) - Updated packages @apollo/client, react-hook-form, @emotion/\*, @lingui/\*, @mui/\* and various others. ([@paales](https://github.com/paales))
+
+## 6.2.0-canary.40
+
+## 6.2.0-canary.39
+
+## 6.2.0-canary.38
+
+### Patch Changes
+
+- [#1958](https://github.com/graphcommerce-org/graphcommerce/pull/1958) [`0a311b6eb`](https://github.com/graphcommerce-org/graphcommerce/commit/0a311b6ebb5a52e2a7f1d2e6a0fe113904fa2d34) - Left overlays wouldn't properly snap when the overlay gets wider than the viewport ([@paales](https://github.com/paales))
+
 ## 6.2.0-canary.37
 
 ## 6.2.0-canary.36

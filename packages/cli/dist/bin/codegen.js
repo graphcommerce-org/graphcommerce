@@ -10,7 +10,7 @@ const node_path_1 = __importDefault(require("node:path"));
 const next_config_1 = require("@graphcommerce/next-config");
 const cli_1 = require("@graphql-codegen/cli");
 const dotenv_1 = __importDefault(require("dotenv"));
-const rimraf_1 = __importDefault(require("rimraf"));
+const rimraf_1 = require("rimraf");
 const yaml_1 = __importDefault(require("yaml"));
 const [, , cmd] = process.argv;
 dotenv_1.default.config();
@@ -57,7 +57,7 @@ async function main() {
     });
     const isWatching = process.argv.includes('--watch') || process.argv.includes('-w');
     if (!isWatching && extension)
-        (0, rimraf_1.default)(node_path_1.default.join(root, `**/*${extension}`), console.error);
+        await (0, rimraf_1.rimraf)(node_path_1.default.join(root, `**/*${extension}`));
     // - Prepend the all targets with ../../ if we're running in a monorepo setup.
     // - Append all the Graphcommerce packages to the configuration
     conf.config.generates = Object.fromEntries(generates.map(([generateTarget, generateConf]) => [

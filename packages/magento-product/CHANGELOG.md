@@ -1,5 +1,19 @@
 # Change Log
 
+## 6.2.0-canary.42
+
+## 6.2.0-canary.41
+
+## 6.2.0-canary.40
+
+### Minor Changes
+
+- [#1956](https://github.com/graphcommerce-org/graphcommerce/pull/1956) [`9e87443a1`](https://github.com/graphcommerce-org/graphcommerce/commit/9e87443a1139a87f2ead3227fee3f4a76dd65841) - Allow children to be passed into ProductSpecs ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 6.2.0-canary.39
+
+## 6.2.0-canary.38
+
 ## 6.2.0-canary.37
 
 ## 6.2.0-canary.36
