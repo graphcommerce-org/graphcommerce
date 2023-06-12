@@ -25,7 +25,7 @@ import {
 } from '@graphcommerce/magento-product'
 import { StoreConfigDocument, redirectOrNotFound } from '@graphcommerce/magento-store'
 import { LayoutTitle, LayoutHeader, GetStaticProps, MetaRobots } from '@graphcommerce/next-ui'
-import { Container, useMediaQuery, useTheme } from '@mui/material'
+import { Container, useTheme } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import {
   LayoutNavigation,
