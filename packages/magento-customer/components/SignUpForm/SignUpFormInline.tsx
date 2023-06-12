@@ -88,7 +88,7 @@ export function SignUpFormInline({
           name='password'
           variant='outlined'
           type='password'
-          label={<Trans id='New password' />}
+          label={<Trans id='Password' />}
           error={!!inputError}
           required
           disabled={formState.isSubmitting}
