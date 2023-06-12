@@ -6,7 +6,7 @@ import { resolveDependenciesSync } from '@graphcommerce/next-config'
 import { runCli, cliError, loadCodegenConfig } from '@graphql-codegen/cli'
 import { Types } from '@graphql-codegen/plugin-helpers'
 import dotenv from 'dotenv'
-import rimraf from 'rimraf'
+import { rimraf } from 'rimraf'
 import yaml from 'yaml'
 
 const [, , cmd] = process.argv
@@ -65,7 +65,7 @@ async function main() {
   })
 
   const isWatching = process.argv.includes('--watch') || process.argv.includes('-w')
-  if (!isWatching && extension) rimraf(path.join(root, `**/*${extension}`), console.error)
+  if (!isWatching && extension) await rimraf(path.join(root, `**/*${extension}`))
 
   // - Prepend the all targets with ../../ if we're running in a monorepo setup.
   // - Append all the Graphcommerce packages to the configuration
