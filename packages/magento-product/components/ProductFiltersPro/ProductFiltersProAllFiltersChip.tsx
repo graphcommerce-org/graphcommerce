@@ -75,12 +75,8 @@ export function ProductFiltersProAllFiltersChip(props: AllFiltersChip) {
     >
       {() => (
         <Box sx={(theme) => ({ display: 'grid', rowGap: theme.spacings.sm })}>
-          <ProductFiltersProSortSection
-            sort_fields={sort_fields}
-            total_count={total_count}
-            mode={mode}
-          />
-          <ProductFiltersProLimitSection mode={mode} />
+          <ProductFiltersProSortSection sort_fields={sort_fields} total_count={total_count} />
+          <ProductFiltersProLimitSection />
           <ProductFiltersProAggregations
             filterTypes={filterTypes}
             aggregations={aggregations}

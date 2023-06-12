@@ -14,12 +14,10 @@ import { useMemo } from 'react'
 import { ProductListSortFragment } from '../ProductListSort/ProductListSort.gql'
 import { useProductFiltersPro } from './ProductFiltersPro'
 
-export type ProductFiltersProSortSectionProps = ProductListSortFragment & {
-  mode?: 'default' | 'sidebar'
-}
+export type ProductFiltersProSortSectionProps = ProductListSortFragment
 
 export function ProductFiltersProSortSection(props: ProductFiltersProSortSectionProps) {
-  const { sort_fields, mode = 'default' } = props
+  const { sort_fields } = props
   const { form } = useProductFiltersPro()
   const { control } = form
   const activeSort = useWatch({ control, name: 'sort' })
@@ -38,7 +36,7 @@ export function ProductFiltersProSortSection(props: ProductFiltersProSortSection
   )
 
   return (
-    <Box sx={{ my: mode === 'sidebar' ? 0 : 2 }}>
+    <Box sx={{ my: { xs: 2, md: 0 } }}>
       <SectionHeader
         labelLeft={<Trans id='Sort By' />}
         sx={{ mt: 0 }}

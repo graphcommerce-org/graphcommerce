@@ -1,4 +1,4 @@
-import { breakpointVal, IconSvg, iconChevronDown } from '@graphcommerce/next-ui'
+import { IconSvg, iconChevronDown } from '@graphcommerce/next-ui'
 import { Accordion, AccordionSummary, AccordionDetails } from '@mui/material'
 import { useState, ReactNode } from 'react'
 
@@ -31,34 +31,8 @@ export function ProductFilterAccordion(props: ProductFilterAccordionProps) {
         expandIcon={<IconSvg src={iconChevronDown} />}
         sx={[
           (theme) => ({
-            px: theme.spacings.sm,
-            '& .MuiAccordionSummary-content': {
-              alignItems: 'center',
-              columnGap: 2,
-              justifyContent: 'space-between',
-              '& .MuiBox-root': {
-                width: '100%',
-                '& .SectionHeader-root': {
-                  justifyContent: 'space-between',
-                  marginBottom: 0,
-                  '& .SectionHeader-left': {
-                    color: theme.palette.text.primary,
-                    fontSize: theme.typography.body1.fontSize,
-                  },
-                  '& .SectionHeader-right > button': {
-                    padding: 0,
-                    margin: 0,
-                    fontSize: theme.typography.body1.fontSize,
-                  },
-                },
-              },
-            },
+            px: theme.spacings.xxs,
           }),
-          Boolean(open) && {
-            '&:hover:not(.Mui-disabled)': {
-              cursor: 'default',
-            },
-          },
         ]}
       >
         {summary}

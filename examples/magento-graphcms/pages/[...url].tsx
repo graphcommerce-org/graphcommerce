@@ -55,7 +55,6 @@ function CategoryPage(props: CategoryProps) {
   const page = pages?.[0]
   const isCategory = params && category && products?.items && filterTypes
   const theme = useTheme()
-  const matches = useMediaQuery(theme.breakpoints.up('md'))
 
   return (
     <>
@@ -100,7 +99,7 @@ function CategoryPage(props: CategoryProps) {
           <CategoryDescription description={category.description} />
           <CategoryChildren params={params}>{category.children}</CategoryChildren>
           <FilterLayout
-            mode={matches ? 'sidebar' : 'default'}
+            mode='sidebar'
             ProductListItems={ProductListItems}
             ProductListCount={ProductListCount}
             ProductListPagination={ProductListPagination}

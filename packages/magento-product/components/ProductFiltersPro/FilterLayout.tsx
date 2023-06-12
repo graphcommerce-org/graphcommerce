@@ -49,40 +49,86 @@ export function FilterLayout(props: FilterLayoutProps) {
   if (mode === 'sidebar' && import.meta.graphCommerce.productFiltersPro) {
     return (
       // Todo: Make maxWidth configurable
-      <Container sx={Array.isArray(sx) ? sx : [sx]}>
-        <Box
-          sx={(theme) => ({
-            display: 'grid',
-            gridTemplateColumns: { xs: '1fr', md: '3fr 9fr' },
-            columnGap: theme.spacings.md,
-          })}
+      <>
+        <Container
+          sx={[{ display: { xs: 'none', md: 'block' } }, ...(Array.isArray(sx) ? sx : [sx])]}
         >
           <Box
             sx={(theme) => ({
-              [theme.breakpoints.down('md')]: { display: 'none' },
+              display: 'grid',
+              gridTemplateColumns: { xs: '1fr', md: '3fr 9fr' },
+              columnGap: theme.spacings.md,
             })}
           >
-            <ProductFiltersPro params={params}>
-              <ProductFiltersProAllFiltersSidebar
-                {...products}
-                {...filters}
-                appliedAggregations={products?.aggregations}
-                filterTypes={filterTypes}
-                mode={mode}
+            <Box
+              sx={(theme) => ({
+                [theme.breakpoints.down('md')]: { display: 'none' },
+              })}
+            >
+              <ProductFiltersPro params={params}>
+                <ProductFiltersProAllFiltersSidebar
+                  {...products}
+                  {...filters}
+                  appliedAggregations={products?.aggregations}
+                  filterTypes={filterTypes}
+                  mode={mode}
+                />
+              </ProductFiltersPro>
+            </Box>
+            <Box>
+              <ProductListCount total_count={products?.total_count} mode={mode} />
+              <ProductListItems
+                items={products?.items}
+                title={category?.name ?? ''}
+                loadingEager={1}
               />
-            </ProductFiltersPro>
+            </Box>
           </Box>
-          <Box>
-            <ProductListCount total_count={products?.total_count} mode={mode} />
-            <ProductListItems
-              items={products?.items}
-              title={category?.name ?? ''}
-              loadingEager={1}
-            />
-          </Box>
-        </Box>
-        <ProductListPagination page_info={products?.page_info} params={params} />
-      </Container>
+          <ProductListPagination page_info={products?.page_info} params={params} />
+        </Container>
+        <Container
+          sx={[{ display: { xs: 'block', md: 'none' } }, ...(Array.isArray(sx) ? sx : [sx])]}
+        >
+          <StickyBelowHeader>
+            {import.meta.graphCommerce.productFiltersPro ? (
+              <ProductFiltersPro params={params}>
+                <ProductListFiltersContainer>
+                  <ProductFiltersProFilterChips
+                    {...filters}
+                    appliedAggregations={products?.aggregations}
+                    filterTypes={filterTypes}
+                  />
+                  <ProductFiltersProSortChip {...products} />
+                  <ProductFiltersProLimitChip />
+                  <ProductFiltersProAllFiltersChip
+                    {...products}
+                    {...filters}
+                    appliedAggregations={products?.aggregations}
+                    filterTypes={filterTypes}
+                    mode={mode}
+                  />
+                </ProductListFiltersContainer>
+              </ProductFiltersPro>
+            ) : (
+              <ProductListParamsProvider value={params}>
+                <ProductListFiltersContainer>
+                  <ProductListSort
+                    sort_fields={products?.sort_fields}
+                    total_count={products?.total_count}
+                  />
+                  <ProductListFilters {...filters} filterTypes={filterTypes} />
+                </ProductListFiltersContainer>
+              </ProductListParamsProvider>
+            )}
+          </StickyBelowHeader>
+          <ProductListCount
+            sx={{ width: responsiveVal(280, 650) }}
+            total_count={products?.total_count}
+            mode={mode}
+          />
+          <ProductListItems items={products?.items} title={category?.name ?? ''} loadingEager={1} />
+        </Container>
+      </>
     )
   }
 

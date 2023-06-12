@@ -12,10 +12,9 @@ import { Box, Button } from '@mui/material'
 import { useMemo } from 'react'
 import { useProductFiltersPro } from './ProductFiltersPro'
 
-export type ProductFiltersProLimitSectionProps = { mode: 'default' | 'sidebar' }
+export type ProductFiltersProLimitSectionProps = object
 
 export function ProductFiltersProLimitSection(props: ProductFiltersProLimitSectionProps) {
-  const { mode } = props
   const { form } = useProductFiltersPro()
   const { control } = form
   const activePageSize = useWatch({ control, name: 'pageSize' })
@@ -37,7 +36,7 @@ export function ProductFiltersProLimitSection(props: ProductFiltersProLimitSecti
   if (options.length <= 1) return null
 
   return (
-    <Box sx={{ my: mode === 'sidebar' ? 0 : 2 }}>
+    <Box sx={{ my: { xs: 2, md: 0 } }}>
       <SectionHeader
         labelLeft={<Trans id='Per page' />}
         sx={{ mt: 0 }}
