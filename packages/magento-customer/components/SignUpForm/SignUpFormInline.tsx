@@ -8,11 +8,9 @@ import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Button, extendableComponent, Form, FormRow } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Alert, Box } from '@mui/material'
 import React from 'react'
-import { PasswordRequirements } from './PasswordRequirements'
 import { SignUpMutationVariables, SignUpMutation, SignUpDocument } from './SignUp.gql'
 import { SignUpConfirmDocument } from './SignUpConfirm.gql'
 
@@ -62,15 +60,9 @@ export function SignUpFormInline({
     { errorPolicy: 'all' },
   )
 
-  const { handleSubmit, formState, control, error } = form
+  const { handleSubmit, formState, control, error, required } = form
   const [remainingError, inputError] = graphqlErrorByCategory({ category: 'graphql-input', error })
   const submitHandler = handleSubmit(() => {})
-
-  const minPasswordLength = Number(
-    useQuery(StoreConfigDocument).data?.storeConfig?.minimum_password_length ?? 8,
-  )
-
-  const passwordRequirementsPattern = PasswordRequirements()
 
   if (requireEmailValidation && form.formState.isSubmitSuccessful) {
     return (
@@ -90,15 +82,8 @@ export function SignUpFormInline({
           type='password'
           label={<Trans id='Password' />}
           error={!!inputError}
-          required
+          required={required.password}
           disabled={formState.isSubmitting}
-          validation={{
-            minLength: {
-              value: minPasswordLength,
-              message: i18n._(/* i18n */ 'Password must have at least 8 characters'),
-            },
-            pattern: passwordRequirementsPattern,
-          }}
           helperText={formState.errors.password?.message || inputError?.message}
         />
         <PasswordRepeatElement

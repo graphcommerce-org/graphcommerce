@@ -1,4 +1,7 @@
 /* eslint-disable no-nested-ternary */
+import { useQuery } from '@graphcommerce/graphql'
+import { PasswordRequirements } from '@graphcommerce/magento-customer/components/SignUpForm/PasswordRequirements'
+import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   Controller,
   FieldError,
@@ -26,6 +29,10 @@ export function TextFieldElement<TFieldValues extends FieldValues>({
   defaultValue,
   ...rest
 }: TextFieldElementProps<TFieldValues>): JSX.Element {
+  const storeConfig = useQuery(StoreConfigDocument).data?.storeConfig
+  const minPasswordLength = Number(storeConfig?.minimum_password_length ?? 8)
+  const passwordRequirementsPattern = PasswordRequirements()
+
   if (required && !validation.required) {
     validation.required = i18n._(/* i18n */ 'This field is required')
   }
@@ -36,6 +43,19 @@ export function TextFieldElement<TFieldValues extends FieldValues>({
       value:
         /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
       message: i18n._(/* i18n */ 'Please enter a valid email address'),
+    }
+  }
+
+  if (type === 'password') {
+    if (!validation.minLength) {
+      validation.minLength = {
+        value: minPasswordLength,
+        message: i18n._(/* i18n */ 'Password must have at least 8 characters'),
+      }
+    }
+
+    if (!validation.pattern) {
+      validation.pattern = passwordRequirementsPattern
     }
   }
 
