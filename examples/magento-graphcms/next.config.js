@@ -16,6 +16,7 @@ const nextConfig = {
   },
   experimental: {
     scrollRestoration: true,
+    experimental: { swcPlugins: [['@lingui/swc-plugin']] },
   },
   optimizeFonts: false,
   images: {

@@ -13,7 +13,7 @@
     }
   },
   "dependencies": {
-    "@apollo/client": "^3.7.10",
+    "@apollo/client": "^3.7.15",
     "@graphcommerce/graphql-codegen-near-operation-file": "6.2.0-canary.40",
     "@graphcommerce/graphql-codegen-relay-optimizer-plugin": "6.2.0-canary.40",
     "@graphql-codegen/add": "5.0.0",
