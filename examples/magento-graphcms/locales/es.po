@@ -331,6 +331,9 @@ msgstr "Iniciar sesión para continuar comprando"
 msgid "Menu"
 msgstr "Menú"
 
+msgid "Minimum of different classes of characters in password is {requiredCharacterClassesNumber}. Classes of characters: Lower Case, Upper Case, Digits, Special Characters."
+msgstr "El número mínimo de diferentes clases de caracteres en la contraseña es {requiredCharacterClassesNumber}. Clases de caracteres: Minúsculas, Mayúsculas, Dígitos, Caracteres especiales."
+
 msgid "More information"
 msgstr "Más información"
 

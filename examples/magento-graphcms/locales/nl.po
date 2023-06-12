@@ -331,6 +331,9 @@ msgstr "Log in om verder te winkelen"
 msgid "Menu"
 msgstr "Menu"
 
+msgid "Minimum of different classes of characters in password is {requiredCharacterClassesNumber}. Classes of characters: Lower Case, Upper Case, Digits, Special Characters."
+msgstr "Het minimumaantal verschillende klassen van tekens in het wachtwoord is {requiredCharacterClassesNumber}. Klassen van tekens: Kleine letters, Hoofdletters, Cijfers, Speciale tekens."
+
 msgid "More information"
 msgstr "Meer informatie"
 
