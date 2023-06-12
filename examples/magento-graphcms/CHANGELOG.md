@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.42
+
+### Patch Changes
+
+- [`0cd3fbe95`](https://github.com/graphcommerce-org/graphcommerce/commit/0cd3fbe95faad6011539c8584ac820861561b76b) - Bump release due to broken release ([@paales](https://github.com/paales))
+
 ## 6.2.0-canary.41
 
 ### Patch Changes
