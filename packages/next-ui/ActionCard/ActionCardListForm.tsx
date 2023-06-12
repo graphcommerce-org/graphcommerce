@@ -40,7 +40,7 @@ export function ActionCardListForm<
   } = props
   const RenderItem = render as React.FC<ActionCardItemRenderProps<ActionCardItemBase>>
   const [show, setShow] = React.useState(false)
-  const maxItems = 4
+  const showMoreAfter = 4
 
   function onSelect(itemValue: unknown, selectValues: unknown) {
     return multiple
@@ -79,11 +79,11 @@ export function ActionCardListForm<
                 }}
                 index={index}
                 show={show}
-                maxItems={maxItems}
+                showMoreAfter={showMoreAfter}
               />
             ))}
           </ActionCardList>
-          {items.length > maxItems && (
+          {items.length > showMoreAfter && (
             <Button
               sx={{
                 my: 2,

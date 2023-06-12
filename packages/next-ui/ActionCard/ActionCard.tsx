@@ -45,7 +45,7 @@ export type ActionCardProps = {
   error?: boolean
   index?: number
   show?: boolean
-  maxItems?: number
+  showMoreAfter?: number
 }
 
 const parts = [
@@ -93,15 +93,15 @@ export function ActionCard(props: ActionCardProps) {
     value,
     selected = false,
     reset,
+    index,
+    show,
+    showMoreAfter,
     disabled = false,
     size = 'medium',
     color = 'primary',
     variant = 'outlined',
     layout = 'list',
     error = false,
-    index = 0,
-    show = true,
-    maxItems = 100,
   } = props
 
   const classes = withState({
@@ -128,34 +128,37 @@ export function ActionCard(props: ActionCardProps) {
             theme.shape.borderRadius * 3,
             theme.breakpoints.values,
           ),
-          display: index + 1 > maxItems && !show ? 'none!important' : 'block',
+          display: index && showMoreAfter && index + 1 > showMoreAfter && !show ? 'none' : 'block',
           '&.sizeSmall': {
             px: responsiveVal(8, 12),
             py: responsiveVal(4, 6),
-            display: 'flex',
+            display: index && showMoreAfter && index + 1 > showMoreAfter && !show ? 'none' : 'flex',
             typography: 'body2',
           },
           '&.sizeMedium': {
             px: responsiveVal(10, 14),
             py: responsiveVal(10, 12),
             typography: 'body2',
-            display: 'block',
+            display:
+              index && showMoreAfter && index + 1 > showMoreAfter && !show ? 'none' : 'block',
           },
           '&.sizeLarge': {
             px: responsiveVal(12, 16),
             py: responsiveVal(12, 14),
-            display: 'block',
+            display:
+              index && showMoreAfter && index + 1 > showMoreAfter && !show ? 'none' : 'block',
           },
 
           '&.variantDefault': {
             '&::after': {
               content: '""',
-              display: 'block',
               position: 'absolute',
               width: '100%',
               left: 0,
               bottom: '-1px',
               borderBottom: `1px solid ${theme.palette.divider}`,
+              display:
+                index && showMoreAfter && index + 1 > showMoreAfter && !show ? 'none' : 'block',
             },
             '&.selected': {
               backgroundColor:
