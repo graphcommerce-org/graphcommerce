@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { CategoryQueryFragment } from '@graphcommerce/magento-category/queries/CategoryQueryFragment.gql'
 import { StickyBelowHeader, responsiveVal } from '@graphcommerce/next-ui'
-import { Box, Container, SxProps, Theme } from '@mui/material'
+import { Box, Container, ContainerTypeMap, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { ProductListQuery } from '../ProductList/ProductList.gql'
 import { ProductListCount as ProductListCountElement } from '../ProductListCount/ProductListCount'
@@ -28,6 +28,7 @@ export interface FilterLayoutProps
   filterTypes: FilterTypes
   params: ProductListParams
   category: NonNullable<NonNullable<CategoryQueryFragment['categories']>['items']>[number]
+  maxWidth?: NonNullable<ContainerTypeMap['props']>['maxWidth']
   mode?: 'default' | 'sidebar'
   sx?: SxProps<Theme>
 }
@@ -42,6 +43,7 @@ export function FilterLayout(props: FilterLayoutProps) {
     filters,
     params,
     category,
+    maxWidth,
     mode = 'default',
     sx = [],
   } = props
@@ -52,6 +54,7 @@ export function FilterLayout(props: FilterLayoutProps) {
       <>
         <Container
           sx={[{ display: { xs: 'none', md: 'block' } }, ...(Array.isArray(sx) ? sx : [sx])]}
+          maxWidth={maxWidth}
         >
           <Box
             sx={(theme) => ({
@@ -133,7 +136,7 @@ export function FilterLayout(props: FilterLayoutProps) {
   }
 
   return (
-    <Container sx={Array.isArray(sx) ? sx : [sx]}>
+    <Container maxWidth={maxWidth} sx={Array.isArray(sx) ? sx : [sx]}>
       <StickyBelowHeader>
         {import.meta.graphCommerce.productFiltersPro ? (
           <ProductFiltersPro params={params}>

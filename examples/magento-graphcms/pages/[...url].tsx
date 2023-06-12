@@ -100,6 +100,7 @@ function CategoryPage(props: CategoryProps) {
           <CategoryChildren params={params}>{category.children}</CategoryChildren>
           <FilterLayout
             mode='sidebar'
+            maxWidth='lg'
             ProductListItems={ProductListItems}
             ProductListCount={ProductListCount}
             ProductListPagination={ProductListPagination}
