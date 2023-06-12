@@ -37,7 +37,7 @@ export const useProductFiltersPro = () => {
 export type FilterFormProviderProps = Omit<
   UseFormProps<ProductFilterParams>,
   'values' | 'defaultValues'
-> & { children: React.ReactElement; params: ProductListParams }
+> & { children: React.ReactNode; params: ProductListParams }
 
 export function ProductFiltersPro(props: FilterFormProviderProps) {
   const { children, params, ...formProps } = props
