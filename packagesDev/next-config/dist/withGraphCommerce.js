@@ -53,8 +53,9 @@ function withGraphCommerce(nextConfig, cwd) {
     return {
         ...nextConfig,
         experimental: {
-            enableUndici: true,
             ...nextConfig.experimental,
+            scrollRestoration: true,
+            swcPlugins: [...(nextConfig.experimental?.swcPlugins ?? []), ['@lingui/swc-plugin', {}]],
         },
         i18n: {
             defaultLocale: storefront.find((locale) => locale.defaultLocale)?.locale ?? storefront[0].locale,

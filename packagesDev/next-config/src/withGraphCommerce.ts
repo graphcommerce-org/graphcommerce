@@ -61,8 +61,9 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
   return {
     ...nextConfig,
     experimental: {
-      enableUndici: true,
       ...nextConfig.experimental,
+      scrollRestoration: true,
+      swcPlugins: [...(nextConfig.experimental?.swcPlugins ?? []), ['@lingui/swc-plugin', {}]],
     },
     i18n: {
       defaultLocale:

@@ -12,9 +12,9 @@
     }
   },
   "dependencies": {
-    "@apollo/client": "^3.7.10",
+    "@apollo/client": "^3.7.15",
     "graphql": "16.6.0",
-    "react-hook-form": "7.43.5"
+    "react-hook-form": "7.44.3"
   },
   "devDependencies": {
     "@graphcommerce/eslint-config-pwa": "6.2.0-canary.40",

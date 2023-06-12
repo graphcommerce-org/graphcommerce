@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { FieldValues, UseFormReturn, Path, FieldPathValue, FieldPath } from 'react-hook-form'
+import { FieldValues, UseFormReturn, Path, FieldPath, PathValue } from 'react-hook-form'
 
 export type UseFormPersistOptions<
   TFieldValues extends FieldValues = FieldValues,
@@ -58,7 +58,7 @@ export function useFormPersist<V extends FieldValues>(options: UseFormPersistOpt
 
       const storedValues = JSON.parse(storedFormStr) as FieldValues
       if (storedValues) {
-        const entries = Object.entries(storedValues) as [Path<V>, FieldPathValue<V, Path<V>>][]
+        const entries = Object.entries(storedValues) as [Path<V>, PathValue<V, Path<V>>][]
         entries.forEach(([entryName, value]) =>
           setValue(entryName, value, {
             shouldDirty: true,

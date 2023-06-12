@@ -89,6 +89,7 @@ function injectInjectable(injectables, injector) {
                         const spread = {
                             kind: graphql_1.Kind.FRAGMENT_SPREAD,
                             name: { kind: graphql_1.Kind.NAME, value: fragment.name.value },
+                            directives: [],
                         };
                         frag.selectionSet.selections = [...frag.selectionSet.selections, spread];
                     }

@@ -97,6 +97,7 @@ function injectInjectable(injectables: DocumentNode[], injector: DocumentNode) {
             const spread: FragmentSpreadNode = {
               kind: Kind.FRAGMENT_SPREAD,
               name: { kind: Kind.NAME, value: fragment.name.value },
+              directives: [],
             }
             frag.selectionSet.selections = [...frag.selectionSet.selections, spread]
           }

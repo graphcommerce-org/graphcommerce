@@ -24,27 +24,27 @@
     "graphcommerce": "dist/bin/graphcommerce.js"
   },
   "dependencies": {
-    "@graphcommerce/next-config": "6.2.0-canary.40",
     "@graphcommerce/hygraph-cli": "6.2.0-canary.40",
-    "@graphql-codegen/cli": "3.2.2",
+    "@graphcommerce/next-config": "6.2.0-canary.40",
+    "@graphql-codegen/cli": "4.0.1",
     "@graphql-mesh/cli": "latest",
     "@graphql-mesh/types": "latest",
     "@graphql-mesh/utils": "latest",
-    "cosmiconfig": "^8.0.0",
+    "cosmiconfig": "^8.2.0",
     "detect-package-manager": "^2.0.1",
     "graphql": "16.6.0",
-    "graphql-codegen-typescript-validation-schema": "^0.7.1",
+    "graphql-codegen-typescript-validation-schema": "^0.11.1",
     "graphql-tag": "^2.12.6",
-    "rimraf": "^3.0.2",
+    "rimraf": "^5.0.1",
     "ts-node": "^10.9.1"
   },
   "devDependencies": {
     "@graphcommerce/eslint-config-pwa": "6.2.0-canary.40",
     "@graphcommerce/prettier-config-pwa": "6.2.0-canary.40",
     "@graphcommerce/typescript-config-pwa": "6.2.0-canary.40",
-    "@types/rimraf": "^3.0.2",
+    "@types/rimraf": "^4.0.5",
     "react": "^18.2.0",
-    "typescript": "4.9.5"
+    "typescript": "5.1.3"
   },
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",

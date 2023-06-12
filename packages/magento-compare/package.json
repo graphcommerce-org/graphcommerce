@@ -26,8 +26,9 @@
     "@graphcommerce/next-ui": "6.2.0-canary.40"
   },
   "peerDependencies": {
-    "@lingui/react": "^3.13.2",
-    "@lingui/core": "^3.13.2",
+    "@lingui/react": "^4.2.1",
+    "@lingui/core": "^4.2.1",
+    "@lingui/macro": "^4.2.1",
     "@mui/material": "^5.10.16",
     "framer-motion": "^10.0.0",
     "graphql": "^16.0.0",

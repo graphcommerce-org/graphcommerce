@@ -14,10 +14,10 @@
     }
   },
   "dependencies": {
-    "@emotion/cache": "^11.10.5",
-    "@emotion/react": "^11.10.6",
-    "@emotion/server": "^11.4.0",
-    "@emotion/styled": "^11.10.6",
+    "@emotion/cache": "^11.11.0",
+    "@emotion/react": "^11.11.1",
+    "@emotion/server": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
     "@graphcommerce/framer-next-pages": "6.2.0-canary.40",
     "@graphcommerce/framer-scroller": "6.2.0-canary.40",
     "@graphcommerce/framer-utils": "6.2.0-canary.40",
@@ -31,12 +31,13 @@
     "@graphcommerce/prettier-config-pwa": "6.2.0-canary.40",
     "@graphcommerce/typescript-config-pwa": "6.2.0-canary.40",
     "@types/cookie": "^0.5.1",
-    "@types/react-is": "^17.0.3",
-    "typescript": "4.9.5"
+    "@types/react-is": "^18.2.0",
+    "typescript": "5.1.3"
   },
   "peerDependencies": {
-    "@lingui/core": "^3.13.2",
-    "@lingui/react": "^3.13.2",
+    "@lingui/core": "^4.2.1",
+    "@lingui/react": "^4.2.1",
+    "@lingui/macro": "^4.2.1",
     "@mui/lab": "^5.0.0-alpha.68",
     "@mui/material": "^5.10.16",
     "framer-motion": "^10.0.0",
