@@ -1,5 +1,10 @@
-import { ApolloErrorAlert, TextFieldElement } from '@graphcommerce/ecommerce-ui'
+import {
+  ApolloErrorAlert,
+  PasswordElement,
+  PasswordRepeatElement,
+} from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
+import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Button, extendableComponent, Form, FormRow } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
@@ -57,14 +62,18 @@ export function SignUpFormInline({
   )
 
   const { watch, handleSubmit, formState, required, control, error } = form
+  const [remainingError, inputError] = graphqlErrorByCategory({ category: 'graphql-input', error })
   const submitHandler = handleSubmit(() => {})
   const watchPassword = watch('password')
-
-  console.log(error)
 
   const minPasswordLength = Number(
     useQuery(StoreConfigDocument).data?.storeConfig?.minimum_password_length ?? 8,
   )
+
+  const passwordRequirements = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).+$/
+
+  const RequiredCharacterClassesNumber =
+    useQuery(StoreConfigDocument).data?.storeConfig?.required_character_classes_number
 
   if (requireEmailValidation && form.formState.isSubmitSuccessful) {
     return (
@@ -77,41 +86,44 @@ export function SignUpFormInline({
   return (
     <Form onSubmit={submitHandler} noValidate className={classes.form} sx={{ padding: 0 }}>
       <FormRow className={classes.row} sx={{ padding: 0 }}>
-        <TextFieldElement
+        <PasswordElement
           control={control}
           name='password'
           variant='outlined'
           type='password'
-          label={<Trans id='Password' />}
-          autoFocus
-          autoComplete='new-password'
-          id='new-password'
-          required={required.password}
+          label={<Trans id='New password' />}
+          error={!!inputError}
+          required
+          disabled={formState.isSubmitting}
           validation={{
-            required: required.password,
             minLength: {
               value: minPasswordLength,
               message: i18n._(/* i18n */ 'Password must have at least 8 characters'),
             },
-            validate: () => !!formState.errors.password || !!error,
+            pattern: {
+              value: passwordRequirements,
+              message: i18n._(
+                /* i18n */ 'Minimum of different classes of characters in password is 3. Classes of characters: Lower Case, Upper Case, Digits, Special Characters.',
+              ),
+            },
           }}
-          disabled={formState.isSubmitting}
+          helperText={formState.errors.password?.message || inputError?.message}
         />
-        <TextFieldElement
+        <PasswordRepeatElement
           control={control}
           name='confirmPassword'
+          passwordFieldName='password'
           variant='outlined'
           type='password'
           label={<Trans id='Confirm password' />}
-          autoComplete='new-password'
+          error={!!formState.errors.confirmPassword || !!inputError}
           required
-          validation={{
-            required: true,
-            validate: (value) =>
-              value === watchPassword || i18n._(/* i18n */ "Passwords don't match"),
-          }}
-          helperText={!!formState.errors.confirmPassword && <Trans id='Passwords should match' />}
           disabled={formState.isSubmitting}
+          validation={{
+            validate: (value) =>
+              value === watchPassword || i18n._(/* i18n */ 'Passwords should match'),
+          }}
+          helperText={formState.errors.confirmPassword?.message}
         />
       </FormRow>
 
@@ -139,7 +151,7 @@ export function SignUpFormInline({
           </Box>
         </FormRow>
       </FormRow>
-      <ApolloErrorAlert error={error} />
+      <ApolloErrorAlert error={remainingError} />
     </Form>
   )
 }
