@@ -2,7 +2,7 @@
   "name": "@graphcommerce/googlerecaptcha",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "6.2.0-canary.40",
+  "version": "6.2.0-canary.41",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -12,14 +12,14 @@
     }
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "6.2.0-canary.40",
-    "@graphcommerce/prettier-config-pwa": "6.2.0-canary.40",
-    "@graphcommerce/typescript-config-pwa": "6.2.0-canary.40",
+    "@graphcommerce/eslint-config-pwa": "6.2.0-canary.41",
+    "@graphcommerce/prettier-config-pwa": "6.2.0-canary.41",
+    "@graphcommerce/typescript-config-pwa": "6.2.0-canary.41",
     "@types/grecaptcha": "^3.0.4"
   },
   "dependencies": {
-    "@graphcommerce/graphql": "6.2.0-canary.40",
-    "@graphcommerce/next-ui": "6.2.0-canary.40"
+    "@graphcommerce/graphql": "6.2.0-canary.41",
+    "@graphcommerce/next-ui": "6.2.0-canary.41"
   },
   "peerDependencies": {
     "next": "^13.2.0",
