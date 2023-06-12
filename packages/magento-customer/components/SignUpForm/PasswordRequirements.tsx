@@ -12,15 +12,17 @@ export function PasswordRequirements() {
   switch (requiredCharacterClassesNumber) {
     case '1':
       // Matches one or more digits
-      pattern = /\d+/
+      pattern = /^(?=.*\d).+$/
       break
     case '2':
       // Matches a string that contains at least one digit and one lowercase letter
       pattern = /^(?=.*\d)(?=.*[a-z]).+$/
+
       break
     case '3':
       // Matches one or more digits, lowercase letters, or uppercase letters (matches any of the three character classes separately)
-      pattern = /(\d+|[a-z]+|[A-Z]+)/g
+      pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).+$/
+
       break
     default:
       break
