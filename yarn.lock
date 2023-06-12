@@ -2048,9 +2048,9 @@
     localforage "1.10.0"
 
 "@graphql-mesh/cli@latest":
-  version "0.83.2"
-  resolved "https://registry.yarnpkg.com/@graphql-mesh/cli/-/cli-0.83.2.tgz#1197ff00025e2f803e2a4ce36aacf08e2be0d247"
-  integrity sha512-QC3j+X9aGlmk1d1YO2rd7As3gRpLK1Tx4Am/7asBbv3Bs0GepCZZne7SNqZTrFb4WBBvwJmWCJKdyR2OUlneNQ==
+  version "0.83.3"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/cli/-/cli-0.83.3.tgz#fab63e9d8c8ef3597d9771eaeb1a318c490fe147"
+  integrity sha512-ZpqAd/0/wixogn5oXv/COChI6Wj/2Te0+ro8avSB6t1GWE7ezAgKfTQg6Mh0QqlmcFcNI2X5Brb/+4MfaJd4hg==
   dependencies:
     "@graphql-codegen/core" "^4.0.0"
     "@graphql-codegen/typed-document-node" "^5.0.0"
@@ -2306,9 +2306,9 @@
     value-or-promise "^1.0.12"
 
 "@graphql-tools/executor-legacy-ws@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@graphql-tools/executor-legacy-ws/-/executor-legacy-ws-1.0.0.tgz#5834e3f1fba6b6508d4790db70caab8047032d9c"
-  integrity sha512-8c0wlhYz7G6imuWqHqjpveflN8IVL3gXIxel5lzpAvPvxsSXpiNig3jADkIBB+eaxzR9R1lbwxqonxPUGI4CdQ==
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@graphql-tools/executor-legacy-ws/-/executor-legacy-ws-1.0.1.tgz#49764812fc93f401cb3f3ef32b2d6db4a9cd8db5"
+  integrity sha512-PQrTJ+ncHMEQspBARc2lhwiQFfRAX/z/CsOdZTFjIljOHgRWGAA1DAx7pEN0j6PflbLCfZ3NensNq2jCBwF46w==
   dependencies:
     "@graphql-tools/utils" "^10.0.0"
     "@types/ws" "^8.0.0"
@@ -11062,7 +11062,7 @@ typescript@5.1.3, typescript@^5.0.4:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.1.3.tgz#8d84219244a6b40b6fb2b33cc1c062f715b9e826"
   integrity sha512-XH627E9vkeqhlZFQuL+UsyAXEnibT0kWR2FWONlr4sTjvxyJYnyefgrkyECLzM5NenmKzRAy2rR/OlYLA1HkZw==
 
-uWebSockets.js@uNetworking/uWebSockets.js#v20.30.0:
+"uWebSockets.js@github:uNetworking/uWebSockets.js#v20.30.0":
   version "20.30.0"
   resolved "https://codeload.github.com/uNetworking/uWebSockets.js/tar.gz/d39d4181daf5b670d44cbc1b18f8c28c85fd4142"
 
