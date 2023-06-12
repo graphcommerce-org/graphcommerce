@@ -65,7 +65,7 @@
     "@graphcommerce/next-ui": "6.2.0-canary.40",
     "@lingui/core": "4.2.1",
     "@lingui/react": "4.2.1",
-    "@lingui/swc-plugin": "^4.0.2",
+    "@lingui/macro": "4.2.1",
     "@mui/lab": "5.0.0-alpha.133",
     "@mui/material": "5.13.4",
     "@next/env": "13.4.5",

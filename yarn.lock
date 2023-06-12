@@ -2970,6 +2970,17 @@
     "@lingui/cli" "4.2.1"
     "@lingui/conf" "4.2.1"
 
+"@lingui/macro@4.2.1":
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/@lingui/macro/-/macro-4.2.1.tgz#57e7605797403dc12ba0a70515f16caa7752f193"
+  integrity sha512-hBFzSBKJVQf/Unk583sCmYeZfXuOIegyro0KNZESySSl1pZfAUEbPo2lsMTxD8YdWrWZqwIfrCZKp14l6xmeOQ==
+  dependencies:
+    "@babel/runtime" "^7.20.13"
+    "@babel/types" "^7.20.7"
+    "@lingui/conf" "4.2.1"
+    "@lingui/core" "4.2.1"
+    "@lingui/message-utils" "4.2.1"
+
 "@lingui/message-utils@4.2.1":
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/@lingui/message-utils/-/message-utils-4.2.1.tgz#586eb273359ada8c5e9e8816db28913b6218158e"
