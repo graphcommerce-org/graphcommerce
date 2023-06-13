@@ -2,7 +2,7 @@ import { useQuery } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { i18n } from '@lingui/core'
 
-export function PasswordRequirements() {
+export function usePasswordValidation() {
   const requiredCharacterClassesNumber =
     useQuery(StoreConfigDocument).data?.storeConfig?.required_character_classes_number
 

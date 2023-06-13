@@ -1,6 +1,6 @@
 /* eslint-disable no-nested-ternary */
 import { useQuery } from '@graphcommerce/graphql'
-import { PasswordRequirements } from '@graphcommerce/magento-customer/components/SignUpForm/PasswordRequirements'
+import { usePasswordValidation } from '@graphcommerce/magento-customer/components/SignUpForm/usePasswordValidation'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   Controller,
@@ -33,7 +33,7 @@ export function TextFieldElement<TFieldValues extends FieldValues>({
 }: TextFieldElementProps<TFieldValues>): JSX.Element {
   const storeConfig = useQuery(StoreConfigDocument).data?.storeConfig
   const minPasswordLength = Number(storeConfig?.minimum_password_length ?? 8)
-  const passwordRequirementsPattern = PasswordRequirements()
+  const passwordRequirementsPattern = usePasswordValidation()
 
   if (required && !validation.required) {
     validation.required = i18n._(/* i18n */ 'This field is required')
