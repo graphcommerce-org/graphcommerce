@@ -5,13 +5,11 @@ import { Box, Container, ContainerTypeMap, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { ProductListQuery } from '../ProductList/ProductList.gql'
 import { ProductListCount as ProductListCountElement } from '../ProductListCount/ProductListCount'
-import { ProductFiltersQuery, ProductListFilters } from '../ProductListFilters'
+import { ProductFiltersQuery } from '../ProductListFilters'
 import { ProductListFiltersContainer } from '../ProductListFiltersContainer/ProductListFiltersContainer'
 import { ProductListItems as ProductListItemsElement } from '../ProductListItems/ProductListItems'
-import { ProductListParamsProvider } from '../ProductListItems/ProductListParamsProvider'
 import { FilterTypes, ProductListParams } from '../ProductListItems/filterTypes'
 import { ProductListPagination as ProductListPaginationElement } from '../ProductListPagination/ProductListPagination'
-import { ProductListSort } from '../ProductListSort'
 import { ProductFiltersPro } from './ProductFiltersPro'
 import { ProductFiltersProAllFiltersChip } from './ProductFiltersProAllFiltersChip'
 import { ProductFiltersProAllFiltersSidebar } from './ProductFiltersProAllFiltersSidebar'
@@ -48,7 +46,7 @@ export function FilterLayout(props: FilterLayoutProps) {
     sx = [],
   } = props
 
-  if (mode === 'sidebar' && import.meta.graphCommerce.productFiltersPro) {
+  if (mode === 'sidebar') {
     return (
       <>
         <Container
@@ -57,6 +55,7 @@ export function FilterLayout(props: FilterLayoutProps) {
               display: { xs: 'none', md: 'grid' },
               gridTemplateColumns: { xs: '1fr', md: '3fr 9fr' },
               columnGap: theme.spacings.md,
+              mx: 'auto',
             }),
             ...(Array.isArray(sx) ? sx : [sx]),
           ]}
@@ -85,47 +84,30 @@ export function FilterLayout(props: FilterLayoutProps) {
               loadingEager={1}
             />
           </Box>
-          <ProductListPagination
-            page_info={products?.page_info}
-            params={params}
-            sx={{ gridColumn: 'span 12' }}
-          />
         </Container>
 
         <Container
           sx={[{ display: { xs: 'block', md: 'none' } }, ...(Array.isArray(sx) ? sx : [sx])]}
         >
           <StickyBelowHeader>
-            {import.meta.graphCommerce.productFiltersPro ? (
-              <ProductFiltersPro params={params}>
-                <ProductListFiltersContainer>
-                  <ProductFiltersProFilterChips
-                    {...filters}
-                    appliedAggregations={products?.aggregations}
-                    filterTypes={filterTypes}
-                  />
-                  <ProductFiltersProSortChip {...products} />
-                  <ProductFiltersProLimitChip />
-                  <ProductFiltersProAllFiltersChip
-                    {...products}
-                    {...filters}
-                    appliedAggregations={products?.aggregations}
-                    filterTypes={filterTypes}
-                    mode={mode}
-                  />
-                </ProductListFiltersContainer>
-              </ProductFiltersPro>
-            ) : (
-              <ProductListParamsProvider value={params}>
-                <ProductListFiltersContainer>
-                  <ProductListSort
-                    sort_fields={products?.sort_fields}
-                    total_count={products?.total_count}
-                  />
-                  <ProductListFilters {...filters} filterTypes={filterTypes} />
-                </ProductListFiltersContainer>
-              </ProductListParamsProvider>
-            )}
+            <ProductFiltersPro params={params}>
+              <ProductListFiltersContainer>
+                <ProductFiltersProFilterChips
+                  {...filters}
+                  appliedAggregations={products?.aggregations}
+                  filterTypes={filterTypes}
+                />
+                <ProductFiltersProSortChip {...products} />
+                <ProductFiltersProLimitChip />
+                <ProductFiltersProAllFiltersChip
+                  {...products}
+                  {...filters}
+                  appliedAggregations={products?.aggregations}
+                  filterTypes={filterTypes}
+                  mode={mode}
+                />
+              </ProductListFiltersContainer>
+            </ProductFiltersPro>
           </StickyBelowHeader>
           <ProductListCount
             sx={{ width: responsiveVal(280, 650) }}
@@ -134,6 +116,7 @@ export function FilterLayout(props: FilterLayoutProps) {
           />
           <ProductListItems items={products?.items} title={category?.name ?? ''} loadingEager={1} />
         </Container>
+        <ProductListPagination page_info={products?.page_info} params={params} />
       </>
     )
   }
@@ -141,36 +124,24 @@ export function FilterLayout(props: FilterLayoutProps) {
   return (
     <Container maxWidth={maxWidth} sx={Array.isArray(sx) ? sx : [sx]}>
       <StickyBelowHeader>
-        {import.meta.graphCommerce.productFiltersPro ? (
-          <ProductFiltersPro params={params}>
-            <ProductListFiltersContainer>
-              <ProductFiltersProFilterChips
-                {...filters}
-                appliedAggregations={products?.aggregations}
-                filterTypes={filterTypes}
-              />
-              <ProductFiltersProSortChip {...products} />
-              <ProductFiltersProLimitChip />
-              <ProductFiltersProAllFiltersChip
-                {...products}
-                {...filters}
-                appliedAggregations={products?.aggregations}
-                filterTypes={filterTypes}
-                mode={mode}
-              />
-            </ProductListFiltersContainer>
-          </ProductFiltersPro>
-        ) : (
-          <ProductListParamsProvider value={params}>
-            <ProductListFiltersContainer>
-              <ProductListSort
-                sort_fields={products?.sort_fields}
-                total_count={products?.total_count}
-              />
-              <ProductListFilters {...filters} filterTypes={filterTypes} />
-            </ProductListFiltersContainer>
-          </ProductListParamsProvider>
-        )}
+        <ProductFiltersPro params={params}>
+          <ProductListFiltersContainer>
+            <ProductFiltersProFilterChips
+              {...filters}
+              appliedAggregations={products?.aggregations}
+              filterTypes={filterTypes}
+            />
+            <ProductFiltersProSortChip {...products} />
+            <ProductFiltersProLimitChip />
+            <ProductFiltersProAllFiltersChip
+              {...products}
+              {...filters}
+              appliedAggregations={products?.aggregations}
+              filterTypes={filterTypes}
+              mode={mode}
+            />
+          </ProductListFiltersContainer>
+        </ProductFiltersPro>
       </StickyBelowHeader>
       <ProductListCount
         sx={{ width: responsiveVal(280, 650) }}
@@ -178,6 +149,7 @@ export function FilterLayout(props: FilterLayoutProps) {
         mode={mode}
       />
       <ProductListItems items={products?.items} title={category?.name ?? ''} loadingEager={1} />
+      <ProductListPagination page_info={products?.page_info} params={params} />
     </Container>
   )
 }

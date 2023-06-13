@@ -28,7 +28,7 @@ export function ProductListCount(props: ProductCountProps) {
           maxWidth: '100%',
           width: '100%',
           alignItems: 'center',
-          marginTop: mode ? 0 : theme.spacings.md,
+          marginTop: mode === 'sidebar' ? { xs: theme.spacings.md, md: 0 } : theme.spacings.md,
           marginBottom: theme.spacings.md,
           marginX: 'auto',
         }),
