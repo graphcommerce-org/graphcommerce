@@ -17,7 +17,6 @@ export function PasswordElement<TFieldValues extends FieldValues>({
   const [password, setPassword] = useState<boolean>(true)
   return (
     <TextFieldElement
-      {...props}
       InputProps={{
         endAdornment: (
           <InputAdornment position='end'>
@@ -33,6 +32,7 @@ export function PasswordElement<TFieldValues extends FieldValues>({
           </InputAdornment>
         ),
       }}
+      {...props}
       type={password ? 'password' : 'text'}
     />
   )
