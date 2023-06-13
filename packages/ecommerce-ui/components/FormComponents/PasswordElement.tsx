@@ -6,10 +6,12 @@ import { TextFieldElement, TextFieldElementProps } from './TextFieldElement'
 
 export type PasswordElementProps<T extends FieldValues> = TextFieldElementProps<T> & {
   iconColor?: IconButtonProps['color']
+  afterInputAdornment?: React.ReactNode
 }
 
 export function PasswordElement<TFieldValues extends FieldValues>({
   iconColor,
+  afterInputAdornment,
   ...props
 }: PasswordElementProps<TFieldValues>): JSX.Element {
   const [password, setPassword] = useState<boolean>(true)
@@ -27,6 +29,7 @@ export function PasswordElement<TFieldValues extends FieldValues>({
             >
               <IconSvg src={password ? iconEyeCrossed : iconEye} size='medium' />
             </IconButton>
+            {afterInputAdornment}
           </InputAdornment>
         ),
       }}
