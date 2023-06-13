@@ -50,45 +50,48 @@ export function FilterLayout(props: FilterLayoutProps) {
 
   if (mode === 'sidebar' && import.meta.graphCommerce.productFiltersPro) {
     return (
-      // Todo: Make maxWidth configurable
       <>
         <Container
-          sx={[{ display: { xs: 'none', md: 'block' } }, ...(Array.isArray(sx) ? sx : [sx])]}
+          sx={[
+            (theme) => ({
+              display: { xs: 'none', md: 'grid' },
+              gridTemplateColumns: { xs: '1fr', md: '3fr 9fr' },
+              columnGap: theme.spacings.md,
+            }),
+            ...(Array.isArray(sx) ? sx : [sx]),
+          ]}
           maxWidth={maxWidth}
         >
           <Box
             sx={(theme) => ({
-              display: 'grid',
-              gridTemplateColumns: { xs: '1fr', md: '3fr 9fr' },
-              columnGap: theme.spacings.md,
+              [theme.breakpoints.down('md')]: { display: 'none' },
             })}
           >
-            <Box
-              sx={(theme) => ({
-                [theme.breakpoints.down('md')]: { display: 'none' },
-              })}
-            >
-              <ProductFiltersPro params={params}>
-                <ProductFiltersProAllFiltersSidebar
-                  {...products}
-                  {...filters}
-                  appliedAggregations={products?.aggregations}
-                  filterTypes={filterTypes}
-                  mode={mode}
-                />
-              </ProductFiltersPro>
-            </Box>
-            <Box>
-              <ProductListCount total_count={products?.total_count} mode={mode} />
-              <ProductListItems
-                items={products?.items}
-                title={category?.name ?? ''}
-                loadingEager={1}
+            <ProductFiltersPro params={params}>
+              <ProductFiltersProAllFiltersSidebar
+                {...products}
+                {...filters}
+                appliedAggregations={products?.aggregations}
+                filterTypes={filterTypes}
+                mode={mode}
               />
-            </Box>
+            </ProductFiltersPro>
           </Box>
-          <ProductListPagination page_info={products?.page_info} params={params} />
+          <Box>
+            <ProductListCount total_count={products?.total_count} mode={mode} />
+            <ProductListItems
+              items={products?.items}
+              title={category?.name ?? ''}
+              loadingEager={1}
+            />
+          </Box>
+          <ProductListPagination
+            page_info={products?.page_info}
+            params={params}
+            sx={{ gridColumn: 'span 12' }}
+          />
         </Container>
+
         <Container
           sx={[{ display: { xs: 'block', md: 'none' } }, ...(Array.isArray(sx) ? sx : [sx])]}
         >
