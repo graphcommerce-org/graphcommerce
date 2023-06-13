@@ -52,7 +52,6 @@ export function SignInFormInline(props: InlineSignInFormProps) {
         autoComplete='current-password'
         id='current-password'
         required={required.password}
-        helperText={error?.message}
         disabled={formState.isSubmitting}
         afterInputAdornment={
           <Button

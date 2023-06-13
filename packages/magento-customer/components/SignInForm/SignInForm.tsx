@@ -54,7 +54,6 @@ export function SignInForm(props: SignInFormProps) {
           autoComplete='current-password'
           id='current-password'
           required={required.password}
-          helperText={formState.errors.password?.message || authError?.message}
           disabled={formState.isSubmitting}
           afterInputAdornment={
             <Link

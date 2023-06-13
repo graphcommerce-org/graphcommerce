@@ -106,7 +106,6 @@ export function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormProps) {
           label={<Trans id='Password' />}
           autoComplete='password'
           required={required.password}
-          helperText={formState.errors.password?.message}
           disabled={formState.isSubmitting}
         />
       </FormRow>

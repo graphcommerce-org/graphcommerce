@@ -42,7 +42,6 @@ export function ChangePasswordForm() {
           error={!!inputError}
           required={required.currentPassword}
           disabled={formState.isSubmitting}
-          helperText={formState.errors.currentPassword?.message || inputError?.message}
         />
       </FormRow>
 
@@ -56,7 +55,6 @@ export function ChangePasswordForm() {
           error={!!inputError}
           required={required.newPassword}
           disabled={formState.isSubmitting}
-          helperText={formState.errors.newPassword?.message || inputError?.message}
         />
         <PasswordRepeatElement
           control={control}
@@ -68,7 +66,6 @@ export function ChangePasswordForm() {
           error={!!formState.errors.confirmPassword || !!inputError}
           required
           disabled={formState.isSubmitting}
-          helperText={formState.errors.confirmPassword?.message}
         />
       </FormRow>
 

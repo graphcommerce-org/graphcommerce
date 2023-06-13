@@ -82,7 +82,6 @@ export function SignUpFormInline({
           error={!!inputError}
           required={required.password}
           disabled={formState.isSubmitting}
-          helperText={formState.errors.password?.message || inputError?.message}
         />
         <PasswordRepeatElement
           control={control}
@@ -94,7 +93,6 @@ export function SignUpFormInline({
           error={!!formState.errors.confirmPassword || !!inputError}
           required
           disabled={formState.isSubmitting}
-          helperText={formState.errors.confirmPassword?.message}
         />
       </FormRow>
 

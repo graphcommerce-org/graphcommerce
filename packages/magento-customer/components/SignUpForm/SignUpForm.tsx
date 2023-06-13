@@ -55,7 +55,6 @@ export function SignUpForm(props: SignUpFormProps) {
           autoFocus
           autoComplete='new-password'
           required={required.password}
-          helperText={formState.errors.password?.message || inputError?.message}
           disabled={formState.isSubmitting}
         />
         <PasswordRepeatElement
@@ -68,7 +67,6 @@ export function SignUpForm(props: SignUpFormProps) {
           label={<Trans id='Confirm password' />}
           autoComplete='new-password'
           required
-          helperText={formState.errors.confirmPassword?.message}
           disabled={formState.isSubmitting}
         />
       </FormRow>
