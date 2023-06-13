@@ -86,14 +86,7 @@ export function ActionCardListForm<
             ))}
           </ActionCardList>
           {items.length > showMoreAfter && (
-            <Button
-              sx={{
-                my: 2,
-              }}
-              color='primary'
-              variant='text'
-              onClick={() => setShow(!show)}
-            >
+            <Button color='primary' variant='text' onClick={() => setShow(!show)}>
               {!show ? <Trans id='More options' /> : <Trans id='Less options' />}{' '}
               <IconSvg
                 sx={{
