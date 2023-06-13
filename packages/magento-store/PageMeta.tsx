@@ -7,7 +7,7 @@ import { StoreConfigDocument } from './StoreConfig.gql'
 
 type PageMetaProps = Pick<
   NextPageMetaProps,
-  'title' | 'metaDescription' | 'metaRobots' | 'children'
+  'title' | 'metaDescription' | 'metaRobots' | 'children' | 'openGraphImage'
 > & {
   canonical?: string
 }

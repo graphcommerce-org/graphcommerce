@@ -1,9 +1,11 @@
 import { PageMeta } from '@graphcommerce/magento-store'
-import { useCanonical } from '@graphcommerce/next-ui'
+import { PageMetaProps } from '@graphcommerce/next-ui'
 import { useProductLink } from '../../hooks/useProductLink'
 import { ProductPageMetaFragment } from './ProductPageMeta.gql'
 
-export function ProductPageMeta(props: ProductPageMetaFragment) {
+type ProductPageProps = ProductPageMetaFragment & Pick<PageMetaProps, 'children' | 'openGraphImage'>
+
+export function ProductPageMeta(props: ProductPageProps) {
   const {
     sku,
     categories,
@@ -16,23 +18,19 @@ export function ProductPageMeta(props: ProductPageMetaFragment) {
     __typename,
   } = props
   const productLink = useProductLink({ url_key, __typename })
-  const canonical = useCanonical(productLink)
 
   return (
     <PageMeta
       title={meta_title ?? name ?? ''}
       metaDescription={meta_description ?? name ?? ''}
       canonical={productLink}
+      openGraphImage={media_gallery?.[0]?.url}
     >
       {sku && (
         <>
           <meta property='type' content='product' key='og-type' />
           <meta property='product:retailer_part_no' content={sku} key='og-sku' />
         </>
-      )}
-      {name && <meta property='og:title' content={name} key='og-title' />}
-      {media_gallery?.[0]?.url && (
-        <meta property='og:image' content={media_gallery[0].url} key='og-image' />
       )}
       {price_range?.minimum_price?.regular_price?.value && (
         <meta
@@ -61,7 +59,6 @@ export function ProductPageMeta(props: ProductPageMetaFragment) {
             <meta property='product:category' content={category.name} key={category.uid} />
           ) : null,
         )}
-      {canonical && <meta property='og:url' content={canonical} key='og-url' />}
     </PageMeta>
   )
 }

@@ -31,6 +31,7 @@ export type PageMetaProps = {
   metaDescription?: string
   metaRobots?: MetaRobotsAll | MetaRobots[]
   children?: React.ReactNode
+  openGraphImage?: string | null
 }
 
 type PartialNextRouter = Pick<
@@ -90,7 +91,14 @@ export function useCanonical(incoming?: Canonical) {
 
 export function PageMeta(props: PageMetaProps) {
   const { active } = usePageContext()
-  const { children, title, canonical: canonicalBare, metaDescription, metaRobots = ['all'] } = props
+  const {
+    children,
+    title,
+    canonical: canonicalBare,
+    metaDescription,
+    openGraphImage,
+    metaRobots = ['all'],
+  } = props
 
   const canonical = useCanonical(canonicalBare)
 
@@ -99,10 +107,17 @@ export function PageMeta(props: PageMetaProps) {
     <Head>
       <title>{title.trim()}</title>
       {metaDescription && (
-        <meta name='description' content={metaDescription.trim()} key='meta-description' />
+        <>
+          <meta name='description' content={metaDescription.trim()} key='meta-description' />
+          <meta property='og:description' content={metaDescription.trim()} />
+        </>
       )}
       <meta name='robots' content={metaRobots.join(',')} key='meta-robots' />
       {canonical && <link rel='canonical' href={canonical} key='canonical' />}
+      <meta property='og:title' content={title.trim()} />
+      <meta property='og:type' content='website' />
+      <meta property='og:url' content={canonical} />
+      <meta property='og:image' content={openGraphImage ?? '/open-graph-image.jpg'} />
       {children}
     </Head>
   )
