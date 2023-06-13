@@ -1,8 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
-  ProductFiltersPro,
-  ProductFiltersProFilterChips,
-  ProductFiltersProSortChip,
   ProductListFiltersContainer,
   ProductListParamsProvider,
   ProductListDocument,
@@ -14,9 +11,13 @@ import {
   ProductFiltersDocument,
   ProductListQuery,
   ProductFiltersQuery,
-  ProductFiltersProAllFiltersChip,
-  ProductFiltersProLimitChip,
   AddProductsToCartForm,
+  FilterLayout,
+  ProductListCount,
+  ProductListFilters,
+  ProductListItems,
+  ProductListPagination,
+  ProductListSort,
 } from '@graphcommerce/magento-product'
 import {
   CategorySearchDocument,
@@ -24,10 +25,8 @@ import {
   CategorySearchResult,
   NoSearchResults,
   ProductListCountSearch,
-  ProductListFiltersSearch,
   ProductListItemsSearch,
   ProductListPaginationSearch,
-  ProductListSortSearch,
   SearchContext,
   SearchDivider,
   SearchForm,
@@ -38,6 +37,7 @@ import {
   GetStaticProps,
   LayoutTitle,
   LayoutHeader,
+  responsiveVal,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
@@ -55,6 +55,21 @@ export type GetPageStaticProps = GetStaticProps<
   SearchResultProps,
   RouteProps
 >
+
+function ProductListItemsSearchElement(props: React.ComponentProps<typeof ProductListItems>) {
+  const { items, title } = props
+
+  return (
+    <AddProductsToCartForm>
+      <ProductListItemsSearch
+        renderers={productListRenderer}
+        title={title}
+        items={items}
+        loadingEager={1}
+      />
+    </AddProductsToCartForm>
+  )
+}
 
 function SearchResultPage(props: SearchResultProps) {
   const { products, categories, params, filters, filterTypes } = props
@@ -110,37 +125,41 @@ function SearchResultPage(props: SearchResultProps) {
         {noSearchResults && <NoSearchResults search={search} />}
         {products && products.items && products?.items?.length > 0 && (
           <>
-            <StickyBelowHeader>
-              {import.meta.graphCommerce.productFiltersPro ? (
-                <ProductFiltersPro params={params}>
-                  <ProductListFiltersContainer>
-                    <ProductFiltersProFilterChips
-                      {...filters}
-                      appliedAggregations={products.aggregations}
-                      filterTypes={filterTypes}
-                    />
-                    <ProductFiltersProSortChip {...products} />
-                    <ProductFiltersProLimitChip />
-                    <ProductFiltersProAllFiltersChip
-                      {...products}
-                      {...filters}
-                      appliedAggregations={products.aggregations}
-                      filterTypes={filterTypes}
-                    />
-                  </ProductListFiltersContainer>
-                </ProductFiltersPro>
-              ) : (
-                <ProductListParamsProvider value={params}>
-                  <ProductListFiltersContainer>
-                    <ProductListSortSearch
-                      sort_fields={products?.sort_fields}
-                      total_count={products?.total_count}
-                    />
-                    <ProductListFiltersSearch {...filters} filterTypes={filterTypes} />
-                  </ProductListFiltersContainer>
-                </ProductListParamsProvider>
-              )}
-            </StickyBelowHeader>
+            {import.meta.graphCommerce.productFiltersPro && (
+              <FilterLayout
+                mode='default'
+                maxWidth='lg'
+                ProductListItems={ProductListItemsSearchElement}
+                ProductListCount={ProductListCount}
+                ProductListPagination={ProductListPagination}
+                products={products}
+                filters={filters}
+                params={params}
+                filterTypes={filterTypes}
+                category={{ name: `Search results ${search}`, uid: 'search' }}
+              />
+            )}
+            {!import.meta.graphCommerce.productFiltersPro && (
+              <Container maxWidth='lg'>
+                <StickyBelowHeader>
+                  <ProductListParamsProvider value={params}>
+                    <ProductListFiltersContainer>
+                      <ProductListSort
+                        sort_fields={products?.sort_fields}
+                        total_count={products?.total_count}
+                      />
+                      <ProductListFilters {...filters} filterTypes={filterTypes} />
+                    </ProductListFiltersContainer>
+                  </ProductListParamsProvider>
+                </StickyBelowHeader>
+                <ProductListCount
+                  sx={{ width: responsiveVal(280, 650) }}
+                  total_count={products?.total_count}
+                />
+                <ProductListItems items={products?.items} title='Results' loadingEager={1} />
+                <ProductListPagination page_info={products?.page_info} params={params} />
+              </Container>
+            )}
             <Container maxWidth={false}>
               <ProductListCountSearch total_count={products?.total_count} />
               <AddProductsToCartForm>

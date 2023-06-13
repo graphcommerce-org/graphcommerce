@@ -25,7 +25,7 @@ export interface FilterLayoutProps
   ProductListPagination: React.FC<React.ComponentProps<typeof ProductListPaginationElement>>
   filterTypes: FilterTypes
   params: ProductListParams
-  category: NonNullable<NonNullable<CategoryQueryFragment['categories']>['items']>[number]
+  category?: NonNullable<NonNullable<CategoryQueryFragment['categories']>['items']>[number]
   maxWidth?: NonNullable<ContainerTypeMap['props']>['maxWidth']
   mode?: 'default' | 'sidebar'
   sx?: SxProps<Theme>
