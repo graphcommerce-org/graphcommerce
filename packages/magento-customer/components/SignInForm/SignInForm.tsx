@@ -54,7 +54,6 @@ export function SignInForm(props: SignInFormProps) {
           autoComplete='current-password'
           id='current-password'
           required={required.password}
-          validation={{}}
           helperText={formState.errors.password?.message || authError?.message}
           disabled={formState.isSubmitting}
           afterInputAdornment={
@@ -66,6 +65,7 @@ export function SignInForm(props: SignInFormProps) {
               <Trans id='Forgot password?' />
             </Link>
           }
+          novalidate
         />
       </FormRow>
 

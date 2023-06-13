@@ -17,6 +17,7 @@ export type TextFieldElementProps<T extends FieldValues = FieldValues> = Omit<
 > & {
   validation?: UseControllerProps<T>['rules']
   parseError?: (error: FieldError) => string
+  novalidate?: boolean
 } & UseControllerProps<T>
 
 export function TextFieldElement<TFieldValues extends FieldValues>({
@@ -27,6 +28,7 @@ export function TextFieldElement<TFieldValues extends FieldValues>({
   name,
   control,
   defaultValue,
+  novalidate,
   ...rest
 }: TextFieldElementProps<TFieldValues>): JSX.Element {
   const storeConfig = useQuery(StoreConfigDocument).data?.storeConfig
@@ -46,7 +48,7 @@ export function TextFieldElement<TFieldValues extends FieldValues>({
     }
   }
 
-  if (type === 'password') {
+  if (type === 'password' && !novalidate) {
     if (!validation.minLength) {
       validation.minLength = {
         value: minPasswordLength,
