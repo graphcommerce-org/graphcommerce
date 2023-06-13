@@ -1,17 +1,11 @@
 import { useWatch } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import {
-  ActionCard,
-  ActionCardListForm,
-  Button,
-  filterNonNullableKeys,
-  SectionHeader,
-} from '@graphcommerce/next-ui'
+import { ActionCard, ActionCardListForm, filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box } from '@mui/material'
 import { useMemo } from 'react'
 import { ProductListSortFragment } from '../ProductListSort/ProductListSort.gql'
+import { ProductFilterAccordion } from './ProductFilterAccordion'
 import { useProductFiltersPro } from './ProductFiltersPro'
 
 export type ProductFiltersProSortSectionProps = ProductListSortFragment
@@ -36,34 +30,24 @@ export function ProductFiltersProSortSection(props: ProductFiltersProSortSection
   )
 
   return (
-    <Box sx={{ my: { xs: 2, md: 0 } }}>
-      <SectionHeader
-        labelLeft={<Trans id='Sort By' />}
-        sx={{ mt: 0 }}
-        labelRight={
-          activeSort ? (
-            <Button
-              variant='inline'
-              color='primary'
-              onClick={() => {
-                form.resetField('sort', { defaultValue: null })
-                form.resetField('currentPage', { defaultValue: 1 })
-              }}
-            >
-              <Trans id='Clear' />
-            </Button>
-          ) : undefined
-        }
-      />
-      <ActionCardListForm
-        control={control}
-        name='sort'
-        layout='list'
-        variant='default'
-        size='medium'
-        render={ActionCard}
-        items={options}
-      />
-    </Box>
+    <ProductFilterAccordion
+      summary={<Trans id='Sort By' />}
+      details={
+        <ActionCardListForm
+          control={control}
+          name='sort'
+          layout='list'
+          variant='default'
+          size='medium'
+          render={ActionCard}
+          items={options}
+        />
+      }
+      onClear={() => {
+        form.resetField('sort', { defaultValue: null })
+        form.resetField('currentPage', { defaultValue: 1 })
+      }}
+      renderButton={activeSort}
+    />
   )
 }

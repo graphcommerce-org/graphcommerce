@@ -1,15 +1,10 @@
 import { useWatch } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import {
-  ActionCard,
-  ActionCardItemBase,
-  ActionCardListForm,
-  SectionHeader,
-} from '@graphcommerce/next-ui'
+import { ActionCard, ActionCardItemBase, ActionCardListForm } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box, Button } from '@mui/material'
 import { useMemo } from 'react'
+import { ProductFilterAccordion } from './ProductFilterAccordion'
 import { useProductFiltersPro } from './ProductFiltersPro'
 
 export type ProductFiltersProLimitSectionProps = object
@@ -36,34 +31,26 @@ export function ProductFiltersProLimitSection(props: ProductFiltersProLimitSecti
   if (options.length <= 1) return null
 
   return (
-    <Box sx={{ my: { xs: 2, md: 0 } }}>
-      <SectionHeader
-        labelLeft={<Trans id='Per page' />}
-        sx={{ mt: 0 }}
-        labelRight={
-          activePageSize ? (
-            <Button
-              variant='inline'
-              color='primary'
-              onClick={() => {
-                form.resetField('pageSize', { defaultValue: null })
-                form.resetField('currentPage', { defaultValue: 1 })
-              }}
-            >
-              <Trans id='Clear' />
-            </Button>
-          ) : undefined
-        }
-      />
-      <ActionCardListForm
-        control={control}
-        name='pageSize'
-        layout='list'
-        variant='default'
-        size='medium'
-        render={ActionCard}
-        items={options}
-      />
-    </Box>
+    <ProductFilterAccordion
+      summary={<Trans id='Per page' />}
+      details={
+        <ActionCardListForm
+          sx={{ mb: 2 }}
+          render={ActionCard}
+          name='currentPage'
+          control={control}
+          multiple
+          layout='list'
+          variant='default'
+          size='medium'
+          items={options}
+        />
+      }
+      onClear={() => {
+        form.resetField('pageSize', { defaultValue: null })
+        form.resetField('currentPage', { defaultValue: 1 })
+      }}
+      renderButton={activePageSize}
+    />
   )
 }

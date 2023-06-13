@@ -70,6 +70,10 @@ export function ProductFilterEqualSection(props: FilterProps) {
           items={items}
         />
       }
+      onClear={() => {
+        form.resetField(name, { defaultValue: null })
+      }}
+      renderButton={currentFilter && currentFilter.length > 0}
     />
   )
 }
