@@ -162,6 +162,8 @@ export type GraphCommerceConfig = {
    * This value is required even if you are configuring different values for each locale.
    */
   googleTagmanagerId?: InputMaybe<Scalars['String']['input']>;
+  /** Hide the back button */
+  hideBackButton?: InputMaybe<Scalars['Boolean']['input']>;
   /**
    * The HyGraph endpoint.
    *
@@ -347,6 +349,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     googleAnalyticsId: z.string().nullish(),
     googleRecaptchaKey: z.string().nullish(),
     googleTagmanagerId: z.string().nullish(),
+    hideBackButton: z.boolean().nullish(),
     hygraphEndpoint: z.string().min(1),
     hygraphWriteAccessEndpoint: z.string().nullish(),
     hygraphWriteAccessToken: z.string().nullish(),

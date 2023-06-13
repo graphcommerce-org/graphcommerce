@@ -15,6 +15,8 @@ export function useShowBack() {
   const prevUp = usePrevUp()
   const { backSteps } = usePageContext()
 
+  if (import.meta.graphCommerce.hideBackButton) return false
+
   const canClickBack = backSteps > 0 && path !== prevUp?.href
 
   if (canClickBack) return true

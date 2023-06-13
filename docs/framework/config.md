@@ -164,6 +164,10 @@ The Google Tagmanager ID to be used on the site.
 
 This value is required even if you are configuring different values for each locale.
 
+#### `hideBackButton: Boolean`
+
+Hide the back button
+
 #### `hygraphWriteAccessEndpoint: String`
 
 Content API. **Only used for migrations.**

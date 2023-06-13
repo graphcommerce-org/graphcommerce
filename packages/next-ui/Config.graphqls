@@ -1,0 +1,6 @@
+extend input GraphCommerceConfig {
+  """
+  Hide the back button
+  """
+  hideBackButton: Boolean
+}

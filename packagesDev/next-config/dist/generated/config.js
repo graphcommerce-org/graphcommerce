@@ -47,6 +47,7 @@ function GraphCommerceConfigSchema() {
         googleAnalyticsId: _zod.z.string().nullish(),
         googleRecaptchaKey: _zod.z.string().nullish(),
         googleTagmanagerId: _zod.z.string().nullish(),
+        hideBackButton: _zod.z.boolean().nullish(),
         hygraphEndpoint: _zod.z.string().min(1),
         hygraphWriteAccessEndpoint: _zod.z.string().nullish(),
         hygraphWriteAccessToken: _zod.z.string().nullish(),
