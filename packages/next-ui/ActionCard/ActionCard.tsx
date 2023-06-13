@@ -128,25 +128,22 @@ export function ActionCard(props: ActionCardProps) {
             theme.shape.borderRadius * 3,
             theme.breakpoints.values,
           ),
-          display: index && showMoreAfter && index + 1 > showMoreAfter && !show ? 'none' : 'block',
           '&.sizeSmall': {
             px: responsiveVal(8, 12),
             py: responsiveVal(4, 6),
-            display: index && showMoreAfter && index + 1 > showMoreAfter && !show ? 'none' : 'flex',
+            display: 'flex',
             typography: 'body2',
           },
           '&.sizeMedium': {
             px: responsiveVal(10, 14),
             py: responsiveVal(10, 12),
             typography: 'body2',
-            display:
-              index && showMoreAfter && index + 1 > showMoreAfter && !show ? 'none' : 'block',
+            display: 'block',
           },
           '&.sizeLarge': {
             px: responsiveVal(12, 16),
             py: responsiveVal(12, 14),
-            display:
-              index && showMoreAfter && index + 1 > showMoreAfter && !show ? 'none' : 'block',
+            display: 'block',
           },
 
           '&.variantDefault': {
@@ -157,8 +154,7 @@ export function ActionCard(props: ActionCardProps) {
               left: 0,
               bottom: '-1px',
               borderBottom: `1px solid ${theme.palette.divider}`,
-              display:
-                index && showMoreAfter && index + 1 > showMoreAfter && !show ? 'none' : 'block',
+              display: 'block',
             },
             '&.selected': {
               backgroundColor:

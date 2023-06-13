@@ -66,6 +66,8 @@ export function ActionCardListForm<
             onChange={(_, incomming) => onChange(incomming)}
             error={formState.isSubmitted && !!fieldState.error}
             errorMessage={fieldState.error?.message}
+            show={show}
+            showMoreAfter={showMoreAfter}
           >
             {items.map((item, index) => (
               <RenderItem

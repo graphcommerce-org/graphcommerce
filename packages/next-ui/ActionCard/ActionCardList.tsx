@@ -22,6 +22,8 @@ type Select = {
 }
 
 export type ActionCardListProps<SelectOrMulti = MultiSelect | Select> = {
+  show?: boolean
+  showMoreAfter?: number
   children?: React.ReactNode
   required?: boolean
   error?: boolean
@@ -57,6 +59,8 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
     const {
       children,
       required,
+      showMoreAfter,
+      show,
       error = false,
       errorMessage,
       size = 'medium',
@@ -131,9 +135,10 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
     return (
       <div ref={ref}>
         <ActionCardLayout sx={sx} className={classes.root} layout={layout}>
-          {childReactNodes.map((child) => {
+          {childReactNodes.map((child, index) => {
             if (collapse && Boolean(value) && !isValueSelected(child.props.value, value))
               return null
+            if (index && showMoreAfter && index + 1 > showMoreAfter && !show) return null
             return React.cloneElement(child, {
               onClick: handleChange,
               error,
