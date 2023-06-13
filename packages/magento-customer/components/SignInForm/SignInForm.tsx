@@ -57,10 +57,16 @@ export function SignInForm(props: SignInFormProps) {
           validation={{}}
           helperText={formState.errors.password?.message || authError?.message}
           disabled={formState.isSubmitting}
+          afterInputAdornment={
+            <Link
+              href='/account/forgot-password'
+              underline='hover'
+              sx={(theme) => ({ whiteSpace: 'nowrap', marginLeft: theme.spacings.xxs })}
+            >
+              <Trans id='Forgot password?' />
+            </Link>
+          }
         />
-        <Link href='/account/forgot-password' underline='hover' sx={{ whiteSpace: 'nowrap' }}>
-          <Trans id='Forgot password?' />
-        </Link>
       </FormRow>
 
       <ApolloCustomerErrorAlert error={remainingError} key='error' />
