@@ -32,8 +32,8 @@ export function PasswordElement<TFieldValues extends FieldValues>({
           </InputAdornment>
         ),
       }}
-      {...props}
       type={password ? 'password' : 'text'}
+      {...props}
     />
   )
 }

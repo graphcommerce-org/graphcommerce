@@ -63,7 +63,6 @@ export function ResetPasswordForm(props: ResetPasswordFormProps) {
           control={control}
           name='newPassword'
           variant='outlined'
-          type='password'
           label={<Trans id='New password' />}
           required
           disabled={formState.isSubmitting}
@@ -73,7 +72,6 @@ export function ResetPasswordForm(props: ResetPasswordFormProps) {
           name='confirmPassword'
           passwordFieldName='newPassword'
           variant='outlined'
-          type='password'
           label={<Trans id='Confirm password' />}
           required
           disabled={formState.isSubmitting}

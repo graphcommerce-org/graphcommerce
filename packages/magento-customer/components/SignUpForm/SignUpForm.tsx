@@ -49,7 +49,6 @@ export function SignUpForm(props: SignUpFormProps) {
           control={control}
           name='password'
           variant='outlined'
-          type='password'
           error={!!formState.errors.password || !!inputError}
           label={<Trans id='Password' />}
           autoFocus
@@ -62,7 +61,6 @@ export function SignUpForm(props: SignUpFormProps) {
           name='confirmPassword'
           passwordFieldName='password'
           variant='outlined'
-          type='password'
           error={!!formState.errors.confirmPassword || !!inputError}
           label={<Trans id='Confirm password' />}
           autoComplete='new-password'

@@ -77,7 +77,6 @@ export function SignUpFormInline({
           control={control}
           name='password'
           variant='outlined'
-          type='password'
           label={<Trans id='Password' />}
           error={!!inputError}
           required={required.password}
@@ -88,7 +87,6 @@ export function SignUpFormInline({
           name='confirmPassword'
           passwordFieldName='password'
           variant='outlined'
-          type='password'
           label={<Trans id='Confirm password' />}
           error={!!formState.errors.confirmPassword || !!inputError}
           required

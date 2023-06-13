@@ -100,13 +100,13 @@ export function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormProps) {
         <PasswordElement
           control={control}
           variant='outlined'
-          type='password'
           error={!!formState.errors.password}
           name='password'
           label={<Trans id='Password' />}
           autoComplete='password'
           required={required.password}
           disabled={formState.isSubmitting}
+          novalidate
         />
       </FormRow>
 

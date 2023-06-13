@@ -37,7 +37,6 @@ export function ChangePasswordForm() {
           control={control}
           name='currentPassword'
           variant='outlined'
-          type='password'
           label={<Trans id='Current Password' />}
           error={!!inputError}
           required={required.currentPassword}
@@ -50,7 +49,6 @@ export function ChangePasswordForm() {
           control={control}
           name='newPassword'
           variant='outlined'
-          type='password'
           label={<Trans id='New password' />}
           error={!!inputError}
           required={required.newPassword}
@@ -61,7 +59,6 @@ export function ChangePasswordForm() {
           name='confirmPassword'
           passwordFieldName='newPassword'
           variant='outlined'
-          type='password'
           label={<Trans id='Confirm password' />}
           error={!!formState.errors.confirmPassword || !!inputError}
           required

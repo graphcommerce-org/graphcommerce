@@ -45,7 +45,6 @@ export function SignInFormInline(props: InlineSignInFormProps) {
       <PasswordElement
         control={control}
         variant='outlined'
-        type='password'
         name='password'
         label={<Trans id='Password' />}
         autoFocus
