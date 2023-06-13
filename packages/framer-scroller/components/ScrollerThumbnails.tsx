@@ -30,7 +30,7 @@ export const ScrollerThumbnails = m(
     if (itemsArr.length <= 1) return null
 
     return (
-      <Box sx={{ overflow: 'auto', display: 'flex', flexDirection: 'row' }}>
+      <Box sx={{ display: 'flex', flexDirection: 'row' }}>
         {itemsArr.map((item, idx) => (
           // eslint-disable-next-line react/no-array-index-key
           <ScrollerThumbnail key={idx} {...item} idx={idx} image={images[idx]} />

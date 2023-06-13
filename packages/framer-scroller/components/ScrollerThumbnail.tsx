@@ -3,7 +3,7 @@ import { Image, ImageProps } from '@graphcommerce/image'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { extendableComponent } from '@graphcommerce/next-ui/Styles'
 import { ButtonProps, styled } from '@mui/material'
-import { m } from 'framer-motion'
+import { m, Variant, useAnimation, useMotionValueEvent } from 'framer-motion'
 import { useScrollTo } from '../hooks/useScrollTo'
 import { useScrollerContext } from '../hooks/useScrollerContext'
 import { ItemState } from '../types'
@@ -17,57 +17,88 @@ const { withState } = extendableComponent<OwnerProps, typeof name, typeof parts>
 type ScrollerThumbnailProps = Omit<ButtonProps, 'onClick' | 'className'> &
   ItemState & { idx: number; image: Pick<ImageProps, 'src' | 'height' | 'width'> }
 
-const MotionBox = styled(m.div)({})
+type AnimationType = {
+  default: Variant
+  moving: Variant
+  active: Variant
+}
 
-const imageDimensions = 120
+const MotionBox = styled(m.div)({})
 
 export function ScrollerThumbnail(props: ScrollerThumbnailProps) {
   const { el, visibility, opacity, idx, image, ...buttonProps } = props
   const scrollTo = useScrollTo()
-  const { getScrollSnapPositions } = useScrollerContext()
+  const { getScrollSnapPositions, scroll } = useScrollerContext()
+  const active = useMotionValueValue(visibility, (v) => v >= 0.5)
+  const imageController = useAnimation()
 
-  const active = useMotionValueValue(visibility, (v) => v > 0.5)
   const classes = withState({ active })
 
-  const imageAnimation = {
-    rest: { width: imageDimensions / 2 },
-    hover: {
-      width: imageDimensions,
-    },
-  }
+  const positions = getScrollSnapPositions()
+  const currentPosition = positions.x[idx]
 
-  const spacingAnimation = {
-    rest: { width: imageDimensions / 2 },
-    hover: {
-      width: imageDimensions + 20,
-    },
-  }
+  useMotionValueEvent(visibility, 'change', (v) => {
+    if (v >= 0.9) {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      imageController.start('active')
+    } else {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      imageController.start('default')
+    }
+  })
 
   if (!image) return null
+
+  const imageAnimation: AnimationType = {
+    default: {
+      scaleX: 1,
+    },
+    moving: {
+      scaleX: 1.5,
+    },
+    active: {
+      scaleX: 1.5,
+    },
+  }
+
+  const isBeforeScroll = scroll.x.get() < getScrollSnapPositions().x[idx]
+
+  const placement = () => {
+    if (active) return 0
+    if (isBeforeScroll) return 60
+    return -60
+  }
+
+  const backgroundAnimation: AnimationType = {
+    default: {
+      scaleX: 2,
+      x: placement(),
+    },
+    moving: {
+      scaleX: 2,
+    },
+    active: {
+      scaleX: 1.5,
+    },
+  }
+
   return (
-    <MotionBox initial='rest' whileHover='hover'>
-      <MotionBox variants={spacingAnimation} sx={{ display: 'flex', justifyContent: 'center' }}>
+    <MotionBox initial='default' animate={imageController}>
+      <MotionBox variants={backgroundAnimation} sx={{ display: 'flex', justifyContent: 'center' }}>
         <MotionBox
           className={classes.thumbnail}
           variants={imageAnimation}
           onClick={() => {
-            const positions = getScrollSnapPositions()
             // eslint-disable-next-line @typescript-eslint/no-floating-promises
-            scrollTo({ x: positions.x[idx] ?? 0, y: positions.y[idx] ?? 0 })
+            scrollTo({ x: currentPosition, y: positions.y[idx] ?? 0 })
           }}
           sx={{
-            width: imageDimensions,
-            height: imageDimensions,
-            aspectRatio: '1/1',
-            '& img': {
-              display: 'block',
-              height: '100%',
-              objectFit: 'cover',
-              borderRadius: { xs: 1, md: 2 },
-            },
+            height: 120,
+            bgcolor: 'green',
+            overflow: 'hidden',
           }}
         >
-          <Image src={image.src} height={image.height} width={image.width} />
+          <Image src={image.src} layout='fill' />
         </MotionBox>
       </MotionBox>
     </MotionBox>
