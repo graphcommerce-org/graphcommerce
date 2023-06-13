@@ -1,8 +1,15 @@
 import { PasswordElement } from '@graphcommerce/ecommerce-ui'
-import { Button, extendableComponent } from '@graphcommerce/next-ui'
+import {
+  Button,
+  IconSvg,
+  extendableComponent,
+  iconEye,
+  iconEyeCrossed,
+} from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
-import { Box, SxProps, Theme } from '@mui/material'
+import { Box, IconButton, InputAdornment, SxProps, Theme } from '@mui/material'
+import { MouseEvent, useState } from 'react'
 import { SignInDocument, SignInMutationVariables } from './SignIn.gql'
 
 type InlineSignInFormProps = Omit<SignInMutationVariables, 'password'> & {
@@ -19,8 +26,9 @@ export function SignInFormInline(props: InlineSignInFormProps) {
     { defaultValues: { email }, onBeforeSubmit: (values) => ({ ...values, email }) },
     { errorPolicy: 'all' },
   )
-  const { handleSubmit, required, formState, error, control } = form
+  const { handleSubmit, required, formState, control } = form
   const submitHandler = handleSubmit(() => {})
+  const [password, setPassword] = useState<boolean>(true)
 
   return (
     <Box
@@ -44,6 +52,7 @@ export function SignInFormInline(props: InlineSignInFormProps) {
     >
       <PasswordElement
         control={control}
+        type={password ? 'password' : 'text'}
         variant='outlined'
         name='password'
         label={<Trans id='Password' />}
@@ -52,17 +61,29 @@ export function SignInFormInline(props: InlineSignInFormProps) {
         id='current-password'
         required={required.password}
         disabled={formState.isSubmitting}
-        afterInputAdornment={
-          <Button
-            href='/account/forgot-password'
-            color='secondary'
-            variant='text'
-            className={classes.button}
-            sx={{ minWidth: 'max-content' }}
-          >
-            <Trans id='Forgot password?' />
-          </Button>
-        }
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position='end'>
+              <IconButton
+                onMouseDown={(e: MouseEvent<HTMLButtonElement>) => e.preventDefault()}
+                onClick={() => setPassword(!password)}
+                tabIndex={-1}
+              >
+                <IconSvg src={password ? iconEyeCrossed : iconEye} size='medium' />
+              </IconButton>
+
+              <Button
+                href='/account/forgot-password'
+                color='secondary'
+                variant='text'
+                className={classes.button}
+                sx={{ minWidth: 'max-content' }}
+              >
+                <Trans id='Forgot password?' />
+              </Button>
+            </InputAdornment>
+          ),
+        }}
       />
       <Button
         type='submit'

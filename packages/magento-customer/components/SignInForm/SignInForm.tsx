@@ -1,10 +1,18 @@
 import { PasswordElement } from '@graphcommerce/ecommerce-ui'
 import { useApolloClient } from '@graphcommerce/graphql'
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
-import { Button, FormRow, FormActions } from '@graphcommerce/next-ui'
+import {
+  Button,
+  FormRow,
+  FormActions,
+  iconEyeCrossed,
+  iconEye,
+  IconSvg,
+} from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
-import { Box, FormControl, Link, SxProps, Theme } from '@mui/material'
+import { Box, FormControl, IconButton, InputAdornment, Link, SxProps, Theme } from '@mui/material'
+import { MouseEvent, useState } from 'react'
 import { CustomerDocument } from '../../hooks'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import { SignInDocument } from './SignIn.gql'
@@ -13,7 +21,6 @@ type SignInFormProps = { email: string; sx?: SxProps<Theme> }
 
 export function SignInForm(props: SignInFormProps) {
   const { email, sx } = props
-
   const client = useApolloClient()
   const form = useFormGqlMutation(
     SignInDocument,
@@ -39,14 +46,15 @@ export function SignInForm(props: SignInFormProps) {
     error,
   })
   const submitHandler = handleSubmit(() => {})
+  const [password, setPassword] = useState<boolean>(true)
 
   return (
     <Box component='form' onSubmit={submitHandler} noValidate sx={sx}>
       <FormRow sx={{ gridTemplateColumns: 'none' }}>
         <PasswordElement
           variant='outlined'
-          type='password'
-          error={!!formState.errors.password}
+          error={!!formState.errors.password || !!authError}
+          type={password ? 'password' : 'text'}
           control={control}
           name='password'
           label={<Trans id='Password' />}
@@ -55,16 +63,32 @@ export function SignInForm(props: SignInFormProps) {
           id='current-password'
           required={required.password}
           disabled={formState.isSubmitting}
-          afterInputAdornment={
-            <Link
-              href='/account/forgot-password'
-              underline='hover'
-              sx={(theme) => ({ whiteSpace: 'nowrap', marginLeft: theme.spacings.xxs })}
-            >
-              <Trans id='Forgot password?' />
-            </Link>
-          }
+          helperText={!!formState.errors.password || authError?.message}
           novalidate
+          InputProps={{
+            endAdornment: (
+              <>
+                <InputAdornment position='end'>
+                  <IconButton
+                    onMouseDown={(e: MouseEvent<HTMLButtonElement>) => e.preventDefault()}
+                    onClick={() => {
+                      setPassword(!password)
+                    }}
+                    tabIndex={-1}
+                  >
+                    <IconSvg src={password ? iconEyeCrossed : iconEye} size='medium' />
+                  </IconButton>
+                </InputAdornment>
+                <Link
+                  href='/account/forgot-password'
+                  underline='hover'
+                  sx={(theme) => ({ whiteSpace: 'nowrap', marginLeft: theme.spacings.xxs })}
+                >
+                  <Trans id='Forgot password?' />
+                </Link>
+              </>
+            ),
+          }}
         />
       </FormRow>
 
