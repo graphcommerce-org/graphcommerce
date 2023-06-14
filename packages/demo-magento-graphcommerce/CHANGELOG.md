@@ -1,5 +1,7 @@
 # @graphcommerce/demo-magento-graphcommerce
 
+## 6.2.0-canary.43
+
 ## 6.2.0-canary.42
 
 ## 6.2.0-canary.41

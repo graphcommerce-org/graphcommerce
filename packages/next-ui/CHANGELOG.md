@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.43
+
+### Patch Changes
+
+- [#1965](https://github.com/graphcommerce-org/graphcommerce/pull/1965) [`44b2911d7`](https://github.com/graphcommerce-org/graphcommerce/commit/44b2911d73fb6c6c7188f16d5890ca93877e9aa7) - Added prop to LayoutHeader to be able to hide the back button ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 6.2.0-canary.42
 
 ## 6.2.0-canary.41
