@@ -109,12 +109,10 @@ export function PageMeta(props: PageMetaProps) {
     <Head>
       <title>{title.trim()}</title>
       {metaDescription && (
-        <meta
-          name='description'
-          property='og:description'
-          content={metaDescription.trim()}
-          key='meta-description'
-        />
+        <>
+          <meta name='description' content={metaDescription.trim()} key='meta-description' />
+          <meta property='og:description' content={metaDescription.trim()} key='og-description' />
+        </>
       )}
       <meta name='robots' content={metaRobots.join(',')} key='meta-robots' />
       {canonical && <link rel='canonical' href={canonical} key='canonical' />}
