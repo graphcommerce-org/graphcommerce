@@ -3,7 +3,7 @@ import { PageMetaProps } from '@graphcommerce/next-ui'
 import { useProductLink } from '../../hooks/useProductLink'
 import { ProductPageMetaFragment } from './ProductPageMeta.gql'
 
-type ProductPageProps = ProductPageMetaFragment & Pick<PageMetaProps, 'children' | 'openGraphImage'>
+type ProductPageProps = ProductPageMetaFragment & Pick<PageMetaProps, 'children' | 'ogImage'>
 
 export function ProductPageMeta(props: ProductPageProps) {
   const {
@@ -24,33 +24,26 @@ export function ProductPageMeta(props: ProductPageProps) {
       title={meta_title ?? name ?? ''}
       metaDescription={meta_description ?? name ?? ''}
       canonical={productLink}
-      openGraphImage={media_gallery?.[0]?.url}
+      ogImage={media_gallery?.[0]?.url}
+      ogType='product'
     >
-      {sku && (
-        <>
-          <meta property='type' content='product' key='og-type' />
-          <meta property='product:retailer_part_no' content={sku} key='og-sku' />
-        </>
-      )}
+      {sku && <meta property='product:retailer_part_no' content={sku} />}
       {price_range?.minimum_price?.regular_price?.value && (
         <meta
           property='product:price:amount'
           content={price_range.minimum_price.regular_price.value.toString()}
-          key='og-price'
         />
       )}
       {price_range?.minimum_price?.final_price?.value && (
         <meta
           property='product:sale_price:amount'
           content={price_range.minimum_price.final_price.value.toString()}
-          key='og-sale-price'
         />
       )}
       {price_range?.minimum_price?.final_price?.currency && (
         <meta
           property='product:price:currency'
           content={price_range.minimum_price.final_price.currency}
-          key='og-currency'
         />
       )}
       {categories &&

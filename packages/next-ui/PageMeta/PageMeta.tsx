@@ -31,7 +31,8 @@ export type PageMetaProps = {
   metaDescription?: string
   metaRobots?: MetaRobotsAll | MetaRobots[]
   children?: React.ReactNode
-  openGraphImage?: string | null
+  ogImage?: string | null
+  ogType?: string | null
 }
 
 type PartialNextRouter = Pick<
@@ -96,7 +97,8 @@ export function PageMeta(props: PageMetaProps) {
     title,
     canonical: canonicalBare,
     metaDescription,
-    openGraphImage,
+    ogImage,
+    ogType,
     metaRobots = ['all'],
   } = props
 
@@ -115,9 +117,9 @@ export function PageMeta(props: PageMetaProps) {
       <meta name='robots' content={metaRobots.join(',')} key='meta-robots' />
       {canonical && <link rel='canonical' href={canonical} key='canonical' />}
       <meta property='og:title' content={title.trim()} />
-      <meta property='og:type' content='website' />
+      <meta property='og:type' content={ogType ?? 'website'} />
       <meta property='og:url' content={canonical} />
-      <meta property='og:image' content={openGraphImage ?? '/open-graph-image.jpg'} />
+      <meta property='og:image' content={ogImage ?? '/open-graph-image.jpg'} />
       {children}
     </Head>
   )
