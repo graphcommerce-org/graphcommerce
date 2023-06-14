@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.44
+
+### Patch Changes
+
+- [`b72968c0f`](https://github.com/graphcommerce-org/graphcommerce/commit/b72968c0f1a33309d1ebd8e9e7d381b63af61d7c) - Prevent circular dependency between @graphcommerce/googlerecaptcha and @graphcommerce/graphql ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 6.2.0-canary.43
 
 ## 6.2.0-canary.42
