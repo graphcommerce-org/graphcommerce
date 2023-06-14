@@ -3,8 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.dynamicRow = void 0;
 const management_sdk_1 = require("@hygraph/management-sdk");
 const client_1 = require("../client");
-const dynamicRow = async (name) => {
-    const client = (0, client_1.initClient)(name);
+const dynamicRow = async (name, config) => {
+    const client = (0, client_1.initClient)(config, name);
     // ? ENUMERATIONS
     client.createEnumeration({
         displayName: 'Dynamic Row Condition Number Operator',

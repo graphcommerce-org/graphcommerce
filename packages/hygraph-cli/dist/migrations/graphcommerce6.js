@@ -3,8 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.GraphCommerce6 = void 0;
 const management_sdk_1 = require("@hygraph/management-sdk");
 const client_1 = require("../client");
-const GraphCommerce6 = async (name) => {
-    const client = (0, client_1.initClient)(name);
+const GraphCommerce6 = async (name, config) => {
+    const client = (0, client_1.initClient)(config, name);
     // DEV PURPOSES
     // END DEV PURPOSES
     // ? ENUMERATIONS

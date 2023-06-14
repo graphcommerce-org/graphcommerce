@@ -1,8 +1,9 @@
 import { SimpleFieldType, VisibilityTypes } from '@hygraph/management-sdk'
 import { initClient } from '../client'
+import { GraphCommerceConfig } from '@graphcommerce/next-config'
 
-export const dynamicRow = async (name: string | undefined) => {
-  const client = initClient(name)
+export const dynamicRow = async (name: string | undefined, config: GraphCommerceConfig) => {
+  const client = initClient(config, name)
 
   // ? ENUMERATIONS
   client.createEnumeration({

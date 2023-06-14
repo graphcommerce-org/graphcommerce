@@ -77,7 +77,7 @@ async function migrateHygraph() {
         try {
             // Here we try to run the migration
             // eslint-disable-next-line no-await-in-loop
-            const result = await migration(config, forceRun ? undefined : name);
+            const result = await migration(forceRun ? undefined : name, config);
             console.log(result);
             if (result.status !== 'SUCCESS') {
                 throw new Error(`[GraphCommerce]: Migration not successful: ${result.status} ${name}:\n${result.errors}`);

@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable import/no-extraneous-dependencies */
 import fs from 'fs'
-import { loadConfig } from '@graphcommerce/next-config'
+import { GraphCommerceConfig, loadConfig } from '@graphcommerce/next-config'
 import { MigrationInfo } from '@hygraph/management-sdk/dist/ManagementAPIClient'
 import dotenv from 'dotenv'
 import prompts, { PromptObject } from 'prompts'
@@ -44,7 +44,10 @@ export async function migrateHygraph() {
   console.log(30, enumerations)
 
   // A list of possible migrations
-  const possibleMigrations: [string, (name: string | undefined) => Promise<MigrationInfo>][] = [
+  const possibleMigrations: [
+    string,
+    (name: string | undefined, config: GraphCommerceConfig) => Promise<MigrationInfo>,
+  ][] = [
     ['Dynamic Rows', dynamicRow],
     ['Upgrade to GraphCommerce 6', GraphCommerce6],
     ['Remove RowColumnOne', removeRowColumnOne],
@@ -92,7 +95,7 @@ export async function migrateHygraph() {
     try {
       // Here we try to run the migration
       // eslint-disable-next-line no-await-in-loop
-      const result = await migration(config, forceRun ? undefined : name)
+      const result = await migration(forceRun ? undefined : name, config)
       console.log(result)
       if (result.status !== 'SUCCESS') {
         throw new Error(
