@@ -44,5 +44,5 @@ extend input GraphCommerceConfig {
   """
   Hygraph Project ID. **Only used for migrations.**
   """
-  hygraphProjectId: ID
+  hygraphProjectId: String
 }

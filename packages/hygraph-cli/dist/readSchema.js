@@ -1,8 +1,11 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.readSchema = void 0;
-/* eslint-disable import/no-extraneous-dependencies */
 const client_1 = require("@apollo/client");
+const cross_fetch_1 = __importDefault(require("cross-fetch"));
 const readSchema = async (config) => {
     const projectId = config.hygraphProjectId;
     if (!config.hygraphWriteAccessToken) {
@@ -12,11 +15,12 @@ const readSchema = async (config) => {
         throw new Error('Please provide projectId in your env file');
     }
     const hygraphClient = new client_1.ApolloClient({
-        uri: 'https://management.hygraph.com/graphql',
+        link: new client_1.HttpLink({
+            uri: 'https://management.hygraph.com/graphql',
+            fetch: cross_fetch_1.default,
+            headers: { Authorization: `Bearer ${config.hygraphWriteAccessToken}` },
+        }),
         cache: new client_1.InMemoryCache(),
-        headers: {
-            Authorization: `Bearer ${config.hygraphWriteAccessToken}`,
-        },
     });
     const { data } = await hygraphClient.query({
         query: (0, client_1.gql) `

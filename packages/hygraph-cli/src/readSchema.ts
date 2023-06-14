@@ -1,6 +1,6 @@
-/* eslint-disable import/no-extraneous-dependencies */
-import { ApolloClient, InMemoryCache, gql } from '@apollo/client'
+import { ApolloClient, InMemoryCache, gql, HttpLink } from '@apollo/client'
 import { GraphCommerceConfig } from '@graphcommerce/next-config'
+import fetch from 'cross-fetch'
 
 export const readSchema = async (config: GraphCommerceConfig) => {
   const projectId = config.hygraphProjectId
@@ -14,11 +14,12 @@ export const readSchema = async (config: GraphCommerceConfig) => {
   }
 
   const hygraphClient = new ApolloClient({
-    uri: 'https://management.hygraph.com/graphql',
+    link: new HttpLink({
+      uri: 'https://management.hygraph.com/graphql',
+      fetch,
+      headers: { Authorization: `Bearer ${config.hygraphWriteAccessToken}` },
+    }),
     cache: new InMemoryCache(),
-    headers: {
-      Authorization: `Bearer ${config.hygraphWriteAccessToken}`,
-    },
   })
 
   const { data } = await hygraphClient.query({
