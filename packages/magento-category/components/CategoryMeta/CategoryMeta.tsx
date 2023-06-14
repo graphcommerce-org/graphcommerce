@@ -12,7 +12,7 @@ export type CategoryMetaProps = CategoryMetaFragment &
   }
 
 export function CategoryMeta(props: CategoryMetaProps) {
-  const { meta_title, meta_description, name, params, ogImage } = props
+  const { meta_title, meta_description, name, params, ogImage, ogImageUseFallback } = props
   let { title, metaDescription, metaRobots, canonical } = props
   if (!title) title = ''
   if (!metaDescription) metaDescription = ''
@@ -53,6 +53,7 @@ export function CategoryMeta(props: CategoryMetaProps) {
       metaRobots={noIndex ? ['noindex'] : metaRobots}
       canonical={isPaginated ? `${canonical}/q/page/${currentPage}` : canonical}
       ogImage={ogImage}
+      ogImageUseFallback={ogImageUseFallback}
     />
   )
 }

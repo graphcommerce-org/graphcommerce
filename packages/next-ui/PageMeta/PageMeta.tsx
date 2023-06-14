@@ -32,6 +32,7 @@ export type PageMetaProps = {
   metaRobots?: MetaRobotsAll | MetaRobots[]
   children?: React.ReactNode
   ogImage?: string | null
+  ogImageUseFallback?: boolean
   ogType?: string | null
 }
 
@@ -99,6 +100,7 @@ export function PageMeta(props: PageMetaProps) {
     metaDescription,
     ogImage,
     ogType,
+    ogImageUseFallback = false,
     metaRobots = ['all'],
   } = props
 
@@ -119,7 +121,10 @@ export function PageMeta(props: PageMetaProps) {
       <meta property='og:title' content={title.trim()} key='og-title' />
       <meta property='og:type' content={ogType ?? 'website'} key='og-type' />
       <meta property='og:url' content={canonical} key='og-url' />
-      <meta property='og:image' content={ogImage ?? '/open-graph-image.jpg'} key='og-image' />
+      {(ogImage || ogImageUseFallback) && (
+        <meta property='og:image' content={ogImage ?? '/open-graph-image.jpg'} key='og-image' />
+      )}
+
       {children}
     </Head>
   )

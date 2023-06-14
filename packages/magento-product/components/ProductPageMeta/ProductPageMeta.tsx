@@ -3,7 +3,8 @@ import { PageMetaProps } from '@graphcommerce/next-ui'
 import { useProductLink } from '../../hooks/useProductLink'
 import { ProductPageMetaFragment } from './ProductPageMeta.gql'
 
-type ProductPageProps = ProductPageMetaFragment & Pick<PageMetaProps, 'children' | 'ogImage'>
+type ProductPageProps = ProductPageMetaFragment &
+  Pick<PageMetaProps, 'children' | 'ogImage' | 'ogImageUseFallback'>
 
 export function ProductPageMeta(props: ProductPageProps) {
   const {
@@ -16,6 +17,7 @@ export function ProductPageMeta(props: ProductPageProps) {
     meta_description,
     url_key,
     __typename,
+    ...ProductPageProps
   } = props
   const productLink = useProductLink({ url_key, __typename })
 
@@ -26,6 +28,7 @@ export function ProductPageMeta(props: ProductPageProps) {
       canonical={productLink}
       ogImage={media_gallery?.[0]?.url}
       ogType='product'
+      {...ProductPageProps}
     >
       {sku && <meta property='product:retailer_part_no' content={sku} key='og-product-sku' />}
       {price_range?.minimum_price?.regular_price?.value && (
