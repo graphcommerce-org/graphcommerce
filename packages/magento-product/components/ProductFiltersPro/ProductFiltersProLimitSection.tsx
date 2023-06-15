@@ -1,10 +1,15 @@
 import { useWatch } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { ActionCard, ActionCardItemBase, ActionCardListForm } from '@graphcommerce/next-ui'
+import {
+  ActionCard,
+  ActionCardAccordion,
+  ActionCardItemBase,
+  ActionCardListForm,
+  Button,
+} from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { useMemo } from 'react'
-import { ProductFilterAccordion } from './ProductFilterAccordion'
 import { useProductFiltersPro } from './ProductFiltersPro'
 
 export type ProductFiltersProLimitSectionProps = object
@@ -31,7 +36,7 @@ export function ProductFiltersProLimitSection(props: ProductFiltersProLimitSecti
   if (options.length <= 1) return null
 
   return (
-    <ProductFilterAccordion
+    <ActionCardAccordion
       summary={<Trans id='Per page' />}
       details={
         <ActionCardListForm
@@ -46,11 +51,20 @@ export function ProductFiltersProLimitSection(props: ProductFiltersProLimitSecti
           items={options}
         />
       }
-      onClear={() => {
-        form.resetField('pageSize', { defaultValue: null })
-        form.resetField('currentPage', { defaultValue: 1 })
-      }}
-      renderButton={activePageSize}
+      right={
+        activePageSize ? (
+          <Button
+            variant='inline'
+            color='primary'
+            onClick={() => {
+              form.resetField('pageSize', { defaultValue: null })
+              form.resetField('currentPage', { defaultValue: 1 })
+            }}
+          >
+            <Trans id='Clear' />
+          </Button>
+        ) : undefined
+      }
     />
   )
 }

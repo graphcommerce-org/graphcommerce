@@ -1,11 +1,16 @@
 import { useWatch } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { ActionCard, ActionCardListForm, filterNonNullableKeys } from '@graphcommerce/next-ui'
+import {
+  ActionCard,
+  ActionCardAccordion,
+  ActionCardListForm,
+  Button,
+  filterNonNullableKeys,
+} from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { useMemo } from 'react'
 import { ProductListSortFragment } from '../ProductListSort/ProductListSort.gql'
-import { ProductFilterAccordion } from './ProductFilterAccordion'
 import { useProductFiltersPro } from './ProductFiltersPro'
 
 export type ProductFiltersProSortSectionProps = ProductListSortFragment
@@ -30,7 +35,7 @@ export function ProductFiltersProSortSection(props: ProductFiltersProSortSection
   )
 
   return (
-    <ProductFilterAccordion
+    <ActionCardAccordion
       summary={<Trans id='Sort By' />}
       details={
         <ActionCardListForm
@@ -43,11 +48,20 @@ export function ProductFiltersProSortSection(props: ProductFiltersProSortSection
           items={options}
         />
       }
-      onClear={() => {
-        form.resetField('sort', { defaultValue: null })
-        form.resetField('currentPage', { defaultValue: 1 })
-      }}
-      renderButton={activeSort}
+      right={
+        activeSort ? (
+          <Button
+            // variant='inline'
+            color='primary'
+            onClick={() => {
+              form.resetField('sort', { defaultValue: null })
+              form.resetField('currentPage', { defaultValue: 1 })
+            }}
+          >
+            <Trans id='Clear' />
+          </Button>
+        ) : undefined
+      }
     />
   )
 }

@@ -6,13 +6,15 @@ import {
   filterNonNullableKeys,
   IconSvg,
   iconCirle,
+  ActionCardAccordion,
+  Button,
 } from '@graphcommerce/next-ui'
 import { Box, Typography } from '@mui/material'
 import { useMemo } from 'react'
 import { isFilterTypeEqual } from '../ProductListItems/filterTypes'
-import { ProductFilterAccordion } from './ProductFilterAccordion'
 import { useProductFiltersPro } from './ProductFiltersPro'
 import { FilterProps } from './ProductFiltersProAggregations'
+import { Trans } from '@lingui/react'
 
 export function ProductFilterEqualSection(props: FilterProps) {
   const { aggregation } = props
@@ -55,7 +57,7 @@ export function ProductFilterEqualSection(props: FilterProps) {
   )
 
   return (
-    <ProductFilterAccordion
+    <ActionCardAccordion
       summary={label}
       details={
         <ActionCardListForm
@@ -70,10 +72,18 @@ export function ProductFilterEqualSection(props: FilterProps) {
           items={items}
         />
       }
-      onClear={() => {
-        form.resetField(name, { defaultValue: null })
-      }}
-      renderButton={currentFilter && currentFilter.length > 0}
+      right={
+        currentFilter && currentFilter.length > 0 ? (
+          <Button
+            color='primary'
+            onClick={() => {
+              form.resetField(name, { defaultValue: null })
+            }}
+          >
+            <Trans id='Clear' />
+          </Button>
+        ) : undefined
+      }
     />
   )
 }

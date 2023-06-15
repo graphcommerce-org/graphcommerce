@@ -2,9 +2,10 @@ import { Controller } from '@graphcommerce/ecommerce-ui'
 import type { ProductAttributeFilterInput } from '@graphcommerce/graphql-mesh'
 import { isFilterTypeRange } from '../ProductListItems/filterTypes'
 import { PriceSlider, getMinMaxFromOptions } from './PriceSlider'
-import { ProductFilterAccordion } from './ProductFilterAccordion'
 import { useProductFiltersPro } from './ProductFiltersPro'
 import { FilterProps } from './ProductFiltersProAggregations'
+import { ActionCardAccordion, Button } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/react'
 
 export function ProductFilterRangeSection(props: FilterProps) {
   const { aggregation } = props
@@ -33,13 +34,22 @@ export function ProductFilterRangeSection(props: FilterProps) {
         const to = value?.to ? Number(value?.to) : max
 
         return (
-          <ProductFilterAccordion
+          <ActionCardAccordion
             summary={label}
             details={<PriceSlider options={options} value={value} onChange={onChange} />}
-            onClear={() => {
-              form.resetField(name, { defaultValue: null })
-            }}
-            renderButton={from !== min || to !== max}
+            right={
+              from !== min || to !== max ? (
+                <Button
+                  variant='inline'
+                  color='primary'
+                  onClick={() => {
+                    form.resetField(name, { defaultValue: null })
+                  }}
+                >
+                  <Trans id='Clear' />
+                </Button>
+              ) : undefined
+            }
           />
         )
       }}

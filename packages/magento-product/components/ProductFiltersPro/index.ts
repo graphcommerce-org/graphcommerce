@@ -1,4 +1,3 @@
-export * from './ProductFilterAccordion'
 export * from './ProductFilterEqualChip'
 export * from './ProductFilterRangeChip'
 export * from './ProductFiltersPro'

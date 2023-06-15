@@ -43,9 +43,6 @@ export type ActionCardProps = {
   reset?: React.ReactNode
   disabled?: boolean
   error?: boolean
-  index?: number
-  show?: boolean
-  showMoreAfter?: number
 }
 
 const parts = [
@@ -93,9 +90,6 @@ export function ActionCard(props: ActionCardProps) {
     value,
     selected = false,
     reset,
-    index,
-    show,
-    showMoreAfter,
     disabled = false,
     size = 'medium',
     color = 'primary',
