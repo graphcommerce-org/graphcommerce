@@ -14,6 +14,7 @@ import {
   removeRowLinks,
 } from './migrations'
 import { readSchema } from './readSchema'
+import { Schema } from './types'
 
 dotenv.config()
 
@@ -36,17 +37,18 @@ export async function migrateHygraph() {
 
   // Read the existing models, components and enumerations from the schema
   // TODO: Read the existing unions from the schema
-  const schema = await readSchema(config)
-  const { models, components, enumerations } = schema.viewer.project.environment.contentModel
+  const schemaViewer = await readSchema(config)
+  const schema: Schema = schemaViewer.viewer.project.environment.contentModel
 
-  console.log(10, models)
-  console.log(20, components)
-  console.log(30, enumerations)
-
+  console.log(10, schema)
   // A list of possible migrations
   const possibleMigrations: [
     string,
-    (name: string | undefined, config: GraphCommerceConfig) => Promise<MigrationInfo>,
+    (
+      name: string | undefined,
+      config: GraphCommerceConfig,
+      schema: Schema,
+    ) => Promise<MigrationInfo>,
   ][] = [
     ['Dynamic Rows', dynamicRow],
     ['Upgrade to GraphCommerce 6', GraphCommerce6],
@@ -95,7 +97,7 @@ export async function migrateHygraph() {
     try {
       // Here we try to run the migration
       // eslint-disable-next-line no-await-in-loop
-      const result = await migration(forceRun ? undefined : name, config)
+      const result = await migration(forceRun ? undefined : name, config, schema)
       console.log(result)
       if (result.status !== 'SUCCESS') {
         throw new Error(

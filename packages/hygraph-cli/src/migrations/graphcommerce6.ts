@@ -1,16 +1,29 @@
-import { RelationalFieldType, SimpleFieldType, VisibilityTypes } from '@hygraph/management-sdk'
-import { initClient } from '../client'
 import { GraphCommerceConfig } from '@graphcommerce/next-config'
+import { validateFunction } from '../functions'
+import {
+  BatchMigrationCreateModelInput,
+  Client,
+  RelationalFieldType,
+  SimpleFieldType,
+  VisibilityTypes,
+} from '@hygraph/management-sdk'
+import { initClient } from '../client'
+import { Schema } from '../types'
+import { validate } from 'graphql'
 
-export const GraphCommerce6 = async (name: string | undefined, config: GraphCommerceConfig) => {
+export const GraphCommerce6 = async (
+  name: string | undefined,
+  config: GraphCommerceConfig,
+  schema: Schema,
+) => {
   const client = initClient(config, name)
-
+  const { models, components, enumerations } = schema
   // DEV PURPOSES
 
   // END DEV PURPOSES
 
-  // ? ENUMERATIONS
-  client.createEnumeration({
+  // // ? ENUMERATIONS
+  validateFunction(client, schema, 'enumeration', {
     displayName: 'Row Links Variants',
     apiId: 'RowLinksVariants',
     values: [
@@ -22,7 +35,8 @@ export const GraphCommerce6 = async (name: string | undefined, config: GraphComm
   })
 
   // ? MODEL
-  client.createModel({
+
+  validateFunction(client, schema, 'model', {
     apiId: 'RowLinks',
     apiIdPlural: 'RowLinksMultiple',
     displayName: 'Row Links',
