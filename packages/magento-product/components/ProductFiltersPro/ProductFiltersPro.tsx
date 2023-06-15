@@ -5,7 +5,8 @@ import {
   UseFormReturn,
 } from '@graphcommerce/ecommerce-ui'
 import { useMemoObject } from '@graphcommerce/next-ui'
-import React, { BaseSyntheticEvent, createContext, useContext, useMemo } from 'react'
+import { useTheme, useMediaQuery } from '@mui/material'
+import React, { BaseSyntheticEvent, createContext, useContext, useEffect, useMemo } from 'react'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import {
   ProductFilterParams,
@@ -41,12 +42,15 @@ export type FilterFormProviderProps = Omit<
 
 export function ProductFiltersPro(props: FilterFormProviderProps) {
   const { children, params, ...formProps } = props
+  const theme = useTheme()
+  const matches = useMediaQuery(theme.breakpoints.down('md'))
 
   const filterParams = useMemoObject(toFilterParams(params))
   const form = useForm<ProductFilterParams>({
     values: filterParams,
     ...formProps,
   })
+
   const { handleSubmit } = form
 
   const push = useProductListLinkReplace({ scroll: false })
@@ -54,15 +58,14 @@ export function ProductFiltersPro(props: FilterFormProviderProps) {
     push({ ...toProductListParams(formValues), currentPage: 1 }),
   )
 
-  // useFormAutoSubmit({ form, submit })
+  useFormAutoSubmit({ form, submit, disabled: matches })
 
   return (
     <FilterFormContext.Provider
       value={useMemo(() => ({ form, params: filterParams, submit }), [form, filterParams, submit])}
     >
-      <form noValidate onSubmit={submit}>
-        {children}
-      </form>
+      <form noValidate onSubmit={submit} />
+      {children}
     </FilterFormContext.Provider>
   )
 }

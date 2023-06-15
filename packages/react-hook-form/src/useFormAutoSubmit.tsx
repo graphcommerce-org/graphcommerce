@@ -18,6 +18,8 @@ export type UseFormAutoSubmitOptions<TForm extends UseFormReturn<V>, V extends F
    * that this may cause extra requests
    */
   forceInitialSubmit?: boolean
+  /** Disables the hook */
+  disabled?: boolean
 }
 
 /**
@@ -43,7 +45,7 @@ export function useFormAutoSubmit<
   Form extends UseFormReturn<V>,
   V extends FieldValues = FieldValues,
 >(options: UseFormAutoSubmitOptions<Form, V>) {
-  const { form, submit, wait = 500, fields, forceInitialSubmit } = options
+  const { form, submit, wait = 500, fields, forceInitialSubmit, disabled } = options
   const { formState } = form
 
   const [submitting, setSubmitting] = useState(false)
@@ -72,13 +74,13 @@ export function useFormAutoSubmit<
   )
 
   useEffect(() => {
-    if (canSubmit && (force || shouldSubmit)) {
+    if (!disabled && canSubmit && (force || shouldSubmit)) {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       submitDebounced()
       return () => submitDebounced.clear()
     }
     return () => {}
-  }, [canSubmit, force, shouldSubmit, submitDebounced])
+  }, [canSubmit, force, shouldSubmit, submitDebounced, disabled])
 
   return submitting
 }
