@@ -21,6 +21,7 @@ export function ProductFilterAccordion(props: ProductFilterAccordionProps) {
       onChange={handleChange}
       expanded={open}
       variant='outlined'
+      disableGutters
       sx={(theme) => ({
         backgroundColor: 'transparent ',
         '&.Mui-expanded': { my: 0 },
@@ -32,11 +33,7 @@ export function ProductFilterAccordion(props: ProductFilterAccordionProps) {
       <AccordionSummary
         onClick={(e) => e.preventDefault()}
         expandIcon={<IconSvg src={iconChevronDown} />}
-        sx={[
-          (theme) => ({
-            px: theme.spacings.xxs,
-          }),
-        ]}
+        sx={{ px: 0 }}
       >
         {summary}
 

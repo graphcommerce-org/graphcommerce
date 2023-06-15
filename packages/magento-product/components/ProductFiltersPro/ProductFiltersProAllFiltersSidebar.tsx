@@ -21,7 +21,7 @@ type AllFiltersSidebar = ProductFiltersProAggregationsProps &
   Omit<
     ChipOverlayOrPopperProps,
     'label' | 'selected' | 'selectedLabel' | 'onApply' | 'onReset' | 'onClose' | 'children'
-  > & { mode?: 'default' | 'sidebar' }
+  >
 
 export function ProductFiltersProAllFiltersSidebar(props: AllFiltersSidebar) {
   const {
@@ -31,7 +31,6 @@ export function ProductFiltersProAllFiltersSidebar(props: AllFiltersSidebar) {
     sort_fields,
     total_count,
     renderer,
-    mode = 'default',
     ...rest
   } = props
 
@@ -56,7 +55,7 @@ export function ProductFiltersProAllFiltersSidebar(props: AllFiltersSidebar) {
     >
       <Button
         sx={(theme) => ({
-          mb: theme.spacing(3),
+          mb: theme.spacings.xs,
           transition: 'ease-in-out 250ms all',
           color: theme.palette.text.primary,
           backgroundColor:
@@ -70,7 +69,7 @@ export function ProductFiltersProAllFiltersSidebar(props: AllFiltersSidebar) {
         key='1'
         href='#'
         variant='pill'
-        size='large'
+        size='medium'
         color='primary'
         onClick={(e) => {
           // Resets all filters
