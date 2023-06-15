@@ -1,3 +1,8 @@
+enum ProductFiltersLayout {
+  DEFAULT
+  SIDEBAR
+}
+
 extend input GraphCommerceConfig {
   """
   On older versions of GraphCommerce products would use a product type specific route.
@@ -13,6 +18,13 @@ extend input GraphCommerceConfig {
   @experimental This is an experimental feature and may change in the future.
   """
   productFiltersPro: Boolean
+
+  """
+  Layout how the filters are rendered.
+  DEFAULT: Will be rendered as horzontal chips on desktop and mobile
+  SIDEBAR: Will be rendered as a sidebar on desktop and horizontal chips on mobile
+  """
+  productFiltersLayout: ProductFiltersLayout
 
   """
   By default we route products to /p/[url] but you can change this to /product/[url] if you wish.

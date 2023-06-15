@@ -150,14 +150,9 @@ To override the value for a specific locale, configure in i18n config.
 
 #### `googleRecaptchaKey: String`
 
-Google reCAPTCHA site key.  
-When using reCAPTCHA, this value is required, even if you are configuring different values for each locale.  
+Google reCAPTCHA key, get from https://developers.google.com/recaptcha/docs/v3
 
-Get a site key and a secret key from https://developers.google.com/recaptcha/docs/v3
-
-The secret key should be added in the Magento admin panel (Stores > Configuration > Security > Google ReCAPTCHA Storefront > reCAPTCHA v3 Invisible)
-ReCAPTCHA can then be enabled/disabled for the different forms, separately (Stores > Configuration > Security > Google ReCAPTCHA Storefront > Storefront)
-
+This value is required even if you are configuring different values for each locale.
 
 #### `googleTagmanagerId: String`
 
@@ -214,6 +209,12 @@ Limit the static generation of SSG when building
 #### `previewSecret: String`
 
 To enable next.js' preview mode, configure the secret you'd like to use.
+
+#### `productFiltersLayout: [ProductFiltersLayout](#ProductFiltersLayout)`
+
+Layout how the filters are rendered.
+DEFAULT: Will be rendered as horzontal chips on desktop and mobile
+SIDEBAR: Will be rendered as a sidebar on desktop and horizontal chips on mobile
 
 #### `productFiltersPro: Boolean`
 

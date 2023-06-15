@@ -14,7 +14,8 @@ _export(exports, {
     CompareVariantSchema: ()=>CompareVariantSchema,
     GraphCommerceConfigSchema: ()=>GraphCommerceConfigSchema,
     GraphCommerceDebugConfigSchema: ()=>GraphCommerceDebugConfigSchema,
-    GraphCommerceStorefrontConfigSchema: ()=>GraphCommerceStorefrontConfigSchema
+    GraphCommerceStorefrontConfigSchema: ()=>GraphCommerceStorefrontConfigSchema,
+    ProductFiltersLayoutSchema: ()=>ProductFiltersLayoutSchema
 });
 const _zod = require("zod");
 const isDefinedNonNullAny = (v)=>v !== undefined && v !== null;
@@ -42,6 +43,7 @@ function GraphCommerceConfigSchema() {
         limitSsg: _zod.z.boolean().nullish(),
         magentoEndpoint: _zod.z.string().min(1),
         previewSecret: _zod.z.string().nullish(),
+        productFiltersLayout: ProductFiltersLayoutSchema.nullish(),
         productFiltersPro: _zod.z.boolean().nullish(),
         productRoute: _zod.z.string().nullish(),
         robotsAllow: _zod.z.boolean().nullish(),
@@ -73,3 +75,7 @@ function GraphCommerceStorefrontConfigSchema() {
         magentoStoreCode: _zod.z.string().min(1)
     });
 }
+const ProductFiltersLayoutSchema = _zod.z.enum([
+    "DEFAULT",
+    "SIDEBAR"
+]);

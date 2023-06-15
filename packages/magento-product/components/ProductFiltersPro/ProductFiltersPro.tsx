@@ -54,7 +54,7 @@ export function ProductFiltersPro(props: FilterFormProviderProps) {
     push({ ...toProductListParams(formValues), currentPage: 1 }),
   )
 
-  useFormAutoSubmit({ form, submit })
+  // useFormAutoSubmit({ form, submit })
 
   return (
     <FilterFormContext.Provider

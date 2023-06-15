@@ -218,6 +218,12 @@ export type GraphCommerceConfig = {
   /** To enable next.js' preview mode, configure the secret you'd like to use. */
   previewSecret?: InputMaybe<Scalars['String']>;
   /**
+   * Layout how the filters are rendered.
+   * DEFAULT: Will be rendered as horzontal chips on desktop and mobile
+   * SIDEBAR: Will be rendered as a sidebar on desktop and horizontal chips on mobile
+   */
+  productFiltersLayout?: InputMaybe<ProductFiltersLayout>;
+  /**
    * Product filters with better UI for mobile and desktop.
    *
    * @experimental This is an experimental feature and may change in the future.
@@ -316,6 +322,10 @@ export type GraphCommerceStorefrontConfig = {
   magentoStoreCode: Scalars['String'];
 };
 
+export type ProductFiltersLayout =
+  | 'DEFAULT'
+  | 'SIDEBAR';
+
 
 type Properties<T> = Required<{
   [K in keyof T]: z.ZodType<T[K], any, T[K]>;
@@ -348,6 +358,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     limitSsg: z.boolean().nullish(),
     magentoEndpoint: z.string().min(1),
     previewSecret: z.string().nullish(),
+    productFiltersLayout: ProductFiltersLayoutSchema.nullish(),
     productFiltersPro: z.boolean().nullish(),
     productRoute: z.string().nullish(),
     robotsAllow: z.boolean().nullish(),
@@ -381,3 +392,5 @@ export function GraphCommerceStorefrontConfigSchema(): z.ZodObject<Properties<Gr
     magentoStoreCode: z.string().min(1)
   })
 }
+
+export const ProductFiltersLayoutSchema = z.enum(['DEFAULT', 'SIDEBAR']);
