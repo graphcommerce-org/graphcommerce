@@ -187,7 +187,7 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
                 sku,
                 url_key,
                 quantity: 1,
-                selected_options,
+                selected_options: selected_options as (string | null)[],
               },
             ],
           },

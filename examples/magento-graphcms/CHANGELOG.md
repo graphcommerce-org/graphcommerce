@@ -1,5 +1,37 @@
 # Change Log
 
+## 6.2.0-canary.44
+
+## 6.2.0-canary.43
+
+## 6.2.0-canary.42
+
+### Patch Changes
+
+- [`0cd3fbe95`](https://github.com/graphcommerce-org/graphcommerce/commit/0cd3fbe95faad6011539c8584ac820861561b76b) - Bump release due to broken release ([@paales](https://github.com/paales))
+
+## 6.2.0-canary.41
+
+### Patch Changes
+
+- [#1960](https://github.com/graphcommerce-org/graphcommerce/pull/1960) [`f78caf5a8`](https://github.com/graphcommerce-org/graphcommerce/commit/f78caf5a83683f1ae4b901fb94bd22d50943fa2f) - Updated packages @apollo/client, react-hook-form, @emotion/\*, @lingui/\*, @mui/\* and various others. ([@paales](https://github.com/paales))
+
+## 6.2.0-canary.40
+
+## 6.2.0-canary.39
+
+## 6.2.0-canary.38
+
+## 6.2.0-canary.37
+
+## 6.2.0-canary.36
+
+### Patch Changes
+
+- [#1955](https://github.com/graphcommerce-org/graphcommerce/pull/1955) [`1f5f15dd3`](https://github.com/graphcommerce-org/graphcommerce/commit/1f5f15dd38fda5b0dc78095076b951486c635542) - Added onSubmitSuccessful callback to checkout header button, so header "To payment method" action navigates to the payment checkout step ([@mikekeehnen](https://github.com/mikekeehnen))
+
+## 6.2.0-canary.35
+
 ## 6.2.0-canary.34
 
 ### Patch Changes

@@ -2,14 +2,18 @@ import { responsiveVal, Row, SectionContainer, extendableComponent } from '@grap
 import { Box, SxProps, Theme } from '@mui/material'
 import { ProductSpecsFragment } from './ProductSpecs.gql'
 
-export type ProductSpecsProps = ProductSpecsFragment & { title?: string; sx?: SxProps<Theme> }
+export type ProductSpecsProps = ProductSpecsFragment & {
+  title?: string
+  sx?: SxProps<Theme>
+  children?: React.ReactNode
+}
 
 const name = 'ProductSpecs' as const
 const parts = ['root', 'specs', 'options'] as const
 const { classes } = extendableComponent(name, parts)
 
 export function ProductSpecs(props: ProductSpecsProps) {
-  const { aggregations, title, sx = [] } = props
+  const { aggregations, title, children, sx = [] } = props
   const filter = ['price', 'category_id', 'size', 'new', 'sale', 'color']
   const specs = aggregations?.filter(
     (attr) => !filter.includes(attr?.attribute_code ?? '') && attr?.options?.[0]?.value !== '0',
@@ -53,6 +57,7 @@ export function ProductSpecs(props: ProductSpecsProps) {
             </li>
           ))}
         </Box>
+        {children}
       </SectionContainer>
     </Row>
   )

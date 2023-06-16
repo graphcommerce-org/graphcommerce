@@ -26,6 +26,8 @@ export type LayoutHeaderProps = FloatingProps &
     noAlign?: boolean
 
     sx?: SxProps<Theme>
+
+    hideBackButton?: boolean
   }
 
 type ComponentStyleProps = {
@@ -46,6 +48,7 @@ export function LayoutHeader(props: LayoutHeaderProps) {
   const {
     children,
     divider,
+    hideBackButton = false,
     primary,
     secondary,
     noAlign = false,
@@ -54,7 +57,7 @@ export function LayoutHeader(props: LayoutHeaderProps) {
     sx = [],
     bgColor,
   } = props
-  const showBack = useShowBack()
+  const showBack = useShowBack() && !hideBackButton
   const showClose = useShowClose()
 
   const floatFallback = !children
