@@ -1,5 +1,8 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
+  ProductFiltersPro,
+  ProductFiltersProFilterChips,
+  ProductFiltersProSortChip,
   ProductListFiltersContainer,
   ProductListParamsProvider,
   ProductListDocument,
@@ -11,13 +14,10 @@ import {
   ProductFiltersDocument,
   ProductListQuery,
   ProductFiltersQuery,
+  ProductFiltersProAllFiltersChip,
+  ProductFiltersProLimitChip,
   AddProductsToCartForm,
-  FilterLayout,
-  ProductListCount,
-  ProductListFilters,
-  ProductListItems,
-  ProductListPagination,
-  ProductListSort,
+  ProductFiltersProAllFiltersSidebar,
 } from '@graphcommerce/magento-product'
 import {
   CategorySearchDocument,
@@ -25,8 +25,10 @@ import {
   CategorySearchResult,
   NoSearchResults,
   ProductListCountSearch,
+  ProductListFiltersSearch,
   ProductListItemsSearch,
   ProductListPaginationSearch,
+  ProductListSortSearch,
   SearchContext,
   SearchDivider,
   SearchForm,
@@ -37,11 +39,10 @@ import {
   GetStaticProps,
   LayoutTitle,
   LayoutHeader,
-  responsiveVal,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Container, Hidden } from '@mui/material'
+import { Box, Container, Hidden } from '@mui/material'
 import { LayoutNavigation, LayoutNavigationProps, productListRenderer } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
@@ -55,21 +56,6 @@ export type GetPageStaticProps = GetStaticProps<
   SearchResultProps,
   RouteProps
 >
-
-function ProductListItemsSearchElement(props: React.ComponentProps<typeof ProductListItems>) {
-  const { items, title } = props
-
-  return (
-    <AddProductsToCartForm>
-      <ProductListItemsSearch
-        renderers={productListRenderer}
-        title={title}
-        items={items}
-        loadingEager={1}
-      />
-    </AddProductsToCartForm>
-  )
-}
 
 function SearchResultPage(props: SearchResultProps) {
   const { products, categories, params, filters, filterTypes } = props
@@ -125,53 +111,149 @@ function SearchResultPage(props: SearchResultProps) {
         {noSearchResults && <NoSearchResults search={search} />}
         {products && products.items && products?.items?.length > 0 && (
           <>
-            {import.meta.graphCommerce.productFiltersPro && (
-              <FilterLayout
-                mode='default'
-                maxWidth='lg'
-                ProductListItems={ProductListItemsSearchElement}
-                ProductListCount={ProductListCount}
-                ProductListPagination={ProductListPagination}
-                products={products}
-                filters={filters}
-                params={params}
-                filterTypes={filterTypes}
-                category={{ name: `Search results ${search}`, uid: 'search' }}
-              />
-            )}
-            {!import.meta.graphCommerce.productFiltersPro && (
-              <Container maxWidth='lg'>
+            {import.meta.graphCommerce.productFiltersPro ? (
+              <>
+                {import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR' ? (
+                  <ProductFiltersPro params={params}>
+                    <StickyBelowHeader sx={{ display: { xs: 'block', md: 'none' } }}>
+                      <ProductListFiltersContainer>
+                        <ProductFiltersProFilterChips
+                          {...filters}
+                          appliedAggregations={products.aggregations}
+                          filterTypes={filterTypes}
+                        />
+                        <ProductFiltersProSortChip {...products} />
+                        <ProductFiltersProLimitChip />
+                        <ProductFiltersProAllFiltersChip
+                          {...products}
+                          {...filters}
+                          appliedAggregations={products.aggregations}
+                          filterTypes={filterTypes}
+                        />
+                      </ProductListFiltersContainer>
+                    </StickyBelowHeader>
+                    <Container
+                      maxWidth={false}
+                      sx={(theme) => ({
+                        display: 'grid',
+                        gridTemplate: {
+                          xs: `
+            "count"      auto
+            "items"      1fr
+            "pagination" auto
+            `,
+                          md: `
+            "sidebar count"      auto
+            "sidebar items"      1fr
+            "sidebar pagination" auto
+            /300px   auto
+            `,
+                        },
+                        columnGap: theme.spacings.md,
+                      })}
+                    >
+                      <Box sx={{ gridArea: 'sidebar', display: { xs: 'none', md: 'block' } }}>
+                        <ProductFiltersProAllFiltersSidebar
+                          {...products}
+                          {...filters}
+                          appliedAggregations={products?.aggregations}
+                          filterTypes={filterTypes}
+                        />
+                      </Box>
+                      <ProductListCountSearch
+                        total_count={products?.total_count}
+                        sx={() => ({
+                          gridArea: 'count',
+                          mt: { md: 0 },
+                          width: '100%',
+                        })}
+                      />
+
+                      <AddProductsToCartForm>
+                        <ProductListItemsSearch
+                          sx={{
+                            gridArea: 'items',
+                            gridTemplateColumns: { xs: `1fr 1fr`, lg: `1fr 1fr 1fr` },
+                          }}
+                          renderers={productListRenderer}
+                          title={`Search ${search}`}
+                          items={products?.items}
+                          loadingEager={1}
+                        />
+                      </AddProductsToCartForm>
+                      <ProductListPaginationSearch
+                        page_info={products?.page_info}
+                        params={params}
+                        sx={{ gridArea: 'pagination' }}
+                      />
+                    </Container>
+                  </ProductFiltersPro>
+                ) : (
+                  <>
+                    <ProductFiltersPro params={params}>
+                      <StickyBelowHeader>
+                        <ProductListFiltersContainer>
+                          <ProductFiltersProFilterChips
+                            {...filters}
+                            appliedAggregations={products.aggregations}
+                            filterTypes={filterTypes}
+                          />
+                          <ProductFiltersProSortChip {...products} />
+                          <ProductFiltersProLimitChip />
+                          <ProductFiltersProAllFiltersChip
+                            {...products}
+                            {...filters}
+                            appliedAggregations={products.aggregations}
+                            filterTypes={filterTypes}
+                          />
+                        </ProductListFiltersContainer>
+                      </StickyBelowHeader>
+                    </ProductFiltersPro>
+                    <Container maxWidth={false}>
+                      <ProductListCountSearch total_count={products?.total_count} />
+                      <AddProductsToCartForm>
+                        <ProductListItemsSearch
+                          renderers={productListRenderer}
+                          title={`Search ${search}`}
+                          items={products?.items}
+                          loadingEager={1}
+                        />
+                      </AddProductsToCartForm>
+                      <ProductListPaginationSearch
+                        page_info={products?.page_info}
+                        params={params}
+                      />
+                    </Container>
+                  </>
+                )}
+              </>
+            ) : (
+              <>
                 <StickyBelowHeader>
                   <ProductListParamsProvider value={params}>
                     <ProductListFiltersContainer>
-                      <ProductListSort
+                      <ProductListSortSearch
                         sort_fields={products?.sort_fields}
                         total_count={products?.total_count}
                       />
-                      <ProductListFilters {...filters} filterTypes={filterTypes} />
+                      <ProductListFiltersSearch {...filters} filterTypes={filterTypes} />
                     </ProductListFiltersContainer>
                   </ProductListParamsProvider>
                 </StickyBelowHeader>
-                <ProductListCount
-                  sx={{ width: responsiveVal(280, 650) }}
-                  total_count={products?.total_count}
-                />
-                <ProductListItems items={products?.items} title='Results' loadingEager={1} />
-                <ProductListPagination page_info={products?.page_info} params={params} />
-              </Container>
+                <Container maxWidth={false}>
+                  <ProductListCountSearch total_count={products?.total_count} />
+                  <AddProductsToCartForm>
+                    <ProductListItemsSearch
+                      renderers={productListRenderer}
+                      title={`Search ${search}`}
+                      items={products?.items}
+                      loadingEager={1}
+                    />
+                  </AddProductsToCartForm>
+                  <ProductListPaginationSearch page_info={products?.page_info} params={params} />
+                </Container>
+              </>
             )}
-            <Container maxWidth={false}>
-              <ProductListCountSearch total_count={products?.total_count} />
-              <AddProductsToCartForm>
-                <ProductListItemsSearch
-                  renderers={productListRenderer}
-                  title={`Search ${search}`}
-                  items={products?.items}
-                  loadingEager={1}
-                />
-              </AddProductsToCartForm>
-              <ProductListPaginationSearch page_info={products?.page_info} params={params} />
-            </Container>
           </>
         )}
       </SearchContext>
