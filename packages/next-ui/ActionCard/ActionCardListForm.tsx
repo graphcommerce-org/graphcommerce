@@ -20,6 +20,8 @@ export type ActionCardListFormProps<A, F extends FieldValues = FieldValues> = Om
   Omit<ControllerProps<F>, 'render'> & {
     items: A[]
     render: React.FC<ActionCardItemRenderProps<A>>
+  } & {
+    showMoreAfter?: number
   }
 
 export function ActionCardListForm<
@@ -36,11 +38,11 @@ export function ActionCardListForm<
     errorMessage,
     defaultValue,
     multiple,
+    showMoreAfter,
     ...other
   } = props
   const RenderItem = render as React.FC<ActionCardItemRenderProps<ActionCardItemBase>>
   const [show, setShow] = React.useState(false)
-  const showMoreAfter = 4
 
   function onSelect(itemValue: unknown, selectValues: unknown) {
     return multiple
@@ -83,7 +85,7 @@ export function ActionCardListForm<
               showMoreAfter={showMoreAfter}
             />
           ))}
-          {items.length > showMoreAfter && (
+          {showMoreAfter && items.length > showMoreAfter && (
             <Button
               sx={(theme) => ({
                 width: 'fit-content',
