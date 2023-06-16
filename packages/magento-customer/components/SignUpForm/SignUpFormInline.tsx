@@ -11,6 +11,7 @@ import { Alert, Box } from '@mui/material'
 import React from 'react'
 import { SignUpMutationVariables, SignUpMutation, SignUpDocument } from './SignUp.gql'
 import { SignUpConfirmDocument } from './SignUpConfirm.gql'
+import { ValidatedPasswordElement } from '../ValidatedPasswordElement/ValidatedPasswordElement'
 
 type SignUpFormInlineProps = Pick<SignUpMutationVariables, 'email'> & {
   children?: React.ReactNode
@@ -28,13 +29,8 @@ const { classes } = extendableComponent('SignUpFormInline', [
 
 const requireEmailValidation = import.meta.graphCommerce.customerRequireEmailConfirmation ?? false
 
-export function SignUpFormInline({
-  email,
-  children,
-  firstname,
-  lastname,
-  onSubmitted = () => {},
-}: SignUpFormInlineProps) {
+export function SignUpFormInline(props: SignUpFormInlineProps) {
+  const { email, children, firstname, lastname, onSubmitted = () => {} } = props
   const Mutation = requireEmailValidation ? SignUpConfirmDocument : SignUpDocument
 
   const form = useFormGqlMutation<
@@ -73,22 +69,24 @@ export function SignUpFormInline({
   return (
     <Form onSubmit={submitHandler} noValidate className={classes.form} sx={{ padding: 0 }}>
       <FormRow className={classes.row} sx={{ padding: 0 }}>
-        <PasswordElement
+        <ValidatedPasswordElement
           control={control}
           name='password'
+          autoComplete='new-password'
           variant='outlined'
           label={<Trans id='Password' />}
-          error={!!inputError}
           required={required.password}
           disabled={formState.isSubmitting}
+          error={!!inputError}
+          helperText={inputError?.message}
         />
         <PasswordRepeatElement
           control={control}
           name='confirmPassword'
           passwordFieldName='password'
+          autoComplete='new-password'
           variant='outlined'
           label={<Trans id='Confirm password' />}
-          error={!!formState.errors.confirmPassword || !!inputError}
           required
           disabled={formState.isSubmitting}
         />

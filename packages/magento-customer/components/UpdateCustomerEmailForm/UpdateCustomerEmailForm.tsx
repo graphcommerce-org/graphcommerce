@@ -27,10 +27,7 @@ export function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormProps) {
 
   const form = useFormGqlMutation<
     UpdateCustomerEmailMutation,
-    UpdateCustomerEmailMutationVariables & {
-      currentEmail?: string
-      confirmEmail?: string
-    }
+    UpdateCustomerEmailMutationVariables & { currentEmail?: string; confirmEmail?: string }
   >(UpdateCustomerEmailDocument)
 
   const { handleSubmit, error, required, formState, watch, muiRegister, reset, control } = form
@@ -46,7 +43,7 @@ export function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormProps) {
           key='current-email'
           variant='outlined'
           type='text'
-          autoComplete='currentEmail'
+          autoComplete='email'
           autoFocus
           error={formState.isSubmitted && !!formState.errors.currentEmail}
           helperText={formState.isSubmitted && formState.errors.currentEmail?.message}
@@ -68,8 +65,7 @@ export function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormProps) {
           key='email'
           variant='outlined'
           type='text'
-          autoComplete='email'
-          autoFocus
+          autoComplete='off'
           error={formState.isSubmitted && !!formState.errors.email}
           helperText={formState.isSubmitted && formState.errors.email?.message}
           label={<Trans id='New email' />}
@@ -83,8 +79,7 @@ export function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormProps) {
           key='confirm-email'
           variant='outlined'
           type='text'
-          autoComplete='confirmEmail'
-          autoFocus
+          autoComplete='off'
           error={formState.isSubmitted && !!formState.errors.confirmEmail}
           helperText={formState.isSubmitted && formState.errors.confirmEmail?.message}
           label={<Trans id='Confirm new email' />}
@@ -103,10 +98,9 @@ export function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormProps) {
           error={!!formState.errors.password}
           name='password'
           label={<Trans id='Password' />}
-          autoComplete='password'
+          autoComplete='current-password'
           required={required.password}
           disabled={formState.isSubmitting}
-          novalidate
         />
       </FormRow>
 

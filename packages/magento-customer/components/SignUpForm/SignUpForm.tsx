@@ -8,6 +8,7 @@ import { ApolloCustomerErrorSnackbar } from '../ApolloCustomerError/ApolloCustom
 import { NameFields } from '../NameFields/NameFields'
 import { SignUpDocument, SignUpMutation, SignUpMutationVariables } from './SignUp.gql'
 import { SignUpConfirmDocument } from './SignUpConfirm.gql'
+import { ValidatedPasswordElement } from '../ValidatedPasswordElement/ValidatedPasswordElement'
 
 type SignUpFormProps = { email: string }
 
@@ -45,7 +46,7 @@ export function SignUpForm(props: SignUpFormProps) {
   return (
     <form onSubmit={submitHandler} noValidate>
       <FormRow>
-        <PasswordElement
+        <ValidatedPasswordElement
           control={control}
           name='password'
           variant='outlined'
@@ -55,6 +56,7 @@ export function SignUpForm(props: SignUpFormProps) {
           autoComplete='new-password'
           required={required.password}
           disabled={formState.isSubmitting}
+          helperText={inputError?.message}
         />
         <PasswordRepeatElement
           control={control}

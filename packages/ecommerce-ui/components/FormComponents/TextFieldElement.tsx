@@ -1,7 +1,4 @@
 /* eslint-disable no-nested-ternary */
-import { useQuery } from '@graphcommerce/graphql'
-import { usePasswordValidation } from '@graphcommerce/magento-customer/components/SignUpForm/usePasswordValidation'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   Controller,
   FieldError,
@@ -17,7 +14,6 @@ export type TextFieldElementProps<T extends FieldValues = FieldValues> = Omit<
 > & {
   validation?: UseControllerProps<T>['rules']
   parseError?: (error: FieldError) => string
-  novalidate?: boolean
 } & UseControllerProps<T>
 
 export function TextFieldElement<TFieldValues extends FieldValues>({
@@ -28,13 +24,8 @@ export function TextFieldElement<TFieldValues extends FieldValues>({
   name,
   control,
   defaultValue,
-  novalidate,
   ...rest
 }: TextFieldElementProps<TFieldValues>): JSX.Element {
-  const storeConfig = useQuery(StoreConfigDocument).data?.storeConfig
-  const minPasswordLength = Number(storeConfig?.minimum_password_length ?? 8)
-  const passwordRequirementsPattern = usePasswordValidation()
-
   if (required && !validation.required) {
     validation.required = i18n._(/* i18n */ 'This field is required')
   }
@@ -45,19 +36,6 @@ export function TextFieldElement<TFieldValues extends FieldValues>({
       value:
         /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
       message: i18n._(/* i18n */ 'Please enter a valid email address'),
-    }
-  }
-
-  if (type === 'password' && !novalidate) {
-    if (!validation.minLength) {
-      validation.minLength = {
-        value: minPasswordLength,
-        message: i18n._(/* i18n */ 'Password must have at least 8 characters'),
-      }
-    }
-
-    if (!validation.pattern) {
-      validation.pattern = passwordRequirementsPattern
     }
   }
 
@@ -81,7 +59,7 @@ export function TextFieldElement<TFieldValues extends FieldValues>({
           onBlur={onBlur}
           required={required}
           type={type}
-          error={!!error}
+          error={Boolean(error) || rest.error}
           helperText={
             error
               ? typeof parseError === 'function'

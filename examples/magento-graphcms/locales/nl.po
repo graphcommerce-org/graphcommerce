@@ -434,8 +434,8 @@ msgid "Menu"
 msgstr "Menu"
 
 #. js-lingui-explicit-id
-msgid "Minimum of different classes of characters in password is {requiredCharacterClassesNumber}. Classes of characters: Lower Case, Upper Case, Digits, Special Characters."
-msgstr "Het minimumaantal verschillende klassen van tekens in het wachtwoord is {requiredCharacterClassesNumber}. Klassen van tekens: Kleine letters, Hoofdletters, Cijfers, Speciale tekens."
+msgid "Minimum of different classes of characters in password is {passwordMinCharacterSets}. Classes of characters: Lower Case, Upper Case, Digits, Special Characters."
+msgstr "Het minimumaantal verschillende klassen van tekens in het wachtwoord is {passwordMinCharacterSets}. Klassen van tekens: Kleine letters, Hoofdletters, Cijfers, Speciale tekens."
 
 #. js-lingui-explicit-id
 msgid "More information"
@@ -578,8 +578,8 @@ msgid "Password"
 msgstr "Wachtwoord"
 
 #. js-lingui-explicit-id
-msgid "Password must have at least 8 characters"
-msgstr "Wachtwoord moet minimaal 8 tekens bevatten"
+msgid "Password must have at least {minPasswordLength} characters"
+msgstr "Wachtwoord moet minimaal {minPasswordLength} tekens bevatten"
 
 #. js-lingui-explicit-id
 msgid "Passwords don't match"

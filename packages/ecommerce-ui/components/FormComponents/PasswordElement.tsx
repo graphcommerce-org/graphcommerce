@@ -8,16 +8,21 @@ export type PasswordElementProps<T extends FieldValues> = TextFieldElementProps<
   iconColor?: IconButtonProps['color']
 }
 
-export function PasswordElement<TFieldValues extends FieldValues>({
-  iconColor,
-  ...props
-}: PasswordElementProps<TFieldValues>): JSX.Element {
+export function PasswordElement<TFieldValues extends FieldValues>(
+  props: PasswordElementProps<TFieldValues>,
+): JSX.Element {
+  const { iconColor, ...textFieldProps } = props
   const [password, setPassword] = useState<boolean>(true)
   return (
     <TextFieldElement
+      {...textFieldProps}
       InputProps={{
+        ...textFieldProps.InputProps,
         endAdornment: (
-          <InputAdornment position='end'>
+          <InputAdornment
+            position='end'
+            sx={(theme) => ({ display: 'flex', columnGap: theme.spacings.xxs })}
+          >
             <IconButton
               onMouseDown={(e: MouseEvent<HTMLButtonElement>) => e.preventDefault()}
               onClick={() => setPassword(!password)}
@@ -26,11 +31,11 @@ export function PasswordElement<TFieldValues extends FieldValues>({
             >
               <IconSvg src={password ? iconEyeCrossed : iconEye} size='medium' />
             </IconButton>
+            {textFieldProps.InputProps?.endAdornment}
           </InputAdornment>
         ),
       }}
       type={password ? 'password' : 'text'}
-      {...props}
     />
   )
 }

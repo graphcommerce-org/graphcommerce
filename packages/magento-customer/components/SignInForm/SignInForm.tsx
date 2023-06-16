@@ -46,7 +46,6 @@ export function SignInForm(props: SignInFormProps) {
     error,
   })
   const submitHandler = handleSubmit(() => {})
-  const [password, setPassword] = useState<boolean>(true)
 
   return (
     <Box component='form' onSubmit={submitHandler} noValidate sx={sx}>
@@ -54,7 +53,6 @@ export function SignInForm(props: SignInFormProps) {
         <PasswordElement
           variant='outlined'
           error={!!formState.errors.password || !!authError}
-          type={password ? 'password' : 'text'}
           control={control}
           name='password'
           label={<Trans id='Password' />}
@@ -64,29 +62,11 @@ export function SignInForm(props: SignInFormProps) {
           required={required.password}
           disabled={formState.isSubmitting}
           helperText={!!formState.errors.password || authError?.message}
-          novalidate
           InputProps={{
             endAdornment: (
-              <>
-                <InputAdornment position='end'>
-                  <IconButton
-                    onMouseDown={(e: MouseEvent<HTMLButtonElement>) => e.preventDefault()}
-                    onClick={() => {
-                      setPassword(!password)
-                    }}
-                    tabIndex={-1}
-                  >
-                    <IconSvg src={password ? iconEyeCrossed : iconEye} size='medium' />
-                  </IconButton>
-                </InputAdornment>
-                <Link
-                  href='/account/forgot-password'
-                  underline='hover'
-                  sx={(theme) => ({ whiteSpace: 'nowrap', marginLeft: theme.spacings.xxs })}
-                >
-                  <Trans id='Forgot password?' />
-                </Link>
-              </>
+              <Link href='/account/forgot-password' underline='hover' sx={{ whiteSpace: 'nowrap' }}>
+                <Trans id='Forgot password?' />
+              </Link>
             ),
           }}
         />
