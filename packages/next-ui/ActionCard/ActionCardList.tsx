@@ -1,6 +1,7 @@
 import { Alert, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { isFragment } from 'react-is'
+import { Button } from '../Button'
 import { extendableComponent } from '../Styles'
 import { ActionCardProps } from './ActionCard'
 import { ActionCardLayout } from './ActionCardLayout'
@@ -106,8 +107,12 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
       return (el as ActionCardLike).props.value !== undefined
     }
 
+    function isButtonLike(el: React.ReactElement): el is React.ReactElement<typeof Button> {
+      return el.type === Button
+    }
+
     // Make sure the children are cardlike
-    const childReactNodes = React.Children.toArray(children)
+    const childActionCards = React.Children.toArray(children)
       .filter(React.isValidElement)
       .filter(isActionCardLike)
       .filter((child) => {
@@ -124,8 +129,25 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
         return !isFragment(child)
       })
 
+    const childButtons = React.Children.toArray(children)
+      .filter(React.isValidElement)
+      .filter(isButtonLike)
+      .filter((child) => {
+        if (process.env.NODE_ENV !== 'production') {
+          if (isFragment(child))
+            console.error(
+              [
+                "@graphcommerce/next-ui: The ActionCardList component doesn't accept a Fragment as a child.",
+                'Consider providing an array instead',
+              ].join('\n'),
+            )
+        }
+
+        return !isFragment(child)
+      })
+
     // Make sure the selected values is in the list of all possible values
-    const value = childReactNodes.find(
+    const value = childActionCards.find(
       // eslint-disable-next-line react/destructuring-assignment
       (child) => child.props.value === props.value && child.props.disabled !== true,
     )?.props.value
@@ -135,7 +157,7 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
     return (
       <div ref={ref}>
         <ActionCardLayout sx={sx} className={classes.root} layout={layout}>
-          {childReactNodes.map((child, index) => {
+          {childActionCards.map((child, index) => {
             if (collapse && Boolean(value) && !isValueSelected(child.props.value, value))
               return null
             if (index && showMoreAfter && index + 1 > showMoreAfter && !show) return null
@@ -153,6 +175,7 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
                   : child.props.selected,
             })
           })}
+          {childButtons.map((child) => child)}
         </ActionCardLayout>
         {error && errorMessage && (
           <Alert

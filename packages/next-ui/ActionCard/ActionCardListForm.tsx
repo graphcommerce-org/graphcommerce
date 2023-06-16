@@ -56,37 +56,43 @@ export function ActionCardListForm<
       defaultValue={defaultValue}
       rules={{ required: errorMessage || required, ...rules }}
       render={({ field: { onChange, value, ref }, fieldState, formState }) => (
-        <>
-          <ActionCardList
-            {...other}
-            multiple={multiple}
-            required={required}
-            value={value}
-            ref={ref}
-            onChange={(_, incomming) => onChange(incomming)}
-            error={formState.isSubmitted && !!fieldState.error}
-            errorMessage={fieldState.error?.message}
-            show={show}
-            showMoreAfter={showMoreAfter}
-          >
-            {items.map((item, index) => (
-              <RenderItem
-                {...item}
-                key={item.value ?? ''}
-                value={item.value}
-                selected={onSelect(item.value, value)}
-                onReset={(e) => {
-                  e.preventDefault()
-                  onChange(null)
-                }}
-                index={index}
-                show={show}
-                showMoreAfter={showMoreAfter}
-              />
-            ))}
-          </ActionCardList>
+        <ActionCardList
+          {...other}
+          multiple={multiple}
+          required={required}
+          value={value}
+          ref={ref}
+          onChange={(_, incomming) => onChange(incomming)}
+          error={formState.isSubmitted && !!fieldState.error}
+          errorMessage={fieldState.error?.message}
+          show={show}
+          showMoreAfter={showMoreAfter}
+        >
+          {items.map((item, index) => (
+            <RenderItem
+              {...item}
+              key={item.value ?? ''}
+              value={item.value}
+              selected={onSelect(item.value, value)}
+              onReset={(e) => {
+                e.preventDefault()
+                onChange(null)
+              }}
+              index={index}
+              show={show}
+              showMoreAfter={showMoreAfter}
+            />
+          ))}
           {items.length > showMoreAfter && (
-            <Button color='primary' variant='text' onClick={() => setShow(!show)}>
+            <Button
+              sx={(theme) => ({
+                width: 'fit-content',
+                mt: theme.spacings.xxs,
+              })}
+              color='primary'
+              variant='text'
+              onClick={() => setShow(!show)}
+            >
               {!show ? <Trans id='More options' /> : <Trans id='Less options' />}{' '}
               <IconSvg
                 sx={{
@@ -97,7 +103,7 @@ export function ActionCardListForm<
               />
             </Button>
           )}
-        </>
+        </ActionCardList>
       )}
     />
   )
