@@ -1,13 +1,13 @@
+import { Trans } from '@lingui/react'
 import { Alert, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { isFragment } from 'react-is'
 import { Button } from '../Button'
+import { IconSvg } from '../IconSvg'
 import { extendableComponent } from '../Styles'
+import { iconChevronDown } from '../icons'
 import { ActionCardProps } from './ActionCard'
 import { ActionCardLayout } from './ActionCardLayout'
-import { Trans } from '@lingui/react'
-import { IconSvg } from '../IconSvg'
-import { iconChevronDown } from '../icons'
 
 type MultiSelect = {
   multiple: true
@@ -110,31 +110,10 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
       return (el as ActionCardLike).props.value !== undefined
     }
 
-    function isButtonLike(el: React.ReactElement): el is React.ReactElement<typeof Button> {
-      return el.type === Button
-    }
-
     // Make sure the children are cardlike
     const childActionCards = React.Children.toArray(children)
       .filter(React.isValidElement)
       .filter(isActionCardLike)
-      .filter((child) => {
-        if (process.env.NODE_ENV !== 'production') {
-          if (isFragment(child))
-            console.error(
-              [
-                "@graphcommerce/next-ui: The ActionCardList component doesn't accept a Fragment as a child.",
-                'Consider providing an array instead',
-              ].join('\n'),
-            )
-        }
-
-        return !isFragment(child)
-      })
-
-    const childButtons = React.Children.toArray(children)
-      .filter(React.isValidElement)
-      .filter(isButtonLike)
       .filter((child) => {
         if (process.env.NODE_ENV !== 'production') {
           if (isFragment(child))
@@ -178,7 +157,6 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
                   : child.props.selected,
             })
           })}
-          {childButtons.map((child) => child)}
         </ActionCardLayout>
 
         {childActionCards.length > showMoreAfter && (

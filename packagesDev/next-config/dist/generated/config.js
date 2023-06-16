@@ -9,13 +9,27 @@ function _export(target, all) {
     });
 }
 _export(exports, {
-    isDefinedNonNullAny: ()=>isDefinedNonNullAny,
-    definedNonNullAnySchema: ()=>definedNonNullAnySchema,
-    CompareVariantSchema: ()=>CompareVariantSchema,
-    GraphCommerceConfigSchema: ()=>GraphCommerceConfigSchema,
-    GraphCommerceDebugConfigSchema: ()=>GraphCommerceDebugConfigSchema,
-    GraphCommerceStorefrontConfigSchema: ()=>GraphCommerceStorefrontConfigSchema,
-    ProductFiltersLayoutSchema: ()=>ProductFiltersLayoutSchema
+    isDefinedNonNullAny: function() {
+        return isDefinedNonNullAny;
+    },
+    definedNonNullAnySchema: function() {
+        return definedNonNullAnySchema;
+    },
+    CompareVariantSchema: function() {
+        return CompareVariantSchema;
+    },
+    ProductFiltersLayoutSchema: function() {
+        return ProductFiltersLayoutSchema;
+    },
+    GraphCommerceConfigSchema: function() {
+        return GraphCommerceConfigSchema;
+    },
+    GraphCommerceDebugConfigSchema: function() {
+        return GraphCommerceDebugConfigSchema;
+    },
+    GraphCommerceStorefrontConfigSchema: function() {
+        return GraphCommerceStorefrontConfigSchema;
+    }
 });
 const _zod = require("zod");
 const isDefinedNonNullAny = (v)=>v !== undefined && v !== null;
@@ -23,6 +37,10 @@ const definedNonNullAnySchema = _zod.z.any().refine((v)=>isDefinedNonNullAny(v))
 const CompareVariantSchema = _zod.z.enum([
     "CHECKBOX",
     "ICON"
+]);
+const ProductFiltersLayoutSchema = _zod.z.enum([
+    "DEFAULT",
+    "SIDEBAR"
 ]);
 function GraphCommerceConfigSchema() {
     return _zod.z.object({
@@ -75,7 +93,3 @@ function GraphCommerceStorefrontConfigSchema() {
         magentoStoreCode: _zod.z.string().min(1)
     });
 }
-const ProductFiltersLayoutSchema = _zod.z.enum([
-    "DEFAULT",
-    "SIDEBAR"
-]);

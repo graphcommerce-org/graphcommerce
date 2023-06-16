@@ -345,6 +345,8 @@ export const definedNonNullAnySchema = z.any().refine((v) => isDefinedNonNullAny
 
 export const CompareVariantSchema = z.enum(['CHECKBOX', 'ICON']);
 
+export const ProductFiltersLayoutSchema = z.enum(['DEFAULT', 'SIDEBAR']);
+
 export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerceConfig>> {
   return z.object({
     canonicalBaseUrl: z.string().min(1),
@@ -398,5 +400,3 @@ export function GraphCommerceStorefrontConfigSchema(): z.ZodObject<Properties<Gr
     magentoStoreCode: z.string().min(1)
   })
 }
-
-export const ProductFiltersLayoutSchema = z.enum(['DEFAULT', 'SIDEBAR']);

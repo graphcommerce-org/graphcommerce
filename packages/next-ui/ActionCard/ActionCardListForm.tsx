@@ -1,9 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { iconChevronDown, IconSvg } from '@graphcommerce/next-ui'
 import { Controller, ControllerProps, FieldValues } from '@graphcommerce/react-hook-form'
-import { Trans } from '@lingui/react'
 import React, { MouseEventHandler } from 'react'
-import { Button } from '../Button'
 import { ActionCardProps } from './ActionCard'
 import { ActionCardList, ActionCardListProps } from './ActionCardList'
 
