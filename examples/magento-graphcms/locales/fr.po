@@ -586,10 +586,6 @@ msgid "Passwords don't match"
 msgstr "Les mots de passe ne correspondent pas"
 
 #. js-lingui-explicit-id
-msgid "Passwords should match"
-msgstr "Les mots de passe doivent correspondre"
-
-#. js-lingui-explicit-id
 msgid "Pay"
 msgstr "Payer"
 

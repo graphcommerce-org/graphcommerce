@@ -586,10 +586,6 @@ msgid "Passwords don't match"
 msgstr "Wachtwoorden komen niet overeen"
 
 #. js-lingui-explicit-id
-msgid "Passwords should match"
-msgstr "Wachtwoorden moeten overeenkomen"
-
-#. js-lingui-explicit-id
 msgid "Pay"
 msgstr "Betaal"
 
