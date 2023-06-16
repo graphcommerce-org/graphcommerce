@@ -40,9 +40,9 @@ export function ProductFilterRangeSection(props: FilterProps) {
             right={
               from !== min || to !== max ? (
                 <Button
-                  variant='inline'
                   color='primary'
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.stopPropagation()
                     form.resetField(name, { defaultValue: null })
                   }}
                 >

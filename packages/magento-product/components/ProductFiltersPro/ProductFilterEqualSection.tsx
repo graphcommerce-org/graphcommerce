@@ -70,13 +70,15 @@ export function ProductFilterEqualSection(props: FilterProps) {
           variant='default'
           size='medium'
           items={items}
+          showMoreAfter={4}
         />
       }
       right={
         currentFilter && currentFilter.length > 0 ? (
           <Button
             color='primary'
-            onClick={() => {
+            onClick={(e) => {
+              e.stopPropagation()
               form.resetField(name, { defaultValue: null })
             }}
           >

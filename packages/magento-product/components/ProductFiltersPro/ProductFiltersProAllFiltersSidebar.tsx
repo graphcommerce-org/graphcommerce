@@ -1,4 +1,5 @@
 import { Button, ChipOverlayOrPopperProps } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/react'
 import { Box, alpha, lighten } from '@mui/material'
 import { ProductFilterEqualSection } from './ProductFilterEqualSection'
 import { ProductFilterRangeSection } from './ProductFilterRangeSection'
@@ -14,7 +15,6 @@ import {
 } from './ProductFiltersProSortSection'
 import { activeAggregations } from './activeAggregations'
 import { applyAggregationCount } from './applyAggregationCount'
-import { Trans } from '@lingui/react'
 
 type AllFiltersSidebar = ProductFiltersProAggregationsProps &
   ProductFiltersProSortSectionProps &
