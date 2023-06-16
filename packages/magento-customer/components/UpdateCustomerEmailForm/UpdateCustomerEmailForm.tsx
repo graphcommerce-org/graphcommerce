@@ -17,6 +17,8 @@ import {
   UpdateCustomerEmailMutation,
   UpdateCustomerEmailMutationVariables,
 } from './UpdateCustomerEmail.gql'
+import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
+import { ApolloCustomerErrorSnackbar } from '../ApolloCustomerError'
 
 type UpdateCustomerEmailFormProps = {
   email: string
@@ -28,9 +30,19 @@ export function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormProps) {
   const form = useFormGqlMutation<
     UpdateCustomerEmailMutation,
     UpdateCustomerEmailMutationVariables & { currentEmail?: string; confirmEmail?: string }
-  >(UpdateCustomerEmailDocument)
+  >(
+    UpdateCustomerEmailDocument,
+    {},
+    {
+      errorPolicy: 'all',
+    },
+  )
 
   const { handleSubmit, error, required, formState, watch, muiRegister, reset, control } = form
+  const [remainingError, authenticationError] = graphqlErrorByCategory({
+    category: 'graphql-authentication',
+    error,
+  })
   const submit = handleSubmit(() => {
     reset()
   })
@@ -95,14 +107,17 @@ export function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormProps) {
         <PasswordElement
           control={control}
           variant='outlined'
-          error={!!formState.errors.password}
           name='password'
           label={<Trans id='Password' />}
           autoComplete='current-password'
           required={required.password}
           disabled={formState.isSubmitting}
+          error={Boolean(authenticationError)}
+          helperText={authenticationError?.message}
         />
       </FormRow>
+
+      <ApolloCustomerErrorSnackbar error={remainingError} />
 
       <FormDivider />
       <FormActions>
@@ -116,7 +131,6 @@ export function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormProps) {
           <Trans id='Save changes' />
         </Button>
       </FormActions>
-      <ApolloCustomerErrorAlert error={error} />
 
       <MessageSnackbar sticky open={formState.isSubmitSuccessful && !error}>
         <Trans id='Successfully updated email' />
