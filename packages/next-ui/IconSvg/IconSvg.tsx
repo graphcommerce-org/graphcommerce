@@ -53,37 +53,35 @@ export function useIconSvgSize(size: keyof typeof sizes) {
   return sizes[size]
 }
 
-const Svg = styled('svg', { name, target: name })(() => [
-  {
-    userSelect: 'none',
-    width: '1em',
-    height: '1em',
-    display: 'inline-block',
+const Svg = styled('svg', { name, target: name })(() => ({
+  userSelect: 'none',
+  width: '1em',
+  height: '1em',
+  display: 'inline-block',
 
-    strokeLinecap: 'square',
-    strokeLinejoin: 'miter',
-    strokeMiterlimit: 4,
+  strokeLinecap: 'square',
+  strokeLinejoin: 'miter',
+  strokeMiterlimit: 4,
 
-    fill: 'none',
-    stroke: 'currentColor',
+  fill: 'none',
+  stroke: 'currentColor',
 
-    fontSize: '1.3em',
+  fontSize: '1.3em',
 
-    strokeWidth: svgIconStrokeWidth(28, 148, 1.4, 0.8),
+  strokeWidth: svgIconStrokeWidth(28, 148, 1.4, 0.8),
 
-    '&.sizeXs': { fontSize: sizes.xs },
-    '&.sizeSmall': { fontSize: sizes.small },
-    '&.sizeMedium': { fontSize: sizes.medium },
-    '&.sizeLarge': { fontSize: sizes.large },
-    '&.sizeXl': { fontSize: sizes.xl },
-    '&.sizeXxl': { fontSize: sizes.xxl },
+  '&.sizeXs': { fontSize: sizes.xs },
+  '&.sizeSmall': { fontSize: sizes.small },
+  '&.sizeMedium': { fontSize: sizes.medium },
+  '&.sizeLarge': { fontSize: sizes.large },
+  '&.sizeXl': { fontSize: sizes.xl },
+  '&.sizeXxl': { fontSize: sizes.xxl },
 
-    '&.fillIcon': {
-      fill: 'currentColor',
-      stroke: 'none',
-    },
+  '&.fillIcon': {
+    fill: 'currentColor',
+    stroke: 'none',
   },
-])
+}))
 
 /**
  * IconSvg component is supposed to be used in combination with `icons`

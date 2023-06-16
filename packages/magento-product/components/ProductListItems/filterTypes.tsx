@@ -12,16 +12,16 @@ import type {
 
 /** This is mainly based on ProductListQueryVariables */
 export type ProductListParams = {
-  pageSize?: Maybe<Scalars['Int']>
-  currentPage?: Maybe<Scalars['Int']>
+  pageSize?: Maybe<Scalars['Int']['input']>
+  currentPage?: Maybe<Scalars['Int']['input']>
   filters: ProductAttributeFilterInput
   sort: ProductAttributeSortInput
-  search?: Maybe<Scalars['String']>
+  search?: Maybe<Scalars['String']['input']>
   url: string
 }
 
 export type ProductFilterParams = {
-  pageSize?: Maybe<Scalars['Int']>
+  pageSize?: Maybe<Scalars['Int']['input']>
   currentPage: number
   filters: ProductAttributeFilterInput
   sort: keyof ProductAttributeSortInput | null

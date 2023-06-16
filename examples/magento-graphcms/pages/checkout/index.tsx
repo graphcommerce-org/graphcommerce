@@ -70,6 +70,7 @@ function ShippingPage() {
               switchPoint={0}
               primary={
                 <ComposedSubmit
+                  onSubmitSuccessful={() => router.push('/checkout/payment')}
                   render={(renderProps) => (
                     <ComposedSubmitLinkOrButton {...renderProps}>
                       <Trans id='Next' />

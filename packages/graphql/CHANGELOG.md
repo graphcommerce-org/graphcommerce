@@ -1,5 +1,31 @@
 # Change Log
 
+## 6.2.0-canary.44
+
+## 6.2.0-canary.43
+
+## 6.2.0-canary.42
+
+## 6.2.0-canary.41
+
+### Patch Changes
+
+- [#1960](https://github.com/graphcommerce-org/graphcommerce/pull/1960) [`f78caf5a8`](https://github.com/graphcommerce-org/graphcommerce/commit/f78caf5a83683f1ae4b901fb94bd22d50943fa2f) - Updated packages @apollo/client, react-hook-form, @emotion/\*, @lingui/\*, @mui/\* and various others. ([@paales](https://github.com/paales))
+
+- [#1960](https://github.com/graphcommerce-org/graphcommerce/pull/1960) [`86e14569b`](https://github.com/graphcommerce-org/graphcommerce/commit/86e14569b1f68f73be7f93b614e36b382c5debff) - Updated to the latest release of GraphQL codegen and solve compatibility issues with our own generator ([@paales](https://github.com/paales))
+
+## 6.2.0-canary.40
+
+## 6.2.0-canary.39
+
+## 6.2.0-canary.38
+
+## 6.2.0-canary.37
+
+## 6.2.0-canary.36
+
+## 6.2.0-canary.35
+
 ## 6.2.0-canary.34
 
 ## 6.2.0-canary.33

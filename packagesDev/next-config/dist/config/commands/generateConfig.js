@@ -25,6 +25,7 @@ async function generateConfig() {
                     content: '/* eslint-disable */',
                     schema: 'zod',
                     notAllowEmptyString: true,
+                    strictScalars: true,
                     enumsAsTypes: true,
                     scalarSchemas: {
                         Domain: 'z.string()',
