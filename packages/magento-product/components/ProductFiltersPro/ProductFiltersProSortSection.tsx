@@ -51,9 +51,9 @@ export function ProductFiltersProSortSection(props: ProductFiltersProSortSection
       right={
         activeSort ? (
           <Button
-            // variant='inline'
             color='primary'
-            onClick={() => {
+            onClick={(e) => {
+              e.stopPropagation()
               form.resetField('sort', { defaultValue: null })
               form.resetField('currentPage', { defaultValue: 1 })
             }}

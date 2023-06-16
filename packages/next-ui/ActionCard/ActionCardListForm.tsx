@@ -20,8 +20,6 @@ export type ActionCardListFormProps<A, F extends FieldValues = FieldValues> = Om
   Omit<ControllerProps<F>, 'render'> & {
     items: A[]
     render: React.FC<ActionCardItemRenderProps<A>>
-  } & {
-    showMoreAfter?: number
   }
 
 export function ActionCardListForm<
@@ -38,11 +36,9 @@ export function ActionCardListForm<
     errorMessage,
     defaultValue,
     multiple,
-    showMoreAfter,
     ...other
   } = props
   const RenderItem = render as React.FC<ActionCardItemRenderProps<ActionCardItemBase>>
-  const [show, setShow] = React.useState(false)
 
   function onSelect(itemValue: unknown, selectValues: unknown) {
     return multiple
@@ -67,10 +63,8 @@ export function ActionCardListForm<
           onChange={(_, incomming) => onChange(incomming)}
           error={formState.isSubmitted && !!fieldState.error}
           errorMessage={fieldState.error?.message}
-          show={show}
-          showMoreAfter={showMoreAfter}
         >
-          {items.map((item, index) => (
+          {items.map((item) => (
             <RenderItem
               {...item}
               key={item.value ?? ''}
@@ -80,31 +74,8 @@ export function ActionCardListForm<
                 e.preventDefault()
                 onChange(null)
               }}
-              index={index}
-              show={show}
-              showMoreAfter={showMoreAfter}
             />
           ))}
-          {showMoreAfter && items.length > showMoreAfter && (
-            <Button
-              sx={(theme) => ({
-                width: 'fit-content',
-                mt: theme.spacings.xxs,
-              })}
-              color='primary'
-              variant='text'
-              onClick={() => setShow(!show)}
-            >
-              {!show ? <Trans id='More options' /> : <Trans id='Less options' />}{' '}
-              <IconSvg
-                sx={{
-                  transform: show ? 'rotate(180deg)' : 'rotate(0deg)',
-                  transition: 'transform 0.3s ease-in-out',
-                }}
-                src={iconChevronDown}
-              />
-            </Button>
-          )}
         </ActionCardList>
       )}
     />

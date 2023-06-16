@@ -297,7 +297,8 @@ export function ActionCard(props: ActionCardProps) {
               <Box
                 className={classes.title}
                 sx={{
-                  typography: 'subtitle2',
+                  '&.sizeSmall': { typography: 'body2' },
+                  '&.sizeMedium': { typography: 'body1' },
                   '&.sizeLarge': { typography: 'h6' },
                 }}
               >

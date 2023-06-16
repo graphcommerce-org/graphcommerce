@@ -37,11 +37,9 @@ export function ProductFilterEqualSection(props: FilterProps) {
         ...option,
         title: (
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-            <Typography sx={{ marginRight: 1 }}>{option.label}</Typography>
+            <Box sx={{ marginRight: 1 }}>{option.label}</Box>
             {option.count !== null && (
-              <Typography variant='caption' color='text.disabled'>
-                ({option.count})
-              </Typography>
+              <Box sx={{ typography: 'caption', color: 'text.disabled' }}>({option.count})</Box>
             )}
           </Box>
         ),

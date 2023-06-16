@@ -1,8 +1,12 @@
-import { RenderType, responsiveVal } from '@graphcommerce/next-ui'
+import { RenderType, extendableComponent, responsiveVal } from '@graphcommerce/next-ui'
 import { Box, BoxProps } from '@mui/material'
 import { ProductListItemFragment } from '../../Api/ProductListItem.gql'
 import { ProductListItemProps } from '../ProductListItem/ProductListItem'
 import { ProductListItemRenderer } from './renderer'
+
+type ComponentState = {
+  size?: 'normal' | 'small'
+}
 
 export type ProductItemsGridProps = {
   items?:
@@ -12,9 +16,14 @@ export type ProductItemsGridProps = {
   renderers: ProductListItemRenderer
   loadingEager?: number
   title: string
-  size?: 'normal' | 'small'
   sx?: BoxProps['sx']
-} & Pick<ProductListItemProps, 'onClick' | 'titleComponent'>
+} & Pick<ProductListItemProps, 'onClick' | 'titleComponent'> &
+  ComponentState
+
+const slots = ['root'] as const
+const name = 'ProductListItemsBase' as const
+
+const { withState } = extendableComponent<ComponentState, typeof name, typeof slots>(name, slots)
 
 export function ProductListItemsBase(props: ProductItemsGridProps) {
   const {
@@ -27,20 +36,28 @@ export function ProductListItemsBase(props: ProductItemsGridProps) {
     onClick,
   } = props
 
+  const classes = withState({ size })
+
   return (
     <Box
+      className={classes.root}
       sx={[
         (theme) => ({
           display: 'grid',
           gridColumnGap: theme.spacings.md,
           gridRowGap: theme.spacings.md,
+
+          '&.sizeSmall': {
+            gridTemplateColumns: `repeat(auto-fill, minmax(${responsiveVal(150, 280)}, 1fr))`,
+          },
+          '&.sizeNormal': {
+            gridTemplateColumns: {
+              xs: `repeat(2, 1fr)`,
+              md: `repeat(3, 1fr)`,
+              lg: `repeat(4, 1fr)`,
+            },
+          },
         }),
-        size === 'small' && {
-          gridTemplateColumns: `repeat(auto-fill, minmax(${responsiveVal(150, 280)}, 1fr))`,
-        },
-        size === 'normal' && {
-          gridTemplateColumns: { xs: `repeat(2, 1fr)`, md: `repeat(3, 1fr)`, lg: `repeat(4, 1fr)` },
-        },
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >

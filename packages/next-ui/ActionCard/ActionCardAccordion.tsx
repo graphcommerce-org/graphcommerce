@@ -38,7 +38,7 @@ export function ActionCardAccordion(props: ActionCardAccordionProps) {
         expandIcon={<IconSvg src={iconChevronDown} />}
         sx={{
           px: 0,
-          typography: 'subtitle1',
+          typography: 'h6',
           minHeight: 54,
           '& .MuiAccordionSummary-content': {
             display: 'flex',

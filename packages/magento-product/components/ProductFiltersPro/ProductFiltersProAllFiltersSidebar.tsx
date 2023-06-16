@@ -53,39 +53,41 @@ export function ProductFiltersProAllFiltersSidebar(props: AllFiltersSidebar) {
         [theme.breakpoints.down('md')]: { display: 'none' },
       })}
     >
-      <Button
-        sx={(theme) => ({
-          mb: theme.spacings.xs,
-          transition: 'ease-in-out 250ms all',
-          color: theme.palette.text.primary,
-          backgroundColor:
-            theme.palette.mode === 'light'
-              ? alpha(theme.palette.primary.main, theme.palette.action.hoverOpacity)
-              : lighten(theme.palette.background.default, theme.palette.action.hoverOpacity),
-          '&:hover': {
-            color: theme.palette.primary.contrastText,
-          },
-        })}
-        key='1'
-        href='#'
-        variant='pill'
-        size='medium'
-        color='primary'
-        onClick={(e) => {
-          // Resets all filters
-          e.preventDefault()
-          if (hasFilters) {
-            form.setValue('filters', { category_uid: params.filters.category_uid })
-            form.setValue('currentPage', 1)
-            form.setValue('sort', null)
-            form.setValue('dir', null)
-            return submit()
-          }
-          return null
-        }}
-      >
-        <Trans id='Clear all filters' />
-      </Button>
+      {hasFilters && (
+        <Button
+          sx={(theme) => ({
+            mb: theme.spacings.xs,
+            transition: 'ease-in-out 250ms all',
+            color: theme.palette.text.primary,
+            backgroundColor:
+              theme.palette.mode === 'light'
+                ? alpha(theme.palette.primary.main, theme.palette.action.hoverOpacity)
+                : lighten(theme.palette.background.default, theme.palette.action.hoverOpacity),
+            '&:hover': {
+              color: theme.palette.primary.contrastText,
+            },
+          })}
+          key='1'
+          href='#'
+          variant='pill'
+          size='medium'
+          color='primary'
+          onClick={(e) => {
+            // Resets all filters
+            e.preventDefault()
+            if (hasFilters) {
+              form.setValue('filters', { category_uid: params.filters.category_uid })
+              form.setValue('currentPage', 1)
+              form.setValue('sort', null)
+              form.setValue('dir', null)
+              return submit()
+            }
+            return null
+          }}
+        >
+          <Trans id='Clear all filters' />
+        </Button>
+      )}
       <ProductFiltersProSortSection sort_fields={sort_fields} total_count={total_count} />
       <ProductFiltersProLimitSection />
       <ProductFiltersProAggregations

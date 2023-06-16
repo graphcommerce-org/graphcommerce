@@ -114,111 +114,44 @@ function CategoryPage(props: CategoryProps) {
           <CategoryChildren params={params}>{category.children}</CategoryChildren>
 
           {import.meta.graphCommerce.productFiltersPro ? (
-            <>
-              {import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR' ? (
-                <ProductFiltersPro params={params}>
-                  <StickyBelowHeader sx={{ display: { xs: 'block', md: 'none' } }}>
-                    <ProductListFiltersContainer>
-                      <ProductFiltersProFilterChips
-                        {...filters}
-                        appliedAggregations={products.aggregations}
-                        filterTypes={filterTypes}
-                      />
-                      <ProductFiltersProSortChip {...products} />
-                      <ProductFiltersProLimitChip />
-                      <ProductFiltersProAllFiltersChip
-                        {...products}
-                        {...filters}
-                        appliedAggregations={products.aggregations}
-                        filterTypes={filterTypes}
-                      />
-                    </ProductListFiltersContainer>
-                  </StickyBelowHeader>
-                  <Container
-                    maxWidth={false}
-                    sx={(theme) => ({
-                      display: 'grid',
-                      gridTemplate: {
-                        xs: `
-                        "count"      auto
-                        "items"      1fr
-                        "pagination" auto
-                        `,
-                        md: `
-                        "sidebar count"      auto
-                        "sidebar items"      1fr
-                        "sidebar pagination" auto
-                        /300px   auto
-                        `,
-                      },
-                      columnGap: theme.spacings.md,
-                    })}
-                  >
-                    <Box sx={{ gridArea: 'sidebar', display: { xs: 'none', md: 'block' } }}>
-                      <ProductFiltersProAllFiltersSidebar
-                        {...products}
-                        {...filters}
-                        appliedAggregations={products?.aggregations}
-                        filterTypes={filterTypes}
-                      />
-                    </Box>
-                    <ProductListCount
-                      total_count={products?.total_count}
-                      sx={() => ({
-                        gridArea: 'count',
-                        mt: { md: 0 },
-                        width: '100%',
-                      })}
-                    />
-                    <ProductListItems
-                      sx={{
-                        gridArea: 'items',
-                        gridTemplateColumns: { xs: `1fr 1fr`, lg: `1fr 1fr 1fr` },
-                      }}
-                      title={category.name ?? ''}
-                      items={products?.items}
-                      loadingEager={1}
-                    />
-                    <ProductListPagination
-                      page_info={products?.page_info}
-                      params={params}
-                      sx={{ gridArea: 'pagination' }}
-                    />
-                  </Container>
-                </ProductFiltersPro>
-              ) : (
-                <>
-                  <StickyBelowHeader>
-                    <ProductFiltersPro params={params}>
-                      <ProductListFiltersContainer>
-                        <ProductFiltersProFilterChips
-                          {...filters}
-                          appliedAggregations={products.aggregations}
-                          filterTypes={filterTypes}
-                        />
-                        <ProductFiltersProSortChip {...products} />
-                        <ProductFiltersProLimitChip />
-                        <ProductFiltersProAllFiltersChip
-                          {...products}
-                          {...filters}
-                          appliedAggregations={products.aggregations}
-                          filterTypes={filterTypes}
-                        />
-                      </ProductListFiltersContainer>
-                    </ProductFiltersPro>
-                  </StickyBelowHeader>
-                  <Container maxWidth={false}>
-                    <ProductListCount total_count={products?.total_count} />
-                    <ProductListItems
-                      title={category.name ?? ''}
-                      items={products?.items}
-                      loadingEager={1}
-                    />
-                    <ProductListPagination page_info={products?.page_info} params={params} />
-                  </Container>
-                </>
-              )}
-            </>
+            <ProductFiltersPro
+              params={params}
+              chips={
+                <ProductListFiltersContainer>
+                  <ProductFiltersProFilterChips
+                    {...filters}
+                    appliedAggregations={products.aggregations}
+                    filterTypes={filterTypes}
+                  />
+                  <ProductFiltersProSortChip {...products} />
+                  <ProductFiltersProLimitChip />
+                  <ProductFiltersProAllFiltersChip
+                    {...products}
+                    {...filters}
+                    appliedAggregations={products.aggregations}
+                    filterTypes={filterTypes}
+                  />
+                </ProductListFiltersContainer>
+              }
+              sidebar={
+                import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR' && (
+                  <ProductFiltersProAllFiltersSidebar
+                    {...products}
+                    {...filters}
+                    appliedAggregations={products?.aggregations}
+                    filterTypes={filterTypes}
+                  />
+                )
+              }
+              count={<ProductListCount total_count={products?.total_count} />}
+            >
+              <ProductListItems
+                title={category.name ?? ''}
+                items={products?.items}
+                loadingEager={1}
+              />
+              <ProductListPagination page_info={products?.page_info} params={params} />
+            </ProductFiltersPro>
           ) : (
             <>
               <StickyBelowHeader>

@@ -5,6 +5,9 @@ import { Button } from '../Button'
 import { extendableComponent } from '../Styles'
 import { ActionCardProps } from './ActionCard'
 import { ActionCardLayout } from './ActionCardLayout'
+import { Trans } from '@lingui/react'
+import { IconSvg } from '../IconSvg'
+import { iconChevronDown } from '../icons'
 
 type MultiSelect = {
   multiple: true
@@ -23,7 +26,6 @@ type Select = {
 }
 
 export type ActionCardListProps<SelectOrMulti = MultiSelect | Select> = {
-  show?: boolean
   showMoreAfter?: number
   children?: React.ReactNode
   required?: boolean
@@ -60,8 +62,7 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
     const {
       children,
       required,
-      showMoreAfter,
-      show,
+      showMoreAfter = 1000000,
       error = false,
       errorMessage,
       size = 'medium',
@@ -71,6 +72,8 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
       collapse = false,
       sx = [],
     } = props
+
+    const [show, setShow] = React.useState(false)
 
     const handleChange: ActionCardProps['onClick'] = isMulti(props)
       ? (event, v) => {
@@ -177,6 +180,28 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
           })}
           {childButtons.map((child) => child)}
         </ActionCardLayout>
+
+        {childActionCards.length > showMoreAfter && (
+          <Button
+            sx={(theme) => ({
+              width: 'fit-content',
+              mt: theme.spacings.xxs,
+            })}
+            color='primary'
+            variant='text'
+            onClick={() => setShow(!show)}
+          >
+            {!show ? <Trans id='More options' /> : <Trans id='Less options' />}{' '}
+            <IconSvg
+              sx={{
+                transform: show ? 'rotate(180deg)' : 'rotate(0deg)',
+                transition: 'transform 0.3s ease-in-out',
+              }}
+              src={iconChevronDown}
+            />
+          </Button>
+        )}
+
         {error && errorMessage && (
           <Alert
             severity='error'
