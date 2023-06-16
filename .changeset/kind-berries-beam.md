@@ -1,8 +1,9 @@
 ---
-'@graphcommerce/magento-graphcms': patch
-'@graphcommerce/magento-customer': patch
-'@graphcommerce/ecommerce-ui': patch
-'@graphcommerce/magento-cart': patch
+'@graphcommerce/magento-graphcms': minor
+'@graphcommerce/magento-customer': minor
+'@graphcommerce/ecommerce-ui': minor
+'@graphcommerce/magento-cart': minor
+'@graphcommerce/magento-search': minor
 ---
 
-Implement validation pattern for password inputs and refactor to reuse PasswordElement
+Created a new `<ValidatedPasswordElement/>` which validates according to Magento's validation groups and implement on all locations. Move remaining password fields to `<PasswordElement />`
