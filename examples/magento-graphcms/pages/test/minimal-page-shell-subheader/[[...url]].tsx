@@ -7,13 +7,17 @@ import {
   ProductFiltersDocument,
   ProductFiltersPro,
   ProductFiltersProAllFiltersChip,
+  ProductFiltersProAllFiltersSidebar,
   ProductFiltersProFilterChips,
   ProductFiltersProLimitChip,
   ProductFiltersProSortChip,
   ProductFiltersQuery,
+  ProductListCount,
   ProductListDocument,
   ProductListFilters,
   ProductListFiltersContainer,
+  ProductListItems,
+  ProductListPagination,
   ProductListParams,
   ProductListParamsProvider,
   ProductListQuery,
@@ -62,9 +66,10 @@ function MinimalLayoutSubheader(props: Props) {
           </Box>
         </LayoutTitle>
 
-        <StickyBelowHeader>
-          {import.meta.graphCommerce.productFiltersPro ? (
-            <ProductFiltersPro params={params}>
+        {import.meta.graphCommerce.productFiltersPro ? (
+          <ProductFiltersPro
+            params={params}
+            chips={
               <ProductListFiltersContainer>
                 <ProductFiltersProFilterChips
                   {...filters}
@@ -80,19 +85,42 @@ function MinimalLayoutSubheader(props: Props) {
                   filterTypes={filterTypes}
                 />
               </ProductListFiltersContainer>
-            </ProductFiltersPro>
-          ) : (
-            <ProductListParamsProvider value={params}>
-              <ProductListFiltersContainer>
-                <ProductListSort
-                  sort_fields={products?.sort_fields}
-                  total_count={products?.total_count}
+            }
+            sidebar={
+              import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR' && (
+                <ProductFiltersProAllFiltersSidebar
+                  {...products}
+                  {...filters}
+                  appliedAggregations={products?.aggregations}
+                  filterTypes={filterTypes}
                 />
-                <ProductListFilters {...filters} filterTypes={filterTypes} />
-              </ProductListFiltersContainer>
-            </ProductListParamsProvider>
-          )}
-        </StickyBelowHeader>
+              )
+            }
+            count={<ProductListCount total_count={products?.total_count} />}
+          >
+            <ProductListItems title='' items={products?.items} loadingEager={1} />
+            <ProductListPagination page_info={products?.page_info} params={params} />
+          </ProductFiltersPro>
+        ) : (
+          <>
+            <StickyBelowHeader>
+              <ProductListParamsProvider value={params}>
+                <ProductListFiltersContainer>
+                  <ProductListSort
+                    sort_fields={products?.sort_fields}
+                    total_count={products?.total_count}
+                  />
+                  <ProductListFilters {...filters} filterTypes={filterTypes} />
+                </ProductListFiltersContainer>
+              </ProductListParamsProvider>
+            </StickyBelowHeader>
+            <Container maxWidth={false}>
+              <ProductListCount total_count={products?.total_count} />
+              <ProductListItems title='' items={products?.items} loadingEager={1} />
+              <ProductListPagination page_info={products?.page_info} params={params} />
+            </Container>
+          </>
+        )}
       </Container>
     </ProductListParamsProvider>
   )
