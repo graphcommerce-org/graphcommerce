@@ -1,6 +1,6 @@
-import { Button, ChipOverlayOrPopperProps } from '@graphcommerce/next-ui'
+import { Button, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box, alpha, lighten } from '@mui/material'
+import { Box, SxProps, Theme, alpha, lighten } from '@mui/material'
 import { ProductFilterEqualSection } from './ProductFilterEqualSection'
 import { ProductFilterRangeSection } from './ProductFilterRangeSection'
 import { useProductFiltersPro } from './ProductFiltersPro'
@@ -17,11 +17,19 @@ import { activeAggregations } from './activeAggregations'
 import { applyAggregationCount } from './applyAggregationCount'
 
 type AllFiltersSidebar = ProductFiltersProAggregationsProps &
-  ProductFiltersProSortSectionProps &
-  Omit<
-    ChipOverlayOrPopperProps,
-    'label' | 'selected' | 'selectedLabel' | 'onApply' | 'onReset' | 'onClose' | 'children'
-  >
+  ProductFiltersProSortSectionProps & {
+    sx?: SxProps<Theme>
+  }
+
+const defaultRenderer = {
+  FilterRangeTypeInput: ProductFilterRangeSection,
+  FilterEqualTypeInput: ProductFilterEqualSection,
+}
+
+const { classes } = extendableComponent('ProductFiltersProAllFiltersSidebar', [
+  'root',
+  'button',
+] as const)
 
 export function ProductFiltersProAllFiltersSidebar(props: AllFiltersSidebar) {
   const {
@@ -31,7 +39,7 @@ export function ProductFiltersProAllFiltersSidebar(props: AllFiltersSidebar) {
     sort_fields,
     total_count,
     renderer,
-    ...rest
+    sx = [],
   } = props
 
   const { form, submit, params } = useProductFiltersPro()
@@ -47,14 +55,12 @@ export function ProductFiltersProAllFiltersSidebar(props: AllFiltersSidebar) {
 
   return (
     <Box
-      sx={(theme) => ({
-        display: 'grid',
-
-        [theme.breakpoints.down('md')]: { display: 'none' },
-      })}
+      sx={[{ display: { xs: 'none', md: 'grid' } }, ...(Array.isArray(sx) ? sx : [sx])]}
+      className={classes.root}
     >
       {hasFilters && (
         <Button
+          className={classes.button}
           sx={(theme) => ({
             mb: theme.spacings.xs,
             transition: 'ease-in-out 250ms all',
@@ -67,8 +73,6 @@ export function ProductFiltersProAllFiltersSidebar(props: AllFiltersSidebar) {
               color: theme.palette.primary.contrastText,
             },
           })}
-          key='1'
-          href='#'
           variant='pill'
           size='medium'
           color='primary'
@@ -94,10 +98,7 @@ export function ProductFiltersProAllFiltersSidebar(props: AllFiltersSidebar) {
         filterTypes={filterTypes}
         aggregations={aggregations}
         appliedAggregations={aggregationsCount}
-        renderer={{
-          FilterRangeTypeInput: ProductFilterRangeSection,
-          FilterEqualTypeInput: ProductFilterEqualSection,
-        }}
+        renderer={{ ...defaultRenderer, ...renderer }}
       />
     </Box>
   )

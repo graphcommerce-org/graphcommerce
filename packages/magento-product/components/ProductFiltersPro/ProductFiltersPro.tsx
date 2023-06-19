@@ -14,6 +14,7 @@ import {
   toFilterParams,
   toProductListParams,
 } from '../ProductListItems/filterTypes'
+import { ProductFiltersLayout } from '@graphcommerce/next-config'
 
 type FilterFormContextProps = {
   /**
@@ -47,11 +48,14 @@ export type FilterFormProviderProps = Omit<
   count?: React.ReactNode
 }
 
-const layout = import.meta.graphCommerce.productFiltersLayout
+const layout = (
+  import.meta.graphCommerce.productFiltersLayout ?? 'DEFAULT'
+).toLowerCase() as Lowercase<ProductFiltersLayout>
 
 type OwnerProps = {
-  layout?: NonNullable<typeof layout>
+  layout: typeof layout
 }
+
 const name = 'ProductFiltersPro' as const
 const parts = ['root', 'content'] as const
 const { withState } = extendableComponent<OwnerProps, typeof name, typeof parts>(name, parts)
@@ -75,9 +79,9 @@ export function ProductFiltersPro(props: FilterFormProviderProps) {
   const isMobile = useMediaQuery<Theme>((theme) => theme.breakpoints.down('md'), {
     defaultMatches: false,
   })
-  useFormAutoSubmit({ form, submit, disabled: isMobile || layout !== 'SIDEBAR' })
+  useFormAutoSubmit({ form, submit, disabled: isMobile || layout !== 'sidebar' })
 
-  const classes = withState({ layout: layout ?? 'DEFAULT' })
+  const classes = withState({ layout })
 
   return (
     <FilterFormContext.Provider
@@ -85,14 +89,14 @@ export function ProductFiltersPro(props: FilterFormProviderProps) {
     >
       <form noValidate onSubmit={submit} />
 
-      <StickyBelowHeader sx={{ display: { md: layout === 'SIDEBAR' ? 'none' : undefined } }}>
+      <StickyBelowHeader sx={{ display: { md: layout === 'sidebar' ? 'none' : undefined } }}>
         {chips}
       </StickyBelowHeader>
       <Container
         maxWidth={false}
         className={classes.content}
-        sx={{
-          '&.layoutSIDEBAR': {
+        sx={(theme) => ({
+          '&.layoutSidebar': {
             display: 'grid',
             gridTemplate: {
               xs: `
@@ -118,9 +122,9 @@ export function ProductFiltersPro(props: FilterFormProviderProps) {
               },
             },
           },
-        }}
+        })}
       >
-        {sidebar && layout === 'SIDEBAR' && (
+        {sidebar && layout === 'sidebar' && (
           <Box sx={{ gridArea: 'sidebar', display: { xs: 'none', md: 'block' } }}>{sidebar}</Box>
         )}
         <Box sx={{ gridArea: 'count', mt: { md: 0 } }}>{count}</Box>

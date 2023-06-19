@@ -1,12 +1,6 @@
-import {
-  ChipOverlayOrPopper,
-  ChipOverlayOrPopperProps,
-  filterNonNullableKeys,
-} from '@graphcommerce/next-ui'
+import { ChipOverlayOrPopper, ChipOverlayOrPopperProps } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box } from '@mui/material'
-import { activeAggregations } from './activeAggregations'
-import { applyAggregationCount } from './applyAggregationCount'
 import { ProductFilterEqualSection } from './ProductFilterEqualSection'
 import { ProductFilterRangeSection } from './ProductFilterRangeSection'
 import { useProductFiltersPro } from './ProductFiltersPro'
@@ -19,15 +13,22 @@ import {
   ProductFiltersProSortSection,
   ProductFiltersProSortSectionProps,
 } from './ProductFiltersProSortSection'
+import { activeAggregations } from './activeAggregations'
+import { applyAggregationCount } from './applyAggregationCount'
 
-type AllFiltersChip = ProductFiltersProAggregationsProps &
+export type ProductFiltersProAllFiltersChipProps = ProductFiltersProAggregationsProps &
   ProductFiltersProSortSectionProps &
   Omit<
     ChipOverlayOrPopperProps,
     'label' | 'selected' | 'selectedLabel' | 'onApply' | 'onReset' | 'onClose' | 'children'
   >
 
-export function ProductFiltersProAllFiltersChip(props: AllFiltersChip) {
+const defaultRenderer = {
+  FilterRangeTypeInput: ProductFilterRangeSection,
+  FilterEqualTypeInput: ProductFilterEqualSection,
+}
+
+export function ProductFiltersProAllFiltersChip(props: ProductFiltersProAllFiltersChipProps) {
   const {
     filterTypes,
     aggregations,
@@ -80,10 +81,7 @@ export function ProductFiltersProAllFiltersChip(props: AllFiltersChip) {
             filterTypes={filterTypes}
             aggregations={aggregations}
             appliedAggregations={aggregationsCount}
-            renderer={{
-              FilterRangeTypeInput: ProductFilterRangeSection,
-              FilterEqualTypeInput: ProductFilterEqualSection,
-            }}
+            renderer={{ ...defaultRenderer, ...renderer }}
           />
         </Box>
       )}
