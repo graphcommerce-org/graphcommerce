@@ -20,6 +20,7 @@ exports.demoConfig = {
     ],
     productFiltersPro: true,
     productFiltersLayout: 'DEFAULT',
+    compareVariant: 'ICON',
     robotsAllow: false,
     demoMode: true,
     limitSsg: true,

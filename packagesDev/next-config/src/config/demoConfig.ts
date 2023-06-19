@@ -22,6 +22,7 @@ export const demoConfig: PartialDeep<GraphCommerceConfig, { recurseIntoArrays: t
   ],
   productFiltersPro: true,
   productFiltersLayout: 'DEFAULT',
+  compareVariant: 'ICON',
   robotsAllow: false,
   demoMode: true,
   limitSsg: true,
