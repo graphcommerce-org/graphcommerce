@@ -17,7 +17,7 @@ export type ProductFiltersProSortSectionProps = ProductListSortFragment
 
 export function ProductFiltersProSortSection(props: ProductFiltersProSortSectionProps) {
   const { sort_fields } = props
-  const { form } = useProductFiltersPro()
+  const { form, submit } = useProductFiltersPro()
   const { control } = form
   const activeSort = useWatch({ control, name: 'sort' })
 
@@ -56,6 +56,7 @@ export function ProductFiltersProSortSection(props: ProductFiltersProSortSection
               e.stopPropagation()
               form.resetField('sort', { defaultValue: null })
               form.resetField('currentPage', { defaultValue: 1 })
+              return submit()
             }}
           >
             <Trans id='Clear' />

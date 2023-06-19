@@ -1,11 +1,11 @@
 import { Controller } from '@graphcommerce/ecommerce-ui'
 import type { ProductAttributeFilterInput } from '@graphcommerce/graphql-mesh'
+import { ActionCardAccordion, Button } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/react'
 import { isFilterTypeRange } from '../ProductListItems/filterTypes'
 import { PriceSlider, getMinMaxFromOptions } from './PriceSlider'
 import { useProductFiltersPro } from './ProductFiltersPro'
 import { FilterProps } from './ProductFiltersProAggregations'
-import { ActionCardAccordion, Button } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
 
 export function ProductFilterRangeSection(props: FilterProps) {
   const { aggregation } = props

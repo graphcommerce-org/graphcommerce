@@ -4,8 +4,9 @@ import {
   UseFormProps,
   UseFormReturn,
 } from '@graphcommerce/ecommerce-ui'
+import type { ProductFiltersLayout } from '@graphcommerce/next-config'
 import { extendableComponent, StickyBelowHeader, useMemoObject } from '@graphcommerce/next-ui'
-import { useTheme, useMediaQuery, Container, Box, Theme } from '@mui/material'
+import { useMediaQuery, Container, Box, Theme } from '@mui/material'
 import React, { BaseSyntheticEvent, createContext, useContext, useMemo } from 'react'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import {
@@ -14,7 +15,6 @@ import {
   toFilterParams,
   toProductListParams,
 } from '../ProductListItems/filterTypes'
-import { ProductFiltersLayout } from '@graphcommerce/next-config'
 
 type FilterFormContextProps = {
   /**
@@ -65,10 +65,7 @@ export function ProductFiltersPro(props: FilterFormProviderProps) {
   const { children, topleft, topbar, count, params, sidebar, ...formProps } = props
 
   const filterParams = useMemoObject(toFilterParams(params))
-  const form = useForm<ProductFilterParams>({
-    values: filterParams,
-    ...formProps,
-  })
+  const form = useForm<ProductFilterParams>({ values: filterParams, ...formProps })
 
   const { handleSubmit } = form
 
@@ -77,6 +74,7 @@ export function ProductFiltersPro(props: FilterFormProviderProps) {
     push({ ...toProductListParams(formValues), currentPage: 1 }),
   )
 
+  // We only need to auto-submit when the layout is not sidebar and we're viewing on desktop
   const isMobile = useMediaQuery<Theme>((theme) => theme.breakpoints.down('md'), {
     defaultMatches: false,
   })
