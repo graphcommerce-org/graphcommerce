@@ -105,7 +105,6 @@ function SearchResultPage(props: SearchResultProps) {
               <CategorySearchResult key={category?.url_path} search={search} {...category} />
             ))}
           </Container>
-          <SearchDivider />
         </Hidden>
 
         {noSearchResults && <NoSearchResults search={search} />}
@@ -115,7 +114,11 @@ function SearchResultPage(props: SearchResultProps) {
               <ProductFiltersPro
                 params={params}
                 chips={
-                  <ProductListFiltersContainer>
+                  <ProductListFiltersContainer
+                    sx={(theme) => ({
+                      mt: theme.spacings.sm,
+                    })}
+                  >
                     <ProductFiltersProFilterChips
                       {...filters}
                       appliedAggregations={products.aggregations}
@@ -146,7 +149,6 @@ function SearchResultPage(props: SearchResultProps) {
                     total_count={products?.total_count}
                     sx={() => ({
                       gridArea: 'count',
-                      mt: { md: 0 },
                       width: '100%',
                     })}
                   />
