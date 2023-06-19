@@ -22,15 +22,10 @@ export function CategoryDescription(props: CategoryDescriptionProps) {
       sx={[
         (theme) => ({
           gridArea: 'description',
-          margin: `0 auto ${theme.spacings.sm}`,
+          margin: `0 auto 0`,
           padding: `0 ${theme.page.horizontal}`,
           textAlign: 'center',
-          [theme.breakpoints.up('md')]: {
-            maxWidth: '50%',
-          },
-          [theme.breakpoints.up('xl')]: {
-            maxWidth: '30%',
-          },
+          maxWidth: { md: '50%', xl: '30%' },
           typography: 'subtitle1',
         }),
         ...(Array.isArray(sx) ? sx : [sx]),

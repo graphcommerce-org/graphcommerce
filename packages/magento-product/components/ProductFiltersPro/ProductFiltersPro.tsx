@@ -43,7 +43,8 @@ export type FilterFormProviderProps = Omit<
   children: React.ReactNode
   params: ProductListParams
 
-  chips: React.ReactNode
+  topleft?: React.ReactNode
+  topbar: React.ReactNode
   sidebar?: React.ReactNode
   count?: React.ReactNode
 }
@@ -61,7 +62,7 @@ const parts = ['root', 'content'] as const
 const { withState } = extendableComponent<OwnerProps, typeof name, typeof parts>(name, parts)
 
 export function ProductFiltersPro(props: FilterFormProviderProps) {
-  const { children, chips, count, params, sidebar, ...formProps } = props
+  const { children, topleft, topbar, count, params, sidebar, ...formProps } = props
 
   const filterParams = useMemoObject(toFilterParams(params))
   const form = useForm<ProductFilterParams>({
@@ -79,7 +80,7 @@ export function ProductFiltersPro(props: FilterFormProviderProps) {
   const isMobile = useMediaQuery<Theme>((theme) => theme.breakpoints.down('md'), {
     defaultMatches: false,
   })
-  useFormAutoSubmit({ form, submit, disabled: isMobile || layout !== 'sidebar' })
+  useFormAutoSubmit({ form, submit, wait: 0, disabled: isMobile || layout !== 'sidebar' })
 
   const classes = withState({ layout })
 
@@ -90,7 +91,7 @@ export function ProductFiltersPro(props: FilterFormProviderProps) {
       <form noValidate onSubmit={submit} />
 
       <StickyBelowHeader sx={{ display: { md: layout === 'sidebar' ? 'none' : undefined } }}>
-        {chips}
+        {topbar}
       </StickyBelowHeader>
       <Container
         maxWidth={false}
@@ -105,7 +106,7 @@ export function ProductFiltersPro(props: FilterFormProviderProps) {
                 "pagination" auto
               `,
               md: `
-                "count   count"      auto
+                "topleft   count"      auto
                 "sidebar items"      1fr
                 "sidebar pagination" auto
                 /300px   auto
@@ -124,6 +125,7 @@ export function ProductFiltersPro(props: FilterFormProviderProps) {
           },
         })}
       >
+        <Box sx={{ gridArea: 'topleft', alignSelf: 'center' }}>{topleft}</Box>
         {sidebar && layout === 'sidebar' && (
           <Box sx={{ gridArea: 'sidebar', display: { xs: 'none', md: 'block' } }}>{sidebar}</Box>
         )}

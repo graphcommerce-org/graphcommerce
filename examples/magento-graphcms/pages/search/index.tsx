@@ -1,10 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
-  ProductFiltersPro,
-  ProductFiltersProFilterChips,
-  ProductFiltersProSortChip,
-  ProductListFiltersContainer,
-  ProductListParamsProvider,
   ProductListDocument,
   extractUrlQuery,
   parseParams,
@@ -14,37 +9,24 @@ import {
   ProductFiltersDocument,
   ProductListQuery,
   ProductFiltersQuery,
-  ProductFiltersProAllFiltersChip,
-  ProductFiltersProLimitChip,
-  AddProductsToCartForm,
-  ProductFiltersProAllFiltersSidebar,
 } from '@graphcommerce/magento-product'
 import {
   CategorySearchDocument,
   CategorySearchQuery,
   CategorySearchResult,
   NoSearchResults,
-  ProductListCountSearch,
-  ProductListFiltersSearch,
-  ProductListItemsSearch,
-  ProductListPaginationSearch,
-  ProductListSortSearch,
   SearchContext,
   SearchForm,
 } from '@graphcommerce/magento-search'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import {
-  StickyBelowHeader,
-  GetStaticProps,
-  LayoutTitle,
-  LayoutHeader,
-} from '@graphcommerce/next-ui'
+import { GetStaticProps, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Box, Container, Hidden } from '@mui/material'
-import { LayoutNavigation, LayoutNavigationProps, productListRenderer } from '../../components'
+import { Container, Hidden } from '@mui/material'
+import { LayoutNavigation, LayoutNavigationProps } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
+import { SearchFilterLayout } from '../../components/ProductListItems/ProductListFilterLayout'
 
 type SearchResultProps = ProductListQuery &
   ProductFiltersQuery &
@@ -108,77 +90,13 @@ function SearchResultPage(props: SearchResultProps) {
 
         {noSearchResults && <NoSearchResults search={search} />}
         {products && products.items && products?.items?.length > 0 && (
-          <>
-            {import.meta.graphCommerce.productFiltersPro ? (
-              <ProductFiltersPro
-                params={params}
-                chips={
-                  <ProductListFiltersContainer>
-                    <ProductFiltersProFilterChips
-                      {...filters}
-                      appliedAggregations={products.aggregations}
-                      filterTypes={filterTypes}
-                    />
-                    <ProductFiltersProSortChip {...products} />
-                    <ProductFiltersProLimitChip />
-                    <ProductFiltersProAllFiltersChip
-                      {...products}
-                      {...filters}
-                      appliedAggregations={products.aggregations}
-                      filterTypes={filterTypes}
-                    />
-                  </ProductListFiltersContainer>
-                }
-                sidebar={
-                  import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR' && (
-                    <ProductFiltersProAllFiltersSidebar
-                      {...products}
-                      {...filters}
-                      appliedAggregations={products?.aggregations}
-                      filterTypes={filterTypes}
-                    />
-                  )
-                }
-                count={<ProductListCountSearch total_count={products?.total_count} />}
-              >
-                <AddProductsToCartForm>
-                  <ProductListItemsSearch
-                    renderers={productListRenderer}
-                    title={`Search ${search}`}
-                    items={products?.items}
-                    loadingEager={1}
-                  />
-                </AddProductsToCartForm>
-                <ProductListPaginationSearch page_info={products?.page_info} params={params} />
-              </ProductFiltersPro>
-            ) : (
-              <>
-                <StickyBelowHeader>
-                  <ProductListParamsProvider value={params}>
-                    <ProductListFiltersContainer>
-                      <ProductListSortSearch
-                        sort_fields={products?.sort_fields}
-                        total_count={products?.total_count}
-                      />
-                      <ProductListFiltersSearch {...filters} filterTypes={filterTypes} />
-                    </ProductListFiltersContainer>
-                  </ProductListParamsProvider>
-                </StickyBelowHeader>
-                <Container maxWidth={false}>
-                  <ProductListCountSearch total_count={products?.total_count} />
-                  <AddProductsToCartForm>
-                    <ProductListItemsSearch
-                      renderers={productListRenderer}
-                      title={`Search ${search}`}
-                      items={products?.items}
-                      loadingEager={1}
-                    />
-                  </AddProductsToCartForm>
-                  <ProductListPaginationSearch page_info={products?.page_info} params={params} />
-                </Container>
-              </>
-            )}
-          </>
+          <SearchFilterLayout
+            params={params}
+            filters={filters}
+            products={products}
+            filterTypes={filterTypes}
+            title={`Search ${search}`}
+          />
         )}
       </SearchContext>
     </>

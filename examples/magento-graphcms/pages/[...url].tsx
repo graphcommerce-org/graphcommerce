@@ -15,41 +15,18 @@ import {
   getFilterTypes,
   parseParams,
   ProductFiltersDocument,
-  ProductFiltersPro,
-  ProductFiltersProAllFiltersChip,
-  ProductFiltersProAllFiltersSidebar,
-  ProductFiltersProFilterChips,
-  ProductFiltersProLimitChip,
-  ProductFiltersProSortChip,
   ProductFiltersQuery,
-  ProductListCount,
   ProductListDocument,
-  ProductListFilters,
-  ProductListFiltersContainer,
-  ProductListPagination,
   ProductListParams,
-  ProductListParamsProvider,
   ProductListQuery,
-  ProductListSort,
 } from '@graphcommerce/magento-product'
 import { StoreConfigDocument, redirectOrNotFound } from '@graphcommerce/magento-store'
-import {
-  StickyBelowHeader,
-  LayoutTitle,
-  LayoutHeader,
-  GetStaticProps,
-  MetaRobots,
-} from '@graphcommerce/next-ui'
+import { LayoutTitle, LayoutHeader, GetStaticProps, MetaRobots } from '@graphcommerce/next-ui'
 import { Container } from '@mui/material'
 import { GetStaticPaths } from 'next'
-import {
-  LayoutNavigation,
-  LayoutNavigationProps,
-  ProductListItems,
-  RowProduct,
-  RowRenderer,
-} from '../components'
+import { LayoutNavigation, LayoutNavigationProps, RowProduct, RowRenderer } from '../components'
 import { LayoutDocument } from '../components/Layout/Layout.gql'
+import { CategoryFilterLayout } from '../components/ProductListItems/ProductListFilterLayout'
 import { CategoryPageDocument, CategoryPageQuery } from '../graphql/CategoryPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
 
@@ -113,69 +90,13 @@ function CategoryPage(props: CategoryProps) {
           <CategoryDescription description={category.description} />
           <CategoryChildren params={params}>{category.children}</CategoryChildren>
 
-          {import.meta.graphCommerce.productFiltersPro ? (
-            <ProductFiltersPro
-              params={params}
-              chips={
-                <ProductListFiltersContainer>
-                  <ProductFiltersProFilterChips
-                    {...filters}
-                    appliedAggregations={products.aggregations}
-                    filterTypes={filterTypes}
-                  />
-                  <ProductFiltersProSortChip {...products} />
-                  <ProductFiltersProLimitChip />
-                  <ProductFiltersProAllFiltersChip
-                    {...products}
-                    {...filters}
-                    appliedAggregations={products.aggregations}
-                    filterTypes={filterTypes}
-                  />
-                </ProductListFiltersContainer>
-              }
-              sidebar={
-                import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR' && (
-                  <ProductFiltersProAllFiltersSidebar
-                    {...products}
-                    {...filters}
-                    appliedAggregations={products?.aggregations}
-                    filterTypes={filterTypes}
-                  />
-                )
-              }
-              count={<ProductListCount total_count={products?.total_count} />}
-            >
-              <ProductListItems
-                title={category.name ?? ''}
-                items={products?.items}
-                loadingEager={1}
-              />
-              <ProductListPagination page_info={products?.page_info} params={params} />
-            </ProductFiltersPro>
-          ) : (
-            <>
-              <StickyBelowHeader>
-                <ProductListParamsProvider value={params}>
-                  <ProductListFiltersContainer>
-                    <ProductListSort
-                      sort_fields={products?.sort_fields}
-                      total_count={products?.total_count}
-                    />
-                    <ProductListFilters {...filters} filterTypes={filterTypes} />
-                  </ProductListFiltersContainer>
-                </ProductListParamsProvider>
-              </StickyBelowHeader>
-              <Container maxWidth={false}>
-                <ProductListCount total_count={products?.total_count} />
-                <ProductListItems
-                  title={category.name ?? ''}
-                  items={products?.items}
-                  loadingEager={1}
-                />
-                <ProductListPagination page_info={products?.page_info} params={params} />
-              </Container>
-            </>
-          )}
+          <CategoryFilterLayout
+            params={params}
+            filters={filters}
+            products={products}
+            filterTypes={filterTypes}
+            title={category.name ?? ''}
+          />
         </>
       )}
       {page && (

@@ -5,30 +5,19 @@ import {
   getFilterTypes,
   parseParams,
   ProductFiltersDocument,
-  ProductFiltersPro,
-  ProductFiltersProAllFiltersChip,
-  ProductFiltersProAllFiltersSidebar,
-  ProductFiltersProFilterChips,
-  ProductFiltersProLimitChip,
-  ProductFiltersProSortChip,
   ProductFiltersQuery,
-  ProductListCount,
   ProductListDocument,
-  ProductListFilters,
-  ProductListFiltersContainer,
-  ProductListItems,
-  ProductListPagination,
   ProductListParams,
   ProductListParamsProvider,
   ProductListQuery,
-  ProductListSort,
 } from '@graphcommerce/magento-product'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { StickyBelowHeader, LayoutTitle, LayoutHeader, LinkOrButton } from '@graphcommerce/next-ui'
+import { LayoutTitle, LayoutHeader, LinkOrButton } from '@graphcommerce/next-ui'
 import { GetStaticProps } from '@graphcommerce/next-ui/Page/types'
 import { Box, Container, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import { LayoutMinimal, LayoutMinimalProps } from '../../../components'
+import { CategoryFilterLayout } from '../../../components/ProductListItems/ProductListFilterLayout'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
 type Props = ProductListQuery &
@@ -66,61 +55,13 @@ function MinimalLayoutSubheader(props: Props) {
           </Box>
         </LayoutTitle>
 
-        {import.meta.graphCommerce.productFiltersPro ? (
-          <ProductFiltersPro
-            params={params}
-            chips={
-              <ProductListFiltersContainer>
-                <ProductFiltersProFilterChips
-                  {...filters}
-                  appliedAggregations={products?.aggregations}
-                  filterTypes={filterTypes}
-                />
-                <ProductFiltersProSortChip {...products} />
-                <ProductFiltersProLimitChip />
-                <ProductFiltersProAllFiltersChip
-                  {...products}
-                  {...filters}
-                  appliedAggregations={products?.aggregations}
-                  filterTypes={filterTypes}
-                />
-              </ProductListFiltersContainer>
-            }
-            sidebar={
-              import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR' && (
-                <ProductFiltersProAllFiltersSidebar
-                  {...products}
-                  {...filters}
-                  appliedAggregations={products?.aggregations}
-                  filterTypes={filterTypes}
-                />
-              )
-            }
-            count={<ProductListCount total_count={products?.total_count} />}
-          >
-            <ProductListItems title='' items={products?.items} loadingEager={1} />
-            <ProductListPagination page_info={products?.page_info} params={params} />
-          </ProductFiltersPro>
-        ) : (
-          <>
-            <StickyBelowHeader>
-              <ProductListParamsProvider value={params}>
-                <ProductListFiltersContainer>
-                  <ProductListSort
-                    sort_fields={products?.sort_fields}
-                    total_count={products?.total_count}
-                  />
-                  <ProductListFilters {...filters} filterTypes={filterTypes} />
-                </ProductListFiltersContainer>
-              </ProductListParamsProvider>
-            </StickyBelowHeader>
-            <Container maxWidth={false}>
-              <ProductListCount total_count={products?.total_count} />
-              <ProductListItems title='' items={products?.items} loadingEager={1} />
-              <ProductListPagination page_info={products?.page_info} params={params} />
-            </Container>
-          </>
-        )}
+        <CategoryFilterLayout
+          params={params}
+          filters={filters}
+          products={products}
+          filterTypes={filterTypes}
+          title='Products'
+        />
       </Container>
     </ProductListParamsProvider>
   )

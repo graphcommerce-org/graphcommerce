@@ -161,10 +161,7 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
 
         {childActionCards.length > showMoreAfter && (
           <Button
-            sx={(theme) => ({
-              width: 'fit-content',
-              mt: theme.spacings.xxs,
-            })}
+            sx={{ width: 'fit-content' }}
             color='primary'
             variant='text'
             onClick={() => setShow(!show)}
