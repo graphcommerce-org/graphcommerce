@@ -2,7 +2,7 @@
   "name": "@graphcommerce/hygraph-dynamic-rows",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "6.2.0-canary.44",
+  "version": "6.2.0-canary.45",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -12,15 +12,15 @@
     }
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "6.2.0-canary.44",
-    "@graphcommerce/prettier-config-pwa": "6.2.0-canary.44",
-    "@graphcommerce/typescript-config-pwa": "6.2.0-canary.44"
+    "@graphcommerce/eslint-config-pwa": "6.2.0-canary.45",
+    "@graphcommerce/prettier-config-pwa": "6.2.0-canary.45",
+    "@graphcommerce/typescript-config-pwa": "6.2.0-canary.45"
   },
   "dependencies": {
-    "@graphcommerce/graphql": "6.2.0-canary.44",
-    "@graphcommerce/image": "6.2.0-canary.44",
-    "@graphcommerce/next-ui": "6.2.0-canary.44",
-    "@graphcommerce/graphcms-ui": "6.2.0-canary.44"
+    "@graphcommerce/graphql": "6.2.0-canary.45",
+    "@graphcommerce/image": "6.2.0-canary.45",
+    "@graphcommerce/next-ui": "6.2.0-canary.45",
+    "@graphcommerce/graphcms-ui": "6.2.0-canary.45"
   },
   "peerDependencies": {
     "@mui/material": "^5.10.16",
