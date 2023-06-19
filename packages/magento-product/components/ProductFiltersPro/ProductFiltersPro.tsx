@@ -5,7 +5,7 @@ import {
   UseFormReturn,
 } from '@graphcommerce/ecommerce-ui'
 import { extendableComponent, StickyBelowHeader, useMemoObject } from '@graphcommerce/next-ui'
-import { useTheme, useMediaQuery, Container, Box } from '@mui/material'
+import { useTheme, useMediaQuery, Container, Box, Theme } from '@mui/material'
 import React, { BaseSyntheticEvent, createContext, useContext, useMemo } from 'react'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import {
@@ -58,8 +58,6 @@ const { withState } = extendableComponent<OwnerProps, typeof name, typeof parts>
 
 export function ProductFiltersPro(props: FilterFormProviderProps) {
   const { children, chips, count, params, sidebar, ...formProps } = props
-  const theme = useTheme()
-  const matches = useMediaQuery(theme.breakpoints.down('md'))
 
   const filterParams = useMemoObject(toFilterParams(params))
   const form = useForm<ProductFilterParams>({
@@ -74,7 +72,10 @@ export function ProductFiltersPro(props: FilterFormProviderProps) {
     push({ ...toProductListParams(formValues), currentPage: 1 }),
   )
 
-  useFormAutoSubmit({ form, submit, disabled: matches && layout === 'SIDEBAR' })
+  const isMobile = useMediaQuery<Theme>((theme) => theme.breakpoints.down('md'), {
+    defaultMatches: false,
+  })
+  useFormAutoSubmit({ form, submit, disabled: isMobile || layout !== 'SIDEBAR' })
 
   const classes = withState({ layout: layout ?? 'DEFAULT' })
 
