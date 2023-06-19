@@ -115,7 +115,7 @@ When Magento's StoreConfig adds this value, this can be replaced.
 
 Use compare functionality
 
-#### `compareVariant: [CompareVariant](#CompareVariant)`
+#### `compareVariant: [CompareVariant](#CompareVariant) (default: ICON)`
 
 By default the compare feature is denoted with a 'compare ICON' (2 arrows facing one another).
 This may be fine for experienced users, but for more clarity it's also possible to present the compare feature as a CHECKBOX accompanied by the 'Compare' label
@@ -132,7 +132,7 @@ This value should match Magento 2's configuration value for
 
 Debug configuration for GraphCommerce
 
-#### `demoMode: Boolean`
+#### `demoMode: Boolean (default: true)`
 
 Enables some demo specific code that is probably not useful for a project:
 
@@ -214,7 +214,7 @@ Limit the static generation of SSG when building
 
 To enable next.js' preview mode, configure the secret you'd like to use.
 
-#### `productFiltersLayout: [ProductFiltersLayout](#ProductFiltersLayout)`
+#### `productFiltersLayout: [ProductFiltersLayout](#ProductFiltersLayout) (default: DEFAULT)`
 
 Layout how the filters are rendered.
 DEFAULT: Will be rendered as horzontal chips on desktop and mobile
