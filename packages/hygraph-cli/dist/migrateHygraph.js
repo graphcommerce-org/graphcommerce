@@ -28,11 +28,9 @@ async function migrateHygraph() {
     const forceRun = true;
     // Read the existing models, components and enumerations from the schema
     // TODO: Read the existing unions from the schema
-    const schema = await (0, readSchema_1.readSchema)(config);
-    const { models, components, enumerations } = schema.viewer.project.environment.contentModel;
-    console.log(10, models);
-    console.log(20, components);
-    console.log(30, enumerations);
+    const schemaViewer = await (0, readSchema_1.readSchema)(config);
+    const schema = schemaViewer.viewer.project.environment.contentModel;
+    console.log(10, schema);
     // A list of possible migrations
     const possibleMigrations = [
         ['Dynamic Rows', migrations_1.dynamicRow],
@@ -77,7 +75,7 @@ async function migrateHygraph() {
         try {
             // Here we try to run the migration
             // eslint-disable-next-line no-await-in-loop
-            const result = await migration(forceRun ? undefined : name, config);
+            const result = await migration(forceRun ? undefined : name, config, schema);
             console.log(result);
             if (result.status !== 'SUCCESS') {
                 throw new Error(`[GraphCommerce]: Migration not successful: ${result.status} ${name}:\n${result.errors}`);

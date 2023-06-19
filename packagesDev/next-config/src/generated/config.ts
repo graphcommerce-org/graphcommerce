@@ -198,15 +198,15 @@ export type GraphCommerceConfig = {
    */
   googleTagmanagerId?: InputMaybe<Scalars['String']['input']>
   /**
-   * The HyGraph endpoint.> Read-only endpoint that allows low latency and high read-throughput
-   * content delivery.
+   * The HyGraph endpoint.> Read-only endpoint that allows low latency and high read-throughput content delivery.
    *
    * Project settings -> API Access -> High Performance Read-only Content API
    */
   hygraphEndpoint: Scalars['String']['input']
+  /** Hygraph Project ID. **Only used for migrations.** */
+  hygraphProjectId?: InputMaybe<Scalars['String']['input']>
   /**
-   * Content API. **Only used for migrations.**> Regular read & write endpoint that allows querying
-   * and mutating data in your project.
+   * Content API. **Only used for migrations.**> Regular read & write endpoint that allows querying and mutating data in your project.
    *
    * Project settings -> API Access -> Content API
    */
@@ -239,8 +239,9 @@ export type GraphCommerceConfig = {
    * - Delete public content views
    * - Can see schema view
    *
-   *   GC_HYGRAPH_WRITE_ACCESS_ENDPOINT="https://...hygraph.com/v2/..."
-   *   GC_HYGRAPH_WRITE_ACCESS_TOKEN="AccessTokenFromHygraph" yarn graphcommerce hygraph-migrate
+   *     GC_HYGRAPH_WRITE_ACCESS_ENDPOINT="https://...hygraph.com/v2/..."
+   *     GC_HYGRAPH_WRITE_ACCESS_TOKEN="AccessTokenFromHygraph"
+   *     yarn graphcommerce hygraph-migrate
    */
   hygraphWriteAccessToken?: InputMaybe<Scalars['String']['input']>
   /**
