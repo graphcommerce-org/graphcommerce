@@ -1,7 +1,8 @@
+import { PasswordElement } from '@graphcommerce/ecommerce-ui'
 import { Button, extendableComponent } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
-import { Box, SxProps, TextField, Theme } from '@mui/material'
+import { Box, Link, SxProps, Theme } from '@mui/material'
 import { SignInDocument, SignInMutationVariables } from './SignIn.gql'
 
 type InlineSignInFormProps = Omit<SignInMutationVariables, 'password'> & {
@@ -12,13 +13,13 @@ type InlineSignInFormProps = Omit<SignInMutationVariables, 'password'> & {
 const { classes } = extendableComponent('SignInFormInline', ['form', 'button'] as const)
 
 export function SignInFormInline(props: InlineSignInFormProps) {
-  const { email, sx = [] } = props
+  const { email, children, sx = [] } = props
   const form = useFormGqlMutation(
     SignInDocument,
     { defaultValues: { email }, onBeforeSubmit: (values) => ({ ...values, email }) },
     { errorPolicy: 'all' },
   )
-  const { muiRegister, handleSubmit, required, formState, error } = form
+  const { handleSubmit, required, formState, control } = form
   const submitHandler = handleSubmit(() => {})
 
   return (
@@ -41,35 +42,34 @@ export function SignInFormInline(props: InlineSignInFormProps) {
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
-      <TextField
+      <PasswordElement
+        control={control}
         variant='outlined'
-        type='password'
-        error={!!formState.errors.password || !!error?.message}
+        name='password'
         label={<Trans id='Password' />}
         autoFocus
         autoComplete='current-password'
         id='current-password'
         required={required.password}
-        {...muiRegister('password', { required: required.password })}
-        helperText={error?.message}
         disabled={formState.isSubmitting}
         InputProps={{
           endAdornment: (
-            <Button
-              href='/account/forgot-password'
-              color='secondary'
-              variant='text'
-              className={classes.button}
-              sx={{ minWidth: 'max-content' }}
-            >
+            <Link href='/account/forgot-password' underline='hover' sx={{ whiteSpace: 'nowrap' }}>
               <Trans id='Forgot password?' />
-            </Button>
+            </Link>
           ),
         }}
       />
-      <Button type='submit' loading={formState.isSubmitting} color='secondary' variant='pill'>
+      <Button
+        type='submit'
+        loading={formState.isSubmitting}
+        color='secondary'
+        variant='pill'
+        sx={{ alignSelf: 'start', marginTop: (theme) => `calc(${theme.spacings.xxs} * .33)` }}
+      >
         <Trans id='Sign in' />
       </Button>
+      {children}
     </Box>
   )
 }

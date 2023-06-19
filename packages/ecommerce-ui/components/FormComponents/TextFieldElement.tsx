@@ -59,7 +59,7 @@ export function TextFieldElement<TFieldValues extends FieldValues>({
           onBlur={onBlur}
           required={required}
           type={type}
-          error={!!error}
+          error={Boolean(error) || rest.error}
           helperText={
             error
               ? typeof parseError === 'function'

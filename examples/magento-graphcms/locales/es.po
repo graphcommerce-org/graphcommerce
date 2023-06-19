@@ -434,6 +434,10 @@ msgid "Menu"
 msgstr "Menú"
 
 #. js-lingui-explicit-id
+msgid "Minimum of different classes of characters in password is {passwordMinCharacterSets}. Classes of characters: Lower Case, Upper Case, Digits, Special Characters."
+msgstr "El número mínimo de diferentes clases de caracteres en la contraseña es {passwordMinCharacterSets}. Clases de caracteres: Minúsculas, Mayúsculas, Dígitos, Caracteres especiales."
+
+#. js-lingui-explicit-id
 msgid "More information"
 msgstr "Más información"
 
@@ -574,16 +578,12 @@ msgid "Password"
 msgstr "Contraseña"
 
 #. js-lingui-explicit-id
-msgid "Password must have at least 8 characters"
-msgstr "La contraseña debe tener al menos 8 caracteres"
+msgid "Password must have at least {minPasswordLength} characters"
+msgstr "La contraseña debe tener al menos {minPasswordLength} caracteres"
 
 #. js-lingui-explicit-id
 msgid "Passwords don't match"
 msgstr "Las contraseñas no coinciden"
-
-#. js-lingui-explicit-id
-msgid "Passwords should match"
-msgstr "Las contraseñas deben coincidir"
 
 #. js-lingui-explicit-id
 msgid "Pay"

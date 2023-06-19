@@ -1,14 +1,17 @@
-import { ApolloErrorAlert } from '@graphcommerce/ecommerce-ui'
-import { useQuery } from '@graphcommerce/graphql'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import {
+  ApolloErrorAlert,
+  PasswordElement,
+  PasswordRepeatElement,
+} from '@graphcommerce/ecommerce-ui'
+import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
 import { Button, extendableComponent, Form, FormRow } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Alert, Box, TextField } from '@mui/material'
+import { Alert, Box } from '@mui/material'
 import React from 'react'
 import { SignUpMutationVariables, SignUpMutation, SignUpDocument } from './SignUp.gql'
 import { SignUpConfirmDocument } from './SignUpConfirm.gql'
+import { ValidatedPasswordElement } from '../ValidatedPasswordElement/ValidatedPasswordElement'
 
 type SignUpFormInlineProps = Pick<SignUpMutationVariables, 'email'> & {
   children?: React.ReactNode
@@ -26,13 +29,8 @@ const { classes } = extendableComponent('SignUpFormInline', [
 
 const requireEmailValidation = import.meta.graphCommerce.customerRequireEmailConfirmation ?? false
 
-export function SignUpFormInline({
-  email,
-  children,
-  firstname,
-  lastname,
-  onSubmitted = () => {},
-}: SignUpFormInlineProps) {
+export function SignUpFormInline(props: SignUpFormInlineProps) {
+  const { email, children, firstname, lastname, onSubmitted = () => {} } = props
   const Mutation = requireEmailValidation ? SignUpConfirmDocument : SignUpDocument
 
   const form = useFormGqlMutation<
@@ -56,13 +54,9 @@ export function SignUpFormInline({
     { errorPolicy: 'all' },
   )
 
-  const { muiRegister, watch, handleSubmit, required, formState } = form
+  const { handleSubmit, formState, control, error, required } = form
+  const [remainingError, inputError] = graphqlErrorByCategory({ category: 'graphql-input', error })
   const submitHandler = handleSubmit(() => {})
-  const watchPassword = watch('password')
-
-  const minPasswordLength = Number(
-    useQuery(StoreConfigDocument).data?.storeConfig?.minimum_password_length ?? 8,
-  )
 
   if (requireEmailValidation && form.formState.isSubmitSuccessful) {
     return (
@@ -75,36 +69,25 @@ export function SignUpFormInline({
   return (
     <Form onSubmit={submitHandler} noValidate className={classes.form} sx={{ padding: 0 }}>
       <FormRow className={classes.row} sx={{ padding: 0 }}>
-        <TextField
+        <ValidatedPasswordElement
+          control={control}
+          name='password'
+          autoComplete='new-password'
           variant='outlined'
-          type='password'
-          error={!!formState.errors.password || !!form.error}
           label={<Trans id='Password' />}
-          autoFocus
-          autoComplete='new-password'
-          id='new-password'
           required={required.password}
-          {...muiRegister('password', {
-            required: required.password,
-            minLength: {
-              value: minPasswordLength,
-              message: i18n._(/* i18n */ 'Password must have at least 8 characters'),
-            },
-          })}
           disabled={formState.isSubmitting}
+          error={!!inputError}
+          helperText={inputError?.message}
         />
-        <TextField
-          variant='outlined'
-          type='password'
-          error={!!formState.errors.confirmPassword || !!form.error}
-          label={<Trans id='Confirm password' />}
+        <PasswordRepeatElement
+          control={control}
+          name='confirmPassword'
+          passwordFieldName='password'
           autoComplete='new-password'
+          variant='outlined'
+          label={<Trans id='Confirm password' />}
           required
-          {...muiRegister('confirmPassword', {
-            required: true,
-            validate: (value) => value === watchPassword,
-          })}
-          helperText={!!formState.errors.confirmPassword && <Trans id='Passwords should match' />}
           disabled={formState.isSubmitting}
         />
       </FormRow>
@@ -133,7 +116,7 @@ export function SignUpFormInline({
           </Box>
         </FormRow>
       </FormRow>
-      <ApolloErrorAlert error={form.error} />
+      <ApolloErrorAlert error={remainingError} />
     </Form>
   )
 }
