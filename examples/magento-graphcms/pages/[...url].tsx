@@ -40,7 +40,7 @@ import {
   GetStaticProps,
   MetaRobots,
 } from '@graphcommerce/next-ui'
-import { Box, Container } from '@mui/material'
+import { Container } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import {
   LayoutNavigation,

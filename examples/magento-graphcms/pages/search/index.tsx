@@ -30,7 +30,6 @@ import {
   ProductListPaginationSearch,
   ProductListSortSearch,
   SearchContext,
-  SearchDivider,
   SearchForm,
 } from '@graphcommerce/magento-search'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
@@ -114,11 +113,7 @@ function SearchResultPage(props: SearchResultProps) {
               <ProductFiltersPro
                 params={params}
                 chips={
-                  <ProductListFiltersContainer
-                    sx={(theme) => ({
-                      mt: theme.spacings.sm,
-                    })}
-                  >
+                  <ProductListFiltersContainer>
                     <ProductFiltersProFilterChips
                       {...filters}
                       appliedAggregations={products.aggregations}
@@ -144,33 +139,17 @@ function SearchResultPage(props: SearchResultProps) {
                     />
                   )
                 }
-                count={
-                  <ProductListCountSearch
-                    total_count={products?.total_count}
-                    sx={() => ({
-                      gridArea: 'count',
-                      width: '100%',
-                    })}
-                  />
-                }
+                count={<ProductListCountSearch total_count={products?.total_count} />}
               >
                 <AddProductsToCartForm>
                   <ProductListItemsSearch
-                    sx={{
-                      gridArea: 'items',
-                      gridTemplateColumns: { xs: `1fr 1fr`, lg: `1fr 1fr 1fr` },
-                    }}
                     renderers={productListRenderer}
                     title={`Search ${search}`}
                     items={products?.items}
                     loadingEager={1}
                   />
                 </AddProductsToCartForm>
-                <ProductListPaginationSearch
-                  page_info={products?.page_info}
-                  params={params}
-                  sx={{ gridArea: 'pagination' }}
-                />
+                <ProductListPaginationSearch page_info={products?.page_info} params={params} />
               </ProductFiltersPro>
             ) : (
               <>
