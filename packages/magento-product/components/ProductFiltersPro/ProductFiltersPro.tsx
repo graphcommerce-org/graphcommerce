@@ -78,7 +78,7 @@ export function ProductFiltersPro(props: FilterFormProviderProps) {
   const isMobile = useMediaQuery<Theme>((theme) => theme.breakpoints.down('md'), {
     defaultMatches: false,
   })
-  useFormAutoSubmit({ form, submit, wait: 0, disabled: isMobile || layout !== 'sidebar' })
+  useFormAutoSubmit({ form, submit, disabled: isMobile || layout !== 'sidebar' })
 
   const classes = withState({ layout })
 

@@ -8,18 +8,19 @@ export type ActionCardAccordionProps = {
   details: ReactNode
   right: ReactNode
   sx?: SxProps<Theme>
+  defaultExpanded?: boolean
 }
 
 export function ActionCardAccordion(props: ActionCardAccordionProps) {
-  const { summary, details, right, sx } = props
-  const [open, setOpen] = useState(true)
-  const handleChange = () => setOpen(!open)
+  const { summary, details, right, defaultExpanded = true, sx } = props
+  const [expanded, setExpanded] = useState(defaultExpanded)
+  const handleChange = () => setExpanded(!expanded)
 
   return (
     <Accordion
       square
       onChange={handleChange}
-      expanded={open}
+      expanded={expanded}
       variant='outlined'
       disableGutters
       sx={[
