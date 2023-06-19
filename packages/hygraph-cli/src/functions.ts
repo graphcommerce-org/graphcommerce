@@ -23,10 +23,6 @@ import {
 } from '@hygraph/management-sdk'
 import { Schema } from './types'
 
-function isTypeOfProps<T>(props: any, property: keyof T): props is T {
-  return props && property in props
-}
-
 export const capitalize = (word: string) =>
   word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
 
@@ -39,7 +35,7 @@ export const graphcommerceLog = (message: string, type?: 'info' | 'warning' | 'e
   console.log(type ? color[type] : '', `[GraphCommerce]: ${message}`)
 }
 
-export const validateFunction = (
+export const migrationAction = (
   client: Client,
   schema: Schema,
   type:
@@ -243,7 +239,7 @@ export const validateFunction = (
   const actionFunc = actionMap[action] && actionMap[action][type]
 
   if (!alreadyExists()) {
-    if (validProp && actionFunc && isTypeOfProps(props, validProp)) {
+    if (validProp && actionFunc) {
       graphcommerceLog(`${capitalize(action)} ${type} with apiId ${props.apiId}...`)
       actionFunc(props)
     }

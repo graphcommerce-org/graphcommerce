@@ -33,11 +33,17 @@ export const readSchema = async (config: GraphCommerceConfig) => {
                   apiId
                   apiIdPlural
                   displayName
+                  fields {
+                    apiId
+                  }
                 }
                 components {
                   apiId
                   apiIdPlural
                   displayName
+                  fields {
+                    apiId
+                  }
                 }
                 enumerations {
                   apiId
