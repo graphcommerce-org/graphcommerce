@@ -90,14 +90,13 @@ export function ProductFiltersPro(props: FilterFormProviderProps) {
 
   return (
     <FilterFormContext.Provider value={filterFormContext}>
-      <form noValidate onSubmit={submit} />
+      <form noValidate onSubmit={submit} id='products' />
       <FormAutoSubmit control={form.control} disabled={autoSubmitDisabled} submit={submit} />
 
       <StickyBelowHeader sx={{ display: { md: layout === 'sidebar' ? 'none' : undefined } }}>
         {topbar}
       </StickyBelowHeader>
       <Container
-        id='products'
         maxWidth={false}
         className={classes.content}
         sx={(theme) => ({
