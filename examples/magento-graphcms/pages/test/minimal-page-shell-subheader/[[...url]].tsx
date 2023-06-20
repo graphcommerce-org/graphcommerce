@@ -60,7 +60,7 @@ function MinimalLayoutSubheader(props: Props) {
           filters={filters}
           products={products}
           filterTypes={filterTypes}
-          title='Products'
+          category={null}
         />
       </Container>
     </ProductListParamsProvider>

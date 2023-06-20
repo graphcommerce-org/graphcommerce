@@ -38,7 +38,7 @@ export type ProductListFilterLayoutProps = ProductListQuery &
   }
 
 type CategoryWithFilterProps = ProductListFilterLayoutProps & {
-  category: NonNullable<NonNullable<NonNullable<CategoryPageQuery['categories']>['items']>[number]>
+  category: NonNullable<NonNullable<CategoryPageQuery['categories']>['items']>[number]
 }
 
 export function CategoryFilterLayout(props: CategoryWithFilterProps) {
@@ -106,7 +106,7 @@ export function CategoryFilterLayout(props: CategoryWithFilterProps) {
       </StickyBelowHeader>
       <Container maxWidth={false}>
         <ProductListCount total_count={products?.total_count} />
-        <ProductListItems title={title} items={products?.items} loadingEager={1} />
+        <ProductListItems title={category.name ?? ''} items={products?.items} loadingEager={1} />
         <ProductListPagination page_info={products?.page_info} params={params} />
       </Container>
     </>
