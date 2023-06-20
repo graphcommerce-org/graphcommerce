@@ -36,7 +36,7 @@ export function ProductFiltersProSortSection(props: ProductFiltersProSortSection
 
   return (
     <ActionCardAccordion
-      defaultExpanded={false}
+      defaultExpanded={!!activeSort}
       summary={<Trans id='Sort By' />}
       details={
         <ActionCardListForm

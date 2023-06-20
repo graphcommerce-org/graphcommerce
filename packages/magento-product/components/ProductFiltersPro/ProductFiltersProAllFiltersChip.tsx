@@ -67,7 +67,7 @@ export function ProductFiltersProAllFiltersChip(props: ProductFiltersProAllFilte
       {...rest}
     >
       {() => (
-        <Box sx={(theme) => ({ display: 'grid', rowGap: theme.spacings.sm })}>
+        <>
           <ProductFiltersProSortSection sort_fields={sort_fields} total_count={total_count} />
           <ProductFiltersProLimitSection />
           <ProductFiltersProAggregations
@@ -76,7 +76,7 @@ export function ProductFiltersProAllFiltersChip(props: ProductFiltersProAllFilte
             appliedAggregations={aggregationsCount}
             renderer={{ ...defaultRenderer, ...renderer }}
           />
-        </Box>
+        </>
       )}
     </ChipOverlayOrPopper>
   )
