@@ -183,7 +183,7 @@ The Google Tagmanager ID to be used on the site.
 
 This value is required even if you are configuring different values for each locale.
 
-#### `hygraphProjectId: ID`
+#### `hygraphProjectId: String`
 
 Hygraph Project ID. **Only used for migrations.**
 
