@@ -32,16 +32,19 @@ const readSchema = async (config) => {
                 models {
                   apiId
                   apiIdPlural
-                  displayName
+                  fields {
+                    apiId
+                  }
                 }
                 components {
                   apiId
                   apiIdPlural
-                  displayName
+                  fields {
+                    apiId
+                  }
                 }
                 enumerations {
                   apiId
-                  displayName
                 }
               }
             }
