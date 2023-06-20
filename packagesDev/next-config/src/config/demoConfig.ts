@@ -21,7 +21,7 @@ export const demoConfig: PartialDeep<GraphCommerceConfig, { recurseIntoArrays: t
     { locale: 'en-ca', magentoStoreCode: 'en_CA' },
   ],
   productFiltersPro: true,
-  productFiltersLayout: 'DEFAULT',
+  productFiltersLayout: 'SIDEBAR',
   compareVariant: 'ICON',
   robotsAllow: false,
   demoMode: true,
