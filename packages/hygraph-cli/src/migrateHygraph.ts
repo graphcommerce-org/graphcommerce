@@ -1,18 +1,10 @@
-/* eslint-disable no-console */
-/* eslint-disable import/no-extraneous-dependencies */
 import fs from 'fs'
 import { GraphCommerceConfig, loadConfig } from '@graphcommerce/next-config'
 import { MigrationInfo } from '@hygraph/management-sdk/dist/ManagementAPIClient'
 import dotenv from 'dotenv'
 import prompts, { PromptObject } from 'prompts'
-import {
-  dynamicRow,
-  GraphCommerce6,
-  removeRowColumnOne,
-  removeRowColumnThree,
-  removeRowColumnTwo,
-  removeRowLinks,
-} from './migrations'
+import { graphcommerceLog } from './functions'
+import { dynamicRow, GraphCommerce6 } from './migrations'
 import { readSchema } from './readSchema'
 import { Schema } from './types'
 
@@ -21,26 +13,28 @@ dotenv.config()
 export async function migrateHygraph() {
   const config = loadConfig(process.cwd())
 
-  // Read out the Graphcommerce version
+  /**
+   * Extracting the current GC version. Are we gonna use the current version to determine which
+   * scripts should be runned? Or do we let the user pick the migration from a list? 🤔
+   */
   const packageJson = fs.readFileSync('package.json', 'utf8')
   const packageData = JSON.parse(packageJson)
   const graphcommerceVersion = packageData.dependencies['@graphcommerce/next-ui']
-  // Extract the minor version
   const versionParts = graphcommerceVersion.split('.')
   const graphcommerceMinorVersion = `${versionParts[0]}.${versionParts[1]}`
 
-  console.log('Graphcommerce version:', graphcommerceVersion)
-  console.log('Graphcommerce minor version:', graphcommerceMinorVersion)
+  graphcommerceLog(`Graphcommerce version: ${graphcommerceVersion}`, 'info')
 
-  // Force run will run the migration even if it has already been run before
+  /**
+   * Force run will run the migration even if it has already been run before. Hardcoded on true for
+   * now. Could be a useful config for the user in a later version.
+   */
   const forceRun = true
 
-  // Read the existing models, components and enumerations from the schema
-  // TODO: Read the existing unions from the schema
+  // Extract the currently existing models, components and enumerations from the Hygraph schema.
   const schemaViewer = await readSchema(config)
   const schema: Schema = schemaViewer.viewer.project.environment.contentModel
 
-  console.log(10, schema)
   // A list of possible migrations
   const possibleMigrations: [
     string,
@@ -52,21 +46,19 @@ export async function migrateHygraph() {
   ][] = [
     ['Dynamic Rows', dynamicRow],
     ['Upgrade to GraphCommerce 6', GraphCommerce6],
-    ['Remove RowColumnOne', removeRowColumnOne],
-    ['Remove RowColumnTwo', removeRowColumnTwo],
-    ['Remove RowColumnThree', removeRowColumnThree],
-    ['Remove RowLinks', removeRowLinks],
   ]
-  console.log('\x1b[1m%s\x1b[0m', '[GraphCommerce]: Available migrations: ')
+
+  graphcommerceLog('Available migrations: ', 'info')
 
   // Here we setup the list we ask the user to choose from
   const selectMigrationInput: PromptObject<string> | PromptObject<string>[] = {
     type: 'select',
     name: 'selectedMigration',
-    message: '[GraphCommerce]: Select migration',
+    message: '\x1b[36m\x1b[1m[GraphCommerce]: Select migration',
     choices: [],
   }
 
+  // ? This goes unused for now
   const versionInput: PromptObject<string> | PromptObject<string>[] = {
     type: 'text',
     name: 'selectedVersion',
@@ -88,32 +80,34 @@ export async function migrateHygraph() {
 
   // Here we ask the user to choose a migration from a list of possible migrations
   try {
-    const versionOutput = await prompts(versionInput)
-    console.log(`You have selected GraphCommerce version ${versionOutput.selectedVersion}`)
     const selectMigrationOutput = await prompts(selectMigrationInput)
     const { migration, name } = selectMigrationOutput.selectedMigration
-    console.log(`You have selected the ${selectMigrationOutput.selectedMigration.name} migration`)
+    graphcommerceLog(
+      `You have selected the ${selectMigrationOutput.selectedMigration.name} migration`,
+      'info',
+    )
 
     try {
       // Here we try to run the migration
       // eslint-disable-next-line no-await-in-loop
       const result = await migration(forceRun ? undefined : name, config, schema)
-      console.log(result)
+      graphcommerceLog(`Migration result: ${JSON.stringify(result)}`, 'info')
       if (result.status !== 'SUCCESS') {
         throw new Error(
           `[GraphCommerce]: Migration not successful: ${result.status} ${name}:\n${result.errors}`,
         )
       }
-      console.log(`Migration successful: ${name}`)
+
+      graphcommerceLog(`Migration successful: ${name}`, 'info')
     } catch (err) {
       if (err instanceof Error) {
         const garbledErrorIndex = err.message.indexOf(': {"')
         const msg = garbledErrorIndex > 0 ? err.message.slice(0, garbledErrorIndex) : err.message
-        console.error('\x1b[31m\x1b[1m%s\x1b[0m', `[GraphCommerce]: ${msg}`)
+        graphcommerceLog(`${msg}`, 'error')
       }
     }
   } catch (error) {
-    console.error('\x1b[31m\x1b[1m%s\x1b[0m', '[GraphCommerce]: An error occurred:', error)
+    graphcommerceLog(`[GraphCommerce]: An error occurred: ${error}`, 'error')
   }
 }
 

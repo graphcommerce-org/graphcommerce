@@ -20,6 +20,8 @@ import {
   BatchMigrationUpdateSimpleFieldInput,
   BatchMigrationUpdateUnionFieldInput,
   BatchMigrationDeleteFieldInput,
+  BatchMigrationCreateComponentUnionFieldInput,
+  BatchMigrationUpdateComponentUnionFieldInput,
 } from '@hygraph/management-sdk'
 import { Schema } from './types'
 
@@ -32,8 +34,33 @@ export const graphcommerceLog = (message: string, type?: 'info' | 'warning' | 'e
     warning: '\x1b[33m\x1b[1m%s\x1b[0m',
     info: '\x1b[36m\x1b[1m%s\x1b[0m',
   }
+  // eslint-disable-next-line no-console
   console.log(type ? color[type] : '', `[GraphCommerce]: ${message}`)
 }
+
+type AllActions =
+  | BatchMigrationCreateModelInput
+  | BatchMigrationUpdateModelInput
+  | BatchMigrationDeleteModelInput
+  | BatchMigrationCreateComponentInput
+  | BatchMigrationUpdateComponentInput
+  | BatchMigrationDeleteComponentInput
+  | BatchMigrationCreateEnumerationInput
+  | BatchMigrationUpdateEnumerationInput
+  | BatchMigrationDeleteEnumerationInput
+  | BatchMigrationCreateSimpleFieldInput // type: SimpleFieldType
+  | BatchMigrationUpdateSimpleFieldInput
+  | BatchMigrationCreateEnumerableFieldInput
+  | BatchMigrationUpdateEnumerableFieldInput
+  | BatchMigrationCreateRelationalFieldInput // type: RelationalFieldType
+  | BatchMigrationUpdateRelationalFieldInput
+  | BatchMigrationCreateUnionFieldInput
+  | BatchMigrationUpdateUnionFieldInput
+  | BatchMigrationCreateComponentFieldInput
+  | BatchMigrationUpdateComponentFieldInput
+  | BatchMigrationDeleteFieldInput
+  | BatchMigrationCreateComponentUnionFieldInput
+  | BatchMigrationUpdateComponentUnionFieldInput
 
 export const migrationAction = (
   client: Client,
@@ -46,28 +73,10 @@ export const migrationAction = (
     | 'componentField'
     | 'enumerableField'
     | 'relationalField'
-    | 'unionField',
+    | 'unionField'
+    | 'componentUnionField',
   action: 'create' | 'update' | 'delete',
-  props:
-    | BatchMigrationCreateModelInput
-    | BatchMigrationUpdateModelInput
-    | BatchMigrationDeleteModelInput
-    | BatchMigrationCreateComponentInput
-    | BatchMigrationUpdateComponentInput
-    | BatchMigrationDeleteComponentInput
-    | BatchMigrationCreateEnumerationInput
-    | BatchMigrationUpdateEnumerationInput
-    | BatchMigrationDeleteEnumerationInput
-    | BatchMigrationCreateSimpleFieldInput
-    | BatchMigrationUpdateSimpleFieldInput
-    | BatchMigrationCreateEnumerableFieldInput
-    | BatchMigrationUpdateEnumerableFieldInput
-    | BatchMigrationCreateRelationalFieldInput
-    | BatchMigrationUpdateRelationalFieldInput
-    | BatchMigrationCreateUnionFieldInput
-    | BatchMigrationUpdateUnionFieldInput
-    | BatchMigrationCreateComponentFieldInput
-    | BatchMigrationUpdateComponentFieldInput,
+  props: AllActions,
   parentApiId?: string,
   parentType?: 'model' | 'component' | 'enumeration',
 ) => {
@@ -181,6 +190,11 @@ export const migrationAction = (
       update: 'BatchMigrationUpdateUnionFieldInput',
       delete: 'BatchMigrationDeleteFieldInput',
     },
+    componentUnionField: {
+      create: 'BatchMigrationCreateComponentUnionFieldInput',
+      update: 'BatchMigrationUpdateComponentUnionFieldInput',
+      delete: 'BatchMigrationDeleteFieldInput',
+    },
   }
 
   const actionMap = {
@@ -200,6 +214,8 @@ export const migrationAction = (
         client.createRelationalField(innerprops),
       unionField: (innerprops: BatchMigrationCreateUnionFieldInput) =>
         client.createUnionField(innerprops),
+      componentUnionField: (innerprops: BatchMigrationCreateComponentUnionFieldInput) =>
+        client.createComponentUnionField(innerprops),
     },
     update: {
       model: (innerprops: BatchMigrationUpdateModelInput) => client.updateModel(innerprops),
@@ -217,6 +233,8 @@ export const migrationAction = (
         client.updateRelationalField(innerprops),
       unionField: (innerprops: BatchMigrationUpdateUnionFieldInput) =>
         client.updateUnionField(innerprops),
+      componentUnionField: (innerprops: BatchMigrationUpdateComponentUnionFieldInput) =>
+        client.updateComponentUnionField(innerprops),
     },
     delete: {
       model: (innerprops: BatchMigrationDeleteModelInput) => client.deleteModel(innerprops),
@@ -232,6 +250,8 @@ export const migrationAction = (
       relationalField: (innerprops: BatchMigrationDeleteFieldInput) =>
         client.deleteField(innerprops),
       unionField: (innerprops: BatchMigrationDeleteFieldInput) => client.deleteField(innerprops),
+      componentUnionField: (innerprops: BatchMigrationDeleteFieldInput) =>
+        client.deleteField(innerprops),
     },
   }
 
@@ -241,7 +261,7 @@ export const migrationAction = (
   if (!alreadyExists()) {
     if (validProp && actionFunc) {
       graphcommerceLog(`${capitalize(action)} ${type} with apiId ${props.apiId}...`)
-      actionFunc(props)
+      actionFunc(props) // This error is a loss on typescript autocomplete, but the function is called correctly
     }
   } else {
     graphcommerceLog(`${capitalize(type)} with apiId ${props.apiId} already exists`, 'warning')
