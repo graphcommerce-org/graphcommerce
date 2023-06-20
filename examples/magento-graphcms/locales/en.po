@@ -162,6 +162,10 @@ msgid "Clear"
 msgstr "Clear"
 
 #. js-lingui-explicit-id
+msgid "Clear all filters"
+msgstr "Clear all filters"
+
+#. js-lingui-explicit-id
 msgid "Close"
 msgstr "Close"
 
@@ -402,6 +406,10 @@ msgid "Latest orders"
 msgstr "Latest orders"
 
 #. js-lingui-explicit-id
+msgid "Less options"
+msgstr "Less options"
+
+#. js-lingui-explicit-id
 msgid "Light Mode"
 msgstr "Light Mode"
 
@@ -436,6 +444,10 @@ msgstr "Menu"
 #. js-lingui-explicit-id
 msgid "More information"
 msgstr "More information"
+
+#. js-lingui-explicit-id
+msgid "More options"
+msgstr "More options"
 
 #. js-lingui-explicit-id
 msgid "Mr"
@@ -1152,6 +1164,3 @@ msgstr "{totalResults} results"
 #. js-lingui-explicit-id
 msgid "{total_count} products"
 msgstr "{total_count} products"
-
-msgid "Clear all filters"
-msgstr "Clear all filters"
