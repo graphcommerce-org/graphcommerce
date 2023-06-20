@@ -10,11 +10,8 @@ export const GraphCommerce6 = async (
   schema: Schema,
 ) => {
   const client = initClient(config, name)
-  // DEV PURPOSES
 
-  // END DEV PURPOSES
-
-  // // ? ENUMERATIONS
+  // ? ENUMERATIONS
   migrationAction(client, schema, 'enumeration', 'create', {
     displayName: 'Row Links Variants',
     apiId: 'RowLinksVariants',
@@ -27,7 +24,6 @@ export const GraphCommerce6 = async (
   })
 
   // ? MODEL
-
   migrationAction(client, schema, 'model', 'create', {
     apiId: 'RowLinks',
     apiIdPlural: 'RowLinksMultiple',
@@ -224,10 +220,6 @@ export const GraphCommerce6 = async (
     'DynamicRow',
     'model',
   )
-
-  // DEV PURPOSES
-
-  // END DEV PURPOSES
 
   return client.run(true)
 }

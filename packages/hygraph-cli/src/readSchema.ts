@@ -32,7 +32,6 @@ export const readSchema = async (config: GraphCommerceConfig) => {
                 models {
                   apiId
                   apiIdPlural
-                  displayName
                   fields {
                     apiId
                   }
@@ -40,14 +39,12 @@ export const readSchema = async (config: GraphCommerceConfig) => {
                 components {
                   apiId
                   apiIdPlural
-                  displayName
                   fields {
                     apiId
                   }
                 }
                 enumerations {
                   apiId
-                  displayName
                 }
               }
             }

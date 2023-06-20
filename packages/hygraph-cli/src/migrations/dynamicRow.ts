@@ -12,7 +12,6 @@ export const dynamicRow = async (
   const client = initClient(config, name)
 
   // ? ENUMERATIONS
-
   migrationAction(client, schema, 'enumeration', 'create', {
     displayName: 'Dynamic Row Condition Number Operator',
     apiId: 'DynamicRowConditionNumberOperator',
@@ -34,7 +33,6 @@ export const dynamicRow = async (
   })
 
   // ? COMPONENTS
-
   migrationAction(client, schema, 'component', 'create', {
     displayName: 'Text',
     apiId: 'ConditionText',
