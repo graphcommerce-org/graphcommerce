@@ -1,4 +1,5 @@
 import {
+  FormAutoSubmit,
   useForm,
   useFormAutoSubmit,
   UseFormProps,
@@ -6,7 +7,7 @@ import {
 } from '@graphcommerce/ecommerce-ui'
 import type { ProductFiltersLayout } from '@graphcommerce/next-config'
 import { extendableComponent, StickyBelowHeader, useMemoObject } from '@graphcommerce/next-ui'
-import { useMediaQuery, Container, Box, Theme } from '@mui/material'
+import { useMediaQuery, Container, Box, Theme, useEventCallback } from '@mui/material'
 import React, { BaseSyntheticEvent, createContext, useContext, useMemo } from 'react'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import {
@@ -46,7 +47,8 @@ export type FilterFormProviderProps = Omit<
   topleft?: React.ReactNode
   topbar: React.ReactNode
   sidebar?: React.ReactNode
-  count?: React.ReactNode
+  beforeContent?: React.ReactNode
+  afterContent?: React.ReactNode
 }
 
 const layout = (
@@ -62,36 +64,40 @@ const parts = ['root', 'content'] as const
 const { withState } = extendableComponent<OwnerProps, typeof name, typeof parts>(name, parts)
 
 export function ProductFiltersPro(props: FilterFormProviderProps) {
-  const { children, topleft, topbar, count, params, sidebar, ...formProps } = props
+  const { children, topleft, topbar, beforeContent, afterContent, params, sidebar, ...formProps } =
+    props
 
-  const filterParams = useMemoObject(toFilterParams(params))
-  const form = useForm<ProductFilterParams>({ values: filterParams, ...formProps })
-
-  const { handleSubmit } = form
+  const defaultValues = useMemoObject(toFilterParams(params))
+  const form = useForm<ProductFilterParams>({ defaultValues, ...formProps })
 
   const push = useProductListLinkReplace({ scroll: false })
-  const submit = handleSubmit(async (formValues) =>
-    push({ ...toProductListParams(formValues), currentPage: 1 }),
+  const submit = useEventCallback(
+    form.handleSubmit(async (formValues) =>
+      push({ ...toProductListParams(formValues), currentPage: 1 }),
+    ),
   )
 
   // We only need to auto-submit when the layout is not sidebar and we're viewing on desktop
-  const isMobile = useMediaQuery<Theme>((theme) => theme.breakpoints.down('md'), {
-    defaultMatches: false,
-  })
-  useFormAutoSubmit({ form, submit, disabled: isMobile || layout !== 'sidebar' })
+  const m = useMediaQuery<Theme>((t) => t.breakpoints.down('md'), { defaultMatches: false })
+  const autoSubmitDisabled = m || layout !== 'sidebar'
 
   const classes = withState({ layout })
 
+  const filterFormContext = useMemo(
+    () => ({ form, params: defaultValues, submit }),
+    [form, defaultValues, submit],
+  )
+
   return (
-    <FilterFormContext.Provider
-      value={useMemo(() => ({ form, params: filterParams, submit }), [form, filterParams, submit])}
-    >
+    <FilterFormContext.Provider value={filterFormContext}>
       <form noValidate onSubmit={submit} />
+      <FormAutoSubmit control={form.control} disabled={autoSubmitDisabled} submit={submit} />
 
       <StickyBelowHeader sx={{ display: { md: layout === 'sidebar' ? 'none' : undefined } }}>
         {topbar}
       </StickyBelowHeader>
       <Container
+        id='products'
         maxWidth={false}
         className={classes.content}
         sx={(theme) => ({
@@ -99,14 +105,14 @@ export function ProductFiltersPro(props: FilterFormProviderProps) {
             display: 'grid',
             gridTemplate: {
               xs: `
-                "count"      auto
-                "items"      1fr
-                "pagination" auto
+                "beforeContent" auto
+                "items"         auto
+                "afterContent"  auto
               `,
               md: `
-                "topleft   count"      auto
-                "sidebar items"      1fr
-                "sidebar pagination" auto
+                "topleft beforeContent" auto
+                "sidebar items"         min-content
+                "sidebar afterContent"  1fr
                 /300px   auto
               `,
             },
@@ -123,12 +129,18 @@ export function ProductFiltersPro(props: FilterFormProviderProps) {
           },
         })}
       >
-        <Box sx={{ gridArea: 'topleft', alignSelf: 'center' }}>{topleft}</Box>
+        <Box
+          sx={{ gridArea: 'topleft', display: { xs: 'none', md: 'block' }, alignSelf: 'center' }}
+        >
+          {topleft}
+        </Box>
         {sidebar && layout === 'sidebar' && (
           <Box sx={{ gridArea: 'sidebar', display: { xs: 'none', md: 'block' } }}>{sidebar}</Box>
         )}
-        <Box sx={{ gridArea: 'count', mt: { md: 0 } }}>{count}</Box>
+        <Box sx={{ gridArea: 'beforeContent', mt: { md: 0 } }}>{beforeContent}</Box>
         {children}
+
+        {afterContent && <Box sx={{ gridArea: 'afterContent' }}>{afterContent}</Box>}
       </Container>
     </FilterFormContext.Provider>
   )

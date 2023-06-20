@@ -22,7 +22,7 @@ export function CategoryDescription(props: CategoryDescriptionProps) {
       sx={[
         (theme) => ({
           gridArea: 'description',
-          margin: `0 auto 0`,
+          margin: `0 auto ${theme.spacings.sm}`,
           padding: `0 ${theme.page.horizontal}`,
           textAlign: 'center',
           maxWidth: { md: '50%', xl: '30%' },

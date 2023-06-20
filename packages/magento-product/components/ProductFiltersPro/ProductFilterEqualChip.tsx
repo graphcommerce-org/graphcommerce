@@ -67,7 +67,7 @@ export function ProductFilterEqualChip(props: FilterProps) {
       onReset={
         canReset
           ? () => {
-              form.resetField(name, { defaultValue: null })
+              form.setValue(name, null)
               return submit()
             }
           : undefined

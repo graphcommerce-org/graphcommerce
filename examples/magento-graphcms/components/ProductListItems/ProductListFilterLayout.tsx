@@ -27,21 +27,28 @@ import {
 } from '@graphcommerce/magento-search'
 import { StickyBelowHeader } from '@graphcommerce/next-ui'
 import { Container } from '@mui/material'
+import { CategoryPageQuery } from '../../graphql/CategoryPage.gql'
 import { ProductListItems } from './ProductListItems'
 import { productListRenderer } from './productListRenderer'
 
-type CategoryWithFilterProps = ProductListQuery &
+export type ProductListFilterLayoutProps = ProductListQuery &
   ProductFiltersQuery & {
-    filterTypes: FilterTypes
-    params: ProductListParams
-    title: string
+    filterTypes?: FilterTypes
+    params?: ProductListParams
   }
 
+type CategoryWithFilterProps = ProductListFilterLayoutProps & {
+  category: NonNullable<NonNullable<NonNullable<CategoryPageQuery['categories']>['items']>[number]>
+}
+
 export function CategoryFilterLayout(props: CategoryWithFilterProps) {
-  const { params, filters, products, filterTypes, title } = props
+  const { params, filters, products, filterTypes, category } = props
+
+  if (!(params && category && products?.items && filterTypes)) return null
 
   return import.meta.graphCommerce.productFiltersPro ? (
     <ProductFiltersPro
+      key={category.name ?? ''}
       params={params}
       topleft={
         import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR' && (
@@ -79,10 +86,10 @@ export function CategoryFilterLayout(props: CategoryWithFilterProps) {
           />
         )
       }
-      count={<ProductListCount total_count={products?.total_count} />}
+      beforeContent={<ProductListCount total_count={products?.total_count} />}
+      afterContent={<ProductListPagination page_info={products?.page_info} params={params} />}
     >
-      <ProductListItems title={title} items={products?.items} loadingEager={1} />
-      <ProductListPagination page_info={products?.page_info} params={params} />
+      <ProductListItems title={category.name ?? ''} items={products?.items} loadingEager={1} />
     </ProductFiltersPro>
   ) : (
     <>
@@ -106,8 +113,14 @@ export function CategoryFilterLayout(props: CategoryWithFilterProps) {
   )
 }
 
-export function SearchFilterLayout(props: CategoryWithFilterProps) {
+type SearchFilterLayoutProps = ProductListFilterLayoutProps & {
+  title: string
+}
+
+export function SearchFilterLayout(props: SearchFilterLayoutProps) {
   const { params, filters, products, filterTypes, title } = props
+
+  if (!(params && products?.items && filterTypes)) return null
 
   return import.meta.graphCommerce.productFiltersPro ? (
     <ProductFiltersPro
@@ -148,10 +161,10 @@ export function SearchFilterLayout(props: CategoryWithFilterProps) {
           />
         )
       }
-      count={<ProductListCount total_count={products?.total_count} />}
+      beforeContent={<ProductListCount total_count={products?.total_count} />}
+      afterContent={<ProductListPagination page_info={products?.page_info} params={params} />}
     >
       <ProductListItems title={title} items={products?.items} loadingEager={1} />
-      <ProductListPagination page_info={products?.page_info} params={params} />
     </ProductFiltersPro>
   ) : (
     <>

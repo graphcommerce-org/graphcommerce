@@ -95,7 +95,7 @@ function CategoryPage(props: CategoryProps) {
             filters={filters}
             products={products}
             filterTypes={filterTypes}
-            title={category.name ?? ''}
+            category={category}
           />
         </>
       )}

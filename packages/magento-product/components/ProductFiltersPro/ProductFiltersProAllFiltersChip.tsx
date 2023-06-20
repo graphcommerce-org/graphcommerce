@@ -15,6 +15,7 @@ import {
 } from './ProductFiltersProSortSection'
 import { activeAggregations } from './activeAggregations'
 import { applyAggregationCount } from './applyAggregationCount'
+import { useClearAllFiltersAction } from './useClearAllFiltersHandler'
 
 export type ProductFiltersProAllFiltersChipProps = ProductFiltersProAggregationsProps &
   ProductFiltersProSortSectionProps &
@@ -39,7 +40,7 @@ export function ProductFiltersProAllFiltersChip(props: ProductFiltersProAllFilte
     ...rest
   } = props
 
-  const { form, submit, params } = useProductFiltersPro()
+  const { submit, params } = useProductFiltersPro()
   const { sort } = params
 
   const activeFilters = activeAggregations(
@@ -50,22 +51,14 @@ export function ProductFiltersProAllFiltersChip(props: ProductFiltersProAllFilte
   const allFilters = [...activeFilters, sort].filter(Boolean)
   const hasFilters = allFilters.length > 0
 
+  const clearAll = useClearAllFiltersAction()
+
   return (
     <ChipOverlayOrPopper
       label={<Trans id='All filters' />}
       chipProps={{ variant: 'outlined' }}
       onApply={submit}
-      onReset={
-        hasFilters
-          ? () => {
-              form.setValue('filters', { category_uid: params.filters.category_uid })
-              form.setValue('currentPage', 1)
-              form.setValue('sort', null)
-              form.setValue('dir', null)
-              return submit()
-            }
-          : undefined
-      }
+      onReset={hasFilters ? clearAll : undefined}
       onClose={submit}
       selectedLabel={allFilters}
       selected={hasFilters}

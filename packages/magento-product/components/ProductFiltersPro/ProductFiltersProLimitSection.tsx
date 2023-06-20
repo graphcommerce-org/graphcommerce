@@ -57,8 +57,8 @@ export function ProductFiltersProLimitSection(props: ProductFiltersProLimitSecti
             variant='inline'
             color='primary'
             onClick={() => {
-              form.resetField('pageSize', { defaultValue: null })
-              form.resetField('currentPage', { defaultValue: 1 })
+              form.setValue('pageSize', null)
+              form.setValue('currentPage', 1)
             }}
           >
             <Trans id='Clear' />

@@ -55,9 +55,9 @@ export function ProductFiltersProSortSection(props: ProductFiltersProSortSection
             color='primary'
             onClick={(e) => {
               e.stopPropagation()
-              form.resetField('sort', { defaultValue: null })
-              form.resetField('currentPage', { defaultValue: 1 })
-              return submit()
+              form.setValue('sort', null)
+              form.setValue('dir', null)
+              form.setValue('currentPage', 1)
             }}
           >
             <Trans id='Clear' />

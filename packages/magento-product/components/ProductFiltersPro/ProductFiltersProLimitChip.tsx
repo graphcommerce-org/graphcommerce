@@ -50,8 +50,8 @@ export function ProductFiltersProLimitChip(props: ProductFiltersProLimitChipProp
       onReset={
         activePageSize
           ? () => {
-              form.resetField('pageSize', { defaultValue: null })
-              form.resetField('currentPage', { defaultValue: 1 })
+              form.setValue('pageSize', null)
+              form.setValue('currentPage', 1)
               return submit()
             }
           : undefined

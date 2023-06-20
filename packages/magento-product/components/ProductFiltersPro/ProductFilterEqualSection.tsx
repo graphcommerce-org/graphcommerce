@@ -77,7 +77,7 @@ export function ProductFilterEqualSection(props: FilterProps) {
             color='primary'
             onClick={(e) => {
               e.stopPropagation()
-              form.resetField(name, { defaultValue: null })
+              form.setValue(name, null)
             }}
           >
             <Trans id='Clear' />
