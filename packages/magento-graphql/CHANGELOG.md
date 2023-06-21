@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.46
+
+### Patch Changes
+
+- [#1968](https://github.com/graphcommerce-org/graphcommerce/pull/1968) [`1d0611abf`](https://github.com/graphcommerce-org/graphcommerce/commit/1d0611abfc002e68e0274713cda31d9e9550bf9c) - prevent ‘SelectedConfigurableOption’ and ‘Customizable’ from being cached. ([@carlocarels90](https://github.com/carlocarels90))
+
 ## 6.2.0-canary.45
 
 ## 6.2.0-canary.44
