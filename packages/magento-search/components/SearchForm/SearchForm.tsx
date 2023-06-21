@@ -6,7 +6,7 @@ import {
   IconSvg,
   extendableComponent,
 } from '@graphcommerce/next-ui'
-import { useForm, useFormAutoSubmit } from '@graphcommerce/react-hook-form'
+import { FormAutoSubmit, useForm } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, IconButton, SxProps, Theme } from '@mui/material'
@@ -29,6 +29,9 @@ const { classes } = extendableComponent(name, parts)
 export function SearchForm(props: SearchFormProps) {
   const searchInputElement = useRef<HTMLInputElement>(null)
 
+  const renderCount = useRef(0)
+  console.log('SearchForm render', renderCount.current++)
+
   useEffect(() => {
     searchInputElement.current?.focus()
   }, [])
@@ -36,19 +39,13 @@ export function SearchForm(props: SearchFormProps) {
   const router = useRouter()
 
   const form = useForm({ mode: 'onChange', defaultValues: { search } })
-  const { handleSubmit, formState, reset, watch, getValues, control } = form
+  const { handleSubmit, formState, watch, setValue, control } = form
 
-  const submit = handleSubmit((formData) => {
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    router.replace(`/${urlHandle}/${formData.search}`)
-    reset(getValues())
-  })
-  useFormAutoSubmit({ form, submit })
+  const submit = handleSubmit((formData) => router.replace(`/${urlHandle}/${formData.search}`))
 
   const handleReset = () => {
-    reset({ search: '' })
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    router.replace(`/${urlHandle}`)
+    setValue('search', '')
+    return submit()
   }
 
   const endAdornment = !watch('search') ? (
@@ -77,19 +74,8 @@ export function SearchForm(props: SearchFormProps) {
   )
 
   return (
-    <Box
-      className={classes.root}
-      component='form'
-      noValidate
-      onSubmit={submit}
-      onChange={() => {
-        if (watch('search') === '') {
-          // eslint-disable-next-line @typescript-eslint/no-floating-promises
-          router.replace(`/search`)
-        }
-      }}
-      sx={sx}
-    >
+    <Box className={classes.root} component='form' noValidate onSubmit={submit} sx={sx}>
+      <FormAutoSubmit control={form.control} submit={submit} wait={100} />
       <FormRow>
         <TextFieldElement
           variant='outlined'

@@ -118,8 +118,6 @@ export type FormAutoSubmitProps<
 
   /** SubmitHandler */
   submit: ReturnType<UseFormReturn<TFieldValues>['handleSubmit']>
-
-  resetToSubmitted?: boolean
 }
 
 function useFormAutoSubmit2<

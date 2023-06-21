@@ -26,6 +26,7 @@ import { Container, Hidden } from '@mui/material'
 import { LayoutNavigation, LayoutNavigationProps, SearchFilterLayout } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
+import { flushMeasurePerf } from '@graphcommerce/graphql'
 
 type SearchResultProps = ProductListQuery &
   ProductFiltersQuery &
@@ -142,7 +143,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     ? staticClient.query({ query: CategorySearchDocument, variables: { search } })
     : undefined
 
-  return {
+  const result = {
     props: {
       ...(await products).data,
       ...(await filters).data,
@@ -155,4 +156,6 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     },
     revalidate: 60 * 20,
   }
+  flushMeasurePerf()
+  return result
 }
