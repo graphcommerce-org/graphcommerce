@@ -28,7 +28,7 @@ export type ProductListFilterLayoutProps = ProductListQuery &
     params?: ProductListParams
     id: string
     title: string
-    header: React.ReactNode
+    header?: React.ReactNode
   }
 
 export function CategoryFilterLayout(props: ProductListFilterLayoutProps) {
