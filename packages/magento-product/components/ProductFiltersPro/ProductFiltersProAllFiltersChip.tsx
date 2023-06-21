@@ -30,21 +30,13 @@ const defaultRenderer = {
 }
 
 export function ProductFiltersProAllFiltersChip(props: ProductFiltersProAllFiltersChipProps) {
-  const {
-    filterTypes,
-    aggregations,
-    appliedAggregations: aggregationsCount,
-    sort_fields,
-    total_count,
-    renderer,
-    ...rest
-  } = props
+  const { sort_fields, total_count, renderer, ...rest } = props
 
-  const { submit, params } = useProductFiltersPro()
+  const { submit, params, aggregations, appliedAggregations } = useProductFiltersPro()
   const { sort } = params
 
   const activeFilters = activeAggregations(
-    applyAggregationCount(aggregations, aggregationsCount, params),
+    applyAggregationCount(aggregations, appliedAggregations, params),
     params,
   ).map(({ label }) => label)
 
@@ -70,12 +62,7 @@ export function ProductFiltersProAllFiltersChip(props: ProductFiltersProAllFilte
         <>
           <ProductFiltersProSortSection sort_fields={sort_fields} total_count={total_count} />
           <ProductFiltersProLimitSection />
-          <ProductFiltersProAggregations
-            filterTypes={filterTypes}
-            aggregations={aggregations}
-            appliedAggregations={aggregationsCount}
-            renderer={{ ...defaultRenderer, ...renderer }}
-          />
+          <ProductFiltersProAggregations renderer={{ ...defaultRenderer, ...renderer }} />
         </>
       )}
     </ChipOverlayOrPopper>

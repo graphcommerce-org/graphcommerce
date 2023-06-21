@@ -3,7 +3,7 @@ import { IfConfig, PluginProps } from '@graphcommerce/next-config'
 import { useRouter } from 'next/router'
 import { AlgoliaPagination } from '../components/Pagination/AlgoliaPagination'
 
-export const component = 'ProductListPaginationSearch'
+export const component = 'ProductListPagination'
 export const exported = '@graphcommerce/magento-search'
 export const ifConfig: IfConfig = 'algoliaApplicationId'
 

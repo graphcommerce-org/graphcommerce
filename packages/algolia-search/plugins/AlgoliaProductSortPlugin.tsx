@@ -5,7 +5,7 @@ import { i18n } from '@lingui/core'
 import { useSortBy } from 'react-instantsearch-hooks-web'
 import { RenderChip } from '../components/Chip/RenderChip'
 
-export const component = 'ProductListSortSearch'
+export const component = 'ProductListSort'
 export const exported = '@graphcommerce/magento-search'
 export const ifConfig: IfConfig = 'algoliaApplicationId'
 

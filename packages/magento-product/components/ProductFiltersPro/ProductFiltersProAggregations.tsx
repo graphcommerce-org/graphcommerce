@@ -10,14 +10,12 @@ export type FilterProps = {
 export type FilterRenderer = Record<string, React.FC<FilterProps>>
 
 export type ProductFiltersProAggregationsProps = {
-  filterTypes: Record<string, string | undefined>
   renderer?: FilterRenderer
-  appliedAggregations?: ProductListFiltersFragment['aggregations']
-} & ProductListFiltersFragment
+}
 
 export function ProductFiltersProAggregations(props: ProductFiltersProAggregationsProps) {
-  const { aggregations, appliedAggregations, filterTypes, renderer } = props
-  const { params } = useProductFiltersPro()
+  const { renderer } = props
+  const { params, aggregations, appliedAggregations, filterTypes } = useProductFiltersPro()
 
   return (
     <>

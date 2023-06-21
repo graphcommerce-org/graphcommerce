@@ -16,8 +16,14 @@ import {
   toFilterParams,
   toProductListParams,
 } from '../ProductListItems/filterTypes'
+import { ProductListFiltersFragment } from '../ProductListFilters/ProductListFilters.gql'
 
-type FilterFormContextProps = {
+type DataProps = {
+  filterTypes: Record<string, string | undefined>
+  appliedAggregations?: ProductListFiltersFragment['aggregations']
+} & ProductListFiltersFragment
+
+type FilterFormContextProps = DataProps & {
   /**
    * Watch and formState are known to cause performance issues.
    *
@@ -43,29 +49,10 @@ export type FilterFormProviderProps = Omit<
 > & {
   children: React.ReactNode
   params: ProductListParams
-
-  topleft?: React.ReactNode
-  topbar: React.ReactNode
-  sidebar?: React.ReactNode
-  beforeContent?: React.ReactNode
-  afterContent?: React.ReactNode
-}
-
-const layout = (
-  import.meta.graphCommerce.productFiltersLayout ?? 'DEFAULT'
-).toLowerCase() as Lowercase<ProductFiltersLayout>
-
-type OwnerProps = {
-  layout: typeof layout
-}
-
-const name = 'ProductFiltersPro' as const
-const parts = ['root', 'content'] as const
-const { withState } = extendableComponent<OwnerProps, typeof name, typeof parts>(name, parts)
+} & DataProps
 
 export function ProductFiltersPro(props: FilterFormProviderProps) {
-  const { children, topleft, topbar, beforeContent, afterContent, params, sidebar, ...formProps } =
-    props
+  const { children, params, aggregations, appliedAggregations, filterTypes, ...formProps } = props
 
   const defaultValues = useMemoObject(toFilterParams(params))
   const form = useForm<ProductFilterParams>({ defaultValues, ...formProps })
@@ -77,70 +64,22 @@ export function ProductFiltersPro(props: FilterFormProviderProps) {
     ),
   )
 
-  // We only need to auto-submit when the layout is not sidebar and we're viewing on desktop
-  const m = useMediaQuery<Theme>((t) => t.breakpoints.down('md'), { defaultMatches: false })
-  const autoSubmitDisabled = m || layout !== 'sidebar'
-
-  const classes = withState({ layout })
-
-  const filterFormContext = useMemo(
-    () => ({ form, params: defaultValues, submit }),
-    [form, defaultValues, submit],
+  const filterFormContext: FilterFormContextProps = useMemo(
+    () => ({
+      form,
+      params: defaultValues,
+      submit,
+      appliedAggregations,
+      filterTypes,
+      aggregations,
+    }),
+    [form, defaultValues, submit, appliedAggregations, filterTypes, aggregations],
   )
 
   return (
     <FilterFormContext.Provider value={filterFormContext}>
       <form noValidate onSubmit={submit} id='products' />
-      <FormAutoSubmit control={form.control} disabled={autoSubmitDisabled} submit={submit} />
-
-      <StickyBelowHeader sx={{ display: { md: layout === 'sidebar' ? 'none' : undefined } }}>
-        {topbar}
-      </StickyBelowHeader>
-      <Container
-        maxWidth={false}
-        className={classes.content}
-        sx={(theme) => ({
-          '&.layoutSidebar': {
-            display: 'grid',
-            gridTemplate: {
-              xs: `
-                "beforeContent" auto
-                "items"         auto
-                "afterContent"  auto
-              `,
-              md: `
-                "topleft beforeContent" auto
-                "sidebar items"         min-content
-                "sidebar afterContent"  1fr
-                /300px   auto
-              `,
-            },
-            columnGap: { md: theme.spacings.md, xl: theme.spacings.xxl },
-
-            '& .ProductListItemsBase-root': {
-              gridArea: 'items',
-              gridTemplateColumns: {
-                xs: 'repeat(2, 1fr)',
-                lg: 'repeat(3, 1fr)',
-                xl: 'repeat(4, 1fr)',
-              },
-            },
-          },
-        })}
-      >
-        <Box
-          sx={{ gridArea: 'topleft', display: { xs: 'none', md: 'block' }, alignSelf: 'center' }}
-        >
-          {topleft}
-        </Box>
-        {sidebar && layout === 'sidebar' && (
-          <Box sx={{ gridArea: 'sidebar', display: { xs: 'none', md: 'block' } }}>{sidebar}</Box>
-        )}
-        <Box sx={{ gridArea: 'beforeContent', mt: { md: 0 } }}>{beforeContent}</Box>
-        {children}
-
-        {afterContent && <Box sx={{ gridArea: 'afterContent' }}>{afterContent}</Box>}
-      </Container>
+      {children}
     </FilterFormContext.Provider>
   )
 }

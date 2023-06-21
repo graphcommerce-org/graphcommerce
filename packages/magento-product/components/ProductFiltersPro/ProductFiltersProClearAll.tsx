@@ -12,9 +12,9 @@ type AllFiltersSidebar = ProductFiltersProAggregationsProps & {
 }
 
 export function ProductFiltersProClearAll(props: AllFiltersSidebar) {
-  const { aggregations, appliedAggregations, sx = [] } = props
+  const { sx = [] } = props
 
-  const { params } = useProductFiltersPro()
+  const { params, aggregations, appliedAggregations } = useProductFiltersPro()
   const { sort } = params
 
   const clearAll = useClearAllFiltersAction()

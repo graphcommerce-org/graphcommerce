@@ -3,7 +3,7 @@ import { IfConfig, PluginProps } from '@graphcommerce/next-config'
 import { Index, usePagination } from 'react-instantsearch-hooks-web'
 import { useAlgoliaSearchIndexConfig } from '../hooks/useAlgoliaSearchIndexConfig'
 
-export const component = 'ProductListCountSearch'
+export const component = 'ProductListCount'
 export const exported = '@graphcommerce/magento-search'
 export const ifConfig: IfConfig = 'algoliaApplicationId'
 

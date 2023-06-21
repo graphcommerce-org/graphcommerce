@@ -17,7 +17,7 @@ export type ProductFiltersProSortSectionProps = ProductListSortFragment
 
 export function ProductFiltersProSortSection(props: ProductFiltersProSortSectionProps) {
   const { sort_fields } = props
-  const { form, submit } = useProductFiltersPro()
+  const { form } = useProductFiltersPro()
   const { control } = form
   const activeSort = useWatch({ control, name: 'sort' })
 

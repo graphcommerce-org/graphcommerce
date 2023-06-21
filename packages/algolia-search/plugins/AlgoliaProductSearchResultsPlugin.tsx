@@ -5,7 +5,7 @@ import { Index } from 'react-instantsearch-hooks-web'
 import { useAlgoliaProductResults } from '../hooks/useAlgoliaProductResults'
 import { useAlgoliaSearchIndexConfig } from '../hooks/useAlgoliaSearchIndexConfig'
 
-export const component = 'ProductListItemsSearch'
+export const component = 'ProductListItems'
 export const exported = '@graphcommerce/magento-search'
 export const ifConfig: IfConfig = 'algoliaApplicationId'
 

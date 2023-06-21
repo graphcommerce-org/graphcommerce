@@ -20,26 +20,13 @@ const defaultRenderer = {
 }
 
 export function ProductFiltersProAllFiltersSidebar(props: ProductFiltersProAllFiltersSidebarProps) {
-  const {
-    filterTypes,
-    aggregations,
-    appliedAggregations,
-    sort_fields,
-    total_count,
-    renderer,
-    sx = [],
-  } = props
+  const { sort_fields, total_count, renderer, sx = [] } = props
 
   return (
     <Box sx={[{ display: { xs: 'none', md: 'grid' } }, ...(Array.isArray(sx) ? sx : [sx])]}>
       <ProductFiltersProSortSection sort_fields={sort_fields} total_count={total_count} />
       <ProductFiltersProLimitSection />
-      <ProductFiltersProAggregations
-        filterTypes={filterTypes}
-        aggregations={aggregations}
-        appliedAggregations={appliedAggregations}
-        renderer={{ ...defaultRenderer, ...renderer }}
-      />
+      <ProductFiltersProAggregations renderer={{ ...defaultRenderer, ...renderer }} />
     </Box>
   )
 }

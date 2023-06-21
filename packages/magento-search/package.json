@@ -20,6 +20,7 @@
     "@graphcommerce/ecommerce-ui": "6.2.0-canary.44",
     "@graphcommerce/graphql": "6.2.0-canary.44",
     "@graphcommerce/image": "6.2.0-canary.44",
+    "@graphcommerce/magento-product": "6.2.0-canary.44",
     "@graphcommerce/next-ui": "6.2.0-canary.44",
     "@graphcommerce/react-hook-form": "6.2.0-canary.44"
   },

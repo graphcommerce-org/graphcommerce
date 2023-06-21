@@ -23,10 +23,9 @@ import { GetStaticProps, LayoutTitle, LayoutHeader } from '@graphcommerce/next-u
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Container, Hidden } from '@mui/material'
-import { LayoutNavigation, LayoutNavigationProps } from '../../components'
+import { LayoutNavigation, LayoutNavigationProps, SearchFilterLayout } from '../../components'
 import { LayoutDocument } from '../../components/Layout/Layout.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
-import { SearchFilterLayout } from '../../components/ProductListItems/ProductListFilterLayout'
 
 type SearchResultProps = ProductListQuery &
   ProductFiltersQuery &
@@ -95,6 +94,7 @@ function SearchResultPage(props: SearchResultProps) {
             filters={filters}
             products={products}
             filterTypes={filterTypes}
+            id='search'
             title={`Search ${search}`}
           />
         )}

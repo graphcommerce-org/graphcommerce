@@ -9,18 +9,18 @@ import {
   ActionCardAccordion,
   Button,
 } from '@graphcommerce/next-ui'
-import { Box, Typography } from '@mui/material'
+import { Trans } from '@lingui/react'
+import { Box } from '@mui/material'
 import { useMemo } from 'react'
 import { isFilterTypeEqual } from '../ProductListItems/filterTypes'
 import { useProductFiltersPro } from './ProductFiltersPro'
 import { FilterProps } from './ProductFiltersProAggregations'
-import { Trans } from '@lingui/react'
 
 export function ProductFilterEqualSection(props: FilterProps) {
   const { aggregation } = props
   const { attribute_code, label, options } = aggregation
 
-  const { form, submit, params } = useProductFiltersPro()
+  const { form, params } = useProductFiltersPro()
   const { control } = form
   const attrCode = attribute_code as keyof ProductAttributeFilterInput
 

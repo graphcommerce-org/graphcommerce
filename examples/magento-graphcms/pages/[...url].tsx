@@ -20,15 +20,20 @@ import {
   ProductListParams,
   ProductListQuery,
 } from '@graphcommerce/magento-product'
-import { StoreConfigDocument, redirectOrNotFound } from '@graphcommerce/magento-store'
-import { LayoutTitle, LayoutHeader, GetStaticProps, MetaRobots } from '@graphcommerce/next-ui'
+import { redirectOrNotFound, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { GetStaticProps, LayoutHeader, LayoutTitle, MetaRobots } from '@graphcommerce/next-ui'
 import { Container } from '@mui/material'
 import { GetStaticPaths } from 'next'
-import { LayoutNavigation, LayoutNavigationProps, RowProduct, RowRenderer } from '../components'
-import { LayoutDocument } from '../components/Layout/Layout.gql'
-import { CategoryFilterLayout } from '../components/ProductListItems/ProductListFilterLayout'
+import {
+  CategoryFilterLayout,
+  LayoutDocument,
+  LayoutNavigation,
+  LayoutNavigationProps,
+  RowProduct,
+  RowRenderer,
+} from '../components'
 import { CategoryPageDocument, CategoryPageQuery } from '../graphql/CategoryPage.gql'
-import { graphqlSsrClient, graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
+import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
 
 export type CategoryProps = CategoryPageQuery &
   HygraphPagesQuery &
@@ -62,19 +67,10 @@ function CategoryPage(props: CategoryProps) {
           {category?.name ?? page.title}
         </LayoutTitle>
       </LayoutHeader>
-      {!isLanding && (
+      {!isCategory && (
         <Container maxWidth={false}>
-          <LayoutTitle
-            variant='h1'
-            gutterTop
-            sx={(theme) => ({
-              marginBottom: category?.description && theme.spacings.md,
-            })}
-            gutterBottom={
-              !isCategory || (!category?.description && category?.children?.length === 0)
-            }
-          >
-            {category?.name ?? page.title}
+          <LayoutTitle variant='h1' gutterTop gutterBottom>
+            {page.title}
           </LayoutTitle>
         </Container>
       )}
@@ -86,18 +82,30 @@ function CategoryPage(props: CategoryProps) {
         />
       )}
       {isCategory && !isLanding && (
-        <>
-          <CategoryDescription description={category.description} />
-          <CategoryChildren params={params}>{category.children}</CategoryChildren>
-
-          <CategoryFilterLayout
-            params={params}
-            filters={filters}
-            products={products}
-            filterTypes={filterTypes}
-            category={category}
-          />
-        </>
+        <CategoryFilterLayout
+          params={params}
+          filters={filters}
+          products={products}
+          filterTypes={filterTypes}
+          title={category.name ?? ''}
+          id={category.uid}
+          header={
+            <>
+              <Container maxWidth={false}>
+                <LayoutTitle
+                  variant='h1'
+                  gutterTop
+                  sx={(theme) => ({ marginBottom: category?.description && theme.spacings.md })}
+                  gutterBottom={!category.description && category.children?.length === 0}
+                >
+                  {category.name}
+                </LayoutTitle>
+              </Container>
+              <CategoryDescription description={category.description} />
+              <CategoryChildren params={params}>{category.children}</CategoryChildren>
+            </>
+          }
+        />
       )}
       {page && (
         <RowRenderer
