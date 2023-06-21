@@ -64,6 +64,7 @@
     "@graphcommerce/magento-wishlist": "6.2.0-canary.45",
     "@graphcommerce/next-config": "6.2.0-canary.45",
     "@graphcommerce/next-ui": "6.2.0-canary.45",
+    "@hygraph/app-sdk-react": "^0.0.2",
     "@lingui/core": "4.2.1",
     "@lingui/react": "4.2.1",
     "@lingui/macro": "4.2.1",

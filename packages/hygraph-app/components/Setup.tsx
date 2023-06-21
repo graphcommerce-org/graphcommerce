@@ -8,9 +8,9 @@ function Install() {
   return (
     <Button
       type='button'
-      onClick={() => {
-        console.log(1, typeof updateInstallation, updateInstallation)
-        updateInstallation({ status: 'COMPLETED', config: {} }).catch((e) => {
+      onClick={async () => {
+        console.log(1)
+        await updateInstallation({ status: 'COMPLETED', config: {} }).catch((e) => {
           console.log(e)
         })
       }}
@@ -27,21 +27,21 @@ function Configure() {
 export function Page() {
   const { installation } = useApp()
 
-  React.useEffect(() => {
-    console.log(999, installation)
-  }, [installation])
-
-  if (installation?.status === 'COMPLETED') {
-    return (
-      <Wrapper>
-        <Configure />
-      </Wrapper>
-    )
-  }
+  // if (installation?.status === 'COMPLETED') {
+  //   return (
+  //     <Wrapper>
+  //       <Configure />
+  //     </Wrapper>
+  //   )
+  // }
 
   return (
     <Wrapper>
       <Install />
     </Wrapper>
   )
+}
+
+export function TestTest() {
+  return <div>tralala</div>
 }
