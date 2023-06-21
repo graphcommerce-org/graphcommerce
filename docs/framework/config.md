@@ -164,6 +164,14 @@ The Google Tagmanager ID to be used on the site.
 
 This value is required even if you are configuring different values for each locale.
 
+#### `hygraphAppClientId: String`
+
+Some explanations about the client ID.
+
+#### `hygraphAppClientSecret: String`
+
+Some explanations about the client secret.
+
 #### `hygraphWriteAccessEndpoint: String`
 
 Content API. **Only used for migrations.**

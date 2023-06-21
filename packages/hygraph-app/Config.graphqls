@@ -1,0 +1,11 @@
+extend input GraphCommerceConfig {
+  """
+  Some explanations about the client ID.
+  """
+  hygraphAppClientId: String
+
+  """
+  Some explanations about the client secret.
+  """
+  hygraphAppClientSecret: String
+}
