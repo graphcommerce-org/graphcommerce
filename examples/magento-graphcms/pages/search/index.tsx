@@ -95,7 +95,7 @@ function SearchResultPage(props: SearchResultProps) {
             filters={filters}
             products={products}
             filterTypes={filterTypes}
-            id='search'
+            id={search}
             title={`Search ${search}`}
           />
         )}

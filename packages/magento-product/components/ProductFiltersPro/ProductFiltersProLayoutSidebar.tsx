@@ -70,7 +70,7 @@ export function ProductFiltersProLayoutSidebar(props: ProductFiltersProLayoutSid
 
           columnGap: { md: theme.spacings.md, xl: theme.spacings.xxl },
 
-          '& .ProductListItemsBase-root': {
+          '& .ProductListItemsBase-root.sizeNormal': {
             gridTemplateColumns: {
               xs: 'repeat(2, 1fr)',
               lg: 'repeat(3, 1fr)',
