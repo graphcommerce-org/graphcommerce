@@ -83,7 +83,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   const limit = 99
   const conf = client.query({ query: StoreConfigDocument })
   const page = hygraphPageContent(staticClient, `blog/tagged/${urlKey}`)
-  const layout = staticClient.query({ query: LayoutDocument })
+  const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
 
   const blogPosts = staticClient.query({
     query: BlogListTaggedDocument,

@@ -147,7 +147,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale, defau
     query: DownloadableProductPageDocument,
     variables: { urlKey },
   })
-  const layout = staticClient.query({ query: LayoutDocument })
+  const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
 
   const product = findByTypename((await productPage).data.products?.items, 'DownloadableProduct')
   const typeProduct = findByTypename(

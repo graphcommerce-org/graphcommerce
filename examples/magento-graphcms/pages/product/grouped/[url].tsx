@@ -150,7 +150,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale, defau
     query: GroupedProductPageDocument,
     variables: { urlKey },
   })
-  const layout = staticClient.query({ query: LayoutDocument })
+  const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
 
   const product = findByTypename((await productPage).data.products?.items, 'GroupedProduct')
   const typeProduct = findByTypename(
