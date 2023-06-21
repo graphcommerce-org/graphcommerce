@@ -32,6 +32,7 @@
     "packages:5": "yarn workspace @graphcommerce/cli dev",
     "packages:6": "yarn workspace @graphcommerce/changeset-changelog dev",
     "packages:7": "yarn workspace @graphcommerce/graphql-codegen-markdown-docs dev",
+    "packages:8": "yarn workspace @graphcommerce/hygraph-app dev",
     "create-patch": "patch-package --exclude 'package.json$|gql.ts$|interceptor.tsx$'"
   },
   "sideEffects": false,
