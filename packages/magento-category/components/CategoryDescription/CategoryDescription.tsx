@@ -25,7 +25,7 @@ export function CategoryDescription(props: CategoryDescriptionProps) {
           margin: `0 auto ${theme.spacings.sm}`,
           padding: `0 ${theme.page.horizontal}`,
           textAlign: 'center',
-          maxWidth: { md: '50%', xl: '30%' },
+          maxWidth: { md: '900px' },
           typography: 'subtitle1',
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
