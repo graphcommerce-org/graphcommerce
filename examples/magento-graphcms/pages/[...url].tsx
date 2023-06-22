@@ -68,16 +68,20 @@ function CategoryPage(props: CategoryProps) {
         </LayoutTitle>
       </LayoutHeader>
       {!isLanding && (
-        <LayoutTitle
-          variant='h1'
-          gutterTop
-          sx={(theme) => ({
-            marginBottom: category?.description && theme.spacings.md,
-          })}
-          gutterBottom={!isCategory || (!category?.description && category?.children?.length === 0)}
-        >
-          {category?.name ?? page.title}
-        </LayoutTitle>
+        <Container maxWidth={false}>
+          <LayoutTitle
+            variant='h1'
+            gutterTop
+            sx={(theme) => ({
+              marginBottom: category?.description && theme.spacings.md,
+            })}
+            gutterBottom={
+              !isCategory || (!category?.description && category?.children?.length === 0)
+            }
+          >
+            {category?.name ?? page.title}
+          </LayoutTitle>
+        </Container>
       )}
       {isCategory && isLanding && (
         <CategoryHeroNav
