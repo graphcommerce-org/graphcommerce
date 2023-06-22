@@ -13,12 +13,10 @@ export type TextFieldElementProps<T extends FieldValues = FieldValues> = Omit<
   'name' | 'defaultValue'
 > & {
   validation?: UseControllerProps<T>['rules']
-  parseError?: (error: FieldError) => string
-} & UseControllerProps<T>
+} & Omit<UseControllerProps<T>, 'rules'>
 
 export function TextFieldElement<TFieldValues extends FieldValues>({
   validation = {},
-  parseError,
   type,
   required,
   name,
@@ -60,13 +58,7 @@ export function TextFieldElement<TFieldValues extends FieldValues>({
           required={required}
           type={type}
           error={!!error}
-          helperText={
-            error
-              ? typeof parseError === 'function'
-                ? parseError(error)
-                : error.message
-              : rest.helperText
-          }
+          helperText={error ? error.message : rest.helperText}
           inputRef={ref}
         />
       )}

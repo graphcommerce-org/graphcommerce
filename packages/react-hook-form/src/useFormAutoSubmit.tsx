@@ -1,7 +1,8 @@
 /* eslint-disable react/no-unused-prop-types */
-// eslint-disable-next-line import/no-extraneous-dependencies
+import { cloneDeep } from '@apollo/client/utilities'
+import { useMemoObject } from '@graphcommerce/next-ui/hooks/useMemoObject'
 import { debounce } from '@mui/material'
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import {
   Control,
   DeepPartialSkipArrayKey,
@@ -11,10 +12,8 @@ import {
   useFormState,
   useWatch,
 } from 'react-hook-form'
-import { useMemoObject } from '@graphcommerce/next-ui/hooks/useMemoObject'
-import React from 'react'
-import { cloneDeep } from '@apollo/client/utilities'
-import { watch } from 'fs'
+import { DebounceOptions } from './utils/debounce'
+import { useDebouncedCallback } from './utils/useDebounceCallback'
 
 export type UseFormAutoSubmitOptions<TForm extends UseFormReturn<V>, V extends FieldValues> = {
   /** Instance of current form */
@@ -107,57 +106,50 @@ export type FormAutoSubmitProps<
   name?: readonly [...TFieldNames]
 
   disabled?: boolean
+
   exact?: boolean
-  /** Milliseconds to wait before updating */
-  wait?: number
-  /**
-   * Forces the form to submit directly when it is valid, whithout user interaction. Please be aware
-   * that this may cause extra requests
-   */
-  forceInitialSubmit?: boolean
 
   /** SubmitHandler */
   submit: ReturnType<UseFormReturn<TFieldValues>['handleSubmit']>
-}
+
+  /**
+   * When a current submission is already in flight, should we wait for it to finish before
+   * submitting again?
+   */
+  parallel?: boolean
+} & DebounceOptions
 
 function useFormAutoSubmit2<
   TFieldValues extends FieldValues = FieldValues,
   TFieldNames extends readonly FieldPath<TFieldValues>[] = readonly FieldPath<TFieldValues>[],
 >(props: FormAutoSubmitProps<TFieldValues, TFieldNames>) {
-  const { forceInitialSubmit, wait, submit, ...watchOptions } = props
+  const { wait, initialWait, maxWait, submit, parallel, ...watchOptions } = props
 
   // We create a stable object from the values, so that we can compare them later
   const values = useMemoObject(cloneDeep(useWatch(watchOptions)))
-  const oldValues = useRef<DeepPartialSkipArrayKey<TFieldValues> | null>(
-    forceInitialSubmit ? null : values,
-  )
-  const formState = useFormState(watchOptions)
+  const oldValues = useRef<DeepPartialSkipArrayKey<TFieldValues>>(values)
+  const { isValidating, isSubmitting, isValid } = useFormState(watchOptions)
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const submitDebounced = useCallback(
-    debounce(async () => {
+  const submitDebounced = useDebouncedCallback(
+    async () => {
       try {
         oldValues.current = values
         await submit()
       } catch (e) {
         // We're not interested if the submission actually succeeds, that should be handled by the form itself.
       }
-    }, wait),
-    [submit],
+    },
+    { wait, initialWait, maxWait },
   )
 
-  useEffect(() => {
-    const canSubmit = formState.isValid && !formState.isSubmitting && !formState.isValidating
+  const valid = isValid && !isValidating
+  const allowed = parallel || !isSubmitting
+  const canSubmit = valid && allowed
 
-    if (canSubmit && values !== oldValues.current) {
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      submitDebounced()
-      return () => submitDebounced.clear()
-    }
-    return () => {}
-  }, [formState.isSubmitting, formState.isValid, formState.isValidating, submitDebounced, values])
-
-  return null
+  if (canSubmit && values !== oldValues.current) {
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    submitDebounced()
+  }
 }
 
 /**

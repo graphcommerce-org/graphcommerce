@@ -19,7 +19,7 @@ import {
   SearchForm,
 } from '@graphcommerce/magento-search'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { GetStaticProps, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
+import { GetStaticProps, LayoutTitle, LayoutHeader, FormRow } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Container, Hidden } from '@mui/material'
@@ -58,37 +58,18 @@ function SearchResultPage(props: SearchResultProps) {
 
       <SearchContext>
         <LayoutHeader floatingMd switchPoint={0}>
-          <LayoutTitle size='small'>
-            <SearchForm
-              totalResults={totalSearchResults}
-              search={search}
-              textFieldProps={{ variant: 'standard' }}
-            />
-          </LayoutTitle>
+          <SearchForm
+            totalResults={totalSearchResults}
+            search={search}
+            textFieldProps={{ size: 'small', variant: 'outlined', fullWidth: true }}
+          />
         </LayoutHeader>
-        <Hidden implementation='css' mdDown>
-          <LayoutTitle gutterBottom={false} gutterTop={false}>
-            {search ? (
-              <Trans id='Results for &lsquo;{search}&rsquo;' values={{ search }} />
-            ) : (
-              <Trans id='All products' />
-            )}
-          </LayoutTitle>
 
-          <Container maxWidth='sm'>
-            <SearchForm
-              totalResults={totalSearchResults}
-              search={search}
-              textFieldProps={{ autoFocus: true }}
-            />
-
-            {categories?.items?.map((category) => (
-              <CategorySearchResult key={category?.url_path} search={search} {...category} />
-            ))}
+        {noSearchResults && (
+          <Container>
+            <NoSearchResults search={search} />
           </Container>
-        </Hidden>
-
-        {noSearchResults && <NoSearchResults search={search} />}
+        )}
         {products && products.items && products?.items?.length > 0 && (
           <SearchFilterLayout
             params={params}
@@ -97,6 +78,34 @@ function SearchResultPage(props: SearchResultProps) {
             filterTypes={filterTypes}
             id={search}
             title={`Search ${search}`}
+            header={
+              <>
+                <LayoutTitle
+                  gutterBottom={false}
+                  gutterTop={false}
+                  sx={{ display: { xs: 'none', md: 'flex' } }}
+                >
+                  {search ? (
+                    <Trans id='Results for &lsquo;{search}&rsquo;' values={{ search }} />
+                  ) : (
+                    <Trans id='All products' />
+                  )}
+                </LayoutTitle>
+                <Container maxWidth='sm' sx={{ display: { xs: 'none', md: 'flex' } }}>
+                  <FormRow>
+                    <SearchForm
+                      totalResults={totalSearchResults}
+                      search={search}
+                      textFieldProps={{ autoFocus: true, fullWidth: true }}
+                    />
+                  </FormRow>
+
+                  {categories?.items?.map((category) => (
+                    <CategorySearchResult key={category?.url_path} search={search} {...category} />
+                  ))}
+                </Container>
+              </>
+            }
           />
         )}
       </SearchContext>

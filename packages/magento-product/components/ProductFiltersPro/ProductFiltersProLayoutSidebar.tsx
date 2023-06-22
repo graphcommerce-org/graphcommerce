@@ -9,7 +9,7 @@ export type ProductFiltersProLayoutSidebarProps = {
   clearAll?: React.ReactNode
   horizontalFilters: React.ReactNode
   sidebarFilters?: React.ReactNode
-  count: React.ReactNode
+  count?: React.ReactNode
   pagination: React.ReactNode
   header: React.ReactNode
 } & Partial<OwnerProps>
