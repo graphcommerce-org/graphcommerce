@@ -7,7 +7,7 @@ mutation CreateCustomerAddress(
   $telephone: String!
   $street: String!
   $houseNumber: String!
-  $addition: String
+  $addition: String = ""
   $city: String!
   $postcode: String!
   $region: CustomerAddressRegionInput!
