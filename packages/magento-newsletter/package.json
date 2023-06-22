@@ -17,6 +17,7 @@
     "@graphcommerce/typescript-config-pwa": "6.2.0-canary.44"
   },
   "dependencies": {
+    "@graphcommerce/ecommerce-ui": "6.2.0-canary.44",
     "@graphcommerce/graphql": "6.2.0-canary.44",
     "@graphcommerce/magento-cart": "6.2.0-canary.44",
     "@graphcommerce/magento-customer": "6.2.0-canary.44",
