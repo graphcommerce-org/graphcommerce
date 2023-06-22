@@ -131,6 +131,8 @@ input GraphCommerceStorefrontConfig {
 
   """
   Must be a locale string https://www.unicode.org/reports/tr35/tr35-59/tr35.html#Identifiers
+
+  Note that underscores (`_`) as separators are currently not supported.
   """
   locale: String!
 
