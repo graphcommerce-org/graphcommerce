@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.47
+
+### Patch Changes
+
+- [#1969](https://github.com/graphcommerce-org/graphcommerce/pull/1969) [`838322a97`](https://github.com/graphcommerce-org/graphcommerce/commit/838322a97c7ef1b8aa919196e756da381904bf04) - Fixing the Internal Server Error if the third address line is empty. ([@action-simon](https://github.com/action-simon))
+
 ## 6.2.0-canary.46
 
 ## 6.2.0-canary.45
