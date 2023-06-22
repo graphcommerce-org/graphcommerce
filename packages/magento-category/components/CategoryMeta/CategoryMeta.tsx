@@ -12,13 +12,14 @@ export type CategoryMetaProps = CategoryMetaFragment &
   }
 
 export function CategoryMeta(props: CategoryMetaProps) {
-  const { meta_title, meta_description, name, params, ogImage, ogImageUseFallback } = props
-  let { title, metaDescription, metaRobots, canonical } = props
+  const { meta_title, meta_description, name, params, image, ogImageUseFallback } = props
+  let { title, metaDescription, metaRobots, canonical, ogImage } = props
   if (!title) title = ''
   if (!metaDescription) metaDescription = ''
 
   if (!title && meta_title) title = meta_title
   if (!title && name) title = name
+  if (!ogImage && image) ogImage = image
   if (!metaDescription && meta_description) metaDescription = meta_description
 
   if (params?.url && !canonical) canonical = `/${params.url}`
