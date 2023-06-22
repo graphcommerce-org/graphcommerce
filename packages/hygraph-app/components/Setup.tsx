@@ -27,21 +27,13 @@ function Configure() {
 export function Page() {
   const { installation } = useApp()
 
-  // if (installation?.status === 'COMPLETED') {
-  //   return (
-  //     <Wrapper>
-  //       <Configure />
-  //     </Wrapper>
-  //   )
-  // }
+  if (installation?.status === 'COMPLETED') {
+    return (
+      <Wrapper>
+        <Configure />
+      </Wrapper>
+    )
+  }
 
-  return (
-    <Wrapper>
-      <Install />
-    </Wrapper>
-  )
-}
-
-export function TestTest() {
-  return <div>tralala</div>
+  return <Wrapper>TRALASLAL</Wrapper>
 }
