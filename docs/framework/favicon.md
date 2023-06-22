@@ -35,6 +35,20 @@ to simplify the process of making correct favicons.
  <figcaption>Favicon sketch template</figcaption>
 </figure>
 
+## Open Graph preview image
+
+The Open Graph image is automaticly set for product and category pages if
+possible. For product pages the first gallary image will be used and for
+category pages the image uploaded to the `Category Image` attribute. If these
+images are not availale or on any of the other other pages a preview image will
+not be added unless added as `ogImage` prop to the `PageMeta`, `, CategoryMeta`
+or `ProductPageMeta` components.
+
+It is possible to enable a fallback image per route by setting the
+`ogImageUseFallback` prop to `true` on either the `PageMeta`, `, CategoryMeta`
+or `ProductPageMeta` components. The image used as fallback can be found at
+`/public/open-graph-image.jpg`
+
 ## Next steps
 
 - Lear more about [Static file serving](../framework/static-file-serving.md)
