@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.48
+
+### Minor Changes
+
+- [#1961](https://github.com/graphcommerce-org/graphcommerce/pull/1961) [`4a759c662`](https://github.com/graphcommerce-org/graphcommerce/commit/4a759c66215eaa69edc342b898e05e8f92c3ba9a) - Add Open Graph meta tags to all pages ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 6.2.0-canary.47
 
 ## 6.2.0-canary.46
