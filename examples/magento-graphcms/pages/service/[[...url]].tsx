@@ -10,12 +10,12 @@ import { i18n } from '@lingui/core'
 import { Container } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import {
+  LayoutDocument,
   LayoutOverlay,
   LayoutOverlayProps,
   LayoutNavigationProps,
   RowRenderer,
 } from '../../components'
-import { LayoutDocument } from '../../components/Layout/Layout.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
 type Props = HygraphPagesQuery

@@ -1,4 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { flushMeasurePerf } from '@graphcommerce/graphql'
 import {
   ProductListDocument,
   extractUrlQuery,
@@ -22,11 +23,14 @@ import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, LayoutTitle, LayoutHeader, FormRow } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Container, Hidden } from '@mui/material'
-import { LayoutNavigation, LayoutNavigationProps, SearchFilterLayout } from '../../components'
-import { LayoutDocument } from '../../components/Layout/Layout.gql'
+import { Container } from '@mui/material'
+import {
+  LayoutDocument,
+  LayoutNavigation,
+  LayoutNavigationProps,
+  SearchFilterLayout,
+} from '../../components'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
-import { flushMeasurePerf } from '@graphcommerce/graphql'
 
 type SearchResultProps = ProductListQuery &
   ProductFiltersQuery &

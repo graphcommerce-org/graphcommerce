@@ -10,8 +10,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { Box, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
-import { LayoutOverlay, LayoutOverlayProps, RowRenderer } from '../../components'
-import { LayoutDocument } from '../../components/Layout/Layout.gql'
+import { LayoutDocument, LayoutOverlay, LayoutOverlayProps, RowRenderer } from '../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
 type Props = HygraphPagesQuery

@@ -31,13 +31,13 @@ import { Link, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import { useRouter } from 'next/router'
 import {
+  LayoutDocument,
   LayoutNavigation,
   LayoutNavigationProps,
   RowProduct,
   RowRenderer,
   Usps,
 } from '../../../components'
-import { LayoutDocument } from '../../../components/Layout/Layout.gql'
 import { ProductPageDocument, ProductPageQuery } from '../../../graphql/ProductPage.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../../lib/graphql/graphqlSsrClient'
 

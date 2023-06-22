@@ -18,11 +18,11 @@ import {
   BlogListQuery,
   BlogPostPathsDocument,
   BlogTags,
+  LayoutDocument,
   LayoutNavigation,
   LayoutNavigationProps,
   RowRenderer,
 } from '../../components'
-import { LayoutDocument } from '../../components/Layout/Layout.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
 type Props = HygraphPagesQuery & BlogListQuery
