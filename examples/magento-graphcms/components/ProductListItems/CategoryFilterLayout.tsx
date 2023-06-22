@@ -28,11 +28,10 @@ export type ProductListFilterLayoutProps = ProductListQuery &
     params?: ProductListParams
     id: string
     title: string
-    header?: React.ReactNode
   }
 
 export function CategoryFilterLayout(props: ProductListFilterLayoutProps) {
-  const { params, filters, products, filterTypes, header, title, id } = props
+  const { params, filters, products, filterTypes, title, id } = props
 
   if (!(params && products?.items && filterTypes)) return null
 
@@ -60,7 +59,6 @@ export function CategoryFilterLayout(props: ProductListFilterLayoutProps) {
       >
         {import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR' ? (
           <ProductFiltersProLayoutSidebar
-            header={header}
             clearAll={<ProductFiltersProClearAll />}
             horizontalFilters={horizontalFilters}
             sidebarFilters={
@@ -75,7 +73,6 @@ export function CategoryFilterLayout(props: ProductListFilterLayoutProps) {
           />
         ) : (
           <>
-            {header}
             <StickyBelowHeader>{horizontalFilters}</StickyBelowHeader>
             <Container maxWidth={false}>
               <ProductListCount total_count={total_count} />
@@ -91,7 +88,6 @@ export function CategoryFilterLayout(props: ProductListFilterLayoutProps) {
   if (!import.meta.graphCommerce.productFiltersPro) {
     return (
       <>
-        {header}
         <StickyBelowHeader>
           <ProductListParamsProvider value={params}>
             <ProductListFiltersContainer>

@@ -69,6 +69,31 @@ function SearchResultPage(props: SearchResultProps) {
           />
         </LayoutHeader>
 
+        <LayoutTitle
+          gutterBottom={false}
+          gutterTop={false}
+          sx={{ display: { xs: 'none', md: 'flex' } }}
+        >
+          {search ? (
+            <Trans id='Results for &lsquo;{search}&rsquo;' values={{ search }} />
+          ) : (
+            <Trans id='All products' />
+          )}
+        </LayoutTitle>
+        <Container maxWidth='sm' sx={{ display: { xs: 'none', md: 'block' } }}>
+          <FormRow>
+            <SearchForm
+              totalResults={totalSearchResults}
+              search={search}
+              textFieldProps={{ autoFocus: true, fullWidth: true }}
+            />
+          </FormRow>
+
+          {categories?.items?.map((category) => (
+            <CategorySearchResult key={category?.url_path} search={search} {...category} />
+          ))}
+        </Container>
+
         {noSearchResults && (
           <Container>
             <NoSearchResults search={search} />
@@ -82,34 +107,6 @@ function SearchResultPage(props: SearchResultProps) {
             filterTypes={filterTypes}
             id={search}
             title={`Search ${search}`}
-            header={
-              <>
-                <LayoutTitle
-                  gutterBottom={false}
-                  gutterTop={false}
-                  sx={{ display: { xs: 'none', md: 'flex' } }}
-                >
-                  {search ? (
-                    <Trans id='Results for &lsquo;{search}&rsquo;' values={{ search }} />
-                  ) : (
-                    <Trans id='All products' />
-                  )}
-                </LayoutTitle>
-                <Container maxWidth='sm' sx={{ display: { xs: 'none', md: 'block' } }}>
-                  <FormRow>
-                    <SearchForm
-                      totalResults={totalSearchResults}
-                      search={search}
-                      textFieldProps={{ autoFocus: true, fullWidth: true }}
-                    />
-                  </FormRow>
-
-                  {categories?.items?.map((category) => (
-                    <CategorySearchResult key={category?.url_path} search={search} {...category} />
-                  ))}
-                </Container>
-              </>
-            }
           />
         )}
       </SearchContext>

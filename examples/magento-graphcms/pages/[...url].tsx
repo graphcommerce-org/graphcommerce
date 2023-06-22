@@ -67,12 +67,17 @@ function CategoryPage(props: CategoryProps) {
           {category?.name ?? page.title}
         </LayoutTitle>
       </LayoutHeader>
-      {!isCategory && (
-        <Container maxWidth={false}>
-          <LayoutTitle variant='h1' gutterTop gutterBottom>
-            {page.title}
-          </LayoutTitle>
-        </Container>
+      {!isLanding && (
+        <LayoutTitle
+          variant='h1'
+          gutterTop
+          sx={(theme) => ({
+            marginBottom: category?.description && theme.spacings.md,
+          })}
+          gutterBottom={!isCategory || (!category?.description && category?.children?.length === 0)}
+        >
+          {category?.name ?? page.title}
+        </LayoutTitle>
       )}
       {isCategory && isLanding && (
         <CategoryHeroNav
@@ -81,31 +86,20 @@ function CategoryPage(props: CategoryProps) {
           title={<CategoryHeroNavTitle>{category?.name}</CategoryHeroNavTitle>}
         />
       )}
+
       {isCategory && !isLanding && (
-        <CategoryFilterLayout
-          params={params}
-          filters={filters}
-          products={products}
-          filterTypes={filterTypes}
-          title={category.name ?? ''}
-          id={category.uid}
-          header={
-            <>
-              <Container maxWidth={false}>
-                <LayoutTitle
-                  variant='h1'
-                  gutterTop
-                  sx={(theme) => ({ marginBottom: category?.description && theme.spacings.md })}
-                  gutterBottom={!category.description && category.children?.length === 0}
-                >
-                  {category.name}
-                </LayoutTitle>
-              </Container>
-              <CategoryDescription description={category.description} />
-              <CategoryChildren params={params}>{category.children}</CategoryChildren>
-            </>
-          }
-        />
+        <>
+          <CategoryDescription description={category.description} />
+          <CategoryChildren params={params}>{category.children}</CategoryChildren>
+          <CategoryFilterLayout
+            params={params}
+            filters={filters}
+            products={products}
+            filterTypes={filterTypes}
+            title={category.name ?? ''}
+            id={category.uid}
+          />
+        </>
       )}
       {page && (
         <RowRenderer
