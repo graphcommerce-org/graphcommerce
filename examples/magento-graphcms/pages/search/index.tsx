@@ -91,7 +91,7 @@ function SearchResultPage(props: SearchResultProps) {
                     <Trans id='All products' />
                   )}
                 </LayoutTitle>
-                <Container maxWidth='sm' sx={{ display: { xs: 'none', md: 'flex' } }}>
+                <Container maxWidth='sm' sx={{ display: { xs: 'none', md: 'block' } }}>
                   <FormRow>
                     <SearchForm
                       totalResults={totalSearchResults}
