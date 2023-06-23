@@ -11,6 +11,7 @@ node_modules
 .vercel
 out/
 tsctrace
+.swc
 
 # misc
 .DS_Store

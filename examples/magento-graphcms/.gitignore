@@ -7,6 +7,7 @@ out/
 .vercel
 next-env.d.ts
 ._tmp*
+.swc
 
 # misc
 .DS_Store
