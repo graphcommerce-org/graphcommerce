@@ -1,7 +1,19 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
+/* eslint-disable react/no-unused-prop-types */
+import { cloneDeep } from '@apollo/client/utilities'
+import { useMemoObject } from '@graphcommerce/next-ui/hooks/useMemoObject'
 import { debounce } from '@mui/material'
-import { useCallback, useEffect, useState } from 'react'
-import { FieldPath, FieldValues, UseFormReturn } from 'react-hook-form'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
+import {
+  Control,
+  DeepPartialSkipArrayKey,
+  FieldPath,
+  FieldValues,
+  UseFormReturn,
+  useFormState,
+  useWatch,
+} from 'react-hook-form'
+import { DebounceOptions } from './utils/debounce'
+import { useDebouncedCallback } from './utils/useDebounceCallback'
 
 export type UseFormAutoSubmitOptions<TForm extends UseFormReturn<V>, V extends FieldValues> = {
   /** Instance of current form */
@@ -18,6 +30,8 @@ export type UseFormAutoSubmitOptions<TForm extends UseFormReturn<V>, V extends F
    * that this may cause extra requests
    */
   forceInitialSubmit?: boolean
+  /** Disables the hook */
+  disabled?: boolean
 }
 
 /**
@@ -43,7 +57,7 @@ export function useFormAutoSubmit<
   Form extends UseFormReturn<V>,
   V extends FieldValues = FieldValues,
 >(options: UseFormAutoSubmitOptions<Form, V>) {
-  const { form, submit, wait = 500, fields, forceInitialSubmit } = options
+  const { form, submit, wait = 500, fields, forceInitialSubmit, disabled } = options
   const { formState } = form
 
   const [submitting, setSubmitting] = useState(false)
@@ -72,13 +86,82 @@ export function useFormAutoSubmit<
   )
 
   useEffect(() => {
-    if (canSubmit && (force || shouldSubmit)) {
+    if (!disabled && canSubmit && (force || shouldSubmit)) {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       submitDebounced()
       return () => submitDebounced.clear()
     }
     return () => {}
-  }, [canSubmit, force, shouldSubmit, submitDebounced])
+  }, [canSubmit, force, shouldSubmit, submitDebounced, disabled])
 
   return submitting
 }
+
+export type FormAutoSubmitProps<
+  TFieldValues extends FieldValues = FieldValues,
+  TFieldNames extends readonly FieldPath<TFieldValues>[] = readonly FieldPath<TFieldValues>[],
+> = {
+  control: Control<TFieldValues>
+  /** Autosubmit only when these field names update */
+  name?: readonly [...TFieldNames]
+
+  disabled?: boolean
+
+  exact?: boolean
+
+  /** SubmitHandler */
+  submit: ReturnType<UseFormReturn<TFieldValues>['handleSubmit']>
+
+  /**
+   * When a current submission is already in flight, should we wait for it to finish before
+   * submitting again?
+   */
+  parallel?: boolean
+} & DebounceOptions
+
+function useFormAutoSubmit2<
+  TFieldValues extends FieldValues = FieldValues,
+  TFieldNames extends readonly FieldPath<TFieldValues>[] = readonly FieldPath<TFieldValues>[],
+>(props: FormAutoSubmitProps<TFieldValues, TFieldNames>) {
+  const { wait, initialWait, maxWait, submit, parallel, ...watchOptions } = props
+
+  // We create a stable object from the values, so that we can compare them later
+  const values = useMemoObject(cloneDeep(useWatch(watchOptions)))
+  const oldValues = useRef<DeepPartialSkipArrayKey<TFieldValues>>(values)
+  const { isValidating, isSubmitting, isValid } = useFormState(watchOptions)
+
+  const submitDebounced = useDebouncedCallback(
+    async () => {
+      try {
+        oldValues.current = values
+        await submit()
+      } catch (e) {
+        // We're not interested if the submission actually succeeds, that should be handled by the form itself.
+      }
+    },
+    { wait, initialWait, maxWait },
+  )
+
+  const valid = isValid && !isValidating
+  const allowed = parallel || !isSubmitting
+  const canSubmit = valid && allowed
+
+  if (canSubmit && values !== oldValues.current) {
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    submitDebounced()
+  }
+}
+
+/**
+ * We're wrapping this in a component so that the parent component doesn't rerender on every
+ * submission.
+ */
+function FormAutoSubmitBase<
+  TFieldValues extends FieldValues = FieldValues,
+  TFieldNames extends readonly FieldPath<TFieldValues>[] = readonly FieldPath<TFieldValues>[],
+>(props: FormAutoSubmitProps<TFieldValues, TFieldNames>) {
+  useFormAutoSubmit2(props)
+  return null
+}
+
+export const FormAutoSubmit = React.memo(FormAutoSubmitBase) as typeof FormAutoSubmitBase

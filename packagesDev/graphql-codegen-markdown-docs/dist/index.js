@@ -25,12 +25,19 @@ const plugin = (schema, _documents, config) => {
             leave: (node) => possibleScalars.includes(node.name) ? node.name : `[${node.name}](#${node.name})`,
         },
         StringValue: { leave: (node) => node.value },
+        BooleanValue: { leave: (node) => node.value },
+        EnumValue: { leave: (node) => node.value },
+        IntValue: { leave: (node) => node.value },
+        FloatValue: { leave: (node) => node.value },
         ListType: { leave: (node) => `[${node.type}]` },
         NonNullType: {
             leave: (node) => `${node.type}!`,
         },
         InputValueDefinition: {
-            leave: (node) => `\`${node.name}: ${node.type}\`${descriptionText(node)}`,
+            leave: (node) => {
+                const defaultValue = node.defaultValue ? ` (default: ${node.defaultValue})` : '';
+                return `\`${node.name}: ${node.type}${defaultValue}\`${descriptionText(node)}`;
+            },
         },
         InputObjectTypeDefinition: {
             enter: (node) => ({

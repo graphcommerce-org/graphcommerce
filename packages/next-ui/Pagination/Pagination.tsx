@@ -22,7 +22,7 @@ const { classes } = extendableComponent('Pagination', parts)
  * Read more: https://ahrefs.com/blog/rel-prev-next-pagination/
  */
 export function Pagination(props: PagePaginationProps) {
-  const { count, page, renderLink, classes: styles, ...paginationProps } = props
+  const { count, page, renderLink, classes: styles, sx = [], ...paginationProps } = props
 
   const { items } = usePagination({
     count,
@@ -61,18 +61,21 @@ export function Pagination(props: PagePaginationProps) {
   return (
     <Box
       className={classes.root}
-      sx={(theme) => ({
-        margin: '0 auto',
-        marginTop: theme.spacings.lg,
-        marginBottom: theme.spacings.lg,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: '6px',
-        '& .Mui-disabled': {
-          background: 'none',
-        },
-      })}
+      sx={[
+        (theme) => ({
+          margin: '0 auto',
+          marginTop: theme.spacings.lg,
+          marginBottom: theme.spacings.lg,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '6px',
+          '& .Mui-disabled': {
+            background: 'none',
+          },
+        }),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
     >
       {page === 1 ? chevronLeft : renderLink(page - 1, chevronLeft, prevBtnProps)}
 

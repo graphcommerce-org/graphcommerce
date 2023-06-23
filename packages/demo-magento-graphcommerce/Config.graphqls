@@ -6,5 +6,5 @@ extend input GraphCommerceConfig {
   - Adds "dominant_color" attribute swatches to the product list items.
   - Creates a big list items in the product list.
   """
-  demoMode: Boolean
+  demoMode: Boolean = true
 }

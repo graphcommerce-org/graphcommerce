@@ -15,8 +15,12 @@ import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Button, Box, Container } from '@mui/material'
 import { useRouter } from 'next/router'
-import { LayoutMinimal, LayoutNavigationProps, LayoutMinimalProps } from '../../components'
-import { LayoutDocument } from '../../components/Layout/Layout.gql'
+import {
+  LayoutDocument,
+  LayoutMinimal,
+  LayoutNavigationProps,
+  LayoutMinimalProps,
+} from '../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
 type Props = Record<string, unknown>
@@ -84,7 +88,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const client = graphqlSharedClient(locale)
   const staticClient = graphqlSsrClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
-  const layout = staticClient.query({ query: LayoutDocument })
+  const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
 
   return {
     props: {

@@ -21,7 +21,7 @@ export function getMinMaxFromOptions(options: PriceSliderProps['options']) {
   const min = totalRange[0][0]
   const max = totalRange[totalRange.length - 1][1]
 
-  return [min, max]
+  return [Math.floor(min), Math.ceil(max)] as [number, number]
 }
 
 export function PriceSlider(props: PriceSliderProps) {
@@ -37,7 +37,11 @@ export function PriceSlider(props: PriceSliderProps) {
   return (
     <Box
       sx={[
-        (theme) => ({ pt: theme.spacings.md, pb: theme.spacings.xs }),
+        (theme) => ({
+          pt: theme.spacings.md,
+          pb: theme.spacings.xs,
+          px: theme.spacings.xxs,
+        }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
       className={classes.container}

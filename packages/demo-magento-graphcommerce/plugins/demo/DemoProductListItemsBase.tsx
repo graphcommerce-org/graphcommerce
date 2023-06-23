@@ -27,6 +27,10 @@ export const sxLargeItem = (theme: Theme) => ({
 
 function DemoProductListItemsBase(props: PluginProps<ProductItemsGridProps>) {
   const { Prev, sx = [], ...rest } = props
+
+  if (import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR')
+    return <Prev {...rest} sx={sx} />
+
   return <Prev {...rest} sx={[sxLargeItem, ...(Array.isArray(sx) ? sx : [sx])]} />
 }
 export const Plugin = DemoProductListItemsBase

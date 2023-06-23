@@ -24,13 +24,13 @@ import {
 import { Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import {
+  LayoutDocument,
   LayoutNavigation,
   LayoutNavigationProps,
   RowProduct,
   RowRenderer,
   Usps,
 } from '../../../components'
-import { LayoutDocument } from '../../../components/Layout/Layout.gql'
 import { ProductPageDocument, ProductPageQuery } from '../../../graphql/ProductPage.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../../lib/graphql/graphqlSsrClient'
 
@@ -128,7 +128,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale, defau
     query: ProductPageDocument,
     variables: { url: 'product/global', urlKey },
   })
-  const layout = staticClient.query({ query: LayoutDocument })
+  const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
 
   const product = findByTypename((await productPage).data.products?.items, 'VirtualProduct')
   if (!product) return { notFound: true }

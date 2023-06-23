@@ -45,13 +45,13 @@ import { Trans } from '@lingui/react'
 import { Divider, Link, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import {
+  LayoutDocument,
   LayoutNavigation,
   LayoutNavigationProps,
   RowProduct,
   RowRenderer,
   Usps,
 } from '../../components'
-import { LayoutDocument } from '../../components/Layout/Layout.gql'
 import { UspsDocument, UspsQuery } from '../../components/Usps/Usps.gql'
 import { ProductPage2Document, ProductPage2Query } from '../../graphql/ProductPage2.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'

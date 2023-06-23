@@ -122,7 +122,6 @@ export function ActionCard(props: ActionCardProps) {
             theme.shape.borderRadius * 3,
             theme.breakpoints.values,
           ),
-
           '&.sizeSmall': {
             px: responsiveVal(8, 12),
             py: responsiveVal(4, 6),
@@ -144,12 +143,12 @@ export function ActionCard(props: ActionCardProps) {
           '&.variantDefault': {
             '&::after': {
               content: '""',
-              display: 'block',
               position: 'absolute',
               width: '100%',
               left: 0,
               bottom: '-1px',
               borderBottom: `1px solid ${theme.palette.divider}`,
+              display: 'block',
             },
             '&.selected': {
               backgroundColor:
@@ -193,7 +192,6 @@ export function ActionCard(props: ActionCardProps) {
             '&:not(:last-of-type)': {
               marginBottom: '-1px',
             },
-
             '&.layoutList': {
               borderRadius: 0,
               '&:first-of-type': {
@@ -299,7 +297,8 @@ export function ActionCard(props: ActionCardProps) {
               <Box
                 className={classes.title}
                 sx={{
-                  typography: 'subtitle2',
+                  '&.sizeSmall': { typography: 'body2' },
+                  '&.sizeMedium': { typography: 'body1' },
                   '&.sizeLarge': { typography: 'h6' },
                 }}
               >

@@ -162,6 +162,10 @@ msgid "Clear"
 msgstr "Filtro pulito"
 
 #. js-lingui-explicit-id
+msgid "Clear all filters"
+msgstr "Cancella tutti i filtri"
+
+#. js-lingui-explicit-id
 msgid "Close"
 msgstr "Chiudi"
 
@@ -402,6 +406,10 @@ msgid "Latest orders"
 msgstr "Ultimi ordini"
 
 #. js-lingui-explicit-id
+msgid "Less options"
+msgstr "Meno opzioni"
+
+#. js-lingui-explicit-id
 msgid "Light Mode"
 msgstr "Modalità chiara"
 
@@ -440,6 +448,10 @@ msgstr "Il numero minimo di diverse classi di caratteri nella password è {passw
 #. js-lingui-explicit-id
 msgid "More information"
 msgstr "Maggiori informazioni"
+
+#. js-lingui-explicit-id
+msgid "More options"
+msgstr "Più opzioni"
 
 #. js-lingui-explicit-id
 msgid "Mr"

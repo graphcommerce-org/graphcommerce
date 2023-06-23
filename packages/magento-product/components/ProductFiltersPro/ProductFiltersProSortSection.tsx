@@ -3,13 +3,12 @@ import { useQuery } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   ActionCard,
+  ActionCardAccordion,
   ActionCardListForm,
   Button,
   filterNonNullableKeys,
-  SectionHeader,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box } from '@mui/material'
 import { useMemo } from 'react'
 import { ProductListSortFragment } from '../ProductListSort/ProductListSort.gql'
 import { useProductFiltersPro } from './ProductFiltersPro'
@@ -36,34 +35,35 @@ export function ProductFiltersProSortSection(props: ProductFiltersProSortSection
   )
 
   return (
-    <Box sx={{ my: 2 }}>
-      <SectionHeader
-        labelLeft={<Trans id='Sort By' />}
-        sx={{ mt: 0 }}
-        labelRight={
-          activeSort ? (
-            <Button
-              variant='inline'
-              color='primary'
-              onClick={() => {
-                form.resetField('sort', { defaultValue: null })
-                form.resetField('currentPage', { defaultValue: 1 })
-              }}
-            >
-              <Trans id='Clear' />
-            </Button>
-          ) : undefined
-        }
-      />
-      <ActionCardListForm
-        control={control}
-        name='sort'
-        layout='list'
-        variant='default'
-        size='medium'
-        render={ActionCard}
-        items={options}
-      />
-    </Box>
+    <ActionCardAccordion
+      defaultExpanded={!!activeSort}
+      summary={<Trans id='Sort By' />}
+      details={
+        <ActionCardListForm
+          control={control}
+          name='sort'
+          layout='list'
+          variant='default'
+          size='medium'
+          render={ActionCard}
+          items={options}
+        />
+      }
+      right={
+        activeSort ? (
+          <Button
+            color='primary'
+            onClick={(e) => {
+              e.stopPropagation()
+              form.setValue('sort', null)
+              form.setValue('dir', null)
+              form.setValue('currentPage', 1)
+            }}
+          >
+            <Trans id='Clear' />
+          </Button>
+        ) : undefined
+      }
+    />
   )
 }

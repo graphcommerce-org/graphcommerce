@@ -89,19 +89,19 @@ export const MuiButtonPill: ButtonVariants = [
   {
     props: { variant: 'pill', size: 'small' },
     style: ({ theme }) => ({
-      '&:not(.Mui-disabled)': { boxShadow: theme.shadows[2] },
+      '&:not(.Mui-disabled):not(.MuiButton-disableElevation)': { boxShadow: theme.shadows[2] },
     }),
   },
   {
     props: { variant: 'pill', size: 'medium' },
     style: ({ theme }) => ({
-      '&:not(.Mui-disabled)': { boxShadow: theme.shadows[4] },
+      '&:not(.Mui-disabled):not(.MuiButton-disableElevation)': { boxShadow: theme.shadows[4] },
     }),
   },
   {
     props: { variant: 'pill', size: 'large' },
     style: ({ theme }) => ({
-      '&:not(.Mui-disabled)': { boxShadow: theme.shadows[6] },
+      '&:not(.Mui-disabled):not(.MuiButton-disableElevation)': { boxShadow: theme.shadows[6] },
     }),
   },
   {

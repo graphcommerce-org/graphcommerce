@@ -3,12 +3,12 @@ import { useQuery } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   ActionCard,
+  ActionCardAccordion,
   ActionCardItemBase,
   ActionCardListForm,
-  SectionHeader,
+  Button,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box, Button } from '@mui/material'
 import { useMemo } from 'react'
 import { useProductFiltersPro } from './ProductFiltersPro'
 
@@ -36,34 +36,35 @@ export function ProductFiltersProLimitSection(props: ProductFiltersProLimitSecti
   if (options.length <= 1) return null
 
   return (
-    <Box sx={{ my: 2 }}>
-      <SectionHeader
-        labelLeft={<Trans id='Per page' />}
-        sx={{ mt: 0 }}
-        labelRight={
-          activePageSize ? (
-            <Button
-              variant='inline'
-              color='primary'
-              onClick={() => {
-                form.resetField('pageSize', { defaultValue: null })
-                form.resetField('currentPage', { defaultValue: 1 })
-              }}
-            >
-              <Trans id='Clear' />
-            </Button>
-          ) : undefined
-        }
-      />
-      <ActionCardListForm
-        control={control}
-        name='pageSize'
-        layout='list'
-        variant='default'
-        size='medium'
-        render={ActionCard}
-        items={options}
-      />
-    </Box>
+    <ActionCardAccordion
+      summary={<Trans id='Per page' />}
+      details={
+        <ActionCardListForm
+          sx={{ mb: 2 }}
+          render={ActionCard}
+          name='currentPage'
+          control={control}
+          multiple
+          layout='list'
+          variant='default'
+          size='medium'
+          items={options}
+        />
+      }
+      right={
+        activePageSize ? (
+          <Button
+            variant='inline'
+            color='primary'
+            onClick={() => {
+              form.setValue('pageSize', null)
+              form.setValue('currentPage', 1)
+            }}
+          >
+            <Trans id='Clear' />
+          </Button>
+        ) : undefined
+      }
+    />
   )
 }

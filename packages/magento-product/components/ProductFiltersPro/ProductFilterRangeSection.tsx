@@ -1,10 +1,9 @@
 import { Controller } from '@graphcommerce/ecommerce-ui'
 import type { ProductAttributeFilterInput } from '@graphcommerce/graphql-mesh'
-import { SectionHeader } from '@graphcommerce/next-ui'
+import { ActionCardAccordion, Button } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box, Button } from '@mui/material'
 import { isFilterTypeRange } from '../ProductListItems/filterTypes'
-import { getMinMaxFromOptions, PriceSlider } from './PriceSlider'
+import { PriceSlider, getMinMaxFromOptions } from './PriceSlider'
 import { useProductFiltersPro } from './ProductFiltersPro'
 import { FilterProps } from './ProductFiltersProAggregations'
 
@@ -35,26 +34,23 @@ export function ProductFilterRangeSection(props: FilterProps) {
         const to = value?.to ? Number(value?.to) : max
 
         return (
-          <Box sx={{ my: 2 }}>
-            <SectionHeader
-              labelLeft={label}
-              sx={{ mt: 0 }}
-              labelRight={
-                from !== min || to !== max ? (
-                  <Button
-                    variant='inline'
-                    color='primary'
-                    onClick={() => {
-                      form.resetField(name, { defaultValue: null })
-                    }}
-                  >
-                    <Trans id='Clear' />
-                  </Button>
-                ) : undefined
-              }
-            />
-            <PriceSlider options={options} value={value} onChange={onChange} />
-          </Box>
+          <ActionCardAccordion
+            summary={label}
+            details={<PriceSlider options={options} value={value} onChange={onChange} />}
+            right={
+              from !== min || to !== max ? (
+                <Button
+                  color='primary'
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    form.setValue(name, null)
+                  }}
+                >
+                  <Trans id='Clear' />
+                </Button>
+              ) : undefined
+            }
+          />
         )
       }}
     />

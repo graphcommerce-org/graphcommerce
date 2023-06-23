@@ -18,6 +18,9 @@ _export(exports, {
     CompareVariantSchema: function() {
         return CompareVariantSchema;
     },
+    ProductFiltersLayoutSchema: function() {
+        return ProductFiltersLayoutSchema;
+    },
     GraphCommerceConfigSchema: function() {
         return GraphCommerceConfigSchema;
     },
@@ -34,6 +37,10 @@ const definedNonNullAnySchema = _zod.z.any().refine((v)=>isDefinedNonNullAny(v))
 const CompareVariantSchema = _zod.z.enum([
     "CHECKBOX",
     "ICON"
+]);
+const ProductFiltersLayoutSchema = _zod.z.enum([
+    "DEFAULT",
+    "SIDEBAR"
 ]);
 function GraphCommerceConfigSchema() {
     return _zod.z.object({
@@ -54,6 +61,7 @@ function GraphCommerceConfigSchema() {
         limitSsg: _zod.z.boolean().nullish(),
         magentoEndpoint: _zod.z.string().min(1),
         previewSecret: _zod.z.string().nullish(),
+        productFiltersLayout: ProductFiltersLayoutSchema.nullish(),
         productFiltersPro: _zod.z.boolean().nullish(),
         productRoute: _zod.z.string().nullish(),
         robotsAllow: _zod.z.boolean().nullish(),

@@ -49,8 +49,9 @@ export function ProductFiltersProSortChip(props: ProductListActionSortProps) {
       onReset={
         activeSort
           ? () => {
-              form.resetField('sort', { defaultValue: null })
-              form.resetField('currentPage', { defaultValue: 1 })
+              form.setValue('sort', null)
+              form.setValue('dir', null)
+              form.setValue('currentPage', 1)
               return submit()
             }
           : undefined

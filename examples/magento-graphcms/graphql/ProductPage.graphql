@@ -1,4 +1,4 @@
-# @deprecated Will be removed in GraphCommerce 7
+# @deprecated This query is for the legacyProductPages (/product/[url]) and will be removed.
 query ProductPage($url: String!, $urlKey: String!, $reviewPageSize: Int = 3, $reviewPage: Int = 1) {
   ...UspsQueryFragment
   ...ProductPageQueryFragment

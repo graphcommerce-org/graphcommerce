@@ -1,10 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { flushMeasurePerf } from '@graphcommerce/graphql'
 import {
-  ProductFiltersPro,
-  ProductFiltersProFilterChips,
-  ProductFiltersProSortChip,
-  ProductListFiltersContainer,
-  ProductListParamsProvider,
   ProductListDocument,
   extractUrlQuery,
   parseParams,
@@ -14,36 +10,26 @@ import {
   ProductFiltersDocument,
   ProductListQuery,
   ProductFiltersQuery,
-  ProductFiltersProAllFiltersChip,
-  ProductFiltersProLimitChip,
-  AddProductsToCartForm,
 } from '@graphcommerce/magento-product'
 import {
   CategorySearchDocument,
   CategorySearchQuery,
   CategorySearchResult,
   NoSearchResults,
-  ProductListCountSearch,
-  ProductListFiltersSearch,
-  ProductListItemsSearch,
-  ProductListPaginationSearch,
-  ProductListSortSearch,
   SearchContext,
-  SearchDivider,
   SearchForm,
 } from '@graphcommerce/magento-search'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import {
-  StickyBelowHeader,
-  GetStaticProps,
-  LayoutTitle,
-  LayoutHeader,
-} from '@graphcommerce/next-ui'
+import { GetStaticProps, LayoutTitle, LayoutHeader, FormRow } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Container, Hidden } from '@mui/material'
-import { LayoutNavigation, LayoutNavigationProps, productListRenderer } from '../../components'
-import { LayoutDocument } from '../../components/Layout/Layout.gql'
+import { Container } from '@mui/material'
+import {
+  LayoutDocument,
+  LayoutNavigation,
+  LayoutNavigationProps,
+  SearchFilterLayout,
+} from '../../components'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
 type SearchResultProps = ProductListQuery &
@@ -76,84 +62,52 @@ function SearchResultPage(props: SearchResultProps) {
 
       <SearchContext>
         <LayoutHeader floatingMd switchPoint={0}>
-          <LayoutTitle size='small'>
-            <SearchForm
-              totalResults={totalSearchResults}
-              search={search}
-              textFieldProps={{ variant: 'standard' }}
-            />
-          </LayoutTitle>
+          <SearchForm
+            totalResults={totalSearchResults}
+            search={search}
+            textFieldProps={{ size: 'small', variant: 'outlined', fullWidth: true }}
+          />
         </LayoutHeader>
-        <Hidden implementation='css' mdDown>
-          <LayoutTitle gutterBottom={false} gutterTop={false}>
-            {search ? (
-              <Trans id='Results for &lsquo;{search}&rsquo;' values={{ search }} />
-            ) : (
-              <Trans id='All products' />
-            )}
-          </LayoutTitle>
 
-          <Container maxWidth='sm'>
+        <LayoutTitle
+          gutterBottom={false}
+          gutterTop={false}
+          sx={{ display: { xs: 'none', md: 'flex' } }}
+        >
+          {search ? (
+            <Trans id='Results for &lsquo;{search}&rsquo;' values={{ search }} />
+          ) : (
+            <Trans id='All products' />
+          )}
+        </LayoutTitle>
+        <Container maxWidth='sm' sx={{ display: { xs: 'none', md: 'block' } }}>
+          <FormRow>
             <SearchForm
               totalResults={totalSearchResults}
               search={search}
-              textFieldProps={{ autoFocus: true }}
+              textFieldProps={{ autoFocus: true, fullWidth: true }}
             />
+          </FormRow>
 
-            {categories?.items?.map((category) => (
-              <CategorySearchResult key={category?.url_path} search={search} {...category} />
-            ))}
+          {categories?.items?.map((category) => (
+            <CategorySearchResult key={category?.url_path} search={search} {...category} />
+          ))}
+        </Container>
+
+        {noSearchResults && (
+          <Container>
+            <NoSearchResults search={search} />
           </Container>
-          <SearchDivider />
-        </Hidden>
-
-        {noSearchResults && <NoSearchResults search={search} />}
+        )}
         {products && products.items && products?.items?.length > 0 && (
-          <>
-            <StickyBelowHeader>
-              {import.meta.graphCommerce.productFiltersPro ? (
-                <ProductFiltersPro params={params}>
-                  <ProductListFiltersContainer>
-                    <ProductFiltersProFilterChips
-                      {...filters}
-                      appliedAggregations={products.aggregations}
-                      filterTypes={filterTypes}
-                    />
-                    <ProductFiltersProSortChip {...products} />
-                    <ProductFiltersProLimitChip />
-                    <ProductFiltersProAllFiltersChip
-                      {...products}
-                      {...filters}
-                      appliedAggregations={products.aggregations}
-                      filterTypes={filterTypes}
-                    />
-                  </ProductListFiltersContainer>
-                </ProductFiltersPro>
-              ) : (
-                <ProductListParamsProvider value={params}>
-                  <ProductListFiltersContainer>
-                    <ProductListSortSearch
-                      sort_fields={products?.sort_fields}
-                      total_count={products?.total_count}
-                    />
-                    <ProductListFiltersSearch {...filters} filterTypes={filterTypes} />
-                  </ProductListFiltersContainer>
-                </ProductListParamsProvider>
-              )}
-            </StickyBelowHeader>
-            <Container maxWidth={false}>
-              <ProductListCountSearch total_count={products?.total_count} />
-              <AddProductsToCartForm>
-                <ProductListItemsSearch
-                  renderers={productListRenderer}
-                  title={`Search ${search}`}
-                  items={products?.items}
-                  loadingEager={1}
-                />
-              </AddProductsToCartForm>
-              <ProductListPaginationSearch page_info={products?.page_info} params={params} />
-            </Container>
-          </>
+          <SearchFilterLayout
+            params={params}
+            filters={filters}
+            products={products}
+            filterTypes={filterTypes}
+            id={search}
+            title={`Search ${search}`}
+          />
         )}
       </SearchContext>
     </>
@@ -177,7 +131,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const filterTypes = getFilterTypes(client)
 
   const staticClient = graphqlSsrClient(locale)
-  const layout = staticClient.query({ query: LayoutDocument })
+  const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
 
   const productListParams = parseParams(
     search ? `search/${search}` : 'search',
@@ -199,7 +153,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     ? staticClient.query({ query: CategorySearchDocument, variables: { search } })
     : undefined
 
-  return {
+  const result = {
     props: {
       ...(await products).data,
       ...(await filters).data,
@@ -212,4 +166,6 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     },
     revalidate: 60 * 20,
   }
+  flushMeasurePerf()
+  return result
 }

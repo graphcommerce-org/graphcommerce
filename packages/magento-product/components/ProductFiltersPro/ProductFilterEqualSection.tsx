@@ -6,11 +6,11 @@ import {
   filterNonNullableKeys,
   IconSvg,
   iconCirle,
-  SectionHeader,
+  ActionCardAccordion,
   Button,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box, Typography } from '@mui/material'
+import { Box } from '@mui/material'
 import { useMemo } from 'react'
 import { isFilterTypeEqual } from '../ProductListItems/filterTypes'
 import { useProductFiltersPro } from './ProductFiltersPro'
@@ -19,7 +19,8 @@ import { FilterProps } from './ProductFiltersProAggregations'
 export function ProductFilterEqualSection(props: FilterProps) {
   const { aggregation } = props
   const { attribute_code, label, options } = aggregation
-  const { form, submit, params } = useProductFiltersPro()
+
+  const { form, params } = useProductFiltersPro()
   const { control } = form
   const attrCode = attribute_code as keyof ProductAttributeFilterInput
 
@@ -36,11 +37,9 @@ export function ProductFilterEqualSection(props: FilterProps) {
         ...option,
         title: (
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-            <Typography sx={{ marginRight: 1 }}>{option.label}</Typography>
+            <Box sx={{ marginRight: 1 }}>{option.label}</Box>
             {option.count !== null && (
-              <Typography variant='caption' color='text.disabled'>
-                ({option.count})
-              </Typography>
+              <Box sx={{ typography: 'caption', color: 'text.disabled' }}>({option.count})</Box>
             )}
           </Box>
         ),
@@ -56,35 +55,35 @@ export function ProductFilterEqualSection(props: FilterProps) {
   )
 
   return (
-    <Box sx={{ my: 2 }}>
-      <SectionHeader
-        labelLeft={label}
-        sx={{ mt: 0 }}
-        labelRight={
-          currentFilter && currentFilter.length > 0 ? (
-            <Button
-              variant='inline'
-              color='primary'
-              onClick={() => {
-                form.resetField(name, { defaultValue: null })
-              }}
-            >
-              <Trans id='Clear' />
-            </Button>
-          ) : undefined
-        }
-      />
-
-      <ActionCardListForm
-        render={ActionCard}
-        name={name}
-        control={control}
-        multiple
-        layout='list'
-        variant='default'
-        size='medium'
-        items={items}
-      />
-    </Box>
+    <ActionCardAccordion
+      summary={label}
+      details={
+        <ActionCardListForm
+          sx={{ mb: 2 }}
+          render={ActionCard}
+          name={name}
+          control={control}
+          multiple
+          layout='list'
+          variant='default'
+          size='medium'
+          items={items}
+          showMoreAfter={4}
+        />
+      }
+      right={
+        currentFilter && currentFilter.length > 0 ? (
+          <Button
+            color='primary'
+            onClick={(e) => {
+              e.stopPropagation()
+              form.setValue(name, null)
+            }}
+          >
+            <Trans id='Clear' />
+          </Button>
+        ) : undefined
+      }
+    />
   )
 }

@@ -221,15 +221,6 @@ export function LayoutDemo(props: LayoutDemoProps) {
           </ListItemButton>
 
           <ListItemButton
-            href='/test/minimal-page-shell-subheader'
-            component={NextLink}
-            disabled={isMinimalPageShellSubheader}
-            style={{ paddingLeft: 0, paddingRight: 0 }}
-          >
-            Minimal Page Shell + Subheader
-          </ListItemButton>
-
-          <ListItemButton
             onClick={() => setScroll(!scroll)}
             color='secondary'
             style={{ paddingLeft: 0, paddingRight: 0 }}

@@ -15,42 +15,25 @@ import {
   getFilterTypes,
   parseParams,
   ProductFiltersDocument,
-  ProductFiltersPro,
-  ProductFiltersProAllFiltersChip,
-  ProductFiltersProFilterChips,
-  ProductFiltersProLimitChip,
-  ProductFiltersProSortChip,
   ProductFiltersQuery,
-  ProductListCount,
   ProductListDocument,
-  ProductListFilters,
-  ProductListFiltersContainer,
-  ProductListPagination,
   ProductListParams,
-  ProductListParamsProvider,
   ProductListQuery,
-  ProductListSort,
 } from '@graphcommerce/magento-product'
-import { StoreConfigDocument, redirectOrNotFound } from '@graphcommerce/magento-store'
-import {
-  StickyBelowHeader,
-  LayoutTitle,
-  LayoutHeader,
-  GetStaticProps,
-  MetaRobots,
-} from '@graphcommerce/next-ui'
+import { redirectOrNotFound, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { GetStaticProps, LayoutHeader, LayoutTitle, MetaRobots } from '@graphcommerce/next-ui'
 import { Container } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import {
+  CategoryFilterLayout,
+  LayoutDocument,
   LayoutNavigation,
   LayoutNavigationProps,
-  ProductListItems,
   RowProduct,
   RowRenderer,
 } from '../components'
-import { LayoutDocument } from '../components/Layout/Layout.gql'
 import { CategoryPageDocument, CategoryPageQuery } from '../graphql/CategoryPage.gql'
-import { graphqlSsrClient, graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
+import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
 
 export type CategoryProps = CategoryPageQuery &
   HygraphPagesQuery &
@@ -107,50 +90,19 @@ function CategoryPage(props: CategoryProps) {
           title={<CategoryHeroNavTitle>{category?.name}</CategoryHeroNavTitle>}
         />
       )}
+
       {isCategory && !isLanding && (
         <>
           <CategoryDescription description={category.description} />
           <CategoryChildren params={params}>{category.children}</CategoryChildren>
-          <StickyBelowHeader>
-            {import.meta.graphCommerce.productFiltersPro ? (
-              <ProductFiltersPro params={params}>
-                <ProductListFiltersContainer>
-                  <ProductFiltersProFilterChips
-                    {...filters}
-                    appliedAggregations={products.aggregations}
-                    filterTypes={filterTypes}
-                  />
-                  <ProductFiltersProSortChip {...products} />
-                  <ProductFiltersProLimitChip />
-                  <ProductFiltersProAllFiltersChip
-                    {...products}
-                    {...filters}
-                    appliedAggregations={products.aggregations}
-                    filterTypes={filterTypes}
-                  />
-                </ProductListFiltersContainer>
-              </ProductFiltersPro>
-            ) : (
-              <ProductListParamsProvider value={params}>
-                <ProductListFiltersContainer>
-                  <ProductListSort
-                    sort_fields={products?.sort_fields}
-                    total_count={products?.total_count}
-                  />
-                  <ProductListFilters {...filters} filterTypes={filterTypes} />
-                </ProductListFiltersContainer>
-              </ProductListParamsProvider>
-            )}
-          </StickyBelowHeader>
-          <Container maxWidth={false}>
-            <ProductListCount total_count={products?.total_count} />
-            <ProductListItems
-              title={category.name ?? ''}
-              items={products?.items}
-              loadingEager={1}
-            />
-            <ProductListPagination page_info={products?.page_info} params={params} />
-          </Container>
+          <CategoryFilterLayout
+            params={params}
+            filters={filters}
+            products={products}
+            filterTypes={filterTypes}
+            title={category.name ?? ''}
+            id={category.uid}
+          />
         </>
       )}
       {page && (

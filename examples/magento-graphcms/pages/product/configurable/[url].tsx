@@ -31,13 +31,13 @@ import { Link, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import { useRouter } from 'next/router'
 import {
+  LayoutDocument,
   LayoutNavigation,
   LayoutNavigationProps,
   RowProduct,
   RowRenderer,
   Usps,
 } from '../../../components'
-import { LayoutDocument } from '../../../components/Layout/Layout.gql'
 import { ProductPageDocument, ProductPageQuery } from '../../../graphql/ProductPage.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../../lib/graphql/graphqlSsrClient'
 
@@ -173,7 +173,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale, defau
     query: ConfigurableProductPageDocument,
     variables: { urlKey },
   })
-  const layout = staticClient.query({ query: LayoutDocument })
+  const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
 
   const product = findByTypename((await productPage).data.products?.items, 'ConfigurableProduct')
   const typeProduct = findByTypename(

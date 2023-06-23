@@ -3,12 +3,18 @@ import {
   TextFieldElement,
   useFormGqlMutation,
 } from '@graphcommerce/ecommerce-ui'
-import { GuestNewsletterToggleDocument } from '@graphcommerce/magento-newsletter/components/GuestNewsletterToggle/GuestNewsletterToggle.gql'
 import { Form, MessageSnackbar, Button } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
+import { SxProps, Theme } from '@mui/material'
+import { GuestNewsletterToggleDocument } from '../GuestNewsletterToggle/GuestNewsletterToggle.gql'
 
-export function GuestNewsletter() {
+type GuestNewsletterProps = {
+  sx?: SxProps<Theme>
+}
+
+export function GuestNewsletter(props: GuestNewsletterProps) {
+  const { sx = [] } = props
   const form = useFormGqlMutation(GuestNewsletterToggleDocument, {}, { errorPolicy: 'all' })
 
   const { handleSubmit, formState, error, control } = form
@@ -17,7 +23,11 @@ export function GuestNewsletter() {
   const submittedWithoutErrors = formState.isSubmitSuccessful && !error
 
   return (
-    <Form noValidate onSubmit={submit} sx={[(theme) => ({ gap: theme.spacings.xs })]}>
+    <Form
+      noValidate
+      onSubmit={submit}
+      sx={[(theme) => ({ gap: theme.spacings.xs }), ...(Array.isArray(sx) ? sx : [sx])]}
+    >
       <TextFieldElement
         required
         variant='outlined'

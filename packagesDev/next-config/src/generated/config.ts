@@ -224,6 +224,12 @@ export type GraphCommerceConfig = {
   /** To enable next.js' preview mode, configure the secret you'd like to use. */
   previewSecret?: InputMaybe<Scalars['String']['input']>;
   /**
+   * Layout how the filters are rendered.
+   * DEFAULT: Will be rendered as horzontal chips on desktop and mobile
+   * SIDEBAR: Will be rendered as a sidebar on desktop and horizontal chips on mobile
+   */
+  productFiltersLayout?: InputMaybe<ProductFiltersLayout>;
+  /**
    * Product filters with better UI for mobile and desktop.
    *
    * @experimental This is an experimental feature and may change in the future.
@@ -322,6 +328,10 @@ export type GraphCommerceStorefrontConfig = {
   magentoStoreCode: Scalars['String']['input'];
 };
 
+export type ProductFiltersLayout =
+  | 'DEFAULT'
+  | 'SIDEBAR';
+
 
 type Properties<T> = Required<{
   [K in keyof T]: z.ZodType<T[K], any, T[K]>;
@@ -334,6 +344,8 @@ export const isDefinedNonNullAny = (v: any): v is definedNonNullAny => v !== und
 export const definedNonNullAnySchema = z.any().refine((v) => isDefinedNonNullAny(v));
 
 export const CompareVariantSchema = z.enum(['CHECKBOX', 'ICON']);
+
+export const ProductFiltersLayoutSchema = z.enum(['DEFAULT', 'SIDEBAR']);
 
 export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerceConfig>> {
   return z.object({
@@ -354,6 +366,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     limitSsg: z.boolean().nullish(),
     magentoEndpoint: z.string().min(1),
     previewSecret: z.string().nullish(),
+    productFiltersLayout: ProductFiltersLayoutSchema.nullish(),
     productFiltersPro: z.boolean().nullish(),
     productRoute: z.string().nullish(),
     robotsAllow: z.boolean().nullish(),

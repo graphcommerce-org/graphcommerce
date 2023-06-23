@@ -1,6 +1,14 @@
-import { useForm, UseFormProps, UseFormReturn } from '@graphcommerce/ecommerce-ui'
-import { useMemoObject } from '@graphcommerce/next-ui'
-import React, { BaseSyntheticEvent, createContext, useContext, useEffect, useMemo } from 'react'
+import {
+  FormAutoSubmit,
+  useForm,
+  useFormAutoSubmit,
+  UseFormProps,
+  UseFormReturn,
+} from '@graphcommerce/ecommerce-ui'
+import type { ProductFiltersLayout } from '@graphcommerce/next-config'
+import { extendableComponent, StickyBelowHeader, useMemoObject } from '@graphcommerce/next-ui'
+import { useMediaQuery, Container, Box, Theme, useEventCallback } from '@mui/material'
+import React, { BaseSyntheticEvent, createContext, useContext, useMemo } from 'react'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import {
   ProductFilterParams,
@@ -8,8 +16,14 @@ import {
   toFilterParams,
   toProductListParams,
 } from '../ProductListItems/filterTypes'
+import { ProductListFiltersFragment } from '../ProductListFilters/ProductListFilters.gql'
 
-type FilterFormContextProps = {
+type DataProps = {
+  filterTypes: Record<string, string | undefined>
+  appliedAggregations?: ProductListFiltersFragment['aggregations']
+} & ProductListFiltersFragment
+
+type FilterFormContextProps = DataProps & {
   /**
    * Watch and formState are known to cause performance issues.
    *
@@ -32,30 +46,40 @@ export const useProductFiltersPro = () => {
 export type FilterFormProviderProps = Omit<
   UseFormProps<ProductFilterParams>,
   'values' | 'defaultValues'
-> & { children: React.ReactNode; params: ProductListParams }
+> & {
+  children: React.ReactNode
+  params: ProductListParams
+} & DataProps
 
 export function ProductFiltersPro(props: FilterFormProviderProps) {
-  const { children, params, ...formProps } = props
+  const { children, params, aggregations, appliedAggregations, filterTypes, ...formProps } = props
 
-  const fitlerParams = useMemoObject(toFilterParams(params))
-  const form = useForm<ProductFilterParams>({
-    values: fitlerParams,
-    ...formProps,
-  })
-  const { handleSubmit } = form
+  const defaultValues = useMemoObject(toFilterParams(params))
+  const form = useForm<ProductFilterParams>({ defaultValues, ...formProps })
 
   const push = useProductListLinkReplace({ scroll: false })
-  const submit = handleSubmit(async (formValues) =>
-    push({ ...toProductListParams(formValues), currentPage: 1 }),
+  const submit = useEventCallback(
+    form.handleSubmit(async (formValues) =>
+      push({ ...toProductListParams(formValues), currentPage: 1 }),
+    ),
+  )
+
+  const filterFormContext: FilterFormContextProps = useMemo(
+    () => ({
+      form,
+      params: defaultValues,
+      submit,
+      appliedAggregations,
+      filterTypes,
+      aggregations,
+    }),
+    [form, defaultValues, submit, appliedAggregations, filterTypes, aggregations],
   )
 
   return (
-    <FilterFormContext.Provider
-      value={useMemo(() => ({ form, params: fitlerParams, submit }), [form, fitlerParams, submit])}
-    >
-      <form noValidate onSubmit={submit}>
-        {children}
-      </form>
+    <FilterFormContext.Provider value={filterFormContext}>
+      <form noValidate onSubmit={submit} id='products' />
+      {children}
     </FilterFormContext.Provider>
   )
 }

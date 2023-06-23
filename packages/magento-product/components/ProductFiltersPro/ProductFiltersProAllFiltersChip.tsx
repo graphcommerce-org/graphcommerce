@@ -1,12 +1,6 @@
-import {
-  ChipOverlayOrPopper,
-  ChipOverlayOrPopperProps,
-  filterNonNullableKeys,
-} from '@graphcommerce/next-ui'
+import { ChipOverlayOrPopper, ChipOverlayOrPopperProps } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box } from '@mui/material'
-import { activeAggregations } from './activeAggregations'
-import { applyAggregationCount } from './applyAggregationCount'
 import { ProductFilterEqualSection } from './ProductFilterEqualSection'
 import { ProductFilterRangeSection } from './ProductFilterRangeSection'
 import { useProductFiltersPro } from './ProductFiltersPro'
@@ -19,52 +13,44 @@ import {
   ProductFiltersProSortSection,
   ProductFiltersProSortSectionProps,
 } from './ProductFiltersProSortSection'
+import { activeAggregations } from './activeAggregations'
+import { applyAggregationCount } from './applyAggregationCount'
+import { useClearAllFiltersAction } from './useClearAllFiltersHandler'
 
-type AllFiltersChip = ProductFiltersProAggregationsProps &
+export type ProductFiltersProAllFiltersChipProps = ProductFiltersProAggregationsProps &
   ProductFiltersProSortSectionProps &
   Omit<
     ChipOverlayOrPopperProps,
     'label' | 'selected' | 'selectedLabel' | 'onApply' | 'onReset' | 'onClose' | 'children'
   >
 
-export function ProductFiltersProAllFiltersChip(props: AllFiltersChip) {
-  const {
-    filterTypes,
-    aggregations,
-    appliedAggregations: aggregationsCount,
-    sort_fields,
-    total_count,
-    renderer,
-    ...rest
-  } = props
+const defaultRenderer = {
+  FilterRangeTypeInput: ProductFilterRangeSection,
+  FilterEqualTypeInput: ProductFilterEqualSection,
+}
 
-  const { form, submit, params } = useProductFiltersPro()
+export function ProductFiltersProAllFiltersChip(props: ProductFiltersProAllFiltersChipProps) {
+  const { sort_fields, total_count, renderer, ...rest } = props
+
+  const { submit, params, aggregations, appliedAggregations } = useProductFiltersPro()
   const { sort } = params
 
   const activeFilters = activeAggregations(
-    applyAggregationCount(aggregations, aggregationsCount, params),
+    applyAggregationCount(aggregations, appliedAggregations, params),
     params,
   ).map(({ label }) => label)
 
   const allFilters = [...activeFilters, sort].filter(Boolean)
   const hasFilters = allFilters.length > 0
 
+  const clearAll = useClearAllFiltersAction()
+
   return (
     <ChipOverlayOrPopper
       label={<Trans id='All filters' />}
       chipProps={{ variant: 'outlined' }}
       onApply={submit}
-      onReset={
-        hasFilters
-          ? () => {
-              form.setValue('filters', { category_uid: params.filters.category_uid })
-              form.setValue('currentPage', 1)
-              form.setValue('sort', null)
-              form.setValue('dir', null)
-              return submit()
-            }
-          : undefined
-      }
+      onReset={hasFilters ? clearAll : undefined}
       onClose={submit}
       selectedLabel={allFilters}
       selected={hasFilters}
@@ -73,19 +59,11 @@ export function ProductFiltersProAllFiltersChip(props: AllFiltersChip) {
       {...rest}
     >
       {() => (
-        <Box sx={(theme) => ({ display: 'grid', rowGap: theme.spacings.sm })}>
+        <>
           <ProductFiltersProSortSection sort_fields={sort_fields} total_count={total_count} />
           <ProductFiltersProLimitSection />
-          <ProductFiltersProAggregations
-            filterTypes={filterTypes}
-            aggregations={aggregations}
-            appliedAggregations={aggregationsCount}
-            renderer={{
-              FilterRangeTypeInput: ProductFilterRangeSection,
-              FilterEqualTypeInput: ProductFilterEqualSection,
-            }}
-          />
-        </Box>
+          <ProductFiltersProAggregations renderer={{ ...defaultRenderer, ...renderer }} />
+        </>
       )}
     </ChipOverlayOrPopper>
   )

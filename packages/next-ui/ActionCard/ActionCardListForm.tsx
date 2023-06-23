@@ -64,7 +64,7 @@ export function ActionCardListForm<
           {items.map((item) => (
             <RenderItem
               {...item}
-              key={item.value ?? 'tralala'}
+              key={item.value ?? ''}
               value={item.value}
               selected={onSelect(item.value, value)}
               onReset={(e) => {

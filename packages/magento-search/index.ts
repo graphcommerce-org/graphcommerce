@@ -6,4 +6,15 @@ export * from './components/SearchLink/SearchLink'
 export * from './CategorySearch.gql'
 export * from './components/SearchButton/SearchButton'
 export * from './components/SearchContext/SearchContext'
-export * from './components/ProductFilters'
+
+export {
+  ProductListSort,
+  ProductListFilters,
+  ProductListCount,
+  ProductListItemsBase,
+  ProductListPagination,
+  ProductListFiltersContainer,
+  ProductListParamsProvider,
+} from '@graphcommerce/magento-product'
+
+export * from '@graphcommerce/magento-product/components/ProductFiltersPro'

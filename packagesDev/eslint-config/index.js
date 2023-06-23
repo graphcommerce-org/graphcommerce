@@ -92,6 +92,7 @@ module.exports = {
       'error',
       { additionalHooks: '(useIsomorphicLayoutEffect|useMemoDeep)' },
     ],
+    'react/self-closing-comp': ['warn'],
     'react/jsx-no-duplicate-props': ['error', { ignoreCase: false }],
     'react/function-component-definition': 'off',
 

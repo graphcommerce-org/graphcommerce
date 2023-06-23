@@ -1,16 +1,16 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
+import { GuestNewsletter } from '@graphcommerce/magento-newsletter'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { PageMeta, GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { Container } from '@mui/material'
 import {
+  LayoutDocument,
   LayoutOverlay,
   LayoutOverlayProps,
   LayoutNavigationProps,
   RowRenderer,
 } from '../../components'
-import { LayoutDocument } from '../../components/Layout/Layout.gql'
-import { GuestNewsletter } from '../../components/Newsletter/GuestNewsletter'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
 type Props = HygraphPagesQuery
@@ -60,7 +60,6 @@ const pageOptions: PageOptions<LayoutOverlayProps> = {
     sizeMd: 'floating',
     justifyMd: 'end',
     widthMd: '500px',
-
     sizeSm: 'floating',
   },
 }
@@ -74,7 +73,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const staticClient = graphqlSsrClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
   const page = hygraphPageContent(staticClient, url)
-  const layout = staticClient.query({ query: LayoutDocument })
+  const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
 
   if (!(await page).data.pages?.[0]) return { notFound: true }
 

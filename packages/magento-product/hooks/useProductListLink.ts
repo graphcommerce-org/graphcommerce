@@ -43,5 +43,5 @@ export function createProductListLink(props: ProductListParams): string {
 }
 
 export function useProductListLink(props: ProductListParams): string {
-  return createProductListLink({ ...props, url: `${props.url}` })
+  return `${createProductListLink({ ...props, url: `${props.url}` })}#products`
 }

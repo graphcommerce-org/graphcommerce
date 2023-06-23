@@ -18,11 +18,11 @@ import {
   BlogListQuery,
   BlogPathsDocument,
   BlogPathsQuery,
+  LayoutDocument,
   LayoutNavigation,
   LayoutNavigationProps,
   RowRenderer,
 } from '../../../components'
-import { LayoutDocument } from '../../../components/Layout/Layout.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
 type Props = HygraphPagesQuery & BlogListQuery & BlogPathsQuery
@@ -99,7 +99,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   const conf = client.query({ query: StoreConfigDocument })
 
   const defaultPage = hygraphPageContent(staticClient, 'blog')
-  const layout = staticClient.query({ query: LayoutDocument })
+  const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
 
   const blogPosts = staticClient.query({
     query: BlogListDocument,

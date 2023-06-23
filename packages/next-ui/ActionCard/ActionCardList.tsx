@@ -1,7 +1,11 @@
-import { Alert, Box, SxProps, Theme } from '@mui/material'
+import { Trans } from '@lingui/react'
+import { Alert, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { isFragment } from 'react-is'
+import { Button } from '../Button'
+import { IconSvg } from '../IconSvg'
 import { extendableComponent } from '../Styles'
+import { iconChevronDown } from '../icons'
 import { ActionCardProps } from './ActionCard'
 import { ActionCardLayout } from './ActionCardLayout'
 
@@ -22,6 +26,7 @@ type Select = {
 }
 
 export type ActionCardListProps<SelectOrMulti = MultiSelect | Select> = {
+  showMoreAfter?: number
   children?: React.ReactNode
   required?: boolean
   error?: boolean
@@ -57,6 +62,7 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
     const {
       children,
       required,
+      showMoreAfter = 1000000,
       error = false,
       errorMessage,
       size = 'medium',
@@ -66,6 +72,8 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
       collapse = false,
       sx = [],
     } = props
+
+    const [show, setShow] = React.useState(false)
 
     const handleChange: ActionCardProps['onClick'] = isMulti(props)
       ? (event, v) => {
@@ -103,7 +111,7 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
     }
 
     // Make sure the children are cardlike
-    const childReactNodes = React.Children.toArray(children)
+    const childActionCards = React.Children.toArray(children)
       .filter(React.isValidElement)
       .filter(isActionCardLike)
       .filter((child) => {
@@ -121,7 +129,7 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
       })
 
     // Make sure the selected values is in the list of all possible values
-    const value = childReactNodes.find(
+    const value = childActionCards.find(
       // eslint-disable-next-line react/destructuring-assignment
       (child) => child.props.value === props.value && child.props.disabled !== true,
     )?.props.value
@@ -131,9 +139,10 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
     return (
       <div ref={ref}>
         <ActionCardLayout sx={sx} className={classes.root} layout={layout}>
-          {childReactNodes.map((child) => {
+          {childActionCards.map((child, index) => {
             if (collapse && Boolean(value) && !isValueSelected(child.props.value, value))
               return null
+            if (index && showMoreAfter && index + 1 > showMoreAfter && !show) return null
             return React.cloneElement(child, {
               onClick: handleChange,
               error,
@@ -149,6 +158,25 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
             })
           })}
         </ActionCardLayout>
+
+        {childActionCards.length > showMoreAfter && (
+          <Button
+            sx={{ width: 'fit-content' }}
+            color='primary'
+            variant='text'
+            onClick={() => setShow(!show)}
+          >
+            {!show ? <Trans id='More options' /> : <Trans id='Less options' />}{' '}
+            <IconSvg
+              sx={{
+                transform: show ? 'rotate(180deg)' : 'rotate(0deg)',
+                transition: 'transform 0.3s ease-in-out',
+              }}
+              src={iconChevronDown}
+            />
+          </Button>
+        )}
+
         {error && errorMessage && (
           <Alert
             severity='error'
