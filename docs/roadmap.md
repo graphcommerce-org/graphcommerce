@@ -15,9 +15,8 @@ The following overview contains the status of items on the GraphCommerce roadmap
 
 ## In progress
 
-- [ ] Algolia implementation
-- [ ] Dynamic Row based content
-- [ ] Product compare functionality
+- [ ] Better authorization handling
+- [ ] Hygraph schema migrations
 - [ ] Edge runtime for GraphQL Mesh and Streaming SSR rendering
 - [ ] Global store messages
 
@@ -25,6 +24,9 @@ The following overview contains the status of items on the GraphCommerce roadmap
 
 [See all releases](https://github.com/graphcommerce-org/graphcommerce/releases?q=prerelease%3Afalse+&expanded=true)
 
+- [x] [Algolia Search (beta)](https://github.com/graphcommerce-org/graphcommerce/tree/main/packages/algolia-search)
+- [x] [Dynamic Rows (beta)](https://github.com/graphcommerce-org/graphcommerce/tree/main/packages/hygraph-dynamic-rows)
+- [x] [Product compare](https://github.com/graphcommerce-org/graphcommerce/blob/main/packages/magento-compare/Config.graphqls)
 - [x] Google Tagmanager 4 datalayer implementation
       [docs ↗](https://github.com/graphcommerce-org/graphcommerce/tree/main/packages/googleanalytics)
 - [x] Paypal Express payment service
