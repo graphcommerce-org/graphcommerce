@@ -1,3 +1,4 @@
+import { PasswordElement } from '@graphcommerce/ecommerce-ui'
 import {
   Button,
   Form,
@@ -16,6 +17,8 @@ import {
   UpdateCustomerEmailMutation,
   UpdateCustomerEmailMutationVariables,
 } from './UpdateCustomerEmail.gql'
+import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
+import { ApolloCustomerErrorSnackbar } from '../ApolloCustomerError'
 
 type UpdateCustomerEmailFormProps = {
   email: string
@@ -26,13 +29,20 @@ export function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormProps) {
 
   const form = useFormGqlMutation<
     UpdateCustomerEmailMutation,
-    UpdateCustomerEmailMutationVariables & {
-      currentEmail?: string
-      confirmEmail?: string
-    }
-  >(UpdateCustomerEmailDocument)
+    UpdateCustomerEmailMutationVariables & { currentEmail?: string; confirmEmail?: string }
+  >(
+    UpdateCustomerEmailDocument,
+    {},
+    {
+      errorPolicy: 'all',
+    },
+  )
 
-  const { handleSubmit, error, required, formState, watch, muiRegister, reset } = form
+  const { handleSubmit, error, required, formState, watch, muiRegister, reset, control } = form
+  const [remainingError, authenticationError] = graphqlErrorByCategory({
+    category: 'graphql-authentication',
+    error,
+  })
   const submit = handleSubmit(() => {
     reset()
   })
@@ -45,7 +55,7 @@ export function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormProps) {
           key='current-email'
           variant='outlined'
           type='text'
-          autoComplete='currentEmail'
+          autoComplete='email'
           autoFocus
           error={formState.isSubmitted && !!formState.errors.currentEmail}
           helperText={formState.isSubmitted && formState.errors.currentEmail?.message}
@@ -67,8 +77,7 @@ export function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormProps) {
           key='email'
           variant='outlined'
           type='text'
-          autoComplete='email'
-          autoFocus
+          autoComplete='off'
           error={formState.isSubmitted && !!formState.errors.email}
           helperText={formState.isSubmitted && formState.errors.email?.message}
           label={<Trans id='New email' />}
@@ -82,8 +91,7 @@ export function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormProps) {
           key='confirm-email'
           variant='outlined'
           type='text'
-          autoComplete='confirmEmail'
-          autoFocus
+          autoComplete='off'
           error={formState.isSubmitted && !!formState.errors.confirmEmail}
           helperText={formState.isSubmitted && formState.errors.confirmEmail?.message}
           label={<Trans id='Confirm new email' />}
@@ -96,20 +104,20 @@ export function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormProps) {
       </FormRow>
 
       <FormRow>
-        <TextField
+        <PasswordElement
+          control={control}
           variant='outlined'
-          type='password'
-          error={!!formState.errors.password}
+          name='password'
           label={<Trans id='Password' />}
-          autoComplete='password'
+          autoComplete='current-password'
           required={required.password}
-          {...muiRegister('password', {
-            required: required.password,
-          })}
-          helperText={formState.errors.password?.message}
           disabled={formState.isSubmitting}
+          error={Boolean(authenticationError)}
+          helperText={authenticationError?.message}
         />
       </FormRow>
+
+      <ApolloCustomerErrorSnackbar error={remainingError} />
 
       <FormDivider />
       <FormActions>
@@ -123,7 +131,6 @@ export function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormProps) {
           <Trans id='Save changes' />
         </Button>
       </FormActions>
-      <ApolloCustomerErrorAlert error={error} />
 
       <MessageSnackbar sticky open={formState.isSubmitSuccessful && !error}>
         <Trans id='Successfully updated email' />

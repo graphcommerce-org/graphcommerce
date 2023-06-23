@@ -1,5 +1,17 @@
 # @graphcommerce/ecommerce-ui
 
+## 6.2.0-canary.48
+
+## 6.2.0-canary.47
+
+## 6.2.0-canary.46
+
+## 6.2.0-canary.45
+
+### Minor Changes
+
+- [#1962](https://github.com/graphcommerce-org/graphcommerce/pull/1962) [`518b6ca24`](https://github.com/graphcommerce-org/graphcommerce/commit/518b6ca248fc94624dc06eb02de5b3eac0fc9483) - Created a new `<ValidatedPasswordElement/>` which validates according to Magento's validation groups and implement on all locations. Move remaining password fields to `<PasswordElement />` ([@carlocarels90](https://github.com/carlocarels90))
+
 ## 6.2.0-canary.44
 
 ## 6.2.0-canary.43

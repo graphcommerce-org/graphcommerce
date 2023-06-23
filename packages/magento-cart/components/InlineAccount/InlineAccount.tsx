@@ -49,6 +49,7 @@ export function InlineAccount(props: InlineAccountProps) {
             borderRadius: '4px',
             border: `1px solid ${theme.palette.divider}`,
             padding: theme.spacings.md,
+            marginTop: theme.spacings.sm,
           }),
           ...(Array.isArray(sx) ? sx : [sx]),
         ]}
@@ -116,7 +117,21 @@ export function InlineAccount(props: InlineAccountProps) {
         )}
 
         {loggedIn && (
-          <Box className={classes.innerContainer}>
+          <Box
+            className={classes.innerContainer}
+            sx={(theme) => ({
+              display: 'flex',
+              justifyContent: 'space-between',
+              flexDirection: 'column',
+              alignItems: 'flex-start',
+              gap: theme.spacings.md,
+              [theme.breakpoints.up('sm')]: {
+                alignItems: 'flex-end',
+                flexDirection: 'unset',
+                gap: 0,
+              },
+            })}
+          >
             <div>
               <Typography variant='h4' className={classes.title}>
                 {title ?? <Trans id='Have an account?' />}

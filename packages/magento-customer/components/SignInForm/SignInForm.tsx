@@ -1,9 +1,18 @@
+import { PasswordElement } from '@graphcommerce/ecommerce-ui'
 import { useApolloClient } from '@graphcommerce/graphql'
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
-import { Button, FormRow, FormActions } from '@graphcommerce/next-ui'
+import {
+  Button,
+  FormRow,
+  FormActions,
+  iconEyeCrossed,
+  iconEye,
+  IconSvg,
+} from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
-import { Box, FormControl, Link, SxProps, TextField, Theme } from '@mui/material'
+import { Box, FormControl, IconButton, InputAdornment, Link, SxProps, Theme } from '@mui/material'
+import { MouseEvent, useState } from 'react'
 import { CustomerDocument } from '../../hooks'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import { SignInDocument } from './SignIn.gql'
@@ -12,7 +21,6 @@ type SignInFormProps = { email: string; sx?: SxProps<Theme> }
 
 export function SignInForm(props: SignInFormProps) {
   const { email, sx } = props
-
   const client = useApolloClient()
   const form = useFormGqlMutation(
     SignInDocument,
@@ -32,7 +40,7 @@ export function SignInForm(props: SignInFormProps) {
     { errorPolicy: 'all' },
   )
 
-  const { muiRegister, handleSubmit, required, formState, error } = form
+  const { handleSubmit, required, formState, error, control } = form
   const [remainingError, authError] = graphqlErrorByCategory({
     category: 'graphql-authentication',
     error,
@@ -41,18 +49,19 @@ export function SignInForm(props: SignInFormProps) {
 
   return (
     <Box component='form' onSubmit={submitHandler} noValidate sx={sx}>
-      <FormRow>
-        <TextField
-          key='password'
+      <FormRow sx={{ gridTemplateColumns: 'none' }}>
+        <PasswordElement
           variant='outlined'
-          type='password'
           error={!!formState.errors.password || !!authError}
+          control={control}
+          name='password'
           label={<Trans id='Password' />}
           autoFocus
           autoComplete='current-password'
           id='current-password'
           required={required.password}
-          {...muiRegister('password', { required: required.password })}
+          disabled={formState.isSubmitting}
+          helperText={!!formState.errors.password || authError?.message}
           InputProps={{
             endAdornment: (
               <Link href='/account/forgot-password' underline='hover' sx={{ whiteSpace: 'nowrap' }}>
@@ -60,8 +69,6 @@ export function SignInForm(props: SignInFormProps) {
               </Link>
             ),
           }}
-          helperText={formState.errors.password?.message || authError?.message}
-          disabled={formState.isSubmitting}
         />
       </FormRow>
 

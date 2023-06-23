@@ -1,4 +1,10 @@
 import {
+  ApolloErrorSnackbar,
+  PasswordElement,
+  PasswordRepeatElement,
+} from '@graphcommerce/ecommerce-ui'
+import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
+import {
   Form,
   FormActions,
   FormRow,
@@ -7,10 +13,8 @@ import {
   Button,
 } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { TextField } from '@mui/material'
-import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'
+import { ValidatedPasswordElement } from '../ValidatedPasswordElement/ValidatedPasswordElement'
 import {
   ChangePasswordDocument,
   ChangePasswordMutation,
@@ -21,54 +25,60 @@ export function ChangePasswordForm() {
   const form = useFormGqlMutation<
     ChangePasswordMutation,
     ChangePasswordMutationVariables & { confirmPassword?: string }
-  >(ChangePasswordDocument)
-  const { muiRegister, handleSubmit, required, watch, data, formState, error } = form
+  >(ChangePasswordDocument, {}, { errorPolicy: 'all' })
+  const { handleSubmit, required, data, formState, error, control } = form
+  const [remainingError0, authenticationError] = graphqlErrorByCategory({
+    category: 'graphql-authentication',
+    error,
+  })
+  const [remainingError, inputError] = graphqlErrorByCategory({
+    category: 'graphql-input',
+    error: remainingError0,
+  })
+
   const submitHandler = handleSubmit(() => {})
-  const pass = watch('newPassword')
+
+  const showSuccess = !formState.isSubmitting && formState.isSubmitSuccessful && !error?.message
 
   return (
     <Form onSubmit={submitHandler} noValidate>
       <FormRow>
-        <TextField
+        <PasswordElement
+          control={control}
+          name='currentPassword'
           variant='outlined'
-          type='password'
-          error={!!formState.errors.currentPassword}
+          autoComplete='current-password'
           label={<Trans id='Current Password' />}
           required={required.currentPassword}
-          {...muiRegister('currentPassword', { required: required.currentPassword })}
-          helperText={formState.errors.currentPassword?.message}
           disabled={formState.isSubmitting}
+          error={Boolean(authenticationError)}
+          helperText={authenticationError?.message}
         />
       </FormRow>
 
       <FormRow>
-        <TextField
+        <ValidatedPasswordElement
+          control={control}
+          name='newPassword'
           variant='outlined'
-          type='password'
-          error={!!formState.errors.newPassword}
+          autoComplete='new-password'
           label={<Trans id='New password' />}
           required={required.newPassword}
-          {...muiRegister('newPassword', { required: required.newPassword })}
-          helperText={formState.errors.newPassword?.message}
           disabled={formState.isSubmitting}
+          error={Boolean(inputError)}
+          helperText={inputError?.message}
         />
-
-        <TextField
+        <PasswordRepeatElement
+          control={control}
+          name='confirmPassword'
+          passwordFieldName='newPassword'
+          autoComplete='new-password'
           variant='outlined'
-          type='password'
-          error={!!formState.errors.confirmPassword}
           label={<Trans id='Confirm password' />}
           required
-          {...muiRegister('confirmPassword', {
-            required: true,
-            validate: (value) => value === pass || i18n._(/* i18n */ "Passwords don't match"),
-          })}
-          helperText={formState.errors.confirmPassword?.message}
           disabled={formState.isSubmitting}
         />
       </FormRow>
-
-      <ApolloCustomerErrorAlert error={error} />
 
       <FormDivider />
 
@@ -84,9 +94,13 @@ export function ChangePasswordForm() {
         </Button>
       </FormActions>
 
-      <MessageSnackbar sticky open={Boolean(formState.isSubmitSuccessful && data)}>
-        <Trans id='Successfully changed password' />
-      </MessageSnackbar>
+      <ApolloErrorSnackbar error={remainingError} />
+
+      {showSuccess && (
+        <MessageSnackbar open={showSuccess} sticky variant='pill'>
+          <Trans id='Successfully changed password' />
+        </MessageSnackbar>
+      )}
     </Form>
   )
 }

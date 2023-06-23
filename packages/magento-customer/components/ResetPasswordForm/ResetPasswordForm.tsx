@@ -1,14 +1,10 @@
-import {
-  PasswordElement,
-  PasswordRepeatElement,
-  TextFieldElement,
-} from '@graphcommerce/ecommerce-ui'
+import { PasswordRepeatElement, TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import { Button, Form, FormActions, FormRow } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
-import { TextField } from '@mui/material'
 import { useRouter } from 'next/router'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'
+import { ValidatedPasswordElement } from '../ValidatedPasswordElement/ValidatedPasswordElement'
 import {
   ResetPasswordDocument,
   ResetPasswordMutation,
@@ -59,11 +55,11 @@ export function ResetPasswordForm(props: ResetPasswordFormProps) {
         />
       </FormRow>
       <FormRow>
-        <PasswordElement
+        <ValidatedPasswordElement
           control={control}
           name='newPassword'
+          autoComplete='new-password'
           variant='outlined'
-          type='password'
           label={<Trans id='New password' />}
           required
           disabled={formState.isSubmitting}
@@ -71,9 +67,9 @@ export function ResetPasswordForm(props: ResetPasswordFormProps) {
         <PasswordRepeatElement
           control={control}
           name='confirmPassword'
+          autoComplete='new-password'
           passwordFieldName='newPassword'
           variant='outlined'
-          type='password'
           label={<Trans id='Confirm password' />}
           required
           disabled={formState.isSubmitting}
