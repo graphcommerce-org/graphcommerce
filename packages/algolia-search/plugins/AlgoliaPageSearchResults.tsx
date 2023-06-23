@@ -1,5 +1,6 @@
 import { CategorySearchResult, SearchFormProps } from '@graphcommerce/magento-search'
 import { IfConfig, PluginProps } from '@graphcommerce/next-config'
+import { Box } from '@mui/material'
 import { Index } from 'react-instantsearch-hooks-web'
 import { useAlgoliaPageResults } from '../hooks/useAlgoliaPageResults'
 import { useAlgoliaSearchIndexConfig } from '../hooks/useAlgoliaSearchIndexConfig'
@@ -17,6 +18,7 @@ function PageHits() {
     <>
       {pages.map((page) => (
         <CategorySearchResult
+          key={page.objectID}
           breadcrumbs={[
             {
               category_uid: page.objectID,

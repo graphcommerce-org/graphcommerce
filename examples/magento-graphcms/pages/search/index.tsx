@@ -61,11 +61,15 @@ function SearchResultPage(props: SearchResultProps) {
       />
 
       <SearchContext>
-        <LayoutHeader floatingMd switchPoint={0}>
+        <LayoutHeader
+          floatingMd
+          switchPoint={0}
+          sx={{ '& .LayoutHeaderContent-center': { overflow: 'visible' } }}
+        >
           <SearchForm
             totalResults={totalSearchResults}
             search={search}
-            textFieldProps={{ size: 'small', variant: 'outlined', fullWidth: true }}
+            textFieldProps={{ variant: 'standard', autoComplete: 'off' }}
           />
         </LayoutHeader>
 

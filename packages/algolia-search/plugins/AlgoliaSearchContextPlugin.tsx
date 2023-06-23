@@ -12,7 +12,7 @@ export const ifConfig: IfConfig = 'algoliaApplicationId'
 const searchClient = algoliasearch(applicationId, searchOnlyApiKey)
 
 function AlgoliaSearchContextPlugin(props: PluginProps<SearchContextProps>) {
-  const { Prev, serverProps, ...rest } = props
+  const { Prev, serverProps, isNext = true, ...rest } = props
   const searchIndex = useAlgoliaSearchIndexConfig('_products')?.searchIndex
 
   if (!searchIndex)
@@ -23,7 +23,7 @@ function AlgoliaSearchContextPlugin(props: PluginProps<SearchContextProps>) {
   return (
     <InstantSearchSSRProvider {...(typeof serverProps === 'object' ? serverProps : {})}>
       <InstantSearch searchClient={searchClient} indexName={searchIndex}>
-        <Prev {...rest} />
+        {isNext && <Prev {...rest} />}
       </InstantSearch>
     </InstantSearchSSRProvider>
   )

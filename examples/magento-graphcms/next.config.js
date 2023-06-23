@@ -16,6 +16,7 @@ const nextConfig = {
   },
   optimizeFonts: false,
   images: {
+    domains: ['magento-canary.kommagento.nl'],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
   productionBrowserSourceMaps: true,
