@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.51
+
+### Patch Changes
+
+- [`2f479c830`](https://github.com/graphcommerce-org/graphcommerce/commit/2f479c830e84137b739d83bc6dd1e36a6e299e3a) - Added advise about URL suffixes ([@paales](https://github.com/paales))
+
 ## 6.2.0-canary.50
 
 ## 6.2.0-canary.49
