@@ -1,5 +1,11 @@
 # @graphcommerce/ecommerce-ui
 
+## 6.2.0-canary.50
+
+### Minor Changes
+
+- [`e55d8c390`](https://github.com/graphcommerce-org/graphcommerce/commit/e55d8c390d90b4bb7bab11c6a99027ac72bd7e3e) - Created a new sidebar layout system, can be configured with productFiltersLayout in the graphcommerce.config.js ([@paales](https://github.com/paales))
+
 ## 6.2.0-canary.49
 
 ## 6.2.0-canary.48

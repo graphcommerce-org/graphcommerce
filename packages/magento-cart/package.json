@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-cart",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "6.2.0-canary.49",
+  "version": "6.2.0-canary.50",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -12,22 +12,22 @@
     }
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "6.2.0-canary.49",
-    "@graphcommerce/prettier-config-pwa": "6.2.0-canary.49",
-    "@graphcommerce/typescript-config-pwa": "6.2.0-canary.49"
+    "@graphcommerce/eslint-config-pwa": "6.2.0-canary.50",
+    "@graphcommerce/prettier-config-pwa": "6.2.0-canary.50",
+    "@graphcommerce/typescript-config-pwa": "6.2.0-canary.50"
   },
   "dependencies": {
-    "@graphcommerce/ecommerce-ui": "6.2.0-canary.49",
-    "@graphcommerce/framer-utils": "6.2.0-canary.49",
-    "@graphcommerce/framer-next-pages": "6.2.0-canary.49",
-    "@graphcommerce/framer-scroller": "6.2.0-canary.49",
-    "@graphcommerce/graphql": "6.2.0-canary.49",
-    "@graphcommerce/image": "6.2.0-canary.49",
-    "@graphcommerce/magento-customer": "6.2.0-canary.49",
-    "@graphcommerce/magento-graphql": "6.2.0-canary.49",
-    "@graphcommerce/magento-store": "6.2.0-canary.49",
-    "@graphcommerce/next-ui": "6.2.0-canary.49",
-    "@graphcommerce/react-hook-form": "6.2.0-canary.49"
+    "@graphcommerce/ecommerce-ui": "6.2.0-canary.50",
+    "@graphcommerce/framer-utils": "6.2.0-canary.50",
+    "@graphcommerce/framer-next-pages": "6.2.0-canary.50",
+    "@graphcommerce/framer-scroller": "6.2.0-canary.50",
+    "@graphcommerce/graphql": "6.2.0-canary.50",
+    "@graphcommerce/image": "6.2.0-canary.50",
+    "@graphcommerce/magento-customer": "6.2.0-canary.50",
+    "@graphcommerce/magento-graphql": "6.2.0-canary.50",
+    "@graphcommerce/magento-store": "6.2.0-canary.50",
+    "@graphcommerce/next-ui": "6.2.0-canary.50",
+    "@graphcommerce/react-hook-form": "6.2.0-canary.50"
   },
   "peerDependencies": {
     "@lingui/react": "^4.2.1",
