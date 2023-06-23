@@ -2,7 +2,7 @@
   "name": "@graphcommerce/graphcms-ui",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "6.2.0-canary.48",
+  "version": "6.2.0-canary.49",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -12,14 +12,14 @@
     }
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "6.2.0-canary.48",
-    "@graphcommerce/prettier-config-pwa": "6.2.0-canary.48",
-    "@graphcommerce/typescript-config-pwa": "6.2.0-canary.48"
+    "@graphcommerce/eslint-config-pwa": "6.2.0-canary.49",
+    "@graphcommerce/prettier-config-pwa": "6.2.0-canary.49",
+    "@graphcommerce/typescript-config-pwa": "6.2.0-canary.49"
   },
   "dependencies": {
-    "@graphcommerce/graphql": "6.2.0-canary.48",
-    "@graphcommerce/image": "6.2.0-canary.48",
-    "@graphcommerce/next-ui": "6.2.0-canary.48"
+    "@graphcommerce/graphql": "6.2.0-canary.49",
+    "@graphcommerce/image": "6.2.0-canary.49",
+    "@graphcommerce/next-ui": "6.2.0-canary.49"
   },
   "peerDependencies": {
     "@mui/material": "^5.10.16",

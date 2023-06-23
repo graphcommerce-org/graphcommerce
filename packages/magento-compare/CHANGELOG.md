@@ -1,5 +1,11 @@
 # @graphcommerce/magento-compare
 
+## 6.2.0-canary.49
+
+### Patch Changes
+
+- [#1959](https://github.com/graphcommerce-org/graphcommerce/pull/1959) [`d0809b132`](https://github.com/graphcommerce-org/graphcommerce/commit/d0809b132a0e4cbdfeb86164f6c16a89ebecd987) - Added support for default values in the Config.graphqls files for the documentation ([@JoshuaS98](https://github.com/JoshuaS98))
+
 ## 6.2.0-canary.48
 
 ## 6.2.0-canary.47

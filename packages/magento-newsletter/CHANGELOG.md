@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.49
+
+### Patch Changes
+
+- [#1959](https://github.com/graphcommerce-org/graphcommerce/pull/1959) [`f164217af`](https://github.com/graphcommerce-org/graphcommerce/commit/f164217af6847cff8555e19e7fc25f03528144e5) - Moved the GuestNewsletter component to inside the magento-newsletter package ([@JoshuaS98](https://github.com/JoshuaS98))
+
 ## 6.2.0-canary.48
 
 ## 6.2.0-canary.47

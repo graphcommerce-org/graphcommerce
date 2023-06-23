@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.49
+
+### Patch Changes
+
+- [#1959](https://github.com/graphcommerce-org/graphcommerce/pull/1959) [`aacada269`](https://github.com/graphcommerce-org/graphcommerce/commit/aacada2691d345d2c819eda8668a30cb8d4e85b6) - Change the maxwidth of a category description to be a pixel based values instead of a percentage of the viewport width ([@JoshuaS98](https://github.com/JoshuaS98))
+
 ## 6.2.0-canary.48
 
 ### Minor Changes
