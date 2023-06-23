@@ -50,6 +50,20 @@ For Magento Open Source:
 For Adobe Commerce:
 `Stores -> Attributes -> Customer Address -> street -> Lines Count`
 
+### Remove URL suffixes from products and categorories (optional)
+
+GraphCommerce does not support URL suffixes, because Next.js can not handle urls
+ending in `.html`. When migrating from an existing shop, GraphCommerce will
+automatically redirect to the suffix-less URL. However, GraphCommerce will need
+to do an additional query to Magento to find the route.
+
+If you are starting out from a new project, we recommend to remove the URL
+suffixes from products and categories.
+
+Remove the URL suffixes from products and categories. (default is `.html`)
+`Stores -> Configuration -> Catalog -> Catalog -> Search Engine Optimization -> Product URL Suffix`
+`Stores -> Configuration -> Catalog -> Catalog -> Search Engine Optimization -> Category URL Suffix`
+
 ## Optional packages
 
 - [Store Pickup / MSI](https://github.com/graphcommerce-org/graphcommerce/tree/main/packages/magento-cart-pickup)
