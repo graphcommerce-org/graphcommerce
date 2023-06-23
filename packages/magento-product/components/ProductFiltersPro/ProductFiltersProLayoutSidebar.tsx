@@ -11,7 +11,7 @@ export type ProductFiltersProLayoutSidebarProps = {
   sidebarFilters?: React.ReactNode
   count?: React.ReactNode
   pagination: React.ReactNode
-  header: React.ReactNode
+  header?: React.ReactNode
 } & Partial<OwnerProps>
 
 type OwnerProps = {
