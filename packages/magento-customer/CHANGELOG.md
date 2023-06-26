@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.52
+
+### Patch Changes
+
+- [#1972](https://github.com/graphcommerce-org/graphcommerce/pull/1972) [`cda89820d`](https://github.com/graphcommerce-org/graphcommerce/commit/cda89820dc50e2019a26239b7450863d8c862bfb) - Ensure correct width for CircularProgress and fix misalignment in rotate animation ([@carlocarels90](https://github.com/carlocarels90))
+
 ## 6.2.0-canary.51
 
 ## 6.2.0-canary.50

@@ -1,5 +1,7 @@
 # @graphcommerce/algolia-search
 
+## 6.2.0-canary.52
+
 ## 6.2.0-canary.51
 
 ## 6.2.0-canary.50
