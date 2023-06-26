@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.53
+
+### Patch Changes
+
+- [#1973](https://github.com/graphcommerce-org/graphcommerce/pull/1973) [`257a66e38`](https://github.com/graphcommerce-org/graphcommerce/commit/257a66e388933a333941d9459e6e6a266d05cda4) - Fix limit filters ([@JoshuaS98](https://github.com/JoshuaS98))
+
 ## 6.2.0-canary.52
 
 ## 6.2.0-canary.51
