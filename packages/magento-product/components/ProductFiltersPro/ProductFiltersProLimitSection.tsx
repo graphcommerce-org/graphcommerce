@@ -42,9 +42,8 @@ export function ProductFiltersProLimitSection(props: ProductFiltersProLimitSecti
         <ActionCardListForm
           sx={{ mb: 2 }}
           render={ActionCard}
-          name='currentPage'
+          name='pageSize'
           control={control}
-          multiple
           layout='list'
           variant='default'
           size='medium'
@@ -56,7 +55,8 @@ export function ProductFiltersProLimitSection(props: ProductFiltersProLimitSecti
           <Button
             variant='inline'
             color='primary'
-            onClick={() => {
+            onClick={(e) => {
+              e.stopPropagation()
               form.setValue('pageSize', null)
               form.setValue('currentPage', 1)
             }}
