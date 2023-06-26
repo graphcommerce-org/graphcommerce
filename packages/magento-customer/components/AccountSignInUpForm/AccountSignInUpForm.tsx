@@ -118,7 +118,9 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
                   pattern: { value: emailPattern, message: '' },
                 })}
                 InputProps={{
-                  endAdornment: formState.isSubmitting && <CircularProgress />,
+                  endAdornment: formState.isSubmitting && (
+                    <CircularProgress sx={{ display: 'inline-flex' }} />
+                  ),
                   readOnly: !!customerQuery.data?.customer?.email,
                 }}
               />
