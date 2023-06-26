@@ -1,5 +1,5 @@
 ---
-'@graphcommerce/magento-product': minor
+'@graphcommerce/magento-product': patch
 ---
 
 Fix limit filters
