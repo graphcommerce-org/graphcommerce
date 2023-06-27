@@ -73,14 +73,14 @@ function WishlistPage() {
               <Container maxWidth='md'>
                 <WishlistItems
                   renderer={{
-                    BundleProduct: WishlistItemBase,
-                    ConfigurableProduct: WishlistItemBase,
-                    DownloadableProduct: WishlistItemBase,
+                    BundleProduct: WishlistItem,
+                    ConfigurableProduct: WishlistItem,
+                    DownloadableProduct: WishlistItem,
                     SimpleProduct: WishlistItem,
                     VirtualProduct: WishlistItem,
                     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                     // @ts-ignore GiftCardProduct is only available in Commerce
-                    GiftCardProduct: WishlistItemBase,
+                    GiftCardProduct: WishlistItem,
                   }}
                 />
               </Container>
