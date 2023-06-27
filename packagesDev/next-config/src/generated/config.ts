@@ -1,73 +1,41 @@
 /* eslint-disable */
 import { z } from 'zod'
-export type Maybe<T> = T | null
-export type InputMaybe<T> = Maybe<T>
-export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] }
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> }
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> }
-export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = {
-  [_ in K]?: never
-}
-export type Incremental<T> =
-  | T
-  | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never }
+export type Maybe<T> = T | null;
+export type InputMaybe<T> = Maybe<T>;
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
+export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: { input: string | number; output: string }
-  String: { input: string; output: string }
-  Boolean: { input: boolean; output: boolean }
-  Int: { input: number; output: number }
-  Float: { input: number; output: number }
-}
+  ID: { input: string | number; output: string; }
+  String: { input: string; output: string; }
+  Boolean: { input: boolean; output: boolean; }
+  Int: { input: number; output: number; }
+  Float: { input: number; output: number; }
+};
 
-/** Type for conversion of Magento 2 aggregations to Algolia filterable attributes */
-export type AlgoliaFilterAttribute = {
-  /** Stores the default aggregation uid */
-  aggregation: Scalars['String']['input']
-  /** Stores the algolia attribute that should be connected to the magento aggregation */
-  toAlgoliaAttribute: Scalars['String']['input']
-}
-
-/** Type for search index config */
-export type AlgoliaSearchIndexConfig = {
-  /** Configures Algolia filterable attributes */
-  filterAttributes?: InputMaybe<Array<AlgoliaFilterAttribute>>
-  /** Configure your Algolia Search index for Magento products */
-  searchIndex: Scalars['String']['input']
-}
-
-/** Type for sortable algolia options */
-export type AlgoliaSortableOption = {
-  /** The label of the index to display */
-  label: Scalars['String']['input']
-  /** The name of the index to target. */
-  value: Scalars['String']['input']
-}
-
-export type CompareVariant = 'CHECKBOX' | 'ICON'
+export type CompareVariant =
+  | 'CHECKBOX'
+  | 'ICON';
 
 /**
  * # GraphCommerce configuration system
  *
- * Global GraphCommerce configuration can be configured in your `graphcommerce.config.js` file in
- * the root of your project and are automatically validated on startup.
+ * Global GraphCommerce configuration can be configured in your `graphcommerce.config.js` file
+ * in the root of your project and are automatically validated on startup.
  *
  * ## Configuring with the configuration file.
  *
- * The configuration file is a javascript file that exports a `GraphCommerceConfig` object. See
- * graphcommerce.config.js.example for an example.
+ * The configuration file is a javascript file that exports a `GraphCommerceConfig` object. See graphcommerce.config.js.example for an example.
  *
  * ## Using configuration
  *
  * Configuration can be accessed in your project with the `import.meta.graphCommerce` object.
  *
  * ```tsx
- * import {
- *   storefrontAll,
- *   storefrontConfig,
- *   storefrontConfigDefault,
- *   useStorefrontConfig,
- * } from '@graphcommerce/next-ui'
+ * import { storefrontAll, storefrontConfig, storefrontConfigDefault, useStorefrontConfig } from '@graphcommerce/next-ui'
  *
  * // Accessing a global value
  * const globalConf = import.meta.graphCommerce.cartDisplayPricesInclTax
@@ -81,14 +49,14 @@ export type CompareVariant = 'CHECKBOX' | 'ICON'
  *
  *   // Or as single line
  *   const scopedConfigWithFallback2 =
- *     useStorefrontConfig().cartDisplayPricesInclTax ??
- *     import.meta.graphCommerce.cartDisplayPricesInclTax
+ *     useStorefrontConfig().cartDisplayPricesInclTax ?? import.meta.graphCommerce.cartDisplayPricesInclTax
  *
  *   return <div>{googleRecaptchaKey}</div>
  * }
  * ```
  *
- * You can also use the configuration in your `.meshrc.yml` by accessing `{graphCommerce.myField}`
+ * You can also use the configuration in your `.meshrc.yml` by accessing
+ * `{graphCommerce.myField}`
  *
  * ```yml
  * endpoint: '{graphCommerce.magentoEndpoint}'
@@ -97,17 +65,16 @@ export type CompareVariant = 'CHECKBOX' | 'ICON'
  * ## Environment variables to override configuration
  *
  * Configuration values can be overwriten by environment variables, with the following rules:
- *
  * - Convert from camelCase to `SCREAMING_SNAKE_CASE`
  * - Prefix with `GC_`
  * - Arrays can be indexed with `_0`, `_1`, `_2`, etc.
  * - Objects can be accessed with `_<key>`.
  *
  * Examples:
- *
  * - `limitSsg` -> `GC_LIMIT_SSG="1"`
  * - `storefront[0].locale` -> `GC_STOREFRONT_0_LOCALE="en"`
  * - `debug.pluginStatus` -> `GC_DEBUG_PLUGIN_STATUS="1"`
+ *
  *
  * ## Exporting current configuration to environment variables
  *
@@ -115,8 +82,7 @@ export type CompareVariant = 'CHECKBOX' | 'ICON'
  *
  * ## Extending the configuration in your  project
  *
- * Create a graphql/Config.graphqls file in your project and extend the GraphCommerceConfig,
- * GraphCommerceStorefrontConfig inputs to add configuration.
+ * Create a graphql/Config.graphqls file in your project and extend the GraphCommerceConfig, GraphCommerceStorefrontConfig inputs to add configuration.
  *
  * ```graphql
  * extend input GraphCommerceConfig {
@@ -132,47 +98,38 @@ export type CompareVariant = 'CHECKBOX' | 'ICON'
  * Below is a list of all possible configurations that can be set by GraphCommerce.
  */
 export type GraphCommerceConfig = {
-  /** Configure your Algolia application ID. */
-  algoliaApplicationId: Scalars['String']['input']
-  /** Configures algolia search debounce time. This will slow down the search response. */
-  algoliaSearchDebounceTime?: InputMaybe<Scalars['Int']['input']>
-  /** Configure your Algolia Search Only API Key */
-  algoliaSearchOnlyApiKey: Scalars['String']['input']
   /**
    * The canonical base URL is used for SEO purposes.
    *
    * Examples:
-   *
    * - https://example.com
    * - https://example.com/en
    * - https://example.com/en-US
    */
-  canonicalBaseUrl: Scalars['String']['input']
+  canonicalBaseUrl: Scalars['String']['input'];
   /**
-   * Due to a limitation of the GraphQL API it is not possible to determine if a cart should be
-   * displayed including or excluding tax.
+   * Due to a limitation of the GraphQL API it is not possible to determine if a cart should be displayed including or excluding tax.
    *
    * When Magento's StoreConfig adds this value, this can be replaced.
    */
-  cartDisplayPricesInclTax?: InputMaybe<Scalars['Boolean']['input']>
+  cartDisplayPricesInclTax?: InputMaybe<Scalars['Boolean']['input']>;
   /** Use compare functionality */
-  compare?: InputMaybe<Scalars['Boolean']['input']>
+  compare?: InputMaybe<Scalars['Boolean']['input']>;
   /**
    * By default the compare feature is denoted with a 'compare ICON' (2 arrows facing one another).
-   * This may be fine for experienced users, but for more clarity it's also possible to present the
-   * compare feature as a CHECKBOX accompanied by the 'Compare' label
+   * This may be fine for experienced users, but for more clarity it's also possible to present the compare feature as a CHECKBOX accompanied by the 'Compare' label
    */
-  compareVariant?: InputMaybe<CompareVariant>
+  compareVariant?: InputMaybe<CompareVariant>;
   /**
-   * Due to a limitation in the GraphQL API of Magento 2, we need to know if the customer requires
-   * email confirmation.
+   * Due to a limitation in the GraphQL API of Magento 2, we need to know if the
+   * customer requires email confirmation.
    *
-   * This value should match Magento 2's configuration value for `customer/create_account/confirm`
-   * and should be removed once we can query
+   * This value should match Magento 2's configuration value for
+   * `customer/create_account/confirm` and should be removed once we can query
    */
-  customerRequireEmailConfirmation?: InputMaybe<Scalars['Boolean']['input']>
+  customerRequireEmailConfirmation?: InputMaybe<Scalars['Boolean']['input']>;
   /** Debug configuration for GraphCommerce */
-  debug?: InputMaybe<GraphCommerceDebugConfig>
+  debug?: InputMaybe<GraphCommerceDebugConfig>;
   /**
    * Enables some demo specific code that is probably not useful for a project:
    *
@@ -180,7 +137,7 @@ export type GraphCommerceConfig = {
    * - Adds "dominant_color" attribute swatches to the product list items.
    * - Creates a big list items in the product list.
    */
-  demoMode?: InputMaybe<Scalars['Boolean']['input']>
+  demoMode?: InputMaybe<Scalars['Boolean']['input']>;
   /**
    * See https://support.google.com/analytics/answer/9539598?hl=en
    *
@@ -188,248 +145,210 @@ export type GraphCommerceConfig = {
    *
    * To override the value for a specific locale, configure in i18n config.
    */
-  googleAnalyticsId?: InputMaybe<Scalars['String']['input']>
+  googleAnalyticsId?: InputMaybe<Scalars['String']['input']>;
   /**
-   * Google reCAPTCHA site key. When using reCAPTCHA, this value is required, even if you are
-   * configuring different values for each locale.
+   * Google reCAPTCHA site key.
+   * When using reCAPTCHA, this value is required, even if you are configuring different values for each locale.
    *
    * Get a site key and a secret key from https://developers.google.com/recaptcha/docs/v3
    *
-   * The secret key should be added in the Magento admin panel (Stores > Configuration > Security >
-   * Google ReCAPTCHA Storefront > reCAPTCHA v3 Invisible) ReCAPTCHA can then be enabled/disabled
-   * for the different forms, separately (Stores > Configuration > Security > Google ReCAPTCHA
-   * Storefront > Storefront)
+   * The secret key should be added in the Magento admin panel (Stores > Configuration > Security > Google ReCAPTCHA Storefront > reCAPTCHA v3 Invisible)
+   * ReCAPTCHA can then be enabled/disabled for the different forms, separately (Stores > Configuration > Security > Google ReCAPTCHA Storefront > Storefront)
    */
-  googleRecaptchaKey?: InputMaybe<Scalars['String']['input']>
+  googleRecaptchaKey?: InputMaybe<Scalars['String']['input']>;
   /**
    * The Google Tagmanager ID to be used on the site.
    *
    * This value is required even if you are configuring different values for each locale.
    */
-  googleTagmanagerId?: InputMaybe<Scalars['String']['input']>
+  googleTagmanagerId?: InputMaybe<Scalars['String']['input']>;
   /**
-   * The HyGraph endpoint.> Read-only endpoint that allows low latency and high read-throughput content delivery.
+   * The HyGraph endpoint.
+   *
+   * > Read-only endpoint that allows low latency and high read-throughput content delivery.
    *
    * Project settings -> API Access -> High Performance Read-only Content API
    */
-  hygraphEndpoint: Scalars['String']['input']
+  hygraphEndpoint: Scalars['String']['input'];
   /**
-   * Content API. **Only used for migrations.**> Regular read & write endpoint that allows querying and mutating data in your project.
+   * Content API. **Only used for migrations.**
+   *
+   * > Regular read & write endpoint that allows querying and mutating data in your project.
    *
    * Project settings -> API Access -> Content API
    */
-  hygraphWriteAccessEndpoint?: InputMaybe<Scalars['String']['input']>
+  hygraphWriteAccessEndpoint?: InputMaybe<Scalars['String']['input']>;
   /**
    * Hygraph Management SDK Authorization Token. **Only used for migrations.**
    *
    * Project settings -> API Access -> Permanent Auth Tokens
    *
-   * 1. Click 'Add token' and give it a name, something like 'GraphCommerce Write Access Token' and
-   *    keep stage on 'Published'.
+   * 1. Click  'Add token' and give it a name, something like 'GraphCommerce Write Access Token' and keep stage on 'Published'.
    * 2. Under 'Management API', click 'Yes, Initialize defaults'
-   * 3. Click 'Edit Permissions' and enable: 'Update' and 'Delete' permissions for 'models',
-   *    'enumerations', 'fields', 'components' and 'sources'
+   * 3. Click 'Edit Permissions' and enable: 'Update' and 'Delete' permissions for 'models', 'enumerations', 'fields', 'components' and 'sources'
+   *   - Update existing models
+   *   - Delete existing models
+   *   - Update existing fields
+   *   - Delete existing fields
+   *   - Update existing enumerations
+   *   - Delete existing enumerations
+   *   - Update existing components
+   *   - Delete existing components
+   *   - Update remote sources
+   *   - Delete remote sources
    *
-   * - Update existing models
-   * - Delete existing models
-   * - Update existing fields
-   * - Delete existing fields
-   * - Update existing enumerations
-   * - Delete existing enumerations
-   * - Update existing components
-   * - Delete existing components
-   * - Update remote sources
-   * - Delete remote sources
-   *
-   *     GC_HYGRAPH_WRITE_ACCESS_ENDPOINT="https://...hygraph.com/v2/..."
-   *     GC_HYGRAPH_WRITE_ACCESS_TOKEN="AccessTokenFromHygraph"
-   *     yarn graphcommerce hygraph-migrate
+   * ```
+   * GC_HYGRAPH_WRITE_ACCESS_ENDPOINT="https://...hygraph.com/v2/..."
+   * GC_HYGRAPH_WRITE_ACCESS_TOKEN="AccessTokenFromHygraph"
+   * yarn graphcommerce hygraph-migrate
+   * ```
    */
-  hygraphWriteAccessToken?: InputMaybe<Scalars['String']['input']>
+  hygraphWriteAccessToken?: InputMaybe<Scalars['String']['input']>;
   /**
    * On older versions of GraphCommerce products would use a product type specific route.
    *
-   * This should only be set to true if you use the /product/[url] AND /product/configurable/[url]
-   * routes.
+   * This should only be set to true if you use the /product/[url] AND /product/configurable/[url] routes.
    *
-   * @deprecated Will be removed in a future version.
-   *   [migration](../upgrading/graphcommerce-5-to-6.md#product-routing-changes)
+   * @deprecated Will be removed in a future version. [migration](../upgrading/graphcommerce-5-to-6.md#product-routing-changes)
    */
-  legacyProductRoute?: InputMaybe<Scalars['Boolean']['input']>
+  legacyProductRoute?: InputMaybe<Scalars['Boolean']['input']>;
   /** Limit the static generation of SSG when building */
-  limitSsg?: InputMaybe<Scalars['Boolean']['input']>
+  limitSsg?: InputMaybe<Scalars['Boolean']['input']>;
   /**
    * GraphQL Magento endpoint.
    *
    * Examples:
-   *
    * - https://magento2.test/graphql
    */
-  magentoEndpoint: Scalars['String']['input']
+  magentoEndpoint: Scalars['String']['input'];
   /** To enable next.js' preview mode, configure the secret you'd like to use. */
-  previewSecret?: InputMaybe<Scalars['String']['input']>
+  previewSecret?: InputMaybe<Scalars['String']['input']>;
   /**
-   * Layout how the filters are rendered. DEFAULT: Will be rendered as horzontal chips on desktop
-   * and mobile SIDEBAR: Will be rendered as a sidebar on desktop and horizontal chips on mobile
+   * Layout how the filters are rendered.
+   * DEFAULT: Will be rendered as horzontal chips on desktop and mobile
+   * SIDEBAR: Will be rendered as a sidebar on desktop and horizontal chips on mobile
    */
-  productFiltersLayout?: InputMaybe<ProductFiltersLayout>
+  productFiltersLayout?: InputMaybe<ProductFiltersLayout>;
   /**
    * Product filters with better UI for mobile and desktop.
    *
    * @experimental This is an experimental feature and may change in the future.
    */
-  productFiltersPro?: InputMaybe<Scalars['Boolean']['input']>
+  productFiltersPro?: InputMaybe<Scalars['Boolean']['input']>;
   /**
    * By default we route products to /p/[url] but you can change this to /product/[url] if you wish.
    *
-   * Default: '/p/' Example: '/product/'
+   * Default: '/p/'
+   * Example: '/product/'
    */
-  productRoute?: InputMaybe<Scalars['String']['input']>
+  productRoute?: InputMaybe<Scalars['String']['input']>;
   /**
-   * Allow the site to be indexed by search engines. If false, the robots.txt file will be set to
-   * disallow all.
+   * Allow the site to be indexed by search engines.
+   * If false, the robots.txt file will be set to disallow all.
    */
-  robotsAllow?: InputMaybe<Scalars['Boolean']['input']>
+  robotsAllow?: InputMaybe<Scalars['Boolean']['input']>;
   /** All storefront configuration for the project */
-  storefront: Array<GraphCommerceStorefrontConfig>
+  storefront: Array<GraphCommerceStorefrontConfig>;
   /** Hide the wishlist functionality for guests. */
-  wishlistHideForGuests?: InputMaybe<Scalars['Boolean']['input']>
+  wishlistHideForGuests?: InputMaybe<Scalars['Boolean']['input']>;
   /** Ignores whether a product is already in the wishlist, makes the toggle an add only. */
-  wishlistIgnoreProductWishlistStatus?: InputMaybe<Scalars['Boolean']['input']>
+  wishlistIgnoreProductWishlistStatus?: InputMaybe<Scalars['Boolean']['input']>;
   /** Show a message when the product is added to the wishlist. */
-  wishlistShowFeedbackMessage?: InputMaybe<Scalars['Boolean']['input']>
-}
+  wishlistShowFeedbackMessage?: InputMaybe<Scalars['Boolean']['input']>;
+};
 
 /** Debug configuration for GraphCommerce */
 export type GraphCommerceDebugConfig = {
   /** Reports which plugins are enabled or disabled. */
-  pluginStatus?: InputMaybe<Scalars['Boolean']['input']>
+  pluginStatus?: InputMaybe<Scalars['Boolean']['input']>;
   /**
-   * Cyclic dependencies can cause memory issues and other strange bugs. This plugin will warn you
-   * when it detects a cyclic dependency.
+   * Cyclic dependencies can cause memory issues and other strange bugs.
+   * This plugin will warn you when it detects a cyclic dependency.
    *
    * When running into memory issues, it can be useful to enable this plugin.
    */
-  webpackCircularDependencyPlugin?: InputMaybe<Scalars['Boolean']['input']>
+  webpackCircularDependencyPlugin?: InputMaybe<Scalars['Boolean']['input']>;
   /**
-   * When updating packages it can happen that the same package is included with different versions
-   * in the same project.
+   * When updating packages it can happen that the same package is included with different versions in the same project.
    *
    * Issues that this can cause are:
-   *
    * - The same package is included multiple times in the bundle, increasing the bundle size.
-   * - The Typescript types of the package are not compatible with each other, causing Typescript
-   *   errors.
+   * - The Typescript types of the package are not compatible with each other, causing Typescript errors.
    */
-  webpackDuplicatesPlugin?: InputMaybe<Scalars['Boolean']['input']>
-}
+  webpackDuplicatesPlugin?: InputMaybe<Scalars['Boolean']['input']>;
+};
 
 /** All storefront configuration for the project */
 export type GraphCommerceStorefrontConfig = {
-  /** Configure your Algolia index configurations */
-  algoliaSearchIndexConfig: Array<AlgoliaSearchIndexConfig>
   /**
    * The canonical base URL is used for SEO purposes.
    *
    * Examples:
-   *
    * - https://example.com
    * - https://example.com/en
    * - https://example.com/en-US
    */
-  canonicalBaseUrl?: InputMaybe<Scalars['String']['input']>
-  /**
-   * Due to a limitation of the GraphQL API it is not possible to determine if a cart should be
-   * displayed including or excluding tax.
-   */
-  cartDisplayPricesInclTax?: InputMaybe<Scalars['Boolean']['input']>
+  canonicalBaseUrl?: InputMaybe<Scalars['String']['input']>;
+  /** Due to a limitation of the GraphQL API it is not possible to determine if a cart should be displayed including or excluding tax. */
+  cartDisplayPricesInclTax?: InputMaybe<Scalars['Boolean']['input']>;
   /**
    * There can only be one entry with defaultLocale set to true.
-   *
    * - If there are more, the first one is used.
    * - If there is none, the first entry is used.
    */
-  defaultLocale?: InputMaybe<Scalars['Boolean']['input']>
+  defaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
   /** Domain configuration, must be a domain https://tools.ietf.org/html/rfc3986 */
-  domain?: InputMaybe<Scalars['String']['input']>
+  domain?: InputMaybe<Scalars['String']['input']>;
   /**
    * Configure different Google Analytics IDs for different locales.
    *
    * To disable for a specific locale, set the value to null.
    */
-  googleAnalyticsId?: InputMaybe<Scalars['String']['input']>
+  googleAnalyticsId?: InputMaybe<Scalars['String']['input']>;
   /** Locale specific google reCAPTCHA key. */
-  googleRecaptchaKey?: InputMaybe<Scalars['String']['input']>
+  googleRecaptchaKey?: InputMaybe<Scalars['String']['input']>;
   /** The Google Tagmanager ID to be used per locale. */
-  googleTagmanagerId?: InputMaybe<Scalars['String']['input']>
-  /**
-   * Add a gcms-locales header to make sure queries return in a certain language, can be an array to
-   * define fallbacks.
-   */
-  hygraphLocales?: InputMaybe<Array<Scalars['String']['input']>>
+  googleTagmanagerId?: InputMaybe<Scalars['String']['input']>;
+  /** Add a gcms-locales header to make sure queries return in a certain language, can be an array to define fallbacks. */
+  hygraphLocales?: InputMaybe<Array<Scalars['String']['input']>>;
   /** Specify a custom locale for to load translations. */
-  linguiLocale?: InputMaybe<Scalars['String']['input']>
+  linguiLocale?: InputMaybe<Scalars['String']['input']>;
   /** Must be a locale string https://www.unicode.org/reports/tr35/tr35-59/tr35.html#Identifiers */
-  locale: Scalars['String']['input']
+  locale: Scalars['String']['input'];
   /**
    * Magento store code.
    *
    * Stores => All Stores => [Store View] => Store View Code
    *
    * Examples:
-   *
-   * - Default
-   * - En-us
-   * - B2b-us
+   * - default
+   * - en-us
+   * - b2b-us
    */
-  magentoStoreCode: Scalars['String']['input']
-  /** Configure the sortable attributes */
-  sortOptions?: InputMaybe<Array<AlgoliaSortableOption>>
-}
+  magentoStoreCode: Scalars['String']['input'];
+};
 
-export type ProductFiltersLayout = 'DEFAULT' | 'SIDEBAR'
+export type ProductFiltersLayout =
+  | 'DEFAULT'
+  | 'SIDEBAR';
+
 
 type Properties<T> = Required<{
-  [K in keyof T]: z.ZodType<T[K], any, T[K]>
-}>
+  [K in keyof T]: z.ZodType<T[K], any, T[K]>;
+}>;
 
-type definedNonNullAny = {}
+type definedNonNullAny = {};
 
-export const isDefinedNonNullAny = (v: any): v is definedNonNullAny => v !== undefined && v !== null
+export const isDefinedNonNullAny = (v: any): v is definedNonNullAny => v !== undefined && v !== null;
 
-export const definedNonNullAnySchema = z.any().refine((v) => isDefinedNonNullAny(v))
+export const definedNonNullAnySchema = z.any().refine((v) => isDefinedNonNullAny(v));
 
-export const CompareVariantSchema = z.enum(['CHECKBOX', 'ICON'])
+export const CompareVariantSchema = z.enum(['CHECKBOX', 'ICON']);
 
-export const ProductFiltersLayoutSchema = z.enum(['DEFAULT', 'SIDEBAR'])
-export function AlgoliaFilterAttributeSchema(): z.ZodObject<Properties<AlgoliaFilterAttribute>> {
-  return z.object({
-    aggregation: z.string().min(1),
-    toAlgoliaAttribute: z.string().min(1),
-  })
-}
-
-export function AlgoliaSearchIndexConfigSchema(): z.ZodObject<
-  Properties<AlgoliaSearchIndexConfig>
-> {
-  return z.object({
-    filterAttributes: z.array(AlgoliaFilterAttributeSchema()).nullish(),
-    searchIndex: z.string().min(1),
-  })
-}
-
-export function AlgoliaSortableOptionSchema(): z.ZodObject<Properties<AlgoliaSortableOption>> {
-  return z.object({
-    label: z.string().min(1),
-    value: z.string().min(1),
-  })
-}
+export const ProductFiltersLayoutSchema = z.enum(['DEFAULT', 'SIDEBAR']);
 
 export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerceConfig>> {
   return z.object({
-    algoliaApplicationId: z.string().min(1),
-    algoliaSearchDebounceTime: z.number().nullish(),
-    algoliaSearchOnlyApiKey: z.string().min(1),
     canonicalBaseUrl: z.string().min(1),
     cartDisplayPricesInclTax: z.boolean().nullish(),
     compare: z.boolean().nullish(),
@@ -454,25 +373,20 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     storefront: z.array(GraphCommerceStorefrontConfigSchema()),
     wishlistHideForGuests: z.boolean().nullish(),
     wishlistIgnoreProductWishlistStatus: z.boolean().nullish(),
-    wishlistShowFeedbackMessage: z.boolean().nullish(),
+    wishlistShowFeedbackMessage: z.boolean().nullish()
   })
 }
 
-export function GraphCommerceDebugConfigSchema(): z.ZodObject<
-  Properties<GraphCommerceDebugConfig>
-> {
+export function GraphCommerceDebugConfigSchema(): z.ZodObject<Properties<GraphCommerceDebugConfig>> {
   return z.object({
     pluginStatus: z.boolean().nullish(),
     webpackCircularDependencyPlugin: z.boolean().nullish(),
-    webpackDuplicatesPlugin: z.boolean().nullish(),
+    webpackDuplicatesPlugin: z.boolean().nullish()
   })
 }
 
-export function GraphCommerceStorefrontConfigSchema(): z.ZodObject<
-  Properties<GraphCommerceStorefrontConfig>
-> {
+export function GraphCommerceStorefrontConfigSchema(): z.ZodObject<Properties<GraphCommerceStorefrontConfig>> {
   return z.object({
-    algoliaSearchIndexConfig: z.array(AlgoliaSearchIndexConfigSchema()),
     canonicalBaseUrl: z.string().nullish(),
     cartDisplayPricesInclTax: z.boolean().nullish(),
     defaultLocale: z.boolean().nullish(),
@@ -483,7 +397,6 @@ export function GraphCommerceStorefrontConfigSchema(): z.ZodObject<
     hygraphLocales: z.array(z.string().min(1)).nullish(),
     linguiLocale: z.string().nullish(),
     locale: z.string().min(1),
-    magentoStoreCode: z.string().min(1),
-    sortOptions: z.array(AlgoliaSortableOptionSchema()).nullish(),
+    magentoStoreCode: z.string().min(1)
   })
 }
