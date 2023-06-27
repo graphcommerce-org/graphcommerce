@@ -28,7 +28,7 @@ export type SortByRenderState = {
   canRefine: boolean
 }
 
-export interface SortChipProps {
+export type SortChipProps = {
   title: string
   sx?: SxProps<Theme>
 }

@@ -1,6 +1,7 @@
 export type SearchContextProps = React.PropsWithChildren<{
   serverProps?: unknown
-  isNext?: boolean
+  // rendersInsideNextjs is needed, because of the InstantSearchSSRProvider data hydration inside the getStaticProps.
+  rendersInsideNextjs?: boolean
 }>
 
 export function SearchContext(props: SearchContextProps) {
