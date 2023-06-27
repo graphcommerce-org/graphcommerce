@@ -21,7 +21,6 @@
     "@graphql-mesh/types": "latest",
     "@graphql-mesh/utils": "latest",
     "@hygraph/management-sdk": "^1.1.2-alpha.1",
-    "cross-fetch": "^3.1.6",
     "dotenv": "^16.3.1",
     "graphql": "16.6.0",
     "graphql-tag": "^2.12.6",
