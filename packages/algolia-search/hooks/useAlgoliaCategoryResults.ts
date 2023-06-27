@@ -3,14 +3,14 @@ import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { useHits } from 'react-instantsearch-hooks-web'
 import { AlgoliaCategoryHit } from '../lib/types'
 
-function hitToCategory(hits: AlgoliaCategoryHit[], productUrlSuffix?: string | null) {
+function hitToCategory(hits: AlgoliaCategoryHit[], categoryUrlSuffix?: string | null) {
   return hits.map((h) => {
     const urlSplit = h.url.split('/')
     const categoryUrl = urlSplit.reduce((prev, curr, currIndex) => {
       if (currIndex > 2) return `${prev}/${curr}`
       return ''
     })
-    const url_key = categoryUrl.substring(1, categoryUrl.length - (productUrlSuffix?.length ?? 0))
+    const url_key = categoryUrl.substring(1, categoryUrl.length - (categoryUrlSuffix?.length ?? 0))
     return {
       category_uid: h.objectID,
       category_level: h.level,

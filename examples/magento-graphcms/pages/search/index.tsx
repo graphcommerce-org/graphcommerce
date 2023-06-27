@@ -69,7 +69,7 @@ function SearchResultPage(props: SearchResultProps) {
           <SearchForm
             totalResults={totalSearchResults}
             search={search}
-            textFieldProps={{ variant: 'standard', autoComplete: 'off' }}
+            textFieldProps={{ variant: 'standard', autoComplete: 'off', size: 'small' }}
           />
         </LayoutHeader>
 
