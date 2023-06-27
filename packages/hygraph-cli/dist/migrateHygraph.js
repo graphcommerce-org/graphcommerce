@@ -24,27 +24,6 @@ async function migrateHygraph() {
     const versionParts = graphcommerceVersion.split('.');
     const graphcommerceMinorVersion = `${versionParts[0]}.${versionParts[1]}`;
     (0, functions_1.graphcommerceLog)(`Graphcommerce version: ${graphcommerceVersion}`, 'info');
-    /**
-     * Force run will run the migration even if it has already been run before. Hardcoded on true for
-     * now. Could be a useful config for the user in a later version.
-     */
-    const forceRun = true;
-    // Extract the currently existing models, components and enumerations from the Hygraph schema.
-    const schemaViewer = await (0, readSchema_1.readSchema)(config);
-    const schema = schemaViewer.viewer.project.environment.contentModel;
-    // A list of possible migrations
-    const possibleMigrations = [
-        ['Dynamic Rows', migrations_1.dynamicRow],
-        ['Upgrade to GraphCommerce 6', migrations_1.GraphCommerce6],
-    ];
-    (0, functions_1.graphcommerceLog)('Available migrations: ', 'info');
-    // Here we setup the list we ask the user to choose from
-    const selectMigrationInput = {
-        type: 'select',
-        name: 'selectedMigration',
-        message: '\x1b[36m\x1b[1m[GraphCommerce]: Select migration',
-        choices: [],
-    };
     // ? This goes unused for now
     const versionInput = {
         type: 'text',
@@ -58,6 +37,26 @@ async function migrateHygraph() {
                 : '[GraphCommerce]: Please enter a valid version (Major.Minor e.g. 6.2)';
         },
     };
+    /**
+     * Force run will run the migration even if it has already been run before. Hardcoded on true for
+     * now. Could be a useful config for the user in a later version.
+     */
+    const forceRun = true;
+    // Extract the currently existing models, components and enumerations from the Hygraph schema.
+    const schemaViewer = await (0, readSchema_1.readSchema)(config);
+    const schema = schemaViewer.viewer.project.environment.contentModel;
+    // A list of possible migrations
+    const possibleMigrations = [
+        ['Upgrade to GraphCommerce 6', migrations_1.GraphCommerce6],
+        ['Upgrade to Graphcommerce 6.2', migrations_1.dynamicRow],
+    ];
+    // Here we setup the list we ask the user to choose from
+    const selectMigrationInput = {
+        type: 'select',
+        name: 'selectedMigration',
+        message: '\x1b[36m\x1b[1m[GraphCommerce]: Select migration',
+        choices: [],
+    };
     for (const [name, migration] of possibleMigrations) {
         if (Array.isArray(selectMigrationInput.choices)) {
             selectMigrationInput?.choices?.push({ title: name, value: { name, migration } });
@@ -65,6 +64,7 @@ async function migrateHygraph() {
     }
     // Here we ask the user to choose a migration from a list of possible migrations
     try {
+        (0, functions_1.graphcommerceLog)('Available migrations: ', 'info');
         const selectMigrationOutput = await (0, prompts_1.default)(selectMigrationInput);
         const { migration, name } = selectMigrationOutput.selectedMigration;
         (0, functions_1.graphcommerceLog)(`You have selected the ${selectMigrationOutput.selectedMigration.name} migration`, 'info');
@@ -98,10 +98,14 @@ exports.migrateHygraph = migrateHygraph;
  * one gives the old GC version and the desired one, and the CLI calculates which model updates are
  * necessary.
  *
- * 1. Read out the current model => //? This can be done with the Management API viewer prop | DONE
+ * 1. Read out the current schema => | DONE
  * 2. Read out the current GC version | DONE
- * 3. Read out the desired GC version
- * 4. Design a model per minor version of Graphcommerce e.g. 2.4.x, 2.5.x, 2.6.x
- * 5. Calculate the necessary migrations
- * 6. Run the migrations, no errors should occur
+ * 3. Read out the desired GC version | DONE
+ * 4. Write migrations for GC6 and Dynamic Rows | DONE
+ * 5. Run the migrations, no errors should occur | DONE
+ *
+ * Something we can also add is the possibility to run migrations based on the current schema &
+ * version, we just determine what version a user is on and create all the entities in the schema.
+ * If the apiId of an entity already exists, the migration will skip it and run the next entity.
+ * This might be an additional automation for the user and not that necessary at the moment.
  */

@@ -58,8 +58,8 @@ export async function migrateHygraph() {
       schema: Schema,
     ) => Promise<MigrationInfo>,
   ][] = [
-    ['Dynamic Rows', dynamicRow],
     ['Upgrade to GraphCommerce 6', GraphCommerce6],
+    ['Upgrade to Graphcommerce 6.2', dynamicRow],
   ]
 
   // Here we setup the list we ask the user to choose from

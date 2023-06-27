@@ -14,5 +14,5 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(require("./dynamicRow"), exports);
+__exportStar(require("./graphcommerce-6-1-0-to-6.2.0"), exports);
 __exportStar(require("./graphcommerce6"), exports);

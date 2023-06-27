@@ -159,7 +159,9 @@ const migrationAction = (client, schema, type, action, props, parentApiId, paren
     if (!alreadyExists()) {
         if (validProp && actionFunc) {
             (0, exports.graphcommerceLog)(`${(0, exports.capitalize)(action)} ${type} with apiId ${props.apiId}...`);
-            actionFunc(props); // This error is a loss on typescript autocomplete, but the function is called correctly
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore | This error is a loss on typescript autocomplete, but the function is called correctly
+            actionFunc(props);
         }
     }
     else {
