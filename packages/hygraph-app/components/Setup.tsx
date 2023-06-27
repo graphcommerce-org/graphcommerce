@@ -1,22 +1,8 @@
-import React from 'react'
 import { useApp, Wrapper } from '@hygraph/app-sdk-react'
-
-function useLogin() {
-  const [accessToken, setAccessToken] = React.useState<string>('')
-  function login() {
-    setAccessToken('123456')
-    localStorage.setItem('appToken', accessToken)
-  }
-  return { accessToken, login }
-}
+import React from 'react'
 
 function Install() {
-  const { accessToken, login } = useLogin()
   const { updateInstallation, installation } = useApp()
-
-  if (accessToken) {
-    return <div>Connected as name@example.com</div>
-  }
 
   if (installation.status === 'COMPLETED') {
     return <div>App installation successful</div>
