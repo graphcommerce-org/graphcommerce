@@ -1,5 +1,17 @@
 # Change Log
 
+## 6.2.0-canary.55
+
+## 6.2.0-canary.54
+
+### Patch Changes
+
+- [#1974](https://github.com/graphcommerce-org/graphcommerce/pull/1974) [`d620a8667`](https://github.com/graphcommerce-org/graphcommerce/commit/d620a86678e18ab0b6f26611f4e6f982086c9e60) - Disable appDir, this ensures jest-worker isn't used which can cause issues in standalone mode ([@hnsr](https://github.com/hnsr))
+
+## 6.2.0-canary.53
+
+## 6.2.0-canary.52
+
 ## 6.2.0-canary.51
 
 ## 6.2.0-canary.50

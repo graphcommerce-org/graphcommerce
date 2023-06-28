@@ -9,7 +9,7 @@ import { nonNullable, isTypename } from '@graphcommerce/next-ui'
 import { Redirect } from 'next'
 import { StoreConfigQuery } from '../StoreConfig.gql'
 import { defaultLocale } from '../localeToStore'
-import { HandleRedirectDocument } from './HandleRedirect.gql'
+import { HandleRedirectDocument, HandleRedirectQuery } from './HandleRedirect.gql'
 
 export type RedirectOr404Return = Promise<
   | { redirect: Redirect; revalidate?: number | boolean }
@@ -77,8 +77,16 @@ export async function redirectOrNotFound(
         ).data,
     )
 
-    const routeData = (await Promise.all(routePromises)).find(nonNullable)
+    const routeDataArray = (await Promise.all(routePromises)).filter(nonNullable)
 
+    const routeData: HandleRedirectQuery = Object.assign(
+      {},
+      ...routeDataArray.map((result) => {
+        if (!result.route) delete result.route
+        if (!result.products) delete result.products
+        return result
+      }),
+    )
     if (!routeData?.route)
       return notFound(
         from,
