@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.56
+
+### Patch Changes
+
+- [#1971](https://github.com/graphcommerce-org/graphcommerce/pull/1971) [`1c77da7f9`](https://github.com/graphcommerce-org/graphcommerce/commit/1c77da7f951e34a28df586fcaedf7a0a2c97ba60) - Bug fixes for Algolia Search. Linking via indexed categories is now possible, Mobile Header wil now render results correctly and server side data hydration will no longer be reliant on the locale provided by Lingui. ([@mikekeehnen](https://github.com/mikekeehnen))
+
 ## 6.2.0-canary.55
 
 ## 6.2.0-canary.54
