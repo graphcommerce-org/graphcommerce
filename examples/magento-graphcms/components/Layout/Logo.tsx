@@ -1,5 +1,5 @@
 import { Logo as LogoBase } from '@graphcommerce/next-ui'
-import svgLogo from './graphcommerce.svg'
+import svgLogo from './logo.png'
 
 export function Logo() {
   return (
@@ -13,7 +13,7 @@ export function Logo() {
           filter: (theme) => (theme.palette.mode === 'dark' ? 'invert(100%)' : 'none'),
         },
       }}
-      image={{ alt: 'GraphCommerce Logo', src: svgLogo, unoptimized: true }}
+      image={{ alt: 'Manganimeshon Logo', src: svgLogo, unoptimized: true }}
     />
   )
 }
