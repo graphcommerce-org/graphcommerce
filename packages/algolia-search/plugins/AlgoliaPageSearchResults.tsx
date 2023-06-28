@@ -17,6 +17,7 @@ function PageHits() {
     <>
       {pages.map((page) => (
         <CategorySearchResult
+          key={page.objectID}
           breadcrumbs={[
             {
               category_uid: page.objectID,

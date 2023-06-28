@@ -1,15 +1,14 @@
+import { SearchFormProps } from '@graphcommerce/magento-search'
 import { Trans } from '@lingui/react'
 import { Box, debounce } from '@mui/material'
 import TextField from '@mui/material/TextField'
 import { ChangeEvent, useCallback, useEffect, useRef } from 'react'
 import { useHits, useSearchBox, UseSearchBoxProps } from 'react-instantsearch-hooks-web'
 
-type SearchBoxProps = {
-  defaultValue?: string
-} & UseSearchBoxProps
+type SearchBoxProps = UseSearchBoxProps & SearchFormProps
 
 export function SearchBox(props: SearchBoxProps) {
-  const { defaultValue } = props
+  const { search, textFieldProps } = props
   const searchInputElement = useRef<HTMLInputElement>(null)
 
   const { refine } = useSearchBox()
@@ -25,8 +24,8 @@ export function SearchBox(props: SearchBoxProps) {
   )
 
   useEffect(() => {
-    if (defaultValue) refine(defaultValue)
-  }, [defaultValue, refine])
+    if (search) refine(search)
+  }, [search, refine])
 
   const totalResults = results?.nbHits ?? 0
 
@@ -52,7 +51,8 @@ export function SearchBox(props: SearchBoxProps) {
       inputRef={searchInputElement}
       onChange={debounceSearch}
       fullWidth
-      sx={{ mt: 1 }}
+      sx={{ mt: 1, mb: 1 }}
+      {...textFieldProps}
     />
   )
 }
