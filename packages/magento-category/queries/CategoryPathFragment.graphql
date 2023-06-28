@@ -1,0 +1,24 @@
+fragment CategoryPathFragment on CategoryTree @injectable {
+  uid
+  url_path
+  children {
+    uid
+    url_path
+    children {
+      uid
+      url_path
+      children {
+        uid
+        url_path
+        children {
+          uid
+          url_path
+          children {
+            uid
+            url_path
+          }
+        }
+      }
+    }
+  }
+}
