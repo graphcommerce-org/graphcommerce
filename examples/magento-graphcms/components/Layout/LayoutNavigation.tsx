@@ -58,7 +58,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
               <Trans id='Search...' />
             </SearchLink>,
             { id: 'home', name: <Trans id='Home' />, href: '/' },
-            {
+            /*{
               id: 'manual-item-one',
               href: `/${menu?.items?.[0]?.children?.[0]?.url_path}`,
               name: menu?.items?.[0]?.children?.[0]?.name ?? '',
@@ -67,8 +67,8 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
               id: 'manual-item-two',
               href: `/${menu?.items?.[0]?.children?.[1]?.url_path}`,
               name: menu?.items?.[0]?.children?.[1]?.name ?? '',
-            },
-            ...magentoMenuToNavigation(menu, true),
+            },*/
+            ...magentoMenuToNavigation(menu, false),
             { id: 'blog', name: 'Blog', href: '/blog' },
             <Divider sx={(theme) => ({ my: theme.spacings.xs })} />,
             <CustomerMenuFabItem
@@ -116,17 +116,17 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
           <>
             <Logo />
             <DesktopNavBar>
-              {menu?.items?.[0]?.children?.slice(0, 2).map((item) => (
+              {menu?.items?.[0]?.children?.map((item) => (
                 <DesktopNavItem key={item?.uid} href={`/${item?.url_path}`}>
                   {item?.name}
                 </DesktopNavItem>
               ))}
 
-              <DesktopNavItem onClick={() => selection.set([menu?.items?.[0]?.uid || ''])}>
+              {/* <DesktopNavItem onClick={() => selection.set([menu?.items?.[0]?.uid || ''])}>
                 {menu?.items?.[0]?.name}
                 <IconSvg src={iconChevronDown} />
-              </DesktopNavItem>
-
+              </DesktopNavItem> */}
+              
               <DesktopNavItem href='/blog'>
                 <Trans id='Blog' />
               </DesktopNavItem>

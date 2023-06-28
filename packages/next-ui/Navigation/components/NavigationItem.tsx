@@ -131,7 +131,7 @@ export const NavigationItem = React.memo<NavigationItemProps>((props) => {
           <Box
             component='span'
             sx={{
-              whiteSpace: 'nowrap',
+              whiteSpace: 'normal',
               overflowX: 'hidden',
               textOverflow: 'ellipsis',
               flexGrow: 1,
@@ -175,7 +175,7 @@ export const NavigationItem = React.memo<NavigationItemProps>((props) => {
           <Box
             component='span'
             sx={{
-              whiteSpace: 'nowrap',
+              whiteSpace: 'normal',
               overflowX: 'hidden',
               textOverflow: 'ellipsis',
             }}
