@@ -74,11 +74,6 @@ function ProductPage(props: Props) {
 
   return (
     <>
-      <LayoutHeader floatingMd>
-        <LayoutTitle size='small' component='span'>
-          {product.name}
-        </LayoutTitle>
-      </LayoutHeader>
       <JsonLd
         item={{
           '@context': 'https://schema.org',
@@ -90,6 +85,15 @@ function ProductPage(props: Props) {
       <ProductPageMeta {...product} />
 
       <AddProductsToCartForm key={product.uid} defaultValues={defaultValues}>
+        <LayoutHeader floatingMd>
+          <LayoutTitle size='small' component='span'>
+            {isTypename(product, ['ConfigurableProduct']) ? (
+              <ConfigurableName product={product} />
+            ) : (
+              product.name
+            )}
+          </LayoutTitle>
+        </LayoutHeader>
         {isTypename(product, ['ConfigurableProduct']) && <ConfigurableProductUrls {...product} />}
         <ConfigurableProductPageGallery
           url_key={product.url_key}
