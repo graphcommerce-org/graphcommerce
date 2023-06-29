@@ -70,6 +70,16 @@ const migrationAction = (client, schema, type, action, props, parentApiId, paren
                 return componentparent?.fields.some((field) => field.apiId === props.apiId);
             }
         }
+        if (type === 'componentUnionField') {
+            if (parentType === 'model') {
+                const modelparent = schema.models.find((model) => model.apiId === parentApiId);
+                return modelparent?.fields.some((field) => field.apiId === props.apiId);
+            }
+            if (parentType === 'component') {
+                const componentparent = schema.components.find((component) => component.apiId === parentApiId);
+                return componentparent?.fields.some((field) => field.apiId === props.apiId);
+            }
+        }
         return true;
     };
     const validPropMap = {
