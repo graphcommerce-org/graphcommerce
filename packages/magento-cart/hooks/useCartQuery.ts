@@ -15,7 +15,7 @@ import { DeepPartial } from '@graphcommerce/react-hook-form'
  */
 export function useCartQuery<Q, V extends { cartId: string; [index: string]: unknown }>(
   document: TypedDocumentNode<Q, V>,
-  options: QueryHookOptions<Q, Omit<V, 'cartId'>> & { returnPartialData: true },
+  options?: QueryHookOptions<Q, Omit<V, 'cartId'>> & { returnPartialData: true },
 ): QueryResult<DeepPartial<Q>, Omit<V, 'cartId'>>
 export function useCartQuery<Q, V extends { cartId: string; [index: string]: unknown }>(
   document: TypedDocumentNode<Q, V>,
