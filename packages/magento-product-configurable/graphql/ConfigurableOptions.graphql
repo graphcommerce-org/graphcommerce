@@ -22,4 +22,5 @@ fragment ConfigurableOptions on ConfigurableProduct {
       ...ConfigurableOptionValue
     }
   }
+  ...ProductPageDescription
 }
