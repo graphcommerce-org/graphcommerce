@@ -17,7 +17,7 @@ const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>
 
 export function SignupNewsletter(props: SignupNewsletterProps) {
   const { sx = [] } = props
-  const { data: cartData } = useCartQuery(GetCartEmailDocument)
+  const { data: cartData } = useCartQuery(GetCartEmailDocument, { returnPartialData: true })
   const { loggedIn } = useCustomerSession()
 
   const classes = withState({ loggedIn })

@@ -24,7 +24,8 @@ export type GuestNewsletterToggleProps = SwitchProps & { sx?: SxProps<Theme> }
 export function GuestNewsletterToggle(props: GuestNewsletterToggleProps) {
   const { sx = [], ...switchProps } = props
 
-  const email = useCartQuery(GetCartEmailDocument).data?.cart?.email ?? undefined
+  const email =
+    useCartQuery(GetCartEmailDocument, { returnPartialData: true }).data?.cart?.email ?? undefined
   const form = useFormGqlMutation<
     GuestNewsletterToggleMutation,
     GuestNewsletterToggleMutationVariables & { isSubscribed?: boolean }

@@ -35,7 +35,7 @@ type OrderSummaryProps = { sx?: SxProps<Theme> }
 
 export function CartItemSummary(props: OrderSummaryProps) {
   const { sx = [] } = props
-  const { data } = useCartQuery(CartItemSummaryDocument)
+  const { data } = useCartQuery(CartItemSummaryDocument, { returnPartialData: true })
 
   if (!data?.cart) return null
 

@@ -1,6 +1,7 @@
-import { useQuery, TypedDocumentNode, QueryHookOptions } from '@graphcommerce/graphql'
+import { useQuery, TypedDocumentNode, QueryHookOptions, QueryResult } from '@graphcommerce/graphql'
 import { useRouter } from 'next/router'
 import { useCurrentCartId } from './useCurrentCartId'
+import { DeepPartial } from '@graphcommerce/react-hook-form'
 
 /**
  * Requires the query to have a `$cartId: String!` argument. It will automatically inject the
@@ -12,6 +13,16 @@ import { useCurrentCartId } from './useCurrentCartId'
  * const { data } = useCartQuery(CartFabQueryDocument)
  * ```
  */
+export function useCartQuery<Q, V extends { cartId: string; [index: string]: unknown }>(
+  query: TypedDocumentNode<Q, V>,
+  options: QueryHookOptions<Q, Omit<V, 'cartId'>> & {
+    returnPartialData: true
+  },
+): QueryResult<DeepPartial<Q>, Omit<V, 'cartId'>>
+export function useCartQuery<Q, V extends { cartId: string; [index: string]: unknown }>(
+  query: TypedDocumentNode<Q, V>,
+  options?: QueryHookOptions<Q, Omit<V, 'cartId'>>,
+): QueryResult<Q, Omit<V, 'cartId'>>
 export function useCartQuery<Q, V extends { cartId: string; [index: string]: unknown }>(
   document: TypedDocumentNode<Q, V>,
   options: QueryHookOptions<Q, Omit<V, 'cartId'>> = {},
@@ -28,10 +39,5 @@ export function useCartQuery<Q, V extends { cartId: string; [index: string]: unk
   options.variables = { cartId, ...options?.variables } as V
   options.skip = options?.skip || !router.isReady || !cartId
 
-  const result = useQuery(document, { ...options })
-
-  return {
-    ...result,
-    // error: called && !currentCartId ? noCartError : result.error,
-  }
+  return useQuery(document, { ...options })
 }

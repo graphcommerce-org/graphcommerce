@@ -31,7 +31,7 @@ const { withState } = extendableComponent<OwnerProps, typeof name, typeof parts>
  * @see https://github.com/magento/magento2/issues/33848
  */
 export function CartTotals(props: CartTotalsProps) {
-  const { data } = useCartQuery(GetCartTotalsDocument)
+  const { data } = useCartQuery(GetCartTotalsDocument, { returnPartialData: true })
   const { containerMargin, additionalSubtotals, additionalTotals, sx = [] } = props
 
   const classes = withState({ containerMargin })
