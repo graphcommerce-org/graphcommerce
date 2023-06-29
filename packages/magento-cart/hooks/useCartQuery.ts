@@ -20,10 +20,6 @@ export function useCartQuery<Q, V extends { cartId: string; [index: string]: unk
   },
 ): QueryResult<DeepPartial<Q>, Omit<V, 'cartId'>>
 export function useCartQuery<Q, V extends { cartId: string; [index: string]: unknown }>(
-  query: TypedDocumentNode<Q, V>,
-  options?: QueryHookOptions<Q, Omit<V, 'cartId'>>,
-): QueryResult<Q, Omit<V, 'cartId'>>
-export function useCartQuery<Q, V extends { cartId: string; [index: string]: unknown }>(
   document: TypedDocumentNode<Q, V>,
   options: QueryHookOptions<Q, Omit<V, 'cartId'>> = {},
 ) {
