@@ -35,10 +35,7 @@ type OrderSummaryProps = { sx?: SxProps<Theme> }
 
 export function CartItemSummary(props: OrderSummaryProps) {
   const { sx = [] } = props
-  const { data } = useCartQuery(CartItemSummaryDocument, {
-    allowUrl: true,
-    fetchPolicy: 'cache-only',
-  })
+  const { data } = useCartQuery(CartItemSummaryDocument)
 
   if (!data?.cart) return null
 

@@ -21,10 +21,7 @@ const { classes } = extendableComponent<OwnerState, typeof compName, typeof part
 export function CartSummary(props: CartSummaryProps) {
   const { children, editable, sx = [] } = props
 
-  const { data } = useCartQuery(GetCartSummaryDocument, {
-    allowUrl: true,
-    fetchPolicy: editable ? 'cache-first' : 'cache-only',
-  })
+  const { data } = useCartQuery(GetCartSummaryDocument)
   const { href: historyHref, onClick: historyOnClick } = useHistoryLink({
     href: '/checkout',
   })

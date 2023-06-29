@@ -14,25 +14,21 @@ import { useCurrentCartId } from './useCurrentCartId'
  */
 export function useCartQuery<Q, V extends { cartId: string; [index: string]: unknown }>(
   document: TypedDocumentNode<Q, V>,
-  options: QueryHookOptions<Q, Omit<V, 'cartId'>> & {
-    allowUrl?: boolean
-  } = {},
+  options: QueryHookOptions<Q, Omit<V, 'cartId'>> = {},
 ) {
-  const { allowUrl = true, ...queryOptions } = options
   const router = useRouter()
   const { currentCartId } = useCurrentCartId()
 
   const urlCartId = router.query.cart_id
-  const usingUrl = allowUrl && typeof urlCartId === 'string'
+  const usingUrl = typeof urlCartId === 'string'
   const cartId = usingUrl ? urlCartId : currentCartId
 
-  if (usingUrl && !('fetchPolicy' in queryOptions)) queryOptions.fetchPolicy = 'cache-first'
-  if (usingUrl && !('returnPartialData' in queryOptions)) queryOptions.returnPartialData = true
+  if (usingUrl) options.fetchPolicy = 'cache-only'
 
-  queryOptions.variables = { cartId, ...options?.variables } as V
-  queryOptions.skip = queryOptions?.skip || !cartId
+  options.variables = { cartId, ...options?.variables } as V
+  options.skip = options?.skip || !router.isReady || !cartId
 
-  const result = useQuery(document, queryOptions)
+  const result = useQuery(document, { ...options })
 
   return {
     ...result,
