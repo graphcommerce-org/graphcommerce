@@ -1,0 +1,14 @@
+query VarnishGetPaths($categoryIds: [String]!) {
+  categories(filters: { ids: { in: $categoryIds } }) {
+    items {
+      id
+      url_path
+      products(pageSize: 100000) {
+        items {
+          id
+          url_key
+        }
+      }
+    }
+  }
+}
