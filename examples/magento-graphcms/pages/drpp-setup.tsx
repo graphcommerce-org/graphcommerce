@@ -1,6 +1,5 @@
 import { Page } from '@graphcommerce/hygraph-app'
-import { Box, Container } from '@mui/material'
-import { green } from '@mui/material/colors'
+import { Box } from '@mui/material'
 import React from 'react'
 
 export default function Setup() {
@@ -22,8 +21,13 @@ export default function Setup() {
   }, [appContainer])
 
   return (
-    <Container ref={appContainer}>
+    <Box
+      ref={appContainer}
+      sx={{
+        height: '100%',
+      }}
+    >
       <Page />
-    </Container>
+    </Box>
   )
 }
