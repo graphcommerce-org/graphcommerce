@@ -2,6 +2,7 @@ fragment ConfiguredVariant on SimpleProduct @injectable {
   __typename
   uid
   name
+  url_key
   price_range {
     minimum_price {
       final_price {
