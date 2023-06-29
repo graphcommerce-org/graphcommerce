@@ -28,6 +28,7 @@ import {
   ConfigurablePriceTiers,
   ConfigurableProductOptions,
   ConfigurableProductPageGallery,
+  ConfigurableProductUrls,
   defaultConfigurableOptionsSelection,
 } from '@graphcommerce/magento-product-configurable'
 import { DownloadableProductOptions } from '@graphcommerce/magento-product-downloadable'
@@ -89,6 +90,7 @@ function ProductPage(props: Props) {
       <ProductPageMeta {...product} />
 
       <AddProductsToCartForm key={product.uid} defaultValues={defaultValues}>
+        {isTypename(product, ['ConfigurableProduct']) && <ConfigurableProductUrls {...product} />}
         <ConfigurableProductPageGallery
           url_key={product.url_key}
           media_gallery={product.media_gallery}
