@@ -15,6 +15,7 @@
     "@graphcommerce/graphql": "6.2.0-canary.45",
     "@graphcommerce/image": "6.2.0-canary.45",
     "@graphcommerce/next-ui": "6.2.0-canary.45",
+    "@graphcommerce/ecommerce-ui": "6.2.0-canary.45",
     "@hygraph/app-sdk-react": "^0.0.2",
     "react-is": "^18.2.0",
     "schema-dts": "^1.1.0"

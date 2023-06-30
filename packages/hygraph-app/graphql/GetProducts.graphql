@@ -1,0 +1,56 @@
+query getProducts {
+  products(search: "", pageSize: 1) {
+    items {
+      categories {
+        name
+      }
+      country_of_manufacture
+      crosssell_products {
+        name
+        sku
+        categories {
+          name
+        }
+      }
+      name
+      new_to_date
+      new_from_date
+      only_x_left_in_stock
+      price_range {
+        maximum_price {
+          regular_price {
+            currency
+            value
+          }
+          discount {
+            amount_off
+            percent_off
+          }
+        }
+        minimum_price {
+          regular_price {
+            currency
+            value
+          }
+          discount {
+            amount_off
+            percent_off
+          }
+        }
+      }
+      rating_summary
+      reviews {
+        items {
+          average_rating
+        }
+      }
+      review_count
+      sku
+      special_price
+      special_to_date
+      stock_status
+      uid
+      url_key
+    }
+  }
+}
