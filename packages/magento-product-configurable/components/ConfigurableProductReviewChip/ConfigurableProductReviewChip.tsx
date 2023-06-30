@@ -2,7 +2,7 @@ import { ProductReviewChip } from '@graphcommerce/magento-review'
 import { useConfigurableOptionsSelection } from '../../hooks'
 
 export type ProductReviewChipProps = {
-  url_key?: string
+  url_key?: string | null
   rating_summary?: number
   index?: number
 }
