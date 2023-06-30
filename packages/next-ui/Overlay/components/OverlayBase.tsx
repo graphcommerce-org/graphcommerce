@@ -13,6 +13,7 @@ import {
   motionValue,
   useDomEvent,
   useMotionValue,
+  useMotionValueEvent,
   useTransform,
 } from 'framer-motion'
 import framesync from 'framesync'
@@ -311,10 +312,34 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
   }
   useDomEvent(windowRef, 'keyup', handleEscape, { passive: true })
 
+  let dragging = false
+  const backdropRef = useRef<HTMLDivElement>(null)
+  const scrollerElementRef = scrollerRef as React.RefObject<HTMLElement>
+
+  const handleDragStart = () => {
+    dragging = true
+  }
+  const handleDragEnd = () => {
+    dragging = false
+    // When releasing pointer and visibility 0 (overlay is dragged offscreen), close the overlay
+    if (positions.open.visible.get() === 0) closeOverlay()
+  }
+
+  useDomEvent(backdropRef, 'pointerdown', handleDragStart, { passive: true })
+  // We use touchend & mouseup because timing of pointerup is incorrect
+  useDomEvent(backdropRef, 'touchend', handleDragEnd, { passive: true })
+  useDomEvent(backdropRef, 'mouseup', handleDragEnd, { passive: true })
+
+  useDomEvent(scrollerElementRef, 'pointerdown', handleDragStart, { passive: true })
+  // We use touchend & mouseup because timing of pointerup is incorrect
+  useDomEvent(scrollerElementRef, 'touchend', handleDragEnd, { passive: true })
+  useDomEvent(scrollerElementRef, 'mouseup', handleDragEnd, { passive: true })
+
   // When the overlay isn't visible anymore, we navigate back.
-  useEffect(
-    () => positions.open.visible.on('change', (o) => o === 0 && closeOverlay()),
-    [closeOverlay, position, positions.open.visible],
+  useMotionValueEvent(
+    positions.open.visible,
+    'change',
+    (o) => o === 0 && !dragging && closeOverlay(),
   )
 
   // Measure the offset of the overlay in the scroller.
@@ -346,6 +371,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
         inert={active ? undefined : 'true'}
         className={classes.backdrop}
         style={{ opacity: positions.open.visible }}
+        ref={backdropRef}
         sx={[
           {
             zIndex: -1,
