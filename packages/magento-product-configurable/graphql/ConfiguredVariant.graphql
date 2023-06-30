@@ -23,6 +23,7 @@ fragment ConfiguredVariant on SimpleProduct @injectable {
     }
     quantity
   }
+  rating_summary
   ...ProductPageDescription
   ...ProductPageMeta
 }

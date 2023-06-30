@@ -30,6 +30,7 @@ import {
   ConfigurableProductOptions,
   ConfigurableProductPageGallery,
   ConfigurableProductPageMeta,
+  ConfigurableProductReviewChip,
   ConfigurableProductUrls,
   ConfigurableShortDescription,
   defaultConfigurableOptionsSelection,
@@ -141,7 +142,11 @@ function ProductPage(props: Props) {
               />
             )}
 
-            <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
+            {isTypename(product, ['ConfigurableProduct']) ? (
+              <ConfigurableProductReviewChip {...product} />
+            ) : (
+              <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
+            )}
           </div>
 
           {isTypename(product, ['ConfigurableProduct']) && (
