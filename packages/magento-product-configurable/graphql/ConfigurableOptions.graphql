@@ -7,8 +7,10 @@ fragment ConfigurableOptions on ConfigurableProduct {
   price_range {
     minimum_price {
       final_price {
-        currency
-        value
+        ...Money
+      }
+      regular_price {
+        ...Money
       }
     }
   }
