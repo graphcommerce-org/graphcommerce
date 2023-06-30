@@ -29,6 +29,7 @@ import {
   ConfigurableProductOptions,
   ConfigurableProductPageGallery,
   ConfigurableProductUrls,
+  ConfigurableShortDescription,
   defaultConfigurableOptionsSelection,
 } from '@graphcommerce/magento-product-configurable'
 import { DownloadableProductOptions } from '@graphcommerce/magento-product-downloadable'
@@ -120,10 +121,14 @@ function ProductPage(props: Props) {
               )}
             </Typography>
 
-            <ProductShortDescription
-              short_description={product?.short_description}
-              sx={(theme) => ({ mb: theme.spacings.xs })}
-            />
+            {isTypename(product, ['ConfigurableProduct']) ? (
+              <ConfigurableShortDescription product={product} />
+            ) : (
+              <ProductShortDescription
+                short_description={product?.short_description}
+                sx={(theme) => ({ mb: theme.spacings.xs })}
+              />
+            )}
 
             <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
           </div>
