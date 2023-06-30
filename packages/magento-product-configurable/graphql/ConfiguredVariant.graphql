@@ -24,5 +24,4 @@ fragment ConfiguredVariant on SimpleProduct @injectable {
     quantity
   }
   ...ProductPageDescription
-  ...JsonLdProductReview
 }
