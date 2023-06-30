@@ -44,6 +44,7 @@ export function SearchBox(props: SearchBoxProps) {
 
   return (
     <TextField
+      autoFocus
       variant='outlined'
       type='text'
       name='search'
