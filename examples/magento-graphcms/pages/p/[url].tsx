@@ -23,6 +23,7 @@ import {
 } from '@graphcommerce/magento-product'
 import { BundleProductOptions } from '@graphcommerce/magento-product-bundle'
 import {
+  ConfigurableJsonLd,
   ConfigurableName,
   ConfigurablePrice,
   ConfigurablePriceTiers,
@@ -75,17 +76,21 @@ function ProductPage(props: Props) {
 
   return (
     <>
-      <JsonLd
-        item={{
-          '@context': 'https://schema.org',
-          ...jsonLdProduct(product),
-          ...jsonLdProductOffer(product),
-          ...jsonLdProductReview(product),
-        }}
-      />
-      <ProductPageMeta {...product} />
-
       <AddProductsToCartForm key={product.uid} defaultValues={defaultValues}>
+        {isTypename(product, ['ConfigurableProduct']) ? (
+          <ConfigurableJsonLd product={product} />
+        ) : (
+          <JsonLd
+            item={{
+              '@context': 'https://schema.org',
+              ...jsonLdProduct(product),
+              ...jsonLdProductOffer(product),
+              ...jsonLdProductReview(product),
+            }}
+          />
+        )}
+
+        <ProductPageMeta {...product} />
         <LayoutHeader floatingMd>
           <LayoutTitle size='small' component='span'>
             {isTypename(product, ['ConfigurableProduct']) ? (
