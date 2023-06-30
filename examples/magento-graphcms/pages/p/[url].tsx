@@ -29,6 +29,7 @@ import {
   ConfigurablePriceTiers,
   ConfigurableProductOptions,
   ConfigurableProductPageGallery,
+  ConfigurableProductPageMeta,
   ConfigurableProductUrls,
   ConfigurableShortDescription,
   defaultConfigurableOptionsSelection,
@@ -90,7 +91,12 @@ function ProductPage(props: Props) {
           />
         )}
 
-        <ProductPageMeta {...product} />
+        {isTypename(product, ['ConfigurableProduct']) ? (
+          <ConfigurableProductPageMeta {...product} />
+        ) : (
+          <ProductPageMeta {...product} />
+        )}
+
         <LayoutHeader floatingMd>
           <LayoutTitle size='small' component='span'>
             {isTypename(product, ['ConfigurableProduct']) ? (
