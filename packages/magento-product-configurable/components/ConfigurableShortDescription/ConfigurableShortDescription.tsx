@@ -1,11 +1,9 @@
 import { ProductShortDescription } from '@graphcommerce/magento-product/components'
 import { ConfigurableOptionsFragment } from '../../graphql/ConfigurableOptions.gql'
 import { useConfigurableOptionsSelection } from '../../hooks/useConfigurableOptionsSelection'
-import { ComplexTextValue } from '@graphcommerce/graphql-mesh'
 
 export type ConfigurableShortDescriptionProps = {
   product: ConfigurableOptionsFragment
-  short_description: ComplexTextValue
   index?: number
 }
 
