@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { useConfigurableOptionsSelection } from '../../hooks/useConfigurableOptionsSelection'
 
 type ConfigurableProductUrlsProps = {
-  url_key?: string
+  url_key?: string | null
   index?: number
 }
 
@@ -18,10 +18,13 @@ export function ConfigurableProductUrls(props: ConfigurableProductUrlsProps) {
     const simpleProductUrlKey = configured?.configurable_product_options_selection?.variant?.url_key
 
     if (simpleProductUrlKey && simpleProductUrlKey !== currentUrlKey) {
-      router.replace(`/p/${simpleProductUrlKey}`, undefined, { scroll: false }).catch((error) => {
-        // Handle the error here, if necessary
-        console.error('Failed to replace URL:', error)
-      })
+      router
+        .replace(`/p/${simpleProductUrlKey}`, undefined, { scroll: false, shallow: true })
+        .catch((error) => {
+          console.error('Failed to replace URL:', error)
+        })
     }
   }, [configured, router])
+
+  return undefined
 }
