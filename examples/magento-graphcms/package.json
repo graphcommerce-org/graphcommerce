@@ -9,7 +9,7 @@
     "node": "16.x.x||18.x.x"
   },
   "scripts": {
-    "dev": "concurrently -k -n codegen,next 'graphql-codegen -w' 'next dev'",
+    "dev": "concurrently -k -n codegen,next 'graphql-codegen -w' 'next dev' --trace-warnings",
     "codegen": "graphcommerce codegen-config && mesh build && graphql-codegen",
     "build": "graphcommerce codegen-config && mesh build && graphql-codegen && next build && next-sitemap",
     "start": "next start",

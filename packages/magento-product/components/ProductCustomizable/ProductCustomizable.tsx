@@ -1,4 +1,4 @@
-import { SelectElement, TextFieldElement } from '@graphcommerce/ecommerce-ui'
+import { SelectElement, TextFieldElement, AutocompleteElement } from '@graphcommerce/ecommerce-ui'
 import { filterNonNullableKeys, RenderType, TypeRenderer } from '@graphcommerce/next-ui'
 import React from 'react'
 import { useFormAddProductsToCart } from '../AddProductsToCart'
@@ -69,12 +69,47 @@ const CustomizableDropDownOption = React.memo<
   )
 })
 
+const CustomizableFieldOption = React.memo<
+  React.ComponentProps<OptionTypeRenderer['CustomizableFieldOption']>
+>((props) => {
+  const { uid, fieldValue, required, optionIndex, index, title, product_sku } = props
+  const maxLength = fieldValue?.max_characters ?? undefined
+  const { control, register } = useFormAddProductsToCart()
+  const options = [
+    { label: 'The Shawshank Redemption', id: 1994 },
+    { label: 'The Godfather', id: 1972 },
+    { label: 'The Godfather: Part II', id: 1974 },
+    { label: 'The Dark Knight', id: 2008 },
+    { label: '12 Angry Men', id: 1957 },
+    { label: "Schindler's List", id: 1993 },
+    { label: 'Pulp Fiction', id: 1994 },
+  ]
+  return (
+    <>
+      <input
+        type='hidden'
+        {...register(`cartItems.${index}.entered_options.${optionIndex}.uid`)}
+        value={uid}
+      />
+      <AutocompleteElement
+        required={Boolean(required)}
+        control={control}
+        label={title}
+        multiple={Boolean(false)}
+        defaultValue=''
+        options={options}
+        showCheckbox={Boolean(false)}
+      />
+    </>
+  )
+})
+
 const defaultRenderer = {
   CustomizableAreaOption,
   CustomizableCheckboxOption: () => <div>checkbox not implemented</div>,
   CustomizableDateOption: () => <div>date not implemented</div>,
   CustomizableDropDownOption,
-  CustomizableFieldOption: () => <div>field not implemented</div>,
+  CustomizableFieldOption,
   CustomizableFileOption: () => <div>file not implemented</div>,
   CustomizableMultipleOption: () => <div>multi not implemented</div>,
   CustomizableRadioOption: () => <div>radios not implemented</div>,
