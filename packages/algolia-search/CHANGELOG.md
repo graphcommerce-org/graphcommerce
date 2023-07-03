@@ -1,5 +1,7 @@
 # @graphcommerce/algolia-search
 
+## 6.2.0-canary.57
+
 ## 6.2.0-canary.56
 
 ### Patch Changes
