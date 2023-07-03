@@ -27,7 +27,9 @@ export function ConfigurableProductPageDescription(props: ConfigurableProductPag
   const { configured } = useConfigurableOptionsSelection({ url_key, index })
 
   const simpleProduct = configured?.configurable_product_options_selection?.variant
-  const configurableDescription = simpleProduct?.description ?? description
+  const configurableDescription = simpleProduct?.description?.html.length
+    ? simpleProduct?.description
+    : description
 
   return (
     <ColumnTwoWithTop
@@ -43,7 +45,9 @@ export function ConfigurableProductPageDescription(props: ConfigurableProductPag
           <Box
             className={classes.description}
             // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{ __html: configurableDescription.html }}
+            dangerouslySetInnerHTML={{
+              __html: configurableDescription.html,
+            }}
             sx={[
               {
                 '& p:first-of-type': {
