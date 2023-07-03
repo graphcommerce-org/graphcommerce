@@ -37,7 +37,7 @@ export function ConfigurableProductPageDescription(props: ConfigurableProductPag
       sx={sx}
       top={
         <Typography variant='h1' component='h1'>
-          {simpleProduct?.name && name}
+          {simpleProduct?.name ?? name}
         </Typography>
       }
       left={
