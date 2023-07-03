@@ -16,6 +16,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./utils/isMonorepo"), exports);
 __exportStar(require("./utils/resolveDependenciesSync"), exports);
+__exportStar(require("./utils/packageRoots"), exports);
 __exportStar(require("./withGraphCommerce"), exports);
 __exportStar(require("./generated/config"), exports);
 __exportStar(require("./config"), exports);
