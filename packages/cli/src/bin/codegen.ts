@@ -2,7 +2,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import fs from 'node:fs/promises'
 import path from 'node:path'
-import { resolveDependenciesSync } from '@graphcommerce/next-config'
+import { packageRoots, resolveDependenciesSync } from '@graphcommerce/next-config'
 import { runCli, cliError, loadCodegenConfig } from '@graphql-codegen/cli'
 import { Types } from '@graphql-codegen/plugin-helpers'
 import dotenv from 'dotenv'
@@ -44,17 +44,23 @@ async function main() {
     throw Error('--config or -c argument is not supported, modify codegen.yml to make changes')
   }
 
-  const packages = [...resolveDependenciesSync().values()].filter((p) => p !== '.')
-
-  // Detect if we're operating in the monorepo environment or in an installation
-  const isMono = !!packages.find((p) => p.startsWith('../..'))
+  const deps = resolveDependenciesSync()
+  const packages = [...deps.values()].filter((p) => p !== '.')
 
   // Load the current codegen.yml
   // Todo: implement loading with a custom --config or -c here.
   const conf = await loadCodegenConfig({ configFilePath: root })
 
   // Get a a list of all generates configurations.
-  const generates = Object.entries(conf.config.generates)
+  const generates = Object.entries(conf.config.generates).map(([generatedPath, value]) => {
+    const found = [...deps.entries()].find((dep) =>
+      generatedPath.startsWith(`node_modules/${dep[0]}`),
+    )
+
+    if (!found) return [generatedPath, value] as const
+    const newPath = generatedPath.replace(`node_modules/${found[0]}`, found[1])
+    return [newPath, value] as const
+  })
 
   let extension: string | undefined
 
@@ -71,10 +77,14 @@ async function main() {
   // - Append all the Graphcommerce packages to the configuration
   conf.config.generates = Object.fromEntries(
     generates.map(([generateTarget, generateConf]) => [
-      isMono ? `../../${generateTarget}` : generateTarget,
+      generateTarget,
       Array.isArray(generateConf) ? generateConf : appendDocumentLocations(generateConf, packages),
     ]),
   )
+
+  packageRoots(packages).forEach((r) => {
+    conf.config.generates[r] = conf.config.generates['.']
+  })
 
   // Reexport the mesh to is can be used by codegen
   await fs.writeFile(configLocation, yaml.stringify(conf.config))
