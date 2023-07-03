@@ -28,6 +28,7 @@ import {
   ConfigurablePrice,
   ConfigurablePriceTiers,
   ConfigurableProductOptions,
+  ConfigurableProductPageDescription,
   ConfigurableProductPageGallery,
   ConfigurableProductPageMeta,
   ConfigurableProductReviewChip,
@@ -205,9 +206,16 @@ function ProductPage(props: Props) {
 
           <Usps usps={sidebarUsps} size='small' />
         </ConfigurableProductPageGallery>
+        {isTypename(product, ['ConfigurableProduct']) ? (
+          <ConfigurableProductPageDescription
+            {...product}
+            right={<Usps usps={usps} />}
+            fontSize='responsive'
+          />
+        ) : (
+          <ProductPageDescription {...product} right={<Usps usps={usps} />} fontSize='responsive' />
+        )}
       </AddProductsToCartForm>
-
-      <ProductPageDescription {...product} right={<Usps usps={usps} />} fontSize='responsive' />
 
       {pages?.[0] && (
         <RowRenderer
