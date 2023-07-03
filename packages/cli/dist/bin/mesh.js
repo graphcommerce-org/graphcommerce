@@ -75,7 +75,6 @@ const main = async () => {
     (0, next_config_1.packageRoots)(packages).forEach((r) => {
         conf.additionalTypeDefs.push(`${r}/**/*.graphqls`);
     });
-    console.log(conf.additionalTypeDefs);
     if (!conf.serve)
         conf.serve = {};
     if (!conf.serve.playgroundTitle)

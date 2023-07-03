@@ -86,7 +86,6 @@ const main = async () => {
   packageRoots(packages).forEach((r) => {
     conf.additionalTypeDefs.push(`${r}/**/*.graphqls`)
   })
-  console.log(conf.additionalTypeDefs)
 
   if (!conf.serve) conf.serve = {}
   if (!conf.serve.playgroundTitle) conf.serve.playgroundTitle = 'GraphCommerce® Mesh'
