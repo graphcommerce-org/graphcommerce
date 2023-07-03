@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-restricted-imports */
 import { useQuery } from '@graphcommerce/graphql'
-import { Button } from '@graphcommerce/next-ui'
+import { Button, IconSvg, iconCancelAlt } from '@graphcommerce/next-ui'
 import { useFieldExtension } from '@hygraph/app-sdk-react'
 import {
   InputLabel,
@@ -247,81 +247,86 @@ export function PropertyPicker(props: PropertyPickerProps) {
           })}
           variant='h4'
         >
-          Conditions{' '}
+          Conditions
         </Typography>
-        <Box sx={{ display: 'flex' }}>
-          <Box>
-            <Typography
-              variant='body1'
-              sx={(theme) => ({ fontWeight: '600', pr: theme.spacings.xs })}
-            >
-              Property
-            </Typography>
-            {conditions &&
-              conditions.map((condition) => (
+        <Box
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr 1fr 1fr',
+          }}
+        >
+          <Typography
+            variant='body1'
+            sx={(theme) => ({ fontWeight: '600', pr: theme.spacings.xs })}
+          >
+            Property
+          </Typography>
+          <Typography
+            variant='body1'
+            sx={(theme) => ({ fontWeight: '600', pr: theme.spacings.xs })}
+          >
+            Operator
+          </Typography>
+
+          <Typography
+            variant='body1'
+            sx={(theme) => ({ fontWeight: '600', pr: theme.spacings.xs })}
+          >
+            Value
+          </Typography>
+
+          <Typography
+            variant='body1'
+            sx={(theme) => ({ fontWeight: '600', pr: theme.spacings.xs })}
+          >
+            Remove
+          </Typography>
+          {conditions &&
+            conditions.map((condition) => (
+              <>
                 <Typography
-                  key={`${condition.property}-${condition.value}`}
+                  key={`${condition.property}-${condition.value}-property`}
                   sx={(theme) => ({ pr: theme.spacings.xs })}
                 >
                   {condition.property}
                 </Typography>
-              ))}
-          </Box>
-          <Box>
-            <Typography
-              variant='body1'
-              sx={(theme) => ({ fontWeight: '600', pr: theme.spacings.xs })}
-            >
-              Operator
-            </Typography>
-            {conditions &&
-              conditions.map((condition) => (
                 <Typography
-                  key={`${condition.property}-${condition.value}`}
+                  key={`${condition.property}-${condition.value}-operator`}
                   sx={(theme) => ({ pr: theme.spacings.xs })}
                 >
                   {condition.operator ?? 'N/A'}
                 </Typography>
-              ))}
-          </Box>
-          <Box>
-            <Typography
-              variant='body1'
-              sx={(theme) => ({ fontWeight: '600', pr: theme.spacings.xs })}
-            >
-              Value
-            </Typography>
-            {conditions &&
-              conditions.map((condition) => (
                 <Typography
-                  key={`${condition.property}-${condition.value}`}
+                  key={`${condition.property}-${condition.value}-value`}
                   sx={(theme) => ({ pr: theme.spacings.xs })}
                 >
                   {condition.value}
                 </Typography>
-              ))}
-          </Box>
-          <Box>
-            <Typography
-              variant='body1'
-              sx={(theme) => ({ fontWeight: '600', pr: theme.spacings.xs })}
-            >
-              Remove
-            </Typography>
-            {conditions &&
-              conditions.map((condition) => (
                 <Button
-                  sx={{ display: 'block' }}
+                  sx={{
+                    display: 'flex',
+                    '& svg': {
+                      transition: 'opacity 0.1s ease-in-out',
+                      opacity: 0.8,
+                    },
+                    '&:hover': {
+                      backgroundColor: 'transparent',
+                      '& svg': { opacity: 1 },
+                    },
+                  }}
                   value={condition.property}
-                  key={`${condition.property}-${condition.value}`}
+                  key={`${condition.property}-${condition.value}-remove`}
                   onClick={onRemove}
                   variant='text'
                   size='small'
                 >
-                  X
+                  <IconSvg
+                    src={iconCancelAlt}
+                    sx={(theme) => ({ pointerEvents: 'none', color: theme.palette.error.main })}
+                  />
                 </Button>
-              ))}
-          </Box>
+              </>
+            ))}
         </Box>
       </Box>
     </>
