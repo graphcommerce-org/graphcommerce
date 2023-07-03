@@ -2,7 +2,7 @@ import { extendableComponent } from '@graphcommerce/next-ui'
 import { SxProps, Theme, Typography } from '@mui/material'
 import { ProductShortDescriptionFragment } from './ProductShortDescription.gql'
 
-type ProductShortDescriptionProps = ProductShortDescriptionFragment & { sx?: SxProps<Theme> }
+export type ProductShortDescriptionProps = ProductShortDescriptionFragment & { sx?: SxProps<Theme> }
 
 const { classes } = extendableComponent('ProductShortDescription', ['description'] as const)
 
