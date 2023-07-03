@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-restricted-imports */
 import { useQuery } from '@graphcommerce/graphql'
-import { Button, GetStaticProps } from '@graphcommerce/next-ui'
+import { Button } from '@graphcommerce/next-ui'
 import { useFieldExtension } from '@hygraph/app-sdk-react'
 import {
   InputLabel,
@@ -63,39 +63,80 @@ const findProperties = (
   return inputs
 }
 
+const conditionTypes = {
+  string: 'ConditionText',
+  number: 'ConditionNumber',
+}
+
+type Condition = {
+  property: string
+  value: string | number
+  type: string
+  operator?: string
+}
+
 export function PropertyPicker(props: PropertyPickerProps) {
   const { products } = props
+  /**
+   * ? STATES DOCUMENTATION
+   *
+   * 1. Const conditions are the local conditions which are displayed in the browser. They are synced
+   *    with Hygraph once the user saves the hygraph page.
+   * 2. Property is the actual path of the object which is used in the hygraph dynamic row module
+   * 3. ConditionValue is the value that the user inputs in the text field he wants the object to match
+   *    to. propertyValue is the actual value of the object property
+   */
+  const [conditions, setConditions] = React.useState<Condition[]>([])
   const [property, setProperty] = React.useState<string>('')
-  const [value, setValue] = React.useState<string | number>('')
+  const [conditionValue, setConditionValue] = React.useState<string | number>('')
+  const [propertyValue, setPropertyValue] = React.useState<string | number>()
   const [operator, setOperator] = React.useState<string>('')
-  const [propertyValue, setPropertyValue] = React.useState<any>()
-  const [conditions, setConditions]: any = React.useState([])
-  // TODO: State types
+  const dynamicRowName = React.useRef('')
+  const { onChange, form } = useFieldExtension()
 
-  const { data, loading } = useQuery(getDynamicRowDocument, {
+  /**
+   * Here we get the internalName of the current dynamic row and request the current conditions on
+   * this row. Then setConditions using an effect so we can see them in the component
+   */
+  form
+    .getState()
+    .then((formState) => {
+      dynamicRowName.current = formState.values?.internalName
+    })
+    .catch((err) => console.log(err))
+
+  const { data } = useQuery(getDynamicRowDocument, {
     variables: {
-      internalName: 'DRPP-test', // TODO: get this from the form
+      internalName: dynamicRowName.current,
     },
-    fetchPolicy: 'network-only', // TODO: Check if this works with cache-first
+    fetchPolicy: 'cache-and-network', // TODO: Check if this works with cache-first
   })
 
+  React.useEffect(() => {
+    console.log('data: ', data)
+    if (data?.dynamicRow?.conditions !== null) {
+      setConditions(data?.dynamicRow?.conditions as Condition[])
+    } else {
+      setConditions([])
+    }
+  }, [data])
+
+  /** Prepare the available options for the property select field. */
   const selectOptions = products?.items?.[0] ? findProperties(products?.items?.[0]) : []
 
-  const { onChange, form } = useFieldExtension()
-  console.log('Get internal Name from here >>>', form.getState())
-
   const onSubmit = () => {
+    const conditionType = propertyValue ? conditionTypes[typeof propertyValue] : 'string'
+    console.log(1241, conditionType, propertyValue, conditions)
     setConditions([
       ...conditions,
       {
         property,
         operator: typeof propertyValue === 'number' ? operator : undefined,
-        value,
-        type: 'foo', // TODO: Differ type for ConditionText, ConditionNumber, ConditionAnd, ConditionOr
+        value: conditionValue,
+        type: conditionType, // TODO: Differ type for ConditionText, ConditionNumber, ConditionAnd, ConditionOr
       },
     ])
   }
-
   const onRemove = (event) => {
     console.log(event)
     setConditions(conditions.filter((c) => c.property !== event.target.value))
@@ -103,7 +144,7 @@ export function PropertyPicker(props: PropertyPickerProps) {
 
   React.useEffect(() => {
     if (products?.items?.[0]) {
-      setPropertyValue(get(products?.items?.[0], property))
+      setPropertyValue(get(products?.items?.[0], property) as 'string' | 'number')
       console.log(property, propertyValue, typeof propertyValue)
     }
   }, [products?.items, property, propertyValue])
@@ -116,11 +157,6 @@ export function PropertyPicker(props: PropertyPickerProps) {
     // Adding the onChange function to the effect's dependencies will cause an infinite loop
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [conditions])
-
-  React.useEffect(() => {
-    console.log('data: ', data)
-    setConditions(data?.dynamicRow?.propertyPicker)
-  }, [data])
 
   return (
     <>
@@ -138,13 +174,10 @@ export function PropertyPicker(props: PropertyPickerProps) {
           variant='outlined'
           labelId='property-selector-label'
           id='property-selector'
-          defaultValue={property || 'name'}
-          value={property || 'name'}
+          value={property}
           label='Property'
           onChange={(e) => setProperty(e.target.value)}
-          sx={(theme) => ({
-            width: '100%',
-          })}
+          sx={{ width: '100%' }}
         >
           {selectOptions.map((option) => (
             <MenuItem key={option.id} value={option.id}>
@@ -192,8 +225,8 @@ export function PropertyPicker(props: PropertyPickerProps) {
         <TextField
           name='value'
           placeholder='value'
-          value={value || ''}
-          onChange={(e) => setValue(e.target.value)}
+          value={conditionValue || ''}
+          onChange={(e) => setConditionValue(e.target.value)}
           label='Value'
           variant='outlined'
         />
@@ -208,8 +241,15 @@ export function PropertyPicker(props: PropertyPickerProps) {
           mt: theme.spacings.xs,
         })}
       >
-        <Typography variant='h4'>Conditions: </Typography>
-        <Box sx={(theme) => ({ display: 'flex' })}>
+        <Typography
+          sx={(theme) => ({
+            mb: theme.spacings.sm,
+          })}
+          variant='h4'
+        >
+          Conditions{' '}
+        </Typography>
+        <Box sx={{ display: 'flex' }}>
           <Box>
             <Typography
               variant='body1'
@@ -218,8 +258,11 @@ export function PropertyPicker(props: PropertyPickerProps) {
               Property
             </Typography>
             {conditions &&
-              conditions.map((condition: any) => (
-                <Typography sx={(theme) => ({ pr: theme.spacings.xs })}>
+              conditions.map((condition) => (
+                <Typography
+                  key={`${condition.property}-${condition.value}`}
+                  sx={(theme) => ({ pr: theme.spacings.xs })}
+                >
                   {condition.property}
                 </Typography>
               ))}
@@ -232,8 +275,11 @@ export function PropertyPicker(props: PropertyPickerProps) {
               Operator
             </Typography>
             {conditions &&
-              conditions.map((condition: any) => (
-                <Typography sx={(theme) => ({ pr: theme.spacings.xs })}>
+              conditions.map((condition) => (
+                <Typography
+                  key={`${condition.property}-${condition.value}`}
+                  sx={(theme) => ({ pr: theme.spacings.xs })}
+                >
                   {condition.operator ?? 'N/A'}
                 </Typography>
               ))}
@@ -246,8 +292,11 @@ export function PropertyPicker(props: PropertyPickerProps) {
               Value
             </Typography>
             {conditions &&
-              conditions.map((condition: any) => (
-                <Typography sx={(theme) => ({ pr: theme.spacings.xs })}>
+              conditions.map((condition) => (
+                <Typography
+                  key={`${condition.property}-${condition.value}`}
+                  sx={(theme) => ({ pr: theme.spacings.xs })}
+                >
                   {condition.value}
                 </Typography>
               ))}
@@ -264,6 +313,7 @@ export function PropertyPicker(props: PropertyPickerProps) {
                 <Button
                   sx={{ display: 'block' }}
                   value={condition.property}
+                  key={`${condition.property}-${condition.value}`}
                   onClick={onRemove}
                   variant='text'
                   size='small'

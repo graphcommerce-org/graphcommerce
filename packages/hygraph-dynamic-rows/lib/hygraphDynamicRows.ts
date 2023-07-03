@@ -6,14 +6,14 @@
 
 import { HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
-import {
-  AllDynamicRowsDocument,
-  ConditionTextFragment,
-  ConditionNumberFragment,
-  ConditionOrFragment,
-  ConditionAndFragment,
-  DynamicRowsDocument,
-} from '../graphql'
+import { AllDynamicRowsDocument, DynamicRowsDocument } from '../graphql'
+
+type Condition = {
+  property: string
+  value: string | number
+  type: string
+  operator?: string
+}
 
 /**
  * This generally works the same way as lodash get, however, when encountering an array it will
@@ -53,33 +53,28 @@ function getByPath(
 }
 
 /** A recursive match function that is able to match a condition against the requested conditions. */
-function matchCondition(
-  condition:
-    | ConditionTextFragment
-    | ConditionNumberFragment
-    | ConditionOrFragment
-    | ConditionAndFragment,
-  obj: object,
-) {
-  if (condition.__typename === 'ConditionOr')
-    return condition.conditions.some((c) => matchCondition(c, obj))
+function matchCondition(condition: Condition, obj: object) {
+  // if (condition.type === 'ConditionOr')
+  //   return condition.conditions.some((c) => matchCondition(c, obj))
 
-  if (condition.__typename === 'ConditionAnd')
-    return condition.conditions.every((c) => matchCondition(c, obj))
+  // if (condition.type === 'ConditionAnd')
+  //   return condition.conditions.every((c) => matchCondition(c, obj))
 
-  if (condition.__typename === 'ConditionNumber') {
+  if (condition.type === 'ConditionNumber') {
     return getByPath(obj, condition.property).some((v) => {
       const value = Number(v)
       if (!value || Number.isNaN(value)) return false
 
-      if (condition.operator === 'EQUAL') return value === condition.numberValue
-      if (condition.operator === 'LTE') return value <= condition.numberValue
-      if (condition.operator === 'GTE') return value >= condition.numberValue
+      if (typeof condition.value === 'number') {
+        if (condition.operator === 'EQUAL') return value === condition.value
+        if (condition.operator === 'LTE') return value <= condition.value
+        if (condition.operator === 'GTE') return value >= condition.value
+      }
       return false
     })
   }
-  if (condition.__typename === 'ConditionText') {
-    return getByPath(obj, condition.property).some((value) => value === condition.stringValue)
+  if (condition.type === 'ConditionText') {
+    return getByPath(obj, condition.property).some((value) => value === condition.value)
   }
 
   return false
@@ -108,7 +103,9 @@ export async function hygraphDynamicRows(
 
   const rowIds = allRoutes.data.dynamicRows
     .filter((availableDynamicRow) =>
-      availableDynamicRow.conditions.some((condition) => matchCondition(condition, properties)),
+      availableDynamicRow.conditions.some((condition) =>
+        matchCondition(condition as Condition, properties),
+      ),
     )
     .map((row) => row.id)
 

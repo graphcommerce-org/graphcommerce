@@ -1,12 +1,5 @@
 query getDynamicRow($internalName: String!) {
   dynamicRow(where: { internalName: $internalName }) {
-    propertyPicker
-    conditions {
-      __typename
-      ... on ConditionText {
-        property
-        value
-      }
-    }
+    conditions
   }
 }

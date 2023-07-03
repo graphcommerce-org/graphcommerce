@@ -33,6 +33,7 @@
     "@graphcommerce/graphql": "6.2.0-canary.45",
     "@graphcommerce/graphql-mesh": "6.2.0-canary.45",
     "@graphcommerce/hygraph-app": "6.2.0-canary.45",
+    "@graphcommerce/hygraph-dynamic-rows": "6.2.0-canary.45",
     "@graphcommerce/image": "6.2.0-canary.45",
     "@graphcommerce/lingui-next": "6.2.0-canary.45",
     "@graphcommerce/magento-cart": "6.2.0-canary.45",
