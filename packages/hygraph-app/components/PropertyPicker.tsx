@@ -286,34 +286,46 @@ export function PropertyPicker(props: PropertyPickerProps) {
               <>
                 <Typography
                   key={`${condition.property}-${condition.value}-property`}
-                  sx={(theme) => ({ pr: theme.spacings.xs })}
+                  sx={(theme) => ({
+                    borderBottom: `1px solid ${theme.palette.divider}`,
+                    pr: theme.spacings.xs,
+                    py: theme.spacings.xxs,
+                  })}
                 >
                   {condition.property}
                 </Typography>
                 <Typography
                   key={`${condition.property}-${condition.value}-operator`}
-                  sx={(theme) => ({ pr: theme.spacings.xs })}
+                  sx={(theme) => ({
+                    borderBottom: `1px solid ${theme.palette.divider}`,
+                    pr: theme.spacings.xs,
+                    py: theme.spacings.xxs,
+                  })}
                 >
                   {condition.operator ?? 'N/A'}
                 </Typography>
                 <Typography
                   key={`${condition.property}-${condition.value}-value`}
-                  sx={(theme) => ({ pr: theme.spacings.xs })}
+                  sx={(theme) => ({
+                    borderBottom: `1px solid ${theme.palette.divider}`,
+                    pr: theme.spacings.xs,
+                    py: theme.spacings.xxs,
+                  })}
                 >
                   {condition.value}
                 </Typography>
                 <Button
-                  sx={{
+                  sx={(theme) => ({
+                    borderBottom: `1px solid ${theme.palette.divider}`,
                     display: 'flex',
-                    '& svg': {
-                      transition: 'opacity 0.1s ease-in-out',
-                      opacity: 0.8,
-                    },
+                    borderRadius: 0,
+                    py: theme.spacings.xxs,
+                    '& svg': { opacity: 0.5 },
                     '&:hover': {
                       backgroundColor: 'transparent',
                       '& svg': { opacity: 1 },
                     },
-                  }}
+                  })}
                   value={condition.property}
                   key={`${condition.property}-${condition.value}-remove`}
                   onClick={onRemove}
