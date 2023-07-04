@@ -25,11 +25,9 @@ import {
 import { BundleProductOptions } from '@graphcommerce/magento-product-bundle'
 import {
   ConfigurableJsonLd,
-  ConfigurableName,
   ConfigurablePrice,
   ConfigurablePriceTiers,
   ConfigurableProductOptions,
-  ConfigurableProductPageDescription,
   ConfigurableProductPageGallery,
   ConfigurableProductReviewChip,
   ConfigurableProductUrls,
@@ -186,15 +184,8 @@ function ProductPage(props: Props) {
 
           <Usps usps={sidebarUsps} size='small' />
         </ConfigurableProductPageGallery>
-        {isTypename(product, ['ConfigurableProduct']) ? (
-          <ConfigurableProductPageDescription
-            {...product}
-            right={<Usps usps={usps} />}
-            fontSize='responsive'
-          />
-        ) : (
-          <ProductPageDescription {...product} right={<Usps usps={usps} />} fontSize='responsive' />
-        )}
+
+        <ProductPageDescription {...product} right={<Usps usps={usps} />} fontSize='responsive' />
       </AddProductsToCartForm>
 
       {pages?.[0] && (
