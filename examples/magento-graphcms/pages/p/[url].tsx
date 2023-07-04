@@ -96,11 +96,7 @@ function ProductPage(props: Props) {
 
         <LayoutHeader floatingMd>
           <LayoutTitle size='small' component='span'>
-            {isTypename(product, ['ConfigurableProduct']) ? (
-              <ConfigurableName product={product} />
-            ) : (
-              product.name
-            )}
+            <ProductName {...product} />
           </LayoutTitle>
         </LayoutHeader>
         {isTypename(product, ['ConfigurableProduct']) && <ConfigurableProductUrls {...product} />}
@@ -122,7 +118,7 @@ function ProductPage(props: Props) {
             )}
 
             <Typography variant='h3' component='div' gutterBottom>
-              <ProductName name={product.name} />
+              <ProductName {...product} />
             </Typography>
 
             <ProductShortDescription sx={(theme) => ({ mb: theme.spacings.xs })} {...product} />
