@@ -40,6 +40,7 @@ function ConfigurableProductShortDescription(
       meta_title={configurableOption?.meta_title ?? meta_title}
       meta_description={configurableOption?.meta_description ?? meta_description}
       url_key={configurableOption?.url_key ?? url_key}
+      __typename={configurableOption?.__typename ?? __typename}
       {...rest}
     />
   )
