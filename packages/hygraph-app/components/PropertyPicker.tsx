@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-restricted-imports */
 import { useQuery } from '@graphcommerce/graphql'
-import { Button, IconSvg, iconCancelAlt } from '@graphcommerce/next-ui'
+import { Button, IconSvg, iconCancelAlt, iconRefresh } from '@graphcommerce/next-ui'
 import { useFieldExtension } from '@hygraph/app-sdk-react'
 import {
   InputLabel,
@@ -15,15 +15,14 @@ import {
 // eslint-disable-next-line import/no-extraneous-dependencies
 import get from 'lodash/get'
 import React from 'react'
+import { uuid } from 'uuidv4'
 import { getProductsQuery } from '../graphql/GetProducts.gql'
 import { getDynamicRowDocument } from '../graphql/getDynamicRow.gql'
+import { isValidJSON, findProperties } from '../lib/functions'
+import { ProductProperty, Condition, ConditionAnd } from '../types'
+import { ConditionRow } from './ConditionRow'
 
-type ProductProperty = {
-  label: string
-  id: string
-  type?: string
-}
-
+// If this component becomes generic, this will be any or unknown
 type PropertyPickerProps = NonNullable<getProductsQuery>
 
 const operators: ProductProperty[] = [
@@ -32,48 +31,12 @@ const operators: ProductProperty[] = [
   { label: 'LTE', id: 'LTE' },
 ]
 
-const findProperties = (
-  obj: Record<string, any>,
-  path = '',
-  inputs: ProductProperty[] = [],
-  parent = '',
-): ProductProperty[] => {
-  for (const [key, value] of Object.entries(obj)) {
-    /** Keep count of the current path and parent */
-    const currentPath: string = path ? `${path}.${key}` : key
-    const currentParent: string = parent ? `${parent}/` : ''
-
-    /**
-     * If the value is a string, number or boolean, add it to the inputs array. If the value is an
-     * array, recurse on the first item. If the value is an object, recurse on all it's keys.
-     */
-    if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
-      inputs.push({
-        label: `${key} ${currentParent ? `| ${currentParent}` : ''}`,
-        id: currentPath,
-      })
-    } else if (Array.isArray(value) && value.length > 0) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-      findProperties(value[0], `${currentPath}[0]`, inputs, `${currentParent}${key}`)
-    } else if (typeof value === 'object' && value !== null) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-      findProperties(value, currentPath, inputs, `${currentParent}${key}`)
-    }
-  }
-  return inputs
-}
-
 const conditionTypes = {
   string: 'ConditionText',
   number: 'ConditionNumber',
 }
 
-type Condition = {
-  property: string
-  value: string | number
-  type: string
-  operator?: string
-}
+const columns = ['Property', 'Operator', 'Value', 'Remove']
 
 export function PropertyPicker(props: PropertyPickerProps) {
   const { products } = props
@@ -93,6 +56,14 @@ export function PropertyPicker(props: PropertyPickerProps) {
   const [operator, setOperator] = React.useState<string>('')
   const dynamicRowName = React.useRef('')
   const { onChange, form } = useFieldExtension()
+
+  /** DEVMODE */
+
+  const [andBuffer, setAndBuffer] = React.useState<ConditionAnd>({
+    type: 'ConditionAnd',
+    conditions: [],
+    id: uuid(),
+  })
 
   /**
    * Here we get the internalName of the current dynamic row and request the current conditions on
@@ -124,22 +95,61 @@ export function PropertyPicker(props: PropertyPickerProps) {
   /** Prepare the available options for the property select field. */
   const selectOptions = products?.items?.[0] ? findProperties(products?.items?.[0]) : []
 
+  const onAnd = () => {
+    const conditionType = propertyValue ? conditionTypes[typeof propertyValue] : 'string'
+
+    setAndBuffer({
+      type: andBuffer.type,
+      id: andBuffer.id,
+      conditions: [
+        ...andBuffer.conditions,
+        {
+          property,
+          operator: typeof propertyValue === 'number' ? operator : undefined,
+          value: conditionValue,
+          type: conditionType,
+        },
+      ],
+    })
+  }
+
+  React.useEffect(() => {
+    console.log('andBuffer: ', andBuffer)
+  }, [andBuffer])
+
   const onSubmit = () => {
     const conditionType = propertyValue ? conditionTypes[typeof propertyValue] : 'string'
     console.log(1241, conditionType, propertyValue, conditions)
     setConditions([
       ...conditions,
-      {
-        property,
-        operator: typeof propertyValue === 'number' ? operator : undefined,
-        value: conditionValue,
-        type: conditionType, // TODO: Differ type for ConditionText, ConditionNumber, ConditionAnd, ConditionOr
-      },
+      andBuffer.conditions.length > 0
+        ? andBuffer
+        : {
+            property,
+            operator: typeof propertyValue === 'number' ? operator : undefined,
+            value: conditionValue,
+            type: conditionType, // TODO: Differ type for ConditionText, ConditionNumber, ConditionAnd, ConditionOr
+          },
     ])
+
+    setAndBuffer({ type: 'ConditionAnd', conditions: [], id: uuid() })
   }
+
   const onRemove = (event) => {
-    console.log(event)
-    setConditions(conditions.filter((c) => c.property !== event.target.value))
+    console.log('value button: ', event.target.value)
+
+    setConditions(
+      conditions.filter((c) => {
+        console.log('c', c)
+        if (c.type !== 'ConditionAnd') {
+          return c.property !== event.target.value
+        }
+        if (c.type === 'ConditionAnd' && isValidJSON(event.target.value as string)) {
+          return c.id !== JSON.parse(event.target.value as string).id
+        }
+        return true
+      }),
+    )
   }
 
   React.useEffect(() => {
@@ -232,6 +242,17 @@ export function PropertyPicker(props: PropertyPickerProps) {
         />
       </FormControl>
 
+      <Button
+        sx={(theme) => ({
+          mr: theme.spacings.xs,
+        })}
+        onClick={onAnd}
+        variant='outlined'
+        size='medium'
+      >
+        AND
+      </Button>
+
       <Button onClick={onSubmit} variant='outlined' size='medium'>
         Submit
       </Button>
@@ -255,69 +276,115 @@ export function PropertyPicker(props: PropertyPickerProps) {
             gridTemplateColumns: '1fr 1fr 1fr 1fr',
           }}
         >
-          <Typography
-            variant='body1'
-            sx={(theme) => ({ fontWeight: '600', pr: theme.spacings.xs })}
-          >
-            Property
-          </Typography>
-          <Typography
-            variant='body1'
-            sx={(theme) => ({ fontWeight: '600', pr: theme.spacings.xs })}
-          >
-            Operator
-          </Typography>
+          {columns.map((column) => (
+            <Typography
+              variant='body1'
+              sx={(theme) => ({ fontWeight: '600', pr: theme.spacings.xs })}
+            >
+              {column}
+            </Typography>
+          ))}
 
-          <Typography
-            variant='body1'
-            sx={(theme) => ({ fontWeight: '600', pr: theme.spacings.xs })}
-          >
-            Value
-          </Typography>
-
-          <Typography
-            variant='body1'
-            sx={(theme) => ({ fontWeight: '600', pr: theme.spacings.xs })}
-          >
-            Remove
-          </Typography>
-          {conditions &&
-            conditions.map((condition) => (
+          {conditions?.map((condition, index) => {
+            if (condition.type !== 'ConditionAnd') {
+              return (
+                <>
+                  <ConditionRow
+                    key={`${condition.property}-${condition.value}`}
+                    condition={condition}
+                    index={index}
+                  />
+                  <Button
+                    sx={(theme) => ({
+                      borderBottom: `1px solid ${theme.palette.divider}`,
+                      display: 'flex',
+                      justifyContent: 'left',
+                      borderRadius: 0,
+                      py: theme.spacings.xxs,
+                      '& svg': { opacity: 0.5 },
+                      '&:hover': {
+                        backgroundColor: 'transparent',
+                        '& svg': { opacity: 1 },
+                      },
+                    })}
+                    value={condition.property}
+                    key={`${condition.property}-${condition.value}-remove`}
+                    onClick={onRemove}
+                    variant='text'
+                    size='small'
+                  >
+                    <IconSvg
+                      src={iconCancelAlt}
+                      sx={(theme) => ({ pointerEvents: 'none', color: theme.palette.error.main })}
+                    />
+                  </Button>
+                </>
+              )
+            }
+            return (
               <>
-                <Typography
-                  key={`${condition.property}-${condition.value}-property`}
-                  sx={(theme) => ({
-                    borderBottom: `1px solid ${theme.palette.divider}`,
-                    pr: theme.spacings.xs,
-                    py: theme.spacings.xxs,
-                  })}
-                >
-                  {condition.property}
-                </Typography>
-                <Typography
-                  key={`${condition.property}-${condition.value}-operator`}
-                  sx={(theme) => ({
-                    borderBottom: `1px solid ${theme.palette.divider}`,
-                    pr: theme.spacings.xs,
-                    py: theme.spacings.xxs,
-                  })}
-                >
-                  {condition.operator ?? 'N/A'}
-                </Typography>
-                <Typography
-                  key={`${condition.property}-${condition.value}-value`}
-                  sx={(theme) => ({
-                    borderBottom: `1px solid ${theme.palette.divider}`,
-                    pr: theme.spacings.xs,
-                    py: theme.spacings.xxs,
-                  })}
-                >
-                  {condition.value}
-                </Typography>
-                <Button
+                {condition?.conditions?.map((subCondition, subConditionIndex) => {
+                  const showRemove = subConditionIndex === 0
+                  return (
+                    <>
+                      <ConditionRow
+                        key={`${subCondition.property}-${subCondition.value}-property`}
+                        condition={subCondition}
+                        onRemove={onRemove}
+                        index={index}
+                        showRemove={showRemove}
+                        type='and'
+                      />
+                      <Button
+                        sx={(theme) => ({
+                          borderBottom: `1px solid ${theme.palette.divider}`,
+                          display: 'flex',
+                          justifyContent: 'left',
+                          borderRadius: 0,
+                          py: theme.spacings.xxs,
+                          '& svg': { opacity: 0.5 },
+                          '&:hover': {
+                            backgroundColor: 'transparent',
+                            '& svg': { opacity: 1 },
+                          },
+                        })}
+                        value={JSON.stringify(condition)}
+                        onClick={showRemove ? onRemove : undefined}
+                        variant='text'
+                        size='small'
+                      >
+                        {showRemove && (
+                          <IconSvg
+                            src={iconCancelAlt}
+                            sx={(theme) => ({
+                              pointerEvents: 'none',
+                              color: theme.palette.error.main,
+                            })}
+                          />
+                        )}
+                      </Button>
+                    </>
+                  )
+                })}
+              </>
+            )
+          })}
+          {andBuffer.conditions.map((item, index) => {
+            console.log(1)
+            return (
+              <>
+                <ConditionRow
+                  key={`${item.property}-${item.value}`}
+                  condition={item}
+                  index={index}
+                  type='buffer'
+                />
+                <Box
                   sx={(theme) => ({
                     borderBottom: `1px solid ${theme.palette.divider}`,
                     display: 'flex',
+                    justifyContent: 'left',
+                    px: '9px',
                     borderRadius: 0,
                     py: theme.spacings.xxs,
                     '& svg': { opacity: 0.5 },
@@ -326,19 +393,18 @@ export function PropertyPicker(props: PropertyPickerProps) {
                       '& svg': { opacity: 1 },
                     },
                   })}
-                  value={condition.property}
-                  key={`${condition.property}-${condition.value}-remove`}
-                  onClick={onRemove}
-                  variant='text'
-                  size='small'
                 >
                   <IconSvg
-                    src={iconCancelAlt}
-                    sx={(theme) => ({ pointerEvents: 'none', color: theme.palette.error.main })}
+                    src={iconRefresh}
+                    sx={(theme) => ({
+                      pointerEvents: 'none',
+                      color: theme.palette.warning.main,
+                    })}
                   />
-                </Button>
+                </Box>
               </>
-            ))}
+            )
+          })}
         </Box>
       </Box>
     </>

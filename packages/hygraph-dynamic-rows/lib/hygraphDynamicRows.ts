@@ -9,10 +9,12 @@ import { ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
 import { AllDynamicRowsDocument, DynamicRowsDocument } from '../graphql'
 
 type Condition = {
-  property: string
-  value: string | number
-  type: string
+  property?: string
+  value?: string | number
+  type: 'ConditionText' | 'ConditionNumber' | 'ConditionAnd'
   operator?: string
+  conditions?: Condition[]
+  id?: string
 }
 
 /**
@@ -57,10 +59,10 @@ function matchCondition(condition: Condition, obj: object) {
   // if (condition.type === 'ConditionOr')
   //   return condition.conditions.some((c) => matchCondition(c, obj))
 
-  // if (condition.type === 'ConditionAnd')
-  //   return condition.conditions.every((c) => matchCondition(c, obj))
+  if (condition.type === 'ConditionAnd')
+    return condition?.conditions?.every((c) => matchCondition(c, obj))
 
-  if (condition.type === 'ConditionNumber') {
+  if (condition.type === 'ConditionNumber' && condition.property) {
     return getByPath(obj, condition.property).some((v) => {
       const value = Number(v)
       if (!value || Number.isNaN(value)) return false
@@ -73,7 +75,7 @@ function matchCondition(condition: Condition, obj: object) {
       return false
     })
   }
-  if (condition.type === 'ConditionText') {
+  if (condition.type === 'ConditionText' && condition.property) {
     return getByPath(obj, condition.property).some((value) => value === condition.value)
   }
 
