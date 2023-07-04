@@ -125,11 +125,7 @@ function ProductPage(props: Props) {
               <ProductName name={product.name} />
             </Typography>
 
-            <ProductShortDescription
-              short_description={product?.short_description}
-              sx={(theme) => ({ mb: theme.spacings.xs })}
-              product={product}
-            />
+            <ProductShortDescription sx={(theme) => ({ mb: theme.spacings.xs })} {...product} />
 
             {isTypename(product, ['ConfigurableProduct']) ? (
               <ConfigurableProductReviewChip {...product} />
