@@ -36,8 +36,22 @@ const parts = [
 const { classes } = extendableComponent(name, parts)
 
 export function CreateProductReviewForm(props: CreateProductReviewFormProps) {
+  const labels: { [index: string]: React.ReactNode } = {
+    1: <Trans id='Useless' />,
+    2: <Trans id='Poor' />,
+    3: <Trans id='Ok' />,
+    4: <Trans id='Good' />,
+    5: <Trans id='Excellent' />,
+  }
+
+  function getLabelText(labelValue: number) {
+    return `${labelValue} Star${labelValue !== 1 ? 's' : ''}, ${labels[labelValue]}`
+  }
+
   const { sku, nickname, sx = [] } = props
   const router = useRouter()
+  const [s_val, setS_val] = useState<number | null>(4)
+  const [s_hov, setS_hov] = useState(-1)
   const [ratings, setRatings] = useState<ProductReviewRatingInput[]>([])
 
   const { data, loading } = useQuery(ProductReviewRatingsMetadataDocument)
@@ -135,11 +149,14 @@ export function CreateProductReviewForm(props: CreateProductReviewFormProps) {
             {item && (
               <StarRatingField
                 id={item?.id ?? ''}
-                size='large'
-                onChange={(id, value) => {
+                value={s_val}
+                getLabelText={getLabelText}
+                size='small'
+                onChange={(id, newS_val) => {
+                  setS_val(newS_val);
                   const productReviewRatingInputValue =
                     data.productReviewRatingsMetadata.items.find((meta) => meta?.id === id)?.values[
-                      value - 1
+                      newS_val - 1
                     ]
 
                   const ratingsArr = [...ratings]
@@ -161,8 +178,12 @@ export function CreateProductReviewForm(props: CreateProductReviewFormProps) {
 
                   setRatings(ratingsArr)
                 }}
+                onChangeActive={(event, newS_hov) => {
+                  setS_hov(newS_hov)
+                }}
               />
             )}
+            {s_val !== null && <Box sx={{ ml: 2 }}>{labels[s_hov !== -1 ? s_hov : s_val]}</Box>}
           </FormRow>
         ))}
       </Box>
