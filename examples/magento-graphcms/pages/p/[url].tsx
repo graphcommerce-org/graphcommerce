@@ -31,10 +31,8 @@ import {
   ConfigurableProductOptions,
   ConfigurableProductPageDescription,
   ConfigurableProductPageGallery,
-  ConfigurableProductPageMeta,
   ConfigurableProductReviewChip,
   ConfigurableProductUrls,
-  ConfigurableShortDescription,
   defaultConfigurableOptionsSelection,
 } from '@graphcommerce/magento-product-configurable'
 import { DownloadableProductOptions } from '@graphcommerce/magento-product-downloadable'
