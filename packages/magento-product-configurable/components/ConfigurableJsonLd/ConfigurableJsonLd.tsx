@@ -5,7 +5,7 @@ import { ConfigurableOptionsFragment } from '../../graphql/ConfigurableOptions.g
 import { useConfigurableOptionsSelection } from '../../hooks/useConfigurableOptionsSelection'
 
 type ConfigurableJsonLdProps = {
-  product: ConfigurableOptionsFragment
+  product?: ConfigurableOptionsFragment
   index?: number
 }
 
