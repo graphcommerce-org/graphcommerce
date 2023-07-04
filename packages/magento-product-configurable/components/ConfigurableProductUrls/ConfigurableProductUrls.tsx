@@ -25,9 +25,8 @@ export function ConfigurableProductUrls(props: ConfigurableProductUrlsProps) {
     const optionUrlKey = configured?.configurable_product_options_selection?.variant?.url_key
 
     if (optionUrlKey && optionUrlKey !== currentUrlKey) {
-      router.replace(productLink, undefined, { scroll: false, shallow: true }).catch((error) => {
-        console.error('Failed to replace URL:', error)
-      })
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      router.replace(productLink, undefined, { scroll: false, shallow: true })
     }
   }, [configured, router, productLink])
 
