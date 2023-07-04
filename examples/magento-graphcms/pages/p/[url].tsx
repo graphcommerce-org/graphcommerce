@@ -11,6 +11,7 @@ import {
   jsonLdProduct,
   jsonLdProductOffer,
   ProductCustomizable,
+  ProductName,
   ProductPageAddToCartActionsRow,
   ProductPageAddToCartQuantityRow,
   productPageCategory,
@@ -122,7 +123,9 @@ function ProductPage(props: Props) {
               </Typography>
             )}
 
-            <ProductName {...product} />
+            <Typography variant='h3' component='div' gutterBottom>
+              <ProductName name={product.name} />
+            </Typography>
 
             <ProductShortDescription
               short_description={product?.short_description}
