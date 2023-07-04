@@ -93,11 +93,7 @@ function ProductPage(props: Props) {
           />
         )}
 
-        {isTypename(product, ['ConfigurableProduct']) ? (
-          <ConfigurableProductPageMeta {...product} />
-        ) : (
-          <ProductPageMeta {...product} />
-        )}
+        <ProductPageMeta {...product} />
 
         <LayoutHeader floatingMd>
           <LayoutTitle size='small' component='span'>
