@@ -122,13 +122,7 @@ function ProductPage(props: Props) {
               </Typography>
             )}
 
-            <Typography variant='h3' component='div' gutterBottom>
-              {isTypename(product, ['ConfigurableProduct']) ? (
-                <ConfigurableName product={product} />
-              ) : (
-                product.name
-              )}
-            </Typography>
+            <ProductName {...product} />
 
             <ProductShortDescription
               short_description={product?.short_description}
