@@ -1,7 +1,4 @@
-import type {
-  ProductPageDescriptionProps,
-  ProductShortDescriptionProps,
-} from '@graphcommerce/magento-product'
+import type { ProductPageDescriptionProps } from '@graphcommerce/magento-product'
 import type { PluginProps } from '@graphcommerce/next-config'
 import { ConfigurableOptionsFragment } from '../graphql/ConfigurableOptions.gql'
 import { useConfigurableOptionsSelection } from '../hooks'
