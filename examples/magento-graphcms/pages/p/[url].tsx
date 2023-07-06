@@ -24,9 +24,9 @@ import {
 } from '@graphcommerce/magento-product'
 import { BundleProductOptions } from '@graphcommerce/magento-product-bundle'
 import {
-  ConfigurableJsonLd,
   ConfigurablePrice,
   ConfigurablePriceTiers,
+  ConfigurableProductJsonLd,
   ConfigurableProductOptions,
   ConfigurableProductPageGallery,
   ConfigurableProductReviewChip,
@@ -77,8 +77,13 @@ function ProductPage(props: Props) {
   return (
     <>
       <AddProductsToCartForm key={product.uid} defaultValues={defaultValues}>
+        <LayoutHeader floatingMd>
+          <LayoutTitle size='small' component='span'>
+            <ProductName {...product} />
+          </LayoutTitle>
+        </LayoutHeader>
         {isTypename(product, ['ConfigurableProduct']) ? (
-          <ConfigurableJsonLd product={product} />
+          <ConfigurableProductJsonLd product={product} />
         ) : (
           <JsonLd
             item={{
@@ -91,12 +96,6 @@ function ProductPage(props: Props) {
         )}
 
         <ProductPageMeta {...product} />
-
-        <LayoutHeader floatingMd>
-          <LayoutTitle size='small' component='span'>
-            <ProductName {...product} />
-          </LayoutTitle>
-        </LayoutHeader>
         {isTypename(product, ['ConfigurableProduct']) && <ConfigurableProductUrls {...product} />}
         <ConfigurableProductPageGallery
           url_key={product.url_key}
