@@ -1,7 +1,6 @@
 import { mergeDeep } from '@graphcommerce/graphql'
 import { JsonLdProductFragment } from '@graphcommerce/magento-product/components/JsonLdProduct/JsonLdProduct.gql'
 import type { PluginProps } from '@graphcommerce/next-config'
-import { ConfigurableOptionsFragment } from '../graphql/ConfigurableOptions.gql'
 import { useConfigurableOptionsSelection } from '../hooks'
 
 export const component = 'jsonLdProduct'
@@ -11,7 +10,7 @@ type ConfigurableJsonLdProductProps = JsonLdProductFragment & {
   index?: number
 }
 
-export function ConfigurableJsonLdProduct(props: PluginProps<ConfigurableJsonLdProductProps>) {
+function ConfigurableJsonLdProduct(props: PluginProps<ConfigurableJsonLdProductProps>) {
   const {
     Prev,
     name,
@@ -24,11 +23,7 @@ export function ConfigurableJsonLdProduct(props: PluginProps<ConfigurableJsonLdP
     ...rest
   } = props
   const { configured } = useConfigurableOptionsSelection({ url_key, index })
-  const configurableOption = mergeDeep(
-    props,
-    configured?.configurable_product_options_selection?.variant,
-  )
-
+  const configurableOption = configured?.configurable_product_options_selection?.variant
   const configurableMediaGallery = mergeDeep(configurableOption?.media_gallery, media_gallery)
 
   return (
@@ -42,3 +37,5 @@ export function ConfigurableJsonLdProduct(props: PluginProps<ConfigurableJsonLdP
     />
   )
 }
+
+export const Plugin = ConfigurableJsonLdProduct

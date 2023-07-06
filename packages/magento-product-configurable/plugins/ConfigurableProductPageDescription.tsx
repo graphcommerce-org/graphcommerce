@@ -11,7 +11,7 @@ export const exported = '@graphcommerce/magento-product'
 
 function ConfigurableProductPageDescription(
   props: PluginProps<
-    ProductPageDescriptionProps & ConfigurableOptionsFragment & { index?: number }
+    ProductPageDescriptionProps & Partial<ConfigurableOptionsFragment> & { index?: number }
   >,
 ) {
   const { Prev, url_key, __typename, index = 0, description, ...rest } = props
