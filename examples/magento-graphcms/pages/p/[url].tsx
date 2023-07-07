@@ -29,7 +29,6 @@ import {
   ConfigurableProductJsonLd,
   ConfigurableProductOptions,
   ConfigurableProductPageGallery,
-  ConfigurableProductReviewChip,
   ConfigurableProductUrls,
   defaultConfigurableOptionsSelection,
 } from '@graphcommerce/magento-product-configurable'

@@ -7,7 +7,6 @@ export const exported = '@graphcommerce/magento-product'
 
 type ConfigurableProductNameProps = ProductNameFragment & {
   index?: number
-  url_key?: string | undefined
 }
 
 function ConfigurableProductName(props: PluginProps<ConfigurableProductNameProps>) {
