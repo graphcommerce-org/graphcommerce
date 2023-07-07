@@ -120,11 +120,11 @@ function ProductPage(props: Props) {
 
             <ProductShortDescription sx={(theme) => ({ mb: theme.spacings.xs })} {...product} />
 
-            {isTypename(product, ['ConfigurableProduct']) ? (
-              <ConfigurableProductReviewChip {...product} />
-            ) : (
-              <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
-            )}
+            <ProductReviewChip
+              rating={product.rating_summary}
+              url_key={product.url_key}
+              reviewSectionId='reviews'
+            />
           </div>
 
           {isTypename(product, ['ConfigurableProduct']) && (

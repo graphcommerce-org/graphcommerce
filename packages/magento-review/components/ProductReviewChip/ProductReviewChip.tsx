@@ -6,6 +6,7 @@ export type ProductReviewChipProps = {
   rating?: number
   reviewSectionId?: string
   max?: number
+  url_key?: string | null
 } & ChipProps<'button'>
 
 export function ProductReviewChip(props: ProductReviewChipProps) {
