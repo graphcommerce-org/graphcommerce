@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-payment-braintree",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "6.2.0-canary.58",
+  "version": "6.2.0-canary.59",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -12,22 +12,22 @@
     }
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "6.2.0-canary.58",
-    "@graphcommerce/magento-cart-shipping-address": "6.2.0-canary.58",
-    "@graphcommerce/magento-product": "6.2.0-canary.58",
-    "@graphcommerce/magento-product-configurable": "6.2.0-canary.58",
-    "@graphcommerce/prettier-config-pwa": "6.2.0-canary.58",
-    "@graphcommerce/typescript-config-pwa": "6.2.0-canary.58",
+    "@graphcommerce/eslint-config-pwa": "6.2.0-canary.59",
+    "@graphcommerce/magento-cart-shipping-address": "6.2.0-canary.59",
+    "@graphcommerce/magento-product": "6.2.0-canary.59",
+    "@graphcommerce/magento-product-configurable": "6.2.0-canary.59",
+    "@graphcommerce/prettier-config-pwa": "6.2.0-canary.59",
+    "@graphcommerce/typescript-config-pwa": "6.2.0-canary.59",
     "@types/braintree-web": "^3.75.20"
   },
   "dependencies": {
-    "@graphcommerce/graphql": "6.2.0-canary.58",
-    "@graphcommerce/image": "6.2.0-canary.58",
-    "@graphcommerce/magento-cart": "6.2.0-canary.58",
-    "@graphcommerce/magento-cart-payment-method": "6.2.0-canary.58",
-    "@graphcommerce/magento-store": "6.2.0-canary.58",
-    "@graphcommerce/next-ui": "6.2.0-canary.58",
-    "@graphcommerce/react-hook-form": "6.2.0-canary.58",
+    "@graphcommerce/graphql": "6.2.0-canary.59",
+    "@graphcommerce/image": "6.2.0-canary.59",
+    "@graphcommerce/magento-cart": "6.2.0-canary.59",
+    "@graphcommerce/magento-cart-payment-method": "6.2.0-canary.59",
+    "@graphcommerce/magento-store": "6.2.0-canary.59",
+    "@graphcommerce/next-ui": "6.2.0-canary.59",
+    "@graphcommerce/react-hook-form": "6.2.0-canary.59",
     "braintree-web": "^3.95.0-beta-3ds.1"
   },
   "peerDependencies": {
