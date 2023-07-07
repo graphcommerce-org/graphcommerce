@@ -55,13 +55,16 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
     ? SetCustomerShippingBillingAddressOnCartDocument
     : SetCustomerShippingAddressOnCartDocument
 
+  const defaultAddrId =
+    (!shippingAddress && addresses?.find((a) => a?.default_shipping)?.id) || undefined
+
   // if (cartQuery?.cart?.is_virtual) {
   //   Mutation = SetCustomerBillingAddressOnCartDocument
   // }
 
   const form = useFormGqlMutationCart(Mutation, {
     defaultValues: {
-      customerAddressId: found?.id ?? undefined,
+      customerAddressId: found?.id ?? defaultAddrId,
     },
     onBeforeSubmit: (vars) => {
       if (vars.customerAddressId === -1) return false
@@ -69,7 +72,7 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
     },
   })
 
-  const { handleSubmit, error, control, watch, setValue } = form
+  const { handleSubmit, error, control, watch } = form
 
   // If customer selects 'new address' then we do not have to submit anything so we provide an empty submit function.
   const customerAddressId = watch('customerAddressId')
@@ -81,15 +84,8 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
   useFormCompose({ form, step, submit, key: 'CustomerAddressForm' })
 
   // We want to autosubmit the CustomerAddressFrom because the shipping methods depend on it.
-  useFormAutoSubmit({ form, submit })
-
-  // When there is no address set on the cart set before
-  const defaultAddr =
-    (!shippingAddress && addresses?.find((a) => a?.default_shipping)?.id) || undefined
-
-  useEffect(() => {
-    if (defaultAddr) setValue('customerAddressId', defaultAddr)
-  }, [defaultAddr, setValue])
+  const forceInitialSubmit = found?.id === undefined && defaultAddrId !== undefined
+  useFormAutoSubmit({ form, submit, forceInitialSubmit })
 
   if (customerAddresses.loading || !addresses || addresses.length === 0) return <>{children}</>
 
