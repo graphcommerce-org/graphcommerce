@@ -1,14 +1,13 @@
+import { mergeDeep } from '@graphcommerce/graphql'
 import {
-  ProductPageGallery,
   ProductPageGalleryProps,
   jsonLdProduct,
   jsonLdProductOffer,
 } from '@graphcommerce/magento-product'
-import { useConfigurableOptionsSelection } from '../../hooks/useConfigurableOptionsSelection'
-import { JsonLd } from '@graphcommerce/next-ui'
 import { jsonLdProductReview } from '@graphcommerce/magento-review'
+import { JsonLd } from '@graphcommerce/next-ui'
 import { ConfigurableOptionsFragment } from '../../graphql/ConfigurableOptions.gql'
-import { mergeDeep } from '@graphcommerce/graphql'
+import { useConfigurableOptionsSelection } from '../../hooks/useConfigurableOptionsSelection'
 
 type ConfigurableProductJsonLdProps = ProductPageGalleryProps & {
   index?: number
