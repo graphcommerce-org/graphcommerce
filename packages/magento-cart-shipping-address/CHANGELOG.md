@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.60
+
+### Patch Changes
+
+- [#1987](https://github.com/graphcommerce-org/graphcommerce/pull/1987) [`96ac01045`](https://github.com/graphcommerce-org/graphcommerce/commit/96ac010454b57208ede11bf33d89b71b099a7bb3) - When there is a default_shipping address on the customer, but it isn’t on the cart yet, When there is a default_shipping address on the customer, make sure it gets submitted on load ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
 ## 6.2.0-canary.59
 
 ## 6.2.0-canary.58

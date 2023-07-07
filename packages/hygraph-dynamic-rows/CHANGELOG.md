@@ -1,5 +1,7 @@
 # @graphcommerce/hygraph-dynamic-rows
 
+## 6.2.0-canary.60
+
 ## 6.2.0-canary.59
 
 ## 6.2.0-canary.58
