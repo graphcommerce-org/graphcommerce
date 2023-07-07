@@ -1,5 +1,11 @@
 # @graphcommerce/algolia-search
 
+## 6.2.0-canary.58
+
+### Patch Changes
+
+- [#1981](https://github.com/graphcommerce-org/graphcommerce/pull/1981) [`5936ea5f3`](https://github.com/graphcommerce-org/graphcommerce/commit/5936ea5f3f77fa303ca6d57187cb921dafeffb4d) - Fix algolia autofocus ([@StefanAngenent](https://github.com/StefanAngenent))
+
 ## 6.2.0-canary.57
 
 ## 6.2.0-canary.56
