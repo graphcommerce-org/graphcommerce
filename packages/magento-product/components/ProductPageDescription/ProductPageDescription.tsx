@@ -6,12 +6,14 @@ import {
 } from '@graphcommerce/next-ui'
 import { Box, SxProps, Theme, Typography } from '@mui/material'
 import { Variant } from '@mui/material/styles/createTypography'
+import { ProductName } from '../ProductName'
 import { ProductPageDescriptionFragment } from './ProductPageDescription.gql'
 
 export type ProductPageDescriptionProps = ProductPageDescriptionFragment &
   Omit<ColumnTwoWithTopProps, 'top' | 'left'> & {
     sx?: SxProps<Theme>
     fontSize?: 'responsive' | Variant
+    url_key?: string | null | undefined
   }
 
 const componentName = 'ProductPageDescription'
@@ -20,7 +22,7 @@ const parts = ['root', 'description'] as const
 const { classes } = extendableComponent(componentName, parts)
 
 export function ProductPageDescription(props: ProductPageDescriptionProps) {
-  const { description, name, right, fontSize = 'subtitle1', sx = [] } = props
+  const { description, name, url_key, right, fontSize = 'subtitle1', sx = [] } = props
 
   return (
     <ColumnTwoWithTop
@@ -28,7 +30,7 @@ export function ProductPageDescription(props: ProductPageDescriptionProps) {
       sx={sx}
       top={
         <Typography variant='h1' component='h1'>
-          {name}
+          <ProductName name={name} url_key={url_key} />
         </Typography>
       }
       left={
