@@ -1,5 +1,19 @@
 # @graphcommerce/cli
 
+## 6.2.0-canary.60
+
+## 6.2.0-canary.59
+
+## 6.2.0-canary.58
+
+## 6.2.0-canary.57
+
+### Patch Changes
+
+- [#1982](https://github.com/graphcommerce-org/graphcommerce/pull/1982) [`e1fab2f6d`](https://github.com/graphcommerce-org/graphcommerce/commit/e1fab2f6d8f57d0488d8a915596d5c19cb7718e6) - Better detection what the package roots are when a custom node_modules directory is used ([@paales](https://github.com/paales))
+
+## 6.2.0-canary.56
+
 ## 6.2.0-canary.55
 
 ## 6.2.0-canary.54

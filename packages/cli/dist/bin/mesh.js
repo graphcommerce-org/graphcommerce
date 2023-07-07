@@ -70,13 +70,11 @@ const main = async () => {
     });
     // Scan the current working directory to also read all graphqls files.
     conf.additionalTypeDefs.push('**/*.graphqls');
-    if ((0, next_config_1.isMonorepo)()) {
-        conf.additionalTypeDefs.push('../../packages/**/*.graphqls');
-        conf.additionalTypeDefs.push('../../packagesDev/**/*.graphqls');
-    }
-    else {
-        conf.additionalTypeDefs.push('node_modules/@graphcommerce/**/*.graphqls');
-    }
+    const deps = (0, next_config_1.resolveDependenciesSync)();
+    const packages = [...deps.values()].filter((p) => p !== '.');
+    (0, next_config_1.packageRoots)(packages).forEach((r) => {
+        conf.additionalTypeDefs.push(`${r}/**/*.graphqls`);
+    });
     if (!conf.serve)
         conf.serve = {};
     if (!conf.serve.playgroundTitle)
