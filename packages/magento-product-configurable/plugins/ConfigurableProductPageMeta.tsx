@@ -1,9 +1,10 @@
 import type { ProductPageProps } from '@graphcommerce/magento-product'
-import type { PluginProps } from '@graphcommerce/next-config'
+import type { IfConfig, PluginProps } from '@graphcommerce/next-config'
 import { useConfigurableOptionsSelection } from '../hooks'
 
 export const component = 'ProductPageMeta'
 export const exported = '@graphcommerce/magento-product'
+export const ifConfig: IfConfig = 'configurableVariantValues.meta'
 
 type ConfigurableProductShortDescriptionProps = ProductPageProps & {
   index?: number
@@ -26,21 +27,20 @@ function ConfigurableProductShortDescription(
     __typename,
     ...rest
   } = props
-  const { configured } = useConfigurableOptionsSelection({ url_key, index })
-
-  const configurableOption = configured?.configurable_product_options_selection?.variant
+  const variant = useConfigurableOptionsSelection({ url_key, index }).configured
+    ?.configurable_product_options_selection?.variant
 
   return (
     <Prev
-      sku={configurableOption?.sku ?? sku}
-      categories={configurableOption?.categories ?? categories}
-      price_range={configurableOption?.price_range ?? price_range}
-      media_gallery={configurableOption?.media_gallery ?? media_gallery}
-      name={configurableOption?.name ?? name}
-      meta_title={configurableOption?.meta_title ?? meta_title}
-      meta_description={configurableOption?.meta_description ?? meta_description}
-      url_key={configurableOption?.url_key ?? url_key}
-      __typename={configurableOption?.__typename ?? __typename}
+      sku={variant?.sku ?? sku}
+      categories={variant?.categories ?? categories}
+      price_range={variant?.price_range ?? price_range}
+      media_gallery={variant?.media_gallery ?? media_gallery}
+      name={variant?.name ?? name}
+      meta_title={variant?.meta_title ?? meta_title}
+      meta_description={variant?.meta_description ?? meta_description}
+      url_key={variant?.url_key ?? url_key}
+      __typename={variant?.__typename ?? __typename}
       {...rest}
     />
   )
