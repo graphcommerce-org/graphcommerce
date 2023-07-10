@@ -66,6 +66,7 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
       swcPlugins: [...(nextConfig.experimental?.swcPlugins ?? []), ['@lingui/swc-plugin', {}]],
     },
     i18n: {
+      ...nextConfig.i18n,
       defaultLocale:
         storefront.find((locale) => locale.defaultLocale)?.locale ?? storefront[0].locale,
       locales: storefront.map((locale) => locale.locale),
