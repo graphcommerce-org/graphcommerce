@@ -20,7 +20,7 @@ function domains(config: GraphCommerceConfig): DomainLocale[] {
         defaultLocale: loc.locale,
         locales: [...(acc[loc.domain]?.locales ?? []), loc.locale],
         domain: loc.domain,
-        http: true,
+        http: process.env.NODE_ENV === 'development' || undefined,
       } as DomainLocale
 
       return acc
