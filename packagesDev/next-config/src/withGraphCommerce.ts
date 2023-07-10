@@ -17,7 +17,7 @@ function domains(config: GraphCommerceConfig): DomainLocale[] {
       if (!loc.domain) return acc
 
       acc[loc.domain] = {
-        defaultLocale: loc.defaultLocale ? loc.locale : acc[loc.domain]?.defaultLocale,
+        defaultLocale: loc.locale,
         locales: [...(acc[loc.domain]?.locales ?? []), loc.locale],
         domain: loc.domain,
         http: true,
