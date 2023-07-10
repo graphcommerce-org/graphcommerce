@@ -2,7 +2,6 @@ import CircularDependencyPlugin from 'circular-dependency-plugin'
 import { DuplicatesPlugin } from 'inspectpack/plugin'
 import type { NextConfig } from 'next'
 import { DomainLocale } from 'next/dist/server/config'
-import { RemotePattern } from 'next/dist/shared/lib/image-config'
 import { DefinePlugin, Configuration } from 'webpack'
 import { loadConfig } from './config/loadConfig'
 import { configToImportMeta } from './config/utils/configToImportMeta'
@@ -27,15 +26,6 @@ function domains(config: GraphCommerceConfig): DomainLocale[] {
       return acc
     }, {} as Record<string, DomainLocale>),
   )
-}
-
-function remotePatterns(url: string): RemotePattern {
-  const urlObj = new URL(url)
-  return {
-    hostname: urlObj.hostname,
-    protocol: urlObj.protocol as RemotePattern['protocol'],
-    port: urlObj.port,
-  }
 }
 
 /**
