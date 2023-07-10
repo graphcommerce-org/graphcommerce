@@ -2,33 +2,37 @@ import { ProductLinkFragment } from '@graphcommerce/magento-product/hooks/Produc
 import { useProductLink } from '@graphcommerce/magento-product/hooks/useProductLink'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
+import { ConfigurableOptionsFragment } from '../../graphql/ConfigurableOptions.gql'
 import { useConfigurableOptionsSelection } from '../../hooks/useConfigurableOptionsSelection'
 
 type ConfigurableProductUrlsProps = ProductLinkFragment & {
   index?: number
+  product?: Partial<ConfigurableOptionsFragment>
 }
 
 export function ConfigurableProductUrls(props: ConfigurableProductUrlsProps) {
-  const { url_key, __typename: productType, index = 0 } = props
+  const { product, index = 0, __typename } = props
   const router = useRouter()
-  const { configured } = useConfigurableOptionsSelection({ url_key, index })
-  const urlKey = configured?.configurable_product_options_selection?.variant?.url_key ?? url_key
+  const variant = useConfigurableOptionsSelection({ url_key: product?.url_key, index }).configured
+    ?.configurable_product_options_selection?.variant
+  const urlKey = variant?.url_key ?? product?.url_key
 
   const productLink = useProductLink({
     url_key: urlKey,
-    __typename: productType,
+    __typename,
   })
 
   useEffect(() => {
     const currentUrlPath = router.asPath.split('/')
     const currentUrlKey = currentUrlPath[currentUrlPath.length - 1]
-    const optionUrlKey = configured?.configurable_product_options_selection?.variant?.url_key
+    const optionUrlKey = variant?.url_key
+    const isVisible = variant?.url_rewrites?.length
 
-    if (optionUrlKey && optionUrlKey !== currentUrlKey) {
+    if (optionUrlKey && optionUrlKey !== currentUrlKey && isVisible) {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       router.replace(productLink, undefined, { scroll: false, shallow: true })
     }
-  }, [configured, router, productLink])
+  }, [variant, router, productLink])
 
   return undefined
 }

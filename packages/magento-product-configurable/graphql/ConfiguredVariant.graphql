@@ -23,6 +23,9 @@ fragment ConfiguredVariant on SimpleProduct @injectable {
     }
     quantity
   }
+  url_rewrites {
+    url
+  }
   ...ProductReviewsConfiguredVariant
   ...ProductPageDescription
   ...ProductPageMeta
