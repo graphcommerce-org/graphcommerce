@@ -11,15 +11,23 @@ function ConfigurableProductPageDescription(
     ProductPageDescriptionProps & Partial<ConfigurableOptionsFragment> & { index?: number }
   >,
 ) {
-  const { Prev, url_key, __typename, index = 0, description, ...rest } = props
+  const { Prev, url_key, __typename, index = 0, description, name, ...rest } = props
   const { configured } = useConfigurableOptionsSelection({ url_key, index })
 
-  const getConfigurableDescription =
-    configured?.configurable_product_options_selection?.variant?.description
-  const configurableDescription = getConfigurableDescription?.html.length
-    ? getConfigurableDescription
+  const variant = configured?.configurable_product_options_selection?.variant
+  const configurableDescription = variant?.description?.html.length
+    ? variant?.description
     : description
 
-  return <Prev description={configurableDescription} __typename={__typename} {...rest} />
+  const productName = variant?.name ?? name
+
+  return (
+    <Prev
+      description={configurableDescription}
+      name={productName}
+      __typename={__typename}
+      {...rest}
+    />
+  )
 }
 export const Plugin = ConfigurableProductPageDescription
