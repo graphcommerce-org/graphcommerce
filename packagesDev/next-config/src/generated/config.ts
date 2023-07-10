@@ -121,6 +121,18 @@ export type GraphCommerceConfig = {
    */
   compareVariant?: InputMaybe<CompareVariant>;
   /**
+   * When a user selects a variant, it will switch the values on the configurable page with the values of the configured variant.
+   *
+   * Enabling options here will allow switching of those variants.
+   */
+  configurableReviewVariantValues?: InputMaybe<MagentoReviewConfigurableVariantValues>;
+  /**
+   * When a user selects a variant, it will switch the values on the configurable page with the values of the configured variant.
+   *
+   * Enabling options here will allow switching of those variants.
+   */
+  configurableVariantValues?: InputMaybe<MagentoConfigurableVariantValues>;
+  /**
    * Due to a limitation in the GraphQL API of Magento 2, we need to know if the
    * customer requires email confirmation.
    *
@@ -328,6 +340,32 @@ export type GraphCommerceStorefrontConfig = {
   magentoStoreCode: Scalars['String']['input'];
 };
 
+/** Options to configure which values will be replaced when a variant is selected on the product page. */
+export type MagentoConfigurableVariantValues = {
+  /** Use the description of the configured variant */
+  description?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Use the gallery of the configured variant */
+  gallery?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Use the meta of the configured variant */
+  meta?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Use the name of the configured variant */
+  name?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Use the shortDescription of the configured variant */
+  shortDescription?: InputMaybe<Scalars['Boolean']['input']>;
+  /**
+   * When a variant is selected the URL of the product will be changed in the address bar.
+   *
+   * This only happens when the actual variant is can be accessed by the URL.
+   */
+  url?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Options to configure which values will be replaced when a variant is selected on the product page. */
+export type MagentoReviewConfigurableVariantValues = {
+  /** Use the reviews of the configured variant */
+  reviews?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
 export type ProductFiltersLayout =
   | 'DEFAULT'
   | 'SIDEBAR';
@@ -353,6 +391,8 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     cartDisplayPricesInclTax: z.boolean().nullish(),
     compare: z.boolean().nullish(),
     compareVariant: CompareVariantSchema.nullish(),
+    configurableReviewVariantValues: MagentoReviewConfigurableVariantValuesSchema().nullish(),
+    configurableVariantValues: MagentoConfigurableVariantValuesSchema().nullish(),
     customerRequireEmailConfirmation: z.boolean().nullish(),
     debug: GraphCommerceDebugConfigSchema().nullish(),
     demoMode: z.boolean().nullish(),
@@ -398,5 +438,22 @@ export function GraphCommerceStorefrontConfigSchema(): z.ZodObject<Properties<Gr
     linguiLocale: z.string().nullish(),
     locale: z.string().min(1),
     magentoStoreCode: z.string().min(1)
+  })
+}
+
+export function MagentoConfigurableVariantValuesSchema(): z.ZodObject<Properties<MagentoConfigurableVariantValues>> {
+  return z.object({
+    description: z.boolean().nullish(),
+    gallery: z.boolean().nullish(),
+    meta: z.boolean().nullish(),
+    name: z.boolean().nullish(),
+    shortDescription: z.boolean().nullish(),
+    url: z.boolean().nullish()
+  })
+}
+
+export function MagentoReviewConfigurableVariantValuesSchema(): z.ZodObject<Properties<MagentoReviewConfigurableVariantValues>> {
+  return z.object({
+    reviews: z.boolean().nullish()
   })
 }

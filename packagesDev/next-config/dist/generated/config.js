@@ -29,6 +29,12 @@ _export(exports, {
     },
     GraphCommerceStorefrontConfigSchema: function() {
         return GraphCommerceStorefrontConfigSchema;
+    },
+    MagentoConfigurableVariantValuesSchema: function() {
+        return MagentoConfigurableVariantValuesSchema;
+    },
+    MagentoReviewConfigurableVariantValuesSchema: function() {
+        return MagentoReviewConfigurableVariantValuesSchema;
     }
 });
 const _zod = require("zod");
@@ -48,6 +54,8 @@ function GraphCommerceConfigSchema() {
         cartDisplayPricesInclTax: _zod.z.boolean().nullish(),
         compare: _zod.z.boolean().nullish(),
         compareVariant: CompareVariantSchema.nullish(),
+        configurableReviewVariantValues: MagentoReviewConfigurableVariantValuesSchema().nullish(),
+        configurableVariantValues: MagentoConfigurableVariantValuesSchema().nullish(),
         customerRequireEmailConfirmation: _zod.z.boolean().nullish(),
         debug: GraphCommerceDebugConfigSchema().nullish(),
         demoMode: _zod.z.boolean().nullish(),
@@ -91,5 +99,20 @@ function GraphCommerceStorefrontConfigSchema() {
         linguiLocale: _zod.z.string().nullish(),
         locale: _zod.z.string().min(1),
         magentoStoreCode: _zod.z.string().min(1)
+    });
+}
+function MagentoConfigurableVariantValuesSchema() {
+    return _zod.z.object({
+        description: _zod.z.boolean().nullish(),
+        gallery: _zod.z.boolean().nullish(),
+        meta: _zod.z.boolean().nullish(),
+        name: _zod.z.boolean().nullish(),
+        shortDescription: _zod.z.boolean().nullish(),
+        url: _zod.z.boolean().nullish()
+    });
+}
+function MagentoReviewConfigurableVariantValuesSchema() {
+    return _zod.z.object({
+        reviews: _zod.z.boolean().nullish()
     });
 }

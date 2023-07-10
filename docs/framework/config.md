@@ -120,6 +120,18 @@ Use compare functionality
 By default the compare feature is denoted with a 'compare ICON' (2 arrows facing one another).
 This may be fine for experienced users, but for more clarity it's also possible to present the compare feature as a CHECKBOX accompanied by the 'Compare' label
 
+#### `configurableReviewVariantValues: [MagentoReviewConfigurableVariantValues](#MagentoReviewConfigurableVariantValues) (default: [object Object])`
+
+When a user selects a variant, it will switch the values on the configurable page with the values of the configured variant.
+
+Enabling options here will allow switching of those variants.
+
+#### `configurableVariantValues: [MagentoConfigurableVariantValues](#MagentoConfigurableVariantValues) (default: [object Object])`
+
+When a user selects a variant, it will switch the values on the configurable page with the values of the configured variant.
+
+Enabling options here will allow switching of those variants.
+
 #### `customerRequireEmailConfirmation: Boolean`
 
 Due to a limitation in the GraphQL API of Magento 2, we need to know if the
@@ -336,3 +348,41 @@ Add a gcms-locales header to make sure queries return in a certain language, can
 #### `linguiLocale: String`
 
 Specify a custom locale for to load translations.
+
+### MagentoConfigurableVariantValues
+
+Options to configure which values will be replaced when a variant is selected on the product page.
+
+#### `description: Boolean`
+
+Use the description of the configured variant
+
+#### `gallery: Boolean`
+
+Use the gallery of the configured variant
+
+#### `meta: Boolean`
+
+Use the meta of the configured variant
+
+#### `name: Boolean`
+
+Use the name of the configured variant
+
+#### `shortDescription: Boolean`
+
+Use the shortDescription of the configured variant
+
+#### `url: Boolean`
+
+When a variant is selected the URL of the product will be changed in the address bar.
+
+This only happens when the actual variant is can be accessed by the URL.
+
+### MagentoReviewConfigurableVariantValues
+
+Options to configure which values will be replaced when a variant is selected on the product page.
+
+#### `reviews: Boolean`
+
+Use the reviews of the configured variant
