@@ -16,6 +16,7 @@ import {
   ProductPageAddToCartQuantityRow,
   productPageCategory,
   ProductPageDescription,
+  ProductPageGallery,
   ProductPageMeta,
   ProductPagePrice,
   ProductPagePriceTiers,
@@ -28,7 +29,6 @@ import {
   ConfigurablePriceTiers,
   ConfigurableProductJsonLd,
   ConfigurableProductOptions,
-  ConfigurableProductPageGallery,
   ConfigurableProductUrls,
   defaultConfigurableOptionsSelection,
 } from '@graphcommerce/magento-product-configurable'
@@ -98,7 +98,7 @@ function ProductPage(props: Props) {
         {isTypename(product, ['ConfigurableProduct']) && (
           <ConfigurableProductUrls product={product} />
         )}
-        <ConfigurableProductPageGallery
+        <ProductPageGallery
           url_key={product.url_key}
           media_gallery={product.media_gallery}
           sx={(theme) => ({
@@ -180,7 +180,7 @@ function ProductPage(props: Props) {
           </ProductPageAddToCartActionsRow>
 
           <Usps usps={sidebarUsps} size='small' />
-        </ConfigurableProductPageGallery>
+        </ProductPageGallery>
 
         <ProductPageDescription {...product} right={<Usps usps={usps} />} fontSize='responsive' />
       </AddProductsToCartForm>
