@@ -25,7 +25,6 @@ import {
 } from '@graphcommerce/magento-product'
 import { BundleProductOptions } from '@graphcommerce/magento-product-bundle'
 import {
-  ConfigurablePriceTiers,
   ConfigurableProductJsonLd,
   ConfigurableProductOptions,
   ConfigurableProductUrls,
@@ -161,11 +160,7 @@ function ProductPage(props: Props) {
             </AddProductsToCartError>
           </ProductPageAddToCartQuantityRow>
 
-          {isTypename(product, ['ConfigurableProduct']) ? (
-            <ConfigurablePriceTiers product={product} />
-          ) : (
-            <ProductPagePriceTiers product={product} />
-          )}
+          <ProductPagePriceTiers product={product} />
 
           <ProductSidebarDelivery product={product} />
 
