@@ -4,7 +4,7 @@ import { useFormAddProductsToCart } from '../AddProductsToCart'
 import { ProductPagePriceFragment } from './ProductPagePrice.gql'
 import { getProductTierPrice } from './getProductTierPrice'
 
-type ProductPagePriceProps = { product: ProductPagePriceFragment; index?: number }
+export type ProductPagePriceProps = { product: ProductPagePriceFragment; index?: number }
 
 export function ProductPagePrice(props: ProductPagePriceProps) {
   const { product, index = 0 } = props
