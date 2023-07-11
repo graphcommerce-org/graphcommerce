@@ -1,7 +1,11 @@
 import { ProductNameFragment } from './ProductName.gql'
 
-export const ProductName = (props: ProductNameFragment) => {
-  const { name } = props
+export type ProductNameProps = {
+  product: ProductNameFragment
+}
 
-  return <>{name}</>
+export const ProductName = (props: ProductNameProps) => {
+  const { product } = props
+
+  return <>{product.name}</>
 }

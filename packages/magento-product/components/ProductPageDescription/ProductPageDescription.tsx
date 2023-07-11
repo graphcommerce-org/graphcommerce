@@ -13,7 +13,7 @@ export type ProductPageDescriptionProps = ProductPageDescriptionFragment &
   Omit<ColumnTwoWithTopProps, 'top' | 'left'> & {
     sx?: SxProps<Theme>
     fontSize?: 'responsive' | Variant
-    url_key?: string | null | undefined
+    product: ProductPageDescriptionFragment
   }
 
 const componentName = 'ProductPageDescription'
@@ -22,7 +22,7 @@ const parts = ['root', 'description'] as const
 const { classes } = extendableComponent(componentName, parts)
 
 export function ProductPageDescription(props: ProductPageDescriptionProps) {
-  const { description, name, url_key, right, fontSize = 'subtitle1', sx = [] } = props
+  const { product, right, fontSize = 'subtitle1', sx = [] } = props
 
   return (
     <ColumnTwoWithTop
@@ -30,15 +30,15 @@ export function ProductPageDescription(props: ProductPageDescriptionProps) {
       sx={sx}
       top={
         <Typography variant='h1' component='h1'>
-          <ProductName name={name} url_key={url_key} />
+          <ProductName product={product} />
         </Typography>
       }
       left={
-        description && (
+        product.description && (
           <Box
             className={classes.description}
             // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{ __html: description.html }}
+            dangerouslySetInnerHTML={{ __html: product.description.html }}
             sx={[
               {
                 '& p:first-of-type': {

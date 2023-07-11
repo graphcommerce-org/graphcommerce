@@ -78,7 +78,7 @@ function ProductPage(props: Props) {
       <AddProductsToCartForm key={product.uid} defaultValues={defaultValues}>
         <LayoutHeader floatingMd>
           <LayoutTitle size='small' component='span'>
-            <ProductName {...product} />
+            <ProductName product={product} />
           </LayoutTitle>
         </LayoutHeader>
         {isTypename(product, ['ConfigurableProduct']) ? (
@@ -115,7 +115,7 @@ function ProductPage(props: Props) {
               </Typography>
             )}
             <Typography variant='h3' component='div' gutterBottom>
-              <ProductName {...product} />
+              <ProductName product={product} />
             </Typography>
             <ProductShortDescription sx={(theme) => ({ mb: theme.spacings.xs })} {...product} />
             <ProductReviewChip
@@ -182,7 +182,11 @@ function ProductPage(props: Props) {
           <Usps usps={sidebarUsps} size='small' />
         </ProductPageGallery>
 
-        <ProductPageDescription {...product} right={<Usps usps={usps} />} fontSize='responsive' />
+        <ProductPageDescription
+          product={product}
+          right={<Usps usps={usps} />}
+          fontSize='responsive'
+        />
       </AddProductsToCartForm>
 
       {pages?.[0] && (
