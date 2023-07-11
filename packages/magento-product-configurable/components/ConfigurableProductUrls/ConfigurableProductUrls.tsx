@@ -1,17 +1,19 @@
-import { ProductLinkFragment } from '@graphcommerce/magento-product/hooks/ProductLink.gql'
-import { useProductLink } from '@graphcommerce/magento-product/hooks/useProductLink'
+import {
+  ProductLinkProps,
+  useProductLink,
+} from '@graphcommerce/magento-product/hooks/useProductLink'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { ConfigurableOptionsFragment } from '../../graphql/ConfigurableOptions.gql'
 import { useConfigurableOptionsSelection } from '../../hooks/useConfigurableOptionsSelection'
 
-type ConfigurableProductUrlsProps = ProductLinkFragment & {
+type ConfigurableProductUrlsProps = {
   index?: number
-  product?: Partial<ConfigurableOptionsFragment>
+  product: Partial<ConfigurableOptionsFragment>
 }
 
 export function ConfigurableProductUrls(props: ConfigurableProductUrlsProps) {
-  const { product, index = 0, __typename } = props
+  const { product, index = 0 } = props
   const router = useRouter()
   const variant = useConfigurableOptionsSelection({ url_key: product?.url_key, index }).configured
     ?.configurable_product_options_selection?.variant
@@ -19,7 +21,7 @@ export function ConfigurableProductUrls(props: ConfigurableProductUrlsProps) {
 
   const productLink = useProductLink({
     url_key: urlKey,
-    __typename,
+    __typename: variant?.__typename as ProductLinkProps['__typename'],
   })
 
   useEffect(() => {
