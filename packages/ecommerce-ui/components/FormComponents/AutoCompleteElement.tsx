@@ -27,7 +27,7 @@ export type AutocompleteElementProps<
     'name' | 'options' | 'loading' | 'renderInput'
   >
   textFieldProps?: Omit<TextFieldProps, 'name' | 'required' | 'label'>
-} & ControllerProps<F>
+} & Omit<ControllerProps<F>, 'render'>
 
 type AutoDefault = {
   id: string | number // must keep id in case of keepObject
