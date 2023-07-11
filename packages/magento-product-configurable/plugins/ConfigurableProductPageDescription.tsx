@@ -16,6 +16,9 @@ function ConfigurableProductPageDescription(
   const variant = useConfigurableOptionsSelection({ url_key: product.url_key, index }).configured
     ?.configurable_product_options_selection?.variant
 
-  return <Prev product={variant ?? product} {...rest} />
+  const productToRender = variant?.description?.html?.length ? variant : product
+
+  return <Prev product={productToRender} {...rest} />
 }
+
 export const Plugin = ConfigurableProductPageDescription
