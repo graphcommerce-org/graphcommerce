@@ -17,7 +17,7 @@ type ConfigurablePriceProps = ProductPagePriceProps & {
   index?: number
 }
 
-function ConfigurablePrice(props: PluginProps<ConfigurablePriceProps>) {
+function ConfigurableProductPagePrice(props: PluginProps<ConfigurablePriceProps>) {
   const { product, index = 0 } = props
   const { configured } = useConfigurableOptionsSelection({ url_key: product.url_key, index })
   const { control } = useFormAddProductsToCart()
@@ -32,4 +32,4 @@ function ConfigurablePrice(props: PluginProps<ConfigurablePriceProps>) {
 
   return <Money {...price} />
 }
-export const Plugin = ConfigurablePrice
+export const Plugin = ConfigurableProductPagePrice
