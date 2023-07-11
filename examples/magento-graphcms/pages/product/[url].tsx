@@ -87,7 +87,11 @@ function ProductSimple(props: Props) {
         <Usps usps={sidebarUsps} size='small' />
       </ProductPageGallery>
 
-      <ProductPageDescription {...product} right={<Usps usps={usps} />} fontSize='responsive' />
+      <ProductPageDescription
+        product={product}
+        right={<Usps usps={usps} />}
+        fontSize='responsive'
+      />
 
       {pages?.[0] && (
         <RowRenderer
