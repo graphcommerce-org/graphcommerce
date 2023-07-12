@@ -9,7 +9,6 @@ type BaseQuery =
   | null
   | undefined
 
-let warned = false
 /**
  * This method writes the GetConfigurableOptionsSelection query result to the Apollo cache and sets
  * the defaultValues for the `<AddProductsToCartForm defaultValues={{}}/>`.
@@ -24,41 +23,39 @@ export function defaultConfigurableOptionsSelection<Q extends BaseQuery = BaseQu
     return { ...query, defaultValues: {} }
 
   const configurable = findByTypename(query?.products?.items, 'ConfigurableProduct')
-  const variant = findByTypename(query?.products?.items, 'SimpleProduct')
+  const variants = configurable?.variants
+  const simple = findByTypename(query?.products?.items, 'SimpleProduct')
+  const simpleSku = simple?.sku
 
-  if (!configurable?.url_key || !variant)
-    return { ...query, products: { ...query?.products, items: [requested] } }
+  if (!configurable?.url_key || !simple) return { ...query, products: { items: [requested] } }
 
   const selectedOptions: string[] = []
 
   const options = filterNonNullableKeys(configurable.configurable_options)
 
-  const warnFor: string[] = []
-  options.forEach((o, index) => {
-    const simpleValue = variant[o.attribute_code]
-    if (!simpleValue) warnFor.push(o.attribute_code)
-
-    filterNonNullableKeys(o.values).forEach((v) => {
-      if (Buffer.from(v.uid, 'base64').toString('utf8').endsWith(`/${simpleValue}`)) {
-        selectedOptions[index] = v.uid
-      }
-    })
-  })
-
-  if (process.env.NODE_ENV !== 'production' && warnFor.length && !warned) {
-    warned = true
-    const warnStr = warnFor.join(', ')
-    console.warn(
-      `[@graphcommerce/magento-product-configurable]: The following attributes were found in the configurable options: ${warnStr}. However, they were not found in the simple product. Please add the following attributes to the simple product: ${warnStr}`,
-    )
-  }
-  if (warnFor.length) {
-    return {
-      ...query,
-      products: { ...query?.products, items: [requested] },
-      defaultValues: {},
+  /**
+   * A new feature was implemented where a simple product displays the options of a configurable
+   * product. On the simple product page the options of the current product are preselected.
+   *
+   * (e.g. width: 12mm | 15mm | 25mm => 25mm is preselected).
+   *
+   * We do this by checking the variants on the configurable product. => We match the preselected
+   * variant by comparing the sku of the current page with the available variants. => We then check
+   * the attributes of the variant and set the selectedOptions accordingly. => We want to always
+   * return the configurable item to a simple item. If we don't do this, the productpage will
+   * break.
+   *
+   * https://hoproj.atlassian.net/browse/GCOM-1120
+   */
+  variants?.forEach((v) => {
+    const vSku = v?.product?.sku
+    if (vSku === simpleSku) {
+      v?.attributes?.forEach((a) => {
+        const indexOfOption = options.findIndex((o) => o.attribute_code === a?.code)
+        selectedOptions[indexOfOption] = a?.uid ?? ''
+      })
     }
-  }
+  })
 
   if (!selectedOptions.length) return { ...query, defaultValues: {} }
 
@@ -92,9 +89,9 @@ export function defaultConfigurableOptionsSelection<Q extends BaseQuery = BaseQu
             uid: configurable.uid,
             configurable_product_options_selection: {
               __typename: 'ConfigurableProductOptionsSelection',
-              media_gallery: variant.media_gallery,
+              media_gallery: simple.media_gallery,
               variant: {
-                ...variant,
+                ...simple,
                 __typename: 'SimpleProduct',
               },
               options_available_for_selection: options.map(({ attribute_code }) => ({
