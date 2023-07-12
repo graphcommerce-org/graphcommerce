@@ -3,6 +3,7 @@ import { filterNonNullableKeys, RenderType, TypeRenderer } from '@graphcommerce/
 import React from 'react'
 import { useFormAddProductsToCart } from '../AddProductsToCart'
 import { ProductCustomizableFragment } from './ProductCustomizable.gql'
+import { CustomizableFieldOption } from './CustomizableFieldOption'
 
 export type OptionTypeRenderer = TypeRenderer<
   NonNullable<NonNullable<ProductCustomizableFragment['options']>[number]> & {
@@ -64,41 +65,6 @@ const CustomizableDropDownOption = React.memo<
           id: option.uid,
           label: option.title,
         }))}
-      />
-    </>
-  )
-})
-
-const CustomizableFieldOption = React.memo<
-  React.ComponentProps<OptionTypeRenderer['CustomizableFieldOption']>
->((props) => {
-  const { uid, fieldValue, required, optionIndex, index, title, product_sku } = props
-  const maxLength = fieldValue?.max_characters ?? undefined
-  const { control, register } = useFormAddProductsToCart()
-  const options = [
-    { label: 'The Shawshank Redemption', id: 1994 },
-    { label: 'The Godfather', id: 1972 },
-    { label: 'The Godfather: Part II', id: 1974 },
-    { label: 'The Dark Knight', id: 2008 },
-    { label: '12 Angry Men', id: 1957 },
-    { label: "Schindler's List", id: 1993 },
-    { label: 'Pulp Fiction', id: 1994 },
-  ]
-  return (
-    <>
-      <input
-        type='hidden'
-        {...register(`cartItems.${index}.entered_options.${optionIndex}.uid`)}
-        value={uid}
-      />
-      <AutocompleteElement
-        required={Boolean(required)}
-        control={control}
-        label={title}
-        multiple={Boolean(false)}
-        defaultValue=''
-        options={options}
-        showCheckbox={Boolean(false)}
       />
     </>
   )
