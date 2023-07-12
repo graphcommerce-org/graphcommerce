@@ -2,4 +2,4 @@
 '@graphcommerce/magento-product': patch
 ---
 
-Export props from ProductPagePrice
+Export props from ProductPagePrice and ProductListPrice

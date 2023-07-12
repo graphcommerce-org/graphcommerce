@@ -8,7 +8,7 @@ const { classes, selectors } = extendableComponent('ProductListPrice', [
   'discountPrice',
 ] as const)
 
-type ProductListPriceProps = ProductListPriceFragment & Pick<TypographyProps, 'sx'>
+export type ProductListPriceProps = ProductListPriceFragment & Pick<TypographyProps, 'sx'>
 
 export function ProductListPrice(props: ProductListPriceProps) {
   const { regular_price, final_price, sx } = props
