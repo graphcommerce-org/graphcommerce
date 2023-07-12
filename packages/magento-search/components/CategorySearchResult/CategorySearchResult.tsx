@@ -21,7 +21,6 @@ export function CategorySearchResult(props: CategorySearchResultProps) {
       fullWidth
       variant='pill'
       className={classes.root}
-      disableElevation
       endIcon={<IconSvg src={iconChevronRight} size='small' />}
       sx={[
         (theme) => ({
@@ -53,7 +52,6 @@ export function CategorySearchResult(props: CategorySearchResultProps) {
               text={breadcrumb?.category_name ?? ''}
               highlight={search}
             />
-            {' / '}
           </React.Fragment>
         ))}
         <Highlight text={catProps?.name ?? ''} highlight={search} />
