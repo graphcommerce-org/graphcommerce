@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.61
+
+### Patch Changes
+
+- [#1975](https://github.com/graphcommerce-org/graphcommerce/pull/1975) [`93efa6eea`](https://github.com/graphcommerce-org/graphcommerce/commit/93efa6eea16894a56e2964050e4ce84bf96e652f) - collapse limitsection filters ([@JoshuaS98](https://github.com/JoshuaS98))
+
 ## 6.2.0-canary.60
 
 ## 6.2.0-canary.59
