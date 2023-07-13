@@ -3,16 +3,6 @@ fragment ConfiguredVariant on SimpleProduct @injectable {
   uid
   name
   url_key
-  price_range {
-    minimum_price {
-      final_price {
-        ...Money
-      }
-      regular_price {
-        ...Money
-      }
-    }
-  }
   price_tiers {
     discount {
       amount_off
