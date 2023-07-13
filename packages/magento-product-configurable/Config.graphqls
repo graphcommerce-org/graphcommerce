@@ -1,0 +1,52 @@
+"""
+Options to configure which values will be replaced when a variant is selected on the product page.
+"""
+input MagentoConfigurableVariantValues {
+  """
+  When a variant is selected the URL of the product will be changed in the address bar.
+
+  This only happens when the actual variant is can be accessed by the URL.
+  """
+  url: Boolean
+
+  """
+  Use the gallery of the configured variant
+  """
+  gallery: Boolean
+
+  """
+  Use the name of the configured variant
+  """
+  name: Boolean
+
+  """
+  Use the description of the configured variant
+  """
+  description: Boolean
+
+  """
+  Use the meta of the configured variant
+  """
+  meta: Boolean
+
+  """
+  Use the shortDescription of the configured variant
+  """
+  shortDescription: Boolean
+}
+
+extend input GraphCommerceConfig {
+  """
+  When a user selects a variant, it will switch the values on the configurable page with the values of the configured variant.
+
+  Enabling options here will allow switching of those variants.
+  """
+  configurableVariantValues: MagentoConfigurableVariantValues = {
+    description: true
+    gallery: true
+    meta: true
+    name: true
+    shortDescription: true
+    url: true
+  }
+}

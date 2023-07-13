@@ -2,16 +2,7 @@ fragment ConfiguredVariant on SimpleProduct @injectable {
   __typename
   uid
   name
-  price_range {
-    minimum_price {
-      final_price {
-        ...Money
-      }
-      regular_price {
-        ...Money
-      }
-    }
-  }
+  url_key
   price_tiers {
     discount {
       amount_off
@@ -22,4 +13,10 @@ fragment ConfiguredVariant on SimpleProduct @injectable {
     }
     quantity
   }
+  url_rewrites {
+    url
+  }
+  ...ProductReviewsConfiguredVariant
+  ...ProductPageDescription
+  ...ProductPageMeta
 }

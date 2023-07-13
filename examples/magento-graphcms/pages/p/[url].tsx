@@ -11,10 +11,12 @@ import {
   jsonLdProduct,
   jsonLdProductOffer,
   ProductCustomizable,
+  ProductName,
   ProductPageAddToCartActionsRow,
   ProductPageAddToCartQuantityRow,
   productPageCategory,
   ProductPageDescription,
+  ProductPageGallery,
   ProductPageMeta,
   ProductPagePrice,
   ProductPagePriceTiers,
@@ -23,11 +25,9 @@ import {
 } from '@graphcommerce/magento-product'
 import { BundleProductOptions } from '@graphcommerce/magento-product-bundle'
 import {
-  ConfigurableName,
-  ConfigurablePrice,
-  ConfigurablePriceTiers,
+  ConfigurableProductJsonLd,
   ConfigurableProductOptions,
-  ConfigurableProductPageGallery,
+  ConfigurableProductUrls,
   defaultConfigurableOptionsSelection,
 } from '@graphcommerce/magento-product-configurable'
 import { DownloadableProductOptions } from '@graphcommerce/magento-product-downloadable'
@@ -77,23 +77,30 @@ function ProductPage(props: Props) {
 
   return (
     <>
-      <LayoutHeader floatingMd>
-        <LayoutTitle size='small' component='span'>
-          {product.name}
-        </LayoutTitle>
-      </LayoutHeader>
-      <JsonLd
-        item={{
-          '@context': 'https://schema.org',
-          ...jsonLdProduct(product),
-          ...jsonLdProductOffer(product),
-          ...jsonLdProductReview(product),
-        }}
-      />
-      <ProductPageMeta {...product} />
-
       <AddProductsToCartForm key={product.uid} defaultValues={defaultValues}>
-        <ConfigurableProductPageGallery
+        <LayoutHeader floatingMd>
+          <LayoutTitle size='small' component='span'>
+            <ProductName product={product} />
+          </LayoutTitle>
+        </LayoutHeader>
+        {isTypename(product, ['ConfigurableProduct']) ? (
+          <ConfigurableProductJsonLd product={product} />
+        ) : (
+          <JsonLd
+            item={{
+              '@context': 'https://schema.org',
+              ...jsonLdProduct(product),
+              ...jsonLdProductOffer(product),
+              ...jsonLdProductReview(product),
+            }}
+          />
+        )}
+
+        <ProductPageMeta {...product} />
+        {isTypename(product, ['ConfigurableProduct']) && (
+          <ConfigurableProductUrls product={product} />
+        )}
+        <ProductPageGallery
           url_key={product.url_key}
           media_gallery={product.media_gallery}
           sx={(theme) => ({
@@ -109,21 +116,15 @@ function ProductPage(props: Props) {
                 />
               </Typography>
             )}
-
             <Typography variant='h3' component='div' gutterBottom>
-              {isTypename(product, ['ConfigurableProduct']) ? (
-                <ConfigurableName product={product} />
-              ) : (
-                product.name
-              )}
+              <ProductName product={product} />
             </Typography>
-
-            <ProductShortDescription
-              short_description={product?.short_description}
-              sx={(theme) => ({ mb: theme.spacings.xs })}
+            <ProductShortDescription sx={(theme) => ({ mb: theme.spacings.xs })} {...product} />
+            <ProductReviewChip
+              rating={product.rating_summary}
+              url_key={product.url_key}
+              reviewSectionId='reviews'
             />
-
-            <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
           </div>
 
           {isTypename(product, ['ConfigurableProduct']) && (
@@ -158,20 +159,12 @@ function ProductPage(props: Props) {
 
             <AddProductsToCartError>
               <Typography component='div' variant='h3' lineHeight='1'>
-                {isTypename(product, ['ConfigurableProduct']) ? (
-                  <ConfigurablePrice product={product} />
-                ) : (
-                  <ProductPagePrice product={product} />
-                )}
+                <ProductPagePrice product={product} />
               </Typography>
             </AddProductsToCartError>
           </ProductPageAddToCartQuantityRow>
 
-          {isTypename(product, ['ConfigurableProduct']) ? (
-            <ConfigurablePriceTiers product={product} />
-          ) : (
-            <ProductPagePriceTiers product={product} />
-          )}
+          <ProductPagePriceTiers product={product} />
 
           <ProductSidebarDelivery product={product} />
 
@@ -181,10 +174,14 @@ function ProductPage(props: Props) {
           </ProductPageAddToCartActionsRow>
 
           <Usps usps={sidebarUsps} size='small' />
-        </ConfigurableProductPageGallery>
-      </AddProductsToCartForm>
+        </ProductPageGallery>
 
-      <ProductPageDescription {...product} right={<Usps usps={usps} />} fontSize='responsive' />
+        <ProductPageDescription
+          product={product}
+          right={<Usps usps={usps} />}
+          fontSize='responsive'
+        />
+      </AddProductsToCartForm>
 
       {pages?.[0] && (
         <RowRenderer

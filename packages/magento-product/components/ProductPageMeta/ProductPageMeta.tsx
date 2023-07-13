@@ -3,7 +3,7 @@ import { PageMetaProps } from '@graphcommerce/next-ui'
 import { useProductLink } from '../../hooks/useProductLink'
 import { ProductPageMetaFragment } from './ProductPageMeta.gql'
 
-type ProductPageProps = ProductPageMetaFragment &
+export type ProductPageProps = ProductPageMetaFragment &
   Pick<PageMetaProps, 'children' | 'ogImage' | 'ogImageUseFallback'>
 
 export function ProductPageMeta(props: ProductPageProps) {
