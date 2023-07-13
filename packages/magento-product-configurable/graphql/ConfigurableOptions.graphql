@@ -26,24 +26,9 @@ fragment ConfigurableOptions on ConfigurableProduct {
     attributes {
       code
       uid
-      label
     }
     product {
       uid
-      sku
-      name
-      price_range {
-        minimum_price {
-          final_price {
-            value
-          }
-        }
-        maximum_price {
-          final_price {
-            value
-          }
-        }
-      }
     }
   }
 }
