@@ -24,9 +24,9 @@ export function defaultConfigurableOptionsSelection<Q extends BaseQuery = BaseQu
 
   const configurable = findByTypename(query?.products?.items, 'ConfigurableProduct')
   const variants = configurable?.variants
-  const simple = findByTypename(query?.products?.items, 'SimpleProduct')
+  const simple = requested
 
-  if (!configurable?.url_key || !simple) return { ...query, products: { items: [requested] } }
+  if (!configurable?.url_key) return { ...query, products: { items: [requested] } }
 
   const selectedOptions: string[] = []
 
