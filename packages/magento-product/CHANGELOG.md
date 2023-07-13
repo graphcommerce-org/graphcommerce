@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.62
+
+### Patch Changes
+
+- [#1992](https://github.com/graphcommerce-org/graphcommerce/pull/1992) [`bffdff6f0`](https://github.com/graphcommerce-org/graphcommerce/commit/bffdff6f09d92e0d56ba904422b939ffeed12fae) - Export props from ProductPagePrice and ProductListPrice ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 6.2.0-canary.61
 
 ### Patch Changes
