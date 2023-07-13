@@ -10,9 +10,7 @@ type ConfigurableProductShortDescriptionProps = ProductPageProps & {
   index?: number
 }
 
-function ConfigurableProductShortDescription(
-  props: PluginProps<ConfigurableProductShortDescriptionProps>,
-) {
+function ConfigurableProductPageMeta(props: PluginProps<ConfigurableProductShortDescriptionProps>) {
   const {
     Prev,
     index = 0,
@@ -39,10 +37,9 @@ function ConfigurableProductShortDescription(
       name={variant?.name ?? name}
       meta_title={variant?.meta_title ?? meta_title}
       meta_description={variant?.meta_description ?? meta_description}
-      url_key={variant?.url_key ?? url_key}
       __typename={variant?.__typename ?? __typename}
       {...rest}
     />
   )
 }
-export const Plugin = ConfigurableProductShortDescription
+export const Plugin = ConfigurableProductPageMeta
