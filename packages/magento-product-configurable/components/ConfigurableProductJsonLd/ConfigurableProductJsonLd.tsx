@@ -14,7 +14,6 @@ type ConfigurableProductJsonLdProps = ProductPageGalleryProps & {
   product?: ConfigurableOptionsFragment
 }
 
-/** Compatible with any product type, but will switch the image when used for a ConfigurableProduct */
 export function ConfigurableProductJsonLd(props: ConfigurableProductJsonLdProps) {
   const { product, index = 0 } = props
 
