@@ -8,11 +8,10 @@ fragment ProductPageMeta on ProductInterface {
   price_range {
     minimum_price {
       final_price {
-        value
-        currency
+        ...Money
       }
       regular_price {
-        value
+        ...Money
       }
     }
   }
