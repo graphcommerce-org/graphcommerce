@@ -48,8 +48,7 @@ export function defaultConfigurableOptionsSelection<Q extends BaseQuery = BaseQu
    * https://hoproj.atlassian.net/browse/GCOM-1120
    */
   variants?.forEach((v) => {
-    const vSku = v?.product?.sku
-    if (vSku === simpleSku) {
+    if (v?.product?.uid === simple.uid) {
       v?.attributes?.forEach((a) => {
         const indexOfOption = options.findIndex((o) => o.attribute_code === a?.code)
         selectedOptions[indexOfOption] = a?.uid ?? ''
