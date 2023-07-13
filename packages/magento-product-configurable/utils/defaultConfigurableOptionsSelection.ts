@@ -33,8 +33,8 @@ export function defaultConfigurableOptionsSelection<Q extends BaseQuery = BaseQu
   const options = filterNonNullableKeys(configurable.configurable_options)
 
   /**
-   * A new feature was implemented where a simple product displays the options of a configurable
-   * product. On the simple product page the options of the current product are preselected.
+   * A simple product displays the options of a configurable product. On the simple product page the
+   * options of the current variant are preselected.
    *
    * (e.g. width: 12mm | 15mm | 25mm => 25mm is preselected).
    *
