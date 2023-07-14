@@ -56,7 +56,13 @@ function OrderSuccessPage() {
               <Trans id='Thank you for your order!' />
             </LayoutTitle>
             <CartSummary />
-            <CartItemSummary />
+            <CartItemSummary
+              sx={{
+                '& .Scroller-root.grid': {
+                  display: 'flex',
+                },
+              }}
+            />
 
             <SignupNewsletter />
 
