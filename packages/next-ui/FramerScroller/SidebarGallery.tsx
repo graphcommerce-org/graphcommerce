@@ -48,6 +48,7 @@ export type SidebarGalleryProps = {
   aspectRatio?: [number, number]
   routeHash?: string
   sx?: SxProps<Theme>
+  disableZoom?: boolean
 }
 
 export function SidebarGallery(props: SidebarGalleryProps) {
@@ -57,6 +58,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
     aspectRatio: [width, height] = [1, 1],
     sx,
     routeHash = 'gallery',
+    disableZoom,
   } = props
 
   const router = useRouter()
@@ -76,6 +78,9 @@ export function SidebarGallery(props: SidebarGalleryProps) {
   }, [prevRoute?.pathname, route, router, zoomed])
 
   const toggle = () => {
+    if (disableZoom) {
+      return
+    }
     if (!zoomed) {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       router.push(route, undefined, { shallow: true })
@@ -192,7 +197,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                   height: '100%',
                   gridAutoColumns: `100%`,
                   gridTemplateRows: `100%`,
-                  cursor: 'zoom-in',
+                  cursor: disableZoom ? 'auto' : 'zoom-in',
                 },
                 zoomed && {
                   height: `var(--client-size-y)`,
@@ -232,16 +237,22 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                 right: theme.spacings.sm,
               }}
             >
-              <Fab
-                size='small'
-                className={classes.toggleIcon}
-                disabled={!hasImages}
-                onMouseUp={toggle}
-                aria-label='Toggle Fullscreen'
-                sx={{ boxShadow: 6 }}
-              >
-                {!zoomed ? <IconSvg src={iconFullscreen} /> : <IconSvg src={iconFullscreenExit} />}
-              </Fab>
+              {!disableZoom && (
+                <Fab
+                  size='small'
+                  className={classes.toggleIcon}
+                  disabled={!hasImages}
+                  onMouseUp={toggle}
+                  aria-label='Toggle Fullscreen'
+                  sx={{ boxShadow: 6 }}
+                >
+                  {!zoomed ? (
+                    <IconSvg src={iconFullscreen} />
+                  ) : (
+                    <IconSvg src={iconFullscreenExit} />
+                  )}
+                </Fab>
+              )}
             </MotionBox>
             <Box
               className={classes.centerLeft}
