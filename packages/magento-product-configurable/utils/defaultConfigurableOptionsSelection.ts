@@ -39,11 +39,8 @@ export function defaultConfigurableOptionsSelection<Q extends BaseQuery = BaseQu
     (v) => v?.product?.uid === simple?.uid,
   )?.attributes
 
-  // If we can't find the simple product as one of the configurable product variants, just return the simple
-  if (!attributes) return { ...query, products: { items: [simple] } }
-
-  const selectedOptions = attributes.filter(nonNullable).map((a) => a.uid)
-  if (!selectedOptions.length) return { ...query, defaultValues: {} }
+  const selectedOptions = (attributes ?? []).filter(nonNullable).map((a) => a.uid)
+  if (!selectedOptions.length) return { ...query, products: { items: [simple] }, defaultValues: {} }
 
   /**
    * We're using writeQuery to the Apollo Client cache, to to avoid a second request to the GraphQL
