@@ -1,6 +1,6 @@
 import { ApolloClient } from '@graphcommerce/graphql'
 import { AddProductsToCartFormProps } from '@graphcommerce/magento-product'
-import { findByTypename, filterNonNullableKeys } from '@graphcommerce/next-ui'
+import { findByTypename, filterNonNullableKeys, nonNullable } from '@graphcommerce/next-ui'
 import { GetConfigurableOptionsSelectionDocument } from '../graphql'
 import { DefaultConfigurableOptionsSelectionFragment } from './DefaultConfigurableOptionsSelection.gql'
 
@@ -9,58 +9,41 @@ type BaseQuery =
   | null
   | undefined
 
-let warned = false
 /**
+ * Render the configurable product page on a simple product URL with the simple product variant
+ * selected.
+ *
  * This method writes the GetConfigurableOptionsSelection query result to the Apollo cache and sets
  * the defaultValues for the `<AddProductsToCartForm defaultValues={{}}/>`.
+ *
+ * - If a simple URL is requested, but a configurable product is also given, this means that the
+ *   simple is part of the configurable product.
+ * - If that is the case, we render the configurable product page with the simple product variant
+ *   selected by filling in `selectedOptions` and passing it as `defaultValues `. We also
+ *   prepopulating the result of `GetConfigurableOptionsSelection` query.
  */
 export function defaultConfigurableOptionsSelection<Q extends BaseQuery = BaseQuery>(
   urlKey: string,
   client: ApolloClient<object>,
   query: Q,
 ): Q & Pick<AddProductsToCartFormProps, 'defaultValues'> {
-  const requested = query?.products?.items?.find((p) => p?.url_key === urlKey)
-  if (!requested || requested?.__typename !== 'SimpleProduct')
+  if (!import.meta.graphCommerce.configurableVariantForSimple)
     return { ...query, defaultValues: {} }
 
+  const simple = query?.products?.items?.find((p) => p?.url_key === urlKey)
   const configurable = findByTypename(query?.products?.items, 'ConfigurableProduct')
-  const variant = findByTypename(query?.products?.items, 'SimpleProduct')
 
-  if (!configurable?.url_key || !variant)
-    return { ...query, products: { ...query?.products, items: [requested] } }
+  // Check if the requested product actually is a simple product
+  if (!simple || simple?.__typename !== 'SimpleProduct' || !configurable?.url_key)
+    return { ...query, defaultValues: {} }
 
-  const selectedOptions: string[] = []
+  // Find the requested simple product on the configurable variants and get the attributes.
+  const attributes = configurable?.variants?.find(
+    (v) => v?.product?.uid === simple?.uid,
+  )?.attributes
 
-  const options = filterNonNullableKeys(configurable.configurable_options)
-
-  const warnFor: string[] = []
-  options.forEach((o, index) => {
-    const simpleValue = variant[o.attribute_code]
-    if (!simpleValue) warnFor.push(o.attribute_code)
-
-    filterNonNullableKeys(o.values).forEach((v) => {
-      if (Buffer.from(v.uid, 'base64').toString('utf8').endsWith(`/${simpleValue}`)) {
-        selectedOptions[index] = v.uid
-      }
-    })
-  })
-
-  if (process.env.NODE_ENV !== 'production' && warnFor.length && !warned) {
-    warned = true
-    const warnStr = warnFor.join(', ')
-    console.warn(
-      `[@graphcommerce/magento-product-configurable]: The following attributes were found in the configurable options: ${warnStr}. However, they were not found in the simple product. Please add the following attributes to the simple product: ${warnStr}`,
-    )
-  }
-  if (warnFor.length) {
-    return {
-      ...query,
-      products: { ...query?.products, items: [requested] },
-      defaultValues: {},
-    }
-  }
-
-  if (!selectedOptions.length) return { ...query, defaultValues: {} }
+  const selectedOptions = (attributes ?? []).filter(nonNullable).map((a) => a.uid)
+  if (!selectedOptions.length) return { ...query, products: { items: [simple] }, defaultValues: {} }
 
   /**
    * We're using writeQuery to the Apollo Client cache, to to avoid a second request to the GraphQL
@@ -79,6 +62,7 @@ export function defaultConfigurableOptionsSelection<Q extends BaseQuery = BaseQu
    * })
    * ```
    */
+  const options = filterNonNullableKeys(configurable.configurable_options, ['attribute_code'])
   client.cache.writeQuery({
     query: GetConfigurableOptionsSelectionDocument,
     variables: { urlKey: configurable.url_key, selectedOptions },
@@ -92,11 +76,8 @@ export function defaultConfigurableOptionsSelection<Q extends BaseQuery = BaseQu
             uid: configurable.uid,
             configurable_product_options_selection: {
               __typename: 'ConfigurableProductOptionsSelection',
-              media_gallery: variant.media_gallery,
-              variant: {
-                ...variant,
-                __typename: 'SimpleProduct',
-              },
+              media_gallery: simple.media_gallery,
+              variant: simple,
               options_available_for_selection: options.map(({ attribute_code }) => ({
                 __typename: 'ConfigurableOptionAvailableForSelection' as const,
                 attribute_code,

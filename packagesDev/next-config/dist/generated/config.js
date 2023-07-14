@@ -48,6 +48,7 @@ function GraphCommerceConfigSchema() {
         cartDisplayPricesInclTax: _zod.z.boolean().nullish(),
         compare: _zod.z.boolean().nullish(),
         compareVariant: CompareVariantSchema.nullish(),
+        configurableVariantForSimple: _zod.z.boolean().nullish(),
         customerRequireEmailConfirmation: _zod.z.boolean().nullish(),
         debug: GraphCommerceDebugConfigSchema().nullish(),
         demoMode: _zod.z.boolean().nullish(),
