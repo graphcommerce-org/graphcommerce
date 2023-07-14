@@ -1,6 +1,0 @@
-fragment DemoProductPageItem on SimpleProduct
-@inject(into: ["ProductPageItem"])
-@env(if: "DEMO_MAGENTO_GRAPHCOMMERCE") {
-  size
-  print_pattern_swatch
-}

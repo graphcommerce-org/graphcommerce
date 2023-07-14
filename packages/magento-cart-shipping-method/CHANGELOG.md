@@ -1,5 +1,31 @@
 # Change Log
 
+## 6.2.0-canary.63
+
+## 6.2.0-canary.62
+
+## 6.2.0-canary.61
+
+## 6.2.0-canary.60
+
+### Patch Changes
+
+- [#1987](https://github.com/graphcommerce-org/graphcommerce/pull/1987) [`72564b3b7`](https://github.com/graphcommerce-org/graphcommerce/commit/72564b3b7e34745a0c99ddc353cc4dde1b3ff9d2) - Always show the shipping method form, even when it is stil loading ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 6.2.0-canary.59
+
+## 6.2.0-canary.58
+
+## 6.2.0-canary.57
+
+## 6.2.0-canary.56
+
+## 6.2.0-canary.55
+
+## 6.2.0-canary.54
+
+## 6.2.0-canary.53
+
 ## 6.2.0-canary.52
 
 ## 6.2.0-canary.51

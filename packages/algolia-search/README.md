@@ -79,7 +79,7 @@ return {
       params: productListParams,
       up: { href: '/', title: 'Home' },
       apolloState: await conf.then(() => client.cache.extract()),
-+     serverState: await getServerState(<SearchContext />, {
++     serverState: await getServerState(<SearchContext rendersInsideNextjs={false} />, {
 +      renderToString,
 +     }),
     },

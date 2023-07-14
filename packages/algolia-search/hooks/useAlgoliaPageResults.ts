@@ -4,10 +4,11 @@ import { AlgoliaPageHit } from '../lib/types'
 function hitToPage(hits: AlgoliaPageHit[]) {
   return hits.map((h) => {
     const urlSplit = h.url.split('/')
-    const url = urlSplit.reduce((prev, curr, currIndex) => {
+    const prep = urlSplit.reduce((prev, curr, currIndex) => {
       if (currIndex > 2) return `${prev}/${curr}`
       return ''
     })
+    const url = prep.substring(1, prep.length)
     return {
       objectID: h.objectID,
       name: h.name,

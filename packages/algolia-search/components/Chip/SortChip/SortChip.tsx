@@ -1,9 +1,15 @@
-import { ChipMenu, extendableComponent, responsiveVal } from '@graphcommerce/next-ui'
+import {
+  ChipMenu,
+  extendableComponent,
+  responsiveVal,
+  useStorefrontConfig,
+} from '@graphcommerce/next-ui'
 import { SxProps, Theme } from '@mui/material'
 import Box from '@mui/material/Box'
 import Checkbox from '@mui/material/Checkbox'
 import ListItem from '@mui/material/ListItem'
 import ListItemText from '@mui/material/ListItemText'
+import { useSortBy } from 'react-instantsearch-hooks-web'
 
 const name = 'SortChip' as const
 const parts = ['menu', 'item'] as const
@@ -22,13 +28,19 @@ export type SortByRenderState = {
   canRefine: boolean
 }
 
-export interface SortChipProps extends SortByRenderState {
+export type SortChipProps = {
   title: string
   sx?: SxProps<Theme>
 }
 
 export function SortChip(props: SortChipProps) {
-  const { initialIndex, currentRefinement, options, refine, canRefine, title, sx } = props
+  const { title, sx } = props
+
+  const { initialIndex, currentRefinement, options, refine, canRefine } = useSortBy({
+    items: useStorefrontConfig().sortOptions ?? [],
+  })
+
+  if (options.length < 1) return null
 
   const selectedOption = options.find((option) => option.value === currentRefinement)
 

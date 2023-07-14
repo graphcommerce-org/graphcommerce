@@ -39,14 +39,19 @@ async function main() {
     if (process.argv.includes('--config') || process.argv.includes('-c')) {
         throw Error('--config or -c argument is not supported, modify codegen.yml to make changes');
     }
-    const packages = [...(0, next_config_1.resolveDependenciesSync)().values()].filter((p) => p !== '.');
-    // Detect if we're operating in the monorepo environment or in an installation
-    const isMono = !!packages.find((p) => p.startsWith('../..'));
+    const deps = (0, next_config_1.resolveDependenciesSync)();
+    const packages = [...deps.values()].filter((p) => p !== '.');
     // Load the current codegen.yml
     // Todo: implement loading with a custom --config or -c here.
     const conf = await (0, cli_1.loadCodegenConfig)({ configFilePath: root });
     // Get a a list of all generates configurations.
-    const generates = Object.entries(conf.config.generates);
+    const generates = Object.entries(conf.config.generates).map(([generatedPath, value]) => {
+        const found = [...deps.entries()].find((dep) => generatedPath.startsWith(`node_modules/${dep[0]}`));
+        if (!found)
+            return [generatedPath, value];
+        const newPath = generatedPath.replace(`node_modules/${found[0]}`, found[1]);
+        return [newPath, value];
+    });
     let extension;
     // Find the file extension used for the generated graphql files and cleanup if not used anymore.
     generates.forEach(([, gen]) => {
@@ -61,9 +66,12 @@ async function main() {
     // - Prepend the all targets with ../../ if we're running in a monorepo setup.
     // - Append all the Graphcommerce packages to the configuration
     conf.config.generates = Object.fromEntries(generates.map(([generateTarget, generateConf]) => [
-        isMono ? `../../${generateTarget}` : generateTarget,
+        generateTarget,
         Array.isArray(generateConf) ? generateConf : appendDocumentLocations(generateConf, packages),
     ]));
+    (0, next_config_1.packageRoots)(packages).forEach((r) => {
+        conf.config.generates[r] = conf.config.generates['.'];
+    });
     // Reexport the mesh to is can be used by codegen
     await promises_1.default.writeFile(configLocation, yaml_1.default.stringify(conf.config));
     // Append the new cli argument

@@ -25,6 +25,7 @@ exports.demoConfig = {
     demoMode: true,
     limitSsg: true,
     compare: true,
+    configurableVariantForSimple: true,
     configurableVariantValues: {
         description: true,
         gallery: true,
@@ -32,5 +33,8 @@ exports.demoConfig = {
         name: true,
         shortDescription: true,
         url: true,
+    },
+    configurableReviewVariantValues: {
+        reviews: true,
     },
 };

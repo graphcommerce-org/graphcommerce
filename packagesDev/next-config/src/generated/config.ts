@@ -127,6 +127,19 @@ export type GraphCommerceConfig = {
    */
   configurableReviewVariantValues?: InputMaybe<MagentoReviewConfigurableVariantValues>;
   /**
+   * If a simple product is part of a Configurable product page, should the simple product be
+   * rendered as a configured option of the configurable product page?
+   *
+   * How does this work:
+   *
+   * When the `products(filters: { url_key: { eq: 'simple-product' } }) { ... }` query is ran,
+   * Magento also returns the Simple product and the Configurable product the simple belongs to.
+   *
+   * If that is the case we render the configurable product page instead of the simple product page but
+   * the options to select the simple product are pre-selected.
+   */
+  configurableVariantForSimple?: InputMaybe<Scalars['Boolean']['input']>;
+  /**
    * When a user selects a variant, it will switch the values on the configurable page with the values of the configured variant.
    *
    * Enabling options here will allow switching of those variants.
@@ -392,6 +405,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     compare: z.boolean().nullish(),
     compareVariant: CompareVariantSchema.nullish(),
     configurableReviewVariantValues: MagentoReviewConfigurableVariantValuesSchema().nullish(),
+    configurableVariantForSimple: z.boolean().nullish(),
     configurableVariantValues: MagentoConfigurableVariantValuesSchema().nullish(),
     customerRequireEmailConfirmation: z.boolean().nullish(),
     debug: GraphCommerceDebugConfigSchema().nullish(),

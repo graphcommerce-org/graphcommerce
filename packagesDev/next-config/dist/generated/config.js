@@ -55,6 +55,7 @@ function GraphCommerceConfigSchema() {
         compare: _zod.z.boolean().nullish(),
         compareVariant: CompareVariantSchema.nullish(),
         configurableReviewVariantValues: MagentoReviewConfigurableVariantValuesSchema().nullish(),
+        configurableVariantForSimple: _zod.z.boolean().nullish(),
         configurableVariantValues: MagentoConfigurableVariantValuesSchema().nullish(),
         customerRequireEmailConfirmation: _zod.z.boolean().nullish(),
         debug: GraphCommerceDebugConfigSchema().nullish(),

@@ -68,7 +68,11 @@ type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProp
 function ProductPage(props: Props) {
   const { products, relatedUpsells, usps, sidebarUsps, pages, defaultValues } = props
 
-  const product = mergeDeep(products, relatedUpsells)?.items?.[0]
+  const product = mergeDeep(
+    products?.items?.[0],
+    relatedUpsells?.items?.find((item) => item?.uid === products?.items?.[0]?.uid),
+  )
+
   if (!product?.sku || !product.url_key) return null
 
   return (

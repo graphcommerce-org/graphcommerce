@@ -2,6 +2,7 @@ import type React from 'react'
 
 export * from './utils/isMonorepo'
 export * from './utils/resolveDependenciesSync'
+export * from './utils/packageRoots'
 export * from './withGraphCommerce'
 export * from './generated/config'
 export * from './config'

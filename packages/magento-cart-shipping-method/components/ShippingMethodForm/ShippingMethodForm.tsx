@@ -94,7 +94,7 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
   useFormCompose({ form, step, submit, key: 'ShippingMethodForm' })
   useFormAutoSubmit({ form, submit, fields: ['carrierMethod'] })
 
-  if (loading) return null
+  // if (loading) return null
 
   if (items.length === 0) {
     items.push({

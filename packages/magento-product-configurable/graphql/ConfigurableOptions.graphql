@@ -25,4 +25,13 @@ fragment ConfigurableOptions on ConfigurableProduct {
     }
   }
   ...ProductPageDescription
+  variants {
+    attributes {
+      code
+      uid
+    }
+    product {
+      uid
+    }
+  }
 }

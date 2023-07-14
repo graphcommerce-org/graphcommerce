@@ -1,5 +1,31 @@
 # Change Log
 
+## 6.2.0-canary.63
+
+## 6.2.0-canary.62
+
+## 6.2.0-canary.61
+
+## 6.2.0-canary.60
+
+## 6.2.0-canary.59
+
+## 6.2.0-canary.58
+
+## 6.2.0-canary.57
+
+## 6.2.0-canary.56
+
+## 6.2.0-canary.55
+
+### Patch Changes
+
+- [#1967](https://github.com/graphcommerce-org/graphcommerce/pull/1967) [`888fe88e6`](https://github.com/graphcommerce-org/graphcommerce/commit/888fe88e644d94621d54a268dbaafc7ff5467c93) - Fix bug where product urls ending with a suffix would not be redirected ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 6.2.0-canary.54
+
+## 6.2.0-canary.53
+
 ## 6.2.0-canary.52
 
 ## 6.2.0-canary.51

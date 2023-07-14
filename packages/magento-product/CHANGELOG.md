@@ -1,5 +1,39 @@
 # Change Log
 
+## 6.2.0-canary.63
+
+## 6.2.0-canary.62
+
+### Patch Changes
+
+- [#1992](https://github.com/graphcommerce-org/graphcommerce/pull/1992) [`bffdff6f0`](https://github.com/graphcommerce-org/graphcommerce/commit/bffdff6f09d92e0d56ba904422b939ffeed12fae) - Export props from ProductPagePrice and ProductListPrice ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 6.2.0-canary.61
+
+### Patch Changes
+
+- [#1975](https://github.com/graphcommerce-org/graphcommerce/pull/1975) [`93efa6eea`](https://github.com/graphcommerce-org/graphcommerce/commit/93efa6eea16894a56e2964050e4ce84bf96e652f) - collapse limitsection filters ([@JoshuaS98](https://github.com/JoshuaS98))
+
+## 6.2.0-canary.60
+
+## 6.2.0-canary.59
+
+## 6.2.0-canary.58
+
+## 6.2.0-canary.57
+
+## 6.2.0-canary.56
+
+## 6.2.0-canary.55
+
+## 6.2.0-canary.54
+
+## 6.2.0-canary.53
+
+### Patch Changes
+
+- [#1973](https://github.com/graphcommerce-org/graphcommerce/pull/1973) [`257a66e38`](https://github.com/graphcommerce-org/graphcommerce/commit/257a66e388933a333941d9459e6e6a266d05cda4) - Fix limit filters ([@JoshuaS98](https://github.com/JoshuaS98))
+
 ## 6.2.0-canary.52
 
 ## 6.2.0-canary.51

@@ -126,6 +126,19 @@ When a user selects a variant, it will switch the values on the configurable pag
 
 Enabling options here will allow switching of those variants.
 
+#### `configurableVariantForSimple: Boolean (default: [object Object])`
+
+If a simple product is part of a Configurable product page, should the simple product be
+rendered as a configured option of the configurable product page?
+
+How does this work:
+
+When the `products(filters: { url_key: { eq: 'simple-product' } }) { ... }` query is ran,
+Magento also returns the Simple product and the Configurable product the simple belongs to.
+
+If that is the case we render the configurable product page instead of the simple product page but
+the options to select the simple product are pre-selected.
+
 #### `configurableVariantValues: [MagentoConfigurableVariantValues](#MagentoConfigurableVariantValues) (default: [object Object])`
 
 When a user selects a variant, it will switch the values on the configurable page with the values of the configured variant.

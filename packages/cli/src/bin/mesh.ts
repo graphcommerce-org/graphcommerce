@@ -3,7 +3,13 @@
 import { promises as fs } from 'node:fs'
 import path from 'node:path'
 import { exit } from 'node:process'
-import { isMonorepo, loadConfig, replaceConfigInString } from '@graphcommerce/next-config'
+import {
+  isMonorepo,
+  loadConfig,
+  packageRoots,
+  replaceConfigInString,
+  resolveDependenciesSync,
+} from '@graphcommerce/next-config'
 import { graphqlMesh, DEFAULT_CLI_PARAMS, GraphQLMeshCLIParams } from '@graphql-mesh/cli'
 import { Logger, YamlConfig } from '@graphql-mesh/types'
 import { DefaultLogger } from '@graphql-mesh/utils'
@@ -74,12 +80,12 @@ const main = async () => {
 
   // Scan the current working directory to also read all graphqls files.
   conf.additionalTypeDefs.push('**/*.graphqls')
-  if (isMonorepo()) {
-    conf.additionalTypeDefs.push('../../packages/**/*.graphqls')
-    conf.additionalTypeDefs.push('../../packagesDev/**/*.graphqls')
-  } else {
-    conf.additionalTypeDefs.push('node_modules/@graphcommerce/**/*.graphqls')
-  }
+
+  const deps = resolveDependenciesSync()
+  const packages = [...deps.values()].filter((p) => p !== '.')
+  packageRoots(packages).forEach((r) => {
+    conf.additionalTypeDefs.push(`${r}/**/*.graphqls`)
+  })
 
   if (!conf.serve) conf.serve = {}
   if (!conf.serve.playgroundTitle) conf.serve.playgroundTitle = 'GraphCommerce® Mesh'

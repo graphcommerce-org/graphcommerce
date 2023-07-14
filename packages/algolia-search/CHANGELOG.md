@@ -1,5 +1,35 @@
 # @graphcommerce/algolia-search
 
+## 6.2.0-canary.63
+
+## 6.2.0-canary.62
+
+## 6.2.0-canary.61
+
+## 6.2.0-canary.60
+
+## 6.2.0-canary.59
+
+## 6.2.0-canary.58
+
+### Patch Changes
+
+- [#1981](https://github.com/graphcommerce-org/graphcommerce/pull/1981) [`5936ea5f3`](https://github.com/graphcommerce-org/graphcommerce/commit/5936ea5f3f77fa303ca6d57187cb921dafeffb4d) - Fix algolia autofocus ([@StefanAngenent](https://github.com/StefanAngenent))
+
+## 6.2.0-canary.57
+
+## 6.2.0-canary.56
+
+### Patch Changes
+
+- [#1971](https://github.com/graphcommerce-org/graphcommerce/pull/1971) [`1c77da7f9`](https://github.com/graphcommerce-org/graphcommerce/commit/1c77da7f951e34a28df586fcaedf7a0a2c97ba60) - Bug fixes for Algolia Search. Linking via indexed categories is now possible, Mobile Header wil now render results correctly and server side data hydration will no longer be reliant on the locale provided by Lingui. ([@mikekeehnen](https://github.com/mikekeehnen))
+
+## 6.2.0-canary.55
+
+## 6.2.0-canary.54
+
+## 6.2.0-canary.53
+
 ## 6.2.0-canary.52
 
 ## 6.2.0-canary.51

@@ -1,5 +1,31 @@
 # Change Log
 
+## 6.2.0-canary.63
+
+## 6.2.0-canary.62
+
+## 6.2.0-canary.61
+
+## 6.2.0-canary.60
+
+## 6.2.0-canary.59
+
+### Minor Changes
+
+- [#1977](https://github.com/graphcommerce-org/graphcommerce/pull/1977) [`61ff9b6e1`](https://github.com/graphcommerce-org/graphcommerce/commit/61ff9b6e1ff2aef1f497957f637391d5f01004c8) - Replace recursive GetCategoryStaticPaths query with fragment so the query can be injected ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 6.2.0-canary.58
+
+## 6.2.0-canary.57
+
+## 6.2.0-canary.56
+
+## 6.2.0-canary.55
+
+## 6.2.0-canary.54
+
+## 6.2.0-canary.53
+
 ## 6.2.0-canary.52
 
 ## 6.2.0-canary.51
