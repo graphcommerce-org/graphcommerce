@@ -1,4 +1,4 @@
-import { type ProductPageGalleryProps } from '@graphcommerce/magento-product'
+import type { ProductPageGalleryProps } from '@graphcommerce/magento-product'
 import type { PluginProps } from '@graphcommerce/next-config'
 import { useConfigurableOptionsSelection } from '../hooks'
 

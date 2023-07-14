@@ -1,6 +1,6 @@
 import type { ProductPageDescriptionProps } from '@graphcommerce/magento-product'
 import type { IfConfig, PluginProps } from '@graphcommerce/next-config'
-import { ConfigurableOptionsFragment } from '../graphql/ConfigurableOptions.gql'
+import type { ConfigurableOptionsFragment } from '../graphql/ConfigurableOptions.gql'
 import { useConfigurableOptionsSelection } from '../hooks'
 
 export const component = 'ProductPageDescription'

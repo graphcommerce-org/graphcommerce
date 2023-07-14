@@ -1,12 +1,12 @@
 import {
-  ProductPagePriceProps,
+  type ProductPagePriceProps,
   getProductTierPrice,
   useFormAddProductsToCart,
 } from '@graphcommerce/magento-product'
 import { Money } from '@graphcommerce/magento-store'
 import type { PluginProps } from '@graphcommerce/next-config'
 import { useWatch } from '@graphcommerce/react-hook-form'
-import { ConfigurableOptionsFragment } from '../graphql/ConfigurableOptions.gql'
+import type { ConfigurableOptionsFragment } from '../graphql/ConfigurableOptions.gql'
 import { useConfigurableOptionsSelection } from '../hooks'
 
 export const component = 'ProductPagePrice'
