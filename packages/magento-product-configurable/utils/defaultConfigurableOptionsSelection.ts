@@ -1,6 +1,6 @@
 import { ApolloClient } from '@graphcommerce/graphql'
 import { AddProductsToCartFormProps } from '@graphcommerce/magento-product'
-import { findByTypename, filterNonNullableKeys } from '@graphcommerce/next-ui'
+import { findByTypename, filterNonNullableKeys, nonNullable } from '@graphcommerce/next-ui'
 import { GetConfigurableOptionsSelectionDocument } from '../graphql'
 import { DefaultConfigurableOptionsSelectionFragment } from './DefaultConfigurableOptionsSelection.gql'
 
@@ -10,51 +10,39 @@ type BaseQuery =
   | undefined
 
 /**
+ * Render the configurable product page on a simple product URL with the simple product variant
+ * selected.
+ *
  * This method writes the GetConfigurableOptionsSelection query result to the Apollo cache and sets
  * the defaultValues for the `<AddProductsToCartForm defaultValues={{}}/>`.
+ *
+ * - If a simple URL is requested, but a configurable product is also given, this means that the
+ *   simple is part of the configurable product.
+ * - If that is the case, we render the configurable product page with the simple product variant
+ *   selected by filling in `selectedOptions` and passing it as `defaultValues `. We also
+ *   prepopulating the result of `GetConfigurableOptionsSelection` query.
  */
 export function defaultConfigurableOptionsSelection<Q extends BaseQuery = BaseQuery>(
   urlKey: string,
   client: ApolloClient<object>,
   query: Q,
 ): Q & Pick<AddProductsToCartFormProps, 'defaultValues'> {
-  const requested = query?.products?.items?.find((p) => p?.url_key === urlKey)
-  if (!requested || requested?.__typename !== 'SimpleProduct')
+  const simple = query?.products?.items?.find((p) => p?.url_key === urlKey)
+  const configurable = findByTypename(query?.products?.items, 'ConfigurableProduct')
+
+  // Check if the requested product actually is a simple product
+  if (!simple || simple?.__typename !== 'SimpleProduct' || !configurable?.url_key)
     return { ...query, defaultValues: {} }
 
-  const configurable = findByTypename(query?.products?.items, 'ConfigurableProduct')
-  const variants = configurable?.variants
-  const simple = requested
+  // Find the requested simple product on the configurable variants and get the attributes.
+  const attributes = configurable?.variants?.find(
+    (v) => v?.product?.uid === simple?.uid,
+  )?.attributes
 
-  if (!configurable?.url_key) return { ...query, products: { items: [requested] } }
+  // If we can't find the simple product as one of the configurable product variants, just return the simple
+  if (!attributes) return { ...query, products: { items: [simple] } }
 
-  const selectedOptions: string[] = []
-
-  const options = filterNonNullableKeys(configurable.configurable_options)
-
-  /**
-   * A simple product displays the options of a configurable product. On the simple product page the
-   * options of the current variant are preselected.
-   *
-   * (e.g. width: 12mm | 15mm | 25mm => 25mm is preselected).
-   *
-   * We do this by checking the variants on the configurable product. => We match the preselected
-   * variant by comparing the sku of the current page with the available variants. => We then check
-   * the attributes of the variant and set the selectedOptions accordingly. => We want to always
-   * return the configurable item to a simple item. If we don't do this, the productpage will
-   * break.
-   *
-   * https://hoproj.atlassian.net/browse/GCOM-1120
-   */
-  variants?.forEach((v) => {
-    if (v?.product?.uid === simple.uid) {
-      v?.attributes?.forEach((a) => {
-        const indexOfOption = options.findIndex((o) => o.attribute_code === a?.code)
-        selectedOptions[indexOfOption] = a?.uid ?? ''
-      })
-    }
-  })
-
+  const selectedOptions = attributes.filter(nonNullable).map((a) => a.uid)
   if (!selectedOptions.length) return { ...query, defaultValues: {} }
 
   /**
@@ -74,6 +62,7 @@ export function defaultConfigurableOptionsSelection<Q extends BaseQuery = BaseQu
    * })
    * ```
    */
+  const options = filterNonNullableKeys(configurable.configurable_options, ['attribute_code'])
   client.cache.writeQuery({
     query: GetConfigurableOptionsSelectionDocument,
     variables: { urlKey: configurable.url_key, selectedOptions },
@@ -88,10 +77,7 @@ export function defaultConfigurableOptionsSelection<Q extends BaseQuery = BaseQu
             configurable_product_options_selection: {
               __typename: 'ConfigurableProductOptionsSelection',
               media_gallery: simple.media_gallery,
-              variant: {
-                ...simple,
-                __typename: 'SimpleProduct',
-              },
+              variant: simple,
               options_available_for_selection: options.map(({ attribute_code }) => ({
                 __typename: 'ConfigurableOptionAvailableForSelection' as const,
                 attribute_code,
