@@ -102,13 +102,7 @@ function SearchResultPage(props: SearchResultProps) {
           </CategorySearchResults>
         </Container>
 
-        <SearchDivider
-          sx={(theme) => ({
-            [theme.breakpoints.down('md')]: {
-              display: 'none',
-            },
-          })}
-        />
+        <SearchDivider sx={{ display: { xs: 'none', md: 'block' } }} />
 
         {noSearchResults && (
           <Container>

@@ -28,14 +28,14 @@ function CategoryHits() {
 }
 
 function AlgoliaCategorySearchPlugin(props: PluginProps<CategorySearchResultsProps>) {
-  const { Prev, ...rest } = props
+  const { Prev, children, ...rest } = props
   const searchIndex = useAlgoliaSearchIndexConfig('_categories')?.searchIndex
 
-  if (!searchIndex) return <Prev {...rest} />
+  if (!searchIndex) return <Prev {...rest}>{children}</Prev>
 
   return (
     <Prev {...rest}>
-      {rest.children}
+      {children}
       <Index indexName={searchIndex}>
         <CategoryHits />
       </Index>
