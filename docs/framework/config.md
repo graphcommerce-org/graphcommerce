@@ -120,6 +120,19 @@ Use compare functionality
 By default the compare feature is denoted with a 'compare ICON' (2 arrows facing one another).
 This may be fine for experienced users, but for more clarity it's also possible to present the compare feature as a CHECKBOX accompanied by the 'Compare' label
 
+#### `configurableVariantForSimple: Boolean (default: [object Object])`
+
+If a simple product is part of a Configurable product page, should the simple product be
+rendered as a configured option of the configurable product page?
+
+How does this work:
+
+When the `products(filters: { url_key: { eq: 'simple-product' } }) { ... }` query is ran,
+Magento also returns the Simple product and the Configurable product the simple belongs to.
+
+If that is the case we render the configurable product page instead of the simple product page but
+the options to select the simple product are pre-selected.
+
 #### `customerRequireEmailConfirmation: Boolean`
 
 Due to a limitation in the GraphQL API of Magento 2, we need to know if the

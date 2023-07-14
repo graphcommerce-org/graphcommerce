@@ -1,5 +1,5 @@
 ---
-'@graphcommerce/magento-product-configurable': minor
+'@graphcommerce/magento-product-configurable': patch
 ---
 
-improve default selected options functionality
+Remove the requirement to query attributes on simple for simple products when `configurableVariantForSimple` is enabled and use the `variants` of the configurable product.
