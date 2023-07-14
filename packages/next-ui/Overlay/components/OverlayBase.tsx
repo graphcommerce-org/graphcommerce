@@ -325,11 +325,6 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
     if (positions.open.visible.get() === 0) closeOverlay()
   }
 
-  useDomEvent(backdropRef, 'pointerdown', handleDragStart, { passive: true })
-  // We use touchend & mouseup because timing of pointerup is incorrect
-  useDomEvent(backdropRef, 'touchend', handleDragEnd, { passive: true })
-  useDomEvent(backdropRef, 'mouseup', handleDragEnd, { passive: true })
-
   useDomEvent(scrollerElementRef, 'pointerdown', handleDragStart, { passive: true })
   // We use touchend & mouseup because timing of pointerup is incorrect
   useDomEvent(scrollerElementRef, 'touchend', handleDragEnd, { passive: true })
