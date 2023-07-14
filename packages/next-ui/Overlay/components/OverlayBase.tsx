@@ -312,15 +312,15 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
   }
   useDomEvent(windowRef, 'keyup', handleEscape, { passive: true })
 
-  let dragging = false
+  const dragging = useMotionValue(false)
   const backdropRef = useRef<HTMLDivElement>(null)
   const scrollerElementRef = scrollerRef as React.RefObject<HTMLElement>
 
   const handleDragStart = () => {
-    dragging = true
+    dragging.set(true)
   }
   const handleDragEnd = () => {
-    dragging = false
+    dragging.set(false)
     // When releasing pointer and visibility 0 (overlay is dragged offscreen), close the overlay
     if (positions.open.visible.get() === 0) closeOverlay()
   }
@@ -339,7 +339,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
   useMotionValueEvent(
     positions.open.visible,
     'change',
-    (o) => o === 0 && !dragging && closeOverlay(),
+    (o) => o === 0 && !dragging.get() && closeOverlay(),
   )
 
   // Measure the offset of the overlay in the scroller.
