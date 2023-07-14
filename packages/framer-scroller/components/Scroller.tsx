@@ -13,13 +13,7 @@ export const Scroller = forwardRef<HTMLDivElement, ScrollableProps & { sx?: SxPr
       forwardedRef,
     )
 
-    return (
-      <ScrollerDiv
-        onMouseDown={(event) => event.preventDefault()}
-        {...scroller}
-        sx={[scroller.sx, ...(Array.isArray(sx) ? sx : [sx])]}
-      />
-    )
+    return <ScrollerDiv {...scroller} sx={[scroller.sx, ...(Array.isArray(sx) ? sx : [sx])]} />
   },
 )
 Scroller.displayName = 'Scroller'
