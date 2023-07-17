@@ -326,9 +326,9 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
   }
 
   useDomEvent(scrollerElementRef, 'pointerdown', handleDragStart, { passive: true })
-  // We use touchend & mouseup because timing of pointerup is incorrect
+  useDomEvent(scrollerElementRef, 'pointerup', handleDragEnd, { passive: true })
+  // We use touchend as well as pointerup, because scrolling (dragging the overlay) on mobile causes pointercancel to fire, preventing pointerup from ever firing
   useDomEvent(scrollerElementRef, 'touchend', handleDragEnd, { passive: true })
-  useDomEvent(scrollerElementRef, 'mouseup', handleDragEnd, { passive: true })
 
   // When the overlay isn't visible anymore, we navigate back.
   useMotionValueEvent(
