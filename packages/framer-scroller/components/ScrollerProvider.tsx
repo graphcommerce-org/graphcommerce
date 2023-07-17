@@ -1,5 +1,5 @@
 import { useConstant, useElementScroll } from '@graphcommerce/framer-utils'
-import { MotionValue, motionValue, Point, useMotionValue } from 'framer-motion'
+import { MotionValue, motionValue, Point, useDomEvent, useMotionValue } from 'framer-motion'
 import { PlaybackControls } from 'popmotion'
 import React, { useEffect, useRef, useMemo, useCallback } from 'react'
 import { scrollerContext } from '../context/scrollerContext'
@@ -85,6 +85,7 @@ export function ScrollerProvider(props: ScrollerProviderProps) {
   )
 
   const snap = useMotionValue(_inititalSnap)
+  const stopOnInteraction = useMotionValue(_inititalSnap)
 
   // Monitor the visbility of all elements and store them for later use.
   const items = useMotionValue<ItemState[]>([])
@@ -104,16 +105,23 @@ export function ScrollerProvider(props: ScrollerProviderProps) {
     [stop],
   )
 
-  const disableSnap = useCallback(() => {
-    if (snap.get() === false) stop()
-    if (scrollerRef.current) scrollerRef.current.style.scrollSnapType = 'none'
+  const disableSnap = useCallback(
+    (stopAnimationOnScroll = true) => {
+      stopOnInteraction.set(stopAnimationOnScroll)
+      if (snap.get() === false) stop()
+      if (scrollerRef.current) scrollerRef.current.style.scrollSnapType = 'none'
 
-    scroll.animating.set(true)
-    snap.set(false)
-  }, [snap, stop, scroll.animating])
+      scroll.animating.set(true)
+      snap.set(false)
+    },
+    [stopOnInteraction, snap, stop, scroll.animating],
+  )
 
   const enableSnap = useCallback(() => {
     if (snap.get() === true) return
+
+    stop()
+
     const scroller = scrollerRef.current
     if (scroller) scroller.style.scrollSnapType = ''
 
@@ -132,7 +140,7 @@ export function ScrollerProvider(props: ScrollerProviderProps) {
         })
       })
     }
-  }, [snap, scroll])
+  }, [snap, scroll.animating, stop])
 
   useObserveItems(scrollerRef, items)
 
