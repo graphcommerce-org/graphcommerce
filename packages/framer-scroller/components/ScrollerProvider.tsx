@@ -142,6 +142,19 @@ export function ScrollerProvider(props: ScrollerProviderProps) {
     }
   }, [snap, scroll.animating, stop])
 
+  /**
+   * If the scroller is animating and the user now uses their scrollwheel, enable the snapping
+   * behavior.
+   *
+   * If the scroller doesn't have snap enabled and isPanning===false, enable snap
+   */
+  useDomEvent(scrollerRef as React.RefObject<EventTarget>, 'wheel', () => {
+    if (stopOnInteraction.get()) enableSnap()
+  })
+  useDomEvent(scrollerRef as React.RefObject<EventTarget>, 'touchmove', () => {
+    if (stopOnInteraction.get()) stop()
+  })
+
   useObserveItems(scrollerRef, items)
 
   const registerChildren = useCallback(
