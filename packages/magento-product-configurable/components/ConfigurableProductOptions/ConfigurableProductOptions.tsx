@@ -57,7 +57,10 @@ export function ConfigurableProductOptions(props: ConfigurableProductOptionsProp
       .length === 0
 
   const allLabels = useMemo(() => {
-    const formatter = new Intl.ListFormat(locale, { style: 'long', type: 'conjunction' })
+    // Remove optional dialect from locale, which Intl.NumberFormat does not support.
+    const strippedLocale = locale?.split('-', 2).join('-')
+
+    const formatter = new Intl.ListFormat(strippedLocale, { style: 'long', type: 'conjunction' })
     return formatter.format(options.map((o) => o.label))
   }, [locale, options])
 
