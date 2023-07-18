@@ -2,4 +2,4 @@
 '@graphcommerce/framer-scroller': minor
 ---
 
-Added option to disable zoom in sideBarGallery
+Added a disableZoom prop to SidebarGallery to disable all zoom functionality
