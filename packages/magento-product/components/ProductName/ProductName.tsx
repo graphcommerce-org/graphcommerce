@@ -1,7 +1,7 @@
-import { ProductNameFragment } from './ProductName.gql'
+import { ProductPageMetaFragment } from '../ProductPageMeta/ProductPageMeta.gql'
 
 export type ProductNameProps = {
-  product: ProductNameFragment
+  product: Pick<ProductPageMetaFragment, 'name' | 'url_key'>
 }
 
 export const ProductName = (props: ProductNameProps) => {

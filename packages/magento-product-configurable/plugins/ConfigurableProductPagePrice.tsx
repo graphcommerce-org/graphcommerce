@@ -13,7 +13,7 @@ export const component = 'ProductPagePrice'
 export const exported = '@graphcommerce/magento-product'
 
 type ConfigurablePriceProps = ProductPagePriceProps & {
-  product: ConfigurableOptionsFragment
+  product: Partial<ConfigurableOptionsFragment>
   index?: number
 }
 

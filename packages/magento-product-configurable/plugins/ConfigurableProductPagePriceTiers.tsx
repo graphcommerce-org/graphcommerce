@@ -1,11 +1,14 @@
-import type { ProductNameProps } from '@graphcommerce/magento-product'
+import type { ProductPagePriceFragment } from '@graphcommerce/magento-product'
+import { ProductPageMetaFragment } from '@graphcommerce/magento-product/components/ProductPageMeta/ProductPageMeta.gql'
 import type { PluginProps } from '@graphcommerce/next-config'
 import { useConfigurableOptionsSelection } from '../hooks'
 
 export const component = 'ProductPagePriceTiers'
 export const exported = '@graphcommerce/magento-product'
 
-type ConfigurableProductPagePriceTiersProps = ProductNameProps
+type ConfigurableProductPagePriceTiersProps = {
+  product: Pick<ProductPageMetaFragment, 'name' | 'url_key'> & ProductPagePriceFragment
+}
 
 function ConfigurableProductPagePriceTiers(
   props: PluginProps<ConfigurableProductPagePriceTiersProps>,
