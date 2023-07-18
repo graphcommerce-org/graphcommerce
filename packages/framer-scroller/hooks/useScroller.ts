@@ -9,7 +9,7 @@ import {
   PanInfo,
   useTransform,
 } from 'framer-motion'
-import React, { ReactHTML, useEffect, useState } from 'react'
+import React, { MouseEventHandler, ReactHTML, useEffect, useState } from 'react'
 import { isHTMLMousePointerEvent } from '../utils/isHTMLMousePointerEvent'
 import { scrollSnapTypeDirection, SnapTypeDirection } from '../utils/scrollSnapTypeDirection'
 import { useScrollerContext } from './useScrollerContext'
@@ -87,6 +87,8 @@ export function useScroller<
     disableSnap()
     setPanning(true)
   }
+
+  const onMouseDown: MouseEventHandler<HTMLDivElement> = (event) => event.preventDefault()
 
   const onPan: PanHandlers['onPan'] = (event, info: PanInfo) => {
     if (!scrollerRef.current) return
@@ -275,6 +277,7 @@ export function useScroller<
     onPanStart,
     onPan,
     onPanEnd,
+    onMouseDown,
     children,
     className: `${classes.root} ${props.className}`,
     sx,
