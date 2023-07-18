@@ -120,12 +120,6 @@ Use compare functionality
 By default the compare feature is denoted with a 'compare ICON' (2 arrows facing one another).
 This may be fine for experienced users, but for more clarity it's also possible to present the compare feature as a CHECKBOX accompanied by the 'Compare' label
 
-#### `configurableReviewVariantValues: [MagentoReviewConfigurableVariantValues](#MagentoReviewConfigurableVariantValues) (default: [object Object])`
-
-When a user selects a variant, it will switch the values on the configurable page with the values of the configured variant.
-
-Enabling options here will allow switching of those variants.
-
 #### `configurableVariantForSimple: Boolean (default: [object Object])`
 
 If a simple product is part of a Configurable product page, should the simple product be
@@ -391,11 +385,3 @@ Use the shortDescription of the configured variant
 When a variant is selected the URL of the product will be changed in the address bar.
 
 This only happens when the actual variant is can be accessed by the URL.
-
-### MagentoReviewConfigurableVariantValues
-
-Options to configure which values will be replaced when a variant is selected on the product page.
-
-#### `reviews: Boolean`
-
-Use the reviews of the configured variant

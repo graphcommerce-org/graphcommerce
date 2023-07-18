@@ -32,9 +32,6 @@ _export(exports, {
     },
     MagentoConfigurableVariantValuesSchema: function() {
         return MagentoConfigurableVariantValuesSchema;
-    },
-    MagentoReviewConfigurableVariantValuesSchema: function() {
-        return MagentoReviewConfigurableVariantValuesSchema;
     }
 });
 const _zod = require("zod");
@@ -54,7 +51,6 @@ function GraphCommerceConfigSchema() {
         cartDisplayPricesInclTax: _zod.z.boolean().nullish(),
         compare: _zod.z.boolean().nullish(),
         compareVariant: CompareVariantSchema.nullish(),
-        configurableReviewVariantValues: MagentoReviewConfigurableVariantValuesSchema().nullish(),
         configurableVariantForSimple: _zod.z.boolean().nullish(),
         configurableVariantValues: MagentoConfigurableVariantValuesSchema().nullish(),
         customerRequireEmailConfirmation: _zod.z.boolean().nullish(),
@@ -110,10 +106,5 @@ function MagentoConfigurableVariantValuesSchema() {
         name: _zod.z.boolean().nullish(),
         shortDescription: _zod.z.boolean().nullish(),
         url: _zod.z.boolean().nullish()
-    });
-}
-function MagentoReviewConfigurableVariantValuesSchema() {
-    return _zod.z.object({
-        reviews: _zod.z.boolean().nullish()
     });
 }

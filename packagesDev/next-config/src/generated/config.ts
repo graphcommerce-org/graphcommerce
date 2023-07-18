@@ -121,12 +121,6 @@ export type GraphCommerceConfig = {
    */
   compareVariant?: InputMaybe<CompareVariant>;
   /**
-   * When a user selects a variant, it will switch the values on the configurable page with the values of the configured variant.
-   *
-   * Enabling options here will allow switching of those variants.
-   */
-  configurableReviewVariantValues?: InputMaybe<MagentoReviewConfigurableVariantValues>;
-  /**
    * If a simple product is part of a Configurable product page, should the simple product be
    * rendered as a configured option of the configurable product page?
    *
@@ -373,12 +367,6 @@ export type MagentoConfigurableVariantValues = {
   url?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-/** Options to configure which values will be replaced when a variant is selected on the product page. */
-export type MagentoReviewConfigurableVariantValues = {
-  /** Use the reviews of the configured variant */
-  reviews?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
 export type ProductFiltersLayout =
   | 'DEFAULT'
   | 'SIDEBAR';
@@ -404,7 +392,6 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     cartDisplayPricesInclTax: z.boolean().nullish(),
     compare: z.boolean().nullish(),
     compareVariant: CompareVariantSchema.nullish(),
-    configurableReviewVariantValues: MagentoReviewConfigurableVariantValuesSchema().nullish(),
     configurableVariantForSimple: z.boolean().nullish(),
     configurableVariantValues: MagentoConfigurableVariantValuesSchema().nullish(),
     customerRequireEmailConfirmation: z.boolean().nullish(),
@@ -463,11 +450,5 @@ export function MagentoConfigurableVariantValuesSchema(): z.ZodObject<Properties
     name: z.boolean().nullish(),
     shortDescription: z.boolean().nullish(),
     url: z.boolean().nullish()
-  })
-}
-
-export function MagentoReviewConfigurableVariantValuesSchema(): z.ZodObject<Properties<MagentoReviewConfigurableVariantValues>> {
-  return z.object({
-    reviews: z.boolean().nullish()
   })
 }
