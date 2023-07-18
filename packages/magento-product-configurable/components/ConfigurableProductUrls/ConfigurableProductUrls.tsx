@@ -10,10 +10,10 @@ type ConfigurableProductUrlsProps = {
 }
 
 export function ConfigurableProductUrls(props: ConfigurableProductUrlsProps) {
-  const { product, index = 0 } = props
+  const { product } = props
   const { replace, asPath } = useRouter()
-  const variant = useConfigurableOptionsSelection({ url_key: product?.url_key, index }).configured
-    ?.configurable_product_options_selection?.variant
+  const variant = useConfigurableOptionsSelection({ url_key: product?.url_key, index: 0 })
+    .configured?.configurable_product_options_selection?.variant
 
   const link = variant?.url_key
     ? productLink(variant)

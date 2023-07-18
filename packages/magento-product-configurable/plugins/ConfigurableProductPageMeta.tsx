@@ -6,14 +6,11 @@ export const component = 'ProductPageMeta'
 export const exported = '@graphcommerce/magento-product'
 export const ifConfig: IfConfig = 'configurableVariantValues.meta'
 
-type ConfigurableProductShortDescriptionProps = ProductPageProps & {
-  index?: number
-}
+type ConfigurableProductShortDescriptionProps = ProductPageProps
 
 function ConfigurableProductPageMeta(props: PluginProps<ConfigurableProductShortDescriptionProps>) {
   const {
     Prev,
-    index = 0,
     sku,
     categories,
     price_range,
@@ -25,7 +22,7 @@ function ConfigurableProductPageMeta(props: PluginProps<ConfigurableProductShort
     __typename,
     ...rest
   } = props
-  const variant = useConfigurableOptionsSelection({ url_key, index }).configured
+  const variant = useConfigurableOptionsSelection({ url_key, index: 0 }).configured
     ?.configurable_product_options_selection?.variant
 
   return (

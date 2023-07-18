@@ -3,12 +3,11 @@ import { useConfigurableOptionsSelection } from '../../hooks/useConfigurableOpti
 
 type ConfigurableNameProps = {
   product: ConfigurableOptionsFragment
-  index?: number
 }
 
 export function ConfigurableName(props: ConfigurableNameProps) {
-  const { product, index = 0 } = props
-  const { configured } = useConfigurableOptionsSelection({ url_key: product.url_key, index })
+  const { product } = props
+  const { configured } = useConfigurableOptionsSelection({ url_key: product.url_key, index: 0 })
 
   return <>{configured?.configurable_product_options_selection?.variant?.name ?? product.name}</>
 }

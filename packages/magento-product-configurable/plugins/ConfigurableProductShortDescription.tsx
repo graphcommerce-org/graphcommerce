@@ -8,12 +8,10 @@ export const exported = '@graphcommerce/magento-product'
 export const ifConfig: IfConfig = 'configurableVariantValues.shortDescription'
 
 function ConfigurableProductShortDescription(
-  props: PluginProps<
-    ProductShortDescriptionProps & Partial<ConfigurableOptionsFragment> & { index?: number }
-  >,
+  props: PluginProps<ProductShortDescriptionProps & Partial<ConfigurableOptionsFragment>>,
 ) {
-  const { Prev, url_key, index = 0, short_description, ...rest } = props
-  const variant = useConfigurableOptionsSelection({ url_key, index }).configured
+  const { Prev, url_key, short_description, ...rest } = props
+  const variant = useConfigurableOptionsSelection({ url_key, index: 0 }).configured
     ?.configurable_product_options_selection?.variant
 
   return (
