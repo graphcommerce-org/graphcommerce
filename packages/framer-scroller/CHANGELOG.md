@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.66
+
+### Patch Changes
+
+- [#1993](https://github.com/graphcommerce-org/graphcommerce/pull/1993) [`f9bd75108`](https://github.com/graphcommerce-org/graphcommerce/commit/f9bd75108ecef583ecd32e701c10d70537cb8a89) - Fixed scrollers not working properly in Firefox due to the `draggable` html property being handled differently. Added event.preventDefault() onMouseDown to useScroller to prevent drag and drop functionality inside scrollers. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
 ## 6.2.0-canary.65
 
 ### Minor Changes
