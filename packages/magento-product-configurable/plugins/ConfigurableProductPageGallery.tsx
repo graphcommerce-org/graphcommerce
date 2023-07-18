@@ -6,7 +6,6 @@ export const component = 'ProductPageGallery'
 export const exported = '@graphcommerce/magento-product'
 
 type ConfigurableProductPageGalleryProps = ProductPageGalleryProps & {
-  url_key?: string | null
   index?: number
 }
 
