@@ -362,7 +362,7 @@ Options to configure which values will be replaced when a variant is selected on
 
 #### `content: Boolean`
 
-Use the name, description, short descriptio and meta data of the configured variant
+Use the name, description, short description and meta data from the configured variant
 
 #### `gallery: Boolean`
 
