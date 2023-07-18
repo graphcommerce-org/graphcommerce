@@ -54,6 +54,9 @@ export function CartItemSummary(props: OrderSummaryProps) {
             theme.shape.borderRadius * 3,
             theme.breakpoints.values,
           ),
+          '& .Scroller-root.grid': {
+            display: 'flex',
+          },
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
