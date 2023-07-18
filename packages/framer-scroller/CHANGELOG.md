@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.65
+
+### Minor Changes
+
+- [#1996](https://github.com/graphcommerce-org/graphcommerce/pull/1996) [`3ed66a849`](https://github.com/graphcommerce-org/graphcommerce/commit/3ed66a849430d6ad1c46d20828eb988283da0c4a) - Added a disableZoom prop to SidebarGallery to disable all zoom functionality ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
 ## 6.2.0-canary.64
 
 ### Patch Changes
