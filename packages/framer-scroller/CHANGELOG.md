@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.64
+
+### Patch Changes
+
+- [#1998](https://github.com/graphcommerce-org/graphcommerce/pull/1998) [`a788baaeb`](https://github.com/graphcommerce-org/graphcommerce/commit/a788baaeb9646c5a30b55998697d38a6093b6c44) - Added option to useScrollTo to allow/disallow stopping the scroll animation on user scroll interaction ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 6.2.0-canary.63
 
 ## 6.2.0-canary.62
