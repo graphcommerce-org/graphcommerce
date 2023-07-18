@@ -32,7 +32,7 @@ export type ScrollerContext = {
   /** @private */
   enableSnap: () => void
   /** @private */
-  disableSnap: () => void
+  disableSnap: (stopAnimationOnScroll?: boolean) => void
   /** @private */
   register: (controls: PlaybackControls) => void
   /** @private */
