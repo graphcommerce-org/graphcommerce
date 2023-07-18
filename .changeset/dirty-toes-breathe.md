@@ -2,4 +2,4 @@
 '@graphcommerce/framer-scroller': patch
 ---
 
-Added event.preventDefault() to scroller
+Fixed scrollers not working properly in Firefox due to the `draggable` html property being handled differently. Added event.preventDefault() onMouseDown to useScroller to prevent drag and drop functionality inside scrollers.
