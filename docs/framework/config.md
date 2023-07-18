@@ -360,25 +360,13 @@ Specify a custom locale for to load translations.
 
 Options to configure which values will be replaced when a variant is selected on the product page.
 
-#### `description: Boolean`
+#### `content: Boolean`
 
-Use the description of the configured variant
+Use the name, description, short descriptio and meta data of the configured variant
 
 #### `gallery: Boolean`
 
 Use the gallery of the configured variant
-
-#### `meta: Boolean`
-
-Use the meta of the configured variant
-
-#### `name: Boolean`
-
-Use the name of the configured variant
-
-#### `shortDescription: Boolean`
-
-Use the shortDescription of the configured variant
 
 #### `url: Boolean`
 

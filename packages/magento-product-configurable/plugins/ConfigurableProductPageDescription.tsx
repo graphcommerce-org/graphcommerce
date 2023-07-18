@@ -5,7 +5,7 @@ import { useConfigurableOptionsSelection } from '../hooks'
 
 export const component = 'ProductPageDescription'
 export const exported = '@graphcommerce/magento-product'
-export const ifConfig: IfConfig = 'configurableVariantValues.description'
+export const ifConfig: IfConfig = 'configurableVariantValues.content'
 
 function ConfigurableProductPageDescription(
   props: PluginProps<ProductPageDescriptionProps & Partial<ConfigurableOptionsFragment>>,

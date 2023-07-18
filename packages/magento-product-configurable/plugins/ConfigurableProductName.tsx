@@ -4,7 +4,7 @@ import { useConfigurableOptionsSelection } from '../hooks'
 
 export const component = 'ProductName'
 export const exported = '@graphcommerce/magento-product'
-export const ifConfig: IfConfig = 'configurableVariantValues.name'
+export const ifConfig: IfConfig = 'configurableVariantValues.content'
 
 function ConfigurableProductName(props: PluginProps<React.ComponentProps<typeof ProductName>>) {
   const { Prev, product, ...rest } = props

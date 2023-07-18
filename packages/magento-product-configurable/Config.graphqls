@@ -15,24 +15,9 @@ input MagentoConfigurableVariantValues {
   gallery: Boolean
 
   """
-  Use the name of the configured variant
+  Use the name, description, short description and meta data from the configured variant
   """
-  name: Boolean
-
-  """
-  Use the description of the configured variant
-  """
-  description: Boolean
-
-  """
-  Use the meta of the configured variant
-  """
-  meta: Boolean
-
-  """
-  Use the shortDescription of the configured variant
-  """
-  shortDescription: Boolean
+  content: Boolean
 }
 
 extend input GraphCommerceConfig {
@@ -42,12 +27,9 @@ extend input GraphCommerceConfig {
   Enabling options here will allow switching of those variants.
   """
   configurableVariantValues: MagentoConfigurableVariantValues = {
-    description: true
-    gallery: true
-    meta: true
-    name: true
-    shortDescription: true
     url: true
+    gallery: true
+    content: true
   }
 
   """

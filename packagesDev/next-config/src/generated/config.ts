@@ -349,16 +349,10 @@ export type GraphCommerceStorefrontConfig = {
 
 /** Options to configure which values will be replaced when a variant is selected on the product page. */
 export type MagentoConfigurableVariantValues = {
-  /** Use the description of the configured variant */
-  description?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Use the name, description, short descriptio and meta data of the configured variant */
+  content?: InputMaybe<Scalars['Boolean']['input']>;
   /** Use the gallery of the configured variant */
   gallery?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Use the meta of the configured variant */
-  meta?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Use the name of the configured variant */
-  name?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Use the shortDescription of the configured variant */
-  shortDescription?: InputMaybe<Scalars['Boolean']['input']>;
   /**
    * When a variant is selected the URL of the product will be changed in the address bar.
    *
@@ -444,11 +438,8 @@ export function GraphCommerceStorefrontConfigSchema(): z.ZodObject<Properties<Gr
 
 export function MagentoConfigurableVariantValuesSchema(): z.ZodObject<Properties<MagentoConfigurableVariantValues>> {
   return z.object({
-    description: z.boolean().nullish(),
+    content: z.boolean().nullish(),
     gallery: z.boolean().nullish(),
-    meta: z.boolean().nullish(),
-    name: z.boolean().nullish(),
-    shortDescription: z.boolean().nullish(),
     url: z.boolean().nullish()
   })
 }

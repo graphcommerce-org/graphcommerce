@@ -5,7 +5,7 @@ import { useConfigurableOptionsSelection } from '../hooks'
 
 export const component = 'ProductShortDescription'
 export const exported = '@graphcommerce/magento-product'
-export const ifConfig: IfConfig = 'configurableVariantValues.shortDescription'
+export const ifConfig: IfConfig = 'configurableVariantValues.content'
 
 function ConfigurableProductShortDescription(
   props: PluginProps<ProductShortDescriptionProps & Partial<ConfigurableOptionsFragment>>,

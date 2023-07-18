@@ -4,7 +4,7 @@ import { useConfigurableOptionsSelection } from '../hooks'
 
 export const component = 'ProductPageMeta'
 export const exported = '@graphcommerce/magento-product'
-export const ifConfig: IfConfig = 'configurableVariantValues.meta'
+export const ifConfig: IfConfig = 'configurableVariantValues.content'
 
 type ConfigurableProductShortDescriptionProps = ProductPageProps
 
