@@ -16,7 +16,7 @@
     "@graphcommerce/next-ui": "6.2.0-canary.66",
     "@mui/material": "5.13.4",
     "framer-motion": "10.12.16",
-    "next": "13.4.5",
+    "next": "13.4.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
