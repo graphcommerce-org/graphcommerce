@@ -1,6 +1,6 @@
-import { ProductListLink } from '@graphcommerce/magento-product'
+import { productListLink } from '@graphcommerce/magento-product'
 import { breakpointVal, Row, extendableComponent } from '@graphcommerce/next-ui'
-import { Box, SxProps, Theme, Typography } from '@mui/material'
+import { Box, Link, SxProps, Theme, Typography } from '@mui/material'
 import React from 'react'
 import { CategoryHeroNavFragment } from './CategoryHeroNav.gql'
 
@@ -88,18 +88,19 @@ export function CategoryHeroNav({ children, title, asset, sx = [] }: CategoryHer
           if (!category?.url_path || !category.uid || !category.name || !category.include_in_menu)
             return null
           return (
-            <ProductListLink
+            <Link
               underline='none'
               color='textPrimary'
-              url={category.url_path}
-              filters={{ category_uid: { eq: category.uid } }}
-              sort={{}}
+              href={productListLink({
+                url: category.url_path,
+                filters: { category_uid: { eq: category.uid } },
+              })}
               key={category.uid}
             >
               <Typography variant='h4' component='span'>
                 {category.name}
               </Typography>
-            </ProductListLink>
+            </Link>
           )
         })}
       </Box>
