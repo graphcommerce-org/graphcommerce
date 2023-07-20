@@ -27,14 +27,8 @@ exports.demoConfig = {
     compare: true,
     configurableVariantForSimple: true,
     configurableVariantValues: {
-        description: true,
-        gallery: true,
-        meta: true,
-        name: true,
-        shortDescription: true,
         url: true,
-    },
-    configurableReviewVariantValues: {
-        reviews: true,
+        gallery: true,
+        content: true,
     },
 };

@@ -10,11 +10,6 @@ input MagentoConfigurableVariantValues {
   url: Boolean
 
   """
-  Use the gallery of the configured variant
-  """
-  gallery: Boolean
-
-  """
   Use the name, description, short description and meta data from the configured variant
   """
   content: Boolean
@@ -26,11 +21,7 @@ extend input GraphCommerceConfig {
 
   Enabling options here will allow switching of those variants.
   """
-  configurableVariantValues: MagentoConfigurableVariantValues = {
-    url: true
-    gallery: true
-    content: true
-  }
+  configurableVariantValues: MagentoConfigurableVariantValues = { url: true, content: true }
 
   """
   If a simple product is part of a Configurable product page, should the simple product be

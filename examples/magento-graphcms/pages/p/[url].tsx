@@ -26,22 +26,14 @@ import {
 } from '@graphcommerce/magento-product'
 import { BundleProductOptions } from '@graphcommerce/magento-product-bundle'
 import {
-  ConfigurableProductJsonLd,
   ConfigurableProductOptions,
-  ConfigurableProductUrls,
   defaultConfigurableOptionsSelection,
 } from '@graphcommerce/magento-product-configurable'
 import { DownloadableProductOptions } from '@graphcommerce/magento-product-downloadable'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
 import { redirectOrNotFound, Money, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
-import {
-  GetStaticProps,
-  JsonLd,
-  LayoutHeader,
-  LayoutTitle,
-  isTypename,
-} from '@graphcommerce/next-ui'
+import { GetStaticProps, LayoutHeader, LayoutTitle, isTypename } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Divider, Link, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
@@ -96,10 +88,6 @@ function ProductPage(props: Props) {
         />
 
         <ProductPageMeta product={product} />
-
-        {isTypename(product, ['ConfigurableProduct']) && (
-          <ConfigurableProductUrls product={product} />
-        )}
 
         <ProductPageGallery
           product={product}

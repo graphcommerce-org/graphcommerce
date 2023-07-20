@@ -364,10 +364,6 @@ Options to configure which values will be replaced when a variant is selected on
 
 Use the name, description, short description and meta data from the configured variant
 
-#### `gallery: Boolean`
-
-Use the gallery of the configured variant
-
 #### `url: Boolean`
 
 When a variant is selected the URL of the product will be changed in the address bar.

@@ -101,7 +101,6 @@ function GraphCommerceStorefrontConfigSchema() {
 function MagentoConfigurableVariantValuesSchema() {
     return _zod.z.object({
         content: _zod.z.boolean().nullish(),
-        gallery: _zod.z.boolean().nullish(),
         url: _zod.z.boolean().nullish()
     });
 }

@@ -351,8 +351,6 @@ export type GraphCommerceStorefrontConfig = {
 export type MagentoConfigurableVariantValues = {
   /** Use the name, description, short description and meta data from the configured variant */
   content?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Use the gallery of the configured variant */
-  gallery?: InputMaybe<Scalars['Boolean']['input']>;
   /**
    * When a variant is selected the URL of the product will be changed in the address bar.
    *
@@ -439,7 +437,6 @@ export function GraphCommerceStorefrontConfigSchema(): z.ZodObject<Properties<Gr
 export function MagentoConfigurableVariantValuesSchema(): z.ZodObject<Properties<MagentoConfigurableVariantValues>> {
   return z.object({
     content: z.boolean().nullish(),
-    gallery: z.boolean().nullish(),
     url: z.boolean().nullish()
   })
 }

@@ -1,10 +1,9 @@
 import type { AddToCartItemSelector, ProductPageGallery } from '@graphcommerce/magento-product'
 import type { IfConfig, ReactPlugin } from '@graphcommerce/next-config'
-import { useConfigurableOptionsSelection } from '../hooks'
+import { useConfigurableOptionsSelection } from '../../hooks'
 
 export const component = 'ProductPageGallery'
 export const exported = '@graphcommerce/magento-product'
-export const ifConfig: IfConfig = 'configurableVariantValues.gallery'
 
 type PluginType = ReactPlugin<typeof ProductPageGallery, AddToCartItemSelector>
 

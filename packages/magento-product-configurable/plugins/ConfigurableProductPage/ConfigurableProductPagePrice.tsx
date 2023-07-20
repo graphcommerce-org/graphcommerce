@@ -1,6 +1,6 @@
 import { AddToCartItemSelector, type ProductPagePrice } from '@graphcommerce/magento-product'
 import type { ReactPlugin } from '@graphcommerce/next-config'
-import { useConfigurableSelectedVariant } from '../hooks'
+import { useConfigurableSelectedVariant } from '../../hooks'
 
 export const component = 'ProductPagePrice'
 export const exported = '@graphcommerce/magento-product'

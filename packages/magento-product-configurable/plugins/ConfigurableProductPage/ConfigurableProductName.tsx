@@ -1,6 +1,6 @@
 import type { AddToCartItemSelector, ProductName } from '@graphcommerce/magento-product'
 import type { IfConfig, ReactPlugin } from '@graphcommerce/next-config'
-import { useConfigurableSelectedVariant } from '../hooks'
+import { useConfigurableSelectedVariant } from '../../hooks'
 
 export const component = 'ProductName'
 export const exported = '@graphcommerce/magento-product'
