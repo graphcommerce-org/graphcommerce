@@ -10,16 +10,14 @@ export type ProductPageGalleryRenderers = TypeRenderer<
   NonNullable<NonNullable<ProductPageGalleryFragment['media_gallery']>[0]>
 >
 
-export type ProductPageGalleryProps = ProductPageGalleryFragment &
-  Omit<SidebarGalleryProps, 'sidebar' | 'images'> & { children?: React.ReactNode }
+export type ProductPageGalleryProps = Omit<SidebarGalleryProps, 'sidebar' | 'images'> & {
+  product: ProductPageGalleryFragment
+  children?: React.ReactNode
+}
 
 export function ProductPageGallery(props: ProductPageGalleryProps) {
-  const {
-    media_gallery,
-    children,
-    aspectRatio: [width, height] = [1532, 1678],
-    ...sidebarProps
-  } = props
+  const { product, children, aspectRatio: [width, height] = [1532, 1678], ...sidebarProps } = props
+  const { media_gallery } = product
 
   return (
     <SidebarGallery

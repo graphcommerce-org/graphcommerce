@@ -1,6 +1,7 @@
-import type { ProductShortDescriptionProps } from '@graphcommerce/magento-product'
+import { mergeDeep } from '@graphcommerce/graphql'
+import type { ProductShortDescription } from '@graphcommerce/magento-product'
 import type { IfConfig, PluginProps } from '@graphcommerce/next-config'
-import type { ConfigurableOptionsFragment } from '../graphql/ConfigurableOptions.gql'
+import React from 'react'
 import { useConfigurableOptionsSelection } from '../hooks'
 
 export const component = 'ProductShortDescription'
@@ -8,19 +9,12 @@ export const exported = '@graphcommerce/magento-product'
 export const ifConfig: IfConfig = 'configurableVariantValues.content'
 
 function ConfigurableProductShortDescription(
-  props: PluginProps<ProductShortDescriptionProps & Partial<ConfigurableOptionsFragment>>,
+  props: PluginProps<React.ComponentProps<typeof ProductShortDescription>>,
 ) {
-  const { Prev, url_key, short_description, ...rest } = props
-  const variant = useConfigurableOptionsSelection({ url_key, index: 0 }).configured
+  const { Prev, product, ...rest } = props
+  const variant = useConfigurableOptionsSelection({ url_key: product.url_key, index: 0 }).configured
     ?.configurable_product_options_selection?.variant
 
-  return (
-    <Prev
-      short_description={
-        variant?.short_description?.html.length ? variant?.short_description : short_description
-      }
-      {...rest}
-    />
-  )
+  return <Prev product={mergeDeep(product, variant)} {...rest} />
 }
 export const Plugin = ConfigurableProductShortDescription

@@ -96,13 +96,14 @@ function ProductPage(props: Props) {
           />
         )}
 
-        <ProductPageMeta {...product} />
+        <ProductPageMeta product={product} />
+
         {isTypename(product, ['ConfigurableProduct']) && (
           <ConfigurableProductUrls product={product} />
         )}
+
         <ProductPageGallery
-          url_key={product.url_key}
-          media_gallery={product.media_gallery}
+          product={product}
           sx={(theme) => ({
             '& .SidebarGallery-sidebar': { display: 'grid', rowGap: theme.spacings.sm },
           })}
@@ -119,7 +120,10 @@ function ProductPage(props: Props) {
             <Typography variant='h3' component='div' gutterBottom>
               <ProductName product={product} />
             </Typography>
-            <ProductShortDescription sx={(theme) => ({ mb: theme.spacings.xs })} {...product} />
+            <ProductShortDescription
+              sx={(theme) => ({ mb: theme.spacings.xs })}
+              product={product}
+            />
             <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
           </div>
 
