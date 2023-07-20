@@ -1,10 +1,10 @@
 import { useQuery } from '@graphcommerce/graphql'
-import { useFormAddProductsToCart } from '@graphcommerce/magento-product'
+import { AddToCartItemSelector, useFormAddProductsToCart } from '@graphcommerce/magento-product'
 import { findByTypename, nonNullable } from '@graphcommerce/next-ui'
 import { useWatch } from '@graphcommerce/react-hook-form'
 import { GetConfigurableOptionsSelectionDocument } from '../graphql/GetConfigurableOptionsSelection.gql'
 
-export type UseConfigurableOptionsSelection = { url_key?: string | null; index?: number }
+export type UseConfigurableOptionsSelection = { url_key?: string | null } & AddToCartItemSelector
 
 export function useConfigurableOptionsSelection(props: UseConfigurableOptionsSelection) {
   const { url_key, index = 0 } = props

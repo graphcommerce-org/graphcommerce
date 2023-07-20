@@ -1,19 +1,22 @@
-import { ProductLinkProps, productLink } from '@graphcommerce/magento-product/hooks/useProductLink'
+import {
+  AddToCartItemSelector,
+  ProductLinkProps,
+  productLink,
+} from '@graphcommerce/magento-product'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { ConfigurableOptionsFragment } from '../../graphql/ConfigurableOptions.gql'
 import { useConfigurableOptionsSelection } from '../../hooks/useConfigurableOptionsSelection'
 
 type ConfigurableProductUrlsProps = {
-  index?: number
   product: Partial<ConfigurableOptionsFragment>
-}
+} & AddToCartItemSelector
 
 export function ConfigurableProductUrls(props: ConfigurableProductUrlsProps) {
-  const { product } = props
+  const { product, index } = props
   const { replace, asPath } = useRouter()
-  const variant = useConfigurableOptionsSelection({ url_key: product?.url_key, index: 0 })
-    .configured?.configurable_product_options_selection?.variant
+  const variant = useConfigurableOptionsSelection({ url_key: product?.url_key, index }).configured
+    ?.configurable_product_options_selection?.variant
 
   const link = variant?.url_key
     ? productLink(variant)

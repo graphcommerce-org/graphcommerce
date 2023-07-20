@@ -70,13 +70,13 @@ function ProductGrouped(props: Props) {
         }}
       />
 
-      <ProductPageMeta {...product} />
-      <ProductPageGallery {...product}>
+      <ProductPageMeta product={product} />
+      <ProductPageGallery product={product}>
         <Typography variant='h3' component='div'>
           {product.name}
         </Typography>
 
-        <ProductShortDescription short_description={product?.short_description} />
+        <ProductShortDescription product={product} />
 
         <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
         <ul>

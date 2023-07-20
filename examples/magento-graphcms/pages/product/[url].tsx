@@ -63,8 +63,8 @@ function ProductSimple(props: Props) {
         }}
       />
 
-      <ProductPageMeta {...product} />
-      <ProductPageGallery {...product}>
+      <ProductPageMeta product={product} />
+      <ProductPageGallery product={product}>
         <Typography variant='h2' component='div'>
           {product.name}
         </Typography>

@@ -69,8 +69,9 @@ function ProductBundle(props: Props) {
           ...jsonLdProductReview(product),
         }}
       />
-      <ProductPageMeta {...product} />
-      <ProductPageGallery {...product}>
+
+      <ProductPageMeta product={product} />
+      <ProductPageGallery product={product}>
         <Typography variant='h3' component='div'>
           {product.name}
         </Typography>

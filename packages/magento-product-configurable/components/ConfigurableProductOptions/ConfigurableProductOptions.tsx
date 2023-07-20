@@ -1,5 +1,6 @@
 import {
   AddProductsToCartMutationVariables,
+  AddToCartItemSelector,
   useFormAddProductsToCart,
 } from '@graphcommerce/magento-product'
 import { SectionHeader, filterNonNullableKeys, ActionCardListProps } from '@graphcommerce/next-ui'
@@ -16,12 +17,11 @@ import { useConfigurableOptionsSelection } from '../../hooks'
 import { ConfigurableOptionValue } from '../ConfigurableOptionValue/ConfigurableOptionValue'
 import { ConfigurableOptionValueFragment } from '../ConfigurableOptionValue/ConfigurableOptionValue.gql'
 
-export type ConfigurableProductOptionsProps = {
+export type ConfigurableProductOptionsProps = AddToCartItemSelector & {
   optionEndLabels?: Record<string, React.ReactNode>
   sx?: SxProps<Theme>
   render?: typeof ConfigurableOptionValue
   product: ConfigurableOptionsFragment
-  index?: number
 } & Pick<ActionCardListProps, 'color' | 'variant' | 'size' | 'layout' | 'collapse'>
 
 export function ConfigurableProductOptions(props: ConfigurableProductOptionsProps) {

@@ -1,5 +1,6 @@
 import { mergeDeep } from '@graphcommerce/graphql'
 import {
+  AddToCartItemSelector,
   ProductPageGalleryProps,
   jsonLdProduct,
   jsonLdProductOffer,
@@ -9,10 +10,10 @@ import { JsonLd } from '@graphcommerce/next-ui'
 import { ConfigurableOptionsFragment } from '../../graphql/ConfigurableOptions.gql'
 import { useConfigurableOptionsSelection } from '../../hooks/useConfigurableOptionsSelection'
 
-type ConfigurableProductJsonLdProps = ProductPageGalleryProps & {
-  index?: number
-  product?: ConfigurableOptionsFragment
-}
+type ConfigurableProductJsonLdProps = ProductPageGalleryProps &
+  AddToCartItemSelector & {
+    product?: ConfigurableOptionsFragment
+  }
 
 export function ConfigurableProductJsonLd(props: ConfigurableProductJsonLdProps) {
   const { product, index = 0 } = props
