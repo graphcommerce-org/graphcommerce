@@ -1,24 +1,32 @@
-import { RenderType, TypeRenderer } from '@graphcommerce/next-ui'
-import { Box } from '@mui/material'
+import { ActionCardLayout, ActionCardLayoutProps, nonNullable } from '@graphcommerce/next-ui'
 import { CartItemsFragment } from '../Api/CartItems.gql'
+import { CartItemActionCard, CartItemActionCardProps } from '../CartItem/CartItemActionCard'
 
-export type CartItemRenderer = TypeRenderer<NonNullable<NonNullable<CartItemsFragment['items']>[0]>>
-
-export type CartProps = { renderer: CartItemRenderer } & CartItemsFragment
+export type CartProps = ActionCardLayoutProps & {
+  cart?: CartItemsFragment | null
+  itemProps?: Omit<
+    CartItemActionCardProps,
+    'cartItem' | 'layout' | 'onClick' | 'disabled' | 'selected' | 'reset' | 'color'
+  >
+}
 
 export function CartItems(props: CartProps) {
-  const { renderer, items, id } = props
+  const { cart, children, layout, itemProps, ...cardLayout } = props
+
+  if (!cart?.items?.length) return null
 
   return (
-    <>
-      {items?.map((item) => {
-        if (!item?.uid || !id) return null
-        return (
-          <Box key={item.uid}>
-            <RenderType renderer={renderer} {...item} />
-          </Box>
-        )
-      })}
-    </>
+    <ActionCardLayout layout={layout} {...cardLayout}>
+      {cart.items?.filter(nonNullable).map((item) => (
+        <CartItemActionCard
+          key={item.uid}
+          cartItem={item}
+          layout={layout}
+          size='large'
+          {...itemProps}
+        />
+      ))}
+      {children}
+    </ActionCardLayout>
   )
 }
