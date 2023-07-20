@@ -25,3 +25,8 @@ export function useConfigurableOptionsSelection(props: UseConfigurableOptionsSel
   )
   return { ...cpc, configured }
 }
+
+export function useConfigurableSelectedVariant(props: UseConfigurableOptionsSelection) {
+  return useConfigurableOptionsSelection(props).configured?.configurable_product_options_selection
+    ?.variant
+}

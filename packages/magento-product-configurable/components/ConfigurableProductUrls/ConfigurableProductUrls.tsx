@@ -6,7 +6,7 @@ import {
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { ConfigurableOptionsFragment } from '../../graphql/ConfigurableOptions.gql'
-import { useConfigurableOptionsSelection } from '../../hooks/useConfigurableOptionsSelection'
+import { useConfigurableSelectedVariant } from '../../hooks/useConfigurableOptionsSelection'
 
 type ConfigurableProductUrlsProps = {
   product: Partial<ConfigurableOptionsFragment>
@@ -15,8 +15,7 @@ type ConfigurableProductUrlsProps = {
 export function ConfigurableProductUrls(props: ConfigurableProductUrlsProps) {
   const { product, index } = props
   const { replace, asPath } = useRouter()
-  const variant = useConfigurableOptionsSelection({ url_key: product?.url_key, index }).configured
-    ?.configurable_product_options_selection?.variant
+  const variant = useConfigurableSelectedVariant({ url_key: product?.url_key, index })
 
   const link = variant?.url_key
     ? productLink(variant)

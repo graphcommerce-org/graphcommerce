@@ -1,5 +1,5 @@
 export * from './AddProductsToCart'
-export * from './JsonLdProduct/jsonLdProduct'
+export * from './JsonLdProduct'
 export * from './ProductAddToCart'
 export * from './ProductCustomizable'
 export * from './ProductFiltersPro'

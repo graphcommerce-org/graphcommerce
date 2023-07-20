@@ -17,6 +17,7 @@ import {
   productPageCategory,
   ProductPageDescription,
   ProductPageGallery,
+  ProductPageJsonLd,
   ProductPageMeta,
   ProductPagePrice,
   ProductPagePriceTiers,
@@ -83,18 +84,16 @@ function ProductPage(props: Props) {
             <ProductName product={product} />
           </LayoutTitle>
         </LayoutHeader>
-        {isTypename(product, ['ConfigurableProduct']) ? (
-          <ConfigurableProductJsonLd product={product} />
-        ) : (
-          <JsonLd
-            item={{
-              '@context': 'https://schema.org',
-              ...jsonLdProduct(product),
-              ...jsonLdProductOffer(product),
-              ...jsonLdProductReview(product),
-            }}
-          />
-        )}
+
+        <ProductPageJsonLd
+          product={product}
+          render={(p) => ({
+            '@context': 'https://schema.org',
+            ...jsonLdProduct(p),
+            ...jsonLdProductOffer(p),
+            ...jsonLdProductReview(p),
+          })}
+        />
 
         <ProductPageMeta product={product} />
 

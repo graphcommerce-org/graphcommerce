@@ -1,4 +1,4 @@
-fragment JsonLdProduct on ProductInterface {
+fragment JsonLdProduct on ProductInterface @inject(into: ["ProductPageItem"]) @injectable {
   uid
   name
   sku

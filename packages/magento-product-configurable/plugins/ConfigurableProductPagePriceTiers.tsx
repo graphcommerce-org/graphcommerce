@@ -1,6 +1,6 @@
 import type { AddToCartItemSelector, ProductPagePriceTiers } from '@graphcommerce/magento-product'
 import type { ReactPlugin } from '@graphcommerce/next-config'
-import { useConfigurableOptionsSelection } from '../hooks'
+import { useConfigurableSelectedVariant } from '../hooks'
 
 export const component = 'ProductPagePriceTiers'
 export const exported = '@graphcommerce/magento-product'
@@ -9,8 +9,7 @@ type PluginType = ReactPlugin<typeof ProductPagePriceTiers, AddToCartItemSelecto
 
 const ConfigurableProductPagePriceTiers: PluginType = (props) => {
   const { Prev, product, index, ...rest } = props
-  const variant = useConfigurableOptionsSelection({ url_key: product.url_key, index }).configured
-    ?.configurable_product_options_selection?.variant
+  const variant = useConfigurableSelectedVariant({ url_key: product.url_key, index })
 
   if (!variant) return null
 
