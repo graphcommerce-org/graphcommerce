@@ -15,7 +15,6 @@ import {
   useMotionValue,
   useTransform,
 } from 'framer-motion'
-import framesync from 'framesync'
 import React, { useCallback, useEffect, useRef } from 'react'
 import { LayoutProvider } from '../../Layout/components/LayoutProvider'
 import { ExtendableComponent, extendableComponent } from '../../Styles'
@@ -196,7 +195,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
         scroller.scrollLeft = scroll.x.getPrevious()
         scroller.scrollTop = scroll.y.getPrevious()
         // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        scrollTo(openClosePositions().open)
+        scrollTo(openClosePositions().open, { stopAnimationOnScroll: false })
       }
     }
 
@@ -281,7 +280,9 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
 
     if (position.get() !== OverlayPosition.OPENED && !scroll.animating.get()) {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      scrollTo(openClosePositions().open).then(() => position.set(OverlayPosition.OPENED))
+      scrollTo(openClosePositions().open, { stopAnimationOnScroll: false }).then(() =>
+        position.set(OverlayPosition.OPENED),
+      )
     }
   }, [isPresent, openClosePositions, position, scroll.animating, scrollTo, scrollerRef, variant])
 
@@ -291,7 +292,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
     if (isPresent || !scroller) return
 
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    scrollTo(openClosePositions().closed).then(() => {
+    scrollTo(openClosePositions().closed, { stopAnimationOnScroll: false }).then(() => {
       safeToRemove?.()
       document.body.style.overflow = ''
     })

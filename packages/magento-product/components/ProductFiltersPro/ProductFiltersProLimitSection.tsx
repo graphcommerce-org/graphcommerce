@@ -37,6 +37,7 @@ export function ProductFiltersProLimitSection(props: ProductFiltersProLimitSecti
 
   return (
     <ActionCardAccordion
+      defaultExpanded={!!activePageSize}
       summary={<Trans id='Per page' />}
       details={
         <ActionCardListForm

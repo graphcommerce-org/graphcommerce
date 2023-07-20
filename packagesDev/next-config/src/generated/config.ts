@@ -121,6 +121,19 @@ export type GraphCommerceConfig = {
    */
   compareVariant?: InputMaybe<CompareVariant>;
   /**
+   * If a simple product is part of a Configurable product page, should the simple product be
+   * rendered as a configured option of the configurable product page?
+   *
+   * How does this work:
+   *
+   * When the `products(filters: { url_key: { eq: 'simple-product' } }) { ... }` query is ran,
+   * Magento also returns the Simple product and the Configurable product the simple belongs to.
+   *
+   * If that is the case we render the configurable product page instead of the simple product page but
+   * the options to select the simple product are pre-selected.
+   */
+  configurableVariantForSimple?: InputMaybe<Scalars['Boolean']['input']>;
+  /**
    * Due to a limitation in the GraphQL API of Magento 2, we need to know if the
    * customer requires email confirmation.
    *
@@ -353,6 +366,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     cartDisplayPricesInclTax: z.boolean().nullish(),
     compare: z.boolean().nullish(),
     compareVariant: CompareVariantSchema.nullish(),
+    configurableVariantForSimple: z.boolean().nullish(),
     customerRequireEmailConfirmation: z.boolean().nullish(),
     debug: GraphCommerceDebugConfigSchema().nullish(),
     demoMode: z.boolean().nullish(),

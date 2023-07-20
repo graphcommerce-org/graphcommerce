@@ -1,5 +1,29 @@
 # Change Log
 
+## 6.2.0-canary.66
+
+### Patch Changes
+
+- [#1993](https://github.com/graphcommerce-org/graphcommerce/pull/1993) [`f9bd75108`](https://github.com/graphcommerce-org/graphcommerce/commit/f9bd75108ecef583ecd32e701c10d70537cb8a89) - Fixed scrollers not working properly in Firefox due to the `draggable` html property being handled differently. Added event.preventDefault() onMouseDown to useScroller to prevent drag and drop functionality inside scrollers. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 6.2.0-canary.65
+
+### Minor Changes
+
+- [#1996](https://github.com/graphcommerce-org/graphcommerce/pull/1996) [`3ed66a849`](https://github.com/graphcommerce-org/graphcommerce/commit/3ed66a849430d6ad1c46d20828eb988283da0c4a) - Added a disableZoom prop to SidebarGallery to disable all zoom functionality ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 6.2.0-canary.64
+
+### Patch Changes
+
+- [#1998](https://github.com/graphcommerce-org/graphcommerce/pull/1998) [`a788baaeb`](https://github.com/graphcommerce-org/graphcommerce/commit/a788baaeb9646c5a30b55998697d38a6093b6c44) - Added option to useScrollTo to allow/disallow stopping the scroll animation on user scroll interaction ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 6.2.0-canary.63
+
+## 6.2.0-canary.62
+
+## 6.2.0-canary.61
+
 ## 6.2.0-canary.60
 
 ## 6.2.0-canary.59

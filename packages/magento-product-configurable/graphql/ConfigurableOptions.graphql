@@ -22,4 +22,13 @@ fragment ConfigurableOptions on ConfigurableProduct {
       ...ConfigurableOptionValue
     }
   }
+  variants {
+    attributes {
+      code
+      uid
+    }
+    product {
+      uid
+    }
+  }
 }

@@ -25,4 +25,5 @@ exports.demoConfig = {
     demoMode: true,
     limitSsg: true,
     compare: true,
+    configurableVariantForSimple: true,
 };

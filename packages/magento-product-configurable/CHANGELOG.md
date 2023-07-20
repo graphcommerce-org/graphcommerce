@@ -1,5 +1,25 @@
 # Change Log
 
+## 6.2.0-canary.66
+
+## 6.2.0-canary.65
+
+## 6.2.0-canary.64
+
+## 6.2.0-canary.63
+
+### Patch Changes
+
+- [#1991](https://github.com/graphcommerce-org/graphcommerce/pull/1991) [`ac6678dc5`](https://github.com/graphcommerce-org/graphcommerce/commit/ac6678dc5ed786df18344866bf8a8cb1e34c5457) - Make sure the products and relatedUpsells queries are merged correctly ([@JoshuaS98](https://github.com/JoshuaS98))
+
+- [#1991](https://github.com/graphcommerce-org/graphcommerce/pull/1991) [`356469bdd`](https://github.com/graphcommerce-org/graphcommerce/commit/356469bdd621572bef1ee216983d12f3c2c4bb56) - Remove the requirement to query attributes on simple for simple products when `configurableVariantForSimple` is enabled and use the `variants` of the configurable product. ([@JoshuaS98](https://github.com/JoshuaS98))
+
+- [#1991](https://github.com/graphcommerce-org/graphcommerce/pull/1991) [`ebce5dae9`](https://github.com/graphcommerce-org/graphcommerce/commit/ebce5dae99fcc28d0dc63abe17e652af528e29a4) - Added an opt-in configuration `configurableVariantForSimple` that allows rendering of a configurable product page on a simple product URL with the options pre-selected. ([@JoshuaS98](https://github.com/JoshuaS98))
+
+## 6.2.0-canary.62
+
+## 6.2.0-canary.61
+
 ## 6.2.0-canary.60
 
 ## 6.2.0-canary.59

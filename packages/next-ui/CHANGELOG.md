@@ -1,5 +1,21 @@
 # Change Log
 
+## 6.2.0-canary.66
+
+## 6.2.0-canary.65
+
+## 6.2.0-canary.64
+
+### Patch Changes
+
+- [#1998](https://github.com/graphcommerce-org/graphcommerce/pull/1998) [`fdbdcb76f`](https://github.com/graphcommerce-org/graphcommerce/commit/fdbdcb76f918cf74b22253bd641a04c490ceb140) - Fixed users accidentally being able to scroll overlays out of view during open animation ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 6.2.0-canary.63
+
+## 6.2.0-canary.62
+
+## 6.2.0-canary.61
+
 ## 6.2.0-canary.60
 
 ## 6.2.0-canary.59

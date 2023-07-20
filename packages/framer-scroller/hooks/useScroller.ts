@@ -7,10 +7,9 @@ import {
   MotionValue,
   PanHandlers,
   PanInfo,
-  useDomEvent,
   useTransform,
 } from 'framer-motion'
-import React, { ReactHTML, useEffect, useState } from 'react'
+import React, { MouseEventHandler, ReactHTML, useEffect, useState } from 'react'
 import { isHTMLMousePointerEvent } from '../utils/isHTMLMousePointerEvent'
 import { scrollSnapTypeDirection, SnapTypeDirection } from '../utils/scrollSnapTypeDirection'
 import { useScrollerContext } from './useScrollerContext'
@@ -47,7 +46,7 @@ export function useScroller<
 >(props: ScrollableProps<TagName>, forwardedRef: React.ForwardedRef<E>) {
   const { hideScrollbar = false, children, grid = false, ...divProps } = props
 
-  const { scrollSnap, scrollerRef, enableSnap, disableSnap, snap, registerChildren, scroll } =
+  const { scrollSnap, scrollerRef, disableSnap, snap, registerChildren, scroll } =
     useScrollerContext()
 
   useEffect(() => {
@@ -67,19 +66,6 @@ export function useScroller<
   const snapToVelocity = useVelocitySnapTo(scrollerRef)
 
   const [isPanning, setPanning] = useState(false)
-
-  /** If the scroller doesn't have snap enabled and the user is not panning, enable snap */
-  useDomEvent(scrollerRef as React.RefObject<EventTarget>, 'wheel', (e) => {
-    /**
-     * Todo: this is actually incorrect because when enabling the snap points, the area jumps to the
-     * nearest point a snap.
-     *
-     * What we SHOULD do is wait for the scroll position to be set exactly on a snappoint and then
-     * enable it. However, to do that then we need to know the position of all elements at all time,
-     * we now are lazy :)
-     */
-    if (!snap.get() && !isPanning && e instanceof WheelEvent) enableSnap()
-  })
 
   const scrollStart = useConstant(() => ({ x: motionValue(0), y: motionValue(0) }))
   const onPanStart: PanHandlers['onPanStart'] = (event) => {
@@ -101,6 +87,8 @@ export function useScroller<
     disableSnap()
     setPanning(true)
   }
+
+  const onMouseDown: MouseEventHandler<HTMLDivElement> = (event) => event.preventDefault()
 
   const onPan: PanHandlers['onPan'] = (event, info: PanInfo) => {
     if (!scrollerRef.current) return
@@ -289,6 +277,7 @@ export function useScroller<
     onPanStart,
     onPan,
     onPanEnd,
+    onMouseDown,
     children,
     className: `${classes.root} ${props.className}`,
     sx,
