@@ -1,6 +1,7 @@
 fragment CartItem on CartItemInterface @injectable {
   uid
   quantity
+  __typename
   product {
     uid
     ...ProductLink
