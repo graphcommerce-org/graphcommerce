@@ -19,7 +19,9 @@
   "dependencies": {
     "@graphcommerce/graphql": "6.2.0-canary.66",
     "@graphcommerce/magento-cart": "6.2.0-canary.66",
-    "@graphcommerce/magento-product": "6.2.0-canary.66"
+    "@graphcommerce/magento-cart-items": "6.2.0-canary.66",
+    "@graphcommerce/magento-product": "6.2.0-canary.66",
+    "@graphcommerce/next-ui": "6.2.0-canary.66"
   },
   "peerDependencies": {
     "@lingui/react": "^4.2.1",
