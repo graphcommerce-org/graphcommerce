@@ -81,18 +81,10 @@ function CartPage() {
             {hasItems ? (
               <Box sx={(theme) => ({ mt: theme.spacings.lg })}>
                 <CartItems
-                  items={data?.cart?.items}
-                  id={data?.cart?.id ?? ''}
-                  key='cart'
-                  renderer={{
-                    BundleCartItem: CartItem,
-                    ConfigurableCartItem,
-                    DownloadableCartItem: CartItem,
-                    SimpleCartItem: CartItem,
-                    VirtualCartItem: CartItem,
-                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                    // @ts-ignore GiftCardProduct is only available in Commerce
-                    GiftCardCartItem: CartItem,
+                  cart={data.cart}
+                  layout='stack'
+                  itemProps={{
+                    size: 'large',
                   }}
                 />
                 <CouponAccordion key='couponform' />
