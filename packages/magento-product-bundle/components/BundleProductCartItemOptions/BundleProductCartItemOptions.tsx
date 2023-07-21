@@ -8,7 +8,7 @@ import { Money } from '@graphcommerce/magento-store'
 type BundleProductCartItemOptionsProps = BundleCartItemFragment
 
 export function BundleProductCartItemOptions(props: BundleProductCartItemOptionsProps) {
-  const { bundle_options, customizable_options } = props
+  const { bundle_options, customizable_options, prices } = props
 
   return (
     <>
@@ -19,7 +19,7 @@ export function BundleProductCartItemOptions(props: BundleProductCartItemOptions
             sx={(theme) => ({ display: 'flex', gap: theme.spacings.xxs })}
           >
             <Box sx={{ color: 'text.primary' }}>{option_value?.label}</Box>
-            <Money currency='EUR' value={option_value?.price} />
+            <Money currency={prices?.price.currency} value={option_value?.price} />
           </Box>
         )),
       )}
