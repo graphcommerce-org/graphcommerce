@@ -54,7 +54,7 @@ export default function MessageSnackbarImpl(props: MessageSnackbarProps) {
     sticky,
     children,
     onClose,
-    severity = 'info',
+    severity = 'success',
     sx,
     ...snackbarProps
   } = props
