@@ -1,7 +1,6 @@
 import { Trans } from '@lingui/react'
 import { Button } from '@mui/material'
-import { MessageSnackbar } from './MessageSnackbar'
-import { MessageSnackbarProps } from './MessageSnackbarImpl'
+import { MessageSnackbar, MessageSnackbarProps } from './MessageSnackbar'
 
 export type ErrorSnackbarProps = MessageSnackbarProps
 

@@ -1,12 +1,12 @@
 import dynamic from 'next/dynamic'
-import { MessageSnackbarProps as MessageSnackbarImpl } from './MessageSnackbarImpl'
+import { MessageSnackbarImplProps } from './MessageSnackbarImpl'
 
 /** Always load the MessageSnackbar dynamically */
 export const MessageSnackbarImplLoader = dynamic(() => import('./MessageSnackbarImpl'), {
   ssr: false,
 })
 
-export type MessageSnackbarProps = MessageSnackbarImpl & {
+export type MessageSnackbarProps = MessageSnackbarImplProps & {
   id?: string
   storageType?: 'localStorage' | 'sessionStorage'
 }
