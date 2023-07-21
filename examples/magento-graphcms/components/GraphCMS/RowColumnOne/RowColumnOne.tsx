@@ -7,7 +7,7 @@ type VariantRenderer = Record<
   React.VFC<RowColumnOneFragment>
 >
 
-type RowColumnOneProps = RowColumnOneFragment & {
+export type RowColumnOneProps = RowColumnOneFragment & {
   renderer?: Partial<VariantRenderer>
   richTextOne?: Omit<RichTextProps, 'raw'>
 }
