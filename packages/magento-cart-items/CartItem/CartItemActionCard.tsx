@@ -53,7 +53,15 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
           />
         )
       }
-      price={<Money {...prices?.row_total_including_tax} />}
+      price={
+        <Box
+          sx={(theme) => ({
+            transform: 'translateY(-6px)',
+          })}
+        >
+          <Money {...prices?.row_total_including_tax} />
+        </Box>
+      }
       title={
         url_key ? (
           <Link
@@ -84,10 +92,22 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
             display: 'flex',
             alignItems: 'center',
             color: 'text.secondary',
+            mt: 1,
             gap: theme.spacings.xxs,
           })}
         >
-          <UpdateItemQuantity uid={uid} quantity={quantity} sx={{ my: 1 }} />
+          <UpdateItemQuantity
+            uid={uid}
+            quantity={quantity}
+            sx={(theme) => ({
+              [theme.breakpoints.down('sm')]: {
+                width: '70px',
+                '& .MuiInputBase-root': {
+                  fontSize: '12px ',
+                },
+              },
+            })}
+          />
           <Box>
             {' x '}
             <Money {...prices?.price_including_tax} />

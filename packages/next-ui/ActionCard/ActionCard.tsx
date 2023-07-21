@@ -288,7 +288,7 @@ export function ActionCard(props: ActionCardProps) {
           <Box
             sx={{
               display: 'flex',
-              justifyContent: 'center',
+              justifyContent: 'space-between',
               flexDirection: 'column',
               alignItems: 'flex-start',
             }}

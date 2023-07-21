@@ -8,10 +8,10 @@ export type CartProps = ActionCardLayoutProps & {
     CartItemActionCardProps,
     'cartItem' | 'layout' | 'onClick' | 'disabled' | 'selected' | 'reset' | 'color'
   >
-}
+} & { size?: 'small' | 'medium' | 'large' }
 
 export function CartItems(props: CartProps) {
-  const { cart, children, layout, itemProps, ...cardLayout } = props
+  const { cart, children, layout, itemProps, size, ...cardLayout } = props
 
   if (!cart?.items?.length) return null
 
@@ -26,7 +26,7 @@ export function CartItems(props: CartProps) {
           key={item.uid}
           cartItem={item}
           layout={layout}
-          size='large'
+          size={size}
           {...itemProps}
         />
       ))}

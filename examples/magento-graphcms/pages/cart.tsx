@@ -10,8 +10,7 @@ import {
 } from '@graphcommerce/magento-cart'
 import { CartPageDocument } from '@graphcommerce/magento-cart-checkout'
 import { CouponAccordion } from '@graphcommerce/magento-cart-coupon'
-import { CartItem, CartItems } from '@graphcommerce/magento-cart-items'
-import { ConfigurableCartItem } from '@graphcommerce/magento-product-configurable'
+import { CartItems } from '@graphcommerce/magento-cart-items'
 import { Money, PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   GetStaticProps,
@@ -23,7 +22,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Box, CircularProgress, Container } from '@mui/material'
+import { Box, CircularProgress, Container, Theme, useMediaQuery } from '@mui/material'
 import { LayoutOverlay, LayoutOverlayProps } from '../components'
 import { graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
 
@@ -31,6 +30,9 @@ type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
 
 function CartPage() {
+  const isMobile = useMediaQuery<Theme>((theme) => theme.breakpoints.down('sm'), {
+    defaultMatches: false,
+  })
   const cart = useCartQuery(CartPageDocument, {
     errorPolicy: 'all',
     fetchPolicy: 'cache-and-network',
@@ -84,7 +86,7 @@ function CartPage() {
                   cart={data.cart}
                   layout='stack'
                   itemProps={{
-                    size: 'large',
+                    size: isMobile ? 'medium' : 'large',
                   }}
                 />
                 <CouponAccordion key='couponform' />

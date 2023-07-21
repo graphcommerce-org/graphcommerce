@@ -11,7 +11,19 @@ export function ConfigurableCartItemOptions(props: ConfigurableActionCartItemPro
       {configurable_options?.map((option) => (
         <Box key={option?.configurable_product_option_uid}>{option?.value_label}</Box>
       ))}
-      <SelectedCustomizableOptions customizable_options={configurable_customizable} />
+      <Box
+        sx={(theme) => ({
+          display: 'flex',
+          gap: theme.spacings.xxs,
+          [theme.breakpoints.down('sm')]: {
+            '& .MuiTypography-root': {
+              fontSize: '12px',
+            },
+          },
+        })}
+      >
+        <SelectedCustomizableOptions customizable_options={configurable_customizable} />
+      </Box>
     </>
   )
 }

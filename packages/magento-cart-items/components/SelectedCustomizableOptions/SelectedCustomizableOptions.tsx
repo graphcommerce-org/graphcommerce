@@ -1,6 +1,6 @@
 import { Money } from '@graphcommerce/magento-store'
 import { filterNonNullableKeys, nonNullable } from '@graphcommerce/next-ui'
-import { Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import { CartItem_ConfigurableCartItem_Fragment } from '../../Api/CartItem.gql'
 import { ActionCartItemProps } from '../ActionCartItem/ActionCartItem'
 import { SelectedCustomizableOptionFragment } from './SelectedCustomizableOption.gql'
@@ -19,15 +19,30 @@ export function SelectedCustomizableOptions(props: ConfigurableActionCartItemPro
   return (
     <>
       {options.map((option) => (
-        <Typography variant='body2' component='div' key={option.customizable_option_uid}>
+        <Typography
+          variant='body2'
+          component='div'
+          key={option.customizable_option_uid}
+          sx={(theme) => ({ display: 'flex', gap: theme.spacings.xxs })}
+        >
           <Typography variant='subtitle2' component='span' sx={{ color: 'text.primary' }}>
             {option.label}
           </Typography>
           {option.values.filter(nonNullable).map((value) => (
-            <span key={value.customizable_option_value_uid}>
-              {value.price.value > 0 && <Money value={value.price.value} />} {value?.label}
-              {value?.value}
-            </span>
+            <>
+              <span key={value.customizable_option_value_uid}>
+                {value.price.value > 0 && <Money value={value.price.value} />} {value?.label}
+              </span>
+              <Box
+                sx={(theme) => ({
+                  [theme.breakpoints.down('sm')]: {
+                    display: 'none',
+                  },
+                })}
+              >
+                {value.value}
+              </Box>
+            </>
           ))}
         </Typography>
       ))}
