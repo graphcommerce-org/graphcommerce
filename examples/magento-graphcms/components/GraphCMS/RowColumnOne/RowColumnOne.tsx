@@ -1,17 +1,35 @@
-import { RichText, RichTextProps } from '@graphcommerce/graphcms-ui'
-import { ColumnOne } from '@graphcommerce/next-ui'
+import { RichTextProps } from '@graphcommerce/graphcms-ui'
 import type { RowColumnOneFragment } from './RowColumnOne.gql'
+import { Default, Message } from './variant'
 
-export type RowColumnOneProps = RowColumnOneFragment & {
+type VariantRenderer = Record<
+  NonNullable<RowColumnOneFragment['rowColumnOneVariant']>,
+  React.VFC<RowColumnOneFragment>
+>
+
+type RowColumnOneProps = RowColumnOneFragment & {
+  renderer?: Partial<VariantRenderer>
   richTextOne?: Omit<RichTextProps, 'raw'>
 }
 
-export function RowColumnOne(props: RowColumnOneProps) {
-  const { colOne, richTextOne } = props
+const defaultRenderer: Partial<VariantRenderer> = {
+  Default,
+  Message,
+}
 
-  return (
-    <ColumnOne>
-      <RichText {...colOne} {...richTextOne} />
-    </ColumnOne>
-  )
+export function RowColumnOne(props: RowColumnOneProps) {
+  const { renderer, rowColumnOneVariant, ...RowColumnOneProps } = props
+  const mergedRenderer = { ...defaultRenderer, ...renderer } as VariantRenderer
+
+  if (!rowColumnOneVariant) return <Default {...RowColumnOneProps} />
+
+  const RenderType =
+    mergedRenderer?.[rowColumnOneVariant] ??
+    (() => {
+      if (process.env.NODE_ENV !== 'production')
+        return <>renderer for {rowColumnOneVariant} not found</>
+      return null
+    })
+
+  return <RenderType {...RowColumnOneProps} />
 }
