@@ -6,7 +6,7 @@ import {
   responsiveVal,
   filterNonNullableKeys,
 } from '@graphcommerce/next-ui'
-import { Box } from '@mui/material'
+import { Box, Link } from '@mui/material'
 import { CartItemFragment } from '../Api/CartItem.gql'
 import { RemoveItemFromCartFab } from '../RemoveItemFromCart/RemoveItemFromCartFab'
 import { UpdateItemQuantity } from '../UpdateItemQuantity/UpdateItemQuantity'
@@ -31,7 +31,7 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
     quantity,
     prices,
     errors,
-    product: { name, thumbnail },
+    product: { name, thumbnail, url_key },
   } = cartItem
 
   return (
@@ -53,9 +53,47 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
           />
         )
       }
-      price={<Money {...prices?.row_total} />}
-      title={name}
-      secondaryAction={<UpdateItemQuantity uid={uid} quantity={quantity} sx={{ my: 1 }} />}
+      price={<Money {...prices?.row_total_including_tax} />}
+      title={
+        url_key ? (
+          <Link
+            href={url_key}
+            variant='body1'
+            underline='hover'
+            sx={(theme) => ({
+              typgrapht: 'subtitle1',
+              fontWeight: theme.typography.fontWeightBold,
+              color: theme.palette.text.primary,
+              textDecoration: 'none',
+              flexWrap: 'nowrap',
+              maxWidth: 'max-content',
+              '&:not(.withOptions)': {
+                alignSelf: 'flex-end',
+              },
+            })}
+          >
+            {name}
+          </Link>
+        ) : (
+          name
+        )
+      }
+      secondaryAction={
+        <Box
+          sx={(theme) => ({
+            display: 'flex',
+            alignItems: 'center',
+            color: 'text.secondary',
+            gap: theme.spacings.xxs,
+          })}
+        >
+          <UpdateItemQuantity uid={uid} quantity={quantity} sx={{ my: 1 }} />
+          <Box>
+            {' x '}
+            <Money {...prices?.price_including_tax} />
+          </Box>
+        </Box>
+      }
       action={<RemoveItemFromCartFab uid={uid} quantity={quantity} />}
       size={size}
       after={filterNonNullableKeys(errors).map((error) => (

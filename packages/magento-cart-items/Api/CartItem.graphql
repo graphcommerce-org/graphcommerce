@@ -24,6 +24,9 @@ fragment CartItem on CartItemInterface @injectable {
     price {
       ...Money
     }
+    price_including_tax {
+      ...Money
+    }
     row_total {
       ...Money
     }
