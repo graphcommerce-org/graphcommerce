@@ -20,7 +20,7 @@ export function SelectedCustomizableOptions(props: ConfigurableActionCartItemPro
     <>
       {options.map((option) => (
         <Typography variant='body2' component='div' key={option.customizable_option_uid}>
-          <Typography variant='subtitle2' component='span'>
+          <Typography variant='subtitle2' component='span' sx={{ color: 'text.primary' }}>
             {option.label}
           </Typography>
           {option.values.filter(nonNullable).map((value) => (
