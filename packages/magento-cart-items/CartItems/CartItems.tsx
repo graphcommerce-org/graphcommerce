@@ -16,7 +16,11 @@ export function CartItems(props: CartProps) {
   if (!cart?.items?.length) return null
 
   return (
-    <ActionCardLayout layout={layout} {...cardLayout}>
+    <ActionCardLayout
+      sx={(theme) => ({ marginBottom: theme.spacings.lg })}
+      layout={layout}
+      {...cardLayout}
+    >
       {cart.items?.filter(nonNullable).map((item) => (
         <CartItemActionCard
           key={item.uid}

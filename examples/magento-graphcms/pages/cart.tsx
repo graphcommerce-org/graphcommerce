@@ -107,7 +107,14 @@ function CartPage() {
 const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'cart',
   Layout: LayoutOverlay,
-  layoutProps: { variantMd: 'bottom', variantSm: 'bottom' },
+  layoutProps: {
+    variantMd: 'right',
+    variantSm: 'bottom',
+    sizeMd: 'floating',
+    sizeSm: 'minimal',
+    justifyMd: 'start',
+    justifySm: 'stretch',
+  },
 }
 CartPage.pageOptions = pageOptions
 
