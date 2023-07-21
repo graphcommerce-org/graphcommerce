@@ -95,7 +95,6 @@ export function CartItem(props: CartItemProps) {
             uid={uid}
             quantity={quantity}
             prices={prices}
-            product={product}
             className={classes.badge}
             sx={(theme) => ({
               '& > button': {

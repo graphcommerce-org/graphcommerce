@@ -49,9 +49,7 @@ export function ActionCartItem(props: CartItemFragment & ActionCartItemProps) {
           <UpdateItemQuantity uid={uid} quantity={quantity} />
         </>
       }
-      action={
-        <RemoveItemFromCartFab uid={uid} quantity={quantity} prices={prices} product={product} />
-      }
+      action={<RemoveItemFromCartFab uid={uid} quantity={quantity} prices={prices} />}
     />
   )
 }
