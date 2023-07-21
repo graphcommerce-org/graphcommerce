@@ -14,6 +14,7 @@ import React, { useEffect, useState } from 'react'
 import { IconSvg } from '../IconSvg'
 import { extendableComponent, breakpointVal } from '../Styles'
 import { iconClose, iconCheckmark, iconSadFace } from '../icons'
+import iconInfo from '../icons/info.svg'
 
 type Size = 'normal' | 'wide'
 type Variant = 'contained' | 'pill'
@@ -80,6 +81,7 @@ export default function MessageSnackbarImpl(props: MessageSnackbarProps) {
   }
 
   let icon = iconCheckmark
+  if (severity === 'info') icon = iconInfo
   if (severity === 'error') icon = iconSadFace
 
   return (
