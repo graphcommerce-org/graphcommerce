@@ -16,7 +16,6 @@ import {
   useMotionValueEvent,
   useTransform,
 } from 'framer-motion'
-import framesync from 'framesync'
 import React, { useCallback, useEffect, useRef } from 'react'
 import { LayoutProvider } from '../../Layout/components/LayoutProvider'
 import { ExtendableComponent, extendableComponent } from '../../Styles'
