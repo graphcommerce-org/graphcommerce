@@ -11,13 +11,18 @@ export type CartProps = ActionCardLayoutProps & {
 } & { size?: 'small' | 'medium' | 'large' }
 
 export function CartItems(props: CartProps) {
-  const { cart, children, layout, itemProps, size, ...cardLayout } = props
+  const { cart, children, layout = 'stack', itemProps, size, ...cardLayout } = props
 
   if (!cart?.items?.length) return null
 
   return (
     <ActionCardLayout
-      sx={(theme) => ({ marginBottom: theme.spacings.lg })}
+      sx={(theme) => ({
+        marginBottom: theme.spacings.md,
+        '&.layoutStack': {
+          gap: 0,
+        },
+      })}
       layout={layout}
       {...cardLayout}
     >

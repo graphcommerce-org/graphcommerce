@@ -25,6 +25,7 @@ import { Trans } from '@lingui/react'
 import { Box, CircularProgress, Container, Theme, useMediaQuery } from '@mui/material'
 import { LayoutOverlay, LayoutOverlayProps } from '../components'
 import { graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
+import { OverlayStickyBottom } from '@graphcommerce/next-ui/Overlay/components/OverlayStickyBottom'
 
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
@@ -69,7 +70,6 @@ function CartPage() {
           )}
         </LayoutTitle>
       </LayoutOverlayHeader>
-
       <WaitForQueries
         waitFor={cart}
         fallback={
@@ -81,21 +81,21 @@ function CartPage() {
         <Container maxWidth='md'>
           <>
             {hasItems ? (
-              <Box sx={(theme) => ({ mt: theme.spacings.lg })}>
+              <>
                 <CartItems
                   cart={data.cart}
-                  layout='stack'
                   itemProps={{
-                    size: isMobile ? 'medium' : 'large',
+                    size: isMobile ? 'small' : 'large',
+                    variant: 'default',
                   }}
                 />
                 <CouponAccordion key='couponform' />
                 <CartTotals containerMargin sx={{ typography: 'body1' }} />
                 <ApolloCartErrorAlert error={error} />
-                <Box key='checkout-button'>
+                <OverlayStickyBottom sx={{ py: 0.1 }}>
                   <CartStartCheckout {...data?.cart} disabled={hasError} />
-                </Box>
-              </Box>
+                </OverlayStickyBottom>
+              </>
             ) : (
               <EmptyCart>{error && <ApolloCartErrorAlert error={error} />}</EmptyCart>
             )}
@@ -112,8 +112,9 @@ const pageOptions: PageOptions<LayoutOverlayProps> = {
   layoutProps: {
     variantMd: 'right',
     variantSm: 'bottom',
+    widthMd: '900px',
     sizeMd: 'floating',
-    sizeSm: 'minimal',
+    sizeSm: 'full',
     justifyMd: 'start',
     justifySm: 'stretch',
   },
