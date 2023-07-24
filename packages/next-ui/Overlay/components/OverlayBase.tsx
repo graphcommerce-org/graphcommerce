@@ -312,7 +312,6 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
   useDomEvent(windowRef, 'keyup', handleEscape, { passive: true })
 
   const dragging = useMotionValue(false)
-  const backdropRef = useRef<HTMLDivElement>(null)
   const scrollerElementRef = scrollerRef as React.RefObject<HTMLElement>
 
   const handleDragStart = () => {
@@ -365,7 +364,6 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
         inert={active ? undefined : 'true'}
         className={classes.backdrop}
         style={{ opacity: positions.open.visible }}
-        ref={backdropRef}
         sx={[
           {
             zIndex: -1,
