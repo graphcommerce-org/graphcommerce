@@ -2,7 +2,7 @@ import { Image } from '@graphcommerce/image'
 import { Money } from '@graphcommerce/magento-store'
 import { ActionCard, ActionCardProps, responsiveVal } from '@graphcommerce/next-ui'
 import { CartItemFragment } from '../../Api/CartItem.gql'
-import { RemoveItemFromCartFab } from '../../RemoveItemFromCart/RemoveItemFromCartFab'
+import { RemoveItemFromCart } from '../../RemoveItemFromCart/RemoveItemFromCart'
 import { UpdateItemQuantity } from '../../UpdateItemQuantity/UpdateItemQuantity'
 
 export type ActionCartItemProps = Omit<
@@ -49,7 +49,7 @@ export function ActionCartItem(props: CartItemFragment & ActionCartItemProps) {
           <UpdateItemQuantity uid={uid} quantity={quantity} />
         </>
       }
-      action={<RemoveItemFromCartFab uid={uid} quantity={quantity} prices={prices} />}
+      action={<RemoveItemFromCart uid={uid} quantity={quantity} prices={prices} />}
     />
   )
 }
