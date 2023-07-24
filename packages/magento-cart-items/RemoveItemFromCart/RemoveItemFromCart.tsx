@@ -9,7 +9,7 @@ export type RemoveItemFromCartProps = Omit<CartItemFragment, 'product' | '__type
 
 const Form = styled('form')({})
 
-export function RemoveItemFromCartFab(props: RemoveItemFromCartProps) {
+export function RemoveItemFromCart(props: RemoveItemFromCartProps) {
   const { uid, quantity, prices, ...formProps } = props
   const form = useFormGqlMutationCart(RemoveItemFromCartDocument, { defaultValues: { uid } })
   const { handleSubmit, formState, error } = form
@@ -17,7 +17,13 @@ export function RemoveItemFromCartFab(props: RemoveItemFromCartProps) {
 
   return (
     <Form noValidate onSubmit={submitHandler} {...formProps}>
-      <Button type='submit' variant='inline' color='secondary' disabled={formState.isSubmitting}>
+      <Button
+        type='submit'
+        variant='inline'
+        color='secondary'
+        disabled={formState.isSubmitting}
+        size='small'
+      >
         <Trans id='Remove' />
       </Button>
       <ApolloCartErrorSnackbar error={error} />
