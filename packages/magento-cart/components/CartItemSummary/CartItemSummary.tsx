@@ -54,9 +54,6 @@ export function CartItemSummary(props: OrderSummaryProps) {
             theme.shape.borderRadius * 3,
             theme.breakpoints.values,
           ),
-          '& .Scroller-root.grid': {
-            display: 'flex',
-          },
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
@@ -86,7 +83,7 @@ export function CartItemSummary(props: OrderSummaryProps) {
             >
               <IconSvg src={iconChevronLeft} />
             </ScrollerButton>
-            <Box className={classes.scrollerContainer} sx={{ padding: '1px' }}>
+            <Box className={classes.scrollerContainer} sx={{ padding: '1px', display: 'flex' }}>
               <Scroller className={classes.scroller}>
                 {items?.map((item) => (
                   <React.Fragment key={item?.uid}>
