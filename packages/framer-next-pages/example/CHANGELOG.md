@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.67
+
+### Patch Changes
+
+- [#2002](https://github.com/graphcommerce-org/graphcommerce/pull/2002) [`1234bb61f`](https://github.com/graphcommerce-org/graphcommerce/commit/1234bb61f8332da8a9e4dd7262b0c70beaed8c91) - Updated next and apollo/client ([@paales](https://github.com/paales))
+
 ## 6.2.0-canary.66
 
 ## 6.2.0-canary.65
