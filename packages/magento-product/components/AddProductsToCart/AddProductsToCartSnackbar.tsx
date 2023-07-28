@@ -17,12 +17,12 @@ import { useFormAddProductsToCart } from './useFormAddProductsToCart'
 export type AddProductsToCartSnackbarProps = {
   errorSnackbar?: Omit<ErrorSnackbarProps, 'open'>
   successSnackbar?: Omit<MessageSnackbarProps, 'open' | 'action'>
-  disabledSnackbar?: boolean
+  disableSnackbar?: boolean
 }
 
 export function AddProductsToCartSnackbar(props: AddProductsToCartSnackbarProps) {
-  const { errorSnackbar, successSnackbar, disabledSnackbar } = props
-  const { error, data, redirect, control } = useFormAddProductsToCart()
+  const { errorSnackbar, successSnackbar, disableSnackbar } = props
+  const { error, data, redirect, control, submittedVariables } = useFormAddProductsToCart()
   const formState = useFormState({ control })
 
   const userErrors = toUserErrors(data)
@@ -36,9 +36,19 @@ export function AddProductsToCartSnackbar(props: AddProductsToCartSnackbarProps)
 
   const items = filterNonNullableKeys(data?.addProductsToCart?.cart.items)
 
+  const productSkus: (string | undefined | null)[] = []
+
+  submittedVariables?.cartItems.forEach((item) => {
+    productSkus.push(item.sku)
+  })
+
+  const productsAdded = items
+    .filter((item) => productSkus.includes(item.product.sku))
+    .map((product) => product.product.name)
+
   const showErrorSnackbar = userErrors.length > 0
 
-  if (disabledSnackbar) return null
+  if (disableSnackbar) return null
 
   return (
     <>
@@ -72,7 +82,7 @@ export function AddProductsToCartSnackbar(props: AddProductsToCartSnackbarProps)
           <Trans
             id='<0>{name}</0> has been added to your shopping cart!'
             components={{ 0: <strong /> }}
-            values={{ name: items[items.length - 1]?.product.name }}
+            values={{ name: productsAdded.join(', ') }}
           />
         </MessageSnackbar>
       )}

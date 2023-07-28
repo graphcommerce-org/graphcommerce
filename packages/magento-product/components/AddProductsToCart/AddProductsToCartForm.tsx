@@ -61,7 +61,7 @@ export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
     redirect,
     onComplete,
     sx,
-    disabledSnackbar,
+    disableSnackbar,
     errorSnackbar,
     successSnackbar,
     ...formProps
@@ -143,7 +143,7 @@ export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
       <AddProductsToCartSnackbar
         errorSnackbar={errorSnackbar}
         successSnackbar={successSnackbar}
-        disabledSnackbar={disabledSnackbar}
+        disableSnackbar={disableSnackbar}
       />
     </AddProductsToCartContext.Provider>
   )

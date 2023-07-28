@@ -146,7 +146,7 @@ function CheckoutAdded() {
               <Trans id='Complete your purchase' />
             </Typography>
           </Container>
-          <AddProductsToCartForm disabledSnackbar redirect={false}>
+          <AddProductsToCartForm disableSnackbar redirect={false}>
             <ItemScroller
               sx={(theme) => ({
                 width: 'auto',
