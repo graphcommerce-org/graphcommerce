@@ -43,11 +43,8 @@ function CheckoutAdded() {
       filterNonNullableKeys(
         crosssels.data?.products?.items?.[0]?.crosssell_products ??
           crosssels.previousData?.products?.items?.[0]?.crosssell_products,
-      ).filter(
-        (item) =>
-          items.every((i) => i.product.sku !== item.sku) && item.stock_status === 'IN_STOCK',
-      ),
-    [crosssels.data?.products?.items, crosssels.previousData?.products?.items, items],
+      ).filter((item) => item.stock_status === 'IN_STOCK'),
+    [crosssels.data?.products?.items, crosssels.previousData?.products?.items],
   )
 
   return (
@@ -149,7 +146,7 @@ function CheckoutAdded() {
               <Trans id='Complete your purchase' />
             </Typography>
           </Container>
-          <AddProductsToCartForm>
+          <AddProductsToCartForm disabledSnackbar redirect={false}>
             <ItemScroller
               sx={(theme) => ({
                 width: 'auto',
