@@ -28,7 +28,9 @@ export type UseFormGqlMethods<Q, V extends FieldValues> = Omit<
   UseGqlDocumentHandler<V>,
   'encode' | 'type'
 > &
-  Pick<UseFormReturn<V>, 'handleSubmit'> & { data?: Q | null; error?: ApolloError }
+  Pick<UseFormReturn<V>, 'handleSubmit'> & { data?: Q | null; error?: ApolloError } & {
+    submittedVariables?: V
+  }
 
 /**
  * Combines useMutation/useLazyQuery with react-hook-form's useForm:
@@ -49,6 +51,8 @@ export function useFormGql<Q, V extends FieldValues>(
   const { onComplete, onBeforeSubmit, document, form, tuple, defaultValues } = options
   const { encode, type, ...gqlDocumentHandler } = useGqlDocumentHandler<Q, V>(document)
   const [execute, { data, error }] = tuple
+
+  const submittedVariables = useRef<V>()
 
   // automatically updates the default values
   const initital = useRef(true)
@@ -76,6 +80,7 @@ export function useFormGql<Q, V extends FieldValues>(
       }
       // if (variables === false) onInvalid?.(formValues, event)
 
+      submittedVariables.current = variables
       const result = await execute({ variables })
       if (onComplete && result.data) await onComplete(result, variables)
 
@@ -85,5 +90,11 @@ export function useFormGql<Q, V extends FieldValues>(
       await onValid(formValues, event)
     }, onInvalid)
 
-  return { ...gqlDocumentHandler, handleSubmit, data, error }
+  return {
+    ...gqlDocumentHandler,
+    handleSubmit,
+    data,
+    error,
+    submittedVariables: submittedVariables.current,
+  }
 }
