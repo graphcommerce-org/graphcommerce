@@ -8,7 +8,7 @@ import {
 import { ExtendableComponent } from '@graphcommerce/next-ui'
 import { Box, SxProps, Theme, useThemeProps } from '@mui/material'
 import { useRouter } from 'next/router'
-import { useMemo, useRef } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import {
   AddProductsToCartDocument,
   AddProductsToCartMutation,
@@ -56,8 +56,16 @@ declare module '@mui/material/styles/components' {
  * - Redirects the user to the cart/checkout/added page after successful submission.
  */
 export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
-  let { children, redirect, onComplete, sx, errorSnackbar, successSnackbar, ...formProps } =
-    useThemeProps({ name, props })
+  let {
+    children,
+    redirect,
+    onComplete,
+    sx,
+    disabledSnackbar,
+    errorSnackbar,
+    successSnackbar,
+    ...formProps
+  } = useThemeProps({ name, props })
   const router = useRouter()
   const client = useApolloClient()
   const crosssellsQuery = useRef<Promise<ApolloQueryResult<CrosssellsQuery>>>()
@@ -132,7 +140,11 @@ export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
       <Box component='form' onSubmit={submit} noValidate sx={sx} className={name}>
         {children}
       </Box>
-      <AddProductsToCartSnackbar errorSnackbar={errorSnackbar} successSnackbar={successSnackbar} />
+      <AddProductsToCartSnackbar
+        errorSnackbar={errorSnackbar}
+        successSnackbar={successSnackbar}
+        disabledSnackbar={disabledSnackbar}
+      />
     </AddProductsToCartContext.Provider>
   )
 }

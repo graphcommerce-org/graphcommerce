@@ -1,6 +1,8 @@
 import { useFormState } from '@graphcommerce/ecommerce-ui'
 import { useEventCallback } from '@mui/material'
+import { useEffect, useState } from 'react'
 import { UseAddProductsToCartActionFragment } from './UseAddProductsToCartAction.gql'
+import { toUserErrors } from './toUserErrors'
 import { AddToCartItemSelector, useFormAddProductsToCart } from './useFormAddProductsToCart'
 
 export type UseAddProductsToCartActionProps = AddToCartItemSelector & {
@@ -16,12 +18,14 @@ export type UseAddProductsToCartActionReturn = {
   loading: boolean
   onClick: React.MouseEventHandler<HTMLButtonElement>
   onMouseDown: React.MouseEventHandler<HTMLButtonElement>
+  showSuccess: boolean
 }
 
 export function useAddProductsToCartAction(
   props: UseAddProductsToCartActionProps,
 ): UseAddProductsToCartActionReturn {
-  const { setValue, getValues, control } = useFormAddProductsToCart()
+  const { setValue, getValues, control, error, data, redirect, submittedVariables } =
+    useFormAddProductsToCart()
   const formState = useFormState({ control })
   const {
     sku = props.product?.sku,
@@ -31,6 +35,31 @@ export function useAddProductsToCartAction(
     disabled,
     loading,
   } = props
+
+  const [showSuccess, setShowSuccess] = useState<boolean>(false)
+
+  const userErrors = toUserErrors(data)
+
+  const submitSuccesful =
+    !formState.isSubmitting &&
+    formState.isSubmitSuccessful &&
+    !error?.message &&
+    !userErrors.length &&
+    !redirect
+
+  useEffect(() => {
+    if (submitSuccesful && submittedVariables?.cartItems.find((item) => item.sku === sku)) {
+      setShowSuccess(true)
+    }
+  }, [sku, submitSuccesful, submittedVariables?.cartItems])
+
+  useEffect(() => {
+    if (showSuccess) {
+      setTimeout(() => {
+        setShowSuccess(false)
+      }, 2000)
+    }
+  }, [showSuccess])
 
   return {
     disabled:
@@ -47,5 +76,6 @@ export function useAddProductsToCartAction(
       onClickIncoming?.(e)
     }),
     onMouseDown: useEventCallback((e) => e.stopPropagation()),
+    showSuccess,
   }
 }

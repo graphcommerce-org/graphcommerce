@@ -17,10 +17,11 @@ import { useFormAddProductsToCart } from './useFormAddProductsToCart'
 export type AddProductsToCartSnackbarProps = {
   errorSnackbar?: Omit<ErrorSnackbarProps, 'open'>
   successSnackbar?: Omit<MessageSnackbarProps, 'open' | 'action'>
+  disabledSnackbar?: boolean
 }
 
 export function AddProductsToCartSnackbar(props: AddProductsToCartSnackbarProps) {
-  const { errorSnackbar, successSnackbar } = props
+  const { errorSnackbar, successSnackbar, disabledSnackbar } = props
   const { error, data, redirect, control } = useFormAddProductsToCart()
   const formState = useFormState({ control })
 
@@ -36,6 +37,8 @@ export function AddProductsToCartSnackbar(props: AddProductsToCartSnackbarProps)
   const items = filterNonNullableKeys(data?.addProductsToCart?.cart.items)
 
   const showErrorSnackbar = userErrors.length > 0
+
+  if (disabledSnackbar) return null
 
   return (
     <>
