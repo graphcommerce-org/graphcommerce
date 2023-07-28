@@ -1,4 +1,4 @@
-import { Fab, FabProps, iconShoppingBag } from '@graphcommerce/next-ui'
+import { Fab, FabProps, iconShoppingBag, iconCheckmark } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { SxProps, Theme } from '@mui/material'
 import {
@@ -13,14 +13,14 @@ export type AddProductsToCartFabProps = {
   UseAddProductsToCartActionProps
 
 export function AddProductsToCartFab(props: AddProductsToCartFabProps) {
-  const { icon = iconShoppingBag, product, ...rest } = props
+  const { icon = iconShoppingBag, product, sku, ...rest } = props
   const action = useAddProductsToCartAction(props)
   return (
     <Fab
       type='submit'
       {...rest}
       {...action}
-      icon={icon}
+      icon={action.showSuccess ? iconCheckmark : icon}
       aria-label={i18n._(/* i18n*/ `Add to Cart`)}
     />
   )
