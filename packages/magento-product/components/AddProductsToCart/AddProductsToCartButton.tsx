@@ -25,7 +25,7 @@ export function AddProductsToCartButton(props: AddProductsToCartButtonProps) {
 
   return (
     <Button type='submit' color='primary' variant='pill' size='large' {...rest} {...action}>
-      {children || <Trans id='Add to Cart' />}
+      {children || action.showSuccess ? <Trans id='Added to Cart' /> : <Trans id='Add to Cart' />}
     </Button>
   )
 }
