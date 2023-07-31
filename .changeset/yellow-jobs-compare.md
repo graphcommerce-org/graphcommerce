@@ -2,4 +2,4 @@
 '@graphcommerce/next-ui': patch
 ---
 
-Footer components should be rendered conditionally
+Footer's grid-area's will only be rendered when the props are passed.
