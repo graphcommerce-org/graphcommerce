@@ -31,9 +31,6 @@ type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
 
 function CartPage() {
-  const isMobile = useMediaQuery<Theme>((theme) => theme.breakpoints.down('md'), {
-    defaultMatches: false,
-  })
   const cart = useCartQuery(CartPageDocument, {
     errorPolicy: 'all',
     fetchPolicy: 'cache-and-network',
@@ -84,8 +81,8 @@ function CartPage() {
               <>
                 <CartItems
                   cart={data.cart}
+                  sizeMd='large'
                   itemProps={{
-                    size: isMobile ? 'small' : 'large',
                     variant: 'default',
                   }}
                 />
