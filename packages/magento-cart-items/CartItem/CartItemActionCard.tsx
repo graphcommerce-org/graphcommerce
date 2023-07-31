@@ -11,6 +11,7 @@ import { CartItemFragment } from '../Api/CartItem.gql'
 import { RemoveItemFromCart } from '../RemoveItemFromCart/RemoveItemFromCart'
 import { UpdateItemQuantity } from '../UpdateItemQuantity/UpdateItemQuantity'
 import { SelectedCustomizableOptions } from '../components/SelectedCustomizableOptions'
+import { useDisplayInclTax } from '@graphcommerce/magento-cart/hooks'
 
 export type CartItemActionCardProps = { cartItem: CartItemFragment } & Omit<
   ActionCardProps,
@@ -33,6 +34,8 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
     errors,
     product: { name, thumbnail, url_key },
   } = cartItem
+
+  const inclTaxes = useDisplayInclTax()
 
   return (
     <ActionCard
@@ -70,7 +73,14 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
             transform: 'translateY(-6px)',
           }}
         >
-          <Money {...prices?.row_total_including_tax} />
+          {inclTaxes ? (
+            <Money
+              value={prices?.row_total_including_tax?.value ?? 0}
+              currency={prices?.price.currency}
+            />
+          ) : (
+            <Money {...prices?.row_total} />
+          )}
         </Box>
       }
       title={
@@ -107,21 +117,17 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
             gap: theme.spacings.xxs,
           })}
         >
-          <UpdateItemQuantity
-            uid={uid}
-            quantity={quantity}
-            sx={(theme) => ({
-              [theme.breakpoints.down('sm')]: {
-                width: '70px',
-                '& .MuiInputBase-root': {
-                  fontSize: '12px ',
-                },
-              },
-            })}
-          />
+          <UpdateItemQuantity uid={uid} quantity={quantity} />
           <Box>
             {' ⨉ '}
-            <Money {...prices?.price_including_tax} />
+            {inclTaxes ? (
+              <Money
+                value={(prices?.row_total_including_tax?.value ?? 0) / quantity}
+                currency={prices?.price.currency}
+              />
+            ) : (
+              <Money {...prices?.price} />
+            )}
           </Box>
         </Box>
       }

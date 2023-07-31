@@ -31,7 +31,7 @@ type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
 
 function CartPage() {
-  const isMobile = useMediaQuery<Theme>((theme) => theme.breakpoints.down('sm'), {
+  const isMobile = useMediaQuery<Theme>((theme) => theme.breakpoints.down('md'), {
     defaultMatches: false,
   })
   const cart = useCartQuery(CartPageDocument, {

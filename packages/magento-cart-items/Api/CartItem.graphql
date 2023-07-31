@@ -24,13 +24,10 @@ fragment CartItem on CartItemInterface @injectable {
     price {
       ...Money
     }
-    price_including_tax {
+    row_total_including_tax {
       ...Money
     }
     row_total {
-      ...Money
-    }
-    row_total_including_tax {
       ...Money
     }
     total_item_discount {
