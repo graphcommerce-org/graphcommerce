@@ -10,8 +10,8 @@ import {
 } from '@graphcommerce/next-ui'
 import { Badge, Box, Link, SxProps, Theme } from '@mui/material'
 import { CartItemFragment } from '../../Api/CartItem.gql'
+import { RemoveItemFromCartFab } from '../RemoveItemFromCart/RemoveItemFromCartFab'
 import { UpdateItemQuantity } from '../UpdateItemQuantity/UpdateItemQuantity'
-import { RemoveItemFromCart } from '../RemoveItemFromCart/RemoveItemFromCart'
 
 const rowImageSize = responsiveVal(70, 125)
 
@@ -92,7 +92,7 @@ export function CartItem(props: CartItemProps) {
       <Badge
         color='default'
         badgeContent={
-          <RemoveItemFromCart
+          <RemoveItemFromCartFab
             uid={uid}
             quantity={quantity}
             prices={prices}

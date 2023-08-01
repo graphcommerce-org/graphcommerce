@@ -20,7 +20,13 @@ export type CartItemActionCardProps = { cartItem: CartItemFragment } & Omit<
 export const productImageSizes = {
   small: responsiveVal(60, 80),
   medium: responsiveVal(60, 80),
-  large: responsiveVal(80, 100),
+  large: responsiveVal(100, 120),
+}
+
+const typographySizes = {
+  small: 'body2',
+  medium: 'body1',
+  large: 'subtitle1',
 }
 
 export function CartItemActionCard(props: CartItemActionCardProps) {
@@ -40,15 +46,26 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
     <ActionCard
       value={uid}
       sx={[
-        {
+        (theme) => ({
+          '&.sizeSmall': {
+            px: 0,
+          },
           '& .ActionCard-image': {
             alignSelf: 'flex-start',
             transform: 'translateY(10px)',
           },
-          '&.sizeSmall': {
-            px: 0,
+          '& .ActionCard-secondaryAction': {
+            typography: typographySizes[size],
+            display: 'flex',
+            alignItems: 'center',
+            color: 'text.secondary',
+            mt: 1,
+            gap: '6px',
           },
-        },
+          '& .ActionCard-price': {
+            typography: typographySizes[size],
+          },
+        }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
       image={
@@ -67,38 +84,25 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
         )
       }
       price={
-        <Box
-          sx={{
-            transform: 'translateY(-6px)',
-          }}
-        >
-          {inclTaxes ? (
-            <Money
-              value={prices?.row_total_including_tax?.value ?? 0}
-              currency={prices?.price.currency}
-            />
-          ) : (
-            <Money {...prices?.row_total} />
-          )}
-        </Box>
+        inclTaxes ? (
+          <Money
+            value={prices?.row_total_including_tax?.value ?? 0}
+            currency={prices?.price.currency}
+          />
+        ) : (
+          <Money {...prices?.row_total} />
+        )
       }
       title={
         url_key ? (
           <Link
             href={url_key}
-            variant='body1'
             underline='hover'
-            sx={(theme) => ({
-              typgrapht: 'subtitle1',
-              fontWeight: theme.typography.fontWeightBold,
-              color: theme.palette.text.primary,
-              textDecoration: 'none',
+            sx={{
+              color: 'inherit',
               flexWrap: 'nowrap',
               maxWidth: 'max-content',
-              '&:not(.withOptions)': {
-                alignSelf: 'flex-end',
-              },
-            })}
+            }}
           >
             {name}
           </Link>
@@ -107,30 +111,20 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
         )
       }
       secondaryAction={
-        <Box
-          sx={(theme) => ({
-            display: 'flex',
-            alignItems: 'center',
-            color: 'text.secondary',
-            mt: 1,
-            gap: theme.spacings.xxs,
-          })}
-        >
+        <>
           <UpdateItemQuantity uid={uid} quantity={quantity} />
-          <Box>
-            {' ⨉ '}
-            {inclTaxes ? (
-              <Money
-                value={(prices?.row_total_including_tax?.value ?? 0) / quantity}
-                currency={prices?.price.currency}
-              />
-            ) : (
-              <Money {...prices?.price} />
-            )}
-          </Box>
-        </Box>
+          {' ⨉ '}
+          {inclTaxes ? (
+            <Money
+              value={(prices?.row_total_including_tax?.value ?? 0) / quantity}
+              currency={prices?.price.currency}
+            />
+          ) : (
+            <Money {...prices?.price} />
+          )}
+        </>
       }
-      action={<RemoveItemFromCart uid={uid} quantity={quantity} />}
+      action={<RemoveItemFromCart uid={uid} quantity={quantity} buttonProps={{ size }} />}
       size={size}
       after={filterNonNullableKeys(errors).map((error) => (
         <Box sx={{ color: 'error.main', typography: 'caption' }} key={error.message}>

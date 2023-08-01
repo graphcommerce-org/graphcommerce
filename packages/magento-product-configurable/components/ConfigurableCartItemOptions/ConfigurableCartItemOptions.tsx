@@ -15,11 +15,6 @@ export function ConfigurableCartItemOptions(props: ConfigurableActionCartItemPro
         sx={(theme) => ({
           display: 'flex',
           gap: theme.spacings.xxs,
-          [theme.breakpoints.down('sm')]: {
-            '& .MuiTypography-root': {
-              fontSize: '12px',
-            },
-          },
         })}
       >
         <SelectedCustomizableOptions customizable_options={configurable_customizable} />

@@ -20,8 +20,8 @@ export function CartItemsActionCards(props: CartProps) {
     children,
     layout = 'stack',
     itemProps,
-    sizeSm = 'small',
-    sizeMd = 'medium',
+    sizeSm = 'medium',
+    sizeMd = 'large',
     ...cardLayout
   } = props
 

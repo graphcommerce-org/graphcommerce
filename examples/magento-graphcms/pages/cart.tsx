@@ -78,10 +78,9 @@ function CartPage() {
         <Container maxWidth='md'>
           <>
             {hasItems ? (
-              <Box sx={(theme) => ({ mt: theme.spacings.md })}>
+              <Box sx={(theme) => ({ mt: theme.spacings.sm })}>
                 <CartItemsActionCards
                   cart={data.cart}
-                  sizeMd='large'
                   itemProps={{
                     variant: 'default',
                   }}
