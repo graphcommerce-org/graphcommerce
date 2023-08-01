@@ -88,7 +88,12 @@ export function useScroller<
     setPanning(true)
   }
 
-  const onMouseDown: MouseEventHandler<HTMLDivElement> = (event) => event.preventDefault()
+  const onMouseDown: MouseEventHandler<HTMLDivElement> = (event) => {
+    if (event.target instanceof Element) {
+      if (event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA') return
+    }
+    event.preventDefault()
+  }
 
   const onPan: PanHandlers['onPan'] = (event, info: PanInfo) => {
     if (!scrollerRef.current) return
