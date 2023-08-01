@@ -38,6 +38,7 @@ const { withState } = extendableComponent<OwnerState, typeof compName, typeof pa
   parts,
 )
 
+/** @deprecated Replace with CartItemActionCard */
 export function CartItem(props: CartItemProps) {
   const { product, errors, uid, prices, quantity, children, withOptions = true, sx = [] } = props
   const { name } = product
