@@ -2,7 +2,7 @@ import { ApolloCartErrorSnackbar, useFormGqlMutationCart } from '@graphcommerce/
 import { iconClose, IconSvg } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Fab, SxProps, Theme, styled } from '@mui/material'
-import { CartItemFragment } from '../Api/CartItem.gql'
+import { CartItemFragment } from '../../Api/CartItem.gql'
 import { RemoveItemFromCartDocument } from './RemoveItemFromCart.gql'
 
 export type RemoveItemFromCartProps = CartItemFragment &

@@ -1,4 +1,5 @@
 import { Image } from '@graphcommerce/image'
+import { useDisplayInclTax } from '@graphcommerce/magento-cart/hooks'
 import { Money } from '@graphcommerce/magento-store'
 import {
   ActionCard,
@@ -7,11 +8,9 @@ import {
   filterNonNullableKeys,
 } from '@graphcommerce/next-ui'
 import { Box, Link } from '@mui/material'
-import { CartItemFragment } from '../Api/CartItem.gql'
+import { CartItemFragment } from '../../Api/CartItem.gql'
 import { RemoveItemFromCart } from '../RemoveItemFromCart/RemoveItemFromCart'
 import { UpdateItemQuantity } from '../UpdateItemQuantity/UpdateItemQuantity'
-import { SelectedCustomizableOptions } from '../components/SelectedCustomizableOptions'
-import { useDisplayInclTax } from '@graphcommerce/magento-cart/hooks'
 
 export type CartItemActionCardProps = { cartItem: CartItemFragment } & Omit<
   ActionCardProps,

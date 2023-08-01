@@ -6,7 +6,8 @@ import type { PluginProps } from '@graphcommerce/next-config'
 import { isTypename } from '@graphcommerce/next-ui'
 
 export const component = 'CartItemActionCard'
-export const exported = '@graphcommerce/magento-cart-items/CartItemActionCard/CartItemActionCard'
+export const exported =
+  '@graphcommerce/magento-cart-items/components/CartItemActionCard/CartItemActionCard'
 
 export function SimpleCartItemActionCard(
   props: PluginProps<React.ComponentProps<typeof CartItemActionCard>>,

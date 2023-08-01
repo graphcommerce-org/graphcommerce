@@ -1,7 +1,7 @@
 import { ApolloCartErrorSnackbar, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { Trans } from '@lingui/react'
 import { Button, SxProps, Theme, styled } from '@mui/material'
-import { CartItemFragment } from '../Api/CartItem.gql'
+import { CartItemFragment } from '../../Api/CartItem.gql'
 import { RemoveItemFromCartDocument } from './RemoveItemFromCart.gql'
 
 export type RemoveItemFromCartProps = Omit<CartItemFragment, 'product' | '__typename'> &
