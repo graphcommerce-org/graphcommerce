@@ -10,7 +10,7 @@ import {
 } from '@graphcommerce/magento-cart'
 import { CartPageDocument } from '@graphcommerce/magento-cart-checkout'
 import { CouponAccordion } from '@graphcommerce/magento-cart-coupon'
-import { CartItems } from '@graphcommerce/magento-cart-items'
+import { CartItemsActionCards } from '@graphcommerce/magento-cart-items'
 import { Money, PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   GetStaticProps,
@@ -20,12 +20,12 @@ import {
   LayoutOverlayHeader,
   FullPageMessage,
 } from '@graphcommerce/next-ui'
+import { OverlayStickyBottom } from '@graphcommerce/next-ui/Overlay/components/OverlayStickyBottom'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Box, CircularProgress, Container, Theme, useMediaQuery } from '@mui/material'
+import { Box, CircularProgress, Container } from '@mui/material'
 import { LayoutOverlay, LayoutOverlayProps } from '../components'
 import { graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
-import { OverlayStickyBottom } from '@graphcommerce/next-ui/Overlay/components/OverlayStickyBottom'
 
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
@@ -78,8 +78,8 @@ function CartPage() {
         <Container maxWidth='md'>
           <>
             {hasItems ? (
-              <>
-                <CartItems
+              <Box sx={(theme) => ({ mt: theme.spacings.md })}>
+                <CartItemsActionCards
                   cart={data.cart}
                   sizeMd='large'
                   itemProps={{
@@ -92,7 +92,7 @@ function CartPage() {
                 <OverlayStickyBottom sx={{ py: 0.1 }}>
                   <CartStartCheckout {...data?.cart} disabled={hasError} />
                 </OverlayStickyBottom>
-              </>
+              </Box>
             ) : (
               <EmptyCart>{error && <ApolloCartErrorAlert error={error} />}</EmptyCart>
             )}
@@ -113,7 +113,6 @@ const pageOptions: PageOptions<LayoutOverlayProps> = {
     sizeMd: 'floating',
     sizeSm: 'full',
     justifyMd: 'start',
-    justifySm: 'stretch',
   },
 }
 CartPage.pageOptions = pageOptions
