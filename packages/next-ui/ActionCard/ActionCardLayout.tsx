@@ -3,7 +3,7 @@ import React from 'react'
 import { extendableComponent } from '../Styles'
 import { ActionCardProps } from './ActionCard'
 
-type ActionCardLayoutProps = {
+export type ActionCardLayoutProps = {
   children?: React.ReactNode
 } & Pick<ActionCardProps, 'layout'> &
   BoxProps

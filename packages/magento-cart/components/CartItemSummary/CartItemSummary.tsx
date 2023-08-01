@@ -8,11 +8,18 @@ import {
   IconSvg,
   extendableComponent,
   breakpointVal,
+  nonNullable,
+  ActionCardLayoutProps,
+  ActionCardLayout,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box, Divider, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { useCartQuery } from '../../hooks'
+import {
+  CartSummaryItemActionCard,
+  CartSummaryItemActionCardProps,
+} from '../CartSummary/CartSummaryItemActionCard'
 import { CartTotals } from '../CartTotals/CartTotals'
 import { CartItemSummaryDocument } from './GetCartItemSummary.gql'
 
@@ -31,10 +38,16 @@ const parts = [
 ] as const
 const { classes } = extendableComponent(name, parts)
 
-type OrderSummaryProps = { sx?: SxProps<Theme> }
+type OrderSummaryProps = ActionCardLayoutProps & {
+  sx?: SxProps<Theme>
+  itemProps?: Omit<
+    CartSummaryItemActionCardProps,
+    'cartItem' | 'layout' | 'onClick' | 'disabled' | 'selected' | 'reset' | 'color'
+  >
+} & { size?: 'small' | 'medium' | 'large' }
 
 export function CartItemSummary(props: OrderSummaryProps) {
-  const { sx = [] } = props
+  const { sx = [], size, layout = 'stack', itemProps, ref, ...cardLayout } = props
   const { data } = useCartQuery(CartItemSummaryDocument, { allowUrl: true })
 
   if (!data?.cart) return null
@@ -83,35 +96,27 @@ export function CartItemSummary(props: OrderSummaryProps) {
             >
               <IconSvg src={iconChevronLeft} />
             </ScrollerButton>
-            <Box className={classes.scrollerContainer} sx={{ padding: '1px' }}>
-              <Scroller className={classes.scroller}>
-                {items?.map((item) => (
-                  <React.Fragment key={item?.uid}>
-                    {item?.product?.thumbnail?.url ? (
-                      <Image
-                        key={item?.uid}
-                        alt={item?.product?.thumbnail?.label ?? ''}
-                        src={item?.product?.thumbnail?.url ?? ''}
-                        className={classes.image}
-                        layout='fill'
-                        sizes={responsiveVal(48, 96)}
-                        sx={(theme) => ({
-                          borderRadius: '50%',
-                          marginRight: theme.spacings.xs,
-                          border: `1px solid ${theme.palette.divider}`,
-                          padding: responsiveVal(5, 10),
-                          width: `${responsiveVal(48, 96)} !important`,
-                          height: `${responsiveVal(48, 96)} !important`,
-                          display: 'block',
-                        })}
-                      />
-                    ) : (
-                      <Box />
-                    )}
-                  </React.Fragment>
-                ))}
-              </Scroller>
-            </Box>
+            <ActionCardLayout
+              sx={(theme) => ({
+                marginBottom: theme.spacings.md,
+                '&.layoutStack': {
+                  gap: 0,
+                },
+              })}
+              layout={layout}
+              className={classes.scrollerContainer}
+              {...cardLayout}
+            >
+              {items?.filter(nonNullable).map((item) => (
+                <CartSummaryItemActionCard
+                  key={item.uid}
+                  cartItem={item}
+                  layout={layout}
+                  size={size}
+                  {...itemProps}
+                />
+              ))}
+            </ActionCardLayout>
             <ScrollerButton
               direction='right'
               className={`${(classes.prevNext, classes.next)}`}
