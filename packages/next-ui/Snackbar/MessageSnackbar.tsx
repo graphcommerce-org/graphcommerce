@@ -18,7 +18,7 @@ export function MessageSnackbar(props: MessageSnackbarProps) {
     console.error('MessageSnackbar with a storageType set must has an id.')
   }
 
-  if (storageType && id && globalThis[storageType].getItem(messageId)) {
+  if (storageType && id && globalThis[storageType]?.getItem(messageId)) {
     return null
   }
 
@@ -27,7 +27,7 @@ export function MessageSnackbar(props: MessageSnackbarProps) {
       {...rest}
       onClose={() => {
         if (id && storageType) {
-          globalThis[storageType].setItem(messageId, `${Date.now()}`)
+          globalThis[storageType]?.setItem(messageId, `${Date.now()}`)
         }
         onClose?.()
       }}
