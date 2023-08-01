@@ -4,9 +4,23 @@ import { MessageSnackbar, MessageSnackbarProps } from '../../../Snackbar/Message
 export type VariantMessageProps = MessageSnackbarProps
 
 export function VariantMessage(props: VariantMessageProps) {
+  const { sx, ...rest } = props
+
   return (
     <Portal>
-      <MessageSnackbar open variant='pill' severity='info' {...props} />
+      <MessageSnackbar
+        open
+        variant='pill'
+        severity='info'
+        {...rest}
+        sx={[
+          {
+            pointerEvents: 'none',
+            '& > *': { pointerEvents: 'auto' },
+          },
+          ...(Array.isArray(sx) ? sx : [sx]),
+        ]}
+      />
     </Portal>
   )
 }
