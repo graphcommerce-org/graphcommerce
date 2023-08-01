@@ -8,7 +8,7 @@ import { BundleOption } from '../components/BundleProductOptions/BundleOption'
 import { BundleProductCartItemOptions } from '../components/BundleProductCartItemOptions/BundleProductCartItemOptions'
 
 export const component = 'CartItemActionCard'
-export const exported = '@graphcommerce/magento-cart-items/CartItem/CartItemActionCard'
+export const exported = '@graphcommerce/magento-cart-items/CartItemActionCard/CartItemActionCard'
 
 export function BundleCartItemActionCard(
   props: PluginProps<React.ComponentProps<typeof CartItemActionCard>>,
