@@ -5,19 +5,13 @@ import { Fab, SxProps, Theme, styled } from '@mui/material'
 import { CartItemFragment } from '../../Api/CartItem.gql'
 import { RemoveItemFromCartDocument } from './RemoveItemFromCart.gql'
 
-export type RemoveItemFromCartProps = CartItemFragment &
+export type RemoveItemFromCartProps = Omit<CartItemFragment, '__typename' | 'product'> &
   Omit<JSX.IntrinsicElements['form'], 'onSubmit' | 'noValidate'> & { sx?: SxProps<Theme> }
 
 const Form = styled('form')({})
 
 export function RemoveItemFromCartFab(props: RemoveItemFromCartProps) {
-  const {
-    product: {},
-    uid,
-    quantity,
-    prices,
-    ...formProps
-  } = props
+  const { uid, quantity, prices, ...formProps } = props
   const form = useFormGqlMutationCart(RemoveItemFromCartDocument, { defaultValues: { uid } })
   const { handleSubmit, formState, error } = form
   const submitHandler = handleSubmit(() => {})
