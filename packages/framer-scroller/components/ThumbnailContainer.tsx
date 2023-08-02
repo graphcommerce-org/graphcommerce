@@ -1,10 +1,11 @@
+import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import { styled, SxProps, Theme } from '@mui/material'
 import { m, PanInfo, useMotionValue } from 'framer-motion'
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { useScrollTo } from '../hooks/useScrollTo'
 import { useScrollerContext } from '../hooks/useScrollerContext'
 import { ImageGallaryContext, ImageGallaryContextValues } from './ImageGalleryContext'
-import { useMotionValueValue } from '@graphcommerce/framer-utils'
+import { useResizeObserver } from '../hooks/useResizeObserver'
 
 const MotionBox = styled(m.div)({})
 
@@ -23,12 +24,11 @@ export function ThumbnailContainer(props: ThumbnailContainerProps) {
   const animationMode = useMotionValue<'scroll' | 'drag'>('scroll')
   const snapPositions = getScrollSnapPositions()
 
-  const [elementWidth, setElementWidth] = useState<number>(0)
   const scrollTo = useScrollTo()
 
-  useEffect(() => {
-    setElementWidth((old) => motionBoxRef.current?.offsetWidth ?? old)
-  }, [])
+  const objectDimensions = useResizeObserver(motionBoxRef)
+
+  const elementWidth = objectDimensions?.contentRect.width ?? 0
 
   const memoizedContextValues = useMemo<ImageGallaryContextValues>(
     () => ({
@@ -72,7 +72,15 @@ export function ThumbnailContainer(props: ThumbnailContainerProps) {
         onPanStart={onPanStart}
         onPan={onPan}
         onPanEnd={onPanEnd}
-        sx={[{ display: 'flex', flexDirection: 'row' }, ...(Array.isArray(sx) ? sx : [sx])]}
+        sx={[
+          {
+            display: 'flex',
+            flexDirection: 'row',
+            touchAction: 'none',
+            maxWidth: '100%',
+          },
+          ...(Array.isArray(sx) ? sx : [sx]),
+        ]}
       >
         {children(itemsArr)}
       </MotionBox>

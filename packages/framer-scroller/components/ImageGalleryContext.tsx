@@ -1,4 +1,4 @@
-import { MotionValue, useMotionValue } from 'framer-motion'
+import { MotionValue } from 'framer-motion'
 import { createContext, useContext } from 'react'
 import { ItemState } from '../types'
 
@@ -17,7 +17,7 @@ export function useImageGalleryContext() {
   const context = useContext(ImageGallaryContext)
   if (typeof context === 'undefined') {
     throw Error(
-      'usePaymentMethodContext must be used within a PaymentMethodContextProvider or provide the optional=true argument',
+      'useImageGalleryContext must be used within a ImageGallaryContext.Provider component',
     )
   }
 

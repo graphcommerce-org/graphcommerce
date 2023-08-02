@@ -79,7 +79,6 @@ export function ScrollerThumbnail(props: ScrollerThumbnailProps) {
           scrollTo({ x: currentPosition, y: positions.y[idx] ?? 0 })
         }}
         sx={{
-          width: '100%',
           overflow: 'hidden',
           height: 120,
         }}

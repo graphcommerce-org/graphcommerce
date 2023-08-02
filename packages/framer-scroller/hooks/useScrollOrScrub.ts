@@ -18,8 +18,10 @@ export function useScrollOrScrub(props: ScrollOrScrubProps) {
     const scrubIndex = Math.max(0, Math.min(Math.round(raw), items.length - 1))
     const progress = raw - scrubIndex + 0.5
 
-    if (scrubIndex === idx - 1) return Math.max(10, Math.min(activeWidth * progress))
-    if (scrubIndex === idx + 1) return Math.max(10, Math.min(activeWidth * (1 - progress)))
+    if (scrubIndex === idx - 1)
+      return Math.max(container.width / items.length, Math.min(activeWidth * progress))
+    if (scrubIndex === idx + 1)
+      return Math.max(container.width / items.length, Math.min(activeWidth * (1 - progress)))
     if (scrubIndex === idx) return activeWidth
     return 'auto'
   }
@@ -35,11 +37,12 @@ export function useScrollOrScrub(props: ScrollOrScrubProps) {
     const raw = v * (items.length - 1)
     return calculateWidth(raw)
   })
-
-  console.log('mode', mode, 'active', active)
-
-  if (mode === 'scroll' && active) return widthOnScroll
-  if (mode === 'drag' && active) return widthOnScrub
+  if (mode === 'scroll' && active) {
+    return widthOnScroll
+  }
+  if (mode === 'drag' && active) {
+    return widthOnScrub
+  }
 
   return undefined
 }
