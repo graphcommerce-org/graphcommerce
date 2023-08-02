@@ -266,7 +266,7 @@ export function ActionCard(props: ActionCardProps) {
           width: '100%',
           justifyContent: 'space-between',
           alignContent: 'stretch',
-          alignItems: 'stretch',
+          alignItems: 'center',
         }}
       >
         <Box
@@ -289,7 +289,6 @@ export function ActionCard(props: ActionCardProps) {
           <Box
             sx={{
               display: 'flex',
-              justifyContent: 'space-between',
               flexDirection: 'column',
               alignItems: 'flex-start',
             }}

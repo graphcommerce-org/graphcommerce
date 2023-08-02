@@ -47,6 +47,10 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
       value={uid}
       sx={[
         (theme) => ({
+          '& .MuiBox-root': {
+            justifyContent: 'space-between',
+            alignItems: 'stretch',
+          },
           '&.sizeSmall': {
             px: 0,
           },
