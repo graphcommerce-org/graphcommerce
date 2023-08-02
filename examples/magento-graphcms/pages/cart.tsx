@@ -78,7 +78,7 @@ function CartPage() {
         <Container maxWidth='md'>
           <>
             {hasItems ? (
-              <Box sx={(theme) => ({ mt: theme.spacings.sm })}>
+              <>
                 <CartItemsActionCards
                   cart={data.cart}
                   itemProps={{
@@ -91,7 +91,7 @@ function CartPage() {
                 <OverlayStickyBottom sx={{ py: 0.1 }}>
                   <CartStartCheckout {...data?.cart} disabled={hasError} />
                 </OverlayStickyBottom>
-              </Box>
+              </>
             ) : (
               <EmptyCart>{error && <ApolloCartErrorAlert error={error} />}</EmptyCart>
             )}

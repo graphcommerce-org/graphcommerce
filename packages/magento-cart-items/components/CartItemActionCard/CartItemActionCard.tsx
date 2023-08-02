@@ -47,6 +47,10 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
       value={uid}
       sx={[
         (theme) => ({
+          '&.ActionCard-root': {
+            px: 0,
+            py: theme.spacings.xs,
+          },
           '& .MuiBox-root': {
             justifyContent: 'space-between',
             alignItems: 'stretch',
@@ -64,7 +68,8 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
             alignItems: 'center',
             color: 'text.secondary',
             mt: 1,
-            gap: '6px',
+            gap: '10px',
+            justifyContent: 'start',
           },
           '& .ActionCard-price': {
             typography: typographySizes[size],
