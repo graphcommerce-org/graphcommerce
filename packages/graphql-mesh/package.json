@@ -18,8 +18,10 @@
     "@graphql-mesh/types": "latest",
     "@graphql-mesh/utils": "latest",
     "@whatwg-node/fetch": "^0.9.4",
-    "fetch-retry": "^5.0.6",
-    "graphql": "16.6.0"
+    "fetch-retry": "^5.0.6"
+  },
+  "peerDependencies": {
+    "graphql": "^16.7.1"
   },
   "devDependencies": {
     "@graphcommerce/eslint-config-pwa": "6.2.0-canary.68",
