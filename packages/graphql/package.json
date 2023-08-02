@@ -25,8 +25,7 @@
     "@graphql-codegen/typescript-apollo-client-helpers": "2.2.6",
     "@graphql-codegen/typescript-document-nodes": "4.0.0",
     "@graphql-codegen/typescript-operations": "4.0.0",
-    "apollo3-cache-persist": "^0.14.1",
-    "graphql": "16.6.0"
+    "apollo3-cache-persist": "^0.14.1"
   },
   "devDependencies": {
     "@graphcommerce/eslint-config-pwa": "6.2.0-canary.68",
@@ -35,6 +34,7 @@
   },
   "peerDependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "graphql": "^16.7.1"
   }
 }
