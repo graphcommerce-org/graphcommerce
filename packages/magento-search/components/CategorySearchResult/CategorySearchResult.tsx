@@ -45,13 +45,14 @@ export function CategorySearchResult(props: CategorySearchResultProps) {
       ]}
     >
       <div>
-        {catProps?.breadcrumbs?.map((breadcrumb) => (
+        {catProps?.breadcrumbs?.map((breadcrumb, key) => (
           <React.Fragment key={breadcrumb?.category_url_path}>
             <Highlight
               key={breadcrumb?.category_url_path}
               text={breadcrumb?.category_name ?? ''}
               highlight={search}
             />
+            {(catProps.breadcrumbs?.length ?? 0) > key + 1 && ' / '}
           </React.Fragment>
         ))}
         <Highlight text={catProps?.name ?? ''} highlight={search} />
