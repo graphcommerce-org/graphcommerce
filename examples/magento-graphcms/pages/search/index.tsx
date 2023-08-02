@@ -15,8 +15,10 @@ import {
   CategorySearchDocument,
   CategorySearchQuery,
   CategorySearchResult,
+  CategorySearchResults,
   NoSearchResults,
   SearchContext,
+  SearchDivider,
   SearchForm,
 } from '@graphcommerce/magento-search'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
@@ -93,10 +95,14 @@ function SearchResultPage(props: SearchResultProps) {
             />
           </FormRow>
 
-          {categories?.items?.map((category) => (
-            <CategorySearchResult key={category?.url_path} search={search} {...category} />
-          ))}
+          <CategorySearchResults>
+            {categories?.items?.map((category) => (
+              <CategorySearchResult key={category?.url_path} search={search} {...category} />
+            ))}
+          </CategorySearchResults>
         </Container>
+
+        <SearchDivider sx={{ display: { xs: 'none', md: 'block' } }} />
 
         {noSearchResults && (
           <Container>
