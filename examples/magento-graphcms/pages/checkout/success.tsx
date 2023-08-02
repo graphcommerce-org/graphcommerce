@@ -59,7 +59,7 @@ function OrderSuccessPage() {
               <Trans id='Thank you for your order!' />
             </LayoutTitle>
             <CartSummary />
-            <CartItemSummary layout='stack' />
+            <CartItemSummary />
 
             <SignupNewsletter />
 

@@ -48,7 +48,10 @@ type OrderSummaryProps = ActionCardLayoutProps & {
 
 export function CartItemSummary(props: OrderSummaryProps) {
   const { sx = [], size, layout = 'stack', itemProps, ref, ...cardLayout } = props
-  const { data } = useCartQuery(CartItemSummaryDocument, { allowUrl: true })
+  const { data } = useCartQuery(CartItemSummaryDocument, {
+    allowUrl: true,
+    fetchPolicy: 'cache-only',
+  })
 
   if (!data?.cart) return null
 

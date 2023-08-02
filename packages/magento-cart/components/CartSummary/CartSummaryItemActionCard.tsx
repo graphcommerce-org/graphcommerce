@@ -1,4 +1,5 @@
 import { Image } from '@graphcommerce/image'
+import { CartItemFragment } from '@graphcommerce/magento-cart-items/Api/CartItem.gql'
 import { Money } from '@graphcommerce/magento-store'
 import {
   ActionCardProps,
@@ -6,7 +7,6 @@ import {
   ActionCard,
   filterNonNullableKeys,
 } from '@graphcommerce/next-ui'
-import { CartItemFragment } from '@graphcommerce/magento-cart-items/Api/CartItem.gql'
 import { Box, Link } from '@mui/material'
 import { useDisplayInclTax } from '../../hooks'
 
