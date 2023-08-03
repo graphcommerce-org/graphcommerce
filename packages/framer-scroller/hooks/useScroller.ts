@@ -91,6 +91,7 @@ export function useScroller<
   const onMouseDown: MouseEventHandler<HTMLDivElement> = (event) => {
     if (event.target instanceof Element) {
       if (event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA') return
+      if (event.target.querySelector(':scope > input, :scope > textarea')) return
     }
     event.preventDefault()
   }
