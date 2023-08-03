@@ -5,7 +5,6 @@ import { extendableComponent } from '@graphcommerce/next-ui/Styles'
 import { styled } from '@mui/material'
 import { m, useAnimation, Variants } from 'framer-motion'
 import { useEffect } from 'react'
-import { useScrollOrScrub } from '../hooks/useScrollOrScrub'
 import { useScrollTo } from '../hooks/useScrollTo'
 import { useScrollerContext } from '../hooks/useScrollerContext'
 import { ItemState } from '../types'
@@ -28,7 +27,9 @@ export function ScrollerThumbnail(props: ScrollerThumbnailProps) {
   const { visibility, idx, image } = props
   const scrollTo = useScrollTo()
   const { getScrollSnapPositions, scroll } = useScrollerContext()
-  const active = useMotionValueValue(visibility, (v) => v >= 0.5)
+  const active = useMotionValueValue(visibility, (v) => v >= 0.7)
+  const { container } = useImageGalleryContext()
+  const panActive = useMotionValueValue(container.pan.active, (v) => v)
   const scrollIsAnimating = useMotionValueValue(scroll.animating, (v) => v)
   const imageController = useAnimation()
 
@@ -37,52 +38,44 @@ export function ScrollerThumbnail(props: ScrollerThumbnailProps) {
   const positions = getScrollSnapPositions()
   const currentPosition = positions.x[idx]
 
-  const activeWidth = (120 / (image.height ?? 120)) * (image.width ?? 120)
-
-  const width = useScrollOrScrub({
-    activeWidth,
-    idx,
-  })
-
-  const { animation } = useImageGalleryContext()
+  const activeWidth = 120
 
   useEffect(() => {
-    if (active && !scrollIsAnimating && animation.mode.get()) {
+    if (active && !scrollIsAnimating && !panActive) {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       imageController.start('active')
-      animation.active.set(false)
     }
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     else imageController.start('default')
-  }, [active, animation.active, animation.mode, imageController, scrollIsAnimating])
+  }, [active, imageController, panActive, scrollIsAnimating])
 
   if (!image) return null
 
-  const marginAnimation: Variants = {
+  const widthAnimation: Variants = {
     default: {
       margin: '0',
+      width: 'auto',
     },
     active: {
       margin: '0 8px',
+      width: activeWidth,
     },
   }
 
   return (
-    <MotionBox variants={marginAnimation} animate={imageController}>
+    <MotionBox>
       <MotionBox
         initial='default'
         className={classes.thumbnail}
         onClick={() => {
-          animation.mode.set('scroll')
-          animation.active.set(true)
           // eslint-disable-next-line @typescript-eslint/no-floating-promises
           scrollTo({ x: currentPosition, y: positions.y[idx] ?? 0 })
         }}
         sx={{
-          overflow: 'hidden',
           height: 120,
         }}
-        style={{ width }}
+        animate={imageController}
+        variants={widthAnimation}
       >
         <Image src={image.src} layout='fill' sx={{ objectFit: 'cover' }} />
       </MotionBox>

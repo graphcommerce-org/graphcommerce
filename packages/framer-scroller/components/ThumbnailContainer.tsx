@@ -1,11 +1,14 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import { styled, SxProps, Theme } from '@mui/material'
-import { m, PanInfo, useMotionValue } from 'framer-motion'
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import { m, PanInfo, useMotionValue, useMotionValueEvent } from 'framer-motion'
+import React, { useCallback, useMemo } from 'react'
 import { useScrollTo } from '../hooks/useScrollTo'
 import { useScrollerContext } from '../hooks/useScrollerContext'
-import { ImageGallaryContext, ImageGallaryContextValues } from './ImageGalleryContext'
-import { useResizeObserver } from '../hooks/useResizeObserver'
+import {
+  ImageGallaryContext,
+  ImageGallaryContextValues,
+  useImageGalleryContext,
+} from './ImageGalleryContext'
 
 const MotionBox = styled(m.div)({})
 
@@ -16,74 +19,55 @@ type ThumbnailContainerProps = {
 
 export function ThumbnailContainer(props: ThumbnailContainerProps) {
   const { children, sx } = props
-  const { getScrollSnapPositions, items } = useScrollerContext()
-  const itemsArr = useMotionValueValue(items, (i) => i)
-  const motionBoxRef = useRef<HTMLDivElement>(null)
-  const panValues = useMotionValue({ x: 0, y: 0 })
-  const animationActive = useMotionValue(false)
-  const animationMode = useMotionValue<'scroll' | 'drag'>('scroll')
+  const { getScrollSnapPositions } = useScrollerContext()
+  const { items, container } = useImageGalleryContext()
+  const scrollIndex = useMotionValue(0)
   const snapPositions = getScrollSnapPositions()
+  const dimensions = useMotionValue({ width: 0, height: 0 })
+
+  const measuredRef = useCallback(
+    (node: HTMLDivElement) => {
+      if (node) {
+        dimensions.set(node.getBoundingClientRect())
+      }
+    },
+    [dimensions],
+  )
 
   const scrollTo = useScrollTo()
 
-  const objectDimensions = useResizeObserver(motionBoxRef)
-
-  const elementWidth = objectDimensions?.contentRect.width ?? 0
-
-  const memoizedContextValues = useMemo<ImageGallaryContextValues>(
-    () => ({
-      container: {
-        width: elementWidth,
-        pan: { coordinates: panValues },
-      },
-      items: itemsArr,
-      animation: { active: animationActive, mode: animationMode },
-    }),
-    [elementWidth, panValues, itemsArr, animationActive, animationMode],
+  useMotionValueEvent(scrollIndex, 'change', (v) =>
+    scrollTo({ x: snapPositions.x[v], y: snapPositions.y[v] }),
   )
 
-  if (itemsArr.length <= 1) return null
+  if (items.length <= 1) return null
 
-  const onPanStart = () => {
-    animationActive.set(true)
-    animationMode.set('drag')
-  }
+  const onPanStart = () => container.pan.active.set(true)
 
   const onPan = (_event: PointerEvent, info: PanInfo) => {
-    panValues.set({ x: info.point.x, y: info.point.y })
+    const raw = info.point.x / (dimensions.get().width / (items.length - 1))
+    const idx = Math.max(0, Math.min(Math.round(raw), items.length))
+    scrollIndex.set(idx)
   }
 
-  const onPanEnd = (_event: PointerEvent, info: PanInfo) => {
-    animationActive.set(false)
-    const raw = info.point.x / (elementWidth / itemsArr.length)
-    const idx = Math.max(0, Math.min(Math.round(raw), itemsArr.length - 1))
-
-    const x = snapPositions.x[idx]
-    const y = snapPositions.y[idx] ?? 0
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    scrollTo({ x, y })
-    animationMode.set('scroll')
-  }
+  const onPanEnd = () => container.pan.active.set(false)
 
   return (
-    <ImageGallaryContext.Provider value={memoizedContextValues}>
-      <MotionBox
-        ref={motionBoxRef}
-        onPanStart={onPanStart}
-        onPan={onPan}
-        onPanEnd={onPanEnd}
-        sx={[
-          {
-            display: 'flex',
-            flexDirection: 'row',
-            touchAction: 'none',
-            maxWidth: '100%',
-          },
-          ...(Array.isArray(sx) ? sx : [sx]),
-        ]}
-      >
-        {children(itemsArr)}
-      </MotionBox>
-    </ImageGallaryContext.Provider>
+    <MotionBox
+      ref={measuredRef}
+      onPanStart={onPanStart}
+      onPan={onPan}
+      onPanEnd={onPanEnd}
+      sx={[
+        {
+          display: 'flex',
+          flexDirection: 'row',
+          touchAction: 'none',
+        },
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    >
+      {children(items)}
+    </MotionBox>
   )
 }
