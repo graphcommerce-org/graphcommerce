@@ -98,7 +98,7 @@ export function TextInputNumber(props: TextInputNumberProps) {
       className={`${textFieldProps.className ?? ''} ${classes.quantity}`}
       sx={[
         {
-          width: responsiveVal(90, 120),
+          width: responsiveVal(90, 110),
         },
         variant === 'standard' && {
           '& .MuiOutlinedInput-root': {
