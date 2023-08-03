@@ -14,6 +14,7 @@ import {
   Theme,
   TextField,
   TextFieldProps,
+  Fab,
 } from '@mui/material'
 
 export type NumberFieldElementProps<T extends FieldValues = FieldValues> = Omit<
@@ -45,6 +46,7 @@ export function NumberFieldElement<T extends FieldValues>(props: NumberFieldElem
     rules = {},
     required,
     defaultValue,
+    variant = 'outlined',
     ...textFieldProps
   } = props
 
@@ -80,18 +82,40 @@ export function NumberFieldElement<T extends FieldValues>(props: NumberFieldElem
             size={size}
             type='number'
             className={`${textFieldProps.className ?? ''} ${classes.quantity}`}
-            sx={[{ width: responsiveVal(80, 120) }, ...(Array.isArray(sx) ? sx : [sx])]}
+            sx={[
+              {
+                width: responsiveVal(80, 120),
+              },
+              variant === 'standard' && {
+                '& .MuiOutlinedInput-root': {
+                  px: 0,
+                  display: 'grid',
+                  gridTemplateColumns: '1fr auto 1fr',
+                },
+                '& .MuiOutlinedInput-input': {
+                  padding: 0,
+                },
+                '& .MuiOutlinedInput-notchedOutline': {
+                  display: 'none',
+                },
+              },
+              ...(Array.isArray(sx) ? sx : [sx]),
+            ]}
             autoComplete='off'
             InputProps={{
               ...textFieldProps.InputProps,
               startAdornment: (
-                <IconButton
+                <Fab
                   aria-label={i18n._(/* i18n */ 'Decrease')}
-                  size='medium'
-                  edge='start'
+                  size='smaller'
                   onClick={() => {
                     if ((valueAsNumber || Infinity) <= inputProps.min) return
                     onChange(value - 1)
+                  }}
+                  sx={{
+                    boxShadow: variant === 'standard' ? 4 : 0,
+                    minHeight: '30px',
+                    minWidth: '30px',
                   }}
                   tabIndex={-1}
                   color='inherit'
@@ -99,16 +123,20 @@ export function NumberFieldElement<T extends FieldValues>(props: NumberFieldElem
                   className={`${classes.button} ${DownProps.className ?? ''}`}
                 >
                   {DownProps.children ?? <IconSvg src={iconMin} size='small' />}
-                </IconButton>
+                </Fab>
               ),
               endAdornment: (
-                <IconButton
+                <Fab
                   aria-label={i18n._(/* i18n */ 'Increase')}
-                  size='medium'
-                  edge='end'
+                  size='smaller'
                   onClick={() => {
                     if (valueAsNumber >= (inputProps.max ?? Infinity)) return
                     onChange(valueAsNumber + 1)
+                  }}
+                  sx={{
+                    boxShadow: variant === 'standard' ? 4 : 0,
+                    minHeight: '30px',
+                    minWidth: '30px',
                   }}
                   tabIndex={-1}
                   color='inherit'
@@ -116,7 +144,7 @@ export function NumberFieldElement<T extends FieldValues>(props: NumberFieldElem
                   className={`${classes.button} ${UpProps.className ?? ''}`}
                 >
                   {UpProps.children ?? <IconSvg src={iconPlus} size='small' />}
-                </IconButton>
+                </Fab>
               ),
             }}
             inputProps={{

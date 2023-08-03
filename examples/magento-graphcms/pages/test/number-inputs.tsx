@@ -128,7 +128,6 @@ export default function NumberInputsPage(props: TextInputNumberProps) {
                         size={size}
                         color={color}
                         {...props}
-                        required
                         inputProps={{ min: 1 }}
                         defaultValue={1}
                         control={control}

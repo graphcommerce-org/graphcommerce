@@ -98,7 +98,7 @@ export function TextInputNumber(props: TextInputNumberProps) {
       className={`${textFieldProps.className ?? ''} ${classes.quantity}`}
       sx={[
         {
-          width: responsiveVal(90, 110),
+          width: responsiveVal(80, 120),
         },
         variant === 'standard' && {
           '& .MuiOutlinedInput-root': {
@@ -122,8 +122,8 @@ export function TextInputNumber(props: TextInputNumberProps) {
           <Box>
             <Fab
               aria-label={i18n._(/* i18n */ 'Decrease')}
-              size='responsiveSmall'
-              sx={{ boxShadow: 4, minHeight: '30px' }}
+              size='smaller'
+              sx={{ boxShadow: variant === 'standard' ? 4 : 0, minHeight: '30px' }}
               onPointerDown={() => setDirection('down')}
               onPointerUp={stop}
               tabIndex={-1}
@@ -138,8 +138,8 @@ export function TextInputNumber(props: TextInputNumberProps) {
           <Box>
             <Fab
               aria-label={i18n._(/* i18n */ 'Increase')}
-              size='responsiveSmall'
-              sx={{ boxShadow: 4, minHeight: '30px' }}
+              size='smaller'
+              sx={{ boxShadow: variant === 'standard' ? 4 : 0, minHeight: '30px' }}
               onPointerDown={() => setDirection('up')}
               onPointerUp={() => setDirection(null)}
               tabIndex={-1}
