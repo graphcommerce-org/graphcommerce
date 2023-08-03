@@ -14,8 +14,8 @@
     "@graphcommerce/lingui-next": "6.2.0-canary.69",
     "@graphcommerce/next-config": "6.2.0-canary.69",
     "@graphcommerce/next-ui": "6.2.0-canary.69",
-    "@mui/material": "5.13.4",
-    "framer-motion": "10.12.16",
+    "@mui/material": "5.14.3",
+    "framer-motion": "10.15.0",
     "next": "13.4.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
