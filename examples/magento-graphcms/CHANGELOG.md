@@ -1,5 +1,17 @@
 # Change Log
 
+## 6.2.0-canary.69
+
+### Patch Changes
+
+- [#2012](https://github.com/graphcommerce-org/graphcommerce/pull/2012) [`1dbb3ae13`](https://github.com/graphcommerce-org/graphcommerce/commit/1dbb3ae13553992ee1ed77f375375560f28c418c) - Upgrade graphql to 16.7.1, add graphql as peer dependency ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 6.2.0-canary.68
+
+### Minor Changes
+
+- [#1990](https://github.com/graphcommerce-org/graphcommerce/pull/1990) [`0729105cd`](https://github.com/graphcommerce-org/graphcommerce/commit/0729105cdb84b9f73d1fda7dac7daf867f4e0b9b) - Add CategorySearchResults component that can be injected with a plugin instead of SearchForm, fix various styling issues with search ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 6.2.0-canary.67
 
 ### Patch Changes
