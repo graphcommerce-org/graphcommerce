@@ -122,8 +122,8 @@ export function TextInputNumber(props: TextInputNumberProps) {
           <Box>
             <Fab
               aria-label={i18n._(/* i18n */ 'Decrease')}
-              size='small'
-              sx={{ boxShadow: 4, minHeight: '30px', width: '30px', height: '30px' }}
+              size='responsiveSmall'
+              sx={{ boxShadow: 4, minHeight: '30px' }}
               onPointerDown={() => setDirection('down')}
               onPointerUp={stop}
               tabIndex={-1}
@@ -138,8 +138,8 @@ export function TextInputNumber(props: TextInputNumberProps) {
           <Box>
             <Fab
               aria-label={i18n._(/* i18n */ 'Increase')}
-              size='small'
-              sx={{ boxShadow: 4, minHeight: '30px', width: '30px', height: '30px' }}
+              size='responsiveSmall'
+              sx={{ boxShadow: 4, minHeight: '30px' }}
               onPointerDown={() => setDirection('up')}
               onPointerUp={() => setDirection(null)}
               tabIndex={-1}
