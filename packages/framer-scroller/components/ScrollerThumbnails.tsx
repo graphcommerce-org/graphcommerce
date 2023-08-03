@@ -16,8 +16,6 @@ const componentName = 'ScrollerThumbnails'
 export const ScrollerThumbnails = m((props: ThumbnailsProps) => {
   const { images, sx = [] } = props
 
-  console.log('rerendering thumbnails')
-
   return (
     <ImageGalleryContextProvider>
       <ThumbnailContainer sx={sx}>
