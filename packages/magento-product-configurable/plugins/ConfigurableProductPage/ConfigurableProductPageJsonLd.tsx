@@ -3,7 +3,7 @@ import type { IfConfig, ReactPlugin } from '@graphcommerce/next-config'
 import { useConfigurableSelectedVariant } from '../../hooks'
 
 export const component = 'ProductPageJsonLd'
-export const exported = '@graphcommerce/magento-product'
+export const exported = '@graphcommerce/magento-product/components/JsonLdProduct/ProductPageJsonLd'
 export const ifConfig: IfConfig = 'configurableVariantValues.content'
 
 type PluginType = ReactPlugin<typeof ProductPageJsonLd, AddToCartItemSelector>

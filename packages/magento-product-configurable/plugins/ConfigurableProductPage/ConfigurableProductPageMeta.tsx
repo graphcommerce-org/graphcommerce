@@ -10,7 +10,7 @@ import { useEffect } from 'react'
 import { useConfigurableSelectedVariant } from '../../hooks'
 
 export const component = 'ProductPageMeta'
-export const exported = '@graphcommerce/magento-product'
+export const exported = '@graphcommerce/magento-product/components/ProductPageMeta/ProductPageMeta'
 export const ifConfig: IfConfig = 'configurableVariantValues.url'
 
 type PluginType = ReactPlugin<typeof ProductPageMeta, AddToCartItemSelector>

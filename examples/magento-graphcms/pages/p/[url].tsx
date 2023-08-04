@@ -11,7 +11,7 @@ import {
   jsonLdProduct,
   jsonLdProductOffer,
   ProductCustomizable,
-  ProductName,
+  ProductPageName,
   ProductPageAddToCartActionsRow,
   ProductPageAddToCartQuantityRow,
   productPageCategory,
@@ -73,7 +73,7 @@ function ProductPage(props: Props) {
       <AddProductsToCartForm key={product.uid} defaultValues={defaultValues}>
         <LayoutHeader floatingMd>
           <LayoutTitle size='small' component='span'>
-            <ProductName product={product} />
+            <ProductPageName product={product} />
           </LayoutTitle>
         </LayoutHeader>
 
@@ -105,7 +105,7 @@ function ProductPage(props: Props) {
               </Typography>
             )}
             <Typography variant='h3' component='div' gutterBottom>
-              <ProductName product={product} />
+              <ProductPageName product={product} />
             </Typography>
             <ProductShortDescription
               sx={(theme) => ({ mb: theme.spacings.xs })}

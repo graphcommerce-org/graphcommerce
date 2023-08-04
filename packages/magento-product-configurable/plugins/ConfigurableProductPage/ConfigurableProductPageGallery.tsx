@@ -3,7 +3,8 @@ import type { IfConfig, ReactPlugin } from '@graphcommerce/next-config'
 import { useConfigurableOptionsSelection } from '../../hooks'
 
 export const component = 'ProductPageGallery'
-export const exported = '@graphcommerce/magento-product'
+export const exported =
+  '@graphcommerce/magento-product/components/ProductPageGallery/ProductPageGallery'
 
 type PluginType = ReactPlugin<typeof ProductPageGallery, AddToCartItemSelector>
 

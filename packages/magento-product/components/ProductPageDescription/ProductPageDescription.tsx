@@ -6,7 +6,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { Box, SxProps, Theme, Typography } from '@mui/material'
 import { Variant } from '@mui/material/styles/createTypography'
-import { ProductName } from '../ProductName'
+import { ProductPageName } from '../ProductPageName'
 import { ProductPageDescriptionFragment } from './ProductPageDescription.gql'
 
 export type ProductPageDescriptionProps = ProductPageDescriptionFragment &
@@ -30,7 +30,7 @@ export function ProductPageDescription(props: ProductPageDescriptionProps) {
       sx={sx}
       top={
         <Typography variant='h1' component='h1'>
-          <ProductName product={product} />
+          <ProductPageName product={product} />
         </Typography>
       }
       left={

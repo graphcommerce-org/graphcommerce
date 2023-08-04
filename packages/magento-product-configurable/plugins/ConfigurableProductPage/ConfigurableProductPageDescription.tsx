@@ -4,7 +4,8 @@ import type { IfConfig, ReactPlugin } from '@graphcommerce/next-config'
 import { useConfigurableSelectedVariant } from '../../hooks'
 
 export const component = 'ProductPageDescription'
-export const exported = '@graphcommerce/magento-product'
+export const exported =
+  '@graphcommerce/magento-product/components/ProductPageDescription/ProductPageDescription'
 export const ifConfig: IfConfig = 'configurableVariantValues.content'
 
 type PluginType = ReactPlugin<typeof ProductPageDescription, AddToCartItemSelector>
