@@ -203,10 +203,16 @@ To override the value for a specific locale, configure in i18n config.
 
 #### `googleRecaptchaKey: String`
 
-Google reCAPTCHA key, get from https://developers.google.com/recaptcha/docs/v3
+Google reCAPTCHA site key. When using reCAPTCHA, this value is required, even if
+you are configuring different values for each locale.
 
-This value is required even if you are configuring different values for each
-locale.
+Get a site key and a secret key from
+https://developers.google.com/recaptcha/docs/v3
+
+The secret key should be added in the Magento admin panel (Stores >
+Configuration > Security > Google ReCAPTCHA Storefront > reCAPTCHA v3 Invisible)
+ReCAPTCHA can then be enabled/disabled for the different forms, separately
+(Stores > Configuration > Security > Google ReCAPTCHA Storefront > Storefront)
 
 #### `googleTagmanagerId: String`
 

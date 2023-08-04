@@ -1,14 +1,9 @@
-import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import { styled, SxProps, Theme } from '@mui/material'
 import { m, PanInfo, useMotionValue, useMotionValueEvent } from 'framer-motion'
-import React, { useCallback, useMemo } from 'react'
+import React, { useCallback } from 'react'
 import { useScrollTo } from '../hooks/useScrollTo'
 import { useScrollerContext } from '../hooks/useScrollerContext'
-import {
-  ImageGallaryContext,
-  ImageGallaryContextValues,
-  useImageGalleryContext,
-} from './ImageGalleryContext'
+import { ImageGallaryContextValues, useImageGalleryContext } from './ImageGalleryContext'
 
 const MotionBox = styled(m.div)({})
 
@@ -28,6 +23,7 @@ export function ThumbnailContainer(props: ThumbnailContainerProps) {
   const measuredRef = useCallback(
     (node: HTMLDivElement) => {
       if (node) {
+        console.log(node.getBoundingClientRect())
         dimensions.set(node.getBoundingClientRect())
       }
     },
@@ -45,7 +41,7 @@ export function ThumbnailContainer(props: ThumbnailContainerProps) {
   const onPanStart = () => container.pan.active.set(true)
 
   const onPan = (_event: PointerEvent, info: PanInfo) => {
-    const raw = info.point.x / (dimensions.get().width / (items.length - 1))
+    const raw = info.point.x / (dimensions.get().width / (items.length - 1)) - 0.5
     const idx = Math.max(0, Math.min(Math.round(raw), items.length))
     scrollIndex.set(idx)
   }
@@ -60,6 +56,7 @@ export function ThumbnailContainer(props: ThumbnailContainerProps) {
       onPanEnd={onPanEnd}
       sx={[
         {
+          width: '100%',
           display: 'flex',
           flexDirection: 'row',
           touchAction: 'none',
