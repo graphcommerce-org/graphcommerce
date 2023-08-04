@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.72
+
+### Minor Changes
+
+- [#1997](https://github.com/graphcommerce-org/graphcommerce/pull/1997) [`43dc4c583`](https://github.com/graphcommerce-org/graphcommerce/commit/43dc4c5832c0bf440c59a533472055f898ae8572) - Changed style from grid to Flex ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
 ## 6.2.0-canary.71
 
 ## 6.2.0-canary.70

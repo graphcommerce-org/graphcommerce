@@ -2,7 +2,7 @@
   "name": "@graphcommerce/googleanalytics",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "6.2.0-canary.71",
+  "version": "6.2.0-canary.72",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -12,18 +12,18 @@
     }
   },
   "dependencies": {
-    "@graphcommerce/graphql-mesh": "6.2.0-canary.71",
-    "@graphcommerce/magento-cart": "6.2.0-canary.71",
-    "@graphcommerce/magento-cart-payment-method": "6.2.0-canary.71",
-    "@graphcommerce/magento-cart-shipping-method": "6.2.0-canary.71",
-    "@graphcommerce/magento-product": "6.2.0-canary.71",
-    "@graphcommerce/next-config": "6.2.0-canary.71",
-    "@graphcommerce/next-ui": "6.2.0-canary.71"
+    "@graphcommerce/graphql-mesh": "6.2.0-canary.72",
+    "@graphcommerce/magento-cart": "6.2.0-canary.72",
+    "@graphcommerce/magento-cart-payment-method": "6.2.0-canary.72",
+    "@graphcommerce/magento-cart-shipping-method": "6.2.0-canary.72",
+    "@graphcommerce/magento-product": "6.2.0-canary.72",
+    "@graphcommerce/next-config": "6.2.0-canary.72",
+    "@graphcommerce/next-ui": "6.2.0-canary.72"
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "6.2.0-canary.71",
-    "@graphcommerce/prettier-config-pwa": "6.2.0-canary.71",
-    "@graphcommerce/typescript-config-pwa": "6.2.0-canary.71",
+    "@graphcommerce/eslint-config-pwa": "6.2.0-canary.72",
+    "@graphcommerce/prettier-config-pwa": "6.2.0-canary.72",
+    "@graphcommerce/typescript-config-pwa": "6.2.0-canary.72",
     "@types/gtag.js": "^0.0.12"
   },
   "peerDependencies": {
