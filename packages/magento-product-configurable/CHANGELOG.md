@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.73
+
+### Minor Changes
+
+- [#1978](https://github.com/graphcommerce-org/graphcommerce/pull/1978) [`0c91ac1f7`](https://github.com/graphcommerce-org/graphcommerce/commit/0c91ac1f70f58dec418e945fc4a6a8c6732cc21e) - When a user selects a variant, it will switch the values on the configurable page with the values of the configured variant. Enabling options here will allow switching of those variants. ([@carlocarels90](https://github.com/carlocarels90))
+
 ## 6.2.0-canary.72
 
 ## 6.2.0-canary.71
