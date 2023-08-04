@@ -1,11 +1,12 @@
 import { NumberFieldElement, NumberFieldElementProps } from '@graphcommerce/ecommerce-ui'
 import { AddProductsToCartMutationVariables } from './AddProductsToCart.gql'
-import { useFormAddProductsToCart } from './useFormAddProductsToCart'
+import { AddToCartItemSelector, useFormAddProductsToCart } from './useFormAddProductsToCart'
 
 type AddToCartQuantityProps = Omit<
   NumberFieldElementProps<AddProductsToCartMutationVariables>,
   'error' | 'required' | 'inputProps' | 'helperText' | 'name' | 'control' | 'name'
-> & { index?: number }
+> &
+  AddToCartItemSelector
 
 export function AddProductsToCartQuantity(props: AddToCartQuantityProps) {
   const { index = 0 } = props

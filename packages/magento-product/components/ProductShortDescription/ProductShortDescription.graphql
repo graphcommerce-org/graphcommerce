@@ -1,4 +1,5 @@
 fragment ProductShortDescription on ProductInterface {
+  url_key
   short_description {
     ...ComplexTextValue
   }

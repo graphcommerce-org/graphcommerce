@@ -14,7 +14,7 @@ fragment ConfigurableOptionsSelection on ConfigurableProduct @injectable {
       ...ProductVideo
     }
     variant {
-      ...ConfiguredVariant
+      ...ProductPageItem
     }
   }
 }
