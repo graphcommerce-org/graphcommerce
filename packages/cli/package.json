@@ -2,7 +2,7 @@
   "name": "@graphcommerce/cli",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "6.2.0-canary.70",
+  "version": "6.2.0-canary.71",
   "author": "",
   "license": "MIT",
   "scripts": {
@@ -24,8 +24,8 @@
     "graphcommerce": "dist/bin/graphcommerce.js"
   },
   "dependencies": {
-    "@graphcommerce/hygraph-cli": "6.2.0-canary.70",
-    "@graphcommerce/next-config": "6.2.0-canary.70",
+    "@graphcommerce/hygraph-cli": "6.2.0-canary.71",
+    "@graphcommerce/next-config": "6.2.0-canary.71",
     "@graphql-codegen/cli": "4.0.1",
     "@graphql-mesh/cli": "latest",
     "@graphql-mesh/types": "latest",
@@ -41,9 +41,9 @@
     "graphql": "^16.7.1"
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "6.2.0-canary.70",
-    "@graphcommerce/prettier-config-pwa": "6.2.0-canary.70",
-    "@graphcommerce/typescript-config-pwa": "6.2.0-canary.70",
+    "@graphcommerce/eslint-config-pwa": "6.2.0-canary.71",
+    "@graphcommerce/prettier-config-pwa": "6.2.0-canary.71",
+    "@graphcommerce/typescript-config-pwa": "6.2.0-canary.71",
     "@types/rimraf": "^4.0.5",
     "react": "^18.2.0",
     "typescript": "5.1.3"

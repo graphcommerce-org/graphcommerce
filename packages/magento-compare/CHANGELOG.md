@@ -1,5 +1,7 @@
 # @graphcommerce/magento-compare
 
+## 6.2.0-canary.71
+
 ## 6.2.0-canary.70
 
 ## 6.2.0-canary.69
