@@ -1,4 +1,3 @@
-import { mergeDeep } from '@graphcommerce/graphql'
 import type { AddToCartItemSelector, ProductPageDescription } from '@graphcommerce/magento-product'
 import type { IfConfig, ReactPlugin } from '@graphcommerce/next-config'
 import { useConfigurableSelectedVariant } from '../../hooks'
@@ -13,7 +12,19 @@ type PluginType = ReactPlugin<typeof ProductPageDescription, AddToCartItemSelect
 export const ConfigurableProductPageDescription: PluginType = (props) => {
   const { Prev, product, index, ...rest } = props
   const variant = useConfigurableSelectedVariant({ url_key: product.url_key, index })
-  return <Prev product={variant ? mergeDeep(product, variant) : product} {...rest} />
+
+  return (
+    <Prev
+      product={{
+        ...product,
+        description: variant?.description?.html ? variant?.description : product.description,
+        short_description: variant?.short_description?.html
+          ? variant?.short_description
+          : product.short_description,
+      }}
+      {...rest}
+    />
+  )
 }
 
 export const Plugin = ConfigurableProductPageDescription
