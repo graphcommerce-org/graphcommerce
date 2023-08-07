@@ -36,14 +36,10 @@ export function AddProductsToCartSnackbar(props: AddProductsToCartSnackbarProps)
 
   const items = filterNonNullableKeys(data?.addProductsToCart?.cart.items)
 
-  const productSkus: (string | undefined | null)[] = []
-
-  submittedVariables?.cartItems.forEach((item) => {
-    productSkus.push(item.sku)
-  })
-
   const productsAdded = items
-    .filter((item) => productSkus.includes(item.product.sku))
+    .filter((item) =>
+      submittedVariables?.cartItems?.find((cartItem) => cartItem.sku === item.product.sku),
+    )
     .map((product) => product.product.name)
 
   const showErrorSnackbar = userErrors.length > 0
