@@ -13,6 +13,15 @@ export const dynamicRow = async (
 
   // ? ENUMERATIONS
   migrationAction(client, schema, 'enumeration', 'create', {
+    displayName: 'Row Column One Variants',
+    apiId: 'RowColumnOneVariants',
+    values: [
+      { displayName: 'Default', apiId: 'Default' },
+      { displayName: 'Message', apiId: 'Message' },
+    ],
+  })
+
+  migrationAction(client, schema, 'enumeration', 'create', {
     displayName: 'Dynamic Row Condition Number Operator',
     apiId: 'DynamicRowConditionNumberOperator',
     values: [
@@ -293,6 +302,14 @@ export const dynamicRow = async (
     'DynamicRow',
     'model',
   )
+
+  // ? Row Column One
+  migrationAction(client, schema, 'enumerableField', 'create', {
+    displayName: 'Variant',
+    apiId: 'rowColumnOneVariant',
+    enumerationApiId: 'RowColumnOneVariants',
+    parentApiId: 'RowColumnOne',
+  })
 
   return client.run(true)
 }
