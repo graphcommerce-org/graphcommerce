@@ -8,6 +8,14 @@ const dynamicRow = async (name, config, schema) => {
     const client = (0, client_1.initClient)(config, name);
     // ? ENUMERATIONS
     (0, functions_1.migrationAction)(client, schema, 'enumeration', 'create', {
+        displayName: 'Row Column One Variants',
+        apiId: 'RowColumnOneVariants',
+        values: [
+            { displayName: 'Default', apiId: 'Default' },
+            { displayName: 'Message', apiId: 'Message' },
+        ],
+    });
+    (0, functions_1.migrationAction)(client, schema, 'enumeration', 'create', {
         displayName: 'Dynamic Row Condition Number Operator',
         apiId: 'DynamicRowConditionNumberOperator',
         values: [
@@ -180,6 +188,13 @@ const dynamicRow = async (name, config, schema) => {
         componentApiIds: ['ConditionAnd', 'ConditionText', 'ConditionNumber'],
         isList: true,
     }, 'DynamicRow', 'model');
+    // ? Row Column One
+    (0, functions_1.migrationAction)(client, schema, 'enumerableField', 'create', {
+        displayName: 'Variant',
+        apiId: 'rowColumnOneVariant',
+        enumerationApiId: 'RowColumnOneVariants',
+        parentApiId: 'RowColumnOne',
+    }, 'RowColumnOne', 'model');
     return client.run(true);
 };
 exports.dynamicRow = dynamicRow;

@@ -304,12 +304,20 @@ export const dynamicRow = async (
   )
 
   // ? Row Column One
-  migrationAction(client, schema, 'enumerableField', 'create', {
-    displayName: 'Variant',
-    apiId: 'rowColumnOneVariant',
-    enumerationApiId: 'RowColumnOneVariants',
-    parentApiId: 'RowColumnOne',
-  })
+  migrationAction(
+    client,
+    schema,
+    'enumerableField',
+    'create',
+    {
+      displayName: 'Variant',
+      apiId: 'rowColumnOneVariant',
+      enumerationApiId: 'RowColumnOneVariants',
+      parentApiId: 'RowColumnOne',
+    },
+    'RowColumnOne',
+    'model',
+  )
 
   return client.run(true)
 }
