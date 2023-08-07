@@ -70,6 +70,7 @@ export function useFormGql<Q, V extends FieldValues>(
   const handleSubmit: UseFormReturn<V>['handleSubmit'] = (onValid, onInvalid) =>
     form.handleSubmit(async (formValues, event) => {
       // Combine defaults with the formValues and encode
+      submittedVariables.current = undefined
       let variables = encode({ ...defaultValues, ...formValues })
 
       // Wait for the onBeforeSubmit to complete
