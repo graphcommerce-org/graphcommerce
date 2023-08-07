@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.74
+
+### Patch Changes
+
+- [#2006](https://github.com/graphcommerce-org/graphcommerce/pull/2006) [`80b60cb40`](https://github.com/graphcommerce-org/graphcommerce/commit/80b60cb404882260bd0e8184f3e54f4720925c96) - Bugfix for unintentionally overriding the billing address even if a default address was set. Also made prefix optional when creating an address ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
 ## 6.2.0-canary.73
 
 ## 6.2.0-canary.72
