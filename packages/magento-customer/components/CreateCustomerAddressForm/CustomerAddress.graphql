@@ -20,4 +20,5 @@ fragment CustomerAddress on CustomerAddress {
 
   vat_id
   default_shipping
+  default_billing
 }
