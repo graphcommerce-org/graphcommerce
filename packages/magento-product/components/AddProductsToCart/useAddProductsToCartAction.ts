@@ -24,7 +24,7 @@ export type UseAddProductsToCartActionReturn = {
 export function useAddProductsToCartAction(
   props: UseAddProductsToCartActionProps,
 ): UseAddProductsToCartActionReturn {
-  const { setValue, getValues, control, error, data, redirect, submittedVariables } =
+  const { setValue, getValues, control, error, data, submittedVariables } =
     useFormAddProductsToCart()
   const formState = useFormState({ control })
   const {
@@ -41,11 +41,7 @@ export function useAddProductsToCartAction(
   const userErrors = toUserErrors(data)
 
   const submitSuccesful =
-    !formState.isSubmitting &&
-    formState.isSubmitSuccessful &&
-    !error?.message &&
-    !userErrors.length &&
-    !redirect
+    !formState.isSubmitting && formState.isSubmitSuccessful && !error?.message && !userErrors.length
 
   useEffect(() => {
     if (submitSuccesful && submittedVariables?.cartItems.find((item) => item.sku === sku)) {
