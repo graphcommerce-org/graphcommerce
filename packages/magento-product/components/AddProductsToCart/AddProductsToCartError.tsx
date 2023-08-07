@@ -1,11 +1,10 @@
 import { useFormState } from '@graphcommerce/ecommerce-ui'
 import { FormHelperText } from '@mui/material'
-import { useFormAddProductsToCart } from './useFormAddProductsToCart'
+import { AddToCartItemSelector, useFormAddProductsToCart } from './useFormAddProductsToCart'
 
 type AddProductsToCartErrorProps = {
   children?: React.ReactNode
-  index?: number
-}
+} & AddToCartItemSelector
 
 export function AddProductsToCartError(props: AddProductsToCartErrorProps) {
   const { children, index = 0 } = props

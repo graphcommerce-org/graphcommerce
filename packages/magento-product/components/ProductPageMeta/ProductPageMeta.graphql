@@ -3,16 +3,18 @@ fragment ProductPageMeta on ProductInterface {
   sku
   name
   url_key
+  url_rewrites {
+    url
+  }
   meta_title
   meta_description
   price_range {
     minimum_price {
       final_price {
-        value
-        currency
+        ...Money
       }
       regular_price {
-        value
+        ...Money
       }
     }
   }

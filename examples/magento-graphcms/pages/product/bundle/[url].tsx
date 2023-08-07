@@ -69,8 +69,9 @@ function ProductBundle(props: Props) {
           ...jsonLdProductReview(product),
         }}
       />
-      <ProductPageMeta {...product} />
-      <ProductPageGallery {...product}>
+
+      <ProductPageMeta product={product} />
+      <ProductPageGallery product={product}>
         <Typography variant='h3' component='div'>
           {product.name}
         </Typography>
@@ -87,7 +88,11 @@ function ProductBundle(props: Props) {
         <Usps usps={sidebarUsps} size='small' />
       </ProductPageGallery>
 
-      <ProductPageDescription {...product} right={<Usps usps={usps} />} fontSize='responsive' />
+      <ProductPageDescription
+        product={product}
+        right={<Usps usps={usps} />}
+        fontSize='responsive'
+      />
 
       {pages?.[0] && (
         <RowRenderer

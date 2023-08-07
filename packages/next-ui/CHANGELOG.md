@@ -1,5 +1,21 @@
 # Change Log
 
+## 6.2.0-canary.73
+
+## 6.2.0-canary.72
+
+## 6.2.0-canary.71
+
+### Patch Changes
+
+- [#1980](https://github.com/graphcommerce-org/graphcommerce/pull/1980) [`275aaaba3`](https://github.com/graphcommerce-org/graphcommerce/commit/275aaaba34c9db1705183393c4327e8f16b09386) - Fixed overlays closing while still dragging - overlays should only close after releasing pointer ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 6.2.0-canary.70
+
+## 6.2.0-canary.69
+
+## 6.2.0-canary.68
+
 ## 6.2.0-canary.67
 
 ## 6.2.0-canary.66

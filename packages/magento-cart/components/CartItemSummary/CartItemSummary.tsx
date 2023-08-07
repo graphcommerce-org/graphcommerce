@@ -83,7 +83,7 @@ export function CartItemSummary(props: OrderSummaryProps) {
             >
               <IconSvg src={iconChevronLeft} />
             </ScrollerButton>
-            <Box className={classes.scrollerContainer} sx={{ padding: '1px' }}>
+            <Box className={classes.scrollerContainer} sx={{ padding: '1px', display: 'flex' }}>
               <Scroller className={classes.scroller}>
                 {items?.map((item) => (
                   <React.Fragment key={item?.uid}>

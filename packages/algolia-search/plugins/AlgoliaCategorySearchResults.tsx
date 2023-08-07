@@ -1,10 +1,10 @@
-import { CategorySearchResult, SearchFormProps } from '@graphcommerce/magento-search'
+import { CategorySearchResult, CategorySearchResultsProps } from '@graphcommerce/magento-search'
 import { IfConfig, PluginProps } from '@graphcommerce/next-config'
 import { Index } from 'react-instantsearch-hooks-web'
 import { useAlgoliaCategoryResults } from '../hooks/useAlgoliaCategoryResults'
 import { useAlgoliaSearchIndexConfig } from '../hooks/useAlgoliaSearchIndexConfig'
 
-export const component = 'SearchForm'
+export const component = 'CategorySearchResults'
 export const exported = '@graphcommerce/magento-search'
 export const ifConfig: IfConfig = 'algoliaApplicationId'
 
@@ -17,6 +17,7 @@ function CategoryHits() {
     <>
       {categories.map((category) => (
         <CategorySearchResult
+          key={category.category_uid}
           breadcrumbs={[category]}
           search={search}
           url_path={category.category_url_path}
@@ -26,19 +27,19 @@ function CategoryHits() {
   )
 }
 
-function AlgoliaCategorySearchPlugin(props: PluginProps<SearchFormProps>) {
-  const { Prev, ...rest } = props
+function AlgoliaCategorySearchPlugin(props: PluginProps<CategorySearchResultsProps>) {
+  const { Prev, children, ...rest } = props
   const searchIndex = useAlgoliaSearchIndexConfig('_categories')?.searchIndex
 
-  if (!searchIndex) return <Prev {...rest} />
+  if (!searchIndex) return <Prev {...rest}>{children}</Prev>
 
   return (
-    <>
-      <Prev {...rest} />
+    <Prev {...rest}>
+      {children}
       <Index indexName={searchIndex}>
         <CategoryHits />
       </Index>
-    </>
+    </Prev>
   )
 }
 

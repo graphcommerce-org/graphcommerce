@@ -63,8 +63,8 @@ function ProductSimple(props: Props) {
         }}
       />
 
-      <ProductPageMeta {...product} />
-      <ProductPageGallery {...product}>
+      <ProductPageMeta product={product} />
+      <ProductPageGallery product={product}>
         <Typography variant='h2' component='div'>
           {product.name}
         </Typography>
@@ -87,7 +87,11 @@ function ProductSimple(props: Props) {
         <Usps usps={sidebarUsps} size='small' />
       </ProductPageGallery>
 
-      <ProductPageDescription {...product} right={<Usps usps={usps} />} fontSize='responsive' />
+      <ProductPageDescription
+        product={product}
+        right={<Usps usps={usps} />}
+        fontSize='responsive'
+      />
 
       {pages?.[0] && (
         <RowRenderer

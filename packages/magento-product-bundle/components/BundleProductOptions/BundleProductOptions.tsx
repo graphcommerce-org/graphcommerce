@@ -1,3 +1,4 @@
+import { AddToCartItemSelector } from '@graphcommerce/magento-product'
 import { ActionCardListProps, filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { BundleOption } from './BundleOption'
 import { BundleOptionValue } from './BundleOptionValue'
@@ -9,9 +10,8 @@ type BundelProductOptionsProps = Pick<
   'size' | 'layout' | 'color' | 'variant'
 > & {
   renderer?: React.FC<BundleOptionValueProps>
-  index?: number
   product: BundleProductOptionsFragment
-}
+} & AddToCartItemSelector
 
 export function BundleProductOptions(props: BundelProductOptionsProps) {
   const { product, index = 0 } = props

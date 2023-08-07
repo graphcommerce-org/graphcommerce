@@ -1,5 +1,33 @@
 # Change Log
 
+## 6.2.0-canary.73
+
+### Minor Changes
+
+- [#1978](https://github.com/graphcommerce-org/graphcommerce/pull/1978) [`0c91ac1f7`](https://github.com/graphcommerce-org/graphcommerce/commit/0c91ac1f70f58dec418e945fc4a6a8c6732cc21e) - When a user selects a variant, it will switch the values on the configurable page with the values of the configured variant. Enabling options here will allow switching of those variants. ([@carlocarels90](https://github.com/carlocarels90))
+
+## 6.2.0-canary.72
+
+### Minor Changes
+
+- [#1997](https://github.com/graphcommerce-org/graphcommerce/pull/1997) [`43dc4c583`](https://github.com/graphcommerce-org/graphcommerce/commit/43dc4c5832c0bf440c59a533472055f898ae8572) - Changed style from grid to Flex ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 6.2.0-canary.71
+
+## 6.2.0-canary.70
+
+## 6.2.0-canary.69
+
+### Patch Changes
+
+- [#2012](https://github.com/graphcommerce-org/graphcommerce/pull/2012) [`1dbb3ae13`](https://github.com/graphcommerce-org/graphcommerce/commit/1dbb3ae13553992ee1ed77f375375560f28c418c) - Upgrade graphql to 16.7.1, add graphql as peer dependency ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 6.2.0-canary.68
+
+### Minor Changes
+
+- [#1990](https://github.com/graphcommerce-org/graphcommerce/pull/1990) [`0729105cd`](https://github.com/graphcommerce-org/graphcommerce/commit/0729105cdb84b9f73d1fda7dac7daf867f4e0b9b) - Add CategorySearchResults component that can be injected with a plugin instead of SearchForm, fix various styling issues with search ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 6.2.0-canary.67
 
 ### Patch Changes

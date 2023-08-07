@@ -14,6 +14,8 @@ export type AddProductsToCartContextType = { redirect: RedirectType } & Omit<
   'formState' | 'watch'
 >
 
+export type AddToCartItemSelector = { index?: number }
+
 export const AddProductsToCartContext = createContext(
   undefined as AddProductsToCartContextType | undefined,
 )
