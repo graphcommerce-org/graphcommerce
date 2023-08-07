@@ -28,9 +28,7 @@ export type UseFormGqlMethods<Q, V extends FieldValues> = Omit<
   UseGqlDocumentHandler<V>,
   'encode' | 'type'
 > &
-  Pick<UseFormReturn<V>, 'handleSubmit'> & { data?: Q | null; error?: ApolloError } & {
-    submittedVariables?: V
-  }
+  Pick<UseFormReturn<V>, 'handleSubmit'> & { data?: Q | null; error?: ApolloError; submittedVariables?: V }
 
 /**
  * Combines useMutation/useLazyQuery with react-hook-form's useForm:
