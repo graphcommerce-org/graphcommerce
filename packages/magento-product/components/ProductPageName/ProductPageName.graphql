@@ -1,0 +1,4 @@
+fragment ProductPageName on ProductInterface {
+  name
+  url_key
+}

@@ -73,9 +73,8 @@ function ProductConfigurable(props: Props) {
         }}
       />
       <ConfigurableContextProvider {...typeProduct} sku={product.sku}>
-        <ProductPageMeta {...product} />
-
-        <ProductPageGallery {...product}>
+        <ProductPageMeta product={product} />
+        <ProductPageGallery product={product}>
           <div>
             <Typography component='span' variant='body2' color='text.disabled'>
               <Trans
@@ -88,7 +87,7 @@ function ProductConfigurable(props: Props) {
             {product.name}
           </Typography>
 
-          <ProductShortDescription short_description={product?.short_description} />
+          <ProductShortDescription product={product} />
 
           <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
           <ConfigurableProductAddToCart
@@ -116,7 +115,11 @@ function ProductConfigurable(props: Props) {
           <Usps usps={sidebarUsps} size='small' />
         </ProductPageGallery>
 
-        <ProductPageDescription {...product} right={<Usps usps={usps} />} fontSize='responsive' />
+        <ProductPageDescription
+          product={product}
+          right={<Usps usps={usps} />}
+          fontSize='responsive'
+        />
 
         {pages?.[0] && (
           <RowRenderer

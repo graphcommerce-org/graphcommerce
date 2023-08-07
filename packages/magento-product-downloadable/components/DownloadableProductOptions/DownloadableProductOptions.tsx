@@ -1,4 +1,4 @@
-import { useFormAddProductsToCart } from '@graphcommerce/magento-product'
+import { AddToCartItemSelector, useFormAddProductsToCart } from '@graphcommerce/magento-product'
 import { Money } from '@graphcommerce/magento-store'
 import {
   ActionCard,
@@ -9,9 +9,8 @@ import {
 import { useMemo } from 'react'
 import { DownloadableProductOptionsFragment } from './DownloadableProductOptions.gql'
 
-type DownloadableProductOptionsProps = {
+type DownloadableProductOptionsProps = AddToCartItemSelector & {
   product: DownloadableProductOptionsFragment
-  index?: number
 }
 
 export function DownloadableProductOptions(props: DownloadableProductOptionsProps) {

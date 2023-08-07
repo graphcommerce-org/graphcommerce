@@ -11,8 +11,11 @@ export type PluginProps<P extends Record<string, unknown> = Record<string, unkno
   Prev: React.FC<P>
 }
 
-export type ReactPlugin<T extends React.FC<any>> = (
-  props: Parameters<T>[0] & { Prev: React.FC<Parameters<T>[0]> },
+export type ReactPlugin<
+  T extends React.FC<any>,
+  AdditionalOptionalProps extends Record<string, unknown> = Record<string, unknown>,
+> = (
+  props: Parameters<T>[0] & AdditionalOptionalProps & { Prev: React.FC<Parameters<T>[0]> },
 ) => ReturnType<T>
 
 export type MethodPlugin<T extends (...args: any[]) => any> = (

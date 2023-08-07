@@ -1,7 +1,7 @@
 import {
   AddProductsToCartMutationVariables,
   useFormAddProductsToCart,
-} from '@graphcommerce/magento-product/components'
+} from '@graphcommerce/magento-product'
 import {
   SectionHeader,
   ActionCardListForm,

@@ -1,12 +1,15 @@
 import { PageMeta } from '@graphcommerce/magento-store'
 import { PageMetaProps } from '@graphcommerce/next-ui'
-import { useProductLink } from '../../hooks/useProductLink'
+import { productLink } from '../../hooks/useProductLink'
 import { ProductPageMetaFragment } from './ProductPageMeta.gql'
 
-type ProductPageProps = ProductPageMetaFragment &
-  Pick<PageMetaProps, 'children' | 'ogImage' | 'ogImageUseFallback'>
+export type ProductPageMetaProps = { product: ProductPageMetaFragment } & Pick<
+  PageMetaProps,
+  'children' | 'ogImage' | 'ogImageUseFallback'
+>
 
-export function ProductPageMeta(props: ProductPageProps) {
+export function ProductPageMeta(props: ProductPageMetaProps) {
+  const { product, ...rest } = props
   const {
     sku,
     categories,
@@ -17,18 +20,16 @@ export function ProductPageMeta(props: ProductPageProps) {
     meta_description,
     url_key,
     __typename,
-    ...ProductPageProps
-  } = props
-  const productLink = useProductLink({ url_key, __typename })
+  } = product
 
   return (
     <PageMeta
       title={meta_title ?? name ?? ''}
       metaDescription={meta_description ?? name ?? ''}
-      canonical={productLink}
+      canonical={productLink({ url_key, __typename })}
       ogImage={media_gallery?.[0]?.url}
       ogType='product'
-      {...ProductPageProps}
+      {...rest}
     >
       {sku && <meta property='product:retailer_part_no' content={sku} key='og-product-sku' />}
       {price_range?.minimum_price?.regular_price?.value && (

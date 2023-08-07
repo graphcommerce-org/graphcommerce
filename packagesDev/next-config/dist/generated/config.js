@@ -29,6 +29,9 @@ _export(exports, {
     },
     GraphCommerceStorefrontConfigSchema: function() {
         return GraphCommerceStorefrontConfigSchema;
+    },
+    MagentoConfigurableVariantValuesSchema: function() {
+        return MagentoConfigurableVariantValuesSchema;
     }
 });
 const _zod = require("zod");
@@ -49,6 +52,7 @@ function GraphCommerceConfigSchema() {
         compare: _zod.z.boolean().nullish(),
         compareVariant: CompareVariantSchema.nullish(),
         configurableVariantForSimple: _zod.z.boolean().nullish(),
+        configurableVariantValues: MagentoConfigurableVariantValuesSchema().nullish(),
         customerRequireEmailConfirmation: _zod.z.boolean().nullish(),
         debug: GraphCommerceDebugConfigSchema().nullish(),
         demoMode: _zod.z.boolean().nullish(),
@@ -92,5 +96,11 @@ function GraphCommerceStorefrontConfigSchema() {
         linguiLocale: _zod.z.string().nullish(),
         locale: _zod.z.string().min(1),
         magentoStoreCode: _zod.z.string().min(1)
+    });
+}
+function MagentoConfigurableVariantValuesSchema() {
+    return _zod.z.object({
+        content: _zod.z.boolean().nullish(),
+        url: _zod.z.boolean().nullish()
     });
 }

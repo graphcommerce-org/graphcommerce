@@ -1,5 +1,17 @@
 # Change Log
 
+## 6.2.0-canary.73
+
+## 6.2.0-canary.72
+
+## 6.2.0-canary.71
+
+## 6.2.0-canary.70
+
+### Patch Changes
+
+- [#2010](https://github.com/graphcommerce-org/graphcommerce/pull/2010) [`236471e8c`](https://github.com/graphcommerce-org/graphcommerce/commit/236471e8ca892be337de31bd3d654f2ddddf8695) - Fixed bug which caused the sign in field to not be focusable ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
 ## 6.2.0-canary.69
 
 ## 6.2.0-canary.68
