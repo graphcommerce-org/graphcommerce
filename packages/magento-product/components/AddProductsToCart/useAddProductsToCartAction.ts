@@ -43,19 +43,21 @@ export function useAddProductsToCartAction(
   const submitSuccesful =
     !formState.isSubmitting && formState.isSubmitSuccessful && !error?.message && !userErrors.length
 
-  useEffect(() => {
-    if (submitSuccesful && submittedVariables?.cartItems.find((item) => item.sku === sku)) {
-      setShowSuccess(true)
-    }
-  }, [sku, submitSuccesful, submittedVariables?.cartItems])
+  const [prevSubmitSuccessful, setPrevSubmitSuccessful] = useState<boolean>(submitSuccesful)
+  if (
+    submitSuccesful !== prevSubmitSuccessful &&
+    submitSuccesful &&
+    submittedVariables?.cartItems.find((item) => item.sku === sku)
+  ) {
+    setPrevSubmitSuccessful(submitSuccesful)
+    setShowSuccess(true)
+  }
 
-  useEffect(() => {
-    if (showSuccess) {
-      setTimeout(() => {
-        setShowSuccess(false)
-      }, 2000)
-    }
-  }, [showSuccess])
+  if (showSuccess) {
+    setTimeout(() => {
+      setShowSuccess(false)
+    }, 2000)
+  }
 
   return {
     disabled:
