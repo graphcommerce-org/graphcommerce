@@ -58,6 +58,9 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
           '&.sizeSmall': {
             px: 0,
           },
+          '& .ActionCard-action': {
+            pr: theme.spacings.xs,
+          },
           '& .ActionCard-image': {
             alignSelf: 'flex-start',
             transform: 'translateY(10px)',
@@ -73,6 +76,8 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
           },
           '& .ActionCard-price': {
             typography: typographySizes[size],
+            pr: theme.spacings.xs,
+            mb: { xs: 0.5, sm: 0 },
           },
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
