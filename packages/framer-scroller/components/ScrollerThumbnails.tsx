@@ -1,6 +1,5 @@
 import { ImageProps } from '@graphcommerce/image'
 import { ButtonProps, SxProps, Theme } from '@mui/material'
-import { m } from 'framer-motion'
 import { ImageGalleryContextProvider } from './ImageGalleryContext'
 import { ScrollerThumbnail } from './ScrollerThumbnail'
 import { ThumbnailContainer } from './ThumbnailContainer'
@@ -13,7 +12,7 @@ export type ThumbnailsProps = {
 
 const componentName = 'ScrollerThumbnails'
 
-export const ScrollerThumbnails = m((props: ThumbnailsProps) => {
+export function ScrollerThumbnails(props: ThumbnailsProps) {
   const { images, sx = [] } = props
 
   return (
@@ -33,6 +32,6 @@ export const ScrollerThumbnails = m((props: ThumbnailsProps) => {
       </ThumbnailContainer>
     </ImageGalleryContextProvider>
   )
-})
+}
 
 ScrollerThumbnails.displayName = componentName

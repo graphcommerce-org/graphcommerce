@@ -1,6 +1,6 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import { MotionValue, useMotionValue } from 'framer-motion'
-import React, { createContext, PropsWithChildren, useContext, useMemo } from 'react'
+import React, { createContext, useContext, useMemo } from 'react'
 import { useScrollerContext } from '../hooks/useScrollerContext'
 import { ItemState } from '../types'
 

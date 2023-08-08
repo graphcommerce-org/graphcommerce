@@ -2,9 +2,8 @@ import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import { Image, ImageProps } from '@graphcommerce/image'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { extendableComponent } from '@graphcommerce/next-ui/Styles'
-import { styled } from '@mui/material'
-import { m, useAnimation, Variants } from 'framer-motion'
-import { useEffect } from 'react'
+import { alpha, styled, useTheme } from '@mui/material'
+import { m, useTransform } from 'framer-motion'
 import { useScrollTo } from '../hooks/useScrollTo'
 import { useScrollerContext } from '../hooks/useScrollerContext'
 import { ItemState } from '../types'
@@ -26,59 +25,67 @@ const MotionBox = styled(m.div)({})
 export function ScrollerThumbnail(props: ScrollerThumbnailProps) {
   const { visibility, idx, image } = props
   const scrollTo = useScrollTo()
-  const { getScrollSnapPositions, scroll } = useScrollerContext()
-  const active = useMotionValueValue(visibility, (v) => v >= 0.7)
+  const { getScrollSnapPositions } = useScrollerContext()
   const { container } = useImageGalleryContext()
-  const panActive = useMotionValueValue(container.pan.active, (v) => v)
-  const scrollIsAnimating = useMotionValueValue(scroll.animating, (v) => v)
-  const imageController = useAnimation()
+  const active = useMotionValueValue(visibility, (v) => v >= 0.5)
+  const theme = useTheme()
 
+  const boxShadow = useTransform(
+    visibility,
+    [1, 0],
+    [
+      `inset 0 0 0 2px ${theme.palette.primary.main}, 0 0 0 4px ${alpha(
+        theme.palette.primary.main,
+        theme.palette.action.hoverOpacity,
+      )}`,
+      `inset 0 0 0 2px #ffffff00, 0 0 0 4px #ffffff00`,
+    ],
+  )
   const classes = withState({ active })
-
   const positions = getScrollSnapPositions()
-  const currentPosition = positions.x[idx]
+  const itemX = positions.x[idx]
 
-  const activeWidth = 120
+  if (!image || !image?.width || !image?.height) return null
 
-  useEffect(() => {
-    if (active && !scrollIsAnimating && !panActive) {
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      imageController.start('active')
-    }
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    else imageController.start('default')
-  }, [active, imageController, panActive, scrollIsAnimating])
-
-  if (!image) return null
-
-  const widthAnimation: Variants = {
-    default: {
-      margin: '0',
-      width: 'auto',
-    },
-    active: {
-      margin: '0 8px',
-      width: activeWidth,
-    },
-  }
+  const imageHeight = 120
+  const minWidth = (image.width / image.height) * imageHeight
 
   return (
-    <MotionBox>
-      <MotionBox
-        initial='default'
-        className={classes.thumbnail}
-        onClick={() => {
+    <MotionBox
+      initial='default'
+      className={classes.thumbnail}
+      onClick={() => {
+        if (container.pan.active.get() === false)
           // eslint-disable-next-line @typescript-eslint/no-floating-promises
-          scrollTo({ x: currentPosition, y: positions.y[idx] ?? 0 })
-        }}
+          scrollTo({ x: itemX, y: positions.y[idx] ?? 0 })
+      }}
+      layout
+      style={{
+        minWidth,
+        padding: '2px',
+        height: imageHeight,
+        boxShadow,
+      }}
+      sx={{
+        mx: `calc(${theme.spacing(1)} / 2)`,
+        borderRadius: theme.shape.borderRadius,
+      }}
+    >
+      <Image
+        src={image.src}
+        layout='fill'
         sx={{
-          height: 120,
+          pointerEvents: 'none',
+          objectFit: 'cover',
+          borderRadius: theme.shape.borderRadius - 0.7,
         }}
-        animate={imageController}
-        variants={widthAnimation}
-      >
-        <Image src={image.src} layout='fill' sx={{ objectFit: 'cover' }} />
-      </MotionBox>
+        sizes={{
+          0: '80px',
+          300: '100px',
+          600: '120px',
+          900: '180px',
+        }}
+      />
     </MotionBox>
   )
 }
