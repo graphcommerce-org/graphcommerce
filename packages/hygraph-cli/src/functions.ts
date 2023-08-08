@@ -69,6 +69,7 @@ type AllActions =
   | BatchMigrationCreateComponentUnionFieldInput
   | BatchMigrationUpdateComponentUnionFieldInput
 
+/** This constant is used to check if the action and type exists. */
 const validPropMap = {
   model: {
     create: 'BatchMigrationCreateModelInput',
@@ -117,6 +118,10 @@ const validPropMap = {
   },
 }
 
+/**
+ * This constant is used to assign the right action of the management SDK to the migratioAction
+ * function
+ */
 const actionMap = {
   create: {
     model: (innerprops: BatchMigrationCreateModelInput) => client.createModel(innerprops),
@@ -301,8 +306,8 @@ export const migrationAction = (
   if (!alreadyExists()) {
     if (validProp && actionFunc) {
       graphcommerceLog(`${capitalize(action)} ${type} with apiId ${props.apiId}...`)
-      // sesslint-disable-next-line @tsdypescript-eslint/ban-ts-comment
-      // @sts-ignore | This error is a loss on typescript autocomplete, but the function is called correctly
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore | This error is a loss on typescript autocomplete, but the function is called correctly
       actionFunc(props)
     }
   } else {
