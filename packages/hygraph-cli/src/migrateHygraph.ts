@@ -4,7 +4,7 @@ import { MigrationInfo } from '@hygraph/management-sdk/dist/ManagementAPIClient'
 import dotenv from 'dotenv'
 import prompts, { PromptObject } from 'prompts'
 import { graphcommerceLog } from './functions'
-import { dynamicRow } from './migrations'
+import { dynamicRow, GraphCommerce6 } from './migrations'
 import { readSchema } from './readSchema'
 import { Schema } from './types'
 
@@ -20,7 +20,6 @@ export async function migrateHygraph() {
   const packageJson = fs.readFileSync('package.json', 'utf8')
   const packageData = JSON.parse(packageJson)
   const graphcommerceVersion = packageData.dependencies['@graphcommerce/next-ui']
-  const versionParts = graphcommerceVersion.split('.')
 
   graphcommerceLog(`Graphcommerce version: ${graphcommerceVersion}`, 'info')
 
@@ -30,7 +29,7 @@ export async function migrateHygraph() {
 
   // A list of possible migrations
   const possibleMigrations: [string, (schema: Schema) => Promise<MigrationInfo>][] = [
-    // ['Upgrade to GraphCommerce 6', GraphCommerce6],
+    ['Upgrade to GraphCommerce 6', GraphCommerce6],
     ['Upgrade to Graphcommerce 6.2', dynamicRow],
   ]
 
