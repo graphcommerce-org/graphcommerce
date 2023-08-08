@@ -1,10 +1,10 @@
 import fs from 'fs'
-import { GraphCommerceConfig, loadConfig } from '@graphcommerce/next-config'
+import { loadConfig } from '@graphcommerce/next-config'
 import { MigrationInfo } from '@hygraph/management-sdk/dist/ManagementAPIClient'
 import dotenv from 'dotenv'
 import prompts, { PromptObject } from 'prompts'
 import { graphcommerceLog } from './functions'
-import { dynamicRow, GraphCommerce6 } from './migrations'
+import { dynamicRow } from './migrations'
 import { readSchema } from './readSchema'
 import { Schema } from './types'
 
@@ -21,44 +21,16 @@ export async function migrateHygraph() {
   const packageData = JSON.parse(packageJson)
   const graphcommerceVersion = packageData.dependencies['@graphcommerce/next-ui']
   const versionParts = graphcommerceVersion.split('.')
-  const graphcommerceMinorVersion = `${versionParts[0]}.${versionParts[1]}`
 
   graphcommerceLog(`Graphcommerce version: ${graphcommerceVersion}`, 'info')
-
-  // ? This goes unused for now
-  const versionInput: PromptObject<string> | PromptObject<string>[] = {
-    type: 'text',
-    name: 'selectedVersion',
-    message: '[GraphCommerce]: Select GraphCommerce version (Major.Minor e.g. 6.2)',
-    validate: (value: string) => {
-      // Validate the version format
-      const versionRegex = /^\d+\.\d+$/
-      return versionRegex.test(value)
-        ? true
-        : '[GraphCommerce]: Please enter a valid version (Major.Minor e.g. 6.2)'
-    },
-  }
-
-  /**
-   * Force run will run the migration even if it has already been run before. Hardcoded on true for
-   * now. Could be a useful config for the user in a later version.
-   */
-  const forceRun = true
 
   // Extract the currently existing models, components and enumerations from the Hygraph schema.
   const schemaViewer = await readSchema(config)
   const schema: Schema = schemaViewer.viewer.project.environment.contentModel
 
   // A list of possible migrations
-  const possibleMigrations: [
-    string,
-    (
-      name: string | undefined,
-      config: GraphCommerceConfig,
-      schema: Schema,
-    ) => Promise<MigrationInfo>,
-  ][] = [
-    ['Upgrade to GraphCommerce 6', GraphCommerce6],
+  const possibleMigrations: [string, (schema: Schema) => Promise<MigrationInfo>][] = [
+    // ['Upgrade to GraphCommerce 6', GraphCommerce6],
     ['Upgrade to Graphcommerce 6.2', dynamicRow],
   ]
 
@@ -89,7 +61,8 @@ export async function migrateHygraph() {
     try {
       // Here we try to run the migration
       // eslint-disable-next-line no-await-in-loop
-      const result = await migration(forceRun ? undefined : name, config, schema)
+      const result = await migration(schema)
+
       graphcommerceLog(`Migration result: ${JSON.stringify(result)}`, 'info')
       if (result.status !== 'SUCCESS') {
         throw new Error(

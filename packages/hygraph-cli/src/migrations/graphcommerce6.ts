@@ -1,18 +1,10 @@
-import { GraphCommerceConfig } from '@graphcommerce/next-config'
 import { RelationalFieldType, SimpleFieldType, VisibilityTypes } from '@hygraph/management-sdk'
-import { initClient } from '../client'
-import { migrationAction } from '../functions'
+import { migrationAction, client } from '../functions'
 import { Schema } from '../types'
 
-export const GraphCommerce6 = async (
-  name: string | undefined,
-  config: GraphCommerceConfig,
-  schema: Schema,
-) => {
-  const client = initClient(config, name)
-
+export const GraphCommerce6 = async (schema: Schema) => {
   // ? ENUMERATIONS
-  migrationAction(client, schema, 'enumeration', 'create', {
+  migrationAction(schema, 'enumeration', 'create', {
     displayName: 'Row Links Variants',
     apiId: 'RowLinksVariants',
     values: [
@@ -24,7 +16,7 @@ export const GraphCommerce6 = async (
   })
 
   // ? MODEL
-  migrationAction(client, schema, 'model', 'create', {
+  migrationAction(schema, 'model', 'create', {
     apiId: 'RowLinks',
     apiIdPlural: 'RowLinksMultiple',
     displayName: 'Row Links',
@@ -32,7 +24,6 @@ export const GraphCommerce6 = async (
   })
 
   migrationAction(
-    client,
     schema,
     'simpleField',
     'create',
@@ -51,7 +42,6 @@ export const GraphCommerce6 = async (
   )
 
   migrationAction(
-    client,
     schema,
     'enumerableField',
     'create',
@@ -67,7 +57,6 @@ export const GraphCommerce6 = async (
   )
 
   migrationAction(
-    client,
     schema,
     'simpleField',
     'create',
@@ -84,7 +73,6 @@ export const GraphCommerce6 = async (
   )
 
   migrationAction(
-    client,
     schema,
     'simpleField',
     'create',
@@ -100,7 +88,6 @@ export const GraphCommerce6 = async (
   )
 
   migrationAction(
-    client,
     schema,
     'relationalField',
     'create',
@@ -124,7 +111,6 @@ export const GraphCommerce6 = async (
   )
 
   migrationAction(
-    client,
     schema,
     'unionField',
     'update',
@@ -156,7 +142,6 @@ export const GraphCommerce6 = async (
   )
 
   migrationAction(
-    client,
     schema,
     'unionField',
     'update',
@@ -189,7 +174,6 @@ export const GraphCommerce6 = async (
   )
 
   migrationAction(
-    client,
     schema,
     'unionField',
     'update',

@@ -1,18 +1,10 @@
-import { GraphCommerceConfig } from '@graphcommerce/next-config'
 import { SimpleFieldType, VisibilityTypes } from '@hygraph/management-sdk'
-import { initClient } from '../client'
-import { migrationAction } from '../functions'
+import { migrationAction, client } from '../functions'
 import { Schema } from '../types'
 
-export const dynamicRow = async (
-  name: string | undefined,
-  config: GraphCommerceConfig,
-  schema: Schema,
-) => {
-  const client = initClient(config, name)
-
+export const dynamicRow = async (schema: Schema) => {
   // ? ENUMERATIONS
-  migrationAction(client, schema, 'enumeration', 'create', {
+  migrationAction(schema, 'enumeration', 'create', {
     displayName: 'Row Column One Variants',
     apiId: 'RowColumnOneVariants',
     values: [
@@ -21,7 +13,7 @@ export const dynamicRow = async (
     ],
   })
 
-  migrationAction(client, schema, 'enumeration', 'create', {
+  migrationAction(schema, 'enumeration', 'create', {
     displayName: 'Dynamic Row Condition Number Operator',
     apiId: 'DynamicRowConditionNumberOperator',
     values: [
@@ -31,7 +23,7 @@ export const dynamicRow = async (
     ],
   })
 
-  migrationAction(client, schema, 'enumeration', 'create', {
+  migrationAction(schema, 'enumeration', 'create', {
     displayName: 'Dynamic Row Placement',
     apiId: 'DynamicRowPlacement',
     values: [
@@ -42,26 +34,26 @@ export const dynamicRow = async (
   })
 
   // ? COMPONENTS
-  migrationAction(client, schema, 'component', 'create', {
+  migrationAction(schema, 'component', 'create', {
     displayName: 'Text',
     apiId: 'ConditionText',
     apiIdPlural: 'ConditionTexts',
   })
 
-  migrationAction(client, schema, 'component', 'create', {
+  migrationAction(schema, 'component', 'create', {
     displayName: 'Number',
     apiId: 'ConditionNumber',
     apiIdPlural: 'ConditionNumbers',
   })
 
-  migrationAction(client, schema, 'component', 'create', {
+  migrationAction(schema, 'component', 'create', {
     displayName: 'AND',
     apiId: 'ConditionAnd',
     apiIdPlural: 'ConditionAnds',
     description: 'All of these conditions must match',
   })
 
-  migrationAction(client, schema, 'component', 'create', {
+  migrationAction(schema, 'component', 'create', {
     displayName: 'OR',
     apiId: 'ConditionOr',
     apiIdPlural: 'ConditionOrs',
@@ -69,7 +61,6 @@ export const dynamicRow = async (
   })
 
   migrationAction(
-    client,
     schema,
     'componentUnionField',
     'create',
@@ -85,7 +76,6 @@ export const dynamicRow = async (
   )
 
   migrationAction(
-    client,
     schema,
     'simpleField',
     'create',
@@ -112,7 +102,6 @@ export const dynamicRow = async (
   )
 
   migrationAction(
-    client,
     schema,
     'simpleField',
     'create',
@@ -128,7 +117,6 @@ export const dynamicRow = async (
   )
 
   migrationAction(
-    client,
     schema,
     'simpleField',
     'create',
@@ -153,7 +141,6 @@ export const dynamicRow = async (
   )
 
   migrationAction(
-    client,
     schema,
     'enumerableField',
     'create',
@@ -169,7 +156,6 @@ export const dynamicRow = async (
   )
 
   migrationAction(
-    client,
     schema,
     'simpleField',
     'create',
@@ -185,7 +171,7 @@ export const dynamicRow = async (
   )
 
   // ? MODEL
-  migrationAction(client, schema, 'model', 'create', {
+  migrationAction(schema, 'model', 'create', {
     displayName: 'Dynamic Row',
     apiId: 'DynamicRow',
     apiIdPlural: 'DynamicRows',
@@ -194,7 +180,6 @@ export const dynamicRow = async (
   })
 
   migrationAction(
-    client,
     schema,
     'simpleField',
     'create',
@@ -213,7 +198,6 @@ export const dynamicRow = async (
   )
 
   migrationAction(
-    client,
     schema,
     'unionField',
     'create',
@@ -234,7 +218,6 @@ export const dynamicRow = async (
   )
 
   migrationAction(
-    client,
     schema,
     'enumerableField',
     'create',
@@ -251,7 +234,6 @@ export const dynamicRow = async (
   )
 
   migrationAction(
-    client,
     schema,
     'unionField',
     'create',
@@ -287,7 +269,6 @@ export const dynamicRow = async (
   )
 
   migrationAction(
-    client,
     schema,
     'componentUnionField',
     'create',
@@ -305,7 +286,6 @@ export const dynamicRow = async (
 
   // ? Row Column One
   migrationAction(
-    client,
     schema,
     'enumerableField',
     'create',
