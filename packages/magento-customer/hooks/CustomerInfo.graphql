@@ -2,6 +2,7 @@ fragment CustomerInfo on Customer {
   default_billing
   default_shipping
   addresses {
+    default_billing
     ...CustomerAddress
   }
   email
