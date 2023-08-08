@@ -186,8 +186,7 @@ const actionMap = {
  * will skip this action but still continue the whole migration, while the management sdk function
  * will bail.
  *
- * It takes the client and schema as arguments, which are always the same. The schema function can
- * be imported from the the readSchema.ts file.
+ * It takes the schema as argument, which is always the same.
  *
  * Then it takes the type of schema entity you want to do an action upon, and the action you want to
  * do.
