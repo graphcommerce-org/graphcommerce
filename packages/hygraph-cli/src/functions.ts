@@ -69,55 +69,6 @@ type AllActions =
   | BatchMigrationCreateComponentUnionFieldInput
   | BatchMigrationUpdateComponentUnionFieldInput
 
-/** This constant is used to check if the action and type exists. */
-const validPropMap = {
-  model: {
-    create: 'BatchMigrationCreateModelInput',
-    update: 'BatchMigrationUpdateModelInput',
-    delete: 'BatchMigrationDeleteModelInput',
-  },
-  component: {
-    create: 'BatchMigrationCreateComponentInput',
-    update: 'BatchMigrationUpdateComponentInput',
-    delete: 'BatchMigrationDeleteComponentInput',
-  },
-  enumeration: {
-    create: 'BatchMigrationCreateEnumerationInput',
-    update: 'BatchMigrationUpdateEnumerationInput',
-    delete: 'BatchMigrationDeleteEnumerationInput',
-  },
-  simpleField: {
-    create: 'BatchMigrationCreateSimpleFieldInput',
-    update: 'BatchMigrationUpdateSimpleFieldInput',
-    delete: 'BatchMigrationDeleteFieldInput',
-  },
-  componentField: {
-    create: 'BatchMigrationCreateComponentFieldInput',
-    update: 'BatchMigrationUpdateComponentFieldInput',
-    delete: 'BatchMigrationDeleteFieldInput',
-  },
-  enumerableField: {
-    create: 'BatchMigrationCreateEnumerableFieldInput',
-    update: 'BatchMigrationUpdateEnumerableFieldInput',
-    delete: 'BatchMigrationDeleteFieldInput',
-  },
-  relationalField: {
-    create: 'BatchMigrationCreateRelationalFieldInput',
-    update: 'BatchMigrationUpdateRelationalFieldInput',
-    delete: 'BatchMigrationDeleteFieldInput',
-  },
-  unionField: {
-    create: 'BatchMigrationCreateUnionFieldInput',
-    update: 'BatchMigrationUpdateUnionFieldInput',
-    delete: 'BatchMigrationDeleteFieldInput',
-  },
-  componentUnionField: {
-    create: 'BatchMigrationCreateComponentUnionFieldInput',
-    update: 'BatchMigrationUpdateComponentUnionFieldInput',
-    delete: 'BatchMigrationDeleteFieldInput',
-  },
-}
-
 /**
  * This constant is used to assign the right action of the management SDK to the migratioAction
  * function
@@ -253,11 +204,10 @@ export const migrationAction = (
     }
   }
 
-  const validProp = validPropMap[type] && validPropMap[type][action]
   const actionFunc = actionMap[action] && actionMap[action][type]
 
   if (!alreadyExists()) {
-    if (validProp && actionFunc) {
+    if (actionFunc) {
       graphcommerceLog(`${capitalize(action)} ${type} with apiId ${props.apiId}...`)
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @tss-ignore | This error is a loss on typescript autocomplete, but the function is called correctly
