@@ -210,7 +210,7 @@ export const migrationAction = (
     if (actionFunc) {
       graphcommerceLog(`${capitalize(action)} ${type} with apiId ${props.apiId}...`)
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @tss-ignore | This error is a loss on typescript autocomplete, but the function is called correctly
+      // @ts-ignore | This error is a loss on typescript autocomplete, but the function is called correctly
       actionFunc(props)
     } else {
       graphcommerceLog(`Action ${action} is not supported for ${type}`, 'error')

@@ -48,6 +48,7 @@ function GraphCommerceConfigSchema() {
     wishlistShowFeedbackMessage: zod_1.z.boolean().nullish(),
   })
 }
+exports.GraphCommerceConfigSchema = GraphCommerceConfigSchema
 function GraphCommerceDebugConfigSchema() {
   return _zod.z.object({
     pluginStatus: _zod.z.boolean().nullish(),
@@ -55,6 +56,7 @@ function GraphCommerceDebugConfigSchema() {
     webpackDuplicatesPlugin: _zod.z.boolean().nullish(),
   })
 }
+exports.GraphCommerceDebugConfigSchema = GraphCommerceDebugConfigSchema
 function GraphCommerceStorefrontConfigSchema() {
   return _zod.z.object({
     canonicalBaseUrl: _zod.z.string().nullish(),

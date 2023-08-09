@@ -71,21 +71,3 @@ async function migrateHygraph() {
     }
 }
 exports.migrateHygraph = migrateHygraph;
-/**
- * TODO: GC-Version based migration
- *
- * What we want is to enter a GC version. And based on this version we want to run migrations. So
- * one gives the old GC version and the desired one, and the CLI calculates which model updates are
- * necessary.
- *
- * 1. Read out the current schema => | DONE
- * 2. Read out the current GC version | DONE
- * 3. Read out the desired GC version | DONE
- * 4. Write migrations for GC6 and Dynamic Rows | DONE
- * 5. Run the migrations, no errors should occur | DONE
- *
- * Something we can also add is the possibility to run migrations based on the current schema &
- * version, we just determine what version a user is on and create all the entities in the schema.
- * If the apiId of an entity already exists, the migration will skip it and run the next entity.
- * This might be an additional automation for the user and not that necessary at the moment.
- */
