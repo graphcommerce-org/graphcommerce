@@ -27,6 +27,11 @@ import dotenv from 'dotenv'
 import { initClient } from './client'
 import { Schema } from './types'
 
+dotenv.config()
+const config = loadConfig(process.cwd())
+
+export const client = initClient(config, undefined)
+
 export const capitalize = (word: string) =>
   word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
 
@@ -39,11 +44,6 @@ export const graphcommerceLog = (message: string, type?: 'info' | 'warning' | 'e
   // eslint-disable-next-line no-console
   console.log(type ? color[type] : '', `[GraphCommerce]: ${message}`)
 }
-
-dotenv.config()
-
-const config = loadConfig(process.cwd())
-export const client = initClient(config, undefined)
 
 type AllActions =
   | BatchMigrationCreateModelInput
@@ -212,6 +212,8 @@ export const migrationAction = (
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @tss-ignore | This error is a loss on typescript autocomplete, but the function is called correctly
       actionFunc(props)
+    } else {
+      graphcommerceLog(`Action ${action} is not supported for ${type}`, 'error')
     }
   } else {
     graphcommerceLog(`${capitalize(type)} with apiId ${props.apiId} already exists`, 'warning')
