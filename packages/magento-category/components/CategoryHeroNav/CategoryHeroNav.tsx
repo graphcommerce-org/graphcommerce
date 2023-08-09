@@ -94,6 +94,7 @@ export function CategoryHeroNav({ children, title, asset, sx = [] }: CategoryHer
               href={productListLink({
                 url: category.url_path,
                 filters: { category_uid: { eq: category.uid } },
+                sort: {},
               })}
               key={category.uid}
             >
