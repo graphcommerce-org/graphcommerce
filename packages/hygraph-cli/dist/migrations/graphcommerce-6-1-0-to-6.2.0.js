@@ -2,12 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.dynamicRow = void 0;
 const management_sdk_1 = require("@hygraph/management-sdk");
-const client_1 = require("../client");
 const functions_1 = require("../functions");
-const dynamicRow = async (name, config, schema) => {
-    const client = (0, client_1.initClient)(config, name);
+const dynamicRow = async (schema) => {
     // ? ENUMERATIONS
-    (0, functions_1.migrationAction)(client, schema, 'enumeration', 'create', {
+    (0, functions_1.migrationAction)(schema, 'enumeration', 'create', {
         displayName: 'Row Column One Variants',
         apiId: 'RowColumnOneVariants',
         values: [
@@ -15,7 +13,7 @@ const dynamicRow = async (name, config, schema) => {
             { displayName: 'Message', apiId: 'Message' },
         ],
     });
-    (0, functions_1.migrationAction)(client, schema, 'enumeration', 'create', {
+    (0, functions_1.migrationAction)(schema, 'enumeration', 'create', {
         displayName: 'Dynamic Row Condition Number Operator',
         apiId: 'DynamicRowConditionNumberOperator',
         values: [
@@ -24,7 +22,7 @@ const dynamicRow = async (name, config, schema) => {
             { displayName: 'Equal to', apiId: 'EQUAL' },
         ],
     });
-    (0, functions_1.migrationAction)(client, schema, 'enumeration', 'create', {
+    (0, functions_1.migrationAction)(schema, 'enumeration', 'create', {
         displayName: 'Dynamic Row Placement',
         apiId: 'DynamicRowPlacement',
         values: [
@@ -34,36 +32,36 @@ const dynamicRow = async (name, config, schema) => {
         ],
     });
     // ? COMPONENTS
-    (0, functions_1.migrationAction)(client, schema, 'component', 'create', {
+    (0, functions_1.migrationAction)(schema, 'component', 'create', {
         displayName: 'Text',
         apiId: 'ConditionText',
         apiIdPlural: 'ConditionTexts',
     });
-    (0, functions_1.migrationAction)(client, schema, 'component', 'create', {
+    (0, functions_1.migrationAction)(schema, 'component', 'create', {
         displayName: 'Number',
         apiId: 'ConditionNumber',
         apiIdPlural: 'ConditionNumbers',
     });
-    (0, functions_1.migrationAction)(client, schema, 'component', 'create', {
+    (0, functions_1.migrationAction)(schema, 'component', 'create', {
         displayName: 'AND',
         apiId: 'ConditionAnd',
         apiIdPlural: 'ConditionAnds',
         description: 'All of these conditions must match',
     });
-    (0, functions_1.migrationAction)(client, schema, 'component', 'create', {
+    (0, functions_1.migrationAction)(schema, 'component', 'create', {
         displayName: 'OR',
         apiId: 'ConditionOr',
         apiIdPlural: 'ConditionOrs',
         description: 'One of these conditions must match',
     });
-    (0, functions_1.migrationAction)(client, schema, 'componentUnionField', 'create', {
+    (0, functions_1.migrationAction)(schema, 'componentUnionField', 'create', {
         displayName: 'Conditions',
         apiId: 'conditions',
         parentApiId: 'ConditionAnd',
         componentApiIds: ['ConditionOr', 'ConditionText', 'ConditionNumber'],
         isList: true,
     }, 'ConditionAnd', 'component');
-    (0, functions_1.migrationAction)(client, schema, 'simpleField', 'create', {
+    (0, functions_1.migrationAction)(schema, 'simpleField', 'create', {
         displayName: 'Property',
         apiId: 'property',
         type: management_sdk_1.SimpleFieldType.String,
@@ -80,14 +78,14 @@ const dynamicRow = async (name, config, schema) => {
             },
         },
     }, 'ConditionText', 'component');
-    (0, functions_1.migrationAction)(client, schema, 'simpleField', 'create', {
+    (0, functions_1.migrationAction)(schema, 'simpleField', 'create', {
         displayName: 'Value',
         apiId: 'value',
         type: management_sdk_1.SimpleFieldType.String,
         parentApiId: 'ConditionText',
         isRequired: true,
     }, 'ConditionText', 'component');
-    (0, functions_1.migrationAction)(client, schema, 'simpleField', 'create', {
+    (0, functions_1.migrationAction)(schema, 'simpleField', 'create', {
         displayName: 'Property',
         apiId: 'property',
         type: management_sdk_1.SimpleFieldType.String,
@@ -103,14 +101,14 @@ const dynamicRow = async (name, config, schema) => {
             },
         },
     }, 'ConditionNumber', 'component');
-    (0, functions_1.migrationAction)(client, schema, 'enumerableField', 'create', {
+    (0, functions_1.migrationAction)(schema, 'enumerableField', 'create', {
         displayName: 'Operator',
         apiId: 'operator',
         parentApiId: 'ConditionNumber',
         enumerationApiId: 'DynamicRowConditionNumberOperator',
         isRequired: true,
     }, 'ConditionNumber', 'component');
-    (0, functions_1.migrationAction)(client, schema, 'simpleField', 'create', {
+    (0, functions_1.migrationAction)(schema, 'simpleField', 'create', {
         displayName: 'Value',
         apiId: 'value',
         type: management_sdk_1.SimpleFieldType.Float,
@@ -118,13 +116,13 @@ const dynamicRow = async (name, config, schema) => {
         isRequired: true,
     }, 'ConditionNumber', 'component');
     // ? MODEL
-    (0, functions_1.migrationAction)(client, schema, 'model', 'create', {
+    (0, functions_1.migrationAction)(schema, 'model', 'create', {
         displayName: 'Dynamic Row',
         apiId: 'DynamicRow',
         apiIdPlural: 'DynamicRows',
         description: 'Dynamic rows allow you to add specific Row models to pages based on the properties of the page',
     });
-    (0, functions_1.migrationAction)(client, schema, 'simpleField', 'create', {
+    (0, functions_1.migrationAction)(schema, 'simpleField', 'create', {
         displayName: 'Internal name',
         apiId: 'internalName',
         description: 'Only used for internal reference',
@@ -134,7 +132,7 @@ const dynamicRow = async (name, config, schema) => {
         isUnique: true,
         modelApiId: 'DynamicRow',
     }, 'DynamicRow', 'model');
-    (0, functions_1.migrationAction)(client, schema, 'unionField', 'create', {
+    (0, functions_1.migrationAction)(schema, 'unionField', 'create', {
         displayName: 'Row',
         apiId: 'row',
         reverseField: {
@@ -146,7 +144,7 @@ const dynamicRow = async (name, config, schema) => {
         },
         parentApiId: 'DynamicRow',
     }, 'DynamicRow', 'model');
-    (0, functions_1.migrationAction)(client, schema, 'enumerableField', 'create', {
+    (0, functions_1.migrationAction)(schema, 'enumerableField', 'create', {
         displayName: 'Placement',
         apiId: 'placement',
         parentApiId: 'DynamicRow',
@@ -154,7 +152,7 @@ const dynamicRow = async (name, config, schema) => {
         description: 'Where will the row be placed relative to the target',
         isRequired: true,
     }, 'DynamicRow', 'model');
-    (0, functions_1.migrationAction)(client, schema, 'unionField', 'create', {
+    (0, functions_1.migrationAction)(schema, 'unionField', 'create', {
         displayName: 'Placement target',
         apiId: 'target',
         description: 'Optional: When the target is left blank it will place the Dynamic Row on the start or end.',
@@ -180,7 +178,7 @@ const dynamicRow = async (name, config, schema) => {
         },
         parentApiId: 'DynamicRow',
     }, 'DynamicRow', 'model');
-    (0, functions_1.migrationAction)(client, schema, 'componentUnionField', 'create', {
+    (0, functions_1.migrationAction)(schema, 'componentUnionField', 'create', {
         displayName: 'Conditions (OR)',
         apiId: 'conditions',
         parentApiId: 'DynamicRow',
@@ -189,12 +187,12 @@ const dynamicRow = async (name, config, schema) => {
         isList: true,
     }, 'DynamicRow', 'model');
     // ? Row Column One
-    (0, functions_1.migrationAction)(client, schema, 'enumerableField', 'create', {
+    (0, functions_1.migrationAction)(schema, 'enumerableField', 'create', {
         displayName: 'Variant',
         apiId: 'rowColumnOneVariant',
         enumerationApiId: 'RowColumnOneVariants',
         parentApiId: 'RowColumnOne',
     }, 'RowColumnOne', 'model');
-    return client.run(true);
+    return functions_1.client.run(true);
 };
 exports.dynamicRow = dynamicRow;

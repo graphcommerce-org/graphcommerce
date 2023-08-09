@@ -21,27 +21,7 @@ async function migrateHygraph() {
     const packageJson = fs_1.default.readFileSync('package.json', 'utf8');
     const packageData = JSON.parse(packageJson);
     const graphcommerceVersion = packageData.dependencies['@graphcommerce/next-ui'];
-    const versionParts = graphcommerceVersion.split('.');
-    const graphcommerceMinorVersion = `${versionParts[0]}.${versionParts[1]}`;
     (0, functions_1.graphcommerceLog)(`Graphcommerce version: ${graphcommerceVersion}`, 'info');
-    // ? This goes unused for now
-    const versionInput = {
-        type: 'text',
-        name: 'selectedVersion',
-        message: '[GraphCommerce]: Select GraphCommerce version (Major.Minor e.g. 6.2)',
-        validate: (value) => {
-            // Validate the version format
-            const versionRegex = /^\d+\.\d+$/;
-            return versionRegex.test(value)
-                ? true
-                : '[GraphCommerce]: Please enter a valid version (Major.Minor e.g. 6.2)';
-        },
-    };
-    /**
-     * Force run will run the migration even if it has already been run before. Hardcoded on true for
-     * now. Could be a useful config for the user in a later version.
-     */
-    const forceRun = true;
     // Extract the currently existing models, components and enumerations from the Hygraph schema.
     const schemaViewer = await (0, readSchema_1.readSchema)(config);
     const schema = schemaViewer.viewer.project.environment.contentModel;
@@ -71,7 +51,7 @@ async function migrateHygraph() {
         try {
             // Here we try to run the migration
             // eslint-disable-next-line no-await-in-loop
-            const result = await migration(forceRun ? undefined : name, config, schema);
+            const result = await migration(schema);
             (0, functions_1.graphcommerceLog)(`Migration result: ${JSON.stringify(result)}`, 'info');
             if (result.status !== 'SUCCESS') {
                 throw new Error(`[GraphCommerce]: Migration not successful: ${result.status} ${name}:\n${result.errors}`);

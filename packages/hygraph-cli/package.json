@@ -31,6 +31,7 @@
     "graphql": "^16.7.1"
   },
   "devDependencies": {
+    "@types/prompts": "^2.4.4",
     "@graphcommerce/eslint-config-pwa": "6.2.0-canary.74",
     "@graphcommerce/prettier-config-pwa": "6.2.0-canary.74",
     "@graphcommerce/typescript-config-pwa": "6.2.0-canary.74",
