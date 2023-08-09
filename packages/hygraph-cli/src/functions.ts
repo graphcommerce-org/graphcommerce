@@ -217,86 +217,40 @@ export const migrationAction = (
 ) => {
   // Check if the entity already exists
   const alreadyExists = () => {
-    if (type === 'model') {
-      return schema.models.some((model) => model.apiId === props.apiId)
-    }
-    if (type === 'component') {
-      return schema.components.some((component) => component.apiId === props.apiId)
-    }
-    if (type === 'enumeration') {
-      return schema.enumerations.some((enumeration) => enumeration.apiId === props.apiId)
-    }
-    if (type === 'simpleField') {
-      if (parentType === 'model') {
-        const modelparent = schema.models.find((model) => model.apiId === parentApiId)
-        return modelparent?.fields.some((field) => field.apiId === props.apiId)
-      }
-      if (parentType === 'component') {
-        const componentparent = schema.components.find(
-          (component) => component.apiId === parentApiId,
-        )
-        return componentparent?.fields.some((field) => field.apiId === props.apiId)
-      }
-    }
-    if (type === 'componentField') {
-      if (parentType === 'component') {
-        const componentparent = schema.components.find(
-          (component) => component.apiId === parentApiId,
-        )
-        return componentparent?.fields.some((field) => field.apiId === props.apiId)
-      }
-    }
-    if (type === 'enumerableField') {
-      if (parentType === 'model') {
-        const modelparent = schema.models.find((model) => model.apiId === parentApiId)
-        return modelparent?.fields.some((field) => field.apiId === props.apiId)
-      }
-      if (parentType === 'component') {
-        const componentparent = schema.components.find(
-          (component) => component.apiId === parentApiId,
-        )
-        return componentparent?.fields.some((field) => field.apiId === props.apiId)
-      }
-    }
-    if (type === 'relationalField') {
-      if (parentType === 'model') {
-        const modelparent = schema.models.find((model) => model.apiId === parentApiId)
-        return modelparent?.fields.some((field) => field.apiId === props.apiId)
-      }
-      if (parentType === 'component') {
-        const componentparent = schema.components.find(
-          (component) => component.apiId === parentApiId,
-        )
-        return componentparent?.fields.some((field) => field.apiId === props.apiId)
-      }
-    }
-    if (type === 'unionField') {
-      if (parentType === 'model') {
-        const modelparent = schema.models.find((model) => model.apiId === parentApiId)
-        return modelparent?.fields.some((field) => field.apiId === props.apiId)
-      }
-      if (parentType === 'component') {
-        const componentparent = schema.components.find(
-          (component) => component.apiId === parentApiId,
-        )
-        return componentparent?.fields.some((field) => field.apiId === props.apiId)
-      }
-    }
+    switch (type) {
+      case 'model':
+        return schema.models.some((model) => model.apiId === props.apiId)
 
-    if (type === 'componentUnionField') {
-      if (parentType === 'model') {
-        const modelparent = schema.models.find((model) => model.apiId === parentApiId)
-        return modelparent?.fields.some((field) => field.apiId === props.apiId)
+      case 'component':
+        return schema.components.some((component) => component.apiId === props.apiId)
+
+      case 'enumeration':
+        return schema.enumerations.some((enumeration) => enumeration.apiId === props.apiId)
+
+      case 'simpleField':
+      case 'enumerableField':
+      case 'relationalField':
+      case 'unionField':
+      case 'componentUnionField': {
+        let parent
+        switch (parentType) {
+          case 'model': {
+            parent = schema.models.find((model) => model.apiId === parentApiId)
+            break
+          }
+          case 'component': {
+            parent = schema.components.find((component) => component.apiId === parentApiId)
+            break
+          }
+          default:
+            return false // or undefined or any other value you want if no match
+        }
+        return parent?.fields.some((field) => field.apiId === props.apiId)
       }
-      if (parentType === 'component') {
-        const componentparent = schema.components.find(
-          (component) => component.apiId === parentApiId,
-        )
-        return componentparent?.fields.some((field) => field.apiId === props.apiId)
+      default: {
+        return false // or undefined or any other value you want if no match
       }
     }
-
-    return true
   }
 
   const validProp = validPropMap[type] && validPropMap[type][action]
@@ -306,7 +260,7 @@ export const migrationAction = (
     if (validProp && actionFunc) {
       graphcommerceLog(`${capitalize(action)} ${type} with apiId ${props.apiId}...`)
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore | This error is a loss on typescript autocomplete, but the function is called correctly
+      // @tss-ignore | This error is a loss on typescript autocomplete, but the function is called correctly
       actionFunc(props)
     }
   } else {
