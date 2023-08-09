@@ -7,13 +7,13 @@ exports.readSchema = void 0;
 const client_1 = require("@apollo/client");
 const cross_fetch_1 = __importDefault(require("cross-fetch"));
 const readSchema = async (config) => {
-    const projectId = config.hygraphProjectId;
+    if (!config.hygraphProjectId) {
+        throw new Error('Please provide projectId in your env file');
+    }
     if (!config.hygraphWriteAccessToken) {
         throw new Error('Please provide GC_HYGRAPH_WRITE_ACCESS_TOKEN in your env file');
     }
-    if (!projectId) {
-        throw new Error('Please provide projectId in your env file');
-    }
+    const projectId = config.hygraphProjectId;
     const hygraphClient = new client_1.ApolloClient({
         link: new client_1.HttpLink({
             uri: 'https://management.hygraph.com/graphql',

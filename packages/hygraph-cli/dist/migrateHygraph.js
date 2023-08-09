@@ -8,7 +8,7 @@ const fs_1 = __importDefault(require("fs"));
 const next_config_1 = require("@graphcommerce/next-config");
 const dotenv_1 = __importDefault(require("dotenv"));
 const prompts_1 = __importDefault(require("prompts"));
-const functions_1 = require("./functions");
+const log_functions_1 = require("./log-functions");
 const migrations_1 = require("./migrations");
 const readSchema_1 = require("./readSchema");
 dotenv_1.default.config();
@@ -21,7 +21,7 @@ async function migrateHygraph() {
     const packageJson = fs_1.default.readFileSync('package.json', 'utf8');
     const packageData = JSON.parse(packageJson);
     const graphcommerceVersion = packageData.dependencies['@graphcommerce/next-ui'];
-    (0, functions_1.graphcommerceLog)(`Graphcommerce version: ${graphcommerceVersion}`, 'info');
+    (0, log_functions_1.graphcommerceLog)(`Graphcommerce version: ${graphcommerceVersion}`, 'info');
     // Extract the currently existing models, components and enumerations from the Hygraph schema.
     const schemaViewer = await (0, readSchema_1.readSchema)(config);
     const schema = schemaViewer.viewer.project.environment.contentModel;
@@ -44,30 +44,33 @@ async function migrateHygraph() {
     }
     // Here we ask the user to choose a migration from a list of possible migrations
     try {
-        (0, functions_1.graphcommerceLog)('Available migrations: ', 'info');
+        (0, log_functions_1.graphcommerceLog)('Available migrations: ', 'info');
         const selectMigrationOutput = await (0, prompts_1.default)(selectMigrationInput);
         const { migration, name } = selectMigrationOutput.selectedMigration;
-        (0, functions_1.graphcommerceLog)(`You have selected the ${selectMigrationOutput.selectedMigration.name} migration`, 'info');
+        (0, log_functions_1.graphcommerceLog)(`You have selected the ${selectMigrationOutput.selectedMigration.name} migration`, 'info');
         try {
             // Here we try to run the migration
             // eslint-disable-next-line no-await-in-loop
             const result = await migration(schema);
-            (0, functions_1.graphcommerceLog)(`Migration result: ${JSON.stringify(result)}`, 'info');
+            (0, log_functions_1.graphcommerceLog)(`Migration result: ${JSON.stringify(result)}`, 'info');
+            if (!result) {
+                throw new Error('[GraphCommerce]: No migration client found. Please make sure your GC_HYGRAPH_WRITE_ACCESS_ENDPOINT and GC_HYGRAPH_WRITE_ACCESS_TOKEN in your env file are correct.');
+            }
             if (result.status !== 'SUCCESS') {
                 throw new Error(`[GraphCommerce]: Migration not successful: ${result.status} ${name}:\n${result.errors}`);
             }
-            (0, functions_1.graphcommerceLog)(`Migration successful: ${name}`, 'info');
+            (0, log_functions_1.graphcommerceLog)(`Migration successful: ${name}`, 'info');
         }
         catch (err) {
             if (err instanceof Error) {
                 const garbledErrorIndex = err.message.indexOf(': {"');
                 const msg = garbledErrorIndex > 0 ? err.message.slice(0, garbledErrorIndex) : err.message;
-                (0, functions_1.graphcommerceLog)(`${msg}`, 'error');
+                (0, log_functions_1.graphcommerceLog)(`${msg}`, 'error');
             }
         }
     }
     catch (error) {
-        (0, functions_1.graphcommerceLog)(`[GraphCommerce]: An error occurred: ${error}`, 'error');
+        (0, log_functions_1.graphcommerceLog)(`[GraphCommerce]: An error occurred: ${error}`, 'error');
     }
 }
 exports.migrateHygraph = migrateHygraph;
