@@ -2122,7 +2122,7 @@
     param-case "^3.0.4"
     pascal-case "^3.1.2"
 
-"@graphql-mesh/cross-helpers@^0.4.0", "@graphql-mesh/cross-helpers@latest":
+"@graphql-mesh/cross-helpers@^0.4.0":
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/@graphql-mesh/cross-helpers/-/cross-helpers-0.4.0.tgz#e27dd47c97de888bb2f152e251c6f641ece9e0dc"
   integrity sha512-NgcuwLQelrnl6YmJdXk8GWctY7MUtgyLKBfXsFj1bRhzC6BR/r6DieWKWWrLG8DQu0eNUMtVrI0j0qUrlw7LdQ==

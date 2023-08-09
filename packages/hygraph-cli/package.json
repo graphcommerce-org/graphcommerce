@@ -16,11 +16,6 @@
   "dependencies": {
     "@apollo/client": "^3.7.15",
     "@graphcommerce/next-config": "6.2.0-canary.74",
-    "@graphql-codegen/cli": "4.0.1",
-    "@graphql-mesh/cli": "latest",
-    "@graphql-mesh/types": "latest",
-    "@graphql-mesh/utils": "latest",
-    "@graphql-mesh/cross-helpers": "latest",
     "@hygraph/management-sdk": "^1.1.2-alpha.1",
     "dotenv": "^16.3.1",
     "graphql": "16.6.0",
