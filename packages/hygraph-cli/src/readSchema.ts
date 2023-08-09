@@ -3,15 +3,15 @@ import { GraphCommerceConfig } from '@graphcommerce/next-config'
 import fetch from 'cross-fetch'
 
 export const readSchema = async (config: GraphCommerceConfig) => {
-  const projectId = config.hygraphProjectId
+  if (!config.hygraphProjectId) {
+    throw new Error('Please provide projectId in your env file')
+  }
 
   if (!config.hygraphWriteAccessToken) {
     throw new Error('Please provide GC_HYGRAPH_WRITE_ACCESS_TOKEN in your env file')
   }
 
-  if (!projectId) {
-    throw new Error('Please provide projectId in your env file')
-  }
+  const projectId = config.hygraphProjectId
 
   const hygraphClient = new ApolloClient({
     link: new HttpLink({

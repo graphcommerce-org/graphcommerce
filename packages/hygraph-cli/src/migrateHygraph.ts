@@ -3,7 +3,7 @@ import { loadConfig } from '@graphcommerce/next-config'
 import { MigrationInfo } from '@hygraph/management-sdk/dist/ManagementAPIClient'
 import dotenv from 'dotenv'
 import prompts, { PromptObject } from 'prompts'
-import { graphcommerceLog } from './functions'
+import { graphcommerceLog } from './log-functions'
 import { dynamicRow, GraphCommerce6 } from './migrations'
 import { readSchema } from './readSchema'
 import { Schema } from './types'
@@ -28,7 +28,7 @@ export async function migrateHygraph() {
   const schema: Schema = schemaViewer.viewer.project.environment.contentModel
 
   // A list of possible migrations
-  const possibleMigrations: [string, (schema: Schema) => Promise<MigrationInfo>][] = [
+  const possibleMigrations: [string, (schema: Schema) => Promise<0 | MigrationInfo>][] = [
     ['Upgrade to GraphCommerce 6', GraphCommerce6],
     ['Upgrade to Graphcommerce 6.2', dynamicRow],
   ]
@@ -63,6 +63,11 @@ export async function migrateHygraph() {
       const result = await migration(schema)
 
       graphcommerceLog(`Migration result: ${JSON.stringify(result)}`, 'info')
+      if (!result) {
+        throw new Error(
+          '[GraphCommerce]: No migration client found. Please make sure your GC_HYGRAPH_WRITE_ACCESS_ENDPOINT and GC_HYGRAPH_WRITE_ACCESS_TOKEN in your env file are correct.',
+        )
+      }
       if (result.status !== 'SUCCESS') {
         throw new Error(
           `[GraphCommerce]: Migration not successful: ${result.status} ${name}:\n${result.errors}`,

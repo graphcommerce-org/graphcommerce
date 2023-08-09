@@ -25,25 +25,13 @@ import {
 } from '@hygraph/management-sdk'
 import dotenv from 'dotenv'
 import { initClient } from './client'
+import { graphcommerceLog, capitalize } from './log-functions'
 import { Schema } from './types'
 
 dotenv.config()
 const config = loadConfig(process.cwd())
 
 export const client = initClient(config, undefined)
-
-export const capitalize = (word: string) =>
-  word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
-
-export const graphcommerceLog = (message: string, type?: 'info' | 'warning' | 'error') => {
-  const color = {
-    error: '\x1b[31m\x1b[1m%s\x1b[0m',
-    warning: '\x1b[33m\x1b[1m%s\x1b[0m',
-    info: '\x1b[36m\x1b[1m%s\x1b[0m',
-  }
-  // eslint-disable-next-line no-console
-  console.log(type ? color[type] : '', `[GraphCommerce]: ${message}`)
-}
 
 type AllActions =
   | BatchMigrationCreateModelInput
@@ -73,60 +61,65 @@ type AllActions =
  * This constant is used to assign the right action of the management SDK to the migratioAction
  * function
  */
-const actionMap = {
-  create: {
-    model: (innerprops: BatchMigrationCreateModelInput) => client.createModel(innerprops),
-    component: (innerprops: BatchMigrationCreateComponentInput) =>
-      client.createComponent(innerprops),
-    enumeration: (innerprops: BatchMigrationCreateEnumerationInput) =>
-      client.createEnumeration(innerprops),
-    simpleField: (innerprops: BatchMigrationCreateSimpleFieldInput) =>
-      client.createSimpleField(innerprops),
-    enumerableField: (innerprops: BatchMigrationCreateEnumerableFieldInput) =>
-      client.createEnumerableField(innerprops),
-    componentField: (innerprops: BatchMigrationCreateComponentFieldInput) =>
-      client.createComponentField(innerprops),
-    relationalField: (innerprops: BatchMigrationCreateRelationalFieldInput) =>
-      client.createRelationalField(innerprops),
-    unionField: (innerprops: BatchMigrationCreateUnionFieldInput) =>
-      client.createUnionField(innerprops),
-    componentUnionField: (innerprops: BatchMigrationCreateComponentUnionFieldInput) =>
-      client.createComponentUnionField(innerprops),
-  },
-  update: {
-    model: (innerprops: BatchMigrationUpdateModelInput) => client.updateModel(innerprops),
-    component: (innerprops: BatchMigrationUpdateComponentInput) =>
-      client.updateComponent(innerprops),
-    enumeration: (innerprops: BatchMigrationUpdateEnumerationInput) =>
-      client.updateEnumeration(innerprops),
-    simpleField: (innerprops: BatchMigrationUpdateSimpleFieldInput) =>
-      client.updateSimpleField(innerprops),
-    enumerableField: (innerprops: BatchMigrationUpdateEnumerableFieldInput) =>
-      client.updateEnumerableField(innerprops),
-    componentField: (innerprops: BatchMigrationUpdateComponentFieldInput) =>
-      client.updateComponentField(innerprops),
-    relationalField: (innerprops: BatchMigrationUpdateRelationalFieldInput) =>
-      client.updateRelationalField(innerprops),
-    unionField: (innerprops: BatchMigrationUpdateUnionFieldInput) =>
-      client.updateUnionField(innerprops),
-    componentUnionField: (innerprops: BatchMigrationUpdateComponentUnionFieldInput) =>
-      client.updateComponentUnionField(innerprops),
-  },
-  delete: {
-    model: (innerprops: BatchMigrationDeleteModelInput) => client.deleteModel(innerprops),
-    component: (innerprops: BatchMigrationDeleteComponentInput) =>
-      client.deleteComponent(innerprops),
-    enumeration: (innerprops: BatchMigrationDeleteEnumerationInput) =>
-      client.deleteEnumeration(innerprops),
-    simpleField: (innerprops: BatchMigrationDeleteFieldInput) => client.deleteField(innerprops),
-    enumerableField: (innerprops: BatchMigrationDeleteFieldInput) => client.deleteField(innerprops),
-    componentField: (innerprops: BatchMigrationDeleteFieldInput) => client.deleteField(innerprops),
-    relationalField: (innerprops: BatchMigrationDeleteFieldInput) => client.deleteField(innerprops),
-    unionField: (innerprops: BatchMigrationDeleteFieldInput) => client.deleteField(innerprops),
-    componentUnionField: (innerprops: BatchMigrationDeleteFieldInput) =>
-      client.deleteField(innerprops),
-  },
-}
+const actionMap = client
+  ? {
+      create: {
+        model: (innerprops: BatchMigrationCreateModelInput) => client.createModel(innerprops),
+        component: (innerprops: BatchMigrationCreateComponentInput) =>
+          client.createComponent(innerprops),
+        enumeration: (innerprops: BatchMigrationCreateEnumerationInput) =>
+          client.createEnumeration(innerprops),
+        simpleField: (innerprops: BatchMigrationCreateSimpleFieldInput) =>
+          client.createSimpleField(innerprops),
+        enumerableField: (innerprops: BatchMigrationCreateEnumerableFieldInput) =>
+          client.createEnumerableField(innerprops),
+        componentField: (innerprops: BatchMigrationCreateComponentFieldInput) =>
+          client.createComponentField(innerprops),
+        relationalField: (innerprops: BatchMigrationCreateRelationalFieldInput) =>
+          client.createRelationalField(innerprops),
+        unionField: (innerprops: BatchMigrationCreateUnionFieldInput) =>
+          client.createUnionField(innerprops),
+        componentUnionField: (innerprops: BatchMigrationCreateComponentUnionFieldInput) =>
+          client.createComponentUnionField(innerprops),
+      },
+      update: {
+        model: (innerprops: BatchMigrationUpdateModelInput) => client.updateModel(innerprops),
+        component: (innerprops: BatchMigrationUpdateComponentInput) =>
+          client.updateComponent(innerprops),
+        enumeration: (innerprops: BatchMigrationUpdateEnumerationInput) =>
+          client.updateEnumeration(innerprops),
+        simpleField: (innerprops: BatchMigrationUpdateSimpleFieldInput) =>
+          client.updateSimpleField(innerprops),
+        enumerableField: (innerprops: BatchMigrationUpdateEnumerableFieldInput) =>
+          client.updateEnumerableField(innerprops),
+        componentField: (innerprops: BatchMigrationUpdateComponentFieldInput) =>
+          client.updateComponentField(innerprops),
+        relationalField: (innerprops: BatchMigrationUpdateRelationalFieldInput) =>
+          client.updateRelationalField(innerprops),
+        unionField: (innerprops: BatchMigrationUpdateUnionFieldInput) =>
+          client.updateUnionField(innerprops),
+        componentUnionField: (innerprops: BatchMigrationUpdateComponentUnionFieldInput) =>
+          client.updateComponentUnionField(innerprops),
+      },
+      delete: {
+        model: (innerprops: BatchMigrationDeleteModelInput) => client.deleteModel(innerprops),
+        component: (innerprops: BatchMigrationDeleteComponentInput) =>
+          client.deleteComponent(innerprops),
+        enumeration: (innerprops: BatchMigrationDeleteEnumerationInput) =>
+          client.deleteEnumeration(innerprops),
+        simpleField: (innerprops: BatchMigrationDeleteFieldInput) => client.deleteField(innerprops),
+        enumerableField: (innerprops: BatchMigrationDeleteFieldInput) =>
+          client.deleteField(innerprops),
+        componentField: (innerprops: BatchMigrationDeleteFieldInput) =>
+          client.deleteField(innerprops),
+        relationalField: (innerprops: BatchMigrationDeleteFieldInput) =>
+          client.deleteField(innerprops),
+        unionField: (innerprops: BatchMigrationDeleteFieldInput) => client.deleteField(innerprops),
+        componentUnionField: (innerprops: BatchMigrationDeleteFieldInput) =>
+          client.deleteField(innerprops),
+      },
+    }
+  : undefined
 
 /**
  * This function is our variation on the client.migrationAction functions from the hygraph
@@ -204,7 +197,7 @@ export const migrationAction = (
     }
   }
 
-  const actionFunc = actionMap[action] && actionMap[action][type]
+  const actionFunc = actionMap && actionMap[action] && actionMap[action][type]
 
   if (!alreadyExists()) {
     if (actionFunc) {

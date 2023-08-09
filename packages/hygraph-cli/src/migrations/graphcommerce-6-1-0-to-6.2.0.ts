@@ -1,8 +1,12 @@
 import { SimpleFieldType, VisibilityTypes } from '@hygraph/management-sdk'
-import { migrationAction, client } from '../functions'
+import { migrationAction, client } from '../migrationAction'
 import { Schema } from '../types'
 
 export const dynamicRow = async (schema: Schema) => {
+  if (!client) {
+    return 0
+  }
+
   // ? ENUMERATIONS
   migrationAction(schema, 'enumeration', 'create', {
     displayName: 'Row Column One Variants',
