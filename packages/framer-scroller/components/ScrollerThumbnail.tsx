@@ -1,7 +1,7 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import { Image, ImageProps } from '@graphcommerce/image'
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { extendableComponent } from '@graphcommerce/next-ui/Styles'
+import { extendableComponent, responsiveVal } from '@graphcommerce/next-ui/Styles'
 import { alpha, styled, useTheme } from '@mui/material'
 import { m, useTransform } from 'framer-motion'
 import { useScrollTo } from '../hooks/useScrollTo'
@@ -25,10 +25,10 @@ const MotionBox = styled(m.div)({})
 export function ScrollerThumbnail(props: ScrollerThumbnailProps) {
   const { visibility, idx, image } = props
   const scrollTo = useScrollTo()
-  const { getScrollSnapPositions } = useScrollerContext()
   const { container } = useImageGalleryContext()
   const active = useMotionValueValue(visibility, (v) => v >= 0.5)
   const theme = useTheme()
+  const { scrollerRef, scroll, getScrollSnapPositions } = useScrollerContext()
 
   const boxShadow = useTransform(
     visibility,
@@ -42,49 +42,41 @@ export function ScrollerThumbnail(props: ScrollerThumbnailProps) {
     ],
   )
   const classes = withState({ active })
-  const positions = getScrollSnapPositions()
-  const itemX = positions.x[idx]
 
   if (!image || !image?.width || !image?.height) return null
 
-  const imageHeight = 120
-  const minWidth = (image.width / image.height) * imageHeight
-
   return (
     <MotionBox
-      initial='default'
+      // initial='default'
       className={classes.thumbnail}
       onClick={() => {
-        if (container.pan.active.get() === false)
-          // eslint-disable-next-line @typescript-eslint/no-floating-promises
-          scrollTo({ x: itemX, y: positions.y[idx] ?? 0 }, { from: itemX })
+        if (container.pan.active.get() === false) {
+          if (!scrollerRef.current) return
+          const { x } = getScrollSnapPositions()
+          scrollerRef.current.scrollLeft = x[idx]
+          scroll.x.set(x[idx])
+        }
       }}
       layout
-      style={{
-        minWidth,
-        padding: '2px',
-        height: imageHeight,
-        boxShadow,
-      }}
+      style={{ boxShadow }}
       sx={{
+        padding: '2px',
         mx: `calc(${theme.spacing(1)} / 2)`,
         borderRadius: theme.shape.borderRadius,
       }}
     >
       <Image
-        src={image.src}
-        layout='fill'
+        {...image}
+        loading='eager'
         sx={{
+          height: responsiveVal(35, 90),
+          width: 'auto',
+          display: 'block',
           pointerEvents: 'none',
           objectFit: 'cover',
           borderRadius: theme.shape.borderRadius - 0.7,
         }}
-        sizes={{
-          0: '80px',
-          300: '100px',
-          600: '120px',
-          900: '180px',
-        }}
+        sizes={responsiveVal(35, 90)}
       />
     </MotionBox>
   )

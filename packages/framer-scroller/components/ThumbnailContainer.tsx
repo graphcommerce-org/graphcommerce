@@ -46,9 +46,7 @@ export function ThumbnailContainer(props: ThumbnailContainerProps) {
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
-      <MotionBox sx={{ display: 'flex', height: '140px', alignItems: 'center' }}>
-        {children(items)}
-      </MotionBox>
+      <MotionBox sx={{ display: 'flex', alignItems: 'center' }}>{children(items)}</MotionBox>
     </MotionBox>
   )
 }
