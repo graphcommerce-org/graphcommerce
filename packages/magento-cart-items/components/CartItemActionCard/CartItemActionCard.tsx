@@ -97,16 +97,6 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
           />
         )
       }
-      price={
-        inclTaxes ? (
-          <Money
-            value={prices?.row_total_including_tax?.value ?? 0}
-            currency={prices?.price.currency}
-          />
-        ) : (
-          <Money {...prices?.row_total} />
-        )
-      }
       title={
         url_key ? (
           <Link
@@ -128,16 +118,18 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
         <>
           <UpdateItemQuantity uid={uid} quantity={quantity} />
           {' ⨉ '}
-          {inclTaxes ? (
-            <Money
-              value={(prices?.row_total_including_tax?.value ?? 0) / quantity}
-              currency={prices?.price.currency}
-            />
-          ) : (
-            <Money {...prices?.price} />
-          )}
+
+          <Money
+            value={
+              inclTaxes
+                ? (prices?.row_total_including_tax?.value ?? 0) / quantity
+                : prices?.price.value
+            }
+            currency={prices?.price.currency}
+          />
         </>
       }
+      price={<Money {...(inclTaxes ? prices?.row_total_including_tax : prices?.row_total)} />}
       action={<RemoveItemFromCart uid={uid} quantity={quantity} buttonProps={{ size }} />}
       size={size}
       after={filterNonNullableKeys(errors).map((error) => (
