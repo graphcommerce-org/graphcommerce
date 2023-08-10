@@ -65,63 +65,71 @@ export function Footer(props: FooterProps) {
       className={classes.root}
       {...containerProps}
     >
-      <Box
-        sx={(theme) => ({
-          display: 'grid',
-          justifyContent: 'start',
-          gridAutoFlow: 'column',
-          gridArea: 'social',
-          gap: { xs: `0 ${theme.spacings.xs}`, md: `0 ${theme.spacings.xs}` },
-          '& > *': {
-            minWidth: 'min-content',
-          },
-        })}
-        className={classes.social}
-      >
-        {socialLinks}
-      </Box>
-      <Box
-        sx={(theme) => ({
-          gridArea: 'switcher',
-          justifySelf: 'end',
-          [theme.breakpoints.down('md')]: {
-            justifySelf: 'center',
-          },
-        })}
-        className={classes.storeSwitcher}
-      >
-        {storeSwitcher}
-      </Box>
-      <Box
-        sx={(theme) => ({
-          gridArea: 'support',
-          justifySelf: 'flex-end',
-          [theme.breakpoints.down('md')]: {
-            justifySelf: 'center',
-          },
-        })}
-        className={classes.support}
-      >
-        {customerService}
-      </Box>
-      <Box
-        sx={(theme) => ({
-          typography: 'body2',
-          display: 'grid',
-          gridAutoFlow: 'column',
-          alignContent: 'center',
-          gridArea: 'links',
-          gap: theme.spacings.sm,
-          [theme.breakpoints.down('md')]: {
-            gridAutoFlow: 'row',
-            textAlign: 'center',
-            gap: `8px`,
-          },
-        })}
-        className={classes.copyright}
-      >
-        {copyright}
-      </Box>
+      {socialLinks && (
+        <Box
+          sx={(theme) => ({
+            display: 'grid',
+            justifyContent: 'start',
+            gridAutoFlow: 'column',
+            gridArea: 'social',
+            gap: { xs: `0 ${theme.spacings.xs}`, md: `0 ${theme.spacings.xs}` },
+            '& > *': {
+              minWidth: 'min-content',
+            },
+          })}
+          className={classes.social}
+        >
+          {socialLinks}
+        </Box>
+      )}
+      {storeSwitcher && (
+        <Box
+          sx={(theme) => ({
+            gridArea: 'switcher',
+            justifySelf: 'end',
+            [theme.breakpoints.down('md')]: {
+              justifySelf: 'center',
+            },
+          })}
+          className={classes.storeSwitcher}
+        >
+          {storeSwitcher}
+        </Box>
+      )}
+      {customerService && (
+        <Box
+          sx={(theme) => ({
+            gridArea: 'support',
+            justifySelf: 'flex-end',
+            [theme.breakpoints.down('md')]: {
+              justifySelf: 'center',
+            },
+          })}
+          className={classes.support}
+        >
+          {customerService}
+        </Box>
+      )}
+      {copyright && (
+        <Box
+          sx={(theme) => ({
+            typography: 'body2',
+            display: 'grid',
+            gridAutoFlow: 'column',
+            alignContent: 'center',
+            gridArea: 'links',
+            gap: theme.spacings.sm,
+            [theme.breakpoints.down('md')]: {
+              gridAutoFlow: 'row',
+              textAlign: 'center',
+              gap: `8px`,
+            },
+          })}
+          className={classes.copyright}
+        >
+          {copyright}
+        </Box>
+      )}
     </Container>
   )
 }

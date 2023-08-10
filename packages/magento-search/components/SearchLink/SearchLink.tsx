@@ -13,7 +13,7 @@ import type { SetRequired } from 'type-fest'
 export type SearchLinkProps = {
   breakpoint?: Breakpoint
   fab?: FabProps
-} & SetRequired<Pick<LinkProps<'button'>, 'href' | 'sx' | 'children' | 'onClick'>, 'href'>
+} & SetRequired<Pick<LinkProps<'a'>, 'href' | 'sx' | 'children' | 'onClick'>, 'href'>
 
 const name = 'SearchLink' as const
 const parts = ['root', 'text', 'svg'] as const
@@ -32,7 +32,7 @@ export function SearchLink(props: SearchLinkProps) {
   const fabSize = useFabSize('responsive')
   const { sx: fabSx = [], size, color, ...fabProps } = fab ?? {}
 
-  const handleClick: MouseEventHandler<HTMLElement> = (e) => {
+  const handleClick: MouseEventHandler<HTMLAnchorElement> = (e) => {
     e.preventDefault()
     onClick?.(e)
     return router.push(href)
@@ -41,7 +41,7 @@ export function SearchLink(props: SearchLinkProps) {
   return (
     <>
       <Link
-        component='button'
+        component='a'
         className={classes.root}
         underline='none'
         onClick={handleClick}
@@ -79,6 +79,7 @@ export function SearchLink(props: SearchLinkProps) {
       </Link>
       {breakpoint && (
         <Fab
+          component='a'
           href={href}
           size={size ?? 'large'}
           color={color ?? 'inherit'}

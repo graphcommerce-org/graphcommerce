@@ -9,7 +9,7 @@ export type CartStartCheckoutLinkOrButtonProps = CartStartCheckoutFragment & {
   sx?: SxProps<Theme>
   disabled?: boolean
   onStart?: (
-    e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>,
+    e: React.MouseEvent<HTMLButtonElement & HTMLAnchorElement & HTMLSpanElement>,
     cart: CartStartCheckoutFragment,
   ) => void
   linkOrButtonProps?: LinkOrButtonProps
@@ -30,7 +30,9 @@ export function CartStartCheckoutLinkOrButton(props: CartStartCheckoutLinkOrButt
   return (
     <LinkOrButton
       href='/checkout'
-      onClick={(e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => {
+      onClick={(
+        e: React.MouseEvent<HTMLButtonElement & HTMLAnchorElement & HTMLSpanElement, MouseEvent>,
+      ) => {
         onClick?.(e)
         onStart?.(e, cart)
       }}
