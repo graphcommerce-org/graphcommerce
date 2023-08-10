@@ -1,8 +1,7 @@
 /**
  * GraphQL Configuration
  *
- * [GraphQL VSCode
- * exstension](https://marketplace.visualstudio.com/items?itemName=GraphQL.vscode-graphql)
+ * [GraphQL VSCode extension](https://marketplace.visualstudio.com/items?itemName=GraphQL.vscode-graphql)
  *
  * Todo(paales): implement environment variables support:
  *
