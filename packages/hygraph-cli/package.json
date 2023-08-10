@@ -2,7 +2,7 @@
   "name": "@graphcommerce/hygraph-cli",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "6.2.0-canary.74",
+  "version": "6.2.0-canary.80",
   "author": "",
   "license": "MIT",
   "scripts": {
@@ -15,7 +15,7 @@
   "types": "src/index.ts",
   "dependencies": {
     "@apollo/client": "~3.7.17",
-    "@graphcommerce/next-config": "6.2.0-canary.74",
+    "@graphcommerce/next-config": "6.2.0-canary.80",
     "@hygraph/management-sdk": "^1.1.2-alpha.1",
     "graphql-tag": "^2.12.6",
     "prompts": "^2.4.2",
@@ -27,9 +27,9 @@
   },
   "devDependencies": {
     "@types/prompts": "^2.4.4",
-    "@graphcommerce/eslint-config-pwa": "6.2.0-canary.74",
-    "@graphcommerce/prettier-config-pwa": "6.2.0-canary.74",
-    "@graphcommerce/typescript-config-pwa": "6.2.0-canary.74",
+    "@graphcommerce/eslint-config-pwa": "6.2.0-canary.80",
+    "@graphcommerce/prettier-config-pwa": "6.2.0-canary.80",
+    "@graphcommerce/typescript-config-pwa": "6.2.0-canary.80",
     "typescript": "5.1.3"
   },
   "sideEffects": false,

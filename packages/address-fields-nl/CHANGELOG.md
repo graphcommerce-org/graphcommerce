@@ -1,5 +1,17 @@
 # @graphcommerce/address-fields-nl
 
+## 6.2.0-canary.80
+
+## 6.2.0-canary.79
+
+## 6.2.0-canary.78
+
+## 6.2.0-canary.77
+
+## 6.2.0-canary.76
+
+## 6.2.0-canary.75
+
 ## 6.2.0-canary.74
 
 ## 6.2.0-canary.73

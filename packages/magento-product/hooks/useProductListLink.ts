@@ -5,7 +5,7 @@ import {
   ProductListParams,
 } from '../components/ProductListItems/filterTypes'
 
-export function createProductListLink(props: ProductListParams): string {
+export function productListLink(props: ProductListParams): string {
   const { url, sort, currentPage, pageSize, filters: incoming } = props
   const isSearch = url.startsWith('search')
   const filters = isSearch ? incoming : { ...incoming, category_uid: undefined }
@@ -43,5 +43,5 @@ export function createProductListLink(props: ProductListParams): string {
 }
 
 export function useProductListLink(props: ProductListParams): string {
-  return `${createProductListLink({ ...props, url: `${props.url}` })}#products`
+  return productListLink({ ...props, url: `${props.url}` })
 }

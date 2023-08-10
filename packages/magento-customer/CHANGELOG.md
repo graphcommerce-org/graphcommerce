@@ -1,5 +1,21 @@
 # Change Log
 
+## 6.2.0-canary.80
+
+## 6.2.0-canary.79
+
+## 6.2.0-canary.78
+
+## 6.2.0-canary.77
+
+## 6.2.0-canary.76
+
+## 6.2.0-canary.75
+
+### Patch Changes
+
+- [#2016](https://github.com/graphcommerce-org/graphcommerce/pull/2016) [`227ddcee8`](https://github.com/graphcommerce-org/graphcommerce/commit/227ddcee8808715928371c1f3a4c7925032df0ef) - Made cardProps on CustomerAddressActionCards overridable. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
 ## 6.2.0-canary.74
 
 ### Patch Changes

@@ -17,21 +17,13 @@ function domains(config) {
         if (!loc.domain)
             return acc;
         acc[loc.domain] = {
-            defaultLocale: loc.defaultLocale ? loc.locale : acc[loc.domain]?.defaultLocale,
+            defaultLocale: loc.locale,
             locales: [...(acc[loc.domain]?.locales ?? []), loc.locale],
             domain: loc.domain,
-            http: true,
+            http: process.env.NODE_ENV === 'development' || undefined,
         };
         return acc;
     }, {}));
-}
-function remotePatterns(url) {
-    const urlObj = new URL(url);
-    return {
-        hostname: urlObj.hostname,
-        protocol: urlObj.protocol,
-        port: urlObj.port,
-    };
 }
 /**
  * GraphCommerce configuration: .
@@ -58,6 +50,7 @@ function withGraphCommerce(nextConfig, cwd) {
             swcPlugins: [...(nextConfig.experimental?.swcPlugins ?? []), ['@lingui/swc-plugin', {}]],
         },
         i18n: {
+            ...nextConfig.i18n,
             defaultLocale: storefront.find((locale) => locale.defaultLocale)?.locale ?? storefront[0].locale,
             locales: storefront.map((locale) => locale.locale),
             domains: [...domains(graphcommerceConfig), ...(nextConfig.i18n?.domains ?? [])],
