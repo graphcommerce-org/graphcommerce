@@ -14,17 +14,7 @@ type ThumbnailContainerProps = {
 
 export function ThumbnailContainer(props: ThumbnailContainerProps) {
   const { children, sx } = props
-  const { getScrollSnapPositions } = useScrollerContext()
   const { items, container } = useImageGalleryContext()
-  const scrollIndex = useMotionValue(0)
-  const snapPositions = getScrollSnapPositions()
-
-  const scrollTo = useScrollTo()
-
-  useMotionValueEvent(scrollIndex, 'change', (v) =>
-    // Scrolls when different index is selected in ThumbnailContainer
-    scrollTo({ x: snapPositions.x[v], y: snapPositions.y[v] }),
-  )
 
   if (items.length <= 1) return null
 
