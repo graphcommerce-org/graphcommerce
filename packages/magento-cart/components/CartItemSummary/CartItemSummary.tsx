@@ -22,6 +22,7 @@ import {
 } from '../CartSummary/CartSummaryItemActionCard'
 import { CartTotals } from '../CartTotals/CartTotals'
 import { CartItemSummaryDocument } from './GetCartItemSummary.gql'
+import { CartItemActionCard } from '@graphcommerce/magento-cart-items'
 
 const name = 'CartItemSummary' as const
 const parts = [
@@ -47,7 +48,7 @@ type OrderSummaryProps = ActionCardLayoutProps & {
 } & { size?: 'small' | 'medium' | 'large' }
 
 export function CartItemSummary(props: OrderSummaryProps) {
-  const { sx = [], size, layout = 'stack', itemProps, ref, ...cardLayout } = props
+  const { sx = [], size, layout = 'list', itemProps, ref, ...cardLayout } = props
   const { data } = useCartQuery(CartItemSummaryDocument, {
     allowUrl: true,
     fetchPolicy: 'cache-only',
@@ -106,17 +107,18 @@ export function CartItemSummary(props: OrderSummaryProps) {
                   gap: 0,
                 },
               })}
-              layout={layout}
               className={classes.scrollerContainer}
               {...cardLayout}
             >
               {items?.filter(nonNullable).map((item) => (
-                <CartSummaryItemActionCard
+                <CartItemActionCard
+                  readOnly
                   key={item.uid}
                   cartItem={item}
+                  {...itemProps}
                   layout={layout}
                   size={size}
-                  {...itemProps}
+                  variant='default'
                 />
               ))}
             </ActionCardLayout>

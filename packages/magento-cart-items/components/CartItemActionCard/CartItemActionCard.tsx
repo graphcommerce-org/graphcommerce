@@ -12,7 +12,7 @@ import { CartItemFragment } from '../../Api/CartItem.gql'
 import { RemoveItemFromCart } from '../RemoveItemFromCart/RemoveItemFromCart'
 import { UpdateItemQuantity } from '../UpdateItemQuantity/UpdateItemQuantity'
 
-export type CartItemActionCardProps = { cartItem: CartItemFragment } & Omit<
+export type CartItemActionCardProps = { cartItem: CartItemFragment; readOnly?: boolean } & Omit<
   ActionCardProps,
   'value' | 'image' | 'price' | 'title' | 'action'
 >
@@ -30,7 +30,7 @@ const typographySizes = {
 }
 
 export function CartItemActionCard(props: CartItemActionCardProps) {
-  const { cartItem, sx = [], size = 'large', ...rest } = props
+  const { cartItem, sx = [], size = 'large', readOnly = false, ...rest } = props
 
   const {
     uid,
@@ -57,6 +57,9 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
           },
           '&.sizeSmall': {
             px: 0,
+          },
+          '& .ActionCard-end': {
+            justifyContent: readOnly ? 'center' : 'space-between',
           },
           '& .ActionCard-action': {
             pr: theme.spacings.xs,
@@ -116,7 +119,7 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
       }
       secondaryAction={
         <>
-          <UpdateItemQuantity uid={uid} quantity={quantity} />
+          {readOnly ? quantity : <UpdateItemQuantity uid={uid} quantity={quantity} />}
           {' ⨉ '}
 
           <Money
@@ -130,7 +133,9 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
         </>
       }
       price={<Money {...(inclTaxes ? prices?.row_total_including_tax : prices?.row_total)} />}
-      action={<RemoveItemFromCart uid={uid} quantity={quantity} buttonProps={{ size }} />}
+      action={
+        !readOnly && <RemoveItemFromCart uid={uid} quantity={quantity} buttonProps={{ size }} />
+      }
       size={size}
       after={filterNonNullableKeys(errors).map((error) => (
         <Box sx={{ color: 'error.main', typography: 'caption' }} key={error.message}>

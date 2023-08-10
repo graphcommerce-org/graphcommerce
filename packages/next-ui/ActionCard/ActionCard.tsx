@@ -317,6 +317,7 @@ export function ActionCard(props: ActionCardProps) {
         </Box>
 
         <Box
+          className='ActionCard-end'
           sx={{
             display: 'flex',
             flexDirection: 'column',
