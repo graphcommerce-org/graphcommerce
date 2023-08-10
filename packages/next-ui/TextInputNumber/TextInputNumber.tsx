@@ -1,12 +1,13 @@
 import { i18n } from '@lingui/core'
 import {
-  IconButton,
   IconButtonProps,
   SxProps,
+  Box,
   TextField,
   TextFieldProps,
   useForkRef,
   Theme,
+  Fab,
 } from '@mui/material'
 import { ChangeEvent, Ref, useCallback, useEffect, useRef, useState } from 'react'
 import { IconSvg } from '../IconSvg'
@@ -36,6 +37,7 @@ export function TextInputNumber(props: TextInputNumberProps) {
     UpProps = {},
     inputProps = {},
     inputRef,
+    variant = 'outlined',
     sx = [],
     ...textFieldProps
   } = props
@@ -91,11 +93,27 @@ export function TextInputNumber(props: TextInputNumberProps) {
     <TextField
       {...textFieldProps}
       type='number'
+      variant={variant}
       inputRef={forkRef}
       className={`${textFieldProps.className ?? ''} ${classes.quantity}`}
       sx={[
         {
-          width: responsiveVal(80, 120),
+          width: responsiveVal(90, 120),
+        },
+        {
+          '& .MuiOutlinedInput-root': {
+            px: '3px',
+            display: 'grid',
+            gridTemplateColumns: '1fr auto 1fr',
+          },
+        },
+        variant === 'standard' && {
+          '& .MuiOutlinedInput-input': {
+            padding: 0,
+          },
+          '& .MuiOutlinedInput-notchedOutline': {
+            display: 'none',
+          },
         },
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
@@ -103,36 +121,36 @@ export function TextInputNumber(props: TextInputNumberProps) {
       InputProps={{
         ...textFieldProps.InputProps,
         startAdornment: (
-          <IconButton
-            aria-label={i18n._(/* i18n */ 'Decrease')}
-            size='medium'
-            edge='start'
-            onPointerDown={() => setDirection('down')}
-            onPointerUp={stop}
-            // disabled={textFieldProps.disabled || disabled === 'min'}
-            tabIndex={-1}
-            color='inherit'
-            {...DownProps}
-            className={`${classes.button} ${DownProps.className ?? ''}`}
-          >
-            {DownProps.children ?? <IconSvg src={iconMin} size='small' />}
-          </IconButton>
+          <Box>
+            <Fab
+              aria-label={i18n._(/* i18n */ 'Decrease')}
+              size='smaller'
+              sx={{ boxShadow: variant === 'standard' ? 4 : 0, minHeight: '30px' }}
+              onPointerDown={() => setDirection('down')}
+              onPointerUp={stop}
+              tabIndex={-1}
+              {...DownProps}
+              className={`${classes.button} ${DownProps.className ?? ''}`}
+            >
+              {DownProps.children ?? <IconSvg src={iconMin} size='small' />}
+            </Fab>
+          </Box>
         ),
         endAdornment: (
-          <IconButton
-            aria-label={i18n._(/* i18n */ 'Increase')}
-            size='medium'
-            edge='end'
-            onPointerDown={() => setDirection('up')}
-            onPointerUp={() => setDirection(null)}
-            // disabled={textFieldProps.disabled || disabled === 'max'}
-            tabIndex={-1}
-            color='inherit'
-            {...UpProps}
-            className={`${classes.button} ${UpProps.className ?? ''}`}
-          >
-            {UpProps.children ?? <IconSvg src={iconPlus} size='small' />}
-          </IconButton>
+          <Box>
+            <Fab
+              aria-label={i18n._(/* i18n */ 'Increase')}
+              size='smaller'
+              sx={{ boxShadow: variant === 'standard' ? 4 : 0, minHeight: '30px' }}
+              onPointerDown={() => setDirection('up')}
+              onPointerUp={() => setDirection(null)}
+              tabIndex={-1}
+              {...UpProps}
+              className={`${classes.button} ${UpProps.className ?? ''}`}
+            >
+              {UpProps.children ?? <IconSvg src={iconPlus} size='small' />}
+            </Fab>
+          </Box>
         ),
       }}
       onChange={(e: ChangeEvent<HTMLInputElement>) => {
@@ -144,6 +162,7 @@ export function TextInputNumber(props: TextInputNumberProps) {
         'aria-label': i18n._(/* i18n */ 'Number'),
         sx: [
           {
+            typography: 'body1',
             textAlign: 'center',
             '&::-webkit-inner-spin-button,&::-webkit-outer-spin-button': {
               appearance: 'none',

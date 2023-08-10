@@ -68,6 +68,7 @@ export function CartTotals(props: CartTotalsProps) {
 
           '&.containerMargin': {
             marginTop: theme.spacings.md,
+            px: theme.spacings.xs,
           },
         }),
         ...(Array.isArray(sx) ? sx : [sx]),

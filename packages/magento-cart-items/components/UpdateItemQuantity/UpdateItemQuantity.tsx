@@ -34,8 +34,9 @@ export function UpdateItemQuantity(props: UpdateItemQuantityProps) {
     <form noValidate onSubmit={submit}>
       <TextInputNumber
         size='small'
-        variant='outlined'
+        variant='standard'
         inputProps={{ min: 1 }}
+        InputProps={{ disableUnderline: true }}
         error={!!formState.errors.quantity}
         {...muiRegister('quantity', { required: required.quantity })}
         helperText={formState.errors.quantity?.message}
