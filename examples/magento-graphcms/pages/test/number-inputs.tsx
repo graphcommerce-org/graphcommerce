@@ -24,6 +24,7 @@ const sizes = ['small', 'medium'] as const
 const colors = [undefined, 'primary', 'secondary', 'error'] as const
 
 const Grid = styled('div')(({ theme }) => ({
+  overflow: 'scroll',
   marginTop: `${5 * 8}px`,
   marginBottom: `${5 * 8}px`,
   display: 'grid',
@@ -79,6 +80,9 @@ export default function NumberInputsPage(props: TextInputNumberProps) {
                         size={size}
                         {...props}
                         InputProps={{ disableUnderline: true }}
+                        sx={{
+                          marginBottom: '10px',
+                        }}
                       />
                     </div>
                   ))}
@@ -133,6 +137,9 @@ export default function NumberInputsPage(props: TextInputNumberProps) {
                         control={control}
                         InputProps={{ disableUnderline: true }}
                         name='test'
+                        sx={{
+                          marginBottom: '10px',
+                        }}
                       />
                     </div>
                   ))}

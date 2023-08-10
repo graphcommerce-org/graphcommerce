@@ -93,19 +93,21 @@ export function TextInputNumber(props: TextInputNumberProps) {
     <TextField
       {...textFieldProps}
       type='number'
-      variant='outlined'
+      variant={variant}
       inputRef={forkRef}
       className={`${textFieldProps.className ?? ''} ${classes.quantity}`}
       sx={[
         {
-          width: responsiveVal(80, 120),
+          width: responsiveVal(90, 120),
         },
-        variant === 'standard' && {
+        {
           '& .MuiOutlinedInput-root': {
-            px: 0,
+            px: '3px',
             display: 'grid',
             gridTemplateColumns: '1fr auto 1fr',
           },
+        },
+        variant === 'standard' && {
           '& .MuiOutlinedInput-input': {
             padding: 0,
           },

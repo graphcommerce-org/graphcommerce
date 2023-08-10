@@ -68,6 +68,7 @@ export function NumberFieldElement<T extends FieldValues>(props: NumberFieldElem
         return (
           <TextField
             {...textFieldProps}
+            variant={variant}
             name={name}
             value={value ?? ''}
             onChange={(ev) => {
@@ -84,14 +85,16 @@ export function NumberFieldElement<T extends FieldValues>(props: NumberFieldElem
             className={`${textFieldProps.className ?? ''} ${classes.quantity}`}
             sx={[
               {
-                width: responsiveVal(80, 120),
+                width: responsiveVal(90, 120),
               },
-              variant === 'standard' && {
+              {
                 '& .MuiOutlinedInput-root': {
-                  px: 0,
+                  px: '2px',
                   display: 'grid',
                   gridTemplateColumns: '1fr auto 1fr',
                 },
+              },
+              variant === 'standard' && {
                 '& .MuiOutlinedInput-input': {
                   padding: 0,
                 },
@@ -152,6 +155,7 @@ export function NumberFieldElement<T extends FieldValues>(props: NumberFieldElem
               'aria-label': i18n._(/* i18n */ 'Number'),
               className: `${inputProps?.className ?? ''} ${classes.quantityInput}`,
               sx: {
+                typography: 'body1',
                 textAlign: 'center',
                 '&::-webkit-inner-spin-button,&::-webkit-outer-spin-button': {
                   appearance: 'none',
