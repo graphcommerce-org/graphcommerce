@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.79
+
+### Patch Changes
+
+- [#2013](https://github.com/graphcommerce-org/graphcommerce/pull/2013) [`c57bdf8a4`](https://github.com/graphcommerce-org/graphcommerce/commit/c57bdf8a4ce936c3eedc4dfada3a464a113ac68a) - Updated @mui and framer-motion packages to latest versions ([@paales](https://github.com/paales))
+
 ## 6.2.0-canary.78
 
 ## 6.2.0-canary.77
