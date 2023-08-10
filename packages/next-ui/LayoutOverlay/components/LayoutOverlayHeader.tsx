@@ -1,11 +1,12 @@
 import { LayoutHeaderProps, LayoutHeader } from '../../Layout'
 
 export function LayoutOverlayHeader(props: LayoutHeaderProps) {
-  const { sx } = props
+  const { sx, switchPoint } = props
   return (
     <LayoutHeader
       {...props}
       noAlign
+      switchPoint={switchPoint !== 0 ? switchPoint : -1000}
       sx={[
         (theme) => ({
           [theme.breakpoints.down('md')]: {
