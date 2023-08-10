@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.81
+
+### Patch Changes
+
+- [#2003](https://github.com/graphcommerce-org/graphcommerce/pull/2003) [`c4b102577`](https://github.com/graphcommerce-org/graphcommerce/commit/c4b1025774aad87c5e51f05c5b988d364f4bf20e) - ProductPageAddToCartRow wasn't aligned in the middle causing the price to be misaligned ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
 ## 6.2.0-canary.80
 
 ### Patch Changes

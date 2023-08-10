@@ -1,5 +1,17 @@
 # Change Log
 
+## 6.2.0-canary.81
+
+### Minor Changes
+
+- [#2003](https://github.com/graphcommerce-org/graphcommerce/pull/2003) [`609b384de`](https://github.com/graphcommerce-org/graphcommerce/commit/609b384de8cded7a9dd2f29bd516ded810ab970a) - Created a new version of the cart using ActionCards for each CartItem. Different types of CartItems can have different ActionCards. These ActionCards will be overridden with the use of Plugins. An example can be found in the @graphcommerce/magento-product-configurable package. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+### Patch Changes
+
+- [#2003](https://github.com/graphcommerce-org/graphcommerce/pull/2003) [`e9041802b`](https://github.com/graphcommerce-org/graphcommerce/commit/e9041802b27d6610cc93715ca61acff7f59792e6) - When the switchPoint is zero, make sure the header doesn’t flash when scrolling up on iOS ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+- [#2003](https://github.com/graphcommerce-org/graphcommerce/pull/2003) [`e81a9722b`](https://github.com/graphcommerce-org/graphcommerce/commit/e81a9722b5f581dacb624246c14d74aafbf55893) - Make sure the className is forwarded for ActionCardLayout ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
 ## 6.2.0-canary.80
 
 ## 6.2.0-canary.79
