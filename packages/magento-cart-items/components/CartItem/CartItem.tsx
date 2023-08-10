@@ -9,7 +9,7 @@ import {
   NextLink,
 } from '@graphcommerce/next-ui'
 import { Badge, Box, Link, SxProps, Theme } from '@mui/material'
-import { CartItemFragment } from '../Api/CartItem.gql'
+import { CartItemFragment } from '../../Api/CartItem.gql'
 import { RemoveItemFromCartFab } from '../RemoveItemFromCart/RemoveItemFromCartFab'
 import { UpdateItemQuantity } from '../UpdateItemQuantity/UpdateItemQuantity'
 
@@ -38,6 +38,7 @@ const { withState } = extendableComponent<OwnerState, typeof compName, typeof pa
   parts,
 )
 
+/** @deprecated Replace with CartItemActionCard */
 export function CartItem(props: CartItemProps) {
   const { product, errors, uid, prices, quantity, children, withOptions = true, sx = [] } = props
   const { name } = product
@@ -95,7 +96,6 @@ export function CartItem(props: CartItemProps) {
             uid={uid}
             quantity={quantity}
             prices={prices}
-            product={product}
             className={classes.badge}
             sx={(theme) => ({
               '& > button': {

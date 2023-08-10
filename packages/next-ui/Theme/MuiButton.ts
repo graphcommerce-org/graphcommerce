@@ -161,7 +161,7 @@ export const MuiButtonInline: ButtonVariants = [
   {
     props: { variant: 'inline', size: 'small' },
     style: ({ theme }) => ({
-      margin: `calc(${theme.spacings.xxs} / 2 * -1 )`,
+      margin: `calc(${theme.spacings.xxs} * -1 )`,
       padding: '3px 9px',
 
       '& .MuiLoadingButton-loadingIndicatorEnd': { right: 3 },

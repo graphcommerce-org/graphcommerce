@@ -25,9 +25,12 @@ const defaultSizes: FabSizes = {
    * Default values picked from MUI:
    * https://github.com/mui/material-ui/blob/master/packages/mui-material/src/Fab/Fab.js
    */
+  smaller: '30px',
   small: '40px',
   medium: '48px',
   large: '54px',
+  responsiveSmall: responsiveVal(30, 40),
+  responsiveMedium: responsiveVal(36, 48),
   responsive: responsiveVal(40, 54),
 }
 
@@ -43,6 +46,9 @@ export const useFabSize = (size: FabSize) => {
 declare module '@mui/material/Fab/Fab' {
   interface FabPropsSizeOverrides {
     responsive: true
+    responsiveSmall: true
+    responsiveMedium: true
+    smaller: true
   }
   // todo: Wait for the color prop to be exendable and then add inverted
   // https://github.com/mui/material-ui/blob/master/packages/mui-material/src/Fab/Fab.js#L193-L202
@@ -60,7 +66,15 @@ function fabWidthHeight(size: FabSize, theme: Theme) {
 
 type FabVariants = NonNullable<ComponentsVariants['MuiFab']>
 
-const sizes: FabSize[] = ['small', 'medium', 'large', 'responsive']
+const sizes: FabSize[] = [
+  'smaller',
+  'small',
+  'medium',
+  'large',
+  'responsive',
+  'responsiveSmall',
+  'responsiveMedium',
+]
 
 /**
  * This defines the sizes for the added responsive variant.

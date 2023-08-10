@@ -1,5 +1,0 @@
-query CartItemsQuery($cartId: String!) {
-  cart(cart_id: $cartId) {
-    ...CartItems
-  }
-}

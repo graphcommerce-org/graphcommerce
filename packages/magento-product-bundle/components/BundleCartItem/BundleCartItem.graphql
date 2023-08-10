@@ -1,4 +1,9 @@
 fragment BundleCartItem on BundleCartItem @inject(into: ["CartItem"]) {
+  prices {
+    price {
+      currency
+    }
+  }
   bundle_options {
     uid
     label
@@ -10,7 +15,7 @@ fragment BundleCartItem on BundleCartItem @inject(into: ["CartItem"]) {
       price
     }
   }
-  bundle_customizable: customizable_options {
+  customizable_options {
     ...SelectedCustomizableOption
   }
 }

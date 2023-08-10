@@ -10,8 +10,7 @@ import {
 } from '@graphcommerce/magento-cart'
 import { CartPageDocument } from '@graphcommerce/magento-cart-checkout'
 import { CouponAccordion } from '@graphcommerce/magento-cart-coupon'
-import { CartItem, CartItems } from '@graphcommerce/magento-cart-items'
-import { ConfigurableCartItem } from '@graphcommerce/magento-product-configurable'
+import { CartItemsActionCards } from '@graphcommerce/magento-cart-items'
 import { Money, PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   GetStaticProps,
@@ -21,6 +20,7 @@ import {
   LayoutOverlayHeader,
   FullPageMessage,
 } from '@graphcommerce/next-ui'
+import { OverlayStickyBottom } from '@graphcommerce/next-ui/Overlay/components/OverlayStickyBottom'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, CircularProgress, Container } from '@mui/material'
@@ -67,7 +67,6 @@ function CartPage() {
           )}
         </LayoutTitle>
       </LayoutOverlayHeader>
-
       <WaitForQueries
         waitFor={cart}
         fallback={
@@ -79,29 +78,18 @@ function CartPage() {
         <Container maxWidth='md'>
           <>
             {hasItems ? (
-              <Box sx={(theme) => ({ mt: theme.spacings.lg })}>
-                <CartItems
-                  items={data?.cart?.items}
-                  id={data?.cart?.id ?? ''}
-                  key='cart'
-                  renderer={{
-                    BundleCartItem: CartItem,
-                    ConfigurableCartItem,
-                    DownloadableCartItem: CartItem,
-                    SimpleCartItem: CartItem,
-                    VirtualCartItem: CartItem,
-                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                    // @ts-ignore GiftCardProduct is only available in Commerce
-                    GiftCardCartItem: CartItem,
-                  }}
+              <>
+                <CartItemsActionCards
+                  cart={data.cart}
+                  sx={(theme) => ({ mb: theme.spacings.md })}
                 />
                 <CouponAccordion key='couponform' />
                 <CartTotals containerMargin sx={{ typography: 'body1' }} />
                 <ApolloCartErrorAlert error={error} />
-                <Box key='checkout-button'>
+                <OverlayStickyBottom sx={{ py: 0.1 }}>
                   <CartStartCheckout {...data?.cart} disabled={hasError} />
-                </Box>
-              </Box>
+                </OverlayStickyBottom>
+              </>
             ) : (
               <EmptyCart>{error && <ApolloCartErrorAlert error={error} />}</EmptyCart>
             )}
@@ -115,7 +103,14 @@ function CartPage() {
 const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'cart',
   Layout: LayoutOverlay,
-  layoutProps: { variantMd: 'bottom', variantSm: 'bottom' },
+  layoutProps: {
+    variantMd: 'right',
+    variantSm: 'bottom',
+    widthMd: '900px',
+    sizeMd: 'floating',
+    sizeSm: 'full',
+    justifyMd: 'start',
+  },
 }
 CartPage.pageOptions = pageOptions
 
