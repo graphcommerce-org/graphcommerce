@@ -1,8 +1,9 @@
 import { Scroller, ScrollerProvider } from '@graphcommerce/framer-scroller'
 import { ProductListLink, ProductListParams } from '@graphcommerce/magento-product'
 import { extendableComponent } from '@graphcommerce/next-ui'
-import { Box, SxProps, Theme } from '@mui/material'
+import { Box, Link, SxProps, Theme } from '@mui/material'
 import { CategoryChildrenFragment } from './CategoryChildren.gql'
+import { productListLink } from '@graphcommerce/magento-product/hooks/useProductListLink'
 
 type CategoryChildrenProps = Omit<CategoryChildrenFragment, 'uid'> & {
   params: ProductListParams
@@ -40,13 +41,15 @@ export function CategoryChildren(props: CategoryChildrenProps) {
             if (!cat?.url_path || !cat.name || !cat.include_in_menu) return null
 
             return (
-              <ProductListLink
+              <Link
                 key={cat.url_path}
                 underline='none'
                 color='inherit'
-                url={cat.url_path}
-                filters={{ category_uid: { eq: cat.uid } }}
-                sort={params.sort}
+                href={productListLink({
+                  ...params,
+                  url: cat.url_path,
+                  filters: { category_uid: { eq: cat.uid } },
+                })}
                 className={classes.link}
                 sx={(theme) => ({
                   whiteSpace: 'nowrap',
@@ -78,7 +81,7 @@ export function CategoryChildren(props: CategoryChildrenProps) {
                 })}
               >
                 {cat.name}
-              </ProductListLink>
+              </Link>
             )
           })}
         </Scroller>

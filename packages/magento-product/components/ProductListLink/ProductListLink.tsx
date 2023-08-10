@@ -12,6 +12,7 @@ export type ProductListLinkProps = LinkProps &
     children?: React.ReactNode
   }
 
+/** @deprecated Use productLinkList() instead */
 export const ProductListLink = React.forwardRef<HTMLAnchorElement, ProductListLinkProps>(
   (props, ref) => {
     const { setParams } = useProductListParamsContext()
