@@ -33,8 +33,12 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
 
   const { data: cartQuery } = useCartQuery(GetAddressesDocument)
 
+  const defaultBillingAddress = customerAddresses.data?.customer?.addresses?.find(
+    (a) => a?.default_billing,
+  )
+
   const shippingAddress = cartQuery?.cart?.shipping_addresses?.[0]
-  const billingAddress = cartQuery?.cart?.billing_address
+  const billingAddress = defaultBillingAddress || cartQuery?.cart?.billing_address
 
   const found = customerAddresses.data?.customer?.addresses?.find(
     (customerAddr) =>

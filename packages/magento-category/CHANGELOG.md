@@ -1,5 +1,27 @@
 # Change Log
 
+## 6.2.0-canary.78
+
+## 6.2.0-canary.77
+
+### Patch Changes
+
+- [#2017](https://github.com/graphcommerce-org/graphcommerce/pull/2017) [`f5c2bcc57`](https://github.com/graphcommerce-org/graphcommerce/commit/f5c2bcc57120a94d1af71c6002d2e370c1c39f14) - Changed canonical link of paginated pages. So this matches the canonical structure of non paginated pages. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 6.2.0-canary.76
+
+## 6.2.0-canary.75
+
+## 6.2.0-canary.74
+
+## 6.2.0-canary.73
+
+## 6.2.0-canary.72
+
+## 6.2.0-canary.71
+
+## 6.2.0-canary.70
+
 ## 6.2.0-canary.69
 
 ## 6.2.0-canary.68

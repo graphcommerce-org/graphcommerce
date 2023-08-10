@@ -1,8 +1,9 @@
 import { storefrontConfig } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
+import { useRouter } from 'next/router'
 
 export function useAlgoliaSearchIndexConfig(suffix: string) {
-  return storefrontConfig(i18n.locale)?.algoliaSearchIndexConfig.find((ai) =>
+  const { locale } = useRouter()
+  return storefrontConfig(locale)?.algoliaSearchIndexConfig.find((ai) =>
     ai.searchIndex.includes(suffix),
   )
 }

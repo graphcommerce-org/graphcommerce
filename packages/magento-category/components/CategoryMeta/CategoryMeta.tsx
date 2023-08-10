@@ -52,7 +52,7 @@ export function CategoryMeta(props: CategoryMetaProps) {
       title={titleTrans}
       metaDescription={metaDescriptionTrans}
       metaRobots={noIndex ? ['noindex'] : metaRobots}
-      canonical={isPaginated ? `${canonical}/q/page/${currentPage}` : canonical}
+      canonical={isPaginated ? `${canonical}/page/${currentPage}` : canonical}
       ogImage={ogImage}
       ogImageUseFallback={ogImageUseFallback}
     />

@@ -1,10 +1,9 @@
 import { useFormState } from '@graphcommerce/ecommerce-ui'
 import { useEventCallback } from '@mui/material'
 import { UseAddProductsToCartActionFragment } from './UseAddProductsToCartAction.gql'
-import { useFormAddProductsToCart } from './useFormAddProductsToCart'
+import { AddToCartItemSelector, useFormAddProductsToCart } from './useFormAddProductsToCart'
 
-export type UseAddProductsToCartActionProps = {
-  index?: number
+export type UseAddProductsToCartActionProps = AddToCartItemSelector & {
   disabled?: boolean
   loading?: boolean
   onClick?: React.MouseEventHandler<HTMLButtonElement>

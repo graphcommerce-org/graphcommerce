@@ -133,6 +133,12 @@ Magento also returns the Simple product and the Configurable product the simple 
 If that is the case we render the configurable product page instead of the simple product page but
 the options to select the simple product are pre-selected.
 
+#### `configurableVariantValues: [MagentoConfigurableVariantValues](#MagentoConfigurableVariantValues) (default: [object Object])`
+
+When a user selects a variant, it will switch the values on the configurable page with the values of the configured variant.
+
+Enabling options here will allow switching of those variants.
+
 #### `customerRequireEmailConfirmation: Boolean`
 
 Due to a limitation in the GraphQL API of Magento 2, we need to know if the
@@ -349,3 +355,17 @@ Add a gcms-locales header to make sure queries return in a certain language, can
 #### `linguiLocale: String`
 
 Specify a custom locale for to load translations.
+
+### MagentoConfigurableVariantValues
+
+Options to configure which values will be replaced when a variant is selected on the product page.
+
+#### `content: Boolean`
+
+Use the name, description, short description and meta data from the configured variant
+
+#### `url: Boolean`
+
+When a variant is selected the URL of the product will be changed in the address bar.
+
+This only happens when the actual variant is can be accessed by the URL.

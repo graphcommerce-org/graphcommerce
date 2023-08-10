@@ -1,4 +1,5 @@
 fragment ProductPagePrice on ProductInterface {
+  url_key
   price_range {
     minimum_price {
       regular_price {

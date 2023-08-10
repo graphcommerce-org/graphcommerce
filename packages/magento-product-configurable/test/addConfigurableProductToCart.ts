@@ -1,6 +1,6 @@
 import { waitForGraphQlResponse } from '@graphcommerce/graphql/test/apolloClient.fixture'
 import { CreateEmptyCartDocument } from '@graphcommerce/magento-cart/hooks/CreateEmptyCart.gql'
-import { ProductAddToCartDocument } from '@graphcommerce/magento-product/components'
+import { ProductAddToCartDocument } from '@graphcommerce/magento-product'
 import { Page, expect } from '@playwright/test'
 
 export async function addConfigurableProductToCart(page: Page, productUrl: string) {

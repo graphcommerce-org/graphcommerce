@@ -134,6 +134,12 @@ export type GraphCommerceConfig = {
    */
   configurableVariantForSimple?: InputMaybe<Scalars['Boolean']['input']>;
   /**
+   * When a user selects a variant, it will switch the values on the configurable page with the values of the configured variant.
+   *
+   * Enabling options here will allow switching of those variants.
+   */
+  configurableVariantValues?: InputMaybe<MagentoConfigurableVariantValues>;
+  /**
    * Due to a limitation in the GraphQL API of Magento 2, we need to know if the
    * customer requires email confirmation.
    *
@@ -341,6 +347,18 @@ export type GraphCommerceStorefrontConfig = {
   magentoStoreCode: Scalars['String']['input'];
 };
 
+/** Options to configure which values will be replaced when a variant is selected on the product page. */
+export type MagentoConfigurableVariantValues = {
+  /** Use the name, description, short description and meta data from the configured variant */
+  content?: InputMaybe<Scalars['Boolean']['input']>;
+  /**
+   * When a variant is selected the URL of the product will be changed in the address bar.
+   *
+   * This only happens when the actual variant is can be accessed by the URL.
+   */
+  url?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
 export type ProductFiltersLayout =
   | 'DEFAULT'
   | 'SIDEBAR';
@@ -367,6 +385,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     compare: z.boolean().nullish(),
     compareVariant: CompareVariantSchema.nullish(),
     configurableVariantForSimple: z.boolean().nullish(),
+    configurableVariantValues: MagentoConfigurableVariantValuesSchema().nullish(),
     customerRequireEmailConfirmation: z.boolean().nullish(),
     debug: GraphCommerceDebugConfigSchema().nullish(),
     demoMode: z.boolean().nullish(),
@@ -412,5 +431,12 @@ export function GraphCommerceStorefrontConfigSchema(): z.ZodObject<Properties<Gr
     linguiLocale: z.string().nullish(),
     locale: z.string().min(1),
     magentoStoreCode: z.string().min(1)
+  })
+}
+
+export function MagentoConfigurableVariantValuesSchema(): z.ZodObject<Properties<MagentoConfigurableVariantValues>> {
+  return z.object({
+    content: z.boolean().nullish(),
+    url: z.boolean().nullish()
   })
 }
