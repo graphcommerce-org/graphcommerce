@@ -1,6 +1,6 @@
 import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import { Image } from '@graphcommerce/image'
-import { useFormAddProductsToCart } from '@graphcommerce/magento-product/components'
+import { useFormAddProductsToCart } from '@graphcommerce/magento-product'
 import { Money } from '@graphcommerce/magento-store'
 import {
   responsiveVal,

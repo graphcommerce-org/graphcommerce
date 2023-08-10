@@ -1,5 +1,37 @@
 # @graphcommerce/cli
 
+## 6.2.0-canary.81
+
+## 6.2.0-canary.80
+
+## 6.2.0-canary.79
+
+## 6.2.0-canary.78
+
+## 6.2.0-canary.77
+
+## 6.2.0-canary.76
+
+## 6.2.0-canary.75
+
+## 6.2.0-canary.74
+
+## 6.2.0-canary.73
+
+## 6.2.0-canary.72
+
+## 6.2.0-canary.71
+
+## 6.2.0-canary.70
+
+## 6.2.0-canary.69
+
+### Patch Changes
+
+- [#2012](https://github.com/graphcommerce-org/graphcommerce/pull/2012) [`1dbb3ae13`](https://github.com/graphcommerce-org/graphcommerce/commit/1dbb3ae13553992ee1ed77f375375560f28c418c) - Upgrade graphql to 16.7.1, add graphql as peer dependency ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 6.2.0-canary.68
+
 ## 6.2.0-canary.67
 
 ## 6.2.0-canary.66

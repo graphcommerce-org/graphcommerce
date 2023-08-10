@@ -8,7 +8,7 @@ import { useHits, useSearchBox, UseSearchBoxProps } from 'react-instantsearch-ho
 type SearchBoxProps = UseSearchBoxProps & SearchFormProps
 
 export function SearchBox(props: SearchBoxProps) {
-  const { search, textFieldProps } = props
+  const { search, textFieldProps, sx = [] } = props
   const searchInputElement = useRef<HTMLInputElement>(null)
 
   const { refine } = useSearchBox()
@@ -52,7 +52,7 @@ export function SearchBox(props: SearchBoxProps) {
       inputRef={searchInputElement}
       onChange={debounceSearch}
       fullWidth
-      sx={{ mt: 1, mb: 1 }}
+      sx={[{ mt: 1, mb: 1 }, ...(Array.isArray(sx) ? sx : [sx])]}
       {...textFieldProps}
     />
   )

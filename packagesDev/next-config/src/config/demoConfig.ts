@@ -27,5 +27,7 @@ export const demoConfig: PartialDeep<GraphCommerceConfig, { recurseIntoArrays: t
   demoMode: true,
   limitSsg: true,
   compare: true,
+
   configurableVariantForSimple: true,
+  configurableVariantValues: { url: true, content: true },
 }

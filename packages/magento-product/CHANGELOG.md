@@ -1,5 +1,45 @@
 # Change Log
 
+## 6.2.0-canary.81
+
+### Patch Changes
+
+- [#2003](https://github.com/graphcommerce-org/graphcommerce/pull/2003) [`c4b102577`](https://github.com/graphcommerce-org/graphcommerce/commit/c4b1025774aad87c5e51f05c5b988d364f4bf20e) - ProductPageAddToCartRow wasn't aligned in the middle causing the price to be misaligned ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 6.2.0-canary.80
+
+### Patch Changes
+
+- [#2001](https://github.com/graphcommerce-org/graphcommerce/pull/2001) [`9cc5f8495`](https://github.com/graphcommerce-org/graphcommerce/commit/9cc5f8495d0970d457ac15eda4bb4e7cd3f8120a) - Migrate to productListLink, away from the ProductListLink component ([@paales](https://github.com/paales))
+
+## 6.2.0-canary.79
+
+## 6.2.0-canary.78
+
+## 6.2.0-canary.77
+
+## 6.2.0-canary.76
+
+## 6.2.0-canary.75
+
+## 6.2.0-canary.74
+
+## 6.2.0-canary.73
+
+### Minor Changes
+
+- [#1978](https://github.com/graphcommerce-org/graphcommerce/pull/1978) [`0c91ac1f7`](https://github.com/graphcommerce-org/graphcommerce/commit/0c91ac1f70f58dec418e945fc4a6a8c6732cc21e) - When a user selects a variant, it will switch the values on the configurable page with the values of the configured variant. Enabling options here will allow switching of those variants. ([@carlocarels90](https://github.com/carlocarels90))
+
+## 6.2.0-canary.72
+
+## 6.2.0-canary.71
+
+## 6.2.0-canary.70
+
+## 6.2.0-canary.69
+
+## 6.2.0-canary.68
+
 ## 6.2.0-canary.67
 
 ## 6.2.0-canary.66

@@ -1,7 +1,7 @@
 import { SelectElement, TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import { filterNonNullableKeys, RenderType, TypeRenderer } from '@graphcommerce/next-ui'
 import React from 'react'
-import { useFormAddProductsToCart } from '../AddProductsToCart'
+import { AddToCartItemSelector, useFormAddProductsToCart } from '../AddProductsToCart'
 import { ProductCustomizableFragment } from './ProductCustomizable.gql'
 
 export type OptionTypeRenderer = TypeRenderer<
@@ -91,12 +91,11 @@ type OptionTypeRendererProp = Simplify<
     : MissingOptionTypeRenderer & DefinedOptionTypeRenderer
 >
 
-type ProductCustomizableProps = {
+type ProductCustomizableProps = AddToCartItemSelector & {
   product: ProductCustomizableFragment
-  index?: number
 } & (keyof MissingOptionTypeRenderer extends never
-  ? { renderer?: OptionTypeRendererProp }
-  : { renderer: OptionTypeRendererProp })
+    ? { renderer?: OptionTypeRendererProp }
+    : { renderer: OptionTypeRendererProp })
 
 export function ProductCustomizable(props: ProductCustomizableProps) {
   const { product, renderer, index = 0 } = props

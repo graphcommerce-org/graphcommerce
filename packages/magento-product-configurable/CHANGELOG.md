@@ -1,5 +1,45 @@
 # Change Log
 
+## 6.2.0-canary.81
+
+### Minor Changes
+
+- [#2003](https://github.com/graphcommerce-org/graphcommerce/pull/2003) [`609b384de`](https://github.com/graphcommerce-org/graphcommerce/commit/609b384de8cded7a9dd2f29bd516ded810ab970a) - Created a new version of the cart using ActionCards for each CartItem. Different types of CartItems can have different ActionCards. These ActionCards will be overridden with the use of Plugins. An example can be found in the @graphcommerce/magento-product-configurable package. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 6.2.0-canary.80
+
+## 6.2.0-canary.79
+
+## 6.2.0-canary.78
+
+### Minor Changes
+
+- [#1988](https://github.com/graphcommerce-org/graphcommerce/pull/1988) [`af8e0d176`](https://github.com/graphcommerce-org/graphcommerce/commit/af8e0d176af8197a0c13b9a29b438cb54cc29ce4) - Multi website with multiple duplicates locales support. Use `en-us-website1`, `en-us-website2` as the locale declaration. ([@hnsr](https://github.com/hnsr))
+
+## 6.2.0-canary.77
+
+## 6.2.0-canary.76
+
+## 6.2.0-canary.75
+
+## 6.2.0-canary.74
+
+## 6.2.0-canary.73
+
+### Minor Changes
+
+- [#1978](https://github.com/graphcommerce-org/graphcommerce/pull/1978) [`0c91ac1f7`](https://github.com/graphcommerce-org/graphcommerce/commit/0c91ac1f70f58dec418e945fc4a6a8c6732cc21e) - When a user selects a variant, it will switch the values on the configurable page with the values of the configured variant. Enabling options here will allow switching of those variants. ([@carlocarels90](https://github.com/carlocarels90))
+
+## 6.2.0-canary.72
+
+## 6.2.0-canary.71
+
+## 6.2.0-canary.70
+
+## 6.2.0-canary.69
+
+## 6.2.0-canary.68
+
 ## 6.2.0-canary.67
 
 ## 6.2.0-canary.66

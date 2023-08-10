@@ -1,5 +1,41 @@
 # Change Log
 
+## 6.2.0-canary.81
+
+## 6.2.0-canary.80
+
+## 6.2.0-canary.79
+
+### Patch Changes
+
+- [#2013](https://github.com/graphcommerce-org/graphcommerce/pull/2013) [`c57bdf8a4`](https://github.com/graphcommerce-org/graphcommerce/commit/c57bdf8a4ce936c3eedc4dfada3a464a113ac68a) - Updated @mui and framer-motion packages to latest versions ([@paales](https://github.com/paales))
+
+## 6.2.0-canary.78
+
+## 6.2.0-canary.77
+
+## 6.2.0-canary.76
+
+## 6.2.0-canary.75
+
+## 6.2.0-canary.74
+
+## 6.2.0-canary.73
+
+## 6.2.0-canary.72
+
+## 6.2.0-canary.71
+
+## 6.2.0-canary.70
+
+## 6.2.0-canary.69
+
+## 6.2.0-canary.68
+
+### Minor Changes
+
+- [#1990](https://github.com/graphcommerce-org/graphcommerce/pull/1990) [`0729105cd`](https://github.com/graphcommerce-org/graphcommerce/commit/0729105cdb84b9f73d1fda7dac7daf867f4e0b9b) - Add CategorySearchResults component that can be injected with a plugin instead of SearchForm, fix various styling issues with search ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 6.2.0-canary.67
 
 ## 6.2.0-canary.66

@@ -64,13 +64,13 @@ function ProductVirtual(props: Props) {
         }}
       />
 
-      <ProductPageMeta {...product} />
-      <ProductPageGallery {...product}>
+      <ProductPageMeta product={product} />
+      <ProductPageGallery product={product}>
         <Typography variant='h3' component='div'>
           {product.name}
         </Typography>
 
-        <ProductShortDescription short_description={product?.short_description} />
+        <ProductShortDescription product={product} />
 
         <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
         <ProductAddToCart
@@ -84,7 +84,11 @@ function ProductVirtual(props: Props) {
         <Usps usps={sidebarUsps} size='small' />
       </ProductPageGallery>
 
-      <ProductPageDescription {...product} right={<Usps usps={usps} />} fontSize='responsive' />
+      <ProductPageDescription
+        product={product}
+        right={<Usps usps={usps} />}
+        fontSize='responsive'
+      />
 
       {pages?.[0] && (
         <RowRenderer

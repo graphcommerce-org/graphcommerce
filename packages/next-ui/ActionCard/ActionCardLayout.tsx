@@ -6,7 +6,7 @@ import { ActionCardProps } from './ActionCard'
 export type ActionCardLayoutProps = {
   children?: React.ReactNode
 } & Pick<ActionCardProps, 'layout'> &
-  BoxProps
+  Pick<BoxProps, 'sx' | 'className'>
 
 const parts = ['root'] as const
 const name = 'ActionCardLayout'
@@ -18,15 +18,15 @@ const { withState } = extendableComponent<
 
 export const ActionCardLayout = React.forwardRef<HTMLDivElement, ActionCardLayoutProps>(
   (props, ref) => {
-    const { layout = 'list' } = props
+    const { layout = 'list', sx, className = '', ...boxProps } = props
 
     const classes = withState({ layout })
 
     return (
       <Box
         ref={ref}
-        {...props}
-        className={classes.root}
+        {...boxProps}
+        className={`${classes.root} ${className}`}
         sx={[
           (theme) => ({
             '&.layoutStack': {
@@ -50,7 +50,7 @@ export const ActionCardLayout = React.forwardRef<HTMLDivElement, ActionCardLayou
               gap: theme.spacings.xxs,
             },
           }),
-          ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
+          ...(Array.isArray(sx) ? sx : [sx]),
         ]}
       />
     )

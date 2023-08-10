@@ -1,3 +1,6 @@
 fragment SimpleCartItem on SimpleCartItem @inject(into: ["CartItem"]) {
+  customizable_options {
+    ...SelectedCustomizableOption
+  }
   uid
 }

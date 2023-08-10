@@ -2,7 +2,6 @@ import CircularDependencyPlugin from 'circular-dependency-plugin'
 import { DuplicatesPlugin } from 'inspectpack/plugin'
 import type { NextConfig } from 'next'
 import { DomainLocale } from 'next/dist/server/config'
-import { RemotePattern } from 'next/dist/shared/lib/image-config'
 import { DefinePlugin, Configuration } from 'webpack'
 import { loadConfig } from './config/loadConfig'
 import { configToImportMeta } from './config/utils/configToImportMeta'
@@ -18,24 +17,15 @@ function domains(config: GraphCommerceConfig): DomainLocale[] {
       if (!loc.domain) return acc
 
       acc[loc.domain] = {
-        defaultLocale: loc.defaultLocale ? loc.locale : acc[loc.domain]?.defaultLocale,
+        defaultLocale: loc.locale,
         locales: [...(acc[loc.domain]?.locales ?? []), loc.locale],
         domain: loc.domain,
-        http: true,
+        http: process.env.NODE_ENV === 'development' || undefined,
       } as DomainLocale
 
       return acc
     }, {} as Record<string, DomainLocale>),
   )
-}
-
-function remotePatterns(url: string): RemotePattern {
-  const urlObj = new URL(url)
-  return {
-    hostname: urlObj.hostname,
-    protocol: urlObj.protocol as RemotePattern['protocol'],
-    port: urlObj.port,
-  }
 }
 
 /**
@@ -66,6 +56,7 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
       swcPlugins: [...(nextConfig.experimental?.swcPlugins ?? []), ['@lingui/swc-plugin', {}]],
     },
     i18n: {
+      ...nextConfig.i18n,
       defaultLocale:
         storefront.find((locale) => locale.defaultLocale)?.locale ?? storefront[0].locale,
       locales: storefront.map((locale) => locale.locale),

@@ -1,5 +1,5 @@
 mutation CreateCustomerAddress(
-  $prefix: String!
+  $prefix: String
   $firstname: String!
   $middlename: String
   $lastname: String!

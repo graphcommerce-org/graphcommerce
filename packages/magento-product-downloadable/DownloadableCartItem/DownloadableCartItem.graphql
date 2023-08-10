@@ -1,4 +1,8 @@
 fragment DownloadableCartItem on DownloadableCartItem @inject(into: ["CartItem"]) {
+  customizable_options {
+    ...SelectedCustomizableOption
+  }
+
   links {
     uid
     price

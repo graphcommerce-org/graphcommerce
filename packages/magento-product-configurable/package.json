@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-product-configurable",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "6.2.0-canary.67",
+  "version": "6.2.0-canary.81",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -12,24 +12,24 @@
     }
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "6.2.0-canary.67",
-    "@graphcommerce/prettier-config-pwa": "6.2.0-canary.67",
-    "@graphcommerce/typescript-config-pwa": "6.2.0-canary.67"
+    "@graphcommerce/eslint-config-pwa": "6.2.0-canary.81",
+    "@graphcommerce/prettier-config-pwa": "6.2.0-canary.81",
+    "@graphcommerce/typescript-config-pwa": "6.2.0-canary.81"
   },
   "dependencies": {
-    "@graphcommerce/ecommerce-ui": "6.2.0-canary.67",
-    "@graphcommerce/graphql": "6.2.0-canary.67",
-    "@graphcommerce/graphql-mesh": "6.2.0-canary.67",
-    "@graphcommerce/image": "6.2.0-canary.67",
-    "@graphcommerce/magento-cart": "6.2.0-canary.67",
-    "@graphcommerce/magento-cart-items": "6.2.0-canary.67",
-    "@graphcommerce/magento-category": "6.2.0-canary.67",
-    "@graphcommerce/magento-customer": "6.2.0-canary.67",
-    "@graphcommerce/magento-product": "6.2.0-canary.67",
-    "@graphcommerce/magento-product-simple": "6.2.0-canary.67",
-    "@graphcommerce/magento-store": "6.2.0-canary.67",
-    "@graphcommerce/next-ui": "6.2.0-canary.67",
-    "@graphcommerce/react-hook-form": "6.2.0-canary.67"
+    "@graphcommerce/ecommerce-ui": "6.2.0-canary.81",
+    "@graphcommerce/graphql": "6.2.0-canary.81",
+    "@graphcommerce/graphql-mesh": "6.2.0-canary.81",
+    "@graphcommerce/image": "6.2.0-canary.81",
+    "@graphcommerce/magento-cart": "6.2.0-canary.81",
+    "@graphcommerce/magento-cart-items": "6.2.0-canary.81",
+    "@graphcommerce/magento-category": "6.2.0-canary.81",
+    "@graphcommerce/magento-customer": "6.2.0-canary.81",
+    "@graphcommerce/magento-product": "6.2.0-canary.81",
+    "@graphcommerce/magento-product-simple": "6.2.0-canary.81",
+    "@graphcommerce/magento-store": "6.2.0-canary.81",
+    "@graphcommerce/next-ui": "6.2.0-canary.81",
+    "@graphcommerce/react-hook-form": "6.2.0-canary.81"
   },
   "peerDependencies": {
     "@lingui/react": "^4.2.1",

@@ -1,7 +1,7 @@
 import { Pagination } from '@graphcommerce/next-ui'
-import { PaginationProps } from '@mui/material'
+import { Link, PaginationProps } from '@mui/material'
+import { productListLink } from '../../hooks/useProductListLink'
 import { ProductListParams } from '../ProductListItems/filterTypes'
-import { ProductListLink } from '../ProductListLink/ProductListLink'
 import { ProductListPaginationFragment } from './ProductListPagination.gql'
 
 export type ProductPaginationProps = ProductListPaginationFragment &
@@ -20,11 +20,18 @@ export function ProductListPagination({
     <Pagination
       count={page_info?.total_pages}
       page={page_info?.current_page ?? 1}
-      renderLink={(_, icon, btnProps) => (
-        <ProductListLink {...btnProps} {...params} currentPage={btnProps.page} color='inherit'>
-          {icon}
-        </ProductListLink>
-      )}
+      renderLink={(_, icon, btnProps) => {
+        const suffix = btnProps.page === 1 ? '' : `#products`
+        return (
+          <Link
+            {...btnProps}
+            href={`${productListLink({ ...params, currentPage: btnProps.page })}${suffix}`}
+            color='inherit'
+          >
+            {icon}
+          </Link>
+        )
+      }}
       {...paginationProps}
     />
   )

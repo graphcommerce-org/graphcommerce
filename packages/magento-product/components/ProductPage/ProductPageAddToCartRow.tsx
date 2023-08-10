@@ -14,7 +14,7 @@ export function ProductPageAddToCartRow(props: ProductPageAddToCartRowProps) {
     <>
       <Box
         sx={[
-          (theme) => ({ display: 'flex', alignItems: 'start', columnGap: theme.spacings.xs }),
+          (theme) => ({ display: 'flex', alignItems: 'center', columnGap: theme.spacings.xs }),
           ...(Array.isArray(sx) ? sx : [sx]),
         ]}
       >

@@ -1,5 +1,55 @@
 # Change Log
 
+## 6.2.0-canary.81
+
+### Minor Changes
+
+- [#2003](https://github.com/graphcommerce-org/graphcommerce/pull/2003) [`609b384de`](https://github.com/graphcommerce-org/graphcommerce/commit/609b384de8cded7a9dd2f29bd516ded810ab970a) - Created a new version of the cart using ActionCards for each CartItem. Different types of CartItems can have different ActionCards. These ActionCards will be overridden with the use of Plugins. An example can be found in the @graphcommerce/magento-product-configurable package. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+### Patch Changes
+
+- [#2003](https://github.com/graphcommerce-org/graphcommerce/pull/2003) [`e9041802b`](https://github.com/graphcommerce-org/graphcommerce/commit/e9041802b27d6610cc93715ca61acff7f59792e6) - When the switchPoint is zero, make sure the header doesn’t flash when scrolling up on iOS ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+- [#2003](https://github.com/graphcommerce-org/graphcommerce/pull/2003) [`e81a9722b`](https://github.com/graphcommerce-org/graphcommerce/commit/e81a9722b5f581dacb624246c14d74aafbf55893) - Make sure the className is forwarded for ActionCardLayout ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 6.2.0-canary.80
+
+## 6.2.0-canary.79
+
+### Patch Changes
+
+- [#2013](https://github.com/graphcommerce-org/graphcommerce/pull/2013) [`c57bdf8a4`](https://github.com/graphcommerce-org/graphcommerce/commit/c57bdf8a4ce936c3eedc4dfada3a464a113ac68a) - Updated @mui and framer-motion packages to latest versions ([@paales](https://github.com/paales))
+
+## 6.2.0-canary.78
+
+## 6.2.0-canary.77
+
+## 6.2.0-canary.76
+
+### Patch Changes
+
+- [#2005](https://github.com/graphcommerce-org/graphcommerce/pull/2005) [`950521b4d`](https://github.com/graphcommerce-org/graphcommerce/commit/950521b4d46a1b980636c05d68a8f6aba289e85c) - Footer's grid-area's will only be rendered when the props are passed. ([@LeanderMatse](https://github.com/LeanderMatse))
+
+## 6.2.0-canary.75
+
+## 6.2.0-canary.74
+
+## 6.2.0-canary.73
+
+## 6.2.0-canary.72
+
+## 6.2.0-canary.71
+
+### Patch Changes
+
+- [#1980](https://github.com/graphcommerce-org/graphcommerce/pull/1980) [`275aaaba3`](https://github.com/graphcommerce-org/graphcommerce/commit/275aaaba34c9db1705183393c4327e8f16b09386) - Fixed overlays closing while still dragging - overlays should only close after releasing pointer ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 6.2.0-canary.70
+
+## 6.2.0-canary.69
+
+## 6.2.0-canary.68
+
 ## 6.2.0-canary.67
 
 ## 6.2.0-canary.66

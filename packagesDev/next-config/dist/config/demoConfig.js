@@ -26,4 +26,9 @@ exports.demoConfig = {
     limitSsg: true,
     compare: true,
     configurableVariantForSimple: true,
+    configurableVariantValues: {
+        url: true,
+        gallery: true,
+        content: true,
+    },
 };

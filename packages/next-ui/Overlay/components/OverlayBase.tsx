@@ -13,6 +13,7 @@ import {
   motionValue,
   useDomEvent,
   useMotionValue,
+  useMotionValueEvent,
   useTransform,
 } from 'framer-motion'
 import React, { useCallback, useEffect, useRef } from 'react'
@@ -312,10 +313,28 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
   }
   useDomEvent(windowRef, 'keyup', handleEscape, { passive: true })
 
+  const dragging = useMotionValue(false)
+  const scrollerElementRef = scrollerRef as React.RefObject<HTMLElement>
+
+  const handleDragStart = () => {
+    dragging.set(true)
+  }
+  const handleDragEnd = () => {
+    dragging.set(false)
+    // When releasing pointer and visibility 0 (overlay is dragged offscreen), close the overlay
+    if (positions.open.visible.get() === 0) closeOverlay()
+  }
+
+  useDomEvent(scrollerElementRef, 'pointerdown', handleDragStart, { passive: true })
+  useDomEvent(scrollerElementRef, 'pointerup', handleDragEnd, { passive: true })
+  // We use touchend as well as pointerup, because scrolling (dragging the overlay) on mobile causes pointercancel to fire, preventing pointerup from ever firing
+  useDomEvent(scrollerElementRef, 'touchend', handleDragEnd, { passive: true })
+
   // When the overlay isn't visible anymore, we navigate back.
-  useEffect(
-    () => positions.open.visible.on('change', (o) => o === 0 && closeOverlay()),
-    [closeOverlay, position, positions.open.visible],
+  useMotionValueEvent(
+    positions.open.visible,
+    'change',
+    (o) => o === 0 && !dragging.get() && closeOverlay(),
   )
 
   // Measure the offset of the overlay in the scroller.

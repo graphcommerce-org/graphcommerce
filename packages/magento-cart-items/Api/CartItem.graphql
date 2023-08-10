@@ -1,6 +1,7 @@
 fragment CartItem on CartItemInterface @injectable {
   uid
   quantity
+  __typename
   product {
     uid
     ...ProductLink
@@ -24,10 +25,10 @@ fragment CartItem on CartItemInterface @injectable {
     price {
       ...Money
     }
-    row_total {
+    row_total_including_tax {
       ...Money
     }
-    row_total_including_tax {
+    row_total {
       ...Money
     }
     total_item_discount {
