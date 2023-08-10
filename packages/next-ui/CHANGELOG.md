@@ -1,5 +1,25 @@
 # Change Log
 
+## 6.2.0-canary.80
+
+## 6.2.0-canary.79
+
+### Patch Changes
+
+- [#2013](https://github.com/graphcommerce-org/graphcommerce/pull/2013) [`c57bdf8a4`](https://github.com/graphcommerce-org/graphcommerce/commit/c57bdf8a4ce936c3eedc4dfada3a464a113ac68a) - Updated @mui and framer-motion packages to latest versions ([@paales](https://github.com/paales))
+
+## 6.2.0-canary.78
+
+## 6.2.0-canary.77
+
+## 6.2.0-canary.76
+
+### Patch Changes
+
+- [#2005](https://github.com/graphcommerce-org/graphcommerce/pull/2005) [`950521b4d`](https://github.com/graphcommerce-org/graphcommerce/commit/950521b4d46a1b980636c05d68a8f6aba289e85c) - Footer's grid-area's will only be rendered when the props are passed. ([@LeanderMatse](https://github.com/LeanderMatse))
+
+## 6.2.0-canary.75
+
 ## 6.2.0-canary.74
 
 ## 6.2.0-canary.73

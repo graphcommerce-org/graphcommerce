@@ -1,5 +1,25 @@
 # Change Log
 
+## 6.2.0-canary.80
+
+### Patch Changes
+
+- [#2001](https://github.com/graphcommerce-org/graphcommerce/pull/2001) [`9cc5f8495`](https://github.com/graphcommerce-org/graphcommerce/commit/9cc5f8495d0970d457ac15eda4bb4e7cd3f8120a) - Migrate to productListLink, away from the ProductListLink component ([@paales](https://github.com/paales))
+
+## 6.2.0-canary.79
+
+## 6.2.0-canary.78
+
+## 6.2.0-canary.77
+
+### Patch Changes
+
+- [#2017](https://github.com/graphcommerce-org/graphcommerce/pull/2017) [`f5c2bcc57`](https://github.com/graphcommerce-org/graphcommerce/commit/f5c2bcc57120a94d1af71c6002d2e370c1c39f14) - Changed canonical link of paginated pages. So this matches the canonical structure of non paginated pages. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 6.2.0-canary.76
+
+## 6.2.0-canary.75
+
 ## 6.2.0-canary.74
 
 ## 6.2.0-canary.73

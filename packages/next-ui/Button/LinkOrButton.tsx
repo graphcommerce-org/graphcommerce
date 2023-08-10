@@ -11,13 +11,14 @@ type SharedProperties<A, B> = OmitNever<
 >
 
 export type LinkOrButtonProps = {
-  button?: ButtonProps
-  link?: LinkProps
+  button?: ButtonProps<'button'>
+  link?: LinkProps<'a'>
   breakpoint?: Breakpoint
   disabled?: boolean
 } & SharedProperties<
-  Omit<ButtonProps, 'sx'>,
-  Omit<LinkProps, 'color' | 'sx'> & Pick<ButtonProps, 'endIcon' | 'startIcon' | 'color' | 'loading'>
+  Omit<ButtonProps<'button'>, 'sx' | 'component'>,
+  Omit<LinkProps<'a'>, 'color' | 'sx' | 'component'> &
+    Pick<ButtonProps, 'endIcon' | 'startIcon' | 'color' | 'loading'>
 >
 
 /** Renders a Link until the breakpoint is reached and will then render a button. */
