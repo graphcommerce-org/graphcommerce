@@ -9,7 +9,11 @@ the Graphcommerce Hygraph CLI. This is a tool that automatically modifes your
 Hygraph schema without the need of adding models/components/enumarations
 manually.
 
-It is important
+🟠 There is no rollback functionality in the Hygraph CLI (yet). This means once
+you run a migration, you can't undo these schema changes with the CLI. You will
+be required to remove the added fields within the standard Hygraph UI.
+
+🟠 It is adviced to test the migration on a copy of the current Hygraph Schema.
 
 ### Steps
 
