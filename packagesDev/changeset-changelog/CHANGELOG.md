@@ -1,5 +1,7 @@
 # @graphcommerce/changeset-changelog
 
+## 6.2.0-canary.78
+
 ## 6.2.0-canary.77
 
 ## 6.2.0-canary.76
