@@ -35,6 +35,7 @@ export function useElementScroll(ref?: RefObject<HTMLElement | undefined>): Scro
 
   useIsomorphicLayoutEffect(() => {
     const element = ref?.current
+    console.log('element', element?.id)
     if (!element) return () => {}
 
     const updater = () => {

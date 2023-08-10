@@ -1,10 +1,10 @@
 import { MotionConfigContext, Point, Tween } from 'framer-motion'
-import { animate } from 'popmotion'
+import { AnimationOptions, animate } from 'popmotion'
 import { useCallback, useContext } from 'react'
 import { distanceAnimationDuration } from '../utils/distanceAnimationDuration'
 import { useScrollerContext } from './useScrollerContext'
 
-type Options = {
+type Options<V> = AnimationOptions<V> & {
   stopAnimationOnScroll?: boolean
 }
 
@@ -17,7 +17,7 @@ export function useScrollTo() {
   const scrollTo = useCallback(
     async (
       incoming: Point | [number, number],
-      options: Options = { stopAnimationOnScroll: true },
+      options: Options<number> = { stopAnimationOnScroll: true },
       __retrigger = 0,
     ) => {
       const ref = scrollerRef.current
@@ -71,6 +71,7 @@ export function useScrollTo() {
               onComplete,
               onStop: onComplete,
               duration: duration * 1000 || distanceAnimationDuration(ref.scrollLeft, to.x),
+              ...options,
             }),
           )
         } else onComplete()
@@ -93,7 +94,8 @@ export function useScrollTo() {
               },
               onComplete,
               onStop: onComplete,
-              duration: duration * 1000 || distanceAnimationDuration(ref.scrollTop, to.y),
+              duration: 0,
+              ...options,
             }),
           )
         } else {

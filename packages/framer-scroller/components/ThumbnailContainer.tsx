@@ -1,6 +1,6 @@
 import { styled, SxProps, Theme } from '@mui/material'
-import { m, useMotionValue, useMotionValueEvent } from 'framer-motion'
-import React, { useCallback, useState } from 'react'
+import { m, PanHandlers, useMotionValue, useMotionValueEvent } from 'framer-motion'
+import React from 'react'
 import { useScrollTo } from '../hooks/useScrollTo'
 import { useScrollerContext } from '../hooks/useScrollerContext'
 import { ImageGallaryContextValues, useImageGalleryContext } from './ImageGalleryContext'
@@ -18,13 +18,6 @@ export function ThumbnailContainer(props: ThumbnailContainerProps) {
   const { items, container } = useImageGalleryContext()
   const scrollIndex = useMotionValue(0)
   const snapPositions = getScrollSnapPositions()
-  const [width, setWidth] = useState(0)
-
-  const measuredRef = useCallback((node: HTMLDivElement) => {
-    if (node) {
-      setWidth(node.scrollWidth - node.offsetWidth)
-    }
-  }, [])
 
   const scrollTo = useScrollTo()
 
@@ -38,21 +31,32 @@ export function ThumbnailContainer(props: ThumbnailContainerProps) {
   const onPanStart = () => container.pan.active.set(true)
   const onPanEnd = () => container.pan.active.set(false)
 
+  const onPan: PanHandlers['onPan'] = (_, info) => {
+    container.ref.current?.scrollBy({ left: -info.delta.x })
+  }
+
   return (
     <MotionBox
-      sx={{
-        cursor: 'grab',
-        overflow: 'hidden',
-      }}
+      ref={container.ref}
+      onPanStart={onPanStart}
+      onPanEnd={onPanEnd}
+      onPan={onPan}
+      sx={[
+        {
+          userSelect: 'none',
+          cursor: 'grab',
+          overflow: 'none',
+          overflowX: 'auto',
+          display: 'block',
+          scrollbarWidth: 'none',
+          '&::-webkit-scrollbar': {
+            display: 'none',
+          },
+        },
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
     >
-      <MotionBox
-        ref={measuredRef}
-        drag='x'
-        dragConstraints={{ right: 0, left: -width }}
-        onPanStart={onPanStart}
-        onPanEnd={onPanEnd}
-        sx={{ display: 'flex', height: '140px', alignItems: 'center' }}
-      >
+      <MotionBox sx={{ display: 'flex', height: '140px', alignItems: 'center' }}>
         {children(items)}
       </MotionBox>
     </MotionBox>

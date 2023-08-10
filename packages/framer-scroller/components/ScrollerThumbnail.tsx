@@ -57,7 +57,7 @@ export function ScrollerThumbnail(props: ScrollerThumbnailProps) {
       onClick={() => {
         if (container.pan.active.get() === false)
           // eslint-disable-next-line @typescript-eslint/no-floating-promises
-          scrollTo({ x: itemX, y: positions.y[idx] ?? 0 })
+          scrollTo({ x: itemX, y: positions.y[idx] ?? 0 }, { from: itemX })
       }}
       layout
       style={{

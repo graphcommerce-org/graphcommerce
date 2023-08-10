@@ -1,13 +1,20 @@
-import { useMotionValueValue } from '@graphcommerce/framer-utils'
+import {
+  ScrollMotionValues,
+  useElementScroll,
+  useMotionValueValue,
+} from '@graphcommerce/framer-utils'
 import { MotionValue, useMotionValue } from 'framer-motion'
-import React, { createContext, useContext, useMemo } from 'react'
+import React, { createContext, useContext, useMemo, useRef } from 'react'
 import { useScrollerContext } from '../hooks/useScrollerContext'
 import { ItemState } from '../types'
 
 export type ImageGallaryContextValues = {
   container: {
-    width?: number
-    pan: { active: MotionValue<boolean> }
+    ref: React.RefObject<HTMLDivElement>
+    pan: {
+      active: MotionValue<boolean>
+      value: ScrollMotionValues
+    }
   }
   items: ItemState[]
 }
@@ -27,18 +34,20 @@ export function useImageGalleryContext() {
 
 export function ImageGalleryContextProvider(props: { children: React.ReactNode }) {
   const { children } = props
+  const ref = useRef<HTMLDivElement>(null)
   const { items } = useScrollerContext()
   const itemsArr = useMotionValueValue(items, (i) => i)
   const panActive = useMotionValue(false)
-
+  const value = useElementScroll(ref)
   const memoizedContextValues = useMemo<ImageGallaryContextValues>(
     () => ({
       container: {
-        pan: { active: panActive },
+        ref,
+        pan: { active: panActive, value },
       },
       items: itemsArr,
     }),
-    [panActive, itemsArr],
+    [value, panActive, itemsArr],
   )
 
   return (
