@@ -6,23 +6,35 @@ import {
   CartItemActionCardProps,
 } from '../CartItemActionCard/CartItemActionCard'
 
-export type CartProps = ActionCardLayoutProps & {
+export type CartProps = Omit<ActionCardLayoutProps, 'className'> & {
   cart?: CartItemsFragment | null
+  sizeSm?: CartItemActionCardProps['size']
+  sizeMd?: CartItemActionCardProps['size']
+  variant?: CartItemActionCardProps['variant']
   itemProps?: Omit<
     CartItemActionCardProps,
-    'cartItem' | 'layout' | 'onClick' | 'disabled' | 'selected' | 'reset' | 'color'
+    | 'cartItem'
+    | 'layout'
+    | 'onClick'
+    | 'disabled'
+    | 'selected'
+    | 'reset'
+    | 'color'
+    | 'size'
+    | 'variant'
   >
-} & { sizeSm?: 'small' | 'medium' | 'large'; sizeMd?: 'small' | 'medium' | 'large' }
+}
 
 export function CartItemsActionCards(props: CartProps) {
   const {
     cart,
     children,
-    layout = 'stack',
-    itemProps,
+    layout = 'list',
+    itemProps = {},
     sizeSm = 'medium',
     sizeMd = 'large',
-    ...cardLayout
+    variant = 'default',
+    ...remainingProps
   } = props
 
   const isMobile = useMediaQuery<Theme>((theme) => theme.breakpoints.down('md'), {
@@ -34,22 +46,14 @@ export function CartItemsActionCards(props: CartProps) {
   if (!cart?.items?.length) return null
 
   return (
-    <ActionCardLayout
-      sx={(theme) => ({
-        marginBottom: theme.spacings.md,
-        '&.layoutStack': {
-          gap: 0,
-        },
-      })}
-      layout={layout}
-      {...cardLayout}
-    >
+    <ActionCardLayout layout={layout} {...remainingProps}>
       {cart.items?.filter(nonNullable).map((item) => (
         <CartItemActionCard
           key={item.uid}
           cartItem={item}
           layout={layout}
           size={size}
+          variant={variant}
           {...itemProps}
         />
       ))}

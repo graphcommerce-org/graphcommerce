@@ -81,9 +81,7 @@ function CartPage() {
               <>
                 <CartItemsActionCards
                   cart={data.cart}
-                  itemProps={{
-                    variant: 'default',
-                  }}
+                  sx={(theme) => ({ mb: theme.spacings.md })}
                 />
                 <CouponAccordion key='couponform' />
                 <CartTotals containerMargin sx={{ typography: 'body1' }} />
