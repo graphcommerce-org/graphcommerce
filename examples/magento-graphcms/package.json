@@ -32,6 +32,7 @@
     "@graphcommerce/graphcms-ui": "6.2.0-canary.74",
     "@graphcommerce/graphql": "6.2.0-canary.74",
     "@graphcommerce/graphql-mesh": "6.2.0-canary.74",
+    "@graphcommerce/hygraph-cli": "6.2.0-canary.74",
     "@graphcommerce/image": "6.2.0-canary.74",
     "@graphcommerce/lingui-next": "6.2.0-canary.74",
     "@graphcommerce/magento-cart": "6.2.0-canary.74",
