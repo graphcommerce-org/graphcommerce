@@ -1,6 +1,6 @@
 ---
-'@graphcommerce/magento-cart-shipping-address': minor
-'@graphcommerce/magento-customer': minor
+'@graphcommerce/magento-cart-shipping-address': patch
+'@graphcommerce/magento-customer': patch
 ---
 
 Made cardProps on CustomerAddressActionCards overridable.
