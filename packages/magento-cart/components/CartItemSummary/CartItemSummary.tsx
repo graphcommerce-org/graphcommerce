@@ -16,13 +16,9 @@ import { Trans } from '@lingui/react'
 import { Box, Divider, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { useCartQuery } from '../../hooks'
-import {
-  CartSummaryItemActionCard,
-  CartSummaryItemActionCardProps,
-} from '../CartSummary/CartSummaryItemActionCard'
 import { CartTotals } from '../CartTotals/CartTotals'
 import { CartItemSummaryDocument } from './GetCartItemSummary.gql'
-import { CartItemActionCard } from '@graphcommerce/magento-cart-items'
+import { CartItemActionCard, CartItemActionCardProps } from '@graphcommerce/magento-cart-items'
 
 const name = 'CartItemSummary' as const
 const parts = [
@@ -42,13 +38,13 @@ const { classes } = extendableComponent(name, parts)
 type OrderSummaryProps = ActionCardLayoutProps & {
   sx?: SxProps<Theme>
   itemProps?: Omit<
-    CartSummaryItemActionCardProps,
+    CartItemActionCardProps,
     'cartItem' | 'layout' | 'onClick' | 'disabled' | 'selected' | 'reset' | 'color'
   >
 } & { size?: 'small' | 'medium' | 'large' }
 
 export function CartItemSummary(props: OrderSummaryProps) {
-  const { sx = [], size, layout = 'list', itemProps, ref, ...cardLayout } = props
+  const { sx = [], size, layout = 'list', itemProps, ...cardLayout } = props
   const { data } = useCartQuery(CartItemSummaryDocument, {
     allowUrl: true,
     fetchPolicy: 'cache-only',
