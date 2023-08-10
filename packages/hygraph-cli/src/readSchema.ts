@@ -1,6 +1,6 @@
 import { ApolloClient, InMemoryCache, gql, HttpLink } from '@apollo/client'
 import { GraphCommerceConfig } from '@graphcommerce/next-config'
-import fetch from 'cross-fetch'
+import { fetch } from '@whatwg-node/fetch'
 
 export const readSchema = async (config: GraphCommerceConfig) => {
   if (!config.hygraphProjectId) {

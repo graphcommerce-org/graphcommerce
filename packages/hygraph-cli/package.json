@@ -17,14 +17,14 @@
     "@apollo/client": "~3.7.17",
     "@graphcommerce/next-config": "6.2.0-canary.74",
     "@hygraph/management-sdk": "^1.1.2-alpha.1",
-    "dotenv": "^16.3.1",
     "graphql": "16.6.0",
     "graphql-tag": "^2.12.6",
     "prompts": "^2.4.2",
-    "cross-fetch": "^4.0.0"
+    "@whatwg-node/fetch": "^0.9.4"
   },
   "peerDependencies": {
-    "graphql": "^16.7.1"
+    "graphql": "^16.7.1",
+    "dotenv": "^16.1.4"
   },
   "devDependencies": {
     "@types/prompts": "^2.4.4",
