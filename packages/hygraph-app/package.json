@@ -1,0 +1,39 @@
+{
+  "name": "@graphcommerce/hygraph-app",
+  "homepage": "https://www.graphcommerce.org/",
+  "repository": "github:graphcommerce-org/graphcommerce",
+  "version": "6.2.0-canary.45",
+  "sideEffects": false,
+  "prettier": "@graphcommerce/prettier-config-pwa",
+  "eslintConfig": {
+    "extends": "@graphcommerce/eslint-config-pwa",
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    }
+  },
+  "dependencies": {
+    "@fontsource/inter": "^5.0.4",
+    "@graphcommerce/ecommerce-ui": "6.2.0-canary.45",
+    "@graphcommerce/graphql": "6.2.0-canary.45",
+    "@graphcommerce/image": "6.2.0-canary.45",
+    "@graphcommerce/next-ui": "6.2.0-canary.45",
+    "@hygraph/app-sdk-react": "^0.0.2",
+    "@hygraph/baukasten": "^0.3.0",
+    "react-is": "^18.2.0",
+    "schema-dts": "^1.1.0",
+    "uuidv4": "^6.2.13"
+  },
+  "devDependencies": {
+    "@graphcommerce/eslint-config-pwa": "6.2.0-canary.45",
+    "@graphcommerce/prettier-config-pwa": "6.2.0-canary.45",
+    "@graphcommerce/typescript-config-pwa": "6.2.0-canary.45",
+    "@types/react-is": "^18.2.0",
+    "typescript": "5.1.3"
+  },
+  "peerDependencies": {
+    "@mui/material": "^5.10.16",
+    "next": "^13.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
