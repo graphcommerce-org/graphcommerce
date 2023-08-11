@@ -1,5 +1,7 @@
 query getDynamicRow($internalName: String!) {
   dynamicRow(where: { internalName: $internalName }) {
-    conditions
+    conditions {
+      __typename
+    }
   }
 }

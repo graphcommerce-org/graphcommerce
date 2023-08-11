@@ -26,7 +26,7 @@ export default function DRPropertyPicker(props: DRPropertyPickerProps) {
   }, [fieldContainer])
 
   return (
-    <Container ref={fieldContainer} sx={{ minHeight: '400px' }}>
+    <Container ref={fieldContainer} sx={{ minHeight: '250px' }}>
       <Wrapper>
         <PropertyPicker products={products} />
       </Wrapper>
