@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { ProductListParams } from '../components/ProductListItems/filterTypes'
-import { createProductListLink } from './useProductListLink'
+import { productListLink } from './useProductListLink'
 import { useProductListParamsContext } from './useProductListParamsContext'
 
 type UseProductLinkPushProps = {
@@ -19,7 +19,7 @@ export function useProductListLinkReplace(props?: UseProductLinkPushProps) {
 
     setParams(params)
 
-    const path = createProductListLink(params)
+    const path = productListLink(params)
 
     if (router.asPath === path) return false
 

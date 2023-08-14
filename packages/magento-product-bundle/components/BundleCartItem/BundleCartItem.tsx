@@ -4,7 +4,7 @@ import { Typography } from '@mui/material'
 import { BundleCartItemFragment } from './BundleCartItem.gql'
 
 export function BundleCartItem(props: BundleCartItemFragment) {
-  const { bundle_options, bundle_customizable } = props
+  const { bundle_options, customizable_options } = props
   return (
     <>
       {bundle_options.map((option) => {
@@ -26,7 +26,7 @@ export function BundleCartItem(props: BundleCartItemFragment) {
           </div>
         )
       })}
-      <SelectedCustomizableOptions customizable_options={bundle_customizable} />
+      <SelectedCustomizableOptions customizable_options={customizable_options} />
     </>
   )
 }

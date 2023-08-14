@@ -14,6 +14,7 @@ export function EmptyCart(props: EmptyCartProps) {
 
   return (
     <FullPageMessage
+      sx={(theme) => ({ mt: { md: theme.spacings.md } })}
       title={<Trans id='Your cart is empty' />}
       icon={<IconSvg src={iconShoppingBag} size='xxl' />}
       button={

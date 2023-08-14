@@ -141,6 +141,7 @@ export function ActionCard(props: ActionCardProps) {
           },
 
           '&.variantDefault': {
+            position: 'relative',
             '&::after': {
               content: '""',
               position: 'absolute',
@@ -163,21 +164,21 @@ export function ActionCard(props: ActionCardProps) {
               )}`,
             },
 
-            '&.variantDefault.sizeSmall': {
+            '&.sizeSmall': {
               mt: { xs: '2px', sm: '3px', md: '5px' },
               mb: { xs: '3px', sm: '4px', md: '6px' },
               '&::after': {
                 mb: { xs: '-2px', sm: '-3px', md: '-5px' },
               },
             },
-            '&.variantDefault.sizeMedium': {
+            '&.sizeMedium': {
               mt: { xs: '4px', sm: '5px', md: '6px' },
               mb: { xs: '5px', sm: '6px', md: '7px' },
               '&::after': {
                 mb: { xs: '-4px', sm: '-5px', md: '-6px' },
               },
             },
-            '&.variantDefault.sizeLarge': {
+            '&.sizeLarge': {
               mt: { xs: '5px', sm: '7px', md: '8px' },
               mb: { xs: '6px', sm: '8px', md: '9px' },
               '&::after': {
@@ -288,7 +289,6 @@ export function ActionCard(props: ActionCardProps) {
           <Box
             sx={{
               display: 'flex',
-              justifyContent: 'center',
               flexDirection: 'column',
               alignItems: 'flex-start',
             }}
