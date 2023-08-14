@@ -25,40 +25,62 @@ To enable this feature, add the **configurableVariantValues** section to your
 ```
 const config = {
   ...
+
   configurableVariantValues: {
     url: true,
     gallery: true,
     content: true,
   },
+
+  configurableVariantForSimple: true,
 }
 ```
 
 ### GraphCommerceConfig
 
-#### `configurableVariantValues: [object Object]`
+- #### `configurableVariantForSimple: Boolean (default: [object Object])`
 
-Options to configure which values will be replaced when a variant is selected on
-the product page.
+  Determines whether a simple product should appear as a Configurable Product
+  with pre-selected options or as the default Simple Product.
 
-- #### `content: Boolean`
+  **How does this work:**
 
-  **Description:** Use the name, description, short description and meta data
-  from the configured variant
+  When the `products(filters: { url_key: { eq: 'simple-product' } }) { ... }`
+  query is ran, Magento also returns the Simple product and the Configurable
+  product the simple belongs to.
 
-- #### `gallery: Boolean`
+  If that is the case we render the Configurable Product page instead of the
+  Simple Product page but the options to select the Simple Product are
+  pre-selected.
 
-  **Description:** This option enables the automatic update of product gallery
-  images on the product page when a variant is selected, provided that the
-  gallery images for the selected variant differ from the currently displayed
-  images.
+  **Example:**
 
-- #### `url: Boolean`
+  - [Simple product (with pre-selection)](https://graphcommerce.vercel.app/p/matriarch-s-edges-size-4-6y-gc-469-sock-6y)
 
-  **Description:** When a variant is selected the URL of the product will be
-  changed in the address bar.
+- #### `configurableVariantValues: [object Object]`
 
-  **Note:** This only occurs when the actual variant can be accessed through the
-  URL.
+  Options to configure which values will be replaced when a variant is selected
+  on the product page.
+
+  - #### `content: Boolean`
+
+    **Description:** Use the name, description, short description and meta data
+    from the configured variant
+
+  - #### `gallery: Boolean`
+
+    **Description:** This option enables the automatic update of product gallery
+    images on the product page when a variant is selected, provided that the
+    gallery images for the selected variant differ from the currently displayed
+    images.
+
+  - #### `url: Boolean`
+
+    **Description:** When a variant is selected the URL of the product will be
+    changed in the address bar.
+
+    **Note:** This only occurs when the actual variant can be accessed through
+    the URL.
 
 ## Magento configuration
 
