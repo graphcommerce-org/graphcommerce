@@ -4,7 +4,7 @@ import { useCallback, useContext } from 'react'
 import { distanceAnimationDuration } from '../utils/distanceAnimationDuration'
 import { useScrollerContext } from './useScrollerContext'
 
-type Options<V> = {
+type Options = {
   stopAnimationOnScroll?: boolean
 }
 
@@ -17,7 +17,7 @@ export function useScrollTo() {
   const scrollTo = useCallback(
     async (
       incoming: Point | [number, number],
-      options: Options<number> = { stopAnimationOnScroll: true },
+      options: Options = { stopAnimationOnScroll: true },
       __retrigger = 0,
     ) => {
       const ref = scrollerRef.current
@@ -93,7 +93,7 @@ export function useScrollTo() {
               },
               onComplete,
               onStop: onComplete,
-              duration: 0,
+              duration: duration * 1000 || distanceAnimationDuration(ref.scrollTop, to.y),
             }),
           )
         } else {
