@@ -12,6 +12,7 @@ import { m } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import { LayoutMinimal, LayoutMinimalProps } from '../../../components'
+import { Trans } from '@lingui/react'
 
 type LayoutDemoProps = {
   baseUrl: string
@@ -82,6 +83,9 @@ export function LayoutDemo(props: LayoutDemoProps) {
 
   return (
     <>
+      <LayoutTitle>
+        <Trans id='Layout demo' />
+      </LayoutTitle>
       <LayoutHeader
         primary={primaryAction}
         divider={

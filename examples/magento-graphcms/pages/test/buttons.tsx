@@ -9,6 +9,7 @@ import {
   GetStaticProps,
   Button,
   ButtonProps,
+  LayoutHeader,
 } from '@graphcommerce/next-ui'
 import { Box, Container, Typography, Divider, styled } from '@mui/material'
 import React, { useState } from 'react'
@@ -61,6 +62,7 @@ function ButtonWithDemoState(props: ButtonProps) {
 export default function ButtonsPage() {
   return (
     <Container>
+      <LayoutHeader />
       <LayoutTitle variant='h1'>Buttons</LayoutTitle>
 
       {Object.entries(propVariants).map(([propVariant, props]) => (

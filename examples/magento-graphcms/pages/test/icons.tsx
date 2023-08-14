@@ -7,6 +7,7 @@ import {
   IconSvgProps,
   svgIconStrokeWidth,
   iconPhone,
+  LayoutHeader,
 } from '@graphcommerce/next-ui'
 import { Container, Typography, Slider, Box } from '@mui/material'
 import React, { useEffect, useRef, useState } from 'react'
@@ -34,6 +35,7 @@ export default function IconsPage() {
 
   return (
     <Container>
+      <LayoutHeader />
       <LayoutTitle variant='h1'>Icons</LayoutTitle>
 
       <Slider
