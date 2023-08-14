@@ -1,35 +1,25 @@
 import { styled, SxProps, Theme } from '@mui/material'
-import { m, PanHandlers, useMotionValue, useMotionValueEvent } from 'framer-motion'
-import React from 'react'
-import { useScrollTo } from '../hooks/useScrollTo'
-import { useScrollerContext } from '../hooks/useScrollerContext'
-import { ImageGallaryContextValues, useImageGalleryContext } from './ImageGalleryContext'
+import { m, PanHandlers } from 'framer-motion'
+import React, { useRef } from 'react'
 
 const MotionBox = styled(m.div)({})
 
 type ThumbnailContainerProps = {
-  children: (items: ImageGallaryContextValues['items']) => React.ReactNode
+  children: React.ReactNode
   sx?: SxProps<Theme>
 }
 
 export function ThumbnailContainer(props: ThumbnailContainerProps) {
   const { children, sx } = props
-  const { items, container } = useImageGalleryContext()
-
-  if (items.length <= 1) return null
-
-  const onPanStart = () => container.pan.active.set(true)
-  const onPanEnd = () => container.pan.active.set(false)
+  const containerRef = useRef<HTMLDivElement>(null)
 
   const onPan: PanHandlers['onPan'] = (_, info) => {
-    container.ref.current?.scrollBy({ left: -info.delta.x })
+    containerRef.current?.scrollBy({ left: -info.delta.x })
   }
 
   return (
     <MotionBox
-      ref={container.ref}
-      onPanStart={onPanStart}
-      onPanEnd={onPanEnd}
+      ref={containerRef}
       onPan={onPan}
       sx={[
         {
@@ -46,7 +36,7 @@ export function ThumbnailContainer(props: ThumbnailContainerProps) {
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
-      <MotionBox sx={{ display: 'flex', alignItems: 'center' }}>{children(items)}</MotionBox>
+      <MotionBox sx={{ display: 'flex', alignItems: 'center' }}>{children}</MotionBox>
     </MotionBox>
   )
 }

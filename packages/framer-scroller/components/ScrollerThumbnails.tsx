@@ -1,6 +1,5 @@
 import { ImageProps } from '@graphcommerce/image'
 import { ButtonProps, SxProps, Theme } from '@mui/material'
-import { ImageGalleryContextProvider } from './ImageGalleryContext'
 import { ScrollerThumbnail } from './ScrollerThumbnail'
 import { ThumbnailContainer } from './ThumbnailContainer'
 
@@ -13,24 +12,19 @@ export type ThumbnailsProps = {
 const componentName = 'ScrollerThumbnails'
 
 export function ScrollerThumbnails(props: ThumbnailsProps) {
-  const { images, sx = [] } = props
-
+  const { images, sx = [], ...buttonProps } = props
   return (
-    <ImageGalleryContextProvider>
-      <ThumbnailContainer sx={sx}>
-        {(items) =>
-          items.map((item, i) => (
-            <ScrollerThumbnail
-              // eslint-disable-next-line react/no-array-index-key
-              key={`${i}-image`}
-              {...item}
-              idx={i}
-              image={images[i]}
-            />
-          ))
-        }
-      </ThumbnailContainer>
-    </ImageGalleryContextProvider>
+    <ThumbnailContainer sx={sx}>
+      {images.map((item, i) => (
+        <ScrollerThumbnail
+          // eslint-disable-next-line react/no-array-index-key
+          key={`${i}-image`}
+          idx={i}
+          image={item}
+          {...buttonProps}
+        />
+      ))}
+    </ThumbnailContainer>
   )
 }
 
