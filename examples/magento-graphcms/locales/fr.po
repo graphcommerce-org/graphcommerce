@@ -406,12 +406,20 @@ msgid "Latest orders"
 msgstr "Dernières commandes"
 
 #. js-lingui-explicit-id
+msgid "Layout demo"
+msgstr "Démo de mise en page"
+
+#. js-lingui-explicit-id
 msgid "Less options"
 msgstr "Moins d'options"
 
 #. js-lingui-explicit-id
 msgid "Light Mode"
 msgstr "Mode clair"
+
+#. js-lingui-explicit-id
+msgid "Links to components"
+msgstr "Liens vers le composant"
 
 #. js-lingui-explicit-id
 msgid "Loading"
