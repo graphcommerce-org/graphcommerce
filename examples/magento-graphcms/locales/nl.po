@@ -419,7 +419,7 @@ msgstr "Lichte modus"
 
 #. js-lingui-explicit-id
 msgid "Links to components"
-msgstr "Linken naar componenten"
+msgstr "Links naar componenten"
 
 #. js-lingui-explicit-id
 msgid "Loading"
