@@ -62,7 +62,7 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
             justifyContent: readOnly ? 'center' : 'space-between',
           },
           '& .ActionCard-action': {
-            pr: theme.spacings.xs,
+            pr: readOnly ? 0 : theme.spacings.xs,
           },
           '& .ActionCard-image': {
             alignSelf: 'flex-start',
@@ -79,7 +79,7 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
           },
           '& .ActionCard-price': {
             typography: typographySizes[size],
-            pr: theme.spacings.xs,
+            pr: readOnly ? 0 : theme.spacings.xs,
             mb: { xs: 0.5, sm: 0 },
           },
         }),
