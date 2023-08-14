@@ -3,7 +3,7 @@ import { Image, ImageProps } from '@graphcommerce/image'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { extendableComponent, responsiveVal } from '@graphcommerce/next-ui/Styles'
 import { alpha, styled, useTheme } from '@mui/material'
-import { m, useTransform } from 'framer-motion'
+import { m, motionValue, useTransform } from 'framer-motion'
 import { useScrollerContext } from '../hooks/useScrollerContext'
 
 const name = 'ScrollerThumbnail'
@@ -22,7 +22,13 @@ const MotionBox = styled(m.div)({})
 export function ScrollerThumbnail(props: ScrollerThumbnailProps) {
   const { idx, image } = props
   const { scrollerRef, scroll, getScrollSnapPositions, items } = useScrollerContext()
-  const item = items.get()[idx]
+  const found = useMotionValueValue(items, (v) => v.find((_, index) => index === idx))
+  // This ensures that the first item in the scroller is selected by default.
+  // The opacity property is set to 0 by default.
+  const item = found ?? {
+    visibility: idx === 0 ? motionValue(1) : motionValue(0),
+    opacity: motionValue(0),
+  }
   const active = useMotionValueValue(item.visibility, (v) => v >= 0.5)
   const theme = useTheme()
 

@@ -23,6 +23,7 @@ export function ThumbnailContainer(props: ThumbnailContainerProps) {
       onPan={onPan}
       sx={[
         {
+          padding: '4px',
           userSelect: 'none',
           cursor: 'grab',
           overflow: 'none',
