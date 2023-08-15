@@ -101,6 +101,18 @@ export function TextInputNumber(props: TextInputNumberProps) {
           width: responsiveVal(90, 120),
         },
         {
+          // Without this you get inputarrows on firefox
+          '& input[type=number]': {
+            '-moz-appearance': 'textfield',
+          },
+          '& input[type=number]::-webkit-outer-spin-button': {
+            '-webkit-appearance': 'none',
+            margin: 0,
+          },
+          '& input[type=number]::-webkit-inner-spin-button': {
+            '-webkit-appearance': 'none',
+            margin: 0,
+          },
           '& .MuiOutlinedInput-root': {
             px: '3px',
             display: 'grid',

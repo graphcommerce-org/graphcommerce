@@ -120,7 +120,7 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
       secondaryAction={
         <>
           {readOnly ? quantity : <UpdateItemQuantity uid={uid} quantity={quantity} />}
-          {' ⨉ '}
+          {' ｘ '}
 
           <Money
             value={
