@@ -31,7 +31,7 @@ const ConfigurableProductPageMetaUrls: PluginType = (props) => {
     // navigation action on the product page.
     if (targetUrl !== asPath.split('#')[0]) {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      replace(targetUrl, undefined, { scroll: false, shallow: true })
+      // replace(targetUrl, undefined, { scroll: false, shallow: true })
     }
   }, [asPath, replace, targetUrl])
 
