@@ -1,4 +1,3 @@
-import { ScrollerDots } from '@graphcommerce/framer-scroller'
 import {
   nonNullable,
   SidebarGallery,

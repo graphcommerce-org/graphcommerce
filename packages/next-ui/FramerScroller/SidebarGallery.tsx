@@ -30,7 +30,7 @@ import { iconChevronLeft, iconChevronRight, iconFullscreen, iconFullscreenExit }
 
 const MotionBox = styled(m.div)({})
 
-type OwnerState = { zoomed: boolean }
+type OwnerState = { zoomed: boolean; disableZoom: boolean }
 const name = 'SidebarGallery' as const
 const parts = [
   'row',
@@ -68,8 +68,8 @@ export function SidebarGallery(props: SidebarGalleryProps) {
     aspectRatio: [width, height] = [1, 1],
     sx,
     routeHash = 'gallery',
-    disableZoom,
     showButtons,
+    disableZoom = false,
   } = props
 
   const router = useRouter()
@@ -102,7 +102,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
     }
   }
 
-  const classes = withState({ zoomed })
+  const classes = withState({ zoomed, disableZoom })
   const theme = useTheme()
   const windowRef = useRef(typeof window !== 'undefined' ? window : null)
 
