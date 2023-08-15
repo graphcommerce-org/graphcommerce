@@ -82,56 +82,28 @@ export function CartItemSummary(props: OrderSummaryProps) {
         variantLeft='h6'
       >
         <Box className={classes.imageScrollerContainer} sx={{ position: 'relative' }}>
-          <ScrollerProvider scrollSnapAlign='start'>
-            <ScrollerButton
-              direction='left'
-              className={`${classes.prevNext} ${classes.prev}`}
-              sx={{
-                position: 'absolute',
-                top: '50%',
-                transform: 'translateY(-50%)',
-                zIndex: 2,
-                left: `8px`,
-              }}
-            >
-              <IconSvg src={iconChevronLeft} />
-            </ScrollerButton>
-            <ActionCardLayout
-              sx={(theme) => ({
-                marginBottom: theme.spacings.md,
-                '&.layoutStack': {
-                  gap: 0,
-                },
-              })}
-              className={classes.scrollerContainer}
-              {...cardLayout}
-            >
-              {items?.filter(nonNullable).map((item) => (
-                <CartItemActionCard
-                  readOnly
-                  key={item.uid}
-                  cartItem={item}
-                  {...itemProps}
-                  layout={layout}
-                  size={size}
-                  variant='default'
-                />
-              ))}
-            </ActionCardLayout>
-            <ScrollerButton
-              direction='right'
-              className={`${(classes.prevNext, classes.next)}`}
-              sx={{
-                position: 'absolute',
-                top: '50%',
-                transform: 'translateY(-50%)',
-                zIndex: 2,
-                right: 8,
-              }}
-            >
-              <IconSvg src={iconChevronRight} />
-            </ScrollerButton>
-          </ScrollerProvider>
+          <ActionCardLayout
+            sx={(theme) => ({
+              marginBottom: theme.spacings.md,
+              '&.layoutStack': {
+                gap: 0,
+              },
+            })}
+            className={classes.scrollerContainer}
+            {...cardLayout}
+          >
+            {items?.filter(nonNullable).map((item) => (
+              <CartItemActionCard
+                readOnly
+                key={item.uid}
+                cartItem={item}
+                {...itemProps}
+                layout={layout}
+                size={size}
+                variant='default'
+              />
+            ))}
+          </ActionCardLayout>
         </Box>
         <Divider
           classes={{ root: classes.divider }}

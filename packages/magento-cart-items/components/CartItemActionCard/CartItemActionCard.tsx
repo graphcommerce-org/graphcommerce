@@ -66,7 +66,6 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
           },
           '& .ActionCard-image': {
             alignSelf: 'flex-start',
-            transform: 'translateY(10px)',
           },
           '& .ActionCard-secondaryAction': {
             typography: typographySizes[size],
