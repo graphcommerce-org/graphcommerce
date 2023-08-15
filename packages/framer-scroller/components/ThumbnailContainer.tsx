@@ -12,7 +12,6 @@ type ThumbnailContainerProps = {
 export function ThumbnailContainer(props: ThumbnailContainerProps) {
   const { children, sx } = props
   const containerRef = useRef<HTMLDivElement>(null)
-
   const onPan: PanHandlers['onPan'] = (_, info) => {
     containerRef.current?.scrollBy({ left: -info.delta.x })
   }
@@ -28,7 +27,7 @@ export function ThumbnailContainer(props: ThumbnailContainerProps) {
           cursor: 'grab',
           overflow: 'none',
           overflowX: 'auto',
-          display: 'block',
+          display: 'flex',
           scrollbarWidth: 'none',
           '&::-webkit-scrollbar': {
             display: 'none',
@@ -37,7 +36,7 @@ export function ThumbnailContainer(props: ThumbnailContainerProps) {
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
-      <MotionBox sx={{ display: 'flex', alignItems: 'center' }}>{children}</MotionBox>
+      {children}
     </MotionBox>
   )
 }

@@ -3,7 +3,8 @@ import { Image, ImageProps } from '@graphcommerce/image'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { extendableComponent, responsiveVal } from '@graphcommerce/next-ui/Styles'
 import { alpha, styled, useTheme } from '@mui/material'
-import { m, motionValue, useTransform } from 'framer-motion'
+import { m, motionValue, useMotionValueEvent, useTransform } from 'framer-motion'
+import { useEffect, useRef } from 'react'
 import { useScrollerContext } from '../hooks/useScrollerContext'
 
 const name = 'ScrollerThumbnail'
@@ -32,6 +33,8 @@ export function ScrollerThumbnail(props: ScrollerThumbnailProps) {
   const active = useMotionValueValue(item.visibility, (v) => v >= 0.5)
   const theme = useTheme()
 
+  const ref = useRef<HTMLDivElement>(null)
+
   const boxShadow = useTransform(
     item.visibility,
     [1, 0],
@@ -43,21 +46,32 @@ export function ScrollerThumbnail(props: ScrollerThumbnailProps) {
       `inset 0 0 0 2px #ffffff00, 0 0 0 4px #ffffff00`,
     ],
   )
+
   const classes = withState({ active })
+
+  const scrollIntoView = () => ref.current?.scrollIntoView({ block: 'nearest', behavior: 'smooth' })
+
+  useMotionValueEvent(scroll.animating, 'change', (v) => {
+    if (!v && active && ref.current) {
+      // This is a hack to ensure that the scroll animation is finished.
+      setTimeout(() => scrollIntoView(), 1)
+    }
+  })
 
   if (!image) return null
 
   return (
     <MotionBox
-      // initial='default'
+      ref={ref}
       className={classes.thumbnail}
       onClick={() => {
         if (!scrollerRef.current) return
         const { x } = getScrollSnapPositions()
         scrollerRef.current.scrollLeft = x[idx]
         scroll.x.set(x[idx])
+        scrollIntoView()
       }}
-      layout
+      // layout
       style={{ boxShadow }}
       sx={{
         padding: '2px',
