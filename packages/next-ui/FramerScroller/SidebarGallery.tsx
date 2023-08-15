@@ -90,6 +90,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
   }, [prevRoute?.pathname, route, router, zoomed])
 
   const toggle = () => {
+    console.log('toggle')
     if (disableZoom) {
       return
     }
