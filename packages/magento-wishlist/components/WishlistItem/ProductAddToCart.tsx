@@ -47,47 +47,36 @@ export function ProductAddToCart(
 
   return (
     <Box component='form' onSubmit={submitHandler} noValidate className={classes.root}>
-      <Box
-        sx={{
-          gridArea: 'itemQuantity',
-        }}
-      >
-        <TextInputNumber
-          variant='outlined'
-          error={formState.isSubmitted && !!formState.errors.quantity}
-          required={required.quantity}
-          inputProps={{ min: 1 }}
-          {...muiRegister('quantity', { required: required.quantity })}
-          helperText={formState.isSubmitted && formState.errors.quantity?.message}
-          disabled={formState.isSubmitting}
-          size='small'
-          sx={{
-            alignSelf: 'flex-start',
-          }}
-        />
-      </Box>
-      {children}
-      <Box
-        className={classes.buttonWrapper}
-        sx={{
-          gridArea: 'itemCartButton',
-          alignSelf: 'flex-start',
-          position: 'absolute',
-          left: '0',
-          bottom: '-35px',
-        }}
-      >
-        <Button
-          type='submit'
-          className={classes.button}
-          loading={formState.isSubmitting}
-          color='primary'
-          variant='text'
-          size='medium'
-          {...buttonProps}
-        >
-          <Trans id='Add to Cart' />
-        </Button>
+      <Box sx={{ display: 'flex', gap: 1 }}>
+        <Box>
+          <TextInputNumber
+            variant='outlined'
+            error={formState.isSubmitted && !!formState.errors.quantity}
+            required={required.quantity}
+            inputProps={{ min: 1 }}
+            {...muiRegister('quantity', { required: required.quantity })}
+            helperText={formState.isSubmitted && formState.errors.quantity?.message}
+            disabled={formState.isSubmitting}
+            size='small'
+            sx={{
+              alignSelf: 'flex-start',
+            }}
+          />
+        </Box>
+        {children}
+        <Box className={classes.buttonWrapper}>
+          <Button
+            type='submit'
+            className={classes.button}
+            loading={formState.isSubmitting}
+            color='primary'
+            variant='text'
+            size='medium'
+            {...buttonProps}
+          >
+            <Trans id='Add to Cart' />
+          </Button>
+        </Box>
       </Box>
 
       <ApolloCartErrorAlert error={error} />
