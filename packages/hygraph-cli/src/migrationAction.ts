@@ -209,6 +209,9 @@ export const migrationAction = (
       graphcommerceLog(`Action ${action} is not supported for ${type}`, 'error')
     }
   } else {
-    graphcommerceLog(`${capitalize(type)} with apiId ${props.apiId} already exists`, 'warning')
+    graphcommerceLog(
+      `${capitalize(type)} with apiId ${props.apiId} on ${parentApiId} already exists`,
+      'warning',
+    )
   }
 }

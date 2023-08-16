@@ -1,11 +1,13 @@
-# Upgrading from GraphCommerce 6.1 to 6.2
+# Upgrading from GraphCommerce 6 to 7
 
-Upgrading from GraphCommerce 6.1 to 6.2 is minor update. Depending on the
-amounts of customisations you've made, there are some manual steps. Please
-follow the regular [upgrade steps first](./readme.md).
+Depending on the amounts of customisations you've made, there are some manual
+steps. Please follow the regular [upgrade steps first](./readme.md).
 
 1. [Add `fetchPolicy: cache-first` to LayoutDocument](#add-cache-first-fetchpolicy-to-layoutdocument)
-2. [Translation file updates](#translation-file-updates)
+2. [Use thew new `hygraphPageContent` function instead of DefaultPageQuery](#use-the-new-hygraphpagecontent-function-instead-of-defaultpagequery)
+3. [Translation file updates](#translation-file-updates)
+4. [All @graphql-mesh/\* should be set to latest](#all-graphql-mesh-should-be-set-to-latest)
+5. [Upgrading your Hygraph schema](#upgrading-your-hygraph-schema)
 
 ## Add `fetchPolicy: cache-first` to LayoutDocument queries
 
@@ -22,7 +24,7 @@ staticClient.query({ query: LayoutDocument })
 staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
 ```
 
-## Use thew new `hygraphPageContent` function instead of DefaultPageQuery
+## Use the new `hygraphPageContent` function instead of DefaultPageQuery
 
 🟠 Only required if you've added custom pages
 
@@ -90,5 +92,5 @@ In your package.json
 
 ## Upgrading your Hygraph schema
 
-Upgrade your Hygraph schema to Graphcommerce 6.2 using our
-[Hygraph-CLI package](../hygraph/readme.md).
+Upgrade your Hygraph schema with the [Hygraph migration cli](../hygraph/cli.md).
+Select `graphcommerce6to7` as version.

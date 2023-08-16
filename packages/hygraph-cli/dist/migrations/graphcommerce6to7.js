@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.dynamicRow = void 0;
+exports.graphcommerce6to7 = void 0;
 const management_sdk_1 = require("@hygraph/management-sdk");
 const migrationAction_1 = require("../migrationAction");
-const dynamicRow = async (schema) => {
+const graphcommerce6to7 = async (schema) => {
     if (!migrationAction_1.client) {
         return 0;
     }
@@ -198,4 +198,4 @@ const dynamicRow = async (schema) => {
     }, 'RowColumnOne', 'model');
     return migrationAction_1.client.run(true);
 };
-exports.dynamicRow = dynamicRow;
+exports.graphcommerce6to7 = graphcommerce6to7;

@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GraphCommerce6 = void 0;
+exports.graphcommerce5to6 = void 0;
 const management_sdk_1 = require("@hygraph/management-sdk");
 const migrationAction_1 = require("../migrationAction");
-const GraphCommerce6 = async (schema) => {
+const graphcommerce5to6 = async (schema) => {
     if (!migrationAction_1.client) {
         return 0;
     }
@@ -95,54 +95,6 @@ const GraphCommerce6 = async (schema) => {
             // visibility: VisibilityTypes.Hidden, => Currently not supported for updateUnionField | https://github.com/hygraph/management-sdk/issues/34
         },
     }, 'Page', 'model');
-    (0, migrationAction_1.migrationAction)(schema, 'unionField', 'update', {
-        apiId: 'row',
-        displayName: 'Row',
-        modelApiId: 'DynamicRow',
-        reverseField: {
-            modelApiIds: [
-                'RowLinks',
-                'RowServiceOptions',
-                'RowSpecialBanner',
-                'RowQuote',
-                'RowProduct',
-                'RowColumnOne',
-                'RowColumnTwo',
-                'RowColumnThree',
-                'RowHeroBanner',
-                'RowBlogContent',
-                'RowButtonList',
-                'RowContentLinks',
-                'RowButtonLinkList',
-            ],
-            // visibility: VisibilityTypes.Hidden, => Currently not supported for updateUnionField | https://github.com/hygraph/management-sdk/issues/34
-        },
-        visibility: management_sdk_1.VisibilityTypes.Hidden,
-    }, 'DynamicRow', 'model');
-    (0, migrationAction_1.migrationAction)(schema, 'unionField', 'update', {
-        apiId: 'target',
-        displayName: 'Placement target',
-        modelApiId: 'DynamicRow',
-        reverseField: {
-            modelApiIds: [
-                'RowLinks',
-                'RowServiceOptions',
-                'RowSpecialBanner',
-                'RowQuote',
-                'RowProduct',
-                'RowColumnOne',
-                'RowColumnTwo',
-                'RowColumnThree',
-                'RowHeroBanner',
-                'RowBlogContent',
-                'RowButtonList',
-                'RowContentLinks',
-                'RowButtonLinkList',
-            ],
-            // visibility: VisibilityTypes.Hidden, => Currently not supported for updateUnionField | https://github.com/hygraph/management-sdk/issues/34
-        },
-        visibility: management_sdk_1.VisibilityTypes.Hidden,
-    }, 'DynamicRow', 'model');
     return migrationAction_1.client.run(true);
 };
-exports.GraphCommerce6 = GraphCommerce6;
+exports.graphcommerce5to6 = graphcommerce5to6;

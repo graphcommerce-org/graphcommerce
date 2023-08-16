@@ -121,7 +121,7 @@ const migrationAction = (schema, type, action, props, parentApiId, parentType) =
         }
     }
     else {
-        (0, log_functions_1.graphcommerceLog)(`${(0, log_functions_1.capitalize)(type)} with apiId ${props.apiId} already exists`, 'warning');
+        (0, log_functions_1.graphcommerceLog)(`${(0, log_functions_1.capitalize)(type)} with apiId ${props.apiId} on ${parentApiId} already exists`, 'warning');
     }
 };
 exports.migrationAction = migrationAction;

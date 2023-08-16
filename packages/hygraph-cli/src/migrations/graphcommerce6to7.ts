@@ -2,7 +2,7 @@ import { SimpleFieldType, VisibilityTypes } from '@hygraph/management-sdk'
 import { migrationAction, client } from '../migrationAction'
 import { Schema } from '../types'
 
-export const dynamicRow = async (schema: Schema) => {
+export const graphcommerce6to7 = async (schema: Schema) => {
   if (!client) {
     return 0
   }

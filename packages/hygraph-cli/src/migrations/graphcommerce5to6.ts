@@ -2,7 +2,7 @@ import { RelationalFieldType, SimpleFieldType, VisibilityTypes } from '@hygraph/
 import { migrationAction, client } from '../migrationAction'
 import { Schema } from '../types'
 
-export const GraphCommerce6 = async (schema: Schema) => {
+export const graphcommerce5to6 = async (schema: Schema) => {
   if (!client) {
     return 0
   }
@@ -142,70 +142,6 @@ export const GraphCommerce6 = async (schema: Schema) => {
       },
     },
     'Page',
-    'model',
-  )
-
-  migrationAction(
-    schema,
-    'unionField',
-    'update',
-    {
-      apiId: 'row',
-      displayName: 'Row',
-      modelApiId: 'DynamicRow',
-      reverseField: {
-        modelApiIds: [
-          'RowLinks',
-          'RowServiceOptions',
-          'RowSpecialBanner',
-          'RowQuote',
-          'RowProduct',
-          'RowColumnOne',
-          'RowColumnTwo',
-          'RowColumnThree',
-          'RowHeroBanner',
-          'RowBlogContent',
-          'RowButtonList',
-          'RowContentLinks',
-          'RowButtonLinkList',
-        ],
-        // visibility: VisibilityTypes.Hidden, => Currently not supported for updateUnionField | https://github.com/hygraph/management-sdk/issues/34
-      },
-      visibility: VisibilityTypes.Hidden,
-    },
-    'DynamicRow',
-    'model',
-  )
-
-  migrationAction(
-    schema,
-    'unionField',
-    'update',
-    {
-      apiId: 'target',
-      displayName: 'Placement target',
-      modelApiId: 'DynamicRow',
-      reverseField: {
-        modelApiIds: [
-          'RowLinks',
-          'RowServiceOptions',
-          'RowSpecialBanner',
-          'RowQuote',
-          'RowProduct',
-          'RowColumnOne',
-          'RowColumnTwo',
-          'RowColumnThree',
-          'RowHeroBanner',
-          'RowBlogContent',
-          'RowButtonList',
-          'RowContentLinks',
-          'RowButtonLinkList',
-        ],
-        // visibility: VisibilityTypes.Hidden, => Currently not supported for updateUnionField | https://github.com/hygraph/management-sdk/issues/34
-      },
-      visibility: VisibilityTypes.Hidden,
-    },
-    'DynamicRow',
     'model',
   )
 

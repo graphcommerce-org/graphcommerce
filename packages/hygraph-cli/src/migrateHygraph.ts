@@ -4,7 +4,7 @@ import { MigrationInfo } from '@hygraph/management-sdk/dist/ManagementAPIClient'
 import dotenv from 'dotenv'
 import prompts, { PromptObject } from 'prompts'
 import { graphcommerceLog } from './log-functions'
-import { dynamicRow, GraphCommerce6 } from './migrations'
+import * as migrations from './migrations'
 import { readSchema } from './readSchema'
 import { Schema } from './types'
 
@@ -28,10 +28,8 @@ export async function migrateHygraph() {
   const schema: Schema = schemaViewer.viewer.project.environment.contentModel
 
   // A list of possible migrations
-  const possibleMigrations: [string, (schema: Schema) => Promise<0 | MigrationInfo>][] = [
-    ['Upgrade to GraphCommerce 6', GraphCommerce6],
-    ['Upgrade to Graphcommerce 6.2', dynamicRow],
-  ]
+  const possibleMigrations: [string, (schema: Schema) => Promise<0 | MigrationInfo>][] =
+    Object.entries(migrations)
 
   // Here we setup the list we ask the user to choose from
   const selectMigrationInput: PromptObject<string> | PromptObject<string>[] = {

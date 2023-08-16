@@ -1,2 +1,2 @@
-export * from './graphcommerce-6-1-0-to-6.2.0'
-export * from './graphcommerce6'
+export * from './graphcommerce5to6'
+export * from './graphcommerce6to7'

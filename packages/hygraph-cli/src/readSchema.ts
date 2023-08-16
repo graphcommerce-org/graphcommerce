@@ -4,7 +4,7 @@ import { fetch } from '@whatwg-node/fetch'
 
 export const readSchema = async (config: GraphCommerceConfig) => {
   if (!config.hygraphProjectId) {
-    throw new Error('Please provide projectId in your env file')
+    throw new Error('Please provide GC_HYGRAPH_PROJECT_ID in your env file')
   }
 
   if (!config.hygraphWriteAccessToken) {
