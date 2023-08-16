@@ -26,8 +26,76 @@ Storefront configuration values:
   - filterAttributes (containing a list of the following values)
     - aggregation
     - toAlgoliaAttribute
+- sortOptions
+  - label
+  - value
+
+## When to use filterAttributes?
+
+The filterAttributes configuration is used to map the filter attributes from the
+Magento 2 API to Algolia API. This is needed because some of the attributes in
+Algolia don't match with the indexed attributes in Algolia. We currently support
+some default attributes that are Magento 2 native, which means you don't have to
+add them to the filterAttributes configuration. These attributes are:
+
+- price
+- category_uid
+
+If you want to map other attributes, you can add them to the filterAttributes
+configuration. For example, if you want to map the `color` attribute, you can
+add the following configuration:
+
+```
+filterAttributes: [
+  {
+    aggregation: 'color',
+    toAlgoliaAttribute: 'color',
+  },
+]
+```
+
+Filling in the aggregation (Magento 2) enables this plugin to read the
+aggregation properties, such as the label and the options. The
+toAlgoliaAttribute (Algolia) is the attribute that is used in the Algolia index
+and connects the correct values to the aggregation.
+
+## When to use sortOptions?
+
+You can use the sortOptions to define new sorting options inside the Algolia
+plugin. The label is the name of the sorting option that is shown in the UI. The
+value is the value that is used to find the sort index in the Algolia API. For
+example, if you want to add a new sorting option called `Newest`, you can add
+the following configuration:
+
+```
+sortOptions: [
+  {
+    label: 'Newest',
+    value: 'newest-product-index',
+  },
+]
+```
+
+## What is the recommended algoliaSearchDebounceTime?
+
+We've added a debounce time to the search feature to prevent it from being
+called too frequently. This means that the search function will wait for a
+specified amount of time before executing, which reduces the number of queries
+sent to the Algolia API and can reduce cost. The default debounce time is 0
+milliseconds for optimal responsiveness, but you can adjust it by adding the
+`algoliaSearchDebounceTime` parameter to your Graphcommerce configuration as
+following:
+
+```
+algoliaSearchDebounceTime: 500
+
+```
 
 ## Add server side hydration to Algolia Search
+
+**_NOTE:_** Server side hydration is currently not supported due to the current
+requirement of `useRouter` inside this plugin. We are working on a solution to
+this problem.
 
 1. Add `react-instantsearch-hooks-server` package to your project
 
@@ -56,12 +124,15 @@ type SearchResultProps = DefaultPageQuery &
 ```
 
 3. Add the `getServerState` method from the `react-instantsearch-hooks-server`
-   package to the imports of your search page
+   package and the `renderToString` method from the `react-dom/server` package
+   to the imports of your search page.
 
 ```
 ...
 import { getServerState } from 'react-instantsearch-hooks-server'
+import {renderToString } from 'react-dom/server'
 ...
+
 ```
 
 4. Assign the result of the `getServerState` method to the `serverState`
