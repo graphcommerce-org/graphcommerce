@@ -61,62 +61,64 @@ function ButtonWithDemoState(props: ButtonProps) {
 
 export default function ButtonsPage() {
   return (
-    <Container>
+    <>
       <LayoutHeader />
-      <LayoutTitle variant='h1'>Buttons</LayoutTitle>
+      <Container>
+        <LayoutTitle variant='h1'>Buttons</LayoutTitle>
 
-      {Object.entries(propVariants).map(([propVariant, props]) => (
-        // eslint-disable-next-line react/no-array-index-key
-        <React.Fragment key={propVariant}>
-          <Typography variant='h2' sx={{ mt: 8 }}>
-            {propVariant}
-          </Typography>
-          {variants.map((variant) => (
-            <React.Fragment key={variant}>
-              {/* <Typography variant='h3'>Variant: {variant}</Typography> */}
-              <Grid>
-                {colors.map((color) => (
-                  <Typography
-                    key={color}
-                    variant='h6'
-                    sx={{ display: 'inline-flex', alignItems: 'center', columnGap: 1 }}
-                  >
-                    Button {variant} {color}
-                    <Box
-                      sx={{
-                        backgroundColor: `${color}.main`,
-                        width: '1em',
-                        height: '1em',
-                        display: 'inline-block',
-                      }}
-                    />
-                  </Typography>
-                ))}
+        {Object.entries(propVariants).map(([propVariant, props]) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <React.Fragment key={propVariant}>
+            <Typography variant='h2' sx={{ mt: 8 }}>
+              {propVariant}
+            </Typography>
+            {variants.map((variant) => (
+              <React.Fragment key={variant}>
+                {/* <Typography variant='h3'>Variant: {variant}</Typography> */}
+                <Grid>
+                  {colors.map((color) => (
+                    <Typography
+                      key={color}
+                      variant='h6'
+                      sx={{ display: 'inline-flex', alignItems: 'center', columnGap: 1 }}
+                    >
+                      Button {variant} {color}
+                      <Box
+                        sx={{
+                          backgroundColor: `${color}.main`,
+                          width: '1em',
+                          height: '1em',
+                          display: 'inline-block',
+                        }}
+                      />
+                    </Typography>
+                  ))}
 
-                {sizes.map((size) => (
-                  <React.Fragment key={size}>
-                    {colors.map((color) => (
-                      <div key={color}>
-                        <ButtonWithDemoState
-                          variant={variant}
-                          color={color}
-                          size={size}
-                          {...props}
-                          onClick={() => {}}
-                        >
-                          Button
-                        </ButtonWithDemoState>
-                      </div>
-                    ))}
-                  </React.Fragment>
-                ))}
-              </Grid>
-              <Divider />
-            </React.Fragment>
-          ))}
-        </React.Fragment>
-      ))}
-    </Container>
+                  {sizes.map((size) => (
+                    <React.Fragment key={size}>
+                      {colors.map((color) => (
+                        <div key={color}>
+                          <ButtonWithDemoState
+                            variant={variant}
+                            color={color}
+                            size={size}
+                            {...props}
+                            onClick={() => {}}
+                          >
+                            Button
+                          </ButtonWithDemoState>
+                        </div>
+                      ))}
+                    </React.Fragment>
+                  ))}
+                </Grid>
+                <Divider />
+              </React.Fragment>
+            ))}
+          </React.Fragment>
+        ))}
+      </Container>
+    </>
   )
 }
 
