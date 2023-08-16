@@ -107,6 +107,7 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
         telephone: variables.telephone || '000 - 000 0000',
         regionId,
         customerNote: '',
+        addition: variables.addition ?? '',
       }
     },
   })
