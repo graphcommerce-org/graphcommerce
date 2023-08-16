@@ -1,5 +1,11 @@
 # @graphcommerce/hygraph-cli
 
+## 6.2.0-canary.83
+
+### Minor Changes
+
+- [#1938](https://github.com/graphcommerce-org/graphcommerce/pull/1938) [`5aa6558a4`](https://github.com/graphcommerce-org/graphcommerce/commit/5aa6558a4e48d8d670284802fed65a934429b0ea) - Introduce hygraph-cli for schema migrations ([@JoshuaS98](https://github.com/JoshuaS98))
+
 ## 6.2.0-canary.82
 
 ## 6.2.0-canary.81
