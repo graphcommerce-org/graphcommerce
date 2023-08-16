@@ -2672,11 +2672,6 @@
     graphql "^16.5.0"
     graphql-request "^4.3.0"
 
-"@hygraph/utils@^1.2.1":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@hygraph/utils/-/utils-1.2.1.tgz#31bf3a007ce388897f891c63b79e0de85978962b"
-  integrity sha512-Eu4xKWAAzAhWUcgxSzgL+6o5alCItry1Jo0LtsnQ3q3/EaGHeI3Z/kMuGvsFf8zrhyAljeSHC4otwRc5ibMinQ==
-
 "@isaacs/cliui@^8.0.2":
   version "8.0.2"
   resolved "https://registry.yarnpkg.com/@isaacs/cliui/-/cliui-8.0.2.tgz#b37667b7bc181c168782259bab42474fbf52b550"
