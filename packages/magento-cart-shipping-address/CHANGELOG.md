@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.82
+
+### Patch Changes
+
+- [#2021](https://github.com/graphcommerce-org/graphcommerce/pull/2021) [`06ab7d24d`](https://github.com/graphcommerce-org/graphcommerce/commit/06ab7d24dcf345c6acd39471df544a726a166ece) - Ensure 'addition' parameter is non-empty in onBeforeSubmit ([@carlocarels90](https://github.com/carlocarels90))
+
 ## 6.2.0-canary.81
 
 ## 6.2.0-canary.80
