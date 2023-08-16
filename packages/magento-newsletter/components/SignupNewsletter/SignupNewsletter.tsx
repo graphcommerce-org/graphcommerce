@@ -41,7 +41,6 @@ export function SignupNewsletter(props: SignupNewsletterProps) {
           justifyItems: 'start',
           [theme.breakpoints.up('sm')]: {
             gridTemplateAreas: `"a b c"`,
-            gridTemplateColumns: '2fr 1fr',
           },
         }),
         ...(Array.isArray(sx) ? sx : [sx]),

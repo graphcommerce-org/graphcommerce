@@ -36,13 +36,13 @@ export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
     defaultValues: {
       firstname: address?.firstname,
       lastname: address?.lastname,
-      postcode: address?.postcode ?? undefined,
+      postcode: address?.postcode ?? '',
       city: address?.city,
       countryCode: address?.country.code,
-      street: address?.street?.[0] ?? undefined,
+      street: address?.street?.[0] ?? '',
       telephone: address?.telephone,
-      houseNumber: address?.street?.[1] ?? undefined,
-      addition: address?.street?.[2] ?? undefined,
+      houseNumber: address?.street?.[1] ?? '',
+      addition: address?.street?.[2] ?? '',
       saveInAddressBook: true,
     },
     onBeforeSubmit: (variables) => {
