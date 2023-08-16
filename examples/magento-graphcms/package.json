@@ -32,6 +32,8 @@
     "@graphcommerce/graphcms-ui": "6.2.0-canary.82",
     "@graphcommerce/graphql": "6.2.0-canary.82",
     "@graphcommerce/graphql-mesh": "6.2.0-canary.82",
+    "@graphcommerce/hygraph-cli": "6.2.0-canary.82",
+    "@graphcommerce/hygraph-dynamic-rows": "6.2.0-canary.82",
     "@graphcommerce/image": "6.2.0-canary.82",
     "@graphcommerce/lingui-next": "6.2.0-canary.82",
     "@graphcommerce/magento-cart": "6.2.0-canary.82",

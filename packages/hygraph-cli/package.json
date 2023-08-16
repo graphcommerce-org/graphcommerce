@@ -14,18 +14,19 @@
   "main": "dist/index.js",
   "types": "src/index.ts",
   "dependencies": {
+    "@apollo/client": "~3.7.17",
     "@graphcommerce/next-config": "6.2.0-canary.82",
-    "@graphql-codegen/cli": "4.0.1",
-    "@graphql-mesh/cli": "latest",
-    "@graphql-mesh/types": "latest",
-    "@graphql-mesh/utils": "latest",
     "@hygraph/management-sdk": "^1.1.2-alpha.1",
-    "graphql-tag": "^2.12.6"
+    "graphql-tag": "^2.12.6",
+    "prompts": "^2.4.2",
+    "@whatwg-node/fetch": "^0.9.4"
   },
   "peerDependencies": {
-    "graphql": "^16.7.1"
+    "graphql": "^16.7.1",
+    "dotenv": "^16.1.4"
   },
   "devDependencies": {
+    "@types/prompts": "^2.4.4",
     "@graphcommerce/eslint-config-pwa": "6.2.0-canary.82",
     "@graphcommerce/prettier-config-pwa": "6.2.0-canary.82",
     "@graphcommerce/typescript-config-pwa": "6.2.0-canary.82",
