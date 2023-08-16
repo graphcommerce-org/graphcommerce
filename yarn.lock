@@ -2664,7 +2664,7 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@hygraph/management-sdk@^1.1.2-alpha.1":
+"@hygraph/management-sdk@1.2.3":
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/@hygraph/management-sdk/-/management-sdk-1.2.3.tgz#4776b44bd63647da2ee0ab1b3f88efbc3b3d961a"
   integrity sha512-nmKCRWagtXJzbwl8d486MqCJJ+el80FtzgPfFdmE63A8+o5RiX5wNZ5mhSlUxo13d3buaAEHphq83lx8v0rUBA==
