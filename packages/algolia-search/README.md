@@ -180,3 +180,66 @@ return {
 
 +     <SearchContext serverProps={serverState}>
 ```
+
+## Add Algolia indexing to Magento 2
+
+1. Follow the algolia docs to enable the Algolia integration in Magento 2
+   [here](https://www.algolia.com/doc/integration/magento-2/getting-started/quick-start/?client=php).
+
+## Add Algolia indexing to HyGraph
+
+1. Add the `algoliasearch` package to your project
+
+```
+yarn add algoliasearch
+```
+
+2. Add the `@hygraph/utils` package to your project
+
+```
+yarn add @hygraph/utils
+```
+
+3. Create two new api routes in your project, one for adding an entry and one
+   for removing an entry from the Algolia index.
+
+```
+- pages
+  - api
+    - algolia
+      - add.ts
+      - remove.ts
+```
+
+**_NOTE:_** Both the `add.ts` and `remove.ts` files are implemented with
+signature verification. This is to prevent unwanted requests to your api routes.
+You can read more about signature verification for webhooks
+[here](https://hygraph.com/blog/introducing-signed-webhooks).
+
+4. The following code is an example of how the `add.ts` file could look like.
+   This file is responsible for adding an entry to the Algolia index.
+
+```ts
+import { addHygraphRecord } from '@graphcommerce/algolia-search'
+import { NextApiRequest, NextApiResponse } from 'next'
+
+export default (req: NextApiRequest, res: NextApiResponse) =>
+  addHygraphRecord(req, res)
+```
+
+5. The following code is an example of how the `remove.ts` file could look like.
+   This file is responsible for removing an entry from the Algolia index.
+
+```ts
+import { removeHygraphRecord } from '@graphcommerce/algolia-search'
+import { NextApiRequest, NextApiResponse } from 'next'
+
+export default (req: NextApiRequest, res: NextApiResponse) =>
+  await removeHygraphRecord(req, res)
+```
+
+6. Follow the webhook setup guide to add the webhooks to your HyGraph project.
+
+You can follow
+[these](https://hygraph.com/docs/guides/webhooks/webhooks-overview#configure-webhooks)
+instructions to configure the webhooks in your HyGraph project.

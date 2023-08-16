@@ -69,4 +69,14 @@ extend input GraphCommerceConfig {
   Configures algolia search debounce time. This will slow down the search response.
   """
   algoliaSearchDebounceTime: Int
+
+  """
+  Configure your Algolia HyGraph index. This will create a new index for HyGraph data if it doesn't exist in Algolia.
+  """
+  algoliaHygraphIndex: String
+
+  """
+  Configure your Algolia HyGraph secret. This will be used to authenticate the HyGraph data.
+  """
+  hygraphSecret: String
 }
