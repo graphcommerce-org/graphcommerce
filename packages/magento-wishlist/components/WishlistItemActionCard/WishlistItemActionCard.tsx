@@ -207,11 +207,13 @@ export function WishlistItemActionCard(props: WishlistItemActionCardProps) {
         )
       }
       secondaryAction={
-        <ProductAddToCart
-          variables={{ sku: sku ?? '', quantity: 1, selectedOptions }}
-          name={name ?? ''}
-          price={price_range.minimum_price.final_price}
-        />
+        (productType === 'SimpleProduct' || productType === 'VirtualProduct') && (
+          <ProductAddToCart
+            variables={{ sku: sku ?? '', quantity: 1, selectedOptions }}
+            name={name ?? ''}
+            price={price_range.minimum_price.final_price}
+          />
+        )
       }
       price={<Money {...price_range.minimum_price.final_price} />}
       action={
