@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { Model, Component, Enumeration } from '@hygraph/management-sdk'
-import { MigrationInfo } from '@hygraph/management-sdk/dist/ManagementAPIClient'
+import type { Model, Component, Enumeration } from '@hygraph/management-sdk'
+import type { MigrationInfo } from '@hygraph/management-sdk/dist/src/ManagementAPIClient'
 
 export type Migration = (name: string | undefined) => Promise<MigrationInfo>
 

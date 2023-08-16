@@ -1,6 +1,6 @@
 import fs from 'fs'
 import { loadConfig } from '@graphcommerce/next-config'
-import { MigrationInfo } from '@hygraph/management-sdk/dist/ManagementAPIClient'
+import type { MigrationInfo } from '@hygraph/management-sdk/dist/src/ManagementAPIClient'
 import dotenv from 'dotenv'
 import prompts, { PromptObject } from 'prompts'
 import { graphcommerceLog } from './log-functions'
