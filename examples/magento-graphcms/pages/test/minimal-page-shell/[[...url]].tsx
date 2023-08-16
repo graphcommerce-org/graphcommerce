@@ -83,9 +83,7 @@ export function LayoutDemo(props: LayoutDemoProps) {
 
   return (
     <>
-      <LayoutTitle>
-        <Trans id='Layout demo' />
-      </LayoutTitle>
+      <LayoutTitle>Layout demo</LayoutTitle>
       <LayoutHeader
         primary={primaryAction}
         divider={

@@ -25,13 +25,14 @@ function TestOverview() {
           },
         })}
       >
-        <Trans id='Links to components' />
+        Links to components
       </LayoutTitle>
       <Container maxWidth='md' sx={{ display: 'grid', gridColumns: '1' }}>
         <Link href='/test/buttons'>Buttons</Link>
         <Link href='/test/icons'>Icons</Link>
         <Link href='/test/slider'>Slider</Link>
         <Link href='/test/typography'>Typography</Link>
+        <Link href='/test/number-inputs'>Number-inputs</Link>
       </Container>
     </Container>
   )
