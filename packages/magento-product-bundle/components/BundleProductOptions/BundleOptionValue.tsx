@@ -86,7 +86,8 @@ export const BundleOptionValue = (props: ActionCardItemRenderProps<BundleOptionV
             size='small'
             label='Quantity'
             color={color}
-            value={String(quantity)}
+            castToNumber={false}
+            InputProps={{ inputProps: { min: 1 } }}
             required
             defaultValue={`${quantity}`}
             control={control}
