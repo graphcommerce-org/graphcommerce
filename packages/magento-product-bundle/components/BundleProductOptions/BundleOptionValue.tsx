@@ -87,11 +87,21 @@ export const BundleOptionValue = (props: ActionCardItemRenderProps<BundleOptionV
             label='Quantity'
             color={color}
             castToNumber={false}
+            validation={{
+              pattern: { value: /^[1-9]|[1-9]d+$/, message: 'Quantity must be greater than 0' },
+            }}
             InputProps={{ inputProps: { min: 1 } }}
             required
             defaultValue={`${quantity}`}
             control={control}
-            sx={{ width: responsiveVal(80, 120), mt: 2 }}
+            sx={{
+              width: responsiveVal(80, 120),
+              mt: 2,
+              '& .MuiFormHelperText-root': {
+                margin: 1,
+                width: '100%',
+              },
+            }}
             name={`cartItems.${index}.entered_options.${idx}.value`}
             type='number'
             onMouseDown={(e) => e.stopPropagation()}
