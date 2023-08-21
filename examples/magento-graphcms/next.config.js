@@ -2,25 +2,14 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 require('dotenv').config({ path: `${__dirname}/.env` })
 
-const { withGraphCommerce } = require('@graphcommerce/next-config')
-const withPWA = require('@ducanh2912/next-pwa')({
+const { withGraphCommerce, runtimeCachingOptimizations } = require('@graphcommerce/next-config')
+
+// eslint-disable-next-line import/order
+const withPWA = require('@ducanh2912/next-pwa').default({
   dest: 'public',
   disable: process.env.NODE_ENV === 'development',
   mode: 'development',
-  runtimeCaching: [
-    {
-      urlPattern: /\/_next\/image?url=.*$/i,
-      handler: 'StaleWhileRevalidate',
-      options: {
-        cacheName: 'next-image',
-        expiration: {
-          // Currently experimenting with max cache entries to optimize service worker cache
-          maxEntries: 100, // 100 images
-          maxAgeSeconds: 48 * 60 * 60, // 48 hours
-        },
-      },
-    },
-  ],
+  runtimeCaching: runtimeCachingOptimizations,
 })
 
 /** @type {import('next').NextConfig} */
