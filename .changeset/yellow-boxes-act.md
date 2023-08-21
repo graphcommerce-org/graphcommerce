@@ -2,4 +2,4 @@
 '@graphcommerce/magento-cart-payment-method': patch
 ---
 
-Rmoved empty cart showing between payment and succes page
+Solved an issue where the empty cart would be shown between the payment and success page.
