@@ -5,7 +5,8 @@ export const runtimeCachingOptimizations: RuntimeCaching[] = [
     urlPattern: /\/_next\/image?url=.*$/i,
     handler: 'StaleWhileRevalidate',
     options: {
-      cacheName: 'next-images',
+      cacheName: 'next-image',
+      matchOptions: { ignoreVary: true },
       expiration: {
         // Currently experimenting with max cache entries to optimize service worker cache
         maxEntries: 100, // 100 images
