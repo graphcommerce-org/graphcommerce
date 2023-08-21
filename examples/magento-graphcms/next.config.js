@@ -9,7 +9,10 @@ const { withGraphCommerce, runtimeCachingOptimizations } = require('@graphcommer
 const withPWA = PWA.default({
   dest: 'public',
   disable: process.env.NODE_ENV === 'development',
-  runtimeCaching: PWA.runtimeCaching.concat(runtimeCachingOptimizations),
+  extendDefaultRuntimeCaching: true,
+  workboxOptions: {
+    runtimeCaching: runtimeCachingOptimizations,
+  },
 })
 
 /** @type {import('next').NextConfig} */
