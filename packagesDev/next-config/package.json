@@ -21,7 +21,8 @@
     "js-yaml-loader": "^1.2.2",
     "lodash": "^4.17.21",
     "znv": "^0.3.2",
-    "zod": "^3.21.4"
+    "zod": "^3.21.4",
+    "workbox-build": "^7.0.0"
   },
   "devDependencies": {
     "@types/circular-dependency-plugin": "^5.0.5",

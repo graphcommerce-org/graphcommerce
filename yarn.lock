@@ -12324,7 +12324,7 @@ workbox-broadcast-update@7.0.0:
   dependencies:
     workbox-core "7.0.0"
 
-workbox-build@7.0.0:
+workbox-build@7.0.0, workbox-build@^7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/workbox-build/-/workbox-build-7.0.0.tgz#02ab5ef2991b3369b8b9395703f08912212769b4"
   integrity sha512-CttE7WCYW9sZC+nUYhQg3WzzGPr4IHmrPnjKiu3AMXsiNQKx+l4hHl63WTrnicLmKEKHScWDH8xsGBdrYgtBzg==
