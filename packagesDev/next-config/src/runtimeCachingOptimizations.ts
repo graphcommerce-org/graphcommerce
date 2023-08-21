@@ -6,7 +6,7 @@ export const runtimeCachingOptimizations: RuntimeCaching[] = [
     handler: 'StaleWhileRevalidate',
     options: {
       cacheName: 'next-image',
-      matchOptions: { ignoreVary: true },
+      matchOptions: { ignoreVary: true, ignoreMethod: true, ignoreSearch: true },
       expiration: {
         // Currently experimenting with max cache entries to optimize service worker cache
         maxEntries: 100, // 100 images
