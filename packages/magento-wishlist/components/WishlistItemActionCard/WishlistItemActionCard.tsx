@@ -150,10 +150,10 @@ export function WishlistItemActionCard(props: WishlistItemActionCardProps) {
           },
           '& .ActionCard-action': {
             pr: theme.spacings.xs,
+            alignSelf: 'flex-end',
           },
           '& .ActionCard-image': {
             alignSelf: 'flex-start',
-            transform: 'translateY(10px)',
           },
           '& .ActionCard-secondaryAction': {
             typography: typographySizes[size],

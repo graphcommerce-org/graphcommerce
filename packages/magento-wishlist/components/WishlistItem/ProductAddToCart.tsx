@@ -47,10 +47,11 @@ export function ProductAddToCart(
 
   return (
     <Box component='form' onSubmit={submitHandler} noValidate className={classes.root}>
-      <Box sx={{ display: 'flex', gap: 1 }}>
+      <Box sx={{ display: { sm: 'flex' }, gap: 1 }}>
         <Box>
           <TextInputNumber
-            variant='outlined'
+            variant='standard'
+            InputProps={{ disableUnderline: true }}
             error={formState.isSubmitted && !!formState.errors.quantity}
             required={required.quantity}
             inputProps={{ min: 1 }}
