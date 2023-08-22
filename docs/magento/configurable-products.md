@@ -4,6 +4,9 @@ menu: Configurable Products
 
 # Configurable Products
 
+Example:
+[Simple product (with pre-selection)](https://graphcommerce.vercel.app/p/matriarch-s-edges-size-4-6y-gc-469-sock-6y)
+
 GraphCommerce enables various ways to manage the display of data from
 configurable products in Magento. This flexibility allows you to choose dynamic
 updates for the following data:
@@ -38,7 +41,7 @@ const config = {
 
 ### GraphCommerceConfig
 
-- #### `configurableVariantForSimple: Boolean (default: [object Object])`
+- #### `configurableVariantForSimple: Boolean`
 
   Determines whether a simple product should appear as a Configurable Product
   with pre-selected options or as the default Simple Product.
@@ -53,11 +56,7 @@ const config = {
   Simple Product page but the options to select the Simple Product are
   pre-selected.
 
-  **Example:**
-
-  - [Simple product (with pre-selection)](https://graphcommerce.vercel.app/p/matriarch-s-edges-size-4-6y-gc-469-sock-6y)
-
-- #### `configurableVariantValues: [object Object]`
+- #### `configurableVariantValues`
 
   Options to configure which values will be replaced when a variant is selected
   on the product page.
