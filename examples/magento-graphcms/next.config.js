@@ -13,9 +13,8 @@ const withPWA = require('@ducanh2912/next-pwa').default({
         handler: 'StaleWhileRevalidate',
         options: {
           cacheName: 'next-image',
-          matchOptions: { ignoreVary: true },
           expiration: {
-            maxEntries: 100,
+            maxEntries: 5,
             maxAgeSeconds: 48 * 60 * 60, // 48 hours
             purgeOnQuotaError: true,
             matchOptions: { ignoreVary: true },
