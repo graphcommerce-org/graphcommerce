@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.88
+
+### Patch Changes
+
+- [`372c8974b`](https://github.com/graphcommerce-org/graphcommerce/commit/372c8974b8724a603d5d9e80f708a2d695055559) - Fix regression with the new cart renderer ([@paales](https://github.com/paales))
+
 ## 6.2.0-canary.87
 
 ## 6.2.0-canary.86
