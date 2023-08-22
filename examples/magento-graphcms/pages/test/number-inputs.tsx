@@ -1,3 +1,4 @@
+import { NumberFieldElement, useForm } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
@@ -9,16 +10,15 @@ import {
   LayoutHeader,
 } from '@graphcommerce/next-ui'
 import { Box, Container, Typography, Divider, styled } from '@mui/material'
-import React, { useState } from 'react'
+import React from 'react'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
 import { graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
-import { NumberFieldElement, useForm } from '@graphcommerce/ecommerce-ui'
 
 const variants = ['outlined', 'standard'] as const
 const sizes = ['small', 'medium'] as const
 const colors = [undefined, 'primary', 'secondary', 'error'] as const
 
-const Grid = styled('div')(({ theme }) => ({
+const Grid = styled('div')(() => ({
   marginTop: `${5 * 8}px`,
   marginBottom: `${5 * 8}px`,
   display: 'grid',
@@ -48,7 +48,7 @@ export default function NumberInputsPage(props: TextInputNumberProps) {
                       display: 'inline-block',
                     }}
                   />
-                  <p></p>
+                  <p />
                   <Typography
                     key={color}
                     variant='h6'
@@ -103,13 +103,12 @@ export default function NumberInputsPage(props: TextInputNumberProps) {
                       display: 'inline-block',
                     }}
                   />
-                  <p></p>
+                  <p />
                   <Typography
                     key={color}
                     variant='h6'
                     sx={{
                       alignItems: 'center',
-
                       columnGap: 1,
                     }}
                   >

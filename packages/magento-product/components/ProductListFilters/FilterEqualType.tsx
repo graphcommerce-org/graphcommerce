@@ -3,6 +3,7 @@ import type { FilterEqualTypeInput } from '@graphcommerce/graphql-mesh'
 import { responsiveVal, extendableComponent, ChipMenu, ChipMenuProps } from '@graphcommerce/next-ui'
 import {
   Box,
+  // eslint-disable-next-line @typescript-eslint/no-restricted-imports
   Checkbox,
   ListItem,
   ListItemSecondaryAction,

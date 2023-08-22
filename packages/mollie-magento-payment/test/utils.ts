@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { waitForGraphQlResponse } from '@graphcommerce/graphql/test/apolloClient.fixture'
 import { Page, expect } from '@playwright/test'
 import { MolliePaymentHandlerDocument } from '../components/MolliePaymentHandler/MolliePaymentHandler.gql'

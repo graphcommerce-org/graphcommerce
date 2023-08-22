@@ -1,6 +1,7 @@
-/* eslint-disable react/no-unused-prop-types */
 import { cloneDeep } from '@apollo/client/utilities'
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { useMemoObject } from '@graphcommerce/next-ui/hooks/useMemoObject'
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { debounce } from '@mui/material'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import {
@@ -101,21 +102,27 @@ export type FormAutoSubmitProps<
   TFieldValues extends FieldValues = FieldValues,
   TFieldNames extends readonly FieldPath<TFieldValues>[] = readonly FieldPath<TFieldValues>[],
 > = {
+  // eslint-disable-next-line react/no-unused-prop-types
   control: Control<TFieldValues>
   /** Autosubmit only when these field names update */
+  // eslint-disable-next-line react/no-unused-prop-types
   name?: readonly [...TFieldNames]
 
+  // eslint-disable-next-line react/no-unused-prop-types
   disabled?: boolean
 
+  // eslint-disable-next-line react/no-unused-prop-types
   exact?: boolean
 
   /** SubmitHandler */
+  // eslint-disable-next-line react/no-unused-prop-types
   submit: ReturnType<UseFormReturn<TFieldValues>['handleSubmit']>
 
   /**
    * When a current submission is already in flight, should we wait for it to finish before
    * submitting again?
    */
+  // eslint-disable-next-line react/no-unused-prop-types
   parallel?: boolean
 } & DebounceOptions
 

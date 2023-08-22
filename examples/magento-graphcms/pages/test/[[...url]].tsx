@@ -1,12 +1,11 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { GetStaticProps, LayoutTitle, LinkOrButton } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { GetStaticProps, LayoutTitle } from '@graphcommerce/next-ui'
+import { Container, Divider, Link } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import { LayoutDocument, LayoutNavigation, LayoutNavigationProps } from '../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 import { LayoutDemo } from './minimal-page-shell/[[...url]]'
-import { Container, Divider, Link } from '@mui/material'
 
 type Props = { url: string }
 type RouteProps = { url: string[] }

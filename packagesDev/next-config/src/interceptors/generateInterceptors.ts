@@ -1,5 +1,5 @@
 import path from 'node:path'
-import { GraphCommerceConfig, GraphCommerceDebugConfig } from '../generated/config'
+import { GraphCommerceDebugConfig } from '../generated/config'
 import { ResolveDependency, ResolveDependencyReturn } from '../utils/resolveDependency'
 
 type PluginBaseConfig = {

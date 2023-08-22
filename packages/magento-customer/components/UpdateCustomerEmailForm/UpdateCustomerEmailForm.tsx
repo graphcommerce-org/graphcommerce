@@ -1,4 +1,5 @@
 import { PasswordElement } from '@graphcommerce/ecommerce-ui'
+import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
 import {
   Button,
   Form,
@@ -10,15 +11,14 @@ import {
 import { emailPattern, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
+// eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { TextField } from '@mui/material'
-import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'
+import { ApolloCustomerErrorSnackbar } from '../ApolloCustomerError'
 import {
   UpdateCustomerEmailDocument,
   UpdateCustomerEmailMutation,
   UpdateCustomerEmailMutationVariables,
 } from './UpdateCustomerEmail.gql'
-import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
-import { ApolloCustomerErrorSnackbar } from '../ApolloCustomerError'
 
 type UpdateCustomerEmailFormProps = {
   email: string

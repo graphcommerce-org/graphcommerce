@@ -1,14 +1,15 @@
-import { PasswordElement, PasswordRepeatElement } from '@graphcommerce/ecommerce-ui'
+import { PasswordRepeatElement } from '@graphcommerce/ecommerce-ui'
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
 import { Button, FormActions, FormRow } from '@graphcommerce/next-ui'
 import { useFormGqlMutation, useFormPersist } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
+// eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { Alert, FormControlLabel, Switch } from '@mui/material'
 import { ApolloCustomerErrorSnackbar } from '../ApolloCustomerError/ApolloCustomerErrorSnackbar'
 import { NameFields } from '../NameFields/NameFields'
+import { ValidatedPasswordElement } from '../ValidatedPasswordElement/ValidatedPasswordElement'
 import { SignUpDocument, SignUpMutation, SignUpMutationVariables } from './SignUp.gql'
 import { SignUpConfirmDocument } from './SignUpConfirm.gql'
-import { ValidatedPasswordElement } from '../ValidatedPasswordElement/ValidatedPasswordElement'
 
 type SignUpFormProps = { email: string }
 

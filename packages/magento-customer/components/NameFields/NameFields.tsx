@@ -3,6 +3,7 @@ import { FormRow, InputCheckmark } from '@graphcommerce/next-ui'
 import { assertFormGqlOperation, Controller, UseFormReturn } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
+// eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { MenuItem, TextField } from '@mui/material'
 import React from 'react'
 
@@ -28,7 +29,7 @@ export function NameFields(props: NameFieldProps) {
   const { prefix, form, readOnly, prefixes = [mr, mrs, other] } = props
   assertFormGqlOperation<NameFieldValues>(form)
 
-  const { control, formState, muiRegister, required, valid } = form
+  const { control, required, valid } = form
 
   return (
     <>

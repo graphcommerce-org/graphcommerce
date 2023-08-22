@@ -6,7 +6,8 @@ import {
   ApolloProvider,
   HttpLink,
 } from '@apollo/client'
-import { useStorefrontConfig } from '@graphcommerce/next-ui'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { useStorefrontConfig } from '@graphcommerce/next-ui/hooks/useStorefrontConfig'
 import type { AppProps } from 'next/app'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { ApolloClientConfig, graphqlConfig, ApolloClientConfigInput } from '../../config'

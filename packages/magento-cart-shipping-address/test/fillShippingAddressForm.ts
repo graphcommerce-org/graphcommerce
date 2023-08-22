@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { Page } from '@playwright/test'
 
 export async function fillShippingAddressForm(page: Page) {

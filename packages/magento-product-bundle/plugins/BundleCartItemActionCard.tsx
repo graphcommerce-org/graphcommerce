@@ -1,10 +1,6 @@
-import {
-  SelectedCustomizableOptions,
-  type CartItemActionCard,
-} from '@graphcommerce/magento-cart-items'
+import { type CartItemActionCard } from '@graphcommerce/magento-cart-items'
 import type { PluginProps } from '@graphcommerce/next-config'
 import { isTypename } from '@graphcommerce/next-ui'
-import { BundleOption } from '../components/BundleProductOptions/BundleOption'
 import { BundleProductCartItemOptions } from '../components/BundleProductCartItemOptions/BundleProductCartItemOptions'
 
 export const component = 'CartItemActionCard'

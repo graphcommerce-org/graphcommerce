@@ -91,7 +91,7 @@ export function rewriteLegacyEnv(
 
       if (!config.storefront) config.storefront = []
       config.storefront.forEach((storefront, index) => {
-        if (!inclTax.includes(storefront.locale)) return null
+        if (!inclTax.includes(storefront.locale)) return
         clonedEnv[`GC_STOREFRONT_${index}_CART_DISPLAY_PRICES_INCL_TAX`] = '1'
       })
 

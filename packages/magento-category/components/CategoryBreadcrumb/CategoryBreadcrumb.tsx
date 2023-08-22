@@ -1,6 +1,6 @@
 import { filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Breadcrumbs, BreadcrumbsProps, Container, Link, Typography } from '@mui/material'
+import { Breadcrumbs, BreadcrumbsProps, Link, Typography } from '@mui/material'
 import { CategoryBreadcrumbFragment } from './CategoryBreadcrumb.gql'
 
 type CategoryPageBreadcrumbsProps = CategoryBreadcrumbFragment & Omit<BreadcrumbsProps, 'children'>
@@ -15,7 +15,7 @@ export function CategoryBreadcrumb(props: CategoryPageBreadcrumbsProps) {
       </Link>
       {filterNonNullableKeys(breadcrumbs, ['category_level'])
         .sort((a, b) => a.category_level - b.category_level)
-        .map((breadcrumb, i) => (
+        .map((breadcrumb) => (
           <Link
             underline='hover'
             key={breadcrumb.category_uid}

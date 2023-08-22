@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { extractAdvancedProps } from '../../utils'
 import { TextRenderer } from '../../components/TextRenderer/TextRenderer'
+import { extractAdvancedProps } from '../../utils'
 import { TextProps } from './types'
 
 /**
