@@ -25,7 +25,7 @@ type FilterFormContextProps = DataProps & {
    */
   form: Omit<UseFormReturn<ProductFilterParams>, 'formState' | 'watch'>
   params: ProductFilterParams
-  submit: (e?: BaseSyntheticEvent<object, never, never> | undefined) => Promise<void>
+  submit: (e?: BaseSyntheticEvent<object, any, any> | undefined) => Promise<void>
 }
 
 const FilterFormContext = createContext<FilterFormContextProps | null>(null)
