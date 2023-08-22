@@ -16,18 +16,17 @@ import { ProductPageAddToCartQuantityRow } from '../ProductPage/ProductPageAddTo
 import { ProductPageGalleryProps } from '../ProductPageGallery/ProductPageGallery'
 import { ProductPageName } from '../ProductPageName'
 
-type Props = Pick<AddProductsToCartFormProps, 'defaultValues'> & {
   product: Pick<AddProductsToCartButtonProps, 'product'> & {
     media_gallery: ProductPageGalleryProps['product']['media_gallery']
+type StickyAddToCartProps = Pick<AddProductsToCartFormProps, 'defaultValues'> & {
     sku: string
     url_key: string
     uid: string
   }
 }
 
-export function StickyAddToCart(props: Props) {
+export function StickyAddToCart(props: StickyAddToCartProps) {
   const { product, defaultValues } = props
-
   const mainImage = product?.media_gallery?.[0]
 
   const theme = useTheme()
