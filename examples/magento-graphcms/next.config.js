@@ -9,7 +9,7 @@ const withPWA = require('@ducanh2912/next-pwa').default({
   workboxOptions: {
     runtimeCaching: [
       {
-        urlPattern: /\/_next\/image?url=.*$/i,
+        urlPattern: /\/_next\/image\?url=.+$/i,
         handler: 'StaleWhileRevalidate',
         options: {
           cacheName: 'next-image',
