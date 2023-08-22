@@ -2,29 +2,17 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 require('dotenv').config({ path: `${__dirname}/.env` })
 
+const { withGraphCommerce, runtimeCachingOptimizations } = require('@graphcommerce/next-config')
+
+// eslint-disable-next-line import/order
 const withPWA = require('@ducanh2912/next-pwa').default({
   dest: 'public',
   disable: process.env.NODE_ENV === 'development',
   extendDefaultRuntimeCaching: true,
   workboxOptions: {
-    runtimeCaching: [
-      {
-        urlPattern: /\/_next\/image\?url=.+$/i,
-        handler: 'StaleWhileRevalidate',
-        options: {
-          cacheName: 'next-image',
-          expiration: {
-            maxEntries: 5,
-            maxAgeSeconds: 48 * 60 * 60, // 48 hours
-            matchOptions: { ignoreVary: true },
-          },
-        },
-      },
-    ],
+    runtimeCaching: runtimeCachingOptimizations,
   },
 })
-
-const { withGraphCommerce, runtimeCachingOptimizations } = require('@graphcommerce/next-config')
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -36,7 +24,6 @@ const nextConfig = {
   images: {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
-  productionBrowserSourceMaps: true,
   eslint: {
     ignoreDuringBuilds: true,
   },
