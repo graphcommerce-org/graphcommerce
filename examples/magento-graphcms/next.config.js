@@ -2,18 +2,12 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 require('dotenv').config({ path: `${__dirname}/.env` })
 
-const PWA = require('@ducanh2912/next-pwa')
-const { withGraphCommerce, runtimeCachingOptimizations } = require('@graphcommerce/next-config')
-
-// eslint-disable-next-line import/order
-const withPWA = PWA.default({
+const withPWA = require('@ducanh2912/next-pwa').default({
   dest: 'public',
   disable: process.env.NODE_ENV === 'development',
-  extendDefaultRuntimeCaching: true,
-  workboxOptions: {
-    runtimeCaching: runtimeCachingOptimizations,
-  },
 })
+
+const { withGraphCommerce } = require('@graphcommerce/next-config')
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
