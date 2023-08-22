@@ -16,7 +16,6 @@ const withPWA = require('@ducanh2912/next-pwa').default({
           expiration: {
             maxEntries: 5,
             maxAgeSeconds: 48 * 60 * 60, // 48 hours
-            purgeOnQuotaError: true,
             matchOptions: { ignoreVary: true },
           },
         },
