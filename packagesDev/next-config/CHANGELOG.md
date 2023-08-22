@@ -1,5 +1,19 @@
 # Change Log
 
+## 6.2.0-canary.86
+
+## 6.2.0-canary.85
+
+## 6.2.0-canary.84
+
+### Patch Changes
+
+- [#2024](https://github.com/graphcommerce-org/graphcommerce/pull/2024) [`1ae747e85`](https://github.com/graphcommerce-org/graphcommerce/commit/1ae747e85faab75168718cb5ea930111d3223cc4) - Hot reloading didn't work because of a broken lingui version ([@paales](https://github.com/paales))
+
+## 6.2.0-canary.83
+
+## 6.2.0-canary.82
+
 ## 6.2.0-canary.81
 
 ## 6.2.0-canary.80

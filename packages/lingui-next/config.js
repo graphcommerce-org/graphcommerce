@@ -1,4 +1,5 @@
 const { isMonorepo } = require('@graphcommerce/next-config')
+const { formatter } = require('@lingui/format-po')
 
 /**
  * Augmenting the locale config to be compatible with GraphCommerce.
@@ -17,7 +18,8 @@ function linguiNextConfig(config) {
     locales: isMonorepo()
       ? ['en', 'nl', 'fr', 'de', 'es', 'it']
       : config.locales.map((l) => l?.split('-')[0]),
-    formatOptions: { lineNumbers: false, origins: false },
+    // formatOptions: { lineNumbers: false, origins: false, explicitIdAsDefault: true },
+    format: formatter({ explicitIdAsDefault: true, lineNumbers: false, origins: false }),
     catalogs: [
       {
         path: 'locales/{locale}',

@@ -57,11 +57,11 @@ export function PaymentMethodContextProvider(props: PaymentMethodContextProvider
   const onSuccessCb: NonNullable<PaymentMethodContextProps['onSuccess']> = useEventCallback(
     async (orderNumber) => {
       await onSuccess?.(orderNumber, context.data?.cart)
-      clearCurrentCartId()
       await push({
         pathname: successUrl,
         query: { order_number: orderNumber, cart_id: context.data?.cart?.id },
       })
+      clearCurrentCartId()
     },
   )
 

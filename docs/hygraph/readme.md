@@ -1,5 +1,5 @@
 ---
-menu: Hygraph
+menu: Overview
 ---
 
 # Hygraph
@@ -66,3 +66,4 @@ Is used to add a`RowProduct (variant:Grid)` and a
 
 - Learn how to
   [build a custom Hygraph component](../getting-started/graphcms-component.md)
+  - Learn how to [upgrade your Hygraph schema](./upgrading.md)

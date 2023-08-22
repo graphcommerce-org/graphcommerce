@@ -1,5 +1,19 @@
 # Change Log
 
+## 6.2.0-canary.86
+
+## 6.2.0-canary.85
+
+### Patch Changes
+
+- [#2027](https://github.com/graphcommerce-org/graphcommerce/pull/2027) [`e384fe2e4`](https://github.com/graphcommerce-org/graphcommerce/commit/e384fe2e47d849fe6f7bfa7c6dd48b9b6b5b1bd1) - Solved an issue where the empty cart would be shown between the payment and success page. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 6.2.0-canary.84
+
+## 6.2.0-canary.83
+
+## 6.2.0-canary.82
+
 ## 6.2.0-canary.81
 
 ## 6.2.0-canary.80

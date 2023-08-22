@@ -26,6 +26,12 @@ extend input GraphCommerceConfig {
     - Delete existing components
     - Update remote sources
     - Delete remote sources
+    - Read existing environments
+    - Read public content views
+    - Create public content views
+    - Update public content views
+    - Delete public content views
+    - Can see schema view
 
   ```
   GC_HYGRAPH_WRITE_ACCESS_ENDPOINT="https://...hygraph.com/v2/..."
@@ -34,4 +40,9 @@ extend input GraphCommerceConfig {
   ```
   """
   hygraphWriteAccessToken: String
+
+  """
+  Hygraph Project ID. **Only used for migrations.**
+  """
+  hygraphProjectId: String
 }

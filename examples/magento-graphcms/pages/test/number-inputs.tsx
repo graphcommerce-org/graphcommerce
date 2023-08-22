@@ -3,28 +3,22 @@ import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   LayoutTitle,
   responsiveVal,
-  IconSvg,
-  iconChevronRight,
-  iconBox,
   GetStaticProps,
-  Button,
-  ButtonProps,
   TextInputNumber,
   TextInputNumberProps,
+  LayoutHeader,
 } from '@graphcommerce/next-ui'
 import { Box, Container, Typography, Divider, styled } from '@mui/material'
 import React, { useState } from 'react'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
 import { graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
-import { Form, NumberFieldElement, useForm } from '@graphcommerce/ecommerce-ui'
-import { useFormAddProductsToCart } from '@graphcommerce/magento-product'
+import { NumberFieldElement, useForm } from '@graphcommerce/ecommerce-ui'
 
 const variants = ['outlined', 'standard'] as const
 const sizes = ['small', 'medium'] as const
 const colors = [undefined, 'primary', 'secondary', 'error'] as const
 
 const Grid = styled('div')(({ theme }) => ({
-  overflow: 'scroll',
   marginTop: `${5 * 8}px`,
   marginBottom: `${5 * 8}px`,
   display: 'grid',
@@ -36,13 +30,14 @@ export default function NumberInputsPage(props: TextInputNumberProps) {
   const { control } = useForm()
   return (
     <>
+      <LayoutHeader />
       <Container>
         <LayoutTitle variant='h1'>TextInputNumber inputs</LayoutTitle>
 
         {variants.map((variant) => (
           <React.Fragment key={variant}>
             {/* <Typography variant='h3'>Variant: {variant}</Typography> */}
-            <Grid>
+            <Grid sx={{ overflow: { xs: 'scroll', md: 'auto' } }}>
               {colors.map((color) => (
                 <Box>
                   <Box
