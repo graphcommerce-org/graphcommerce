@@ -23,6 +23,7 @@ import {
   ProductPagePriceTiers,
   ProductShortDescription,
   ProductSidebarDelivery,
+  ProductPageWrapper,
 } from '@graphcommerce/magento-product'
 import { BundleProductOptions } from '@graphcommerce/magento-product-bundle'
 import {
@@ -69,7 +70,7 @@ function ProductPage(props: Props) {
   if (!product?.sku || !product.url_key) return null
 
   return (
-    <>
+    <ProductPageWrapper product={product}>
       <AddProductsToCartForm key={product.uid} defaultValues={defaultValues}>
         <LayoutHeader floatingMd>
           <LayoutTitle size='small' component='span'>
@@ -185,7 +186,7 @@ function ProductPage(props: Props) {
           }}
         />
       )}
-    </>
+    </ProductPageWrapper>
   )
 }
 
