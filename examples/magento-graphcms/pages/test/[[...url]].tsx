@@ -1,10 +1,12 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { GetStaticProps } from '@graphcommerce/next-ui'
+import { GetStaticProps, LayoutTitle, LinkOrButton } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/react'
 import { GetStaticPaths } from 'next'
 import { LayoutDocument, LayoutNavigation, LayoutNavigationProps } from '../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 import { LayoutDemo } from './minimal-page-shell/[[...url]]'
+import { Container, Divider, Link } from '@mui/material'
 
 type Props = { url: string }
 type RouteProps = { url: string[] }
@@ -12,7 +14,28 @@ type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
 function TestOverview() {
-  return <LayoutDemo baseUrl='/test' />
+  return (
+    <Container>
+      <LayoutDemo baseUrl='/test' />
+      <Divider />
+      <LayoutTitle
+        sx={(theme) => ({
+          '&.gutterBottom': {
+            marginBottom: theme.spacings.sm,
+          },
+        })}
+      >
+        Links to components
+      </LayoutTitle>
+      <Container maxWidth='md' sx={{ display: 'grid', gridColumns: '1' }}>
+        <Link href='/test/buttons'>Buttons</Link>
+        <Link href='/test/icons'>Icons</Link>
+        <Link href='/test/slider'>Slider</Link>
+        <Link href='/test/typography'>Typography</Link>
+        <Link href='/test/number-inputs'>Number-inputs</Link>
+      </Container>
+    </Container>
+  )
 }
 
 TestOverview.pageOptions = {
