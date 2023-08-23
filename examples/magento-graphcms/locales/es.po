@@ -586,6 +586,9 @@ msgstr "Envío ({0} {1})"
 msgid "Shipping address"
 msgstr "Dirección de envío"
 
+msgid "Shipping addresses"
+msgstr "Dirección de Envío"
+
 msgid "Shipping method"
 msgstr "Método de envío"
 
