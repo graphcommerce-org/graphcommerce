@@ -120,6 +120,17 @@ export function useScroller<
     snapToVelocity(info)
   }
 
+  let isScrolling: NodeJS.Timeout | undefined
+
+  const onScroll: MouseEventHandler<HTMLDivElement> = () => {
+    const isScrollable = !scroll.animating.get()
+    if (isScrolling) scroll.animating.set(true)
+    window.clearTimeout(isScrolling)
+    isScrolling = setTimeout(() => {
+      if (!isScrollable) scroll.animating.set(false)
+    }, 100)
+  }
+
   const ref: React.RefCallback<E> = (el) => {
     // @ts-expect-error current is assignable
     scrollerRef.current = el ?? undefined
@@ -285,6 +296,7 @@ export function useScroller<
     onPan,
     onPanEnd,
     onMouseDown,
+    onScroll,
     children,
     className: `${classes.root} ${props.className}`,
     sx,
