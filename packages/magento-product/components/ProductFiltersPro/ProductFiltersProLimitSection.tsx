@@ -12,8 +12,9 @@ import { Trans } from '@lingui/react'
 import { useMemo } from 'react'
 import { useProductFiltersPro } from './ProductFiltersPro'
 
-export type ProductFiltersProLimitSectionProps = object
+export type ProductFiltersProLimitSectionProps = Record<string, unknown>
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function ProductFiltersProLimitSection(props: ProductFiltersProLimitSectionProps) {
   const { form } = useProductFiltersPro()
   const { control } = form

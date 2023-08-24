@@ -1,5 +1,3 @@
-import React from 'react';
-import { arrayOf, bool, oneOf, shape, string } from 'prop-types';
 
 import { useStyle } from '@magento/venia-ui/lib/classify';
 import CmsDynamicBlockGroup, {
@@ -7,6 +5,8 @@ import CmsDynamicBlockGroup, {
     DISPLAY_MODE_SALES_RULE_TYPE,
     DISPLAY_MODE_CATALOG_RULE_TYPE
 } from '@magento/venia-ui/lib/components/CmsDynamicBlock';
+import { arrayOf, bool, oneOf, shape, string } from 'prop-types';
+import React from 'react';
 import defaultClasses from './dynamicBlock.module.css';
 
 /**

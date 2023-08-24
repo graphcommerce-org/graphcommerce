@@ -1,5 +1,6 @@
 import { Controller, useFormAutoSubmit, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
+// eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { FormControl, FormControlLabel, FormHelperText, Switch } from '@mui/material'
 import React, { useEffect, useMemo } from 'react'
 import { AccountAddressFragment } from '../AccountAddress/AccountAddress.gql'

@@ -1,9 +1,10 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { waitForGraphQlResponse } from '@graphcommerce/graphql/test/apolloClient.fixture'
 import { PaymentMethodPlaceOrderNoopDocument } from '@graphcommerce/magento-cart-payment-method/PaymentMethodPlaceOrderNoop/PaymentMethodPlaceOrderNoop.gql'
 import { goToPayment } from '@graphcommerce/magento-cart-payment-method/test/goToPayment'
-import { addConfigurableProductToCart } from '@graphcommerce/magento-product-configurable/test/addConfigurableProductToCart'
 import { test } from '@graphcommerce/magento-product/test/productURL.fixture'
+import { addConfigurableProductToCart } from '@graphcommerce/magento-product-configurable/test/addConfigurableProductToCart'
 import { expect } from '@playwright/test'
 
 test('place order ideal', async ({ page, productURL, apolloClient, locale }) => {

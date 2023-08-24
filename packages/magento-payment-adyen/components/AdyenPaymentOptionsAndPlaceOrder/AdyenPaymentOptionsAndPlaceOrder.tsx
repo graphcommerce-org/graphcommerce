@@ -5,6 +5,7 @@ import {
   usePaymentMethodContext,
 } from '@graphcommerce/magento-cart-payment-method'
 import { FormRow, InputCheckmark } from '@graphcommerce/next-ui'
+// eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { TextField } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useAdyenCartLock } from '../../hooks/useAdyenCartLock'
@@ -67,7 +68,10 @@ export function HppOptions(props: PaymentOptionsProps) {
 
   if (!conf?.issuers?.length) return <form onSubmit={submit} noValidate />
 
-  /** This is the form that the user can fill in. In this case we don't wat the user to fill in anything. */
+  /**
+   * This is the form that the user can fill in. In this case we don't wat the user to fill in
+   * anything.
+   */
   return (
     <form key={key} onSubmit={submit} noValidate>
       {conf?.issuers && (

@@ -1,28 +1,22 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.dynamicRow = void 0;
-const next_config_1 = require("@graphcommerce/next-config");
+exports.graphcommerce6to7 = void 0;
 const management_sdk_1 = require("@hygraph/management-sdk");
-const dotenv_1 = __importDefault(require("dotenv"));
-dotenv_1.default.config();
-const dynamicRow = async (name) => {
-    const config = (0, next_config_1.loadConfig)(process.cwd());
-    if (!config.hygraphWriteAccessEndpoint) {
-        throw new Error('Please provide hygraphWriteAccessEndpoint in your config or GC_HYGRAPH_WRITE_ACCESS_ENDPOINT in your env');
+const migrationAction_1 = require("../migrationAction");
+const graphcommerce6to7 = async (schema) => {
+    if (!migrationAction_1.client) {
+        return 0;
     }
-    if (!config.hygraphWriteAccessToken) {
-        throw new Error('Please provide GC_HYGRAPH_WRITE_ACCESS_TOKEN in your env');
-    }
-    const client = new management_sdk_1.Client({
-        authToken: config.hygraphWriteAccessToken,
-        endpoint: config.hygraphWriteAccessEndpoint,
-        name,
-    });
     // ? ENUMERATIONS
-    client.createEnumeration({
+    (0, migrationAction_1.migrationAction)(schema, 'enumeration', 'create', {
+        displayName: 'Row Column One Variants',
+        apiId: 'RowColumnOneVariants',
+        values: [
+            { displayName: 'Default', apiId: 'Default' },
+            { displayName: 'Message', apiId: 'Message' },
+        ],
+    });
+    (0, migrationAction_1.migrationAction)(schema, 'enumeration', 'create', {
         displayName: 'Dynamic Row Condition Number Operator',
         apiId: 'DynamicRowConditionNumberOperator',
         values: [
@@ -31,7 +25,7 @@ const dynamicRow = async (name) => {
             { displayName: 'Equal to', apiId: 'EQUAL' },
         ],
     });
-    client.createEnumeration({
+    (0, migrationAction_1.migrationAction)(schema, 'enumeration', 'create', {
         displayName: 'Dynamic Row Placement',
         apiId: 'DynamicRowPlacement',
         values: [
@@ -41,43 +35,36 @@ const dynamicRow = async (name) => {
         ],
     });
     // ? COMPONENTS
-    client.createComponent({
+    (0, migrationAction_1.migrationAction)(schema, 'component', 'create', {
         displayName: 'Text',
         apiId: 'ConditionText',
         apiIdPlural: 'ConditionTexts',
     });
-    client.createComponent({
+    (0, migrationAction_1.migrationAction)(schema, 'component', 'create', {
         displayName: 'Number',
         apiId: 'ConditionNumber',
         apiIdPlural: 'ConditionNumbers',
     });
-    client.createComponent({
+    (0, migrationAction_1.migrationAction)(schema, 'component', 'create', {
         displayName: 'AND',
         apiId: 'ConditionAnd',
         apiIdPlural: 'ConditionAnds',
         description: 'All of these conditions must match',
     });
-    client.createComponent({
+    (0, migrationAction_1.migrationAction)(schema, 'component', 'create', {
         displayName: 'OR',
         apiId: 'ConditionOr',
         apiIdPlural: 'ConditionOrs',
         description: 'One of these conditions must match',
     });
-    client.createComponentUnionField({
+    (0, migrationAction_1.migrationAction)(schema, 'componentUnionField', 'create', {
         displayName: 'Conditions',
         apiId: 'conditions',
         parentApiId: 'ConditionAnd',
         componentApiIds: ['ConditionOr', 'ConditionText', 'ConditionNumber'],
         isList: true,
-    });
-    client.createComponentUnionField({
-        displayName: 'Conditions',
-        apiId: 'conditions',
-        parentApiId: 'ConditionOr',
-        componentApiIds: ['ConditionText', 'ConditionNumber'],
-        isList: true,
-    });
-    client.createSimpleField({
+    }, 'ConditionAnd', 'component');
+    (0, migrationAction_1.migrationAction)(schema, 'simpleField', 'create', {
         displayName: 'Property',
         apiId: 'property',
         type: management_sdk_1.SimpleFieldType.String,
@@ -93,15 +80,15 @@ const dynamicRow = async (name) => {
                 },
             },
         },
-    });
-    client.createSimpleField({
+    }, 'ConditionText', 'component');
+    (0, migrationAction_1.migrationAction)(schema, 'simpleField', 'create', {
         displayName: 'Value',
         apiId: 'value',
         type: management_sdk_1.SimpleFieldType.String,
         parentApiId: 'ConditionText',
         isRequired: true,
-    });
-    client.createSimpleField({
+    }, 'ConditionText', 'component');
+    (0, migrationAction_1.migrationAction)(schema, 'simpleField', 'create', {
         displayName: 'Property',
         apiId: 'property',
         type: management_sdk_1.SimpleFieldType.String,
@@ -116,29 +103,29 @@ const dynamicRow = async (name) => {
                 },
             },
         },
-    });
-    client.createEnumerableField({
+    }, 'ConditionNumber', 'component');
+    (0, migrationAction_1.migrationAction)(schema, 'enumerableField', 'create', {
         displayName: 'Operator',
         apiId: 'operator',
         parentApiId: 'ConditionNumber',
         enumerationApiId: 'DynamicRowConditionNumberOperator',
         isRequired: true,
-    });
-    client.createSimpleField({
+    }, 'ConditionNumber', 'component');
+    (0, migrationAction_1.migrationAction)(schema, 'simpleField', 'create', {
         displayName: 'Value',
         apiId: 'value',
         type: management_sdk_1.SimpleFieldType.Float,
         parentApiId: 'ConditionNumber',
         isRequired: true,
-    });
+    }, 'ConditionNumber', 'component');
     // ? MODEL
-    client.createModel({
+    (0, migrationAction_1.migrationAction)(schema, 'model', 'create', {
+        displayName: 'Dynamic Row',
         apiId: 'DynamicRow',
         apiIdPlural: 'DynamicRows',
-        displayName: 'Dynamic Row',
         description: 'Dynamic rows allow you to add specific Row models to pages based on the properties of the page',
     });
-    client.createSimpleField({
+    (0, migrationAction_1.migrationAction)(schema, 'simpleField', 'create', {
         displayName: 'Internal name',
         apiId: 'internalName',
         description: 'Only used for internal reference',
@@ -147,8 +134,8 @@ const dynamicRow = async (name) => {
         isRequired: true,
         isUnique: true,
         modelApiId: 'DynamicRow',
-    });
-    client.createUnionField({
+    }, 'DynamicRow', 'model');
+    (0, migrationAction_1.migrationAction)(schema, 'unionField', 'create', {
         displayName: 'Row',
         apiId: 'row',
         reverseField: {
@@ -159,16 +146,16 @@ const dynamicRow = async (name) => {
             isList: true,
         },
         parentApiId: 'DynamicRow',
-    });
-    client.createEnumerableField({
+    }, 'DynamicRow', 'model');
+    (0, migrationAction_1.migrationAction)(schema, 'enumerableField', 'create', {
         displayName: 'Placement',
         apiId: 'placement',
         parentApiId: 'DynamicRow',
         enumerationApiId: 'DynamicRowPlacement',
         description: 'Where will the row be placed relative to the target',
         isRequired: true,
-    });
-    client.createUnionField({
+    }, 'DynamicRow', 'model');
+    (0, migrationAction_1.migrationAction)(schema, 'unionField', 'create', {
         displayName: 'Placement target',
         apiId: 'target',
         description: 'Optional: When the target is left blank it will place the Dynamic Row on the start or end.',
@@ -193,15 +180,22 @@ const dynamicRow = async (name) => {
             isList: true,
         },
         parentApiId: 'DynamicRow',
-    });
-    client.createComponentUnionField({
+    }, 'DynamicRow', 'model');
+    (0, migrationAction_1.migrationAction)(schema, 'componentUnionField', 'create', {
         displayName: 'Conditions (OR)',
         apiId: 'conditions',
         parentApiId: 'DynamicRow',
         description: 'One of these conditions must match',
         componentApiIds: ['ConditionAnd', 'ConditionText', 'ConditionNumber'],
         isList: true,
-    });
-    return client.run(true);
+    }, 'DynamicRow', 'model');
+    // ? Row Column One
+    (0, migrationAction_1.migrationAction)(schema, 'enumerableField', 'create', {
+        displayName: 'Variant',
+        apiId: 'rowColumnOneVariant',
+        enumerationApiId: 'RowColumnOneVariants',
+        parentApiId: 'RowColumnOne',
+    }, 'RowColumnOne', 'model');
+    return migrationAction_1.client.run(true);
 };
-exports.dynamicRow = dynamicRow;
+exports.graphcommerce6to7 = graphcommerce6to7;

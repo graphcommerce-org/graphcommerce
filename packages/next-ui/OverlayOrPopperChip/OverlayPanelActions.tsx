@@ -24,7 +24,7 @@ export const OverlayPanelActions = (props: PanelActionsProps) => {
     <>
       <LayoutOverlayHeader
         noAlign
-        sx={{ '&.noAlign': { mb: 0 } }}
+        sx={[{ '&.noAlign': { mb: 0 } }, ...(Array.isArray(sx) ? sx : [sx])]}
         switchPoint={-10000}
         size='small'
         primary={

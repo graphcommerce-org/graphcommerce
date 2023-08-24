@@ -1,5 +1,25 @@
 # Change Log
 
+## 6.2.0-canary.89
+
+## 6.2.0-canary.88
+
+## 6.2.0-canary.87
+
+## 6.2.0-canary.86
+
+### Minor Changes
+
+- [#2023](https://github.com/graphcommerce-org/graphcommerce/pull/2023) [`7cd53fb2a`](https://github.com/graphcommerce-org/graphcommerce/commit/7cd53fb2aca18ae4a56025b2a015fecbda2e47b7) - Added links to test components on the test page. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 6.2.0-canary.85
+
+## 6.2.0-canary.84
+
+## 6.2.0-canary.83
+
+## 6.2.0-canary.82
+
 ## 6.2.0-canary.81
 
 ### Minor Changes

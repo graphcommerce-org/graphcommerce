@@ -43,7 +43,7 @@ const renderLine = (line: {
 
 export const flushMeasurePerf = () => {
   const entries = Array.from(running.entries())
-  if (entries.length === 0 || !entries.every(([k, v]) => v.end)) return
+  if (entries.length === 0 || !entries.every(([, v]) => v.end)) return
 
   /**
    * Print to the console a timeline that gives a visual reprentation of the starting time and
@@ -55,7 +55,7 @@ export const flushMeasurePerf = () => {
 
   let start = Number.MAX_VALUE
   let end = 0
-  entries.forEach(([_, value]) => {
+  entries.forEach(([, value]) => {
     if (value.start.getTime() < start) start = value.start.getTime()
     if (value.end && value.end.getTime() > end) end = value.end.getTime()
   })
@@ -63,7 +63,7 @@ export const flushMeasurePerf = () => {
 
   const colDivider = end > 1000 ? end / 50 : 1000 / 50
 
-  const lines = entries.map(([_, value]) => {
+  const lines = entries.map(([, value]) => {
     const requestStart = value.start.getTime() - start
     const requestEnd = value.end ? value.end.getTime() - start : 0
     const duration = requestEnd - requestStart
@@ -109,9 +109,10 @@ export const flushMeasurePerf = () => {
   // padd the items to the max length
   items.forEach((item) => {
     item.forEach((_, index) => {
-      const [str, link] = (
-        Array.isArray(item[index]) ? item[index] : [item[index], item[index]]
-      ) as [string, string]
+      const [str] = (Array.isArray(item[index]) ? item[index] : [item[index], item[index]]) as [
+        string,
+        string,
+      ]
 
       const val = (Array.isArray(item[index]) ? item[index][1] : item[index]) as string
 

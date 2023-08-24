@@ -1,7 +1,6 @@
 import { ApolloErrorAlert, ApolloErrorAlertProps } from '@graphcommerce/ecommerce-ui'
 import { Button } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Link } from '@mui/material'
 import { useCustomerSession } from '../../hooks/useCustomerSession'
 import { useAuthorizationErrorMasked } from './useAuthorizationErrorMasked'
 

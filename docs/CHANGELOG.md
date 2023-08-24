@@ -1,5 +1,25 @@
 # Change Log
 
+## 6.2.0-canary.89
+
+## 6.2.0-canary.88
+
+## 6.2.0-canary.87
+
+### Patch Changes
+
+- [#2022](https://github.com/graphcommerce-org/graphcommerce/pull/2022) [`0495db84d`](https://github.com/graphcommerce-org/graphcommerce/commit/0495db84d1d450750bd74b94a379b4e7764a5753) - add documentation for the GraphCommerceStorefrontConfig gallery option. ([@carlocarels90](https://github.com/carlocarels90))
+
+## 6.2.0-canary.86
+
+## 6.2.0-canary.85
+
+## 6.2.0-canary.84
+
+## 6.2.0-canary.83
+
+## 6.2.0-canary.82
+
 ## 6.2.0-canary.81
 
 ## 6.2.0-canary.80

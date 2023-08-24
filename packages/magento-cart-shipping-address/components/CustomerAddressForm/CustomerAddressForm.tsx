@@ -1,3 +1,9 @@
+import {
+  useFormPersist,
+  useFormCompose,
+  UseFormComposeOptions,
+  useFormAutoSubmit,
+} from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import {
   ApolloCartErrorAlert,
@@ -6,14 +12,8 @@ import {
 } from '@graphcommerce/magento-cart'
 import { CustomerDocument } from '@graphcommerce/magento-customer'
 import { ActionCardListForm } from '@graphcommerce/next-ui'
-import {
-  useFormPersist,
-  useFormCompose,
-  UseFormComposeOptions,
-  useFormAutoSubmit,
-} from '@graphcommerce/react-hook-form'
 import { Box, SxProps, Theme } from '@mui/material'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { isSameAddress } from '../../utils/isSameAddress'
 import { GetAddressesDocument } from '../ShippingAddressForm/GetAddresses.gql'
 import { CustomerAddressActionCard } from './CustomerAddressActionCard'

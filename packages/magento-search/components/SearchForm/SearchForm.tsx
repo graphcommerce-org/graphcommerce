@@ -20,9 +20,6 @@ const { classes } = extendableComponent('SearchForm' as const, ['root'] as const
 export function SearchForm(props: SearchFormProps) {
   const searchInputElement = useRef<HTMLInputElement>(null)
 
-  const renderCount = useRef(0)
-  console.log('SearchForm render', renderCount.current++)
-
   useEffect(() => {
     searchInputElement.current?.focus()
   }, [])

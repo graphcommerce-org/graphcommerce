@@ -29,8 +29,9 @@ export function ProductFiltersProAggregations(props: ProductFiltersProAggregatio
         const Component = renderer?.[filterType]
         if (!Component) {
           if (process.env.NODE_ENV === 'development') {
+            // eslint-disable-next-line no-console
             console.log(
-              `The renderer for fitlerType ${filterType} can not be found, please add it to the renderer prop: renderer={{ ${filterType}: (props) => <>MYRenderer</> }}}}`,
+              `The renderer for filterType ${filterType} can not be found, please add it to the renderer prop: renderer={{ ${filterType}: (props) => <>MYRenderer</> }}}}`,
             )
           }
           return null

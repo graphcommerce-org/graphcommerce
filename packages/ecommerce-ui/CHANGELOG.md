@@ -1,5 +1,25 @@
 # @graphcommerce/ecommerce-ui
 
+## 6.2.0-canary.89
+
+### Patch Changes
+
+- [#2031](https://github.com/graphcommerce-org/graphcommerce/pull/2031) [`4d8fc9e99`](https://github.com/graphcommerce-org/graphcommerce/commit/4d8fc9e998fc9361282833316ec9564da0644ed6) - Eslint fixes and suppress accepted warnings ([@paales](https://github.com/paales))
+
+## 6.2.0-canary.88
+
+## 6.2.0-canary.87
+
+## 6.2.0-canary.86
+
+## 6.2.0-canary.85
+
+## 6.2.0-canary.84
+
+## 6.2.0-canary.83
+
+## 6.2.0-canary.82
+
 ## 6.2.0-canary.81
 
 ## 6.2.0-canary.80

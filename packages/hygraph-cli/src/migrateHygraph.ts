@@ -1,73 +1,86 @@
-/* eslint-disable no-console */
-/* eslint-disable import/no-extraneous-dependencies */
-import readline from 'readline'
-import { MigrationInfo } from '@hygraph/management-sdk/dist/ManagementAPIClient'
-import { dynamicRow } from './migrations/dynamicRow'
+import fs from 'fs'
+import { loadConfig } from '@graphcommerce/next-config'
+import type { MigrationInfo } from '@hygraph/management-sdk/dist/src/ManagementAPIClient'
+import dotenv from 'dotenv'
+import prompts, { PromptObject } from 'prompts'
+import { graphcommerceLog } from './log-functions'
+import * as migrations from './migrations'
+import { readSchema } from './readSchema'
+import { Schema } from './types'
+
+dotenv.config()
 
 export async function migrateHygraph() {
-  let forceRun = false
+  const config = loadConfig(process.cwd())
 
-  // Interface to determine if force run should be enabled
-  readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-  })
+  /**
+   * Extracting the current GC version. Are we gonna use the current version to determine which
+   * scripts should be runned? Or do we let the user pick the migration from a list? 🤔
+   */
+  const packageJson = fs.readFileSync('package.json', 'utf8')
+  const packageData = JSON.parse(packageJson)
+  const graphcommerceVersion = packageData.dependencies['@graphcommerce/next-ui']
 
-  const affirmativeAnswers = ['y', 'yes', 'Y', 'YES']
+  graphcommerceLog(`Graphcommerce version: ${graphcommerceVersion}`, 'info')
 
-  const handleKeypress = (key: string) => {
-    if (affirmativeAnswers.includes(key.toLowerCase())) {
-      console.log('\nForce run enabled')
-      forceRun = true
-    } else {
-      console.log('\nForce run disabled')
-      forceRun = false
-    }
+  // Extract the currently existing models, components and enumerations from the Hygraph schema.
+  const schemaViewer = await readSchema(config)
+  const schema: Schema = schemaViewer.viewer.project.environment.contentModel
 
-    process.stdin.pause()
+  // A list of possible migrations
+  const possibleMigrations: [string, (schema: Schema) => Promise<0 | MigrationInfo>][] =
+    Object.entries(migrations)
+
+  // Here we setup the list we ask the user to choose from
+  const selectMigrationInput: PromptObject<string> | PromptObject<string>[] = {
+    type: 'select',
+    name: 'selectedMigration',
+    message: '\x1b[36m\x1b[1m[GraphCommerce]: Select migration',
+    choices: [],
   }
 
-  // Listen for keypress events
-  process.stdin.on('keypress', handleKeypress)
-  process.stdin.setRawMode(true)
-  process.stdin.resume()
-
-  console.log('Enable force run? (y/n)')
-
-  // Wait for input
-  await new Promise<void>((resolve) => {
-    process.stdin.once('data', () => {
-      // Stop listening for input
-      process.stdin.removeListener('keypress', handleKeypress)
-      process.stdin.setRawMode(false)
-
-      resolve()
-    })
-  })
-
-  // TODO: Choose migration
-  // TODO: GC-Version based migration
-  const possibleMigrations: [string, (name: string | undefined) => Promise<MigrationInfo>][] = [
-    ['add_dynamic_rows', dynamicRow],
-  ]
-
   for (const [name, migration] of possibleMigrations) {
-    try {
-      // eslint-disable-next-line no-await-in-loop
-      const result = await migration(forceRun ? undefined : name)
-      console.log(result)
+    if (Array.isArray(selectMigrationInput.choices)) {
+      selectMigrationInput?.choices?.push({ title: name, value: { name, migration } })
+    }
+  }
 
+  // Here we ask the user to choose a migration from a list of possible migrations
+  try {
+    graphcommerceLog('Available migrations: ', 'info')
+    const selectMigrationOutput = await prompts(selectMigrationInput)
+    const { migration, name } = selectMigrationOutput.selectedMigration
+    graphcommerceLog(
+      `You have selected the ${selectMigrationOutput.selectedMigration.name} migration`,
+      'info',
+    )
+
+    try {
+      // Here we try to run the migration
+      // eslint-disable-next-line no-await-in-loop
+      const result = await migration(schema)
+
+      graphcommerceLog(`Migration result: ${JSON.stringify(result)}`, 'info')
+      if (!result) {
+        throw new Error(
+          '[GraphCommerce]: No migration client found. Please make sure your GC_HYGRAPH_WRITE_ACCESS_ENDPOINT and GC_HYGRAPH_WRITE_ACCESS_TOKEN in your env file are correct.',
+        )
+      }
       if (result.status !== 'SUCCESS') {
-        throw new Error(`Migration not successful: ${result.status} ${name}:\n${result.errors}`)
+        throw new Error(
+          `[GraphCommerce]: Migration not successful: ${result.status} ${name}:\n${result.errors}`,
+        )
       }
 
-      console.log(`Migration successful: ${name}`)
+      graphcommerceLog(`Migration successful: ${name}`, 'info')
     } catch (err) {
       if (err instanceof Error) {
         const garbledErrorIndex = err.message.indexOf(': {"')
         const msg = garbledErrorIndex > 0 ? err.message.slice(0, garbledErrorIndex) : err.message
-        console.error(msg)
+        graphcommerceLog(`${msg}`, 'error')
       }
     }
+  } catch (error) {
+    graphcommerceLog(`[GraphCommerce]: An error occurred: ${error}`, 'error')
   }
 }

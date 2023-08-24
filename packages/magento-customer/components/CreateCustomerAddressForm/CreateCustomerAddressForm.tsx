@@ -12,6 +12,7 @@ import {
 import { phonePattern, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
+// eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { TextField } from '@mui/material'
 import { useRouter } from 'next/router'
 import { AddressFields } from '../AddressFields/AddressFields'
@@ -43,7 +44,7 @@ export function CreateCustomerAddressForm() {
             {},
         }
       },
-      onComplete: (e) => {
+      onComplete: () => {
         // eslint-disable-next-line @typescript-eslint/no-floating-promises
         router.push(`/account/addresses`)
       },

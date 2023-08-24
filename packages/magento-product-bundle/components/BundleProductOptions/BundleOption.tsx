@@ -17,7 +17,6 @@ export const BundleOption = React.memo<BundleOptionProps>((props) => {
   const { idx, index, options, title, color, layout, size, variant, required: _required } = props
   const { control } = useFormAddProductsToCart()
 
-  const can_change_quantity = options?.some((o) => o?.can_change_quantity)
   const required = _required ?? false
 
   return (
@@ -44,7 +43,6 @@ export const BundleOption = React.memo<BundleOptionProps>((props) => {
             ? `cartItems.${index}.entered_options.${idx}.uid`
             : `cartItems.${index}.selected_options.${idx}`
         }
-        // collapse={can_change_quantity}
         render={BundleOptionValue}
         items={useMemo(
           () =>
