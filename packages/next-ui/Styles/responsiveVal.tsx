@@ -6,7 +6,7 @@
 export function responsiveVal(
   min: number,
   max: number,
-  maxBreakpoint = 1280,
+  maxBreakpoint = 2560,
 ): `max(${number}px, min(${string}, ${number}px))` {
   const round = (x: number, n: number): number => Math.round(x * 10 ** n) / 10 ** n
 
