@@ -42,13 +42,17 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
 
   const inclTaxes = useDisplayInclTax()
 
-  const price = () => {
-    if (inclTaxes) {
-      return prices?.price_including_tax
-        ? prices.price_including_tax.value
-        : (prices?.row_total_including_tax?.value ?? 0) / quantity
+  let price: number | null | undefined
+
+  if (inclTaxes) {
+    if (prices?.price_including_tax) {
+      price = prices.price_including_tax.value
+    } else {
+      const rowTotalIncludingTax = prices?.row_total_including_tax?.value ?? 0
+      price = rowTotalIncludingTax / quantity
     }
-    return prices?.price.value
+  } else {
+    price = prices?.price.value
   }
 
   return (
@@ -127,7 +131,7 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
         <>
           <UpdateItemQuantity uid={uid} quantity={quantity} />
           {' ⨉ '}
-          <Money value={price()} currency={prices?.price.currency} />
+          <Money value={price} currency={prices?.price.currency} />
         </>
       }
       price={<Money {...(inclTaxes ? prices?.row_total_including_tax : prices?.row_total)} />}
