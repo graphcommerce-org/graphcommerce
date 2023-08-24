@@ -54,7 +54,7 @@ const main = async () => {
   const conf = (await findConfig({})) as YamlConfig.Config
 
   // We're configuring a custom fetch function
-  conf.customFetch = '@graphcommerce/graphql-mesh/customFetch'
+  conf.customFetch = require.resolve('@graphcommerce/graphql-mesh/customFetch')
   conf.serve = { ...conf.serve, endpoint: '/api/graphql' }
 
   // Rewrite additionalResolvers so we can use module resolution more easily
