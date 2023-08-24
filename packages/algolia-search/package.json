@@ -2,7 +2,7 @@
   "name": "@graphcommerce/algolia-search",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "6.2.0-canary.89",
+  "version": "6.2.0-canary.90",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -12,20 +12,20 @@
     }
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "6.2.0-canary.89",
-    "@graphcommerce/next-config": "^6.2.0-canary.89",
-    "@graphcommerce/prettier-config-pwa": "6.2.0-canary.89",
-    "@graphcommerce/typescript-config-pwa": "6.2.0-canary.89"
+    "@graphcommerce/eslint-config-pwa": "6.2.0-canary.90",
+    "@graphcommerce/next-config": "^6.2.0-canary.90",
+    "@graphcommerce/prettier-config-pwa": "6.2.0-canary.90",
+    "@graphcommerce/typescript-config-pwa": "6.2.0-canary.90"
   },
   "dependencies": {
-    "@graphcommerce/graphql": "6.2.0-canary.89",
-    "@graphcommerce/ecommerce-ui": "6.2.0-canary.89",
-    "@graphcommerce/magento-search": "6.2.0-canary.89",
-    "@graphcommerce/next-config": "^6.2.0-canary.89",
-    "@graphcommerce/next-ui": "6.2.0-canary.89",
-    "@graphcommerce/magento-product": "6.2.0-canary.89",
-    "@graphcommerce/graphql-mesh": "6.2.0-canary.89",
-    "@graphcommerce/magento-store": "6.2.0-canary.89",
+    "@graphcommerce/graphql": "6.2.0-canary.90",
+    "@graphcommerce/ecommerce-ui": "6.2.0-canary.90",
+    "@graphcommerce/magento-search": "6.2.0-canary.90",
+    "@graphcommerce/next-config": "^6.2.0-canary.90",
+    "@graphcommerce/next-ui": "6.2.0-canary.90",
+    "@graphcommerce/magento-product": "6.2.0-canary.90",
+    "@graphcommerce/graphql-mesh": "6.2.0-canary.90",
+    "@graphcommerce/magento-store": "6.2.0-canary.90",
     "algoliasearch": "^4.15.0",
     "react-instantsearch-hooks-web": "^6.41.0"
   },
