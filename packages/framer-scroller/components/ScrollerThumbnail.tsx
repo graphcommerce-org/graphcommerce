@@ -49,10 +49,12 @@ export function ScrollerThumbnail(props: ScrollerThumbnailProps) {
 
   const classes = withState({ active })
 
+  const scrollIntoView = () => ref.current?.scrollIntoView({ block: 'nearest', behavior: 'smooth' })
+
   useMotionValueEvent(scroll.animating, 'change', (v) => {
     if (!v && active && ref.current) {
       // This is a hack to ensure that the scroll animation is finished.
-      setTimeout(() => ref.current?.scrollIntoView({ block: 'nearest', behavior: 'smooth' }), 1)
+      setTimeout(() => scrollIntoView(), 1)
     }
   })
 
@@ -64,9 +66,11 @@ export function ScrollerThumbnail(props: ScrollerThumbnailProps) {
       className={classes.thumbnail}
       onClick={() => {
         if (!scrollerRef.current) return
+        scroll.animating.set(true)
         const { x } = getScrollSnapPositions()
         scrollerRef.current.scrollLeft = x[idx]
         scroll.x.set(x[idx])
+        scroll.animating.set(false)
       }}
       // layout
       style={{ boxShadow }}
