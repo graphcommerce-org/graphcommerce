@@ -23,7 +23,7 @@ import {
   ProductPagePriceTiers,
   ProductShortDescription,
   ProductSidebarDelivery,
-  ProductPageWrapper,
+  StickyAddToCart,
 } from '@graphcommerce/magento-product'
 import { BundleProductOptions } from '@graphcommerce/magento-product-bundle'
 import {
@@ -38,6 +38,7 @@ import { GetStaticProps, LayoutHeader, LayoutTitle, isTypename } from '@graphcom
 import { Trans } from '@lingui/react'
 import { Divider, Link, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
+import { useRef } from 'react'
 import {
   LayoutDocument,
   LayoutNavigation,
@@ -67,10 +68,13 @@ function ProductPage(props: Props) {
     relatedUpsells?.items?.find((item) => item?.uid === products?.items?.[0]?.uid),
   )
 
+  const cartButtonRef = useRef<HTMLButtonElement | null>(null)
+
   if (!product?.sku || !product.url_key) return null
 
   return (
-    <ProductPageWrapper product={product}>
+    <>
+      <StickyAddToCart product={product} cartButtonRef={cartButtonRef} />
       <AddProductsToCartForm key={product.uid} defaultValues={defaultValues}>
         <LayoutHeader floatingMd>
           <LayoutTitle size='small' component='span'>
@@ -157,7 +161,7 @@ function ProductPage(props: Props) {
           <ProductSidebarDelivery product={product} />
 
           <ProductPageAddToCartActionsRow product={product}>
-            <AddProductsToCartButton fullWidth product={product} />
+            <AddProductsToCartButton forwardedRef={cartButtonRef} fullWidth product={product} />
             <ProductWishlistChipDetail {...product} />
           </ProductPageAddToCartActionsRow>
 
@@ -186,7 +190,7 @@ function ProductPage(props: Props) {
           }}
         />
       )}
-    </ProductPageWrapper>
+    </>
   )
 }
 
