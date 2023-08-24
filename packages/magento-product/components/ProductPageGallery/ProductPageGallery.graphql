@@ -4,6 +4,7 @@ fragment ProductPageGallery on ProductInterface {
     label
     position
     disabled
+    url
     ...ProductImage
     ...ProductVideo
   }
