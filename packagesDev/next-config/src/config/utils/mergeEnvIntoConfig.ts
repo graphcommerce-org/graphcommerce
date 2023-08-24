@@ -15,6 +15,8 @@ import {
   ZodEffects,
   ZodRawShape,
   ZodEnum,
+  ZodTypeAny,
+  ZodAny,
 } from 'zod'
 import diff from './diff'
 
@@ -39,14 +41,15 @@ function isJSON(str: string | undefined): boolean {
 }
 
 export type ZodNode =
-  | ZodNullable<any>
-  | ZodOptional<any>
-  | ZodEffects<any>
-  | ZodObject<any>
-  | ZodArray<any>
+  | ZodNullable<ZodTypeAny>
+  | ZodOptional<ZodTypeAny>
+  | ZodEffects<ZodTypeAny>
+  | ZodObject<ZodRawShape>
+  | ZodArray<ZodTypeAny>
   | ZodString
   | ZodNumber
   | ZodBoolean
+  | ZodAny
 
 export function configToEnvSchema(schema: ZodNode) {
   const envSchema: ZodRawShape = {}

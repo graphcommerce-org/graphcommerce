@@ -1,6 +1,7 @@
 import { useFormGqlMutationCart, ApolloCartErrorAlert } from '@graphcommerce/magento-cart'
 import { responsiveVal, Button, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
+// eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { Box, FormControl, SxProps, TextField, Theme } from '@mui/material'
 import { ApplyCouponFormDocument } from './ApplyCouponForm.gql'
 

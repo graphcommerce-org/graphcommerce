@@ -96,7 +96,8 @@ export function CartItem(props: CartItemProps) {
             uid={uid}
             quantity={quantity}
             prices={prices}
-            className={classes.badge}
+            product={product}
+            fabProps={{ className: classes.badge }}
             sx={(theme) => ({
               '& > button': {
                 background: theme.palette.background.paper,

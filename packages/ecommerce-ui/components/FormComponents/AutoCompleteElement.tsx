@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-restricted-imports */
 import { Controller, ControllerProps, FieldValues } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import {
@@ -87,7 +88,7 @@ export function AutocompleteElement<TFieldValues extends FieldValues>({
             isOptionEqualToValue={
               autocompleteProps?.isOptionEqualToValue
                 ? autocompleteProps.isOptionEqualToValue
-                : (option, value) => (value ? option.id === (value?.id || value) : false)
+                : (option, v) => (v ? option.id === (v?.id || v) : false)
             }
             getOptionLabel={
               autocompleteProps?.getOptionLabel

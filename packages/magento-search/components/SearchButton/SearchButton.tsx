@@ -1,5 +1,6 @@
 import { iconSearch, responsiveVal, IconSvg, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
+// eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { TextField, TextFieldProps } from '@mui/material'
 
 export type SearchButtonProps = TextFieldProps

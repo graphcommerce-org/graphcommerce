@@ -5,7 +5,6 @@ import {
   ActionCardItemRenderProps,
   ActionCardListForm,
   ActionCardProps,
-  responsiveVal,
 } from '@graphcommerce/next-ui'
 import {
   useForm,

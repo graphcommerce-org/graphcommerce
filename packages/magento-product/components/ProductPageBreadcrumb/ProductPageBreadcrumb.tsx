@@ -1,7 +1,7 @@
 import { usePrevPageRouter } from '@graphcommerce/framer-next-pages'
 import { filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Breadcrumbs, BreadcrumbsProps, Container, Link, Typography } from '@mui/material'
+import { Breadcrumbs, BreadcrumbsProps, Link, Typography } from '@mui/material'
 import { productPageCategory } from '../ProductPageCategory/productPageCategory'
 import { ProductPageBreadcrumbFragment } from './ProductPageBreadcrumb.gql'
 
@@ -22,7 +22,7 @@ export function ProductPageBreadcrumb(props: ProductPageBreadcrumbsProps) {
       </Link>
       {filterNonNullableKeys(category?.breadcrumbs, ['category_level'])
         .sort((a, b) => a.category_level - b.category_level)
-        .map((breadcrumb, i) => (
+        .map((breadcrumb) => (
           <Link
             underline='hover'
             key={breadcrumb.category_uid}

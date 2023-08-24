@@ -11,6 +11,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
+// eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { Box, TextField, Typography, Alert, Button, SxProps, Theme } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'

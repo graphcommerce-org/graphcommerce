@@ -360,6 +360,11 @@ export type MagentoConfigurableVariantValues = {
   /** Use the name, description, short description and meta data from the configured variant */
   content?: InputMaybe<Scalars['Boolean']['input']>;
   /**
+   * This option enables the automatic update of product gallery images on the product page when a variant is selected,
+   * provided that the gallery images for the selected variant differ from the currently displayed images.
+   */
+  gallery?: InputMaybe<Scalars['Boolean']['input']>;
+  /**
    * When a variant is selected the URL of the product will be changed in the address bar.
    *
    * This only happens when the actual variant is can be accessed by the URL.
@@ -446,6 +451,7 @@ export function GraphCommerceStorefrontConfigSchema(): z.ZodObject<Properties<Gr
 export function MagentoConfigurableVariantValuesSchema(): z.ZodObject<Properties<MagentoConfigurableVariantValues>> {
   return z.object({
     content: z.boolean().nullish(),
+    gallery: z.boolean().nullish(),
     url: z.boolean().nullish()
   })
 }

@@ -11,7 +11,7 @@ import {
 import { Trans } from '@lingui/react'
 import { Divider, Typography, Alert, Box, SxProps, Theme } from '@mui/material'
 import React from 'react'
-import { Selected, useConfigurableContext } from '../ConfigurableContext/ConfigurableContext'
+import { useConfigurableContext } from '../ConfigurableContext/ConfigurableContext'
 import cheapestVariant from '../ConfigurableContext/cheapestVariant'
 import {
   ConfigurableOptionsInput,

@@ -124,7 +124,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   return { paths, fallback: 'blocking' }
 }
 
-export const getStaticProps: GetPageStaticProps = async ({ params, locale, defaultLocale }) => {
+export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
   const client = graphqlSharedClient(locale)
   const staticClient = graphqlSsrClient(locale)
 

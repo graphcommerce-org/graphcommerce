@@ -8,6 +8,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { emailPattern } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
+// eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { Box, CircularProgress, Link, SxProps, TextField, Theme, Typography } from '@mui/material'
 import router from 'next/router'
 import { CustomerDocument, useFormIsEmailAvailable } from '../../hooks'

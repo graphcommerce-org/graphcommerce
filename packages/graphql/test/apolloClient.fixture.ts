@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-empty-pattern */
 import { test as base, Page } from '@playwright/test'
 import {

@@ -18,6 +18,7 @@ export type RedirectOr404Return = Promise<
 
 const notFound = (from: string, reason: string) => {
   flushMeasurePerf()
+  // eslint-disable-next-line no-console
   console.log(`[redirectOrNotFound: /${from}] ${reason}`)
   return { notFound: true, revalidate: 60 * 20 } as const
 }
@@ -132,6 +133,7 @@ export async function redirectOrNotFound(
     if (e instanceof Error) {
       return notFound(from, `Error while redirecting: ${e.message}`)
     }
+    // eslint-disable-next-line no-console
     console.log(e)
     return notFound(from, `Error while redirecting`)
   }

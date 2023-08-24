@@ -31,14 +31,8 @@ const typographySizes = {
 
 export function CartItemActionCard(props: CartItemActionCardProps) {
   const { cartItem, sx = [], size = 'large', ...rest } = props
-
-  const {
-    uid,
-    quantity,
-    prices,
-    errors,
-    product: { name, thumbnail, url_key },
-  } = cartItem
+  const { uid, quantity, prices, errors, product } = cartItem
+  const { name, thumbnail, url_key } = product
 
   const inclTaxes = useDisplayInclTax()
 
@@ -135,7 +129,14 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
         </>
       }
       price={<Money {...(inclTaxes ? prices?.row_total_including_tax : prices?.row_total)} />}
-      action={<RemoveItemFromCart uid={uid} quantity={quantity} buttonProps={{ size }} />}
+      action={
+        <RemoveItemFromCart
+          uid={uid}
+          quantity={quantity}
+          product={product}
+          buttonProps={{ size }}
+        />
+      }
       size={size}
       after={filterNonNullableKeys(errors).map((error) => (
         <Box sx={{ color: 'error.main', typography: 'caption' }} key={error.message}>

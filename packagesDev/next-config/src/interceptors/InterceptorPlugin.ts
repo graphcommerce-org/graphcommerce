@@ -16,6 +16,7 @@ export class InterceptorPlugin {
   constructor(private config: GraphCommerceConfig) {
     this.resolveDependency = resolveDependency()
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [plugins, errors] = findPlugins(this.config)
     this.interceptors = generateInterceptors(plugins, this.resolveDependency, this.config.debug)
     this.interceptorByDepependency = Object.fromEntries(
@@ -30,6 +31,7 @@ export class InterceptorPlugin {
 
     // After the compilation has succeeded we watch all possible plugin locations.
     compiler.hooks.afterCompile.tap('InterceptorPlugin', (compilation) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const [plugins, errors] = findPlugins(this.config)
 
       plugins.forEach((p) => {

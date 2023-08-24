@@ -23,7 +23,7 @@ import {
 import { OverlayStickyBottom } from '@graphcommerce/next-ui/Overlay/components/OverlayStickyBottom'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Box, CircularProgress, Container } from '@mui/material'
+import { CircularProgress, Container } from '@mui/material'
 import { LayoutOverlay, LayoutOverlayProps } from '../components'
 import { graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
 
