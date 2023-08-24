@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { test } from '@graphcommerce/magento-product/test/productURL.fixture'
 import { expect } from '@playwright/test'
 import { addConfigurableProductToCart } from './addConfigurableProductToCart'

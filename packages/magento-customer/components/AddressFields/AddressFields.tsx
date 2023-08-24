@@ -21,8 +21,8 @@ export type AddressFieldValues = {
   city?: string
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type AddressFieldsProps = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   form: UseFormReturn<any>
   readOnly?: boolean
   countryFirst?: boolean

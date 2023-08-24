@@ -15,7 +15,8 @@
     }
   },
   "dependencies": {
-    "@graphcommerce/next-config": "6.2.0-canary.88"
+    "@graphcommerce/next-config": "6.2.0-canary.88",
+    "@graphcommerce/next-ui": "6.2.0-canary.88"
   },
   "devDependencies": {
     "@graphcommerce/eslint-config-pwa": "6.2.0-canary.88",

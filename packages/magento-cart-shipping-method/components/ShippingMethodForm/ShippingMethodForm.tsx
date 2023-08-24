@@ -45,7 +45,7 @@ function notEmpty<TValue>(value: TValue | null | undefined): value is TValue {
 
 export function ShippingMethodForm(props: ShippingMethodFormProps) {
   const { step, sx, children, onBeforeSubmit = (vars) => vars, ...options } = props
-  const { data: cartQuery, loading } = useCartQuery(GetShippingMethodsDocument)
+  const { data: cartQuery } = useCartQuery(GetShippingMethodsDocument)
   const availableMethods = (
     cartQuery?.cart?.shipping_addresses?.[0]?.available_shipping_methods ?? []
   ).filter(notEmpty)
@@ -55,7 +55,7 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
     () =>
       availableMethods
         // Move disabled items to the bottom
-        .sort((a, b) => (a.available ? -1 : 1))
+        .sort((a) => (a.available ? -1 : 1))
         .filter((m) => {
           if (m.carrier_code === 'freeshipping') return m.available === true
           return m.method_code

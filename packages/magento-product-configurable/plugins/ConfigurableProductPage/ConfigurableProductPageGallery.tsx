@@ -1,5 +1,5 @@
 import type { AddToCartItemSelector, ProductPageGallery } from '@graphcommerce/magento-product'
-import type { IfConfig, ReactPlugin } from '@graphcommerce/next-config'
+import type { ReactPlugin } from '@graphcommerce/next-config'
 import { useConfigurableOptionsSelection } from '../../hooks'
 
 export const component = 'ProductPageGallery'

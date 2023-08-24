@@ -9,7 +9,9 @@ import { MarkdownDocsPluginConfig } from './config'
 /** Converts input type to markdown document. */
 export const plugin: PluginFunction<MarkdownDocsPluginConfig, Types.ComplexPluginOutput> = (
   schema: GraphQLSchema,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   _documents: Types.DocumentFile[],
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   config: MarkdownDocsPluginConfig,
 ): Types.ComplexPluginOutput => {
   const astNode = getCachedDocumentNodeFromSchema(schema)

@@ -6,6 +6,7 @@ import {
 } from '@graphcommerce/magento-customer'
 import { Button, FormRow, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
+// eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { Box, SxProps, TextField, Theme, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import { useCartQuery } from '../../hooks/useCartQuery'

@@ -1,4 +1,5 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { extendableComponent } from '@graphcommerce/next-ui/Styles'
 import { i18n } from '@lingui/core'
 import { Fab, FabProps, styled } from '@mui/material'

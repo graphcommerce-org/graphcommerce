@@ -1,8 +1,8 @@
 import { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
+import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box } from '@mui/material'
 import { MollieIssuerOptions } from './MollieIssuerOptions'
-import { i18n } from '@lingui/core'
 
 export function MollieIdealOptions(props: PaymentOptionsProps) {
   return (
