@@ -28,6 +28,8 @@ export type LayoutHeaderProps = FloatingProps &
     sx?: SxProps<Theme>
 
     hideBackButton?: boolean
+
+    forceScrolled?: boolean
   }
 
 type ComponentStyleProps = {
@@ -53,6 +55,7 @@ export function LayoutHeader(props: LayoutHeaderProps) {
     secondary,
     noAlign = false,
     switchPoint,
+    forceScrolled,
     size = 'responsive',
     sx = [],
     bgColor,
@@ -153,6 +156,7 @@ export function LayoutHeader(props: LayoutHeaderProps) {
         floatingMd={floatingMd}
         floatingSm={floatingSm}
         switchPoint={switchPoint}
+        forceScrolled={forceScrolled}
         bgColor={bgColor}
       >
         {children}

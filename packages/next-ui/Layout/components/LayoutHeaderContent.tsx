@@ -14,6 +14,7 @@ export type LayoutHeaderContentProps = FloatingProps & {
   right?: React.ReactNode
   divider?: React.ReactNode
   switchPoint?: number
+  forceScrolled: boolean
   sx?: SxProps<Theme>
   sxBg?: SxProps<Theme>
   layout?: LayoutProps['layout']
@@ -25,6 +26,7 @@ type OwnerState = {
   floatingSm: boolean
   floatingMd: boolean
   scrolled: boolean
+  forcedScrolled: boolean
   divider: boolean
   size: 'small' | 'responsive'
   bgColor?: 'paper' | 'default'
@@ -45,6 +47,7 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
     floatingMd = false,
     floatingSm = false,
     switchPoint = 50,
+    forceScrolled,
     sx = [],
     sxBg = [],
     layout,
@@ -56,7 +59,17 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
   const scroll = useScrollY()
   const scrolled = useMotionValueValue(scroll, (y) => y >= switchPoint)
 
-  const classes = withState({ floatingSm, floatingMd, scrolled, divider: !!divider, size, bgColor })
+  const forcedScrolled = forceScrolled
+
+  const classes = withState({
+    floatingSm,
+    floatingMd,
+    scrolled: !forceScrolled,
+    forcedScrolled,
+    divider: !!divider,
+    size,
+    bgColor,
+  })
 
   return (
     <>
@@ -93,7 +106,11 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
 
             opacity: 0,
             transition: `opacity 150ms`,
-            '&.scrolled': {
+            '&.scrolled:not(.forcedScrolled)': {
+              opacity: 1,
+            },
+
+            '&.forceScrolled': {
               opacity: 1,
             },
 
@@ -179,7 +196,12 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
 
             transition: `opacity 150ms`,
             opacity: 0,
-            '&.scrolled': {
+            '&.scrolled:not(.forcedScrolled)': {
+              opacity: 1,
+              '& > *': { pointerEvents: 'all' },
+            },
+
+            '&.forceScrolled': {
               opacity: 1,
               '& > *': { pointerEvents: 'all' },
             },
