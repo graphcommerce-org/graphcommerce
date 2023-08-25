@@ -14,7 +14,7 @@ export type LayoutHeaderContentProps = FloatingProps & {
   right?: React.ReactNode
   divider?: React.ReactNode
   switchPoint?: number
-  forceScrolled: boolean
+  forceScrolled?: boolean
   sx?: SxProps<Theme>
   sxBg?: SxProps<Theme>
   layout?: LayoutProps['layout']
