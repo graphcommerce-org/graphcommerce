@@ -73,107 +73,105 @@ function ProductPage(props: Props) {
   if (!product?.sku || !product.url_key) return null
 
   return (
-    <>
-      <StickyAddToCart product={product} cartButtonRef={cartButtonRef} />
-      <AddProductsToCartForm key={product.uid} defaultValues={defaultValues}>
+    <AddProductsToCartForm key={product.uid} defaultValues={defaultValues}>
+      {import.meta.graphCommerce.enableStickyAddToCart ? (
+        <StickyAddToCart product={product} cartButtonRef={cartButtonRef} />
+      ) : (
         <LayoutHeader floatingMd>
           <LayoutTitle size='small' component='span'>
             <ProductPageName product={product} />
           </LayoutTitle>
         </LayoutHeader>
+      )}
 
-        <ProductPageJsonLd
-          product={product}
-          render={(p) => ({
-            '@context': 'https://schema.org',
-            ...jsonLdProduct(p),
-            ...jsonLdProductOffer(p),
-            ...jsonLdProductReview(p),
-          })}
-        />
+      <ProductPageJsonLd
+        product={product}
+        render={(p) => ({
+          '@context': 'https://schema.org',
+          ...jsonLdProduct(p),
+          ...jsonLdProductOffer(p),
+          ...jsonLdProductReview(p),
+        })}
+      />
 
-        <ProductPageMeta product={product} />
+      <ProductPageMeta product={product} />
 
-        <ProductPageGallery
-          product={product}
-          sx={(theme) => ({
-            '& .SidebarGallery-sidebar': { display: 'grid', rowGap: theme.spacings.sm },
-          })}
-        >
-          <div>
-            {isTypename(product, ['ConfigurableProduct', 'BundleProduct']) && (
-              <Typography component='div' variant='body2' color='text.disabled'>
-                <Trans
-                  id='As low as <0/>'
-                  components={{ 0: <Money {...product.price_range.minimum_price.final_price} /> }}
-                />
-              </Typography>
-            )}
-            <Typography variant='h3' component='div' gutterBottom>
-              <ProductPageName product={product} />
+      <ProductPageGallery
+        product={product}
+        sx={(theme) => ({
+          '& .SidebarGallery-sidebar': { display: 'grid', rowGap: theme.spacings.sm },
+        })}
+      >
+        <div>
+          {isTypename(product, ['ConfigurableProduct', 'BundleProduct']) && (
+            <Typography component='div' variant='body2' color='text.disabled'>
+              <Trans
+                id='As low as <0/>'
+                components={{ 0: <Money {...product.price_range.minimum_price.final_price} /> }}
+              />
             </Typography>
-            <ProductShortDescription
-              sx={(theme) => ({ mb: theme.spacings.xs })}
-              product={product}
-            />
-            <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
-          </div>
-
-          {isTypename(product, ['ConfigurableProduct']) && (
-            <ConfigurableProductOptions
-              product={product}
-              optionEndLabels={{
-                size: (
-                  <Link
-                    href='/modal/product/global/size'
-                    rel='nofollow'
-                    color='primary'
-                    underline='hover'
-                  >
-                    <Trans id='Which size is right?' />
-                  </Link>
-                ),
-              }}
-            />
           )}
-          {isTypename(product, ['BundleProduct']) && (
-            <BundleProductOptions product={product} layout='stack' />
-          )}
-          {isTypename(product, ['DownloadableProduct']) && (
-            <DownloadableProductOptions product={product} />
-          )}
-          {!isTypename(product, ['GroupedProduct']) && <ProductCustomizable product={product} />}
+          <Typography variant='h3' component='div' gutterBottom>
+            <ProductPageName product={product} />
+          </Typography>
+          <ProductShortDescription sx={(theme) => ({ mb: theme.spacings.xs })} product={product} />
+          <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
+        </div>
 
-          <Divider />
+        {isTypename(product, ['ConfigurableProduct']) && (
+          <ConfigurableProductOptions
+            product={product}
+            optionEndLabels={{
+              size: (
+                <Link
+                  href='/modal/product/global/size'
+                  rel='nofollow'
+                  color='primary'
+                  underline='hover'
+                >
+                  <Trans id='Which size is right?' />
+                </Link>
+              ),
+            }}
+          />
+        )}
+        {isTypename(product, ['BundleProduct']) && (
+          <BundleProductOptions product={product} layout='stack' />
+        )}
+        {isTypename(product, ['DownloadableProduct']) && (
+          <DownloadableProductOptions product={product} />
+        )}
+        {!isTypename(product, ['GroupedProduct']) && <ProductCustomizable product={product} />}
 
-          <ProductPageAddToCartQuantityRow product={product}>
-            <AddProductsToCartQuantity sx={{ flexShrink: '0' }} />
+        <Divider />
 
-            <AddProductsToCartError>
-              <Typography component='div' variant='h3' lineHeight='1'>
-                <ProductPagePrice product={product} />
-              </Typography>
-            </AddProductsToCartError>
-          </ProductPageAddToCartQuantityRow>
+        <ProductPageAddToCartQuantityRow product={product}>
+          <AddProductsToCartQuantity sx={{ flexShrink: '0' }} />
 
-          <ProductPagePriceTiers product={product} />
+          <AddProductsToCartError>
+            <Typography component='div' variant='h3' lineHeight='1'>
+              <ProductPagePrice product={product} />
+            </Typography>
+          </AddProductsToCartError>
+        </ProductPageAddToCartQuantityRow>
 
-          <ProductSidebarDelivery product={product} />
+        <ProductPagePriceTiers product={product} />
 
-          <ProductPageAddToCartActionsRow product={product}>
-            <AddProductsToCartButton forwardedRef={cartButtonRef} fullWidth product={product} />
-            <ProductWishlistChipDetail {...product} />
-          </ProductPageAddToCartActionsRow>
+        <ProductSidebarDelivery product={product} />
 
-          <Usps usps={sidebarUsps} size='small' />
-        </ProductPageGallery>
+        <ProductPageAddToCartActionsRow product={product}>
+          <AddProductsToCartButton forwardedRef={cartButtonRef} fullWidth product={product} />
+          <ProductWishlistChipDetail {...product} />
+        </ProductPageAddToCartActionsRow>
 
-        <ProductPageDescription
-          product={product}
-          right={<Usps usps={usps} />}
-          fontSize='responsive'
-        />
-      </AddProductsToCartForm>
+        <Usps usps={sidebarUsps} size='small' />
+      </ProductPageGallery>
+
+      <ProductPageDescription
+        product={product}
+        right={<Usps usps={usps} />}
+        fontSize='responsive'
+      />
 
       {pages?.[0] && (
         <RowRenderer
@@ -190,7 +188,7 @@ function ProductPage(props: Props) {
           }}
         />
       )}
-    </>
+    </AddProductsToCartForm>
   )
 }
 
