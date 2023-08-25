@@ -45,4 +45,11 @@ extend input GraphCommerceConfig {
   Default: 'false'
   """
   crossSellsHideCartItems: Boolean = false
+
+  """
+  Enable this option to activate the sticky add-to-cart bar on the product page.
+  When enabled, a sticky bar will appear if the default add-to-cart button goes out of the visible viewport.
+  This allows users to easily access the add-to-cart functionality even as they scroll through the page.
+  """
+  enableStickyAddToCart: Boolean
 }

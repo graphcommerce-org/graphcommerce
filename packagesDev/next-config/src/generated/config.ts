@@ -170,6 +170,12 @@ export type GraphCommerceConfig = {
    */
   demoMode?: InputMaybe<Scalars['Boolean']['input']>;
   /**
+   * Enable this option to activate the sticky add-to-cart bar on the product page.
+   * When enabled, a sticky bar will appear if the default add-to-cart button goes out of the visible viewport.
+   * This allows users to easily access the add-to-cart functionality even as they scroll through the page.
+   */
+  enableStickyAddToCart?: InputMaybe<Scalars['Boolean']['input']>;
+  /**
    * See https://support.google.com/analytics/answer/9539598?hl=en
    *
    * Provide a value to enable Google Analytics for your store.
@@ -427,6 +433,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     customerRequireEmailConfirmation: z.boolean().nullish(),
     debug: GraphCommerceDebugConfigSchema().nullish(),
     demoMode: z.boolean().nullish(),
+    enableStickyAddToCart: z.boolean().nullish(),
     googleAnalyticsId: z.string().nullish(),
     googleRecaptchaKey: z.string().nullish(),
     googleTagmanagerId: z.string().nullish(),
