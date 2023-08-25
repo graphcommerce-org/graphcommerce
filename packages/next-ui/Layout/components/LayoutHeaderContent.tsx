@@ -47,7 +47,7 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
     floatingMd = false,
     floatingSm = false,
     switchPoint = 50,
-    forceScrolled,
+    forceScrolled = false,
     sx = [],
     sxBg = [],
     layout,
