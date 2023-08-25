@@ -1,31 +1,23 @@
 import { Image } from '@graphcommerce/image'
 import { LayoutHeader } from '@graphcommerce/next-ui'
 import { Box, Typography } from '@mui/material'
-
 import { useEffect, useState } from 'react'
 import { ProductListItemFragment } from '../../Api/ProductListItem.gql'
 import { AddProductsToCartButton, AddProductsToCartError } from '../AddProductsToCart'
-import {
-  AddProductsToCartForm,
-  AddProductsToCartFormProps,
-} from '../AddProductsToCart/AddProductsToCartForm'
 import { UseAddProductsToCartActionFragment } from '../AddProductsToCart/UseAddProductsToCartAction.gql'
 import { ProductPageAddToCartQuantityRow } from '../ProductPage/ProductPageAddToCartRow'
 import { ProductPageGalleryFragment } from '../ProductPageGallery/ProductPageGallery.gql'
 import { ProductPageName } from '../ProductPageName'
 import { ProductPagePrice } from '../ProductPagePrice'
 
-type StickyAddToCartProps = Pick<AddProductsToCartFormProps, 'defaultValues'> & {
-  product?: UseAddProductsToCartActionFragment &
-    ProductPageGalleryFragment &
-    ProductListItemFragment
+type StickyAddToCartProps = {
+  product: UseAddProductsToCartActionFragment & ProductPageGalleryFragment & ProductListItemFragment
   cartButtonRef?: React.RefObject<HTMLButtonElement>
 }
 
 export function StickyAddToCart(props: StickyAddToCartProps) {
-  const { product, defaultValues, cartButtonRef } = props
+  const { product, cartButtonRef } = props
   const mainImage = product?.media_gallery?.[0]
-
   const [isButtonInViewport, setIsButtonInViewport] = useState(false)
 
   useEffect(() => {
@@ -62,25 +54,56 @@ export function StickyAddToCart(props: StickyAddToCartProps) {
       hideBackButton
       forceScrolled={isButtonInViewport}
       size='responsive'
-      divider
-      bgColor='paper'
-      sx={{
-        width: '70vw',
+      sx={(theme) => ({
+        width: { md: '60vw', lg: '65vw' },
         inset: 0,
         margin: 'auto',
+        transform: {
+          xs: 'none',
+          md: `translateY(calc(${theme.appShell.appBarHeightMd}  * .28))`,
+        },
+
+        [theme.breakpoints.down('md')]: {
+          height: `calc(${theme.appShell.headerHeightSm} + 15px)`,
+          mt: 0,
+        },
+
         '& .LayoutHeaderContent-content': {
-          width: '70vw',
+          display: 'flex',
           inset: 0,
           margin: 'auto',
+          px: '12px',
         },
-      }}
+
+        '& .LayoutHeaderContent-center': {
+          display: 'flex',
+          width: '100%',
+        },
+
+        '& .LayoutHeaderContent-center > div': {
+          width: '100%',
+        },
+
+        '& .LayoutHeaderContent-bg': {
+          borderRadius: { xs: 0, md: theme.shape.borderRadius },
+          boxShadow: theme.shadows[6],
+
+          [theme.breakpoints.down('md')]: {
+            height: `calc(${theme.appShell.headerHeightSm} + 15px)`,
+          },
+        },
+
+        '& .LayoutHeaderContent-right': {
+          display: 'none',
+        },
+      })}
     >
-      <AddProductsToCartForm
-        key={product.uid}
-        defaultValues={defaultValues}
+      <Box
         sx={{
           display: 'flex',
           justifyContent: 'space-between',
+          alignItems: 'center',
+          gap: (theme) => theme.spacings.sm,
         }}
       >
         {mainImage?.url && (
@@ -90,47 +113,51 @@ export function StickyAddToCart(props: StickyAddToCartProps) {
             width={60}
             height={60}
             src={mainImage.url}
-            sx={{ verticalAlign: 'middle' }}
+            sx={(theme) => ({
+              verticalAlign: 'middle',
+              [theme.breakpoints.down('md')]: {
+                width: 46,
+                height: 46,
+              },
+            })}
           />
         )}
 
         <Typography
           variant='h4'
-          sx={{
-            display: { xs: 'none', md: 'block' },
-            typography: { xs: 'h6', lg: 'h5' },
+          sx={(theme) => ({
+            fontSize: { xs: theme.typography.h5.fontSize, md: theme.typography.h4.fontSize },
+            fontWeight: 'bold',
             overflow: 'hidden',
             textOverflow: 'ellipsis',
             whiteSpace: 'nowrap',
-          }}
+          })}
         >
           <ProductPageName product={{ name: product?.name }} />
         </Typography>
 
-        <Box sx={{ marginLeft: 'auto' }}>
-          <ProductPageAddToCartQuantityRow product={product}>
-            <AddProductsToCartError>
-              <Typography
-                component='div'
-                variant='h3'
-                lineHeight='1'
-                sx={{
-                  display: { lg: 'flex' },
-                  gap: { xs: 1, lg: 2 },
-                  typography: { xs: 'body1', md: 'h6', lg: 'h5' },
-                  lineHeight: { xs: '1.2em', md: '1.7em' },
-                  '& .incl-vat': {
-                    opacity: 0.4,
-                  },
-                }}
-              >
-                <ProductPagePrice product={product} />
-              </Typography>
-            </AddProductsToCartError>
-          </ProductPageAddToCartQuantityRow>
-          <AddProductsToCartButton color='primary' size='medium' product={product} />
-        </Box>
-      </AddProductsToCartForm>
+        <ProductPageAddToCartQuantityRow product={product} sx={{ ml: 'auto' }}>
+          <AddProductsToCartError>
+            <Typography
+              component='div'
+              variant='h3'
+              lineHeight='1'
+              sx={{
+                display: { lg: 'flex' },
+                gap: { xs: 1, lg: 2 },
+                typography: { xs: 'body1', md: 'h6', lg: 'h5' },
+                lineHeight: { xs: '1.2em', md: '1.7em' },
+                '& .incl-vat': {
+                  opacity: 0.4,
+                },
+              }}
+            >
+              <ProductPagePrice product={product} />
+            </Typography>
+          </AddProductsToCartError>
+        </ProductPageAddToCartQuantityRow>
+        <AddProductsToCartButton color='primary' size='medium' product={product} />
+      </Box>
     </LayoutHeader>
   )
 }
