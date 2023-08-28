@@ -55,9 +55,11 @@ export function useAddProductsToCartAction(
   }
 
   useEffect(() => {
-    setTimeout(() => {
-      setShowSuccess(false)
-    }, 2000)
+    if (showSuccess) {
+      setTimeout(() => {
+        setShowSuccess(false)
+      }, 2000)
+    }
   }, [showSuccess])
 
   useEffect(() => {
