@@ -49,13 +49,11 @@ export function useAddProductsToCartAction(
     }
   }, [sku, submitSuccesful, submittedVariables?.cartItems])
 
-  useEffect(() => {
-    if (showSuccess) {
-      setTimeout(() => {
-        setShowSuccess(false)
-      }, 2000)
-    }
-  }, [showSuccess])
+  if (showSuccess) {
+    setTimeout(() => {
+      setShowSuccess(false)
+    }, 2000)
+  }
 
   useEffect(() => {
     console.log('SubmitSuccesful: ', submitSuccesful)
