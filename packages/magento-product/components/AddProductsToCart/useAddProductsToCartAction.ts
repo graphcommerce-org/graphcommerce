@@ -44,6 +44,7 @@ export function useAddProductsToCartAction(
     !formState.isSubmitting && formState.isSubmitSuccessful && !error?.message && !userErrors.length
 
   const [prevSubmitSuccessful, setPrevSubmitSuccessful] = useState<boolean>(submitSuccesful)
+
   if (
     submitSuccesful !== prevSubmitSuccessful &&
     submitSuccesful &&
@@ -56,8 +57,13 @@ export function useAddProductsToCartAction(
   if (showSuccess) {
     setTimeout(() => {
       setShowSuccess(false)
+      setPrevSubmitSuccessful(false)
     }, 2000)
   }
+
+  useEffect(() => {
+    console.log('SubmitSuccesful: ', submitSuccesful)
+  }, [submitSuccesful])
 
   return {
     disabled:
