@@ -109,4 +109,4 @@ The result is as follows:
 ![Dynamic row fields](dynamic-row-fields.png)
 
 The Dynamic Row should now be injected on all the pages whose properties match
-the conditions.
+the conditions. ![Alt text](image.png)
