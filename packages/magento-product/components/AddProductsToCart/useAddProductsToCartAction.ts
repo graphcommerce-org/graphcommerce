@@ -54,12 +54,11 @@ export function useAddProductsToCartAction(
     setShowSuccess(true)
   }
 
-  if (showSuccess) {
+  useEffect(() => {
     setTimeout(() => {
       setShowSuccess(false)
-      setPrevSubmitSuccessful(false)
     }, 2000)
-  }
+  }, [showSuccess])
 
   useEffect(() => {
     console.log('SubmitSuccesful: ', submitSuccesful)
