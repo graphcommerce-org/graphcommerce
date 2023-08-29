@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@babel/core": "^7.22.5",
+    "@ducanh2912/next-pwa": "9.4.0",
     "@graphcommerce/cli": "6.2.0-canary.94",
     "@graphcommerce/demo-magento-graphcommerce": "6.2.0-canary.94",
     "@graphcommerce/ecommerce-ui": "6.2.0-canary.94",
@@ -77,7 +78,6 @@
     "framer-motion": "10.15.0",
     "graphql": "16.8.0",
     "next": "13.4.16",
-    "next-pwa": "5.6.0",
     "next-sitemap": "4.2.2",
     "patch-package": "7.0.0",
     "react": "^18.2.0",
