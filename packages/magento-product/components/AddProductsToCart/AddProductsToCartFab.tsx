@@ -20,7 +20,7 @@ export function AddProductsToCartFab(props: AddProductsToCartFabProps) {
       type='submit'
       {...rest}
       {...action}
-      icon={action.showSuccess ? iconCheckmark : icon}
+      icon={action.showSuccess && !action.loading ? iconCheckmark : icon}
       aria-label={i18n._(/* i18n*/ `Add to Cart`)}
     />
   )
