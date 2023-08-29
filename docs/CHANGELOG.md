@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.94
+
+### Patch Changes
+
+- [#2020](https://github.com/graphcommerce-org/graphcommerce/pull/2020) [`c9ab0e827`](https://github.com/graphcommerce-org/graphcommerce/commit/c9ab0e827cbf866000a2184ee7fa38b123aa2cd2) - Update docs for Enable Guest Checkout Login setting ([@SimonPrins](https://github.com/SimonPrins))
+
 ## 6.2.0-canary.93
 
 ## 6.2.0-canary.92
