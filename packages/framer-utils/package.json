@@ -2,7 +2,7 @@
   "name": "@graphcommerce/framer-utils",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "6.2.0-canary.94",
+  "version": "6.2.0-canary.95",
   "sideEffects": false,
   "scripts": {
     "dev": "tsc -W"
@@ -15,9 +15,9 @@
     }
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "6.2.0-canary.94",
-    "@graphcommerce/prettier-config-pwa": "6.2.0-canary.94",
-    "@graphcommerce/typescript-config-pwa": "6.2.0-canary.94"
+    "@graphcommerce/eslint-config-pwa": "6.2.0-canary.95",
+    "@graphcommerce/prettier-config-pwa": "6.2.0-canary.95",
+    "@graphcommerce/typescript-config-pwa": "6.2.0-canary.95"
   },
   "peerDependencies": {
     "framer-motion": "^10.0.0",

@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.95
+
+### Patch Changes
+
+- [#2030](https://github.com/graphcommerce-org/graphcommerce/pull/2030) [`15939ca62`](https://github.com/graphcommerce-org/graphcommerce/commit/15939ca62021c28f7d60382c65927aed15c1ac84) - next-pwa dependency change and next-image caching optimalization ([@mikekeehnen](https://github.com/mikekeehnen))
+
 ## 6.2.0-canary.94
 
 ## 6.2.0-canary.93
