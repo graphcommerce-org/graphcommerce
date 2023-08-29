@@ -3,4 +3,4 @@
 '@graphcommerce/magento-customer': patch
 ---
 
-Bugfix for unintentionally overriding the billing address even if a default address was set. Also made prefix optional when creating an address
+The Billing address was set to the shipping address when a default billing address was available and made prefix optional when creating an address

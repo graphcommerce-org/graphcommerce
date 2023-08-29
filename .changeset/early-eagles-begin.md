@@ -2,4 +2,4 @@
 '@graphcommerce/next-ui': patch
 ---
 
-Fixed users accidentally being able to scroll overlays out of view during open animation
+Users are now not able to scroll an overlay during the open animation.
