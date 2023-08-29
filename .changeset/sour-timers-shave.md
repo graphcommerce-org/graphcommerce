@@ -1,5 +1,5 @@
 ---
-"@graphcommerce/framer-scroller": patch
+'@graphcommerce/framer-scroller': patch
 ---
 
-fix: prevent overlays from aut-closing on iOS 14
+Prevent overlays from auto-closing on iOS 14
