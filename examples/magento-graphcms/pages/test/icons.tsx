@@ -9,6 +9,7 @@ import {
   iconPhone,
   LayoutHeader,
 } from '@graphcommerce/next-ui'
+// eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { Container, Typography, Slider, Box } from '@mui/material'
 import React, { useEffect, useRef, useState } from 'react'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'

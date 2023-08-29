@@ -1,5 +1,6 @@
 import { useMutation } from '@graphcommerce/graphql'
 import { Trans } from '@lingui/react'
+// eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { Badge, Box, Button, Checkbox, SxProps, Theme } from '@mui/material'
 import { useState } from 'react'
 import {
@@ -24,7 +25,7 @@ export function CompareProductButton(props: CompareProductButtonProps) {
   const [remove] = useMutation(RemoveProductsFromCompareListDocument)
   const [displayMessageBar, setDisplayMessageBar] = useState(false)
 
-  const handleClick: React.MouseEventHandler<HTMLButtonElement> = async (e) => {
+  const handleClick: React.MouseEventHandler<HTMLButtonElement> = async () => {
     if (inCompareList) {
       await remove({ variables: { products: [idString], uid: await create() } })
     } else {

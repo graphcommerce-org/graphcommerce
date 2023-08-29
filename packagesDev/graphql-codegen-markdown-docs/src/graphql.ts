@@ -12,7 +12,7 @@ export const isNamedType = (typ?: TypeNode): typ is NamedTypeNode => typ?.kind =
 
 export const isInput = (kind: string) => kind.includes('Input')
 
-type ObjectTypeDefinitionFn = (node: ObjectTypeDefinitionNode) => any
+type ObjectTypeDefinitionFn = (node: ObjectTypeDefinitionNode) => unknown
 
 export const ObjectTypeDefinitionBuilder = (
   useObjectTypes: boolean | undefined,

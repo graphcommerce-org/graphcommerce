@@ -84,7 +84,7 @@ function rewriteLegacyEnv(schema, env, config = {}) {
                 config.storefront = [];
             config.storefront.forEach((storefront, index) => {
                 if (!inclTax.includes(storefront.locale))
-                    return null;
+                    return;
                 clonedEnv[`GC_STOREFRONT_${index}_CART_DISPLAY_PRICES_INCL_TAX`] = '1';
             });
             applied.push({

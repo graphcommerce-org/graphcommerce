@@ -1,5 +1,25 @@
 # Change Log
 
+## 6.2.0-canary.94
+
+### Patch Changes
+
+- [#2020](https://github.com/graphcommerce-org/graphcommerce/pull/2020) [`c9ab0e827`](https://github.com/graphcommerce-org/graphcommerce/commit/c9ab0e827cbf866000a2184ee7fa38b123aa2cd2) - Update docs for Enable Guest Checkout Login setting ([@SimonPrins](https://github.com/SimonPrins))
+
+## 6.2.0-canary.93
+
+## 6.2.0-canary.92
+
+## 6.2.0-canary.91
+
+## 6.2.0-canary.90
+
+### Patch Changes
+
+- [#2034](https://github.com/graphcommerce-org/graphcommerce/pull/2034) [`6fca47484`](https://github.com/graphcommerce-org/graphcommerce/commit/6fca474847fe52f004a6ac0abbd88492512b46ad) - Pre-resolve the customFetch in mesh config ([@paales](https://github.com/paales))
+
+## 6.2.0-canary.89
+
 ## 6.2.0-canary.88
 
 ## 6.2.0-canary.87

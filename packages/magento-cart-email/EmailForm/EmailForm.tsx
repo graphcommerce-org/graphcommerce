@@ -14,6 +14,7 @@ import {
   UseFormComposeOptions,
 } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
+// eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { TextField, Button, SxProps, Box, Theme } from '@mui/material'
 import React from 'react'
 import { CartEmailDocument } from './CartEmail.gql'

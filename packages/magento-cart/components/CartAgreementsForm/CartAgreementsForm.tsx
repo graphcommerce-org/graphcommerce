@@ -2,23 +2,13 @@ import { CheckboxElement } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import { extendableComponent, FormDiv } from '@graphcommerce/next-ui'
 import {
-  Controller,
   useForm,
   useFormCompose,
   UseFormComposeOptions,
   useFormPersist,
 } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
-import {
-  Box,
-  Checkbox,
-  FormControl,
-  FormControlLabel,
-  FormHelperText,
-  Link,
-  SxProps,
-  Theme,
-} from '@mui/material'
+import { Box, Link, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { CartAgreementsDocument } from './CartAgreements.gql'
 
@@ -42,7 +32,7 @@ export function CartAgreementsForm(props: CartAgreementsFormProps) {
 
   const form = useForm()
 
-  const { handleSubmit, formState, control } = form
+  const { handleSubmit, control } = form
 
   const submit = handleSubmit((values) => {
     // eslint-disable-next-line no-console

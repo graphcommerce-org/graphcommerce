@@ -122,6 +122,7 @@ export function findPlugins(config: GraphCommerceConfig, cwd: string = process.c
       }
     })
 
+    // eslint-disable-next-line no-console
     console.log(toLog.join('\n\n'))
   }
 

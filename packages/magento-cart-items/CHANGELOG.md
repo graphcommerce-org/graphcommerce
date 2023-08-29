@@ -1,5 +1,21 @@
 # Change Log
 
+## 6.2.0-canary.94
+
+## 6.2.0-canary.93
+
+## 6.2.0-canary.92
+
+## 6.2.0-canary.91
+
+### Minor Changes
+
+- [#2029](https://github.com/graphcommerce-org/graphcommerce/pull/2029) [`4ac92840a`](https://github.com/graphcommerce-org/graphcommerce/commit/4ac92840a44c8697738f5437fa0b81ef8210e2a7) - Support official price_including_tax instead of dividing through the row_total_including_tax ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 6.2.0-canary.90
+
+## 6.2.0-canary.89
+
 ## 6.2.0-canary.88
 
 ## 6.2.0-canary.87

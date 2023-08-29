@@ -13,12 +13,12 @@ export default link => {
         isExternalUrl = baseUrlObj.host !== urlObj.host;
 
         if (isExternalUrl) {
-            linkProps['href'] = link;
+            linkProps.href = link;
         } else {
-            linkProps['to'] = urlObj.pathname;
+            linkProps.to = urlObj.pathname;
         }
     } catch (e) {
-        linkProps['href'] = link;
+        linkProps.href = link;
     }
 
     return linkProps;

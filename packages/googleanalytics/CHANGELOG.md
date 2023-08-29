@@ -1,5 +1,21 @@
 # Change Log
 
+## 6.2.0-canary.94
+
+## 6.2.0-canary.93
+
+## 6.2.0-canary.92
+
+## 6.2.0-canary.91
+
+## 6.2.0-canary.90
+
+## 6.2.0-canary.89
+
+### Patch Changes
+
+- [#2031](https://github.com/graphcommerce-org/graphcommerce/pull/2031) [`4d8fc9e99`](https://github.com/graphcommerce-org/graphcommerce/commit/4d8fc9e998fc9361282833316ec9564da0644ed6) - Eslint fixes and suppress accepted warnings ([@paales](https://github.com/paales))
+
 ## 6.2.0-canary.88
 
 ### Patch Changes

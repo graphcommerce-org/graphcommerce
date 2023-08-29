@@ -6,6 +6,7 @@ import {
   FormControl,
   FormControlLabel,
   FormHelperText,
+  // eslint-disable-next-line @typescript-eslint/no-restricted-imports
   Switch,
   SwitchProps,
   SxProps,

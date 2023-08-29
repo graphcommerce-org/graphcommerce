@@ -92,6 +92,7 @@ function findPlugins(config, cwd = process.cwd()) {
                 pluginLogs[key] = logStr;
             }
         });
+        // eslint-disable-next-line no-console
         console.log(toLog.join('\n\n'));
     }
     return [plugins, errors];

@@ -2,4 +2,4 @@
 '@graphcommerce/magento-product': patch
 ---
 
-Fix limit filters
+Limit would not be applied correctly for the product listing

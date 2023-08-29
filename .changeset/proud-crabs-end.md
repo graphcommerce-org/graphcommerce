@@ -5,4 +5,4 @@
 '@graphcommerce/next-ui': patch
 ---
 
-Fix the close menu on search and add the option to secondary menu items
+Fix the 'close menu' on search and add the option to secondary menu items

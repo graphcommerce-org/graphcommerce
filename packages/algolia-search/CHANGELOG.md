@@ -1,5 +1,21 @@
 # @graphcommerce/algolia-search
 
+## 6.2.0-canary.94
+
+## 6.2.0-canary.93
+
+## 6.2.0-canary.92
+
+### Patch Changes
+
+- [#2026](https://github.com/graphcommerce-org/graphcommerce/pull/2026) [`c1b76eb4d`](https://github.com/graphcommerce-org/graphcommerce/commit/c1b76eb4d70cf5cef9f768bb1f4986e639b31932) - Improved documentation @graphcommerce/algolia-search ([@mikekeehnen](https://github.com/mikekeehnen))
+
+## 6.2.0-canary.91
+
+## 6.2.0-canary.90
+
+## 6.2.0-canary.89
+
 ## 6.2.0-canary.88
 
 ## 6.2.0-canary.87

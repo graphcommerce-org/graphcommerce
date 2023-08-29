@@ -1,5 +1,21 @@
 # @graphcommerce/cli
 
+## 6.2.0-canary.94
+
+## 6.2.0-canary.93
+
+## 6.2.0-canary.92
+
+## 6.2.0-canary.91
+
+## 6.2.0-canary.90
+
+### Patch Changes
+
+- [#2034](https://github.com/graphcommerce-org/graphcommerce/pull/2034) [`6fca47484`](https://github.com/graphcommerce-org/graphcommerce/commit/6fca474847fe52f004a6ac0abbd88492512b46ad) - Pre-resolve the customFetch in mesh config ([@paales](https://github.com/paales))
+
+## 6.2.0-canary.89
+
 ## 6.2.0-canary.88
 
 ## 6.2.0-canary.87

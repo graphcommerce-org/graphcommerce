@@ -3,9 +3,9 @@ import {
   PaymentMethodOptionsNoop,
 } from '@graphcommerce/magento-cart-payment-method'
 import type { PluginProps } from '@graphcommerce/next-config'
-import { PayPalPaymentPlaceOrder } from '../components/PayPalPaymentPlaceOrder/PayPalPaymentPlaceOrder'
 import { PayPalExpressActionCard } from '../components/PayPalPaymentActionCard/PayPalPaymentActionCard'
 import { PayPalPaymentHandler } from '../components/PayPalPaymentHandler/PayPalPaymentHandler'
+import { PayPalPaymentPlaceOrder } from '../components/PayPalPaymentPlaceOrder/PayPalPaymentPlaceOrder'
 
 export const component = 'PaymentMethodContextProvider'
 export const exported = '@graphcommerce/magento-cart-payment-method'

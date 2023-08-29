@@ -2,10 +2,16 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 require('dotenv').config({ path: `${__dirname}/.env` })
 
-const { withGraphCommerce } = require('@graphcommerce/next-config')
-const withPWA = require('next-pwa')({
+const { withGraphCommerce, runtimeCachingOptimizations } = require('@graphcommerce/next-config')
+
+// eslint-disable-next-line import/order
+const withPWA = require('@ducanh2912/next-pwa').default({
   dest: 'public',
   disable: process.env.NODE_ENV === 'development',
+  extendDefaultRuntimeCaching: true,
+  workboxOptions: {
+    runtimeCaching: runtimeCachingOptimizations,
+  },
 })
 
 /** @type {import('next').NextConfig} */
@@ -18,7 +24,6 @@ const nextConfig = {
   images: {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
-  productionBrowserSourceMaps: true,
   eslint: {
     ignoreDuringBuilds: true,
   },

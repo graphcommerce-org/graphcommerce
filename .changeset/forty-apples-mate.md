@@ -1,5 +1,5 @@
 ---
-'@graphcommerce/magento-compare': minor
+'@graphcommerce/magento-compare': major
 ---
 
-Magento product compare functionality added
+Magento Product Compare functionality added

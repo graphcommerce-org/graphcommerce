@@ -1,18 +1,10 @@
 import { PasswordElement } from '@graphcommerce/ecommerce-ui'
 import { useApolloClient } from '@graphcommerce/graphql'
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
-import {
-  Button,
-  FormRow,
-  FormActions,
-  iconEyeCrossed,
-  iconEye,
-  IconSvg,
-} from '@graphcommerce/next-ui'
+import { Button, FormRow, FormActions } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
-import { Box, FormControl, IconButton, InputAdornment, Link, SxProps, Theme } from '@mui/material'
-import { MouseEvent, useState } from 'react'
+import { Box, FormControl, Link, SxProps, Theme } from '@mui/material'
 import { CustomerDocument } from '../../hooks'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import { SignInDocument } from './SignIn.gql'

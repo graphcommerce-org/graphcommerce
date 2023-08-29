@@ -1,9 +1,9 @@
 ---
-'@graphcommerce/hygraph-dynamic-rows': minor
-'@graphcommerce/magento-graphcms': minor
-'@graphcommerce/hygraph-cli': minor
-'@graphcommerce/graphcms-ui': minor
-'@graphcommerce/cli': minor
+'@graphcommerce/hygraph-dynamic-rows': major
+'@graphcommerce/magento-graphcms': major
+'@graphcommerce/hygraph-cli': major
+'@graphcommerce/graphcms-ui': major
+'@graphcommerce/cli': major
 ---
 
-Added dynamic rows feature and better performance for Hygraph
+Added dynamic rows feature
