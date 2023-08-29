@@ -78,7 +78,11 @@ export function AddProductsToCartSnackbar(props: AddProductsToCartSnackbarProps)
           }
         >
           <Trans
-            id='<0>{name}</0> has been added to your shopping cart!'
+            id={
+              productsAdded.length === 1
+                ? '<0>{name}</0> has been added to your shopping cart!'
+                : '<0>{name}</0> have been added to your shopping cart!'
+            }
             components={{ 0: <strong /> }}
             values={{
               name: formatter.format(productsAdded),
