@@ -36,7 +36,6 @@ export function useAddProductsToCartAction(
     loading,
   } = props
 
-  const timer = useRef<null | ReturnType<typeof setTimeout>>()
   const [showSuccess, setShowSuccess] = useState<boolean>(false)
 
   const userErrors = toUserErrors(data)
@@ -51,13 +50,14 @@ export function useAddProductsToCartAction(
   }, [sku, submitSuccesful, submittedVariables?.cartItems])
 
   useEffect(() => {
+    let timer: ReturnType<typeof setTimeout>
     if (showSuccess) {
-      timer.current = setTimeout(() => {
+      timer = setTimeout(() => {
         setShowSuccess(false)
       }, 2000)
     }
     return () => {
-      if (timer.current) clearTimeout(timer.current)
+      clearTimeout(timer)
     }
   }, [showSuccess])
 
