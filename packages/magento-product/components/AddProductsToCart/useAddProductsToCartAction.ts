@@ -1,6 +1,6 @@
 import { useFormState } from '@graphcommerce/ecommerce-ui'
 import { useEventCallback } from '@mui/material'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { UseAddProductsToCartActionFragment } from './UseAddProductsToCartAction.gql'
 import { toUserErrors } from './toUserErrors'
 import { AddToCartItemSelector, useFormAddProductsToCart } from './useFormAddProductsToCart'
@@ -27,14 +27,9 @@ export function useAddProductsToCartAction(
   const { setValue, getValues, control, error, data, submittedVariables } =
     useFormAddProductsToCart()
   const formState = useFormState({ control })
-  const {
-    sku = props.product?.sku,
-    product,
-    index = 0,
-    onClick: onClickIncoming,
-    disabled,
-    loading,
-  } = props
+  const { sku = props.product?.sku, product, index = 0, onClick: onClickIncoming, disabled } = props
+
+  const loading = formState.isSubmitting && getValues(`cartItems.${index}.sku`) === sku
 
   const [showSuccess, setShowSuccess] = useState<boolean>(false)
 
@@ -51,6 +46,7 @@ export function useAddProductsToCartAction(
 
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout>
+
     if (showSuccess) {
       timer = setTimeout(() => {
         setShowSuccess(false)
@@ -59,13 +55,13 @@ export function useAddProductsToCartAction(
     return () => {
       clearTimeout(timer)
     }
-  }, [showSuccess])
+  }, [showSuccess, loading])
 
   return {
     disabled:
       product?.stock_status === 'OUT_OF_STOCK' ||
       Boolean(formState.errors.cartItems?.[index]?.sku?.message || disabled),
-    loading: loading || (formState.isSubmitting && getValues(`cartItems.${index}.sku`) === sku),
+    loading,
     onClick: useEventCallback((e) => {
       e.stopPropagation()
       if (formState.isSubmitting) return
