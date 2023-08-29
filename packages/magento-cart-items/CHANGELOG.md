@@ -1,5 +1,7 @@
 # Change Log
 
+## 6.2.0-canary.92
+
 ## 6.2.0-canary.91
 
 ### Minor Changes
