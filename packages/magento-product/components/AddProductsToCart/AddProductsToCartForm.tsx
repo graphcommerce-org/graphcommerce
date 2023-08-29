@@ -8,7 +8,7 @@ import {
 import { ExtendableComponent } from '@graphcommerce/next-ui'
 import { Box, SxProps, Theme, useThemeProps } from '@mui/material'
 import { useRouter } from 'next/router'
-import { useEffect, useMemo, useRef } from 'react'
+import { useMemo, useRef } from 'react'
 import {
   AddProductsToCartDocument,
   AddProductsToCartMutation,
