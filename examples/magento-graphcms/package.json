@@ -91,7 +91,7 @@
     "@graphcommerce/typescript-config-pwa": "6.2.0-canary.92",
     "@lingui/cli": "4.2.1",
     "@playwright/test": "1.35.0",
-    "@types/node": "20.3.0",
+    "@types/node": "^16",
     "@types/react": "^18.2.11",
     "@types/react-dom": "18.2.4",
     "eslint": "8.42.0",

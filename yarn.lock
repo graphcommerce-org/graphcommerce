@@ -2153,7 +2153,7 @@
     param-case "^3.0.4"
     pascal-case "^3.1.2"
 
-"@graphql-mesh/cross-helpers@^0.4.0":
+"@graphql-mesh/cross-helpers@^0.4.0", "@graphql-mesh/cross-helpers@latest":
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/@graphql-mesh/cross-helpers/-/cross-helpers-0.4.0.tgz#e27dd47c97de888bb2f152e251c6f641ece9e0dc"
   integrity sha512-NgcuwLQelrnl6YmJdXk8GWctY7MUtgyLKBfXsFj1bRhzC6BR/r6DieWKWWrLG8DQu0eNUMtVrI0j0qUrlw7LdQ==
@@ -2219,7 +2219,7 @@
     "@graphql-tools/wrap" "^10.0.0"
     "@whatwg-node/fetch" "^0.9.0"
 
-"@graphql-mesh/store@^0.95.2":
+"@graphql-mesh/store@^0.95.2", "@graphql-mesh/store@latest":
   version "0.95.2"
   resolved "https://registry.yarnpkg.com/@graphql-mesh/store/-/store-0.95.2.tgz#52c6073b83c2a8c411d2efad888fde665942d1b4"
   integrity sha512-f7rkXue9lxJZmEroydwDcFKD3XBxBfrQP7hbVgL/kCgk9djTb1lcxTgZ4rP4paJbR5cboMM7FQiybdOSB2fN5Q==
@@ -2575,7 +2575,7 @@
     value-or-promise "^1.0.11"
     ws "^8.12.0"
 
-"@graphql-tools/utils@^10.0.0", "@graphql-tools/utils@^10.0.1", "@graphql-tools/utils@^10.0.2", "@graphql-tools/utils@^10.0.5":
+"@graphql-tools/utils@^10.0.0", "@graphql-tools/utils@^10.0.1", "@graphql-tools/utils@^10.0.2", "@graphql-tools/utils@^10.0.5", "@graphql-tools/utils@latest":
   version "10.0.5"
   resolved "https://registry.yarnpkg.com/@graphql-tools/utils/-/utils-10.0.5.tgz#b76c7b5b7fc3f67da734b51cf6e33c52dee09974"
   integrity sha512-ZTioQqg9z9eCG3j+KDy54k1gp6wRIsLqkx5yi163KVvXVkfjsrdErCyZjrEug21QnKE9piP4tyxMpMMOT1RuRw==
@@ -3988,15 +3988,15 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-20.5.0.tgz#7fc8636d5f1aaa3b21e6245e97d56b7f56702313"
   integrity sha512-Mgq7eCtoTjT89FqNoTzzXg2XvCi5VMhRV6+I2aYanc6kQCBImeNaAYRs/DyoVqk1YEUJK5gN9VO7HRIdz4Wo3Q==
 
-"@types/node@20.3.0":
-  version "20.3.0"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.3.0.tgz#719498898d5defab83c3560f45d8498f58d11938"
-  integrity sha512-cumHmIAf6On83X7yP+LrsEyUOf/YlociZelmpRYaGFydoaPdxdt80MAbu6vWerQT2COCp2nPvHdsbD7tHn/YlQ==
-
 "@types/node@^12.7.1":
   version "12.20.55"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.20.55.tgz#c329cbd434c42164f846b909bd6f85b5537f6240"
   integrity sha512-J8xLz7q2OFulZ2cyGTLE1TbbZcjpno7FaN6zdJNrgAdrJ+DZzh/uFR6YrTb4C+nXakvud8Q4+rbhoIWlYQbUFQ==
+
+"@types/node@^16":
+  version "16.18.46"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.18.46.tgz#9f2102d0ba74a318fcbe170cbff5463f119eab59"
+  integrity sha512-Mnq3O9Xz52exs3mlxMcQuA7/9VFe/dXcrgAyfjLkABIqxXKOgBRjyazTxUbjsxDa4BP7hhPliyjVTP9RDP14xg==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.1"
