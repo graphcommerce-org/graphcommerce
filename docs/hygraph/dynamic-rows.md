@@ -7,7 +7,7 @@ the category. Let's take a deeper look.
 
 > Note
 >
-> The Dynamic Row functionality is available since Graphcommerce 6.2.
+> The Dynamic Row functionality is available since Graphcommerce 7.0.0
 
 ## Example of injecting a Dynamic Row
 
@@ -17,7 +17,7 @@ after the product specs:
 
 1. We name the Dynamic Row `discount-banner-row`
 2. The row we want to inject. In this case the row `discount-banner`.
-   ![Row to insert](row-to-insert.png)
+   ![row-to-insert](https://github.com/graphcommerce-org/graphcommerce/assets/1244416/5cada894-daef-45ef-bbb9-0ddedca0ecf5)
 3. We set the placement on `AFTER`
 4. The placement target will be `product-specs`
 5. For the conditions we will use the `Text` and `Number` components nested in
@@ -25,7 +25,7 @@ after the product specs:
 
 The result is as follows:
 
-![Dynamic row fields](dynamic-row-fields.png)
+![dynamic-row-fields](https://github.com/graphcommerce-org/graphcommerce/assets/1244416/d3f26e9e-0ad0-4713-86a8-67f2fa2b6a97)
 
 The Dynamic Row should now be injected on all the pages whose properties match
 the conditions.
