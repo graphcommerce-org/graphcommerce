@@ -46,16 +46,20 @@ export function useAddProductsToCartAction(
 
   useEffect(() => {
     if (submitSuccesful && submittedVariables?.cartItems.find((item) => item.sku === sku)) {
-      if (timer.current) clearTimeout(timer.current)
       setShowSuccess(true)
     }
   }, [sku, submitSuccesful, submittedVariables?.cartItems])
 
-  if (showSuccess) {
-    timer.current = setTimeout(() => {
-      setShowSuccess(false)
-    }, 2000)
-  }
+  useEffect(() => {
+    if (showSuccess) {
+      timer.current = setTimeout(() => {
+        setShowSuccess(false)
+      }, 2000)
+    }
+    return () => {
+      if (timer.current) clearTimeout(timer.current)
+    }
+  }, [showSuccess])
 
   return {
     disabled:
