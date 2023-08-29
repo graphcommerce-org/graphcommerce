@@ -5,7 +5,6 @@ const configFile = {
   customerRequireEmailConfirmation: false,
   demoMode: true,
   googleTagmanagerKey: 'GTM-XXXXXXX',
-  legacyProductRoute: true,
   productFiltersPro: false,
   deeper: {
     arrayvalue: ['test'],
@@ -26,7 +25,6 @@ it('flattens a config object', () => {
       "import.meta.graphCommerce.deeper.nested.value": ""test"",
       "import.meta.graphCommerce.demoMode": "true",
       "import.meta.graphCommerce.googleTagmanagerKey": ""GTM-XXXXXXX"",
-      "import.meta.graphCommerce.legacyProductRoute": "true",
       "import.meta.graphCommerce.productFiltersPro": "false",
       "import.meta.graphCommerce.storefront": "[{"locale":"en","hygraphLocales":["en"],"magentoStoreCode":"en_us"}]",
     }
@@ -48,7 +46,6 @@ it('creates keys but does not stringify values', () => {
         },
         "demoMode": true,
         "googleTagmanagerKey": "GTM-XXXXXXX",
-        "legacyProductRoute": true,
         "productFiltersPro": false,
         "storefront": [
           {
@@ -76,7 +73,6 @@ it('creates keys but does not stringify values', () => {
       "graphCommerce.deeper.nested.value": "test",
       "graphCommerce.demoMode": true,
       "graphCommerce.googleTagmanagerKey": "GTM-XXXXXXX",
-      "graphCommerce.legacyProductRoute": true,
       "graphCommerce.productFiltersPro": false,
       "graphCommerce.storefront": "[{"locale":"en","hygraphLocales":["en"],"magentoStoreCode":"en_us"}]",
     }
