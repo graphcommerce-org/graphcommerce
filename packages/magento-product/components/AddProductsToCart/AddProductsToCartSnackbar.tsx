@@ -11,6 +11,7 @@ import {
   MessageSnackbarProps,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
+import { useRouter } from 'next/router'
 import { toUserErrors } from './toUserErrors'
 import { useFormAddProductsToCart } from './useFormAddProductsToCart'
 
@@ -24,6 +25,9 @@ export function AddProductsToCartSnackbar(props: AddProductsToCartSnackbarProps)
   const { errorSnackbar, successSnackbar, disableSuccessSnackbar } = props
   const { error, data, redirect, control, submittedVariables } = useFormAddProductsToCart()
   const formState = useFormState({ control })
+  const { locale } = useRouter()
+
+  const formatter = new Intl.ListFormat(locale, { style: 'long', type: 'conjunction' })
 
   const userErrors = toUserErrors(data)
 
@@ -40,7 +44,7 @@ export function AddProductsToCartSnackbar(props: AddProductsToCartSnackbarProps)
     .filter((item) =>
       submittedVariables?.cartItems?.find((cartItem) => cartItem.sku === item.product.sku),
     )
-    .map((product) => product.product.name)
+    .map((product) => product.product.name || '')
 
   const showErrorSnackbar = userErrors.length > 0
 
@@ -76,7 +80,9 @@ export function AddProductsToCartSnackbar(props: AddProductsToCartSnackbarProps)
           <Trans
             id='<0>{name}</0> has been added to your shopping cart!'
             components={{ 0: <strong /> }}
-            values={{ name: productsAdded.join(', ') }}
+            values={{
+              name: formatter.format(productsAdded),
+            }}
           />
         </MessageSnackbar>
       )}
