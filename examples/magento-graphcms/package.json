@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@babel/core": "^7.22.5",
+    "@graphcommerce/address-fields-nl": "6.2.0-canary.90",
     "@graphcommerce/cli": "6.2.0-canary.90",
     "@graphcommerce/demo-magento-graphcommerce": "6.2.0-canary.90",
     "@graphcommerce/ecommerce-ui": "6.2.0-canary.90",
@@ -65,6 +66,7 @@
     "@graphcommerce/magento-wishlist": "6.2.0-canary.90",
     "@graphcommerce/next-config": "6.2.0-canary.90",
     "@graphcommerce/next-ui": "6.2.0-canary.90",
+    "@graphql-mesh/json-schema": "^0.95.3",
     "@lingui/core": "4.4.0",
     "@lingui/macro": "4.4.0",
     "@lingui/react": "4.4.0",

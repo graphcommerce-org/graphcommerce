@@ -1,0 +1,13 @@
+sources:
+  - name: nationaalgeoregister
+    handler:
+      jsonSchema:
+        endpoint: https://geodata.nationaalgeoregister.nl/locatieserver/v3/
+        operations:
+          - type: Query
+            field: nationaalgeoregisterPostcodeService
+            path: /free?fq=type:adres&fq=postcode:{args.postcode}&q={args.housenumber}
+            method: GET
+            responseSample: 'lib/nationaalgeoregister/responseSample.json'
+additionalResolvers:
+  - lib/nationaalgeoregister/resolver
