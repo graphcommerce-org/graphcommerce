@@ -2,4 +2,4 @@
 '@graphcommerce/magento-category': patch
 ---
 
-Change the maxwidth of a category description to be a pixel based values instead of a percentage of the viewport width
+Category description would have be too small on some breakppoints. We now define a maxWidth on the description so it always renders properly.

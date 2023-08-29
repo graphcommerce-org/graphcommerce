@@ -2,4 +2,4 @@
 '@graphcommerce/magento-product-configurable': patch
 ---
 
-Make sure the products and relatedUpsells queries are merged correctly
+Make sure the products and relatedUpsells fields from the ProductPage2 query are merged correctly

@@ -2,4 +2,4 @@
 '@graphcommerce/ecommerce-ui': patch
 ---
 
-make the FormComponent elements validation message translatable.
+FormComponent elements validation message wasn't translated

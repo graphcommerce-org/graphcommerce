@@ -14,8 +14,6 @@ extend input GraphCommerceConfig {
   legacyProductRoute: Boolean
   """
   Product filters with better UI for mobile and desktop.
-
-  @experimental This is an experimental feature and may change in the future.
   """
   productFiltersPro: Boolean
 
