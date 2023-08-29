@@ -1,6 +1,6 @@
 import { useFormState } from '@graphcommerce/ecommerce-ui'
 import { useEventCallback } from '@mui/material'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { UseAddProductsToCartActionFragment } from './UseAddProductsToCartAction.gql'
 import { toUserErrors } from './toUserErrors'
 import { AddToCartItemSelector, useFormAddProductsToCart } from './useFormAddProductsToCart'
@@ -36,6 +36,7 @@ export function useAddProductsToCartAction(
     loading,
   } = props
 
+  const timer = useRef<null | ReturnType<typeof setTimeout>>()
   const [showSuccess, setShowSuccess] = useState<boolean>(false)
 
   const userErrors = toUserErrors(data)
@@ -45,12 +46,13 @@ export function useAddProductsToCartAction(
 
   useEffect(() => {
     if (submitSuccesful && submittedVariables?.cartItems.find((item) => item.sku === sku)) {
+      if (timer.current) clearTimeout(timer.current)
       setShowSuccess(true)
     }
   }, [sku, submitSuccesful, submittedVariables?.cartItems])
 
   if (showSuccess) {
-    setTimeout(() => {
+    timer.current = setTimeout(() => {
       setShowSuccess(false)
     }, 2000)
   }
