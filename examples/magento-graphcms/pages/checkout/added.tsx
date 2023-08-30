@@ -33,10 +33,9 @@ function CheckoutAdded() {
   const { sku } = router.query
   const lastItem = items.find((item) => item.product.sku === sku)
 
-  const hideCrossSellItemsInCart =
-    false || Boolean(import.meta.graphCommerce.hideCrossSellItemsInCart)
+  const hideCrossSellItemsInCart = Boolean(import.meta.graphCommerce.hideCrossSellItemsInCart)
 
-  const redirectCrossSellItems = true || Boolean(import.meta.graphCommerce.redirectCrossSellItems)
+  const redirectCrossSellItems = Boolean(import.meta.graphCommerce.redirectCrossSellItems)
 
   const crosssels = useQuery(CrosssellsDocument, {
     variables: { pageSize: 1, filters: { sku: { eq: lastItem?.product.sku } } },
@@ -60,7 +59,6 @@ function CheckoutAdded() {
       items,
     ],
   )
-
   return (
     <>
       <PageMeta title={i18n._(/* i18n */ 'Cart')} metaRobots={['noindex']} />
