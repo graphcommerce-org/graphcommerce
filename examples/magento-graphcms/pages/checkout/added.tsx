@@ -32,6 +32,7 @@ function CheckoutAdded() {
   const router = useRouter()
   const { sku } = router.query
   const lastItem = items.find((item) => item.product.sku === sku)
+  const redirectCrossSellItems = `${import.meta.graphCommerce.redirectCrossSellItems}`
 
   const crosssels = useQuery(CrosssellsDocument, {
     variables: { pageSize: 1, filters: { sku: { eq: lastItem?.product.sku } } },
@@ -146,7 +147,7 @@ function CheckoutAdded() {
               <Trans id='Complete your purchase' />
             </Typography>
           </Container>
-          <AddProductsToCartForm disableSuccessSnackbar redirect={false}>
+          <AddProductsToCartForm disableSuccessSnackbar redirect={redirectCrossSellItems}>
             <ItemScroller
               sx={(theme) => ({
                 width: 'auto',

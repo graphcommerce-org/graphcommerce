@@ -260,6 +260,12 @@ By default we route products to /p/[url] but you can change this to /product/[ur
 Default: '/p/'
 Example: '/product/'
 
+#### `redirectCrossSellItems: Boolean`
+
+Determines if, after adding a cross-sell item to the cart, the user should be redirected to the cross-sell items of the product they just added.
+
+Default: 'false'
+
 #### `robotsAllow: Boolean`
 
 Allow the site to be indexed by search engines.
