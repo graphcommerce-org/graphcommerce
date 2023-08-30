@@ -32,7 +32,11 @@ function CheckoutAdded() {
   const router = useRouter()
   const { sku } = router.query
   const lastItem = items.find((item) => item.product.sku === sku)
-  const redirectCrossSellItems = `${import.meta.graphCommerce.redirectCrossSellItems}`
+
+  const hideCrossSellItemsInCart =
+    false || Boolean(import.meta.graphCommerce.hideCrossSellItemsInCart)
+
+  const redirectCrossSellItems = true || Boolean(import.meta.graphCommerce.redirectCrossSellItems)
 
   const crosssels = useQuery(CrosssellsDocument, {
     variables: { pageSize: 1, filters: { sku: { eq: lastItem?.product.sku } } },
@@ -44,8 +48,17 @@ function CheckoutAdded() {
       filterNonNullableKeys(
         crosssels.data?.products?.items?.[0]?.crosssell_products ??
           crosssels.previousData?.products?.items?.[0]?.crosssell_products,
-      ).filter((item) => item.stock_status === 'IN_STOCK'),
-    [crosssels.data?.products?.items, crosssels.previousData?.products?.items],
+      ).filter(
+        (item) =>
+          (items.every((i) => i.product.sku !== item.sku) && hideCrossSellItemsInCart) ||
+          (item.stock_status === 'IN_STOCK' && !hideCrossSellItemsInCart),
+      ),
+    [
+      crosssels.data?.products?.items,
+      crosssels.previousData?.products?.items,
+      hideCrossSellItemsInCart,
+      items,
+    ],
   )
 
   return (
@@ -147,7 +160,10 @@ function CheckoutAdded() {
               <Trans id='Complete your purchase' />
             </Typography>
           </Container>
-          <AddProductsToCartForm disableSuccessSnackbar redirect={redirectCrossSellItems}>
+          <AddProductsToCartForm
+            disableSuccessSnackbar
+            redirect={redirectCrossSellItems ? 'added' : false}
+          >
             <ItemScroller
               sx={(theme) => ({
                 width: 'auto',
