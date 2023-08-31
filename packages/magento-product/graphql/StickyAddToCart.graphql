@@ -1,0 +1,4 @@
+fragment StickyAddToCart on ProductInterface @inject(into: ["UseAddProductsToCartAction"]) {
+  ...ProductPageGallery
+  ...ProductPagePrice
+}
