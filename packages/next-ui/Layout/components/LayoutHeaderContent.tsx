@@ -14,7 +14,6 @@ export type LayoutHeaderContentProps = FloatingProps & {
   right?: React.ReactNode
   divider?: React.ReactNode
   switchPoint?: number
-  forceScrolled?: boolean
   sx?: SxProps<Theme>
   sxBg?: SxProps<Theme>
   layout?: LayoutProps['layout']
@@ -26,7 +25,6 @@ type OwnerState = {
   floatingSm: boolean
   floatingMd: boolean
   scrolled: boolean
-  forcedScrolled: boolean
   divider: boolean
   size: 'small' | 'responsive'
   bgColor?: 'paper' | 'default'
@@ -47,7 +45,6 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
     floatingMd = false,
     floatingSm = false,
     switchPoint = 50,
-    forceScrolled = false,
     sx = [],
     sxBg = [],
     layout,
@@ -59,13 +56,10 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
   const scroll = useScrollY()
   const scrolled = useMotionValueValue(scroll, (y) => y >= switchPoint)
 
-  const forcedScrolled = forceScrolled
-
   const classes = withState({
     floatingSm,
     floatingMd,
-    scrolled: !forceScrolled,
-    forcedScrolled,
+    scrolled,
     divider: !!divider,
     size,
     bgColor,
@@ -106,11 +100,7 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
 
             opacity: 0,
             transition: `opacity 150ms`,
-            '&.scrolled:not(.forcedScrolled)': {
-              opacity: 1,
-            },
-
-            '&.forceScrolled': {
+            '&.scrolled': {
               opacity: 1,
             },
 
@@ -196,12 +186,7 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
 
             transition: `opacity 150ms`,
             opacity: 0,
-            '&.scrolled:not(.forcedScrolled)': {
-              opacity: 1,
-              '& > *': { pointerEvents: 'all' },
-            },
-
-            '&.forceScrolled': {
+            '&.scrolled': {
               opacity: 1,
               '& > *': { pointerEvents: 'all' },
             },
