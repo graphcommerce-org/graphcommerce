@@ -58,7 +58,7 @@ export function StickyAddToCart(props: StickyAddToCartProps) {
           margin: 'auto',
           transform: {
             xs: 'none',
-            md: `translateY(${theme.appShell.appBarHeightMd})`,
+            md: `translateY(calc(${theme.appShell.appBarHeightMd} - ${theme.appShell.headerHeightSm} - 10px))`,
           },
 
           [theme.breakpoints.down('md')]: {
@@ -73,11 +73,6 @@ export function StickyAddToCart(props: StickyAddToCartProps) {
             px: '12px',
           },
 
-          '& .LayoutHeaderContent-center': {
-            display: 'flex',
-            width: '100%',
-          },
-
           '& .LayoutHeaderContent-center > div': {
             width: '100%',
           },
@@ -85,9 +80,28 @@ export function StickyAddToCart(props: StickyAddToCartProps) {
           '& .LayoutHeaderContent-bg': {
             borderRadius: { xs: 0, md: theme.shape.borderRadius },
             boxShadow: theme.shadows[6],
+            transform: 'translateY(-50px)',
+            transition: '0.3s ease-in-out',
+
+            '&.scrolled': {
+              opacity: 1,
+              transform: 'none',
+            },
 
             [theme.breakpoints.down('md')]: {
               height: `calc(${theme.appShell.headerHeightSm} + 15px)`,
+            },
+          },
+
+          '& .LayoutHeaderContent-center': {
+            display: 'flex',
+            width: '100%',
+            transform: 'translateY(-50px)',
+            transition: '0.3s ease-in-out',
+
+            '&.scrolled': {
+              opacity: 1,
+              transform: 'none',
             },
           },
 
