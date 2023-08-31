@@ -143,6 +143,22 @@ export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
       value={useMemo(() => ({ ...form, redirect }), [form, redirect])}
     >
       <Box component='form' onSubmit={submit} noValidate sx={sx} className={name}>
+        {import.meta.graphCommerce.enableStickyAddToCart && (
+          <Box
+            sx={(theme) => ({
+              position: { xs: 'sticky', md: 'absolute' },
+              height: '100%',
+              width: '100%',
+              margin: 'auto',
+              inset: 0,
+              top: { xs: theme.appShell.headerHeightSm, md: 0 },
+              zIndex: '1',
+              pointerEvents: 'none',
+              '& > *': { pointerEvents: 'all' },
+            })}
+            id='StickyAddToCartDestination'
+          />
+        )}
         {children}
       </Box>
       {disableSuccessSnackbar ? null : (
