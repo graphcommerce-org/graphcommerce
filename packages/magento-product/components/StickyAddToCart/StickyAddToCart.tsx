@@ -135,6 +135,7 @@ export function StickyAddToCart(props: StickyAddToCartProps) {
           <Typography
             variant='h4'
             sx={(theme) => ({
+              display: { xs: 'none', md: 'block' },
               fontSize: { xs: theme.typography.h5.fontSize, md: theme.typography.h4.fontSize },
               fontWeight: 'bold',
               overflow: 'hidden',
