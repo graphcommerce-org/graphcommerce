@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-cart-checkout",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "6.2.0-canary.96",
+  "version": "6.2.0-canary.97",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -12,20 +12,20 @@
     }
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "6.2.0-canary.96",
-    "@graphcommerce/prettier-config-pwa": "6.2.0-canary.96",
-    "@graphcommerce/typescript-config-pwa": "6.2.0-canary.96"
+    "@graphcommerce/eslint-config-pwa": "6.2.0-canary.97",
+    "@graphcommerce/prettier-config-pwa": "6.2.0-canary.97",
+    "@graphcommerce/typescript-config-pwa": "6.2.0-canary.97"
   },
   "dependencies": {
-    "@graphcommerce/graphql": "6.2.0-canary.96",
-    "@graphcommerce/image": "6.2.0-canary.96",
-    "@graphcommerce/magento-cart": "6.2.0-canary.96",
-    "@graphcommerce/magento-cart-coupon": "6.2.0-canary.96",
-    "@graphcommerce/magento-cart-items": "6.2.0-canary.96",
-    "@graphcommerce/magento-customer": "6.2.0-canary.96",
-    "@graphcommerce/magento-store": "6.2.0-canary.96",
-    "@graphcommerce/next-ui": "6.2.0-canary.96",
-    "@graphcommerce/react-hook-form": "6.2.0-canary.96"
+    "@graphcommerce/graphql": "6.2.0-canary.97",
+    "@graphcommerce/image": "6.2.0-canary.97",
+    "@graphcommerce/magento-cart": "6.2.0-canary.97",
+    "@graphcommerce/magento-cart-coupon": "6.2.0-canary.97",
+    "@graphcommerce/magento-cart-items": "6.2.0-canary.97",
+    "@graphcommerce/magento-customer": "6.2.0-canary.97",
+    "@graphcommerce/magento-store": "6.2.0-canary.97",
+    "@graphcommerce/next-ui": "6.2.0-canary.97",
+    "@graphcommerce/react-hook-form": "6.2.0-canary.97"
   },
   "peerDependencies": {
     "@lingui/react": "^4.2.1",

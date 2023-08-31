@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.97
+
+### Patch Changes
+
+- [#2042](https://github.com/graphcommerce-org/graphcommerce/pull/2042) [`587fd2fe5`](https://github.com/graphcommerce-org/graphcommerce/commit/587fd2fe50c843acd9ffae869372df1df57e0a4b) - Updated german translations ([@action-simon](https://github.com/action-simon))
+
 ## 6.2.0-canary.96
 
 ### Patch Changes
