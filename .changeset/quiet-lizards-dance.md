@@ -1,5 +1,6 @@
 ---
-"@graphcommerce/magento-graphcms": patch
+'@graphcommerce/magento-graphcms': patch
+'@graphcommerce/next-ui': patch
 ---
 
 Updated german translations
