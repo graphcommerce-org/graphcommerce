@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.0.0
+
+### Patch Changes
+
+- [#1944](https://github.com/graphcommerce-org/graphcommerce/pull/1944) [`f0ccbb117`](https://github.com/graphcommerce-org/graphcommerce/commit/f0ccbb11797c501022f0667ff8851ba8c06b02fc) - Remove the Cancel button from the review page, as it doesn't really serve a function ([@paales](https://github.com/paales))
+
 ## 6.2.0-canary.98
 
 ## 6.2.0-canary.97

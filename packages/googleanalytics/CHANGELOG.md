@@ -1,5 +1,15 @@
 # Change Log
 
+## 7.0.0
+
+### Patch Changes
+
+- [#1944](https://github.com/graphcommerce-org/graphcommerce/pull/1944) [`d83c92b76`](https://github.com/graphcommerce-org/graphcommerce/commit/d83c92b767cfab24b33b7530837e601f1b49de38) - When there are no items in the cart, do not send a viewCart event ([@paales](https://github.com/paales))
+
+- [#1915](https://github.com/graphcommerce-org/graphcommerce/pull/1915) [`4c8d6fc73`](https://github.com/graphcommerce-org/graphcommerce/commit/4c8d6fc734a83b9ffa078abf10b26c65e49f4940) - GaViewItem would still be enabled even when googleAnalyticsId was enabled ([@paales](https://github.com/paales))
+
+- [#2031](https://github.com/graphcommerce-org/graphcommerce/pull/2031) [`4d8fc9e99`](https://github.com/graphcommerce-org/graphcommerce/commit/4d8fc9e998fc9361282833316ec9564da0644ed6) - Eslint fixes and suppress accepted warnings ([@paales](https://github.com/paales))
+
 ## 6.2.0-canary.98
 
 ## 6.2.0-canary.97

@@ -1,5 +1,17 @@
 # @graphcommerce/demo-magento-graphcommerce
 
+## 7.0.0
+
+### Major Changes
+
+- [`e55d8c390`](https://github.com/graphcommerce-org/graphcommerce/commit/e55d8c390d90b4bb7bab11c6a99027ac72bd7e3e) - Created a new sidebar layout system, can be configured with productFiltersLayout in the graphcommerce.config.js ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#1947](https://github.com/graphcommerce-org/graphcommerce/pull/1947) [`f105d1401`](https://github.com/graphcommerce-org/graphcommerce/commit/f105d1401c41087af98023e58371c4a5a3cb181b) - Demo content for RowLinks order would be wrong ([@paales](https://github.com/paales))
+
+- [#1959](https://github.com/graphcommerce-org/graphcommerce/pull/1959) [`d0809b132`](https://github.com/graphcommerce-org/graphcommerce/commit/d0809b132a0e4cbdfeb86164f6c16a89ebecd987) - Added support for default values in the Config.graphqls files for the documentation ([@JoshuaS98](https://github.com/JoshuaS98))
+
 ## 6.2.0-canary.98
 
 ## 6.2.0-canary.97

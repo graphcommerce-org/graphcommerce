@@ -1,5 +1,13 @@
 # @graphcommerce/magento-payment-paypal
 
+## 7.0.0
+
+### Patch Changes
+
+- [#1914](https://github.com/graphcommerce-org/graphcommerce/pull/1914) [`72fb254a0`](https://github.com/graphcommerce-org/graphcommerce/commit/72fb254a0046001ce4288501b0de6871fada819b) - User wouldn't be redirect to the paypal website, not allowing users to checkout ([@paales](https://github.com/paales))
+
+- [#1943](https://github.com/graphcommerce-org/graphcommerce/pull/1943) [`138215b45`](https://github.com/graphcommerce-org/graphcommerce/commit/138215b453703f44243c85b3bfab58814d86131c) - When a PayPal buyer would return to the website it would sometimes clear the buyers token ([@paales](https://github.com/paales))
+
 ## 6.2.0-canary.98
 
 ## 6.2.0-canary.97

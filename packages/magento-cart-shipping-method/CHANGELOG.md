@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.0.0
+
+### Minor Changes
+
+- [#1935](https://github.com/graphcommerce-org/graphcommerce/pull/1935) [`9bba82de1`](https://github.com/graphcommerce-org/graphcommerce/commit/9bba82de1a47742bd3c97b3bf3e4017b214f401d) - Show a shipping method placeholder when no shipping methods are available yet, to allow shipping method validation to work before an address is filled out ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 6.2.0-canary.98
 
 ## 6.2.0-canary.97

@@ -1,5 +1,17 @@
 # @graphcommerce/magento-compare
 
+## 7.0.0
+
+### Major Changes
+
+- [#1918](https://github.com/graphcommerce-org/graphcommerce/pull/1918) [`7dcf350c6`](https://github.com/graphcommerce-org/graphcommerce/commit/7dcf350c674dfe6dbf192ecfb5af3ee8180eb2f9) - Magento Product Compare functionality added ([@paales](https://github.com/paales))
+
+- [`e55d8c390`](https://github.com/graphcommerce-org/graphcommerce/commit/e55d8c390d90b4bb7bab11c6a99027ac72bd7e3e) - Created a new sidebar layout system, can be configured with productFiltersLayout in the graphcommerce.config.js ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#1959](https://github.com/graphcommerce-org/graphcommerce/pull/1959) [`d0809b132`](https://github.com/graphcommerce-org/graphcommerce/commit/d0809b132a0e4cbdfeb86164f6c16a89ebecd987) - Added support for default values in the Config.graphqls files for the documentation ([@JoshuaS98](https://github.com/JoshuaS98))
+
 ## 6.2.0-canary.98
 
 ## 6.2.0-canary.97

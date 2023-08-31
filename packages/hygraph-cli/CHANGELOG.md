@@ -1,5 +1,23 @@
 # @graphcommerce/hygraph-cli
 
+## 7.0.0
+
+### Major Changes
+
+- [#1912](https://github.com/graphcommerce-org/graphcommerce/pull/1912) [`a43d389e9`](https://github.com/graphcommerce-org/graphcommerce/commit/a43d389e956fe69b73238b12c98c781b7044e4bb) - Added dynamic rows feature ([@JoshuaS98](https://github.com/JoshuaS98))
+
+### Minor Changes
+
+- [#1938](https://github.com/graphcommerce-org/graphcommerce/pull/1938) [`5aa6558a4`](https://github.com/graphcommerce-org/graphcommerce/commit/5aa6558a4e48d8d670284802fed65a934429b0ea) - Introduce hygraph-cli for schema migrations ([@JoshuaS98](https://github.com/JoshuaS98))
+
+### Patch Changes
+
+- [#2012](https://github.com/graphcommerce-org/graphcommerce/pull/2012) [`1dbb3ae13`](https://github.com/graphcommerce-org/graphcommerce/commit/1dbb3ae13553992ee1ed77f375375560f28c418c) - Upgrade graphql to 16.7.1, add graphql as peer dependency ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#1924](https://github.com/graphcommerce-org/graphcommerce/pull/1924) [`04581f619`](https://github.com/graphcommerce-org/graphcommerce/commit/04581f619c609f2f6ca5268ee5effb6a1db3f0eb) - Use the latest branch from graphql-mesh so that all versions are in sync ([@paales](https://github.com/paales))
+
+- [#1960](https://github.com/graphcommerce-org/graphcommerce/pull/1960) [`86e14569b`](https://github.com/graphcommerce-org/graphcommerce/commit/86e14569b1f68f73be7f93b614e36b382c5debff) - Updated to the latest release of GraphQL codegen and solve compatibility issues with our own generator ([@paales](https://github.com/paales))
+
 ## 6.2.0-canary.98
 
 ## 6.2.0-canary.97

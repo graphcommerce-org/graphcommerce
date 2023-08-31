@@ -1,5 +1,13 @@
 # Change Log
 
+## 7.0.0
+
+### Minor Changes
+
+- [#2003](https://github.com/graphcommerce-org/graphcommerce/pull/2003) [`609b384de`](https://github.com/graphcommerce-org/graphcommerce/commit/609b384de8cded7a9dd2f29bd516ded810ab970a) - Created a new version of the cart using ActionCards for each CartItem. Different types of CartItems can have different ActionCards. These ActionCards will be overridden with the use of Plugins. An example can be found in the @graphcommerce/magento-product-configurable package. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+- [#2029](https://github.com/graphcommerce-org/graphcommerce/pull/2029) [`4ac92840a`](https://github.com/graphcommerce-org/graphcommerce/commit/4ac92840a44c8697738f5437fa0b81ef8210e2a7) - Use price_including_tax field when available instead of dividing through the row_total_including_tax ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
 ## 6.2.0-canary.98
 
 ## 6.2.0-canary.97
