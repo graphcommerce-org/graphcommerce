@@ -2,7 +2,7 @@
   "name": "@graphcommerce/googletagmanager",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "6.2.0-canary.97",
+  "version": "6.2.0-canary.98",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -12,14 +12,14 @@
     }
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "6.2.0-canary.97",
-    "@graphcommerce/prettier-config-pwa": "6.2.0-canary.97",
-    "@graphcommerce/typescript-config-pwa": "6.2.0-canary.97",
+    "@graphcommerce/eslint-config-pwa": "6.2.0-canary.98",
+    "@graphcommerce/prettier-config-pwa": "6.2.0-canary.98",
+    "@graphcommerce/typescript-config-pwa": "6.2.0-canary.98",
     "@types/gapi.client.tagmanager": "^2.0.2"
   },
   "dependencies": {
-    "@graphcommerce/magento-product": "6.2.0-canary.97",
-    "@graphcommerce/next-ui": "6.2.0-canary.97"
+    "@graphcommerce/magento-product": "6.2.0-canary.98",
+    "@graphcommerce/next-ui": "6.2.0-canary.98"
   },
   "peerDependencies": {
     "next": "^13.2.0",

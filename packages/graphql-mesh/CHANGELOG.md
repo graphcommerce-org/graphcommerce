@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0-canary.98
+
+### Patch Changes
+
+- [`48f4f5cbd`](https://github.com/graphcommerce-org/graphcommerce/commit/48f4f5cbd07bbc08e1bf58cabc0e0230b2bd78bc) - Peer dependency warnings reduced ([@paales](https://github.com/paales))
+
 ## 6.2.0-canary.97
 
 ## 6.2.0-canary.96
