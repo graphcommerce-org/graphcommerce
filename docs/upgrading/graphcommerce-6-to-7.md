@@ -5,9 +5,8 @@ steps. Please follow the regular [upgrade steps first](./readme.md).
 
 1. [Add `fetchPolicy: cache-first` to LayoutDocument](#add-cache-first-fetchpolicy-to-layoutdocument)
 2. [Use thew new `hygraphPageContent` function instead of DefaultPageQuery](#use-the-new-hygraphpagecontent-function-instead-of-defaultpagequery)
-3. [Translation file updates](#translation-file-updates)
-4. [All @graphql-mesh/\* should be set to latest](#all-graphql-mesh-should-be-set-to-latest)
-5. [Upgrading your Hygraph schema](#upgrading-your-hygraph-schema)
+3. [All @graphql-mesh/\* should be set to latest](#all-graphql-mesh-should-be-set-to-latest)
+4. [Upgrading your Hygraph schema](#upgrading-your-hygraph-schema)
 
 ## Add `fetchPolicy: cache-first` to LayoutDocument queries
 
@@ -42,31 +41,6 @@ const page = staticClient.query({
 // Becomes hygraphPageContent
 const page = hygraphPageContent(staticClient, `blog/${urlKey}`)
 ```
-
-## Translation file updates
-
-🟠 Only required if you've added custom translations
-
-All locales files now require a `msgid` comment. All translations need to have a
-`#. js-lingui-explicit-id` comment added. This could be done with a
-find-and-replace:
-
-Find (including the empty line)
-
-```
-
-msgid
-```
-
-Replace with (including the empty line)
-
-```
-
-#. js-lingui-explicit-id
-msgid
-```
-
-To validate your translations run `yarn lingui` to extract everything.
 
 ## All @graphql-mesh/\* should be set to latest.
 
