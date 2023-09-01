@@ -1,6 +1,6 @@
 import type { IfConfig, ReactPlugin } from '@graphcommerce/next-config'
 import { Box } from '@mui/material'
-import { useLayoutEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { ProductPageAddToCartRow, StickyAddToCart } from '../../components'
 
@@ -19,7 +19,7 @@ const StickyProductPageAddToCartRow: PluginType = (props) => {
 
   const stickyAddToCart = <StickyAddToCart product={product} cartButtonRef={cartButtonRef} />
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const stickyTarget = globalThis?.document?.getElementById('StickyAddToCartDestination')
     if (stickyTarget) {
       setTarget(stickyTarget)
@@ -27,12 +27,14 @@ const StickyProductPageAddToCartRow: PluginType = (props) => {
   }, [])
 
   return (
-    <Box ref={cartButtonRef}>
+    <>
       {target && createPortal(stickyAddToCart, target)}
-      <Prev product={product} {...rest}>
-        {children}
-      </Prev>
-    </Box>
+      <Box ref={cartButtonRef}>
+        <Prev product={product} {...rest}>
+          {children}
+        </Prev>
+      </Box>
+    </>
   )
 }
 
