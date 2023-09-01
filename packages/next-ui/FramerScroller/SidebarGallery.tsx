@@ -7,6 +7,7 @@ import {
   ScrollerButtonProps,
   ScrollerDots,
   ScrollerProvider,
+  usePreventScroll,
 } from '@graphcommerce/framer-scroller'
 import { dvh } from '@graphcommerce/framer-utils'
 import { Fab, useTheme, Box, styled, SxProps, Theme } from '@mui/material'
@@ -70,6 +71,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
   const route = `#${routeHash}`
   // We're using the URL to manage the state of the gallery.
   const zoomed = router.asPath.endsWith(route)
+  usePreventScroll(zoomed)
 
   // cleanup if someone enters the page with #gallery
   useEffect(() => {
@@ -86,7 +88,6 @@ export function SidebarGallery(props: SidebarGalleryProps) {
     if (!zoomed) {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       router.push(route, undefined, { shallow: true })
-      document.body.style.overflow = 'hidden'
       window.scrollTo({ top: 0, behavior: 'smooth' })
     } else {
       router.back()
