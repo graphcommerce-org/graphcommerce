@@ -8,7 +8,8 @@ import {
   GetWishlistProductsDocument,
   GetWishlistProductsQuery,
 } from '../queries/GetWishlistProducts.gql'
-import { GuestWishlistDocument } from '../queries/GuestWishlist.gql'
+import { GuestWishlistDocument, GuestWishlistQuery } from '../queries/GuestWishlist.gql'
+import { Exact } from '@graphcommerce/next-config'
 
 type WishListData =
   | NonNullable<GetGuestWishlistProductsQuery['products']>['items']
@@ -18,6 +19,12 @@ type WishListData =
 
 export function useWishlistItems(): Omit<QueryResult<GetGuestWishlistProductsQuery>, 'data'> & {
   data: WishListData
+  guestWishlist: QueryResult<
+    GuestWishlistQuery,
+    Exact<{
+      [key: string]: never
+    }>
+  >
 } {
   const { loggedIn } = useCustomerSession()
   let wishlistItems: WishListData = []
@@ -48,6 +55,7 @@ export function useWishlistItems(): Omit<QueryResult<GetGuestWishlistProductsQue
   return {
     ...guestProducts,
     data: wishlistItems,
+    guestWishlist: guestWl,
     loading,
   }
 }
