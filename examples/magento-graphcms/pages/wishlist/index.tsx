@@ -74,7 +74,7 @@ function WishlistPage() {
                 <WishlistItems
                   renderer={{
                     BundleProduct: WishlistItemBase,
-                    ConfigurableProduct: WishlistItemBase,
+                    ConfigurableProduct: WishlistItem,
                     DownloadableProduct: WishlistItemBase,
                     SimpleProduct: WishlistItem,
                     VirtualProduct: WishlistItem,

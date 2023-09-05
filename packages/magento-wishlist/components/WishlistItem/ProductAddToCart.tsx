@@ -39,7 +39,11 @@ export function ProductAddToCart(
   const { name, children, variables, price, sx, additionalButtons, ...buttonProps } = props
 
   const form = useFormGqlMutationCart(ProductAddToCartDocument, {
-    defaultValues: { ...variables },
+    defaultValues: {
+      sku: variables.sku,
+      selectedOptions: variables.selectedOptions,
+      quantity: variables.quantity,
+    },
   })
 
   const { handleSubmit, formState, error, muiRegister, required, data } = form
