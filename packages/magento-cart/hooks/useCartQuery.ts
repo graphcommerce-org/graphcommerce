@@ -34,7 +34,7 @@ export function useCartQuery<Q, V extends { cartId: string; [index: string]: unk
   queryOptions.variables = { cartId, ...options?.variables } as V
   queryOptions.skip = queryOptions?.skip || !cartId
 
-  const result = useQuery(document, queryOptions)
+  const result = useQuery(document, queryOptions as QueryHookOptions<Q, V>)
 
   return {
     ...result,

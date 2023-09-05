@@ -2,8 +2,8 @@
   "name": "@graphcommerce/prettier-config-pwa",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "7.0.0",
+  "version": "7.0.1-canary.3",
   "dependencies": {
-    "prettier-plugin-jsdoc": "^0.4.2"
+    "prettier-plugin-jsdoc": "^1.0.1"
   }
 }

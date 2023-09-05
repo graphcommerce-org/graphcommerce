@@ -2,8 +2,8 @@ import type { RemoveItemFromCart } from '@graphcommerce/magento-cart-items'
 import { IfConfig, ReactPlugin } from '@graphcommerce/next-config'
 import { gtagRemoveFromCart } from '../events/gtagRemoveFromCart/gtagRemoveFromCart'
 
-export const component = 'RemoveItemFromCartFab'
-export const exported = '@graphcommerce/magento-cart-items/RemoveItemFromCart/RemoveItemFromCartFab'
+export const component = 'RemoveItemFromCart'
+export const exported = '@graphcommerce/magento-cart-items/components/RemoveItemFromCart/RemoveItemFromCart'
 export const ifConfig: IfConfig = 'googleAnalyticsId'
 
 export const GaRemoveItemFromCart: ReactPlugin<typeof RemoveItemFromCart> = (props) => {
