@@ -24,7 +24,7 @@ dependencies, while keeping your customizations.
    {
      "dependencies": {
        //...
-       "@graphcommerce/next-ui": "4.2.0"
+       "@graphcommerce/next-ui": "6.1.0"
        //...
      }
    }
