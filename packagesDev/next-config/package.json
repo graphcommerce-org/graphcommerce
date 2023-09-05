@@ -26,7 +26,6 @@
   },
   "devDependencies": {
     "@types/circular-dependency-plugin": "^5.0.5",
-    "@types/cli-table": "^0.3.1",
     "@types/lodash": "^4.14.191",
     "typescript": "5.1.3"
   },

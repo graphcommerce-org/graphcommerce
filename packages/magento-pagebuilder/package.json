@@ -15,7 +15,7 @@
     "@graphcommerce/eslint-config-pwa": "7.0.0",
     "@graphcommerce/prettier-config-pwa": "7.0.0",
     "@graphcommerce/typescript-config-pwa": "7.0.0",
-    "@types/jsdom": "^21.1.0"
+    "@types/jsdom": "^21.1.2"
   },
   "dependencies": {
     "@graphcommerce/graphql": "7.0.0",
@@ -28,8 +28,8 @@
   },
   "peerDependencies": {
     "@lingui/core": "^4.2.1",
-    "@lingui/react": "^4.2.1",
     "@lingui/macro": "^4.2.1",
+    "@lingui/react": "^4.2.1",
     "@mui/material": "^5.10.16",
     "framer-motion": "^10.0.0",
     "next": "^13.2.0",

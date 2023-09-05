@@ -256,11 +256,7 @@ export type GraphCommerceConfig = {
    * SIDEBAR: Will be rendered as a sidebar on desktop and horizontal chips on mobile
    */
   productFiltersLayout?: InputMaybe<ProductFiltersLayout>;
-  /**
-   * Product filters with better UI for mobile and desktop.
-   *
-   * @experimental This is an experimental feature and may change in the future.
-   */
+  /** Product filters with better UI for mobile and desktop. */
   productFiltersPro?: InputMaybe<Scalars['Boolean']['input']>;
   /**
    * By default we route products to /p/[url] but you can change this to /product/[url] if you wish.

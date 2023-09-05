@@ -253,8 +253,6 @@ SIDEBAR: Will be rendered as a sidebar on desktop and horizontal chips on mobile
 
 Product filters with better UI for mobile and desktop.
 
-@experimental This is an experimental feature and may change in the future.
-
 #### `productRoute: String`
 
 By default we route products to /p/[url] but you can change this to /product/[url] if you wish.
