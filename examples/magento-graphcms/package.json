@@ -6,7 +6,7 @@
   "private": true,
   "sideEffects": false,
   "engines": {
-    "node": "16.x.x||18.x.x"
+    "node": "16.x.x||18.x.x||20.x.x"
   },
   "scripts": {
     "dev": "concurrently -k -n codegen,next 'graphql-codegen -w' 'next dev'",
