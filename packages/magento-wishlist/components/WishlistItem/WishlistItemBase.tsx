@@ -104,7 +104,9 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
           id: cache.identify({ __typename: 'GuestWishlist' }),
           fields: {
             items(existingItems = []) {
-              const items = existingItems.filter((guestItem) => guestItem.sku !== sku)
+              const items = existingItems.filter(
+                (item) => item !== existingItems[Number(wishlistItemId)],
+              )
               return items
             },
           },
