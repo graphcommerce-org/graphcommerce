@@ -75,5 +75,9 @@
     "@graphcommerce/prettier-config-pwa": "7.0.0",
     "@graphcommerce/typescript-config-pwa": "7.0.0"
   },
-  "changesets": []
+  "changesets": [
+    "quick-walls-speak",
+    "strange-carpets-yell",
+    "tough-bottles-double"
+  ]
 }

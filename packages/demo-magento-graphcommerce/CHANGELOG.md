@@ -1,5 +1,7 @@
 # @graphcommerce/demo-magento-graphcommerce
 
+## 7.0.1-canary.0
+
 ## 7.0.0
 
 ### Major Changes
