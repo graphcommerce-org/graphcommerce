@@ -1,4 +1,4 @@
-import { useMutation, useApolloClient } from '@graphcommerce/graphql'
+import { useMutation, useApolloClient, useQuery } from '@graphcommerce/graphql'
 import {
   useCustomerQuery,
   useCustomerSession,
@@ -71,6 +71,8 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
 
   const isWishlistEnabled = useWishlistEnabled()
 
+  const guestWl = useQuery(GuestWishlistDocument, { ssr: false, skip: loggedIn })
+
   const heart = (
     <IconSvg
       src={iconHeart}
@@ -101,6 +103,9 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
   )
 
   useEffect(() => {
+    const selectedOptions = addToCartForm?.getValues().cartItems?.[0]?.selected_options ?? []
+    const selected_options = Array.isArray(selectedOptions) ? selectedOptions : [selectedOptions]
+
     // Do not display wishlist UI to guests when configured as customer only
     if (hideForGuest && !loggedIn) {
       return
@@ -109,20 +114,108 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
     if (!url_key || !sku) {
       return
     }
-
     // Mark as active when product is available in either customer or guest wishlist
     if (loggedIn && !loading) {
-      const inWishlistTest =
-        GetCustomerWishlistData?.customer?.wishlists[0]?.items_v2?.items.map(
-          (item) => item?.product?.url_key,
-        ) || []
-      setInWishlist(inWishlistTest.includes(url_key))
+      // const inWishlistTest =
+      //   GetCustomerWishlistData?.customer?.wishlists[0]?.items_v2?.items.map(
+      //     (item) => item?.product?.url_key,
+      //   ) || []
+      // const skuList = GetCustomerWishlistData?.customer?.wishlists[0]?.items_v2?.items.map(
+      //   (itemSku) => itemSku?.product?.sku,
+      // )
+      // const inWishlistTest2 =
+      //   GetCustomerWishlistData?.customer?.wishlists[0]?.items_v2?.items.map((item) => {
+      //     if (item?.__typename === 'ConfigurableWishlistItem') {
+      //       return item?.configurable_options
+      //     }
+      //     return null
+      //   }) || []
+
+      const wishlistItems = GetCustomerWishlistData?.customer?.wishlists[0]?.items_v2?.items
+
+      const check2 =
+        selected_options?.[0] === undefined
+          ? !!wishlistItems?.find(
+              (e) =>
+                e?.product?.url_key === url_key &&
+                e.__typename === 'ConfigurableWishlistItem' &&
+                e.configurable_options?.length === 0,
+            )
+          : wishlistItems?.some(
+              (wishlistItemOptions) =>
+                selected_options.every(
+                  (option) =>
+                    wishlistItemOptions?.__typename === 'ConfigurableWishlistItem' &&
+                    wishlistItemOptions?.configurable_options?.some(
+                      (wishlistOption) =>
+                        wishlistOption?.configurable_product_option_value_uid === option &&
+                        sku === wishlistItemOptions.product?.sku,
+                    ),
+                ) && wishlistItemOptions?.product?.url_key === url_key,
+            )
+
+      // const check =
+      //   selectedWishlistOptions?.[0] === undefined
+      //     ? !!inWishlistTest.find((e, i) => e === url_key && inWishlistTest2?.[i]?.length === 0)
+      //     : inWishlistTest2.some((wishlistItemOptions, i) =>
+      //         selectedWishlistOptions.every(
+      //           (option) =>
+      //             wishlistItemOptions?.some(
+      //               (wishlistOption) =>
+      //                 wishlistOption?.configurable_product_option_value_uid === option &&
+      //                 skuList?.[i] === sku,
+      //             ),
+      //           // wishlistItem.find((itemOption) => {})configurable_product_option_value_uid
+      //         ),
+      //       )
+      setInWishlist(!!check2)
     } else if (!loggedIn) {
       const inWishlistTest =
         guestWishlistData?.guestWishlist?.items.map((item) => item?.url_key) || []
-      setInWishlist(inWishlistTest.includes(url_key))
+      const inWishlistTest2 =
+        guestWl.data?.guestWishlist?.items.map((item) => item.selected_options || null) || []
+
+      const skuList = guestWishlistData?.guestWishlist?.items.map((itemSku) => itemSku?.sku)
+
+      const guestWishlist = guestWishlistData?.guestWishlist?.items
+
+      const check2 =
+        selected_options?.[0] === undefined
+          ? !!guestWishlist?.find((e) => e?.url_key === url_key && e.selected_options?.length === 0)
+          : guestWishlist?.some(
+              (wishlistItemOptions) =>
+                selected_options.every((option) =>
+                  wishlistItemOptions?.selected_options?.some(
+                    (wishlistOption) =>
+                      wishlistOption === option && sku === wishlistItemOptions?.sku,
+                  ),
+                ) && wishlistItemOptions?.url_key === url_key,
+            )
+
+      const check =
+        selected_options?.[0] === undefined
+          ? !!inWishlistTest.find((e, i) => e === url_key && inWishlistTest2?.[i]?.length === 0)
+          : inWishlistTest2?.some((wishlistItemOptions, i) =>
+              selected_options.every(
+                (option) =>
+                  wishlistItemOptions?.some(
+                    (wishlistOption) => wishlistOption === option && skuList?.[i] === sku,
+                  ),
+                // wishlistItem.find((itemOption) => {})configurable_product_option_value_uid
+              ),
+            )
+      setInWishlist(!!check2)
     }
-  }, [loggedIn, url_key, loading, GetCustomerWishlistData, guestWishlistData, sku])
+  }, [
+    loggedIn,
+    url_key,
+    loading,
+    GetCustomerWishlistData,
+    guestWishlistData,
+    sku,
+    addToCartForm,
+    guestWl.data?.guestWishlist?.items,
+  ])
 
   const preventAnimationBubble = (
     e: React.TouchEvent<HTMLButtonElement> | React.MouseEvent<HTMLButtonElement>,
@@ -143,7 +236,6 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
 
     const selectedOptions = addToCartForm?.getValues().cartItems?.[0]?.selected_options ?? []
     const selected_options = Array.isArray(selectedOptions) ? selectedOptions : [selectedOptions]
-
     if (!url_key || !sku) {
       return
     }
@@ -153,7 +245,22 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
         const wishlistItemsInSession =
           GetCustomerWishlistData?.customer?.wishlists[0]?.items_v2?.items || []
 
-        const item = wishlistItemsInSession.find((element) => element?.product?.url_key === url_key)
+        const item = wishlistItemsInSession.find((element) => {
+          if (element?.__typename === 'ConfigurableWishlistItem') {
+            if (
+              element.configurable_options?.[0]?.configurable_product_option_value_uid === undefined
+            ) {
+              return element?.product?.url_key === url_key
+            }
+            return element.configurable_options.every((config_option) =>
+              selected_options.find(
+                (select_option) =>
+                  select_option === config_option?.configurable_product_option_value_uid,
+              ),
+            )
+          }
+          return element?.product?.url_key === url_key
+        })
 
         if (item?.id) {
           // eslint-disable-next-line @typescript-eslint/no-floating-promises
@@ -161,7 +268,17 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
         }
       } else {
         // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        addWishlistItem({ variables: { input: [{ sku, quantity: 1, selected_options }] } })
+        addWishlistItem({
+          variables: {
+            input: [
+              {
+                sku,
+                quantity: 1,
+                selected_options: selected_options?.[0] === undefined ? [] : selected_options,
+              },
+            ],
+          },
+        })
         setDisplayMessageBar(true)
       }
     } else if (inWishlist) {
@@ -169,7 +286,14 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
         id: cache.identify({ __typename: 'GuestWishlist' }),
         fields: {
           items(existingItems: WishListItemType[] = []) {
-            const items = existingItems.filter((item) => item?.url_key !== url_key)
+            const items = existingItems.filter(
+              (item) =>
+                item?.url_key !== url_key ||
+                (item?.url_key === url_key &&
+                  item?.selected_options.every((opt) =>
+                    selected_options.find((select_option) => select_option !== opt),
+                  )),
+            )
             return items
           },
         },
@@ -187,7 +311,7 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
                 sku,
                 url_key,
                 quantity: 1,
-                selected_options: selected_options as (string | null)[],
+                selected_options: selected_options?.[0] === undefined ? [] : selected_options,
               },
             ],
           },
