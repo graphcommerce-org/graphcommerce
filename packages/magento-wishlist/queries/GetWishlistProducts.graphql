@@ -7,6 +7,14 @@ query GetWishlistProducts {
         items {
           id
           ...WishlistItem
+          ... on ConfigurableWishlistItem {
+            configurable_options {
+              configurable_product_option_uid
+              configurable_product_option_value_uid
+              option_label
+              value_label
+            }
+          }
           product {
             __typename
             uid

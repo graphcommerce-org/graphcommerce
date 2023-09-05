@@ -9,6 +9,11 @@ query GetGuestWishlistProducts(
       __typename
       uid
       ...ProductListItem
+      ... on ConfigurableProduct {
+        configurable_options {
+          uid
+        }
+      }
     }
   }
 }

@@ -4,9 +4,19 @@ fragment WishlistSummaryFragment on Wishlist {
   items_v2 {
     items {
       id
+      __typename
       product {
         uid
         url_key
+        sku
+      }
+      ... on ConfigurableWishlistItem {
+        configurable_options {
+          configurable_product_option_uid
+          configurable_product_option_value_uid
+          option_label
+          value_label
+        }
       }
     }
   }
