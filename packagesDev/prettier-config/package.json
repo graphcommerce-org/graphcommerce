@@ -4,6 +4,6 @@
   "repository": "github:graphcommerce-org/graphcommerce",
   "version": "7.0.0",
   "dependencies": {
-    "prettier-plugin-jsdoc": "^0.4.2"
+    "prettier-plugin-jsdoc": "^1.0.1"
   }
 }

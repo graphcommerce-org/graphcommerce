@@ -24,7 +24,7 @@
     "@graphcommerce/eslint-config-pwa": "7.0.0",
     "@graphcommerce/prettier-config-pwa": "7.0.0",
     "@graphcommerce/typescript-config-pwa": "7.0.0",
-    "@types/gtag.js": "^0.0.12"
+    "@types/gtag.js": "^0.0.13"
   },
   "peerDependencies": {
     "@mui/material": "^5.10.16",

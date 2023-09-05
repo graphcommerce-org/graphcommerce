@@ -12,8 +12,8 @@
     }
   },
   "dependencies": {
-    "@apollo/client": "~3.7.17",
-    "react-hook-form": "7.44.3"
+    "@apollo/client": "~3.8.2",
+    "react-hook-form": "7.46.1"
   },
   "devDependencies": {
     "@graphcommerce/eslint-config-pwa": "7.0.0",
@@ -22,8 +22,8 @@
     "@testing-library/react": "^14.0.0"
   },
   "peerDependencies": {
+    "graphql": "^16.6.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "graphql": "^16.6.0"
+    "react-dom": "^18.2.0"
   }
 }
