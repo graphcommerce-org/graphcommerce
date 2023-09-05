@@ -76,6 +76,7 @@
     "@graphcommerce/typescript-config-pwa": "7.0.0"
   },
   "changesets": [
+    "dry-cooks-kneel",
     "friendly-pens-suffer",
     "honest-roses-eat",
     "quick-walls-speak",

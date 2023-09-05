@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.0.1-canary.4
+
+### Patch Changes
+
+- [#2050](https://github.com/graphcommerce-org/graphcommerce/pull/2050) [`b2e9be816`](https://github.com/graphcommerce-org/graphcommerce/commit/b2e9be816d24518241b3b1bbaa167e2143203488) - Remove 'Translation file updates' from upgrade instructions and add back scrollRestoration ([@paales](https://github.com/paales))
+
 ## 7.0.1-canary.3
 
 ## 7.0.1-canary.2
