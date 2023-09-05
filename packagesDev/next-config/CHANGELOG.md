@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.0.1-canary.2
+
+### Patch Changes
+
+- [#2043](https://github.com/graphcommerce-org/graphcommerce/pull/2043) [`b5584f689`](https://github.com/graphcommerce-org/graphcommerce/commit/b5584f689d22a3d2c043ecf5eb4ef02920fc5bdd) - Support for node 20 ([@paales](https://github.com/paales))
+
 ## 7.0.1-canary.1
 
 ## 7.0.1-canary.0
