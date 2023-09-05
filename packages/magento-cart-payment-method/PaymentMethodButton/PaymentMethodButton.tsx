@@ -27,24 +27,8 @@ function PaymentMethodButtonRenderer(
           {...buttonProps}
           onClick={submit}
           loading={buttonState.isSubmitting || (buttonState.isSubmitSuccessful && !error)}
-          button={{
-            sx: [
-              (theme) => ({
-                [theme.breakpoints.down('md')]: {
-                  fontSize: theme.typography.body2.fontSize,
-                },
-              }),
-            ],
-            ...buttonProps?.button,
-          }}
         >
           {buttonProps.children}
-          {selectedMethod?.title && (
-            <>
-              {' '}
-              (<em>{selectedMethod?.title}</em>)
-            </>
-          )}
         </LinkOrButton>
       ) : (
         <PaymentButton
