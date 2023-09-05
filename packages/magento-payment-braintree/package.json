@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-payment-braintree",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "7.0.1-canary.0",
+  "version": "7.0.1-canary.1",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -12,22 +12,22 @@
     }
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "7.0.1-canary.0",
-    "@graphcommerce/magento-cart-shipping-address": "7.0.1-canary.0",
-    "@graphcommerce/magento-product": "7.0.1-canary.0",
-    "@graphcommerce/magento-product-configurable": "7.0.1-canary.0",
-    "@graphcommerce/prettier-config-pwa": "7.0.1-canary.0",
-    "@graphcommerce/typescript-config-pwa": "7.0.1-canary.0",
+    "@graphcommerce/eslint-config-pwa": "7.0.1-canary.1",
+    "@graphcommerce/magento-cart-shipping-address": "7.0.1-canary.1",
+    "@graphcommerce/magento-product": "7.0.1-canary.1",
+    "@graphcommerce/magento-product-configurable": "7.0.1-canary.1",
+    "@graphcommerce/prettier-config-pwa": "7.0.1-canary.1",
+    "@graphcommerce/typescript-config-pwa": "7.0.1-canary.1",
     "@types/braintree-web": "^3.96.4"
   },
   "dependencies": {
-    "@graphcommerce/graphql": "7.0.1-canary.0",
-    "@graphcommerce/image": "7.0.1-canary.0",
-    "@graphcommerce/magento-cart": "7.0.1-canary.0",
-    "@graphcommerce/magento-cart-payment-method": "7.0.1-canary.0",
-    "@graphcommerce/magento-store": "7.0.1-canary.0",
-    "@graphcommerce/next-ui": "7.0.1-canary.0",
-    "@graphcommerce/react-hook-form": "7.0.1-canary.0",
+    "@graphcommerce/graphql": "7.0.1-canary.1",
+    "@graphcommerce/image": "7.0.1-canary.1",
+    "@graphcommerce/magento-cart": "7.0.1-canary.1",
+    "@graphcommerce/magento-cart-payment-method": "7.0.1-canary.1",
+    "@graphcommerce/magento-store": "7.0.1-canary.1",
+    "@graphcommerce/next-ui": "7.0.1-canary.1",
+    "@graphcommerce/react-hook-form": "7.0.1-canary.1",
     "braintree-web": "^3.95.0-beta-3ds.1"
   },
   "peerDependencies": {

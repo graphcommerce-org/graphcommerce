@@ -76,6 +76,7 @@
     "@graphcommerce/typescript-config-pwa": "7.0.0"
   },
   "changesets": [
+    "honest-roses-eat",
     "quick-walls-speak",
     "strange-carpets-yell",
     "tough-bottles-double"
