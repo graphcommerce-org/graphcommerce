@@ -19,7 +19,7 @@
     "@graphql-mesh/utils": "latest",
     "@graphql-mesh/cross-helpers": "latest",
     "@graphql-mesh/store": "latest",
-    "@graphql-tools/utils": "latest",
+    "@graphql-tools/utils": "^10.0.1",
     "@whatwg-node/fetch": "^0.9.4",
     "fetch-retry": "^5.0.6",
     "tslib": "^2.4.0"

@@ -19,7 +19,6 @@
     "create-patch": "patch-package --exclude 'package.json$|gql.ts$|interceptor.tsx$'"
   },
   "dependencies": {
-    "@babel/core": "^7.22.5",
     "@ducanh2912/next-pwa": "9.4.0",
     "@graphcommerce/cli": "7.0.0",
     "@graphcommerce/demo-magento-graphcommerce": "7.0.0",
@@ -71,19 +70,22 @@
     "@lingui/react": "4.4.0",
     "@mui/lab": "5.0.0-alpha.138",
     "@mui/material": "5.14.3",
-    "@next/env": "13.4.16",
+    "@next/env": "13.4.19",
     "concurrently": "8.2.0",
     "cross-env": "^7.0.3",
     "dotenv": "16.1.4",
-    "framer-motion": "10.15.0",
+    "framer-motion": "10.16.3",
     "graphql": "16.8.0",
-    "next": "13.4.16",
+    "next": "13.4.20-canary.16",
     "next-sitemap": "4.2.2",
-    "patch-package": "7.0.0",
+    "patch-package": "8.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sharp": "0.32.5",
     "webpack": "5.88.2"
+  },
+  "resolutions": {
+    "next": "13.4.20-canary.16"
   },
   "devDependencies": {
     "@graphcommerce/eslint-config-pwa": "7.0.0",
@@ -94,7 +96,7 @@
     "@types/node": "^16",
     "@types/react": "^18.2.11",
     "@types/react-dom": "18.2.4",
-    "eslint": "8.42.0",
+    "eslint": "8.48.0",
     "prettier": "2.8.8",
     "type-fest": "^3.4.0",
     "typescript": "5.1.3"
