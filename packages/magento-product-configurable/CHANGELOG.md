@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.0.1-canary.5
+
+### Patch Changes
+
+- [#2051](https://github.com/graphcommerce-org/graphcommerce/pull/2051) [`13d54555b`](https://github.com/graphcommerce-org/graphcommerce/commit/13d54555bc5b85a79456610cb066d397d18866eb) - Remove zoom from targetUrl to fix back navigation on zoom ([@mikekeehnen](https://github.com/mikekeehnen))
+
 ## 7.0.1-canary.4
 
 ## 7.0.1-canary.3
