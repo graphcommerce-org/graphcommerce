@@ -1,10 +1,10 @@
 import { InputMaybe } from '@graphcommerce/graphql-mesh'
+import { useProductLink } from '@graphcommerce/magento-product'
+import { Trans } from '@lingui/react'
 import { Box, Button, SxProps, Theme } from '@mui/material'
 import { ProductAddToCart } from './ProductAddToCart'
 import { WishlistItemBase } from './WishlistItemBase'
 import { WishlistItemProductFragment } from './WishlistItemProduct.gql'
-import { Trans } from '@lingui/react'
-import { useProductLink } from '@graphcommerce/magento-product'
 
 type OptionalProductWishlistParent = {
   wishlistItemId?: string
@@ -32,15 +32,26 @@ export function WishlistItem(props: WishlistItemProps) {
   return (
     <WishlistItemBase {...props}>
       {isConfigurableUncompleted ? (
-        <Button
-          color='primary'
-          variant='text'
-          size='medium'
-          sx={{ width: '100px' }}
-          href={productLink}
+        <Box
+          sx={{
+            gridArea: 'itemCartButton',
+            alignSelf: 'flex-start',
+            ml: '8px',
+            position: 'absolute',
+            left: '0',
+            bottom: '-35px',
+          }}
         >
-          <Trans id='Configure' />
-        </Button>
+          <Button
+            color='primary'
+            variant='text'
+            size='medium'
+            sx={{ width: '100px' }}
+            href={productLink}
+          >
+            <Trans id='Configure' />
+          </Button>
+        </Box>
       ) : (
         <Box>
           <ProductAddToCart
@@ -48,7 +59,6 @@ export function WishlistItem(props: WishlistItemProps) {
             name={name ?? ''}
             price={price_range.minimum_price.final_price}
           />
-          {selectedOptions}
         </Box>
       )}
     </WishlistItemBase>

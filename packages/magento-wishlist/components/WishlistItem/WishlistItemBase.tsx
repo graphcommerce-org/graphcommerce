@@ -49,7 +49,6 @@ const { classes } = extendableComponent<OwnerState, typeof compName, typeof part
 
 export function WishlistItemBase(props: WishlistItemBaseProps) {
   const {
-    sku,
     name,
     url_key,
     price_range,

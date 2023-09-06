@@ -5,6 +5,7 @@ import {
   useGuestQuery,
 } from '@graphcommerce/magento-customer'
 import { useFormAddProductsToCart } from '@graphcommerce/magento-product'
+import { InputMaybe } from '@graphcommerce/next-config'
 import {
   IconSvg,
   iconHeart,
@@ -37,7 +38,7 @@ export type ProductWishlistChipProps = ProductWishlistChipFragment & {
 
 export type WishListItemType = NonNullable<
   NonNullable<NonNullable<WishlistSummaryFragment['items_v2']>['items']>[0]
->['product']
+>['product'] & { selected_options: InputMaybe<string>[] }
 
 const compName = 'ProductWishlistChipBase' as const
 const parts = ['root', 'wishlistIcon', 'wishlistIconActive', 'wishlistButton'] as const
@@ -133,7 +134,9 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
 
       const wishlistItems = GetCustomerWishlistData?.customer?.wishlists[0]?.items_v2?.items
 
-      const check2 =
+      const isInWishlist =
+        // If there are no options selected search for the product which matches the url and if
+        // it is a configurable product check if it has no configurable options.
         selected_options?.[0] === undefined
           ? !!wishlistItems?.find(
               (e) =>
@@ -141,17 +144,21 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
                 e.__typename === 'ConfigurableWishlistItem' &&
                 e.configurable_options?.length === 0,
             )
-          : wishlistItems?.some(
-              (wishlistItemOptions) =>
+          : // If it is a configurable product check if all selected options match the configurable options of the product
+            // Check if the sku of the product matches the sku of the wishlistItem and check if the product url key matches the url key
+            wishlistItems?.some(
+              (wishlistItem) =>
                 selected_options.every(
                   (option) =>
-                    wishlistItemOptions?.__typename === 'ConfigurableWishlistItem' &&
-                    wishlistItemOptions?.configurable_options?.some(
+                    wishlistItem?.__typename === 'ConfigurableWishlistItem' &&
+                    wishlistItem?.configurable_options?.some(
                       (wishlistOption) =>
-                        wishlistOption?.configurable_product_option_value_uid === option &&
-                        sku === wishlistItemOptions.product?.sku,
+                        // If an option is undefined this means the item is a wishlistItem but not all options were selected prior.
+                        (wishlistOption?.configurable_product_option_value_uid === option ||
+                          option === undefined) &&
+                        sku === wishlistItem.product?.sku,
                     ),
-                ) && wishlistItemOptions?.product?.url_key === url_key,
+                ) && wishlistItem?.product?.url_key === url_key,
             )
 
       // const check =
@@ -168,43 +175,49 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
       //           // wishlistItem.find((itemOption) => {})configurable_product_option_value_uid
       //         ),
       //       )
-      setInWishlist(!!check2)
+      setInWishlist(!!isInWishlist)
     } else if (!loggedIn) {
-      const inWishlistTest =
-        guestWishlistData?.guestWishlist?.items.map((item) => item?.url_key) || []
-      const inWishlistTest2 =
-        guestWl.data?.guestWishlist?.items.map((item) => item.selected_options || null) || []
+      // const inWishlistTest =
+      //   guestWishlistData?.guestWishlist?.items.map((item) => item?.url_key) || []
+      // const inWishlistTest2 =
+      //   guestWl.data?.guestWishlist?.items.map((item) => item.selected_options || null) || []
 
-      const skuList = guestWishlistData?.guestWishlist?.items.map((itemSku) => itemSku?.sku)
+      // const skuList = guestWishlistData?.guestWishlist?.items.map((itemSku) => itemSku?.sku)
 
       const guestWishlist = guestWishlistData?.guestWishlist?.items
 
-      const check2 =
+      const isInWishlist =
+        // If there are no options selected search for the product which matches the url and if
+        // it is a configurable product check if it has no configurable options.
         selected_options?.[0] === undefined
           ? !!guestWishlist?.find((e) => e?.url_key === url_key && e.selected_options?.length === 0)
-          : guestWishlist?.some(
-              (wishlistItemOptions) =>
-                selected_options.every((option) =>
-                  wishlistItemOptions?.selected_options?.some(
+          : // If it is a configurable product check if all selected options match the configurable options of the product
+            // Check if the sku of the product matches the sku of the wishlistItem and check if the product url key matches the url key
+            guestWishlist?.some(
+              (wishlistItem) =>
+                selected_options.every((selected_option) =>
+                  wishlistItem?.selected_options?.some(
                     (wishlistOption) =>
-                      wishlistOption === option && sku === wishlistItemOptions?.sku,
+                      (wishlistOption === selected_option ||
+                        (wishlistOption === null && selected_option === undefined)) &&
+                      sku === wishlistItem?.sku,
                   ),
-                ) && wishlistItemOptions?.url_key === url_key,
+                ) && wishlistItem?.url_key === url_key,
             )
 
-      const check =
-        selected_options?.[0] === undefined
-          ? !!inWishlistTest.find((e, i) => e === url_key && inWishlistTest2?.[i]?.length === 0)
-          : inWishlistTest2?.some((wishlistItemOptions, i) =>
-              selected_options.every(
-                (option) =>
-                  wishlistItemOptions?.some(
-                    (wishlistOption) => wishlistOption === option && skuList?.[i] === sku,
-                  ),
-                // wishlistItem.find((itemOption) => {})configurable_product_option_value_uid
-              ),
-            )
-      setInWishlist(!!check2)
+      // const check =
+      //   selected_options?.[0] === undefined
+      //     ? !!inWishlistTest.find((e, i) => e === url_key && inWishlistTest2?.[i]?.length === 0)
+      //     : inWishlistTest2?.some((wishlistItemOptions, i) =>
+      //         selected_options.every(
+      //           (option) =>
+      //             wishlistItemOptions?.some(
+      //               (wishlistOption) => wishlistOption === option && skuList?.[i] === sku,
+      //             ),
+      //           // wishlistItem.find((itemOption) => {})configurable_product_option_value_uid
+      //         ),
+      //       )
+      setInWishlist(!!isInWishlist)
     }
   }, [
     loggedIn,
@@ -274,7 +287,9 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
               {
                 sku,
                 quantity: 1,
-                selected_options: selected_options?.[0] === undefined ? [] : selected_options,
+                selected_options: selected_options.every((option) => option === undefined)
+                  ? []
+                  : selected_options.map((option2) => (option2 === undefined ? '' : option2)),
               },
             ],
           },
@@ -286,6 +301,7 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
         id: cache.identify({ __typename: 'GuestWishlist' }),
         fields: {
           items(existingItems: WishListItemType[] = []) {
+            // Remove item from wishlist if url key and selected options match that of the wishlistItem.
             const items = existingItems.filter(
               (item) =>
                 item?.url_key !== url_key ||

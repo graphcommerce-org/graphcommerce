@@ -1,8 +1,8 @@
-import { RenderType, TypeRenderer, nonNullable } from '@graphcommerce/next-ui'
+import { useCustomerSession } from '@graphcommerce/magento-customer'
+import { RenderType, TypeRenderer } from '@graphcommerce/next-ui'
 import { Box } from '@mui/material'
 import { useWishlistItems } from '../../hooks'
 import { WishlistItemsFragment } from './WishlistItems.gql'
-import { useCustomerSession } from '@graphcommerce/magento-customer'
 
 export type WishlistItemRenderer = TypeRenderer<
   NonNullable<
@@ -17,12 +17,14 @@ export function WishlistItems(props: WishlistProps) {
   const wishlistItemsData = useWishlistItems()
   const { loggedIn } = useCustomerSession()
 
+  // TODO solve type
+  const guestWishlist: any = wishlistItemsData.data
+
   const wishlist = loggedIn
     ? wishlistItemsData.data
     : wishlistItemsData.guestWishlist.data?.guestWishlist?.items.map((guestItem) =>
-        wishlistItemsData.data?.find((joe) => guestItem.sku === joe.sku),
+        guestWishlist.find((product) => guestItem.sku === product.sku),
       )
-
   /** Structure between guest and customer wishlist differs */
   return (
     <>
@@ -38,8 +40,10 @@ export function WishlistItems(props: WishlistProps) {
               )
 
         const isConfigurableUncompleted =
-          productData.__typename === 'ConfigurableProduct' &&
-          productData.configurable_options.length !== configurable_options.length
+          (productData.__typename === 'ConfigurableProduct' &&
+            productData.configurable_options.length !== configurable_options.length) ||
+          configurable_options.includes(null) ||
+          configurable_options.includes(undefined)
         return (
           <Box key={loggedIn ? item.id || item.uid : i}>
             <RenderType

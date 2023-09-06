@@ -1,5 +1,6 @@
 import { QueryResult, useQuery } from '@graphcommerce/graphql'
 import { useCustomerSession } from '@graphcommerce/magento-customer'
+import { Exact } from '@graphcommerce/next-config'
 import {
   GetGuestWishlistProductsDocument,
   GetGuestWishlistProductsQuery,
@@ -9,7 +10,6 @@ import {
   GetWishlistProductsQuery,
 } from '../queries/GetWishlistProducts.gql'
 import { GuestWishlistDocument, GuestWishlistQuery } from '../queries/GuestWishlist.gql'
-import { Exact } from '@graphcommerce/next-config'
 
 type WishListData =
   | NonNullable<GetGuestWishlistProductsQuery['products']>['items']
