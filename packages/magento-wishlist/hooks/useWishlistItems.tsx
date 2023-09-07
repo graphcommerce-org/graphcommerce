@@ -11,11 +11,12 @@ import {
 } from '../queries/GetWishlistProducts.gql'
 import { GuestWishlistDocument, GuestWishlistQuery } from '../queries/GuestWishlist.gql'
 
-type WishListData =
-  | NonNullable<GetGuestWishlistProductsQuery['products']>['items']
-  | NonNullable<
-      NonNullable<NonNullable<GetWishlistProductsQuery['customer']>['wishlists'][0]>['items_v2']
-    >['items']
+export type GuestWishListData = NonNullable<GetGuestWishlistProductsQuery['products']>['items']
+type CustomerWishListData = NonNullable<
+  NonNullable<NonNullable<GetWishlistProductsQuery['customer']>['wishlists'][0]>['items_v2']
+>['items']
+
+type WishListData = GuestWishListData | CustomerWishListData
 
 export function useWishlistItems(): Omit<QueryResult<GetGuestWishlistProductsQuery>, 'data'> & {
   data: WishListData
@@ -33,7 +34,7 @@ export function useWishlistItems(): Omit<QueryResult<GetGuestWishlistProductsQue
 
   /** Get guest wishlist items from cache and hydrate with catalog data */
   const guestWl = useQuery(GuestWishlistDocument, { ssr: false, skip: loggedIn })
-  console.log(guestWl)
+  console.log(30, guestWl)
   const guestSkus = guestWl.data?.guestWishlist?.items.map((item) => item?.sku) || []
 
   const guestProducts = useQuery(GetGuestWishlistProductsDocument, {

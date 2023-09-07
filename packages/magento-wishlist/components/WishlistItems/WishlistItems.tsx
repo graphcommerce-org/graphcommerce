@@ -1,7 +1,7 @@
 import { useCustomerSession } from '@graphcommerce/magento-customer'
 import { RenderType, TypeRenderer } from '@graphcommerce/next-ui'
 import { Box } from '@mui/material'
-import { useWishlistItems } from '../../hooks'
+import { GuestWishListData, useWishlistItems } from '../../hooks'
 import { WishlistItemsFragment } from './WishlistItems.gql'
 
 export type WishlistItemRenderer = TypeRenderer<
@@ -17,13 +17,12 @@ export function WishlistItems(props: WishlistProps) {
   const wishlistItemsData = useWishlistItems()
   const { loggedIn } = useCustomerSession()
 
-  // TODO solve type
-  const guestWishlist: any = wishlistItemsData.data
+  const guestWishlist: GuestWishListData = wishlistItemsData.data as GuestWishListData
 
   const wishlist = loggedIn
     ? wishlistItemsData.data
     : wishlistItemsData.guestWishlist.data?.guestWishlist?.items.map((guestItem) =>
-        guestWishlist.find((product) => guestItem.sku === product.sku),
+        guestWishlist?.find((product) => guestItem.sku === product?.sku),
       )
   /** Structure between guest and customer wishlist differs */
   return (
