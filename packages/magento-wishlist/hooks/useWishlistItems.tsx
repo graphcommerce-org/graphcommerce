@@ -33,6 +33,7 @@ export function useWishlistItems(): Omit<QueryResult<GetGuestWishlistProductsQue
 
   /** Get guest wishlist items from cache and hydrate with catalog data */
   const guestWl = useQuery(GuestWishlistDocument, { ssr: false, skip: loggedIn })
+  console.log(guestWl)
   const guestSkus = guestWl.data?.guestWishlist?.items.map((item) => item?.sku) || []
 
   const guestProducts = useQuery(GetGuestWishlistProductsDocument, {

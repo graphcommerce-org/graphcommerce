@@ -44,12 +44,22 @@ export function WishlistItems(props: WishlistProps) {
             productData.configurable_options.length !== configurable_options.length) ||
           configurable_options.includes(null) ||
           configurable_options.includes(undefined)
+
+        const configurableOptionsLabels =
+          wishlistItemsData.guestWishlist.data && !loggedIn
+            ? wishlistItemsData.guestWishlist.data?.guestWishlist?.items?.[i]
+                .selected_options_labels
+            : item.configurable_options?.map(
+                (option) => option.configurable_product_option_value_uid,
+              )
+
         return (
           <Box key={loggedIn ? item.id || item.uid : i}>
             <RenderType
               renderer={renderer}
               wishlistItemId={loggedIn ? item.id || null : i}
               selectedOptions={configurable_options}
+              selectedOptionsLabels={configurableOptionsLabels}
               isConfigurableUncompleted={isConfigurableUncompleted}
               {...productData}
             />

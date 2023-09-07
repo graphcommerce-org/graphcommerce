@@ -14,7 +14,9 @@ export type WishlistItemProps = WishlistItemProductFragment & {
   sx?: SxProps<Theme>
   selectedOptions?: InputMaybe<string[]> | undefined
   children?: React.ReactNode
-} & OptionalProductWishlistParent & { isConfigurableUncompleted?: boolean }
+  isConfigurableUncompleted?: boolean
+  selectedOptionsLabels?: InputMaybe<string[]> | undefined
+} & OptionalProductWishlistParent
 
 export function WishlistItem(props: WishlistItemProps) {
   const {
@@ -22,6 +24,7 @@ export function WishlistItem(props: WishlistItemProps) {
     name,
     price_range,
     selectedOptions,
+    selectedOptionsLabels,
     isConfigurableUncompleted = false,
     __typename: productType,
     url_key,
@@ -61,6 +64,7 @@ export function WishlistItem(props: WishlistItemProps) {
           />
         </Box>
       )}
+      {selectedOptionsLabels}
     </WishlistItemBase>
   )
 }

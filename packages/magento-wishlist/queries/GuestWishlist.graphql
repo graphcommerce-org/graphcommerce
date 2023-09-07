@@ -6,6 +6,7 @@ query GuestWishlist {
       sku
       url_key
       selected_options
+      selected_options_labels
       quantity
     }
   }
