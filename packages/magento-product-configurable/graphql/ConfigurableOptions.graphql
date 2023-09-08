@@ -31,6 +31,7 @@ fragment ConfigurableOptions on ConfigurableProduct {
       uid
     }
     product {
+      url_key
       uid
     }
   }
