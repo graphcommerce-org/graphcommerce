@@ -27,8 +27,10 @@ export function defaultConfigurableOptionsSelection<Q extends BaseQuery = BaseQu
   client: ApolloClient<object>,
   query: Q,
 ): Q & Pick<AddProductsToCartFormProps, 'defaultValues'> {
-  if (!import.meta.graphCommerce.configurableVariantForSimple)
-    return { ...query, defaultValues: {} }
+  if (!import.meta.graphCommerce.configurableVariantForSimple) {
+    const product = query?.products?.items?.find((p) => p?.url_key === urlKey)
+    return { ...query, products: { items: [product] }, defaultValues: {} }
+  }
 
   const simple = query?.products?.items?.find((p) => p?.url_key === urlKey)
   const configurable = findByTypename(query?.products?.items, 'ConfigurableProduct')
@@ -38,9 +40,8 @@ export function defaultConfigurableOptionsSelection<Q extends BaseQuery = BaseQu
     return { ...query, defaultValues: {} }
 
   // Find the requested simple product on the configurable variants and get the attributes.
-  const attributes = configurable?.variants?.find(
-    (v) => v?.product?.uid === simple?.uid,
-  )?.attributes
+  const attributes = configurable?.variants?.find((v) => v?.product?.uid === simple?.uid)
+    ?.attributes
 
   const selectedOptions = (attributes ?? []).filter(nonNullable).map((a) => a.uid)
   if (!selectedOptions.length) return { ...query, products: { items: [simple] }, defaultValues: {} }
