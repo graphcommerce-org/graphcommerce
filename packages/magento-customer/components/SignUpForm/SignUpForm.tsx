@@ -1,7 +1,17 @@
 import { PasswordRepeatElement } from '@graphcommerce/ecommerce-ui'
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
-import { Button, FormActions, FormRow } from '@graphcommerce/next-ui'
-import { useFormGqlMutation, useFormPersist } from '@graphcommerce/react-hook-form'
+import {
+  Button,
+  FormActions,
+  FormLayout,
+  FormRow,
+  UseFormLayoutProps,
+} from '@graphcommerce/next-ui'
+import {
+  UseFormGqlMutationReturn,
+  useFormGqlMutation,
+  useFormPersist,
+} from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { Alert, FormControlLabel, Switch } from '@mui/material'
@@ -11,12 +21,14 @@ import { ValidatedPasswordElement } from '../ValidatedPasswordElement/ValidatedP
 import { SignUpDocument, SignUpMutation, SignUpMutationVariables } from './SignUp.gql'
 import { SignUpConfirmDocument } from './SignUpConfirm.gql'
 
-type SignUpFormProps = { email: string }
+type SignUpFormProps = { email: string } & UseFormLayoutProps<
+  UseFormGqlMutationReturn<SignUpMutation, SignUpMutationVariables>
+>
 
 const requireEmailValidation = import.meta.graphCommerce.customerRequireEmailConfirmation ?? false
 
 export function SignUpForm(props: SignUpFormProps) {
-  const { email } = props
+  const { email, children } = props
 
   const Mutation = requireEmailValidation ? SignUpConfirmDocument : SignUpDocument
 
@@ -46,40 +58,49 @@ export function SignUpForm(props: SignUpFormProps) {
 
   return (
     <form onSubmit={submitHandler} noValidate>
-      <FormRow>
-        <ValidatedPasswordElement
-          control={control}
-          name='password'
-          variant='outlined'
-          error={!!formState.errors.password || !!inputError}
-          label={<Trans id='Password' />}
-          autoFocus
-          autoComplete='new-password'
-          required={required.password}
-          disabled={formState.isSubmitting}
-          helperText={inputError?.message}
-        />
-        <PasswordRepeatElement
-          control={control}
-          name='confirmPassword'
-          passwordFieldName='password'
-          variant='outlined'
-          error={!!formState.errors.confirmPassword || !!inputError}
-          label={<Trans id='Confirm password' />}
-          autoComplete='new-password'
-          required
-          disabled={formState.isSubmitting}
-        />
-      </FormRow>
+      <FormLayout
+        form={form}
+        original={
+          <>
+            <FormRow>
+              <ValidatedPasswordElement
+                control={control}
+                name='password'
+                variant='outlined'
+                error={!!formState.errors.password || !!inputError}
+                label={<Trans id='Password' />}
+                autoFocus
+                autoComplete='new-password'
+                required={required.password}
+                disabled={formState.isSubmitting}
+                helperText={inputError?.message}
+              />
+              <PasswordRepeatElement
+                control={control}
+                name='confirmPassword'
+                passwordFieldName='password'
+                variant='outlined'
+                error={!!formState.errors.confirmPassword || !!inputError}
+                label={<Trans id='Confirm password' />}
+                autoComplete='new-password'
+                required
+                disabled={formState.isSubmitting}
+              />
+            </FormRow>
 
-      <NameFields form={form} prefix />
+            <NameFields form={form} prefix />
 
-      <FormControlLabel
-        control={<Switch color='primary' />}
-        {...muiRegister('isSubscribed', { required: required.isSubscribed })}
-        disabled={formState.isSubmitting}
-        label={<Trans id='Subscribe to newsletter' />}
-      />
+            <FormControlLabel
+              control={<Switch color='primary' />}
+              {...muiRegister('isSubscribed', { required: required.isSubscribed })}
+              disabled={formState.isSubmitting}
+              label={<Trans id='Subscribe to newsletter' />}
+            />
+          </>
+        }
+      >
+        {children}
+      </FormLayout>
 
       <ApolloCustomerErrorSnackbar error={remainingError} />
 

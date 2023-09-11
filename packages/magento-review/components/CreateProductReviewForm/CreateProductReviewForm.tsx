@@ -8,21 +8,29 @@ import {
   FormRow,
   StarRatingField,
   extendableComponent,
+  FormLayout,
+  UseFormLayoutProps,
 } from '@graphcommerce/next-ui'
-import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
+import { UseFormGqlMutationReturn, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { Box, TextField, Typography, Alert, Button, SxProps, Theme } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import { CreateProductReviewDocument } from './CreateProductReview.gql'
+import {
+  CreateProductReviewDocument,
+  CreateProductReviewMutation,
+  CreateProductReviewMutationVariables,
+} from './CreateProductReview.gql'
 import { ProductReviewRatingsMetadataDocument } from './ProductReviewRatingsMetadata.gql'
 
 type CreateProductReviewFormProps = {
   sku: string
   nickname?: string
   sx?: SxProps<Theme>
-}
+} & UseFormLayoutProps<
+  UseFormGqlMutationReturn<CreateProductReviewMutation, CreateProductReviewMutationVariables>
+>
 
 const name = 'CreateProductReviewForm' as const
 const parts = [
@@ -37,7 +45,7 @@ const parts = [
 const { classes } = extendableComponent(name, parts)
 
 export function CreateProductReviewForm(props: CreateProductReviewFormProps) {
-  const { sku, nickname, sx = [] } = props
+  const { sku, nickname, sx = [], children } = props
   const router = useRouter()
   const [ratings, setRatings] = useState<ProductReviewRatingInput[]>([])
 
@@ -90,111 +98,121 @@ export function CreateProductReviewForm(props: CreateProductReviewFormProps) {
 
   return (
     <Form onSubmit={submitHandler} noValidate className={classes.root} sx={sx}>
-      <FormRow>
-        <TextField
-          variant='outlined'
-          type='text'
-          error={!!formState.errors.nickname || !!error}
-          label={<Trans id='Name' />}
-          required={required.nickname}
-          {...muiRegister('nickname', { required: required.nickname })}
-          helperText={formState.errors.nickname?.message}
-          disabled={formState.isSubmitting}
-          InputProps={{
-            readOnly: typeof nickname !== 'undefined',
-          }}
-        />
-      </FormRow>
-
-      <Box
-        className={classes.ratingContainer}
-        sx={(theme) => ({
-          marginBottom: theme.spacings.xxs,
-        })}
-      >
-        {data?.productReviewRatingsMetadata?.items?.map((item) => (
-          <FormRow
-            key={item?.id}
-            className={classes.rating}
-            sx={{
-              paddingBottom: 'unset',
-              gridTemplateColumns: `minmax(${responsiveVal(60, 80)}, 0.1fr) max-content`,
-              alignItems: 'center',
-            }}
-          >
-            <Typography
-              variant='subtitle1'
-              component='span'
-              className={classes.ratingLabel}
-              sx={{
-                fontWeight: 'normal',
-                justifySelf: 'left',
-              }}
-            >
-              {item?.name}
-            </Typography>
-            {item && (
-              <StarRatingField
-                id={item?.id ?? ''}
-                size='large'
-                onChange={(id, value) => {
-                  const productReviewRatingInputValue =
-                    data.productReviewRatingsMetadata.items.find((meta) => meta?.id === id)?.values[
-                      value - 1
-                    ]
-
-                  const ratingsArr = [...ratings]
-
-                  const clonedProductReviewRatingInputValue = ratingsArr.find(
-                    (meta) => meta.id === id,
-                  )
-
-                  if (
-                    !clonedProductReviewRatingInputValue ||
-                    typeof productReviewRatingInputValue?.value_id === undefined
-                  ) {
-                    console.error('Cannot find product review rating input value in local state')
-                    return
-                  }
-
-                  clonedProductReviewRatingInputValue.value_id =
-                    productReviewRatingInputValue?.value_id ?? ''
-
-                  setRatings(ratingsArr)
+      <FormLayout
+        form={form}
+        original={
+          <>
+            <FormRow>
+              <TextField
+                variant='outlined'
+                type='text'
+                error={!!formState.errors.nickname || !!error}
+                label={<Trans id='Name' />}
+                required={required.nickname}
+                {...muiRegister('nickname', { required: required.nickname })}
+                helperText={formState.errors.nickname?.message}
+                disabled={formState.isSubmitting}
+                InputProps={{
+                  readOnly: typeof nickname !== 'undefined',
                 }}
               />
-            )}
-          </FormRow>
-        ))}
-      </Box>
+            </FormRow>
 
-      <FormRow>
-        <TextField
-          variant='outlined'
-          type='text'
-          error={!!formState.errors.summary || !!error}
-          label={<Trans id='Summary' />}
-          required={required.summary}
-          {...muiRegister('summary', { required: required.summary })}
-          helperText={formState.errors.summary?.message}
-          disabled={formState.isSubmitting}
-        />
-      </FormRow>
+            <Box
+              className={classes.ratingContainer}
+              sx={(theme) => ({
+                marginBottom: theme.spacings.xxs,
+              })}
+            >
+              {data?.productReviewRatingsMetadata?.items?.map((item) => (
+                <FormRow
+                  key={item?.id}
+                  className={classes.rating}
+                  sx={{
+                    paddingBottom: 'unset',
+                    gridTemplateColumns: `minmax(${responsiveVal(60, 80)}, 0.1fr) max-content`,
+                    alignItems: 'center',
+                  }}
+                >
+                  <Typography
+                    variant='subtitle1'
+                    component='span'
+                    className={classes.ratingLabel}
+                    sx={{
+                      fontWeight: 'normal',
+                      justifySelf: 'left',
+                    }}
+                  >
+                    {item?.name}
+                  </Typography>
+                  {item && (
+                    <StarRatingField
+                      id={item?.id ?? ''}
+                      size='large'
+                      onChange={(id, value) => {
+                        const productReviewRatingInputValue =
+                          data.productReviewRatingsMetadata.items.find((meta) => meta?.id === id)
+                            ?.values[value - 1]
 
-      <FormRow>
-        <TextField
-          variant='outlined'
-          type='text'
-          error={!!formState.errors.text || !!error}
-          label={<Trans id='Review' />}
-          required={required.text}
-          {...muiRegister('text', { required: required.text })}
-          helperText={formState.errors.text?.message}
-          disabled={formState.isSubmitting}
-          multiline
-          minRows={4}
-        />
-      </FormRow>
+                        const ratingsArr = [...ratings]
+
+                        const clonedProductReviewRatingInputValue = ratingsArr.find(
+                          (meta) => meta.id === id,
+                        )
+
+                        if (
+                          !clonedProductReviewRatingInputValue ||
+                          typeof productReviewRatingInputValue?.value_id === undefined
+                        ) {
+                          console.error(
+                            'Cannot find product review rating input value in local state',
+                          )
+                          return
+                        }
+
+                        clonedProductReviewRatingInputValue.value_id =
+                          productReviewRatingInputValue?.value_id ?? ''
+
+                        setRatings(ratingsArr)
+                      }}
+                    />
+                  )}
+                </FormRow>
+              ))}
+            </Box>
+
+            <FormRow>
+              <TextField
+                variant='outlined'
+                type='text'
+                error={!!formState.errors.summary || !!error}
+                label={<Trans id='Summary' />}
+                required={required.summary}
+                {...muiRegister('summary', { required: required.summary })}
+                helperText={formState.errors.summary?.message}
+                disabled={formState.isSubmitting}
+              />
+            </FormRow>
+
+            <FormRow>
+              <TextField
+                variant='outlined'
+                type='text'
+                error={!!formState.errors.text || !!error}
+                label={<Trans id='Review' />}
+                required={required.text}
+                {...muiRegister('text', { required: required.text })}
+                helperText={formState.errors.text?.message}
+                disabled={formState.isSubmitting}
+                multiline
+                minRows={4}
+              />
+            </FormRow>
+          </>
+        }
+      >
+        {children}
+      </FormLayout>
 
       <FormActions className={classes.formActions} sx={{ gridAutoFlow: 'row' }}>
         <Button

@@ -1,6 +1,13 @@
 import { PasswordRepeatElement, TextFieldElement } from '@graphcommerce/ecommerce-ui'
-import { Button, Form, FormActions, FormRow } from '@graphcommerce/next-ui'
-import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
+import {
+  Button,
+  Form,
+  FormActions,
+  FormLayout,
+  FormRow,
+  UseFormLayoutProps,
+} from '@graphcommerce/next-ui'
+import { UseFormGqlMutationReturn, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
 import { useRouter } from 'next/router'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'
@@ -13,10 +20,17 @@ import {
 
 type ResetPasswordFormProps = {
   token: string
-}
+} & UseFormLayoutProps<
+  UseFormGqlMutationReturn<
+    ResetPasswordMutation,
+    ResetPasswordMutationVariables & {
+      confirmPassword?: string | undefined
+    }
+  >
+>
 
 export function ResetPasswordForm(props: ResetPasswordFormProps) {
-  const { token } = props
+  const { token, children } = props
 
   const form = useFormGqlMutation<
     ResetPasswordMutation,
@@ -43,38 +57,47 @@ export function ResetPasswordForm(props: ResetPasswordFormProps) {
 
   return (
     <Form onSubmit={submitHandler} noValidate>
-      <FormRow>
-        <TextFieldElement
-          control={control}
-          name='email'
-          variant='outlined'
-          type='email'
-          label={<Trans id='Email' />}
-          required
-          disabled={formState.isSubmitting}
-        />
-      </FormRow>
-      <FormRow>
-        <ValidatedPasswordElement
-          control={control}
-          name='newPassword'
-          autoComplete='new-password'
-          variant='outlined'
-          label={<Trans id='New password' />}
-          required
-          disabled={formState.isSubmitting}
-        />
-        <PasswordRepeatElement
-          control={control}
-          name='confirmPassword'
-          autoComplete='new-password'
-          passwordFieldName='newPassword'
-          variant='outlined'
-          label={<Trans id='Confirm password' />}
-          required
-          disabled={formState.isSubmitting}
-        />
-      </FormRow>
+      <FormLayout
+        form={form}
+        original={
+          <>
+            <FormRow>
+              <TextFieldElement
+                control={control}
+                name='email'
+                variant='outlined'
+                type='email'
+                label={<Trans id='Email' />}
+                required
+                disabled={formState.isSubmitting}
+              />
+            </FormRow>
+            <FormRow>
+              <ValidatedPasswordElement
+                control={control}
+                name='newPassword'
+                autoComplete='new-password'
+                variant='outlined'
+                label={<Trans id='New password' />}
+                required
+                disabled={formState.isSubmitting}
+              />
+              <PasswordRepeatElement
+                control={control}
+                name='confirmPassword'
+                autoComplete='new-password'
+                passwordFieldName='newPassword'
+                variant='outlined'
+                label={<Trans id='Confirm password' />}
+                required
+                disabled={formState.isSubmitting}
+              />
+            </FormRow>
+          </>
+        }
+      >
+        {children}
+      </FormLayout>
 
       <ApolloCustomerErrorAlert error={error} />
 

@@ -7,10 +7,16 @@ import {
   Form,
   FormActions,
   FormDivider,
+  FormLayout,
   FormRow,
   InputCheckmark,
+  UseFormLayoutProps,
 } from '@graphcommerce/next-ui'
-import { phonePattern, useFormGqlMutation } from '@graphcommerce/react-hook-form'
+import {
+  UseFormGqlMutationReturn,
+  phonePattern,
+  useFormGqlMutation,
+} from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
@@ -19,18 +25,24 @@ import { AccountAddressFragment } from '../AccountAddress/AccountAddress.gql'
 import { AddressFields } from '../AddressFields/AddressFields'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import { NameFields } from '../NameFields/NameFields'
-import { UpdateCustomerAddressDocument } from './UpdateCustomerAddress.gql'
+import {
+  UpdateCustomerAddressDocument,
+  UpdateCustomerAddressMutation,
+  UpdateCustomerAddressMutationVariables,
+} from './UpdateCustomerAddress.gql'
 
 type EditAddressFormProps = {
   address?: AccountAddressFragment
   sx?: SxProps<Theme>
   onCompleteRoute?: string
-}
+} & UseFormLayoutProps<
+  UseFormGqlMutationReturn<UpdateCustomerAddressMutation, UpdateCustomerAddressMutationVariables>
+>
 
 export function EditAddressForm(props: EditAddressFormProps) {
   const countryQuery = useQuery(CountryRegionsDocument, { fetchPolicy: 'cache-and-network' })
   const countries = countryQuery.data?.countries ?? countryQuery.previousData?.countries
-  const { address, sx } = props
+  const { address, sx, children } = props
 
   const { closeSteps } = usePageContext()
   const onComplete = useGo(closeSteps * -1)
@@ -82,25 +94,37 @@ export function EditAddressForm(props: EditAddressFormProps) {
   return (
     <>
       <Form onSubmit={submitHandler} noValidate sx={sx}>
-        <NameFields form={form} prefix />
-        <AddressFields form={form} />
+        <FormLayout
+          form={form}
+          original={
+            <>
+              <NameFields form={form} prefix />
+              <AddressFields form={form} />
 
-        <FormRow>
-          <TextField
-            variant='outlined'
-            type='text'
-            error={!!formState.errors.telephone}
-            required={required.telephone}
-            label={<Trans id='Telephone' />}
-            {...muiRegister('telephone', {
-              required: required.telephone,
-              pattern: { value: phonePattern, message: i18n._(/* i18n */ 'Invalid phone number') },
-            })}
-            helperText={formState.isSubmitted && formState.errors.telephone?.message}
-            disabled={formState.isSubmitting}
-            InputProps={{ endAdornment: <InputCheckmark show={valid.telephone} /> }}
-          />
-        </FormRow>
+              <FormRow>
+                <TextField
+                  variant='outlined'
+                  type='text'
+                  error={!!formState.errors.telephone}
+                  required={required.telephone}
+                  label={<Trans id='Telephone' />}
+                  {...muiRegister('telephone', {
+                    required: required.telephone,
+                    pattern: {
+                      value: phonePattern,
+                      message: i18n._(/* i18n */ 'Invalid phone number'),
+                    },
+                  })}
+                  helperText={formState.isSubmitted && formState.errors.telephone?.message}
+                  disabled={formState.isSubmitting}
+                  InputProps={{ endAdornment: <InputCheckmark show={valid.telephone} /> }}
+                />
+              </FormRow>
+            </>
+          }
+        >
+          {children}
+        </FormLayout>
 
         <FormDivider />
 

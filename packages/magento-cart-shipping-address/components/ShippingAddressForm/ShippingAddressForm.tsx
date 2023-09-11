@@ -5,6 +5,7 @@ import {
   UseFormComposeOptions,
   useFormPersist,
   TextFieldElement,
+  UseFormGqlMutationReturn,
 } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import {
@@ -20,7 +21,13 @@ import {
   useCustomerQuery,
 } from '@graphcommerce/magento-customer'
 import { CountryRegionsDocument, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { Form, FormRow, InputCheckmark } from '@graphcommerce/next-ui'
+import {
+  Form,
+  FormLayout,
+  FormRow,
+  InputCheckmark,
+  UseFormLayoutProps,
+} from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { SxProps, Theme } from '@mui/material'
@@ -29,15 +36,24 @@ import { isSameAddress } from '../../utils/isSameAddress'
 import { GetAddressesDocument } from './GetAddresses.gql'
 import { SetBillingAddressDocument } from './SetBillingAddress.gql'
 import { SetShippingAddressDocument } from './SetShippingAddress.gql'
-import { SetShippingBillingAddressDocument } from './SetShippingBillingAddress.gql'
+import {
+  SetShippingBillingAddressDocument,
+  SetShippingBillingAddressMutation,
+  SetShippingBillingAddressMutationVariables,
+} from './SetShippingBillingAddress.gql'
 
 export type ShippingAddressFormProps = Pick<UseFormComposeOptions, 'step'> & {
   ignoreCache?: boolean
   sx?: SxProps<Theme>
-}
+} & UseFormLayoutProps<
+    UseFormGqlMutationReturn<
+      SetShippingBillingAddressMutation,
+      SetShippingBillingAddressMutationVariables
+    >
+  >
 
 export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) => {
-  const { step, sx, ignoreCache = false } = props
+  const { step, sx, ignoreCache = false, children } = props
   const { data: cartQuery } = useCartQuery(GetAddressesDocument)
   const { data: config } = useQuery(StoreConfigDocument)
   const countryQuery = useQuery(CountryRegionsDocument, { fetchPolicy: 'cache-and-network' })
@@ -126,25 +142,37 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
 
   return (
     <Form onSubmit={submit} noValidate sx={sx}>
-      <NameFields form={form} key='name' readOnly={readOnly} />
-      <AddressFields form={form} key='addressfields' readOnly={readOnly} />
-      <FormRow key='telephone'>
-        <TextFieldElement
-          control={form.control}
-          name='telephone'
-          variant='outlined'
-          type='text'
-          required={required.telephone}
-          validation={{
-            pattern: { value: phonePattern, message: i18n._(/* i18n */ 'Invalid phone number') },
-          }}
-          label={<Trans id='Telephone' />}
-          InputProps={{
-            readOnly,
-            endAdornment: <InputCheckmark show={valid.telephone} />,
-          }}
-        />
-      </FormRow>
+      <FormLayout
+        form={form}
+        original={
+          <>
+            <NameFields form={form} key='name' readOnly={readOnly} />
+            <AddressFields form={form} key='addressfields' readOnly={readOnly} />
+            <FormRow key='telephone'>
+              <TextFieldElement
+                control={form.control}
+                name='telephone'
+                variant='outlined'
+                type='text'
+                required={required.telephone}
+                validation={{
+                  pattern: {
+                    value: phonePattern,
+                    message: i18n._(/* i18n */ 'Invalid phone number'),
+                  },
+                }}
+                label={<Trans id='Telephone' />}
+                InputProps={{
+                  readOnly,
+                  endAdornment: <InputCheckmark show={valid.telephone} />,
+                }}
+              />
+            </FormRow>
+          </>
+        }
+      >
+        {children}
+      </FormLayout>
       <ApolloCartErrorAlert error={error} />
     </Form>
   )

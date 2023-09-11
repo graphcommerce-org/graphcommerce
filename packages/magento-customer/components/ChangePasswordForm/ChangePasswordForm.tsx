@@ -11,8 +11,10 @@ import {
   MessageSnackbar,
   FormDivider,
   Button,
+  FormLayout,
+  UseFormLayoutProps,
 } from '@graphcommerce/next-ui'
-import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
+import { UseFormGqlMutationReturn, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
 import { ValidatedPasswordElement } from '../ValidatedPasswordElement/ValidatedPasswordElement'
 import {
@@ -21,7 +23,17 @@ import {
   ChangePasswordMutationVariables,
 } from './ChangePassword.gql'
 
-export function ChangePasswordForm() {
+export function ChangePasswordForm(
+  props: UseFormLayoutProps<
+    UseFormGqlMutationReturn<
+      ChangePasswordMutation,
+      ChangePasswordMutationVariables & {
+        confirmPassword?: string | undefined
+      }
+    >
+  >,
+) {
+  const { children } = props
   const form = useFormGqlMutation<
     ChangePasswordMutation,
     ChangePasswordMutationVariables & { confirmPassword?: string }
@@ -42,43 +54,52 @@ export function ChangePasswordForm() {
 
   return (
     <Form onSubmit={submitHandler} noValidate>
-      <FormRow>
-        <PasswordElement
-          control={control}
-          name='currentPassword'
-          variant='outlined'
-          autoComplete='current-password'
-          label={<Trans id='Current Password' />}
-          required={required.currentPassword}
-          disabled={formState.isSubmitting}
-          error={Boolean(authenticationError)}
-          helperText={authenticationError?.message}
-        />
-      </FormRow>
+      <FormLayout
+        form={form}
+        original={
+          <>
+            <FormRow>
+              <PasswordElement
+                control={control}
+                name='currentPassword'
+                variant='outlined'
+                autoComplete='current-password'
+                label={<Trans id='Current Password' />}
+                required={required.currentPassword}
+                disabled={formState.isSubmitting}
+                error={Boolean(authenticationError)}
+                helperText={authenticationError?.message}
+              />
+            </FormRow>
 
-      <FormRow>
-        <ValidatedPasswordElement
-          control={control}
-          name='newPassword'
-          variant='outlined'
-          autoComplete='new-password'
-          label={<Trans id='New password' />}
-          required={required.newPassword}
-          disabled={formState.isSubmitting}
-          error={Boolean(inputError)}
-          helperText={inputError?.message}
-        />
-        <PasswordRepeatElement
-          control={control}
-          name='confirmPassword'
-          passwordFieldName='newPassword'
-          autoComplete='new-password'
-          variant='outlined'
-          label={<Trans id='Confirm password' />}
-          required
-          disabled={formState.isSubmitting}
-        />
-      </FormRow>
+            <FormRow>
+              <ValidatedPasswordElement
+                control={control}
+                name='newPassword'
+                variant='outlined'
+                autoComplete='new-password'
+                label={<Trans id='New password' />}
+                required={required.newPassword}
+                disabled={formState.isSubmitting}
+                error={Boolean(inputError)}
+                helperText={inputError?.message}
+              />
+              <PasswordRepeatElement
+                control={control}
+                name='confirmPassword'
+                passwordFieldName='newPassword'
+                autoComplete='new-password'
+                variant='outlined'
+                label={<Trans id='Confirm password' />}
+                required
+                disabled={formState.isSubmitting}
+              />
+            </FormRow>
+          </>
+        }
+      >
+        {children}
+      </FormLayout>
 
       <FormDivider />
 

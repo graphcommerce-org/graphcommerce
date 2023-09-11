@@ -3,13 +3,20 @@ import {
   TextFieldElement,
   useFormCompose,
   UseFormComposeOptions,
+  UseFormGqlMutationReturn,
 } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import { ProductInfoInput } from '@graphcommerce/graphql-mesh'
 import { useCartQuery, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { useShippingMethod } from '@graphcommerce/magento-cart-shipping-method'
 import { GetShippingMethodsDocument } from '@graphcommerce/magento-cart-shipping-method/components/ShippingMethodForm/GetShippingMethods.gql'
-import { ActionCardItemBase, ActionCardListForm, FormRow } from '@graphcommerce/next-ui'
+import {
+  ActionCardItemBase,
+  ActionCardListForm,
+  FormLayout,
+  FormRow,
+  UseFormLayoutProps,
+} from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { useMemo, useDeferredValue } from 'react'
 import { GetPickupLocationsForProductsDocument } from '../graphql/GetPickupLocationsForProducts.gql'
@@ -20,14 +27,20 @@ import {
 } from '../graphql/SetPickupLocationOnCart.gql'
 import { PickupLocationActionCard, Location } from './PickupLocationActionCard'
 
-export type PickupLocationFormProps = Pick<UseFormComposeOptions, 'step'>
+export type PickupLocationFormProps = Pick<UseFormComposeOptions, 'step'> &
+  UseFormLayoutProps<
+    UseFormGqlMutationReturn<
+      SetPickupLocationOnCartMutation,
+      SetPickupLocationOnCartMutationVariables & { searchTerm?: string }
+    >
+  >
 
 function nonNullable<T>(value: T): value is NonNullable<T> {
   return value !== null && value !== undefined
 }
 
 export function PickupLocationForm(props: PickupLocationFormProps) {
-  const { step } = props
+  const { step, children } = props
   const currentShippingMethod = useShippingMethod()
 
   const availableMethods = useCartQuery(GetShippingMethodsDocument, { fetchPolicy: 'cache-only' })
@@ -95,31 +108,43 @@ export function PickupLocationForm(props: PickupLocationFormProps) {
 
   return (
     <form onSubmit={submit} noValidate>
-      {!selected && (
-        <FormRow>
-          <TextFieldElement
-            name='searchTerm'
-            control={control}
-            validation={{ required: false, minLength: 4 }}
-            label={<Trans id='Zip code or city' />}
-            type='text'
-          />
-        </FormRow>
-      )}
+      <FormLayout
+        form={form}
+        original={
+          <>
+            {!selected && (
+              <FormRow>
+                <TextFieldElement
+                  name='searchTerm'
+                  control={control}
+                  validation={{ required: false, minLength: 4 }}
+                  label={<Trans id='Zip code or city' />}
+                  type='text'
+                />
+              </FormRow>
+            )}
 
-      <ActionCardListForm<Location & ActionCardItemBase, SetPickupLocationOnCartMutationVariables>
-        control={control}
-        name='pickupLocationCode'
-        errorMessage='Please select a pickup location'
-        collapse
-        size='large'
-        color='secondary'
-        items={locations.map((location) => ({
-          ...location,
-          value: String(location?.pickup_location_code),
-        }))}
-        render={PickupLocationActionCard}
-      />
+            <ActionCardListForm<
+              Location & ActionCardItemBase,
+              SetPickupLocationOnCartMutationVariables
+            >
+              control={control}
+              name='pickupLocationCode'
+              errorMessage='Please select a pickup location'
+              collapse
+              size='large'
+              color='secondary'
+              items={locations.map((location) => ({
+                ...location,
+                value: String(location?.pickup_location_code),
+              }))}
+              render={PickupLocationActionCard}
+            />
+          </>
+        }
+      >
+        {children}
+      </FormLayout>
 
       <ApolloErrorAlert error={availableMethods.error} />
     </form>

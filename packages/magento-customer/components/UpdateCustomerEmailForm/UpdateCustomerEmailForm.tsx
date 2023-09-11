@@ -5,10 +5,16 @@ import {
   Form,
   FormActions,
   FormDivider,
+  FormLayout,
   FormRow,
   MessageSnackbar,
+  UseFormLayoutProps,
 } from '@graphcommerce/next-ui'
-import { emailPattern, useFormGqlMutation } from '@graphcommerce/react-hook-form'
+import {
+  UseFormGqlMutationReturn,
+  emailPattern,
+  useFormGqlMutation,
+} from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
@@ -22,10 +28,18 @@ import {
 
 type UpdateCustomerEmailFormProps = {
   email: string
-}
+} & UseFormLayoutProps<
+  UseFormGqlMutationReturn<
+    UpdateCustomerEmailMutation,
+    UpdateCustomerEmailMutationVariables & {
+      currentEmail?: string
+      confirmEmail?: string
+    }
+  >
+>
 
 export function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormProps) {
-  const { email } = props
+  const { email, children } = props
 
   const form = useFormGqlMutation<
     UpdateCustomerEmailMutation,
@@ -50,72 +64,82 @@ export function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormProps) {
 
   return (
     <Form onSubmit={submit} noValidate>
-      <FormRow>
-        <TextField
-          key='current-email'
-          variant='outlined'
-          type='text'
-          autoComplete='email'
-          autoFocus
-          error={formState.isSubmitted && !!formState.errors.currentEmail}
-          helperText={formState.isSubmitted && formState.errors.currentEmail?.message}
-          label='Current email'
-          required
-          value={email}
-          {...muiRegister('currentEmail', {
-            required: true,
-            pattern: { value: emailPattern, message: '' },
-          })}
-          InputProps={{
-            readOnly: true,
-          }}
-        />
-      </FormRow>
+      <FormLayout
+        form={form}
+        original={
+          <>
+            <FormRow>
+              <TextField
+                key='current-email'
+                variant='outlined'
+                type='text'
+                autoComplete='email'
+                autoFocus
+                error={formState.isSubmitted && !!formState.errors.currentEmail}
+                helperText={formState.isSubmitted && formState.errors.currentEmail?.message}
+                label='Current email'
+                required
+                value={email}
+                {...muiRegister('currentEmail', {
+                  required: true,
+                  pattern: { value: emailPattern, message: '' },
+                })}
+                InputProps={{
+                  readOnly: true,
+                }}
+              />
+            </FormRow>
 
-      <FormRow>
-        <TextField
-          key='email'
-          variant='outlined'
-          type='text'
-          autoComplete='off'
-          error={formState.isSubmitted && !!formState.errors.email}
-          helperText={formState.isSubmitted && formState.errors.email?.message}
-          label={<Trans id='New email' />}
-          required={required.email}
-          {...muiRegister('email', {
-            required: true,
-            pattern: { value: emailPattern, message: '' },
-          })}
-        />
-        <TextField
-          key='confirm-email'
-          variant='outlined'
-          type='text'
-          autoComplete='off'
-          error={formState.isSubmitted && !!formState.errors.confirmEmail}
-          helperText={formState.isSubmitted && formState.errors.confirmEmail?.message}
-          label={<Trans id='Confirm new email' />}
-          required
-          {...muiRegister('confirmEmail', {
-            required: true,
-            validate: (value) => value === watchNewEmail || i18n._(/* i18n */ "Emails don't match"),
-          })}
-        />
-      </FormRow>
+            <FormRow>
+              <TextField
+                key='email'
+                variant='outlined'
+                type='text'
+                autoComplete='off'
+                error={formState.isSubmitted && !!formState.errors.email}
+                helperText={formState.isSubmitted && formState.errors.email?.message}
+                label={<Trans id='New email' />}
+                required={required.email}
+                {...muiRegister('email', {
+                  required: true,
+                  pattern: { value: emailPattern, message: '' },
+                })}
+              />
+              <TextField
+                key='confirm-email'
+                variant='outlined'
+                type='text'
+                autoComplete='off'
+                error={formState.isSubmitted && !!formState.errors.confirmEmail}
+                helperText={formState.isSubmitted && formState.errors.confirmEmail?.message}
+                label={<Trans id='Confirm new email' />}
+                required
+                {...muiRegister('confirmEmail', {
+                  required: true,
+                  validate: (value) =>
+                    value === watchNewEmail || i18n._(/* i18n */ "Emails don't match"),
+                })}
+              />
+            </FormRow>
 
-      <FormRow>
-        <PasswordElement
-          control={control}
-          variant='outlined'
-          name='password'
-          label={<Trans id='Password' />}
-          autoComplete='current-password'
-          required={required.password}
-          disabled={formState.isSubmitting}
-          error={Boolean(authenticationError)}
-          helperText={authenticationError?.message}
-        />
-      </FormRow>
+            <FormRow>
+              <PasswordElement
+                control={control}
+                variant='outlined'
+                name='password'
+                label={<Trans id='Password' />}
+                autoComplete='current-password'
+                required={required.password}
+                disabled={formState.isSubmitting}
+                error={Boolean(authenticationError)}
+                helperText={authenticationError?.message}
+              />
+            </FormRow>
+          </>
+        }
+      >
+        {children}
+      </FormLayout>
 
       <ApolloCustomerErrorSnackbar error={remainingError} />
 

@@ -1,18 +1,35 @@
-import { Form, FormActions, FormDivider, MessageSnackbar, Button } from '@graphcommerce/next-ui'
-import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
+import {
+  Form,
+  FormActions,
+  FormDivider,
+  MessageSnackbar,
+  Button,
+  FormLayout,
+  UseFormLayoutProps,
+} from '@graphcommerce/next-ui'
+import { UseFormGqlMutationReturn, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import { NameFields } from '../NameFields/NameFields'
-import { UpdateCustomerNameDocument } from './UpdateCustomerName.gql'
+import { UpdateCustomerNameDocument, UpdateCustomerNameMutation } from './UpdateCustomerName.gql'
 
 type ChangeNameFormProps = {
   prefix?: string
   firstname: string
   lastname: string
-}
+} & UseFormLayoutProps<
+  UseFormGqlMutationReturn<
+    UpdateCustomerNameMutation,
+    {
+      prefix: string
+      firstname: string
+      lastname: string
+    }
+  >
+>
 
 export function ChangeNameForm(props: ChangeNameFormProps) {
-  const { prefix, firstname, lastname } = props
+  const { prefix, firstname, lastname, children } = props
   const form = useFormGqlMutation(
     UpdateCustomerNameDocument,
     {
@@ -31,7 +48,9 @@ export function ChangeNameForm(props: ChangeNameFormProps) {
   return (
     <>
       <Form onSubmit={submit} noValidate>
-        <NameFields form={form} prefix />
+        <FormLayout form={form} original={<NameFields form={form} prefix />}>
+          {children}
+        </FormLayout>
         <FormDivider />
         <FormActions>
           <Button

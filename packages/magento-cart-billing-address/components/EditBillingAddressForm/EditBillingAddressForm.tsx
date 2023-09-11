@@ -1,7 +1,12 @@
 import { useHistoryGo } from '@graphcommerce/framer-next-pages'
 import { useQuery } from '@graphcommerce/graphql'
 import { useCartQuery, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
-import { SetBillingAddressDocument } from '@graphcommerce/magento-cart-shipping-address/components/ShippingAddressForm/SetBillingAddress.gql'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import {
+  SetBillingAddressDocument,
+  SetBillingAddressMutation,
+  SetBillingAddressMutationVariables,
+} from '@graphcommerce/magento-cart-shipping-address/components/ShippingAddressForm/SetBillingAddress.gql'
 import {
   AddressFields,
   ApolloCustomerErrorAlert,
@@ -13,20 +18,24 @@ import {
   Form,
   FormActions,
   FormDivider,
+  FormLayout,
   FormRow,
   InputCheckmark,
+  UseFormLayoutProps,
 } from '@graphcommerce/next-ui'
-import { phonePattern } from '@graphcommerce/react-hook-form'
+import { UseFormGqlMutationReturn, phonePattern } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { SxProps, TextField, Theme } from '@mui/material'
 import { GetBillingAddressDocument } from './GetBillingAddress.gql'
 
-export type EditBillingAddressFormProps = { sx?: SxProps<Theme> }
+export type EditBillingAddressFormProps = { sx?: SxProps<Theme> } & UseFormLayoutProps<
+  UseFormGqlMutationReturn<SetBillingAddressMutation, SetBillingAddressMutationVariables>
+>
 
 export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
-  const { sx } = props
+  const { sx, children } = props
   const countryQuery = useQuery(CountryRegionsDocument, { fetchPolicy: 'cache-and-network' })
   const countries = countryQuery.data?.countries ?? countryQuery.previousData?.countries
   const address = useCartQuery(GetBillingAddressDocument)?.data?.cart?.billing_address
@@ -68,26 +77,37 @@ export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
   return (
     <>
       <Form onSubmit={submitHandler} noValidate sx={sx}>
-        <NameFields form={form} prefix />
-        <AddressFields form={form} />
+        <FormLayout
+          form={form}
+          original={
+            <>
+              <NameFields form={form} prefix />
+              <AddressFields form={form} />
 
-        <FormRow>
-          <TextField
-            variant='outlined'
-            type='text'
-            error={!!formState.errors.telephone}
-            required={required.telephone}
-            label={<Trans id='Telephone' />}
-            {...muiRegister('telephone', {
-              required: required.telephone,
-              pattern: { value: phonePattern, message: i18n._(/* i18n */ 'Invalid phone number') },
-            })}
-            helperText={formState.isSubmitted && formState.errors.telephone?.message}
-            disabled={formState.isSubmitting}
-            InputProps={{ endAdornment: <InputCheckmark show={valid.telephone} /> }}
-          />
-        </FormRow>
-
+              <FormRow>
+                <TextField
+                  variant='outlined'
+                  type='text'
+                  error={!!formState.errors.telephone}
+                  required={required.telephone}
+                  label={<Trans id='Telephone' />}
+                  {...muiRegister('telephone', {
+                    required: required.telephone,
+                    pattern: {
+                      value: phonePattern,
+                      message: i18n._(/* i18n */ 'Invalid phone number'),
+                    },
+                  })}
+                  helperText={formState.isSubmitted && formState.errors.telephone?.message}
+                  disabled={formState.isSubmitting}
+                  InputProps={{ endAdornment: <InputCheckmark show={valid.telephone} /> }}
+                />
+              </FormRow>
+            </>
+          }
+        >
+          {children}
+        </FormLayout>
         <FormDivider />
 
         <FormActions sx={{ paddingBottom: 0 }}>

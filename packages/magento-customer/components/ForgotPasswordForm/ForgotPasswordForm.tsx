@@ -1,5 +1,16 @@
-import { Button, Form, FormActions, FormRow } from '@graphcommerce/next-ui'
-import { emailPattern, useFormGqlMutation } from '@graphcommerce/react-hook-form'
+import {
+  Button,
+  Form,
+  FormActions,
+  FormLayout,
+  FormRow,
+  UseFormLayoutProps,
+} from '@graphcommerce/next-ui'
+import {
+  UseFormGqlMutationReturn,
+  emailPattern,
+  useFormGqlMutation,
+} from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
@@ -11,8 +22,12 @@ import {
   ForgotPasswordMutationVariables,
 } from './ForgotPassword.gql'
 
-export function ForgotPasswordForm(props: { sx?: SxProps<Theme> }) {
-  const { sx = [] } = props
+export function ForgotPasswordForm(
+  props: { sx?: SxProps<Theme> } & UseFormLayoutProps<
+    UseFormGqlMutationReturn<ForgotPasswordMutation, ForgotPasswordMutationVariables>
+  >,
+) {
+  const { sx = [], children } = props
   const form = useFormGqlMutation<ForgotPasswordMutation, ForgotPasswordMutationVariables>(
     ForgotPasswordDocument,
   )
@@ -36,21 +51,31 @@ export function ForgotPasswordForm(props: { sx?: SxProps<Theme> }) {
 
   return (
     <Form onSubmit={submitHandler} noValidate sx={sx}>
-      <FormRow>
-        <TextField
-          variant='outlined'
-          type='text'
-          error={!!formState.errors.email}
-          label={<Trans id='Email' />}
-          required={required.email}
-          {...muiRegister('email', {
-            required: required.email,
-            pattern: { value: emailPattern, message: i18n._(/* i18n */ 'Invalid email address') },
-          })}
-          helperText={formState.errors.email?.message}
-          disabled={formState.isSubmitting}
-        />
-      </FormRow>
+      <FormLayout
+        form={form}
+        original={
+          <FormRow>
+            <TextField
+              variant='outlined'
+              type='text'
+              error={!!formState.errors.email}
+              label={<Trans id='Email' />}
+              required={required.email}
+              {...muiRegister('email', {
+                required: required.email,
+                pattern: {
+                  value: emailPattern,
+                  message: i18n._(/* i18n */ 'Invalid email address'),
+                },
+              })}
+              helperText={formState.errors.email?.message}
+              disabled={formState.isSubmitting}
+            />
+          </FormRow>
+        }
+      >
+        {children}
+      </FormLayout>
 
       <ApolloCustomerErrorAlert error={error} />
 
