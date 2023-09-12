@@ -27,6 +27,7 @@ export function WishlistItem(props: WishlistItemProps) {
     selectedOptionsLabels,
     isConfigurableUncompleted = false,
     __typename: productType,
+    wishlistItemId,
     url_key,
   } = props
 
@@ -50,7 +51,7 @@ export function WishlistItem(props: WishlistItemProps) {
             variant='text'
             size='medium'
             sx={{ width: '100px' }}
-            href={productLink}
+            href={`${productLink}?wishlistItemId=${wishlistItemId}`}
           >
             <Trans id='Configure' />
           </Button>

@@ -12,7 +12,7 @@ import {
 import { GuestWishlistDocument, GuestWishlistQuery } from '../queries/GuestWishlist.gql'
 
 export type GuestWishListData = NonNullable<GetGuestWishlistProductsQuery['products']>['items']
-type CustomerWishListData = NonNullable<
+export type CustomerWishListData = NonNullable<
   NonNullable<NonNullable<GetWishlistProductsQuery['customer']>['wishlists'][0]>['items_v2']
 >['items']
 

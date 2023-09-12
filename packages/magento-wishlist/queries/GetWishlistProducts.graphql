@@ -6,6 +6,7 @@ query GetWishlistProducts {
       items_v2 {
         items {
           id
+          __typename
           ...WishlistItem
           ... on ConfigurableWishlistItem {
             configurable_options {

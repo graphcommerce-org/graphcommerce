@@ -211,7 +211,7 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
       </Badge>
 
       <Link
-        href={productLink}
+        href={`${productLink}?wishlistItemId=${wishlistItemId}`}
         variant='body1'
         className={classes.itemName}
         underline='hover'

@@ -166,7 +166,7 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
         // If there are no options selected search for the product which matches the url and if
         // it is a configurable product check if it has no configurable options.
         notFullyConfigured
-          ? !!guestWishlist?.find((e) => e?.url_key === url_key && e.selected_options?.length === 0)
+          ? guestWishlist?.some((e) => e?.url_key === url_key && e.selected_options?.length === 0)
           : // If it is a configurable product check if all selected options match the configurable options of the product
             // Check if the sku of the product matches the sku of the wishlistItem and check if the product url key matches the url key
             guestWishlist?.some(
@@ -292,7 +292,7 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
                 ? item.sku !== sku
                 : item?.url_key !== url_key ||
                   (item?.url_key === url_key &&
-                    item?.selected_options.every((opt) =>
+                    item?.selected_options.some((opt) =>
                       selected_options.find((select_option) => select_option !== opt),
                     )),
             )
