@@ -180,7 +180,7 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
                 ) && wishlistItem?.url_key === url_key,
             )
 
-      setInWishlist(!!isInWishlist)
+      setInWishlist(isInWishlist)
     }
   }, [
     loggedIn,
@@ -288,8 +288,8 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
         fields: {
           items(existingItems) {
             // Remove item from wishlist if url key and selected options match that of the wishlistItem.
-            const GuestWishlistItems = existingItems as GuestWishlistItem[]
-            GuestWishlistItems.filter((item) =>
+            const guestWishlistItems = existingItems as GuestWishlistItem[]
+            return guestWishlistItems.filter((item) =>
               notFullyConfigured
                 ? item.sku !== sku
                 : item?.url_key !== url_key ||
@@ -298,7 +298,6 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
                       selected_options.find((select_option) => select_option !== opt),
                     )),
             )
-            return GuestWishlistItems
           },
         },
       })
