@@ -4,7 +4,7 @@ import {
 } from '@graphcommerce/magento-product'
 import { InputMaybe, ReactPlugin } from '@graphcommerce/next-config'
 import { useRouter } from 'next/router'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { CustomerWishListData, useWishlistItems } from '../hooks'
 import { useCustomerSession } from '@graphcommerce/magento-customer'
 
@@ -18,11 +18,14 @@ function WishlistUrlHandler() {
   const { loggedIn } = useCustomerSession()
   const wishlistData = useWishlistItems()
 
+  const [isInitialLoad, setIsInitialLoad] = useState(true)
+
   const customerWishlist: CustomerWishListData = wishlistData.data as CustomerWishListData
   const guestWishlist = wishlistData.guestWishlist.data?.guestWishlist?.items
 
   useEffect(() => {
     if (!router.isReady) return
+    if (!isInitialLoad) return
     const { wishlistItemId } = router.query
     const customerWishlistItem = customerWishlist?.find((item) => item?.id === wishlistItemId)
     const guestWishlistItem = guestWishlist?.find((item, i) => i === Number(wishlistItemId))
@@ -34,7 +37,16 @@ function WishlistUrlHandler() {
         []
       : guestWishlistItem?.selected_options || []
     setValue(`cartItems.0.selected_options`, wishlistItemOptions)
-  }, [router.isReady, router.query, setValue, customerWishlist, guestWishlist, loggedIn])
+    setIsInitialLoad(false)
+  }, [
+    router.isReady,
+    router.query,
+    setValue,
+    customerWishlist,
+    guestWishlist,
+    loggedIn,
+    isInitialLoad,
+  ])
 
   return null
 }
