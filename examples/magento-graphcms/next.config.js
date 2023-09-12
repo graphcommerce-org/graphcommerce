@@ -28,7 +28,7 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   experimental: {
-    appDir: false,
+    scrollRestoration: true,
   },
 }
 

@@ -1,10 +1,12 @@
-import { useMutation, useApolloClient, useQuery } from '@graphcommerce/graphql'
+import { useMutation, useApolloClient } from '@graphcommerce/graphql'
+import { GuestWishlist, GuestWishlistItem } from '@graphcommerce/graphql-mesh'
 import {
   useCustomerQuery,
   useCustomerSession,
   useGuestQuery,
 } from '@graphcommerce/magento-customer'
 import { useFormAddProductsToCart } from '@graphcommerce/magento-product'
+import { ProductListItemConfigurableFragment } from '@graphcommerce/magento-product-configurable'
 import { InputMaybe, Maybe } from '@graphcommerce/next-config'
 import {
   IconSvg,
@@ -25,7 +27,6 @@ import { GuestWishlistDocument } from '../../queries/GuestWishlist.gql'
 import { RemoveProductFromWishlistDocument } from '../../queries/RemoveProductFromWishlist.gql'
 import { WishlistSummaryFragment } from '../../queries/WishlistSummaryFragment.gql'
 import { ProductWishlistChipFragment } from './ProductWishlistChip.gql'
-import { ProductListItemConfigurableFragment } from '@graphcommerce/magento-product-configurable'
 
 const hideForGuest = import.meta.graphCommerce.wishlistHideForGuests
 const ignoreProductWishlistStatus = import.meta.graphCommerce.wishlistIgnoreProductWishlistStatus
@@ -282,21 +283,22 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
         setDisplayMessageBar(true)
       }
     } else if (inWishlist) {
-      cache.modify({
+      cache.modify<GuestWishlist>({
         id: cache.identify({ __typename: 'GuestWishlist' }),
         fields: {
-          items(existingItems: WishListItemType[] = []) {
+          items(existingItems) {
             // Remove item from wishlist if url key and selected options match that of the wishlistItem.
-            const items = existingItems.filter((item) =>
+            const GuestWishlistItems = existingItems as GuestWishlistItem[]
+            GuestWishlistItems.filter((item) =>
               notFullyConfigured
                 ? item.sku !== sku
                 : item?.url_key !== url_key ||
                   (item?.url_key === url_key &&
-                    item?.selected_options.some((opt) =>
+                    item?.selected_options?.some((opt) =>
                       selected_options.find((select_option) => select_option !== opt),
                     )),
             )
-            return items
+            return GuestWishlistItems
           },
         },
       })

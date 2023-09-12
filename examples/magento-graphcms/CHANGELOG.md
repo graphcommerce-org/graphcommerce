@@ -1,5 +1,85 @@
 # Change Log
 
+## 7.0.1-canary.5
+
+## 7.0.1-canary.4
+
+### Patch Changes
+
+- [#2050](https://github.com/graphcommerce-org/graphcommerce/pull/2050) [`b2e9be816`](https://github.com/graphcommerce-org/graphcommerce/commit/b2e9be816d24518241b3b1bbaa167e2143203488) - Remove 'Translation file updates' from upgrade instructions and add back scrollRestoration ([@paales](https://github.com/paales))
+
+## 7.0.1-canary.3
+
+## 7.0.1-canary.2
+
+## 7.0.1-canary.1
+
+## 7.0.1-canary.0
+
+### Patch Changes
+
+- [#2047](https://github.com/graphcommerce-org/graphcommerce/pull/2047) [`136580b39`](https://github.com/graphcommerce-org/graphcommerce/commit/136580b39e3cffdd07e3fa087e049bd532c3e8f1) - Updated all dependencies to the latest version where possible. ([@paales](https://github.com/paales))
+
+## 7.0.0
+
+### Major Changes
+
+- [`e55d8c390`](https://github.com/graphcommerce-org/graphcommerce/commit/e55d8c390d90b4bb7bab11c6a99027ac72bd7e3e) - Created a new sidebar layout system, can be configured with productFiltersLayout in the graphcommerce.config.js ([@paales](https://github.com/paales))
+
+- [#1912](https://github.com/graphcommerce-org/graphcommerce/pull/1912) [`a43d389e9`](https://github.com/graphcommerce-org/graphcommerce/commit/a43d389e956fe69b73238b12c98c781b7044e4bb) - Added dynamic rows feature ([@JoshuaS98](https://github.com/JoshuaS98))
+
+### Minor Changes
+
+- [#1962](https://github.com/graphcommerce-org/graphcommerce/pull/1962) [`518b6ca24`](https://github.com/graphcommerce-org/graphcommerce/commit/518b6ca248fc94624dc06eb02de5b3eac0fc9483) - Created a new `<ValidatedPasswordElement/>` which validates according to Magento's validation groups and implement on all locations. Move remaining password fields to `<PasswordElement />` ([@carlocarels90](https://github.com/carlocarels90))
+
+- [#1978](https://github.com/graphcommerce-org/graphcommerce/pull/1978) [`0c91ac1f7`](https://github.com/graphcommerce-org/graphcommerce/commit/0c91ac1f70f58dec418e945fc4a6a8c6732cc21e) - When a user selects a variant, it will switch the values on the configurable page with the values of the configured variant. Enabling options here will allow switching of those variants. ([@carlocarels90](https://github.com/carlocarels90))
+
+- [#1961](https://github.com/graphcommerce-org/graphcommerce/pull/1961) [`4a759c662`](https://github.com/graphcommerce-org/graphcommerce/commit/4a759c66215eaa69edc342b898e05e8f92c3ba9a) - Add Open Graph meta tags to all pages ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+### Patch Changes
+
+- [#1949](https://github.com/graphcommerce-org/graphcommerce/pull/1949) [`3b9ae16cb`](https://github.com/graphcommerce-org/graphcommerce/commit/3b9ae16cb6ec366a3a762363f020bf888bb81ac6) - In some cases the getStaticPaths values were send to the client and stored in the local storage ([@paales](https://github.com/paales))
+
+- [#1914](https://github.com/graphcommerce-org/graphcommerce/pull/1914) [`c237f2f2c`](https://github.com/graphcommerce-org/graphcommerce/commit/c237f2f2c87d9e3c8aefc536a13b5b9203556f27) - Category pages now have the ability to select the displayed pageSize of a page if the backend provides multiple options. A non-default pageSize and a non-default sort option will now receive noindex meta tags when viewed. ([@paales](https://github.com/paales))
+
+- [#1911](https://github.com/graphcommerce-org/graphcommerce/pull/1911) [`c10d6d5be`](https://github.com/graphcommerce-org/graphcommerce/commit/c10d6d5beb0d1560d33e3e301d88fa9201515133) - Translations were missing for the ProductSidebarDelivery ([@rustmaestro](https://github.com/rustmaestro))
+
+- [#1960](https://github.com/graphcommerce-org/graphcommerce/pull/1960) [`f78caf5a8`](https://github.com/graphcommerce-org/graphcommerce/commit/f78caf5a83683f1ae4b901fb94bd22d50943fa2f) - Updated packages: `next`, `@apollo/client`, `react-hook-form`, `@emotion/*`, `@lingui/*`, `@mui/*` and various others. ([@paales](https://github.com/paales))
+
+- [#1897](https://github.com/graphcommerce-org/graphcommerce/pull/1897) [`4936a38fb`](https://github.com/graphcommerce-org/graphcommerce/commit/4936a38fbd99fa366eae1a5955fa61d6387a2bb8) - MuiFab couldn't be given a primary or secondary color ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#2012](https://github.com/graphcommerce-org/graphcommerce/pull/2012) [`1dbb3ae13`](https://github.com/graphcommerce-org/graphcommerce/commit/1dbb3ae13553992ee1ed77f375375560f28c418c) - Upgrade graphql to 16.7.1, add graphql as peer dependency ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2031](https://github.com/graphcommerce-org/graphcommerce/pull/2031) [`4d8fc9e99`](https://github.com/graphcommerce-org/graphcommerce/commit/4d8fc9e998fc9361282833316ec9564da0644ed6) - Eslint fixes and suppress accepted warnings ([@paales](https://github.com/paales))
+
+- [#1914](https://github.com/graphcommerce-org/graphcommerce/pull/1914) [`000556331`](https://github.com/graphcommerce-org/graphcommerce/commit/000556331f5379c71d7edca541fd0b145b7dc435) - When there is an error in the cart, disable the checkout buttons ([@paales](https://github.com/paales))
+
+- [#1914](https://github.com/graphcommerce-org/graphcommerce/pull/1914) [`38d6c4888`](https://github.com/graphcommerce-org/graphcommerce/commit/38d6c488850013b36cae9f388996039219c1327e) - Errors in the cart didn't allow for recovery from the faulty state ([@paales](https://github.com/paales))
+
+- [#1955](https://github.com/graphcommerce-org/graphcommerce/pull/1955) [`1f5f15dd3`](https://github.com/graphcommerce-org/graphcommerce/commit/1f5f15dd38fda5b0dc78095076b951486c635542) - Added onSubmitSuccessful callback to checkout header button, so header "To payment method" action navigates to the payment checkout step ([@mikekeehnen](https://github.com/mikekeehnen))
+
+- [#2042](https://github.com/graphcommerce-org/graphcommerce/pull/2042) [`587fd2fe5`](https://github.com/graphcommerce-org/graphcommerce/commit/587fd2fe50c843acd9ffae869372df1df57e0a4b) - Updated german translations ([@action-simon](https://github.com/action-simon))
+
+- [#1935](https://github.com/graphcommerce-org/graphcommerce/pull/1935) [`f88789698`](https://github.com/graphcommerce-org/graphcommerce/commit/f88789698098c20556a42c6317ccc5ce287002e2) - Added missing translation for "Sort" ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2030](https://github.com/graphcommerce-org/graphcommerce/pull/2030) [`15939ca62`](https://github.com/graphcommerce-org/graphcommerce/commit/15939ca62021c28f7d60382c65927aed15c1ac84) - next-pwa dependency change and next-image caching optimalization ([@mikekeehnen](https://github.com/mikekeehnen))
+
+- [#1953](https://github.com/graphcommerce-org/graphcommerce/pull/1953) [`0aab69059`](https://github.com/graphcommerce-org/graphcommerce/commit/0aab69059b7d28a44690b01c03b3fb8dba4dfcbe) - Fix inverted robotsAllow check ([@hnsr](https://github.com/hnsr))
+
+## 6.2.0-canary.98
+
+## 6.2.0-canary.97
+
+### Patch Changes
+
+- [#2042](https://github.com/graphcommerce-org/graphcommerce/pull/2042) [`587fd2fe5`](https://github.com/graphcommerce-org/graphcommerce/commit/587fd2fe50c843acd9ffae869372df1df57e0a4b) - Updated german translations ([@action-simon](https://github.com/action-simon))
+
+## 6.2.0-canary.96
+
+### Patch Changes
+
+- [#2042](https://github.com/graphcommerce-org/graphcommerce/pull/2042) [`587fd2fe5`](https://github.com/graphcommerce-org/graphcommerce/commit/587fd2fe50c843acd9ffae869372df1df57e0a4b) - Updated german translations ([@action-simon](https://github.com/action-simon))
+
 ## 6.2.0-canary.95
 
 ### Patch Changes

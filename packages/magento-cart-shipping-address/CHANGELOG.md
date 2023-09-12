@@ -1,5 +1,35 @@
 # Change Log
 
+## 7.0.1-canary.5
+
+## 7.0.1-canary.4
+
+## 7.0.1-canary.3
+
+## 7.0.1-canary.2
+
+## 7.0.1-canary.1
+
+## 7.0.1-canary.0
+
+## 7.0.0
+
+### Patch Changes
+
+- [#2021](https://github.com/graphcommerce-org/graphcommerce/pull/2021) [`06ab7d24d`](https://github.com/graphcommerce-org/graphcommerce/commit/06ab7d24dcf345c6acd39471df544a726a166ece) - Ensure 'addition' parameter is non-empty in onBeforeSubmit ([@carlocarels90](https://github.com/carlocarels90))
+
+- [#2006](https://github.com/graphcommerce-org/graphcommerce/pull/2006) [`80b60cb40`](https://github.com/graphcommerce-org/graphcommerce/commit/80b60cb404882260bd0e8184f3e54f4720925c96) - The Billing address was set to the shipping address when a default billing address was available and made prefix optional when creating an address ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+- [#1987](https://github.com/graphcommerce-org/graphcommerce/pull/1987) [`96ac01045`](https://github.com/graphcommerce-org/graphcommerce/commit/96ac010454b57208ede11bf33d89b71b099a7bb3) - When there is a default_shipping address on the customer but not on the cart yet, make sure it gets submitted on load ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+- [#2016](https://github.com/graphcommerce-org/graphcommerce/pull/2016) [`227ddcee8`](https://github.com/graphcommerce-org/graphcommerce/commit/227ddcee8808715928371c1f3a4c7925032df0ef) - Made cardProps on CustomerAddressActionCards overridable. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 6.2.0-canary.98
+
+## 6.2.0-canary.97
+
+## 6.2.0-canary.96
+
 ## 6.2.0-canary.95
 
 ## 6.2.0-canary.94

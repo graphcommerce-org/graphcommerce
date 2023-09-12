@@ -1,5 +1,25 @@
 # @graphcommerce/changeset-changelog
 
+## 7.0.1-canary.5
+
+## 7.0.1-canary.4
+
+## 7.0.1-canary.3
+
+## 7.0.1-canary.2
+
+## 7.0.1-canary.1
+
+## 7.0.1-canary.0
+
+## 7.0.0
+
+## 6.2.0-canary.98
+
+## 6.2.0-canary.97
+
+## 6.2.0-canary.96
+
 ## 6.2.0-canary.95
 
 ## 6.2.0-canary.94

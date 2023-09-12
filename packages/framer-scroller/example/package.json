@@ -3,25 +3,25 @@
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
   "private": true,
-  "version": "6.2.0-canary.95",
+  "version": "7.0.1-canary.5",
   "scripts": {
     "dev": "next",
     "build": "next build",
     "start": "next start"
   },
   "dependencies": {
-    "@graphcommerce/framer-scroller": "6.2.0-canary.95",
-    "@graphcommerce/image": "6.2.0-canary.95",
-    "@graphcommerce/next-config": "6.2.0-canary.95",
-    "@graphcommerce/next-ui": "6.2.0-canary.95",
-    "@mui/material": "5.14.3",
-    "framer-motion": "10.15.0",
-    "next": "13.4.16",
+    "@graphcommerce/framer-scroller": "7.0.1-canary.5",
+    "@graphcommerce/image": "7.0.1-canary.5",
+    "@graphcommerce/next-config": "7.0.1-canary.5",
+    "@graphcommerce/next-ui": "7.0.1-canary.5",
+    "@mui/material": "5.14.7",
+    "framer-motion": "10.16.3",
+    "next": "13.4.20-canary.16",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "license": "MIT",
   "devDependencies": {
-    "typescript": "5.1.3"
+    "typescript": "5.2.2"
   }
 }

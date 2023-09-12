@@ -1,5 +1,29 @@
 # Change Log
 
+## 7.0.1-canary.5
+
+## 7.0.1-canary.4
+
+## 7.0.1-canary.3
+
+## 7.0.1-canary.2
+
+## 7.0.1-canary.1
+
+## 7.0.1-canary.0
+
+## 7.0.0
+
+### Patch Changes
+
+- [#1907](https://github.com/graphcommerce-org/graphcommerce/pull/1907) [`8f1fb60b7`](https://github.com/graphcommerce-org/graphcommerce/commit/8f1fb60b73d7d30a1028e582b0ccf638eac5380a) - make the MollieIssuerOptions label translatable and replace TextField for SelectElement ([@carlocarels90](https://github.com/carlocarels90))
+
+## 6.2.0-canary.98
+
+## 6.2.0-canary.97
+
+## 6.2.0-canary.96
+
 ## 6.2.0-canary.95
 
 ## 6.2.0-canary.94

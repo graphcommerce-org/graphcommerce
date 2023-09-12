@@ -2,4 +2,4 @@
 '@graphcommerce/magento-product-configurable': patch
 ---
 
-Product specifications wouldn't display for simple products
+Remove zoom from targetUrl to fix back navigation on zoom

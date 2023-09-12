@@ -1,5 +1,43 @@
 # Change Log
 
+## 7.0.1-canary.5
+
+## 7.0.1-canary.4
+
+## 7.0.1-canary.3
+
+## 7.0.1-canary.2
+
+## 7.0.1-canary.1
+
+## 7.0.1-canary.0
+
+## 7.0.0
+
+### Minor Changes
+
+- [#1962](https://github.com/graphcommerce-org/graphcommerce/pull/1962) [`518b6ca24`](https://github.com/graphcommerce-org/graphcommerce/commit/518b6ca248fc94624dc06eb02de5b3eac0fc9483) - Created a new `<ValidatedPasswordElement/>` which validates according to Magento's validation groups and implement on all locations. Move remaining password fields to `<PasswordElement />` ([@carlocarels90](https://github.com/carlocarels90))
+
+### Patch Changes
+
+- [#1916](https://github.com/graphcommerce-org/graphcommerce/pull/1916) [`ee2f814f4`](https://github.com/graphcommerce-org/graphcommerce/commit/ee2f814f4d91898f106036e92be4e560d638509d) - When the customer is logging in and the merge cart functionality throws an error, it would not set the current customer's cart as active, but keep the faulty cart active. ([@paales](https://github.com/paales))
+
+- [#2031](https://github.com/graphcommerce-org/graphcommerce/pull/2031) [`4d8fc9e99`](https://github.com/graphcommerce-org/graphcommerce/commit/4d8fc9e998fc9361282833316ec9564da0644ed6) - Eslint fixes and suppress accepted warnings ([@paales](https://github.com/paales))
+
+- [#1914](https://github.com/graphcommerce-org/graphcommerce/pull/1914) [`000556331`](https://github.com/graphcommerce-org/graphcommerce/commit/000556331f5379c71d7edca541fd0b145b7dc435) - When there is an error in the cart, disable the checkout buttons ([@paales](https://github.com/paales))
+
+- [#1942](https://github.com/graphcommerce-org/graphcommerce/pull/1942) [`045d0a6cb`](https://github.com/graphcommerce-org/graphcommerce/commit/045d0a6cbbfc6339852c19dd21f349bb51c38fcd) - When the ApolloCartError would throw an authorization error it would link to the wrong page ([@paales](https://github.com/paales))
+
+- [#1914](https://github.com/graphcommerce-org/graphcommerce/pull/1914) [`38d6c4888`](https://github.com/graphcommerce-org/graphcommerce/commit/38d6c488850013b36cae9f388996039219c1327e) - Errors in the cart didn't allow for recovery from the faulty state ([@paales](https://github.com/paales))
+
+- [#1914](https://github.com/graphcommerce-org/graphcommerce/pull/1914) [`5d115a11a`](https://github.com/graphcommerce-org/graphcommerce/commit/5d115a11a417f35c3315879c785d24ae32e64663) - When a customer tries to add a product to an invalid customer cart, discard the cart and create a new cart ([@paales](https://github.com/paales))
+
+## 6.2.0-canary.98
+
+## 6.2.0-canary.97
+
+## 6.2.0-canary.96
+
 ## 6.2.0-canary.95
 
 ## 6.2.0-canary.94

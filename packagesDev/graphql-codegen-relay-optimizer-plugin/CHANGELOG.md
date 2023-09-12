@@ -1,5 +1,35 @@
 # Change Log
 
+## 7.0.1-canary.5
+
+## 7.0.1-canary.4
+
+## 7.0.1-canary.3
+
+## 7.0.1-canary.2
+
+## 7.0.1-canary.1
+
+## 7.0.1-canary.0
+
+### Patch Changes
+
+- [#2047](https://github.com/graphcommerce-org/graphcommerce/pull/2047) [`136580b39`](https://github.com/graphcommerce-org/graphcommerce/commit/136580b39e3cffdd07e3fa087e049bd532c3e8f1) - Updated all dependencies to the latest version where possible. ([@paales](https://github.com/paales))
+
+## 7.0.0
+
+### Patch Changes
+
+- [#2012](https://github.com/graphcommerce-org/graphcommerce/pull/2012) [`1dbb3ae13`](https://github.com/graphcommerce-org/graphcommerce/commit/1dbb3ae13553992ee1ed77f375375560f28c418c) - Upgrade graphql to 16.7.1, add graphql as peer dependency ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#1960](https://github.com/graphcommerce-org/graphcommerce/pull/1960) [`86e14569b`](https://github.com/graphcommerce-org/graphcommerce/commit/86e14569b1f68f73be7f93b614e36b382c5debff) - Updated to the latest release of GraphQL codegen and solve compatibility issues with our own generator ([@paales](https://github.com/paales))
+
+## 6.2.0-canary.98
+
+## 6.2.0-canary.97
+
+## 6.2.0-canary.96
+
 ## 6.2.0-canary.95
 
 ## 6.2.0-canary.94
