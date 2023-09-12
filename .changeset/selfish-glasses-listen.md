@@ -9,4 +9,4 @@
 '@graphcommerce/magento-review': patch
 ---
 
-Created FormLayout component to push form control futher to the pages
+This will enable the user to add, extends or remove fields from a standard GraphCommerce form.
