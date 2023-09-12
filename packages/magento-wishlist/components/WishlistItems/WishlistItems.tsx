@@ -37,7 +37,6 @@ export function WishlistItems(props: WishlistProps) {
             : item.configurable_options?.map(
                 (option) => option.configurable_product_option_value_uid,
               )
-        console.log(productData)
 
         const isConfigurableUncompleted =
           (productData.__typename === 'ConfigurableProduct' &&
