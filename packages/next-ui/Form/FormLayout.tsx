@@ -1,5 +1,3 @@
-import { Box, SxProps, Theme } from '@mui/material'
-
 // UseFormLayoutProps is used by forms that implement FormLayout. It is used to pass the children to the FormLayout
 // component and pass on the original form layout back to form. Example:
 
@@ -22,7 +20,6 @@ export type FormLayoutProps<T> = {
       original: React.ReactNode
     } & T,
   ) => React.ReactNode
-  sx?: SxProps<Theme>
 }
 
 // This component is used to render a form layout. The form layout accepts a "original" form element, which usually consisist
@@ -30,6 +27,6 @@ export type FormLayoutProps<T> = {
 // ShippingAddressForm, and UpdateDefaultAddressForm. This means these forms will be customizable when using these forms.
 
 export function FormLayout<T>(props: FormLayoutProps<T>) {
-  const { children, original, form, sx } = props
-  return <Box sx={sx}>{children ? children({ original, ...form }) : original}</Box>
+  const { children, original, form } = props
+  return <>{children ? children({ original, ...form }) : original}</>
 }
