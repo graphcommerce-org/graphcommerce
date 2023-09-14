@@ -1,5 +1,87 @@
 # Change Log
 
+## 7.0.1-canary.5
+
+## 7.0.1-canary.4
+
+## 7.0.1-canary.3
+
+## 7.0.1-canary.2
+
+## 7.0.1-canary.1
+
+## 7.0.1-canary.0
+
+### Patch Changes
+
+- [#2047](https://github.com/graphcommerce-org/graphcommerce/pull/2047) [`136580b39`](https://github.com/graphcommerce-org/graphcommerce/commit/136580b39e3cffdd07e3fa087e049bd532c3e8f1) - Updated all dependencies to the latest version where possible. ([@paales](https://github.com/paales))
+
+## 7.0.0
+
+### Major Changes
+
+- [`e55d8c390`](https://github.com/graphcommerce-org/graphcommerce/commit/e55d8c390d90b4bb7bab11c6a99027ac72bd7e3e) - Created a new sidebar layout system, can be configured with productFiltersLayout in the graphcommerce.config.js ([@paales](https://github.com/paales))
+
+### Minor Changes
+
+- [#1961](https://github.com/graphcommerce-org/graphcommerce/pull/1961) [`4a759c662`](https://github.com/graphcommerce-org/graphcommerce/commit/4a759c66215eaa69edc342b898e05e8f92c3ba9a) - Add Open Graph meta tags to all pages ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2003](https://github.com/graphcommerce-org/graphcommerce/pull/2003) [`609b384de`](https://github.com/graphcommerce-org/graphcommerce/commit/609b384de8cded7a9dd2f29bd516ded810ab970a) - Created a new version of the cart using ActionCards for each CartItem. Different types of CartItems can have different ActionCards. These ActionCards will be overridden with the use of Plugins. An example can be found in the @graphcommerce/magento-product-configurable package. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+- [#2023](https://github.com/graphcommerce-org/graphcommerce/pull/2023) [`7cd53fb2a`](https://github.com/graphcommerce-org/graphcommerce/commit/7cd53fb2aca18ae4a56025b2a015fecbda2e47b7) - Added links to test components on the test page. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+### Patch Changes
+
+- [#1934](https://github.com/graphcommerce-org/graphcommerce/pull/1934) [`96ac0320a`](https://github.com/graphcommerce-org/graphcommerce/commit/96ac0320a30bc55a6db5d46663d28b552fda4db6) - Overlays with a floating layout can now be closed by clicking beside the overlay. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2003](https://github.com/graphcommerce-org/graphcommerce/pull/2003) [`e9041802b`](https://github.com/graphcommerce-org/graphcommerce/commit/e9041802b27d6610cc93715ca61acff7f59792e6) - When the switchPoint of LayoutHeader is zero, make sure the header doesn’t flash when scrolling up on iOS ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+- [#1998](https://github.com/graphcommerce-org/graphcommerce/pull/1998) [`fdbdcb76f`](https://github.com/graphcommerce-org/graphcommerce/commit/fdbdcb76f918cf74b22253bd641a04c490ceb140) - Users are now not able to scroll an overlay during the open animation. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#1960](https://github.com/graphcommerce-org/graphcommerce/pull/1960) [`f78caf5a8`](https://github.com/graphcommerce-org/graphcommerce/commit/f78caf5a83683f1ae4b901fb94bd22d50943fa2f) - Updated packages: `next`, `@apollo/client`, `react-hook-form`, `@emotion/*`, `@lingui/*`, `@mui/*` and various others. ([@paales](https://github.com/paales))
+
+- [#1965](https://github.com/graphcommerce-org/graphcommerce/pull/1965) [`44b2911d7`](https://github.com/graphcommerce-org/graphcommerce/commit/44b2911d73fb6c6c7188f16d5890ca93877e9aa7) - Added prop to LayoutHeader to be able to hide the back button ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#1946](https://github.com/graphcommerce-org/graphcommerce/pull/1946) [`87260618b`](https://github.com/graphcommerce-org/graphcommerce/commit/87260618b8abaebd727ff4435abb1aea6ed33730) - Firefox: scroll snap overlays would snap to 0 when the scroll snap targets wouldn’t exactly match the possible targets. ([@paales](https://github.com/paales))
+
+- [#1913](https://github.com/graphcommerce-org/graphcommerce/pull/1913) [`17eac116d`](https://github.com/graphcommerce-org/graphcommerce/commit/17eac116dbf2b811a67bfefd735d5a5a3e2b20dc) - Fixed zIndex issue with CartFab and ScrollerButton ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#1913](https://github.com/graphcommerce-org/graphcommerce/pull/1913) [`61b1987eb`](https://github.com/graphcommerce-org/graphcommerce/commit/61b1987eb8d37566cb4675f0ae962925aef2fc6d) - Fixed RowLinks ScrollerButton alignment when content is shown beside the Scroller ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#1930](https://github.com/graphcommerce-org/graphcommerce/pull/1930) [`c8d023e9e`](https://github.com/graphcommerce-org/graphcommerce/commit/c8d023e9e874131cd9f8fe192b1fca5fe1a26ee3) - Fix the 'close menu' on search and add the option to secondary menu items ([@StefanAngenent](https://github.com/StefanAngenent))
+
+- [#2042](https://github.com/graphcommerce-org/graphcommerce/pull/2042) [`587fd2fe5`](https://github.com/graphcommerce-org/graphcommerce/commit/587fd2fe50c843acd9ffae869372df1df57e0a4b) - Updated german translations ([@action-simon](https://github.com/action-simon))
+
+- [#1897](https://github.com/graphcommerce-org/graphcommerce/pull/1897) [`f44d7cec6`](https://github.com/graphcommerce-org/graphcommerce/commit/f44d7cec61766f4768c30d29b211a12f2846e9f6) - Overlays can now be configured to get a bgColor ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#1980](https://github.com/graphcommerce-org/graphcommerce/pull/1980) [`275aaaba3`](https://github.com/graphcommerce-org/graphcommerce/commit/275aaaba34c9db1705183393c4327e8f16b09386) - Fixed overlays closing while still dragging - overlays should only close after releasing pointer ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#1939](https://github.com/graphcommerce-org/graphcommerce/pull/1939) [`0cdccf681`](https://github.com/graphcommerce-org/graphcommerce/commit/0cdccf6817d6a769f59cccb68b1b1b8b4405cbd0) - Make blogListItem date prop optional ([@JoshuaS98](https://github.com/JoshuaS98))
+
+- [#1958](https://github.com/graphcommerce-org/graphcommerce/pull/1958) [`0a311b6eb`](https://github.com/graphcommerce-org/graphcommerce/commit/0a311b6ebb5a52e2a7f1d2e6a0fe113904fa2d34) - Left overlays wouldn't properly snap when the overlay gets wider than the viewport ([@paales](https://github.com/paales))
+
+- [#2005](https://github.com/graphcommerce-org/graphcommerce/pull/2005) [`950521b4d`](https://github.com/graphcommerce-org/graphcommerce/commit/950521b4d46a1b980636c05d68a8f6aba289e85c) - Footer's grid-area's will only be rendered when the props are passed. ([@LeanderMatse](https://github.com/LeanderMatse))
+
+## 6.2.0-canary.98
+
+## 6.2.0-canary.97
+
+### Patch Changes
+
+- [#2042](https://github.com/graphcommerce-org/graphcommerce/pull/2042) [`587fd2fe5`](https://github.com/graphcommerce-org/graphcommerce/commit/587fd2fe50c843acd9ffae869372df1df57e0a4b) - Updated german translations ([@action-simon](https://github.com/action-simon))
+
+## 6.2.0-canary.96
+
+## 6.2.0-canary.95
+
+## 6.2.0-canary.94
+
+## 6.2.0-canary.93
+
+## 6.2.0-canary.92
+
+## 6.2.0-canary.91
+
 ## 6.2.0-canary.90
 
 ## 6.2.0-canary.89

@@ -158,7 +158,8 @@ Features taken from the Magento Commerce 2 Feature List
 - [ ] Control which products and categories can be viewed by each customer
       group. — [Commerce]
 - [ ] Show side-by-side product comparisons with two or more products. — [Todo]
-- [ ] Display recently viewed and compared products. — [Todo]
+- [ ] Display recently viewed products. — [Todo]
+- [x] Compare products. — [Enhanced]
 - [x] Increase search relevancy and scalability with Elasticsearch technology.
 - [x] Set stop words, attribute weightings, and search synonyms for higher
       conversions.

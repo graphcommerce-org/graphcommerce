@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 msgid "<0>{name}</0> has been added to your comparison!"
-msgstr "<0>{name}</0> wurde zu Ihrem Vergleich hinzugefügt! "
+msgstr "<0>{name}</0> wurde zu Ihrer Vergleichsliste hinzugefügt!"
 
 msgid "<0>{name}</0> has been added to your shopping cart!"
 msgstr "<0>{name}</0> wurde zu Ihrem Warenkorb hinzugefügt!"
@@ -26,25 +26,25 @@ msgid "Above <0/>"
 msgstr "Über <0/>"
 
 msgid "Account"
-msgstr "Konto"
+msgstr "Kundenkonto"
 
 msgid "Add address"
 msgstr "Adresse hinzufügen"
 
 msgid "Add another product to start comparing."
-msgstr "Fügen Sie ein weiteres Produkt hinzu, um mit dem Vergleich zu beginnen."
+msgstr "Fügen Sie ein weiteres Produkt hinzu, um den Vergleich zu starten."
 
 msgid "Add new address"
 msgstr "Neue Adresse hinzufügen"
 
 msgid "Add to Cart"
-msgstr "In den Warenkorb"
+msgstr "Zum Warenkorb hinzufügen"
 
 msgid "Add to comparison"
 msgstr "Zum Vergleich hinzufügen"
 
 msgid "Add to wishlist"
-msgstr "Zu den Wunschlisten hinzufügen"
+msgstr "Zur Wunschliste hinzufügen"
 
 msgid "Addition"
 msgstr "Zusatz"
@@ -68,7 +68,7 @@ msgid "Apply"
 msgstr "Anwenden"
 
 msgid "As low as <0/>"
-msgstr "Niedrig bis <0/>"
+msgstr "Schon ab <0/>"
 
 msgid "As soon as the payment is completed, you will automatically return to the webshop."
 msgstr "Sobald die Zahlung abgeschlossen ist, werden Sie automatisch zum Webshop zurückgeleitet."
@@ -83,7 +83,7 @@ msgid "Back to home"
 msgstr "Zurück zur Startseite"
 
 msgid "Be the first to know about everything new!"
-msgstr "Werden Sie der Erste, der über alles Neues informiert!"
+msgstr "Seien Sie der Erste, der über alles Neue informiert wird!"
 
 msgid "Be the first to write a review!"
 msgstr "Schreiben Sie die erste Bewertung!"
@@ -110,13 +110,13 @@ msgid "Change"
 msgstr "Ändern"
 
 msgid "Checkout summary"
-msgstr "Kassensummary"
+msgstr "Kassenzusammenfassung"
 
 msgid "Choose your bank"
-msgstr "Wählen Sie Ihre Bank"
+msgstr "Wählen Sie Ihre Bank aus"
 
 msgid "Choose your bank, and place your order."
-msgstr "Wählen Sie Ihre Bank und führen Sie Ihre Bestellung aus."
+msgstr "Wählen Sie Ihre Bank aus und führen Sie Ihre Bestellung aus."
 
 msgid "City"
 msgstr "Stadt"
@@ -131,19 +131,19 @@ msgid "Close"
 msgstr "Schließen"
 
 msgid "Compare"
-msgstr "Vergleichen Sie"
+msgstr "Vergleichen"
 
 msgid "Compare ({0})"
-msgstr "Vergleichen Sie ({0})"
+msgstr "Vergleichen ({0})"
 
 msgid "Compare products"
 msgstr "Produkte vergleichen"
 
 msgid "Complete the payment on your bank’s website."
-msgstr "Führen Sie die Zahlung auf Ihrer Bank-Website aus."
+msgstr "Schließen Sie die Zahlung auf der Website Ihrer Bank ab."
 
 msgid "Complete your purchase"
-msgstr "Beenden Sie Ihren Kauf"
+msgstr "Schließen Sie Ihren Kauf ab"
 
 msgid "Confirm new email"
 msgstr "Neue E-Mail bestätigen"
@@ -161,28 +161,28 @@ msgid "Continue"
 msgstr "Weiter"
 
 msgid "Continue shopping"
-msgstr "Einkauf fortsetzen"
+msgstr "Weiter einkaufen"
 
 msgid "Could not create a new compare list"
-msgstr "Es konnte keine neue Vergleichsliste erstellt werden"
+msgstr "Eine neue Vergleichsliste konnte nicht erstellt werden"
 
 msgid "Could not create an empty cart"
-msgstr "Es konnte kein leerer Einkaufswagen erstellt werden"
+msgstr "Leerer Warenkorb konnte nicht erstellt werden"
 
 msgid "Country"
 msgstr "Land"
 
 msgid "Create Account"
-msgstr "Konto erstellen"
+msgstr "Kundenkonto erstellen"
 
 msgid "Create a password and tell us your name"
-msgstr "Erstellen Sie ein Passwort und geben Sie uns Ihren Namen"
+msgstr "Erstellen Sie ein Passwort und teilen Sie uns Ihren Namen mit"
 
 msgid "Create account!"
-msgstr "Konto erstellen!"
+msgstr "Kundenkonto erstellen!"
 
 msgid "Create an account"
-msgstr "Konto erstellen"
+msgstr "Kundenkonto erstellen"
 
 msgid "Create new password"
 msgstr "Neues Passwort erstellen"
@@ -191,13 +191,13 @@ msgid "Current Password"
 msgstr "Aktuelles Passwort"
 
 msgid "Customer Service"
-msgstr "Kundenservice"
+msgstr "Kundendienst"
 
 msgid "Dark Mode"
 msgstr "Dunkler Modus"
 
 msgid "Decrease"
-msgstr "Verringerung"
+msgstr "Verringern"
 
 msgid "Delete this address"
 msgstr "Diese Adresse löschen"
@@ -206,19 +206,19 @@ msgid "Discount code"
 msgstr "Rabattcode"
 
 msgid "Discover our collection and add items to your cart!"
-msgstr "Entdecken Sie unsere Sammlung und fügen Sie Produkte zu Ihrem Warenkorb hinzu!"
+msgstr "Entdecken Sie unsere Kollektion und fügen Sie Produkte zu Ihrem Warenkorb hinzu!"
 
 msgid "Discover our collection and add items to your comparelist!"
-msgstr "Entdecken Sie unsere Kollektion und fügen Sie Artikel zu Ihrer Vergleichsliste hinzu!"
+msgstr "Entdecken Sie unsere Kollektion und fügen Sie Produkte zu Ihrer Vergleichsliste hinzu!"
 
 msgid "Discover our collection and add items to your wishlist!"
-msgstr "Entdecken Sie unsere Sammlung und fügen Sie Produkte zu Ihrer Wunschliste hinzu!"
+msgstr "Entdecken Sie unsere Kollektion und fügen Sie Produkte zu Ihrer Wunschliste hinzu!"
 
 msgid "Discover our collection and place your first order!"
-msgstr "Entdecken Sie unsere Sammlung und führen Sie Ihre erste Bestellung aus!"
+msgstr "Entdecken Sie unsere Kollektion und führen Sie Ihre erste Bestellung aus!"
 
 msgid "Discover our collection and write your first review!"
-msgstr "Entdecken Sie unsere Sammlung und schreiben Sie Ihre erste Bewertung!"
+msgstr "Entdecken Sie unsere Kollektion und schreiben Sie Ihre erste Bewertung!"
 
 msgid "Edit"
 msgstr "Bearbeiten"
@@ -239,16 +239,16 @@ msgid "Emails don't match"
 msgstr "E-Mail-Adressen stimmen nicht überein"
 
 msgid "Empty comparelist"
-msgstr "Leere Gleichung"
+msgstr "Vergleichsliste leeren"
 
 msgid "Fill in your e-mail to login or create an account"
-msgstr "Füllen Sie Ihre E-Mail-Adresse ein, um sich anzumelden oder ein Konto zu erstellen"
+msgstr "Geben Sie Ihre E-Mail-Adresse ein, um sich anzumelden oder ein Kundenkonto zu erstellen"
 
 msgid "Fill in your new password, confirm it and click on the save button."
-msgstr "Füllen Sie Ihr neues Passwort ein, bestätigen Sie es und klicken Sie auf den Speicher-Button."
+msgstr "Geben Sie Ihr neues Passwort ein, bestätigen Sie es und klicken Sie auf die Schaltfläche „Speichern“."
 
 msgid "Fill in your password"
-msgstr "Füllen Sie Ihr Passwort ein"
+msgstr "Geben Sie Ihr Passwort ein"
 
 msgid "First Name"
 msgstr "Vorname"
@@ -272,7 +272,7 @@ msgid "Grand total"
 msgstr "Gesamtsumme"
 
 msgid "Have an account?"
-msgstr "Haben Sie ein Konto?"
+msgstr "Haben Sie ein Kundenkonto?"
 
 msgid "Hi {firstname}! You’re now logged in!"
 msgstr "Hallo {firstname}! Sie sind jetzt angemeldet!"
@@ -284,7 +284,7 @@ msgid "Housenumber"
 msgstr "Hausnummer"
 
 msgid "If you’ve successfully paid your order, the order <0>will</0> come through, but there is a communication error with the website."
-msgstr "Wenn Sie Ihre Bestellung erfolgreich bezahlt haben, wird die Bestellung <0>durchgeführt</0>, aber es ist ein Kommunikationsfehler mit der Website."
+msgstr "Wenn Sie Ihre Bestellung erfolgreich bezahlt haben, <0>wird</0> die Bestellung durchgeführt, aber es liegt ein Kommunikationsfehler mit der Website vor."
 
 msgid "In comparelist"
 msgstr "In der Vergleichsliste"
@@ -305,7 +305,7 @@ msgid "Last Name"
 msgstr "Nachname"
 
 msgid "Latest orders"
-msgstr "Neueste Bestellungen"
+msgstr "Letzte Bestellungen"
 
 msgid "Less options"
 msgstr "Weniger Optionen"
@@ -320,7 +320,7 @@ msgid "Loading wishlist"
 msgstr "Wunschliste wird geladen"
 
 msgid "Loading your account"
-msgstr "Ihr Konto wird geladen"
+msgstr "Ihr Kundenkonto wird geladen"
 
 msgid "Loading your data"
 msgstr "Ihre Daten werden geladen"
@@ -335,7 +335,7 @@ msgid "Menu"
 msgstr "Menü"
 
 msgid "Minimum of different classes of characters in password is {passwordMinCharacterSets}. Classes of characters: Lower Case, Upper Case, Digits, Special Characters."
-msgstr "Mindestanzahl verschiedener Zeichenklassen im Passwort beträgt {passwordMinCharacterSets}. Zeichenklassen: Kleinbuchstaben, Großbuchstaben, Ziffern, Sonderzeichen."
+msgstr "Das Minimum an verschiedenen Zeichenklassen im Passwort beträgt {passwordMinCharacterSets}. Zeichenklassen: Kleinbuchstaben, Großbuchstaben, Ziffern, Sonderzeichen."
 
 msgid "More information"
 msgstr "Weitere Informationen"
@@ -371,16 +371,16 @@ msgid "Next"
 msgstr "Weiter"
 
 msgid "Next day delivery - Shipping free"
-msgstr "Nächster Tag Lieferung - Versand kostenlos"
+msgstr "Lieferung am nächsten Tag - Versandkostenfrei"
 
 msgid "No Image"
 msgstr "Kein Bild"
 
 msgid "No account yet?"
-msgstr "Noch kein Konto?"
+msgstr "Noch kein Kundenkonto?"
 
 msgid "No orders found"
-msgstr "Keine Bestellungen gefunden"
+msgstr "Keine Bestellungen vorhanden"
 
 msgid "No payment information"
 msgstr "Keine Zahlungsinformationen"
@@ -437,7 +437,7 @@ msgid "Other"
 msgstr "Andere"
 
 msgid "Out of stock"
-msgstr "Nicht auf Lager"
+msgstr "Nicht vorrätig"
 
 msgid "Page {page} of {count}"
 msgstr "Seite {page} von {count}"
@@ -452,7 +452,7 @@ msgid "Passwords don't match"
 msgstr "Passwörter stimmen nicht überein"
 
 msgid "Pay"
-msgstr "Bezahlen"
+msgstr "Kostenpflichtig bestellen"
 
 msgid "Pay with iDEAL"
 msgstr "Mit iDEAL bezahlen"
@@ -464,22 +464,22 @@ msgid "Payment failed with status: {paymentStatus}"
 msgstr "Zahlung fehlgeschlagen mit Status: {paymentStatus}"
 
 msgid "Payment has not completed succesfully, please try again."
-msgstr "Zahlung wurde nicht erfolgreich abgeschlossen, bitte versuchen Sie es erneut."
+msgstr "Zahlung wurde nicht erfolgreich durchgeführt, bitte versuchen Sie es erneut."
 
 msgid "Payment method"
 msgstr "Zahlungsmethode"
 
 msgid "Per page"
-msgstr "Pro Seite"
+msgstr "pro Seite"
 
 msgid "Personal details"
 msgstr "Persönliche Daten"
 
 msgid "Place order"
-msgstr "Bestellen"
+msgstr "Kostenpflichtig bestellen"
 
 msgid "Please check your inbox to validate your email ({email})"
-msgstr "Bitte überprüfen Sie Ihr Postfach, um Ihre E-Mail-Adresse zu bestätigen ({email})"
+msgstr "Bitte überprüfen Sie Ihren Posteingang, um Ihre E-Mail-Adresse zu bestätigen ({email})"
 
 msgid "Please enter a valid email address"
 msgstr "Bitte geben Sie eine gültige E-Mail-Adresse ein"
@@ -494,10 +494,10 @@ msgid "Please reauthenticate and try again"
 msgstr "Bitte authentifizieren Sie sich erneut und versuchen Sie es erneut"
 
 msgid "Please select a payment method"
-msgstr "Bitte wählen Sie eine Zahlungsmethode aus"
+msgstr "Bitte Zahlungsart wählen"
 
 msgid "Please select a shipping method"
-msgstr "Bitte wählen Sie eine Versandmethode aus"
+msgstr "Bitte wählen Sie eine Versandart"
 
 msgid "Please select a value for ‘{label}’"
 msgstr "Bitte wählen Sie einen Wert für {label}"
@@ -545,7 +545,7 @@ msgid "Results for ‘{search}’"
 msgstr "Ergebnisse für ‘{search}’"
 
 msgid "Review"
-msgstr "Review"
+msgstr "Bewertung"
 
 msgid "Reviews"
 msgstr "Bewertungen"
@@ -586,6 +586,9 @@ msgstr "Versand ({0} {1})"
 msgid "Shipping address"
 msgstr "Lieferadresse"
 
+msgid "Shipping addresses"
+msgstr "Lieferadressen"
+
 msgid "Shipping method"
 msgstr "Versandart"
 
@@ -593,7 +596,7 @@ msgid "Sign in"
 msgstr "Anmelden"
 
 msgid "Sign in or create an account!"
-msgstr "Anmelden oder ein Konto erstellen!"
+msgstr "Anmelden oder ein Kundenkonto erstellen!"
 
 msgid "Sign out"
 msgstr "Abmelden"
@@ -611,7 +614,7 @@ msgid "Sort By"
 msgstr "Sortieren nach"
 
 msgid "Start Checkout"
-msgstr "Kasse starten"
+msgstr "Zur Kasse gehen"
 
 msgid "Store home"
 msgstr "Shop-Startseite"
@@ -629,10 +632,10 @@ msgid "Subscribe to newsletter"
 msgstr "Newsletter abonnieren"
 
 msgid "Subscribe to our newsletter to stay informed about our new products!"
-msgstr "Abonnieren Sie unseren Newsletter, um über unsere neuen Produkte informiert zu bleiben!"
+msgstr "Abonnieren Sie unseren Newsletter, um über unsere neuen Produkte informiert zu werden!"
 
 msgid "Subscribed"
-msgstr "Gezeichnet"
+msgstr "Abonniert"
 
 msgid "Successfully changed password"
 msgstr "Passwort erfolgreich geändert"
@@ -644,7 +647,7 @@ msgid "Successfully updated email"
 msgstr "E-Mail erfolgreich aktualisiert"
 
 msgid "Summary"
-msgstr "Beschreibung"
+msgstr "Übersicht"
 
 msgid "Switch stores"
 msgstr "Shop wechseln"
@@ -713,22 +716,22 @@ msgid "View wishlist"
 msgstr "Wunschliste anzeigen"
 
 msgid "View your account"
-msgstr "Ihr Konto anzeigen"
+msgstr "Ihr Kundenkonto anzeigen"
 
 msgid "We are fetching your favorite products, one moment please!"
-msgstr "Wir laden Ihre Favoritenprodukte herunter, einen Moment bitte!"
+msgstr "Wir laden Ihre Lieblingsprodukte herunter, einen Moment bitte!"
 
 msgid "We are sorry, this product is currently out of stock."
-msgstr "Wir sind sorry, dieses Produkt ist derzeit nicht auf Lager."
+msgstr "Es tut uns leid, dieses Produkt ist derzeit nicht vorrätig."
 
 msgid "We can not process your payment, we received an unsupported status \"<0>{resultCode}</0>\". Please try again or select a different payment method."
-msgstr "Wir können Ihre Zahlung nicht verarbeiten, wir haben einen nicht unterstützten Status \"<0>{resultCode}</0>\" erhalten. Bitte versuchen Sie es erneut oder wählen Sie eine andere Zahlungsmethode aus."
+msgstr "Wir können Ihre Zahlung nicht verarbeiten, wir haben einen nicht unterstützten Status \"<0>{resultCode}</0>\" erhalten. Bitte versuchen Sie es erneut oder wählen Sie eine andere Zahlungsart."
 
 msgid "We couldn't find any results for {term}"
 msgstr "Wir konnten keine Ergebnisse für {term} finden"
 
 msgid "We couldn't find the page you were looking for"
-msgstr "Wir konnten die Seite nicht finden, die Sie suchen"
+msgstr "Die von Ihnen gesuchte Seite konnte nicht gefunden werden"
 
 msgid "Welcome back!"
 msgstr "Willkommen zurück!"
@@ -752,7 +755,7 @@ msgid "Write a review"
 msgstr "Eine Bewertung schreiben"
 
 msgid "Written by {nickname}"
-msgstr "Geschrieben von {nickname}"
+msgstr "Verfasst von {nickname}"
 
 msgid "Written {0} reviews"
 msgstr "Bewertungen geschrieben: {0}"
@@ -761,10 +764,10 @@ msgid "You are reviewing {0}"
 msgstr "Sie bewerten {0}"
 
 msgid "You can find your order history in your account!"
-msgstr "Sie können Ihre Bestellungshistorie in Ihrem Konto finden!"
+msgstr "Sie können Ihren Bestellverlauf in Ihrem Kundenkonto einsehen!"
 
 msgid "You can now <0>sign in again</0>."
-msgstr "Sie können nun<0>wieder anmelden</0>."
+msgstr "Sie können sich jetzt <0>erneut anmelden</0>."
 
 msgid "You can track your order status and much more!"
 msgstr "Sie können Ihren Bestellstatus und vieles mehr verfolgen!"
@@ -785,7 +788,7 @@ msgid "You have now successfully reset your password"
 msgstr "Sie haben Ihr Passwort erfolgreich zurückgesetzt"
 
 msgid "You have to agree in order to proceed"
-msgstr "Sie müssen zustimmen, um fortzufahren"
+msgstr "Sie müssen zustimmen, um fortfahren zu können"
 
 msgid "You haven't placed any reviews yet"
 msgstr "Sie haben noch keine Bewertungen abgegeben"
@@ -836,7 +839,7 @@ msgid "canceled"
 msgstr "abgebrochen"
 
 msgid "invoiced"
-msgstr "bezahlt"
+msgstr "in Rechnung gestellt"
 
 msgid "no products"
 msgstr "keine Produkte"
@@ -851,7 +854,7 @@ msgid "processed"
 msgstr "bearbeitet"
 
 msgid "refunded"
-msgstr "rückerstattet"
+msgstr "erstattet"
 
 msgid "returned"
 msgstr "zurückgesandt"

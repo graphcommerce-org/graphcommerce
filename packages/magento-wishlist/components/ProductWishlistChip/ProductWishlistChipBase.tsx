@@ -24,6 +24,7 @@ import { GuestWishlistDocument } from '../../queries/GuestWishlist.gql'
 import { RemoveProductFromWishlistDocument } from '../../queries/RemoveProductFromWishlist.gql'
 import { WishlistSummaryFragment } from '../../queries/WishlistSummaryFragment.gql'
 import { ProductWishlistChipFragment } from './ProductWishlistChip.gql'
+import { GuestWishlist, GuestWishlistItem } from '@graphcommerce/graphql-mesh'
 
 const hideForGuest = import.meta.graphCommerce.wishlistHideForGuests
 const ignoreProductWishlistStatus = import.meta.graphCommerce.wishlistIgnoreProductWishlistStatus
@@ -165,13 +166,13 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
         setDisplayMessageBar(true)
       }
     } else if (inWishlist) {
-      cache.modify({
+      cache.modify<GuestWishlist>({
         id: cache.identify({ __typename: 'GuestWishlist' }),
         fields: {
-          items(existingItems: WishListItemType[] = []) {
-            const items = existingItems.filter((item) => item?.url_key !== url_key)
-            return items
-          },
+          items: (existingItems, { readField }) =>
+            existingItems.filter(
+              (item) => readField('url_key', item) !== url_key,
+            ) as GuestWishlistItem[],
         },
       })
     } else {

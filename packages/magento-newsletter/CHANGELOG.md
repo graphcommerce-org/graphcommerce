@@ -1,5 +1,41 @@
 # Change Log
 
+## 7.0.1-canary.5
+
+## 7.0.1-canary.4
+
+## 7.0.1-canary.3
+
+## 7.0.1-canary.2
+
+## 7.0.1-canary.1
+
+## 7.0.1-canary.0
+
+## 7.0.0
+
+### Patch Changes
+
+- [#2021](https://github.com/graphcommerce-org/graphcommerce/pull/2021) [`06ab7d24d`](https://github.com/graphcommerce-org/graphcommerce/commit/06ab7d24dcf345c6acd39471df544a726a166ece) - Prevent email address overlap with toggle button on narrow columns ([@carlocarels90](https://github.com/carlocarels90))
+
+- [#1959](https://github.com/graphcommerce-org/graphcommerce/pull/1959) [`f164217af`](https://github.com/graphcommerce-org/graphcommerce/commit/f164217af6847cff8555e19e7fc25f03528144e5) - Moved the GuestNewsletter component to inside the magento-newsletter package ([@JoshuaS98](https://github.com/JoshuaS98))
+
+## 6.2.0-canary.98
+
+## 6.2.0-canary.97
+
+## 6.2.0-canary.96
+
+## 6.2.0-canary.95
+
+## 6.2.0-canary.94
+
+## 6.2.0-canary.93
+
+## 6.2.0-canary.92
+
+## 6.2.0-canary.91
+
 ## 6.2.0-canary.90
 
 ## 6.2.0-canary.89

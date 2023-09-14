@@ -1,5 +1,57 @@
 # Change Log
 
+## 7.0.1-canary.5
+
+## 7.0.1-canary.4
+
+## 7.0.1-canary.3
+
+## 7.0.1-canary.2
+
+## 7.0.1-canary.1
+
+## 7.0.1-canary.0
+
+### Patch Changes
+
+- [#2047](https://github.com/graphcommerce-org/graphcommerce/pull/2047) [`136580b39`](https://github.com/graphcommerce-org/graphcommerce/commit/136580b39e3cffdd07e3fa087e049bd532c3e8f1) - Updated all dependencies to the latest version where possible. ([@paales](https://github.com/paales))
+
+## 7.0.0
+
+### Patch Changes
+
+- [#1960](https://github.com/graphcommerce-org/graphcommerce/pull/1960) [`f78caf5a8`](https://github.com/graphcommerce-org/graphcommerce/commit/f78caf5a83683f1ae4b901fb94bd22d50943fa2f) - Updated packages: `next`, `@apollo/client`, `react-hook-form`, `@emotion/*`, `@lingui/*`, `@mui/*` and various others. ([@paales](https://github.com/paales))
+
+- [#2012](https://github.com/graphcommerce-org/graphcommerce/pull/2012) [`1dbb3ae13`](https://github.com/graphcommerce-org/graphcommerce/commit/1dbb3ae13553992ee1ed77f375375560f28c418c) - Upgrade graphql to 16.7.1, add graphql as peer dependency ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2031](https://github.com/graphcommerce-org/graphcommerce/pull/2031) [`4d8fc9e99`](https://github.com/graphcommerce-org/graphcommerce/commit/4d8fc9e998fc9361282833316ec9564da0644ed6) - Eslint fixes and suppress accepted warnings ([@paales](https://github.com/paales))
+
+- [#1915](https://github.com/graphcommerce-org/graphcommerce/pull/1915) [`f4a8c3881`](https://github.com/graphcommerce-org/graphcommerce/commit/f4a8c388183e17c52e7f66536c5448749f494d7f) - Moved the injection of the links to plugins ([@paales](https://github.com/paales))
+
+- [#1960](https://github.com/graphcommerce-org/graphcommerce/pull/1960) [`86e14569b`](https://github.com/graphcommerce-org/graphcommerce/commit/86e14569b1f68f73be7f93b614e36b382c5debff) - Updated to the latest release of GraphQL codegen and solve compatibility issues with our own generator ([@paales](https://github.com/paales))
+
+- [#1942](https://github.com/graphcommerce-org/graphcommerce/pull/1942) [`df2b3efb2`](https://github.com/graphcommerce-org/graphcommerce/commit/df2b3efb2f906232a302218678c1524753c5a32c) - Customer related information was stored in the users local storage indefintely causing cache mismatches:
+
+  - 1. It stores a lot less by using the newly created _persistenceMapper_.
+  - 2. The 'createCacheReviver' would recreate the ApolloClient-cache on each navigation, it wont do that anymore.
+  - 3. The _persistenceMapper_ now has a hard coded blacklist of entries that aren't allowed to be stored in the local storage. In a future PR we'll make this blacklist configurable. ([@paales](https://github.com/paales))
+
+## 6.2.0-canary.98
+
+## 6.2.0-canary.97
+
+## 6.2.0-canary.96
+
+## 6.2.0-canary.95
+
+## 6.2.0-canary.94
+
+## 6.2.0-canary.93
+
+## 6.2.0-canary.92
+
+## 6.2.0-canary.91
+
 ## 6.2.0-canary.90
 
 ## 6.2.0-canary.89
