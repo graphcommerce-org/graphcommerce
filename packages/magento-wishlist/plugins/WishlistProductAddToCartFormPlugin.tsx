@@ -19,14 +19,18 @@ function WishlistUrlHandler() {
   const wishlistData = useWishlistItems()
 
   const [isInitialLoad, setIsInitialLoad] = useState(true)
+  const [wishlistItemId, setWishlistItemId] = useState('0')
 
   const customerWishlist: CustomerWishListData = wishlistData.data as CustomerWishListData
   const guestWishlist = wishlistData.guestWishlist.data?.guestWishlist?.items
 
   useEffect(() => {
     if (!router.isReady) return
+    if (wishlistItemId !== router.query.wishlistItemId) {
+      setIsInitialLoad(true)
+      setWishlistItemId(router.query.wishlistItemId as string)
+    }
     if (!isInitialLoad) return
-    const { wishlistItemId } = router.query
     const customerWishlistItem = customerWishlist?.find((item) => item?.id === wishlistItemId)
     const guestWishlistItem = guestWishlist?.find((item, i) => i === Number(wishlistItemId))
     const wishlistItemOptions: InputMaybe<InputMaybe<string>[]> = loggedIn
@@ -46,6 +50,7 @@ function WishlistUrlHandler() {
     guestWishlist,
     loggedIn,
     isInitialLoad,
+    wishlistItemId,
   ])
 
   return null

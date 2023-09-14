@@ -172,15 +172,16 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
             // Check if the sku of the product matches the sku of the wishlistItem and check if the product url key matches the url key
             guestWishlist?.some(
               (wishlistItem) =>
-                selected_options.every((selected_option) =>
-                  wishlistItem?.selected_options?.some(
-                    (wishlistOption) =>
-                      wishlistOption === selected_option && sku === wishlistItem?.sku,
-                  ),
+                selected_options.every(
+                  (selected_option) =>
+                    wishlistItem?.selected_options?.some(
+                      (wishlistOption) =>
+                        wishlistOption === selected_option && sku === wishlistItem?.sku,
+                    ),
                 ) && wishlistItem?.url_key === url_key,
             )
 
-      setInWishlist(isInWishlist)
+      setInWishlist(!!isInWishlist)
     }
   }, [
     loggedIn,
