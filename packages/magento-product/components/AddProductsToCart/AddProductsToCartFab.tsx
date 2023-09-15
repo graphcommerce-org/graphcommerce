@@ -14,13 +14,14 @@ export type AddProductsToCartFabProps = {
 
 export function AddProductsToCartFab(props: AddProductsToCartFabProps) {
   const { icon = iconShoppingBag, product, sku, ...rest } = props
-  const action = useAddProductsToCartAction(props)
+  const { showSuccess, ...action } = useAddProductsToCartAction(props)
+
   return (
     <Fab
       type='submit'
       {...rest}
       {...action}
-      icon={action.showSuccess && !action.loading ? iconCheckmark : icon}
+      icon={showSuccess && !action.loading ? iconCheckmark : icon}
       aria-label={i18n._(/* i18n*/ `Add to Cart`)}
     />
   )
