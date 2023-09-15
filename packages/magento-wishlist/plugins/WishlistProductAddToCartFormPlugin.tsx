@@ -7,6 +7,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { CustomerWishListData, useWishlistItems } from '../hooks'
 import { useCustomerSession } from '@graphcommerce/magento-customer'
+import { useApolloClient } from '@graphcommerce/graphql'
 
 export const component = 'AddProductsToCartForm'
 export const exported = '@graphcommerce/magento-product'
@@ -19,20 +20,24 @@ function WishlistUrlHandler() {
   const wishlistData = useWishlistItems()
 
   const [isInitialLoad, setIsInitialLoad] = useState(true)
-  const [wishlistItemId, setWishlistItemId] = useState('0')
+  const [WishlistItemId, setWishlistItemId] = useState('0')
 
   const customerWishlist: CustomerWishListData = wishlistData.data as CustomerWishListData
   const guestWishlist = wishlistData.guestWishlist.data?.guestWishlist?.items
 
   useEffect(() => {
     if (!router.isReady) return
-    if (wishlistItemId !== router.query.wishlistItemId) {
+    if (router.query.wishlistItemId === undefined) return
+    if (WishlistItemId !== router.query.wishlistItemId) {
       setIsInitialLoad(true)
-      setWishlistItemId(router.query.wishlistItemId as string)
     }
     if (!isInitialLoad) return
-    const customerWishlistItem = customerWishlist?.find((item) => item?.id === wishlistItemId)
-    const guestWishlistItem = guestWishlist?.find((item, i) => i === Number(wishlistItemId))
+    const customerWishlistItem = customerWishlist?.find(
+      (item) => item?.id === router.query.wishlistItemId,
+    )
+    const guestWishlistItem = guestWishlist?.find(
+      (item, i) => i === Number(router.query.wishlistItemId),
+    )
     const wishlistItemOptions: InputMaybe<InputMaybe<string>[]> = loggedIn
       ? (customerWishlistItem?.__typename === 'ConfigurableWishlistItem' &&
           customerWishlistItem?.configurable_options?.map(
@@ -41,6 +46,7 @@ function WishlistUrlHandler() {
         []
       : guestWishlistItem?.selected_options || []
     setValue(`cartItems.0.selected_options`, wishlistItemOptions)
+    setWishlistItemId(router.query.wishlistItemId as string)
     setIsInitialLoad(false)
   }, [
     router.isReady,
@@ -50,7 +56,7 @@ function WishlistUrlHandler() {
     guestWishlist,
     loggedIn,
     isInitialLoad,
-    wishlistItemId,
+    WishlistItemId,
   ])
 
   return null
