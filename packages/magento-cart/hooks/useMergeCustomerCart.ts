@@ -1,9 +1,11 @@
 import { useMutation } from '@graphcommerce/graphql'
 import { useCustomerQuery } from '@graphcommerce/magento-customer'
 import { useEffect } from 'react'
+import { CartRestoreDocument } from '../graphql/CartRestore.gql'
 import { CustomerCartDocument } from './CustomerCart.gql'
 import { UseMergeCustomerCartDocument } from './UseMergeCustomerCart.gql'
 import { useAssignCurrentCartId } from './useAssignCurrentCartId'
+import { useCartQuery } from './useCartQuery'
 import { useCurrentCartId } from './useCurrentCartId'
 
 /**
@@ -13,7 +15,11 @@ import { useCurrentCartId } from './useCurrentCartId'
 export function useMergeCustomerCart() {
   const { currentCartId } = useCurrentCartId()
   const assignCurrentCartId = useAssignCurrentCartId()
-  const [merge] = useMutation(UseMergeCustomerCartDocument, { errorPolicy: 'all' })
+  const { refetch } = useCartQuery(CartRestoreDocument)
+  const [merge] = useMutation(UseMergeCustomerCartDocument, {
+    errorPolicy: 'all',
+    onCompleted: () => refetch(),
+  })
 
   const destinationCartId = useCustomerQuery(CustomerCartDocument)?.data?.customerCart.id
 

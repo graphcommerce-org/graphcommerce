@@ -1,0 +1,17 @@
+query CartRestore($cartId: String!) {
+  cart(cart_id: $cartId) {
+    id
+    __typename
+    items {
+      __typename
+      ...CartItem
+    }
+    prices {
+      grand_total {
+        currency
+        value
+      }
+    }
+    ...CartTotalQuantity
+  }
+}
