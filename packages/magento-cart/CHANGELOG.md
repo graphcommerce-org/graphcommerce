@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.0.1-canary.6
+
+### Patch Changes
+
+- [#2055](https://github.com/graphcommerce-org/graphcommerce/pull/2055) [`111ec6b0e`](https://github.com/graphcommerce-org/graphcommerce/commit/111ec6b0edfeb2c7090f6f82fe1a23c196fae316) - Refetch cart data after useMergeCustomerCart to ensure cart data availability. ([@carlocarels90](https://github.com/carlocarels90))
+
 ## 7.0.1-canary.5
 
 ## 7.0.1-canary.4
