@@ -25,6 +25,7 @@ export function WishlistItem(props: WishlistItemProps) {
 
   const productLink = useProductLink({ url_key, __typename })
 
+  // Retrieve product so we can check the available configurable options
   const product = useQuery(GetProductsBySkuDocument, {
     ssr: false,
     variables: { filters: { sku: { eq: sku } } },
@@ -37,6 +38,7 @@ export function WishlistItem(props: WishlistItemProps) {
 
   const labels = configurable_options?.map((option) => option.value_label)
 
+  // Check if Configurable is not completed, if not completed show configure button instead of add to cart.
   const isConfigurableUncompleted =
     (product?.__typename === 'ConfigurableProduct' &&
       product?.configurable_options?.length !== configurable_options?.length) ||

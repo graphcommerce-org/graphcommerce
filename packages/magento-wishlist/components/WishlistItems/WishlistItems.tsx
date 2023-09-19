@@ -1,13 +1,14 @@
 import { useCustomerSession } from '@graphcommerce/magento-customer'
 import { RenderType, TypeRenderer } from '@graphcommerce/next-ui'
 import { Box } from '@mui/material'
-import { useWishlistItems } from '../../hooks'
+import { ConfigurableOptions, useWishlistItems } from '../../hooks'
 import { WishlistItemsFragment } from './WishlistItems.gql'
 
 export type WishlistItemRenderer = TypeRenderer<
   NonNullable<
     NonNullable<NonNullable<NonNullable<WishlistItemsFragment['items_v2']>['items']>[0]>['product']
-  >
+  > &
+    ConfigurableOptions
 >
 
 export type WishlistProps = { renderer: WishlistItemRenderer }

@@ -1,6 +1,5 @@
 import { QueryResult, useQuery } from '@graphcommerce/graphql'
 import { useCustomerSession } from '@graphcommerce/magento-customer'
-import { Exact } from '@graphcommerce/next-config'
 import { nonNullable } from '@graphcommerce/next-ui'
 import {
   GetGuestWishlistProductsDocument,
@@ -10,7 +9,7 @@ import {
   GetWishlistProductsDocument,
   GetWishlistProductsQuery,
 } from '../queries/GetWishlistProducts.gql'
-import { GuestWishlistDocument, GuestWishlistQuery } from '../queries/GuestWishlist.gql'
+import { GuestWishlistDocument } from '../queries/GuestWishlist.gql'
 
 export type ConfigurableOptions =
   | {
@@ -20,6 +19,7 @@ export type ConfigurableOptions =
             value_label: string | null | undefined
           }[]
         | null
+        | undefined
     }
   | null
   | undefined
@@ -47,12 +47,6 @@ type WishListData = GuestWishListData | CustomerWishListData | undefined | null
 
 export function useWishlistItems(): Omit<QueryResult<GetGuestWishlistProductsQuery>, 'data'> & {
   data: WishListData
-  guestWishlist: QueryResult<
-    GuestWishlistQuery,
-    Exact<{
-      [key: string]: never
-    }>
-  >
 } {
   const { loggedIn } = useCustomerSession()
   let wishlistItems: CustomerWishListData = []
@@ -79,25 +73,27 @@ export function useWishlistItems(): Omit<QueryResult<GetGuestWishlistProductsQue
 
   if (!loading && loggedIn) wishlistItems = customerWl.data?.customer?.wishlists[0]?.items_v2?.items
 
+  // Create own guestWishlist by combining cache data and the data we queried using the SKU's we got from the cache.
   let guestWishlist: GuestWishListData = guestWl.data?.guestWishlist?.items.map((guestItem) => {
-    const newProduct = guestProducts.data?.products?.items?.find(
+    const guestProduct = guestProducts.data?.products?.items?.find(
       (product) => guestItem.sku === product?.sku,
     )
 
-    if (newProduct !== null && newProduct !== undefined) {
+    // Add configurable_options to guestProduct if it is not null or undefined.
+    if (guestProduct !== null && guestProduct !== undefined) {
       const configurable_options = guestItem?.selected_options
         ?.filter(nonNullable)
         .map((selected_option, i) => ({
           configurable_product_option_value_uid: selected_option,
           value_label: guestItem?.selected_options_labels?.[i],
         }))
-      const newerProduct: GuestWishListItem = {
-        ...newProduct,
+      const guestWishlistItem: GuestWishListItem = {
+        ...guestProduct,
         configurable_options: configurable_options || [],
       }
-      return newerProduct
+      return guestWishlistItem
     }
-    return newProduct
+    return guestProduct
   })
 
   if (loading && !loggedIn)
@@ -106,7 +102,6 @@ export function useWishlistItems(): Omit<QueryResult<GetGuestWishlistProductsQue
   return {
     ...guestProducts,
     data: !loading && !loggedIn ? guestWishlist : wishlistItems,
-    guestWishlist: guestWl,
     loading,
   }
 }

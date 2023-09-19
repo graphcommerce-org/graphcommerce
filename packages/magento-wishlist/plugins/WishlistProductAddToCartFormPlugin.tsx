@@ -6,7 +6,7 @@ import {
 import { InputMaybe, ReactPlugin } from '@graphcommerce/next-config'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import { CustomerWishListData, useWishlistItems } from '../hooks'
+import { useWishlistItems } from '../hooks'
 
 export const component = 'AddProductsToCartForm'
 export const exported = '@graphcommerce/magento-product'
@@ -16,13 +16,13 @@ function WishlistUrlHandler() {
   const { setValue } = useFormAddProductsToCart()
   const router = useRouter()
   const { loggedIn } = useCustomerSession()
-  const wishlistData = useWishlistItems()
+  const wishlist = useWishlistItems()
 
+  const wishlistItems = wishlist.data?.map((item) => item)
+
+  // Check if is initialLoad so that the options are only set once.
   const [isInitialLoad, setIsInitialLoad] = useState(true)
   const [WishlistItemId, setWishlistItemId] = useState('0')
-
-  const customerWishlist: CustomerWishListData = wishlistData.data as CustomerWishListData
-  const guestWishlist = wishlistData.guestWishlist.data?.guestWishlist?.items
 
   useEffect(() => {
     if (!router.isReady) return
@@ -31,19 +31,22 @@ function WishlistUrlHandler() {
       setIsInitialLoad(true)
     }
     if (!isInitialLoad) return
-    const customerWishlistItem = customerWishlist?.find(
-      (item) => item?.id === router.query.wishlistItemId,
+    // Find wishlistItem based on ID
+    const wishlistItem = wishlistItems?.find((item, i) =>
+      loggedIn
+        ? item?.id === router.query.wishlistItemId
+        : i === Number(router.query.wishlistItemId),
     )
-    const guestWishlistItem = guestWishlist?.find(
-      (item, i) => i === Number(router.query.wishlistItemId),
-    )
-    const wishlistItemOptions: InputMaybe<InputMaybe<string>[]> = loggedIn
-      ? (customerWishlistItem?.__typename === 'ConfigurableWishlistItem' &&
-          customerWishlistItem?.configurable_options?.map(
-            (option) => option?.configurable_product_option_value_uid || '',
-          )) ||
-        []
-      : guestWishlistItem?.selected_options || []
+    // Get the configurable options out of the wishlistItem
+    const wishlistItemOptions: InputMaybe<InputMaybe<string>[]> =
+      ((loggedIn
+        ? wishlistItem?.__typename === 'ConfigurableWishlistItem'
+        : wishlistItem?.__typename === 'ConfigurableProduct') &&
+        wishlistItem?.configurable_options?.map(
+          (option) => option?.configurable_product_option_value_uid || '',
+        )) ||
+      []
+
     setValue(`cartItems.0.selected_options`, wishlistItemOptions)
     setWishlistItemId(router.query.wishlistItemId as string)
     setIsInitialLoad(false)
@@ -51,11 +54,11 @@ function WishlistUrlHandler() {
     router.isReady,
     router.query,
     setValue,
-    customerWishlist,
-    guestWishlist,
     loggedIn,
     isInitialLoad,
     WishlistItemId,
+    wishlist,
+    wishlistItems,
   ])
 
   return null
