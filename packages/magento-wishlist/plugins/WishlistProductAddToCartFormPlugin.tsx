@@ -1,3 +1,4 @@
+import { useCustomerSession } from '@graphcommerce/magento-customer'
 import {
   useFormAddProductsToCart,
   type AddProductsToCartForm,
@@ -6,8 +7,6 @@ import { InputMaybe, ReactPlugin } from '@graphcommerce/next-config'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { CustomerWishListData, useWishlistItems } from '../hooks'
-import { useCustomerSession } from '@graphcommerce/magento-customer'
-import { useApolloClient } from '@graphcommerce/graphql'
 
 export const component = 'AddProductsToCartForm'
 export const exported = '@graphcommerce/magento-product'

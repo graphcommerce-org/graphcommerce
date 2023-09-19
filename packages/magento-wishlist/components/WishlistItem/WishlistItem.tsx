@@ -1,7 +1,10 @@
-import { InputMaybe } from '@graphcommerce/graphql-mesh'
+import { useQuery } from '@graphcommerce/graphql'
 import { useProductLink } from '@graphcommerce/magento-product'
+import { nonNullable } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box, Button, SxProps, Theme } from '@mui/material'
+import { ConfigurableOptions } from '../../hooks'
+import { GetProductsBySkuDocument } from './GetProductsBySku.gql'
 import { ProductAddToCart } from './ProductAddToCart'
 import { WishlistItemBase } from './WishlistItemBase'
 import { WishlistItemProductFragment } from './WishlistItemProduct.gql'
@@ -12,26 +15,36 @@ type OptionalProductWishlistParent = {
 
 export type WishlistItemProps = WishlistItemProductFragment & {
   sx?: SxProps<Theme>
-  selectedOptions?: InputMaybe<string[]> | undefined
   children?: React.ReactNode
-  isConfigurableUncompleted?: boolean
-  selectedOptionsLabels?: InputMaybe<string[]> | undefined
-} & OptionalProductWishlistParent
+} & OptionalProductWishlistParent &
+  ConfigurableOptions
 
 export function WishlistItem(props: WishlistItemProps) {
-  const {
-    sku,
-    name,
-    price_range,
-    selectedOptions,
-    selectedOptionsLabels,
-    isConfigurableUncompleted = false,
-    __typename: productType,
-    wishlistItemId,
-    url_key,
-  } = props
+  const { sku, name, price_range, configurable_options, __typename, wishlistItemId, url_key } =
+    props
 
-  const productLink = useProductLink({ url_key, __typename: productType })
+  const productLink = useProductLink({ url_key, __typename })
+
+  const product = useQuery(GetProductsBySkuDocument, {
+    ssr: false,
+    variables: { filters: { sku: { eq: sku } } },
+    skip: !sku,
+  }).data?.products?.items?.[0]
+
+  const selectedOptions = configurable_options
+    ?.map((option) => option.configurable_product_option_value_uid)
+    .filter(nonNullable)
+
+  const labels = configurable_options?.map((option) => option.value_label)
+
+  const isConfigurableUncompleted =
+    (product?.__typename === 'ConfigurableProduct' &&
+      product?.configurable_options?.length !== configurable_options?.length) ||
+    configurable_options?.some(
+      (option) =>
+        option.configurable_product_option_value_uid === null ||
+        option.configurable_product_option_value_uid === undefined,
+    )
 
   return (
     <WishlistItemBase {...props}>
@@ -59,13 +72,17 @@ export function WishlistItem(props: WishlistItemProps) {
       ) : (
         <Box>
           <ProductAddToCart
-            variables={{ sku: sku ?? '', quantity: 1, selectedOptions }}
+            variables={{
+              sku: sku ?? '',
+              quantity: 1,
+              selectedOptions: selectedOptions || [],
+            }}
             name={name ?? ''}
             price={price_range.minimum_price.final_price}
           />
         </Box>
       )}
-      {selectedOptionsLabels}
+      {labels}
     </WishlistItemBase>
   )
 }

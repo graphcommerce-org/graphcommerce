@@ -1,6 +1,7 @@
 import { QueryResult, useQuery } from '@graphcommerce/graphql'
 import { useCustomerSession } from '@graphcommerce/magento-customer'
 import { Exact } from '@graphcommerce/next-config'
+import { nonNullable } from '@graphcommerce/next-ui'
 import {
   GetGuestWishlistProductsDocument,
   GetGuestWishlistProductsQuery,
@@ -11,12 +12,38 @@ import {
 } from '../queries/GetWishlistProducts.gql'
 import { GuestWishlistDocument, GuestWishlistQuery } from '../queries/GuestWishlist.gql'
 
-export type GuestWishListData = NonNullable<GetGuestWishlistProductsQuery['products']>['items']
-export type CustomerWishListData = NonNullable<
-  NonNullable<NonNullable<GetWishlistProductsQuery['customer']>['wishlists'][0]>['items_v2']
->['items']
+export type ConfigurableOptions =
+  | {
+      configurable_options?:
+        | {
+            configurable_product_option_value_uid: string | null | undefined
+            value_label: string | null | undefined
+          }[]
+        | null
+    }
+  | null
+  | undefined
+export type GuestWishListItem =
+  | (Omit<
+      NonNullable<NonNullable<GetGuestWishlistProductsQuery['products']>['items']>[0],
+      'configurable_options'
+    > &
+      ConfigurableOptions)
+  | undefined
+  | null
+export type CustomerWishListItem =
+  | NonNullable<
+      NonNullable<
+        NonNullable<NonNullable<GetWishlistProductsQuery['customer']>['wishlists'][0]>['items_v2']
+      >['items']
+    >[0]
+  | undefined
+  | null
 
-type WishListData = GuestWishListData | CustomerWishListData
+export type GuestWishListData = GuestWishListItem[] | undefined | null
+export type CustomerWishListData = CustomerWishListItem[] | undefined | null
+
+type WishListData = GuestWishListData | CustomerWishListData | undefined | null
 
 export function useWishlistItems(): Omit<QueryResult<GetGuestWishlistProductsQuery>, 'data'> & {
   data: WishListData
@@ -28,7 +55,7 @@ export function useWishlistItems(): Omit<QueryResult<GetGuestWishlistProductsQue
   >
 } {
   const { loggedIn } = useCustomerSession()
-  let wishlistItems: WishListData = []
+  let wishlistItems: CustomerWishListData = []
   /** Get customer wishlist from session */
   const customerWl = useQuery(GetWishlistProductsDocument, { ssr: false, skip: !loggedIn })
 
@@ -47,16 +74,38 @@ export function useWishlistItems(): Omit<QueryResult<GetGuestWishlistProductsQue
 
   // When loading the queries, data will return undefined. While we load the new data, we want
   // to return the previous data, to prevent the UI for going in a loading state
-  if (loading && !loggedIn) wishlistItems = guestProducts.previousData?.products?.items
   if (loading && loggedIn)
     wishlistItems = customerWl.previousData?.customer?.wishlists[0]?.items_v2?.items
 
   if (!loading && loggedIn) wishlistItems = customerWl.data?.customer?.wishlists[0]?.items_v2?.items
-  if (!loading && !loggedIn) wishlistItems = guestProducts.data?.products?.items
+
+  let guestWishlist: GuestWishListData = guestWl.data?.guestWishlist?.items.map((guestItem) => {
+    const newProduct = guestProducts.data?.products?.items?.find(
+      (product) => guestItem.sku === product?.sku,
+    )
+
+    if (newProduct !== null && newProduct !== undefined) {
+      const configurable_options = guestItem?.selected_options
+        ?.filter(nonNullable)
+        .map((selected_option, i) => ({
+          configurable_product_option_value_uid: selected_option,
+          value_label: guestItem?.selected_options_labels?.[i],
+        }))
+      const newerProduct: GuestWishListItem = {
+        ...newProduct,
+        configurable_options: configurable_options || [],
+      }
+      return newerProduct
+    }
+    return newProduct
+  })
+
+  if (loading && !loggedIn)
+    guestWishlist = guestProducts.previousData?.products?.items as GuestWishListData
 
   return {
     ...guestProducts,
-    data: wishlistItems,
+    data: !loading && !loggedIn ? guestWishlist : wishlistItems,
     guestWishlist: guestWl,
     loading,
   }

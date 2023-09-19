@@ -1,10 +1,6 @@
 import { useMutation, useApolloClient } from '@graphcommerce/graphql'
 import { GuestWishlist, GuestWishlistItem } from '@graphcommerce/graphql-mesh'
-import {
-  useCustomerQuery,
-  useCustomerSession,
-  useGuestQuery,
-} from '@graphcommerce/magento-customer'
+import { useCustomerSession } from '@graphcommerce/magento-customer'
 import { useFormAddProductsToCart } from '@graphcommerce/magento-product'
 import { ProductListItemConfigurableFragment } from '@graphcommerce/magento-product-configurable'
 import { InputMaybe, Maybe } from '@graphcommerce/next-config'
@@ -20,9 +16,8 @@ import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { SxProps, Theme, IconButton, Box, IconButtonProps } from '@mui/material'
 import { useState, useEffect } from 'react'
-import { useWishlistEnabled } from '../../hooks'
+import { CustomerWishListData, useWishlistEnabled, useWishlistItems } from '../../hooks'
 import { AddProductToWishlistDocument } from '../../queries/AddProductToWishlist.gql'
-import { GetIsInWishlistsDocument } from '../../queries/GetIsInWishlists.gql'
 import { GuestWishlistDocument } from '../../queries/GuestWishlist.gql'
 import { RemoveProductFromWishlistDocument } from '../../queries/RemoveProductFromWishlist.gql'
 import { WishlistSummaryFragment } from '../../queries/WishlistSummaryFragment.gql'
@@ -75,9 +70,7 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
   const [addWishlistItem] = useMutation(AddProductToWishlistDocument)
   const [removeWishlistItem] = useMutation(RemoveProductFromWishlistDocument)
 
-  const { data: GetCustomerWishlistData, loading } = useCustomerQuery(GetIsInWishlistsDocument)
-
-  const { data: guestWishlistData } = useGuestQuery(GuestWishlistDocument)
+  const wishlist = useWishlistItems()
 
   const { cache } = useApolloClient()
 
@@ -128,71 +121,36 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
     if (!url_key || !sku) {
       return
     }
+    const wishlistItems = wishlist.data
+
     // Mark as active when product is available in either customer or guest wishlist
-    if (loggedIn && !loading) {
-      const wishlistItems = GetCustomerWishlistData?.customer?.wishlists[0]?.items_v2?.items
-
-      const isInWishlist =
-        // If there are no options selected search for the product which matches the url and if
-        // it is a configurable product check if it has no configurable options.
-        selected_options?.[0] === undefined
-          ? wishlistItems?.some(
-              (e) =>
-                e?.product?.url_key === url_key &&
-                e.__typename === 'ConfigurableWishlistItem' &&
-                e.configurable_options?.length === 0,
-            )
-          : // If it is a configurable product check if all selected options match the configurable options of the product
-            // Check if the sku of the product matches the sku of the wishlistItem and check if the product url key matches the url key
-            wishlistItems?.some((wishlistItem) =>
-              notFullyConfigured
-                ? wishlistItem?.product?.sku === sku
-                : selected_options.every(
-                    (option) =>
-                      wishlistItem?.__typename === 'ConfigurableWishlistItem' &&
-                      wishlistItem?.configurable_options?.some(
-                        (wishlistOption) =>
-                          // If an option is undefined this means the item is a wishlistItem but not all options were selected prior.
-                          wishlistOption?.configurable_product_option_value_uid === option &&
-                          sku === wishlistItem.product?.sku,
-                      ),
-                  ) && wishlistItem?.product?.url_key === url_key,
-            )
-
-      setInWishlist(!!isInWishlist)
-    } else if (!loggedIn) {
-      const guestWishlist = guestWishlistData?.guestWishlist?.items
-
-      const isInWishlist =
-        // If there are no options selected search for the product which matches the url and if
-        // it is a configurable product check if it has no configurable options.
-        notFullyConfigured
-          ? guestWishlist?.some((e) => e?.url_key === url_key && e.selected_options?.length === 0)
-          : // If it is a configurable product check if all selected options match the configurable options of the product
-            // Check if the sku of the product matches the sku of the wishlistItem and check if the product url key matches the url key
-            guestWishlist?.some(
-              (wishlistItem) =>
-                selected_options.every(
-                  (selected_option) =>
-                    wishlistItem?.selected_options?.some(
+    const isInWishlist =
+      // If there are no options selected search for the product which matches the url and if
+      // it is a configurable product check if it has no configurable options.
+      selected_options?.[0] === undefined
+        ? wishlistItems?.some(
+            (item) =>
+              (loggedIn ? item?.product?.url_key === url_key : item.url_key === url_key) &&
+              item.configurable_options?.length === 0,
+          )
+        : // If it is a configurable product check if all selected options match the configurable options of the product
+          // Check if the sku of the product matches the sku of the wishlistItem and check if the product url key matches the url key
+          wishlistItems?.some((wishlistItem) =>
+            notFullyConfigured
+              ? wishlistItem?.product?.sku === sku
+              : selected_options.every(
+                  (option) =>
+                    wishlistItem?.configurable_options?.some(
                       (wishlistOption) =>
-                        wishlistOption === selected_option && sku === wishlistItem?.sku,
+                        // If an option is undefined this means the item is a wishlistItem but not all options were selected prior.
+                        wishlistOption?.configurable_product_option_value_uid === option &&
+                        (loggedIn ? wishlistItem.product?.sku === sku : wishlistItem.sku === sku),
                     ),
-                ) && wishlistItem?.url_key === url_key,
-            )
+                ),
+          )
 
-      setInWishlist(!!isInWishlist)
-    }
-  }, [
-    loggedIn,
-    url_key,
-    loading,
-    GetCustomerWishlistData,
-    guestWishlistData,
-    sku,
-    addToCartForm,
-    configurable_options,
-  ])
+    setInWishlist(!!isInWishlist)
+  }, [loggedIn, url_key, wishlist, sku, addToCartForm, configurable_options])
 
   const preventAnimationBubble = (
     e: React.TouchEvent<HTMLButtonElement> | React.MouseEvent<HTMLButtonElement>,
@@ -244,10 +202,9 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
 
     if (loggedIn) {
       if (inWishlist && !ignoreProductWishlistStatus) {
-        const wishlistItemsInSession =
-          GetCustomerWishlistData?.customer?.wishlists[0]?.items_v2?.items || []
+        const wishlistItemsInSession = wishlist.data as CustomerWishListData
 
-        const item = wishlistItemsInSession.find((element) => {
+        const item = wishlistItemsInSession?.find((element) => {
           if (element?.__typename === 'ConfigurableWishlistItem') {
             if (
               element.configurable_options?.[0]?.configurable_product_option_value_uid === undefined
@@ -292,10 +249,10 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
             const guestWishlistItems = existingItems as GuestWishlistItem[]
             return guestWishlistItems.filter((item) =>
               notFullyConfigured
-                ? item.sku !== sku
+                ? item.sku !== sku || (item.sku === sku && item.selected_options?.length !== 0)
                 : item?.url_key !== url_key ||
                   (item?.url_key === url_key &&
-                    item?.selected_options?.some((opt) =>
+                    item?.selected_options?.every((opt) =>
                       selected_options.find((select_option) => select_option !== opt),
                     )),
             )

@@ -1,0 +1,19 @@
+query GetProductsBySku(
+  $pageSize: Int = 100
+  $currentPage: Int = 1
+  $filters: ProductAttributeFilterInput = {}
+  $sort: ProductAttributeSortInput = {}
+) {
+  products(pageSize: $pageSize, currentPage: $currentPage, filter: $filters, sort: $sort) {
+    items {
+      __typename
+      uid
+      ...ProductListItem
+      ... on ConfigurableProduct {
+        configurable_options {
+          uid
+        }
+      }
+    }
+  }
+}
