@@ -1,13 +1,5 @@
-import {
-  AddProductsToCartMutationVariables,
-  AddToCartItemSelector,
-  useFormAddProductsToCart,
-} from '@graphcommerce/magento-product'
-import { SectionHeader, filterNonNullableKeys, ActionCardListProps } from '@graphcommerce/next-ui'
-import {
-  ActionCardItemBase,
-  ActionCardListForm,
-} from '@graphcommerce/next-ui/ActionCard/ActionCardListForm'
+import { AddToCartItemSelector, useFormAddProductsToCart } from '@graphcommerce/magento-product'
+import { filterNonNullableKeys, ActionCardListProps } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Box, SxProps, Theme } from '@mui/material'
 import { useRouter } from 'next/router'
@@ -15,7 +7,7 @@ import React, { useEffect, useMemo } from 'react'
 import { ConfigurableOptionsFragment } from '../../graphql/ConfigurableOptions.gql'
 import { useConfigurableOptionsSelection } from '../../hooks'
 import { ConfigurableOptionValue } from '../ConfigurableOptionValue/ConfigurableOptionValue'
-import { ConfigurableOptionValueFragment } from '../ConfigurableOptionValue/ConfigurableOptionValue.gql'
+import { ConfigurableProductOption } from './ConfigurableProductOption'
 
 export type ConfigurableProductOptionsProps = AddToCartItemSelector & {
   optionEndLabels?: Record<string, React.ReactNode>
@@ -33,22 +25,14 @@ export function ConfigurableProductOptions(props: ConfigurableProductOptionsProp
     index = 0,
     ...other
   } = props
-  const { control, setError, clearErrors } = useFormAddProductsToCart()
+  const { setError, clearErrors } = useFormAddProductsToCart()
   const { locale } = useRouter()
 
-  const options = useMemo(
-    () =>
-      filterNonNullableKeys(product.configurable_options, ['attribute_code', 'label']).map(
-        (option) => ({
-          ...option,
-          values: filterNonNullableKeys(option.values, ['uid']).map((ov) => ({
-            value: ov.uid,
-            ...ov,
-          })),
-        }),
-      ),
-    [product.configurable_options],
-  )
+  const options = filterNonNullableKeys(product.configurable_options, [
+    'attribute_code',
+    'label',
+    'values',
+  ])
 
   const { configured } = useConfigurableOptionsSelection({ url_key: product.url_key, index })
   const unavailable =
@@ -75,36 +59,19 @@ export function ConfigurableProductOptions(props: ConfigurableProductOptionsProp
 
   return (
     <Box sx={(theme) => ({ display: 'grid', rowGap: theme.spacings.sm })}>
-      {options.map((option, idx) => {
-        const { values, label } = option
-        const fieldName = `cartItems.${index}.selected_options.${idx}` as const
-
-        return (
-          <Box key={fieldName} sx={sx}>
-            <SectionHeader
-              labelLeft={label}
-              labelRight={optionEndLabels?.[option?.attribute_code ?? '']}
-              sx={{ mt: 0 }}
-            />
-
-            <ActionCardListForm<
-              ActionCardItemBase & ConfigurableOptionValueFragment,
-              AddProductsToCartMutationVariables
-            >
-              layout='grid'
-              {...other}
-              name={fieldName}
-              control={control}
-              required
-              items={values}
-              render={render}
-              rules={{
-                required: i18n._(/* i18n*/ 'Please select a value for ‘{label}’', { label }),
-              }}
-            />
-          </Box>
-        )
-      })}
+      {options.map((option, idx) => (
+        <ConfigurableProductOption
+          {...option}
+          key={option.uid}
+          render={render}
+          optionEndLabels={optionEndLabels}
+          index={index}
+          idx={idx}
+          sx={Array.isArray(sx) ? sx : [sx]}
+          url_key={product.url_key}
+          {...other}
+        />
+      ))}
     </Box>
   )
 }

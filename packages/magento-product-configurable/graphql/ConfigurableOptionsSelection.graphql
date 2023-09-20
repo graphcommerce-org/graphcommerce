@@ -1,9 +1,19 @@
 fragment ConfigurableOptionsSelection on ConfigurableProduct @injectable {
   configurable_product_options_selection(configurableOptionValueUids: $selectedOptions) {
     __typename
+    configurable_options {
+      attribute_code
+      label
+      uid
+      values {
+        label
+        uid
+      }
+    }
     options_available_for_selection {
       __typename
       attribute_code
+      option_value_uids
     }
     media_gallery {
       __typename
