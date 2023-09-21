@@ -2,4 +2,4 @@
 '@graphcommerce/magento-cart-payment-method': patch
 ---
 
-decrease the fontSize for the payment button in the checkout to ensure the text fits within the button
+Remove the selected payment method title from the Place order button so that the text always fits
