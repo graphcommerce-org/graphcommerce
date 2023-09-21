@@ -2,4 +2,4 @@
 '@graphcommerce/magento-product-configurable': patch
 ---
 
-Show simple when `configurableVariantForSimple = false` fix
+When configurableVariantForSimple was set to false it wouldn't correctly show the simple product.
