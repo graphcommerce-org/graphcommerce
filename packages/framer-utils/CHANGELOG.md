@@ -1,5 +1,7 @@
 # Change Log
 
+## 7.0.1-canary.8
+
 ## 7.0.1-canary.7
 
 ## 7.0.1-canary.6

@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.0.1-canary.8
+
+### Patch Changes
+
+- [#2052](https://github.com/graphcommerce-org/graphcommerce/pull/2052) [`5b9c1fa81`](https://github.com/graphcommerce-org/graphcommerce/commit/5b9c1fa818c5bc906a64dd47b73276b25d45ef0b) - When configurableVariantForSimple was set to false it wouldn't correctly show the simple product. ([@JoshuaS98](https://github.com/JoshuaS98))
+
 ## 7.0.1-canary.7
 
 ## 7.0.1-canary.6
