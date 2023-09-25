@@ -1,13 +1,11 @@
 import { RowLinks, RowLinksProps } from '../RowLinks'
 
 export function VariantLogoSwiper(props: RowLinksProps) {
-  const { title, children, sx = [], maxWidth, showButtons } = props
+  const { sx = [], ...rowLinksProps } = props
 
   return (
     <RowLinks
-      showButtons={showButtons}
-      maxWidth={maxWidth}
-      title={title}
+      {...rowLinksProps}
       sx={[
         (theme) => ({
           '& .RowLinks-title': {
@@ -22,8 +20,6 @@ export function VariantLogoSwiper(props: RowLinksProps) {
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
-    >
-      {children}
-    </RowLinks>
+    />
   )
 }

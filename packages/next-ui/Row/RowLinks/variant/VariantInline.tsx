@@ -1,17 +1,13 @@
 import { RowLinks, RowLinksProps } from '../RowLinks'
 
 export function VariantInline(props: RowLinksProps) {
-  const { title, children, sx = [], maxWidth, showButtons } = props
+  const { sx = [], inlineTitle = true, ...rowLinksProps } = props
 
   return (
     <RowLinks
-      title={title}
-      showButtons={showButtons}
-      maxWidth={maxWidth}
-      inlineTitle
+      inlineTitle={inlineTitle}
+      {...rowLinksProps}
       sx={[{}, ...(Array.isArray(sx) ? sx : [sx])]}
-    >
-      {children}
-    </RowLinks>
+    />
   )
 }
