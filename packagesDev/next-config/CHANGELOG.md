@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.0.1-canary.14
+
+### Patch Changes
+
+- [`5652342e1`](https://github.com/graphcommerce-org/graphcommerce/commit/5652342e10754cc0b4fa0596e55125539b69c442) - Add missing dependency @types/react-is as it would cause build errors. ([@paales](https://github.com/paales))
+
 ## 7.0.1-canary.13
 
 ## 7.0.1-canary.12

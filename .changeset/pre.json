@@ -76,6 +76,7 @@
     "@graphcommerce/typescript-config-pwa": "7.0.0"
   },
   "changesets": [
+    "calm-geese-repair",
     "dry-cooks-kneel",
     "fresh-avocados-sin",
     "friendly-pens-suffer",
