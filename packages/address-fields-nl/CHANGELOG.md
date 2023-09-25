@@ -1,5 +1,11 @@
 # @graphcommerce/address-fields-nl
 
+## 7.0.1-canary.13
+
+### Patch Changes
+
+- [#2040](https://github.com/graphcommerce-org/graphcommerce/pull/2040) [`19f381b6b`](https://github.com/graphcommerce-org/graphcommerce/commit/19f381b6bdf6dc16bbf6878f54f73cef2d57441d) - Changed the api url, changed the exported file location of the AddPostcodeNLAddressFieldPlugin and updated docs ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
 ## 7.0.1-canary.12
 
 ## 7.0.1-canary.11
