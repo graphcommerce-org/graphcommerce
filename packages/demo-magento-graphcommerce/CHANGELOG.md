@@ -1,5 +1,7 @@
 # @graphcommerce/demo-magento-graphcommerce
 
+## 7.0.1-canary.10
+
 ## 7.0.1-canary.9
 
 ## 7.0.1-canary.8

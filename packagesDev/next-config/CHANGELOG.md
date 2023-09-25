@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.0.1-canary.10
+
+### Patch Changes
+
+- [#2063](https://github.com/graphcommerce-org/graphcommerce/pull/2063) [`12842a28e`](https://github.com/graphcommerce-org/graphcommerce/commit/12842a28e226ef970f250fad4100e46eebc53118) - Update graphql dependency to 16.8.1 and loosen constraint so that it doesn’t fail during installation ([@paales](https://github.com/paales))
+
 ## 7.0.1-canary.9
 
 ## 7.0.1-canary.8
