@@ -50,6 +50,9 @@
     "jest-environment-jsdom": "^29.5.0",
     "patch-package": "8.0.0"
   },
+  "resolutions": {
+    "graphql-jit": "0.8.2"
+  },
   "devDependencies": {
     "@playwright/test": "1.37.1",
     "@types/node": "^16",
