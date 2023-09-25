@@ -76,7 +76,7 @@
     "cross-env": "^7.0.3",
     "dotenv": "16.3.1",
     "framer-motion": "10.16.3",
-    "graphql": "16.8.0",
+    "graphql": "16.8.1",
     "next": "13.4.20-canary.16",
     "next-sitemap": "4.2.2",
     "patch-package": "8.0.0",
