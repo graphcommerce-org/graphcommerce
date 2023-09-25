@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-product-virtual",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "7.0.1-canary.14",
+  "version": "7.0.1-canary.15",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -12,16 +12,16 @@
     }
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "7.0.1-canary.14",
-    "@graphcommerce/prettier-config-pwa": "7.0.1-canary.14",
-    "@graphcommerce/typescript-config-pwa": "7.0.1-canary.14"
+    "@graphcommerce/eslint-config-pwa": "7.0.1-canary.15",
+    "@graphcommerce/prettier-config-pwa": "7.0.1-canary.15",
+    "@graphcommerce/typescript-config-pwa": "7.0.1-canary.15"
   },
   "dependencies": {
-    "@graphcommerce/graphql": "7.0.1-canary.14",
-    "@graphcommerce/magento-cart": "7.0.1-canary.14",
-    "@graphcommerce/magento-cart-items": "7.0.1-canary.14",
-    "@graphcommerce/magento-product": "7.0.1-canary.14",
-    "@graphcommerce/next-ui": "7.0.1-canary.14"
+    "@graphcommerce/graphql": "7.0.1-canary.15",
+    "@graphcommerce/magento-cart": "7.0.1-canary.15",
+    "@graphcommerce/magento-cart-items": "7.0.1-canary.15",
+    "@graphcommerce/magento-product": "7.0.1-canary.15",
+    "@graphcommerce/next-ui": "7.0.1-canary.15"
   },
   "peerDependencies": {
     "@lingui/react": "^4.2.1",

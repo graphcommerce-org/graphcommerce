@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.0.1-canary.15
+
+### Patch Changes
+
+- [#2064](https://github.com/graphcommerce-org/graphcommerce/pull/2064) [`a550fa039`](https://github.com/graphcommerce-org/graphcommerce/commit/a550fa039a104b661ffd3fd3e32d99eaf782bc88) - Allow setting all RowLinks props on its variants, instead of a limited predefined set ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 7.0.1-canary.14
 
 ## 7.0.1-canary.13
