@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.0.1
+
+### Patch Changes
+
+- [#2032](https://github.com/graphcommerce-org/graphcommerce/pull/2032) [`7e44afc94`](https://github.com/graphcommerce-org/graphcommerce/commit/7e44afc94629a938da1b819d99fe3d19857de497) - Add shipping adresses translation ([@StefanAngenent](https://github.com/StefanAngenent))
+
 ## 7.0.1-canary.15
 
 ## 7.0.1-canary.14

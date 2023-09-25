@@ -1,5 +1,13 @@
 # Change Log
 
+## 7.0.1
+
+### Patch Changes
+
+- [#2052](https://github.com/graphcommerce-org/graphcommerce/pull/2052) [`5b9c1fa81`](https://github.com/graphcommerce-org/graphcommerce/commit/5b9c1fa818c5bc906a64dd47b73276b25d45ef0b) - When configurableVariantForSimple was set to false it wouldn't correctly show the simple product. ([@JoshuaS98](https://github.com/JoshuaS98))
+
+- [#2051](https://github.com/graphcommerce-org/graphcommerce/pull/2051) [`13d54555b`](https://github.com/graphcommerce-org/graphcommerce/commit/13d54555bc5b85a79456610cb066d397d18866eb) - Remove zoom from targetUrl to fix back navigation on zoom ([@mikekeehnen](https://github.com/mikekeehnen))
+
 ## 7.0.1-canary.15
 
 ## 7.0.1-canary.14
