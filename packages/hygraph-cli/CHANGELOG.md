@@ -1,5 +1,7 @@
 # @graphcommerce/hygraph-cli
 
+## 7.0.1-canary.12
+
 ## 7.0.1-canary.11
 
 ## 7.0.1-canary.10

@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.0.1-canary.12
+
+### Patch Changes
+
+- [`2e3b9d64e`](https://github.com/graphcommerce-org/graphcommerce/commit/2e3b9d64e0cf610d27c05a067a3c5a25e2681dde) - Pin version of graphql-jit to 0.8.2 to prevent error: `Got unexpected PRIMITIVES type: RichTextAST` ([@paales](https://github.com/paales))
+
 ## 7.0.1-canary.11
 
 ## 7.0.1-canary.10
