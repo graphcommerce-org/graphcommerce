@@ -67,16 +67,17 @@ export async function redirectOrNotFound(
       candidates.add(from.endsWith(suffix) ? from.slice(0, -suffix.length) : `${from}${suffix}`)
     })
 
-    const routePromises = [...candidates].map(
-      async (url) =>
-        (
+    const routePromises = [...candidates].map(async (url) => {
+      if (url) {
+        return (
           await client.query({
             query: HandleRedirectDocument,
             variables: { url },
             fetchPolicy: 'no-cache',
           })
-        ).data,
-    )
+        ).data
+      }
+    })
 
     const routeDataArray = (await Promise.all(routePromises)).filter(nonNullable)
 
