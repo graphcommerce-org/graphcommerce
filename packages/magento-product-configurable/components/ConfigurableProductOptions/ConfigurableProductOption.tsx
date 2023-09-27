@@ -22,7 +22,7 @@ import {
 type Props = NonNullable<
   NonNullable<ConfigurableOptionsFragment['configurable_options']>[number]
 > & {
-  idx: number
+  optionIndex: number
   index: number
   optionEndLabels?: Record<string, React.ReactNode>
   sx?: SxProps<Theme>
@@ -36,7 +36,7 @@ export function ConfigurableProductOption(props: Props) {
     values,
     label,
     index,
-    idx,
+    optionIndex,
     optionEndLabels,
     sx,
     attribute_code,
@@ -44,7 +44,7 @@ export function ConfigurableProductOption(props: Props) {
     render,
     ...other
   } = props
-  const fieldName = `cartItems.${index}.selected_options.${idx}` as const
+  const fieldName = `cartItems.${index}.selected_options.${optionIndex}` as const
 
   const { control } = useFormAddProductsToCart()
 
@@ -55,7 +55,7 @@ export function ConfigurableProductOption(props: Props) {
     .filter(Boolean)
     // This list is sorted by the the order in which the options are displayed.
     // By slicing were only taking the previous options in consideration and not the options below the current option.
-    // .slice(0, idx)
+    // .slice(0, optionIndex)
     .filter((o) => o !== selectedOption)
 
   const { configured } = useConfigurableOptionsForSelection({ url_key, selectedOptions })

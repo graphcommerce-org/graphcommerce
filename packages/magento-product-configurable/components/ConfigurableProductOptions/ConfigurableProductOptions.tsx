@@ -59,15 +59,15 @@ export function ConfigurableProductOptions(props: ConfigurableProductOptionsProp
 
   return (
     <Box sx={(theme) => ({ display: 'grid', rowGap: theme.spacings.sm })}>
-      {options.map((option, idx) => (
+      {options.map((option, optionIndex) => (
         <ConfigurableProductOption
           {...option}
           key={option.uid}
           render={render}
           optionEndLabels={optionEndLabels}
           index={index}
-          idx={idx}
-          sx={Array.isArray(sx) ? sx : [sx]}
+          optionIndex={optionIndex}
+          sx={sx}
           url_key={product.url_key}
           {...other}
         />
