@@ -1,6 +1,6 @@
 import { useMutation, useApolloClient } from '@graphcommerce/graphql'
 import { Image } from '@graphcommerce/image'
-import { useCustomerQuery, useCustomerSession } from '@graphcommerce/magento-customer'
+import { useCustomerSession } from '@graphcommerce/magento-customer'
 import { useProductLink } from '@graphcommerce/magento-product'
 import { Money } from '@graphcommerce/magento-store'
 import {
@@ -16,7 +16,8 @@ import IconButton from '@mui/material/IconButton'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import { useState } from 'react'
-import { GetIsInWishlistsDocument } from '../../queries/GetIsInWishlists.gql'
+import { useWishlistItems } from '../../hooks'
+import { GuestWishlistDocument } from '../../queries/GuestWishlist.gql'
 import { RemoveProductFromWishlistDocument } from '../../queries/RemoveProductFromWishlist.gql'
 import { WishlistItemProductFragment } from './WishlistItemProduct.gql'
 
@@ -29,6 +30,7 @@ type OptionalProductWishlistParent = {
 export type WishlistItemBaseProps = WishlistItemProductFragment & {
   sx?: SxProps<Theme>
   children?: React.ReactNode
+  isConfigurableUncompleted?: boolean
 } & OwnerState &
   OptionalProductWishlistParent
 
@@ -57,6 +59,7 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
     children,
     sx = [],
     wishlistItemId,
+    isConfigurableUncompleted = false,
   } = props
 
   const productLink = useProductLink({ url_key, __typename: productType })
@@ -64,8 +67,7 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
 
   const { loggedIn } = useCustomerSession()
 
-  const { data: GetCustomerWishlistData } = useCustomerQuery(GetIsInWishlistsDocument)
-
+  const wishlist = useWishlistItems()
   const [removeWishlistItem] = useMutation(RemoveProductFromWishlistDocument)
 
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
@@ -83,8 +85,7 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
 
         /** When no internal ID is provided, fetch it by sku */
         if (!itemIdToDelete) {
-          const wishlistItemsInSession =
-            GetCustomerWishlistData?.customer?.wishlists[0]?.items_v2?.items || []
+          const wishlistItemsInSession = wishlist.data || []
 
           const item = wishlistItemsInSession.find(
             (element) => element?.product?.url_key === url_key,
@@ -99,16 +100,25 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
           removeWishlistItem({ variables: { wishlistItemId: itemIdToDelete } })
         }
       } else {
-        cache.modify({
-          id: cache.identify({ __typename: 'GuestWishlist' }),
-          fields: {
-            items(existingItems = []) {
-              const items = existingItems.filter(
-                (item) => item !== existingItems[Number(wishlistItemId)],
-              )
-              return items
+        const oldItems = cache.readQuery({ query: GuestWishlistDocument })?.customer?.wishlists?.[0]
+          ?.items_v2?.items
+
+        const filteredItems = oldItems?.filter((oldItem) => oldItem?.id !== wishlistItemId)
+
+        cache.writeQuery({
+          query: GuestWishlistDocument,
+          data: {
+            customer: {
+              wishlists: [
+                {
+                  items_v2: {
+                    items: filteredItems || [],
+                  },
+                },
+              ],
             },
           },
+          broadcast: true,
         })
       }
     }
@@ -211,7 +221,11 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
       </Badge>
 
       <Link
-        href={`${productLink}?wishlistItemId=${wishlistItemId}`}
+        href={
+          isConfigurableUncompleted
+            ? `${productLink}?wishlistItemId=${wishlistItemId}`
+            : productLink
+        }
         variant='body1'
         className={classes.itemName}
         underline='hover'
