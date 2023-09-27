@@ -10,6 +10,13 @@ query ProductPage2($urlKey: String!, $reviewPageSize: Int = 3, $reviewPage: Int 
       ...ConfigurableOptions
       ...DownloadableProductOptions
       ...BundleProductOptions
+      small_image {
+        disabled
+        label
+        position
+        url
+        __typename
+      }
     }
   }
   # Workaround for https://github.com/magento/magento2/issues/32427

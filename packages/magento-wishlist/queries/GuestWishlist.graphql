@@ -1,13 +1,27 @@
 query GuestWishlist {
-  guestWishlist @client {
-    __typename
-    items {
-      __typename
-      sku
-      url_key
-      selected_options
-      selected_options_labels
-      quantity
+  customer @client {
+    wishlists {
+      items_v2 {
+        items {
+          id
+          __typename
+          ...WishlistItem
+          ... on ConfigurableWishlistItem {
+            configurable_options {
+              configurable_product_option_uid
+              configurable_product_option_value_uid
+              option_label
+              value_label
+            }
+          }
+          product {
+            __typename
+            uid
+            sku
+            ...ProductListItem
+          }
+        }
+      }
     }
   }
 }
