@@ -16,7 +16,7 @@ export const productListRenderer: ProductListItemRenderer = {
         {...props}
         aspectRatio={[1, 1]}
         bottomLeft={<ProductReviewSummary {...props} />}
-        topRight={<ProductWishlistChip {...props} />}
+        topRight={<ProductWishlistChip product={props} {...props} />}
         bottomRight={<AddProductsToCartFab sku={sku} />}
       />
     )
@@ -32,7 +32,7 @@ export const productListRenderer: ProductListItemRenderer = {
         bottomRight: [],
       }}
       bottomLeft={<ProductReviewSummary {...props} />}
-      topRight={<ProductWishlistChip {...props} />}
+      topRight={<ProductWishlistChip product={props} {...props} />}
     />
   ),
   BundleProduct: (props) => (
@@ -40,7 +40,7 @@ export const productListRenderer: ProductListItemRenderer = {
       {...props}
       aspectRatio={[1, 1]}
       bottomLeft={<ProductReviewSummary {...props} />}
-      topRight={<ProductWishlistChip {...props} />}
+      topRight={<ProductWishlistChip product={props} {...props} />}
     />
   ),
   VirtualProduct: (props) => {
@@ -50,7 +50,7 @@ export const productListRenderer: ProductListItemRenderer = {
         {...props}
         aspectRatio={[1, 1]}
         bottomLeft={<ProductReviewSummary {...props} />}
-        topRight={<ProductWishlistChip {...props} />}
+        topRight={<ProductWishlistChip product={props} {...props} />}
         bottomRight={<AddProductsToCartFab sku={sku} />}
       />
     )
@@ -60,7 +60,7 @@ export const productListRenderer: ProductListItemRenderer = {
       {...props}
       aspectRatio={[1, 1]}
       bottomLeft={<ProductReviewSummary {...props} />}
-      topRight={<ProductWishlistChip {...props} />}
+      topRight={<ProductWishlistChip product={props} {...props} />}
     />
   ),
   GroupedProduct: (props) => (
@@ -68,7 +68,7 @@ export const productListRenderer: ProductListItemRenderer = {
       {...props}
       aspectRatio={[1, 1]}
       bottomLeft={<ProductReviewSummary {...props} />}
-      topRight={<ProductWishlistChip {...props} />}
+      topRight={<ProductWishlistChip product={props} {...props} />}
     />
   ),
   // // eslint-disable-next-line @typescript-eslint/ban-ts-comment
