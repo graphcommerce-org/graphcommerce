@@ -10,7 +10,6 @@ import { useWishlistItems } from '../hooks'
 
 export const component = 'AddProductsToCartForm'
 export const exported = '@graphcommerce/magento-product'
-// export const ifConfig: IfConfig = 'demoMode'
 
 function WishlistUrlHandler() {
   const { setValue } = useFormAddProductsToCart()
@@ -32,20 +31,14 @@ function WishlistUrlHandler() {
     }
     if (!isInitialLoad) return
     // Find wishlistItem based on ID
-    const wishlistItem = wishlistItems?.find((item, i) =>
-      loggedIn
-        ? item?.id === router.query.wishlistItemId
-        : i === Number(router.query.wishlistItemId),
-    )
+    const wishlistItem = wishlistItems?.find((item) => item?.id === router.query.wishlistItemId)
     // Get the configurable options out of the wishlistItem
     const wishlistItemOptions: InputMaybe<InputMaybe<string>[]> =
-      ((loggedIn
-        ? wishlistItem?.__typename === 'ConfigurableWishlistItem'
-        : wishlistItem?.__typename === 'ConfigurableProduct') &&
-        wishlistItem?.configurable_options?.map(
-          (option) => option?.configurable_product_option_value_uid || '',
-        )) ||
-      []
+      wishlistItem?.__typename === 'ConfigurableWishlistItem'
+        ? wishlistItem?.configurable_options?.map(
+            (option) => option?.configurable_product_option_value_uid || '',
+          ) || []
+        : []
 
     setValue(`cartItems.0.selected_options`, wishlistItemOptions)
     setWishlistItemId(router.query.wishlistItemId as string)
