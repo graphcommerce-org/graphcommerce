@@ -75,5 +75,7 @@
     "@graphcommerce/prettier-config-pwa": "7.0.1",
     "@graphcommerce/typescript-config-pwa": "7.0.1"
   },
-  "changesets": []
+  "changesets": [
+    "twelve-deers-begin"
+  ]
 }
