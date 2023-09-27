@@ -20,8 +20,7 @@ export type WishlistItemProps = WishlistItemProductFragment & {
   ConfigurableOptions
 
 export function WishlistItem(props: WishlistItemProps) {
-  const { sku, name, price_range, configurable_options, __typename, wishlistItemId, url_key } =
-    props
+  const { sku, name, price_range, configurable_options, __typename, url_key } = props
 
   const productLink = useProductLink({ url_key, __typename })
 
@@ -66,7 +65,7 @@ export function WishlistItem(props: WishlistItemProps) {
             variant='text'
             size='medium'
             sx={{ width: '100px' }}
-            href={`${productLink}?wishlistItemId=${wishlistItemId}`}
+            href={productLink}
           >
             <Trans id='Configure' />
           </Button>
