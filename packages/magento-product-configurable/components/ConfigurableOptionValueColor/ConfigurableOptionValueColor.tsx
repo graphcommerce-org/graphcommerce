@@ -7,7 +7,7 @@ export type ConfigurableOptionValueColorProps =
   ActionCardItemRenderProps<ConfigurableOptionValueColorFragment>
 
 export function ConfigurableOptionValueColor(props: ConfigurableOptionValueColorProps) {
-  const { swatch_data, store_label, size = 'large' } = props
+  const { selected, value, onReset, onClick, swatch_data, store_label, size = 'large' } = props
 
   if (swatch_data?.__typename !== 'ColorSwatchData')
     throw Error(`ConfigurableOptionValueColor can not render a ${swatch_data?.__typename}`)
@@ -24,6 +24,18 @@ export function ConfigurableOptionValueColor(props: ConfigurableOptionValueColor
             borderRadius: '50%',
           }}
         />
+      }
+      selected={selected}
+      value={value}
+      onClick={
+        onClick &&
+        ((e) => {
+          if (selected) {
+            onReset(e)
+          } else {
+            onClick(e, value)
+          }
+        })
       }
       title={store_label}
       size={size}

@@ -1,6 +1,8 @@
 import { Image } from '@graphcommerce/image'
 import { ActionCardItemRenderProps, ActionCard, responsiveVal } from '@graphcommerce/next-ui'
 import { ConfigurableOptionValueImageFragment } from './ConfigurableOptionValueImage.gql'
+import { Box, Button } from '@mui/material'
+import { Trans } from '@lingui/react'
 
 export type ConfigurableOptionValueImageProps =
   ActionCardItemRenderProps<ConfigurableOptionValueImageFragment>
@@ -18,6 +20,10 @@ export function ConfigurableOptionValueImage(props: ConfigurableOptionValueImage
     uid,
     use_default_value,
     size = 'large',
+    selected,
+    onClick,
+    onReset,
+    value,
     ...actionCardProps
   } = props
 
@@ -40,5 +46,29 @@ export function ConfigurableOptionValueImage(props: ConfigurableOptionValueImage
     />
   )
 
-  return <ActionCard {...actionCardProps} image={image} title={store_label} size={size} />
+  return (
+    <ActionCard
+      {...actionCardProps}
+      image={image}
+      title={store_label}
+      selected={selected}
+      value={value}
+      onClick={
+        onClick &&
+        ((e) => {
+          if (selected) {
+            onReset(e)
+          } else {
+            onClick(e, value)
+          }
+        })
+      }
+      reset={
+        <Button variant='inline' color='secondary' onClick={onReset} disableRipple>
+          <Trans id='Change' />
+        </Button>
+      }
+      size={size}
+    />
+  )
 }
