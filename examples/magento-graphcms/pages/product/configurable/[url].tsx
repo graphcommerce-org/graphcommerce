@@ -108,7 +108,9 @@ function ProductConfigurable(props: Props) {
                 </Link>
               ),
             }}
-            additionalButtons={<ProductWishlistChipDetailConfigurable {...product} />}
+            additionalButtons={
+              <ProductWishlistChipDetailConfigurable product={product} {...product} />
+            }
           >
             <ProductSidebarDelivery />
           </ConfigurableProductAddToCart>

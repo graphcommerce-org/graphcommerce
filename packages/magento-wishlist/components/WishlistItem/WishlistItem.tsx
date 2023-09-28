@@ -16,8 +16,7 @@ type OptionalProductWishlistParent = {
 export type WishlistItemProps = WishlistItemProductFragment & {
   sx?: SxProps<Theme>
   children?: React.ReactNode
-} & OptionalProductWishlistParent &
-  ConfigurableOptions
+} & OptionalProductWishlistParent
 
 export function WishlistItem(props: WishlistItemProps) {
   const { sku, name, price_range, configurable_options, __typename, url_key } = props
@@ -32,10 +31,10 @@ export function WishlistItem(props: WishlistItemProps) {
   }).data?.products?.items?.[0]
 
   const selectedOptions = configurable_options
-    ?.map((option) => option.configurable_product_option_value_uid)
+    ?.map((option) => option?.configurable_product_option_value_uid)
     .filter(nonNullable)
 
-  const labels = configurable_options?.map((option) => option.value_label)
+  const labels = configurable_options?.map((option) => option?.value_label)
 
   // Check if Configurable is not completed, if not completed show configure button instead of add to cart.
   const isConfigurableUncompleted =
@@ -43,7 +42,7 @@ export function WishlistItem(props: WishlistItemProps) {
       product?.configurable_options?.length !== configurable_options?.length) ||
     configurable_options?.some(
       (option) =>
-        option.configurable_product_option_value_uid === null ||
+        option?.configurable_product_option_value_uid === null ||
         option.configurable_product_option_value_uid === undefined,
     )
 

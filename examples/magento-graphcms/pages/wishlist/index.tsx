@@ -38,7 +38,7 @@ function WishlistPage() {
       </LayoutOverlayHeader>
 
       <WaitForQueries
-        waitFor={[wishlistItemsData]}
+        waitFor={[!!wishlistItemsData]}
         fallback={
           <Container maxWidth='md'>
             <FullPageMessage

@@ -161,8 +161,6 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
   let type: WishlistTypeName = 'ConfigurableWishlistItem'
   if (product.__typename === 'BundleProduct') {
     type = 'BundleWishlistItem'
-  } else if (product.__typename === 'ConfigurableProduct') {
-    type = 'ConfigurableWishlistItem'
   } else if (product.__typename === 'DownloadableProduct') {
     type = 'DownloadableWishlistItem'
   } else if (product.__typename === 'GroupedProduct') {

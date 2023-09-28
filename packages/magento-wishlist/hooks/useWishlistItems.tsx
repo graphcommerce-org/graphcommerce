@@ -4,30 +4,26 @@ import {
   GetWishlistProductsDocument,
   GetWishlistProductsQuery,
 } from '../queries/GetWishlistProducts.gql'
-import { GuestWishlistDocument } from '../queries/GuestWishlist.gql'
+import { GuestWishlistDocument, GuestWishlistQuery } from '../queries/GuestWishlist.gql'
+import { GuestWishlist } from '@graphcommerce/graphql-mesh'
 
-export type ConfigurableOptions =
-  | {
-      configurable_options?:
-        | {
-            configurable_product_option_uid: string
-            configurable_product_option_value_uid: string
-            option_label: string
-            value_label: string
-          }[]
-        | null
-        | undefined
-    }
-  | null
-  | undefined
-export type WishListItem =
-  | NonNullable<
-      NonNullable<
-        NonNullable<NonNullable<GetWishlistProductsQuery['customer']>['wishlists'][0]>['items_v2']
-      >['items']
-    >[0]
-  | undefined
-  | null
+export type ConfigurableOptions = {
+  configurable_options?:
+    | ({
+        configurable_product_option_uid: string
+        configurable_product_option_value_uid: string
+        option_label: string
+        value_label: string
+      } | null)[]
+    | undefined
+    | null
+}
+
+export type WishListItem = NonNullable<
+  NonNullable<
+    NonNullable<NonNullable<GuestWishlistQuery['customer']>['wishlists'][0]>['items_v2']
+  >['items']
+>[0]
 
 export type WishListData = WishListItem[] | undefined | null
 
