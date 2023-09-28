@@ -1,23 +1,7 @@
 import { useQuery } from '@graphcommerce/graphql'
 import { useCustomerSession, useGuestQuery } from '@graphcommerce/magento-customer'
-import {
-  GetWishlistProductsDocument,
-  GetWishlistProductsQuery,
-} from '../queries/GetWishlistProducts.gql'
+import { GetWishlistProductsDocument } from '../queries/GetWishlistProducts.gql'
 import { GuestWishlistDocument, GuestWishlistQuery } from '../queries/GuestWishlist.gql'
-import { GuestWishlist } from '@graphcommerce/graphql-mesh'
-
-export type ConfigurableOptions = {
-  configurable_options?:
-    | ({
-        configurable_product_option_uid: string
-        configurable_product_option_value_uid: string
-        option_label: string
-        value_label: string
-      } | null)[]
-    | undefined
-    | null
-}
 
 export type WishListItem = NonNullable<
   NonNullable<

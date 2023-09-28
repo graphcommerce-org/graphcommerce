@@ -1,14 +1,15 @@
 import { TypeRenderer } from '@graphcommerce/next-ui'
+import { WishListItem } from '../../hooks'
 import { WishlistItem } from '../WishlistItem/WishlistItem'
-import { WishlistItemProductFragment } from '../WishlistItem/WishlistItemProduct.gql'
+import { WishlistItemConfigurable } from '../WishlistItem/WishlistItemConfigurable'
 
-export type WishlistItemRenderer = TypeRenderer<WishlistItemProductFragment>
+export type WishlistItemRenderer = TypeRenderer<NonNullable<WishListItem>>
 
 export const renderer: WishlistItemRenderer = {
-  BundleProduct: WishlistItem,
-  ConfigurableProduct: WishlistItem,
-  DownloadableProduct: WishlistItem,
-  GroupedProduct: WishlistItem,
-  SimpleProduct: WishlistItem,
-  VirtualProduct: WishlistItem,
+  BundleWishlistItem: WishlistItem,
+  ConfigurableWishlistItem: WishlistItemConfigurable,
+  DownloadableWishlistItem: WishlistItem,
+  GroupedProductWishlistItem: WishlistItem,
+  SimpleWishlistItem: WishlistItem,
+  VirtualWishlistItem: WishlistItem,
 }

@@ -6,6 +6,7 @@ import {
   useWishlistItems,
   WishlistItem,
   WishlistItemBase,
+  WishlistItemConfigurable,
 } from '@graphcommerce/magento-wishlist'
 import {
   GetStaticProps,
@@ -73,11 +74,11 @@ function WishlistPage() {
               <Container maxWidth='md'>
                 <WishlistItems
                   renderers={{
-                    BundleProduct: WishlistItemBase,
-                    ConfigurableProduct: WishlistItem,
-                    DownloadableProduct: WishlistItemBase,
-                    SimpleProduct: WishlistItem,
-                    VirtualProduct: WishlistItem,
+                    BundleWishlistItem: WishlistItemBase,
+                    ConfigurableWishlistItem: WishlistItemConfigurable,
+                    DownloadableWishlistItem: WishlistItemBase,
+                    SimpleWishlistItem: WishlistItem,
+                    VirtualWishlistItem: WishlistItem,
                     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                     // @ts-ignore GiftCardProduct is only available in Commerce
                     GiftCardProduct: WishlistItemBase,

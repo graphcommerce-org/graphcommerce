@@ -16,10 +16,9 @@ import IconButton from '@mui/material/IconButton'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import { useState } from 'react'
-import { useWishlistItems } from '../../hooks'
+import { WishListItem, useWishlistItems } from '../../hooks'
 import { GuestWishlistDocument } from '../../queries/GuestWishlist.gql'
 import { RemoveProductFromWishlistDocument } from '../../queries/RemoveProductFromWishlist.gql'
-import { WishlistItemProductFragment } from './WishlistItemProduct.gql'
 
 const rowImageSize = responsiveVal(70, 125)
 
@@ -27,7 +26,7 @@ type OptionalProductWishlistParent = {
   wishlistItemId?: string
 }
 
-export type WishlistItemBaseProps = WishlistItemProductFragment & {
+export type WishlistItemBaseProps = WishListItem & {
   sx?: SxProps<Theme>
   children?: React.ReactNode
   isConfigurableUncompleted?: boolean
@@ -51,18 +50,17 @@ const { classes } = extendableComponent<OwnerState, typeof compName, typeof part
 
 export function WishlistItemBase(props: WishlistItemBaseProps) {
   const {
-    name,
-    url_key,
-    price_range,
-    small_image,
-    __typename: productType,
+    product,
     children,
     sx = [],
-    wishlistItemId,
+    id: wishlistItemId,
     isConfigurableUncompleted = false,
   } = props
 
-  const productLink = useProductLink({ url_key, __typename: productType })
+  const productLink = useProductLink({
+    url_key: product?.url_key,
+    __typename: product?.__typename ?? 'SimpleProduct',
+  })
   const { cache } = useApolloClient()
 
   const { loggedIn } = useCustomerSession()
@@ -88,7 +86,7 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
           const wishlistItemsInSession = wishlist.data || []
 
           const item = wishlistItemsInSession.find(
-            (element) => element?.product?.url_key === url_key,
+            (element) => element?.product?.url_key === product?.url_key,
           )
           if (item?.id) {
             itemIdToDelete = item.id
@@ -106,6 +104,7 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
         const filteredItems = oldItems?.filter((oldItem) => oldItem?.id !== wishlistItemId)
 
         cache.writeQuery({
+          id: 'GuestWishlist',
           query: GuestWishlistDocument,
           data: {
             customer: {
@@ -198,11 +197,11 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
           className={classes.productLink}
           sx={{ display: 'block', width: '100%', overflow: 'hidden' }}
         >
-          {small_image?.url && (
+          {product?.small_image?.url && (
             <Image
-              src={small_image.url ?? ''}
+              src={product?.small_image.url ?? ''}
               layout='fill'
-              alt={small_image.label ?? name ?? ''}
+              alt={product?.small_image.label ?? product?.name ?? ''}
               sizes={responsiveVal(70, 125)}
               className={classes.image}
               sx={(theme) => ({
@@ -223,8 +222,8 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
       <Link
         href={
           isConfigurableUncompleted
-            ? `${productLink}?wishlistItemId=${wishlistItemId}`
-            : productLink
+            ? productLink
+            : `${productLink}?wishlistItemId=${wishlistItemId}`
         }
         variant='body1'
         className={classes.itemName}
@@ -242,7 +241,7 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
           },
         })}
       >
-        {name}
+        {product?.name}
       </Link>
 
       <Typography
@@ -254,8 +253,8 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
           ...(Array.isArray(sx) ? sx : [sx]),
         ]}
       >
-        {price_range.minimum_price.regular_price.value !==
-          price_range.minimum_price.final_price.value && (
+        {product?.price_range.minimum_price.regular_price.value !==
+          product?.price_range.minimum_price.final_price.value && (
           <Box
             component='span'
             sx={{
@@ -265,10 +264,10 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
             }}
             className={classes.discountPrice}
           >
-            <Money {...price_range.minimum_price.regular_price} />
+            <Money {...product?.price_range.minimum_price.regular_price} />
           </Box>
         )}
-        <Money {...price_range.minimum_price.final_price} />
+        <Money {...product?.price_range.minimum_price.final_price} />
       </Typography>
 
       <IconButton
