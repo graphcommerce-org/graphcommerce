@@ -72,7 +72,7 @@ function WishlistPage() {
               </LayoutTitle>
               <Container maxWidth='md'>
                 <WishlistItems
-                  renderer={{
+                  renderers={{
                     BundleProduct: WishlistItemBase,
                     ConfigurableProduct: WishlistItem,
                     DownloadableProduct: WishlistItemBase,

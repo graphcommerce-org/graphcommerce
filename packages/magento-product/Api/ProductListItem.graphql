@@ -11,4 +11,8 @@ fragment ProductListItem on ProductInterface @injectable {
       ...ProductListPrice
     }
   }
+
+  ... on ConfigurableProduct {
+    ...ConfigurableOptions
+  }
 }
