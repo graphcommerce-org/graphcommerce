@@ -1,36 +1,25 @@
-import { RenderType, TypeRenderer } from '@graphcommerce/next-ui'
-import { Box } from '@mui/material'
-import { WishListItem, useWishlistItems } from '../../hooks'
-import { WishlistItemsFragment } from './WishlistItems.gql'
+import { AddProductsToCartForm } from '@graphcommerce/magento-product'
+import { RenderType, nonNullable } from '@graphcommerce/next-ui'
+import { useWishlistItems } from '../../hooks'
+import { WishlistItemRenderer } from './WishlistItemRenderer'
 
-// export type WishlistItemRenderer = TypeRenderer<
-//   NonNullable<NonNullable<NonNullable<NonNullable<WishlistItemsFragment['items_v2']>['items']>[0]>>
-// >
-
-export type WishlistProps = { renderer: WishListItem[] }
+export type WishlistProps = {
+  renderers: WishlistItemRenderer
+}
 
 export function WishlistItems(props: WishlistProps) {
-  const { renderer } = props
+  const { renderers } = props
   const wishlist = useWishlistItems()
   return (
-    <>
-      {wishlist.data?.map((item) => {
-        if (!item?.id) return null
-        const productData = item?.product
-        const configurable_options =
-          item.__typename === 'ConfigurableWishlistItem' && item.configurable_options
-
-        return (
-          <Box key={item?.id}>
-            <RenderType
-              renderer={renderer}
-              wishlistItemId={item.id}
-              {...productData}
-              configurable_options={configurable_options}
-            />
-          </Box>
-        )
-      })}
-    </>
+    <AddProductsToCartForm>
+      {wishlist.data?.filter(nonNullable).map((item) => (
+        <RenderType
+          __typename={item.product?.__typename ?? 'SimpleProduct'}
+          renderer={renderers}
+          key={item.id}
+          product={item.product}
+        />
+      ))}
+    </AddProductsToCartForm>
   )
 }
