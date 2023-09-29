@@ -27,8 +27,10 @@ export function defaultConfigurableOptionsSelection<Q extends BaseQuery = BaseQu
   client: ApolloClient<object>,
   query: Q,
 ): Q & Pick<AddProductsToCartFormProps, 'defaultValues'> {
-  if (!import.meta.graphCommerce.configurableVariantForSimple)
+  if (!import.meta.graphCommerce.configurableVariantForSimple) {
+    console.log('insta return')
     return { ...query, defaultValues: {} }
+  }
 
   const simple = query?.products?.items?.find((p) => p?.url_key === urlKey)
   const configurable = findByTypename(query?.products?.items, 'ConfigurableProduct')
@@ -69,7 +71,7 @@ export function defaultConfigurableOptionsSelection<Q extends BaseQuery = BaseQu
 
   client.cache.writeQuery({
     query: GetConfigurableOptionsSelectionDocument,
-    variables: { urlKey: configurable.url_key, selectedOptions },
+    variables: { urlKey: configurable.url_key, selectedOptions, reviewPage: 1, reviewPageSize: 3 },
     data: {
       products: {
         ...query?.products,
@@ -89,6 +91,12 @@ export function defaultConfigurableOptionsSelection<Q extends BaseQuery = BaseQu
                   option_value_uids,
                 }),
               ),
+              configurable_options: configurable.configurable_options?.map(o =>  ({
+                attribute_code: o?.attribute_code,
+                label: o?.label,
+                uid: o?.uid,
+                values: o?.values
+              })
             },
           },
         ],

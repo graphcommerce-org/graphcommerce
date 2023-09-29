@@ -13,7 +13,7 @@ import { useWatch } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Box, SxProps, Theme } from '@mui/material'
 import { ConfigurableOptionsFragment } from '../../graphql/ConfigurableOptions.gql'
-import { useConfigurableOptionsForSelection } from '../../hooks'
+import { UseConfigurableOptionsSelection, useConfigurableOptionsForSelection } from '../../hooks'
 import {
   ConfigurableOptionValue,
   ConfigurableOptionValueFragment,
@@ -23,13 +23,11 @@ type Props = NonNullable<
   NonNullable<ConfigurableOptionsFragment['configurable_options']>[number]
 > & {
   optionIndex: number
-  index: number
   optionEndLabels?: Record<string, React.ReactNode>
   sx?: SxProps<Theme>
-  url_key?: string | null | undefined
   attribute_code: string
   render: typeof ConfigurableOptionValue
-}
+} & UseConfigurableOptionsSelection
 
 export function ConfigurableProductOption(props: Props) {
   const {
