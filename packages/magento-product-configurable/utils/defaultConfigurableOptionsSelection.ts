@@ -1,6 +1,6 @@
 import { ApolloClient } from '@graphcommerce/graphql'
 import { AddProductsToCartFormProps } from '@graphcommerce/magento-product'
-import { findByTypename, nonNullable } from '@graphcommerce/next-ui'
+import { filterNonNullableKeys, findByTypename, nonNullable } from '@graphcommerce/next-ui'
 import { GetConfigurableOptionsSelectionDocument } from '../graphql'
 import { DefaultConfigurableOptionsSelectionFragment } from './DefaultConfigurableOptionsSelection.gql'
 
@@ -43,6 +43,7 @@ export function defaultConfigurableOptionsSelection<Q extends BaseQuery = BaseQu
   const attributes = configurable?.variants?.find((v) => v?.product?.uid === simple?.uid)
     ?.attributes
 
+
   const selectedOptions = (attributes ?? []).filter(nonNullable).map((a) => a.uid)
   if (!selectedOptions.length) return { ...query, products: { items: [simple] }, defaultValues: {} }
 
@@ -82,8 +83,13 @@ export function defaultConfigurableOptionsSelection<Q extends BaseQuery = BaseQu
             uid: configurable.uid,
             configurable_product_options_selection: {
               __typename: 'ConfigurableProductOptionsSelection',
-              media_gallery: simple.media_gallery,
-              variant: simple,
+              configurable_options: filterNonNullableKeys(configurable.configurable_options, [
+                'attribute_code',
+                'label',
+              ]).map((o) => ({
+                ...o,
+                values: filterNonNullableKeys(o.values, ['uid', 'label']),
+              })),
               options_available_for_selection: optionsAvailableForSelection?.map(
                 ({ attribute_code, option_value_uids }) => ({
                   __typename: 'ConfigurableOptionAvailableForSelection' as const,
@@ -91,12 +97,8 @@ export function defaultConfigurableOptionsSelection<Q extends BaseQuery = BaseQu
                   option_value_uids,
                 }),
               ),
-              configurable_options: configurable.configurable_options?.map(o =>  ({
-                attribute_code: o?.attribute_code,
-                label: o?.label,
-                uid: o?.uid,
-                values: o?.values
-              })
+              media_gallery: simple.media_gallery,
+              variant: simple,
             },
           },
         ],

@@ -16,7 +16,7 @@ export function useConfigurableOptionsForSelection(variables: UseConfigurableOpt
 
   const selection = useQuery(GetConfigurableOptionsSelectionDocument, {
     variables: { urlKey: url_key ?? '', selectedOptions },
-    skip: !url_key,
+    skip: !url_key || !selectedOptions.length,
   })
 
   const configured = findByTypename(
