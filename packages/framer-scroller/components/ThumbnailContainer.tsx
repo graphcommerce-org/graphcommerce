@@ -20,6 +20,7 @@ export function ThumbnailContainer(props: ThumbnailContainerProps) {
     <MotionBox
       ref={containerRef}
       onPan={onPan}
+      layout
       sx={[
         {
           padding: '4px',

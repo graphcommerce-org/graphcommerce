@@ -282,6 +282,7 @@ export type GraphCommerceConfig = {
    * If false, the robots.txt file will be set to disallow all.
    */
   robotsAllow?: InputMaybe<Scalars['Boolean']['input']>;
+  sidebarGallery?: InputMaybe<SidebarGalleryConfig>;
   /** All storefront configuration for the project */
   storefront: Array<GraphCommerceStorefrontConfig>;
   /** Hide the wishlist functionality for guests. */
@@ -384,6 +385,18 @@ export type ProductFiltersLayout =
   | 'DEFAULT'
   | 'SIDEBAR';
 
+/** SidebarGalleryConfig will contain all configuration values for the Sidebar Gallery component. */
+export type SidebarGalleryConfig = {
+  /** This variable will enable or disable the sidebar gallery thumbnails. */
+  thumbnails?: InputMaybe<Scalars['Boolean']['input']>;
+  /** This variable will allocate the position of the sidebar gallery thumbnails. */
+  thumbnailsPosition?: InputMaybe<SidebarGalleryThumbnailPosition>;
+};
+
+/** Enumeration of all possible positions for the sidebar gallery thumbnails. */
+export type SidebarGalleryThumbnailPosition =
+  | 'BOTTOM';
+
 
 type Properties<T> = Required<{
   [K in keyof T]: z.ZodType<T[K], any, T[K]>;
@@ -398,6 +411,8 @@ export const definedNonNullAnySchema = z.any().refine((v) => isDefinedNonNullAny
 export const CompareVariantSchema = z.enum(['CHECKBOX', 'ICON']);
 
 export const ProductFiltersLayoutSchema = z.enum(['DEFAULT', 'SIDEBAR']);
+
+export const SidebarGalleryThumbnailPositionSchema = z.enum(['BOTTOM']);
 
 export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerceConfig>> {
   return z.object({
@@ -427,6 +442,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     productFiltersPro: z.boolean().nullish(),
     productRoute: z.string().nullish(),
     robotsAllow: z.boolean().nullish(),
+    sidebarGallery: SidebarGalleryConfigSchema().nullish(),
     storefront: z.array(GraphCommerceStorefrontConfigSchema()),
     wishlistHideForGuests: z.boolean().nullish(),
     wishlistIgnoreProductWishlistStatus: z.boolean().nullish(),
@@ -463,5 +479,12 @@ export function MagentoConfigurableVariantValuesSchema(): z.ZodObject<Properties
     content: z.boolean().nullish(),
     gallery: z.boolean().nullish(),
     url: z.boolean().nullish()
+  })
+}
+
+export function SidebarGalleryConfigSchema(): z.ZodObject<Properties<SidebarGalleryConfig>> {
+  return z.object({
+    thumbnails: z.boolean().nullish(),
+    thumbnailsPosition: SidebarGalleryThumbnailPositionSchema.nullish()
   })
 }

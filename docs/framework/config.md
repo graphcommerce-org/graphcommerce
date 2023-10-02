@@ -271,6 +271,8 @@ Example: '/product/'
 Allow the site to be indexed by search engines.
 If false, the robots.txt file will be set to disallow all.
 
+#### `sidebarGallery: [SidebarGalleryConfig](#SidebarGalleryConfig)`
+
 #### `wishlistHideForGuests: Boolean`
 
 Hide the wishlist functionality for guests.
@@ -389,3 +391,15 @@ the selected variant differ from the currently displayed images.
 When a variant is selected the URL of the product will be changed in the address bar.
 
 This only happens when the actual variant is can be accessed by the URL.
+
+### SidebarGalleryConfig
+
+SidebarGalleryConfig will contain all configuration values for the Sidebar Gallery component.
+
+#### `thumbnails: Boolean`
+
+This variable will enable or disable the sidebar gallery thumbnails.
+
+#### `thumbnailsPosition: [SidebarGalleryThumbnailPosition](#SidebarGalleryThumbnailPosition)`
+
+This variable will allocate the position of the sidebar gallery thumbnails.

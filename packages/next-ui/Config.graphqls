@@ -1,0 +1,24 @@
+extend input GraphCommerceConfig {
+  sidebarGallery: SidebarGalleryConfig
+}
+
+"""
+Enumeration of all possible positions for the sidebar gallery thumbnails.
+"""
+enum SidebarGalleryThumbnailPosition {
+  BOTTOM
+}
+
+"""
+SidebarGalleryConfig will contain all configuration values for the Sidebar Gallery component.
+"""
+input SidebarGalleryConfig {
+  """
+  This variable will enable or disable the sidebar gallery thumbnails.
+  """
+  thumbnails: Boolean
+  """
+  This variable will allocate the position of the sidebar gallery thumbnails.
+  """
+  thumbnailsPosition: SidebarGalleryThumbnailPosition
+}
