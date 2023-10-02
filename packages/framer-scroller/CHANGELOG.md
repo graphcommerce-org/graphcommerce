@@ -1,5 +1,75 @@
 # Change Log
 
+## 7.0.1
+
+## 7.0.1-canary.15
+
+## 7.0.1-canary.14
+
+## 7.0.1-canary.13
+
+## 7.0.1-canary.12
+
+## 7.0.1-canary.11
+
+## 7.0.1-canary.10
+
+## 7.0.1-canary.9
+
+## 7.0.1-canary.8
+
+## 7.0.1-canary.7
+
+## 7.0.1-canary.6
+
+## 7.0.1-canary.5
+
+## 7.0.1-canary.4
+
+## 7.0.1-canary.3
+
+## 7.0.1-canary.2
+
+## 7.0.1-canary.1
+
+## 7.0.1-canary.0
+
+## 7.0.0
+
+### Minor Changes
+
+- [#1996](https://github.com/graphcommerce-org/graphcommerce/pull/1996) [`3ed66a849`](https://github.com/graphcommerce-org/graphcommerce/commit/3ed66a849430d6ad1c46d20828eb988283da0c4a) - SidebarGallery now has a disableZoom prop to disable all zoom functionality ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+- [#1937](https://github.com/graphcommerce-org/graphcommerce/pull/1937) [`a98e23e3a`](https://github.com/graphcommerce-org/graphcommerce/commit/a98e23e3a250157b9d3756b656f1a4c3c52b0ec0) - Assign correct scroll-snap-type type, to prevent error on firefox ([@mikekeehnen](https://github.com/mikekeehnen))
+
+### Patch Changes
+
+- [#1993](https://github.com/graphcommerce-org/graphcommerce/pull/1993) [`f9bd75108`](https://github.com/graphcommerce-org/graphcommerce/commit/f9bd75108ecef583ecd32e701c10d70537cb8a89) - Scrollers would not working properly in Firefox, it would drag elements instead of the scroller. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+- [#2031](https://github.com/graphcommerce-org/graphcommerce/pull/2031) [`4d8fc9e99`](https://github.com/graphcommerce-org/graphcommerce/commit/4d8fc9e998fc9361282833316ec9564da0644ed6) - Eslint fixes and suppress accepted warnings ([@paales](https://github.com/paales))
+
+- [#1954](https://github.com/graphcommerce-org/graphcommerce/pull/1954) [`ec82fe49c`](https://github.com/graphcommerce-org/graphcommerce/commit/ec82fe49cd9aa0865b6c21eb405f05d8596748f6) - Prevent overlays from auto-closing on iOS 14 ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#1998](https://github.com/graphcommerce-org/graphcommerce/pull/1998) [`a788baaeb`](https://github.com/graphcommerce-org/graphcommerce/commit/a788baaeb9646c5a30b55998697d38a6093b6c44) - Added option to useScrollTo to allow/disallow stopping the scroll animation on user scroll interaction ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 6.2.0-canary.98
+
+## 6.2.0-canary.97
+
+## 6.2.0-canary.96
+
+## 6.2.0-canary.95
+
+## 6.2.0-canary.94
+
+## 6.2.0-canary.93
+
+## 6.2.0-canary.92
+
+## 6.2.0-canary.91
+
+## 6.2.0-canary.90
+
 ## 6.2.0-canary.89
 
 ### Patch Changes

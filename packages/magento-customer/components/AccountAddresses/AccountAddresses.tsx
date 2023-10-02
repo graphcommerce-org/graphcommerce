@@ -24,7 +24,11 @@ export function AccountAddresses(props: AccountAddressesProps) {
 
   if (loading) {
     return (
-      <SectionContainer labelLeft='Shipping addresses' sx={sx} className={classes.root}>
+      <SectionContainer
+        labelLeft={<Trans id='Shipping addresses' />}
+        sx={sx}
+        className={classes.root}
+      >
         <Box
           className={classes.addresses}
           sx={(theme) => ({ '& > div': { borderBottom: `1px solid ${theme.palette.divider}` } })}
@@ -66,7 +70,7 @@ export function AccountAddresses(props: AccountAddressesProps) {
       )}
 
       {addresses && addresses.length >= 1 && (
-        <SectionContainer labelLeft='Shipping addresses'>
+        <SectionContainer labelLeft={<Trans id='Shipping addresses' />}>
           <Box
             className={classes.addresses}
             sx={(theme) => ({ '& > div': { borderBottom: `1px solid ${theme.palette.divider}` } })}

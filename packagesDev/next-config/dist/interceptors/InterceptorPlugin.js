@@ -13,6 +13,7 @@ class InterceptorPlugin {
     constructor(config) {
         this.config = config;
         this.resolveDependency = (0, resolveDependency_1.resolveDependency)();
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const [plugins, errors] = (0, findPlugins_1.findPlugins)(this.config);
         this.interceptors = (0, generateInterceptors_1.generateInterceptors)(plugins, this.resolveDependency, this.config.debug);
         this.interceptorByDepependency = Object.fromEntries(Object.values(this.interceptors).map((i) => [i.dependency, i]));
@@ -22,6 +23,7 @@ class InterceptorPlugin {
         const logger = compiler.getInfrastructureLogger('InterceptorPlugin');
         // After the compilation has succeeded we watch all possible plugin locations.
         compiler.hooks.afterCompile.tap('InterceptorPlugin', (compilation) => {
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             const [plugins, errors] = (0, findPlugins_1.findPlugins)(this.config);
             plugins.forEach((p) => {
                 const absoluteFilePath = `${path_1.default.join(process.cwd(), this.resolveDependency(p.plugin).fromRoot)}.tsx`;

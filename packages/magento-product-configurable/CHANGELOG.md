@@ -1,5 +1,95 @@
 # Change Log
 
+## 7.0.1
+
+### Patch Changes
+
+- [#2052](https://github.com/graphcommerce-org/graphcommerce/pull/2052) [`5b9c1fa81`](https://github.com/graphcommerce-org/graphcommerce/commit/5b9c1fa818c5bc906a64dd47b73276b25d45ef0b) - When configurableVariantForSimple was set to false it wouldn't correctly show the simple product. ([@JoshuaS98](https://github.com/JoshuaS98))
+
+- [#2051](https://github.com/graphcommerce-org/graphcommerce/pull/2051) [`13d54555b`](https://github.com/graphcommerce-org/graphcommerce/commit/13d54555bc5b85a79456610cb066d397d18866eb) - Remove zoom from targetUrl to fix back navigation on zoom ([@mikekeehnen](https://github.com/mikekeehnen))
+
+## 7.0.1-canary.15
+
+## 7.0.1-canary.14
+
+## 7.0.1-canary.13
+
+## 7.0.1-canary.12
+
+## 7.0.1-canary.11
+
+## 7.0.1-canary.10
+
+## 7.0.1-canary.9
+
+## 7.0.1-canary.8
+
+### Patch Changes
+
+- [#2052](https://github.com/graphcommerce-org/graphcommerce/pull/2052) [`5b9c1fa81`](https://github.com/graphcommerce-org/graphcommerce/commit/5b9c1fa818c5bc906a64dd47b73276b25d45ef0b) - When configurableVariantForSimple was set to false it wouldn't correctly show the simple product. ([@JoshuaS98](https://github.com/JoshuaS98))
+
+## 7.0.1-canary.7
+
+## 7.0.1-canary.6
+
+## 7.0.1-canary.5
+
+### Patch Changes
+
+- [#2051](https://github.com/graphcommerce-org/graphcommerce/pull/2051) [`13d54555b`](https://github.com/graphcommerce-org/graphcommerce/commit/13d54555bc5b85a79456610cb066d397d18866eb) - Remove zoom from targetUrl to fix back navigation on zoom ([@mikekeehnen](https://github.com/mikekeehnen))
+
+## 7.0.1-canary.4
+
+## 7.0.1-canary.3
+
+## 7.0.1-canary.2
+
+## 7.0.1-canary.1
+
+## 7.0.1-canary.0
+
+## 7.0.0
+
+### Minor Changes
+
+- [#1978](https://github.com/graphcommerce-org/graphcommerce/pull/1978) [`0c91ac1f7`](https://github.com/graphcommerce-org/graphcommerce/commit/0c91ac1f70f58dec418e945fc4a6a8c6732cc21e) - When a user selects a variant, it will switch the values on the configurable page with the values of the configured variant. Enabling options here will allow switching of those variants. ([@carlocarels90](https://github.com/carlocarels90))
+
+- [#2003](https://github.com/graphcommerce-org/graphcommerce/pull/2003) [`609b384de`](https://github.com/graphcommerce-org/graphcommerce/commit/609b384de8cded7a9dd2f29bd516ded810ab970a) - Created a new version of the cart using ActionCards for each CartItem. Different types of CartItems can have different ActionCards. These ActionCards will be overridden with the use of Plugins. An example can be found in the @graphcommerce/magento-product-configurable package. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+- [#1988](https://github.com/graphcommerce-org/graphcommerce/pull/1988) [`af8e0d176`](https://github.com/graphcommerce-org/graphcommerce/commit/af8e0d176af8197a0c13b9a29b438cb54cc29ce4) - Multi website with multiple duplicates locales support. Use website suffixes like `en-us-website1` and `en-us-website2` as the locale declaration. ([@hnsr](https://github.com/hnsr))
+
+- [#1991](https://github.com/graphcommerce-org/graphcommerce/pull/1991) [`ebce5dae9`](https://github.com/graphcommerce-org/graphcommerce/commit/ebce5dae99fcc28d0dc63abe17e652af528e29a4) - Added an opt-in configuration `configurableVariantForSimple` that allows rendering of a configurable product page on a simple product URL with the options pre-selected. ([@JoshuaS98](https://github.com/JoshuaS98))
+
+### Patch Changes
+
+- [#1940](https://github.com/graphcommerce-org/graphcommerce/pull/1940) [`a766c0d8a`](https://github.com/graphcommerce-org/graphcommerce/commit/a766c0d8a2f166cd324482bb80799341f5252fe0) - Product specifications wouldn't display for simple products ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#1991](https://github.com/graphcommerce-org/graphcommerce/pull/1991) [`ac6678dc5`](https://github.com/graphcommerce-org/graphcommerce/commit/ac6678dc5ed786df18344866bf8a8cb1e34c5457) - Make sure the products and relatedUpsells fields from the ProductPage2 query are merged correctly ([@JoshuaS98](https://github.com/JoshuaS98))
+
+- [#1898](https://github.com/graphcommerce-org/graphcommerce/pull/1898) [`e28af9ea6`](https://github.com/graphcommerce-org/graphcommerce/commit/e28af9ea6c0bf9b904df880b5c2a13a2f580727b) - ConfigurableProduct super attributes that were regular dropdowns would throw an error. ([@paales](https://github.com/paales))
+
+- [#1991](https://github.com/graphcommerce-org/graphcommerce/pull/1991) [`356469bdd`](https://github.com/graphcommerce-org/graphcommerce/commit/356469bdd621572bef1ee216983d12f3c2c4bb56) - Remove the requirement to query attributes on simple for simple products when `configurableVariantForSimple` is enabled and use the `variants` of the configurable product. ([@JoshuaS98](https://github.com/JoshuaS98))
+
+- [#1914](https://github.com/graphcommerce-org/graphcommerce/pull/1914) [`742520b03`](https://github.com/graphcommerce-org/graphcommerce/commit/742520b038b367026ac7e3e364a0147415f17301) - ConfigurableOptionsSelection causes a cache error ([@paales](https://github.com/paales))
+
+## 6.2.0-canary.98
+
+## 6.2.0-canary.97
+
+## 6.2.0-canary.96
+
+## 6.2.0-canary.95
+
+## 6.2.0-canary.94
+
+## 6.2.0-canary.93
+
+## 6.2.0-canary.92
+
+## 6.2.0-canary.91
+
+## 6.2.0-canary.90
+
 ## 6.2.0-canary.89
 
 ## 6.2.0-canary.88

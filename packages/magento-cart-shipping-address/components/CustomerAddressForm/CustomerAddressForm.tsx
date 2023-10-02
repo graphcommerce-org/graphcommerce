@@ -19,6 +19,7 @@ import { GetAddressesDocument } from '../ShippingAddressForm/GetAddresses.gql'
 import { CustomerAddressActionCard } from './CustomerAddressActionCard'
 import { SetCustomerShippingAddressOnCartDocument } from './SetCustomerShippingAddressOnCart.gql'
 import { SetCustomerShippingBillingAddressOnCartDocument } from './SetCustomerShippingBillingAddressOnCart.gql'
+import { i18n } from '@lingui/core'
 
 type CustomerAddressListProps = Pick<UseFormComposeOptions, 'step'> & {
   children?: React.ReactNode
@@ -99,7 +100,7 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
         <ActionCardListForm
           control={control}
           name='customerAddressId'
-          errorMessage='Please select a shipping address'
+          errorMessage={i18n._(/* i18n */ 'Please select a shipping address')}
           collapse
           size='large'
           color='secondary'

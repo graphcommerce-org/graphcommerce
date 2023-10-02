@@ -1,5 +1,69 @@
 # Change Log
 
+## 7.0.1
+
+## 7.0.1-canary.15
+
+## 7.0.1-canary.14
+
+## 7.0.1-canary.13
+
+## 7.0.1-canary.12
+
+## 7.0.1-canary.11
+
+## 7.0.1-canary.10
+
+## 7.0.1-canary.9
+
+## 7.0.1-canary.8
+
+## 7.0.1-canary.7
+
+## 7.0.1-canary.6
+
+## 7.0.1-canary.5
+
+## 7.0.1-canary.4
+
+## 7.0.1-canary.3
+
+## 7.0.1-canary.2
+
+## 7.0.1-canary.1
+
+## 7.0.1-canary.0
+
+## 7.0.0
+
+### Major Changes
+
+- [`e55d8c390`](https://github.com/graphcommerce-org/graphcommerce/commit/e55d8c390d90b4bb7bab11c6a99027ac72bd7e3e) - Created a new sidebar layout system, can be configured with productFiltersLayout in the graphcommerce.config.js ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#1914](https://github.com/graphcommerce-org/graphcommerce/pull/1914) [`4ab34615f`](https://github.com/graphcommerce-org/graphcommerce/commit/4ab34615f9a0425010e0d793f20e4853f85a69e3) - When a GraphQL error was already masked, do not mask the error again. ([@paales](https://github.com/paales))
+
+- [#1968](https://github.com/graphcommerce-org/graphcommerce/pull/1968) [`1d0611abf`](https://github.com/graphcommerce-org/graphcommerce/commit/1d0611abfc002e68e0274713cda31d9e9550bf9c) - prevent ‘SelectedConfigurableOption’ and ‘Customizable’ from being cached. ([@carlocarels90](https://github.com/carlocarels90))
+
+## 6.2.0-canary.98
+
+## 6.2.0-canary.97
+
+## 6.2.0-canary.96
+
+## 6.2.0-canary.95
+
+## 6.2.0-canary.94
+
+## 6.2.0-canary.93
+
+## 6.2.0-canary.92
+
+## 6.2.0-canary.91
+
+## 6.2.0-canary.90
+
 ## 6.2.0-canary.89
 
 ## 6.2.0-canary.88

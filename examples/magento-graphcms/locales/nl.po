@@ -496,6 +496,9 @@ msgstr "U bent niet meer ingelogd, log in om verder te gaan"
 msgid "Please select a payment method"
 msgstr "Selecteer een betaalmethode a.u.b."
 
+msgid "Please select a shipping address"
+msgstr "Selecteer a.u.b. een verzendadres"
+
 msgid "Please select a shipping method"
 msgstr "Selecteer een verzendmethode a.u.b."
 
@@ -585,6 +588,9 @@ msgstr "Verzending ({0} {1})"
 
 msgid "Shipping address"
 msgstr "Verzendadres"
+
+msgid "Shipping addresses"
+msgstr "Verzendadressen"
 
 msgid "Shipping method"
 msgstr "Verzendmethode"

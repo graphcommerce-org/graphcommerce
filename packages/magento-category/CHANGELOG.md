@@ -1,5 +1,79 @@
 # Change Log
 
+## 7.0.1
+
+## 7.0.1-canary.15
+
+## 7.0.1-canary.14
+
+## 7.0.1-canary.13
+
+## 7.0.1-canary.12
+
+## 7.0.1-canary.11
+
+## 7.0.1-canary.10
+
+## 7.0.1-canary.9
+
+## 7.0.1-canary.8
+
+## 7.0.1-canary.7
+
+## 7.0.1-canary.6
+
+## 7.0.1-canary.5
+
+## 7.0.1-canary.4
+
+## 7.0.1-canary.3
+
+## 7.0.1-canary.2
+
+## 7.0.1-canary.1
+
+## 7.0.1-canary.0
+
+## 7.0.0
+
+### Major Changes
+
+- [`e55d8c390`](https://github.com/graphcommerce-org/graphcommerce/commit/e55d8c390d90b4bb7bab11c6a99027ac72bd7e3e) - Created a new sidebar layout system, can be configured with productFiltersLayout in the graphcommerce.config.js ([@paales](https://github.com/paales))
+
+### Minor Changes
+
+- [#1961](https://github.com/graphcommerce-org/graphcommerce/pull/1961) [`4a759c662`](https://github.com/graphcommerce-org/graphcommerce/commit/4a759c66215eaa69edc342b898e05e8f92c3ba9a) - Add Open Graph meta tags to all pages ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#1977](https://github.com/graphcommerce-org/graphcommerce/pull/1977) [`61ff9b6e1`](https://github.com/graphcommerce-org/graphcommerce/commit/61ff9b6e1ff2aef1f497957f637391d5f01004c8) - Replace recursive GetCategoryStaticPaths query with fragment so the query can be injected ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+### Patch Changes
+
+- [#1959](https://github.com/graphcommerce-org/graphcommerce/pull/1959) [`aacada269`](https://github.com/graphcommerce-org/graphcommerce/commit/aacada2691d345d2c819eda8668a30cb8d4e85b6) - Category description would have be too small on some breakppoints. We now define a maxWidth on the description so it always renders properly. ([@JoshuaS98](https://github.com/JoshuaS98))
+
+- [#1914](https://github.com/graphcommerce-org/graphcommerce/pull/1914) [`c237f2f2c`](https://github.com/graphcommerce-org/graphcommerce/commit/c237f2f2c87d9e3c8aefc536a13b5b9203556f27) - Category pages now have the ability to select the displayed pageSize of a page if the backend provides multiple options. A non-default pageSize and a non-default sort option will now receive noindex meta tags when viewed. ([@paales](https://github.com/paales))
+
+- [#2001](https://github.com/graphcommerce-org/graphcommerce/pull/2001) [`9cc5f8495`](https://github.com/graphcommerce-org/graphcommerce/commit/9cc5f8495d0970d457ac15eda4bb4e7cd3f8120a) - Migrate to productListLink, away from the ProductListLink component ([@paales](https://github.com/paales))
+
+- [#2017](https://github.com/graphcommerce-org/graphcommerce/pull/2017) [`f5c2bcc57`](https://github.com/graphcommerce-org/graphcommerce/commit/f5c2bcc57120a94d1af71c6002d2e370c1c39f14) - Changed canonical link of paginated pages. So this matches the canonical structure of non paginated pages. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 6.2.0-canary.98
+
+## 6.2.0-canary.97
+
+## 6.2.0-canary.96
+
+## 6.2.0-canary.95
+
+## 6.2.0-canary.94
+
+## 6.2.0-canary.93
+
+## 6.2.0-canary.92
+
+## 6.2.0-canary.91
+
+## 6.2.0-canary.90
+
 ## 6.2.0-canary.89
 
 ## 6.2.0-canary.88

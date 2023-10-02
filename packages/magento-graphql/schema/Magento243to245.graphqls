@@ -41,6 +41,10 @@ type CartItemError {
   message: String!
 }
 
+type CartItemPrices {
+  price_including_tax: Money
+}
+
 enum CartItemErrorType {
   UNDEFINED
   ITEM_QTY

@@ -1,5 +1,69 @@
 # @graphcommerce/magento-wishlist
 
+## 7.0.1
+
+## 7.0.1-canary.15
+
+## 7.0.1-canary.14
+
+## 7.0.1-canary.13
+
+## 7.0.1-canary.12
+
+## 7.0.1-canary.11
+
+## 7.0.1-canary.10
+
+## 7.0.1-canary.9
+
+## 7.0.1-canary.8
+
+## 7.0.1-canary.7
+
+## 7.0.1-canary.6
+
+## 7.0.1-canary.5
+
+## 7.0.1-canary.4
+
+## 7.0.1-canary.3
+
+## 7.0.1-canary.2
+
+## 7.0.1-canary.1
+
+## 7.0.1-canary.0
+
+## 7.0.0
+
+### Patch Changes
+
+- [#1945](https://github.com/graphcommerce-org/graphcommerce/pull/1945) [`3bfa3b9dd`](https://github.com/graphcommerce-org/graphcommerce/commit/3bfa3b9ddf8724b31b8f6dfc2281c58dc3f44cad) - Fixed wishlist not being shown in menu when hideForGuest is enabled (eventhough the user is logged in) ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#1945](https://github.com/graphcommerce-org/graphcommerce/pull/1945) [`0a5f12aeb`](https://github.com/graphcommerce-org/graphcommerce/commit/0a5f12aebc8ea960980cb423445d14d253a0da5a) - Prevent horizontal overflow in wishlist on (small) mobile devices ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#1930](https://github.com/graphcommerce-org/graphcommerce/pull/1930) [`c8d023e9e`](https://github.com/graphcommerce-org/graphcommerce/commit/c8d023e9e874131cd9f8fe192b1fca5fe1a26ee3) - Fix the 'close menu' on search and add the option to secondary menu items ([@StefanAngenent](https://github.com/StefanAngenent))
+
+- [#1944](https://github.com/graphcommerce-org/graphcommerce/pull/1944) [`ff138050f`](https://github.com/graphcommerce-org/graphcommerce/commit/ff138050f92aad28f0f27a9f2ecd478dc6acfec1) - Wishlist would be limited to 24 products, but doesn't have pagination ([@paales](https://github.com/paales))
+
+## 6.2.0-canary.98
+
+## 6.2.0-canary.97
+
+## 6.2.0-canary.96
+
+## 6.2.0-canary.95
+
+## 6.2.0-canary.94
+
+## 6.2.0-canary.93
+
+## 6.2.0-canary.92
+
+## 6.2.0-canary.91
+
+## 6.2.0-canary.90
+
 ## 6.2.0-canary.89
 
 ## 6.2.0-canary.88

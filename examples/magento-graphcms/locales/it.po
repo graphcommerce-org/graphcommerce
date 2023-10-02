@@ -496,6 +496,9 @@ msgstr "Si prega di autenticare di nuovo e riprovare"
 msgid "Please select a payment method"
 msgstr "Seleziona un metodo di pagamento"
 
+msgid "Please select a shipping address"
+msgstr "Seleziona un indirizzo di spedizione, per favore"
+
 msgid "Please select a shipping method"
 msgstr "Seleziona un metodo di spedizione"
 
@@ -585,6 +588,9 @@ msgstr "Spedizione ({0} {1})"
 
 msgid "Shipping address"
 msgstr "Indirizzo di spedizione"
+
+msgid "Shipping addresses"
+msgstr "Indirizzi di spedizione"
 
 msgid "Shipping method"
 msgstr "Metodo di spedizione"
