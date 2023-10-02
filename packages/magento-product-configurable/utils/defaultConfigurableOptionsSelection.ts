@@ -28,7 +28,6 @@ export function defaultConfigurableOptionsSelection<Q extends BaseQuery = BaseQu
   query: Q,
 ): Q & Pick<AddProductsToCartFormProps, 'defaultValues'> {
   if (!import.meta.graphCommerce.configurableVariantForSimple) {
-    console.log('insta return')
     return { ...query, defaultValues: {} }
   }
 
@@ -42,7 +41,6 @@ export function defaultConfigurableOptionsSelection<Q extends BaseQuery = BaseQu
   // Find the requested simple product on the configurable variants and get the attributes.
   const attributes = configurable?.variants?.find((v) => v?.product?.uid === simple?.uid)
     ?.attributes
-
 
   const selectedOptions = (attributes ?? []).filter(nonNullable).map((a) => a.uid)
   if (!selectedOptions.length) return { ...query, products: { items: [simple] }, defaultValues: {} }
@@ -86,9 +84,15 @@ export function defaultConfigurableOptionsSelection<Q extends BaseQuery = BaseQu
               configurable_options: filterNonNullableKeys(configurable.configurable_options, [
                 'attribute_code',
                 'label',
-              ]).map((o) => ({
-                ...o,
-                values: filterNonNullableKeys(o.values, ['uid', 'label']),
+                'values',
+              ]).map((option) => ({
+                __typename: 'ConfigurableProductOption' as const,
+                uid: option.uid,
+                attribute_code: option.attribute_code,
+                label: option.label,
+                values: filterNonNullableKeys(option.values, ['store_label', 'uid']).map(
+                  ({ store_label, uid }) => ({ label: store_label, uid }),
+                ),
               })),
               options_available_for_selection: optionsAvailableForSelection?.map(
                 ({ attribute_code, option_value_uids }) => ({

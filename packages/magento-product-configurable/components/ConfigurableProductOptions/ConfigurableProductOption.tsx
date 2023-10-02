@@ -22,6 +22,7 @@ import {
 type Props = NonNullable<
   NonNullable<ConfigurableOptionsFragment['configurable_options']>[number]
 > & {
+  index: number
   optionIndex: number
   optionEndLabels?: Record<string, React.ReactNode>
   sx?: SxProps<Theme>
