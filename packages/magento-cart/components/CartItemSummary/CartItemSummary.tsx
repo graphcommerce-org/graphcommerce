@@ -1,11 +1,6 @@
-import { Scroller, ScrollerButton, ScrollerProvider } from '@graphcommerce/framer-scroller'
-import { Image } from '@graphcommerce/image'
+import { CartItemActionCard, CartItemActionCardProps } from '@graphcommerce/magento-cart-items'
 import {
-  iconChevronLeft,
-  iconChevronRight,
-  responsiveVal,
   SectionContainer,
-  IconSvg,
   extendableComponent,
   breakpointVal,
   nonNullable,
@@ -14,11 +9,9 @@ import {
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box, Divider, SxProps, Theme } from '@mui/material'
-import React from 'react'
 import { useCartQuery } from '../../hooks'
 import { CartTotals } from '../CartTotals/CartTotals'
 import { CartItemSummaryDocument } from './GetCartItemSummary.gql'
-import { CartItemActionCard, CartItemActionCardProps } from '@graphcommerce/magento-cart-items'
 
 const name = 'CartItemSummary' as const
 const parts = [
