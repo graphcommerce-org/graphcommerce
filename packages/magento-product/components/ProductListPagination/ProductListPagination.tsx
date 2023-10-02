@@ -22,9 +22,16 @@ export function ProductListPagination({
       page={page_info?.current_page ?? 1}
       renderLink={(_, icon, btnProps) => {
         const suffix = btnProps.page === 1 ? '' : `#products`
+        let rel: 'prev' | 'next' | undefined
+
+        if (btnProps.page && page_info.current_page) {
+          rel = btnProps.page <= page_info.current_page ? 'prev' : 'next'
+        }
+        
         return (
           <Link
             {...btnProps}
+            rel={rel}
             href={`${productListLink({ ...params, currentPage: btnProps.page })}${suffix}`}
             color='inherit'
           >
