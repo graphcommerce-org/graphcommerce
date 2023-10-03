@@ -2,4 +2,4 @@
 '@graphcommerce/magento-store': patch
 ---
 
-Implement URL validation to prevent empty values
+Prevent HandleRedirect errors by filtering out empty URL values from the candidates array.
