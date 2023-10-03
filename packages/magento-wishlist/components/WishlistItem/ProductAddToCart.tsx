@@ -1,3 +1,4 @@
+import { NumberFieldElement } from '@graphcommerce/ecommerce-ui'
 import type { ProductInterface } from '@graphcommerce/graphql-mesh'
 import { ApolloCartErrorAlert, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import {
@@ -8,7 +9,6 @@ import { MoneyProps } from '@graphcommerce/magento-store'
 import {
   Button,
   MessageSnackbar,
-  TextInputNumber,
   iconChevronRight,
   IconSvg,
   extendableComponent,
@@ -52,7 +52,7 @@ export function ProductAddToCart(
   return (
     <Box component='form' onSubmit={submitHandler} noValidate className={classes.root}>
       <Box>
-        <TextInputNumber
+        <NumberFieldElement
           size='small'
           variant='standard'
           inputProps={{ min: 1 }}
