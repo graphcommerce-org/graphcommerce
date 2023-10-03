@@ -29,12 +29,6 @@ function PaymentMethodButtonRenderer(
           loading={buttonState.isSubmitting || (buttonState.isSubmitSuccessful && !error)}
         >
           {buttonProps.children}
-          {selectedMethod?.title && (
-            <>
-              {' '}
-              (<em>{selectedMethod?.title}</em>)
-            </>
-          )}
         </LinkOrButton>
       ) : (
         <PaymentButton

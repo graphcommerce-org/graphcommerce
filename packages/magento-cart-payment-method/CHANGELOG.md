@@ -1,5 +1,33 @@
 # Change Log
 
+## 7.0.1
+
+### Patch Changes
+
+- [#2046](https://github.com/graphcommerce-org/graphcommerce/pull/2046) [`6c7197755`](https://github.com/graphcommerce-org/graphcommerce/commit/6c7197755ba54d35109fea0c44965a3aae3fd895) - Remove the selected payment method title from the Place order button so that the text always fits ([@carlocarels90](https://github.com/carlocarels90))
+
+## 7.0.1-canary.15
+
+## 7.0.1-canary.14
+
+## 7.0.1-canary.13
+
+## 7.0.1-canary.12
+
+## 7.0.1-canary.11
+
+## 7.0.1-canary.10
+
+## 7.0.1-canary.9
+
+### Patch Changes
+
+- [#2046](https://github.com/graphcommerce-org/graphcommerce/pull/2046) [`6c7197755`](https://github.com/graphcommerce-org/graphcommerce/commit/6c7197755ba54d35109fea0c44965a3aae3fd895) - Remove the selected payment method title from the Place order button so that the text always fits ([@carlocarels90](https://github.com/carlocarels90))
+
+## 7.0.1-canary.8
+
+## 7.0.1-canary.7
+
 ## 7.0.1-canary.6
 
 ## 7.0.1-canary.5

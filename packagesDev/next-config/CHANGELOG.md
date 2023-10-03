@@ -1,5 +1,51 @@
 # Change Log
 
+## 7.0.1
+
+### Patch Changes
+
+- [`5652342e1`](https://github.com/graphcommerce-org/graphcommerce/commit/5652342e10754cc0b4fa0596e55125539b69c442) - Add missing dependency @types/react-is as it would cause build errors. ([@paales](https://github.com/paales))
+
+- [`2e3b9d64e`](https://github.com/graphcommerce-org/graphcommerce/commit/2e3b9d64e0cf610d27c05a067a3c5a25e2681dde) - Pin version of graphql-jit to 0.8.2 to prevent error: `Got unexpected PRIMITIVES type: RichTextAST` ([@paales](https://github.com/paales))
+
+- [#2043](https://github.com/graphcommerce-org/graphcommerce/pull/2043) [`b5584f689`](https://github.com/graphcommerce-org/graphcommerce/commit/b5584f689d22a3d2c043ecf5eb4ef02920fc5bdd) - Support for node 20 ([@paales](https://github.com/paales))
+
+- [#2047](https://github.com/graphcommerce-org/graphcommerce/pull/2047) [`ca9ce846c`](https://github.com/graphcommerce-org/graphcommerce/commit/ca9ce846cb24a2ab0e365df6e60a962187151030) - Solved an issue where any dynamic route like product pages or search pages would give a 404 during development. ([@paales](https://github.com/paales))
+
+- [#2063](https://github.com/graphcommerce-org/graphcommerce/pull/2063) [`12842a28e`](https://github.com/graphcommerce-org/graphcommerce/commit/12842a28e226ef970f250fad4100e46eebc53118) - Update graphql dependency to 16.8.1 and loosen constraint so that it doesn’t fail during installation ([@paales](https://github.com/paales))
+
+- [#2047](https://github.com/graphcommerce-org/graphcommerce/pull/2047) [`136580b39`](https://github.com/graphcommerce-org/graphcommerce/commit/136580b39e3cffdd07e3fa087e049bd532c3e8f1) - Updated all dependencies to the latest version where possible. ([@paales](https://github.com/paales))
+
+## 7.0.1-canary.15
+
+## 7.0.1-canary.14
+
+### Patch Changes
+
+- [`5652342e1`](https://github.com/graphcommerce-org/graphcommerce/commit/5652342e10754cc0b4fa0596e55125539b69c442) - Add missing dependency @types/react-is as it would cause build errors. ([@paales](https://github.com/paales))
+
+## 7.0.1-canary.13
+
+## 7.0.1-canary.12
+
+### Patch Changes
+
+- [`2e3b9d64e`](https://github.com/graphcommerce-org/graphcommerce/commit/2e3b9d64e0cf610d27c05a067a3c5a25e2681dde) - Pin version of graphql-jit to 0.8.2 to prevent error: `Got unexpected PRIMITIVES type: RichTextAST` ([@paales](https://github.com/paales))
+
+## 7.0.1-canary.11
+
+## 7.0.1-canary.10
+
+### Patch Changes
+
+- [#2063](https://github.com/graphcommerce-org/graphcommerce/pull/2063) [`12842a28e`](https://github.com/graphcommerce-org/graphcommerce/commit/12842a28e226ef970f250fad4100e46eebc53118) - Update graphql dependency to 16.8.1 and loosen constraint so that it doesn’t fail during installation ([@paales](https://github.com/paales))
+
+## 7.0.1-canary.9
+
+## 7.0.1-canary.8
+
+## 7.0.1-canary.7
+
 ## 7.0.1-canary.6
 
 ## 7.0.1-canary.5

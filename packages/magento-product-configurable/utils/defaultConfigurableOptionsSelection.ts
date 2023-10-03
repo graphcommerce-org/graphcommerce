@@ -28,7 +28,8 @@ export function defaultConfigurableOptionsSelection<Q extends BaseQuery = BaseQu
   query: Q,
 ): Q & Pick<AddProductsToCartFormProps, 'defaultValues'> {
   if (!import.meta.graphCommerce.configurableVariantForSimple) {
-    return { ...query, defaultValues: {} }
+    const product = query?.products?.items?.find((p) => p?.url_key === urlKey)
+    return { ...query, products: { items: [product] }, defaultValues: {} }
   }
 
   const simple = query?.products?.items?.find((p) => p?.url_key === urlKey)

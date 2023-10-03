@@ -1,5 +1,31 @@
 # Change Log
 
+## 7.0.1
+
+### Patch Changes
+
+- [#2047](https://github.com/graphcommerce-org/graphcommerce/pull/2047) [`f1200dada`](https://github.com/graphcommerce-org/graphcommerce/commit/f1200dadabb12a6d892de6c7b4dd4bf53a54f884) - Solved an issue the events wouldn't fire for RemoveItemFromCart and UpdateItemQuantity ([@paales](https://github.com/paales))
+
+- [#2047](https://github.com/graphcommerce-org/graphcommerce/pull/2047) [`136580b39`](https://github.com/graphcommerce-org/graphcommerce/commit/136580b39e3cffdd07e3fa087e049bd532c3e8f1) - Updated all dependencies to the latest version where possible. ([@paales](https://github.com/paales))
+
+## 7.0.1-canary.15
+
+## 7.0.1-canary.14
+
+## 7.0.1-canary.13
+
+## 7.0.1-canary.12
+
+## 7.0.1-canary.11
+
+## 7.0.1-canary.10
+
+## 7.0.1-canary.9
+
+## 7.0.1-canary.8
+
+## 7.0.1-canary.7
+
 ## 7.0.1-canary.6
 
 ## 7.0.1-canary.5

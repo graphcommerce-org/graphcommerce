@@ -2,7 +2,7 @@ sources:
   - name: nationaalgeoregister
     handler:
       jsonSchema:
-        endpoint: https://geodata.nationaalgeoregister.nl/locatieserver/v3/
+        endpoint: https://api.pdok.nl/bzk/locatieserver/search/v3_1/
         operations:
           - type: Query
             field: nationaalgeoregisterPostcodeService

@@ -1,5 +1,43 @@
 # Change Log
 
+## 7.0.1
+
+### Patch Changes
+
+- [#2060](https://github.com/graphcommerce-org/graphcommerce/pull/2060) [`690658230`](https://github.com/graphcommerce-org/graphcommerce/commit/690658230ce4c380ce54074f1611a20986892280) - Call assignCurrentCartId after the merge of the guest cart into the customer cart.
+
+  1. When a shopper is logging in on the checkout page the customers cart_id is assigned before the carts are merged.
+  2. The assignment of the customer’s cart id retriggers the ShippingPage query, running it before the UseMergeCustomerCart mutation.
+  3. The UseMergeCustomerCart doesn’t actually loads any data from the cart it’s self, so the changes to the cart aren’t reflected in the ShippingPage query.
+  4. By first merging the cart and then running assignCurrentCartId the ShippingPage query is run after the UseMergeCustomerCart and therefor having the correct information. ([@paales](https://github.com/paales))
+
+## 7.0.1-canary.15
+
+## 7.0.1-canary.14
+
+## 7.0.1-canary.13
+
+## 7.0.1-canary.12
+
+## 7.0.1-canary.11
+
+### Patch Changes
+
+- [#2060](https://github.com/graphcommerce-org/graphcommerce/pull/2060) [`690658230`](https://github.com/graphcommerce-org/graphcommerce/commit/690658230ce4c380ce54074f1611a20986892280) - Call assignCurrentCartId after the merge of the guest cart into the customer cart.
+
+  1. When a shopper is logging in on the checkout page the customers cart_id is assigned before the carts are merged.
+  2. The assignment of the customer’s cart id retriggers the ShippingPage query, running it before the UseMergeCustomerCart mutation.
+  3. The UseMergeCustomerCart doesn’t actually loads any data from the cart it’s self, so the changes to the cart aren’t reflected in the ShippingPage query.
+  4. By first merging the cart and then running assignCurrentCartId the ShippingPage query is run after the UseMergeCustomerCart and therefor having the correct information. ([@paales](https://github.com/paales))
+
+## 7.0.1-canary.10
+
+## 7.0.1-canary.9
+
+## 7.0.1-canary.8
+
+## 7.0.1-canary.7
+
 ## 7.0.1-canary.6
 
 ### Patch Changes
