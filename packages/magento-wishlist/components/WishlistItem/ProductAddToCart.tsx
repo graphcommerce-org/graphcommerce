@@ -51,34 +51,23 @@ export function ProductAddToCart(
 
   return (
     <Box component='form' onSubmit={submitHandler} noValidate className={classes.root}>
-      <Box
-        sx={{
-          gridArea: 'itemQuantity',
-        }}
-      >
+      <Box>
         <TextInputNumber
-          variant='outlined'
-          error={formState.isSubmitted && !!formState.errors.quantity}
-          required={required.quantity}
-          inputProps={{ min: 1 }}
-          {...muiRegister('quantity', { required: required.quantity })}
-          helperText={formState.isSubmitted && formState.errors.quantity?.message}
-          disabled={formState.isSubmitting}
           size='small'
-          sx={{
-            alignSelf: 'flex-start',
-          }}
+          variant='standard'
+          inputProps={{ min: 1 }}
+          InputProps={{ disableUnderline: true }}
+          error={!!formState.errors.quantity}
+          {...muiRegister('quantity', { required: required.quantity })}
+          helperText={formState.errors.quantity?.message}
+          sx={sx}
         />
       </Box>
       {children}
       <Box
         className={classes.buttonWrapper}
         sx={{
-          gridArea: 'itemCartButton',
           alignSelf: 'flex-start',
-          position: 'absolute',
-          left: '0',
-          bottom: '-35px',
         }}
       >
         <Button
@@ -86,8 +75,9 @@ export function ProductAddToCart(
           className={classes.button}
           loading={formState.isSubmitting}
           color='primary'
-          variant='text'
+          variant='inline'
           size='medium'
+          endIcon={<IconSvg src={iconChevronRight} />}
           {...buttonProps}
         >
           <Trans id='Add to Cart' />
