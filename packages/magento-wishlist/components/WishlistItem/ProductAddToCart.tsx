@@ -75,7 +75,7 @@ export function ProductAddToCart(
           className={classes.button}
           loading={formState.isSubmitting}
           color='primary'
-          variant='inline'
+          variant='text'
           size='medium'
           endIcon={<IconSvg src={iconChevronRight} />}
           {...buttonProps}
