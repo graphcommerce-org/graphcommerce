@@ -100,4 +100,5 @@ export type AdditionalProps = {
   sxRenderer: SxRenderer
   first?: boolean
   last?: boolean
+  className?: string
 }

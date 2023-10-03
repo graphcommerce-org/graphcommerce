@@ -108,8 +108,18 @@ function RenderElement(element: ElementNode & AdditionalProps) {
 
   // todo: this has the any type, could be improved
   const Component: Renderer<SimpleElement> = renderers[type]
-
   const sx = useRenderProps({ first, last, sxRenderer }, type)
+
+  if (type === 'class') {
+    return (
+      <RenderChildren
+        className={props.className ?? ''}
+        childNodes={children}
+        sxRenderer={sxRenderer}
+        renderers={renderers}
+      />
+    )
+  }
 
   if (Component) {
     return (
@@ -171,12 +181,21 @@ export type RichTextProps = { raw: ElementNode } & {
   withMargin?: boolean
 }
 
+const hygraphClassRenderer = {
+  class: (props) => {
+    const RenderType = defaultRenderers[props.children.props.childNodes[0].type]
+    const { className, ...rest } = props
+
+    return <RenderType className={className} {...rest} />
+  },
+}
+
 export function RichText({ raw, sxRenderer, renderers, withMargin = false }: RichTextProps) {
   return (
     <RenderChildren
       childNodes={raw.children}
       sxRenderer={mergeSxRenderer(defaultSxRenderer, sxRenderer)}
-      renderers={{ ...defaultRenderers, ...renderers }}
+      renderers={{ ...defaultRenderers, ...hygraphClassRenderer, ...renderers }}
       noMargin={!withMargin}
     />
   )
