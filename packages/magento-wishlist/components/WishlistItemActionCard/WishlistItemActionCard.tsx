@@ -96,7 +96,6 @@ export function WishlistItemActionCard(props: WishlistItemActionCardProps) {
               px: 0,
             },
             '& .ActionCard-action': {
-              pr: theme.spacings.xs,
               alignSelf: 'flex-end',
             },
             '& .ActionCard-image': {
@@ -113,7 +112,6 @@ export function WishlistItemActionCard(props: WishlistItemActionCardProps) {
             },
             '& .ActionCard-price': {
               typography: typographySizes[size],
-              pr: theme.spacings.xs,
               mb: { xs: 0.5, sm: 0 },
             },
           }),
