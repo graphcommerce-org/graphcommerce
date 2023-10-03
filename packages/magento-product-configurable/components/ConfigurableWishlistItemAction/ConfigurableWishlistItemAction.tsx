@@ -1,9 +1,21 @@
 import { useProductLink } from '@graphcommerce/magento-product/hooks/useProductLink'
-import { ConfigurableOptions, WishlistItemActionCardProps } from '@graphcommerce/magento-wishlist'
+import { type WishlistItemActionCardProps } from '@graphcommerce/magento-wishlist'
 import { ProductAddToCart } from '@graphcommerce/magento-wishlist/components/WishlistItem/ProductAddToCart'
 import { IconSvg, iconChevronRight, nonNullable } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Button } from '@mui/material'
+
+export type ConfigurableOptions = {
+  configurable_options?:
+    | ({
+        configurable_product_option_uid: string
+        configurable_product_option_value_uid: string
+        option_label: string
+        value_label: string
+      } | null)[]
+    | undefined
+    | null
+}
 
 type ConfigurableWishlistItemActionProps = WishlistItemActionCardProps & ConfigurableOptions
 
@@ -12,7 +24,7 @@ export function ConfigurableWishlistItemAction(props: ConfigurableWishlistItemAc
 
   const productLink = useProductLink({
     url_key: product?.url_key,
-    __typename: product?.__typename ?? 'SimpleProduct',
+    __typename: product?.__typename ?? 'ConfigurableProduct',
   })
 
   const selectedOptions = configurable_options

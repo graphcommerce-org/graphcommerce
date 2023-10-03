@@ -1,7 +1,7 @@
-import type { ConfigurableOptions, WishlistItemActionCard } from '@graphcommerce/magento-wishlist'
+import type { WishlistItemActionCard } from '@graphcommerce/magento-wishlist'
 import type { PluginProps } from '@graphcommerce/next-config'
 import { Box } from '@mui/material'
-import { ConfigurableWishlistItemAction } from '../components/ConfigurableWishlistItemAction/ConfigurableWishlistItemAction'
+import { ConfigurableOptions, ConfigurableWishlistItemAction } from '../components/ConfigurableWishlistItemAction/ConfigurableWishlistItemAction'
 
 export const component = 'WishlistItemActionCard'
 export const exported =
