@@ -145,6 +145,9 @@ msgstr "Complete el pago en el sitio web de su banco."
 msgid "Complete your purchase"
 msgstr "Complete su compra"
 
+msgid "Configure"
+msgstr "Configurar"
+
 msgid "Confirm new email"
 msgstr "Confirmar nuevo correo electrónico"
 
