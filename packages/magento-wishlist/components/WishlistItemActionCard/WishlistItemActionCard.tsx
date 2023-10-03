@@ -153,14 +153,15 @@ export function WishlistItemActionCard(props: WishlistItemActionCardProps) {
         }
         secondaryAction={
           secondaryAction ||
-          ((product?.__typename === 'SimpleProduct' ||
-            product?.__typename === 'VirtualProduct') && (
-            <ProductAddToCart
-              variables={{ sku: product?.sku ?? '', quantity: 1, selectedOptions: [] }}
-              name={product?.name ?? ''}
-              price={product?.price_range.minimum_price.final_price}
-            />
-          ))
+          ((product?.__typename === 'SimpleProduct' || product?.__typename === 'VirtualProduct') &&
+            product?.sku &&
+            product?.name && (
+              <ProductAddToCart
+                variables={{ sku: product.sku, quantity: 1, selectedOptions: [] }}
+                name={product.name}
+                price={product.price_range.minimum_price.final_price}
+              />
+            ))
         }
         price={<Money {...product?.price_range.minimum_price.final_price} />}
         action={
