@@ -40,5 +40,8 @@
     "next": "^13.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
+  },
+  "optionalDependencies": {
+    "@graphcommerce/magento-wishlist": "7.0.1-canary.5"
   }
 }
