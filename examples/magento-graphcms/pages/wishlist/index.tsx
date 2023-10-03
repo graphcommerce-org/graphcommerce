@@ -1,13 +1,7 @@
 import { WaitForQueries } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import {
-  WishlistItems,
-  useWishlistItems,
-  WishlistItem,
-  WishlistItemBase,
-  WishlistItemConfigurable,
-} from '@graphcommerce/magento-wishlist'
+import { useWishlistItems, WishlistItemActionCard } from '@graphcommerce/magento-wishlist'
 import {
   GetStaticProps,
   iconHeart,
@@ -72,18 +66,10 @@ function WishlistPage() {
                 <Trans id='Wishlist' />
               </LayoutTitle>
               <Container maxWidth='md'>
-                <WishlistItems
-                  renderers={{
-                    BundleWishlistItem: WishlistItemBase,
-                    ConfigurableWishlistItem: WishlistItemConfigurable,
-                    DownloadableWishlistItem: WishlistItemBase,
-                    SimpleWishlistItem: WishlistItem,
-                    VirtualWishlistItem: WishlistItem,
-                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                    // @ts-ignore GiftCardProduct is only available in Commerce
-                    GiftCardProduct: WishlistItemBase,
-                  }}
-                />
+                {wishlistItemsData.data?.map((item) => {
+                  if (!item?.id) return null
+                  return <WishlistItemActionCard key={item.id} {...item} />
+                })}
               </Container>
             </>
           ) : null}
