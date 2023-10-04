@@ -2,7 +2,7 @@
   "name": "@graphcommerce/graphql",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "7.0.2-canary.1",
+  "version": "7.0.2-canary.2",
   "sideEffects": false,
   "main": "index.ts",
   "prettier": "@graphcommerce/prettier-config-pwa",
@@ -14,8 +14,8 @@
   },
   "dependencies": {
     "@apollo/client": "~3.8.2",
-    "@graphcommerce/graphql-codegen-near-operation-file": "7.0.2-canary.1",
-    "@graphcommerce/graphql-codegen-relay-optimizer-plugin": "7.0.2-canary.1",
+    "@graphcommerce/graphql-codegen-near-operation-file": "7.0.2-canary.2",
+    "@graphcommerce/graphql-codegen-relay-optimizer-plugin": "7.0.2-canary.2",
     "@graphql-codegen/add": "5.0.0",
     "@graphql-codegen/fragment-matcher": "5.0.0",
     "@graphql-codegen/introspection": "4.0.0",
@@ -28,9 +28,9 @@
     "apollo3-cache-persist": "^0.14.1"
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "7.0.2-canary.1",
-    "@graphcommerce/prettier-config-pwa": "7.0.2-canary.1",
-    "@graphcommerce/typescript-config-pwa": "7.0.2-canary.1"
+    "@graphcommerce/eslint-config-pwa": "7.0.2-canary.2",
+    "@graphcommerce/prettier-config-pwa": "7.0.2-canary.2",
+    "@graphcommerce/typescript-config-pwa": "7.0.2-canary.2"
   },
   "peerDependencies": {
     "graphql": "^16.7.1",
