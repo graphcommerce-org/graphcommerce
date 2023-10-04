@@ -2,10 +2,10 @@
   "name": "@graphcommerce/docs",
   "homepage": "https://www.graphcommerce.org/docs",
   "repository": "github:graphcommerce-org/graphcommerce/docs",
-  "version": "7.0.2-canary.4",
+  "version": "7.0.2-canary.5",
   "sideEffects": true,
   "devDependencies": {
-    "@graphcommerce/prettier-config-pwa": "7.0.2-canary.4"
+    "@graphcommerce/prettier-config-pwa": "7.0.2-canary.5"
   },
   "prettier": "@graphcommerce/prettier-config-pwa"
 }

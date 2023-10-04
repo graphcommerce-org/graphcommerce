@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.0.2-canary.5
+
+### Patch Changes
+
+- [`3e4092db1`](https://github.com/graphcommerce-org/graphcommerce/commit/3e4092db1f74b693b14b43f49a11938b7bc8fb2f) - Try and fix gihtub releases ([@paales](https://github.com/paales))
+
 ## 7.0.1
 
 ### Patch Changes

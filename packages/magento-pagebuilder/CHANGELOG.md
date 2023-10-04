@@ -1,5 +1,7 @@
 # @graphcommerce/magento-pagebuilder
 
+## 7.0.2-canary.5
+
 ## 7.0.1
 
 ### Patch Changes
