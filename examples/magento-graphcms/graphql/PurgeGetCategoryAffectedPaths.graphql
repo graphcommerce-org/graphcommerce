@@ -1,4 +1,4 @@
-query VarnishGetPaths($categoryIds: [String]!) {
+query PurgeGetCategoryAffectedPaths($categoryIds: [String]!) {
   categories(filters: { ids: { in: $categoryIds } }) {
     items {
       id

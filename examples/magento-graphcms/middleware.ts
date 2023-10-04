@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
+// Ensure that PURGE requests get rewritten to /api/varnish-purge, which does the invalidation logic
+
 // Currently, it does not appear to be possible to rewrite from the root (/) like below through
 // next.config.js, so we use middleware instead. Leaving this for future reference:
 // rewrites: async () => ({
