@@ -1,6 +1,6 @@
 import { useProductLink } from '@graphcommerce/magento-product/hooks/useProductLink'
 import { type WishlistItemActionCardProps } from '@graphcommerce/magento-wishlist'
-import { ProductAddToCart } from '@graphcommerce/magento-wishlist/components/WishlistItem/ProductAddToCart'
+import { AddWishlistItemToCart } from '@graphcommerce/magento-wishlist/components/WishlistItem/AddWishlistItemToCart'
 import { IconSvg, iconChevronRight, nonNullable } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Button } from '@mui/material'
@@ -51,12 +51,6 @@ export function ConfigurableWishlistItemAction(props: ConfigurableWishlistItemAc
       <Trans id='Configure' />
     </Button>
   ) : (
-    product?.name && product?.sku && product?.price_range.minimum_price.final_price && (
-      <ProductAddToCart
-        variables={{ sku: product.sku, quantity: 1, selectedOptions }}
-        name={product.name}
-        price={product.price_range.minimum_price.final_price}
-      />
-    )
+    product && <AddWishlistItemToCart product={product} selectedOptions={selectedOptions} />
   )
 }
