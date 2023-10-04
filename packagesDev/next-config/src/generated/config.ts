@@ -140,6 +140,18 @@ export type GraphCommerceConfig = {
    */
   configurableVariantValues?: InputMaybe<MagentoConfigurableVariantValues>;
   /**
+   * Determines if cross sell items should be shown when the user already has the product in their cart. This will result in a product will popping off the screen when you add it to the cart.
+   *
+   * Default: 'false'
+   */
+  crossSellsHideCartItems?: InputMaybe<Scalars['Boolean']['input']>;
+  /**
+   * Determines if, after adding a cross-sell item to the cart, the user should be redirected to the cross-sell items of the product they just added.
+   *
+   * Default: 'false'
+   */
+  crossSellsRedirectItems?: InputMaybe<Scalars['Boolean']['input']>;
+  /**
    * Due to a limitation in the GraphQL API of Magento 2, we need to know if the
    * customer requires email confirmation.
    *
@@ -395,6 +407,8 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     compareVariant: CompareVariantSchema.nullish(),
     configurableVariantForSimple: z.boolean().nullish(),
     configurableVariantValues: MagentoConfigurableVariantValuesSchema().nullish(),
+    crossSellsHideCartItems: z.boolean().nullish(),
+    crossSellsRedirectItems: z.boolean().nullish(),
     customerRequireEmailConfirmation: z.boolean().nullish(),
     debug: GraphCommerceDebugConfigSchema().nullish(),
     demoMode: z.boolean().nullish(),

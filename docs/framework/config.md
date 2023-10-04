@@ -139,6 +139,18 @@ When a user selects a variant, it will switch the values on the configurable pag
 
 Enabling options here will allow switching of those variants.
 
+#### `crossSellsHideCartItems: Boolean (default: [object Object])`
+
+Determines if cross sell items should be shown when the user already has the product in their cart. This will result in a product will popping off the screen when you add it to the cart.
+
+Default: 'false'
+
+#### `crossSellsRedirectItems: Boolean (default: [object Object])`
+
+Determines if, after adding a cross-sell item to the cart, the user should be redirected to the cross-sell items of the product they just added.
+
+Default: 'false'
+
 #### `customerRequireEmailConfirmation: Boolean`
 
 Due to a limitation in the GraphQL API of Magento 2, we need to know if the
@@ -259,12 +271,6 @@ By default we route products to /p/[url] but you can change this to /product/[ur
 
 Default: '/p/'
 Example: '/product/'
-
-#### `redirectCrossSellItems: Boolean`
-
-Determines if, after adding a cross-sell item to the cart, the user should be redirected to the cross-sell items of the product they just added.
-
-Default: 'false'
 
 #### `robotsAllow: Boolean`
 

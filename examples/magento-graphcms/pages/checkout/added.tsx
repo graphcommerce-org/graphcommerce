@@ -1,12 +1,10 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { useQuery } from '@graphcommerce/graphql'
 import { Image } from '@graphcommerce/image'
-import { CartAddedDocument, CrosssellsDocument, useCartQuery } from '@graphcommerce/magento-cart'
+import { useCrosssellItems } from '@graphcommerce/magento-cart'
 import { AddProductsToCartForm } from '@graphcommerce/magento-product'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   Button,
-  filterNonNullableKeys,
   GetStaticProps,
   iconChevronRight,
   IconSvg,
@@ -18,8 +16,6 @@ import { LayoutHeaderClose } from '@graphcommerce/next-ui/Layout/components/Layo
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, Container, Divider, Typography } from '@mui/material'
-import { useRouter } from 'next/router'
-import { useMemo } from 'react'
 import { LayoutOverlay, LayoutOverlayProps, productListRenderer } from '../../components'
 import { graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
@@ -27,38 +23,8 @@ type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
 
 function CheckoutAdded() {
-  const cartAdded = useCartQuery(CartAddedDocument)
-  const items = filterNonNullableKeys(cartAdded.data?.cart?.items)
-  const router = useRouter()
-  const { sku } = router.query
-  const lastItem = items.find((item) => item.product.sku === sku)
+  const [addedItem, crossSellItems] = useCrosssellItems()
 
-  const hideCrossSellItemsInCart = Boolean(import.meta.graphCommerce.hideCrossSellItemsInCart)
-
-  const redirectCrossSellItems = Boolean(import.meta.graphCommerce.redirectCrossSellItems)
-
-  const crosssels = useQuery(CrosssellsDocument, {
-    variables: { pageSize: 1, filters: { sku: { eq: lastItem?.product.sku } } },
-    skip: !lastItem?.product.sku,
-    ssr: false,
-  })
-  const crossSellItems = useMemo(
-    () =>
-      filterNonNullableKeys(
-        crosssels.data?.products?.items?.[0]?.crosssell_products ??
-          crosssels.previousData?.products?.items?.[0]?.crosssell_products,
-      ).filter(
-        (item) =>
-          (items.every((i) => i.product.sku !== item.sku) && hideCrossSellItemsInCart) ||
-          (item.stock_status === 'IN_STOCK' && !hideCrossSellItemsInCart),
-      ),
-    [
-      crosssels.data?.products?.items,
-      crosssels.previousData?.products?.items,
-      hideCrossSellItemsInCart,
-      items,
-    ],
-  )
   return (
     <>
       <PageMeta title={i18n._(/* i18n */ 'Cart')} metaRobots={['noindex']} />
@@ -85,9 +51,9 @@ function CheckoutAdded() {
           },
         })}
       >
-        {lastItem?.product.thumbnail?.url ? (
+        {addedItem?.product.thumbnail?.url ? (
           <Image
-            src={lastItem?.product.thumbnail?.url}
+            src={addedItem?.product.thumbnail?.url}
             width={50}
             height={50}
             layout='fill'
@@ -117,7 +83,7 @@ function CheckoutAdded() {
             <Trans
               id='<0>{name}</0> has been added to your shopping cart!'
               components={{ 0: <strong /> }}
-              values={{ name: lastItem?.product.name }}
+              values={{ name: addedItem?.product.name }}
             />
           </Box>
           {crossSellItems.length > 0 && (
@@ -160,7 +126,7 @@ function CheckoutAdded() {
           </Container>
           <AddProductsToCartForm
             disableSuccessSnackbar
-            redirect={redirectCrossSellItems ? 'added' : false}
+            redirect={import.meta.graphCommerce.crossSellsRedirectItems ? 'added' : false}
           >
             <ItemScroller
               sx={(theme) => ({

@@ -37,12 +37,12 @@ extend input GraphCommerceConfig {
 
   Default: 'false'
   """
-  redirectCrossSellItems: Boolean
+  crossSellsRedirectItems: Boolean =  false
 
   """
   Determines if cross sell items should be shown when the user already has the product in their cart. This will result in a product will popping off the screen when you add it to the cart.
 
   Default: 'false'
   """
-  hideCrossSellItemsInCart: Boolean
+  crossSellsHideCartItems: Boolean = false
 }
