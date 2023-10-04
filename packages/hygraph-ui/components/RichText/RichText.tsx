@@ -108,7 +108,6 @@ function RenderElement(element: ElementNode & AdditionalProps) {
 
   // todo: this has the any type, could be improved
   const Component: Renderer<SimpleElement> = renderers[type]
-
   const sx = useRenderProps({ first, last, sxRenderer }, type)
 
   if (Component) {
