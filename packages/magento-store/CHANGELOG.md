@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.0.2-canary.6
+
+### Patch Changes
+
+- [#2067](https://github.com/graphcommerce-org/graphcommerce/pull/2067) [`340679434`](https://github.com/graphcommerce-org/graphcommerce/commit/340679434e0ff1033c8158ef03a091e06e20e6a9) - Prevent HandleRedirect errors by filtering out empty URL values from the candidates array. ([@carlocarels90](https://github.com/carlocarels90))
+
 ## 7.0.2-canary.5
 
 ## 7.0.1
