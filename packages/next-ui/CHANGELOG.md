@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.1.0-canary.8
+
+### Minor Changes
+
+- [#2073](https://github.com/graphcommerce-org/graphcommerce/pull/2073) [`05ce5665b`](https://github.com/graphcommerce-org/graphcommerce/commit/05ce5665b3c63b0620266c8ac35e8b555e2029e8) - It is now allowed to use children inside the footer component ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
 ## 7.0.2-canary.7
 
 ## 7.0.2-canary.6
