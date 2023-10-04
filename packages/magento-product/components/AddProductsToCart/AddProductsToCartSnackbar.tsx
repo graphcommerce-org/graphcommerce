@@ -18,11 +18,10 @@ import { useFormAddProductsToCart } from './useFormAddProductsToCart'
 export type AddProductsToCartSnackbarProps = {
   errorSnackbar?: Omit<ErrorSnackbarProps, 'open'>
   successSnackbar?: Omit<MessageSnackbarProps, 'open' | 'action'>
-  disableSuccessSnackbar?: boolean
 }
 
 export function AddProductsToCartSnackbar(props: AddProductsToCartSnackbarProps) {
-  const { errorSnackbar, successSnackbar, disableSuccessSnackbar } = props
+  const { errorSnackbar, successSnackbar } = props
   const { error, data, redirect, control, submittedVariables } = useFormAddProductsToCart()
   const formState = useFormState({ control })
   const { locale } = useRouter()
@@ -41,8 +40,9 @@ export function AddProductsToCartSnackbar(props: AddProductsToCartSnackbarProps)
   const items = filterNonNullableKeys(data?.addProductsToCart?.cart.items)
 
   const productsAdded = items
-    .filter((item) =>
-      submittedVariables?.cartItems?.find((cartItem) => cartItem.sku === item.product.sku),
+    .filter(
+      (item) =>
+        submittedVariables?.cartItems?.find((cartItem) => cartItem.sku === item.product.sku),
     )
     .map((product) => product.product.name || '')
 

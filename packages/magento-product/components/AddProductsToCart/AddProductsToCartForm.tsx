@@ -29,6 +29,8 @@ export type AddProductsToCartFormProps = {
   sx?: SxProps<Theme>
   // eslint-disable-next-line react/no-unused-prop-types
   redirect?: RedirectType
+
+  disableSuccessSnackbar?: boolean
 } & UseFormGraphQlOptions<AddProductsToCartMutation, AddProductsToCartMutationVariables> &
   AddProductsToCartSnackbarProps
 
@@ -140,11 +142,12 @@ export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
       <Box component='form' onSubmit={submit} noValidate sx={sx} className={name}>
         {children}
       </Box>
-      <AddProductsToCartSnackbar
-        errorSnackbar={errorSnackbar}
-        successSnackbar={successSnackbar}
-        disableSuccessSnackbar={disableSuccessSnackbar}
-      />
+      {disableSuccessSnackbar ? null : (
+        <AddProductsToCartSnackbar
+          errorSnackbar={errorSnackbar}
+          successSnackbar={successSnackbar}
+        />
+      )}
     </AddProductsToCartContext.Provider>
   )
 }
