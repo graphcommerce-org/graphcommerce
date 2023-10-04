@@ -76,6 +76,7 @@
     "@graphcommerce/typescript-config-pwa": "7.0.1"
   },
   "changesets": [
+    "rich-guests-applaud",
     "twelve-deers-begin"
   ]
 }
