@@ -4,6 +4,7 @@ import {
   MotionImageAspectProps,
   Scroller,
   ScrollerButton,
+  ScrollerButtonProps,
   ScrollerDots,
   ScrollerProvider,
 } from '@graphcommerce/framer-scroller'
@@ -49,7 +50,7 @@ export type SidebarGalleryProps = {
   routeHash?: string
   sx?: SxProps<Theme>
   disableZoom?: boolean
-}
+} & Pick<ScrollerButtonProps, 'showButtons'>
 
 export function SidebarGallery(props: SidebarGalleryProps) {
   const {
@@ -59,6 +60,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
     sx,
     routeHash = 'gallery',
     disableZoom,
+    showButtons,
   } = props
 
   const router = useRouter()
@@ -269,6 +271,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                 layout
                 layoutDependency={zoomed}
                 direction='left'
+                showButtons={showButtons}
                 size='small'
                 className={classes.sliderButtons}
               >
@@ -289,6 +292,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                 layout
                 layoutDependency={zoomed}
                 direction='right'
+                showButtons={showButtons}
                 size='small'
                 className={classes.sliderButtons}
               >
