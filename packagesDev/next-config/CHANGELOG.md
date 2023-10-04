@@ -1,5 +1,7 @@
 # Change Log
 
+## 7.0.2-canary.7
+
 ## 7.0.2-canary.6
 
 ### Patch Changes
