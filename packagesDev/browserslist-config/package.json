@@ -2,7 +2,7 @@
   "name": "@graphcommerce/browserslist-config-pwa",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "7.0.2-canary.3",
+  "version": "7.0.2-canary.4",
   "main": "index.js",
   "sideEffects": false
 }
