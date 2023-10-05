@@ -1,5 +1,121 @@
 # Change Log
 
+## 7.1.0-canary.8
+
+## 7.0.2-canary.7
+
+## 7.0.2-canary.6
+
+## 7.0.2-canary.5
+
+## 7.0.1
+
+### Patch Changes
+
+- [#2060](https://github.com/graphcommerce-org/graphcommerce/pull/2060) [`690658230`](https://github.com/graphcommerce-org/graphcommerce/commit/690658230ce4c380ce54074f1611a20986892280) - Call assignCurrentCartId after the merge of the guest cart into the customer cart.
+
+  1. When a shopper is logging in on the checkout page the customers cart_id is assigned before the carts are merged.
+  2. The assignment of the customer’s cart id retriggers the ShippingPage query, running it before the UseMergeCustomerCart mutation.
+  3. The UseMergeCustomerCart doesn’t actually loads any data from the cart it’s self, so the changes to the cart aren’t reflected in the ShippingPage query.
+  4. By first merging the cart and then running assignCurrentCartId the ShippingPage query is run after the UseMergeCustomerCart and therefor having the correct information. ([@paales](https://github.com/paales))
+
+## 7.0.1-canary.15
+
+## 7.0.1-canary.14
+
+## 7.0.1-canary.13
+
+## 7.0.1-canary.12
+
+## 7.0.1-canary.11
+
+### Patch Changes
+
+- [#2060](https://github.com/graphcommerce-org/graphcommerce/pull/2060) [`690658230`](https://github.com/graphcommerce-org/graphcommerce/commit/690658230ce4c380ce54074f1611a20986892280) - Call assignCurrentCartId after the merge of the guest cart into the customer cart.
+
+  1. When a shopper is logging in on the checkout page the customers cart_id is assigned before the carts are merged.
+  2. The assignment of the customer’s cart id retriggers the ShippingPage query, running it before the UseMergeCustomerCart mutation.
+  3. The UseMergeCustomerCart doesn’t actually loads any data from the cart it’s self, so the changes to the cart aren’t reflected in the ShippingPage query.
+  4. By first merging the cart and then running assignCurrentCartId the ShippingPage query is run after the UseMergeCustomerCart and therefor having the correct information. ([@paales](https://github.com/paales))
+
+## 7.0.1-canary.10
+
+## 7.0.1-canary.9
+
+## 7.0.1-canary.8
+
+## 7.0.1-canary.7
+
+## 7.0.1-canary.6
+
+### Patch Changes
+
+- [#2055](https://github.com/graphcommerce-org/graphcommerce/pull/2055) [`111ec6b0e`](https://github.com/graphcommerce-org/graphcommerce/commit/111ec6b0edfeb2c7090f6f82fe1a23c196fae316) - Refetch cart data after useMergeCustomerCart to ensure cart data availability. ([@carlocarels90](https://github.com/carlocarels90))
+
+## 7.0.1-canary.5
+
+## 7.0.1-canary.4
+
+## 7.0.1-canary.3
+
+## 7.0.1-canary.2
+
+## 7.0.1-canary.1
+
+## 7.0.1-canary.0
+
+## 7.0.0
+
+### Minor Changes
+
+- [#1962](https://github.com/graphcommerce-org/graphcommerce/pull/1962) [`518b6ca24`](https://github.com/graphcommerce-org/graphcommerce/commit/518b6ca248fc94624dc06eb02de5b3eac0fc9483) - Created a new `<ValidatedPasswordElement/>` which validates according to Magento's validation groups and implement on all locations. Move remaining password fields to `<PasswordElement />` ([@carlocarels90](https://github.com/carlocarels90))
+
+### Patch Changes
+
+- [#1916](https://github.com/graphcommerce-org/graphcommerce/pull/1916) [`ee2f814f4`](https://github.com/graphcommerce-org/graphcommerce/commit/ee2f814f4d91898f106036e92be4e560d638509d) - When the customer is logging in and the merge cart functionality throws an error, it would not set the current customer's cart as active, but keep the faulty cart active. ([@paales](https://github.com/paales))
+
+- [#2031](https://github.com/graphcommerce-org/graphcommerce/pull/2031) [`4d8fc9e99`](https://github.com/graphcommerce-org/graphcommerce/commit/4d8fc9e998fc9361282833316ec9564da0644ed6) - Eslint fixes and suppress accepted warnings ([@paales](https://github.com/paales))
+
+- [#1914](https://github.com/graphcommerce-org/graphcommerce/pull/1914) [`000556331`](https://github.com/graphcommerce-org/graphcommerce/commit/000556331f5379c71d7edca541fd0b145b7dc435) - When there is an error in the cart, disable the checkout buttons ([@paales](https://github.com/paales))
+
+- [#1942](https://github.com/graphcommerce-org/graphcommerce/pull/1942) [`045d0a6cb`](https://github.com/graphcommerce-org/graphcommerce/commit/045d0a6cbbfc6339852c19dd21f349bb51c38fcd) - When the ApolloCartError would throw an authorization error it would link to the wrong page ([@paales](https://github.com/paales))
+
+- [#1914](https://github.com/graphcommerce-org/graphcommerce/pull/1914) [`38d6c4888`](https://github.com/graphcommerce-org/graphcommerce/commit/38d6c488850013b36cae9f388996039219c1327e) - Errors in the cart didn't allow for recovery from the faulty state ([@paales](https://github.com/paales))
+
+- [#1914](https://github.com/graphcommerce-org/graphcommerce/pull/1914) [`5d115a11a`](https://github.com/graphcommerce-org/graphcommerce/commit/5d115a11a417f35c3315879c785d24ae32e64663) - When a customer tries to add a product to an invalid customer cart, discard the cart and create a new cart ([@paales](https://github.com/paales))
+
+## 6.2.0-canary.98
+
+## 6.2.0-canary.97
+
+## 6.2.0-canary.96
+
+## 6.2.0-canary.95
+
+## 6.2.0-canary.94
+
+## 6.2.0-canary.93
+
+## 6.2.0-canary.92
+
+## 6.2.0-canary.91
+
+## 6.2.0-canary.90
+
+## 6.2.0-canary.89
+
+### Patch Changes
+
+- [#2031](https://github.com/graphcommerce-org/graphcommerce/pull/2031) [`4d8fc9e99`](https://github.com/graphcommerce-org/graphcommerce/commit/4d8fc9e998fc9361282833316ec9564da0644ed6) - Eslint fixes and suppress accepted warnings ([@paales](https://github.com/paales))
+
+## 6.2.0-canary.88
+
+## 6.2.0-canary.87
+
+## 6.2.0-canary.86
+
+## 6.2.0-canary.85
+
 ## 6.2.0-canary.84
 
 ## 6.2.0-canary.83

@@ -30,6 +30,6 @@ export const packageRoots = (packagePaths: string[]): string[] => {
 
   // Filter out the sub-paths which are part of another longer sub-path
   return roots.filter(
-    (root, index, self) => self.findIndex((r) => r !== root && r.startsWith(root + '/')) === -1,
+    (root, index, self) => self.findIndex((r) => r !== root && r.startsWith(`${root  }/`)) === -1,
   )
 }

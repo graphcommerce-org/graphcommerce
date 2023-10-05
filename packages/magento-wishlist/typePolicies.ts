@@ -5,7 +5,7 @@ export const wishlistTypePolicies: TypedTypePolicies = {
     keyFields: [],
     fields: {
       items: {
-        merge: (existing: Array<unknown> | undefined, incoming: Array<unknown>, options) => {
+        merge: (existing: Array<unknown> | undefined, incoming: Array<unknown>) => {
           const data = existing === undefined ? [] : existing
           return [...data, ...incoming]
         },

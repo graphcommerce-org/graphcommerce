@@ -31,16 +31,23 @@ const typographySizes = {
 
 export function CartItemActionCard(props: CartItemActionCardProps) {
   const { cartItem, sx = [], size = 'large', ...rest } = props
-
-  const {
-    uid,
-    quantity,
-    prices,
-    errors,
-    product: { name, thumbnail, url_key },
-  } = cartItem
+  const { uid, quantity, prices, errors, product } = cartItem
+  const { name, thumbnail, url_key } = product
 
   const inclTaxes = useDisplayInclTax()
+
+  let price: number | null | undefined
+
+  if (inclTaxes) {
+    if (prices?.price_including_tax) {
+      price = prices.price_including_tax.value
+    } else {
+      const rowTotalIncludingTax = prices?.row_total_including_tax?.value ?? 0
+      price = rowTotalIncludingTax / quantity
+    }
+  } else {
+    price = prices?.price.value
+  }
 
   return (
     <ActionCard
@@ -118,19 +125,18 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
         <>
           <UpdateItemQuantity uid={uid} quantity={quantity} />
           {' ⨉ '}
-
-          <Money
-            value={
-              inclTaxes
-                ? (prices?.row_total_including_tax?.value ?? 0) / quantity
-                : prices?.price.value
-            }
-            currency={prices?.price.currency}
-          />
+          <Money value={price} currency={prices?.price.currency} />
         </>
       }
       price={<Money {...(inclTaxes ? prices?.row_total_including_tax : prices?.row_total)} />}
-      action={<RemoveItemFromCart uid={uid} quantity={quantity} buttonProps={{ size }} />}
+      action={
+        <RemoveItemFromCart
+          uid={uid}
+          quantity={quantity}
+          product={product}
+          buttonProps={{ size }}
+        />
+      }
       size={size}
       after={filterNonNullableKeys(errors).map((error) => (
         <Box sx={{ color: 'error.main', typography: 'caption' }} key={error.message}>

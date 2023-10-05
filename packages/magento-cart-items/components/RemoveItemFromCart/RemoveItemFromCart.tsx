@@ -5,7 +5,7 @@ import { SxProps, Theme, styled } from '@mui/material'
 import { CartItemFragment } from '../../Api/CartItem.gql'
 import { RemoveItemFromCartDocument } from './RemoveItemFromCart.gql'
 
-export type RemoveItemFromCartProps = Omit<CartItemFragment, 'product' | '__typename'> & {
+export type RemoveItemFromCartProps = Omit<CartItemFragment, '__typename'> & {
   sx?: SxProps<Theme>
   buttonProps?: Omit<ButtonProps, 'type' | 'loading'>
 }

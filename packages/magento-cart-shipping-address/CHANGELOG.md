@@ -1,5 +1,95 @@
 # Change Log
 
+## 7.1.0-canary.8
+
+## 7.0.2-canary.7
+
+## 7.0.2-canary.6
+
+## 7.0.2-canary.5
+
+## 7.0.1
+
+### Patch Changes
+
+- [#2054](https://github.com/graphcommerce-org/graphcommerce/pull/2054) [`603ae9fc2`](https://github.com/graphcommerce-org/graphcommerce/commit/603ae9fc28c9ce4e74a797c1dc32925518a0888a) - CustomerAddressForm's ActionCardListForm error wasn't translated ([@carlocarels90](https://github.com/carlocarels90))
+
+## 7.0.1-canary.15
+
+## 7.0.1-canary.14
+
+## 7.0.1-canary.13
+
+## 7.0.1-canary.12
+
+## 7.0.1-canary.11
+
+## 7.0.1-canary.10
+
+## 7.0.1-canary.9
+
+## 7.0.1-canary.8
+
+## 7.0.1-canary.7
+
+### Patch Changes
+
+- [#2054](https://github.com/graphcommerce-org/graphcommerce/pull/2054) [`603ae9fc2`](https://github.com/graphcommerce-org/graphcommerce/commit/603ae9fc28c9ce4e74a797c1dc32925518a0888a) - CustomerAddressForm's ActionCardListForm error wasn't translated ([@carlocarels90](https://github.com/carlocarels90))
+
+## 7.0.1-canary.6
+
+## 7.0.1-canary.5
+
+## 7.0.1-canary.4
+
+## 7.0.1-canary.3
+
+## 7.0.1-canary.2
+
+## 7.0.1-canary.1
+
+## 7.0.1-canary.0
+
+## 7.0.0
+
+### Patch Changes
+
+- [#2021](https://github.com/graphcommerce-org/graphcommerce/pull/2021) [`06ab7d24d`](https://github.com/graphcommerce-org/graphcommerce/commit/06ab7d24dcf345c6acd39471df544a726a166ece) - Ensure 'addition' parameter is non-empty in onBeforeSubmit ([@carlocarels90](https://github.com/carlocarels90))
+
+- [#2006](https://github.com/graphcommerce-org/graphcommerce/pull/2006) [`80b60cb40`](https://github.com/graphcommerce-org/graphcommerce/commit/80b60cb404882260bd0e8184f3e54f4720925c96) - The Billing address was set to the shipping address when a default billing address was available and made prefix optional when creating an address ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+- [#1987](https://github.com/graphcommerce-org/graphcommerce/pull/1987) [`96ac01045`](https://github.com/graphcommerce-org/graphcommerce/commit/96ac010454b57208ede11bf33d89b71b099a7bb3) - When there is a default_shipping address on the customer but not on the cart yet, make sure it gets submitted on load ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+- [#2016](https://github.com/graphcommerce-org/graphcommerce/pull/2016) [`227ddcee8`](https://github.com/graphcommerce-org/graphcommerce/commit/227ddcee8808715928371c1f3a4c7925032df0ef) - Made cardProps on CustomerAddressActionCards overridable. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 6.2.0-canary.98
+
+## 6.2.0-canary.97
+
+## 6.2.0-canary.96
+
+## 6.2.0-canary.95
+
+## 6.2.0-canary.94
+
+## 6.2.0-canary.93
+
+## 6.2.0-canary.92
+
+## 6.2.0-canary.91
+
+## 6.2.0-canary.90
+
+## 6.2.0-canary.89
+
+## 6.2.0-canary.88
+
+## 6.2.0-canary.87
+
+## 6.2.0-canary.86
+
+## 6.2.0-canary.85
+
 ## 6.2.0-canary.84
 
 ## 6.2.0-canary.83

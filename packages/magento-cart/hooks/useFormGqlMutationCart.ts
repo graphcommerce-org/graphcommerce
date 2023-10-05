@@ -7,7 +7,7 @@ import {
 import { useCartIdCreate } from './useCartIdCreate'
 
 export function useFormGqlMutationCart<
-  Q extends Record<string, any>,
+  Q extends Record<string, unknown>,
   V extends { cartId: string; [index: string]: unknown },
 >(
   document: TypedDocumentNode<Q, V>,

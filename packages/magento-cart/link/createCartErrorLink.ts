@@ -1,9 +1,9 @@
 import { fromPromise, globalApolloClient, Operation } from '@graphcommerce/graphql'
 import { onError } from '@graphcommerce/graphql/apollo'
+import { ErrorCategory } from '@graphcommerce/magento-graphql'
+import type { GraphQLError } from 'graphql'
 import { writeCartId } from '../hooks'
 import { CreateEmptyCartDocument } from '../hooks/CreateEmptyCart.gql'
-import { GraphQLError } from 'graphql'
-import { ErrorCategory } from '@graphcommerce/magento-graphql'
 
 type CartOperation = Operation & { variables: { cartId: string } }
 function isCartOperation(operation: Operation): operation is CartOperation {

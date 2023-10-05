@@ -253,8 +253,6 @@ SIDEBAR: Will be rendered as a sidebar on desktop and horizontal chips on mobile
 
 Product filters with better UI for mobile and desktop.
 
-@experimental This is an experimental feature and may change in the future.
-
 #### `productRoute: String`
 
 By default we route products to /p/[url] but you can change this to /product/[url] if you wish.
@@ -373,6 +371,11 @@ Options to configure which values will be replaced when a variant is selected on
 #### `content: Boolean`
 
 Use the name, description, short description and meta data from the configured variant
+
+#### `gallery: Boolean`
+
+This option enables the automatic update of product gallery images on the product page when a variant is selected,
+provided that the gallery images for the selected variant differ from the currently displayed images.
 
 #### `url: Boolean`
 

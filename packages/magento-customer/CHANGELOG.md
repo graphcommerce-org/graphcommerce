@@ -1,5 +1,111 @@
 # Change Log
 
+## 7.1.0-canary.8
+
+## 7.0.2-canary.7
+
+## 7.0.2-canary.6
+
+## 7.0.2-canary.5
+
+## 7.0.1
+
+### Patch Changes
+
+- [#2032](https://github.com/graphcommerce-org/graphcommerce/pull/2032) [`7e44afc94`](https://github.com/graphcommerce-org/graphcommerce/commit/7e44afc94629a938da1b819d99fe3d19857de497) - Add shipping adresses translation ([@StefanAngenent](https://github.com/StefanAngenent))
+
+## 7.0.1-canary.15
+
+## 7.0.1-canary.14
+
+## 7.0.1-canary.13
+
+## 7.0.1-canary.12
+
+## 7.0.1-canary.11
+
+## 7.0.1-canary.10
+
+## 7.0.1-canary.9
+
+## 7.0.1-canary.8
+
+## 7.0.1-canary.7
+
+## 7.0.1-canary.6
+
+## 7.0.1-canary.5
+
+## 7.0.1-canary.4
+
+## 7.0.1-canary.3
+
+### Patch Changes
+
+- [#2032](https://github.com/graphcommerce-org/graphcommerce/pull/2032) [`7e44afc94`](https://github.com/graphcommerce-org/graphcommerce/commit/7e44afc94629a938da1b819d99fe3d19857de497) - Add shipping adresses translation ([@StefanAngenent](https://github.com/StefanAngenent))
+
+## 7.0.1-canary.2
+
+## 7.0.1-canary.1
+
+## 7.0.1-canary.0
+
+## 7.0.0
+
+### Minor Changes
+
+- [#1962](https://github.com/graphcommerce-org/graphcommerce/pull/1962) [`518b6ca24`](https://github.com/graphcommerce-org/graphcommerce/commit/518b6ca248fc94624dc06eb02de5b3eac0fc9483) - Created a new `<ValidatedPasswordElement/>` which validates according to Magento's validation groups and implement on all locations. Move remaining password fields to `<PasswordElement />` ([@carlocarels90](https://github.com/carlocarels90))
+
+- [#1926](https://github.com/graphcommerce-org/graphcommerce/pull/1926) [`ab8877fdb`](https://github.com/graphcommerce-org/graphcommerce/commit/ab8877fdb6147960ce656d28306d719e92f6de68) - Made the follow order link in the order card & order details a working `<Link />` if provided from magento backend. ([@JoshuaS98](https://github.com/JoshuaS98))
+
+### Patch Changes
+
+- [#1916](https://github.com/graphcommerce-org/graphcommerce/pull/1916) [`97ebc19af`](https://github.com/graphcommerce-org/graphcommerce/commit/97ebc19aff093bf57d24d009e96661ad43926fd6) - The customer's token would be invalidated if any authorization error occured. Now only scoped to customer queries and mutations, potentially reducing the amount of random logouts. ([@paales](https://github.com/paales))
+
+- [#1952](https://github.com/graphcommerce-org/graphcommerce/pull/1952) [`f1fe4f598`](https://github.com/graphcommerce-org/graphcommerce/commit/f1fe4f5986cee1f7c8313152e43691ed939c8f21) - Enable password fields when there is an error and user input correction is required. ([@carlocarels90](https://github.com/carlocarels90))
+
+- [#1914](https://github.com/graphcommerce-org/graphcommerce/pull/1914) [`38d6c4888`](https://github.com/graphcommerce-org/graphcommerce/commit/38d6c488850013b36cae9f388996039219c1327e) - Errors in the cart didn't allow for recovery from the faulty state ([@paales](https://github.com/paales))
+
+- [#1930](https://github.com/graphcommerce-org/graphcommerce/pull/1930) [`c8d023e9e`](https://github.com/graphcommerce-org/graphcommerce/commit/c8d023e9e874131cd9f8fe192b1fca5fe1a26ee3) - Fix the 'close menu' on search and add the option to secondary menu items ([@StefanAngenent](https://github.com/StefanAngenent))
+
+- [#2006](https://github.com/graphcommerce-org/graphcommerce/pull/2006) [`80b60cb40`](https://github.com/graphcommerce-org/graphcommerce/commit/80b60cb404882260bd0e8184f3e54f4720925c96) - The Billing address was set to the shipping address when a default billing address was available and made prefix optional when creating an address ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+- [#1942](https://github.com/graphcommerce-org/graphcommerce/pull/1942) [`21b0d0c48`](https://github.com/graphcommerce-org/graphcommerce/commit/21b0d0c48603343c09f287978bf051140e9be912) - Customer's session is now revalidated when a previous session is detected on pageload, making sure the customer is still logged in. ([@paales](https://github.com/paales))
+
+- [#1972](https://github.com/graphcommerce-org/graphcommerce/pull/1972) [`cda89820d`](https://github.com/graphcommerce-org/graphcommerce/commit/cda89820dc50e2019a26239b7450863d8c862bfb) - Ensure correct width for CircularProgress and fix misalignment in rotate animation ([@carlocarels90](https://github.com/carlocarels90))
+
+- [#2016](https://github.com/graphcommerce-org/graphcommerce/pull/2016) [`227ddcee8`](https://github.com/graphcommerce-org/graphcommerce/commit/227ddcee8808715928371c1f3a4c7925032df0ef) - Made cardProps on CustomerAddressActionCards overridable. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+- [#1969](https://github.com/graphcommerce-org/graphcommerce/pull/1969) [`838322a97`](https://github.com/graphcommerce-org/graphcommerce/commit/838322a97c7ef1b8aa919196e756da381904bf04) - Fixing the Internal Server Error if the third address line is empty. ([@action-simon](https://github.com/action-simon))
+
+## 6.2.0-canary.98
+
+## 6.2.0-canary.97
+
+## 6.2.0-canary.96
+
+## 6.2.0-canary.95
+
+## 6.2.0-canary.94
+
+## 6.2.0-canary.93
+
+## 6.2.0-canary.92
+
+## 6.2.0-canary.91
+
+## 6.2.0-canary.90
+
+## 6.2.0-canary.89
+
+## 6.2.0-canary.88
+
+## 6.2.0-canary.87
+
+## 6.2.0-canary.86
+
+## 6.2.0-canary.85
+
 ## 6.2.0-canary.84
 
 ## 6.2.0-canary.83

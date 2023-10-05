@@ -26,7 +26,7 @@ export function ChangePasswordForm() {
     ChangePasswordMutation,
     ChangePasswordMutationVariables & { confirmPassword?: string }
   >(ChangePasswordDocument, {}, { errorPolicy: 'all' })
-  const { handleSubmit, required, data, formState, error, control } = form
+  const { handleSubmit, required, formState, error, control } = form
   const [remainingError0, authenticationError] = graphqlErrorByCategory({
     category: 'graphql-authentication',
     error,

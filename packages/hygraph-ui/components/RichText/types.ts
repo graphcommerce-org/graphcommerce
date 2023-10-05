@@ -12,7 +12,6 @@ type BaseElementTypes =
   | 'numbered-list'
   | 'bulleted-list'
   | 'block-quote'
-  | 'paragraph'
   | 'list-item'
   | 'list-item-child'
   | 'table'
@@ -46,6 +45,12 @@ type LinkElement = {
   openInNewTab?: boolean
 }
 
+type ClassElement = {
+  type: 'class'
+  children: ElementOrTextNode[]
+  className: string
+}
+
 type ImageElement = {
   type: 'image'
   children: ElementOrTextNode[]
@@ -74,7 +79,13 @@ type IframeElement = {
   height?: number
 }
 
-export type ElementNode = SimpleElement | LinkElement | ImageElement | VideoElement | IframeElement
+export type ElementNode =
+  | SimpleElement
+  | LinkElement
+  | ImageElement
+  | VideoElement
+  | IframeElement
+  | ClassElement
 export type ElementOrTextNode = ElementNode | TextNode
 
 type RendererBase = { sx?: SxProps<Theme>; children?: React.ReactNode }
@@ -89,6 +100,7 @@ export type Renderers = {
   image: Renderer<ImageElement>
   video: Renderer<VideoElement>
   iframe: Renderer<IframeElement>
+  class: Renderer<ClassElement>
 }
 
 export type SxRenderer = {
@@ -100,4 +112,5 @@ export type AdditionalProps = {
   sxRenderer: SxRenderer
   first?: boolean
   last?: boolean
+  className?: string
 }

@@ -10,7 +10,7 @@ export type PopperPanelProps = PanelProps & {
 
 export function PopperPanel(props: PopperPanelProps) {
   const { activeEl, children, ...actionsProps } = props
-  const ref = useRef(null)
+  const ref = useRef<HTMLDivElement>(null)
   const movement = useHandleClickNotDrag(ref)
   const handleClickAway = () => {
     if (movement.get() === 'drag') return

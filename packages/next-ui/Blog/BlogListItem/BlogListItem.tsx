@@ -2,7 +2,6 @@ import { Box, Link, SxProps, Theme, Typography } from '@mui/material'
 import React from 'react'
 import { extendableComponent } from '../../Styles'
 import { breakpointVal } from '../../Styles/breakpointVal'
-import { responsiveVal } from '../../Styles/responsiveVal'
 import { useDateTimeFormat } from '../../hooks'
 
 export type BlogListItemProps = {

@@ -26,6 +26,6 @@ const packageRoots = (packagePaths) => {
         }
     });
     // Filter out the sub-paths which are part of another longer sub-path
-    return roots.filter((root, index, self) => self.findIndex((r) => r !== root && r.startsWith(root + '/')) === -1);
+    return roots.filter((root, index, self) => self.findIndex((r) => r !== root && r.startsWith(`${root}/`)) === -1);
 };
 exports.packageRoots = packageRoots;

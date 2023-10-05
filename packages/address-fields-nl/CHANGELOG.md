@@ -1,5 +1,85 @@
 # @graphcommerce/address-fields-nl
 
+## 7.1.0-canary.8
+
+## 7.0.2-canary.7
+
+## 7.0.2-canary.6
+
+## 7.0.2-canary.5
+
+## 7.0.1
+
+### Patch Changes
+
+- [#2040](https://github.com/graphcommerce-org/graphcommerce/pull/2040) [`19f381b6b`](https://github.com/graphcommerce-org/graphcommerce/commit/19f381b6bdf6dc16bbf6878f54f73cef2d57441d) - Changed the api url, changed the exported file location of the AddPostcodeNLAddressFieldPlugin and updated docs ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 7.0.1-canary.15
+
+## 7.0.1-canary.14
+
+## 7.0.1-canary.13
+
+### Patch Changes
+
+- [#2040](https://github.com/graphcommerce-org/graphcommerce/pull/2040) [`19f381b6b`](https://github.com/graphcommerce-org/graphcommerce/commit/19f381b6bdf6dc16bbf6878f54f73cef2d57441d) - Changed the api url, changed the exported file location of the AddPostcodeNLAddressFieldPlugin and updated docs ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 7.0.1-canary.12
+
+## 7.0.1-canary.11
+
+## 7.0.1-canary.10
+
+## 7.0.1-canary.9
+
+## 7.0.1-canary.8
+
+## 7.0.1-canary.7
+
+## 7.0.1-canary.6
+
+## 7.0.1-canary.5
+
+## 7.0.1-canary.4
+
+## 7.0.1-canary.3
+
+## 7.0.1-canary.2
+
+## 7.0.1-canary.1
+
+## 7.0.1-canary.0
+
+## 7.0.0
+
+## 6.2.0-canary.98
+
+## 6.2.0-canary.97
+
+## 6.2.0-canary.96
+
+## 6.2.0-canary.95
+
+## 6.2.0-canary.94
+
+## 6.2.0-canary.93
+
+## 6.2.0-canary.92
+
+## 6.2.0-canary.91
+
+## 6.2.0-canary.90
+
+## 6.2.0-canary.89
+
+## 6.2.0-canary.88
+
+## 6.2.0-canary.87
+
+## 6.2.0-canary.86
+
+## 6.2.0-canary.85
+
 ## 6.2.0-canary.84
 
 ## 6.2.0-canary.83

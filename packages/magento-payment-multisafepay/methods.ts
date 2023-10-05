@@ -1,8 +1,8 @@
 import { PaymentModule } from '@graphcommerce/magento-cart-payment-method'
 import { MSPPaymentActionCard } from './components/MSPPaymentActionCard/MSPPaymentActionCard'
 import { MSPPaymentHandler } from './components/MSPPaymentHandler/MSPPaymentHandler'
-import { MSPPaymentPlaceOrder } from './components/MSPPaymentPlaceOrder/MSPPaymentPlaceOrder'
 import { MSPPaymentOptions } from './components/MSPPaymentOptions/MSPPaymentOptions'
+import { MSPPaymentPlaceOrder } from './components/MSPPaymentPlaceOrder/MSPPaymentPlaceOrder'
 
 const mspModule: PaymentModule = {
   PaymentOptions: MSPPaymentOptions,

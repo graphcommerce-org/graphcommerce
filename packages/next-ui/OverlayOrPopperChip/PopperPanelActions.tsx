@@ -9,7 +9,7 @@ import { iconClose } from '../icons'
 import { PanelActionsProps } from './types'
 
 export function PopperPanelActions(props: PanelActionsProps) {
-  const { title, children, onReset, onClose, onApply, sx } = props
+  const { title, children, onReset, onClose, onApply, sx = [] } = props
 
   const fabSize = useFabSize('small')
   const svgSize = useIconSvgSize('large')
@@ -18,7 +18,7 @@ export function PopperPanelActions(props: PanelActionsProps) {
     <>
       <LayoutHeader
         noAlign
-        sx={{ '&.noAlign': { mb: 0 } }}
+        sx={[{ '&.noAlign': { mb: 0 } }, ...(Array.isArray(sx) ? sx : [sx])]}
         switchPoint={-10000}
         size='small'
         primary={

@@ -1,4 +1,3 @@
-import { AddProductsToCartForm } from '@graphcommerce/magento-product'
 import {
   ProductFiltersPro,
   ProductFiltersProAllFiltersChip,

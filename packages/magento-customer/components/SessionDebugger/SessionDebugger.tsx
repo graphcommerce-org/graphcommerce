@@ -1,6 +1,7 @@
+/* eslint-disable no-console */
 import { useApolloClient } from '@graphcommerce/graphql'
-import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
 import { Button } from '@mui/material'
+import { CustomerTokenDocument } from '../../hooks/CustomerToken.gql'
 
 export function SessionDebugger() {
   const client = useApolloClient()

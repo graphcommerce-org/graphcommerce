@@ -4,7 +4,11 @@ exports.plugin = void 0;
 const plugin_helpers_1 = require("@graphql-codegen/plugin-helpers");
 const graphql_1 = require("graphql");
 /** Converts input type to markdown document. */
-const plugin = (schema, _documents, config) => {
+const plugin = (schema, 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+_documents, 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+config) => {
     const astNode = (0, plugin_helpers_1.getCachedDocumentNodeFromSchema)(schema);
     const enumStings = new Map();
     const descriptionText = (node) => {

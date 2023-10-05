@@ -1,5 +1,105 @@
 # Change Log
 
+## 7.1.0-canary.8
+
+## 7.0.2-canary.7
+
+## 7.0.2-canary.6
+
+## 7.0.2-canary.5
+
+## 7.0.1
+
+### Patch Changes
+
+- [#2047](https://github.com/graphcommerce-org/graphcommerce/pull/2047) [`f1200dada`](https://github.com/graphcommerce-org/graphcommerce/commit/f1200dadabb12a6d892de6c7b4dd4bf53a54f884) - Solved an issue the events wouldn't fire for RemoveItemFromCart and UpdateItemQuantity ([@paales](https://github.com/paales))
+
+- [#2047](https://github.com/graphcommerce-org/graphcommerce/pull/2047) [`136580b39`](https://github.com/graphcommerce-org/graphcommerce/commit/136580b39e3cffdd07e3fa087e049bd532c3e8f1) - Updated all dependencies to the latest version where possible. ([@paales](https://github.com/paales))
+
+## 7.0.1-canary.15
+
+## 7.0.1-canary.14
+
+## 7.0.1-canary.13
+
+## 7.0.1-canary.12
+
+## 7.0.1-canary.11
+
+## 7.0.1-canary.10
+
+## 7.0.1-canary.9
+
+## 7.0.1-canary.8
+
+## 7.0.1-canary.7
+
+## 7.0.1-canary.6
+
+## 7.0.1-canary.5
+
+## 7.0.1-canary.4
+
+## 7.0.1-canary.3
+
+## 7.0.1-canary.2
+
+## 7.0.1-canary.1
+
+## 7.0.1-canary.0
+
+### Patch Changes
+
+- [#2047](https://github.com/graphcommerce-org/graphcommerce/pull/2047) [`f1200dada`](https://github.com/graphcommerce-org/graphcommerce/commit/f1200dadabb12a6d892de6c7b4dd4bf53a54f884) - Solved an issue the events wouldn't fire for RemoveItemFromCart and UpdateItemQuantity ([@paales](https://github.com/paales))
+
+- [#2047](https://github.com/graphcommerce-org/graphcommerce/pull/2047) [`136580b39`](https://github.com/graphcommerce-org/graphcommerce/commit/136580b39e3cffdd07e3fa087e049bd532c3e8f1) - Updated all dependencies to the latest version where possible. ([@paales](https://github.com/paales))
+
+## 7.0.0
+
+### Patch Changes
+
+- [#1944](https://github.com/graphcommerce-org/graphcommerce/pull/1944) [`d83c92b76`](https://github.com/graphcommerce-org/graphcommerce/commit/d83c92b767cfab24b33b7530837e601f1b49de38) - When there are no items in the cart, do not send a viewCart event ([@paales](https://github.com/paales))
+
+- [#1915](https://github.com/graphcommerce-org/graphcommerce/pull/1915) [`4c8d6fc73`](https://github.com/graphcommerce-org/graphcommerce/commit/4c8d6fc734a83b9ffa078abf10b26c65e49f4940) - GaViewItem would still be enabled even when googleAnalyticsId was enabled ([@paales](https://github.com/paales))
+
+- [#2031](https://github.com/graphcommerce-org/graphcommerce/pull/2031) [`4d8fc9e99`](https://github.com/graphcommerce-org/graphcommerce/commit/4d8fc9e998fc9361282833316ec9564da0644ed6) - Eslint fixes and suppress accepted warnings ([@paales](https://github.com/paales))
+
+## 6.2.0-canary.98
+
+## 6.2.0-canary.97
+
+## 6.2.0-canary.96
+
+## 6.2.0-canary.95
+
+## 6.2.0-canary.94
+
+## 6.2.0-canary.93
+
+## 6.2.0-canary.92
+
+## 6.2.0-canary.91
+
+## 6.2.0-canary.90
+
+## 6.2.0-canary.89
+
+### Patch Changes
+
+- [#2031](https://github.com/graphcommerce-org/graphcommerce/pull/2031) [`4d8fc9e99`](https://github.com/graphcommerce-org/graphcommerce/commit/4d8fc9e998fc9361282833316ec9564da0644ed6) - Eslint fixes and suppress accepted warnings ([@paales](https://github.com/paales))
+
+## 6.2.0-canary.88
+
+### Patch Changes
+
+- [`372c8974b`](https://github.com/graphcommerce-org/graphcommerce/commit/372c8974b8724a603d5d9e80f708a2d695055559) - Fix regression with the new cart renderer ([@paales](https://github.com/paales))
+
+## 6.2.0-canary.87
+
+## 6.2.0-canary.86
+
+## 6.2.0-canary.85
+
 ## 6.2.0-canary.84
 
 ## 6.2.0-canary.83

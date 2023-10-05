@@ -1,6 +1,6 @@
 import { PaymentMethodOptionsNoop, PaymentModule } from '@graphcommerce/magento-cart-payment-method'
-import { MollieIdealOptions } from '@graphcommerce/mollie-magento-payment/components/MollieOptionsIssuer/MollieIdealOptions'
 import { MollieActionCard } from './components/MollieActionCard/MollieActionCard'
+import { MollieIdealOptions } from './components/MollieOptionsIssuer/MollieIdealOptions'
 import { MolliePaymentHandler } from './components/MolliePaymentHandler/MolliePaymentHandler'
 import { MolliePlaceOrder } from './components/MolliePlaceOrder/MolliePlaceOrder'
 

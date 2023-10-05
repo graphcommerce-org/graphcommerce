@@ -1,32 +1,26 @@
-import { RemoveItemFromCartProps } from '@graphcommerce/magento-cart-items'
-import { IfConfig, PluginProps } from '@graphcommerce/next-config'
+import type { RemoveItemFromCart } from '@graphcommerce/magento-cart-items'
+import { IfConfig, ReactPlugin } from '@graphcommerce/next-config'
 import { gtagRemoveFromCart } from '../events/gtagRemoveFromCart/gtagRemoveFromCart'
 
-export const component = 'RemoveItemFromCartFab'
-export const exported = '@graphcommerce/magento-cart-items/RemoveItemFromCart/RemoveItemFromCartFab'
+export const component = 'RemoveItemFromCart'
+export const exported = '@graphcommerce/magento-cart-items/components/RemoveItemFromCart/RemoveItemFromCart'
 export const ifConfig: IfConfig = 'googleAnalyticsId'
 
-export function GaRemoveItemFromCart(props: PluginProps<RemoveItemFromCartProps>) {
-  const { Prev, uid, quantity, prices, product, onClick } = props
+export const GaRemoveItemFromCart: ReactPlugin<typeof RemoveItemFromCart> = (props) => {
+  const { Prev, uid, quantity, prices, product, buttonProps } = props
 
   return (
     <Prev
       {...props}
       product={product}
-      onClick={(e) => {
-        gtagRemoveFromCart({
-          __typename: 'Cart',
-          items: [
-            {
-              uid,
-              __typename: 'SimpleCartItem',
-              product,
-              quantity,
-              prices,
-            },
-          ],
-        })
-        onClick?.(e)
+      buttonProps={{
+        onClick: (e) => {
+          gtagRemoveFromCart({
+            __typename: 'Cart',
+            items: [{ uid, __typename: 'SimpleCartItem', product, quantity, prices }],
+          })
+          buttonProps?.onClick?.(e)
+        },
       }}
     />
   )

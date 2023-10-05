@@ -7,7 +7,8 @@ export type FooterProps = {
   socialLinks?: React.ReactNode
   customerService?: React.ReactNode
   copyright?: React.ReactElement
-} & Omit<ContainerProps, 'children'>
+  children?: React.ReactNode
+} & ContainerProps
 
 const { classes, selectors } = extendableComponent('Footer', [
   'root',
@@ -24,6 +25,7 @@ export function Footer(props: FooterProps) {
     customerService,
     copyright,
     sx = [],
+    children,
     ...containerProps
   } = props
 
@@ -130,6 +132,7 @@ export function Footer(props: FooterProps) {
           {copyright}
         </Box>
       )}
+      {children}
     </Container>
   )
 }

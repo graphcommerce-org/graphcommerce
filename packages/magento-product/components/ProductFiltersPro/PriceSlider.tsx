@@ -1,6 +1,7 @@
 import { FilterRangeTypeInput } from '@graphcommerce/graphql-mesh'
 import { Money } from '@graphcommerce/magento-store'
 import { extendableComponent, filterNonNullableKeys } from '@graphcommerce/next-ui'
+// eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { Box, Slider, SxProps, Theme, useEventCallback } from '@mui/material'
 import { useCallback } from 'react'
 import { FilterProps } from './ProductFiltersProAggregations'

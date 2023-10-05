@@ -1,22 +1,15 @@
-import {
-  FormAutoSubmit,
-  useForm,
-  useFormAutoSubmit,
-  UseFormProps,
-  UseFormReturn,
-} from '@graphcommerce/ecommerce-ui'
-import type { ProductFiltersLayout } from '@graphcommerce/next-config'
-import { extendableComponent, StickyBelowHeader, useMemoObject } from '@graphcommerce/next-ui'
-import { useMediaQuery, Container, Box, Theme, useEventCallback } from '@mui/material'
+import { useForm, UseFormProps, UseFormReturn } from '@graphcommerce/ecommerce-ui'
+import { useMemoObject } from '@graphcommerce/next-ui'
+import { useEventCallback } from '@mui/material'
 import React, { BaseSyntheticEvent, createContext, useContext, useMemo } from 'react'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
+import { ProductListFiltersFragment } from '../ProductListFilters/ProductListFilters.gql'
 import {
   ProductFilterParams,
   ProductListParams,
   toFilterParams,
   toProductListParams,
 } from '../ProductListItems/filterTypes'
-import { ProductListFiltersFragment } from '../ProductListFilters/ProductListFilters.gql'
 
 type DataProps = {
   filterTypes: Record<string, string | undefined>

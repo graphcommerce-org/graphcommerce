@@ -2,6 +2,7 @@ import { useMutation } from '@graphcommerce/graphql'
 import { iconCompare, Button, Fab, FabProps } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
+// eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { alpha, Checkbox, NoSsr, SxProps, Theme, useTheme } from '@mui/material'
 import { useState } from 'react'
 import { CompareProductIdInternalFragment } from '../graphql'

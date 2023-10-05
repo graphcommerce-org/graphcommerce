@@ -15,12 +15,23 @@ export async function getProductStaticPaths(
 ) {
   const query = client.query({
     query: ProductStaticPathsDocument,
-    variables: {
-      currentPage: 1,
-      pageSize: 100,
-    },
+    variables: { currentPage: 1, pageSize: 100 },
   })
   const pages: Promise<ApolloQueryResult<ProductStaticPathsQuery>>[] = [query]
+
+  const { data } = await query
+  const totalPages = data.products?.page_info?.total_pages ?? 1
+
+  if (totalPages > 1 && import.meta.graphCommerce.limitSsg !== true) {
+    for (let i = 2; i <= totalPages; i++) {
+      pages.push(
+        client.query({
+          query: ProductStaticPathsDocument,
+          variables: { currentPage: i, pageSize: 100 },
+        }),
+      )
+    }
+  }
 
   const paths: Return['paths'] = (await Promise.all(pages))
     .map((q) => q.data.products?.items)

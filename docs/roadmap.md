@@ -13,19 +13,28 @@ menu: Roadmap
 The following overview contains the status of items on the GraphCommerce roadmap
 (items are subject to change):
 
-## In progress
+## In progress / planned
 
-- [ ] Better authorization handling
-- [ ] Hygraph schema migrations
-- [ ] Edge runtime for GraphQL Mesh and Streaming SSR rendering
 - [ ] Global store messages
+- [ ] Wishlist redesign
+- [ ] Success page redesign
+- [ ] Product thumbnails on product page
+- [ ] Dutch Postcode API upgrades
+- [ ] Invalid session handling improvements
+- [ ] Performance improvements
+- [ ] Migration to next/image in favor of @graphcommerce/image
 
-## Just released
+## Released
 
 [See all releases](https://github.com/graphcommerce-org/graphcommerce/releases?q=prerelease%3Afalse+&expanded=true)
 
+- [x] Configurable variants for simple products
+      [ocs ↗](https://graphcommerce.org/docs/magento/configurable-products)
+- [x] Cart redesign
+- [x] Hygraph schema migrations
+      [docs ↗](https://graphcommerce.org/docs/hygraph/cli)
 - [x] [Algolia Search (beta)](https://github.com/graphcommerce-org/graphcommerce/tree/main/packages/algolia-search)
-- [x] [Dynamic Rows (beta)](https://github.com/graphcommerce-org/graphcommerce/tree/main/packages/hygraph-dynamic-rows)
+- [x] [Dynamic Rows](https://github.com/graphcommerce-org/graphcommerce/tree/main/packages/hygraph-dynamic-rows)
 - [x] [Product compare](https://github.com/graphcommerce-org/graphcommerce/blob/main/packages/magento-compare/Config.graphqls)
 - [x] Google Tagmanager 4 datalayer implementation
       [docs ↗](https://github.com/graphcommerce-org/graphcommerce/tree/main/packages/googleanalytics)
@@ -51,20 +60,16 @@ The following overview contains the status of items on the GraphCommerce roadmap
 - [x] Checkout payment selection rebuild
 - [x] Core stability (hydratation, caching, query optimization)
 
-## Planned
-
-- [ ] Redesigned cart
-- [ ] Product thumbnail carousel
-- [ ] React Server Components integration
-
 ## Future
 
-- [ ] Fetch Magento image sizes (probe-image-size)
+- [ ] React Server Components integration
+- [ ] Edge runtime for GraphQL Mesh
 - [ ] Windows support
 - [ ] Store locator
 - [ ] Buckaroo payment service
 - [ ] `magento` example without Hygraph
 - [ ] PageBuilder support
+      [depends on ↗](https://github.com/magento/magento2/issues/37768)
 
 ## Next steps
 

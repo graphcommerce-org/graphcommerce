@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { extendableComponent } from '@graphcommerce/next-ui/Styles'
 import { styled, SxProps, Theme, useTheme } from '@mui/material'
 import { m, transform, useTransform } from 'framer-motion'
