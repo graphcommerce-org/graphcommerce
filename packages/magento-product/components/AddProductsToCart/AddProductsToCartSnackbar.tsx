@@ -58,7 +58,7 @@ export function AddProductsToCartSnackbar(props: AddProductsToCartSnackbarProps)
         </ErrorSnackbar>
       )}
 
-      {showSuccess && !disableSuccessSnackbar && (
+      {showSuccess && (
         <MessageSnackbar
           variant='pill'
           {...successSnackbar}
