@@ -86,7 +86,7 @@ export const BundleOptionValue = (props: ActionCardItemRenderProps<BundleOptionV
             size='small'
             label='Quantity'
             color={color}
-            castToNumber={false}
+            transform={String}
             validation={{
               pattern: { value: /^[1-9]|[1-9]d+$/, message: 'Quantity must be greater than 0' },
             }}
