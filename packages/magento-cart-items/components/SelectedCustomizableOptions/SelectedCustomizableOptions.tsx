@@ -27,8 +27,10 @@ export function SelectedCustomizableOptions(props: ConfigurableActionCartItemPro
           </Typography>
           {option.values.filter(nonNullable).map((value) => (
             <>
-              <span key={value.customizable_option_value_uid}>{value.label}</span>
-              <span key={value.customizable_option_value_uid}>
+              <span key={`${value.customizable_option_value_uid}_${value.label}`}>
+                {value.label}
+              </span>
+              <span key={`${value.customizable_option_value_uid}_${value.price.value}`}>
                 {value.price.value > 0 && <Money value={value.price.value} />}
               </span>
 
