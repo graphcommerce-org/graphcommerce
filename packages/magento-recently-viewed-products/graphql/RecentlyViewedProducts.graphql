@@ -5,7 +5,6 @@ query RecentlyViewedProducts {
       __typename
       sku
       parentSku
-      time
     }
   }
 }
