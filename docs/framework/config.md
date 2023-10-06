@@ -272,6 +272,10 @@ By default we route products to /p/[url] but you can change this to /product/[ur
 Default: '/p/'
 Example: '/product/'
 
+#### `recentlyViewedProductsCount: Int`
+
+Number of recently viewed products to be stored in localStorage
+
 #### `robotsAllow: Boolean`
 
 Allow the site to be indexed by search engines.

@@ -42,15 +42,19 @@ function ViewHandling(props: { product: ProductPageMetaFragment }) {
 
     if (skuAlreadySet && skuIsLastItem) return
 
-    const items = [
-      // If SKU already exists in recently viewed products, replace it, else add it
+    // If SKU already exists in recently viewed products, remove it, so we can re-add it as the first item of the array
+    const viewedSkus = [
       ...(skuIsLastItem || parentSkuAlreadySet
         ? skus.filter((p) => p.sku !== parentSku && p.parentSku !== parentSku)
         : skus),
-      { __typename: 'RecentlyViewedProduct' as const, parentSku, sku },
     ]
 
-    // Current SKU not yet found in recently viewed or SKU is found, but not set as last visited - add to list/update in list
+    // Limit array
+    const items = [
+      { __typename: 'RecentlyViewedProduct' as const, parentSku, sku },
+      ...viewedSkus,
+    ].splice(0, import.meta.graphCommerce.recentlyViewedProductsCount || 10)
+
     client.writeQuery({
       query: RecentlyViewedProductsDocument,
       broadcast: true,

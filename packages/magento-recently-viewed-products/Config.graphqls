@@ -1,0 +1,6 @@
+extend input GraphCommerceConfig {
+  """
+  Number of recently viewed products to be stored in localStorage
+  """
+  recentlyViewedProductsCount: Int
+}

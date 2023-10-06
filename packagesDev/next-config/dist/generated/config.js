@@ -72,6 +72,7 @@ function GraphCommerceConfigSchema() {
         productFiltersLayout: ProductFiltersLayoutSchema.nullish(),
         productFiltersPro: _zod.z.boolean().nullish(),
         productRoute: _zod.z.string().nullish(),
+        recentlyViewedProductsCount: _zod.z.number().nullish(),
         robotsAllow: _zod.z.boolean().nullish(),
         storefront: _zod.z.array(GraphCommerceStorefrontConfigSchema()),
         wishlistHideForGuests: _zod.z.boolean().nullish(),

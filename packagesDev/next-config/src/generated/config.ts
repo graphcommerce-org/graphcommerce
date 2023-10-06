@@ -277,6 +277,8 @@ export type GraphCommerceConfig = {
    * Example: '/product/'
    */
   productRoute?: InputMaybe<Scalars['String']['input']>;
+  /** Number of recently viewed products to be stored in localStorage */
+  recentlyViewedProductsCount?: InputMaybe<Scalars['Int']['input']>;
   /**
    * Allow the site to be indexed by search engines.
    * If false, the robots.txt file will be set to disallow all.
@@ -426,6 +428,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     productFiltersLayout: ProductFiltersLayoutSchema.nullish(),
     productFiltersPro: z.boolean().nullish(),
     productRoute: z.string().nullish(),
+    recentlyViewedProductsCount: z.number().nullish(),
     robotsAllow: z.boolean().nullish(),
     storefront: z.array(GraphCommerceStorefrontConfigSchema()),
     wishlistHideForGuests: z.boolean().nullish(),
