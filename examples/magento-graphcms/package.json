@@ -59,6 +59,7 @@
     "@graphcommerce/magento-product-grouped": "7.1.0-canary.30",
     "@graphcommerce/magento-product-simple": "7.1.0-canary.30",
     "@graphcommerce/magento-product-virtual": "7.1.0-canary.30",
+    "@graphcommerce/magento-recently-viewed-products": "7.1.0-canary.30",
     "@graphcommerce/magento-review": "7.1.0-canary.30",
     "@graphcommerce/magento-search": "7.1.0-canary.30",
     "@graphcommerce/magento-store": "7.1.0-canary.30",
