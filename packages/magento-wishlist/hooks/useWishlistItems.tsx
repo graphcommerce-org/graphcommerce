@@ -11,9 +11,7 @@ export type WishListItem = NonNullable<
 
 export type WishListData = WishListItem[] | undefined | null
 
-export function useWishlistItems(): {
-  data: WishListData
-} {
+export function useWishlistItems() {
   const { loggedIn } = useCustomerSession()
   let wishlistItems: WishListData = []
   /** Get customer wishlist from session */
@@ -33,6 +31,7 @@ export function useWishlistItems(): {
   if (!loggedIn) wishlistItems = guestWl.data?.customer?.wishlists[0]?.items_v2?.items
 
   return {
+    ...(loggedIn ? customerWl : guestWl),
     data: wishlistItems,
   }
 }
