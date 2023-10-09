@@ -13,22 +13,21 @@ type AddWishlistItemToCartProps = UseAddProductsToCartActionProps & {
 }
 
 export function AddWishlistItemToCart(props: AddWishlistItemToCartProps) {
-  const { product, selectedOptions } = props
+  const { product, selectedOptions, sku } = props
   const { setValue } = useFormAddProductsToCart()
 
   return (
     <Box sx={{ display: 'grid', gridTemplateColumns: '1' }}>
       <AddProductsToCartQuantity variant='standard' InputProps={{ disableUnderline: true }} />
-      {product && (
-        <AddProductsToCartButton
-          product={product}
-          onClick={() => setValue(`cartItems.${0}.selected_options`, selectedOptions)}
-          color='primary'
-          variant='text'
-          size='medium'
-          endIcon={<IconSvg src={iconChevronRight} />}
-        />
-      )}
+      <AddProductsToCartButton
+        sku={sku}
+        product={product}
+        onClick={() => setValue(`cartItems.${0}.selected_options`, selectedOptions)}
+        color='primary'
+        variant='text'
+        size='medium'
+        endIcon={<IconSvg src={iconChevronRight} />}
+      />
     </Box>
   )
 }
