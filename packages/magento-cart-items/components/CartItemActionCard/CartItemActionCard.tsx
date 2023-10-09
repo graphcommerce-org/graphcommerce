@@ -99,6 +99,7 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
               height: productImageSizes[size],
               display: 'block',
               borderRadius: 1,
+              objectFit: 'contain',
             }}
             sizes={productImageSizes[size]}
           />
