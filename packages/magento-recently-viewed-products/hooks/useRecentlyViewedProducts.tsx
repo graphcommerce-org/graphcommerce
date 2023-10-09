@@ -3,7 +3,8 @@ import { ProductListDocument } from '@graphcommerce/magento-product'
 import { nonNullable } from '@graphcommerce/next-ui'
 import { useRecentlyViewedSkus } from './useRecentlyViewedSkus'
 
-export function useRecentlyViewedProducts({ exclude }: { exclude?: string[] } = {}) {
+export type UseRecentlyViewedProductsProps = { exclude?: string[] }
+export function useRecentlyViewedProducts({ exclude }: UseRecentlyViewedProductsProps = {}) {
   const { skus, loading } = useRecentlyViewedSkus({ exclude })
 
   const {
