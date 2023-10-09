@@ -21,13 +21,13 @@ const { classes } = extendableComponent('ItemScroller', [
   'centerRight',
 ] as const)
 
-type SliderProps = {
+export type ItemScrollerProps = {
   children: React.ReactNode
   sx?: SxProps<Theme>
   buttonSize?: ScrollerButtonProps['size']
 } & Pick<ScrollerButtonProps, 'showButtons'>
 
-export function ItemScroller(props: SliderProps) {
+export function ItemScroller(props: ItemScrollerProps) {
   const { children, sx, buttonSize = 'responsive', showButtons } = props
 
   const size = useFabSize(buttonSize)
