@@ -38,7 +38,7 @@ function ViewHandling(props: { product: ProductPageMetaFragment }) {
       (p) => p.sku === product.sku || p.parentSku === product.sku,
     )
     const skuAlreadySet = skus.some((p) => p.sku === sku)
-    const skuIsLastItem = skus[skus.length - 1].sku === sku
+    const skuIsLastItem = skus.length === 0 || skus[skus.length - 1].sku === sku
 
     if (skuAlreadySet && skuIsLastItem) return
 
