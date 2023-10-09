@@ -34,7 +34,7 @@ export function SelectedCustomizableOptions(props: ConfigurableActionCartItemPro
                 {value.price.value > 0 && <Money value={value.price.value} />}
               </span>
               {!value.label && value.value && (
-                <Tooltip title={value.value}>
+                <Tooltip title={value.value} sx={{ alignSelf: 'center' }}>
                   <IconSvg src={InfoIcon} size='medium' />
                 </Tooltip>
               )}
