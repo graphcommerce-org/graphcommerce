@@ -81,8 +81,8 @@ export function ProductListItem(props: ProductListItemProps) {
     onClick,
   } = props
 
-  const handleClick = useEventCallback((e: React.MouseEvent<HTMLAnchorElement>) =>
-    onClick?.(e, props),
+  const handleClick = useEventCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>) => onClick?.(e, props),
   )
 
   const productLink = useProductLink(props)
@@ -140,7 +140,11 @@ export function ProductListItem(props: ProductListItemProps) {
             alt={small_image.label ?? ''}
             className={classes.image}
             loading={loading}
-            sx={{ objectFit: 'contain', aspectRatio: `${aspectRatio[0] / aspectRatio[1]}` }}
+            sx={{
+              objectFit: 'contain',
+              aspectRatio: `${aspectRatio[0] / aspectRatio[1]}`,
+              display: 'block',
+            }}
           />
         ) : (
           <Box
