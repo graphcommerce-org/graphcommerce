@@ -187,68 +187,50 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
     ?.items_v2?.items
   const filteredItems = oldItems?.filter((oldItem) => oldItem?.id !== wishlistItem.id)
 
-  const preventAnimationBubble = (
-    e: React.TouchEvent<HTMLButtonElement> | React.MouseEvent<HTMLButtonElement>,
-  ) => {
-    e.stopPropagation()
-    if (e.type === 'mousedown') {
-      e.preventDefault()
-    }
-  }
+  const handleWishlistWhenAuthenticated = () => {
+    if (isInWishlist && !ignoreProductWishlistStatus) {
+      const wishlistItemsInSession = wishlist.data
 
-  const preventLinkOnClose: React.MouseEventHandler<HTMLDivElement> = (e) => {
-    e.preventDefault()
-    e.stopPropagation()
-  }
-
-  const handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
-    e.preventDefault()
-
-    if (!url_key || !sku) {
-      return
-    }
-
-    if (loggedIn) {
-      if (isInWishlist && !ignoreProductWishlistStatus) {
-        const wishlistItemsInSession = wishlist.data
-
-        const item = wishlistItemsInSession?.find((element) => {
-          if (element?.__typename === 'ConfigurableWishlistItem') {
-            if (
-              element.configurable_options?.[0]?.configurable_product_option_value_uid === undefined
-            ) {
-              return element?.product?.url_key === url_key
-            }
-            return element.configurable_options.every((config_option) =>
-              selected_options.find(
-                (select_option) =>
-                  select_option === config_option?.configurable_product_option_value_uid,
-              ),
-            )
+      const item = wishlistItemsInSession?.find((element) => {
+        if (element?.__typename === 'ConfigurableWishlistItem') {
+          if (
+            element.configurable_options?.[0]?.configurable_product_option_value_uid === undefined
+          ) {
+            return element?.product?.url_key === url_key
           }
-          return element?.product?.url_key === url_key
-        })
-
-        if (item?.id) {
-          // eslint-disable-next-line @typescript-eslint/no-floating-promises
-          removeWishlistItem({ variables: { wishlistItemId: item.id } })
+          return element.configurable_options.every((config_option) =>
+            selected_options.find(
+              (select_option) =>
+                select_option === config_option?.configurable_product_option_value_uid,
+            ),
+          )
         }
-      } else {
+        return element?.product?.url_key === url_key
+      })
+
+      if (item?.id) {
         // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        addWishlistItem({
-          variables: {
-            input: [
-              {
-                sku,
-                quantity: 1,
-                selected_options: notFullyConfigured ? [] : selected_options,
-              },
-            ],
-          },
-        })
-        setDisplayMessageBar(true)
+        removeWishlistItem({ variables: { wishlistItemId: item.id } })
       }
-    } else if (isInWishlist) {
+    } else {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      addWishlistItem({
+        variables: {
+          input: [
+            {
+              sku: sku || '',
+              quantity: 1,
+              selected_options: notFullyConfigured ? [] : selected_options,
+            },
+          ],
+        },
+      })
+      setDisplayMessageBar(true)
+    }
+  }
+
+  const handleWishlistWhenNotAuthenticated = () => {
+    if (isInWishlist) {
       cache.writeQuery({
         query: GuestWishlistDocument,
         data: {
@@ -283,6 +265,34 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
         broadcast: true,
       })
       setDisplayMessageBar(true)
+    }
+  }
+
+  const preventAnimationBubble = (
+    e: React.TouchEvent<HTMLButtonElement> | React.MouseEvent<HTMLButtonElement>,
+  ) => {
+    e.stopPropagation()
+    if (e.type === 'mousedown') {
+      e.preventDefault()
+    }
+  }
+
+  const preventLinkOnClose: React.MouseEventHandler<HTMLDivElement> = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+  }
+
+  const handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
+    e.preventDefault()
+
+    if (!url_key || !sku) {
+      return
+    }
+
+    if (loggedIn) {
+      handleWishlistWhenAuthenticated()
+    } else {
+      handleWishlistWhenNotAuthenticated()
     }
   }
 
