@@ -33,6 +33,11 @@ export function SelectedCustomizableOptions(props: ConfigurableActionCartItemPro
               <span key={`${value.customizable_option_value_uid}_${value.price.value}`}>
                 {value.price.value > 0 && <Money value={value.price.value} />}
               </span>
+              {!value.label && value.value && (
+                <Tooltip title={value.value}>
+                  <IconSvg src={InfoIcon} size='medium' />
+                </Tooltip>
+              )}
             </>
           ))}
         </Box>
