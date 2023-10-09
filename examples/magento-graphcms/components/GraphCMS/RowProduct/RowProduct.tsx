@@ -5,6 +5,7 @@ import {
   Feature,
   FeatureBoxed,
   Grid,
+  Recent,
   Related,
   Reviews,
   Specs,
@@ -19,7 +20,7 @@ type VariantRenderer = Record<
 
 type RowProductProps = RowProductFragment & {
   renderer?: Partial<VariantRenderer>
-} & ProductSpecsFragment & { items?: unknown }
+} & ProductSpecsFragment & { items?: unknown } & { sku?: string | null | undefined }
 
 const defaultRenderer: Partial<VariantRenderer> = {
   Specs,
@@ -27,6 +28,7 @@ const defaultRenderer: Partial<VariantRenderer> = {
   Feature,
   FeatureBoxed,
   Grid,
+  Recent,
   Related,
   Reviews,
   Upsells,
