@@ -12,14 +12,14 @@ export const exported =
 export function BundleWishlistItemActionCard(
   props: PluginProps<React.ComponentProps<typeof WishlistItemActionCard>>,
 ) {
-  const { Prev, product, ...rest } = props
+  const { Prev, product, __typename } = props
 
   const productLink = useProductLink({
     url_key: product?.url_key,
     __typename: product?.__typename ?? 'BundleProduct',
   })
 
-  if (rest.__typename !== 'BundleWishlistItem') return <Prev {...props} />
+  if (__typename !== 'BundleWishlistItem') return <Prev {...props} />
 
   return (
     <Prev

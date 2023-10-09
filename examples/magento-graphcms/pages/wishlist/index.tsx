@@ -43,7 +43,7 @@ function WishlistPage() {
       </LayoutOverlayHeader>
 
       <WaitForQueries
-        waitFor={[!!wishlistItemsData]}
+        waitFor={[wishlistItemsData]}
         fallback={
           <Container maxWidth='md'>
             <FullPageMessage
@@ -77,7 +77,7 @@ function WishlistPage() {
               </LayoutTitle>
               <Container maxWidth='md'>
                 {wishlistItemsData.data?.map((item) => {
-                  if (!item?.id) return null
+                  if (!item) return null
                   return <WishlistItemActionCard key={item.id} {...item} size={size} />
                 })}
               </Container>

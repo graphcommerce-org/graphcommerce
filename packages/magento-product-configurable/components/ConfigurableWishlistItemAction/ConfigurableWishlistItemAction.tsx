@@ -1,3 +1,4 @@
+import { ConfigurableWishlistItem } from '@graphcommerce/graphql-mesh'
 import { useProductLink } from '@graphcommerce/magento-product/hooks/useProductLink'
 import { type WishlistItemActionCardProps } from '@graphcommerce/magento-wishlist'
 import { AddWishlistItemToCart } from '@graphcommerce/magento-wishlist/components/WishlistItem/AddWishlistItemToCart'
@@ -5,19 +6,7 @@ import { IconSvg, iconChevronRight, nonNullable } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Button } from '@mui/material'
 
-export type ConfigurableOptions = {
-  configurable_options?:
-    | ({
-        configurable_product_option_uid: string
-        configurable_product_option_value_uid: string
-        option_label: string
-        value_label: string
-      } | null)[]
-    | undefined
-    | null
-}
-
-type ConfigurableWishlistItemActionProps = WishlistItemActionCardProps & ConfigurableOptions
+type ConfigurableWishlistItemActionProps = WishlistItemActionCardProps & ConfigurableWishlistItem
 
 export function ConfigurableWishlistItemAction(props: ConfigurableWishlistItemActionProps) {
   const { configurable_options, product } = props
@@ -28,8 +17,8 @@ export function ConfigurableWishlistItemAction(props: ConfigurableWishlistItemAc
   })
 
   const selectedOptions = configurable_options
-    ?.map((option) => option?.configurable_product_option_value_uid)
-    .filter(nonNullable)
+    ?.filter(nonNullable)
+    .map((option) => option?.configurable_product_option_value_uid)
 
   const isConfigurableUncompleted =
     (product?.__typename === 'ConfigurableProduct' &&

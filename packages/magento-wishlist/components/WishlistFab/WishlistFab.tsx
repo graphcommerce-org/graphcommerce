@@ -56,9 +56,9 @@ export function WishlistFab(props: WishlistFabProps) {
 
   const wishlistData = useWishlistItems()
 
-  const wishlist = wishlistData.data || []
+  const wishlist = wishlistData.data ?? []
 
-  const activeWishlist = wishlist?.length > 0
+  const activeWishlist = wishlist.length > 0
 
   if (!isWishlistEnabled || (hideForGuest && !loggedIn)) return null
 
