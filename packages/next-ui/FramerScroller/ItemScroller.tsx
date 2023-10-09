@@ -10,7 +10,7 @@ import { extendableComponent, responsiveVal } from '../Styles'
 import { useFabSize } from '../Theme'
 import { iconChevronLeft, iconChevronRight } from '../icons'
 
-const { classes } = extendableComponent('SidebarSlider', [
+const { classes } = extendableComponent('ItemScroller', [
   'root',
   'grid',
   'sidebar',
