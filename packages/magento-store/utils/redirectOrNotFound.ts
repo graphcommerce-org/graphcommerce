@@ -67,7 +67,7 @@ export async function redirectOrNotFound(
       candidates.add(from.endsWith(suffix) ? from.slice(0, -suffix.length) : `${from}${suffix}`)
     })
 
-    const routePromises = [...candidates].map(
+    const routePromises = [...candidates].filter(Boolean).map(
       async (url) =>
         (
           await client.query({

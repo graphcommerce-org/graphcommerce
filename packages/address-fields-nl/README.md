@@ -15,3 +15,4 @@ second.
 3. Copy `@graphcommerce/address-fields-nl/lib/natationaalgeoregister` to
    `lib/nationaalgeoregister` in your project.
 4. Copy the contents of `lib/nationaalgeoregister/.meshrc.yml` in `.meshrc.yml`
+5. Make sure you installed `"@graphql-mesh/json-schema": "latest"`

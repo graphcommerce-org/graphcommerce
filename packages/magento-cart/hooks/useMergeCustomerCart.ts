@@ -22,16 +22,21 @@ export function useMergeCustomerCart() {
     // If the vistor cart is the same as the customer cart, we're done
     if (!destinationCartId || currentCartId === destinationCartId) return
 
-    // Assign the customer cart as the new cart id
-    assignCurrentCartId(destinationCartId)
-
     // If the visitor has a guest cart, try merging it into the customer cart
     if (currentCartId) {
-      // We're not handling exceptions here:
-      // If the merge returns an error, we'll use the customer cart without merging the guest cart.
-
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       merge({ variables: { sourceCartId: currentCartId, destinationCartId } })
+        // We're not handling exceptions here:
+        // If the merge returns an error, we'll use the customer cart without merging the guest cart.
+        .catch((e) => {
+          console.error('Error merging carts', e)
+        })
+        .finally(() => {
+          // Assign the customer cart as the new cart id
+          assignCurrentCartId(destinationCartId)
+        })
+    } else {
+      assignCurrentCartId(destinationCartId)
     }
   }, [assignCurrentCartId, destinationCartId, merge, currentCartId])
 }

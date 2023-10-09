@@ -1,5 +1,39 @@
 # Change Log
 
+## 7.1.0-canary.8
+
+## 7.0.2-canary.7
+
+### Patch Changes
+
+- [#2071](https://github.com/graphcommerce-org/graphcommerce/pull/2071) [`68769398f`](https://github.com/graphcommerce-org/graphcommerce/commit/68769398f64604443a148583f1392976f71c2423) - feat(GCOM-1190): add renderer to support rendering Hygraph elements with a CSS class ([@FrankHarland](https://github.com/FrankHarland))
+
+## 7.0.2-canary.6
+
+## 7.0.2-canary.5
+
+## 7.0.1
+
+## 7.0.1-canary.15
+
+## 7.0.1-canary.14
+
+## 7.0.1-canary.13
+
+## 7.0.1-canary.12
+
+## 7.0.1-canary.11
+
+## 7.0.1-canary.10
+
+## 7.0.1-canary.9
+
+## 7.0.1-canary.8
+
+## 7.0.1-canary.7
+
+## 7.0.1-canary.6
+
 ## 7.0.1-canary.5
 
 ## 7.0.1-canary.4

@@ -47,7 +47,7 @@ jobs:
           echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
           echo "::set-output name=date::$(date +"%B %d, %Y")"
       - name: release
-        uses: paales/changesets-action@aggregate-release-mode
+        uses: paales/changesets-action@main
         with:
           publish: 'yarn release'
           commit: 'chore(release): update monorepo packages versions'

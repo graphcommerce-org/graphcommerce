@@ -1,4 +1,9 @@
-import { Scroller, ScrollerButton, ScrollerProvider } from '@graphcommerce/framer-scroller'
+import {
+  Scroller,
+  ScrollerButton,
+  ScrollerButtonProps,
+  ScrollerProvider,
+} from '@graphcommerce/framer-scroller'
 import { Box, ContainerProps, SxProps, Theme, Typography } from '@mui/material'
 import React from 'react'
 import { IconSvg } from '../../IconSvg'
@@ -13,8 +18,8 @@ export type RowLinksProps = {
   children: React.ReactNode
   sx?: SxProps<Theme>
   inlineTitle?: boolean
-  showButtons?: 'auto' | 'desktopAuto' | 'always' | 'desktopAlways'
-} & Pick<ContainerProps, 'maxWidth'>
+} & Pick<ContainerProps, 'maxWidth'> &
+  Pick<ScrollerButtonProps, 'showButtons'>
 
 const compName = 'RowLinks' as const
 const parts = [
@@ -23,44 +28,14 @@ const parts = [
   'scrollerWrapper',
   'title',
   'copy',
-  'swipperButton',
+  'swiperButton',
   'centerRight',
   'centerLeft',
 ] as const
 const { classes } = extendableComponent(compName, parts)
 
 export function RowLinks(props: RowLinksProps) {
-  const {
-    title,
-    copy,
-    children,
-    sx = [],
-    inlineTitle,
-    showButtons = 'desktopAuto',
-    maxWidth,
-  } = props
-
-  const mode = {
-    ...(showButtons === 'auto' && {
-      '&.MuiFab-root': {
-        display: 'inline-flex',
-      },
-    }),
-    ...(showButtons === 'always' && {
-      opacity: 1,
-      transform: 'scale(1)',
-      '&.MuiFab-root': {
-        display: 'inline-flex',
-      },
-    }),
-    ...(showButtons === 'desktopAlways' && {
-      opacity: { md: 1 },
-      transform: { md: 'scale(1)' },
-      '&.MuiFab-root': {
-        display: { md: 'inline-flex' },
-      },
-    }),
-  }
+  const { title, copy, children, sx = [], inlineTitle, showButtons, maxWidth } = props
 
   const fabSize = useFabSize('responsive')
 
@@ -123,12 +98,8 @@ export function RowLinks(props: RowLinksProps) {
           >
             <ScrollerButton
               direction='left'
-              className={classes.swipperButton}
-              sx={{
-                display: 'flex',
-                zIndex: 'inherit',
-                ...mode,
-              }}
+              className={classes.swiperButton}
+              showButtons={showButtons}
               size='responsive'
             >
               <IconSvg src={iconChevronLeft} />
@@ -146,12 +117,8 @@ export function RowLinks(props: RowLinksProps) {
           >
             <ScrollerButton
               direction='right'
-              className={classes.swipperButton}
-              sx={{
-                display: 'flex',
-                zIndex: 'inherit',
-                ...mode,
-              }}
+              className={classes.swiperButton}
+              showButtons={showButtons}
               size='responsive'
             >
               <IconSvg src={iconChevronRight} />

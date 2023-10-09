@@ -1,5 +1,43 @@
 # Change Log
 
+## 7.1.0-canary.8
+
+## 7.0.2-canary.7
+
+## 7.0.2-canary.6
+
+## 7.0.2-canary.5
+
+## 7.0.1
+
+### Patch Changes
+
+- [#2054](https://github.com/graphcommerce-org/graphcommerce/pull/2054) [`603ae9fc2`](https://github.com/graphcommerce-org/graphcommerce/commit/603ae9fc28c9ce4e74a797c1dc32925518a0888a) - CustomerAddressForm's ActionCardListForm error wasn't translated ([@carlocarels90](https://github.com/carlocarels90))
+
+## 7.0.1-canary.15
+
+## 7.0.1-canary.14
+
+## 7.0.1-canary.13
+
+## 7.0.1-canary.12
+
+## 7.0.1-canary.11
+
+## 7.0.1-canary.10
+
+## 7.0.1-canary.9
+
+## 7.0.1-canary.8
+
+## 7.0.1-canary.7
+
+### Patch Changes
+
+- [#2054](https://github.com/graphcommerce-org/graphcommerce/pull/2054) [`603ae9fc2`](https://github.com/graphcommerce-org/graphcommerce/commit/603ae9fc28c9ce4e74a797c1dc32925518a0888a) - CustomerAddressForm's ActionCardListForm error wasn't translated ([@carlocarels90](https://github.com/carlocarels90))
+
+## 7.0.1-canary.6
+
 ## 7.0.1-canary.5
 
 ## 7.0.1-canary.4

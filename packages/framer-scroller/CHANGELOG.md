@@ -1,5 +1,39 @@
 # Change Log
 
+## 7.1.0-canary.8
+
+## 7.0.2-canary.7
+
+## 7.0.2-canary.6
+
+### Patch Changes
+
+- [#2066](https://github.com/graphcommerce-org/graphcommerce/pull/2066) [`3b1f58515`](https://github.com/graphcommerce-org/graphcommerce/commit/3b1f585153672a644a613411134e5ad36aa4c266) - Add showButtons prop to scrollerButton ([@StefanAngenent](https://github.com/StefanAngenent))
+
+## 7.0.2-canary.5
+
+## 7.0.1
+
+## 7.0.1-canary.15
+
+## 7.0.1-canary.14
+
+## 7.0.1-canary.13
+
+## 7.0.1-canary.12
+
+## 7.0.1-canary.11
+
+## 7.0.1-canary.10
+
+## 7.0.1-canary.9
+
+## 7.0.1-canary.8
+
+## 7.0.1-canary.7
+
+## 7.0.1-canary.6
+
 ## 7.0.1-canary.5
 
 ## 7.0.1-canary.4

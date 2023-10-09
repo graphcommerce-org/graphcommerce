@@ -54,4 +54,5 @@ export const defaultRenderers: Renderers = {
   bold: (props) => <Box component='strong' fontWeight='bold' {...props} />,
   italic: (props) => <Box component='em' fontStyle='italic' {...props} />,
   underlined: (props) => <Box component='span' {...props} />,
+  class: (props) => <Box component='div' {...props} />,
 }

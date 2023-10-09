@@ -499,6 +499,9 @@ msgstr "Bitte authentifizieren Sie sich erneut und versuchen Sie es erneut"
 msgid "Please select a payment method"
 msgstr "Bitte Zahlungsart wählen"
 
+msgid "Please select a shipping address"
+msgstr "Bitte wählen Sie eine Versandadresse aus"
+
 msgid "Please select a shipping method"
 msgstr "Bitte wählen Sie eine Versandart"
 

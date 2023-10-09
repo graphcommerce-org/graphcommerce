@@ -499,6 +499,9 @@ msgstr "Vuelva a autenticarse y vuelva a intentarlo"
 msgid "Please select a payment method"
 msgstr "Por favor, seleccione un método de pago"
 
+msgid "Please select a shipping address"
+msgstr "Por favor, seleccione una dirección de envío"
+
 msgid "Please select a shipping method"
 msgstr "Por favor, seleccione un método de envío"
 

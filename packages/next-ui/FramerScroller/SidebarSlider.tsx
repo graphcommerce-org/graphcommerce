@@ -29,10 +29,10 @@ export type SidebarSliderProps = {
   sidebar: ReactNode
   sx?: SxProps<Theme>
   buttonSize?: ScrollerButtonProps['size']
-}
+} & Pick<ScrollerButtonProps, 'showButtons'>
 
 export function SidebarSlider(props: SidebarSliderProps) {
-  const { children, sidebar, sx, buttonSize } = props
+  const { children, sidebar, sx, buttonSize, showButtons } = props
 
   return (
     <Row maxWidth={false} disableGutters className={classes.root} sx={sx}>
@@ -84,7 +84,7 @@ export function SidebarSlider(props: SidebarSliderProps) {
               <ScrollerButton
                 direction='left'
                 className={classes.sliderButtons}
-                sx={{ display: { xs: 'none', md: 'flex' } }}
+                showButtons={showButtons}
                 size={buttonSize}
               >
                 <IconSvg src={iconChevronLeft} />
@@ -103,7 +103,7 @@ export function SidebarSlider(props: SidebarSliderProps) {
               <ScrollerButton
                 direction='right'
                 className={classes.sliderButtons}
-                sx={{ display: { xs: 'none', md: 'flex' } }}
+                showButtons={showButtons}
                 size={buttonSize}
               >
                 <IconSvg src={iconChevronRight} />

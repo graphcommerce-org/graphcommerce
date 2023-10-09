@@ -1,5 +1,53 @@
 # Change Log
 
+## 7.1.0-canary.8
+
+### Minor Changes
+
+- [#2073](https://github.com/graphcommerce-org/graphcommerce/pull/2073) [`05ce5665b`](https://github.com/graphcommerce-org/graphcommerce/commit/05ce5665b3c63b0620266c8ac35e8b555e2029e8) - It is now allowed to use children inside the footer component ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 7.0.2-canary.7
+
+## 7.0.2-canary.6
+
+### Patch Changes
+
+- [#2066](https://github.com/graphcommerce-org/graphcommerce/pull/2066) [`3b1f58515`](https://github.com/graphcommerce-org/graphcommerce/commit/3b1f585153672a644a613411134e5ad36aa4c266) - Add showButtons prop to scrollerButton ([@StefanAngenent](https://github.com/StefanAngenent))
+
+## 7.0.2-canary.5
+
+## 7.0.1
+
+### Patch Changes
+
+- [#2047](https://github.com/graphcommerce-org/graphcommerce/pull/2047) [`136580b39`](https://github.com/graphcommerce-org/graphcommerce/commit/136580b39e3cffdd07e3fa087e049bd532c3e8f1) - Updated all dependencies to the latest version where possible. ([@paales](https://github.com/paales))
+
+- [#2064](https://github.com/graphcommerce-org/graphcommerce/pull/2064) [`a550fa039`](https://github.com/graphcommerce-org/graphcommerce/commit/a550fa039a104b661ffd3fd3e32d99eaf782bc88) - Allow setting all RowLinks props on its variants, instead of a limited predefined set ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 7.0.1-canary.15
+
+### Patch Changes
+
+- [#2064](https://github.com/graphcommerce-org/graphcommerce/pull/2064) [`a550fa039`](https://github.com/graphcommerce-org/graphcommerce/commit/a550fa039a104b661ffd3fd3e32d99eaf782bc88) - Allow setting all RowLinks props on its variants, instead of a limited predefined set ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 7.0.1-canary.14
+
+## 7.0.1-canary.13
+
+## 7.0.1-canary.12
+
+## 7.0.1-canary.11
+
+## 7.0.1-canary.10
+
+## 7.0.1-canary.9
+
+## 7.0.1-canary.8
+
+## 7.0.1-canary.7
+
+## 7.0.1-canary.6
+
 ## 7.0.1-canary.5
 
 ## 7.0.1-canary.4
