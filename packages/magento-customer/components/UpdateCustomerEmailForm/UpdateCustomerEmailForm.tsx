@@ -59,7 +59,7 @@ export function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormProps) {
           autoFocus
           error={formState.isSubmitted && !!formState.errors.currentEmail}
           helperText={formState.isSubmitted && formState.errors.currentEmail?.message}
-          label='Current email'
+          label={<Trans id='Current email' />}
           required
           value={email}
           {...muiRegister('currentEmail', {

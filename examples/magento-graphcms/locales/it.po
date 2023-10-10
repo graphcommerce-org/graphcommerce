@@ -190,6 +190,9 @@ msgstr "Crea nuova password"
 msgid "Current Password"
 msgstr "Password attuale"
 
+msgid "Current email"
+msgstr "Email corrente"
+
 msgid "Customer Service"
 msgstr "Servizio clienti"
 
