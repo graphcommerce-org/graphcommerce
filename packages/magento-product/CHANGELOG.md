@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.1.0-canary.10
+
+### Patch Changes
+
+- [#2081](https://github.com/graphcommerce-org/graphcommerce/pull/2081) [`22454110a`](https://github.com/graphcommerce-org/graphcommerce/commit/22454110a99de36a35e6f4b08c584b0165db32f4) - Removed the duplicate omitted name attribute from AddToCartQuantityProps ([@mikekeehnen](https://github.com/mikekeehnen))
+
 ## 7.1.0-canary.9
 
 ### Patch Changes

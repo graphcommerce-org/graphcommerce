@@ -76,6 +76,7 @@
     "@graphcommerce/typescript-config-pwa": "7.0.1"
   },
   "changesets": [
+    "curvy-grapes-accept",
     "little-shirts-film",
     "quiet-tomatoes-melt",
     "red-gifts-listen",
