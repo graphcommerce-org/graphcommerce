@@ -31,4 +31,18 @@ extend input GraphCommerceConfig {
   Example: '/product/'
   """
   productRoute: String
+
+  """
+  Determines if, after adding a cross-sell item to the cart, the user should be redirected to the cross-sell items of the product they just added.
+
+  Default: 'false'
+  """
+  crossSellsRedirectItems: Boolean =  false
+
+  """
+  Determines if cross sell items should be shown when the user already has the product in their cart. This will result in a product will popping off the screen when you add it to the cart.
+
+  Default: 'false'
+  """
+  crossSellsHideCartItems: Boolean = false
 }

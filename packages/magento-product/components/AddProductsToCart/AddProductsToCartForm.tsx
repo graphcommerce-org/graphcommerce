@@ -29,6 +29,8 @@ export type AddProductsToCartFormProps = {
   sx?: SxProps<Theme>
   // eslint-disable-next-line react/no-unused-prop-types
   redirect?: RedirectType
+
+  disableSuccessSnackbar?: boolean
 } & UseFormGraphQlOptions<AddProductsToCartMutation, AddProductsToCartMutationVariables> &
   AddProductsToCartSnackbarProps
 
@@ -56,8 +58,16 @@ declare module '@mui/material/styles/components' {
  * - Redirects the user to the cart/checkout/added page after successful submission.
  */
 export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
-  let { children, redirect, onComplete, sx, errorSnackbar, successSnackbar, ...formProps } =
-    useThemeProps({ name, props })
+  let {
+    children,
+    redirect,
+    onComplete,
+    sx,
+    disableSuccessSnackbar,
+    errorSnackbar,
+    successSnackbar,
+    ...formProps
+  } = useThemeProps({ name, props })
   const router = useRouter()
   const client = useApolloClient()
   const crosssellsQuery = useRef<Promise<ApolloQueryResult<CrosssellsQuery>>>()
@@ -132,7 +142,12 @@ export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
       <Box component='form' onSubmit={submit} noValidate sx={sx} className={name}>
         {children}
       </Box>
-      <AddProductsToCartSnackbar errorSnackbar={errorSnackbar} successSnackbar={successSnackbar} />
+      {disableSuccessSnackbar ? null : (
+        <AddProductsToCartSnackbar
+          errorSnackbar={errorSnackbar}
+          successSnackbar={successSnackbar}
+        />
+      )}
     </AddProductsToCartContext.Provider>
   )
 }
