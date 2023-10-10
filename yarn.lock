@@ -1637,10 +1637,10 @@
     "@graphql-tools/utils" "^10.0.0"
     tslib "^2.5.0"
 
-"@envelop/graphql-jit@^6.0.2":
-  version "6.0.2"
-  resolved "https://registry.yarnpkg.com/@envelop/graphql-jit/-/graphql-jit-6.0.2.tgz#cdf8dd97a25e2300ed4888c1921c77727815b658"
-  integrity sha512-9kUKNHvWbcQG8zFFWxyVMRgl1ch2jxvS8/Xi39kl3ecah6iZPiIRqRFEL6qaCVDrr6WJGN4Wap/xgPgdik4UPA==
+"@envelop/graphql-jit@^6.0.5":
+  version "6.0.5"
+  resolved "https://registry.yarnpkg.com/@envelop/graphql-jit/-/graphql-jit-6.0.5.tgz#118f41c8a86277b92afe8d880f6484dffc4ce008"
+  integrity sha512-yrgZslAtOBPPfJlW4orT5Ge/k1gSy1gn/1QDNcPVv/6lprbHYaC/QXAo5WdHxSA0KYgzxqYOSX1jnSQjMDkOWA==
   dependencies:
     graphql-jit "^0.8.0"
     lru-cache "^10.0.0"
@@ -2199,19 +2199,20 @@
     "@whatwg-node/fetch" "^0.9.0"
 
 "@graphql-mesh/runtime@^0.96.5", "@graphql-mesh/runtime@latest":
-  version "0.96.5"
-  resolved "https://registry.yarnpkg.com/@graphql-mesh/runtime/-/runtime-0.96.5.tgz#94d11f44e967541e03e886b9c1222d3d770d45ce"
-  integrity sha512-LCd4p0GNEIvBVIPOyLSYla5s5d600vvZHp/fP8UxJTxpdWEvXAI4wSJL3m1iwZUoM1PfJgPFDM0sZIJnq5ExIg==
+  version "0.96.10"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/runtime/-/runtime-0.96.10.tgz#2f2b150648d09498bb9735d7da7c493ea504b77c"
+  integrity sha512-EFpGLHzjpoILbK6vFre8yX0MNrmfiGHEhAy0DCO9W1CCbmn9WbscUeGg7INizXF3XnH7HENExhkOBwvXSP8N5Q==
   dependencies:
     "@envelop/core" "^4.0.0"
     "@envelop/extended-validation" "^3.0.0"
-    "@envelop/graphql-jit" "^6.0.2"
-    "@graphql-mesh/string-interpolation" "^0.5.1"
+    "@envelop/graphql-jit" "^6.0.5"
+    "@graphql-mesh/string-interpolation" "^0.5.2"
     "@graphql-tools/batch-delegate" "^9.0.0"
     "@graphql-tools/delegate" "^10.0.0"
+    "@graphql-tools/executor" "^1.2.0"
     "@graphql-tools/wrap" "^10.0.0"
     "@whatwg-node/fetch" "^0.9.0"
-    graphql-jit "^0.8.4"
+    graphql-jit "0.8.2"
 
 "@graphql-mesh/store@^0.95.4", "@graphql-mesh/store@latest":
   version "0.95.4"
@@ -2220,12 +2221,12 @@
   dependencies:
     "@graphql-inspector/core" "5.0.1"
 
-"@graphql-mesh/string-interpolation@^0.5.1":
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/@graphql-mesh/string-interpolation/-/string-interpolation-0.5.1.tgz#b5e995769b0d9b72f040f10ea5cf53a5fc98bdad"
-  integrity sha512-xrShpJ4silpWekpeVntDNt6NY6RxEMMbZ1CenIkLsl/QN3mMjxWa3rQX0qrByBeyDn7SorSN3lrClCCsPvmWZw==
+"@graphql-mesh/string-interpolation@^0.5.1", "@graphql-mesh/string-interpolation@^0.5.2":
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/string-interpolation/-/string-interpolation-0.5.2.tgz#af89cd63b27e7c2c85e994872be2ed18eaad07e1"
+  integrity sha512-TkSAJ9pj1zesQyDlHrEUevVGOc1s/z9IQC0AONcpMHAunb8uYGO4Yryl8JIRIvDl5DlexHt3z8kLDNCInRGWNQ==
   dependencies:
-    dayjs "1.11.9"
+    dayjs "1.11.10"
     json-pointer "0.6.2"
     lodash.get "4.4.2"
 
@@ -2355,7 +2356,7 @@
     tslib "^2.4.0"
     ws "8.14.1"
 
-"@graphql-tools/executor@^1.0.0":
+"@graphql-tools/executor@^1.0.0", "@graphql-tools/executor@^1.2.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@graphql-tools/executor/-/executor-1.2.0.tgz#6c45f4add765769d9820c4c4405b76957ba39c79"
   integrity sha512-SKlIcMA71Dha5JnEWlw4XxcaJ+YupuXg0QCZgl2TOLFz4SkGCwU/geAsJvUJFwK2RbVLpQv/UMq67lOaBuwDtg==
@@ -5700,10 +5701,10 @@ date-fns@^2.16.1, date-fns@^2.29.3, date-fns@^2.30.0:
   dependencies:
     "@babel/runtime" "^7.21.0"
 
-dayjs@1.11.9:
-  version "1.11.9"
-  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.11.9.tgz#9ca491933fadd0a60a2c19f6c237c03517d71d1a"
-  integrity sha512-QvzAURSbQ0pKdIye2txOzNaHmxtUBXerpY0FJsFXUMKbIZeFm5ht1LS/jFsrncjnmtv8HsG0W2g6c0zUjZWmpA==
+dayjs@1.11.10:
+  version "1.11.10"
+  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.11.10.tgz#68acea85317a6e164457d6d6947564029a6a16a0"
+  integrity sha512-vjAczensTgRcqDERK0SR2XMwsF/tSvnvlv6VcF2GIhg6Sx4yOIt/irsr1RDJsKiIyBzJDpCoXiWWq28MqH2cnQ==
 
 debounce@^1.2.0:
   version "1.2.1"
@@ -7120,7 +7121,7 @@ graphql-import-node@^0.0.5:
   resolved "https://registry.yarnpkg.com/graphql-import-node/-/graphql-import-node-0.0.5.tgz#caf76a6cece10858b14f27cce935655398fc1bf0"
   integrity sha512-OXbou9fqh9/Lm7vwXT0XoRN9J5+WCYKnbiTalgFDvkQERITRmcfncZs6aVABedd5B85yQU5EULS4a5pnbpuI0Q==
 
-graphql-jit@0.8.2, graphql-jit@^0.8.0, graphql-jit@^0.8.4:
+graphql-jit@0.8.2, graphql-jit@^0.8.0:
   version "0.8.2"
   resolved "https://registry.yarnpkg.com/graphql-jit/-/graphql-jit-0.8.2.tgz#384676573bab3a7bad6ba785afa06b6310c5e843"
   integrity sha512-P9KtM/UY4JTtHVRqRlZzFXPmDEtps1Bd27Mvj/naQIa5d0j83zPxAx4jewq1wueF3UEZu1JFZwX1XVBBkoo1Mg==
