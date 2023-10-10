@@ -137,7 +137,7 @@ export function WishlistItemActionCard(props: WishlistItemActionCardProps) {
           title={
             productLink ? (
               <Link
-                href={productLink}
+                href={`${productLink}?wishlistItemId=${wishlistItemId}`}
                 className={classes.itemName}
                 underline='hover'
                 sx={{

@@ -9,7 +9,7 @@ import { Button } from '@mui/material'
 type ConfigurableWishlistItemActionProps = WishlistItemActionCardProps & ConfigurableWishlistItem
 
 export function ConfigurableWishlistItemAction(props: ConfigurableWishlistItemActionProps) {
-  const { configurable_options, product } = props
+  const { configurable_options, product, id: wishlistItemId } = props
 
   const productLink = useProductLink({
     url_key: product?.url_key,
@@ -34,7 +34,7 @@ export function ConfigurableWishlistItemAction(props: ConfigurableWishlistItemAc
       variant='text'
       color='primary'
       size='medium'
-      href={productLink}
+      href={`${productLink}?wishlistItemId=${wishlistItemId}`}
       endIcon={<IconSvg src={iconChevronRight} />}
     >
       <Trans id='Configure' />
