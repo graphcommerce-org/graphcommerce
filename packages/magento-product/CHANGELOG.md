@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.1.0-canary.11
+
+### Patch Changes
+
+- [#2058](https://github.com/graphcommerce-org/graphcommerce/pull/2058) [`16dc48895`](https://github.com/graphcommerce-org/graphcommerce/commit/16dc4889543106238b1a87694e75586e4c1a787c) - Provide instant feedback on availble attribute options when making a selection on a configurable product ([@FrankHarland](https://github.com/FrankHarland))
+
 ## 7.1.0-canary.10
 
 ### Patch Changes
