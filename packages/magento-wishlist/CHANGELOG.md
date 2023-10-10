@@ -1,5 +1,7 @@
 # @graphcommerce/magento-wishlist
 
+## 7.1.0-canary.13
+
 ## 7.1.0-canary.12
 
 ## 7.1.0-canary.11

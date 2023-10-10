@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.1.0-canary.13
+
+### Patch Changes
+
+- [#2076](https://github.com/graphcommerce-org/graphcommerce/pull/2076) [`f860e6860`](https://github.com/graphcommerce-org/graphcommerce/commit/f860e68603526a15dcf2567f4ca57230423ef5c3) - fix maxWidth on productPageDescription ([@StefanAngenent](https://github.com/StefanAngenent))
+
 ## 7.1.0-canary.12
 
 ## 7.1.0-canary.11
