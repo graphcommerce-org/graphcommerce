@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.1.0-canary.9
+
+### Patch Changes
+
+- [#2007](https://github.com/graphcommerce-org/graphcommerce/pull/2007) [`f59c27660`](https://github.com/graphcommerce-org/graphcommerce/commit/f59c276605f9ed649d1197a9ba0e3f12d7c6d026) - Reconstruct crosssells behaviour. Add submitted variables & showSuccess to RHF ([@JoshuaS98](https://github.com/JoshuaS98))
+
 ## 7.1.0-canary.8
 
 ## 7.0.2-canary.7
