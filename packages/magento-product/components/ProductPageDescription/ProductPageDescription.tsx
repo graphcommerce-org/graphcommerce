@@ -22,10 +22,11 @@ const parts = ['root', 'description'] as const
 const { classes } = extendableComponent(componentName, parts)
 
 export function ProductPageDescription(props: ProductPageDescriptionProps) {
-  const { product, right, fontSize = 'subtitle1', sx = [] } = props
+  const { product, right, fontSize = 'subtitle1', maxWidth = 'lg', sx = [] } = props
 
   return (
     <ColumnTwoWithTop
+      maxWidth={maxWidth}
       className={classes.root}
       sx={sx}
       top={
