@@ -50,13 +50,13 @@ const CustomizableDropDownOption = React.memo<
     <>
       <input
         type='hidden'
-        {...register(`cartItems.${index}.entered_options.${optionIndex}.uid`)}
+        {...register(`cartItems.${index}.selected_options.${optionIndex}`)}
         value={uid}
       />
       <SelectElement
         color='primary'
         control={control}
-        name={`cartItems.${index}.entered_options.${optionIndex}.value`}
+        name={`cartItems.${index}.selected_options.${optionIndex}`}
         label={title}
         required={Boolean(required)}
         defaultValue=''
