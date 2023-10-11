@@ -1,7 +1,7 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import { Fab, FabProps, styled, SxProps, Theme } from '@mui/material'
 import { m, useTransform } from 'framer-motion'
-import React from 'react'
+import React, { useState } from 'react'
 import { useScrollTo } from '../hooks/useScrollTo'
 import { useScrollerContext } from '../hooks/useScrollerContext'
 import { SnapPositionDirection } from '../types'
@@ -27,9 +27,17 @@ export const ScrollerButton = m(
       ...buttonProps
     } = props
 
+    const [isScrolling, setIsScrolling] = useState(false)
+
     const { getSnapPosition, scroll } = useScrollerContext()
     const scrollTo = useScrollTo()
-    const handleClick = () => scrollTo(getSnapPosition(direction))
+    const handleClick = async () => {
+      if (!isScrolling) {
+        setIsScrolling(true)
+        await scrollTo(getSnapPosition(direction))
+        setIsScrolling(false)
+      }
+    }
 
     const { xProgress, yProgress, xMax, yMax } = scroll
 
