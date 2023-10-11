@@ -7,12 +7,12 @@ import { useScrollerContext } from './useScrollerContext'
 
 type LimitedPanInfo = Pick<PanInfo, 'velocity' | 'offset'>
 
-const clamp = ({ velocity, offset }: LimitedPanInfo, axis: 'x' | 'y') =>
+export const clamp = ({ velocity, offset }: LimitedPanInfo, axis: 'x' | 'y') =>
   velocity[axis] < 0
     ? Math.max(velocity[axis], -Math.abs(offset[axis] * 3))
     : Math.min(velocity[axis], Math.abs(offset[axis] * 3))
 
-const closest = (counts: number[], target: number) =>
+export const closest = (counts: number[], target: number) =>
   counts.length
     ? counts.reduce((prev, curr) =>
         Math.abs(curr - target) < Math.abs(prev - target) ? curr : prev,

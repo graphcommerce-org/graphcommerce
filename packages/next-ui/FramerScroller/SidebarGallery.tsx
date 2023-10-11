@@ -27,6 +27,7 @@ import { Row } from '../Row/Row'
 import { extendableComponent } from '../Styles'
 import { responsiveVal } from '../Styles/responsiveVal'
 import { iconChevronLeft, iconChevronRight, iconFullscreen, iconFullscreenExit } from '../icons'
+import { clamp, closest } from '@graphcommerce/framer-scroller/hooks/useVelocitySnapTo'
 
 const MotionBox = styled(m.div)({})
 
@@ -74,32 +75,20 @@ export function SidebarGallery(props: SidebarGalleryProps) {
 
   const router = useRouter()
   const prevRoute = usePrevPageRouter()
+
+  const [zoomed, setZoomed] = React.useState(false)
+
   // const classes = useMergedClasses(useStyles({ clientHeight, aspectRatio }).classes, props.classes)
 
   const route = `#${routeHash}`
   // We're using the URL to manage the state of the gallery.
-  const zoomed = router.asPath.endsWith(route)
+  // const zoomed = router.asPath.endsWith(route)
   usePreventScroll(zoomed)
 
-  // cleanup if someone enters the page with #gallery
-  useEffect(() => {
-    if (!prevRoute?.pathname && zoomed) {
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      router.replace(router.asPath.replace(route, ''))
-    }
-  }, [prevRoute?.pathname, route, router, zoomed])
-
   const toggle = () => {
-    if (disableZoom) {
-      return
-    }
-    if (!zoomed) {
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      router.push(route, undefined, { shallow: true })
-      window.scrollTo({ top: 0, behavior: 'smooth' })
-    } else {
-      router.back()
-    }
+    if (disableZoom) return
+    if (!zoomed) window.scrollTo({ top: 0, behavior: 'smooth' })
+    setZoomed(!zoomed)
   }
 
   const classes = withState({ zoomed })
@@ -137,6 +126,14 @@ export function SidebarGallery(props: SidebarGalleryProps) {
           layout
           layoutDependency={zoomed}
           className={classes.root}
+          drag={zoomed ? 'y' : false}
+          dragConstraints={{ top: 0, bottom: 0 }}
+          dragDirectionLock
+          dragElastic={1}
+          onDragEnd={(e, info) => {
+            const targetY = closest([0, window.innerHeight], clamp(info, 'y') + info.offset.y)
+            if (targetY === window.innerHeight) toggle()
+          }}
           sx={[
             {
               willChange: 'transform',
