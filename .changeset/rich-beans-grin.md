@@ -3,4 +3,4 @@
 '@graphcommerce/next-ui': patch
 ---
 
-Fixed glitchy product image on zoom
+Make sure the product image gallery traps focus and scrollbar doesn't disappear suddenly
