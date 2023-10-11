@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.1.0-canary.16
+
+### Patch Changes
+
+- [#2087](https://github.com/graphcommerce-org/graphcommerce/pull/2087) [`42c33c6e3`](https://github.com/graphcommerce-org/graphcommerce/commit/42c33c6e3adceee400bc9f10ec416731db9279c0) - fix email update snackbar styling ([@StefanAngenent](https://github.com/StefanAngenent))
+
 ## 7.1.0-canary.15
 
 ### Patch Changes
