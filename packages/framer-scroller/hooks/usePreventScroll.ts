@@ -1,36 +1,23 @@
-import { useEffect } from 'react'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { unstable_getScrollbarSize as getScrollbarSize } from '@mui/utils'
+import { useEffect, useId } from 'react'
 
-export function usePreventScroll(shouldPrevent: boolean) {
+function usePreventScroll(shouldPrevent: boolean) {
+  const id = useId()
+
   useEffect(() => {
-    const preventScrolling = (e) => e.preventDefault()
-
     if (shouldPrevent) {
-      // Block scrolling event
-      window.addEventListener('wheel', preventScrolling, { passive: false })
-      window.addEventListener('touchmove', preventScrolling, { passive: false })
+      const scrollbarSize = getScrollbarSize(document)
 
-      // Hide scrollbar
-      const style = document.createElement('style')
-      style.innerHTML = `
-        body::-webkit-scrollbar {
-            width: 0px; 
-        }
-        background-color: transparent;
-      `
-      document.head.appendChild(style)
+      document.body.style.overflow = 'hidden'
+      document.body.style.paddingRight = `${scrollbarSize}px`
     }
 
     return () => {
-      // When the effect is cleaned up, remove the event listeners.
-      window.removeEventListener('wheel', preventScrolling)
-      window.removeEventListener('touchmove', preventScrolling)
-
-      const styles = Array.from(document.head.getElementsByTagName('style'))
-      styles.forEach((style) => {
-        if (style.innerHTML.includes('body::-webkit-scrollbar')) {
-          document.head.removeChild(style)
-        }
-      })
+      document.body.style.overflow = ''
+      document.body.style.paddingRight = ''
     }
-  }, [shouldPrevent])
+  }, [id, shouldPrevent])
 }
+
+export const unstable_usePreventScroll = usePreventScroll
