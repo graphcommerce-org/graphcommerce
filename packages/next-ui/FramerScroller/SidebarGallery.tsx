@@ -130,9 +130,12 @@ export function SidebarGallery(props: SidebarGalleryProps) {
           dragConstraints={{ top: 0, bottom: 0 }}
           dragDirectionLock
           dragElastic={1}
-          onDragEnd={(e, info) => {
-            const targetY = closest([0, window.innerHeight], clamp(info, 'y') + info.offset.y)
-            if (targetY === window.innerHeight) toggle()
+          onDragEnd={(_, info) => {
+            const targetY = closest(
+              [-window.innerHeight, 0, window.innerHeight],
+              clamp(info, 'y') + info.offset.y,
+            )
+            if (targetY && Math.abs(targetY) === window.innerHeight) toggle()
           }}
           sx={[
             {
