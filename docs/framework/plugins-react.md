@@ -37,7 +37,7 @@ Function plugins, which can be used to:
 
 In this example we're going to add some text to list items, just like the text
 ‘BY GC’ that can seen in the demo on
-[category pages](https://graphcommerce.vercel.app/nl/women/business).
+[category pages](https://graphcommerce.vercel.app/en/women/business).
 
 1. Create a new file in `/plugins/ProductListItemByGC.tsx` with the following
    contents:
