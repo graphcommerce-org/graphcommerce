@@ -190,6 +190,9 @@ msgstr "Maak een nieuw wachtwoord"
 msgid "Current Password"
 msgstr "Huidige wachtwoord"
 
+msgid "Current email"
+msgstr "Huidige email"
+
 msgid "Customer Service"
 msgstr "Klantenservice"
 
