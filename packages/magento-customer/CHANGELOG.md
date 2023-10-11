@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.1.0-canary.15
+
+### Patch Changes
+
+- [#2082](https://github.com/graphcommerce-org/graphcommerce/pull/2082) [`2e8d19ccc`](https://github.com/graphcommerce-org/graphcommerce/commit/2e8d19cccd305f0e8eb4c29d05161af6cfdb9d84) - Add current email translation ([@StefanAngenent](https://github.com/StefanAngenent))
+
 ## 7.1.0-canary.14
 
 ## 7.1.0-canary.13
