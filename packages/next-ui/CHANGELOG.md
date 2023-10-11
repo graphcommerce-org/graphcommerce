@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.1.0-canary.14
+
+### Patch Changes
+
+- [#2045](https://github.com/graphcommerce-org/graphcommerce/pull/2045) [`1ac1e0989`](https://github.com/graphcommerce-org/graphcommerce/commit/1ac1e09897daadd646200cb3ddc2aa75a51e182e) - Make sure the product image gallery traps focus and scrollbar doesn't disappear suddenly ([@JoshuaS98](https://github.com/JoshuaS98))
+
 ## 7.1.0-canary.13
 
 ## 7.1.0-canary.12
