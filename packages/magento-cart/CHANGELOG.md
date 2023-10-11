@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.1.0-canary.17
+
+### Minor Changes
+
+- [#2075](https://github.com/graphcommerce-org/graphcommerce/pull/2075) [`34dee456e`](https://github.com/graphcommerce-org/graphcommerce/commit/34dee456ef686174b62e604911a0ba84cbd3d002) - Added ordernumber to succes page. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
 ## 7.1.0-canary.16
 
 ## 7.1.0-canary.15
