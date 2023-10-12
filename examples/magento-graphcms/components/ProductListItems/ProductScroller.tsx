@@ -4,7 +4,13 @@ import {
   AddProductsToCartFormProps,
   ProductListQuery,
 } from '@graphcommerce/magento-product'
-import { ItemScroller, ItemScrollerProps, RenderType, responsiveVal } from '@graphcommerce/next-ui'
+import {
+  ItemScroller,
+  ItemScrollerProps,
+  RenderType,
+  nonNullable,
+  responsiveVal,
+} from '@graphcommerce/next-ui'
 import {
   Box,
   Container,
@@ -95,17 +101,15 @@ export function ProductScroller({
                 </React.Fragment>
               ))}
 
-            {items?.map((item) =>
-              item ? (
-                <RenderType
-                  key={item.uid ?? ''}
-                  renderer={productListRenderer}
-                  {...item}
-                  imageOnly={imageOnly}
-                  sizes={responsiveVal(180, 900)}
-                />
-              ) : null,
-            )}
+            {items.filter(nonNullable).map((item) => (
+              <RenderType
+                key={item.uid}
+                renderer={productListRenderer}
+                {...item}
+                imageOnly={imageOnly}
+                sizes={responsiveVal(180, 900)}
+              />
+            ))}
           </ItemScroller>
         </AddProductsToCartForm>
       )}
