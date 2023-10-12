@@ -4,17 +4,12 @@ import {
   AddProductsToCartFormProps,
   ProductListQuery,
 } from '@graphcommerce/magento-product'
-import {
-  ItemScroller,
-  ItemScrollerProps,
-  RenderType,
-  breakpointVal,
-  responsiveVal,
-} from '@graphcommerce/next-ui'
+import { ItemScroller, ItemScrollerProps, RenderType, responsiveVal } from '@graphcommerce/next-ui'
 import {
   Box,
   Container,
   ContainerProps,
+  Skeleton,
   SxProps,
   Theme,
   Typography,
@@ -23,23 +18,13 @@ import {
 } from '@mui/material'
 import { useContext } from 'react'
 import { productListRenderer } from './productListRenderer'
+import React from 'react'
 
-export const skeletonRenderer = {
-  Skeleton: ({ imageOnly = false }: { imageOnly?: boolean }) => (
+export function ProductScrollerItemSkeleton({ imageOnly = false }: { imageOnly?: boolean }) {
+  return (
     <Box>
-      <Box
-        sx={(theme) => ({
-          background: 'linear-gradient(45deg, white, #f9f9f9, white)',
-          width: '100%',
-          aspectRatio: '1/1',
-          ...breakpointVal(
-            'borderRadius',
-            theme.shape.borderRadius * 2,
-            theme.shape.borderRadius * 3,
-            theme.breakpoints.values,
-          ),
-        })}
-      />
+      <Skeleton sx={{ width: '100%', aspectRatio: '1/1', transform: 'none' }} />
+
       {!imageOnly && (
         <Typography
           variant='subtitle1'
@@ -58,7 +43,7 @@ export const skeletonRenderer = {
         </Typography>
       )}
     </Box>
-  ),
+  )
 }
 
 export function ProductScroller({
@@ -66,7 +51,7 @@ export function ProductScroller({
   items,
   imageOnly = false,
   skeletonItemCount = 0,
-  skeleton = skeletonRenderer,
+  skeleton,
   sx = [],
   containerProps,
   titleProps,
@@ -77,7 +62,7 @@ export function ProductScroller({
   items: Exclude<ProductListQuery['products'], null | undefined>['items']
   imageOnly?: boolean
   skeletonItemCount: number
-  skeleton?: typeof skeletonRenderer
+  skeleton?: React.ReactNode
   sx?: SxProps<Theme>
   containerProps?: ContainerProps
   titleProps?: TypographyProps
@@ -104,20 +89,11 @@ export function ProductScroller({
         <AddProductsToCartForm {...addProductsToCartFormProps}>
           <ItemScroller {...itemScrollerProps}>
             {(!items || !items.length) &&
-              [...Array(skeletonItemCount).keys()].map((i) => {
-                const item = {
-                  __typename: 'Skeleton',
-                }
-                return (
-                  <RenderType
-                    key={i ?? ''}
-                    renderer={skeleton}
-                    {...item}
-                    imageOnly={imageOnly}
-                    sizes={responsiveVal(180, 900)}
-                  />
-                )
-              })}
+              [...Array(skeletonItemCount + 10).keys()].map((i) => (
+                <React.Fragment key={i}>
+                  {skeleton || <ProductScrollerItemSkeleton imageOnly={imageOnly} />}
+                </React.Fragment>
+              ))}
 
             {items?.map((item) =>
               item ? (
