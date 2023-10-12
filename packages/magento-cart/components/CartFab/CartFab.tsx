@@ -111,7 +111,7 @@ function CartFabContent(props: CartFabContentProps) {
  */
 export function CartFab(props: CartFabProps) {
   const cartQuery = useCartQuery(CartFabDocument, {
-    fetchPolicy: 'cache-only',
+    fetchPolicy: 'cache-first',
     nextFetchPolicy: 'cache-first',
   })
 
