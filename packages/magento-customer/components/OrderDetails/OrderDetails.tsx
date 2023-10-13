@@ -108,7 +108,8 @@ export function OrderDetails(props: OrderDetailsProps) {
               sx={{ '& .SectionHeader-root': { marginTop: 0, paddingBottom: '4px' } }}
             />
             <Typography>
-              <Trans id='Ordered' />: {order_date && dateFormatter.format(new Date(order_date))}
+              <Trans id='Ordered items' />:{' '}
+              {order_date && dateFormatter.format(new Date(order_date))}
             </Typography>
           </Box>
 
