@@ -106,7 +106,7 @@ const CustomizableCheckboxOption = React.memo<
   React.ComponentProps<OptionTypeRenderer['CustomizableCheckboxOption']>
 >((props) => {
   const { uid, required, optionIndex, index, title, checkboxValue } = props
-  const { control, register, setValue, getValues, resetField } = useFormAddProductsToCart()
+  const { control, register } = useFormAddProductsToCart()
 
   return (
     <>
@@ -124,9 +124,6 @@ const CustomizableCheckboxOption = React.memo<
           id: option.uid,
           label: option.title,
         }))}
-        setValue={setValue}
-        getValues={getValues}
-        resetField={resetField}
         index={index}
         optionIndex={optionIndex}
         checkboxColor='primary'
