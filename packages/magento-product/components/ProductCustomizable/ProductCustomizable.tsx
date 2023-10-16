@@ -1,4 +1,9 @@
-import { SelectElement, TextFieldElement } from '@graphcommerce/ecommerce-ui'
+import {
+  CheckboxButtonGroup,
+  RadioButtonGroup,
+  SelectElement,
+  TextFieldElement,
+} from '@graphcommerce/ecommerce-ui'
 import { filterNonNullableKeys, RenderType, TypeRenderer } from '@graphcommerce/next-ui'
 import React from 'react'
 import { AddToCartItemSelector, useFormAddProductsToCart } from '../AddProductsToCart'
@@ -69,15 +74,77 @@ const CustomizableDropDownOption = React.memo<
   )
 })
 
+const CustomizableRadioOption = React.memo<
+  React.ComponentProps<OptionTypeRenderer['CustomizableRadioOption']>
+>((props) => {
+  const { uid, required, optionIndex, index, title, radioValue } = props
+  const { control, register } = useFormAddProductsToCart()
+
+  return (
+    <>
+      <input
+        type='hidden'
+        {...register(`cartItems.${index}.selected_options.${optionIndex}`)}
+        value={uid}
+      />
+      <RadioButtonGroup
+        control={control}
+        name={`cartItems.${index}.selected_options.${optionIndex}`}
+        label={title || ''}
+        defaultValue=''
+        options={filterNonNullableKeys(radioValue, ['title']).map((option) => ({
+          id: option.uid,
+          label: option.title,
+        }))}
+        required={Boolean(required)}
+      />
+    </>
+  )
+})
+
+const CustomizableCheckboxOption = React.memo<
+  React.ComponentProps<OptionTypeRenderer['CustomizableCheckboxOption']>
+>((props) => {
+  const { uid, required, optionIndex, index, title, checkboxValue } = props
+  const { control, register, setValue, getValues, resetField } = useFormAddProductsToCart()
+
+  return (
+    <>
+      <input
+        type='hidden'
+        {...register(`cartItems.${index}.selected_options.${optionIndex}`)}
+        value={uid}
+      />
+      <CheckboxButtonGroup
+        control={control}
+        name={`cartItems.${index}.selected_options.${optionIndex}`}
+        label={title || ''}
+        defaultValue=''
+        options={filterNonNullableKeys(checkboxValue, ['title']).map((option) => ({
+          id: option.uid,
+          label: option.title,
+        }))}
+        setValue={setValue}
+        getValues={getValues}
+        resetField={resetField}
+        index={index}
+        optionIndex={optionIndex}
+        checkboxColor='primary'
+        required={Boolean(required)}
+      />
+    </>
+  )
+})
+
 const defaultRenderer = {
   CustomizableAreaOption,
-  CustomizableCheckboxOption: () => <div>checkbox not implemented</div>,
+  CustomizableCheckboxOption,
   CustomizableDateOption: () => <div>date not implemented</div>,
   CustomizableDropDownOption,
   CustomizableFieldOption: () => <div>field not implemented</div>,
   CustomizableFileOption: () => <div>file not implemented</div>,
   CustomizableMultipleOption: () => <div>multi not implemented</div>,
-  CustomizableRadioOption: () => <div>radios not implemented</div>,
+  CustomizableRadioOption,
 }
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] }
