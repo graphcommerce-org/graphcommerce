@@ -37,57 +37,61 @@ export function ProductFilterEqualChip(props: FilterProps) {
 
   const items = useMemo(
     () =>
-      filterNonNullableKeys(options, ['label']).map((option) => ({
-        ...option,
-        title: (
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-            <div>{option.label}</div>
-            {option.count !== null && (
-              <Box sx={{ typography: 'caption', color: 'text.disabled' }}>({option.count})</Box>
-            )}
-          </Box>
-        ),
-        image: attrCode?.toLowerCase().includes('color') && (
-          <IconSvg
-            src={iconCirle}
-            sx={{ color: `${option?.label}`, fill: 'currentcolor' }}
-            size='large'
-          />
-        ),
-      })),
+      filterNonNullableKeys(options, ['label'])
+        .filter((item) => item.count !== 0)
+        .map((option) => ({
+          ...option,
+          title: (
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+              <div>{option.label}</div>
+              {option.count !== null && (
+                <Box sx={{ typography: 'caption', color: 'text.disabled' }}>({option.count})</Box>
+              )}
+            </Box>
+          ),
+          image: attrCode?.toLowerCase().includes('color') && (
+            <IconSvg
+              src={iconCirle}
+              sx={{ color: `${option?.label}`, fill: 'currentcolor' }}
+              size='large'
+            />
+          ),
+        })),
     [attrCode, options],
   )
 
   return (
-    <ChipOverlayOrPopper
-      label={label}
-      chipProps={{ variant: 'outlined' }}
-      overlayProps={{ sizeSm: 'minimal', sizeMd: 'minimal' }}
-      onApply={submit}
-      onReset={
-        canReset
-          ? () => {
-              form.setValue(name, null)
-              return submit()
-            }
-          : undefined
-      }
-      onClose={submit}
-      selectedLabel={selectedLabel}
-      selected={active}
-    >
-      {() => (
-        <ActionCardListForm
-          render={ActionCard}
-          name={name}
-          control={control}
-          multiple
-          layout='list'
-          variant='default'
-          size='medium'
-          items={items}
-        />
-      )}
-    </ChipOverlayOrPopper>
+    items.length !== 0 && (
+      <ChipOverlayOrPopper
+        label={label}
+        chipProps={{ variant: 'outlined' }}
+        overlayProps={{ sizeSm: 'minimal', sizeMd: 'minimal' }}
+        onApply={submit}
+        onReset={
+          canReset
+            ? () => {
+                form.setValue(name, null)
+                return submit()
+              }
+            : undefined
+        }
+        onClose={submit}
+        selectedLabel={selectedLabel}
+        selected={active}
+      >
+        {() => (
+          <ActionCardListForm
+            render={ActionCard}
+            name={name}
+            control={control}
+            multiple
+            layout='list'
+            variant='default'
+            size='medium'
+            items={items}
+          />
+        )}
+      </ChipOverlayOrPopper>
+    )
   )
 }
