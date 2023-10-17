@@ -40,7 +40,7 @@ export function OrderItem(props: OrderItemProps) {
     product_name,
     thumbnail,
   } = props
-  const productLink = `/product/${product_url_key}`
+  const productLink = `/p/${product_url_key}`
 
   const hasOptions = Boolean(selected_options && selected_options.length >= 1)
 
