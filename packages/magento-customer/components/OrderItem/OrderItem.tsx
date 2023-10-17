@@ -1,4 +1,9 @@
 import { Image } from '@graphcommerce/image'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import {
+  useProductLink,
+  ProductLinkProps,
+} from '@graphcommerce/magento-product/hooks/useProductLink'
 import { Money } from '@graphcommerce/magento-store'
 import { responsiveVal, extendableComponent, NextLink } from '@graphcommerce/next-ui'
 import { Box } from '@mui/material'
@@ -6,7 +11,7 @@ import { OrderCardItemImageFragment } from '../../hooks/OrderCardItemImage.gql'
 import { OrderItemFragment } from './OrderItem.gql'
 
 type OrderItemProps = OrderItemFragment & Omit<OrderCardItemImageFragment, 'uid'>
-
+type ProductType = ProductLinkProps['__typename']
 const rowImageSize = responsiveVal(70, 110)
 
 type OwnerState = { hasOptions: boolean }
@@ -33,6 +38,7 @@ const { withState } = extendableComponent<OwnerState, typeof componentName, type
 
 export function OrderItem(props: OrderItemProps) {
   const {
+    __typename,
     product_url_key,
     selected_options,
     product_sale_price,
@@ -40,7 +46,18 @@ export function OrderItem(props: OrderItemProps) {
     product_name,
     thumbnail,
   } = props
-  const productLink = `/p/${product_url_key}`
+
+  // This map is needed to Convert OrderItem typename to ProductLink typename
+  const typenames = {
+    OrderItem: 'SimpleProduct',
+    BundleOrderItem: 'BundleProduct',
+    DownloadableOrderItem: 'DownloadableProduct',
+  }
+
+  const productLink = useProductLink({
+    __typename: typenames[__typename] as ProductType,
+    url_key: product_url_key,
+  })
 
   const hasOptions = Boolean(selected_options && selected_options.length >= 1)
 
