@@ -1,5 +1,11 @@
 # @graphcommerce/hygraph-cli
 
+## 7.1.0-canary.20
+
+### Patch Changes
+
+- [#2095](https://github.com/graphcommerce-org/graphcommerce/pull/2095) [`519531eb4`](https://github.com/graphcommerce-org/graphcommerce/commit/519531eb48bf6c5b68703509d2bd64c8dfe5b92c) - Fix Hygraph CLI (Management SDK) | Add support for updating and deleting enumerations ([@JoshuaS98](https://github.com/JoshuaS98))
+
 ## 7.1.0-canary.19
 
 ## 7.1.0-canary.18
