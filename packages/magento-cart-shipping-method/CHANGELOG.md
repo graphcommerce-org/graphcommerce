@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.1.0-canary.21
+
+### Patch Changes
+
+- [#2093](https://github.com/graphcommerce-org/graphcommerce/pull/2093) [`112b041f0`](https://github.com/graphcommerce-org/graphcommerce/commit/112b041f01a33fbd521ce3eb3955844f96b29917) - Created a new experimental mutation abort feature inside `useFormGql`. This will allow redundant mutations to be canceled. This feature can be enabled via the `experimental_useV2` prop on the `useFormGql` component ([@mikekeehnen](https://github.com/mikekeehnen))
+
 ## 7.1.0-canary.20
 
 ## 7.1.0-canary.19

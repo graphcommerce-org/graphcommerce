@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-payment-multisafepay",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "7.1.0-canary.20",
+  "version": "7.1.0-canary.21",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -12,25 +12,25 @@
     }
   },
   "devDependencies": {
-    "@graphcommerce/next-ui": "7.1.0-canary.20",
-    "@graphcommerce/eslint-config-pwa": "7.1.0-canary.20",
-    "@graphcommerce/magento-cart-shipping-address": "7.1.0-canary.20",
-    "@graphcommerce/magento-product": "7.1.0-canary.20",
-    "@graphcommerce/magento-product-configurable": "7.1.0-canary.20",
-    "@graphcommerce/prettier-config-pwa": "7.1.0-canary.20",
-    "@graphcommerce/typescript-config-pwa": "7.1.0-canary.20"
+    "@graphcommerce/next-ui": "7.1.0-canary.21",
+    "@graphcommerce/eslint-config-pwa": "7.1.0-canary.21",
+    "@graphcommerce/magento-cart-shipping-address": "7.1.0-canary.21",
+    "@graphcommerce/magento-product": "7.1.0-canary.21",
+    "@graphcommerce/magento-product-configurable": "7.1.0-canary.21",
+    "@graphcommerce/prettier-config-pwa": "7.1.0-canary.21",
+    "@graphcommerce/typescript-config-pwa": "7.1.0-canary.21"
   },
   "dependencies": {
-    "@graphcommerce/ecommerce-ui": "7.1.0-canary.20",
-    "@graphcommerce/graphql": "7.1.0-canary.20",
-    "@graphcommerce/graphql-mesh": "7.1.0-canary.20",
-    "@graphcommerce/image": "7.1.0-canary.20",
-    "@graphcommerce/magento-cart": "7.1.0-canary.20",
-    "@graphcommerce/magento-cart-checkout": "7.1.0-canary.20",
-    "@graphcommerce/magento-cart-payment-method": "7.1.0-canary.20",
-    "@graphcommerce/magento-store": "7.1.0-canary.20",
-    "@graphcommerce/next-ui": "7.1.0-canary.20",
-    "@graphcommerce/react-hook-form": "7.1.0-canary.20"
+    "@graphcommerce/ecommerce-ui": "7.1.0-canary.21",
+    "@graphcommerce/graphql": "7.1.0-canary.21",
+    "@graphcommerce/graphql-mesh": "7.1.0-canary.21",
+    "@graphcommerce/image": "7.1.0-canary.21",
+    "@graphcommerce/magento-cart": "7.1.0-canary.21",
+    "@graphcommerce/magento-cart-checkout": "7.1.0-canary.21",
+    "@graphcommerce/magento-cart-payment-method": "7.1.0-canary.21",
+    "@graphcommerce/magento-store": "7.1.0-canary.21",
+    "@graphcommerce/next-ui": "7.1.0-canary.21",
+    "@graphcommerce/react-hook-form": "7.1.0-canary.21"
   },
   "peerDependencies": {
     "@lingui/react": "^4.2.1",
