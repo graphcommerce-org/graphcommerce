@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.1.0-canary.19
+
+### Patch Changes
+
+- [#2083](https://github.com/graphcommerce-org/graphcommerce/pull/2083) [`ca493c7b2`](https://github.com/graphcommerce-org/graphcommerce/commit/ca493c7b208b8526c1109695d54bad7b2956a8bd) - Filters which are not yet applied and which option has 0 as item count will not be shown anymore. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
 ## 7.1.0-canary.18
 
 ## 7.1.0-canary.17

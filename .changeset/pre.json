@@ -76,6 +76,7 @@
     "@graphcommerce/typescript-config-pwa": "7.0.1"
   },
   "changesets": [
+    "brown-planes-retire",
     "curvy-grapes-accept",
     "fuzzy-clocks-hug",
     "itchy-snakes-film",
