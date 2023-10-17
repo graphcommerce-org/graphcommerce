@@ -1,5 +1,6 @@
 fragment OrderItem on OrderItemInterface {
   __typename
+  product_type
   id
   product_sku
   product_url_key
