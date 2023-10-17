@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.1.0-canary.18
+
+### Patch Changes
+
+- [#2092](https://github.com/graphcommerce-org/graphcommerce/pull/2092) [`1edd198dc`](https://github.com/graphcommerce-org/graphcommerce/commit/1edd198dc6b102be423a5285d9fe4437b69ca165) - Show error snackbar when payment failed instead of when it was successful ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 7.1.0-canary.17
 
 ## 7.1.0-canary.16
