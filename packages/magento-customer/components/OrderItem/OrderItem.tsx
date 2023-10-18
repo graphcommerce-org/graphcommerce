@@ -39,7 +39,6 @@ const { withState } = extendableComponent<OwnerState, typeof componentName, type
 
 export function OrderItem(props: OrderItemProps) {
   const {
-    product_type,
     product_url_key,
     selected_options,
     product_sale_price,
