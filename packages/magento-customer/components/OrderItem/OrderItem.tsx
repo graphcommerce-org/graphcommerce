@@ -1,4 +1,9 @@
 import { Image } from '@graphcommerce/image'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import {
+  useProductLink,
+  ProductLinkProps,
+} from '@graphcommerce/magento-product/hooks/useProductLink'
 import { Money } from '@graphcommerce/magento-store'
 import { responsiveVal, extendableComponent, NextLink } from '@graphcommerce/next-ui'
 import { Box } from '@mui/material'
@@ -40,7 +45,10 @@ export function OrderItem(props: OrderItemProps) {
     product_name,
     thumbnail,
   } = props
-  const productLink = `/product/${product_url_key}`
+  const productLink = useProductLink({
+    __typename: 'SimpleProduct' as const,
+    url_key: product_url_key,
+  })
 
   const hasOptions = Boolean(selected_options && selected_options.length >= 1)
 
