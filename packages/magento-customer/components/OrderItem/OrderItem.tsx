@@ -45,19 +45,8 @@ export function OrderItem(props: OrderItemProps) {
     product_name,
     thumbnail,
   } = props
-
-  // This map is needed to Convert OrderItem typename to ProductLink typename
-  const typenames = {
-    simple: 'SimpleProduct',
-    configurable: 'ConfigurableProduct',
-    bundle: 'BundleProduct',
-    downloadable: 'DownloadableProduct',
-    grouped: 'GroupedProduct',
-    virtual: 'VirtualProduct',
-  }
-
   const productLink = useProductLink({
-    __typename: typenames[product_type ?? 'simple'] as ProductType,
+    __typename: 'SimpleProduct' as const,
     url_key: product_url_key,
   })
 
