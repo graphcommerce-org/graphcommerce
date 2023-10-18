@@ -18,15 +18,19 @@ export function SelectedCustomizableOptions(props: ConfigurableActionCartItemPro
   return (
     <>
       {options.map((option) => (
-        <Box
-          key={option.customizable_option_uid}
-          sx={(theme) => ({ display: 'flex', gap: theme.spacings.xxs })}
-        >
+        <Box>
           <Box key={option.customizable_option_uid} sx={{ color: 'text.primary' }}>
             {option.label}
           </Box>
           {option.values.filter(nonNullable).map((value) => (
-            <>
+            <Box
+              key={option.customizable_option_uid}
+              sx={(theme) => ({
+                display: 'flex',
+                gap: theme.spacings.xxs,
+                flexDirection: 'row',
+              })}
+            >
               <span key={`${value.customizable_option_value_uid}_${value.label}`}>
                 {value.label}
               </span>
@@ -38,7 +42,7 @@ export function SelectedCustomizableOptions(props: ConfigurableActionCartItemPro
                   <IconSvg src={InfoIcon} size='medium' />
                 </Tooltip>
               )}
-            </>
+            </Box>
           ))}
         </Box>
       ))}
