@@ -11,7 +11,6 @@ import { OrderCardItemImageFragment } from '../../hooks/OrderCardItemImage.gql'
 import { OrderItemFragment } from './OrderItem.gql'
 
 type OrderItemProps = OrderItemFragment & Omit<OrderCardItemImageFragment, 'uid'>
-type ProductType = ProductLinkProps['__typename']
 
 const rowImageSize = responsiveVal(70, 110)
 
