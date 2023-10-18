@@ -1,12 +1,9 @@
 import type { FetchResult } from '@graphcommerce/graphql'
-import {
-  AddProductsToCartMutation,
-  AddProductsToCartMutationVariables,
-} from '@graphcommerce/magento-product'
+import { AddProductsToCartMutation, AddProductsToCartFields } from '@graphcommerce/magento-product'
 
 export const gtagAddToCart = (
   result: FetchResult<AddProductsToCartMutation>,
-  variables: AddProductsToCartMutationVariables,
+  variables: AddProductsToCartFields,
 ) => {
   const addedItem = result.data?.addProductsToCart?.cart.items?.slice(-1)[0]
 
