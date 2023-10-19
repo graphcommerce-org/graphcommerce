@@ -47,10 +47,8 @@ export function EditAddressForm(props: EditAddressFormProps) {
         city: address?.city,
         countryCode: address?.country_code,
         telephone: address?.telephone,
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        houseNumber: address?.street?.[1],
-        addition: address?.street?.[2],
+        houseNumber: address?.street?.[1] ?? '',
+        addition: address?.street?.[2] ?? '',
       },
       onBeforeSubmit: (formData) => {
         const region = countries
