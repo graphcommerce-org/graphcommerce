@@ -7,7 +7,6 @@ query BillingPage($cartId: String!) {
     ...ShippingAddress
     ...Coupon
     ...PaymentMethodContext
-    #Retrieve cart items here so we can use the data on the succes page. This will put the cart items in the cache
     ...CartItems
   }
 }
