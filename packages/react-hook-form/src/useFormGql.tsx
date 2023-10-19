@@ -81,7 +81,7 @@ export function useFormGql<Q, V extends FieldValues>(
     form,
     tuple,
     defaultValues,
-    experimental_useV2: useNew = true,
+    experimental_useV2 = false,
   } = options
   const { encode, type, ...gqlDocumentHandler } = useGqlDocumentHandler<Q, V>(document)
   const [execute, { data, error, loading }] = tuple
@@ -93,7 +93,7 @@ export function useFormGql<Q, V extends FieldValues>(
   const controllerRef = useRef<AbortController | undefined>()
   const valuesString = JSON.stringify(defaultValues)
   useEffect(() => {
-    if (useNew) return
+    if (experimental_useV2) return
 
     if (initital.current) {
       initital.current = false
@@ -108,7 +108,7 @@ export function useFormGql<Q, V extends FieldValues>(
     form.handleSubmit(async (formValues, event) => {
       // Combine defaults with the formValues and encode
       submittedVariables.current = undefined
-      let variables = useNew ? formValues : encode({ ...defaultValues, ...formValues })
+      let variables = experimental_useV2 ? formValues : encode({ ...defaultValues, ...formValues })
 
       // Wait for the onBeforeSubmit to complete
       if (onBeforeSubmit) {
@@ -119,7 +119,7 @@ export function useFormGql<Q, V extends FieldValues>(
       // if (variables === false) onInvalid?.(formValues, event)
 
       submittedVariables.current = variables
-      if (loading && useNew) controllerRef.current?.abort()
+      if (loading && experimental_useV2) controllerRef.current?.abort()
       controllerRef.current = new window.AbortController()
       const result = await execute({
         variables,
@@ -129,7 +129,7 @@ export function useFormGql<Q, V extends FieldValues>(
       if (onComplete && result.data) await onComplete(result, variables)
 
       // Reset the state of the form if it is unmodified afterwards
-      if (typeof diff(form.getValues(), formValues) === 'undefined' && !useNew)
+      if (typeof diff(form.getValues(), formValues) === 'undefined' && !experimental_useV2)
         form.reset(formValues)
 
       await onValid(formValues, event)
