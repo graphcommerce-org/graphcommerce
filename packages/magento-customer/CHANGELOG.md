@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.1.0-canary.23
+
+### Patch Changes
+
+- [#2098](https://github.com/graphcommerce-org/graphcommerce/pull/2098) [`ca4547224`](https://github.com/graphcommerce-org/graphcommerce/commit/ca45472246e084f4b88f91bc700351e29c63e0e2) - Fix EditAddressForm when addition field is null or undefined ([@JoshuaS98](https://github.com/JoshuaS98))
+
 ## 7.1.0-canary.22
 
 ## 7.1.0-canary.21
