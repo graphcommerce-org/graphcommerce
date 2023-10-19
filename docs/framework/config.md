@@ -236,6 +236,10 @@ Some explanations about the client ID.
 
 Some explanations about the client secret.
 
+#### `hygraphProjectId: String`
+
+Hygraph Project ID. **Only used for migrations.**
+
 #### `hygraphWriteAccessEndpoint: String`
 
 Content API. **Only used for migrations.**
@@ -333,7 +337,24 @@ Configuration for the SidebarGallery component
 
 Hide the wishlist functionality for guests.
 
+<<<<<<< HEAD
+
 #### wishlistShowFeedbackMessage: boolean
+
+=======
+
+# <<<<<<< HEAD
+
+#### `wishlistIgnoreProductWishlistStatus: Boolean`
+
+Ignores whether a product is already in the wishlist, makes the toggle an add
+only.
+
+> > > > > > > 4c817adac ([GCOM-1108] yarn)
+
+#### `wishlistShowFeedbackMessage: Boolean`
+
+> > > > > > > 7080f850f ([GCOM-1108] yarn)
 
 Show a message when the product is added to the wishlist.
 
