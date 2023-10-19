@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.1.0-canary.22
+
+### Patch Changes
+
+- [#2097](https://github.com/graphcommerce-org/graphcommerce/pull/2097) [`cdc89cedb`](https://github.com/graphcommerce-org/graphcommerce/commit/cdc89cedb9eb4d37a2c37497689e74ff6df21bf6) - Set default value of `experimental_v2` to false in `useFormGql`, since we don't want an experimental feature as default ([@mikekeehnen](https://github.com/mikekeehnen))
+
 ## 7.1.0-canary.21
 
 ### Patch Changes
