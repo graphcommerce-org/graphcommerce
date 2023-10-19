@@ -418,6 +418,9 @@ msgstr "Order #{orderId}"
 msgid "Order before 22:00"
 msgstr "Order before 22:00"
 
+msgid "Order date"
+msgstr "Order date"
+
 msgid "Order not found"
 msgstr "Order not found"
 
