@@ -106,14 +106,6 @@ export function TextInputNumber(props: TextInputNumberProps) {
           '& input[type=number]': {
             '-moz-appearance': 'textfield',
           },
-          '& input[type=number]::-webkit-outer-spin-button': {
-            '-webkit-appearance': 'none',
-            margin: 0,
-          },
-          '& input[type=number]::-webkit-inner-spin-button': {
-            '-webkit-appearance': 'none',
-            margin: 0,
-          },
           '& .MuiOutlinedInput-root': {
             px: '3px',
             display: 'grid',
