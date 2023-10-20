@@ -13,7 +13,6 @@ type GetPageStaticProps = GetStaticProps<DRPropertyPickerProps>
 export default function DRPropertyPicker(props: DRPropertyPickerProps) {
   const { products } = props
   const fieldContainer = React.useRef(null)
-
   React.useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
@@ -23,10 +22,13 @@ export default function DRPropertyPicker(props: DRPropertyPickerProps) {
 
     const framerParent2 = framerParent?.previousSibling
     framerParent2.style.minHeight = 'unset'
+
+    const body = framerParent.parentElement.parentElement
+    body.style.background = 'transparent'
   }, [fieldContainer])
 
   return (
-    <Container ref={fieldContainer} sx={{ minHeight: '250px' }}>
+    <Container ref={fieldContainer} sx={{ px: { xs: '0' } }}>
       <Wrapper>
         <PropertyPicker products={products} />
       </Wrapper>
