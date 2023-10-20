@@ -13,18 +13,24 @@ type GetPageStaticProps = GetStaticProps<DRPropertyPickerProps>
 export default function DRPropertyPicker(props: DRPropertyPickerProps) {
   const { products } = props
   const fieldContainer = React.useRef(null)
+
   React.useEffect(() => {
+    /**
+     * Some styling needs to be undone to resolve conflicts between Hygraph App SDK and CssAndFramerMotionProvider.
+     */
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    const framerParent = fieldContainer?.current?.parentElement
-    framerParent.style.position = 'static'
-    framerParent.style.minHeight = 'unset'
+    const frameBox1 = fieldContainer?.current?.parentElement
+    frameBox1.style.position = 'static'
+    frameBox1.style.minHeight = 'unset'
 
-    const framerParent2 = framerParent?.previousSibling
-    framerParent2.style.minHeight = 'unset'
+    const frameBox2 = frameBox1?.previousSibling
+    frameBox2.style.minHeight = 'unset'
 
-    const body = framerParent.parentElement.parentElement
+    const body = frameBox1.parentElement.parentElement
     body.style.background = 'transparent'
+    body.style.height = '200px'
+    body.style.overflow = 'hidden'
   }, [fieldContainer])
 
   return (

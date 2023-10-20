@@ -57,10 +57,7 @@ export function PropertyPicker(props: PropertyPickerProps) {
     .catch((err) => console.log(err))
 
   /** Prepare the available options for the property select field. */
-  const selectOptions = products?.items?.[0]
-    ? findProperties(products?.items?.[0]).map((i) => i.label)
-    : []
-
+  const options = products?.items?.[0] ? findProperties(products?.items?.[0]) : []
   React.useEffect(() => {
     if (products?.items?.[0]) {
       setPropertyValue(get(products?.items?.[0], property) as 'string' | 'number')
@@ -80,21 +77,13 @@ export function PropertyPicker(props: PropertyPickerProps) {
   return (
     <Autocomplete
       id='property-selector'
-      options={selectOptions}
-      color='primary'
+      options={options.map((o) => o.label)}
       value={localValue}
       onChange={(_e, v) => {
-        console.log(30, v)
-        setLocalValue(v || '')
+        const id = options.find((option) => option.label === v)?.id
+        setLocalValue(id || '')
       }}
       renderInput={(params) => {
-        const body = document.querySelector('body')
-
-        if (body) {
-          body.style.height = '200px'
-          body.style.overflow = 'hidden'
-        }
-
         return <TextField {...params} label='Property' />
       }}
       sx={(theme) => ({
@@ -118,7 +107,6 @@ export function PropertyPicker(props: PropertyPickerProps) {
             },
           },
         },
-
         '& .MuiInputLabel-root.Mui-focused': {
           color: { xs: 'rgb(90, 92, 236)' },
         },
