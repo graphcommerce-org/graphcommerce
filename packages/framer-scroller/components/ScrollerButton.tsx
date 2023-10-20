@@ -27,14 +27,11 @@ export const ScrollerButton = m(
       ...buttonProps
     } = props
 
-    const isScrolling = useRef(false)
     const { getSnapPosition, scroll } = useScrollerContext()
     const scrollTo = useScrollTo()
     const handleClick = async () => {
-      if (!isScrolling.current) {
-        isScrolling.current = true
+      if (!scroll.animating.get()) {
         await scrollTo(getSnapPosition(direction))
-        isScrolling.current = false
       }
     }
 
