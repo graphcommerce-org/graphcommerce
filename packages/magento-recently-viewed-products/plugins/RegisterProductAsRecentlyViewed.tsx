@@ -70,7 +70,7 @@ function ViewHandling(props: { product: ProductPageMetaFragment }) {
   return null
 }
 
-const SetRecentlyViewedProducts: PluginType = (props) => {
+const RegisterProductAsRecentlyViewed: PluginType = (props) => {
   const { Prev, product } = props
 
   return (
@@ -81,4 +81,4 @@ const SetRecentlyViewedProducts: PluginType = (props) => {
   )
 }
 
-export const Plugin = SetRecentlyViewedProducts
+export const Plugin = RegisterProductAsRecentlyViewed
