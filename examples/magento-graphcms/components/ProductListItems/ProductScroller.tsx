@@ -2,15 +2,10 @@ import {
   AddProductsToCartContext,
   AddProductsToCartForm,
   AddProductsToCartFormProps,
-  ProductListQuery,
+  ProductListItemFragment,
+  ProductListItemProps,
 } from '@graphcommerce/magento-product'
-import {
-  ItemScroller,
-  ItemScrollerProps,
-  RenderType,
-  nonNullable,
-  responsiveVal,
-} from '@graphcommerce/next-ui'
+import { ItemScroller, ItemScrollerProps, RenderType, responsiveVal } from '@graphcommerce/next-ui'
 import {
   Box,
   Container,
@@ -22,9 +17,8 @@ import {
   TypographyProps,
   useTheme,
 } from '@mui/material'
-import { useContext } from 'react'
+import React, { useContext } from 'react'
 import { productListRenderer } from './productListRenderer'
-import React from 'react'
 
 export function ProductScrollerItemSkeleton({ imageOnly = false }: { imageOnly?: boolean }) {
   return (
@@ -52,21 +46,10 @@ export function ProductScrollerItemSkeleton({ imageOnly = false }: { imageOnly?:
   )
 }
 
-export function ProductScroller({
-  title = '',
-  items,
-  imageOnly = false,
-  skeletonItemCount = 0,
-  skeleton,
-  sx = [],
-  containerProps,
-  titleProps,
-  itemScrollerProps,
-  addProductsToCartFormProps,
-}: {
+export type ProductScrollerProps = {
   title?: string
-  items: Exclude<ProductListQuery['products'], null | undefined>['items']
-  imageOnly?: boolean
+  items: ProductListItemFragment[]
+  imageOnly?: ProductListItemProps['imageOnly']
   skeletonItemCount: number
   skeleton?: React.ReactNode
   sx?: SxProps<Theme>
@@ -74,7 +57,21 @@ export function ProductScroller({
   titleProps?: TypographyProps
   addProductsToCartFormProps?: AddProductsToCartFormProps
   itemScrollerProps?: ItemScrollerProps
-}) {
+}
+export function ProductScroller(props: ProductScrollerProps) {
+  const {
+    title = '',
+    items,
+    imageOnly = false,
+    skeletonItemCount = 0,
+    skeleton,
+    sx = [],
+    containerProps,
+    titleProps,
+    itemScrollerProps,
+    addProductsToCartFormProps,
+  } = props
+
   const theme = useTheme()
 
   if (!!useContext(AddProductsToCartContext) && process.env.NODE_ENV !== 'production')
@@ -94,14 +91,14 @@ export function ProductScroller({
       {(!!items.length || !!skeletonItemCount) && (
         <AddProductsToCartForm {...addProductsToCartFormProps}>
           <ItemScroller {...itemScrollerProps}>
-            {(!items || !items.length) &&
+            {!items.length &&
               [...Array(skeletonItemCount + 10).keys()].map((i) => (
                 <React.Fragment key={i}>
                   {skeleton || <ProductScrollerItemSkeleton imageOnly={imageOnly} />}
                 </React.Fragment>
               ))}
 
-            {items.filter(nonNullable).map((item) => (
+            {items.map((item) => (
               <RenderType
                 key={item.uid}
                 renderer={productListRenderer}

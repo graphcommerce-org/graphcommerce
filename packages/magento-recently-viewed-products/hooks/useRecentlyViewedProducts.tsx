@@ -1,9 +1,9 @@
 import { useQuery } from '@graphcommerce/graphql'
 import { ProductListDocument } from '@graphcommerce/magento-product'
 import { nonNullable } from '@graphcommerce/next-ui'
-import { useRecentlyViewedSkus } from './useRecentlyViewedSkus'
+import { useRecentlyViewedSkus, useRecentlyViewedSkusProps } from './useRecentlyViewedSkus'
 
-export type UseRecentlyViewedProductsProps = { exclude?: string[] }
+export type UseRecentlyViewedProductsProps = useRecentlyViewedSkusProps
 export function useRecentlyViewedProducts({ exclude }: UseRecentlyViewedProductsProps = {}) {
   const { skus, loading } = useRecentlyViewedSkus({ exclude })
 
@@ -22,9 +22,11 @@ export function useRecentlyViewedProducts({ exclude }: UseRecentlyViewedProducts
     skip: loading || !skus.length,
   })
 
-  let products = data?.products?.items || previousData?.products?.items || []
+  const productData = data?.products?.items || previousData?.products?.items || []
   // Sort products based on the time they were viewed. Last viewed item should be the first item in the array
-  products = skus.map((sku) => products.find((p) => (p?.sku || '') === sku.sku)).filter(nonNullable)
+  const products = skus
+    .map((sku) => productData.find((p) => (p?.sku || '') === sku.sku))
+    .filter(nonNullable)
 
   return {
     products,
