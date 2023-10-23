@@ -1,4 +1,4 @@
-import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
+import { NumberFieldElement, TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import { Image } from '@graphcommerce/image'
 import { useFormAddProductsToCart } from '@graphcommerce/magento-product'
 import { Money } from '@graphcommerce/magento-store'
@@ -82,15 +82,11 @@ export const BundleOptionValue = (props: ActionCardItemRenderProps<BundleOptionV
       secondaryAction={
         selected &&
         can_change_quantity && (
-          <TextFieldElement
+          <NumberFieldElement
             size='small'
             label='Quantity'
             color={color}
-            transform={String}
-            validation={{
-              pattern: { value: /^[1-9]|[1-9]d+$/, message: 'Quantity must be greater than 0' },
-            }}
-            InputProps={{ inputProps: { min: 1 } }}
+            inputProps={{ min: 1 }}
             required
             defaultValue={`${quantity}`}
             control={control}
@@ -103,7 +99,6 @@ export const BundleOptionValue = (props: ActionCardItemRenderProps<BundleOptionV
               },
             }}
             name={`cartItems.${index}.entered_options.${idx}.value`}
-            type='number'
             onMouseDown={(e) => e.stopPropagation()}
           />
         )
