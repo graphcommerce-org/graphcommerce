@@ -1,3 +1,3 @@
-fragment OrderSuccesPage on Cart {
+fragment OrderSuccesPage on Cart @injectable {
   ...CartItems
 }
