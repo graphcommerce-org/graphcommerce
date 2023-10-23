@@ -282,6 +282,7 @@ export type GraphCommerceConfig = {
    * If false, the robots.txt file will be set to disallow all.
    */
   robotsAllow?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Configuration for the SidebarGallery component */
   sidebarGallery?: InputMaybe<SidebarGalleryConfig>;
   /** All storefront configuration for the project */
   storefront: Array<GraphCommerceStorefrontConfig>;
@@ -387,15 +388,14 @@ export type ProductFiltersLayout =
 
 /** SidebarGalleryConfig will contain all configuration values for the Sidebar Gallery component. */
 export type SidebarGalleryConfig = {
-  /** This variable will enable or disable the sidebar gallery thumbnails. */
-  thumbnails?: InputMaybe<Scalars['Boolean']['input']>;
-  /** This variable will allocate the position of the sidebar gallery thumbnails. */
-  thumbnailsPosition?: InputMaybe<SidebarGalleryThumbnailPosition>;
+  /** Variant used for the pagination */
+  paginationVariant?: InputMaybe<SidebarGalleryPaginationVariant>;
 };
 
 /** Enumeration of all possible positions for the sidebar gallery thumbnails. */
-export type SidebarGalleryThumbnailPosition =
-  | 'BOTTOM';
+export type SidebarGalleryPaginationVariant =
+  | 'DOTS'
+  | 'THUMBNAILS_BOTTOM';
 
 
 type Properties<T> = Required<{
@@ -412,7 +412,7 @@ export const CompareVariantSchema = z.enum(['CHECKBOX', 'ICON']);
 
 export const ProductFiltersLayoutSchema = z.enum(['DEFAULT', 'SIDEBAR']);
 
-export const SidebarGalleryThumbnailPositionSchema = z.enum(['BOTTOM']);
+export const SidebarGalleryPaginationVariantSchema = z.enum(['DOTS', 'THUMBNAILS_BOTTOM']);
 
 export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerceConfig>> {
   return z.object({
@@ -484,7 +484,6 @@ export function MagentoConfigurableVariantValuesSchema(): z.ZodObject<Properties
 
 export function SidebarGalleryConfigSchema(): z.ZodObject<Properties<SidebarGalleryConfig>> {
   return z.object({
-    thumbnails: z.boolean().nullish(),
-    thumbnailsPosition: SidebarGalleryThumbnailPositionSchema.nullish()
+    paginationVariant: SidebarGalleryPaginationVariantSchema.nullish()
   })
 }

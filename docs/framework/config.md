@@ -226,6 +226,12 @@ Project settings -> API Access -> Permanent Auth Tokens
   - Delete existing components
   - Update remote sources
   - Delete remote sources
+  - Read existing environments
+  - Read public content views
+  - Create public content views
+  - Update public content views
+  - Delete public content views
+  - Can see schema view
 
 ```
 GC_HYGRAPH_WRITE_ACCESS_ENDPOINT="https://...hygraph.com/v2/..."
@@ -272,6 +278,8 @@ Allow the site to be indexed by search engines.
 If false, the robots.txt file will be set to disallow all.
 
 #### `sidebarGallery: [SidebarGalleryConfig](#SidebarGalleryConfig)`
+
+Configuration for the SidebarGallery component
 
 #### `wishlistHideForGuests: Boolean`
 
@@ -382,9 +390,8 @@ Use the name, description, short description and meta data from the configured v
 
 #### `gallery: Boolean`
 
-This option enables the automatic update of product gallery images on the
-product page when a variant is selected, provided that the gallery images for
-the selected variant differ from the currently displayed images.
+This option enables the automatic update of product gallery images on the product page when a variant is selected,
+provided that the gallery images for the selected variant differ from the currently displayed images.
 
 #### `url: Boolean`
 
@@ -396,10 +403,6 @@ This only happens when the actual variant is can be accessed by the URL.
 
 SidebarGalleryConfig will contain all configuration values for the Sidebar Gallery component.
 
-#### `thumbnails: Boolean`
+#### `paginationVariant: [SidebarGalleryPaginationVariant](#SidebarGalleryPaginationVariant)`
 
-This variable will enable or disable the sidebar gallery thumbnails.
-
-#### `thumbnailsPosition: [SidebarGalleryThumbnailPosition](#SidebarGalleryThumbnailPosition)`
-
-This variable will allocate the position of the sidebar gallery thumbnails.
+Variant used for the pagination

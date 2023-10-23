@@ -8,6 +8,7 @@ import {
   ScrollerProvider,
   unstable_usePreventScroll as usePreventScroll,
   ScrollerButtonProps,
+  ScrollerThumbnails,
 } from '@graphcommerce/framer-scroller'
 import { dvh } from '@graphcommerce/framer-utils'
 import {
@@ -317,7 +318,6 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                 className={classes.bottomCenter}
                 sx={{
                   display: 'flex',
-                  px: theme.page.horizontal,
                   gap: theme.spacings.xxs,
                   position: 'absolute',
                   bottom: theme.spacings.xxs,
@@ -329,11 +329,15 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                   },
                 }}
               >
-                <ScrollerDots layout='position' layoutDependency={zoomed} />
+                {import.meta.graphCommerce.sidebarGallery?.paginationVariant ===
+                'THUMBNAILS_BOTTOM' ? (
+                  <ScrollerThumbnails images={images} />
+                ) : (
+                  <ScrollerDots />
+                )}
               </Box>
             </MotionBox>
           </TrapFocus>
-
           <Box
             className={classes.sidebarWrapper}
             sx={[

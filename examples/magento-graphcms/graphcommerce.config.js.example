@@ -11,8 +11,7 @@ const config = {
   canonicalBaseUrl: 'https://graphcommerce.vercel.app',
   storefront: [{ locale: 'en', magentoStoreCode: 'en_US' }],
   sidebarGallery: {
-    thumbnails: true,
-    thumbnailsPosition: 'BOTTOM',
+    paginationVariant: 'THUMBNAILS_BOTTOM',
   },
 }
 

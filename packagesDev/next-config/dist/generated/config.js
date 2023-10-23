@@ -21,8 +21,8 @@ _export(exports, {
     ProductFiltersLayoutSchema: function() {
         return ProductFiltersLayoutSchema;
     },
-    SidebarGalleryThumbnailPositionSchema: function() {
-        return SidebarGalleryThumbnailPositionSchema;
+    SidebarGalleryPaginationVariantSchema: function() {
+        return SidebarGalleryPaginationVariantSchema;
     },
     GraphCommerceConfigSchema: function() {
         return GraphCommerceConfigSchema;
@@ -51,8 +51,9 @@ const ProductFiltersLayoutSchema = _zod.z.enum([
     "DEFAULT",
     "SIDEBAR"
 ]);
-const SidebarGalleryThumbnailPositionSchema = _zod.z.enum([
-    "BOTTOM"
+const SidebarGalleryPaginationVariantSchema = _zod.z.enum([
+    "DOTS",
+    "THUMBNAILS_BOTTOM"
 ]);
 function GraphCommerceConfigSchema() {
     return _zod.z.object({
@@ -120,7 +121,6 @@ function MagentoConfigurableVariantValuesSchema() {
 }
 function SidebarGalleryConfigSchema() {
     return _zod.z.object({
-        thumbnails: _zod.z.boolean().nullish(),
-        thumbnailsPosition: SidebarGalleryThumbnailPositionSchema.nullish()
+        paginationVariant: SidebarGalleryPaginationVariantSchema.nullish()
     });
 }
