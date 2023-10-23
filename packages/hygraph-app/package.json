@@ -12,6 +12,7 @@
     }
   },
   "dependencies": {
+    "@apollo/client": "~3.8.2",
     "@fontsource/inter": "^5.0.4",
     "@graphcommerce/ecommerce-ui": "7.1.0-canary.22",
     "@graphcommerce/graphql": "7.1.0-canary.22",
