@@ -1,7 +1,7 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import { Fab, FabProps, styled, SxProps, Theme } from '@mui/material'
 import { m, useTransform } from 'framer-motion'
-import React, { useRef } from 'react'
+import React from 'react'
 import { useScrollTo } from '../hooks/useScrollTo'
 import { useScrollerContext } from '../hooks/useScrollerContext'
 import { SnapPositionDirection } from '../types'
