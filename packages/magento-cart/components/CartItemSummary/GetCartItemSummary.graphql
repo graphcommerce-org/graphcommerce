@@ -1,6 +1,6 @@
 query CartItemSummary($cartId: String!) {
   cart(cart_id: $cartId) {
-    ...CartItems
+    ...OrderSuccesPage
     ...CartTotals
   }
 }
