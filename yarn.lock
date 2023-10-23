@@ -19867,12 +19867,21 @@ __metadata:
     post-robot "^10"
     zalgo-promise "^1.0.45"
 
-"@graphcommerce/eslint-config-pwa@7.1.0-canary.23":
-  version "7.1.0-canary.23"
-  resolved "https://registry.yarnpkg.com/@graphcommerce/eslint-config-pwa/-/eslint-config-pwa-7.1.0-canary.23.tgz#a0f2de7e5d8f7c831bde034aa2f929ea996c1946"
-  integrity sha512-N6OCf/kHDfvpN16vsuYsx0lXMjEoEdLuva4gDYfiPdhUBLIvdNIcTiz2Ppn9djG7GVauk96o56nbdBMv3CCYUw==
+"@graphcommerce/ecommerce-ui@7.1.0-canary.22":
+  version "7.1.0-canary.22"
+  resolved "https://registry.yarnpkg.com/@graphcommerce/ecommerce-ui/-/ecommerce-ui-7.1.0-canary.22.tgz#8ded2b4c0556164348f33931d019d391471d09a3"
+  integrity sha512-70vRh0Fj96nfrilZHwiH9TLUyZKH1lEmwEJm7TUKxPVGNlq6X7BMrmMtbEGVEDcwjbvSghMlTiIok5ewasr+7A==
   dependencies:
-    "@graphcommerce/typescript-config-pwa" "7.1.0-canary.23"
+    "@graphcommerce/graphql" "7.1.0-canary.22"
+    "@graphcommerce/next-ui" "7.1.0-canary.22"
+    "@graphcommerce/react-hook-form" "7.1.0-canary.22"
+
+"@graphcommerce/eslint-config-pwa@7.1.0-canary.22":
+  version "7.1.0-canary.22"
+  resolved "https://registry.yarnpkg.com/@graphcommerce/eslint-config-pwa/-/eslint-config-pwa-7.1.0-canary.22.tgz#8bf24ae71826aa8a4324ff2e125df8b6e75c6749"
+  integrity sha512-jikaHsj/siMFmoHCkx6u8Yo1/P+0m8aUoQKAJcO0XOhBdw6zWEljl5Z5UG/L97iQS4PQeZl2Coul0tJir7cwoA==
+  dependencies:
+    "@graphcommerce/typescript-config-pwa" "7.1.0-canary.22"
     "@next/eslint-plugin-next" "13.4.19"
     "@typescript-eslint/eslint-plugin" "^6.6.0"
     "@typescript-eslint/parser" "^6.6.0"
@@ -19884,42 +19893,33 @@ __metadata:
     eslint-plugin-react "^7.31.11"
     eslint-plugin-react-hooks "4.6.0"
 
-"@graphcommerce/framer-next-pages@7.1.0-canary.23":
-  version "7.1.0-canary.23"
-  resolved "https://registry.yarnpkg.com/@graphcommerce/framer-next-pages/-/framer-next-pages-7.1.0-canary.23.tgz#704b9b4e6a5b8a4b313d0c769f77c07639acb8f8"
-  integrity sha512-vvGPURP9HWZpTAfi64qnC0T50obyCZqp8vxQv7NUpwwdUlWy3P/a4HFmOzXI96H8VvaO7XxCjP9w90isxkD/Yg==
+"@graphcommerce/framer-next-pages@7.1.0-canary.22":
+  version "7.1.0-canary.22"
+  resolved "https://registry.yarnpkg.com/@graphcommerce/framer-next-pages/-/framer-next-pages-7.1.0-canary.22.tgz#f1c0d679423ab37b0797e9e03459a24a2631de56"
+  integrity sha512-JWoCScWAcF2lnmtWEn/hc5cxPGl4d/POWWncRtqIEoKunRKKkXP1p5Ow4CY1ox6LBsJ2D5FR3JISAcjGUp2zBA==
   dependencies:
-    "@graphcommerce/framer-utils" "7.1.0-canary.23"
+    "@graphcommerce/framer-utils" "7.1.0-canary.22"
 
-"@graphcommerce/framer-scroller@7.1.0-canary.23":
-  version "7.1.0-canary.23"
-  resolved "https://registry.yarnpkg.com/@graphcommerce/framer-scroller/-/framer-scroller-7.1.0-canary.23.tgz#86a97612c7b22b5a0d1b78fce733b11dbf3673d2"
-  integrity sha512-Nfmrq8lQuT62sRzf4N/+9TlvpxZ0QGe0nnqNGB7Bjb2r6RhffmIL6dARayHVAA2nCgiaChhpJI9Ljkyeg1zitQ==
+"@graphcommerce/framer-scroller@7.1.0-canary.22":
+  version "7.1.0-canary.22"
+  resolved "https://registry.yarnpkg.com/@graphcommerce/framer-scroller/-/framer-scroller-7.1.0-canary.22.tgz#556bb91abead686d64a0b0e9ab6932a4e6fa9481"
+  integrity sha512-IL1h0qxH2heJejc1geOcs3e7thgaq8e7uFlDVXmGwWaVu3MllgI45HO0zmuxcmDtZdcaa9rxtKMfE2iQJQFJag==
   dependencies:
-    "@graphcommerce/framer-utils" "7.1.0-canary.23"
-    "@graphcommerce/image" "7.1.0-canary.23"
+    "@graphcommerce/framer-utils" "7.1.0-canary.22"
+    "@graphcommerce/image" "7.1.0-canary.22"
     popmotion "11.0.5"
 
-"@graphcommerce/framer-utils@7.1.0-canary.23":
-  version "7.1.0-canary.23"
-  resolved "https://registry.yarnpkg.com/@graphcommerce/framer-utils/-/framer-utils-7.1.0-canary.23.tgz#3de708ee5ce692e5803f9f44cf8ae6fdd60fe0dc"
-  integrity sha512-/J0iiICX0Vd9W7KO4KmBwdEV6mlmqq+OUiympUeDlhcjTxkDKtQYGEByQs30nZT4kDHd7G3ve7xhMqfDBmOQIQ==
+"@graphcommerce/framer-utils@7.1.0-canary.22":
+  version "7.1.0-canary.22"
+  resolved "https://registry.yarnpkg.com/@graphcommerce/framer-utils/-/framer-utils-7.1.0-canary.22.tgz#fd9187d6acec5f318525bf93f6733d7c144aa005"
+  integrity sha512-kLTuqcVoZ7topY4LvhGN3BjSONEh8bb1gFYrgvCw0K30d5+vn1crudy2E18vb5xyWZIVLDUWw/62SU4Ozqy7xg==
   dependencies:
     framesync "^6.1.1"
 
-"@graphcommerce/graphcms-ui@7.1.0-canary.23":
-  version "7.1.0-canary.23"
-  resolved "https://registry.yarnpkg.com/@graphcommerce/graphcms-ui/-/graphcms-ui-7.1.0-canary.23.tgz#c492f942beb315e2333a6aa15d2faa31f1d9ae57"
-  integrity sha512-//kx2y9u7wgioB+g0g1VZy/GAP/NE01sX3nLpqVwz7zKCMB54jVMeHAt5LVtsLjYt4pLF754yEythgu9dFevRQ==
-  dependencies:
-    "@graphcommerce/graphql" "7.1.0-canary.23"
-    "@graphcommerce/image" "7.1.0-canary.23"
-    "@graphcommerce/next-ui" "7.1.0-canary.23"
-
-"@graphcommerce/graphql-codegen-near-operation-file@7.1.0-canary.23":
-  version "7.1.0-canary.23"
-  resolved "https://registry.yarnpkg.com/@graphcommerce/graphql-codegen-near-operation-file/-/graphql-codegen-near-operation-file-7.1.0-canary.23.tgz#326466386cb6e82e02a0b9b160ab060f4ae426d5"
-  integrity sha512-gcszquneurqfIyZ8YeB1xQOATQtZ5vIO7E5R0/HdF/2K1qEN89UGTEt2vZzyF2mFAUwBgsYdRmK0SfwQyI6gFQ==
+"@graphcommerce/graphql-codegen-near-operation-file@7.1.0-canary.22":
+  version "7.1.0-canary.22"
+  resolved "https://registry.yarnpkg.com/@graphcommerce/graphql-codegen-near-operation-file/-/graphql-codegen-near-operation-file-7.1.0-canary.22.tgz#c09ce6ff9f20d0020fba76ec1f984854d95aa28e"
+  integrity sha512-rp8tDy2jt8KtQfDLoXmtasWpYXDyGeKa5QOFfPncoU/IVK9aReNlsO0QaUzrHQpxX8IriPmHMzYOMCLAynBjmg==
   dependencies:
     "@graphql-codegen/add" "5.0.0"
     "@graphql-codegen/plugin-helpers" "5.0.1"
@@ -19928,22 +19928,22 @@ __metadata:
     "@types/parse-filepath" "^1.0.0"
     parse-filepath "^1.0.2"
 
-"@graphcommerce/graphql-codegen-relay-optimizer-plugin@7.1.0-canary.23":
-  version "7.1.0-canary.23"
-  resolved "https://registry.yarnpkg.com/@graphcommerce/graphql-codegen-relay-optimizer-plugin/-/graphql-codegen-relay-optimizer-plugin-7.1.0-canary.23.tgz#631bf0212bcc00a99771e16a65eda993826588ac"
-  integrity sha512-0i5kGMVuEP3/sLw4jRZmowo/CcWC7g67/LQFBEHvRfVOLKN4fZZR7bm/kb1SppZTE6ndlvwSiU5C1GhoJj8lCQ==
+"@graphcommerce/graphql-codegen-relay-optimizer-plugin@7.1.0-canary.22":
+  version "7.1.0-canary.22"
+  resolved "https://registry.yarnpkg.com/@graphcommerce/graphql-codegen-relay-optimizer-plugin/-/graphql-codegen-relay-optimizer-plugin-7.1.0-canary.22.tgz#38bc28ee10cbd895f2593155ebb5af17725093b3"
+  integrity sha512-IWSM3Nafi448TEk8DMyZs0Rd7bz4DMosAPE71xp94am1sbbjlZ1SxXPwzhUWHjdOKsSBL+/jDTstA8ju2WJgOg==
   dependencies:
     "@ardatan/relay-compiler" "12.0.0"
     "@graphql-codegen/plugin-helpers" "5.0.1"
 
-"@graphcommerce/graphql@7.1.0-canary.23":
-  version "7.1.0-canary.23"
-  resolved "https://registry.yarnpkg.com/@graphcommerce/graphql/-/graphql-7.1.0-canary.23.tgz#669434b3db7d7e00e73496964053d2815ac6dc99"
-  integrity sha512-8qmmtM3goeX9iEjUPAAIEnLWOvnqRCNSWwIWp0ozpPcuMoinnc5gURoWQwcKQRoQWLnG+5SytjhZqkMnse4Uig==
+"@graphcommerce/graphql@7.1.0-canary.22":
+  version "7.1.0-canary.22"
+  resolved "https://registry.yarnpkg.com/@graphcommerce/graphql/-/graphql-7.1.0-canary.22.tgz#429308d4f34508557ad151e495af830b4ad6d655"
+  integrity sha512-zxCPZjvQubJ9ZBbxhJ3rqvhXsKBWEf6ARDRFYnZpcjBTLGTrwaO+Ouufr/syK4pdgxGZGUKSLITjhrv8QU8Zcw==
   dependencies:
     "@apollo/client" "~3.8.2"
-    "@graphcommerce/graphql-codegen-near-operation-file" "7.1.0-canary.23"
-    "@graphcommerce/graphql-codegen-relay-optimizer-plugin" "7.1.0-canary.23"
+    "@graphcommerce/graphql-codegen-near-operation-file" "7.1.0-canary.22"
+    "@graphcommerce/graphql-codegen-relay-optimizer-plugin" "7.1.0-canary.22"
     "@graphql-codegen/add" "5.0.0"
     "@graphql-codegen/fragment-matcher" "5.0.0"
     "@graphql-codegen/introspection" "4.0.0"
@@ -19955,51 +19955,49 @@ __metadata:
     "@graphql-codegen/typescript-operations" "4.0.1"
     apollo3-cache-persist "^0.14.1"
 
-"@graphcommerce/hygraph-dynamic-rows@7.1.0-canary.22":
+"@graphcommerce/image@7.1.0-canary.22":
   version "7.1.0-canary.22"
-  resolved "https://registry.yarnpkg.com/@graphcommerce/hygraph-dynamic-rows/-/hygraph-dynamic-rows-7.1.0-canary.22.tgz#bc1485db9a11cf4a83fbfd25ffeaee689b22d99c"
-  integrity sha512-ONtAY9eGw7WBcT2zy+ZvTnulDF/Myp3aJG79LWdY5PRnnEtrAZLHVsCVZMSA14WPREDteXEDixknJJyMNbYZgw==
+  resolved "https://registry.yarnpkg.com/@graphcommerce/image/-/image-7.1.0-canary.22.tgz#a68ed2090c40bc42ee4bfc714922e01b8de71f1e"
+  integrity sha512-dtxGHW1gjL90yeYmQFRVkzuljJyuc2/H4otaak4RtUFbmZ4b9LNz432pAnkn9myaaLcRsxnIanL5A0oxIoVBMQ==
   dependencies:
-    "@graphcommerce/graphcms-ui" "7.1.0-canary.22"
-    "@graphcommerce/graphql" "7.1.0-canary.22"
-    "@graphcommerce/image" "7.1.0-canary.22"
-    "@graphcommerce/next-ui" "7.1.0-canary.22"
+    "@graphcommerce/framer-utils" "7.1.0-canary.22"
 
-"@graphcommerce/image@7.1.0-canary.23":
-  version "7.1.0-canary.23"
-  resolved "https://registry.yarnpkg.com/@graphcommerce/image/-/image-7.1.0-canary.23.tgz#f417d9894ab7f442da1fda9643d1c22030f1a8d5"
-  integrity sha512-VuVh2VD+ivVXpFWL2Hsd9dqD+JMOlnzJbCHSmiFxx+fDc3/kmh7BQnVgB670QROD39q1527SHv4hCe8W7ftGmQ==
-  dependencies:
-    "@graphcommerce/framer-utils" "7.1.0-canary.23"
-
-"@graphcommerce/next-ui@7.1.0-canary.23":
-  version "7.1.0-canary.23"
-  resolved "https://registry.yarnpkg.com/@graphcommerce/next-ui/-/next-ui-7.1.0-canary.23.tgz#57c0ad8107a356c5f8d2692688c4451244e1bfd8"
-  integrity sha512-qARyQ/wsFzayqnaz5OZ7XHt4P6i9i5gf5CfulUcFgOFzWxanlQBGlkZNIoq72tY3h9AHXTiZPCe7WEz95owY3g==
+"@graphcommerce/next-ui@7.1.0-canary.22":
+  version "7.1.0-canary.22"
+  resolved "https://registry.yarnpkg.com/@graphcommerce/next-ui/-/next-ui-7.1.0-canary.22.tgz#5cfb2fe81e1db5d46adaf1761599d0fd86ea4f78"
+  integrity sha512-cUY84VcjMTqoJvyDuSyaS91fxcuB03ICPN3Jxl/MUKBu4/VjLrnzMVVEmNHSHh7nPgyBM8g1pm42bZWYAB6QQQ==
   dependencies:
     "@emotion/cache" "^11.11.0"
     "@emotion/react" "^11.11.1"
     "@emotion/server" "^11.11.0"
     "@emotion/styled" "^11.11.0"
-    "@graphcommerce/framer-next-pages" "7.1.0-canary.23"
-    "@graphcommerce/framer-scroller" "7.1.0-canary.23"
-    "@graphcommerce/framer-utils" "7.1.0-canary.23"
-    "@graphcommerce/image" "7.1.0-canary.23"
+    "@graphcommerce/framer-next-pages" "7.1.0-canary.22"
+    "@graphcommerce/framer-scroller" "7.1.0-canary.22"
+    "@graphcommerce/framer-utils" "7.1.0-canary.22"
+    "@graphcommerce/image" "7.1.0-canary.22"
     cookie "^0.5.0"
     react-is "^18.2.0"
     schema-dts "^1.1.0"
 
-"@graphcommerce/prettier-config-pwa@7.1.0-canary.23":
-  version "7.1.0-canary.23"
-  resolved "https://registry.yarnpkg.com/@graphcommerce/prettier-config-pwa/-/prettier-config-pwa-7.1.0-canary.23.tgz#1cbe105dbfd4b3d81fbb1dd82a2d9965a54e272d"
-  integrity sha512-Rgn8dmQ091KJpKTIdJ5Kg5XmtKNsxJg+94l9T9qsvbF+ft0VIA0rmD0T71aKxxbslQ56pS0uYIhRhxRKIO6A0A==
+"@graphcommerce/prettier-config-pwa@7.1.0-canary.22":
+  version "7.1.0-canary.22"
+  resolved "https://registry.yarnpkg.com/@graphcommerce/prettier-config-pwa/-/prettier-config-pwa-7.1.0-canary.22.tgz#6a07bd63adadac4f61927dff0073b1cc20d97d32"
+  integrity sha512-zuJT1RbPBzZP14rgosSK2peBqO/hGWZcpyviL1ZDWfFieRWrxK2ke6shF7xGvOEuLZIeZg9PyQRrj5+qF6Yvkg==
   dependencies:
     prettier-plugin-jsdoc "^1.0.1"
 
-"@graphcommerce/typescript-config-pwa@7.1.0-canary.23":
-  version "7.1.0-canary.23"
-  resolved "https://registry.yarnpkg.com/@graphcommerce/typescript-config-pwa/-/typescript-config-pwa-7.1.0-canary.23.tgz#9dee44e436680787ba49691fb87cd7dd47c5601e"
-  integrity sha512-4EmChoGX/JuKQ78ZehO1oSVpxdgzT6NASwbI7b2XZrvIIQT+oywHhADUFpRCKA//LQt7p/wVbIzgot9mGVlvUg==
+"@graphcommerce/react-hook-form@7.1.0-canary.22":
+  version "7.1.0-canary.22"
+  resolved "https://registry.yarnpkg.com/@graphcommerce/react-hook-form/-/react-hook-form-7.1.0-canary.22.tgz#1e79c93e53016f9b8e862f3aceefa8bac4517b83"
+  integrity sha512-fL422IhymR0wScbaVykUVj0tlbNTfoO3gQvPo6kY+17S6GL8AFq90MM06qDGKLTuXedzWsKcU7eaQtEaxnyCUQ==
+  dependencies:
+    "@apollo/client" "~3.8.2"
+    react-hook-form "7.46.1"
+
+"@graphcommerce/typescript-config-pwa@7.1.0-canary.22":
+  version "7.1.0-canary.22"
+  resolved "https://registry.yarnpkg.com/@graphcommerce/typescript-config-pwa/-/typescript-config-pwa-7.1.0-canary.22.tgz#96281bba39ff4403010d23da5ac3138b75e904ac"
+  integrity sha512-N2hQyJG53JRrAj4eFtOMeB8KJEZHyXyoblcEFxBol5r/pUXRJX9LYtl5Y1RRJ0zAjchl3W+LedExccAIAQxYKA==
 
 "@graphql-codegen/add@5.0.0":
   version "5.0.0"

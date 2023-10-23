@@ -2,7 +2,7 @@
   "name": "@graphcommerce/hygraph-app",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "7.1.0-canary.22",
+  "version": "7.1.0-canary.23",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
