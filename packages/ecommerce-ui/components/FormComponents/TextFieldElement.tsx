@@ -13,8 +13,7 @@ export type TextFieldElementProps<T extends FieldValues = FieldValues> = Omit<
   'name' | 'defaultValue'
 > & {
   validation?: UseControllerProps<T>['rules']
-} & Omit<UseControllerProps<T>, 'rules'> & { transform?: (value: unknown) => void }
-
+} & Omit<UseControllerProps<T>, 'rules'>
 export function TextFieldElement<TFieldValues extends FieldValues>({
   validation = {},
   type,
@@ -22,7 +21,6 @@ export function TextFieldElement<TFieldValues extends FieldValues>({
   name,
   control,
   defaultValue,
-  transform,
   ...rest
 }: TextFieldElementProps<TFieldValues>): JSX.Element {
   if (required && !validation.required) {
@@ -50,10 +48,9 @@ export function TextFieldElement<TFieldValues extends FieldValues>({
           name={name}
           value={value ?? ''}
           onChange={(ev) => {
-            const fieldValue =
-              type === 'number' && ev.target.value ? Number(ev.target.value) : ev.target.value
-            const transformValue = transform ? transform(fieldValue) : fieldValue
-            onChange(transformValue)
+            onChange(
+              type === 'number' && ev.target.value ? Number(ev.target.value) : ev.target.value,
+            )
             rest.onChange?.(ev)
           }}
           onBlur={onBlur}
