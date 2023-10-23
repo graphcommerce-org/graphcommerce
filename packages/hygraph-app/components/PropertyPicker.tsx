@@ -1,26 +1,14 @@
 import { useFieldExtension } from '@hygraph/app-sdk-react'
+// eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { TextField, Autocomplete } from '@mui/material'
+// eslint-disable-next-line import/no-extraneous-dependencies
 import get from 'lodash/get'
 import React from 'react'
 import { getProductsQuery } from '../graphql/GetProducts.gql'
-import { findProperties } from '../lib/functions'
-import { ProductProperty } from '../types'
+import { createRecursiveIntrospectionQuery, findProperties } from '../lib/functions'
 
 // If this component becomes generic, this will be any or unknown
 type PropertyPickerProps = NonNullable<getProductsQuery>
-
-const operators: ProductProperty[] = [
-  { label: 'equals', id: 'equals' },
-  { label: 'GTE', id: 'GTE' },
-  { label: 'LTE', id: 'LTE' },
-]
-
-const conditionTypes = {
-  string: 'ConditionText',
-  number: 'ConditionNumber',
-}
-
-const columns = ['Property', 'Operator', 'Value', 'Remove']
 
 export function PropertyPicker(props: PropertyPickerProps) {
   const { products } = props
@@ -42,7 +30,7 @@ export function PropertyPicker(props: PropertyPickerProps) {
   const [localValue, setLocalValue] = React.useState<string>(value || '')
 
   React.useEffect(() => {
-    onChange(localValue)
+    onChange(localValue).catch((err) => console.log(err))
   }, [localValue, onChange])
 
   /**
@@ -58,6 +46,7 @@ export function PropertyPicker(props: PropertyPickerProps) {
 
   /** Prepare the available options for the property select field. */
   const options = products?.items?.[0] ? findProperties(products?.items?.[0]) : []
+
   React.useEffect(() => {
     if (products?.items?.[0]) {
       setPropertyValue(get(products?.items?.[0], property) as 'string' | 'number')
@@ -66,13 +55,15 @@ export function PropertyPicker(props: PropertyPickerProps) {
   }, [products?.items, property, propertyValue])
 
   // RM limiting max-height from MUI Autocomplete Popper
-  let styleElement = document.createElement('style')
+  const styleElement = document.createElement('style')
   styleElement.innerHTML = `
     body ul {
       max-height: 65vh!important;
     }
   `
   document.head.appendChild(styleElement)
+
+  createRecursiveIntrospectionQuery('ProductInterface', 12)
 
   return (
     <Autocomplete
@@ -83,9 +74,7 @@ export function PropertyPicker(props: PropertyPickerProps) {
         const id = options.find((option) => option.label === v)?.id
         setLocalValue(id || '')
       }}
-      renderInput={(params) => {
-        return <TextField {...params} label='Property' />
-      }}
+      renderInput={(params) => <TextField {...params} label='Property' />}
       sx={(theme) => ({
         mt: theme.spacings.xxs,
         '& .MuiInputBase-root': {
