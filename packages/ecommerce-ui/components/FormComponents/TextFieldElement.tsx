@@ -14,6 +14,7 @@ export type TextFieldElementProps<T extends FieldValues = FieldValues> = Omit<
 > & {
   validation?: UseControllerProps<T>['rules']
 } & Omit<UseControllerProps<T>, 'rules'>
+
 export function TextFieldElement<TFieldValues extends FieldValues>({
   validation = {},
   type,
