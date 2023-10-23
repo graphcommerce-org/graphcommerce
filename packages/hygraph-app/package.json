@@ -13,19 +13,19 @@
   },
   "dependencies": {
     "@fontsource/inter": "^5.0.4",
-    "@graphcommerce/ecommerce-ui": "6.2.0-canary.81",
-    "@graphcommerce/graphql": "6.2.0-canary.81",
-    "@graphcommerce/image": "6.2.0-canary.81",
-    "@graphcommerce/next-ui": "6.2.0-canary.81",
+    "@graphcommerce/ecommerce-ui": "7.1.0-canary.22",
+    "@graphcommerce/graphql": "7.1.0-canary.22",
+    "@graphcommerce/image": "7.1.0-canary.22",
+    "@graphcommerce/next-ui": "7.1.0-canary.22",
     "@hygraph/app-sdk-react": "^0.0.2",
     "react-is": "^18.2.0",
     "schema-dts": "^1.1.0",
     "uuidv4": "^6.2.13"
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "6.2.0-canary.81",
-    "@graphcommerce/prettier-config-pwa": "6.2.0-canary.81",
-    "@graphcommerce/typescript-config-pwa": "6.2.0-canary.81",
+    "@graphcommerce/eslint-config-pwa": "7.1.0-canary.22",
+    "@graphcommerce/prettier-config-pwa": "7.1.0-canary.22",
+    "@graphcommerce/typescript-config-pwa": "7.1.0-canary.22",
     "@types/react-is": "^18.2.0",
     "typescript": "5.1.3"
   },
