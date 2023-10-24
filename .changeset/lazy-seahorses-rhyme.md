@@ -2,4 +2,4 @@
 '@graphcommerce/magento-cart': patch
 ---
 
-Use 'cache-first' fetch mode for getting 'total_quantity' data.
+The CartFab wouldn't reflect that there are items in the cart when a customer refreshes the page after adding a product to the cart, without viewing the cart.
