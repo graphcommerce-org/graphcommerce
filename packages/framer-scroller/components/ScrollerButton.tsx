@@ -29,7 +29,11 @@ export const ScrollerButton = m(
 
     const { getSnapPosition, scroll } = useScrollerContext()
     const scrollTo = useScrollTo()
-    const handleClick = () => scrollTo(getSnapPosition(direction))
+    const handleClick = async () => {
+      if (!scroll.animating.get()) {
+        await scrollTo(getSnapPosition(direction))
+      }
+    }
 
     const { xProgress, yProgress, xMax, yMax } = scroll
 
