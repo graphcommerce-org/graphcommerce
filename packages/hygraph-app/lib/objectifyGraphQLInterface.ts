@@ -1,18 +1,39 @@
 import { InterfaceObject } from '../types'
 
-const objectifyGraphQLInterfaceLayer = (fields: InterfaceObject) => {
+const objectifyGraphQLInterfaceLayer = (
+  fields: InterfaceObject,
+  conditionType: 'text' | 'number' | 'all',
+) => {
   let layer
   const numberTypes = ['Float', 'Int']
 
   for (const [, value] of Object.entries(fields)) {
     const layeredFields = value?.type?.ofType?.fields
-    const typeValue = numberTypes.includes(value?.type?.name as string) ? 'number' : 'string'
+    const typeName = value?.type?.name
+    const typeValue = numberTypes.includes(typeName as string) ? 'number' : 'text'
 
-    layer = {
-      ...layer,
-      [value?.name]: layeredFields
-        ? objectifyGraphQLInterfaceLayer(layeredFields as InterfaceObject)
-        : typeValue,
+    if (layeredFields) {
+      layer = {
+        ...layer,
+        [value?.name]: objectifyGraphQLInterfaceLayer(
+          layeredFields as InterfaceObject,
+          conditionType,
+        ),
+      }
+    } else if (typeName && conditionType === 'all') {
+      layer = {
+        ...layer,
+        [value?.name]: typeValue,
+      }
+    } else if (conditionType === typeValue) {
+      layer = {
+        ...layer,
+        [value?.name]: typeValue,
+      }
+    } else if (conditionType !== typeValue) {
+      layer = {
+        ...layer,
+      }
     }
   }
 
@@ -26,18 +47,39 @@ const objectifyGraphQLInterfaceLayer = (fields: InterfaceObject) => {
  * @param obj - The GraphQL interface object that is read from the schema.
  * @returns
  */
-export const objectifyGraphQLInterface = (obj: InterfaceObject) => {
+export const objectifyGraphQLInterface = (
+  obj: InterfaceObject,
+  conditionType: 'text' | 'number' | 'all',
+) => {
   let objectifiedInterface: { [s: string]: unknown } = {}
   const numberTypes = ['Float', 'Int']
 
   for (const [, value] of Object.entries(obj)) {
     const fields = value?.type?.ofType?.fields
-    const typeValue = numberTypes.includes(value?.type?.name as string) ? 'number' : 'string'
+    const typeName = value?.type?.name
+    const typeValue = numberTypes.includes(typeName as string) ? 'number' : 'text'
 
-    objectifiedInterface = {
-      ...objectifiedInterface,
-      [value?.name]: fields ? objectifyGraphQLInterfaceLayer(fields as InterfaceObject) : typeValue,
+    if (fields) {
+      objectifiedInterface = {
+        ...objectifiedInterface,
+        [value?.name]: objectifyGraphQLInterfaceLayer(fields as InterfaceObject, conditionType),
+      }
+    } else if (typeName && conditionType === 'all') {
+      objectifiedInterface = {
+        ...objectifiedInterface,
+        [value?.name]: typeValue,
+      }
+    } else if (conditionType === typeValue) {
+      objectifiedInterface = {
+        ...objectifiedInterface,
+        [value?.name]: typeValue,
+      }
+    } else if (conditionType !== typeValue) {
+      objectifiedInterface = {
+        ...objectifiedInterface,
+      }
     }
   }
+
   return objectifiedInterface
 }

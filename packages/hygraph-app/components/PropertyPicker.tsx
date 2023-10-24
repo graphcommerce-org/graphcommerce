@@ -4,13 +4,21 @@ import { TextField, Autocomplete } from '@mui/material'
 import React from 'react'
 
 type PropertyPickerProps = {
+  condition: 'text' | 'number'
   options: any
 }
 
 export function PropertyPicker(props: PropertyPickerProps) {
   const { options } = props
-  const { value, onChange } = useFieldExtension()
+  const { value, onChange, field } = useFieldExtension()
   const [localValue, setLocalValue] = React.useState<string | undefined | null>(value as string)
+
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore - outdated types from @hygraph/app-sdk-react
+
+  // Todo: this can be done better (isNumber)
+  const fieldType = field.parent.apiId ?? 'ConditionText'
+  const isNumber = fieldType === 'ConditionNumber'
 
   React.useEffect(() => {
     onChange(localValue).catch((err) => console.log(err))
@@ -31,10 +39,12 @@ export function PropertyPicker(props: PropertyPickerProps) {
   return (
     <Autocomplete
       id='property-selector'
-      options={options.map((o) => o.label)}
+      options={isNumber ? options.number.map((o) => o.label) : options.text.map((o) => o.label)}
       value={localValue}
       onChange={(_e, v) => {
-        const id = options.find((option) => option.label === v)?.id
+        const id = isNumber
+          ? options.number.find((option) => option.label === v)?.id
+          : options.text.find((option) => option.label === v)?.id
         setLocalValue(id as string | undefined)
       }}
       renderInput={(params) => <TextField {...params} label='Property' />}

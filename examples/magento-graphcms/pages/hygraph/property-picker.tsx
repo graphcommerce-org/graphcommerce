@@ -24,9 +24,22 @@ export default function DRPropertyPicker(props: DRPropertyPickerProps) {
   const { fields } = __type
   const fieldContainer = React.useRef(null)
 
-  const options = createOptionsFromInterfaceObject(
-    objectifyGraphQLInterface(fields as InterfaceObject),
+  const numberOptions = createOptionsFromInterfaceObject(
+    objectifyGraphQLInterface(fields as InterfaceObject, 'number'),
   )
+
+  // Todo: textOptions are not nesting properly
+  const textOptions = createOptionsFromInterfaceObject(
+    objectifyGraphQLInterface(fields as InterfaceObject, 'text'),
+  )
+
+  // Todo: can be optimized
+  const options = {
+    text: textOptions,
+    number: numberOptions,
+  }
+
+  console.log(900, objectifyGraphQLInterface(fields as InterfaceObject, 'text'))
 
   React.useEffect(() => {
     /**
@@ -50,7 +63,7 @@ export default function DRPropertyPicker(props: DRPropertyPickerProps) {
   return (
     <Container ref={fieldContainer} sx={{ px: { xs: '0' } }}>
       <Wrapper>
-        <PropertyPicker options={options} />
+        <PropertyPicker options={options} condition='text' />
       </Wrapper>
     </Container>
   )
