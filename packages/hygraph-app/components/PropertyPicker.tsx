@@ -23,6 +23,7 @@ export function PropertyPicker(props: PropertyPickerProps) {
       max-height: 65vh!important;
     }
   `
+
   document.head.appendChild(styleElement)
 
   if (options.length < 1) return <div>No properties available</div>

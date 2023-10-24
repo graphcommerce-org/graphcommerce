@@ -27,7 +27,6 @@ export default function DRPropertyPicker(props: DRPropertyPickerProps) {
   const options = createOptionsFromInterfaceObject(
     objectifyGraphQLInterface(fields as InterfaceObject),
   )
-  console.log(900, options)
 
   React.useEffect(() => {
     /**
