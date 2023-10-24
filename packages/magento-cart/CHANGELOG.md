@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.1.0-canary.26
+
+### Patch Changes
+
+- [#2089](https://github.com/graphcommerce-org/graphcommerce/pull/2089) [`4b6bbf065`](https://github.com/graphcommerce-org/graphcommerce/commit/4b6bbf06572c71e266cc2407e4533833712898e2) - The CartFab wouldn't reflect that there are items in the cart when a customer refreshes the page after adding a product to the cart, without viewing the cart. ([@carlocarels90](https://github.com/carlocarels90))
+
 ## 7.1.0-canary.25
 
 ## 7.1.0-canary.24
