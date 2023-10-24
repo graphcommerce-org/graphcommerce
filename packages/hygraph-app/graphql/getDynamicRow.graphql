@@ -1,7 +1,0 @@
-query getDynamicRow($internalName: String!) {
-  dynamicRow(where: { internalName: $internalName }) {
-    conditions {
-      __typename
-    }
-  }
-}

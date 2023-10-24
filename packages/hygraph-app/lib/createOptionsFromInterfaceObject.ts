@@ -1,15 +1,7 @@
 import { ProductProperty } from '../types'
 
-export function isValidJSON(jsonString: string) {
-  try {
-    JSON.parse(jsonString) // Try to parse the string as JSON
-    return true // If it succeeds, then it's valid JSON
-  } catch (error) {
-    return false // If parsing throws an error, it's invalid JSON
-  }
-}
-
-export const findProperties = (
+export const createOptionsFromInterfaceObject = (
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   obj: Record<string, any>,
   path = '',
   inputs: ProductProperty[] = [],
@@ -30,28 +22,17 @@ export const findProperties = (
         id: currentPath,
       })
     } else if (Array.isArray(value) && value.length > 0) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-      findProperties(value[0], `${currentPath}[0]`, inputs, `${currentParent}${key}`)
+      createOptionsFromInterfaceObject(
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+        value[0],
+        `${currentPath}[0]`,
+        inputs,
+        `${currentParent}${key}`,
+      )
     } else if (typeof value === 'object' && value !== null) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-      findProperties(value, currentPath, inputs, `${currentParent}${key}`)
+      createOptionsFromInterfaceObject(value, currentPath, inputs, `${currentParent}${key}`)
     }
   }
   return inputs
-}
-
-export const createRecursiveIntrospectionQuery = (type, depth) => {
-  let baseQuery = `__type(name: "${type}") { name kind fields { name `
-  let endQuery = ' } }'
-
-  for (let i = 0; i < depth; i++) {
-    baseQuery += 'type { ofType { fields { name '
-
-    endQuery += ' } } }'
-  }
-
-  const result = baseQuery + endQuery
-
-  console.log(85, baseQuery + endQuery)
-  return result
 }

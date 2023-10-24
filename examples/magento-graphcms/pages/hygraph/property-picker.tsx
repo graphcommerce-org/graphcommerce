@@ -1,4 +1,10 @@
-import { getProductsDocument, getProductsQuery, PropertyPicker } from '@graphcommerce/hygraph-app'
+import { PropertyPicker } from '@graphcommerce/hygraph-app'
+import {
+  createOptionsFromInterfaceObject,
+  objectifyGraphQLInterface,
+  fetchGraphQLInterface,
+} from '@graphcommerce/hygraph-app/lib'
+import { InterfaceObject } from '@graphcommerce/hygraph-app/types'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps } from '@graphcommerce/next-ui'
 import { Wrapper } from '@hygraph/app-sdk-react'
@@ -6,17 +12,26 @@ import { Container } from '@mui/material'
 import React from 'react'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
-type DRPropertyPickerProps = NonNullable<getProductsQuery>
+type Interface = {
+  __type: any
+}
+type DRPropertyPickerProps = Interface
 
 type GetPageStaticProps = GetStaticProps<DRPropertyPickerProps>
 
 export default function DRPropertyPicker(props: DRPropertyPickerProps) {
-  const { products } = props
+  const { __type } = props
+  const { fields } = __type
   const fieldContainer = React.useRef(null)
+
+  const options = createOptionsFromInterfaceObject(
+    objectifyGraphQLInterface(fields as InterfaceObject),
+  )
+  console.log(900, options)
 
   React.useEffect(() => {
     /**
-     * Some styling needs to be undone to resolve conflicts between Hygraph App SDK and CssAndFramerMotionProvider.
+     * Some styling is being undone here to resolve conflicts between Hygraph App SDK and CssAndFramerMotionProvider.
      */
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
@@ -36,7 +51,7 @@ export default function DRPropertyPicker(props: DRPropertyPickerProps) {
   return (
     <Container ref={fieldContainer} sx={{ px: { xs: '0' } }}>
       <Wrapper>
-        <PropertyPicker products={products} />
+        <PropertyPicker options={options} />
       </Wrapper>
     </Container>
   )
@@ -45,12 +60,12 @@ export default function DRPropertyPicker(props: DRPropertyPickerProps) {
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const staticClient = graphqlSsrClient(locale)
   const client = graphqlSharedClient(locale)
-  const products = staticClient.query({ query: getProductsDocument })
   const conf = client.query({ query: StoreConfigDocument })
+  const graphQLInterface = fetchGraphQLInterface(staticClient)
 
   return {
     props: {
-      ...(await products).data,
+      ...(await graphQLInterface).data,
       apolloState: await conf.then(() => client.cache.extract()),
     },
   }
