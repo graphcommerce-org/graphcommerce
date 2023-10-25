@@ -23,17 +23,18 @@ export function PropertyPicker(props: PropertyPickerProps) {
     onChange(localValue).catch((err) => console.log(err))
   }, [localValue, onChange])
 
+  if (options.length < 1) return <div>No properties available</div>
+  if (options.length > 10000) return <div>Too many properties to display</div>
+
   // RM limiting max-height from MUI Autocomplete Popper
-  const styleElement = document.createElement('style')
-  styleElement.innerHTML = `
+  const removeMaxHeight = document.createElement('style')
+  removeMaxHeight.innerHTML = `
     body ul {
       max-height: 65vh!important;
     }
   `
 
-  document.head.appendChild(styleElement)
-
-  if (options.length < 1) return <div>No properties available</div>
+  document.head.appendChild(removeMaxHeight)
 
   const label: string =
     (isConditionNumber
