@@ -28,8 +28,9 @@ export type __TypeKind =
 
 export type __Field = {
   name: string
-  description?: string
   type: __Type
+  isDeprecated: boolean
+  description?: string
 }
 
 export type Option = { id: string; label: string }

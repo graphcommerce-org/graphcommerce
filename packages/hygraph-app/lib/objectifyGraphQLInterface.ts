@@ -16,6 +16,7 @@ export const objectifyGraphQLInterface = (
 
   for (const [, value] of Object.entries(fields)) {
     const nestedFields = value?.type?.ofType?.fields
+    const { isDeprecated } = value
     const typeOf = value?.type?.name ?? 'String'
     const typeName = value?.type?.ofType?.name ?? ''
 
@@ -35,7 +36,7 @@ export const objectifyGraphQLInterface = (
         break
     }
 
-    if (skip.includes(typeName)) {
+    if (skip.includes(typeName) || isDeprecated) {
       // do nothing
     } else if (nestedFields) {
       objectifiedInterface = {
