@@ -5,6 +5,7 @@ import React from 'react'
 
 type PropertyPickerProps = {
   condition: 'text' | 'number'
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   options: any
 }
 
@@ -15,10 +16,8 @@ export function PropertyPicker(props: PropertyPickerProps) {
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore - outdated types from @hygraph/app-sdk-react
-
-  // Todo: this can be done better (isNumber)
   const fieldType = field.parent.apiId ?? 'ConditionText'
-  const isNumber = fieldType === 'ConditionNumber'
+  const isConditionNumber = fieldType === 'ConditionNumber'
 
   React.useEffect(() => {
     onChange(localValue).catch((err) => console.log(err))
@@ -36,18 +35,25 @@ export function PropertyPicker(props: PropertyPickerProps) {
 
   if (options.length < 1) return <div>No properties available</div>
 
+  const label: string =
+    (isConditionNumber
+      ? options.number.find((option) => option.id === value)?.label
+      : options.text.find((option) => option.id === value)?.label) || 'Select a property'
+
   return (
     <Autocomplete
       id='property-selector'
-      options={isNumber ? options.number.map((o) => o.label) : options.text.map((o) => o.label)}
+      options={
+        isConditionNumber ? options.number.map((o) => o.label) : options.text.map((o) => o.label)
+      }
       value={localValue}
       onChange={(_e, v) => {
-        const id = isNumber
+        const id = isConditionNumber
           ? options.number.find((option) => option.label === v)?.id
           : options.text.find((option) => option.label === v)?.id
         setLocalValue(id as string | undefined)
       }}
-      renderInput={(params) => <TextField {...params} label='Property' />}
+      renderInput={(params) => <TextField {...params} label={label} />}
       sx={(theme) => ({
         mt: theme.spacings.xxs,
         '& .MuiInputBase-root': {

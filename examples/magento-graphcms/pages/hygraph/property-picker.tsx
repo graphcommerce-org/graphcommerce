@@ -24,22 +24,29 @@ export default function DRPropertyPicker(props: DRPropertyPickerProps) {
   const { fields } = __type
   const fieldContainer = React.useRef(null)
 
-  const numberOptions = createOptionsFromInterfaceObject(
-    objectifyGraphQLInterface(fields as InterfaceObject, 'number'),
+  // Todo: this can be optimized in a future version. Instead of running the functions twice we can return an object with both options. For now this is fine.
+  const numberOptions = React.useMemo(
+    () =>
+      createOptionsFromInterfaceObject(
+        objectifyGraphQLInterface(fields as InterfaceObject, 'number'),
+      ),
+    [fields],
   )
 
-  // Todo: textOptions are not nesting properly
-  const textOptions = createOptionsFromInterfaceObject(
-    objectifyGraphQLInterface(fields as InterfaceObject, 'text'),
+  const textOptions = React.useMemo(
+    () =>
+      createOptionsFromInterfaceObject(
+        objectifyGraphQLInterface(fields as InterfaceObject, 'text'),
+      ),
+    [fields],
   )
 
-  // Todo: can be optimized
   const options = {
     text: textOptions,
     number: numberOptions,
   }
 
-  console.log(900, objectifyGraphQLInterface(fields as InterfaceObject, 'text'))
+  console.log(900, options)
 
   React.useEffect(() => {
     /**
