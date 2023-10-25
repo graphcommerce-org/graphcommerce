@@ -4,6 +4,10 @@ export type ProductProperty = {
   type?: string
 }
 
+export type Interface = {
+  __type: __Type
+}
+
 export type __Type = {
   kind?: __TypeKind
   name?: string

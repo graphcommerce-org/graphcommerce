@@ -4,7 +4,7 @@ import {
   objectifyGraphQLInterface,
   fetchGraphQLInterface,
 } from '@graphcommerce/hygraph-app/lib'
-import { __Type } from '@graphcommerce/hygraph-app/types'
+import { Interface } from '@graphcommerce/hygraph-app/types'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps } from '@graphcommerce/next-ui'
 import { Wrapper } from '@hygraph/app-sdk-react'
@@ -12,14 +12,10 @@ import { Container } from '@mui/material'
 import React from 'react'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
-type Interface = {
-  __type: __Type
-}
-type DRPropertyPickerProps = Interface
+type PropertyPickerProps = Interface
+type GetPageStaticProps = GetStaticProps<PropertyPickerProps>
 
-type GetPageStaticProps = GetStaticProps<DRPropertyPickerProps>
-
-export default function DRPropertyPicker(props: DRPropertyPickerProps) {
+export default function DRPropertyPicker(props: PropertyPickerProps) {
   const { __type } = props
   const { fields } = __type
   const fieldContainer = React.useRef(null)
