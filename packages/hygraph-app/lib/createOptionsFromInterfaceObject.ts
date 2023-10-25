@@ -17,7 +17,7 @@ export const createOptionsFromInterfaceObject = (
      */
     if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
       inputs.push({
-        label: `${key} ${currentParent ? `| ${currentParent}` : ''}`,
+        label: currentPath,
         id: currentPath,
       })
     } else if (Array.isArray(value) && value.length > 0) {

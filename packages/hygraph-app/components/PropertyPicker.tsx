@@ -1,11 +1,10 @@
 import { useFieldExtension } from '@hygraph/app-sdk-react'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
-import { TextField, Autocomplete } from '@mui/material'
+import { TextField } from '@mui/material'
 import React from 'react'
 import { Options } from '../types'
 
 type PropertyPickerProps = {
-  condition: 'text' | 'number'
   options: Options
 }
 
@@ -27,29 +26,20 @@ export function PropertyPicker(props: PropertyPickerProps) {
   if (selectOptions.length < 1) return <div>No properties available</div>
   if (selectOptions.length > 10000) return <div>Too many properties to display</div>
 
-  // RM limiting max-height from MUI Autocomplete Popper
-  const removeMaxHeight = document.createElement('style')
-  removeMaxHeight.innerHTML = `
-    body ul {
-      max-height: 65vh!important;
-    }
-  `
-
-  document.head.appendChild(removeMaxHeight)
-
-  const label: string =
-    selectOptions.find((option) => option.id === value)?.label || 'Select a property'
-
   return (
-    <Autocomplete
+    <TextField
       id='property-selector'
-      options={selectOptions.map((o) => o.label)}
-      value={localValue}
-      onChange={(_e, v) => {
-        const id = selectOptions.find((option) => option.label === v)?.id
-        setLocalValue(id)
+      select
+      SelectProps={{
+        native: true,
+        variant: 'outlined',
       }}
-      renderInput={(params) => <TextField {...params} label={label} />}
+      value={localValue}
+      onChange={(v) => {
+        const val = v.target.value
+        setLocalValue(val)
+      }}
+      fullWidth
       sx={(theme) => ({
         mt: theme.spacings.xxs,
         '& .MuiInputBase-root': {
@@ -75,6 +65,12 @@ export function PropertyPicker(props: PropertyPickerProps) {
           color: { xs: 'rgb(90, 92, 236)' },
         },
       })}
-    />
+    >
+      {selectOptions.map((o) => (
+        <option key={o.id} value={o.id}>
+          {o.label}
+        </option>
+      ))}
+    </TextField>
   )
 }

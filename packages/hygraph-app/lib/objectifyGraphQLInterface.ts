@@ -10,21 +10,39 @@ import { ObjectType, __Field } from '../types'
 export const objectifyGraphQLInterface = (
   fields: __Field[],
   conditionType: 'text' | 'number' | 'all',
+  skip: string[],
 ): ObjectType => {
   let objectifiedInterface
-  const numberTypes = ['Float', 'Int']
 
   for (const [, value] of Object.entries(fields)) {
     const nestedFields = value?.type?.ofType?.fields
-    const typeName = value?.type?.name ?? 'string'
-    const typeValue = numberTypes.includes(typeName) ? 'number' : 'text'
+    const typeOf = value?.type?.name ?? 'String'
+    const typeName = value?.type?.ofType?.name ?? ''
 
-    if (nestedFields) {
+    /**
+     * With typevalue we can know of which type a property is, so we for example can determine to to hide string values in ConditionNumbers.
+     */
+    let typeValue: 'number' | 'text' | 'boolean'
+    switch (typeOf) {
+      case 'Float' || 'Int':
+        typeValue = 'number'
+        break
+      case 'Boolean':
+        typeValue = 'text' // Seperate booleans are not supported yet.
+        break
+      default:
+        typeValue = 'text'
+        break
+    }
+
+    if (skip.includes(typeName)) {
+      // do nothing
+    } else if (nestedFields) {
       objectifiedInterface = {
         ...objectifiedInterface,
-        [value?.name]: objectifyGraphQLInterface(nestedFields, conditionType),
+        [value?.name]: objectifyGraphQLInterface(nestedFields, conditionType, [...skip, typeName]),
       }
-    } else if (typeName && conditionType === 'all') {
+    } else if (typeOf && conditionType === 'all') {
       objectifiedInterface = {
         ...objectifiedInterface,
         [value?.name]: typeValue,
@@ -35,9 +53,7 @@ export const objectifyGraphQLInterface = (
         [value?.name]: typeValue,
       }
     } else if (conditionType !== typeValue) {
-      objectifiedInterface = {
-        ...objectifiedInterface,
-      }
+      // do nothing
     }
   }
 

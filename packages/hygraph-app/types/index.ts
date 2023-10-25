@@ -13,7 +13,7 @@ export type __Type = {
   name?: string
   description?: string
   fields: __Field[]
-  ofType?: { fields: __Field[] }
+  ofType?: { name?: string; fields: __Field[] }
 }
 
 export type __TypeKind =
