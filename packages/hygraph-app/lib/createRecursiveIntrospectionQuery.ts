@@ -1,5 +1,5 @@
 export const createRecursiveIntrospectionQuery = (type, depth) => {
-  let baseQuery = `__type(name: "${type}") { name kind fields { name `
+  let baseQuery = `__type(name: "${type}") { name fields { name `
   let endQuery = ' } }'
 
   for (let i = 0; i < depth; i++) {
@@ -8,6 +8,6 @@ export const createRecursiveIntrospectionQuery = (type, depth) => {
   }
 
   const result = baseQuery + endQuery
-
+  console.log(99, result)
   return result
 }

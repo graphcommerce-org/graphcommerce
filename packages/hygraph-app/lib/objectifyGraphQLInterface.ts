@@ -1,11 +1,12 @@
 import { InterfaceObject } from '../types'
 
+const numberTypes = ['Float', 'Int']
+
 const objectifyGraphQLInterfaceLayer = (
   fields: InterfaceObject,
   conditionType: 'text' | 'number' | 'all',
 ) => {
   let layer
-  const numberTypes = ['Float', 'Int']
 
   for (const [, value] of Object.entries(fields)) {
     const layeredFields = value?.type?.ofType?.fields
@@ -52,7 +53,6 @@ export const objectifyGraphQLInterface = (
   conditionType: 'text' | 'number' | 'all',
 ) => {
   let objectifiedInterface: { [s: string]: unknown } = {}
-  const numberTypes = ['Float', 'Int']
 
   for (const [, value] of Object.entries(obj)) {
     const fields = value?.type?.ofType?.fields
