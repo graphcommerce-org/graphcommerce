@@ -69,6 +69,7 @@ const EmailFormBase = React.memo<EmailFormProps>((props) => {
           })}
           InputProps={{
             autoComplete: 'email',
+            autoFocus: true,
             endAdornment: (
               <WaitForQueries waitFor={isEmailAvailable}>
                 {isEmailAvailable.data?.isEmailAvailable && (
