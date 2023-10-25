@@ -41,18 +41,6 @@ function Install() {
   )
 }
 
-function Configure() {
-  return <div>Configure</div>
-}
-
-function Setup() {
-  const { installation } = useApp()
-  if (installation.status === 'COMPLETED') {
-    return <h1>Hello</h1>
-  }
-  return <Install />
-}
-
 export function Page() {
   return (
     <Container

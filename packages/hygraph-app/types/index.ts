@@ -4,5 +4,32 @@ export type ProductProperty = {
   type?: string
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type InterfaceObject = { [s: string]: any }
+export type __Type = {
+  kind?: __TypeKind
+  name?: string
+  description?: string
+  fields: __Field[]
+  ofType?: { fields: __Field[] }
+}
+
+export type __TypeKind =
+  | 'SCALAR'
+  | 'OBJECT'
+  | 'INTERFACE'
+  | 'UNION'
+  | 'ENUM'
+  | 'INPUT_OBJECT'
+  | 'LIST'
+  | 'NON_NULL'
+
+export type __Field = {
+  name: string
+  description?: string
+  type: __Type
+}
+
+export type Option = { id: string; label: string }
+
+export type Options = { text: Option[]; number: Option[] }
+
+export type ObjectType = Record<string, unknown>

@@ -4,7 +4,7 @@ import {
   objectifyGraphQLInterface,
   fetchGraphQLInterface,
 } from '@graphcommerce/hygraph-app/lib'
-import { InterfaceObject } from '@graphcommerce/hygraph-app/types'
+import { __Type } from '@graphcommerce/hygraph-app/types'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps } from '@graphcommerce/next-ui'
 import { Wrapper } from '@hygraph/app-sdk-react'
@@ -13,7 +13,7 @@ import React from 'react'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
 type Interface = {
-  __type: any
+  __type: __Type
 }
 type DRPropertyPickerProps = Interface
 
@@ -26,18 +26,12 @@ export default function DRPropertyPicker(props: DRPropertyPickerProps) {
 
   // Todo: this can be optimized in a future version. Instead of running the functions twice we can return an object with both options. For now this is fine.
   const numberOptions = React.useMemo(
-    () =>
-      createOptionsFromInterfaceObject(
-        objectifyGraphQLInterface(fields as InterfaceObject, 'number'),
-      ),
+    () => createOptionsFromInterfaceObject(objectifyGraphQLInterface(fields, 'number')),
     [fields],
   )
 
   const textOptions = React.useMemo(
-    () =>
-      createOptionsFromInterfaceObject(
-        objectifyGraphQLInterface(fields as InterfaceObject, 'text'),
-      ),
+    () => createOptionsFromInterfaceObject(objectifyGraphQLInterface(fields, 'text')),
     [fields],
   )
 

@@ -8,6 +8,6 @@ export const createRecursiveIntrospectionQuery = (type, depth) => {
   }
 
   const result = baseQuery + endQuery
-  console.log(99, result)
+
   return result
 }
