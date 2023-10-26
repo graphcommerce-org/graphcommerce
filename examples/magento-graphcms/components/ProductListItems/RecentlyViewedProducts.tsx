@@ -1,9 +1,10 @@
+import { ProductScroller } from '@graphcommerce/magento-product'
 import {
   UseRecentlyViewedProductsProps,
   useRecentlyViewedProducts,
 } from '@graphcommerce/magento-recently-viewed-products/hooks/useRecentlyViewedProducts'
 import { useRecentlyViewedSkus } from '@graphcommerce/magento-recently-viewed-products/hooks/useRecentlyViewedSkus'
-import { ProductScroller } from './ProductScroller'
+import { productListRenderer } from './productListRenderer'
 
 export type RecentlyViewedProductsProps = UseRecentlyViewedProductsProps & { title?: string }
 export function RecentlyViewedProducts({ exclude, title }: RecentlyViewedProductsProps = {}) {
@@ -16,6 +17,7 @@ export function RecentlyViewedProducts({ exclude, title }: RecentlyViewedProduct
 
   return (
     <ProductScroller
+      productListRenderer={productListRenderer}
       title={title}
       items={products}
       skeletonItemCount={skus.length - products.length}

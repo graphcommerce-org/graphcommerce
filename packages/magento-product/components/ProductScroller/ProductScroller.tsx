@@ -1,10 +1,3 @@
-import {
-  AddProductsToCartContext,
-  AddProductsToCartForm,
-  AddProductsToCartFormProps,
-  ProductListItemFragment,
-  ProductListItemProps,
-} from '@graphcommerce/magento-product'
 import { ItemScroller, ItemScrollerProps, RenderType, responsiveVal } from '@graphcommerce/next-ui'
 import {
   Box,
@@ -18,7 +11,14 @@ import {
   useTheme,
 } from '@mui/material'
 import React, { useContext } from 'react'
-import { productListRenderer } from './productListRenderer'
+import { ProductListItemFragment } from '../../Api/ProductListItem.gql'
+import {
+  AddProductsToCartContext,
+  AddProductsToCartForm,
+  AddProductsToCartFormProps,
+} from '../AddProductsToCart'
+import { ProductListItemProps } from '../ProductListItem/ProductListItem'
+import { ProductListItemRenderer } from '../ProductListItems/renderer'
 
 export function ProductScrollerItemSkeleton({ imageOnly = false }: { imageOnly?: boolean }) {
   return (
@@ -49,6 +49,7 @@ export function ProductScrollerItemSkeleton({ imageOnly = false }: { imageOnly?:
 export type ProductScrollerProps = {
   title?: string
   items: ProductListItemFragment[]
+  productListRenderer: ProductListItemRenderer
   imageOnly?: ProductListItemProps['imageOnly']
   skeletonItemCount: number
   skeleton?: React.ReactNode
@@ -62,6 +63,7 @@ export function ProductScroller(props: ProductScrollerProps) {
   const {
     title = '',
     items,
+    productListRenderer,
     imageOnly = false,
     skeletonItemCount = 0,
     skeleton,
