@@ -104,7 +104,7 @@ export function ProductScroller(props: ProductScrollerProps) {
                 renderer={productListRenderer}
                 {...item}
                 imageOnly={imageOnly}
-                sizes={responsiveVal(180, 900)}
+                sizes={responsiveVal(200, 300)}
               />
             ))}
           </ItemScroller>
