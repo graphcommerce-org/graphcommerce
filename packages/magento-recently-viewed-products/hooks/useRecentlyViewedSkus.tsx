@@ -1,9 +1,9 @@
 import { useQuery } from '@graphcommerce/graphql'
 import { RecentlyViewedProductsDocument } from '../graphql/RecentlyViewedProducts.gql'
 
-export type useRecentlyViewedSkusProps = { exclude?: string[] }
+export type UseRecentlyViewedSkusProps = { exclude?: string[] }
 
-export function useRecentlyViewedSkus({ exclude }: useRecentlyViewedSkusProps = {}) {
+export function useRecentlyViewedSkus({ exclude }: UseRecentlyViewedSkusProps = {}) {
   const { data, loading, previousData } = useQuery(RecentlyViewedProductsDocument)
   let skus = (loading ? previousData : data)?.recentlyViewedProducts?.items || []
 

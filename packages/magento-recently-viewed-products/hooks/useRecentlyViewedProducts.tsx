@@ -1,9 +1,9 @@
 import { useQuery } from '@graphcommerce/graphql'
 import { ProductListDocument } from '@graphcommerce/magento-product'
 import { nonNullable } from '@graphcommerce/next-ui'
-import { useRecentlyViewedSkus, useRecentlyViewedSkusProps } from './useRecentlyViewedSkus'
+import { useRecentlyViewedSkus, UseRecentlyViewedSkusProps } from './useRecentlyViewedSkus'
 
-export type UseRecentlyViewedProductsProps = useRecentlyViewedSkusProps
+export type UseRecentlyViewedProductsProps = UseRecentlyViewedSkusProps
 export function useRecentlyViewedProducts({ exclude }: UseRecentlyViewedProductsProps = {}) {
   const { skus, loading } = useRecentlyViewedSkus({ exclude })
 
