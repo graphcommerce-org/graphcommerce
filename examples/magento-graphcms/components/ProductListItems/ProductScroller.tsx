@@ -92,7 +92,7 @@ export function ProductScroller(props: ProductScrollerProps) {
         <AddProductsToCartForm {...addProductsToCartFormProps}>
           <ItemScroller {...itemScrollerProps}>
             {!items.length &&
-              [...Array(skeletonItemCount + 10).keys()].map((i) => (
+              [...Array(skeletonItemCount).keys()].map((i) => (
                 <React.Fragment key={i}>
                   {skeleton || <ProductScrollerItemSkeleton imageOnly={imageOnly} />}
                 </React.Fragment>
