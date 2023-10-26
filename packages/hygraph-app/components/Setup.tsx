@@ -1,5 +1,4 @@
 import { useApp, Wrapper } from '@hygraph/app-sdk-react'
-import { Box, Container, Typography } from '@mui/material'
 import styles from './setup.module.css'
 
 function Install() {

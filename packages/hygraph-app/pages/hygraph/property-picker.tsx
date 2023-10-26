@@ -1,7 +1,6 @@
 import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client'
 import { loadConfig } from '@graphcommerce/next-config'
 import { Wrapper } from '@hygraph/app-sdk-react'
-import { Container } from '@mui/material'
 import React from 'react'
 import { PropertyPicker } from '../..'
 import {
@@ -79,11 +78,11 @@ export default function DRPropertyPicker(props: PropertyPickerProps) {
   }, [fieldContainer])
 
   return (
-    <Container ref={fieldContainer} sx={{ px: { xs: '0' } }}>
+    <div ref={fieldContainer}>
       <Wrapper>
         <PropertyPicker options={options} />
       </Wrapper>
-    </Container>
+    </div>
   )
 }
 

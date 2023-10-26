@@ -1,4 +1,3 @@
-import { Box } from '@mui/material'
 import React from 'react'
 import { Page } from '..'
 
@@ -25,13 +24,8 @@ export default function Setup() {
   }, [appContainer])
 
   return (
-    <Box
-      ref={appContainer}
-      sx={{
-        height: '100%',
-      }}
-    >
+    <div ref={appContainer}>
       <Page />
-    </Box>
+    </div>
   )
 }
