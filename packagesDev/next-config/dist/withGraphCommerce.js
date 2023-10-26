@@ -135,6 +135,10 @@ function withGraphCommerce(nextConfig, cwd) {
                     new RegExp(`^(.+?[\\/]node_modules[\\/])(?!${transpilePackages.join('|')})`),
                 ],
             };
+            config.watchOptions = {
+                ...(config.watchOptions ?? {}),
+                ignored: new RegExp(`^((?:[^/]*(?:/|$))*)(.(git|next)|(node_modules[\\/](?!${transpilePackages.join('|')})))(/((?:[^/]*(?:/|$))*)(?:$|/))?`),
+            };
             if (!config.resolve)
                 config.resolve = {};
             config.resolve.alias = {

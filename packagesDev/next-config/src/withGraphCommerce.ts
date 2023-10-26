@@ -166,7 +166,11 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
 
       config.watchOptions = {
         ...(config.watchOptions ?? {}),
-        ignored: ['**/.git/**', `**/node_modules/!(@graphcommerce)**`, '**/.next/**'],
+        ignored: new RegExp(
+          `^((?:[^/]*(?:/|$))*)(.(git|next)|(node_modules[\\/](?!${transpilePackages.join(
+            '|',
+          )})))(/((?:[^/]*(?:/|$))*)(?:$|/))?`,
+        ),
       }
 
       if (!config.resolve) config.resolve = {}
