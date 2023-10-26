@@ -4,14 +4,11 @@ import { nonNullable } from '@graphcommerce/next-ui'
 import { useRecentlyViewedSkus, UseRecentlyViewedSkusProps } from './useRecentlyViewedSkus'
 
 export type UseRecentlyViewedProductsProps = UseRecentlyViewedSkusProps
-export function useRecentlyViewedProducts({ exclude }: UseRecentlyViewedProductsProps = {}) {
+export function useRecentlyViewedProducts(props: UseRecentlyViewedProductsProps) {
+  const { exclude } = props
   const { skus, loading } = useRecentlyViewedSkus({ exclude })
 
-  const {
-    loading: loadingProducts,
-    data,
-    previousData,
-  } = useQuery(ProductListDocument, {
+  const productList = useQuery(ProductListDocument, {
     variables: {
       filters: {
         sku: {
@@ -22,7 +19,8 @@ export function useRecentlyViewedProducts({ exclude }: UseRecentlyViewedProducts
     skip: loading || !skus.length,
   })
 
-  const productData = data?.products?.items || previousData?.products?.items || []
+  const productData =
+    productList.data?.products?.items || productList.previousData?.products?.items || []
   // Sort products based on the time they were viewed. Last viewed item should be the first item in the array
   const products = skus
     .map((sku) => productData.find((p) => (p?.sku || '') === sku.sku))
@@ -30,6 +28,6 @@ export function useRecentlyViewedProducts({ exclude }: UseRecentlyViewedProducts
 
   return {
     products,
-    loading: loading || loadingProducts,
+    loading: loading || productList.loading,
   }
 }
