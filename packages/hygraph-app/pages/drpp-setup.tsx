@@ -13,11 +13,15 @@ export default function Setup() {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const framerParent = appContainer?.current?.parentElement
-    framerParent.style.position = 'static'
-    framerParent.style.minHeight = 'unset'
+    if (framerParent) {
+      framerParent.style.position = 'static'
+      framerParent.style.minHeight = 'unset'
+    }
 
     const framerParent2 = framerParent?.previousSibling
-    framerParent2.style.minHeight = 'unset'
+    if (framerParent2) {
+      framerParent2.style.minHeight = 'unset'
+    }
   }, [appContainer])
 
   return (
