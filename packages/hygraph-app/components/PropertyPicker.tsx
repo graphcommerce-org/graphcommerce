@@ -40,8 +40,8 @@ export function PropertyPicker(props: PropertyPickerProps) {
         setLocalValue(val)
       }}
       fullWidth
-      sx={(theme) => ({
-        mt: theme.spacings.xxs,
+      sx={{
+        mt: '4px',
         '& .MuiInputBase-root': {
           borderRadius: { xs: '2px!important' },
         },
@@ -64,7 +64,7 @@ export function PropertyPicker(props: PropertyPickerProps) {
         '& .MuiInputLabel-root.Mui-focused': {
           color: { xs: 'rgb(90, 92, 236)' },
         },
-      })}
+      }}
     >
       {selectOptions.map((o) => (
         <option key={o.id} value={o.id}>

@@ -1,7 +1,8 @@
-'use strict'
-Object.defineProperty(exports, '__esModule', { value: true })
-exports.demoConfig = void 0
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.demoConfig = void 0;
 exports.demoConfig = {
+<<<<<<< HEAD
   canonicalBaseUrl: 'https://graphcommerce.vercel.app',
   hygraphEndpoint: 'https://eu-central-1.cdn.hygraph.com/content/ckhx7xadya6xs01yxdujt8i80/master',
   magentoEndpoint: 'https://backend.reachdigital.dev/graphql',
@@ -30,3 +31,31 @@ exports.demoConfig = {
   configurableVariantValues: { url: true, content: true, gallery: true },
   recentlyViewedProducts: { enabled: true, maxCount: 20 },
 }
+=======
+    canonicalBaseUrl: 'https://graphcommerce.vercel.app',
+    hygraphEndpoint: 'https://eu-central-1.cdn.hygraph.com/content/ckhx7xadya6xs01yxdujt8i80/master',
+    magentoEndpoint: 'https://backend.reachdigital.dev/graphql',
+    storefront: [
+        { locale: 'en', magentoStoreCode: 'en_US', defaultLocale: true },
+        {
+            locale: 'nl',
+            magentoStoreCode: 'nl_NL',
+            hygraphLocales: ['nl', 'en_us'],
+            cartDisplayPricesInclTax: true,
+        },
+        { locale: 'fr-be', magentoStoreCode: 'fr_BE', cartDisplayPricesInclTax: true },
+        { locale: 'nl-be', magentoStoreCode: 'nl_BE', cartDisplayPricesInclTax: true },
+        { locale: 'en-gb', magentoStoreCode: 'en_GB', cartDisplayPricesInclTax: true },
+        { locale: 'en-ca', magentoStoreCode: 'en_CA' },
+    ],
+    productFiltersPro: true,
+    productFiltersLayout: 'DEFAULT',
+    compareVariant: 'ICON',
+    robotsAllow: false,
+    demoMode: true,
+    limitSsg: true,
+    compare: true,
+    configurableVariantForSimple: true,
+    configurableVariantValues: { url: true, content: true, gallery: true },
+};
+>>>>>>> 9dfd43ab4 ([GCOM-1108] rm unnecessary configs, host app on solo next environment, cleanup unnecessary packages,)

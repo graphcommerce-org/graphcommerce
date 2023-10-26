@@ -1,4 +1,3 @@
-import { Button } from '@graphcommerce/next-ui'
 import { useApp, Wrapper } from '@hygraph/app-sdk-react'
 import { Box, Container, Typography } from '@mui/material'
 
@@ -7,21 +6,14 @@ function Install() {
 
   if (installation.status === 'COMPLETED') {
     return (
-      <Typography variant='h4' sx={(theme) => ({ mt: theme.spacings.md })}>
+      <Typography variant='h4' sx={{ mt: '8px' }}>
         Application succesfully installed!
       </Typography>
     )
   }
 
   return (
-    <Button
-      sx={(theme) => ({
-        mt: theme.spacings.lg,
-        mx: 'auto',
-      })}
-      variant='pill'
-      color='primary'
-      size='large'
+    <button
       type='button'
       onClick={() =>
         updateInstallation({
@@ -37,7 +29,7 @@ function Install() {
       }
     >
       Install app
-    </Button>
+    </button>
   )
 }
 
@@ -45,31 +37,30 @@ export function Page() {
   return (
     <Container
       maxWidth={false}
-      sx={(theme) => ({
+      sx={{
         display: 'inline-flex',
         flexDirection: 'column',
         justifyContent: 'start',
         width: '100%',
         height: '100%',
         textAlign: 'center',
-        my: theme.spacings.md,
-      })}
+        my: '10px',
+      }}
     >
       <Box sx={{ maxWidth: '45%', mx: 'auto' }}>
         <Typography variant='h2'>Hygraph | Dynamic Rows</Typography>
         <Typography variant='h4'>Property Picker</Typography>
         <Typography
           variant='body1'
-          sx={(theme) => ({
-            mt: theme.spacings.md,
-          })}
+          sx={{
+            mt: '8px',
+          }}
         >
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus blandit molestie mauris,
-          iaculis vulputate velit volutpat eu. Nam aliquet ipsum sit amet ipsum porta, nec cursus
-          felis pellentesque. Nam vel velit non massa dapibus consequat quis ut elit. Aliquam sed
-          congue est. Vivamus volutpat molestie posuere. Praesent semper nisl eget ultricies
-          maximus. Ut sollicitudin lorem non enim condimentum viverra. Fusce id ultricies nibh, sed
-          imperdiet enim. Suspendisse at lacus ac neque feugiat placerat ut ac sapien.
+          Enhance your content management experience with the Hygraph App, specifically designed to
+          integrate seamlessly with our Dynamic Row module. It features an intuitive property picker
+          field, allowing for effortless selection and organization of properties to customize your
+          content layout. Streamline your workflow and unlock new levels of efficiency and
+          customization with this robust and user-friendly tool. Press install to get started!
         </Typography>
       </Box>
       <Wrapper>

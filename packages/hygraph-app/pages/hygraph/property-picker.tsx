@@ -1,19 +1,17 @@
-import { PropertyPicker } from '@graphcommerce/hygraph-app'
+import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client'
+import { loadConfig } from '@graphcommerce/next-config'
+import { Wrapper } from '@hygraph/app-sdk-react'
+import { Container } from '@mui/material'
+import React from 'react'
+import { PropertyPicker } from '../..'
 import {
   createOptionsFromInterfaceObject,
   objectifyGraphQLInterface,
   fetchGraphQLInterface,
-} from '@graphcommerce/hygraph-app/lib'
-import { Interface } from '@graphcommerce/hygraph-app/types'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { GetStaticProps } from '@graphcommerce/next-ui'
-import { Wrapper } from '@hygraph/app-sdk-react'
-import { Container } from '@mui/material'
-import React from 'react'
-import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
+} from '../../lib'
+import { Interface } from '../../types'
 
 type PropertyPickerProps = Interface
-type GetPageStaticProps = GetStaticProps<PropertyPickerProps>
 
 export default function DRPropertyPicker(props: PropertyPickerProps) {
   const { __type } = props
@@ -58,15 +56,26 @@ export default function DRPropertyPicker(props: PropertyPickerProps) {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const frameBox1 = fieldContainer?.current?.parentElement
-    frameBox1.style.position = 'static'
-    frameBox1.style.minHeight = 'unset'
+    if (frameBox1) {
+      frameBox1.style.position = 'static'
+      frameBox1.style.minHeight = 'unset'
+    }
 
     const frameBox2 = frameBox1?.previousSibling
-    frameBox2.style.minHeight = 'unset'
+    if (frameBox2) {
+      frameBox2.style.minHeight = 'unset'
+    }
 
-    const body = frameBox1.parentElement.parentElement
-    body.style.background = 'transparent'
-    body.style.overflow = 'hidden'
+    const body = frameBox1?.parentElement
+    if (body) {
+      body.style.margin = '0'
+    }
+
+    const html = body?.parentElement
+    if (html) {
+      html.style.background = 'transparent'
+      html.style.overflow = 'hidden'
+    }
   }, [fieldContainer])
 
   return (
@@ -78,16 +87,20 @@ export default function DRPropertyPicker(props: PropertyPickerProps) {
   )
 }
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const staticClient = graphqlSsrClient(locale)
-  const client = graphqlSharedClient(locale)
-  const conf = client.query({ query: StoreConfigDocument })
+export const getStaticProps = async () => {
+  const config = loadConfig(process.cwd())
+  const staticClient = new ApolloClient({
+    link: new HttpLink({
+      uri: config.magentoEndpoint,
+      fetch,
+    }),
+    cache: new InMemoryCache(),
+  })
   const graphQLInterface = fetchGraphQLInterface(staticClient)
 
   return {
     props: {
       ...(await graphQLInterface).data,
-      apolloState: await conf.then(() => client.cache.extract()),
     },
   }
 }
