@@ -5,7 +5,7 @@ import {
   ProductPageMetaFragment,
 } from '@graphcommerce/magento-product'
 import { useConfigurableSelectedVariant } from '@graphcommerce/magento-product-configurable/hooks'
-import type { ReactPlugin } from '@graphcommerce/next-config'
+import type { IfConfig, ReactPlugin } from '@graphcommerce/next-config'
 import { useEventCallback } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
@@ -13,6 +13,7 @@ import { RecentlyViewedProductsDocument } from '../graphql/RecentlyViewedProduct
 
 export const component = 'ProductPageMeta'
 export const exported = '@graphcommerce/magento-product/components/ProductPageMeta/ProductPageMeta'
+export const ifConfig: IfConfig = 'recentlyViewedProducts.enabled'
 
 type PluginType = ReactPlugin<typeof ProductPageMeta, AddToCartItemSelector>
 
@@ -53,7 +54,7 @@ function ViewHandling(props: { product: ProductPageMetaFragment }) {
     const items = [
       { __typename: 'RecentlyViewedProduct' as const, parentSku, sku },
       ...viewedSkus,
-    ].splice(0, import.meta.graphCommerce.recentlyViewedProductsCount || 10)
+    ].splice(0, import.meta.graphCommerce.recentlyViewedProducts?.maxCount || 10)
 
     client.writeQuery({
       query: RecentlyViewedProductsDocument,

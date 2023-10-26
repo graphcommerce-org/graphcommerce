@@ -32,6 +32,9 @@ _export(exports, {
     },
     MagentoConfigurableVariantValuesSchema: function() {
         return MagentoConfigurableVariantValuesSchema;
+    },
+    RecentlyViewedProductsConfgSchema: function() {
+        return RecentlyViewedProductsConfgSchema;
     }
 });
 const _zod = require("zod");
@@ -72,7 +75,7 @@ function GraphCommerceConfigSchema() {
         productFiltersLayout: ProductFiltersLayoutSchema.nullish(),
         productFiltersPro: _zod.z.boolean().nullish(),
         productRoute: _zod.z.string().nullish(),
-        recentlyViewedProductsCount: _zod.z.number().nullish(),
+        recentlyViewedProducts: RecentlyViewedProductsConfgSchema().nullish(),
         robotsAllow: _zod.z.boolean().nullish(),
         storefront: _zod.z.array(GraphCommerceStorefrontConfigSchema()),
         wishlistHideForGuests: _zod.z.boolean().nullish(),
@@ -107,5 +110,11 @@ function MagentoConfigurableVariantValuesSchema() {
         content: _zod.z.boolean().nullish(),
         gallery: _zod.z.boolean().nullish(),
         url: _zod.z.boolean().nullish()
+    });
+}
+function RecentlyViewedProductsConfgSchema() {
+    return _zod.z.object({
+        enabled: _zod.z.boolean().nullish(),
+        maxCount: _zod.z.number().nullish()
     });
 }

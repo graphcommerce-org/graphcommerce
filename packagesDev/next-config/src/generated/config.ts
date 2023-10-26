@@ -277,8 +277,8 @@ export type GraphCommerceConfig = {
    * Example: '/product/'
    */
   productRoute?: InputMaybe<Scalars['String']['input']>;
-  /** Number of recently viewed products to be stored in localStorage */
-  recentlyViewedProductsCount?: InputMaybe<Scalars['Int']['input']>;
+  /** Settings for recently viewed products */
+  recentlyViewedProducts?: InputMaybe<RecentlyViewedProductsConfg>;
   /**
    * Allow the site to be indexed by search engines.
    * If false, the robots.txt file will be set to disallow all.
@@ -386,6 +386,13 @@ export type ProductFiltersLayout =
   | 'DEFAULT'
   | 'SIDEBAR';
 
+export type RecentlyViewedProductsConfg = {
+  /** Enable/disable recently viewed products */
+  enabled?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Number of recently viewed products to be stored in localStorage */
+  maxCount?: InputMaybe<Scalars['Int']['input']>;
+};
+
 
 type Properties<T> = Required<{
   [K in keyof T]: z.ZodType<T[K], any, T[K]>;
@@ -428,7 +435,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     productFiltersLayout: ProductFiltersLayoutSchema.nullish(),
     productFiltersPro: z.boolean().nullish(),
     productRoute: z.string().nullish(),
-    recentlyViewedProductsCount: z.number().nullish(),
+    recentlyViewedProducts: RecentlyViewedProductsConfgSchema().nullish(),
     robotsAllow: z.boolean().nullish(),
     storefront: z.array(GraphCommerceStorefrontConfigSchema()),
     wishlistHideForGuests: z.boolean().nullish(),
@@ -466,5 +473,12 @@ export function MagentoConfigurableVariantValuesSchema(): z.ZodObject<Properties
     content: z.boolean().nullish(),
     gallery: z.boolean().nullish(),
     url: z.boolean().nullish()
+  })
+}
+
+export function RecentlyViewedProductsConfgSchema(): z.ZodObject<Properties<RecentlyViewedProductsConfg>> {
+  return z.object({
+    enabled: z.boolean().nullish(),
+    maxCount: z.number().nullish()
   })
 }

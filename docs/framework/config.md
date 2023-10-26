@@ -272,9 +272,9 @@ By default we route products to /p/[url] but you can change this to /product/[ur
 Default: '/p/'
 Example: '/product/'
 
-#### `recentlyViewedProductsCount: Int`
+#### `recentlyViewedProducts: [RecentlyViewedProductsConfg](#RecentlyViewedProductsConfg)`
 
-Number of recently viewed products to be stored in localStorage
+Settings for recently viewed products
 
 #### `robotsAllow: Boolean`
 
@@ -398,3 +398,13 @@ provided that the gallery images for the selected variant differ from the curren
 When a variant is selected the URL of the product will be changed in the address bar.
 
 This only happens when the actual variant is can be accessed by the URL.
+
+### RecentlyViewedProductsConfg
+
+#### `enabled: Boolean`
+
+Enable/disable recently viewed products
+
+#### `maxCount: Int`
+
+Number of recently viewed products to be stored in localStorage

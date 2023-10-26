@@ -1,6 +1,17 @@
-extend input GraphCommerceConfig {
+input RecentlyViewedProductsConfg {
+  """
+  Enable/disable recently viewed products
+  """
+  enabled: Boolean
   """
   Number of recently viewed products to be stored in localStorage
   """
-  recentlyViewedProductsCount: Int
+  maxCount: Int
+}
+
+extend input GraphCommerceConfig {
+  """
+  Settings for recently viewed products
+  """
+  recentlyViewedProducts: RecentlyViewedProductsConfg
 }

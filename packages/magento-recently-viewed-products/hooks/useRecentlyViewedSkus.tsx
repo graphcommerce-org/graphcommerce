@@ -4,7 +4,9 @@ import { RecentlyViewedProductsDocument } from '../graphql/RecentlyViewedProduct
 export type UseRecentlyViewedSkusProps = { exclude?: string[] }
 
 export function useRecentlyViewedSkus({ exclude }: UseRecentlyViewedSkusProps = {}) {
-  const { data, loading, previousData } = useQuery(RecentlyViewedProductsDocument)
+  const { data, loading, previousData } = useQuery(RecentlyViewedProductsDocument, {
+    skip: !import.meta.graphCommerce.recentlyViewedProducts?.enabled,
+  })
   let skus = (loading ? previousData : data)?.recentlyViewedProducts?.items || []
 
   // Filter out excluded products (current product page)
