@@ -12,7 +12,7 @@ export function useRecentlyViewedProducts(props: UseRecentlyViewedProductsProps)
     variables: {
       filters: {
         sku: {
-          in: skus.map((p) => p.sku),
+          in: skus.map((p) => p.sku).sort(),
         },
       },
     },
