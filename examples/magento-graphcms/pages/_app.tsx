@@ -1,5 +1,6 @@
 import { FramerNextPages } from '@graphcommerce/framer-next-pages'
 import { GraphQLProvider } from '@graphcommerce/graphql'
+import {SessionDebugger} from '@graphcommerce/magento-customer/components/SessionDebugger/SessionDebugger'
 import { GlobalHead } from '@graphcommerce/magento-store'
 import {
   CssAndFramerMotionProvider,
@@ -24,6 +25,7 @@ export default function ThemedApp(props: AppProps) {
             <CssBaseline />
             <PageLoadIndicator />
             <FramerNextPages {...props} />
+            <SessionDebugger />
           </DarkLightModeThemeProvider>
         </GraphQLProvider>
       </I18nProvider>

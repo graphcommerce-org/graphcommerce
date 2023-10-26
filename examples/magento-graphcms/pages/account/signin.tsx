@@ -6,15 +6,22 @@ import { useMergeGuestWishlistWithCustomer } from '@graphcommerce/magento-wishli
 import { GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Container } from '@mui/material'
+import { Button, Container } from '@mui/material'
 import { LayoutOverlay, LayoutOverlayProps } from '../../components'
 import { graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import { useRouter } from 'next/router'
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
 function AccountSignInPage() {
   useMergeCustomerCart()
   useMergeGuestWishlistWithCustomer()
+
+  const router = useRouter()
+
+
+
+
 
   return (
     <>
@@ -26,6 +33,7 @@ function AccountSignInPage() {
       </LayoutOverlayHeader>
       <Container maxWidth='md'>
         <AccountSignInUpForm />
+        <Button onClick={()=> {}}>Go Back</Button>
       </Container>
     </>
   )
