@@ -17,6 +17,8 @@ export function ConfigurableWishlistItemAction(props: ConfigurableWishlistItemAc
     __typename: product?.__typename ?? 'ConfigurableProduct',
   })
 
+  if (!product) return null
+
   const selectedOptions = configurable_options
     ?.filter(nonNullable)
     .map((option) => option?.configurable_product_option_value_uid)
@@ -36,6 +38,6 @@ export function ConfigurableWishlistItemAction(props: ConfigurableWishlistItemAc
       <Trans id='Configure' />
     </Button>
   ) : (
-    product && <AddWishlistItemToCart product={product} selectedOptions={selectedOptions} />
+    <AddWishlistItemToCart product={product} selectedOptions={selectedOptions} />
   )
 }
