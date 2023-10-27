@@ -19,6 +19,7 @@ import { useWishlistEnabled, useWishlistItems } from '../../hooks'
 import { AddProductToWishlistDocument } from '../../queries/AddProductToWishlist.gql'
 import { GuestWishlistDocument } from '../../queries/GuestWishlist.gql'
 import { RemoveProductFromWishlistDocument } from '../../queries/RemoveProductFromWishlist.gql'
+import { WishlistItemFragment } from '../WishlistItem/WishlistItem.gql'
 import { ProductWishlistChipFragment } from './ProductWishlistChip.gql'
 
 const hideForGuest = import.meta.graphCommerce.wishlistHideForGuests
@@ -32,13 +33,7 @@ export type ProductWishlistChipProps = ProductWishlistChipFragment & {
   configurable_options?: Maybe<ProductListItemConfigurableFragment['configurable_options']>
   product: ProductListItemFragment
 }
-export type WishlistTypeName =
-  | 'BundleWishlistItem'
-  | 'ConfigurableWishlistItem'
-  | 'DownloadableWishlistItem'
-  | 'GroupedProductWishlistItem'
-  | 'SimpleWishlistItem'
-  | 'VirtualWishlistItem'
+export type WishlistTypeName = WishlistItemFragment['__typename']
 
 const compName = 'ProductWishlistChipBase' as const
 const parts = ['root', 'wishlistIcon', 'wishlistIconActive', 'wishlistButton'] as const
@@ -47,7 +42,7 @@ const { classes } = extendableComponent(compName, parts)
 export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
   const { showFeedbackMessage, buttonProps, sx = [], product } = props
 
-  const { sku, url_key, name } = product
+  const { sku, url_key, name, __typename } = product
 
   if (process.env.NODE_ENV === 'development') {
     if (typeof showFeedbackMessage !== 'undefined') {
@@ -104,43 +99,50 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
   const selected_options = Array.isArray(selectedOptions) ? selectedOptions : [selectedOptions]
 
   const notFullyConfigured =
-    product.__typename === 'ConfigurableProduct' &&
+    __typename === 'ConfigurableProduct' &&
     product.configurable_options?.length !==
       selected_options.filter((option) => option !== undefined).length
 
   const wishlistItems = wishlist.data
 
-  // Mark as active when product is available in either customer or guest wishlist
-  const isInWishlist =
+  function inWishlistWithoutSelectedOptions() {
     // If there are no options selected search for the product which matches the url and if
     // it is a configurable product check if it has no configurable options.
-    selected_options?.[0] === undefined
-      ? wishlistItems?.some(
-          (item) =>
-            item?.product?.url_key === url_key &&
-            (item?.__typename === 'ConfigurableWishlistItem'
-              ? item.configurable_options?.length === 0
-              : true),
-        )
-      : // If it is a configurable product check if all selected options match the configurable options of the product
-        // Check if the sku of the product matches the sku of the wishlistItem and check if the product url key matches the url key
-        wishlistItems?.some((wishlistItem) =>
-          notFullyConfigured
-            ? wishlistItem?.product?.sku === sku
-            : selected_options.every(
-                (option) =>
-                  wishlistItem?.__typename === 'ConfigurableWishlistItem' &&
-                  wishlistItem?.configurable_options?.some(
-                    (wishlistOption) =>
-                      // If an option is undefined this means the item is a wishlistItem but not all options were selected prior.
-                      wishlistOption?.configurable_product_option_value_uid === option &&
-                      wishlistItem.product?.sku === sku,
-                  ),
+    return wishlistItems?.some(
+      (item) =>
+        item?.product?.url_key === url_key &&
+        (item?.__typename === 'ConfigurableWishlistItem'
+          ? item.configurable_options?.length === 0
+          : true),
+    )
+  }
+
+  function inWishlistWithSelectedOptions() {
+    // If it is a configurable product check if all selected options match the configurable options of the product
+    // Check if the sku of the product matches the sku of the wishlistItem and check if the product url key matches the url key
+    return wishlistItems?.some((wishlistItem) =>
+      notFullyConfigured
+        ? wishlistItem?.product?.sku === sku
+        : selected_options.every(
+            (option) =>
+              wishlistItem?.__typename === 'ConfigurableWishlistItem' &&
+              wishlistItem?.configurable_options?.some(
+                (wishlistOption) =>
+                  // If an option is undefined this means the item is a wishlistItem but not all options were selected prior.
+                  wishlistOption?.configurable_product_option_value_uid === option &&
+                  wishlistItem.product?.sku === sku,
               ),
-        )
+          ),
+    )
+  }
+  // Mark as active when product is available in either customer or guest wishlist
+  const isInWishlist =
+    selected_options?.[0] === undefined
+      ? inWishlistWithoutSelectedOptions()
+      : inWishlistWithSelectedOptions()
 
   const conf_options = selectedOptions.map((selected_option) => {
-    if (product.__typename === 'ConfigurableProduct') {
+    if (__typename === 'ConfigurableProduct') {
       const configurable_option = product.configurable_options?.find(
         (confOption) => confOption?.values?.find((values) => values?.uid === selected_option),
       )
@@ -157,16 +159,22 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
   })
 
   let type: WishlistTypeName = 'ConfigurableWishlistItem'
-  if (product.__typename === 'BundleProduct') {
-    type = 'BundleWishlistItem'
-  } else if (product.__typename === 'DownloadableProduct') {
-    type = 'DownloadableWishlistItem'
-  } else if (product.__typename === 'GroupedProduct') {
-    type = 'GroupedProductWishlistItem'
-  } else if (product.__typename === 'SimpleProduct') {
-    type = 'SimpleWishlistItem'
-  } else if (product.__typename === 'VirtualProduct') {
-    type = 'VirtualWishlistItem'
+  switch (__typename) {
+    case 'BundleProduct':
+      type = 'BundleWishlistItem'
+      break
+    case 'DownloadableProduct':
+      type = 'DownloadableWishlistItem'
+      break
+    case 'GroupedProduct':
+      type = 'GroupedProductWishlistItem'
+      break
+    case 'SimpleProduct':
+      type = 'SimpleWishlistItem'
+      break
+    case 'VirtualProduct':
+      type = 'VirtualWishlistItem'
+      break
   }
 
   const wishlistItem = {
@@ -177,9 +185,7 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
       ? conf_options
       : [],
     id: `${sku}${conf_options.map((i) => i?.configurable_product_option_value_uid).toString()}`,
-    product: {
-      ...product,
-    },
+    product,
   }
   const oldItems = cache.readQuery({ query: GuestWishlistDocument })?.customer?.wishlists?.[0]
     ?.items_v2?.items
