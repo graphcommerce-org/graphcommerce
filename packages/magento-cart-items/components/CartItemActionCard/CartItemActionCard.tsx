@@ -12,7 +12,7 @@ import { CartItemFragment } from '../../Api/CartItem.gql'
 import { RemoveItemFromCart } from '../RemoveItemFromCart/RemoveItemFromCart'
 import { UpdateItemQuantity } from '../UpdateItemQuantity/UpdateItemQuantity'
 
-export type CartItemActionCardProps = { cartItem: CartItemFragment } & Omit<
+export type CartItemActionCardProps = { cartItem: CartItemFragment; readOnly?: boolean } & Omit<
   ActionCardProps,
   'value' | 'image' | 'price' | 'title' | 'action'
 >
@@ -30,7 +30,7 @@ const typographySizes = {
 }
 
 export function CartItemActionCard(props: CartItemActionCardProps) {
-  const { cartItem, sx = [], size = 'large', ...rest } = props
+  const { cartItem, sx = [], size = 'large', readOnly = false, ...rest } = props
   const { uid, quantity, prices, errors, product } = cartItem
   const { name, thumbnail, url_key } = product
 
@@ -65,12 +65,14 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
           '&.sizeSmall': {
             px: 0,
           },
+          '& .ActionCard-end': {
+            justifyContent: readOnly ? 'center' : 'space-between',
+          },
           '& .ActionCard-action': {
-            pr: theme.spacings.xs,
+            pr: readOnly ? 0 : theme.spacings.xs,
           },
           '& .ActionCard-image': {
             alignSelf: 'flex-start',
-            transform: 'translateY(10px)',
           },
           '& .ActionCard-secondaryAction': {
             typography: typographySizes[size],
@@ -83,7 +85,7 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
           },
           '& .ActionCard-price': {
             typography: typographySizes[size],
-            pr: theme.spacings.xs,
+            pr: readOnly ? 0 : theme.spacings.xs,
             mb: { xs: 0.5, sm: 0 },
           },
         }),
@@ -124,19 +126,22 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
       }
       secondaryAction={
         <>
-          <UpdateItemQuantity uid={uid} quantity={quantity} />
+          {readOnly ? quantity : <UpdateItemQuantity uid={uid} quantity={quantity} />}
           {' ⨉ '}
+
           <Money value={price} currency={prices?.price.currency} />
         </>
       }
       price={<Money {...(inclTaxes ? prices?.row_total_including_tax : prices?.row_total)} />}
       action={
-        <RemoveItemFromCart
-          uid={uid}
-          quantity={quantity}
-          product={product}
-          buttonProps={{ size }}
-        />
+        !readOnly && (
+          <RemoveItemFromCart
+            uid={uid}
+            quantity={quantity}
+            product={product}
+            buttonProps={{ size }}
+          />
+        )
       }
       size={size}
       after={filterNonNullableKeys(errors).map((error) => (
