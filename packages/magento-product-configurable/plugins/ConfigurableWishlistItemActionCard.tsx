@@ -13,18 +13,17 @@ export function ConfigurableWishlistItemActionCard(
     React.ComponentProps<typeof WishlistItemActionCard> & ConfigurableWishlistItem
   >,
 ) {
-  const { Prev, ...rest } = props
-
-  const { __typename, configurable_options } = rest
+  const { Prev, __typename, configurable_options } = props
 
   if (__typename !== 'ConfigurableWishlistItem') return <Prev {...props} />
 
   return (
     <Prev
       {...props}
-      secondaryAction={<ConfigurableWishlistItemAction {...rest} />}
+      secondaryAction={<ConfigurableWishlistItemAction {...props} />}
       details={
-        configurable_options && (
+        configurable_options &&
+        configurable_options.length > 0 && (
           <Box sx={(theme) => ({ mb: `calc(${theme.spacings.xxs} / 2)` })}>
             {configurable_options?.map((option) => (
               <Box key={option?.configurable_product_option_uid}>{option?.value_label}</Box>
