@@ -15,7 +15,7 @@ type PropertyPickerProps = Interface
 export default function DRPropertyPicker(props: PropertyPickerProps) {
   const { __type } = props
   const { fields } = __type
-  const fieldContainer = React.useRef(null)
+  const fieldContainer = React.useRef<HTMLDivElement | null>(null)
 
   // Todo: this can be optimized in a future version. Instead of running the functions twice we can return an object with both options. For now this is fine.
   const numberOptions = React.useMemo(
@@ -54,15 +54,14 @@ export default function DRPropertyPicker(props: PropertyPickerProps) {
     /**
      * Some styling is being undone here to resolve conflicts between Hygraph App SDK and CssAndFramerMotionProvider.
      */
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
+
     const frameBox1 = fieldContainer?.current?.parentElement
     if (frameBox1) {
       frameBox1.style.position = 'static'
       frameBox1.style.minHeight = 'unset'
     }
 
-    const frameBox2 = frameBox1?.previousSibling
+    const frameBox2 = frameBox1?.previousSibling as HTMLDivElement | null
     if (frameBox2) {
       frameBox2.style.minHeight = 'unset'
     }
