@@ -1,0 +1,28 @@
+{
+  "name": "@graphcommerce/magento-varnish",
+  "version": "7.0.2-canary.1",
+  "sideEffects": false,
+  "prettier": "@graphcommerce/prettier-config-pwa",
+  "browserslist": [
+    "extends @graphcommerce/browserslist-config-pwa"
+  ],
+  "eslintConfig": {
+    "extends": "@graphcommerce/eslint-config-pwa",
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    }
+  },
+  "devDependencies": {
+    "@graphcommerce/eslint-config-pwa": "7.0.2-canary.1",
+    "@graphcommerce/prettier-config-pwa": "7.0.2-canary.1",
+    "@graphcommerce/typescript-config-pwa": "7.0.2-canary.1"
+  },
+  "dependencies": {
+    "@graphcommerce/graphql": "7.0.2-canary.1"
+  },
+  "peerDependencies": {
+    "next": "^13.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
