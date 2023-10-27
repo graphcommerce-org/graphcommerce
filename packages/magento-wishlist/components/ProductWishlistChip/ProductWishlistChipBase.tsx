@@ -176,7 +176,7 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
     )
       ? conf_options
       : [],
-    id: `${sku}${conf_options.map((i) => i.configurable_product_option_value_uid).toString()}`,
+    id: `${sku}${conf_options.map((i) => i?.configurable_product_option_value_uid).toString()}`,
     product: {
       ...product,
     },
