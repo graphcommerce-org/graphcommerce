@@ -2,18 +2,24 @@ import { useApp, Wrapper } from '@hygraph/app-sdk-react'
 import styles from './setup.module.css'
 
 function Install() {
-  const { updateInstallation, installation } = useApp()
+  const { updateInstallation, installation, showToast } = useApp()
 
   const installed = installation.status === 'COMPLETED'
-
   const installOnClick = () =>
     updateInstallation({
       config: {},
       status: 'COMPLETED',
     })
-      .then((updatedInstallation) => {
-        console.log('Installation updated', updatedInstallation)
-      })
+      .then(() =>
+        showToast({
+          title: 'Application enabled',
+          description: 'You can now use the Dynamic Row Property Selector field in your schema.',
+          duration: 5000,
+          isClosable: true,
+          position: 'top-left',
+          variantColor: 'success',
+        }),
+      )
       .catch((error) => {
         console.error('Error updating installation', error)
       })
@@ -23,9 +29,16 @@ function Install() {
       config: {},
       status: 'DISABLED',
     })
-      .then((updatedInstallation) => {
-        console.log('Disabled application', updatedInstallation)
-      })
+      .then(() =>
+        showToast({
+          title: 'Application disabled',
+          description: 'You can re-enable the application from the application configuration page.',
+          duration: 5000,
+          isClosable: true,
+          position: 'top-left',
+          variantColor: 'success',
+        }),
+      )
       .catch((error) => {
         console.error('Error updating installation', error)
       })
@@ -36,7 +49,7 @@ function Install() {
       className={styles.button}
       onClick={installed ? uninstallOnClick : installOnClick}
     >
-      {installed ? 'Uninstall' : 'Install app'}
+      {installed ? 'Disable app' : 'Enable app'}
     </button>
   )
 }
@@ -49,8 +62,7 @@ export function Page() {
         Enhance your content management experience with Dynamic Rows, specifically designed to
         integrate seamlessly with our Dynamic Row module. It features an intuitive property picker
         field, allowing for effortless selection and organization of properties to customize your
-        content layout. Streamline your workflow and unlock new levels of efficiency and
-        customization with this robust and user-friendly tool. Press install to get started!
+        content layout. Press install to get started!
       </p>
       <Wrapper>
         <Install />
