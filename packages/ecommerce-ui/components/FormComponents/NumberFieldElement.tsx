@@ -88,7 +88,6 @@ export function NumberFieldElement<T extends FieldValues>(props: NumberFieldElem
                 width: responsiveVal(90, 120),
               },
               {
-                // Without this you get inputarrows on firefox
                 '& input[type=number]': {
                   '-moz-appearance': 'textfield',
                 },

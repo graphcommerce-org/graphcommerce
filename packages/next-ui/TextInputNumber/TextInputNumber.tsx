@@ -102,7 +102,6 @@ export function TextInputNumber(props: TextInputNumberProps) {
           width: responsiveVal(90, 120),
         },
         {
-          // Without this you get inputarrows on firefox
           '& input[type=number]': {
             '-moz-appearance': 'textfield',
           },
