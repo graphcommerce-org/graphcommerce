@@ -36,22 +36,22 @@ export const objectifyGraphQLInterface = (
         break
     }
 
-    if (skip.includes(typeName) || isDeprecated) {
+    if (skip.includes(typeName) || isDeprecated || !value?.name) {
       // do nothing
     } else if (nestedFields) {
       objectifiedInterface = {
         ...objectifiedInterface,
-        [value?.name]: objectifyGraphQLInterface(nestedFields, conditionType, [...skip, typeName]),
+        [value.name]: objectifyGraphQLInterface(nestedFields, conditionType, [...skip, typeName]),
       }
     } else if (typeOf && conditionType === 'all') {
       objectifiedInterface = {
         ...objectifiedInterface,
-        [value?.name]: typeValue,
+        [value.name]: typeValue,
       }
     } else if (conditionType === typeValue) {
       objectifiedInterface = {
         ...objectifiedInterface,
-        [value?.name]: typeValue,
+        [value.name]: typeValue,
       }
     } else if (conditionType !== typeValue) {
       // do nothing
