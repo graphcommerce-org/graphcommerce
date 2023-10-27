@@ -3,33 +3,29 @@ import styles from './setup.module.css'
 
 function Install() {
   const { updateInstallation, installation, showToast } = useApp()
-
   const installed = installation.status === 'COMPLETED'
+
   const installOnClick = () =>
     updateInstallation({
       config: {},
       status: 'COMPLETED',
-    })
-      .then(() =>
-        showToast({
-          title: 'Application enabled',
-          description: 'You can now use the Dynamic Row Property Selector field in your schema.',
-          duration: 5000,
-          isClosable: true,
-          position: 'top-left',
-          variantColor: 'success',
-        }),
-      )
-      .catch((error) => {
-        console.error('Error updating installation', error)
-      })
+    }).then(() =>
+      showToast({
+        title: 'Application enabled',
+        description: 'You can now use the Dynamic Row Property Selector field in your schema.',
+        duration: 5000,
+        isClosable: true,
+        position: 'top-left',
+        variantColor: 'success',
+      }).catch((err) => console.log(err)),
+    )
 
-  const uninstallOnClick = () =>
+  const uninstallOnClick = async () => {
     updateInstallation({
       config: {},
       status: 'DISABLED',
     })
-      .then(() =>
+      .then(() => {
         showToast({
           title: 'Application disabled',
           description: 'You can re-enable the application from the application configuration page.',
@@ -37,11 +33,14 @@ function Install() {
           isClosable: true,
           position: 'top-left',
           variantColor: 'success',
-        }),
-      )
+        })
+      })
       .catch((error) => {
         console.error('Error updating installation', error)
       })
+
+    return 0
+  }
 
   return (
     <button
