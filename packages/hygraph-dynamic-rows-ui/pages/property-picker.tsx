@@ -2,13 +2,13 @@ import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client'
 import { loadConfig } from '@graphcommerce/next-config'
 import { Wrapper } from '@hygraph/app-sdk-react'
 import React from 'react'
-import { PropertyPicker } from '../..'
+import { PropertyPicker } from '..'
 import {
   createOptionsFromInterfaceObject,
   objectifyGraphQLInterface,
   fetchGraphQLInterface,
-} from '../../lib'
-import { Interface } from '../../types'
+} from '../lib'
+import { Interface } from '../types'
 
 type PropertyPickerProps = Interface
 
