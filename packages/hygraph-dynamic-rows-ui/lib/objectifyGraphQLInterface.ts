@@ -1,4 +1,4 @@
-import { ObjectType, __Field } from '../types'
+import { __Field } from '../types'
 
 /**
  * In this function we create an object from the GraphQL interface.
@@ -11,8 +11,8 @@ export const objectifyGraphQLInterface = (
   fields: __Field[],
   conditionType: 'text' | 'number' | 'all',
   skip: string[],
-): ObjectType => {
-  let objectifiedInterface
+): object => {
+  let objectifiedInterface: object = {}
 
   for (const [, value] of Object.entries(fields)) {
     const nestedFields = value?.type?.ofType?.fields

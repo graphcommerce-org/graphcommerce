@@ -36,5 +36,3 @@ export type __Field = {
 export type Option = { id: string; label: string }
 
 export type Options = { text: Option[]; number: Option[] }
-
-export type ObjectType = Record<string, unknown>

@@ -1,7 +1,7 @@
-import { ProductProperty, ObjectType } from '../types'
+import { ProductProperty } from '../types'
 
 export const createOptionsFromInterfaceObject = (
-  obj: ObjectType,
+  obj: object,
   path = '',
   inputs: ProductProperty[] = [],
   parent = '',
@@ -22,7 +22,7 @@ export const createOptionsFromInterfaceObject = (
       })
     } else if (Array.isArray(value) && value.length > 0) {
       createOptionsFromInterfaceObject(
-        value[0] as ObjectType,
+        value[0] as object,
         `${currentPath}[0]`,
         inputs,
         `${currentParent}${key}`,
@@ -30,7 +30,7 @@ export const createOptionsFromInterfaceObject = (
     } else if (typeof value === 'object' && value !== null) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       createOptionsFromInterfaceObject(
-        value as ObjectType,
+        value as object,
         currentPath,
         inputs,
         `${currentParent}${key}`,
