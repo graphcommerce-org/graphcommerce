@@ -11,7 +11,9 @@ type PropertyPickerProps = {
 export function PropertyPicker(props: PropertyPickerProps) {
   const { options } = props
   const { value, onChange, field } = useFieldExtension()
-  const [localValue, setLocalValue] = React.useState<string | undefined | null>(value as string)
+  const [localValue, setLocalValue] = React.useState<string | undefined | null>(
+    typeof value === 'string' ? value : undefined,
+  )
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore - outdated types from @hygraph/app-sdk-react
