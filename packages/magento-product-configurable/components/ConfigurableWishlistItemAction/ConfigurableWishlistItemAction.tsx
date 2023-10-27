@@ -6,7 +6,8 @@ import { IconSvg, iconChevronRight, nonNullable } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Button } from '@mui/material'
 
-type ConfigurableWishlistItemActionProps = WishlistItemActionCardProps & ConfigurableWishlistItem
+type ConfigurableWishlistItemActionProps = Omit<WishlistItemActionCardProps, 'selectedOptions'> &
+  ConfigurableWishlistItem
 
 export function ConfigurableWishlistItemAction(props: ConfigurableWishlistItemActionProps) {
   const { configurable_options, product, id: wishlistItemId } = props
@@ -21,13 +22,8 @@ export function ConfigurableWishlistItemAction(props: ConfigurableWishlistItemAc
     .map((option) => option?.configurable_product_option_value_uid)
 
   const isConfigurableUncompleted =
-    (product?.__typename === 'ConfigurableProduct' &&
-      product?.configurable_options?.length !== configurable_options?.length) ||
-    configurable_options?.some(
-      (option) =>
-        option?.configurable_product_option_value_uid === null ||
-        option?.configurable_product_option_value_uid === undefined,
-    )
+    product?.__typename === 'ConfigurableProduct' &&
+    product?.configurable_options?.length !== configurable_options?.length
 
   return isConfigurableUncompleted ? (
     <Button
