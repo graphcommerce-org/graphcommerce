@@ -45,16 +45,9 @@ const parts = ['root', 'wishlistIcon', 'wishlistIconActive', 'wishlistButton'] a
 const { classes } = extendableComponent(compName, parts)
 
 export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
-  const {
-    name,
-    sku,
-    url_key,
-    showFeedbackMessage,
-    buttonProps,
-    sx = [],
-    configurable_options,
-    product,
-  } = props
+  const { showFeedbackMessage, buttonProps, sx = [], product } = props
+
+  const { sku, url_key, name } = product
 
   if (process.env.NODE_ENV === 'development') {
     if (typeof showFeedbackMessage !== 'undefined') {
@@ -111,8 +104,9 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
   const selected_options = Array.isArray(selectedOptions) ? selectedOptions : [selectedOptions]
 
   const notFullyConfigured =
-    configurable_options?.length !==
-    selected_options.filter((option) => option !== undefined).length
+    product.__typename === 'ConfigurableProduct' &&
+    product.configurable_options?.length !==
+      selected_options.filter((option) => option !== undefined).length
 
   const wishlistItems = wishlist.data
 
@@ -146,16 +140,20 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
         )
 
   const conf_options = selectedOptions.map((selected_option) => {
-    const configurable_option = configurable_options?.find(
-      (confOption) => confOption?.values?.find((values) => values?.uid === selected_option),
-    )
-    const value = configurable_option?.values?.find((values) => values?.uid === selected_option)
-    return {
-      configurable_product_option_uid: configurable_option?.uid || '',
-      configurable_product_option_value_uid: value?.uid || '',
-      option_label: configurable_option?.label || '',
-      value_label: value?.store_label || '',
+    if (product.__typename === 'ConfigurableProduct') {
+      const configurable_option = product.configurable_options?.find(
+        (confOption) => confOption?.values?.find((values) => values?.uid === selected_option),
+      )
+
+      const value = configurable_option?.values?.find((values) => values?.uid === selected_option)
+      return {
+        configurable_product_option_uid: configurable_option?.uid || '',
+        configurable_product_option_value_uid: value?.uid || '',
+        option_label: configurable_option?.label || '',
+        value_label: value?.store_label || '',
+      }
     }
+    return null
   })
 
   let type: WishlistTypeName = 'ConfigurableWishlistItem'
@@ -174,7 +172,7 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
   const wishlistItem = {
     __typename: type,
     configurable_options: conf_options.every(
-      (option) => option.configurable_product_option_value_uid !== '',
+      (option) => option?.configurable_product_option_value_uid !== '',
     )
       ? conf_options
       : [],
