@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.1.0-canary.28
+
+### Minor Changes
+
+- [#2018](https://github.com/graphcommerce-org/graphcommerce/pull/2018) [`750aa6a72`](https://github.com/graphcommerce-org/graphcommerce/commit/750aa6a72710869d54244467253212e551d335e0) - Changed the layout of the succes page. We are using ActionCards right now to match the design of the cart. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
 ## 7.1.0-canary.27
 
 ## 7.1.0-canary.26

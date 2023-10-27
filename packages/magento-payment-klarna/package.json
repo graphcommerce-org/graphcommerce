@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-payment-klarna",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "7.1.0-canary.27",
+  "version": "7.1.0-canary.28",
   "private": true,
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
@@ -13,16 +13,16 @@
     }
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "7.1.0-canary.27",
-    "@graphcommerce/prettier-config-pwa": "7.1.0-canary.27",
-    "@graphcommerce/typescript-config-pwa": "7.1.0-canary.27"
+    "@graphcommerce/eslint-config-pwa": "7.1.0-canary.28",
+    "@graphcommerce/prettier-config-pwa": "7.1.0-canary.28",
+    "@graphcommerce/typescript-config-pwa": "7.1.0-canary.28"
   },
   "dependencies": {
-    "@graphcommerce/graphql": "7.1.0-canary.27",
-    "@graphcommerce/image": "7.1.0-canary.27",
-    "@graphcommerce/magento-cart": "7.1.0-canary.27",
-    "@graphcommerce/magento-store": "7.1.0-canary.27",
-    "@graphcommerce/next-ui": "7.1.0-canary.27"
+    "@graphcommerce/graphql": "7.1.0-canary.28",
+    "@graphcommerce/image": "7.1.0-canary.28",
+    "@graphcommerce/magento-cart": "7.1.0-canary.28",
+    "@graphcommerce/magento-store": "7.1.0-canary.28",
+    "@graphcommerce/next-ui": "7.1.0-canary.28"
   },
   "peerDependencies": {
     "@lingui/react": "^4.2.1",
