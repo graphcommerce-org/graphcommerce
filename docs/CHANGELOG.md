@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.1.0-canary.29
+
+### Patch Changes
+
+- [#2104](https://github.com/graphcommerce-org/graphcommerce/pull/2104) [`d0f1f5a2d`](https://github.com/graphcommerce-org/graphcommerce/commit/d0f1f5a2d1380d1c3931e23218924d5e8b1fc60d) - Document workaround/patch for broken cart error handling with Magento 2.4.6. ([@hnsr](https://github.com/hnsr))
+
 ## 7.1.0-canary.28
 
 ## 7.1.0-canary.27

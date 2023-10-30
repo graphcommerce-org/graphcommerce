@@ -1,5 +1,7 @@
 # Change Log
 
+## 7.1.0-canary.29
+
 ## 7.1.0-canary.28
 
 ### Minor Changes
