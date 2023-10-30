@@ -6,7 +6,7 @@ import { useRecentlyViewedSkus, UseRecentlyViewedSkusProps } from './useRecently
 export type UseRecentlyViewedProductsProps = UseRecentlyViewedSkusProps
 export function useRecentlyViewedProducts(props: UseRecentlyViewedProductsProps) {
   const { exclude } = props
-  const { skus, loading } = useRecentlyViewedSkus({ exclude })
+  let { skus, loading } = useRecentlyViewedSkus()
 
   const productList = useQuery(ProductListDocument, {
     variables: {
@@ -21,6 +21,17 @@ export function useRecentlyViewedProducts(props: UseRecentlyViewedProductsProps)
 
   const productData =
     productList.data?.products?.items || productList.previousData?.products?.items || []
+
+  if (exclude) {
+    skus = skus.filter(
+      (item) =>
+        item?.sku &&
+        !exclude.includes(item.sku) &&
+        item?.parentSku &&
+        !exclude.includes(item.parentSku),
+    )
+  }
+
   // Sort products based on the time they were viewed. Last viewed item should be the first item in the array
   const products = skus
     .map((sku) => productData.find((p) => (p?.sku || '') === sku.sku))
