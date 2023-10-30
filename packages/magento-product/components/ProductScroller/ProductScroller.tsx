@@ -10,7 +10,7 @@ import {
   TypographyProps,
   useTheme,
 } from '@mui/material'
-import React, { useContext } from 'react'
+import React, { forwardRef, useContext } from 'react'
 import { ProductListItemFragment } from '../../Api/ProductListItem.gql'
 import {
   AddProductsToCartContext,
@@ -59,58 +59,63 @@ export type ProductScrollerProps = {
   addProductsToCartFormProps?: AddProductsToCartFormProps
   itemScrollerProps?: ItemScrollerProps
 }
-export function ProductScroller(props: ProductScrollerProps) {
-  const {
-    title = '',
-    items,
-    productListRenderer,
-    imageOnly = false,
-    skeletonItemCount = 0,
-    skeleton,
-    sx = [],
-    containerProps,
-    titleProps,
-    itemScrollerProps,
-    addProductsToCartFormProps,
-  } = props
+export const ProductScroller = forwardRef<HTMLDivElement, ProductScrollerProps>(
+  (props: ProductScrollerProps, ref) => {
+    const {
+      title = '',
+      items,
+      productListRenderer,
+      imageOnly = false,
+      skeletonItemCount = 0,
+      skeleton,
+      sx = [],
+      containerProps,
+      titleProps,
+      itemScrollerProps,
+      addProductsToCartFormProps,
+    } = props
 
-  const theme = useTheme()
+    const theme = useTheme()
 
-  const Wrapper = useContext(AddProductsToCartContext) ? React.Fragment : AddProductsToCartForm
+    const Wrapper = useContext(AddProductsToCartContext) ? React.Fragment : AddProductsToCartForm
 
-  if (!items) return null
+    if (!items) return null
 
-  return (
-    <Box sx={[{ marginBottom: theme.spacings.xxl }, ...(Array.isArray(sx) ? sx : [sx])]}>
-      <Container maxWidth={false} {...containerProps}>
-        {title && (
-          <Typography variant='h2' sx={{ marginBottom: theme.spacings.sm }} {...titleProps}>
-            {title}
-          </Typography>
-        )}
-      </Container>
-      {(!!items.length || !!skeletonItemCount) && (
-        <Wrapper {...addProductsToCartFormProps}>
-          <ItemScroller {...itemScrollerProps}>
-            {!items.length &&
-              [...Array(skeletonItemCount).keys()].map((i) => (
-                <React.Fragment key={i}>
-                  {skeleton || <ProductScrollerItemSkeleton imageOnly={imageOnly} />}
-                </React.Fragment>
+    return (
+      <Box
+        sx={[{ marginBottom: theme.spacings.xxl }, ...(Array.isArray(sx) ? sx : [sx])]}
+        ref={ref}
+      >
+        <Container maxWidth={false} {...containerProps}>
+          {title && (
+            <Typography variant='h2' sx={{ marginBottom: theme.spacings.sm }} {...titleProps}>
+              {title}
+            </Typography>
+          )}
+        </Container>
+        {(!!items.length || !!skeletonItemCount) && (
+          <Wrapper {...addProductsToCartFormProps}>
+            <ItemScroller {...itemScrollerProps}>
+              {!items.length &&
+                [...Array(skeletonItemCount).keys()].map((i) => (
+                  <React.Fragment key={i}>
+                    {skeleton || <ProductScrollerItemSkeleton imageOnly={imageOnly} />}
+                  </React.Fragment>
+                ))}
+
+              {items.map((item) => (
+                <RenderType
+                  key={item.uid}
+                  renderer={productListRenderer}
+                  {...item}
+                  imageOnly={imageOnly}
+                  sizes={responsiveVal(200, 300)}
+                />
               ))}
-
-            {items.map((item) => (
-              <RenderType
-                key={item.uid}
-                renderer={productListRenderer}
-                {...item}
-                imageOnly={imageOnly}
-                sizes={responsiveVal(200, 300)}
-              />
-            ))}
-          </ItemScroller>
-        </Wrapper>
-      )}
-    </Box>
-  )
-}
+            </ItemScroller>
+          </Wrapper>
+        )}
+      </Box>
+    )
+  },
+)

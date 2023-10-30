@@ -3,9 +3,9 @@ import { ProductListDocument } from '@graphcommerce/magento-product'
 import { nonNullable } from '@graphcommerce/next-ui'
 import { useRecentlyViewedSkus, UseRecentlyViewedSkusProps } from './useRecentlyViewedSkus'
 
-export type UseRecentlyViewedProductsProps = UseRecentlyViewedSkusProps
+export type UseRecentlyViewedProductsProps = UseRecentlyViewedSkusProps & { skip?: boolean }
 export function useRecentlyViewedProducts(props: UseRecentlyViewedProductsProps) {
-  const { exclude } = props
+  const { exclude, skip = false } = props
   let { skus, loading } = useRecentlyViewedSkus()
 
   const productList = useQuery(ProductListDocument, {
@@ -16,7 +16,7 @@ export function useRecentlyViewedProducts(props: UseRecentlyViewedProductsProps)
         },
       },
     },
-    skip: loading || !skus.length,
+    skip: loading || !skus.length || skip,
   })
 
   const productData =
