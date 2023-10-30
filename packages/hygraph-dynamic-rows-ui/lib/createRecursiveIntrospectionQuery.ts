@@ -1,4 +1,4 @@
-export const createRecursiveIntrospectionQuery = (type, depth) => {
+export const createRecursiveIntrospectionQuery = (type: string, depth: number) => {
   let baseQuery = `__type(name: "${type}") { name fields { name `
   let endQuery = ' } }'
 

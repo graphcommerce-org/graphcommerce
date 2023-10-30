@@ -35,8 +35,8 @@ export default function DRPropertyPicker(props: PropertyPickerProps) {
   )
 
   // We manually add url to options because it is supported by DynamicRows but is not included in the ProductInterface.
-  const options = React.useMemo(() => {
-    return {
+  const options = React.useMemo(
+    () => ({
       text: [...textOptions, { label: 'url', id: 'url' }].sort((a, b) => {
         if (!a.label.includes('.') && !b.label.includes('.')) {
           return a.label.localeCompare(b.label)
@@ -47,8 +47,9 @@ export default function DRPropertyPicker(props: PropertyPickerProps) {
         return -1
       }),
       number: [...numberOptions, { label: 'url', id: 'url' }],
-    }
-  }, [numberOptions, textOptions])
+    }),
+    [numberOptions, textOptions],
+  )
 
   React.useEffect(() => {
     /**
