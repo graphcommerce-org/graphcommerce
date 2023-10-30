@@ -3,7 +3,8 @@ import { RecentlyViewedProductsDocument } from '../graphql/RecentlyViewedProduct
 
 export type UseRecentlyViewedSkusProps = { exclude?: string[] }
 
-export function useRecentlyViewedSkus({ exclude }: UseRecentlyViewedSkusProps = {}) {
+export function useRecentlyViewedSkus(props: UseRecentlyViewedSkusProps = {}) {
+  const { exclude } = props
   const { data, loading, previousData } = useQuery(RecentlyViewedProductsDocument, {
     skip: !import.meta.graphCommerce.recentlyViewedProducts?.enabled,
   })
