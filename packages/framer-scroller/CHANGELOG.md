@@ -1,5 +1,17 @@
 # Change Log
 
+## 7.1.0-canary.28
+
+## 7.1.0-canary.27
+
+## 7.1.0-canary.26
+
+## 7.1.0-canary.25
+
+### Patch Changes
+
+- [#2085](https://github.com/graphcommerce-org/graphcommerce/pull/2085) [`3c92993d9`](https://github.com/graphcommerce-org/graphcommerce/commit/3c92993d9ca74f24ea784b20448958ca1bb8e224) - SideBarGallery image won't start scrolling from the beginning if user clicks multiple times on the scroll button. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
 ## 7.1.0-canary.24
 
 ## 7.1.0-canary.23

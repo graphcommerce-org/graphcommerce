@@ -1,17 +1,14 @@
-import { Scroller, ScrollerButton, ScrollerProvider } from '@graphcommerce/framer-scroller'
-import { Image } from '@graphcommerce/image'
+import { CartItemActionCard, CartItemActionCardProps } from '@graphcommerce/magento-cart-items'
 import {
-  iconChevronLeft,
-  iconChevronRight,
-  responsiveVal,
   SectionContainer,
-  IconSvg,
   extendableComponent,
   breakpointVal,
+  nonNullable,
+  ActionCardLayoutProps,
+  ActionCardLayout,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box, Divider, SxProps, Theme } from '@mui/material'
-import React from 'react'
 import { useCartQuery } from '../../hooks'
 import { CartTotals } from '../CartTotals/CartTotals'
 import { CartItemSummaryDocument } from './GetCartItemSummary.gql'
@@ -31,11 +28,20 @@ const parts = [
 ] as const
 const { classes } = extendableComponent(name, parts)
 
-type OrderSummaryProps = { sx?: SxProps<Theme> }
+type OrderSummaryProps = ActionCardLayoutProps & {
+  sx?: SxProps<Theme>
+  itemProps?: Omit<
+    CartItemActionCardProps,
+    'cartItem' | 'layout' | 'onClick' | 'disabled' | 'selected' | 'reset' | 'color'
+  >
+} & { size?: 'small' | 'medium' | 'large' }
 
 export function CartItemSummary(props: OrderSummaryProps) {
-  const { sx = [] } = props
-  const { data } = useCartQuery(CartItemSummaryDocument, { allowUrl: true })
+  const { sx = [], size, layout = 'list', itemProps, ...cardLayout } = props
+  const { data } = useCartQuery(CartItemSummaryDocument, {
+    allowUrl: true,
+    fetchPolicy: 'cache-only',
+  })
 
   if (!data?.cart) return null
 
@@ -69,63 +75,28 @@ export function CartItemSummary(props: OrderSummaryProps) {
         variantLeft='h6'
       >
         <Box className={classes.imageScrollerContainer} sx={{ position: 'relative' }}>
-          <ScrollerProvider scrollSnapAlign='start'>
-            <ScrollerButton
-              direction='left'
-              className={`${classes.prevNext} ${classes.prev}`}
-              sx={{
-                position: 'absolute',
-                top: '50%',
-                transform: 'translateY(-50%)',
-                zIndex: 2,
-                left: `8px`,
-              }}
-            >
-              <IconSvg src={iconChevronLeft} />
-            </ScrollerButton>
-            <Box className={classes.scrollerContainer} sx={{ padding: '1px', display: 'flex' }}>
-              <Scroller className={classes.scroller}>
-                {items?.map((item) => (
-                  <React.Fragment key={item?.uid}>
-                    {item?.product?.thumbnail?.url ? (
-                      <Image
-                        key={item?.uid}
-                        alt={item?.product?.thumbnail?.label ?? ''}
-                        src={item?.product?.thumbnail?.url ?? ''}
-                        className={classes.image}
-                        layout='fill'
-                        sizes={responsiveVal(48, 96)}
-                        sx={(theme) => ({
-                          borderRadius: '50%',
-                          marginRight: theme.spacings.xs,
-                          border: `1px solid ${theme.palette.divider}`,
-                          padding: responsiveVal(5, 10),
-                          width: `${responsiveVal(48, 96)} !important`,
-                          height: `${responsiveVal(48, 96)} !important`,
-                          display: 'block',
-                        })}
-                      />
-                    ) : (
-                      <Box />
-                    )}
-                  </React.Fragment>
-                ))}
-              </Scroller>
-            </Box>
-            <ScrollerButton
-              direction='right'
-              className={`${(classes.prevNext, classes.next)}`}
-              sx={{
-                position: 'absolute',
-                top: '50%',
-                transform: 'translateY(-50%)',
-                zIndex: 2,
-                right: 8,
-              }}
-            >
-              <IconSvg src={iconChevronRight} />
-            </ScrollerButton>
-          </ScrollerProvider>
+          <ActionCardLayout
+            sx={(theme) => ({
+              marginBottom: theme.spacings.md,
+              '&.layoutStack': {
+                gap: 0,
+              },
+            })}
+            className={classes.scrollerContainer}
+            {...cardLayout}
+          >
+            {items?.filter(nonNullable).map((item) => (
+              <CartItemActionCard
+                readOnly
+                key={item.uid}
+                cartItem={item}
+                {...itemProps}
+                layout={layout}
+                size={size}
+                variant='default'
+              />
+            ))}
+          </ActionCardLayout>
         </Box>
         <Divider
           classes={{ root: classes.divider }}

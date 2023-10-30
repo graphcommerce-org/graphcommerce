@@ -1,5 +1,6 @@
 query CartFab($cartId: String!) {
   cart(cart_id: $cartId) {
+    __typename
     id
     ...CartTotalQuantity
   }

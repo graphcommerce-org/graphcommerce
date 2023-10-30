@@ -1,5 +1,17 @@
 # Change Log
 
+## 7.1.0-canary.28
+
+## 7.1.0-canary.27
+
+### Patch Changes
+
+- [#2103](https://github.com/graphcommerce-org/graphcommerce/pull/2103) [`23392babb`](https://github.com/graphcommerce-org/graphcommerce/commit/23392babb89ce3e77dc98713ee897f72ab66d6a1) - feat(GCOM-1215): prevent + / - qty buttons from overlapping the “Star… ([@FrankHarland](https://github.com/FrankHarland))
+
+## 7.1.0-canary.26
+
+## 7.1.0-canary.25
+
 ## 7.1.0-canary.24
 
 ## 7.1.0-canary.23
