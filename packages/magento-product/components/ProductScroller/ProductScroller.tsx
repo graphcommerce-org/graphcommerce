@@ -76,8 +76,7 @@ export function ProductScroller(props: ProductScrollerProps) {
 
   const theme = useTheme()
 
-  if (!!useContext(AddProductsToCartContext) && process.env.NODE_ENV !== 'production')
-    throw new Error("Can't use ProductScroller inside of AddProductsToCartForm")
+  const Wrapper = useContext(AddProductsToCartContext) ? React.Fragment : AddProductsToCartForm
 
   if (!items) return null
 
@@ -91,7 +90,7 @@ export function ProductScroller(props: ProductScrollerProps) {
         )}
       </Container>
       {(!!items.length || !!skeletonItemCount) && (
-        <AddProductsToCartForm {...addProductsToCartFormProps}>
+        <Wrapper {...addProductsToCartFormProps}>
           <ItemScroller {...itemScrollerProps}>
             {!items.length &&
               [...Array(skeletonItemCount).keys()].map((i) => (
@@ -110,7 +109,7 @@ export function ProductScroller(props: ProductScrollerProps) {
               />
             ))}
           </ItemScroller>
-        </AddProductsToCartForm>
+        </Wrapper>
       )}
     </Box>
   )
