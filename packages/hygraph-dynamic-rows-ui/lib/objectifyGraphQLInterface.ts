@@ -53,8 +53,6 @@ export const objectifyGraphQLInterface = (
         ...objectifiedInterface,
         [value.name]: typeValue,
       }
-    } else if (conditionType !== typeValue) {
-      // do nothing
     }
   }
 
