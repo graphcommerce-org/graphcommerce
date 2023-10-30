@@ -66,6 +66,25 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
 
   const isWishlistEnabled = useWishlistEnabled()
 
+  let type: WishlistTypeName = 'ConfigurableWishlistItem'
+  switch (__typename) {
+    case 'BundleProduct':
+      type = 'BundleWishlistItem'
+      break
+    case 'DownloadableProduct':
+      type = 'DownloadableWishlistItem'
+      break
+    case 'GroupedProduct':
+      type = 'GroupedProductWishlistItem'
+      break
+    case 'SimpleProduct':
+      type = 'SimpleWishlistItem'
+      break
+    case 'VirtualProduct':
+      type = 'VirtualWishlistItem'
+      break
+  }
+
   const heart = (
     <IconSvg
       src={iconHeart}
@@ -142,42 +161,22 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
       : inWishlistWithSelectedOptions()
 
   const conf_options = selectedOptions.map((selected_option) => {
-    if (__typename === 'ConfigurableProduct') {
-      const configurable_option = product.configurable_options?.find(
-        (confOption) => confOption?.values?.find((values) => values?.uid === selected_option),
-      )
+    if (__typename !== 'ConfigurableProduct') return null
 
-      const value = configurable_option?.values?.find((values) => values?.uid === selected_option)
-      return {
-        configurable_product_option_uid: configurable_option?.uid || '',
-        configurable_product_option_value_uid: value?.uid || '',
-        option_label: configurable_option?.label || '',
-        value_label: value?.store_label || '',
-      }
+    const configurable_option = product.configurable_options?.find(
+      (confOption) => confOption?.values?.find((values) => values?.uid === selected_option),
+    )
+
+    const value = configurable_option?.values?.find((values) => values?.uid === selected_option)
+    return {
+      configurable_product_option_uid: configurable_option?.uid || '',
+      configurable_product_option_value_uid: value?.uid || '',
+      option_label: configurable_option?.label || '',
+      value_label: value?.store_label || '',
     }
-    return null
   })
 
-  let type: WishlistTypeName = 'ConfigurableWishlistItem'
-  switch (__typename) {
-    case 'BundleProduct':
-      type = 'BundleWishlistItem'
-      break
-    case 'DownloadableProduct':
-      type = 'DownloadableWishlistItem'
-      break
-    case 'GroupedProduct':
-      type = 'GroupedProductWishlistItem'
-      break
-    case 'SimpleProduct':
-      type = 'SimpleWishlistItem'
-      break
-    case 'VirtualProduct':
-      type = 'VirtualWishlistItem'
-      break
-  }
-
-  const wishlistItem = {
+  const guestWishlistItem = {
     __typename: type,
     configurable_options: conf_options.every(
       (option) => option?.configurable_product_option_value_uid !== '',
@@ -189,7 +188,7 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
   }
   const oldItems = cache.readQuery({ query: GuestWishlistDocument })?.customer?.wishlists?.[0]
     ?.items_v2?.items
-  const filteredItems = oldItems?.filter((oldItem) => oldItem?.id !== wishlistItem.id)
+  const filteredItems = oldItems?.filter((oldItem) => oldItem?.id !== guestWishlistItem.id)
 
   const handleWishlistWhenAuthenticated = () => {
     if (isInWishlist && !ignoreProductWishlistStatus) {
@@ -252,7 +251,7 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
       })
     } else {
       /** Merging of wishlist items is done by policy, see typePolicies.ts */
-      const newItems = oldItems?.concat(wishlistItem)
+      const newItems = oldItems?.concat(guestWishlistItem)
       cache.writeQuery({
         query: GuestWishlistDocument,
         data: {
@@ -260,7 +259,7 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
             wishlists: [
               {
                 items_v2: {
-                  items: newItems || [wishlistItem],
+                  items: newItems || [guestWishlistItem],
                 },
               },
             ],
