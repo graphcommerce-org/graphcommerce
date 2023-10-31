@@ -21,15 +21,6 @@ query GetWishlistProducts {
             uid
             sku
             ...ProductListItem
-            ... on ConfigurableProduct {
-              variants {
-                product {
-                  small_image {
-                    ...ProductImage
-                  }
-                }
-              }
-            }
           }
         }
       }
