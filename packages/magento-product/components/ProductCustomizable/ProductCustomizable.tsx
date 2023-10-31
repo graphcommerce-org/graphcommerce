@@ -1,11 +1,6 @@
-import {
-  CheckboxButtonGroup,
-  Controller,
-  MultiSelectElement,
-  RadioButtonGroup,
-  SelectElement,
-  TextFieldElement,
-} from '@graphcommerce/ecommerce-ui'
+import { SelectElement, TextFieldElement } from '@graphcommerce/ecommerce-ui'
+import { CurrencyEnum } from '@graphcommerce/graphql-mesh'
+import { Money } from '@graphcommerce/magento-store'
 import {
   ActionCard,
   ActionCardListForm,
@@ -14,6 +9,7 @@ import {
   RenderType,
   TypeRenderer,
 } from '@graphcommerce/next-ui'
+import { i18n } from '@lingui/core'
 import {
   FormControl,
   FormLabel,
@@ -22,9 +18,10 @@ import {
   Checkbox,
   FormHelperText,
   TextField,
-  Button,
+  Box,
+  Typography,
 } from '@mui/material'
-import React, { useRef } from 'react'
+import React from 'react'
 import { AddToCartItemSelector, useFormAddProductsToCart } from '../AddProductsToCart'
 import { ProductCustomizableFragment } from './ProductCustomizable.gql'
 
@@ -32,6 +29,7 @@ export type OptionTypeRenderer = TypeRenderer<
   NonNullable<NonNullable<ProductCustomizableFragment['options']>[number]> & {
     optionIndex: number
     index: number
+    currency: CurrencyEnum
   }
 >
 
@@ -96,105 +94,149 @@ const CustomizableDropDownOption = React.memo<
 const CustomizableRadioOption = React.memo<
   React.ComponentProps<OptionTypeRenderer['CustomizableRadioOption']>
 >((props) => {
-  const { uid, required, index, title, radioValue } = props
+  const { uid, required, index, title: label, radioValue, currency } = props
   const { control } = useFormAddProductsToCart()
 
+  return (
+    <Box>
+      <FormLabel>{label?.toUpperCase()}</FormLabel>
+      <ActionCardListForm
+        sx={(theme) => ({
+          mt: theme.spacings.xxs,
+        })}
+        layout='stack'
+        control={control}
+        render={ActionCard}
+        name={`cartItems.${index}.customizable_options.${uid}`}
+        rules={{
+          required: required
+            ? i18n._(/* i18n*/ 'Please select a value for ‘{label}’', { label })
+            : false,
+        }}
+        items={filterNonNullableKeys(radioValue, ['title']).map(
+          (radioVal) =>
+            ({
+              value: radioVal.uid,
+              title: radioVal.title,
+              price:
+                radioVal.price === 0 ? null : (
+                  <Box sx={{ color: 'secondary.main' }}>
+                    <span style={{ margin: 'auto' }}>{'+ '}</span>
+                    <Money value={radioVal.price} currency={currency} />
+                  </Box>
+                ),
+            }) satisfies ActionCardProps,
+        )}
+      />
+    </Box>
+  )
+
   // return (
-  //   <ActionCardListForm
+  //   <RadioButtonGroup
   //     control={control}
-  //     render={ActionCard}
   //     name={`cartItems.${index}.customizable_options.${uid}`}
-  //     items={filterNonNullableKeys(radioValue, ['title']).map(
-  //       (radioVal) =>
-  //         ({
-  //           value: radioVal.uid,
-  //           title: radioVal.title,
-  //         }) satisfies ActionCardProps,
-  //     )}
+  //     label={title || ''}
+  //     options={filterNonNullableKeys(radioValue, ['title']).map((option) => ({
+  //       id: option.uid,
+  //       label: option.title,
+  //     }))}
+  //     required={Boolean(required)}
   //   />
   // )
-
-  return (
-    <RadioButtonGroup
-      control={control}
-      name={`cartItems.${index}.customizable_options.${uid}`}
-      label={title || ''}
-      options={filterNonNullableKeys(radioValue, ['title']).map((option) => ({
-        id: option.uid,
-        label: option.title,
-      }))}
-      required={Boolean(required)}
-    />
-  )
 })
 
 const CustomizableCheckboxOption = React.memo<
   React.ComponentProps<OptionTypeRenderer['CustomizableCheckboxOption']>
 >((props) => {
-  const { uid, required, index, title, checkboxValue } = props
-  const { control } = useFormAddProductsToCart()
+  const { uid, required, index, title: label, checkboxValue, currency } = props
+  const { control, getValues } = useFormAddProductsToCart()
+
+  const allSelected = getValues(`cartItems.${index}.customizable_options.${uid}`) || []
 
   return (
-    <Controller
-      control={control}
-      rules={{
-        validate: (value) => {
-          if (!required) return true
-          const allSelected = Array.isArray(value) ? value : [value]
-          return allSelected.length > 0 ? true : 'HIER NOG EEN MOOIE VERTAALDE STRING'
-        },
-      }}
-      name={`cartItems.${index}.customizable_options.${uid}`}
-      render={({ field: { onChange, value, ...fieldProps }, fieldState: { invalid, error } }) => {
-        const allSelected = Array.isArray(value) ? value : [value]
-
-        return (
-          <FormControl error={invalid} required>
-            <FormLabel error={invalid}>{title}</FormLabel>
-            <FormGroup>
-              {filterNonNullableKeys(checkboxValue, ['title']).map((item) => (
-                <FormControlLabel
-                  key={item.uid}
-                  label={item.title}
-                  control={<Checkbox {...fieldProps} checked={allSelected.includes(item.uid)} />}
-                  onChange={() =>
-                    onChange(
-                      allSelected.includes(item.uid)
-                        ? allSelected.filter((v) => v !== item.uid)
-                        : [...allSelected, item.uid],
-                    )
-                  }
-                />
-              ))}
-            </FormGroup>
-            {error && <FormHelperText>{error.message}</FormHelperText>}
-          </FormControl>
-        )
-      }}
-    />
+    <Box>
+      <FormLabel>{label?.toUpperCase()}</FormLabel>
+      <ActionCardListForm
+        sx={(theme) => ({
+          mt: theme.spacings.xxs,
+        })}
+        multiple
+        control={control}
+        rules={{
+          required: required
+            ? i18n._(/* i18n*/ 'Please select a value for ‘{label}’', { label })
+            : false,
+        }}
+        render={ActionCard}
+        name={`cartItems.${index}.customizable_options.${uid}`}
+        items={filterNonNullableKeys(checkboxValue, ['title']).map(
+          (checkboxVal) =>
+            ({
+              value: checkboxVal.uid,
+              title: (
+                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                  <Checkbox checked={allSelected.includes(checkboxVal.uid)} /> {checkboxVal.title}
+                </Box>
+              ),
+              price:
+                checkboxVal.price === 0 ? null : (
+                  <Box
+                    sx={{
+                      color: 'secondary.main',
+                      display: 'flex',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <Typography sx={{ pb: '2px' }}> +</Typography>
+                    <Money value={checkboxVal.price} currency={currency} />
+                  </Box>
+                ),
+            }) satisfies ActionCardProps,
+        )}
+        errorMessage=''
+      />
+    </Box>
   )
 })
 
 const CustomizableMultipleOption = React.memo<
   React.ComponentProps<OptionTypeRenderer['CustomizableMultipleOption']>
 >((props) => {
-  const { uid, required, optionIndex, index, title, multipleValue } = props
+  const { uid, required, index, title: label, multipleValue, currency } = props
   const { control } = useFormAddProductsToCart()
 
   return (
-    <ActionCardListForm
-      multiple
-      control={control}
-      render={ActionCard}
-      name={`cartItems.${index}.customizable_options.${uid}`}
-      items={filterNonNullableKeys(multipleValue, ['title']).map(
-        (multipleVal) =>
-          ({
-            value: multipleVal.uid,
-            title: multipleVal.title,
-          }) satisfies ActionCardProps,
-      )}
-    />
+    <Box>
+      <FormLabel>{label?.toUpperCase()}</FormLabel>
+      <ActionCardListForm
+        sx={(theme) => ({
+          mt: theme.spacings.xxs,
+        })}
+        multiple
+        rules={{
+          required: required
+            ? i18n._(/* i18n*/ 'Please select a value for ‘{label}’', { label })
+            : false,
+        }}
+        control={control}
+        render={ActionCard}
+        name={`cartItems.${index}.customizable_options.${uid}`}
+        items={filterNonNullableKeys(multipleValue, ['title']).map(
+          (multipleVal) =>
+            ({
+              value: multipleVal.uid,
+              title: multipleVal.title,
+              price:
+                multipleVal.price === 0 ? null : (
+                  <Box sx={{ color: 'secondary.main' }}>
+                    {'+ '}
+                    <Money value={multipleVal.price} currency={currency} />
+                  </Box>
+                ),
+            }) satisfies ActionCardProps,
+        )}
+      />
+    </Box>
   )
 })
 
@@ -205,15 +247,20 @@ const CustomizableDateOption = React.memo<
   const { register, setValue } = useFormAddProductsToCart()
 
   return (
-    <>
+    <Box>
       <input
         type='hidden'
         {...register(`cartItems.${index}.entered_options.${optionIndex}.uid`)}
         value={uid}
       />
+
+      <FormLabel>{title?.toUpperCase()}</FormLabel>
       <TextField
+        sx={(theme) => ({
+          width: '100%',
+          mt: theme.spacings.xxs,
+        })}
         required={!!required}
-        label={title}
         type='datetime-local'
         onChange={(data) =>
           setValue(
@@ -222,7 +269,7 @@ const CustomizableDateOption = React.memo<
           )
         }
       />
-    </>
+    </Box>
   )
 })
 
@@ -234,91 +281,29 @@ const CustomizableFieldOption = React.memo<
 
   const maxLength = fieldValue?.max_characters ?? undefined
   return (
-    <>
+    <Box>
+      <FormLabel>{title?.toUpperCase()}</FormLabel>
       <input
         type='hidden'
         {...register(`cartItems.${index}.entered_options.${optionIndex}.uid`)}
         value={uid}
       />
       <TextFieldElement
+        sx={(theme) => ({
+          mt: theme.spacings.xxs,
+          width: '100%',
+        })}
         color='primary'
         multiline
         control={control}
         name={`cartItems.${index}.entered_options.${optionIndex}.value`}
-        label={title}
         required={Boolean(required)}
         validation={{ maxLength }}
-        helperText={(maxLength ?? 0) > 0 && `A maximum of ${maxLength}`}
+        helperText={(maxLength ?? 0) > 0 && `A maximum of ${maxLength} characters`}
       />
-    </>
+    </Box>
   )
 })
-
-// const CustomizableFileOption = React.memo<
-//   React.ComponentProps<OptionTypeRenderer['CustomizableFileOption']>
-// >((props) => {
-//   const { uid, required, optionIndex, index, title, fileValue } = props
-//   const { control, register } = useFormAddProductsToCart()
-
-//   async function getBase64(file) {
-//     return new Promise((resolve, reject) => {
-//       const reader = new FileReader()
-//       reader.readAsDataURL(file)
-//       reader.onload = () => {
-//         resolve(reader.result)
-//       }
-//       reader.onerror = reject
-//     })
-//   }
-
-//   return (
-//     <>
-//       <input
-//         type='hidden'
-//         {...register(`cartItems.${index}.entered_options.${optionIndex}.uid`)}
-//         value={uid}
-//       />
-//       <Controller
-//         control={control}
-//         name={`cartItems.${index}.entered_options.${optionIndex}.value`}
-//         render={({ field: { onChange, value, ...fieldProps }, fieldState: { invalid, error } }) => (
-//           <FormControl error={invalid} required>
-//             <FormLabel error={invalid}>{title}</FormLabel>
-//             <FormControlLabel
-//               label=''
-//               control={
-//                 <>
-//                   <input
-//                     {...fieldProps}
-//                     color='primary'
-//                     accept='image/*'
-//                     type='file'
-//                     id='icon-button-file'
-//                     style={{ display: 'none' }}
-//                     onChange={async (i) => {
-//                       console.log(i.target.files?.[0])
-//                       return onChange(await getBase64(i.target.files?.[0]))
-//                     }}
-//                   />
-//                   <Button
-//                     variant='contained'
-//                     component='span'
-//                     size='large'
-//                     color='primary'
-//                     sx={{ width: '100%' }}
-//                   >
-//                     Upload file
-//                   </Button>
-//                 </>
-//               }
-//             />
-//             {error && <FormHelperText>{error.message}</FormHelperText>}
-//           </FormControl>
-//         )}
-//       />
-//     </>
-//   )
-// })
 
 const defaultRenderer = {
   CustomizableAreaOption,
@@ -343,7 +328,7 @@ type OptionTypeRendererProp = Simplify<
 >
 
 type ProductCustomizableProps = AddToCartItemSelector & {
-  product: ProductCustomizableFragment
+  product: ProductCustomizableFragment & { currency: CurrencyEnum }
 } & (keyof MissingOptionTypeRenderer extends never
     ? { renderer?: OptionTypeRendererProp }
     : { renderer: OptionTypeRendererProp })
