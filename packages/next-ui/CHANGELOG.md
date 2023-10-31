@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.1.0-canary.30
+
+### Patch Changes
+
+- [#2105](https://github.com/graphcommerce-org/graphcommerce/pull/2105) [`185f9ddeb`](https://github.com/graphcommerce-org/graphcommerce/commit/185f9ddebff0eaf1f388faebe88a5d400294512a) - Fixed bug where the mobile menu wouldn't open after the first selected level ([@mikekeehnen](https://github.com/mikekeehnen))
+
 ## 7.1.0-canary.29
 
 ## 7.1.0-canary.28
