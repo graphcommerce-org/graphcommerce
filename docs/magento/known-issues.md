@@ -27,7 +27,7 @@ During customer login, GraphCommerce queries Magento to determine whether the
 customer account already exists or not. If not, the sign-up form is shown
 instead.
 
-In Magento 2.4.7+ and recent security patch updates, the behavior of the
+In Magento 2.4.7+ and recent security updates, the behavior of the
 `isEmailAvailable` query that is used to do this was made dependent on the
 `Enable Guest Checkout Login` configuration setting. If disabled, this query
 will always return `true`, resulting in the sign-up form always being shown,
