@@ -36,6 +36,7 @@ export function ProductReviewChip(props: ProductReviewChipProps) {
       icon={<IconSvg src={iconStar} sx={{ stroke: '#FFDA1C', fill: '#FFDA1C' }} />}
       color='default'
       size='medium'
+      aria-label='Review score'
       label={`${normalizedRating}/5`}
       {...chipProps}
     />

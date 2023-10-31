@@ -40,6 +40,9 @@ msgstr "Aggiungi nuovo indirizzo"
 msgid "Add to Cart"
 msgstr "Aggiungi al carrello"
 
+msgid "Add to cart quantity"
+msgstr "Aggiungi al carrello quantità"
+
 msgid "Add to comparison"
 msgstr "Aggiungi al confronto"
 
@@ -609,6 +612,9 @@ msgstr "Esci"
 
 msgid "Sign up for our newsletter and stay updated"
 msgstr "Iscriviti alla nostra newsletter e rimani aggiornato"
+
+msgid "Skip to main content"
+msgstr "Passa al contenuto principale"
 
 msgid "Some items in your cart contain errors, please update or remove them, then try again."
 msgstr "Alcuni articoli nel tuo carrello contengono errori, aggiorna o rimuovi e riprova."

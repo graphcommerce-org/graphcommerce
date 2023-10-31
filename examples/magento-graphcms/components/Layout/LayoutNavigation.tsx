@@ -29,6 +29,7 @@ import { useRouter } from 'next/router'
 import { Footer } from './Footer'
 import { LayoutQuery } from './Layout.gql'
 import { Logo } from './Logo'
+import { global } from 'styled-jsx/css'
 
 export type LayoutNavigationProps = LayoutQuery &
   Omit<LayoutDefaultProps, 'footer' | 'header' | 'cartFab' | 'menuFab'>
@@ -122,7 +123,15 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
                 </DesktopNavItem>
               ))}
 
-              <DesktopNavItem onClick={() => selection.set([menu?.items?.[0]?.uid || ''])}>
+              <DesktopNavItem
+                onClick={() => selection.set([menu?.items?.[0]?.uid || ''])}
+                onKeyUp={(evt) => {
+                  if (evt.key === 'Enter') {
+                    selection.set([menu?.items?.[0]?.uid || ''])
+                  }
+                }}
+                tabIndex={0}
+              >
                 {menu?.items?.[0]?.name}
                 <IconSvg src={iconChevronDown} />
               </DesktopNavItem>
@@ -142,7 +151,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
               )}
               <Fab
                 href='/service'
-                aria-label={i18n._(/* i18n */ 'Account')}
+                aria-label={i18n._(/* i18n */ 'Customer Service')}
                 size='large'
                 color='inherit'
               >

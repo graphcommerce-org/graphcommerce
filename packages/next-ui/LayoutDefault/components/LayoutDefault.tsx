@@ -3,6 +3,7 @@ import { dvh } from '@graphcommerce/framer-utils'
 import { Box, SxProps, Theme } from '@mui/material'
 import { useTransform, useScroll } from 'framer-motion'
 import { LayoutProvider } from '../../Layout/components/LayoutProvider'
+import { SkipLink } from '../../SkipLink/SkipLink'
 import { extendableComponent } from '../../Styles'
 import { useFabSize } from '../../Theme'
 
@@ -67,6 +68,7 @@ export function LayoutDefault(props: LayoutDefaultProps) {
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
+      <SkipLink />
       <LayoutProvider scroll={scrollYOffset}>
         {beforeHeader}
         <Box
@@ -144,7 +146,10 @@ export function LayoutDefault(props: LayoutDefaultProps) {
         ) : (
           <div />
         )}
-        <div className={classes.children}>{children}</div>
+        <div className={classes.children}>
+          <div id='skip-nav' />
+          {children}
+        </div>
         <div className={classes.footer}>{footer}</div>
       </LayoutProvider>
     </Box>

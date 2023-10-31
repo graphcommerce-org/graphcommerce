@@ -160,7 +160,7 @@ export function TextInputNumber(props: TextInputNumberProps) {
       }}
       inputProps={{
         ...inputProps,
-        'aria-label': i18n._(/* i18n */ 'Number'),
+        'aria-label': i18n._(/* i18n */ 'Add to cart quantity'),
         sx: [
           {
             typography: 'body1',

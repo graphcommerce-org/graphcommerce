@@ -69,6 +69,7 @@ export function DesktopNavBar(props: MenuTabsProps) {
           }}
           direction='left'
           size='small'
+          tabIndex={-1}
           className={`${classes.left} ${classes.button}`}
         >
           <IconSvg src={iconLeft ?? iconChevronLeft} />
@@ -94,6 +95,7 @@ export function DesktopNavBar(props: MenuTabsProps) {
           }}
           direction='right'
           size='small'
+          tabIndex={-1}
           className={`${classes.right} ${classes.button}`}
         >
           <IconSvg src={iconRight ?? iconChevronRight} />

@@ -7,8 +7,6 @@ import React from 'react'
 import { useScrollerContext } from '../hooks/useScrollerContext'
 import { ScrollerDot } from './ScrollerDot'
 
-const MotionBox = styled(m.div)({})
-
 export type DotsProps = {
   fabProps?: Omit<FabProps, 'onClick' | 'children'>
   sx?: SxProps<Theme>

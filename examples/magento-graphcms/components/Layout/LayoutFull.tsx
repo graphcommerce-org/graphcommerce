@@ -62,7 +62,7 @@ export function LayoutFull(props: LayoutFullProps) {
             )}
             <Fab
               href='/service'
-              aria-label={i18n._(/* i18n*/ `Account`)}
+              aria-label={i18n._(/* i18n*/ `CustomerService`)}
               size='large'
               color='inherit'
             >
