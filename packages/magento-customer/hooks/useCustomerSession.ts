@@ -1,6 +1,4 @@
 import { QueryResult, useQuery } from '@graphcommerce/graphql'
-import jwt, { JwtPayload } from 'jwt-decode'
-import { useMemo } from 'react'
 import {
   CustomerTokenDocument,
   CustomerTokenQuery,
