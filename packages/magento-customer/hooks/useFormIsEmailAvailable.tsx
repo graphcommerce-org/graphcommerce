@@ -1,3 +1,4 @@
+import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
 import { useFormAutoSubmit, useFormGqlQuery } from '@graphcommerce/react-hook-form'
 import { useEffect, useState } from 'react'
 import { CustomerDocument } from './Customer.gql'
@@ -21,7 +22,7 @@ export const isToggleMethod = !import.meta.graphCommerce.enableGuestCheckoutLogi
 export function useFormIsEmailAvailable(props: UseFormIsEmailAvailableProps) {
   const { email, onSubmitted } = props
   const { loggedIn, requireAuth } = useCustomerSession()
-  const customerQuery = useCustomerQuery(CustomerDocument)
+  const customerQuery = useCustomerQuery(CustomerDocument, { fetchPolicy: 'network-only' })
 
   const form = useFormGqlQuery<
     IsEmailAvailableQuery,
@@ -50,9 +51,14 @@ export function useFormIsEmailAvailable(props: UseFormIsEmailAvailableProps) {
 
   const [mode, setMode] = useState<AccountSignInUpState>(loggedIn ? 'signedin' : 'email')
 
+  const [, authError] = graphqlErrorByCategory({
+    category: 'graphql-authorization',
+    error: customerQuery.error,
+  })
+
   useEffect(() => {
     if (loggedIn) {
-      setMode('signedin')
+      setMode(authError || requireAuth ? 'session-expired' : 'signedin')
       return
     }
     if (isToggleMethod) setMode(requestedMode)
@@ -63,6 +69,7 @@ export function useFormIsEmailAvailable(props: UseFormIsEmailAvailableProps) {
     if (customerQuery.data?.customer && requireAuth)
       setMode(isSubmitSuccessful ? 'signin' : 'session-expired')
   }, [
+    authError,
     customerQuery.data?.customer,
     requestedMode,
     isDirty,

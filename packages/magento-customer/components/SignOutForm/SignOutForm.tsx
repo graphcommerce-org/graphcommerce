@@ -10,7 +10,7 @@ type SignOutFormProps = {
 }
 
 export function SignOutForm(props: SignOutFormProps) {
-  const { button } = props
+  const { button: Button } = props
   const router = useRouter()
   const client = useApolloClient()
 
@@ -28,7 +28,7 @@ export function SignOutForm(props: SignOutFormProps) {
 
   return (
     <form onSubmit={submitHandler} noValidate>
-      {button({ formState })}
+      <Button formState={formState} />
       <ApolloCustomerErrorAlert error={error} />
     </form>
   )

@@ -8,7 +8,6 @@ import { i18n } from '@lingui/core'
 import { Fab, FabProps as FabPropsType, NoSsr, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { useCustomerSession, UseCustomerSessionReturn } from '../../hooks'
-import { useCustomerValidateToken } from '../../hooks/useCustomerValidateToken'
 
 type CustomerFabContentProps = {
   icon?: React.ReactNode
@@ -53,8 +52,6 @@ export type CustomerFabProps = Omit<CustomerFabContentProps, 'session'>
 
 export function CustomerFab(props: CustomerFabProps) {
   const session = useCustomerSession()
-
-  useCustomerValidateToken()
 
   return (
     <NoSsr fallback={<CustomerFabContent {...props} />}>

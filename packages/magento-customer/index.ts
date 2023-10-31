@@ -1,7 +1,6 @@
 export * from './components'
 export * from './hooks'
 export * from './typePolicies'
-export * from './link/createCustomerTokenLink'
 export * from './graphql/AccountDashboardOrders.gql'
 export * from './graphql/AccountDashboardAddresses.gql'
 export * from './graphql/AccountDashboard.gql'
