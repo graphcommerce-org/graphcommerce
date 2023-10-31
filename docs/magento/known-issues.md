@@ -21,6 +21,24 @@ regression is fixed as of Magento 2.4.7-beta2.
 See also
 https://github.com/magento/magento2/commit/49cbe774020d3dfa6ee2b8702376a947801c9971
 
+## Customer is forced to sign up, even if already registered
+
+During customer login, GraphCommerce queries Magento to determine whether the
+customer account already exists or not. If not, the sign-up form is shown
+instead.
+
+In Magento 2.4.7+ and recent security patch updates, the behavior of the
+`isEmailAvailable` query that is used to do this was made dependent on the
+`Enable Guest Checkout Login` configuration setting. If disabled, this query
+will always return `true`, resulting in the sign-up form always being shown,
+even if the customer already exists.
+
+To solve this, the following setting must be set to `Yes`:
+`Stores -> Configuration -> Sales -> Checkout -> Checkout Options -> Enable Guest Checkout Login`
+
+See also
+https://developer.adobe.com/commerce/php/development/backward-incompatible-changes/highlights/#isemailavailable-api
+
 ## Next steps
 
 - [Overview](./readme)
