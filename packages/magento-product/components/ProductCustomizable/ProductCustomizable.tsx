@@ -10,17 +10,7 @@ import {
   TypeRenderer,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
-import {
-  FormControl,
-  FormLabel,
-  FormGroup,
-  FormControlLabel,
-  Checkbox,
-  FormHelperText,
-  TextField,
-  Box,
-  Typography,
-} from '@mui/material'
+import { FormLabel, Checkbox, TextField, Box } from '@mui/material'
 import React from 'react'
 import { AddToCartItemSelector, useFormAddProductsToCart } from '../AddProductsToCart'
 import { ProductCustomizableFragment } from './ProductCustomizable.gql'
@@ -121,7 +111,8 @@ const CustomizableRadioOption = React.memo<
               price:
                 radioVal.price === 0 ? null : (
                   <Box sx={{ color: 'secondary.main' }}>
-                    <span style={{ margin: 'auto' }}>{'+ '}</span>
+                    {/* Change fontFamily so the + is properly outlined */}
+                    <span style={{ fontFamily: 'arial' }}>{'+ '}</span>
                     <Money value={radioVal.price} currency={currency} />
                   </Box>
                 ),
@@ -130,19 +121,6 @@ const CustomizableRadioOption = React.memo<
       />
     </Box>
   )
-
-  // return (
-  //   <RadioButtonGroup
-  //     control={control}
-  //     name={`cartItems.${index}.customizable_options.${uid}`}
-  //     label={title || ''}
-  //     options={filterNonNullableKeys(radioValue, ['title']).map((option) => ({
-  //       id: option.uid,
-  //       label: option.title,
-  //     }))}
-  //     required={Boolean(required)}
-  //   />
-  // )
 })
 
 const CustomizableCheckboxOption = React.memo<
@@ -183,11 +161,9 @@ const CustomizableCheckboxOption = React.memo<
                   <Box
                     sx={{
                       color: 'secondary.main',
-                      display: 'flex',
-                      alignItems: 'center',
                     }}
                   >
-                    <Typography sx={{ pb: '2px' }}> +</Typography>
+                    <span style={{ fontFamily: 'arial' }}>{'+ '}</span>
                     <Money value={checkboxVal.price} currency={currency} />
                   </Box>
                 ),
@@ -229,7 +205,7 @@ const CustomizableMultipleOption = React.memo<
               price:
                 multipleVal.price === 0 ? null : (
                   <Box sx={{ color: 'secondary.main' }}>
-                    {'+ '}
+                    <span style={{ fontFamily: 'arial' }}>{'+ '}</span>
                     <Money value={multipleVal.price} currency={currency} />
                   </Box>
                 ),
