@@ -37,11 +37,7 @@ fragment ConfigurableOptions on ConfigurableProduct {
       uid
       sku
       small_image {
-        disabled
-        label
-        position
-        url
-        __typename
+        ...ProductImage
       }
       name
     }
