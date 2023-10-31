@@ -14,6 +14,7 @@ import { FormLabel, Checkbox, TextField, Box } from '@mui/material'
 import React from 'react'
 import { AddToCartItemSelector, useFormAddProductsToCart } from '../AddProductsToCart'
 import { ProductCustomizableFragment } from './ProductCustomizable.gql'
+import { ProductPagePriceFragment } from '../ProductPagePrice'
 
 export type OptionTypeRenderer = TypeRenderer<
   NonNullable<NonNullable<ProductCustomizableFragment['options']>[number]> & {
@@ -304,7 +305,7 @@ type OptionTypeRendererProp = Simplify<
 >
 
 type ProductCustomizableProps = AddToCartItemSelector & {
-  product: ProductCustomizableFragment & { currency: CurrencyEnum }
+  product: ProductCustomizableFragment & ProductPagePriceFragment
 } & (keyof MissingOptionTypeRenderer extends never
     ? { renderer?: OptionTypeRendererProp }
     : { renderer: OptionTypeRendererProp })
@@ -321,6 +322,7 @@ export function ProductCustomizable(props: ProductCustomizableProps) {
           {...option}
           optionIndex={option.sort_order + 100}
           index={index}
+          currency={product.price_range.minimum_price.final_price.currency}
         />
       ))}
     </>
