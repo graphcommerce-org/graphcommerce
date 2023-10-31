@@ -29,9 +29,14 @@ fragment ConfigurableOptions on ConfigurableProduct {
     attributes {
       code
       uid
+      value_index
+      label
     }
     product {
       uid
+      url_key
+      sku
+      name
     }
   }
 }
