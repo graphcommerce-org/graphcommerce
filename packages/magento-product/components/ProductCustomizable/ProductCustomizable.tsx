@@ -56,29 +56,22 @@ const CustomizableAreaOption = React.memo<
 const CustomizableDropDownOption = React.memo<
   React.ComponentProps<OptionTypeRenderer['CustomizableDropDownOption']>
 >((props) => {
-  const { uid, required, optionIndex, index, title, dropdownValue } = props
-  const { control, register } = useFormAddProductsToCart()
+  const { uid, required, index, title, dropdownValue } = props
+  const { control } = useFormAddProductsToCart()
 
   return (
-    <>
-      <input
-        type='hidden'
-        {...register(`cartItems.${index}.entered_options.${optionIndex}.uid`)}
-        value={uid}
-      />
-      <SelectElement
-        color='primary'
-        control={control}
-        name={`cartItems.${index}.entered_options.${optionIndex}.value`}
-        label={title}
-        required={Boolean(required)}
-        defaultValue=''
-        options={filterNonNullableKeys(dropdownValue, ['title']).map((option) => ({
-          id: option.uid,
-          label: option.title,
-        }))}
-      />
-    </>
+    <SelectElement
+      color='primary'
+      control={control}
+      name={`cartItems.${index}.customizable_options.${uid}`}
+      label={title}
+      required={Boolean(required)}
+      defaultValue=''
+      options={filterNonNullableKeys(dropdownValue, ['title']).map((option) => ({
+        id: option.uid,
+        label: option.title,
+      }))}
+    />
   )
 })
 
