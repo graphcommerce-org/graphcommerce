@@ -79,7 +79,9 @@ const CustomizableRadioOption = React.memo<
   React.ComponentProps<OptionTypeRenderer['CustomizableRadioOption']>
 >((props) => {
   const { uid, required, index, title: label, radioValue, currency } = props
-  const { control } = useFormAddProductsToCart()
+  const { control, getValues } = useFormAddProductsToCart()
+
+  const allSelected = getValues(`cartItems.${index}.customizable_options.${uid}`) || []
 
   return (
     <Box>
@@ -104,7 +106,11 @@ const CustomizableRadioOption = React.memo<
               title: radioVal.title,
               price:
                 radioVal.price === 0 ? null : (
-                  <Box sx={{ color: 'secondary.main' }}>
+                  <Box
+                    sx={{
+                      color: allSelected.includes(radioVal.uid) ? 'text.primary' : 'text.secondary',
+                    }}
+                  >
                     {/* Change fontFamily so the + is properly outlined */}
                     <span style={{ fontFamily: 'arial' }}>{'+ '}</span>
                     <Money value={radioVal.price} currency={currency} />
@@ -154,7 +160,9 @@ const CustomizableCheckboxOption = React.memo<
                 checkboxVal.price === 0 ? null : (
                   <Box
                     sx={{
-                      color: 'secondary.main',
+                      color: allSelected.includes(checkboxVal.uid)
+                        ? 'text.primary'
+                        : 'text.secondary',
                     }}
                   >
                     <span style={{ fontFamily: 'arial' }}>{'+ '}</span>
@@ -173,7 +181,9 @@ const CustomizableMultipleOption = React.memo<
   React.ComponentProps<OptionTypeRenderer['CustomizableMultipleOption']>
 >((props) => {
   const { uid, required, index, title: label, multipleValue, currency } = props
-  const { control } = useFormAddProductsToCart()
+  const { control, getValues } = useFormAddProductsToCart()
+
+  const allSelected = getValues(`cartItems.${index}.customizable_options.${uid}`) || []
 
   return (
     <Box>
@@ -198,7 +208,13 @@ const CustomizableMultipleOption = React.memo<
               title: multipleVal.title,
               price:
                 multipleVal.price === 0 ? null : (
-                  <Box sx={{ color: 'secondary.main' }}>
+                  <Box
+                    sx={{
+                      color: allSelected.includes(multipleVal.uid)
+                        ? 'text.primary '
+                        : 'text.secondary',
+                    }}
+                  >
                     <span style={{ fontFamily: 'arial' }}>{'+ '}</span>
                     <Money value={multipleVal.price} currency={currency} />
                   </Box>
