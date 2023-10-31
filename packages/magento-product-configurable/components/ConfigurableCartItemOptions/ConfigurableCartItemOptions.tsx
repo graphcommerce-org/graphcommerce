@@ -11,14 +11,8 @@ export function ConfigurableCartItemOptions(props: ConfigurableActionCartItemPro
       {configurable_options?.map((option) => (
         <Box key={option?.configurable_product_option_uid}>{option?.value_label}</Box>
       ))}
-      <Box
-        sx={(theme) => ({
-          display: 'flex',
-          gap: theme.spacings.xxs,
-        })}
-      >
-        <SelectedCustomizableOptions customizable_options={configurable_customizable} />
-      </Box>
+
+      <SelectedCustomizableOptions customizable_options={configurable_customizable} />
     </>
   )
 }

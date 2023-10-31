@@ -31,9 +31,11 @@ export function SelectedCustomizableOptions(props: ConfigurableActionCartItemPro
                 flexDirection: 'row',
               })}
             >
-              <span key={`${value.customizable_option_value_uid}_${value.label}`}>
-                {value.label}
-              </span>
+              {value.label && (
+                <span key={`${value.customizable_option_value_uid}_${value.label}`}>
+                  {value.label}
+                </span>
+              )}
               <span key={`${value.customizable_option_value_uid}_${value.price.value}`}>
                 {value.price.value > 0 && <Money value={value.price.value} />}
               </span>
