@@ -29,17 +29,9 @@ fragment ConfigurableOptions on ConfigurableProduct {
     attributes {
       code
       uid
-      value_index
-      label
     }
     product {
-      url_key
       uid
-      sku
-      small_image {
-        ...ProductImage
-      }
-      name
     }
   }
 }
