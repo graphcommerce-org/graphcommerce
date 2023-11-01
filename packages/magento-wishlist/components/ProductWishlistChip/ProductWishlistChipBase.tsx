@@ -38,9 +38,9 @@ const parts = ['root', 'wishlistIcon', 'wishlistIconActive', 'wishlistButton'] a
 const { classes } = extendableComponent(compName, parts)
 
 export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
-  const { showFeedbackMessage, buttonProps, sx = [], __typename, ...product } = props
+  const { showFeedbackMessage, buttonProps, sx = [], ...product } = props
 
-  const { url_key, configurable_options, sku, name } = product
+  const { url_key, configurable_options, sku, name, __typename } = product
 
   if (process.env.NODE_ENV === 'development') {
     if (typeof showFeedbackMessage !== 'undefined') {
@@ -178,7 +178,7 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
       ? conf_options
       : [],
     id: `${sku}${conf_options.map((i) => i?.configurable_product_option_value_uid).toString()}`,
-    product: { ...product, __typename },
+    product,
   }
 
   const oldItems = cache.readQuery({ query: GuestWishlistDocument })?.customer?.wishlists?.[0]
