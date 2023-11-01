@@ -90,7 +90,7 @@ function ProductGrouped(props: Props) {
                       variables={{ sku: item.product.sku ?? '', quantity: item.qty || 1 }}
                       name={product.name ?? ''}
                       price={product.price_range.minimum_price.final_price}
-                      additionalButtons={<ProductWishlistChipDetail product={product} />}
+                      additionalButtons={<ProductWishlistChipDetail {...product} />}
                     >
                       <ProductSidebarDelivery />
                     </ProductAddToCart>

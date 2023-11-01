@@ -157,7 +157,7 @@ function ProductPage(props: Props) {
 
           <ProductPageAddToCartActionsRow product={product}>
             <AddProductsToCartButton fullWidth product={product} />
-            <ProductWishlistChipDetail product={product} />
+            <ProductWishlistChipDetail {...product} />
           </ProductPageAddToCartActionsRow>
 
           <Usps usps={sidebarUsps} size='small' />
