@@ -1,4 +1,4 @@
-fragment ConfigurableOptions on ConfigurableProduct {
+fragment ConfigurableOptions on ConfigurableProduct @injectable {
   __typename
   uid
   sku
@@ -29,17 +29,9 @@ fragment ConfigurableOptions on ConfigurableProduct {
     attributes {
       code
       uid
-      value_index
-      label
     }
     product {
       uid
-      url_key
-      sku
-      name
-      small_image {
-        ...ProductImage
-      }
     }
   }
 }

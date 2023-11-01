@@ -1,0 +1,22 @@
+fragment ConfigurableVariants on ConfigurableProduct @inject(into: ["ConfigurableOptions"]) {
+  ... on ConfigurableProduct {
+    variants {
+      attributes {
+        value_index
+        label
+      }
+      product {
+        url_key
+        sku
+        name
+        small_image {
+          disabled
+          label
+          position
+          url
+          __typename
+        }
+      }
+    }
+  }
+}
