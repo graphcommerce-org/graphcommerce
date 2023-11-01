@@ -10,11 +10,7 @@ fragment ConfigurableVariants on ConfigurableProduct @inject(into: ["Configurabl
         sku
         name
         small_image {
-          disabled
-          label
-          position
-          url
-          __typename
+          ...ProductImage
         }
       }
     }

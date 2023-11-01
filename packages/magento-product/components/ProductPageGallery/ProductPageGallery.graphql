@@ -7,8 +7,5 @@ fragment ProductPageGallery on ProductInterface {
     ...ProductImage
     ...ProductVideo
   }
-  small_image {
-    ...ProductImage
-  }
   url_key
 }
