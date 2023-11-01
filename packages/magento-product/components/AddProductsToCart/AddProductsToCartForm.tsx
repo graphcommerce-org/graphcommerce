@@ -5,7 +5,7 @@ import {
   CrosssellsDocument,
   CrosssellsQuery,
 } from '@graphcommerce/magento-cart'
-import { ExtendableComponent } from '@graphcommerce/next-ui'
+import { ExtendableComponent, nonNullable } from '@graphcommerce/next-ui'
 import { Box, SxProps, Theme, useThemeProps } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useMemo, useRef } from 'react'
@@ -29,6 +29,8 @@ export type AddProductsToCartFormProps = {
   sx?: SxProps<Theme>
   // eslint-disable-next-line react/no-unused-prop-types
   redirect?: RedirectType
+
+  disableSuccessSnackbar?: boolean
 } & UseFormGraphQlOptions<AddProductsToCartMutation, AddProductsToCartMutationVariables> &
   AddProductsToCartSnackbarProps
 
@@ -56,8 +58,16 @@ declare module '@mui/material/styles/components' {
  * - Redirects the user to the cart/checkout/added page after successful submission.
  */
 export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
-  let { children, redirect, onComplete, sx, errorSnackbar, successSnackbar, ...formProps } =
-    useThemeProps({ name, props })
+  let {
+    children,
+    redirect,
+    onComplete,
+    sx,
+    disableSuccessSnackbar,
+    errorSnackbar,
+    successSnackbar,
+    ...formProps
+  } = useThemeProps({ name, props })
   const router = useRouter()
   const client = useApolloClient()
   const crosssellsQuery = useRef<Promise<ApolloQueryResult<CrosssellsQuery>>>()
@@ -84,7 +94,10 @@ export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
             ...cartItem,
             quantity: cartItem.quantity || 1,
             selected_options: cartItem.selected_options?.filter(Boolean),
-            entered_options: cartItem.entered_options?.filter((option) => option?.value),
+            entered_options: cartItem.entered_options
+              ?.filter((option) => option?.value)
+              .filter(nonNullable)
+              .map((option) => ({ ...option, value: option?.value.toString() })),
           })),
       }
 
@@ -132,7 +145,12 @@ export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
       <Box component='form' onSubmit={submit} noValidate sx={sx} className={name}>
         {children}
       </Box>
-      <AddProductsToCartSnackbar errorSnackbar={errorSnackbar} successSnackbar={successSnackbar} />
+      {disableSuccessSnackbar ? null : (
+        <AddProductsToCartSnackbar
+          errorSnackbar={errorSnackbar}
+          successSnackbar={successSnackbar}
+        />
+      )}
     </AddProductsToCartContext.Provider>
   )
 }

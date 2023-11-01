@@ -59,7 +59,7 @@ export function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormProps) {
           autoFocus
           error={formState.isSubmitted && !!formState.errors.currentEmail}
           helperText={formState.isSubmitted && formState.errors.currentEmail?.message}
-          label='Current email'
+          label={<Trans id='Current email' />}
           required
           value={email}
           {...muiRegister('currentEmail', {
@@ -132,7 +132,7 @@ export function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormProps) {
         </Button>
       </FormActions>
 
-      <MessageSnackbar sticky open={formState.isSubmitSuccessful && !error}>
+      <MessageSnackbar variant='pill' sticky open={formState.isSubmitSuccessful && !error}>
         <Trans id='Successfully updated email' />
       </MessageSnackbar>
     </Form>

@@ -1,5 +1,61 @@
 # Change Log
 
+## 7.1.0-canary.30
+
+## 7.1.0-canary.29
+
+## 7.1.0-canary.28
+
+## 7.1.0-canary.27
+
+## 7.1.0-canary.26
+
+## 7.1.0-canary.25
+
+## 7.1.0-canary.24
+
+## 7.1.0-canary.23
+
+### Patch Changes
+
+- [#2098](https://github.com/graphcommerce-org/graphcommerce/pull/2098) [`ca4547224`](https://github.com/graphcommerce-org/graphcommerce/commit/ca45472246e084f4b88f91bc700351e29c63e0e2) - Fix EditAddressForm when addition field is null or undefined ([@JoshuaS98](https://github.com/JoshuaS98))
+
+## 7.1.0-canary.22
+
+## 7.1.0-canary.21
+
+## 7.1.0-canary.20
+
+## 7.1.0-canary.19
+
+## 7.1.0-canary.18
+
+## 7.1.0-canary.17
+
+## 7.1.0-canary.16
+
+### Patch Changes
+
+- [#2087](https://github.com/graphcommerce-org/graphcommerce/pull/2087) [`42c33c6e3`](https://github.com/graphcommerce-org/graphcommerce/commit/42c33c6e3adceee400bc9f10ec416731db9279c0) - fix email update snackbar styling ([@StefanAngenent](https://github.com/StefanAngenent))
+
+## 7.1.0-canary.15
+
+### Patch Changes
+
+- [#2082](https://github.com/graphcommerce-org/graphcommerce/pull/2082) [`2e8d19ccc`](https://github.com/graphcommerce-org/graphcommerce/commit/2e8d19cccd305f0e8eb4c29d05161af6cfdb9d84) - Add current email translation ([@StefanAngenent](https://github.com/StefanAngenent))
+
+## 7.1.0-canary.14
+
+## 7.1.0-canary.13
+
+## 7.1.0-canary.12
+
+## 7.1.0-canary.11
+
+## 7.1.0-canary.10
+
+## 7.1.0-canary.9
+
 ## 7.1.0-canary.8
 
 ## 7.0.2-canary.7

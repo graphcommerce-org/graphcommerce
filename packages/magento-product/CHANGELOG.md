@@ -1,5 +1,69 @@
 # Change Log
 
+## 7.1.0-canary.30
+
+## 7.1.0-canary.29
+
+## 7.1.0-canary.28
+
+## 7.1.0-canary.27
+
+## 7.1.0-canary.26
+
+## 7.1.0-canary.25
+
+## 7.1.0-canary.24
+
+## 7.1.0-canary.23
+
+## 7.1.0-canary.22
+
+## 7.1.0-canary.21
+
+## 7.1.0-canary.20
+
+## 7.1.0-canary.19
+
+### Patch Changes
+
+- [#2083](https://github.com/graphcommerce-org/graphcommerce/pull/2083) [`ca493c7b2`](https://github.com/graphcommerce-org/graphcommerce/commit/ca493c7b208b8526c1109695d54bad7b2956a8bd) - Filters which are not yet applied and which option has 0 as item count will not be shown anymore. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 7.1.0-canary.18
+
+## 7.1.0-canary.17
+
+## 7.1.0-canary.16
+
+## 7.1.0-canary.15
+
+## 7.1.0-canary.14
+
+## 7.1.0-canary.13
+
+### Patch Changes
+
+- [#2076](https://github.com/graphcommerce-org/graphcommerce/pull/2076) [`f860e6860`](https://github.com/graphcommerce-org/graphcommerce/commit/f860e68603526a15dcf2567f4ca57230423ef5c3) - fix maxWidth on productPageDescription ([@StefanAngenent](https://github.com/StefanAngenent))
+
+## 7.1.0-canary.12
+
+## 7.1.0-canary.11
+
+### Patch Changes
+
+- [#2058](https://github.com/graphcommerce-org/graphcommerce/pull/2058) [`16dc48895`](https://github.com/graphcommerce-org/graphcommerce/commit/16dc4889543106238b1a87694e75586e4c1a787c) - Provide instant feedback on availble attribute options when making a selection on a configurable product ([@FrankHarland](https://github.com/FrankHarland))
+
+## 7.1.0-canary.10
+
+### Patch Changes
+
+- [#2081](https://github.com/graphcommerce-org/graphcommerce/pull/2081) [`22454110a`](https://github.com/graphcommerce-org/graphcommerce/commit/22454110a99de36a35e6f4b08c584b0165db32f4) - Removed the duplicate omitted name attribute from AddToCartQuantityProps ([@mikekeehnen](https://github.com/mikekeehnen))
+
+## 7.1.0-canary.9
+
+### Patch Changes
+
+- [#2007](https://github.com/graphcommerce-org/graphcommerce/pull/2007) [`f59c27660`](https://github.com/graphcommerce-org/graphcommerce/commit/f59c276605f9ed649d1197a9ba0e3f12d7c6d026) - Reconstruct crosssells behaviour. Add submitted variables & showSuccess to RHF ([@JoshuaS98](https://github.com/JoshuaS98))
+
 ## 7.1.0-canary.8
 
 ## 7.0.2-canary.7

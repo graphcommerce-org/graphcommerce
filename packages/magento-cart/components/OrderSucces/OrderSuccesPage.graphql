@@ -1,0 +1,4 @@
+fragment OrderSuccesPage on Cart @injectable {
+  ...CartItems
+  ...CartTotals
+}

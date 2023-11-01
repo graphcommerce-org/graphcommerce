@@ -1,5 +1,61 @@
 # Change Log
 
+## 7.1.0-canary.30
+
+## 7.1.0-canary.29
+
+## 7.1.0-canary.28
+
+### Minor Changes
+
+- [#2018](https://github.com/graphcommerce-org/graphcommerce/pull/2018) [`750aa6a72`](https://github.com/graphcommerce-org/graphcommerce/commit/750aa6a72710869d54244467253212e551d335e0) - Changed the layout of the succes page. We are using ActionCards right now to match the design of the cart. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 7.1.0-canary.27
+
+## 7.1.0-canary.26
+
+### Patch Changes
+
+- [#2089](https://github.com/graphcommerce-org/graphcommerce/pull/2089) [`4b6bbf065`](https://github.com/graphcommerce-org/graphcommerce/commit/4b6bbf06572c71e266cc2407e4533833712898e2) - The CartFab wouldn't reflect that there are items in the cart when a customer refreshes the page after adding a product to the cart, without viewing the cart. ([@carlocarels90](https://github.com/carlocarels90))
+
+## 7.1.0-canary.25
+
+## 7.1.0-canary.24
+
+## 7.1.0-canary.23
+
+## 7.1.0-canary.22
+
+## 7.1.0-canary.21
+
+## 7.1.0-canary.20
+
+## 7.1.0-canary.19
+
+## 7.1.0-canary.18
+
+## 7.1.0-canary.17
+
+### Minor Changes
+
+- [#2075](https://github.com/graphcommerce-org/graphcommerce/pull/2075) [`34dee456e`](https://github.com/graphcommerce-org/graphcommerce/commit/34dee456ef686174b62e604911a0ba84cbd3d002) - Added ordernumber to succes page. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 7.1.0-canary.16
+
+## 7.1.0-canary.15
+
+## 7.1.0-canary.14
+
+## 7.1.0-canary.13
+
+## 7.1.0-canary.12
+
+## 7.1.0-canary.11
+
+## 7.1.0-canary.10
+
+## 7.1.0-canary.9
+
 ## 7.1.0-canary.8
 
 ## 7.0.2-canary.7

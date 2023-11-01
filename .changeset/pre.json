@@ -76,10 +76,32 @@
     "@graphcommerce/typescript-config-pwa": "7.0.1"
   },
   "changesets": [
+    "brown-planes-retire",
+    "curvy-grapes-accept",
+    "forty-rocks-bow",
+    "friendly-islands-cough",
+    "fuzzy-clocks-hug",
+    "itchy-snakes-film",
+    "lazy-seahorses-rhyme",
     "little-shirts-film",
+    "quiet-tomatoes-melt",
     "red-gifts-listen",
+    "rich-beans-grin",
     "rich-guests-applaud",
+    "selfish-peas-fold",
+    "serious-wasps-itch",
+    "seven-seas-shop",
+    "sharp-shrimps-flow",
+    "shiny-bikes-kiss",
+    "six-horses-repeat",
+    "slow-flies-scream",
+    "strong-ants-confess",
+    "stupid-mice-check",
+    "tall-poems-reflect",
+    "tall-spies-reflect",
+    "three-dogs-clap",
     "twelve-deers-begin",
-    "two-years-relate"
+    "two-years-relate",
+    "wise-wombats-remain"
   ]
 }
