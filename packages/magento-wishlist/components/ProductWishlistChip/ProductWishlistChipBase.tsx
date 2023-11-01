@@ -114,8 +114,7 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
     />
   )
 
-  const selectedOptions =
-    addToCartForm?.getValues().cartItems?.find((item) => item.sku === sku)?.selected_options ?? []
+  const selectedOptions = addToCartForm?.getValues().cartItems?.[0]?.selected_options ?? []
   const selected_options = Array.isArray(selectedOptions) ? selectedOptions : [selectedOptions]
 
   const notFullyConfigured =
