@@ -125,8 +125,10 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
   const wishlistItems = wishlist.data
 
   function inWishlistWithoutSelectedOptions() {
-    // If there are no options selected search for the product which matches the url and if
-    // it is a configurable product check if it has no configurable options.
+    /**
+     * If there are no options selected search for the product which matches the url and if
+     * it is a configurable product check if it has no configurable options.
+     */
     return wishlistItems?.some(
       (item) =>
         item?.product?.url_key === url_key &&
@@ -137,8 +139,10 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
   }
 
   function inWishlistWithSelectedOptions() {
-    // If it is a configurable product check if all selected options match the configurable options of the product
-    // Check if the sku of the product matches the sku of the wishlistItem and check if the product url key matches the url key
+    /**
+     * If it is a configurable product check if all selected options match the configurable options of the product
+     * Check if the sku of the product matches the sku of the wishlistItem and check if the product url key matches the url key
+     */
     return wishlistItems?.some((wishlistItem) =>
       notFullyConfigured
         ? wishlistItem?.product?.sku === sku
@@ -212,11 +216,11 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
       })
 
       if (item?.id) {
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        removeWishlistItem({ variables: { wishlistItemId: item.id } })
+        removeWishlistItem({ variables: { wishlistItemId: item.id } }).catch((err) =>
+          console.log(err),
+        )
       }
     } else {
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       addWishlistItem({
         variables: {
           input: [
@@ -227,7 +231,7 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
             },
           ],
         },
-      })
+      }).catch((err) => console.log(err))
       setDisplayMessageBar(true)
     }
   }
