@@ -3,10 +3,12 @@ import { extendableComponent } from '@graphcommerce/next-ui'
 import { Typography, TypographyProps, Box } from '@mui/material'
 import { ProductListPriceFragment } from './ProductListPrice.gql'
 
-const { classes, selectors } = extendableComponent('ProductListPrice', [
+export const productListPrice = extendableComponent('ProductListPrice', [
   'root',
   'discountPrice',
 ] as const)
+
+const { classes, selectors } = productListPrice
 
 export type ProductListPriceProps = ProductListPriceFragment & Pick<TypographyProps, 'sx'>
 
