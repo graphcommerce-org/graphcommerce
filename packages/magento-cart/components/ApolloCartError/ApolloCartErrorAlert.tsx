@@ -5,6 +5,7 @@ import {
   CustomerDocument,
 } from '@graphcommerce/magento-customer'
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
+import { FieldValues, assertFormGqlOperation, useFormContext } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Button } from '@mui/material'
@@ -13,7 +14,12 @@ import { useClearCurrentCartId } from '../../hooks'
 export type ApolloCartErrorAlertProps = ApolloCustomerErrorAlertProps
 
 export function ApolloCartErrorAlert(props: ApolloCartErrorAlertProps) {
-  const { error, graphqlErrorAlertProps } = props
+  const { graphqlErrorAlertProps } = props
+  const form = useFormContext()
+
+  assertFormGqlOperation<FieldValues>(form)
+
+  const { error } = form
 
   const email = useQuery(CustomerDocument, { fetchPolicy: 'cache-only' }).data?.customer?.email
 

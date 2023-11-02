@@ -1,9 +1,10 @@
 import { SelectElement, TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import { FormRow, InputCheckmark } from '@graphcommerce/next-ui'
-import { assertFormGqlOperation, UseFormReturn } from '@graphcommerce/react-hook-form'
+import { assertFormGqlOperation, Controller, useFormContext } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
+import { MenuItem, TextField } from '@mui/material'
 
 type NameFieldValues = {
   firstname?: string
@@ -11,46 +12,53 @@ type NameFieldValues = {
   prefix?: string
 }
 
-type NameFieldProps = {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  form: UseFormReturn<any>
-  readOnly?: boolean
-  prefix?: boolean
-  prefixes?: string[]
-}
-
-export function NameFields(props: NameFieldProps) {
+export function NameFields() {
   const mr = i18n._(/* i18n */ 'Mr')
   const mrs = i18n._(/* i18n */ 'Mrs')
   const other = i18n._(/* i18n */ 'Other')
 
-  const { prefix, form, readOnly, prefixes = [mr, mrs, other] } = props
+  const form = useFormContext()
+
+  const prefixes = [mr, mrs, other]
+
   assertFormGqlOperation<NameFieldValues>(form)
 
-  const { control, required, valid } = form
+  const { control, required, valid, formState } = form
+
+  const readOnly = formState.isSubmitting
 
   return (
     <>
-      {prefix && (
-        <FormRow>
-          <SelectElement
-            variant='outlined'
-            defaultValue={prefixes[0]}
-            control={control}
-            required={required.prefix}
-            name='prefix'
-            label={<Trans id='Prefix' />}
-            InputProps={{
-              readOnly,
-              endAdornment: <InputCheckmark show={valid.prefix} select />,
-            }}
-            options={prefixes.map((option) => ({
-              id: option,
-              label: option,
-            }))}
-          />
-        </FormRow>
-      )}
+      <FormRow>
+        <Controller
+          defaultValue={prefixes[0]}
+          control={control}
+          name='prefix'
+          render={({ field: { ref, onChange, ...field }, fieldState }) => (
+            <TextField
+              variant='outlined'
+              select
+              error={!!fieldState.error}
+              label={<Trans id='Prefix' />}
+              required={!!required?.prefix}
+              helperText={fieldState.error?.message}
+              onChange={(e) => onChange(e.target.value)}
+              inputRef={ref}
+              InputProps={{
+                readOnly,
+                endAdornment: <InputCheckmark show={valid.prefix} select />,
+              }}
+              {...field}
+            >
+              {prefixes.map((option) => (
+                <MenuItem key={option} value={option}>
+                  {option}
+                </MenuItem>
+              ))}
+            </TextField>
+          )}
+        />
+      </FormRow>
       <FormRow>
         <TextFieldElement
           control={form.control}

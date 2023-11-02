@@ -1,29 +1,15 @@
 import {
-  phonePattern,
-  useFormAutoSubmit,
   useFormCompose,
   UseFormComposeOptions,
   useFormPersist,
-  TextFieldElement,
+  FormProvider,
+  FormAutoSubmit,
 } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
-import {
-  ApolloCartErrorAlert,
-  useCartQuery,
-  useFormGqlMutationCart,
-} from '@graphcommerce/magento-cart'
+import { useCartQuery, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { CartAddressFragment } from '@graphcommerce/magento-cart/components/CartAddress/CartAddress.gql'
-import {
-  AddressFields,
-  CustomerDocument,
-  NameFields,
-  useCustomerQuery,
-} from '@graphcommerce/magento-customer'
+import { CustomerDocument, useCustomerQuery } from '@graphcommerce/magento-customer'
 import { CountryRegionsDocument, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { Form, FormRow, InputCheckmark } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
-import { SxProps, Theme } from '@mui/material'
 import React from 'react'
 import {
   findCustomerAddressFromCartAddress,
@@ -40,11 +26,11 @@ export type ShippingAddressFormProps = Pick<UseFormComposeOptions, 'step'> & {
    * @deprecated This was used to make sure the form wasn't filled with a customer's address. However this also broke the checkout when navigating back from the checkout. This is now automatically handled.
    */
   ignoreCache?: boolean
-  sx?: SxProps<Theme>
+  children?: React.ReactNode[]
 }
 
 export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) => {
-  const { step, sx } = props
+  const { step, children, ignoreCache = false } = props
   const { data: cartQuery } = useCartQuery(GetAddressesDocument)
   const { data: config } = useQuery(StoreConfigDocument)
   const countryQuery = useQuery(CountryRegionsDocument, { fetchPolicy: 'cache-and-network' })
@@ -118,41 +104,16 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
       }
     },
   })
-  const { handleSubmit, valid, formState, required, error } = form
+  const { handleSubmit } = form
   const submit = handleSubmit(() => {})
 
   useFormPersist({ form, name: 'ShippingAddressForm' })
   useFormCompose({ form, step, submit, key: 'ShippingAddressForm' })
 
-  const autoSubmitting = useFormAutoSubmit({
-    form,
-    submit,
-    fields: ['postcode', 'countryCode', 'regionId'],
-  })
-  const readOnly = formState.isSubmitting && !autoSubmitting
-
   return (
-    <Form onSubmit={submit} noValidate sx={sx}>
-      <NameFields form={form} key='name' readOnly={readOnly} />
-      <AddressFields form={form} key='addressfields' readOnly={readOnly} />
-      <FormRow key='telephone'>
-        <TextFieldElement
-          control={form.control}
-          name='telephone'
-          variant='outlined'
-          type='text'
-          required={required.telephone}
-          validation={{
-            pattern: { value: phonePattern, message: i18n._(/* i18n */ 'Invalid phone number') },
-          }}
-          label={<Trans id='Telephone' />}
-          InputProps={{
-            readOnly,
-            endAdornment: <InputCheckmark show={valid.telephone} />,
-          }}
-        />
-      </FormRow>
-      <ApolloCartErrorAlert error={error} />
-    </Form>
+    <FormProvider {...form}>
+      {children}
+      <FormAutoSubmit {...form} submit={submit} name={['postcode', 'countryCode', 'regionId']} />
+    </FormProvider>
   )
 })
