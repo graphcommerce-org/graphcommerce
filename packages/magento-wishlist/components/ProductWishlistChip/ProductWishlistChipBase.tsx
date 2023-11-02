@@ -15,7 +15,7 @@ import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { SxProps, Theme, IconButton, Box, IconButtonProps } from '@mui/material'
 import { useState } from 'react'
-import { WishListItem, useWishlistEnabled, useWishlistItems } from '../../hooks'
+import { useWishlistEnabled, useWishlistItems } from '../../hooks'
 import { AddProductToWishlistDocument } from '../../queries/AddProductToWishlist.gql'
 import { GuestWishlistDocument } from '../../queries/GuestWishlist.gql'
 import { RemoveProductFromWishlistDocument } from '../../queries/RemoveProductFromWishlist.gql'
@@ -24,14 +24,14 @@ import { ProductWishlistChipFragment } from './ProductWishlistChip.gql'
 const hideForGuest = import.meta.graphCommerce.wishlistHideForGuests
 const ignoreProductWishlistStatus = import.meta.graphCommerce.wishlistIgnoreProductWishlistStatus
 
-export type ProductWishlistChipProps = ProductWishlistChipFragment & {
-  __typename: ProductListItemFragment['__typename']
-  sx?: SxProps<Theme>
-  buttonProps?: IconButtonProps
-  /** @deprecated */
-  showFeedbackMessage?: boolean
-  configurable_options?: Maybe<ProductListItemConfigurableFragment['configurable_options']>
-}
+export type ProductWishlistChipProps = ProductWishlistChipFragment &
+  ProductListItemFragment & {
+    sx?: SxProps<Theme>
+    buttonProps?: IconButtonProps
+    /** @deprecated */
+    showFeedbackMessage?: boolean
+    configurable_options?: Maybe<ProductListItemConfigurableFragment['configurable_options']>
+  }
 
 const compName = 'ProductWishlistChipBase' as const
 const parts = ['root', 'wishlistIcon', 'wishlistIconActive', 'wishlistButton'] as const
@@ -40,7 +40,13 @@ const { classes } = extendableComponent(compName, parts)
 export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
   const { showFeedbackMessage, buttonProps, sx = [], ...product } = props
 
-  const { url_key, configurable_options, sku, name, __typename } = product
+  const {
+    url_key,
+    configurable_options: initialConfigurableOptions,
+    sku,
+    name,
+    __typename,
+  } = product
 
   if (process.env.NODE_ENV === 'development') {
     if (typeof showFeedbackMessage !== 'undefined') {
@@ -65,15 +71,13 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
   const isWishlistEnabled = useWishlistEnabled()
 
   const typeMap = {
-    BundleProduct: 'BundleWishlistItem',
-    ConfigurableProduct: 'ConfigurableWishlistItem',
-    DownloadableProduct: 'DownloadableWishlistItem',
-    GroupedProduct: 'GroupedProductWishlistItem',
-    VirtualProduct: 'VirtualWishlistItem',
-    SimpleProduct: 'SimpleWishlistItem',
+    BundleProduct: 'BundleWishlistItem' as const,
+    ConfigurableProduct: 'ConfigurableWishlistItem' as const,
+    DownloadableProduct: 'DownloadableWishlistItem' as const,
+    GroupedProduct: 'GroupedProductWishlistItem' as const,
+    VirtualProduct: 'VirtualWishlistItem' as const,
+    SimpleProduct: 'SimpleWishlistItem' as const,
   }
-
-  const type = typeMap[__typename]
 
   const heart = (
     <IconSvg
@@ -109,7 +113,7 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
 
   const notFullyConfigured =
     __typename === 'ConfigurableProduct' &&
-    configurable_options?.length !==
+    initialConfigurableOptions?.length !==
       selected_options.filter((option) => option !== undefined).length
 
   const wishlistItems = wishlist.data
@@ -154,10 +158,10 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
       ? inWishlistWithoutSelectedOptions()
       : inWishlistWithSelectedOptions()
 
-  const conf_options = selectedOptions.map((selected_option) => {
+  const configurableOptions = selectedOptions.map((selected_option) => {
     if (__typename !== 'ConfigurableProduct') return null
 
-    const configurable_option = configurable_options?.find(
+    const configurable_option = initialConfigurableOptions?.find(
       (confOption) => confOption?.values?.find((values) => values?.uid === selected_option),
     )
 
@@ -171,18 +175,20 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
   })
 
   const guestWishlistItem = {
-    __typename: type,
-    configurable_options: conf_options.every(
+    ...product,
+    id: `${sku}${configurableOptions.map((i) => i?.configurable_product_option_value_uid)}`,
+    configurable_options: configurableOptions.every(
       (option) => option?.configurable_product_option_value_uid !== '',
     )
-      ? conf_options
+      ? configurableOptions
       : [],
-    id: `${sku}${conf_options.map((i) => i?.configurable_product_option_value_uid).toString()}`,
+    __typename: typeMap[__typename],
     product,
   }
 
   const oldItems = cache.readQuery({ query: GuestWishlistDocument })?.customer?.wishlists?.[0]
     ?.items_v2?.items
+
   const filteredItems = oldItems?.filter((oldItem) => oldItem?.id !== guestWishlistItem.id)
 
   const handleWishlistWhenAuthenticated = () => {
@@ -207,11 +213,11 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
       })
 
       if (item?.id) {
-        removeWishlistItem({ variables: { wishlistItemId: item.id } }).catch((err) =>
-          console.log(err),
-        )
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        removeWishlistItem({ variables: { wishlistItemId: item.id } })
       }
     } else {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       addWishlistItem({
         variables: {
           input: [
@@ -222,7 +228,7 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
             },
           ],
         },
-      }).catch((err) => console.log(err))
+      })
       setDisplayMessageBar(true)
     }
   }
@@ -250,9 +256,9 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
        *
        * Type conversions because type's of typename are not compatible.
        */
-      const items = oldItems
-        ? oldItems?.concat(guestWishlistItem as NonNullable<typeof oldItems>[0])
-        : ([guestWishlistItem] as WishListItem[])
+      // const items = oldItems
+      //   ? oldItems?.concat({ ...guestWishlistItem, __typename: 'BundleWishlistItem' })
+      //   : [guestWishlistItem]
       cache.writeQuery({
         query: GuestWishlistDocument,
         data: {
@@ -260,7 +266,7 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
             wishlists: [
               {
                 items_v2: {
-                  items,
+                  items: (oldItems ?? []).concat(guestWishlistItem),
                 },
               },
             ],
