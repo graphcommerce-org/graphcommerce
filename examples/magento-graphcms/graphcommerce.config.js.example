@@ -10,9 +10,6 @@ const config = {
   magentoEndpoint: 'https://backend.reachdigital.dev/graphql',
   canonicalBaseUrl: 'https://graphcommerce.vercel.app',
   storefront: [{ locale: 'en', magentoStoreCode: 'en_US' }],
-  sidebarGallery: {
-    paginationVariant: 'THUMBNAILS_BOTTOM',
-  },
 }
 
 module.exports = config
