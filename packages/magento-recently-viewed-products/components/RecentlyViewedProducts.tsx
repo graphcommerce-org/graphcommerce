@@ -24,13 +24,17 @@ export function RecentlyViewedProducts(props: RecentlyViewedProductsProps) {
     return null
   }
 
+  const loadingProducts = [...Array(skus.length - productList.products.length).keys()].map((i) => ({
+    __typename: 'Skeleton' as const,
+    uid: i.toString(),
+  }))
+
   return (
     <ProductScroller
       ref={ref}
       productListRenderer={productListRenderer}
       title={title}
-      items={productList.products}
-      skeletonItemCount={skus.length - productList.products.length}
+      items={[...loadingProducts, ...productList.products]}
     />
   )
 }
