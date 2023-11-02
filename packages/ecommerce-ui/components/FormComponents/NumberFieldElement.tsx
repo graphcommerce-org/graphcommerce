@@ -81,7 +81,7 @@ export function NumberFieldElement<T extends FieldValues>(props: NumberFieldElem
               },
               {
                 '& input[type=number]': {
-                  '-moz-appearance': 'textfield',
+                  MozAppearance: 'textfield',
                 },
                 '& .MuiOutlinedInput-root': {
                   px: '2px',
