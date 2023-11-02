@@ -23,11 +23,11 @@ export function ConfigurableWishlistItemAction(props: ConfigurableWishlistItemAc
     ?.filter(nonNullable)
     .map((option) => option?.configurable_product_option_value_uid)
 
-  const isConfigurableUncompleted =
+  const incompleteConfiguration =
     product?.__typename === 'ConfigurableProduct' &&
     product?.configurable_options?.length !== configurable_options?.length
 
-  return isConfigurableUncompleted ? (
+  return incompleteConfiguration ? (
     <Button
       variant='text'
       color='primary'

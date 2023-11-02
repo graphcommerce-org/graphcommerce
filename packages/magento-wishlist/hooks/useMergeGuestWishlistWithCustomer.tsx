@@ -15,24 +15,29 @@ export function useMergeGuestWishlistWithCustomer() {
   const [addWishlistItem] = useMutation(AddProductToWishlistDocument)
 
   useEffect(() => {
-    if (!loggedIn || !wishlist || wishlist.length === 0) return
+    if (!loggedIn || !wishlist) return
 
     const clearGuestList = () => cache.evict({ fieldName: 'customer' })
     if (wishlist?.length === 0) {
       clearGuestList()
     } else {
-      const input = wishlist.map((item) => ({
-        sku: item?.product?.sku || '',
-        selected_options:
-          item?.__typename === 'ConfigurableWishlistItem'
-            ? item?.configurable_options
-                ?.filter(nonNullable)
-                .map((option) => option?.configurable_product_option_value_uid)
-            : [],
-        quantity: 1,
-      }))
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      if (input.length) addWishlistItem({ variables: { input } }).then(clearGuestList)
+      const input = wishlist.map((item) => {
+        if (!item?.product?.sku) return null
+        return {
+          sku: item.product.sku,
+          selected_options:
+            item?.__typename === 'ConfigurableWishlistItem'
+              ? item?.configurable_options
+                  ?.filter(nonNullable)
+                  .map((option) => option?.configurable_product_option_value_uid)
+              : [],
+          quantity: 1,
+        }
+      })
+      const filteredInput = input.filter(nonNullable)
+      if (filteredInput.length > 0)
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        addWishlistItem({ variables: { input: filteredInput } }).then(clearGuestList)
     }
   }, [addWishlistItem, cache, loggedIn, wishlist])
 }
