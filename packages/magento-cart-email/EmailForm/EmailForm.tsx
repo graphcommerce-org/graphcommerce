@@ -72,7 +72,11 @@ const EmailFormBase = React.memo<EmailFormProps>((props) => {
             endAdornment: (
               <WaitForQueries waitFor={isEmailAvailable}>
                 {isEmailAvailable.data?.isEmailAvailable && (
-                  <Button href='/account/signin' color='secondary' style={{ whiteSpace: 'nowrap' }}>
+                  <Button
+                    href={`/account/signin?email=${email}`}
+                    color='secondary'
+                    style={{ whiteSpace: 'nowrap' }}
+                  >
                     <Trans id='Sign in' />
                   </Button>
                 )}
