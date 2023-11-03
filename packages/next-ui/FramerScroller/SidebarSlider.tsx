@@ -41,21 +41,23 @@ export function SidebarSlider(props: SidebarSliderProps) {
           className={classes.grid}
           sx={{
             display: 'grid',
-            gridTemplateColumns: 'minmax(150px, 25%) 1fr',
+            gridTemplateColumns: sidebar ? 'minmax(150px, 25%) 1fr' : '1fr',
             maxWidth: '100%',
           }}
         >
-          <Box
-            className={classes.sidebar}
-            sx={(theme) => ({
-              display: 'grid',
-              alignContent: 'space-between',
-              padding: `0 ${theme.spacings.lg} 0 ${theme.page.horizontal}`,
-            })}
-          >
-            <Box>{sidebar}</Box>
-            <ScrollerPageCounter />
-          </Box>
+          {sidebar && (
+            <Box
+              className={classes.sidebar}
+              sx={(theme) => ({
+                display: 'grid',
+                alignContent: 'space-between',
+                padding: `0 ${theme.spacings.lg} 0 ${theme.page.horizontal}`,
+              })}
+            >
+              <Box>{sidebar}</Box>
+              <ScrollerPageCounter />
+            </Box>
+          )}
 
           <Box className={classes.scrollerContainer} sx={{ position: 'relative', minWidth: 1 }}>
             <Scroller
