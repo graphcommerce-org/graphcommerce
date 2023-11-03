@@ -68,18 +68,7 @@ function OrderDetailPage() {
                 metaRobots={['noindex']}
               />
               <Typography sx={(theme) => ({ textAlign: 'center', mb: theme.spacings.lg })}>
-                <OrderStateLabel
-                  items={order.items}
-                  renderer={{
-                    Ordered: () => <Trans id='Your order is being processed' />,
-                    Invoiced: () => <Trans id='Your order has been invoiced' />,
-                    Shipped: () => <Trans id='Your order is on its way!' />,
-                    Refunded: () => <Trans id='Your order has been refunded' />,
-                    Canceled: () => <Trans id='Your order has been canceled' />,
-                    Returned: () => <Trans id='Your order has been returned' />,
-                    Partial: () => <Trans id='Your order has been partially processed' />,
-                  }}
-                />
+                <OrderStateLabel items={order.items} />
               </Typography>
               <OrderDetails {...order} />
               <OrderItems {...order} images={images} />
