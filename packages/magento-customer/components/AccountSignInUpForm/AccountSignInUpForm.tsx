@@ -10,7 +10,7 @@ import { emailPattern } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { Box, CircularProgress, Link, SxProps, TextField, Theme, Typography } from '@mui/material'
-import router from 'next/router'
+import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { CustomerDocument, useFormIsEmailAvailable } from '../../hooks'
 import { useCustomerQuery } from '../../hooks/useCustomerQuery'
@@ -32,6 +32,7 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
   const { sx = [] } = props
   const customerQuery = useCustomerQuery(CustomerDocument)
 
+  const router = useRouter()
   const { email, firstname = '' } = customerQuery.data?.customer ?? {}
   const { mode, form, autoSubmitting, submit } = useFormIsEmailAvailable({ email })
   const { formState, muiRegister, required, watch, error, setValue, trigger } = form
@@ -44,7 +45,7 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       trigger('email')
     }
-  }, [email, setValue, trigger])
+  }, [email, router.query.email, setValue, trigger])
 
   return (
     <FormDiv sx={sx} className={classes.root}>
