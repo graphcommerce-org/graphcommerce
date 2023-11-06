@@ -4,8 +4,10 @@ import {
   WaitForCustomer,
   useOrderCardItemImages,
   OrderDetails,
+  OrderTotals,
   OrderItems,
   OrderDetailPageDocument,
+  OrderStateLabel,
 } from '@graphcommerce/magento-customer'
 import { CountryRegionsDocument, PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
@@ -17,7 +19,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Container } from '@mui/material'
+import { Container, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
@@ -32,10 +34,9 @@ function OrderDetailPage() {
     fetchPolicy: 'cache-and-network',
     variables: { orderNumber: orderId as string },
   })
-  const { data, loading } = orders
+  const { data } = orders
   const images = useOrderCardItemImages(data?.customer?.orders)
   const order = data?.customer?.orders?.items?.[0]
-  const isLoading = orderId ? loading : true
 
   return (
     <>
@@ -52,7 +53,11 @@ function OrderDetailPage() {
             </IconHeader>
           )}
 
-          <LayoutTitle icon={iconBox}>
+          <LayoutTitle
+            icon={iconBox}
+            gutterBottom={false}
+            sx={(theme) => ({ mb: theme.spacings.xxs })}
+          >
             <Trans id='Order #{orderId}' values={{ orderId }} />
           </LayoutTitle>
 
@@ -62,8 +67,12 @@ function OrderDetailPage() {
                 title={i18n._(/* i18n */ 'Order #{orderId}', { orderId })}
                 metaRobots={['noindex']}
               />
-              <OrderItems {...order} loading={isLoading} images={images} />
-              <OrderDetails {...order} loading={isLoading} />
+              <Typography sx={(theme) => ({ textAlign: 'center', mb: theme.spacings.lg })}>
+                <OrderStateLabel items={order.items} />
+              </Typography>
+              <OrderDetails {...order} />
+              <OrderItems {...order} images={images} />
+              <OrderTotals {...order} />
             </>
           )}
         </WaitForCustomer>

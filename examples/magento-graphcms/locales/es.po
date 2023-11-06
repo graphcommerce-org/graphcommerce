@@ -418,8 +418,11 @@ msgstr "Pedido #{orderId}"
 msgid "Order before 22:00"
 msgstr "Pedido antes de las 22:00"
 
+msgid "Order date"
+msgstr "Besteldatum"
+
 msgid "Order not found"
-msgstr "Pedido no encontrado"
+msgstr "fecha de orden"
 
 msgid "Order number"
 msgstr "Número de pedido"
