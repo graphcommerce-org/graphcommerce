@@ -19,13 +19,7 @@ import {
   CustomerAddressForm,
 } from '@graphcommerce/magento-cart-shipping-address'
 import { ShippingMethodForm } from '@graphcommerce/magento-cart-shipping-method'
-import {
-  AddressFields,
-  CustomerDocument,
-  NameFields,
-  TelephoneField,
-  useCustomerQuery,
-} from '@graphcommerce/magento-customer'
+import { CustomerDocument, useCustomerQuery } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   FormActions,
@@ -103,12 +97,7 @@ function ShippingPage() {
               <>
                 {(customerAddresses.data?.customer?.addresses?.length ?? 0) >= 1 ? (
                   <CustomerAddressForm step={2} sx={(theme) => ({ mt: theme.spacings.lg })}>
-                    <ShippingAddressForm ignoreCache step={3}>
-                      <NameFields />
-                      <AddressFields />
-                      <TelephoneField />
-                      <ApolloCartErrorAlert />
-                    </ShippingAddressForm>
+                    <ShippingAddressForm ignoreCache step={3} />
                   </CustomerAddressForm>
                 ) : (
                   <>
@@ -121,10 +110,11 @@ function ShippingPage() {
                     </Typography>
                     <EmailForm step={1} />
                     <ShippingAddressForm step={3}>
-                      <NameFields />
-                      <AddressFields />
-                      <TelephoneField />
-                      <ApolloCartErrorAlert />
+                      <ShippingAddressForm.NameFields />
+                      <ShippingAddressForm.AddressFields />
+                      <ShippingAddressForm.TelephoneField />
+                      <ShippingAddressForm.Error />
+                      <ShippingAddressForm.Submit />
                     </ShippingAddressForm>
                   </>
                 )}

@@ -60,8 +60,8 @@ export function CreateCustomerAddressForm() {
   return (
     <>
       <Form onSubmit={submitHandler} noValidate>
-        <NameFields form={form} prefix />
-        <AddressFields form={form} />
+        <NameFields />
+        <AddressFields />
 
         <FormRow>
           <TextField
