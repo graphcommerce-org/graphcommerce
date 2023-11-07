@@ -1,11 +1,9 @@
-import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
+import { SelectElement, TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import { FormRow, InputCheckmark } from '@graphcommerce/next-ui'
-import { assertFormGqlOperation, Controller, UseFormReturn } from '@graphcommerce/react-hook-form'
+import { assertFormGqlOperation, UseFormReturn } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
-import { MenuItem, TextField } from '@mui/material'
-import React from 'react'
 
 type NameFieldValues = {
   firstname?: string
@@ -31,37 +29,27 @@ export function NameFields(props: NameFieldProps) {
 
   const { control, required, valid } = form
 
+  form.register('prefix')
   return (
     <>
       {prefix && (
         <FormRow>
-          <Controller
+          <SelectElement
+            variant='outlined'
             defaultValue={prefixes[0]}
+            value={prefixes[0]}
             control={control}
             name='prefix'
-            render={({ field: { ref, onChange, ...field }, fieldState }) => (
-              <TextField
-                variant='outlined'
-                select
-                error={!!fieldState.error}
-                label={<Trans id='Prefix' />}
-                required={!!required?.prefix}
-                helperText={fieldState.error?.message}
-                onChange={(e) => onChange(e.target.value)}
-                inputRef={ref}
-                InputProps={{
-                  readOnly,
-                  endAdornment: <InputCheckmark show={valid.prefix} select />,
-                }}
-                {...field}
-              >
-                {prefixes.map((option) => (
-                  <MenuItem key={option} value={option}>
-                    {option}
-                  </MenuItem>
-                ))}
-              </TextField>
-            )}
+            select
+            label={<Trans id='Prefix' />}
+            InputProps={{
+              readOnly,
+              endAdornment: <InputCheckmark show={valid.prefix} select />,
+            }}
+            options={prefixes.map((option) => ({
+              id: option,
+              label: option,
+            }))}
           />
         </FormRow>
       )}
