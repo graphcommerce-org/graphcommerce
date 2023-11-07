@@ -253,6 +253,7 @@ export type GraphCommerceConfig = {
   legacyProductRoute?: InputMaybe<Scalars['Boolean']['input']>;
   /** Limit the static generation of SSG when building */
   limitSsg?: InputMaybe<Scalars['Boolean']['input']>;
+  loginMethod?: InputMaybe<LoginMethod>;
   /**
    * GraphQL Magento endpoint.
    *
@@ -365,6 +366,10 @@ export type GraphCommerceStorefrontConfig = {
   magentoStoreCode: Scalars['String']['input'];
 };
 
+export type LoginMethod =
+  | 'IS_EMAIL_AVAILABLE'
+  | 'TOGGLE';
+
 /** Options to configure which values will be replaced when a variant is selected on the product page. */
 export type MagentoConfigurableVariantValues = {
   /** Use the name, description, short description and meta data from the configured variant */
@@ -418,6 +423,8 @@ export const definedNonNullAnySchema = z.any().refine((v) => isDefinedNonNullAny
 
 export const CompareVariantSchema = z.enum(['CHECKBOX', 'ICON']);
 
+export const LoginMethodSchema = z.enum(['IS_EMAIL_AVAILABLE', 'TOGGLE']);
+
 export const ProductFiltersLayoutSchema = z.enum(['DEFAULT', 'SIDEBAR']);
 
 export const SidebarGalleryPaginationVariantSchema = z.enum(['DOTS', 'THUMBNAILS_BOTTOM']);
@@ -444,6 +451,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     hygraphWriteAccessToken: z.string().nullish(),
     legacyProductRoute: z.boolean().nullish(),
     limitSsg: z.boolean().nullish(),
+    loginMethod: LoginMethodSchema.nullish(),
     magentoEndpoint: z.string().min(1),
     previewSecret: z.string().nullish(),
     productFiltersLayout: ProductFiltersLayoutSchema.nullish(),

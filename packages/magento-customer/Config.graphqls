@@ -1,3 +1,8 @@
+enum LoginMethod {
+  IS_EMAIL_AVAILABLE
+  TOGGLE
+}
+
 extend input GraphCommerceConfig {
   """
   Due to a limitation in the GraphQL API of Magento 2, we need to know if the
@@ -8,4 +13,6 @@ extend input GraphCommerceConfig {
   """
   customerRequireEmailConfirmation: Boolean
   # @deprecated(reason: "Should be replaced with a Magento configuration instead.")
+
+  loginMethod: LoginMethod
 }
