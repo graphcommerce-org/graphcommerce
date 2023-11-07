@@ -11,7 +11,7 @@ export type AccountSignInUpToggleFormProps = {
 }
 
 const parts = ['root', 'titleContainer'] as const
-const { classes } = extendableComponent('AccountSignInUpIsEmailAvailableForm', parts)
+const { classes } = extendableComponent('AccountSignInUpToggleForm', parts)
 
 export function AccountSignInUpToggleForm(props: AccountSignInUpToggleFormProps) {
   const { sx = [], titleContainerSx, email, firstName } = props
