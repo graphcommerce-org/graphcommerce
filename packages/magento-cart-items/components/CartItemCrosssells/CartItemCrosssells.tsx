@@ -15,7 +15,8 @@ export function CartItemCrosssells(props: CartItemCrosssellsProps) {
 
   const cartItem =
     cart?.items
-      ?.reverse()
+      ?.slice()
+      .reverse()
       .find(
         (item) => item?.product?.crosssell_products && item.product.crosssell_products.length > 0,
       ) ?? null
