@@ -15,8 +15,7 @@ export function CartItemCrosssells(props: CartItemCrosssellsProps) {
 
   const cartItem =
     cart?.items
-      ?.slice()
-      .reverse()
+      ?.reverse()
       .find(
         (item) => item?.product?.crosssell_products && item.product.crosssell_products.length > 0,
       ) ?? null
@@ -24,7 +23,7 @@ export function CartItemCrosssells(props: CartItemCrosssellsProps) {
   const crosssells = cartItem?.product?.crosssell_products
   const crossSellsHideCartItems = Boolean(import.meta.graphCommerce.crossSellsHideCartItems)
 
-  if (!crosssells || crosssells.length <= 1 || crossSellsHideCartItems === true) return null
+  if (!crosssells || crosssells.length < 0 || crossSellsHideCartItems === true) return null
 
   return (
     <Box sx={[(theme) => ({ mt: theme.spacings.sm }), ...(Array.isArray(sx) ? sx : [sx])]}>
@@ -35,7 +34,6 @@ export function CartItemCrosssells(props: CartItemCrosssellsProps) {
       <SidebarSlider
         buttonSize='responsiveMedium'
         showButtons='auto'
-        sidebar={false}
         sx={(theme) => ({
           marginBottom: 0,
           '& .ProductListItem-topRight, .ProductListItem-topLeft, .ProductListItem-bottomLeft, .ProductListItem-subtitle':

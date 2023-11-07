@@ -26,7 +26,7 @@ const { classes, selectors } = extendableComponent('SidebarSlider', [
 
 export type SidebarSliderProps = {
   children: ReactNode
-  sidebar: ReactNode
+  sidebar?: ReactNode
   sx?: SxProps<Theme>
   buttonSize?: ScrollerButtonProps['size']
 } & Pick<ScrollerButtonProps, 'showButtons'>
