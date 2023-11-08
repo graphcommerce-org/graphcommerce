@@ -3,6 +3,7 @@ import { FormRow, InputCheckmark } from '@graphcommerce/next-ui'
 import { assertFormGqlOperation, UseFormReturn } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
+import { memo } from 'react'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
 
 type NameFieldValues = {
@@ -27,7 +28,11 @@ export function NameFields(props: NameFieldProps) {
   const { prefix, form, readOnly, prefixes = [mr, mrs, other] } = props
   assertFormGqlOperation<NameFieldValues>(form)
 
-  const { control, required, valid } = form
+  const { control, required, valid, formState } = form
+
+  // It is importan this piece of code stays here. There is a bug which causes the form to not fill defaultvalues properly. Workaround is this piece of code. Link to bugreport : https://github.com/react-hook-form/react-hook-form/issues/857
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { isValid } = formState
 
   return (
     <>
@@ -35,9 +40,10 @@ export function NameFields(props: NameFieldProps) {
         <FormRow>
           <SelectElement
             variant='outlined'
+            defaultValue={prefixes[0]}
             control={control}
+            required={required.prefix}
             name='prefix'
-            select
             label={<Trans id='Prefix' />}
             InputProps={{
               readOnly,
