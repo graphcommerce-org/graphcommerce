@@ -1,9 +1,4 @@
 <!-- Automatically generated from Config.graphqls -->
-### CompareVariant (enum) 
-
-- CHECKBOX 
-- ICON 
-
 # GraphCommerce configuration system
 
 Global GraphCommerce configuration can be configured in your `graphcommerce.config.js` file
@@ -82,7 +77,7 @@ Below is a list of all possible configurations that can be set by GraphCommerce.
 
 ### GraphCommerceConfig
 
-#### canonicalBaseUrl: string!
+#### canonicalBaseUrl: string (required)
 
 The canonical base URL is used for SEO purposes.
 
@@ -91,7 +86,7 @@ Examples:
 - https://example.com/en
 - https://example.com/en-US
 
-#### hygraphEndpoint: string!
+#### hygraphEndpoint: string (required)
 
 The HyGraph endpoint.
 
@@ -99,14 +94,14 @@ The HyGraph endpoint.
 
 Project settings -> API Access -> High Performance Read-only Content API
 
-#### magentoEndpoint: string!
+#### magentoEndpoint: string (required)
 
 GraphQL Magento endpoint.
 
 Examples:
 - https://magento2.test/graphql
 
-#### storefront: [`GraphCommerceStorefrontConfig`](#GraphCommerceStorefrontConfig)![]!
+#### storefront: [GraphCommerceStorefrontConfig](#GraphCommerceStorefrontConfig)[] (required)
 
 All storefront configuration for the project
 
@@ -120,7 +115,7 @@ When Magento's StoreConfig adds this value, this can be replaced.
 
 Use compare functionality
 
-#### compareVariant: [`CompareVariant`](#CompareVariant) = ICON
+#### compareVariant: 'CHECKBOX' | 'ICON' = 'ICON'
 
 By default the compare feature is denoted with a 'compare ICON' (2 arrows facing one another).
 This may be fine for experienced users, but for more clarity it's also possible to present the compare feature as a CHECKBOX accompanied by the 'Compare' label
@@ -138,7 +133,7 @@ Magento also returns the Simple product and the Configurable product the simple 
 If that is the case we render the configurable product page instead of the simple product page but
 the options to select the simple product are pre-selected.
 
-#### configurableVariantValues: [`MagentoConfigurableVariantValues`](#MagentoConfigurableVariantValues) = { content: true, url: true }
+#### configurableVariantValues: [MagentoConfigurableVariantValues](#MagentoConfigurableVariantValues) = { content: true, url: true }
 
 When a user selects a variant, it will switch the values on the configurable page with the values of the configured variant.
 
@@ -164,7 +159,7 @@ customer requires email confirmation.
 This value should match Magento 2's configuration value for
 `customer/create_account/confirm` and should be removed once we can query
 
-#### debug: [`GraphCommerceDebugConfig`](#GraphCommerceDebugConfig)
+#### debug: [GraphCommerceDebugConfig](#GraphCommerceDebugConfig)
 
 Debug configuration for GraphCommerce
 
@@ -260,7 +255,7 @@ Limit the static generation of SSG when building
 
 To enable next.js' preview mode, configure the secret you'd like to use.
 
-#### productFiltersLayout: [`ProductFiltersLayout`](#ProductFiltersLayout) = DEFAULT
+#### productFiltersLayout: 'DEFAULT' | 'SIDEBAR' = 'DEFAULT'
 
 Layout how the filters are rendered.
 DEFAULT: Will be rendered as horzontal chips on desktop and mobile
@@ -277,7 +272,7 @@ By default we route products to /p/[url] but you can change this to /product/[ur
 Default: '/p/'
 Example: '/product/'
 
-#### recentlyViewedProducts: [`RecentlyViewedProductsConfg`](#RecentlyViewedProductsConfg)
+#### recentlyViewedProducts: [RecentlyViewedProductsConfig](#RecentlyViewedProductsConfig)
 
 Settings for recently viewed products
 
@@ -325,11 +320,11 @@ Issues that this can cause are:
 
 All storefront configuration for the project
 
-#### locale: string!
+#### locale: string (required)
 
 Must be a locale string https://www.unicode.org/reports/tr35/tr35-59/tr35.html#Identifiers
 
-#### magentoStoreCode: string!
+#### magentoStoreCode: string (required)
 
 Magento store code.
 
@@ -377,7 +372,7 @@ Locale specific google reCAPTCHA key.
 
 The Google Tagmanager ID to be used per locale.
 
-#### hygraphLocales: string![]
+#### hygraphLocales: string[]
 
 Add a gcms-locales header to make sure queries return in a certain language, can be an array to define fallbacks.
 
@@ -404,12 +399,7 @@ When a variant is selected the URL of the product will be changed in the address
 
 This only happens when the actual variant is can be accessed by the URL.
 
-### ProductFiltersLayout (enum) 
-
-- DEFAULT 
-- SIDEBAR 
-
-### RecentlyViewedProductsConfg
+### RecentlyViewedProductsConfig
 
 Settings for recently viewed products
 

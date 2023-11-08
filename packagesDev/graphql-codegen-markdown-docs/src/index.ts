@@ -33,7 +33,7 @@ export const plugin: PluginFunction<MarkdownDocsPluginConfig, Types.ComplexPlugi
     ID: 'string',
   }
 
-  const content = visit<string>(astNode, {
+  let content = visit<string>(astNode, {
     Document: {
       leave: (node) =>
         `<!-- Automatically generated from Config.graphqls -->${node.definitions
@@ -42,15 +42,13 @@ export const plugin: PluginFunction<MarkdownDocsPluginConfig, Types.ComplexPlugi
     },
     Name: { leave: (node) => node.value },
     NamedType: {
-      leave: (node) => {
-        return possibleScalars[node.name] ?? `[\`${node.name}\`](#${node.name})`
-      },
+      leave: (node) => possibleScalars[node.name] ?? `[${node.name}](#${node.name})`,
     }, // String, Boolean, GraphCommerceDebugConfig, etc.
     StringValue: { leave: (node) => node.value },
     BooleanValue: {
       leave: (node) => (node.value ? 'true' : 'false'),
     },
-    EnumValue: { leave: (node) => node.value },
+    EnumValue: { leave: (node) => `'${node.value}'` },
     IntValue: { leave: (node) => node.value },
     ObjectValue: {
       leave: (node) => {
@@ -59,10 +57,12 @@ export const plugin: PluginFunction<MarkdownDocsPluginConfig, Types.ComplexPlugi
       },
     },
     FloatValue: { leave: (node) => node.value },
-    ListType: { leave: (node) => `${node.type}[]` },
+    ListType: {
+      leave: (node) => `${node.type.replace(' (required)', '')}[]`,
+    },
     ObjectField: { leave: (node) => `${node.name}: ${node.value}` },
     NonNullType: {
-      leave: (node) => `${node.type}!`,
+      leave: (node) => `${node.type} (required)`,
     },
     InputValueDefinition: {
       leave: (node) => {
@@ -75,6 +75,7 @@ export const plugin: PluginFunction<MarkdownDocsPluginConfig, Types.ComplexPlugi
         ...node,
         // Move required fields to the top.
         fields: [...(node.fields ?? [])].sort((a, b) =>
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
           a.type.kind === 'NonNullType' && b.type.kind !== 'NonNullType' ? -1 : 1,
         ),
       }),
@@ -87,18 +88,18 @@ export const plugin: PluginFunction<MarkdownDocsPluginConfig, Types.ComplexPlugi
         return `\n${title}\n${node.fields?.map((f) => `\n#### ${f}`).join('\n')}`
       },
     },
-    EnumValueDefinition: {
-      leave: (node) => `${node.name} ${node.description ? `: ${node.description}` : ''}`,
-    },
+    EnumValueDefinition: { leave: (node) => node.name },
     EnumTypeDefinition: {
       leave: (node) => {
-        enumStings.set(node.name, node.values?.join('\n') || '')
-
-        return `\n### ${node.name} (enum) ${
-          node.description ? `\n\n${node.description}` : ''
-        }\n\n${node.values?.map((v) => `- ${v}`)?.join('\n')}`
+        if (node.values)
+          enumStings.set(node.name, node.values.map((v) => `'${v.trim()}'`).join(' | '))
+        return ''
       },
     },
+  })
+
+  enumStings.forEach((value, key) => {
+    content = content.replaceAll(`[${key}](#${key})`, value)
   })
 
   return { content }

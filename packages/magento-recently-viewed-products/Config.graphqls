@@ -1,7 +1,7 @@
 """
 Settings for recently viewed products
 """
-input RecentlyViewedProductsConfg {
+input RecentlyViewedProductsConfig {
   """
   Enable/disable recently viewed products
   """
@@ -16,5 +16,5 @@ extend input GraphCommerceConfig {
   """
   Settings for recently viewed products
   """
-  recentlyViewedProducts: RecentlyViewedProductsConfg
+  recentlyViewedProducts: RecentlyViewedProductsConfig
 }

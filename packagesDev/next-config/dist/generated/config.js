@@ -33,8 +33,8 @@ _export(exports, {
     MagentoConfigurableVariantValuesSchema: function() {
         return MagentoConfigurableVariantValuesSchema;
     },
-    RecentlyViewedProductsConfgSchema: function() {
-        return RecentlyViewedProductsConfgSchema;
+    RecentlyViewedProductsConfigSchema: function() {
+        return RecentlyViewedProductsConfigSchema;
     }
 });
 const _zod = require("zod");
@@ -75,7 +75,7 @@ function GraphCommerceConfigSchema() {
         productFiltersLayout: ProductFiltersLayoutSchema.nullish(),
         productFiltersPro: _zod.z.boolean().nullish(),
         productRoute: _zod.z.string().nullish(),
-        recentlyViewedProducts: RecentlyViewedProductsConfgSchema().nullish(),
+        recentlyViewedProducts: RecentlyViewedProductsConfigSchema().nullish(),
         robotsAllow: _zod.z.boolean().nullish(),
         storefront: _zod.z.array(GraphCommerceStorefrontConfigSchema()),
         wishlistHideForGuests: _zod.z.boolean().nullish(),
@@ -112,7 +112,7 @@ function MagentoConfigurableVariantValuesSchema() {
         url: _zod.z.boolean().nullish()
     });
 }
-function RecentlyViewedProductsConfgSchema() {
+function RecentlyViewedProductsConfigSchema() {
     return _zod.z.object({
         enabled: _zod.z.boolean().nullish(),
         maxCount: _zod.z.number().nullish()
