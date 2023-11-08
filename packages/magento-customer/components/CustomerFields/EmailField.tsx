@@ -3,18 +3,25 @@ import { FormRow } from '@graphcommerce/next-ui'
 import { useFormContext, assertFormGqlOperation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
 
-export function EmailField() {
+type EmailFieldProps = {
+  label?: React.ReactNode
+}
+
+export function EmailField({ label }: EmailFieldProps) {
   const methods = useFormContext()
   assertFormGqlOperation(methods)
-  const { formState, control } = methods
+  const { formState, control, required, error, ...rest } = methods
 
   return (
     <FormRow>
       <TextFieldElement
+        {...rest}
         name='email'
-        label={<Trans id='Email' />}
-        control={control}
+        autoComplete='off'
+        label={label ?? <Trans id='Email' />}
         disabled={formState.isSubmitting}
+        required={required.email}
+        error={formState.isSubmitted && !!formState.errors.email}
       />
     </FormRow>
   )

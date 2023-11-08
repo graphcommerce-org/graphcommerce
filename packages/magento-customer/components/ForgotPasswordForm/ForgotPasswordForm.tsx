@@ -1,5 +1,5 @@
 import { Button, Form, FormActions } from '@graphcommerce/next-ui'
-import { FormProvider, useFormContext, useFormGqlMutation } from '@graphcommerce/react-hook-form'
+import { FormProvider, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
 import { SxProps, Theme } from '@mui/material'
 import { PropsWithChildren } from 'react'
@@ -10,30 +10,12 @@ import {
   ForgotPasswordMutationVariables,
 } from './ForgotPassword.gql'
 
-const Submit = () => {
-  const methods = useFormContext()
-  const { formState } = methods
-  return (
-    <FormActions>
-      <Button
-        type='submit'
-        loading={formState.isSubmitting}
-        color='primary'
-        variant='pill'
-        size='large'
-      >
-        <Trans id='Send password reset email' />
-      </Button>
-    </FormActions>
-  )
-}
-
-function Base(props: { sx?: SxProps<Theme> } & PropsWithChildren) {
+export function ForgotPasswordForm(props: { sx?: SxProps<Theme> } & PropsWithChildren) {
   const { sx = [], children } = props
   const form = useFormGqlMutation<ForgotPasswordMutation, ForgotPasswordMutationVariables>(
     ForgotPasswordDocument,
   )
-  const { handleSubmit } = form
+  const { handleSubmit, formState } = form
   const submitHandler = handleSubmit(() => {})
 
   return (
@@ -42,15 +24,20 @@ function Base(props: { sx?: SxProps<Theme> } & PropsWithChildren) {
         {children ?? (
           <>
             <EmailField />
-            <Submit />
+            <FormActions>
+              <Button
+                type='submit'
+                loading={formState.isSubmitting}
+                color='primary'
+                variant='pill'
+                size='large'
+              >
+                <Trans id='Send password reset email' />
+              </Button>
+            </FormActions>
           </>
         )}
       </Form>
     </FormProvider>
   )
 }
-
-export const ForgotPasswordForm = Object.assign(Base, {
-  Email: EmailField,
-  Submit,
-})

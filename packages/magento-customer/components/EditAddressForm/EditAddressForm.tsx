@@ -1,36 +1,28 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { useGo, usePageContext } from '@graphcommerce/framer-next-pages'
 import { useQuery } from '@graphcommerce/graphql'
 import { CountryRegionsDocument } from '@graphcommerce/magento-store'
-import {
-  Button,
-  Form,
-  FormActions,
-  FormDivider,
-  FormRow,
-  InputCheckmark,
-} from '@graphcommerce/next-ui'
-import { phonePattern, useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { i18n } from '@lingui/core'
+import { Button, Form, FormActions, FormDivider } from '@graphcommerce/next-ui'
+import { FormProvider, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
-// eslint-disable-next-line @typescript-eslint/no-restricted-imports
-import { SxProps, TextField, Theme } from '@mui/material'
+import { SxProps, Theme } from '@mui/material'
+import { PropsWithChildren } from 'react'
 import { AccountAddressFragment } from '../AccountAddress/AccountAddress.gql'
 import { AddressFields } from '../AddressFields/AddressFields'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'
+import { TelephoneField } from '../CustomerFields/TelephoneField'
 import { NameFields } from '../NameFields/NameFields'
 import { UpdateCustomerAddressDocument } from './UpdateCustomerAddress.gql'
 
-type EditAddressFormProps = {
+type EditAddressFormProps = PropsWithChildren<{
   address?: AccountAddressFragment
   sx?: SxProps<Theme>
   onCompleteRoute?: string
-}
+}>
 
 export function EditAddressForm(props: EditAddressFormProps) {
   const countryQuery = useQuery(CountryRegionsDocument, { fetchPolicy: 'cache-and-network' })
   const countries = countryQuery.data?.countries ?? countryQuery.previousData?.countries
-  const { address, sx } = props
+  const { address, sx, children } = props
 
   const { closeSteps } = usePageContext()
   const onComplete = useGo(closeSteps * -1)
@@ -74,48 +66,33 @@ export function EditAddressForm(props: EditAddressFormProps) {
     { errorPolicy: 'all' },
   )
 
-  const { handleSubmit, formState, required, error, muiRegister, valid } = form
+  const { handleSubmit, formState } = form
   const submitHandler = handleSubmit(() => {})
 
   return (
-    <>
+    <FormProvider {...form}>
       <Form onSubmit={submitHandler} noValidate sx={sx}>
-        <NameFields form={form} prefix />
-        <AddressFields form={form} />
-
-        <FormRow>
-          <TextField
-            variant='outlined'
-            type='text'
-            error={!!formState.errors.telephone}
-            required={required.telephone}
-            label={<Trans id='Telephone' />}
-            {...muiRegister('telephone', {
-              required: required.telephone,
-              pattern: { value: phonePattern, message: i18n._(/* i18n */ 'Invalid phone number') },
-            })}
-            helperText={formState.isSubmitted && formState.errors.telephone?.message}
-            disabled={formState.isSubmitting}
-            InputProps={{ endAdornment: <InputCheckmark show={valid.telephone} /> }}
-          />
-        </FormRow>
-
-        <FormDivider />
-
-        <FormActions sx={{ paddingBottom: 0 }}>
-          <Button
-            type='submit'
-            variant='pill'
-            color='primary'
-            size='large'
-            loading={formState.isSubmitting}
-          >
-            <Trans id='Save changes' />
-          </Button>
-        </FormActions>
+        {children ?? (
+          <>
+            <NameFields prefix />
+            <AddressFields />
+            <TelephoneField />
+            <FormDivider />
+            <FormActions sx={{ paddingBottom: 0 }}>
+              <Button
+                type='submit'
+                variant='pill'
+                color='primary'
+                size='large'
+                loading={formState.isSubmitting}
+              >
+                <Trans id='Save changes' />
+              </Button>
+            </FormActions>
+            <ApolloCustomerErrorAlert />
+          </>
+        )}
       </Form>
-
-      <ApolloCustomerErrorAlert error={error} />
-    </>
+    </FormProvider>
   )
 }

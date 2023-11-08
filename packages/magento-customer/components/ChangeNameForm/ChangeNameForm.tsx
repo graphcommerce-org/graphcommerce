@@ -1,18 +1,19 @@
 import { Form, FormActions, FormDivider, MessageSnackbar, Button } from '@graphcommerce/next-ui'
-import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
+import { FormProvider, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
+import { PropsWithChildren } from 'react'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import { NameFields } from '../NameFields/NameFields'
 import { UpdateCustomerNameDocument } from './UpdateCustomerName.gql'
 
-type ChangeNameFormProps = {
+type ChangeNameFormProps = PropsWithChildren<{
   prefix?: string
   firstname: string
   lastname: string
-}
+}>
 
 export function ChangeNameForm(props: ChangeNameFormProps) {
-  const { prefix, firstname, lastname } = props
+  const { prefix, firstname, lastname, children } = props
   const form = useFormGqlMutation(
     UpdateCustomerNameDocument,
     {
@@ -29,30 +30,30 @@ export function ChangeNameForm(props: ChangeNameFormProps) {
   const submit = handleSubmit(() => {})
 
   return (
-    <>
+    <FormProvider {...form}>
       <Form onSubmit={submit} noValidate>
-        <NameFields form={form} prefix />
-        <FormDivider />
-        <FormActions>
-          <Button
-            type='submit'
-            color='primary'
-            variant='pill'
-            size='large'
-            loading={formState.isSubmitting}
-          >
-            <Trans id='Save changes' />
-          </Button>
-        </FormActions>
-        <ApolloCustomerErrorAlert error={error} />
+        {children ?? (
+          <>
+            <NameFields prefix />
+            <FormDivider />
+            <FormActions>
+              <Button
+                type='submit'
+                color='primary'
+                variant='pill'
+                size='large'
+                loading={formState.isSubmitting}
+              >
+                <Trans id='Save changes' />
+              </Button>
+            </FormActions>
+            <ApolloCustomerErrorAlert />
+            <MessageSnackbar open={formState.isSubmitSuccessful && !error} variant='pill'>
+              <Trans id='Successfully saved changes' />
+            </MessageSnackbar>
+          </>
+        )}
       </Form>
-      <MessageSnackbar
-        open={formState.isSubmitSuccessful && !error}
-        variant='pill'
-        severity='success'
-      >
-        <Trans id='Successfully saved changes' />
-      </MessageSnackbar>
-    </>
+    </FormProvider>
   )
 }

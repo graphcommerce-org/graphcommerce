@@ -12,7 +12,11 @@ type NameFieldValues = {
   prefix?: string
 }
 
-export function NameFields() {
+type NameFieldsProps = {
+  prefix?: boolean
+}
+
+export function NameFields({ prefix = false }: NameFieldsProps) {
   const mr = i18n._(/* i18n */ 'Mr')
   const mrs = i18n._(/* i18n */ 'Mrs')
   const other = i18n._(/* i18n */ 'Other')
@@ -29,36 +33,39 @@ export function NameFields() {
 
   return (
     <>
-      <FormRow>
-        <Controller
-          defaultValue={prefixes[0]}
-          control={control}
-          name='prefix'
-          render={({ field: { ref, onChange, ...field }, fieldState }) => (
-            <TextField
-              variant='outlined'
-              select
-              error={!!fieldState.error}
-              label={<Trans id='Prefix' />}
-              required={!!required?.prefix}
-              helperText={fieldState.error?.message}
-              onChange={(e) => onChange(e.target.value)}
-              inputRef={ref}
-              InputProps={{
-                readOnly,
-                endAdornment: <InputCheckmark show={valid.prefix} select />,
-              }}
-              {...field}
-            >
-              {prefixes.map((option) => (
-                <MenuItem key={option} value={option}>
-                  {option}
-                </MenuItem>
-              ))}
-            </TextField>
-          )}
-        />
-      </FormRow>
+      {prefix && (
+        <FormRow>
+          <Controller
+            defaultValue={prefixes[0]}
+            control={control}
+            name='prefix'
+            render={({ field: { ref, onChange, ...field }, fieldState }) => (
+              <TextField
+                variant='outlined'
+                select
+                error={!!fieldState.error}
+                label={<Trans id='Prefix' />}
+                required={!!required?.prefix}
+                helperText={fieldState.error?.message}
+                onChange={(e) => onChange(e.target.value)}
+                inputRef={ref}
+                InputProps={{
+                  readOnly,
+                  endAdornment: <InputCheckmark show={valid.prefix} select />,
+                }}
+                {...field}
+              >
+                {prefixes.map((option) => (
+                  <MenuItem key={option} value={option}>
+                    {option}
+                  </MenuItem>
+                ))}
+              </TextField>
+            )}
+          />
+        </FormRow>
+      )}
+
       <FormRow>
         <TextFieldElement
           control={form.control}

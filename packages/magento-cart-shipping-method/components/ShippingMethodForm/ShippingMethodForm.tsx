@@ -13,11 +13,9 @@ import {
 import {
   FormAutoSubmit,
   FormProvider,
-  useFormAutoSubmit,
   useFormCompose,
   UseFormComposeOptions,
   UseFormGraphQlOptions,
-  useFormPersist,
   useWatch,
 } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
@@ -89,7 +87,7 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
     ...options,
   })
 
-  const { handleSubmit, control, error } = form
+  const { handleSubmit, control } = form
   const submit = handleSubmit(() => {})
 
   useFormCompose({ form, step, submit, key: 'ShippingMethodForm' })
@@ -111,13 +109,6 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
 
   return (
     <FormProvider {...form}>
-      <FormAutoSubmit
-        control={control}
-        submit={submit}
-        name={['carrierMethod']}
-        parallel
-        wait={300}
-      />
       <Form onSubmit={submit} noValidate sx={sx}>
         <FormHeader variant='h4' sx={(theme) => ({ marginBottom: 0, mb: theme.spacings.sm })}>
           <Trans id='Shipping method' />
@@ -134,7 +125,8 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
             ShippingMethodActionCard as React.FC<ActionCardItemRenderProps<ActionCardItemBase>>
           }
         />
-        <ApolloCartErrorAlert error={error} />
+        <FormAutoSubmit name={['carrierMethod']} parallel wait={300} />
+        <ApolloCartErrorAlert />
       </Form>
       {children}
     </FormProvider>

@@ -35,7 +35,7 @@ export type ShippingAddressFormProps = Pick<UseFormComposeOptions, 'step'> & {
   ignoreCache?: boolean
 } & PropsWithChildren
 
-function Base(props: ShippingAddressFormProps) {
+export const ShippingAddressForm = React.memo((props: ShippingAddressFormProps) => {
   const { step, children, ignoreCache = false } = props
   const { data: cartQuery } = useCartQuery(GetAddressesDocument)
   const { data: config } = useQuery(StoreConfigDocument)
@@ -129,12 +129,4 @@ function Base(props: ShippingAddressFormProps) {
       )}
     </FormProvider>
   )
-}
-
-export const ShippingAddressForm = Object.assign(React.memo(Base), {
-  NameFields,
-  AddressFields,
-  TelephoneField,
-  Error: ApolloCartErrorAlert,
-  Submit: FormAutoSubmit,
 })

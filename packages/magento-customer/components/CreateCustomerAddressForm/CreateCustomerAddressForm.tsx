@@ -1,26 +1,17 @@
 import { useQuery } from '@graphcommerce/graphql'
 import { CountryRegionsDocument } from '@graphcommerce/magento-store'
-import {
-  Form,
-  FormActions,
-  FormDivider,
-  FormRow,
-  InputCheckmark,
-  Button,
-  MessageSnackbar,
-} from '@graphcommerce/next-ui'
-import { phonePattern, useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { i18n } from '@lingui/core'
+import { Form, FormActions, FormDivider, Button, MessageSnackbar } from '@graphcommerce/next-ui'
+import { FormProvider, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
-// eslint-disable-next-line @typescript-eslint/no-restricted-imports
-import { TextField } from '@mui/material'
 import { useRouter } from 'next/router'
+import { PropsWithChildren } from 'react'
 import { AddressFields } from '../AddressFields/AddressFields'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import { NameFields } from '../NameFields/NameFields'
+import { TelephoneField } from '../CustomerFields/TelephoneField'
 import { CreateCustomerAddressDocument } from './CreateCustomerAddress.gql'
 
-export function CreateCustomerAddressForm() {
+export function CreateCustomerAddressForm({ children }: PropsWithChildren) {
   const countryQuery = useQuery(CountryRegionsDocument, { fetchPolicy: 'cache-and-network' })
   const countries = countryQuery.data?.countries ?? countryQuery.previousData?.countries
   const router = useRouter()
@@ -52,54 +43,40 @@ export function CreateCustomerAddressForm() {
     { errorPolicy: 'all' },
   )
 
-  const { handleSubmit, formState, required, error, muiRegister, valid, data } = form
+  const { handleSubmit, formState, error, data } = form
   const submitHandler = handleSubmit((_, e) => {
     if (!formState.errors) e?.target.reset()
   })
 
   return (
-    <>
+    <FormProvider {...form}>
       <Form onSubmit={submitHandler} noValidate>
-        <NameFields />
-        <AddressFields />
+        {children ?? (
+          <>
+            <NameFields />
+            <AddressFields />
+            <TelephoneField />
 
-        <FormRow>
-          <TextField
-            variant='outlined'
-            type='text'
-            error={!!formState.errors.telephone}
-            required={required.telephone}
-            label={<Trans id='Telephone' />}
-            {...muiRegister('telephone', {
-              required: required.telephone,
-              pattern: { value: phonePattern, message: i18n._(/* i18n */ 'Invalid phone number') },
-            })}
-            helperText={formState.isSubmitted && formState.errors.telephone?.message}
-            disabled={formState.isSubmitting}
-            InputProps={{ endAdornment: <InputCheckmark show={valid.telephone} /> }}
-          />
-        </FormRow>
+            <FormDivider />
 
-        <FormDivider />
-
-        <FormActions>
-          <Button
-            type='submit'
-            variant='pill'
-            color='primary'
-            size='large'
-            loading={formState.isSubmitting}
-          >
-            <Trans id='Save changes' />
-          </Button>
-        </FormActions>
+            <FormActions>
+              <Button
+                type='submit'
+                variant='pill'
+                color='primary'
+                size='large'
+                loading={formState.isSubmitting}
+              >
+                <Trans id='Save changes' />
+              </Button>
+            </FormActions>
+            <ApolloCustomerErrorAlert />
+            <MessageSnackbar open={Boolean(data) && !error} variant='pill'>
+              <Trans id='Your address has been added' components={{ 0: <strong /> }} />
+            </MessageSnackbar>
+          </>
+        )}
       </Form>
-
-      <MessageSnackbar open={Boolean(data) && !error} variant='pill' severity='success'>
-        <Trans id='Your address has been added' components={{ 0: <strong /> }} />
-      </MessageSnackbar>
-
-      <ApolloCustomerErrorAlert error={error} />
-    </>
+    </FormProvider>
   )
 }

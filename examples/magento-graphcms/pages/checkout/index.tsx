@@ -109,13 +109,7 @@ function ShippingPage() {
                       <Trans id='Personal details' />
                     </Typography>
                     <EmailForm step={1} />
-                    <ShippingAddressForm step={3}>
-                      <ShippingAddressForm.NameFields />
-                      <ShippingAddressForm.AddressFields />
-                      <ShippingAddressForm.TelephoneField />
-                      <ShippingAddressForm.Error />
-                      <ShippingAddressForm.Submit />
-                    </ShippingAddressForm>
+                    <ShippingAddressForm step={3} />
                   </>
                 )}
 
@@ -132,9 +126,7 @@ function ShippingPage() {
                           <Trans id='Next' />
                         </ComposedSubmitButton>
                       </FormActions>
-                      <ApolloCartErrorAlert
-                        error={renderProps.buttonState.isSubmitting ? undefined : renderProps.error}
-                      />
+                      <ApolloCartErrorAlert />
                     </>
                   )}
                 />
