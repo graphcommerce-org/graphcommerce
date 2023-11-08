@@ -111,7 +111,7 @@ module.exports = {
     '@typescript-eslint/no-misused-promises': ['error', { checksVoidReturn: false }],
     '@typescript-eslint/no-unbound-method': 'off',
     '@typescript-eslint/no-restricted-imports': [
-      'error',
+      'warn',
       {
         paths: [
           {
@@ -134,7 +134,12 @@ module.exports = {
               'TextField',
               'ToggleButtonGroup',
             ],
-            message: `Please use \`import { SelectElement, TextFieldElement, etc } from '@graphcommerce/ecommerce-ui'\` for usage in forms. https://github.com/graphcommerce-org/graphcommerce/tree/main/packages/ecommerce-ui/components/FormComponents`,
+            message: `Please use \`import { SelectElement, TextFieldElement, etc } from '@graphcommerce/ecommerce-ui'\` for usage in forms. https://github.com/graphcommerce-org/graphcommerce/tree/main/packages/ecommerce-ui/components/FormComponents You can add '// eslint-disable-next-line @typescript-eslint/no-restricted-imports' comment if you're sure you want to use it.`,
+          },
+          {
+            name: '@mui/material',
+            importNames: ['useMediaQuery'],
+            message: `useMediaQuery can cause large CLS/LCP issues when used to render a specific UI on a breakpoint. See https://mui.com/system/display/#hiding-elements for alternatives. You can add '// eslint-disable-next-line @typescript-eslint/no-restricted-imports' comment if you're sure you want to use it.`,
           },
           {
             name: '@emotion/react',
