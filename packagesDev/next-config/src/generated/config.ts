@@ -253,6 +253,12 @@ export type GraphCommerceConfig = {
   legacyProductRoute?: InputMaybe<Scalars['Boolean']['input']>;
   /** Limit the static generation of SSG when building */
   limitSsg?: InputMaybe<Scalars['Boolean']['input']>;
+  /**
+   * When the guestCheckout is disabled in Magento add loginMethod "TOGGLE" to your config to enable the toggle login / register flow which is mandatory.
+   * Toggle flow also disables the isEmailAvailable call to the magento backend.
+   *
+   * Default is set to IS_EMAIL_AVAILABLE
+   */
   loginMethod?: InputMaybe<LoginMethod>;
   /**
    * GraphQL Magento endpoint.
