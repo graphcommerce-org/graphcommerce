@@ -53,7 +53,7 @@ export function SignUpForm(props: SignUpFormProps) {
           variant='outlined'
           error={!!formState.errors.password || !!inputError}
           label={<Trans id='Password' />}
-          autoFocus
+          autoFocus={!!email}
           autoComplete='new-password'
           required={required.password}
           disabled={formState.isSubmitting}
