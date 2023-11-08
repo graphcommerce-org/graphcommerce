@@ -29,15 +29,12 @@ export function NameFields(props: NameFieldProps) {
 
   const { control, required, valid } = form
 
-  form.register('prefix')
   return (
     <>
       {prefix && (
         <FormRow>
           <SelectElement
             variant='outlined'
-            defaultValue={prefixes[0]}
-            value={prefixes[0]}
             control={control}
             name='prefix'
             select
