@@ -1,3 +1,6 @@
+"""
+Settings for recently viewed products
+"""
 input RecentlyViewedProductsConfg {
   """
   Enable/disable recently viewed products

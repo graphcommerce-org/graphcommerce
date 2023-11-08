@@ -1,4 +1,9 @@
 <!-- Automatically generated from Config.graphqls -->
+### CompareVariant (enum) 
+
+- CHECKBOX 
+- ICON 
+
 # GraphCommerce configuration system
 
 Global GraphCommerce configuration can be configured in your `graphcommerce.config.js` file
@@ -77,7 +82,7 @@ Below is a list of all possible configurations that can be set by GraphCommerce.
 
 ### GraphCommerceConfig
 
-#### `canonicalBaseUrl: String!`
+#### canonicalBaseUrl: string!
 
 The canonical base URL is used for SEO purposes.
 
@@ -86,7 +91,7 @@ Examples:
 - https://example.com/en
 - https://example.com/en-US
 
-#### `hygraphEndpoint: String!`
+#### hygraphEndpoint: string!
 
 The HyGraph endpoint.
 
@@ -94,33 +99,33 @@ The HyGraph endpoint.
 
 Project settings -> API Access -> High Performance Read-only Content API
 
-#### `magentoEndpoint: String!`
+#### magentoEndpoint: string!
 
 GraphQL Magento endpoint.
 
 Examples:
 - https://magento2.test/graphql
 
-#### `storefront: [[GraphCommerceStorefrontConfig](#GraphCommerceStorefrontConfig)!]!`
+#### storefront: [`GraphCommerceStorefrontConfig`](#GraphCommerceStorefrontConfig)![]!
 
 All storefront configuration for the project
 
-#### `cartDisplayPricesInclTax: Boolean`
+#### cartDisplayPricesInclTax: boolean
 
 Due to a limitation of the GraphQL API it is not possible to determine if a cart should be displayed including or excluding tax.
 
 When Magento's StoreConfig adds this value, this can be replaced.
 
-#### `compare: Boolean`
+#### compare: boolean
 
 Use compare functionality
 
-#### `compareVariant: [CompareVariant](#CompareVariant) (default: ICON)`
+#### compareVariant: [`CompareVariant`](#CompareVariant) = ICON
 
 By default the compare feature is denoted with a 'compare ICON' (2 arrows facing one another).
 This may be fine for experienced users, but for more clarity it's also possible to present the compare feature as a CHECKBOX accompanied by the 'Compare' label
 
-#### `configurableVariantForSimple: Boolean (default: [object Object])`
+#### configurableVariantForSimple: boolean = false
 
 If a simple product is part of a Configurable product page, should the simple product be
 rendered as a configured option of the configurable product page?
@@ -133,25 +138,25 @@ Magento also returns the Simple product and the Configurable product the simple 
 If that is the case we render the configurable product page instead of the simple product page but
 the options to select the simple product are pre-selected.
 
-#### `configurableVariantValues: [MagentoConfigurableVariantValues](#MagentoConfigurableVariantValues) (default: [object Object])`
+#### configurableVariantValues: [`MagentoConfigurableVariantValues`](#MagentoConfigurableVariantValues) = { content: true, url: true }
 
 When a user selects a variant, it will switch the values on the configurable page with the values of the configured variant.
 
 Enabling options here will allow switching of those variants.
 
-#### `crossSellsHideCartItems: Boolean (default: [object Object])`
+#### crossSellsHideCartItems: boolean = false
 
 Determines if cross sell items should be shown when the user already has the product in their cart. This will result in a product will popping off the screen when you add it to the cart.
 
 Default: 'false'
 
-#### `crossSellsRedirectItems: Boolean (default: [object Object])`
+#### crossSellsRedirectItems: boolean = false
 
 Determines if, after adding a cross-sell item to the cart, the user should be redirected to the cross-sell items of the product they just added.
 
 Default: 'false'
 
-#### `customerRequireEmailConfirmation: Boolean`
+#### customerRequireEmailConfirmation: boolean
 
 Due to a limitation in the GraphQL API of Magento 2, we need to know if the
 customer requires email confirmation.
@@ -159,11 +164,11 @@ customer requires email confirmation.
 This value should match Magento 2's configuration value for
 `customer/create_account/confirm` and should be removed once we can query
 
-#### `debug: [GraphCommerceDebugConfig](#GraphCommerceDebugConfig)`
+#### debug: [`GraphCommerceDebugConfig`](#GraphCommerceDebugConfig)
 
 Debug configuration for GraphCommerce
 
-#### `demoMode: Boolean (default: true)`
+#### demoMode: boolean = true
 
 Enables some demo specific code that is probably not useful for a project:
 
@@ -171,7 +176,7 @@ Enables some demo specific code that is probably not useful for a project:
 - Adds "dominant_color" attribute swatches to the product list items.
 - Creates a big list items in the product list.
 
-#### `googleAnalyticsId: String`
+#### googleAnalyticsId: string
 
 See https://support.google.com/analytics/answer/9539598?hl=en
 
@@ -179,7 +184,7 @@ Provide a value to enable Google Analytics for your store.
 
 To override the value for a specific locale, configure in i18n config.
 
-#### `googleRecaptchaKey: String`
+#### googleRecaptchaKey: string
 
 Google reCAPTCHA site key.
 When using reCAPTCHA, this value is required, even if you are configuring different values for each locale.
@@ -189,17 +194,17 @@ Get a site key and a secret key from https://developers.google.com/recaptcha/doc
 The secret key should be added in the Magento admin panel (Stores > Configuration > Security > Google ReCAPTCHA Storefront > reCAPTCHA v3 Invisible)
 ReCAPTCHA can then be enabled/disabled for the different forms, separately (Stores > Configuration > Security > Google ReCAPTCHA Storefront > Storefront)
 
-#### `googleTagmanagerId: String`
+#### googleTagmanagerId: string
 
 The Google Tagmanager ID to be used on the site.
 
 This value is required even if you are configuring different values for each locale.
 
-#### `hygraphProjectId: String`
+#### hygraphProjectId: string
 
 Hygraph Project ID. **Only used for migrations.**
 
-#### `hygraphWriteAccessEndpoint: String`
+#### hygraphWriteAccessEndpoint: string
 
 Content API. **Only used for migrations.**
 
@@ -207,7 +212,7 @@ Content API. **Only used for migrations.**
 
 Project settings -> API Access -> Content API
 
-#### `hygraphWriteAccessToken: String`
+#### hygraphWriteAccessToken: string
 
 Hygraph Management SDK Authorization Token. **Only used for migrations.**
 
@@ -239,7 +244,7 @@ GC_HYGRAPH_WRITE_ACCESS_TOKEN="AccessTokenFromHygraph"
 yarn graphcommerce hygraph-migrate
 ```
 
-#### `legacyProductRoute: Boolean`
+#### legacyProductRoute: boolean
 
 On older versions of GraphCommerce products would use a product type specific route.
 
@@ -247,49 +252,49 @@ This should only be set to true if you use the /product/[url] AND /product/confi
 
 @deprecated Will be removed in a future version. [migration](../upgrading/graphcommerce-5-to-6.md#product-routing-changes)
 
-#### `limitSsg: Boolean`
+#### limitSsg: boolean
 
 Limit the static generation of SSG when building
 
-#### `previewSecret: String`
+#### previewSecret: string
 
 To enable next.js' preview mode, configure the secret you'd like to use.
 
-#### `productFiltersLayout: [ProductFiltersLayout](#ProductFiltersLayout) (default: DEFAULT)`
+#### productFiltersLayout: [`ProductFiltersLayout`](#ProductFiltersLayout) = DEFAULT
 
 Layout how the filters are rendered.
 DEFAULT: Will be rendered as horzontal chips on desktop and mobile
 SIDEBAR: Will be rendered as a sidebar on desktop and horizontal chips on mobile
 
-#### `productFiltersPro: Boolean`
+#### productFiltersPro: boolean
 
 Product filters with better UI for mobile and desktop.
 
-#### `productRoute: String`
+#### productRoute: string
 
 By default we route products to /p/[url] but you can change this to /product/[url] if you wish.
 
 Default: '/p/'
 Example: '/product/'
 
-#### `recentlyViewedProducts: [RecentlyViewedProductsConfg](#RecentlyViewedProductsConfg)`
+#### recentlyViewedProducts: [`RecentlyViewedProductsConfg`](#RecentlyViewedProductsConfg)
 
 Settings for recently viewed products
 
-#### `robotsAllow: Boolean`
+#### robotsAllow: boolean
 
 Allow the site to be indexed by search engines.
 If false, the robots.txt file will be set to disallow all.
 
-#### `wishlistHideForGuests: Boolean`
+#### wishlistHideForGuests: boolean
 
 Hide the wishlist functionality for guests.
 
-#### `wishlistIgnoreProductWishlistStatus: Boolean`
+#### wishlistIgnoreProductWishlistStatus: boolean
 
 Ignores whether a product is already in the wishlist, makes the toggle an add only.
 
-#### `wishlistShowFeedbackMessage: Boolean`
+#### wishlistShowFeedbackMessage: boolean
 
 Show a message when the product is added to the wishlist.
 
@@ -297,18 +302,18 @@ Show a message when the product is added to the wishlist.
 
 Debug configuration for GraphCommerce
 
-#### `pluginStatus: Boolean`
+#### pluginStatus: boolean
 
 Reports which plugins are enabled or disabled.
 
-#### `webpackCircularDependencyPlugin: Boolean`
+#### webpackCircularDependencyPlugin: boolean
 
 Cyclic dependencies can cause memory issues and other strange bugs.
 This plugin will warn you when it detects a cyclic dependency.
 
 When running into memory issues, it can be useful to enable this plugin.
 
-#### `webpackDuplicatesPlugin: Boolean`
+#### webpackDuplicatesPlugin: boolean
 
 When updating packages it can happen that the same package is included with different versions in the same project.
 
@@ -320,11 +325,11 @@ Issues that this can cause are:
 
 All storefront configuration for the project
 
-#### `locale: String!`
+#### locale: string!
 
 Must be a locale string https://www.unicode.org/reports/tr35/tr35-59/tr35.html#Identifiers
 
-#### `magentoStoreCode: String!`
+#### magentoStoreCode: string!
 
 Magento store code.
 
@@ -335,7 +340,7 @@ Examples:
 - en-us
 - b2b-us
 
-#### `canonicalBaseUrl: String`
+#### canonicalBaseUrl: string
 
 The canonical base URL is used for SEO purposes.
 
@@ -344,39 +349,39 @@ Examples:
 - https://example.com/en
 - https://example.com/en-US
 
-#### `cartDisplayPricesInclTax: Boolean`
+#### cartDisplayPricesInclTax: boolean
 
 Due to a limitation of the GraphQL API it is not possible to determine if a cart should be displayed including or excluding tax.
 
-#### `defaultLocale: Boolean`
+#### defaultLocale: boolean
 
 There can only be one entry with defaultLocale set to true.
 - If there are more, the first one is used.
 - If there is none, the first entry is used.
 
-#### `domain: String`
+#### domain: string
 
 Domain configuration, must be a domain https://tools.ietf.org/html/rfc3986
 
-#### `googleAnalyticsId: String`
+#### googleAnalyticsId: string
 
 Configure different Google Analytics IDs for different locales.
 
 To disable for a specific locale, set the value to null.
 
-#### `googleRecaptchaKey: String`
+#### googleRecaptchaKey: string
 
 Locale specific google reCAPTCHA key.
 
-#### `googleTagmanagerId: String`
+#### googleTagmanagerId: string
 
 The Google Tagmanager ID to be used per locale.
 
-#### `hygraphLocales: [String!]`
+#### hygraphLocales: string![]
 
 Add a gcms-locales header to make sure queries return in a certain language, can be an array to define fallbacks.
 
-#### `linguiLocale: String`
+#### linguiLocale: string
 
 Specify a custom locale for to load translations.
 
@@ -384,27 +389,34 @@ Specify a custom locale for to load translations.
 
 Options to configure which values will be replaced when a variant is selected on the product page.
 
-#### `content: Boolean`
+#### content: boolean
 
 Use the name, description, short description and meta data from the configured variant
 
-#### `gallery: Boolean`
+#### gallery: boolean
 
 This option enables the automatic update of product gallery images on the product page when a variant is selected,
 provided that the gallery images for the selected variant differ from the currently displayed images.
 
-#### `url: Boolean`
+#### url: boolean
 
 When a variant is selected the URL of the product will be changed in the address bar.
 
 This only happens when the actual variant is can be accessed by the URL.
 
+### ProductFiltersLayout (enum) 
+
+- DEFAULT 
+- SIDEBAR 
+
 ### RecentlyViewedProductsConfg
 
-#### `enabled: Boolean`
+Settings for recently viewed products
+
+#### enabled: boolean
 
 Enable/disable recently viewed products
 
-#### `maxCount: Int`
+#### maxCount: number
 
 Number of recently viewed products to be stored in localStorage

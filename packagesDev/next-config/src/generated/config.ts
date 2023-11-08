@@ -386,6 +386,7 @@ export type ProductFiltersLayout =
   | 'DEFAULT'
   | 'SIDEBAR';
 
+/** Settings for recently viewed products */
 export type RecentlyViewedProductsConfg = {
   /** Enable/disable recently viewed products */
   enabled?: InputMaybe<Scalars['Boolean']['input']>;

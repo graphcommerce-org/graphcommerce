@@ -17,7 +17,13 @@ config) => {
         }
         return node.description ? `\n\n${node.description}` : '';
     };
-    const possibleScalars = ['Boolean', 'String', 'Int', 'Float', 'ID'];
+    const possibleScalars = {
+        Boolean: 'boolean',
+        String: 'string',
+        Int: 'number',
+        Float: 'number',
+        ID: 'string',
+    };
     const content = (0, graphql_1.visit)(astNode, {
         Document: {
             leave: (node) => `<!-- Automatically generated from Config.graphqls -->${node.definitions
@@ -26,21 +32,32 @@ config) => {
         },
         Name: { leave: (node) => node.value },
         NamedType: {
-            leave: (node) => possibleScalars.includes(node.name) ? node.name : `[${node.name}](#${node.name})`,
+            leave: (node) => {
+                return possibleScalars[node.name] ?? `[\`${node.name}\`](#${node.name})`;
+            },
         },
         StringValue: { leave: (node) => node.value },
-        BooleanValue: { leave: (node) => node.value },
+        BooleanValue: {
+            leave: (node) => (node.value ? 'true' : 'false'),
+        },
         EnumValue: { leave: (node) => node.value },
         IntValue: { leave: (node) => node.value },
+        ObjectValue: {
+            leave: (node) => {
+                const fields = node.fields.join(', ') ?? '';
+                return `{ ${fields} }`;
+            },
+        },
         FloatValue: { leave: (node) => node.value },
-        ListType: { leave: (node) => `[${node.type}]` },
+        ListType: { leave: (node) => `${node.type}[]` },
+        ObjectField: { leave: (node) => `${node.name}: ${node.value}` },
         NonNullType: {
             leave: (node) => `${node.type}!`,
         },
         InputValueDefinition: {
             leave: (node) => {
-                const defaultValue = node.defaultValue ? ` (default: ${node.defaultValue})` : '';
-                return `\`${node.name}: ${node.type}${defaultValue}\`${descriptionText(node)}`;
+                const defaultValue = node.defaultValue ? ` = ${node.defaultValue}` : '';
+                return `${node.name}: ${node.type}${defaultValue}${descriptionText(node)}`;
             },
         },
         InputObjectTypeDefinition: {
@@ -50,19 +67,20 @@ config) => {
                 fields: [...(node.fields ?? [])].sort((a, b) => a.type.kind === 'NonNullType' && b.type.kind !== 'NonNullType' ? -1 : 1),
             }),
             leave: (node) => {
-                const title = descriptionText(node).trimStart().startsWith('#')
-                    ? `${descriptionText(node).trimStart()}\n\n### ${node.name}`
-                    : `### ${node.name}${descriptionText(node)}`;
+                const text = descriptionText(node);
+                const title = text.trimStart().startsWith('#')
+                    ? `${text.trimStart()}\n\n### ${node.name}`
+                    : `### ${node.name}${text}`;
                 return `\n${title}\n${node.fields?.map((f) => `\n#### ${f}`).join('\n')}`;
             },
         },
         EnumValueDefinition: {
-            leave: (node) => `${node.name} # ${node.description}`,
+            leave: (node) => `${node.name} ${node.description ? `: ${node.description}` : ''}`,
         },
         EnumTypeDefinition: {
             leave: (node) => {
                 enumStings.set(node.name, node.values?.join('\n') || '');
-                return '';
+                return `\n### ${node.name} (enum) ${node.description ? `\n\n${node.description}` : ''}\n\n${node.values?.map((v) => `- ${v}`)?.join('\n')}`;
             },
         },
     });
