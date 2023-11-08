@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.1.0-canary.35
+
+### Patch Changes
+
+- [#2035](https://github.com/graphcommerce-org/graphcommerce/pull/2035) [`08f1ae18e`](https://github.com/graphcommerce-org/graphcommerce/commit/08f1ae18e2271cd690eca8518a723c3eb806c1f9) - Added an eslint warning to restrict the import of useMediaQuery because it causes more trouble than it solves ([@paales](https://github.com/paales))
+
 ## 7.1.0-canary.34
 
 ## 7.1.0-canary.33
