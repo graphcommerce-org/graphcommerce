@@ -18,6 +18,11 @@ import { ApolloCustomerErrorAlert } from '../ApolloCustomerError'
 import { SignInForm } from '../SignInForm/SignInForm'
 import { SignUpForm } from '../SignUpForm/SignUpForm'
 
+// When the guestCheckout is disabled in Magento add loginMethod "TOGGLE" to your config to enable the toggle login / register flow which is mandatory.
+// Toggle flow also disables the isEmailAvailable call to the magento backend.
+
+// Default is set to IS_EMAIL_AVAILABLE
+
 export type AccountSignInUpFormProps = { sx?: SxProps<Theme> }
 
 const parts = ['root', 'titleContainer'] as const
