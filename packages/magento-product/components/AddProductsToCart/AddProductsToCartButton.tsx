@@ -20,9 +20,8 @@ export type AddProductsToCartButtonProps = UseAddProductsToCartActionProps &
   >
 
 export function AddProductsToCartButton(props: AddProductsToCartButtonProps) {
-  const { children, product, forwardedRef, ...rest } = props
+  const { children, product, ...rest } = props
   const { showSuccess, ...action } = useAddProductsToCartAction(props)
-  const action = useAddProductsToCartAction(props)
 
   return (
     <Button type='submit' color='primary' variant='pill' size='large' {...rest} {...action}>
