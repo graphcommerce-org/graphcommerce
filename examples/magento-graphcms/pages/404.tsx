@@ -35,7 +35,7 @@ function RouteNotFoundPage() {
           </Typography>
           <Box mt={4} mb={2}>
             <SearchLink href='/search' sx={{ width: '100%', py: 2, typography: 'body1' }}>
-              Search...
+              <Trans id='Search...' />
             </SearchLink>
           </Box>
           <Trans id='Or follow these links to get you back on track!' />
