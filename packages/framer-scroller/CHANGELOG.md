@@ -1,5 +1,23 @@
 # Change Log
 
+## 7.1.0-canary.37
+
+## 7.1.0-canary.36
+
+## 7.1.0-canary.35
+
+## 7.1.0-canary.34
+
+## 7.1.0-canary.33
+
+### Patch Changes
+
+- [#2011](https://github.com/graphcommerce-org/graphcommerce/pull/2011) [`da821af18`](https://github.com/graphcommerce-org/graphcommerce/commit/da821af185bf6419fa2aeca31e5985bf99b7bbb9) - Added a new Image Gallery as a plugin ([@mikekeehnen](https://github.com/mikekeehnen))
+
+## 7.1.0-canary.32
+
+## 7.1.0-canary.31
+
 ## 7.1.0-canary.30
 
 ## 7.1.0-canary.29

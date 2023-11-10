@@ -21,6 +21,9 @@ _export(exports, {
     ProductFiltersLayoutSchema: function() {
         return ProductFiltersLayoutSchema;
     },
+    SidebarGalleryPaginationVariantSchema: function() {
+        return SidebarGalleryPaginationVariantSchema;
+    },
     GraphCommerceConfigSchema: function() {
         return GraphCommerceConfigSchema;
     },
@@ -32,6 +35,9 @@ _export(exports, {
     },
     MagentoConfigurableVariantValuesSchema: function() {
         return MagentoConfigurableVariantValuesSchema;
+    },
+    SidebarGalleryConfigSchema: function() {
+        return SidebarGalleryConfigSchema;
     }
 });
 const _zod = require("zod");
@@ -44,6 +50,10 @@ const CompareVariantSchema = _zod.z.enum([
 const ProductFiltersLayoutSchema = _zod.z.enum([
     "DEFAULT",
     "SIDEBAR"
+]);
+const SidebarGalleryPaginationVariantSchema = _zod.z.enum([
+    "DOTS",
+    "THUMBNAILS_BOTTOM"
 ]);
 function GraphCommerceConfigSchema() {
     return _zod.z.object({
@@ -73,6 +83,7 @@ function GraphCommerceConfigSchema() {
         productFiltersPro: _zod.z.boolean().nullish(),
         productRoute: _zod.z.string().nullish(),
         robotsAllow: _zod.z.boolean().nullish(),
+        sidebarGallery: SidebarGalleryConfigSchema().nullish(),
         storefront: _zod.z.array(GraphCommerceStorefrontConfigSchema()),
         wishlistHideForGuests: _zod.z.boolean().nullish(),
         wishlistIgnoreProductWishlistStatus: _zod.z.boolean().nullish(),
@@ -106,5 +117,10 @@ function MagentoConfigurableVariantValuesSchema() {
         content: _zod.z.boolean().nullish(),
         gallery: _zod.z.boolean().nullish(),
         url: _zod.z.boolean().nullish()
+    });
+}
+function SidebarGalleryConfigSchema() {
+    return _zod.z.object({
+        paginationVariant: SidebarGalleryPaginationVariantSchema.nullish()
     });
 }

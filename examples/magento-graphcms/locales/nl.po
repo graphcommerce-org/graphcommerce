@@ -418,6 +418,9 @@ msgstr "Bestelling #{orderId}"
 msgid "Order before 22:00"
 msgstr "Bestel voor 22:00"
 
+msgid "Order date"
+msgstr "Besteldatum"
+
 msgid "Order not found"
 msgstr "Bestelling niet gevonden"
 

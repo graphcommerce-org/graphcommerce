@@ -7,6 +7,12 @@ menu: Overview
 To integrate with Magento, most of the functionality should work out-of-the box
 if Magento exposes a working GraphQL API.
 
+Some additional configuration may be required, which is documented below.
+
+Currently, the GraphQL API also has some bugs and limitations which in some
+cases requires a patch to work around, please see
+[Known issues](./known-issues.md)
+
 ## Magento configuration
 
 ### Configure Base Link Url to get emails working
@@ -64,16 +70,6 @@ Remove the URL suffixes from products and categories. (default is `.html`)
 `Stores -> Configuration -> Catalog -> Catalog -> Search Engine Optimization -> Product URL Suffix`
 `Stores -> Configuration -> Catalog -> Catalog -> Search Engine Optimization -> Category URL Suffix`
 
-### Enable guest checkout login
-
-During customer login, GraphCommerce queries Magento to determine whether the
-customer account already exists. To do this the following setting must be set to
-Yes:
-`Stores -> Configuration -> Sales -> Checkout -> Checkout Options -> Enable Guest Checkout Login`
-
-If this is not set correctly, customers will not be able to log in, since they
-will always be prompted to create a new account.
-
 ## Optional packages
 
 - [Store Pickup / MSI](https://github.com/graphcommerce-org/graphcommerce/tree/main/packages/magento-cart-pickup)
@@ -92,22 +88,4 @@ will always be prompted to create a new account.
 
 - [Full feature list](../feature-list.md)
 - [SEO Migration](./seo-migration.md)
-
-## Known issues
-
-An overview of bugs and limitations you may run into with Magento's GraphQL API:
-
-### Cart-related mutations result `Can not find cart with ID` or `Cart isn't active` errors
-
-This is caused by a regression in Magento 2.4.6, which results in some GraphQL
-errors no longer getting a category extension string (such as
-`graphql-no-such-entity`). Normally, these errors are handling by automatically
-creating a new cart, but without the proper error category this error-handling
-logic is nog triggered.
-
-As a workaround, you can apply
-[cart-error-category.patch](./patches/cart-error-category.patch). This
-regression is fixed as of Magento 2.4.7-beta2.
-
-See also
-https://github.com/magento/magento2/commit/49cbe774020d3dfa6ee2b8702376a947801c9971
+- [Known issues](./known-issues.md)

@@ -1,5 +1,23 @@
 # Change Log
 
+## 7.1.0-canary.37
+
+## 7.1.0-canary.36
+
+## 7.1.0-canary.35
+
+## 7.1.0-canary.34
+
+### Patch Changes
+
+- [#2078](https://github.com/graphcommerce-org/graphcommerce/pull/2078) [`5f409e617`](https://github.com/graphcommerce-org/graphcommerce/commit/5f409e617afae36d5c6224f3c6eb8d085fc2e84c) - Added @graphcommerce packages in node_modules to nextjs watch options ([@KMalkowski](https://github.com/KMalkowski))
+
+## 7.1.0-canary.33
+
+## 7.1.0-canary.32
+
+## 7.1.0-canary.31
+
 ## 7.1.0-canary.30
 
 ## 7.1.0-canary.29
