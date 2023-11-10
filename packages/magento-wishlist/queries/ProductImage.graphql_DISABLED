@@ -1,6 +1,0 @@
-# @todo
-fragment ProductImageSmall on ProductInterface @inject(into: ["ProductPageItem"]) {
-  small_image {
-    ...ProductImage
-  }
-}
