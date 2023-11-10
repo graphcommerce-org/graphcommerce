@@ -31,9 +31,9 @@
     "@graphcommerce/react-hook-form": "7.1.0-canary.38"
   },
   "peerDependencies": {
-    "@lingui/react": "^4.2.1",
     "@lingui/core": "^4.2.1",
     "@lingui/macro": "^4.2.1",
+    "@lingui/react": "^4.2.1",
     "@mui/material": "^5.10.16",
     "next": "^13.2.0",
     "react": "^18.2.0",

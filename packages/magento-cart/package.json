@@ -18,9 +18,9 @@
   },
   "dependencies": {
     "@graphcommerce/ecommerce-ui": "7.1.0-canary.38",
-    "@graphcommerce/framer-utils": "7.1.0-canary.38",
     "@graphcommerce/framer-next-pages": "7.1.0-canary.38",
     "@graphcommerce/framer-scroller": "7.1.0-canary.38",
+    "@graphcommerce/framer-utils": "7.1.0-canary.38",
     "@graphcommerce/graphql": "7.1.0-canary.38",
     "@graphcommerce/image": "7.1.0-canary.38",
     "@graphcommerce/magento-customer": "7.1.0-canary.38",
@@ -30,9 +30,9 @@
     "@graphcommerce/react-hook-form": "7.1.0-canary.38"
   },
   "peerDependencies": {
-    "@lingui/react": "^4.2.1",
     "@lingui/core": "^4.2.1",
     "@lingui/macro": "^4.2.1",
+    "@lingui/react": "^4.2.1",
     "@mui/material": "^5.10.16",
     "framer-motion": "^10.0.0",
     "next": "^13.2.0",
