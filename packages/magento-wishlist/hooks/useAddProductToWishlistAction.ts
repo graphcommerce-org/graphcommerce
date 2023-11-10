@@ -7,6 +7,7 @@ import { WishlistItemFragment } from '../queries/WishlistItem.gql'
 import { useAddProductsToWishlist } from './useAddProductsToWishlist/useAddProductsToWishlist'
 import { useRemoveProductsFromWishlist } from './useRemoveProductsFromWishlist'
 import { useWishlistItems } from './useWishlistitems'
+import { nonNullable } from '@graphcommerce/next-ui'
 
 export type UseAddProductToWishlistActionProps = AddToCartItemSelector & {
   loading?: boolean
@@ -35,21 +36,28 @@ export function useAddProductToWishlistAction(
   const { loggedIn } = useCustomerSession()
   const [showSuccess, setShowSuccess] = useState<boolean>(false)
 
-  const selected_options =
+  const selectedOptions = (
     useWatch({ control: form?.control, name: `cartItems.${index}.selected_options` }) ?? []
+  ).filter(nonNullable)
 
   const current = wishlist.items?.find((item) => {
-    if (item.product?.uid !== product?.uid) return false
+    const isProduct = item.product?.uid === product?.uid
+    if (!isProduct) return false
 
     if (
       item?.__typename !== 'ConfigurableWishlistItem' ||
-      product?.__typename !== 'ConfigurableProduct' ||
-      product.configurable_options?.length !== selected_options.filter(Boolean).length
+      product?.__typename !== 'ConfigurableProduct'
     ) {
-      return true
+      return isProduct
     }
 
-    return selected_options.every(
+    const wishlistOptionsCount = item.configurable_options?.length ?? 0
+    const productOptionsCount = product?.configurable_options?.length ?? 0
+
+    if (selectedOptions.length !== productOptionsCount) return wishlistOptionsCount === 0
+    if (wishlistOptionsCount !== productOptionsCount) return false
+
+    return selectedOptions.every(
       (option) =>
         item.configurable_options?.some(
           // If an option is undefined this means the item is a wishlistItem but not all options were selected prior.
@@ -62,24 +70,26 @@ export function useAddProductToWishlistAction(
     if (!product?.sku) throw Error('product is required')
 
     if (current?.id) {
-      console.log(current.id)
-      return remove([current.id])
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      remove([current.id])
+      return
     }
 
     const allOptionsSelected =
       product.__typename === 'ConfigurableProduct' &&
-      product.configurable_options?.length === selected_options.filter(Boolean).length
+      product.configurable_options?.length === selectedOptions.length
 
     if (loggedIn) {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       add([
         {
           sku: product.sku,
           quantity: 1,
-          selected_options: allOptionsSelected ? [] : selected_options,
+          selected_options: allOptionsSelected ? [] : selectedOptions,
         },
       ]).then(() => setShowSuccess(true))
     } else {
-      const configurableOptions = selected_options.map((selected_option) => {
+      const configurableOptions = selectedOptions.map((selected_option) => {
         if (product.__typename !== 'ConfigurableProduct') return null
 
         const configurable_option = product.configurable_options?.find(
@@ -95,10 +105,13 @@ export function useAddProductToWishlistAction(
         }
       })
 
+      const typePart = product.__typename.slice(0, -'Product'.length)
+      const __typename = `${typePart}WishlistItem` as WishlistItemFragment['__typename']
+
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       add([
         {
-          __typename: (product.__typename.slice(0, -'Product'.length) +
-            'WishlistItem') as WishlistItemFragment['__typename'],
+          __typename,
           id: allOptionsSelected
             ? `${product.uid}-${configurableOptions
                 .map((i) => i?.configurable_product_option_value_uid)
@@ -122,8 +135,7 @@ export function useAddProductToWishlistAction(
     cancelBubble: useEventCallback((e) => {
       e.preventDefault()
     }),
-
     showSuccess,
     hideShowSuccess: useEventCallback(() => setShowSuccess(false)),
-  } satisfies UseAddProductToWishlistActionReturn
+  }
 }

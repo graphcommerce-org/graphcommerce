@@ -156,7 +156,7 @@ export function WishlistItemActionCard(props: WishlistItemActionCardProps) {
             variant='inline'
             color='secondary'
             size='medium'
-            type='submit'
+            type='button'
             onClick={() => remove([id])}
           >
             <Trans id='Remove' />
