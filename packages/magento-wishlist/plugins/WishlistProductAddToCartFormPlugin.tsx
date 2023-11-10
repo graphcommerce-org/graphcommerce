@@ -17,7 +17,7 @@ function WishlistUrlHandler() {
   const { loggedIn } = useCustomerSession()
   const wishlist = useWishlistItems()
 
-  const wishlistItems = wishlist.data?.map((item) => item)
+  const wishlistItems = wishlist.items?.map((item) => item)
 
   // Check if is initialLoad so that the options are only set once.
   const [isInitialLoad, setIsInitialLoad] = useState(true)
@@ -60,6 +60,7 @@ function WishlistUrlHandler() {
 export const Plugin: ReactPlugin<typeof AddProductsToCartForm> = (props) => {
   const { Prev, children, ...rest } = props
 
+  // @todo: Do we also want to remove the item from the wishlist?
   return (
     <Prev {...rest}>
       {children}

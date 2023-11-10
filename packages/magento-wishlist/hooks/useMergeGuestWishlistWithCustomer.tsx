@@ -1,43 +1,46 @@
-import { useMutation, useApolloClient, useQuery } from '@graphcommerce/graphql'
+import { useApolloClient } from '@graphcommerce/graphql'
 import { useCustomerSession } from '@graphcommerce/magento-customer'
-import { nonNullable } from '@graphcommerce/next-ui'
+import { filterNonNullableKeys, nonNullable } from '@graphcommerce/next-ui'
 import { useEffect } from 'react'
-import { AddProductToWishlistDocument } from '../queries/AddProductToWishlist.gql'
-import { GuestWishlistDocument } from '../queries/GuestWishlist.gql'
+import { UseWishlistCustomerDocument } from './useWishlistitems/UseWishlistCustomer.gql'
+import { useAddProductsToWishlist } from './useAddProductsToWishlist/useAddProductsToWishlist'
 
 /** Merge guest wishlist items to customer session upon login */
 export function useMergeGuestWishlistWithCustomer() {
   const { loggedIn } = useCustomerSession()
-  const { cache } = useApolloClient()
+  const client = useApolloClient()
 
-  const wishlist = useQuery(GuestWishlistDocument).data?.customer?.wishlists?.[0]?.items_v2?.items
-
-  const [addWishlistItem] = useMutation(AddProductToWishlistDocument)
+  const add = useAddProductsToWishlist()
 
   useEffect(() => {
-    if (!loggedIn || !wishlist) return
+    if (!loggedIn) return
 
-    const clearGuestList = () => cache.evict({ fieldName: 'customer' })
+    const clearGuestList = () => client.cache.evict({ fieldName: 'customer' })
+    const wishlist = client.cache.readQuery({ query: UseWishlistCustomerDocument })?.customer
+      ?.wishlists?.[0]?.items_v2?.items
+    if (!wishlist) return
+
     if (wishlist?.length === 0) {
       clearGuestList()
-    } else {
-      const input = wishlist.map((item) => {
-        if (!item?.product?.sku) return null
-        return {
-          sku: item.product.sku,
-          selected_options:
-            item?.__typename === 'ConfigurableWishlistItem'
-              ? item?.configurable_options
-                  ?.filter(nonNullable)
-                  .map((option) => option?.configurable_product_option_value_uid)
-              : [],
-          quantity: 1,
-        }
-      })
-      const filteredInput = input.filter(nonNullable)
-      if (filteredInput.length > 0)
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        addWishlistItem({ variables: { input: filteredInput } }).then(clearGuestList)
+      return
     }
-  }, [addWishlistItem, cache, loggedIn, wishlist])
+
+    add(
+      wishlist
+        ?.map((item) => {
+          if (!item?.product?.sku) return null
+          return {
+            sku: item.product.sku,
+            quantity: 1,
+            selected_options:
+              item.__typename === 'ConfigurableWishlistItem'
+                ? filterNonNullableKeys(item.configurable_options).map(
+                    (option) => option.configurable_product_option_value_uid,
+                  )
+                : [],
+          }
+        })
+        .filter(nonNullable),
+    ).then(clearGuestList)
+  }, [client, loggedIn])
 }

@@ -322,9 +322,6 @@ msgstr "Modo claro"
 msgid "Loading"
 msgstr "Cargando"
 
-msgid "Loading wishlist"
-msgstr "Cargando lista de deseos"
-
 msgid "Loading your account"
 msgstr "Cargando tu cuenta"
 

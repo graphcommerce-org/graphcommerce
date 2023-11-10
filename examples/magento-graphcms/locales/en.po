@@ -322,9 +322,6 @@ msgstr "Light Mode"
 msgid "Loading"
 msgstr "Loading"
 
-msgid "Loading wishlist"
-msgstr "Loading wishlist"
-
 msgid "Loading your account"
 msgstr "Loading your account"
 

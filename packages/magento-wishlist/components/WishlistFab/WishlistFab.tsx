@@ -16,8 +16,6 @@ const name = 'WishlistFab'
 const parts = ['root'] as const
 const { classes } = extendableComponent(name, parts)
 
-const hideForGuest = import.meta.graphCommerce.wishlistHideForGuests
-
 function WishlistFabContent(props: WishlistFabContentProps) {
   const { icon, FabProps, sx, activeWishlist } = props
 
@@ -50,15 +48,11 @@ function WishlistFabContent(props: WishlistFabContentProps) {
 export type WishlistFabProps = Omit<WishlistFabContentProps, 'activeWishlist'>
 
 export function WishlistFab(props: WishlistFabProps) {
-  const isWishlistEnabled = useWishlistEnabled()
-
-  const { loggedIn } = useCustomerSession()
-
+  const enabled = useWishlistEnabled()
   const wishlist = useWishlistItems()
 
-  const activeWishlist = (wishlist.data && wishlist.data.length > 0) ?? false
-
-  if (!isWishlistEnabled || (hideForGuest && !loggedIn)) return null
+  if (!enabled) return null
+  const activeWishlist = wishlist.items.length > 0 ?? false
 
   return (
     <NoSsr fallback={<WishlistFabContent {...props} activeWishlist={false} />}>

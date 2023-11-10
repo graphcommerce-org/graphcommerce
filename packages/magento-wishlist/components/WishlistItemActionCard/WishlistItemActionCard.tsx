@@ -1,6 +1,4 @@
-import { useMutation, useApolloClient } from '@graphcommerce/graphql'
 import { Image } from '@graphcommerce/image'
-import { useCustomerSession } from '@graphcommerce/magento-customer'
 import { AddProductsToCartForm, useProductLink } from '@graphcommerce/magento-product'
 import { Money } from '@graphcommerce/magento-store'
 import { InputMaybe } from '@graphcommerce/next-config'
@@ -13,12 +11,12 @@ import {
 import { Trans } from '@lingui/react'
 import { Button, Link, SxProps, Theme } from '@mui/material'
 import { ReactNode } from 'react'
-import { WishListItem } from '../../hooks'
-import { GuestWishlistDocument } from '../../queries/GuestWishlist.gql'
-import { RemoveProductFromWishlistDocument } from '../../queries/RemoveProductFromWishlist.gql'
+import { useRemoveProductsFromWishlist } from '../../hooks'
+import { WishlistItemFragment } from '../../queries/WishlistItem.gql'
 import { AddWishlistItemToCart } from '../WishlistItem/AddWishlistItemToCart'
 
-export type WishlistItemActionCardProps = WishListItem & {
+export type WishlistItemActionCardProps = {
+  item: WishlistItemFragment
   sx?: SxProps<Theme>
   selectedOptions?: InputMaybe<string[]> | undefined
   isConfigurableUncompleted?: boolean
@@ -55,35 +53,27 @@ const typographySizes = {
 export function WishlistItemActionCard(props: WishlistItemActionCardProps) {
   const {
     sx = [],
-    id: wishlistItemId,
     size = 'large',
-    product,
+    item,
     selectedOptions,
     secondaryAction,
     variant = 'default',
     ...rest
   } = props
+  const { id, product } = item
+
   const productLink = useProductLink({
     url_key: product?.url_key,
     __typename: product?.__typename ?? 'SimpleProduct',
   })
-  const { cache } = useApolloClient()
-
-  const { loggedIn } = useCustomerSession()
-
-  const oldItems = cache.readQuery({ query: GuestWishlistDocument })?.customer?.wishlists?.[0]
-    ?.items_v2?.items
-
-  const filteredItems = oldItems?.filter((oldItem) => oldItem?.id !== wishlistItemId)
-  const [removeWishlistItem] = useMutation(RemoveProductFromWishlistDocument)
-
-  if (!wishlistItemId) return null
+  const remove = useRemoveProductsFromWishlist()
+  if (!id) return null
 
   return (
-    <AddProductsToCartForm key={wishlistItemId}>
+    <AddProductsToCartForm key={id}>
       <ActionCard
         variant={variant}
-        value={wishlistItemId}
+        value={id}
         sx={[
           (theme) => ({
             '&.ActionCard-root': {
@@ -138,7 +128,7 @@ export function WishlistItemActionCard(props: WishlistItemActionCardProps) {
         title={
           productLink ? (
             <Link
-              href={`${productLink}?wishlistItemId=${wishlistItemId}`}
+              href={`${productLink}?wishlistItemId=${id}`}
               className={classes.itemName}
               underline='hover'
               sx={{
@@ -167,26 +157,7 @@ export function WishlistItemActionCard(props: WishlistItemActionCardProps) {
             color='secondary'
             size='medium'
             type='submit'
-            onClick={
-              loggedIn
-                ? () => removeWishlistItem({ variables: { wishlistItemId } })
-                : () =>
-                    cache.writeQuery({
-                      query: GuestWishlistDocument,
-                      data: {
-                        customer: {
-                          wishlists: [
-                            {
-                              items_v2: {
-                                items: filteredItems || [],
-                              },
-                            },
-                          ],
-                        },
-                      },
-                      broadcast: true,
-                    })
-            }
+            onClick={() => remove([id])}
           >
             <Trans id='Remove' />
           </Button>

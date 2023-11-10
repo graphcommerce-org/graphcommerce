@@ -1,4 +1,3 @@
-import { useCustomerSession } from '@graphcommerce/magento-customer'
 import { MenuFabSecondaryItem, iconHeart, IconSvg } from '@graphcommerce/next-ui'
 import { Badge, NoSsr, SxProps, Theme } from '@mui/material'
 import React, { MouseEventHandler } from 'react'
@@ -11,8 +10,6 @@ type WishlistMenuFabItemContentProps = {
   activeWishlist: boolean
   onClick?: MouseEventHandler<HTMLElement>
 }
-
-const hideForGuest = import.meta.graphCommerce.wishlistHideForGuests
 
 function WishlistMenuFabItemContent(props: WishlistMenuFabItemContentProps) {
   const { icon, onClick, children, sx = [], activeWishlist } = props
@@ -41,15 +38,12 @@ function WishlistMenuFabItemContent(props: WishlistMenuFabItemContentProps) {
 export type WishlistMenuFabItemProps = Omit<WishlistMenuFabItemContentProps, 'activeWishlist'>
 
 export function WishlistMenuFabItem(props: WishlistMenuFabItemProps) {
-  const isWishlistEnabled = useWishlistEnabled()
-  const { loggedIn } = useCustomerSession()
-
   const wishlist = useWishlistItems()
 
-  const activeWishlist = (wishlist.data && wishlist.data.length > 0) ?? false
+  if (!wishlist.enabled) return null
 
-  if (hideForGuest && !loggedIn) return null
-  if (!isWishlistEnabled) return null
+  const activeWishlist = wishlist.items.length > 0 ?? false
+
   return (
     <NoSsr fallback={<WishlistMenuFabItemContent {...props} activeWishlist={false} />}>
       <WishlistMenuFabItemContent {...props} activeWishlist={activeWishlist} />

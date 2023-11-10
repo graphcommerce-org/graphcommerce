@@ -1,4 +1,0 @@
-fragment WishlistItem on WishlistItemInterface @injectable {
-  id
-  __typename
-}

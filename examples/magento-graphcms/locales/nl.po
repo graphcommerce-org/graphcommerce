@@ -322,9 +322,6 @@ msgstr "Lichte modus"
 msgid "Loading"
 msgstr "Laden"
 
-msgid "Loading wishlist"
-msgstr "Ophalen verlanglijst"
-
 msgid "Loading your account"
 msgstr "Uw account laden"
 

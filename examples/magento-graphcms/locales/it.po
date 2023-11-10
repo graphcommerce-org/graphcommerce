@@ -322,9 +322,6 @@ msgstr "Modalità chiara"
 msgid "Loading"
 msgstr "Caricamento"
 
-msgid "Loading wishlist"
-msgstr "Caricamento lista desideri"
-
 msgid "Loading your account"
 msgstr "Caricamento del tuo account"
 
