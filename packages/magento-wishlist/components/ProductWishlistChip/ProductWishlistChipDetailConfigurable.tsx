@@ -1,5 +1,8 @@
-import { ProductWishlistChipBase, ProductWishlistChipProps } from './ProductWishlistChipBase'
+import { ProductWishlistIconButton, ProductWishlistChipProps } from './ProductWishlistIconButton'
 
+/**
+ * @deprecated
+ */
 export function ProductWishlistChipDetailConfigurable(props: ProductWishlistChipProps) {
-  return <ProductWishlistChipBase sx={(theme) => ({ boxShadow: theme.shadows[6] })} {...props} />
+  return <ProductWishlistIconButton sx={{ boxShadow: 6 }} {...props} />
 }

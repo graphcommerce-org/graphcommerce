@@ -1,0 +1,8 @@
+query UseWishlistGuest {
+  customer @client {
+    __typename
+    wishlists {
+      ...Wishlist
+    }
+  }
+}

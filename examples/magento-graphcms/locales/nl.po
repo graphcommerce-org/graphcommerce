@@ -145,6 +145,9 @@ msgstr "Voltooi de betaling op uw bank's website."
 msgid "Complete your purchase"
 msgstr "Maak uw bestelling compleet"
 
+msgid "Configure"
+msgstr "Configureer"
+
 msgid "Confirm new email"
 msgstr "Bevestig nieuwe email"
 
@@ -318,9 +321,6 @@ msgstr "Lichte modus"
 
 msgid "Loading"
 msgstr "Laden"
-
-msgid "Loading wishlist"
-msgstr "Ophalen verlanglijst"
 
 msgid "Loading your account"
 msgstr "Uw account laden"

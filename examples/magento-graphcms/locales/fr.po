@@ -145,6 +145,9 @@ msgstr "Complétez le paiement sur le site de votre banque."
 msgid "Complete your purchase"
 msgstr "Complétez votre achat"
 
+msgid "Configure"
+msgstr "Configurer"
+
 msgid "Confirm new email"
 msgstr "Confirmer le nouvel email"
 
@@ -318,9 +321,6 @@ msgstr "Mode clair"
 
 msgid "Loading"
 msgstr "Chargement"
-
-msgid "Loading wishlist"
-msgstr "Chargement de la liste de souhaits"
 
 msgid "Loading your account"
 msgstr "Chargement de votre compte"

@@ -1,12 +1,9 @@
-import { ProductWishlistChipBase, ProductWishlistChipProps } from './ProductWishlistChipBase'
+import React from 'react'
+import { ProductWishlistIconButton, ProductWishlistChipProps } from './ProductWishlistIconButton'
 
-export function ProductWishlistChipDetail(props: ProductWishlistChipProps) {
-  return (
-    <ProductWishlistChipBase
-      sx={(theme) => ({
-        boxShadow: theme.shadows[6],
-      })}
-      {...props}
-    />
-  )
-}
+/**
+ * @deprecated use ProductWishlistIconButton with an sx prop.
+ */
+export const ProductWishlistChipDetail = React.memo<ProductWishlistChipProps>((props) => {
+  return <ProductWishlistIconButton sx={{ boxShadow: 6 }} {...props} />
+})
