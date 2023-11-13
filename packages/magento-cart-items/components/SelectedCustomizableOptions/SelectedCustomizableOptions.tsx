@@ -1,7 +1,6 @@
 import { Money } from '@graphcommerce/magento-store'
-import { IconSvg, filterNonNullableKeys, nonNullable } from '@graphcommerce/next-ui'
-import * as InfoIcon from '@graphcommerce/next-ui/icons/info.svg'
-import { Box, Tooltip, Typography } from '@mui/material'
+import { filterNonNullableKeys, nonNullable } from '@graphcommerce/next-ui'
+import { Box } from '@mui/material'
 import { SelectedCustomizableOptionFragment } from './SelectedCustomizableOption.gql'
 
 type ConfigurableActionCartItemProps = {
@@ -36,14 +35,15 @@ export function SelectedCustomizableOptions(props: ConfigurableActionCartItemPro
                   {value.label}
                 </span>
               )}
-              <span key={`${value.customizable_option_value_uid}_${value.price.value}`}>
-                {value.price.value > 0 && <Money value={value.price.value} />}
-              </span>
-              {!value.label && value.value && (
-                <Tooltip title={value.value} sx={{ alignSelf: 'center' }}>
-                  <IconSvg src={InfoIcon} size='medium' />
-                </Tooltip>
+              {value.price.value > 0 && (
+                <Box
+                  sx={(theme) => ({ position: 'absolute', right: theme.spacings.xs })}
+                  key={`${value.customizable_option_value_uid}_${value.price.value}`}
+                >
+                  <Money value={value.price.value} />
+                </Box>
               )}
+              {!value.label && value.value && value.value}
             </Box>
           ))}
         </Box>
