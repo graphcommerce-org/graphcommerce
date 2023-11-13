@@ -15,6 +15,7 @@ import React from 'react'
 import { AddToCartItemSelector, useFormAddProductsToCart } from '../AddProductsToCart'
 import { ProductCustomizableFragment } from './ProductCustomizable.gql'
 import { ProductPagePriceFragment } from '../ProductPagePrice'
+import { Trans } from '@lingui/react'
 
 export type OptionTypeRenderer = TypeRenderer<
   NonNullable<NonNullable<ProductCustomizableFragment['options']>[number]> & {
@@ -227,11 +228,26 @@ const CustomizableMultipleOption = React.memo<
 })
 
 const CustomizableDateOption = React.memo<
-  React.ComponentProps<OptionTypeRenderer['CustomizableDateOption']>
+  React.ComponentProps<OptionTypeRenderer['CustomizableDateOption']> & {
+    minDate?: Date
+    maxDate?: Date
+  }
 >((props) => {
-  const { uid, required, optionIndex, index, title } = props
-  const { register, setValue } = useFormAddProductsToCart()
+  const {
+    uid,
+    required,
+    optionIndex,
+    index,
+    title,
+    minDate = new Date('1950-11-12T00:00'),
+    maxDate = new Date('2080-11-12T00:00'),
+  } = props
+  const { register, setValue, setError, getFieldState, clearErrors } = useFormAddProductsToCart()
 
+  const { invalid } = getFieldState(`cartItems.${index}.entered_options.${optionIndex}.value`)
+
+  minDate.setSeconds(0, 0)
+  maxDate.setSeconds(0, 0)
   return (
     <Box>
       <input
@@ -247,13 +263,29 @@ const CustomizableDateOption = React.memo<
           mt: theme.spacings.xxs,
         })}
         required={!!required}
+        error={invalid}
+        helperText={invalid ? <Trans id='Invalid date' /> : ''}
         type='datetime-local'
-        onChange={(data) =>
+        InputProps={{
+          inputProps: {
+            min: minDate.toISOString().replace(/:00.000Z/, ''),
+            max: maxDate.toISOString().replace(/:00.000Z/, ''),
+          },
+        }}
+        onChange={(data) => {
+          const selectedDate = new Date(data.currentTarget.value)
+          if (selectedDate < minDate || selectedDate > maxDate) {
+            setError(`cartItems.${index}.entered_options.${optionIndex}.value`, {
+              message: 'Invalid date',
+            })
+          } else {
+            clearErrors(`cartItems.${index}.entered_options.${optionIndex}.value`)
+          }
           setValue(
             `cartItems.${index}.entered_options.${optionIndex}.value`,
             `${data.currentTarget.value.replace('T', ' ')}:00`,
           )
-        }
+        }}
       />
     </Box>
   )
@@ -265,7 +297,7 @@ const CustomizableFieldOption = React.memo<
   const { uid, required, optionIndex, index, title, fieldValue } = props
   const { control, register } = useFormAddProductsToCart()
 
-  const maxLength = fieldValue?.max_characters ?? undefined
+  const maxLength = fieldValue?.max_characters ?? 0
   return (
     <Box>
       <FormLabel>{title?.toUpperCase()}</FormLabel>
@@ -284,7 +316,14 @@ const CustomizableFieldOption = React.memo<
         control={control}
         name={`cartItems.${index}.entered_options.${optionIndex}.value`}
         required={Boolean(required)}
-        validation={{ maxLength }}
+        validation={{
+          maxLength: {
+            value: maxLength,
+            message: i18n._(/* i18n*/ 'There is a maximum of  ‘{maxLength}’ characters', {
+              maxLength,
+            }),
+          },
+        }}
         helperText={(maxLength ?? 0) > 0 && `A maximum of ${maxLength} characters`}
       />
     </Box>
