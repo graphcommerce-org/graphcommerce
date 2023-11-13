@@ -25,12 +25,14 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@types/circular-dependency-plugin": "^5.0.5",
-    "@types/lodash": "^4.14.191",
+    "@types/circular-dependency-plugin": "^5.0.8",
+    "@types/lodash": "^4.14.201",
     "typescript": "5.2.2"
   },
   "peerDependencies": {
-    "next": "^13.2.0",
+    "@lingui/macro": "^4.2.1",
+    "graphql": "*",
+    "next": "*",
     "webpack": "^5.0.0"
   }
 }

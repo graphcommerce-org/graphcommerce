@@ -198,7 +198,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@apollo/client@npm:~3.2.5 || ~3.3.0 || ~3.4.0 || ~3.5.0 || ~3.6.0 || ~3.7.0 || ~3.8.0, @apollo/client@npm:~3.8.2":
+"@apollo/client@npm:~3.2.5 || ~3.3.0 || ~3.4.0 || ~3.5.0 || ~3.6.0 || ~3.7.0 || ~3.8.0":
   version: 3.8.4
   resolution: "@apollo/client@npm:3.8.4"
   dependencies:
@@ -231,6 +231,42 @@ __metadata:
     subscriptions-transport-ws:
       optional: true
   checksum: 36b8cb05da30fffb795d8bb970cdbc32f5f3b421ebe5874d7681a907bd4aa6ca7b01144b480299e309e207754f77d1f72b55b05e15bd488248242fafdd76dcd3
+  languageName: node
+  linkType: hard
+
+"@apollo/client@npm:~3.8.7":
+  version: 3.8.7
+  resolution: "@apollo/client@npm:3.8.7"
+  dependencies:
+    "@graphql-typed-document-node/core": "npm:^3.1.1"
+    "@wry/context": "npm:^0.7.3"
+    "@wry/equality": "npm:^0.5.6"
+    "@wry/trie": "npm:^0.4.3"
+    graphql-tag: "npm:^2.12.6"
+    hoist-non-react-statics: "npm:^3.3.2"
+    optimism: "npm:^0.17.5"
+    prop-types: "npm:^15.7.2"
+    response-iterator: "npm:^0.2.6"
+    symbol-observable: "npm:^4.0.0"
+    ts-invariant: "npm:^0.10.3"
+    tslib: "npm:^2.3.0"
+    zen-observable-ts: "npm:^1.2.5"
+  peerDependencies:
+    graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
+    graphql-ws: ^5.5.5
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+    subscriptions-transport-ws: ^0.9.0 || ^0.11.0
+  peerDependenciesMeta:
+    graphql-ws:
+      optional: true
+    react:
+      optional: true
+    react-dom:
+      optional: true
+    subscriptions-transport-ws:
+      optional: true
+  checksum: e88be52f6393ab0625999abf7f6ed6c1035e5f290a738477210f9563d85d369b3dcb86dff7613be84a012192b66c2fae18ee9d5acf55f2b0ca30c1cc77c38559
   languageName: node
   linkType: hard
 
@@ -1624,7 +1660,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.0.0, @babel/runtime@npm:^7.1.2, @babel/runtime@npm:^7.11.2, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.18.3, @babel/runtime@npm:^7.20.1, @babel/runtime@npm:^7.20.13, @babel/runtime@npm:^7.20.7, @babel/runtime@npm:^7.21.0, @babel/runtime@npm:^7.22.10, @babel/runtime@npm:^7.22.15, @babel/runtime@npm:^7.5.5, @babel/runtime@npm:^7.8.4, @babel/runtime@npm:^7.8.7, @babel/runtime@npm:^7.9.2":
+"@babel/runtime@npm:^7.0.0, @babel/runtime@npm:^7.1.2, @babel/runtime@npm:^7.11.2, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.18.3, @babel/runtime@npm:^7.20.1, @babel/runtime@npm:^7.20.13, @babel/runtime@npm:^7.21.0, @babel/runtime@npm:^7.5.5, @babel/runtime@npm:^7.8.4, @babel/runtime@npm:^7.8.7, @babel/runtime@npm:^7.9.2":
   version: 7.23.1
   resolution: "@babel/runtime@npm:7.23.1"
   dependencies:
@@ -2027,9 +2063,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ducanh2912/next-pwa@npm:9.5.0":
-  version: 9.5.0
-  resolution: "@ducanh2912/next-pwa@npm:9.5.0"
+"@ducanh2912/next-pwa@npm:9.7.2":
+  version: 9.7.2
+  resolution: "@ducanh2912/next-pwa@npm:9.7.2"
   dependencies:
     clean-webpack-plugin: "npm:4.0.0"
     fast-glob: "npm:3.3.1"
@@ -2042,7 +2078,7 @@ __metadata:
   peerDependencies:
     next: ">=11.0.0"
     webpack: ">=5.9.0"
-  checksum: 69729f54d2196128286e22001723f30fc8863a4375cc0a67e0ef5ffc63763f7c23a535251f6e2b4d1c071c9287039de20ce95cac46dfcd08467200083338da21
+  checksum: 7296a67f7db04cbf4ab0d91de006a99583444517a876aebc80d32ecab687ea418ce1f93ec2457c975a325e73c93bb8a3cf421a31efc95ed1f80f3732cb313081
   languageName: node
   linkType: hard
 
@@ -2443,9 +2479,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eslint/eslintrc@npm:^2.1.2":
-  version: 2.1.2
-  resolution: "@eslint/eslintrc@npm:2.1.2"
+"@eslint/eslintrc@npm:^2.1.3":
+  version: 2.1.3
+  resolution: "@eslint/eslintrc@npm:2.1.3"
   dependencies:
     ajv: "npm:^6.12.4"
     debug: "npm:^4.3.2"
@@ -2456,14 +2492,14 @@ __metadata:
     js-yaml: "npm:^4.1.0"
     minimatch: "npm:^3.1.2"
     strip-json-comments: "npm:^3.1.1"
-  checksum: 00efdc3797e6f05518060522b7788e5f5aff02f13facbd0c83b176c3dee86554023283a5f68542df379c5137685d2d29745c87f62bf2406a1d38d95471f44ce6
+  checksum: f4103f4346126292eb15581c5a1d12bef03410fd3719dedbdb92e1f7031d46a5a2d60de8566790445d5d4b70b75ba050876799a11f5fff8265a91ee3fa77dab0
   languageName: node
   linkType: hard
 
-"@eslint/js@npm:8.48.0":
-  version: 8.48.0
-  resolution: "@eslint/js@npm:8.48.0"
-  checksum: c8ac8952f37cccd41b4adc4399a7a3a6a0b4c52d67bc55b412be5b3ffb476343b3463a4df2c1d7b633dbb6e0d5fb277eeaf3ba0de0dcdf6d0ed97fcdd416ba94
+"@eslint/js@npm:8.53.0":
+  version: 8.53.0
+  resolution: "@eslint/js@npm:8.53.0"
+  checksum: d29f6c207b2f6dc4ef174d16a3c07b0d3a17ca3d805680496ff267edd773e3bac41db4e7dcab622ca1970d892535bd19671e2a756d4eac75e96fd8c8dcdb619b
   languageName: node
   linkType: hard
 
@@ -2483,18 +2519,6 @@ __metadata:
     "@floating-ui/core": "npm:^1.4.2"
     "@floating-ui/utils": "npm:^0.1.3"
   checksum: e5f30b911f939e40003851077bba441f269ae689bdc43c674bee43aa98fc6b7a5f59be432d27b7be599b1e4ab7b15c752875ea777a89cff01d157e593b78b25b
-  languageName: node
-  linkType: hard
-
-"@floating-ui/react-dom@npm:^2.0.1":
-  version: 2.0.2
-  resolution: "@floating-ui/react-dom@npm:2.0.2"
-  dependencies:
-    "@floating-ui/dom": "npm:^1.5.1"
-  peerDependencies:
-    react: ">=16.8.0"
-    react-dom: ">=16.8.0"
-  checksum: bfd07cfc9047a31e92e223dbbe48f2cdb75460126217b35cfbf8555eaf1718ce7c11f4ee4d39bdee89eaf9ad0a5c4dd9af443a552116fc3478a19a9f6283bdf6
   languageName: node
   linkType: hard
 
@@ -2527,21 +2551,20 @@ __metadata:
 "@graphcommerce/address-fields-nl@workspace:packages/address-fields-nl":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/address-fields-nl@workspace:packages/address-fields-nl"
-  dependencies:
-    "@graphcommerce/ecommerce-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-customer": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-store": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
   peerDependencies:
+    "@graphcommerce/ecommerce-ui": "*"
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/graphql": "*"
+    "@graphcommerce/magento-customer": "*"
+    "@graphcommerce/magento-store": "*"
+    "@graphcommerce/next-ui": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
-    next: ^13.2.0
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -2551,25 +2574,25 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/algolia-search@workspace:packages/algolia-search"
   dependencies:
-    "@graphcommerce/ecommerce-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql-mesh": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-product": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-search": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-store": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-config": "npm:^7.1.0-canary.38"
-    "@graphcommerce/next-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
-    algoliasearch: "npm:^4.15.0"
-    react-instantsearch-hooks-web: "npm:^6.41.0"
+    algoliasearch: "npm:^4.20.0"
+    react-instantsearch-hooks-web: "npm:^6.47.3"
   peerDependencies:
+    "@graphcommerce/ecommerce-ui": "*"
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/graphql": "*"
+    "@graphcommerce/graphql-mesh": "*"
+    "@graphcommerce/magento-product": "*"
+    "@graphcommerce/magento-search": "*"
+    "@graphcommerce/magento-store": "*"
+    "@graphcommerce/next-config": ^*
+    "@graphcommerce/next-ui": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
-    next: ^13.2.0
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -2593,11 +2616,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/cli@workspace:packages/cli"
   dependencies:
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/hygraph-cli": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-config": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
     "@graphql-codegen/cli": "npm:5.0.0"
     "@graphql-mesh/cli": "npm:latest"
     "@graphql-mesh/cross-helpers": "npm:latest"
@@ -2605,16 +2623,22 @@ __metadata:
     "@graphql-mesh/store": "npm:latest"
     "@graphql-mesh/types": "npm:latest"
     "@graphql-mesh/utils": "npm:latest"
-    cosmiconfig: "npm:^8.2.0"
+    "@graphql-tools/utils": "npm:^10.0.8"
+    cosmiconfig: "npm:^8.3.6"
     detect-package-manager: "npm:^3.0.1"
     graphql-codegen-typescript-validation-schema: "npm:^0.12.0"
     graphql-tag: "npm:^2.12.6"
-    react: "npm:^18.2.0"
-    rimraf: "npm:^5.0.1"
-    ts-node: "npm:^10.9.1"
-    typescript: "npm:5.2.2"
+    rimraf: "npm:^5.0.5"
+    tslib: "npm:^2.6.2"
   peerDependencies:
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/hygraph-cli": "*"
+    "@graphcommerce/next-config": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     graphql: ^16.7.1
+    react: ^18.2.0
+    typescript: 5.2.2
   bin:
     gql-gen: dist/bin/codegen.js
     gql-mesh: dist/bin/mesh.js
@@ -2630,17 +2654,16 @@ __metadata:
 "@graphcommerce/demo-magento-graphcommerce@npm:7.1.0-canary.38, @graphcommerce/demo-magento-graphcommerce@workspace:packages/demo-magento-graphcommerce":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/demo-magento-graphcommerce@workspace:packages/demo-magento-graphcommerce"
-  dependencies:
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/framer-scroller": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-product": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-product-configurable": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
   peerDependencies:
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/framer-scroller": "*"
+    "@graphcommerce/magento-product": "*"
+    "@graphcommerce/magento-product-configurable": "*"
+    "@graphcommerce/next-ui": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     "@mui/material": ^5.10.16
-    next: ^13.2.0
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -2649,28 +2672,27 @@ __metadata:
 "@graphcommerce/docs@workspace:docs":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/docs@workspace:docs"
-  dependencies:
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
+  peerDependencies:
+    "@graphcommerce/prettier-config-pwa": "*"
   languageName: unknown
   linkType: soft
 
 "@graphcommerce/ecommerce-ui@npm:7.1.0-canary.38, @graphcommerce/ecommerce-ui@workspace:packages/ecommerce-ui":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/ecommerce-ui@workspace:packages/ecommerce-ui"
-  dependencies:
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/react-hook-form": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
   peerDependencies:
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/graphql": "*"
+    "@graphcommerce/next-ui": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/react-hook-form": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
-    next: ^13.2.0
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -2682,14 +2704,14 @@ __metadata:
   dependencies:
     "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
     "@next/eslint-plugin-next": "npm:14.0.2"
-    "@typescript-eslint/eslint-plugin": "npm:^6.6.0"
-    "@typescript-eslint/parser": "npm:^6.6.0"
+    "@typescript-eslint/eslint-plugin": "npm:^6.10.0"
+    "@typescript-eslint/parser": "npm:^6.10.0"
     eslint-config-airbnb: "npm:19.0.4"
     eslint-config-airbnb-typescript: "npm:17.1.0"
     eslint-config-prettier: "npm:9.0.0"
-    eslint-plugin-import: "npm:2.28.1"
-    eslint-plugin-jsx-a11y: "npm:6.7.1"
-    eslint-plugin-react: "npm:^7.31.11"
+    eslint-plugin-import: "npm:2.29.0"
+    eslint-plugin-jsx-a11y: "npm:6.8.0"
+    eslint-plugin-react: "npm:^7.33.2"
     eslint-plugin-react-hooks: "npm:4.6.0"
   peerDependencies:
     eslint: ^8.8.0
@@ -2700,30 +2722,52 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/framer-next-pages-example@workspace:packages/framer-next-pages/example"
   dependencies:
-    "@graphcommerce/framer-next-pages": "npm:7.1.0-canary.38"
-    "@graphcommerce/lingui-next": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-config": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-ui": "npm:7.1.0-canary.38"
+    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
+    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
+    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
+    "@lingui/cli": "npm:4.5.0"
+    "@lingui/core": "npm:4.5.0"
+    "@lingui/macro": "npm:4.5.0"
+    "@lingui/react": "npm:4.5.0"
+    "@mui/lab": "npm:5.0.0-alpha.152"
     "@mui/material": "npm:5.14.17"
-    framer-motion: "npm:10.16.3"
+    "@next/env": "npm:14.0.2"
+    "@parcel/watcher": "npm:^2.3.0"
+    "@playwright/test": "npm:1.39.0"
+    "@types/node": "npm:^16.18.61"
+    "@types/react": "npm:^18.2.37"
+    "@types/react-dom": "npm:^18.2.15"
+    "@types/react-is": "npm:^18.2.4"
+    babel-plugin-macros: "npm:^3.1.0"
+    concurrently: "npm:8.2.2"
+    cross-env: "npm:^7.0.3"
+    dotenv: "npm:16.3.1"
+    eslint: "npm:8.53.0"
+    framer-motion: "npm:10.16.4"
+    graphql: "npm:^16.8.1"
     next: "npm:14.0.2"
+    next-sitemap: "npm:4.2.3"
+    patch-package: "npm:8.0.0"
+    prettier: "npm:3.1.0"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
+    sharp: "npm:0.32.6"
+    type-fest: "npm:^4.7.1"
     typescript: "npm:5.2.2"
+    webpack: "npm:5.89.0"
   languageName: unknown
   linkType: soft
 
 "@graphcommerce/framer-next-pages@npm:7.1.0-canary.38, @graphcommerce/framer-next-pages@workspace:packages/framer-next-pages":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/framer-next-pages@workspace:packages/framer-next-pages"
-  dependencies:
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/framer-utils": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
   peerDependencies:
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/framer-utils": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     framer-motion: ^10.0.0
-    next: ^13.2.0
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -2733,16 +2777,39 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/framer-scroller-example@workspace:packages/framer-scroller/example"
   dependencies:
-    "@graphcommerce/framer-scroller": "npm:7.1.0-canary.38"
-    "@graphcommerce/image": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-config": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-ui": "npm:7.1.0-canary.38"
+    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
+    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
+    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
+    "@lingui/cli": "npm:4.5.0"
+    "@lingui/core": "npm:4.5.0"
+    "@lingui/macro": "npm:4.5.0"
+    "@lingui/react": "npm:4.5.0"
+    "@mui/lab": "npm:5.0.0-alpha.152"
     "@mui/material": "npm:5.14.17"
-    framer-motion: "npm:10.16.3"
+    "@next/env": "npm:14.0.2"
+    "@parcel/watcher": "npm:^2.3.0"
+    "@playwright/test": "npm:1.39.0"
+    "@types/node": "npm:^16.18.61"
+    "@types/react": "npm:^18.2.37"
+    "@types/react-dom": "npm:^18.2.15"
+    "@types/react-is": "npm:^18.2.4"
+    babel-plugin-macros: "npm:^3.1.0"
+    concurrently: "npm:8.2.2"
+    cross-env: "npm:^7.0.3"
+    dotenv: "npm:16.3.1"
+    eslint: "npm:8.53.0"
+    framer-motion: "npm:10.16.4"
+    graphql: "npm:^16.8.1"
     next: "npm:14.0.2"
+    next-sitemap: "npm:4.2.3"
+    patch-package: "npm:8.0.0"
+    prettier: "npm:3.1.0"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
+    sharp: "npm:0.32.6"
+    type-fest: "npm:^4.7.1"
     typescript: "npm:5.2.2"
+    webpack: "npm:5.89.0"
   languageName: unknown
   linkType: soft
 
@@ -2750,18 +2817,18 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/framer-scroller@workspace:packages/framer-scroller"
   dependencies:
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/framer-utils": "npm:7.1.0-canary.38"
-    "@graphcommerce/image": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
     popmotion: "npm:11.0.5"
   peerDependencies:
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/framer-utils": "*"
+    "@graphcommerce/image": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     "@lingui/core": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
-    next: ^13.2.0
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -2771,11 +2838,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/framer-utils@workspace:packages/framer-utils"
   dependencies:
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
-    framesync: "npm:^6.1.1"
+    framesync: "npm:^6.1.2"
   peerDependencies:
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     framer-motion: ^10.0.0
     react: ^18.2.0
     react-dom: ^18.2.0
@@ -2786,20 +2853,20 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/googleanalytics@workspace:packages/googleanalytics"
   dependencies:
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql-mesh": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-cart": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-cart-payment-method": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-cart-shipping-method": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-product": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-config": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
-    "@types/gtag.js": "npm:^0.0.13"
+    "@types/gtag.js": "npm:^0.0.18"
   peerDependencies:
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/graphql-mesh": "*"
+    "@graphcommerce/magento-cart": "*"
+    "@graphcommerce/magento-cart-payment-method": "*"
+    "@graphcommerce/magento-cart-shipping-method": "*"
+    "@graphcommerce/magento-product": "*"
+    "@graphcommerce/next-config": "*"
+    "@graphcommerce/next-ui": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     "@mui/material": ^5.10.16
-    next: ^13.2.0
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -2809,15 +2876,15 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/googlerecaptcha@workspace:packages/googlerecaptcha"
   dependencies:
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
-    "@types/grecaptcha": "npm:^3.0.4"
+    "@types/grecaptcha": "npm:^3.0.7"
   peerDependencies:
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/graphql": "*"
+    "@graphcommerce/next-ui": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     "@mui/material": ^5.10.16
-    next: ^13.2.0
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -2827,14 +2894,14 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/googletagmanager@workspace:packages/googletagmanager"
   dependencies:
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-product": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
-    "@types/gapi.client.tagmanager": "npm:^2.0.2"
+    "@types/gapi.client.tagmanager": "npm:^2.0.4"
   peerDependencies:
-    next: ^13.2.0
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/magento-product": "*"
+    "@graphcommerce/next-ui": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -2843,16 +2910,15 @@ __metadata:
 "@graphcommerce/graphcms-ui@npm:7.1.0-canary.38, @graphcommerce/graphcms-ui@workspace:packages/hygraph-ui":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/graphcms-ui@workspace:packages/hygraph-ui"
-  dependencies:
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql": "npm:7.1.0-canary.38"
-    "@graphcommerce/image": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
   peerDependencies:
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/graphql": "*"
+    "@graphcommerce/image": "*"
+    "@graphcommerce/next-ui": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     "@mui/material": ^5.10.16
-    next: ^13.2.0
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -2862,16 +2928,16 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/graphql-codegen-markdown-docs@workspace:packagesDev/graphql-codegen-markdown-docs"
   dependencies:
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
     "@graphql-codegen/add": "npm:5.0.0"
     "@graphql-codegen/plugin-helpers": "npm:5.0.1"
     "@graphql-codegen/visitor-plugin-common": "npm:4.0.1"
-    "@graphql-tools/utils": "npm:^10.0.1"
-    "@types/parse-filepath": "npm:^1.0.0"
+    "@graphql-tools/utils": "npm:^10.0.8"
+    "@types/parse-filepath": "npm:^1.0.2"
     parse-filepath: "npm:^1.0.2"
   peerDependencies:
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     graphql: ^16.7.1
   languageName: unknown
   linkType: soft
@@ -2880,16 +2946,16 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/graphql-codegen-near-operation-file@workspace:packagesDev/graphql-codegen-near-operation-file"
   dependencies:
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
     "@graphql-codegen/add": "npm:5.0.0"
     "@graphql-codegen/plugin-helpers": "npm:5.0.1"
     "@graphql-codegen/visitor-plugin-common": "npm:4.0.1"
-    "@graphql-tools/utils": "npm:^10.0.1"
-    "@types/parse-filepath": "npm:^1.0.0"
+    "@graphql-tools/utils": "npm:^10.0.8"
+    "@types/parse-filepath": "npm:^1.0.2"
     parse-filepath: "npm:^1.0.2"
   peerDependencies:
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     graphql: ^16.7.1
   languageName: unknown
   linkType: soft
@@ -2899,16 +2965,17 @@ __metadata:
   resolution: "@graphcommerce/graphql-codegen-relay-optimizer-plugin@workspace:packagesDev/graphql-codegen-relay-optimizer-plugin"
   dependencies:
     "@ardatan/relay-compiler": "npm:12.0.0"
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
     "@graphql-codegen/plugin-helpers": "npm:5.0.1"
     "@graphql-codegen/testing": "npm:3.0.0"
-    "@types/jest": "npm:29.5.4"
-    "@types/relay-compiler": "npm:8.0.3"
-    jest: "npm:29.6.4"
+    "@types/jest": "npm:29.5.8"
+    "@types/relay-compiler": "npm:8.0.4"
+    jest: "npm:29.7.0"
+    jest-diff: "npm:^28"
     ts-jest: "npm:29.1.1"
     typescript: "npm:5.2.2"
   peerDependencies:
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
     graphql: ^16.7.1
   languageName: unknown
   linkType: soft
@@ -2917,10 +2984,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/graphql-mesh@workspace:packages/graphql-mesh"
   dependencies:
-    "@apollo/client": "npm:~3.8.2"
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
     "@graphql-mesh/apollo-link": "npm:latest"
     "@graphql-mesh/config": "npm:latest"
     "@graphql-mesh/cross-helpers": "npm:latest"
@@ -2932,12 +2995,16 @@ __metadata:
     "@graphql-mesh/transform-prune": "npm:latest"
     "@graphql-mesh/types": "npm:latest"
     "@graphql-mesh/utils": "npm:latest"
-    "@graphql-tools/utils": "npm:^10.0.1"
-    "@whatwg-node/fetch": "npm:^0.9.4"
+    "@graphql-tools/utils": "npm:^10.0.8"
+    "@whatwg-node/fetch": "npm:^0.9.14"
     fetch-retry: "npm:^5.0.6"
     tslib: "npm:^2.6.2"
     typescript: "npm:5.2.2"
   peerDependencies:
+    "@apollo/client": ^3
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     graphql: ^16.7.1
   languageName: unknown
   linkType: soft
@@ -2946,12 +3013,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/graphql@workspace:packages/graphql"
   dependencies:
-    "@apollo/client": "npm:~3.8.2"
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
     "@graphcommerce/graphql-codegen-near-operation-file": "npm:7.1.0-canary.38"
     "@graphcommerce/graphql-codegen-relay-optimizer-plugin": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
     "@graphql-codegen/add": "npm:5.0.0"
     "@graphql-codegen/fragment-matcher": "npm:5.0.0"
     "@graphql-codegen/introspection": "npm:4.0.0"
@@ -2963,6 +3026,10 @@ __metadata:
     "@graphql-codegen/typescript-operations": "npm:4.0.1"
     apollo3-cache-persist: "npm:^0.14.1"
   peerDependencies:
+    "@apollo/client": ^3
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     graphql: ^16.7.1
     react: ^18.2.0
     react-dom: ^18.2.0
@@ -2973,18 +3040,18 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/hygraph-cli@workspace:packages/hygraph-cli"
   dependencies:
-    "@apollo/client": "npm:~3.8.2"
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-config": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
     "@hygraph/management-sdk": "npm:1.2.3"
-    "@types/prompts": "npm:^2.4.4"
-    "@whatwg-node/fetch": "npm:^0.9.4"
+    "@types/prompts": "npm:^2.4.8"
+    "@whatwg-node/fetch": "npm:^0.9.14"
     graphql-tag: "npm:^2.12.6"
     prompts: "npm:^2.4.2"
     typescript: "npm:5.2.2"
   peerDependencies:
+    "@apollo/client": ^3
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/next-config": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     dotenv: ^16.1.4
     graphql: ^16.7.1
   languageName: unknown
@@ -2993,17 +3060,16 @@ __metadata:
 "@graphcommerce/hygraph-dynamic-rows@npm:7.1.0-canary.38, @graphcommerce/hygraph-dynamic-rows@workspace:packages/hygraph-dynamic-rows":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/hygraph-dynamic-rows@workspace:packages/hygraph-dynamic-rows"
-  dependencies:
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphcms-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql": "npm:7.1.0-canary.38"
-    "@graphcommerce/image": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
   peerDependencies:
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/graphcms-ui": "*"
+    "@graphcommerce/graphql": "*"
+    "@graphcommerce/image": "*"
+    "@graphcommerce/next-ui": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     "@mui/material": ^5.10.16
-    next: ^13.2.0
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3013,28 +3079,52 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/image-example@workspace:packages/image/example"
   dependencies:
-    "@graphcommerce/image": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-config": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-ui": "npm:7.1.0-canary.38"
-    framer-motion: "npm:^10.16.3"
+    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
+    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
+    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
+    "@lingui/cli": "npm:4.5.0"
+    "@lingui/core": "npm:4.5.0"
+    "@lingui/macro": "npm:4.5.0"
+    "@lingui/react": "npm:4.5.0"
+    "@mui/lab": "npm:5.0.0-alpha.152"
+    "@mui/material": "npm:5.14.17"
+    "@next/env": "npm:14.0.2"
+    "@parcel/watcher": "npm:^2.3.0"
+    "@playwright/test": "npm:1.39.0"
+    "@types/node": "npm:^16.18.61"
+    "@types/react": "npm:^18.2.37"
+    "@types/react-dom": "npm:^18.2.15"
+    "@types/react-is": "npm:^18.2.4"
+    babel-plugin-macros: "npm:^3.1.0"
+    concurrently: "npm:8.2.2"
+    cross-env: "npm:^7.0.3"
+    dotenv: "npm:16.3.1"
+    eslint: "npm:8.53.0"
+    framer-motion: "npm:10.16.4"
+    graphql: "npm:^16.8.1"
     next: "npm:14.0.2"
+    next-sitemap: "npm:4.2.3"
+    patch-package: "npm:8.0.0"
+    prettier: "npm:3.1.0"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
+    sharp: "npm:0.32.6"
+    type-fest: "npm:^4.7.1"
     typescript: "npm:5.2.2"
+    webpack: "npm:5.89.0"
   languageName: unknown
   linkType: soft
 
 "@graphcommerce/image@npm:7.1.0-canary.38, @graphcommerce/image@workspace:packages/image":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/image@workspace:packages/image"
-  dependencies:
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/framer-utils": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
   peerDependencies:
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/framer-utils": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     "@mui/material": ^5.10.16
-    next: ^13.2.0
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3043,12 +3133,11 @@ __metadata:
 "@graphcommerce/lighthouse@workspace:packages/lighthouse":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/lighthouse@workspace:packages/lighthouse"
-  dependencies:
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
   peerDependencies:
-    next: ^13.2.0
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
+    next: "*"
   languageName: unknown
   linkType: soft
 
@@ -3056,17 +3145,17 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/lingui-next@workspace:packages/lingui-next"
   dependencies:
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-config": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
     "@lingui/conf": "npm:^4.5.0"
   peerDependencies:
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/next-config": "*"
+    "@graphcommerce/next-ui": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
-    next: ^13.2.0
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3075,25 +3164,24 @@ __metadata:
 "@graphcommerce/magento-cart-billing-address@npm:7.1.0-canary.38, @graphcommerce/magento-cart-billing-address@workspace:packages/magento-cart-billing-address":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-cart-billing-address@workspace:packages/magento-cart-billing-address"
-  dependencies:
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/framer-next-pages": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql": "npm:7.1.0-canary.38"
-    "@graphcommerce/image": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-cart": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-customer": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-store": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/react-hook-form": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
   peerDependencies:
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/framer-next-pages": "*"
+    "@graphcommerce/graphql": "*"
+    "@graphcommerce/image": "*"
+    "@graphcommerce/magento-cart": "*"
+    "@graphcommerce/magento-customer": "*"
+    "@graphcommerce/magento-store": "*"
+    "@graphcommerce/next-ui": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/react-hook-form": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
-    next: ^13.2.0
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3102,26 +3190,25 @@ __metadata:
 "@graphcommerce/magento-cart-checkout@npm:7.1.0-canary.38, @graphcommerce/magento-cart-checkout@workspace:packages/magento-cart-checkout":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-cart-checkout@workspace:packages/magento-cart-checkout"
-  dependencies:
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql": "npm:7.1.0-canary.38"
-    "@graphcommerce/image": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-cart": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-cart-coupon": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-cart-items": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-customer": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-store": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/react-hook-form": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
   peerDependencies:
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/graphql": "*"
+    "@graphcommerce/image": "*"
+    "@graphcommerce/magento-cart": "*"
+    "@graphcommerce/magento-cart-coupon": "*"
+    "@graphcommerce/magento-cart-items": "*"
+    "@graphcommerce/magento-customer": "*"
+    "@graphcommerce/magento-store": "*"
+    "@graphcommerce/next-ui": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/react-hook-form": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
-    next: ^13.2.0
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3130,23 +3217,22 @@ __metadata:
 "@graphcommerce/magento-cart-coupon@npm:7.1.0-canary.38, @graphcommerce/magento-cart-coupon@workspace:packages/magento-cart-coupon":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-cart-coupon@workspace:packages/magento-cart-coupon"
-  dependencies:
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql": "npm:7.1.0-canary.38"
-    "@graphcommerce/image": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-cart": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-store": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/react-hook-form": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
   peerDependencies:
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/graphql": "*"
+    "@graphcommerce/image": "*"
+    "@graphcommerce/magento-cart": "*"
+    "@graphcommerce/magento-store": "*"
+    "@graphcommerce/next-ui": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/react-hook-form": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
-    next: ^13.2.0
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3155,26 +3241,25 @@ __metadata:
 "@graphcommerce/magento-cart-email@npm:7.1.0-canary.38, @graphcommerce/magento-cart-email@workspace:packages/magento-cart-email":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-cart-email@workspace:packages/magento-cart-email"
-  dependencies:
-    "@graphcommerce/ecommerce-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql": "npm:7.1.0-canary.38"
-    "@graphcommerce/image": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-cart": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-customer": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-product": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-store": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/react-hook-form": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
   peerDependencies:
+    "@graphcommerce/ecommerce-ui": "*"
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/graphql": "*"
+    "@graphcommerce/image": "*"
+    "@graphcommerce/magento-cart": "*"
+    "@graphcommerce/magento-customer": "*"
+    "@graphcommerce/magento-product": "*"
+    "@graphcommerce/magento-store": "*"
+    "@graphcommerce/next-ui": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/react-hook-form": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
-    next: ^13.2.0
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3183,25 +3268,24 @@ __metadata:
 "@graphcommerce/magento-cart-items@npm:7.1.0-canary.38, @graphcommerce/magento-cart-items@workspace:packages/magento-cart-items":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-cart-items@workspace:packages/magento-cart-items"
-  dependencies:
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql": "npm:7.1.0-canary.38"
-    "@graphcommerce/image": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-cart": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-customer": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-product": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-store": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/react-hook-form": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
   peerDependencies:
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/graphql": "*"
+    "@graphcommerce/image": "*"
+    "@graphcommerce/magento-cart": "*"
+    "@graphcommerce/magento-customer": "*"
+    "@graphcommerce/magento-product": "*"
+    "@graphcommerce/magento-store": "*"
+    "@graphcommerce/next-ui": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/react-hook-form": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
-    next: ^13.2.0
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3210,25 +3294,24 @@ __metadata:
 "@graphcommerce/magento-cart-payment-method@npm:7.1.0-canary.38, @graphcommerce/magento-cart-payment-method@workspace:packages/magento-cart-payment-method":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-cart-payment-method@workspace:packages/magento-cart-payment-method"
-  dependencies:
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/framer-scroller": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql": "npm:7.1.0-canary.38"
-    "@graphcommerce/image": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-cart": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-cart-shipping-address": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-store": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/react-hook-form": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
   peerDependencies:
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/framer-scroller": "*"
+    "@graphcommerce/graphql": "*"
+    "@graphcommerce/image": "*"
+    "@graphcommerce/magento-cart": "*"
+    "@graphcommerce/magento-cart-shipping-address": "*"
+    "@graphcommerce/magento-store": "*"
+    "@graphcommerce/next-ui": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/react-hook-form": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
-    next: ^13.2.0
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3237,26 +3320,25 @@ __metadata:
 "@graphcommerce/magento-cart-pickup@workspace:packages/magento-cart-pickup":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-cart-pickup@workspace:packages/magento-cart-pickup"
-  dependencies:
-    "@graphcommerce/ecommerce-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql-mesh": "npm:7.1.0-canary.38"
-    "@graphcommerce/image": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-cart": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-cart-shipping-method": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-store": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/react-hook-form": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
   peerDependencies:
+    "@graphcommerce/ecommerce-ui": "*"
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/graphql": "*"
+    "@graphcommerce/graphql-mesh": "*"
+    "@graphcommerce/image": "*"
+    "@graphcommerce/magento-cart": "*"
+    "@graphcommerce/magento-cart-shipping-method": "*"
+    "@graphcommerce/magento-store": "*"
+    "@graphcommerce/next-ui": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/react-hook-form": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
-    next: ^13.2.0
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3265,24 +3347,23 @@ __metadata:
 "@graphcommerce/magento-cart-shipping-address@npm:7.1.0-canary.38, @graphcommerce/magento-cart-shipping-address@workspace:packages/magento-cart-shipping-address":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-cart-shipping-address@workspace:packages/magento-cart-shipping-address"
-  dependencies:
-    "@graphcommerce/ecommerce-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql": "npm:7.1.0-canary.38"
-    "@graphcommerce/image": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-cart": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-customer": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-store": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
   peerDependencies:
+    "@graphcommerce/ecommerce-ui": "*"
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/graphql": "*"
+    "@graphcommerce/image": "*"
+    "@graphcommerce/magento-cart": "*"
+    "@graphcommerce/magento-customer": "*"
+    "@graphcommerce/magento-store": "*"
+    "@graphcommerce/next-ui": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
-    next: ^13.2.0
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3291,25 +3372,24 @@ __metadata:
 "@graphcommerce/magento-cart-shipping-method@npm:7.1.0-canary.38, @graphcommerce/magento-cart-shipping-method@workspace:packages/magento-cart-shipping-method":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-cart-shipping-method@workspace:packages/magento-cart-shipping-method"
-  dependencies:
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/framer-scroller": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql": "npm:7.1.0-canary.38"
-    "@graphcommerce/image": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-cart": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-cart-shipping-address": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-store": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/react-hook-form": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
   peerDependencies:
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/framer-scroller": "*"
+    "@graphcommerce/graphql": "*"
+    "@graphcommerce/image": "*"
+    "@graphcommerce/magento-cart": "*"
+    "@graphcommerce/magento-cart-shipping-address": "*"
+    "@graphcommerce/magento-store": "*"
+    "@graphcommerce/next-ui": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/react-hook-form": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
-    next: ^13.2.0
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3318,28 +3398,27 @@ __metadata:
 "@graphcommerce/magento-cart@npm:7.1.0-canary.38, @graphcommerce/magento-cart@workspace:packages/magento-cart":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-cart@workspace:packages/magento-cart"
-  dependencies:
-    "@graphcommerce/ecommerce-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/framer-next-pages": "npm:7.1.0-canary.38"
-    "@graphcommerce/framer-scroller": "npm:7.1.0-canary.38"
-    "@graphcommerce/framer-utils": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql": "npm:7.1.0-canary.38"
-    "@graphcommerce/image": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-customer": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-graphql": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-store": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/react-hook-form": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
   peerDependencies:
+    "@graphcommerce/ecommerce-ui": "*"
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/framer-next-pages": "*"
+    "@graphcommerce/framer-scroller": "*"
+    "@graphcommerce/framer-utils": "*"
+    "@graphcommerce/graphql": "*"
+    "@graphcommerce/image": "*"
+    "@graphcommerce/magento-customer": "*"
+    "@graphcommerce/magento-graphql": "*"
+    "@graphcommerce/magento-store": "*"
+    "@graphcommerce/next-ui": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/react-hook-form": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
-    next: ^13.2.0
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3348,22 +3427,21 @@ __metadata:
 "@graphcommerce/magento-category@npm:7.1.0-canary.38, @graphcommerce/magento-category@workspace:packages/magento-category":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-category@workspace:packages/magento-category"
-  dependencies:
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/framer-scroller": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql": "npm:7.1.0-canary.38"
-    "@graphcommerce/image": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-product": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-store": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
   peerDependencies:
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/framer-scroller": "*"
+    "@graphcommerce/graphql": "*"
+    "@graphcommerce/image": "*"
+    "@graphcommerce/magento-product": "*"
+    "@graphcommerce/magento-store": "*"
+    "@graphcommerce/next-ui": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
-    next: ^13.2.0
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3372,18 +3450,17 @@ __metadata:
 "@graphcommerce/magento-cms@npm:7.1.0-canary.38, @graphcommerce/magento-cms@workspace:packages/magento-cms":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-cms@workspace:packages/magento-cms"
-  dependencies:
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-store": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
   peerDependencies:
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/graphql": "*"
+    "@graphcommerce/magento-store": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
-    next: ^13.2.0
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3392,25 +3469,24 @@ __metadata:
 "@graphcommerce/magento-compare@npm:7.1.0-canary.38, @graphcommerce/magento-compare@workspace:packages/magento-compare":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-compare@workspace:packages/magento-compare"
-  dependencies:
-    "@graphcommerce/ecommerce-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/framer-next-pages": "npm:7.1.0-canary.38"
-    "@graphcommerce/framer-utils": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-cart": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-product": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
   peerDependencies:
+    "@graphcommerce/ecommerce-ui": "*"
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/framer-next-pages": "*"
+    "@graphcommerce/framer-utils": "*"
+    "@graphcommerce/graphql": "*"
+    "@graphcommerce/magento-cart": "*"
+    "@graphcommerce/magento-product": "*"
+    "@graphcommerce/next-ui": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
     graphql: ^16.0.0
-    next: ^13.2.0
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3419,50 +3495,34 @@ __metadata:
 "@graphcommerce/magento-customer-account@workspace:packages/magento-customer-account":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-customer-account@workspace:packages/magento-customer-account"
-  dependencies:
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql": "npm:7.1.0-canary.38"
-    "@graphcommerce/image": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-customer": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-graphql": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-store": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/react-hook-form": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
   peerDependencies:
-    "@lingui/core": ^4.2.1
-    "@lingui/macro": ^4.2.1
-    "@lingui/react": ^4.2.1
-    "@mui/material": ^5.10.16
-    framer-motion: ^10.0.0
-    next: ^13.2.0
-    react: ^18.2.0
-    react-dom: ^18.2.0
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/magento-customer": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
   languageName: unknown
   linkType: soft
 
 "@graphcommerce/magento-customer-order@workspace:packages/magento-customer-order":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-customer-order@workspace:packages/magento-customer-order"
-  dependencies:
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql-mesh": "npm:7.1.0-canary.38"
-    "@graphcommerce/image": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-customer": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-graphql": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-store": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
   peerDependencies:
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/graphql": "*"
+    "@graphcommerce/graphql-mesh": "*"
+    "@graphcommerce/image": "*"
+    "@graphcommerce/magento-customer": "*"
+    "@graphcommerce/magento-graphql": "*"
+    "@graphcommerce/magento-store": "*"
+    "@graphcommerce/next-ui": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
-    next: ^13.2.0
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3471,27 +3531,26 @@ __metadata:
 "@graphcommerce/magento-customer@npm:7.1.0-canary.38, @graphcommerce/magento-customer@workspace:packages/magento-customer":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-customer@workspace:packages/magento-customer"
-  dependencies:
-    "@graphcommerce/ecommerce-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/framer-utils": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql-mesh": "npm:7.1.0-canary.38"
-    "@graphcommerce/image": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-graphql": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-store": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/react-hook-form": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
   peerDependencies:
+    "@graphcommerce/ecommerce-ui": "*"
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/framer-utils": "*"
+    "@graphcommerce/graphql": "*"
+    "@graphcommerce/graphql-mesh": "*"
+    "@graphcommerce/image": "*"
+    "@graphcommerce/magento-graphql": "*"
+    "@graphcommerce/magento-store": "*"
+    "@graphcommerce/next-ui": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/react-hook-form": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
     graphql: ^16.0.0
-    next: ^13.2.0
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3501,7 +3560,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-graphcms@workspace:examples/magento-graphcms"
   dependencies:
-    "@ducanh2912/next-pwa": "npm:9.5.0"
+    "@apollo/client": "npm:~3.8.7"
+    "@ducanh2912/next-pwa": "npm:9.7.2"
     "@graphcommerce/cli": "npm:7.1.0-canary.38"
     "@graphcommerce/demo-magento-graphcommerce": "npm:7.1.0-canary.38"
     "@graphcommerce/ecommerce-ui": "npm:7.1.0-canary.38"
@@ -3549,49 +3609,52 @@ __metadata:
     "@graphcommerce/next-config": "npm:7.1.0-canary.38"
     "@graphcommerce/next-ui": "npm:7.1.0-canary.38"
     "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
+    "@graphcommerce/react-hook-form": "npm:7.1.0-canary.38"
     "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
     "@lingui/cli": "npm:4.5.0"
     "@lingui/core": "npm:4.5.0"
     "@lingui/macro": "npm:4.5.0"
     "@lingui/react": "npm:4.5.0"
-    "@mui/lab": "npm:5.0.0-alpha.142"
+    "@mui/lab": "npm:5.0.0-alpha.152"
     "@mui/material": "npm:5.14.17"
     "@next/env": "npm:14.0.2"
     "@parcel/watcher": "npm:^2.3.0"
     "@playwright/test": "npm:1.39.0"
-    "@types/node": "npm:^16"
-    "@types/react": "npm:^18.2.21"
-    "@types/react-dom": "npm:^18.2.7"
-    "@types/react-is": "npm:^18.2.1"
-    concurrently: "npm:8.2.1"
+    "@types/babel-plugin-macros": "npm:^3"
+    "@types/node": "npm:^16.18.61"
+    "@types/react": "npm:^18.2.37"
+    "@types/react-dom": "npm:^18.2.15"
+    "@types/react-is": "npm:^18.2.4"
+    babel-plugin-macros: "npm:^3.1.0"
+    concurrently: "npm:8.2.2"
     cross-env: "npm:^7.0.3"
     dotenv: "npm:16.3.1"
-    eslint: "npm:8.48.0"
-    framer-motion: "npm:10.16.3"
+    eslint: "npm:8.53.0"
+    framer-motion: "npm:10.16.4"
     graphql: "npm:^16.8.1"
     next: "npm:14.0.2"
-    next-sitemap: "npm:4.2.2"
+    next-sitemap: "npm:4.2.3"
     patch-package: "npm:8.0.0"
-    prettier: "npm:3.0.3"
+    prettier: "npm:3.1.0"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
+    react-hook-form: "npm:^7.48.2"
     sharp: "npm:0.32.6"
     type-fest: "npm:^4.7.1"
     typescript: "npm:5.2.2"
-    webpack: "npm:5.88.2"
+    webpack: "npm:5.89.0"
   languageName: unknown
   linkType: soft
 
 "@graphcommerce/magento-graphql@npm:7.1.0-canary.38, @graphcommerce/magento-graphql@workspace:packages/magento-graphql":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-graphql@workspace:packages/magento-graphql"
-  dependencies:
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
   peerDependencies:
-    next: ^13.2.0
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/graphql": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3600,23 +3663,22 @@ __metadata:
 "@graphcommerce/magento-newsletter@npm:7.1.0-canary.38, @graphcommerce/magento-newsletter@workspace:packages/magento-newsletter":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-newsletter@workspace:packages/magento-newsletter"
-  dependencies:
-    "@graphcommerce/ecommerce-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-cart": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-customer": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/react-hook-form": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
   peerDependencies:
+    "@graphcommerce/ecommerce-ui": "*"
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/graphql": "*"
+    "@graphcommerce/magento-cart": "*"
+    "@graphcommerce/magento-customer": "*"
+    "@graphcommerce/next-ui": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/react-hook-form": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
-    next: ^13.2.0
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3626,24 +3688,24 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-pagebuilder@workspace:packages/magento-pagebuilder"
   dependencies:
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-category": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-cms": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-product": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/react-hook-form": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
-    "@types/jsdom": "npm:^21.1.2"
+    "@types/jsdom": "npm:^21.1.5"
     jsdom: "npm:^22.1.0"
   peerDependencies:
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/graphql": "*"
+    "@graphcommerce/magento-category": "*"
+    "@graphcommerce/magento-cms": "*"
+    "@graphcommerce/magento-product": "*"
+    "@graphcommerce/next-ui": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/react-hook-form": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
-    next: ^13.2.0
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3652,25 +3714,24 @@ __metadata:
 "@graphcommerce/magento-payment-adyen@workspace:packages/magento-payment-adyen":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-payment-adyen@workspace:packages/magento-payment-adyen"
-  dependencies:
-    "@graphcommerce/ecommerce-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql-mesh": "npm:7.1.0-canary.38"
-    "@graphcommerce/image": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-cart": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-cart-payment-method": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-product": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-store": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
   peerDependencies:
+    "@graphcommerce/ecommerce-ui": "*"
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/graphql": "*"
+    "@graphcommerce/graphql-mesh": "*"
+    "@graphcommerce/image": "*"
+    "@graphcommerce/magento-cart": "*"
+    "@graphcommerce/magento-cart-payment-method": "*"
+    "@graphcommerce/magento-product": "*"
+    "@graphcommerce/magento-store": "*"
+    "@graphcommerce/next-ui": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
-    next: ^13.2.0
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3680,28 +3741,28 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-payment-braintree@workspace:packages/magento-payment-braintree"
   dependencies:
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql": "npm:7.1.0-canary.38"
-    "@graphcommerce/image": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-cart": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-cart-payment-method": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-cart-shipping-address": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-product": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-product-configurable": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-store": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/react-hook-form": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
-    "@types/braintree-web": "npm:^3.96.4"
-    braintree-web: "npm:^3.95.0-beta-3ds.1"
+    "@types/braintree-web": "npm:^3.96.9"
+    braintree-web: "npm:^3.97.3"
   peerDependencies:
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/graphql": "*"
+    "@graphcommerce/image": "*"
+    "@graphcommerce/magento-cart": "*"
+    "@graphcommerce/magento-cart-payment-method": "*"
+    "@graphcommerce/magento-cart-shipping-address": "*"
+    "@graphcommerce/magento-product": "*"
+    "@graphcommerce/magento-product-configurable": "*"
+    "@graphcommerce/magento-store": "*"
+    "@graphcommerce/next-ui": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/react-hook-form": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
-    next: ^13.2.0
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3710,27 +3771,26 @@ __metadata:
 "@graphcommerce/magento-payment-included@npm:7.1.0-canary.38, @graphcommerce/magento-payment-included@workspace:packages/magento-payment-included":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-payment-included@workspace:packages/magento-payment-included"
-  dependencies:
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql": "npm:7.1.0-canary.38"
-    "@graphcommerce/image": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-cart": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-cart-payment-method": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-cart-shipping-address": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-product": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-product-configurable": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-store": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/react-hook-form": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
   peerDependencies:
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/graphql": "*"
+    "@graphcommerce/image": "*"
+    "@graphcommerce/magento-cart": "*"
+    "@graphcommerce/magento-cart-payment-method": "*"
+    "@graphcommerce/magento-cart-shipping-address": "*"
+    "@graphcommerce/magento-product": "*"
+    "@graphcommerce/magento-product-configurable": "*"
+    "@graphcommerce/magento-store": "*"
+    "@graphcommerce/next-ui": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/react-hook-form": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
-    next: ^13.2.0
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3739,22 +3799,21 @@ __metadata:
 "@graphcommerce/magento-payment-klarna@workspace:packages/magento-payment-klarna":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-payment-klarna@workspace:packages/magento-payment-klarna"
-  dependencies:
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql": "npm:7.1.0-canary.38"
-    "@graphcommerce/image": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-cart": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-store": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
   peerDependencies:
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/graphql": "*"
+    "@graphcommerce/image": "*"
+    "@graphcommerce/magento-cart": "*"
+    "@graphcommerce/magento-store": "*"
+    "@graphcommerce/next-ui": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
-    next: ^13.2.0
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3763,29 +3822,28 @@ __metadata:
 "@graphcommerce/magento-payment-multisafepay@workspace:packages/magento-payment-multisafepay":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-payment-multisafepay@workspace:packages/magento-payment-multisafepay"
-  dependencies:
-    "@graphcommerce/ecommerce-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql-mesh": "npm:7.1.0-canary.38"
-    "@graphcommerce/image": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-cart": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-cart-checkout": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-cart-payment-method": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-cart-shipping-address": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-product": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-product-configurable": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-store": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/react-hook-form": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
   peerDependencies:
+    "@graphcommerce/ecommerce-ui": "*"
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/graphql": "*"
+    "@graphcommerce/graphql-mesh": "*"
+    "@graphcommerce/image": "*"
+    "@graphcommerce/magento-cart": "*"
+    "@graphcommerce/magento-cart-checkout": "*"
+    "@graphcommerce/magento-cart-payment-method": "*"
+    "@graphcommerce/magento-cart-shipping-address": "*"
+    "@graphcommerce/magento-product": "*"
+    "@graphcommerce/magento-product-configurable": "*"
+    "@graphcommerce/magento-store": "*"
+    "@graphcommerce/next-ui": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/react-hook-form": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
-    next: ^13.2.0
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3794,24 +3852,23 @@ __metadata:
 "@graphcommerce/magento-payment-paypal@workspace:packages/magento-payment-paypal":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-payment-paypal@workspace:packages/magento-payment-paypal"
-  dependencies:
-    "@graphcommerce/ecommerce-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql": "npm:7.1.0-canary.38"
-    "@graphcommerce/image": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-cart": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-cart-payment-method": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-store": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
   peerDependencies:
+    "@graphcommerce/ecommerce-ui": "*"
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/graphql": "*"
+    "@graphcommerce/image": "*"
+    "@graphcommerce/magento-cart": "*"
+    "@graphcommerce/magento-cart-payment-method": "*"
+    "@graphcommerce/magento-store": "*"
+    "@graphcommerce/next-ui": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
-    next: ^13.2.0
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3820,26 +3877,25 @@ __metadata:
 "@graphcommerce/magento-product-bundle@npm:7.1.0-canary.38, @graphcommerce/magento-product-bundle@workspace:packages/magento-product-bundle":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-product-bundle@workspace:packages/magento-product-bundle"
-  dependencies:
-    "@graphcommerce/ecommerce-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql": "npm:7.1.0-canary.38"
-    "@graphcommerce/image": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-cart": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-cart-items": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-product": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-product-simple": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-product-virtual": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-store": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
   peerDependencies:
+    "@graphcommerce/ecommerce-ui": "*"
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/graphql": "*"
+    "@graphcommerce/image": "*"
+    "@graphcommerce/magento-cart": "*"
+    "@graphcommerce/magento-cart-items": "*"
+    "@graphcommerce/magento-product": "*"
+    "@graphcommerce/magento-product-simple": "*"
+    "@graphcommerce/magento-product-virtual": "*"
+    "@graphcommerce/magento-store": "*"
+    "@graphcommerce/next-ui": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
-    next: ^13.2.0
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3848,30 +3904,29 @@ __metadata:
 "@graphcommerce/magento-product-configurable@npm:7.1.0-canary.38, @graphcommerce/magento-product-configurable@workspace:packages/magento-product-configurable":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-product-configurable@workspace:packages/magento-product-configurable"
-  dependencies:
-    "@graphcommerce/ecommerce-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql-mesh": "npm:7.1.0-canary.38"
-    "@graphcommerce/image": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-cart": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-cart-items": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-category": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-customer": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-product": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-product-simple": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-store": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/react-hook-form": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
   peerDependencies:
+    "@graphcommerce/ecommerce-ui": "*"
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/graphql": "*"
+    "@graphcommerce/graphql-mesh": "*"
+    "@graphcommerce/image": "*"
+    "@graphcommerce/magento-cart": "*"
+    "@graphcommerce/magento-cart-items": "*"
+    "@graphcommerce/magento-category": "*"
+    "@graphcommerce/magento-customer": "*"
+    "@graphcommerce/magento-product": "*"
+    "@graphcommerce/magento-product-simple": "*"
+    "@graphcommerce/magento-store": "*"
+    "@graphcommerce/next-ui": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/react-hook-form": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
-    next: ^13.2.0
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3880,20 +3935,19 @@ __metadata:
 "@graphcommerce/magento-product-downloadable@npm:7.1.0-canary.38, @graphcommerce/magento-product-downloadable@workspace:packages/magento-product-downloadable":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-product-downloadable@workspace:packages/magento-product-downloadable"
-  dependencies:
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-cart": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-product": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-store": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
   peerDependencies:
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/graphql": "*"
+    "@graphcommerce/magento-cart": "*"
+    "@graphcommerce/magento-product": "*"
+    "@graphcommerce/magento-store": "*"
+    "@graphcommerce/next-ui": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
-    next: ^13.2.0
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3902,20 +3956,19 @@ __metadata:
 "@graphcommerce/magento-product-grouped@npm:7.1.0-canary.38, @graphcommerce/magento-product-grouped@workspace:packages/magento-product-grouped":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-product-grouped@workspace:packages/magento-product-grouped"
-  dependencies:
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-cart": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-product": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-product-simple": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-product-virtual": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
   peerDependencies:
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/graphql": "*"
+    "@graphcommerce/magento-cart": "*"
+    "@graphcommerce/magento-product": "*"
+    "@graphcommerce/magento-product-simple": "*"
+    "@graphcommerce/magento-product-virtual": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
-    next: ^13.2.0
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3924,20 +3977,19 @@ __metadata:
 "@graphcommerce/magento-product-simple@npm:7.1.0-canary.38, @graphcommerce/magento-product-simple@workspace:packages/magento-product-simple":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-product-simple@workspace:packages/magento-product-simple"
-  dependencies:
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-cart": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-cart-items": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-product": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
   peerDependencies:
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/graphql": "*"
+    "@graphcommerce/magento-cart": "*"
+    "@graphcommerce/magento-cart-items": "*"
+    "@graphcommerce/magento-product": "*"
+    "@graphcommerce/next-ui": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
-    next: ^13.2.0
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3946,20 +3998,19 @@ __metadata:
 "@graphcommerce/magento-product-virtual@npm:7.1.0-canary.38, @graphcommerce/magento-product-virtual@workspace:packages/magento-product-virtual":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-product-virtual@workspace:packages/magento-product-virtual"
-  dependencies:
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-cart": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-cart-items": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-product": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
   peerDependencies:
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/graphql": "*"
+    "@graphcommerce/magento-cart": "*"
+    "@graphcommerce/magento-cart-items": "*"
+    "@graphcommerce/magento-product": "*"
+    "@graphcommerce/next-ui": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
-    next: ^13.2.0
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3969,26 +4020,27 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-product@workspace:packages/magento-product"
   dependencies:
-    "@graphcommerce/ecommerce-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/framer-next-pages": "npm:7.1.0-canary.38"
-    "@graphcommerce/framer-scroller": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql-mesh": "npm:7.1.0-canary.38"
-    "@graphcommerce/image": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-cart": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-store": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
-    schema-dts: "npm:^1.1.0"
+    schema-dts: "npm:^1.1.2"
+    typescript: "npm:5.2.2"
   peerDependencies:
+    "@graphcommerce/ecommerce-ui": "*"
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/framer-next-pages": "*"
+    "@graphcommerce/framer-scroller": "*"
+    "@graphcommerce/graphql": "*"
+    "@graphcommerce/graphql-mesh": "*"
+    "@graphcommerce/image": "*"
+    "@graphcommerce/magento-cart": "*"
+    "@graphcommerce/magento-store": "*"
+    "@graphcommerce/next-ui": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
-    next: ^13.2.0
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3998,24 +4050,25 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-review@workspace:packages/magento-review"
   dependencies:
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql-mesh": "npm:7.1.0-canary.38"
-    "@graphcommerce/image": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-customer": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-product": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-store": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/react-hook-form": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
-    schema-dts: "npm:^1.1.0"
+    schema-dts: "npm:^1.1.2"
+    typescript: "npm:5.2.2"
   peerDependencies:
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/graphql": "*"
+    "@graphcommerce/graphql-mesh": "*"
+    "@graphcommerce/image": "*"
+    "@graphcommerce/magento-customer": "*"
+    "@graphcommerce/magento-product": "*"
+    "@graphcommerce/magento-store": "*"
+    "@graphcommerce/next-ui": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/react-hook-form": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
-    next: ^13.2.0
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -4024,22 +4077,21 @@ __metadata:
 "@graphcommerce/magento-search@npm:7.1.0-canary.38, @graphcommerce/magento-search@workspace:packages/magento-search":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-search@workspace:packages/magento-search"
-  dependencies:
-    "@graphcommerce/ecommerce-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql": "npm:7.1.0-canary.38"
-    "@graphcommerce/image": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-product": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/react-hook-form": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
   peerDependencies:
+    "@graphcommerce/ecommerce-ui": "*"
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/graphql": "*"
+    "@graphcommerce/image": "*"
+    "@graphcommerce/magento-product": "*"
+    "@graphcommerce/next-ui": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/react-hook-form": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
-    next: ^13.2.0
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -4048,20 +4100,19 @@ __metadata:
 "@graphcommerce/magento-store@npm:7.1.0-canary.38, @graphcommerce/magento-store@workspace:packages/magento-store":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-store@workspace:packages/magento-store"
-  dependencies:
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql-mesh": "npm:7.1.0-canary.38"
-    "@graphcommerce/image": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
   peerDependencies:
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/graphql": "*"
+    "@graphcommerce/graphql-mesh": "*"
+    "@graphcommerce/image": "*"
+    "@graphcommerce/next-ui": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
-    next: ^13.2.0
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -4070,28 +4121,27 @@ __metadata:
 "@graphcommerce/magento-wishlist@npm:7.1.0-canary.38, @graphcommerce/magento-wishlist@workspace:packages/magento-wishlist":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-wishlist@workspace:packages/magento-wishlist"
-  dependencies:
-    "@graphcommerce/ecommerce-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql-mesh": "npm:7.1.0-canary.38"
-    "@graphcommerce/image": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-cart": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-customer": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-product": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-product-configurable": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-store": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-config": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
   peerDependencies:
+    "@graphcommerce/ecommerce-ui": "*"
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/graphql": "*"
+    "@graphcommerce/graphql-mesh": "*"
+    "@graphcommerce/image": "*"
+    "@graphcommerce/magento-cart": "*"
+    "@graphcommerce/magento-customer": "*"
+    "@graphcommerce/magento-product": "*"
+    "@graphcommerce/magento-product-configurable": "*"
+    "@graphcommerce/magento-store": "*"
+    "@graphcommerce/next-config": "*"
+    "@graphcommerce/next-ui": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
-    next: ^13.2.0
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -4100,34 +4150,33 @@ __metadata:
 "@graphcommerce/mollie-magento-payment@workspace:packages/mollie-magento-payment":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/mollie-magento-payment@workspace:packages/mollie-magento-payment"
-  dependencies:
-    "@graphcommerce/ecommerce-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql": "npm:7.1.0-canary.38"
-    "@graphcommerce/graphql-mesh": "npm:7.1.0-canary.38"
-    "@graphcommerce/image": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-cart": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-cart-payment-method": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-cart-shipping-address": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-product": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-product-configurable": "npm:7.1.0-canary.38"
-    "@graphcommerce/magento-store": "npm:7.1.0-canary.38"
-    "@graphcommerce/next-ui": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/react-hook-form": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
   peerDependencies:
+    "@graphcommerce/ecommerce-ui": "*"
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/graphql": "*"
+    "@graphcommerce/graphql-mesh": "*"
+    "@graphcommerce/image": "*"
+    "@graphcommerce/magento-cart": "*"
+    "@graphcommerce/magento-cart-payment-method": "*"
+    "@graphcommerce/magento-cart-shipping-address": "*"
+    "@graphcommerce/magento-product": "*"
+    "@graphcommerce/magento-product-configurable": "*"
+    "@graphcommerce/magento-store": "*"
+    "@graphcommerce/next-ui": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/react-hook-form": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
-    next: ^13.2.0
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/next-config@npm:7.1.0-canary.38, @graphcommerce/next-config@npm:^7.1.0-canary.38, @graphcommerce/next-config@workspace:packagesDev/next-config":
+"@graphcommerce/next-config@npm:7.1.0-canary.38, @graphcommerce/next-config@workspace:packagesDev/next-config":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/next-config@workspace:packagesDev/next-config"
   dependencies:
@@ -4135,8 +4184,8 @@ __metadata:
     "@lingui/loader": "npm:4.5.0"
     "@lingui/swc-plugin": "npm:4.0.4"
     "@swc/core": "npm:1.3.96"
-    "@types/circular-dependency-plugin": "npm:^5.0.5"
-    "@types/lodash": "npm:^4.14.191"
+    "@types/circular-dependency-plugin": "npm:^5.0.8"
+    "@types/lodash": "npm:^4.14.201"
     circular-dependency-plugin: "npm:^5.2.2"
     inspectpack: "npm:^4.7.1"
     js-yaml-loader: "npm:^1.2.2"
@@ -4146,7 +4195,9 @@ __metadata:
     znv: "npm:^0.4.0"
     zod: "npm:^3.22.4"
   peerDependencies:
-    next: ^13.2.0
+    "@lingui/macro": ^4.2.1
+    graphql: "*"
+    next: "*"
     webpack: ^5.0.0
   languageName: unknown
   linkType: soft
@@ -4159,27 +4210,27 @@ __metadata:
     "@emotion/react": "npm:^11.11.1"
     "@emotion/server": "npm:^11.11.0"
     "@emotion/styled": "npm:^11.11.0"
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/framer-next-pages": "npm:7.1.0-canary.38"
-    "@graphcommerce/framer-scroller": "npm:7.1.0-canary.38"
-    "@graphcommerce/framer-utils": "npm:7.1.0-canary.38"
-    "@graphcommerce/image": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
-    "@types/cookie": "npm:^0.5.2"
-    "@types/react-is": "npm:^18.2.1"
-    cookie: "npm:^0.5.0"
+    "@types/cookie": "npm:^0.5.4"
+    "@types/react-is": "npm:^18.2.4"
+    cookie: "npm:^0.6.0"
     react-is: "npm:^18.2.0"
-    schema-dts: "npm:^1.1.0"
+    schema-dts: "npm:^1.1.2"
     typescript: "npm:5.2.2"
   peerDependencies:
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/framer-next-pages": "*"
+    "@graphcommerce/framer-scroller": "*"
+    "@graphcommerce/framer-utils": "*"
+    "@graphcommerce/image": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/lab": ^5.0.0-alpha.68
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
-    next: ^13.2.0
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -4189,7 +4240,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/prettier-config-pwa@workspace:packagesDev/prettier-config"
   dependencies:
-    prettier-plugin-jsdoc: "npm:^1.0.1"
+    prettier-plugin-jsdoc: "npm:^1.1.1"
+  peerDependencies:
+    prettier: ^3
   languageName: unknown
   linkType: soft
 
@@ -4197,16 +4250,16 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/react-hook-form@workspace:packages/react-hook-form"
   dependencies:
-    "@apollo/client": "npm:~3.8.2"
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.38"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.38"
-    "@testing-library/react": "npm:^14.0.0"
-    react-hook-form: "npm:7.46.1"
+    "@testing-library/react": "npm:^14.1.0"
   peerDependencies:
+    "@apollo/client": ^3
+    "@graphcommerce/eslint-config-pwa": "*"
+    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/typescript-config-pwa": "*"
     graphql: ^16.6.0
     react: ^18.2.0
     react-dom: ^18.2.0
+    react-hook-form: ^7
   languageName: unknown
   linkType: soft
 
@@ -5306,6 +5359,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@graphql-tools/utils@npm:^10.0.8":
+  version: 10.0.8
+  resolution: "@graphql-tools/utils@npm:10.0.8"
+  dependencies:
+    "@graphql-typed-document-node/core": "npm:^3.1.1"
+    cross-inspect: "npm:1.0.0"
+    dset: "npm:^3.1.2"
+    tslib: "npm:^2.4.0"
+  peerDependencies:
+    graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
+  checksum: ea0dfa4535ba360d27a1eb501d48a114a9ebb6224d178b89e3d978b19bd30d98fc1622cbeb31b2198b3e06cb9f717edb70933530958509bfcf0458842618a1b0
+  languageName: node
+  linkType: hard
+
 "@graphql-tools/utils@npm:^8.8.0":
   version: 8.13.1
   resolution: "@graphql-tools/utils@npm:8.13.1"
@@ -5395,14 +5462,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@humanwhocodes/config-array@npm:^0.11.10":
-  version: 0.11.11
-  resolution: "@humanwhocodes/config-array@npm:0.11.11"
+"@humanwhocodes/config-array@npm:^0.11.13":
+  version: 0.11.13
+  resolution: "@humanwhocodes/config-array@npm:0.11.13"
   dependencies:
-    "@humanwhocodes/object-schema": "npm:^1.2.1"
+    "@humanwhocodes/object-schema": "npm:^2.0.1"
     debug: "npm:^4.1.1"
     minimatch: "npm:^3.0.5"
-  checksum: 4195f68e485f7d1a7c95cf0f126cc41f7223eeda2f1b46b893123c99b35bb76145c37d25e2ba452d54815ed69bb656c0ce9e343ffa984470c08afa6e82a4713f
+  checksum: d76ca802d853366094d0e98ff0d0994117fc8eff96649cd357b15e469e428228f597cd2e929d54ab089051684949955f16ee905bb19f7b2f0446fb377157be7a
   languageName: node
   linkType: hard
 
@@ -5413,10 +5480,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@humanwhocodes/object-schema@npm:^1.2.1":
-  version: 1.2.1
-  resolution: "@humanwhocodes/object-schema@npm:1.2.1"
-  checksum: c3c35fdb70c04a569278351c75553e293ae339684ed75895edc79facc7276e351115786946658d78133130c0cca80e57e2203bc07f8fa7fe7980300e8deef7db
+"@humanwhocodes/object-schema@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "@humanwhocodes/object-schema@npm:2.0.1"
+  checksum: 9dba24e59fdb4041829d92b693aacb778add3b6f612aaa9c0774f3b650c11a378cc64f042a59da85c11dae33df456580a3c36837b953541aed6ff94294f97fac
   languageName: node
   linkType: hard
 
@@ -5478,7 +5545,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jest/core@npm:^29.6.4, @jest/core@npm:^29.7.0":
+"@jest/core@npm:^29.7.0":
   version: 29.7.0
   resolution: "@jest/core@npm:29.7.0"
   dependencies:
@@ -5610,6 +5677,15 @@ __metadata:
     node-notifier:
       optional: true
   checksum: a754402a799541c6e5aff2c8160562525e2a47e7d568f01ebfc4da66522de39cbb809bbb0a841c7052e4270d79214e70aec3c169e4eae42a03bc1a8a20cb9fa2
+  languageName: node
+  linkType: hard
+
+"@jest/schemas@npm:^28.1.3":
+  version: 28.1.3
+  resolution: "@jest/schemas@npm:28.1.3"
+  dependencies:
+    "@sinclair/typebox": "npm:^0.24.1"
+  checksum: 8c325918f3e1b83e687987b05c2e5143d171f372b091f891fe17835f06fadd864ddae3c7e221a704bdd7e2ea28c4b337124c02023d8affcbdd51eca2879162ac
   languageName: node
   linkType: hard
 
@@ -5977,30 +6053,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/base@npm:5.0.0-beta.13":
-  version: 5.0.0-beta.13
-  resolution: "@mui/base@npm:5.0.0-beta.13"
-  dependencies:
-    "@babel/runtime": "npm:^7.22.10"
-    "@emotion/is-prop-valid": "npm:^1.2.1"
-    "@floating-ui/react-dom": "npm:^2.0.1"
-    "@mui/types": "npm:^7.2.4"
-    "@mui/utils": "npm:^5.14.7"
-    "@popperjs/core": "npm:^2.11.8"
-    clsx: "npm:^2.0.0"
-    prop-types: "npm:^15.8.1"
-    react-is: "npm:^18.2.0"
-  peerDependencies:
-    "@types/react": ^17.0.0 || ^18.0.0
-    react: ^17.0.0 || ^18.0.0
-    react-dom: ^17.0.0 || ^18.0.0
-  peerDependenciesMeta:
-    "@types/react":
-      optional: true
-  checksum: c73ac225417ae8f0eab7b57939e6d728148c4dc4a648450801c90aeadba93c1422ce07052dc3ca584f5d8f98bb3602d2fdb0b581df34a7bee5400afa07bad0b8
-  languageName: node
-  linkType: hard
-
 "@mui/base@npm:5.0.0-beta.23":
   version: 5.0.0-beta.23
   resolution: "@mui/base@npm:5.0.0-beta.23"
@@ -6030,22 +6082,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/lab@npm:5.0.0-alpha.142":
-  version: 5.0.0-alpha.142
-  resolution: "@mui/lab@npm:5.0.0-alpha.142"
+"@mui/lab@npm:5.0.0-alpha.152":
+  version: 5.0.0-alpha.152
+  resolution: "@mui/lab@npm:5.0.0-alpha.152"
   dependencies:
-    "@babel/runtime": "npm:^7.22.10"
-    "@mui/base": "npm:5.0.0-beta.13"
-    "@mui/system": "npm:^5.14.7"
-    "@mui/types": "npm:^7.2.4"
-    "@mui/utils": "npm:^5.14.7"
+    "@babel/runtime": "npm:^7.23.2"
+    "@mui/base": "npm:5.0.0-beta.23"
+    "@mui/system": "npm:^5.14.17"
+    "@mui/types": "npm:^7.2.8"
+    "@mui/utils": "npm:^5.14.17"
     clsx: "npm:^2.0.0"
     prop-types: "npm:^15.8.1"
-    react-is: "npm:^18.2.0"
   peerDependencies:
     "@emotion/react": ^11.5.0
     "@emotion/styled": ^11.3.0
-    "@mui/material": ^5.0.0
+    "@mui/material": ">=5.10.11"
     "@types/react": ^17.0.0 || ^18.0.0
     react: ^17.0.0 || ^18.0.0
     react-dom: ^17.0.0 || ^18.0.0
@@ -6056,7 +6107,7 @@ __metadata:
       optional: true
     "@types/react":
       optional: true
-  checksum: 38e180cc6441fef99051e15ab59a9c9747503ca7f5ce7e6f532f2e5cbc7c2a0758b3402ba09370d5cb39787f63bf1f6144c9a7973397dbd33254bd149ec188f5
+  checksum: 5b39611fc5ffe0840d75b1a1e8638f3839940caf72ce1d11897b888dc9d10e4007f22f875c8877b6a94f088597e42fd3c644967dd40b8e0a25cb46a4096efaf7
   languageName: node
   linkType: hard
 
@@ -6093,23 +6144,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/private-theming@npm:^5.14.11":
-  version: 5.14.11
-  resolution: "@mui/private-theming@npm:5.14.11"
-  dependencies:
-    "@babel/runtime": "npm:^7.22.15"
-    "@mui/utils": "npm:^5.14.11"
-    prop-types: "npm:^15.8.1"
-  peerDependencies:
-    "@types/react": ^17.0.0 || ^18.0.0
-    react: ^17.0.0 || ^18.0.0
-  peerDependenciesMeta:
-    "@types/react":
-      optional: true
-  checksum: e9b96b86355685a9dcbf95e617f3d86b33c502e005a5c6cd9b9cc64d102742b00b960560666d49b0ef0c4f4dac2d7a17f81ca6a745ff893b64e22515b53bd8fc
-  languageName: node
-  linkType: hard
-
 "@mui/private-theming@npm:^5.14.17":
   version: 5.14.17
   resolution: "@mui/private-theming@npm:5.14.17"
@@ -6124,27 +6158,6 @@ __metadata:
     "@types/react":
       optional: true
   checksum: ba1a99ff4cebee4824018369490c4c4be9d9c844c786592982f46640acea6434ceafd4d7b59d2e9cbd7a2ea9ef3544282b05482d5a53af4bb119eeee3284b1f6
-  languageName: node
-  linkType: hard
-
-"@mui/styled-engine@npm:^5.14.11":
-  version: 5.14.11
-  resolution: "@mui/styled-engine@npm:5.14.11"
-  dependencies:
-    "@babel/runtime": "npm:^7.22.15"
-    "@emotion/cache": "npm:^11.11.0"
-    csstype: "npm:^3.1.2"
-    prop-types: "npm:^15.8.1"
-  peerDependencies:
-    "@emotion/react": ^11.4.1
-    "@emotion/styled": ^11.3.0
-    react: ^17.0.0 || ^18.0.0
-  peerDependenciesMeta:
-    "@emotion/react":
-      optional: true
-    "@emotion/styled":
-      optional: true
-  checksum: b71cf3d9d0377bc5cdba01f4f72153147310b4d054fb10b6e5899b5307d05cc44770bcd8ba61069806c35bd367e5241328fbce7a7e91c7ec11e483fdb79fbc49
   languageName: node
   linkType: hard
 
@@ -6197,46 +6210,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/system@npm:^5.14.7":
-  version: 5.14.11
-  resolution: "@mui/system@npm:5.14.11"
-  dependencies:
-    "@babel/runtime": "npm:^7.22.15"
-    "@mui/private-theming": "npm:^5.14.11"
-    "@mui/styled-engine": "npm:^5.14.11"
-    "@mui/types": "npm:^7.2.4"
-    "@mui/utils": "npm:^5.14.11"
-    clsx: "npm:^2.0.0"
-    csstype: "npm:^3.1.2"
-    prop-types: "npm:^15.8.1"
-  peerDependencies:
-    "@emotion/react": ^11.5.0
-    "@emotion/styled": ^11.3.0
-    "@types/react": ^17.0.0 || ^18.0.0
-    react: ^17.0.0 || ^18.0.0
-  peerDependenciesMeta:
-    "@emotion/react":
-      optional: true
-    "@emotion/styled":
-      optional: true
-    "@types/react":
-      optional: true
-  checksum: 3677dce2b1c010d5679f96a8c9cd54d803558b9ac881e4adec480ae7c3136b54895f5850131abf31b7d16493964a048d5261128332cecf2e3944c9dd58814bf1
-  languageName: node
-  linkType: hard
-
-"@mui/types@npm:^7.2.4":
-  version: 7.2.4
-  resolution: "@mui/types@npm:7.2.4"
-  peerDependencies:
-    "@types/react": "*"
-  peerDependenciesMeta:
-    "@types/react":
-      optional: true
-  checksum: 17411effd184eff34d6a1a55b2249c7e1ef195bb30c48154f0b16fdce428ff55be4ec5dde8b4a556c01eda2d34e3dcc18d925f8fdee606f5bc15f91167f0ecbc
-  languageName: node
-  linkType: hard
-
 "@mui/types@npm:^7.2.8":
   version: 7.2.8
   resolution: "@mui/types@npm:7.2.8"
@@ -6246,24 +6219,6 @@ __metadata:
     "@types/react":
       optional: true
   checksum: ea313c0292a9efdfe8c72d95e2ae88de45c3c999d361d0d2a4ca69a162e9f1dbf1d4a6bb30d6972e8574c8ece8586c35473aa5bf297963dd5dc19c68bc27c28e
-  languageName: node
-  linkType: hard
-
-"@mui/utils@npm:^5.14.11, @mui/utils@npm:^5.14.7":
-  version: 5.14.11
-  resolution: "@mui/utils@npm:5.14.11"
-  dependencies:
-    "@babel/runtime": "npm:^7.22.15"
-    "@types/prop-types": "npm:^15.7.5"
-    prop-types: "npm:^15.8.1"
-    react-is: "npm:^18.2.0"
-  peerDependencies:
-    "@types/react": ^17.0.0 || ^18.0.0
-    react: ^17.0.0 || ^18.0.0
-  peerDependenciesMeta:
-    "@types/react":
-      optional: true
-  checksum: 21048b65e482e2f4279bf2b0e1619f026ed605bfe71818f6373b6362abc5062ea293ab7791691da1275de2d72b16cc5dafca70c2169359eca0b1c46c52aba879
   languageName: node
   linkType: hard
 
@@ -6697,6 +6652,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sinclair/typebox@npm:^0.24.1":
+  version: 0.24.51
+  resolution: "@sinclair/typebox@npm:0.24.51"
+  checksum: 458131e83ca59ad3721f0abeef2aa5220aff2083767e1143d75c67c85d55ef7a212f48f394471ee6bdd2e860ba30f09a489cdd2a28a2824d5b0d1014bdfb2552
+  languageName: node
+  linkType: hard
+
 "@sinclair/typebox@npm:^0.27.8":
   version: 0.27.8
   resolution: "@sinclair/typebox@npm:0.27.8"
@@ -6919,9 +6881,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@testing-library/react@npm:^14.0.0":
-  version: 14.0.0
-  resolution: "@testing-library/react@npm:14.0.0"
+"@testing-library/react@npm:^14.1.0":
+  version: 14.1.0
+  resolution: "@testing-library/react@npm:14.1.0"
   dependencies:
     "@babel/runtime": "npm:^7.12.5"
     "@testing-library/dom": "npm:^9.0.0"
@@ -6929,7 +6891,7 @@ __metadata:
   peerDependencies:
     react: ^18.0.0
     react-dom: ^18.0.0
-  checksum: 81035913024faf18ba7e163418af517b2c3b85aef496fbd6334bda38f6f6dd4072678c6b76c41148b46b7fc846764f875e1156cbfc7643ffa1b62ee069d78951
+  checksum: 357ad80b11bdd4b6d10d2fb1bf86d5b39fb457cf09293033cf42bcc7a95738a86a2b12b760ae15bad326da0b9c074ca015d2bbf0baae7da38fdbc7c808925820
   languageName: node
   linkType: hard
 
@@ -6982,6 +6944,28 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/babel-plugin-macros@npm:^3":
+  version: 3.1.3
+  resolution: "@types/babel-plugin-macros@npm:3.1.3"
+  dependencies:
+    "@types/babel__core": "npm:*"
+  checksum: bfb129f8a1d8d09f84f261d2a8ed7dd26fde427afa4872afd4f52420dc9caebf7f1f283d34365df9411e9b68b3ddbeccfa76eb106580d0644cea3cbee1d881b1
+  languageName: node
+  linkType: hard
+
+"@types/babel__core@npm:*":
+  version: 7.20.4
+  resolution: "@types/babel__core@npm:7.20.4"
+  dependencies:
+    "@babel/parser": "npm:^7.20.7"
+    "@babel/types": "npm:^7.20.7"
+    "@types/babel__generator": "npm:*"
+    "@types/babel__template": "npm:*"
+    "@types/babel__traverse": "npm:*"
+  checksum: 2adc7ec49de5f922271ce087cedee000de468a3e13f92b7b6254016bd8357298cb98e6d2b3c9defc69bb6e38e0c134ffe80776a8ce4e9fb167bbffcb4d7613b7
+  languageName: node
+  linkType: hard
+
 "@types/babel__core@npm:^7.1.14":
   version: 7.20.2
   resolution: "@types/babel__core@npm:7.20.2"
@@ -7023,30 +7007,30 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/braintree-web@npm:^3.96.4":
-  version: 3.96.5
-  resolution: "@types/braintree-web@npm:3.96.5"
+"@types/braintree-web@npm:^3.96.9":
+  version: 3.96.9
+  resolution: "@types/braintree-web@npm:3.96.9"
   dependencies:
     "@types/googlepay": "npm:*"
     "@types/paypal-checkout-components": "npm:*"
-  checksum: c2b20b5d4a55b6162e079b31e5ea0046afd55ca69f5ba01b8ae3e8f6a910b7781d9323806b3f1e9f11d70b583b5f28e54441c0d9f00a7397ec78ca185191e67e
+  checksum: dee540e36829ddd954399e300ddeee8f41d7f90e2e977f31a5c3e78d75bb821c82790e292afc1f6f7ccee951f38cb7c3248be39743a7a2d20e24d25d7de46297
   languageName: node
   linkType: hard
 
-"@types/circular-dependency-plugin@npm:^5.0.5":
-  version: 5.0.6
-  resolution: "@types/circular-dependency-plugin@npm:5.0.6"
+"@types/circular-dependency-plugin@npm:^5.0.8":
+  version: 5.0.8
+  resolution: "@types/circular-dependency-plugin@npm:5.0.8"
   dependencies:
     "@types/node": "npm:*"
     webpack: "npm:^5.1.0"
-  checksum: f038b1e05daa837c89fcefb851b9e198c643e31546c114d98e669f1b056de8c32e1702278dc45acc5db87c07bfb449903db238768560219181124174ce410f65
+  checksum: 0bd4ea01f49094e20f49394fa409272d77a89fc4e46890c706cc1270395656f3eb88584993d8e5ee7d30e10e08944d400789ba68cce1f4cba15b86e56a46caeb
   languageName: node
   linkType: hard
 
-"@types/cookie@npm:^0.5.2":
-  version: 0.5.2
-  resolution: "@types/cookie@npm:0.5.2"
-  checksum: a7b9ebfed3e8f3957dd7881aa4c37a9ddccb3366a1be3b4cf48fa99db017b6d0fde8e902390c5bd250b6af4359fe2dfd5074921010d4fa9c41ce85f0f2d3e0a3
+"@types/cookie@npm:^0.5.4":
+  version: 0.5.4
+  resolution: "@types/cookie@npm:0.5.4"
+  checksum: c5111f8c71fedabf0ccdfdf183676fc3aa89e146653e9ed87e5ea3780f33a46dde1ace06bf04374dcc363a0ef8db91e41060e9861199226c9a4deaa27fde03ba
   languageName: node
   linkType: hard
 
@@ -7109,7 +7093,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/gapi.client.tagmanager@npm:^2.0.2":
+"@types/gapi.client.tagmanager@npm:^2.0.4":
   version: 2.0.4
   resolution: "@types/gapi.client.tagmanager@npm:2.0.4"
   dependencies:
@@ -7158,17 +7142,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/grecaptcha@npm:^3.0.4":
-  version: 3.0.5
-  resolution: "@types/grecaptcha@npm:3.0.5"
-  checksum: 11db5b43b13e123d8577e29540b2345fb553ffd6e28cbe289471d6ed4bb8c0a157d2c5d875f37551520cb65cbdcc4e31a869b76e594d13e5ff7431075a5e852c
+"@types/grecaptcha@npm:^3.0.7":
+  version: 3.0.7
+  resolution: "@types/grecaptcha@npm:3.0.7"
+  checksum: 5de9364cf73b6156a5ec8235c1a63eb71b749b108caa0c4866a9d4234127af0ca05cff11b50deee1fa5017bf5bc3e69836d851359b78883f211e6fb63ccd8119
   languageName: node
   linkType: hard
 
-"@types/gtag.js@npm:^0.0.13":
-  version: 0.0.13
-  resolution: "@types/gtag.js@npm:0.0.13"
-  checksum: d4db043d553892d16796b7853cf9c722212234f10b4ce2e811f442b0641c64652c24d7b0391258b5d531ec7bce926fb2e9cb7c585f336e73697064858c8bd0a2
+"@types/gtag.js@npm:^0.0.18":
+  version: 0.0.18
+  resolution: "@types/gtag.js@npm:0.0.18"
+  checksum: af7a0a5769c5cfbe75e47f2b0346a65db8234b3c89775b897681548dfb6898edb3145153e2bc5dd1751a5ace221e03e6a68b7650ecacc6aa16a099aa9d925c99
   languageName: node
   linkType: hard
 
@@ -7213,13 +7197,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jest@npm:29.5.4":
-  version: 29.5.4
-  resolution: "@types/jest@npm:29.5.4"
+"@types/jest@npm:29.5.8":
+  version: 29.5.8
+  resolution: "@types/jest@npm:29.5.8"
   dependencies:
     expect: "npm:^29.0.0"
     pretty-format: "npm:^29.0.0"
-  checksum: 49c1f0fa20e45b1dfd69aea8af667a8be30e210f00673c365d504ca285cf9040d8f4861dd89657640af5f4a49eadcadc08907b5cf82eda28afea8ddd3dda8390
+  checksum: a28e7827ea7e1a2aace6a386868fa6b8402c162d6c71570aed2c29d3745ddc22ceef6899a20643071817905d3c57b670a7992fc8760bff65939351fd4dc481cf
   languageName: node
   linkType: hard
 
@@ -7241,14 +7225,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jsdom@npm:^21.1.2":
-  version: 21.1.3
-  resolution: "@types/jsdom@npm:21.1.3"
+"@types/jsdom@npm:^21.1.5":
+  version: 21.1.5
+  resolution: "@types/jsdom@npm:21.1.5"
   dependencies:
     "@types/node": "npm:*"
     "@types/tough-cookie": "npm:*"
     parse5: "npm:^7.0.0"
-  checksum: d2159fc27ae2fb32e204f977ddc20248283c1e4a06b5407e8636109feb85248397b19b19420de280e0a35b26f02d14f1337157baf845d5df0965c33563f71b81
+  checksum: de274d2af7196b0ee869ffc874295a2edc7d0e6161c7e185ffeadd7791c2196b77a352e2ef5d9e38cbafdee7cdfa8a32485db8f8b86de21bc6ff6565c327c865
   languageName: node
   linkType: hard
 
@@ -7273,19 +7257,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash@npm:^4.14.191":
-  version: 4.14.199
-  resolution: "@types/lodash@npm:4.14.199"
-  checksum: a7168a0a2a7c9e8801aa95f92b02f9d664ee938a5186d73f77a3a8447f475bbadedc1f7f746ffd2530ae34069d232bf25f4f4414077f0d81c71489e34e59173e
+"@types/lodash@npm:^4.14.201":
+  version: 4.14.201
+  resolution: "@types/lodash@npm:4.14.201"
+  checksum: 14dc43787296c429433d7d034ed47c5ac24b92217056f80a0e6c990449120b9c9c1058918188945fb88353c0c8333c5c36dccc40c51edbd39b05d2169ab2e0ad
   languageName: node
   linkType: hard
 
-"@types/mdast@npm:^3.0.0":
-  version: 3.0.13
-  resolution: "@types/mdast@npm:3.0.13"
+"@types/mdast@npm:^4.0.0":
+  version: 4.0.3
+  resolution: "@types/mdast@npm:4.0.3"
   dependencies:
-    "@types/unist": "npm:^2"
-  checksum: b328d1622075a67db1d8eac78dcbd55aefb4adaf63206b58abfce902c0ce5232a2674bd0bf961696c9a3765d5fcf145378ce03075bd1690a25adc617650f1228
+    "@types/unist": "npm:*"
+  checksum: e6994404f5ce58073aa6c1a37ceac3060326470a464e2d751580a9f89e2dbca3a2a6222b849bdaaa5bffbe89033c50a886d17e49fca3b040a4ffcf970e387a0c
   languageName: node
   linkType: hard
 
@@ -7324,10 +7308,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^16":
-  version: 16.18.54
-  resolution: "@types/node@npm:16.18.54"
-  checksum: 9e9c817728709b0018294864bd6b0d2b7b53f40509c247102743a1fa9c016855e72bd6a492719a13110ad707cc674df56ebd37b06de059ffdce36c78a35e24da
+"@types/node@npm:^16.18.61":
+  version: 16.18.61
+  resolution: "@types/node@npm:16.18.61"
+  checksum: 219423dbb29ee1a84feb3e2e7b985eccd05e00dfc6efa18b5e2e1713be1df3578ca9f9c51354d66bd8d0d4ab8f0e1959e7de1ef7d03869ff27ed5ba885c6a8cd
   languageName: node
   linkType: hard
 
@@ -7338,10 +7322,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/parse-filepath@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "@types/parse-filepath@npm:1.0.0"
-  checksum: 277144c798f835f0c0376e7d545a06dc6f4d0e3a92a90916a14b5750b93258c61e6c8236e80db2555cb65dea09f0564f6f76a8a9b984b88164dfb1ff7a635b37
+"@types/parse-filepath@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "@types/parse-filepath@npm:1.0.2"
+  checksum: b3fa8c57a82f6383155ac24c6bd52cf62cd6af17b564bf59836a1a41e79b2b64cf58956ac58d2b30e9826508355355f05e56144c62e7afa9ab94f264c7249cf5
   languageName: node
   linkType: hard
 
@@ -7359,17 +7343,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/prompts@npm:^2.4.4":
-  version: 2.4.5
-  resolution: "@types/prompts@npm:2.4.5"
+"@types/prompts@npm:^2.4.8":
+  version: 2.4.8
+  resolution: "@types/prompts@npm:2.4.8"
   dependencies:
     "@types/node": "npm:*"
     kleur: "npm:^3.0.3"
-  checksum: a2a3e802508db79e4c6bfcab09ddb37e93279152fd127a7f4a8c1e683ee6f5429ce86f70c58eb94b76b19d98e4b6ca53bbb0b375d47b0b8c4ad4ecf178227258
+  checksum: b5940938ab587d3a054919d14b31a7ca5660ce2b4e4a66d6949687a5305e7281a5963b1fe2dd87839ec0876bb01258fbaf89f120d134303853be146f34241f67
   languageName: node
   linkType: hard
 
-"@types/prop-types@npm:*, @types/prop-types@npm:^15.7.5":
+"@types/prop-types@npm:*":
   version: 15.7.7
   resolution: "@types/prop-types@npm:15.7.7"
   checksum: 26d565ebae8c28dede71547d687367ce74eeccc645fdbef2d38478fe293996be24784fa6190586ba303ccd274aa94d8a631d36a5d9b8e0c08f5647ff3244d72c
@@ -7390,7 +7374,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:^18.0.0, @types/react-dom@npm:^18.2.7":
+"@types/react-dom@npm:^18.0.0":
   version: 18.2.8
   resolution: "@types/react-dom@npm:18.2.8"
   dependencies:
@@ -7399,12 +7383,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-is@npm:^18.2.1":
-  version: 18.2.2
-  resolution: "@types/react-is@npm:18.2.2"
+"@types/react-dom@npm:^18.2.15":
+  version: 18.2.15
+  resolution: "@types/react-dom@npm:18.2.15"
   dependencies:
     "@types/react": "npm:*"
-  checksum: c08d1ef3164527a84aa0bcbf2b8c58b9999f44911be24e7733b1325ccd9c53ab4c284a2abaf5a884fc4e672d73fa192775def602ff283022c10cfe589cdfb240
+  checksum: 70e86f15f69f89b8f179139ab2e8a8aa9765e742789f5dd5a46fec40d4300ada8fe3349cceda42b9964a018982d7ccb7d791b47f781966c992bfd37da909fbd3
+  languageName: node
+  linkType: hard
+
+"@types/react-is@npm:^18.2.4":
+  version: 18.2.4
+  resolution: "@types/react-is@npm:18.2.4"
+  dependencies:
+    "@types/react": "npm:*"
+  checksum: f1085c3c27aed16b89fac137ee3771ce161b6faa63be90e47f91a3867864c4612df24e9937d2eb621feaa84d29cb8829cf2c42f69f611fad8abc15929377e5db
   languageName: node
   linkType: hard
 
@@ -7417,7 +7410,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:^18.2.21":
+"@types/react@npm:*":
   version: 18.2.23
   resolution: "@types/react@npm:18.2.23"
   dependencies:
@@ -7428,13 +7421,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/relay-compiler@npm:8.0.3":
-  version: 8.0.3
-  resolution: "@types/relay-compiler@npm:8.0.3"
+"@types/react@npm:^18.2.37":
+  version: 18.2.37
+  resolution: "@types/react@npm:18.2.37"
+  dependencies:
+    "@types/prop-types": "npm:*"
+    "@types/scheduler": "npm:*"
+    csstype: "npm:^3.0.2"
+  checksum: 79dd5d23da05bec54e7423ca17096e345eb8fd80a3bf8dd916bb5cdd60677d27c298523aa5b245d090fcc4ec100cfd58c1af4631fbac709d0a9d8be75f9d78a9
+  languageName: node
+  linkType: hard
+
+"@types/relay-compiler@npm:8.0.4":
+  version: 8.0.4
+  resolution: "@types/relay-compiler@npm:8.0.4"
   dependencies:
     "@types/relay-runtime": "npm:*"
     graphql: "npm:^14.5.3"
-  checksum: 52ace51742394dade8c0d8c04de549e0f4bdfbd58be537203cf1546a7398ce44d2f36ee97687e9f14492dc1bcf36c30afa98e569ba7132cece1aa5d9e74044ed
+  checksum: 86ef92ecec12e807615fb0e301c8fac95b520f5f188079c02576ba0fd447c9253467f2ce4183114ef7f45e8647118fe7e8b01420fb327511127d5acca542ddbd
   languageName: node
   linkType: hard
 
@@ -7489,10 +7493,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/unist@npm:^2, @types/unist@npm:^2.0.0":
-  version: 2.0.8
-  resolution: "@types/unist@npm:2.0.8"
-  checksum: 2c4685d5258b4f543677d20dce0d72b8235e70b6c859af24fcf445f92dac98ec8a1faa0cfb43307466561fcd9dbd2534a4860000944401ac3314a685b5efe3d7
+"@types/unist@npm:*, @types/unist@npm:^3.0.0":
+  version: 3.0.2
+  resolution: "@types/unist@npm:3.0.2"
+  checksum: 39f220ce184a773c55c18a127062bfc4d0d30c987250cd59bab544d97be6cfec93717a49ef96e81f024b575718f798d4d329eb81c452fc57d6d051af8b043ebf
   languageName: node
   linkType: hard
 
@@ -7521,15 +7525,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/eslint-plugin@npm:^6.6.0":
-  version: 6.7.3
-  resolution: "@typescript-eslint/eslint-plugin@npm:6.7.3"
+"@typescript-eslint/eslint-plugin@npm:^6.10.0":
+  version: 6.10.0
+  resolution: "@typescript-eslint/eslint-plugin@npm:6.10.0"
   dependencies:
     "@eslint-community/regexpp": "npm:^4.5.1"
-    "@typescript-eslint/scope-manager": "npm:6.7.3"
-    "@typescript-eslint/type-utils": "npm:6.7.3"
-    "@typescript-eslint/utils": "npm:6.7.3"
-    "@typescript-eslint/visitor-keys": "npm:6.7.3"
+    "@typescript-eslint/scope-manager": "npm:6.10.0"
+    "@typescript-eslint/type-utils": "npm:6.10.0"
+    "@typescript-eslint/utils": "npm:6.10.0"
+    "@typescript-eslint/visitor-keys": "npm:6.10.0"
     debug: "npm:^4.3.4"
     graphemer: "npm:^1.4.0"
     ignore: "npm:^5.2.4"
@@ -7542,44 +7546,44 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: ca62d707e3378132f366fb37d206f5e5bb9c7986f44ac9b08b5fa4d5b10a7564832454a491e0f9f6a73e7fb54082afda067c9ddb850534de26a1afb8c83659ed
+  checksum: f50b17cb753afbfc99549d38585eba8558949b977eb4661dd584e73ee946b3dbe944c9e3b12a233fa06b5e1c7d101730ac88a00c7a91b0a7f1e2c37a98e13c7a
   languageName: node
   linkType: hard
 
-"@typescript-eslint/parser@npm:^6.6.0":
-  version: 6.7.3
-  resolution: "@typescript-eslint/parser@npm:6.7.3"
+"@typescript-eslint/parser@npm:^6.10.0":
+  version: 6.10.0
+  resolution: "@typescript-eslint/parser@npm:6.10.0"
   dependencies:
-    "@typescript-eslint/scope-manager": "npm:6.7.3"
-    "@typescript-eslint/types": "npm:6.7.3"
-    "@typescript-eslint/typescript-estree": "npm:6.7.3"
-    "@typescript-eslint/visitor-keys": "npm:6.7.3"
+    "@typescript-eslint/scope-manager": "npm:6.10.0"
+    "@typescript-eslint/types": "npm:6.10.0"
+    "@typescript-eslint/typescript-estree": "npm:6.10.0"
+    "@typescript-eslint/visitor-keys": "npm:6.10.0"
     debug: "npm:^4.3.4"
   peerDependencies:
     eslint: ^7.0.0 || ^8.0.0
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: a2e7ae539cfcc556c48e54b4f1b00502f4ad437a0386b46bd99874de48d7b9c25973ad1de17dc41cbd4543734b0ed6817efce4551293bee64ff9b359c683d53a
+  checksum: fd86c31dfdde03636393a3a9cf16716856bb506923069f34d87af14fac363a33578f47476a15d272e4d7a764de00fd905ee11361cc06b81b302a9fa8ebe4c23c
   languageName: node
   linkType: hard
 
-"@typescript-eslint/scope-manager@npm:6.7.3":
-  version: 6.7.3
-  resolution: "@typescript-eslint/scope-manager@npm:6.7.3"
+"@typescript-eslint/scope-manager@npm:6.10.0":
+  version: 6.10.0
+  resolution: "@typescript-eslint/scope-manager@npm:6.10.0"
   dependencies:
-    "@typescript-eslint/types": "npm:6.7.3"
-    "@typescript-eslint/visitor-keys": "npm:6.7.3"
-  checksum: 0063be085818824a6975df672fbde70bec773efeec4be8e7cb56ffb3143d8df5e8c8095dbe8793dfc4e6e74987165b9efaf433039017e5970e972cbd98294f18
+    "@typescript-eslint/types": "npm:6.10.0"
+    "@typescript-eslint/visitor-keys": "npm:6.10.0"
+  checksum: a5fbee770d763852a7f426b950d495529139f1629fdcb30136c93f787acd82236db4272f78dff1d05a3a10a6406472ae95ae94ab75cfb618a06d75b8cc536cbf
   languageName: node
   linkType: hard
 
-"@typescript-eslint/type-utils@npm:6.7.3":
-  version: 6.7.3
-  resolution: "@typescript-eslint/type-utils@npm:6.7.3"
+"@typescript-eslint/type-utils@npm:6.10.0":
+  version: 6.10.0
+  resolution: "@typescript-eslint/type-utils@npm:6.10.0"
   dependencies:
-    "@typescript-eslint/typescript-estree": "npm:6.7.3"
-    "@typescript-eslint/utils": "npm:6.7.3"
+    "@typescript-eslint/typescript-estree": "npm:6.10.0"
+    "@typescript-eslint/utils": "npm:6.10.0"
     debug: "npm:^4.3.4"
     ts-api-utils: "npm:^1.0.1"
   peerDependencies:
@@ -7587,23 +7591,23 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 34387fb32559f8ad2e1bf3135a1cfe43077ce445c5de60b2cb931c703cc501d2c87f717886917eb0af4a10ec61944028421fd7540acdfdc95bd849993dfd8546
+  checksum: f7c425d4da4d53d78b3d6630216dc1f2809f8dcaed62dc3cf12252102a53103a2aa39a160b310ca1cedebf87b8c339013be0c2360710c7c836b775374730c10e
   languageName: node
   linkType: hard
 
-"@typescript-eslint/types@npm:6.7.3":
-  version: 6.7.3
-  resolution: "@typescript-eslint/types@npm:6.7.3"
-  checksum: f25389e20da03de34189f850b7e3af8c10d1a45d87387f1818b79cc42c835548ef223b67fe92c9139ac52bd05a69161ac38eb1a1c3a2c37d44d621ba52b0f03b
+"@typescript-eslint/types@npm:6.10.0":
+  version: 6.10.0
+  resolution: "@typescript-eslint/types@npm:6.10.0"
+  checksum: 30f47de625405b3729db6d26a0376d98628bd966c70ca01fab1adcef91bba810d27ce643d844e42d1cc77bb2c6277e62efe278a090da63ba748dfe5710c4757b
   languageName: node
   linkType: hard
 
-"@typescript-eslint/typescript-estree@npm:6.7.3":
-  version: 6.7.3
-  resolution: "@typescript-eslint/typescript-estree@npm:6.7.3"
+"@typescript-eslint/typescript-estree@npm:6.10.0":
+  version: 6.10.0
+  resolution: "@typescript-eslint/typescript-estree@npm:6.10.0"
   dependencies:
-    "@typescript-eslint/types": "npm:6.7.3"
-    "@typescript-eslint/visitor-keys": "npm:6.7.3"
+    "@typescript-eslint/types": "npm:6.10.0"
+    "@typescript-eslint/visitor-keys": "npm:6.10.0"
     debug: "npm:^4.3.4"
     globby: "npm:^11.1.0"
     is-glob: "npm:^4.0.3"
@@ -7612,34 +7616,41 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 9176acfcd1328bf3a82007e1b60e278f2c75d8e09eedc6f6f85f993bbb89d2bf4070cf59b660547ac4139f1b7449cb28f5215a59e720019f070cba9e9f6d997a
+  checksum: ca28ca5a55e2d431c649ad093e4a4302f2b37c430bbeebbe622b05c727fd14dab136aead5a96848499d3ff4d187889733f8871b8dd5205d19bed4a260ad74544
   languageName: node
   linkType: hard
 
-"@typescript-eslint/utils@npm:6.7.3":
-  version: 6.7.3
-  resolution: "@typescript-eslint/utils@npm:6.7.3"
+"@typescript-eslint/utils@npm:6.10.0":
+  version: 6.10.0
+  resolution: "@typescript-eslint/utils@npm:6.10.0"
   dependencies:
     "@eslint-community/eslint-utils": "npm:^4.4.0"
     "@types/json-schema": "npm:^7.0.12"
     "@types/semver": "npm:^7.5.0"
-    "@typescript-eslint/scope-manager": "npm:6.7.3"
-    "@typescript-eslint/types": "npm:6.7.3"
-    "@typescript-eslint/typescript-estree": "npm:6.7.3"
+    "@typescript-eslint/scope-manager": "npm:6.10.0"
+    "@typescript-eslint/types": "npm:6.10.0"
+    "@typescript-eslint/typescript-estree": "npm:6.10.0"
     semver: "npm:^7.5.4"
   peerDependencies:
     eslint: ^7.0.0 || ^8.0.0
-  checksum: 6b63f193f3be52c33239e4bf3d3a9b60e0a0cc191ec8efeaeca2321317ebd10dffbea97176446830db9ecacb3b185502515b18cdc96838d3e2f9b28e6d7bc8e8
+  checksum: 809a1d08b154f76ed7a99edddf872369f6ed93987cea19a18cb9f12b8390bddcff9138d9d94955545da54488d59e0001054bec13baf6d858a1761b059480b887
   languageName: node
   linkType: hard
 
-"@typescript-eslint/visitor-keys@npm:6.7.3":
-  version: 6.7.3
-  resolution: "@typescript-eslint/visitor-keys@npm:6.7.3"
+"@typescript-eslint/visitor-keys@npm:6.10.0":
+  version: 6.10.0
+  resolution: "@typescript-eslint/visitor-keys@npm:6.10.0"
   dependencies:
-    "@typescript-eslint/types": "npm:6.7.3"
+    "@typescript-eslint/types": "npm:6.10.0"
     eslint-visitor-keys: "npm:^3.4.1"
-  checksum: 2e31cd0cd578ab5c36ea6f6c37055ee686ca7ef1bd47dc882d6383f77689d68c5c85750eda06c22fe3c8bac69ec12913446ba172cdc79610b60eb188d2aad3d3
+  checksum: f9223c148655ce00bb17db8aa92ee964e62c75d15095893e0b4d653c60a4033f456329b06de3eab4b404d8df359904f0dd6e3c8c842885c6d130e28ccd95ce03
+  languageName: node
+  linkType: hard
+
+"@ungap/structured-clone@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "@ungap/structured-clone@npm:1.2.0"
+  checksum: 8209c937cb39119f44eb63cf90c0b73e7c754209a6411c707be08e50e29ee81356dca1a848a405c8bdeebfe2f5e4f831ad310ae1689eeef65e7445c090c6657d
   languageName: node
   linkType: hard
 
@@ -7821,7 +7832,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@whatwg-node/fetch@npm:^0.9.0, @whatwg-node/fetch@npm:^0.9.10, @whatwg-node/fetch@npm:^0.9.4, @whatwg-node/fetch@npm:^0.9.7":
+"@whatwg-node/fetch@npm:^0.9.0, @whatwg-node/fetch@npm:^0.9.10, @whatwg-node/fetch@npm:^0.9.7":
   version: 0.9.13
   resolution: "@whatwg-node/fetch@npm:0.9.13"
   dependencies:
@@ -7831,7 +7842,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@whatwg-node/fetch@npm:^0.9.13":
+"@whatwg-node/fetch@npm:^0.9.13, @whatwg-node/fetch@npm:^0.9.14":
   version: 0.9.14
   resolution: "@whatwg-node/fetch@npm:0.9.14"
   dependencies:
@@ -8084,7 +8095,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"algoliasearch@npm:^4.15.0":
+"algoliasearch@npm:^4.20.0":
   version: 4.20.0
   resolution: "algoliasearch@npm:4.20.0"
   dependencies:
@@ -8246,7 +8257,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"aria-query@npm:^5.0.0, aria-query@npm:^5.1.3":
+"aria-query@npm:^5.0.0, aria-query@npm:^5.3.0":
   version: 5.3.0
   resolution: "aria-query@npm:5.3.0"
   dependencies:
@@ -8265,7 +8276,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"array-includes@npm:^3.1.6":
+"array-includes@npm:^3.1.6, array-includes@npm:^3.1.7":
   version: 3.1.7
   resolution: "array-includes@npm:3.1.7"
   dependencies:
@@ -8301,7 +8312,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"array.prototype.findlastindex@npm:^1.2.2":
+"array.prototype.findlastindex@npm:^1.2.3":
   version: 1.2.3
   resolution: "array.prototype.findlastindex@npm:1.2.3"
   dependencies:
@@ -8314,7 +8325,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"array.prototype.flat@npm:^1.2.3, array.prototype.flat@npm:^1.3.1":
+"array.prototype.flat@npm:^1.2.3, array.prototype.flat@npm:^1.3.1, array.prototype.flat@npm:^1.3.2":
   version: 1.3.2
   resolution: "array.prototype.flat@npm:1.3.2"
   dependencies:
@@ -8326,7 +8337,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"array.prototype.flatmap@npm:^1.3.1":
+"array.prototype.flatmap@npm:^1.3.1, array.prototype.flatmap@npm:^1.3.2":
   version: 1.3.2
   resolution: "array.prototype.flatmap@npm:1.3.2"
   dependencies:
@@ -8391,10 +8402,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ast-types-flow@npm:^0.0.7":
-  version: 0.0.7
-  resolution: "ast-types-flow@npm:0.0.7"
-  checksum: f381529f2da535949ba6cceddbdfaa33b4d5105842e147ec63582f560ea9ecc1a08f66457664f3109841d3053641fa8b9fa94ba607f1ea9f6c804fe5dee44a1d
+"ast-types-flow@npm:^0.0.8":
+  version: 0.0.8
+  resolution: "ast-types-flow@npm:0.0.8"
+  checksum: f2a0ba8055353b743c41431974521e5e852a9824870cd6fce2db0e538ac7bf4da406bbd018d109af29ff3f8f0993f6a730c9eddbd0abd031fbcb29ca75c1014e
   languageName: node
   linkType: hard
 
@@ -8449,14 +8460,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axe-core@npm:^4.6.2":
-  version: 4.8.2
-  resolution: "axe-core@npm:4.8.2"
-  checksum: ad9e1125ba226bbc73d442996d8b9b35fed9af8bcfa995831e29c3d6b8ddb0d16bc7d18c66c5a685211296ee99fe966ae4d59051ca6fbef2a7ee7408322b9dbe
+"axe-core@npm:=4.7.0":
+  version: 4.7.0
+  resolution: "axe-core@npm:4.7.0"
+  checksum: 89ac5712b5932ac7d23398b4cb5ba081c394a086e343acc68ba49c83472706e18e0799804e8388c779dcdacc465377deb29f2714241d3fbb389cf3a6b275c9ba
   languageName: node
   linkType: hard
 
-"axobject-query@npm:^3.1.1":
+"axobject-query@npm:^3.2.1":
   version: 3.2.1
   resolution: "axobject-query@npm:3.2.1"
   dependencies:
@@ -8722,9 +8733,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"braintree-web@npm:^3.95.0-beta-3ds.1":
-  version: 3.97.2
-  resolution: "braintree-web@npm:3.97.2"
+"braintree-web@npm:^3.97.3":
+  version: 3.97.3
+  resolution: "braintree-web@npm:3.97.3"
   dependencies:
     "@braintree/asset-loader": "npm:0.4.4"
     "@braintree/browser-detection": "npm:1.17.1"
@@ -8740,7 +8751,7 @@ __metadata:
     inject-stylesheet: "npm:5.0.0"
     promise-polyfill: "npm:8.2.3"
     restricted-input: "npm:3.0.5"
-  checksum: 93517b24b44e29e2d6c73ee37a890b67f5eba70937938c677bf3fea000b607fecc305bdd23fee24d3ae2c05ec24d0c316d8c100f199b19a70f76b3456191827d
+  checksum: e134831a2f1892be744bff66df7372ff61f57530e1635b33158b75de994cfaadff7328261bf730e081fa0bb5e50b5b8f6b8fc688dfbd0450b7cdc807d3e0807d
   languageName: node
   linkType: hard
 
@@ -9368,9 +9379,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"concurrently@npm:8.2.1":
-  version: 8.2.1
-  resolution: "concurrently@npm:8.2.1"
+"concurrently@npm:8.2.2":
+  version: 8.2.2
+  resolution: "concurrently@npm:8.2.2"
   dependencies:
     chalk: "npm:^4.1.2"
     date-fns: "npm:^2.30.0"
@@ -9384,7 +9395,7 @@ __metadata:
   bin:
     conc: dist/bin/concurrently.js
     concurrently: dist/bin/concurrently.js
-  checksum: cde6807839d41121c85f8a20064c9fc8a6c40737b42695db75a64ae1b840314cb63b3ba8c7462d33755b62d5ae5522120824015fcfa0714d773e0d839151f08a
+  checksum: 0e9683196fe9c071d944345d21d8f34aa6c0cc50c0dd897e95619f2f1c9eb4871dca851b2569da17888235b7335b4c821ca19deed35bebcd9a131ee5d247f34c
   languageName: node
   linkType: hard
 
@@ -9427,10 +9438,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cookie@npm:^0.5.0":
-  version: 0.5.0
-  resolution: "cookie@npm:0.5.0"
-  checksum: c01ca3ef8d7b8187bae434434582288681273b5a9ed27521d4d7f9f7928fe0c920df0decd9f9d3bbd2d14ac432b8c8cf42b98b3bdd5bfe0e6edddeebebe8b61d
+"cookie@npm:^0.6.0":
+  version: 0.6.0
+  resolution: "cookie@npm:0.6.0"
+  checksum: f2318b31af7a31b4ddb4a678d024514df5e705f9be5909a192d7f116cfb6d45cbacf96a473fa733faa95050e7cff26e7832bb3ef94751592f1387b71c8956686
   languageName: node
   linkType: hard
 
@@ -9463,7 +9474,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cosmiconfig@npm:^8.0.0, cosmiconfig@npm:^8.1.0, cosmiconfig@npm:^8.1.3, cosmiconfig@npm:^8.2.0":
+"cosmiconfig@npm:^8.0.0, cosmiconfig@npm:^8.1.0, cosmiconfig@npm:^8.1.3, cosmiconfig@npm:^8.3.6":
   version: 8.3.6
   resolution: "cosmiconfig@npm:8.3.6"
   dependencies:
@@ -9529,6 +9540,15 @@ __metadata:
   dependencies:
     node-fetch: "npm:^2.6.12"
   checksum: 4c5e022ffe6abdf380faa6e2373c0c4ed7ef75e105c95c972b6f627c3f083170b6886f19fb488a7fa93971f4f69dcc890f122b0d97f0bf5f41ca1d9a8f58c8af
+  languageName: node
+  linkType: hard
+
+"cross-inspect@npm:1.0.0":
+  version: 1.0.0
+  resolution: "cross-inspect@npm:1.0.0"
+  dependencies:
+    tslib: "npm:^2.4.0"
+  checksum: 53530865c357c69a5a0543e2f2c61d3d46c9c316a19169372f5094cfb0a7c7e674f2daf2d5253a6731dfd9a8538aa4a4e13c6b4613b6f72b48bb0c41d2015ff4
   languageName: node
   linkType: hard
 
@@ -9941,6 +9961,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"devlop@npm:^1.0.0":
+  version: 1.1.0
+  resolution: "devlop@npm:1.1.0"
+  dependencies:
+    dequal: "npm:^2.0.0"
+  checksum: e0928ab8f94c59417a2b8389c45c55ce0a02d9ac7fd74ef62d01ba48060129e1d594501b77de01f3eeafc7cb00773819b0df74d96251cf20b31c5b3071f45c0e
+  languageName: node
+  linkType: hard
+
+"diff-sequences@npm:^28.1.1":
+  version: 28.1.1
+  resolution: "diff-sequences@npm:28.1.1"
+  checksum: 26f29fa3f6b8c9040c3c6f6dab85413d90a09c8e6cb17b318bbcf64f225d7dcb1fb64392f3a9919a90888b434c4f6c8a4cc4f807aad02bbabae912c5d13c31f7
+  languageName: node
+  linkType: hard
+
 "diff-sequences@npm:^29.6.3":
   version: 29.6.3
   resolution: "diff-sequences@npm:29.6.3"
@@ -9952,13 +9988,6 @@ __metadata:
   version: 4.0.2
   resolution: "diff@npm:4.0.2"
   checksum: 81b91f9d39c4eaca068eb0c1eb0e4afbdc5bb2941d197f513dd596b820b956fef43485876226d65d497bebc15666aa2aa82c679e84f65d5f2bfbf14ee46e32c1
-  languageName: node
-  linkType: hard
-
-"diff@npm:^5.0.0":
-  version: 5.1.0
-  resolution: "diff@npm:5.1.0"
-  checksum: 77a0d9beb9ed54796154ac2511872288432124ac90a1cabb1878783c9b4d81f1847f3b746a0630b1e836181461d2c76e1e6b95559bef86ed16294d114862e364
   languageName: node
   linkType: hard
 
@@ -10247,7 +10276,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"es-iterator-helpers@npm:^1.0.12":
+"es-iterator-helpers@npm:^1.0.12, es-iterator-helpers@npm:^1.0.15":
   version: 1.0.15
   resolution: "es-iterator-helpers@npm:1.0.15"
   dependencies:
@@ -10487,7 +10516,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-import-resolver-node@npm:^0.3.7":
+"eslint-import-resolver-node@npm:^0.3.9":
   version: 0.3.9
   resolution: "eslint-import-resolver-node@npm:0.3.9"
   dependencies:
@@ -10510,56 +10539,56 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-import@npm:2.28.1":
-  version: 2.28.1
-  resolution: "eslint-plugin-import@npm:2.28.1"
+"eslint-plugin-import@npm:2.29.0":
+  version: 2.29.0
+  resolution: "eslint-plugin-import@npm:2.29.0"
   dependencies:
-    array-includes: "npm:^3.1.6"
-    array.prototype.findlastindex: "npm:^1.2.2"
-    array.prototype.flat: "npm:^1.3.1"
-    array.prototype.flatmap: "npm:^1.3.1"
+    array-includes: "npm:^3.1.7"
+    array.prototype.findlastindex: "npm:^1.2.3"
+    array.prototype.flat: "npm:^1.3.2"
+    array.prototype.flatmap: "npm:^1.3.2"
     debug: "npm:^3.2.7"
     doctrine: "npm:^2.1.0"
-    eslint-import-resolver-node: "npm:^0.3.7"
+    eslint-import-resolver-node: "npm:^0.3.9"
     eslint-module-utils: "npm:^2.8.0"
-    has: "npm:^1.0.3"
-    is-core-module: "npm:^2.13.0"
+    hasown: "npm:^2.0.0"
+    is-core-module: "npm:^2.13.1"
     is-glob: "npm:^4.0.3"
     minimatch: "npm:^3.1.2"
-    object.fromentries: "npm:^2.0.6"
-    object.groupby: "npm:^1.0.0"
-    object.values: "npm:^1.1.6"
+    object.fromentries: "npm:^2.0.7"
+    object.groupby: "npm:^1.0.1"
+    object.values: "npm:^1.1.7"
     semver: "npm:^6.3.1"
     tsconfig-paths: "npm:^3.14.2"
   peerDependencies:
     eslint: ^2 || ^3 || ^4 || ^5 || ^6 || ^7.2.0 || ^8
-  checksum: 5a29554d56f26d2bfb4d4f20b99aad6664c64812ef9655d5b3f089bbf70f340a34dabbe0b8ffa38bd9f1eabf828200acc5a56634842ddb83dd1e4ba01ad6d38d
+  checksum: 761a4e1fbc2cd318e62350bed4c448f8b11ed83091d6bb7776f096556363a09debd9922b39fd2714c895edc9aaea82e08e684eb632283f880c58a91e4bae6733
   languageName: node
   linkType: hard
 
-"eslint-plugin-jsx-a11y@npm:6.7.1":
-  version: 6.7.1
-  resolution: "eslint-plugin-jsx-a11y@npm:6.7.1"
+"eslint-plugin-jsx-a11y@npm:6.8.0":
+  version: 6.8.0
+  resolution: "eslint-plugin-jsx-a11y@npm:6.8.0"
   dependencies:
-    "@babel/runtime": "npm:^7.20.7"
-    aria-query: "npm:^5.1.3"
-    array-includes: "npm:^3.1.6"
-    array.prototype.flatmap: "npm:^1.3.1"
-    ast-types-flow: "npm:^0.0.7"
-    axe-core: "npm:^4.6.2"
-    axobject-query: "npm:^3.1.1"
+    "@babel/runtime": "npm:^7.23.2"
+    aria-query: "npm:^5.3.0"
+    array-includes: "npm:^3.1.7"
+    array.prototype.flatmap: "npm:^1.3.2"
+    ast-types-flow: "npm:^0.0.8"
+    axe-core: "npm:=4.7.0"
+    axobject-query: "npm:^3.2.1"
     damerau-levenshtein: "npm:^1.0.8"
     emoji-regex: "npm:^9.2.2"
-    has: "npm:^1.0.3"
-    jsx-ast-utils: "npm:^3.3.3"
-    language-tags: "npm:=1.0.5"
+    es-iterator-helpers: "npm:^1.0.15"
+    hasown: "npm:^2.0.0"
+    jsx-ast-utils: "npm:^3.3.5"
+    language-tags: "npm:^1.0.9"
     minimatch: "npm:^3.1.2"
-    object.entries: "npm:^1.1.6"
-    object.fromentries: "npm:^2.0.6"
-    semver: "npm:^6.3.0"
+    object.entries: "npm:^1.1.7"
+    object.fromentries: "npm:^2.0.7"
   peerDependencies:
     eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8
-  checksum: 41ad3d0c8036b36cd475685c1ad639157f403b16e8ac23c07f1dbe0226ccf8458f2805cbd5cc8e56856a5d8a356f3276e3139274d819476ccad80c41b9245502
+  checksum: 199b883e526e6f9d7c54cb3f094abc54f11a1ec816db5fb6cae3b938eb0e503acc10ccba91ca7451633a9d0b9abc0ea03601844a8aba5fe88c5e8897c9ac8f49
   languageName: node
   linkType: hard
 
@@ -10572,7 +10601,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-react@npm:^7.31.11":
+"eslint-plugin-react@npm:^7.33.2":
   version: 7.33.2
   resolution: "eslint-plugin-react@npm:7.33.2"
   dependencies:
@@ -10625,17 +10654,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:8.48.0":
-  version: 8.48.0
-  resolution: "eslint@npm:8.48.0"
+"eslint@npm:8.53.0":
+  version: 8.53.0
+  resolution: "eslint@npm:8.53.0"
   dependencies:
     "@eslint-community/eslint-utils": "npm:^4.2.0"
     "@eslint-community/regexpp": "npm:^4.6.1"
-    "@eslint/eslintrc": "npm:^2.1.2"
-    "@eslint/js": "npm:8.48.0"
-    "@humanwhocodes/config-array": "npm:^0.11.10"
+    "@eslint/eslintrc": "npm:^2.1.3"
+    "@eslint/js": "npm:8.53.0"
+    "@humanwhocodes/config-array": "npm:^0.11.13"
     "@humanwhocodes/module-importer": "npm:^1.0.1"
     "@nodelib/fs.walk": "npm:^1.2.8"
+    "@ungap/structured-clone": "npm:^1.2.0"
     ajv: "npm:^6.12.4"
     chalk: "npm:^4.0.0"
     cross-spawn: "npm:^7.0.2"
@@ -10668,7 +10698,7 @@ __metadata:
     text-table: "npm:^0.2.0"
   bin:
     eslint: bin/eslint.js
-  checksum: 93517576a212282383bb10647a8d9e502e12d0aa8c781f2d2585c6651b570349a6e4a768f32eb1e2cd948cff0e0e1c519651aa99c9d1a0dc70f1a3eba0512ba2
+  checksum: c5cd0049488c0463dab7d97466767ca5a1d0b3b59d0a223122683dc8039ecea30b27867fb9e38906b4c1ab9d09ece8a802a6c540d8905016f1cc4b4bb27329af
   languageName: node
   linkType: hard
 
@@ -11126,28 +11156,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"framer-motion@npm:10.16.3":
-  version: 10.16.3
-  resolution: "framer-motion@npm:10.16.3"
-  dependencies:
-    "@emotion/is-prop-valid": "npm:^0.8.2"
-    tslib: "npm:^2.4.0"
-  peerDependencies:
-    react: ^18.0.0
-    react-dom: ^18.0.0
-  dependenciesMeta:
-    "@emotion/is-prop-valid":
-      optional: true
-  peerDependenciesMeta:
-    react:
-      optional: true
-    react-dom:
-      optional: true
-  checksum: 9ebc4243a60d7b21bf0dd8b4e8cc2a6cc490bc0eea234dad5e9aeaf9b49564b812cd9a1da6ca6617778cb8e4dd9c89ee458272f5fcedf3e372ba190d7a7e49da
-  languageName: node
-  linkType: hard
-
-"framer-motion@npm:^10.16.3":
+"framer-motion@npm:10.16.4":
   version: 10.16.4
   resolution: "framer-motion@npm:10.16.4"
   dependencies:
@@ -11168,7 +11177,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"framesync@npm:6.1.2, framesync@npm:^6.1.1":
+"framesync@npm:6.1.2, framesync@npm:^6.1.2":
   version: 6.1.2
   resolution: "framesync@npm:6.1.2"
   dependencies:
@@ -11285,6 +11294,13 @@ __metadata:
   version: 1.1.1
   resolution: "function-bind@npm:1.1.1"
   checksum: 60b74b2407e1942e1ed7f8c284f8ef714d0689dcfce5319985a5b7da3fc727f40b4a59ec72dc55aa83365ad7b8fa4fac3a30d93c850a2b452f29ae03dbc10a1e
+  languageName: node
+  linkType: hard
+
+"function-bind@npm:^1.1.2":
+  version: 1.1.2
+  resolution: "function-bind@npm:1.1.2"
+  checksum: d8680ee1e5fcd4c197e4ac33b2b4dce03c71f4d91717292785703db200f5c21f977c568d28061226f9b5900cbcd2c84463646134fd5337e7925e0942bc3f46d5
   languageName: node
   linkType: hard
 
@@ -11819,6 +11835,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"hasown@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "hasown@npm:2.0.0"
+  dependencies:
+    function-bind: "npm:^1.1.2"
+  checksum: 5d415b114f410661208c95e7ab4879f1cc2765b8daceff4dc8718317d1cb7b9ffa7c5d1eafd9a4389c9aab7445d6ea88e05f3096cb1e529618b55304956b87fc
+  languageName: node
+  linkType: hard
+
 "header-case@npm:^2.0.4":
   version: 2.0.4
   resolution: "header-case@npm:2.0.4"
@@ -12343,6 +12368,15 @@ __metadata:
   dependencies:
     has: "npm:^1.0.3"
   checksum: a8e7f46f8cefd7c9f6f5d54f3dbf1c40bf79467b6612d6023421ec6ea7e8e4c22593b3963ff7a3f770db07bc19fccbe7987a550a8bc1a4d6ec4115db5e4c5dca
+  languageName: node
+  linkType: hard
+
+"is-core-module@npm:^2.13.1":
+  version: 2.13.1
+  resolution: "is-core-module@npm:2.13.1"
+  dependencies:
+    hasown: "npm:^2.0.0"
+  checksum: 2cba9903aaa52718f11c4896dabc189bab980870aae86a62dc0d5cedb546896770ee946fb14c84b7adf0735f5eaea4277243f1b95f5cefa90054f92fbcac2518
   languageName: node
   linkType: hard
 
@@ -12879,7 +12913,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-cli@npm:^29.6.4":
+"jest-cli@npm:^29.7.0":
   version: 29.7.0
   resolution: "jest-cli@npm:29.7.0"
   dependencies:
@@ -12943,6 +12977,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"jest-diff@npm:^28":
+  version: 28.1.3
+  resolution: "jest-diff@npm:28.1.3"
+  dependencies:
+    chalk: "npm:^4.0.0"
+    diff-sequences: "npm:^28.1.1"
+    jest-get-type: "npm:^28.0.2"
+    pretty-format: "npm:^28.1.3"
+  checksum: 17a101ceb7e8f25c3ef64edda15cb1a259c2835395637099f3cc44f578fbd94ced7a13d11c0cbe8c5c1c3959a08544f0a913bec25a305b6dfc9847ce488e7198
+  languageName: node
+  linkType: hard
+
 "jest-diff@npm:^29.7.0":
   version: 29.7.0
   resolution: "jest-diff@npm:29.7.0"
@@ -12977,7 +13023,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-environment-jsdom@npm:^29.5.0":
+"jest-environment-jsdom@npm:^29.7.0":
   version: 29.7.0
   resolution: "jest-environment-jsdom@npm:29.7.0"
   dependencies:
@@ -13009,6 +13055,13 @@ __metadata:
     jest-mock: "npm:^29.7.0"
     jest-util: "npm:^29.7.0"
   checksum: 61f04fec077f8b1b5c1a633e3612fc0c9aa79a0ab7b05600683428f1e01a4d35346c474bde6f439f9fcc1a4aa9a2861ff852d079a43ab64b02105d1004b2592b
+  languageName: node
+  linkType: hard
+
+"jest-get-type@npm:^28.0.2":
+  version: 28.0.2
+  resolution: "jest-get-type@npm:28.0.2"
+  checksum: f64a40cfa10d79a56b383919033d35c8c4daee6145a1df31ec5ef2283fa7e8adbd443c6fcb4cfd0f60bbbd89f046c2323952f086b06e875cbbbc1a7d543a6e5e
   languageName: node
   linkType: hard
 
@@ -13303,14 +13356,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest@npm:29.6.4":
-  version: 29.6.4
-  resolution: "jest@npm:29.6.4"
+"jest@npm:29.7.0":
+  version: 29.7.0
+  resolution: "jest@npm:29.7.0"
   dependencies:
-    "@jest/core": "npm:^29.6.4"
+    "@jest/core": "npm:^29.7.0"
     "@jest/types": "npm:^29.6.3"
     import-local: "npm:^3.0.2"
-    jest-cli: "npm:^29.6.4"
+    jest-cli: "npm:^29.7.0"
   peerDependencies:
     node-notifier: ^8.0.1 || ^9.0.0 || ^10.0.0
   peerDependenciesMeta:
@@ -13318,7 +13371,7 @@ __metadata:
       optional: true
   bin:
     jest: bin/jest.js
-  checksum: 7f4519a30b2c58d116f118cc841dbf9558fb9c47ed3b651a8feef0e98fbc96ce5bd9b574ace9bbef9d31f1f5720f121065f2d0351416449a088f1d655517bf39
+  checksum: f40eb8171cf147c617cc6ada49d062fbb03b4da666cb8d39cdbfb739a7d75eea4c3ca150fb072d0d273dce0c753db4d0467d54906ad0293f59c54f9db4a09d8b
   languageName: node
   linkType: hard
 
@@ -13615,7 +13668,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jsx-ast-utils@npm:^2.4.1 || ^3.0.0, jsx-ast-utils@npm:^3.3.3":
+"jsx-ast-utils@npm:^2.4.1 || ^3.0.0, jsx-ast-utils@npm:^3.3.5":
   version: 3.3.5
   resolution: "jsx-ast-utils@npm:3.3.5"
   dependencies:
@@ -13659,26 +13712,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"kleur@npm:^4.0.3, kleur@npm:^4.1.5":
+"kleur@npm:^4.1.5":
   version: 4.1.5
   resolution: "kleur@npm:4.1.5"
   checksum: e9de6cb49657b6fa70ba2d1448fd3d691a5c4370d8f7bbf1c2f64c24d461270f2117e1b0afe8cb3114f13bbd8e51de158c2a224953960331904e636a5e4c0f2a
   languageName: node
   linkType: hard
 
-"language-subtag-registry@npm:~0.3.2":
+"language-subtag-registry@npm:^0.3.20":
   version: 0.3.22
   resolution: "language-subtag-registry@npm:0.3.22"
   checksum: d1e09971260a7cd3b9fdeb190d33af0b6e99c8697013537d9aaa15f7856d9d83aee128ba8078e219df0a7cf4b8dd18d1a0c188f6543b500d92a2689d2d114b70
   languageName: node
   linkType: hard
 
-"language-tags@npm:=1.0.5":
-  version: 1.0.5
-  resolution: "language-tags@npm:1.0.5"
+"language-tags@npm:^1.0.9":
+  version: 1.0.9
+  resolution: "language-tags@npm:1.0.9"
   dependencies:
-    language-subtag-registry: "npm:~0.3.2"
-  checksum: 04215e821af9a8f1bc6c99ab5aa0a316c3fe1912ca3337eb28596316064bddd8edd22f2883d866069ebdf01b2002e504a760a336b2c728b6d30514e86744f76c
+    language-subtag-registry: "npm:^0.3.20"
+  checksum: 9ab911213c4bd8bd583c850201c17794e52cb0660d1ab6e32558aadc8324abebf6844e46f92b80a5d600d0fbba7eface2c207bfaf270a1c7fd539e4c3a880bff
   languageName: node
   linkType: hard
 
@@ -14075,32 +14128,32 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mdast-util-from-markdown@npm:^1.2.0":
-  version: 1.3.1
-  resolution: "mdast-util-from-markdown@npm:1.3.1"
+"mdast-util-from-markdown@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "mdast-util-from-markdown@npm:2.0.0"
   dependencies:
-    "@types/mdast": "npm:^3.0.0"
-    "@types/unist": "npm:^2.0.0"
+    "@types/mdast": "npm:^4.0.0"
+    "@types/unist": "npm:^3.0.0"
     decode-named-character-reference: "npm:^1.0.0"
-    mdast-util-to-string: "npm:^3.1.0"
-    micromark: "npm:^3.0.0"
-    micromark-util-decode-numeric-character-reference: "npm:^1.0.0"
-    micromark-util-decode-string: "npm:^1.0.0"
-    micromark-util-normalize-identifier: "npm:^1.0.0"
-    micromark-util-symbol: "npm:^1.0.0"
-    micromark-util-types: "npm:^1.0.0"
-    unist-util-stringify-position: "npm:^3.0.0"
-    uvu: "npm:^0.5.0"
-  checksum: f4e901bf2a2e93fe35a339e0cff581efacce2f7117cd5652e9a270847bd7e2508b3e717b7b4156af54d4f896d63033e06ff9fafbf59a1d46fe17dd5e2a3f7846
+    devlop: "npm:^1.0.0"
+    mdast-util-to-string: "npm:^4.0.0"
+    micromark: "npm:^4.0.0"
+    micromark-util-decode-numeric-character-reference: "npm:^2.0.0"
+    micromark-util-decode-string: "npm:^2.0.0"
+    micromark-util-normalize-identifier: "npm:^2.0.0"
+    micromark-util-symbol: "npm:^2.0.0"
+    micromark-util-types: "npm:^2.0.0"
+    unist-util-stringify-position: "npm:^4.0.0"
+  checksum: fb66e917f66e33fc60d6964264c4abd519fd8829a4a58ff9c61b2ba5c337554fb954b9ec31ca1c34e83c1163a73f310c39072d656f9a2d3184fe39c87cbba65a
   languageName: node
   linkType: hard
 
-"mdast-util-to-string@npm:^3.1.0":
-  version: 3.2.0
-  resolution: "mdast-util-to-string@npm:3.2.0"
+"mdast-util-to-string@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "mdast-util-to-string@npm:4.0.0"
   dependencies:
-    "@types/mdast": "npm:^3.0.0"
-  checksum: 112f4bf0f6758dcb95deffdcf37afba7eaecdfe2ee13252de031723094d4d55220e147326690a8b91244758e2d678e7aeb1fdd0fa6ef3317c979bc42effd9a21
+    "@types/mdast": "npm:^4.0.0"
+  checksum: 2d3c1af29bf3fe9c20f552ee9685af308002488f3b04b12fa66652c9718f66f41a32f8362aa2d770c3ff464c034860b41715902ada2306bb0a055146cef064d7
   languageName: node
   linkType: hard
 
@@ -14149,239 +14202,239 @@ __metadata:
   languageName: node
   linkType: hard
 
-"micromark-core-commonmark@npm:^1.0.1":
-  version: 1.1.0
-  resolution: "micromark-core-commonmark@npm:1.1.0"
+"micromark-core-commonmark@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "micromark-core-commonmark@npm:2.0.0"
   dependencies:
     decode-named-character-reference: "npm:^1.0.0"
-    micromark-factory-destination: "npm:^1.0.0"
-    micromark-factory-label: "npm:^1.0.0"
-    micromark-factory-space: "npm:^1.0.0"
-    micromark-factory-title: "npm:^1.0.0"
-    micromark-factory-whitespace: "npm:^1.0.0"
-    micromark-util-character: "npm:^1.0.0"
-    micromark-util-chunked: "npm:^1.0.0"
-    micromark-util-classify-character: "npm:^1.0.0"
-    micromark-util-html-tag-name: "npm:^1.0.0"
-    micromark-util-normalize-identifier: "npm:^1.0.0"
-    micromark-util-resolve-all: "npm:^1.0.0"
-    micromark-util-subtokenize: "npm:^1.0.0"
-    micromark-util-symbol: "npm:^1.0.0"
-    micromark-util-types: "npm:^1.0.1"
-    uvu: "npm:^0.5.0"
-  checksum: b3bf7b7004ce7dbb3ae151dcca4db1d12546f1b943affb2418da4b90b9ce59357373c433ee2eea4c868aee0791dafa355aeed19f5ef2b0acaf271f32f1ecbe6a
+    devlop: "npm:^1.0.0"
+    micromark-factory-destination: "npm:^2.0.0"
+    micromark-factory-label: "npm:^2.0.0"
+    micromark-factory-space: "npm:^2.0.0"
+    micromark-factory-title: "npm:^2.0.0"
+    micromark-factory-whitespace: "npm:^2.0.0"
+    micromark-util-character: "npm:^2.0.0"
+    micromark-util-chunked: "npm:^2.0.0"
+    micromark-util-classify-character: "npm:^2.0.0"
+    micromark-util-html-tag-name: "npm:^2.0.0"
+    micromark-util-normalize-identifier: "npm:^2.0.0"
+    micromark-util-resolve-all: "npm:^2.0.0"
+    micromark-util-subtokenize: "npm:^2.0.0"
+    micromark-util-symbol: "npm:^2.0.0"
+    micromark-util-types: "npm:^2.0.0"
+  checksum: e087824b98d1f1d0db34791ac53945b0d68fb5e541c6c9da6700cc3db54d6b697d8110d3120d5d30e2fb39443aabddccd3e2bbf684795359f38b5a696fdc5913
   languageName: node
   linkType: hard
 
-"micromark-factory-destination@npm:^1.0.0":
-  version: 1.1.0
-  resolution: "micromark-factory-destination@npm:1.1.0"
+"micromark-factory-destination@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "micromark-factory-destination@npm:2.0.0"
   dependencies:
-    micromark-util-character: "npm:^1.0.0"
-    micromark-util-symbol: "npm:^1.0.0"
-    micromark-util-types: "npm:^1.0.0"
-  checksum: 71ebd9089bf0c9689b98ef42215c04032ae2701ae08c3546b663628553255dca18e5310dbdacddad3acd8de4f12a789835fff30dadc4da3c4e30387a75e6b488
+    micromark-util-character: "npm:^2.0.0"
+    micromark-util-symbol: "npm:^2.0.0"
+    micromark-util-types: "npm:^2.0.0"
+  checksum: b73492f687d41a6a379159c2f3acbf813042346bcea523d9041d0cc6124e6715f0779dbb2a0b3422719e9764c3b09f9707880aa159557e3cb4aeb03b9d274915
   languageName: node
   linkType: hard
 
-"micromark-factory-label@npm:^1.0.0":
-  version: 1.1.0
-  resolution: "micromark-factory-label@npm:1.1.0"
+"micromark-factory-label@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "micromark-factory-label@npm:2.0.0"
   dependencies:
-    micromark-util-character: "npm:^1.0.0"
-    micromark-util-symbol: "npm:^1.0.0"
-    micromark-util-types: "npm:^1.0.0"
-    uvu: "npm:^0.5.0"
-  checksum: 5e2cd2d8214bb92a34dfcedf9c7aecf565e3648650a3a6a0495ededf15f2318dd214dc069e3026402792cd5839d395313f8ef9c2e86ca34a8facaa0f75a77753
+    devlop: "npm:^1.0.0"
+    micromark-util-character: "npm:^2.0.0"
+    micromark-util-symbol: "npm:^2.0.0"
+    micromark-util-types: "npm:^2.0.0"
+  checksum: 8ffad00487a7891941b1d1f51d53a33c7a659dcf48617edb7a4008dad7aff67ec316baa16d55ca98ae3d75ce1d81628dbf72fedc7c6f108f740dec0d5d21c8ee
   languageName: node
   linkType: hard
 
-"micromark-factory-space@npm:^1.0.0":
-  version: 1.1.0
-  resolution: "micromark-factory-space@npm:1.1.0"
+"micromark-factory-space@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "micromark-factory-space@npm:2.0.0"
   dependencies:
-    micromark-util-character: "npm:^1.0.0"
-    micromark-util-types: "npm:^1.0.0"
-  checksum: 3da81187ce003dd4178c7adc4674052fb8befc8f1a700ae4c8227755f38581a4ae963866dc4857488d62d1dc9837606c9f2f435fa1332f62a0f1c49b83c6a822
+    micromark-util-character: "npm:^2.0.0"
+    micromark-util-types: "npm:^2.0.0"
+  checksum: 103ca954dade963d4ff1d2f27d397833fe855ddc72590205022832ef68b775acdea67949000cee221708e376530b1de78c745267b0bf8366740840783eb37122
   languageName: node
   linkType: hard
 
-"micromark-factory-title@npm:^1.0.0":
-  version: 1.1.0
-  resolution: "micromark-factory-title@npm:1.1.0"
+"micromark-factory-title@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "micromark-factory-title@npm:2.0.0"
   dependencies:
-    micromark-factory-space: "npm:^1.0.0"
-    micromark-util-character: "npm:^1.0.0"
-    micromark-util-symbol: "npm:^1.0.0"
-    micromark-util-types: "npm:^1.0.0"
-  checksum: cf8c687d1d5c3928846a4791d4a7e2f1d7bdd2397051e20d60f06b7565a48bf85198ab6f85735e997ab3f0cbb80b8b6391f4f7ebc0aae2f2f8c3a08541257bf6
+    micromark-factory-space: "npm:^2.0.0"
+    micromark-util-character: "npm:^2.0.0"
+    micromark-util-symbol: "npm:^2.0.0"
+    micromark-util-types: "npm:^2.0.0"
+  checksum: 2b2188e7a011b1b001faf8c860286d246d5c3485ef8819270c60a5808f4c7613e49d4e481dbdff62600ef7acdba0f5100be2d125cbd2a15e236c26b3668a8ebd
   languageName: node
   linkType: hard
 
-"micromark-factory-whitespace@npm:^1.0.0":
-  version: 1.1.0
-  resolution: "micromark-factory-whitespace@npm:1.1.0"
+"micromark-factory-whitespace@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "micromark-factory-whitespace@npm:2.0.0"
   dependencies:
-    micromark-factory-space: "npm:^1.0.0"
-    micromark-util-character: "npm:^1.0.0"
-    micromark-util-symbol: "npm:^1.0.0"
-    micromark-util-types: "npm:^1.0.0"
-  checksum: 7248cc4534f9befb38c6f398b6e38efd3199f1428fc214c9cb7ed5b6e9fa7a82c0d8cdfa9bcacde62887c9a7c8c46baf5c318b2ae8f701afbccc8ad702e92dce
+    micromark-factory-space: "npm:^2.0.0"
+    micromark-util-character: "npm:^2.0.0"
+    micromark-util-symbol: "npm:^2.0.0"
+    micromark-util-types: "npm:^2.0.0"
+  checksum: 4e91baab0cc71873095134bd0e225d01d9786cde352701402d71b72d317973954754e8f9f1849901f165530e6421202209f4d97c460a27bb0808ec5a3fc3148c
   languageName: node
   linkType: hard
 
-"micromark-util-character@npm:^1.0.0":
-  version: 1.2.0
-  resolution: "micromark-util-character@npm:1.2.0"
+"micromark-util-character@npm:^2.0.0":
+  version: 2.0.1
+  resolution: "micromark-util-character@npm:2.0.1"
   dependencies:
-    micromark-util-symbol: "npm:^1.0.0"
-    micromark-util-types: "npm:^1.0.0"
-  checksum: 3390a675a50731b58a8e5493cd802e190427f10fa782079b455b00f6b54e406e36882df7d4a3bd32b709f7a2c3735b4912597ebc1c0a99566a8d8d0b816e2cd4
+    micromark-util-symbol: "npm:^2.0.0"
+    micromark-util-types: "npm:^2.0.0"
+  checksum: 5b91c90f29c8873a9f2f2385bbeb70f481b0e56c26092451d1796cd323257927a69eccca19b079d83d5751ec6fc92964214a3c868114555f87631426631df6b9
   languageName: node
   linkType: hard
 
-"micromark-util-chunked@npm:^1.0.0":
-  version: 1.1.0
-  resolution: "micromark-util-chunked@npm:1.1.0"
+"micromark-util-chunked@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "micromark-util-chunked@npm:2.0.0"
   dependencies:
-    micromark-util-symbol: "npm:^1.0.0"
-  checksum: 59534cf4aaf481ed58d65478d00eae0080df9b5816673f79b5ddb0cea263e5a9ee9cbb6cc565daf1eb3c8c4ff86fc4e25d38a0577539655cda823a4249efd358
+    micromark-util-symbol: "npm:^2.0.0"
+  checksum: 043b5f2abc8c13a1e2e4c378ead191d1a47ed9e0cd6d0fa5a0a430b2df9e17ada9d5de5a20688a000bbc5932507e746144acec60a9589d9a79fa60918e029203
   languageName: node
   linkType: hard
 
-"micromark-util-classify-character@npm:^1.0.0":
-  version: 1.1.0
-  resolution: "micromark-util-classify-character@npm:1.1.0"
+"micromark-util-classify-character@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "micromark-util-classify-character@npm:2.0.0"
   dependencies:
-    micromark-util-character: "npm:^1.0.0"
-    micromark-util-symbol: "npm:^1.0.0"
-    micromark-util-types: "npm:^1.0.0"
-  checksum: 3266453dc0fdaf584e24c9b3c91d1ed180f76b5856699c51fd2549305814fcab7ec52afb4d3e83d002a9115cd2d2b2ffdc9c0b38ed85120822bf515cc00636ec
+    micromark-util-character: "npm:^2.0.0"
+    micromark-util-symbol: "npm:^2.0.0"
+    micromark-util-types: "npm:^2.0.0"
+  checksum: 2bf5fa5050faa9b69f6c7e51dbaaf02329ab70fabad8229984381b356afbbf69db90f4617bec36d814a7d285fb7cad8e3c4e38d1daf4387dc9e240aa7f9a292a
   languageName: node
   linkType: hard
 
-"micromark-util-combine-extensions@npm:^1.0.0":
-  version: 1.1.0
-  resolution: "micromark-util-combine-extensions@npm:1.1.0"
+"micromark-util-combine-extensions@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "micromark-util-combine-extensions@npm:2.0.0"
   dependencies:
-    micromark-util-chunked: "npm:^1.0.0"
-    micromark-util-types: "npm:^1.0.0"
-  checksum: 0bc572fab3fe77f533c29aa1b75cb847b9fc9455f67a98623ef9740b925c0b0426ad9f09bbb56f1e844ea9ebada7873d1f06d27f7c979a917692b273c4b69e31
+    micromark-util-chunked: "npm:^2.0.0"
+    micromark-util-types: "npm:^2.0.0"
+  checksum: cd4c8d1a85255527facb419ff3b3cc3d7b7f27005c5ef5fa7ef2c4d0e57a9129534fc292a188ec2d467c2c458642d369c5f894bc8a9e142aed6696cc7989d3ea
   languageName: node
   linkType: hard
 
-"micromark-util-decode-numeric-character-reference@npm:^1.0.0":
-  version: 1.1.0
-  resolution: "micromark-util-decode-numeric-character-reference@npm:1.1.0"
+"micromark-util-decode-numeric-character-reference@npm:^2.0.0":
+  version: 2.0.1
+  resolution: "micromark-util-decode-numeric-character-reference@npm:2.0.1"
   dependencies:
-    micromark-util-symbol: "npm:^1.0.0"
-  checksum: 64ef2575e3fc2426976c19e16973348f20b59ddd5543f1467ac2e251f29e0a91f12089703d29ae985b0b9a408ee0d72f06d04ed3920811aa2402aabca3bdf9e4
+    micromark-util-symbol: "npm:^2.0.0"
+  checksum: 3f6d684ee8f317c67806e19b3e761956256cb936a2e0533aad6d49ac5604c6536b2041769c6febdd387ab7175b7b7e551851bf2c1f78da943e7a3671ca7635ac
   languageName: node
   linkType: hard
 
-"micromark-util-decode-string@npm:^1.0.0":
-  version: 1.1.0
-  resolution: "micromark-util-decode-string@npm:1.1.0"
+"micromark-util-decode-string@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "micromark-util-decode-string@npm:2.0.0"
   dependencies:
     decode-named-character-reference: "npm:^1.0.0"
-    micromark-util-character: "npm:^1.0.0"
-    micromark-util-decode-numeric-character-reference: "npm:^1.0.0"
-    micromark-util-symbol: "npm:^1.0.0"
-  checksum: 757a0aaa5ad6c50c7480bd75371d407ac75f5022cd4404aba07adadf1448189502aea9bb7b2d09d25e18745e0abf72b95506b6beb184bcccabe919e48e3a5df7
+    micromark-util-character: "npm:^2.0.0"
+    micromark-util-decode-numeric-character-reference: "npm:^2.0.0"
+    micromark-util-symbol: "npm:^2.0.0"
+  checksum: f5413bebb21bdb686cfa1bcfa7e9c93093a523d1b42443ead303b062d2d680a94e5e8424549f57b8ba9d786a758e5a26a97f56068991bbdbca5d1885b3aa7227
   languageName: node
   linkType: hard
 
-"micromark-util-encode@npm:^1.0.0":
-  version: 1.1.0
-  resolution: "micromark-util-encode@npm:1.1.0"
-  checksum: 9878c9bc96999d45626a7597fffac85348ea842dce75d2417345cbf070a9941c62477bd0963bef37d4f0fd29f2982be6ddf416d62806f00ccb334af9d6ee87e7
+"micromark-util-encode@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "micromark-util-encode@npm:2.0.0"
+  checksum: ebdaafff23100bbf4c74e63b4b1612a9ddf94cd7211d6a076bc6fb0bc32c1b48d6fb615aa0953e607c62c97d849f97f1042260d3eb135259d63d372f401bbbb2
   languageName: node
   linkType: hard
 
-"micromark-util-html-tag-name@npm:^1.0.0":
-  version: 1.2.0
-  resolution: "micromark-util-html-tag-name@npm:1.2.0"
-  checksum: 15421869678d36b4fe51df453921e8186bff514a14e9f79f32b7e1cdd67874e22a66ad34a7f048dd132cbbbfc7c382ae2f777a2bfd1f245a47705dc1c6d4f199
+"micromark-util-html-tag-name@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "micromark-util-html-tag-name@npm:2.0.0"
+  checksum: 988aa26367449bd345b627ae32cf605076daabe2dc1db71b578a8a511a47123e14af466bcd6dcbdacec60142f07bc2723ec5f7a0eed0f5319ce83b5e04825429
   languageName: node
   linkType: hard
 
-"micromark-util-normalize-identifier@npm:^1.0.0":
-  version: 1.1.0
-  resolution: "micromark-util-normalize-identifier@npm:1.1.0"
+"micromark-util-normalize-identifier@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "micromark-util-normalize-identifier@npm:2.0.0"
   dependencies:
-    micromark-util-symbol: "npm:^1.0.0"
-  checksum: a9657321a2392584e4d978061882117a84db7d2c2c1c052c0f5d25da089d463edb9f956d5beaf7f5768984b6f72d046d59b5972951ec7bf25397687a62b8278a
+    micromark-util-symbol: "npm:^2.0.0"
+  checksum: 93bf8789b8449538f22cf82ac9b196363a5f3b2f26efd98aef87c4c1b1f8c05be3ef6391ff38316ff9b03c1a6fd077342567598019ddd12b9bd923dacc556333
   languageName: node
   linkType: hard
 
-"micromark-util-resolve-all@npm:^1.0.0":
-  version: 1.1.0
-  resolution: "micromark-util-resolve-all@npm:1.1.0"
+"micromark-util-resolve-all@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "micromark-util-resolve-all@npm:2.0.0"
   dependencies:
-    micromark-util-types: "npm:^1.0.0"
-  checksum: b5c95484c06e87bbbb60d8430eb030a458733a5270409f4c67892d1274737087ca6a7ca888987430e57cf1dcd44bb16390d3b3936a2bf07f7534ec8f52ce43c9
+    micromark-util-types: "npm:^2.0.0"
+  checksum: 3b912e88453dcefe728a9080c8934a75ac4732056d6576ceecbcaf97f42c5d6fa2df66db8abdc8427eb167c5ffddefe26713728cfe500bc0e314ed260d6e2746
   languageName: node
   linkType: hard
 
-"micromark-util-sanitize-uri@npm:^1.0.0":
-  version: 1.2.0
-  resolution: "micromark-util-sanitize-uri@npm:1.2.0"
+"micromark-util-sanitize-uri@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "micromark-util-sanitize-uri@npm:2.0.0"
   dependencies:
-    micromark-util-character: "npm:^1.0.0"
-    micromark-util-encode: "npm:^1.0.0"
-    micromark-util-symbol: "npm:^1.0.0"
-  checksum: dbdb98248e9f0408c7a00f1c1cd805775b41d213defd659533835f34b38da38e8f990bf7b3f782e96bffbc549aec9c3ecdab197d4ad5adbfe08f814a70327b6e
+    micromark-util-character: "npm:^2.0.0"
+    micromark-util-encode: "npm:^2.0.0"
+    micromark-util-symbol: "npm:^2.0.0"
+  checksum: 74763ca1c927dd520d3ab8fd9856a19740acf76fc091f0a1f5d4e99c8cd5f1b81c5a0be3efb564941a071fb6d85fd951103f2760eb6cff77b5ab3abe08341309
   languageName: node
   linkType: hard
 
-"micromark-util-subtokenize@npm:^1.0.0":
-  version: 1.1.0
-  resolution: "micromark-util-subtokenize@npm:1.1.0"
+"micromark-util-subtokenize@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "micromark-util-subtokenize@npm:2.0.0"
   dependencies:
-    micromark-util-chunked: "npm:^1.0.0"
-    micromark-util-symbol: "npm:^1.0.0"
-    micromark-util-types: "npm:^1.0.0"
-    uvu: "npm:^0.5.0"
-  checksum: f292b1b162845db50d36255c9d4c4c6d47931fbca3ac98a80c7e536d2163233fd662f8ca0479ee2b80f145c66a1394c7ed17dfce801439741211015e77e3901e
+    devlop: "npm:^1.0.0"
+    micromark-util-chunked: "npm:^2.0.0"
+    micromark-util-symbol: "npm:^2.0.0"
+    micromark-util-types: "npm:^2.0.0"
+  checksum: 1907c56c4974d430b984c50b3eb0930241112d931e611f178dee17d58f2976614950631b70f4e9c7e49dbccf21f91654ee61f250e028bf2f2b0f3d3aeb168da8
   languageName: node
   linkType: hard
 
-"micromark-util-symbol@npm:^1.0.0":
-  version: 1.1.0
-  resolution: "micromark-util-symbol@npm:1.1.0"
-  checksum: 10ceaed33a90e6bfd3a5d57053dbb53f437d4809cc11430b5a09479c0ba601577059be9286df4a7eae6e350a60a2575dc9fa9d9872b5b8d058c875e075c33803
+"micromark-util-symbol@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "micromark-util-symbol@npm:2.0.0"
+  checksum: 4e76186c185ce4cefb9cea8584213d9ffacd77099d1da30c0beb09fa21f46f66f6de4c84c781d7e34ff763fe3a06b530e132fa9004882afab9e825238d0aa8b3
   languageName: node
   linkType: hard
 
-"micromark-util-types@npm:^1.0.0, micromark-util-types@npm:^1.0.1":
-  version: 1.1.0
-  resolution: "micromark-util-types@npm:1.1.0"
-  checksum: a9749cb0a12a252ff536baabcb7012421b6fad4d91a5fdd80d7b33dc7b4c22e2d0c4637dfe5b902d00247fe6c9b01f4a24fce6b572b16ccaa4da90e6ce2a11e4
+"micromark-util-types@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "micromark-util-types@npm:2.0.0"
+  checksum: d74e913b9b61268e0d6939f4209e3abe9dada640d1ee782419b04fd153711112cfaaa3c4d5f37225c9aee1e23c3bb91a1f5223e1e33ba92d33e83956a53e61de
   languageName: node
   linkType: hard
 
-"micromark@npm:^3.0.0":
-  version: 3.2.0
-  resolution: "micromark@npm:3.2.0"
+"micromark@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "micromark@npm:4.0.0"
   dependencies:
     "@types/debug": "npm:^4.0.0"
     debug: "npm:^4.0.0"
     decode-named-character-reference: "npm:^1.0.0"
-    micromark-core-commonmark: "npm:^1.0.1"
-    micromark-factory-space: "npm:^1.0.0"
-    micromark-util-character: "npm:^1.0.0"
-    micromark-util-chunked: "npm:^1.0.0"
-    micromark-util-combine-extensions: "npm:^1.0.0"
-    micromark-util-decode-numeric-character-reference: "npm:^1.0.0"
-    micromark-util-encode: "npm:^1.0.0"
-    micromark-util-normalize-identifier: "npm:^1.0.0"
-    micromark-util-resolve-all: "npm:^1.0.0"
-    micromark-util-sanitize-uri: "npm:^1.0.0"
-    micromark-util-subtokenize: "npm:^1.0.0"
-    micromark-util-symbol: "npm:^1.0.0"
-    micromark-util-types: "npm:^1.0.1"
-    uvu: "npm:^0.5.0"
-  checksum: f243e805d1b3cc699fddae2de0b1492bc82462f1a709d7ae5c82039f88b1e009c959100184717e748be057b5f88603289d5681679a4e6fbabcd037beb34bc744
+    devlop: "npm:^1.0.0"
+    micromark-core-commonmark: "npm:^2.0.0"
+    micromark-factory-space: "npm:^2.0.0"
+    micromark-util-character: "npm:^2.0.0"
+    micromark-util-chunked: "npm:^2.0.0"
+    micromark-util-combine-extensions: "npm:^2.0.0"
+    micromark-util-decode-numeric-character-reference: "npm:^2.0.0"
+    micromark-util-encode: "npm:^2.0.0"
+    micromark-util-normalize-identifier: "npm:^2.0.0"
+    micromark-util-resolve-all: "npm:^2.0.0"
+    micromark-util-sanitize-uri: "npm:^2.0.0"
+    micromark-util-subtokenize: "npm:^2.0.0"
+    micromark-util-symbol: "npm:^2.0.0"
+    micromark-util-types: "npm:^2.0.0"
+  checksum: 7e91c8d19ff27bc52964100853f1b3b32bb5b2ece57470a34ba1b2f09f4e2a183d90106c4ae585c9f2046969ee088576fed79b2f7061cba60d16652ccc2c64fd
   languageName: node
   linkType: hard
 
@@ -14648,13 +14701,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mri@npm:^1.1.0":
-  version: 1.2.0
-  resolution: "mri@npm:1.2.0"
-  checksum: a3d32379c2554cf7351db6237ddc18dc9e54e4214953f3da105b97dc3babe0deb3ffe99cf409b38ea47cc29f9430561ba6b53b24ab8f9ce97a4b50409e4a50e7
-  languageName: node
-  linkType: hard
-
 "ms@npm:2.1.2":
   version: 2.1.2
   resolution: "ms@npm:2.1.2"
@@ -14732,9 +14778,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next-sitemap@npm:4.2.2":
-  version: 4.2.2
-  resolution: "next-sitemap@npm:4.2.2"
+"next-sitemap@npm:4.2.3":
+  version: 4.2.3
+  resolution: "next-sitemap@npm:4.2.3"
   dependencies:
     "@corex/deepmerge": "npm:^4.0.43"
     "@next/env": "npm:^13.4.3"
@@ -14745,7 +14791,7 @@ __metadata:
   bin:
     next-sitemap: bin/next-sitemap.mjs
     next-sitemap-cjs: bin/next-sitemap.cjs
-  checksum: bcd8a68224f3923bb30a1f06b875153f3182b3410dbd1f942c26334f6eb40c524506d72051bffa640508d05a21a82db5765c6ea781cdef79d01ee56782adfcda
+  checksum: 8a367c9db84ca249797ec900d06c267434265bf635a82bc0896d35bc0ce85eee0cf115d4340baa93dd20fde081e513115d38776b5e8a5b3fb604c7b34a8542ea
   languageName: node
   linkType: hard
 
@@ -15105,7 +15151,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"object.entries@npm:^1.1.5, object.entries@npm:^1.1.6":
+"object.entries@npm:^1.1.5, object.entries@npm:^1.1.6, object.entries@npm:^1.1.7":
   version: 1.1.7
   resolution: "object.entries@npm:1.1.7"
   dependencies:
@@ -15116,7 +15162,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"object.fromentries@npm:^2.0.6":
+"object.fromentries@npm:^2.0.6, object.fromentries@npm:^2.0.7":
   version: 2.0.7
   resolution: "object.fromentries@npm:2.0.7"
   dependencies:
@@ -15127,7 +15173,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"object.groupby@npm:^1.0.0":
+"object.groupby@npm:^1.0.1":
   version: 1.0.1
   resolution: "object.groupby@npm:1.0.1"
   dependencies:
@@ -15149,7 +15195,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"object.values@npm:^1.1.6":
+"object.values@npm:^1.1.6, object.values@npm:^1.1.7":
   version: 1.1.7
   resolution: "object.values@npm:1.1.7"
   dependencies:
@@ -15684,25 +15730,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier-plugin-jsdoc@npm:^1.0.1":
-  version: 1.0.2
-  resolution: "prettier-plugin-jsdoc@npm:1.0.2"
+"prettier-plugin-jsdoc@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "prettier-plugin-jsdoc@npm:1.1.1"
   dependencies:
     binary-searching: "npm:^2.0.5"
     comment-parser: "npm:^1.4.0"
-    mdast-util-from-markdown: "npm:^1.2.0"
+    mdast-util-from-markdown: "npm:^2.0.0"
   peerDependencies:
     prettier: ^3.0.0
-  checksum: 476454e2895a0b705f04190610233096499d31c39077b6c65ae8bebb9b5f00d6f621ce315cd9bf72d17a2699d8fe0b586242e96f6c868f84b4b38f0b44933705
+  checksum: 7b35bb5984a50bffdb0cd2b004844db756769b54b9c91c5ecdc66f02ab89bc2f1940643ca8e9f9859b69db0c30bd695f25b183c3a1eb4471589ea523b21c7519
   languageName: node
   linkType: hard
 
-"prettier@npm:3.0.3":
-  version: 3.0.3
-  resolution: "prettier@npm:3.0.3"
+"prettier@npm:3.1.0":
+  version: 3.1.0
+  resolution: "prettier@npm:3.1.0"
   bin:
     prettier: bin/prettier.cjs
-  checksum: f950887bc03c5b970d8c6dd129364acfbbc61e7b46aec5d5ce17f4adf6404e2ef43072c98b51c4786e0eaca949b307d362a773fd47502862d754b5a328fa2b26
+  checksum: a45ea70aa97fde162ea4c4aba3dfc7859aa6a732a1db34458d9535dc3c2c16d3bc3fb5689e6cd76aa835562555303b02d9449fd2e15af3b73c8053557e25c5b6
   languageName: node
   linkType: hard
 
@@ -15730,6 +15776,18 @@ __metadata:
     ansi-styles: "npm:^5.0.0"
     react-is: "npm:^17.0.1"
   checksum: 0cbda1031aa30c659e10921fa94e0dd3f903ecbbbe7184a729ad66f2b6e7f17891e8c7d7654c458fa4ccb1a411ffb695b4f17bbcd3fe075fabe181027c4040ed
+  languageName: node
+  linkType: hard
+
+"pretty-format@npm:^28.1.3":
+  version: 28.1.3
+  resolution: "pretty-format@npm:28.1.3"
+  dependencies:
+    "@jest/schemas": "npm:^28.1.3"
+    ansi-regex: "npm:^5.0.1"
+    ansi-styles: "npm:^5.0.0"
+    react-is: "npm:^18.0.0"
+  checksum: 596d8b459b6fdac7dcbd70d40169191e889939c17ffbcc73eebe2a9a6f82cdbb57faffe190274e0a507d9ecdf3affadf8a9b43442a625eecfbd2813b9319660f
   languageName: node
   linkType: hard
 
@@ -15975,16 +16033,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-hook-form@npm:7.46.1":
-  version: 7.46.1
-  resolution: "react-hook-form@npm:7.46.1"
+"react-hook-form@npm:^7.48.2":
+  version: 7.48.2
+  resolution: "react-hook-form@npm:7.48.2"
   peerDependencies:
     react: ^16.8.0 || ^17 || ^18
-  checksum: 05377ee81083be98eef9fdb686c04f1309a3ca86a196d2aa48aa1bd0158ed54bbf8ab96bad19ef695dde8cd1a9b1e327ef35348fb30b496e0161da616154ff47
+  checksum: 77663276288d3e240da76c469612fec2bfb2dd34ed0512adb8554b8567e89a316c3df62266e51639f66a9a9d50ce175e8dc965f94bc31afecb460ed48333dafa
   languageName: node
   linkType: hard
 
-"react-instantsearch-hooks-web@npm:^6.41.0":
+"react-instantsearch-hooks-web@npm:^6.47.3":
   version: 6.47.3
   resolution: "react-instantsearch-hooks-web@npm:6.47.3"
   dependencies:
@@ -16444,7 +16502,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rimraf@npm:^5.0.0, rimraf@npm:^5.0.1":
+"rimraf@npm:^5.0.0, rimraf@npm:^5.0.5":
   version: 5.0.5
   resolution: "rimraf@npm:5.0.5"
   dependencies:
@@ -16490,12 +16548,14 @@ __metadata:
     "@changesets/cli": "npm:2.26.2"
     "@playwright/test": "npm:1.39.0"
     "@testing-library/jest-dom": "npm:^6.1.4"
-    "@testing-library/react": "npm:^14.0.0"
-    concurrently: "npm:8.2.1"
-    eslint: "npm:8.48.0"
-    jest-environment-jsdom: "npm:^29.5.0"
+    "@testing-library/react": "npm:^14.1.0"
+    concurrently: "npm:8.2.2"
+    eslint: "npm:8.53.0"
+    jest-environment-jsdom: "npm:^29.7.0"
     patch-package: "npm:8.0.0"
-    prettier: "npm:3.0.3"
+    prettier: "npm:3.1.0"
+    react: "npm:^18.2.0"
+    react-dom: "npm:^18.2.0"
     typescript: "npm:5.2.2"
   languageName: unknown
   linkType: soft
@@ -16538,15 +16598,6 @@ __metadata:
   dependencies:
     tslib: "npm:^2.1.0"
   checksum: 3c49c1ecd66170b175c9cacf5cef67f8914dcbc7cd0162855538d365c83fea631167cacb644b3ce533b2ea0e9a4d0b12175186985f89d75abe73dbd8f7f06f68
-  languageName: node
-  linkType: hard
-
-"sade@npm:^1.7.3":
-  version: 1.8.1
-  resolution: "sade@npm:1.8.1"
-  dependencies:
-    mri: "npm:^1.1.0"
-  checksum: da8a3a5d667ad5ce3bf6d4f054bbb9f711103e5df21003c5a5c1a8a77ce12b640ed4017dd423b13c2307ea7e645adee7c2ae3afe8051b9db16a6f6d3da3f90b1
   languageName: node
   linkType: hard
 
@@ -16612,7 +16663,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"schema-dts@npm:^1.1.0":
+"schema-dts@npm:^1.1.2":
   version: 1.1.2
   resolution: "schema-dts@npm:1.1.2"
   peerDependencies:
@@ -18153,12 +18204,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"unist-util-stringify-position@npm:^3.0.0":
-  version: 3.0.3
-  resolution: "unist-util-stringify-position@npm:3.0.3"
+"unist-util-stringify-position@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "unist-util-stringify-position@npm:4.0.0"
   dependencies:
-    "@types/unist": "npm:^2.0.0"
-  checksum: 14550027825230528f6437dad7f2579a841780318569851291be6c8a970bae6f65a7feb24dabbcfce0e5e68cacae85bf12cbda3f360f7c873b4db602bdf7bb21
+    "@types/unist": "npm:^3.0.0"
+  checksum: dfe1dbe79ba31f589108cb35e523f14029b6675d741a79dea7e5f3d098785045d556d5650ec6a8338af11e9e78d2a30df12b1ee86529cded1098da3f17ee999e
   languageName: node
   linkType: hard
 
@@ -18284,20 +18335,6 @@ __metadata:
   version: 1.0.2
   resolution: "util-deprecate@npm:1.0.2"
   checksum: 41a5bdd214df2f6c3ecf8622745e4a366c4adced864bc3c833739791aeeeb1838119af7daed4ba36428114b5c67dcda034a79c882e97e43c03e66a4dd7389942
-  languageName: node
-  linkType: hard
-
-"uvu@npm:^0.5.0":
-  version: 0.5.6
-  resolution: "uvu@npm:0.5.6"
-  dependencies:
-    dequal: "npm:^2.0.0"
-    diff: "npm:^5.0.0"
-    kleur: "npm:^4.0.3"
-    sade: "npm:^1.7.3"
-  bin:
-    uvu: bin.js
-  checksum: ad32eb5f7d94bdeb71f80d073003f0138e24f61ed68cecc8e15d2f30838f44c9670577bb1775c8fac894bf93d1bc1583d470a9195e49bfa6efa14cc6f4942bff
   languageName: node
   linkType: hard
 
@@ -18431,7 +18468,44 @@ __metadata:
   languageName: node
   linkType: hard
 
-"webpack@npm:5.88.2, webpack@npm:^5.1.0":
+"webpack@npm:5.89.0":
+  version: 5.89.0
+  resolution: "webpack@npm:5.89.0"
+  dependencies:
+    "@types/eslint-scope": "npm:^3.7.3"
+    "@types/estree": "npm:^1.0.0"
+    "@webassemblyjs/ast": "npm:^1.11.5"
+    "@webassemblyjs/wasm-edit": "npm:^1.11.5"
+    "@webassemblyjs/wasm-parser": "npm:^1.11.5"
+    acorn: "npm:^8.7.1"
+    acorn-import-assertions: "npm:^1.9.0"
+    browserslist: "npm:^4.14.5"
+    chrome-trace-event: "npm:^1.0.2"
+    enhanced-resolve: "npm:^5.15.0"
+    es-module-lexer: "npm:^1.2.1"
+    eslint-scope: "npm:5.1.1"
+    events: "npm:^3.2.0"
+    glob-to-regexp: "npm:^0.4.1"
+    graceful-fs: "npm:^4.2.9"
+    json-parse-even-better-errors: "npm:^2.3.1"
+    loader-runner: "npm:^4.2.0"
+    mime-types: "npm:^2.1.27"
+    neo-async: "npm:^2.6.2"
+    schema-utils: "npm:^3.2.0"
+    tapable: "npm:^2.1.1"
+    terser-webpack-plugin: "npm:^5.3.7"
+    watchpack: "npm:^2.4.0"
+    webpack-sources: "npm:^3.2.3"
+  peerDependenciesMeta:
+    webpack-cli:
+      optional: true
+  bin:
+    webpack: bin/webpack.js
+  checksum: 2562bf48788d651634fb7db6a5378c2fe3fce7f66831af38468da3944bd98756d68efea94a6909593993fb57b2d14cf802cbef2c83c6ef0047f7f606d59bec50
+  languageName: node
+  linkType: hard
+
+"webpack@npm:^5.1.0":
   version: 5.88.2
   resolution: "webpack@npm:5.88.2"
   dependencies:

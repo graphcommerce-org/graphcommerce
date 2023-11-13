@@ -10,16 +10,40 @@
     "start": "next start"
   },
   "dependencies": {
-    "@graphcommerce/image": "7.1.0-canary.38",
-    "@graphcommerce/next-config": "7.1.0-canary.38",
-    "@graphcommerce/next-ui": "7.1.0-canary.38",
-    "framer-motion": "^10.16.3",
+    "@lingui/core": "4.5.0",
+    "@lingui/macro": "4.5.0",
+    "@lingui/react": "4.5.0",
+    "@mui/lab": "5.0.0-alpha.152",
+    "@mui/material": "5.14.17",
+    "@next/env": "14.0.2",
+    "@parcel/watcher": "^2.3.0",
+    "concurrently": "8.2.2",
+    "cross-env": "^7.0.3",
+    "dotenv": "16.3.1",
+    "framer-motion": "10.16.4",
+    "graphql": "^16.8.1",
     "next": "14.0.2",
+    "next-sitemap": "4.2.3",
+    "patch-package": "8.0.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "sharp": "0.32.6",
+    "webpack": "5.89.0"
   },
-  "license": "MIT",
   "devDependencies": {
+    "@graphcommerce/eslint-config-pwa": "7.1.0-canary.38",
+    "@graphcommerce/prettier-config-pwa": "7.1.0-canary.38",
+    "@graphcommerce/typescript-config-pwa": "7.1.0-canary.38",
+    "@lingui/cli": "4.5.0",
+    "@playwright/test": "1.39.0",
+    "@types/node": "^16.18.61",
+    "@types/react": "^18.2.37",
+    "@types/react-dom": "^18.2.15",
+    "@types/react-is": "^18.2.4",
+    "babel-plugin-macros": "^3.1.0",
+    "eslint": "8.53.0",
+    "prettier": "3.1.0",
+    "type-fest": "^4.7.1",
     "typescript": "5.2.2"
   }
 }

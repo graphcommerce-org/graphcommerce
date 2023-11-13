@@ -11,19 +11,17 @@
       "project": "./tsconfig.json"
     }
   },
-  "dependencies": {
-    "@apollo/client": "~3.8.2",
-    "react-hook-form": "7.46.1"
-  },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "7.1.0-canary.38",
-    "@graphcommerce/prettier-config-pwa": "7.1.0-canary.38",
-    "@graphcommerce/typescript-config-pwa": "7.1.0-canary.38",
-    "@testing-library/react": "^14.0.0"
+    "@testing-library/react": "^14.1.0"
   },
   "peerDependencies": {
+    "@apollo/client": "^3",
+    "@graphcommerce/eslint-config-pwa": "*",
+    "@graphcommerce/prettier-config-pwa": "*",
+    "@graphcommerce/typescript-config-pwa": "*",
     "graphql": "^16.6.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7"
   }
 }
