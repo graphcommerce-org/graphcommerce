@@ -3,7 +3,6 @@ import { FormRow, InputCheckmark } from '@graphcommerce/next-ui'
 import { assertFormGqlOperation, UseFormReturn } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { memo } from 'react'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
 
 type NameFieldValues = {
