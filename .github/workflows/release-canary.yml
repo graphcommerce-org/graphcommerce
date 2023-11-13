@@ -14,11 +14,11 @@ jobs:
       - name: checkout
         uses: actions/checkout@v4
         with:
-          cache: yarn
           fetch-depth: 0
           ref: canary
       - uses: actions/setup-node@v3
         with:
+          cache: yarn
           node-version: 20
           registry-url: 'https://registry.npmjs.org'
           scope: '@graphcommerce'

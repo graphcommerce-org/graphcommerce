@@ -9,17 +9,16 @@ jobs:
     steps:
       - uses: actions/setup-node@v3
         with:
+          cache: yarn
           node-version: 20
           registry-url: 'https://registry.npmjs.org'
           scope: '@graphcommerce'
       - uses: actions/checkout@v4
         with:
           path: new
-          cache: yarn
       - uses: actions/checkout@v4
         with:
           path: old
-          cache: yarn
           ref: ${{ github.base_ref }}
       - uses: borales/actions-yarn@v4
         with:
