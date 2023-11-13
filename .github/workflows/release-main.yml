@@ -11,6 +11,8 @@ jobs:
     outputs:
       published: ${{ steps.changesets.outputs.published }}
     steps:
+      - name: Install cURL Headers
+        run: sudo apt-get install libcurl4-openssl-dev
       - name: checkout
         uses: actions/checkout@v4
         with:
