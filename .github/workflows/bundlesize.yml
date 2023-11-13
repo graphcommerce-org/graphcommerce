@@ -7,8 +7,6 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.pull_request.draft == false
     steps:
-      - name: Install cURL Headers
-        run: sudo apt-get install libcurl4-openssl-dev
       - uses: actions/checkout@v4
         with:
           path: new
@@ -19,7 +17,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           cache: yarn
-          node-version: 20
+          node-version: 18
           registry-url: 'https://registry.npmjs.org'
           scope: '@graphcommerce'
           cache-dependency-path: ./old/yarn.lock

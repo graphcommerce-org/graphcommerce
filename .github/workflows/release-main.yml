@@ -11,8 +11,6 @@ jobs:
     outputs:
       published: ${{ steps.changesets.outputs.published }}
     steps:
-      - name: Install cURL Headers
-        run: sudo apt-get install libcurl4-openssl-dev
       - name: checkout
         uses: actions/checkout@v4
         with:
@@ -20,7 +18,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           cache: yarn
-          node-version: 20
+          node-version: 18
           registry-url: 'https://registry.npmjs.org'
           scope: '@graphcommerce'
       - uses: borales/actions-yarn@v4
