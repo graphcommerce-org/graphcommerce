@@ -4,7 +4,7 @@ on:
     types: [opened, synchronize, reopened, ready_for_review]
 jobs:
   windows-build:
-    runs-on: windows-202
+    runs-on: windows-2022
     if: github.event.pull_request.draft == false
     steps:
       - uses: actions/checkout@v4
