@@ -10,7 +10,7 @@ import {
   ImageConfigComplete,
   imageConfigDefault,
 } from 'next/dist/shared/lib/image-config'
-import { ImageConfigContext } from 'next/dist/shared/lib/image-config-context'
+import { ImageConfigContext } from 'next/dist/shared/lib/image-config-context.shared-runtime'
 import Head from 'next/head'
 import type { ImageLoaderProps, ImageLoader } from 'next/image'
 import React, { useContext, useEffect, useMemo, useRef } from 'react'
