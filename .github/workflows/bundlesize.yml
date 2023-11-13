@@ -21,12 +21,12 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
           scope: '@graphcommerce'
           cache-dependency-path: ./old/yarn.lock
-      - run: cd ./new/examples/magento-graphcms && yarn --cwd ./new/examples/magento-graphcms install && cd ../../..
-      - run: cd ./new/examples/magento-graphcms && yarn --cwd ./new/examples/magento-graphcms build > new.txt && cd ../../..
-      - run: cat ./new/examples/magento-graphcms/new.txt
-      - run: cd ./old/examples/magento-graphcms && yarn --cwd ./old/examples/magento-graphcms install && cd ../../..
-      - run: cd ./old/examples/magento-graphcms && yarn --cwd ./old/examples/magento-graphcms build > old.txt && cd ../../..
-      - run: cat ./new/examples/magento-graphcms/old.txt
+      - run: cd new && yarn install && cd ..
+      - run: cd new/examples/magento-graphcms && yarn build > ../../../new.txt && cd ../../..
+      - run: cat new.txt
+      - run: cd old && yarn install && cd ..
+      - run: cd old/examples/magento-graphcms && yarn build > ../../../old.txt && cd ../../..
+      - run: cat old.txt
       - uses: ho-nl/next-bundlesize-action@master
         id: 'bundlesize'
       - uses: unsplash/comment-on-pr@master
