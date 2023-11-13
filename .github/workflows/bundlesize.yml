@@ -7,12 +7,6 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.pull_request.draft == false
     steps:
-      - uses: actions/setup-node@v3
-        with:
-          cache: yarn
-          node-version: 20
-          registry-url: 'https://registry.npmjs.org'
-          scope: '@graphcommerce'
       - uses: actions/checkout@v4
         with:
           path: new
@@ -20,6 +14,13 @@ jobs:
         with:
           path: old
           ref: ${{ github.base_ref }}
+      - uses: actions/setup-node@v3
+        with:
+          cache: yarn
+          node-version: 20
+          registry-url: 'https://registry.npmjs.org'
+          scope: '@graphcommerce'
+          cache-dependency-path: ./old/package.json
       - uses: borales/actions-yarn@v4
         with:
           cmd: install
