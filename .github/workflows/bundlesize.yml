@@ -20,7 +20,7 @@ jobs:
           node-version: 20
           registry-url: 'https://registry.npmjs.org'
           scope: '@graphcommerce'
-          cache-dependency-path: ./old/package.json
+          cache-dependency-path: ./old/yarn.lock
       - uses: borales/actions-yarn@v4
         with:
           cmd: install
