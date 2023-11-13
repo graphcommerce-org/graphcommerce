@@ -57,10 +57,10 @@ function withGraphCommerce(nextConfig, cwd) {
         },
         images: {
             ...nextConfig.images,
-            domains: [
-                new URL(graphcommerceConfig.magentoEndpoint).hostname,
-                'media.graphassets.com',
-                ...(nextConfig.images?.domains ?? []),
+            remotePatterns: [
+                { hostname: new URL(graphcommerceConfig.magentoEndpoint).hostname },
+                { hostname: 'media.graphassets.com' },
+                ...(nextConfig.images?.remotePatterns ?? []),
             ],
         },
         redirects: async () => {
