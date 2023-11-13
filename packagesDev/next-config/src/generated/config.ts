@@ -288,8 +288,6 @@ export type GraphCommerceConfig = {
   storefront: Array<GraphCommerceStorefrontConfig>;
   /** Hide the wishlist functionality for guests. */
   wishlistHideForGuests?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Ignores whether a product is already in the wishlist, makes the toggle an add only. */
-  wishlistIgnoreProductWishlistStatus?: InputMaybe<Scalars['Boolean']['input']>;
   /** Show a message when the product is added to the wishlist. */
   wishlistShowFeedbackMessage?: InputMaybe<Scalars['Boolean']['input']>;
 };
@@ -445,7 +443,6 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     sidebarGallery: SidebarGalleryConfigSchema().nullish(),
     storefront: z.array(GraphCommerceStorefrontConfigSchema()),
     wishlistHideForGuests: z.boolean().nullish(),
-    wishlistIgnoreProductWishlistStatus: z.boolean().nullish(),
     wishlistShowFeedbackMessage: z.boolean().nullish()
   })
 }

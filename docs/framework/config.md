@@ -285,10 +285,6 @@ Configuration for the SidebarGallery component
 
 Hide the wishlist functionality for guests.
 
-#### `wishlistIgnoreProductWishlistStatus: Boolean`
-
-Ignores whether a product is already in the wishlist, makes the toggle an add only.
-
 #### `wishlistShowFeedbackMessage: Boolean`
 
 Show a message when the product is added to the wishlist.
