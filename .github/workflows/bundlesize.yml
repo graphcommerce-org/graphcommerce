@@ -21,20 +21,10 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
           scope: '@graphcommerce'
           cache-dependency-path: ./old/yarn.lock
-      - uses: borales/actions-yarn@v4
-        with:
-          cmd: install
-          dir: new
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - run: yarn --cwd ./new/examples/magento-graphcms install
       - run: yarn --cwd ./new/examples/magento-graphcms build > new.txt
       - run: cat new.txt
-      - uses: borales/actions-yarn@v4
-        with:
-          cmd: install
-          dir: old
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - run: yarn --cwd ./old/examples/magento-graphcms install
       - run: yarn --cwd ./old/examples/magento-graphcms build > old.txt
       - run: cat old.txt
       - uses: ho-nl/next-bundlesize-action@master
