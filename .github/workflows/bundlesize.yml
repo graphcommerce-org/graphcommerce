@@ -22,11 +22,11 @@ jobs:
           scope: '@graphcommerce'
           cache-dependency-path: ./old/yarn.lock
       - run: cd ./new/examples/magento-graphcms && yarn --cwd ./new/examples/magento-graphcms install && cd ../../..
-      - run: yarn --cwd ./new/examples/magento-graphcms build > new.txt
-      - run: cat new.txt
+      - run: cd ./new/examples/magento-graphcms && yarn --cwd ./new/examples/magento-graphcms build > new.txt && cd ../../..
+      - run: cat ./new/examples/magento-graphcms/new.txt
       - run: cd ./old/examples/magento-graphcms && yarn --cwd ./old/examples/magento-graphcms install && cd ../../..
-      - run: yarn --cwd ./old/examples/magento-graphcms build > old.txt
-      - run: cat old.txt
+      - run: cd ./old/examples/magento-graphcms && yarn --cwd ./old/examples/magento-graphcms build > old.txt && cd ../../..
+      - run: cat ./new/examples/magento-graphcms/old.txt
       - uses: ho-nl/next-bundlesize-action@master
         id: 'bundlesize'
       - uses: unsplash/comment-on-pr@master
