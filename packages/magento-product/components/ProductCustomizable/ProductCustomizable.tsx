@@ -16,6 +16,7 @@ import { AddToCartItemSelector, useFormAddProductsToCart } from '../AddProductsT
 import { ProductCustomizableFragment } from './ProductCustomizable.gql'
 import { ProductPagePriceFragment } from '../ProductPagePrice'
 import { Trans } from '@lingui/react'
+import { errors } from '@playwright/test'
 
 export type OptionTypeRenderer = TypeRenderer<
   NonNullable<NonNullable<ProductCustomizableFragment['options']>[number]> & {
@@ -240,9 +241,10 @@ const CustomizableDateOption = React.memo<
     index,
     title,
     minDate = new Date('1950-11-12T00:00'),
-    maxDate = new Date('2080-11-12T00:00'),
+    maxDate = new Date('9999-11-12T00:00'),
   } = props
-  const { register, setValue, setError, getFieldState, clearErrors } = useFormAddProductsToCart()
+  const { register, setValue, setError, getFieldState, clearErrors, control } =
+    useFormAddProductsToCart()
 
   const { invalid } = getFieldState(`cartItems.${index}.entered_options.${optionIndex}.value`)
 
@@ -257,7 +259,9 @@ const CustomizableDateOption = React.memo<
       />
 
       <FormLabel>{title?.toUpperCase()}</FormLabel>
-      <TextField
+      <TextFieldElement
+        control={control}
+        name={`cartItems.${index}.entered_options.${optionIndex}.value`}
         sx={(theme) => ({
           width: '100%',
           mt: theme.spacings.xxs,
