@@ -81,10 +81,10 @@ function CartPage() {
             {hasItems ? (
               <>
                 <CartItemsActionCards cart={data.cart} sx={{ position: 'relative', zIndex: 1 }} />
-                <CartItemCrosssells cart={data.cart} renderer={productListRenderer} />
                 <CouponAccordion key='couponform' sx={(theme) => ({ mt: theme.spacings.md })} />
                 <CartTotals containerMargin sx={{ typography: 'body1' }} />
                 <ApolloCartErrorAlert error={error} />
+                <CartItemCrosssells renderer={productListRenderer} />
                 <OverlayStickyBottom sx={{ py: 0.1 }}>
                   <CartStartCheckout {...data?.cart} disabled={hasError} />
                 </OverlayStickyBottom>
