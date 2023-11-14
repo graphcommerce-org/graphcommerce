@@ -1,6 +1,5 @@
 import { normalizePathTrailingSlash } from 'next/dist/client/normalize-trailing-slash'
 import { ImageConfigComplete, imageConfigDefault } from 'next/dist/shared/lib/image-config'
-import { hasMatch } from 'next/dist/shared/lib/match-remote-pattern'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { ImageLoaderProps } from 'next/image'
 
@@ -99,12 +98,15 @@ export function defaultLoader({ config, src, width, quality }: ImageLoaderPropsW
         process.env.NEXT_RUNTIME !== 'edge'
       ) {
         // We use dynamic require because this should only error in development
-        if (!hasMatch(config.domains, config.remotePatterns, parsedSrc)) {
-          throw new Error(
-            `Invalid src prop (${src}) on \`next/image\`, hostname "${parsedSrc.hostname}" is not configured under images in your \`next.config.js\`\n` +
-              `See more info: https://nextjs.org/docs/messages/next-image-unconfigured-host`,
-          )
-        }
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        import('next/dist/shared/lib/match-remote-pattern').then(({ hasMatch }) => {
+          if (!hasMatch(config.domains, config.remotePatterns, parsedSrc)) {
+            throw new Error(
+              `Invalid src prop (${src}) on \`next/image\`, hostname "${parsedSrc.hostname}" is not configured under images in your \`next.config.js\`\n` +
+                `See more info: https://nextjs.org/docs/messages/next-image-unconfigured-host`,
+            )
+          }
+        })
       }
     }
   }
