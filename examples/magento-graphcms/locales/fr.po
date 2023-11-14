@@ -421,14 +421,14 @@ msgstr "Commandez avant 22:00"
 msgid "Order date"
 msgstr "Date de commande"
 
+msgid "Order details"
+msgstr "Détails de la commande"
+
 msgid "Order not found"
 msgstr "Commande non trouvée"
 
 msgid "Order number"
 msgstr "Numéro de commande"
-
-msgid "Order status"
-msgstr "Statut de la commande"
 
 msgid "Order summary"
 msgstr "Résumé de la commande"
@@ -618,6 +618,9 @@ msgstr "Inscrivez-vous à notre newsletter et restez à jour"
 
 msgid "Some items in your cart contain errors, please update or remove them, then try again."
 msgstr "Certains articles de votre panier contiennent des erreurs, veuillez les mettre à jour ou les supprimer, puis réessayer."
+
+msgid "Something went wrong. Please try again later."
+msgstr "Quelque chose s'est mal passé. Réessayez plus tard."
 
 msgid "Sort"
 msgstr "Trier"
