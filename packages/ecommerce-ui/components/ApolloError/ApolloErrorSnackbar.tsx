@@ -12,7 +12,7 @@ export function ApolloErrorSnackbar(props: ApolloErrorSnackbarProps) {
 
   if (!error) return null
   return (
-    <ErrorSnackbar variant='pill' severity='error' {...passedProps} open={!error}>
+    <ErrorSnackbar variant='pill' severity='error' {...passedProps} open={!!error}>
       <>
         {isDevMode ? (
           <>
