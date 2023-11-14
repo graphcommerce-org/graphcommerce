@@ -20,7 +20,7 @@ export function ApolloErrorSnackbar(props: ApolloErrorSnackbarProps) {
             {error.networkError && <>Network Error: {error.networkError.message}</>}
           </>
         ) : (
-          <Trans id='Something went wrong please try again later' />
+          <Trans id='Something went wrong. Please try again later.' />
         )}
       </>
     </ErrorSnackbar>

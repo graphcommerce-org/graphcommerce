@@ -22,7 +22,7 @@ export function ApolloCustomerErrorFullPage(props: ApolloCustomerErrorFullPagePr
     <ApolloErrorFullPage
       icon={<IconSvg src={iconPerson} size='xxl' />}
       {...props}
-      error={newError}
+      error={error}
       button={
         unauthorized ? (
           <Button href='/account/signin' variant='pill' color='primary' size='large'>

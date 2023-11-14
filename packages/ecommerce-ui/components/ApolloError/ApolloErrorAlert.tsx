@@ -35,13 +35,13 @@ export function ApolloErrorAlert(props: ApolloErrorAlertProps) {
                     {isDevMode ? (
                       e.message
                     ) : (
-                      <Trans id='Something went wrong please try again later' />
+                      <Trans id='Something went wrong. Please try again later.' />
                     )}
                   </Alert>
                 </div>
               </Box>
             ))}
-            {error?.networkError && (
+            {true && (
               <Box key='networkError'>
                 <Box
                   sx={(theme) => ({
@@ -55,7 +55,7 @@ export function ApolloErrorAlert(props: ApolloErrorAlertProps) {
                     {isDevMode ? (
                       `Network Error: ${error?.networkError.message}`
                     ) : (
-                      <Trans id='Something went wrong please try again later' />
+                      <Trans id='Something went wrong. Please try again later.' />
                     )}
                   </Alert>
                 </Box>

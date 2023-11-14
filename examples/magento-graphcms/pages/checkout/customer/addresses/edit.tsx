@@ -21,6 +21,7 @@ import { Box, CircularProgress, Container, Skeleton } from '@mui/material'
 import { useRouter } from 'next/router'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../../components'
 import { graphqlSharedClient } from '../../../../lib/graphql/graphqlSsrClient'
+import { ApolloError } from '@graphcommerce/graphql'
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
@@ -29,7 +30,7 @@ function CheckoutCustomerAddressesEdit() {
   const { data, loading, error, called } = useCustomerQuery(AccountDashboardAddressesDocument, {
     fetchPolicy: 'cache-and-network',
   })
-
+  const i = new ApolloError({ errorMessage: 'error' })
   const address = data?.customer?.addresses?.find((a) => a?.id === Number(router.query.addressId))
 
   if (loading || !called)
@@ -38,7 +39,7 @@ function CheckoutCustomerAddressesEdit() {
         <Trans id='This may take a second' />
       </FullPageMessage>
     )
-  if (error) return <ApolloCustomerErrorFullPage error={error} />
+  if (i) return <ApolloCustomerErrorFullPage error={i} />
 
   return (
     <>
