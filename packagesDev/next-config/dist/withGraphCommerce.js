@@ -137,7 +137,7 @@ function withGraphCommerce(nextConfig, cwd) {
             };
             if (!config.resolve)
                 config.resolve = {};
-            if (!options.isServer) {
+            if (!options.isServer && !options.dev) {
                 config.resolve.alias = {
                     ...config.resolve.alias,
                     '@mui/base': '@mui/base/modern',
