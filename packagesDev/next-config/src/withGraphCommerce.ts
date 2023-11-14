@@ -170,17 +170,6 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
 
       if (!config.resolve) config.resolve = {}
 
-      if (!options.isServer) {
-        config.resolve.alias = {
-          ...config.resolve.alias,
-          '@mui/base': '@mui/base/modern',
-          '@mui/lab': '@mui/lab/modern',
-          '@mui/material': '@mui/material/modern',
-          '@mui/styled-engine': '@mui/styled-engine/modern',
-          '@mui/system': '@mui/system/modern',
-        }
-      }
-
       config.plugins.push(new InterceptorPlugin(graphcommerceConfig))
 
       return typeof nextConfig.webpack === 'function' ? nextConfig.webpack(config, options) : config
