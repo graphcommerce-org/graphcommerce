@@ -53,7 +53,7 @@ export function ApolloErrorAlert(props: ApolloErrorAlertProps) {
                 >
                   <Alert severity='error' {...networkErrorAlertProps}>
                     {isDevMode ? (
-                      `Network Error: ${error?.networkError.message}`
+                      `Network Error: ${error?.networkError?.message}`
                     ) : (
                       <Trans id='Something went wrong. Please try again later.' />
                     )}
