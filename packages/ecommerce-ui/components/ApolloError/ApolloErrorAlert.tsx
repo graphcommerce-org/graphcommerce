@@ -41,25 +41,26 @@ export function ApolloErrorAlert(props: ApolloErrorAlertProps) {
                 </div>
               </Box>
             ))}
-
-            <Box key='networkError'>
-              <Box
-                sx={(theme) => ({
-                  paddingTop: theme.spacings.xxs,
-                  paddingBottom: theme.spacings.xxs,
-                })}
-                className={classes.alert}
-                key='networkError'
-              >
-                <Alert severity='error' {...networkErrorAlertProps}>
-                  {isDevMode ? (
-                    `Network Error: ${error?.networkError?.message}`
-                  ) : (
-                    <Trans id='Something went wrong please try again later' />
-                  )}
-                </Alert>
+            {error?.networkError && (
+              <Box key='networkError'>
+                <Box
+                  sx={(theme) => ({
+                    paddingTop: theme.spacings.xxs,
+                    paddingBottom: theme.spacings.xxs,
+                  })}
+                  className={classes.alert}
+                  key='networkError'
+                >
+                  <Alert severity='error' {...networkErrorAlertProps}>
+                    {isDevMode ? (
+                      `Network Error: ${error?.networkError.message}`
+                    ) : (
+                      <Trans id='Something went wrong please try again later' />
+                    )}
+                  </Alert>
+                </Box>
               </Box>
-            </Box>
+            )}
           </Box>
         </Box>
       )}
