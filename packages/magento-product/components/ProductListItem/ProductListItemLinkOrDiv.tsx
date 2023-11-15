@@ -1,7 +1,7 @@
-import { breakpointVal } from '@graphcommerce/next-ui'
+import { NextLink, breakpointVal } from '@graphcommerce/next-ui'
 import { Box, BoxProps, ButtonBase, ButtonBaseProps, SxProps, Theme } from '@mui/material'
 
-type ProductListItemLinkProps = ButtonBaseProps<'a'>
+type ProductListItemLinkProps = ButtonBaseProps<typeof NextLink>
 type ProductListItemLinkOrDivProps = ProductListItemLinkProps | BoxProps
 
 function isLink(props: ProductListItemLinkOrDivProps): props is ProductListItemLinkProps {
@@ -27,7 +27,7 @@ export function ProductListItemLinkOrDiv(props: ProductListItemLinkOrDivProps) {
   ]
 
   return isLink(props) ? (
-    <ButtonBase component='a' {...props} sx={sxProps} />
+    <ButtonBase component={NextLink} {...props} sx={sxProps} />
   ) : (
     <Box {...props} sx={sxProps} />
   )

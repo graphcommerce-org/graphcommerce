@@ -17,7 +17,7 @@ import {
   ProductListItemImageAreas,
   ProductImageContainer,
 } from './ProductListItemImageContainer'
-import * as ProductListItemLinkOrDiv from './ProductListItemLinkOrDiv'
+import { ProductListItemLinkOrDiv } from './ProductListItemLinkOrDiv'
 import {
   ProductListItemTitleAndPrice,
   ProductListItemTitleAndPriceProps,
@@ -90,7 +90,7 @@ export function ProductListItemReal(props: ProductProps) {
   )
 
   return (
-    <ProductListItemLinkOrDiv.ProductListItemLinkOrDiv
+    <ProductListItemLinkOrDiv
       href={productLink(props)}
       className={classes.root}
       sx={sx}
@@ -136,7 +136,7 @@ export function ProductListItemReal(props: ProductProps) {
           {children}
         </>
       )}
-    </ProductListItemLinkOrDiv.ProductListItemLinkOrDiv>
+    </ProductListItemLinkOrDiv>
   )
 }
 
@@ -144,7 +144,7 @@ export function ProductListItemSkeleton(props: SkeletonProps) {
   const { children, imageOnly = false, aspectRatio, titleComponent = 'h2', sx = [] } = props
 
   return (
-    <ProductListItemLinkOrDiv.ProductListItemLinkOrDiv sx={sx} className={classes.root}>
+    <ProductListItemLinkOrDiv sx={sx} className={classes.root}>
       <ProductImageContainer className={classes.imageContainer}>
         <ProductListItemImageSkeleton classes={classes} aspectRatio={aspectRatio} />
       </ProductImageContainer>
@@ -162,7 +162,7 @@ export function ProductListItemSkeleton(props: SkeletonProps) {
           {children}
         </>
       )}
-    </ProductListItemLinkOrDiv.ProductListItemLinkOrDiv>
+    </ProductListItemLinkOrDiv>
   )
 }
 
