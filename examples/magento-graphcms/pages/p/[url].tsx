@@ -30,6 +30,7 @@ import {
   defaultConfigurableOptionsSelection,
 } from '@graphcommerce/magento-product-configurable'
 import { DownloadableProductOptions } from '@graphcommerce/magento-product-downloadable'
+import { RecentlyViewedProducts } from '@graphcommerce/magento-recently-viewed-products'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
 import { redirectOrNotFound, Money, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
@@ -41,6 +42,7 @@ import {
   LayoutDocument,
   LayoutNavigation,
   LayoutNavigationProps,
+  productListRenderer,
   RowProduct,
   RowRenderer,
   Usps,
@@ -48,6 +50,7 @@ import {
 import { UspsDocument, UspsQuery } from '../../components/Usps/Usps.gql'
 import { ProductPage2Document, ProductPage2Query } from '../../graphql/ProductPage2.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
+import { i18n } from '@lingui/core'
 
 type Props = HygraphPagesQuery &
   UspsQuery &
@@ -185,6 +188,12 @@ function ProductPage(props: Props) {
           }}
         />
       )}
+
+      <RecentlyViewedProducts
+        title={i18n._(/* i18n */ 'Recently viewed products')}
+        exclude={[product.sku]}
+        productListRenderer={productListRenderer}
+      />
     </>
   )
 }
