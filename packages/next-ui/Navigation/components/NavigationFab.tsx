@@ -1,5 +1,5 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
-import { Fab, styled, Box, SxProps, Theme, FabProps } from '@mui/material'
+import { Fab, styled, Box, SxProps, Theme, FabProps, useTheme, useMediaQuery } from '@mui/material'
 import { m } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
@@ -34,6 +34,11 @@ export function NavigationFab(props: NavigationFabProps) {
   const { opacity, shadowOpacity } = useFabAnimation()
   const scrollY = useScrollY()
   const scrolled = useMotionValueValue(scrollY, (y) => y > 10)
+  const fabIsVisible = useMotionValueValue(opacity, () => opacity.get() === 1)
+  const theme = useTheme()
+  const isMobile = useMediaQuery<Theme>(() => theme.breakpoints.down('md'), {
+    defaultMatches: false,
+  })
 
   useEffect(() => {
     const clear = () => setOpenEl(null)
@@ -54,19 +59,20 @@ export function NavigationFab(props: NavigationFabProps) {
     >
       <MotionDiv
         className={classes.wrapper}
-        sx={(theme) => ({
+        sx={{
           [theme.breakpoints.down('md')]: {
             opacity: '1 !important',
             transform: 'none !important',
           },
-        })}
+        }}
         style={{ opacity }}
       >
         <Fab
+          tabIndex={!isMobile && !fabIsVisible ? -1 : 0}
           color='inherit'
           aria-label='Open Menu'
           size='responsive'
-          sx={(theme) => ({
+          sx={{
             boxShadow: 'none',
             '&:hover, &:focus': {
               boxShadow: 'none',
@@ -75,7 +81,7 @@ export function NavigationFab(props: NavigationFabProps) {
             background: theme.palette.text.primary,
             pointerEvents: 'all',
             color: theme.palette.background.paper,
-          })}
+          }}
           className={classes.fab}
           {...fabProps}
         >
@@ -87,7 +93,7 @@ export function NavigationFab(props: NavigationFabProps) {
           )}
         </Fab>
         <MotionDiv
-          sx={(theme) => ({
+          sx={{
             pointerEvents: 'none',
             borderRadius: '99em',
             position: 'absolute',
@@ -96,7 +102,7 @@ export function NavigationFab(props: NavigationFabProps) {
             boxShadow: theme.shadows[6],
             top: 0,
             [theme.breakpoints.down('md')]: { opacity: '1 !important' },
-          })}
+          }}
           className={classes.shadow}
           style={{ opacity: shadowOpacity }}
         />
