@@ -1,14 +1,14 @@
 import { Portal } from '@mui/material'
-import { MessageSnackbar, MessageSnackbarProps } from '../../../Snackbar/MessageSnackbar'
+import { DismissibleSnackbar, DismissibleSnackbarProps } from '../../../Snackbar/DismissibleSnackbar'
 
-export type VariantMessageProps = MessageSnackbarProps
+export type VariantMessageProps = DismissibleSnackbarProps
 
 export function VariantMessage(props: VariantMessageProps) {
   const { sx, ...rest } = props
 
   return (
     <Portal>
-      <MessageSnackbar
+      <DismissibleSnackbar
         open
         variant='pill'
         severity='info'

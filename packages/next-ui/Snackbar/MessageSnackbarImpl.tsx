@@ -19,7 +19,7 @@ import iconInfo from '../icons/info.svg'
 type Size = 'normal' | 'wide'
 type Variant = 'contained' | 'pill'
 
-export type MessageSnackbarImplProps = Omit<
+export type MessageSnackbarProps = Omit<
   SnackbarProps,
   'autoHideDuration' | 'anchorOrigin' | 'color'
 > & {
@@ -47,7 +47,7 @@ const parts = ['root', 'content', 'children', 'actionButton', 'close'] as const
 const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 
 // eslint-disable-next-line import/no-default-export
-export default function MessageSnackbarImpl(props: MessageSnackbarImplProps) {
+export default function MessageSnackbarImpl(props: MessageSnackbarProps) {
   const [showSnackbar, setShowSnackbar] = useState<boolean>(false)
 
   const {
