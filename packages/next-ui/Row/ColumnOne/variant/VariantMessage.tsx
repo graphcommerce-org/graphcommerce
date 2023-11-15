@@ -7,20 +7,18 @@ export function VariantMessage(props: VariantMessageProps) {
   const { sx, ...rest } = props
 
   return (
-    <Portal>
-      <DismissibleSnackbar
-        open
-        variant='pill'
-        severity='info'
-        {...rest}
-        sx={[
-          {
-            pointerEvents: 'none',
-            '& > *': { pointerEvents: 'auto' },
-          },
-          ...(Array.isArray(sx) ? sx : [sx]),
-        ]}
-      />
-    </Portal>
+    <DismissibleSnackbar
+      open
+      variant='pill'
+      severity='info'
+      {...rest}
+      sx={[
+        {
+          pointerEvents: 'none',
+          '& > *': { pointerEvents: 'auto' },
+        },
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    />
   )
 }
