@@ -108,7 +108,6 @@ After resolving the diff issues, manually process upgrade instructions:
 
 - [Upgrading to GraphCommerce 5 to 6](../upgrading/graphcommerce-5-to-6.md)
 - [Upgrading to GraphCommerce 6 to 7](../upgrading/graphcommerce-6-to-7.md)
-- [Upgrading to GraphCommerce 7 to 7.1](../upgrading/graphcommerce-7-to-7.1.md)
 
 Run and validate your local environment:
 
