@@ -10,7 +10,7 @@ export function Message(props: RowColumnOneProps) {
   const { colOne, richTextOne, id } = props
 
   return (
-    <VariantMessage id={id} storageType='localStorage' type='popup'>
+    <VariantMessage id={id}>
       <RichText {...colOne} {...richTextOne} />
     </VariantMessage>
   )
