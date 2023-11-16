@@ -23,7 +23,6 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 const commands = {
     'codegen-config': () => Promise.resolve().then(() => __importStar(require('@graphcommerce/next-config'))).then((m) => m.generateConfig),
     'export-config': () => Promise.resolve().then(() => __importStar(require('@graphcommerce/next-config'))).then((m) => m.exportConfig),

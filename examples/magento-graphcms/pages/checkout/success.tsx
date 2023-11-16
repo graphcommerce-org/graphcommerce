@@ -13,7 +13,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Button, Box, Container } from '@mui/material'
+import { Button, Box, Container, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import {
   LayoutDocument,
@@ -28,6 +28,8 @@ type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props>
 
 function OrderSuccessPage() {
   const hasCartId = !!useRouter().query.cart_id
+
+  const orderNumber = useRouter().query.order_number
 
   return (
     <>
@@ -56,7 +58,10 @@ function OrderSuccessPage() {
         {hasCartId && (
           <>
             <LayoutTitle icon={iconParty}>
-              <Trans id='Thank you for your order!' />
+              <Box sx={{ display: 'grid', columns: 1, justifyItems: 'center' }}>
+                <Trans id='Thank you for your order!' />
+                {orderNumber && <Typography variant='subtitle1'>#{orderNumber}</Typography>}
+              </Box>
             </LayoutTitle>
             <CartSummary />
             <CartItemSummary />

@@ -86,7 +86,11 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
             >
               <Trans id='Customer Service' />
             </MenuFabSecondaryItem>,
-            <WishlistMenuFabItem key='wishlist' icon={<IconSvg src={iconHeart} size='medium' />}>
+            <WishlistMenuFabItem
+              onClick={() => selection.set(false)}
+              key='wishlist'
+              icon={<IconSvg src={iconHeart} size='medium' />}
+            >
               <Trans id='Wishlist' />
             </WishlistMenuFabItem>,
             <DarkLightModeMenuSecondaryItem key='darkmode' />,

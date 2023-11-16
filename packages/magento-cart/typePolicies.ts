@@ -35,6 +35,21 @@ export const cartTypePolicies: StrictTypedTypePolicies = {
         toReference({ __typename: 'Cart', id: (args as QuerycartArgs)?.cart_id }),
     },
   },
+
+  Mutation: {
+    fields: {
+      createEmptyCart: {
+        merge: (_, incoming: string, options) => {
+          options.cache.writeQuery({
+            query: CartFabDocument,
+            variables: { cartId: incoming },
+            data: { cart: { __typename: 'Cart', id: incoming, total_quantity: 0 } },
+          })
+          return incoming
+        },
+      },
+    },
+  },
 }
 
 export const migrateCart = (

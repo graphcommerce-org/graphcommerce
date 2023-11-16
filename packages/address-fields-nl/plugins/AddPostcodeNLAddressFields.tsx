@@ -4,7 +4,7 @@ import { PostcodeNLAddressFields } from '../components/PostcodeNLAddressFields'
 
 export const component = 'AddressFields'
 
-export const exported = '@graphcommerce/magento-customer'
+export const exported = '@graphcommerce/magento-customer/components/AddressFields/AddressFields'
 
 function AddPostcodeNLAddressFields(props: PluginProps<AddressFieldsProps>) {
   const { form, Prev } = props

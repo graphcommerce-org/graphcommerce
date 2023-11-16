@@ -1,14 +1,7 @@
-import {
-  useCustomerQuery,
-  useCustomerSession,
-  useGuestQuery,
-} from '@graphcommerce/magento-customer'
 import { MenuFabSecondaryItem, iconHeart, IconSvg } from '@graphcommerce/next-ui'
 import { Badge, NoSsr, SxProps, Theme } from '@mui/material'
 import React, { MouseEventHandler } from 'react'
-import { useWishlistEnabled } from '../../hooks'
-import { GetIsInWishlistsDocument } from '../../queries/GetIsInWishlists.gql'
-import { GuestWishlistDocument } from '../../queries/GuestWishlist.gql'
+import { useWishlistEnabled, useWishlistItems } from '../../hooks'
 
 type WishlistMenuFabItemContentProps = {
   icon?: React.ReactNode
@@ -17,8 +10,6 @@ type WishlistMenuFabItemContentProps = {
   activeWishlist: boolean
   onClick?: MouseEventHandler<HTMLElement>
 }
-
-const hideForGuest = import.meta.graphCommerce.wishlistHideForGuests
 
 function WishlistMenuFabItemContent(props: WishlistMenuFabItemContentProps) {
   const { icon, onClick, children, sx = [], activeWishlist } = props
@@ -47,23 +38,12 @@ function WishlistMenuFabItemContent(props: WishlistMenuFabItemContentProps) {
 export type WishlistMenuFabItemProps = Omit<WishlistMenuFabItemContentProps, 'activeWishlist'>
 
 export function WishlistMenuFabItem(props: WishlistMenuFabItemProps) {
-  const isWishlistEnabled = useWishlistEnabled()
-  const { loggedIn } = useCustomerSession()
+  const wishlist = useWishlistItems()
 
-  const { data: GetCustomerWishlistData } = useCustomerQuery(GetIsInWishlistsDocument)
-  const { data: guestWishlistData } = useGuestQuery(GuestWishlistDocument)
+  if (!wishlist.enabled) return null
 
-  let activeWishlist: boolean
-  if (loggedIn) {
-    const wishlistItemCount = GetCustomerWishlistData?.customer?.wishlists[0]?.items_count ?? 0
-    activeWishlist = wishlistItemCount > 0
-  } else {
-    const wishlist = guestWishlistData?.guestWishlist?.items ?? []
-    activeWishlist = wishlist.length > 0
-  }
+  const activeWishlist = wishlist.items.length > 0 ?? false
 
-  if (hideForGuest && !loggedIn) return null
-  if (!isWishlistEnabled) return null
   return (
     <NoSsr fallback={<WishlistMenuFabItemContent {...props} activeWishlist={false} />}>
       <WishlistMenuFabItemContent {...props} activeWishlist={activeWishlist} />

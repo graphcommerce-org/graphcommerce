@@ -12,15 +12,28 @@ export type ScrollerButtonProps = {
   direction: SnapPositionDirection
   layout?: boolean
   sxContainer?: SxProps<Theme>
+  showButtons?: 'auto' | 'desktopAuto' | 'always' | 'desktopAlways' | 'never'
 } & FabProps
 
 export const ScrollerButton = m(
   React.forwardRef<HTMLDivElement, ScrollerButtonProps>((props, ref) => {
-    const { direction, sx = [], layout, className, sxContainer, ...buttonProps } = props
+    const {
+      direction,
+      sx = [],
+      layout,
+      className,
+      sxContainer,
+      showButtons = 'desktopAuto',
+      ...buttonProps
+    } = props
 
     const { getSnapPosition, scroll } = useScrollerContext()
     const scrollTo = useScrollTo()
-    const handleClick = () => scrollTo(getSnapPosition(direction))
+    const handleClick = async () => {
+      if (!scroll.animating.get()) {
+        await scrollTo(getSnapPosition(direction))
+      }
+    }
 
     const { xProgress, yProgress, xMax, yMax } = scroll
 
@@ -38,21 +51,35 @@ export const ScrollerButton = m(
       (v) => v,
     )
 
+    const mode = {
+      ...(showButtons === 'auto' && {
+        display: 'inline-flex',
+        transform: `scale(${visibility})`,
+        opacity: visibility,
+      }),
+      ...(showButtons === 'desktopAuto' && {
+        display: { xs: 'none', md: 'inline-flex' },
+        transform: `scale(${visibility})`,
+        opacity: visibility,
+      }),
+      ...(showButtons === 'desktopAlways' && {
+        display: { xs: 'none', md: 'inline-flex' },
+      }),
+    }
+
+    if (showButtons === 'never') return null
+
     return (
       <MotionDiv ref={ref} layout={layout} sx={sxContainer} className={className}>
         <Fab
           type='button'
           size='small'
+          className='scrollerButton'
           {...buttonProps}
           onClick={handleClick}
           aria-label={direction}
           sx={[
-            {
-              display: { xs: 'none', md: 'flex' },
-              transition: 'all 250ms',
-              opacity: visibility,
-              transform: `scale(${visibility})`,
-            },
+            { transition: 'all 250ms', zIndex: 'inherit', ...mode },
             ...(Array.isArray(sx) ? sx : [sx]),
           ]}
         />

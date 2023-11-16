@@ -1,6 +1,6 @@
 import { ApolloClient } from '@graphcommerce/graphql'
 import { AddProductsToCartFormProps } from '@graphcommerce/magento-product'
-import { findByTypename, filterNonNullableKeys, nonNullable } from '@graphcommerce/next-ui'
+import { filterNonNullableKeys, findByTypename, nonNullable } from '@graphcommerce/next-ui'
 import { GetConfigurableOptionsSelectionDocument } from '../graphql'
 import { DefaultConfigurableOptionsSelectionFragment } from './DefaultConfigurableOptionsSelection.gql'
 
@@ -27,8 +27,10 @@ export function defaultConfigurableOptionsSelection<Q extends BaseQuery = BaseQu
   client: ApolloClient<object>,
   query: Q,
 ): Q & Pick<AddProductsToCartFormProps, 'defaultValues'> {
-  if (!import.meta.graphCommerce.configurableVariantForSimple)
-    return { ...query, defaultValues: {} }
+  if (!import.meta.graphCommerce.configurableVariantForSimple) {
+    const product = query?.products?.items?.find((p) => p?.url_key === urlKey)
+    return { ...query, products: { items: [product] }, defaultValues: {} }
+  }
 
   const simple = query?.products?.items?.find((p) => p?.url_key === urlKey)
   const configurable = findByTypename(query?.products?.items, 'ConfigurableProduct')
@@ -38,9 +40,8 @@ export function defaultConfigurableOptionsSelection<Q extends BaseQuery = BaseQu
     return { ...query, defaultValues: {} }
 
   // Find the requested simple product on the configurable variants and get the attributes.
-  const attributes = configurable?.variants?.find(
-    (v) => v?.product?.uid === simple?.uid,
-  )?.attributes
+  const attributes = configurable?.variants?.find((v) => v?.product?.uid === simple?.uid)
+    ?.attributes
 
   const selectedOptions = (attributes ?? []).filter(nonNullable).map((a) => a.uid)
   if (!selectedOptions.length) return { ...query, products: { items: [simple] }, defaultValues: {} }
@@ -62,10 +63,15 @@ export function defaultConfigurableOptionsSelection<Q extends BaseQuery = BaseQu
    * })
    * ```
    */
-  const options = filterNonNullableKeys(configurable.configurable_options, ['attribute_code'])
+
+  const optionsAvailableForSelection =
+    configurable.configurable_product_options_selection?.options_available_for_selection?.filter(
+      nonNullable,
+    )
+
   client.cache.writeQuery({
     query: GetConfigurableOptionsSelectionDocument,
-    variables: { urlKey: configurable.url_key, selectedOptions },
+    variables: { urlKey: configurable.url_key, selectedOptions, reviewPage: 1, reviewPageSize: 3 },
     data: {
       products: {
         ...query?.products,
@@ -76,12 +82,28 @@ export function defaultConfigurableOptionsSelection<Q extends BaseQuery = BaseQu
             uid: configurable.uid,
             configurable_product_options_selection: {
               __typename: 'ConfigurableProductOptionsSelection',
+              configurable_options: filterNonNullableKeys(configurable.configurable_options, [
+                'attribute_code',
+                'label',
+                'values',
+              ]).map((option) => ({
+                __typename: 'ConfigurableProductOption' as const,
+                uid: option.uid,
+                attribute_code: option.attribute_code,
+                label: option.label,
+                values: filterNonNullableKeys(option.values, ['store_label', 'uid']).map(
+                  ({ store_label, uid }) => ({ label: store_label, uid }),
+                ),
+              })),
+              options_available_for_selection: optionsAvailableForSelection?.map(
+                ({ attribute_code, option_value_uids }) => ({
+                  __typename: 'ConfigurableOptionAvailableForSelection' as const,
+                  attribute_code,
+                  option_value_uids,
+                }),
+              ),
               media_gallery: simple.media_gallery,
               variant: simple,
-              options_available_for_selection: options.map(({ attribute_code }) => ({
-                __typename: 'ConfigurableOptionAvailableForSelection' as const,
-                attribute_code,
-              })),
             },
           },
         ],

@@ -1,4 +1,4 @@
-fragment ConfigurableOptions on ConfigurableProduct {
+fragment ConfigurableOptions on ConfigurableProduct @injectable {
   __typename
   uid
   sku
@@ -22,6 +22,12 @@ fragment ConfigurableOptions on ConfigurableProduct {
     use_default
     values {
       ...ConfigurableOptionValue
+    }
+  }
+  configurable_product_options_selection {
+    options_available_for_selection {
+      attribute_code
+      option_value_uids
     }
   }
   ...ProductPageDescription

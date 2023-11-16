@@ -34,7 +34,7 @@ function flattenKeys(
           const deep = (value as Record<string, unknown>)[key]
           return flattenKeys(deep, `${initialPathPrefix}.${key}`, stringify)
         })
-        .reduce((acc, path) => ({ ...acc, ...path })),
+        .reduce((acc, path) => ({ ...acc, ...path }), {}),
     }
   }
 

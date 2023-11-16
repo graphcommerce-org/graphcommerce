@@ -39,6 +39,9 @@ const compName = 'ConfigurableOptionsInput' as const
 const parts = ['form', 'button', 'finalPrice', 'quantity', 'divider', 'buttonWrapper'] as const
 const { classes } = extendableComponent(compName, parts)
 
+/**
+ * @deprecated
+ */
 export function ConfigurableProductAddToCart(props: ConfigurableProductAddToCartProps) {
   const {
     name,

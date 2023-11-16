@@ -6,6 +6,28 @@ import { GetConfigurableOptionsSelectionDocument } from '../graphql/GetConfigura
 
 export type UseConfigurableOptionsSelection = { url_key?: string | null } & AddToCartItemSelector
 
+type UseConfigurableOptionsForSelection = {
+  url_key?: string | null
+  selectedOptions: string[]
+}
+
+export function useConfigurableOptionsForSelection(variables: UseConfigurableOptionsForSelection) {
+  const { url_key, selectedOptions } = variables
+
+  const selection = useQuery(GetConfigurableOptionsSelectionDocument, {
+    variables: { urlKey: url_key ?? '', selectedOptions },
+    skip: !url_key || !selectedOptions.length,
+  })
+
+  const configured = selection.error
+    ? undefined
+    : findByTypename(
+        selection.data?.products?.items ?? selection.previousData?.products?.items,
+        'ConfigurableProduct',
+      )
+  return { ...selection, configured }
+}
+
 export function useConfigurableOptionsSelection(props: UseConfigurableOptionsSelection) {
   const { url_key, index = 0 } = props
 
@@ -14,16 +36,7 @@ export function useConfigurableOptionsSelection(props: UseConfigurableOptionsSel
     .filter(nonNullable)
     .filter(Boolean)
 
-  const cpc = useQuery(GetConfigurableOptionsSelectionDocument, {
-    variables: { urlKey: url_key ?? '', selectedOptions },
-    skip: !url_key || !selectedOptions.length,
-  })
-
-  const configured = findByTypename(
-    cpc.data?.products?.items ?? cpc.previousData?.products?.items,
-    'ConfigurableProduct',
-  )
-  return { ...cpc, configured }
+  return useConfigurableOptionsForSelection({ url_key, selectedOptions })
 }
 
 export function useConfigurableSelectedVariant(props: UseConfigurableOptionsSelection) {

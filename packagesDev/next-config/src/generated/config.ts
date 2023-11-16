@@ -140,6 +140,18 @@ export type GraphCommerceConfig = {
    */
   configurableVariantValues?: InputMaybe<MagentoConfigurableVariantValues>;
   /**
+   * Determines if cross sell items should be shown when the user already has the product in their cart. This will result in a product will popping off the screen when you add it to the cart.
+   *
+   * Default: 'false'
+   */
+  crossSellsHideCartItems?: InputMaybe<Scalars['Boolean']['input']>;
+  /**
+   * Determines if, after adding a cross-sell item to the cart, the user should be redirected to the cross-sell items of the product they just added.
+   *
+   * Default: 'false'
+   */
+  crossSellsRedirectItems?: InputMaybe<Scalars['Boolean']['input']>;
+  /**
    * Due to a limitation in the GraphQL API of Magento 2, we need to know if the
    * customer requires email confirmation.
    *
@@ -256,11 +268,7 @@ export type GraphCommerceConfig = {
    * SIDEBAR: Will be rendered as a sidebar on desktop and horizontal chips on mobile
    */
   productFiltersLayout?: InputMaybe<ProductFiltersLayout>;
-  /**
-   * Product filters with better UI for mobile and desktop.
-   *
-   * @experimental This is an experimental feature and may change in the future.
-   */
+  /** Product filters with better UI for mobile and desktop. */
   productFiltersPro?: InputMaybe<Scalars['Boolean']['input']>;
   /**
    * By default we route products to /p/[url] but you can change this to /product/[url] if you wish.
@@ -274,6 +282,8 @@ export type GraphCommerceConfig = {
    * If false, the robots.txt file will be set to disallow all.
    */
   robotsAllow?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Configuration for the SidebarGallery component */
+  sidebarGallery?: InputMaybe<SidebarGalleryConfig>;
   /** All storefront configuration for the project */
   storefront: Array<GraphCommerceStorefrontConfig>;
   /** Hide the wishlist functionality for guests. */
@@ -376,6 +386,17 @@ export type ProductFiltersLayout =
   | 'DEFAULT'
   | 'SIDEBAR';
 
+/** SidebarGalleryConfig will contain all configuration values for the Sidebar Gallery component. */
+export type SidebarGalleryConfig = {
+  /** Variant used for the pagination */
+  paginationVariant?: InputMaybe<SidebarGalleryPaginationVariant>;
+};
+
+/** Enumeration of all possible positions for the sidebar gallery thumbnails. */
+export type SidebarGalleryPaginationVariant =
+  | 'DOTS'
+  | 'THUMBNAILS_BOTTOM';
+
 
 type Properties<T> = Required<{
   [K in keyof T]: z.ZodType<T[K], any, T[K]>;
@@ -391,6 +412,8 @@ export const CompareVariantSchema = z.enum(['CHECKBOX', 'ICON']);
 
 export const ProductFiltersLayoutSchema = z.enum(['DEFAULT', 'SIDEBAR']);
 
+export const SidebarGalleryPaginationVariantSchema = z.enum(['DOTS', 'THUMBNAILS_BOTTOM']);
+
 export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerceConfig>> {
   return z.object({
     canonicalBaseUrl: z.string().min(1),
@@ -399,6 +422,8 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     compareVariant: CompareVariantSchema.nullish(),
     configurableVariantForSimple: z.boolean().nullish(),
     configurableVariantValues: MagentoConfigurableVariantValuesSchema().nullish(),
+    crossSellsHideCartItems: z.boolean().nullish(),
+    crossSellsRedirectItems: z.boolean().nullish(),
     customerRequireEmailConfirmation: z.boolean().nullish(),
     debug: GraphCommerceDebugConfigSchema().nullish(),
     demoMode: z.boolean().nullish(),
@@ -417,6 +442,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     productFiltersPro: z.boolean().nullish(),
     productRoute: z.string().nullish(),
     robotsAllow: z.boolean().nullish(),
+    sidebarGallery: SidebarGalleryConfigSchema().nullish(),
     storefront: z.array(GraphCommerceStorefrontConfigSchema()),
     wishlistHideForGuests: z.boolean().nullish(),
     wishlistIgnoreProductWishlistStatus: z.boolean().nullish(),
@@ -453,5 +479,11 @@ export function MagentoConfigurableVariantValuesSchema(): z.ZodObject<Properties
     content: z.boolean().nullish(),
     gallery: z.boolean().nullish(),
     url: z.boolean().nullish()
+  })
+}
+
+export function SidebarGalleryConfigSchema(): z.ZodObject<Properties<SidebarGalleryConfig>> {
+  return z.object({
+    paginationVariant: SidebarGalleryPaginationVariantSchema.nullish()
   })
 }

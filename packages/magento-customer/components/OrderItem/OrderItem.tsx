@@ -1,4 +1,9 @@
 import { Image } from '@graphcommerce/image'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import {
+  useProductLink,
+  ProductLinkProps,
+} from '@graphcommerce/magento-product/hooks/useProductLink'
 import { Money } from '@graphcommerce/magento-store'
 import { responsiveVal, extendableComponent, NextLink } from '@graphcommerce/next-ui'
 import { Box } from '@mui/material'
@@ -40,7 +45,10 @@ export function OrderItem(props: OrderItemProps) {
     product_name,
     thumbnail,
   } = props
-  const productLink = `/product/${product_url_key}`
+  const productLink = useProductLink({
+    __typename: 'SimpleProduct' as const,
+    url_key: product_url_key,
+  })
 
   const hasOptions = Boolean(selected_options && selected_options.length >= 1)
 
@@ -50,6 +58,7 @@ export function OrderItem(props: OrderItemProps) {
     <Box
       className={classes.root}
       sx={(theme) => ({
+        borderBottom: `1px solid ${theme.palette.divider}`,
         display: 'grid',
         gridTemplate: `
           "picture itemName itemName itemName"
@@ -60,15 +69,13 @@ export function OrderItem(props: OrderItemProps) {
         columnGap: theme.spacings.sm,
         alignItems: 'baseline',
         typography: 'body1',
-        marginBottom: theme.spacings.lg,
-        marginTop: theme.spacings.md,
+        py: theme.spacings.xxs,
         [theme.breakpoints.up('sm')]: {
           gridTemplate: `
             "picture itemName itemName itemName itemName"
             "picture itemOptions itemPrice quantity rowPrice"
           `,
           gridTemplateColumns: `${rowImageSize} 4fr 1fr 1fr minmax(75px, 1fr)`,
-          marginBottom: theme.spacings.md,
         },
 
         '&:not(.hasOptions)': {
@@ -87,38 +94,9 @@ export function OrderItem(props: OrderItemProps) {
         },
       })}
     >
-      <Box
-        className={classes.picture}
-        sx={{
-          gridArea: 'picture',
-          width: rowImageSize,
-          height: rowImageSize,
-          padding: responsiveVal(3, 6),
-          border: `1px solid rgba(0,0,0,0.15)`,
-          borderRadius: '50%',
-        }}
-      >
-        <Box
-          href={productLink}
-          component={NextLink}
-          className={classes.productLink}
-          sx={{ display: 'block', width: '100%', height: '100%' }}
-        >
-          <Box
-            className={classes.pictureSpacing}
-            sx={() => ({
-              overflow: 'hidden',
-              width: '100%',
-              height: '100%',
-              display: 'flex',
-              position: 'relative',
-              alignItems: 'center',
-              flexShrink: 0,
-              userSelect: 'none',
-              borderRadius: '50%',
-              justifyContent: 'center',
-            })}
-          >
+      <Box className={classes.picture} sx={{ gridArea: 'picture' }}>
+        <Box href={productLink} component={NextLink} className={classes.productLink}>
+          <Box className={classes.pictureSpacing}>
             {thumbnail?.url && thumbnail?.label && (
               <Image
                 alt={thumbnail?.label ?? ''}
@@ -127,11 +105,7 @@ export function OrderItem(props: OrderItemProps) {
                 src={thumbnail?.url ?? ''}
                 className={classes.image}
                 sx={(theme) => ({
-                  gridColumn: 1,
                   backgroundColor: theme.palette.background.image,
-                  objectFit: 'cover',
-                  display: 'block',
-                  transform: 'scale(1.1)',
                 })}
               />
             )}
@@ -164,7 +138,7 @@ export function OrderItem(props: OrderItemProps) {
         sx={(theme) => ({
           gridArea: 'itemPrice',
           textAlign: 'left',
-          color: theme.palette.text.disabled,
+          color: theme.palette.text.secondary,
         })}
       >
         <Money {...product_sale_price} />

@@ -145,6 +145,9 @@ msgstr "Complétez le paiement sur le site de votre banque."
 msgid "Complete your purchase"
 msgstr "Complétez votre achat"
 
+msgid "Configure"
+msgstr "Configurer"
+
 msgid "Confirm new email"
 msgstr "Confirmer le nouvel email"
 
@@ -189,6 +192,9 @@ msgstr "Créer un nouveau mot de passe"
 
 msgid "Current Password"
 msgstr "Mot de passe actuel"
+
+msgid "Current email"
+msgstr "Email actuel"
 
 msgid "Customer Service"
 msgstr "Service client"
@@ -316,9 +322,6 @@ msgstr "Mode clair"
 msgid "Loading"
 msgstr "Chargement"
 
-msgid "Loading wishlist"
-msgstr "Chargement de la liste de souhaits"
-
 msgid "Loading your account"
 msgstr "Chargement de votre compte"
 
@@ -415,6 +418,9 @@ msgstr "Commande #{orderId}"
 msgid "Order before 22:00"
 msgstr "Commandez avant 22:00"
 
+msgid "Order date"
+msgstr "Date de commande"
+
 msgid "Order not found"
 msgstr "Commande non trouvée"
 
@@ -495,6 +501,9 @@ msgstr "Veuillez vous authentifier à nouveau et réessayer"
 
 msgid "Please select a payment method"
 msgstr "Veuillez sélectionner une méthode de paiement"
+
+msgid "Please select a shipping address"
+msgstr "Veuillez sélectionner une adresse de livraison"
 
 msgid "Please select a shipping method"
 msgstr "Veuillez sélectionner une méthode de livraison"
@@ -585,6 +594,9 @@ msgstr "Expédition ({0} {1})"
 
 msgid "Shipping address"
 msgstr "Adresse d'expédition"
+
+msgid "Shipping addresses"
+msgstr "Adresses d'expédition"
 
 msgid "Shipping method"
 msgstr "Méthode d'expédition"

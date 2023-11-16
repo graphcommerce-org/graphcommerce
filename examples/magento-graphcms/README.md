@@ -93,11 +93,11 @@ yarn dev
 (Explore the GraphQL Playground running at http://localhost:3000/api/graphql)
 
 > No success? Consult the
-> [troubleshooting guide](../framework/troubleshooting.md)
+> [troubleshooting guide](../../docs/framework/troubleshooting.md)
 
 ## Next steps
 
-- The [Quick start](../getting-started/readme.md) guide covers about 80% of the
-  concepts you'll use, so it's a great place to start.
-- [Start customizing](../getting-started/start-building.md) to go from "Hello
+- The [Quick start](../../docs/getting-started/readme.md) guide covers about 80% of the
+  concepts you'll use, so it's a great place to start. 
+- [Start customizing](../../docs/getting-started/start-building.md) to go from "Hello
   World" to a fully built GraphCommerce custom storefront.

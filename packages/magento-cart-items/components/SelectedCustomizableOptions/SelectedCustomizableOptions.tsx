@@ -22,17 +22,22 @@ export function SelectedCustomizableOptions(props: ConfigurableActionCartItemPro
           key={option.customizable_option_uid}
           sx={(theme) => ({ display: 'flex', gap: theme.spacings.xxs })}
         >
-          <Typography variant='subtitle2' component='span' sx={{ color: 'text.primary' }}>
+          <Box key={option.customizable_option_uid} sx={{ color: 'text.primary' }}>
             {option.label}
-          </Typography>
+          </Box>
           {option.values.filter(nonNullable).map((value) => (
             <>
-              <span key={value.customizable_option_value_uid}>
-                {value.price.value > 0 && <Money value={value.price.value} />} {value?.label}
+              <span key={`${value.customizable_option_value_uid}_${value.label}`}>
+                {value.label}
               </span>
-              <Tooltip title={value.value}>
-                <IconSvg src={InfoIcon} size='medium' />
-              </Tooltip>
+              <span key={`${value.customizable_option_value_uid}_${value.price.value}`}>
+                {value.price.value > 0 && <Money value={value.price.value} />}
+              </span>
+              {!value.label && value.value && (
+                <Tooltip title={value.value} sx={{ alignSelf: 'center' }}>
+                  <IconSvg src={InfoIcon} size='medium' />
+                </Tooltip>
+              )}
             </>
           ))}
         </Box>

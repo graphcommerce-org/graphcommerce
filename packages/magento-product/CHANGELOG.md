@@ -1,5 +1,179 @@
 # Change Log
 
+## 7.1.0-canary.38
+
+### Minor Changes
+
+- [#2048](https://github.com/graphcommerce-org/graphcommerce/pull/2048) [`13e23e426`](https://github.com/graphcommerce-org/graphcommerce/commit/13e23e4265bac70fb4d0830e4661019e71ce299f) - Wishlist will now support configurable products and uses the ActionCardLayout ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+### Patch Changes
+
+- [#2048](https://github.com/graphcommerce-org/graphcommerce/pull/2048) [`8d4f1ef00`](https://github.com/graphcommerce-org/graphcommerce/commit/8d4f1ef00bd7a8b8ca3be46302ce3959eae33a23) - When a product has a discount price, render that on the product page ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+- [#2048](https://github.com/graphcommerce-org/graphcommerce/pull/2048) [`0335dd941`](https://github.com/graphcommerce-org/graphcommerce/commit/0335dd9417b8fe1c4f1009dad354b9edab892b9f) - The product page will now also load all information that a ProductListItem will load ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 7.1.0-canary.37
+
+## 7.1.0-canary.36
+
+## 7.1.0-canary.35
+
+## 7.1.0-canary.34
+
+## 7.1.0-canary.33
+
+## 7.1.0-canary.32
+
+## 7.1.0-canary.31
+
+## 7.1.0-canary.30
+
+## 7.1.0-canary.29
+
+## 7.1.0-canary.28
+
+## 7.1.0-canary.27
+
+## 7.1.0-canary.26
+
+## 7.1.0-canary.25
+
+## 7.1.0-canary.24
+
+## 7.1.0-canary.23
+
+## 7.1.0-canary.22
+
+## 7.1.0-canary.21
+
+## 7.1.0-canary.20
+
+## 7.1.0-canary.19
+
+### Patch Changes
+
+- [#2083](https://github.com/graphcommerce-org/graphcommerce/pull/2083) [`ca493c7b2`](https://github.com/graphcommerce-org/graphcommerce/commit/ca493c7b208b8526c1109695d54bad7b2956a8bd) - Filters which are not yet applied and which option has 0 as item count will not be shown anymore. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 7.1.0-canary.18
+
+## 7.1.0-canary.17
+
+## 7.1.0-canary.16
+
+## 7.1.0-canary.15
+
+## 7.1.0-canary.14
+
+## 7.1.0-canary.13
+
+### Patch Changes
+
+- [#2076](https://github.com/graphcommerce-org/graphcommerce/pull/2076) [`f860e6860`](https://github.com/graphcommerce-org/graphcommerce/commit/f860e68603526a15dcf2567f4ca57230423ef5c3) - fix maxWidth on productPageDescription ([@StefanAngenent](https://github.com/StefanAngenent))
+
+## 7.1.0-canary.12
+
+## 7.1.0-canary.11
+
+### Patch Changes
+
+- [#2058](https://github.com/graphcommerce-org/graphcommerce/pull/2058) [`16dc48895`](https://github.com/graphcommerce-org/graphcommerce/commit/16dc4889543106238b1a87694e75586e4c1a787c) - Provide instant feedback on availble attribute options when making a selection on a configurable product ([@FrankHarland](https://github.com/FrankHarland))
+
+## 7.1.0-canary.10
+
+### Patch Changes
+
+- [#2081](https://github.com/graphcommerce-org/graphcommerce/pull/2081) [`22454110a`](https://github.com/graphcommerce-org/graphcommerce/commit/22454110a99de36a35e6f4b08c584b0165db32f4) - Removed the duplicate omitted name attribute from AddToCartQuantityProps ([@mikekeehnen](https://github.com/mikekeehnen))
+
+## 7.1.0-canary.9
+
+### Patch Changes
+
+- [#2007](https://github.com/graphcommerce-org/graphcommerce/pull/2007) [`f59c27660`](https://github.com/graphcommerce-org/graphcommerce/commit/f59c276605f9ed649d1197a9ba0e3f12d7c6d026) - Reconstruct crosssells behaviour. Add submitted variables & showSuccess to RHF ([@JoshuaS98](https://github.com/JoshuaS98))
+
+## 7.1.0-canary.8
+
+## 7.0.2-canary.7
+
+## 7.0.2-canary.6
+
+## 7.0.2-canary.5
+
+## 7.0.1
+
+## 7.0.1-canary.15
+
+## 7.0.1-canary.14
+
+## 7.0.1-canary.13
+
+## 7.0.1-canary.12
+
+## 7.0.1-canary.11
+
+## 7.0.1-canary.10
+
+## 7.0.1-canary.9
+
+## 7.0.1-canary.8
+
+## 7.0.1-canary.7
+
+## 7.0.1-canary.6
+
+## 7.0.1-canary.5
+
+## 7.0.1-canary.4
+
+## 7.0.1-canary.3
+
+## 7.0.1-canary.2
+
+## 7.0.1-canary.1
+
+## 7.0.1-canary.0
+
+## 7.0.0
+
+### Major Changes
+
+- [`e55d8c390`](https://github.com/graphcommerce-org/graphcommerce/commit/e55d8c390d90b4bb7bab11c6a99027ac72bd7e3e) - Created a new sidebar layout system, can be configured with productFiltersLayout in the graphcommerce.config.js ([@paales](https://github.com/paales))
+
+### Minor Changes
+
+- [#1978](https://github.com/graphcommerce-org/graphcommerce/pull/1978) [`0c91ac1f7`](https://github.com/graphcommerce-org/graphcommerce/commit/0c91ac1f70f58dec418e945fc4a6a8c6732cc21e) - When a user selects a variant, it will switch the values on the configurable page with the values of the configured variant. Enabling options here will allow switching of those variants. ([@carlocarels90](https://github.com/carlocarels90))
+
+- [#1961](https://github.com/graphcommerce-org/graphcommerce/pull/1961) [`4a759c662`](https://github.com/graphcommerce-org/graphcommerce/commit/4a759c66215eaa69edc342b898e05e8f92c3ba9a) - Add Open Graph meta tags to all pages ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#1956](https://github.com/graphcommerce-org/graphcommerce/pull/1956) [`9e87443a1`](https://github.com/graphcommerce-org/graphcommerce/commit/9e87443a1139a87f2ead3227fee3f4a76dd65841) - Allow children to be passed into ProductSpecs ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+### Patch Changes
+
+- [#1914](https://github.com/graphcommerce-org/graphcommerce/pull/1914) [`c237f2f2c`](https://github.com/graphcommerce-org/graphcommerce/commit/c237f2f2c87d9e3c8aefc536a13b5b9203556f27) - Category pages now have the ability to select the displayed pageSize of a page if the backend provides multiple options. A non-default pageSize and a non-default sort option will now receive noindex meta tags when viewed. ([@paales](https://github.com/paales))
+
+- [#1911](https://github.com/graphcommerce-org/graphcommerce/pull/1911) [`c10d6d5be`](https://github.com/graphcommerce-org/graphcommerce/commit/c10d6d5beb0d1560d33e3e301d88fa9201515133) - Translations were missing for the ProductSidebarDelivery ([@rustmaestro](https://github.com/rustmaestro))
+
+- [#1948](https://github.com/graphcommerce-org/graphcommerce/pull/1948) [`17390af4f`](https://github.com/graphcommerce-org/graphcommerce/commit/17390af4f9d4a73c11c857b92eeb05ae185da9da) - Allow the redirect prop of AddProductsToCartForm to be false, so redirects can be disabled ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2001](https://github.com/graphcommerce-org/graphcommerce/pull/2001) [`9cc5f8495`](https://github.com/graphcommerce-org/graphcommerce/commit/9cc5f8495d0970d457ac15eda4bb4e7cd3f8120a) - Migrate to productListLink, away from the ProductListLink component ([@paales](https://github.com/paales))
+
+- [#1973](https://github.com/graphcommerce-org/graphcommerce/pull/1973) [`257a66e38`](https://github.com/graphcommerce-org/graphcommerce/commit/257a66e388933a333941d9459e6e6a266d05cda4) - Limit would not be applied correctly for the product listing ([@JoshuaS98](https://github.com/JoshuaS98))
+
+- [#1919](https://github.com/graphcommerce-org/graphcommerce/pull/1919) [`201e75401`](https://github.com/graphcommerce-org/graphcommerce/commit/201e75401c99b7e7aeee06c7e5db737c19749298) - Fixed incorrect className for topRight ProductListItem location ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2003](https://github.com/graphcommerce-org/graphcommerce/pull/2003) [`c4b102577`](https://github.com/graphcommerce-org/graphcommerce/commit/c4b1025774aad87c5e51f05c5b988d364f4bf20e) - ProductPageAddToCartRow wasn't aligned in the middle causing the price to be misaligned ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+- [#1992](https://github.com/graphcommerce-org/graphcommerce/pull/1992) [`bffdff6f0`](https://github.com/graphcommerce-org/graphcommerce/commit/bffdff6f09d92e0d56ba904422b939ffeed12fae) - Export props from ProductPagePrice and ProductListPrice ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#1914](https://github.com/graphcommerce-org/graphcommerce/pull/1914) [`b1abccb67`](https://github.com/graphcommerce-org/graphcommerce/commit/b1abccb677b83b090882ed1e0cf5336c52b175a4) - Category limit url param wasn't parsed correctly, causing a 404. ([@paales](https://github.com/paales))
+
+- [#1959](https://github.com/graphcommerce-org/graphcommerce/pull/1959) [`d0809b132`](https://github.com/graphcommerce-org/graphcommerce/commit/d0809b132a0e4cbdfeb86164f6c16a89ebecd987) - Added support for default values in the Config.graphqls files for the documentation ([@JoshuaS98](https://github.com/JoshuaS98))
+
+## 6.2.0-canary.98
+
+## 6.2.0-canary.97
+
+## 6.2.0-canary.96
+
 ## 6.2.0-canary.95
 
 ## 6.2.0-canary.94

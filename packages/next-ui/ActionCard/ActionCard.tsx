@@ -55,6 +55,7 @@ const parts = [
   'after',
   'secondaryAction',
   'reset',
+  'end',
 ] as const
 const name = 'ActionCard'
 
@@ -317,6 +318,7 @@ export function ActionCard(props: ActionCardProps) {
         </Box>
 
         <Box
+          className={classes.end}
           sx={{
             display: 'flex',
             flexDirection: 'column',

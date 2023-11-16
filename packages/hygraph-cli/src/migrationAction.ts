@@ -159,8 +159,14 @@ export const migrationAction = (
   parentApiId?: string,
   parentType?: 'model' | 'component' | 'enumeration',
 ) => {
-  // Check if the entity already exists
+  /**
+   * Check if the entity already exists.
+   * If an update or deletion is made, it does not matter if the entity already exists
+   */
   const alreadyExists = () => {
+    if (action !== 'create') {
+      return false
+    }
     switch (type) {
       case 'model':
         return schema.models.some((model) => model.apiId === props.apiId)
@@ -187,12 +193,12 @@ export const migrationAction = (
             break
           }
           default:
-            return false // or undefined or any other value you want if no match
+            return false
         }
         return parent?.fields.some((field) => field.apiId === props.apiId)
       }
       default: {
-        return false // or undefined or any other value you want if no match
+        return false
       }
     }
   }

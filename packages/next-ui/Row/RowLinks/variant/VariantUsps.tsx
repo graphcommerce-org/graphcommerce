@@ -1,14 +1,12 @@
 import { RowLinks, RowLinksProps } from '../RowLinks'
 
 export function VariantUsps(props: RowLinksProps) {
-  const { title, children, sx = [], maxWidth, showButtons } = props
+  const { sx = [], inlineTitle = true, ...rowLinksProps } = props
 
   return (
     <RowLinks
-      title={title}
-      showButtons={showButtons}
-      maxWidth={maxWidth}
-      inlineTitle
+      inlineTitle={inlineTitle}
+      {...rowLinksProps}
       sx={[
         (theme) => ({
           '& .RowLinks-title': {
@@ -23,8 +21,6 @@ export function VariantUsps(props: RowLinksProps) {
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
-    >
-      {children}
-    </RowLinks>
+    />
   )
 }

@@ -1,4 +1,5 @@
 import { extendableComponent } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/react'
 import { Box, SxProps, Theme } from '@mui/material'
 import { OrderStateLabelFragment } from './OrderStateLabel.gql'
 
@@ -12,13 +13,14 @@ type OrderState =
   | 'Partial'
 
 type OrderStateLabelPropsBase = OrderStateLabelFragment
-type OrderStateRenderer = Record<
+
+export type OrderStateRenderer = Record<
   OrderState,
   (props: OrderStateLabelPropsBase) => React.ReactElement | null
 >
 
 export type OrderStateLabelProps = {
-  renderer: OrderStateRenderer
+  renderer?: Partial<OrderStateRenderer>
   sx?: SxProps<Theme>
 } & OrderStateLabelPropsBase
 
@@ -32,8 +34,20 @@ const { withState } = extendableComponent<OwnerState, typeof componentName, type
   parts,
 )
 
+const defaultRenderer: OrderStateRenderer = {
+  Ordered: () => <Trans id='Your order is being processed' />,
+  Invoiced: () => <Trans id='Your order has been invoiced' />,
+  Shipped: () => <Trans id='Your order is on its way!' />,
+  Refunded: () => <Trans id='Your order has been refunded' />,
+  Canceled: () => <Trans id='Your order has been canceled' />,
+  Returned: () => <Trans id='Your order has been returned' />,
+  Partial: () => <Trans id='Your order has been partially processed' />,
+}
+
 export function OrderStateLabel(props: OrderStateLabelProps) {
-  const { items, renderer, sx = [], ...orderProps } = props
+  const { items, renderer: incomingRenderer, sx = [], ...orderProps } = props
+
+  const renderer: OrderStateRenderer = { ...defaultRenderer, ...incomingRenderer }
 
   let orderState: OrderState = 'Partial'
   if (items?.every((item) => item?.quantity_ordered === item?.quantity_invoiced))

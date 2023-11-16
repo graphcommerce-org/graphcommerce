@@ -1,0 +1,11 @@
+fragment Wishlist on Wishlist {
+  __typename
+  id
+  items_count
+  items_v2 {
+    __typename
+    items {
+      ...WishlistItem
+    }
+  }
+}

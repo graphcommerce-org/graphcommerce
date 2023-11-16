@@ -139,6 +139,18 @@ When a user selects a variant, it will switch the values on the configurable pag
 
 Enabling options here will allow switching of those variants.
 
+#### `crossSellsHideCartItems: Boolean (default: [object Object])`
+
+Determines if cross sell items should be shown when the user already has the product in their cart. This will result in a product will popping off the screen when you add it to the cart.
+
+Default: 'false'
+
+#### `crossSellsRedirectItems: Boolean (default: [object Object])`
+
+Determines if, after adding a cross-sell item to the cart, the user should be redirected to the cross-sell items of the product they just added.
+
+Default: 'false'
+
 #### `customerRequireEmailConfirmation: Boolean`
 
 Due to a limitation in the GraphQL API of Magento 2, we need to know if the
@@ -253,8 +265,6 @@ SIDEBAR: Will be rendered as a sidebar on desktop and horizontal chips on mobile
 
 Product filters with better UI for mobile and desktop.
 
-@experimental This is an experimental feature and may change in the future.
-
 #### `productRoute: String`
 
 By default we route products to /p/[url] but you can change this to /product/[url] if you wish.
@@ -266,6 +276,10 @@ Example: '/product/'
 
 Allow the site to be indexed by search engines.
 If false, the robots.txt file will be set to disallow all.
+
+#### `sidebarGallery: [SidebarGalleryConfig](#SidebarGalleryConfig)`
+
+Configuration for the SidebarGallery component
 
 #### `wishlistHideForGuests: Boolean`
 
@@ -384,3 +398,11 @@ provided that the gallery images for the selected variant differ from the curren
 When a variant is selected the URL of the product will be changed in the address bar.
 
 This only happens when the actual variant is can be accessed by the URL.
+
+### SidebarGalleryConfig
+
+SidebarGalleryConfig will contain all configuration values for the Sidebar Gallery component.
+
+#### `paginationVariant: [SidebarGalleryPaginationVariant](#SidebarGalleryPaginationVariant)`
+
+Variant used for the pagination

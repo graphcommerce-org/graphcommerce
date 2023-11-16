@@ -25,10 +25,10 @@ type SliderProps = {
   children: React.ReactNode
   sx?: SxProps<Theme>
   buttonSize?: ScrollerButtonProps['size']
-}
+} & Pick<ScrollerButtonProps, 'showButtons'>
 
 export function ItemScroller(props: SliderProps) {
-  const { children, sx, buttonSize = 'responsive' } = props
+  const { children, sx, buttonSize = 'responsive', showButtons } = props
 
   const size = useFabSize(buttonSize)
 
@@ -62,11 +62,7 @@ export function ItemScroller(props: SliderProps) {
               top: `calc(50% - 28px)`,
             })}
           >
-            <ScrollerButton
-              direction='left'
-              sx={{ display: { xs: 'none', md: 'flex' } }}
-              size='responsive'
-            >
+            <ScrollerButton direction='left' showButtons={showButtons} size='responsive'>
               <IconSvg src={iconChevronLeft} />
             </ScrollerButton>
           </Box>
@@ -80,11 +76,7 @@ export function ItemScroller(props: SliderProps) {
               top: `calc(50% - (${size}/2))`,
             })}
           >
-            <ScrollerButton
-              direction='right'
-              sx={{ display: { xs: 'none', md: 'flex' } }}
-              size='responsive'
-            >
+            <ScrollerButton direction='right' showButtons={showButtons} size='responsive'>
               <IconSvg src={iconChevronRight} />
             </ScrollerButton>
           </Box>

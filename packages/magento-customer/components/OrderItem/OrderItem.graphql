@@ -7,7 +7,12 @@ fragment OrderItem on OrderItemInterface {
     label
     value
   }
+  quantity_invoiced
   quantity_ordered
+  quantity_refunded
+  quantity_returned
+  quantity_shipped
+  quantity_canceled
   product_sale_price {
     ...Money
   }

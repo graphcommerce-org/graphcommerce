@@ -7,15 +7,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { Controller, ControllerProps, FieldValues } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
-import {
-  IconButton,
-  IconButtonProps,
-  SxProps,
-  Theme,
-  TextField,
-  TextFieldProps,
-  Fab,
-} from '@mui/material'
+import { IconButtonProps, SxProps, Theme, TextField, TextFieldProps, Fab } from '@mui/material'
 
 export type NumberFieldElementProps<T extends FieldValues = FieldValues> = Omit<
   TextFieldProps,
@@ -88,6 +80,9 @@ export function NumberFieldElement<T extends FieldValues>(props: NumberFieldElem
                 width: responsiveVal(90, 120),
               },
               {
+                '& input[type=number]': {
+                  '-moz-appearance': 'textfield',
+                },
                 '& .MuiOutlinedInput-root': {
                   px: '2px',
                   display: 'grid',

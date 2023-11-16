@@ -13,18 +13,21 @@ let graphcommerceConfig: GraphCommerceConfig
 
 function domains(config: GraphCommerceConfig): DomainLocale[] {
   return Object.values(
-    config.storefront.reduce((acc, loc) => {
-      if (!loc.domain) return acc
+    config.storefront.reduce(
+      (acc, loc) => {
+        if (!loc.domain) return acc
 
-      acc[loc.domain] = {
-        defaultLocale: loc.locale,
-        locales: [...(acc[loc.domain]?.locales ?? []), loc.locale],
-        domain: loc.domain,
-        http: process.env.NODE_ENV === 'development' || undefined,
-      } as DomainLocale
+        acc[loc.domain] = {
+          defaultLocale: loc.locale,
+          locales: [...(acc[loc.domain]?.locales ?? []), loc.locale],
+          domain: loc.domain,
+          http: process.env.NODE_ENV === 'development' || undefined,
+        } as DomainLocale
 
-      return acc
-    }, {} as Record<string, DomainLocale>),
+        return acc
+      },
+      {} as Record<string, DomainLocale>,
+    ),
   )
 }
 
@@ -159,6 +162,15 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
         managedPaths: [
           new RegExp(`^(.+?[\\/]node_modules[\\/])(?!${transpilePackages.join('|')})`),
         ],
+      }
+
+      config.watchOptions = {
+        ...(config.watchOptions ?? {}),
+        ignored: new RegExp(
+          `^((?:[^/]*(?:/|$))*)(.(git|next)|(node_modules[\\/](?!${transpilePackages.join(
+            '|',
+          )})))(/((?:[^/]*(?:/|$))*)(?:$|/))?`,
+        ),
       }
 
       if (!config.resolve) config.resolve = {}
