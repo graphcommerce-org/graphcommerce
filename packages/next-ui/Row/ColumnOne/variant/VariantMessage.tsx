@@ -10,7 +10,6 @@ export function VariantMessage(props: VariantMessageProps) {
 
   return (
     <DismissibleSnackbar
-      open
       variant='pill'
       severity='info'
       {...rest}

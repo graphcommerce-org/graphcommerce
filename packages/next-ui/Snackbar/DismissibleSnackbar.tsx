@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { MessageSnackbar } from './MessageSnackbar'
 import { MessageSnackbarProps } from './MessageSnackbarImpl'
 
@@ -7,17 +8,19 @@ export type DismissibleSnackbarProps = MessageSnackbarProps & {
 }
 export function DismissibleSnackbar(props: DismissibleSnackbarProps) {
   const { storageType = 'localStorage', id, onClose, ...rest } = props
-  const messageId = `MessageSnackBar_${id}`
+  const messageId = `DismissibleSnackbar_${id}`
+  const [open, setOpen] = useState(false)
 
-  if (storageType && id && globalThis[storageType]?.getItem(messageId)) {
-    return null
-  }
+  useEffect(() => {
+    setOpen(!globalThis[storageType]?.getItem(messageId))
+  }, [messageId, storageType])
 
   return (
     <MessageSnackbar
       {...rest}
+      open={open}
       onClose={() => {
-          globalThis[storageType]?.setItem(messageId, `${Date.now()}`)
+        globalThis[storageType]?.setItem(messageId, `${Date.now()}`)
         onClose?.()
       }}
     />
