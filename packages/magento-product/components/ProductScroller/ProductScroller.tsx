@@ -19,7 +19,7 @@ import { ProductListItemProps } from '../ProductListItem/ProductListItem'
 import { ProductListItemRenderer, ProductListItemType } from '../ProductListItems/renderer'
 
 export type ProductScrollerProps = {
-  title?: string
+  title?: React.ReactNode
   items: ProductListItemType[]
   productListRenderer: ProductListItemRenderer
   imageOnly?: ProductListItemProps['imageOnly']

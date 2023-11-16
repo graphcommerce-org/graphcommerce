@@ -8,7 +8,7 @@ import {
 } from '../hooks'
 
 export type RecentlyViewedProductsProps = UseRecentlyViewedProductsProps & {
-  title?: string
+  title?: React.ReactNode
   productListRenderer: ProductListItemRenderer
   loading?: 'lazy' | 'eager'
 }

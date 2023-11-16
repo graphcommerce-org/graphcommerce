@@ -50,7 +50,6 @@ import {
 import { UspsDocument, UspsQuery } from '../../components/Usps/Usps.gql'
 import { ProductPage2Document, ProductPage2Query } from '../../graphql/ProductPage2.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
-import { i18n } from '@lingui/core'
 
 type Props = HygraphPagesQuery &
   UspsQuery &
@@ -190,7 +189,7 @@ function ProductPage(props: Props) {
       )}
 
       <RecentlyViewedProducts
-        title={i18n._(/* i18n */ 'Recently viewed products')}
+        title={<Trans id='Recently viewed products' />}
         exclude={[product.sku]}
         productListRenderer={productListRenderer}
       />
