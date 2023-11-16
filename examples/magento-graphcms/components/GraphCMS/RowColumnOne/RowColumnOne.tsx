@@ -18,10 +18,12 @@ const defaultRenderer: Partial<VariantRenderer> = {
 }
 
 export function RowColumnOne(props: RowColumnOneProps) {
-  const { renderer, rowColumnOneVariant, ...RowColumnOneProps } = props
+  const { renderer, ...RowColumnOneProps } = props
+  let { rowColumnOneVariant } = props
+
   const mergedRenderer = { ...defaultRenderer, ...renderer } as VariantRenderer
 
-  if (!rowColumnOneVariant) return <Default {...RowColumnOneProps} />
+  if (!rowColumnOneVariant) rowColumnOneVariant = 'Default'
 
   const RenderType =
     mergedRenderer?.[rowColumnOneVariant] ??
