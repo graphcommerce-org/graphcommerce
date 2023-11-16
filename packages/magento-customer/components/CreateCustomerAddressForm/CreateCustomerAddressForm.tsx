@@ -95,7 +95,7 @@ export function CreateCustomerAddressForm() {
         </FormActions>
       </Form>
 
-      <MessageSnackbar open={Boolean(data) && !error} variant='pill'>
+      <MessageSnackbar open={Boolean(data) && !error} variant='pill' severity='success'>
         <Trans id='Your address has been added' components={{ 0: <strong /> }} />
       </MessageSnackbar>
 

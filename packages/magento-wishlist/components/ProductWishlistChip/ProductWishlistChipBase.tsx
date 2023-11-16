@@ -238,6 +238,7 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
           onMouseDown={preventLinkOnClose}
           autoHide
           variant='pill'
+          severity='success'
           action={
             <Button
               href='/wishlist'

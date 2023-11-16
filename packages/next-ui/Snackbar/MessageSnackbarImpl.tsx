@@ -60,7 +60,7 @@ export default function MessageSnackbarImpl(props: MessageSnackbarProps) {
     sticky,
     children,
     onClose,
-    severity = 'success',
+    severity = 'info',
     sx,
     type = 'dialog',
     ...snackbarProps
