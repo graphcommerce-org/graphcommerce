@@ -56,7 +56,14 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
   const scroll = useScrollY()
   const scrolled = useMotionValueValue(scroll, (y) => y >= switchPoint)
 
-  const classes = withState({ floatingSm, floatingMd, scrolled, divider: !!divider, size, bgColor })
+  const classes = withState({
+    floatingSm,
+    floatingMd,
+    scrolled,
+    divider: !!divider,
+    size,
+    bgColor,
+  })
 
   return (
     <>

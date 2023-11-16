@@ -171,6 +171,12 @@ Enables some demo specific code that is probably not useful for a project:
 - Adds "dominant_color" attribute swatches to the product list items.
 - Creates a big list items in the product list.
 
+#### `enableStickyAddToCart: Boolean`
+
+Enable this option to activate the sticky add-to-cart bar on the product page.
+When enabled, a sticky bar will appear if the default add-to-cart button goes out of the visible viewport.
+This allows users to easily access the add-to-cart functionality even as they scroll through the page.
+
 #### `googleAnalyticsId: String`
 
 See https://support.google.com/analytics/answer/9539598?hl=en
