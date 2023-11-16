@@ -12,12 +12,10 @@
       "project": "./tsconfig.json"
     }
   },
-  "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "7.1.0-canary.38",
-    "@graphcommerce/prettier-config-pwa": "7.1.0-canary.38",
-    "@graphcommerce/typescript-config-pwa": "7.1.0-canary.38"
-  },
   "peerDependencies": {
-    "next": "^13.2.0"
+    "@graphcommerce/eslint-config-pwa": "*",
+    "@graphcommerce/prettier-config-pwa": "*",
+    "@graphcommerce/typescript-config-pwa": "*",
+    "next": "*"
   }
 }

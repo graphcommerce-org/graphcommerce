@@ -14,17 +14,15 @@
       "project": "./tsconfig.json"
     }
   },
-  "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "7.1.0-canary.38",
-    "@graphcommerce/prettier-config-pwa": "7.1.0-canary.38",
-    "@graphcommerce/typescript-config-pwa": "7.1.0-canary.38"
-  },
   "peerDependencies": {
+    "@graphcommerce/eslint-config-pwa": "*",
+    "@graphcommerce/prettier-config-pwa": "*",
+    "@graphcommerce/typescript-config-pwa": "*",
     "framer-motion": "^10.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "dependencies": {
-    "framesync": "^6.1.1"
+    "framesync": "^6.1.2"
   }
 }

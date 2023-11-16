@@ -9,20 +9,8 @@ function _export(target, all) {
     });
 }
 _export(exports, {
-    isDefinedNonNullAny: function() {
-        return isDefinedNonNullAny;
-    },
-    definedNonNullAnySchema: function() {
-        return definedNonNullAnySchema;
-    },
     CompareVariantSchema: function() {
         return CompareVariantSchema;
-    },
-    ProductFiltersLayoutSchema: function() {
-        return ProductFiltersLayoutSchema;
-    },
-    SidebarGalleryPaginationVariantSchema: function() {
-        return SidebarGalleryPaginationVariantSchema;
     },
     GraphCommerceConfigSchema: function() {
         return GraphCommerceConfigSchema;
@@ -36,8 +24,20 @@ _export(exports, {
     MagentoConfigurableVariantValuesSchema: function() {
         return MagentoConfigurableVariantValuesSchema;
     },
+    ProductFiltersLayoutSchema: function() {
+        return ProductFiltersLayoutSchema;
+    },
     SidebarGalleryConfigSchema: function() {
         return SidebarGalleryConfigSchema;
+    },
+    SidebarGalleryPaginationVariantSchema: function() {
+        return SidebarGalleryPaginationVariantSchema;
+    },
+    definedNonNullAnySchema: function() {
+        return definedNonNullAnySchema;
+    },
+    isDefinedNonNullAny: function() {
+        return isDefinedNonNullAny;
     }
 });
 const _zod = require("zod");
@@ -86,7 +86,6 @@ function GraphCommerceConfigSchema() {
         sidebarGallery: SidebarGalleryConfigSchema().nullish(),
         storefront: _zod.z.array(GraphCommerceStorefrontConfigSchema()),
         wishlistHideForGuests: _zod.z.boolean().nullish(),
-        wishlistIgnoreProductWishlistStatus: _zod.z.boolean().nullish(),
         wishlistShowFeedbackMessage: _zod.z.boolean().nullish()
     });
 }

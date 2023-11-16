@@ -3,8 +3,6 @@
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
   "version": "7.1.0-canary.38",
-  "author": "",
-  "license": "MIT",
   "scripts": {
     "dev": "tsc --preserveWatchOutput --watch",
     "build": "tsc",
@@ -14,18 +12,16 @@
   "main": "dist/index.js",
   "types": "src/index.ts",
   "bin": {
-    "mesh": "dist/bin/mesh.js",
-    "gql-mesh": "dist/bin/mesh.js",
-    "graphql-mesh": "dist/bin/mesh.js",
     "gql-gen": "dist/bin/codegen.js",
-    "graphql-codegen": "dist/bin/codegen.js",
+    "gql-mesh": "dist/bin/mesh.js",
+    "graphcommerce": "dist/bin/graphcommerce.js",
     "graphql-code-generator": "dist/bin/codegen.js",
+    "graphql-codegen": "dist/bin/codegen.js",
+    "graphql-mesh": "dist/bin/mesh.js",
     "is-monorepo": "dist/bin/is-monorepo.js",
-    "graphcommerce": "dist/bin/graphcommerce.js"
+    "mesh": "dist/bin/mesh.js"
   },
   "dependencies": {
-    "@graphcommerce/hygraph-cli": "7.1.0-canary.38",
-    "@graphcommerce/next-config": "7.1.0-canary.38",
     "@graphql-codegen/cli": "5.0.0",
     "@graphql-mesh/cli": "latest",
     "@graphql-mesh/cross-helpers": "latest",
@@ -33,20 +29,21 @@
     "@graphql-mesh/store": "latest",
     "@graphql-mesh/types": "latest",
     "@graphql-mesh/utils": "latest",
-    "cosmiconfig": "^8.2.0",
+    "@graphql-tools/utils": "^10.0.8",
+    "cosmiconfig": "^8.3.6",
     "detect-package-manager": "^3.0.1",
     "graphql-codegen-typescript-validation-schema": "^0.12.0",
     "graphql-tag": "^2.12.6",
-    "rimraf": "^5.0.1",
-    "ts-node": "^10.9.1"
+    "rimraf": "^5.0.5",
+    "tslib": "^2.6.2"
   },
   "peerDependencies": {
-    "graphql": "^16.7.1"
-  },
-  "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "7.1.0-canary.38",
-    "@graphcommerce/prettier-config-pwa": "7.1.0-canary.38",
-    "@graphcommerce/typescript-config-pwa": "7.1.0-canary.38",
+    "@graphcommerce/eslint-config-pwa": "*",
+    "@graphcommerce/hygraph-cli": "*",
+    "@graphcommerce/next-config": "*",
+    "@graphcommerce/prettier-config-pwa": "*",
+    "@graphcommerce/typescript-config-pwa": "*",
+    "graphql": "^16.7.1",
     "react": "^18.2.0",
     "typescript": "5.2.2"
   },

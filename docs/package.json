@@ -4,8 +4,8 @@
   "repository": "github:graphcommerce-org/graphcommerce/docs",
   "version": "7.1.0-canary.38",
   "sideEffects": true,
-  "devDependencies": {
-    "@graphcommerce/prettier-config-pwa": "7.1.0-canary.38"
+  "peerDependencies": {
+    "@graphcommerce/prettier-config-pwa": "*"
   },
   "prettier": "@graphcommerce/prettier-config-pwa"
 }
