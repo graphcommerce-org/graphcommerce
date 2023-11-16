@@ -36,10 +36,10 @@ type OwnerState = {
   severity?: 'success' | 'info' | 'warning' | 'error'
   variant?: Variant
   /**
-   * Dialogs are dismissed on page interaction, whilst popups remain open on page interaction and
+   * Modals are dismissed on page interaction, whilst dialogs remain open on page interaction and
    * can only be closed using the close button or escape key.
    */
-  type?: 'dialog' | 'popup'
+  type?: 'dialog' | 'modal'
 }
 
 const name = 'MessageSnackbarImpl' as const
@@ -62,7 +62,7 @@ export default function MessageSnackbarImpl(props: MessageSnackbarProps) {
     onClose,
     severity = 'info',
     sx,
-    type = 'dialog',
+    type = 'modal',
     ...snackbarProps
   } = props
 
@@ -73,7 +73,7 @@ export default function MessageSnackbarImpl(props: MessageSnackbarProps) {
   }, [open])
 
   const hideSnackbar = (event: React.SyntheticEvent | Event, reason?: string) => {
-    if (type === 'popup' && reason === 'clickaway') {
+    if (type === 'dialog' && reason === 'clickaway') {
       return
     }
 
