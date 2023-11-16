@@ -13,7 +13,6 @@
     }
   },
   "dependencies": {
-    "@apollo/client": "~3.8.2",
     "@graphcommerce/graphql-codegen-near-operation-file": "7.1.0-canary.38",
     "@graphcommerce/graphql-codegen-relay-optimizer-plugin": "7.1.0-canary.38",
     "@graphql-codegen/add": "5.0.0",
@@ -27,12 +26,11 @@
     "@graphql-codegen/typescript-operations": "4.0.1",
     "apollo3-cache-persist": "^0.14.1"
   },
-  "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "7.1.0-canary.38",
-    "@graphcommerce/prettier-config-pwa": "7.1.0-canary.38",
-    "@graphcommerce/typescript-config-pwa": "7.1.0-canary.38"
-  },
   "peerDependencies": {
+    "@apollo/client": "^3",
+    "@graphcommerce/eslint-config-pwa": "*",
+    "@graphcommerce/prettier-config-pwa": "*",
+    "@graphcommerce/typescript-config-pwa": "*",
     "graphql": "^16.7.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"

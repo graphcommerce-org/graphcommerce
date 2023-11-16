@@ -11,21 +11,17 @@
       "project": "./tsconfig.json"
     }
   },
-  "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "7.1.0-canary.38",
-    "@graphcommerce/prettier-config-pwa": "7.1.0-canary.38",
-    "@graphcommerce/typescript-config-pwa": "7.1.0-canary.38"
-  },
-  "dependencies": {
-    "@graphcommerce/graphql": "7.1.0-canary.38",
-    "@graphcommerce/magento-store": "7.1.0-canary.38"
-  },
   "peerDependencies": {
-    "@lingui/react": "^4.2.1",
+    "@graphcommerce/eslint-config-pwa": "*",
+    "@graphcommerce/graphql": "*",
+    "@graphcommerce/magento-store": "*",
+    "@graphcommerce/prettier-config-pwa": "*",
+    "@graphcommerce/typescript-config-pwa": "*",
     "@lingui/core": "^4.2.1",
     "@lingui/macro": "^4.2.1",
+    "@lingui/react": "^4.2.1",
     "@mui/material": "^5.10.16",
-    "next": "^13.2.0",
+    "next": "*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }
