@@ -1,5 +1,7 @@
-import { Portal } from '@mui/material'
-import { DismissibleSnackbar, DismissibleSnackbarProps } from '../../../Snackbar/DismissibleSnackbar'
+import {
+  DismissibleSnackbar,
+  DismissibleSnackbarProps,
+} from '../../../Snackbar/DismissibleSnackbar'
 
 export type VariantMessageProps = DismissibleSnackbarProps
 
