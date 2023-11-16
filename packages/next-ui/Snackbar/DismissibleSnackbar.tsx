@@ -2,7 +2,7 @@ import { MessageSnackbar } from './MessageSnackbar'
 import { MessageSnackbarProps } from './MessageSnackbarImpl'
 
 export type DismissibleSnackbarProps = MessageSnackbarProps & {
-  id?: string
+  id: string
   storageType?: 'localStorage' | 'sessionStorage'
 }
 export function DismissibleSnackbar(props: DismissibleSnackbarProps) {
