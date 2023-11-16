@@ -6,20 +6,7 @@ import {
 export type VariantMessageProps = DismissibleSnackbarProps
 
 export function VariantMessage(props: VariantMessageProps) {
-  const { sx, ...rest } = props
+  const { ...rest } = props
 
-  return (
-    <DismissibleSnackbar
-      variant='pill'
-      severity='info'
-      {...rest}
-      sx={[
-        {
-          pointerEvents: 'none',
-          '& > *': { pointerEvents: 'auto' },
-        },
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
-    />
-  )
+  return <DismissibleSnackbar variant='pill' severity='info' {...rest} />
 }

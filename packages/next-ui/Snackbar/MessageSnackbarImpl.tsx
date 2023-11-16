@@ -103,7 +103,13 @@ export default function MessageSnackbarImpl(props: MessageSnackbarProps) {
         open={showSnackbar}
         autoHideDuration={autoHide ? 5000 : null}
         className={classes.root}
-        sx={sx}
+        sx={[
+          {
+            pointerEvents: 'none',
+            '& > *': { pointerEvents: 'auto' },
+          },
+          ...(Array.isArray(sx) ? sx : [sx]),
+        ]}
         onClose={hideSnackbar}
       >
         <SnackbarContent
