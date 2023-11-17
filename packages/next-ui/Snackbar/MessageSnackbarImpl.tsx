@@ -36,10 +36,9 @@ type OwnerState = {
   severity?: 'success' | 'info' | 'warning' | 'error'
   variant?: Variant
   /**
-   * Modals are dismissed on page interaction, whilst dialogs remain open on page interaction and
-   * can only be closed using the close button or escape key.
+   * Setting this to true allows interaction with the rest of the page without closing the Snackbar
    */
-  type?: 'dialog' | 'modal'
+  disableBackdropClick?: boolean
 }
 
 const name = 'MessageSnackbarImpl' as const
@@ -62,7 +61,7 @@ export default function MessageSnackbarImpl(props: MessageSnackbarProps) {
     onClose,
     severity = 'info',
     sx,
-    type = 'modal',
+    disableBackdropClick,
     ...snackbarProps
   } = props
 
@@ -73,7 +72,7 @@ export default function MessageSnackbarImpl(props: MessageSnackbarProps) {
   }, [open])
 
   const hideSnackbar = (event: React.SyntheticEvent | Event, reason?: string) => {
-    if (type === 'dialog' && reason === 'clickaway') {
+    if (disableBackdropClick && reason === 'clickaway') {
       return
     }
 
