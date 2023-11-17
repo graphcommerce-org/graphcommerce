@@ -38,11 +38,11 @@
     "tslib": "^2.6.2"
   },
   "peerDependencies": {
-    "@graphcommerce/eslint-config-pwa": "7.1.0-canary.41",
-    "@graphcommerce/hygraph-cli": "7.1.0-canary.41",
-    "@graphcommerce/next-config": "7.1.0-canary.41",
-    "@graphcommerce/prettier-config-pwa": "7.1.0-canary.41",
-    "@graphcommerce/typescript-config-pwa": "7.1.0-canary.41",
+    "@graphcommerce/eslint-config-pwa": "*",
+    "@graphcommerce/hygraph-cli": "*",
+    "@graphcommerce/next-config": "*",
+    "@graphcommerce/prettier-config-pwa": "*",
+    "@graphcommerce/typescript-config-pwa": "*",
     "graphql": "^16.7.1",
     "react": "^18.2.0",
     "typescript": "5.2.2"

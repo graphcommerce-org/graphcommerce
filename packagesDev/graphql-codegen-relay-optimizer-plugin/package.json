@@ -27,8 +27,8 @@
     "typescript": "5.2.2"
   },
   "peerDependencies": {
-    "@graphcommerce/eslint-config-pwa": "7.1.0-canary.41",
-    "@graphcommerce/prettier-config-pwa": "7.1.0-canary.41",
+    "@graphcommerce/eslint-config-pwa": "*",
+    "@graphcommerce/prettier-config-pwa": "*",
     "graphql": "^16.7.1"
   },
   "prettier": "@graphcommerce/prettier-config-pwa",

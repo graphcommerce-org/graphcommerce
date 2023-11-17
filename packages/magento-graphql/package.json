@@ -13,10 +13,10 @@
     }
   },
   "peerDependencies": {
-    "@graphcommerce/eslint-config-pwa": "7.1.0-canary.41",
-    "@graphcommerce/graphql": "7.1.0-canary.41",
-    "@graphcommerce/prettier-config-pwa": "7.1.0-canary.41",
-    "@graphcommerce/typescript-config-pwa": "7.1.0-canary.41",
+    "@graphcommerce/eslint-config-pwa": "*",
+    "@graphcommerce/graphql": "*",
+    "@graphcommerce/prettier-config-pwa": "*",
+    "@graphcommerce/typescript-config-pwa": "*",
     "next": "*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"

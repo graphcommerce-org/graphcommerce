@@ -13,9 +13,9 @@
     }
   },
   "peerDependencies": {
-    "@graphcommerce/eslint-config-pwa": "7.1.0-canary.41",
-    "@graphcommerce/prettier-config-pwa": "7.1.0-canary.41",
-    "@graphcommerce/typescript-config-pwa": "7.1.0-canary.41",
+    "@graphcommerce/eslint-config-pwa": "*",
+    "@graphcommerce/prettier-config-pwa": "*",
+    "@graphcommerce/typescript-config-pwa": "*",
     "next": "*"
   }
 }
