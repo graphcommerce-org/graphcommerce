@@ -30,6 +30,7 @@ import {
   defaultConfigurableOptionsSelection,
 } from '@graphcommerce/magento-product-configurable'
 import { DownloadableProductOptions } from '@graphcommerce/magento-product-downloadable'
+import { RecentlyViewedProducts } from '@graphcommerce/magento-recently-viewed-products'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
 import { redirectOrNotFound, Money, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
@@ -41,6 +42,7 @@ import {
   LayoutDocument,
   LayoutNavigation,
   LayoutNavigationProps,
+  productListRenderer,
   RowProduct,
   RowRenderer,
   Usps,
@@ -185,6 +187,12 @@ function ProductPage(props: Props) {
           }}
         />
       )}
+
+      <RecentlyViewedProducts
+        title={<Trans id='Recently viewed products' />}
+        exclude={[product.sku]}
+        productListRenderer={productListRenderer}
+      />
     </>
   )
 }

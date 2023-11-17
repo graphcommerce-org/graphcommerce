@@ -529,6 +529,9 @@ msgstr "Prodotto non disponibile in {allLabels}"
 msgid "Products"
 msgstr "Prodotti"
 
+msgid "Recently viewed products"
+msgstr "Prodotti visionati recentemente"
+
 msgid "Region"
 msgstr "Regione"
 

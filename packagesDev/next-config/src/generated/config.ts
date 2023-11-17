@@ -277,6 +277,8 @@ export type GraphCommerceConfig = {
    * Example: '/product/'
    */
   productRoute?: InputMaybe<Scalars['String']['input']>;
+  /** Settings for recently viewed products */
+  recentlyViewedProducts?: InputMaybe<RecentlyViewedProductsConfig>;
   /**
    * Allow the site to be indexed by search engines.
    * If false, the robots.txt file will be set to disallow all.
@@ -384,6 +386,14 @@ export type ProductFiltersLayout =
   | 'DEFAULT'
   | 'SIDEBAR';
 
+/** Settings for recently viewed products */
+export type RecentlyViewedProductsConfig = {
+  /** Enable/disable recently viewed products */
+  enabled?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Number of recently viewed products to be stored in localStorage */
+  maxCount?: InputMaybe<Scalars['Int']['input']>;
+};
+
 /** SidebarGalleryConfig will contain all configuration values for the Sidebar Gallery component. */
 export type SidebarGalleryConfig = {
   /** Variant used for the pagination */
@@ -439,6 +449,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     productFiltersLayout: ProductFiltersLayoutSchema.nullish(),
     productFiltersPro: z.boolean().nullish(),
     productRoute: z.string().nullish(),
+    recentlyViewedProducts: RecentlyViewedProductsConfigSchema().nullish(),
     robotsAllow: z.boolean().nullish(),
     sidebarGallery: SidebarGalleryConfigSchema().nullish(),
     storefront: z.array(GraphCommerceStorefrontConfigSchema()),
@@ -476,6 +487,13 @@ export function MagentoConfigurableVariantValuesSchema(): z.ZodObject<Properties
     content: z.boolean().nullish(),
     gallery: z.boolean().nullish(),
     url: z.boolean().nullish()
+  })
+}
+
+export function RecentlyViewedProductsConfigSchema(): z.ZodObject<Properties<RecentlyViewedProductsConfig>> {
+  return z.object({
+    enabled: z.boolean().nullish(),
+    maxCount: z.number().nullish()
   })
 }
 

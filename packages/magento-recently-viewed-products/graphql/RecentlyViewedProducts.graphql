@@ -1,0 +1,10 @@
+query RecentlyViewedProducts {
+  recentlyViewedProducts @client {
+    __typename
+    items {
+      __typename
+      sku
+      parentSku
+    }
+  }
+}

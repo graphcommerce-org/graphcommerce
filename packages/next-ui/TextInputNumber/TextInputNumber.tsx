@@ -103,7 +103,7 @@ export function TextInputNumber(props: TextInputNumberProps) {
         },
         {
           '& input[type=number]': {
-            '-moz-appearance': 'textfield',
+            MozAppearance: 'textfield',
           },
           '& .MuiOutlinedInput-root': {
             px: '3px',

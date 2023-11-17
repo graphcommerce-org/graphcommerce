@@ -10,6 +10,9 @@ const config = {
   magentoEndpoint: 'https://backend.reachdigital.dev/graphql',
   canonicalBaseUrl: 'https://graphcommerce.vercel.app',
   storefront: [{ locale: 'en', magentoStoreCode: 'en_US' }],
+  recentlyViewedProducts: {
+    enabled: true,
+  },
 }
 
 module.exports = config
