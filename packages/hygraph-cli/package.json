@@ -19,10 +19,10 @@
   },
   "peerDependencies": {
     "@apollo/client": "^3",
-    "@graphcommerce/eslint-config-pwa": "^7.1.0-canary.43",
-    "@graphcommerce/next-config": "^7.1.0-canary.43",
-    "@graphcommerce/prettier-config-pwa": "^7.1.0-canary.43",
-    "@graphcommerce/typescript-config-pwa": "^7.1.0-canary.43",
+    "@graphcommerce/eslint-config-pwa": "^7",
+    "@graphcommerce/next-config": "^7",
+    "@graphcommerce/prettier-config-pwa": "^7",
+    "@graphcommerce/typescript-config-pwa": "^7",
     "dotenv": "^16.1.4",
     "graphql": "^16.7.1"
   },
