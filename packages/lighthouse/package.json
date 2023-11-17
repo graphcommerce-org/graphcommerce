@@ -13,9 +13,9 @@
     }
   },
   "peerDependencies": {
-    "@graphcommerce/eslint-config-pwa": "*",
-    "@graphcommerce/prettier-config-pwa": "*",
-    "@graphcommerce/typescript-config-pwa": "*",
+    "@graphcommerce/eslint-config-pwa": "^7",
+    "@graphcommerce/prettier-config-pwa": "^7",
+    "@graphcommerce/typescript-config-pwa": "^7",
     "next": "^14"
   }
 }

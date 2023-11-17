@@ -16,9 +16,9 @@
   },
   "peerDependencies": {
     "@apollo/client": "^3",
-    "@graphcommerce/eslint-config-pwa": "*",
-    "@graphcommerce/prettier-config-pwa": "*",
-    "@graphcommerce/typescript-config-pwa": "*",
+    "@graphcommerce/eslint-config-pwa": "^7",
+    "@graphcommerce/prettier-config-pwa": "^7",
+    "@graphcommerce/typescript-config-pwa": "^7",
     "graphql": "^16.6.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
