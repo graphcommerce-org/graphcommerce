@@ -1,5 +1,7 @@
 # @graphcommerce/ecommerce-ui
 
+## 7.1.0-canary.43
+
 ## 7.1.0-canary.38
 
 ### Minor Changes
