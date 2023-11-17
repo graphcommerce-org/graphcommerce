@@ -1,5 +1,17 @@
 # Change Log
 
+## 7.1.0-canary.45
+
+### Minor Changes
+
+- [#2113](https://github.com/graphcommerce-org/graphcommerce/pull/2113) [`437f467ce`](https://github.com/graphcommerce-org/graphcommerce/commit/437f467ce1bd9182954be753f1ce17056ab62e85) - Upgraded to yarn 4 package manager ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#2113](https://github.com/graphcommerce-org/graphcommerce/pull/2113) [`630618219`](https://github.com/graphcommerce-org/graphcommerce/commit/6306182196321bdab509a8dcfe09eb00da10303a) - Moved all internal @graphcommerce/\* dependencies to peerDependencies and resolve remaining peerDependency issues ([@paales](https://github.com/paales))
+
+- [#2113](https://github.com/graphcommerce-org/graphcommerce/pull/2113) [`77b1bac4d`](https://github.com/graphcommerce-org/graphcommerce/commit/77b1bac4db9c903a29c3969823da663875408be0) - Upgraded to nextjs 14.0.2, and updated other related dependencies. Removed @mui/material/modern alias as that doesnt work in combination with nextjs 14.0.2. ([@paales](https://github.com/paales))
+
 ## 7.1.0-canary.38
 
 ## 7.1.0-canary.37
