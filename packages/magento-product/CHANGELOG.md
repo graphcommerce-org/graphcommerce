@@ -1,13 +1,5 @@
 # Change Log
 
-## 8.0.0-canary.40
-
-### Patch Changes
-
-- [#2077](https://github.com/graphcommerce-org/graphcommerce/pull/2077) [`0d2cb22a5`](https://github.com/graphcommerce-org/graphcommerce/commit/0d2cb22a58451d40102981263209aacb93016c76) - Removed unwanted space below ProductListItem images caused by line-height. Images are now perfectly square as expected. ([@bramvanderholst](https://github.com/bramvanderholst))
-
-- [#2077](https://github.com/graphcommerce-org/graphcommerce/pull/2077) [`5f4455b1c`](https://github.com/graphcommerce-org/graphcommerce/commit/5f4455b1cccddf1501f0279e5ca2d9277a07ff07) - Added Skeleton render type to productListRenderer ([@bramvanderholst](https://github.com/bramvanderholst))
-
 ## 7.1.0-canary.39
 
 ## 7.1.0-canary.38
