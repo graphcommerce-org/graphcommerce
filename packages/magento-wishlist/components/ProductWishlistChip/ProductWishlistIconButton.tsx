@@ -7,11 +7,10 @@ import {
   iconChevronRight,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
-import { SxProps, Theme, IconButton, Box, IconButtonProps, Button } from '@mui/material'
-import { useWishlistEnabled } from '../../hooks'
-import React from 'react'
 import { Trans } from '@lingui/react'
-import { useAddProductToWishlistAction } from '../../hooks'
+import { SxProps, Theme, IconButton, Box, IconButtonProps, Button } from '@mui/material'
+import React from 'react'
+import { useWishlistEnabled, useAddProductToWishlistAction } from '../../hooks'
 
 export type ProductWishlistChipProps = ProductListItemFragment & {
   sx?: SxProps<Theme>
