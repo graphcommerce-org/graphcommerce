@@ -5,7 +5,7 @@
   "version": "7.1.0-canary.44",
   "sideEffects": true,
   "peerDependencies": {
-    "@graphcommerce/prettier-config-pwa": "^7.1.0-canary.44"
+    "@graphcommerce/prettier-config-pwa": "^7"
   },
   "prettier": "@graphcommerce/prettier-config-pwa"
 }

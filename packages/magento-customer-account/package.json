@@ -12,9 +12,9 @@
     }
   },
   "peerDependencies": {
-    "@graphcommerce/eslint-config-pwa": "^7.1.0-canary.44",
-    "@graphcommerce/magento-customer": "^7.1.0-canary.44",
-    "@graphcommerce/prettier-config-pwa": "^7.1.0-canary.44",
-    "@graphcommerce/typescript-config-pwa": "^7.1.0-canary.44"
+    "@graphcommerce/eslint-config-pwa": "^7",
+    "@graphcommerce/magento-customer": "^7",
+    "@graphcommerce/prettier-config-pwa": "^7",
+    "@graphcommerce/typescript-config-pwa": "^7"
   }
 }
