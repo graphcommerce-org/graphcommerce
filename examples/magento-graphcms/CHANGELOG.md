@@ -1,15 +1,5 @@
 # Change Log
 
-## 7.1.0-canary.42
-
-### Patch Changes
-
-- [#2077](https://github.com/graphcommerce-org/graphcommerce/pull/2077) [`7664e4587`](https://github.com/graphcommerce-org/graphcommerce/commit/7664e45873142078eb6681fd1bb268db8035cb2e) - Added ProductScroller component with built-in skeleton loader ([@bramvanderholst](https://github.com/bramvanderholst))
-
-- [#2077](https://github.com/graphcommerce-org/graphcommerce/pull/2077) [`eb29cbef5`](https://github.com/graphcommerce-org/graphcommerce/commit/eb29cbef56f8f7275ffe6760ef5e9f8d2598c7c4) - Added recently viewed products to product pages ([@bramvanderholst](https://github.com/bramvanderholst))
-
-- [#2077](https://github.com/graphcommerce-org/graphcommerce/pull/2077) [`5f4455b1c`](https://github.com/graphcommerce-org/graphcommerce/commit/5f4455b1cccddf1501f0279e5ca2d9277a07ff07) - Added Skeleton render type to productListRenderer ([@bramvanderholst](https://github.com/bramvanderholst))
-
 ## 7.1.0-canary.38
 
 ## 7.1.0-canary.37
