@@ -7,6 +7,8 @@ export * from './components/ScrollerButton'
 export * from './components/ScrollerDots'
 export * from './components/ScrollerPageCounter'
 export * from './components/ScrollerProvider'
+export * from './components/ScrollerThumbnails'
+export * from './components/ScrollerThumbnail'
 
 export * from './hooks/useScrollerContext'
 // export * from './hooks/useScroller'

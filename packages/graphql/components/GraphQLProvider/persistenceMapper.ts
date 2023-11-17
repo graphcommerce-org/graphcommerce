@@ -31,7 +31,6 @@ export const persistenceMapper = (data: string): Promise<string> => {
     'ROOT_QUERY.checkoutAgreements',
     'ROOT_QUERY.storeConfig',
     'ROOT_QUERY.__type*',
-    'ConfigurableProduct:*.configurable_product_options_selection*',
     '*Product:{"uid":"*"}.crosssell_products',
   ])
 

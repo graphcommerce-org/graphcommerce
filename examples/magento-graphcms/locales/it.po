@@ -145,6 +145,9 @@ msgstr "Completa il pagamento sul sito del tuo banco."
 msgid "Complete your purchase"
 msgstr "Completa il tuo acquisto"
 
+msgid "Configure"
+msgstr "Configura"
+
 msgid "Confirm new email"
 msgstr "Conferma nuovo indirizzo email"
 
@@ -319,9 +322,6 @@ msgstr "Modalità chiara"
 msgid "Loading"
 msgstr "Caricamento"
 
-msgid "Loading wishlist"
-msgstr "Caricamento lista desideri"
-
 msgid "Loading your account"
 msgstr "Caricamento del tuo account"
 
@@ -417,6 +417,9 @@ msgstr "Ordine #{orderId}"
 
 msgid "Order before 22:00"
 msgstr "Ordina prima delle 22:00"
+
+msgid "Order date"
+msgstr "data dell'ordine"
 
 msgid "Order not found"
 msgstr "Ordine non trovato"

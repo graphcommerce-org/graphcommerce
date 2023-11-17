@@ -1,5 +1,35 @@
 # Change Log
 
+## 7.1.0-canary.39
+
+## 7.1.0-canary.38
+
+### Patch Changes
+
+- [#2048](https://github.com/graphcommerce-org/graphcommerce/pull/2048) [`a5c65506a`](https://github.com/graphcommerce-org/graphcommerce/commit/a5c65506a7e72bd9ea101f665ce201e82396c63c) - Allow passing skip to useCustomerQuery and useGuestQuery ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 7.1.0-canary.37
+
+## 7.1.0-canary.36
+
+### Patch Changes
+
+- [#2107](https://github.com/graphcommerce-org/graphcommerce/pull/2107) [`2f5150456`](https://github.com/graphcommerce-org/graphcommerce/commit/2f5150456eabcce410ad8a0f1cbebeedabb6564c) - feat(GCOM-1237): remember email adress when going from checkout to si… ([@FrankHarland](https://github.com/FrankHarland))
+
+## 7.1.0-canary.35
+
+## 7.1.0-canary.34
+
+## 7.1.0-canary.33
+
+## 7.1.0-canary.32
+
+### Patch Changes
+
+- [#2091](https://github.com/graphcommerce-org/graphcommerce/pull/2091) [`5b865d376`](https://github.com/graphcommerce-org/graphcommerce/commit/5b865d376fe3b830a03af15b56986a0448af4987) - Update OrderDetails and styling ([@StefanAngenent](https://github.com/StefanAngenent))
+
+## 7.1.0-canary.31
+
 ## 7.1.0-canary.30
 
 ## 7.1.0-canary.29

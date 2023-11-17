@@ -1,5 +1,6 @@
-import { ProductWishlistChipBase, ProductWishlistChipProps } from './ProductWishlistChipBase'
+import { ProductWishlistIconButton } from './ProductWishlistIconButton'
 
-export function ProductWishlistChip(props: ProductWishlistChipProps) {
-  return <ProductWishlistChipBase {...props} />
-}
+/**
+ * @deprecated use ProductWishlistIconButton instead
+ */
+export const ProductWishlistChip = ProductWishlistIconButton

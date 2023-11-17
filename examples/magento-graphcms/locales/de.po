@@ -145,6 +145,9 @@ msgstr "Schließen Sie die Zahlung auf der Website Ihrer Bank ab."
 msgid "Complete your purchase"
 msgstr "Schließen Sie Ihren Kauf ab"
 
+msgid "Configure"
+msgstr "Konfigurieren"
+
 msgid "Confirm new email"
 msgstr "Neue E-Mail bestätigen"
 
@@ -319,9 +322,6 @@ msgstr "Heller Modus"
 msgid "Loading"
 msgstr "Laden"
 
-msgid "Loading wishlist"
-msgstr "Wunschliste wird geladen"
-
 msgid "Loading your account"
 msgstr "Ihr Kundenkonto wird geladen"
 
@@ -417,6 +417,9 @@ msgstr "Bestellung #{orderId}"
 
 msgid "Order before 22:00"
 msgstr "Bestellen Sie vor 22:00 Uhr"
+
+msgid "Order date"
+msgstr "Auftragsdatum"
 
 msgid "Order not found"
 msgstr "Bestellung nicht gefunden"

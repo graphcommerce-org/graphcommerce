@@ -97,20 +97,7 @@ function AccountIndexPage() {
                       <TimeAgo date={latestOrderDate} locale={locale} />
                     </time>
                     {', '}
-                    {latestOrder?.items && (
-                      <OrderStateLabelInline
-                        items={latestOrder?.items}
-                        renderer={{
-                          Ordered: () => <Trans id='processed' />,
-                          Invoiced: () => <Trans id='invoiced' />,
-                          Shipped: () => <Trans id='shipped' />,
-                          Refunded: () => <Trans id='refunded' />,
-                          Canceled: () => <Trans id='canceled' />,
-                          Returned: () => <Trans id='returned' />,
-                          Partial: () => <Trans id='partially processed' />,
-                        }}
-                      />
-                    )}
+                    {latestOrder?.items && <OrderStateLabelInline items={latestOrder?.items} />}
                   </>
                 ) : undefined
               }

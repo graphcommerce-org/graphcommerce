@@ -281,13 +281,13 @@ Settings for recently viewed products
 Allow the site to be indexed by search engines.
 If false, the robots.txt file will be set to disallow all.
 
+#### sidebarGallery: [SidebarGalleryConfig](#SidebarGalleryConfig)
+
+Configuration for the SidebarGallery component
+
 #### wishlistHideForGuests: boolean
 
 Hide the wishlist functionality for guests.
-
-#### wishlistIgnoreProductWishlistStatus: boolean
-
-Ignores whether a product is already in the wishlist, makes the toggle an add only.
 
 #### wishlistShowFeedbackMessage: boolean
 
@@ -410,3 +410,11 @@ Enable/disable recently viewed products
 #### maxCount: number
 
 Number of recently viewed products to be stored in localStorage
+
+### SidebarGalleryConfig
+
+SidebarGalleryConfig will contain all configuration values for the Sidebar Gallery component.
+
+#### paginationVariant: 'DOTS' | 'THUMBNAILS_BOTTOM'
+
+Variant used for the pagination

@@ -1,5 +1,27 @@
 # Change Log
 
+## 7.1.0-canary.39
+
+## 7.1.0-canary.38
+
+### Patch Changes
+
+- [#2048](https://github.com/graphcommerce-org/graphcommerce/pull/2048) [`695f40cf2`](https://github.com/graphcommerce-org/graphcommerce/commit/695f40cf220636d17f04bc9b0ce86c549c740386) - filterNonNullable keys simplified the types which caused unions to be collapsed ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 7.1.0-canary.37
+
+## 7.1.0-canary.36
+
+## 7.1.0-canary.35
+
+## 7.1.0-canary.34
+
+## 7.1.0-canary.33
+
+## 7.1.0-canary.32
+
+## 7.1.0-canary.31
+
 ## 7.1.0-canary.30
 
 ### Patch Changes

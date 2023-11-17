@@ -1,0 +1,24 @@
+extend input GraphCommerceConfig {
+  """
+  Configuration for the SidebarGallery component
+  """
+  sidebarGallery: SidebarGalleryConfig
+}
+
+"""
+Enumeration of all possible positions for the sidebar gallery thumbnails.
+"""
+enum SidebarGalleryPaginationVariant {
+  DOTS
+  THUMBNAILS_BOTTOM
+}
+
+"""
+SidebarGalleryConfig will contain all configuration values for the Sidebar Gallery component.
+"""
+input SidebarGalleryConfig {
+  """
+  Variant used for the pagination
+  """
+  paginationVariant: SidebarGalleryPaginationVariant
+}

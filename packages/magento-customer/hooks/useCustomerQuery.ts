@@ -13,5 +13,5 @@ export function useCustomerQuery<Q, V extends OperationVariables>(
   options: QueryHookOptions<Q, V> = {},
 ): QueryResult<Q, V> {
   const { loggedIn } = useCustomerSession()
-  return useQuery(document, { ...options, ssr: false, skip: !loggedIn })
+  return useQuery(document, { ...options, ssr: false, skip: options.skip || !loggedIn })
 }

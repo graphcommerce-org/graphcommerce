@@ -145,6 +145,9 @@ msgstr "Complete the payment on your bank’s website."
 msgid "Complete your purchase"
 msgstr "Complete your purchase"
 
+msgid "Configure"
+msgstr "Configure"
+
 msgid "Confirm new email"
 msgstr "Confirm new email"
 
@@ -319,9 +322,6 @@ msgstr "Light Mode"
 msgid "Loading"
 msgstr "Loading"
 
-msgid "Loading wishlist"
-msgstr "Loading wishlist"
-
 msgid "Loading your account"
 msgstr "Loading your account"
 
@@ -417,6 +417,9 @@ msgstr "Order #{orderId}"
 
 msgid "Order before 22:00"
 msgstr "Order before 22:00"
+
+msgid "Order date"
+msgstr "Order date"
 
 msgid "Order not found"
 msgstr "Order not found"
