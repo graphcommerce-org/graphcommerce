@@ -84,6 +84,7 @@ export const ProductWishlistIconButton = React.memo<ProductWishlistChipProps>((p
           onTouchStart={cancelBubble}
           autoHide
           variant='pill'
+          severity='success'
           action={
             <Button
               href='/wishlist'
