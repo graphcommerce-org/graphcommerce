@@ -13,7 +13,7 @@
     "useCalculatedVersion": true,
     "prereleaseTemplate": "{tag}-{datetime}-{commit}"
   },
-  "___experimentalUnsafeOptions_WILL_CHANGE_IN_PATCH": {
-    "onlyUpdatePeerDependentsWhenOutOfRange": true
-  }
+  "autoBumpPeerDependentsInSameChangeset": true,
+  "autoBumpPeerDependentsCondition": "out-of-range",
+  "autoBumpPeerDependentsStrategy": "follow"
 }
