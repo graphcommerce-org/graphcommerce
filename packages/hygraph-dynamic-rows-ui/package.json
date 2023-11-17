@@ -18,8 +18,8 @@
   "dependencies": {
     "@apollo/client": "~3.8.2",
     "@graphcommerce/next-config": "7.1.0-canary.23",
-    "@mui/material": "5.14.7",
     "@hygraph/app-sdk-react": "^0.0.2",
+    "@mui/material": "5.14.7",
     "cross-env": "^7.0.3",
     "dotenv": "16.3.1",
     "next": "^13.2.0",
