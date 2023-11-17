@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/magento-wishlist",
-  "version": "7.1.0-canary.38",
+  "version": "7.1.0-canary.40",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [

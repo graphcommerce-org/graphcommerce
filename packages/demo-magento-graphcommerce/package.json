@@ -2,7 +2,7 @@
   "name": "@graphcommerce/demo-magento-graphcommerce",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "7.1.0-canary.38",
+  "version": "7.1.0-canary.40",
   "sideEffects": false,
   "scripts": {
     "dev": "tsc -W"

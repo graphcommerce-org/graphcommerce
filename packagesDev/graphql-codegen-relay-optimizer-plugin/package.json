@@ -2,7 +2,7 @@
   "name": "@graphcommerce/graphql-codegen-relay-optimizer-plugin",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "7.1.0-canary.38",
+  "version": "7.1.0-canary.40",
   "description": "GraphQL Code Generator plugin for optimizing your GraphQL queries relay style.",
   "type": "commonjs",
   "main": "dist/index.js",

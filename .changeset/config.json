@@ -12,5 +12,6 @@
   "snapshot": {
     "useCalculatedVersion": true,
     "prereleaseTemplate": "{tag}-{datetime}-{commit}"
-  }
+  },
+  "bumpVersionsWithWorkspaceProtocolOnly": false
 }

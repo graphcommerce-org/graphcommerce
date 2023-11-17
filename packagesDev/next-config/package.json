@@ -2,7 +2,7 @@
   "name": "@graphcommerce/next-config",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "7.1.0-canary.38",
+  "version": "7.1.0-canary.40",
   "type": "commonjs",
   "main": "dist/index.js",
   "types": "src/index.ts",
@@ -20,7 +20,7 @@
     "inspectpack": "^4.7.1",
     "js-yaml-loader": "^1.2.2",
     "lodash": "^4.17.21",
-    "workbox-build": "^7.0.0",
+    "workbox-build": "*",
     "znv": "^0.4.0",
     "zod": "^3.22.4"
   },
