@@ -12,19 +12,17 @@ jobs:
       published: ${{ steps.changesets.outputs.published }}
     steps:
       - name: checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - uses: actions/setup-node@v3
         with:
+          cache: yarn
           node-version: 18
           registry-url: 'https://registry.npmjs.org'
           scope: '@graphcommerce'
-      - uses: bahmutov/npm-install@v1
-        with:
-          useRollingCache: true
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: yarn install && yarn postinstall
+        run: yarn install && yarn postinstall
       - name: set version variables
         id: vars
         shell: bash
