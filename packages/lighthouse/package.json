@@ -16,6 +16,6 @@
     "@graphcommerce/eslint-config-pwa": "*",
     "@graphcommerce/prettier-config-pwa": "*",
     "@graphcommerce/typescript-config-pwa": "*",
-    "next": "*"
+    "next": "^14"
   }
 }

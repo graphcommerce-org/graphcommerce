@@ -2531,7 +2531,7 @@ __metadata:
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -2559,7 +2559,7 @@ __metadata:
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -2632,7 +2632,7 @@ __metadata:
     "@graphcommerce/typescript-config-pwa": "*"
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -2661,7 +2661,7 @@ __metadata:
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -2736,7 +2736,7 @@ __metadata:
     "@graphcommerce/prettier-config-pwa": "*"
     "@graphcommerce/typescript-config-pwa": "*"
     framer-motion: ^10.0.0
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -2797,7 +2797,7 @@ __metadata:
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -2835,7 +2835,7 @@ __metadata:
     "@graphcommerce/prettier-config-pwa": "*"
     "@graphcommerce/typescript-config-pwa": "*"
     "@mui/material": ^5.10.16
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -2853,7 +2853,7 @@ __metadata:
     "@graphcommerce/prettier-config-pwa": "*"
     "@graphcommerce/typescript-config-pwa": "*"
     "@mui/material": ^5.10.16
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -2870,7 +2870,7 @@ __metadata:
     "@graphcommerce/next-ui": "*"
     "@graphcommerce/prettier-config-pwa": "*"
     "@graphcommerce/typescript-config-pwa": "*"
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -2887,7 +2887,7 @@ __metadata:
     "@graphcommerce/prettier-config-pwa": "*"
     "@graphcommerce/typescript-config-pwa": "*"
     "@mui/material": ^5.10.16
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3038,7 +3038,7 @@ __metadata:
     "@graphcommerce/prettier-config-pwa": "*"
     "@graphcommerce/typescript-config-pwa": "*"
     "@mui/material": ^5.10.16
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3093,7 +3093,7 @@ __metadata:
     "@graphcommerce/prettier-config-pwa": "*"
     "@graphcommerce/typescript-config-pwa": "*"
     "@mui/material": ^5.10.16
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3106,7 +3106,7 @@ __metadata:
     "@graphcommerce/eslint-config-pwa": "*"
     "@graphcommerce/prettier-config-pwa": "*"
     "@graphcommerce/typescript-config-pwa": "*"
-    next: "*"
+    next: ^14
   languageName: unknown
   linkType: soft
 
@@ -3124,7 +3124,7 @@ __metadata:
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3150,7 +3150,7 @@ __metadata:
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3177,7 +3177,7 @@ __metadata:
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3201,7 +3201,7 @@ __metadata:
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3228,7 +3228,7 @@ __metadata:
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3254,7 +3254,7 @@ __metadata:
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3280,7 +3280,7 @@ __metadata:
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3307,7 +3307,7 @@ __metadata:
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3332,7 +3332,7 @@ __metadata:
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3358,7 +3358,7 @@ __metadata:
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3387,7 +3387,7 @@ __metadata:
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3410,7 +3410,7 @@ __metadata:
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3429,7 +3429,7 @@ __metadata:
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3455,7 +3455,7 @@ __metadata:
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
     graphql: ^16.0.0
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3491,7 +3491,7 @@ __metadata:
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3519,7 +3519,7 @@ __metadata:
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
     graphql: ^16.0.0
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3624,7 +3624,7 @@ __metadata:
     "@graphcommerce/graphql": "*"
     "@graphcommerce/prettier-config-pwa": "*"
     "@graphcommerce/typescript-config-pwa": "*"
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3648,7 +3648,7 @@ __metadata:
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3675,7 +3675,7 @@ __metadata:
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3701,7 +3701,7 @@ __metadata:
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3732,7 +3732,7 @@ __metadata:
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3760,7 +3760,7 @@ __metadata:
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3783,7 +3783,7 @@ __metadata:
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3813,7 +3813,7 @@ __metadata:
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3838,7 +3838,7 @@ __metadata:
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3865,7 +3865,7 @@ __metadata:
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3896,7 +3896,7 @@ __metadata:
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3917,7 +3917,7 @@ __metadata:
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3938,7 +3938,7 @@ __metadata:
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3959,7 +3959,7 @@ __metadata:
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3980,7 +3980,7 @@ __metadata:
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -4010,7 +4010,7 @@ __metadata:
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -4032,7 +4032,7 @@ __metadata:
     "@graphcommerce/typescript-config-pwa": "*"
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -4060,7 +4060,7 @@ __metadata:
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -4083,7 +4083,7 @@ __metadata:
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -4104,7 +4104,7 @@ __metadata:
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -4133,7 +4133,7 @@ __metadata:
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -4162,7 +4162,7 @@ __metadata:
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -4183,13 +4183,12 @@ __metadata:
     js-yaml-loader: "npm:^1.2.2"
     lodash: "npm:^4.17.21"
     typescript: "npm:5.2.2"
-    workbox-build: "npm:*"
     znv: "npm:^0.4.0"
     zod: "npm:^3.22.4"
   peerDependencies:
     "@lingui/macro": ^4.2.1
-    graphql: "*"
-    next: "*"
+    graphql: ^16
+    next: ^14
     webpack: ^5.0.0
   languageName: unknown
   linkType: soft
@@ -4222,7 +4221,7 @@ __metadata:
     "@mui/lab": ^5.0.0-alpha.68
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -18626,7 +18625,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"workbox-build@npm:*, workbox-build@npm:7.0.0":
+"workbox-build@npm:7.0.0":
   version: 7.0.0
   resolution: "workbox-build@npm:7.0.0"
   dependencies:

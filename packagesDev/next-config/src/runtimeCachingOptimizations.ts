@@ -1,4 +1,4 @@
-import { RuntimeCaching } from 'workbox-build'
+import type { RuntimeCaching } from 'workbox-build'
 
 export const runtimeCachingOptimizations: RuntimeCaching[] = [
   {
