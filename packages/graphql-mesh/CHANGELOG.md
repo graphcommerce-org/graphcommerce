@@ -1,11 +1,5 @@
 # Change Log
 
-## 7.1.0-canary.39
-
-### Patch Changes
-
-- [#2113](https://github.com/graphcommerce-org/graphcommerce/pull/2113) [`bf5ae8979`](https://github.com/graphcommerce-org/graphcommerce/commit/bf5ae8979b145e7a96303f839ef2b1238712531a) - Remove requirement of toplevelAwait for graphqlSsrClient and solve logging issue in cli ([@paales](https://github.com/paales))
-
 ## 7.1.0-canary.38
 
 ## 7.1.0-canary.37

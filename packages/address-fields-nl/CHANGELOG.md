@@ -1,7 +1,5 @@
 # @graphcommerce/address-fields-nl
 
-## 7.1.0-canary.39
-
 ## 7.1.0-canary.38
 
 ## 7.1.0-canary.37
