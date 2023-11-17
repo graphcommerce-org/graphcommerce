@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.demoConfig = void 0;
 exports.demoConfig = {
 <<<<<<< HEAD
+<<<<<<< HEAD
   canonicalBaseUrl: 'https://graphcommerce.vercel.app',
   hygraphEndpoint: 'https://eu-central-1.cdn.hygraph.com/content/ckhx7xadya6xs01yxdujt8i80/master',
   magentoEndpoint: 'https://backend.reachdigital.dev/graphql',
@@ -32,6 +33,8 @@ exports.demoConfig = {
   recentlyViewedProducts: { enabled: true, maxCount: 20 },
 }
 =======
+=======
+>>>>>>> b9ac0be0f ([GCOM-1108] fix unwanted changes)
     canonicalBaseUrl: 'https://graphcommerce.vercel.app',
     hygraphEndpoint: 'https://eu-central-1.cdn.hygraph.com/content/ckhx7xadya6xs01yxdujt8i80/master',
     magentoEndpoint: 'https://backend.reachdigital.dev/graphql',
@@ -55,7 +58,7 @@ exports.demoConfig = {
     demoMode: true,
     limitSsg: true,
     compare: true,
+    sidebarGallery: { paginationVariant: 'DOTS' },
     configurableVariantForSimple: true,
     configurableVariantValues: { url: true, content: true, gallery: true },
 };
->>>>>>> 9dfd43ab4 ([GCOM-1108] rm unnecessary configs, host app on solo next environment, cleanup unnecessary packages,)
