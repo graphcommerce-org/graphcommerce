@@ -2519,14 +2519,14 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/address-fields-nl@workspace:packages/address-fields-nl"
   peerDependencies:
-    "@graphcommerce/ecommerce-ui": "*"
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/graphql": "*"
-    "@graphcommerce/magento-customer": "*"
-    "@graphcommerce/magento-store": "*"
-    "@graphcommerce/next-ui": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/ecommerce-ui": ^7
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/graphql": ^7
+    "@graphcommerce/magento-customer": ^7
+    "@graphcommerce/magento-store": ^7
+    "@graphcommerce/next-ui": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -2544,17 +2544,17 @@ __metadata:
     algoliasearch: "npm:^4.20.0"
     react-instantsearch-hooks-web: "npm:^6.47.3"
   peerDependencies:
-    "@graphcommerce/ecommerce-ui": "*"
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/graphql": "*"
-    "@graphcommerce/graphql-mesh": "*"
-    "@graphcommerce/magento-product": "*"
-    "@graphcommerce/magento-search": "*"
-    "@graphcommerce/magento-store": "*"
+    "@graphcommerce/ecommerce-ui": ^7
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/graphql": ^7
+    "@graphcommerce/graphql-mesh": ^7
+    "@graphcommerce/magento-product": ^7
+    "@graphcommerce/magento-search": ^7
+    "@graphcommerce/magento-store": ^7
     "@graphcommerce/next-config": ^*
-    "@graphcommerce/next-ui": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/next-ui": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -2598,11 +2598,11 @@ __metadata:
     rimraf: "npm:^5.0.5"
     tslib: "npm:^2.6.2"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/hygraph-cli": "*"
-    "@graphcommerce/next-config": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/hygraph-cli": ^7
+    "@graphcommerce/next-config": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     graphql: ^16.7.1
     react: ^18.2.0
     typescript: 5.2.2
@@ -2622,14 +2622,14 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/demo-magento-graphcommerce@workspace:packages/demo-magento-graphcommerce"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/framer-scroller": "*"
-    "@graphcommerce/magento-product": "*"
-    "@graphcommerce/magento-product-configurable": "*"
-    "@graphcommerce/magento-recently-viewed-products": "*"
-    "@graphcommerce/next-ui": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/framer-scroller": ^7
+    "@graphcommerce/magento-product": ^7
+    "@graphcommerce/magento-product-configurable": ^7
+    "@graphcommerce/magento-recently-viewed-products": ^7
+    "@graphcommerce/next-ui": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
     next: ^14
@@ -2642,7 +2642,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/docs@workspace:docs"
   peerDependencies:
-    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/prettier-config-pwa": ^7
   languageName: unknown
   linkType: soft
 
@@ -2650,12 +2650,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/ecommerce-ui@workspace:packages/ecommerce-ui"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/graphql": "*"
-    "@graphcommerce/next-ui": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/react-hook-form": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/graphql": ^7
+    "@graphcommerce/next-ui": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/react-hook-form": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -2731,10 +2731,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/framer-next-pages@workspace:packages/framer-next-pages"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/framer-utils": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/framer-utils": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     framer-motion: ^10.0.0
     next: ^14
     react: ^18.2.0
@@ -2788,11 +2788,11 @@ __metadata:
   dependencies:
     popmotion: "npm:11.0.5"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/framer-utils": "*"
-    "@graphcommerce/image": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/framer-utils": ^7
+    "@graphcommerce/image": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     "@lingui/core": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
@@ -2809,9 +2809,9 @@ __metadata:
   dependencies:
     framesync: "npm:^6.1.2"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     framer-motion: ^10.0.0
     react: ^18.2.0
     react-dom: ^18.2.0
@@ -2824,16 +2824,16 @@ __metadata:
   dependencies:
     "@types/gtag.js": "npm:^0.0.18"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/graphql-mesh": "*"
-    "@graphcommerce/magento-cart": "*"
-    "@graphcommerce/magento-cart-payment-method": "*"
-    "@graphcommerce/magento-cart-shipping-method": "*"
-    "@graphcommerce/magento-product": "*"
-    "@graphcommerce/next-config": "*"
-    "@graphcommerce/next-ui": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/graphql-mesh": ^7
+    "@graphcommerce/magento-cart": ^7
+    "@graphcommerce/magento-cart-payment-method": ^7
+    "@graphcommerce/magento-cart-shipping-method": ^7
+    "@graphcommerce/magento-product": ^7
+    "@graphcommerce/next-config": ^7
+    "@graphcommerce/next-ui": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     "@mui/material": ^5.10.16
     next: ^14
     react: ^18.2.0
@@ -2847,11 +2847,11 @@ __metadata:
   dependencies:
     "@types/grecaptcha": "npm:^3.0.7"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/graphql": "*"
-    "@graphcommerce/next-ui": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/graphql": ^7
+    "@graphcommerce/next-ui": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     "@mui/material": ^5.10.16
     next: ^14
     react: ^18.2.0
@@ -2865,11 +2865,11 @@ __metadata:
   dependencies:
     "@types/gapi.client.tagmanager": "npm:^2.0.4"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/magento-product": "*"
-    "@graphcommerce/next-ui": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/magento-product": ^7
+    "@graphcommerce/next-ui": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
@@ -2880,12 +2880,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/graphcms-ui@workspace:packages/hygraph-ui"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/graphql": "*"
-    "@graphcommerce/image": "*"
-    "@graphcommerce/next-ui": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/graphql": ^7
+    "@graphcommerce/image": ^7
+    "@graphcommerce/next-ui": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     "@mui/material": ^5.10.16
     next: ^14
     react: ^18.2.0
@@ -2904,9 +2904,9 @@ __metadata:
     "@types/parse-filepath": "npm:^1.0.2"
     parse-filepath: "npm:^1.0.2"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     graphql: ^16.7.1
   languageName: unknown
   linkType: soft
@@ -2922,9 +2922,9 @@ __metadata:
     "@types/parse-filepath": "npm:^1.0.2"
     parse-filepath: "npm:^1.0.2"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     graphql: ^16.7.1
   languageName: unknown
   linkType: soft
@@ -2943,8 +2943,8 @@ __metadata:
     ts-jest: "npm:29.1.1"
     typescript: "npm:5.2.2"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
     graphql: ^16.7.1
   languageName: unknown
   linkType: soft
@@ -2971,9 +2971,9 @@ __metadata:
     typescript: "npm:5.2.2"
   peerDependencies:
     "@apollo/client": ^3
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     graphql: ^16.7.1
   languageName: unknown
   linkType: soft
@@ -2996,9 +2996,9 @@ __metadata:
     apollo3-cache-persist: "npm:^0.14.1"
   peerDependencies:
     "@apollo/client": ^3
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     graphql: ^16.7.1
     react: ^18.2.0
     react-dom: ^18.2.0
@@ -3017,10 +3017,10 @@ __metadata:
     typescript: "npm:5.2.2"
   peerDependencies:
     "@apollo/client": ^3
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/next-config": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/next-config": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     dotenv: ^16.1.4
     graphql: ^16.7.1
   languageName: unknown
@@ -3030,13 +3030,13 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/hygraph-dynamic-rows@workspace:packages/hygraph-dynamic-rows"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/graphcms-ui": "*"
-    "@graphcommerce/graphql": "*"
-    "@graphcommerce/image": "*"
-    "@graphcommerce/next-ui": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/graphcms-ui": ^7
+    "@graphcommerce/graphql": ^7
+    "@graphcommerce/image": ^7
+    "@graphcommerce/next-ui": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     "@mui/material": ^5.10.16
     next: ^14
     react: ^18.2.0
@@ -3088,10 +3088,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/image@workspace:packages/image"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/framer-utils": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/framer-utils": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     "@mui/material": ^5.10.16
     next: ^14
     react: ^18.2.0
@@ -3103,9 +3103,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/lighthouse@workspace:packages/lighthouse"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     next: ^14
   languageName: unknown
   linkType: soft
@@ -3116,11 +3116,11 @@ __metadata:
   dependencies:
     "@lingui/conf": "npm:^4.5.0"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/next-config": "*"
-    "@graphcommerce/next-ui": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/next-config": ^7
+    "@graphcommerce/next-ui": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3134,17 +3134,17 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-cart-billing-address@workspace:packages/magento-cart-billing-address"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/framer-next-pages": "*"
-    "@graphcommerce/graphql": "*"
-    "@graphcommerce/image": "*"
-    "@graphcommerce/magento-cart": "*"
-    "@graphcommerce/magento-customer": "*"
-    "@graphcommerce/magento-store": "*"
-    "@graphcommerce/next-ui": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/react-hook-form": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/framer-next-pages": ^7
+    "@graphcommerce/graphql": ^7
+    "@graphcommerce/image": ^7
+    "@graphcommerce/magento-cart": ^7
+    "@graphcommerce/magento-customer": ^7
+    "@graphcommerce/magento-store": ^7
+    "@graphcommerce/next-ui": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/react-hook-form": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3160,18 +3160,18 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-cart-checkout@workspace:packages/magento-cart-checkout"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/graphql": "*"
-    "@graphcommerce/image": "*"
-    "@graphcommerce/magento-cart": "*"
-    "@graphcommerce/magento-cart-coupon": "*"
-    "@graphcommerce/magento-cart-items": "*"
-    "@graphcommerce/magento-customer": "*"
-    "@graphcommerce/magento-store": "*"
-    "@graphcommerce/next-ui": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/react-hook-form": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/graphql": ^7
+    "@graphcommerce/image": ^7
+    "@graphcommerce/magento-cart": ^7
+    "@graphcommerce/magento-cart-coupon": ^7
+    "@graphcommerce/magento-cart-items": ^7
+    "@graphcommerce/magento-customer": ^7
+    "@graphcommerce/magento-store": ^7
+    "@graphcommerce/next-ui": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/react-hook-form": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3187,15 +3187,15 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-cart-coupon@workspace:packages/magento-cart-coupon"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/graphql": "*"
-    "@graphcommerce/image": "*"
-    "@graphcommerce/magento-cart": "*"
-    "@graphcommerce/magento-store": "*"
-    "@graphcommerce/next-ui": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/react-hook-form": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/graphql": ^7
+    "@graphcommerce/image": ^7
+    "@graphcommerce/magento-cart": ^7
+    "@graphcommerce/magento-store": ^7
+    "@graphcommerce/next-ui": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/react-hook-form": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3211,18 +3211,18 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-cart-email@workspace:packages/magento-cart-email"
   peerDependencies:
-    "@graphcommerce/ecommerce-ui": "*"
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/graphql": "*"
-    "@graphcommerce/image": "*"
-    "@graphcommerce/magento-cart": "*"
-    "@graphcommerce/magento-customer": "*"
-    "@graphcommerce/magento-product": "*"
-    "@graphcommerce/magento-store": "*"
-    "@graphcommerce/next-ui": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/react-hook-form": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/ecommerce-ui": ^7
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/graphql": ^7
+    "@graphcommerce/image": ^7
+    "@graphcommerce/magento-cart": ^7
+    "@graphcommerce/magento-customer": ^7
+    "@graphcommerce/magento-product": ^7
+    "@graphcommerce/magento-store": ^7
+    "@graphcommerce/next-ui": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/react-hook-form": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3238,17 +3238,17 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-cart-items@workspace:packages/magento-cart-items"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/graphql": "*"
-    "@graphcommerce/image": "*"
-    "@graphcommerce/magento-cart": "*"
-    "@graphcommerce/magento-customer": "*"
-    "@graphcommerce/magento-product": "*"
-    "@graphcommerce/magento-store": "*"
-    "@graphcommerce/next-ui": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/react-hook-form": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/graphql": ^7
+    "@graphcommerce/image": ^7
+    "@graphcommerce/magento-cart": ^7
+    "@graphcommerce/magento-customer": ^7
+    "@graphcommerce/magento-product": ^7
+    "@graphcommerce/magento-store": ^7
+    "@graphcommerce/next-ui": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/react-hook-form": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3264,17 +3264,17 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-cart-payment-method@workspace:packages/magento-cart-payment-method"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/framer-scroller": "*"
-    "@graphcommerce/graphql": "*"
-    "@graphcommerce/image": "*"
-    "@graphcommerce/magento-cart": "*"
-    "@graphcommerce/magento-cart-shipping-address": "*"
-    "@graphcommerce/magento-store": "*"
-    "@graphcommerce/next-ui": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/react-hook-form": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/framer-scroller": ^7
+    "@graphcommerce/graphql": ^7
+    "@graphcommerce/image": ^7
+    "@graphcommerce/magento-cart": ^7
+    "@graphcommerce/magento-cart-shipping-address": ^7
+    "@graphcommerce/magento-store": ^7
+    "@graphcommerce/next-ui": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/react-hook-form": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3290,18 +3290,18 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-cart-pickup@workspace:packages/magento-cart-pickup"
   peerDependencies:
-    "@graphcommerce/ecommerce-ui": "*"
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/graphql": "*"
-    "@graphcommerce/graphql-mesh": "*"
-    "@graphcommerce/image": "*"
-    "@graphcommerce/magento-cart": "*"
-    "@graphcommerce/magento-cart-shipping-method": "*"
-    "@graphcommerce/magento-store": "*"
-    "@graphcommerce/next-ui": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/react-hook-form": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/ecommerce-ui": ^7
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/graphql": ^7
+    "@graphcommerce/graphql-mesh": ^7
+    "@graphcommerce/image": ^7
+    "@graphcommerce/magento-cart": ^7
+    "@graphcommerce/magento-cart-shipping-method": ^7
+    "@graphcommerce/magento-store": ^7
+    "@graphcommerce/next-ui": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/react-hook-form": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3317,16 +3317,16 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-cart-shipping-address@workspace:packages/magento-cart-shipping-address"
   peerDependencies:
-    "@graphcommerce/ecommerce-ui": "*"
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/graphql": "*"
-    "@graphcommerce/image": "*"
-    "@graphcommerce/magento-cart": "*"
-    "@graphcommerce/magento-customer": "*"
-    "@graphcommerce/magento-store": "*"
-    "@graphcommerce/next-ui": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/ecommerce-ui": ^7
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/graphql": ^7
+    "@graphcommerce/image": ^7
+    "@graphcommerce/magento-cart": ^7
+    "@graphcommerce/magento-customer": ^7
+    "@graphcommerce/magento-store": ^7
+    "@graphcommerce/next-ui": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3342,17 +3342,17 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-cart-shipping-method@workspace:packages/magento-cart-shipping-method"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/framer-scroller": "*"
-    "@graphcommerce/graphql": "*"
-    "@graphcommerce/image": "*"
-    "@graphcommerce/magento-cart": "*"
-    "@graphcommerce/magento-cart-shipping-address": "*"
-    "@graphcommerce/magento-store": "*"
-    "@graphcommerce/next-ui": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/react-hook-form": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/framer-scroller": ^7
+    "@graphcommerce/graphql": ^7
+    "@graphcommerce/image": ^7
+    "@graphcommerce/magento-cart": ^7
+    "@graphcommerce/magento-cart-shipping-address": ^7
+    "@graphcommerce/magento-store": ^7
+    "@graphcommerce/next-ui": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/react-hook-form": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3368,20 +3368,20 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-cart@workspace:packages/magento-cart"
   peerDependencies:
-    "@graphcommerce/ecommerce-ui": "*"
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/framer-next-pages": "*"
-    "@graphcommerce/framer-scroller": "*"
-    "@graphcommerce/framer-utils": "*"
-    "@graphcommerce/graphql": "*"
-    "@graphcommerce/image": "*"
-    "@graphcommerce/magento-customer": "*"
-    "@graphcommerce/magento-graphql": "*"
-    "@graphcommerce/magento-store": "*"
-    "@graphcommerce/next-ui": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/react-hook-form": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/ecommerce-ui": ^7
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/framer-next-pages": ^7
+    "@graphcommerce/framer-scroller": ^7
+    "@graphcommerce/framer-utils": ^7
+    "@graphcommerce/graphql": ^7
+    "@graphcommerce/image": ^7
+    "@graphcommerce/magento-customer": ^7
+    "@graphcommerce/magento-graphql": ^7
+    "@graphcommerce/magento-store": ^7
+    "@graphcommerce/next-ui": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/react-hook-form": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3397,15 +3397,15 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-category@workspace:packages/magento-category"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/framer-scroller": "*"
-    "@graphcommerce/graphql": "*"
-    "@graphcommerce/image": "*"
-    "@graphcommerce/magento-product": "*"
-    "@graphcommerce/magento-store": "*"
-    "@graphcommerce/next-ui": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/framer-scroller": ^7
+    "@graphcommerce/graphql": ^7
+    "@graphcommerce/image": ^7
+    "@graphcommerce/magento-product": ^7
+    "@graphcommerce/magento-store": ^7
+    "@graphcommerce/next-ui": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3420,11 +3420,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-cms@workspace:packages/magento-cms"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/graphql": "*"
-    "@graphcommerce/magento-store": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/graphql": ^7
+    "@graphcommerce/magento-store": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3439,16 +3439,16 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-compare@workspace:packages/magento-compare"
   peerDependencies:
-    "@graphcommerce/ecommerce-ui": "*"
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/framer-next-pages": "*"
-    "@graphcommerce/framer-utils": "*"
-    "@graphcommerce/graphql": "*"
-    "@graphcommerce/magento-cart": "*"
-    "@graphcommerce/magento-product": "*"
-    "@graphcommerce/next-ui": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/ecommerce-ui": ^7
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/framer-next-pages": ^7
+    "@graphcommerce/framer-utils": ^7
+    "@graphcommerce/graphql": ^7
+    "@graphcommerce/magento-cart": ^7
+    "@graphcommerce/magento-product": ^7
+    "@graphcommerce/next-ui": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3465,10 +3465,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-customer-account@workspace:packages/magento-customer-account"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/magento-customer": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/magento-customer": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
   languageName: unknown
   linkType: soft
 
@@ -3476,16 +3476,16 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-customer-order@workspace:packages/magento-customer-order"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/graphql": "*"
-    "@graphcommerce/graphql-mesh": "*"
-    "@graphcommerce/image": "*"
-    "@graphcommerce/magento-customer": "*"
-    "@graphcommerce/magento-graphql": "*"
-    "@graphcommerce/magento-store": "*"
-    "@graphcommerce/next-ui": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/graphql": ^7
+    "@graphcommerce/graphql-mesh": ^7
+    "@graphcommerce/image": ^7
+    "@graphcommerce/magento-customer": ^7
+    "@graphcommerce/magento-graphql": ^7
+    "@graphcommerce/magento-store": ^7
+    "@graphcommerce/next-ui": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3501,18 +3501,18 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-customer@workspace:packages/magento-customer"
   peerDependencies:
-    "@graphcommerce/ecommerce-ui": "*"
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/framer-utils": "*"
-    "@graphcommerce/graphql": "*"
-    "@graphcommerce/graphql-mesh": "*"
-    "@graphcommerce/image": "*"
-    "@graphcommerce/magento-graphql": "*"
-    "@graphcommerce/magento-store": "*"
-    "@graphcommerce/next-ui": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/react-hook-form": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/ecommerce-ui": ^7
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/framer-utils": ^7
+    "@graphcommerce/graphql": ^7
+    "@graphcommerce/graphql-mesh": ^7
+    "@graphcommerce/image": ^7
+    "@graphcommerce/magento-graphql": ^7
+    "@graphcommerce/magento-store": ^7
+    "@graphcommerce/next-ui": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/react-hook-form": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3620,10 +3620,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-graphql@workspace:packages/magento-graphql"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/graphql": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/graphql": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
@@ -3634,15 +3634,15 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-newsletter@workspace:packages/magento-newsletter"
   peerDependencies:
-    "@graphcommerce/ecommerce-ui": "*"
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/graphql": "*"
-    "@graphcommerce/magento-cart": "*"
-    "@graphcommerce/magento-customer": "*"
-    "@graphcommerce/next-ui": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/react-hook-form": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/ecommerce-ui": ^7
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/graphql": ^7
+    "@graphcommerce/magento-cart": ^7
+    "@graphcommerce/magento-customer": ^7
+    "@graphcommerce/next-ui": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/react-hook-form": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3661,15 +3661,15 @@ __metadata:
     "@types/jsdom": "npm:^21.1.5"
     jsdom: "npm:^22.1.0"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/graphql": "*"
-    "@graphcommerce/magento-category": "*"
-    "@graphcommerce/magento-cms": "*"
-    "@graphcommerce/magento-product": "*"
-    "@graphcommerce/next-ui": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/react-hook-form": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/graphql": ^7
+    "@graphcommerce/magento-category": ^7
+    "@graphcommerce/magento-cms": ^7
+    "@graphcommerce/magento-product": ^7
+    "@graphcommerce/next-ui": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/react-hook-form": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3685,18 +3685,18 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-payment-adyen@workspace:packages/magento-payment-adyen"
   peerDependencies:
-    "@graphcommerce/ecommerce-ui": "*"
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/graphql": "*"
-    "@graphcommerce/graphql-mesh": "*"
-    "@graphcommerce/image": "*"
-    "@graphcommerce/magento-cart": "*"
-    "@graphcommerce/magento-cart-payment-method": "*"
-    "@graphcommerce/magento-product": "*"
-    "@graphcommerce/magento-store": "*"
-    "@graphcommerce/next-ui": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/ecommerce-ui": ^7
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/graphql": ^7
+    "@graphcommerce/graphql-mesh": ^7
+    "@graphcommerce/image": ^7
+    "@graphcommerce/magento-cart": ^7
+    "@graphcommerce/magento-cart-payment-method": ^7
+    "@graphcommerce/magento-product": ^7
+    "@graphcommerce/magento-store": ^7
+    "@graphcommerce/next-ui": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3714,19 +3714,19 @@ __metadata:
     "@types/braintree-web": "npm:^3.96.9"
     braintree-web: "npm:^3.97.3"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/graphql": "*"
-    "@graphcommerce/image": "*"
-    "@graphcommerce/magento-cart": "*"
-    "@graphcommerce/magento-cart-payment-method": "*"
-    "@graphcommerce/magento-cart-shipping-address": "*"
-    "@graphcommerce/magento-product": "*"
-    "@graphcommerce/magento-product-configurable": "*"
-    "@graphcommerce/magento-store": "*"
-    "@graphcommerce/next-ui": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/react-hook-form": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/graphql": ^7
+    "@graphcommerce/image": ^7
+    "@graphcommerce/magento-cart": ^7
+    "@graphcommerce/magento-cart-payment-method": ^7
+    "@graphcommerce/magento-cart-shipping-address": ^7
+    "@graphcommerce/magento-product": ^7
+    "@graphcommerce/magento-product-configurable": ^7
+    "@graphcommerce/magento-store": ^7
+    "@graphcommerce/next-ui": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/react-hook-form": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3742,19 +3742,19 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-payment-included@workspace:packages/magento-payment-included"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/graphql": "*"
-    "@graphcommerce/image": "*"
-    "@graphcommerce/magento-cart": "*"
-    "@graphcommerce/magento-cart-payment-method": "*"
-    "@graphcommerce/magento-cart-shipping-address": "*"
-    "@graphcommerce/magento-product": "*"
-    "@graphcommerce/magento-product-configurable": "*"
-    "@graphcommerce/magento-store": "*"
-    "@graphcommerce/next-ui": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/react-hook-form": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/graphql": ^7
+    "@graphcommerce/image": ^7
+    "@graphcommerce/magento-cart": ^7
+    "@graphcommerce/magento-cart-payment-method": ^7
+    "@graphcommerce/magento-cart-shipping-address": ^7
+    "@graphcommerce/magento-product": ^7
+    "@graphcommerce/magento-product-configurable": ^7
+    "@graphcommerce/magento-store": ^7
+    "@graphcommerce/next-ui": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/react-hook-form": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3770,14 +3770,14 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-payment-klarna@workspace:packages/magento-payment-klarna"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/graphql": "*"
-    "@graphcommerce/image": "*"
-    "@graphcommerce/magento-cart": "*"
-    "@graphcommerce/magento-store": "*"
-    "@graphcommerce/next-ui": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/graphql": ^7
+    "@graphcommerce/image": ^7
+    "@graphcommerce/magento-cart": ^7
+    "@graphcommerce/magento-store": ^7
+    "@graphcommerce/next-ui": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3793,22 +3793,22 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-payment-multisafepay@workspace:packages/magento-payment-multisafepay"
   peerDependencies:
-    "@graphcommerce/ecommerce-ui": "*"
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/graphql": "*"
-    "@graphcommerce/graphql-mesh": "*"
-    "@graphcommerce/image": "*"
-    "@graphcommerce/magento-cart": "*"
-    "@graphcommerce/magento-cart-checkout": "*"
-    "@graphcommerce/magento-cart-payment-method": "*"
-    "@graphcommerce/magento-cart-shipping-address": "*"
-    "@graphcommerce/magento-product": "*"
-    "@graphcommerce/magento-product-configurable": "*"
-    "@graphcommerce/magento-store": "*"
-    "@graphcommerce/next-ui": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/react-hook-form": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/ecommerce-ui": ^7
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/graphql": ^7
+    "@graphcommerce/graphql-mesh": ^7
+    "@graphcommerce/image": ^7
+    "@graphcommerce/magento-cart": ^7
+    "@graphcommerce/magento-cart-checkout": ^7
+    "@graphcommerce/magento-cart-payment-method": ^7
+    "@graphcommerce/magento-cart-shipping-address": ^7
+    "@graphcommerce/magento-product": ^7
+    "@graphcommerce/magento-product-configurable": ^7
+    "@graphcommerce/magento-store": ^7
+    "@graphcommerce/next-ui": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/react-hook-form": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3823,16 +3823,16 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-payment-paypal@workspace:packages/magento-payment-paypal"
   peerDependencies:
-    "@graphcommerce/ecommerce-ui": "*"
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/graphql": "*"
-    "@graphcommerce/image": "*"
-    "@graphcommerce/magento-cart": "*"
-    "@graphcommerce/magento-cart-payment-method": "*"
-    "@graphcommerce/magento-store": "*"
-    "@graphcommerce/next-ui": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/ecommerce-ui": ^7
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/graphql": ^7
+    "@graphcommerce/image": ^7
+    "@graphcommerce/magento-cart": ^7
+    "@graphcommerce/magento-cart-payment-method": ^7
+    "@graphcommerce/magento-store": ^7
+    "@graphcommerce/next-ui": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3848,19 +3848,19 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-product-bundle@workspace:packages/magento-product-bundle"
   peerDependencies:
-    "@graphcommerce/ecommerce-ui": "*"
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/graphql": "*"
-    "@graphcommerce/image": "*"
-    "@graphcommerce/magento-cart": "*"
-    "@graphcommerce/magento-cart-items": "*"
-    "@graphcommerce/magento-product": "*"
-    "@graphcommerce/magento-product-simple": "*"
-    "@graphcommerce/magento-product-virtual": "*"
-    "@graphcommerce/magento-store": "*"
-    "@graphcommerce/next-ui": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/ecommerce-ui": ^7
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/graphql": ^7
+    "@graphcommerce/image": ^7
+    "@graphcommerce/magento-cart": ^7
+    "@graphcommerce/magento-cart-items": ^7
+    "@graphcommerce/magento-product": ^7
+    "@graphcommerce/magento-product-simple": ^7
+    "@graphcommerce/magento-product-virtual": ^7
+    "@graphcommerce/magento-store": ^7
+    "@graphcommerce/next-ui": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3875,22 +3875,22 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-product-configurable@workspace:packages/magento-product-configurable"
   peerDependencies:
-    "@graphcommerce/ecommerce-ui": "*"
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/graphql": "*"
-    "@graphcommerce/graphql-mesh": "*"
-    "@graphcommerce/image": "*"
-    "@graphcommerce/magento-cart": "*"
-    "@graphcommerce/magento-cart-items": "*"
-    "@graphcommerce/magento-category": "*"
-    "@graphcommerce/magento-customer": "*"
-    "@graphcommerce/magento-product": "*"
-    "@graphcommerce/magento-product-simple": "*"
-    "@graphcommerce/magento-store": "*"
-    "@graphcommerce/next-ui": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/react-hook-form": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/ecommerce-ui": ^7
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/graphql": ^7
+    "@graphcommerce/graphql-mesh": ^7
+    "@graphcommerce/image": ^7
+    "@graphcommerce/magento-cart": ^7
+    "@graphcommerce/magento-cart-items": ^7
+    "@graphcommerce/magento-category": ^7
+    "@graphcommerce/magento-customer": ^7
+    "@graphcommerce/magento-product": ^7
+    "@graphcommerce/magento-product-simple": ^7
+    "@graphcommerce/magento-store": ^7
+    "@graphcommerce/next-ui": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/react-hook-form": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3906,14 +3906,14 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-product-downloadable@workspace:packages/magento-product-downloadable"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/graphql": "*"
-    "@graphcommerce/magento-cart": "*"
-    "@graphcommerce/magento-product": "*"
-    "@graphcommerce/magento-store": "*"
-    "@graphcommerce/next-ui": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/graphql": ^7
+    "@graphcommerce/magento-cart": ^7
+    "@graphcommerce/magento-product": ^7
+    "@graphcommerce/magento-store": ^7
+    "@graphcommerce/next-ui": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3927,14 +3927,14 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-product-grouped@workspace:packages/magento-product-grouped"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/graphql": "*"
-    "@graphcommerce/magento-cart": "*"
-    "@graphcommerce/magento-product": "*"
-    "@graphcommerce/magento-product-simple": "*"
-    "@graphcommerce/magento-product-virtual": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/graphql": ^7
+    "@graphcommerce/magento-cart": ^7
+    "@graphcommerce/magento-product": ^7
+    "@graphcommerce/magento-product-simple": ^7
+    "@graphcommerce/magento-product-virtual": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3948,14 +3948,14 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-product-simple@workspace:packages/magento-product-simple"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/graphql": "*"
-    "@graphcommerce/magento-cart": "*"
-    "@graphcommerce/magento-cart-items": "*"
-    "@graphcommerce/magento-product": "*"
-    "@graphcommerce/next-ui": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/graphql": ^7
+    "@graphcommerce/magento-cart": ^7
+    "@graphcommerce/magento-cart-items": ^7
+    "@graphcommerce/magento-product": ^7
+    "@graphcommerce/next-ui": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3969,14 +3969,14 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-product-virtual@workspace:packages/magento-product-virtual"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/graphql": "*"
-    "@graphcommerce/magento-cart": "*"
-    "@graphcommerce/magento-cart-items": "*"
-    "@graphcommerce/magento-product": "*"
-    "@graphcommerce/next-ui": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/graphql": ^7
+    "@graphcommerce/magento-cart": ^7
+    "@graphcommerce/magento-cart-items": ^7
+    "@graphcommerce/magento-product": ^7
+    "@graphcommerce/next-ui": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3993,18 +3993,18 @@ __metadata:
     schema-dts: "npm:^1.1.2"
     typescript: "npm:5.2.2"
   peerDependencies:
-    "@graphcommerce/ecommerce-ui": "*"
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/framer-next-pages": "*"
-    "@graphcommerce/framer-scroller": "*"
-    "@graphcommerce/graphql": "*"
-    "@graphcommerce/graphql-mesh": "*"
-    "@graphcommerce/image": "*"
-    "@graphcommerce/magento-cart": "*"
-    "@graphcommerce/magento-store": "*"
-    "@graphcommerce/next-ui": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/ecommerce-ui": ^7
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/framer-next-pages": ^7
+    "@graphcommerce/framer-scroller": ^7
+    "@graphcommerce/graphql": ^7
+    "@graphcommerce/graphql-mesh": ^7
+    "@graphcommerce/image": ^7
+    "@graphcommerce/magento-cart": ^7
+    "@graphcommerce/magento-store": ^7
+    "@graphcommerce/next-ui": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -4020,16 +4020,16 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-recently-viewed-products@workspace:packages/magento-recently-viewed-products"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/graphql": "*"
-    "@graphcommerce/graphql-mesh": "*"
-    "@graphcommerce/magento-cart": "*"
-    "@graphcommerce/magento-product": "*"
-    "@graphcommerce/magento-product-configurable": "*"
-    "@graphcommerce/next-config": "*"
-    "@graphcommerce/next-ui": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/graphql": ^7
+    "@graphcommerce/graphql-mesh": ^7
+    "@graphcommerce/magento-cart": ^7
+    "@graphcommerce/magento-product": ^7
+    "@graphcommerce/magento-product-configurable": ^7
+    "@graphcommerce/next-config": ^7
+    "@graphcommerce/next-ui": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
     next: ^14
@@ -4045,17 +4045,17 @@ __metadata:
     schema-dts: "npm:^1.1.2"
     typescript: "npm:5.2.2"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/graphql": "*"
-    "@graphcommerce/graphql-mesh": "*"
-    "@graphcommerce/image": "*"
-    "@graphcommerce/magento-customer": "*"
-    "@graphcommerce/magento-product": "*"
-    "@graphcommerce/magento-store": "*"
-    "@graphcommerce/next-ui": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/react-hook-form": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/graphql": ^7
+    "@graphcommerce/graphql-mesh": ^7
+    "@graphcommerce/image": ^7
+    "@graphcommerce/magento-customer": ^7
+    "@graphcommerce/magento-product": ^7
+    "@graphcommerce/magento-store": ^7
+    "@graphcommerce/next-ui": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/react-hook-form": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -4070,15 +4070,15 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-search@workspace:packages/magento-search"
   peerDependencies:
-    "@graphcommerce/ecommerce-ui": "*"
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/graphql": "*"
-    "@graphcommerce/image": "*"
-    "@graphcommerce/magento-product": "*"
-    "@graphcommerce/next-ui": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/react-hook-form": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/ecommerce-ui": ^7
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/graphql": ^7
+    "@graphcommerce/image": ^7
+    "@graphcommerce/magento-product": ^7
+    "@graphcommerce/next-ui": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/react-hook-form": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -4093,13 +4093,13 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-store@workspace:packages/magento-store"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/graphql": "*"
-    "@graphcommerce/graphql-mesh": "*"
-    "@graphcommerce/image": "*"
-    "@graphcommerce/next-ui": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/graphql": ^7
+    "@graphcommerce/graphql-mesh": ^7
+    "@graphcommerce/image": ^7
+    "@graphcommerce/next-ui": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -4114,20 +4114,20 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-wishlist@workspace:packages/magento-wishlist"
   peerDependencies:
-    "@graphcommerce/ecommerce-ui": "*"
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/graphql": "*"
-    "@graphcommerce/graphql-mesh": "*"
-    "@graphcommerce/image": "*"
-    "@graphcommerce/magento-cart": "*"
-    "@graphcommerce/magento-customer": "*"
-    "@graphcommerce/magento-product": "*"
-    "@graphcommerce/magento-product-configurable": "*"
-    "@graphcommerce/magento-store": "*"
-    "@graphcommerce/next-config": "*"
-    "@graphcommerce/next-ui": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/ecommerce-ui": ^7
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/graphql": ^7
+    "@graphcommerce/graphql-mesh": ^7
+    "@graphcommerce/image": ^7
+    "@graphcommerce/magento-cart": ^7
+    "@graphcommerce/magento-customer": ^7
+    "@graphcommerce/magento-product": ^7
+    "@graphcommerce/magento-product-configurable": ^7
+    "@graphcommerce/magento-store": ^7
+    "@graphcommerce/next-config": ^7
+    "@graphcommerce/next-ui": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -4143,21 +4143,21 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/mollie-magento-payment@workspace:packages/mollie-magento-payment"
   peerDependencies:
-    "@graphcommerce/ecommerce-ui": "*"
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/graphql": "*"
-    "@graphcommerce/graphql-mesh": "*"
-    "@graphcommerce/image": "*"
-    "@graphcommerce/magento-cart": "*"
-    "@graphcommerce/magento-cart-payment-method": "*"
-    "@graphcommerce/magento-cart-shipping-address": "*"
-    "@graphcommerce/magento-product": "*"
-    "@graphcommerce/magento-product-configurable": "*"
-    "@graphcommerce/magento-store": "*"
-    "@graphcommerce/next-ui": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/react-hook-form": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/ecommerce-ui": ^7
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/graphql": ^7
+    "@graphcommerce/graphql-mesh": ^7
+    "@graphcommerce/image": ^7
+    "@graphcommerce/magento-cart": ^7
+    "@graphcommerce/magento-cart-payment-method": ^7
+    "@graphcommerce/magento-cart-shipping-address": ^7
+    "@graphcommerce/magento-product": ^7
+    "@graphcommerce/magento-product-configurable": ^7
+    "@graphcommerce/magento-store": ^7
+    "@graphcommerce/next-ui": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/react-hook-form": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -4208,13 +4208,13 @@ __metadata:
     schema-dts: "npm:^1.1.2"
     typescript: "npm:5.2.2"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/framer-next-pages": "*"
-    "@graphcommerce/framer-scroller": "*"
-    "@graphcommerce/framer-utils": "*"
-    "@graphcommerce/image": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/framer-next-pages": ^7
+    "@graphcommerce/framer-scroller": ^7
+    "@graphcommerce/framer-utils": ^7
+    "@graphcommerce/image": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -4244,9 +4244,9 @@ __metadata:
     "@testing-library/react": "npm:^14.1.0"
   peerDependencies:
     "@apollo/client": ^3
-    "@graphcommerce/eslint-config-pwa": "*"
-    "@graphcommerce/prettier-config-pwa": "*"
-    "@graphcommerce/typescript-config-pwa": "*"
+    "@graphcommerce/eslint-config-pwa": ^7
+    "@graphcommerce/prettier-config-pwa": ^7
+    "@graphcommerce/typescript-config-pwa": ^7
     graphql: ^16.6.0
     react: ^18.2.0
     react-dom: ^18.2.0
