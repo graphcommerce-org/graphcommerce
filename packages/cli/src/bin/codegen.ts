@@ -71,7 +71,7 @@ async function main() {
   })
 
   const isWatching = process.argv.includes('--watch') || process.argv.includes('-w')
-  if (!isWatching && extension) await rimraf(path.join(root, `**/*${extension}`))
+  if (!isWatching && extension) await rimraf(path.join(root, `**/*${extension}`), { glob: true })
 
   // - Prepend the all targets with ../../ if we're running in a monorepo setup.
   // - Append all the Graphcommerce packages to the configuration

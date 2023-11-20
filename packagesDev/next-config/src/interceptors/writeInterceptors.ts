@@ -17,7 +17,7 @@ export function writeInterceptors(
   })
 
   Object.entries(interceptors).forEach(([, plugin]) => {
-    const relativeFile = `${plugin.fromRoot}.interceptor.tsx`
+    const relativeFile = `${plugin.fromRoot.replace(/\\/g, '/')}.interceptor.tsx`
 
     if (existing.includes(relativeFile)) {
       delete existing[existing.indexOf(relativeFile)]

@@ -9,14 +9,14 @@
     "node": "16.x.x||18.x.x||20.x.x"
   },
   "scripts": {
-    "dev": "concurrently -k -n codegen,next 'graphql-codegen -w' 'next dev'",
+    "dev": "concurrently -k -n codegen,next \"graphql-codegen -w\" \"next dev\"",
     "codegen": "graphcommerce codegen-config && mesh build && graphql-codegen",
     "build": "graphcommerce codegen-config && mesh build && graphql-codegen && next build && next-sitemap",
     "start": "next start",
     "tsc:lint": "tsc --noEmit -p .",
     "lingui": "cross-env NODE_ENV=development lingui extract --clean",
-    "postinstall": "is-monorepo '[pkgrun] postinstall' '[pkgrun] patch-package'",
-    "create-patch": "patch-package --exclude 'package.json$|gql.ts$|interceptor.tsx$'"
+    "postinstall": "is-monorepo \"[pkgrun] postinstall\" \"[pkgrun] patch-package\"",
+    "create-patch": "patch-package --exclude \"package.json$|gql.ts$|interceptor.tsx$\""
   },
   "dependencies": {
     "@apollo/client": "~3.8.7",
