@@ -13,43 +13,7 @@ import { Interface } from '../types'
 type PropertyPickerProps = Interface
 
 export default function DRPropertyPicker(props: PropertyPickerProps) {
-  const { __type } = props
-  const { fields } = __type
   const fieldContainer = React.useRef<HTMLDivElement | null>(null)
-
-  // Todo: this can be optimized in a future version. Instead of running the functions twice we can return an object with both options. For now this is fine.
-  const numberOptions = React.useMemo(
-    () =>
-      createOptionsFromInterfaceObject(
-        objectifyGraphQLInterface(fields, 'number', ['ProductInterface']),
-      ),
-    [fields],
-  )
-
-  const textOptions = React.useMemo(
-    () =>
-      createOptionsFromInterfaceObject(
-        objectifyGraphQLInterface(fields, 'text', ['ProductInterface']),
-      ),
-    [fields],
-  )
-
-  // We manually add url to options because it is supported by DynamicRows but is not included in the ProductInterface.
-  const options = React.useMemo(
-    () => ({
-      text: [...textOptions, { label: 'url', id: 'url' }].sort((a, b) => {
-        if (!a.label.includes('.') && !b.label.includes('.')) {
-          return a.label.localeCompare(b.label)
-        }
-        if (a.label.includes('.')) {
-          return 1
-        }
-        return -1
-      }),
-      number: [...numberOptions, { label: 'url', id: 'url' }],
-    }),
-    [numberOptions, textOptions],
-  )
 
   React.useEffect(() => {
     /**
@@ -82,7 +46,7 @@ export default function DRPropertyPicker(props: PropertyPickerProps) {
   return (
     <div ref={fieldContainer}>
       <Wrapper>
-        <PropertyPicker options={options} />
+        <PropertyPicker />
       </Wrapper>
     </div>
   )

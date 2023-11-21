@@ -8,11 +8,13 @@ import { __Field } from '../types'
  * @returns
  */
 export const objectifyGraphQLInterface = (
-  fields: __Field[],
+  fields: __Field[] | null,
   conditionType: 'text' | 'number' | 'all',
   skip: string[],
 ): object => {
   let objectifiedInterface: object = {}
+
+  if (!fields) return objectifiedInterface
 
   for (const [, value] of Object.entries(fields)) {
     const nestedFields = value?.type?.ofType?.fields
