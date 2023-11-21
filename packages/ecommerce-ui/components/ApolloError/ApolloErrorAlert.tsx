@@ -37,7 +37,7 @@ export function ApolloErrorAlert(props: ApolloErrorAlertProps) {
                 </div>
               </Box>
             ))}
-            {error && (
+            {error.networkError && (
               <Box key='networkError'>
                 <Box
                   sx={(theme) => ({
