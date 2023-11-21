@@ -35,7 +35,7 @@ export function SelectedCustomizableOptions(props: ConfigurableActionCartItemPro
                   {value.label}
                 </span>
               )}
-              {value.price.value > 0 && (
+              {value.price.type !== 'PERCENT' && value.price.value > 0 && (
                 <Box
                   sx={(theme) => ({ position: 'absolute', right: theme.spacings.xs })}
                   key={`${value.customizable_option_value_uid}_${value.price.value}`}
