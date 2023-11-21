@@ -24,7 +24,7 @@ async function pushWithPromise(
         // We are at the destination
         router.events.off('routeChangeComplete', navigatedToTarget)
         router.events.on('routeChangeComplete', navigatedAwayFromTarget)
-      }
+      } else resolve(false)
     }
     router.events.on('routeChangeComplete', navigatedToTarget)
   })
