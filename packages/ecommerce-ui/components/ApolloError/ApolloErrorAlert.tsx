@@ -17,10 +17,10 @@ export function ApolloErrorAlert(props: ApolloErrorAlertProps) {
 
   return (
     <>
-      {true && (
+      {error && (
         <Box key='alerts'>
           <Box sx={sx} className={classes.root}>
-            {error?.graphQLErrors.map((e, index) => (
+            {error.graphQLErrors.map((e, index) => (
               // eslint-disable-next-line react/no-array-index-key
               <Box key={index}>
                 <div className={classes.alert}>
@@ -32,16 +32,12 @@ export function ApolloErrorAlert(props: ApolloErrorAlertProps) {
                       marginTop: 0.5,
                     })}
                   >
-                    {isDevMode ? (
-                      e.message
-                    ) : (
-                      <Trans id='Something went wrong. Please try again later.' />
-                    )}
+                    {e.message}
                   </Alert>
                 </div>
               </Box>
             ))}
-            {true && (
+            {error && (
               <Box key='networkError'>
                 <Box
                   sx={(theme) => ({

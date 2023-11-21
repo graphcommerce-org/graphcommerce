@@ -14,11 +14,9 @@ export function ApolloErrorSnackbar(props: ApolloErrorSnackbarProps) {
   return (
     <ErrorSnackbar variant='pill' severity='error' {...passedProps} open={!!error}>
       <>
+        {error.graphQLErrors.map((e) => e.message).join(', ')}
         {isDevMode ? (
-          <>
-            {error.graphQLErrors.map((e) => e.message).join(', ')}
-            {error.networkError && <>Network Error: {error.networkError.message}</>}
-          </>
+          <>{error.networkError && <>Network Error: {error.networkError.message}</>}</>
         ) : (
           <Trans id='Something went wrong. Please try again later.' />
         )}
