@@ -57,8 +57,6 @@ const customerErrorLink = (router: PushRouter) =>
     if (!client) return undefined
 
     const oldHeaders = operation.getContext().headers
-    // const email = client.cache.readQuery({ query: UseCustomerValidateTokenDocument })?.customer
-    //   ?.email
     const authError = graphQLErrors?.find((err) => isErrorCategory(err, 'graphql-authorization'))
 
     /** If the error we're dealing with is not an authorization error, we're done. */
@@ -73,7 +71,7 @@ const customerErrorLink = (router: PushRouter) =>
     }
 
     const currentToken = client.cache.readQuery({ query: CustomerTokenDocument })?.customerToken
-    if (!currentToken) throw Error('bug')
+    if (!currentToken) throw Error('We currenly do not have a customer token in the cache.')
     client.writeQuery({
       query: CustomerTokenDocument,
       data: { customerToken: { ...currentToken, valid: false } },

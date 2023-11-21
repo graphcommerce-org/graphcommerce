@@ -51,14 +51,9 @@ export function useFormIsEmailAvailable(props: UseFormIsEmailAvailableProps) {
 
   const [mode, setMode] = useState<AccountSignInUpState>(loggedIn ? 'signedin' : 'email')
 
-  const [, authError] = graphqlErrorByCategory({
-    category: 'graphql-authorization',
-    error: customerQuery.error,
-  })
-
   useEffect(() => {
     if (loggedIn) {
-      setMode(authError || requireAuth ? 'session-expired' : 'signedin')
+      setMode(requireAuth ? 'session-expired' : 'signedin')
       return
     }
     if (isToggleMethod) setMode(requestedMode)
@@ -69,7 +64,6 @@ export function useFormIsEmailAvailable(props: UseFormIsEmailAvailableProps) {
     if (customerQuery.data?.customer && requireAuth)
       setMode(isSubmitSuccessful ? 'signin' : 'session-expired')
   }, [
-    authError,
     customerQuery.data?.customer,
     requestedMode,
     isDirty,

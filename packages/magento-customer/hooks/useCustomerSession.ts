@@ -15,7 +15,7 @@ export type UseCustomerSessionReturn = {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function useCustomerSession(_: UseCustomerSessionOptions = {}) {
-  const query = useQuery(CustomerTokenDocument, { pollInterval: 1000 })
+  const query = useQuery(CustomerTokenDocument)
   const token = query.data?.customerToken
 
   return {
