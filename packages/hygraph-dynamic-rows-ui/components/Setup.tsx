@@ -1,13 +1,34 @@
 import { useApp, Wrapper } from '@hygraph/app-sdk-react'
 import styles from './setup.module.css'
+import { useState } from 'react'
 
 function Install() {
-  const { updateInstallation, installation, showToast } = useApp()
+  // @ts-ignore - outdated types from @hygraph/app-sdk-react
+  const { updateInstallation, installation, showToast, extension } = useApp()
   const installed = installation.status === 'COMPLETED'
+  const [gqlUri, setGqlUri] = useState('')
+
+  const saveOnClick = () => {
+    updateInstallation({
+      config: { backend: gqlUri },
+      status: 'COMPLETED',
+    }).then(() =>
+      showToast({
+        title: 'New GraphQL URI saved',
+        description: `${gqlUri} is now the GraphQL URI for this application.}`,
+        duration: 5000,
+        isClosable: true,
+        position: 'top-left',
+        variantColor: 'success',
+      }).catch((err) => console.log(err)),
+    )
+  }
+
+  const changedUri = extension.config.backend !== gqlUri
 
   const installOnClick = () =>
     updateInstallation({
-      config: {},
+      config: { backend: gqlUri },
       status: 'COMPLETED',
     }).then(() =>
       showToast({
@@ -43,13 +64,24 @@ function Install() {
   }
 
   return (
-    <button
-      type='button'
-      className={styles.button}
-      onClick={installed ? uninstallOnClick : installOnClick}
-    >
-      {installed ? 'Disable app' : 'Enable app'}
-    </button>
+    <>
+      <>
+        <span>GraphQL API URI</span>
+        <input
+          name='gql-uri'
+          defaultValue={extension.config.backend}
+          onChange={(e) => setGqlUri(e.target.value)}
+        />
+      </>
+
+      <button
+        type='button'
+        className={styles.button}
+        onClick={changedUri ? saveOnClick : installed ? uninstallOnClick : installOnClick}
+      >
+        {changedUri ? 'Save' : installed ? 'Disable app' : 'Enable app'}
+      </button>
+    </>
   )
 }
 

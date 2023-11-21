@@ -22,6 +22,10 @@
   margin-bottom: 16px;
 }
 
+.input {
+  display: inline;
+}
+
 .button {
   user-select: none;
   box-sizing: border-box;
