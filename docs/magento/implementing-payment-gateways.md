@@ -23,7 +23,7 @@ There are multiple flows to handle payments.
 
 ### Redirecting payment gateway
 
-The first step is to call setPaymentMethodOnCart and placeOrder.
+The first step is to call `setPaymentMethodOnCart` and `placeOrder`.
 
 ```ts
 const variables = {
@@ -69,14 +69,16 @@ mutation MyGatewayPaymentOptionsAndPlaceOrder($cartId: String!) {
 ```
 
 When the query succeeds the GraphCommerce payment module will redirect to the
-payment_url. The customer handles it's payment on the payment gateway's website.
-One of the following things can happen:
+`payment_url`. The customer handles it's payment on the payment gateway's
+website. One of the following things can happen:
 
-- Result 1: The customer has successfully paid and the customer is redirected
-  back to the `return_url` with the $TOKEN injected.
-- Result 2: The customer has failed their pauyment and the customer is
-  redirected back to the `return_url` with the $TOKEN injected.
-- Result 3: The customer presses back in their browser and we still get the
+- **Result 1:** The customer has successfully paid and the customer is
+  redirected back to the `return_url` with the `$TOKEN` injected.
+
+- **Result 2:** The customer has failed their payment and the customer is
+  redirected back to the `return_url` with the `$TOKEN` injected.
+
+- **Result 3:** The customer presses back in their browser and we still get the
   token from the `placeOrder` mutation.
 
 GraphCommerce now needs to check if the payment has indeed succeeded by calling
@@ -95,7 +97,7 @@ mutation MyGatewayProcessPayment($cartId: String!, $token: String!) {
 }
 ```
 
-After that GraphCommerce van either:
+After that GraphCommerce can either:
 
 - Redirect to the success page
 - Restore the cart, show the error message and let the customer checkout again.
@@ -109,18 +111,17 @@ input PaymentMethodInput {
 
 input MyGatewayPaymentInput {
   """
-  The URL to redirect the customer to after the payment has been processed.
+  The URL to which the customer should be redirected, after the payment has been processed.
 
-  This will should be a fully qualified URL: `https://mydomain.com/checkout/payment?token=$TOKEN`
-  $TOKEN will be repaced with the payment gateway token.
+  This should be a fully qualified URL: https://mydomain.com/checkout/payment?token=$TOKEN, where $TOKEN will be replaced with the payment gateway token.
 
-  This information should be stored in the database (encryped if required)
+  This information should be stored in the database (encrypted if required)
   """
   return_url: String!
   """
   Payment gateway can accept any custom field, for example an issuer or any additional information that can be configured in the checkout.
 
-  This information should be stored in the database (encryped if required)
+  This information should be stored in the database (encrypted if required)
   """
   custom_field: String
 }
