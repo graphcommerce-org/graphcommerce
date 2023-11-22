@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 /* eslint-disable */ "use strict";
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -28,6 +26,9 @@ _export(exports, {
     },
     ProductFiltersLayoutSchema: function() {
         return ProductFiltersLayoutSchema;
+    },
+    RecentlyViewedProductsConfigSchema: function() {
+        return RecentlyViewedProductsConfigSchema;
     },
     SidebarGalleryConfigSchema: function() {
         return SidebarGalleryConfigSchema;
@@ -84,6 +85,7 @@ function GraphCommerceConfigSchema() {
         productFiltersLayout: ProductFiltersLayoutSchema.nullish(),
         productFiltersPro: _zod.z.boolean().nullish(),
         productRoute: _zod.z.string().nullish(),
+        recentlyViewedProducts: RecentlyViewedProductsConfigSchema().nullish(),
         robotsAllow: _zod.z.boolean().nullish(),
         sidebarGallery: SidebarGalleryConfigSchema().nullish(),
         storefront: _zod.z.array(GraphCommerceStorefrontConfigSchema()),
@@ -120,9 +122,14 @@ function MagentoConfigurableVariantValuesSchema() {
         url: _zod.z.boolean().nullish()
     });
 }
+function RecentlyViewedProductsConfigSchema() {
+    return _zod.z.object({
+        enabled: _zod.z.boolean().nullish(),
+        maxCount: _zod.z.number().nullish()
+    });
+}
 function SidebarGalleryConfigSchema() {
     return _zod.z.object({
         paginationVariant: SidebarGalleryPaginationVariantSchema.nullish()
     });
 }
->>>>>>> b9ac0be0f ([GCOM-1108] fix unwanted changes)
