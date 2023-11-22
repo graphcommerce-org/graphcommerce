@@ -1,5 +1,19 @@
 # Change Log
 
+## 7.1.0-canary.50
+
+## 7.1.0-canary.49
+
+## 7.1.0-canary.48
+
+## 7.1.0-canary.47
+
+## 7.1.0-canary.46
+
+### Patch Changes
+
+- [`0d4a5a776`](https://github.com/graphcommerce-org/graphcommerce/commit/0d4a5a776e67c7cab39d964f2f47364f167c1951) - When releasing there will be changes to the yarn.lock file, but those weren't committed. ([@paales](https://github.com/paales))
+
 ## 7.1.0-canary.45
 
 ### Minor Changes

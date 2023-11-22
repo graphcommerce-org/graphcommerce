@@ -3,6 +3,7 @@ import { FullPageMessage, FullPageMessageProps } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { AlertProps } from '@mui/material'
 import { ApolloErrorAlert } from './ApolloErrorAlert'
+import { maskNetworkError } from './maskNetworkError'
 
 export type ApolloErrorFullPageProps = {
   error: ApolloError
@@ -19,14 +20,14 @@ export function ApolloErrorFullPage(props: ApolloErrorFullPageProps) {
     ...fullPageMessageProps
   } = props
 
-  const errorCount = error?.graphQLErrors?.length ?? +(error?.networkError ? 1 : 0)
+  const errorCount = (error?.graphQLErrors?.length ?? 0) + (error?.networkError ? 1 : 0)
 
   if (errorCount === 0) return null
 
   if (errorCount === 1) {
     return (
       <FullPageMessage
-        title={error?.graphQLErrors[0].message ?? error?.networkError?.message}
+        title={error?.graphQLErrors?.[0]?.message ?? maskNetworkError(error.networkError)}
         {...fullPageMessageProps}
       >
         {children}

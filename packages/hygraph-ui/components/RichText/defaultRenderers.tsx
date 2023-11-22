@@ -31,9 +31,9 @@ export const defaultRenderers: Renderers = {
       />
     )
   },
-  image: ({ src, width, height, title, mimeType, sx }) => (
+  image: ({ src, width, height, title, altText, mimeType, sx }) => (
     <Box sx={sx}>
-      <Asset asset={{ url: src, alt: title, width, height, mimeType }} />
+      <Asset asset={{ url: src, alt: altText ?? title, width, height, mimeType }} />
     </Box>
   ),
   video: ({ src, width, height, title, mimeType, sx }) => (

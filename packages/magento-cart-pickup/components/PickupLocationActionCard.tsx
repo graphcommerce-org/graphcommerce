@@ -52,12 +52,12 @@ export function PickupLocationActionCard(props: ActionCardItemRenderProps<Locati
         </>
       }
       action={
-        <Button disableTouchRipple variant='inline' color='secondary' tabIndex={-1}>
+        <Button disableRipple variant='inline' color='secondary' tabIndex={-1}>
           <Trans id='Select' />
         </Button>
       }
       reset={
-        <Button disableTouchRipple variant='inline' color='secondary' onClick={onReset}>
+        <Button disableRipple variant='inline' color='secondary' onClick={onReset}>
           <Trans id='Change' />
         </Button>
       }

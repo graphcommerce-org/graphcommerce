@@ -1,5 +1,19 @@
 # @graphcommerce/ecommerce-ui
 
+## 7.1.0-canary.50
+
+## 7.1.0-canary.49
+
+## 7.1.0-canary.48
+
+## 7.1.0-canary.47
+
+### Minor Changes
+
+- [#2111](https://github.com/graphcommerce-org/graphcommerce/pull/2111) [`35f3d3eaf`](https://github.com/graphcommerce-org/graphcommerce/commit/35f3d3eaf46f4b782bb1149e0efb0ec3819442d6) - Only show network errors in development mode. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 7.1.0-canary.46
+
 ## 7.1.0-canary.45
 
 ## 7.1.0-canary.38
