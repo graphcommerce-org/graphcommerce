@@ -1,15 +1,17 @@
+import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import {
+  ActionCard,
+  ActionCardLayout,
   Button,
-  FormDiv,
   FormActions,
+  FormDiv,
   FormRow,
   LayoutTitle,
   extendableComponent,
 } from '@graphcommerce/next-ui'
-import { emailPattern } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
-// eslint-disable-next-line @typescript-eslint/no-restricted-imports
-import { Box, CircularProgress, Link, SxProps, TextField, Theme, Typography } from '@mui/material'
+import { Box, CircularProgress, Link, SxProps, Theme, Typography } from '@mui/material'
+import error from 'next/error'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { CustomerDocument, useFormIsEmailAvailable } from '../../hooks'
@@ -18,31 +20,28 @@ import { ApolloCustomerErrorAlert } from '../ApolloCustomerError'
 import { SignInForm } from '../SignInForm/SignInForm'
 import { SignUpForm } from '../SignUpForm/SignUpForm'
 
-// When the guestCheckout is disabled in Magento add loginMethod "TOGGLE" to your config to enable the toggle login / register flow which is mandatory.
-// Toggle flow also disables the isEmailAvailable call to the magento backend.
-
-// Default is set to IS_EMAIL_AVAILABLE
-
 export type AccountSignInUpFormProps = { sx?: SxProps<Theme> }
-
-const parts = ['root', 'titleContainer'] as const
-const { classes } = extendableComponent('AccountSignInUpForm', parts)
 
 const titleContainerSx: SxProps<Theme> = (theme) => ({
   typography: 'body1',
   marginBottom: theme.spacings.xs,
 })
 
+const parts = ['root', 'titleContainer'] as const
+const { classes } = extendableComponent('AccountSignInUpForm', parts)
+
 export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
   const { sx = [] } = props
   const customerQuery = useCustomerQuery(CustomerDocument)
 
-  const router = useRouter()
   const { email, firstname = '' } = customerQuery.data?.customer ?? {}
+
   const { mode, form, autoSubmitting, submit } = useFormIsEmailAvailable({ email })
-  const { formState, muiRegister, required, watch, error, setValue, trigger } = form
+  const { formState, watch, control } = form
   const disableFields = formState.isSubmitting && !autoSubmitting
 
+  const { setValue, trigger } = form
+  const router = useRouter()
   useEffect(() => {
     const emailFromParams = router.query.email as string
     if (!email && emailFromParams) {
@@ -87,6 +86,36 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
         </Box>
       )}
 
+      {mode !== 'signedin' && import.meta.graphCommerce.loginMethod === 'TOGGLE' && (
+        <ActionCardLayout layout='grid'>
+          <ActionCard
+            sx={{
+              justifySelf: 'flex-end',
+              width: { xs: '100%', sm: '50%' },
+              '& .MuiBox-root': { justifyContent: 'center', mb: 0 },
+              mb: 0,
+            }}
+            selected={mode === 'signin'}
+            layout='grid'
+            title='Login'
+            value='signin'
+            onClick={() => setMode('signin')}
+          />
+          <ActionCard
+            sx={{
+              justifySelf: 'flex-start',
+              width: { xs: '100%', sm: '50%' },
+              '& .MuiBox-root': { justifyContent: 'center', alignContent: 'center' },
+            }}
+            selected={mode === 'signup'}
+            layout='grid'
+            value='signup'
+            title='Sign up'
+            onClick={() => setMode('signup')}
+          />
+        </ActionCardLayout>
+      )}
+
       {mode === 'signedin' && (
         <Box className={classes.titleContainer} sx={titleContainerSx}>
           <LayoutTitle variant='h2' gutterBottom={false}>
@@ -118,27 +147,23 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
       )}
 
       {mode !== 'signedin' && (
-        <form noValidate onSubmit={submit}>
+        <form onSubmit={submit}>
           <Box>
             <FormRow>
-              <TextField
+              <TextFieldElement
                 variant='outlined'
-                type='text'
-                autoComplete='email'
+                control={control}
+                name='email'
+                required
+                type='email'
                 error={formState.isSubmitted && !!formState.errors.email}
-                helperText={formState.isSubmitted && formState.errors.email?.message}
                 label={<Trans id='Email' />}
-                required={required.email}
                 disabled={disableFields}
-                {...muiRegister('email', {
-                  required: required.email,
-                  pattern: { value: emailPattern, message: '' },
-                })}
                 InputProps={{
                   endAdornment: formState.isSubmitting && (
                     <CircularProgress sx={{ display: 'inline-flex' }} />
                   ),
-                  readOnly: !!customerQuery.data?.customer?.email,
+                  readOnly: !!email,
                 }}
               />
             </FormRow>

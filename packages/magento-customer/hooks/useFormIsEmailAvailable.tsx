@@ -10,11 +10,14 @@ export type UseFormIsEmailAvailableProps = {
   onSubmitted?: (data: { email: string }) => void
 }
 
+export type AccountSignInUpState = 'email' | 'signin' | 'signup' | 'signedin' | 'session-expired'
+
 export function useFormIsEmailAvailable(props: UseFormIsEmailAvailableProps) {
   const { email, onSubmitted } = props
   const { loggedIn, requireAuth } = useCustomerSession()
   const customerQuery = useCustomerQuery(CustomerDocument)
 
+  const skip = import.meta.graphCommerce.loginMethod !== 'IS_EMAIL_AVAILABLE'
   const form = useFormGqlQuery(
     IsEmailAvailableDocument,
     { mode: 'onChange', defaultValues: { email: email ?? '' } },
@@ -29,9 +32,7 @@ export function useFormIsEmailAvailable(props: UseFormIsEmailAvailableProps) {
 
   const { isDirty, isSubmitSuccessful, isSubmitted, isSubmitting, isValid } = formState
 
-  const [mode, setMode] = useState<'email' | 'signin' | 'signup' | 'signedin' | 'session-expired'>(
-    loggedIn ? 'signedin' : 'email',
-  )
+  const [mode, setMode] = useState<AccountSignInUpState>(loggedIn ? 'signedin' : 'email')
 
   useEffect(() => {
     if (loggedIn) {
