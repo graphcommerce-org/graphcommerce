@@ -1,7 +1,8 @@
-import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
+import { TextFieldElement, emailPattern } from '@graphcommerce/ecommerce-ui'
 import {
   ActionCard,
   ActionCardLayout,
+  ActionCardListForm,
   Button,
   FormActions,
   FormDiv,
@@ -11,7 +12,6 @@ import {
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box, CircularProgress, Link, SxProps, Theme, Typography } from '@mui/material'
-import error from 'next/error'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { CustomerDocument, useFormIsEmailAvailable } from '../../hooks'
@@ -22,13 +22,13 @@ import { SignUpForm } from '../SignUpForm/SignUpForm'
 
 export type AccountSignInUpFormProps = { sx?: SxProps<Theme> }
 
+const parts = ['root', 'titleContainer'] as const
+const { classes } = extendableComponent('AccountSignInUpForm', parts)
+
 const titleContainerSx: SxProps<Theme> = (theme) => ({
   typography: 'body1',
   marginBottom: theme.spacings.xs,
 })
-
-const parts = ['root', 'titleContainer'] as const
-const { classes } = extendableComponent('AccountSignInUpForm', parts)
 
 export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
   const { sx = [] } = props
@@ -37,7 +37,7 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
   const { email, firstname = '' } = customerQuery.data?.customer ?? {}
 
   const { mode, form, autoSubmitting, submit } = useFormIsEmailAvailable({ email })
-  const { formState, watch, control } = form
+  const { formState, watch, control, error } = form
   const disableFields = formState.isSubmitting && !autoSubmitting
 
   const { setValue, trigger } = form
@@ -86,35 +86,37 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
         </Box>
       )}
 
-      {mode !== 'signedin' && import.meta.graphCommerce.loginMethod === 'TOGGLE' && (
-        <ActionCardLayout layout='grid'>
-          <ActionCard
-            sx={{
-              justifySelf: 'flex-end',
-              width: { xs: '100%', sm: '50%' },
-              '& .MuiBox-root': { justifyContent: 'center', mb: 0 },
-              mb: 0,
-            }}
-            selected={mode === 'signin'}
+      {import.meta.graphCommerce.loginMethod === 'TOGGLE' &&
+        (mode === 'signin' || mode === 'signup' || mode === 'email') && (
+          <ActionCardListForm
+            control={form.control}
+            name='requestedMode'
             layout='grid'
-            title='Login'
-            value='signin'
-            onClick={() => setMode('signin')}
+            render={ActionCard}
+            items={[
+              {
+                value: 'signin',
+                sx: {
+                  justifySelf: 'flex-end',
+                  width: { xs: '100%', sm: '50%' },
+                  '& .MuiBox-root': { justifyContent: 'center', mb: 0 },
+                  mb: 0,
+                },
+                title: <Trans id='Sign in' />,
+              },
+              {
+                value: 'signup',
+                title: <Trans id='Sign up' />,
+                sx: {
+                  justifySelf: 'flex-end',
+                  width: { xs: '100%', sm: '50%' },
+                  '& .MuiBox-root': { justifyContent: 'center', mb: 0 },
+                  mb: 0,
+                },
+              },
+            ]}
           />
-          <ActionCard
-            sx={{
-              justifySelf: 'flex-start',
-              width: { xs: '100%', sm: '50%' },
-              '& .MuiBox-root': { justifyContent: 'center', alignContent: 'center' },
-            }}
-            selected={mode === 'signup'}
-            layout='grid'
-            value='signup'
-            title='Sign up'
-            onClick={() => setMode('signup')}
-          />
-        </ActionCardLayout>
-      )}
+        )}
 
       {mode === 'signedin' && (
         <Box className={classes.titleContainer} sx={titleContainerSx}>
@@ -156,6 +158,10 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
                 name='email'
                 required
                 type='email'
+                validation={{
+                  required: true,
+                  pattern: { value: emailPattern, message: '' },
+                }}
                 error={formState.isSubmitted && !!formState.errors.email}
                 label={<Trans id='Email' />}
                 disabled={disableFields}
