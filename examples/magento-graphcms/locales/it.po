@@ -307,6 +307,9 @@ msgstr "Indirizzo email non valido"
 msgid "Invalid phone number"
 msgstr "Numero di telefono non valido"
 
+msgid "It appears you are offline, please try again later."
+msgstr "Sembra che tu sia offline, riprova più tardi."
+
 msgid "Last Name"
 msgstr "Cognome"
 
@@ -619,8 +622,11 @@ msgstr "Iscriviti alla nostra newsletter e rimani aggiornato"
 msgid "Some items in your cart contain errors, please update or remove them, then try again."
 msgstr "Alcuni articoli nel tuo carrello contengono errori, aggiorna o rimuovi e riprova."
 
-msgid "Something went wrong. Please try again later."
-msgstr "Qualcosa è andato storto. Riprovare più tardi."
+msgid "Something went wrong"
+msgstr "Qualcosa è andato storto"
+
+msgid "Something went wrong on the server, please try again later."
+msgstr "Qualcosa è andato storto sul server, riprova più tardi."
 
 msgid "Sort"
 msgstr "Ordinare"

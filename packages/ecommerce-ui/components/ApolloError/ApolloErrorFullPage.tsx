@@ -3,6 +3,7 @@ import { FullPageMessage, FullPageMessageProps } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { AlertProps } from '@mui/material'
 import { ApolloErrorAlert } from './ApolloErrorAlert'
+import { maskNetworkError } from './maskNetworkError'
 
 export type ApolloErrorFullPageProps = {
   error: ApolloError
@@ -26,13 +27,7 @@ export function ApolloErrorFullPage(props: ApolloErrorFullPageProps) {
   if (errorCount === 1) {
     return (
       <FullPageMessage
-        title={
-          error?.graphQLErrors?.[0]?.message ?? process.env.NODE_ENV === 'development' ? (
-            error?.networkError?.message
-          ) : (
-            <Trans id='Something went wrong. Please try again later.' />
-          )
-        }
+        title={error?.graphQLErrors?.[0]?.message ?? maskNetworkError(error.networkError)}
         {...fullPageMessageProps}
       >
         {children}

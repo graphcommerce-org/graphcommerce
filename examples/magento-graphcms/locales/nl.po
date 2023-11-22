@@ -307,6 +307,9 @@ msgstr "Ongeldig e-mailadres"
 msgid "Invalid phone number"
 msgstr "Ongeldig telefoonnummer"
 
+msgid "It appears you are offline, please try again later."
+msgstr "Het lijkt erop dat u offline bent, probeer het later opnieuw."
+
 msgid "Last Name"
 msgstr "Achternaam"
 
@@ -619,8 +622,11 @@ msgstr "Abonneer u op onze nieuwsbrief en blijf op de hoogte"
 msgid "Some items in your cart contain errors, please update or remove them, then try again."
 msgstr "Sommige items in uw winkelwagen bevatten fouten, pas deze aan of verwijder ze en probeer het opnieuw."
 
-msgid "Something went wrong. Please try again later."
-msgstr "Er is iets mis gegaan. Probeer het later opnieuw."
+msgid "Something went wrong"
+msgstr "Er is iets misgegaan"
+
+msgid "Something went wrong on the server, please try again later."
+msgstr "Er is iets misgegaan op de server, probeer het later opnieuw."
 
 msgid "Sort"
 msgstr "Sorteer"
