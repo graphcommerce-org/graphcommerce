@@ -25,7 +25,11 @@ export function SignUpForm(props: SignUpFormProps) {
     SignUpMutationVariables & { confirmPassword?: string }
   >(
     Mutation,
-    { defaultValues: { email }, onBeforeSubmit: (values) => ({ ...values, email }) },
+    {
+      defaultValues: { email },
+      onBeforeSubmit: (values) => ({ ...values, email }),
+      experimental_useV2: true,
+    },
     { errorPolicy: 'all' },
   )
 
