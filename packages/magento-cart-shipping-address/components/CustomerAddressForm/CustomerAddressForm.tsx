@@ -12,14 +12,15 @@ import {
 } from '@graphcommerce/magento-cart'
 import { CustomerDocument } from '@graphcommerce/magento-customer'
 import { ActionCardListForm } from '@graphcommerce/next-ui'
+import { i18n } from '@lingui/core'
 import { Box, SxProps, Theme } from '@mui/material'
 import React from 'react'
+import { findCustomerAddressFromCartAddress } from '../../utils/findCustomerAddressFromCartAddress'
 import { isSameAddress } from '../../utils/isSameAddress'
 import { GetAddressesDocument } from '../ShippingAddressForm/GetAddresses.gql'
 import { CustomerAddressActionCard } from './CustomerAddressActionCard'
 import { SetCustomerShippingAddressOnCartDocument } from './SetCustomerShippingAddressOnCart.gql'
 import { SetCustomerShippingBillingAddressOnCartDocument } from './SetCustomerShippingBillingAddressOnCart.gql'
-import { i18n } from '@lingui/core'
 
 type CustomerAddressListProps = Pick<UseFormComposeOptions, 'step'> & {
   children?: React.ReactNode
@@ -41,19 +42,9 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
   const shippingAddress = cartQuery?.cart?.shipping_addresses?.[0]
   const billingAddress = defaultBillingAddress || cartQuery?.cart?.billing_address
 
-  const found = customerAddresses.data?.customer?.addresses?.find(
-    (customerAddr) =>
-      [
-        customerAddr?.firstname === shippingAddress?.firstname,
-        customerAddr?.lastname === shippingAddress?.lastname,
-        customerAddr?.city === shippingAddress?.city,
-        customerAddr?.postcode === shippingAddress?.postcode,
-        customerAddr?.street?.[0] === shippingAddress?.street[0],
-        customerAddr?.street?.[1] === shippingAddress?.street[1],
-        customerAddr?.street?.[2] === shippingAddress?.street[2],
-        customerAddr?.country_code === shippingAddress?.country.code,
-        customerAddr?.region?.region_code === shippingAddress?.region?.code,
-      ].filter((v) => !v).length === 0,
+  const found = findCustomerAddressFromCartAddress(
+    customerAddresses.data?.customer?.addresses,
+    shippingAddress,
   )
 
   const Mutation = isSameAddress(shippingAddress, billingAddress)
