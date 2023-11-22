@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.1.0-canary.48
+
+### Patch Changes
+
+- [#2118](https://github.com/graphcommerce-org/graphcommerce/pull/2118) [`0cdaad28f`](https://github.com/graphcommerce-org/graphcommerce/commit/0cdaad28fb9a20fb5b0b1d339f197b938aa3595a) - Fixed bug where if the customer created a new address during checkout it would not be persisted when navigating back from the payment step. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
 ## 7.1.0-canary.47
 
 ## 7.1.0-canary.46
