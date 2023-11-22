@@ -55,6 +55,7 @@ export function useFormIsEmailAvailable(props: UseFormIsEmailAvailableProps) {
       setMode('signedin')
       return
     }
+    if (isToggleMethod) setMode(requestedMode)
     if (isSubmitting) return
     if (!isValid) return
     if (!isDirty && isSubmitted && isSubmitSuccessful && isValid) setMode(requestedMode)

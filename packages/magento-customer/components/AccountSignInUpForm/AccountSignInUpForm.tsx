@@ -108,7 +108,7 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
                 value: 'signup',
                 title: <Trans id='Sign up' />,
                 sx: {
-                  justifySelf: 'flex-end',
+                  justifySelf: 'flex-start',
                   width: { xs: '100%', sm: '50%' },
                   '& .MuiBox-root': { justifyContent: 'center', mb: 0 },
                   mb: 0,
