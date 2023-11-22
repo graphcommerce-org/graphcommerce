@@ -21,15 +21,13 @@ export function ApolloErrorFullPage(props: ApolloErrorFullPageProps) {
 
   const errorCount = (error?.graphQLErrors?.length ?? 0) + (error?.networkError ? 1 : 0)
 
-  const isDevMode = process.env.NODE_ENV === 'development'
-
   if (errorCount === 0) return null
 
   if (errorCount === 1) {
     return (
       <FullPageMessage
         title={
-          error?.graphQLErrors?.[0]?.message ?? isDevMode ? (
+          error?.graphQLErrors?.[0]?.message ?? process.env.NODE_ENV === 'development' ? (
             error?.networkError?.message
           ) : (
             <Trans id='Something went wrong. Please try again later.' />

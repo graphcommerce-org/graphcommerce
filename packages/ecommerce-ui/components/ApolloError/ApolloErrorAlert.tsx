@@ -13,7 +13,6 @@ export type ApolloErrorAlertProps = {
 }
 export function ApolloErrorAlert(props: ApolloErrorAlertProps) {
   const { error, graphqlErrorAlertProps, networkErrorAlertProps, sx } = props
-  const isDevMode = process.env.NODE_ENV === 'development'
 
   return (
     <>
@@ -48,7 +47,7 @@ export function ApolloErrorAlert(props: ApolloErrorAlertProps) {
                   key='networkError'
                 >
                   <Alert severity='error' {...networkErrorAlertProps}>
-                    {isDevMode ? (
+                    {process.env.NODE_ENV === 'development' ? (
                       `Network Error: ${error?.networkError?.message}`
                     ) : (
                       <Trans id='Something went wrong. Please try again later.' />
