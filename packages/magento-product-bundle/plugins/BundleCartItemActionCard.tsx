@@ -19,9 +19,8 @@ export function BundleCartItemActionCard(
       {...rest}
       details={
         <BundleProductCartItemOptions
-          prices={rest.cartItem.prices}
-          bundle_options={rest.cartItem.bundle_options}
-          customizable_options={rest.cartItem.customizable_options}
+          {...rest.cartItem}
+          productPrice={rest.cartItem.product.price_range.minimum_price.final_price.value}
         />
       }
     />

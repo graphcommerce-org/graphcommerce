@@ -10,19 +10,20 @@ import {
   TypeRenderer,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
-import { FormLabel, Checkbox, TextField, Box } from '@mui/material'
+import { Trans } from '@lingui/react'
+// eslint-disable-next-line @typescript-eslint/no-restricted-imports
+import { FormLabel, Checkbox, Box } from '@mui/material'
 import React from 'react'
 import { AddToCartItemSelector, useFormAddProductsToCart } from '../AddProductsToCart'
-import { ProductCustomizableFragment } from './ProductCustomizable.gql'
 import { ProductPagePriceFragment } from '../ProductPagePrice'
-import { Trans } from '@lingui/react'
-import { errors } from '@playwright/test'
+import { ProductCustomizableFragment } from './ProductCustomizable.gql'
 
 export type OptionTypeRenderer = TypeRenderer<
   NonNullable<NonNullable<ProductCustomizableFragment['options']>[number]> & {
     optionIndex: number
     index: number
     currency: CurrencyEnum
+    productPrice: number
   }
 >
 
@@ -80,7 +81,7 @@ const CustomizableDropDownOption = React.memo<
 const CustomizableRadioOption = React.memo<
   React.ComponentProps<OptionTypeRenderer['CustomizableRadioOption']>
 >((props) => {
-  const { uid, required, index, title: label, radioValue, currency } = props
+  const { uid, required, index, title: label, radioValue, currency, productPrice } = props
   const { control, getValues } = useFormAddProductsToCart()
 
   const allSelected = getValues(`cartItems.${index}.customizable_options.${uid}`) || []
@@ -107,17 +108,28 @@ const CustomizableRadioOption = React.memo<
               value: radioVal.uid,
               title: radioVal.title,
               price:
-                radioVal.price === 0 ? null : (
-                  <Box
-                    sx={{
-                      color: allSelected.includes(radioVal.uid) ? 'text.primary' : 'text.secondary',
-                    }}
-                  >
-                    {/* Change fontFamily so the + is properly outlined */}
-                    <span style={{ fontFamily: 'arial' }}>{'+ '}</span>
-                    <Money value={radioVal.price} currency={currency} />
-                  </Box>
-                ),
+                radioVal.price === 0
+                  ? null
+                  : radioVal.price && (
+                      <Box
+                        sx={{
+                          color: allSelected.includes(radioVal.uid)
+                            ? 'text.primary'
+                            : 'text.secondary',
+                        }}
+                      >
+                        {/* Change fontFamily so the + is properly outlined */}
+                        <span style={{ fontFamily: 'arial' }}>{'+ '}</span>
+                        <Money
+                          value={
+                            radioVal.price_type === 'PERCENT'
+                              ? productPrice * (radioVal.price / 100)
+                              : radioVal.price
+                          }
+                          currency={currency}
+                        />
+                      </Box>
+                    ),
             }) satisfies ActionCardProps,
         )}
       />
@@ -128,7 +140,7 @@ const CustomizableRadioOption = React.memo<
 const CustomizableCheckboxOption = React.memo<
   React.ComponentProps<OptionTypeRenderer['CustomizableCheckboxOption']>
 >((props) => {
-  const { uid, required, index, title: label, checkboxValue, currency } = props
+  const { uid, required, index, title: label, checkboxValue, currency, productPrice } = props
   const { control, getValues } = useFormAddProductsToCart()
 
   const allSelected = getValues(`cartItems.${index}.customizable_options.${uid}`) || []
@@ -159,18 +171,27 @@ const CustomizableCheckboxOption = React.memo<
                 </Box>
               ),
               price:
-                checkboxVal.price === 0 ? null : (
-                  <Box
-                    sx={{
-                      color: allSelected.includes(checkboxVal.uid)
-                        ? 'text.primary'
-                        : 'text.secondary',
-                    }}
-                  >
-                    <span style={{ fontFamily: 'arial' }}>{'+ '}</span>
-                    <Money value={checkboxVal.price} currency={currency} />
-                  </Box>
-                ),
+                checkboxVal.price === 0
+                  ? null
+                  : checkboxVal.price && (
+                      <Box
+                        sx={{
+                          color: allSelected.includes(checkboxVal.uid)
+                            ? 'text.primary'
+                            : 'text.secondary',
+                        }}
+                      >
+                        <span style={{ fontFamily: 'arial' }}>{'+ '}</span>
+                        <Money
+                          value={
+                            checkboxVal.price_type === 'PERCENT'
+                              ? productPrice * (checkboxVal.price / 100)
+                              : checkboxVal.price
+                          }
+                          currency={currency}
+                        />
+                      </Box>
+                    ),
             }) satisfies ActionCardProps,
         )}
         errorMessage=''
@@ -182,7 +203,7 @@ const CustomizableCheckboxOption = React.memo<
 const CustomizableMultipleOption = React.memo<
   React.ComponentProps<OptionTypeRenderer['CustomizableMultipleOption']>
 >((props) => {
-  const { uid, required, index, title: label, multipleValue, currency } = props
+  const { uid, required, index, title: label, multipleValue, currency, productPrice } = props
   const { control, getValues } = useFormAddProductsToCart()
 
   const allSelected = getValues(`cartItems.${index}.customizable_options.${uid}`) || []
@@ -209,18 +230,27 @@ const CustomizableMultipleOption = React.memo<
               value: multipleVal.uid,
               title: multipleVal.title,
               price:
-                multipleVal.price === 0 ? null : (
-                  <Box
-                    sx={{
-                      color: allSelected.includes(multipleVal.uid)
-                        ? 'text.primary '
-                        : 'text.secondary',
-                    }}
-                  >
-                    <span style={{ fontFamily: 'arial' }}>{'+ '}</span>
-                    <Money value={multipleVal.price} currency={currency} />
-                  </Box>
-                ),
+                multipleVal.price === 0
+                  ? null
+                  : multipleVal.price && (
+                      <Box
+                        sx={{
+                          color: allSelected.includes(multipleVal.uid)
+                            ? 'text.primary '
+                            : 'text.secondary',
+                        }}
+                      >
+                        <span style={{ fontFamily: 'arial' }}>{'+ '}</span>
+                        <Money
+                          value={
+                            multipleVal.price_type === 'PERCENT'
+                              ? productPrice * (multipleVal.price / 100)
+                              : multipleVal.price
+                          }
+                          currency={currency}
+                        />
+                      </Box>
+                    ),
             }) satisfies ActionCardProps,
         )}
       />
@@ -375,6 +405,7 @@ export function ProductCustomizable(props: ProductCustomizableProps) {
           optionIndex={option.sort_order + 100}
           index={index}
           currency={product.price_range.minimum_price.final_price.currency}
+          productPrice={product.price_range.minimum_price.final_price.value}
         />
       ))}
     </>

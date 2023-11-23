@@ -3,12 +3,13 @@ import { filterNonNullableKeys, nonNullable } from '@graphcommerce/next-ui'
 import { Box } from '@mui/material'
 import { SelectedCustomizableOptionFragment } from './SelectedCustomizableOption.gql'
 
-type ConfigurableActionCartItemProps = {
+type SelectedCustomizableOptionProps = {
   customizable_options?: (SelectedCustomizableOptionFragment | null | undefined)[] | null
+  productPrice: number | null | undefined
 }
 
-export function SelectedCustomizableOptions(props: ConfigurableActionCartItemProps) {
-  const { customizable_options } = props
+export function SelectedCustomizableOptions(props: SelectedCustomizableOptionProps) {
+  const { customizable_options, productPrice } = props
 
   const options = filterNonNullableKeys(customizable_options, [])
 
@@ -35,12 +36,18 @@ export function SelectedCustomizableOptions(props: ConfigurableActionCartItemPro
                   {value.label}
                 </span>
               )}
-              {value.price.type !== 'PERCENT' && value.price.value > 0 && (
+              {value.price.value > 0 && (
                 <Box
                   sx={(theme) => ({ position: 'absolute', right: theme.spacings.xs })}
                   key={`${value.customizable_option_value_uid}_${value.price.value}`}
                 >
-                  <Money value={value.price.value} />
+                  <Money
+                    value={
+                      value.price.type === 'PERCENT' && productPrice
+                        ? productPrice * (value.price.value / 100)
+                        : value.price.value
+                    }
+                  />
                 </Box>
               )}
               {!value.label && value.value && value.value}
