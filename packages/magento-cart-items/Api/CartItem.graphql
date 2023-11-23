@@ -12,6 +12,7 @@ fragment CartItem on CartItemInterface @injectable {
     thumbnail {
       ...ProductImage
     }
+    ...ProductPagePrice
   }
 
   prices {
