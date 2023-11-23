@@ -36,14 +36,14 @@ export function SelectedCustomizableOptions(props: SelectedCustomizableOptionPro
                   {value.label}
                 </span>
               )}
-              {value.price.value > 0 && (
+              {value.price.value > 0 && productPrice && (
                 <Box
                   sx={(theme) => ({ position: 'absolute', right: theme.spacings.xs })}
                   key={`${value.customizable_option_value_uid}_${value.price.value}`}
                 >
                   <Money
                     value={
-                      value.price.type === 'PERCENT' && productPrice
+                      value.price.type === 'PERCENT'
                         ? productPrice * (value.price.value / 100)
                         : value.price.value
                     }
