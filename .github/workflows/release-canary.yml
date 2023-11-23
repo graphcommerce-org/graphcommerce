@@ -30,6 +30,7 @@ jobs:
       - name: run changeset version and commit
         run: |
           yarn changeset version
+          yarn install
           git pull
           git add .
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -61,6 +62,7 @@ jobs:
         run: |
           yarn changeset pre exit
           yarn changeset version
+          yarn install
           git add .
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

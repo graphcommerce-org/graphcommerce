@@ -1,6 +1,8 @@
 import { ApolloError } from '@graphcommerce/graphql'
 import { extendableComponent } from '@graphcommerce/next-ui/Styles/extendableComponent'
+import { Trans } from '@lingui/react'
 import { AlertProps, Alert, Box, SxProps, Theme } from '@mui/material'
+import { maskNetworkError } from './maskNetworkError'
 
 const { classes, selectors } = extendableComponent('ApolloErrorAlert', ['root', 'alert'] as const)
 
@@ -46,7 +48,7 @@ export function ApolloErrorAlert(props: ApolloErrorAlertProps) {
                   key='networkError'
                 >
                   <Alert severity='error' {...networkErrorAlertProps}>
-                    Network Error: {error.networkError.message}
+                    {maskNetworkError(error.networkError)}
                   </Alert>
                 </Box>
               </Box>
