@@ -42,7 +42,7 @@ const EmailFormBase = React.memo<EmailFormProps>((props) => {
 
   const isEmailAvailable = useQuery(IsEmailAvailableDocument, {
     variables: { email },
-    skip: import.meta.graphCommerce.loginMethod === 'TOGGLE' || !email,
+    skip: !import.meta.graphCommerce.enableGuestCheckoutLogin || !email,
   })
 
   const { formState, required, error, handleSubmit } = form
@@ -73,7 +73,7 @@ const EmailFormBase = React.memo<EmailFormProps>((props) => {
             endAdornment: (
               <WaitForQueries waitFor={isEmailAvailable}>
                 {(isEmailAvailable.data?.isEmailAvailable ||
-                  import.meta.graphCommerce.loginMethod === 'TOGGLE') && (
+                  !import.meta.graphCommerce.enableGuestCheckoutLogin) && (
                   <Button
                     href={`/account/signin?email=${email}`}
                     color='secondary'

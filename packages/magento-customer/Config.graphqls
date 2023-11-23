@@ -1,8 +1,3 @@
-enum LoginMethod {
-  IS_EMAIL_AVAILABLE
-  TOGGLE
-}
-
 extend input GraphCommerceConfig {
   """
   Due to a limitation in the GraphQL API of Magento 2, we need to know if the
@@ -12,13 +7,15 @@ extend input GraphCommerceConfig {
   `customer/create_account/confirm` and should be removed once we can query
   """
   customerRequireEmailConfirmation: Boolean
-  # @deprecated(reason: "Should be replaced with a Magento configuration instead.")
 
   """
-  When the guest checkout feature is disabled in Magento, you should add the login method "TOGGLE" to your configuration to enable the toggle login/register flow, which is mandatory.
-  The toggle flow also disables the "isEmailAvailable" call to the Magento backend.
+  Enable Guest Checkout Login:
+  During customer login, GraphCommerce queries Magento to determine whether
+  the customer account already exists or not. If not, the sign-up form is shown instead.
 
-  Default is set to IS_EMAIL_AVAILABLE
+  For Magento versions, 2.4.7, 2.4.6-p1 and up, 2.4.5-p3 and up, 2.4.4-p4 and up, the following setting must be set to Yes
+
+  `Stores -> Configuration -> Sales -> Checkout -> Checkout Options -> Enable Guest Checkout Login`
   """
-  loginMethod: LoginMethod
+  enableGuestCheckoutLogin: Boolean
 }

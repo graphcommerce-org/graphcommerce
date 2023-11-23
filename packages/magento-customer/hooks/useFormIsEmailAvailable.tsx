@@ -16,7 +16,7 @@ export type UseFormIsEmailAvailableProps = {
 
 export type AccountSignInUpState = 'email' | 'signin' | 'signup' | 'signedin' | 'session-expired'
 
-export const isToggleMethod = import.meta.graphCommerce.loginMethod === 'TOGGLE'
+export const isToggleMethod = !import.meta.graphCommerce.enableGuestCheckoutLogin
 
 export function useFormIsEmailAvailable(props: UseFormIsEmailAvailableProps) {
   const { email, onSubmitted } = props
@@ -28,7 +28,7 @@ export function useFormIsEmailAvailable(props: UseFormIsEmailAvailableProps) {
     IsEmailAvailableQueryVariables & { requestedMode?: 'signin' | 'signup' }
   >(
     IsEmailAvailableDocument,
-    { mode: 'onChange', defaultValues: { email: email ?? '' } },
+    { mode: 'onChange', defaultValues: { email: email ?? '', requestedMode: 'signin' } },
     { fetchPolicy: 'cache-and-network' },
   )
   const { formState, data, handleSubmit } = form

@@ -171,6 +171,15 @@ Enables some demo specific code that is probably not useful for a project:
 - Adds "dominant_color" attribute swatches to the product list items.
 - Creates a big list items in the product list.
 
+#### enableGuestCheckoutLogin: boolean
+
+Enable Guest Checkout Login
+
+When the guest checkout feature is disabled in Magento, you should add the login method "TOGGLE" to your configuration to enable the toggle login/register flow, which is mandatory.
+The toggle flow also disables the "isEmailAvailable" call to the Magento backend.
+
+Default is set to IS_EMAIL_AVAILABLE
+
 #### googleAnalyticsId: string
 
 See https://support.google.com/analytics/answer/9539598?hl=en

@@ -170,6 +170,15 @@ export type GraphCommerceConfig = {
    */
   demoMode?: InputMaybe<Scalars['Boolean']['input']>;
   /**
+   * Enable Guest Checkout Login
+   *
+   * When the guest checkout feature is disabled in Magento, you should add the login method "TOGGLE" to your configuration to enable the toggle login/register flow, which is mandatory.
+   * The toggle flow also disables the "isEmailAvailable" call to the Magento backend.
+   *
+   * Default is set to IS_EMAIL_AVAILABLE
+   */
+  enableGuestCheckoutLogin?: InputMaybe<Scalars['Boolean']['input']>;
+  /**
    * See https://support.google.com/analytics/answer/9539598?hl=en
    *
    * Provide a value to enable Google Analytics for your store.
@@ -253,13 +262,6 @@ export type GraphCommerceConfig = {
   legacyProductRoute?: InputMaybe<Scalars['Boolean']['input']>;
   /** Limit the static generation of SSG when building */
   limitSsg?: InputMaybe<Scalars['Boolean']['input']>;
-  /**
-   * When the guest checkout feature is disabled in Magento, you should add the login method "TOGGLE" to your configuration to enable the toggle login/register flow, which is mandatory.
-   * The toggle flow also disables the "isEmailAvailable" call to the Magento backend.
-   *
-   * Default is set to IS_EMAIL_AVAILABLE
-   */
-  loginMethod?: InputMaybe<LoginMethod>;
   /**
    * GraphQL Magento endpoint.
    *
@@ -372,10 +374,6 @@ export type GraphCommerceStorefrontConfig = {
   magentoStoreCode: Scalars['String']['input'];
 };
 
-export type LoginMethod =
-  | 'IS_EMAIL_AVAILABLE'
-  | 'TOGGLE';
-
 /** Options to configure which values will be replaced when a variant is selected on the product page. */
 export type MagentoConfigurableVariantValues = {
   /** Use the name, description, short description and meta data from the configured variant */
@@ -429,8 +427,6 @@ export const definedNonNullAnySchema = z.any().refine((v) => isDefinedNonNullAny
 
 export const CompareVariantSchema = z.enum(['CHECKBOX', 'ICON']);
 
-export const LoginMethodSchema = z.enum(['IS_EMAIL_AVAILABLE', 'TOGGLE']);
-
 export const ProductFiltersLayoutSchema = z.enum(['DEFAULT', 'SIDEBAR']);
 
 export const SidebarGalleryPaginationVariantSchema = z.enum(['DOTS', 'THUMBNAILS_BOTTOM']);
@@ -448,6 +444,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     customerRequireEmailConfirmation: z.boolean().nullish(),
     debug: GraphCommerceDebugConfigSchema().nullish(),
     demoMode: z.boolean().nullish(),
+    enableGuestCheckoutLogin: z.boolean().nullish(),
     googleAnalyticsId: z.string().nullish(),
     googleRecaptchaKey: z.string().nullish(),
     googleTagmanagerId: z.string().nullish(),
@@ -457,7 +454,6 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     hygraphWriteAccessToken: z.string().nullish(),
     legacyProductRoute: z.boolean().nullish(),
     limitSsg: z.boolean().nullish(),
-    loginMethod: LoginMethodSchema.nullish(),
     magentoEndpoint: z.string().min(1),
     previewSecret: z.string().nullish(),
     productFiltersLayout: ProductFiltersLayoutSchema.nullish(),

@@ -86,38 +86,6 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
         </Box>
       )}
 
-      {import.meta.graphCommerce.loginMethod === 'TOGGLE' &&
-        (mode === 'signin' || mode === 'signup' || mode === 'email') && (
-          <ActionCardListForm
-            control={form.control}
-            name='requestedMode'
-            layout='grid'
-            render={ActionCard}
-            items={[
-              {
-                value: 'signin',
-                sx: {
-                  justifySelf: 'flex-end',
-                  width: { xs: '100%', sm: '50%' },
-                  '& .MuiBox-root': { justifyContent: 'center', mb: 0 },
-                  mb: 0,
-                },
-                title: <Trans id='Sign in' />,
-              },
-              {
-                value: 'signup',
-                title: <Trans id='Sign up' />,
-                sx: {
-                  justifySelf: 'flex-start',
-                  width: { xs: '100%', sm: '50%' },
-                  '& .MuiBox-root': { justifyContent: 'center', mb: 0 },
-                  mb: 0,
-                },
-              },
-            ]}
-          />
-        )}
-
       {mode === 'signedin' && (
         <Box className={classes.titleContainer} sx={titleContainerSx}>
           <LayoutTitle variant='h2' gutterBottom={false}>
@@ -147,6 +115,32 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
           </Typography>
         </Box>
       )}
+
+      {!import.meta.graphCommerce.enableGuestCheckoutLogin &&
+        (mode === 'signin' || mode === 'signup' || mode === 'email') && (
+          <FormRow>
+            <ActionCardListForm
+              control={form.control}
+              name='requestedMode'
+              layout='grid'
+              size='large'
+              render={ActionCard}
+              sx={(theme) => ({
+                '&.layoutGrid': {
+                  gridTemplateColumns: 'auto auto',
+                  justifyContent: 'center',
+                },
+                '& .ActionCard-root.sizeLarge': {
+                  px: theme.spacings.md,
+                },
+              })}
+              items={[
+                { value: 'signin', title: <Trans id='Sign in' /> },
+                { value: 'signup', title: <Trans id='Create Account' /> },
+              ]}
+            />
+          </FormRow>
+        )}
 
       {mode !== 'signedin' && (
         <form onSubmit={submit}>
