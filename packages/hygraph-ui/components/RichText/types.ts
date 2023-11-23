@@ -56,6 +56,7 @@ type ImageElement = {
   children: ElementOrTextNode[]
   src: string
   title: string
+  altText: string
   width: number
   height: number
   mimeType: string

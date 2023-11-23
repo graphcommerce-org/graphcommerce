@@ -1,5 +1,15 @@
 # Change Log
 
+## 7.1.0-canary.52
+
+## 7.1.0-canary.51
+
+## 7.1.0-canary.50
+
+### Patch Changes
+
+- [#2114](https://github.com/graphcommerce-org/graphcommerce/pull/2114) [`5b63623e7`](https://github.com/graphcommerce-org/graphcommerce/commit/5b63623e70cb72afa82f6e39cefc77c7b0fec74e) - Add alt text to image inside rich text ([@StefanAngenent](https://github.com/StefanAngenent))
+
 ## 7.1.0-canary.49
 
 ## 7.1.0-canary.48

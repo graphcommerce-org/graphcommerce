@@ -1,5 +1,15 @@
 # Change Log
 
+## 7.1.0-canary.52
+
+## 7.1.0-canary.51
+
+### Patch Changes
+
+- [#2116](https://github.com/graphcommerce-org/graphcommerce/pull/2116) [`e0e5e82af`](https://github.com/graphcommerce-org/graphcommerce/commit/e0e5e82af36ca38a78fc031e0c680daaab5909ad) - Node.js version of gitpod updated to node 18 ([@action-simon](https://github.com/action-simon))
+
+## 7.1.0-canary.50
+
 ## 7.1.0-canary.49
 
 ## 7.1.0-canary.48

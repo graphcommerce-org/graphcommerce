@@ -170,6 +170,16 @@ export type GraphCommerceConfig = {
    */
   demoMode?: InputMaybe<Scalars['Boolean']['input']>;
   /**
+   * Enable Guest Checkout Login:
+   * During customer login, GraphCommerce queries Magento to determine whether
+   * the customer account already exists or not. If not, the sign-up form is shown instead.
+   *
+   * For Magento versions, 2.4.7, 2.4.6-p1 and up, 2.4.5-p3 and up, 2.4.4-p4 and up, the following setting must be set to Yes
+   *
+   * `Stores -> Configuration -> Sales -> Checkout -> Checkout Options -> Enable Guest Checkout Login`
+   */
+  enableGuestCheckoutLogin?: InputMaybe<Scalars['Boolean']['input']>;
+  /**
    * See https://support.google.com/analytics/answer/9539598?hl=en
    *
    * Provide a value to enable Google Analytics for your store.
@@ -435,6 +445,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     customerRequireEmailConfirmation: z.boolean().nullish(),
     debug: GraphCommerceDebugConfigSchema().nullish(),
     demoMode: z.boolean().nullish(),
+    enableGuestCheckoutLogin: z.boolean().nullish(),
     googleAnalyticsId: z.string().nullish(),
     googleRecaptchaKey: z.string().nullish(),
     googleTagmanagerId: z.string().nullish(),
