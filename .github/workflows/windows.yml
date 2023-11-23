@@ -13,5 +13,4 @@ jobs:
           cache: yarn
           node-version: 18
       - run: yarn install && yarn postinstall
-      - run: yarn --cwd examples\magento-graphcms build > windows.txt
-      - run: cat windows.txt
+      - run: yarn --cwd examples\magento-graphcms build
