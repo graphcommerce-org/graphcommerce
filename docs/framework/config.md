@@ -171,6 +171,16 @@ Enables some demo specific code that is probably not useful for a project:
 - Adds "dominant_color" attribute swatches to the product list items.
 - Creates a big list items in the product list.
 
+#### enableGuestCheckoutLogin: boolean
+
+Enable Guest Checkout Login:
+During customer login, GraphCommerce queries Magento to determine whether
+the customer account already exists or not. If not, the sign-up form is shown instead.
+
+For Magento versions, 2.4.7, 2.4.6-p1 and up, 2.4.5-p3 and up, 2.4.4-p4 and up, the following setting must be set to Yes
+
+`Stores -> Configuration -> Sales -> Checkout -> Checkout Options -> Enable Guest Checkout Login`
+
 #### googleAnalyticsId: string
 
 See https://support.google.com/analytics/answer/9539598?hl=en
