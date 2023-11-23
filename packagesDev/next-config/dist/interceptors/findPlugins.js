@@ -48,7 +48,10 @@ function findPlugins(config, cwd = process.cwd()) {
                 if (!result)
                     return;
                 const pluginConfig = {
-                    plugin: file.replace(dependency, path).replace('.tsx', '').replace('.ts', ''),
+                    plugin: file
+                        .replace(dependency.replace(/\\/g, '/'), path)
+                        .replace('.tsx', '')
+                        .replace('.ts', ''),
                     ...result,
                     enabled: !result.ifConfig || Boolean((0, get_1.default)(config, result.ifConfig)),
                 };

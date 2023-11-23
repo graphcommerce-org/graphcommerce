@@ -28,7 +28,7 @@ export function handleFatalError(e: Error, logger: Logger = new DefaultLogger('â
 
 const root = process.cwd()
 const meshDir = path.dirname(require.resolve('@graphcommerce/graphql-mesh'))
-const relativePath = path.join(path.relative(meshDir, root), '/')
+const relativePath = path.join(path.relative(meshDir, root), path.sep)
 
 const cliParams: GraphQLMeshCLIParams = {
   ...DEFAULT_CLI_PARAMS,
@@ -79,12 +79,12 @@ const main = async () => {
   })
 
   // Scan the current working directory to also read all graphqls files.
-  conf.additionalTypeDefs.push('**/*.graphqls')
+  conf.additionalTypeDefs.push(path.join('**', '*.graphqls'))
 
   const deps = resolveDependenciesSync()
   const packages = [...deps.values()].filter((p) => p !== '.')
   packageRoots(packages).forEach((r) => {
-    conf.additionalTypeDefs.push(`${r}/**/*.graphqls`)
+    conf.additionalTypeDefs.push(path.join(r, '**', '*.graphqls'))
   })
 
   if (!conf.serve) conf.serve = {}
@@ -104,7 +104,7 @@ const main = async () => {
 
   // Reexport the mesh to is can be used by packages
   await fs.writeFile(
-    `${meshDir}/.mesh.ts`,
+    path.join(meshDir, '.mesh.ts'),
     `export * from '${relativePath.split(path.sep).join('/')}.mesh'`,
     { encoding: 'utf8' },
   )

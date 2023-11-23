@@ -62,7 +62,7 @@ async function main() {
     });
     const isWatching = process.argv.includes('--watch') || process.argv.includes('-w');
     if (!isWatching && extension)
-        await (0, rimraf_1.rimraf)(node_path_1.default.join(root, `**/*${extension}`));
+        await (0, rimraf_1.rimraf)(node_path_1.default.join(root, `**/*${extension}`), { glob: true });
     // - Prepend the all targets with ../../ if we're running in a monorepo setup.
     // - Append all the Graphcommerce packages to the configuration
     conf.config.generates = Object.fromEntries(generates.map(([generateTarget, generateConf]) => [
