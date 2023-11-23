@@ -173,12 +173,13 @@ Enables some demo specific code that is probably not useful for a project:
 
 #### enableGuestCheckoutLogin: boolean
 
-Enable Guest Checkout Login
+Enable Guest Checkout Login:
+During customer login, GraphCommerce queries Magento to determine whether
+the customer account already exists or not. If not, the sign-up form is shown instead.
 
-When the guest checkout feature is disabled in Magento, you should add the login method "TOGGLE" to your configuration to enable the toggle login/register flow, which is mandatory.
-The toggle flow also disables the "isEmailAvailable" call to the Magento backend.
+For Magento versions, 2.4.7, 2.4.6-p1 and up, 2.4.5-p3 and up, 2.4.4-p4 and up, the following setting must be set to Yes
 
-Default is set to IS_EMAIL_AVAILABLE
+`Stores -> Configuration -> Sales -> Checkout -> Checkout Options -> Enable Guest Checkout Login`
 
 #### googleAnalyticsId: string
 
