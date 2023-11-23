@@ -1,9 +1,8 @@
 import { GlobalStyles } from '@mui/material'
 import { LazyMotion } from 'framer-motion'
+import { EmotionProvider, EmotionProviderProps } from '../Styles/EmotionProvider'
 
-export type GraphCommerceProviderProps = {
-  children: React.ReactNode
-}
+export type CssAndFramerMotionProviderProps = EmotionProviderProps
 
 /**
  * For [@emotion/core](https://emotion.sh/docs/introduction) and
@@ -12,22 +11,25 @@ export type GraphCommerceProviderProps = {
  * - Wrapps the app to lazily load framer-motion.
  * - Wrapps the app to have Emotion CSS styles
  */
-export function CssAndFramerMotionProvider({ children }: GraphCommerceProviderProps) {
+export function CssAndFramerMotionProvider(props: CssAndFramerMotionProviderProps) {
+  const { children, emotionCache } = props
   return (
-    <LazyMotion features={async () => (await import('./framerFeatures')).default} strict>
-      {children}
-      <GlobalStyles
-        styles={{
-          ':root': {
-            '--client-size-y': '100vh',
-            '--client-size-x': '100vw',
-            '@supports(height: 100dvh)': {
-              '--client-size-y': '100dvh',
-              '--client-size-x': '100dvw',
+    <EmotionProvider emotionCache={emotionCache}>
+      <LazyMotion features={async () => (await import('./framerFeatures')).default} strict>
+        {children}
+        <GlobalStyles
+          styles={{
+            ':root': {
+              '--client-size-y': '100vh',
+              '--client-size-x': '100vw',
+              '@supports(height: 100dvh)': {
+                '--client-size-y': '100dvh',
+                '--client-size-x': '100dvw',
+              },
             },
-          },
-        }}
-      />
-    </LazyMotion>
+          }}
+        />
+      </LazyMotion>
+    </EmotionProvider>
   )
 }
