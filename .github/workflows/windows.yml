@@ -1,0 +1,18 @@
+name: windows-build
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+jobs:
+  windows-build:
+    runs-on: windows-2022
+    if: github.event.pull_request.draft == false
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          cache: yarn
+          node-version: 18
+      - run: yarn install && yarn postinstall
+      - run: yarn --cwd ./examples/magento-graphcms build > windows.txt
+      - run: cd examples/magento-graphcms && yarn build > ../../new.txt && cd ../..
+      - run: cat new.txt
