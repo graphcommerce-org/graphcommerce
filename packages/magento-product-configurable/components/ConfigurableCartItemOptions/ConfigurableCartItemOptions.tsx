@@ -7,14 +7,17 @@ type ConfigurableActionCartItemProps = ConfigurableCartItemFragment & {
 }
 
 export function ConfigurableCartItemOptions(props: ConfigurableActionCartItemProps) {
-  const { configurable_options } = props
+  const { configurable_options, configurable_customizable, productPrice } = props
   return (
     <>
       {configurable_options?.map((option) => (
         <Box key={option?.configurable_product_option_uid}>{option?.value_label}</Box>
       ))}
 
-      <SelectedCustomizableOptions {...props} />
+      <SelectedCustomizableOptions
+        productPrice={productPrice}
+        customizable_options={configurable_customizable}
+      />
     </>
   )
 }
