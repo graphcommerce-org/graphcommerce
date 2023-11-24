@@ -1,0 +1,58 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  max-width: 1200px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+  margin-bottom: 16px;
+}
+
+.desciption {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 20px;
+  margin-bottom: 16px;
+}
+
+.input {
+  display: inline;
+}
+
+.button {
+  user-select: none;
+  box-sizing: border-box;
+  appearance: none;
+  position: relative;
+  display: inline-flex;
+  -webkit-box-align: center;
+  align-items: center;
+  text-align: center;
+  vertical-align: middle;
+  align-self: center;
+  text-decoration: none;
+  font-weight: 500;
+  border: 0px;
+  margin: 16px 0px 0px;
+  border-radius: 4px;
+  font-size: 12px;
+  line-height: 16px;
+  height: 24px;
+  min-width: 24px;
+  padding-left: 8px;
+  padding-right: 8px;
+  color: rgb(255, 255, 255);
+  background-color: rgb(90, 92, 236);
+}
+
+.button:hover {
+  cursor: pointer;
+  background-color: rgb(58, 48, 166);
+}
