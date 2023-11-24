@@ -14,8 +14,6 @@ import { MeshApolloLink, getBuiltMesh } from '@graphcommerce/graphql-mesh'
 import { storefrontConfig, storefrontConfigDefault } from '@graphcommerce/next-ui'
 import { i18nSsrLoader } from '../i18n/I18nProvider'
 
-const mesh = await getBuiltMesh()
-
 function client(locale: string | undefined, fetchPolicy: FetchPolicy = 'no-cache') {
   const config = graphqlConfig({
     storefront: storefrontConfig(locale) ?? storefrontConfigDefault(),
@@ -26,7 +24,7 @@ function client(locale: string | undefined, fetchPolicy: FetchPolicy = 'no-cache
       measurePerformanceLink,
       errorLink,
       ...config.links,
-      new MeshApolloLink(mesh),
+      new MeshApolloLink(getBuiltMesh()),
     ]),
     cache: new InMemoryCache({
       possibleTypes: fragments.possibleTypes,

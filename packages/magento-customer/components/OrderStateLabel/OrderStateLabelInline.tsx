@@ -1,13 +1,26 @@
-import { OrderStateLabel, OrderStateLabelProps } from './OrderStateLabel'
+import { Trans } from '@lingui/react'
+import { OrderStateLabel, OrderStateLabelProps, OrderStateRenderer } from './OrderStateLabel'
 
 type OrderStateLabelInlineProps = OrderStateLabelProps
 
+const defaultRenderer: OrderStateRenderer = {
+  Ordered: () => <Trans id='processed' />,
+  Invoiced: () => <Trans id='invoiced' />,
+  Shipped: () => <Trans id='shipped' />,
+  Refunded: () => <Trans id='refunded' />,
+  Canceled: () => <Trans id='canceled' />,
+  Returned: () => <Trans id='returned' />,
+  Partial: () => <Trans id='partially processed' />,
+}
+
 export function OrderStateLabelInline(props: OrderStateLabelInlineProps) {
-  const { sx = [] } = props
+  const { sx = [], renderer: incomingRenderer } = props
+  const renderer: OrderStateRenderer = { ...defaultRenderer, ...incomingRenderer }
 
   return (
     <OrderStateLabel
       {...props}
+      renderer={renderer}
       sx={[
         (theme) => ({
           fontStyle: 'normal',

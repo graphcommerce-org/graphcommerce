@@ -1,0 +1,7 @@
+query UseWishlistCustomer {
+  customer {
+    wishlists {
+      ...Wishlist
+    }
+  }
+}

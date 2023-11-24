@@ -11,6 +11,7 @@ import {
   ActionCardListForm,
 } from '@graphcommerce/next-ui'
 import {
+  FormAutoSubmit,
   FormProvider,
   useFormAutoSubmit,
   useFormCompose,
@@ -80,6 +81,7 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
     ShippingMethodFormMutationVariables & { carrierMethod?: string }
   >(ShippingMethodFormDocument, {
     defaultValues: { carrierMethod },
+    experimental_useV2: true,
     onBeforeSubmit: (variables) => {
       const [carrier, method] = (variables.carrierMethod ?? '').split('-')
       return onBeforeSubmit({ ...variables, carrier, method })
@@ -90,11 +92,7 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
   const { handleSubmit, control, error } = form
   const submit = handleSubmit(() => {})
 
-  useFormPersist({ form, name: 'ShippingMethodForm' })
   useFormCompose({ form, step, submit, key: 'ShippingMethodForm' })
-  useFormAutoSubmit({ form, submit, fields: ['carrierMethod'] })
-
-  // if (loading) return null
 
   if (items.length === 0) {
     items.push({
@@ -113,6 +111,13 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
 
   return (
     <FormProvider {...form}>
+      <FormAutoSubmit
+        control={control}
+        submit={submit}
+        name={['carrierMethod']}
+        parallel
+        wait={300}
+      />
       <Form onSubmit={submit} noValidate sx={sx}>
         <FormHeader variant='h4' sx={(theme) => ({ marginBottom: 0, mb: theme.spacings.sm })}>
           <Trans id='Shipping method' />

@@ -1,0 +1,12 @@
+extend type Query {
+  recentlyViewedProducts: RecentlyViewedProducts
+}
+
+type RecentlyViewedProducts {
+  items: [RecentlyViewedProduct!]!
+}
+
+type RecentlyViewedProduct {
+  sku: String!
+  parentSku: String
+}

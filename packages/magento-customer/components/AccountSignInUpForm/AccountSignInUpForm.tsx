@@ -1,16 +1,19 @@
+import { TextFieldElement, emailPattern } from '@graphcommerce/ecommerce-ui'
 import {
+  ActionCard,
+  ActionCardLayout,
+  ActionCardListForm,
   Button,
-  FormDiv,
   FormActions,
+  FormDiv,
   FormRow,
   LayoutTitle,
   extendableComponent,
 } from '@graphcommerce/next-ui'
-import { emailPattern } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
-// eslint-disable-next-line @typescript-eslint/no-restricted-imports
-import { Box, CircularProgress, Link, SxProps, TextField, Theme, Typography } from '@mui/material'
-import router from 'next/router'
+import { Box, CircularProgress, Link, SxProps, Theme, Typography } from '@mui/material'
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 import { CustomerDocument, useFormIsEmailAvailable } from '../../hooks'
 import { useCustomerQuery } from '../../hooks/useCustomerQuery'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError'
@@ -32,9 +35,21 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
   const customerQuery = useCustomerQuery(CustomerDocument)
 
   const { email, firstname = '' } = customerQuery.data?.customer ?? {}
+
   const { mode, form, autoSubmitting, submit } = useFormIsEmailAvailable({ email })
-  const { formState, muiRegister, required, watch, error } = form
+  const { formState, watch, control, error } = form
   const disableFields = formState.isSubmitting && !autoSubmitting
+
+  const { setValue, trigger } = form
+  const router = useRouter()
+  useEffect(() => {
+    const emailFromParams = router.query.email as string
+    if (!email && emailFromParams) {
+      setValue('email', emailFromParams)
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      trigger('email')
+    }
+  }, [email, router.query.email, setValue, trigger])
 
   return (
     <FormDiv sx={sx} className={classes.root}>
@@ -101,28 +116,54 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
         </Box>
       )}
 
+      {!import.meta.graphCommerce.enableGuestCheckoutLogin &&
+        (mode === 'signin' || mode === 'signup' || mode === 'email') && (
+          <FormRow>
+            <ActionCardListForm
+              control={form.control}
+              name='requestedMode'
+              layout='grid'
+              size='large'
+              render={ActionCard}
+              sx={(theme) => ({
+                '&.layoutGrid': {
+                  gridTemplateColumns: 'auto auto',
+                  justifyContent: 'center',
+                },
+                '& .ActionCard-root.sizeLarge': {
+                  px: theme.spacings.md,
+                },
+              })}
+              items={[
+                { value: 'signin', title: <Trans id='Sign in' /> },
+                { value: 'signup', title: <Trans id='Create Account' /> },
+              ]}
+            />
+          </FormRow>
+        )}
+
       {mode !== 'signedin' && (
-        <form noValidate onSubmit={submit}>
+        <form onSubmit={submit}>
           <Box>
             <FormRow>
-              <TextField
+              <TextFieldElement
                 variant='outlined'
-                type='text'
-                autoComplete='email'
-                error={formState.isSubmitted && !!formState.errors.email}
-                helperText={formState.isSubmitted && formState.errors.email?.message}
-                label={<Trans id='Email' />}
-                required={required.email}
-                disabled={disableFields}
-                {...muiRegister('email', {
-                  required: required.email,
+                control={control}
+                name='email'
+                required
+                type='email'
+                validation={{
+                  required: true,
                   pattern: { value: emailPattern, message: '' },
-                })}
+                }}
+                error={formState.isSubmitted && !!formState.errors.email}
+                label={<Trans id='Email' />}
+                disabled={disableFields}
                 InputProps={{
                   endAdornment: formState.isSubmitting && (
                     <CircularProgress sx={{ display: 'inline-flex' }} />
                   ),
-                  readOnly: !!customerQuery.data?.customer?.email,
+                  readOnly: !!email,
                 }}
               />
             </FormRow>

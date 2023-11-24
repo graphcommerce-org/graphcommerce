@@ -1,5 +1,69 @@
 # @graphcommerce/hygraph-cli
 
+## 7.1.0-canary.53
+
+## 7.1.0-canary.52
+
+## 7.1.0-canary.51
+
+## 7.1.0-canary.50
+
+## 7.1.0-canary.49
+
+## 7.1.0-canary.48
+
+## 7.1.0-canary.47
+
+## 7.1.0-canary.46
+
+## 7.1.0-canary.45
+
+## 7.1.0-canary.38
+
+## 7.1.0-canary.37
+
+## 7.1.0-canary.36
+
+## 7.1.0-canary.35
+
+## 7.1.0-canary.34
+
+## 7.1.0-canary.33
+
+## 7.1.0-canary.32
+
+## 7.1.0-canary.31
+
+## 7.1.0-canary.30
+
+## 7.1.0-canary.29
+
+## 7.1.0-canary.28
+
+## 7.1.0-canary.27
+
+## 7.1.0-canary.26
+
+## 7.1.0-canary.25
+
+## 7.1.0-canary.24
+
+## 7.1.0-canary.23
+
+## 7.1.0-canary.22
+
+## 7.1.0-canary.21
+
+## 7.1.0-canary.20
+
+### Patch Changes
+
+- [#2095](https://github.com/graphcommerce-org/graphcommerce/pull/2095) [`519531eb4`](https://github.com/graphcommerce-org/graphcommerce/commit/519531eb48bf6c5b68703509d2bd64c8dfe5b92c) - Fix Hygraph CLI (Management SDK) | Add support for updating and deleting enumerations ([@JoshuaS98](https://github.com/JoshuaS98))
+
+## 7.1.0-canary.19
+
+## 7.1.0-canary.18
+
 ## 7.1.0-canary.17
 
 ## 7.1.0-canary.16

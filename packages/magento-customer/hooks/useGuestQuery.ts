@@ -12,5 +12,5 @@ export function useGuestQuery<Q, V extends OperationVariables>(
   queryOptions: QueryHookOptions<Q, V> = {},
 ) {
   const { token } = useCustomerSession()
-  return useQuery(document, { ...queryOptions, ssr: false, skip: !!token })
+  return useQuery(document, { ...queryOptions, ssr: false, skip: queryOptions.skip || !!token })
 }

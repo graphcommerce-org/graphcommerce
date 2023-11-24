@@ -1,40 +1,46 @@
-import { useMutation, useQuery, useApolloClient } from '@graphcommerce/graphql'
+import { useApolloClient } from '@graphcommerce/graphql'
 import { useCustomerSession } from '@graphcommerce/magento-customer'
+import { filterNonNullableKeys, nonNullable } from '@graphcommerce/next-ui'
 import { useEffect } from 'react'
-import { AddProductToWishlistDocument } from '../queries/AddProductToWishlist.gql'
-import { GetGuestWishlistProductsDocument } from '../queries/GetGuestWishlistProducts.gql'
-import { GuestWishlistDocument } from '../queries/GuestWishlist.gql'
+import { UseWishlistCustomerDocument } from './useWishlistitems/UseWishlistCustomer.gql'
+import { useAddProductsToWishlist } from './useAddProductsToWishlist/useAddProductsToWishlist'
 
 /** Merge guest wishlist items to customer session upon login */
 export function useMergeGuestWishlistWithCustomer() {
   const { loggedIn } = useCustomerSession()
-  const { cache } = useApolloClient()
+  const client = useApolloClient()
 
-  const guestItems = useQuery(GuestWishlistDocument, { ssr: false }).data?.guestWishlist?.items
-
-  const guestProducts = useQuery(GetGuestWishlistProductsDocument, {
-    ssr: false,
-    variables: { filters: { url_key: { in: guestItems?.map((item) => item?.url_key) } } },
-    skip: !guestItems || guestItems.length === 0,
-  }).data?.products?.items
-
-  const [addWishlistItem] = useMutation(AddProductToWishlistDocument)
+  const add = useAddProductsToWishlist()
 
   useEffect(() => {
-    if (!loggedIn || !guestItems || guestItems.length === 0) return
+    if (!loggedIn) return
 
-    const clearGuestList = () =>
-      cache.evict({ id: cache.identify({ __typename: 'GuestWishlist' }) })
+    const clearGuestList = () => client.cache.evict({ fieldName: 'customer' })
+    const wishlist = client.cache.readQuery({ query: UseWishlistCustomerDocument })?.customer
+      ?.wishlists?.[0]?.items_v2?.items
+    if (!wishlist) return
 
-    if (guestProducts?.length === 0) {
+    if (wishlist?.length === 0) {
       clearGuestList()
-    } else {
-      const input = guestItems
-        .filter((item) => guestProducts?.find((i) => i?.sku === item.sku))
-        .map(({ sku, selected_options, quantity }) => ({ sku, selected_options, quantity }))
-
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      if (input.length) addWishlistItem({ variables: { input } }).then(clearGuestList)
+      return
     }
-  }, [addWishlistItem, cache, guestProducts, guestItems, loggedIn])
+
+    add(
+      wishlist
+        ?.map((item) => {
+          if (!item?.product?.sku) return null
+          return {
+            sku: item.product.sku,
+            quantity: 1,
+            selected_options:
+              item.__typename === 'ConfigurableWishlistItem'
+                ? filterNonNullableKeys(item.configurable_options).map(
+                    (option) => option.configurable_product_option_value_uid,
+                  )
+                : [],
+          }
+        })
+        .filter(nonNullable),
+    ).then(clearGuestList)
+  }, [client, loggedIn])
 }

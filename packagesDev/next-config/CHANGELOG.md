@@ -1,5 +1,87 @@
 # Change Log
 
+## 7.1.0-canary.53
+
+## 7.1.0-canary.52
+
+## 7.1.0-canary.51
+
+### Patch Changes
+
+- [#2116](https://github.com/graphcommerce-org/graphcommerce/pull/2116) [`e0e5e82af`](https://github.com/graphcommerce-org/graphcommerce/commit/e0e5e82af36ca38a78fc031e0c680daaab5909ad) - Node.js version of gitpod updated to node 18 ([@action-simon](https://github.com/action-simon))
+
+## 7.1.0-canary.50
+
+## 7.1.0-canary.49
+
+## 7.1.0-canary.48
+
+## 7.1.0-canary.47
+
+## 7.1.0-canary.46
+
+### Patch Changes
+
+- [`0d4a5a776`](https://github.com/graphcommerce-org/graphcommerce/commit/0d4a5a776e67c7cab39d964f2f47364f167c1951) - When releasing there will be changes to the yarn.lock file, but those weren't committed. ([@paales](https://github.com/paales))
+
+## 7.1.0-canary.45
+
+### Minor Changes
+
+- [#2113](https://github.com/graphcommerce-org/graphcommerce/pull/2113) [`437f467ce`](https://github.com/graphcommerce-org/graphcommerce/commit/437f467ce1bd9182954be753f1ce17056ab62e85) - Upgraded to yarn 4 package manager ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#2113](https://github.com/graphcommerce-org/graphcommerce/pull/2113) [`630618219`](https://github.com/graphcommerce-org/graphcommerce/commit/6306182196321bdab509a8dcfe09eb00da10303a) - Moved all internal @graphcommerce/\* dependencies to peerDependencies and resolve remaining peerDependency issues ([@paales](https://github.com/paales))
+
+- [#2113](https://github.com/graphcommerce-org/graphcommerce/pull/2113) [`77b1bac4d`](https://github.com/graphcommerce-org/graphcommerce/commit/77b1bac4db9c903a29c3969823da663875408be0) - Upgraded to nextjs 14.0.2, and updated other related dependencies. Removed @mui/material/modern alias as that doesnt work in combination with nextjs 14.0.2. ([@paales](https://github.com/paales))
+
+## 7.1.0-canary.38
+
+## 7.1.0-canary.37
+
+## 7.1.0-canary.36
+
+## 7.1.0-canary.35
+
+## 7.1.0-canary.34
+
+### Patch Changes
+
+- [#2078](https://github.com/graphcommerce-org/graphcommerce/pull/2078) [`5f409e617`](https://github.com/graphcommerce-org/graphcommerce/commit/5f409e617afae36d5c6224f3c6eb8d085fc2e84c) - Added @graphcommerce packages in node_modules to nextjs watch options ([@KMalkowski](https://github.com/KMalkowski))
+
+## 7.1.0-canary.33
+
+## 7.1.0-canary.32
+
+## 7.1.0-canary.31
+
+## 7.1.0-canary.30
+
+## 7.1.0-canary.29
+
+## 7.1.0-canary.28
+
+## 7.1.0-canary.27
+
+## 7.1.0-canary.26
+
+## 7.1.0-canary.25
+
+## 7.1.0-canary.24
+
+## 7.1.0-canary.23
+
+## 7.1.0-canary.22
+
+## 7.1.0-canary.21
+
+## 7.1.0-canary.20
+
+## 7.1.0-canary.19
+
+## 7.1.0-canary.18
+
 ## 7.1.0-canary.17
 
 ## 7.1.0-canary.16

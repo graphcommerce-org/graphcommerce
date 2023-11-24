@@ -1,5 +1,73 @@
 # Change Log
 
+## 7.1.0-canary.53
+
+## 7.1.0-canary.52
+
+## 7.1.0-canary.51
+
+## 7.1.0-canary.50
+
+## 7.1.0-canary.49
+
+## 7.1.0-canary.48
+
+## 7.1.0-canary.47
+
+## 7.1.0-canary.46
+
+## 7.1.0-canary.45
+
+## 7.1.0-canary.38
+
+## 7.1.0-canary.37
+
+## 7.1.0-canary.36
+
+## 7.1.0-canary.35
+
+## 7.1.0-canary.34
+
+## 7.1.0-canary.33
+
+### Patch Changes
+
+- [#2011](https://github.com/graphcommerce-org/graphcommerce/pull/2011) [`da821af18`](https://github.com/graphcommerce-org/graphcommerce/commit/da821af185bf6419fa2aeca31e5985bf99b7bbb9) - Added a new Image Gallery as a plugin ([@mikekeehnen](https://github.com/mikekeehnen))
+
+## 7.1.0-canary.32
+
+## 7.1.0-canary.31
+
+## 7.1.0-canary.30
+
+## 7.1.0-canary.29
+
+## 7.1.0-canary.28
+
+## 7.1.0-canary.27
+
+## 7.1.0-canary.26
+
+## 7.1.0-canary.25
+
+### Patch Changes
+
+- [#2085](https://github.com/graphcommerce-org/graphcommerce/pull/2085) [`3c92993d9`](https://github.com/graphcommerce-org/graphcommerce/commit/3c92993d9ca74f24ea784b20448958ca1bb8e224) - SideBarGallery image won't start scrolling from the beginning if user clicks multiple times on the scroll button. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 7.1.0-canary.24
+
+## 7.1.0-canary.23
+
+## 7.1.0-canary.22
+
+## 7.1.0-canary.21
+
+## 7.1.0-canary.20
+
+## 7.1.0-canary.19
+
+## 7.1.0-canary.18
+
 ## 7.1.0-canary.17
 
 ## 7.1.0-canary.16

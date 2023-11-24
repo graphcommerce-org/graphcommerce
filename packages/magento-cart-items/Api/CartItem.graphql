@@ -12,7 +12,6 @@ fragment CartItem on CartItemInterface @injectable {
     }
     ...ProductPagePrice
   }
-
   prices {
     discounts {
       amount {

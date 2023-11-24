@@ -48,7 +48,7 @@ export function SignInForm(props: SignInFormProps) {
           control={control}
           name='password'
           label={<Trans id='Password' />}
-          autoFocus
+          autoFocus={!!email}
           autoComplete='current-password'
           id='current-password'
           required={required.password}

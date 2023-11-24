@@ -1,3 +1,5 @@
 export * from './useMergeGuestWishlistWithCustomer'
-export * from './useWishlistItems'
-export * from './useWishlistEnabled'
+export * from './useWishlistitems'
+export * from './useRemoveProductsFromWishlist'
+export * from './useWishlistEnabled/useWishlistEnabled'
+export * from './useAddProductToWishlistAction'

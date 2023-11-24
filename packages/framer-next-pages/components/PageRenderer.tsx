@@ -1,4 +1,4 @@
-import { RouterContext } from 'next/dist/shared/lib/router-context'
+import { RouterContext } from 'next/dist/shared/lib/router-context.shared-runtime'
 import { AppPropsType } from 'next/dist/shared/lib/utils'
 import { NextRouter, useRouter } from 'next/router'
 import React, { useMemo } from 'react'

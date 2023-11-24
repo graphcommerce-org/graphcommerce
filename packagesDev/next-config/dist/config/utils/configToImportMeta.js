@@ -28,7 +28,7 @@ function flattenKeys(value, initialPathPrefix, stringify) {
                 const deep = value[key];
                 return flattenKeys(deep, `${initialPathPrefix}.${key}`, stringify);
             })
-                .reduce((acc, path) => ({ ...acc, ...path })),
+                .reduce((acc, path) => ({ ...acc, ...path }), {}),
         };
     }
     throw Error(`Unexpected value: ${value}`);

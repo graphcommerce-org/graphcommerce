@@ -99,18 +99,7 @@ export function OrderCard(props: OrderCardProps) {
           <span>#{number}</span>
         </OrderRow>
         <OrderRow>
-          <OrderStateLabel
-            items={items}
-            renderer={{
-              Ordered: () => <Trans id='Your order is being processed' />,
-              Invoiced: () => <Trans id='Your order has been invoiced' />,
-              Shipped: () => <Trans id='Your order is on its way!' />,
-              Refunded: () => <Trans id='Your order has been refunded' />,
-              Canceled: () => <Trans id='Your order has been canceled' />,
-              Returned: () => <Trans id='Your order has been returned' />,
-              Partial: () => <Trans id='Your order has been partially processed' />,
-            }}
-          />
+          <OrderStateLabel items={items} />
         </OrderRow>
         <Box className={classes.orderProducts}>
           <Box

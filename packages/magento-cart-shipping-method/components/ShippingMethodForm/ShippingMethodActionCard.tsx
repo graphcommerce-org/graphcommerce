@@ -35,10 +35,10 @@ export function ShippingMethodActionCard(props: ShippingMethodActionCardProps) {
       details={error_message}
       action={
         <Button
+          disableRipple
           variant='inline'
           color='secondary'
           sx={{ display: available ? undefined : 'none' }}
-          disableRipple
           tabIndex={-1}
         >
           <Trans id='Select' />

@@ -13,18 +13,21 @@ let graphcommerceConfig: GraphCommerceConfig
 
 function domains(config: GraphCommerceConfig): DomainLocale[] {
   return Object.values(
-    config.storefront.reduce((acc, loc) => {
-      if (!loc.domain) return acc
+    config.storefront.reduce(
+      (acc, loc) => {
+        if (!loc.domain) return acc
 
-      acc[loc.domain] = {
-        defaultLocale: loc.locale,
-        locales: [...(acc[loc.domain]?.locales ?? []), loc.locale],
-        domain: loc.domain,
-        http: process.env.NODE_ENV === 'development' || undefined,
-      } as DomainLocale
+        acc[loc.domain] = {
+          defaultLocale: loc.locale,
+          locales: [...(acc[loc.domain]?.locales ?? []), loc.locale],
+          domain: loc.domain,
+          http: process.env.NODE_ENV === 'development' || undefined,
+        } as DomainLocale
 
-      return acc
-    }, {} as Record<string, DomainLocale>),
+        return acc
+      },
+      {} as Record<string, DomainLocale>,
+    ),
   )
 }
 
@@ -64,10 +67,10 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
     },
     images: {
       ...nextConfig.images,
-      domains: [
-        new URL(graphcommerceConfig.magentoEndpoint).hostname,
-        'media.graphassets.com',
-        ...(nextConfig.images?.domains ?? []),
+      remotePatterns: [
+        { hostname: new URL(graphcommerceConfig.magentoEndpoint).hostname },
+        { hostname: 'media.graphassets.com' },
+        ...(nextConfig.images?.remotePatterns ?? []),
       ],
     },
     redirects: async () => {
@@ -149,11 +152,6 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
       // @lingui .po file support
       config.module?.rules?.push({ test: /\.po/, use: '@lingui/loader' })
 
-      config.experiments = {
-        layers: true,
-        topLevelAwait: true,
-      }
-
       config.snapshot = {
         ...(config.snapshot ?? {}),
         managedPaths: [
@@ -161,14 +159,25 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
         ],
       }
 
+      config.watchOptions = {
+        ...(config.watchOptions ?? {}),
+        ignored: new RegExp(
+          `^((?:[^/]*(?:/|$))*)(.(git|next)|(node_modules[\\/](?!${transpilePackages.join(
+            '|',
+          )})))(/((?:[^/]*(?:/|$))*)(?:$|/))?`,
+        ),
+      }
+
       if (!config.resolve) config.resolve = {}
-      config.resolve.alias = {
-        ...config.resolve.alias,
-        '@mui/base': '@mui/base/modern',
-        '@mui/lab': '@mui/lab/modern',
-        '@mui/material': '@mui/material/modern',
-        '@mui/styled-engine': '@mui/styled-engine/modern',
-        '@mui/system': '@mui/system/modern',
+      if (!options.isServer && !options.dev) {
+        config.resolve.alias = {
+          ...config.resolve.alias,
+          '@mui/base': '@mui/base/modern',
+          '@mui/lab': '@mui/lab/modern',
+          '@mui/material': '@mui/material/modern',
+          '@mui/styled-engine': '@mui/styled-engine/modern',
+          '@mui/system': '@mui/system/modern',
+        }
       }
 
       config.plugins.push(new InterceptorPlugin(graphcommerceConfig))

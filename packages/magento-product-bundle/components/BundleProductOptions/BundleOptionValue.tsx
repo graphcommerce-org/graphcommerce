@@ -1,4 +1,4 @@
-import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
+import { NumberFieldElement, TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import { Image } from '@graphcommerce/image'
 import { useFormAddProductsToCart } from '@graphcommerce/magento-product'
 import { Money } from '@graphcommerce/magento-store'
@@ -61,20 +61,14 @@ export const BundleOptionValue = (props: ActionCardItemRenderProps<BundleOptionV
       }
       action={
         (can_change_quantity || !required) && (
-          <Button disableTouchRipple variant='inline' color='inherit' size='small' tabIndex={-1}>
+          <Button disableRipple variant='inline' color='inherit' size='small' tabIndex={-1}>
             <Trans id='Select' />
           </Button>
         )
       }
       reset={
         (can_change_quantity || !required) && (
-          <Button
-            disableTouchRipple
-            variant='inline'
-            color='inherit'
-            size='small'
-            onClick={onReset}
-          >
+          <Button disableRipple variant='inline' color='inherit' size='small' onClick={onReset}>
             {can_change_quantity ? <Trans id='Change' /> : <Trans id='Remove' />}
           </Button>
         )
@@ -82,16 +76,23 @@ export const BundleOptionValue = (props: ActionCardItemRenderProps<BundleOptionV
       secondaryAction={
         selected &&
         can_change_quantity && (
-          <TextFieldElement
+          <NumberFieldElement
             size='small'
             label='Quantity'
             color={color}
+            inputProps={{ min: 1 }}
             required
             defaultValue={`${quantity}`}
             control={control}
-            sx={{ width: responsiveVal(80, 120), mt: 2 }}
+            sx={{
+              width: responsiveVal(80, 120),
+              mt: 2,
+              '& .MuiFormHelperText-root': {
+                margin: 1,
+                width: '100%',
+              },
+            }}
             name={`cartItems.${index}.entered_options.${idx}.value`}
-            type='number'
             onMouseDown={(e) => e.stopPropagation()}
           />
         )

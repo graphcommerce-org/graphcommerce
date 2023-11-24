@@ -145,6 +145,9 @@ msgstr "Complete the payment on your bank’s website."
 msgid "Complete your purchase"
 msgstr "Complete your purchase"
 
+msgid "Configure"
+msgstr "Configure"
+
 msgid "Confirm new email"
 msgstr "Confirm new email"
 
@@ -304,6 +307,9 @@ msgstr "Invalid email address"
 msgid "Invalid phone number"
 msgstr "Invalid phone number"
 
+msgid "It appears you are offline, please try again later."
+msgstr "It appears you are offline, please try again later."
+
 msgid "Last Name"
 msgstr "Last Name"
 
@@ -318,9 +324,6 @@ msgstr "Light Mode"
 
 msgid "Loading"
 msgstr "Loading"
-
-msgid "Loading wishlist"
-msgstr "Loading wishlist"
 
 msgid "Loading your account"
 msgstr "Loading your account"
@@ -418,14 +421,17 @@ msgstr "Order #{orderId}"
 msgid "Order before 22:00"
 msgstr "Order before 22:00"
 
+msgid "Order date"
+msgstr "Order date"
+
+msgid "Order details"
+msgstr "Order details"
+
 msgid "Order not found"
 msgstr "Order not found"
 
 msgid "Order number"
 msgstr "Order number"
-
-msgid "Order status"
-msgstr "Order status"
 
 msgid "Order summary"
 msgstr "Order summary"
@@ -526,6 +532,9 @@ msgstr "Product not available in {allLabels}"
 msgid "Products"
 msgstr "Products"
 
+msgid "Recently viewed products"
+msgstr "Recently viewed products"
+
 msgid "Region"
 msgstr "Region"
 
@@ -612,6 +621,12 @@ msgstr "Sign up for our newsletter and stay updated"
 
 msgid "Some items in your cart contain errors, please update or remove them, then try again."
 msgstr "Some items in your cart contain errors, please update or remove them, then try again."
+
+msgid "Something went wrong"
+msgstr "Something went wrong"
+
+msgid "Something went wrong on the server, please try again later."
+msgstr "Something went wrong on the server, please try again later."
 
 msgid "Sort"
 msgstr "Sort"

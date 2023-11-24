@@ -1,5 +1,93 @@
 # Change Log
 
+## 7.1.0-canary.53
+
+## 7.1.0-canary.52
+
+### Minor Changes
+
+- [#2110](https://github.com/graphcommerce-org/graphcommerce/pull/2110) [`d2e716d43`](https://github.com/graphcommerce-org/graphcommerce/commit/d2e716d437fcfed13388ef536a8e73513744027b) - ---
+
+  '@graphcommerce/magento-cart-email': minor '@graphcommerce/magento-customer': minor
+
+  ***
+
+  Added a new enableGuestCheckoutLogin configuration: During customer login, GraphCommerce queries Magento to determine whether the customer account already exists or not. If not, the sign-up form is shown instead.
+
+  To restore previous behavior, set enableGuestCheckoutLogin to true. For Magento versions, 2.4.7, 2.4.6-p1 and up, 2.4.5-p3 and up, 2.4.4-p4 and up, the following setting must be set to Yes: `Stores -> Configuration -> Sales -> Checkout -> Checkout Options -> Enable Guest Checkout Login` ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 7.1.0-canary.51
+
+## 7.1.0-canary.50
+
+## 7.1.0-canary.49
+
+## 7.1.0-canary.48
+
+## 7.1.0-canary.47
+
+## 7.1.0-canary.46
+
+## 7.1.0-canary.45
+
+## 7.1.0-canary.38
+
+### Patch Changes
+
+- [#2048](https://github.com/graphcommerce-org/graphcommerce/pull/2048) [`a5c65506a`](https://github.com/graphcommerce-org/graphcommerce/commit/a5c65506a7e72bd9ea101f665ce201e82396c63c) - Allow passing skip to useCustomerQuery and useGuestQuery ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 7.1.0-canary.37
+
+## 7.1.0-canary.36
+
+### Patch Changes
+
+- [#2107](https://github.com/graphcommerce-org/graphcommerce/pull/2107) [`2f5150456`](https://github.com/graphcommerce-org/graphcommerce/commit/2f5150456eabcce410ad8a0f1cbebeedabb6564c) - feat(GCOM-1237): remember email adress when going from checkout to si… ([@FrankHarland](https://github.com/FrankHarland))
+
+## 7.1.0-canary.35
+
+## 7.1.0-canary.34
+
+## 7.1.0-canary.33
+
+## 7.1.0-canary.32
+
+### Patch Changes
+
+- [#2091](https://github.com/graphcommerce-org/graphcommerce/pull/2091) [`5b865d376`](https://github.com/graphcommerce-org/graphcommerce/commit/5b865d376fe3b830a03af15b56986a0448af4987) - Update OrderDetails and styling ([@StefanAngenent](https://github.com/StefanAngenent))
+
+## 7.1.0-canary.31
+
+## 7.1.0-canary.30
+
+## 7.1.0-canary.29
+
+## 7.1.0-canary.28
+
+## 7.1.0-canary.27
+
+## 7.1.0-canary.26
+
+## 7.1.0-canary.25
+
+## 7.1.0-canary.24
+
+## 7.1.0-canary.23
+
+### Patch Changes
+
+- [#2098](https://github.com/graphcommerce-org/graphcommerce/pull/2098) [`ca4547224`](https://github.com/graphcommerce-org/graphcommerce/commit/ca45472246e084f4b88f91bc700351e29c63e0e2) - Fix EditAddressForm when addition field is null or undefined ([@JoshuaS98](https://github.com/JoshuaS98))
+
+## 7.1.0-canary.22
+
+## 7.1.0-canary.21
+
+## 7.1.0-canary.20
+
+## 7.1.0-canary.19
+
+## 7.1.0-canary.18
+
 ## 7.1.0-canary.17
 
 ## 7.1.0-canary.16

@@ -9,17 +9,8 @@ function _export(target, all) {
     });
 }
 _export(exports, {
-    isDefinedNonNullAny: function() {
-        return isDefinedNonNullAny;
-    },
-    definedNonNullAnySchema: function() {
-        return definedNonNullAnySchema;
-    },
     CompareVariantSchema: function() {
         return CompareVariantSchema;
-    },
-    ProductFiltersLayoutSchema: function() {
-        return ProductFiltersLayoutSchema;
     },
     GraphCommerceConfigSchema: function() {
         return GraphCommerceConfigSchema;
@@ -32,6 +23,24 @@ _export(exports, {
     },
     MagentoConfigurableVariantValuesSchema: function() {
         return MagentoConfigurableVariantValuesSchema;
+    },
+    ProductFiltersLayoutSchema: function() {
+        return ProductFiltersLayoutSchema;
+    },
+    RecentlyViewedProductsConfigSchema: function() {
+        return RecentlyViewedProductsConfigSchema;
+    },
+    SidebarGalleryConfigSchema: function() {
+        return SidebarGalleryConfigSchema;
+    },
+    SidebarGalleryPaginationVariantSchema: function() {
+        return SidebarGalleryPaginationVariantSchema;
+    },
+    definedNonNullAnySchema: function() {
+        return definedNonNullAnySchema;
+    },
+    isDefinedNonNullAny: function() {
+        return isDefinedNonNullAny;
     }
 });
 const _zod = require("zod");
@@ -44,6 +53,10 @@ const CompareVariantSchema = _zod.z.enum([
 const ProductFiltersLayoutSchema = _zod.z.enum([
     "DEFAULT",
     "SIDEBAR"
+]);
+const SidebarGalleryPaginationVariantSchema = _zod.z.enum([
+    "DOTS",
+    "THUMBNAILS_BOTTOM"
 ]);
 function GraphCommerceConfigSchema() {
     return _zod.z.object({
@@ -58,6 +71,7 @@ function GraphCommerceConfigSchema() {
         customerRequireEmailConfirmation: _zod.z.boolean().nullish(),
         debug: GraphCommerceDebugConfigSchema().nullish(),
         demoMode: _zod.z.boolean().nullish(),
+        enableGuestCheckoutLogin: _zod.z.boolean().nullish(),
         googleAnalyticsId: _zod.z.string().nullish(),
         googleRecaptchaKey: _zod.z.string().nullish(),
         googleTagmanagerId: _zod.z.string().nullish(),
@@ -72,10 +86,11 @@ function GraphCommerceConfigSchema() {
         productFiltersLayout: ProductFiltersLayoutSchema.nullish(),
         productFiltersPro: _zod.z.boolean().nullish(),
         productRoute: _zod.z.string().nullish(),
+        recentlyViewedProducts: RecentlyViewedProductsConfigSchema().nullish(),
         robotsAllow: _zod.z.boolean().nullish(),
+        sidebarGallery: SidebarGalleryConfigSchema().nullish(),
         storefront: _zod.z.array(GraphCommerceStorefrontConfigSchema()),
         wishlistHideForGuests: _zod.z.boolean().nullish(),
-        wishlistIgnoreProductWishlistStatus: _zod.z.boolean().nullish(),
         wishlistShowFeedbackMessage: _zod.z.boolean().nullish()
     });
 }
@@ -106,5 +121,16 @@ function MagentoConfigurableVariantValuesSchema() {
         content: _zod.z.boolean().nullish(),
         gallery: _zod.z.boolean().nullish(),
         url: _zod.z.boolean().nullish()
+    });
+}
+function RecentlyViewedProductsConfigSchema() {
+    return _zod.z.object({
+        enabled: _zod.z.boolean().nullish(),
+        maxCount: _zod.z.number().nullish()
+    });
+}
+function SidebarGalleryConfigSchema() {
+    return _zod.z.object({
+        paginationVariant: SidebarGalleryPaginationVariantSchema.nullish()
     });
 }

@@ -1,0 +1,24 @@
+diff --git a/node_modules/@changesets/types/dist/declarations/src/index.d.ts b/node_modules/@changesets/types/dist/declarations/src/index.d.ts
+index 1903f29..3b269f0 100644
+--- a/node_modules/@changesets/types/dist/declarations/src/index.d.ts
++++ b/node_modules/@changesets/types/dist/declarations/src/index.d.ts
+@@ -69,6 +69,9 @@ export declare type Config = {
+     privatePackages: PrivatePackages;
+     /** The minimum bump type to trigger automatic update of internal dependencies that are part of the same release */
+     updateInternalDependencies: "patch" | "minor";
++    autoBumpPeerDependentsInSameChangeset?: boolean;
++    autoBumpPeerDependentsCondition?: "always" | "out-of-range";
++    autoBumpPeerDependentsStrategy?: "major" | "follow";
+     ignore: ReadonlyArray<string>;
+     /** This is supposed to be used with pnpm's `link-workspace-packages: false` and Berry's `enableTransparentWorkspaces: false` */
+     bumpVersionsWithWorkspaceProtocolOnly?: boolean;
+@@ -93,6 +96,9 @@ export declare type WrittenConfig = {
+     };
+     /** The minimum bump type to trigger automatic update of internal dependencies that are part of the same release */
+     updateInternalDependencies?: "patch" | "minor";
++    autoBumpPeerDependentsInSameChangeset?: boolean;
++    autoBumpPeerDependentsCondition?: "always" | "out-of-range";
++    autoBumpPeerDependentsStrategy?: "major" | "follow";
+     ignore?: ReadonlyArray<string>;
+     bumpVersionsWithWorkspaceProtocolOnly?: boolean;
+     snapshot?: {

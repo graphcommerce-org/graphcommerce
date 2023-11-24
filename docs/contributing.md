@@ -7,7 +7,7 @@ process easy and effective for everyone involved.
 
 ### Bug reports
 
-Well-written, thorough bug reports are a great way to contribute to the project.
+Well-written, through bug reports are a great way to contribute to the project.
 Before raising a new issue, please check our
 [issues list ↗](https://github.com/graphcommerce-org/graphcommerce/issues) to
 determine whether the issue you encountered has already been reported.

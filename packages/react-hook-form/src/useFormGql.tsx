@@ -19,6 +19,30 @@ type UseFormGraphQLCallbacks<Q, V> = {
    */
   onBeforeSubmit?: (variables: V) => V | false | Promise<V | false>
   onComplete?: OnCompleteFn<Q, V>
+
+  /**
+   * Changes:
+   * - Restores `defaultValues` functionality to original functionality, use `values` instead.
+   * - Does not reset the form after submission, use `values` instead.
+   * - Does not 'encode' the variables, use onBeforeSubmit instead.
+   *
+   * Future plans:
+   * - Remove the useMutation/useLazyQuery tuple and use a reguler client.mutation() call.
+   * - Write graphql errors to setError('root')
+   * - Remove onBeforeSubmit, onComplete and the handleSubmit rewrite with a single mutate() callback.
+   *
+   *
+   * ```ts
+   * const { handleSubmit } = useFormGqlMutation();
+   *
+   * const submit = handleSubmit((formValues, mutate) => {
+   *    // onBeforeSubmit now simply is code before mutate() where you can return early for example or set errors.
+   *    const result = mutate() // executes the mutation and automatically sets generic errors with setError('root')
+   *    // onComplete: now simply use the result after the form, to for example reset the form, or do other things.
+   * })
+   * ```
+   */
+  experimental_useV2?: boolean
 }
 
 export type UseFormGraphQlOptions<Q, V extends FieldValues> = UseFormProps<V> &
@@ -28,7 +52,11 @@ export type UseFormGqlMethods<Q, V extends FieldValues> = Omit<
   UseGqlDocumentHandler<V>,
   'encode' | 'type'
 > &
-  Pick<UseFormReturn<V>, 'handleSubmit'> & { data?: Q | null; error?: ApolloError; submittedVariables?: V }
+  Pick<UseFormReturn<V>, 'handleSubmit'> & {
+    data?: Q | null
+    error?: ApolloError
+    submittedVariables?: V
+  }
 
 /**
  * Combines useMutation/useLazyQuery with react-hook-form's useForm:
@@ -46,16 +74,27 @@ export function useFormGql<Q, V extends FieldValues>(
     defaultValues?: UseFormProps<V>['defaultValues']
   } & UseFormGraphQLCallbacks<Q, V>,
 ): UseFormGqlMethods<Q, V> {
-  const { onComplete, onBeforeSubmit, document, form, tuple, defaultValues } = options
+  const {
+    onComplete,
+    onBeforeSubmit,
+    document,
+    form,
+    tuple,
+    defaultValues,
+    experimental_useV2 = false,
+  } = options
   const { encode, type, ...gqlDocumentHandler } = useGqlDocumentHandler<Q, V>(document)
-  const [execute, { data, error }] = tuple
+  const [execute, { data, error, loading }] = tuple
 
   const submittedVariables = useRef<V>()
 
   // automatically updates the default values
   const initital = useRef(true)
+  const controllerRef = useRef<AbortController | undefined>()
   const valuesString = JSON.stringify(defaultValues)
   useEffect(() => {
+    if (experimental_useV2) return
+
     if (initital.current) {
       initital.current = false
       return
@@ -69,7 +108,7 @@ export function useFormGql<Q, V extends FieldValues>(
     form.handleSubmit(async (formValues, event) => {
       // Combine defaults with the formValues and encode
       submittedVariables.current = undefined
-      let variables = encode({ ...defaultValues, ...formValues })
+      let variables = experimental_useV2 ? formValues : encode({ ...defaultValues, ...formValues })
 
       // Wait for the onBeforeSubmit to complete
       if (onBeforeSubmit) {
@@ -80,11 +119,18 @@ export function useFormGql<Q, V extends FieldValues>(
       // if (variables === false) onInvalid?.(formValues, event)
 
       submittedVariables.current = variables
-      const result = await execute({ variables })
+      if (loading && experimental_useV2) controllerRef.current?.abort()
+      controllerRef.current = new window.AbortController()
+      const result = await execute({
+        variables,
+        context: { fetchOptions: { signal: controllerRef.current.signal } },
+      })
+
       if (onComplete && result.data) await onComplete(result, variables)
 
       // Reset the state of the form if it is unmodified afterwards
-      if (typeof diff(form.getValues(), formValues) === 'undefined') form.reset(formValues)
+      if (typeof diff(form.getValues(), formValues) === 'undefined' && !experimental_useV2)
+        form.reset(formValues)
 
       await onValid(formValues, event)
     }, onInvalid)
