@@ -74,7 +74,8 @@
     "@graphcommerce/next-config": "7.0.1",
     "@graphcommerce/prettier-config-pwa": "7.0.1",
     "@graphcommerce/typescript-config-pwa": "7.0.1",
-    "@graphcommerce/magento-recently-viewed-products": "7.1.0-canary.44"
+    "@graphcommerce/magento-recently-viewed-products": "7.1.0-canary.44",
+    "@graphcommerce/hygraph-dynamic-rows-ui": "7.1.0-canary.23"
   },
   "changesets": [
     "afraid-baboons-move",
@@ -119,6 +120,7 @@
     "sharp-apes-burn",
     "sharp-shrimps-flow",
     "shiny-bikes-kiss",
+    "short-toys-cry",
     "six-horses-repeat",
     "slow-flies-scream",
     "soft-readers-camp",
