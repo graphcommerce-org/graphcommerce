@@ -1,6 +1,26 @@
 # Change Log
 
-## 7.1.0-canary.39
+## 7.1.0-canary.53
+
+### Patch Changes
+
+- [#2119](https://github.com/graphcommerce-org/graphcommerce/pull/2119) [`6adb2e72e`](https://github.com/graphcommerce-org/graphcommerce/commit/6adb2e72ece8210757ced178779dfba11b1bcf55) - Clarify texts by adding formatting and correcting spelling. ([@carlocarels90](https://github.com/carlocarels90))
+
+## 7.1.0-canary.52
+
+## 7.1.0-canary.51
+
+## 7.1.0-canary.50
+
+## 7.1.0-canary.49
+
+## 7.1.0-canary.48
+
+## 7.1.0-canary.47
+
+## 7.1.0-canary.46
+
+## 7.1.0-canary.45
 
 ## 7.1.0-canary.38
 

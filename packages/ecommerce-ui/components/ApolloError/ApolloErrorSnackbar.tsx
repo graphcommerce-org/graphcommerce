@@ -1,5 +1,6 @@
 import { ApolloError } from '@graphcommerce/graphql'
 import { ErrorSnackbar, ErrorSnackbarProps } from '@graphcommerce/next-ui'
+import { maskNetworkError } from './maskNetworkError'
 
 export type ApolloErrorSnackbarProps = {
   error?: ApolloError
@@ -14,7 +15,7 @@ export function ApolloErrorSnackbar(props: ApolloErrorSnackbarProps) {
     <ErrorSnackbar variant='pill' severity='error' {...passedProps} open={!!error}>
       <>
         {error.graphQLErrors.map((e) => e.message).join(', ')}
-        {error.networkError && <>Network Error: {error.networkError.message}</>}
+        {maskNetworkError(error.networkError)}
       </>
     </ErrorSnackbar>
   )

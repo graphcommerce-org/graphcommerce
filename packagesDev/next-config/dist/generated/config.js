@@ -27,6 +27,9 @@ _export(exports, {
     ProductFiltersLayoutSchema: function() {
         return ProductFiltersLayoutSchema;
     },
+    RecentlyViewedProductsConfigSchema: function() {
+        return RecentlyViewedProductsConfigSchema;
+    },
     SidebarGalleryConfigSchema: function() {
         return SidebarGalleryConfigSchema;
     },
@@ -68,6 +71,7 @@ function GraphCommerceConfigSchema() {
         customerRequireEmailConfirmation: _zod.z.boolean().nullish(),
         debug: GraphCommerceDebugConfigSchema().nullish(),
         demoMode: _zod.z.boolean().nullish(),
+        enableGuestCheckoutLogin: _zod.z.boolean().nullish(),
         googleAnalyticsId: _zod.z.string().nullish(),
         googleRecaptchaKey: _zod.z.string().nullish(),
         googleTagmanagerId: _zod.z.string().nullish(),
@@ -82,6 +86,7 @@ function GraphCommerceConfigSchema() {
         productFiltersLayout: ProductFiltersLayoutSchema.nullish(),
         productFiltersPro: _zod.z.boolean().nullish(),
         productRoute: _zod.z.string().nullish(),
+        recentlyViewedProducts: RecentlyViewedProductsConfigSchema().nullish(),
         robotsAllow: _zod.z.boolean().nullish(),
         sidebarGallery: SidebarGalleryConfigSchema().nullish(),
         storefront: _zod.z.array(GraphCommerceStorefrontConfigSchema()),
@@ -116,6 +121,12 @@ function MagentoConfigurableVariantValuesSchema() {
         content: _zod.z.boolean().nullish(),
         gallery: _zod.z.boolean().nullish(),
         url: _zod.z.boolean().nullish()
+    });
+}
+function RecentlyViewedProductsConfigSchema() {
+    return _zod.z.object({
+        enabled: _zod.z.boolean().nullish(),
+        maxCount: _zod.z.number().nullish()
     });
 }
 function SidebarGalleryConfigSchema() {

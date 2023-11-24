@@ -12,5 +12,8 @@
   "snapshot": {
     "useCalculatedVersion": true,
     "prereleaseTemplate": "{tag}-{datetime}-{commit}"
-  }
+  },
+  "autoBumpPeerDependentsInSameChangeset": true,
+  "autoBumpPeerDependentsCondition": "out-of-range",
+  "autoBumpPeerDependentsStrategy": "follow"
 }

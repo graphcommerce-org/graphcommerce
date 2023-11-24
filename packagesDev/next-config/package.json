@@ -2,7 +2,7 @@
   "name": "@graphcommerce/next-config",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "7.1.0-canary.39",
+  "version": "7.1.0-canary.53",
   "type": "commonjs",
   "main": "dist/index.js",
   "types": "src/index.ts",
@@ -20,7 +20,6 @@
     "inspectpack": "^4.7.1",
     "js-yaml-loader": "^1.2.2",
     "lodash": "^4.17.21",
-    "workbox-build": "^7.0.0",
     "znv": "^0.4.0",
     "zod": "^3.22.4"
   },
@@ -31,8 +30,8 @@
   },
   "peerDependencies": {
     "@lingui/macro": "^4.2.1",
-    "graphql": "*",
-    "next": "*",
+    "graphql": "^16",
+    "next": "^14",
     "webpack": "^5.0.0"
   }
 }

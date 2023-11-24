@@ -1,6 +1,30 @@
 # Change Log
 
-## 7.1.0-canary.39
+## 7.1.0-canary.53
+
+## 7.1.0-canary.52
+
+## 7.1.0-canary.51
+
+## 7.1.0-canary.50
+
+## 7.1.0-canary.49
+
+### Patch Changes
+
+- [#2115](https://github.com/graphcommerce-org/graphcommerce/pull/2115) [`105a1af8b`](https://github.com/graphcommerce-org/graphcommerce/commit/105a1af8b820de8873e430ae398f1922d39a9110) - Disabled Ripple on all ActionCard ‘Select’ and ‘Change’ so the rendering is more subtle during checkout. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 7.1.0-canary.48
+
+### Patch Changes
+
+- [#2118](https://github.com/graphcommerce-org/graphcommerce/pull/2118) [`0cdaad28f`](https://github.com/graphcommerce-org/graphcommerce/commit/0cdaad28fb9a20fb5b0b1d339f197b938aa3595a) - Fixed bug where if the customer created a new address during checkout it would not be persisted when navigating back from the payment step. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 7.1.0-canary.47
+
+## 7.1.0-canary.46
+
+## 7.1.0-canary.45
 
 ## 7.1.0-canary.38
 

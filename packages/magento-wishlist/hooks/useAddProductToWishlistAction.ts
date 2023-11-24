@@ -1,13 +1,13 @@
 import { useWatch } from '@graphcommerce/ecommerce-ui'
 import { useCustomerSession } from '@graphcommerce/magento-customer'
 import { AddToCartItemSelector, useFormAddProductsToCart } from '@graphcommerce/magento-product'
+import { nonNullable } from '@graphcommerce/next-ui'
 import { useEventCallback } from '@mui/material'
 import { useState } from 'react'
 import { WishlistItemFragment } from '../queries/WishlistItem.gql'
 import { useAddProductsToWishlist } from './useAddProductsToWishlist/useAddProductsToWishlist'
 import { useRemoveProductsFromWishlist } from './useRemoveProductsFromWishlist'
 import { useWishlistItems } from './useWishlistitems'
-import { nonNullable } from '@graphcommerce/next-ui'
 
 export type UseAddProductToWishlistActionProps = AddToCartItemSelector & {
   loading?: boolean

@@ -1,24 +1,27 @@
-import { Image, ImageProps } from '@graphcommerce/image'
-import {
-  responsiveVal,
-  extendableComponent,
-  useNumberFormat,
-  breakpointVal,
-} from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
-import {
-  ButtonBase,
-  Typography,
-  Box,
-  styled,
-  SxProps,
-  Theme,
-  useEventCallback,
-} from '@mui/material'
+import { ImageProps } from '@graphcommerce/image'
+import { extendableComponent } from '@graphcommerce/next-ui'
+import { SxProps, Theme, useEventCallback, Skeleton } from '@mui/material'
 import React from 'react'
 import { ProductListItemFragment } from '../../Api/ProductListItem.gql'
-import { useProductLink } from '../../hooks/useProductLink'
+import { productLink } from '../../hooks/useProductLink'
 import { ProductListPrice } from '../ProductListPrice/ProductListPrice'
+import { ProductDiscountLabel } from './ProductDiscountLabel'
+import {
+  ProductListItemImageProps,
+  ProductListItemImage,
+  ProductListItemImageSkeleton,
+} from './ProductListItemImage'
+import {
+  ProductListItemImageAreaKeys,
+  ProductListsItemImageAreaProps,
+  ProductListItemImageAreas,
+  ProductImageContainer,
+} from './ProductListItemImageContainer'
+import { ProductListItemLinkOrDiv } from './ProductListItemLinkOrDiv'
+import {
+  ProductListItemTitleAndPrice,
+  ProductListItemTitleAndPriceProps,
+} from './ProductListItemTitleAndPrice'
 
 const { classes, selectors } = extendableComponent('ProductListItem', [
   'root',
@@ -38,29 +41,30 @@ const { classes, selectors } = extendableComponent('ProductListItem', [
   'discount',
 ] as const)
 
-export type OverlayAreaKeys = 'topLeft' | 'bottomLeft' | 'topRight' | 'bottomRight'
-
-export type OverlayAreas = Partial<Record<OverlayAreaKeys, React.ReactNode>>
-
 type StyleProps = {
-  aspectRatio?: [number, number]
   imageOnly?: boolean
 }
 
-type BaseProps = { subTitle?: React.ReactNode; children?: React.ReactNode } & StyleProps &
-  OverlayAreas &
-  ProductListItemFragment &
+type BaseProps = {
+  imageOnly?: boolean
+  children?: React.ReactNode
+  sx?: SxProps<Theme>
+  // eslint-disable-next-line react/no-unused-prop-types
+  onClick?: (event: React.MouseEvent<HTMLAnchorElement>, item: ProductListItemFragment) => void
+} & StyleProps &
+  Omit<ProductListItemTitleAndPriceProps, 'title' | 'classes' | 'children'> &
+  Omit<ProductListItemImageProps, 'classes'> &
+  Omit<ProductListsItemImageAreaProps, 'classes'> &
   Pick<ImageProps, 'loading' | 'sizes' | 'dontReportWronglySizedImages'>
 
-export type ProductListItemProps = BaseProps & {
-  sx?: SxProps<Theme>
-  titleComponent?: React.ElementType
-  onClick?: (event: React.MouseEvent<HTMLAnchorElement>, item: ProductListItemFragment) => void
-}
+// eslint-disable-next-line react/no-unused-prop-types
+type SkeletonProps = BaseProps & { __typename: 'Skeleton' }
 
-const StyledImage = styled(Image)({})
+type ProductProps = BaseProps & ProductListItemFragment
 
-export function ProductListItem(props: ProductListItemProps) {
+export type ProductListItemProps = ProductProps | SkeletonProps
+
+export function ProductListItemReal(props: ProductProps) {
   const {
     subTitle,
     topLeft,
@@ -81,202 +85,101 @@ export function ProductListItem(props: ProductListItemProps) {
     onClick,
   } = props
 
-  const handleClick = useEventCallback((e: React.MouseEvent<HTMLAnchorElement>) =>
-    onClick?.(e, props),
+  const handleClick = useEventCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>) => onClick?.(e, props),
   )
 
-  const productLink = useProductLink(props)
-  const discount = Math.floor(price_range.minimum_price.discount?.percent_off ?? 0)
-
-  const formatter = useNumberFormat({ style: 'percent', maximumFractionDigits: 1 })
-
   return (
-    <ButtonBase
-      href={productLink}
-      sx={[
-        (theme) => ({
-          display: 'block',
-          position: 'relative',
-          height: '100%',
-          ...breakpointVal(
-            'borderRadius',
-            theme.shape.borderRadius * 2,
-            theme.shape.borderRadius * 3,
-            theme.breakpoints.values,
-          ),
-        }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+    <ProductListItemLinkOrDiv
+      href={productLink(props)}
       className={classes.root}
-      onClick={onClick ? handleClick : undefined}
+      sx={sx}
+      onClick={handleClick}
     >
-      <Box
-        sx={(theme) => ({
-          display: 'grid',
-          bgcolor: 'background.image',
-          ...breakpointVal(
-            'borderRadius',
-            theme.shape.borderRadius * 2,
-            theme.shape.borderRadius * 3,
-            theme.breakpoints.values,
-          ),
-          overflow: 'hidden',
-          padding: responsiveVal(8, 12),
-          '& > picture': {
-            gridArea: `1 / 1 / 3 / 3`,
-            margin: `calc(${responsiveVal(8, 12)} * -1)`,
-          },
-        })}
-        className={classes.imageContainer}
-      >
-        {small_image ? (
-          <StyledImage
-            layout='fill'
-            width={1}
-            height={1}
-            sizes={sizes}
-            dontReportWronglySizedImages={dontReportWronglySizedImages}
-            src={small_image.url ?? ''}
-            alt={small_image.label ?? ''}
-            className={classes.image}
-            loading={loading}
-            sx={{ objectFit: 'contain', aspectRatio: `${aspectRatio[0] / aspectRatio[1]}` }}
-          />
-        ) : (
-          <Box
-            sx={{
-              gridArea: `1 / 1 / 3 / 3`,
-              typography: 'caption',
-              display: 'flex',
-              textAlign: 'center',
-              height: '100%',
-              justifyContent: 'center',
-              alignItems: 'center',
-              color: 'background.default',
-              userSelect: 'none',
-            }}
-            className={`${classes.placeholder} ${classes.image}`}
-          >
-            <Trans id='No Image' />
-          </Box>
-        )}
+      <ProductImageContainer className={classes.imageContainer}>
+        <ProductListItemImage
+          classes={classes}
+          src={small_image?.url}
+          alt={small_image?.label}
+          aspectRatio={aspectRatio}
+          loading={loading}
+          sizes={sizes}
+          dontReportWronglySizedImages={dontReportWronglySizedImages}
+        />
 
         {!imageOnly && (
-          <>
-            <Box
-              sx={{
-                gridArea: `1 / 1 / 2 / 2`,
-                zIndex: 1,
-              }}
-              className={classes.topLeft}
-            >
-              {discount > 0 && (
-                <Box
-                  className={classes.discount}
-                  sx={{
-                    typography: 'caption',
-                    bgcolor: 'text.primary',
-                    fontWeight: 'fontWeightBold',
-                    border: 1,
-                    borderColor: 'divider',
-                    padding: '0px 6px',
-                    color: 'background.default',
-                    display: 'inline-block',
-                  }}
-                >
-                  {formatter.format(discount / -100)}
-                </Box>
-              )}
-              {topLeft}
-            </Box>
-            <Box
-              sx={{
-                justifySelf: 'end',
-                textAlign: 'right',
-                gridArea: `1 / 2 / 2 / 3`,
-                zIndex: 1,
-              }}
-              className={classes.topRight}
-            >
-              {topRight}
-            </Box>
-            <Box
-              sx={{
-                alignSelf: 'flex-end',
-                gridArea: `2 / 1 / 3 / 2`,
-                zIndex: 1,
-              }}
-              className={classes.bottomLeft}
-            >
-              {bottomLeft}
-            </Box>
-            <Box
-              sx={{
-                textAlign: 'right',
-                alignSelf: 'flex-end',
-                gridArea: `2 / 2 / 3 / 3`,
-                zIndex: 1,
-                justifySelf: 'end',
-              }}
-              className={classes.bottomRight}
-            >
-              {bottomRight}
-            </Box>
-          </>
+          <ProductListItemImageAreas
+            topRight={topRight}
+            bottomLeft={bottomLeft}
+            bottomRight={bottomRight}
+            classes={classes}
+            topLeft={
+              <>
+                <ProductDiscountLabel className={classes.discount} price_range={price_range} />
+                {topLeft}
+              </>
+            }
+          />
         )}
-      </Box>
+      </ProductImageContainer>
 
       {!imageOnly && (
         <>
-          <Box
-            className={classes.titleContainer}
-            sx={(theme) => ({
-              display: 'grid',
-              alignItems: 'baseline',
-              marginTop: theme.spacings.xs,
-              columnGap: 1,
-              gridTemplateAreas: {
-                xs: `"title title" "subtitle price"`,
-                md: `"title subtitle price"`,
-              },
-              gridTemplateColumns: { xs: 'unset', md: 'auto auto 1fr' },
-              justifyContent: 'space-between',
-            })}
+          <ProductListItemTitleAndPrice
+            classes={classes}
+            titleComponent={titleComponent}
+            title={name}
+            subTitle={subTitle}
           >
-            <Typography
-              component={titleComponent}
-              variant='subtitle1'
-              sx={{
-                display: 'inline',
-                color: 'text.primary',
-                overflowWrap: 'break-word',
-                wordBreak: 'break-all',
-                maxWidth: '100%',
-                gridArea: 'title',
-                fontWeight: 'fontWeightBold',
-              }}
-              className={classes.title}
-            >
-              {name}
-            </Typography>
-            <Box sx={{ gridArea: 'subtitle' }} className={classes.subtitle}>
-              {subTitle}
-            </Box>
-
-            <ProductListPrice
-              {...price_range.minimum_price}
-              sx={{
-                gridArea: 'price',
-                textAlign: 'right',
-                justifySelf: { sm: 'flex-end' },
-              }}
-            />
-          </Box>
+            <ProductListPrice {...price_range.minimum_price} />
+          </ProductListItemTitleAndPrice>
           {children}
         </>
       )}
-    </ButtonBase>
+    </ProductListItemLinkOrDiv>
+  )
+}
+
+export function ProductListItemSkeleton(props: SkeletonProps) {
+  const { children, imageOnly = false, aspectRatio, titleComponent = 'h2', sx = [] } = props
+
+  return (
+    <ProductListItemLinkOrDiv sx={sx} className={classes.root}>
+      <ProductImageContainer className={classes.imageContainer}>
+        <ProductListItemImageSkeleton classes={classes} aspectRatio={aspectRatio} />
+      </ProductImageContainer>
+
+      {!imageOnly && (
+        <>
+          <ProductListItemTitleAndPrice
+            classes={classes}
+            titleComponent={titleComponent}
+            title={<Skeleton variant='text' sx={{ width: '100px' }} />}
+            subTitle={<Skeleton variant='text' sx={{ width: '20px' }} />}
+          >
+            <Skeleton variant='text' sx={{ width: '20px' }} />
+          </ProductListItemTitleAndPrice>
+          {children}
+        </>
+      )}
+    </ProductListItemLinkOrDiv>
+  )
+}
+
+function isSkeleton(props: ProductListItemProps): props is SkeletonProps {
+  return props.__typename === 'Skeleton'
+}
+export function ProductListItem(props: ProductListItemProps) {
+  return isSkeleton(props) ? (
+    <ProductListItemSkeleton {...props} />
+  ) : (
+    <ProductListItemReal {...props} />
   )
 }
 
 ProductListItem.selectors = { ...selectors, ...ProductListPrice.selectors }
+
+/** @deprecated */
+export type OverlayAreaKeys = ProductListItemImageAreaKeys
+/** @deprecated */
+export type OverlayAreas = ProductListsItemImageAreaProps

@@ -1,6 +1,26 @@
 # Change Log
 
-## 7.1.0-canary.39
+## 7.1.0-canary.53
+
+## 7.1.0-canary.52
+
+## 7.1.0-canary.51
+
+## 7.1.0-canary.50
+
+## 7.1.0-canary.49
+
+## 7.1.0-canary.48
+
+## 7.1.0-canary.47
+
+## 7.1.0-canary.46
+
+## 7.1.0-canary.45
+
+### Patch Changes
+
+- [#2077](https://github.com/graphcommerce-org/graphcommerce/pull/2077) [`727d1004d`](https://github.com/graphcommerce-org/graphcommerce/commit/727d1004dfcb7dddf6e35b6b157a34491bb05cc6) - Fixed ItemScroller component className. Changed from SidebarSlider to ItemScroller ([@bramvanderholst](https://github.com/bramvanderholst))
 
 ## 7.1.0-canary.38
 

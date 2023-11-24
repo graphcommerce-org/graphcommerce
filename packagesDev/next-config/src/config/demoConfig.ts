@@ -24,10 +24,13 @@ export const demoConfig: PartialDeep<GraphCommerceConfig, { recurseIntoArrays: t
   productFiltersLayout: 'DEFAULT',
   compareVariant: 'ICON',
   robotsAllow: false,
+
   demoMode: true,
   limitSsg: true,
   compare: true,
   sidebarGallery: { paginationVariant: 'DOTS' },
   configurableVariantForSimple: true,
   configurableVariantValues: { url: true, content: true, gallery: true },
+
+  recentlyViewedProducts: { enabled: true, maxCount: 20 },
 }

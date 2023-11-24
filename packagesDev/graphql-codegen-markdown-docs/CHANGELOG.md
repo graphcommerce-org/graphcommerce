@@ -1,6 +1,26 @@
 # Change Log
 
-## 7.1.0-canary.39
+## 7.1.0-canary.53
+
+## 7.1.0-canary.52
+
+## 7.1.0-canary.51
+
+## 7.1.0-canary.50
+
+## 7.1.0-canary.49
+
+## 7.1.0-canary.48
+
+## 7.1.0-canary.47
+
+## 7.1.0-canary.46
+
+## 7.1.0-canary.45
+
+### Patch Changes
+
+- [#2077](https://github.com/graphcommerce-org/graphcommerce/pull/2077) [`2e46389ed`](https://github.com/graphcommerce-org/graphcommerce/commit/2e46389edcd506c490cd7273be384e5c42df4a9e) - Render framework/config.md more nicely, so that we follow a more typescript-esque style, inline enums. ([@bramvanderholst](https://github.com/bramvanderholst))
 
 ## 7.1.0-canary.38
 

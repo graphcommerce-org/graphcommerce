@@ -61,20 +61,14 @@ export const BundleOptionValue = (props: ActionCardItemRenderProps<BundleOptionV
       }
       action={
         (can_change_quantity || !required) && (
-          <Button disableTouchRipple variant='inline' color='inherit' size='small' tabIndex={-1}>
+          <Button disableRipple variant='inline' color='inherit' size='small' tabIndex={-1}>
             <Trans id='Select' />
           </Button>
         )
       }
       reset={
         (can_change_quantity || !required) && (
-          <Button
-            disableTouchRipple
-            variant='inline'
-            color='inherit'
-            size='small'
-            onClick={onReset}
-          >
+          <Button disableRipple variant='inline' color='inherit' size='small' onClick={onReset}>
             {can_change_quantity ? <Trans id='Change' /> : <Trans id='Remove' />}
           </Button>
         )

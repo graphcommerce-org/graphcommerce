@@ -1,4 +1,4 @@
-import { WaitForQueries } from '@graphcommerce/ecommerce-ui'
+import { TextFieldElement, WaitForQueries } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import {
   ApolloCartErrorAlert,
@@ -15,7 +15,7 @@ import {
 } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
-import { TextField, Button, SxProps, Box, Theme } from '@mui/material'
+import { Button, SxProps, Box, Theme } from '@mui/material'
 import React from 'react'
 import { CartEmailDocument } from './CartEmail.gql'
 import { SetGuestEmailOnCartDocument } from './SetGuestEmailOnCart.gql'
@@ -34,19 +34,18 @@ const EmailFormBase = React.memo<EmailFormProps>((props) => {
 
   const cartEmail = useCartQuery(CartEmailDocument)
 
-  const email = cartEmail.data?.cart?.email ?? ''
-
   const form = useFormGqlMutationCart(SetGuestEmailOnCartDocument, {
     mode: 'onChange',
-    defaultValues: { email },
+    defaultValues: { email: cartEmail.data?.cart?.email ?? '' },
   })
+  const email = form.watch('email')
 
   const isEmailAvailable = useQuery(IsEmailAvailableDocument, {
     variables: { email },
-    skip: !email,
+    skip: !import.meta.graphCommerce.enableGuestCheckoutLogin || !email,
   })
 
-  const { formState, muiRegister, required, error, handleSubmit } = form
+  const { formState, required, error, handleSubmit } = form
   const submit = handleSubmit(() => {})
 
   useFormCompose({ form, step, submit, key: 'EmailForm' })
@@ -55,7 +54,9 @@ const EmailFormBase = React.memo<EmailFormProps>((props) => {
   return (
     <Box component='form' noValidate onSubmit={submit} sx={sx}>
       <FormRow className={classes.formRow} sx={{ py: 0 }}>
-        <TextField
+        <TextFieldElement
+          control={form.control}
+          name='email'
           variant='outlined'
           type='email'
           error={formState.isSubmitted && !!formState.errors.email}
@@ -63,15 +64,16 @@ const EmailFormBase = React.memo<EmailFormProps>((props) => {
           label={<Trans id='Email' />}
           required={required.email}
           disabled={cartEmail.loading}
-          {...muiRegister('email', {
+          validation={{
             required: required.email,
             pattern: { value: emailPattern, message: '' },
-          })}
+          }}
           InputProps={{
             autoComplete: 'email',
             endAdornment: (
               <WaitForQueries waitFor={isEmailAvailable}>
-                {isEmailAvailable.data?.isEmailAvailable && (
+                {(isEmailAvailable.data?.isEmailAvailable ||
+                  !import.meta.graphCommerce.enableGuestCheckoutLogin) && (
                   <Button
                     href={`/account/signin?email=${email}`}
                     color='secondary'

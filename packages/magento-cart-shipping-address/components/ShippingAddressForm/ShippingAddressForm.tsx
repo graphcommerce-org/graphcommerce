@@ -25,6 +25,10 @@ import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { SxProps, Theme } from '@mui/material'
 import React from 'react'
+import {
+  findCustomerAddressFromCartAddress,
+  isCartAddressACustomerAddress,
+} from '../../utils/findCustomerAddressFromCartAddress'
 import { isSameAddress } from '../../utils/isSameAddress'
 import { GetAddressesDocument } from './GetAddresses.gql'
 import { SetBillingAddressDocument } from './SetBillingAddress.gql'
@@ -32,12 +36,15 @@ import { SetShippingAddressDocument } from './SetShippingAddress.gql'
 import { SetShippingBillingAddressDocument } from './SetShippingBillingAddress.gql'
 
 export type ShippingAddressFormProps = Pick<UseFormComposeOptions, 'step'> & {
+  /**
+   * @deprecated This was used to make sure the form wasn't filled with a customer's address. However this also broke the checkout when navigating back from the checkout. This is now automatically handled.
+   */
   ignoreCache?: boolean
   sx?: SxProps<Theme>
 }
 
 export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) => {
-  const { step, sx, ignoreCache = false } = props
+  const { step, sx } = props
   const { data: cartQuery } = useCartQuery(GetAddressesDocument)
   const { data: config } = useQuery(StoreConfigDocument)
   const countryQuery = useQuery(CountryRegionsDocument, { fetchPolicy: 'cache-and-network' })
@@ -78,7 +85,7 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
   }
 
   const form = useFormGqlMutationCart(Mutation, {
-    defaultValues: ignoreCache
+    defaultValues: isCartAddressACustomerAddress(customerQuery?.customer?.addresses, currentAddress)
       ? { saveInAddressBook: true }
       : {
           // todo(paales): change to something more sustainable
