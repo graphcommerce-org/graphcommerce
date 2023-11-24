@@ -1,8 +1,6 @@
 import Head from 'next/head'
 import { safeJsonLdReplacer } from './safeJsonLdReplacer'
 
-export * as SchemaDts from 'schema-dts'
-
 export function JsonLd<T extends { '@type': string }>(props: {
   item: T & { '@context': 'https://schema.org' }
 }) {
