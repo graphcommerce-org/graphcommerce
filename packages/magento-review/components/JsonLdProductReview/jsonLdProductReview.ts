@@ -1,5 +1,5 @@
-import { Product } from 'schema-dts'
-import { JsonLdProductReviewFragment } from './JsonLdProductReview.gql'
+import type { Product } from 'schema-dts'
+import type { JsonLdProductReviewFragment } from './JsonLdProductReview.gql'
 
 export function jsonLdProductReview(
   props: JsonLdProductReviewFragment,
