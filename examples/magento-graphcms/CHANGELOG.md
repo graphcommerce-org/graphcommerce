@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.1.0-canary.57
+
+### Patch Changes
+
+- [#2122](https://github.com/graphcommerce-org/graphcommerce/pull/2122) [`7750f7253`](https://github.com/graphcommerce-org/graphcommerce/commit/7750f7253ded34acb4cd8b75598bf0ad1bca6d5c) - Added .graphqlrc.yml for graphql file autocompletion ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 7.1.0-canary.56
 
 ## 7.1.0-canary.55
