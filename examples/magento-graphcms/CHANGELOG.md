@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.1.0-canary.55
+
+### Patch Changes
+
+- [#2004](https://github.com/graphcommerce-org/graphcommerce/pull/2004) [`53947d39f`](https://github.com/graphcommerce-org/graphcommerce/commit/53947d39f2f3ee578c14903c96a2b356d99d9475) - Implemented Message variant for RowColumnOne to show an important message which, after dismissing, will not show again ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 7.1.0-canary.54
 
 ## 7.1.0-canary.53
