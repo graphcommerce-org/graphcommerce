@@ -132,7 +132,12 @@ export function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormProps) {
         </Button>
       </FormActions>
 
-      <MessageSnackbar variant='pill' sticky open={formState.isSubmitSuccessful && !error}>
+      <MessageSnackbar
+        variant='pill'
+        severity='success'
+        sticky
+        open={formState.isSubmitSuccessful && !error}
+      >
         <Trans id='Successfully updated email' />
       </MessageSnackbar>
     </Form>

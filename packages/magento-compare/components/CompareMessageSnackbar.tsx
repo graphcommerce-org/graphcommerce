@@ -25,6 +25,7 @@ export function CompareMessageSnackbar(props: CompareMessageSnackbarProps) {
         setDisplayMessageBar(false)
       }}
       variant='pill'
+      severity='success'
       action={
         count && count > 1 ? (
           <Button

@@ -61,6 +61,7 @@ export function AddProductsToCartSnackbar(props: AddProductsToCartSnackbarProps)
       {showSuccess && (
         <MessageSnackbar
           variant='pill'
+          severity='success'
           {...successSnackbar}
           open={showSuccess}
           action={
