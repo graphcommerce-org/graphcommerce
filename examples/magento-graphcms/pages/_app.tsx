@@ -16,7 +16,7 @@ export default function ThemedApp(props: AppProps) {
   const { locale = 'en' } = router
 
   return (
-    <CssAndFramerMotionProvider>
+    <CssAndFramerMotionProvider {...props}>
       <I18nProvider key={locale} locale={locale}>
         <GraphQLProvider {...props}>
           <DarkLightModeThemeProvider light={lightTheme} dark={darkTheme}>
