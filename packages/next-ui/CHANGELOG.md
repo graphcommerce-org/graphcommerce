@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.1.0-canary.58
+
+### Patch Changes
+
+- [#2121](https://github.com/graphcommerce-org/graphcommerce/pull/2121) [`a5da6ffc8`](https://github.com/graphcommerce-org/graphcommerce/commit/a5da6ffc8be359e93c7bde986134f7162aae13b9) - Change the critical css injection location to be in the head instead of `<style>` tags in the body. It has a number of negative consequences, such as the famous "flash of unstyled content" (FOUC) and the re-paint and re-layout required. ([@paales](https://github.com/paales))
+
 ## 7.1.0-canary.57
 
 ## 7.1.0-canary.56
