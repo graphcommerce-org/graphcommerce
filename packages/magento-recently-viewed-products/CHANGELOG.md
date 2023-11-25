@@ -1,5 +1,7 @@
 # @graphcommerce/magento-recently-viewed-products
 
+## 7.1.0-canary.56
+
 ## 7.1.0-canary.55
 
 ## 7.1.0-canary.54
