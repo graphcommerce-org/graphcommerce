@@ -2,7 +2,6 @@ import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import { FormRow } from '@graphcommerce/next-ui'
 import { assertFormGqlOperation, useFormContext } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
-import { TextField } from '@mui/material'
 
 export function NicknameField() {
   const methods = useFormContext()
@@ -18,7 +17,7 @@ export function NicknameField() {
         required={required.nickname}
         control={control}
         name='nickname'
-        helperText={formState.errors.nickname?.message}
+        helperText={<> {formState.errors.nickname?.message ?? ''} </>}
         disabled={formState.isSubmitting}
         InputProps={{
           readOnly: typeof getValues('nickname') !== 'undefined',

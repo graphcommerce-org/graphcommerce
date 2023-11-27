@@ -44,13 +44,7 @@ export function SearchForm(props: SearchFormProps) {
 
   return (
     <Box className={classes.root} component='form' noValidate onSubmit={submit} sx={sx}>
-      <FormAutoSubmit
-        control={form.control}
-        submit={submit}
-        wait={200}
-        maxWait={400}
-        initialWait={0}
-      />
+      <FormAutoSubmit wait={200} maxWait={400} initialWait={0} />
       <TextFieldElement
         variant='outlined'
         type='text'
