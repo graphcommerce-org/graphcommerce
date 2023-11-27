@@ -1,14 +1,16 @@
 import { useApp, Wrapper } from '@hygraph/app-sdk-react'
-import styles from './setup.module.css'
 import { useState } from 'react'
+import styles from './setup.module.css'
 
 function Install() {
-  // @ts-ignore - outdated types from @hygraph/app-sdk-react
+  // @ts-expect-error - outdated types from @hygraph/app-sdk-react
   const { updateInstallation, installation, showToast, extension } = useApp()
   const installed = installation.status === 'COMPLETED'
   const [gqlUri, setGqlUri] = useState('')
 
-  const saveOnClick = () => {
+  const changedUri = extension.config.backend !== gqlUri
+
+  const saveOnClick = () =>
     updateInstallation({
       config: { backend: gqlUri },
       status: 'COMPLETED',
@@ -20,11 +22,8 @@ function Install() {
         isClosable: true,
         position: 'top-left',
         variantColor: 'success',
-      }).catch((err) => console.log(err)),
+      }).catch((err) => err),
     )
-  }
-
-  const changedUri = extension.config.backend !== gqlUri
 
   const installOnClick = () =>
     updateInstallation({
@@ -38,10 +37,10 @@ function Install() {
         isClosable: true,
         position: 'top-left',
         variantColor: 'success',
-      }).catch((err) => console.log(err)),
+      }).catch((err) => err),
     )
 
-  const uninstallOnClick = async () => {
+  const uninstallOnClick = () => {
     updateInstallation({
       config: {},
       status: 'DISABLED',
@@ -54,13 +53,26 @@ function Install() {
           isClosable: true,
           position: 'top-left',
           variantColor: 'success',
-        })
+        }).catch((err) => err)
       })
       .catch((error) => {
         console.error('Error updating installation', error)
       })
 
     return 0
+  }
+
+  let buttonText: string
+  let buttonAction: typeof uninstallOnClick | typeof installOnClick
+  if (changedUri) {
+    buttonText = 'Save'
+    buttonAction = saveOnClick
+  } else if (installed) {
+    buttonText = 'Disable app'
+    buttonAction = uninstallOnClick
+  } else {
+    buttonText = 'Enable app'
+    buttonAction = installOnClick
   }
 
   return (
@@ -74,12 +86,8 @@ function Install() {
         />
       </>
 
-      <button
-        type='button'
-        className={styles.button}
-        onClick={changedUri ? saveOnClick : installed ? uninstallOnClick : installOnClick}
-      >
-        {changedUri ? 'Save' : installed ? 'Disable app' : 'Enable app'}
+      <button type='button' className={styles.button} onClick={buttonAction}>
+        {buttonText}
       </button>
     </>
   )

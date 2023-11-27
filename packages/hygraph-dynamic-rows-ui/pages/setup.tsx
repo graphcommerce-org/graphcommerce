@@ -1,4 +1,4 @@
-import React, { MutableRefObject, ReactNode, RefObject } from 'react'
+import React from 'react'
 import { Page } from '..'
 
 export default function Setup() {

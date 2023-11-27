@@ -3,16 +3,9 @@ import { loadConfig } from '@graphcommerce/next-config'
 import { Wrapper } from '@hygraph/app-sdk-react'
 import React from 'react'
 import { PropertyPicker } from '..'
-import {
-  createOptionsFromInterfaceObject,
-  objectifyGraphQLInterface,
-  fetchGraphQLInterface,
-} from '../lib'
-import { Interface } from '../types'
+import { fetchGraphQLInterface } from '../lib'
 
-type PropertyPickerProps = Interface
-
-export default function DRPropertyPicker(props: PropertyPickerProps) {
+export default function DRPropertyPicker() {
   const fieldContainer = React.useRef<HTMLDivElement | null>(null)
 
   React.useEffect(() => {
