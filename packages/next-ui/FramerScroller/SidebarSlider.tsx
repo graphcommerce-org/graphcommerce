@@ -26,7 +26,7 @@ const { classes, selectors } = extendableComponent('SidebarSlider', [
 
 export type SidebarSliderProps = {
   children: ReactNode
-  sidebar?: ReactNode
+  sidebar: ReactNode
   sx?: SxProps<Theme>
   buttonSize?: ScrollerButtonProps['size']
 } & Pick<ScrollerButtonProps, 'showButtons'>
@@ -41,23 +41,21 @@ export function SidebarSlider(props: SidebarSliderProps) {
           className={classes.grid}
           sx={{
             display: 'grid',
-            gridTemplateColumns: sidebar ? 'minmax(150px, 25%) 1fr' : '1fr',
+            gridTemplateColumns: 'minmax(150px, 25%) 1fr',
             maxWidth: '100%',
           }}
         >
-          {sidebar && (
-            <Box
-              className={classes.sidebar}
-              sx={(theme) => ({
-                display: 'grid',
-                alignContent: 'space-between',
-                padding: `0 ${theme.spacings.lg} 0 ${theme.page.horizontal}`,
-              })}
-            >
-              <Box>{sidebar}</Box>
-              <ScrollerPageCounter />
-            </Box>
-          )}
+          <Box
+            className={classes.sidebar}
+            sx={(theme) => ({
+              display: 'grid',
+              alignContent: 'space-between',
+              padding: `0 ${theme.spacings.lg} 0 ${theme.page.horizontal}`,
+            })}
+          >
+            <Box>{sidebar}</Box>
+            <ScrollerPageCounter />
+          </Box>
 
           <Box className={classes.scrollerContainer} sx={{ position: 'relative', minWidth: 1 }}>
             <Scroller
