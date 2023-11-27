@@ -3,7 +3,6 @@ import { Button, FormActions } from '@graphcommerce/next-ui'
 import { FormProvider, useFormGqlMutation, useFormPersist } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
 import { Alert } from '@mui/material'
-import { PropsWithChildren } from 'react'
 import { ApolloCustomerErrorSnackbar } from '../ApolloCustomerError/ApolloCustomerErrorSnackbar'
 import { NewsletterField } from '../CustomerFields/NewsletterField'
 import { NameFields } from '../NameFields/NameFields'
@@ -11,7 +10,7 @@ import { ValidatePasswordFields } from '../ResetPasswordForm/ValidatePasswordFie
 import { SignUpDocument, SignUpMutation, SignUpMutationVariables } from './SignUp.gql'
 import { SignUpConfirmDocument } from './SignUpConfirm.gql'
 
-type SignUpFormProps = PropsWithChildren<{ email: string }>
+type SignUpFormProps = { email: string; children?: React.ReactNode }
 
 const requireEmailValidation = import.meta.graphCommerce.customerRequireEmailConfirmation ?? false
 
@@ -54,7 +53,7 @@ export function SignUpForm(props: SignUpFormProps) {
         {children ?? (
           <>
             <ValidatePasswordFields />
-            <NameFields prefix />
+            <NameFields />
             <NewsletterField />
 
             <ApolloCustomerErrorSnackbar error={remainingError} />

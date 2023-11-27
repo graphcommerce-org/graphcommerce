@@ -5,7 +5,6 @@ import { Button, Form, FormActions, FormDivider } from '@graphcommerce/next-ui'
 import { FormProvider, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
 import { SxProps, Theme } from '@mui/material'
-import { PropsWithChildren } from 'react'
 import { AccountAddressFragment } from '../AccountAddress/AccountAddress.gql'
 import { AddressFields } from '../AddressFields/AddressFields'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'
@@ -13,11 +12,12 @@ import { TelephoneField } from '../CustomerFields/TelephoneField'
 import { NameFields } from '../NameFields/NameFields'
 import { UpdateCustomerAddressDocument } from './UpdateCustomerAddress.gql'
 
-type EditAddressFormProps = PropsWithChildren<{
+type EditAddressFormProps = {
   address?: AccountAddressFragment
   sx?: SxProps<Theme>
   onCompleteRoute?: string
-}>
+  children?: React.ReactNode
+}
 
 export function EditAddressForm(props: EditAddressFormProps) {
   const countryQuery = useQuery(CountryRegionsDocument, { fetchPolicy: 'cache-and-network' })
@@ -74,7 +74,7 @@ export function EditAddressForm(props: EditAddressFormProps) {
       <Form onSubmit={submitHandler} noValidate sx={sx}>
         {children ?? (
           <>
-            <NameFields prefix />
+            <NameFields prefixes={false} />
             <AddressFields />
             <TelephoneField />
             <FormDivider />

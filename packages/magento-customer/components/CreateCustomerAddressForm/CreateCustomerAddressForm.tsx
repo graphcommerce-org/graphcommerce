@@ -4,14 +4,18 @@ import { Form, FormActions, FormDivider, Button, MessageSnackbar } from '@graphc
 import { FormProvider, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
 import { useRouter } from 'next/router'
-import { PropsWithChildren } from 'react'
 import { AddressFields } from '../AddressFields/AddressFields'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'
-import { NameFields } from '../NameFields/NameFields'
 import { TelephoneField } from '../CustomerFields/TelephoneField'
+import { NameFields } from '../NameFields/NameFields'
 import { CreateCustomerAddressDocument } from './CreateCustomerAddress.gql'
 
-export function CreateCustomerAddressForm({ children }: PropsWithChildren) {
+type CreateCustomerAddressFormProps = {
+  children?: React.ReactNode
+}
+
+export function CreateCustomerAddressForm(props: CreateCustomerAddressFormProps) {
+  const { children } = props
   const countryQuery = useQuery(CountryRegionsDocument, { fetchPolicy: 'cache-and-network' })
   const countries = countryQuery.data?.countries ?? countryQuery.previousData?.countries
   const router = useRouter()
@@ -53,7 +57,7 @@ export function CreateCustomerAddressForm({ children }: PropsWithChildren) {
       <Form onSubmit={submitHandler} noValidate>
         {children ?? (
           <>
-            <NameFields />
+            <NameFields prefixes={false} />
             <AddressFields />
             <TelephoneField />
 

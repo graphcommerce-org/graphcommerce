@@ -20,23 +20,27 @@ import {
   useCustomerQuery,
 } from '@graphcommerce/magento-customer'
 import { CountryRegionsDocument, StoreConfigDocument } from '@graphcommerce/magento-store'
-import React, { PropsWithChildren } from 'react'
-import { isCartAddressACustomerAddress } from '../../utils/findCustomerAddressFromCartAddress'
+import { Form } from '@graphcommerce/next-ui'
+import { SxProps, Theme } from '@mui/material'
+import React from 'react'
 import { isSameAddress } from '../../utils/isSameAddress'
 import { GetAddressesDocument } from './GetAddresses.gql'
 import { SetBillingAddressDocument } from './SetBillingAddress.gql'
 import { SetShippingAddressDocument } from './SetShippingAddress.gql'
 import { SetShippingBillingAddressDocument } from './SetShippingBillingAddress.gql'
+import { isCartAddressACustomerAddress } from '../../utils/findCustomerAddressFromCartAddress'
 
 export type ShippingAddressFormProps = Pick<UseFormComposeOptions, 'step'> & {
   /**
    * @deprecated This was used to make sure the form wasn't filled with a customer's address. However this also broke the checkout when navigating back from the checkout. This is now automatically handled.
    */
   ignoreCache?: boolean
-} & PropsWithChildren
+  children?: React.ReactNode
+  sx?: SxProps<Theme>
+}
 
 export const ShippingAddressForm = React.memo((props: ShippingAddressFormProps) => {
-  const { step, children, ignoreCache = false } = props
+  const { step, children, ignoreCache = false, sx } = props
   const { data: cartQuery } = useCartQuery(GetAddressesDocument)
   const { data: config } = useQuery(StoreConfigDocument)
   const countryQuery = useQuery(CountryRegionsDocument, { fetchPolicy: 'cache-and-network' })
@@ -118,15 +122,17 @@ export const ShippingAddressForm = React.memo((props: ShippingAddressFormProps) 
 
   return (
     <FormProvider {...form}>
-      {children ?? (
-        <>
-          <NameFields />
-          <AddressFields />
-          <TelephoneField />
-          <ApolloCartErrorAlert />
-          <FormAutoSubmit name={['postcode', 'countryCode', 'regionId']} />
-        </>
-      )}
+      <Form onSubmit={submit} noValidate sx={sx}>
+        {children ?? (
+          <>
+            <NameFields prefixes={false} />
+            <AddressFields />
+            <TelephoneField />
+            <ApolloCartErrorAlert />
+            <FormAutoSubmit name={['postcode', 'countryCode', 'regionId']} />
+          </>
+        )}
+      </Form>
     </FormProvider>
   )
 })

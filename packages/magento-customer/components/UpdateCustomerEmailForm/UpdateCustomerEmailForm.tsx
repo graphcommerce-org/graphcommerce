@@ -1,17 +1,9 @@
-import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
-import {
-  Button,
-  Form,
-  FormActions,
-  FormDivider,
-  FormRow,
-  MessageSnackbar,
-} from '@graphcommerce/next-ui'
-import { FormProvider, emailPattern, useFormGqlMutation } from '@graphcommerce/react-hook-form'
+import { Button, Form, FormActions, FormDivider, MessageSnackbar } from '@graphcommerce/next-ui'
+import { FormProvider, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
-import { PropsWithChildren } from 'react'
 import { ApolloCustomerErrorSnackbar } from '../ApolloCustomerError'
+import { ConfirmEmailField } from '../CustomerFields/ConfirmEmailField'
 import { PasswordField } from '../CustomerFields/PasswordField'
 import {
   UpdateCustomerEmailDocument,
@@ -19,9 +11,10 @@ import {
   UpdateCustomerEmailMutationVariables,
 } from './UpdateCustomerEmail.gql'
 
-type UpdateCustomerEmailFormProps = PropsWithChildren<{
+type UpdateCustomerEmailFormProps = {
   email: string
-}>
+  children?: React.ReactNode
+}
 
 export function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormProps) {
   const { email, children } = props
@@ -31,13 +24,13 @@ export function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormProps) {
     UpdateCustomerEmailMutationVariables & { currentEmail?: string; confirmEmail?: string }
   >(
     UpdateCustomerEmailDocument,
-    {},
+    { defaultValues: { email, currentEmail: email } },
     {
       errorPolicy: 'all',
     },
   )
 
-  const { handleSubmit, error, formState, reset, control } = form
+  const { handleSubmit, error, formState, reset } = form
   const [remainingError] = graphqlErrorByCategory({
     category: 'graphql-authentication',
     error,
@@ -51,29 +44,7 @@ export function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormProps) {
       <Form onSubmit={submit} noValidate>
         {children ?? (
           <>
-            <FormRow>
-              <TextFieldElement
-                key='current-email'
-                variant='outlined'
-                type='text'
-                autoComplete='email'
-                autoFocus
-                error={formState.isSubmitted && !!formState.errors.currentEmail}
-                helperText={formState.isSubmitted && formState.errors.currentEmail?.message}
-                label={<Trans id='Current email' />}
-                required
-                value={email}
-                InputProps={{
-                  readOnly: true,
-                }}
-                control={control}
-                name='currentEmail'
-                validation={{
-                  pattern: { value: emailPattern, message: '' },
-                }}
-              />
-            </FormRow>
-
+            <ConfirmEmailField />
             <PasswordField />
 
             <ApolloCustomerErrorSnackbar error={remainingError} />

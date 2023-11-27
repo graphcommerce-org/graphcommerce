@@ -14,15 +14,16 @@ import { FormProvider, useFormGqlMutation } from '@graphcommerce/react-hook-form
 import { Trans } from '@lingui/react'
 import { Box, Typography, Alert, Button, SxProps, Theme } from '@mui/material'
 import { useRouter } from 'next/router'
-import { PropsWithChildren, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { CreateProductReviewDocument } from './CreateProductReview.gql'
 import { ProductReviewRatingsMetadataDocument } from './ProductReviewRatingsMetadata.gql'
 
-type CreateProductReviewFormProps = PropsWithChildren<{
+type CreateProductReviewFormProps = {
   sku: string
   nickname?: string
   sx?: SxProps<Theme>
-}>
+  children?: React.ReactNode
+}
 
 const name = 'CreateProductReviewForm' as const
 const parts = [

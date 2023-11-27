@@ -3,12 +3,12 @@ import { EmailField } from '@graphcommerce/magento-customer/components/CustomerF
 import { Form, MessageSnackbar, Button } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { SxProps, Theme } from '@mui/material'
-import { PropsWithChildren } from 'react'
 import { GuestNewsletterToggleDocument } from '../GuestNewsletterToggle/GuestNewsletterToggle.gql'
 
-type GuestNewsletterProps = PropsWithChildren<{
+type GuestNewsletterProps = {
   sx?: SxProps<Theme>
-}>
+  children?: React.ReactNode
+}
 
 export function GuestNewsletter(props: GuestNewsletterProps) {
   const { sx = [], children } = props

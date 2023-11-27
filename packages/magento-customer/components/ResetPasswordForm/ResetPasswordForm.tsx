@@ -2,7 +2,6 @@ import { Button, Form, FormActions } from '@graphcommerce/next-ui'
 import { FormProvider, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
 import { useRouter } from 'next/router'
-import { PropsWithChildren } from 'react'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import { EmailField } from '../CustomerFields/EmailField'
 import {
@@ -12,9 +11,10 @@ import {
 } from './ResetPassword.gql'
 import { ValidatePasswordFields } from './ValidatePasswordFields'
 
-type ResetPasswordFormProps = PropsWithChildren<{
+type ResetPasswordFormProps = {
   token: string
-}>
+  children?: React.ReactNode
+}
 
 export function ResetPasswordForm(props: ResetPasswordFormProps) {
   const { token, children } = props

@@ -3,7 +3,6 @@ import { FormRow, InputCheckmark } from '@graphcommerce/next-ui'
 import { assertFormGqlOperation, Controller, useFormContext } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-// eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { MenuItem, TextField } from '@mui/material'
 
 type NameFieldValues = {
@@ -12,18 +11,17 @@ type NameFieldValues = {
   prefix?: string
 }
 
+const mr = i18n._(/* i18n */ 'Mr')
+const mrs = i18n._(/* i18n */ 'Mrs')
+const other = i18n._(/* i18n */ 'Other')
+
 type NameFieldsProps = {
-  prefix?: boolean
+  prefixes?: string[] | false
 }
 
-export function NameFields({ prefix = false }: NameFieldsProps) {
-  const mr = i18n._(/* i18n */ 'Mr')
-  const mrs = i18n._(/* i18n */ 'Mrs')
-  const other = i18n._(/* i18n */ 'Other')
-
+export function NameFields(props: NameFieldsProps) {
+  const { prefixes = [mr, mrs, other] } = props
   const form = useFormContext()
-
-  const prefixes = [mr, mrs, other]
 
   assertFormGqlOperation<NameFieldValues>(form)
 
@@ -33,7 +31,7 @@ export function NameFields({ prefix = false }: NameFieldsProps) {
 
   return (
     <>
-      {prefix && (
+      {prefixes && prefixes.length && (
         <FormRow>
           <Controller
             defaultValue={prefixes[0]}

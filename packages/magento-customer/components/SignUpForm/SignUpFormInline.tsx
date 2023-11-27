@@ -4,18 +4,16 @@ import { Button, extendableComponent, Form, FormRow } from '@graphcommerce/next-
 import { FormProvider, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
 import { Alert, Box } from '@mui/material'
-import { PropsWithChildren } from 'react'
 import { ValidatePasswordFields } from '../ResetPasswordForm/ValidatePasswordFields'
 import { SignUpMutationVariables, SignUpMutation, SignUpDocument } from './SignUp.gql'
 import { SignUpConfirmDocument } from './SignUpConfirm.gql'
 
-type SignUpFormInlineProps = PropsWithChildren<
-  Pick<SignUpMutationVariables, 'email'> & {
-    firstname?: string
-    lastname?: string
-    onSubmitted?: () => void
-  }
->
+type SignUpFormInlineProps = Pick<SignUpMutationVariables, 'email'> & {
+  firstname?: string
+  lastname?: string
+  onSubmitted?: () => void
+  children?: React.ReactNode
+}
 
 const { classes } = extendableComponent('SignUpFormInline', [
   'form',

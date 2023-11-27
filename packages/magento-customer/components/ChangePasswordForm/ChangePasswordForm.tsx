@@ -3,7 +3,6 @@ import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
 import { Form, FormActions, MessageSnackbar, FormDivider, Button } from '@graphcommerce/next-ui'
 import { FormProvider, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
-import { PropsWithChildren } from 'react'
 import { PasswordField } from '../CustomerFields/PasswordField'
 import { ValidatePasswordFields } from '../ResetPasswordForm/ValidatePasswordFields'
 import {
@@ -12,7 +11,12 @@ import {
   ChangePasswordMutationVariables,
 } from './ChangePassword.gql'
 
-export function ChangePasswordForm({ children }: PropsWithChildren) {
+type ChangePasswordFormProps = {
+  children?: React.ReactNode
+}
+
+export function ChangePasswordForm(props: ChangePasswordFormProps) {
+  const { children } = props
   const form = useFormGqlMutation<
     ChangePasswordMutation,
     ChangePasswordMutationVariables & { confirmPassword?: string }

@@ -13,10 +13,9 @@ import { Button, Form, FormActions, FormDivider } from '@graphcommerce/next-ui'
 import { FormProvider } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
 import { SxProps, Theme } from '@mui/material'
-import { PropsWithChildren } from 'react'
 import { GetBillingAddressDocument } from './GetBillingAddress.gql'
 
-export type EditBillingAddressFormProps = PropsWithChildren<{ sx?: SxProps<Theme> }>
+export type EditBillingAddressFormProps = { sx?: SxProps<Theme>; children?: React.ReactNode }
 
 export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
   const { sx, children } = props
@@ -63,7 +62,7 @@ export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
       <Form onSubmit={submitHandler} noValidate sx={sx}>
         {children ?? (
           <>
-            <NameFields prefix />
+            <NameFields />
             <AddressFields />
             <TelephoneField />
             <FormDivider />
