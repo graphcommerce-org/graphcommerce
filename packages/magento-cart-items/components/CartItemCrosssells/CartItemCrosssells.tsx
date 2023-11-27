@@ -30,17 +30,16 @@ export function CartItemCrosssells(props: CartItemCrosssellsProps) {
         <ProductScroller
           productListRenderer={renderer}
           items={crossSellItems}
-          sx={(theme) => ({
-            mb: 0,
+          sx={{
+            marginBottom: 0,
             '& .Scroller-root': {
-              px: 0,
-              gap: theme.spacings.xxs,
-              gridAutoColumns: responsiveVal(125, 175),
+              paddingX: 0,
+              gridAutoColumns: responsiveVal(150, 200),
             },
             '& .ProductListItem-titleContainer': {
-              gridTemplateAreas: `"title title" "subtitle price"`,
+              gridTemplateAreas: `"title title title" "subtitle subtitle price"`,
             },
-          })}
+          }}
         />
       </AddProductsToCartForm>
     </Box>
