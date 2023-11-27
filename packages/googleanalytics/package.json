@@ -29,5 +29,19 @@
     "next": "^14",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
+  },
+  "peerDependenciesMeta": {
+    "@graphcommerce/magento-cart": {
+      "optional": true
+    },
+    "@graphcommerce/magento-cart-payment-method": {
+      "optional": true
+    },
+    "@graphcommerce/magento-cart-shipping-method": {
+      "optional": true
+    },
+    "@graphcommerce/magento-product": {
+      "optional": true
+    }
   }
 }
