@@ -1,9 +1,9 @@
-import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
+import { TextFieldElement, TextFieldElementProps } from '@graphcommerce/ecommerce-ui'
 import { FormRow } from '@graphcommerce/next-ui'
 import { useFormContext, assertFormGqlOperation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
 
-type EmailFieldProps = {
+type EmailFieldProps = Omit<TextFieldElementProps, 'name'> & {
   label?: React.ReactNode
 }
 

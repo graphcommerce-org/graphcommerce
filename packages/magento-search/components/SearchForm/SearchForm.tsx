@@ -1,6 +1,6 @@
 import { TextFieldElement, TextFieldElementProps } from '@graphcommerce/ecommerce-ui'
 import { extendableComponent } from '@graphcommerce/next-ui'
-import { FormAutoSubmit, useForm } from '@graphcommerce/react-hook-form'
+import { FormAutoSubmit, FormProvider, useForm } from '@graphcommerce/react-hook-form'
 import { Box, SxProps, Theme } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useEffect, useRef } from 'react'
@@ -43,19 +43,21 @@ export function SearchForm(props: SearchFormProps) {
   )
 
   return (
-    <Box className={classes.root} component='form' noValidate onSubmit={submit} sx={sx}>
-      <FormAutoSubmit wait={200} maxWait={400} initialWait={0} />
-      <TextFieldElement
-        variant='outlined'
-        type='text'
-        name='search'
-        color='primary'
-        control={control}
-        InputProps={{ ...textFieldProps?.InputProps, endAdornment }}
-        validation={{ minLength: 3 }}
-        inputRef={searchInputElement}
-        {...textFieldProps}
-      />
-    </Box>
+    <FormProvider {...form}>
+      <Box className={classes.root} component='form' noValidate onSubmit={submit} sx={sx}>
+        <FormAutoSubmit wait={200} maxWait={400} initialWait={0} />
+        <TextFieldElement
+          variant='outlined'
+          type='text'
+          name='search'
+          color='primary'
+          control={control}
+          InputProps={{ ...textFieldProps?.InputProps, endAdornment }}
+          validation={{ minLength: 3 }}
+          inputRef={searchInputElement}
+          {...textFieldProps}
+        />
+      </Box>
+    </FormProvider>
   )
 }
