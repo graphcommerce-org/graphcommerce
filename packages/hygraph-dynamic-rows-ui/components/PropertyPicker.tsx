@@ -29,7 +29,7 @@ export function PropertyPicker() {
     return fetchGraphQLInterface(client)
   }, [extension.config.backend])
 
-  // Prepare options
+  // Prepare options 
   const numberOptions = useMemo(
     () =>
       createOptionsFromInterfaceObject(
