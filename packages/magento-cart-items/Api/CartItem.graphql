@@ -12,9 +12,6 @@ fragment CartItem on CartItemInterface @injectable {
     thumbnail {
       ...ProductImage
     }
-    crosssell_products {
-      ...ProductListItem
-    }
   }
   prices {
     discounts {
