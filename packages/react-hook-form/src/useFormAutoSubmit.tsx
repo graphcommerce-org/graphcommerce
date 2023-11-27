@@ -102,8 +102,6 @@ export type FormAutoSubmitProps<
   TFieldValues extends FieldValues = FieldValues,
   TFieldNames extends readonly FieldPath<TFieldValues>[] = readonly FieldPath<TFieldValues>[],
 > = {
-  // eslint-disable-next-line react/no-unused-prop-types
-  // control: Control<TFieldValues>
   /** Autosubmit only when these field names update */
   // eslint-disable-next-line react/no-unused-prop-types
   name?: readonly [...TFieldNames]
@@ -113,10 +111,6 @@ export type FormAutoSubmitProps<
 
   // eslint-disable-next-line react/no-unused-prop-types
   exact?: boolean
-
-  /** SubmitHandler */
-  // eslint-disable-next-line react/no-unused-prop-types
-  // submit: ReturnType<UseFormReturn<TFieldValues>['handleSubmit']>
 
   /**
    * When a current submission is already in flight, should we wait for it to finish before

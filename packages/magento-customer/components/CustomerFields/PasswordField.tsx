@@ -16,8 +16,7 @@ export function PasswordField({ label }: PasswordFieldProps) {
   assertFormGqlOperation(methods)
   const { control, formState, required, error } = methods
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [_, authenticationError] = graphqlErrorByCategory({
+  const [, authenticationError] = graphqlErrorByCategory({
     category: 'graphql-authentication',
     error,
   })

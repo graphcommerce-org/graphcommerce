@@ -12,8 +12,7 @@ export function ValidatePasswordFields() {
   const methods = useFormContext()
   assertFormGqlOperation(methods)
   const { control, formState, required, error } = methods
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [_, inputError] = graphqlErrorByCategory({
+  const [, inputError] = graphqlErrorByCategory({
     category: 'graphql-input',
     error,
   })
