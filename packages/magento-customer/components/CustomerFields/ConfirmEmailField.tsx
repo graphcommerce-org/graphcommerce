@@ -24,7 +24,7 @@ export function ConfirmEmailField() {
         type='text'
         autoComplete='off'
         error={formState.isSubmitted && !!formState.errors.confirmEmail}
-        helperText={formState.isSubmitted && formState.errors.confirmEmail?.message}
+        helperText={formState.isSubmitted && <>{formState.errors.confirmEmail?.message}</>}
         label={<Trans id='Confirm new email' />}
         required
         control={control}
@@ -32,6 +32,7 @@ export function ConfirmEmailField() {
         validation={{
           required: true,
           validate: (value) => value === watchNewEmail || i18n._(/* i18n */ "Emails don't match"),
+          pattern: emailPattern,
         }}
       />
     </FormRow>
