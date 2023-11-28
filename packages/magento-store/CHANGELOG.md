@@ -1,5 +1,7 @@
 # Change Log
 
+## 7.1.0-canary.60
+
 ## 7.1.0-canary.59
 
 ## 7.1.0-canary.58
