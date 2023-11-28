@@ -21,6 +21,7 @@ import {
   NavigationOverlay,
   useNavigationSelection,
   useMemoDeep,
+  LazyHydrate,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
@@ -159,7 +160,11 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
             </DesktopNavActions>
           </>
         }
-        footer={<Footer footer={footer} />}
+        footer={
+          <LazyHydrate>
+            <Footer footer={footer} />
+          </LazyHydrate>
+        }
         cartFab={<CartFab />}
         menuFab={<NavigationFab onClick={() => selection.set([])} />}
       >
