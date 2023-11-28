@@ -1,0 +1,29 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/typescript-node
+{
+	"name": "Node.js & TypeScript",
+	"image": "mcr.microsoft.com/devcontainers/typescript-node:1-18-bullseye",
+	"waitFor": "updateContentCommand",
+	"updateContentCommand": "cd examples/magento-graphcms && yarn install",
+	"postAttachCommand": "cd examples/magento-graphcms && yarn codegen && yarn dev",
+	"customizations": {
+    "vscode": {
+      "settings": {},
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "GraphQL.vscode-graphql",
+        "mikestead.DotENV",
+        "mrorz.language-gettext",
+        "redhat.vscode-yaml"
+      ]
+    }
+  },
+	"portsAttributes": {
+		"3000": {
+			"label": "Graphcommerce running",
+			"onAutoForward": "notify"
+		}
+	},
+	"forwardPorts": [3000]
+}
