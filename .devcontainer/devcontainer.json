@@ -1,12 +1,18 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
-// README at: https://github.com/devcontainers/templates/tree/main/src/typescript-node
+// README at: https://github.com/devcontainers/templates/tree/main/src/alpine
+// Configuring Codespaces with 16 GB ram is recommended
 {
-	"name": "Node.js & TypeScript",
-	"image": "mcr.microsoft.com/devcontainers/typescript-node:1-18-bullseye",
-	"waitFor": "updateContentCommand",
-	"updateContentCommand": "cd examples/magento-graphcms && yarn install",
-	"postAttachCommand": "cd examples/magento-graphcms && yarn codegen && yarn dev",
-	"customizations": {
+  "image": "mcr.microsoft.com/devcontainers/base:alpine",
+  "features": {
+    "ghcr.io/cirolosapio/devcontainers-features/alpine-node:0": {
+      "lts": true,
+      "corepack": true
+    }
+  },
+  "waitFor": "updateContentCommand",
+  "updateContentCommand": "cd examples/magento-graphcms && yarn install",
+  "postAttachCommand": "cd examples/magento-graphcms && yarn dev",
+  "customizations": {
     "vscode": {
       "settings": {},
       "extensions": [
@@ -19,11 +25,11 @@
       ]
     }
   },
-	"portsAttributes": {
-		"3000": {
-			"label": "Graphcommerce running",
-			"onAutoForward": "notify"
-		}
-	},
-	"forwardPorts": [3000]
+  "portsAttributes": {
+    "3000": {
+      "label": "Graphcommerce",
+      "onAutoForward": "notify"
+    }
+  },
+  "forwardPorts": [3000]
 }
