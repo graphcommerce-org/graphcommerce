@@ -20,7 +20,7 @@ export enum ResultCodeEnum {
   Success = 'Success',
 }
 
-function isResultCodeEnum(value: string): value is ResultCodeEnum {
+export function isResultCodeEnum(value: string): value is ResultCodeEnum {
   return Object.values(ResultCodeEnum).includes(value as ResultCodeEnum)
 }
 

@@ -19,6 +19,34 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@adyen/adyen-web@npm:^5.47.0":
+  version: 5.53.3
+  resolution: "@adyen/adyen-web@npm:5.53.3"
+  dependencies:
+    "@babel/runtime": "npm:^7.15.4"
+    "@babel/runtime-corejs3": "npm:^7.20.1"
+    "@types/applepayjs": "npm:^3.0.4"
+    "@types/googlepay": "npm:^0.7.0"
+    classnames: "npm:^2.3.1"
+    core-js-pure: "npm:^3.25.3"
+    preact: "npm:10.13.2"
+  checksum: 6facc7c354a39a1f3b17292815dc71056f9cb116942c2610ea311e7df80a72e0071e3990d4e04fc152ddc4ab6a25bf34cf48ae82b5060012249c24fecb02d81f
+  languageName: node
+  linkType: hard
+
+"@adyen/api-library@npm:^15.0.0-beta":
+  version: 15.0.0-beta
+  resolution: "@adyen/api-library@npm:15.0.0-beta"
+  dependencies:
+    "@types/node": "npm:14.18.61"
+    https-proxy-agent: "npm:5.0.1"
+  dependenciesMeta:
+    "@types/node":
+      optional: true
+  checksum: 5e43c9b056421ea98e1342fc267aee7354dbec1894cdcce8986f0d2fcd171c59f9bcfd376ccaf9882ca0954b234b06e56183a5eb1c44ca59d874b135ab6024e8
+  languageName: node
+  linkType: hard
+
 "@algolia/cache-browser-local-storage@npm:4.20.0":
   version: 4.20.0
   resolution: "@algolia/cache-browser-local-storage@npm:4.20.0"
@@ -1636,6 +1664,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime-corejs3@npm:^7.20.1":
+  version: 7.23.4
+  resolution: "@babel/runtime-corejs3@npm:7.23.4"
+  dependencies:
+    core-js-pure: "npm:^3.30.2"
+    regenerator-runtime: "npm:^0.14.0"
+  checksum: 31fa117b451fb8f34290aa7bd2016f12254663e78641f75ec28599c5d6a63f4f7c0e796eced0bb89194a491dfae0edc61364d0ffb4efbf19a9e46bfca6848a58
+  languageName: node
+  linkType: hard
+
 "@babel/runtime@npm:^7.0.0, @babel/runtime@npm:^7.1.2, @babel/runtime@npm:^7.11.2, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.18.3, @babel/runtime@npm:^7.20.1, @babel/runtime@npm:^7.20.13, @babel/runtime@npm:^7.21.0, @babel/runtime@npm:^7.23.2, @babel/runtime@npm:^7.5.5, @babel/runtime@npm:^7.8.4, @babel/runtime@npm:^7.8.7, @babel/runtime@npm:^7.9.2":
   version: 7.23.2
   resolution: "@babel/runtime@npm:7.23.2"
@@ -1645,7 +1683,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.10.0, @babel/runtime@npm:^7.22.10":
+"@babel/runtime@npm:^7.10.0, @babel/runtime@npm:^7.15.4, @babel/runtime@npm:^7.22.10":
   version: 7.23.4
   resolution: "@babel/runtime@npm:7.23.4"
   dependencies:
@@ -3729,24 +3767,25 @@ __metadata:
 "@graphcommerce/magento-payment-adyen@workspace:packages/magento-payment-adyen":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-payment-adyen@workspace:packages/magento-payment-adyen"
+  dependencies:
+    "@adyen/adyen-web": "npm:^5.47.0"
+    "@adyen/api-library": "npm:^15.0.0-beta"
+    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.61"
+    "@graphcommerce/graphql": "npm:7.1.0-canary.61"
+    "@graphcommerce/graphql-mesh": "npm:7.1.0-canary.61"
+    "@graphcommerce/image": "npm:7.1.0-canary.61"
+    "@graphcommerce/magento-cart": "npm:7.1.0-canary.61"
+    "@graphcommerce/magento-cart-payment-method": "npm:7.1.0-canary.61"
+    "@graphcommerce/magento-product": "npm:7.1.0-canary.61"
+    "@graphcommerce/magento-store": "npm:7.1.0-canary.61"
+    "@graphcommerce/next-ui": "npm:7.1.0-canary.61"
+    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.61"
+    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.61"
   peerDependencies:
-    "@graphcommerce/ecommerce-ui": ^7.1.0-canary.61
-    "@graphcommerce/eslint-config-pwa": ^7.1.0-canary.61
-    "@graphcommerce/graphql": ^7.1.0-canary.61
-    "@graphcommerce/graphql-mesh": ^7.1.0-canary.61
-    "@graphcommerce/image": ^7.1.0-canary.61
-    "@graphcommerce/magento-cart": ^7.1.0-canary.61
-    "@graphcommerce/magento-cart-payment-method": ^7.1.0-canary.61
-    "@graphcommerce/magento-product": ^7.1.0-canary.61
-    "@graphcommerce/magento-store": ^7.1.0-canary.61
-    "@graphcommerce/next-ui": ^7.1.0-canary.61
-    "@graphcommerce/prettier-config-pwa": ^7.1.0-canary.61
-    "@graphcommerce/typescript-config-pwa": ^7.1.0-canary.61
-    "@lingui/core": ^4.2.1
-    "@lingui/macro": ^4.2.1
-    "@lingui/react": ^4.2.1
+    "@lingui/core": ^3.13.2
+    "@lingui/react": ^3.13.2
     "@mui/material": ^5.10.16
-    next: ^14
+    next: ^13.2.0
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -7203,6 +7242,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/applepayjs@npm:^3.0.4":
+  version: 3.0.4
+  resolution: "@types/applepayjs@npm:3.0.4"
+  checksum: 777fdaf347ec9f54b12def4559e65840a25d2cde1816822b8f8ef069cd3d87f70725119ddb21765cfd4e440a9a948a4d1a38f09d4fe0548ae36db70d9161b39d
+  languageName: node
+  linkType: hard
+
 "@types/aria-query@npm:^5.0.1":
   version: 5.0.4
   resolution: "@types/aria-query@npm:5.0.4"
@@ -7386,6 +7432,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/googlepay@npm:^0.7.0":
+  version: 0.7.5
+  resolution: "@types/googlepay@npm:0.7.5"
+  checksum: d1f81ff9627f8db0d241aa759365effc2607c6e1cbb134798300837f67d8f73ce2741a12c36094f9c7dc39c3c1875e33d309fef75ab5d14c8e061b9d2354f6f4
+  languageName: node
+  linkType: hard
+
 "@types/graceful-fs@npm:^4.1.3":
   version: 4.1.9
   resolution: "@types/graceful-fs@npm:4.1.9"
@@ -7553,6 +7606,13 @@ __metadata:
   dependencies:
     undici-types: "npm:~5.26.4"
   checksum: 755d07de735eafda4e20af75ad9d03bdbfddef327d790e9a896142eac7493db5d8501591376e1c8227aa12eeb88e522bc727c6024504842ed40e539e8a466db9
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:14.18.61":
+  version: 14.18.61
+  resolution: "@types/node@npm:14.18.61"
+  checksum: 46133a78faecd9aa7013bd5c4bd13f5eababf0e05f674a928ee5652f58788209e2decb25ea519bf0caaad4c8154c4d3881692e0e7f1bcc032745fc25802264aa
   languageName: node
   linkType: hard
 
@@ -9356,6 +9416,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"classnames@npm:^2.3.1":
+  version: 2.3.2
+  resolution: "classnames@npm:2.3.2"
+  checksum: cd50ead57b4f97436aaa9f9885c6926323efc7c2bea8e3d4eb10e4e972aa6a1cfca1c7a0e06f8a199ca7498d4339e30bb6002e589e61c9f21248cbf3e8b0b18d
+  languageName: node
+  linkType: hard
+
 "clean-stack@npm:^2.0.0":
   version: 2.2.0
   resolution: "clean-stack@npm:2.2.0"
@@ -9675,6 +9742,13 @@ __metadata:
   dependencies:
     browserslist: "npm:^4.22.1"
   checksum: bcf6f0badffbbf4a127449f64720c33e9c960f204f072d9644954b30d7742e18de733e9f446c7093f1ccf5d9e101205a7c64747a5aeec7d3925f336322f85a03
+  languageName: node
+  linkType: hard
+
+"core-js-pure@npm:^3.25.3, core-js-pure@npm:^3.30.2":
+  version: 3.33.3
+  resolution: "core-js-pure@npm:3.33.3"
+  checksum: 97cf39cc013f6a4f77700762de36b495228b3c087fc04b61e86bfbfb475595529966cabbcf37e738e3a468c486e815c85118d120cc6fc4960da08a14caf69826
   languageName: node
   linkType: hard
 
@@ -12203,7 +12277,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"https-proxy-agent@npm:^5.0.0, https-proxy-agent@npm:^5.0.1":
+"https-proxy-agent@npm:5.0.1, https-proxy-agent@npm:^5.0.0, https-proxy-agent@npm:^5.0.1":
   version: 5.0.1
   resolution: "https-proxy-agent@npm:5.0.1"
   dependencies:
@@ -15988,6 +16062,13 @@ __metadata:
     picocolors: "npm:^1.0.0"
     source-map-js: "npm:^1.0.2"
   checksum: 748b82e6e5fc34034dcf2ae88ea3d11fd09f69b6c50ecdd3b4a875cfc7cdca435c958b211e2cb52355422ab6fccb7d8f2f2923161d7a1b281029e4a913d59acf
+  languageName: node
+  linkType: hard
+
+"preact@npm:10.13.2":
+  version: 10.13.2
+  resolution: "preact@npm:10.13.2"
+  checksum: 58f0938c8d2682570079107d07bce2fe8201742d34d3d1e8837f4e521a5727b96faa1b67bd317efe8df67503e71e1c57f03792e0c63e3103e5334f5dbf11f84e
   languageName: node
   linkType: hard
 

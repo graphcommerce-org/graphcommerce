@@ -1,0 +1,26 @@
+mutation AdyenCcPaymentOptionsAndPlaceOrder(
+  $cartId: String!
+  $stateData: String!
+) {
+  setPaymentMethodOnCart(
+    input: {
+      cart_id: $cartId
+      payment_method: {
+        code: "adyen_cc"
+        adyen_additional_data_cc: { stateData: $stateData }
+      }
+    }
+  ) {
+    cart {
+      ...PaymentMethodUpdated
+    }
+  }
+  placeOrder(input: { cart_id: $cartId }) {
+    order {
+      order_number
+      adyen_payment_status {
+        ...AdyenPaymentResponse
+      }
+    }
+  }
+}
