@@ -311,7 +311,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
   const handleEscape = (e: KeyboardEvent | Event) => {
     if (active && (e as KeyboardEvent)?.key === 'Escape') closeOverlay()
   }
-  useDomEvent(windowRef, 'keyup', handleEscape, { passive: true })
+  useDomEvent(windowRef, 'keydown', handleEscape, { passive: true })
 
   const dragging = useMotionValue(false)
   const scrollerElementRef = scrollerRef as React.RefObject<HTMLElement>
