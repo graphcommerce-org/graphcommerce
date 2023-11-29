@@ -31,5 +31,8 @@
     "next": "^14",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
+  },
+  "dependencies": {
+    "@adyen/adyen-web": "^5.53.3"
   }
 }

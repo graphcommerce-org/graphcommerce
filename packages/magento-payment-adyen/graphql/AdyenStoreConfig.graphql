@@ -1,0 +1,11 @@
+fragment AdyenStoreConfig on StoreConfig @inject(into: ["StoreConfigFragment"]) {
+  adyen_demo_mode
+  adyen_title_renderer
+  adyen_client_key_live
+  adyen_client_key_test
+  adyen_has_holder_name
+  adyen_return_path_error
+  adyen_oneclick_card_mode
+  adyen_holder_name_required
+  adyen_checkout_frontend_region
+}

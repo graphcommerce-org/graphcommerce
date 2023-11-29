@@ -19,7 +19,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@adyen/adyen-web@npm:^5.47.0":
+"@adyen/adyen-web@npm:^5.53.3":
   version: 5.53.3
   resolution: "@adyen/adyen-web@npm:5.53.3"
   dependencies:
@@ -31,19 +31,6 @@ __metadata:
     core-js-pure: "npm:^3.25.3"
     preact: "npm:10.13.2"
   checksum: 6facc7c354a39a1f3b17292815dc71056f9cb116942c2610ea311e7df80a72e0071e3990d4e04fc152ddc4ab6a25bf34cf48ae82b5060012249c24fecb02d81f
-  languageName: node
-  linkType: hard
-
-"@adyen/api-library@npm:^15.0.0-beta":
-  version: 15.0.0-beta
-  resolution: "@adyen/api-library@npm:15.0.0-beta"
-  dependencies:
-    "@types/node": "npm:14.18.61"
-    https-proxy-agent: "npm:5.0.1"
-  dependenciesMeta:
-    "@types/node":
-      optional: true
-  checksum: 5e43c9b056421ea98e1342fc267aee7354dbec1894cdcce8986f0d2fcd171c59f9bcfd376ccaf9882ca0954b234b06e56183a5eb1c44ca59d874b135ab6024e8
   languageName: node
   linkType: hard
 
@@ -1665,12 +1652,12 @@ __metadata:
   linkType: hard
 
 "@babel/runtime-corejs3@npm:^7.20.1":
-  version: 7.23.4
-  resolution: "@babel/runtime-corejs3@npm:7.23.4"
+  version: 7.23.5
+  resolution: "@babel/runtime-corejs3@npm:7.23.5"
   dependencies:
     core-js-pure: "npm:^3.30.2"
     regenerator-runtime: "npm:^0.14.0"
-  checksum: 31fa117b451fb8f34290aa7bd2016f12254663e78641f75ec28599c5d6a63f4f7c0e796eced0bb89194a491dfae0edc61364d0ffb4efbf19a9e46bfca6848a58
+  checksum: 9bbad4ae7efea21e2c92ddee70b42ce9773a56e044cfc16267f9610b38ee531c87b465d84d39433fca93f7f567b47d5e40383e3d2cfe85dbeceea7fba8a52cc8
   languageName: node
   linkType: hard
 
@@ -1683,12 +1670,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.10.0, @babel/runtime@npm:^7.15.4, @babel/runtime@npm:^7.22.10":
+"@babel/runtime@npm:^7.10.0, @babel/runtime@npm:^7.22.10":
   version: 7.23.4
   resolution: "@babel/runtime@npm:7.23.4"
   dependencies:
     regenerator-runtime: "npm:^0.14.0"
   checksum: db2bf183cd0119599b903ca51ca0aeea8e0ab478a16be1aae10dd90473ed614159d3e5adfdd8f8f3d840402428ce0d90b5c01aae95da9e45a2dd83e02d85ca27
+  languageName: node
+  linkType: hard
+
+"@babel/runtime@npm:^7.15.4":
+  version: 7.23.5
+  resolution: "@babel/runtime@npm:7.23.5"
+  dependencies:
+    regenerator-runtime: "npm:^0.14.0"
+  checksum: ca679cc91bb7e424bc2db87bb58cc3b06ade916b9adb21fbbdc43e54cdaacb3eea201ceba2a0464b11d2eb65b9fe6a6ffcf4d7521fa52994f19be96f1af14788
   languageName: node
   linkType: hard
 
@@ -3646,6 +3642,7 @@ __metadata:
     "@graphcommerce/magento-customer": "npm:7.1.0-canary.61"
     "@graphcommerce/magento-graphql": "npm:7.1.0-canary.61"
     "@graphcommerce/magento-newsletter": "npm:7.1.0-canary.61"
+    "@graphcommerce/magento-payment-adyen": "npm:7.1.0-canary.61"
     "@graphcommerce/magento-payment-included": "npm:7.1.0-canary.61"
     "@graphcommerce/magento-product": "npm:7.1.0-canary.61"
     "@graphcommerce/magento-product-bundle": "npm:7.1.0-canary.61"
@@ -3764,28 +3761,29 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/magento-payment-adyen@workspace:packages/magento-payment-adyen":
+"@graphcommerce/magento-payment-adyen@npm:7.1.0-canary.61, @graphcommerce/magento-payment-adyen@workspace:packages/magento-payment-adyen":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-payment-adyen@workspace:packages/magento-payment-adyen"
   dependencies:
-    "@adyen/adyen-web": "npm:^5.47.0"
-    "@adyen/api-library": "npm:^15.0.0-beta"
-    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.61"
-    "@graphcommerce/graphql": "npm:7.1.0-canary.61"
-    "@graphcommerce/graphql-mesh": "npm:7.1.0-canary.61"
-    "@graphcommerce/image": "npm:7.1.0-canary.61"
-    "@graphcommerce/magento-cart": "npm:7.1.0-canary.61"
-    "@graphcommerce/magento-cart-payment-method": "npm:7.1.0-canary.61"
-    "@graphcommerce/magento-product": "npm:7.1.0-canary.61"
-    "@graphcommerce/magento-store": "npm:7.1.0-canary.61"
-    "@graphcommerce/next-ui": "npm:7.1.0-canary.61"
-    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.61"
-    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.61"
+    "@adyen/adyen-web": "npm:^5.53.3"
   peerDependencies:
-    "@lingui/core": ^3.13.2
-    "@lingui/react": ^3.13.2
+    "@graphcommerce/ecommerce-ui": ^7.1.0-canary.61
+    "@graphcommerce/eslint-config-pwa": ^7.1.0-canary.61
+    "@graphcommerce/graphql": ^7.1.0-canary.61
+    "@graphcommerce/graphql-mesh": ^7.1.0-canary.61
+    "@graphcommerce/image": ^7.1.0-canary.61
+    "@graphcommerce/magento-cart": ^7.1.0-canary.61
+    "@graphcommerce/magento-cart-payment-method": ^7.1.0-canary.61
+    "@graphcommerce/magento-product": ^7.1.0-canary.61
+    "@graphcommerce/magento-store": ^7.1.0-canary.61
+    "@graphcommerce/next-ui": ^7.1.0-canary.61
+    "@graphcommerce/prettier-config-pwa": ^7.1.0-canary.61
+    "@graphcommerce/typescript-config-pwa": ^7.1.0-canary.61
+    "@lingui/core": ^4.2.1
+    "@lingui/macro": ^4.2.1
+    "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
-    next: ^13.2.0
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -7606,13 +7604,6 @@ __metadata:
   dependencies:
     undici-types: "npm:~5.26.4"
   checksum: 755d07de735eafda4e20af75ad9d03bdbfddef327d790e9a896142eac7493db5d8501591376e1c8227aa12eeb88e522bc727c6024504842ed40e539e8a466db9
-  languageName: node
-  linkType: hard
-
-"@types/node@npm:14.18.61":
-  version: 14.18.61
-  resolution: "@types/node@npm:14.18.61"
-  checksum: 46133a78faecd9aa7013bd5c4bd13f5eababf0e05f674a928ee5652f58788209e2decb25ea519bf0caaad4c8154c4d3881692e0e7f1bcc032745fc25802264aa
   languageName: node
   linkType: hard
 
@@ -12277,7 +12268,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"https-proxy-agent@npm:5.0.1, https-proxy-agent@npm:^5.0.0, https-proxy-agent@npm:^5.0.1":
+"https-proxy-agent@npm:^5.0.0, https-proxy-agent@npm:^5.0.1":
   version: 5.0.1
   resolution: "https-proxy-agent@npm:5.0.1"
   dependencies:

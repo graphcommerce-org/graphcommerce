@@ -72,8 +72,6 @@ export function PaymentMethodActionCardListForm(props: PaymentMethodActionCardLi
   const { methods, selectedMethod, setSelectedMethod, setSelectedModule, modules } =
     usePaymentMethodContext()
 
-  console.log(10, modules, methods)
-
   const [lockState] = useCartLock()
 
   type FormFields = { code: string | null; paymentMethod?: string }

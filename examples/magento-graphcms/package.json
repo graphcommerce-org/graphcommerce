@@ -52,6 +52,7 @@
     "@graphcommerce/magento-customer": "7.1.0-canary.61",
     "@graphcommerce/magento-graphql": "7.1.0-canary.61",
     "@graphcommerce/magento-newsletter": "7.1.0-canary.61",
+    "@graphcommerce/magento-payment-adyen": "7.1.0-canary.61",
     "@graphcommerce/magento-payment-included": "7.1.0-canary.61",
     "@graphcommerce/magento-product": "7.1.0-canary.61",
     "@graphcommerce/magento-product-bundle": "7.1.0-canary.61",
