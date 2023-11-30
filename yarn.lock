@@ -34,6 +34,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@adyen/api-library@npm:^15.0.0-beta":
+  version: 15.0.0-beta
+  resolution: "@adyen/api-library@npm:15.0.0-beta"
+  dependencies:
+    "@types/node": "npm:14.18.61"
+    https-proxy-agent: "npm:5.0.1"
+  dependenciesMeta:
+    "@types/node":
+      optional: true
+  checksum: 5e43c9b056421ea98e1342fc267aee7354dbec1894cdcce8986f0d2fcd171c59f9bcfd376ccaf9882ca0954b234b06e56183a5eb1c44ca59d874b135ab6024e8
+  languageName: node
+  linkType: hard
+
 "@algolia/cache-browser-local-storage@npm:4.20.0":
   version: 4.20.0
   resolution: "@algolia/cache-browser-local-storage@npm:4.20.0"
@@ -3766,6 +3779,7 @@ __metadata:
   resolution: "@graphcommerce/magento-payment-adyen@workspace:packages/magento-payment-adyen"
   dependencies:
     "@adyen/adyen-web": "npm:^5.53.3"
+    "@adyen/api-library": "npm:^15.0.0-beta"
   peerDependencies:
     "@graphcommerce/ecommerce-ui": ^7.1.0-canary.61
     "@graphcommerce/eslint-config-pwa": ^7.1.0-canary.61
@@ -7604,6 +7618,13 @@ __metadata:
   dependencies:
     undici-types: "npm:~5.26.4"
   checksum: 755d07de735eafda4e20af75ad9d03bdbfddef327d790e9a896142eac7493db5d8501591376e1c8227aa12eeb88e522bc727c6024504842ed40e539e8a466db9
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:14.18.61":
+  version: 14.18.61
+  resolution: "@types/node@npm:14.18.61"
+  checksum: 46133a78faecd9aa7013bd5c4bd13f5eababf0e05f674a928ee5652f58788209e2decb25ea519bf0caaad4c8154c4d3881692e0e7f1bcc032745fc25802264aa
   languageName: node
   linkType: hard
 
@@ -12268,7 +12289,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"https-proxy-agent@npm:^5.0.0, https-proxy-agent@npm:^5.0.1":
+"https-proxy-agent@npm:5.0.1, https-proxy-agent@npm:^5.0.0, https-proxy-agent@npm:^5.0.1":
   version: 5.0.1
   resolution: "https-proxy-agent@npm:5.0.1"
   dependencies:

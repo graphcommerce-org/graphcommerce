@@ -1,13 +1,13 @@
 import { PaymentModule } from '@graphcommerce/magento-cart-payment-method'
-import { PaymentMethodOptions } from './PaymentMethodOptions'
 import { AdyenPaymentActionCard } from '../../components/AdyenPaymentActionCard/AdyenPaymentActionCard'
-import { adyenCcExpandMethods } from './adyenCcExpandMethods'
 import { PaymentButton } from './PaymentButton'
+import { PaymentMethodOptions } from './PaymentMethodOptions'
+import { adyenCcExpandMethods } from './adyenCcExpandMethods'
 
 export const adyen_cc = {
   PaymentOptions: PaymentMethodOptions,
   PaymentPlaceOrder: () => null,
   PaymentActionCard: AdyenPaymentActionCard,
   expandMethods: adyenCcExpandMethods,
-  PaymentButton: PaymentButton,
+  PaymentButton,
 } as PaymentModule

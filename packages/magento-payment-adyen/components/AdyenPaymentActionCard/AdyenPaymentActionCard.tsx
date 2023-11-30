@@ -1,9 +1,9 @@
+import { Image } from '@graphcommerce/image'
 import { PaymentMethodActionCardProps } from '@graphcommerce/magento-cart-payment-method'
 import { ActionCard, useIconSvgSize } from '@graphcommerce/next-ui'
-import { Image } from '@graphcommerce/image'
 import { Trans } from '@lingui/react'
-import googlepay from './googlepay.svg'
 import applepay from './applepay.svg'
+import googlepay from './googlepay.svg'
 import paypal from './paypal.svg'
 import scheme from './scheme.svg'
 

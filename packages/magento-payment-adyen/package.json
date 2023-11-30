@@ -33,6 +33,7 @@
     "react-dom": "^18.2.0"
   },
   "dependencies": {
-    "@adyen/adyen-web": "^5.53.3"
+    "@adyen/adyen-web": "^5.53.3",
+    "@adyen/api-library": "^15.0.0-beta"
   }
 }

@@ -44,15 +44,10 @@ function useAdyenCheckout(options?: UseAdyenCheckoutOptions) {
   optionsRef.current = options
 
   useEffect(() => {
-    if (checkout) return
-    if (!adyenCheckoutConfig.config) {
-      return
-    }
-
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    if (checkout || !adyenCheckoutConfig.config) return
     ;(async () => {
       setCheckout(await AdyenCheckout({ ...adyenCheckoutConfig.config, ...optionsRef.current }))
-    })()
+    })().catch(console.error)
   }, [checkout, adyenCheckoutConfig.config])
 
   return checkout
@@ -94,6 +89,7 @@ export function PaymentMethodOptions(props: PaymentOptionsProps) {
           variables: { cartId: currentCartId, orderNumber: orderNumber.current },
         })
         paymentStatus = status.data?.adyenPaymentStatus
+        console.error(`payment failed: ${paymentStatus?.resultCode}`)
       }
 
       if (paymentStatus?.resultCode == ResultCodeEnum.Authorised) {
@@ -112,6 +108,7 @@ export function PaymentMethodOptions(props: PaymentOptionsProps) {
 
   const paymentContainer = useRef<HTMLDivElement>(null)
   const component = useRef<CardElement | null>(null)
+
   useEffect(() => {
     if (component.current || !checkout || !paymentContainer.current) return
     component.current = checkout.create('card', {}).mount(paymentContainer.current)
@@ -124,7 +121,7 @@ export function PaymentMethodOptions(props: PaymentOptionsProps) {
     AdyenCcPaymentOptionsAndPlaceOrderMutationVariables & { issuer?: string }
   >(AdyenCcPaymentOptionsAndPlaceOrderDocument, {
     onBeforeSubmit: (vars) => {
-      if (!component.current) throw Error('Adyen component not ready yet')
+      if (!component.current) throw Error('Adyen component not mounted yet')
       component.current.submit()
 
       // eslint-disable-next-line @typescript-eslint/no-use-before-define
