@@ -21,7 +21,7 @@
       "ignore": ["**/*.gql.ts", "__tests__", "**/*.interceptor.tsx", "src/generated/config.ts"]
     },
     "packages/*": {
-      "ignore": ["**/*.gql.ts", "__tests__", "**/*.interceptor.tsx", "**/example/**/*.*"],
+      "ignore": ["**/*.gql.ts", "**/__tests__", "test", "**/*.interceptor.tsx", "example/**"],
       "entry": [
         "plugins/**/*.{ts,tsx}",
         "src/bin/*.ts",
