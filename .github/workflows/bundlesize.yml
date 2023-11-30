@@ -1,8 +1,21 @@
-name: bundlesize
+name: pr-analysis
 on:
   pull_request:
     types: [opened, synchronize, reopened, ready_for_review]
 jobs:
+  knip:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.draft == false
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          cache: yarn
+          node-version: 18
+      - run: yarn install
+      - uses: codex-/knip-reporter@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
   bundlesize:
     runs-on: ubuntu-latest
     if: github.event.pull_request.draft == false
@@ -21,12 +34,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
           scope: '@graphcommerce'
           cache-dependency-path: ./old/yarn.lock
-      - run: cd new && yarn install
-      - name: Knip reporter
-        uses: codex-/knip-reporter@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-      - run: cd ..
+      - run: cd new && yarn install && cd ..
       - run: cd new/examples/magento-graphcms && yarn build > ../../../new.txt && cd ../../..
       - run: cat new.txt
       - run: cd old && yarn install && cd ..
