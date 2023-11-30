@@ -57,7 +57,7 @@
   "devDependencies": {
     "@playwright/test": "1.39.0",
     "eslint": "8.53.0",
-    "knip": "^3.3.3",
+    "knip": "^2.43.0",
     "prettier": "3.1.0",
     "typescript": "5.2.2"
   },

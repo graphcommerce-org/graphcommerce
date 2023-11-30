@@ -1,5 +1,6 @@
 {
-  "$schema": "https://raw.githubusercontent.com/webpro/knip/main/packages/knip/schema.json",
+  "$schema": "https://raw.githubusercontent.com/webpro/knip/2.43.0/schema.json",
+  // "$schema": "https://raw.githubusercontent.com/webpro/knip/main/packages/knip/schema.json",
   "include": [
     "files",
     "exports"
