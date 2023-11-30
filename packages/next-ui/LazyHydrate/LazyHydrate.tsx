@@ -10,6 +10,7 @@ import React, {
 type WithHydrationOnDemandOptions = {
   wrapperProps?: React.ComponentProps<'div'>
   forceHydration?: boolean
+  hold?: boolean
 }
 
 function withHydrationOnDemandServerSide<P extends object>(options: WithHydrationOnDemandOptions) {
@@ -25,7 +26,8 @@ function withHydrationOnDemandClientSide<P extends object>(incoming: WithHydrati
   const { wrapperProps, forceHydration = false } = incoming
 
   return (Component: React.ComponentType<P>) => {
-    function ComponentWithHydration(props: P & { forceHydration?: boolean }) {
+    function ComponentWithHydration(props: P & { forceHydration?: boolean; hold?: boolean }) {
+      const { hold } = props
       const rootRef = useRef<HTMLElement>(null)
 
       const isInputPending = () => {
@@ -33,6 +35,8 @@ function withHydrationOnDemandClientSide<P extends object>(incoming: WithHydrati
         const isPending = navigator?.scheduling?.isInputPending?.()
         return isPending ?? true
       }
+
+      console.log(hold)
 
       const getDefaultHydrationState = () => {
         const isNotInputPending = false && !isInputPending()
@@ -46,6 +50,8 @@ function withHydrationOnDemandClientSide<P extends object>(incoming: WithHydrati
       }, [])
 
       useLayoutEffect(() => {
+        if (hold) return
+
         if (isHydrated) return
 
         if (forceHydration) {
@@ -57,10 +63,10 @@ function withHydrationOnDemandClientSide<P extends object>(incoming: WithHydrati
         const shouldHydrate = !wasRenderedServerSide && !false
 
         if (shouldHydrate) hydrate()
-      }, [forceHydration])
+      }, [forceHydration, hold])
 
       useEffect(() => {
-        if (isHydrated || !rootRef.current) return undefined
+        if (isHydrated || !rootRef.current || hold) return undefined
 
         const observer = new IntersectionObserver(
           ([entry]) => {
@@ -116,8 +122,8 @@ export type LazyHydrateProps = {
   hold?: boolean
 }
 
-export function LazyHydrate(props: { children: React.ReactNode; eager?: boolean }) {
-  const { children, eager = false } = props
+export function LazyHydrate(props: { children: React.ReactNode; eager?: boolean; hold?: boolean }) {
+  const { children, eager = false, hold = false } = props
   const LazyComponent = lazyHydrate(() => children)
-  return eager ? children : <LazyComponent />
+  return eager ? children : <LazyComponent hold={hold} />
 }
