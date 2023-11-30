@@ -29,7 +29,7 @@ function AddCompareToProductPage(props: PluginProps<ProductPageAddToCartRowProps
     return (
       <Prev {...rest}>
         {children}
-        <CompareProductToggle product={product} color='default' />
+        <CompareProductToggle product={product} color='inherit' />
       </Prev>
     )
 }
