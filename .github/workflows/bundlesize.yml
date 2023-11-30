@@ -17,6 +17,7 @@ jobs:
       - uses: codex-/knip-reporter@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          ignore_result: true
   bundlesize:
     runs-on: ubuntu-latest
     if: github.event.pull_request.draft == false

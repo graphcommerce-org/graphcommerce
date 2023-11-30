@@ -22,7 +22,8 @@ import diff from './diff'
 
 const fmt = (s: string) => s.split(/(\d+)/).map(snakeCase).join('')
 export const toEnvStr = (path: string[]) => ['GC', ...path].map(fmt).join('_').toUpperCase()
-export const dotNotation = (pathParts: string[]) =>
+
+const dotNotation = (pathParts: string[]) =>
   pathParts
     .map((v) => {
       const idx = Number(v)
@@ -51,7 +52,7 @@ export type ZodNode =
   | ZodBoolean
   | ZodAny
 
-export function configToEnvSchema(schema: ZodNode) {
+function configToEnvSchema(schema: ZodNode) {
   const envSchema: ZodRawShape = {}
   const envToDot: Record<string, string> = {}
 
@@ -138,7 +139,7 @@ export type ApplyResultItem = {
 }
 export type ApplyResult = ApplyResultItem[]
 
-export const filterEnv = (env: Record<string, string | undefined>) =>
+const filterEnv = (env: Record<string, string | undefined>) =>
   Object.fromEntries(Object.entries(env).filter(([key]) => key.startsWith('GC_')))
 
 export function mergeEnvIntoConfig(

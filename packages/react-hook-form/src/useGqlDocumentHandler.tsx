@@ -48,8 +48,8 @@ export type DeepIsRequired<V> = {
   [k in keyof V]-?: undefined extends V[k]
     ? false
     : V[k] extends Record<string, unknown>
-    ? DeepIsRequired<V[k]>
-    : true
+      ? DeepIsRequired<V[k]>
+      : true
 }
 
 type DeepStringify<V> = {
@@ -57,8 +57,8 @@ type DeepStringify<V> = {
   [k in keyof V]?: V[k] extends (infer U)[]
     ? string[]
     : V[k] extends Record<string, unknown>
-    ? DeepStringify<V[k]>
-    : string
+      ? DeepStringify<V[k]>
+      : string
 }
 
 type FieldTypes = LiteralUnion<keyof Scalars, string> | FieldTypes[]
@@ -84,7 +84,7 @@ export type UseGqlDocumentHandler<V extends FieldValues> = {
   ) => V
 }
 
-export function handlerFactory<Q, V extends FieldValues>(
+function handlerFactory<Q, V extends FieldValues>(
   document: TypedDocumentNode<Q, V>,
 ): UseGqlDocumentHandler<V> {
   type Defaults = Partial<Pick<V, OptionalKeys<V>>>

@@ -6,7 +6,10 @@ export type CartItemRenderer = TypeRenderer<NonNullable<NonNullable<CartItemsFra
 
 export type CartProps = { renderer: CartItemRenderer } & CartItemsFragment
 
-/** @deprecated Replace with CartItemsActionCards */
+/**
+ * @public
+ * @deprecated Replace with CartItemsActionCards
+ */
 export function CartItems(props: CartProps) {
   const { renderer, items, id } = props
 

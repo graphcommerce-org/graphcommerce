@@ -55,7 +55,7 @@ function moveRelativeDown(plugins: PluginConfig[]) {
   })
 }
 
-export function generateInterceptor(
+function generateInterceptor(
   interceptor: Interceptor,
   config: GraphCommerceDebugConfig,
 ): MaterializedPlugin {
@@ -200,51 +200,54 @@ export function generateInterceptors(
   config?: GraphCommerceDebugConfig | null | undefined,
 ): GenerateInterceptorsReturn {
   // todo: Do not use reduce as we're passing the accumulator to the next iteration
-  const byExportedComponent = moveRelativeDown(plugins).reduce((acc, plug) => {
-    const { exported, plugin } = plug
-    if (!isPluginConfig(plug) || !plug.enabled) return acc
+  const byExportedComponent = moveRelativeDown(plugins).reduce(
+    (acc, plug) => {
+      const { exported, plugin } = plug
+      if (!isPluginConfig(plug) || !plug.enabled) return acc
 
-    const resolved = resolve(exported)
+      const resolved = resolve(exported)
 
-    let pluginPathFromResolved = plugin
-    if (plugin.startsWith('.')) {
-      const resolvedPlugin = resolve(plugin)
-      pluginPathFromResolved = path.relative(
-        resolved.fromRoot.split('/').slice(0, -1).join('/'),
-        resolvedPlugin.fromRoot,
-      )
-    }
+      let pluginPathFromResolved = plugin
+      if (plugin.startsWith('.')) {
+        const resolvedPlugin = resolve(plugin)
+        pluginPathFromResolved = path.relative(
+          resolved.fromRoot.split('/').slice(0, -1).join('/'),
+          resolvedPlugin.fromRoot,
+        )
+      }
 
-    if (!acc[resolved.fromRoot])
-      acc[resolved.fromRoot] = {
-        ...resolved,
-        target: `${resolved.fromRoot}.interceptor`,
-        components: {},
-        funcs: {},
-      } as Interceptor
+      if (!acc[resolved.fromRoot])
+        acc[resolved.fromRoot] = {
+          ...resolved,
+          target: `${resolved.fromRoot}.interceptor`,
+          components: {},
+          funcs: {},
+        } as Interceptor
 
-    if (isReactPluginConfig(plug)) {
-      const { component } = plug
-      if (!acc[resolved.fromRoot].components[component])
-        acc[resolved.fromRoot].components[component] = []
+      if (isReactPluginConfig(plug)) {
+        const { component } = plug
+        if (!acc[resolved.fromRoot].components[component])
+          acc[resolved.fromRoot].components[component] = []
 
-      acc[resolved.fromRoot].components[component].push({
-        ...plug,
-        plugin: pluginPathFromResolved,
-      })
-    }
-    if (isMethodPluginConfig(plug)) {
-      const { func } = plug
-      if (!acc[resolved.fromRoot].funcs[func]) acc[resolved.fromRoot].funcs[func] = []
+        acc[resolved.fromRoot].components[component].push({
+          ...plug,
+          plugin: pluginPathFromResolved,
+        })
+      }
+      if (isMethodPluginConfig(plug)) {
+        const { func } = plug
+        if (!acc[resolved.fromRoot].funcs[func]) acc[resolved.fromRoot].funcs[func] = []
 
-      acc[resolved.fromRoot].funcs[func].push({
-        ...plug,
-        plugin: pluginPathFromResolved,
-      })
-    }
+        acc[resolved.fromRoot].funcs[func].push({
+          ...plug,
+          plugin: pluginPathFromResolved,
+        })
+      }
 
-    return acc
-  }, {} as Record<string, Interceptor>)
+      return acc
+    },
+    {} as Record<string, Interceptor>,
+  )
 
   return Object.fromEntries(
     Object.entries(byExportedComponent).map(([target, interceptor]) => [
