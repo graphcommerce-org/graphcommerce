@@ -15,7 +15,12 @@
   ],
   "workspaces": {
     ".": {
-      "entry": ["jest.config.mjs", "graphql.config.js", "scripts/**.{js,mjs}"]
+      "ignore": [
+        "jest.config.mjs",
+        "graphql.config.js",
+        "scripts/**.{js,mjs}",
+        "playwright.config.ts"
+      ]
     },
     "packagesDev/*": {
       "ignore": ["**/*.gql.ts", "__tests__", "**/*.interceptor.tsx", "dist"],
