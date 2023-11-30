@@ -1,0 +1,55 @@
+{
+  "$schema": "https://raw.githubusercontent.com/webpro/knip/main/packages/knip/schema.json",
+  "include": [
+    "files",
+    "exports"
+    // Enable when files and exports are handled.
+    // "nsExports",
+    // "types"
+    // "nsTypes"
+    // "duplicates"
+  ],
+  "workspaces": {
+    ".": {
+      "entry": ["jest.config.mjs", "graphql.config.js", "scripts/**.{js,mjs}"]
+    },
+    "packagesDev/*": {
+      "ignore": ["**/*.gql.ts", "__tests__", "**/*.interceptor.tsx", "dist"],
+      "entry": ["index.{js,mjs,cjs,ts,tsx}", "src/index.{js,mjs,cjs,ts,tsx}"]
+    },
+    "packagesDev/next-config": {
+      "ignore": ["**/*.gql.ts", "__tests__", "**/*.interceptor.tsx", "src/generated/config.ts"]
+    },
+    "packages/*": {
+      "ignore": ["**/*.gql.ts", "__tests__", "**/*.interceptor.tsx"],
+      "entry": [
+        "plugins/**/*.{ts,tsx}",
+        "src/bin/*.ts",
+        "**/*.{js,mjs,cjs}",
+        "index.ts", // Add for now, when we've cleaned up the current files, remove this to expose more
+        "src/index.ts" // Add for now, when we've cleaned up the current files, remove this to expose more
+      ]
+    },
+    "packages/magento-pagebuilder": {
+      "ignore": ["**/*.*"]
+    },
+    "examples/magento-graphcms": {
+      "ignore": [".next", "public"],
+      "entry": [
+        "graphcommerce.config.js",
+        "lingui.config.js",
+        "next-sitemap.config.js",
+        "next.config.{ts,cjs,mjs}",
+        "middleware.{ts}",
+        "app/**/route.{ts}",
+        "app/**/{error,layout,loading,not-found,page,template}.{jsx,ts,tsx}",
+        "instrumentation.{ts}",
+        "app/{manifest,sitemap,robots}.{ts}",
+        "app/**/{icon,apple-icon}.{ts,tsx}",
+        "app/**/{opengraph,twitter}-image.{ts,tsx}",
+        "pages/**/*.{jsx,ts,tsx}",
+        "plugins/**/*.{ts,tsx}"
+      ]
+    }
+  }
+}

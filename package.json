@@ -33,7 +33,8 @@
     "packages:5": "yarn workspace @graphcommerce/cli dev",
     "packages:6": "yarn workspace @graphcommerce/changeset-changelog dev",
     "packages:7": "yarn workspace @graphcommerce/graphql-codegen-markdown-docs dev",
-    "create-patch": "patch-package --exclude 'package.json$|gql.ts$|interceptor.tsx$'"
+    "create-patch": "patch-package --exclude 'package.json$|gql.ts$|interceptor.tsx$'",
+    "knip": "npx knip"
   },
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
