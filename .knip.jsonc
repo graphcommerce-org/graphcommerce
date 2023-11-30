@@ -39,12 +39,16 @@
         "src/index.ts"
       ]
     },
+    "packages/example/*": {
+      "ignore": ["*"]
+    },
     "packages/magento-pagebuilder": {
       "ignore": ["**/*.*"]
     },
     "examples/magento-graphcms": {
       "ignore": [".next", "public"],
       "entry": [
+        "next.config.js",
         "graphcommerce.config.js",
         "lingui.config.js",
         "next-sitemap.config.js",
