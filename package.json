@@ -34,7 +34,7 @@
     "packages:6": "yarn workspace @graphcommerce/changeset-changelog dev",
     "packages:7": "yarn workspace @graphcommerce/graphql-codegen-markdown-docs dev",
     "create-patch": "patch-package --exclude 'package.json$|gql.ts$|interceptor.tsx$'",
-    "knip": "npx knip"
+    "knip": "knip"
   },
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
@@ -57,6 +57,7 @@
   "devDependencies": {
     "@playwright/test": "1.39.0",
     "eslint": "8.53.0",
+    "knip": "^3.3.3",
     "prettier": "3.1.0",
     "typescript": "5.2.2"
   },
