@@ -13,7 +13,7 @@ jobs:
           cache: yarn
           node-version: 18
       - run: yarn install
-      - run: cd new/examples/magento-graphcms && yarn codegen
+      - run: cd examples/magento-graphcms && yarn codegen
       - uses: codex-/knip-reporter@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
