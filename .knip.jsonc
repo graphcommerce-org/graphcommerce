@@ -30,13 +30,13 @@
       "ignore": ["**/*.gql.ts", "__tests__", "**/*.interceptor.tsx", "src/generated/config.ts"]
     },
     "packages/*": {
-      "ignore": ["**/*.gql.ts", "__tests__", "**/*.interceptor.tsx"],
+      "ignore": ["**/*.gql.ts", "**/__tests__", "test", "**/*.interceptor.tsx", "example/**"],
       "entry": [
         "plugins/**/*.{ts,tsx}",
         "src/bin/*.ts",
         "**/*.{js,mjs,cjs}",
-        "index.ts", // Add for now, when we've cleaned up the current files, remove this to expose more
-        "src/index.ts" // Add for now, when we've cleaned up the current files, remove this to expose more
+        "index.ts",
+        "src/index.ts"
       ]
     },
     "packages/magento-pagebuilder": {
