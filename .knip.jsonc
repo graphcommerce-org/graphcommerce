@@ -1,9 +1,18 @@
 {
   "$schema": "https://raw.githubusercontent.com/webpro/knip/2.43.0/schema.json",
+  // "$schema": "https://raw.githubusercontent.com/webpro/knip/main/packages/knip/schema.json",
   "eslint": false,
   "playwright": false,
   "next": false,
-  "include": ["files", "exports"],
+  "include": [
+    "files",
+    "exports"
+    // Enable when files and exports are handled.
+    // "nsExports",
+    // "types"
+    // "nsTypes"
+    // "duplicates"
+  ],
   "workspaces": {
     ".": {
       "ignore": [
@@ -26,8 +35,8 @@
         "plugins/**/*.{ts,tsx}",
         "src/bin/*.ts",
         "**/*.{js,mjs,cjs}",
-        "index.ts",
-        "src/index.ts"
+        "index.ts", // Add for now, when we've cleaned up the current files, remove this to expose more
+        "src/index.ts" // Add for now, when we've cleaned up the current files, remove this to expose more
       ]
     },
     "packages/magento-pagebuilder": {
