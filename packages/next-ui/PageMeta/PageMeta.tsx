@@ -60,18 +60,25 @@ export function canonicalize(router: PartialNextRouter, incoming?: Canonical) {
     const curLocale = router.locale
 
     // Copied from here https://github.com/vercel/next.js/blob/213c42f446874d29d07fa2cca6e6b11fc9c3b711/packages/next/client/link.tsx#L512
-    const localeDomain =
-      router.isLocaleDomain &&
-      getDomainLocale(as, curLocale, router && router.locales, router.domainLocales)
+    const localeDomain = getDomainLocale(
+      as,
+      curLocale,
+      router && router.locales,
+      router.domainLocales,
+    )
 
-    href = localeDomain || addBasePath(addLocale(as, curLocale, router.defaultLocale))
+    if (localeDomain) {
+      canonical = localeDomain
+    } else {
+      href = localeDomain || addBasePath(addLocale(as, curLocale, router.defaultLocale))
 
-    let siteUrl =
-      storefrontConfig(router.locale)?.canonicalBaseUrl ||
-      import.meta.graphCommerce.canonicalBaseUrl
-    if (siteUrl.endsWith('/')) siteUrl = siteUrl.slice(0, -1)
+      let siteUrl =
+        storefrontConfig(router.locale)?.canonicalBaseUrl ||
+        import.meta.graphCommerce.canonicalBaseUrl
+      if (siteUrl.endsWith('/')) siteUrl = siteUrl.slice(0, -1)
 
-    canonical = `${siteUrl}${href}`
+      canonical = `${siteUrl}${href}`
+    }
   }
 
   if (!canonical.startsWith('http')) {
