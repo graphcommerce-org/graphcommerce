@@ -52,7 +52,7 @@ export function AddressMultiLine(props: AddressMultiLineProps) {
         {postcode} {city}
       </div>
       <div>
-        {regionName && region?.region_id && `${regionName}, `}
+        {regionName && `${regionName}, `}
         {countryName}
       </div>
     </Typography>
