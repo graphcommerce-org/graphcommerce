@@ -70,7 +70,7 @@ export function canonicalize(router: PartialNextRouter, incoming?: Canonical) {
     if (localeDomain) {
       canonical = localeDomain
     } else {
-      href = localeDomain || addBasePath(addLocale(as, curLocale, router.defaultLocale))
+      href = addBasePath(addLocale(as, curLocale, router.defaultLocale))
 
       let siteUrl =
         storefrontConfig(router.locale)?.canonicalBaseUrl ||
