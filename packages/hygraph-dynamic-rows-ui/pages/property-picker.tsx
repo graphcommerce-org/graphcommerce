@@ -1,18 +1,8 @@
-import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client'
-import { loadConfig } from '@graphcommerce/next-config'
 import { Wrapper } from '@hygraph/app-sdk-react'
 import React from 'react'
 import { PropertyPicker } from '..'
-import {
-  createOptionsFromInterfaceObject,
-  objectifyGraphQLInterface,
-  fetchGraphQLInterface,
-} from '../lib'
-import { Interface } from '../types'
 
-type PropertyPickerProps = Interface
-
-export default function DRPropertyPicker(props: PropertyPickerProps) {
+export default function DRPropertyPicker() {
   const fieldContainer = React.useRef<HTMLDivElement | null>(null)
 
   React.useEffect(() => {
@@ -50,22 +40,4 @@ export default function DRPropertyPicker(props: PropertyPickerProps) {
       </Wrapper>
     </div>
   )
-}
-
-export const getStaticProps = async () => {
-  const config = loadConfig(process.cwd())
-  const staticClient = new ApolloClient({
-    link: new HttpLink({
-      uri: config.magentoEndpoint,
-      fetch,
-    }),
-    cache: new InMemoryCache(),
-  })
-  const graphQLInterface = fetchGraphQLInterface(staticClient)
-
-  return {
-    props: {
-      ...(await graphQLInterface).data,
-    },
-  }
 }
