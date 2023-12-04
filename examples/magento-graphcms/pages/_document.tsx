@@ -1,3 +1,4 @@
+import { normalizeLocale } from '@graphcommerce/lingui-next'
 import { withLingui } from '@graphcommerce/lingui-next/document/withLingui'
 import type { LinguiDocumentProps } from '@graphcommerce/lingui-next/document/withLingui'
 import { EmotionCacheProps, withEmotionCache } from '@graphcommerce/next-ui'
@@ -7,7 +8,7 @@ class Document extends NextDocument<EmotionCacheProps & LinguiDocumentProps> {
   render() {
     return (
       <Html>
-        <Head>
+        <Head lang={normalizeLocale(this.props.locale)}>
           {/* Inject MUI styles first to match with the prepend: true configuration. */}
           <meta name='emotion-insertion-point' content='' />
           {this.props.emotionStyleTags}
