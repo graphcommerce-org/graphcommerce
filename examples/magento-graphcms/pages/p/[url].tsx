@@ -182,7 +182,7 @@ function ProductPage(props: Props) {
 
       {pages?.[0] && (
         <RowRenderer
-          lazyIndex={0}
+          loadingEager={0}
           content={pages?.[0].content}
           renderer={{
             RowProduct: (rowProps) => (

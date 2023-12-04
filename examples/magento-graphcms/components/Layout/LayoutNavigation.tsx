@@ -21,13 +21,11 @@ import {
   NavigationOverlay,
   useNavigationSelection,
   useMemoDeep,
-  LazyHydrate,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Divider, Fab } from '@mui/material'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
 import { Footer } from './Footer'
 import { LayoutQuery } from './Layout.gql'
 import { Logo } from './Logo'
@@ -128,11 +126,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
                 </DesktopNavItem>
               ))}
 
-              <DesktopNavItem
-                onClick={() => {
-                  selection.set([menu?.items?.[0]?.uid || ''])
-                }}
-              >
+              <DesktopNavItem onClick={() => selection.set([menu?.items?.[0]?.uid || ''])}>
                 {menu?.items?.[0]?.name}
                 <IconSvg src={iconChevronDown} />
               </DesktopNavItem>
@@ -167,13 +161,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
         }
         footer={<Footer footer={footer} />}
         cartFab={<CartFab />}
-        menuFab={
-          <NavigationFab
-            onClick={() => {
-              selection.set([])
-            }}
-          />
-        }
+        menuFab={<NavigationFab onClick={() => selection.set([])} />}
       >
         {children}
       </LayoutDefault>

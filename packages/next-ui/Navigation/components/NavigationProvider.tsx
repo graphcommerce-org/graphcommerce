@@ -1,6 +1,7 @@
 import { MotionConfig, useMotionValue } from 'framer-motion'
 import React, { useMemo } from 'react'
 import { isElement } from 'react-is'
+import { LazyHydrate } from '../../LazyHydrate'
 import {
   NavigationNode,
   NavigationContextType,
@@ -9,7 +10,6 @@ import {
   NavigationNodeType,
   NavigationNodeComponent,
 } from '../hooks/useNavigation'
-import { LazyHydrate } from '../../LazyHydrate'
 
 export type NavigationProviderProps = {
   items: (NavigationNode | React.ReactElement)[]

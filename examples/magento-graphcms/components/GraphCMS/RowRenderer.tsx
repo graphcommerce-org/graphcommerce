@@ -33,17 +33,17 @@ const defaultRenderer: Partial<ContentTypeRenderer> = {
 
 export type PageProps = RowRendererFragment & {
   renderer?: Partial<ContentTypeRenderer>
-  lazyIndex?: number
+  loadingEager?: number
 }
 
 export function RowRenderer(props: PageProps) {
-  const { content, renderer, lazyIndex = 2 } = props
+  const { content, renderer, loadingEager = 2 } = props
   const mergedRenderer = { ...defaultRenderer, ...renderer } as ContentTypeRenderer
 
   return (
     <>
       {content?.map((item, index) => (
-        <LazyHydrate eager={index < lazyIndex}>
+        <LazyHydrate eager={index < loadingEager}>
           <RenderType key={item.id} renderer={mergedRenderer} {...item} />
         </LazyHydrate>
       ))}
