@@ -9,6 +9,7 @@ import {
   NavigationNodeType,
   NavigationNodeComponent,
 } from '../hooks/useNavigation'
+import { LazyHydrate } from '../../LazyHydrate'
 
 export type NavigationProviderProps = {
   items: (NavigationNode | React.ReactElement)[]
@@ -68,8 +69,10 @@ export const NavigationProvider = React.memo<NavigationProviderProps>((props) =>
   )
 
   return (
-    <MotionConfig transition={{ duration: animationDuration }}>
-      <NavigationContext.Provider value={value}>{children}</NavigationContext.Provider>
-    </MotionConfig>
+    <LazyHydrate>
+      <MotionConfig transition={{ duration: animationDuration }}>
+        <NavigationContext.Provider value={value}>{children}</NavigationContext.Provider>
+      </MotionConfig>
+    </LazyHydrate>
   )
 })
