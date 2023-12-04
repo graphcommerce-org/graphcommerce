@@ -34,7 +34,13 @@ import { RecentlyViewedProducts } from '@graphcommerce/magento-recently-viewed-p
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
 import { redirectOrNotFound, Money, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
-import { GetStaticProps, LayoutHeader, LayoutTitle, isTypename } from '@graphcommerce/next-ui'
+import {
+  GetStaticProps,
+  LayoutHeader,
+  LayoutTitle,
+  LazyHydrate,
+  isTypename,
+} from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Divider, Link, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
@@ -165,15 +171,18 @@ function ProductPage(props: Props) {
           <Usps usps={sidebarUsps} size='small' />
         </ProductPageGallery>
 
-        <ProductPageDescription
-          product={product}
-          right={<Usps usps={usps} />}
-          fontSize='responsive'
-        />
+        <LazyHydrate>
+          <ProductPageDescription
+            product={product}
+            right={<Usps usps={usps} />}
+            fontSize='responsive'
+          />
+        </LazyHydrate>
       </AddProductsToCartForm>
 
       {pages?.[0] && (
         <RowRenderer
+          lazyIndex={0}
           content={pages?.[0].content}
           renderer={{
             RowProduct: (rowProps) => (
