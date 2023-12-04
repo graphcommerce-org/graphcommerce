@@ -31,7 +31,7 @@ export function SearchFilterLayout(props: ProductListFilterLayoutProps) {
     <ProductListItemsBase
       renderers={productListRenderer}
       items={products.items}
-      loadingEager={2}
+      loadingEager={6}
       title={title}
     />
   )
