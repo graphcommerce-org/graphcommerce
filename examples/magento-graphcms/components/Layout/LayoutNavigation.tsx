@@ -27,10 +27,10 @@ import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Divider, Fab } from '@mui/material'
 import { useRouter } from 'next/router'
+import { useState } from 'react'
 import { Footer } from './Footer'
 import { LayoutQuery } from './Layout.gql'
 import { Logo } from './Logo'
-import { useState } from 'react'
 
 export type LayoutNavigationProps = LayoutQuery &
   Omit<LayoutDefaultProps, 'footer' | 'header' | 'cartFab' | 'menuFab'>
@@ -175,7 +175,14 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
           </LazyHydrate>
         }
         cartFab={<CartFab />}
-        menuFab={<NavigationFab onClick={() => selection.set([])} />}
+        menuFab={
+          <NavigationFab
+            onClick={() => {
+              setHold(false)
+              setTimeout(() => selection.set([]), 50)
+            }}
+          />
+        }
       >
         {children}
       </LayoutDefault>
