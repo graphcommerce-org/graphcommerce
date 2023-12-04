@@ -179,7 +179,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
           <NavigationFab
             onClick={() => {
               setHold(false)
-              setTimeout(() => selection.set([]), 50)
+              selection.set([])
             }}
           />
         }
