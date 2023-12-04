@@ -108,7 +108,6 @@ function CompareProductToggleBase(
             (theme) => ({
               backgroundColor:
                 theme.palette.mode === 'light' ? theme.palette.background.paper : 'transparent',
-              boxShadow: theme.shadows[6],
               flex: `0 0 auto`,
               '& svg': {
                 stroke: strokeColorPlp,
