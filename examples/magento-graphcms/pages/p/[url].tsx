@@ -171,13 +171,11 @@ function ProductPage(props: Props) {
           <Usps usps={sidebarUsps} size='small' />
         </ProductPageGallery>
 
-        <LazyHydrate>
-          <ProductPageDescription
-            product={product}
-            right={<Usps usps={usps} />}
-            fontSize='responsive'
-          />
-        </LazyHydrate>
+        <ProductPageDescription
+          product={product}
+          right={<Usps usps={usps} />}
+          fontSize='responsive'
+        />
       </AddProductsToCartForm>
 
       {pages?.[0] && (
