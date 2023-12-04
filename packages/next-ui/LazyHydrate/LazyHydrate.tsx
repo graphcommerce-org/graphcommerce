@@ -36,8 +36,6 @@ function withHydrationOnDemandClientSide<P extends object>(incoming: WithHydrati
         return isPending ?? true
       }
 
-      console.log(hold)
-
       const getDefaultHydrationState = () => {
         const isNotInputPending = false && !isInputPending()
         return isNotInputPending || forceHydration
