@@ -6,7 +6,7 @@ export const graphcommerce7to7_1 = async (schema: Schema) => {
   if (!client) {
     return 0
   }
-  // const schema.models.some((m) => m.fields.some((f) => f.apiId === 'row'))
+
   const hasRow = schema.models
     .find((m) => m.apiId === 'DynamicRow')
     ?.fields.some((f) => f.apiId === 'row')
