@@ -23,12 +23,7 @@ const getLogoUtilityClass = (slot: string) => generateUtilityClass(name, slot)
 const useUtilityClasses = ({ classes }: LogoClassProps) =>
   composeClasses({ logo: ['logo'], parent: ['parent'] }, getLogoUtilityClass, classes)
 
-/** Creating styled components */
-const LogoContainer = styled(NextLink, {
-  name,
-  slot: 'parent',
-  overridesResolver: (_props, styles) => styles.parent,
-})(({ theme }) => ({
+const commonLogoStyles: SxProps<Theme> = {
   height: '100%',
   width: 'max-content',
   display: 'flex',
@@ -36,12 +31,13 @@ const LogoContainer = styled(NextLink, {
   margin: '0 auto',
   justifyContent: 'center',
   pointerEvents: 'all',
-  [theme.breakpoints.up('md')]: {
-    display: 'flex',
-    margin: 'unset',
-    justifyContent: 'left',
-  },
-}))
+}
+
+const LogoContainer = styled(NextLink, {
+  name,
+  slot: 'parent',
+  overridesResolver: (_props, styles) => styles.parent,
+})(commonLogoStyles)
 
 export type LogoProps = {
   href?: `/${string}`
@@ -52,7 +48,6 @@ export type LogoProps = {
 export const Logo = forwardRef<HTMLAnchorElement, LogoProps>((props, ref) => {
   const { href = '/', image, sx } = props
   const router = useRouter()
-
   const classes = useUtilityClasses(props)
 
   const img = (
@@ -66,30 +61,13 @@ export const Logo = forwardRef<HTMLAnchorElement, LogoProps>((props, ref) => {
 
   const shouldRedirect = router.asPath.split('?')[0] !== href
 
-  return shouldRedirect ? (
-    <LogoContainer href={href} ref={ref} sx={sx} className={classes.parent}>
-      {img}
-    </LogoContainer>
-  ) : (
+  return (
     <Typography
-      component='div'
-      sx={[
-        (theme) => ({
-          height: '100%',
-          width: 'max-content',
-          display: 'flex',
-          alignItems: 'center',
-          margin: '0 auto',
-          justifyContent: 'center',
-          pointerEvents: 'all',
-          [theme.breakpoints.up('md')]: {
-            display: 'flex',
-            margin: 'unset',
-            justifyContent: 'left',
-          },
-        }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+      component={shouldRedirect ? LogoContainer : 'div'}
+      href={shouldRedirect ? href : undefined}
+      ref={ref}
+      sx={shouldRedirect ? sx : [...(Array.isArray(sx) ? sx : [sx]), commonLogoStyles]}
+      className={classes.parent}
     >
       {img}
     </Typography>
