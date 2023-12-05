@@ -43,8 +43,8 @@ export function RowRenderer(props: PageProps) {
   return (
     <>
       {content?.map((item, index) => (
-        <LazyHydrate eager={index < loadingEager}>
-          <RenderType key={item.id} renderer={mergedRenderer} {...item} />
+        <LazyHydrate key={item.id} eager={index < loadingEager}>
+          <RenderType renderer={mergedRenderer} {...item} />
         </LazyHydrate>
       ))}
     </>

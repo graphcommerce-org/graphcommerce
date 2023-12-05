@@ -41,12 +41,9 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
   const selection = useNavigationSelection()
   const router = useRouter()
 
-  const [hold, setHold] = useState(true)
-  const i = () => selection.set([menu?.items?.[0]?.uid || ''])
   return (
     <>
       <NavigationProvider
-        hold={hold}
         selection={selection}
         items={useMemoDeep(
           () => [
@@ -131,12 +128,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
                 </DesktopNavItem>
               ))}
 
-              <DesktopNavItem
-                onClick={() => {
-                  setHold(false)
-                  setTimeout(() => selection.set([menu?.items?.[0]?.uid || '']), 100)
-                }}
-              >
+              <DesktopNavItem onClick={() => selection.set([menu?.items?.[0]?.uid || ''])}>
                 {menu?.items?.[0]?.name}
                 <IconSvg src={iconChevronDown} />
               </DesktopNavItem>

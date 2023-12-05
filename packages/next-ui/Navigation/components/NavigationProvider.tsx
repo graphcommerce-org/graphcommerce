@@ -1,7 +1,8 @@
-import { MotionConfig, useMotionValue } from 'framer-motion'
+import { MotionConfig, useMotionValue, useTransform } from 'framer-motion'
 import React, { useMemo } from 'react'
 import { isElement } from 'react-is'
 import { LazyHydrate } from '../../LazyHydrate'
+import { nonNullable } from '../../RenderType/nonNullable'
 import {
   NavigationNode,
   NavigationContextType,
@@ -22,7 +23,6 @@ export type NavigationProviderBaseProps = {
 }
 
 export type NavigationProviderProps = NavigationProviderBaseProps & { hold?: boolean }
-const nonNullable = <T,>(value: T): value is NonNullable<T> => value !== null && value !== undefined
 
 const NavigationProviderBase = React.memo<NavigationProviderBaseProps>((props) => {
   const {
@@ -37,8 +37,6 @@ const NavigationProviderBase = React.memo<NavigationProviderBaseProps>((props) =
 
   const animating = useMotionValue(false)
   const closing = useMotionValue(false)
-
-  console.log('joe')
 
   const value = useMemo<NavigationContextType>(
     () => ({
@@ -79,9 +77,11 @@ const NavigationProviderBase = React.memo<NavigationProviderBaseProps>((props) =
 })
 
 export function NavigationProvider(props: NavigationProviderProps) {
-  const { hold = false } = props
+  const { selection } = props
+  const hydrateManually = useTransform(selection, (s) => s !== false)
+
   return (
-    <LazyHydrate hold={hold} afterHydrate={}>
+    <LazyHydrate hydrateManually={hydrateManually}>
       <NavigationProviderBase {...props} />
     </LazyHydrate>
   )

@@ -1,89 +1,46 @@
-import React, {
-  useState,
-  useRef,
-  useEffect,
-  useLayoutEffect,
-  useCallback,
-  startTransition,
-} from 'react'
+import { MotionValue } from 'framer-motion'
+import React, { useState, useRef, useLayoutEffect, startTransition } from 'react'
 
-type WithHydrationOnDemandOptions = {
-  wrapperProps?: React.ComponentProps<'div'>
-  forceHydration?: boolean
-  hold?: boolean
-  afterHydrate?: () => void
-}
-
-function withHydrationOnDemandServerSide<P extends object>(options: WithHydrationOnDemandOptions) {
-  const { wrapperProps } = options
+function withHydrationOnDemandServerSide<P extends object>() {
   return (Component: React.ComponentType<P>) => (props: P) => (
-    <section data-hydration-on-demand {...wrapperProps}>
+    <section data-lazy-hydrate>
       <Component {...props} />
     </section>
   )
 }
 
-function withHydrationOnDemandClientSide<P extends object>(incoming: WithHydrationOnDemandOptions) {
-  const { wrapperProps, forceHydration = false } = incoming
-
+function withHydrationOnDemandClientSide<P extends object>() {
   return (Component: React.ComponentType<P>) => {
-    function ComponentWithHydration(
-      props: P & { forceHydration?: boolean; hold?: boolean; afterHydrate?: () => void },
-    ) {
-      const { hold, afterHydrate } = props
+    function ComponentWithHydration(props: P & { hydrateManually?: MotionValue<boolean> }) {
+      const { hydrateManually } = props
       const rootRef = useRef<HTMLElement>(null)
 
-      const isInputPending = () => {
-        // @ts-expect-error navigator.scheduling is not defined in the types
-        const isPending = navigator?.scheduling?.isInputPending?.()
-        return isPending ?? true
-      }
-
-      const getDefaultHydrationState = () => {
-        const isNotInputPending = false && !isInputPending()
-        return isNotInputPending || forceHydration
-      }
-
-      const [isHydrated, setIsHydrated] = useState(getDefaultHydrationState())
-
-      const hydrate = useCallback(() => {
-        startTransition(() => {
-          setIsHydrated(true)
-          if (afterHydrate) afterHydrate()
-        })
-      }, [afterHydrate])
+      const [isHydrated, setIsHydrated] = useState(hydrateManually?.get())
 
       useLayoutEffect(() => {
-        if (hold) return
-
-        if (isHydrated) return
-
-        if (forceHydration) {
-          hydrate()
-          return
+        // If we are manually hydrating, we watch that value and do not use the IntersectionObserver
+        if (isHydrated || !rootRef.current) return undefined
+        const wasRenderedServerSide = rootRef.current?.hasAttribute('data-lazy-hydrate')
+        if (!wasRenderedServerSide) {
+          setIsHydrated(true)
+          return undefined
         }
 
-        const wasRenderedServerSide = !!rootRef.current?.getAttribute('data-hydration-on-demand')
-        const shouldHydrate = !wasRenderedServerSide && !false
-
-        if (shouldHydrate) hydrate()
-      }, [forceHydration, hold])
-
-      useEffect(() => {
-        if (isHydrated || !rootRef.current || hold) return undefined
+        hydrateManually?.on('change', (val) => val && setIsHydrated(val))
+        if (hydrateManually) return undefined
 
         const observer = new IntersectionObserver(
           ([entry]) => {
             if (entry.isIntersecting && entry.intersectionRatio > 0) {
-              return hydrate()
+              startTransition(() => setIsHydrated(true))
             }
           },
           { rootMargin: '200px' },
         )
-
         observer.observe(rootRef.current)
+
         return () => observer.disconnect()
-      }, [hydrate, isHydrated])
+      }, [hydrateManually, isHydrated])
 
       return !isHydrated ? (
         <section
@@ -91,19 +48,12 @@ function withHydrationOnDemandClientSide<P extends object>(incoming: WithHydrati
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: '' }}
           suppressHydrationWarning
-          {...wrapperProps}
         />
       ) : (
-        <section {...wrapperProps}>
+        <section>
           <Component {...props} />
         </section>
       )
-    }
-
-    if (process.env.NODE_ENV !== 'production') {
-      ComponentWithHydration.displayName = `withHydrationOnDemand(${
-        Component.displayName ?? Component.name ?? 'Component'
-      })`
     }
 
     return ComponentWithHydration
@@ -112,8 +62,8 @@ function withHydrationOnDemandClientSide<P extends object>(incoming: WithHydrati
 
 export function lazyHydrate<P extends object>(Component: React.ComponentType<P>) {
   return typeof window !== 'undefined'
-    ? withHydrationOnDemandClientSide<P>({})(Component)
-    : withHydrationOnDemandServerSide<P>({})(Component)
+    ? withHydrationOnDemandClientSide<P>()(Component)
+    : withHydrationOnDemandServerSide<P>()(Component)
 }
 
 export type LazyHydrateProps = {
@@ -122,21 +72,12 @@ export type LazyHydrateProps = {
    * When eager is set to true, it disables all functionality and render the component regularly
    */
   eager?: boolean
-  /**
-   * When hold is set to true, render nothing
-   */
-  hold?: boolean
 
-  afterHydrate?: () => void
+  hydrateManually?: MotionValue<boolean>
 }
 
-export function LazyHydrate(props: {
-  children: React.ReactNode
-  eager?: boolean
-  hold?: boolean
-  afterHydrate?: () => void
-}) {
-  const { children, eager = false, hold = false, afterHydrate } = props
+export function LazyHydrate(props: LazyHydrateProps) {
+  const { children, eager = false, hydrateManually } = props
   const LazyComponent = lazyHydrate(() => children)
-  return eager ? children : <LazyComponent hold={hold} afterHydrate={afterHydrate} />
+  return eager ? children : <LazyComponent hydrateManually={hydrateManually} />
 }
