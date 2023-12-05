@@ -123,19 +123,19 @@ export async function hygraphDynamicRows(
   const content = [...(pageResult.data.pages[0]?.content ?? [])]
 
   dynamicResult?.data.dynamicRows.forEach((dynamicRow) => {
-    const { placement, target, row } = dynamicRow
-    if (!row) return
+    const { placement, target, rows } = dynamicRow
+    if (!rows) return
 
     if (!target) {
-      if (placement === 'BEFORE') content.unshift(row)
-      else content.push(row)
+      if (placement === 'BEFORE') content.unshift(...rows)
+      else content.push(...rows)
       return
     }
 
     const targetIdx = content.findIndex((c) => c.id === target.id)
-    if (placement === 'BEFORE') content.splice(targetIdx, 0, row)
-    if (placement === 'AFTER') content.splice(targetIdx + 1, 0, row)
-    if (placement === 'REPLACE') content.splice(targetIdx, 1, row)
+    if (placement === 'BEFORE') content.splice(targetIdx, 0, ...rows)
+    if (placement === 'AFTER') content.splice(targetIdx + 1, 0, ...rows)
+    if (placement === 'REPLACE') content.splice(targetIdx, 1, ...rows)
   })
 
   if (!content.length) return pageResult

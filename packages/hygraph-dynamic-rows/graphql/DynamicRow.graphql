@@ -6,7 +6,7 @@ fragment DynamicRow on DynamicRow @injectable {
     }
   }
 
-  row {
+  rows {
     __typename
     ... on Node {
       id
