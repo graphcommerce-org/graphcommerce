@@ -5,6 +5,7 @@ import {
   SxProps,
   Theme,
   unstable_composeClasses as composeClasses,
+  Typography,
 } from '@mui/material'
 import { useRouter } from 'next/router'
 import { forwardRef } from 'react'
@@ -63,13 +64,34 @@ export const Logo = forwardRef<HTMLAnchorElement, LogoProps>((props, ref) => {
     />
   )
 
-  return router.asPath.split('?')[0] === '/' ? (
-    <LogoContainer ref={ref} sx={sx} className={classes.parent}>
-      {img}
-    </LogoContainer>
-  ) : (
+  const shouldRedirect = router.asPath.split('?')[0] !== href
+
+  return shouldRedirect ? (
     <LogoContainer href={href} ref={ref} sx={sx} className={classes.parent}>
       {img}
     </LogoContainer>
+  ) : (
+    <Typography
+      component='div'
+      sx={[
+        (theme) => ({
+          height: '100%',
+          width: 'max-content',
+          display: 'flex',
+          alignItems: 'center',
+          margin: '0 auto',
+          justifyContent: 'center',
+          pointerEvents: 'all',
+          [theme.breakpoints.up('md')]: {
+            display: 'flex',
+            margin: 'unset',
+            justifyContent: 'left',
+          },
+        }),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    >
+      {img}
+    </Typography>
   )
 })
