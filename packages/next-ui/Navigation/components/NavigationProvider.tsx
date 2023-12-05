@@ -11,7 +11,7 @@ import {
   NavigationNodeComponent,
 } from '../hooks/useNavigation'
 
-export type NavigationProviderProps = {
+export type NavigationProviderBaseProps = {
   items: (NavigationNode | React.ReactElement)[]
   hideRootOnNavigate?: boolean
   closeAfterNavigate?: boolean
@@ -21,9 +21,10 @@ export type NavigationProviderProps = {
   serverRenderDepth?: number
 }
 
+export type NavigationProviderProps = NavigationProviderBaseProps & { hold?: boolean }
 const nonNullable = <T,>(value: T): value is NonNullable<T> => value !== null && value !== undefined
 
-export const NavigationProvider = React.memo<NavigationProviderProps>((props) => {
+const NavigationProviderBase = React.memo<NavigationProviderBaseProps>((props) => {
   const {
     items,
     hideRootOnNavigate = true,
@@ -36,6 +37,8 @@ export const NavigationProvider = React.memo<NavigationProviderProps>((props) =>
 
   const animating = useMotionValue(false)
   const closing = useMotionValue(false)
+
+  console.log('joe')
 
   const value = useMemo<NavigationContextType>(
     () => ({
@@ -69,10 +72,17 @@ export const NavigationProvider = React.memo<NavigationProviderProps>((props) =>
   )
 
   return (
-    <LazyHydrate>
-      <MotionConfig transition={{ duration: animationDuration }}>
-        <NavigationContext.Provider value={value}>{children}</NavigationContext.Provider>
-      </MotionConfig>
-    </LazyHydrate>
+    <MotionConfig transition={{ duration: animationDuration }}>
+      <NavigationContext.Provider value={value}>{children}</NavigationContext.Provider>
+    </MotionConfig>
   )
 })
+
+export function NavigationProvider(props: NavigationProviderProps) {
+  const { hold = false } = props
+  return (
+    <LazyHydrate hold={hold} afterHydrate={}>
+      <NavigationProviderBase {...props} />
+    </LazyHydrate>
+  )
+}

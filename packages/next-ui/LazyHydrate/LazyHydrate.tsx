@@ -11,6 +11,7 @@ type WithHydrationOnDemandOptions = {
   wrapperProps?: React.ComponentProps<'div'>
   forceHydration?: boolean
   hold?: boolean
+  afterHydrate?: () => void
 }
 
 function withHydrationOnDemandServerSide<P extends object>(options: WithHydrationOnDemandOptions) {
@@ -26,8 +27,10 @@ function withHydrationOnDemandClientSide<P extends object>(incoming: WithHydrati
   const { wrapperProps, forceHydration = false } = incoming
 
   return (Component: React.ComponentType<P>) => {
-    function ComponentWithHydration(props: P & { forceHydration?: boolean; hold?: boolean }) {
-      const { hold } = props
+    function ComponentWithHydration(
+      props: P & { forceHydration?: boolean; hold?: boolean; afterHydrate?: () => void },
+    ) {
+      const { hold, afterHydrate } = props
       const rootRef = useRef<HTMLElement>(null)
 
       const isInputPending = () => {
@@ -44,8 +47,11 @@ function withHydrationOnDemandClientSide<P extends object>(incoming: WithHydrati
       const [isHydrated, setIsHydrated] = useState(getDefaultHydrationState())
 
       const hydrate = useCallback(() => {
-        startTransition(() => setIsHydrated(true))
-      }, [])
+        startTransition(() => {
+          setIsHydrated(true)
+          if (afterHydrate) afterHydrate()
+        })
+      }, [afterHydrate])
 
       useLayoutEffect(() => {
         if (hold) return
@@ -116,12 +122,21 @@ export type LazyHydrateProps = {
    * When eager is set to true, it disables all functionality and render the component regularly
    */
   eager?: boolean
-
+  /**
+   * When hold is set to true, render nothing
+   */
   hold?: boolean
+
+  afterHydrate?: () => void
 }
 
-export function LazyHydrate(props: { children: React.ReactNode; eager?: boolean; hold?: boolean }) {
-  const { children, eager = false, hold = false } = props
+export function LazyHydrate(props: {
+  children: React.ReactNode
+  eager?: boolean
+  hold?: boolean
+  afterHydrate?: () => void
+}) {
+  const { children, eager = false, hold = false, afterHydrate } = props
   const LazyComponent = lazyHydrate(() => children)
-  return eager ? children : <LazyComponent hold={hold} />
+  return eager ? children : <LazyComponent hold={hold} afterHydrate={afterHydrate} />
 }

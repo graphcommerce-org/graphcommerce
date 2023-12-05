@@ -21,11 +21,13 @@ import {
   NavigationOverlay,
   useNavigationSelection,
   useMemoDeep,
+  LazyHydrate,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Divider, Fab } from '@mui/material'
 import { useRouter } from 'next/router'
+import { useState } from 'react'
 import { Footer } from './Footer'
 import { LayoutQuery } from './Layout.gql'
 import { Logo } from './Logo'
@@ -39,9 +41,12 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
   const selection = useNavigationSelection()
   const router = useRouter()
 
+  const [hold, setHold] = useState(true)
+  const i = () => selection.set([menu?.items?.[0]?.uid || ''])
   return (
     <>
       <NavigationProvider
+        hold={hold}
         selection={selection}
         items={useMemoDeep(
           () => [
@@ -126,7 +131,12 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
                 </DesktopNavItem>
               ))}
 
-              <DesktopNavItem onClick={() => selection.set([menu?.items?.[0]?.uid || ''])}>
+              <DesktopNavItem
+                onClick={() => {
+                  setHold(false)
+                  setTimeout(() => selection.set([menu?.items?.[0]?.uid || '']), 100)
+                }}
+              >
                 {menu?.items?.[0]?.name}
                 <IconSvg src={iconChevronDown} />
               </DesktopNavItem>
