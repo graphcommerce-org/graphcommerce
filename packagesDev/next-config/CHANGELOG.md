@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.1.0-canary.64
+
+### Patch Changes
+
+- [#2129](https://github.com/graphcommerce-org/graphcommerce/pull/2129) [`dca4490b9`](https://github.com/graphcommerce-org/graphcommerce/commit/dca4490b97319e9d4117277719adef395ed1e7b4) - Created ./devcontainer/devcontainer.json to automatically run Graphcommerce after opening Codespaces ([@action-simon](https://github.com/action-simon))
+
 ## 7.1.0-canary.63
 
 ## 7.1.0-canary.62
