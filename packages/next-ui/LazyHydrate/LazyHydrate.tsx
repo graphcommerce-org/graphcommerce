@@ -35,7 +35,7 @@ function withHydrationOnDemandClientSide<P extends object>() {
               startTransition(() => setIsHydrated(true))
             }
           },
-          { rootMargin: '190px' },
+          { rootMargin: '200px' },
         )
         observer.observe(rootRef.current)
 
