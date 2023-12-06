@@ -126,7 +126,7 @@ export async function hygraphDynamicRows(
     const { placement, target, rows, row } = dynamicRow
     if (!rows && !row) return
 
-    const rowsToMerge = [...rows, row]
+    const rowsToMerge = rows ?? [row]
 
     if (!target) {
       if (placement === 'BEFORE') content.unshift(...rowsToMerge)
