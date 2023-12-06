@@ -120,22 +120,24 @@ export async function hygraphDynamicRows(
   const [pageResult, dynamicResult] = await Promise.all([pageQuery, dynamicRows])
 
   // Create a copy of the content array.
-  const content = [...(pageResult.data.pages[0]?.content ?? [])]
+  const content = pageResult.data.pages[0]?.content ?? []
 
   dynamicResult?.data.dynamicRows.forEach((dynamicRow) => {
-    const { placement, target, rows } = dynamicRow
-    if (!rows) return
+    const { placement, target, rows, row } = dynamicRow
+    if (!rows && !row) return
+
+    const rowsToMerge = [...rows, row]
 
     if (!target) {
-      if (placement === 'BEFORE') content.unshift(...rows)
-      else content.push(...rows)
+      if (placement === 'BEFORE') content.unshift(...rowsToMerge)
+      else content.push(...rowsToMerge)
       return
     }
 
     const targetIdx = content.findIndex((c) => c.id === target.id)
-    if (placement === 'BEFORE') content.splice(targetIdx, 0, ...rows)
-    if (placement === 'AFTER') content.splice(targetIdx + 1, 0, ...rows)
-    if (placement === 'REPLACE') content.splice(targetIdx, 1, ...rows)
+    if (placement === 'BEFORE') content.splice(targetIdx, 0, ...rowsToMerge)
+    if (placement === 'AFTER') content.splice(targetIdx + 1, 0, ...rowsToMerge)
+    if (placement === 'REPLACE') content.splice(targetIdx, 1, ...rowsToMerge)
   })
 
   if (!content.length) return pageResult
