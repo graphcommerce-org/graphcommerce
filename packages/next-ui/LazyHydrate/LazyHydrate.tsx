@@ -15,8 +15,7 @@ function withHydrationOnDemandClientSide<P extends object>() {
       const { hydrateManually } = props
       const rootRef = useRef<HTMLElement>(null)
 
-      const [isHydrated, setIsHydrated] = useState(hydrateManually?.get())
-
+      const [isHydrated, setIsHydrated] = useState(hydrateManually?.get() || false)
       useLayoutEffect(() => {
         // If we are manually hydrating, we watch that value and do not use the IntersectionObserver
         if (isHydrated || !rootRef.current) return undefined
@@ -35,7 +34,7 @@ function withHydrationOnDemandClientSide<P extends object>() {
               startTransition(() => setIsHydrated(true))
             }
           },
-          { rootMargin: '190px' },
+          { rootMargin: '200px' },
         )
         observer.observe(rootRef.current)
 

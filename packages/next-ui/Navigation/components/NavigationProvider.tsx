@@ -77,12 +77,12 @@ const NavigationProviderBase = React.memo<NavigationProviderBaseProps>((props) =
 })
 
 export function NavigationProvider(props: NavigationProviderProps) {
-  const { selection } = props
-  const hydrateManually = useTransform(selection, (s) => s !== false)
+  // const { selection } = props
+  // const hydrateManually = useTransform(selection, (s) => s !== false)
 
   return (
-    <LazyHydrate hydrateManually={hydrateManually}>
-      <NavigationProviderBase {...props} />
-    </LazyHydrate>
+    // <LazyHydrate hydrateManually={hydrateManually}>
+    <NavigationProviderBase {...props} />
+    // </LazyHydrate>
   )
 }
