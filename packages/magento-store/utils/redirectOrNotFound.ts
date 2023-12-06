@@ -5,7 +5,7 @@ import {
   flushMeasurePerf,
   NormalizedCacheObject,
 } from '@graphcommerce/graphql'
-import { nonNullable, isTypename } from '@graphcommerce/next-ui'
+import { nonNullable, isTypename, storefrontConfig } from '@graphcommerce/next-ui'
 import { Redirect } from 'next'
 import { StoreConfigQuery } from '../StoreConfig.gql'
 import { defaultLocale } from '../localeToStore'
@@ -24,7 +24,8 @@ const notFound = (from: string, reason: string) => {
 }
 
 const redirect = (from: string, to: string, permanent: boolean, locale?: string) => {
-  const prefix = locale === defaultLocale() ? '' : `/${locale}`
+  const localeHasDomain = Boolean(storefrontConfig(locale)?.domain)
+  const prefix = localeHasDomain || locale === defaultLocale() ? '' : `/${locale}`
   const destination = `${prefix}${to}`
 
   flushMeasurePerf()
