@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-type RowLinksProps = {
+export type RowLinksProps = {
   __typename: string
   id: string
   title: string
