@@ -1,7 +1,0 @@
-fragment RowButtonLinkList on RowButtonLinkList {
-  title
-  links {
-    title
-    url
-  }
-}
