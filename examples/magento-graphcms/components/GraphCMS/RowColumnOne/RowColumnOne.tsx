@@ -1,16 +1,5 @@
+import { RowColumnOneProps } from './input'
 import { Default, Message } from './variant'
-
-type RowColumnOneProps = {
-  __typename: string
-  id: string
-  rowColumnOneVariant?: 'Default' | 'Message' | null | undefined
-  colOne: {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    raw: any
-  }
-} & {
-  renderer?: Partial<VariantRenderer>
-}
 
 type VariantRenderer = Record<
   NonNullable<RowColumnOneProps['rowColumnOneVariant']>,
@@ -22,8 +11,8 @@ const defaultRenderer: Partial<VariantRenderer> = {
   Message,
 }
 
-export function RowColumnOne(props: RowColumnOneProps) {
-  const { renderer, ...RowColumnOneProps } = props
+export function RowColumnOne(props: RowColumnOneProps & { renderer?: VariantRenderer }) {
+  const { renderer, ...rest } = props
   let { rowColumnOneVariant } = props
 
   const mergedRenderer = { ...defaultRenderer, ...renderer } as VariantRenderer
@@ -38,5 +27,5 @@ export function RowColumnOne(props: RowColumnOneProps) {
       return null
     })
 
-  return <RenderType {...RowColumnOneProps} />
+  return <RenderType {...rest} />
 }
