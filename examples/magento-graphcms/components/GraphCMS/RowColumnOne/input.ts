@@ -17,7 +17,7 @@ export const rowColumnOneInput: RowColumnOneInput = {
           type: 'heading-two',
           children: [
             {
-              text: 'test test',
+              text: 'Generieke heading',
             },
           ],
         },

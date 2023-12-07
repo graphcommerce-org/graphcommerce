@@ -1,13 +1,22 @@
-import type { RowColumnOneFragment } from './RowColumnOne.gql'
 import { rowColumnOneInput } from './input'
 import { Default, Message } from './variant'
 
+type RowColumnOneInput = {
+  id: string
+  rowColumnOneVariant?: 'Default' | 'Message' | null | undefined
+  colOne: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    raw: any
+  }
+  __typename: string
+}
+
 type VariantRenderer = Record<
-  NonNullable<RowColumnOneFragment['rowColumnOneVariant']>,
-  React.VFC<RowColumnOneFragment>
+  NonNullable<RowColumnOneInput['rowColumnOneVariant']>,
+  React.VFC<RowColumnOneInput>
 >
 
-export type RowColumnOneProps = RowColumnOneFragment & {
+export type RowColumnOneProps = RowColumnOneInput & {
   renderer?: Partial<VariantRenderer>
   __typename?: string
 }
