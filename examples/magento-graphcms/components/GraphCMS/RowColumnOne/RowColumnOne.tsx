@@ -1,4 +1,5 @@
 import type { RowColumnOneFragment } from './RowColumnOne.gql'
+import { rowColumnOneInput } from './input'
 import { Default, Message } from './variant'
 
 type VariantRenderer = Record<
@@ -8,6 +9,7 @@ type VariantRenderer = Record<
 
 export type RowColumnOneProps = RowColumnOneFragment & {
   renderer?: Partial<VariantRenderer>
+  __typename?: string
 }
 
 const defaultRenderer: Partial<VariantRenderer> = {
@@ -31,5 +33,6 @@ export function RowColumnOne(props: RowColumnOneProps) {
       return null
     })
 
-  return <RenderType {...RowColumnOneProps} />
+  console.log(20, RowColumnOneProps)
+  return <RenderType {...RowColumnOneProps} colOne={rowColumnOneInput.colOne} />
 }

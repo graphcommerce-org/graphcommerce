@@ -28,6 +28,7 @@ function CmsPage(props: Props) {
   const favorite = favoritesList?.products?.items?.[0]
   const swipable = swipableList?.products?.items?.[0]
 
+  console.log(10, page.content)
   return (
     <>
       <PageMeta

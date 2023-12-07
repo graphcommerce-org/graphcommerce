@@ -1,8 +1,8 @@
 import { RichText } from '@graphcommerce/graphcms-ui'
 import { VariantMessage } from '@graphcommerce/next-ui'
-import { RowColumnOneProps } from '../RowColumnOne'
+import { RowColumnOneFragment } from '../RowColumnOne.gql'
 
-export function Message(props: RowColumnOneProps) {
+export function Message(props: RowColumnOneFragment) {
   const { colOne, id } = props
 
   return (
