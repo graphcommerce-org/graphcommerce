@@ -1,30 +1,7 @@
 import { RichText } from '@graphcommerce/graphcms-ui'
 import { iconCheckmark, IconSvg, VariantUsps } from '@graphcommerce/next-ui'
 import { Box } from '@mui/material'
-
-type RowLinksProps = {
-  __typename: string
-  id: string
-  title: string
-  linksVariant?: 'Inline' | 'ImageLabelSwiper' | 'LogoSwiper' | 'Usps' | null
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  rowLinksCopy?: { raw: any } | null
-  pageLinks: Array<{
-    id: string
-    title: string
-    url: string
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    description?: { raw: any } | null
-    asset?: {
-      url: string
-      width?: number | null
-      height?: number | null
-      mimeType?: string | null
-      size?: number | null
-      alt?: string | null
-    } | null
-  }>
-}
+import { RowLinksProps } from '../input'
 
 export function Usps(props: RowLinksProps) {
   const { title, pageLinks } = props
