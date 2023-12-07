@@ -1,8 +1,6 @@
 import { RichText } from '@graphcommerce/graphcms-ui'
 import { ColumnThree } from '@graphcommerce/next-ui'
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type RowColumnThreeProps = { colOne: { raw: any }; colTwo: { raw: any }; colThree: { raw: any } }
+import { RowColumnThreeProps } from './input'
 
 export function RowColumnThree(props: RowColumnThreeProps) {
   const { colOne, colTwo, colThree } = props
