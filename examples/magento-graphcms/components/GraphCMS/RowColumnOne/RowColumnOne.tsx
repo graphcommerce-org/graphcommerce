@@ -1,13 +1,13 @@
 import { Default, Message } from './variant'
 
 type RowColumnOneInput = {
+  __typename: string
   id: string
   rowColumnOneVariant?: 'Default' | 'Message' | null | undefined
   colOne: {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     raw: any
   }
-  __typename: string
 }
 
 type VariantRenderer = Record<
@@ -17,7 +17,6 @@ type VariantRenderer = Record<
 
 export type RowColumnOneProps = RowColumnOneInput & {
   renderer?: Partial<VariantRenderer>
-  __typename?: string
 }
 
 const defaultRenderer: Partial<VariantRenderer> = {
