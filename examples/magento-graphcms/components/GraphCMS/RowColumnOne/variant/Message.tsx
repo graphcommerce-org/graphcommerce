@@ -1,17 +1,13 @@
-import { RichText, RichTextProps } from '@graphcommerce/graphcms-ui'
+import { RichText } from '@graphcommerce/graphcms-ui'
 import { VariantMessage } from '@graphcommerce/next-ui'
-import type { RowColumnOneFragment } from '../RowColumnOne.gql'
-
-type RowColumnOneProps = RowColumnOneFragment & {
-  richTextOne?: Omit<RichTextProps, 'raw'>
-}
+import { RowColumnOneProps } from '../RowColumnOne'
 
 export function Message(props: RowColumnOneProps) {
-  const { colOne, richTextOne, id } = props
+  const { colOne, id } = props
 
   return (
     <VariantMessage id={id}>
-      <RichText {...colOne} {...richTextOne} />
+      <RichText {...colOne} />
     </VariantMessage>
   )
 }

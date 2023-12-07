@@ -1,4 +1,3 @@
-import { RichTextProps } from '@graphcommerce/graphcms-ui'
 import type { RowColumnOneFragment } from './RowColumnOne.gql'
 import { Default, Message } from './variant'
 
@@ -9,7 +8,6 @@ type VariantRenderer = Record<
 
 export type RowColumnOneProps = RowColumnOneFragment & {
   renderer?: Partial<VariantRenderer>
-  richTextOne?: Omit<RichTextProps, 'raw'>
 }
 
 const defaultRenderer: Partial<VariantRenderer> = {
