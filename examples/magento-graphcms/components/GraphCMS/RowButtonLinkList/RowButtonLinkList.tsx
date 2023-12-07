@@ -1,9 +1,5 @@
 import { ButtonLinkListItem, ButtonLinkList } from '@graphcommerce/next-ui'
-
-export type RowButtonLinkListProps = {
-  title: string
-  links: Array<{ title?: string | null; url: string }>
-}
+import { RowButtonLinkListProps } from './input'
 
 /** @deprecated Replace with RowLinks */
 export function RowButtonLinkList(props: RowButtonLinkListProps) {
