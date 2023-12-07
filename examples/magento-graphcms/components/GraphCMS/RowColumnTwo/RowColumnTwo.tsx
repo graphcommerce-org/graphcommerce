@@ -1,8 +1,10 @@
 import { RichText } from '@graphcommerce/graphcms-ui'
 import { ColumnTwo } from '@graphcommerce/next-ui'
-import { RowColumnTwoFragment } from './RowColumnTwo.gql'
 
-export function RowColumnTwo(props: RowColumnTwoFragment) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type RowColumnTwoProps = { colOne: { raw: any }; colTwo: { raw: any } }
+
+export function RowColumnTwo(props: RowColumnTwoProps) {
   const { colOne, colTwo } = props
 
   return (

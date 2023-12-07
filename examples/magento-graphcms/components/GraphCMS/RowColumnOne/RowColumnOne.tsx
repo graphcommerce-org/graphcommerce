@@ -1,4 +1,3 @@
-import { rowColumnOneInput } from './input'
 import { Default, Message } from './variant'
 
 type RowColumnOneInput = {
@@ -42,6 +41,5 @@ export function RowColumnOne(props: RowColumnOneProps) {
       return null
     })
 
-  console.log(20, RowColumnOneProps)
-  return <RenderType {...RowColumnOneProps} colOne={rowColumnOneInput.colOne} />
+  return <RenderType {...RowColumnOneProps} />
 }
