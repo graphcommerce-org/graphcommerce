@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-type RowColumnOneInput = {
+type RowColumnOneProps = {
   rowColumnOneVariant?: 'Default' | 'Message' | null | undefined
   colOne: {
     raw: any
@@ -7,7 +7,7 @@ type RowColumnOneInput = {
   __typename: string
 }
 
-export const rowColumnOneInput: RowColumnOneInput = {
+export const rowColumnOneInput: RowColumnOneProps = {
   __typename: 'RowColumnOne',
   rowColumnOneVariant: null,
   colOne: {

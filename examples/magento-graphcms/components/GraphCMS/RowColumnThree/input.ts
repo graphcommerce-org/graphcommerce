@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-type RowColumnThreeInput = {
+type RowColumnThreeProps = {
   colOne: {
     raw: any
   }
@@ -12,7 +12,7 @@ type RowColumnThreeInput = {
   __typename: string
 }
 
-export const rowColumnThreeInput: RowColumnThreeInput = {
+export const rowColumnThreeInput: RowColumnThreeProps = {
   __typename: 'RowColumnThree',
   colOne: {
     raw: {
