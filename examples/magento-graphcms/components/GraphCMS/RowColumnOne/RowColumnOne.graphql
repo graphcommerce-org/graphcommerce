@@ -1,7 +1,0 @@
-fragment RowColumnOne on RowColumnOne {
-  id
-  rowColumnOneVariant
-  colOne {
-    raw
-  }
-}
