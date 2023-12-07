@@ -1,9 +1,32 @@
 import { Asset } from '@graphcommerce/graphcms-ui'
 import { VariantLogoSwiper } from '@graphcommerce/next-ui'
 import { Link } from '@mui/material'
-import { RowLinksFragment } from '../RowLinks.gql'
 
-export function LogoSwiper(props: RowLinksFragment) {
+type RowLinksProps = {
+  __typename: string
+  id: string
+  title: string
+  linksVariant?: 'Inline' | 'ImageLabelSwiper' | 'LogoSwiper' | 'Usps' | null
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  rowLinksCopy?: { raw: any } | null
+  pageLinks: Array<{
+    id: string
+    title: string
+    url: string
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    description?: { raw: any } | null
+    asset?: {
+      url: string
+      width?: number | null
+      height?: number | null
+      mimeType?: string | null
+      size?: number | null
+      alt?: string | null
+    } | null
+  }>
+}
+
+export function LogoSwiper(props: RowLinksProps) {
   const { title, pageLinks } = props
 
   return (
