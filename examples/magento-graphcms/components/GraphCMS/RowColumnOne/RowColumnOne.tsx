@@ -1,6 +1,6 @@
 import { Default, Message } from './variant'
 
-type RowColumnOneInput = {
+type RowColumnOneProps = {
   __typename: string
   id: string
   rowColumnOneVariant?: 'Default' | 'Message' | null | undefined
@@ -8,16 +8,14 @@ type RowColumnOneInput = {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     raw: any
   }
+} & {
+  renderer?: Partial<VariantRenderer>
 }
 
 type VariantRenderer = Record<
-  NonNullable<RowColumnOneInput['rowColumnOneVariant']>,
-  React.FC<RowColumnOneInput>
+  NonNullable<RowColumnOneProps['rowColumnOneVariant']>,
+  React.FC<RowColumnOneProps>
 >
-
-export type RowColumnOneProps = RowColumnOneInput & {
-  renderer?: Partial<VariantRenderer>
-}
 
 const defaultRenderer: Partial<VariantRenderer> = {
   Default,
