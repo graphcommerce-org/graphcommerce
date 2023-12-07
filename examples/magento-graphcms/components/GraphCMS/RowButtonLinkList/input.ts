@@ -18,5 +18,4 @@ export const rowButtonLinkListInput: RowButtonLinkListProps = {
       url: 'https://www.example.com',
     },
   ],
-  },
 }
