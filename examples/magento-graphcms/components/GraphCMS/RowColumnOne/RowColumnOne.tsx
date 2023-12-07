@@ -12,7 +12,7 @@ type RowColumnOneInput = {
 
 type VariantRenderer = Record<
   NonNullable<RowColumnOneInput['rowColumnOneVariant']>,
-  React.VFC<RowColumnOneInput>
+  React.FC<RowColumnOneInput>
 >
 
 export type RowColumnOneProps = RowColumnOneInput & {
