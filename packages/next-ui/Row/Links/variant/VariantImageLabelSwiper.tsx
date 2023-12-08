@@ -1,10 +1,10 @@
-import { RowLinks, RowLinksProps } from '../RowLinks'
+import { Links, LinksProps } from '../Links'
 
-export function VariantImageLabelSwiper(props: RowLinksProps) {
+export function VariantImageLabelSwiper(props: LinksProps) {
   const { sx = [], ...rowLinksProps } = props
 
   return (
-    <RowLinks
+    <Links
       {...rowLinksProps}
       sx={[
         {

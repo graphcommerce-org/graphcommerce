@@ -12,7 +12,7 @@ import { useFabSize } from '../../Theme'
 import { iconChevronLeft, iconChevronRight } from '../../icons'
 import { Row } from '../Row'
 
-export type RowLinksProps = {
+export type LinksProps = {
   title: string
   copy?: React.ReactNode
   children: React.ReactNode
@@ -34,7 +34,7 @@ const parts = [
 ] as const
 const { classes } = extendableComponent(compName, parts)
 
-export function RowLinks(props: RowLinksProps) {
+export function Links(props: LinksProps) {
   const { title, copy, children, sx = [], inlineTitle, showButtons, maxWidth } = props
 
   const fabSize = useFabSize('responsive')

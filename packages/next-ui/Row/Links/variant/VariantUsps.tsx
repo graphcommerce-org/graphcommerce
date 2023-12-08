@@ -1,10 +1,10 @@
-import { RowLinks, RowLinksProps } from '../RowLinks'
+import { Links, LinksProps } from '../Links'
 
-export function VariantUsps(props: RowLinksProps) {
+export function VariantUsps(props: LinksProps) {
   const { sx = [], inlineTitle = true, ...rowLinksProps } = props
 
   return (
-    <RowLinks
+    <Links
       inlineTitle={inlineTitle}
       {...rowLinksProps}
       sx={[
