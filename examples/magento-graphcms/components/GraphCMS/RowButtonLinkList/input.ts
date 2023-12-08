@@ -1,12 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export type RowButtonLinkListProps = {
   __typename: string
+  id: string
   title: string
   links: Array<{ title?: string | null; url: string }>
 }
 
 export const rowButtonLinkListInput: RowButtonLinkListProps = {
   __typename: 'RowButtonLinkList',
+  id: 'clpwlv5zhqhi809w2mh2mbmsl',
   title: 'Generic Button Link List',
   links: [
     {

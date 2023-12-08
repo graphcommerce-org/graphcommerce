@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export type RowColumnThreeProps = {
   __typename: string
+  id: string
   colOne: {
     raw: any
   }
@@ -14,6 +15,7 @@ export type RowColumnThreeProps = {
 
 export const rowColumnThreeInput: RowColumnThreeProps = {
   __typename: 'RowColumnThree',
+  id: 'clpwlv5zhqhi809w2mh2mbmsl',
   colOne: {
     raw: {
       children: [

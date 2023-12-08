@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export type RowColumnTwoProps = {
   __typename: string
+  id: string
   colOne: {
     raw: any
   }
@@ -11,6 +12,7 @@ export type RowColumnTwoProps = {
 
 export const rowColumnTwoInput: RowColumnTwoProps = {
   __typename: 'RowColumnTwo',
+  id: 'clpwlv5zhqhi809w2mh2mbmsl',
   colOne: {
     raw: {
       children: [
