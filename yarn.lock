@@ -2614,7 +2614,7 @@ __metadata:
     "@graphql-tools/utils": "npm:^10.0.8"
     cosmiconfig: "npm:^8.3.6"
     detect-package-manager: "npm:^3.0.1"
-    graphql-codegen-typescript-validation-schema: "npm:^0.12.0"
+    graphql-codegen-typescript-validation-schema: "npm:0.11.0"
     graphql-tag: "npm:^2.12.6"
     rimraf: "npm:^5.0.5"
     tslib: "npm:^2.6.2"
@@ -11866,9 +11866,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graphql-codegen-typescript-validation-schema@npm:^0.12.0":
-  version: 0.12.0
-  resolution: "graphql-codegen-typescript-validation-schema@npm:0.12.0"
+"graphql-codegen-typescript-validation-schema@npm:0.11.0":
+  version: 0.11.0
+  resolution: "graphql-codegen-typescript-validation-schema@npm:0.11.0"
   dependencies:
     "@graphql-codegen/plugin-helpers": "npm:^5.0.0"
     "@graphql-codegen/schema-ast": "npm:4.0.0"
@@ -11878,7 +11878,7 @@ __metadata:
     graphql: "npm:^16.6.0"
   peerDependencies:
     graphql: ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
-  checksum: 324246511652f55aa8ea67811eb5293973f80d2f852574e3a27f3ec3ad598de38f689b94c577d4c889e1ffe2d2cf2d65271edd39e476ccdccc58ee7acf6530b6
+  checksum: cd6a4a7669b6d11dcb3ab016734fa6059c65c7e72111a3c8170312d160430aa550b607acfc9c06b4bdd97f87a3e5a4af8dfe3d718a6f2c22fbd68ffe3dde7cf6
   languageName: node
   linkType: hard
 
