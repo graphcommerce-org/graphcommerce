@@ -1,2 +1,2 @@
 export * from './RowProduct'
-export * from './input'
+export * from './type'

@@ -1,2 +1,2 @@
 export * from './RowServiceOptions'
-export * from './input'
+export * from './type'

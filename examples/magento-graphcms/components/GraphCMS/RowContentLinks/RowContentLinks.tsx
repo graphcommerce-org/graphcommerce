@@ -1,6 +1,6 @@
 import { ContentLinks } from '@graphcommerce/next-ui'
 import { Link } from '@mui/material'
-import { RowContentLinksProps } from './input'
+import { RowContentLinksProps } from './type'
 
 /** @deprecated Replace with RowLinks */
 export function RowContentLinks(props: RowContentLinksProps) {

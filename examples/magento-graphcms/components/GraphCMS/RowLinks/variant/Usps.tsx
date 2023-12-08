@@ -1,7 +1,7 @@
 import { RichText } from '@graphcommerce/graphcms-ui'
 import { iconCheckmark, IconSvg, VariantUsps } from '@graphcommerce/next-ui'
 import { Box } from '@mui/material'
-import { RowLinksProps } from '../input'
+import { RowLinksProps } from '../type'
 
 export function Usps(props: RowLinksProps) {
   const { title, pageLinks } = props

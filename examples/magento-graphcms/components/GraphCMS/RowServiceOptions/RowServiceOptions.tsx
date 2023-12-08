@@ -7,7 +7,7 @@ import {
   iconPhone,
   IconSvg,
 } from '@graphcommerce/next-ui'
-import { RowServiceOptionsProps } from './input'
+import { RowServiceOptionsProps } from './type'
 
 export function RowServiceOptions(props: RowServiceOptionsProps) {
   const { title, serviceOptions } = props

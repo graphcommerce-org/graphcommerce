@@ -1,2 +1,2 @@
 export * from './RowButtonLinkList'
-export * from './input'
+export * from './type'

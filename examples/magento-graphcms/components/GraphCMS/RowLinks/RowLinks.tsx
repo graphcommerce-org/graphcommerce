@@ -1,4 +1,4 @@
-import { RowLinksProps } from './input'
+import { RowLinksProps } from './type'
 import { LogoSwiper, ImageLabelSwiper, Inline, Usps } from './variant'
 
 type VariantRenderer = Record<NonNullable<RowLinksProps['linksVariant']>, React.FC<RowLinksProps>>

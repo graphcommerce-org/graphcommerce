@@ -1,6 +1,6 @@
 import { VariantInline } from '@graphcommerce/next-ui'
 import { Link } from '@mui/material'
-import { RowLinksProps } from '../input'
+import { RowLinksProps } from '../type'
 
 export function Inline(props: RowLinksProps) {
   const { title, pageLinks } = props

@@ -1,6 +1,6 @@
 import { RichText } from '@graphcommerce/graphcms-ui'
 import { Quote } from '@graphcommerce/next-ui'
-import { RowQuoteProps } from './input'
+import { RowQuoteProps } from './type'
 
 export function RowQuote(props: RowQuoteProps) {
   const { quote } = props

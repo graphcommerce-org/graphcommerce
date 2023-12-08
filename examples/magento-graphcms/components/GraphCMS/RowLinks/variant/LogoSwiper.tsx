@@ -1,7 +1,7 @@
 import { Asset } from '@graphcommerce/graphcms-ui'
 import { VariantLogoSwiper } from '@graphcommerce/next-ui'
 import { Link } from '@mui/material'
-import { RowLinksProps } from '../input'
+import { RowLinksProps } from '../type'
 
 export function LogoSwiper(props: RowLinksProps) {
   const { title, pageLinks } = props

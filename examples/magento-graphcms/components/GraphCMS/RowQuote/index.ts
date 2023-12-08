@@ -1,2 +1,2 @@
 export * from './RowQuote'
-export * from './input'
+export * from './type'

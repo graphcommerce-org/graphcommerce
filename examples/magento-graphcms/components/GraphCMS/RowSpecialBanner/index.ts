@@ -1,2 +1,2 @@
 export * from './RowSpecialBanner'
-export * from './input'
+export * from './type'

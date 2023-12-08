@@ -3,7 +3,7 @@ import { AddProductsToCartForm, ProductListItemsFragment } from '@graphcommerce/
 import { ParagraphWithSidebarSlide, RenderType } from '@graphcommerce/next-ui'
 import { useTheme } from '@mui/material'
 import { productListRenderer } from '../../../ProductListItems'
-import { RowProductProps } from '../input'
+import { RowProductProps } from '../type'
 
 type BackstoryProps = RowProductProps & ProductListItemsFragment
 

@@ -1,6 +1,6 @@
 import { ProductSpecs } from '@graphcommerce/magento-product'
 import { ProductSpecsFragment } from '@graphcommerce/magento-product/components/ProductSpecs/ProductSpecs.gql'
-import { RowProductProps } from '../input'
+import { RowProductProps } from '../type'
 
 type SpecsProps = RowProductProps & ProductSpecsFragment
 

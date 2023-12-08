@@ -1,4 +1,4 @@
-import { RowColumnOneProps } from './input'
+import { RowColumnOneProps } from './type'
 import { Default, Message } from './variant'
 
 type VariantRenderer = Record<

@@ -1,2 +1,2 @@
 export * from './RowColumnOne'
-export * from './input'
+export * from './type'

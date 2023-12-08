@@ -2,7 +2,7 @@ import { RichText } from '@graphcommerce/graphcms-ui'
 import { Image } from '@graphcommerce/image'
 import { ImageTextBoxed, responsiveVal } from '@graphcommerce/next-ui'
 import { Typography, useTheme } from '@mui/material'
-import { RowProductProps } from '../input'
+import { RowProductProps } from '../type'
 import { ProductFeatureMediaBoxedFragment } from './ProductFeatureMediaBoxed.gql'
 
 type FeatureBoxedProps = RowProductProps & ProductFeatureMediaBoxedFragment

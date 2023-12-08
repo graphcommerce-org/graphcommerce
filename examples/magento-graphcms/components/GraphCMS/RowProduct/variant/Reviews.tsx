@@ -3,7 +3,7 @@ import { ProductReviews, ProductReviewsProps } from '@graphcommerce/magento-revi
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Row } from '@graphcommerce/next-ui'
 import { Box, Typography } from '@mui/material'
-import { RowProductProps } from '../input'
+import { RowProductProps } from '../type'
 
 type ReviewsProps = RowProductProps & Partial<ProductReviewsProps>
 

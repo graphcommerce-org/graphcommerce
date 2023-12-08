@@ -1,7 +1,7 @@
 import { RichText, Asset } from '@graphcommerce/graphcms-ui'
 import { breakpointVal, SpecialBanner } from '@graphcommerce/next-ui'
 import { Link } from '@mui/material'
-import { RowSpecialBannerProps } from './input'
+import { RowSpecialBannerProps } from './type'
 
 export function RowSpecialBanner(props: RowSpecialBannerProps) {
   const { copy, asset, topic, pageLinks } = props

@@ -1,2 +1,2 @@
 export * from './RowLinks'
-export * from './input'
+export * from './type'

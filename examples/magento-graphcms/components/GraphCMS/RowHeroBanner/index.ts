@@ -1,2 +1,2 @@
 export * from './RowHeroBanner'
-export * from './input'
+export * from './type'

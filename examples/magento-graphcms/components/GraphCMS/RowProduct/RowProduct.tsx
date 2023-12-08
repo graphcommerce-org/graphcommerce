@@ -1,5 +1,5 @@
 import { ProductSpecsFragment } from '@graphcommerce/magento-product/components/ProductSpecs/ProductSpecs.gql'
-import { RowProductProps } from './input'
+import { RowProductProps } from './type'
 import {
   Backstory,
   Feature,
