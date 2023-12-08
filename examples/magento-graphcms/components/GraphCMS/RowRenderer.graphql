@@ -8,7 +8,6 @@ fragment RowRenderer on Page @inject(into: ["HygraphPage"]) {
     ...RowHeroBanner
     ...RowSpecialBanner
     ...RowServiceOptions
-    ...RowContentLinks
     ...RowProduct
   }
 }
