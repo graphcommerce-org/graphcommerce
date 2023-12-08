@@ -3,9 +3,9 @@ import { ProductReviews, ProductReviewsProps } from '@graphcommerce/magento-revi
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Row } from '@graphcommerce/next-ui'
 import { Box, Typography } from '@mui/material'
-import { RowProductFragment } from '../RowProduct.gql'
+import { RowProductProps } from '../input'
 
-type ReviewsProps = RowProductFragment & Partial<ProductReviewsProps>
+type ReviewsProps = RowProductProps & Partial<ProductReviewsProps>
 
 export function Reviews(props: ReviewsProps) {
   const { title, reviews, url_key, review_count, sku } = props

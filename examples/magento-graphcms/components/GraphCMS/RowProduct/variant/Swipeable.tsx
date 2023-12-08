@@ -7,9 +7,9 @@ import {
 } from '@graphcommerce/next-ui'
 import { Typography } from '@mui/material'
 import { productListRenderer } from '../../../ProductListItems/productListRenderer'
-import { RowProductFragment } from '../RowProduct.gql'
+import { RowProductProps } from '../input'
 
-type SwipeableProps = RowProductFragment & ProductListItemsFragment & Pick<SidebarSliderProps, 'sx'>
+type SwipeableProps = RowProductProps & ProductListItemsFragment & Pick<SidebarSliderProps, 'sx'>
 
 export function Swipeable(props: SwipeableProps) {
   const { title, items, sx = [] } = props

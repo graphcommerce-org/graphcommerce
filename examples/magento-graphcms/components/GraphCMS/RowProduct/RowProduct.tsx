@@ -1,5 +1,5 @@
 import { ProductSpecsFragment } from '@graphcommerce/magento-product/components/ProductSpecs/ProductSpecs.gql'
-import { RowProductFragment } from './RowProduct.gql'
+import { RowProductProps } from './input'
 import {
   Backstory,
   Feature,
@@ -12,14 +12,7 @@ import {
   Upsells,
 } from './variant'
 
-type VariantRenderer = Record<
-  NonNullable<RowProductFragment['variant']>,
-  React.VFC<RowProductFragment>
->
-
-type RowProductProps = RowProductFragment & {
-  renderer?: Partial<VariantRenderer>
-} & ProductSpecsFragment & { items?: unknown } & { sku?: string | null | undefined }
+type VariantRenderer = Record<NonNullable<RowProductProps['variant']>, React.VFC<RowProductProps>>
 
 const defaultRenderer: Partial<VariantRenderer> = {
   Specs,
@@ -33,8 +26,12 @@ const defaultRenderer: Partial<VariantRenderer> = {
   Swipeable,
 }
 
-export function RowProduct(props: RowProductProps) {
-  const { renderer, variant, ...RowProductProps } = props
+export function RowProduct(
+  props: RowProductProps & {
+    renderer?: Partial<VariantRenderer>
+  } & ProductSpecsFragment & { items?: unknown } & { sku?: string | null | undefined },
+) {
+  const { renderer, variant, ...rest } = props
   const mergedRenderer = { ...defaultRenderer, ...renderer } as VariantRenderer
 
   if (!variant) return null
@@ -46,5 +43,5 @@ export function RowProduct(props: RowProductProps) {
       return null
     })
 
-  return <RenderType {...RowProductProps} />
+  return <RenderType {...rest} />
 }

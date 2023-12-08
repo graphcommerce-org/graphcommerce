@@ -2,10 +2,10 @@ import { RichText } from '@graphcommerce/graphcms-ui'
 import { Image } from '@graphcommerce/image'
 import { ImageTextBoxed, responsiveVal } from '@graphcommerce/next-ui'
 import { Typography, useTheme } from '@mui/material'
-import { RowProductFragment } from '../RowProduct.gql'
+import { RowProductProps } from '../input'
 import { ProductFeatureMediaBoxedFragment } from './ProductFeatureMediaBoxed.gql'
 
-type FeatureBoxedProps = RowProductFragment & ProductFeatureMediaBoxedFragment
+type FeatureBoxedProps = RowProductProps & ProductFeatureMediaBoxedFragment
 
 export function FeatureBoxed(props: FeatureBoxedProps) {
   const { productCopy, title, media_gallery } = props

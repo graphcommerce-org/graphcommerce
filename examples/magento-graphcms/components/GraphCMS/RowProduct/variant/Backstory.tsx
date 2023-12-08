@@ -3,9 +3,9 @@ import { AddProductsToCartForm, ProductListItemsFragment } from '@graphcommerce/
 import { ParagraphWithSidebarSlide, RenderType } from '@graphcommerce/next-ui'
 import { useTheme } from '@mui/material'
 import { productListRenderer } from '../../../ProductListItems'
-import { RowProductFragment } from '../RowProduct.gql'
+import { RowProductProps } from '../input'
 
-type BackstoryProps = RowProductFragment & ProductListItemsFragment
+type BackstoryProps = RowProductProps & ProductListItemsFragment
 
 export function Backstory(props: BackstoryProps) {
   const { productCopy, asset, ...productListItems } = props

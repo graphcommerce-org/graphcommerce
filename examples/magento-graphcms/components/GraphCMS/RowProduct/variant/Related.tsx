@@ -7,9 +7,9 @@ import {
 } from '@graphcommerce/next-ui'
 import { Typography } from '@mui/material'
 import { productListRenderer } from '../../../ProductListItems/productListRenderer'
-import { RowProductFragment } from '../RowProduct.gql'
+import { RowProductProps } from '../input'
 
-type RelatedProps = RowProductFragment & RelatedProductsFragment & Pick<SidebarSliderProps, 'sx'>
+type RelatedProps = RowProductProps & RelatedProductsFragment & Pick<SidebarSliderProps, 'sx'>
 
 export function Related(props: RelatedProps) {
   const { title, related_products, sx } = props

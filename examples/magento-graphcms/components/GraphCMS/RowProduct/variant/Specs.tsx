@@ -1,8 +1,8 @@
 import { ProductSpecs } from '@graphcommerce/magento-product'
 import { ProductSpecsFragment } from '@graphcommerce/magento-product/components/ProductSpecs/ProductSpecs.gql'
-import { RowProductFragment } from '../RowProduct.gql'
+import { RowProductProps } from '../input'
 
-type SpecsProps = RowProductFragment & ProductSpecsFragment
+type SpecsProps = RowProductProps & ProductSpecsFragment
 
 export function Specs(props: SpecsProps) {
   const { title, aggregations } = props

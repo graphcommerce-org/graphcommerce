@@ -1,9 +1,9 @@
 import { ContainerWithHeader } from '@graphcommerce/next-ui'
 import { Link } from '@mui/material'
 import { ProductListItems, ProductListItemsProps } from '../../../ProductListItems/ProductListItems'
-import { RowProductFragment } from '../RowProduct.gql'
+import { RowProductProps } from '../input'
 
-type GridProps = RowProductFragment & ProductListItemsProps
+type GridProps = RowProductProps & ProductListItemsProps
 
 export function Grid(props: GridProps) {
   const { title, pageLinks, productCopy, ...productListItems } = props
