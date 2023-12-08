@@ -1,0 +1,9 @@
+fragment ProductFeatureMediaBoxed on ProductInterface {
+  media_gallery {
+    label
+    __typename
+    ... on ProductImage {
+      url
+    }
+  }
+}
