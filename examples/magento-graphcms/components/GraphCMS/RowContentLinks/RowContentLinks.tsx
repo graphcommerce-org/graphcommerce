@@ -1,9 +1,9 @@
 import { ContentLinks } from '@graphcommerce/next-ui'
 import { Link } from '@mui/material'
-import { RowContentLinksFragment } from './RowContentLinks.gql'
+import { RowContentLinksProps } from './input'
 
 /** @deprecated Replace with RowLinks */
-export function RowContentLinks(props: RowContentLinksFragment) {
+export function RowContentLinks(props: RowContentLinksProps) {
   const { title: mainTitle, contentLinks } = props
 
   return (
