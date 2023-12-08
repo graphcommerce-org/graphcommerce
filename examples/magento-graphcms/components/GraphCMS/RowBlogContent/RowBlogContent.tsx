@@ -1,8 +1,6 @@
 import { RichText } from '@graphcommerce/graphcms-ui'
 import { BlogContent } from '@graphcommerce/next-ui'
-import { RowBlogContentFragment } from './RowBlogContent.gql'
-
-type RowBlogContentProps = RowBlogContentFragment
+import { RowBlogContentProps } from './input'
 
 export function RowBlogContent(props: RowBlogContentProps) {
   const { content } = props
