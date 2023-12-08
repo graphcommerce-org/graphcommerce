@@ -1,6 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { RenderType, TypeRenderer } from '@graphcommerce/next-ui'
 import { RowBlogContent } from './RowBlogContent/RowBlogContent'
-import { PageContentQueryFragment } from './PageContentQueryFragment.gql'
 import { RowButtonLinkList } from './RowButtonLinkList/RowButtonLinkList'
 import { RowColumnOne } from './RowColumnOne/RowColumnOne'
 import { RowColumnThree } from './RowColumnThree/RowColumnThree'
@@ -10,11 +10,37 @@ import { RowHeroBanner } from './RowHeroBanner/RowHeroBanner'
 import { RowLinks } from './RowLinks/RowLinks'
 import { RowProduct } from './RowProduct/RowProduct'
 import { RowQuote } from './RowQuote/RowQuote'
-import { RowRendererFragment } from './RowRenderer.gql'
 import { RowServiceOptions } from './RowServiceOptions/RowServiceOptions'
 import { RowSpecialBanner } from './RowSpecialBanner/RowSpecialBanner'
+import { RowColumnTwoProps } from './RowColumnTwo/input'
+import { RowColumnOneProps } from './RowColumnOne/input'
+import { RowBlogContentProps } from './RowBlogContent/input'
+import { RowButtonLinkListProps } from './RowButtonLinkList/input'
+import { RowColumnThreeProps } from './RowColumnThree/input'
+import { RowContentLinksProps } from './RowContentLinks/input'
+import { RowHeroBannerProps } from './RowHeroBanner/input'
+import { RowProductProps } from './RowProduct/input'
+import { RowQuoteProps } from './RowQuote/input'
+import { RowServiceOptionsProps } from './RowServiceOptions/input'
+import { RowSpecialBannerProps } from './RowSpecialBanner/input'
+import { RowLinksProps } from './RowLinks/input'
 
-type ContentTypeRenderer = TypeRenderer<PageContentQueryFragment['pages'][0]['content'][0]>
+type AllRows = Array<
+  | RowColumnOneProps
+  | RowColumnTwoProps
+  | RowColumnThreeProps
+  | RowHeroBannerProps
+  | RowSpecialBannerProps
+  | RowQuoteProps
+  | RowBlogContentProps
+  | RowButtonLinkListProps
+  | RowServiceOptionsProps
+  | RowContentLinksProps
+  | RowProductProps
+  | RowLinksProps
+>
+
+type ContentTypeRenderer = TypeRenderer<AllRows[0]>
 
 const defaultRenderer: Partial<ContentTypeRenderer> = {
   RowColumnOne,
@@ -31,7 +57,7 @@ const defaultRenderer: Partial<ContentTypeRenderer> = {
   RowLinks,
 }
 
-export type PageProps = RowRendererFragment & {
+export type PageProps = { content: AllRows } & {
   renderer?: Partial<ContentTypeRenderer>
 }
 
