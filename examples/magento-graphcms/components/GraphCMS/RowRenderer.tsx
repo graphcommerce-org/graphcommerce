@@ -1,5 +1,5 @@
 import { RenderType, TypeRenderer } from '@graphcommerce/next-ui'
-import { RowBlogContent } from '../Blog'
+import { RowBlogContent } from './RowBlogContent/RowBlogContent'
 import { PageContentQueryFragment } from './PageContentQueryFragment.gql'
 import { RowButtonLinkList } from './RowButtonLinkList/RowButtonLinkList'
 import { RowColumnOne } from './RowColumnOne/RowColumnOne'
@@ -41,10 +41,6 @@ export function RowRenderer(props: PageProps) {
 
   return (
     // eslint-disable-next-line react/jsx-no-useless-fragment
-    <>
-      {content?.map((item) => (
-        <RenderType key={item.id} renderer={mergedRenderer} {...item} />
-      ))}
-    </>
+    <>{content?.map((item) => <RenderType key={item.id} renderer={mergedRenderer} {...item} />)}</>
   )
 }
