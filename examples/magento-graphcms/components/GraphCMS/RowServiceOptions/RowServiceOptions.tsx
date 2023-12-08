@@ -7,9 +7,7 @@ import {
   iconPhone,
   IconSvg,
 } from '@graphcommerce/next-ui'
-import { RowServiceOptionsFragment } from './RowServiceOptions.gql'
-
-type RowServiceOptionsProps = RowServiceOptionsFragment
+import { RowServiceOptionsProps } from './input'
 
 export function RowServiceOptions(props: RowServiceOptionsProps) {
   const { title, serviceOptions } = props
