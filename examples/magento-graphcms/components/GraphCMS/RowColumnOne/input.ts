@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export type RowColumnOneProps = {
-  __typename: string
+  __typename: 'RowColumnOne'
   id: string
   rowColumnOneVariant?: 'Default' | 'Message' | null | undefined
   colOne: {

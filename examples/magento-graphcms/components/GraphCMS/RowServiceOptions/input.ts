@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export type RowServiceOptionsProps = {
-  __typename: string
+  __typename: 'RowServiceOptions'
   id: string
   title: string
   serviceOptions: Array<{

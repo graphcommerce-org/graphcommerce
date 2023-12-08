@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export type RowQuoteProps = {
-  __typename: string
+  __typename: 'RowQuote'
   id: string
   quote: { raw: any }
 }

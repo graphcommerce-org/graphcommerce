@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export type RowSpecialBannerProps = {
-  __typename: string
+  __typename: 'RowSpecialBanner'
   id: string
   topic?: string | null
   asset?: {

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export type RowLinksProps = {
-  __typename: string
+  __typename: 'RowLinks'
   id: string
   title: string
   linksVariant?: 'Inline' | 'ImageLabelSwiper' | 'LogoSwiper' | 'Usps' | null

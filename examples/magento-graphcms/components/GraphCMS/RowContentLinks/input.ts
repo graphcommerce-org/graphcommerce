@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export type RowContentLinksProps = {
-  __typename: string
+  __typename: 'RowContentLinks'
   id: string
   title: string
   contentLinks: Array<{

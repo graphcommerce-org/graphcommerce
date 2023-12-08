@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export type RowProductProps = {
-  __typename: string
+  __typename: 'RowProduct'
   id: string
   variant?:
     | 'Backstory'

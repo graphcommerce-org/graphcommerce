@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export type RowBlogContentProps = {
-  __typename: string
+  __typename: 'RowBlogContent'
   id: string
   content?: { raw: any } | null
 }

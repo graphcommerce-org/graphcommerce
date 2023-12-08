@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export type RowButtonLinkListProps = {
-  __typename: string
+  __typename: 'RowButtonLinkList'
   id: string
   title: string
   links: Array<{ title?: string | null; url: string }>

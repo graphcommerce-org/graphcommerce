@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export type RowColumnThreeProps = {
-  __typename: string
+  __typename: 'RowColumnThree'
   id: string
   colOne: {
     raw: any

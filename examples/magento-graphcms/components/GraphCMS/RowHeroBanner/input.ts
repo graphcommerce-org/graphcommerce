@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export type RowHeroBannerProps = {
-  __typename: string
+  __typename: 'RowHeroBanner'
   id: string
   heroAsset: {
     url: string
