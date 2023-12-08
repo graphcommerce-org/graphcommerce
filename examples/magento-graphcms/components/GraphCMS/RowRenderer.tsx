@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { RenderType, TypeRenderer } from '@graphcommerce/next-ui'
 import { RowBlogContent, RowBlogContentProps } from './RowBlogContent'
 import { RowButtonLinkList, RowButtonLinkListProps } from './RowButtonLinkList'
