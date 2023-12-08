@@ -37,7 +37,7 @@ const LogoContainer = styled(NextLink, {
   name,
   slot: 'parent',
   overridesResolver: (_props, styles) => styles.parent,
-})(commonLogoStyles)
+})()
 
 export type LogoProps = {
   href?: `/${string}`
@@ -66,7 +66,7 @@ export const Logo = forwardRef<HTMLAnchorElement, LogoProps>((props, ref) => {
       component={shouldRedirect ? LogoContainer : 'div'}
       href={shouldRedirect ? href : undefined}
       ref={ref}
-      sx={shouldRedirect ? sx : [...(Array.isArray(sx) ? sx : [sx]), commonLogoStyles]}
+      sx={[...(Array.isArray(sx) ? sx : [sx]), commonLogoStyles]}
       className={classes.parent}
     >
       {img}
