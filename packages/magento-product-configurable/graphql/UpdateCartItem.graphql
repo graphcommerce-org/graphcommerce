@@ -1,0 +1,9 @@
+mutation UpdateCartItem($cartId: String!, $cartItems: [CartItemUpdateInput]!){
+  updateCartItems(input: {cart_id: $cartId, cart_items: $cartItems}){
+    cart {
+     ...CartItems
+     ...CartTotals
+     ...CartSummary
+    }
+  }
+}

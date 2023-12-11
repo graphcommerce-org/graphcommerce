@@ -13,6 +13,12 @@ fragment CartItem on CartItemInterface @injectable {
       ...ProductImage
     }
   }
+  ... on ConfigurableCartItem {
+    configurable_options {
+      configurable_product_option_uid
+      configurable_product_option_value_uid
+    }
+  }
   prices {
     discounts {
       amount {

@@ -11,6 +11,7 @@ import { Box, Link } from '@mui/material'
 import { CartItemFragment } from '../../Api/CartItem.gql'
 import { RemoveItemFromCart } from '../RemoveItemFromCart/RemoveItemFromCart'
 import { UpdateItemQuantity } from '../UpdateItemQuantity/UpdateItemQuantity'
+import { useProductLink } from '@graphcommerce/magento-product'
 
 export type CartItemActionCardProps = { cartItem: CartItemFragment; readOnly?: boolean } & Omit<
   ActionCardProps,
@@ -35,7 +36,7 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
   const { name, thumbnail, url_key } = product
 
   const inclTaxes = useDisplayInclTax()
-
+  const productLink = useProductLink(product)
   let price: number | null | undefined
 
   if (inclTaxes) {
@@ -108,9 +109,9 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
         )
       }
       title={
-        url_key ? (
+        productLink ? (
           <Link
-            href={url_key}
+            href={`${productLink}?cartItemId=${uid}`}
             underline='hover'
             sx={{
               color: 'inherit',

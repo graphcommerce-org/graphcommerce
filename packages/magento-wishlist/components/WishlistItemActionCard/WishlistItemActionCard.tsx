@@ -147,8 +147,8 @@ export function WishlistItemActionCard(props: WishlistItemActionCardProps) {
           secondaryAction ||
           ((product?.__typename === 'SimpleProduct' ||
             product?.__typename === 'VirtualProduct') && (
-            <AddWishlistItemToCart product={product} selectedOptions={[]} />
-          ))
+              <AddWishlistItemToCart product={product} selectedOptions={[]} />
+            ))
         }
         price={<Money {...product?.price_range.minimum_price.final_price} />}
         action={
