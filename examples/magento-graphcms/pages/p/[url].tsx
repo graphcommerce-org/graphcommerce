@@ -215,7 +215,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 
 export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
   if (import.meta.graphCommerce.legacyProductRoute) return { notFound: true }
-
+  console.log('params', params)
   const client = graphqlSharedClient(locale)
   const staticClient = graphqlSsrClient(locale)
 
