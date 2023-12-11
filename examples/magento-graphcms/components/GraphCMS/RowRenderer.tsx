@@ -12,7 +12,7 @@ import { RowQuote, RowQuoteProps } from './RowQuote'
 import { RowServiceOptions, RowServiceOptionsProps } from './RowServiceOptions'
 import { RowSpecialBanner, RowSpecialBannerProps } from './RowSpecialBanner'
 
-type AllRows = Array<
+export type AllRows = Array<
   | RowColumnOneProps
   | RowColumnTwoProps
   | RowColumnThreeProps
