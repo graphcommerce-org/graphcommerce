@@ -1,6 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export type RowProductProps = {
-  __typename: 'RowProduct'
+  __typename:
+    | 'RowProduct'
+    | 'SimpleProduct'
+    | 'ConfigurableProduct'
+    | 'GroupedProduct'
+    | 'BundleProduct'
+    | 'VirtualProduct'
+    | 'DownloadableProduct'
+    | 'CustomizableProduct'
   id: string
   variant?:
     | 'Backstory'
