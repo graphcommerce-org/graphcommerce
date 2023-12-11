@@ -1,5 +1,6 @@
 import { SelectedCustomizableOptions } from '@graphcommerce/magento-cart-items'
 import { Money } from '@graphcommerce/magento-store'
+import { nonNullable } from '@graphcommerce/next-ui'
 import { Box } from '@mui/material'
 import { BundleCartItemFragment } from '../BundleCartItem/BundleCartItem.gql'
 
@@ -14,9 +15,9 @@ export function BundleProductCartItemOptions(props: BundleProductCartItemOptions
     <>
       {bundle_options?.map(
         (option) =>
-          option?.values.map((option_value) => (
+          option?.values.filter(nonNullable).map((option_value) => (
             <Box
-              key={option_value?.uid}
+              key={option_value.uid}
               sx={(theme) => ({
                 display: 'flex',
                 gap: theme.spacings.xxs,
@@ -25,8 +26,12 @@ export function BundleProductCartItemOptions(props: BundleProductCartItemOptions
                 },
               })}
             >
-              <Box sx={{ color: 'text.primary' }}>{option_value?.label}</Box>
-              <Money currency={prices?.price.currency} value={option_value?.price} />
+              <Box sx={{ color: 'text.primary' }}>{option_value.label}</Box>
+              {option_value.price > 0 && (
+                <Box sx={(theme) => ({ position: 'absolute', right: theme.spacings.xs })}>
+                  <Money currency={prices?.price.currency} value={option_value.price} />
+                </Box>
+              )}
             </Box>
           )),
       )}
