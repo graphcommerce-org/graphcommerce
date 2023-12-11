@@ -296,29 +296,12 @@ const rowProduct1: RowProductProps = {
 }
 
 const rowProduct2: RowProductProps = {
-  id: 'ckusb2pg81bqh0d09ezbhbf77',
+  id: 'ckusawshk0zwj0d0565yghw52',
   __typename: 'RowProduct',
-  variant: 'Swipeable',
-  identity: 'home-swipable',
+  variant: 'Grid',
+  identity: 'home-latest',
   asset: null,
-  title: 'Power to the Women',
-  productCopy: null,
-  pageLinks: [],
-}
-
-const rowProduct3: RowProductProps = {
-  id: 'ckusapwsw10ep0d05g14ggkv6',
-  __typename: 'RowProduct',
-  variant: 'Backstory',
-  identity: 'home-product-backstory',
-  asset: {
-    url: 'https://media.graphassets.com/5g1PZkFcRwmuX0si62Yr',
-    width: 1192,
-    height: 1589,
-    mimeType: 'image/jpeg',
-    size: 1766866,
-  },
-  title: 'Home Product Backstory',
+  title: 'Latest designs',
   productCopy: {
     raw: {
       children: [
@@ -326,13 +309,23 @@ const rowProduct3: RowProductProps = {
           type: 'paragraph',
           children: [
             {
-              text: 'Once upon a time, in a world where art and fashion collided, there lived a small team of designers who dreamed of creating the most unique and intricate sock designs. They took inspiration from modern art and combined it with traditional patterns to create one-of-a-kind prints.',
+              text: '',
             },
           ],
         },
       ],
     },
   },
+  pageLinks: [],
+}
+const rowProduct3: RowProductProps = {
+  id: 'ckusb2pg81bqh0d09ezbhbf77',
+  __typename: 'RowProduct',
+  variant: 'Swipeable',
+  identity: 'home-swipable',
+  asset: null,
+  title: 'Power to the Women',
+  productCopy: null,
   pageLinks: [],
 }
 
