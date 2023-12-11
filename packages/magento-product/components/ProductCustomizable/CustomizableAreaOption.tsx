@@ -1,6 +1,7 @@
 import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import { CurrencyEnum } from '@graphcommerce/graphql-mesh'
 import { TypeRenderer } from '@graphcommerce/next-ui'
+import { i18n } from '@lingui/core'
 import React from 'react'
 import { useFormAddProductsToCart } from '../AddProductsToCart'
 import { ProductCustomizableFragment } from './ProductCustomizable.gql'
@@ -39,7 +40,12 @@ export function CustomizableAreaOption(props: CustomizableAreaOptionProps) {
         label={title}
         required={Boolean(required)}
         validation={{ maxLength }}
-        helperText={(maxLength ?? 0) > 0 && `A maximum of ${maxLength}`}
+        helperText={
+          (maxLength ?? 0) > 0 &&
+          i18n._(/* i18n*/ 'There is a maximum of ‘{maxLength}’ characters', {
+            maxLength,
+          })
+        }
       />
     </>
   )

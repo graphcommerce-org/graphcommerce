@@ -32,12 +32,17 @@ export function CustomizableFieldOption(props: CustomizableFieldOptionProps) {
         validation={{
           maxLength: {
             value: maxLength,
-            message: i18n._(/* i18n*/ 'There is a maximum of  ‘{maxLength}’ characters', {
+            message: i18n._(/* i18n*/ 'There is a maximum of ‘{maxLength}’ characters', {
               maxLength,
             }),
           },
         }}
-        helperText={(maxLength ?? 0) > 0 && `A maximum of ${maxLength} characters`}
+        helperText={
+          (maxLength ?? 0) > 0 &&
+          i18n._(/* i18n*/ 'There is a maximum of ‘{maxLength}’ characters', {
+            maxLength,
+          })
+        }
       />
     </Box>
   )
