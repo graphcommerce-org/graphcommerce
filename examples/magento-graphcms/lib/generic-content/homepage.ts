@@ -5,8 +5,8 @@ import { RowQuoteProps } from '../../components/GraphCMS/RowQuote'
 import { RowSpecialBannerProps } from '../../components/GraphCMS/RowSpecialBanner'
 
 const heroBanner: RowHeroBannerProps = {
-  __typename: 'RowHeroBanner',
   id: 'cldx741qp7u0i0bun77oo5prx',
+  __typename: 'RowHeroBanner',
   heroAsset: {
     url: 'https://media.graphassets.com/zTUkCXlFTshLDzcp9Omg',
     width: null,
@@ -60,8 +60,8 @@ const heroBanner: RowHeroBannerProps = {
 }
 
 const rowLinks1: RowLinksProps = {
-  __typename: 'RowLinks',
   id: 'cley772kumkgl0bt9ldgx3cv8',
+  __typename: 'RowLinks',
   title: 'Hot & New',
   rowLinksCopy: {
     raw: {
