@@ -1,6 +1,7 @@
 import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
+import { SectionHeader } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box, FormLabel } from '@mui/material'
+import { Box } from '@mui/material'
 import { useFormAddProductsToCart } from '../AddProductsToCart'
 import { OptionTypeRenderer } from './CustomizableAreaOption'
 
@@ -36,14 +37,11 @@ export function CustomizableDateOption(props: CustomizableDateOptionProps) {
         value={uid}
       />
 
-      <FormLabel>{title?.toUpperCase()}</FormLabel>
+      <SectionHeader labelLeft={title} sx={{ mt: 0 }} />
       <TextFieldElement
         control={control}
         name={`cartItems.${index}.entered_options.${optionIndex}.value`}
-        sx={(theme) => ({
-          width: '100%',
-          mt: theme.spacings.xxs,
-        })}
+        sx={{ width: '100%' }}
         required={!!required}
         error={invalid}
         helperText={invalid ? <Trans id='Invalid date' /> : ''}

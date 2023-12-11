@@ -4,9 +4,10 @@ import {
   ActionCard,
   filterNonNullableKeys,
   ActionCardProps,
+  SectionHeader,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
-import { Box, FormLabel } from '@mui/material'
+import { Box } from '@mui/material'
 import { useFormAddProductsToCart } from '../AddProductsToCart'
 import { OptionTypeRenderer } from './CustomizableAreaOption'
 
@@ -22,7 +23,7 @@ export function CustomizableMultipleOption(props: CustomizableMultipleOptionProp
 
   return (
     <Box>
-      <FormLabel>{label?.toUpperCase()}</FormLabel>
+      <SectionHeader labelLeft={label} sx={{ mt: 0 }} />
       <ActionCardListForm
         sx={(theme) => ({
           mt: theme.spacings.xxs,

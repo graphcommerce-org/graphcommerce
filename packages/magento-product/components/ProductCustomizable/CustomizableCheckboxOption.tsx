@@ -4,10 +4,11 @@ import {
   ActionCard,
   filterNonNullableKeys,
   ActionCardProps,
+  SectionHeader,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
-import { FormLabel, Checkbox, Box } from '@mui/material'
+import { Checkbox, Box } from '@mui/material'
 import { useFormAddProductsToCart } from '../AddProductsToCart'
 import { OptionTypeRenderer } from './CustomizableAreaOption'
 
@@ -23,7 +24,7 @@ export function CustomizableCheckboxOption(props: CustomizableCheckboxOptionProp
 
   return (
     <Box>
-      <FormLabel>{label?.toUpperCase()}</FormLabel>
+      <SectionHeader labelLeft={label} sx={{ mt: 0 }} />
       <ActionCardListForm
         sx={(theme) => ({
           mt: theme.spacings.xxs,

@@ -1,5 +1,6 @@
 import { SelectElement } from '@graphcommerce/ecommerce-ui'
-import { filterNonNullableKeys } from '@graphcommerce/next-ui'
+import { SectionHeader, filterNonNullableKeys } from '@graphcommerce/next-ui'
+import { Box } from '@mui/material'
 import { useFormAddProductsToCart } from '../AddProductsToCart'
 import { OptionTypeRenderer } from './CustomizableAreaOption'
 
@@ -12,17 +13,21 @@ export function CustomizableDropDownOption(props: CustomizableDropDownOptionProp
   const { control } = useFormAddProductsToCart()
 
   return (
-    <SelectElement
-      color='primary'
-      control={control}
-      name={`cartItems.${index}.customizable_options.${uid}`}
-      label={title}
-      required={Boolean(required)}
-      defaultValue=''
-      options={filterNonNullableKeys(dropdownValue, ['title']).map((option) => ({
-        id: option.uid,
-        label: option.title,
-      }))}
-    />
+    <Box>
+      <SectionHeader labelLeft={title} sx={{ mt: 0 }} />
+      <SelectElement
+        sx={{ width: '100%' }}
+        color='primary'
+        control={control}
+        name={`cartItems.${index}.customizable_options.${uid}`}
+        label={title}
+        required={Boolean(required)}
+        defaultValue=''
+        options={filterNonNullableKeys(dropdownValue, ['title']).map((option) => ({
+          id: option.uid,
+          label: option.title,
+        }))}
+      />
+    </Box>
   )
 }

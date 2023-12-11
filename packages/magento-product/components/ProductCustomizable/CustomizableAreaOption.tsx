@@ -1,8 +1,8 @@
 import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
-import React from 'react'
-import { useFormAddProductsToCart } from '../AddProductsToCart'
 import { CurrencyEnum } from '@graphcommerce/graphql-mesh'
 import { TypeRenderer } from '@graphcommerce/next-ui'
+import React from 'react'
+import { useFormAddProductsToCart } from '../AddProductsToCart'
 import { ProductCustomizableFragment } from './ProductCustomizable.gql'
 
 export type OptionTypeRenderer = TypeRenderer<
