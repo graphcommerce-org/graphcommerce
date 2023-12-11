@@ -7,7 +7,6 @@ import { RowColumnTwo, RowColumnTwoProps } from './RowColumnTwo'
 import { RowContentLinks, RowContentLinksProps } from './RowContentLinks'
 import { RowHeroBanner, RowHeroBannerProps } from './RowHeroBanner'
 import { RowLinks, RowLinksProps } from './RowLinks'
-import { RowProduct, RowProductProps } from './RowProduct'
 import { RowQuote, RowQuoteProps } from './RowQuote'
 import { RowServiceOptions, RowServiceOptionsProps } from './RowServiceOptions'
 import { RowSpecialBanner, RowSpecialBannerProps } from './RowSpecialBanner'
@@ -23,7 +22,6 @@ type AllRows = Array<
   | RowButtonLinkListProps
   | RowServiceOptionsProps
   | RowContentLinksProps
-  | RowProductProps
   | RowLinksProps
 >
 
@@ -40,7 +38,6 @@ const defaultRenderer: Partial<ContentTypeRenderer> = {
   RowButtonLinkList,
   RowServiceOptions,
   RowContentLinks,
-  RowProduct,
   RowLinks,
 }
 
