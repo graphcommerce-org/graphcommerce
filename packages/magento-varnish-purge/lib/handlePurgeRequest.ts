@@ -3,7 +3,13 @@ import { NormalizedCacheObject, ApolloClient } from '@graphcommerce/graphql'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { PurgeGetProductPathDocument } from '../graphql/PurgeGetProductPath.gql'
 
-function parseTagsFromPatterns(tagsPatterns: string[]): string[] {
+function parseTagsFromHeader(tagsHeader: string | string[] | undefined): string[] {
+  if (typeof tagsHeader === 'undefined') {
+    return []
+  }
+
+  const tagsPatterns = typeof tagsHeader === 'string' ? [tagsHeader] : tagsHeader
+
   const fullTags = tagsPatterns.join('|')
 
   // Tag matching patterns are concatenated into the following form:
@@ -26,8 +32,6 @@ async function invalidateProductById(
   id: number,
   res: NextApiResponse,
 ) {
-  console.info(`varnish-purge: invalidating for product ${id}`)
-
   const internalUrl = `catalog/product/view/id/${id}`
 
   const routeData = await client.query({
@@ -47,7 +51,7 @@ async function invalidateProductById(
     urlPath = `/p/${urlPath}`
     urlPath = urlPath.replace(/\.html$/, '')
 
-    console.info(`varnish-purge: invalidating URL ${urlPath}`)
+    console.info(`varnish-purge: invalidating URL ${urlPath} for product ID ${id}`)
     try {
       await res.revalidate(urlPath)
     } catch (err) {
@@ -70,17 +74,9 @@ function invalidateCategoryById(
 
 function invalidateByTags(
   client: ApolloClient<NormalizedCacheObject>,
-  tagsPatterns: string | string[] | undefined,
+  tags: string[],
   res: NextApiResponse,
 ) {
-  if (typeof tagsPatterns === 'undefined') {
-    return
-  }
-
-  const tags = parseTagsFromPatterns(
-    typeof tagsPatterns === 'string' ? [tagsPatterns] : tagsPatterns,
-  )
-
   // Tags to support:
   // cat_c_2 (category was changed)
   // cat_c_p_2 (category/product relation was changed)
@@ -99,13 +95,11 @@ function invalidateByTags(
       invalidateCategoryById(client, +match[1], res)
     } else if ((match = tag.match(productTagPattern))) {
       void invalidateProductById(client, +match[1], res)
-    } else {
-      console.warn(`varnish-purge: unsupported tag: ${tag}}`)
     }
   })
 }
 
-export function doFullPurge() {
+function doFullPurge() {
   // TODO
 }
 
@@ -121,7 +115,7 @@ export function handlePurgeRequest(
   if (rawTags === '.*') {
     doFullPurge()
   } else {
-    invalidateByTags(client, rawTags, res)
+    invalidateByTags(client, parseTagsFromHeader(rawTags), res)
   }
 
   res.status(200)
