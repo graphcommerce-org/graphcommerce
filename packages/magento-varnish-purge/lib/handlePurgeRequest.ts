@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /* eslint-disable no-cond-assign */
 import { NormalizedCacheObject, ApolloClient } from '@graphcommerce/graphql'
 import { NextApiRequest, NextApiResponse } from 'next'
@@ -27,7 +26,7 @@ async function invalidateProductById(
   id: number,
   res: NextApiResponse,
 ) {
-  console.log(`varnish-purge: invalidating for product ${id}`)
+  console.info(`varnish-purge: invalidating for product ${id}`)
 
   const internalUrl = `catalog/product/view/id/${id}`
 
@@ -48,14 +47,14 @@ async function invalidateProductById(
     urlPath = `/p/${urlPath}`
     urlPath = urlPath.replace(/\.html$/, '')
 
-    console.log(`varnish-purge: invalidating URL ${urlPath}`)
+    console.info(`varnish-purge: invalidating URL ${urlPath}`)
     try {
       await res.revalidate(urlPath)
     } catch (err) {
-      console.log(`varnish-purge: failed to revalidate ${urlPath}: ${err}`)
+      console.warn(`varnish-purge: failed to revalidate ${urlPath}: ${err}`)
     }
   } else {
-    console.log(`varnish-purge: no URL found for product ID ${id}`)
+    console.warn(`varnish-purge: no URL found for product ID ${id}`)
   }
 }
 
@@ -65,7 +64,7 @@ function invalidateCategoryById(
   id: number,
   res: NextApiResponse,
 ) {
-  console.log(`varnish-purge: invalidating for category ${id}`)
+  console.info(`varnish-purge: invalidating for category ${id}`)
   // TODO
 }
 
@@ -101,13 +100,13 @@ function invalidateByTags(
     } else if ((match = tag.match(productTagPattern))) {
       void invalidateProductById(client, +match[1], res)
     } else {
-      console.log(`varnish-purge: unsupported tag: ${tag}}`)
+      console.warn(`varnish-purge: unsupported tag: ${tag}}`)
     }
   })
 }
 
 export function doFullPurge() {
-  // @todo
+  // TODO
 }
 
 export function handlePurgeRequest(
@@ -117,8 +116,7 @@ export function handlePurgeRequest(
 ) {
   const rawTags = req.headers['x-magento-tags-pattern']
 
-  console.log(`varnish-purge: purge request from ${req.socket.remoteAddress}`)
-  console.log(`varnish-purge: purge requested for: ${rawTags}`)
+  console.info(`varnish-purge: purge request from ${req.socket.remoteAddress} for ${rawTags}`)
 
   if (rawTags === '.*') {
     doFullPurge()
