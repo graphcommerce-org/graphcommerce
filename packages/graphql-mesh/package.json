@@ -9,6 +9,7 @@
     "@graphql-mesh/config": "latest",
     "@graphql-mesh/cross-helpers": "latest",
     "@graphql-mesh/graphql": "latest",
+    "@graphql-mesh/http": "latest",
     "@graphql-mesh/plugin-http-details-extensions": "latest",
     "@graphql-mesh/runtime": "latest",
     "@graphql-mesh/store": "latest",
