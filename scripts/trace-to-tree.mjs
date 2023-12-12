@@ -1,14 +1,6 @@
 import fs from 'fs'
 import eventStream from 'event-stream'
-import {
-  bold,
-  blue,
-  cyan,
-  green,
-  magenta,
-  red,
-  yellow,
-} from '../packages/next/dist/lib/picocolors.js'
+import { bold, blue, cyan, green, magenta, red, yellow } from 'next/dist/lib/picocolors.js'
 
 const file = fs.createReadStream(process.argv[2])
 

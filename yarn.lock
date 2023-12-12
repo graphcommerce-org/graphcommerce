@@ -7273,6 +7273,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/event-stream@npm:^4":
+  version: 4.0.5
+  resolution: "@types/event-stream@npm:4.0.5"
+  dependencies:
+    "@types/node": "npm:*"
+  checksum: 413260d3e52ac8fad2960862ef8a7b23c0093d5ecb7befae6c2db0e250ea21f4ad26f23213addc8b7c98437c4c34ea98708f1b3bedf6699d6740a88ad21cc898
+  languageName: node
+  linkType: hard
+
 "@types/gapi.client.discovery-v1@npm:*":
   version: 0.0.4
   resolution: "@types/gapi.client.discovery-v1@npm:0.0.4"
@@ -10236,6 +10245,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"duplexer@npm:^0.1.1, duplexer@npm:~0.1.1":
+  version: 0.1.2
+  resolution: "duplexer@npm:0.1.2"
+  checksum: c57bcd4bdf7e623abab2df43a7b5b23d18152154529d166c1e0da6bee341d84c432d157d7e97b32fecb1bf3a8b8857dd85ed81a915789f550637ed25b8e64fc2
+  languageName: node
+  linkType: hard
+
 "eastasianwidth@npm:^0.2.0":
   version: 0.2.0
   resolution: "eastasianwidth@npm:0.2.0"
@@ -10912,6 +10928,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"event-stream@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "event-stream@npm:4.0.1"
+  dependencies:
+    duplexer: "npm:^0.1.1"
+    from: "npm:^0.1.7"
+    map-stream: "npm:0.0.7"
+    pause-stream: "npm:^0.0.11"
+    split: "npm:^1.0.1"
+    stream-combiner: "npm:^0.2.2"
+    through: "npm:^2.3.8"
+  checksum: cedb3f7ffda81f1524b66c284b4a41bb8407246bd7fe461b89a07807d28753460596e430f1346c135a64c5ba88d2a5d0711d072379b39c2266756125877aebd5
+  languageName: node
+  linkType: hard
+
 "event-target-shim@npm:^5.0.0":
   version: 5.0.1
   resolution: "event-target-shim@npm:5.0.1"
@@ -11341,6 +11372,13 @@ __metadata:
   dependencies:
     tslib: "npm:2.4.0"
   checksum: 9e7d240ddf0bbe062bc9b71ffffd889b9923ee5d9c638ed84f2fe31aaa42e25e624eaf0b28ccca1d08f5ae170b8d083a6dabe5983f5dabea6bbbe6d4a9f8d27a
+  languageName: node
+  linkType: hard
+
+"from@npm:^0.1.7":
+  version: 0.1.7
+  resolution: "from@npm:0.1.7"
+  checksum: 3aab5aea8fe8e1f12a5dee7f390d46a93431ce691b6222dcd5701c5d34378e51ca59b44967da1105a0f90fcdf5d7629d963d51e7ccd79827d19693bdcfb688d4
   languageName: node
   linkType: hard
 
@@ -14186,6 +14224,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"map-stream@npm:0.0.7":
+  version: 0.0.7
+  resolution: "map-stream@npm:0.0.7"
+  checksum: 77da244656dad5013bd147b0eef6f0343a212f14761332b97364fe348d4d70f0b8a0903457d6fc88772ec7c3d4d048b24f8db3aa5c0f77a8ce8bf2391473b8ec
+  languageName: node
+  linkType: hard
+
 "mdast-util-from-markdown@npm:^2.0.0":
   version: 2.0.0
   resolution: "mdast-util-from-markdown@npm:2.0.0"
@@ -15527,6 +15572,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"pause-stream@npm:^0.0.11":
+  version: 0.0.11
+  resolution: "pause-stream@npm:0.0.11"
+  dependencies:
+    through: "npm:~2.3"
+  checksum: 86f12c64cdaaa8e45ebaca4e39a478e1442db8b4beabc280b545bfaf79c0e2f33c51efb554aace5c069cc441c7b924ba484837b345eaa4ba6fc940d62f826802
+  languageName: node
+  linkType: hard
+
 "picocolors@npm:^1.0.0":
   version: 1.0.0
   resolution: "picocolors@npm:1.0.0"
@@ -16497,8 +16551,10 @@ __metadata:
     "@playwright/test": "npm:1.40.1"
     "@testing-library/jest-dom": "npm:^6.1.5"
     "@testing-library/react": "npm:^14.1.2"
+    "@types/event-stream": "npm:^4"
     concurrently: "npm:8.2.2"
     eslint: "npm:8.55.0"
+    event-stream: "npm:^4.0.1"
     jest-environment-jsdom: "npm:^29.7.0"
     patch-package: "npm:8.0.0"
     prettier: "npm:3.1.1"
@@ -17108,6 +17164,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"split@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "split@npm:1.0.1"
+  dependencies:
+    through: "npm:2"
+  checksum: 7f489e7ed5ff8a2e43295f30a5197ffcb2d6202c9cf99357f9690d645b19c812bccf0be3ff336fea5054cda17ac96b91d67147d95dbfc31fbb5804c61962af85
+  languageName: node
+  linkType: hard
+
 "sponge-case@npm:^1.0.1":
   version: 1.0.1
   resolution: "sponge-case@npm:1.0.1"
@@ -17148,6 +17213,16 @@ __metadata:
   dependencies:
     internal-slot: "npm:^1.0.4"
   checksum: c4158d6188aac510d9e92925b58709207bd94699e9c31186a040c80932a687f84a51356b5895e6dc72710aad83addb9411c22171832c9ae0e6e11b7d61b0dfb9
+  languageName: node
+  linkType: hard
+
+"stream-combiner@npm:^0.2.2":
+  version: 0.2.2
+  resolution: "stream-combiner@npm:0.2.2"
+  dependencies:
+    duplexer: "npm:~0.1.1"
+    through: "npm:~2.3.4"
+  checksum: b5d2782fbfa9251c88e01af1b1f54bc183673a776989dce2842b345be7fc3ce7eb2eade363b3c198ba0e5153a20a96e0014d0d0e884153f885d7ee919f22b639
   languageName: node
   linkType: hard
 
@@ -17562,7 +17637,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"through@npm:^2.3.6, through@npm:^2.3.8":
+"through@npm:2, through@npm:^2.3.6, through@npm:^2.3.8, through@npm:~2.3, through@npm:~2.3.4":
   version: 2.3.8
   resolution: "through@npm:2.3.8"
   checksum: 4b09f3774099de0d4df26d95c5821a62faee32c7e96fb1f4ebd54a2d7c11c57fe88b0a0d49cf375de5fee5ae6bf4eb56dbbf29d07366864e2ee805349970d3cc
