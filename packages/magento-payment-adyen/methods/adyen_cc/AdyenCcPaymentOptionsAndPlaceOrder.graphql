@@ -1,13 +1,14 @@
 mutation AdyenCcPaymentOptionsAndPlaceOrder(
   $cartId: String!
   $stateData: String!
+  $returnUrl: String!
 ) {
   setPaymentMethodOnCart(
     input: {
       cart_id: $cartId
       payment_method: {
         code: "adyen_cc"
-        adyen_additional_data_cc: { stateData: $stateData }
+        adyen_additional_data_cc: { stateData: $stateData, returnUrl: $returnUrl }
       }
     }
   ) {
