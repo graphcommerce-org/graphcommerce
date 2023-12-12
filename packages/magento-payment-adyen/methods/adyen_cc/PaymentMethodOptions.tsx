@@ -2,6 +2,7 @@ import AdyenCheckout from '@adyen/adyen-web'
 import { CardElement } from '@adyen/adyen-web/dist/types/components/Card/Card'
 import Core from '@adyen/adyen-web/dist/types/core/core'
 import { CoreOptions } from '@adyen/adyen-web/dist/types/core/types'
+import { PaymentAction } from '@adyen/adyen-web/dist/types/types'
 import { ApolloErrorSnackbar, useFormCompose } from '@graphcommerce/ecommerce-ui'
 import { useLazyQuery, useMutation } from '@graphcommerce/graphql'
 import { useFormGqlMutationCart, useCurrentCartId, useCartQuery } from '@graphcommerce/magento-cart'
@@ -15,16 +16,14 @@ import { useEffect, useRef, useState } from 'react'
 import { AdyenPaymentDetailsDocument } from '../../components/AdyenPaymentHandler/AdyenPaymentDetails.gql'
 import { AdyenPaymentStatusDocument } from '../../components/AdyenPaymentHandler/AdyenPaymentStatus.gql'
 import { useAdyenCartLock } from '../../hooks/useAdyenCartLock'
+import { useAdyenCheckoutConfig } from '../../hooks/useAdyenCheckoutConfig'
 import { ResultCodeEnum, isResultCodeEnum } from '../../hooks/useAdyenHandlePaymentResponse'
 import {
   AdyenCcPaymentOptionsAndPlaceOrderMutation,
   AdyenCcPaymentOptionsAndPlaceOrderMutationVariables,
   AdyenCcPaymentOptionsAndPlaceOrderDocument,
 } from './AdyenCcPaymentOptionsAndPlaceOrder.gql'
-
 import '@adyen/adyen-web/dist/adyen.css'
-import { useAdyenCheckoutConfig } from '../../hooks/useAdyenCheckoutConfig'
-import { PaymentAction } from '@adyen/adyen-web/dist/types/types'
 
 const getResultCode = (result): ResultCodeEnum =>
   result?.data?.placeOrder?.order.adyen_payment_status?.resultCode &&
