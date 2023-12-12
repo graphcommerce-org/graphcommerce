@@ -55,6 +55,7 @@ export type UseFormGqlMethods<Q, V extends FieldValues> = Omit<
   Pick<UseFormReturn<V>, 'handleSubmit'> & {
     data?: Q | null
     error?: ApolloError
+    loading: boolean,
     submittedVariables?: V
   }
 
@@ -140,6 +141,7 @@ export function useFormGql<Q, V extends FieldValues>(
     handleSubmit,
     data,
     error,
+    loading,
     submittedVariables: submittedVariables.current,
   }
 }
