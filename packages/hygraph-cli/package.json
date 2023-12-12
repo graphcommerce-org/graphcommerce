@@ -12,7 +12,7 @@
   "main": "dist/index.js",
   "types": "src/index.ts",
   "dependencies": {
-    "@hygraph/management-sdk": "1.2.3",
+    "@hygraph/management-sdk": "1.2.4",
     "@whatwg-node/fetch": "^0.9.14",
     "graphql-tag": "^2.12.6",
     "prompts": "^2.4.2"
@@ -27,8 +27,8 @@
     "graphql": "^16.7.1"
   },
   "devDependencies": {
-    "@types/prompts": "^2.4.8",
-    "typescript": "5.2.2"
+    "@types/prompts": "^2.4.9",
+    "typescript": "5.3.3"
   },
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",

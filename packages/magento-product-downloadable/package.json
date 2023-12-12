@@ -23,7 +23,7 @@
     "@lingui/core": "^4.2.1",
     "@lingui/macro": "^4.2.1",
     "@lingui/react": "^4.2.1",
-    "next": "^14",
+    "next": "*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }

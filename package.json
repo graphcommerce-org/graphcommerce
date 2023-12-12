@@ -44,9 +44,9 @@
     }
   },
   "dependencies": {
-    "@changesets/cli": "2.26.2",
-    "@testing-library/jest-dom": "^6.1.4",
-    "@testing-library/react": "^14.1.0",
+    "@changesets/cli": "2.27.1",
+    "@testing-library/jest-dom": "^6.1.5",
+    "@testing-library/react": "^14.1.2",
     "concurrently": "8.2.2",
     "jest-environment-jsdom": "^29.7.0",
     "patch-package": "8.0.0",
@@ -54,10 +54,10 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@playwright/test": "1.39.0",
-    "eslint": "8.53.0",
-    "prettier": "3.1.0",
-    "typescript": "5.2.2"
+    "@playwright/test": "1.40.1",
+    "eslint": "8.55.0",
+    "prettier": "3.1.1",
+    "typescript": "5.3.3"
   },
   "resolutions": {
     "graphql-jit": "0.8.2"

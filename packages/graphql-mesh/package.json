@@ -16,7 +16,7 @@
     "@graphql-mesh/transform-prune": "latest",
     "@graphql-mesh/types": "latest",
     "@graphql-mesh/utils": "latest",
-    "@graphql-tools/utils": "^10.0.8",
+    "@graphql-tools/utils": "^10.0.11",
     "@whatwg-node/fetch": "^0.9.14",
     "fetch-retry": "^5.0.6",
     "tslib": "^2.6.2"
@@ -29,7 +29,7 @@
     "graphql": "^16.7.1"
   },
   "devDependencies": {
-    "typescript": "5.2.2"
+    "typescript": "5.3.3"
   },
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",

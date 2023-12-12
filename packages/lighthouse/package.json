@@ -16,6 +16,6 @@
     "@graphcommerce/eslint-config-pwa": "^7.1.0-canary.65",
     "@graphcommerce/prettier-config-pwa": "^7.1.0-canary.65",
     "@graphcommerce/typescript-config-pwa": "^7.1.0-canary.65",
-    "next": "^14"
+    "next": "*"
   }
 }

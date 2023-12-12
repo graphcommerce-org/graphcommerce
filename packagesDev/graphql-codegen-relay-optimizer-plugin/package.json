@@ -19,12 +19,12 @@
   },
   "devDependencies": {
     "@graphql-codegen/testing": "3.0.0",
-    "@types/jest": "29.5.8",
+    "@types/jest": "29.5.11",
     "@types/relay-compiler": "8.0.4",
     "jest": "29.7.0",
     "jest-diff": "^28",
     "ts-jest": "29.1.1",
-    "typescript": "5.2.2"
+    "typescript": "5.3.3"
   },
   "peerDependencies": {
     "@graphcommerce/eslint-config-pwa": "^7.1.0-canary.65",
