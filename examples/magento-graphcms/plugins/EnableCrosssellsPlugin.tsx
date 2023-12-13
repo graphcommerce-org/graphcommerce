@@ -2,7 +2,8 @@ import { AddProductsToCartFormProps } from '@graphcommerce/magento-product'
 import { IfConfig, PluginProps } from '@graphcommerce/next-config'
 
 export const component = 'AddProductsToCartForm'
-export const exported = '@graphcommerce/magento-product'
+export const exported =
+  '@graphcommerce/magento-product/components/AddProductsToCart/AddProductsToCartForm'
 export const ifConfig: IfConfig = 'demoMode'
 
 /**

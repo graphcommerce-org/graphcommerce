@@ -1,4 +1,4 @@
-import { FormAutoSubmit } from '@graphcommerce/ecommerce-ui'
+import { FormAutoSubmit, FormProvider } from '@graphcommerce/ecommerce-ui'
 import { extendableComponent, StickyBelowHeader } from '@graphcommerce/next-ui'
 import { Box, Container, Theme, useMediaQuery } from '@mui/material'
 import React from 'react'
@@ -34,7 +34,7 @@ export function ProductFiltersProLayoutSidebar(props: ProductFiltersProLayoutSid
     headerPosition = 'before',
   } = props
 
-  const { form, submit } = useProductFiltersPro()
+  const { form } = useProductFiltersPro()
   const classes = withState({ headerPosition })
 
   // We only need to auto-submit when the layout is not sidebar and we're viewing on desktop
@@ -42,10 +42,10 @@ export function ProductFiltersProLayoutSidebar(props: ProductFiltersProLayoutSid
   const autoSubmitDisabled = m
 
   return (
-    <>
+    <FormProvider {...form}>
       {headerPosition === 'before' ? header : null}
 
-      <FormAutoSubmit control={form.control} disabled={autoSubmitDisabled} submit={submit} />
+      <FormAutoSubmit disabled={autoSubmitDisabled} />
 
       <StickyBelowHeader sx={{ display: { md: 'none' } }}>{horizontalFilters}</StickyBelowHeader>
 
@@ -95,6 +95,6 @@ export function ProductFiltersProLayoutSidebar(props: ProductFiltersProLayoutSid
 
         {pagination && <Box gridArea='afterContent'>{pagination}</Box>}
       </Container>
-    </>
+    </FormProvider>
   )
 }

@@ -126,9 +126,7 @@ function ShippingPage() {
                           <Trans id='Next' />
                         </ComposedSubmitButton>
                       </FormActions>
-                      <ApolloCartErrorAlert
-                        error={renderProps.buttonState.isSubmitting ? undefined : renderProps.error}
-                      />
+                      <ApolloCartErrorAlert />
                     </>
                   )}
                 />

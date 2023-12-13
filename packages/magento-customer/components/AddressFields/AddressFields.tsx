@@ -5,7 +5,7 @@ import { filterNonNullableKeys, FormRow, InputCheckmark } from '@graphcommerce/n
 import {
   assertFormGqlOperation,
   houseNumberPattern,
-  UseFormReturn,
+  useFormContext,
 } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
@@ -22,27 +22,24 @@ export type AddressFieldValues = {
 }
 
 export type AddressFieldsProps = {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  form: UseFormReturn<any>
-  readOnly?: boolean
   countryFirst?: boolean
 }
 
 export function AddressFields(props: AddressFieldsProps) {
-  const { form, readOnly, countryFirst } = props
+  const { countryFirst } = props
 
   const countryQuery = useQuery(CountryRegionsDocument, { fetchPolicy: 'cache-and-network' })
   const countries = countryQuery.data?.countries ?? countryQuery.previousData?.countries
-
+  const form = useFormContext()
   assertFormGqlOperation<AddressFieldValues>(form)
-  const { watch, required, valid, control } = form
+  const { watch, required, valid, control, formState } = form
 
   const country = watch('countryCode')
 
   const countryList = useMemo(() => {
     const countriesWithLocale = (countries ?? [])?.filter((c) => c?.full_name_locale)
-    return countriesWithLocale.sort((a, b) =>
-      (a?.full_name_locale ?? '')?.localeCompare(b?.full_name_locale ?? ''),
+    return countriesWithLocale.sort(
+      (a, b) => (a?.full_name_locale ?? '')?.localeCompare(b?.full_name_locale ?? ''),
     )
   }, [countries])
 
@@ -57,6 +54,8 @@ export function AddressFields(props: AddressFieldsProps) {
 
     return availableRegions?.sort(compare)
   }, [country, countryList])
+
+  const readOnly = formState.isSubmitting
 
   const countryFields = (
     <FormRow>

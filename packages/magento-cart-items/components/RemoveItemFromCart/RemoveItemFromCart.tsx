@@ -24,6 +24,7 @@ export function RemoveItemFromCart(props: RemoveItemFromCartProps) {
         variant='inline'
         color='secondary'
         {...buttonProps}
+        key={uid}
         size='medium'
         type='submit'
         loading={formState.isSubmitting}

@@ -1,9 +1,9 @@
 import { RenderType, extendableComponent, responsiveVal } from '@graphcommerce/next-ui'
 import { Box, BoxProps } from '@mui/material'
 import { ProductListItemFragment } from '../../Api/ProductListItem.gql'
-import { AddProductsToCartForm } from '../AddProductsToCart'
 import { ProductListItemProps } from '../ProductListItem/ProductListItem'
 import { ProductListItemRenderer } from './renderer'
+import { AddProductsToCartForm } from '../AddProductsToCart'
 
 type ComponentState = {
   size?: 'normal' | 'small'

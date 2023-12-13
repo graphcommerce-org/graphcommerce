@@ -1,14 +1,22 @@
-import { ApolloErrorAlert, ApolloErrorAlertProps } from '@graphcommerce/ecommerce-ui'
+import {
+  ApolloErrorAlert,
+  ApolloErrorAlertProps,
+  assertFormGqlOperation,
+  useFormContext,
+} from '@graphcommerce/ecommerce-ui'
 import { Button } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { useCustomerSession } from '../../hooks/useCustomerSession'
 import { useAuthorizationErrorMasked } from './useAuthorizationErrorMasked'
 
-export type ApolloCustomerErrorAlertProps = ApolloErrorAlertProps
+export type ApolloCustomerErrorAlertProps = Omit<ApolloErrorAlertProps, 'error'> &
+  Partial<Pick<ApolloErrorAlertProps, 'error'>>
 
 export function ApolloCustomerErrorAlert(props: ApolloCustomerErrorAlertProps) {
-  const { error, graphqlErrorAlertProps } = props
-  const [newError, unauthorized] = useAuthorizationErrorMasked(error)
+  const { graphqlErrorAlertProps, error } = props
+  const methods = useFormContext()
+  assertFormGqlOperation(methods)
+  const [newError, unauthorized] = useAuthorizationErrorMasked(error ?? methods.error)
   const { query } = useCustomerSession()
 
   return (

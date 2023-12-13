@@ -1,15 +1,15 @@
-import { cloneDeep } from '@apollo/client/utilities'
+import { cloneDeep, mergeDeep } from '@apollo/client/utilities'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { useMemoObject } from '@graphcommerce/next-ui/hooks/useMemoObject'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { debounce } from '@mui/material'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import {
-  Control,
   DeepPartialSkipArrayKey,
   FieldPath,
   FieldValues,
   UseFormReturn,
+  useFormContext,
   useFormState,
   useWatch,
 } from 'react-hook-form'
@@ -102,8 +102,6 @@ export type FormAutoSubmitProps<
   TFieldValues extends FieldValues = FieldValues,
   TFieldNames extends readonly FieldPath<TFieldValues>[] = readonly FieldPath<TFieldValues>[],
 > = {
-  // eslint-disable-next-line react/no-unused-prop-types
-  control: Control<TFieldValues>
   /** Autosubmit only when these field names update */
   // eslint-disable-next-line react/no-unused-prop-types
   name?: readonly [...TFieldNames]
@@ -113,10 +111,6 @@ export type FormAutoSubmitProps<
 
   // eslint-disable-next-line react/no-unused-prop-types
   exact?: boolean
-
-  /** SubmitHandler */
-  // eslint-disable-next-line react/no-unused-prop-types
-  submit: ReturnType<UseFormReturn<TFieldValues>['handleSubmit']>
 
   /**
    * When a current submission is already in flight, should we wait for it to finish before
@@ -130,18 +124,19 @@ function useFormAutoSubmit2<
   TFieldValues extends FieldValues = FieldValues,
   TFieldNames extends readonly FieldPath<TFieldValues>[] = readonly FieldPath<TFieldValues>[],
 >(props: FormAutoSubmitProps<TFieldValues, TFieldNames>) {
-  const { wait, initialWait, maxWait, submit, parallel, ...watchOptions } = props
+  const { wait, initialWait, maxWait, parallel } = props
+  const { control, handleSubmit } = useFormContext<TFieldValues>()
 
   // We create a stable object from the values, so that we can compare them later
-  const values = useMemoObject(cloneDeep(useWatch(watchOptions)))
+  const values = useMemoObject(cloneDeep(useWatch({ control })))
   const oldValues = useRef<DeepPartialSkipArrayKey<TFieldValues>>(values)
-  const { isValidating, isSubmitting, isValid } = useFormState(watchOptions)
+  const { isValidating, isSubmitting, isValid } = useFormState({ control })
 
   const submitDebounced = useDebouncedCallback(
     async () => {
       try {
         oldValues.current = values
-        await submit()
+        await handleSubmit(() => {})()
       } catch (e) {
         // We're not interested if the submission actually succeeds, that should be handled by the form itself.
       }
@@ -167,7 +162,8 @@ function FormAutoSubmitBase<
   TFieldValues extends FieldValues = FieldValues,
   TFieldNames extends readonly FieldPath<TFieldValues>[] = readonly FieldPath<TFieldValues>[],
 >(props: FormAutoSubmitProps<TFieldValues, TFieldNames>) {
-  useFormAutoSubmit2(props)
+  const methods = useFormContext<TFieldValues>()
+  useFormAutoSubmit2(mergeDeep(props, methods))
   return null
 }
 
