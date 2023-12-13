@@ -1,6 +1,6 @@
 import { ExpandPaymentMethods } from '@graphcommerce/magento-cart-payment-method'
-import { UseAdyenPaymentMethodsDocument } from '../../hooks/UseAdyenPaymentMethods.gql'
 import { filterNonNullableKeys } from '@graphcommerce/next-ui'
+import { UseAdyenPaymentMethodsDocument } from '../../hooks/UseAdyenPaymentMethods.gql'
 
 export const nonNullable = <T>(value: T): value is NonNullable<T> =>
   value !== null && value !== undefined
