@@ -26,7 +26,7 @@ function handleFatalError(e, logger = new utils_1.DefaultLogger('◈')) {
 exports.handleFatalError = handleFatalError;
 const root = process.cwd();
 const meshDir = node_path_1.default.dirname(require.resolve('@graphcommerce/graphql-mesh'));
-const relativePath = node_path_1.default.join(node_path_1.default.relative(meshDir, root), '/');
+const relativePath = node_path_1.default.join(node_path_1.default.relative(meshDir, root), node_path_1.default.sep);
 const cliParams = {
     ...cli_1.DEFAULT_CLI_PARAMS,
     playgroundTitle: 'GraphCommerce® Mesh',
@@ -69,11 +69,11 @@ const main = async () => {
         return additionalTypeDef;
     });
     // Scan the current working directory to also read all graphqls files.
-    conf.additionalTypeDefs.push('**/*.graphqls');
+    conf.additionalTypeDefs.push(node_path_1.default.join('**', '*.graphqls'));
     const deps = (0, next_config_1.resolveDependenciesSync)();
     const packages = [...deps.values()].filter((p) => p !== '.');
     (0, next_config_1.packageRoots)(packages).forEach((r) => {
-        conf.additionalTypeDefs.push(`${r}/**/*.graphqls`);
+        conf.additionalTypeDefs.push(node_path_1.default.join(r, '**', '*.graphqls'));
     });
     if (!conf.serve)
         conf.serve = {};
@@ -90,7 +90,7 @@ const main = async () => {
     const yamlString = (0, next_config_1.replaceConfigInString)(yaml_1.default.stringify(conf), (0, next_config_1.loadConfig)(root));
     await node_fs_1.promises.writeFile(tmpMeshLocation, yamlString);
     // Reexport the mesh to is can be used by packages
-    await node_fs_1.promises.writeFile(`${meshDir}/.mesh.ts`, `export * from '${relativePath.split(node_path_1.default.sep).join('/')}.mesh'`, { encoding: 'utf8' });
+    await node_fs_1.promises.writeFile(node_path_1.default.join(meshDir, '.mesh.ts'), `export * from '${relativePath.split(node_path_1.default.sep).join('/')}.mesh'`, { encoding: 'utf8' });
     await (0, cli_1.graphqlMesh)({ ...cliParams, configName: tmpMesh });
     await cleanup();
 };

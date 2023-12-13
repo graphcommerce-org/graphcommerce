@@ -64,7 +64,10 @@ export function findPlugins(config: GraphCommerceConfig, cwd: string = process.c
         if (!result) return
 
         const pluginConfig = {
-          plugin: file.replace(dependency, path).replace('.tsx', '').replace('.ts', ''),
+          plugin: file
+            .replace(dependency.replace(/\\/g, '/'), path)
+            .replace('.tsx', '')
+            .replace('.ts', ''),
           ...result,
           enabled: !result.ifConfig || Boolean(get(config, result.ifConfig)),
         }
@@ -93,16 +96,19 @@ export function findPlugins(config: GraphCommerceConfig, cwd: string = process.c
   })
 
   if (process.env.NODE_ENV === 'development' && debug) {
-    const byExported = plugins.reduce((acc, plugin) => {
-      const componentStr = isReactPluginConfig(plugin) ? plugin.component : ''
-      const funcStr = isMethodPluginConfig(plugin) ? plugin.func : ''
-      const key = `🔌 ${chalk.greenBright(
-        `Plugins loaded for ${plugin.exported}#${componentStr}${funcStr}`,
-      )}`
-      if (!acc[key]) acc[key] = []
-      acc[key].push(plugin)
-      return acc
-    }, {} as Record<string, Pick<PluginConfig, 'plugin' | 'ifConfig' | 'enabled'>[]>)
+    const byExported = plugins.reduce(
+      (acc, plugin) => {
+        const componentStr = isReactPluginConfig(plugin) ? plugin.component : ''
+        const funcStr = isMethodPluginConfig(plugin) ? plugin.func : ''
+        const key = `🔌 ${chalk.greenBright(
+          `Plugins loaded for ${plugin.exported}#${componentStr}${funcStr}`,
+        )}`
+        if (!acc[key]) acc[key] = []
+        acc[key].push(plugin)
+        return acc
+      },
+      {} as Record<string, Pick<PluginConfig, 'plugin' | 'ifConfig' | 'enabled'>[]>,
+    )
 
     const toLog: string[] = []
     Object.entries(byExported).forEach(([key, p]) => {
