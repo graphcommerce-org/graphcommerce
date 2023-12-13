@@ -64,12 +64,9 @@ export function PaymentMethodOptions(props: PaymentOptionsProps) {
   const [getDetails] = useMutation(AdyenPaymentDetailsDocument)
   const [getStatus] = useLazyQuery(AdyenPaymentStatusDocument, { fetchPolicy: 'network-only' })
   const { selectedMethod, onSuccess } = usePaymentMethodContext()
-
   const paymentContainer = useRef<HTMLDivElement>(null)
   const component = useRef<CardElement | null>(null)
-
   const [, dispatch] = useContext(composedFormContext)
-
   const billingPage = useCartQuery(BillingPageDocument, { fetchPolicy: 'cache-and-network' }).data
     ?.cart?.billing_address
 
