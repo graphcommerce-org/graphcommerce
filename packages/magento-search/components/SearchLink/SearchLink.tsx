@@ -39,8 +39,10 @@ export function SearchLink(props: SearchLinkProps) {
   }
 
   const handleKeyDown: KeyboardEventHandler<HTMLAnchorElement> = (e) => {
-    e.preventDefault()
-    return router.push(href)
+    if (e.key === 'Enter') {
+        e.preventDefault()
+        return router.push(href)
+    }
   }
 
   return (
@@ -50,11 +52,7 @@ export function SearchLink(props: SearchLinkProps) {
         className={classes.root}
         underline='none'
         onClick={handleClick}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter') {
-            handleKeyDown(e)
-          }
-        }}
+        onKeyDown={handleKeyDown}
         tabIndex={0}
         sx={[
           (theme) => ({
