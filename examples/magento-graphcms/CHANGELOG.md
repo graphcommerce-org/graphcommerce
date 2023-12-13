@@ -1,5 +1,87 @@
 # Change Log
 
+## 7.1.0-canary.64
+
+## 7.1.0-canary.63
+
+## 7.1.0-canary.62
+
+## 7.1.0-canary.61
+
+## 7.1.0-canary.60
+
+## 7.1.0-canary.59
+
+## 7.1.0-canary.58
+
+## 7.1.0-canary.57
+
+### Patch Changes
+
+- [#2122](https://github.com/graphcommerce-org/graphcommerce/pull/2122) [`7750f7253`](https://github.com/graphcommerce-org/graphcommerce/commit/7750f7253ded34acb4cd8b75598bf0ad1bca6d5c) - Added .graphqlrc.yml for graphql file autocompletion ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 7.1.0-canary.56
+
+## 7.1.0-canary.55
+
+### Patch Changes
+
+- [#2004](https://github.com/graphcommerce-org/graphcommerce/pull/2004) [`53947d39f`](https://github.com/graphcommerce-org/graphcommerce/commit/53947d39f2f3ee578c14903c96a2b356d99d9475) - Implemented Message variant for RowColumnOne to show an important message which, after dismissing, will not show again ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 7.1.0-canary.54
+
+## 7.1.0-canary.53
+
+## 7.1.0-canary.52
+
+## 7.1.0-canary.51
+
+## 7.1.0-canary.50
+
+## 7.1.0-canary.49
+
+## 7.1.0-canary.48
+
+## 7.1.0-canary.47
+
+## 7.1.0-canary.46
+
+## 7.1.0-canary.45
+
+### Patch Changes
+
+- [#2077](https://github.com/graphcommerce-org/graphcommerce/pull/2077) [`7664e4587`](https://github.com/graphcommerce-org/graphcommerce/commit/7664e45873142078eb6681fd1bb268db8035cb2e) - Added ProductScroller component with built-in skeleton loader ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2077](https://github.com/graphcommerce-org/graphcommerce/pull/2077) [`eb29cbef5`](https://github.com/graphcommerce-org/graphcommerce/commit/eb29cbef56f8f7275ffe6760ef5e9f8d2598c7c4) - Added recently viewed products to product pages ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2077](https://github.com/graphcommerce-org/graphcommerce/pull/2077) [`5f4455b1c`](https://github.com/graphcommerce-org/graphcommerce/commit/5f4455b1cccddf1501f0279e5ca2d9277a07ff07) - Added Skeleton render type to productListRenderer ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 7.1.0-canary.38
+
+## 7.1.0-canary.37
+
+### Patch Changes
+
+- [#2112](https://github.com/graphcommerce-org/graphcommerce/pull/2112) [`15a203737`](https://github.com/graphcommerce-org/graphcommerce/commit/15a2037372cd615602d3e2f3deedba9766fc172c) - Make the "Search" string translatable and fix typo. ([@carlocarels90](https://github.com/carlocarels90))
+
+## 7.1.0-canary.36
+
+## 7.1.0-canary.35
+
+## 7.1.0-canary.34
+
+## 7.1.0-canary.33
+
+## 7.1.0-canary.32
+
+## 7.1.0-canary.31
+
+## 7.1.0-canary.30
+
+## 7.1.0-canary.29
+
+## 7.1.0-canary.28
+
 ## 7.1.0-canary.27
 
 ### Patch Changes

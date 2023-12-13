@@ -39,6 +39,9 @@ const compName = 'ConfigurableOptionsInput' as const
 const parts = ['form', 'button', 'finalPrice', 'quantity', 'divider', 'buttonWrapper'] as const
 const { classes } = extendableComponent(compName, parts)
 
+/**
+ * @deprecated
+ */
 export function ConfigurableProductAddToCart(props: ConfigurableProductAddToCartProps) {
   const {
     name,
@@ -156,6 +159,7 @@ export function ConfigurableProductAddToCart(props: ConfigurableProductAddToCart
           !data?.addProductsToCart?.user_errors?.length
         }
         variant='pill'
+        severity='success'
         autoHide
         action={
           <Button

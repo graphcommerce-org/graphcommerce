@@ -1,0 +1,7 @@
+mutation AddProductToWishlist($input: [WishlistItemInput!]!) {
+  addProductsToWishlist(wishlistId: 0, wishlistItems: $input) {
+    wishlist {
+      ...Wishlist
+    }
+  }
+}

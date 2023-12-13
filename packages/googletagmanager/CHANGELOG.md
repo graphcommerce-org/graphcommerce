@@ -1,5 +1,71 @@
 # Change Log
 
+## 7.1.0-canary.64
+
+## 7.1.0-canary.63
+
+## 7.1.0-canary.62
+
+### Minor Changes
+
+- [#2127](https://github.com/graphcommerce-org/graphcommerce/pull/2127) [`124e6c92a`](https://github.com/graphcommerce-org/graphcommerce/commit/124e6c92aa3b4b77f54235f0682c38438fd619b6) - Made all magento dependencies optional in the googleanalytics and googletagmanager packages ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 7.1.0-canary.61
+
+## 7.1.0-canary.60
+
+## 7.1.0-canary.59
+
+## 7.1.0-canary.58
+
+## 7.1.0-canary.57
+
+## 7.1.0-canary.56
+
+## 7.1.0-canary.55
+
+## 7.1.0-canary.54
+
+## 7.1.0-canary.53
+
+## 7.1.0-canary.52
+
+## 7.1.0-canary.51
+
+## 7.1.0-canary.50
+
+## 7.1.0-canary.49
+
+## 7.1.0-canary.48
+
+## 7.1.0-canary.47
+
+## 7.1.0-canary.46
+
+## 7.1.0-canary.45
+
+## 7.1.0-canary.38
+
+## 7.1.0-canary.37
+
+## 7.1.0-canary.36
+
+## 7.1.0-canary.35
+
+## 7.1.0-canary.34
+
+## 7.1.0-canary.33
+
+## 7.1.0-canary.32
+
+## 7.1.0-canary.31
+
+## 7.1.0-canary.30
+
+## 7.1.0-canary.29
+
+## 7.1.0-canary.28
+
 ## 7.1.0-canary.27
 
 ## 7.1.0-canary.26

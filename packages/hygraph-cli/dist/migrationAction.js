@@ -74,8 +74,14 @@ const actionMap = exports.client
  * component, you also need to pass the parentType, which is either 'model' or 'component'.
  */
 const migrationAction = (schema, type, action, props, parentApiId, parentType) => {
-    // Check if the entity already exists
+    /**
+     * Check if the entity already exists.
+     * If an update or deletion is made, it does not matter if the entity already exists
+     */
     const alreadyExists = () => {
+        if (action !== 'create') {
+            return false;
+        }
         switch (type) {
             case 'model':
                 return schema.models.some((model) => model.apiId === props.apiId);
@@ -99,12 +105,12 @@ const migrationAction = (schema, type, action, props, parentApiId, parentType) =
                         break;
                     }
                     default:
-                        return false; // or undefined or any other value you want if no match
+                        return false;
                 }
                 return parent?.fields.some((field) => field.apiId === props.apiId);
             }
             default: {
-                return false; // or undefined or any other value you want if no match
+                return false;
             }
         }
     };

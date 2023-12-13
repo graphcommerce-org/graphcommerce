@@ -1,0 +1,28 @@
+fragment WishlistItem on WishlistItemInterface {
+  id
+  __typename
+  ... on ConfigurableWishlistItem {
+    configurable_options {
+      configurable_product_option_uid
+      configurable_product_option_value_uid
+      option_label
+      value_label
+    }
+  }
+
+  # todo
+  # customizable_options {
+  #   customizable_option_uid
+  #   values {
+  #     customizable_option_value_uid
+  #     value
+  #   }
+  # }
+
+  product {
+    __typename
+    uid
+    sku
+    ...ProductListItem
+  }
+}

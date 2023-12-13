@@ -3,11 +3,12 @@ import {
   MotionImageAspect,
   MotionImageAspectProps,
   Scroller,
-  ScrollerButton,
-  ScrollerButtonProps,
   ScrollerDots,
+  ScrollerButton,
   ScrollerProvider,
   unstable_usePreventScroll as usePreventScroll,
+  ScrollerButtonProps,
+  ScrollerThumbnails,
 } from '@graphcommerce/framer-scroller'
 import { dvh } from '@graphcommerce/framer-utils'
 import {
@@ -30,7 +31,7 @@ import { iconChevronLeft, iconChevronRight, iconFullscreen, iconFullscreenExit }
 
 const MotionBox = styled(m.div)({})
 
-type OwnerState = { zoomed: boolean }
+type OwnerState = { zoomed: boolean; disableZoom: boolean }
 const name = 'SidebarGallery' as const
 const parts = [
   'row',
@@ -68,8 +69,8 @@ export function SidebarGallery(props: SidebarGalleryProps) {
     aspectRatio: [width, height] = [1, 1],
     sx,
     routeHash = 'gallery',
-    disableZoom,
     showButtons,
+    disableZoom = false,
   } = props
 
   const router = useRouter()
@@ -102,7 +103,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
     }
   }
 
-  const classes = withState({ zoomed })
+  const classes = withState({ zoomed, disableZoom })
   const theme = useTheme()
   const windowRef = useRef(typeof window !== 'undefined' ? window : null)
 
@@ -317,7 +318,6 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                 className={classes.bottomCenter}
                 sx={{
                   display: 'flex',
-                  px: theme.page.horizontal,
                   gap: theme.spacings.xxs,
                   position: 'absolute',
                   bottom: theme.spacings.xxs,
@@ -329,11 +329,15 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                   },
                 }}
               >
-                <ScrollerDots layout='position' layoutDependency={zoomed} />
+                {import.meta.graphCommerce.sidebarGallery?.paginationVariant ===
+                'THUMBNAILS_BOTTOM' ? (
+                  <ScrollerThumbnails images={images} />
+                ) : (
+                  <ScrollerDots />
+                )}
               </Box>
             </MotionBox>
           </TrapFocus>
-
           <Box
             className={classes.sidebarWrapper}
             sx={[

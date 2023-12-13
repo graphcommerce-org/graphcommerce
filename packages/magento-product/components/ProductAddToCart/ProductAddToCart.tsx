@@ -24,6 +24,9 @@ const { classes, selectors } = extendableComponent('ProductAddToCart', [
 
 export type AddToCartProps = React.ComponentProps<typeof ProductAddToCart>
 
+/**
+ * @deprecated
+ */
 export function ProductAddToCart(
   props: Pick<ProductInterface, 'name'> & {
     variables: Omit<ProductAddToCartMutationVariables, 'cartId'>
@@ -111,6 +114,7 @@ export function ProductAddToCart(
           !data?.addProductsToCart?.user_errors?.length
         }
         variant='pill'
+        severity='success'
         autoHide
         action={
           <Button

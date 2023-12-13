@@ -148,6 +148,9 @@ msgstr "Schließen Sie die Zahlung auf der Website Ihrer Bank ab."
 msgid "Complete your purchase"
 msgstr "Schließen Sie Ihren Kauf ab"
 
+msgid "Configure"
+msgstr "Konfigurieren"
+
 msgid "Confirm new email"
 msgstr "Neue E-Mail bestätigen"
 
@@ -307,6 +310,9 @@ msgstr "Ungültige E-Mail-Adresse"
 msgid "Invalid phone number"
 msgstr "Ungültige Telefonnummer"
 
+msgid "It appears you are offline, please try again later."
+msgstr "Es scheint, dass Sie offline sind, bitte versuchen Sie es später erneut."
+
 msgid "Last Name"
 msgstr "Nachname"
 
@@ -321,9 +327,6 @@ msgstr "Heller Modus"
 
 msgid "Loading"
 msgstr "Laden"
-
-msgid "Loading wishlist"
-msgstr "Wunschliste wird geladen"
 
 msgid "Loading your account"
 msgstr "Ihr Kundenkonto wird geladen"
@@ -421,14 +424,17 @@ msgstr "Bestellung #{orderId}"
 msgid "Order before 22:00"
 msgstr "Bestellen Sie vor 22:00 Uhr"
 
+msgid "Order date"
+msgstr "Auftragsdatum"
+
+msgid "Order details"
+msgstr "Bestelldetails"
+
 msgid "Order not found"
 msgstr "Bestellung nicht gefunden"
 
 msgid "Order number"
 msgstr "Bestellnummer"
-
-msgid "Order status"
-msgstr "Bestellstatus"
 
 msgid "Order summary"
 msgstr "Bestellübersicht"
@@ -529,6 +535,9 @@ msgstr "Produkt nicht verfügbar in {allLabels}"
 msgid "Products"
 msgstr "Produkte"
 
+msgid "Recently viewed products"
+msgstr "Kürzlich angesehene Produkte"
+
 msgid "Region"
 msgstr "Region"
 
@@ -618,6 +627,12 @@ msgstr "Zum Hauptinhalt springen"
 
 msgid "Some items in your cart contain errors, please update or remove them, then try again."
 msgstr "Einige Artikel im Warenkorb enthalten Fehler, bitte aktualisieren oder entfernen Sie diese, und versuchen Sie es erneut."
+
+msgid "Something went wrong"
+msgstr "Etwas ist schief gelaufen"
+
+msgid "Something went wrong on the server, please try again later."
+msgstr "Auf dem Server ist ein Fehler aufgetreten, bitte versuchen Sie es später erneut."
 
 msgid "Sort"
 msgstr "Sortieren"

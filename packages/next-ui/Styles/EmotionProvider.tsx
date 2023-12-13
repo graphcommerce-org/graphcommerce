@@ -1,14 +1,14 @@
-import createCache from '@emotion/cache'
 import type { EmotionCache } from '@emotion/cache'
 import { CacheProvider } from '@emotion/react'
+import { createEmotionCache } from './createEmotionCache'
 
-let muiCache: EmotionCache | undefined
-export const createMuiCache = () => {
-  muiCache = createCache({ key: 'mui' })
-  return muiCache
-}
+export type EmotionProviderProps = { children?: React.ReactNode; emotionCache?: EmotionCache }
+
+const clientSideEmotionCache = createEmotionCache()
 
 /** Provider that is supposed to be used in your `pages/_app.tsx` */
-export function EmotionProvider({ children }: { children: React.ReactNode }) {
-  return <CacheProvider value={muiCache ?? createMuiCache()}>{children}</CacheProvider>
+export function EmotionProvider(props: EmotionProviderProps) {
+  const { children, emotionCache = clientSideEmotionCache } = props
+
+  return <CacheProvider value={emotionCache}>{children}</CacheProvider>
 }

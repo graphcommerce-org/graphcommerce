@@ -10,17 +10,16 @@ import {
   ImageConfigComplete,
   imageConfigDefault,
 } from 'next/dist/shared/lib/image-config'
-import { ImageConfigContext } from 'next/dist/shared/lib/image-config-context'
+import { ImageConfigContext } from 'next/dist/shared/lib/image-config-context.shared-runtime'
 import Head from 'next/head'
 import type { ImageLoaderProps, ImageLoader } from 'next/image'
 import React, { useContext, useEffect, useMemo, useRef } from 'react'
 import {
+  ImageLoaderPropsWithConfig,
   akamaiLoader,
   cloudinaryLoader,
   configDeviceSizes,
-  configLoader,
-  configPath,
-  DefaultImageLoaderProps,
+  customLoader,
   defaultLoader,
   imgixLoader,
 } from '../config/config'
@@ -34,16 +33,19 @@ export type { ImageLoaderProps, ImageLoader }
 
 type ImageConfig = ImageConfigComplete & { allSizes: number[] }
 
+type ImageLoaderWithConfig = (resolverProps: ImageLoaderPropsWithConfig) => string
+
 const DEFAULT_SIZES: SizesRecord = { 0: '100vw', 1200: '50vw' }
 
 const VALID_LOADING_VALUES = ['lazy', 'eager', undefined] as const
 type LoadingValue = (typeof VALID_LOADING_VALUES)[number]
 
-const loaders = new Map<LoaderValue, (props: DefaultImageLoaderProps) => string>([
+const loaders = new Map<LoaderValue, (props: ImageLoaderPropsWithConfig) => string>([
+  ['default', defaultLoader],
   ['imgix', imgixLoader],
   ['cloudinary', cloudinaryLoader],
   ['akamai', akamaiLoader],
-  ['default', defaultLoader],
+  ['custom', customLoader],
 ])
 
 const VALID_LAYOUT_VALUES = ['fill', 'responsive', 'intrinsic', 'fixed'] as const
@@ -135,7 +137,7 @@ function getWidths(
 type GenImgAttrsData = {
   src: string
   layout: LayoutValue
-  loader: ImageLoader
+  loader: ImageLoaderWithConfig
   width?: number
   quality?: number
   sizes: string
@@ -150,22 +152,23 @@ function generateSrcSet(props: GenImgAttrsData): string {
   return `${widths
     .map(
       (w, i) =>
-        `${loader({ src, quality, width: w })} ${
+        `${loader({ config, src, quality, width: w })} ${
           kind === 'w' ? Math.round(w * scale) : i + 1
         }${kind}`,
     )
     .join(', ')}, data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7 1w`
 }
 
-function defaultImageLoader(loaderProps: ImageLoaderProps) {
-  const load = loaders.get(configLoader)
+function defaultImageLoader(loaderProps: ImageLoaderPropsWithConfig) {
+  const loaderKey = loaderProps.config?.loader || 'default'
+  const load = loaders.get(loaderKey)
   if (load) {
-    return load({ root: configPath, ...loaderProps })
+    return load(loaderProps)
   }
   throw new Error(
-    `[@graphcommerce/image]: Unknown "loader" found in "next.config.js". Expected: ${VALID_LOADERS.join(
+    `Unknown "loader" found in "next.config.js". Expected: ${VALID_LOADERS.join(
       ', ',
-    )}. Received: ${configLoader}`,
+    )}. Received: ${loaderKey}`,
   )
 }
 
@@ -205,7 +208,7 @@ function generateSizesString(sizes?: Sizes) {
 /** Since we're handling stuff ourselves we omit some stuff */
 type IntrisincImage = Omit<
   JSX.IntrinsicElements['img'],
-  'src' | 'srcSet' | 'ref' | 'width' | 'height' | 'loading' | 'sizes' | 'width' | 'height'
+  'src' | 'srcSet' | 'ref' | 'width' | 'height' | 'loading' | 'sizes'
 > & { loading?: LoadingValue }
 
 export type ImageProps = IntrisincImage & {

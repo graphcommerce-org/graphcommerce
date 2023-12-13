@@ -1,5 +1,75 @@
 # Change Log
 
+## 7.1.0-canary.64
+
+## 7.1.0-canary.63
+
+## 7.1.0-canary.62
+
+## 7.1.0-canary.61
+
+## 7.1.0-canary.60
+
+## 7.1.0-canary.59
+
+## 7.1.0-canary.58
+
+## 7.1.0-canary.57
+
+## 7.1.0-canary.56
+
+## 7.1.0-canary.55
+
+## 7.1.0-canary.54
+
+## 7.1.0-canary.53
+
+## 7.1.0-canary.52
+
+## 7.1.0-canary.51
+
+## 7.1.0-canary.50
+
+## 7.1.0-canary.49
+
+## 7.1.0-canary.48
+
+## 7.1.0-canary.47
+
+## 7.1.0-canary.46
+
+## 7.1.0-canary.45
+
+## 7.1.0-canary.38
+
+## 7.1.0-canary.37
+
+## 7.1.0-canary.36
+
+### Patch Changes
+
+- [#2107](https://github.com/graphcommerce-org/graphcommerce/pull/2107) [`2f5150456`](https://github.com/graphcommerce-org/graphcommerce/commit/2f5150456eabcce410ad8a0f1cbebeedabb6564c) - feat(GCOM-1237): remember email adress when going from checkout to si… ([@FrankHarland](https://github.com/FrankHarland))
+
+## 7.1.0-canary.35
+
+## 7.1.0-canary.34
+
+## 7.1.0-canary.33
+
+## 7.1.0-canary.32
+
+## 7.1.0-canary.31
+
+## 7.1.0-canary.30
+
+## 7.1.0-canary.29
+
+## 7.1.0-canary.28
+
+### Minor Changes
+
+- [#2018](https://github.com/graphcommerce-org/graphcommerce/pull/2018) [`750aa6a72`](https://github.com/graphcommerce-org/graphcommerce/commit/750aa6a72710869d54244467253212e551d335e0) - Changed the layout of the succes page. We are using ActionCards right now to match the design of the cart. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
 ## 7.1.0-canary.27
 
 ## 7.1.0-canary.26

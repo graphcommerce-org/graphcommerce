@@ -80,6 +80,9 @@ export function NumberFieldElement<T extends FieldValues>(props: NumberFieldElem
                 width: responsiveVal(90, 120),
               },
               {
+                '& input[type=number]': {
+                  MozAppearance: 'textfield',
+                },
                 '& .MuiOutlinedInput-root': {
                   px: '2px',
                   display: 'grid',

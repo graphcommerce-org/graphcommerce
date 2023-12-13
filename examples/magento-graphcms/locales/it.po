@@ -148,6 +148,9 @@ msgstr "Completa il pagamento sul sito del tuo banco."
 msgid "Complete your purchase"
 msgstr "Completa il tuo acquisto"
 
+msgid "Configure"
+msgstr "Configura"
+
 msgid "Confirm new email"
 msgstr "Conferma nuovo indirizzo email"
 
@@ -307,6 +310,9 @@ msgstr "Indirizzo email non valido"
 msgid "Invalid phone number"
 msgstr "Numero di telefono non valido"
 
+msgid "It appears you are offline, please try again later."
+msgstr "Sembra che tu sia offline, riprova più tardi."
+
 msgid "Last Name"
 msgstr "Cognome"
 
@@ -321,9 +327,6 @@ msgstr "Modalità chiara"
 
 msgid "Loading"
 msgstr "Caricamento"
-
-msgid "Loading wishlist"
-msgstr "Caricamento lista desideri"
 
 msgid "Loading your account"
 msgstr "Caricamento del tuo account"
@@ -421,14 +424,17 @@ msgstr "Ordine #{orderId}"
 msgid "Order before 22:00"
 msgstr "Ordina prima delle 22:00"
 
+msgid "Order date"
+msgstr "data dell'ordine"
+
+msgid "Order details"
+msgstr "Dettagli dell'ordine"
+
 msgid "Order not found"
 msgstr "Ordine non trovato"
 
 msgid "Order number"
 msgstr "Numero ordine"
-
-msgid "Order status"
-msgstr "Stato ordine"
 
 msgid "Order summary"
 msgstr "Riepilogo ordine"
@@ -529,6 +535,9 @@ msgstr "Prodotto non disponibile in {allLabels}"
 msgid "Products"
 msgstr "Prodotti"
 
+msgid "Recently viewed products"
+msgstr "Prodotti visionati recentemente"
+
 msgid "Region"
 msgstr "Regione"
 
@@ -618,6 +627,12 @@ msgstr "Passa al contenuto principale"
 
 msgid "Some items in your cart contain errors, please update or remove them, then try again."
 msgstr "Alcuni articoli nel tuo carrello contengono errori, aggiorna o rimuovi e riprova."
+
+msgid "Something went wrong"
+msgstr "Qualcosa è andato storto"
+
+msgid "Something went wrong on the server, please try again later."
+msgstr "Qualcosa è andato storto sul server, riprova più tardi."
 
 msgid "Sort"
 msgstr "Ordinare"

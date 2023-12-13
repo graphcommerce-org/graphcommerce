@@ -1,5 +1,83 @@
 # Change Log
 
+## 7.1.0-canary.64
+
+## 7.1.0-canary.63
+
+## 7.1.0-canary.62
+
+## 7.1.0-canary.61
+
+## 7.1.0-canary.60
+
+## 7.1.0-canary.59
+
+## 7.1.0-canary.58
+
+## 7.1.0-canary.57
+
+## 7.1.0-canary.56
+
+## 7.1.0-canary.55
+
+## 7.1.0-canary.54
+
+## 7.1.0-canary.53
+
+## 7.1.0-canary.52
+
+## 7.1.0-canary.51
+
+## 7.1.0-canary.50
+
+## 7.1.0-canary.49
+
+## 7.1.0-canary.48
+
+## 7.1.0-canary.47
+
+## 7.1.0-canary.46
+
+## 7.1.0-canary.45
+
+### Patch Changes
+
+- [#2077](https://github.com/graphcommerce-org/graphcommerce/pull/2077) [`0d2cb22a5`](https://github.com/graphcommerce-org/graphcommerce/commit/0d2cb22a58451d40102981263209aacb93016c76) - Removed unwanted space below ProductListItem images caused by line-height. Images are now perfectly square as expected. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2077](https://github.com/graphcommerce-org/graphcommerce/pull/2077) [`5f4455b1c`](https://github.com/graphcommerce-org/graphcommerce/commit/5f4455b1cccddf1501f0279e5ca2d9277a07ff07) - Added Skeleton render type to productListRenderer ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 7.1.0-canary.38
+
+### Minor Changes
+
+- [#2048](https://github.com/graphcommerce-org/graphcommerce/pull/2048) [`13e23e426`](https://github.com/graphcommerce-org/graphcommerce/commit/13e23e4265bac70fb4d0830e4661019e71ce299f) - Wishlist will now support configurable products and uses the ActionCardLayout ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+### Patch Changes
+
+- [#2048](https://github.com/graphcommerce-org/graphcommerce/pull/2048) [`8d4f1ef00`](https://github.com/graphcommerce-org/graphcommerce/commit/8d4f1ef00bd7a8b8ca3be46302ce3959eae33a23) - When a product has a discount price, render that on the product page ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+- [#2048](https://github.com/graphcommerce-org/graphcommerce/pull/2048) [`0335dd941`](https://github.com/graphcommerce-org/graphcommerce/commit/0335dd9417b8fe1c4f1009dad354b9edab892b9f) - The product page will now also load all information that a ProductListItem will load ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 7.1.0-canary.37
+
+## 7.1.0-canary.36
+
+## 7.1.0-canary.35
+
+## 7.1.0-canary.34
+
+## 7.1.0-canary.33
+
+## 7.1.0-canary.32
+
+## 7.1.0-canary.31
+
+## 7.1.0-canary.30
+
+## 7.1.0-canary.29
+
+## 7.1.0-canary.28
+
 ## 7.1.0-canary.27
 
 ## 7.1.0-canary.26

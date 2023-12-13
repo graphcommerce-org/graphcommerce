@@ -19,10 +19,12 @@ export function useConfigurableOptionsForSelection(variables: UseConfigurableOpt
     skip: !url_key || !selectedOptions.length,
   })
 
-  const configured = findByTypename(
-    selection.data?.products?.items ?? selection.previousData?.products?.items,
-    'ConfigurableProduct',
-  )
+  const configured = selection.error
+    ? undefined
+    : findByTypename(
+        selection.data?.products?.items ?? selection.previousData?.products?.items,
+        'ConfigurableProduct',
+      )
   return { ...selection, configured }
 }
 

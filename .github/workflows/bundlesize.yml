@@ -7,33 +7,25 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.pull_request.draft == false
     steps:
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 16
-          registry-url: 'https://registry.npmjs.org'
-          scope: '@graphcommerce'
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           path: new
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           path: old
           ref: ${{ github.base_ref }}
-      - uses: bahmutov/npm-install@v1
+      - uses: actions/setup-node@v3
         with:
-          useRollingCache: true
-          working-directory: new
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - run: yarn --cwd ./new/examples/magento-graphcms build > new.txt
+          cache: yarn
+          node-version: 18
+          registry-url: 'https://registry.npmjs.org'
+          scope: '@graphcommerce'
+          cache-dependency-path: ./old/yarn.lock
+      - run: cd new && yarn install && cd ..
+      - run: cd new/examples/magento-graphcms && yarn build > ../../../new.txt && cd ../../..
       - run: cat new.txt
-      - uses: bahmutov/npm-install@v1
-        with:
-          useRollingCache: true
-          working-directory: old
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - run: yarn --cwd ./old/examples/magento-graphcms build > old.txt
+      - run: cd old && yarn install && cd ..
+      - run: cd old/examples/magento-graphcms && yarn build > ../../../old.txt && cd ../../..
       - run: cat old.txt
       - uses: ho-nl/next-bundlesize-action@master
         id: 'bundlesize'

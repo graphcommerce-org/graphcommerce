@@ -170,6 +170,16 @@ export type GraphCommerceConfig = {
    */
   demoMode?: InputMaybe<Scalars['Boolean']['input']>;
   /**
+   * Enable Guest Checkout Login:
+   * During customer login, GraphCommerce queries Magento to determine whether
+   * the customer account already exists or not. If not, the sign-up form is shown instead.
+   *
+   * For Magento versions, 2.4.7, 2.4.6-p1 and up, 2.4.5-p3 and up, 2.4.4-p4 and up, the following setting must be set to Yes
+   *
+   * `Stores -> Configuration -> Sales -> Checkout -> Checkout Options -> Enable Guest Checkout Login`
+   */
+  enableGuestCheckoutLogin?: InputMaybe<Scalars['Boolean']['input']>;
+  /**
    * See https://support.google.com/analytics/answer/9539598?hl=en
    *
    * Provide a value to enable Google Analytics for your store.
@@ -277,17 +287,19 @@ export type GraphCommerceConfig = {
    * Example: '/product/'
    */
   productRoute?: InputMaybe<Scalars['String']['input']>;
+  /** Settings for recently viewed products */
+  recentlyViewedProducts?: InputMaybe<RecentlyViewedProductsConfig>;
   /**
    * Allow the site to be indexed by search engines.
    * If false, the robots.txt file will be set to disallow all.
    */
   robotsAllow?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Configuration for the SidebarGallery component */
+  sidebarGallery?: InputMaybe<SidebarGalleryConfig>;
   /** All storefront configuration for the project */
   storefront: Array<GraphCommerceStorefrontConfig>;
   /** Hide the wishlist functionality for guests. */
   wishlistHideForGuests?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Ignores whether a product is already in the wishlist, makes the toggle an add only. */
-  wishlistIgnoreProductWishlistStatus?: InputMaybe<Scalars['Boolean']['input']>;
   /** Show a message when the product is added to the wishlist. */
   wishlistShowFeedbackMessage?: InputMaybe<Scalars['Boolean']['input']>;
 };
@@ -384,6 +396,25 @@ export type ProductFiltersLayout =
   | 'DEFAULT'
   | 'SIDEBAR';
 
+/** Settings for recently viewed products */
+export type RecentlyViewedProductsConfig = {
+  /** Enable/disable recently viewed products */
+  enabled?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Number of recently viewed products to be stored in localStorage */
+  maxCount?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** SidebarGalleryConfig will contain all configuration values for the Sidebar Gallery component. */
+export type SidebarGalleryConfig = {
+  /** Variant used for the pagination */
+  paginationVariant?: InputMaybe<SidebarGalleryPaginationVariant>;
+};
+
+/** Enumeration of all possible positions for the sidebar gallery thumbnails. */
+export type SidebarGalleryPaginationVariant =
+  | 'DOTS'
+  | 'THUMBNAILS_BOTTOM';
+
 
 type Properties<T> = Required<{
   [K in keyof T]: z.ZodType<T[K], any, T[K]>;
@@ -399,6 +430,8 @@ export const CompareVariantSchema = z.enum(['CHECKBOX', 'ICON']);
 
 export const ProductFiltersLayoutSchema = z.enum(['DEFAULT', 'SIDEBAR']);
 
+export const SidebarGalleryPaginationVariantSchema = z.enum(['DOTS', 'THUMBNAILS_BOTTOM']);
+
 export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerceConfig>> {
   return z.object({
     canonicalBaseUrl: z.string().min(1),
@@ -412,6 +445,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     customerRequireEmailConfirmation: z.boolean().nullish(),
     debug: GraphCommerceDebugConfigSchema().nullish(),
     demoMode: z.boolean().nullish(),
+    enableGuestCheckoutLogin: z.boolean().nullish(),
     googleAnalyticsId: z.string().nullish(),
     googleRecaptchaKey: z.string().nullish(),
     googleTagmanagerId: z.string().nullish(),
@@ -426,10 +460,11 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     productFiltersLayout: ProductFiltersLayoutSchema.nullish(),
     productFiltersPro: z.boolean().nullish(),
     productRoute: z.string().nullish(),
+    recentlyViewedProducts: RecentlyViewedProductsConfigSchema().nullish(),
     robotsAllow: z.boolean().nullish(),
+    sidebarGallery: SidebarGalleryConfigSchema().nullish(),
     storefront: z.array(GraphCommerceStorefrontConfigSchema()),
     wishlistHideForGuests: z.boolean().nullish(),
-    wishlistIgnoreProductWishlistStatus: z.boolean().nullish(),
     wishlistShowFeedbackMessage: z.boolean().nullish()
   })
 }
@@ -463,5 +498,18 @@ export function MagentoConfigurableVariantValuesSchema(): z.ZodObject<Properties
     content: z.boolean().nullish(),
     gallery: z.boolean().nullish(),
     url: z.boolean().nullish()
+  })
+}
+
+export function RecentlyViewedProductsConfigSchema(): z.ZodObject<Properties<RecentlyViewedProductsConfig>> {
+  return z.object({
+    enabled: z.boolean().nullish(),
+    maxCount: z.number().nullish()
+  })
+}
+
+export function SidebarGalleryConfigSchema(): z.ZodObject<Properties<SidebarGalleryConfig>> {
+  return z.object({
+    paginationVariant: SidebarGalleryPaginationVariantSchema.nullish()
   })
 }

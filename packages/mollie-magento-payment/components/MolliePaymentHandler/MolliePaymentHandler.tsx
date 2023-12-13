@@ -1,5 +1,9 @@
 import { useMutation } from '@graphcommerce/graphql'
-import { ApolloCartErrorFullPage, useClearCurrentCartId } from '@graphcommerce/magento-cart'
+import {
+  ApolloCartErrorFullPage,
+  useAssignCurrentCartId,
+  useClearCurrentCartId,
+} from '@graphcommerce/magento-cart'
 import {
   PaymentHandlerProps,
   usePaymentMethodContext,
@@ -20,6 +24,7 @@ export function MolliePaymentHandler({ code }: PaymentHandlerProps) {
   const [lockState] = useCartLockWithToken()
 
   const clear = useClearCurrentCartId()
+  const assignCartId = useAssignCurrentCartId()
 
   const isActive = selectedMethod?.code === code || lockState.method === code
 
@@ -55,6 +60,7 @@ export function MolliePaymentHandler({ code }: PaymentHandlerProps) {
         // eslint-disable-next-line @typescript-eslint/no-floating-promises
         onSuccess(lockState.order_number ?? '')
       } else if (returnedCartId) {
+        assignCartId(returnedCartId)
         // eslint-disable-next-line @typescript-eslint/no-floating-promises
         router.replace('/checkout/payment')
       }

@@ -1,6 +1,7 @@
 export * from './Row'
 export * from './ButtonLinkList'
 export * from './ColumnOne/ColumnOne'
+export * from './ColumnOne/variant'
 export * from './ColumnOneBoxed/ColumnOneBoxed'
 export * from './ColumnOneCentered/ColumnOneCentered'
 export * from './ColumnThree/ColumnThree'

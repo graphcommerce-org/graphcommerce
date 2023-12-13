@@ -54,6 +54,7 @@ export function GuestNewsletter(props: GuestNewsletterProps) {
       <MessageSnackbar
         open={submittedWithoutErrors}
         variant='pill'
+        severity='success'
         action={
           <Button size='medium' variant='pill' color='secondary' fullWidth>
             <Trans id='Ok' />

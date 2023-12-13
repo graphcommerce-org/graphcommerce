@@ -25,7 +25,11 @@ export function SignUpForm(props: SignUpFormProps) {
     SignUpMutationVariables & { confirmPassword?: string }
   >(
     Mutation,
-    { defaultValues: { email }, onBeforeSubmit: (values) => ({ ...values, email }) },
+    {
+      defaultValues: { email },
+      onBeforeSubmit: (values) => ({ ...values, email }),
+      experimental_useV2: true,
+    },
     { errorPolicy: 'all' },
   )
 
@@ -53,7 +57,7 @@ export function SignUpForm(props: SignUpFormProps) {
           variant='outlined'
           error={!!formState.errors.password || !!inputError}
           label={<Trans id='Password' />}
-          autoFocus
+          autoFocus={!!email}
           autoComplete='new-password'
           required={required.password}
           disabled={formState.isSubmitting}

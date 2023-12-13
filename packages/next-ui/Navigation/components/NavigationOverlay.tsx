@@ -190,6 +190,7 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
             (theme) => ({
               display: 'grid',
               alignItems: !stretchColumns ? 'start' : undefined,
+              justifyContent: 'end',
               [theme.breakpoints.down('md')]: {
                 width:
                   sizeSm !== 'floating'

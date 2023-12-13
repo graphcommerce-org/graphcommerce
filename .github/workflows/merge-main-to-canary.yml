@@ -11,7 +11,9 @@ jobs:
     timeout-minutes: 2
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Set Git config
         run: |
           git config --local user.email "actions@github.com"

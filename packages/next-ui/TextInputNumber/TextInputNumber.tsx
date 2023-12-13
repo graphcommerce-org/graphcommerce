@@ -102,6 +102,9 @@ export function TextInputNumber(props: TextInputNumberProps) {
           width: responsiveVal(90, 120),
         },
         {
+          '& input[type=number]': {
+            MozAppearance: 'textfield',
+          },
           '& .MuiOutlinedInput-root': {
             px: '3px',
             display: 'grid',

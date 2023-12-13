@@ -1,5 +1,105 @@
 # Change Log
 
+## 7.1.0-canary.64
+
+## 7.1.0-canary.63
+
+## 7.1.0-canary.62
+
+## 7.1.0-canary.61
+
+### Patch Changes
+
+- [#2125](https://github.com/graphcommerce-org/graphcommerce/pull/2125) [`5224ee500`](https://github.com/graphcommerce-org/graphcommerce/commit/5224ee5001c94a19f226fa36106e76739319297c) - If there is an open menu in an overlay, pressing the escape button now closes the menu instead of the overlay. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 7.1.0-canary.60
+
+## 7.1.0-canary.59
+
+## 7.1.0-canary.58
+
+### Patch Changes
+
+- [#2121](https://github.com/graphcommerce-org/graphcommerce/pull/2121) [`a5da6ffc8`](https://github.com/graphcommerce-org/graphcommerce/commit/a5da6ffc8be359e93c7bde986134f7162aae13b9) - Change the critical css injection location to be in the head instead of `<style>` tags in the body. It has a number of negative consequences, such as the famous "flash of unstyled content" (FOUC) and the re-paint and re-layout required. ([@paales](https://github.com/paales))
+
+## 7.1.0-canary.57
+
+## 7.1.0-canary.56
+
+### Patch Changes
+
+- [#2123](https://github.com/graphcommerce-org/graphcommerce/pull/2123) [`8ad60f255`](https://github.com/graphcommerce-org/graphcommerce/commit/8ad60f255b747858c35dd6b6cf5c90147d960082) - Fixed schema-dts dependency issue ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 7.1.0-canary.55
+
+### Patch Changes
+
+- [#2004](https://github.com/graphcommerce-org/graphcommerce/pull/2004) [`da2135744`](https://github.com/graphcommerce-org/graphcommerce/commit/da2135744dddfa0d211c59589090ebb1977c38c9) - Added info icon for Snackbar when severity is set to info ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2004](https://github.com/graphcommerce-org/graphcommerce/pull/2004) [`d608830ce`](https://github.com/graphcommerce-org/graphcommerce/commit/d608830ce77f85ff725cc106b9fc55a22012c74c) - Added ‘disableBackdropClick’ prop to MessageSnackbar to allow page interaction without closing the snackbar ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2004](https://github.com/graphcommerce-org/graphcommerce/pull/2004) [`94e1ae811`](https://github.com/graphcommerce-org/graphcommerce/commit/94e1ae811fe9eb0051863e8be91c6399ddcdf22f) - Added DismissibleSnackbar component to allow messages to be shown only once ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2004](https://github.com/graphcommerce-org/graphcommerce/pull/2004) [`53947d39f`](https://github.com/graphcommerce-org/graphcommerce/commit/53947d39f2f3ee578c14903c96a2b356d99d9475) - Implemented Message variant for RowColumnOne to show an important message which, after dismissing, will not show again ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 7.1.0-canary.54
+
+## 7.1.0-canary.53
+
+## 7.1.0-canary.52
+
+## 7.1.0-canary.51
+
+## 7.1.0-canary.50
+
+## 7.1.0-canary.49
+
+## 7.1.0-canary.48
+
+## 7.1.0-canary.47
+
+## 7.1.0-canary.46
+
+## 7.1.0-canary.45
+
+### Patch Changes
+
+- [#2077](https://github.com/graphcommerce-org/graphcommerce/pull/2077) [`727d1004d`](https://github.com/graphcommerce-org/graphcommerce/commit/727d1004dfcb7dddf6e35b6b157a34491bb05cc6) - Fixed ItemScroller component className. Changed from SidebarSlider to ItemScroller ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 7.1.0-canary.38
+
+### Patch Changes
+
+- [#2048](https://github.com/graphcommerce-org/graphcommerce/pull/2048) [`695f40cf2`](https://github.com/graphcommerce-org/graphcommerce/commit/695f40cf220636d17f04bc9b0ce86c549c740386) - filterNonNullable keys simplified the types which caused unions to be collapsed ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 7.1.0-canary.37
+
+## 7.1.0-canary.36
+
+## 7.1.0-canary.35
+
+## 7.1.0-canary.34
+
+## 7.1.0-canary.33
+
+## 7.1.0-canary.32
+
+## 7.1.0-canary.31
+
+## 7.1.0-canary.30
+
+### Patch Changes
+
+- [#2105](https://github.com/graphcommerce-org/graphcommerce/pull/2105) [`185f9ddeb`](https://github.com/graphcommerce-org/graphcommerce/commit/185f9ddebff0eaf1f388faebe88a5d400294512a) - Fixed bug where the mobile menu wouldn't open after the first selected level ([@mikekeehnen](https://github.com/mikekeehnen))
+
+## 7.1.0-canary.29
+
+## 7.1.0-canary.28
+
+### Minor Changes
+
+- [#2018](https://github.com/graphcommerce-org/graphcommerce/pull/2018) [`750aa6a72`](https://github.com/graphcommerce-org/graphcommerce/commit/750aa6a72710869d54244467253212e551d335e0) - Changed the layout of the succes page. We are using ActionCards right now to match the design of the cart. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
 ## 7.1.0-canary.27
 
 ## 7.1.0-canary.26
