@@ -6,16 +6,18 @@ import { PaymentAction } from '@adyen/adyen-web/dist/types/types'
 import { ApolloErrorSnackbar, useFormCompose } from '@graphcommerce/ecommerce-ui'
 import { useLazyQuery, useMutation } from '@graphcommerce/graphql'
 import { useFormGqlMutationCart, useCurrentCartId, useCartQuery } from '@graphcommerce/magento-cart'
+import { BillingPageDocument } from '@graphcommerce/magento-cart-checkout'
 import {
   PaymentOptionsProps,
   usePaymentMethodContext,
 } from '@graphcommerce/magento-cart-payment-method'
-import { BillingPageDocument } from '@graphcommerce/magento-cart-checkout'
+import { ErrorSnackbar } from '@graphcommerce/next-ui'
+import { composedFormContext } from '@graphcommerce/react-hook-form/src/ComposedForm/context'
+import { Trans } from '@lingui/react'
 import { Box } from '@mui/material'
-import { useEffect, useRef, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import { AdyenPaymentDetailsDocument } from '../../components/AdyenPaymentHandler/AdyenPaymentDetails.gql'
 import { AdyenPaymentStatusDocument } from '../../components/AdyenPaymentHandler/AdyenPaymentStatus.gql'
-import { useAdyenCartLock } from '../../hooks/useAdyenCartLock'
 import { useAdyenCheckoutConfig } from '../../hooks/useAdyenCheckoutConfig'
 import { ResultCodeEnum, isResultCodeEnum } from '../../hooks/useAdyenHandlePaymentResponse'
 import {
@@ -55,13 +57,18 @@ function useAdyenCheckout(options?: UseAdyenCheckoutOptions) {
 
 export function PaymentMethodOptions(props: PaymentOptionsProps) {
   const { step, code, child: brandCode, Container } = props
-
+  const [showError, setShowError] = useState(false)
   const action = useRef<string | undefined>(undefined)
   const orderNumber = useRef<string>('')
   const { currentCartId } = useCurrentCartId()
   const [getDetails] = useMutation(AdyenPaymentDetailsDocument)
   const [getStatus] = useLazyQuery(AdyenPaymentStatusDocument, { fetchPolicy: 'network-only' })
   const { selectedMethod, onSuccess } = usePaymentMethodContext()
+
+  const paymentContainer = useRef<HTMLDivElement>(null)
+  const component = useRef<CardElement | null>(null)
+
+  const [, dispatch] = useContext(composedFormContext)
 
   const billingPage = useCartQuery(BillingPageDocument, { fetchPolicy: 'cache-and-network' }).data
     ?.cart?.billing_address
@@ -78,10 +85,6 @@ export function PaymentMethodOptions(props: PaymentOptionsProps) {
           country: billingPage?.country?.code,
         },
       }
-
-      console.log(20, state.data)
-      console.log(30, stateDataWithBillingAddress)
-
       // eslint-disable-next-line @typescript-eslint/no-use-before-define
       if (state.isValid) setValue('stateData', JSON.stringify(stateDataWithBillingAddress))
     },
@@ -91,7 +94,7 @@ export function PaymentMethodOptions(props: PaymentOptionsProps) {
 
       const payload = JSON.stringify({ orderId: orderNumber, details: state.data.details })
 
-      // Atempt 1; We first try and handle the payment for the order.
+      // Attempt 1; We first try and handle the payment for the order.
       const details = await getDetails({
         errorPolicy: 'all',
         variables: { cartId: currentCartId, payload },
@@ -99,7 +102,7 @@ export function PaymentMethodOptions(props: PaymentOptionsProps) {
 
       let paymentStatus = details.data?.adyenPaymentDetails
 
-      // Atempt 2; The adyenPaymentDetails mutation failed, because it was already called previously or no payment had been made.
+      // Attempt 2; The adyenPaymentDetails mutation failed, because it was already called previously or no payment had been made.
       if (details.errors) {
         const status = await getStatus({
           errorPolicy: 'all',
@@ -107,6 +110,11 @@ export function PaymentMethodOptions(props: PaymentOptionsProps) {
         })
         paymentStatus = status.data?.adyenPaymentStatus
         console.error(`payment failed: ${paymentStatus?.resultCode}`)
+
+        // Restart component and show error message
+        component.current?.remount()
+        setShowError(true)
+        dispatch({ type: 'SUBMITTED', isSubmitSuccessful: false })
       }
 
       if (paymentStatus?.resultCode === ResultCodeEnum.Authorised) {
@@ -114,17 +122,10 @@ export function PaymentMethodOptions(props: PaymentOptionsProps) {
         await onSuccess(orderNumber.current)
       }
     },
-    onError: (e, component) => {
+    onError: (e) => {
       console.error(e)
-      // setErrorMessage(
-      //   'Unable to complete the payment, please try again or select a different payment method. ',
-      // )
-      // setError(true)
     },
   })
-
-  const paymentContainer = useRef<HTMLDivElement>(null)
-  const component = useRef<CardElement | null>(null)
 
   useEffect(() => {
     if (component.current || !checkout || !paymentContainer.current) return
@@ -138,14 +139,12 @@ export function PaymentMethodOptions(props: PaymentOptionsProps) {
   }, [checkout])
 
   // Set Adyen client data on payment and place order
-  const [, lock] = useAdyenCartLock()
   const form = useFormGqlMutationCart<
     AdyenCcPaymentOptionsAndPlaceOrderMutation,
     AdyenCcPaymentOptionsAndPlaceOrderMutationVariables & { issuer?: string }
   >(AdyenCcPaymentOptionsAndPlaceOrderDocument, {
     onBeforeSubmit: (vars) => {
       if (!component.current) throw Error('Adyen component not mounted yet')
-
       component.current.submit()
 
       // ?locked=1&adyen=1
@@ -153,16 +152,12 @@ export function PaymentMethodOptions(props: PaymentOptionsProps) {
       currentUrl.searchParams.set('cart_id', vars.cartId)
       currentUrl.searchParams.set('locked', '1')
       currentUrl.searchParams.set('adyen', '1')
-
       const returnUrl = currentUrl.toString()
 
-      console.log(22, returnUrl)
-
       // eslint-disable-next-line @typescript-eslint/no-use-before-define
-      return { ...vars, stateData: getValues('stateData'), returnUrl: 'https://google.com' }
+      return { ...vars, stateData: getValues('stateData'), returnUrl }
     },
     onComplete: async (result) => {
-      console.debug('place order result:', result)
       const merchantReference = result.data?.placeOrder?.order.order_number
       if (merchantReference !== undefined && merchantReference !== null) {
         orderNumber.current = merchantReference
@@ -175,51 +170,31 @@ export function PaymentMethodOptions(props: PaymentOptionsProps) {
 
       const resultCode = getResultCode(result)
 
-      // Case 1: Non-3DS/Place Order failure -> Show error message and remount card component
+      // Case 1: Non-3DS/Place Order failure -> Restart component and show error message
       if (result.errors || !merchantReference || !selectedMethod?.code) {
-        console.info('component should be recreated?')
-        // createCheckout()
+        component.current?.remount()
+        setShowError(true)
+        dispatch({ type: 'SUBMITTED', isSubmitSuccessful: false })
         return
       }
 
-      // Case 2: Non-3DS Authorised successfully | DONE
+      // Case 2: Non-3DS Authorised successfully
       if (resultCode === ResultCodeEnum.Authorised) {
         console.info(`${brandCode} payment success`)
         await onSuccess(merchantReference)
       }
 
-      // Case 3: 3DS challenge action -> show popup
-      if (resultCode === ResultCodeEnum.IdentifyShopper) {
-        console.info('IdentifyShopper')
-        if (action.current) {
-          console.log('action available', JSON.parse(action.current))
-          component.current?.handleAction({
-            ...JSON.parse(action.current),
-            url: 'https://test.adyen.com/hpp/3d/validate.shtml',
-          } as unknown as PaymentAction)
-        } else {
-          console.log('no action available', action.current)
-        }
+      // Case 3: 3DS challenge action -> start 3DS flow
+      if (
+        (resultCode === ResultCodeEnum.IdentifyShopper ||
+          resultCode === ResultCodeEnum.ChallengeShopper) &&
+        action.current
+      ) {
+        component.current?.handleAction({
+          ...JSON.parse(action.current),
+          // url: 'https://test.adyen.com/hpp/3d/validate.shtml', // <-- Remove after development
+        } as PaymentAction)
       }
-
-      // Case 3: 3DS challenge action -> show popup
-      if (action.current !== undefined) {
-        // // // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        // new Promise<CardElement>((resolve) => {
-        //   ;(function waitFor() {
-        //     if (card !== undefined) return resolve(card)
-        //     setTimeout(waitFor, 30)
-        //   })()
-        // }).then(async (card) => {
-        //   const data = JSON.parse(String(action.current))
-        //   if (data?.type === 'redirect') {
-        //     await lock({ method: selectedMethod.code, adyen: '1', merchantReference })
-        //   }
-        // })
-      }
-
-      // Case 4: 3DS failure -> show retry message
-      // Case 5: 3DS challenge action success response -> show success
     },
   })
 
@@ -237,6 +212,9 @@ export function PaymentMethodOptions(props: PaymentOptionsProps) {
         <Box ref={paymentContainer} />
         <ApolloErrorSnackbar error={error} />
       </form>
+      <ErrorSnackbar open={showError}>
+        <Trans id="The payment hasn't completed, please try again or select a different payment method." />
+      </ErrorSnackbar>
     </Container>
   )
 }
