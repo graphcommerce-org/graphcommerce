@@ -147,7 +147,7 @@ export function LayoutDefault(props: LayoutDefaultProps) {
           <div />
         )}
         <div className={classes.children}>
-          <div id='skip-nav' />
+          <div id='skip-nav' tabIndex={-1} />
           {children}
         </div>
         <div className={classes.footer}>{footer}</div>

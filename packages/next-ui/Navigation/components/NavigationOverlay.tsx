@@ -81,6 +81,10 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
 
   useEffect(() => {
     animating.set(true)
+
+    if (activeAndNotClosing) {
+      a11yFocusRef.current?.focus()
+    }
   }, [activeAndNotClosing, animating])
 
   const afterClose = useEventCallback(() => {
@@ -127,16 +131,7 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
         },
       }}
     >
-      <MotionDiv
-        layout
-        layoutDependency={selectionValue}
-        sx={{ display: 'grid' }}
-        onLayoutAnimationComplete={() => {
-          if (selectedLevel === 1 && a11yFocusRef.current) {
-            a11yFocusRef.current.focus()
-          }
-        }}
-      >
+      <MotionDiv layout layoutDependency={selectionValue} sx={{ display: 'grid' }}>
         <Box
           className={classes.header}
           sx={(theme) => ({
@@ -160,7 +155,6 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
                   sx={{ boxShadow: 'none', my: fabMarginY }}
                   size='responsive'
                   aria-label={i18n._(/* i18n */ 'Back')}
-                  ref={a11yFocusRef}
                 >
                   <IconSvg src={iconChevronLeft} size='large' aria-hidden />
                 </Fab>
@@ -173,6 +167,7 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
                 sx={{ boxShadow: 'none', my: fabMarginY }}
                 size='responsive'
                 aria-label={i18n._(/* i18n */ 'Close')}
+                ref={a11yFocusRef}
               >
                 <IconSvg src={iconClose} size='large' aria-hidden />
               </Fab>
