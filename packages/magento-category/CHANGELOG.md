@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.1.0-canary.65
+
+### Patch Changes
+
+- [#2145](https://github.com/graphcommerce-org/graphcommerce/pull/2145) [`4fc2fda92`](https://github.com/graphcommerce-org/graphcommerce/commit/4fc2fda92519159631cfe9a8eafcef58197f9986) - Fixed a bug where pagination would be added when navigating to a subcategory from a paginated page ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
 ## 7.1.0-canary.64
 
 ## 7.1.0-canary.63
