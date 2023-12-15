@@ -1,0 +1,8 @@
+query GetConfigurableVariants($sku: String!) {
+  products(filter: { sku: { eq: $sku } }) {
+    items {
+      __typename
+      ...ConfigurableOptions
+    }
+  }
+}
